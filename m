@@ -2,195 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1829274D216
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 11:49:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 53D0F74D276
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 12:00:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231226AbjGJJtW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jul 2023 05:49:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35536 "EHLO
+        id S232226AbjGJKAB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jul 2023 06:00:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42608 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233295AbjGJJsQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 05:48:16 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F08549CF;
-        Mon, 10 Jul 2023 02:43:48 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 36A9heH8062128;
-        Mon, 10 Jul 2023 04:43:40 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1688982220;
-        bh=YwdJRssXcjWyuiNh+q5+nXW1fZd294P922Z1fOmQmNA=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=QzBh+L6ZiH6INTfdq9naYXeX7slvVpx1R19efU37j/r9vTSEo08SQqpKgICtpGVA4
-         nWxD6bPh8jEgOwQL9rPVFUalizGOnqH6NLgP8x/4NE4/JArv/1UEpcMfeBMDCTnm0i
-         yGkmLhekWBAKuQOU/mfXPD6xVKQdal+M+2BMVzxU=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 36A9herU029943
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 10 Jul 2023 04:43:40 -0500
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 10
- Jul 2023 04:43:39 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 10 Jul 2023 04:43:39 -0500
-Received: from uda0492258.dhcp.ti.com (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 36A9hT7p031422;
-        Mon, 10 Jul 2023 04:43:36 -0500
-From:   Siddharth Vadapalli <s-vadapalli@ti.com>
-To:     <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <afd@ti.com>
-CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>,
-        <s-vadapalli@ti.com>
-Subject: [PATCH v2 2/2] arm64: dts: ti: k3-j721s2: Add overlay to enable main CPSW2G with GESI
-Date:   Mon, 10 Jul 2023 15:13:28 +0530
-Message-ID: <20230710094328.1359377-3-s-vadapalli@ti.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230710094328.1359377-1-s-vadapalli@ti.com>
-References: <20230710094328.1359377-1-s-vadapalli@ti.com>
+        with ESMTP id S230352AbjGJJ7s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 05:59:48 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40916268B
+        for <devicetree@vger.kernel.org>; Mon, 10 Jul 2023 02:58:13 -0700 (PDT)
+Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mkl@pengutronix.de>)
+        id 1qIneV-0006xt-D8; Mon, 10 Jul 2023 11:57:55 +0200
+Received: from pengutronix.de (unknown [172.20.34.65])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (Client did not present a certificate)
+        (Authenticated sender: mkl-all@blackshift.org)
+        by smtp.blackshift.org (Postfix) with ESMTPSA id 31B751ECD02;
+        Mon, 10 Jul 2023 09:57:52 +0000 (UTC)
+Date:   Mon, 10 Jul 2023 11:57:51 +0200
+From:   Marc Kleine-Budde <mkl@pengutronix.de>
+To:     Judith Mendez <jm@ti.com>
+Cc:     Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, linux-can@vger.kernel.org,
+        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Schuyler Patton <spatton@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org,
+        Oliver Hartkopp <socketcan@hartkopp.net>,
+        Simon Horman <simon.horman@corigine.com>
+Subject: Re: [PATCH v10 0/2] Enable multiple MCAN on AM62x
+Message-ID: <20230710-overheat-ruined-12d17707e324-mkl@pengutronix.de>
+References: <20230707204714.62964-1-jm@ti.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="scrncn37d33goitk"
+Content-Disposition: inline
+In-Reply-To: <20230707204714.62964-1-jm@ti.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:b01:1d::7b
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Kishon Vijay Abraham I <kishon@ti.com>
 
-The MAIN CPSW2G instance of CPSW on J721S2 SoC can be enabled with the GESI
-Expansion Board connected to the J7 Common-Proc-Board. Use the overlay
-to enable this.
+--scrncn37d33goitk
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Add alias for the MAIN CPSW2G port to enable kernel to fetch MAC address
-directly from U-Boot.
+On 07.07.2023 15:47:12, Judith Mendez wrote:
+> On AM62x there are two MCANs in MCU domain. The MCANs in MCU domain
+> were not enabled since there is no hardware interrupt routed to A53
+> GIC interrupt controller. Therefore A53 Linux cannot be interrupted
+> by MCU MCANs.
+>=20
+> This solution instantiates a hrtimer with 1 ms polling interval
+> for MCAN device when there is no hardware interrupt property in
+> DTB MCAN node. The hrtimer generates a recurring software interrupt
+> which allows to call the isr. The isr will check if there is pending
+> transaction by reading a register and proceed normally if there is.
+> MCANs with hardware interrupt routed to A53 Linux will continue to
+> use the hardware interrupt as expected.
+>=20
+> Timer polling method was tested on both classic CAN and CAN-FD
+> at 125 KBPS, 250 KBPS, 1 MBPS and 2.5 MBPS with 4 MBPS bitrate
+> switching.
+>=20
+> Letency and CPU load benchmarks were tested on 3x MCAN on AM62x.
 
-Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
-Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
----
- arch/arm64/boot/dts/ti/Makefile               |  2 +
- .../dts/ti/k3-j721s2-evm-gesi-exp-board.dtso  | 85 +++++++++++++++++++
- 2 files changed, 87 insertions(+)
- create mode 100644 arch/arm64/boot/dts/ti/k3-j721s2-evm-gesi-exp-board.dtso
+Latency
 
-diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-index 6dd7b6f1d6ab..019a8be19b93 100644
---- a/arch/arm64/boot/dts/ti/Makefile
-+++ b/arch/arm64/boot/dts/ti/Makefile
-@@ -51,6 +51,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-j721e-sk.dtb
- # Boards with J721s2 SoC
- dtb-$(CONFIG_ARCH_K3) += k3-am68-sk-base-board.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-j721s2-common-proc-board.dtb
-+dtb-$(CONFIG_ARCH_K3) += k3-j721s2-evm-gesi-exp-board.dtbo
- 
- # Boards with J784s4 SoC
- dtb-$(CONFIG_ARCH_K3) += k3-am69-sk.dtb
-@@ -58,3 +59,4 @@ dtb-$(CONFIG_ARCH_K3) += k3-j784s4-evm.dtb
- 
- # Enable support for device-tree overlays
- DTC_FLAGS_k3-am6548-iot2050-advanced-m2 += -@
-+DTC_FLAGS_k3-j721s2-common-proc-board += -@
-diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-evm-gesi-exp-board.dtso b/arch/arm64/boot/dts/ti/k3-j721s2-evm-gesi-exp-board.dtso
-new file mode 100644
-index 000000000000..9ababfeef904
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-j721s2-evm-gesi-exp-board.dtso
-@@ -0,0 +1,85 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/**
-+ * DT Overlay for MAIN CPSW2G using GESI Expansion Board with J7 common processor board.
-+ *
-+ * GESI Board Product Link: https://www.ti.com/tool/J7EXPCXEVM
-+ *
-+ * Copyright (C) 2023 Texas Instruments Incorporated - https://www.ti.com/
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/net/ti-dp83867.h>
-+
-+#include "k3-pinctrl.h"
-+
-+&{/} {
-+	aliases {
-+		ethernet1 = "/bus@100000/ethernet@c200000/ethernet-ports/port@1";
-+	};
-+};
-+
-+&main_pmx0 {
-+	main_cpsw_mdio_pins_default: main-cpsw-mdio-pins-default {
-+		pinctrl-single,pins = <
-+			J721S2_IOPAD(0x0c0, PIN_OUTPUT, 6) /* (T28) MCASP1_AXR0.MDIO0_MDC */
-+			J721S2_IOPAD(0x0bc, PIN_INPUT, 6) /* (V28) MCASP1_AFSX.MDIO0_MDIO */
-+		>;
-+	};
-+
-+	rgmii1_pins_default: rgmii1-pins-default {
-+		pinctrl-single,pins = <
-+			J721S2_IOPAD(0x0b8, PIN_INPUT, 6) /* (AA24) MCASP1_ACLKX.RGMII1_RD0 */
-+			J721S2_IOPAD(0x0a0, PIN_INPUT, 6) /* (AB25) MCASP0_AXR12.RGMII1_RD1 */
-+			J721S2_IOPAD(0x0a4, PIN_INPUT, 6) /* (T23) MCASP0_AXR13.RGMII1_RD2 */
-+			J721S2_IOPAD(0x0a8, PIN_INPUT, 6) /* (U24) MCASP0_AXR14.RGMII1_RD3 */
-+			J721S2_IOPAD(0x0b0, PIN_INPUT, 6) /* (AD26) MCASP1_AXR3.RGMII1_RXC */
-+			J721S2_IOPAD(0x0ac, PIN_INPUT, 6) /* (AC25) MCASP0_AXR15.RGMII1_RX_CTL */
-+			J721S2_IOPAD(0x08c, PIN_OUTPUT, 6) /* (T25) MCASP0_AXR7.RGMII1_TD0 */
-+			J721S2_IOPAD(0x090, PIN_OUTPUT, 6) /* (W24) MCASP0_AXR8.RGMII1_TD1 */
-+			J721S2_IOPAD(0x094, PIN_OUTPUT, 6) /* (AA25) MCASP0_AXR9.RGMII1_TD2 */
-+			J721S2_IOPAD(0x098, PIN_OUTPUT, 6) /* (V25) MCASP0_AXR10.RGMII1_TD3 */
-+			J721S2_IOPAD(0x0b4, PIN_OUTPUT, 6) /* (U25) MCASP1_AXR4.RGMII1_TXC */
-+			J721S2_IOPAD(0x09c, PIN_OUTPUT, 6) /* (T24) MCASP0_AXR11.RGMII1_TX_CTL */
-+		>;
-+	};
-+};
-+
-+&exp1 {
-+	p15 {
-+		/* P15 - EXP_MUX2 */
-+		gpio-hog;
-+		gpios = <13 GPIO_ACTIVE_HIGH>;
-+		output-high;
-+		line-name = "EXP_MUX2";
-+	};
-+};
-+
-+&main_cpsw {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&rgmii1_pins_default>;
-+};
-+
-+&main_cpsw_mdio {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_cpsw_mdio_pins_default>;
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	main_cpsw_phy0: ethernet-phy@0 {
-+		reg = <0>;
-+		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
-+		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
-+		ti,min-output-impedance;
-+	};
-+};
-+
-+&main_cpsw_port1 {
-+	status = "okay";
-+	phy-mode = "rgmii-rxid";
-+	phy-handle = <&main_cpsw_phy0>;
-+};
--- 
-2.34.1
+> 1 MBPS timer polling interval is the better timer polling interval
+> since it has comparable latency to hardware interrupt with the worse
+> case being 1ms + CAN frame propagation time and CPU load is not
+> substantial. Latency can be improved further with less than 1 ms
+> polling intervals, howerver it is at the cost of CPU usage since CPU
 
+However
+
+> load increases at 0.5 ms.
+>=20
+> Note that in terms of power, enabling MCU MCANs with timer-polling
+> implementation might have negative impact since we will have to wake
+> up every 1 ms whether there are CAN packets pending in the RX FIFO or
+> not. This might prevent the CPU from entering into deeper idle states
+> for extended periods of time.
+>=20
+> v9:
+> Link: https://lore.kernel.org/linux-can/20230419223323.20384-1-jm@ti.com/=
+T/#t
+>=20
+> v8:
+> Link: https://lore.kernel.org/linux-can/20230530224820.303619-1-jm@ti.com=
+/T/#t
+>=20
+> v7:
+> Link: https://lore.kernel.org/linux-can/20230523023749.4526-1-jm@ti.com/T=
+/#t
+>=20
+> v6:
+> Link: https://lore.kernel.org/linux-can/20230518193613.15185-1-jm@ti.com/=
+T/#t
+>=20
+> v5:
+> Link: https://lore.kernel.org/linux-can/20230510202952.27111-1-jm@ti.com/=
+T/#t
+>=20
+> v4:
+> Link: https://lore.kernel.org/linux-can/c3395692-7dbf-19b2-bd3f-31ba86fa4=
+ac9@linaro.org/T/#t
+
+The link doesn't point to v4, fixed.
+
+> v2:
+> Link: https://lore.kernel.org/linux-can/20230424195402.516-1-jm@ti.com/T/=
+#t
+>=20
+> V1:
+> Link: https://lore.kernel.org/linux-can/19d8ae7f-7b74-a869-a818-93b74d106=
+709@ti.com/T/#t
+
+Was there a v1? That link doesn't point to it, removed.
+
+>=20
+> RFC:
+> Link: https://lore.kernel.org/linux-can/52a37e51-4143-9017-42ee-8d17c6702=
+8e3@ti.com/T/#t
+
+Doesn't point to RFC, fixed.
+
+Applied to linux-can-next/testing.
+
+Thanks,
+Marc
+
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde          |
+Embedded Linux                   | https://www.pengutronix.de |
+Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
+
+--scrncn37d33goitk
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEDs2BvajyNKlf9TJQvlAcSiqKBOgFAmSr1hwACgkQvlAcSiqK
+BOhHqwgAstPyKnj9LCXokgj8mdcICYHPuXIsk0LtOYpArWkekPcaAJgv6u4sBjlT
+HhHksfmbomzyYUmbwfm3lynXBFRJoHacN8oXfiDBv6DwXVJNyGqFq77GqezyJTTv
+9TNbSartJEYnRSgHuzWiVr5OzPqmCq/kL4Lv5J2OV6yjFCF8spG/bcxbt0tv6KYp
+J2/24b884jYeHEKZ+2rjUiKBphXZd0A7Uo0qsjVE86hVKsuh1ng43bQ4Oj16layp
+DexZYAZK4ODY+kJxVRF9upZwXFgCRs8+zef4vMOytpjPF7ctkjnaBLiuA61gfj0C
+JNPBYja4NGINDjk2KyztqsnVqBGffw==
+=Y7y0
+-----END PGP SIGNATURE-----
+
+--scrncn37d33goitk--
