@@ -2,184 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4715674D50C
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 14:14:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5BD8874D590
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 14:34:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231355AbjGJMOv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jul 2023 08:14:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56692 "EHLO
+        id S229925AbjGJMek (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jul 2023 08:34:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38306 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231452AbjGJMOs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 08:14:48 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80DE2195
-        for <devicetree@vger.kernel.org>; Mon, 10 Jul 2023 05:14:43 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id 2adb3069b0e04-4fa48b5dc2eso6704376e87.1
-        for <devicetree@vger.kernel.org>; Mon, 10 Jul 2023 05:14:43 -0700 (PDT)
+        with ESMTP id S229774AbjGJMek (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 08:34:40 -0400
+Received: from mail-pl1-x642.google.com (mail-pl1-x642.google.com [IPv6:2607:f8b0:4864:20::642])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7271FDB
+        for <devicetree@vger.kernel.org>; Mon, 10 Jul 2023 05:34:39 -0700 (PDT)
+Received: by mail-pl1-x642.google.com with SMTP id d9443c01a7336-1b9e9765f2cso1933075ad.3
+        for <devicetree@vger.kernel.org>; Mon, 10 Jul 2023 05:34:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688991281; x=1691583281;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=FIUM80sem4wvBeLJM7gxDVfcq4hFkz0TAKhA7YTlha0=;
-        b=T3lrZkp+l0MpEVWQYcpC2aYnnrChpg4lobA/mkpPEJVQV0pIGNWa0GXgLs88EXFpVa
-         ZIbQ5WhqtTETOmfuAtQZWpm7a/seTDSxVWUY4T3NAkD0y5jRdx4LjPD9ket4+PskCCG7
-         VWASjUFKokDKj4uXztwOem+R9vh9h+qY9UTEfjIiQy+FqDQAxBmTsxjNeVGlFoTMj/s0
-         GgQj9Ott1jKbkncPXlMA2NlotE2xmFU7hW/CcyYp3aOW10tyDmManBPJtOr/iHHEl72B
-         9x+74s98lapudBtz3j57nWmfsPOGbqnK7gIyXrMWs9n8oPLnxLfn3wv0CWZ7ZtOLHjwn
-         /o8g==
+        d=gmail.com; s=20221208; t=1688992479; x=1691584479;
+        h=to:subject:message-id:date:from:sender:reply-to:mime-version:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=jvhbKHPRKfMEJS6inHuIrpCpyOh87s7quIhd+QJ98f4=;
+        b=IjsTXkboVQq5aR2eiwfTjfU9cO/jl2coVka2iRB7wcI9FBu904fLknW+7oVvwpl+90
+         iUmnl0hQ06nUbNYDHtR01v9wy6a/CbAMdIwkWHND+Q+gr7C3snGnda4aE0IRBjATniy9
+         aRZSr+p3yXWyV1VgvvKAGPWOxJyyw2k9oxTdYS87hJvUp40STLfUVZ45Q7qT9dj7d9R5
+         SORri9jKshPQ1Ot70NHY5vh7ukqPOYd4BjxBJshRZyoPWn35kajjP8or6YGsZZAGodcW
+         c3uesR+6WT6dBqFpUcmd1ZBJuY/hcPbl8965opNuKFRdQ5SejPGKY34h42gr+fjYoJwM
+         HbZw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688991281; x=1691583281;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1688992479; x=1691584479;
+        h=to:subject:message-id:date:from:sender:reply-to:mime-version
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=FIUM80sem4wvBeLJM7gxDVfcq4hFkz0TAKhA7YTlha0=;
-        b=BhCT7jG86WhkRr9YkdyETrQZytaGa7VNaftr6oOE5T+zg4HIor0UXI53CTl4lso37E
-         JWWdPy/JkP6LYZmN97NaELC5mFIiuXpnSKj0Ozb/6Z1xaxFBaf74Dx9SXZmZ81v/koJV
-         Rq9GOEOLn1wlwa20V16zbpqw9U19B6nfcnWK3u+aSHiZLYelzZ4z5DY8NTg6kasUBQOi
-         KmSFxf9P2iaklCWeffQwpdHCt6DhZi8rjKNGer2+ct3JbuhvCnuhYyupAIgPm3CMYGq/
-         dgxr+djO3pxIfpm/uEWleyyLp+8hfhwXmBhbrv6VZtEwGCvEqFzfEUTQ1R2AYjB9fbpU
-         3Gug==
-X-Gm-Message-State: ABy/qLYWS4qXiggMyg2fQEzITsTHmatHAEAPhQJyi7ESkb+MAYrf1Fkm
-        MzrQbR8RDH86n6P7ZKzUsIewag==
-X-Google-Smtp-Source: APBJJlEggwbPNBYWyFhjvfF6GLwQ/BHHtenN1h2x1ww8Fde/Lb05kPWkKWYva1WKoqvyG5xx6CJVPw==
-X-Received: by 2002:a05:6512:239f:b0:4fb:77d6:89c3 with SMTP id c31-20020a056512239f00b004fb77d689c3mr11852649lfv.12.1688991281113;
-        Mon, 10 Jul 2023 05:14:41 -0700 (PDT)
-Received: from [192.168.1.101] (abxj141.neoplus.adsl.tpnet.pl. [83.9.3.141])
-        by smtp.gmail.com with ESMTPSA id e7-20020ac25467000000b004fb763b5171sm1678441lfn.86.2023.07.10.05.14.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 10 Jul 2023 05:14:40 -0700 (PDT)
-Message-ID: <b1346bc7-4bf0-e885-c3d4-6fac01516bf4@linaro.org>
-Date:   Mon, 10 Jul 2023 14:14:39 +0200
+        bh=jvhbKHPRKfMEJS6inHuIrpCpyOh87s7quIhd+QJ98f4=;
+        b=RcV/uqbf2mBOzOIqeh9WAY7qILZIgwm8Lx9bR6s5gAnaMJ5V5vdRvvaA1U/+5A09ii
+         R8zNA1jdqyFeE66dZuyiBx5T0t2qlLEDN7pEfptEB3T07hDfniCbop6oL9t1JE/dFQB3
+         FSCLE8L7WCM/07ELVChNLB69be3nTJ/h/U6T518hxzO2uplNorjqWZP04KXLxouiXixs
+         Y2Oa+9UymCbnOrCXwRjp2Vvj2y2CXzKy6co1zl1JFnUqFM/SAkxut8V8ORwY2hnt/SiG
+         umo4cY0LHEPhJP+dFuvUkQ/VFqnhvyUYM2PuEIn3t1NhngQu9EOe6vhEbsp9p9Bp8xxz
+         0DBA==
+X-Gm-Message-State: ABy/qLYweZc48sk44xUFWihrj7WwxE0yEPcV1Cwm/yVegVRHr7I1BmB2
+        UdtzQevHESWVqd5hyjC5cZ4l7IdBBKb5GVRUKU4=
+X-Google-Smtp-Source: APBJJlHknCCCSs8oL6W2K/RxaYloGgg71iyocEIQRRiC2XssBLZVdTOzqNH/iZ3RtxPsKQlSj9p6izJrD9dNY3pCeEg=
+X-Received: by 2002:a17:903:228d:b0:1b8:a3a6:df9c with SMTP id
+ b13-20020a170903228d00b001b8a3a6df9cmr11541467plh.60.1688992478742; Mon, 10
+ Jul 2023 05:34:38 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH 5/6] arm64: dts: qcom: ipq5332: Add thermal zone nodes
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Praveenkumar I <quic_ipkumar@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, amitk@kernel.org, thara.gopinath@gmail.com,
-        rafael@kernel.org, daniel.lezcano@linaro.org, rui.zhang@intel.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     quic_varada@quicinc.com
-References: <20230710103735.1375847-1-quic_ipkumar@quicinc.com>
- <20230710103735.1375847-6-quic_ipkumar@quicinc.com>
- <3f6ab4b4-b5f5-5807-0cb4-8ae782bd6044@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <3f6ab4b4-b5f5-5807-0cb4-8ae782bd6044@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Reply-To: salkavar2@gmail.com
+Sender: mrs.suzaramalingwan100@gmail.com
+Received: by 2002:a05:6a10:a685:b0:4d9:6642:b75b with HTTP; Mon, 10 Jul 2023
+ 05:34:38 -0700 (PDT)
+From:   "Mr. Sal Kavar" <salkavar2@gmail.com>
+Date:   Mon, 10 Jul 2023 05:34:38 -0700
+X-Google-Sender-Auth: RZN_K6pAAMFCgWY0cvuZq4eV_h4
+Message-ID: <CA+j35sB12GV7irDwrpq51rQ8sKMpvw5raVK2VKmUw_+-4ETTxg@mail.gmail.com>
+Subject: Yours Faithful,
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: Yes, score=7.6 required=5.0 tests=BAYES_50,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,FREEMAIL_REPLYTO_END_DIGIT,LOTS_OF_MONEY,MILLION_HUNDRED,
+        MONEY_FRAUD_5,MONEY_FREEMAIL_REPTO,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
+        SPF_PASS,T_HK_NAME_FM_MR_MRS,T_MONEY_PERCENT,T_SCC_BODY_TEXT_LINE,
+        UNDISC_MONEY autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+        *      https://www.dnswl.org/, no trust
+        *      [2607:f8b0:4864:20:0:0:0:642 listed in]
+        [list.dnswl.org]
+        *  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
+        *      [score: 0.5191]
+        * -0.0 SPF_PASS SPF: sender matches SPF record
+        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
+        *  0.2 FREEMAIL_ENVFROM_END_DIGIT Envelope-from freemail username ends
+        *       in digit
+        *      [mrs.suzaramalingwan100[at]gmail.com]
+        *  0.2 FREEMAIL_REPLYTO_END_DIGIT Reply-To freemail username ends in
+        *      digit
+        *      [salkavar2[at]gmail.com]
+        *  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+        *      provider
+        *      [salkavar2[at]gmail.com]
+        *  0.0 MILLION_HUNDRED BODY: Million "One to Nine" Hundred
+        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
+        *      envelope-from domain
+        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+        *       valid
+        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+        *      author's domain
+        * -0.0 T_SCC_BODY_TEXT_LINE No description available.
+        *  0.0 T_HK_NAME_FM_MR_MRS No description available.
+        *  0.0 LOTS_OF_MONEY Huge... sums of money
+        *  1.6 MONEY_FREEMAIL_REPTO Lots of money from someone using free
+        *      email?
+        *  0.0 T_MONEY_PERCENT X% of a lot of money for you
+        *  3.2 UNDISC_MONEY Undisclosed recipients + money/fraud signs
+        *  1.7 MONEY_FRAUD_5 Lots of money and many fraud phrases
+X-Spam-Level: *******
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10.07.2023 13:23, Dmitry Baryshkov wrote:
-> On 10/07/2023 13:37, Praveenkumar I wrote:
->> This patch adds thermal zone nodes for sensors present in
->> IPQ5332.
->>
->> Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
->> ---
->>   arch/arm64/boot/dts/qcom/ipq5332.dtsi | 72 +++++++++++++++++++++++++++
->>   1 file changed, 72 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/ipq5332.dtsi b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
->> index a1e3527178c0..8b276aeca53e 100644
->> --- a/arch/arm64/boot/dts/qcom/ipq5332.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
->> @@ -527,4 +527,76 @@ timer {
->>                    <GIC_PPI 4 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
->>                    <GIC_PPI 1 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
->>       };
->> +
->> +    thermal-zones {
->> +        rfa-0-thermal{
-thermal {
+I assume you and your family are in good health.
 
+Overdue and unclaimed sum of $15.5m, (Fifteen Million Five Hundred
+Thousand Dollars Only) when the account holder suddenly passed on, he
+left no beneficiary who would be entitled to the receipt of this fund.
+For this reason, I have found it expedient to transfer this fund to a
+trustworthy individual with capacity to act as foreign business
+partner.
 
->> +            polling-delay-passive = <0>;
->> +            polling-delay = <0>;
->> +            thermal-sensors = <&tsens 11>;
->> +
->> +            trips {
-Indentation seems off, tab size for kernel code is 8 spaces.
+You will take 45% 10% will be shared to Charity in both countries and
+45% will be for me.
 
-Konrad
->> +                rfa-0-critical {
->> +                    temperature = <125000>;
->> +                    hysteresis = <1000>;
->> +                    type = "critical";
->> +                };
->> +            };
->> +        };
->> +
->> +        rfa-1-thermal {
->> +            polling-delay-passive = <0>;
->> +            polling-delay = <0>;
->> +            thermal-sensors = <&tsens 12>;
->> +
->> +            trips {
->> +                rfa-1-critical {
->> +                    temperature = <125000>;
->> +                    hysteresis = <1000>;
->> +                    type = "critical";
->> +                };
->> +            };
->> +        };
->> +
->> +        misc-thermal {
->> +            polling-delay-passive = <0>;
->> +            polling-delay = <0>;
->> +            thermal-sensors = <&tsens 13>;
->> +
->> +            trips {
->> +                misc-critical {
->> +                    temperature = <125000>;
->> +                    hysteresis = <1000>;
->> +                    type = "critical";
->> +                };
->> +            };
->> +        };
->> +
->> +        cpu-top-thermal {
->> +            polling-delay-passive = <0>;
->> +            polling-delay = <0>;
->> +            thermal-sensors = <&tsens 14>;
->> +
->> +            trips {
->> +                cpu-top-critical {
->> +                    temperature = <125000>;
->> +                    hysteresis = <1000>;
->> +                    type = "critical";
->> +                };
->> +            };
-> 
-> Could you please add a passive cooling devices for the CPU?
-> 
->> +        };
->> +
->> +        top-glue-thermal {
->> +            polling-delay-passive = <0>;
->> +            polling-delay = <0>;
->> +            thermal-sensors = <&tsens 15>;
->> +
->> +            trips {
->> +                top-glue-critical {
->> +                    temperature = <125000>;
->> +                    hysteresis = <1000>;
->> +                    type = "critical";
->> +                };
->> +            };
->> +        };
->> +    };
->>   };
-> 
+Yours Faithful,
+Mr.Sal Kavar.
