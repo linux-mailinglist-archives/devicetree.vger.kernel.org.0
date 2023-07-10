@@ -2,68 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A3CF274CDB7
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 08:55:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 70EBC74CDC2
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 08:59:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230304AbjGJGz0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jul 2023 02:55:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54922 "EHLO
+        id S229932AbjGJG7k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jul 2023 02:59:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56316 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231223AbjGJGzZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 02:55:25 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F8CDDD
-        for <devicetree@vger.kernel.org>; Sun,  9 Jul 2023 23:55:21 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-992acf67388so470435866b.1
-        for <devicetree@vger.kernel.org>; Sun, 09 Jul 2023 23:55:20 -0700 (PDT)
+        with ESMTP id S229629AbjGJG7k (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 02:59:40 -0400
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5492E6
+        for <devicetree@vger.kernel.org>; Sun,  9 Jul 2023 23:59:38 -0700 (PDT)
+Received: by mail-lj1-x22a.google.com with SMTP id 38308e7fff4ca-2b6fdaf6eefso61955191fa.0
+        for <devicetree@vger.kernel.org>; Sun, 09 Jul 2023 23:59:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688972119; x=1691564119;
+        d=linaro.org; s=google; t=1688972377; x=1691564377;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=L/m4t2+e9zxuZutsFcMtyJGQN8UX3/qZu1zrLzPNGmw=;
-        b=BMZaXtEXt+jC1vsdg1/+M2Xtbf+lxbJFnLmB0rtJudq4LAeQ/Rqwo3YYCL1ymQ273h
-         0/NclEiXfEaSpxde78US1huPytGuu2oEYk+HAGx0+nmk+UrlU4zK3hf4qnU4/SuymnN4
-         nf7YsmivzWqca5qfo2Bfa9xq1oyO0TLo4JWwJPO00DjwjR/8TbqAjWWpCvfZHnUMJwY5
-         eReJtgF+FvYafmm75MrJx1kglAu7fSyn/3R+hPb6E+KVP4Z7bYXdL+Ppb4ZMC3XDayHV
-         S+wxEG0RngBSEsVeHeaGlhq2bofa9/wLwXgmAW/p4KWMUABDBiBizWXwvpgsdLrZ0R3p
-         f2dQ==
+        bh=KIClO8Lu4EpQRuSM4dQTJsPgeAAmg04f9ozvN8hppFU=;
+        b=h66ZEBNcpH4beV2RchzHrF9JSa2iIMx5RlJAfNSm8AGigvGOOjV9G7p6RRYhousOsW
+         lJJb6oIBLNS+yiR4Tyasz0GXII2E82fddz4qffWTzaJ690Zj/5Iynl3AbgNJWKsE65z5
+         kK77k+ChrwSl7CcEKr1boDwtV4zPhuLnVrTab6Fj6ITEu50v2d72pv/u0hROlb3f65dw
+         DcCi5uU4Hxa5nfZBY7nmBEf13SUVa6uDmmjBwaeiovBd5KSTnf5KxGfd2fzdEA/Ed620
+         rrdLhq1u/I3ob9diGm4amyOYDQs5CRpYn48AlfyRpgvjOPIEK4eitNzuqgDfXI5obFK0
+         HDWQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688972119; x=1691564119;
+        d=1e100.net; s=20221208; t=1688972377; x=1691564377;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=L/m4t2+e9zxuZutsFcMtyJGQN8UX3/qZu1zrLzPNGmw=;
-        b=cGrzLEsT/0I7/ATl+KM63EjvIl+tj1ehTnQzG9T9UCKzHg23VealreCzQXUwXFOxKb
-         wNDjeEjgyFOEu1th1qqdB0AqS9IttFob0cb6pUnw9TBa1atQ552bCyA4X2K/8yXy3j84
-         u9GNzYGDL0c00n8dZ1LwHPnwIWNVONrly3KgMNKW4TMaLNlINEkJKNOfXyj64t3hd06d
-         8Pw5icm8KW8PWzhF1y+1c7KgpE8zjvWmKLl0COMyYqWxYiBhSGd3QaTRdJuS4yRidrSS
-         ImUDx5yfVHKGNr9TRSVLkESSpkKCb6+6Zk5BoymCPCNycJi8BY64EUF2jz+QkAxIAA3O
-         i7BQ==
-X-Gm-Message-State: ABy/qLb6gg4TpNa9OtDWuXSrRmwj2DaxrD81DtCo+j2/tj4UUSgssPoF
-        jNcdraFX5SNnvRg9DpraNA5gwg==
-X-Google-Smtp-Source: APBJJlHsayh9CciqsWP5vHnn+AZWmcayDyr7rOvGCFnuq8+1b2H+VPUFj7lskEGP99/UUzTqweqgTw==
-X-Received: by 2002:a17:906:779b:b0:992:47d7:35d7 with SMTP id s27-20020a170906779b00b0099247d735d7mr11505851ejm.14.1688972119467;
-        Sun, 09 Jul 2023 23:55:19 -0700 (PDT)
+        bh=KIClO8Lu4EpQRuSM4dQTJsPgeAAmg04f9ozvN8hppFU=;
+        b=Ip8Ufc29VNrTwY2vJQqPA/IU95aidvw6Soa1qbtJ/omJSznSnhpxI5aDPsuz2MOckz
+         UU9S+n6cxY/IavFUlBRm4vTlk/jIY4bTKJxzJ9Ed/UAwO4xq3PctprVktHbXjtK/v7i1
+         PiGqJvtR4S03epsLj+HgAIIfe1ek93vG10gJpPT5eoeRR7/LgP2Ss5AZJJOrsH6wCZLW
+         yUogO7HqveurDvHvOR6sv0/c2UxL2+uhuz6NL8cb/1zdv/UTIyFY/ZpqzZOuAMJawqVD
+         a3Q7nhkfOQEfrFc0gQt63lcTg2/CYXkZlVqDPkINhBtk2a9uu0pQpUG+t/mThdFexCxf
+         6vxQ==
+X-Gm-Message-State: ABy/qLZaZJPDFR5KRPNFLoCtFLqjLxTWiBRj/I4qBM7LJa03rttABUmg
+        AdmmaDaKHqDsSOgxnnRnDY7BAA==
+X-Google-Smtp-Source: APBJJlHdBzz0FIIHNvRSRvaVIuA6CJ8sE0O8DPjVl2svOP7xogmqgfwctSl4QSYL+FVPc+RlxhQs/Q==
+X-Received: by 2002:a2e:740a:0:b0:2b6:da66:2d69 with SMTP id p10-20020a2e740a000000b002b6da662d69mr8748695ljc.28.1688972377077;
+        Sun, 09 Jul 2023 23:59:37 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id s26-20020a170906355a00b00992b2c5598csm5693855eja.128.2023.07.09.23.55.18
+        by smtp.gmail.com with ESMTPSA id le26-20020a170907171a00b00987e2f84768sm5687713ejc.0.2023.07.09.23.59.35
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 09 Jul 2023 23:55:18 -0700 (PDT)
-Message-ID: <224afbe7-f0d5-ced2-a300-9e05789f08e8@linaro.org>
-Date:   Mon, 10 Jul 2023 08:55:17 +0200
+        Sun, 09 Jul 2023 23:59:36 -0700 (PDT)
+Message-ID: <98b39071-cbfa-bc58-032e-56f6e9dd5c2a@linaro.org>
+Date:   Mon, 10 Jul 2023 08:59:34 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
-Subject: Re: [PATCH v2 0/2] Add compatible support for RT5733
+Subject: Re: [PATCH v2 3/3] ARM: dts: exynos/i9100: Fix LCD screen's physical
+ size
 Content-Language: en-US
-To:     ChiYuan Huang <cy_huang@richtek.com>, broonie@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
-Cc:     robh+dt@kernel.org, lgirdwood@gmail.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <1688048996-25606-1-git-send-email-cy_huang@richtek.com>
- <20230710014725.GA12147@linuxcarl2.richtek.com>
+To:     Paul Cercueil <paul@crapouillou.net>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, stable@vger.kernel.org
+References: <20230708084027.18352-1-paul@crapouillou.net>
+ <20230708084027.18352-4-paul@crapouillou.net>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230710014725.GA12147@linuxcarl2.richtek.com>
+In-Reply-To: <20230708084027.18352-4-paul@crapouillou.net>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -76,19 +83,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/07/2023 03:47, ChiYuan Huang wrote:
-> On Thu, Jun 29, 2023 at 10:29:54PM +0800, cy_huang@richtek.com wrote:
-> Hi,
->> From: ChiYuan Huang <cy_huang@richtek.com>
->>
->> This series is to add the compatible support for rt5733 based on rt5739.
->>
-> Sorry, not intend to ping, just want to check the current review status.
+On 08/07/2023 10:40, Paul Cercueil wrote:
+> The previous values were completely bogus, and resulted in the computed
+> DPI ratio being much lower than reality, causing applications and UIs to
+> misbehave.
 > 
-> Any comment about this patch series?
+> The new values were measured by myself with a ruler.
+> 
+> Signed-off-by: Paul Cercueil <paul@crapouillou.net>
+> Fixes: 8620cc2f99b7 ("ARM: dts: exynos: Add devicetree file for the Galaxy S2")
+> Cc: <stable@vger.kernel.org> # v5.8+
+> ---
 
-You sent it during merge window, so what do you expect? What should
-happen during the merge window?
+This does not apply. You rebased your work on some older version/tree,
+without new layout. Please work on linux-next.
 
 Best regards,
 Krzysztof
