@@ -2,47 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 684F874CDF7
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 09:10:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 04FB474CE53
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 09:27:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230006AbjGJHKL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jul 2023 03:10:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60292 "EHLO
+        id S229458AbjGJH1V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jul 2023 03:27:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36174 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229823AbjGJHKK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 03:10:10 -0400
-Received: from mg.richtek.com (mg.richtek.com [220.130.44.152])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 9AE06129;
-        Mon, 10 Jul 2023 00:10:07 -0700 (PDT)
-X-MailGates: (SIP:2,PASS,NONE)(compute_score:DELIVER,40,3)
-Received: from 192.168.10.47
-        by mg.richtek.com with MailGates ESMTPS Server V6.0(2128796:0:AUTH_RELAY)
-        (envelope-from <cy_huang@richtek.com>)
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256/256); Mon, 10 Jul 2023 15:09:56 +0800 (CST)
-Received: from ex3.rt.l (192.168.10.46) by ex4.rt.l (192.168.10.47) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.25; Mon, 10 Jul
- 2023 15:09:56 +0800
-Received: from linuxcarl2.richtek.com (192.168.10.154) by ex3.rt.l
- (192.168.10.45) with Microsoft SMTP Server id 15.2.1118.25 via Frontend
- Transport; Mon, 10 Jul 2023 15:09:56 +0800
-Date:   Mon, 10 Jul 2023 15:09:56 +0800
-From:   ChiYuan Huang <cy_huang@richtek.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC:     <broonie@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <robh+dt@kernel.org>, <lgirdwood@gmail.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 0/2] Add compatible support for RT5733
-Message-ID: <20230710070956.GA31191@linuxcarl2.richtek.com>
-References: <1688048996-25606-1-git-send-email-cy_huang@richtek.com>
- <20230710014725.GA12147@linuxcarl2.richtek.com>
- <224afbe7-f0d5-ced2-a300-9e05789f08e8@linaro.org>
+        with ESMTP id S230124AbjGJH1S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 03:27:18 -0400
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55920127;
+        Mon, 10 Jul 2023 00:27:17 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-991ef0b464cso1039155866b.0;
+        Mon, 10 Jul 2023 00:27:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1688974036; x=1691566036;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=12SwgujBvNm5u6+5Cu/MHnSp3kLy9fw9popJaOP4K9Q=;
+        b=PJQD/wf5Fs/m/YMEnq5E9JP76DgiHcJ1H7b+cbPxL5uR+FHrHl7b4GCPqrkiapTaRC
+         J/Y/Th0wXawHmwDoBFij1OoWYzF6j8Bv/gI8QDaIer+GsUpOBrYSI+7A814pohqJpp7O
+         68R+i8cwuv5DbppV/y0qmOCYjxUT3nebMb/lBmtcQjqr3v2tnZAko7Zqj8lQMUs3TegK
+         1VsQcskWZohLsVDbytT6haoN9l2xD7nDIJixSTDmHGlxay46ExVAif/l9PWikv3CRem8
+         6axXdNPzp+hZT+XetQgTzlrEtmgbAaHxI2+LDMloQM6pyn2HfY0su1IbRfLVdq4RBc3Q
+         AQRw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1688974036; x=1691566036;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=12SwgujBvNm5u6+5Cu/MHnSp3kLy9fw9popJaOP4K9Q=;
+        b=Eyenw6r58JP6ZCYPxcTLdffTHwZkqafPV8wWd8/4+Za4MXdthoWpc9pH86Jc8ugCuY
+         FjkBw2hZAZNjtARJ05gaVuG0MMkV/lIC9FKa1wsyN1qq/3v5DOJxr5w55QTm7d+r3r7G
+         krqK3ZOJVglReX2jXep7Zl03iE8z0xH8C4p5QoAYDrgMnNt3RSeOlwJNWEHDf9A1EobJ
+         jcmRRGYSZWwhoWXIRc1Jn+yxBDzJGL45sYNZgDny+0D8um6kuqCULOuZVkrktGFqlstE
+         81z2Kr5wMaRc+TQb2Qaq/aL2TVJuZdX8R1h7pm/+lV3o8aHI+LWO2pezjbzOThWANjWs
+         +4XA==
+X-Gm-Message-State: ABy/qLanE6dTwGH37C44oMrfJeZPJx/9rRu1YG6EVfjOGdgEX/W0YWV6
+        j//d0FB/WpTOkeBnVMDq8vBFAHoehByiV43FIuQ=
+X-Google-Smtp-Source: APBJJlELkCEdlXye8US5g/6R435+/ePCacMKC+8upB0zYkVGAIV+dy+ir9Yfy3SW1NAV08Y/UbPfQrhop57vhspWmxA=
+X-Received: by 2002:a17:907:6d1f:b0:993:22a2:9234 with SMTP id
+ sa31-20020a1709076d1f00b0099322a29234mr19989579ejc.31.1688974035627; Mon, 10
+ Jul 2023 00:27:15 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <224afbe7-f0d5-ced2-a300-9e05789f08e8@linaro.org>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+References: <20230710042812.2007928-1-huqiang.qin@amlogic.com>
+In-Reply-To: <20230710042812.2007928-1-huqiang.qin@amlogic.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Mon, 10 Jul 2023 10:26:39 +0300
+Message-ID: <CAHp75VcEUre4RVAoMO0Tg1uRdeOBr-ZLeX9ppNx+Nc0ZdSrtiA@mail.gmail.com>
+Subject: Re: [PATCH V2 0/2] Add pinctrl driver support for Amlogic C3 SoCs
+To:     Huqiang Qin <huqiang.qin@amlogic.com>
+Cc:     linus.walleij@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        neil.armstrong@linaro.org, khilman@baylibre.com,
+        jbrunet@baylibre.com, martin.blumenstingl@googlemail.com,
+        brgl@bgdev.pl, andy@kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -51,24 +73,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 10, 2023 at 08:55:17AM +0200, Krzysztof Kozlowski wrote:
-> On 10/07/2023 03:47, ChiYuan Huang wrote:
-> > On Thu, Jun 29, 2023 at 10:29:54PM +0800, cy_huang@richtek.com wrote:
-> > Hi,
-> >> From: ChiYuan Huang <cy_huang@richtek.com>
-> >>
-> >> This series is to add the compatible support for rt5733 based on rt5739.
-> >>
-> > Sorry, not intend to ping, just want to check the current review status.
-> > 
-> > Any comment about this patch series?
-> 
-> You sent it during merge window, so what do you expect? What should
-> happen during the merge window?
+On Mon, Jul 10, 2023 at 7:28=E2=80=AFAM Huqiang Qin <huqiang.qin@amlogic.co=
+m> wrote:
 >
-Since I do not know it's merge windows period, sorry to bother you guys.
+> This patch adds pinctrl driver support for Amloigc C3 SoC (C308L and C302=
+X)
 
-Thanks for the notice. 
-> Best regards,
-> Krzysztof
-> 
+Neither here, nor in the patch I see the changelog. Can you elaborate, plea=
+se?
+
+--=20
+With Best Regards,
+Andy Shevchenko
