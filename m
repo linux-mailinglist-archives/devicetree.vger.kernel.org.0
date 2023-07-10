@@ -2,212 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C69FA74CE71
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 09:30:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D676B74CE85
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 09:34:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230460AbjGJHan (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jul 2023 03:30:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38442 "EHLO
+        id S230018AbjGJHef (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jul 2023 03:34:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41064 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231164AbjGJHak (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 03:30:40 -0400
-Received: from mail-yb1-xb2f.google.com (mail-yb1-xb2f.google.com [IPv6:2607:f8b0:4864:20::b2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4706A183
-        for <devicetree@vger.kernel.org>; Mon, 10 Jul 2023 00:30:36 -0700 (PDT)
-Received: by mail-yb1-xb2f.google.com with SMTP id 3f1490d57ef6-c5cf26e9669so3958648276.0
-        for <devicetree@vger.kernel.org>; Mon, 10 Jul 2023 00:30:36 -0700 (PDT)
+        with ESMTP id S229462AbjGJHee (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 03:34:34 -0400
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39C1618C;
+        Mon, 10 Jul 2023 00:34:24 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-9928abc11deso532774566b.1;
+        Mon, 10 Jul 2023 00:34:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688974235; x=1691566235;
+        d=gmail.com; s=20221208; t=1688974462; x=1691566462;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=oHl7fngjoZwHTC555h5RUzOAC7pZIoIYa9Mwto78lz8=;
-        b=lkrRgScJqf1Nw2g0ZJDW7UYJfVZu6eF+vC1cpqOvcDFGTpKmkaWBV3dSDN6RYDg53L
-         /scvszYKpui2Xnk3z6kdhx216eezRZAgLBqt1WW84cGx1aR0lQkUCZFtAnbwYI969D5d
-         yOnaXV4anp/NDbt0BrotYiIAKeYLPDqgQOEu4CfuWVQCWiRmoBnd/39g4OV1dYaFFYMZ
-         AjW2NGFp8Jn5wizmcI/yY1YdYS0CxKYHMM/ywLppHolPfUw9fMLF00rEQ5J34IL8QfJ+
-         UfQfA0nZlNXhn7UMJHoHPkqQ6qmKfwHe6i5biYNoTsa7LY6q8FbPBLu3TPOV1GAvuIWb
-         qV/Q==
+        bh=uC11jQxTM278CfYH6leVR/8McJ3cZ7vdbLrjkZEbJGw=;
+        b=awOhiEIHCeizxYWOYYQkn5nWaygxEoF8MMeEVGo+nO4HNB7xXvw4GZXQLA0TSJ/ZXT
+         um+nXETYDLrf2dWTDBhO4+tmmmE05Jb72muqdjzkGlEfK66mS6NbIrmFxFX0MGNZgvHr
+         ceTCV9XPlyM1fHyQMOWaJVHH+E5ZQBwffjPncvecTwHJCmuGW+plpTgzcZv1A1XOxP+1
+         McTbWeLyD5dkeO1rylNwiG3zUExlsyz/XrQyCbZ1tV+1Huh2TFtKTQn9DDp4faquJpat
+         Az1qahfDax4lGmmpaQv8TFCUqqp1Rg15CkDXQOb1q5bkErGl8W/c6sbhPAxaPkbVGb2K
+         Ihhw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688974235; x=1691566235;
+        d=1e100.net; s=20221208; t=1688974462; x=1691566462;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=oHl7fngjoZwHTC555h5RUzOAC7pZIoIYa9Mwto78lz8=;
-        b=KMTiNAXwNUgSFeARAMoyS/LvsoZH0hOT3Fdstld9AqOLWHcX7ypqjA7I9XoAd7z+91
-         3hO26G5iiQpT4Zo/exF1LwnCU8twkDPfXCGHIh2q99omvUaH/nkbsW4EVe/msEbM+ENe
-         F7dgb76eIYHAn0vafE6JSTuTjeRwnL2x4pmgOhskEXu2Lk+wq2rRwFWiaJIqhYJ/mto6
-         b9WvDzHAxzbBW5XhyHiCAkPrRjDEY0FCdZ7YxS6A5zOdeG54m0gCjsvt0haAep5h4n6c
-         FsBaqMi5TOKYWns8oSTlv8uq/wkVWPoGN7A51Kbrbz0h/vCnAK48IeLGUlzJikp2+q3a
-         BM4Q==
-X-Gm-Message-State: ABy/qLZOd2xShCyDYneWGpMsI4Z+S3n+7Am5MRMZajqK99Y6Cv4HFdVn
-        cT5hs5fhlP+mQDk7EksHpFmY4LENCfDT8ncCmXJyew==
-X-Google-Smtp-Source: APBJJlEC1ydkMDnqyBVzJGdir+OwRhrUWZ1vDb1g7pXtOn40Y5bgDJbUUwUb1y7kb1Ggfujl5HeIIubX3iiGnia+ngw=
-X-Received: by 2002:a25:9904:0:b0:c60:c70d:b4de with SMTP id
- z4-20020a259904000000b00c60c70db4demr10948008ybn.39.1688974235384; Mon, 10
- Jul 2023 00:30:35 -0700 (PDT)
+        bh=uC11jQxTM278CfYH6leVR/8McJ3cZ7vdbLrjkZEbJGw=;
+        b=Uk8w6HMMvDuuujPoMvUMlotr4mWLfTLRZ9R5Cs0ib1h+6yaI1CdAqgkwTVY7qpPjS2
+         pQyT7dFXmm1p/HqdE/eOkrU2TpYpb0sJPVPDIv2LxekWMfJwRoLYHJyoKMDLDAZ+eW//
+         owuh5XCdLRli3ZhubwGE7qXQwQjXv0IaUcybSHttb4dv5y6N+tdVyzTrO7gbe7mpyrLL
+         WISO5vnBBhonUbxtcdfbwc9fgAT6y+jpR4fqFzLQg5yPiZvJIwk6oeBd6m/iUVtrEAJ3
+         SXLjkxevihNhBYdzuwq/EhNuedPeqSQVcHK5lg8m1tkCb00MoBs+WIGEWx9wVw/50bVg
+         /6QQ==
+X-Gm-Message-State: ABy/qLbszo1kDsjhBAkVEG3qugmj5U1RG62Mch/Fu/YXVLBFkdGEPs36
+        LHm4UpF9jVzW8MhwOKwSN3UheYJx1TClpkzp1JRKnL70SYo=
+X-Google-Smtp-Source: APBJJlFMEGFMzXbrFF1vM1qCi4sFiiyXzl4HYs+MEnDHwXoy1wRZ7X3GWe/OsGZluqogZ42s9SdF3pmBOhCiVZUkiNg=
+X-Received: by 2002:a17:906:f55:b0:988:4dc:e3a3 with SMTP id
+ h21-20020a1709060f5500b0098804dce3a3mr9917388ejj.31.1688974462575; Mon, 10
+ Jul 2023 00:34:22 -0700 (PDT)
 MIME-Version: 1.0
-References: <cover.1686729444.git.Sandor.yu@nxp.com> <cec469206a166c4b070fd7d7bbf89a8df656ccc6.1686729444.git.Sandor.yu@nxp.com>
- <6f590bb6-7d17-3ae8-684d-2d4403d6ff55@linaro.org> <PAXPR04MB9448598256524162A74F0311F430A@PAXPR04MB9448.eurprd04.prod.outlook.com>
-In-Reply-To: <PAXPR04MB9448598256524162A74F0311F430A@PAXPR04MB9448.eurprd04.prod.outlook.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Mon, 10 Jul 2023 10:30:24 +0300
-Message-ID: <CAA8EJpoNTvaMKcn7ben=Ai7CkGcUnZ2g7UiH7Oy4zTX2zzKAxg@mail.gmail.com>
-Subject: Re: [EXT] Re: [PATCH v6 4/8] phy: Add HDMI configuration options
-To:     Sandor Yu <sandor.yu@nxp.com>
-Cc:     "andrzej.hajda@intel.com" <andrzej.hajda@intel.com>,
-        "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
-        "robert.foss@linaro.org" <robert.foss@linaro.org>,
-        "Laurent.pinchart@ideasonboard.com" 
-        <Laurent.pinchart@ideasonboard.com>,
-        "jonas@kwiboo.se" <jonas@kwiboo.se>,
-        "jernej.skrabec@gmail.com" <jernej.skrabec@gmail.com>,
-        "airlied@gmail.com" <airlied@gmail.com>,
-        "daniel@ffwll.ch" <daniel@ffwll.ch>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "vkoul@kernel.org" <vkoul@kernel.org>,
-        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        Oliver Brown <oliver.brown@nxp.com>
+References: <20230710042812.2007928-1-huqiang.qin@amlogic.com> <20230710042812.2007928-3-huqiang.qin@amlogic.com>
+In-Reply-To: <20230710042812.2007928-3-huqiang.qin@amlogic.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Mon, 10 Jul 2023 10:33:46 +0300
+Message-ID: <CAHp75VevmTiv-OYVTn3bF_8UT9SKNU2oTrzS-AM1zoWefeJ=3w@mail.gmail.com>
+Subject: Re: [PATCH V2 2/2] pinctrl: Add driver support for Amlogic C3 SoCs
+To:     Huqiang Qin <huqiang.qin@amlogic.com>
+Cc:     linus.walleij@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        neil.armstrong@linaro.org, khilman@baylibre.com,
+        jbrunet@baylibre.com, martin.blumenstingl@googlemail.com,
+        brgl@bgdev.pl, andy@kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 10 Jul 2023 at 10:28, Sandor Yu <sandor.yu@nxp.com> wrote:
+On Mon, Jul 10, 2023 at 7:28=E2=80=AFAM Huqiang Qin <huqiang.qin@amlogic.co=
+m> wrote:
 >
-> Hi Dmitry,
->
-> Thanks for your comments,
->
-> > -----Original Message-----
-> > From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > Sent: 2023=E5=B9=B46=E6=9C=8825=E6=97=A5 2:02
-> > To: Sandor Yu <sandor.yu@nxp.com>; andrzej.hajda@intel.com;
-> > neil.armstrong@linaro.org; robert.foss@linaro.org;
-> > Laurent.pinchart@ideasonboard.com; jonas@kwiboo.se;
-> > jernej.skrabec@gmail.com; airlied@gmail.com; daniel@ffwll.ch;
-> > robh+dt@kernel.org; krzysztof.kozlowski+dt@linaro.org;
-> > shawnguo@kernel.org; s.hauer@pengutronix.de; festevam@gmail.com;
-> > vkoul@kernel.org; dri-devel@lists.freedesktop.org;
-> > devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org;
-> > linux-kernel@vger.kernel.org; linux-phy@lists.infradead.org
-> > Cc: kernel@pengutronix.de; dl-linux-imx <linux-imx@nxp.com>; Oliver Bro=
-wn
-> > <oliver.brown@nxp.com>
-> > Subject: [EXT] Re: [PATCH v6 4/8] phy: Add HDMI configuration options
+> Add a new pinctrl driver for Amlogic C3 SoCs which share
+> the same register layout as the previous Amloigc S4.
 
-Is this part necessary?
+...
 
-> >
-> > Caution: This is an external email. Please take care when clicking link=
-s or
-> > opening attachments. When in doubt, report the message using the 'Repor=
-t
-> > this email' button
-> >
-> >
-> > On 15/06/2023 04:38, Sandor Yu wrote:
-> > > Allow HDMI PHYs to be configured through the generic functions throug=
-h
-> > > a custom structure added to the generic union.
-> > >
-> > > The parameters added here are based on HDMI PHY implementation
-> > > practices.  The current set of parameters should cover the potential
-> > > users.
-> > >
-> > > Signed-off-by: Sandor Yu <Sandor.yu@nxp.com>
-> > > ---
-> > >   include/linux/phy/phy-hdmi.h | 38
-> > ++++++++++++++++++++++++++++++++++++
-> > >   include/linux/phy/phy.h      |  7 ++++++-
-> > >   2 files changed, 44 insertions(+), 1 deletion(-)
-> > >   create mode 100644 include/linux/phy/phy-hdmi.h
-> > >
-> > > diff --git a/include/linux/phy/phy-hdmi.h
-> > > b/include/linux/phy/phy-hdmi.h new file mode 100644 index
-> > > 000000000000..5765aa5bc175
-> > > --- /dev/null
-> > > +++ b/include/linux/phy/phy-hdmi.h
-> > > @@ -0,0 +1,38 @@
-> > > +/* SPDX-License-Identifier: GPL-2.0 */
-> > > +/*
-> > > + * Copyright 2022 NXP
-> > > + */
-> > > +
-> > > +#ifndef __PHY_HDMI_H_
-> > > +#define __PHY_HDMI_H_
-> > > +
-> > > +/**
-> > > + * Pixel Encoding as HDMI Specification
-> > > + * RGB, YUV422, YUV444:HDMI Specification 1.4a Section 6.5
-> > > + * YUV420: HDMI Specification 2.a Section 7.1  */ enum
-> > > +hdmi_phy_colorspace {
-> > > +     HDMI_PHY_COLORSPACE_RGB,        /* RGB 4:4:4 */
-> > > +     HDMI_PHY_COLORSPACE_YUV422,     /* YCbCr 4:2:2 */
-> > > +     HDMI_PHY_COLORSPACE_YUV444,     /* YCbCr 4:4:4 */
-> > > +     HDMI_PHY_COLORSPACE_YUV420,     /* YCbCr 4:2:0 */
-> > > +     HDMI_PHY_COLORSPACE_RESERVED4,
-> > > +     HDMI_PHY_COLORSPACE_RESERVED5,
-> > > +     HDMI_PHY_COLORSPACE_RESERVED6,
-> > > +};
-> >
-> > This enum duplicates enum hdmi_colorspace from <linux/hdmi.h> HDMI 2.0
-> > defines '7' to be IDO-defined.
-> >
-> > Would it be better to use that enum instead?
-> Accept. I will create head file hdmi_colorspace.h to reuse enum hdmi_colo=
-rspace in <linux/hdmi.h>.
+> +#include <dt-bindings/gpio/amlogic-c3-gpio.h>
 
-Hmm, you need another header file to reuse this enum.
+Seems some headers are missing. The rule of thumb is to include
+headers the code uses directly.
+Moreover, using a "proxy" header is not the best idea.
 
->
-> B.R
-> Sandor
-> >
-> > > +
-> > > +/**
-> > > + * struct phy_configure_opts_hdmi - HDMI configuration set
-> > > + * @pixel_clk_rate:  Pixel clock of video modes in KHz.
-> > > + * @bpc: Maximum bits per color channel.
-> > > + * @color_space: Colorspace in enum hdmi_phy_colorspace.
-> > > + *
-> > > + * This structure is used to represent the configuration state of a =
-HDMI phy.
-> > > + */
-> > > +struct phy_configure_opts_hdmi {
-> > > +     unsigned int pixel_clk_rate;
-> > > +     unsigned int bpc;
-> > > +     enum hdmi_phy_colorspace color_space; };
-> > > +
-> > > +#endif /* __PHY_HDMI_H_ */
-> >
-> > [skipped the rest]
-> >
-> > --
-> > With best wishes
-> > Dmitry
->
+kernel.h // ARRAY_SIZE()
+mod_devicetable.h // of_device_id
+module.h
+platform_device.h
 
+pinctrl/pinctrl.h
+
+> +#include "pinctrl-meson.h"
+> +#include "pinctrl-meson-axg-pmx.h"
+
+With the above, it might be that existing inclusions become unused, so
+drop them in such a case.
+
+...
+
+> +static struct meson_pmx_func c3_periphs_functions[] =3D {
+> +       FUNCTION(gpio_periphs),
+> +       FUNCTION(uart_a),
+> +       FUNCTION(uart_b),
+> +       FUNCTION(uart_c),
+> +       FUNCTION(uart_d),
+> +       FUNCTION(uart_e),
+> +       FUNCTION(i2c0),
+> +       FUNCTION(i2c1),
+> +       FUNCTION(i2c2),
+> +       FUNCTION(i2c3),
+> +       FUNCTION(i2c_slave),
+> +       FUNCTION(pwm_a),
+> +       FUNCTION(pwm_b),
+> +       FUNCTION(pwm_c),
+> +       FUNCTION(pwm_d),
+> +       FUNCTION(pwm_e),
+> +       FUNCTION(pwm_f),
+> +       FUNCTION(pwm_g),
+> +       FUNCTION(pwm_h),
+> +       FUNCTION(pwm_i),
+> +       FUNCTION(pwm_j),
+> +       FUNCTION(pwm_k),
+> +       FUNCTION(pwm_l),
+> +       FUNCTION(pwm_m),
+> +       FUNCTION(pwm_n),
+> +       FUNCTION(pwm_c_hiz),
+> +       FUNCTION(ir_out),
+> +       FUNCTION(ir_in),
+> +       FUNCTION(jtag_a),
+> +       FUNCTION(jtag_b),
+> +       FUNCTION(gen_clk),
+> +       FUNCTION(clk12_24),
+> +       FUNCTION(clk_32k_in),
+> +       FUNCTION(emmc),
+> +       FUNCTION(nand),
+> +       FUNCTION(spif),
+> +       FUNCTION(spi_a),
+> +       FUNCTION(spi_b),
+> +       FUNCTION(sdcard),
+> +       FUNCTION(sdio),
+> +       FUNCTION(pdm),
+> +       FUNCTION(eth),
+> +       FUNCTION(mclk_0),
+> +       FUNCTION(mclk_1),
+> +       FUNCTION(tdm),
+> +       FUNCTION(lcd)
+
++ trailing comma. The rule of thumb is to add a comma when it's not a
+terminator entry.
+
+> +};
 
 --=20
-With best wishes
-Dmitry
+With Best Regards,
+Andy Shevchenko
