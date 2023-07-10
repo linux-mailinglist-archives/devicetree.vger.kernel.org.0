@@ -2,51 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A59374CBD5
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 07:06:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 28BFF74CC08
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 07:08:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230203AbjGJFGy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jul 2023 01:06:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55344 "EHLO
+        id S231678AbjGJFHw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jul 2023 01:07:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55948 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231208AbjGJFFz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 01:05:55 -0400
+        with ESMTP id S231673AbjGJFG4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 01:06:56 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 082A41BE8;
-        Sun,  9 Jul 2023 22:05:10 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BE8318D;
+        Sun,  9 Jul 2023 22:05:34 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 65A2860DF2;
-        Mon, 10 Jul 2023 05:04:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E6022C433C9;
-        Mon, 10 Jul 2023 05:04:55 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id DEB5460DEB;
+        Mon, 10 Jul 2023 05:04:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 288FFC433C8;
+        Mon, 10 Jul 2023 05:04:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1688965496;
-        bh=nub8H/mw+X988/i6k3Paz/dN4alhePOr2o2MoVrSaZI=;
+        s=k20201202; t=1688965499;
+        bh=tYuyJ+DT7hUW+l/0UGxl4gydj7pIK3oXhAVyhKbcXFk=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=UX5tQu8EGfaRPbUhMXdNVLldZuWflSqWZblfQxwthG45TjzC2b7e+uM0CGBLhySnu
-         zguHTczJiCsI76FHnpsAyBul6tHQqQst5C6+SUcFvnZMsem1G2PyHxodWSmqCmwYgV
-         X33ATNCz7r01gn/4qrnTPTNVg0Uo74X8JrYmBYoGIyjDgSiKwT+AX+yn+4AIpKA2W5
-         sCNYJFPEoGzYFaLGc876CAAfJnSEhdpjj5Fe3LD+H9nLHrXzXvQdHYCbXoR+prAqVS
-         7OvugmMewYqiniOnHOT1dKSuR9NOFLq8L096Ci84cz4ucsTYHOAHFPixcY9RHiATqp
-         Gc6qKjE3WVbTg==
+        b=mte/bL7WReF/+OLnhxfubH9RNiKBcO37xcuWr3OHDkuxnBdffzB1Dpj1g2EOxNuUh
+         WAdqHD2/gfhsp9CoBIKoeuZdOQjlTOi6Jr0zq2gc8+IMpZEq7StlFoRvM0GyfIq6ly
+         pzSliJCSYPwezffMeD6Y5NWJBWMsyiHodaFsVSb2nOWnNIUyMVWxpmuSXxvHQdAgMV
+         ilP312FA1VSq2EpEEarQ1TRuChyhminWxWfS87VDwLese0kMtrjM3rAe3sXv6l/dFi
+         q0xMu7wf2hibsJi4j2e0Bf2SzFQMBoaW8/nClQocUfCJ6leAvwRa/XhKpznJxz1d9Y
+         UoC8Dc/jZB3yw==
 From:   Bjorn Andersson <andersson@kernel.org>
 To:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
         Andy Gross <agross@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Brian Masney <masneyb@onstation.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>, Luca Weiss <luca@z3ntu.xyz>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: pm8953: Add thermal zone
-Date:   Sun,  9 Jul 2023 22:07:35 -0700
-Message-ID: <168896565970.1376307.8219500292825816238.b4-ty@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Caleb Connolly <caleb.connolly@linaro.org>,
+        Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: (subset) [PATCH v3 0/6] Add MSM8226 OCMEM support plus some extra OCMEM driver fixes
+Date:   Sun,  9 Jul 2023 22:07:37 -0700
+Message-ID: <168896565952.1376307.10535078828402994333.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20230625-pm8953-thermal-v1-1-2b4247d2f769@z3ntu.xyz>
-References: <20230625-pm8953-thermal-v1-1-2b4247d2f769@z3ntu.xyz>
+In-Reply-To: <20230506-msm8226-ocmem-v3-0-79da95a2581f@z3ntu.xyz>
+References: <20230506-msm8226-ocmem-v3-0-79da95a2581f@z3ntu.xyz>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -61,17 +65,20 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Sun, 25 Jun 2023 13:13:05 +0200, Luca Weiss wrote:
-> Define the themal zones using the temperature values found in the
-> downstream 4.9 sources so that the spmi-temp-alarm driver becomes
-> active.
+On Wed, 14 Jun 2023 18:35:46 +0200, Luca Weiss wrote:
+> Like MSM8974 the MSM8226 SoC also contains some OCMEM but it has just
+> one region for graphics compared to 8974.
 > 
+> While adding support I found a bug in the existing driver that is being
+> fixed in this series also and the rest of the matches are mostly
+> preparations for MSM8226 support.
 > 
+> [...]
 
 Applied, thanks!
 
-[1/1] arm64: dts: qcom: pm8953: Add thermal zone
-      commit: 519c47acac28db7cec7ab5d929055a73001ac2d9
+[6/6] ARM: dts: qcom: msm8226: Add ocmem
+      commit: 4bad24d73abcc6adf70bc4c894c29cb1d0acda05
 
 Best regards,
 -- 
