@@ -2,156 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D38B74D99C
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 17:11:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5756574D9A0
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 17:14:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232355AbjGJPLX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jul 2023 11:11:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37814 "EHLO
+        id S233553AbjGJPOA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jul 2023 11:14:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38738 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233018AbjGJPLW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 11:11:22 -0400
-Received: from mail-io1-f54.google.com (mail-io1-f54.google.com [209.85.166.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51793CE;
-        Mon, 10 Jul 2023 08:11:15 -0700 (PDT)
-Received: by mail-io1-f54.google.com with SMTP id ca18e2360f4ac-785d738d3feso96794339f.0;
-        Mon, 10 Jul 2023 08:11:15 -0700 (PDT)
+        with ESMTP id S233549AbjGJPN7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 11:13:59 -0400
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D467FC0
+        for <devicetree@vger.kernel.org>; Mon, 10 Jul 2023 08:13:57 -0700 (PDT)
+Received: by mail-wr1-x431.google.com with SMTP id ffacd0b85a97d-31454996e06so4220423f8f.2
+        for <devicetree@vger.kernel.org>; Mon, 10 Jul 2023 08:13:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1689002036; x=1691594036;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=85ipMnKhTmCRR/+ctL9Ale6MVh3KnIeTA4oNiNxzq0Y=;
+        b=ZL1I+X9kQ2ElwDmG+AEK8KwT/B08w/my8Sc4CIOHtVXTwmQ+PgCzzFJZ3Akw2b3y3T
+         1fnzKN5De4XH/rii8aIyjr73nPV2T28m7SZ2fCN2RHnnhWQlkGaA9R+/rPAyUrsqjsXV
+         VsAXMW2D8OlEfiPvhovXj47rzAu0Unx5urxgY/u6fxTUrilLOAq7wmavdMr1bkb+JIxt
+         zVNEDySJWILQPgM1DJAHSdMOwDmDJatkQBQrsjhkDumSpBw40PtY0tZpViOIVZz+Vh+B
+         CcOuj7FvNWveG1KXUD4UFxU6CAa1jGrSfaV3bI97KaGKRLEJOl8DjrPHo83nd0CXDLJ5
+         1UIg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689001874; x=1691593874;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=XEqrMLnjEUxCr6aEmxPCpimypFNMbrkfHOAE1F5JhwM=;
-        b=KG4ZDJfdAZWfNAN7gMoc2gwBdMGsSvahSKkpcjtrz7XboddJnGZ9XPBTX7I98fYdP0
-         gR2tzC5OwY/c0dR+RZtQH3MowFWHSFZPnZ2/0c1dmk9tMh6RPg+f33PjDBNMD8r0amoo
-         hgZgL5g5qyTUTy3PxB5E2p7g8296p3X/bnEqdwP1ttZDoCutKSnu8A5ldxUkUIilQU+w
-         2NAfFOxb1TSoIi9KYXdqrYZSoqxbSMgml8/SL0AQ+7+4gHh70X+PW3OSJ4LC5o4PXOWx
-         tFLZ89YzMlaWehZiW94BgmEKTTQRm9lwdrcpuimNP4bYEBmTxNaNJAQbXjESMHTT85FO
-         hWcg==
-X-Gm-Message-State: ABy/qLZbnK5i2I3fIfU0dYx1tv9RcAiXFSFxFvwboIdISPTgyKplySLK
-        apUifXQ9w+cCffeewhyEf3XrYbHOag==
-X-Google-Smtp-Source: APBJJlEflcNVhS3FsY6mOFGzzSqsLoDIwCvCnTSXqdnUyhdjKz/lxfe/iEoKcSWmHbBsGhuN1rRmbQ==
-X-Received: by 2002:a05:6602:59e:b0:786:cd20:8e1d with SMTP id v30-20020a056602059e00b00786cd208e1dmr8803834iox.4.1689001874518;
-        Mon, 10 Jul 2023 08:11:14 -0700 (PDT)
-Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id u16-20020a02cbd0000000b004165ac64e0asm3402846jaq.40.2023.07.10.08.11.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 10 Jul 2023 08:11:13 -0700 (PDT)
-Received: (nullmailer pid 1985030 invoked by uid 1000);
-        Mon, 10 Jul 2023 15:11:12 -0000
-Date:   Mon, 10 Jul 2023 09:11:12 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Marek Vasut <marex@denx.de>
-Cc:     linux-remoteproc@vger.kernel.org,
-        Bjorn Andersson <andersson@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Peng Fan <peng.fan@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/2] dt-bindings: remoteproc: imx_rproc: Support
- i.MX8MN/P MMIO
-Message-ID: <20230710151112.GA1983533-robh@kernel.org>
-References: <20230707232626.374475-1-marex@denx.de>
+        d=1e100.net; s=20221208; t=1689002036; x=1691594036;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=85ipMnKhTmCRR/+ctL9Ale6MVh3KnIeTA4oNiNxzq0Y=;
+        b=ebfE6YxoltVi3i2+fJ/Htz5cz0ASFhC4rKnhmDxjFMzx6uzMGGZeN3UwEkmssXH99/
+         y9aH7/qflAqEDq6KLeiG7iTBaomeicMvX7QTIL1UjuHr6ylD4y5LMVs3MN4x3OHO47cN
+         2qv1GDTBXhByvYneNKEo5t7x7fX0I1xBsd8GeHhBZ2XxXwI25ooFi+gNlidcrawuYwGo
+         0+91MvC7nCHe92v4ftjhxTwZXChgF8p3JzUYT+bq480a3LCx+Jo88VnLJcN5YEPVFumM
+         z0LKNW+nEoF232/2T6rZGElxObE9U6P0G5911mLGy0GkNNkzDKXV+NRiYkl3duOjfYn2
+         yVJQ==
+X-Gm-Message-State: ABy/qLbiji379js1ecbSuz7s4vA0TFz7xKfZZl8tzhFnB+GSfvDfnQkE
+        ZwpSayxUYeys9f3ElM2v01vLYQ==
+X-Google-Smtp-Source: APBJJlGNw8LoIwWE17CDwj/ZPC8coYJt6YKpgmsEOFoHFqk4VAZJrlyE7FZLzg584jpHlBes6qR02Q==
+X-Received: by 2002:adf:e0cf:0:b0:314:4bf5:2c73 with SMTP id m15-20020adfe0cf000000b003144bf52c73mr636696wri.64.1689002036327;
+        Mon, 10 Jul 2023 08:13:56 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id s26-20020a056402165a00b0051df1797222sm5805120edx.11.2023.07.10.08.13.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 10 Jul 2023 08:13:55 -0700 (PDT)
+Message-ID: <a184cf8c-19c1-e2fe-d4f4-adeaf0b8d42e@linaro.org>
+Date:   Mon, 10 Jul 2023 17:13:53 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230707232626.374475-1-marex@denx.de>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH] dt-bindings: thermal: tegra: Convert to json-schema
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Jon Hunter <jonathanh@nvidia.com>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>, devicetree@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-tegra@vger.kernel.org
+References: <20230707133333.2998802-1-thierry.reding@gmail.com>
+ <d6386a66-4cc2-9358-e65e-b09e614800c3@linaro.org> <ZKwW58xHD0cGfxvM@orome>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <ZKwW58xHD0cGfxvM@orome>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Jul 08, 2023 at 01:26:25AM +0200, Marek Vasut wrote:
-> The MX8M CM7 boot via SMC call is problematic, since not all versions
-> of ATF support this interface. Document MMIO support used to boot the
-> CM7 on MX8MN/MP instead and discern MMIO interface using DT compatible
-> string. Document GPR register syscon phandle which is required by the
-> MMIO interface too.
+On 10/07/2023 16:34, Thierry Reding wrote:
+> On Mon, Jul 10, 2023 at 10:09:18AM +0200, Krzysztof Kozlowski wrote:
+>> On 07/07/2023 15:33, Thierry Reding wrote:
+> [...]
+>>> +          nvidia,cpu-throt-percent:
+>>
+>> Missing type
 > 
-> Signed-off-by: Marek Vasut <marex@denx.de>
-> ---
-> Note that the MMIO being discerned using compatible string is similar
-> approach to "st,stm32mp1-rcc" vs "st,stm32mp1-rcc-secure".
-> ---
-> Cc: Bjorn Andersson <andersson@kernel.org>
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: Fabio Estevam <festevam@gmail.com>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
-> Cc: NXP Linux Team <linux-imx@nxp.com>
-> Cc: Peng Fan <peng.fan@nxp.com>
-> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Sascha Hauer <s.hauer@pengutronix.de>
-> Cc: Shawn Guo <shawnguo@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Cc: linux-arm-kernel@lists.infradead.org
-> Cc: linux-remoteproc@vger.kernel.org
-> ---
->  .../bindings/remoteproc/fsl,imx-rproc.yaml    | 20 +++++++++++++++++++
->  1 file changed, 20 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
-> index c940199ce89df..78bb976f738ee 100644
-> --- a/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
-> +++ b/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
-> @@ -20,7 +20,9 @@ properties:
->        - fsl,imx7ulp-cm4
->        - fsl,imx8mm-cm4
->        - fsl,imx8mn-cm7
-> +      - fsl,imx8mn-cm7-mmio
->        - fsl,imx8mp-cm7
-> +      - fsl,imx8mp-cm7-mmio
->        - fsl,imx8mq-cm4
->        - fsl,imx8qm-cm4
->        - fsl,imx8qxp-cm4
-> @@ -30,6 +32,11 @@ properties:
->    clocks:
->      maxItems: 1
->  
-> +  gpr:
+> Isn't this already taken care of by core/property-units.yaml?
 
-fsl,gpr or fsl,iomuxc-gpr
+You are right, I did not notice unit suffix.
 
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description:
-> +      Phandle to IOMUXC GPR block which provide access to CM7 CPUWAIT bit.
-> +
->    syscon:
->      $ref: /schemas/types.yaml#/definitions/phandle
->      description:
-> @@ -84,6 +91,19 @@ properties:
->  required:
->    - compatible
->  
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          not:
-> +            contains:
-> +              enum:
-> +                - fsl,imx8mn-cm7-mmio
-> +                - fsl,imx8mp-cm7-mmio
-> +    then:
-> +      properties:
-> +        gpr: false
-> +
->  additionalProperties: false
->  
->  examples:
-> -- 
-> 2.40.1
-> 
+
+> That has
+> anything matching "-percent$" marked as int32-array. I suppose I could
+> override this with just uint32 to narrow it further down, but I was
+> under the impression that overriding standard properties this way was
+> frowned upon.
+
+Yep.
+
+Best regards,
+Krzysztof
+
