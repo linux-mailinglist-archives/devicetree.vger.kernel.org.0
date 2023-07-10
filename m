@@ -2,169 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D55C774DA88
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 17:54:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D9F774DA89
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 17:54:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232901AbjGJPy2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jul 2023 11:54:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52534 "EHLO
+        id S231728AbjGJPyh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jul 2023 11:54:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52754 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232755AbjGJPy0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 11:54:26 -0400
-Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9A611A7
-        for <devicetree@vger.kernel.org>; Mon, 10 Jul 2023 08:54:02 -0700 (PDT)
-Received: by mail-pf1-x433.google.com with SMTP id d2e1a72fcca58-666e64e97e2so2323769b3a.1
-        for <devicetree@vger.kernel.org>; Mon, 10 Jul 2023 08:54:02 -0700 (PDT)
+        with ESMTP id S232079AbjGJPyg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 11:54:36 -0400
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8268C10C7
+        for <devicetree@vger.kernel.org>; Mon, 10 Jul 2023 08:54:16 -0700 (PDT)
+Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-3fb4146e8fcso34559215e9.0
+        for <devicetree@vger.kernel.org>; Mon, 10 Jul 2023 08:54:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689004442; x=1691596442;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=zMSW+hTxoeJnUQYqOp6d0h2caQRlX9Av8EhOOGVFTdk=;
-        b=j5bN/2rGOIVOFWr6X1GxmlgVr6bzZ0LPBAVI7aDzgir9DCNfZrW1F/SVJgVyq3Rn4Q
-         NDm7p30jKHaWDprDZ+XFmDVuiwsyT1xpW8VI4hyFR5rmOeghNtvx4wRYJD52vImzvUx7
-         75UmCw8cDp9xCXA2h/bYLZR6WzWHJizYT+colT6IneOP+DatYucsm2TRwuUvv7UEBA1D
-         y4xdA6EjDACtLy0jeSsV23qoqRh5VDo+HsgNbz7ztXFJSg3JoFsaWVy3jYyEcSP9kCzA
-         z4FnEDysqwdH4JzoJ9GoImIJ3yhdKyFIbyFL8wafIPpkg7xrhK5ZLWsQ+PAyT3M8BnnU
-         sekw==
+        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1689004451; x=1691596451;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=1G7HjU+lrWAwmK/lX4LNtP5CQp1m/MEkMnqgPPj4QQc=;
+        b=T185Dmwh4vQcOBaRbBLzbYJVlHn6DG0BLbbcS2oxg1BDAoT1Oa+C449mwXpsUOVnQK
+         AJevQbCvGHLW3MycxGXQBrYVnXB9iehL/2OyZ+8q5CIEi0/yxll65CmOYFZguPuZVAZ1
+         vAP9ZRcpHb1Kt+hdUQfwHjp0fSaURdUrmIPljVMbkSMPb2PhZCRBhBhJ4ffEiyaCO2S8
+         yy4+e1RgmphvPSs97LlFIL0OgYowofBr5yN9MsatoG0MSuyZiWNmqufJKdJ4Yki10PgH
+         1+qOjMLyqNZyV9d1kaNqQ5ltq5yHuLo45tSC96wpOqYo3edw8wBvsRPjdCFc/kSvNZD5
+         JdUA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689004442; x=1691596442;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zMSW+hTxoeJnUQYqOp6d0h2caQRlX9Av8EhOOGVFTdk=;
-        b=KFyHC0okS785EevkEd5co0FR8YR7hPtDr9AizALqM1KrlL4BYECVqbdzxaexjoATxa
-         VdXqN4vL0cm6mmzIsk2/OvjdgWaLIAne/ZYE1bNHpSsdBqd5Z36I/gYrHO/LZTJczFXO
-         A+2Srv7YGiDsPhuzMa38pw2Qu9KGfKuytX173UgAP+zvmQQLTh9gi/WQrw1kuI1Q/HNW
-         OV8ivz850weOyoXo3s4wx4gFU8WwF2IlWLyyXrhodohwCGHQq5+YBx2QVxbyewEVXW78
-         ucM0sGFRJT8kY/85a4kLsaTD9qUASToM8dYgVArvQtGSqM60xN5jv4Ij75P2Sby2V/9v
-         cRgQ==
-X-Gm-Message-State: ABy/qLY2a0VbfGlBog2dEJXfnqMaz2AWxrJ5N8u7UeFexDSS4JJFa3Qo
-        vSJnGFPhwVNry0fLHuxgUbxh9g==
-X-Google-Smtp-Source: APBJJlG9Kvh6R1bq3ZlIOnrsRa803tXNfyhlL8ge26rigJUw8qNHealMTt6slSq+7Yq3p7tL2TFJlg==
-X-Received: by 2002:a05:6a20:9188:b0:122:cb38:637c with SMTP id v8-20020a056a20918800b00122cb38637cmr12807361pzd.49.1689004442259;
-        Mon, 10 Jul 2023 08:54:02 -0700 (PDT)
-Received: from p14s ([2604:3d09:148c:c800:a799:9acc:26b9:1451])
-        by smtp.gmail.com with ESMTPSA id bg4-20020a1709028e8400b001b53be3d942sm49863plb.232.2023.07.10.08.54.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 10 Jul 2023 08:54:01 -0700 (PDT)
-Date:   Mon, 10 Jul 2023 09:53:59 -0600
-From:   Mathieu Poirier <mathieu.poirier@linaro.org>
-To:     Marek Vasut <marex@denx.de>
-Cc:     linux-remoteproc@vger.kernel.org, Peng Fan <peng.fan@nxp.com>,
-        Jacky Bai <ping.bai@nxp.com>, Ye Li <ye.li@nxp.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 2/2] remoteproc: imx_rproc: add start up delay
-Message-ID: <ZKwpl1ZGJcX2RmJb@p14s>
-References: <20230707232444.374431-1-marex@denx.de>
- <20230707232444.374431-2-marex@denx.de>
+        d=1e100.net; s=20221208; t=1689004451; x=1691596451;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=1G7HjU+lrWAwmK/lX4LNtP5CQp1m/MEkMnqgPPj4QQc=;
+        b=fbDygykbAQEmI/5ovZBdI3BhiGiiUQkVcMyy2u1VfuIG0f5wnOoU/0DQPnsiCL3uF3
+         7uYCp4moXtqCzwVhYfccaI1bP3K+td4/1BonADd4Si4p+1kjTP2xZmfq9gl+D7P63Prn
+         qb6UvUSBjvWQp7ghlMLr8qu9QP9S7KZLBsdU2wloCeLfxE3NB3X+V0Q0rfJ6c/ldIvlr
+         KOGT5X7Ge1ddV9XO+vEYmn3kAZKw4mktvnymk5tcosFuj4b8OFXoRqLuvP3c8gCmQSMO
+         nt+2vR9fUWMKmWrInouKDZIhNz/eZKfvP1bQqmXEN5f7QKm8MXyiJwIx2+gVdbixYjwf
+         TjeA==
+X-Gm-Message-State: ABy/qLbYgrYIhaArgPZ9DP5Q8kIQYVevJ0zvKXRUqRHdiFEVyHZY81F3
+        ApyJ4KbwsRdbn+dj/uj7foqN02lHRk3UPGDP1Ak=
+X-Google-Smtp-Source: APBJJlHpCAuzBB3fDufs1Z6+UbPoWtjzxfy/5Xb3qfIyBewRVkfzXoEny9pL9FRSwUd9JB6H5VQafQ==
+X-Received: by 2002:a05:600c:2113:b0:3fc:180:6463 with SMTP id u19-20020a05600c211300b003fc01806463mr7513573wml.7.1689004451470;
+        Mon, 10 Jul 2023 08:54:11 -0700 (PDT)
+Received: from [192.168.1.172] ([93.5.22.158])
+        by smtp.gmail.com with ESMTPSA id v6-20020a05600c444600b003fbb1ce274fsm20141588wmn.0.2023.07.10.08.54.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 10 Jul 2023 08:54:10 -0700 (PDT)
+Message-ID: <663c607d-4c68-a3c4-0bc5-e7f53a7b7b53@baylibre.com>
+Date:   Mon, 10 Jul 2023 17:54:09 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230707232444.374431-2-marex@denx.de>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v6 5/8] soc: mediatek: pm-domains: Unify configuration for
+ infracfg and smi
+Content-Language: en-US
+To:     Markus Schneider-Pargmann <msp@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     Chun-Jie Chen <chun-jie.chen@mediatek.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Tinghan Shen <tinghan.shen@mediatek.com>,
+        Fabien Parent <parent.f@gmail.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+References: <20230627131040.3418538-1-msp@baylibre.com>
+ <20230627131040.3418538-6-msp@baylibre.com>
+From:   Alexandre Mergnat <amergnat@baylibre.com>
+In-Reply-To: <20230627131040.3418538-6-msp@baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Jul 08, 2023 at 01:24:44AM +0200, Marek Vasut wrote:
-> From: Peng Fan <peng.fan@nxp.com>
-> 
-> There is case that after remoteproc start remote processor[M4], the M4
-> runs slow and before M4 finish its own rpmsg framework initialization,
-> linux sends out vring kick message, then M4 firmware drops the kick
-> message. Some NXP released Cortex-M[x] images has such limitation that
-> it requires linux sends out vring kick message after M4 firmware finish
-> its rpmsg framework initialization.
-> 
-> Reviewed-by: Jacky Bai <ping.bai@nxp.com>
-> Reviewed-by: Ye Li <ye.li@nxp.com>
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
-> Note: picked from NXP downstream LF-6630-2 remoteproc: imx_rproc: add start up delay
-> https://github.com/nxp-imx/linux-imx.git 0b1b91c95b291a3b60d6224b13f6a95a75896abf
-> ---
-> Note: Literally all of the NXP BSP 2.13.0 firmware builds fail to boot
->       without this being set to something like 50..500 ms , so this is
->       rather useful to have.
+Reviewed-by: Alexandre Mergnat <amergnat@baylibre.com>
+Tested-by: Alexandre Mergnat <amergnat@baylibre.com>
 
-My stance on this hasn't changed - hacks such as these do not scale and are a
-nightmare to maintain.  The problem should be fixed in the M4's firmware.
 
-> ---
-> Cc: Bjorn Andersson <andersson@kernel.org>
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: Fabio Estevam <festevam@gmail.com>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
-> Cc: NXP Linux Team <linux-imx@nxp.com>
-> Cc: Peng Fan <peng.fan@nxp.com>
-> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Sascha Hauer <s.hauer@pengutronix.de>
-> Cc: Shawn Guo <shawnguo@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Cc: linux-arm-kernel@lists.infradead.org
-> Cc: linux-remoteproc@vger.kernel.org
-> ---
->  drivers/remoteproc/imx_rproc.c | 9 +++++++++
->  1 file changed, 9 insertions(+)
-> 
-> diff --git a/drivers/remoteproc/imx_rproc.c b/drivers/remoteproc/imx_rproc.c
-> index f9874fc5a80ff..d0eb96d6a4fe1 100644
-> --- a/drivers/remoteproc/imx_rproc.c
-> +++ b/drivers/remoteproc/imx_rproc.c
-> @@ -6,6 +6,7 @@
->  #include <dt-bindings/firmware/imx/rsrc.h>
->  #include <linux/arm-smccc.h>
->  #include <linux/clk.h>
-> +#include <linux/delay.h>
->  #include <linux/err.h>
->  #include <linux/firmware/imx/sci.h>
->  #include <linux/interrupt.h>
-> @@ -110,6 +111,7 @@ struct imx_rproc {
->  	u32				core_index;
->  	struct device                   **pd_dev;
->  	struct device_link              **pd_dev_link;
-> +	u32				startup_delay;
->  };
->  
->  static const struct imx_rproc_att imx_rproc_att_imx93[] = {
-> @@ -382,6 +384,9 @@ static int imx_rproc_start(struct rproc *rproc)
->  	if (ret)
->  		dev_err(dev, "Failed to enable remote core!\n");
->  
-> +	if (priv->startup_delay)
-> +		msleep(priv->startup_delay);
-> +
->  	return ret;
->  }
->  
-> @@ -1090,6 +1095,10 @@ static int imx_rproc_probe(struct platform_device *pdev)
->  	if (rproc->state != RPROC_DETACHED)
->  		rproc->auto_boot = of_property_read_bool(np, "fsl,auto-boot");
->  
-> +	ret = of_property_read_u32(dev->of_node, "fsl,startup-delay-ms", &priv->startup_delay);
-> +	if (ret)
-> +		priv->startup_delay = 0;
-> +
->  	ret = rproc_add(rproc);
->  	if (ret) {
->  		dev_err(dev, "rproc_add failed\n");
-> -- 
-> 2.40.1
-> 
+On 27/06/2023 15:10, Markus Schneider-Pargmann wrote:
+> Use flags to distinguish between infracfg and smi subsystem for a bus
+> protection configuration. It simplifies enabling/disabling and prepares
+> the driver for the use of another regmap for mt8365.
+
+-- 
+Regards,
+Alexandre
