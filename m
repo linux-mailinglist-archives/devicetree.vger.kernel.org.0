@@ -2,124 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B2BB74D916
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 16:34:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A04E774D91D
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 16:36:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231656AbjGJOeV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jul 2023 10:34:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48410 "EHLO
+        id S231696AbjGJOgr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jul 2023 10:36:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49352 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229793AbjGJOeU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 10:34:20 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C10A8F1;
-        Mon, 10 Jul 2023 07:34:19 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-992f6d7c7fbso589117866b.3;
-        Mon, 10 Jul 2023 07:34:19 -0700 (PDT)
+        with ESMTP id S230121AbjGJOgq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 10:36:46 -0400
+X-Greylist: delayed 62 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 10 Jul 2023 07:36:43 PDT
+Received: from ewsoutbound.kpnmail.nl (ewsoutbound.kpnmail.nl [195.121.94.183])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49EE8114
+        for <devicetree@vger.kernel.org>; Mon, 10 Jul 2023 07:36:43 -0700 (PDT)
+X-KPN-MessageId: cb8dc1ea-1f2e-11ee-a2b3-005056992ed3
+Received: from smtp.kpnmail.nl (unknown [10.31.155.5])
+        by ewsoutbound.so.kpn.org (Halon) with ESMTPS
+        id cb8dc1ea-1f2e-11ee-a2b3-005056992ed3;
+        Mon, 10 Jul 2023 16:33:53 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1688999658; x=1691591658;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8VcKK1Rn8MBifaFhnfJH1d1V6xUVFxqhh/HMxXJpwRg=;
-        b=NuPD+2FakNFFQWksx7/KRk7jDKLGC//fliR3u8qCDcDL0QfvBa0xke62DVRz8lqLkD
-         NSXoNNQyjQjCBXP6/WpRxKKO8hRtZ1NDjOvy8ZLbDUsy0D8uNYroIIsiTZoFN8hz/Xsj
-         0Dh0FI4767cdlh8QCIBhOb6+NOkykfmt1Q+HJ2CxWFg6gabbTwKtOWm/0VwPddafFCHW
-         C074kNK0s6Uepl4r/z3yVsYr1mBdhhxetvmGJt98EJ6qPJVn5tlmlSHU34xPFfpuIUme
-         FWaRKe8brB/Lwc6RxOhv1q2RFpEAy8hbnFTDR4r8ptazzswJQwW2OR8hNG6FLs5yi3XI
-         8ZmA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688999658; x=1691591658;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=8VcKK1Rn8MBifaFhnfJH1d1V6xUVFxqhh/HMxXJpwRg=;
-        b=T3AUXyKkxQ1qmUxVKFTvo65pmcq26O+yMYN2DOkYIoBm/hAhfdoUy+XhtayOM82dg1
-         x+k9ShirQC1iyFxgYOWcTBcXgovif4FY3EpdoI22q4VDeh4nL+1W7ZONoOAMv9PW6pF7
-         sT/0l4IQbx/xX/OaLLIpD/IPrBz/RHEukbdYRB4ITDMWCUGEKf78iCpbupmPlLHWrym3
-         6QICS6ovmnkJoqp3bpONwuLM59CRny/pKJNxR3V1HhiHg6yrLWamhL5hW0J8eZadrne8
-         HhBgGfQXJLi9DPixuHYOtg1BugraVsb0R/YP6A8L1OwmOCuPQQ7HhEouu+BCT3Web5V+
-         Pnxw==
-X-Gm-Message-State: ABy/qLYCSUsC+YawJM5/+uSKgsVwNOV/zSpvRGiv25WLGhv4Y9dwYK5d
-        qCve2W7IMKcjRA4qNn2ucy4=
-X-Google-Smtp-Source: APBJJlGmy5cIfvmO3gYMnka5MY13S83UelOEPHJr4A1Iue79HwEh6hYNV6Y8xpig8ySSxtuemoDdkQ==
-X-Received: by 2002:a17:906:7a08:b0:974:1ef1:81ad with SMTP id d8-20020a1709067a0800b009741ef181admr13253437ejo.4.1688999658062;
-        Mon, 10 Jul 2023 07:34:18 -0700 (PDT)
-Received: from orome (p200300e41f4b7100f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f4b:7100:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id h7-20020a170906854700b00993b381f808sm6250529ejy.38.2023.07.10.07.34.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 10 Jul 2023 07:34:17 -0700 (PDT)
-Date:   Mon, 10 Jul 2023 16:34:15 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Jon Hunter <jonathanh@nvidia.com>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>, devicetree@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-tegra@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: thermal: tegra: Convert to json-schema
-Message-ID: <ZKwW58xHD0cGfxvM@orome>
-References: <20230707133333.2998802-1-thierry.reding@gmail.com>
- <d6386a66-4cc2-9358-e65e-b09e614800c3@linaro.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="p2dfuO8HITkMwyVw"
-Content-Disposition: inline
-In-Reply-To: <d6386a66-4cc2-9358-e65e-b09e614800c3@linaro.org>
-User-Agent: Mutt/2.2.10 (2023-03-25)
+        d=xs4all.nl; s=xs4all01;
+        h=subject:to:from:message-id:date;
+        bh=ndshqcXUb+Dwfuyshi1OMTZa+0+yuKFyMzM9cN1ZEac=;
+        b=X5MAyiHuZK2zRPHU5y1vBpfWw/rFUPN75fgEFtHxu6bspWjHpxoL8QJiiVf+RFhzDtwNL9k8c7wJv
+         vYJNQByypPfqkxx9dQ112w7O1Qjgpxvazc41DcPI8T2sAFqKiXhUzYKn2IwC3mQ1UXLRsta2JYcWX8
+         2h5v40XGGTVivirjjDXa6wT4kj88ZifCnr1BgCwTKxHlippOU3vXg0iZVgAhinMKnY/PMkPTUzntFv
+         4Rfw00XPgEXMwCoVUgAVZAOfsjIUbdy/fLefD3U8QjrUD8UltUB+7lTjpeO6KFxx8Y3yq7/rJM2lu5
+         r6Fw9Q9GHgAdaMG1KuIqMFTNRkRequg==
+X-KPN-MID: 33|XymNBmGApvd/hZTUbe+Y9MdUVxDjx6rIpwAJAnlVB9VsBKlfmYTOtfxO1eB1muT
+ V0Vyt22MfCX/VkboWTyIdnDHT1e0Bsq1ZBD9MZOpsX1g=
+X-KPN-VerifiedSender: Yes
+X-CMASSUN: 33|0VKnzYBT35jfpfEU5x6YIKApLSQczTNqCw6izYs/9nBcAf8jRAUo8B4WRqX857i
+ xhbyRkXjidrML4FWS21+qdw==
+X-Originating-IP: 80.61.163.207
+Received: from bloch.sibelius.xs4all.nl (80-61-163-207.fixed.kpn.net [80.61.163.207])
+        by smtp.xs4all.nl (Halon) with ESMTPSA
+        id 0898b9d6-1f2f-11ee-aef8-00505699b758;
+        Mon, 10 Jul 2023 16:35:37 +0200 (CEST)
+Date:   Mon, 10 Jul 2023 16:35:36 +0200
+Message-Id: <87wmz7q1fr.fsf@bloch.sibelius.xs4all.nl>
+From:   Mark Kettenis <mark.kettenis@xs4all.nl>
+To:     Heiko Stuebner <heiko@sntech.de>
+Cc:     d3adme4t@gmail.com, macromorgan@hotmail.com, jbx6244@gmail.com,
+        f.kardame@manjaro.org, amadeus@jmu.edu.cn, robh+dt@kernel.org,
+        linux.amoon@gmail.com, aurelien@aurel32.net, anarsoul@gmail.com,
+        wiagn233@outlook.com, frattaroli.nicolas@gmail.com,
+        strit@manjaro.org, luiz.von.dentz@intel.com, zonyitoo@gmail.com,
+        wens@csie.org, jensenhuang@friendlyarm.com, lasstp5011@gmail.com,
+        frank-w@public-files.de, pgwipeout@gmail.com, conor+dt@kernel.org,
+        leo@nabam.net, andyshrk@163.com, krzysztof.kozlowski+dt@linaro.org,
+        michael.riesch@wolfvision.net, jonas@kwiboo.se, festevam@denx.de,
+        tobetter@gmail.com, jagan@amarulasolutions.com, cnsztl@gmail.com,
+        cristian.ciocaltea@collabora.com, heiko@sntech.de,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, kernel@collabora.com
+In-Reply-To: <168899855919.1747213.9998138836668928892.b4-ty@sntech.de>
+        (message from Heiko Stuebner on Mon, 10 Jul 2023 16:16:16 +0200)
+Subject: Re: [PATCH] arm64: dts: rockchip: Drop invalid regulator-init-microvolt property
+References: <20230707162217.675390-1-cristian.ciocaltea@collabora.com> <168899855919.1747213.9998138836668928892.b4-ty@sntech.de>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+> From: Heiko Stuebner <heiko@sntech.de>
+> Date: Mon, 10 Jul 2023 16:16:16 +0200
+> 
+> On Fri, 7 Jul 2023 19:22:17 +0300, Cristian Ciocaltea wrote:
+> > The 'regulator-init-microvolt' property is not currently supported by
+> > any driver, it was simply carried on from downstream kernels.
+> > 
+> > The problem is also indicated by the following dtbs_check warning:
+> > 
+> >   rk3588-rock-5b.dtb: pmic@0: regulators:dcdc-reg4: Unevaluated properties are not allowed ('regulator-init-microvolt' was unexpected)
+> > 
+> > [...]
+> 
+> Applied, thanks!
+> 
+> [1/1] arm64: dts: rockchip: Drop invalid regulator-init-microvolt property
+>       commit: 4d08b19629495b29601991d09d07865694c25199
 
---p2dfuO8HITkMwyVw
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This property *is used* by the drivers in U-Boot.  Dropping this from
+the Linux DTBs will likely result in broken boards the next time the
+U-Boot DTBs are synched again from Linux.  At least that is what
+happened before...
 
-On Mon, Jul 10, 2023 at 10:09:18AM +0200, Krzysztof Kozlowski wrote:
-> On 07/07/2023 15:33, Thierry Reding wrote:
-[...]
-> > +          nvidia,cpu-throt-percent:
->=20
-> Missing type
-
-Isn't this already taken care of by core/property-units.yaml? That has
-anything matching "-percent$" marked as int32-array. I suppose I could
-override this with just uint32 to narrow it further down, but I was
-under the impression that overriding standard properties this way was
-frowned upon.
-
-Thierry
-
---p2dfuO8HITkMwyVw
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmSsFuUACgkQ3SOs138+
-s6HfuxAAhFZs3b1U1LjUvi/cPFPraGPcqmUsGdwwk1bvW6/1by0VLppetoF+LZzN
-b2xeZI9xyqaGZVwbBclqoKzNryz1Epuj9zEMKuCTyvczFEEJdbdnde6mWuVlgYVB
-vnEX0hm56lWFjah3+QrQj0QZLVSeeNWpmRSL+eDI99Ar90inQuKfVCvXZpYsa5QV
-HCwKL4EE05b11W7O97ZECKDwhurLf8TkErXmR6RLwXsn3LymqkzsMVE4aKCV1kox
-15xPszIA17k7AYCsgIQVXmJXIwZcI4fpQq+VfjD/gzPwVk7o6k/Ctqp8mUyuITsE
-jKSsHwe/i/qwmgJbrEv867SvQZssEuLVzILsWHPOJmyR+mlHqIHGKEjwtsgrS6eT
-xMSIr53353z8bvtI6vUEsNSbryNnSUwl0Ly7rbvDcBkhclJ7ODCfeXLiD+QwHYdd
-4qqFg9Y8QLMNCx6G7hFSjCkfOJbr5zBX/6rVJct/fttR19sWMMVuq7m8RpY+d4ha
-dQQDQtntbo6WtdCM8uO73nbesb8Hp3+ePY8APHpWh9UxSLwuTyprjpwBahBfiPY0
-gKgOs0tK94m4bAlL5A7N/+9C/igB6/hhHvGfUwcbQTUCvPwSU/9ZBHtI7b/Rhqb+
-lZOSSAz1SZWif+TROMK3l6buxvWruTLEVIJ+P3sw4UnMz8tZVkk=
-=C7Jj
------END PGP SIGNATURE-----
-
---p2dfuO8HITkMwyVw--
+I think the right solution is to add this property to the DT binding
+instead.
