@@ -2,120 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D5DF74CDA7
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 08:53:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A3CF274CDB7
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 08:55:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231220AbjGJGxL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jul 2023 02:53:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52554 "EHLO
+        id S230304AbjGJGz0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jul 2023 02:55:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54922 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230187AbjGJGxK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 02:53:10 -0400
-X-Greylist: delayed 599 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sun, 09 Jul 2023 23:53:09 PDT
-Received: from box.trvn.ru (box.trvn.ru [194.87.146.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0D23B8;
-        Sun,  9 Jul 2023 23:53:08 -0700 (PDT)
-Received: from authenticated-user (box.trvn.ru [194.87.146.52])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by box.trvn.ru (Postfix) with ESMTPSA id 0BBDC400F4;
-        Mon, 10 Jul 2023 11:34:05 +0500 (+05)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=trvn.ru; s=mail;
-        t=1688970846; bh=DND5rpm/wmgsLveMaPobuACP8Vr/HQmeyKyeNsCd8+o=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=VatCx4zNsH8XVhtDNxxMbWubQSaBJWHv2qOvFQJfQjjrrc3MiDS/75JNYt2c/uQhW
-         FUYY5uJ5wlFRyEE7nF1sA/j7HnSqWPm5MMOVYXydradsjlibExvSNRV/SI20ifKLH/
-         DQJteOgLnHvSyWw6LLYJ9oIvKwRNlkFHdz0aRv+FIuIFsBq7/Q/TS7Upn2Uaqz2+Bq
-         zkD7Lu/LMJOT33H6ev6pRbawd3rV+/nQKyCQVlV2Kimam72MCdEbuTm+EzFWJzE36r
-         LKio3U6j2EfMhcnWp/eCEG1bsoUZKATUp0nQUFr5OHtNG6FfOqZcllcfOrsrtbe333
-         KpyTN0MGCxVQA==
+        with ESMTP id S231223AbjGJGzZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 02:55:25 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F8CDDD
+        for <devicetree@vger.kernel.org>; Sun,  9 Jul 2023 23:55:21 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-992acf67388so470435866b.1
+        for <devicetree@vger.kernel.org>; Sun, 09 Jul 2023 23:55:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1688972119; x=1691564119;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=L/m4t2+e9zxuZutsFcMtyJGQN8UX3/qZu1zrLzPNGmw=;
+        b=BMZaXtEXt+jC1vsdg1/+M2Xtbf+lxbJFnLmB0rtJudq4LAeQ/Rqwo3YYCL1ymQ273h
+         0/NclEiXfEaSpxde78US1huPytGuu2oEYk+HAGx0+nmk+UrlU4zK3hf4qnU4/SuymnN4
+         nf7YsmivzWqca5qfo2Bfa9xq1oyO0TLo4JWwJPO00DjwjR/8TbqAjWWpCvfZHnUMJwY5
+         eReJtgF+FvYafmm75MrJx1kglAu7fSyn/3R+hPb6E+KVP4Z7bYXdL+Ppb4ZMC3XDayHV
+         S+wxEG0RngBSEsVeHeaGlhq2bofa9/wLwXgmAW/p4KWMUABDBiBizWXwvpgsdLrZ0R3p
+         f2dQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1688972119; x=1691564119;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=L/m4t2+e9zxuZutsFcMtyJGQN8UX3/qZu1zrLzPNGmw=;
+        b=cGrzLEsT/0I7/ATl+KM63EjvIl+tj1ehTnQzG9T9UCKzHg23VealreCzQXUwXFOxKb
+         wNDjeEjgyFOEu1th1qqdB0AqS9IttFob0cb6pUnw9TBa1atQ552bCyA4X2K/8yXy3j84
+         u9GNzYGDL0c00n8dZ1LwHPnwIWNVONrly3KgMNKW4TMaLNlINEkJKNOfXyj64t3hd06d
+         8Pw5icm8KW8PWzhF1y+1c7KgpE8zjvWmKLl0COMyYqWxYiBhSGd3QaTRdJuS4yRidrSS
+         ImUDx5yfVHKGNr9TRSVLkESSpkKCb6+6Zk5BoymCPCNycJi8BY64EUF2jz+QkAxIAA3O
+         i7BQ==
+X-Gm-Message-State: ABy/qLb6gg4TpNa9OtDWuXSrRmwj2DaxrD81DtCo+j2/tj4UUSgssPoF
+        jNcdraFX5SNnvRg9DpraNA5gwg==
+X-Google-Smtp-Source: APBJJlHsayh9CciqsWP5vHnn+AZWmcayDyr7rOvGCFnuq8+1b2H+VPUFj7lskEGP99/UUzTqweqgTw==
+X-Received: by 2002:a17:906:779b:b0:992:47d7:35d7 with SMTP id s27-20020a170906779b00b0099247d735d7mr11505851ejm.14.1688972119467;
+        Sun, 09 Jul 2023 23:55:19 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id s26-20020a170906355a00b00992b2c5598csm5693855eja.128.2023.07.09.23.55.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 09 Jul 2023 23:55:18 -0700 (PDT)
+Message-ID: <224afbe7-f0d5-ced2-a300-9e05789f08e8@linaro.org>
+Date:   Mon, 10 Jul 2023 08:55:17 +0200
 MIME-Version: 1.0
-Date:   Mon, 10 Jul 2023 11:34:04 +0500
-From:   Nikita Travkin <nikita@trvn.ru>
-To:     David Wronek <davidwronek@gmail.com>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Taniya Das <quic_tdas@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        cros-qcom-dts-watchers@chromium.org
-Subject: Re: [PATCH v2 5/7] arm64: dts: qcom: pm6150: Add resin and rtc nodes
-In-Reply-To: <20230706124339.134272-6-davidwronek@gmail.com>
-References: <20230706124339.134272-1-davidwronek@gmail.com>
- <20230706124339.134272-6-davidwronek@gmail.com>
-Message-ID: <c4fa68f151b043bc60848f621b9aea66@trvn.ru>
-X-Sender: nikita@trvn.ru
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH v2 0/2] Add compatible support for RT5733
+Content-Language: en-US
+To:     ChiYuan Huang <cy_huang@richtek.com>, broonie@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Cc:     robh+dt@kernel.org, lgirdwood@gmail.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <1688048996-25606-1-git-send-email-cy_huang@richtek.com>
+ <20230710014725.GA12147@linuxcarl2.richtek.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230710014725.GA12147@linuxcarl2.richtek.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-David Wronek писал(а) 06.07.2023 17:40:
-> Add support for the RTC which is the same as on other PMICs and add the
-> resin child node to the PM6150 PON device and disable it by default.
+On 10/07/2023 03:47, ChiYuan Huang wrote:
+> On Thu, Jun 29, 2023 at 10:29:54PM +0800, cy_huang@richtek.com wrote:
+> Hi,
+>> From: ChiYuan Huang <cy_huang@richtek.com>
+>>
+>> This series is to add the compatible support for rt5733 based on rt5739.
+>>
+> Sorry, not intend to ping, just want to check the current review status.
 > 
-> Signed-off-by: David Wronek <davidwronek@gmail.com>
+> Any comment about this patch series?
 
-Actually... (+CC CROS watchers) Doug, this would enable a somewhat
-dubious RTC for trogdor devices. On qcom firmware the rtc is
-forever write-protected but you run TF-A so maybe it's more
-cooperative and you can add "allow-set-time" prop for trogdor, in
-case qtiseclib doesn't mess with it? Or, alternatively, disable this
-rtc for trogdor completely so it doesn't cause trouble?
+You sent it during merge window, so what do you expect? What should
+happen during the merge window?
 
-In any case, on the WoA firmware and with userspace offset handling,
-this works beautifully, so:
+Best regards,
+Krzysztof
 
-Tested-by: Nikita Travkin <nikita@trvn.ru> # sc7180, Aspire 1
-
-Thanks!
-> ---
->  arch/arm64/boot/dts/qcom/pm6150.dtsi | 15 +++++++++++++++
->  1 file changed, 15 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/pm6150.dtsi b/arch/arm64/boot/dts/qcom/pm6150.dtsi
-> index 2e6afa296141..43c50f890e8b 100644
-> --- a/arch/arm64/boot/dts/qcom/pm6150.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/pm6150.dtsi
-> @@ -53,6 +53,14 @@ pm6150_pwrkey: pwrkey {
->  				bias-pull-up;
->  				linux,code = <KEY_POWER>;
->  			};
-> +
-> +			pm6150_resin: resin {
-> +				compatible = "qcom,pm8941-resin";
-> +				interrupts = <0x0 0x8 1 IRQ_TYPE_EDGE_BOTH>;
-> +				debounce = <15625>;
-> +				bias-pull-up;
-> +				status = "disabled";
-> +			};
->  		};
->  
->  		pm6150_temp: temp-alarm@2400 {
-> @@ -88,6 +96,13 @@ pm6150_adc_tm: adc-tm@3500 {
->  			status = "disabled";
->  		};
->  
-> +		rtc@6000 {
-> +			compatible = "qcom,pm8941-rtc";
-> +			reg = <0x6000>, <0x6100>;
-> +			reg-names = "rtc", "alarm";
-> +			interrupts = <0x0 0x61 0x1 IRQ_TYPE_EDGE_RISING>;
-> +		};
-> +
->  		pm6150_gpios: gpio@c000 {
->  			compatible = "qcom,pm6150-gpio", "qcom,spmi-gpio";
->  			reg = <0xc000>;
