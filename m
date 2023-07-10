@@ -2,77 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 46F8074CDD4
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 09:01:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 684F874CDF7
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 09:10:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230013AbjGJHBN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jul 2023 03:01:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56968 "EHLO
+        id S230006AbjGJHKL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jul 2023 03:10:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60292 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229481AbjGJHBM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 03:01:12 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4F03E8
-        for <devicetree@vger.kernel.org>; Mon, 10 Jul 2023 00:01:10 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-992af8b3b1bso546140366b.1
-        for <devicetree@vger.kernel.org>; Mon, 10 Jul 2023 00:01:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688972469; x=1691564469;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=bAAM318e50FzwuPYMp5fFaAKn/TzSZTu0tdXq5W1k3U=;
-        b=RTdZ0NYCeNaJPv0g58tv/l9RYh1y/Rv/GHdNaQfKRcAmFnLEI6riSkUu5QkvhOEubP
-         28bQEeP3RrVqdbPb9Wj5tykDNaRulPdqIcfZDHriBi6qo8PeOEz3JTd/oUnZ7A7v8Qrp
-         ZpDpzCRZcV5a/5arlXiyexGE61wq2KMv9BJygu3Oef0o1zpCq+UC01PDJTrpHIUO6UfB
-         t7lHgvTa0dGcSuwtQW6CZYeWh65DG+PtjIVjM+aRA9yRF91Gt9dRnhWGBKQAuMGPj8wG
-         69rJptP4dJlLU6uHJJvOXBNkkvI4c9fyI1HvO2sNHwykZD4hVFdEiVLo4tsEZas5BEyx
-         5IJA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688972469; x=1691564469;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=bAAM318e50FzwuPYMp5fFaAKn/TzSZTu0tdXq5W1k3U=;
-        b=fgn/M9ALYyTYsHjWgvQzNF/Gi7ZQt/TPDcMFCJU8+wsKH1mtxgu8/nkqNl1uJGBfvv
-         tqV+XiPUYemQ3T2d2FmPdQrjMoSnoH57Jll3xfSN0peOCEvOqCU+c51mBnsDgevvDnI/
-         00+DIuF93M0bk1QCHv6gQA8hAQUhPK8OnwKz4j8MzrRk2lyoJ4wVGOa0RMLPlcfUkGbu
-         wYE4U4tx1Gp+UF2S70NSRn9t+P3IcBgg8/z6b30AK//1aqz+zgj03ZQrts4rJcUH8l8H
-         HOLLASXoE2RHl82h9a9bzCDlVoUo7E3jMkcv9XDy670B+rOUb3o2WqXkASOm0t9S48ha
-         gzjA==
-X-Gm-Message-State: ABy/qLZMDNQ61s6RmyLrsiEVGUpnHDhz760nll15bLfHcvi0gSlPv8eS
-        rwdw5GtzNwONgXHCNP3DAjZKAme/eFELNhL/u7QbH/8V
-X-Google-Smtp-Source: APBJJlGBJv/pG3fRR7H73rSe8XqG6pWMaXfeTU/GjuyMR4ZA8r4RhtJyxCqLUDfc8K3TojxugeZm3w==
-X-Received: by 2002:a17:906:2ce:b0:993:dd1d:8251 with SMTP id 14-20020a17090602ce00b00993dd1d8251mr8929143ejk.28.1688972469441;
-        Mon, 10 Jul 2023 00:01:09 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id k3-20020a1709061c0300b0098d25cbb899sm5685021ejg.41.2023.07.10.00.01.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 10 Jul 2023 00:01:09 -0700 (PDT)
-Message-ID: <83847c7b-74fa-bc79-0287-893e23516a23@linaro.org>
-Date:   Mon, 10 Jul 2023 09:01:07 +0200
+        with ESMTP id S229823AbjGJHKK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 03:10:10 -0400
+Received: from mg.richtek.com (mg.richtek.com [220.130.44.152])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 9AE06129;
+        Mon, 10 Jul 2023 00:10:07 -0700 (PDT)
+X-MailGates: (SIP:2,PASS,NONE)(compute_score:DELIVER,40,3)
+Received: from 192.168.10.47
+        by mg.richtek.com with MailGates ESMTPS Server V6.0(2128796:0:AUTH_RELAY)
+        (envelope-from <cy_huang@richtek.com>)
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256/256); Mon, 10 Jul 2023 15:09:56 +0800 (CST)
+Received: from ex3.rt.l (192.168.10.46) by ex4.rt.l (192.168.10.47) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.25; Mon, 10 Jul
+ 2023 15:09:56 +0800
+Received: from linuxcarl2.richtek.com (192.168.10.154) by ex3.rt.l
+ (192.168.10.45) with Microsoft SMTP Server id 15.2.1118.25 via Frontend
+ Transport; Mon, 10 Jul 2023 15:09:56 +0800
+Date:   Mon, 10 Jul 2023 15:09:56 +0800
+From:   ChiYuan Huang <cy_huang@richtek.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+CC:     <broonie@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <robh+dt@kernel.org>, <lgirdwood@gmail.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 0/2] Add compatible support for RT5733
+Message-ID: <20230710070956.GA31191@linuxcarl2.richtek.com>
+References: <1688048996-25606-1-git-send-email-cy_huang@richtek.com>
+ <20230710014725.GA12147@linuxcarl2.richtek.com>
+ <224afbe7-f0d5-ced2-a300-9e05789f08e8@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH v5] ARM: dts: exynos: Add Samsung Galaxy Tab 3 8.0 boards
-Content-Language: en-US
-To:     Artur Weber <aweber.kernel@gmail.com>,
-        Olof Johansson <olof@lixom.net>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Arnd Bergmann <arnd@arndb.de>, soc@kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht
-References: <20230628082332.25102-1-aweber.kernel@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230628082332.25102-1-aweber.kernel@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <224afbe7-f0d5-ced2-a300-9e05789f08e8@linaro.org>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -81,78 +51,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/06/2023 10:23, Artur Weber wrote:
-> Introduce support for the Galaxy Tab 3 8.0 series of boards:
+On Mon, Jul 10, 2023 at 08:55:17AM +0200, Krzysztof Kozlowski wrote:
+> On 10/07/2023 03:47, ChiYuan Huang wrote:
+> > On Thu, Jun 29, 2023 at 10:29:54PM +0800, cy_huang@richtek.com wrote:
+> > Hi,
+> >> From: ChiYuan Huang <cy_huang@richtek.com>
+> >>
+> >> This series is to add the compatible support for rt5733 based on rt5739.
+> >>
+> > Sorry, not intend to ping, just want to check the current review status.
+> > 
+> > Any comment about this patch series?
 > 
->  - Samsung Galaxy Tab 3 8.0 WiFi (SM-T310/lt01wifi)
->  - Samsung Galaxy Tab 3 8.0 3G (SM-T311/lt013g)
->  - Samsung Galaxy Tab 3 8.0 LTE (SM-T315/lt01lte)
-> 
-> What works:
-> 
->  - Display and backlight
->  - Touchscreen
->  - GPIO buttons, hall sensor
->  - WiFi and Bluetooth
->  - USB, fuel gauge, charging
->  - Accelerometer and magnetometer
->  - Audio: speaker, microphone, headset
->  - WiFi model only: light sensor
-> 
-> Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
-> ---
-> This is an updated version of "[PATCH v3 13/13] ARM: dts: exynos: Add Samsung
-> Galaxy Tab 3 8.0 boards"[1].
-> 
-> Changed in v5:
->  - Re-added disabled RTC node instead of deleting it with delete-node
-> 
-> Changed in v4:
->  - Added touchkey keycodes
->  - Added audio nodes
->  - Added MMC aliases
->  - Fixed dtbs_check warnings
->  - Fixed indentation in pinctrl sleep state overrides
-> 
-> Changed in v3:
->  - Addressed review comments
->  - Removed rtc node (RTC is provided by PMIC)
->  - Added CPU thermal node
->  - Fixed dtbs_check warnings
->  - Added common changes from next/dt
-> 
-> Should pass dtbs_check with no errors, provided that the following patches
-> are present:
-> 
-> Backlight node is adapted to changes from "[PATCH v2 1/4] dt-bindings:
-> backlight: lp855x: convert to YAML and modernize"[2]. The whole patchset
-> has been merged into the backlight tree.
-> 
-> Touchkey keycode property is added by "[PATCH 1/2] dt-bindings: mms114: Add
-> linux,keycodes property for touch keys"[3]. So far only the bindings part
-> of the patch has been acked, otherwise everything is awaiting review.
-> 
-> Display bindings have been added by "[PATCH v5 1/3] dt-bindings: display:
-> panel: Add Samsung S6D7AA0 LCD panel controller"[4]. These are already
-> reviewed and merged into the DRM tree.
-> 
-> [1] https://lore.kernel.org/linux-devicetree/20230501195525.6268-14-aweber.kernel@gmail.com/
-> [2] https://lore.kernel.org/linux-devicetree/20230519180728.2281-2-aweber.kernel@gmail.com/
-> [3] https://lore.kernel.org/linux-devicetree/20230521145843.19489-2-aweber.kernel@gmail.com/
-> [4] https://lore.kernel.org/linux-devicetree/20230519170354.29610-2-aweber.kernel@gmail.com/
-> ---
->  arch/arm/boot/dts/Makefile                  |    3 +
->  arch/arm/boot/dts/exynos4212-tab3-3g8.dts   |   29 +
->  arch/arm/boot/dts/exynos4212-tab3-lte8.dts  |   44 +
->  arch/arm/boot/dts/exynos4212-tab3-wifi8.dts |   26 +
->  arch/arm/boot/dts/exynos4212-tab3.dtsi      | 1310 +++++++++++++++++++
+> You sent it during merge window, so what do you expect? What should
+> happen during the merge window?
+>
+Since I do not know it's merge windows period, sorry to bother you guys.
 
-
-This does not apply. You rebased your work on some older version/tree,
-without new layout. Please work on linux-next.
-
-
-
-Best regards,
-Krzysztof
-
+Thanks for the notice. 
+> Best regards,
+> Krzysztof
+> 
