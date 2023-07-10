@@ -2,69 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7AC8974DB0E
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 18:27:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EE57C74DB17
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 18:31:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229820AbjGJQ1h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jul 2023 12:27:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39382 "EHLO
+        id S229844AbjGJQbF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jul 2023 12:31:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40612 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229792AbjGJQ1g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 12:27:36 -0400
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4CC55120
-        for <devicetree@vger.kernel.org>; Mon, 10 Jul 2023 09:27:35 -0700 (PDT)
-Received: by mail-wr1-x431.google.com with SMTP id ffacd0b85a97d-3159d5e409dso662106f8f.0
-        for <devicetree@vger.kernel.org>; Mon, 10 Jul 2023 09:27:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=9elements.com; s=google; t=1689006453; x=1691598453;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=WVlZJd24DRUTRrQURnZ7yN63fxP+eJTyjrLPGCN3yY4=;
-        b=Bnwq/Qi/JmJjvgrXJcJ4mxBmPQeRQvv390HGFGyUuTvK+3qjIUcYFRnHUurd+gHv3i
-         USKmOQi84077zEMtO7p2FhECnBcE9G7vjQgZ19Kds60m7VHN0MpNvyJc4V5XavGlJpQm
-         tjZrqL2UC/kdcEONl+g1Uc+2eRQ7ftePacgIlBr5xUWoDde/to5RoEqMdvh8dD0JioYY
-         Z79ws2GNv5acVnlc8DqjGQE8i58IFkKYB/YyLALneu1RcQGXdztWFuVVlVueOY/+fE7A
-         6tajkBjIlsf57ytcpElDPl7q4gUgmS5UOyD7x10Y4Kew82jwdMv5HIQAswHYrbSUZ1md
-         X7Uw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689006453; x=1691598453;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=WVlZJd24DRUTRrQURnZ7yN63fxP+eJTyjrLPGCN3yY4=;
-        b=lh6yXHlTfMyz33OQGknPUvB9NGBKEJ5WPeCQJ2pcTwBb3tO7qNRpa4dh+kXAbluqJa
-         ByuG646CNbm4CKuanuZocxKhdWOR6HX102nKBrO9bCyMg53hmT6b25ePQ/CI28S0PU98
-         blce3OAq69BUxAo44aMalv1oaseDVZOsALXLAydgds1rhqU2K++O+Ats+aUzzqIFwLCD
-         jMg/5pcJeOR3iPJK9A39IbtkayHn6snjeiGw8NuHfzB1kJPl1QCdimEjIGleuxrfGjfx
-         PR3xL/tCn8lhSn8WV/38NTH0/3Z3jjKTuiUfp3hy6h8TxhOlwsxTN4d+3Q42fpQd4gBF
-         +v7g==
-X-Gm-Message-State: ABy/qLZgTCd2wqdJt3o41OCqf0LZd689NwWeVrhrS8cdWEdaWRznorIG
-        CSxqQPROn5+FhZZJ3s9e2pVzjtIR5JTijo0VhorasQ==
-X-Google-Smtp-Source: APBJJlFhwyy6ydGp2WjaMZUpUK1JbYJNqOtWi+1SPoy1P4WD5lmV5bX0C2TlnZFlc4ZK4sKA1DrIFQ==
-X-Received: by 2002:a5d:65ce:0:b0:315:7f1d:7790 with SMTP id e14-20020a5d65ce000000b003157f1d7790mr6145269wrw.6.1689006453352;
-        Mon, 10 Jul 2023 09:27:33 -0700 (PDT)
-Received: from stroh80.sec.9e.network (ip-078-094-000-051.um19.pools.vodafone-ip.de. [78.94.0.51])
-        by smtp.gmail.com with ESMTPSA id h16-20020adff190000000b003144b95e1ecsm12029064wro.93.2023.07.10.09.27.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 10 Jul 2023 09:27:33 -0700 (PDT)
-From:   Naresh Solanki <naresh.solanki@9elements.com>
-X-Google-Original-From: Naresh Solanki <Naresh.Solanki@9elements.com>
-To:     devicetree@vger.kernel.org, Guenter Roeck <linux@roeck-us.net>,
-        Jean Delvare <jdelvare@suse.com>,
-        Iwona Winiarska <iwona.winiarska@intel.com>
-Cc:     linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
-        Patrick Rudolph <patrick.rudolph@9elements.com>,
-        openbmc@lists.ozlabs.org
-Subject: [PATCH] hwmon: (peci/cputemp) Add Intel Sapphire Rapids support
-Date:   Mon, 10 Jul 2023 18:27:23 +0200
-Message-ID: <20230710162724.827833-1-Naresh.Solanki@9elements.com>
-X-Mailer: git-send-email 2.41.0
+        with ESMTP id S229932AbjGJQbF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 12:31:05 -0400
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D0DC123;
+        Mon, 10 Jul 2023 09:31:03 -0700 (PDT)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id BF3B9866BF;
+        Mon, 10 Jul 2023 18:31:00 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1689006661;
+        bh=g5iPEk5ffIEN1cPjeJDoPJ/MGkz/vg5kFPiwOJurMrI=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=p4cPx9ZohZcbRoILENRkm0ul1WkNLqxbOv8c7X6F05yN/O9Y3M6dEU35vopcbsYCS
+         SuHrH/zvdguLgneBJ5WBiEbZ2x7Dxzvs8ckki9ndMQgUcPjB4KlOg/bn6816l0ABSi
+         EqNYr9AFApYllqfEWIvahT0LrwDq4HiQgMWx4+XFtr92x4rCxkjXyg/6la8+vwYyoH
+         jsPLd/WbM3xEmCNdbpwbBvG7FPtTpeVpfveSgqH+NAgFpntOsKLUaK7+yml9LgTqBE
+         ofN2nhYMoj+CK0Yplhcw4OmNbtapxE7UHZ03b1YGOFQPp31UO2KXUWLQipjoNGT20W
+         +TUWS+p3GE0sQ==
+Message-ID: <93c72991-2e7f-0d49-c2be-06fbe5904356@denx.de>
+Date:   Mon, 10 Jul 2023 18:31:00 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH 2/2] remoteproc: imx_rproc: add start up delay
+Content-Language: en-US
+To:     Mathieu Poirier <mathieu.poirier@linaro.org>
+Cc:     linux-remoteproc@vger.kernel.org, Peng Fan <peng.fan@nxp.com>,
+        Jacky Bai <ping.bai@nxp.com>, Ye Li <ye.li@nxp.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20230707232444.374431-1-marex@denx.de>
+ <20230707232444.374431-2-marex@denx.de> <ZKwpl1ZGJcX2RmJb@p14s>
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <ZKwpl1ZGJcX2RmJb@p14s>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,84 +68,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Patrick Rudolph <patrick.rudolph@9elements.com>
+On 7/10/23 17:53, Mathieu Poirier wrote:
+> On Sat, Jul 08, 2023 at 01:24:44AM +0200, Marek Vasut wrote:
+>> From: Peng Fan <peng.fan@nxp.com>
+>>
+>> There is case that after remoteproc start remote processor[M4], the M4
+>> runs slow and before M4 finish its own rpmsg framework initialization,
+>> linux sends out vring kick message, then M4 firmware drops the kick
+>> message. Some NXP released Cortex-M[x] images has such limitation that
+>> it requires linux sends out vring kick message after M4 firmware finish
+>> its rpmsg framework initialization.
+>>
+>> Reviewed-by: Jacky Bai <ping.bai@nxp.com>
+>> Reviewed-by: Ye Li <ye.li@nxp.com>
+>> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+>> ---
+>> Note: picked from NXP downstream LF-6630-2 remoteproc: imx_rproc: add start up delay
+>> https://github.com/nxp-imx/linux-imx.git 0b1b91c95b291a3b60d6224b13f6a95a75896abf
+>> ---
+>> Note: Literally all of the NXP BSP 2.13.0 firmware builds fail to boot
+>>        without this being set to something like 50..500 ms , so this is
+>>        rather useful to have.
+> 
+> My stance on this hasn't changed - hacks such as these do not scale and are a
+> nightmare to maintain.  The problem should be fixed in the M4's firmware.
 
-Add support to read DTS for reading Intel Sapphire Rapids platform.
+If the firmware cannot be updated, how do you propose that would be 
+fixed in the firmware ?
 
-Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
----
- drivers/hwmon/peci/cputemp.c | 18 ++++++++++++++++++
- drivers/peci/cpu.c           |  5 +++++
- 2 files changed, 23 insertions(+)
-
-diff --git a/drivers/hwmon/peci/cputemp.c b/drivers/hwmon/peci/cputemp.c
-index e5b65a382772..a812c15948d9 100644
---- a/drivers/hwmon/peci/cputemp.c
-+++ b/drivers/hwmon/peci/cputemp.c
-@@ -363,6 +363,7 @@ static int init_core_mask(struct peci_cputemp *priv)
- 	switch (peci_dev->info.model) {
- 	case INTEL_FAM6_ICELAKE_X:
- 	case INTEL_FAM6_ICELAKE_D:
-+	case INTEL_FAM6_SAPPHIRERAPIDS_X:
- 		ret = peci_ep_pci_local_read(peci_dev, 0, reg->bus, reg->dev,
- 					     reg->func, reg->offset + 4, &data);
- 		if (ret)
-@@ -531,6 +532,13 @@ static struct resolved_cores_reg resolved_cores_reg_icx = {
- 	.offset = 0xd0,
- };
- 
-+static struct resolved_cores_reg resolved_cores_reg_spr = {
-+	.bus = 31,
-+	.dev = 30,
-+	.func = 6,
-+	.offset = 0x80,
-+};
-+
- static const struct cpu_info cpu_hsx = {
- 	.reg		= &resolved_cores_reg_hsx,
- 	.min_peci_revision = 0x33,
-@@ -549,6 +557,12 @@ static const struct cpu_info cpu_icx = {
- 	.thermal_margin_to_millidegree = &dts_ten_dot_six_to_millidegree,
- };
- 
-+static const struct cpu_info cpu_spr = {
-+	.reg		= &resolved_cores_reg_spr,
-+	.min_peci_revision = 0x40,
-+	.thermal_margin_to_millidegree = &dts_ten_dot_six_to_millidegree,
-+};
-+
- static const struct auxiliary_device_id peci_cputemp_ids[] = {
- 	{
- 		.name = "peci_cpu.cputemp.hsx",
-@@ -574,6 +588,10 @@ static const struct auxiliary_device_id peci_cputemp_ids[] = {
- 		.name = "peci_cpu.cputemp.icxd",
- 		.driver_data = (kernel_ulong_t)&cpu_icx,
- 	},
-+	{
-+		.name = "peci_cpu.cputemp.spr",
-+		.driver_data = (kernel_ulong_t)&cpu_spr,
-+	},
- 	{ }
- };
- MODULE_DEVICE_TABLE(auxiliary, peci_cputemp_ids);
-diff --git a/drivers/peci/cpu.c b/drivers/peci/cpu.c
-index de4a7b3e5966..3668a908d259 100644
---- a/drivers/peci/cpu.c
-+++ b/drivers/peci/cpu.c
-@@ -318,6 +318,11 @@ static const struct peci_device_id peci_cpu_device_ids[] = {
- 		.model	= INTEL_FAM6_ICELAKE_X,
- 		.data	= "icx",
- 	},
-+	{ /* Sapphire Rapids Xeon */
-+		.family	= 6,
-+		.model	= INTEL_FAM6_SAPPHIRERAPIDS_X,
-+		.data	= "spr",
-+	},
- 	{ /* Icelake Xeon D */
- 		.family	= 6,
- 		.model	= INTEL_FAM6_ICELAKE_D,
-
-base-commit: 4dbbaf8fbdbd13adc80731b2452257857e4c2d8b
--- 
-2.41.0
-
+Frankly, I do not see much of an issue in maintaining driver-specific 
+mdelay().
