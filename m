@@ -2,102 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 94FDF74D34D
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 12:27:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 30A7E74D3A9
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 12:38:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232646AbjGJK1Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jul 2023 06:27:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38252 "EHLO
+        id S231542AbjGJKiR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jul 2023 06:38:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45334 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229637AbjGJK1W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 06:27:22 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D9F4AF;
-        Mon, 10 Jul 2023 03:27:21 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 36AARD9E006556;
-        Mon, 10 Jul 2023 05:27:13 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1688984833;
-        bh=XCjojQmD3ORr6iKQRCwLRlcf2oumzBAdTIbrfEtuIo8=;
-        h=From:To:CC:Subject:Date;
-        b=b6IXh+i9E/RZyVJxOIFM4x+fjSGe/ABOVd0WbXQUB6LNlV1764Ljcu5PnooZxMzRX
-         zfwmjq3bC4yxf8+VNFHS18yOPqPjZeDPqFXhV4TpXroTWc3V9j6XncvY4uGwzssgwL
-         55iGnNYUpV5Iql6m3zc+JFec+K61UY4j2jxUCU2M=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 36AARDTU012762
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 10 Jul 2023 05:27:13 -0500
-Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 10
- Jul 2023 05:27:13 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 10 Jul 2023 05:27:13 -0500
-Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 36AARCbK003111;
-        Mon, 10 Jul 2023 05:27:12 -0500
-From:   Jayesh Choudhary <j-choudhary@ti.com>
-To:     <peda@axentia.se>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
-CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <s-vadapalli@ti.com>, <j-choudhary@ti.com>
-Subject: [PATCH] dt-bindings: ti-serdes-mux: Add defines for SERDES4 in J784S4 SoC
-Date:   Mon, 10 Jul 2023 15:57:12 +0530
-Message-ID: <20230710102712.155195-1-j-choudhary@ti.com>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S231494AbjGJKiP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 06:38:15 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B8EEAF;
+        Mon, 10 Jul 2023 03:38:14 -0700 (PDT)
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36A8VCcW008876;
+        Mon, 10 Jul 2023 10:38:09 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=qcppdkim1;
+ bh=OiycSosvczbzSKAQATUa0bf1F7Cxl8InNuvTdg1jyhI=;
+ b=eiOqFBr5m9qWOlgw+u6ouzesFfyX1JELoPrV+VHkiGsE7jEByZFDgLK+o8hRcxauAyMf
+ QxvVeXKKBQDhSGrQlV0gsPzWSnBqRjfD2p7iHmAvpAKNjcAbqDnHTl48j7QWcjdQ3B5R
+ itLSYNLQ0mmIL/TaQGaLQ1vshxsWgJlOfnA+Ur+4TGLfK0I2h7RhnIGXfcw7Nm0+P8j/
+ klJY4JcOez/2+LrM/sv3zUlBLX1XWupeyyWFg0chndFZFDgGM8vmtmsF51NM1fo8lz4p
+ Kp5Ru+HHejye5zYMndVJcaiqxjGK62RjQdYIGv1u56oWloojrzr1mkZA14RyElFW5UMa bw== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3rre730ey7-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 10 Jul 2023 10:38:09 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 36AAbuhX018180
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 10 Jul 2023 10:37:56 GMT
+Received: from hu-ipkumar-blr.qualcomm.com (10.80.80.8) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.30; Mon, 10 Jul 2023 03:37:51 -0700
+From:   Praveenkumar I <quic_ipkumar@quicinc.com>
+To:     <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <amitk@kernel.org>,
+        <thara.gopinath@gmail.com>, <rafael@kernel.org>,
+        <daniel.lezcano@linaro.org>, <rui.zhang@intel.com>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC:     <quic_varada@quicinc.com>
+Subject: [PATCH 0/6] Add IPQ5332 TSENS support
+Date:   Mon, 10 Jul 2023 16:07:29 +0530
+Message-ID: <20230710103735.1375847-1-quic_ipkumar@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 66iA1ghp75yf2-RU6iUKKI_IkmrND0tP
+X-Proofpoint-ORIG-GUID: 66iA1ghp75yf2-RU6iUKKI_IkmrND0tP
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-07-10_08,2023-07-06_02,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
+ mlxlogscore=679 priorityscore=1501 lowpriorityscore=0 phishscore=0
+ mlxscore=0 adultscore=0 bulkscore=0 clxscore=1015 impostorscore=0
+ spamscore=0 suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2305260000 definitions=main-2307100096
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SERDES4 has 4 lanes. Add lane definitions for it.
+IPQ5332 uses tsens v2.3.3 IP with combined interrupt for
+upper/lower and critical. IPQ5332 does not have RPM and
+kernel has to take care of TSENS enablement and calibration.
+This patch series adds the sensor enablement and calibration
+support. On top, adds IPQ5332 TSENS support.
 
-Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
----
- include/dt-bindings/mux/ti-serdes.h | 20 ++++++++++++++++++++
- 1 file changed, 20 insertions(+)
+Praveenkumar I (6):
+  dt-bindings: thermal: tsens: Add nvmem cells for calibration data
+  thermal/drivers/tsens: Add TSENS enable and calibration support for V2
+  dt-bindings: thermal: tsens: Add ipq5332 compatible
+  arm64: dts: qcom: ipq5332: Add tsens node
+  arm64: dts: qcom: ipq5332: Add thermal zone nodes
+  thermal/drivers/tsens: Add IPQ5332 support
 
-diff --git a/include/dt-bindings/mux/ti-serdes.h b/include/dt-bindings/mux/ti-serdes.h
-index 669ca2d6abce..0d7aec677df9 100644
---- a/include/dt-bindings/mux/ti-serdes.h
-+++ b/include/dt-bindings/mux/ti-serdes.h
-@@ -179,4 +179,24 @@
- #define J784S4_SERDES2_LANE3_IP3_UNUSED		0x2
- #define J784S4_SERDES2_LANE3_IP4_UNUSED		0x3
- 
-+#define J784S4_SERDES4_LANE0_EDP_LANE0		0x0
-+#define J784S4_SERDES4_LANE0_QSGMII_LANE5	0x1
-+#define J784S4_SERDES4_LANE0_IP3_UNUSED		0x2
-+#define J784S4_SERDES4_LANE0_IP4_UNUSED		0x3
-+
-+#define J784S4_SERDES4_LANE1_EDP_LANE1		0x0
-+#define J784S4_SERDES4_LANE1_QSGMII_LANE6	0x1
-+#define J784S4_SERDES4_LANE1_IP3_UNUSED		0x2
-+#define J784S4_SERDES4_LANE1_IP4_UNUSED		0x3
-+
-+#define J784S4_SERDES4_LANE2_EDP_LANE2		0x0
-+#define J784S4_SERDES4_LANE2_QSGMII_LANE7	0x1
-+#define J784S4_SERDES4_LANE2_IP3_UNUSED		0x2
-+#define J784S4_SERDES4_LANE2_IP4_UNUSED		0x3
-+
-+#define J784S4_SERDES4_LANE3_EDP_LANE3		0x0
-+#define J784S4_SERDES4_LANE3_QSGMII_LANE8	0x1
-+#define J784S4_SERDES4_LANE3_USB		0x2
-+#define J784S4_SERDES4_LANE3_IP4_UNUSED		0x3
-+
- #endif /* _DT_BINDINGS_MUX_TI_SERDES */
+ .../bindings/thermal/qcom-tsens.yaml          |  34 +++-
+ arch/arm64/boot/dts/qcom/ipq5332.dtsi         | 185 ++++++++++++++++++
+ drivers/thermal/qcom/tsens-v2.c               | 129 ++++++++++++
+ drivers/thermal/qcom/tsens.c                  |  40 +++-
+ drivers/thermal/qcom/tsens.h                  |  58 +++++-
+ 5 files changed, 440 insertions(+), 6 deletions(-)
+
 -- 
-2.25.1
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project
 
