@@ -2,86 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2263C74D83A
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 15:55:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 597AF74D845
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 15:58:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229595AbjGJNzP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jul 2023 09:55:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55382 "EHLO
+        id S230222AbjGJN57 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jul 2023 09:57:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56710 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229451AbjGJNzP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 09:55:15 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EAF0BD2;
-        Mon, 10 Jul 2023 06:55:10 -0700 (PDT)
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36ADPucq026574;
-        Mon, 10 Jul 2023 13:55:05 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : from : to : cc : references : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=whUwVB7INIWJNXg+OG8YCm4ASRp/lBqDVjOAb8dV+KY=;
- b=gynTmW7cezZV7+q+Mc/Rr3Q0sCRPndMs8M82x6Yi3ZzTdkixGhXMN3plN5Z1OT9q6hN7
- PGIEK0Crmo+lpRA+aFlChKY78vF/hYu7T4+k4ObskHSQeuyY/yncUYg90VzMuNLbnWrc
- Xyyc1hK4du6YTzFymOPrrLGtkRIZ5oThlNg81ZlvLWGcq7HZtpOvaGp/XD/ygg3A8YOL
- veIbXWPvDTxddTuiLF2cVc4+vesrPLLL8CPfUMmBfRynocQ6Q9Z1aO/Iecg0TTzVZMUv
- 1kcuoGfpeD9TUOMcYM6sbmuhSHENPy2FzpA8dOPJ7VDtGubHsdinchZ+JjbjJ8xUiaVP QQ== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3rrf5mgtcj-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 10 Jul 2023 13:55:05 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 36ADt4vv027070
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 10 Jul 2023 13:55:04 GMT
-Received: from [10.201.3.91] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Mon, 10 Jul
- 2023 06:54:59 -0700
-Message-ID: <6c2ac08b-c36a-510a-944c-26baffe74b9d@quicinc.com>
-Date:   Mon, 10 Jul 2023 19:24:56 +0530
+        with ESMTP id S229823AbjGJN56 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 09:57:58 -0400
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 029A0DF;
+        Mon, 10 Jul 2023 06:57:57 -0700 (PDT)
+Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-3fc0aecf107so17032175e9.2;
+        Mon, 10 Jul 2023 06:57:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1688997475; x=1691589475;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=YyelWds9qkSV46amRpfEwVbW08oi+5c7F/CoNfQrxlE=;
+        b=K/B86ERryINnH1MBsbLF6tG1t1o8EMuZrTB9SN7rA5bbE6p4Lgbq+e48iWgv10Klq8
+         6n4bXHZs6rfY4WMvoc+4OwG1D6XjsdGvlTbL8FXfY2WARWOgDQikrwpLeL8j36pT3sE/
+         NaVFgVIXym7BtHeAEC9zC54IbPEKDizh/opXQEzl/WK7JR0XTII5VxGNNYYAY5wLq8ed
+         AjoVgDR+86He33UFLZEV2cCqpnUJMaek16Duob//uCPcnIPLd94xTpShXfVMm0vdrqLX
+         SeuGGVtCuMGD/2ipv1uPKifH85cdvTMX82YuaRqrQIBEAbP48IZ2955cEeC9p5rulcy1
+         m0LA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1688997475; x=1691589475;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=YyelWds9qkSV46amRpfEwVbW08oi+5c7F/CoNfQrxlE=;
+        b=FGxJtS+pzILrIGB0ZbTKM62FPSMMX+njsOvNgj9n08SeK1avPN2UIMOiapy9pdXgmr
+         auUB1zXXKjIyPbCASVqsklj95eYLEP+rEh4D4rHvsRdOyiAF9Vxo8dGqp3UtEF1dafZv
+         HsQJzya6HXnA/LUi1DQ87WNbbDAV6lYSGq8AB4VnWB/nQj1/mRYJ7rvb1105/rPo8soP
+         hqmuqbSlPu/G9BeXmYmk3+ABsvNdazuf1Hh5VlBNbhwlxRVfxXBJjbkeuqAhB+JywGXw
+         3hP29vaJ1EHZJejn1ftu8uXkafg5wuNs2JMC3P288l2sEB8DYfaTUeoJqA9gEVYMwcPc
+         vC0g==
+X-Gm-Message-State: ABy/qLaiXKpXWzj7DCJK+FbAtxbHhKLRsoxOesWDHkPRc0DKXfQaQgK/
+        1UqSVdUKm3w3rm79L2LftSo=
+X-Google-Smtp-Source: APBJJlEIjGS5Fcw9aTWeb4ohn9KB/foFJbSLJaF/zlDghlCokvrKAwCJgTNBDk6a5xIqgg2IR6H7iw==
+X-Received: by 2002:a5d:51cc:0:b0:314:121d:8cbf with SMTP id n12-20020a5d51cc000000b00314121d8cbfmr6621593wrv.25.1688997475165;
+        Mon, 10 Jul 2023 06:57:55 -0700 (PDT)
+Received: from orome (p200300e41f4b7100f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f4b:7100:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id r20-20020a056402035400b0051e2549c4f9sm5880942edw.47.2023.07.10.06.57.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 10 Jul 2023 06:57:54 -0700 (PDT)
+Date:   Mon, 10 Jul 2023 15:57:53 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Jon Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org
+Subject: Re: [PATCH 5/7] dt-bindings: arm: tegra: pmc: Restructure pad
+ configuration node schema
+Message-ID: <ZKwOYYWTM3PoXfMc@orome>
+References: <20230707131711.2997956-1-thierry.reding@gmail.com>
+ <20230707131711.2997956-5-thierry.reding@gmail.com>
+ <20230707223503.GA1087110-robh@kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH 5/6] arm64: dts: qcom: ipq5332: Add thermal zone nodes
-Content-Language: en-US
-From:   Praveenkumar I <quic_ipkumar@quicinc.com>
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        <agross@kernel.org>, <andersson@kernel.org>, <amitk@kernel.org>,
-        <thara.gopinath@gmail.com>, <rafael@kernel.org>,
-        <daniel.lezcano@linaro.org>, <rui.zhang@intel.com>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC:     <quic_varada@quicinc.com>
-References: <20230710103735.1375847-1-quic_ipkumar@quicinc.com>
- <20230710103735.1375847-6-quic_ipkumar@quicinc.com>
- <3f6ab4b4-b5f5-5807-0cb4-8ae782bd6044@linaro.org>
- <b1346bc7-4bf0-e885-c3d4-6fac01516bf4@linaro.org>
- <01149ed4-8a8c-e0e0-d140-1f17a1f0c1fd@quicinc.com>
-In-Reply-To: <01149ed4-8a8c-e0e0-d140-1f17a1f0c1fd@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: rPBxY3TrhAXrbiFmTRmkA1vO92Lmy5f9
-X-Proofpoint-ORIG-GUID: rPBxY3TrhAXrbiFmTRmkA1vO92Lmy5f9
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-07-10_10,2023-07-06_02,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 adultscore=0
- priorityscore=1501 phishscore=0 mlxscore=0 mlxlogscore=999 malwarescore=0
- spamscore=0 bulkscore=0 impostorscore=0 suspectscore=0 lowpriorityscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2305260000
- definitions=main-2307100125
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="MxNARzSc7XkZiC67"
+Content-Disposition: inline
+In-Reply-To: <20230707223503.GA1087110-robh@kernel.org>
+User-Agent: Mutt/2.2.10 (2023-03-25)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -90,114 +79,286 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On 7/10/2023 7:04 PM, Praveenkumar I wrote:
->
-> On 7/10/2023 5:44 PM, Konrad Dybcio wrote:
->> On 10.07.2023 13:23, Dmitry Baryshkov wrote:
->>> On 10/07/2023 13:37, Praveenkumar I wrote:
->>>> This patch adds thermal zone nodes for sensors present in
->>>> IPQ5332.
->>>>
->>>> Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
->>>> ---
->>>>    arch/arm64/boot/dts/qcom/ipq5332.dtsi | 72 
->>>> +++++++++++++++++++++++++++
->>>>    1 file changed, 72 insertions(+)
->>>>
->>>> diff --git a/arch/arm64/boot/dts/qcom/ipq5332.dtsi 
->>>> b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
->>>> index a1e3527178c0..8b276aeca53e 100644
->>>> --- a/arch/arm64/boot/dts/qcom/ipq5332.dtsi
->>>> +++ b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
->>>> @@ -527,4 +527,76 @@ timer {
->>>>                     <GIC_PPI 4 (GIC_CPU_MASK_SIMPLE(4) | 
->>>> IRQ_TYPE_LEVEL_LOW)>,
->>>>                     <GIC_PPI 1 (GIC_CPU_MASK_SIMPLE(4) | 
->>>> IRQ_TYPE_LEVEL_LOW)>;
->>>>        };
->>>> +
->>>> +    thermal-zones {
->>>> +        rfa-0-thermal{
->> thermal {
-> In all other DTS, name is 'thermal-zones". Hence followed the same.
-Sorry, understood now. Will give space after "rfa-0-thermal"
->>
->>>> +            polling-delay-passive = <0>;
->>>> +            polling-delay = <0>;
->>>> +            thermal-sensors = <&tsens 11>;
->>>> +
->>>> +            trips {
->> Indentation seems off, tab size for kernel code is 8 spaces.
-> Sure, will check the indent and update in next patch.
->>
->> Konrad
->>>> +                rfa-0-critical {
->>>> +                    temperature = <125000>;
->>>> +                    hysteresis = <1000>;
->>>> +                    type = "critical";
->>>> +                };
->>>> +            };
->>>> +        };
->>>> +
->>>> +        rfa-1-thermal {
->>>> +            polling-delay-passive = <0>;
->>>> +            polling-delay = <0>;
->>>> +            thermal-sensors = <&tsens 12>;
->>>> +
->>>> +            trips {
->>>> +                rfa-1-critical {
->>>> +                    temperature = <125000>;
->>>> +                    hysteresis = <1000>;
->>>> +                    type = "critical";
->>>> +                };
->>>> +            };
->>>> +        };
->>>> +
->>>> +        misc-thermal {
->>>> +            polling-delay-passive = <0>;
->>>> +            polling-delay = <0>;
->>>> +            thermal-sensors = <&tsens 13>;
->>>> +
->>>> +            trips {
->>>> +                misc-critical {
->>>> +                    temperature = <125000>;
->>>> +                    hysteresis = <1000>;
->>>> +                    type = "critical";
->>>> +                };
->>>> +            };
->>>> +        };
->>>> +
->>>> +        cpu-top-thermal {
->>>> +            polling-delay-passive = <0>;
->>>> +            polling-delay = <0>;
->>>> +            thermal-sensors = <&tsens 14>;
->>>> +
->>>> +            trips {
->>>> +                cpu-top-critical {
->>>> +                    temperature = <125000>;
->>>> +                    hysteresis = <1000>;
->>>> +                    type = "critical";
->>>> +                };
->>>> +            };
->>> Could you please add a passive cooling devices for the CPU?
->>>
->>>> +        };
->>>> +
->>>> +        top-glue-thermal {
->>>> +            polling-delay-passive = <0>;
->>>> +            polling-delay = <0>;
->>>> +            thermal-sensors = <&tsens 15>;
->>>> +
->>>> +            trips {
->>>> +                top-glue-critical {
->>>> +                    temperature = <125000>;
->>>> +                    hysteresis = <1000>;
->>>> +                    type = "critical";
->>>> +                };
->>>> +            };
->>>> +        };
->>>> +    };
->>>>    };
-> -- 
-> Thanks,
-> Praveenkumar
+--MxNARzSc7XkZiC67
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Fri, Jul 07, 2023 at 04:35:03PM -0600, Rob Herring wrote:
+> On Fri, Jul 07, 2023 at 03:17:09PM +0200, Thierry Reding wrote:
+> > From: Thierry Reding <treding@nvidia.com>
+> >=20
+> > The pad configuration node schema in its current form can accidentally
+> > match other properties as well. Restructure the schema to better match
+> > how the device trees are using these.
+> >=20
+> > Signed-off-by: Thierry Reding <treding@nvidia.com>
+> > ---
+> >  .../arm/tegra/nvidia,tegra20-pmc.yaml         | 181 ++++++++++++------
+> >  1 file changed, 120 insertions(+), 61 deletions(-)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra20=
+-pmc.yaml b/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra20-pmc.=
+yaml
+> > index 82070d47ac7c..271aa8f80a65 100644
+> > --- a/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra20-pmc.ya=
+ml
+> > +++ b/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra20-pmc.ya=
+ml
+> > @@ -245,69 +245,82 @@ properties:
+> >            - resets
+> >            - '#power-domain-cells'
+> > =20
+> > -patternProperties:
+> > -  "^[a-f0-9]+-[a-f0-9]+$":
+> > +  pinmux:
+> >      type: object
+> > -    description:
+> > -      This is a Pad configuration node. On Tegra SOCs a pad is a set of
+> > -      pins which are configured as a group. The pin grouping is a fixed
+> > -      attribute of the hardware. The PMC can be used to set pad power =
+state
+> > -      and signaling voltage. A pad can be either in active or power do=
+wn mode.
+> > -      The support for power state and signaling voltage configuration =
+varies
+> > -      depending on the pad in question. 3.3V and 1.8V signaling voltag=
+es
+> > -      are supported on pins where software controllable signaling volt=
+age
+> > -      switching is available.
+> > -
+> > -      The pad configuration state nodes are placed under the pmc node =
+and they
+> > -      are referred to by the pinctrl client properties. For more infor=
+mation
+> > -      see Documentation/devicetree/bindings/pinctrl/pinctrl-bindings.t=
+xt.
+> > -      The pad name should be used as the value of the pins property in=
+ pin
+> > -      configuration nodes.
+> > -
+> > -      The following pads are present on Tegra124 and Tegra132
+> > -      audio, bb, cam, comp, csia, csb, cse, dsi, dsib, dsic, dsid, hdm=
+i, hsic,
+> > -      hv, lvds, mipi-bias, nand, pex-bias, pex-clk1, pex-clk2, pex-cnt=
+rl,
+> > -      sdmmc1, sdmmc3, sdmmc4, sys_ddc, uart, usb0, usb1, usb2, usb_bia=
+s.
+> > -
+> > -      The following pads are present on Tegra210
+> > -      audio, audio-hv, cam, csia, csib, csic, csid, csie, csif, dbg,
+> > -      debug-nonao, dmic, dp, dsi, dsib, dsic, dsid, emmc, emmc2, gpio,=
+ hdmi,
+> > -      hsic, lvds, mipi-bias, pex-bias, pex-clk1, pex-clk2, pex-cntrl, =
+sdmmc1,
+> > -      sdmmc3, spi, spi-hv, uart, usb0, usb1, usb2, usb3, usb-bias.
+> > -
+> >      properties:
+> > -      pins:
+> > -        $ref: /schemas/types.yaml#/definitions/string
+> > -        description: Must contain name of the pad(s) to be configured.
+> > -
+> > -      low-power-enable:
+> > -        $ref: /schemas/types.yaml#/definitions/flag
+> > -        description: Configure the pad into power down mode.
+> > -
+> > -      low-power-disable:
+> > -        $ref: /schemas/types.yaml#/definitions/flag
+> > -        description: Configure the pad into active mode.
+> > -
+> > -      power-source:
+> > -        $ref: /schemas/types.yaml#/definitions/uint32
+> > -        description:
+> > -          Must contain either TEGRA_IO_PAD_VOLTAGE_1V8 or
+> > -          TEGRA_IO_PAD_VOLTAGE_3V3 to select between signaling voltage=
+s.
+> > -          The values are defined in
+> > -          include/dt-bindings/pinctrl/pinctrl-tegra-io-pad.h.
+> > -          Power state can be configured on all Tegra124 and Tegra132
+> > -          pads. None of the Tegra124 or Tegra132 pads support signaling
+> > -          voltage switching.
+> > -          All of the listed Tegra210 pads except pex-cntrl support pow=
+er
+> > -          state configuration. Signaling voltage switching is supported
+> > -          on below Tegra210 pads.
+> > -          audio, audio-hv, cam, dbg, dmic, gpio, pex-cntrl, sdmmc1,
+> > -          sdmmc3, spi, spi-hv, and uart.
+> > -
+> > -    required:
+> > -      - pins
+> > -
+> > -    additionalProperties: false
+> > +      status: true
+>=20
+> If you need this, that's a bug in dtschema.
+
+Looks like I don't need it here...
+
+>=20
+> > +
+> > +    additionalProperties:
+> > +      type: object
+> > +      description: |
+> > +        This is a pad configuration node. On Tegra SoCs a pad is a set=
+ of pins
+> > +        which are configured as a group. The pin grouping is a fixed a=
+ttribute
+> > +        of the hardware. The PMC can be used to set pad power state and
+> > +        signaling voltage. A pad can be either in active or power down=
+ mode.
+> > +        The support for power state and signaling voltage configuratio=
+n varies
+> > +        depending on the pad in question. 3.3V and 1.8V signaling volt=
+ages are
+> > +        supported on pins where software controllable signaling voltage
+> > +        switching is available.
+> > +
+> > +        The pad configuration state nodes are placed under the pmc nod=
+e and
+> > +        they are referred to by the pinctrl client properties. For more
+> > +        information see:
+> > +
+> > +          Documentation/devicetree/bindings/pinctrl/pinctrl-bindings.t=
+xt
+> > +
+> > +        The pad name should be used as the value of the pins property =
+in pin
+> > +        configuration nodes.
+> > +
+> > +        The following pads are present on Tegra124 and Tegra132:
+> > +
+> > +          audio, bb, cam, comp, csia, csb, cse, dsi, dsib, dsic, dsid,=
+ hdmi,
+> > +          hsic, hv, lvds, mipi-bias, nand, pex-bias, pex-clk1, pex-clk=
+2,
+> > +          pex-cntrl, sdmmc1, sdmmc3, sdmmc4, sys_ddc, uart, usb0, usb1=
+, usb2,
+> > +          usb_bias
+> > +
+> > +        The following pads are present on Tegra210:
+> > +
+> > +          audio, audio-hv, cam, csia, csib, csic, csid, csie, csif, db=
+g,
+> > +          debug-nonao, dmic, dp, dsi, dsib, dsic, dsid, emmc, emmc2, g=
+pio,
+> > +          hdmi, hsic, lvds, mipi-bias, pex-bias, pex-clk1, pex-clk2, p=
+ex-cntrl,
+> > +          sdmmc1, sdmmc3, spi, spi-hv, uart, usb0, usb1, usb2, usb3, u=
+sb-bias
+> > +      additionalProperties: false
+> > +      properties:
+> > +        pins:
+> > +          $ref: /schemas/types.yaml#/definitions/string-array
+> > +          description: Must contain name of the pad(s) to be configure=
+d.
+> > +
+> > +        low-power-enable:
+> > +          $ref: /schemas/types.yaml#/definitions/flag
+> > +          description: Configure the pad into power down mode.
+> > +
+> > +        low-power-disable:
+> > +          $ref: /schemas/types.yaml#/definitions/flag
+> > +          description: Configure the pad into active mode.
+> > +
+> > +        power-source:
+> > +          $ref: /schemas/types.yaml#/definitions/uint32
+> > +          description: |
+> > +            Must contain either TEGRA_IO_PAD_VOLTAGE_1V8 or
+> > +            TEGRA_IO_PAD_VOLTAGE_3V3 to select between signaling volta=
+ges. The
+> > +            values are defined in:
+> > +
+> > +              include/dt-bindings/pinctrl/pinctrl-tegra-io-pad.h
+> > +
+> > +            Power state can be configured on all Tegra124 and Tegra132=
+ pads.
+> > +            None of the Tegra124 or Tegra132 pads support signaling vo=
+ltage
+> > +            switching. All of the listed Tegra210 pads except pex-cntr=
+l support
+> > +            power state configuration. Signaling voltage switching is =
+supported
+> > +            on the following Tegra210 pads:
+> > +
+> > +              audio, audio-hv, cam, dbg, dmic, gpio, pex-cntrl, sdmmc1=
+, sdmmc3,
+> > +              spi, spi-hv, uart
+> > +
+> > +        phandle:
+> > +          $ref: /schemas/types.yaml#/definitions/uint32
+>=20
+> ditto
+
+=2E.. and not this either. Might be some leftovers from testing with
+earlier versions of dtschema. I've dropped them now.
+
+>=20
+> > +
+> > +      required:
+> > +        - pins
+> > =20
+> >  required:
+> >    - compatible
+> > @@ -316,6 +329,52 @@ required:
+> >    - clocks
+> >    - '#clock-cells'
+> > =20
+> > +allOf:
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            const: nvidia,tegra124-pmc
+> > +    then:
+> > +      properties:
+> > +        pinmux:
+> > +          properties:
+> > +            status: true
+
+However I do get complaints if I drop this one:
+
+	Documentation/devicetree/bindings/soc/tegra/nvidia,tegra20-pmc.yaml: allOf=
+:0:then:properties:pinmux: 'anyOf' conditional failed, one must be fixed:
+		'type' is a required property
+		'properties' is a required property
+		'patternProperties' is a required property
+		hint: 'additionalProperties' depends on 'properties' or 'patternPropertie=
+s'
+		from schema $id: http://devicetree.org/meta-schemas/core.yaml#
+	Documentation/devicetree/bindings/soc/tegra/nvidia,tegra20-pmc.yaml: allOf=
+:1:then:properties:pinmux: 'anyOf' conditional failed, one must be fixed:
+		'type' is a required property
+		'properties' is a required property
+		'patternProperties' is a required property
+		hint: 'additionalProperties' depends on 'properties' or 'patternPropertie=
+s'
+		from schema $id: http://devicetree.org/meta-schemas/core.yaml#
+
+Would you consider that a bug in dtschema as well that I should try to
+fix or is that expected?
+
+Thanks,
+Thierry
+
+--MxNARzSc7XkZiC67
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmSsDl0ACgkQ3SOs138+
+s6HkchAAvP/1i6ddgbXDsCZbe/cEiNs6Bbkf8S+y14pn/W6FJ4bIl0sIXwQ/Ee55
+1E8TE8TxRKnAkgq1xx+BVRSS+mnPU3uvyma9aFqrygWo3HoCAc/DkyF89feQZhUi
+J6JLb+Poh1e4n9Z6B6w9wGWDePZbvuDSA/TBJBZI/5C19MRWe4Qsri1mST1Kld6H
+s+NGP2CEQaBsI8nvFy2RylvQm9jjXZZw+so21dKFQfg/X5OAbIbCuzuK30rtnmu+
+vuZ6OJD9TY+Wl5UxdrHaXv9sAoPAIxTQ1N0qKBCuopJqHYK8GKuTQgh0pwo3nKLV
+dexGGXJp5t3KpWi4zALbudubnIvA0A0tIBqt8BD7YK9NhBvz7yax25JQ0MCg8bjJ
+5oDuT2RtYBNSmyIV8MGwslRjha3WFF+EluhHZwzqIU4mHuKd5h0vx6pOU5n7J7yQ
+W8ZfPoclGVXAXGBMh4uz/xTwt05OLA86wd2kzRFE02T//WSq+a+fQKV7WiBBhQX9
+6VqwfHiO3xg4H1v5uyocjTQ83kLlD6AhTpic2ZEPGBMDyBk19XJlVH2V2m1gSO4I
+avXXlQYLX88J2FrbD8sJkmLw5H5KvGFL0MppQz4FpnhZLPR93k7u2kV58Rwn1anN
+3GAe2xU+BJmglNrn4N/MjM0aThUKY83+XAuvNU4rnK84fDZIa80=
+=FUfq
+-----END PGP SIGNATURE-----
+
+--MxNARzSc7XkZiC67--
