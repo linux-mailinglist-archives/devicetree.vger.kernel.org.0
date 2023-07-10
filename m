@@ -2,192 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 867B774CEC6
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 09:44:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 61C2A74CECD
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 09:45:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229978AbjGJHoh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jul 2023 03:44:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47514 "EHLO
+        id S231418AbjGJHpV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jul 2023 03:45:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48094 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230352AbjGJHo0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 03:44:26 -0400
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A6D9124
-        for <devicetree@vger.kernel.org>; Mon, 10 Jul 2023 00:44:21 -0700 (PDT)
-Received: by mail-lj1-x229.google.com with SMTP id 38308e7fff4ca-2b6f97c7115so61218881fa.2
-        for <devicetree@vger.kernel.org>; Mon, 10 Jul 2023 00:44:21 -0700 (PDT)
+        with ESMTP id S231190AbjGJHpH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 03:45:07 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D30818B
+        for <devicetree@vger.kernel.org>; Mon, 10 Jul 2023 00:45:04 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-992af8b3b1bso550917566b.1
+        for <devicetree@vger.kernel.org>; Mon, 10 Jul 2023 00:45:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688975059; x=1691567059;
+        d=linaro.org; s=google; t=1688975103; x=1691567103;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=6XrmlGPg2875uNjm6boMUV/4SOLisp7J98OyN2fD1Tw=;
-        b=pPrTTLBnGur5kN4+tW9BpSR3CRK1iLs2xQ5LA2jYbG3ZnCOdgiR7x3rbMWZL0wIKcY
-         ONovt9MrvNp/PSjRLm1unFrsXKnzjZzi//nZT3gxyU50a24CvIN5RidEKkSt+GVbrZp9
-         vZH80Y9T28gpopOKUjPEFZ8Vs3K2XDFsxTf2j+dtOdnKfFY9e6/Q0oKGetam1di2/X1y
-         rt0YDTle3h8GKRvd70ctpI4X4Y8ZJHZvei8eceydWn7zMwZLNa6G34HqPTUTrwt3FpWx
-         LnQz5pA0SadArrSv9a1CJYdaiP88Al05514dB6CU9x+4dPjdZZDS0q5iDfUjqrPToFHx
-         VH+Q==
+        bh=2MNKvxKhU5E3UfL1yykCL9W6AhB6g7MU09MxNEWDvB0=;
+        b=Z5O9WCbpFEAEEX7ipSOm5t/0clVvwUC6C1Pysrl5LNHPr8d252uBkYx24L5kenOgj8
+         d/okzdRXK45OgldGAb7iP3KIB5LrGWiH3ZJu1XvRmV5e2Xo9KlYE8p4XWrXCHxjrF5fT
+         GvKf+Rgg8OcFAHQhzgaOon1JhYhau5BlztjxTFtvCamoM99I3NcuaEsEq/9jumfgNOZn
+         mtoc0YtVNohyOtGhvPKiV7KOxij2wK0BzVl8S2godl+Ue8YEXSDZucUZb4gD2F4ckP8w
+         ftVPVFqnOxKCzyVLnwM/3U07Awi2UKBgTBHzKX/64qn/o3ZFbWDz7yREO3xoGU9PhHmi
+         fsXQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688975059; x=1691567059;
+        d=1e100.net; s=20221208; t=1688975103; x=1691567103;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6XrmlGPg2875uNjm6boMUV/4SOLisp7J98OyN2fD1Tw=;
-        b=fXaHwfX4md6S74ZFfQ7mqN8o2JJpjYzS0HZZgoEmLC677Lc/Bt2BTy506/U2chAwVg
-         W7mfedtkb56HxyJD/gKPOmMf2AvwsV6ocEZ2zVISIkj6hl0gyoSArBwgZBUPQPORuBRV
-         I0kk0Dhpm+Vfjgu6YOJ/EcoS1eePY94jXQsrt0kXrubydvZQ1zN7n7zMz9dFe8e141we
-         uDR/UohG7F2B8NQ2jsOA9lV1Ql2r8UAqBf/VqDhI1i+t9SEuAFNbmW6MVdQEDQQoBLwc
-         oz+6H9T+9qbmz3aqsztkZ7Au71C07FPKM92KIWbxz0KNxgDZwnhlyrVcKOVsVDtFRGFo
-         mR7Q==
-X-Gm-Message-State: ABy/qLYoJmWuMWZEBUbFYVczouMbXWn+rp3Yl8Mf78apyI75CD8mofzL
-        GSvJSfWcVIE+4FmBNrDKuhMbZg==
-X-Google-Smtp-Source: APBJJlG9EwwBqMxbwjIJnMoPkWXpbz49k2oZ4zzVaR1jVwtsSlECY1RtVLmIAi3Z49JKpD4MBMXLZg==
-X-Received: by 2002:a2e:7013:0:b0:2b6:d536:1bba with SMTP id l19-20020a2e7013000000b002b6d5361bbamr9641213ljc.18.1688975059356;
-        Mon, 10 Jul 2023 00:44:19 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:a0db:1f00::8a5? (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
-        by smtp.gmail.com with ESMTPSA id n25-20020a2e86d9000000b002b6cc17add3sm1886857ljj.25.2023.07.10.00.44.18
+        bh=2MNKvxKhU5E3UfL1yykCL9W6AhB6g7MU09MxNEWDvB0=;
+        b=U8YtKoTgtv+ic/eMiMFJBJp1XOpWUDylGjG2MCSS0sRX+DYdG55J1iuYJBEAePcKrL
+         67Vbn6TFabYIPpYz2rIIHZW1s+WYl38BvEE8UXMdFQRZu0huZSGFA4ihvnZ2J34hY7z2
+         ZjQzDRRjgtE6O7bN/CT1p7bMPQ52t+opynlAVO3z9ytgmwzu3qS5/Oo24W6eGGFMthTp
+         q9Bf1tKTHA4fRGnD06XASosA89ZX3VlJUL/Gf9Pu75JWYq5hACMkUO8gB7rp7zmDEzpX
+         ZEfKO9TKKpD4dAhzlGlRgXV6cGcydnPi5MEOiJrMwCnR+c3FWumXb/bf/iQyhiaXKcIg
+         p1Mw==
+X-Gm-Message-State: ABy/qLagKQifAyAiBjRtXMclKC7XiuY69mVDlTuWj47P7RI8OBTG85xD
+        dRYCg+yCSL6YwmEH22psjccUVA==
+X-Google-Smtp-Source: APBJJlHEWjZH7QcFgJVsbgRVy1gCD4+9E6PvXub3qGjdk22ca0yCMxJ77I0SGdcFF0cZjF/dDmDUQQ==
+X-Received: by 2002:a17:906:20dd:b0:993:ec0b:1a27 with SMTP id c29-20020a17090620dd00b00993ec0b1a27mr7106837ejc.24.1688975103071;
+        Mon, 10 Jul 2023 00:45:03 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id ay26-20020a170906d29a00b009887f4e0291sm5717231ejb.27.2023.07.10.00.45.01
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 10 Jul 2023 00:44:18 -0700 (PDT)
-Message-ID: <8966feba-eef9-2ea3-dbec-13fc53232a6b@linaro.org>
-Date:   Mon, 10 Jul 2023 10:44:18 +0300
+        Mon, 10 Jul 2023 00:45:02 -0700 (PDT)
+Message-ID: <48d345c2-c5fe-08e9-b8c2-8d83f826e45a@linaro.org>
+Date:   Mon, 10 Jul 2023 09:45:01 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
-Subject: Re: [EXT] Re: [PATCH v6 4/8] phy: Add HDMI configuration options
-Content-Language: en-GB
-To:     Sandor Yu <sandor.yu@nxp.com>,
-        "andrzej.hajda@intel.com" <andrzej.hajda@intel.com>,
-        "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
-        "robert.foss@linaro.org" <robert.foss@linaro.org>,
-        "Laurent.pinchart@ideasonboard.com" 
-        <Laurent.pinchart@ideasonboard.com>,
-        "jonas@kwiboo.se" <jonas@kwiboo.se>,
-        "jernej.skrabec@gmail.com" <jernej.skrabec@gmail.com>,
-        "airlied@gmail.com" <airlied@gmail.com>,
-        "daniel@ffwll.ch" <daniel@ffwll.ch>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "vkoul@kernel.org" <vkoul@kernel.org>,
-        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>
-Cc:     "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        Oliver Brown <oliver.brown@nxp.com>
-References: <cover.1686729444.git.Sandor.yu@nxp.com>
- <cec469206a166c4b070fd7d7bbf89a8df656ccc6.1686729444.git.Sandor.yu@nxp.com>
- <6f590bb6-7d17-3ae8-684d-2d4403d6ff55@linaro.org>
- <PAXPR04MB9448598256524162A74F0311F430A@PAXPR04MB9448.eurprd04.prod.outlook.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <PAXPR04MB9448598256524162A74F0311F430A@PAXPR04MB9448.eurprd04.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Subject: Re: [PATCH v2 3/3] ARM: dts: exynos/i9100: Fix LCD screen's physical
+ size
+Content-Language: en-US
+To:     Paul Cercueil <paul@crapouillou.net>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, stable@vger.kernel.org
+References: <20230708084027.18352-1-paul@crapouillou.net>
+ <20230708084027.18352-4-paul@crapouillou.net>
+ <98b39071-cbfa-bc58-032e-56f6e9dd5c2a@linaro.org>
+ <7672f0b65cf7d2a1bb81019417aa3fa98fbac5e3.camel@crapouillou.net>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <7672f0b65cf7d2a1bb81019417aa3fa98fbac5e3.camel@crapouillou.net>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/07/2023 10:28, Sandor Yu wrote:
-> Hi Dmitry,
+On 10/07/2023 09:35, Paul Cercueil wrote:
+> Hi Krzysztof,
 > 
-> Thanks for your comments,
-> 
->> From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->> On 15/06/2023 04:38, Sandor Yu wrote:
->>> Allow HDMI PHYs to be configured through the generic functions through
->>> a custom structure added to the generic union.
+> Le lundi 10 juillet 2023 à 08:59 +0200, Krzysztof Kozlowski a écrit :
+>> On 08/07/2023 10:40, Paul Cercueil wrote:
+>>> The previous values were completely bogus, and resulted in the
+>>> computed
+>>> DPI ratio being much lower than reality, causing applications and
+>>> UIs to
+>>> misbehave.
 >>>
->>> The parameters added here are based on HDMI PHY implementation
->>> practices.  The current set of parameters should cover the potential
->>> users.
+>>> The new values were measured by myself with a ruler.
 >>>
->>> Signed-off-by: Sandor Yu <Sandor.yu@nxp.com>
+>>> Signed-off-by: Paul Cercueil <paul@crapouillou.net>
+>>> Fixes: 8620cc2f99b7 ("ARM: dts: exynos: Add devicetree file for the
+>>> Galaxy S2")
+>>> Cc: <stable@vger.kernel.org> # v5.8+
 >>> ---
->>>    include/linux/phy/phy-hdmi.h | 38
->> ++++++++++++++++++++++++++++++++++++
->>>    include/linux/phy/phy.h      |  7 ++++++-
->>>    2 files changed, 44 insertions(+), 1 deletion(-)
->>>    create mode 100644 include/linux/phy/phy-hdmi.h
->>>
->>> diff --git a/include/linux/phy/phy-hdmi.h
->>> b/include/linux/phy/phy-hdmi.h new file mode 100644 index
->>> 000000000000..5765aa5bc175
->>> --- /dev/null
->>> +++ b/include/linux/phy/phy-hdmi.h
->>> @@ -0,0 +1,38 @@
->>> +/* SPDX-License-Identifier: GPL-2.0 */
->>> +/*
->>> + * Copyright 2022 NXP
->>> + */
->>> +
->>> +#ifndef __PHY_HDMI_H_
->>> +#define __PHY_HDMI_H_
->>> +
->>> +/**
->>> + * Pixel Encoding as HDMI Specification
->>> + * RGB, YUV422, YUV444:HDMI Specification 1.4a Section 6.5
->>> + * YUV420: HDMI Specification 2.a Section 7.1  */ enum
->>> +hdmi_phy_colorspace {
->>> +     HDMI_PHY_COLORSPACE_RGB,        /* RGB 4:4:4 */
->>> +     HDMI_PHY_COLORSPACE_YUV422,     /* YCbCr 4:2:2 */
->>> +     HDMI_PHY_COLORSPACE_YUV444,     /* YCbCr 4:4:4 */
->>> +     HDMI_PHY_COLORSPACE_YUV420,     /* YCbCr 4:2:0 */
->>> +     HDMI_PHY_COLORSPACE_RESERVED4,
->>> +     HDMI_PHY_COLORSPACE_RESERVED5,
->>> +     HDMI_PHY_COLORSPACE_RESERVED6,
->>> +};
 >>
->> This enum duplicates enum hdmi_colorspace from <linux/hdmi.h> HDMI 2.0
->> defines '7' to be IDO-defined.
->>
->> Would it be better to use that enum instead?
-> Accept. I will create head file hdmi_colorspace.h to reuse enum hdmi_colorspace in <linux/hdmi.h>.
-
-Excuse me, it was supposed to be a question.
-
-Do you need another header file to reuse this enum?
-
+>> This does not apply. You rebased your work on some older
+>> version/tree,
+>> without new layout. Please work on linux-next.
 > 
-> B.R
-> Sandor
->>
->>> +
->>> +/**
->>> + * struct phy_configure_opts_hdmi - HDMI configuration set
->>> + * @pixel_clk_rate:  Pixel clock of video modes in KHz.
->>> + * @bpc: Maximum bits per color channel.
->>> + * @color_space: Colorspace in enum hdmi_phy_colorspace.
->>> + *
->>> + * This structure is used to represent the configuration state of a HDMI phy.
->>> + */
->>> +struct phy_configure_opts_hdmi {
->>> +     unsigned int pixel_clk_rate;
->>> +     unsigned int bpc;
->>> +     enum hdmi_phy_colorspace color_space; };
->>> +
->>> +#endif /* __PHY_HDMI_H_ */
->>
->> [skipped the rest]
->>
->> --
->> With best wishes
->> Dmitry
+> This patchset was based on drm-misc-next, because that's where I was
+> planning to apply it; and it was extremely unlikely (but not
+> impossible, apparently) that the i9100.dts would be modified in the
+> meantime.
 > 
+> I can rebase on linux-next, the problem then is that I then don't know
+> how/where to apply the patchset.
 
--- 
-With best wishes
-Dmitry
+DTS cannot go via drm-misc-next, so if that's your intention please
+always split the patchset into separate ones. *Always*.
+
+Best regards,
+Krzysztof
 
