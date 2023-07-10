@@ -2,51 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0888774CBB8
+	by mail.lfdr.de (Postfix) with ESMTP id CBFD574CBBC
 	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 07:05:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231210AbjGJFFz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jul 2023 01:05:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55344 "EHLO
+        id S231373AbjGJFF4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jul 2023 01:05:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55794 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231215AbjGJFFY (ORCPT
+        with ESMTP id S231217AbjGJFFY (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 01:05:24 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18C5D10E9;
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 231D710EB;
         Sun,  9 Jul 2023 22:04:49 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id BE8A360B71;
-        Mon, 10 Jul 2023 05:04:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 60314C433CA;
-        Mon, 10 Jul 2023 05:04:39 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 9FE0E60E26;
+        Mon, 10 Jul 2023 05:04:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DDE82C433CA;
+        Mon, 10 Jul 2023 05:04:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1688965480;
-        bh=LZ/lpmSlzwoPUpiKbFv8QetZfYHvoTAq4CIsh0Ksz70=;
+        s=k20201202; t=1688965483;
+        bh=sokvzETFKZC41G3wVx4ImZdZy5HEdd2PWZtA9rXFHrI=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=SvjGN390fTtEZ/40sDZRpMv3f8mwmrlmQJ0YHi5DJUXO7rk2th1Sl9rgOwqyqcArt
-         AxI3ewJ6o1VFNWARtdkaRdJ373zrZxLj/NfYBrewH1Tp2twmYjZJstzte/gvagMQK3
-         V+KJR/UnakEjqmu+V5YfCiGOaE8iFgK7qSFcOQWa/vUUzosK/Jw/5FO1lhPF69Id2r
-         6ihdC1h/cnd4JtKc/zVygHckaAgFmQG70ld4YxSvHd3qO59fl8AgGfx1Eyk2SAlkU0
-         qW5XdQYbbEUpT2j6Gg837HPP+G2XGgOxbbjc4yFykdV94SULMgvsEvB+N80GXE7UOK
-         tDHYd8RjtYzsw==
+        b=lh9aJynOtSUeK1d7Ukri4iaHcseh6EzHo63eoS+z4FgnL4whjuiQg39RbjgNXagIr
+         mrXa5WuFEb2fy3gLURIPQ9bBA+OiVhuoMIbsJKGWN/YIGQIFjXu6gBAaHLgggKHWeT
+         XWtEVo+Fn3HsbtQAwG+Y6ElbSJ6tA9WwTMVMwDORKTOyGxEiGO/2exCl75ZgQN9+QP
+         pH5KKUnr0Y1c2rDR0CDqX7Hlb72C1anw6c5uun2w1QcJ/h2Hi4gskxtE+WBig/mSYD
+         HnSl9wTnTSs5WoqxmaXfXMmLiFDyiXg8KfMP7c2g22VBpONcIAD/cHMhmWOXM8P+u1
+         k6UaDOLxXztCw==
 From:   Bjorn Andersson <andersson@kernel.org>
-To:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+To:     Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
         Vinod Koul <vkoul@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>
 Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: sm8350: Use proper CPU compatibles
-Date:   Sun,  9 Jul 2023 22:07:20 -0700
-Message-ID: <168896565990.1376307.14629293439452030793.b4-ty@kernel.org>
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh@kernel.org>
+Subject: Re: (subset) [PATCH v2 0/3] Fix up 8280 GCC GDSCs
+Date:   Sun,  9 Jul 2023 22:07:23 -0700
+Message-ID: <168896565971.1376307.5044970624310354958.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20230706-topic-sm8350-cpu-compat-v1-1-f8d6a1869781@linaro.org>
-References: <20230706-topic-sm8350-cpu-compat-v1-1-f8d6a1869781@linaro.org>
+In-Reply-To: <20230620-topic-sc8280_gccgdsc-v2-0-562c1428c10d@linaro.org>
+References: <20230620-topic-sc8280_gccgdsc-v2-0-562c1428c10d@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -61,21 +66,22 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Thu, 06 Jul 2023 18:35:37 +0200, Konrad Dybcio wrote:
-> The Kryo names (once again) turned out to be fake. The CPUs report:
+On Mon, 26 Jun 2023 19:48:05 +0200, Konrad Dybcio wrote:
+> Part of the SC8280XP GDSCs were not fully described and others were
+> missing. This series attempts to fix that.
 > 
-> 0x412fd050 (CA55 r2p0) (0 - 3)
-> 0x411fd410 (CA78 r1p1) (4 - 6)
-> 0x411fd440 (CX1  r1p1) (7)
+> As usual with the laptop stuff, please test it on your setup to make sure
+> everybody's still happy.
 > 
-> Use the compatibles that reflect that.
 > 
 > [...]
 
 Applied, thanks!
 
-[1/1] arm64: dts: qcom: sm8350: Use proper CPU compatibles
-      commit: 4390730cc12af25f7c997f477795f5f4200149c0
+[1/3] clk: qcom: gcc-sc8280xp: Add missing GDSC flags
+      commit: 2fd02de27054576a4a8c89302e2f77122c55e957
+[3/3] clk: qcom: gcc-sc8280xp: Add missing GDSCs
+      commit: 4712eb7ff85bd3dd09c6668b8de4080e02b3eea9
 
 Best regards,
 -- 
