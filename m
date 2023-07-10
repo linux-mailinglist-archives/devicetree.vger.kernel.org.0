@@ -2,98 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B5EE774D609
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 14:54:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 37EED74D700
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 15:09:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230078AbjGJMys (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jul 2023 08:54:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45768 "EHLO
+        id S231553AbjGJNJH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jul 2023 09:09:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54378 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229774AbjGJMys (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 08:54:48 -0400
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8FFEFA8
-        for <devicetree@vger.kernel.org>; Mon, 10 Jul 2023 05:54:46 -0700 (PDT)
-Received: by mail-wr1-x432.google.com with SMTP id ffacd0b85a97d-3158a5e64b6so2713802f8f.0
-        for <devicetree@vger.kernel.org>; Mon, 10 Jul 2023 05:54:46 -0700 (PDT)
+        with ESMTP id S233265AbjGJNIH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 09:08:07 -0400
+Received: from mail-vs1-xe29.google.com (mail-vs1-xe29.google.com [IPv6:2607:f8b0:4864:20::e29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1E451FEE
+        for <devicetree@vger.kernel.org>; Mon, 10 Jul 2023 06:07:47 -0700 (PDT)
+Received: by mail-vs1-xe29.google.com with SMTP id ada2fe7eead31-440ac4b44a8so1636910137.3
+        for <devicetree@vger.kernel.org>; Mon, 10 Jul 2023 06:07:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1688993685; x=1691585685;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=abv8RbjDLsB7qEHaf8MGMChzo7Az5wZJp4aotAIPofw=;
-        b=b2IwCjppmUDIKW7ZIaF0KTVBe2UZDvxxN/b3hBOykv4/OjDBsrpSaTVMty/DwdZd2g
-         d3IiIqQUVBoiIw5iq2qhak5rlUTZKp60BPw7nfrdTWzkeQndrdVBPqyje40q8Aty2vU5
-         hHO1PV5Aui/ycRm4xA/lBcY5kJCvWU5VOwcEA1XjvzJhGvnJE5o7JxtA+JzppYUfBb5S
-         5JnyngwQbPD0GF4/WltI+XBcw+55akHyWsyxPYuxVncUx15DQXHMJR7QGYEXDvv/aKIx
-         jS2e01lA/HONXz+/9XytOyRNrPd8c+wa41F1g5TM37u+XOQLLksG/dfsyIkCA148DLNP
-         NfuQ==
+        d=gmail.com; s=20221208; t=1688994463; x=1691586463;
+        h=to:subject:message-id:date:from:reply-to:mime-version:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=qByi5P9M7+yOnaVyMG6pvW4P+aOlzbN0OZfndybu/l0=;
+        b=qoZL7tybLWbwI3R3w1uNcYrS/hV2TxCv2oMAXBUltuFL40M5tOrn134PgYnPADsO5w
+         s52SZDTPCGGAlGJwa6kaivyVUZmUnLJ0TqYSZfvwYr4O4s7wjd0HZrPnQaza+6Sf2Rfh
+         005j9jVq9/8OF1ByBfRiUtjsGUMLd0HuOeqo4M6ONYZ8dOwoO/KscW+JzwSsV7RGlAlt
+         inLEqCtKtQwOslPb8nkyDhwqDbQJujPrSuPzDrWgI/KYYAcGCf5lwLzGyYmZ/xSoGXmq
+         WQYZjXJFQ6hDrKh+AYW6G8mqhsklHTZFdBZpfgcaDCbrYpqhDzayilqN2fw/VriopHhP
+         co+A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688993685; x=1691585685;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1688994463; x=1691586463;
+        h=to:subject:message-id:date:from:reply-to:mime-version
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=abv8RbjDLsB7qEHaf8MGMChzo7Az5wZJp4aotAIPofw=;
-        b=WGUC52HeW4HDu2KNdRC0LZ7owezU33d4Y7GjGjAM1apAyneiznIwYpEe9DUuUJVpeA
-         0jWmaUwNymhV7eZ/VNwOi1ic1XbnBwrVZgrhHZA9kj0R58h+Y0Fva2iHNWFxbu1c7GdX
-         SfNcz5ptNF4ffWwCq3GMTZWwbHGD9rr4cgc2AA7exIlJw9Wc0wlyAtnUYOHuXxnOd1Vg
-         ICm9UhLVxeIuzRoSyVWXCRvMgvhaVMtmqw6rZUW5Z83zuJ18Sb2S4oUXV95C9ksPzLzN
-         8dyhqW5blWic8JkJZpsThRLpZ+FqHhqApBohs058l9IF/RfSnFcVbXFjcAYL5tkeFbsO
-         FYuQ==
-X-Gm-Message-State: ABy/qLZjsRXDrS3hrpYvOJjjXZ9ZY7hkdSu14XjwNhdYip2wj4Bp2cHa
-        WyJjs180ABFh7VJCz8UJTqXMNw==
-X-Google-Smtp-Source: APBJJlHCI4auE2IEOjXBCxZiOjauKMJU0L917s49nJJx2e4LjmSAQnLYSQYOsSTxBjhnt4Aw1NVolw==
-X-Received: by 2002:adf:e34c:0:b0:314:3b17:d7c5 with SMTP id n12-20020adfe34c000000b003143b17d7c5mr12183853wrj.43.1688993684720;
-        Mon, 10 Jul 2023 05:54:44 -0700 (PDT)
-Received: from [192.168.1.172] ([93.5.22.158])
-        by smtp.gmail.com with ESMTPSA id q17-20020a05600000d100b003142eb75724sm11636974wrx.24.2023.07.10.05.54.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 10 Jul 2023 05:54:44 -0700 (PDT)
-Message-ID: <fd1c1034-c54e-2e9d-0c9e-f62b0bcdc3cf@baylibre.com>
-Date:   Mon, 10 Jul 2023 14:54:42 +0200
+        bh=qByi5P9M7+yOnaVyMG6pvW4P+aOlzbN0OZfndybu/l0=;
+        b=LVIrQFcXzNEXzvsnLnF0yqL5COYoscZjZgMpFlupGDAJn8BjbUXfghSn6MhbU/55rW
+         hSvrlYUaIVjZMdN7G8MFJL87uQASug7triF3mMa4bza02bBbH/vDrZ1hVPpO9vbsJPko
+         jRgHWZsufUd9Pf0eEtaybOj1rdzob82z8HFxaiem4GItsWme5wIWMe1Ksg25Y7oTkNK9
+         JjFuqqETGq5wPR8reZ0MtjUGgqcybGiTJzQgeQ1UrORmLZutPgXzv0IFDWJZGjt2ZrgU
+         mnQ+sluPMeHr7Y04dIwLviDR8jC1iufWafnjIU1jiI8m2Z6d7Kd1t5IDSXVYDp1FYLzE
+         CNpw==
+X-Gm-Message-State: ABy/qLZHr68t05Qov3Xy+IRJdOxAK9lg7o9h6p71myaKTVngtD9dpOm9
+        7+71ORMCJi2Nm0YalHLsPkdhvubga9uocG5AzQs=
+X-Google-Smtp-Source: APBJJlHw17jWBKyGshulmqUFWz3O/wSJq4JqlgIjr4sv01k/uqZbqCVP1A83rghCERQwjMCoh+07XFDSqFtnOBa8TmQ=
+X-Received: by 2002:a67:f8c4:0:b0:443:8a7b:f769 with SMTP id
+ c4-20020a67f8c4000000b004438a7bf769mr5871340vsp.30.1688994463241; Mon, 10 Jul
+ 2023 06:07:43 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v6 1/8] dt-bindings: power: Add MT8365 power domains
-To:     Markus Schneider-Pargmann <msp@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     Chun-Jie Chen <chun-jie.chen@mediatek.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Tinghan Shen <tinghan.shen@mediatek.com>,
-        Fabien Parent <parent.f@gmail.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Fabien Parent <fparent@baylibre.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh@kernel.org>
-References: <20230627131040.3418538-1-msp@baylibre.com>
- <20230627131040.3418538-2-msp@baylibre.com>
-Content-Language: en-US
-From:   Alexandre Mergnat <amergnat@baylibre.com>
-In-Reply-To: <20230627131040.3418538-2-msp@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Received: by 2002:ab0:64cb:0:b0:781:caa:4818 with HTTP; Mon, 10 Jul 2023
+ 06:07:42 -0700 (PDT)
+Reply-To: mr.richard101kone@gmail.com
+From:   Richard Wilson <williamphilip0056@gmail.com>
+Date:   Mon, 10 Jul 2023 06:07:42 -0700
+Message-ID: <CADkLOGZ83AJgH+9PG-OcOTAKsh8Aue_RR5X6cM_ZyU_VS18siA@mail.gmail.com>
+Subject: Hello
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=4.5 required=5.0 tests=BAYES_50,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,FREEMAIL_REPLYTO,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNDISC_FREEM autolearn=no
+        autolearn_force=no version=3.4.6
+X-Spam-Level: ****
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 27/06/2023 15:10, Markus Schneider-Pargmann wrote:
-> Add power domains dt-bindings for MT8365.
-
-Reviewed-by: Alexandre Mergnat <amergnat@baylibre.com>
-Tested-by: Alexandre Mergnat <amergnat@baylibre.com>
-
 -- 
-Regards,
-Alexandre
+
+Dear
+I am contacting you to assist retrieve his huge deposit Mr. Alexander
+left in the bank before its get confiscated by the bank. Get back to
+me for more detail's
+Barr's Richard Wilson
