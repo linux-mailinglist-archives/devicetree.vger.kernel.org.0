@@ -2,84 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DE10374F58F
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 18:34:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DE2DD74F529
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 18:28:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233146AbjGKQeD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jul 2023 12:34:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33188 "EHLO
+        id S230344AbjGKQ2Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jul 2023 12:28:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58836 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233376AbjGKQdk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 12:33:40 -0400
-X-Greylist: delayed 525 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 11 Jul 2023 09:33:16 PDT
-Received: from out-43.mta0.migadu.com (out-43.mta0.migadu.com [IPv6:2001:41d0:1004:224b::2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92EA81BCD
-        for <devicetree@vger.kernel.org>; Tue, 11 Jul 2023 09:33:16 -0700 (PDT)
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-        t=1689092667;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=Gt34itJE/Z3AqIvun7fuPxxD4OBg9/zlMYtPRzQmwvc=;
-        b=CveunfMoLoenMr5OGZobNJQ0Ahx2c1s+DqSOG6s8FiGLfu7Oo/WQgpjaKVNvBT1SeAh+yR
-        78jSZpr40BFZMQL3Ve3xy2e/X6YsnS6BDGI2LRkDEPYqS/d2NVaQy4ya/w712nfSiDJC3O
-        omPo5euMd43YRRatqnsebFx3hnuP724=
-From:   Cixi Geng <cixi.geng@linux.dev>
-To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, orsonzhai@gmail.com,
-        baolin.wang@linux.alibaba.com, zhang.lyra@gmail.com, arnd@arndb.de
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        cixi.geng1@unisoc.com
-Subject: [PATCH] arm64: dts: sprd: fix the cpu node for UMS512
-Date:   Wed, 12 Jul 2023 00:23:46 +0800
-Message-Id: <20230711162346.5978-1-cixi.geng@linux.dev>
+        with ESMTP id S229917AbjGKQ2Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 12:28:24 -0400
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0340411D;
+        Tue, 11 Jul 2023 09:28:23 -0700 (PDT)
+Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
+        by mx0a-00128a01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36BFOF6I027393;
+        Tue, 11 Jul 2023 12:28:19 -0400
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+        by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3rq4q6kcd1-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 11 Jul 2023 12:28:19 -0400
+Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
+        by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 36BGSHip064687
+        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 11 Jul 2023 12:28:17 -0400
+Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by ASHBMBX8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.14; Tue, 11 Jul
+ 2023 12:28:16 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Tue, 11 Jul 2023 12:28:16 -0400
+Received: from okan.localdomain ([10.158.19.61])
+        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 36BGS1SS025938;
+        Tue, 11 Jul 2023 12:28:04 -0400
+From:   Okan Sahin <okan.sahin@analog.com>
+To:     <okan.sahin@analog.com>
+CC:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Ibrahim Tilki <Ibrahim.Tilki@analog.com>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+Subject: [PATCH v2 0/2] Add MAX77857/59/MAX77831 Regulator Support
+Date:   Tue, 11 Jul 2023 19:27:46 +0300
+Message-ID: <20230711162751.7094-1-okan.sahin@analog.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Migadu-Flow: FLOW_OUT
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-GUID: 1ds5H5iBVcl_pmM2Ss78IZ0nm4JRWaHJ
+X-Proofpoint-ORIG-GUID: 1ds5H5iBVcl_pmM2Ss78IZ0nm4JRWaHJ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-07-11_08,2023-07-11_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 suspectscore=0
+ phishscore=0 spamscore=0 bulkscore=0 mlxlogscore=472 malwarescore=0
+ impostorscore=0 adultscore=0 lowpriorityscore=0 priorityscore=1501
+ clxscore=1011 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2305260000 definitions=main-2307110148
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Cixi Geng <cixi.geng1@unisoc.com>
+High efficiency buck-boost regulator driver and bindings for
+MAX77857/59/MAX77831. The patches are required to be applied
+in sequence.
 
-The UMS512 Socs have 8 cores contains 6 a55 and 2 a75.
-modify the cpu nodes to correct information.
+Changes in v2:
+* Patch 1: "dt-bindings: regulator: max77857: Add ADI MAX77857/59/MAX77831
+    Regulator"
+  * Add max77859 support
+* Patch 2: "regulator: max77857: Add ADI MAX77857/59/MAX77831 Regulator Support"
+  * Add max77859 support
+  * Drop interrupt support
+  * Change regmap cache_type
 
-Fixes: 2b4881839a39 ("arm64: dts: sprd: Add support for Unisoc's UMS512")
-Signed-off-by: Cixi Geng <cixi.geng1@unisoc.com>
----
- arch/arm64/boot/dts/sprd/ums512.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Okan Sahin (2):
+  dt-bindings: regulator: max77857: Add ADI MAX77857/59/MAX77831
+    Regulator
+  regulator: max77857: Add ADI MAX77857/59/MAX77831 Regulator Support
 
-diff --git a/arch/arm64/boot/dts/sprd/ums512.dtsi b/arch/arm64/boot/dts/sprd/ums512.dtsi
-index 024be594c47d..97ac550af2f1 100644
---- a/arch/arm64/boot/dts/sprd/ums512.dtsi
-+++ b/arch/arm64/boot/dts/sprd/ums512.dtsi
-@@ -96,7 +96,7 @@ CPU5: cpu@500 {
- 
- 		CPU6: cpu@600 {
- 			device_type = "cpu";
--			compatible = "arm,cortex-a55";
-+			compatible = "arm,cortex-a75";
- 			reg = <0x0 0x600>;
- 			enable-method = "psci";
- 			cpu-idle-states = <&CORE_PD>;
-@@ -104,7 +104,7 @@ CPU6: cpu@600 {
- 
- 		CPU7: cpu@700 {
- 			device_type = "cpu";
--			compatible = "arm,cortex-a55";
-+			compatible = "arm,cortex-a75";
- 			reg = <0x0 0x700>;
- 			enable-method = "psci";
- 			cpu-idle-states = <&CORE_PD>;
+ .../bindings/regulator/adi,max77857.yaml      |  85 ++++
+ drivers/regulator/Kconfig                     |  10 +
+ drivers/regulator/Makefile                    |   1 +
+ drivers/regulator/max77857-regulator.c        | 459 ++++++++++++++++++
+ 4 files changed, 555 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/regulator/adi,max77857.yaml
+ create mode 100644 drivers/regulator/max77857-regulator.c
+
 -- 
-2.34.1
+2.30.2
 
