@@ -2,78 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D818774E6A1
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 07:59:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3144E74E6AD
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 08:01:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230155AbjGKF7D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jul 2023 01:59:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40604 "EHLO
+        id S229685AbjGKGA4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jul 2023 02:00:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41898 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229548AbjGKF7C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 01:59:02 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03A741B2
-        for <devicetree@vger.kernel.org>; Mon, 10 Jul 2023 22:58:58 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-51e5672d580so2929003a12.2
-        for <devicetree@vger.kernel.org>; Mon, 10 Jul 2023 22:58:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689055137; x=1691647137;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=zj3IQ/+F48JuMncJJrePBBu6AGCGhuyGEx5VtKIoCXU=;
-        b=McekgwoCljPM2KEtKpnvtIRNOeILG/FO93/d4byH4ZeL1iebUIDZqSRrxOmWzXC3/t
-         KjFY8hSEL9RgFj3P3Uo5Bj21XHiExkgMjcTLlOJMpxBSDXRoxpMSYq2HSByo8zBYiOkr
-         JxNGQV0m58YUFgXgK7GK9wZEQboZOcKg+yYo9hokH4EBf8F1jMFOqe3rSeQaunudKY5h
-         UXQV2YxC1ZnmRJCzni/slhDX0CIhO8vyuUO+Nav0WJAKHfufiSAaOw3bKNtn2eJCpAca
-         +N+7P7J+35vfV9lf3VH9cv81CoHC51hqnnEQX4DnVcJGCg7HTMIu/zWOjOTH6nlurGz0
-         ft6g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689055137; x=1691647137;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zj3IQ/+F48JuMncJJrePBBu6AGCGhuyGEx5VtKIoCXU=;
-        b=kKz649nXZbZMGSi/6Cm4Yirl7L6p6KxQNYcPcbDCTCjNJzLuzv1dzZvxFs3Qe1bcCc
-         cxLqI6RKBnjKC2yiLoUf6/ybddFLZEL7kxXVR4Gs1Js+gmM9fARCCqci+EN1dcIMQJlj
-         4j/kvcCksWJS3mPR35G0PAd7EKCW8lMnGgauEXG10Z71SGtPfW9VYRcgTsAivbBMtCdo
-         aNSBA387b1gQrHelDg+/Mtd9T4/FU23obhWHgCD/VsbyBLZwUcyyM4Y/1fNeXXdvRR7Q
-         VSjvmZ5nnDl2jOGU+D1SkyXWs2L3Twfa66+V7m92J2pQmIaAj7+7Ji0V+UxPGq0Yw3/D
-         iyMg==
-X-Gm-Message-State: ABy/qLb5Au86UXU42oPFGJWYECtd297Aje9UjYvoqkt55inT6nLrAJxK
-        pkuXxt2fhayusYgD9lJCAztacw==
-X-Google-Smtp-Source: APBJJlEWvdPL7dZZTCHCeeBpGza2Z5DICi24muBnEuZv4fopMf/NWNWeX5K9l6Q1G7KCTu5VKgRYeg==
-X-Received: by 2002:a05:6402:2022:b0:51d:9e0c:1396 with SMTP id ay2-20020a056402202200b0051d9e0c1396mr14420488edb.35.1689055137425;
-        Mon, 10 Jul 2023 22:58:57 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id bo28-20020a0564020b3c00b0051df5bd1cd8sm692565edb.65.2023.07.10.22.58.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 10 Jul 2023 22:58:57 -0700 (PDT)
-Message-ID: <431faa87-d152-5f7a-40fd-8b6fe26f0bb9@linaro.org>
-Date:   Tue, 11 Jul 2023 07:58:55 +0200
+        with ESMTP id S231241AbjGKGAo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 02:00:44 -0400
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [IPv6:2001:67c:2178:6::1d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C033D195;
+        Mon, 10 Jul 2023 23:00:29 -0700 (PDT)
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+        (No client certificate requested)
+        by smtp-out2.suse.de (Postfix) with ESMTPS id 0EB3520455;
+        Tue, 11 Jul 2023 06:00:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+        t=1689055222; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=N+md8tCCcb/XcgwK2O8x/Jn0J6p717ThkC2lo0+nTZw=;
+        b=UAFlabp9xOyAThJZecIPdU+uOM8qe7NMyksdL8t5Exrkbn/qCfI0YNPhtwnq8uY8Z2FrQ5
+        5wAWNfwGTvVQNjpeEyVL1o0i4YkC5jFPQJ6z63ZL8aKppiNMSTdcve27QYlWvBgO3+ybGS
+        VCbQ7Zm6HIQ1jG8+UAS484Gfeky7wiA=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+        s=susede2_ed25519; t=1689055222;
+        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=N+md8tCCcb/XcgwK2O8x/Jn0J6p717ThkC2lo0+nTZw=;
+        b=M2SLNyPdAc+LORyma9dDAKNWsOUZYDeh8/97Zt1KJ8SVcYz7B2RGh2sjxflV4Kk2E2hI1c
+        KR9YvZIfwDWeecCA==
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+        (No client certificate requested)
+        by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id B7EA81391C;
+        Tue, 11 Jul 2023 06:00:21 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+        by imap2.suse-dmz.suse.de with ESMTPSA
+        id jun1K/XvrGTuBAAAMHmgww
+        (envelope-from <tzimmermann@suse.de>); Tue, 11 Jul 2023 06:00:21 +0000
+Message-ID: <a0aa122d-38a1-d4be-edc1-a49b4e5e9b6b@suse.de>
+Date:   Tue, 11 Jul 2023 08:00:20 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH 1/7] dt-bindings: soc: qcom: Add qcom-pbs bindings
+ Thunderbird/102.12.0
+Subject: Re: [PATCH] of: Preserve "of-display" device name for compatibility
+To:     Rob Herring <robh@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Michal Suchanek <msuchanek@suse.de>
+Cc:     devicetree@vger.kernel.org, linux-fbdev@vger.kernel.org,
+        Helge Deller <deller@gmx.de>, linux-kernel@vger.kernel.org,
+        stable@vger.kernel.org, Cyril Brulebois <cyril@debamax.com>,
+        dri-devel@lists.freedesktop.org
+References: <20230710174007.2291013-1-robh@kernel.org>
 Content-Language: en-US
-To:     Anjelique Melendez <quic_amelende@quicinc.com>,
-        Rob Herring <robh@kernel.org>
-Cc:     pavel@ucw.cz, lee@kernel.org, thierry.reding@gmail.com,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        u.kleine-koenig@pengutronix.de, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-pwm@vger.kernel.org
-References: <20230621185949.2068-1-quic_amelende@quicinc.com>
- <20230621185949.2068-2-quic_amelende@quicinc.com>
- <20230626135857.GA3118929-robh@kernel.org>
- <2e871e21-a81d-0d7d-993b-9a9d7bd9d962@quicinc.com>
- <e7298704-5a03-0961-90a3-dab4af60c326@linaro.org>
- <32e9a512-fd74-b2f6-6b8a-fefb9ad5912d@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <32e9a512-fd74-b2f6-6b8a-fefb9ad5912d@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+From:   Thomas Zimmermann <tzimmermann@suse.de>
+In-Reply-To: <20230710174007.2291013-1-robh@kernel.org>
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="------------EJlFeu4ajUbibragQamf4Zcq"
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
@@ -84,85 +76,84 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/07/2023 05:52, Anjelique Melendez wrote:
-> 
-> 
-> On 7/1/2023 4:03 AM, Krzysztof Kozlowski wrote:
->> On 29/06/2023 03:19, Anjelique Melendez wrote:
->>
->>>>> +examples:
->>>>> +  - |
->>>>> +    pmic {
->>>>> +      #address-cells = <1>;
->>>>> +      #size-cells = <0>;
->>>>> +
->>>>> +      qcom,pbs@7400 {
->>>>> +        compatible = "qcom,pbs";
->>>>> +        reg = <0x7400>;
->>>>> +      };
->>>>
->>>> Why do you need a child node for this? Is there more than 1 instance in 
->>>> a PMIC? Every sub-function of a PMIC doesn't have to have a DT node.
->>>>
->>>
->>> We currently have another downstream driver (which is planned to get upstreamed)
->>> which also needs a handle to a pbs device in order to properly trigger events. 
->>
->> I don't see how does it answer Rob's concerns. Neither mine about
->> incomplete binding. You don't need pbs node here for that.
->>
->> Anyway, whatever you have downstream also does not justify any changes.
->> Either upstream these so we can see it or drop this binding.
->>
->> Best regards,
->> Krzysztof
->>
-> 
-> On PMI632, peripherals are partitioned over 2 different SIDs
-> (https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/qcom/pmi632.dtsi?h=v6.5-rc1#n42
-> and https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/qcom/pmi632.dtsi?h=v6.5-rc1#n149).
-> Unfortunately, the pbs peripheral and the lpg peripherals are on different
-> PMI632 devices and therefore have different regmaps.
->  
-> If we get rid of the pbs node we need to get a handle to the proper regmap.
-> I see two possible options, we could either introduce a new client property
-> which points to a peripheral on the same device as pbs.
-> 
-> i.e.
-> 	led-controller {
-> 		compatible = "qcom,pmi632-lpg";
->       		#address-cells = <1>;
->       		#size-cells = <0>;
->       		#pwm-cells = <2>;
->      		nvmem-names = "lpg_chan_sdam";
->       		nvmem = <&pmi632_sdam7>;
->       		qcom,pbs-phandle = <&pmi632_gpios>;
->       		..... 
-> 	};
-> Then when client is probing could do something like the following to get the regmap
-> 
-> 	dn = of_parse_phandle(node, "qcom,pbs-phandle", 0);
-> 	pdev = of_find_device_by_node(dn);
-> 	pbs_regmap = dev_get_regmap(&pdev->dev->parent, NULL);
-> 
-> 
-> 
-> Or we could use the nvmem phandle and just have something like this in client's probe
-> 
-> 	dn = of_parse_phandle(node, "nvmem", 0);
-> 	pdev = of_find_device_by_node(dn);
-> 	pbs_regmap = dev_get_regmap(&pdev->dev->parent, NULL);
-> 
-> 
-> 
-> Let me know what your thoughts are on this.
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--------------EJlFeu4ajUbibragQamf4Zcq
+Content-Type: multipart/mixed; boundary="------------rrE1gd9xgtDN66LPMEindtwb";
+ protected-headers="v1"
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Rob Herring <robh@kernel.org>, Frank Rowand <frowand.list@gmail.com>,
+ Michal Suchanek <msuchanek@suse.de>
+Cc: devicetree@vger.kernel.org, linux-fbdev@vger.kernel.org,
+ Helge Deller <deller@gmx.de>, linux-kernel@vger.kernel.org,
+ stable@vger.kernel.org, Cyril Brulebois <cyril@debamax.com>,
+ dri-devel@lists.freedesktop.org
+Message-ID: <a0aa122d-38a1-d4be-edc1-a49b4e5e9b6b@suse.de>
+Subject: Re: [PATCH] of: Preserve "of-display" device name for compatibility
+References: <20230710174007.2291013-1-robh@kernel.org>
+In-Reply-To: <20230710174007.2291013-1-robh@kernel.org>
 
-Rob asked you - "Is there more than 1 instance in a PMIC?" - and you did
-not answer positively, just mentioned something about drivers in
-downstream, which do not matter. So is the answer for that question:
-yes, you have two instances of the same PMIC differing by presence of
-PBS and other features"?
+--------------rrE1gd9xgtDN66LPMEindtwb
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: base64
 
-Best regards,
-Krzysztof
+DQoNCkFtIDEwLjA3LjIzIHVtIDE5OjQwIHNjaHJpZWIgUm9iIEhlcnJpbmc6DQo+IFNpbmNl
+IGNvbW1pdCAyNDFkMmZiNTZhMTggKCJvZjogTWFrZSBPRiBmcmFtZWJ1ZmZlciBkZXZpY2Ug
+bmFtZXMgdW5pcXVlIiksDQo+IGFzIHNwb3R0ZWQgYnkgRnLDqWTDqXJpYyBCb25uYXJkLCB0
+aGUgaGlzdG9yaWNhbCAib2YtZGlzcGxheSIgZGV2aWNlIGlzDQo+IGdvbmU6IHRoZSB1cGRh
+dGVkIGxvZ2ljIGNyZWF0ZXMgIm9mLWRpc3BsYXkuMCIgaW5zdGVhZCwgdGhlbiBhcyBtYW55
+DQo+ICJvZi1kaXNwbGF5Lk4iIGFzIHJlcXVpcmVkLg0KPiANCj4gVGhpcyBtZWFucyB0aGF0
+IG9mZmIgbm8gbG9uZ2VyIGZpbmRzIHRoZSBleHBlY3RlZCBkZXZpY2UsIHdoaWNoIHByZXZl
+bnRzDQo+IHRoZSBEZWJpYW4gSW5zdGFsbGVyIGZyb20gc2V0dGluZyB1cCBpdHMgaW50ZXJm
+YWNlLCBhdCBsZWFzdCBvbiBwcGM2NGVsLg0KPiANCj4gRml4IHRoaXMgYnkga2VlcGluZyAi
+b2YtZGlzcGxheSIgZm9yIHRoZSBmaXJzdCBkZXZpY2UgYW5kICJvZi1kaXNwbGF5Lk4iDQo+
+IGZvciBzdWJzZXF1ZW50IGRldmljZXMuDQo+IA0KPiBMaW5rOiBodHRwczovL2J1Z3ppbGxh
+Lmtlcm5lbC5vcmcvc2hvd19idWcuY2dpP2lkPTIxNzMyOA0KPiBMaW5rOiBodHRwczovL2J1
+Z3MuZGViaWFuLm9yZy8xMDMzMDU4DQo+IEZpeGVzOiAyNDFkMmZiNTZhMTggKCJvZjogTWFr
+ZSBPRiBmcmFtZWJ1ZmZlciBkZXZpY2UgbmFtZXMgdW5pcXVlIikNCj4gQ2M6IHN0YWJsZUB2
+Z2VyLmtlcm5lbC5vcmcNCj4gQ2M6IEN5cmlsIEJydWxlYm9pcyA8Y3lyaWxAZGViYW1heC5j
+b20+DQo+IENjOiBUaG9tYXMgWmltbWVybWFubiA8dHppbW1lcm1hbm5Ac3VzZS5kZT4NCj4g
+Q2M6IEhlbGdlIERlbGxlciA8ZGVsbGVyQGdteC5kZT4NCj4gU2lnbmVkLW9mZi1ieTogUm9i
+IEhlcnJpbmcgPHJvYmhAa2VybmVsLm9yZz4NCg0KQWNrZWQtYnk6IFRob21hcyBaaW1tZXJt
+YW5uIDx0emltbWVybWFubkBzdXNlLmRlPg0KDQo+IC0tLQ0KPiAgIGRyaXZlcnMvb2YvcGxh
+dGZvcm0uYyB8IDIgKy0NCj4gICAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKyksIDEg
+ZGVsZXRpb24oLSkNCj4gDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL29mL3BsYXRmb3JtLmMg
+Yi9kcml2ZXJzL29mL3BsYXRmb3JtLmMNCj4gaW5kZXggMDUxZTI5YjdhZDJiLi4wYzM0NzVl
+N2QyZmYgMTAwNjQ0DQo+IC0tLSBhL2RyaXZlcnMvb2YvcGxhdGZvcm0uYw0KPiArKysgYi9k
+cml2ZXJzL29mL3BsYXRmb3JtLmMNCj4gQEAgLTU1Miw3ICs1NTIsNyBAQCBzdGF0aWMgaW50
+IF9faW5pdCBvZl9wbGF0Zm9ybV9kZWZhdWx0X3BvcHVsYXRlX2luaXQodm9pZCkNCj4gICAJ
+CQlpZiAoIW9mX2dldF9wcm9wZXJ0eShub2RlLCAibGludXgsb3BlbmVkIiwgTlVMTCkgfHwN
+Cj4gICAJCQkgICAgIW9mX2dldF9wcm9wZXJ0eShub2RlLCAibGludXgsYm9vdC1kaXNwbGF5
+IiwgTlVMTCkpDQo+ICAgCQkJCWNvbnRpbnVlOw0KPiAtCQkJZGV2ID0gb2ZfcGxhdGZvcm1f
+ZGV2aWNlX2NyZWF0ZShub2RlLCAib2YtZGlzcGxheS4wIiwgTlVMTCk7DQo+ICsJCQlkZXYg
+PSBvZl9wbGF0Zm9ybV9kZXZpY2VfY3JlYXRlKG5vZGUsICJvZi1kaXNwbGF5IiwgTlVMTCk7
+DQo+ICAgCQkJb2Zfbm9kZV9wdXQobm9kZSk7DQo+ICAgCQkJaWYgKFdBUk5fT04oIWRldikp
+DQo+ICAgCQkJCXJldHVybiAtRU5PTUVNOw0KDQotLSANClRob21hcyBaaW1tZXJtYW5uDQpH
+cmFwaGljcyBEcml2ZXIgRGV2ZWxvcGVyDQpTVVNFIFNvZnR3YXJlIFNvbHV0aW9ucyBHZXJt
+YW55IEdtYkgNCkZyYW5rZW5zdHJhc3NlIDE0NiwgOTA0NjEgTnVlcm5iZXJnLCBHZXJtYW55
+DQpHRjogSXZvIFRvdGV2LCBBbmRyZXcgTXllcnMsIEFuZHJldyBNY0RvbmFsZCwgQm91ZGll
+biBNb2VybWFuDQpIUkIgMzY4MDkgKEFHIE51ZXJuYmVyZykNCg==
 
+--------------rrE1gd9xgtDN66LPMEindtwb--
+
+--------------EJlFeu4ajUbibragQamf4Zcq
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature"
+
+-----BEGIN PGP SIGNATURE-----
+
+wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmSs7/QFAwAAAAAACgkQlh/E3EQov+By
+PA/9EW57Zs5sk3iddg/7LyeGpSXcv35PnNZUpqCm6rBQ/bmDziTNKi2cPDvg/qC50cEwuH4RSJsH
+MfKrUOVg7vxOwYKnTf3caz264mGVlI1xFwf9GiVeURyw5SnCVguOL5yObxfCveZtNWqyIkE+3NG0
+aHzLnkjhNxoW6Pv69DyLxrIjMxAXQduWwG6+3Otajh8KFqC+3KeOJzyLqb/q/3kOknw5KhFlV/4E
+QHCpBQ4Il3w2wazFi+53ePGgZyqwJOB/BLTyozq7f/2DBa5mXruqtUUT7j/IwI84eqYGWxXaIVPb
+T0IfjhBXdoBAUpgtB4jT0paoWFhcKK7zq7I3MbyiIMT/7V8wuYfaI4rOC5AlpDYeJ7uPCQuB7Fgo
+88xX9+2/rleh6zwYM+Y+rec90gkKS/AuUOPVfrPMi38Y0MpvX9/JY4eSEAkYzLxZ2ikbKScdg9c3
+GktsZ3kEDo28Y6ZfRfk9lOfdl+xQHM22pd3pIBdy/cyR7y7Q2uCV9kkta6dHA8dUjANJONevcsW5
+hda2NQYx4pzkFvJd+rPVfVEvdgqYvrfz+2jWmfJgM97O6coJqof3jd52Sob0yH2cRoGtV5T0AYMZ
+us9FLSraDImc+FXkMqq5PHLbvKEGetHcpc+9uxeLST7AJ60KO3dpHzJd2W5gDFBHTFSMsQfdyhm7
+eSI=
+=KYfa
+-----END PGP SIGNATURE-----
+
+--------------EJlFeu4ajUbibragQamf4Zcq--
