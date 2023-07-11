@@ -2,74 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5ED7474F1EF
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 16:22:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0619C74F1FC
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 16:23:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231894AbjGKOWg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jul 2023 10:22:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59460 "EHLO
+        id S233489AbjGKOWs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jul 2023 10:22:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59736 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230450AbjGKOWQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 10:22:16 -0400
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F76C1720
-        for <devicetree@vger.kernel.org>; Tue, 11 Jul 2023 07:21:59 -0700 (PDT)
-Received: by mail-lj1-x22b.google.com with SMTP id 38308e7fff4ca-2b701e41cd3so94706691fa.3
-        for <devicetree@vger.kernel.org>; Tue, 11 Jul 2023 07:21:59 -0700 (PDT)
+        with ESMTP id S233354AbjGKOWd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 10:22:33 -0400
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC0A51705
+        for <devicetree@vger.kernel.org>; Tue, 11 Jul 2023 07:22:10 -0700 (PDT)
+Received: by mail-lj1-x229.google.com with SMTP id 38308e7fff4ca-2b69dcf45faso91925961fa.0
+        for <devicetree@vger.kernel.org>; Tue, 11 Jul 2023 07:22:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689085316; x=1691677316;
+        d=linaro.org; s=google; t=1689085320; x=1691677320;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=m4OHhf//BH7yn6Q/Ot3BJTEK+Wcory0adfABT5r6wUE=;
-        b=tyWb6Y5kdmHtSYc89DJi1+pl8lGEj05MyNn/Zv1MCiy8+izcQ+Vp8EUkoZ3o5QHUwA
-         QErrdevOrnHl7ZVkvMXUf5eAJmT2FEEibUl/eWrQFeNZ5KhBM8sF6D7pkY6P8hiLEneC
-         RXgxh2TOoi7msRqZWLV9/qhG+9WxnnjEehnGHMJ6AGiD5rTirRDezXqOaBLNrTCD+PQW
-         QwHIRS1IncPuoOgatcUULna+4VK6MKjmstJl+hUQ13m5n/xq/u1V84O9WBN+ddOTjFVV
-         U6Q0NOeB+I1oiAcI7+NKaB6fFMJ9Qdtnp4IuEu3LCMGqkKMu0JvVAku8l8gWrRwBwPoA
-         PX8w==
+        bh=1DWVqty+49hJ6Ou5ZV1VCQ2wZFRYyEKX7786q3fgS8Y=;
+        b=enn5A4LCsWyyvv2Jvz5C5NnQgsez56YVRG9VDJW+buVqdx2vuJhxjcAJUsWjRbwZtC
+         2thZL55bvtxhhZNxpEesVyzWdwTWDTSvQ+KQnDdRPq64RZKbmXuX461+sVqUZMJz/+Wp
+         KdwakIG/cO6e9wUtvEswrwU0NDSwoVGD7BnoNW9CS2rCXa3xeskoX6jAR/goObIPry4c
+         EOL7cqrqr8QFcikdi9FdYFImPcNE7iI6PoeyHxCqZIf1ujuHz0BV6kmj0MPjEYJxOgPI
+         m60R4qzPpsJaLGvx15SUf1zaT2eBp71sstXrXzqZsTUtyYl1ykkvbKgbD7iyV9ItA6ql
+         JpqQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689085316; x=1691677316;
+        d=1e100.net; s=20221208; t=1689085320; x=1691677320;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=m4OHhf//BH7yn6Q/Ot3BJTEK+Wcory0adfABT5r6wUE=;
-        b=F4dZ6CZM3O5W0Lbu27nviChp0QIubYJMbtZEtGpVzyy8vvI/TE+6kcEr5bv84CbaFs
-         k2ub3IlIddbXDmp9QQYc6wXobh1UoHMtzBH6eafXv75u8gKV9Yns1r7mosgWJvnfQoRY
-         YnjqVwjQ7RlHXiw+Ftc4QlBjBk2+zKJthn7GQpP37OvkeaLDo7cQQNbmrgIjr8qGhtso
-         AU2Mn2xaEc9t6p5gTMf/A1hDzU0nADq0npLuLx+HHt709JeSqfdL5ncCdKwrbvFDTGtQ
-         jruUhqR0SEQQndrsDVXfcGrCXVd9HmiBPGrlXetQNDkcABfc5XTBvm4H9xf4Ogd9XjsC
-         tq+A==
-X-Gm-Message-State: ABy/qLatv0qSubuiWRwrOoO7NhYPtpNw0Ufbr8xpBl0uaPB4teXIkBfs
-        rVsNGQtc6dty8imZIIQT6oj35g==
-X-Google-Smtp-Source: APBJJlFAMhH5pIJfp4bCLgKjGyunfjO3nmFym3bFGd0v6tXuy2T+eDybgK8uyTe2IuT1NOb+EJ5WvA==
-X-Received: by 2002:a2e:8887:0:b0:2b6:e719:324e with SMTP id k7-20020a2e8887000000b002b6e719324emr12798365lji.49.1689085315755;
-        Tue, 11 Jul 2023 07:21:55 -0700 (PDT)
+        bh=1DWVqty+49hJ6Ou5ZV1VCQ2wZFRYyEKX7786q3fgS8Y=;
+        b=Q5utkSTO5k0L2dPMLQ2nZqYIkl3EbxUB59ZDtxnk2nyeMEaL8QGPKf819eAxAjjBRd
+         idwx3qqP4xnLTL+Odn2BtxA7t22mdH7gEnSFcrjXAA2Rdyd60fGItCL79yEzAyZPIgKD
+         TgvVQehFXi1D3PPTfo3EsAsv3OLbk8LDQWU54L5iO67A7BS5R3CE541RjGs26CC5Gymj
+         SFTtecG7oGeqtzpgoKWYFRH/zd1q7h2g5ar0P1xtozsW1jsCMZaE4o6MLKL4/8EOI/8w
+         tfw6d/Ew69iHS0IfV/8A6Uhti4IOS/UQoKfIMtui1Hekdnxzjanv0OLjsTIt0v8mAIDq
+         BT9w==
+X-Gm-Message-State: ABy/qLbUWeZB/6kZBS+OsFgzvLizK15oaH8T+Di7vu7DgPRWsukTU/yD
+        qO8Os0dIpDaJPxYqFoM/riQ7KA==
+X-Google-Smtp-Source: APBJJlGYIzCN54UshyQrjtzhpBdQPyx5aDjWikjVPne5sfVc51vjKTFMuCDQLmyuUUgVbJqPjHqFEA==
+X-Received: by 2002:a2e:7a16:0:b0:2b6:ee6d:b647 with SMTP id v22-20020a2e7a16000000b002b6ee6db647mr13761996ljc.28.1689085319994;
+        Tue, 11 Jul 2023 07:21:59 -0700 (PDT)
 Received: from eriador.lan (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
-        by smtp.gmail.com with ESMTPSA id v9-20020a2e87c9000000b002b6b4424a28sm487934ljj.13.2023.07.11.07.21.54
+        by smtp.gmail.com with ESMTPSA id v9-20020a2e87c9000000b002b6b4424a28sm487934ljj.13.2023.07.11.07.21.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 Jul 2023 07:21:55 -0700 (PDT)
+        Tue, 11 Jul 2023 07:21:59 -0700 (PDT)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Stephen Boyd <swboyd@chromium.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
+        Conor Dooley <conor+dt@kernel.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Krishna Manikandan <quic_mkrishn@quicinc.com>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org
-Subject: Re: [PATCH 0/5] arm64: dts: qcom: qrb5165-rb5: enable DP support
-Date:   Tue, 11 Jul 2023 17:21:44 +0300
-Message-Id: <168908465040.1869384.6896423598850742702.b4-ty@linaro.org>
+        freedreno@lists.freedesktop.org, Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v3 0/4] Qualcomm REFGEN regulator
+Date:   Tue, 11 Jul 2023 17:21:49 +0300
+Message-Id: <168908465044.1869384.14451201608832170606.b4-ty@linaro.org>
 X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230709041926.4052245-1-dmitry.baryshkov@linaro.org>
-References: <20230709041926.4052245-1-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20230628-topic-refgen-v3-0-9fbf0e605d23@linaro.org>
+References: <20230628-topic-refgen-v3-0-9fbf0e605d23@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -84,22 +88,22 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Sun, 09 Jul 2023 07:19:21 +0300, Dmitry Baryshkov wrote:
-> Implement DisplayPort support for the Qualcomm RB5 platform.
+On Mon, 03 Jul 2023 20:15:53 +0200, Konrad Dybcio wrote:
+> Recent Qualcomm SoCs have a REFGEN (reference voltage generator) regulator
+> responsible for providing a reference voltage to some on-SoC IPs (like DSI
+> or PHYs). It can be turned off when unused to save power.
 > 
-> Note: while testing this, I had link training issues with several
-> dongles with DP connectors. Other DisplayPort-USB-C dongles (with HDMI
-> or VGA connectors) work perfectly.
-> 
-> Dependencies: [1]
-> Soft-dependencies: [2], [3]
+> This series introduces the driver for it and lets the DSI driver
+> consume it.
 > 
 > [...]
 
 Applied, thanks!
 
-[1/5] dt-bindings: display: msm: dp-controller: document SM8250 compatible
-      https://gitlab.freedesktop.org/lumag/msm/-/commit/5ce85953cc45
+[3/4] dt-bindings: display/msm: dsi-controller-main: Allow refgen-supply
+      https://gitlab.freedesktop.org/lumag/msm/-/commit/f5cedc432fdf
+[4/4] drm/msm/dsi: Hook up refgen regulator
+      https://gitlab.freedesktop.org/lumag/msm/-/commit/4bc71795761b
 
 Best regards,
 -- 
