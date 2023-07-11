@@ -2,158 +2,184 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3144E74E6AD
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 08:01:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D04174E6B4
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 08:02:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229685AbjGKGA4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jul 2023 02:00:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41898 "EHLO
+        id S229741AbjGKGCe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jul 2023 02:02:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43086 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231241AbjGKGAo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 02:00:44 -0400
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [IPv6:2001:67c:2178:6::1d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C033D195;
-        Mon, 10 Jul 2023 23:00:29 -0700 (PDT)
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
-        (No client certificate requested)
-        by smtp-out2.suse.de (Postfix) with ESMTPS id 0EB3520455;
-        Tue, 11 Jul 2023 06:00:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-        t=1689055222; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=N+md8tCCcb/XcgwK2O8x/Jn0J6p717ThkC2lo0+nTZw=;
-        b=UAFlabp9xOyAThJZecIPdU+uOM8qe7NMyksdL8t5Exrkbn/qCfI0YNPhtwnq8uY8Z2FrQ5
-        5wAWNfwGTvVQNjpeEyVL1o0i4YkC5jFPQJ6z63ZL8aKppiNMSTdcve27QYlWvBgO3+ybGS
-        VCbQ7Zm6HIQ1jG8+UAS484Gfeky7wiA=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-        s=susede2_ed25519; t=1689055222;
-        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=N+md8tCCcb/XcgwK2O8x/Jn0J6p717ThkC2lo0+nTZw=;
-        b=M2SLNyPdAc+LORyma9dDAKNWsOUZYDeh8/97Zt1KJ8SVcYz7B2RGh2sjxflV4Kk2E2hI1c
-        KR9YvZIfwDWeecCA==
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
-        (No client certificate requested)
-        by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id B7EA81391C;
-        Tue, 11 Jul 2023 06:00:21 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
-        by imap2.suse-dmz.suse.de with ESMTPSA
-        id jun1K/XvrGTuBAAAMHmgww
-        (envelope-from <tzimmermann@suse.de>); Tue, 11 Jul 2023 06:00:21 +0000
-Message-ID: <a0aa122d-38a1-d4be-edc1-a49b4e5e9b6b@suse.de>
-Date:   Tue, 11 Jul 2023 08:00:20 +0200
+        with ESMTP id S229576AbjGKGCd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 02:02:33 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF8F7E2
+        for <devicetree@vger.kernel.org>; Mon, 10 Jul 2023 23:02:31 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-4fb77f21c63so8345418e87.2
+        for <devicetree@vger.kernel.org>; Mon, 10 Jul 2023 23:02:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1689055350; x=1691647350;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=afx81MKkvAhfUrGRtK8bChEK9E5txzj2AwwyOo3v6w0=;
+        b=y7Rp0lRfwhuILjfICWihKMxfdwG4lTRSOCrDWY0NbYege/M3k02sAr/uqMfNCJek6e
+         5F8cheoRpjCOQeLUqJZONCe1IQgbGBxl5A5BhRkgmoJKCDfj9vVCHfVE4cQBEF2hvr8Y
+         kB/821HZqtDf5P9pRTjYF8fgr2tlyqEAhLu0twL6HPmmVOVDjZiksDS0GR+fORnFqZBf
+         nkbi2lZNY8kQuNEQ29Eaf4r0Jw3dJJ63rLpsq3GWuFTVqXXMWL4iU9pGm4e8PY29FB6c
+         9yWEz40mpwh7WpMR29utAqg2HDD36YSDyOSovfnQHTm0eUDKf7Eve1/IwmWkPCbjanqa
+         Rdog==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689055350; x=1691647350;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=afx81MKkvAhfUrGRtK8bChEK9E5txzj2AwwyOo3v6w0=;
+        b=OMalFQFHs+eRWGO2HjfUC0ZRPOHqNNCMknL+OWYklx+d9W3HqicH8LIXWaPu6hfTGD
+         EdVAkP4HOu0nUjuhyfAKfviIzB4WTma6NnvWdPPzCG4uwmREkZmXnLLnt2vU2mQ1WkUb
+         m0iGQo+CE1exWhRmSBPhuDQf+EnwhOM1/eNtdbnHlhT4tM+mJwSwHVeZ6NB8RPBqLO0V
+         w4DxA53GHXMT1/Ou9AQtM0YFk7DZO6CHu0AOPhmlDKWBRQpRjrRV8UMpqL59pGxLESEw
+         Q1D4RnXDliYONJnV0zWRRhWMPBKdvFzCZtb08nC8vtnRzODsbxvyrZ9clAAYyo0NhpkD
+         EpVw==
+X-Gm-Message-State: ABy/qLbP6/WAgvGHKywTXNTT8hC4UDKkw+AYQeXymOp6wf6GAXWqXPBq
+        QOsW3zrWPONgTqbLcQXwQXIanA==
+X-Google-Smtp-Source: APBJJlG4cYVkDTIrWyYDiJG9qR+/vgVmvWBFGFPCDlBUMejZEcBc5u/hFAa1kFuKlDxKUE96SXfYVw==
+X-Received: by 2002:a19:7106:0:b0:4f8:69f8:47a0 with SMTP id m6-20020a197106000000b004f869f847a0mr10405092lfc.29.1689055350027;
+        Mon, 10 Jul 2023 23:02:30 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id d18-20020aa7ce12000000b0051ddfb4385asm706468edv.45.2023.07.10.23.02.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 10 Jul 2023 23:02:29 -0700 (PDT)
+Message-ID: <761acbba-ffd5-de32-7b82-5a4548d0134b@linaro.org>
+Date:   Tue, 11 Jul 2023 08:02:27 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH] of: Preserve "of-display" device name for compatibility
-To:     Rob Herring <robh@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Michal Suchanek <msuchanek@suse.de>
-Cc:     devicetree@vger.kernel.org, linux-fbdev@vger.kernel.org,
-        Helge Deller <deller@gmx.de>, linux-kernel@vger.kernel.org,
-        stable@vger.kernel.org, Cyril Brulebois <cyril@debamax.com>,
-        dri-devel@lists.freedesktop.org
-References: <20230710174007.2291013-1-robh@kernel.org>
+ Thunderbird/102.13.0
+Subject: Re: [PATCH 1/2] dt-bindings: remoteproc: imx_rproc: Document
+ fsl,startup-delay-ms
 Content-Language: en-US
-From:   Thomas Zimmermann <tzimmermann@suse.de>
-In-Reply-To: <20230710174007.2291013-1-robh@kernel.org>
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="------------EJlFeu4ajUbibragQamf4Zcq"
+To:     Marek Vasut <marex@denx.de>, linux-remoteproc@vger.kernel.org
+Cc:     Bjorn Andersson <andersson@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Peng Fan <peng.fan@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20230707232444.374431-1-marex@denx.de>
+ <8f40484e-1721-a2bc-2344-f9e59e51a935@linaro.org>
+ <d3180b8f-96d6-380b-4518-17334a90799d@denx.de>
+ <c02d0271-9896-3990-33b0-c83fa54f5623@linaro.org>
+ <7a1d7a67-0a0c-8527-d430-30a1cb40de48@denx.de>
+ <51a1c2e9-1165-c7ff-809d-b09e09d776e2@linaro.org>
+ <6e2e16be-1f83-70d2-4c5d-c2e89a7d017f@denx.de>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <6e2e16be-1f83-70d2-4c5d-c2e89a7d017f@denx.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---------------EJlFeu4ajUbibragQamf4Zcq
-Content-Type: multipart/mixed; boundary="------------rrE1gd9xgtDN66LPMEindtwb";
- protected-headers="v1"
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Rob Herring <robh@kernel.org>, Frank Rowand <frowand.list@gmail.com>,
- Michal Suchanek <msuchanek@suse.de>
-Cc: devicetree@vger.kernel.org, linux-fbdev@vger.kernel.org,
- Helge Deller <deller@gmx.de>, linux-kernel@vger.kernel.org,
- stable@vger.kernel.org, Cyril Brulebois <cyril@debamax.com>,
- dri-devel@lists.freedesktop.org
-Message-ID: <a0aa122d-38a1-d4be-edc1-a49b4e5e9b6b@suse.de>
-Subject: Re: [PATCH] of: Preserve "of-display" device name for compatibility
-References: <20230710174007.2291013-1-robh@kernel.org>
-In-Reply-To: <20230710174007.2291013-1-robh@kernel.org>
+On 10/07/2023 23:52, Marek Vasut wrote:
+> On 7/10/23 22:00, Krzysztof Kozlowski wrote:
+>> On 10/07/2023 15:46, Marek Vasut wrote:
+>>> On 7/10/23 14:52, Krzysztof Kozlowski wrote:
+>>>> On 10/07/2023 11:18, Marek Vasut wrote:
+>>>>> On 7/10/23 10:12, Krzysztof Kozlowski wrote:
+>>>>>> On 08/07/2023 01:24, Marek Vasut wrote:
+>>>>>>> Document fsl,startup-delay-ms property which indicates how long
+>>>>>>> the system software should wait until attempting to communicate
+>>>>>>> with the CM firmware. This gives the CM firmware a bit of time
+>>>>>>> to boot and get ready for communication.
+>>>>>>>
+>>>>>>> Signed-off-by: Marek Vasut <marex@denx.de>
+>>>>>>> ---
+>>>>>>> Cc: Bjorn Andersson <andersson@kernel.org>
+>>>>>>> Cc: Conor Dooley <conor+dt@kernel.org>
+>>>>>>> Cc: Fabio Estevam <festevam@gmail.com>
+>>>>>>> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+>>>>>>> Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
+>>>>>>> Cc: NXP Linux Team <linux-imx@nxp.com>
+>>>>>>> Cc: Peng Fan <peng.fan@nxp.com>
+>>>>>>> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+>>>>>>> Cc: Rob Herring <robh+dt@kernel.org>
+>>>>>>> Cc: Sascha Hauer <s.hauer@pengutronix.de>
+>>>>>>> Cc: Shawn Guo <shawnguo@kernel.org>
+>>>>>>> Cc: devicetree@vger.kernel.org
+>>>>>>> Cc: linux-arm-kernel@lists.infradead.org
+>>>>>>> Cc: linux-remoteproc@vger.kernel.org
+>>>>>>> ---
+>>>>>>>     .../devicetree/bindings/remoteproc/fsl,imx-rproc.yaml        | 5 +++++
+>>>>>>>     1 file changed, 5 insertions(+)
+>>>>>>>
+>>>>>>> diff --git a/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
+>>>>>>> index 0c3910f152d1d..c940199ce89df 100644
+>>>>>>> --- a/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
+>>>>>>> +++ b/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
+>>>>>>> @@ -76,6 +76,11 @@ properties:
+>>>>>>>           This property is to specify the resource id of the remote processor in SoC
+>>>>>>>           which supports SCFW
+>>>>>>>     
+>>>>>>> +  fsl,startup-delay-ms:
+>>>>>>> +    default: 0
+>>>>>>> +    description:
+>>>>>>> +      CM firmware start up delay.
+>>>>>>
+>>>>>> I don't see particular improvements from v2 and no responses addressing
+>>>>>> my comment:
+>>>>>> https://lore.kernel.org/all/20221102112451.128110-2-peng.fan@oss.nxp.com/
+>>>>>
+>>>>> I wasn't aware of this being submitted before, esp. since I wrote the
+>>>>> binding document from scratch. Which comment is not addressed, the type
+>>>>> ref is not present and the sentence starts with caps, so what is missing ?
+>>>>
+>>>>
+>>>> That the property looks like a hacky solution to some SW problem. Why
+>>>> this delay should be different on different boards?
+>>>
+>>> It probably depends more on the CM4 firmware that is being launched. The
+>>> ones I tested were fine with 50..500ms delay, but the delay was always
+>>> needed.
+>>
+>> If this is for some official remoteproc FW running on M4
+> 
+> It is not, it is some SDK which can be downloaded from NXP website, 
+> which can then be used to compile the firmware blob. The license is 
+> BSD-3 however, so it is conductive to producing binaries without 
+> matching sources ...
+> 
+>> , then probably
+>> this could be implied by compatible. Otherwise, if this depends on
+>> actual M4 firmware which can totally vary between each board of the same
+>> type (I can run my own FW on M4, right?
+> 
+> Yeah
+> 
+>> ), then it is not suitable DT
+>> property. How it would even look like? You add here 500 ms for all known
+>> firmwares and then someone comes with FW requiring delay of 600 ms.
+> 
+> I would say, some sane default and if some firmware is specifically 
+> weird, just up the delay. It is better than no firmware working at all.
+> 
+> Do you have a better hint how to deal with this ?
 
---------------rrE1gd9xgtDN66LPMEindtwb
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: base64
+Put some working value in the driver. If this does not help, complain to
+NXP about their SDK firmware. I know how that would work - NXP does not
+really care about customers and open-source - but that should not be
+really an excuse for us.
 
-DQoNCkFtIDEwLjA3LjIzIHVtIDE5OjQwIHNjaHJpZWIgUm9iIEhlcnJpbmc6DQo+IFNpbmNl
-IGNvbW1pdCAyNDFkMmZiNTZhMTggKCJvZjogTWFrZSBPRiBmcmFtZWJ1ZmZlciBkZXZpY2Ug
-bmFtZXMgdW5pcXVlIiksDQo+IGFzIHNwb3R0ZWQgYnkgRnLDqWTDqXJpYyBCb25uYXJkLCB0
-aGUgaGlzdG9yaWNhbCAib2YtZGlzcGxheSIgZGV2aWNlIGlzDQo+IGdvbmU6IHRoZSB1cGRh
-dGVkIGxvZ2ljIGNyZWF0ZXMgIm9mLWRpc3BsYXkuMCIgaW5zdGVhZCwgdGhlbiBhcyBtYW55
-DQo+ICJvZi1kaXNwbGF5Lk4iIGFzIHJlcXVpcmVkLg0KPiANCj4gVGhpcyBtZWFucyB0aGF0
-IG9mZmIgbm8gbG9uZ2VyIGZpbmRzIHRoZSBleHBlY3RlZCBkZXZpY2UsIHdoaWNoIHByZXZl
-bnRzDQo+IHRoZSBEZWJpYW4gSW5zdGFsbGVyIGZyb20gc2V0dGluZyB1cCBpdHMgaW50ZXJm
-YWNlLCBhdCBsZWFzdCBvbiBwcGM2NGVsLg0KPiANCj4gRml4IHRoaXMgYnkga2VlcGluZyAi
-b2YtZGlzcGxheSIgZm9yIHRoZSBmaXJzdCBkZXZpY2UgYW5kICJvZi1kaXNwbGF5Lk4iDQo+
-IGZvciBzdWJzZXF1ZW50IGRldmljZXMuDQo+IA0KPiBMaW5rOiBodHRwczovL2J1Z3ppbGxh
-Lmtlcm5lbC5vcmcvc2hvd19idWcuY2dpP2lkPTIxNzMyOA0KPiBMaW5rOiBodHRwczovL2J1
-Z3MuZGViaWFuLm9yZy8xMDMzMDU4DQo+IEZpeGVzOiAyNDFkMmZiNTZhMTggKCJvZjogTWFr
-ZSBPRiBmcmFtZWJ1ZmZlciBkZXZpY2UgbmFtZXMgdW5pcXVlIikNCj4gQ2M6IHN0YWJsZUB2
-Z2VyLmtlcm5lbC5vcmcNCj4gQ2M6IEN5cmlsIEJydWxlYm9pcyA8Y3lyaWxAZGViYW1heC5j
-b20+DQo+IENjOiBUaG9tYXMgWmltbWVybWFubiA8dHppbW1lcm1hbm5Ac3VzZS5kZT4NCj4g
-Q2M6IEhlbGdlIERlbGxlciA8ZGVsbGVyQGdteC5kZT4NCj4gU2lnbmVkLW9mZi1ieTogUm9i
-IEhlcnJpbmcgPHJvYmhAa2VybmVsLm9yZz4NCg0KQWNrZWQtYnk6IFRob21hcyBaaW1tZXJt
-YW5uIDx0emltbWVybWFubkBzdXNlLmRlPg0KDQo+IC0tLQ0KPiAgIGRyaXZlcnMvb2YvcGxh
-dGZvcm0uYyB8IDIgKy0NCj4gICAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKyksIDEg
-ZGVsZXRpb24oLSkNCj4gDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL29mL3BsYXRmb3JtLmMg
-Yi9kcml2ZXJzL29mL3BsYXRmb3JtLmMNCj4gaW5kZXggMDUxZTI5YjdhZDJiLi4wYzM0NzVl
-N2QyZmYgMTAwNjQ0DQo+IC0tLSBhL2RyaXZlcnMvb2YvcGxhdGZvcm0uYw0KPiArKysgYi9k
-cml2ZXJzL29mL3BsYXRmb3JtLmMNCj4gQEAgLTU1Miw3ICs1NTIsNyBAQCBzdGF0aWMgaW50
-IF9faW5pdCBvZl9wbGF0Zm9ybV9kZWZhdWx0X3BvcHVsYXRlX2luaXQodm9pZCkNCj4gICAJ
-CQlpZiAoIW9mX2dldF9wcm9wZXJ0eShub2RlLCAibGludXgsb3BlbmVkIiwgTlVMTCkgfHwN
-Cj4gICAJCQkgICAgIW9mX2dldF9wcm9wZXJ0eShub2RlLCAibGludXgsYm9vdC1kaXNwbGF5
-IiwgTlVMTCkpDQo+ICAgCQkJCWNvbnRpbnVlOw0KPiAtCQkJZGV2ID0gb2ZfcGxhdGZvcm1f
-ZGV2aWNlX2NyZWF0ZShub2RlLCAib2YtZGlzcGxheS4wIiwgTlVMTCk7DQo+ICsJCQlkZXYg
-PSBvZl9wbGF0Zm9ybV9kZXZpY2VfY3JlYXRlKG5vZGUsICJvZi1kaXNwbGF5IiwgTlVMTCk7
-DQo+ICAgCQkJb2Zfbm9kZV9wdXQobm9kZSk7DQo+ICAgCQkJaWYgKFdBUk5fT04oIWRldikp
-DQo+ICAgCQkJCXJldHVybiAtRU5PTUVNOw0KDQotLSANClRob21hcyBaaW1tZXJtYW5uDQpH
-cmFwaGljcyBEcml2ZXIgRGV2ZWxvcGVyDQpTVVNFIFNvZnR3YXJlIFNvbHV0aW9ucyBHZXJt
-YW55IEdtYkgNCkZyYW5rZW5zdHJhc3NlIDE0NiwgOTA0NjEgTnVlcm5iZXJnLCBHZXJtYW55
-DQpHRjogSXZvIFRvdGV2LCBBbmRyZXcgTXllcnMsIEFuZHJldyBNY0RvbmFsZCwgQm91ZGll
-biBNb2VybWFuDQpIUkIgMzY4MDkgKEFHIE51ZXJuYmVyZykNCg==
+Best regards,
+Krzysztof
 
---------------rrE1gd9xgtDN66LPMEindtwb--
-
---------------EJlFeu4ajUbibragQamf4Zcq
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature"
-
------BEGIN PGP SIGNATURE-----
-
-wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmSs7/QFAwAAAAAACgkQlh/E3EQov+By
-PA/9EW57Zs5sk3iddg/7LyeGpSXcv35PnNZUpqCm6rBQ/bmDziTNKi2cPDvg/qC50cEwuH4RSJsH
-MfKrUOVg7vxOwYKnTf3caz264mGVlI1xFwf9GiVeURyw5SnCVguOL5yObxfCveZtNWqyIkE+3NG0
-aHzLnkjhNxoW6Pv69DyLxrIjMxAXQduWwG6+3Otajh8KFqC+3KeOJzyLqb/q/3kOknw5KhFlV/4E
-QHCpBQ4Il3w2wazFi+53ePGgZyqwJOB/BLTyozq7f/2DBa5mXruqtUUT7j/IwI84eqYGWxXaIVPb
-T0IfjhBXdoBAUpgtB4jT0paoWFhcKK7zq7I3MbyiIMT/7V8wuYfaI4rOC5AlpDYeJ7uPCQuB7Fgo
-88xX9+2/rleh6zwYM+Y+rec90gkKS/AuUOPVfrPMi38Y0MpvX9/JY4eSEAkYzLxZ2ikbKScdg9c3
-GktsZ3kEDo28Y6ZfRfk9lOfdl+xQHM22pd3pIBdy/cyR7y7Q2uCV9kkta6dHA8dUjANJONevcsW5
-hda2NQYx4pzkFvJd+rPVfVEvdgqYvrfz+2jWmfJgM97O6coJqof3jd52Sob0yH2cRoGtV5T0AYMZ
-us9FLSraDImc+FXkMqq5PHLbvKEGetHcpc+9uxeLST7AJ60KO3dpHzJd2W5gDFBHTFSMsQfdyhm7
-eSI=
-=KYfa
------END PGP SIGNATURE-----
-
---------------EJlFeu4ajUbibragQamf4Zcq--
