@@ -2,121 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9109C74F3BB
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 17:38:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D555B74F3ED
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 17:43:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231543AbjGKPhu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jul 2023 11:37:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51038 "EHLO
+        id S233184AbjGKPnp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jul 2023 11:43:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56566 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232859AbjGKPhQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 11:37:16 -0400
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0ADC21FDC
-        for <devicetree@vger.kernel.org>; Tue, 11 Jul 2023 08:36:53 -0700 (PDT)
-Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-3fbc0609cd6so59342595e9.1
-        for <devicetree@vger.kernel.org>; Tue, 11 Jul 2023 08:36:52 -0700 (PDT)
+        with ESMTP id S233446AbjGKPnI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 11:43:08 -0400
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A18C10EA;
+        Tue, 11 Jul 2023 08:42:54 -0700 (PDT)
+Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-3fbc244d384so60339435e9.0;
+        Tue, 11 Jul 2023 08:42:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1689089811; x=1691681811;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=+GJI50mwxWlMPNP5cWPxpWEEdZG5lOnOefrq0yW+CGM=;
-        b=wUDuda6My1fJhNJVTT4xzuCaPmZY9FWx4CNdwFY76vkATX+e7rRSrHp9ms5ohVNIOu
-         IrLDOM0o95o8ib0GLHo08AGMsQQSPq48+rYhBhainzia4BksqYK9okETo7tFlymZM+Rf
-         tYqT8fTpFGbbE3g1scqMByZUHJxF7frvB5/PgKqI5M2qTrkxiJbDIU9IzPrECsxOBd5Y
-         xGTLlnCDj6UoBNkYmy+hk7EPro7JzQTwkFpQ8neSbIGi7wrqFt+vKFDyCt0pvEGb1JxN
-         HubtI3fLpCuZE9ICFKpYlZD+O7QQ6PgY+6pcArhT515Axy0o6GKn4bX8fzSu34HybOp8
-         6SjQ==
+        d=gmail.com; s=20221208; t=1689090173; x=1691682173;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=dYkIVAZXWVX4d2XXeeAGh0C7Fz570/7R4cfKcgzr7xM=;
+        b=T2CpvTIaIbPDKjJ5YVIA4ke79D2vU13ltJkDu3hEYYT38x9IvL0ujvxlw7yFVfesbN
+         U48N4AJ3OUkwGg5ea/5jzux45iFRoWq9o4x5OVFko73IoWlz8M3OCnsfiApLP9OHSzKi
+         sn9uaW7ZoxxyXG0f5Z2B47vhoh3UIVuDPdpo8GZE4jK+rzSrXtAHS6AJLvIVZ5VwXLga
+         /xc1q9dDQT9mB867Wa0DfMbNsDXP9rLUPTdA1GiZRc5691ige8/jyuZEyjkK7GuS682O
+         8VGVv/hbZ+3WH3Br1UafqwtzxnQqrkqKqJt1GRdnw7TWSzZq0xZD882vkKTX/hcfyiQT
+         no0Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689089811; x=1691681811;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20221208; t=1689090173; x=1691682173;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=+GJI50mwxWlMPNP5cWPxpWEEdZG5lOnOefrq0yW+CGM=;
-        b=gcZ1PW1xjJZMmxVj8oUra/wzoD6Uao6zXt/WE+cbukezg6QjlgLJbk8msEfcNtJA2d
-         XnxLP0yZ2F/Cg3AW69aoevykOikJcd179cfAChSbW20ZH7Uskfss/0obDQqMIERDCRZn
-         slCddcjcorqQ0L/AbgeU+HrS2WsS0SW5ItM9M6d4xxO8beeWfhNmBaY6EvtEizt5zcl1
-         l2VZFfCAtYtjQcEW3LnwgmcJ4imYxCtnG8x7GqCO6xT3wxBvDhmVq+B2wRlrcHwNFo39
-         xHY/rVZxLy3//iVUXcpwHF+cSRzk4eic87nIO2S4gbO2ZtFOKZ3nCCsRClgzG36FhZuz
-         Ohsw==
-X-Gm-Message-State: ABy/qLZCg1kIl6r0c5CrFTRhhuGnpRJ4Z49yd/35W3bf7p1NnjR17L+v
-        2IsW7ae4tYLapYC1kB9sCx94UQ==
-X-Google-Smtp-Source: APBJJlF9So6LfwkBVH+qlI0rbO+D3Aq+ntkutH+LIy5IavL97S9sKAgEMeI+1n9UiFYVZdmvXxGIuA==
-X-Received: by 2002:a05:600c:22c1:b0:3f7:f45d:5e44 with SMTP id 1-20020a05600c22c100b003f7f45d5e44mr13522351wmg.32.1689089811521;
-        Tue, 11 Jul 2023 08:36:51 -0700 (PDT)
-Received: from [127.0.1.1] ([93.5.22.158])
-        by smtp.googlemail.com with ESMTPSA id v6-20020a05600c444600b003fbb1ce274fsm23458249wmn.0.2023.07.11.08.36.47
+        bh=dYkIVAZXWVX4d2XXeeAGh0C7Fz570/7R4cfKcgzr7xM=;
+        b=C7VLcnm+VFrfpKcGSsiLZrbGvYTul1L7dP10hBscN1n2qUge8X4/OJ2Vlt1eiIqusB
+         MS0q9nyXJBxWNUoFcBNL9goPxYpW065Tgn8qf5E6mEJODuKY6Vu66gLlyV6m0CXYzgL2
+         eplhGu4kNSxOat635PbGsZLU50174TDsXGJEW2VNpOGHNnbgCF4nTjUBfIfuEaeOXWyl
+         LoqYbVUOPweGetouzSoYTZtNVLhl8mh8CfrGK7tilWskqbVseq5141oH1Ecrbu7Pq+uE
+         +u0K+hw7A+oadFub0dF5XH3JbF6j1dQxKJl2G9XBIzCk4YboQLsSfg1j1JIAVB0dt9AE
+         9tzw==
+X-Gm-Message-State: ABy/qLb9R9PB7MBywzVq638xOeRIcWOhab5Ac/YOmIAWJ95gRcUqIWSt
+        3WNqaatDSn2R0ojWo85lS3NGfpH1pAM=
+X-Google-Smtp-Source: APBJJlFW86hBRt0IpFq/pliN6JI4YKtM0YwYa0MQwtzpGnECPTVzremtVJfCW2S2nC8lLTC/Aws1qw==
+X-Received: by 2002:a05:600c:234b:b0:3fc:dd9:91fd with SMTP id 11-20020a05600c234b00b003fc0dd991fdmr7229551wmq.40.1689090172348;
+        Tue, 11 Jul 2023 08:42:52 -0700 (PDT)
+Received: from orome (p200300e41f4b7100f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f4b:7100:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id u10-20020a7bcb0a000000b003fb739d27aesm13212223wmj.35.2023.07.11.08.42.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 Jul 2023 08:36:48 -0700 (PDT)
-From:   Alexandre Mergnat <amergnat@baylibre.com>
-Date:   Tue, 11 Jul 2023 17:36:29 +0200
-Subject: [PATCH 3/3] arm64: defconfig: enable STARTEK KD070FHFID015 panel
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230711-startek_display-v1-3-163917bed385@baylibre.com>
-References: <20230711-startek_display-v1-0-163917bed385@baylibre.com>
-In-Reply-To: <20230711-startek_display-v1-0-163917bed385@baylibre.com>
-To:     Neil Armstrong <neil.armstrong@linaro.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        Tue, 11 Jul 2023 08:42:51 -0700 (PDT)
+Date:   Tue, 11 Jul 2023 17:42:49 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc:     "Rafael J . Wysocki" <rafael@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>
-Cc:     Guillaume La Roque <glaroque@baylibre.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Alexandre Mergnat <amergnat@baylibre.com>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=767; i=amergnat@baylibre.com;
- h=from:subject:message-id; bh=3ewdZnRTwiLei9nYvBO9iEQ33z/6iSvXdTZm6ylJVyY=;
- b=owEBbQKS/ZANAwAKAStGSZ1+MdRFAcsmYgBkrXcKUQWbV2iAeFPR/VjBVggDjm9Nq2Kb2ijsPX3v
- LhVCYBaJAjMEAAEKAB0WIQQjG17X8+qqcA5g/osrRkmdfjHURQUCZK13CgAKCRArRkmdfjHURaueD/
- 99uwr2/xYOYtFmN2Ous86Zl0n+MhUimAFkQ78BPNDlViDKM2LofCjegnKCtkPmgo+vOZbrZ7/Zv3D4
- sxjws2zW5NwdZRHRaSODznJG4NJFvt4fp62/Ndi6aUSXtQZgTRDfBstVPlKoOp5+mHT+LkpT7VqF2s
- QNZ5hbqOOrVcHJWvTnm1Na38zw65IvNOizOPsfov+cnpmc2G04tezzZUkLwQZxqeK6TottpGR9zGkR
- HzRuWIkAbQnkbss+XvXUFZpPVDjlZwPDEap9wIOHHRFyGziLv4sXoKaOn+bf2BlJsMmg9Mf5xxXyJZ
- KM3dpb0d9wCwaiUlGyWI4Dd9bYGwykqzI18RywHBJjAY2sAAGiIx/earW3dVSJaYaV6NEMdc1ENMAz
- 47rSlNev8SPoutpEERMpE7sATabdhQYW9vtdwF5GQLiUOv4LvOE9MekZhYT2DWANzdpj16npCvcHBt
- 6McpSQrTqnvFFSsGm0jrWO0Xgfi7w6H71iDw3KvcPsDvq3rUo9YLTKB0lSVA6b90+lm4QBEqiEZDWE
- eplqDbUJ+aHJUp09rlxeL8LSjIm6+LVr7ZQLqBuYGsC/lCV17lVSPdHGFBSzFYRodmLHoSTLj/SMjK
- 0ip5nUMmiVX8RPZGoJLm+eN4VKcOICM/5GkztLRm63b+li6qa3QGNUvaFG+A==
-X-Developer-Key: i=amergnat@baylibre.com; a=openpgp;
- fpr=231B5ED7F3EAAA700E60FE8B2B46499D7E31D445
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Jon Hunter <jonathanh@nvidia.com>, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
+Subject: Re: [PATCH 00/10] thermal: tegra: Do not register cooling device
+Message-ID: <ZK14edZUih1kH_sZ@orome>
+References: <20230414125721.1043589-1-thierry.reding@gmail.com>
+ <fa218582-0ac1-ea8e-fcaf-222bdcf2bc6a@linaro.org>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="DlpEOaqtXO5oFliO"
+Content-Disposition: inline
+In-Reply-To: <fa218582-0ac1-ea8e-fcaf-222bdcf2bc6a@linaro.org>
+User-Agent: Mutt/2.2.10 (2023-03-25)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Build Startek KD070FHFID015 panel driver. This MIPI-DSI display
-can be used for the mt8365-evk board for example.
 
-Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
----
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+--DlpEOaqtXO5oFliO
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 0777bcae9104..cb24a3d1219b 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -816,6 +816,7 @@ CONFIG_DRM_PANEL_EDP=m
- CONFIG_DRM_PANEL_MANTIX_MLAF057WE51=m
- CONFIG_DRM_PANEL_RAYDIUM_RM67191=m
- CONFIG_DRM_PANEL_SITRONIX_ST7703=m
-+CONFIG_DRM_PANEL_STARTEK_KD070FHFID015=m
- CONFIG_DRM_PANEL_TRULY_NT35597_WQXGA=m
- CONFIG_DRM_PANEL_VISIONOX_VTDR6130=m
- CONFIG_DRM_LONTIUM_LT8912B=m
+On Tue, Jul 11, 2023 at 10:25:16AM +0200, Daniel Lezcano wrote:
+> Hi Thierry,
+>=20
+> do you have an update for this series?
 
--- 
-2.25.1
+Yeah, I've been working on this on and off for a while since I ran into
+some complications with this version. I need to find a block of spare
+time to go over the latest version again and do some testing. Hopefully
+I can get around to that within this week or next.
 
+Thierry
+
+--DlpEOaqtXO5oFliO
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmSteHkACgkQ3SOs138+
+s6GELRAAh3ZZvukzF3k/5LWmdv2+B+5P8ow14YghjTcKEGabnDXfWVbculyh2MgD
+5sClWfrFlsx5ohAsOSAtImsnqmOGeXH9pMPukBVYYfNGVRy11r1oX6l1NWRc1EwA
+8fYjseIMPaUqwOLD2Q/i9Ksjc4PtAqeloH+UI6iNZI/Z7SrUgtLRBGdtkNjW3nNj
+9LjuDZtb+pad0iV7Ij4L1F6K6Vkem6/81LADfT+hhb2n6A/Ynk9KlXtYHySqQVAF
+SyOk3dVBo8i8g//kxjOPdiXd4pFF3YKyGMt3t9sQqFQwFD9X639MYxpxmxwSU+Ji
+4JaOxjV99p1meA9OKAKrZO9e6QlmEdaEuiA3T13/8DQ7pp4Nx9NI3DO5iUeJZ6/A
+Hg5qN+tmwcM7To3TVWvsc+WompqJ1HZ4gmJ1sffIKc/7akRV7uqc0UFI8w4fTK8a
+m1lOxmzDctvpgLz+yF18yNvSZhoUvljXarhy6TC16EoYWf1ozt57zXG1kPmPnnDc
++EnTRysa1MXSRUm8OFEvv33PmY6f4SMA0RvDlROxcfXyy698OFm6cMLXMBL48PSi
+2c+YpR8CfAvYXxCqpRSbPBRY+EFDeEVccdjDsUFEx73MItKbq4I77MjNUvg9yXHz
+2BHR2ejRKyLSN55o2bl5SukcJUXgRGdGMiaF3lu0B2HtxhispL8=
+=qpDd
+-----END PGP SIGNATURE-----
+
+--DlpEOaqtXO5oFliO--
