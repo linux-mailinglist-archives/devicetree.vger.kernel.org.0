@@ -2,116 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0918374F302
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 17:09:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 73A0274F30D
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 17:10:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229921AbjGKPI5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jul 2023 11:08:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33182 "EHLO
+        id S231312AbjGKPKp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jul 2023 11:10:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34788 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230257AbjGKPIo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 11:08:44 -0400
-Received: from mail-4018.proton.ch (mail-4018.proton.ch [185.70.40.18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92202A0
-        for <devicetree@vger.kernel.org>; Tue, 11 Jul 2023 08:08:42 -0700 (PDT)
-Date:   Tue, 11 Jul 2023 15:08:31 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=connolly.tech;
-        s=protonmail; t=1689088119; x=1689347319;
-        bh=VIjn5Sgr+XaI5m5nuTNBKwgTaDZhQimElHATfB00U6o=;
-        h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-         Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-         Message-ID:BIMI-Selector;
-        b=hQD30D9TLLyDcO2bVl3okDKDs2kzhhC5933d/BlWVXxUwQTaMAx3k3rghCgId7t20
-         k6HMSplZ3mlQOqHW09SZiGGpWfONV5kXZs53aG1Ih0OouFOKpT6AWs4loYxgwXJBdG
-         yUJdaQEcExbliNS5agrIVUaRAlobvtUZR3TVaqds=
-To:     Bjorn Andersson <andersson@kernel.org>,
-        Gergo Koteles <soyer@irl.hu>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>
-From:   Caleb Connolly <caleb@connolly.tech>
-Cc:     Jonathan Corbet <corbet@lwn.net>, Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jiri Kosina <jikos@kernel.org>,
-        Benjamin Tissoires <benjamin.tissoires@redhat.com>,
-        linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 2/3] Input: add ABS_SND_PROFILE
-Message-ID: <65708872-3209-bd7b-d873-45e75a9e34bb@connolly.tech>
-In-Reply-To: <20230407171103.5jf46g4hw3fed7dn@ripper>
-References: <cover.1677022414.git.soyer@irl.hu> <1a4752739568afbdbaaff48436d2bb595d2bda0d.1677022414.git.soyer@irl.hu> <20230407171103.5jf46g4hw3fed7dn@ripper>
-Feedback-ID: 10753939:user:proton
+        with ESMTP id S229888AbjGKPKo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 11:10:44 -0400
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7844F198A;
+        Tue, 11 Jul 2023 08:10:20 -0700 (PDT)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 831D1867FA;
+        Tue, 11 Jul 2023 17:10:16 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1689088217;
+        bh=zTE41LdZDjJEbx/bjqRoSdReHSfWxoAdFNd/ooFrzpU=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=YyCpzK3ZMUk0x3susn/Kio3K9q6P+cey1dYLJz25UHXLx8iNKeH/Fj7r9L4tvBuyU
+         T6nfhq+qCBaM3+nHsTNp7vBlWDCt0f47UwCRYYUoKThI8vSaSasIsSKnb89Br38r5N
+         vgGraqZ6u0Y0aH/IE38f+ukNBTjkWQz+7pgtxJhWGD65Owquaw7LN27UiWzPHRn5zT
+         199x5CRay4NdvUPpiGg8Wo3w6iNiuz364E2myMvJYYzUkBRAGMiTIphIOBYsimIAUE
+         8gmmA0DRiuc9rAxrXFrrAf6WguS3HT4Tgi1+LT8w8yfOzornuXXfFA/H2WbIkR6+li
+         IJtQs41lIWPnw==
+Message-ID: <28d31ec6-ec25-b3a3-001c-19fb4b713c5e@denx.de>
+Date:   Tue, 11 Jul 2023 17:10:16 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH 1/2] dt-bindings: remoteproc: imx_rproc: Document
+ fsl,startup-delay-ms
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-remoteproc@vger.kernel.org
+Cc:     Bjorn Andersson <andersson@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Peng Fan <peng.fan@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20230707232444.374431-1-marex@denx.de>
+ <8f40484e-1721-a2bc-2344-f9e59e51a935@linaro.org>
+ <d3180b8f-96d6-380b-4518-17334a90799d@denx.de>
+ <c02d0271-9896-3990-33b0-c83fa54f5623@linaro.org>
+ <7a1d7a67-0a0c-8527-d430-30a1cb40de48@denx.de>
+ <51a1c2e9-1165-c7ff-809d-b09e09d776e2@linaro.org>
+ <6e2e16be-1f83-70d2-4c5d-c2e89a7d017f@denx.de>
+ <761acbba-ffd5-de32-7b82-5a4548d0134b@linaro.org>
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <761acbba-ffd5-de32-7b82-5a4548d0134b@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 7/11/23 08:02, Krzysztof Kozlowski wrote:
 
+[...]
 
-On 07/04/2023 18:11, Bjorn Andersson wrote:
-> On Wed, Feb 22, 2023 at 01:10:33AM +0100, Gergo Koteles wrote:
->> ABS_SND_PROFILE used to describe the state of a multi-value sound profil=
-e
->> switch. This will be used for the alert-slider on OnePlus phones or othe=
-r
->> phones.
+>>> ), then it is not suitable DT
+>>> property. How it would even look like? You add here 500 ms for all known
+>>> firmwares and then someone comes with FW requiring delay of 600 ms.
 >>
->> Profile values added as SND_PROFLE_(SILENT|VIBRATE|RING) identifiers
->> to input-event-codes.h so they can be used from DTS.
+>> I would say, some sane default and if some firmware is specifically
+>> weird, just up the delay. It is better than no firmware working at all.
 >>
->> Signed-off-by: Gergo Koteles <soyer@irl.hu>
->> ---
->>  Documentation/input/event-codes.rst    | 6 ++++++
->>  drivers/hid/hid-debug.c                | 1 +
->>  include/uapi/linux/input-event-codes.h | 9 +++++++++
->>  3 files changed, 16 insertions(+)
->>
->> diff --git a/Documentation/input/event-codes.rst b/Documentation/input/e=
-vent-codes.rst
->> index b4557462edd7..d43336e64d6a 100644
->> --- a/Documentation/input/event-codes.rst
->> +++ b/Documentation/input/event-codes.rst
->> @@ -241,6 +241,12 @@ A few EV_ABS codes have special meanings:
->>      emitted only when the selected profile changes, indicating the newl=
-y
->>      selected profile value.
->>
-...
->>
->> +/*
->> + * ABS_SND_PROFILE values
->> + */
->> +
->> +#define SND_PROFILE_SILENT=090x00
->> +#define SND_PROFILE_VIBRATE=090x01
->> +#define SND_PROFILE_RING=090x02
->=20
-> The patch looks good to me, bu I'd need these header file additions in
-> order to merge the dts patch. Could I get an ack and take it through the
-> Qualocmm tree, or could you pick it up for 6.4, and then I can merge the
-> dts change after that?
+>> Do you have a better hint how to deal with this ?
+> 
+> Put some working value in the driver. If this does not help, complain to
+> NXP about their SDK firmware.I know how that would work - NXP does not
+> really care about customers and open-source - but that should not be
+> really an excuse for us.
 
-Bump, I think this might have gotten lost.
->=20
-> Regards,
-> Bjorn
->=20
->> +
->>  #endif
->> --
->> 2.39.2
->>
-
---=20
-Kind Regards,
-Caleb
-
+Yes, so, I'll just stick half a second delay into the driver for now.
