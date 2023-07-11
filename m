@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 396CC74F2B9
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 16:52:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 22DE474F2BC
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 16:52:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233032AbjGKOwB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S232262AbjGKOwB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Tue, 11 Jul 2023 10:52:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57572 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57584 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232262AbjGKOv7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 10:51:59 -0400
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7701110C7
-        for <devicetree@vger.kernel.org>; Tue, 11 Jul 2023 07:51:58 -0700 (PDT)
-Received: by mail-lj1-x233.google.com with SMTP id 38308e7fff4ca-2b6f52e1c5cso91699211fa.1
-        for <devicetree@vger.kernel.org>; Tue, 11 Jul 2023 07:51:58 -0700 (PDT)
+        with ESMTP id S233009AbjGKOwA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 10:52:00 -0400
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36FEC1BB
+        for <devicetree@vger.kernel.org>; Tue, 11 Jul 2023 07:51:59 -0700 (PDT)
+Received: by mail-lj1-x22e.google.com with SMTP id 38308e7fff4ca-2b703c900e3so90583441fa.1
+        for <devicetree@vger.kernel.org>; Tue, 11 Jul 2023 07:51:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689087116; x=1691679116;
+        d=linaro.org; s=google; t=1689087117; x=1691679117;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=clZXj6gZg4E2arvSnMQsRuKpBAzu3uBnm18+zvu0vw8=;
-        b=ea5VGQsvNQJFLvX7bhEYsMQbmcfKL4TJqbbuiLs9Ova/uX6MCpMVtRzk6vs5E6/7bW
-         UmdvgWpwj0x/Rxr/JC2TEGrHkFCP0l/oIELASMPOYtBt1d5mqq2FJkZztXpEm58vx5Eb
-         atOHKwX2ULFX8CPq6gqvooraeOJWL2KLrZdHKfE58YQgniPFRxxaBnzsTWNRlUY5S5O9
-         N9nrSvqmk9d3gEn9wjiJgMez8SCJJdG0byfQXKg8hapEoGTGTnpnnOCErGRXDsmFhYUF
-         nNLCv4TzLULTPENdrbj5Gj7E9BheO1iYn26BQmUSVK/+lwQqIJWNPz0ZyLYTxF8wSled
-         tYSA==
+        bh=ZaFM0odHOwyVXlZ7BTzsvnZZXeV4qqjvcQiUQV7DUJQ=;
+        b=S5xBfK6yK2/9LXpPSuY18Z7Z0vCW3sMNNOxGj03+AMML2ZrOm8DFWJQWrNCiuwmqpo
+         0i+r4R2IsLpqaeUwD4Me+Ar742magH6VyiNZ6gZLvWhpdgpFz5s8dnqmmv308HSD/koC
+         +mkCtmx4g8kCATtWGvKiahfaMJsGbhKFeBhNrNs1JrTtyeDczsJ/TCumnZdVsfKH5uEm
+         c882G/PoxdlPglT6V9L9MXJVdFeAw6g3NCILnPA9wPbs+2E8tskg3X3jtHq2ZAkO/yjE
+         Yl4NLbbO7oOq0DshQPwdMDJr6XnunFjwWazyuqe0DO6ZojD85c8qw4bHpALyolnqLcLt
+         n7Ww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689087116; x=1691679116;
+        d=1e100.net; s=20221208; t=1689087117; x=1691679117;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=clZXj6gZg4E2arvSnMQsRuKpBAzu3uBnm18+zvu0vw8=;
-        b=E4FdFjZxAxnkzPmPdnF1+OXGT9RWN0eH3sU50NtZjMKc3XQ9I2Ww0cd6ALcbHY6uNl
-         9miq8RzRpudW25w1hhzvQgTxfH2RNFK15/luZ5IqnOVCMJtJCCXoUxQsnFn2g0nlpi/8
-         G7KMZqbeuI6RagwtkNhcgm0RqF+kBhOdWhrU6TAofbknrxqLI/1JEgMeuZbtElOH6iXQ
-         GyKNUzq+2abuTI3UzLrjQJ3Pt+hzMVXw8enR2iudDEBc6+UV/8jr89FGpdpYyxtOXwOC
-         WXr905dBodouDJw2WULBMTtXs70QK/zh8N1OQ1NCEXcqu+kSbb7tOxs41X90kCyQnJ/7
-         XeJQ==
-X-Gm-Message-State: ABy/qLYxiV9Uk52WmibeV+JYFDB+9MwvKnTxzBlfMm2FmFGqdVF+FUti
-        s+t9buf36z3wyP3RKg78FxZE3w==
-X-Google-Smtp-Source: APBJJlH3OPVHYYlrhAscwStdza0gNrI6TEC5lR7qo1xTsN0us3/jJgQoZtd5P736M84dT6qVUhXqjg==
-X-Received: by 2002:a2e:9c14:0:b0:2b7:31c:8c44 with SMTP id s20-20020a2e9c14000000b002b7031c8c44mr14037915lji.7.1689087116735;
-        Tue, 11 Jul 2023 07:51:56 -0700 (PDT)
+        bh=ZaFM0odHOwyVXlZ7BTzsvnZZXeV4qqjvcQiUQV7DUJQ=;
+        b=UfZNtdyn2qbGwfKs1sfTRLVdNFPjUOwkdqcbrShS2MzchKXVJ45ZPdw86F/jbT3RWJ
+         HtelKG+V7AnAjA7Unj+bZT2NnQq5mKEpaHRe2i8FIk7WFy9y2hh+wMnReTyn1FG8xnka
+         XRIfwpLcrOCu4/LhLdpD7CfcxCLexCXapNutoY08Y2n5ISh53/an5XnFzHEjOGQmUkLq
+         G+KzIUXf7Vy/BHiZ6PwseDTcBB2uyegwtY3JbqLmsT4MhsZvIFu86mQVgWCWqodmVkko
+         F0RRfUzfafdX++yxk68pftrNkQYOfDHQbAuQYr9kN+uqWG8/rlaf/hXLr52LOhQndSRt
+         gsMw==
+X-Gm-Message-State: ABy/qLbYe5jJWjjuiZ+64poROVYbxspP85VAlSjHcBMHoo3uWqXWy/kQ
+        my7YeZjUQ7HlXcp7TFJn8R0kYA==
+X-Google-Smtp-Source: APBJJlEIft5+HD6PwdrQ7zbOHbuisJ01W9TvVIPaV+UpZWMIzgZ9GHiwbpqbBe5e5+P7PaxyGHYIOA==
+X-Received: by 2002:a05:651c:1034:b0:2b7:a64:6c3d with SMTP id w20-20020a05651c103400b002b70a646c3dmr11813767ljm.44.1689087117535;
+        Tue, 11 Jul 2023 07:51:57 -0700 (PDT)
 Received: from umbar.unikie.fi ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id a10-20020a2eb16a000000b002b6ee363337sm492454ljm.120.2023.07.11.07.51.55
+        by smtp.gmail.com with ESMTPSA id a10-20020a2eb16a000000b002b6ee363337sm492454ljm.120.2023.07.11.07.51.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 Jul 2023 07:51:56 -0700 (PDT)
+        Tue, 11 Jul 2023 07:51:57 -0700 (PDT)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -60,9 +60,9 @@ To:     Andy Gross <agross@kernel.org>,
 Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
         Johan Hovold <johan@kernel.org>, linux-arm-msm@vger.kernel.org,
         linux-phy@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [PATCH v4 03/11] arm64: dts: qcom: msm8996: switch UFS QMP PHY to new style of bindings
-Date:   Tue, 11 Jul 2023 17:51:45 +0300
-Message-Id: <20230711145153.4167820-4-dmitry.baryshkov@linaro.org>
+Subject: [PATCH v4 04/11] arm64: dts: qcom: msm8998: switch UFS QMP PHY to new style of bindings
+Date:   Tue, 11 Jul 2023 17:51:46 +0300
+Message-Id: <20230711145153.4167820-5-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230711145153.4167820-1-dmitry.baryshkov@linaro.org>
 References: <20230711145153.4167820-1-dmitry.baryshkov@linaro.org>
@@ -71,7 +71,7 @@ Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -84,66 +84,52 @@ resource region, no per-PHY subnodes).
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/msm8996.dtsi | 25 +++++++++----------------
- 1 file changed, 9 insertions(+), 16 deletions(-)
+ arch/arm64/boot/dts/qcom/msm8998.dtsi | 18 ++++--------------
+ 1 file changed, 4 insertions(+), 14 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-index de20e62284cc..a2822d7dcd44 100644
---- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-@@ -728,9 +728,9 @@ gcc: clock-controller@300000 {
- 				 <&pciephy_1>,
- 				 <&pciephy_2>,
- 				 <&ssusb_phy_0>,
--				 <&ufsphy_lane 0>,
--				 <&ufsphy_lane 1>,
--				 <&ufsphy_lane 2>;
-+				 <&ufsphy 0>,
-+				 <&ufsphy 1>,
-+				 <&ufsphy 2>;
- 			clock-names = "cxo",
- 				      "cxo2",
- 				      "sleep_clk",
-@@ -1995,7 +1995,7 @@ ufshc: ufshc@624000 {
- 			reg = <0x00624000 0x2500>;
+diff --git a/arch/arm64/boot/dts/qcom/msm8998.dtsi b/arch/arm64/boot/dts/qcom/msm8998.dtsi
+index 78867cb00875..31ea64abe4d1 100644
+--- a/arch/arm64/boot/dts/qcom/msm8998.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8998.dtsi
+@@ -984,7 +984,7 @@ ufshc: ufshc@1da4000 {
+ 			compatible = "qcom,msm8998-ufshc", "qcom,ufshc", "jedec,ufs-2.0";
+ 			reg = <0x01da4000 0x2500>;
  			interrupts = <GIC_SPI 265 IRQ_TYPE_LEVEL_HIGH>;
- 
--			phys = <&ufsphy_lane>;
+-			phys = <&ufsphy_lanes>;
 +			phys = <&ufsphy>;
  			phy-names = "ufsphy";
- 
+ 			lanes-per-direction = <2>;
  			power-domains = <&gcc UFS_GDSC>;
-@@ -2048,25 +2048,18 @@ ufshc: ufshc@624000 {
+@@ -1025,11 +1025,7 @@ ufshc: ufshc@1da4000 {
  
- 		ufsphy: phy@627000 {
- 			compatible = "qcom,msm8996-qmp-ufs-phy";
--			reg = <0x00627000 0x1c4>;
+ 		ufsphy: phy@1da7000 {
+ 			compatible = "qcom,msm8998-qmp-ufs-phy";
+-			reg = <0x01da7000 0x18c>;
 -			#address-cells = <1>;
 -			#size-cells = <1>;
--			ranges;
-+			reg = <0x00627000 0x1000>;
- 
- 			clocks = <&gcc GCC_UFS_CLKREF_CLK>;
- 			clock-names = "ref";
- 
- 			resets = <&ufshc 0>;
- 			reset-names = "ufsphy";
 -			status = "disabled";
+-			ranges;
++			reg = <0x01da7000 0x1000>;
  
--			ufsphy_lane: phy@627400 {
--				reg = <0x627400 0x12c>,
--				      <0x627600 0x200>,
--				      <0x627c00 0x1b4>;
--				#clock-cells = <1>;
+ 			clock-names =
+ 				"ref",
+@@ -1041,14 +1037,8 @@ ufsphy: phy@1da7000 {
+ 			reset-names = "ufsphy";
+ 			resets = <&ufshc 0>;
+ 
+-			ufsphy_lanes: phy@1da7400 {
+-				reg = <0x01da7400 0x128>,
+-				      <0x01da7600 0x1fc>,
+-				      <0x01da7c00 0x1dc>,
+-				      <0x01da7800 0x128>,
+-				      <0x01da7a00 0x1fc>;
 -				#phy-cells = <0>;
 -			};
-+			#clock-cells = <1>;
 +			#phy-cells = <0>;
-+
 +			status = "disabled";
  		};
  
- 		camss: camss@a34000 {
+ 		tcsr_mutex: hwlock@1f40000 {
 -- 
 2.39.2
 
