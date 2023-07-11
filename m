@@ -2,139 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4FEED74F461
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 18:05:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 889F774F499
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 18:14:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233132AbjGKQFk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jul 2023 12:05:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40874 "EHLO
+        id S230281AbjGKQOP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jul 2023 12:14:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48936 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232424AbjGKQFf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 12:05:35 -0400
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2068.outbound.protection.outlook.com [40.107.20.68])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B309170C;
-        Tue, 11 Jul 2023 09:05:25 -0700 (PDT)
+        with ESMTP id S230204AbjGKQOO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 12:14:14 -0400
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2087.outbound.protection.outlook.com [40.107.93.87])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8593D1A3;
+        Tue, 11 Jul 2023 09:14:12 -0700 (PDT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=lrYeu2Cmk96WH/iqe9IUshMAa+jcDPo3ktamyTqG9tEMesACbuiXpJ7nD5sPuCzh0Twe2AScxFg3vKeQyjaaPvHUA+s7LCl3LrU3PQaNLKT6S8BpYIPJBaCNUE411esIFvb475Aj0MMVwjGSz1BZSv/SIkvH0vNPbhR2CjVB4/GmBuW6rHHElCjE7m/nTmZHsQmSjUnEhpxu4dNJW802B09+WtBOIuKajnwAaPWNp3oeK1QWxM86K8wOvOmzie8vd5+I3HPe2rvzl2VeRBUYVRGF0JdM2S9YlITULahsfR0+xOAoLo6gGJpLSzw6pDykUOrGX/cnwvh2bLab/zwqAQ==
+ b=QwhDBxUfIdMK11zPSQ2ESmj9AmZfpDMYk+JlHhexFJmAg6T3m0rP9dZulgDcPntfYSMIv2V01o6UN5w9pRVggaXKev8wwTM5ikRBil0hS4xOU1qCfV4TijGIIMHvzp3lfKtRiw9JvyPVCqdYJ0cyG45DYuh+eRnLYIhAa34+R+2cI3fJDKubd4cHT/ZRS8i692v6JFeBP8d72MhiZgCApzeOhVPj3OZHGuUiuEZuQI8TMQ6cm+CBUv2UxVePNn7MbqEn1NzAbbU2OHJrd3SZXg/v9eK0ciF4w6cGM/TUtai5GWKwqB0eas9hS8pSWUcTruwEgbADrOLP7jLktgOwtw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=3L+ZdFhqdrtHeSjrYxQol7P/lIu4DeIa2Dn0lVE3IdE=;
- b=NQMaYcJQrJvn49LUcBOE+SxQUm2svbX4s7bvFL7gdBzvQeuvIhxq6coXERsH84afpUkQA1KRR4XVmzA5kJ3FCLsVl9FKUw3BCO8UzXlnA3HXE5La/wf4msVAVlQiiIQE9DDCgxwozSdxqNizmfiU6Xej/YGJ6JLAxGeKa49B8DdR3/tv0jGlcpi3OWOpY9TWFyaiaQxkvEdsg0fMgG1tljPFdQRm0m2SAPgi/9nuRtzUtiU0gEP6jkJSPB2bIbmvvgwVcrcesi/Iar9Nqd74hfi4f+oraKOBsRs4Zx9K7349bhFa+AHZIzPB5PaLld+cr/D0B0jLA7ldb/1ZLH+dEA==
+ bh=6VlBl6Y84rkV5hajuU2HTIOWkR1HRHWMZj+D0lcVXLw=;
+ b=m6+R6hFu7NOjDyJDKv6Z7QHHvUI8x3BE5GqiZPftxWwuxHuss5flvO8eqGYRRXK5pe4LG9DUYGF3TZVjXANqu7qPBDDRydjJTdAxCKNFtUoX9VMJ3A/PcVcK3ZDA20YupsUWBAR2p1Eyn0zZQ+bLAixvbyxW+UNxRsISpuRuLbfRnMNLlmAKlECLAobNPU3I6aMhsMUofVGdrE7beLh877qyQgK7w06tywvFOXJ/lp09eK+Uc/nbQ4J96XPJyx+Bngquf4YHSzdFuXOIkhqQC3WZT1E9UKTIK0ek9028Q8gXRwxxKXFvwqLADBG/+PqyhrAJQA+F1+E4LI9MbSJncg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=vaisala.com; dmarc=pass action=none header.from=vaisala.com;
- dkim=pass header.d=vaisala.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vaisala.com;
- s=selector1;
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3L+ZdFhqdrtHeSjrYxQol7P/lIu4DeIa2Dn0lVE3IdE=;
- b=uQXYla271ZOJuZuznn56qRoTrxThkDyvX7dAHoVN19iexdtWp+zsHQBW4oSHuLQQpFOfkhdvQ9+gw8ingKuXckaTnZIhD8cnkSv5WcXrNe4hfM00scNBBqt72m3EzPcLUQIvS70mScI5kfQFn+rW9QKZVU5aonm493s4CMwRLrQSxNykWOXgzZn3EgLApFCzOa8CcCT8LnUT6wyl0DP2Oy/KeGlxXSHPI9yYB3/pFhFU0Zn0oxniS/J2PvNRZ7b0SOVcJCjWRXnl1d4My+IGir+BCEYGk8Ed7jxzwuALkUqoJ5SyYeohymH+re6iOFiNBnSTZ42DrNcstacI3V4dpQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=vaisala.com;
-Received: from HE1PR0602MB3241.eurprd06.prod.outlook.com (2603:10a6:7:17::28)
- by AS5PR06MB8889.eurprd06.prod.outlook.com (2603:10a6:20b:651::8) with
+ bh=6VlBl6Y84rkV5hajuU2HTIOWkR1HRHWMZj+D0lcVXLw=;
+ b=JWq5hMSuB2awf0t9pmrhGR/1UqlHEFZkePl5qWw6MvVJm9cYefyjt2isOe0xt0V8t2Fby006GD2rodEp1R5De9yBlWbrzxt+DHq0wSFXznlrcgPCeaIxmh1tITUrvfhzANqboSNmT95tOqy4W1bGO2NUOna9ttKPdzdiOtzN+y8=
+Received: from MN0PR12MB5953.namprd12.prod.outlook.com (2603:10b6:208:37c::15)
+ by DM6PR12MB4283.namprd12.prod.outlook.com (2603:10b6:5:211::21) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6565.32; Tue, 11 Jul
- 2023 16:05:23 +0000
-Received: from HE1PR0602MB3241.eurprd06.prod.outlook.com
- ([fe80::8413:b7d5:15ac:63a3]) by HE1PR0602MB3241.eurprd06.prod.outlook.com
- ([fe80::8413:b7d5:15ac:63a3%3]) with mapi id 15.20.6565.028; Tue, 11 Jul 2023
- 16:05:22 +0000
-Message-ID: <3a5f8c34-dc89-fbbf-c330-6a00298e980c@vaisala.com>
-Date:   Tue, 11 Jul 2023 19:05:19 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH 0/2] net: phy: dp83822: Add support for line class driver
- configuration
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6565.30; Tue, 11 Jul
+ 2023 16:14:09 +0000
+Received: from MN0PR12MB5953.namprd12.prod.outlook.com
+ ([fe80::69e5:18e:4b1b:28e]) by MN0PR12MB5953.namprd12.prod.outlook.com
+ ([fe80::69e5:18e:4b1b:28e%6]) with mapi id 15.20.6565.028; Tue, 11 Jul 2023
+ 16:14:09 +0000
+From:   "Pandey, Radhey Shyam" <radhey.shyam.pandey@amd.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     "andersson@kernel.org" <andersson@kernel.org>,
+        "mathieu.poirier@linaro.org" <mathieu.poirier@linaro.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "Simek, Michal" <michal.simek@amd.com>,
+        "Levinsky, Ben" <ben.levinsky@amd.com>,
+        "Shah, Tanmay" <tanmay.shah@amd.com>,
+        "linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "git (AMD-Xilinx)" <git@amd.com>
+Subject: RE: [PATCH v2] dt-bindings: remoteproc: add Tightly Coupled Memory
+ (TCM) bindings
+Thread-Topic: [PATCH v2] dt-bindings: remoteproc: add Tightly Coupled Memory
+ (TCM) bindings
+Thread-Index: AQHZqSk6LmYbRPZ6BEyxtQH90GPwHq+tJmEAgAerKVA=
+Date:   Tue, 11 Jul 2023 16:14:09 +0000
+Message-ID: <MN0PR12MB595357704EDA02F8EAFB7EFAB731A@MN0PR12MB5953.namprd12.prod.outlook.com>
+References: <1687892226-3784452-1-git-send-email-radhey.shyam.pandey@amd.com>
+ <20230706190204.GA144696-robh@kernel.org>
+In-Reply-To: <20230706190204.GA144696-robh@kernel.org>
+Accept-Language: en-US
 Content-Language: en-US
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Andrew Davis <afd@ti.com>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230710175621.8612-1-vesa.jaaskelainen@vaisala.com>
- <261cb91c-eb3a-4612-93ad-25e2bc1a7c23@lunn.ch>
- <87fac0dd-9a97-b188-4887-8c4bb21196d5@vaisala.com>
- <6cf76d72-4747-46d2-a1f7-d2f1131491f7@lunn.ch>
- <85e9dfbd-baea-1d73-aaf0-d6c14a1305eb@vaisala.com>
- <0ef64a05-64a0-4119-9dcc-83e65434cd24@lunn.ch>
-From:   =?UTF-8?B?VmVzYSBKw6TDpHNrZWzDpGluZW4=?= 
-        <vesa.jaaskelainen@vaisala.com>
-In-Reply-To: <0ef64a05-64a0-4119-9dcc-83e65434cd24@lunn.ch>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: GV2PEPF000000EA.SWEP280.PROD.OUTLOOK.COM
- (2603:10a6:144:1:0:1:0:14) To HE1PR0602MB3241.eurprd06.prod.outlook.com
- (2603:10a6:7:17::28)
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: MN0PR12MB5953:EE_|DM6PR12MB4283:EE_
+x-ms-office365-filtering-correlation-id: b7fb7eb6-a2e6-4a92-7f6a-08db8229dbbc
+x-ld-processed: 3dd8961f-e488-4e60-8e11-a82d994e183d,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: Qw2n3Sx27HjBKlSI7ncqJSqeU6HI8m+s4bPEEhmgWqRdVXusa3s2wOCS26USlTYi9LxDvhwMDG4jh89LBXtG+KGNy/yaYXD4TM496PBeRQvsr7yMSDzZ38KO6Cp1XLCL7Q3mQkZB6TN6R0JTb0bYEx50JX7vY6cIUKRfo/UHYvXUaIou2Gc7iVTqfGyQYiGASoDt3OhJETeDSZ5BRzGs2tnRNaCMocqtutMak2w1s2Hv1IEa2/vbULsidEc+KjQYR8kSYAkJnTNynVkutIEOElIa6brC8RooJKK1J8ntDO9KWt4w/gytA1QCVZrXF0xvfi9FdtXV9OCi1InTBY4FgeLOmVUB9IGr6np4/Wonh/lIg6bQz5X4GePoabLXnVnSivV8iRQt5kWup6oKFdV+dNW6oBhjYYh5isITPBVbSH7UM1ySOoGVGr2xrHvo+t9LEcdf//oWJH6xL4aoZy6iTKUPkVhrkjlMKHi4N6ry+GafVVLajmA6/nk4U/i4l7b7jPnbRHlXiLbirYwCfNDzrryJUyw80vzGOFtP/xWqOAZCVRW2nHOI9vD2d3Y/5XMDf5CZ86FI0kpip/ljqoXPGph6xJvwsp2hf3asBw7eeaZBsFAxZpkPnPv2YlCMnn91
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MN0PR12MB5953.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(346002)(396003)(136003)(366004)(39860400002)(376002)(451199021)(54906003)(76116006)(478600001)(7696005)(71200400001)(6506007)(26005)(53546011)(186003)(9686003)(66946007)(2906002)(41300700001)(5660300002)(4326008)(66476007)(316002)(66446008)(7416002)(52536014)(66556008)(8936002)(64756008)(6916009)(122000001)(38100700002)(8676002)(33656002)(86362001)(38070700005)(83380400001)(55016003);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?1k6Yi2nkooAE3FFjBA9ADMZ6NZxTEZBM/YeWhshsfAllPTB2paPr2I9pEb9r?=
+ =?us-ascii?Q?K2jhg3NJE0PqgEnCDBIer3l+pzibj5Z+WySuKf/2LNitTNj6e2gr+ebaSrqg?=
+ =?us-ascii?Q?GVEMnpO4qn2rgMrazJLsYKr8QOZ3/g+ri/34Y24ASQJlHPwiuq2+uleDDQNc?=
+ =?us-ascii?Q?H3U1D+vwElKJb53Q/cMa+W4Bp1ETkAN633fdOYWUQxdSZgK32H9k0gO8tRUF?=
+ =?us-ascii?Q?JeC7Hi3JsT7tvAk1FXXt8qxEASI4E42EZopweaOgQbmi0uL98bbV9Nwu9xd+?=
+ =?us-ascii?Q?vnPADqcjvQ6irOQwyNpA9tHrIiKoz7TkGUC1VDmOgXkDxmlNfsHnycXwSVs/?=
+ =?us-ascii?Q?rGT3BEFuaXmI2ahfw38efleQ5rhfZ54VDNm3Za4NnoI/MTmkdo2VnHchITX2?=
+ =?us-ascii?Q?54Vj0F3OhiH93+f3ku+8T/ZEik7ksdlvFMeA56oMR42hGZE+WcZEEayezgTE?=
+ =?us-ascii?Q?oIXE/ERXKSagwLS32x9ku7F0aiuzMU2Pg0AscIhgC8h2JCRyqXg/VAIB4uuG?=
+ =?us-ascii?Q?4vPVMFZVw/0IOw9Wa6ia40ZlIVluoyVdaJXnh/YknAzhXfvMgkoXMbezRE9f?=
+ =?us-ascii?Q?Q9puk+vTRMS32dTh/2TEOCdnlQaLll5nIHHyTI+OqJJcK4GqEJP7TdkcfOEt?=
+ =?us-ascii?Q?55qLwPyJpcQbP3MgYyPKXj3Tr/Gh9y2vPdVv5KacadnJBWRt4xVzaQX6QSYn?=
+ =?us-ascii?Q?QbLDrVqXXXyd29vCwUX1gQqXmmxHoDbJJgo9UfDhsW/TRmjCmJaxpEWpx5TD?=
+ =?us-ascii?Q?aqnphdnp8Al1KDKKdR8+IL22GaG6/VuXArS/+hK0mI02OqhRPiuf2GFa+hNv?=
+ =?us-ascii?Q?Ta/EL/FeQtzNxfa586YrLlovnGP1Ijb7QA20Tbcf7QHY/7Rzd0VXXj3IoyFX?=
+ =?us-ascii?Q?vHAyJDjh1oKLIcMi6gB9Z2TOGjD28SVVCBVxF5e59+3mVYl+VQfGvehSNvEz?=
+ =?us-ascii?Q?l9VJgj6AEGDpqbxD1UnGrGhEQ1KgCyR7rj4GdiP/5XRDaDw41+ykrUhK9oDu?=
+ =?us-ascii?Q?NzqZFIE0QksErGvR5E9ZOyp2tm3N7YccEudEFKccYWM0oQGgp0X5LTEvD+aA?=
+ =?us-ascii?Q?AWkH2xu4mirN8B53OgCnRQxySrFOAAZZ45tGlwV5Edyp737jcepljH0A+ky4?=
+ =?us-ascii?Q?1B0uVxdBb3fzY14bbzpvDgacRmGHF4H/w48S+vJQFTS4lTgBa1RBS5Gy88zv?=
+ =?us-ascii?Q?VkH2Q1nVlPHbrf/a0GIZQckzVOXpitXkGViZ2CIZWSa7Hr5kJ9C4ImJvysTM?=
+ =?us-ascii?Q?T73ewJvJ2N1aY99WHHwq6Oxj5dfdUVfWLxkGFNerVOjZ3nuaPfYSzhPm+0kJ?=
+ =?us-ascii?Q?B6/H0zrG79UcKut3/AFM5+C0KLKr2lnsnYIh4EFP7lrI4xUryxtpLodnf9G0?=
+ =?us-ascii?Q?mamifqS1J9kb0+90EedyNJPfz1FGh4f5SqqUgQkgx5+EPPRwnZycJi+fUo/j?=
+ =?us-ascii?Q?ufKVLmVv65jBxYJfXqRq3V4Lx/QJOn4zONQlzOlS1xojmPo8dT2SYziVleNd?=
+ =?us-ascii?Q?P40IdpDvMd8UnRVIL+p2tKFSaps6y3pvHp5EqnOJ1VgR7j7yT70uYgChqz+X?=
+ =?us-ascii?Q?uj3xzHW0WS6QuutTXfQ=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: HE1PR0602MB3241:EE_|AS5PR06MB8889:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3a0f3119-5a1f-49d6-47dd-08db8228a14a
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: QWVHst1nsor82adH0NnsBN0LoXQtkqgXswCL71jMjiN7dD4nX/EkgEZ5MlAS7tZ2mrcKppXYQgiSeuVOzz4mXbmpWzYZL8Oe/Q5bF2ScunSb26n4Lpz7A8VnIZS0lBfzvVtHJX6GMxdjbQKnja7HRIWH2kEQCX/3pZKArE0hkzbeP7a0ndTp5+ZJ9aW1ZmCXAod0vCS4E+Uhkp/i08j+fof4orqRFGHojUumzF1pP9j18C+lPlV4PRqgbC7PM3AywZr8mtXfjm5W99v2SEWA1Rl1Q0qNSMpRNEuOggY+1lBkNIqtjII+uW34gWcfSyGt+AMMIJdAk0B06Kn8kuWkyDK9A8J1VWvMhJ/n6bC4EVUmZY+LVYL3YW4FhJSbCmGiEZxLunIwBcbdJuKB2/CpvjdQNfbjuWkbKCqL2EZqb/G69qyRvWiQAhfWjfgs93p6qJGf9CI3dvq/PNMFjA3CvRzMGVU5ciqfvXHUWAhXdpTi8Vy0yNhrkFt6pBspHUYXbyWk+2TZCuBnCpZxCwXM9pX7mbR24uSE5Twzfr6P1r5WYtEqGSnFDHF6omWd5Q41C+LSYnmu6EmdRfQ7ZTVM+//aY1/6DFKKWUKZP3RLBg5ZqlnU2G6tJlfCt4qhPqvnq8k5nD9FNK91R7vm46vFnw==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:HE1PR0602MB3241.eurprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(346002)(39860400002)(376002)(366004)(396003)(136003)(451199021)(31696002)(6506007)(41300700001)(26005)(6512007)(31686004)(83380400001)(2616005)(186003)(478600001)(54906003)(6666004)(6486002)(4326008)(6916009)(66476007)(66556008)(66946007)(38100700002)(316002)(7416002)(86362001)(85202003)(8936002)(8676002)(5660300002)(36756003)(2906002)(85182001)(43740500002)(45980500001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bzNpN005NFprbXRJK2xEamUxemlmYk9WMkVFK0QzNVhiRkdRSEpyRHBBMENh?=
- =?utf-8?B?RkN5Uk9UeTBqSWQrcmFPZG9QdXZya1UwbUtkdERKUWYvbHNzanBiSWQyL1NK?=
- =?utf-8?B?SmIwMzlxeXpyejNpWlBGRmpESlptcmlhUmRxRnJFc3ErRCtIL1VjbTBHY3dR?=
- =?utf-8?B?VjF6TWhIWEtNL0lYRXZUYXpOS0RhaVFUUXNrQjJSa2ZFREV0NzFvSzBwcUg1?=
- =?utf-8?B?bElTN2doUjFsN0kzSG5oVTF0Ly9ZckJGbzFxUDZidENFR1JxcUVqOUtsclI3?=
- =?utf-8?B?enpHbE9IbHEwN2xZd3l5N2tqTkRiaWxrQUx5TCtaVWhYdWZOQnZ2MDY5V2Jv?=
- =?utf-8?B?SXkzcGRmRnc4VGh0SW5ZMWRLS2x5WklDeEJVUVU4N2FmQ1JxT1RyQ3hzY2px?=
- =?utf-8?B?dklGNDd3a00yNUNUK2JJOVMvZ1d2YS9KcFZUZlFMYllBcW14REZaRXMvU0x6?=
- =?utf-8?B?V1JaQUdpNHFtM3BRSTBnQmJ3c3dRdTM3eTFEWHAxVE1GeXBOZDl6ZGRVSXZh?=
- =?utf-8?B?Q0FlbmIyd3I3SU93U2xzMC9uOXhzdXNPQlhEd09qVDhyT3g0TXlicElDUzk2?=
- =?utf-8?B?TkhIT3VKN3dXL084czNRRUl4b3Jsc2plRTFlK1RRMGNRYUtYV2RlK1BLTVZw?=
- =?utf-8?B?MmRLcHFUaENtSnNjdm92c1B2STE0R3BYaC9hU201c2FqMWlDRjFLUldyZFBx?=
- =?utf-8?B?WXBMcU56MXlGSEZSSTlJL1hZY1cyN0V3WE80alhjYWhZQ1RmaEVMTVpqK3E0?=
- =?utf-8?B?WnZkYndlRGROdG1vb1AzMVFuczRCLzVGSDkyU0ljbFR2ZEoweTdjUWNZS205?=
- =?utf-8?B?SlQ2UWxvUTBjYVQrVnZlcEhSR09YKzN2MGJVd1dIS1J1KzlUcHB2cHdXdUs3?=
- =?utf-8?B?eEE2bXk3c1dDVWl5Q1dVVUNwVCt3Sld5MDR0Wm4wdU1Ub2NFcEgvN0xQL011?=
- =?utf-8?B?QXZCbmJDWm1hc1FwMEdCSkczWG1XOElNM2dWbEh6R202ajhwd0JLSW9Vd1k3?=
- =?utf-8?B?c212enJtVmdqcSt6RGNSemw5dHlpWUFac0FIMnNxMjY3MXBINlN2bUcxR2lh?=
- =?utf-8?B?UUpVMzlOYTZGdWdWREp5YVFKSGFGMDVDbmpjeWFwVkxyTFdFVFpIT3hJQ240?=
- =?utf-8?B?ZE1oL3Nod3NETmpYTTh4TWlhbTBjYzhGZmhaVnJscmtKTXBQZ0thSzc4dm9N?=
- =?utf-8?B?YlYyT2FCUjFRVmNTbkZFVDZNNTVhM0oxN0NaS2xRZFdVL2xkcVltcWJBaVVJ?=
- =?utf-8?B?TWhCM3VjaEU4eHB2aWd1bnJCRG9ncjdqbEZzNG9seFBkUEJFU3FTcWxGZkdJ?=
- =?utf-8?B?Q0Fad0hPVVhrc0F5dkk2aFZORFpMamZXWGtuS2xNZE0xbENxNTV1U3ZVV3k1?=
- =?utf-8?B?WjI3VkQwaTlZcWtNMGR3cUlDTlpIWElrckxHMlRDY0V2UytIa3JwSDMwOXJG?=
- =?utf-8?B?UzdHSVAxK1pPOXFUWXQ5OUw5L3VLcFc1M0lydC9LOGExK3AxM2ZXeGZGSWc2?=
- =?utf-8?B?VEhPV2VYNEp2SnM0NHpVZ3JsdkdSblZWNHFIMzVySk5VSGkyVFZGRXFkZUhi?=
- =?utf-8?B?aTN6L0U0OHpOazBTcEJMb1piSVJrZTRCQjRFRzVmb0UxSEJ3WFVnZ3hwZlpS?=
- =?utf-8?B?L04rczFCTnNZM1pwdkxkQVRjc1BheEVCRmM4NW1YMUtoTTdlc3dhdHdmVWln?=
- =?utf-8?B?bUxPMVl5cGRFNzRxZ3JkTVFkK3lMTFhPWk1hZnR0dUtJcUVoN1M0cHU4S1FR?=
- =?utf-8?B?ZXhLMDNibnJRRStPdW9KSmN6dldWNitNYVk1emVwb01ZVzQ2VkQ5N2tPejh1?=
- =?utf-8?B?RGhOWWQ3dkIzTWcydW52UVlqQjVEVGlLSzQzaWc5K2J5UVhGRkJoa3dpczFl?=
- =?utf-8?B?K3A2T0taMWQ2ZVdWY2ZxYmY0TDc1dm0vUHdMSksxaTBmVTkrT1FkVVd0MHha?=
- =?utf-8?B?T2VtQWo3aGJFVUtmUEpUU0Zva1pzTklVdUZ2b2Zia3Z0YnFxeDNLNk16MEdT?=
- =?utf-8?B?ZDlZWmlJYWtRRXo1UWRzQ3pXaHp6YWhwak1pdGpLd01aeE5CSk1walZWR0JF?=
- =?utf-8?B?b3h2WThRUGZJeGVDZnVkdEZnZEx5Lyt2bURmdVdqNFYrYmhxeDZ5T3BHVmVw?=
- =?utf-8?B?bFlHWEZYSUFhL3B4SjM0QklySjJCSllZU0VXT00rVDVDU1E4NVo2SjlTWHpv?=
- =?utf-8?B?eGc9PQ==?=
-X-OriginatorOrg: vaisala.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3a0f3119-5a1f-49d6-47dd-08db8228a14a
-X-MS-Exchange-CrossTenant-AuthSource: HE1PR0602MB3241.eurprd06.prod.outlook.com
+X-OriginatorOrg: amd.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Jul 2023 16:05:22.3722
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR12MB5953.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b7fb7eb6-a2e6-4a92-7f6a-08db8229dbbc
+X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Jul 2023 16:14:09.4292
  (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 6d7393e0-41f5-4c2e-9b12-4c2be5da5c57
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: PeEyEZNGsyMgLh3/duz+prhM/QOPwRJ5wOCfT2TM6f0w0R5YF6P/xmCL+zQzq1gPq4JDK5W/+U5sO76CazFzU17/1xIaTwTYypLW/kdj1wY=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS5PR06MB8889
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: aAVUe6MIa7T5MAN6P94CpfEAKu+q7O7Ekq7z3qDWxjSnHPVZ5ZV3QvI3J57roA27
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4283
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -142,113 +131,242 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11.7.2023 18.35, Andrew Lunn wrote:
->
->>> So before accepting any patches, we need a better understanding of
->>> that reduced MLT-3 is and why you would want to use it.
->> OK.
->>
->> My understanding is that as we have PHY<->PHY link it needs to handle itself
->> in standard way. Thus the MLT-3 full mode is required for communicating with
->> Ethernet switch.
->>
->> It seems that Texas Instruments has figured out additional power saving
->> mechanism by carefully selecting used magnetics (they have guidelines for
->> that and list of supported ones). Now the thinking might have continued that
->> let's make the power saving mode the default for all.
-> Do there guidelines for magnetic says anything about what to do when
-> using unsupported ones. Like turn reduced MLT-3 off?
->
->> With carefully selected magnetics one most likely gets correct looking
->> signal when measured from the cable and thus the other party then gets
->> I tried to look up what does this class A and class B mean but I am unable
->> to find the reasoning for that.
-> If you look at the oscilloscope screenshots in the support forum, it
-> looks like in reduced MLT-3 mode, The TX- and TX+ pins only have two
-> states, not three. It relies on the magnetics to combine the two
-> signals to produce a three state signal, and handle the bias in each
-> signal.
->
-> When in MLT-3 mode, i expect the TX- and TX+ pins do real MLT-3.
->
-> With real MLT-3, you can then do capacitor coupling to other devices
-> which conform to 802.3.
+> -----Original Message-----
+> From: Rob Herring <robh@kernel.org>
+> Sent: Friday, July 7, 2023 12:32 AM
+> To: Pandey, Radhey Shyam <radhey.shyam.pandey@amd.com>
+> Cc: andersson@kernel.org; mathieu.poirier@linaro.org;
+> krzysztof.kozlowski+dt@linaro.org; conor+dt@kernel.org; Simek, Michal
+> <michal.simek@amd.com>; Levinsky, Ben <ben.levinsky@amd.com>; Shah,
+> Tanmay <tanmay.shah@amd.com>; linux-remoteproc@vger.kernel.org;
+> devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org; linux-
+> kernel@vger.kernel.org; git (AMD-Xilinx) <git@amd.com>
+> Subject: Re: [PATCH v2] dt-bindings: remoteproc: add Tightly Coupled
+> Memory (TCM) bindings
+>=20
+> On Wed, Jun 28, 2023 at 12:27:06AM +0530, Radhey Shyam Pandey wrote:
+> > Introduce bindings for TCM memory address space on AMD-xilinx Zynq
+> > UltraScale+ platform. As of now TCM addresses are hardcoded in xilinx
+> > remoteproc driver. This binding will help in defining TCM in
+> > device-tree and make it's access platform agnostic and data-driven from
+> the driver.
+> >
+> > Tightly-coupled memories(TCMs) are low-latency memory that provides
+> > predictable instruction execution and predictable data load/store
+> > timing. Each Cortex-R5F processor contains two 64-bit wide 64 KB
+> > memory banks on the ATCM and BTCM ports, for a total of 128 KB of
+> memory.
+> >
+> > The TCM resources(reg and power-domain) are documented in each R5
+> node.
+> > It also extends the examples for TCM split and lockstep modes.
+> >
+> > Signed-off-by: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
+> > ---
+> > Changes for v2:
+> > - Add ranges property to r5fss cluster node.
+> > - Use regex "^r5f(@[0-9a-f]+|-[a-f0-9]+)$".
+> > - Drop address/size-cells and ranges from r5f core node.
+> > - Mention "reg" and "reg names" as r5f core node required properties.
+> > - Mention address/size-cells and ranges as r5fss required node properti=
+es.
+> > - Modify commit description to remove ranges from R5 node.
+> > - Rename r5f node labels(r5f_0 -> r5f_0_split/lockstep and
+> >   r5f_1->r5f_1_split/lockstep)
+> >
+> > The inspiration for integrating TCM nodes in R5 nodes is taken from
+> > "5ee79c2ed5bd dt-bindings: remoteproc: Add bindings for R5F subsystem
+> > on TI K3 SoCs".Once the binding is reviewed/accepted will send out
+> > driver changes in follow-up series.
+> > ---
+> >  .../remoteproc/xlnx,zynqmp-r5fss.yaml         | 90 +++++++++++++++++--
+> >  1 file changed, 83 insertions(+), 7 deletions(-)
+> >
+> > diff --git
+> > a/Documentation/devicetree/bindings/remoteproc/xlnx,zynqmp-
+> r5fss.yaml
+> > b/Documentation/devicetree/bindings/remoteproc/xlnx,zynqmp-
+> r5fss.yaml
+> > index 9f677367dd9f..958044b08e86 100644
+> > ---
+> > a/Documentation/devicetree/bindings/remoteproc/xlnx,zynqmp-
+> r5fss.yaml
+> > +++ b/Documentation/devicetree/bindings/remoteproc/xlnx,zynqmp-
+> r5fss.y
+> > +++ aml
+> > @@ -20,6 +20,17 @@ properties:
+> >    compatible:
+> >      const: xlnx,zynqmp-r5fss
+> >
+> > +  "#address-cells":
+> > +    const: 1
+> > +
+> > +  "#size-cells":
+> > +    const: 1
+> > +
+> > +  ranges:
+> > +    description: |
+> > +      Standard ranges definition providing address translations for
+> > +      local R5F TCM address spaces to bus addresses.
+> > +
+> >    xlnx,cluster-mode:
+> >      $ref: /schemas/types.yaml#/definitions/uint32
+> >      enum: [0, 1, 2]
+> > @@ -37,7 +48,7 @@ properties:
+> >        2: single cpu mode
+> >
+> >  patternProperties:
+> > -  "^r5f-[a-f0-9]+$":
+> > +  "^r5f(@[0-9a-f]+|-[a-f0-9]+)$":
+>=20
+> If reg is required, then you don't need '-[a-f0-9]+'. Though new required
+> properties is an ABI change which needs justification.
 
- From the datasheet 
-(https://www.ti.com/lit/ds/symlink/dp83822i.pdf?ts=1689018777543):
 
-"8.4.3.1.4 Binary to MLT-3 Converter
-The Binary to MLT-3 conversion is accomplished by converting the serial 
-binary data stream output from the
-NRZI encoder into two binary data streams with alternately phased logic 
-one events. These two binary streams
-are then fed to the twisted pair output driver which converts the 
-voltage to current and alternately drives either
-side of the transmit transformer primary winding, resulting in a minimal 
-current MLT-3 signal.
+Some background: remoteproc subsystem is currently supported on  zu+=20
+platform and it's TCM addresses are hardcoded in xlnx_r5_remoteproc=20
+driver at path: drivers/remoteproc/xlnx_r5_remoteproc.c
+With this binding change i.e making reg/reg-names required=20
+remoteproc driver will still ensure stable ABI and support zu+ old=20
+device trees (without reg/reg-names).
 
-The 100BASE-TX MLT-3 signal sourced by the PMD Output Pair common driver 
-is slew rate controlled. This
-should be considered when selecting AC coupling magnetics to ensure 
-TP-PMD Standard compliant transition
-times (3 ns < Trise/fall < 5 ns).
+For newer platform (versal) we plan to make reg/reg-names as required
+properties and prefer not to have new hardcoded addresses for them=20
+in xlnx_r5_remoteproc driver. Hope that is fine. I can add
+this justification to commit description.
 
-The 100BASE-TX transmit TP-PMD function within the DP83822 is capable of 
-sourcing only MLT-3 encoded
-data. Binary output from the PMD Output Pair is not possible in 100 Mbps 
-mode. Fully encoded MLT-3 on both
-Tx+ and Tx- and can be configured by configuring Register 0x0404h (for 
-example, in transformer-less designs)."
+>=20
+> >      type: object
+> >      description: |
+> >        The RPU is located in the Low Power Domain of the Processor
+> Subsystem.
+> > @@ -54,8 +65,19 @@ patternProperties:
+> >        compatible:
+> >          const: xlnx,zynqmp-r5f
+> >
+> > +      reg:
+> > +        items:
+> > +          - description: Address and Size of the ATCM internal memory =
+region
+> > +          - description: Address and Size of the BTCM internal memory
+> > + region
+>=20
+> Drop 'Address and Size of '
 
-and then about transformer:
+Sure, will fix it in v3.
 
-"11.1.3.1 Transformer Recommendations
-The following magnetics have been tested with the DP83822 using the 
-DP83822EVM.
-Table 11-1. Recommended Transformers
-
-[table here]
-
-Table 11-2. Transformer Electrical Specifications
-
-[table here]
-
-"
-
-They have also application note 
-(https://www.ti.com/lit/an/snla079d/snla079d.pdf?ts=1689063082391&ref_url=https%253A%252F%252Fwww.ti.com%252Fproduct%252FDP83822I%253FkeyMatch%253D%2526tisearch%253Dsearch-everything%2526usecase%253Dpartmatches):
-
-"2 MDI (TP/CAT-V) Connections"
-
-and
-
-"10.2 Magnetics"
-
-Which has more or less same info as the datasheet.
-
-To me that just says follow these guidelines and please select one form 
-already tested lists. And if you must then look for similar products and 
-make sure that these limits are matched.
-
-Perhaps you are able to decode that better :). I trust our electrical 
-engineers to do the right job ;)
-
->
->> In a way this could even be:
->>
->>    ti,force-standard-mlt-3-signaling;
-> Maybe. Or ti,disable-proprietary-line-coding
->
-> Lets give TI a couple of days to comment.
->
->       Andrew
-
-Sure.
-
-I am OK with any of the three variants proposed so far.
-
-Perhaps leaning towards more to new ones above.
-
-Thanks,
-Vesa Jääskeläinen
-
+>=20
+> > +
+> > +      reg-names:
+> > +        items:
+> > +          - const: atcm
+> > +          - const: btcm
+> > +
+> >        power-domains:
+> > -        maxItems: 1
+> > +        minItems: 1
+> > +        maxItems: 3
+> >
+> >        mboxes:
+> >          minItems: 1
+> > @@ -102,31 +124,85 @@ patternProperties:
+> >      required:
+> >        - compatible
+> >        - power-domains
+> > +      - reg
+> > +      - reg-names
+> >
+> >      unevaluatedProperties: false
+> >
+> >  required:
+> >    - compatible
+> > +  - "#address-cells"
+> > +  - "#size-cells"
+> > +  - ranges
+> >
+> >  additionalProperties: false
+> >
+> >  examples:
+> >    - |
+> > -    remoteproc {
+> > +    #include <dt-bindings/power/xlnx-zynqmp-power.h>
+> > +
+> > +    //Split mode configuration
+> > +    remoteproc@ffe00000 {
+> > +        compatible =3D "xlnx,zynqmp-r5fss";
+> > +        xlnx,cluster-mode =3D <0>;
+> > +
+> > +        #address-cells =3D <1>;
+> > +        #size-cells =3D <1>;
+> > +        ranges =3D <0x0 0xffe00000 0x10000>, <0x20000 0xffe20000 0x100=
+00>,
+> > +                 <0x0 0xffe90000 0x10000>, <0x20000 0xffeb0000
+> > + 0x10000>;
+> > +
+> > +        r5f_0_split: r5f@ffe00000 {
+> > +            compatible =3D "xlnx,zynqmp-r5f";
+> > +            reg =3D <0xffe00000 0x10000>, <0xffe20000 0x10000>;
+> > +            reg-names =3D "atcm", "btcm";
+> > +            power-domains =3D <&zynqmp_firmware PD_RPU_0>,
+> > +                            <&zynqmp_firmware PD_R5_0_ATCM>,
+> > +                            <&zynqmp_firmware PD_R5_0_BTCM>;
+> > +            memory-region =3D <&rproc_0_fw_image>, <&rpu0vdev0buffer>,
+> <&rpu0vdev0vring0>, <&rpu0vdev0vring1>;
+> > +            mboxes =3D <&ipi_mailbox_rpu0 0>, <&ipi_mailbox_rpu0 1>;
+> > +            mbox-names =3D "tx", "rx";
+> > +        };
+> > +
+> > +        r5f_1_split: r5f@ffe90000 {
+> > +            compatible =3D "xlnx,zynqmp-r5f";
+> > +            reg =3D <0xffe90000 0x10000>, <0xffeb0000 0x10000>;
+> > +            reg-names =3D "atcm", "btcm";
+> > +            power-domains =3D <&zynqmp_firmware PD_RPU_1>,
+> > +                            <&zynqmp_firmware PD_R5_1_ATCM>,
+> > +                            <&zynqmp_firmware PD_R5_1_BTCM>;
+> > +            memory-region =3D <&rproc_1_fw_image>, <&rpu1vdev0buffer>,
+> <&rpu1vdev0vring0>, <&rpu1vdev0vring1>;
+> > +            mboxes =3D <&ipi_mailbox_rpu1 0>, <&ipi_mailbox_rpu1 1>;
+> > +            mbox-names =3D "tx", "rx";
+> > +        };
+> > +    };
+> > +
+> > +  - |
+> > +    //Lockstep configuration
+> > +    remoteproc@ffe00000 {
+> >          compatible =3D "xlnx,zynqmp-r5fss";
+> >          xlnx,cluster-mode =3D <1>;
+> >
+> > -        r5f-0 {
+> > +        #address-cells =3D <1>;
+> > +        #size-cells =3D <1>;
+> > +        ranges =3D <0x0 0xffe00000 0x20000>, <0x20000 0xffe20000
+> > + 0x20000>;
+> > +
+> > +        r5f_0_lockstep: r5f@ffe00000 {
+> >              compatible =3D "xlnx,zynqmp-r5f";
+> > -            power-domains =3D <&zynqmp_firmware 0x7>;
+> > +            reg =3D <0xffe00000 0x20000>, <0xffe20000 0x20000>;
+> > +            reg-names =3D "atcm", "btcm";
+> > +            power-domains =3D <&zynqmp_firmware PD_RPU_0>,
+> > +                            <&zynqmp_firmware PD_R5_0_ATCM>,
+> > +                            <&zynqmp_firmware PD_R5_0_BTCM>;
+> >              memory-region =3D <&rproc_0_fw_image>, <&rpu0vdev0buffer>,
+> <&rpu0vdev0vring0>, <&rpu0vdev0vring1>;
+> >              mboxes =3D <&ipi_mailbox_rpu0 0>, <&ipi_mailbox_rpu0 1>;
+> >              mbox-names =3D "tx", "rx";
+> >          };
+> >
+> > -        r5f-1 {
+> > +        r5f_1_lockstep: r5f@ffe90000 {
+> >              compatible =3D "xlnx,zynqmp-r5f";
+> > -            power-domains =3D <&zynqmp_firmware 0x8>;
+> > +            reg =3D <0xffe90000 0x10000>, <0xffeb0000 0x10000>;
+> > +            reg-names =3D "atcm", "btcm";
+> > +            power-domains =3D <&zynqmp_firmware PD_RPU_1>;
+> >              memory-region =3D <&rproc_1_fw_image>, <&rpu1vdev0buffer>,
+> <&rpu1vdev0vring0>, <&rpu1vdev0vring1>;
+> >              mboxes =3D <&ipi_mailbox_rpu1 0>, <&ipi_mailbox_rpu1 1>;
+> >              mbox-names =3D "tx", "rx";
+> > --
+> > 2.25.1
+> >
