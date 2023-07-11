@@ -2,148 +2,231 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C14474F2DA
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 16:59:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C97074F2E8
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 17:01:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230394AbjGKO7I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jul 2023 10:59:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59698 "EHLO
+        id S231145AbjGKPBc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jul 2023 11:01:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60158 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230119AbjGKO7I (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 10:59:08 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 197DBA0
-        for <devicetree@vger.kernel.org>; Tue, 11 Jul 2023 07:59:06 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-4f95bf5c493so8701532e87.3
-        for <devicetree@vger.kernel.org>; Tue, 11 Jul 2023 07:59:06 -0700 (PDT)
+        with ESMTP id S229801AbjGKPBb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 11:01:31 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED7D010CF;
+        Tue, 11 Jul 2023 08:01:29 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-4f954d7309fso7232529e87.1;
+        Tue, 11 Jul 2023 08:01:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689087544; x=1691679544;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=/BBSi3Y2p51GXr/kdqXZWgeltZiMvocxuPhmv54PXCk=;
-        b=m+crFpHVwUmNM1IevtAkCKRHO2NdXi4Nv5/sUrEBbC/6G0nqVk8jGFXEAycB2kX3/L
-         yvpyGo1nZPsvQ4GyyX94zgLaMZrnPUkVphABTvta+rc1eml+Om6KmMMO4if+VkCc8nnE
-         RZE1XinaqSkpC3X7oR2fPKc479VXNwDGzIsXrzYOrRVxNtPGrJ7S2R6gHn0TFLuVKh0C
-         g18BnSXimKeLS0zSqaCI37EeNROn24C5wMu4bX6B61wwlkKwyDqcfqCGMWfVui+WP4co
-         73Qj8z6Gln/VVpK0hrN3zfZDaXosWyu5cy62er1WWnY1FcXuqsNq0aeer9cm3PdNkqGK
-         nScQ==
+        d=gmail.com; s=20221208; t=1689087688; x=1691679688;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=AU4XR1QanIyk4Xzx6nQ+M2edqTQrT9XWFJQn7RHLzs4=;
+        b=gIKvGcWiiPfFeHCRGVXMbl80umHW43eLlrhIsWN9WUETqAJKb4dL4Hld0fYSRID48o
+         YDELsiG5iXc0NqDwdeWINSVdjMZU1I6h9lrvlhiYgZCi3XCbwvzoFb5Md6QmvdEPfem6
+         gza6y0LpnfoHZOh2S3EGmHmM9oAYYkWgbbfXV2pzX+y5L7gyjJO8shBpbZE69ygwwkXU
+         ZQSyvJ0FacnJsTyRVGdbbV9FOJIT87colaI8SAd1wfOX1RJSk5TqiM/DBYssoQm9dgCv
+         09TKiTl1rIhMwYKrI4MjVfvREtKFZPlp310+kAS3YU871et58ZTXoFSpVCxtyJztbebW
+         OtQA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689087544; x=1691679544;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/BBSi3Y2p51GXr/kdqXZWgeltZiMvocxuPhmv54PXCk=;
-        b=Z2i8ado2Tbk8T2sOKx4EAOkJ11y3ON+5P3B2Wy+T6Bh5u8vw7TOl00YXRWuw/NqRtN
-         AFUtTtwo5C805EIgpOsE3GeCvcNwCh2c/HUMBxBMVL352L62wtA2/UT7zyKOnEd2ZNtV
-         lFciG1rVWqfNxl0lixF/vyttvWJDiYF6vCwnmX55tB7motvEI4O15Anm4ZTBU2AufvtX
-         o1IHwFlKz2Vftdm3Uta8maMHBsMHIBV9+JJkHNNV3blDgFeD6MMt8mdA5zNnXKvobcSM
-         U2HLexoB01H5lC6N89eBPzQU5JzSN5RlKhoyKtnj+/T4Tu7CFWUyuC5rMDmFwlA2h9TE
-         emLg==
-X-Gm-Message-State: ABy/qLYwEU6xe2njWdtJVbeS4azWn2IV+XvBGGjXvEkINqRCn3gtqEJG
-        AO0mupx/fiLUqRDMRtYMB8dlSg==
-X-Google-Smtp-Source: APBJJlEmv479eisRoP1W7B2jI6/9ZRK/5ke7XvBE3vPvencrHGUfD1y6xArNgZUCsv/KhIU2Uxl+bg==
-X-Received: by 2002:a05:6512:128a:b0:4f8:5ab0:68c4 with SMTP id u10-20020a056512128a00b004f85ab068c4mr16389336lfs.59.1689087544345;
-        Tue, 11 Jul 2023 07:59:04 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:a0db:1f00::8a5? (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
-        by smtp.gmail.com with ESMTPSA id j14-20020a19f50e000000b004f7618c67a7sm349351lfb.76.2023.07.11.07.59.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 11 Jul 2023 07:59:03 -0700 (PDT)
-Message-ID: <4330df82-77a9-27ce-3f24-144718cc082e@linaro.org>
-Date:   Tue, 11 Jul 2023 17:59:03 +0300
+        d=1e100.net; s=20221208; t=1689087688; x=1691679688;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=AU4XR1QanIyk4Xzx6nQ+M2edqTQrT9XWFJQn7RHLzs4=;
+        b=hS2EJLYvMTgGDSTF7Ej8hQrmFBJRdG+FjrIbMRgwt0bnSoIkJER6aecp5hnPmr2qP3
+         ZHkRKmjefNLXFp5mdsIqR/BOcO2ISO2mTBXnkcLtZRF/Is4vGntYpRRtwnk5X39gn1O4
+         4w//YNx9BcYPeMi4J8NRITw6tCW5KVQCObUowXTfOBzJnXEmMmKz+Jju9gGMJSyVhZ0B
+         pjWgBquMxaEbavEHY/a3qH3VkrsNCL83skId9wVG79ig5S1lK2HelHSeppad5plHBGlC
+         2TmlZwnSh/8yoZAC/qLwNK9egwdMcxD9MWSgJ7d0NOKxUUDAvH2P2nJEXSQyxRBtFYro
+         VbZw==
+X-Gm-Message-State: ABy/qLZlrqzpyap9ooKCWp6UzIIPIoZkRiWGc8pIVuyZjgPNdPUTOsu3
+        nImUAcW1hqIAQosyqW2AiYw=
+X-Google-Smtp-Source: APBJJlFIviX7ZB0xBPU8WRhrIbT4iqIJzglUbNZuRqvYBYOwaoZtyzVhGcSuX2qEcihti1RY8BxDbg==
+X-Received: by 2002:a19:910e:0:b0:4f8:1e2a:1de1 with SMTP id t14-20020a19910e000000b004f81e2a1de1mr5408361lfd.29.1689087687836;
+        Tue, 11 Jul 2023 08:01:27 -0700 (PDT)
+Received: from mobilestation ([85.249.18.12])
+        by smtp.gmail.com with ESMTPSA id f15-20020ac2532f000000b004fb745fd232sm353868lfh.30.2023.07.11.08.01.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 11 Jul 2023 08:01:27 -0700 (PDT)
+Date:   Tue, 11 Jul 2023 18:01:23 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc:     jingoohan1@gmail.com, gustavo.pimentel@synopsys.com,
+        lpieralisi@kernel.org, robh+dt@kernel.org, kw@linux.com,
+        bhelgaas@google.com, kishon@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        marek.vasut+renesas@gmail.com, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v17 06/20] PCI: designware-ep: Add INTx IRQs support
+Message-ID: <leliqp56nmecbzowzxyx7hurdat2styt4itl2yh63vgmc4rvf2@ro3o6w2ox47u>
+References: <20230705114206.3585188-1-yoshihiro.shimoda.uh@renesas.com>
+ <20230705114206.3585188-7-yoshihiro.shimoda.uh@renesas.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH v3 1/3] dt-bindings: power: rpmhpd: Add Generic RPMh PD
- indexes
-Content-Language: en-GB
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rohit Agarwal <quic_rohiagar@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <1689054169-10800-1-git-send-email-quic_rohiagar@quicinc.com>
- <1689054169-10800-2-git-send-email-quic_rohiagar@quicinc.com>
- <2040226e-9b45-b409-3edd-a5b86d86daa8@linaro.org>
- <8a3124ce-a11d-2491-eaee-1695cec70b17@quicinc.com>
- <e885383b-a231-75a1-32ce-bf850f0cb022@linaro.org>
- <8c3468f0-3069-95e3-e2f1-279fca78a578@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <8c3468f0-3069-95e3-e2f1-279fca78a578@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230705114206.3585188-7-yoshihiro.shimoda.uh@renesas.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/07/2023 14:44, Konrad Dybcio wrote:
-> On 11.07.2023 08:22, Krzysztof Kozlowski wrote:
->> On 11/07/2023 08:17, Rohit Agarwal wrote:
->>>
->>> On 7/11/2023 11:22 AM, Krzysztof Kozlowski wrote:
->>>> On 11/07/2023 07:42, Rohit Agarwal wrote:
->>>>> Add Generic RPMh Power Domain indexes that can be used
->>>>> for all the Qualcomm SoC henceforth.
->>>>>
->>>>> Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
->>>>> Suggested-by: Konrad Dybcio <konrad.dybcio@linaro.org>
->>>>> ---
->>>>>    include/dt-bindings/power/qcom-rpmhpd.h | 30 ++++++++++++++++++++++++++++++
->>>>>    1 file changed, 30 insertions(+)
->>>>>    create mode 100644 include/dt-bindings/power/qcom-rpmhpd.h
->>>>>
->>>>> diff --git a/include/dt-bindings/power/qcom-rpmhpd.h b/include/dt-bindings/power/qcom-rpmhpd.h
->>>>> new file mode 100644
->>>>> index 0000000..4da2e04
->>>>> --- /dev/null
->>>>> +++ b/include/dt-bindings/power/qcom-rpmhpd.h
->>>> Filename based on compatible.
->>> This is not specific for SDX75. These are generic ones that should be
->>> used for all other targets.
->>> Konrad suggested in v1 to avoid target specific prefixes everytime and
->>> to create a new generic
->>> dt-bindings that can be reused.
->>>>> @@ -0,0 +1,30 @@
->>>>> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
->>>>> +/*
->>>>> + * Copyright (c) 2023, Qualcomm Innovation Center, Inc. All rights reserved.
->>>>> + */
->>>>> +
->>>>> +#ifndef _DT_BINDINGS_POWER_QCOM_RPMHPD_H
->>>>> +#define _DT_BINDINGS_POWER_QCOM_RPMHPD_H
->>>>> +
->>>>> +/* Generic RPMH Power Domain Indexes */
->>>>> +#define CX               0
->>>> These are very generic names, usually not used in global headers. Please
->>>> use some reasonable prefix.
->>> This was based on the suggestion from Konrad in v2 to drop the RPMHPD
->>> prefix and we can go only with names like CX, etc.
->>
->> I don't think having so generic name in tree-wide header is good idea.
-> Conversely, I think that it would be very clear in files including this header.
+On Wed, Jul 05, 2023 at 08:41:52PM +0900, Yoshihiro Shimoda wrote:
+> Add support for triggering INTx IRQs by using outbound iATU.
+> Outbound iATU is utilized to send assert and de-assert INTx TLPs.
+> The message is generated based on the payloadless Msg TLP with type
+> 0x14, where 0x4 is the routing code implying the Terminate at
+> Receiver message. The message code is specified as b1000xx for
+> the INTx assertion and b1001xx for the INTx de-assertion.
 
-It is expected to be included into dtsi and into rpmhpd driver (only). 
-However I'd also suggest adding some generic prefix (e.g. RPMHPD_CX). 
-Just `CX' is too short and has a sensible possibility of getting  a 
-symbol conflict.
+Looking good. Feel free to add:
+Reviewed-by: Serge Semin <fancer.lancer@gmail.com>
+
+-Serge(y)
 
 > 
-> Konrad
->> CX can mean anything.
->>
->> Best regards,
->> Krzysztof
->>
-
--- 
-With best wishes
-Dmitry
-
+> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+> ---
+>  .../pci/controller/dwc/pcie-designware-ep.c   | 69 +++++++++++++++++--
+>  drivers/pci/controller/dwc/pcie-designware.h  |  2 +
+>  2 files changed, 67 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/pci/controller/dwc/pcie-designware-ep.c b/drivers/pci/controller/dwc/pcie-designware-ep.c
+> index fe2e0d765be9..1d24ebf9686f 100644
+> --- a/drivers/pci/controller/dwc/pcie-designware-ep.c
+> +++ b/drivers/pci/controller/dwc/pcie-designware-ep.c
+> @@ -6,9 +6,11 @@
+>   * Author: Kishon Vijay Abraham I <kishon@ti.com>
+>   */
+>  
+> +#include <linux/delay.h>
+>  #include <linux/of.h>
+>  #include <linux/platform_device.h>
+>  
+> +#include "../../pci.h"
+>  #include "pcie-designware.h"
+>  #include <linux/pci-epc.h>
+>  #include <linux/pci-epf.h>
+> @@ -484,14 +486,60 @@ static const struct pci_epc_ops epc_ops = {
+>  	.get_features		= dw_pcie_ep_get_features,
+>  };
+>  
+> +static int dw_pcie_ep_send_msg(struct dw_pcie_ep *ep, u8 func_no, u8 code,
+> +			       u8 routing)
+> +{
+> +	struct dw_pcie_ob_atu_cfg atu = { 0 };
+> +	struct pci_epc *epc = ep->epc;
+> +	int ret;
+> +
+> +	atu.func_no = func_no;
+> +	atu.code = code;
+> +	atu.routing = routing;
+> +	atu.type = PCIE_ATU_TYPE_MSG;
+> +	atu.cpu_addr = ep->intx_mem_phys;
+> +	atu.size = epc->mem->window.page_size;
+> +
+> +	ret = dw_pcie_ep_outbound_atu(ep, &atu);
+> +	if (ret)
+> +		return ret;
+> +
+> +	writel(0, ep->intx_mem);
+> +
+> +	dw_pcie_ep_unmap_addr(epc, func_no, 0, ep->intx_mem_phys);
+> +
+> +	return 0;
+> +}
+> +
+>  int dw_pcie_ep_raise_intx_irq(struct dw_pcie_ep *ep, u8 func_no)
+>  {
+>  	struct dw_pcie *pci = to_dw_pcie_from_ep(ep);
+>  	struct device *dev = pci->dev;
+> +	int ret;
+>  
+> -	dev_err(dev, "EP cannot trigger INTx IRQs\n");
+> +	if (!ep->intx_mem) {
+> +		dev_err(dev, "INTx not supported\n");
+> +		return -EOPNOTSUPP;
+> +	}
+>  
+> -	return -EINVAL;
+> +	/*
+> +	 * Even though the PCI bus specification implies the level-triggered
+> +	 * INTx interrupts the kernel PCIe endpoint framework has a single
+> +	 * PCI_EPC_IRQ_INTx flag defined for the legacy IRQs simulation. Thus
+> +	 * this function sends the Deassert_INTx PCIe TLP after the Assert_INTx
+> +	 * message with the 50 usec duration basically implementing the
+> +	 * rising-edge triggering IRQ. Hopefully the interrupt controller will
+> +	 * still be able to register the incoming IRQ event...
+> +	 */
+> +	ret = dw_pcie_ep_send_msg(ep, func_no, PCI_MSG_CODE_ASSERT_INTA,
+> +				  PCI_MSG_TYPE_R_ROUTING_LOCAL);
+> +	if (ret)
+> +		return ret;
+> +
+> +	usleep_range(50, 100);
+> +
+> +	return dw_pcie_ep_send_msg(ep, func_no, PCI_MSG_CODE_DEASSERT_INTA,
+> +				   PCI_MSG_TYPE_R_ROUTING_LOCAL);
+>  }
+>  EXPORT_SYMBOL_GPL(dw_pcie_ep_raise_intx_irq);
+>  
+> @@ -622,6 +670,10 @@ void dw_pcie_ep_exit(struct dw_pcie_ep *ep)
+>  
+>  	dw_pcie_edma_remove(pci);
+>  
+> +	if (ep->intx_mem)
+> +		pci_epc_mem_free_addr(epc, ep->intx_mem_phys, ep->intx_mem,
+> +				      epc->mem->window.page_size);
+> +
+>  	pci_epc_mem_free_addr(epc, ep->msi_mem_phys, ep->msi_mem,
+>  			      epc->mem->window.page_size);
+>  
+> @@ -793,9 +845,14 @@ int dw_pcie_ep_init(struct dw_pcie_ep *ep)
+>  		goto err_exit_epc_mem;
+>  	}
+>  
+> +	ep->intx_mem = pci_epc_mem_alloc_addr(epc, &ep->intx_mem_phys,
+> +					      epc->mem->window.page_size);
+> +	if (!ep->intx_mem)
+> +		dev_warn(dev, "Failed to reserve memory for INTx\n");
+> +
+>  	ret = dw_pcie_edma_detect(pci);
+>  	if (ret)
+> -		goto err_free_epc_mem;
+> +		goto err_free_epc_mem_intx;
+>  
+>  	if (ep->ops->get_features) {
+>  		epc_features = ep->ops->get_features(ep);
+> @@ -812,7 +869,11 @@ int dw_pcie_ep_init(struct dw_pcie_ep *ep)
+>  err_remove_edma:
+>  	dw_pcie_edma_remove(pci);
+>  
+> -err_free_epc_mem:
+> +err_free_epc_mem_intx:
+> +	if (ep->intx_mem)
+> +		pci_epc_mem_free_addr(epc, ep->intx_mem_phys, ep->intx_mem,
+> +				      epc->mem->window.page_size);
+> +
+>  	pci_epc_mem_free_addr(epc, ep->msi_mem_phys, ep->msi_mem,
+>  			      epc->mem->window.page_size);
+>  
+> diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci/controller/dwc/pcie-designware.h
+> index c626d21243b0..812c221b3f7c 100644
+> --- a/drivers/pci/controller/dwc/pcie-designware.h
+> +++ b/drivers/pci/controller/dwc/pcie-designware.h
+> @@ -365,6 +365,8 @@ struct dw_pcie_ep {
+>  	unsigned long		*ob_window_map;
+>  	void __iomem		*msi_mem;
+>  	phys_addr_t		msi_mem_phys;
+> +	void __iomem		*intx_mem;
+> +	phys_addr_t		intx_mem_phys;
+>  	struct pci_epf_bar	*epf_bar[PCI_STD_NUM_BARS];
+>  };
+>  
+> -- 
+> 2.25.1
+> 
