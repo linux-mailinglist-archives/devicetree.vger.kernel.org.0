@@ -2,137 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 96DB774F39C
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 17:36:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DD04274F3B6
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 17:37:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230397AbjGKPf7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jul 2023 11:35:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50760 "EHLO
+        id S232963AbjGKPhg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jul 2023 11:37:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51764 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232345AbjGKPf5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 11:35:57 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A0CB10EB;
-        Tue, 11 Jul 2023 08:35:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
-        Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
-        Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
-        In-Reply-To:References; bh=wp3Gf78q27oropR3P7+eQq1HKA6J74ZGkab9Ggf11MA=; b=Lg
-        9kbFWJWVcnDtumqg6cH7lFcSrdExgg0dnO5XNJ4II1wJYjSXncNoZuySqiXXhK6EY/TDYiQW76ysj
-        RIC7gwd/V5UlVa/wDFAXVeNzx7Nicm7w1Ldc+Yx+6XBsliMzAgd1Y6NTmDE8Lg+DEDHYll1jTFcx9
-        qFn/HvgidsZW6Gs=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1qJFOm-00135w-Rw; Tue, 11 Jul 2023 17:35:32 +0200
-Date:   Tue, 11 Jul 2023 17:35:32 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Vesa =?iso-8859-1?B?SuTkc2tlbORpbmVu?= 
-        <vesa.jaaskelainen@vaisala.com>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        with ESMTP id S232949AbjGKPhA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 11:37:00 -0400
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B68A51BD8
+        for <devicetree@vger.kernel.org>; Tue, 11 Jul 2023 08:36:45 -0700 (PDT)
+Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-3fbc77e76abso61395365e9.1
+        for <devicetree@vger.kernel.org>; Tue, 11 Jul 2023 08:36:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1689089804; x=1691681804;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=8ZhsmjYq3QjlwNHWIt4GGjxBOJJNeRrC5x7e3BBvxJY=;
+        b=F96F2sEJ06nYUYyN/zyNQaw/pCUKMgCuLABXL817tYt88ibRnJPBMiY09enxC3XWrn
+         I/kPoyrW30PE3dKPsAzlOyrqYHz+JyQLFs81bRb8ENp7xq6PoFEiJADIAXoeBEGy8xUy
+         o3olorhn/tOdh9Ms3JmoJFZ+5u9h0dMpSnlmGvmQUkyZs7EWCl0Gjohro230l963goXx
+         W/kVZwDkMoleduYSUTxenbIng1+0xGKEItEh4HSY2PjqqYVqtwfqmGNWFSuZG0+WxiOX
+         slmX5CscYscYP0xaSVYLz3G9cvdF48sU3F/vW/fhbSWDfhAKSz2uGBkcTNzz6RvCUZPG
+         SKQA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689089804; x=1691681804;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=8ZhsmjYq3QjlwNHWIt4GGjxBOJJNeRrC5x7e3BBvxJY=;
+        b=PWLxjXXT5b6So4t+tFD2IZzVMV3s1HUg4oaVMq6H3RTNCnA9oSzWHR3eMYTt9+G3Wm
+         JBgpmyW4zYEiveY/umdbQBEuoE/erQhU9+A4xojZqoo28TzQ7s07hYN57gVGuAIDWw/G
+         5q3U5XvAaZukFWzzfYZYTi1XphOVqACJ0Q+J9T79QaBPDVQn03cwhYQOeMd8kix7UcWR
+         9ERAqbBSoYpgpApnRjCMhMGQWSmAkaQSrkn6spsFKxZ+aJVoISCqO+Fu2Ez7UPvVXrHK
+         Y/yv4BfmKkjsI22qGMdi7cEGMKmEkkxaNrpGIAKmnVyPRHIJkAH0FwhteVIxc0DcpxjB
+         7PhA==
+X-Gm-Message-State: ABy/qLZQD1rIr1Ez8fLiU9/aoOi8dTP+JsqibYMN81t8IaccdQUd2nzV
+        NA99zoQ/H39Vgce+DTUoGYZkHQ==
+X-Google-Smtp-Source: APBJJlGZ9q49T7kmNKB1c37rwITt5wN6ld5+e/7kQyfM4bvBhWm7eitmkW7SIN6+Kw+F/jP/uPTfqQ==
+X-Received: by 2002:a7b:c019:0:b0:3f7:f584:579b with SMTP id c25-20020a7bc019000000b003f7f584579bmr13703893wmb.9.1689089804070;
+        Tue, 11 Jul 2023 08:36:44 -0700 (PDT)
+Received: from [127.0.1.1] ([93.5.22.158])
+        by smtp.googlemail.com with ESMTPSA id v6-20020a05600c444600b003fbb1ce274fsm23458249wmn.0.2023.07.11.08.36.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 11 Jul 2023 08:36:43 -0700 (PDT)
+From:   Alexandre Mergnat <amergnat@baylibre.com>
+Subject: [PATCH 0/3] Add startek-kd070fhfid015 display support
+Date:   Tue, 11 Jul 2023 17:36:26 +0200
+Message-Id: <20230711-startek_display-v1-0-163917bed385@baylibre.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAPp2rWQC/x2N0QqDMAwAf0XyvILt0Dl/ZYyR2qhhpUrixob47
+ wt7vIPjdlASJoW+2kHozcpLMfCnCoYZy0SOkzGEOpzri/dON5SNno/Eumb8umvTpdA2YxsRwaq
+ ISi4KlmG2rrxyNrkKjfz5b2734/gBYFObAHYAAAA=
+To:     Neil Armstrong <neil.armstrong@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Andrew Davis <afd@ti.com>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/2] net: phy: dp83822: Add support for line class driver
- configuration
-Message-ID: <0ef64a05-64a0-4119-9dcc-83e65434cd24@lunn.ch>
-References: <20230710175621.8612-1-vesa.jaaskelainen@vaisala.com>
- <261cb91c-eb3a-4612-93ad-25e2bc1a7c23@lunn.ch>
- <87fac0dd-9a97-b188-4887-8c4bb21196d5@vaisala.com>
- <6cf76d72-4747-46d2-a1f7-d2f1131491f7@lunn.ch>
- <85e9dfbd-baea-1d73-aaf0-d6c14a1305eb@vaisala.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <85e9dfbd-baea-1d73-aaf0-d6c14a1305eb@vaisala.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>
+Cc:     Guillaume La Roque <glaroque@baylibre.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Alexandre Mergnat <amergnat@baylibre.com>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1608; i=amergnat@baylibre.com;
+ h=from:subject:message-id; bh=zxoNkkhxg+qIZpTjwjGcbJbbjcuZjCmWKqPfmbpNbvo=;
+ b=owEBbQKS/ZANAwAKAStGSZ1+MdRFAcsmYgBkrXcK9p5lesXkclNpI2GO8vx9IXvx9+574xhKLYKi
+ wSF834OJAjMEAAEKAB0WIQQjG17X8+qqcA5g/osrRkmdfjHURQUCZK13CgAKCRArRkmdfjHURSg/EA
+ Crxlkf0UGRqKF5KavZ7sr4JCyLFmB/5GQogqNk3v1vhrz35svHdt13bVypxZmp+YRh/JN4IG7dGEpE
+ +kkYjBrJ35C7lyQjZDrMM2ZQWkA3bH3ugOz8r2fPGaf3AjoPZbT6D7U85m1BG9cq3LJ5tPSlMY/1PE
+ E8UY1ZSiHRy8CFoFyaaFdA0+d78z7dfkDhHvsIu0O57coedYThVQxi+f39jZXse2P4xEiqj3DsWWK8
+ GesIGWeCKs2agEQzNDmup33oHhkbgAxAuZMb6XwnqKUXceLytNRE7/hpaF1M0HRXuwrxCzpf6XXQLr
+ Y9erzL+UMvkksoL9FZvF1ONohW0oXXH4/FMs7RvfEGB9yh17x/0EevYyOi7ZKnnGFhaAsQcxL1Gim5
+ rCg9P0rCLLFrAehiP3rjACy6G4Hm7GQTkhmMW+IrDOumZ0cO39q5g8jfk9jglUQjIYX0AzUOT5rci7
+ gEYLqD4oaWo+8ZRoE72G6Vf6SEnLx+JSZAkikVC13hZAXyAaBZ3VSYv6jiK4mJ2co+tfROudLoCr1J
+ OIXqYsdLjNcTsEYT8MYrvGM7SjIHe54i7hLjX/f6YJaFBACtnEIRXrqGNfZjfebbB3QnC2nzq8Lz0s
+ Ft4dhdH9i+G+RKLj5+2tP6AgB9zZWlD1It9wKr7or2xNvAo4RmMzrYxvSGRg==
+X-Developer-Key: i=amergnat@baylibre.com; a=openpgp;
+ fpr=231B5ED7F3EAAA700E60FE8B2B46499D7E31D445
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 11, 2023 at 10:51:22AM +0300, Vesa Jääskeläinen wrote:
-> Hi Andrew,
-> 
-> On 10.7.2023 22.38, Andrew Lunn wrote:
-> > > Hi Andrew,
-> > > 
-> > > This is needed for configuration in link between DP83822 and Ethernet Switch
-> > > chip.
-> > What switch chip is it?
-> 
-> Microchip's KSZ9897.
+Add the support of the Startek KD070FHFID015 panel.
+It's a 7-inch TFT LCD display with a resolution of 1024 x 600 pixels.
 
-O.K, so nothing special or oddball.
+This serie come from a bigger one [1]. Then I addressed the previous
+comments for the related commits here.
 
-> > Most boards just connect the MACs together and don't have PHYs in the
-> > middle. There are some boards which do have PHYs, but they don't need
-> > any special mode.
-> 
-> In here there is PHY<->PHY line link. My understanding is that in this
-> particular case PHY link works better than *MII links.
+Changes in v1:
+- Fix typos in the driver.
+- Merge 2 regulators in one bulk variable in the driver.
+- Remove backlight enable/disable from the driver because it's already
+  managed by the backlight core.
+- Move hardcoded values from function to the generic structure in the
+  driver.
+- Remove unnecessary function (stk_panel_del).
+- Replace some functions by macro to increase the readability.
+- Link to parent serie: [1]
 
-I've seen PHY<->PHY done when the switch was on a daughter board, and
-there was worries about getting RGMII over the connector etc.
+[1]: https://lore.kernel.org/all/20230220-display-v1-0-45cbc68e188b@baylibre.com/
 
-> > So before accepting any patches, we need a better understanding of
-> > that reduced MLT-3 is and why you would want to use it.
-> 
-> OK.
-> 
-> My understanding is that as we have PHY<->PHY link it needs to handle itself
-> in standard way. Thus the MLT-3 full mode is required for communicating with
-> Ethernet switch.
-> 
-> It seems that Texas Instruments has figured out additional power saving
-> mechanism by carefully selecting used magnetics (they have guidelines for
-> that and list of supported ones). Now the thinking might have continued that
-> let's make the power saving mode the default for all.
+Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
+---
+Alexandre Mergnat (2):
+      dt-bindings: display: panel: add startek kd070fhfid015 support
+      arm64: defconfig: enable STARTEK KD070FHFID015 panel
 
-Do there guidelines for magnetic says anything about what to do when
-using unsupported ones. Like turn reduced MLT-3 off?
+Guillaume La Roque (1):
+      drm/panel: Support for startek-kd070fhfid015 MIPI-DSI panel
 
-> With carefully selected magnetics one most likely gets correct looking
-> signal when measured from the cable and thus the other party then gets
+ .../display/panel/startek,kd070fhfid015.yaml       |  51 +++
+ arch/arm64/configs/defconfig                       |   1 +
+ drivers/gpu/drm/panel/Kconfig                      |  11 +
+ drivers/gpu/drm/panel/Makefile                     |   1 +
+ .../gpu/drm/panel/panel-startek-kd070fhfid015.c    | 434 +++++++++++++++++++++
+ 5 files changed, 498 insertions(+)
+---
+base-commit: 06c2afb862f9da8dc5efa4b6076a0e48c3fbaaa5
+change-id: 20230711-startek_display-958d265f6baa
 
-> I tried to look up what does this class A and class B mean but I am unable
-> to find the reasoning for that.
+Best regards,
+-- 
+Alexandre Mergnat <amergnat@baylibre.com>
 
-If you look at the oscilloscope screenshots in the support forum, it
-looks like in reduced MLT-3 mode, The TX- and TX+ pins only have two
-states, not three. It relies on the magnetics to combine the two
-signals to produce a three state signal, and handle the bias in each
-signal.
-
-When in MLT-3 mode, i expect the TX- and TX+ pins do real MLT-3.
-
-With real MLT-3, you can then do capacitor coupling to other devices
-which conform to 802.3.
-
-> Do we have people from Texas Instruments that could share more insights?
-
-Maybe, but don't hold your breath. Since Dan Murphy left TI, TI does
-not really support its own PHYs in mainline.
-
-> In a way this could even be:
-> 
->   ti,force-standard-mlt-3-signaling;
-
-Maybe. Or ti,disable-proprietary-line-coding
-
-Lets give TI a couple of days to comment.
-
-     Andrew
