@@ -2,103 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A37F74EBE8
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 12:47:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 39F9374EBED
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 12:47:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230302AbjGKKrB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jul 2023 06:47:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60508 "EHLO
+        id S230100AbjGKKrd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jul 2023 06:47:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60968 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229458AbjGKKrA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 06:47:00 -0400
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38768E6C
-        for <devicetree@vger.kernel.org>; Tue, 11 Jul 2023 03:46:59 -0700 (PDT)
-Received: by mail-lf1-x12e.google.com with SMTP id 2adb3069b0e04-4f122ff663eso8830285e87.2
-        for <devicetree@vger.kernel.org>; Tue, 11 Jul 2023 03:46:59 -0700 (PDT)
+        with ESMTP id S229583AbjGKKrc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 06:47:32 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC29BE69
+        for <devicetree@vger.kernel.org>; Tue, 11 Jul 2023 03:47:30 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-9922d6f003cso727315566b.0
+        for <devicetree@vger.kernel.org>; Tue, 11 Jul 2023 03:47:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689072417; x=1691664417;
+        d=linaro.org; s=google; t=1689072449; x=1691664449;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=1G2QCPO5qYJSFYYMmReBO6Vbw5wgGsf85elL+w0M7HA=;
-        b=ZdwnaGV99mbFcQ2MmcdZ8aPTzU/rWHB6kmIpJH6y3ydgQ0I1i1mYo6uRVBcJiC23aB
-         RoH4MHqOzn0F/3a5x/39IsHlI2kmsixfzBIJlWdZR8HM0jUNa8zNYGSmcJagAxKPYAXF
-         2aTyxTPaXPPhmU1tHAsFMDrzH7j3oXZYs2KXM0ZceO78B3Y9hGAcQEhvW0vbZVoVa4Nu
-         rLFQgf/cLPk9BUzFgVPdXQIrV1erREr32nyUvu/8cwPFD7TG2BJLo1cEe6kdUM/Ii+wb
-         niW56vrmySHbRKIzBvB0MPWD3a3IbpMkUAHN+j4gPij7BuwShaLiGb+5loVnF4+p8Gwd
-         7WWw==
+        bh=FhYjDo7VSwdxshX1nK59fpmU13FY+d9ZhewNClu/GzI=;
+        b=YjUWQV+wwKVhRZ5G/Uuk+41jombmfNZOjdC5yg6uriFbLng+AeUNSP2pfFrxeFGWhO
+         dH50YZgBj56mB8W6yyK2iSlFk3o6L9t7h/PartCMKqnTDlaT9ei3yZstQA1HD0MCaXkB
+         /clYgaR2zHe8V/XXQGxsDjsR7NImg3dCoQJh1A9qxBRDELCbj62suNIpwcpvbz8Vz44f
+         kkF+6Zt1i0v8gyE5zAayFVE+Q/0UOKHpHrL3C991cGh8xvetyZrVE0iBf290SMiX5E79
+         MT/gUk09yOw9LocjUGoGK8r2nQK1kcm/vKxGn2AstY0D/sNZGzBOJlSjM7i3ajZ9ZkoG
+         n88g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689072417; x=1691664417;
+        d=1e100.net; s=20221208; t=1689072449; x=1691664449;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=1G2QCPO5qYJSFYYMmReBO6Vbw5wgGsf85elL+w0M7HA=;
-        b=EffD2rMBTNEkKgpiL9rwa+Jo3NFX6gSFKrJW/HAow5icqG8QdTD80EftXTpX49SuGX
-         VP4HqSE6U7EYLNOVT9d7r7cnht30W0Swn0chHQU0snqyiaF01PVECcSxSiRcx9IHJ6oQ
-         FctBI1IIslDx5Hbf5Gx62e+nhiEhcx59mJafR2HvKdW+H/53MYak6PuUt6Y2Yw0rEYKi
-         CG9vYkl4PywoXw/Aqt2trg6ObeUgLeW5u26W2ctcnYq4qrTR02f9eAsIR5kVdEePeYT+
-         GCbJZyNq5/6ucMO97ldkeRju9jH/h2SmYfLkofe6q475jTLcin46ZgA10DqniYbwly4Z
-         bl1g==
-X-Gm-Message-State: ABy/qLZC/iTC42kQGjaibmfMMvxJtAwEFbsH7Wuo6ZrBWBjz/Ru0Lnoa
-        K3xsNMemGbiGfm10oMkKzCCaDQ==
-X-Google-Smtp-Source: APBJJlGGtOSmaBuFLF6puXF4cKfrRVCjXBB9xwyZodKGt6AJk2t1G49mfDFJEjOY4VLOAen1V5DhFw==
-X-Received: by 2002:a19:7714:0:b0:4fb:8953:bb8 with SMTP id s20-20020a197714000000b004fb89530bb8mr11290246lfc.50.1689072417450;
-        Tue, 11 Jul 2023 03:46:57 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:a0db:1f00::8a5? (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
-        by smtp.gmail.com with ESMTPSA id e12-20020ac2546c000000b004fb96e2b3f3sm268066lfn.165.2023.07.11.03.46.56
+        bh=FhYjDo7VSwdxshX1nK59fpmU13FY+d9ZhewNClu/GzI=;
+        b=OCRNLkHPLJwbwmxC96mvLHR4AljXtBIIRfVE47UjuNA/9dHTXWmd3WWHYTQTT/uMC5
+         UsITp4SFY353t+RuJHRyLCxmTcaYqbqVKXFdA8JetiSCLJIKANuzgPM9VBPZBBSINQAQ
+         Ym1D1OjrjpqQlBZUbpLmNtHsENNPDuhFKL5xqRz8Jcgr/G/N9othnLuYMh8pIJL6JuI8
+         6DO7+NrKuZiw01rHQ6KRkWzh3MJ5ApvSUukz5N5O1OD30W5ESE7SLcIzoar24jZa3wXy
+         m6sAP8dY5O+AVU6pdzdaHgCaP+67dndEoiKJOuQgXCKBlP0X2X3ympV8f78u9pBYBVY+
+         zJQQ==
+X-Gm-Message-State: ABy/qLZOEi7IwfbFPGoLcjHduBfuTFZXrrpgBB+WKYlpjwUVZBIiI+Qi
+        b216x17gtHGul2qJ+B5eayRFCQ==
+X-Google-Smtp-Source: APBJJlGPV035AkQDFa+4NUX6ahiro8/dT4HGrCGmnEJWwuBVg19WZDUBGD7hKaf6DC2YlZs555dtXw==
+X-Received: by 2002:a17:906:7393:b0:993:f081:2c58 with SMTP id f19-20020a170906739300b00993f0812c58mr10827815ejl.4.1689072449397;
+        Tue, 11 Jul 2023 03:47:29 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id d2-20020a1709064c4200b0099290e2c15esm1005152ejw.75.2023.07.11.03.47.27
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 11 Jul 2023 03:46:56 -0700 (PDT)
-Message-ID: <49e24e0c-978b-6249-1ecc-bd485f5f90de@linaro.org>
-Date:   Tue, 11 Jul 2023 13:46:56 +0300
+        Tue, 11 Jul 2023 03:47:28 -0700 (PDT)
+Message-ID: <2086b277-2333-1c58-24a4-72fa946a4b96@linaro.org>
+Date:   Tue, 11 Jul 2023 12:47:17 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH 1/6] clk: qcom: clk-alpha-pll: Add NSS HUAYRA ALPHA PLL
- support for ipq9574
-Content-Language: en-GB
-To:     Devi Priya <quic_devipriy@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org,
-        mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        catalin.marinas@arm.com, will@kernel.org, p.zabel@pengutronix.de,
-        richardcochran@gmail.com, arnd@arndb.de, geert+renesas@glider.be,
-        neil.armstrong@linaro.org, nfraprado@collabora.com,
-        rafal@milecki.pl, linux-arm-msm@vger.kernel.org,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        netdev@vger.kernel.org
-Cc:     quic_saahtoma@quicinc.com
-References: <20230711093529.18355-1-quic_devipriy@quicinc.com>
- <20230711093529.18355-2-quic_devipriy@quicinc.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20230711093529.18355-2-quic_devipriy@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+ Thunderbird/102.13.0
+Subject: Re: [PATCH V1] arm64: dts: qcom: sa8775p-ride: Update L4C parameters
+Content-Language: en-US
+To:     Nitin Rawat <quic_nitirawa@quicinc.com>, agross@kernel.org,
+        andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Naveen Kumar Goud Arepalli <quic_narepall@quicinc.com>
+References: <20230711104255.16488-1-quic_nitirawa@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230711104255.16488-1-quic_nitirawa@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/07/2023 12:35, Devi Priya wrote:
-> Add support for NSS Huayra alpha pll found on ipq9574 SoCs.
-> Programming sequence is the same as that of Huayra type Alpha PLL,
-> so we can re-use the same.
+On 11/07/2023 12:42, Nitin Rawat wrote:
+> From: Naveen Kumar Goud Arepalli <quic_narepall@quicinc.com>
 > 
-> Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
-> ---
->   drivers/clk/qcom/clk-alpha-pll.c | 12 ++++++++++++
->   drivers/clk/qcom/clk-alpha-pll.h |  1 +
->   2 files changed, 13 insertions(+)
+> L4c is the supply for UFS vccq, As per UFS spec range of vccq is
+> 1.14V to 1.26V, There are stability issues when operating at
+> marginal voltage. Hence configure the min and max vccq voltages
+> to 1.2V.
+> 
+> Signed-off-by: Naveen Kumar Goud Arepalli <quic_narepall@quicinc.com>
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Thank you for your patch. Please add proper Sign-off-by (yours) when
+sending patches.
 
--- 
-With best wishes
-Dmitry
+Best regards,
+Krzysztof
 
