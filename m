@@ -2,75 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F68474E915
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 10:28:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8EAAC74E947
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 10:42:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231433AbjGKI2Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jul 2023 04:28:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47322 "EHLO
+        id S230150AbjGKImZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jul 2023 04:42:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53118 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231148AbjGKI2U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 04:28:20 -0400
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B76EE69;
-        Tue, 11 Jul 2023 01:27:59 -0700 (PDT)
-Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36B7BULs017783;
-        Tue, 11 Jul 2023 10:27:01 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=5BykRxZq5pCQOrfLUK1o5UBK9a6Q0LVx7aCtpEXNmhI=;
- b=hYY5/FGGoPmLSwlUvblXYuAx4RCnoZF/DZP9ExC4PdFqcbiGRCUCsuVavP8edbDSYkID
- FE8szszuXpmepo701cLa3FQG/MlrN927AAgZaSBGPAI/zqz2EL9iH9rG/HaEPtdKzkJQ
- clnk4+MIsMmf/cUfwQQWqBgwfXhuNB4NZfE3wfwm3OCc5nBNiwQHgANO9wKj8rjoj2qZ
- n9nGFjmzYYxHTiqxmpdeencgZzAak4RntcAutHMV5pfd+8OLzQSBe20vxrFtGkciDt8l
- EfwBD919H1k19nRxJ6QuPtKKCLIRos/jltlvK4/LMSx/p0hOpqzQhVH0XwA4orECcasP 3w== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3rs2fr8kwq-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 11 Jul 2023 10:27:01 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 2FFA410005D;
-        Tue, 11 Jul 2023 10:27:00 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 20ED521513C;
-        Tue, 11 Jul 2023 10:27:00 +0200 (CEST)
-Received: from [10.201.21.122] (10.201.21.122) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Tue, 11 Jul
- 2023 10:26:59 +0200
-Message-ID: <fae63cee-042a-ee9b-2f8a-ff7895543df4@foss.st.com>
-Date:   Tue, 11 Jul 2023 10:26:58 +0200
+        with ESMTP id S229774AbjGKImV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 04:42:21 -0400
+Received: from imap5.colo.codethink.co.uk (imap5.colo.codethink.co.uk [78.40.148.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0AD4BF;
+        Tue, 11 Jul 2023 01:42:20 -0700 (PDT)
+Received: from 82-132-229-125.dab.02.net ([82.132.229.125] helo=[192.168.252.81])
+        by imap5.colo.codethink.co.uk with esmtpsa  (Exim 4.94.2 #2 (Debian))
+        id 1qJ8wN-007Gds-VX; Tue, 11 Jul 2023 09:41:48 +0100
+Message-ID: <74385f9d-ed8d-8906-13e3-b3091dae7993@codethink.co.uk>
+Date:   Tue, 11 Jul 2023 09:41:43 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH] ARM: dts: stm32: leverage OP-TEE ASync notif on
- STM32MP13x Soc family
-Content-Language: en-US
-To:     Etienne Carriere <etienne.carriere@foss.st.com>,
-        <linux-kernel@vger.kernel.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <devicetree@vger.kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-References: <20230710150515.2127124-1-etienne.carriere@foss.st.com>
-From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
-In-Reply-To: <20230710150515.2127124-1-etienne.carriere@foss.st.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.201.21.122]
-X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-07-11_04,2023-07-06_02,2023-05-22_02
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+ Thunderbird/102.12.0
+Subject: Re: [PATCH 2/3] soc: sifive: Add SiFive private L2 cache PMU driver
+Content-Language: en-GB
+To:     Eric Lin <eric.lin@sifive.com>,
+        Conor Dooley <conor.dooley@microchip.com>
+Cc:     conor@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, palmer@dabbelt.com,
+        paul.walmsley@sifive.com, aou@eecs.berkeley.edu, maz@kernel.org,
+        chenhuacai@kernel.org, baolu.lu@linux.intel.com, will@kernel.org,
+        kan.liang@linux.intel.com, nnac123@linux.ibm.com,
+        pierre.gondois@arm.com, jgross@suse.com, chao.gao@intel.com,
+        maobibo@loongson.cn, linux-riscv@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dslin1010@gmail.com, Greentime Hu <greentime.hu@sifive.com>,
+        Zong Li <zong.li@sifive.com>, Nick Hu <nick.hu@sifive.com>
+References: <20230616063210.19063-1-eric.lin@sifive.com>
+ <20230616063210.19063-3-eric.lin@sifive.com>
+ <20230616-revision-speed-a83dc926b334@wendy>
+ <CAPqJEFo5genyjY7qJBaESzeppbEnTiDe9qzv98ETLhWfMZeG4A@mail.gmail.com>
+From:   Ben Dooks <ben.dooks@codethink.co.uk>
+Organization: Codethink Limited.
+In-Reply-To: <CAPqJEFo5genyjY7qJBaESzeppbEnTiDe9qzv98ETLhWfMZeG4A@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,32 +54,97 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Etienne
-
-On 7/10/23 17:05, Etienne Carriere wrote:
-> Enables use of GIC PPI#15 for OP-TEE asynchronous notifications
-> on stm32mp13 platforms.
+On 20/06/2023 04:14, Eric Lin wrote:
+> On Fri, Jun 16, 2023 at 6:13 PM Conor Dooley <conor.dooley@microchip.com> wrote:
+>>
+>> On Fri, Jun 16, 2023 at 02:32:09PM +0800, Eric Lin wrote:
+>>> From: Greentime Hu <greentime.hu@sifive.com>
+>>>
+>>> This adds SiFive private L2 cache PMU driver. User
+>>> can use perf tool to profile by event name and event id.
+>>>
+>>> Example:
+>>> $ perf stat -C 0 -e /sifive_pl2_pmu/inner_acquire_block_btot/
+>>>                  -e /sifive_pl2_pmu/inner_acquire_block_ntob/
+>>>                  -e /sifive_pl2_pmu/inner_acquire_block_ntot/ ls
+>>>
+>>>   Performance counter stats for 'CPU(s) 0':
+>>>
+>>>                 300      sifive_pl2_pmu/inner_acquire_block_btot/
+>>>               17801      sifive_pl2_pmu/inner_acquire_block_ntob/
+>>>                5253      sifive_pl2_pmu/inner_acquire_block_ntot/
+>>>
+>>>         0.088917326 seconds time elapsed
+>>>
+>>> $ perf stat -C 0 -e /sifive_pl2_pmu/event=0x10001/
+>>>                  -e /sifive_pl2_pmu/event=0x4001/
+>>>                  -e /sifive_pl2_pmu/event=0x8001/ ls
+>>>
+>>>   Performance counter stats for 'CPU(s) 0':
+>>>
+>>>                 251      sifive_pl2_pmu/event=0x10001/
+>>>                2620      sifive_pl2_pmu/event=0x4001/
+>>>                 644      sifive_pl2_pmu/event=0x8001/
+>>>
+>>>         0.092827110 seconds time elapsed
+>>>
+>>> Signed-off-by: Greentime Hu <greentime.hu@sifive.com>
+>>> Signed-off-by: Eric Lin <eric.lin@sifive.com>
+>>> Reviewed-by: Zong Li <zong.li@sifive.com>
+>>> Reviewed-by: Nick Hu <nick.hu@sifive.com>
+>>> ---
+>>>   drivers/soc/sifive/Kconfig            |   9 +
+>>>   drivers/soc/sifive/Makefile           |   1 +
+>>>   drivers/soc/sifive/sifive_pl2.h       |  20 +
+>>>   drivers/soc/sifive/sifive_pl2_cache.c |  16 +
+>>>   drivers/soc/sifive/sifive_pl2_pmu.c   | 669 ++++++++++++++++++++++++++
+>>
+>> Perf drivers should be in drivers/perf, no?
+>>
 > 
-> Signed-off-by: Etienne Carriere <etienne.carriere@foss.st.com>
-> ---
->   arch/arm/boot/dts/st/stm32mp131.dtsi | 2 ++
->   1 file changed, 2 insertions(+)
+> Hi Conor,
 > 
-> diff --git a/arch/arm/boot/dts/st/stm32mp131.dtsi b/arch/arm/boot/dts/st/stm32mp131.dtsi
-> index d163c267e34c..02f872b99f1d 100644
-> --- a/arch/arm/boot/dts/st/stm32mp131.dtsi
-> +++ b/arch/arm/boot/dts/st/stm32mp131.dtsi
-> @@ -33,6 +33,8 @@ firmware {
->   		optee {
->   			method = "smc";
->   			compatible = "linaro,optee-tz";
-> +			interrupt-parent = <&intc>;
-> +			interrupts = <GIC_PPI 15 (GIC_CPU_MASK_SIMPLE(1) | IRQ_TYPE_LEVEL_LOW)>;
->   		};
->   
->   		scmi: scmi {
+> Yes, I see most of the drivers are in the drivers/perf.
+> 
+> But I grep perf_pmu_register(), it seems not all the pmu drivers are
+> in drivers/perf as below:
+> 
+> arch/arm/mach-imx/mmdc.c:517:   ret =
+> perf_pmu_register(&(pmu_mmdc->pmu), name, -1);
+> arch/arm/mm/cache-l2x0-pmu.c:552:       ret =
+> perf_pmu_register(l2x0_pmu, l2x0_name, -1);
+> ...
+> drivers/dma/idxd/perfmon.c:627: rc = perf_pmu_register(&idxd_pmu->pmu,
+> idxd_pmu->name, -1);
+> drivers/fpga/dfl-fme-perf.c:904:static int
+> fme_perf_pmu_register(struct platform_device *pdev,
+> drivers/fpga/dfl-fme-perf.c:929:        ret = perf_pmu_register(pmu, name, -1);
+> ...
+> drivers/gpu/drm/amd/amdgpu/amdgpu_pmu.c:549:    ret =
+> perf_pmu_register(&pmu_entry->pmu, pmu_name, -1);
+> drivers/gpu/drm/i915/i915_pmu.c:1190:   ret =
+> perf_pmu_register(&pmu->base, pmu->name, -1);
+> drivers/hwtracing/coresight/coresight-etm-perf.c:907:   ret =
+> perf_pmu_register(&etm_pmu, CORESIGHT_ETM_PMU_NAME, -1);
+> drivers/hwtracing/ptt/hisi_ptt.c:895:   ret =
+> perf_pmu_register(&hisi_ptt->hisi_ptt_pmu, pmu_name, -1);
+> drivers/iommu/intel/perfmon.c:570:      return
+> perf_pmu_register(&iommu_pmu->pmu, iommu_pmu->pmu.name, -1);
+> drivers/nvdimm/nd_perf.c:309:   rc = perf_pmu_register(&nd_pmu->pmu,
+> nd_pmu->pmu.name, -1);
+> ...
+> 
+> I just wondering what kind of pmu drivers should be in drivers/perf
+> and what kind of pmu drivers should not be in drivers/perf.
+> Thanks.
+>
 
-Applied on stm32-next.
+Given the registers for the l2 cache controls and l2 pmu don't overlap
+do we need the pmu and general cache drivers together?
 
-Thanks.
-Alex
+-- 
+Ben Dooks				http://www.codethink.co.uk/
+Senior Engineer				Codethink - Providing Genius
+
+https://www.codethink.co.uk/privacy.html
+
