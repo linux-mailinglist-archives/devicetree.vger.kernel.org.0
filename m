@@ -2,97 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2941174F9A9
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 23:21:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C3AEF74F9C3
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 23:35:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230255AbjGKVV3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jul 2023 17:21:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34120 "EHLO
+        id S231361AbjGKVfA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jul 2023 17:35:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38662 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230305AbjGKVV2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 17:21:28 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2427B133;
-        Tue, 11 Jul 2023 14:21:28 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id AD27F6160E;
-        Tue, 11 Jul 2023 21:21:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F7A1C433C7;
-        Tue, 11 Jul 2023 21:21:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689110487;
-        bh=6Ah7bT014+0EnYhqIBI4z9U9khMOfEK4P7UjUPWCSxU=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=CsB5o/cj4RYIp4U7s5184O6v2lgE1SjlMobgfQJrlU0f+U7X1uYbfw16uCX10JyPa
-         g2AjVuf+P02lxL7Ba0tfPbxIzzbW1jG4BtFFX1oiF6Y0qjMer7eKpO3OJk2UiZSxfp
-         xTioBe/+6hDAml8RQ94yNjBMJp+CKdamWHIhmB645xYBbxpi94Ws8T+Yo3y6XSkvqZ
-         LfN0b4p8RSk8/WhX68UPsRFSoR3CdOFKJY7cWo7LnICjCxfF+NGkz/55IZnvTtNiGS
-         UV2NVOajHThFAXvZz7A7uEhzHd+m/AJ4ZOcx15w2/lQByutD6j88ZQzJ0262Pa5LOP
-         T4U87uMo2U0eQ==
-From:   Mark Brown <broonie@kernel.org>
-To:     Liam Girdwood <lgirdwood@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        Rob Herring <robh@kernel.org>
-Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-In-Reply-To: <20230707221725.1071292-1-robh@kernel.org>
-References: <20230707221725.1071292-1-robh@kernel.org>
-Subject: Re: [PATCH] ASoC: dt-bindings: audio-graph-card2: Drop incomplete
- example
-Message-Id: <168911048524.530041.17659227550480230737.b4-ty@kernel.org>
-Date:   Tue, 11 Jul 2023 22:21:25 +0100
+        with ESMTP id S229963AbjGKVe7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 17:34:59 -0400
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C405E69
+        for <devicetree@vger.kernel.org>; Tue, 11 Jul 2023 14:34:58 -0700 (PDT)
+Received: by mail-lj1-x22c.google.com with SMTP id 38308e7fff4ca-2b6a084a34cso96013221fa.1
+        for <devicetree@vger.kernel.org>; Tue, 11 Jul 2023 14:34:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1689111296; x=1691703296;
+        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
+         :content-language:user-agent:mime-version:date:message-id:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=5kdVuwXm6t95AcBuBM8m7iArVjotqNWDs0Iyq3HVAYg=;
+        b=NkqZys+bin9V5fVkkxHI6QhlxChpa/RkNbEBdYOBEEEo9ee0ztANjJ9JvOD41diumx
+         w7VZ/PzElygPNgUCjrnj9k7EyE4i9w+WAIv6IT2776fuExrUtDcjq39qyRMHIE2/frEa
+         AWvN9zMI3J10jBIlBjqSSJJO+aaLzubQCvqfWyRy5MYa0ApR3cYx9huE/xfecmG7snik
+         bTFJTaE6SeuAMT/+LXCqhOqoUfz2gZXyciEe1ZtQmw8N1I+gh9r/znni0PHun0d4ohYS
+         yR6cltNg96DS2y4zjsX8j6skn9gJd16Z9dTXPWl5400p2c2xDOauvG30BRSHuLcxJA19
+         tR7w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689111296; x=1691703296;
+        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
+         :content-language:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=5kdVuwXm6t95AcBuBM8m7iArVjotqNWDs0Iyq3HVAYg=;
+        b=erbtKN7n5A3KEPw4h2chPLzLXsHDWG3ijRs6XfWXieIjYxtzt24Z4Gv2r67jkwdbdp
+         yZpz8001SuEjVNZo/RubeGm9KtPiFHW9fmuaLRv27XZ622cQgzQM5wJec6szYRbIfGtA
+         fLqvy2wC9L9pm4agFd4Y076tai3Oni85jAYVl5RjZ3CJ7tf+DZbONV+YOAvHorCvEkEh
+         DKPFLebcVoq8+oN0MOuYijKGJaD5swx4mhEKL6t7wnf47gV3zS45zenmMLFNEU1q7Zss
+         5/F/DJta2TYJAEroqxxdHPuO4YU8xQB9BMbZ2vk2CI8ZhS78I+XgRFNw9IX8rdPGyiFA
+         aWKQ==
+X-Gm-Message-State: ABy/qLbxollL1qyEbIDocSgcC33aOM4sy1N7EsLRMtHpt3JMiQSS3tTD
+        LReIAIxP8LknlYITbhZbV1ywuEPBA//MdRTn3kDRXQ==
+X-Google-Smtp-Source: APBJJlFvpJE95MGXlJyrIpKrgbrKL35PzAVwOnW7cxv5hb1zbqpIUZgMx6jvKV++u6SvtTpjyfoWrA==
+X-Received: by 2002:a2e:a0d4:0:b0:2b5:89a6:c12b with SMTP id f20-20020a2ea0d4000000b002b589a6c12bmr14055670ljm.10.1689111296389;
+        Tue, 11 Jul 2023 14:34:56 -0700 (PDT)
+Received: from [192.168.1.101] (abyl96.neoplus.adsl.tpnet.pl. [83.9.31.96])
+        by smtp.gmail.com with ESMTPSA id e16-20020a2e9310000000b002b6cb40e9aasm597832ljh.103.2023.07.11.14.34.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 11 Jul 2023 14:34:55 -0700 (PDT)
+Message-ID: <da7cf83c-8026-c6dc-e3cb-c632c1b59d96@linaro.org>
+Date:   Tue, 11 Jul 2023 23:34:54 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Stephen Boyd <swboyd@chromium.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org
+References: <20230709041926.4052245-1-dmitry.baryshkov@linaro.org>
+ <20230709041926.4052245-3-dmitry.baryshkov@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Subject: Re: [PATCH 2/5] arm64: dts: qcom: sm8250: Add DisplayPort device node
+In-Reply-To: <20230709041926.4052245-3-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.13-dev-099c9
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 07 Jul 2023 16:17:25 -0600, Rob Herring wrote:
-> The example in audio-graph-card2 binding is incomplete, uses
-> undocumented compatibles strings, and doesn't follow typical .dts
-> formatting. Rather than try to fix with what would probably be a lengthy
-> example, just drop the example.
+On 9.07.2023 06:19, Dmitry Baryshkov wrote:
+> Declare the displayport controller present on the Qualcomm SM8250 SoC.
 > 
-> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+[...]
 
-Applied to
+> +				dp_opp_table: opp-table {
+> +					compatible = "operating-points-v2";
+> +
+> +					opp-160000000 {
+> +						opp-hz = /bits/ 64 <160000000>;
+> +						required-opps = <&rpmhpd_opp_low_svs>;
+19.2 MHz, VDD_MIN
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+> +					};
+> +
+> +					opp-270000000 {
+> +						opp-hz = /bits/ 64 <270000000>;
+> +						required-opps = <&rpmhpd_opp_svs>;
+270 MHz, LOW_SVS
+> +					};
+> +
+> +					opp-540000000 {
+> +						opp-hz = /bits/ 64 <540000000>;
+> +						required-opps = <&rpmhpd_opp_svs_l1>;
+540 MHz, SVS_L1 (ok)
+> +					};
+> +
+> +					opp-810000000 {
+> +						opp-hz = /bits/ 64 <810000000>;
+> +						required-opps = <&rpmhpd_opp_nom>;
+810 MHz, NOM (also ok)
 
-Thanks!
+(but then - there's qcom,max-pclk-frequency-khz = <675000>;)
 
-[1/1] ASoC: dt-bindings: audio-graph-card2: Drop incomplete example
-      commit: c65b21f8aeac86768d387a86dfcbec5980480b6a
+also, what's up with the PIXEL1 clocks etc.?
+they are capped at the aforementioned 675 Mhz but I have no idea
+what they're for
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
+Konrad
+> +					};
+> +				};
+> +			};
+> +
+>  			mdss_dsi0: dsi@ae94000 {
+>  				compatible = "qcom,sm8250-dsi-ctrl",
+>  					     "qcom,mdss-dsi-ctrl";
