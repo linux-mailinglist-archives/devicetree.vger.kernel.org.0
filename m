@@ -2,291 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E78B174EBFE
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 12:50:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E840674EC09
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 12:56:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230182AbjGKKu5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jul 2023 06:50:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34506 "EHLO
+        id S230047AbjGKK4i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jul 2023 06:56:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36604 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231322AbjGKKut (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 06:50:49 -0400
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A4CB10FA
-        for <devicetree@vger.kernel.org>; Tue, 11 Jul 2023 03:50:45 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id 2adb3069b0e04-4fbb281eec6so8541573e87.1
-        for <devicetree@vger.kernel.org>; Tue, 11 Jul 2023 03:50:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689072643; x=1691664643;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=bsGi/AQ335IJGc0/2vjFnmujn9OC9GFlHTvDDV21i/A=;
-        b=f7135Ulf7UCPzIlDgN8JSjgnk07yDLhUb2aPUrU1eDBE0N0EcRLNRFMZBBXLp5Ccip
-         bL67M06ldcD1RLf7M2jrS8WszIOqJbnXpGz9xpPY+T+pyTi1rCmL4yQS4ps36Xn6zfJu
-         sWOugdafZ4eqTVEn9FuMecWADk0o2FA/Qh0+DTtDiDGVEaCkTKMj3NFWa3q9kIwDYsfa
-         mFSh1RfVgY/dYGdZ7uvgwxolsNzcCAqgboq4vY0KyC/SxF5iCCo7ZDSN3A4LF4b7laHA
-         KT4xXDjYyGp7wJHtGqGE1W+SQOlvY8+kT1NGRpolGFZCrg1o3qN6IFvfb8EmzStLHZ7x
-         rIKA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689072643; x=1691664643;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=bsGi/AQ335IJGc0/2vjFnmujn9OC9GFlHTvDDV21i/A=;
-        b=PxyG2ys1l9bjsjdR6/dlFVqDXTIWpjX1OT3Kk8N/rh5QYKvkS5Wi4FC7B8hk524wt4
-         UPa7MFNX3E+wXR48Msp+2eNolXUUUQJbzL6/aDvHDBlmo72/HrmsRDlNqipI1xVa2ENX
-         pH5nKK8kBrVxaD1kPadUKBVbQjOsqlgQVoB3bSzMmhdWjA1QlmSGcJ88p+C7H0JT7a3C
-         +ua4oLmCZoXmzioI6JeXCpLCuYpnv6+tQLamkYO3Xl2TilCfi2A2MGJU8uUlk2+KV2G7
-         5R2zXRWfROuDOvKosVShOxTbZH4DKs7e3hUbZS4aKy04xd51LVnGToKJM3qWXEKCayEz
-         gYgw==
-X-Gm-Message-State: ABy/qLYhlPOfXWJizmuugOsfGrCaBQBIKzyt+HOCdH8bAIdHOeF6GUzb
-        UxmgtW3uyUt/06RDdwwcEkpbZg==
-X-Google-Smtp-Source: APBJJlEptb+2D+nj3iuROjTRLvM3l5qghg6uMyWCLwNxDusZhnMczLeb8VnyZfZojAIEfAgXqwB6Yg==
-X-Received: by 2002:a05:6512:534:b0:4fb:242:6e05 with SMTP id o20-20020a056512053400b004fb02426e05mr12578120lfc.3.1689072643173;
-        Tue, 11 Jul 2023 03:50:43 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:a0db:1f00::8a5? (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
-        by smtp.gmail.com with ESMTPSA id r6-20020ac25a46000000b004fbae25fcc4sm268584lfn.61.2023.07.11.03.50.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 11 Jul 2023 03:50:42 -0700 (PDT)
-Message-ID: <31075ecb-7e3c-302f-a668-b872017e19b3@linaro.org>
-Date:   Tue, 11 Jul 2023 13:50:42 +0300
+        with ESMTP id S229659AbjGKK4h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 06:56:37 -0400
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 350AEE49;
+        Tue, 11 Jul 2023 03:56:35 -0700 (PDT)
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36BA4j4g002334;
+        Tue, 11 Jul 2023 12:56:20 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=q7P65G86//NJ5DH+61LgfBPYAsjNDY1bl+p5SrAy/sI=;
+ b=Q7Wm5PjGi9YswKi3Q5t8YJLBvSzYUiJa0LINQwLvzKWH2Ut4PDiDiCD2lD7VIue8yGCA
+ x4yLvVA8lUwVfNZV6Kv6/a9Aa4RBRAub8USr7oM0LKkvOn8Y+23soQrs0/MBmmmmE4qq
+ lqLdOcQyYh4OjGHH44VBpwHQw/5FS6BmGyqAh3cu/2OKzOPbt6EuxJvMzCpA6AJtyQF4
+ hn++ODmYvDfCS832OKLf+UTGif2kw2bR8QBCMctJb3W7OkewKuWJbyqtbGkH2TyuC/UB
+ TqKfIequR7NrS7EhHfREu3XfqVhqCKhGYtZNx+UiFmGfpMG0xtI9R+iS5Zda/6aKQ/wx lg== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3rs2d81vy8-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 11 Jul 2023 12:56:20 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 64B92100057;
+        Tue, 11 Jul 2023 12:56:18 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 5D9DE21B501;
+        Tue, 11 Jul 2023 12:56:18 +0200 (CEST)
+Received: from [10.201.21.122] (10.201.21.122) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Tue, 11 Jul
+ 2023 12:56:17 +0200
+Message-ID: <6433912f-28b9-3579-fe79-3466a5f1ba06@foss.st.com>
+Date:   Tue, 11 Jul 2023 12:56:16 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH 4/6] clk: qcom: Add NSS clock Controller driver for
- IPQ9574
-Content-Language: en-GB
-To:     Devi Priya <quic_devipriy@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org,
-        mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        catalin.marinas@arm.com, will@kernel.org, p.zabel@pengutronix.de,
-        richardcochran@gmail.com, arnd@arndb.de, geert+renesas@glider.be,
-        neil.armstrong@linaro.org, nfraprado@collabora.com,
-        rafal@milecki.pl, linux-arm-msm@vger.kernel.org,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        netdev@vger.kernel.org
-Cc:     quic_saahtoma@quicinc.com
-References: <20230711093529.18355-1-quic_devipriy@quicinc.com>
- <20230711093529.18355-5-quic_devipriy@quicinc.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20230711093529.18355-5-quic_devipriy@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+ Thunderbird/102.11.0
+Subject: Re: [PATCH 2/2] ARM: dts: stm32: add touchscreen on stm32f746-disco
+ board
+Content-Language: en-US
+To:     Dario Binacchi <dario.binacchi@amarulasolutions.com>,
+        <linux-kernel@vger.kernel.org>
+CC:     Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>
+References: <20230704173407.590544-1-dario.binacchi@amarulasolutions.com>
+ <20230704173407.590544-2-dario.binacchi@amarulasolutions.com>
+From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <20230704173407.590544-2-dario.binacchi@amarulasolutions.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
+X-Originating-IP: [10.201.21.122]
+X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-07-11_05,2023-07-11_01,2023-05-22_02
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/07/2023 12:35, Devi Priya wrote:
-> Add Networking Sub System Clock Controller(NSSCC) driver for ipq9574 based
-> devices.
+On 7/4/23 19:34, Dario Binacchi wrote:
+> The patch adds support for touchscreen on the stm32f746-disco board.
 > 
-> Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
+> Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
 > ---
->   drivers/clk/qcom/Kconfig         |    6 +
->   drivers/clk/qcom/Makefile        |    1 +
->   drivers/clk/qcom/nsscc-ipq9574.c | 3080 ++++++++++++++++++++++++++++++
->   3 files changed, 3087 insertions(+)
->   create mode 100644 drivers/clk/qcom/nsscc-ipq9574.c
 > 
-> diff --git a/drivers/clk/qcom/Kconfig b/drivers/clk/qcom/Kconfig
-> index 263e55d75e3f..5556063d204f 100644
-> --- a/drivers/clk/qcom/Kconfig
-> +++ b/drivers/clk/qcom/Kconfig
-> @@ -195,6 +195,12 @@ config IPQ_GCC_9574
->   	  i2c, USB, SD/eMMC, etc. Select this for the root clock
->   	  of ipq9574.
+>   arch/arm/boot/dts/st/stm32f746-disco.dts | 17 +++++++++++++++++
+>   1 file changed, 17 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/st/stm32f746-disco.dts b/arch/arm/boot/dts/st/stm32f746-disco.dts
+> index c11616ed5fc6..4830ccd48cb3 100644
+> --- a/arch/arm/boot/dts/st/stm32f746-disco.dts
+> +++ b/arch/arm/boot/dts/st/stm32f746-disco.dts
+> @@ -45,6 +45,7 @@
+>   #include "stm32f746-pinctrl.dtsi"
+>   #include <dt-bindings/input/input.h>
+>   #include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/interrupt-controller/irq.h>
 >   
-> +config IPQ_NSSCC_9574
-> +	tristate "IPQ9574 NSS Clock Controller"
-> +	depends on IPQ_GCC_9574
-> +	help
-> +	  Support for NSS clock controller on ipq9574 devices.
+>   / {
+>   	model = "STMicroelectronics STM32F746-DISCO board";
+> @@ -99,6 +100,22 @@ &i2c1 {
+>   	status = "okay";
+>   };
+>   
+> +&i2c3 {
+> +	pinctrl-0 = <&i2c3_pins_a>;
+> +	pinctrl-names = "default";
+> +	clock-frequency = <400000>;
+> +	status = "okay";
 > +
->   config MSM_GCC_8660
->   	tristate "MSM8660 Global Clock Controller"
->   	depends on ARM || COMPILE_TEST
-> diff --git a/drivers/clk/qcom/Makefile b/drivers/clk/qcom/Makefile
-> index e6e294274c35..8ba882186bff 100644
-> --- a/drivers/clk/qcom/Makefile
-> +++ b/drivers/clk/qcom/Makefile
-> @@ -29,6 +29,7 @@ obj-$(CONFIG_IPQ_GCC_6018) += gcc-ipq6018.o
->   obj-$(CONFIG_IPQ_GCC_806X) += gcc-ipq806x.o
->   obj-$(CONFIG_IPQ_GCC_8074) += gcc-ipq8074.o
->   obj-$(CONFIG_IPQ_GCC_9574) += gcc-ipq9574.o
-> +obj-$(CONFIG_IPQ_NSSCC_9574)	+= nsscc-ipq9574.o
->   obj-$(CONFIG_IPQ_LCC_806X) += lcc-ipq806x.o
->   obj-$(CONFIG_MDM_GCC_9607) += gcc-mdm9607.o
->   obj-$(CONFIG_MDM_GCC_9615) += gcc-mdm9615.o
-> diff --git a/drivers/clk/qcom/nsscc-ipq9574.c b/drivers/clk/qcom/nsscc-ipq9574.c
-> new file mode 100644
-> index 000000000000..b6bed0d24059
-> --- /dev/null
-> +++ b/drivers/clk/qcom/nsscc-ipq9574.c
-> @@ -0,0 +1,3080 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (c) 2021, The Linux Foundation. All rights reserved.
-> + * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
-> + */
-> +
-> +#include <linux/clk-provider.h>
-> +#include <linux/err.h>
-> +#include <linux/kernel.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/of_device.h>
-> +#include <linux/regmap.h>
-> +
-> +#include <dt-bindings/clock/qcom,ipq9574-nsscc.h>
-> +#include <dt-bindings/reset/qcom,ipq9574-nsscc.h>
-> +
-> +#include "clk-alpha-pll.h"
-> +#include "clk-branch.h"
-> +#include "clk-pll.h"
-> +#include "clk-rcg.h"
-> +#include "clk-regmap.h"
-> +#include "clk-regmap-divider.h"
-> +#include "clk-regmap-mux.h"
-> +#include "common.h"
-> +#include "reset.h"
-> +
-> +/* Need to match the order of clocks in DT binding */
-> +enum {
-> +	DT_BIAS_PLL_CC_CLK,
-> +	DT_BIAS_PLL_NSS_NOC_CLK,
-> +	DT_BIAS_PLL_UBI_NC_CLK,
-> +	DT_GCC_GPLL0_OUT_AUX,
-> +	DT_UNIPHY0_GCC_RX_CLK,
-> +	DT_UNIPHY0_GCC_TX_CLK,
-> +	DT_UNIPHY1_GCC_RX_CLK,
-> +	DT_UNIPHY1_GCC_TX_CLK,
-> +	DT_UNIPHY2_GCC_RX_CLK,
-> +	DT_UNIPHY2_GCC_TX_CLK,
-> +	DT_XO,
+> +	touchscreen@38 {
+> +		compatible = "edt,edt-ft5306";
+> +		reg = <0x38>;
+> +		interrupt-parent = <&gpioi>;
+> +		interrupts = <13 IRQ_TYPE_EDGE_FALLING>;
+> +		touchscreen-size-x = <480>;
+> +		touchscreen-size-y = <272>;
+> +	};
 > +};
 > +
-> +enum {
-> +	P_BIAS_PLL_CC_CLK,
-> +	P_BIAS_PLL_NSS_NOC_CLK,
-> +	P_BIAS_PLL_UBI_NC_CLK,
-> +	P_GCC_GPLL0_OUT_AUX,
-> +	P_UBI32_PLL_OUT_MAIN,
-> +	P_UNIPHY0_GCC_RX_CLK,
-> +	P_UNIPHY0_GCC_TX_CLK,
-> +	P_UNIPHY1_GCC_RX_CLK,
-> +	P_UNIPHY1_GCC_TX_CLK,
-> +	P_UNIPHY2_GCC_RX_CLK,
-> +	P_UNIPHY2_GCC_TX_CLK,
-> +	P_XO,
-> +};
-> +
-> +static const struct alpha_pll_config ubi32_pll_config = {
-> +	.l = 0x3e,
-> +	.alpha = 0x6666,
-> +	.config_ctl_val = 0x200d4aa8,
-> +	.config_ctl_hi_val = 0x3c,
-> +	.main_output_mask = BIT(0),
-> +	.aux_output_mask = BIT(1),
-> +	.pre_div_val = 0x0,
-> +	.pre_div_mask = BIT(12),
-> +	.post_div_val = 0x0,
-> +	.post_div_mask = GENMASK(9, 8),
-> +	.alpha_en_mask = BIT(24),
-> +	.test_ctl_val = 0x1c0000c0,
-> +	.test_ctl_hi_val = 0x4000,
-> +};
-> +
-> +static struct clk_alpha_pll ubi32_pll_main = {
-> +	.offset = 0x28000,
-> +	.regs = clk_alpha_pll_regs[CLK_ALPHA_PLL_TYPE_NSS_HUAYRA],
-> +	.flags = SUPPORTS_DYNAMIC_UPDATE,
-> +	.clkr = {
-> +		.hw.init = &(const struct clk_init_data) {
-> +			.name = "ubi32_pll_main",
-> +			.parent_data = &(const struct clk_parent_data) {
-> +				.index = DT_XO,
-> +			},
-> +			.num_parents = 1,
-> +			.ops = &clk_alpha_pll_huayra_ops,
-> +		},
-> +	},
-> +};
-> +
-> +static struct clk_alpha_pll_postdiv ubi32_pll = {
-> +	.offset = 0x28000,
-> +	.regs = clk_alpha_pll_regs[CLK_ALPHA_PLL_TYPE_NSS_HUAYRA],
-> +	.width = 2,
-> +	.clkr.hw.init = &(const struct clk_init_data) {
-> +		.name = "ubi32_pll",
-> +		.parent_hws = (const struct clk_hw *[]) {
-> +			&ubi32_pll_main.clkr.hw
-> +		},
-> +		.num_parents = 1,
-> +		.ops = &clk_alpha_pll_postdiv_ro_ops,
-> +		.flags = CLK_SET_RATE_PARENT,
-> +	},
-> +};
-> +
+>   &sdio1 {
+>   	status = "okay";
+>   	vmmc-supply = <&mmc_vcard>;
 
-[skipped the rest, LGTM]
+Series applied on stm32-next.
 
-  +
-> +static int nss_cc_ipq9574_probe(struct platform_device *pdev)
-> +{
-> +	struct regmap *regmap;
-> +	struct qcom_cc_desc nsscc_ipq9574_desc = nss_cc_ipq9574_desc;
-> +
-> +	regmap = qcom_cc_map(pdev, &nsscc_ipq9574_desc);
-> +	if (IS_ERR(regmap))
-> +		return PTR_ERR(regmap);
-> +
-> +	/* SW Workaround for UBI Huayra PLL */
-> +	regmap_update_bits(regmap, 0x2800C, BIT(26), BIT(26));
-
-Can we directly set the correct value via ubi32_pll_config.test_ctl_val ?
-
-> +
-> +	clk_alpha_pll_configure(&ubi32_pll_main, regmap, &ubi32_pll_config);
-> +
-> +	return qcom_cc_really_probe(pdev, &nsscc_ipq9574_desc, regmap);
-> +}
-> +
-> +static struct platform_driver nss_cc_ipq9574_driver = {
-> +	.probe = nss_cc_ipq9574_probe,
-> +	.driver = {
-> +		.name = "qcom,nsscc-ipq9574",
-> +		.of_match_table = nss_cc_ipq9574_match_table,
-> +	},
-> +};
-> +
-> +static int __init nss_cc_ipq9574_init(void)
-> +{
-> +	return platform_driver_register(&nss_cc_ipq9574_driver);
-> +}
-> +subsys_initcall(nss_cc_ipq9574_init);
-> +
-> +static void __exit nss_cc_ipq9574_exit(void)
-> +{
-> +	platform_driver_unregister(&nss_cc_ipq9574_driver);
-> +}
-> +module_exit(nss_cc_ipq9574_exit);
-
-module_platform_driver ?
-
-> +
-> +MODULE_DESCRIPTION("QTI NSS_CC IPQ9574 Driver");
-> +MODULE_LICENSE("GPL");
-
--- 
-With best wishes
-Dmitry
-
+Thanks
+Alex
