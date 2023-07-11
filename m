@@ -2,83 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4EA8174EF94
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 14:58:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3CCF074EFC8
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 15:02:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231190AbjGKM6b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jul 2023 08:58:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58848 "EHLO
+        id S232553AbjGKNC1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jul 2023 09:02:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34746 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232196AbjGKM6a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 08:58:30 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6157170E;
-        Tue, 11 Jul 2023 05:58:01 -0700 (PDT)
-X-UUID: 8d8ed8f21fea11ee9cb5633481061a41-20230711
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=rC1bu/LW0Pn7GDL1W3uRUjZN89ZOf3CmMGTbWJQ+zwM=;
-        b=r8D6Ry+yXniHki8fmqDC7mfSCc4IicaI1UuBI/EL5BYOBtPe9M1Ru9FRGLO8R9MRe/OO8bJKM8jcj6sy4vrA9S/d1lq9+VDp475pEgvGjuQdjYGMC0jg+qcZl5Cwu1czfxXUh/xtiJWu7fCfM+cDC1BC3WwgfRjmJIGpXtWWjfw=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.28,REQID:d6a504c7-2d34-4359-87eb-c3a39cdae321,IP:0,U
-        RL:0,TC:0,Content:-5,EDM:0,RT:0,SF:95,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
-        N:release,TS:90
-X-CID-INFO: VERSION:1.1.28,REQID:d6a504c7-2d34-4359-87eb-c3a39cdae321,IP:0,URL
-        :0,TC:0,Content:-5,EDM:0,RT:0,SF:95,FILE:0,BULK:0,RULE:Spam_GS981B3D,ACTIO
-        N:quarantine,TS:90
-X-CID-META: VersionHash:176cd25,CLOUDID:f85ad00d-26a8-467f-b838-f99719a9c083,B
-        ulkID:230711205757N5WW1ISC,BulkQuantity:0,Recheck:0,SF:38|29|28|17|19|48,T
-        C:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
-        ,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0
-X-CID-BVR: 0,NGT
-X-CID-BAS: 0,NGT,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_SDM,TF_CID_SPAM_ASC,TF_CID_SPAM_FAS,
-        TF_CID_SPAM_FSD
-X-UUID: 8d8ed8f21fea11ee9cb5633481061a41-20230711
-Received: from mtkmbs14n1.mediatek.inc [(172.21.101.75)] by mailgw01.mediatek.com
-        (envelope-from <yunfei.dong@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1425672369; Tue, 11 Jul 2023 20:57:55 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs13n2.mediatek.inc (172.21.101.108) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Tue, 11 Jul 2023 20:57:54 +0800
-Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
- mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Tue, 11 Jul 2023 20:57:53 +0800
-From:   Yunfei Dong <yunfei.dong@mediatek.com>
-To:     =?UTF-8?q?N=C3=ADcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?= 
-        <nfraprado@collabora.com>,
-        Nicolas Dufresne <nicolas.dufresne@collabora.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Nathan Hebert <nhebert@chromium.org>
-CC:     Chen-Yu Tsai <wenst@chromium.org>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Steve Cho <stevecho@chromium.org>,
-        Yunfei Dong <yunfei.dong@mediatek.com>,
-        Mingjia Zhang <mingjia.zhang@mediatek.com>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Subject: [PATCH 3/3] media: mediatek: vcodec: Add driver to support 10bit
-Date:   Tue, 11 Jul 2023 20:57:49 +0800
-Message-ID: <20230711125749.15555-4-yunfei.dong@mediatek.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230711125749.15555-1-yunfei.dong@mediatek.com>
-References: <20230711125749.15555-1-yunfei.dong@mediatek.com>
+        with ESMTP id S232643AbjGKNC0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 09:02:26 -0400
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5FF5C10F9;
+        Tue, 11 Jul 2023 06:02:05 -0700 (PDT)
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36B9Sx2x026949;
+        Tue, 11 Jul 2023 15:01:03 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=CcJYk6OSmAh/ZRlDaYkuV0Et2MLWaOhRgR+ej3SaWJc=;
+ b=8MfxHLPnPm+POlrdjBx/RA/yUfCPOH39vHMbTd1S2+R/VXraTD7dXMVTtQNwMZJ8ZHaC
+ eCMcTe1cxl+mAhZqaatOdWOmxwMIZ+q+t2VOp4cj4lzgFhoh0pmhCsQi7PMqkXbKbjfa
+ z0TSvldsQCmuBz6BSPD7cGTiyjvCvFpyTXJ7OFdPQYeplLEkuBACbFjb0WZFAWmufPFp
+ CixPugFKuJ2J4io6bnbdheD5s/FPR/KrN6ippp7I/lkVhtg/ZryKVxLjgTz/1mSDsqt2
+ J3zpIgCesTzBhZjq8t3canoc+iejYg3nMei9GIbjfVwaH46RjgBpAmkBtapfYsMjagKe lw== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3rrs59dfe2-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 11 Jul 2023 15:01:03 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id B663E100070;
+        Tue, 11 Jul 2023 15:01:01 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id A5194226FAE;
+        Tue, 11 Jul 2023 15:01:01 +0200 (CEST)
+Received: from [10.201.21.122] (10.201.21.122) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Tue, 11 Jul
+ 2023 15:01:00 +0200
+Message-ID: <531a282f-9a0d-cb64-d1d1-ebaf9356b717@foss.st.com>
+Date:   Tue, 11 Jul 2023 15:00:59 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-MTK:  N
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v2 8/8] ARM: dts: stm32: Add Octavo OSD32MP1-RED board
+Content-Language: en-US
+To:     Sean Nyekjaer <sean@geanix.com>, <a.fatoum@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>
+CC:     <dantuguf14105@gmail.com>,
+        Olivier Moysan <olivier.moysan@foss.st.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20230621063339.1361073-1-sean@geanix.com>
+ <20230621063339.1361073-8-sean@geanix.com>
+From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <20230621063339.1361073-8-sean@geanix.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.201.21.122]
+X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-07-11_07,2023-07-11_01,2023-05-22_02
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY,
+        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
         URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -86,277 +80,267 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Mingjia Zhang <mingjia.zhang@mediatek.com>
+Hi Sean
 
-Adding to support capture formats V4L2_PIX_FMT_MT2110T and
-V4L2_PIX_FMT_MT2110R for 10bit playback. Need to get the size
-of each plane again when user space setting syntax to get 10bit
-information.
+On 6/21/23 08:33, Sean Nyekjaer wrote:
+> Add support for the Octavo OSD32MP1-RED development board.
+> 
+> General features:
+>   - STM32MP157C
+>   - 512MB DDR3
+>   - CAN-FD
+>   - HDMI
+>   - USB-C OTG
+>   - UART
+> 
+> Signed-off-by: Sean Nyekjaer <sean@geanix.com>
+> Reviewed-by: Olivier Moysan <olivier.moysan@foss.st.com>
+> ---
 
-V4L2_PIX_FMT_MT2110T for AV1/VP9/HEVC.
-V4L2_PIX_FMT_MT2110R for H264.
+You must update Makefile if you want I build it :). In the same time you 
+could also ordering your phandle nodes by alphabetic order. It makes the 
+file easier to read.
 
-Signed-off-by: Mingjia Zhang <mingjia.zhang@mediatek.com>
-Co-developed-by: Yunfei Dong <yunfei.dong@mediatek.com>
-Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
----
- .../mediatek/vcodec/decoder/mtk_vcodec_dec.c  |  22 ++-
- .../vcodec/decoder/mtk_vcodec_dec_drv.h       |   5 +
- .../vcodec/decoder/mtk_vcodec_dec_stateless.c | 140 +++++++++++++++++-
- 3 files changed, 163 insertions(+), 4 deletions(-)
+Regards
+Alex
 
-diff --git a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec.c b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec.c
-index 5acb7dff18f2..91ed576d6821 100644
---- a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec.c
-+++ b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec.c
-@@ -37,7 +37,9 @@ static bool mtk_vdec_get_cap_fmt(struct mtk_vcodec_dec_ctx *ctx, int format_inde
- {
- 	const struct mtk_vcodec_dec_pdata *dec_pdata = ctx->dev->vdec_pdata;
- 	const struct mtk_video_fmt *fmt;
-+	struct mtk_q_data *q_data;
- 	int num_frame_count = 0, i;
-+	bool ret = false;
- 
- 	fmt = &dec_pdata->vdec_formats[format_index];
- 	for (i = 0; i < *dec_pdata->num_formats; i++) {
-@@ -47,10 +49,26 @@ static bool mtk_vdec_get_cap_fmt(struct mtk_vcodec_dec_ctx *ctx, int format_inde
- 		num_frame_count++;
- 	}
- 
--	if (num_frame_count == 1 || fmt->fourcc == V4L2_PIX_FMT_MM21)
-+	if (num_frame_count == 1 || (!ctx->is_10bit_bitstream && fmt->fourcc == V4L2_PIX_FMT_MM21))
- 		return true;
- 
--	return false;
-+	q_data = &ctx->q_data[MTK_Q_DATA_SRC];
-+	switch (q_data->fmt->fourcc) {
-+	case V4L2_PIX_FMT_H264_SLICE:
-+		if (ctx->is_10bit_bitstream && fmt->fourcc == V4L2_PIX_FMT_MT2110R)
-+			ret = true;
-+		break;
-+	case V4L2_PIX_FMT_VP9_FRAME:
-+	case V4L2_PIX_FMT_AV1_FRAME:
-+	case V4L2_PIX_FMT_HEVC_SLICE:
-+		if (ctx->is_10bit_bitstream && fmt->fourcc == V4L2_PIX_FMT_MT2110T)
-+			ret = true;
-+		break;
-+	default:
-+		break;
-+	}
-+
-+	return ret;
- }
- 
- static struct mtk_q_data *mtk_vdec_get_q_data(struct mtk_vcodec_dec_ctx *ctx,
-diff --git a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.h b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.h
-index c8b4374c5e6c..cd607e90fe9c 100644
---- a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.h
-+++ b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.h
-@@ -31,6 +31,7 @@ enum mtk_vdec_format_types {
- 	MTK_VDEC_FORMAT_AV1_FRAME = 0x800,
- 	MTK_VDEC_FORMAT_HEVC_FRAME = 0x1000,
- 	MTK_VCODEC_INNER_RACING = 0x20000,
-+	MTK_VDEC_IS_SUPPORT_10BIT = 0x40000,
- };
- 
- /*
-@@ -160,6 +161,8 @@ struct mtk_vcodec_dec_pdata {
-  * @hw_id: hardware index used to identify different hardware.
-  *
-  * @msg_queue: msg queue used to store lat buffer information.
-+ *
-+ * @is_10bit_bitstream: set to true if it's 10bit bitstream
-  */
- struct mtk_vcodec_dec_ctx {
- 	enum mtk_instance_type type;
-@@ -202,6 +205,8 @@ struct mtk_vcodec_dec_ctx {
- 	int hw_id;
- 
- 	struct vdec_msg_queue msg_queue;
-+
-+	bool is_10bit_bitstream;
- };
- 
- /**
-diff --git a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_stateless.c b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_stateless.c
-index 99a84c7e1901..cef937fdf462 100644
---- a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_stateless.c
-+++ b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_stateless.c
-@@ -200,7 +200,7 @@ static const struct mtk_stateless_control mtk_stateless_controls[] = {
- 
- #define NUM_CTRLS ARRAY_SIZE(mtk_stateless_controls)
- 
--static struct mtk_video_fmt mtk_video_formats[7];
-+static struct mtk_video_fmt mtk_video_formats[9];
- 
- static struct mtk_video_fmt default_out_format;
- static struct mtk_video_fmt default_cap_format;
-@@ -387,6 +387,134 @@ static int mtk_vdec_flush_decoder(struct mtk_vcodec_dec_ctx *ctx)
- 	return vdec_if_decode(ctx, NULL, NULL, &res_chg);
- }
- 
-+static int mtk_vcodec_get_pic_info(struct mtk_vcodec_dec_ctx *ctx)
-+{
-+	struct mtk_q_data *q_data;
-+	int ret = 0;
-+
-+	q_data = &ctx->q_data[MTK_Q_DATA_DST];
-+	if (q_data->fmt->num_planes == 1) {
-+		mtk_v4l2_vdec_err(ctx, "[%d]Error!! 10bit mode not support one plane", ctx->id);
-+		return -EINVAL;
-+	}
-+
-+	ctx->capture_fourcc = q_data->fmt->fourcc;
-+	ret = vdec_if_get_param(ctx, GET_PARAM_PIC_INFO, &ctx->picinfo);
-+	if (ret) {
-+		mtk_v4l2_vdec_err(ctx, "[%d]Error!! Get GET_PARAM_PICTURE_INFO Fail", ctx->id);
-+		return ret;
-+	}
-+
-+	ctx->last_decoded_picinfo = ctx->picinfo;
-+
-+	q_data->sizeimage[0] = ctx->picinfo.fb_sz[0];
-+	q_data->bytesperline[0] = ctx->picinfo.buf_w * 5 / 4;
-+
-+	q_data->sizeimage[1] = ctx->picinfo.fb_sz[1];
-+	q_data->bytesperline[1] = ctx->picinfo.buf_w * 5 / 4;
-+
-+	q_data->coded_width = ctx->picinfo.buf_w;
-+	q_data->coded_height = ctx->picinfo.buf_h;
-+	mtk_v4l2_vdec_dbg(1, ctx, "[%d] wxh=%dx%d pic wxh=%dx%d sz[0]=0x%x sz[1]=0x%x",
-+			  ctx->id, ctx->picinfo.buf_w, ctx->picinfo.buf_h,
-+			  ctx->picinfo.pic_w, ctx->picinfo.pic_h,
-+			  q_data->sizeimage[0], q_data->sizeimage[1]);
-+
-+	return ret;
-+}
-+
-+static int mtk_vdec_s_ctrl(struct v4l2_ctrl *ctrl)
-+{
-+	struct mtk_vcodec_dec_ctx *ctx = ctrl_to_dec_ctx(ctrl);
-+	struct v4l2_ctrl_h264_sps *h264;
-+	struct v4l2_ctrl_hevc_sps *h265;
-+	struct v4l2_ctrl_vp9_frame *frame;
-+	struct v4l2_ctrl_av1_sequence *seq;
-+	struct v4l2_ctrl *hdr_ctrl;
-+	const struct mtk_vcodec_dec_pdata *dec_pdata = ctx->dev->vdec_pdata;
-+	const struct mtk_video_fmt *fmt;
-+	int i = 0, ret = 0;
-+
-+	hdr_ctrl = ctrl;
-+	if (!hdr_ctrl || !hdr_ctrl->p_cur.p)
-+		return -EINVAL;
-+
-+	switch (hdr_ctrl->id) {
-+	case V4L2_CID_STATELESS_H264_SPS:
-+		h264 = (struct v4l2_ctrl_h264_sps *)hdr_ctrl->p_new.p;
-+		if (h264->bit_depth_chroma_minus8 == 2 && h264->bit_depth_luma_minus8 == 2) {
-+			ctx->is_10bit_bitstream = true;
-+		} else if (h264->bit_depth_chroma_minus8 != 0 &&
-+			   h264->bit_depth_luma_minus8 != 0) {
-+			mtk_v4l2_vdec_err(ctx, "H264: chroma_minus8:%d, luma_minus8:%d",
-+					  h264->bit_depth_chroma_minus8,
-+					  h264->bit_depth_luma_minus8);
-+			return -EINVAL;
-+		}
-+		break;
-+	case V4L2_CID_STATELESS_HEVC_SPS:
-+		h265 = (struct v4l2_ctrl_hevc_sps *)hdr_ctrl->p_new.p;
-+		if (h265->bit_depth_chroma_minus8 == 2 && h265->bit_depth_luma_minus8 == 2) {
-+			ctx->is_10bit_bitstream = true;
-+		} else if (h265->bit_depth_chroma_minus8 != 0 &&
-+			   h265->bit_depth_luma_minus8 != 0) {
-+			mtk_v4l2_vdec_err(ctx, "HEVC: chroma_minus8:%d, luma_minus8:%d",
-+					  h265->bit_depth_chroma_minus8,
-+					  h265->bit_depth_luma_minus8);
-+			return -EINVAL;
-+		}
-+		break;
-+	case V4L2_CID_STATELESS_VP9_FRAME:
-+		frame = (struct v4l2_ctrl_vp9_frame *)hdr_ctrl->p_new.p;
-+		if (frame->bit_depth == 10) {
-+			ctx->is_10bit_bitstream = true;
-+		} else if (frame->bit_depth != 8) {
-+			mtk_v4l2_vdec_err(ctx, "VP9: bit_depth:%d", frame->bit_depth);
-+			return -EINVAL;
-+		}
-+		break;
-+	case V4L2_CID_STATELESS_AV1_SEQUENCE:
-+		seq = (struct v4l2_ctrl_av1_sequence *)hdr_ctrl->p_new.p;
-+		if (seq->bit_depth == 10) {
-+			ctx->is_10bit_bitstream = true;
-+		} else if (seq->bit_depth != 8) {
-+			mtk_v4l2_vdec_err(ctx, "AV1: bit_depth:%d", seq->bit_depth);
-+			return -EINVAL;
-+		}
-+		break;
-+	default:
-+		mtk_v4l2_vdec_err(ctx, "Not supported ctrl id: 0x%x\n", hdr_ctrl->id);
-+		return -EINVAL;
-+	}
-+
-+	if (!ctx->is_10bit_bitstream)
-+		return ret;
-+
-+	for (i = 0; i < *dec_pdata->num_formats; i++) {
-+		fmt = &dec_pdata->vdec_formats[i];
-+		if (fmt->fourcc == V4L2_PIX_FMT_MT2110R &&
-+		    hdr_ctrl->id == V4L2_CID_STATELESS_H264_SPS) {
-+			ctx->q_data[MTK_Q_DATA_DST].fmt = fmt;
-+			break;
-+		}
-+
-+		if (fmt->fourcc == V4L2_PIX_FMT_MT2110T &&
-+		    (hdr_ctrl->id == V4L2_CID_STATELESS_HEVC_SPS ||
-+		    hdr_ctrl->id == V4L2_CID_STATELESS_VP9_FRAME ||
-+		    hdr_ctrl->id == V4L2_CID_STATELESS_AV1_SEQUENCE)) {
-+			ctx->q_data[MTK_Q_DATA_DST].fmt = fmt;
-+			break;
-+		}
-+	}
-+	ret = mtk_vcodec_get_pic_info(ctx);
-+
-+	return ret;
-+}
-+
-+static const struct v4l2_ctrl_ops mtk_vcodec_dec_ctrl_ops = {
-+	.s_ctrl = mtk_vdec_s_ctrl,
-+};
-+
- static int mtk_vcodec_dec_ctrls_setup(struct mtk_vcodec_dec_ctx *ctx)
- {
- 	unsigned int i;
-@@ -399,7 +527,7 @@ static int mtk_vcodec_dec_ctrls_setup(struct mtk_vcodec_dec_ctx *ctx)
- 
- 	for (i = 0; i < NUM_CTRLS; i++) {
- 		struct v4l2_ctrl_config cfg = mtk_stateless_controls[i].cfg;
--
-+		cfg.ops = &mtk_vcodec_dec_ctrl_ops;
- 		v4l2_ctrl_new_custom(&ctx->ctrl_hdl, &cfg, NULL);
- 		if (ctx->ctrl_hdl.error) {
- 			mtk_v4l2_vdec_err(ctx, "Adding control %d failed %d", i,
-@@ -466,6 +594,8 @@ static void mtk_vcodec_add_formats(unsigned int fourcc,
- 		break;
- 	case V4L2_PIX_FMT_MM21:
- 	case V4L2_PIX_FMT_MT21C:
-+	case V4L2_PIX_FMT_MT2110T:
-+	case V4L2_PIX_FMT_MT2110R:
- 		mtk_video_formats[count_formats].fourcc = fourcc;
- 		mtk_video_formats[count_formats].type = MTK_FMT_FRAME;
- 		mtk_video_formats[count_formats].num_planes = 2;
-@@ -491,6 +621,12 @@ static void mtk_vcodec_get_supported_formats(struct mtk_vcodec_dec_ctx *ctx)
- 		mtk_vcodec_add_formats(V4L2_PIX_FMT_MT21C, ctx);
- 		cap_format_count++;
- 	}
-+	if (ctx->dev->dec_capability & MTK_VDEC_IS_SUPPORT_10BIT) {
-+		mtk_vcodec_add_formats(V4L2_PIX_FMT_MT2110T, ctx);
-+		cap_format_count++;
-+		mtk_vcodec_add_formats(V4L2_PIX_FMT_MT2110R, ctx);
-+		cap_format_count++;
-+	}
- 	if (ctx->dev->dec_capability & MTK_VDEC_FORMAT_MM21) {
- 		mtk_vcodec_add_formats(V4L2_PIX_FMT_MM21, ctx);
- 		cap_format_count++;
--- 
-2.18.0
+> Changes since v1:
+>   - Fixed comments from Ahmad
+> 
+>   .../arm/boot/dts/stm32mp157c-osd32mp1-red.dts | 226 ++++++++++++++++++
+>   1 file changed, 226 insertions(+)
+>   create mode 100644 arch/arm/boot/dts/stm32mp157c-osd32mp1-red.dts
+> 
+> diff --git a/arch/arm/boot/dts/stm32mp157c-osd32mp1-red.dts b/arch/arm/boot/dts/stm32mp157c-osd32mp1-red.dts
+> new file mode 100644
+> index 000000000000..f840b7faf02a
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/stm32mp157c-osd32mp1-red.dts
+> @@ -0,0 +1,226 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause)
+> +/*
+> + * Copyright (C) Geanix ApS 2023 - All Rights Reserved
+> + * Author: Sean Nyekjaer <sean@geanix.com>
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "stm32mp157.dtsi"
+> +#include "stm32mp15xc.dtsi"
+> +#include "stm32mp15xx-osd32.dtsi"
+> +#include "stm32mp15xxac-pinctrl.dtsi"
+> +
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/pinctrl/stm32-pinfunc.h>
+> +
+> +/ {
+> +	model = "Octavo OSD32MP1 RED board";
+> +	compatible = "oct,stm32mp157c-osd32-red", "oct,stm32mp15xx-osd32", "st,stm32mp157";
+> +
+> +	aliases {
+> +		serial0 = &uart4;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = "serial0:115200n8";
+> +	};
+> +
+> +	led-controller-0 {
+> +		compatible = "gpio-leds";
+> +
+> +		led-0 {
+> +			label = "heartbeat";
+> +			gpios = <&gpiod 11 GPIO_ACTIVE_HIGH>;
+> +			linux,default-trigger = "heartbeat";
+> +		};
+> +	};
+> +};
+> +
+> +&ethernet0 {
+> +	status = "okay";
+> +	pinctrl-0 = <&ethernet0_rgmii_pins_a>;
+> +	pinctrl-1 = <&ethernet0_rgmii_sleep_pins_a>;
+> +	pinctrl-names = "default", "sleep";
+> +	phy-mode = "rgmii-id";
+> +	max-speed = <1000>;
+> +	phy-handle = <&phy0>;
+> +	st,eth-clk-sel;
+> +
+> +	mdio0 {
+> +		compatible = "snps,dwmac-mdio";
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		phy0: ethernet-phy@3 {
+> +			reg = <3>;
+> +		};
+> +	};
+> +};
+> +
+> +
+> +&i2s2 {
+> +	clocks = <&rcc SPI2>, <&rcc SPI2_K>, <&rcc CK_PER>, <&rcc PLL3_R>;
+> +	clock-names = "pclk", "i2sclk", "x8k", "x11k";
+> +	pinctrl-names = "default", "sleep";
+> +	pinctrl-0 = <&i2s2_pins_b>;
+> +	pinctrl-1 = <&i2s2_sleep_pins_b>;
+> +	status = "okay";
+> +
+> +	i2s2_port: port {
+> +		i2s2_endpoint: endpoint {
+> +			remote-endpoint = <&sii9022_tx_endpoint>;
+> +			format = "i2s";
+> +			mclk-fs = <256>;
+> +		};
+> +	};
+> +};
+> +
+> +&iwdg2 {
+> +	timeout-sec = <32>;
+> +	status = "okay";
+> +};
+> +
+> +&pwr_regulators {
+> +	vdd-supply = <&vdd>;
+> +	vdd_3v3_usbfs-supply = <&vdd_usb>;
+> +};
+> +
+> +&ltdc {
+> +	status = "okay";
+> +
+> +	port {
+> +		ltdc_ep0_out: endpoint@0 {
+> +			reg = <0>;
+> +			remote-endpoint = <&sii9022_in>;
+> +		};
+> +	};
+> +};
+> +
+> +&i2c1 {
+> +	pinctrl-names = "default", "sleep";
+> +	pinctrl-0 = <&i2c1_pins_a>;
+> +	pinctrl-1 = <&i2c1_sleep_pins_a>;
+> +	status = "okay";
+> +	i2c-scl-rising-time-ns = <100>;
+> +	i2c-scl-falling-time-ns = <7>;
+> +	/delete-property/dmas;
+> +	/delete-property/dma-names;
+> +
+> +	hdmi-transmitter@39 {
+> +		compatible = "sil,sii9022";
+> +		reg = <0x39>;
+> +		reset-gpios = <&gpiog 0 GPIO_ACTIVE_LOW>;
+> +		interrupts = <1 IRQ_TYPE_EDGE_FALLING>;
+> +		interrupt-parent = <&gpiog>;
+> +		pinctrl-names = "default", "sleep";
+> +		pinctrl-0 = <&ltdc_pins_e>;
+> +		pinctrl-1 = <&ltdc_sleep_pins_e>;
+> +		status = "okay";
+> +
+> +		ports {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			port@0 {
+> +				reg = <0>;
+> +				sii9022_in: endpoint {
+> +					remote-endpoint = <&ltdc_ep0_out>;
+> +				};
+> +			};
+> +
+> +			port@1 {
+> +				reg = <1>;
+> +				sii9022_tx_endpoint: endpoint {
+> +					remote-endpoint = <&i2s2_endpoint>;
+> +				};
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&sdmmc1 {
+> +	pinctrl-names = "default", "opendrain", "sleep";
+> +	pinctrl-0 = <&sdmmc1_b4_pins_a>;
+> +	pinctrl-1 = <&sdmmc1_b4_od_pins_a>;
+> +	pinctrl-2 = <&sdmmc1_b4_sleep_pins_a>;
+> +	cd-gpios = <&gpioe 7 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+> +	disable-wp;
+> +	st,neg-edge;
+> +	bus-width = <4>;
+> +	vmmc-supply = <&v3v3>;
+> +	status = "okay";
+> +};
+> +
+> +&sdmmc2 {
+> +	pinctrl-names = "default", "opendrain", "sleep";
+> +	pinctrl-0 = <&sdmmc2_b4_pins_a &sdmmc2_d47_pins_d>;
+> +	pinctrl-1 = <&sdmmc2_b4_od_pins_a>;
+> +	pinctrl-2 = <&sdmmc2_b4_sleep_pins_a &sdmmc2_d47_sleep_pins_d>;
+> +	non-removable;
+> +	no-sd;
+> +	no-sdio;
+> +	st,neg-edge;
+> +	bus-width = <8>;
+> +	vmmc-supply = <&v3v3>;
+> +	vqmmc-supply = <&vdd>;
+> +	mmc-ddr-3_3v;
+> +	status = "okay";
+> +};
+> +
+> +&uart4 {
+> +	pinctrl-names = "default", "sleep", "idle";
+> +	pinctrl-0 = <&uart4_pins_a>;
+> +	pinctrl-1 = <&uart4_sleep_pins_a>;
+> +	pinctrl-2 = <&uart4_idle_pins_a>;
+> +	/delete-property/dmas;
+> +	/delete-property/dma-names;
+> +	status = "okay";
+> +};
+> +
+> +&m_can1 {
+> +	pinctrl-names = "default", "sleep";
+> +	pinctrl-0 = <&m_can1_pins_d>;
+> +	pinctrl-1 = <&m_can1_sleep_pins_d>;
+> +	status = "okay";
+> +};
+> +
+> +&usbh_ehci {
+> +	phys = <&usbphyc_port0>;
+> +	phy-names = "usb";
+> +	status = "okay";
+> +};
+> +
+> +&usbh_ohci {
+> +	phys = <&usbphyc_port0>;
+> +	phy-names = "usb";
+> +	status = "okay";
+> +};
+> +
+> +&usbotg_hs {
+> +	vbus-supply = <&vbus_otg>;
+> +};
+> +
+> +&usbphyc {
+> +	status = "okay";
+> +};
+> +
+> +&usbphyc_port0 {
+> +	phy-supply = <&vdd_usb>;
+> +};
+> +
+> +&usbphyc_port1 {
+> +	phy-supply = <&vdd_usb>;
+> +};
+> +
+> +&rtc {
+> +	status = "okay";
+> +};
+> +
+> +&crc1 {
+> +	status = "okay";
+> +};
+> +
+> +&dts {
+> +	status = "okay";
+> +};
 
