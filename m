@@ -2,111 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D57D74F669
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 19:05:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 87D1174F6A3
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 19:13:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231562AbjGKRFl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jul 2023 13:05:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55336 "EHLO
+        id S229655AbjGKRNk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jul 2023 13:13:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59392 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229766AbjGKRFk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 13:05:40 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB0E195;
-        Tue, 11 Jul 2023 10:05:39 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        with ESMTP id S231418AbjGKRNi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 13:13:38 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 303F5E75;
+        Tue, 11 Jul 2023 10:13:36 -0700 (PDT)
+Received: from jupiter.universe (dyndsl-091-248-213-212.ewe-ip-backbone.de [91.248.213.212])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 89CB26158F;
-        Tue, 11 Jul 2023 17:05:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E19DDC433CC;
-        Tue, 11 Jul 2023 17:05:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689095138;
-        bh=ffeJIapA2i8KtpkaQDaRRzVDC4qeHx8KurMrQFWzP7g=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=la3HOtHvy0XM/f2Y4iTCps1/Ti4qRFo+7rh5KcklI3mtDVdSM3SrCeQr+ZvTu3Hbo
-         zSpeSXhIIAT3AlrPPkw2+oymssLz8lCmLikDCttV1Y+1D7GUySlfUq57J23rzSbfnk
-         r8IFpBqbGZ6Hntuxk246q4e9H9/UFZnpCNMeUTwbuxZoZu1yhSSPhfHhMmdBHCQPio
-         nj8efEDaWTf3FdFrVe4NvM3l8UfrCZaWB3FjuaiPOr9X/IEiGybno2x9bRKyeKn/53
-         2IsxxjksJxxQQfldC3UBRzTw/NbQZKNBAeUssPxK1UQYYeuNJwWupQKWgnaj0Balk/
-         EMiFfAMwnCb2Q==
-Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-2b6f0508f54so93227331fa.3;
-        Tue, 11 Jul 2023 10:05:38 -0700 (PDT)
-X-Gm-Message-State: ABy/qLZBI+Amd07+7/rcuo08UHcwjx9qGu50FpPK52ipk9zwy3d7tyLm
-        PPZs8m38Iik54YlQaYDEGQ+scYtRleo42iKLqA==
-X-Google-Smtp-Source: APBJJlHoS1FcFxGwFPJ/ewPGABck5kWIkACfr8013AsyHvluCY8e0O92fpKWd7fFdLAfImxRrLkI27/ePXUc6RRhShw=
-X-Received: by 2002:a2e:9d9a:0:b0:2b6:c4cf:76a8 with SMTP id
- c26-20020a2e9d9a000000b002b6c4cf76a8mr13182327ljj.10.1689095136927; Tue, 11
- Jul 2023 10:05:36 -0700 (PDT)
+        (Authenticated sender: sre)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id BB6D36606FD5;
+        Tue, 11 Jul 2023 18:13:34 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1689095614;
+        bh=zkoGz/x1Q/pDR1kqIW7+X33wiVyNSQbwTUWJIEyKbJk=;
+        h=From:To:Cc:Subject:Date:From;
+        b=XxW8O4kegDe7y7iFxSSWFaHGyFYv6U7oJxPJFJrPmmfer8VWjoZE5sspjYF/wjdJK
+         WWC/rPljbhJWgTKjAnX8H7SHJqj1JyzuvOd4OV0Cn65dvbMGM/o2+2c3RUK8FPb9jb
+         qVxleJuJoDkeyY03v/93tfpzDJQN4hodflopUGHvXP4YhM7fxmmV/UAfgmyC6mD54F
+         EuvBLtG1ETOJB9TvpwWwivho7pBPaBKsW3qL3e/eyk6dEokdZbrCSK+GWeleaqmV5Z
+         p2F46fuQdg+3Zqr425H0Sa9C7hF9AJJMOeeazorx51YXPMeM1ilblB2zhl9SgryvE6
+         HZkIqbmK6uPuw==
+Received: by jupiter.universe (Postfix, from userid 1000)
+        id DFD18480592; Tue, 11 Jul 2023 19:13:32 +0200 (CEST)
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
+To:     linux-rockchip@lists.infradead.org,
+        Heiko Stuebner <heiko@sntech.de>
+Cc:     Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Sebastian Reichel <sebastian.reichel@collabora.com>,
+        kernel@collabora.com
+Subject: [PATCH v1 1/1] arm64: dts: rockchip: rk3588-evb1: add SATA
+Date:   Tue, 11 Jul 2023 19:13:30 +0200
+Message-Id: <20230711171330.52535-1-sebastian.reichel@collabora.com>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-References: <20230710174007.2291013-1-robh@kernel.org> <a0aa122d-38a1-d4be-edc1-a49b4e5e9b6b@suse.de>
- <4de35c35-c00d-d21a-bcd1-dc878137eb94@gmx.de>
-In-Reply-To: <4de35c35-c00d-d21a-bcd1-dc878137eb94@gmx.de>
-From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 11 Jul 2023 11:05:24 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJmQ+70CkqPDT3vhs0bYJ_e6fuQrSOkNwCj7i0JQA4-EA@mail.gmail.com>
-Message-ID: <CAL_JsqJmQ+70CkqPDT3vhs0bYJ_e6fuQrSOkNwCj7i0JQA4-EA@mail.gmail.com>
-Subject: Re: [PATCH] of: Preserve "of-display" device name for compatibility
-To:     Helge Deller <deller@gmx.de>
-Cc:     Thomas Zimmermann <tzimmermann@suse.de>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Michal Suchanek <msuchanek@suse.de>,
-        devicetree@vger.kernel.org, linux-fbdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org, stable@vger.kernel.org,
-        Cyril Brulebois <cyril@debamax.com>,
-        dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 11, 2023 at 9:46=E2=80=AFAM Helge Deller <deller@gmx.de> wrote:
->
-> On 7/11/23 08:00, Thomas Zimmermann wrote:
-> >
-> >
-> > Am 10.07.23 um 19:40 schrieb Rob Herring:
-> >> Since commit 241d2fb56a18 ("of: Make OF framebuffer device names uniqu=
-e"),
-> >> as spotted by Fr=C3=A9d=C3=A9ric Bonnard, the historical "of-display" =
-device is
-> >> gone: the updated logic creates "of-display.0" instead, then as many
-> >> "of-display.N" as required.
-> >>
-> >> This means that offb no longer finds the expected device, which preven=
-ts
-> >> the Debian Installer from setting up its interface, at least on ppc64e=
-l.
-> >>
-> >> Fix this by keeping "of-display" for the first device and "of-display.=
-N"
-> >> for subsequent devices.
-> >>
-> >> Link: https://bugzilla.kernel.org/show_bug.cgi?id=3D217328
-> >> Link: https://bugs.debian.org/1033058
-> >> Fixes: 241d2fb56a18 ("of: Make OF framebuffer device names unique")
-> >> Cc: stable@vger.kernel.org
-> >> Cc: Cyril Brulebois <cyril@debamax.com>
-> >> Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> >> Cc: Helge Deller <deller@gmx.de>
-> >> Signed-off-by: Rob Herring <robh@kernel.org>
-> >
-> > Acked-by: Thomas Zimmermann <tzimmermann@suse.de>
->
-> Acked-by: Helge Deller <deller@gmx.de>
->
-> Who will pick up that patch?
-> Shall I take it via fbdev git tree?
+Add support for the SATA0_0 port found on the RK3588 EVB1. The
+second port (SATA0_1) does not work, which matches the downstream
+behaviour.
 
-I'll take it. I've got other fixes queued up already.
+Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+---
+ arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-Rob
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts b/arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts
+index f06b2ddcfcb6..eeab8f0478a5 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts
+@@ -49,6 +49,10 @@ vcc5v0_sys: vcc5v0-sys-regulator {
+ 	};
+ };
+ 
++&combphy0_ps {
++	status = "okay";
++};
++
+ &cpu_b0 {
+ 	cpu-supply = <&vdd_cpu_big0_s0>;
+ };
+@@ -759,6 +763,10 @@ regulator-state-mem {
+ 	};
+ };
+ 
++&sata0 {
++	status = "okay";
++};
++
+ &uart2 {
+ 	pinctrl-0 = <&uart2m0_xfer>;
+ 	status = "okay";
+-- 
+2.40.1
+
