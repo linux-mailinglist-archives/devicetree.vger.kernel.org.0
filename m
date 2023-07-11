@@ -2,222 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9EB8674EDCC
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 14:12:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B06574EDD1
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 14:13:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229769AbjGKMMm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jul 2023 08:12:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47684 "EHLO
+        id S230195AbjGKMNj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jul 2023 08:13:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49508 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231545AbjGKMMY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 08:12:24 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3E68E67
-        for <devicetree@vger.kernel.org>; Tue, 11 Jul 2023 05:12:22 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id 2adb3069b0e04-4fba74870abso8404809e87.0
-        for <devicetree@vger.kernel.org>; Tue, 11 Jul 2023 05:12:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689077541; x=1691669541;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=jDy7dHlG8mw55snATaE8leDnJkkCCM8iB+BLX9zgGAo=;
-        b=vxXq6OQnnHTv5UKvvxLeU7f2QQGWO+rhZ1z5BVxqZF/VvX7fdLcJg/K0QFEGXgeqc8
-         sxac9dxirDwWLram7+y1DVzbGH4uf/gfxZkKm21kMHFTfyxE95Mnh9xgcHOyLbz6qYL1
-         h0cBsLVpyhlXpveHMk4yk8N/17CCg/njTMGHorgbJguzoH+zqY0Edt7npHYHItmIOUna
-         8l3/L0wIT5Quj6knBD1qENLpuCMPzK3wDOTnEt1sQpUlL3MUwPFCyBUneeeSOUcDdl9A
-         M+puQiKyqSERt1GULiMOYwnKNgReUgWwslZo8GjmeSTi6s0swA0ZCgR/iiDvLhSuj54w
-         6RQA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689077541; x=1691669541;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jDy7dHlG8mw55snATaE8leDnJkkCCM8iB+BLX9zgGAo=;
-        b=BJRhffAIfQ4Y8/GzeLENPz3b7XxEyyLP4xWiZcpYeWZrpPk65yWBkyBkr36JlARSBm
-         B+c4Q2mQOrJKcJyeamF0mHtLfvk2k3IYOcL35pFAZgwz5PBiDzoK+iDdx5MP8mP4A/SW
-         sWIXEVZzLCZep8Ob7FePxELK5dsVZ6ySGZOMjtE3IDHUADF97ufI39O1HRi1uVERLY9G
-         BfTGJzqVpzXXcNUeV12X+11QL0dQr/TPVYRqmSMplmU1M/eQ1Ta7wkkJUat67Gl+NqdX
-         T+XQNEw6DMRGsI2JNxQA4IvMtmOQwXNQzw72/oNHIqrxG9Qh6USsuF0oSIa9tIP+GYyz
-         fI1g==
-X-Gm-Message-State: ABy/qLbTvQG47ubsg5oSZ5VlO+GwEPMEQ7JhJl3SbVC7auunLqIUE44w
-        78UaAuzIfrAnBVlcozbaM89a5w==
-X-Google-Smtp-Source: APBJJlHQ0ExF60LDzFQpwimlhl+fdeOGdxysoQkuC6HFjjJ1PJS4V39IMHE5izdNyJkWsJxQIp39/A==
-X-Received: by 2002:ac2:5f63:0:b0:4fa:fc12:2bdd with SMTP id c3-20020ac25f63000000b004fafc122bddmr12455413lfc.40.1689077540923;
-        Tue, 11 Jul 2023 05:12:20 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:a0db:1f00::8a5? (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
-        by smtp.gmail.com with ESMTPSA id b9-20020a056512024900b004fb738796casm299425lfo.40.2023.07.11.05.12.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 11 Jul 2023 05:12:20 -0700 (PDT)
-Message-ID: <e46c9cce-b4f0-cc56-13b3-7402fc0bdc81@linaro.org>
-Date:   Tue, 11 Jul 2023 15:12:19 +0300
+        with ESMTP id S231676AbjGKMNc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 08:13:32 -0400
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08F8310EF;
+        Tue, 11 Jul 2023 05:13:29 -0700 (PDT)
+Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36BC95Y2015254;
+        Tue, 11 Jul 2023 14:13:11 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=sCuZ/9hR/lPRsTzfts991T5JQ1QG/1OJ5zsN85rXrt8=;
+ b=34/UyTlDI65TARTZzRibNlZiylBgJKUUXOlXb01LX/4vCeFqRehsUbWUo7lgg1+DVZIj
+ 4syoI/l4sijMQ5lUD9ZbbLya+ZIhHYuWhK5ror8LQ8G91mB7xDtW2vXBeK77bs4Zb8lZ
+ 4GxAPX/Uzt8mj/Q4a+6UkexJjf2ageLZC/iSWC+0HSeU3E04eWGPeLZrrm7qX3WLcnRR
+ lLZPXCnWQEIIDF/qtweWl8CJlBvRMB891ZmcTP55HUKKeeasV9qV+mWZdKfaesteX4nR
+ g0gR6j+NiBWLjLLJpKdsYK2x4lGsY3pR6PPkzFEEid0nV2M8HbwSe1hHD4Ne6u61OM5V qA== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3rs6u680t9-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 11 Jul 2023 14:13:11 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id D803C100067;
+        Tue, 11 Jul 2023 14:13:09 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 5DC94222CA3;
+        Tue, 11 Jul 2023 14:13:09 +0200 (CEST)
+Received: from [10.201.21.122] (10.201.21.122) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Tue, 11 Jul
+ 2023 14:13:09 +0200
+Message-ID: <abff4a25-a178-7eb7-1576-a94b0a57a896@foss.st.com>
+Date:   Tue, 11 Jul 2023 14:13:08 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH v3 05/10] arm64: dts: qcom: sc7180: switch USB+DP QMP PHY
- to new style of bindings
-Content-Language: en-GB
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org,
-        Neil Armstrong <neil.armstrong@linaro.org>
-References: <20230521202321.19778-1-dmitry.baryshkov@linaro.org>
- <20230521202321.19778-6-dmitry.baryshkov@linaro.org>
- <2d5b28d3-83f9-15c4-84e0-e6edb3f3333d@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <2d5b28d3-83f9-15c4-84e0-e6edb3f3333d@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v5 3/3] ARM: dts: stm32: support display on
+ stm32f746-disco board
+Content-Language: en-US
+To:     Dario Binacchi <dario.binacchi@amarulasolutions.com>,
+        <linux-kernel@vger.kernel.org>
+CC:     <michael@amarulasolutions.com>,
+        Amarula patchwork <linux-amarula@amarulasolutions.com>,
+        Philippe Cornu <philippe.cornu@foss.st.com>,
+        Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>
+References: <20230629083726.84910-1-dario.binacchi@amarulasolutions.com>
+ <20230629083726.84910-4-dario.binacchi@amarulasolutions.com>
+From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <20230629083726.84910-4-dario.binacchi@amarulasolutions.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
+X-Originating-IP: [10.201.21.122]
+X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-07-11_06,2023-07-11_01,2023-05-22_02
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/05/2023 11:41, Konrad Dybcio wrote:
-> 
-> 
-> On 21.05.2023 22:23, Dmitry Baryshkov wrote:
->> Change the USB QMP PHY to use newer style of QMP PHY bindings (single
->> resource region, no per-PHY subnodes).
->>
->> Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
->> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->> ---
->>   arch/arm64/boot/dts/qcom/sc7180.dtsi | 57 ++++++++++------------------
->>   1 file changed, 19 insertions(+), 38 deletions(-)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
->> index ea1ffade1aa1..b07a49e6829a 100644
->> --- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
->> @@ -14,6 +14,7 @@
->>   #include <dt-bindings/interconnect/qcom,osm-l3.h>
->>   #include <dt-bindings/interconnect/qcom,sc7180.h>
->>   #include <dt-bindings/interrupt-controller/arm-gic.h>
->> +#include <dt-bindings/phy/phy-qcom-qmp.h>
->>   #include <dt-bindings/phy/phy-qcom-qusb2.h>
->>   #include <dt-bindings/power/qcom-rpmpd.h>
->>   #include <dt-bindings/reset/qcom,sdm845-aoss.h>
->> @@ -2718,49 +2719,28 @@ usb_1_hsphy: phy@88e3000 {
->>   			nvmem-cells = <&qusb2p_hstx_trim>;
->>   		};
->>   
->> -		usb_1_qmpphy: phy-wrapper@88e9000 {
->> +		usb_1_qmpphy: phy@88e8000 {
->>   			compatible = "qcom,sc7180-qmp-usb3-dp-phy";
->> -			reg = <0 0x088e9000 0 0x18c>,
->> -			      <0 0x088e8000 0 0x3c>,
->> -			      <0 0x088ea000 0 0x18c>;
->> +			reg = <0 0x088e8000 0 0x3000>;
->>   			status = "disabled";
->> -			#address-cells = <2>;
->> -			#size-cells = <2>;
->> -			ranges;
->>   
->>   			clocks = <&gcc GCC_USB3_PRIM_PHY_AUX_CLK>,
->> -				 <&gcc GCC_USB_PHY_CFG_AHB2PHY_CLK>,
->>   				 <&gcc GCC_USB3_PRIM_CLKREF_CLK>,
->> -				 <&gcc GCC_USB3_PRIM_PHY_COM_AUX_CLK>;
->> -			clock-names = "aux", "cfg_ahb", "ref", "com_aux";
->> +				 <&gcc GCC_USB3_PRIM_PHY_COM_AUX_CLK>,
->> +				 <&gcc GCC_USB3_PRIM_PHY_PIPE_CLK>,
->> +				 <&gcc GCC_USB_PHY_CFG_AHB2PHY_CLK>;
-> These are unaligned
-> 
-> Other than that:
-> 
-> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Hi Dario
 
-Ugh. It seems I missed this comment (and your r-b tag) when sending v4. 
-Please excuse me. I'll send v5 in a few days to reduce the simultaneous 
-spam.
-
+On 6/29/23 10:37, Dario Binacchi wrote:
+> Add support to Rocktech RK043FN48H display on stm32f746-disco board.
 > 
-> Konrad
->> +			clock-names = "aux",
->> +				      "ref",
->> +				      "com_aux",
->> +				      "usb3_pipe",
->> +				      "cfg_ahb";
->>   
->>   			resets = <&gcc GCC_USB3_PHY_PRIM_BCR>,
->>   				 <&gcc GCC_USB3_DP_PHY_PRIM_BCR>;
->>   			reset-names = "phy", "common";
->>   
->> -			usb_1_ssphy: usb3-phy@88e9200 {
->> -				reg = <0 0x088e9200 0 0x128>,
->> -				      <0 0x088e9400 0 0x200>,
->> -				      <0 0x088e9c00 0 0x218>,
->> -				      <0 0x088e9600 0 0x128>,
->> -				      <0 0x088e9800 0 0x200>,
->> -				      <0 0x088e9a00 0 0x18>;
->> -				#clock-cells = <0>;
->> -				#phy-cells = <0>;
->> -				clocks = <&gcc GCC_USB3_PRIM_PHY_PIPE_CLK>;
->> -				clock-names = "pipe0";
->> -				clock-output-names = "usb3_phy_pipe_clk_src";
->> -			};
->> -
->> -			dp_phy: dp-phy@88ea200 {
->> -				reg = <0 0x088ea200 0 0x200>,
->> -				      <0 0x088ea400 0 0x200>,
->> -				      <0 0x088eaa00 0 0x200>,
->> -				      <0 0x088ea600 0 0x200>,
->> -				      <0 0x088ea800 0 0x200>;
->> -				#clock-cells = <1>;
->> -				#phy-cells = <0>;
->> -			};
->> +			#clock-cells = <1>;
->> +			#phy-cells = <1>;
->>   		};
->>   
->>   		dc_noc: interconnect@9160000 {
->> @@ -2840,7 +2820,7 @@ usb_1_dwc3: usb@a600000 {
->>   				iommus = <&apps_smmu 0x540 0>;
->>   				snps,dis_u2_susphy_quirk;
->>   				snps,dis_enblslpm_quirk;
->> -				phys = <&usb_1_hsphy>, <&usb_1_ssphy>;
->> +				phys = <&usb_1_hsphy>, <&usb_1_qmpphy QMP_USB43DP_USB3_PHY>;
->>   				phy-names = "usb2-phy", "usb3-phy";
->>   				maximum-speed = "super-speed";
->>   			};
->> @@ -3148,8 +3128,9 @@ mdss_dp: displayport-controller@ae90000 {
->>   					      "ctrl_link_iface", "stream_pixel";
->>   				assigned-clocks = <&dispcc DISP_CC_MDSS_DP_LINK_CLK_SRC>,
->>   						  <&dispcc DISP_CC_MDSS_DP_PIXEL_CLK_SRC>;
->> -				assigned-clock-parents = <&dp_phy 0>, <&dp_phy 1>;
->> -				phys = <&dp_phy>;
->> +				assigned-clock-parents = <&usb_1_qmpphy QMP_USB43DP_DP_LINK_CLK>,
->> +							 <&usb_1_qmpphy QMP_USB43DP_DP_VCO_DIV_CLK>;
->> +				phys = <&usb_1_qmpphy QMP_USB43DP_DP_PHY>;
->>   				phy-names = "dp";
->>   
->>   				operating-points-v2 = <&dp_opp_table>;
->> @@ -3206,8 +3187,8 @@ dispcc: clock-controller@af00000 {
->>   				 <&gcc GCC_DISP_GPLL0_CLK_SRC>,
->>   				 <&dsi_phy 0>,
->>   				 <&dsi_phy 1>,
->> -				 <&dp_phy 0>,
->> -				 <&dp_phy 1>;
->> +				 <&usb_1_qmpphy QMP_USB43DP_DP_LINK_CLK>,
->> +				 <&usb_1_qmpphy QMP_USB43DP_DP_VCO_DIV_CLK>;
->>   			clock-names = "bi_tcxo",
->>   				      "gcc_disp_gpll0_clk_src",
->>   				      "dsi0_phy_pll_out_byteclk",
+> Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+> 
+> ---
+> 
+> Changes in v5:
+> I am confident that framebuffer sizing is a real requirement for STM32 boards,
+> but I need some time to understand if and how to introduce this functionality.
+> Therefore, I drop the following patches to allow the series to be fully merged:
+>   - [4/6] dt-bindings: display: stm32-ltdc: add optional st,fb-bpp property
+>   - [5/6] ARM: dts: stm32: set framebuffer bit depth on stm32f746-disco
+>   - [6/6] drm/stm: set framebuffer bit depth through DTS property
+> 
+> Changes in v4:
+> - Use DTS property instead of module parameter to set the framebuffer bit depth.
+> 
+> Changes in v3:
+> - drop [4/6] dt-bindings: display: simple: add Rocktech RK043FN48H
+>    Applied to https://anongit.freedesktop.org/git/drm/drm-misc.git (drm-misc-next):
+>    https://cgit.freedesktop.org/drm/drm-misc/commit/?id=c42a37a27c777d63961dd634a30f7c887949491a
+> - drop [5/6] drm/panel: simple: add support for Rocktech RK043FN48H panel
+>    Applied to https://anongit.freedesktop.org/git/drm/drm-misc.git (drm-misc-next)
+>    https://cgit.freedesktop.org/drm/drm-misc/commit/?id=13cdd12a9f934158f4ec817cf048fcb4384aa9dc
+> 
+>   arch/arm/boot/dts/stm32f746-disco.dts | 51 +++++++++++++++++++++++++++
+>   1 file changed, 51 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/stm32f746-disco.dts b/arch/arm/boot/dts/stm32f746-disco.dts
+> index c11616ed5fc6..cda423b6a874 100644
+> --- a/arch/arm/boot/dts/stm32f746-disco.dts
+> +++ b/arch/arm/boot/dts/stm32f746-disco.dts
+> @@ -60,10 +60,41 @@ memory@c0000000 {
+>   		reg = <0xC0000000 0x800000>;
+>   	};
+>   
+> +	reserved-memory {
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		ranges;
+> +
+> +		linux,cma {
+> +			compatible = "shared-dma-pool";
+> +			no-map;
+> +			size = <0x80000>;
+> +			linux,dma-default;
+> +		};
+> +	};
+> +
+>   	aliases {
+>   		serial0 = &usart1;
+>   	};
+>   
+> +	backlight: backlight {
+> +		compatible = "gpio-backlight";
+> +		gpios = <&gpiok 3 GPIO_ACTIVE_HIGH>;
+> +		status = "okay";
+> +	};
+> +
+> +	panel_rgb: panel-rgb {
+> +		compatible = "rocktech,rk043fn48h";
+> +		backlight = <&backlight>;
+> +		enable-gpios = <&gpioi 12 GPIO_ACTIVE_HIGH>;
+> +		status = "okay";
+> +		port {
+> +			panel_in_rgb: endpoint {
+> +				remote-endpoint = <&ltdc_out_rgb>;
+> +			};
+> +		};
+> +	};
+> +
+>   	usbotg_hs_phy: usb-phy {
+>   		#phy-cells = <0>;
+>   		compatible = "usb-nop-xceiv";
+> @@ -99,6 +130,26 @@ &i2c1 {
+>   	status = "okay";
+>   };
+>   
+> +&dma1 {
+> +	status = "okay";
+> +};
+> +
+> +&dma2 {
+> +	status = "okay";
+> 
+Why do you enable DMAs ? It seems not used by LTDC.
 
--- 
-With best wishes
-Dmitry
+> +&ltdc {
+> +	pinctrl-0 = <&ltdc_pins_a>;
+> +	pinctrl-names = "default";
+> +	status = "okay";
+> +
+> +	port {
+> +		ltdc_out_rgb: endpoint {
+> +			remote-endpoint = <&panel_in_rgb>;
+> +		};
+> +	};
+> +};
+> +
+>   &sdio1 {
+>   	status = "okay";
+>   	vmmc-supply = <&mmc_vcard>;
 
