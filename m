@@ -2,67 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 26BB174F8DF
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 22:16:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 36BB874F912
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 22:32:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229928AbjGKUQZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jul 2023 16:16:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41314 "EHLO
+        id S230399AbjGKUcC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jul 2023 16:32:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44392 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229537AbjGKUQY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 16:16:24 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9882412F;
-        Tue, 11 Jul 2023 13:16:23 -0700 (PDT)
-Received: from nicolas-tpx395.localdomain (unknown [IPv6:2606:6d00:10:88d9::7a9])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: nicolas)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id C19656606F62;
-        Tue, 11 Jul 2023 21:16:20 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1689106582;
-        bh=ovmdJowpN42/SYoQ1qPuSx2Xrj+upHUIDUOy/UIexEo=;
-        h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-        b=P2wABV4/5DuKFdpMw5cXOR4VE6I17sU/p7+weZxlH9MHNQYCDBdrEu9jyQpS7ssdH
-         yPWRFWIBh/xC04Azx3hbDfsT6s12cDRwHZUSbU9r6a8XUBXF9aDhkGvTR7EvzUXhxt
-         lKrer9ywLoE8tQAeSO15tdQcyTTYdRB1BE7FOhoBHPZk1E1YXMjFmf7wYKqFfPzQB2
-         rJ0cpVD/kMZW9AZ/zdmfQVyKD7gTiOwQRrgYEIZ43kAhHIdp593uEyftSzVYWZCx9f
-         dkJUYSPdYipii3YJHBrP4nWagSe7jmQu19tjB74pOkp3kqAOCOBJ96ehnxeNXJQrkU
-         BaHA6TBWTtwCg==
-Message-ID: <c68c63924a2aed6c98818d3ad3b39e065cbd0b15.camel@collabora.com>
-Subject: Re: [PATCH 1/3] media: mediatek: vcodec: Add capture format to
- support 10bit tile mode
-From:   Nicolas Dufresne <nicolas.dufresne@collabora.com>
-To:     Yunfei Dong <yunfei.dong@mediatek.com>,
-        =?ISO-8859-1?Q?N=EDcolas?= "F . R . A . Prado" 
-        <nfraprado@collabora.com>, Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Nathan Hebert <nhebert@chromium.org>
-Cc:     Chen-Yu Tsai <wenst@chromium.org>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Steve Cho <stevecho@chromium.org>,
-        Mingjia Zhang <mingjia.zhang@mediatek.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-Date:   Tue, 11 Jul 2023 16:16:11 -0400
-In-Reply-To: <20230711125749.15555-2-yunfei.dong@mediatek.com>
-References: <20230711125749.15555-1-yunfei.dong@mediatek.com>
-         <20230711125749.15555-2-yunfei.dong@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.48.4 (3.48.4-1.fc38) 
+        with ESMTP id S230352AbjGKUcB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 16:32:01 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69C2B10C4;
+        Tue, 11 Jul 2023 13:31:57 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-4f4b2bc1565so9838068e87.2;
+        Tue, 11 Jul 2023 13:31:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1689107516; x=1691699516;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=JXtkIoco6DuVQ6fZ+VQyGkgj2zfXyu0LCNnqFu3Vrpg=;
+        b=gGxLlBC6tjXycxTWCfaUY9UxfZr1V0OUgLiTtVHdICl+oMZwy8MXrMOWUF+ibR/gso
+         SVIUdHm/LL8cvxvRQFq8BeGHtplDc3qNSXgq7q/QsCxjMS3T3d4BNrAXt8D2z5bCPWEL
+         t/pwe3RSKDr/3VNJanFEW5krV3AMIt3RglRwcad+XY+0iRdHE/Eo9deX6egnb9g+XCgl
+         zcI/iZYUm3eX/Yf3qTUH5nnnuoGWy7ur4KdFfMaVDdkXJAyMLinhlg+1WIwP2fbN1S4F
+         OmcKElXaor7Br9vJbqt2kWhyfeBXXU7GvLZ8+mYW2SkgCh/WgS4E++Y2hHRGfzDKxEVW
+         uL4g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689107516; x=1691699516;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=JXtkIoco6DuVQ6fZ+VQyGkgj2zfXyu0LCNnqFu3Vrpg=;
+        b=dwCJKU9oNLVcYWAuu4IWO8idhyl+hoCGkkKOTIlkhzSvZn4xQ92uRa2rL1idswcZ9Z
+         iXAR4KcUxVJ0D9IB1YZrywk9ztUg0gkvzxGgNdUn2Bo2h4E9T/8qjwxUEeTeRqmTCEE0
+         W9cb/BhPxrgYaCULHFTgKw4bglpEe5SjvJ554CEgMSvf2dSg6NfzDMwehQbgnE/CVyT4
+         GzdT/+DSoYY4KhvUX6tVxUXDwXoDnFFdf1RSiQiwPilfz/pCYEhwZrrdUcYoXbiogPeE
+         dsL+Y3v4FcuCL2WAZjrUVLuDHj8vlhXuXTrkyz9+qU6Qn6EuOuRbbb34X6cpzk/bQSPL
+         1PcA==
+X-Gm-Message-State: ABy/qLbbPClqyasHVKKaIQtJt3MePXZp3nIxLCp1xpAdIEAYbMMkr04g
+        jl6ahGQFqi5i9s6oPg3k/XI=
+X-Google-Smtp-Source: APBJJlGQj6B3wPs6L6FrywsrLJlk2COMpuEpijOaEj2nEHwwzTAh3FMmlePVUHbY0rIaDzEK2CH1Tw==
+X-Received: by 2002:ac2:5f86:0:b0:4fb:7c40:9f95 with SMTP id r6-20020ac25f86000000b004fb7c409f95mr12414768lfe.47.1689107515322;
+        Tue, 11 Jul 2023 13:31:55 -0700 (PDT)
+Received: from mobilestation ([95.79.172.181])
+        by smtp.gmail.com with ESMTPSA id v5-20020a197405000000b004fbc01e17c0sm437906lfe.82.2023.07.11.13.31.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 11 Jul 2023 13:31:54 -0700 (PDT)
+Date:   Tue, 11 Jul 2023 23:31:52 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+        Rob Herring <robh@kernel.org>
+Cc:     jingoohan1@gmail.com, gustavo.pimentel@synopsys.com,
+        robh+dt@kernel.org, bhelgaas@google.com, kishon@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        marek.vasut+renesas@gmail.com, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v17 07/20] PCI: dwc: endpoint: Add multiple PFs support
+ for dbi2
+Message-ID: <j4g4ijnxd7qyacszlwyi3tdztkw2nmnjwyhdqf2l2yj3h2mvje@iqsrqiodqbhq>
+References: <20230705114206.3585188-1-yoshihiro.shimoda.uh@renesas.com>
+ <20230705114206.3585188-8-yoshihiro.shimoda.uh@renesas.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230705114206.3585188-8-yoshihiro.shimoda.uh@renesas.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,117 +79,161 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le mardi 11 juillet 2023 =C3=A0 20:57 +0800, Yunfei Dong a =C3=A9crit=C2=A0=
-:
-> From: Mingjia Zhang <mingjia.zhang@mediatek.com>
->=20
-> Define one uncompressed capture format V4L2_PIX_FMT_MT2110T in order to
-> support 10bit for AV1/VP9/HEVC in mt8195.
->=20
-> Signed-off-by: Mingjia Zhang <mingjia.zhang@mediatek.com>
-> Co-developed-by: Yunfei Dong <yunfei.dong@mediatek.com>
-> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
+On Wed, Jul 05, 2023 at 08:41:53PM +0900, Yoshihiro Shimoda wrote:
+> The commit 24ede430fa49 ("PCI: designware-ep: Add multiple PFs support
+> for DWC") added .func_conf_select() to get the configuration space of
+> different PFs and assumed that the offsets between dbi and dbi would
+> be the same. However, Renesas R-Car Gen4 PCIe controllers have different
+> offsets of function 1: dbi (+0x1000) and dbi2 (+0x800). To get
+> the offset for dbi2, add .func_conf_select2() and
+> dw_pcie_ep_func_select2().
+> 
+> Notes that dw_pcie_ep_func_select2() will call .func_conf_select()
+> if .func_conf_select2() doesn't exist for backward compatibility.
+> 
+> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
 > ---
->  Documentation/userspace-api/media/v4l/pixfmt-reserved.rst | 8 ++++++++
->  drivers/media/v4l2-core/v4l2-common.c                     | 2 ++
->  drivers/media/v4l2-core/v4l2-ioctl.c                      | 1 +
->  include/uapi/linux/videodev2.h                            | 1 +
->  4 files changed, 12 insertions(+)
->=20
-> diff --git a/Documentation/userspace-api/media/v4l/pixfmt-reserved.rst b/=
-Documentation/userspace-api/media/v4l/pixfmt-reserved.rst
-> index 58f6ae25b2e7..b16a7257580c 100644
-> --- a/Documentation/userspace-api/media/v4l/pixfmt-reserved.rst
-> +++ b/Documentation/userspace-api/media/v4l/pixfmt-reserved.rst
-> @@ -275,6 +275,14 @@ please make a proposal on the linux-media mailing li=
-st.
-> =20
->          Decoder's implementation can be found here,
->          `aspeed_codec <https://github.com/AspeedTech-BMC/aspeed_codec/>`=
-__
-> +    * .. _V4L2-PIX-FMT-MT2110T:
+>  .../pci/controller/dwc/pcie-designware-ep.c   | 32 ++++++++++++++-----
+>  drivers/pci/controller/dwc/pcie-designware.h  |  3 +-
+>  2 files changed, 26 insertions(+), 9 deletions(-)
+> 
+> diff --git a/drivers/pci/controller/dwc/pcie-designware-ep.c b/drivers/pci/controller/dwc/pcie-designware-ep.c
+> index 1d24ebf9686f..bd57516d5313 100644
+> --- a/drivers/pci/controller/dwc/pcie-designware-ep.c
+> +++ b/drivers/pci/controller/dwc/pcie-designware-ep.c
+> @@ -54,21 +54,35 @@ static unsigned int dw_pcie_ep_func_select(struct dw_pcie_ep *ep, u8 func_no)
+>  	return func_offset;
+>  }
+>  
+> +static unsigned int dw_pcie_ep_func_select2(struct dw_pcie_ep *ep, u8 func_no)
+> +{
+> +	unsigned int func_offset = 0;
 > +
-> +      - ``V4L2_PIX_FMT_MT2110T``
-> +      - 'MT2110T'
-> +      - Two-planar 10-Bit tile mode YVU420 format used by Mediatek MT819=
-5, MT8188
-> +        and more. This format have similitude with ``V4L2_PIX_FMT_MM21``=
-.
-> +        It remains an opaque intermediate format and it is used for VP9,=
- AV1
-> +        and HEVC.
+> +	if (ep->ops->func_conf_select2)
+> +		func_offset = ep->ops->func_conf_select2(ep, func_no);
+> +	else if (ep->ops->func_conf_select)	/* for backward compatibility */
+> +		func_offset = ep->ops->func_conf_select(ep, func_no);
+> +
+> +	return func_offset;
+> +}
+> +
+>  static void __dw_pcie_ep_reset_bar(struct dw_pcie *pci, u8 func_no,
+>  				   enum pci_barno bar, int flags)
+>  {
+> -	u32 reg;
+> -	unsigned int func_offset = 0;
+> +	u32 reg, reg_dbi2;
+> +	unsigned int func_offset, func_offset_dbi2;
+>  	struct dw_pcie_ep *ep = &pci->ep;
+>  
+>  	func_offset = dw_pcie_ep_func_select(ep, func_no);
+> +	func_offset_dbi2 = dw_pcie_ep_func_select2(ep, func_no);
 
-Documenting uncompressed video formats as "opaque" is always last resort in
-V4L2. There is no justification here since this format is already implement=
-ed in
-software and pending in GStreamer (so its well understood format). I will t=
-ry
-and provide some better doc for you to include.
+IMO this will make the code even more complicated than it's already
+with the offsets calculated and added here and there. What about
+implementing a set of methods like this:
 
-https://gitlab.freedesktop.org/gstreamer/gstreamer/-/merge_requests/3444
++static void dw_pcie_ep_writeX_dbi(struct dw_pcie_ep *ep, u8 func_no, u32 reg, uYZ val)
++{
++	unsigned int ofs = dw_pcie_ep_func_select(ep, func_no);
++	struct dw_pcie *pci = to_dw_pcie_from_ep(ep);
++
++	dw_pcie_writeX_dbi(pci, reg + ofs, val);
++}
++
++static uYZ dw_pcie_ep_readX_dbi(struct dw_pcie_ep *ep, u8 func_no, u32 reg)
++{
++	unsigned int ofs = dw_pcie_ep_func_select(ep, func_no);
++	struct dw_pcie *pci = to_dw_pcie_from_ep(ep);
++
++	return dw_pcie_readX_dbi(pci, reg + ofs);
++}
 
->  .. raw:: latex
-> =20
->      \normalsize
-> diff --git a/drivers/media/v4l2-core/v4l2-common.c b/drivers/media/v4l2-c=
-ore/v4l2-common.c
-> index bee1535b04d3..869fc09a210b 100644
-> --- a/drivers/media/v4l2-core/v4l2-common.c
-> +++ b/drivers/media/v4l2-core/v4l2-common.c
-> @@ -262,6 +262,8 @@ const struct v4l2_format_info *v4l2_format_info(u32 f=
-ormat)
->  		{ .format =3D V4L2_PIX_FMT_VYUY,    .pixel_enc =3D V4L2_PIXEL_ENC_YUV,=
- .mem_planes =3D 1, .comp_planes =3D 1, .bpp =3D { 2, 0, 0, 0 }, .bpp_div =
-=3D { 1, 1, 1, 1 }, .hdiv =3D 2, .vdiv =3D 1 },
->  		{ .format =3D V4L2_PIX_FMT_Y212,    .pixel_enc =3D V4L2_PIXEL_ENC_YUV,=
- .mem_planes =3D 1, .comp_planes =3D 1, .bpp =3D { 4, 0, 0, 0 }, .bpp_div =
-=3D { 1, 1, 1, 1 }, .hdiv =3D 2, .vdiv =3D 1 },
->  		{ .format =3D V4L2_PIX_FMT_YUV48_12, .pixel_enc =3D V4L2_PIXEL_ENC_YUV=
-, .mem_planes =3D 1, .comp_planes =3D 1, .bpp =3D { 6, 0, 0, 0 }, .bpp_div =
-=3D { 1, 1, 1, 1 }, .hdiv =3D 1, .vdiv =3D 1 },
-> +		{ .format =3D V4L2_PIX_FMT_MT2110T, .pixel_enc =3D V4L2_PIXEL_ENC_YUV,=
- .mem_planes =3D 2, .comp_planes =3D 2, .bpp =3D { 5, 10, 0, 0 }, .bpp_div =
-=3D { 4, 4, 1, 1 }, .hdiv =3D 2, .vdiv =3D 2,
-> +		  .block_w =3D { 16, 8, 0, 0 }, .block_h =3D { 32, 16, 0, 0 }},
-> =20
->  		/* YUV planar formats */
->  		{ .format =3D V4L2_PIX_FMT_NV12,    .pixel_enc =3D V4L2_PIXEL_ENC_YUV,=
- .mem_planes =3D 1, .comp_planes =3D 2, .bpp =3D { 1, 2, 0, 0 }, .bpp_div =
-=3D { 1, 1, 1, 1 }, .hdiv =3D 2, .vdiv =3D 2 },
-> diff --git a/drivers/media/v4l2-core/v4l2-ioctl.c b/drivers/media/v4l2-co=
-re/v4l2-ioctl.c
-> index 01ba27f2ef87..f465c0e3d6e3 100644
-> --- a/drivers/media/v4l2-core/v4l2-ioctl.c
-> +++ b/drivers/media/v4l2-core/v4l2-ioctl.c
-> @@ -1508,6 +1508,7 @@ static void v4l_fill_fmtdesc(struct v4l2_fmtdesc *f=
-mt)
->  		case V4L2_PIX_FMT_QC10C:	descr =3D "QCOM Compressed 10-bit Format"; br=
-eak;
->  		case V4L2_PIX_FMT_AJPG:		descr =3D "Aspeed JPEG"; break;
->  		case V4L2_PIX_FMT_AV1_FRAME:	descr =3D "AV1 Frame"; break;
-> +		case V4L2_PIX_FMT_MT2110T:	descr =3D "Mediatek 10bit Tile Mode"; break=
-;
->  		default:
->  			if (fmt->description[0])
->  				return;
-> diff --git a/include/uapi/linux/videodev2.h b/include/uapi/linux/videodev=
-2.h
-> index 3af6a82d0cad..8c7d71afbdc7 100644
-> --- a/include/uapi/linux/videodev2.h
-> +++ b/include/uapi/linux/videodev2.h
-> @@ -796,6 +796,7 @@ struct v4l2_pix_format {
->  #define V4L2_PIX_FMT_Z16      v4l2_fourcc('Z', '1', '6', ' ') /* Depth d=
-ata 16-bit */
->  #define V4L2_PIX_FMT_MT21C    v4l2_fourcc('M', 'T', '2', '1') /* Mediate=
-k compressed block mode  */
->  #define V4L2_PIX_FMT_MM21     v4l2_fourcc('M', 'M', '2', '1') /* Mediate=
-k 8-bit block mode, two non-contiguous planes */
-> +#define V4L2_PIX_FMT_MT2110T  v4l2_fourcc('M', 'T', '2', 'T') /* Mediate=
-k 10-bit block tile mode */
->  #define V4L2_PIX_FMT_INZI     v4l2_fourcc('I', 'N', 'Z', 'I') /* Intel P=
-lanar Greyscale 10-bit and Depth 16-bit */
->  #define V4L2_PIX_FMT_CNF4     v4l2_fourcc('C', 'N', 'F', '4') /* Intel 4=
--bit packed depth confidence information */
->  #define V4L2_PIX_FMT_HI240    v4l2_fourcc('H', 'I', '2', '4') /* BTTV 8-=
-bit dithered RGB */
+and converting the entire DW PCIe EP core driver to using them instead
+of always separately calculating the func_offset? Then in a subsequent
+patch you can add a new method like this:
 
++static void dw_pcie_ep_writel_dbi2(struct dw_pcie_ep *ep, u8 func_no, u32 reg, u32 val)
++{
++	unsigned int ofs = dw_pcie_ep_func_select2(ep, func_no);
++	struct dw_pcie *pci = to_dw_pcie_from_ep(ep);
++
++	dw_pcie_writel_dbi2(pci, reg + ofs, val);
++}
+
+and have it utilized in the shadow registers update parts as you
+originally intended. This will make the code much better readable with
+no much harm to the performance since the most of setups are performed
+once during the initial end-point configuration.
+
+Note my suggestion is quite heavy to implement and implies the code
+cleanup. So I'd wait for the maintainers comment about this (Mani is
+now responsible for the driver maintaining).
+Mani, Krzysztof, Lorenzo, Rob, what do you think about that?
+
+-Serge(y)
+
+>  
+>  	reg = func_offset + PCI_BASE_ADDRESS_0 + (4 * bar);
+> +	reg_dbi2 = func_offset_dbi2 + PCI_BASE_ADDRESS_0 + (4 * bar);
+>  	dw_pcie_dbi_ro_wr_en(pci);
+> -	dw_pcie_writel_dbi2(pci, reg, 0x0);
+> +	dw_pcie_writel_dbi2(pci, reg_dbi2, 0x0);
+>  	dw_pcie_writel_dbi(pci, reg, 0x0);
+>  	if (flags & PCI_BASE_ADDRESS_MEM_TYPE_64) {
+> -		dw_pcie_writel_dbi2(pci, reg + 4, 0x0);
+> +		dw_pcie_writel_dbi2(pci, reg_dbi2 + 4, 0x0);
+>  		dw_pcie_writel_dbi(pci, reg + 4, 0x0);
+>  	}
+>  	dw_pcie_dbi_ro_wr_dis(pci);
+> @@ -232,13 +246,15 @@ static int dw_pcie_ep_set_bar(struct pci_epc *epc, u8 func_no, u8 vfunc_no,
+>  	enum pci_barno bar = epf_bar->barno;
+>  	size_t size = epf_bar->size;
+>  	int flags = epf_bar->flags;
+> -	unsigned int func_offset = 0;
+> +	unsigned int func_offset, func_offset_dbi2;
+>  	int ret, type;
+> -	u32 reg;
+> +	u32 reg, reg_dbi2;
+>  
+>  	func_offset = dw_pcie_ep_func_select(ep, func_no);
+> +	func_offset_dbi2 = dw_pcie_ep_func_select2(ep, func_no);
+>  
+>  	reg = PCI_BASE_ADDRESS_0 + (4 * bar) + func_offset;
+> +	reg_dbi2 = PCI_BASE_ADDRESS_0 + (4 * bar) + func_offset_dbi2;
+>  
+>  	if (!(flags & PCI_BASE_ADDRESS_SPACE))
+>  		type = PCIE_ATU_TYPE_MEM;
+> @@ -254,11 +270,11 @@ static int dw_pcie_ep_set_bar(struct pci_epc *epc, u8 func_no, u8 vfunc_no,
+>  
+>  	dw_pcie_dbi_ro_wr_en(pci);
+>  
+> -	dw_pcie_writel_dbi2(pci, reg, lower_32_bits(size - 1));
+> +	dw_pcie_writel_dbi2(pci, reg_dbi2, lower_32_bits(size - 1));
+>  	dw_pcie_writel_dbi(pci, reg, flags);
+>  
+>  	if (flags & PCI_BASE_ADDRESS_MEM_TYPE_64) {
+> -		dw_pcie_writel_dbi2(pci, reg + 4, upper_32_bits(size - 1));
+> +		dw_pcie_writel_dbi2(pci, reg_dbi2 + 4, upper_32_bits(size - 1));
+>  		dw_pcie_writel_dbi(pci, reg + 4, 0);
+>  	}
+>  
+> diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci/controller/dwc/pcie-designware.h
+> index 812c221b3f7c..94bc20f5f600 100644
+> --- a/drivers/pci/controller/dwc/pcie-designware.h
+> +++ b/drivers/pci/controller/dwc/pcie-designware.h
+> @@ -340,9 +340,10 @@ struct dw_pcie_ep_ops {
+>  	 * access for different platform, if different func have different
+>  	 * offset, return the offset of func. if use write a register way
+>  	 * return a 0, and implement code in callback function of platform
+> -	 * driver.
+> +	 * driver. The func_conf_select2 is for dbi2.
+>  	 */
+>  	unsigned int (*func_conf_select)(struct dw_pcie_ep *ep, u8 func_no);
+> +	unsigned int (*func_conf_select2)(struct dw_pcie_ep *ep, u8 func_no);
+>  };
+>  
+>  struct dw_pcie_ep_func {
+> -- 
+> 2.25.1
+> 
