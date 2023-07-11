@@ -2,51 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 96B0374F9A7
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 23:21:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2941174F9A9
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 23:21:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231219AbjGKVV1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jul 2023 17:21:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34096 "EHLO
+        id S230255AbjGKVV3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jul 2023 17:21:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34120 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229505AbjGKVVZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 17:21:25 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5986F133;
-        Tue, 11 Jul 2023 14:21:24 -0700 (PDT)
+        with ESMTP id S230305AbjGKVV2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 17:21:28 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2427B133;
+        Tue, 11 Jul 2023 14:21:28 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id E79A061625;
-        Tue, 11 Jul 2023 21:21:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 516FDC433C9;
-        Tue, 11 Jul 2023 21:21:20 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id AD27F6160E;
+        Tue, 11 Jul 2023 21:21:27 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F7A1C433C7;
+        Tue, 11 Jul 2023 21:21:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689110483;
-        bh=YPSY5HUnEvTGUfr7w/tBIIh9m9ceIEnrSFhq7uRjKcY=;
+        s=k20201202; t=1689110487;
+        bh=6Ah7bT014+0EnYhqIBI4z9U9khMOfEK4P7UjUPWCSxU=;
         h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=jRIvjX4IGsggKxoSXRCirgRqmZ+47AGWe5Vqd4Uc+mv3ipYCU9NUkLnjHTiG4XV7x
-         ivwAlabtQ50xEFzWz+YiffrTxoYqn2EJtRgcbiePFNi7WBmM3sMlqFJYC6yJzetkPS
-         r6UOvlCxOTAWdcE0GCHOtfcyn6/g9b9e9x/VxzLu2box23nW196Rvng/QyWHkO5wJP
-         ijUW1EtoHnTjeVvSTdeYTNP2p2H1qpfjxZFVi/d3Q7hhNHaJzSGnlhMawAvuPMHnJh
-         aI/aUzHBilSvPB8JmsmAWnhm0W0MHdhvdWPSDurYGE+Chxujgr/zHba1tZyKX+pvB9
-         jyv8urmbl9nmw==
+        b=CsB5o/cj4RYIp4U7s5184O6v2lgE1SjlMobgfQJrlU0f+U7X1uYbfw16uCX10JyPa
+         g2AjVuf+P02lxL7Ba0tfPbxIzzbW1jG4BtFFX1oiF6Y0qjMer7eKpO3OJk2UiZSxfp
+         xTioBe/+6hDAml8RQ94yNjBMJp+CKdamWHIhmB645xYBbxpi94Ws8T+Yo3y6XSkvqZ
+         LfN0b4p8RSk8/WhX68UPsRFSoR3CdOFKJY7cWo7LnICjCxfF+NGkz/55IZnvTtNiGS
+         UV2NVOajHThFAXvZz7A7uEhzHd+m/AJ4ZOcx15w2/lQByutD6j88ZQzJ0262Pa5LOP
+         T4U87uMo2U0eQ==
 From:   Mark Brown <broonie@kernel.org>
-To:     lgirdwood@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        srinivas.kandagatla@linaro.org, bgoswami@quicinc.com,
-        agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        cychiang@chromium.org, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org,
-        Rohit kumar <quic_rohkumar@quicinc.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230707074337.3120530-1-quic_rohkumar@quicinc.com>
-References: <20230707074337.3120530-1-quic_rohkumar@quicinc.com>
-Subject: Re: [PATCH v2] ASoC: dt-bindings: Update maintainer email id
-Message-Id: <168911048005.530041.1862565252407998007.b4-ty@kernel.org>
-Date:   Tue, 11 Jul 2023 22:21:20 +0100
+To:     Liam Girdwood <lgirdwood@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        Rob Herring <robh@kernel.org>
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+In-Reply-To: <20230707221725.1071292-1-robh@kernel.org>
+References: <20230707221725.1071292-1-robh@kernel.org>
+Subject: Re: [PATCH] ASoC: dt-bindings: audio-graph-card2: Drop incomplete
+ example
+Message-Id: <168911048524.530041.17659227550480230737.b4-ty@kernel.org>
+Date:   Tue, 11 Jul 2023 22:21:25 +0100
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
@@ -61,8 +60,11 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 07 Jul 2023 13:13:36 +0530, Rohit kumar wrote:
-> Updated my mail id to latest quicinc id.
+On Fri, 07 Jul 2023 16:17:25 -0600, Rob Herring wrote:
+> The example in audio-graph-card2 binding is incomplete, uses
+> undocumented compatibles strings, and doesn't follow typical .dts
+> formatting. Rather than try to fix with what would probably be a lengthy
+> example, just drop the example.
 > 
 > 
 
@@ -72,8 +74,8 @@ Applied to
 
 Thanks!
 
-[1/1] ASoC: dt-bindings: Update maintainer email id
-      commit: a1ff5802da3806e916de100130a7850b3f80c377
+[1/1] ASoC: dt-bindings: audio-graph-card2: Drop incomplete example
+      commit: c65b21f8aeac86768d387a86dfcbec5980480b6a
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
