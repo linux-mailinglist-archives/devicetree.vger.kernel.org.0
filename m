@@ -2,97 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 211EE74EC90
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 13:25:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F2EB374ECFE
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 13:40:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231787AbjGKLZw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jul 2023 07:25:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51194 "EHLO
+        id S229845AbjGKLks (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jul 2023 07:40:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58502 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231786AbjGKLZt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 07:25:49 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4CB96E7E;
-        Tue, 11 Jul 2023 04:25:42 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 3D4DA6147F;
-        Tue, 11 Jul 2023 11:25:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 72ED6C433CC;
-        Tue, 11 Jul 2023 11:25:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689074740;
-        bh=ukUjCeCdruXdkiTh7KIF8MyySLBbuQHe+rPdQaoxZJU=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=boJsxhUixxmLnT7F5Q4u//Lh5Xwjgp2OMmp6SpFQH9y2pmO0FF36ai6geFE8vFM9m
-         EbP3hWTRWiZ2F7a4HOIzC+9d4gQ1OMi+YODKPb+nPA6rRqGFEMrr14RYZH8nRDH25+
-         hJYDxwPMvOHowM+hoUZJwONVC2QOpfVQT4oiHPzFch2muFek67IUbGyRUU3BB8zBA0
-         ZU9ik4q8wvDZrX2jH9CxYasAoQosSGSwVEitAmFHwz/dRJW0vUliOlw0PAx5KqbPd1
-         yaTOFFrRWzYWke90zp5FI6ngKsnzV03a65skVHO5oW9BnoFQePGJA9Sm1s8r55h1gR
-         03xdWRsyWnb1Q==
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        Conor Dooley <conor@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Roger Quadros <rogerq@kernel.org>,
-        Minda Chen <minda.chen@starfivetech.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org, linux-riscv@lists.infradead.org,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Mason Huo <mason.huo@starfivetech.com>
-In-Reply-To: <20230629075115.11934-1-minda.chen@starfivetech.com>
-References: <20230629075115.11934-1-minda.chen@starfivetech.com>
-Subject: Re: (subset) [PATCH v8 0/5] Add JH7110 USB PHY driver support
-Message-Id: <168907473599.198426.16779806941255747951.b4-ty@kernel.org>
-Date:   Tue, 11 Jul 2023 16:55:35 +0530
+        with ESMTP id S229811AbjGKLkr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 07:40:47 -0400
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B34B512F
+        for <devicetree@vger.kernel.org>; Tue, 11 Jul 2023 04:40:46 -0700 (PDT)
+Received: by mail-lj1-x22a.google.com with SMTP id 38308e7fff4ca-2b698937f85so91087461fa.2
+        for <devicetree@vger.kernel.org>; Tue, 11 Jul 2023 04:40:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1689075645; x=1691667645;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=FOb4V8162vKUOvo7wKDsANAZxGIZvl55fC9syM8H/ag=;
+        b=ij3igYc4u8/1LaFt+NKVgVhxQkkTIHZZqTP3rQ3Crpr+zZIepL4Z+dAe1XExh8KT3c
+         o4EsGOKVnfEi6yzCo84S/4a2w3S/1fBs1fJH27rASDePKeeB6QrtlaNvDbWbjSlz+Az+
+         AURVSe/NcvqfiHs8Z++Xg4de8AOLcZ6rhhDEIwg5R4cGOEVTp7CFET84qhZuBz3/e3ac
+         Fs/PigXIbQgk5jGNFvuJ2RqHw3VbyjHj7sb+0egzE/wjvYRLuOl3WFBrctSXKhH2+F+f
+         TIE3bbO1v4Q3vjaV5n6yq+HRYqljEPy9d+i8e4LTxFOtS5iDrREt3LBh5zXzf1sVxFXr
+         veeg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689075645; x=1691667645;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=FOb4V8162vKUOvo7wKDsANAZxGIZvl55fC9syM8H/ag=;
+        b=V6tFDGPb8UQOkorFRDAiI8m6xPQYA+IkqTD2G2aFMHLwAckfe3hW+kXTO86kBeBnjf
+         6uZZSPFp+3Y1jLhTkSpDmZNNthaaEI0DI5lJkcdjaCw4qFw5/SaxUZTDIHYJVJJ/YAv6
+         wBby9iO/06azvTW1nz76jZZdBrH7bA3VJNovRBX7c14CJneon69wZwhr8DB3UUI7RAdH
+         w9PTZjNx3sJDy/6KtSIE55kQueGUA8sKp2FhoRnlO7Vj8DoPUkXR8hM1+lT7KHGbxFtE
+         YlPDhO0+uQaPZYMguy0QB+FoiDB+B8pHntqDduCFl9rFrY1IUgbfWsDfL8Ljx3rnlvau
+         KDfw==
+X-Gm-Message-State: ABy/qLbXhFGmyGNvkzhECmCovx8Gcm0/dEOc+7YQ1+HGvCp7HRiZNvES
+        VSGdZdL9XmJfdTGqLyJXob32cA==
+X-Google-Smtp-Source: APBJJlHFKdkSAuljFfDBnBKOJY5dlqtGUlVam2d2ELh6oh3HkBBJLd8AOi5Fe8dARpQuArAcxgwZxg==
+X-Received: by 2002:a2e:948a:0:b0:2b7:842:a64c with SMTP id c10-20020a2e948a000000b002b70842a64cmr11281027ljh.5.1689075644994;
+        Tue, 11 Jul 2023 04:40:44 -0700 (PDT)
+Received: from [192.168.1.101] (abyl96.neoplus.adsl.tpnet.pl. [83.9.31.96])
+        by smtp.gmail.com with ESMTPSA id j23-20020a2e8017000000b002b6daf32c7csm416587ljg.97.2023.07.11.04.40.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 11 Jul 2023 04:40:44 -0700 (PDT)
+Message-ID: <6a398153-8ff4-3cb7-868c-44fd04a7ef90@linaro.org>
+Date:   Tue, 11 Jul 2023 13:40:42 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH V2] arm64: dts: qcom: sa8775p-ride: Update L4C parameters
+Content-Language: en-US
+To:     Naveen Kumar Goud Arepalli <quic_narepall@quicinc.com>,
+        quic_nitirawa@quicinc.com, agross@kernel.org, andersson@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230711105915.30581-1-quic_narepall@quicinc.com>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230711105915.30581-1-quic_narepall@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.12.2
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On Thu, 29 Jun 2023 15:51:10 +0800, Minda Chen wrote:
-> This patchset adds USB and PCIe PHY for the StarFive JH7110 SoC.
-> The patch has been tested on the VisionFive 2 board.
+On 11.07.2023 12:59, Naveen Kumar Goud Arepalli wrote:
+> L4c is the supply for UFS vccq, As per UFS spec range of vccq is
+> 1.14V to 1.26V, There are stability issues when operating at
+> marginal voltage. Hence configure the min and max vccq voltages
+> to 1.2V.
 > 
-> This patchset is base on v6.4-rc6
+> Signed-off-by: Naveen Kumar Goud Arepalli <quic_narepall@quicinc.com>
+> ---
+Couple of things I'd like you to fix in the future:
+
+1. you sent a v2 minutes after v1, with no changelog or reference
+
+(ideally you should include something like:
+
+Changes since v1:
+- foo
+- bar
+- baz
+
+Link to v1: ...)
+
+You can use the b4 tool [1] which makes this really easy for everyone!
+
+2. You overtook the series from your colleague. It's okay, but:
+
+- you should have mentioned this (see point 1)
+- it's fine for your colleagues to send your patches, so long as all
+  of the co-authors AND the person sending add their Signed-off-by tags
+
+Also, check out [2].
+
+Aside from that, this patch looks sane to me.
+
+Acked-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+
+
+[1] https://b4.docs.kernel.org/en/latest/index.html
+[2] https://www.kernel.org/doc/html/latest/process/submitting-patches.html
+
+Konrad
+
+>  arch/arm64/boot/dts/qcom/sa8775p-ride.dts | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 > 
-> patch 1 is usb phy dt-binding document.
-> patch 2 is Pcie PHY dt-binding document.
-> patch 3 is USB 2.0 PHY driver.
-> patch 4 is PCIe PHY driver.
-> patch 5 is PCIe PHY dts
-> 
-> [...]
-
-Applied, thanks!
-
-[1/5] dt-bindings: phy: Add StarFive JH7110 USB PHY
-      commit: 6172141bf8ce6ec8f0b5d33533bf5a5646880e3c
-[2/5] dt-bindings: phy: Add StarFive JH7110 PCIe PHY
-      commit: 2b236fd4912141074a1cf34a7b3ef724d5bc8d8d
-[3/5] phy: starfive: Add JH7110 USB 2.0 PHY driver
-      commit: 7ac349186842972ee2b17413a0eee34231324eb1
-[4/5] phy: starfive: Add JH7110 PCIE 2.0 PHY driver
-      commit: 26cea0e28057d4ee440af4157f13a5312e3918b7
-
-Best regards,
--- 
-~Vinod
-
-
+> diff --git a/arch/arm64/boot/dts/qcom/sa8775p-ride.dts b/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
+> index ab767cfa51ff..26f5a4e0ffed 100644
+> --- a/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
+> +++ b/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
+> @@ -153,8 +153,8 @@
+>  
+>  		vreg_l4c: ldo4 {
+>  			regulator-name = "vreg_l4c";
+> -			regulator-min-microvolt = <1100000>;
+> -			regulator-max-microvolt = <1300000>;
+> +			regulator-min-microvolt = <1200000>;
+> +			regulator-max-microvolt = <1200000>;
+>  			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>  			/*
+>  			 * FIXME: This should have regulator-allow-set-load but
