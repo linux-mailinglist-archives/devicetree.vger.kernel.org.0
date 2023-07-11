@@ -2,81 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C52774F7CF
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 20:10:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D9B374F7D7
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 20:14:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231588AbjGKSKX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jul 2023 14:10:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57656 "EHLO
+        id S232051AbjGKSOQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jul 2023 14:14:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59762 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231308AbjGKSKW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 14:10:22 -0400
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4118C10D2;
-        Tue, 11 Jul 2023 11:10:21 -0700 (PDT)
-Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-3fbc656873eso74240035e9.1;
-        Tue, 11 Jul 2023 11:10:21 -0700 (PDT)
+        with ESMTP id S231646AbjGKSOQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 14:14:16 -0400
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD1B110EF;
+        Tue, 11 Jul 2023 11:14:13 -0700 (PDT)
+Received: by mail-wr1-x42d.google.com with SMTP id ffacd0b85a97d-314172bac25so5950433f8f.3;
+        Tue, 11 Jul 2023 11:14:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1689099020; x=1691691020;
+        d=gmail.com; s=20221208; t=1689099252; x=1691691252;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=DN7SKT5YDMsR3KLZsulL1k2cEGxGqiu83tf4hiEqzbU=;
-        b=im/1f6USttl0PouwJHsl8oeTUnxojJWtSZG491nIXLs46KPt7ROCw91xJTOyHfWwU/
-         Xclj03qDL2nnO631QYUGdOC+5GIfuOU1v6j2zYAwY9lNkR0htj0Y4Lo+Bt57c/w8uWOE
-         GNARBXdLwJLhXUGgqwCHpFF+IYttDDQnh3gNX/8n9G1A/g1sfzEfTaupsnvTFUO/gnrs
-         65JSUrxGcUCbjsehFA61GacHlNKz79Sdc9lpnUJDJF61O3+8d6wG3DqTU8M0Bq6Rs+z8
-         Ue+3xNlzmqNoUg/2yeM26G8NwZExCqhmNl3Ei0hYkoBUGbthIYtCVdUH4i3K50vcpyw6
-         oqVA==
+        bh=kADj7TkFJka2Bqlkae4pY0x9oLW69mUSF/u4OPIu9zw=;
+        b=SNVpgjSRTHtGVEhHWsNPdWiarBQISqftEQCEevuNc0G5qc6wA70ZMwDItNi5QJ70Lh
+         WQ/yxCzHaCQP3aJ3pHyxeHwl1bizDesfw8/jNROxhaIh96PVDo0ojv5zrpdHqWbcRPLi
+         UIl1Sqy1afzf9t2csa9ICDq3NyYCfhXP+oXpAXpeQ7XijcZ5iztSQ3aSEiNftbWK1yG0
+         FR5v/WYsJqwcRIAiacYa16oeOsxmphNPUIFgbzJl4pI1eK4Y4zZBWj59q2IVB3dT9qRP
+         XomOxRXpy3ZicVH4KLIE/F5V4OStm4RAupaT2pd0yI/E1l4X3AJnkzUAGIwHRpgNg9Xo
+         wB2A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689099020; x=1691691020;
+        d=1e100.net; s=20221208; t=1689099252; x=1691691252;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=DN7SKT5YDMsR3KLZsulL1k2cEGxGqiu83tf4hiEqzbU=;
-        b=i9kUGAzzHQVugI1K18a+8v1GULJZ90r9CLW8D5eSlMSpgjqB23HkfgJtLzopW2qRmm
-         2vZo1G8LwjP5fJx80hg7wFPdcdQzWicSndWEzGkHfoBVk/7OCr8RWwifNue+hyqhgjAE
-         ndmvBACSE3jjSsYHaytsdkYBMHima3510W1X83paxoA98X8WCoeu+TMwqVWgn2yT6Bnv
-         17l0SOYBhEltTFUvcAF7oyFt6YpizeBSQUFsIqSNF23mMLnP4IxNz41mMcZDdJlCC4sp
-         I0erPVpvWelUMv3UrjfCaBD/FctU1qFCmLh1xeQKOSBR2k0R5GOdJjeAexHMXHY8LYgJ
-         G/kw==
-X-Gm-Message-State: ABy/qLZ9Wtq3PU3YuyOX5Dnaqwn0j3sxjTscf0zE5OXTYZ/cVgZmwPCv
-        PmFn/LjaK9On2hhwHgMe/AY=
-X-Google-Smtp-Source: APBJJlF2BZKCrWmEhTh/350w2TFfo/9EYgx+QZBOKTKsh9nhH1eoZObr6KPDzwISpk3jEX8ZvMVbGA==
-X-Received: by 2002:a7b:ca47:0:b0:3fc:855:db42 with SMTP id m7-20020a7bca47000000b003fc0855db42mr12672343wml.34.1689099019465;
-        Tue, 11 Jul 2023 11:10:19 -0700 (PDT)
+        bh=kADj7TkFJka2Bqlkae4pY0x9oLW69mUSF/u4OPIu9zw=;
+        b=A0IHPa1uoLatB9ctbHT79u3378cQu2cQ0Wr1UnKVohuJw1aHmbtdoySQSGOLiIDR1R
+         31w/dSa97OaB6HKW6EfoNrDxQJ5/HajCd/UrIol4z74b2FeW3Ot76CZtP9nAVDJfvT7s
+         LbVKy4SV1ttQDOIC3gMMsAQ9dSSBucHL/bG8wGszqrEiC8Sr61I2mz9A2vRRKORaH7Ql
+         vjKD3AHA/P3rcA4uc544booO0kLUXivbUtS71zOR2RWpRqUl+z4ZU3cAGA0DPHuH4uvX
+         ch88cYwlq5fBkC5LO1rf7vTpLxjCF5dR36GPD5JiK9MTsn8kAawYerwCnyN6p3JD9sFH
+         2xCQ==
+X-Gm-Message-State: ABy/qLYEDQuQ+7VaqF/rwfEBVFVe7e99EKXCbmwghyKsQOctwJxfD+UD
+        1n1h+ZTbZFBFsDTHcCQUjz5HHXr8GgGfeQ==
+X-Google-Smtp-Source: APBJJlE81gCA4q7wctwDy79JVHUy50OZdvk15qWNdOhG/fVz/02t692RpTHodquQlZi07SyIt6jUVw==
+X-Received: by 2002:a5d:4f0c:0:b0:314:1fd7:188b with SMTP id c12-20020a5d4f0c000000b003141fd7188bmr13503587wru.17.1689099252131;
+        Tue, 11 Jul 2023 11:14:12 -0700 (PDT)
 Received: from jernej-laptop.localnet (82-149-1-233.dynamic.telemach.net. [82.149.1.233])
-        by smtp.gmail.com with ESMTPSA id o5-20020a1c7505000000b003fbd9e390e1sm13613422wmc.47.2023.07.11.11.10.18
+        by smtp.gmail.com with ESMTPSA id x10-20020adff64a000000b003142e438e8csm2868429wrp.26.2023.07.11.11.14.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 Jul 2023 11:10:18 -0700 (PDT)
+        Tue, 11 Jul 2023 11:14:11 -0700 (PDT)
 From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To:     Palmer Dabbelt <palmer@dabbelt.com>,
-        Uwe =?ISO-8859-1?Q?Kleine=2DK=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-Cc:     privatesub2@gmail.com, linux-kernel@vger.kernel.org,
-        thierry.reding@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        wens@csie.org, samuel@sholland.org,
+To:     linux-iio@vger.kernel.org, Maksim Kiselev <bigunclemax@gmail.com>
+Cc:     Maksim Kiselev <bigunclemax@gmail.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Samuel Holland <samuel@sholland.org>,
         Paul Walmsley <paul.walmsley@sifive.com>,
-        aou@eecs.berkeley.edu, p.zabel@pengutronix.de,
-        cristian.ciocaltea@collabora.com,
-        Greg KH <gregkh@linuxfoundation.org>,
-        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+        Andre Przywara <andre.przywara@arm.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Cosmin Tanislav <demonsingur@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Leonard =?ISO-8859-1?Q?G=F6hrs?= <l.goehrs@pengutronix.de>,
+        ChiYuan Huang <cy_huang@richtek.com>,
+        Ramona Bolboaca <ramona.bolboaca@analog.com>,
+        Ibrahim Tilki <Ibrahim.Tilki@analog.com>,
+        ChiaEn Wu <chiaen_wu@richtek.com>,
+        William Breathitt Gray <william.gray@linaro.org>,
+        Haibo Chen <haibo.chen@nxp.com>,
+        Mike Looijmans <mike.looijmans@topic.nl>,
+        Quentin Schulz <quentin.schulz@free-electrons.com>,
+        Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v3 0/3] Add support for Allwinner PWM on D1/T113s/R329 SoCs
-Date:   Tue, 11 Jul 2023 20:10:16 +0200
-Message-ID: <2287998.ElGaqSPkdT@jernej-laptop>
-In-Reply-To: <20230706202057.k6rfwfhe3msfkrc4@pengutronix.de>
-References: <20230627082334.1253020-1-privatesub2@gmail.com>
- <mhng-0cca3d46-6031-4e8a-8e8f-2c479a20b95d@palmer-ri-x1c9a>
- <20230706202057.k6rfwfhe3msfkrc4@pengutronix.de>
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v8 1/4] iio: adc: Kconfig change description for Allwinner GPADC
+Date:   Tue, 11 Jul 2023 20:14:08 +0200
+Message-ID: <2148594.irdbgypaU6@jernej-laptop>
+In-Reply-To: <20230619154252.3951913-2-bigunclemax@gmail.com>
+References: <20230619154252.3951913-1-bigunclemax@gmail.com>
+ <20230619154252.3951913-2-bigunclemax@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -84,60 +102,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dne =C4=8Detrtek, 06. julij 2023 ob 22:20:57 CEST je Uwe Kleine-K=C3=B6nig =
-napisal(a):
-> Hello,
->=20
-> On Thu, Jul 06, 2023 at 10:08:47AM -0700, Palmer Dabbelt wrote:
-> > On Tue, 27 Jun 2023 01:23:23 PDT (-0700), privatesub2@gmail.com wrote:
-> > > Hi,
-> > >=20
-> > > This series adds support for PWM controller on new
-> > > Allwinner's SoCs, such as D1, T113s and R329. The implemented driver
-> > > provides basic functionality for control PWM channels.
-> > >=20
-> > > v2:
-> > >  - fix dt-bindings
-> > >  - fix a remark in the driver
-> > >=20
-> > > v3:
-> > >  - fix dt-bindings
-> > >  - fix sunxi-d1s-t113.dtsi
-> > >=20
-> > > Aleksandr Shubin (3):
-> > >   dt-bindings: pwm: Add binding for Allwinner D1/T113-S3/R329 PWM
-> > >  =20
-> > >     controller
-> > >  =20
-> > >   pwm: Add Allwinner's D1/T113-S3/R329 SoCs PWM support
-> > >   riscv: dts: allwinner: d1: Add pwm node
-> > > =20
-> > >  .../bindings/pwm/allwinner,sun20i-pwm.yaml    |  86 +++++
-> > >  .../boot/dts/allwinner/sunxi-d1s-t113.dtsi    |  11 +
-> > >  drivers/pwm/Kconfig                           |  10 +
-> > >  drivers/pwm/Makefile                          |   1 +
-> > >  drivers/pwm/pwm-sun20i.c                      | 322 ++++++++++++++++=
-++
-> > >  5 files changed, 430 insertions(+)
-> > >  create mode 100644
-> > >  Documentation/devicetree/bindings/pwm/allwinner,sun20i-pwm.yaml crea=
-te
-> > >  mode 100644 drivers/pwm/pwm-sun20i.c
-> >=20
-> > Acked-by: Palmer Dabbelt <palmer@rivosinc.com>
-> >=20
-> > I'm not sure if this ended up somewhere, but I'm assuming it's not aimed
-> > at
-> > my tree.  LMK if you guys want me to pick it up, I'm dropping it from
-> > patchwork.
->=20
-> At least patch #2 should go via the pwm tree. It's on my list to review.
+Dne ponedeljek, 19. junij 2023 ob 17:42:24 CEST je Maksim Kiselev napisal(a):
+> This patch adds SoCs names to Allwinner GPADC description to
+> make it more informative.
 
-Rest will go through sunxi tree, although DT bindings patches are usually=20
-picked together with driver patches. I'm fine either way.
+Please reword to remove "This patch".
+
+> 
+> Fixes: d1caa9905538 ("iio: adc: add support for Allwinner SoCs ADC")
+
+I'm fine with the patch in general, but does this really warrant fixes tag?
 
 Best regards,
 Jernej
+
+
+> Signed-off-by: Maksim Kiselev <bigunclemax@gmail.com>
+> ---
+>  drivers/iio/adc/Kconfig | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/iio/adc/Kconfig b/drivers/iio/adc/Kconfig
+> index eb2b09ef5d5b..d93868684c7b 100644
+> --- a/drivers/iio/adc/Kconfig
+> +++ b/drivers/iio/adc/Kconfig
+> @@ -1105,7 +1105,7 @@ config STMPE_ADC
+>  	  built-in ADC block (stmpe811).
+> 
+>  config SUN4I_GPADC
+> -	tristate "Support for the Allwinner SoCs GPADC"
+> +	tristate "Allwinner A10/A13/A31 and similar GPADCs driver"
+>  	depends on IIO
+>  	depends on MFD_SUN4I_GPADC || MACH_SUN8I
+>  	depends on THERMAL || !THERMAL_OF
 
 
 
