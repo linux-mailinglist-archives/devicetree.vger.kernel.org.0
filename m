@@ -2,166 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7611A74F33B
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 17:21:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 26A7274F37A
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 17:31:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231764AbjGKPVx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jul 2023 11:21:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39970 "EHLO
+        id S231986AbjGKPby (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jul 2023 11:31:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47526 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231229AbjGKPVw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 11:21:52 -0400
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95A58133
-        for <devicetree@vger.kernel.org>; Tue, 11 Jul 2023 08:21:50 -0700 (PDT)
-Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-3fbc0609cd6so59168745e9.1
-        for <devicetree@vger.kernel.org>; Tue, 11 Jul 2023 08:21:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=9elements.com; s=google; t=1689088909; x=1691680909;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=v/t6qi+ZyC/g4PTUhHmZaN3Bd0vINMuJ9GK/6w6tG3Y=;
-        b=NGdSCtEbbcI54tvXZi5EFRKNLYcvV4MbW+cSR1SllhjKokjuRkbK8nXanzVnbroUKY
-         8VhyP2t+Eye9PN0czoBYcdnN/2/JPSe71Jb3tcNsp3AmeoW14BMFRocoKBesooLATb+E
-         uN7AD8lykUwjmTEQwMAyZ5mPsr7IDHTgkQD/Lp890sUWlaEk7JI8pA3USaWCxT3c3mCC
-         sEDtz6R4N1niSTZAJhTKMvXyWLtI3DN1y8iMYj9D7jOpfTknUa0Lv4wM2FgLDcTmrDie
-         Q3qOguTpN8D+dVx3V/2qFKF0tR+0NYpURe8QYSngakjyYVThsVY5PR0bR5W7+tc83pWT
-         5aiA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689088909; x=1691680909;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=v/t6qi+ZyC/g4PTUhHmZaN3Bd0vINMuJ9GK/6w6tG3Y=;
-        b=jA8HG6V7DnlrYmcoiQ6vENYyVZB/9E3N8zVhn3s2aTWTTy/ZesMWbZnWcbTrJVEUK+
-         9S2k69jvjQD/FdVGZBPP5YyKnZpgRe6U5kwa4GK/FILqatTxuKZwnzytRXC1KwxUz7mF
-         H0T1W80A4UxASSN+O1oy22Urmw/IkNtuik/RUeJB2Z3c4wAWGvj2mcYCCGIgpD5oTiyK
-         nfxA1riguhFNkWWEfUyZoEeD8bLNs5iFbSaTCxwxaw+Hc0Wz/AqZUpC0WHEBTnjnojxM
-         tw/3+w1Ydv9rqXIxCoFZTeb7C7MHNGS8MSQoMcN5tI4C/PPUy2RONEoaLgn9lzKFT1MN
-         H6WA==
-X-Gm-Message-State: ABy/qLYS4i6BCqv/l+0FDAOVApjjuNPPHEd9jdfE9PmExU3Ms15+y2gk
-        9WVL2GSng7YiB8f1FTCb4Q1QXHVCNKaBW4QNgnNJdQ==
-X-Google-Smtp-Source: APBJJlGoF48cAVirjD+BVx9K2iUXnkdsU3a+i47sE/S/Bueis1YDVOqdkrh/SI21rEPghqLoMX1I1g==
-X-Received: by 2002:a7b:c7d9:0:b0:3f8:f6fe:26bf with SMTP id z25-20020a7bc7d9000000b003f8f6fe26bfmr14903024wmk.12.1689088908735;
-        Tue, 11 Jul 2023 08:21:48 -0700 (PDT)
-Received: from stroh80.sec.9e.network (ip-078-094-000-051.um19.pools.vodafone-ip.de. [78.94.0.51])
-        by smtp.gmail.com with ESMTPSA id m8-20020a7bca48000000b003fbdd9c72aasm2822762wml.21.2023.07.11.08.21.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 Jul 2023 08:21:48 -0700 (PDT)
-From:   Naresh Solanki <naresh.solanki@9elements.com>
-X-Google-Original-From: Naresh Solanki <Naresh.Solanki@9elements.com>
-To:     devicetree@vger.kernel.org, Guenter Roeck <linux@roeck-us.net>,
-        Jean Delvare <jdelvare@suse.com>,
-        Iwona Winiarska <iwona.winiarska@intel.com>
-Cc:     linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
-        Patrick Rudolph <patrick.rudolph@9elements.com>
-Subject: [PATCH] hwmon: (dimmtemp) Support more than 32 DIMMs
-Date:   Tue, 11 Jul 2023 17:21:43 +0200
-Message-ID: <20230711152144.755177-1-Naresh.Solanki@9elements.com>
-X-Mailer: git-send-email 2.41.0
+        with ESMTP id S232243AbjGKPbx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 11:31:53 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC2DB98;
+        Tue, 11 Jul 2023 08:31:51 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 36BFVi2Z045003;
+        Tue, 11 Jul 2023 10:31:44 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1689089504;
+        bh=D3D3/xIRjkeyEdydyNGC69xJm+Qy4qemkwlt3tgV/OI=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=kDNYjFlaCjTd1th4zNrVe7yHWM0bCL1XKtmJSVK+FdMDS4wujgpNi4CLdJrPY7+Kd
+         KJ1bj0HBkQguTBxO23pz+0PBO/XLR7tic7+dDLd4Dh2RR1Dc4Fe78U/eIuLL/BbqcN
+         oWDE50qb94/Om2aYd/T67KJGWu/bdRA4eMUwTD+I=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 36BFVik8045541
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 11 Jul 2023 10:31:44 -0500
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 11
+ Jul 2023 10:31:44 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 11 Jul 2023 10:31:44 -0500
+Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 36BFViMW069720;
+        Tue, 11 Jul 2023 10:31:44 -0500
+Date:   Tue, 11 Jul 2023 10:31:44 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Jayesh Choudhary <j-choudhary@ti.com>
+CC:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <vigneshr@ti.com>, <krzysztof.kozlowski+dt@linaro.org>,
+        <afd@ti.com>, <s-vadapalli@ti.com>, <kristo@kernel.org>,
+        <robh+dt@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v5 1/5] arm64: dts: ti: k3-j784s4-main: Add system
+ controller and SERDES lane mux
+Message-ID: <20230711153144.jvofubaez5uoog5p@unmanaged>
+References: <20230710101705.154119-1-j-choudhary@ti.com>
+ <20230710101705.154119-2-j-choudhary@ti.com>
+ <23833669-b9f7-94aa-ea42-56843842cba6@linaro.org>
+ <d0fce3b5-222c-fc0f-ba16-988e4cc0520e@ti.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <d0fce3b5-222c-fc0f-ba16-988e4cc0520e@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Patrick Rudolph <patrick.rudolph@9elements.com>
+On 12:01-20230711, Jayesh Choudhary wrote:
+> 
+> 
+> On 10/07/23 17:13, Krzysztof Kozlowski wrote:
+> > On 10/07/2023 12:17, Jayesh Choudhary wrote:
+> > > From: Siddharth Vadapalli <s-vadapalli@ti.com>
+> > > 
+> > > The system controller node manages the CTRL_MMR0 region.
+> > > Add serdes_ln_ctrl node which is used for controlling the SERDES lane mux.
+> > > 
+> > > Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+> > > [j-choudhary@ti.com: Add reg property to fix dtc warning]
+> > > Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
+> > > ---
+> > >   arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi | 23 ++++++++++++++++++++++
+> > >   1 file changed, 23 insertions(+)
+> > > 
+> > > diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
+> > > index 2ea0adae6832..68cc2fa053e7 100644
+> > > --- a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
+> > > +++ b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
+> > > @@ -5,6 +5,9 @@
+> > >    * Copyright (C) 2022 Texas Instruments Incorporated - https://www.ti.com/
+> > >    */
+> > > +#include <dt-bindings/mux/mux.h>
+> > > +#include <dt-bindings/mux/ti-serdes.h>
+> > 
+> > Why? What do you use from that binding?
+> > 
+> 
+> Missed idle-state in the mux-controller node here for default values.
+> I will wait for more feedback and then re-spin the series.
 
-This patch introduces support for handling more than 32 DIMMs by
-utilizing bitmap operations. The changes ensure that the driver can
-handle a higher number of DIMMs efficiently.
+btw, I am wondering if ti-serdes.h should even exist in dt-bindings -
+are any of the macros used in the driver? or should this follow the
+pinctrl style macros that could happily reside in arch/arm64/boot/dts/ti
+?
 
-Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
----
- drivers/hwmon/peci/dimmtemp.c | 26 +++++++++++++++-----------
- 1 file changed, 15 insertions(+), 11 deletions(-)
 
-diff --git a/drivers/hwmon/peci/dimmtemp.c b/drivers/hwmon/peci/dimmtemp.c
-index ed968401f93c..ce89da3937a0 100644
---- a/drivers/hwmon/peci/dimmtemp.c
-+++ b/drivers/hwmon/peci/dimmtemp.c
-@@ -219,19 +219,21 @@ static int check_populated_dimms(struct peci_dimmtemp *priv)
- {
- 	int chan_rank_max = priv->gen_info->chan_rank_max;
- 	int dimm_idx_max = priv->gen_info->dimm_idx_max;
--	u32 chan_rank_empty = 0;
--	u32 dimm_mask = 0;
--	int chan_rank, dimm_idx, ret;
-+	DECLARE_BITMAP(dimm_mask, DIMM_NUMS_MAX);
-+	DECLARE_BITMAP(chan_rank_empty, CHAN_RANK_MAX);
-+
-+	int chan_rank, dimm_idx, ret, i;
- 	u32 pcs;
- 
--	BUILD_BUG_ON(BITS_PER_TYPE(chan_rank_empty) < CHAN_RANK_MAX);
--	BUILD_BUG_ON(BITS_PER_TYPE(dimm_mask) < DIMM_NUMS_MAX);
- 	if (chan_rank_max * dimm_idx_max > DIMM_NUMS_MAX) {
- 		WARN_ONCE(1, "Unsupported number of DIMMs - chan_rank_max: %d, dimm_idx_max: %d",
- 			  chan_rank_max, dimm_idx_max);
- 		return -EINVAL;
- 	}
- 
-+	bitmap_zero(dimm_mask, DIMM_NUMS_MAX);
-+	bitmap_zero(chan_rank_empty, CHAN_RANK_MAX);
-+
- 	for (chan_rank = 0; chan_rank < chan_rank_max; chan_rank++) {
- 		ret = peci_pcs_read(priv->peci_dev, PECI_PCS_DDR_DIMM_TEMP, chan_rank, &pcs);
- 		if (ret) {
-@@ -242,7 +244,7 @@ static int check_populated_dimms(struct peci_dimmtemp *priv)
- 			 * detection to be performed at a later point in time.
- 			 */
- 			if (ret == -EINVAL) {
--				chan_rank_empty |= BIT(chan_rank);
-+				bitmap_set(chan_rank_empty, chan_rank, 1);
- 				continue;
- 			}
- 
-@@ -251,7 +253,7 @@ static int check_populated_dimms(struct peci_dimmtemp *priv)
- 
- 		for (dimm_idx = 0; dimm_idx < dimm_idx_max; dimm_idx++)
- 			if (__dimm_temp(pcs, dimm_idx))
--				dimm_mask |= BIT(chan_rank * dimm_idx_max + dimm_idx);
-+				bitmap_set(dimm_mask, chan_rank * dimm_idx_max + dimm_idx, 1);
- 	}
- 
- 	/*
-@@ -260,7 +262,7 @@ static int check_populated_dimms(struct peci_dimmtemp *priv)
- 	 * host platform boot. Retrying a couple of times lets us make sure
- 	 * that the state is persistent.
- 	 */
--	if (chan_rank_empty == GENMASK(chan_rank_max - 1, 0)) {
-+	if (bitmap_full(chan_rank_empty, chan_rank_max)) {
- 		if (priv->no_dimm_retry_count < NO_DIMM_RETRY_COUNT_MAX) {
- 			priv->no_dimm_retry_count++;
- 
-@@ -274,14 +276,16 @@ static int check_populated_dimms(struct peci_dimmtemp *priv)
- 	 * It's possible that memory training is not done yet. In this case we
- 	 * defer the detection to be performed at a later point in time.
- 	 */
--	if (!dimm_mask) {
-+	if (bitmap_empty(dimm_mask, DIMM_NUMS_MAX)) {
- 		priv->no_dimm_retry_count = 0;
- 		return -EAGAIN;
- 	}
- 
--	dev_dbg(priv->dev, "Scanned populated DIMMs: %#x\n", dimm_mask);
-+	for_each_set_bit(i, dimm_mask, DIMM_NUMS_MAX) {
-+		dev_dbg(priv->dev, "Found DIMM%#x\n", i);
-+	}
- 
--	bitmap_from_arr32(priv->dimm_mask, &dimm_mask, DIMM_NUMS_MAX);
-+	bitmap_copy(priv->dimm_mask, dimm_mask, DIMM_NUMS_MAX);
- 
- 	return 0;
- }
-
-base-commit: 4dbbaf8fbdbd13adc80731b2452257857e4c2d8b
 -- 
-2.41.0
-
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
