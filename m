@@ -2,182 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DA49074FBD8
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 01:28:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2536874FBDE
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 01:28:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229538AbjGKX2H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jul 2023 19:28:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53196 "EHLO
+        id S229972AbjGKX2w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jul 2023 19:28:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53324 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229610AbjGKX2G (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 19:28:06 -0400
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1305BE7E
-        for <devicetree@vger.kernel.org>; Tue, 11 Jul 2023 16:28:05 -0700 (PDT)
-Received: by mail-lj1-x22f.google.com with SMTP id 38308e7fff4ca-2b701e1c80fso97720561fa.2
-        for <devicetree@vger.kernel.org>; Tue, 11 Jul 2023 16:28:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689118083; x=1691710083;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ApJeJhdGZd6RwVsAe5TjmnkbUP+gLhSHQ/FsHUSWxaw=;
-        b=KaUQ7A7jAMHLK4RGjc6kDCS2q173iEkMZFmHeeJo0i92FZBocIzQGBI9TuOh5Jet4X
-         2qUPW7bwTAmIznfILpAdnAbtdOChmw/7ngnkTxJBeLChFap9FJmwrJeBgniegDrKpLVk
-         PXhQ95MX/AEL8GcZJ+sgbiOSSL9nOogcJ0A23aPYXJ/0cWePP2YPDYAu/QU+wKDHnUla
-         RruqZL4d74HSlTd1ApIfuBSQqH4KXdVpAqx8A8bmCQ/3TGjK9S2pCCWbW/1fYmMSTLpM
-         iUBemCt9x9XEU/vc5BegSfzc8cn3ituZIt75dmjTi+0p4Mqk6h0asgjhgq7dH10X40rM
-         QrYQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689118083; x=1691710083;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ApJeJhdGZd6RwVsAe5TjmnkbUP+gLhSHQ/FsHUSWxaw=;
-        b=RyrDm+zBC8v2SK/cbvkuZyvzj1s2yE3kl7WVxfxHVKZPfBnMNsEtVRY0gEo8Uh469w
-         oFOlnCHNKpheVaVXvvP7MjD4aI91p277SaBT8nC6EKRt7Mb+dMuh2zJsOn7KyDbPqBTA
-         XlYscfXavfiDrw1fRsORstEda/EyqXWMAZTr+uT+foEy8HTgIQh34mjTryg06pQ0jUvb
-         WZPN2ZHmVrgyUJAarNPPjDvNIw0gQzOv2HX+5yHJpHsapW/jNbrVYFUaePJNQujmjDLb
-         9E66bdJWzxxTAe9tm8VHJ88GULbVvbHrhX5CvwTazt8hSays1U5iz9SbqLEjRLfqjecm
-         f0cg==
-X-Gm-Message-State: ABy/qLZDBuXigTFW1/csOXwiq2RVqcl4jcifnt8B5A7Q19h5YixDuTDo
-        JSsshqgAZ3K6t8bgI/VyEGn00Q==
-X-Google-Smtp-Source: APBJJlGsPfFUNdnVvWX3cbwGDLsNUz1XJcBgCjsdBUlgiaPrVmMkFwA9bFkI/MC0JNM6NIesnDkSfg==
-X-Received: by 2002:a2e:a3d2:0:b0:2b6:e7d6:714d with SMTP id w18-20020a2ea3d2000000b002b6e7d6714dmr14606619lje.22.1689118083209;
-        Tue, 11 Jul 2023 16:28:03 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:a0db:1f00::8a5? (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
-        by smtp.gmail.com with ESMTPSA id x19-20020a2e8813000000b002b6d465583csm656569ljh.126.2023.07.11.16.28.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 11 Jul 2023 16:28:02 -0700 (PDT)
-Message-ID: <96e12ff3-c0ef-00de-49aa-f731b0f68981@linaro.org>
-Date:   Wed, 12 Jul 2023 02:28:01 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH 3/5] arm64: dts: qcom: qrb5165-rb5: add onboard USB-C
- redriver
-Content-Language: en-GB
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org
-References: <20230709041926.4052245-1-dmitry.baryshkov@linaro.org>
- <20230709041926.4052245-4-dmitry.baryshkov@linaro.org>
- <d80fab4d-f581-f6fa-4aa8-f8952f0c710c@linaro.org>
- <6968f4a5-fc5d-e166-3262-dc83762eeec1@linaro.org>
- <766ade98-f3c7-89a3-d3e0-63c8d01a8498@linaro.org>
- <CAA8EJpqxuziMGqkCZsE18K6z=WyQ44nxo3+-He=SZhH7Gfggkg@mail.gmail.com>
- <2c9d4d18-48c8-12b0-a971-62138b318c5b@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <2c9d4d18-48c8-12b0-a971-62138b318c5b@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S229963AbjGKX2w (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 19:28:52 -0400
+Received: from wout2-smtp.messagingengine.com (wout2-smtp.messagingengine.com [64.147.123.25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF657E74
+        for <devicetree@vger.kernel.org>; Tue, 11 Jul 2023 16:28:50 -0700 (PDT)
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+        by mailout.west.internal (Postfix) with ESMTP id 9A4E4320091A;
+        Tue, 11 Jul 2023 19:28:47 -0400 (EDT)
+Received: from imap47 ([10.202.2.97])
+  by compute1.internal (MEProxy); Tue, 11 Jul 2023 19:28:48 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fastmail.com; h=
+        cc:cc:content-type:content-type:date:date:from:from:in-reply-to
+        :in-reply-to:message-id:mime-version:references:reply-to:sender
+        :subject:subject:to:to; s=fm2; t=1689118127; x=1689204527; bh=Qk
+        480Cju6SmeRzg2rYBse8OkO4zCrxLYXJOc7D6RYwQ=; b=kxXb42NpaWW+cHvDk0
+        9tDTG8Shzm2fI5EkJDP6lGSpgk2dnUvgvvP6AAADD1vzO2Oa1WaS2m8c4fOTnmF9
+        fKTTW7w6tK+B16xL7DZVlZ4nwNXSz3x6mIdSVeOfu3SAnaXkJiXjfd6pWSQ/+4a6
+        s+H3mRrvU3zFFjErvQsU3wm+cmcuyV/Zfv6XwfeaBlWt+OYl83EjSPf02xKmC12w
+        aPWWDB5adz9HKuVgw/RIq9Zgeuh89pI9xtQJ/YvygUi8rVgyYr1c+a7qrjjVG2Bm
+        6B0I91DsEBmyv3m8HjM9ZZrXO7JW6naGwZ0hN8LBvqcHouGxxpe6V6xQMzTylLnX
+        DVJQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:content-type:date:date
+        :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm2; t=1689118127; x=1689204527; bh=Qk480Cju6SmeR
+        zg2rYBse8OkO4zCrxLYXJOc7D6RYwQ=; b=EI7ilGADKvuMigj38QVEMWejEPjtq
+        C9uXlKIqto+DlE8FDJzs/sI0026SCFORHz+08xJoEXdtJZb1Z6NddpMJBhHHe98S
+        LRQGFN39OhYdSXcsLEfp4ISDw5MRX5Nctdh4yjGJ6af/6SE178eZ5eDH04trDvKn
+        eTefXf4DMd3JqIGWERcxbdWt/esNcXvLeRMPOWOUfT91EoIcn9oUnh2xWONXCfHx
+        QsvyoD2gsCxQGB6XJr/xllzVpwC9jGUJw9BLDc2uGkPAJNs5NLTQTkXMVqj1/pNA
+        TiX3H3Cs+Cli/sBlx2ib9RmKY739FZPSsFvR29+BiW8Du25fqONmzrxlA==
+X-ME-Sender: <xms:ruWtZDE6Ob68emoMsrV9SOfCzCv77dimOeK9UFuklPtRkHbfYGvksA>
+    <xme:ruWtZAXpx9Pvj5HBcYocvwBJ512ZE8xsSR_UnFBYkwwHJqMzGSB3k7q1IeUIucd1b
+    RoIO1fPz1yroSwy5w>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedviedrfedugddvvdcutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomhepfdfuthgv
+    fhgrnhcuqfdktfgvrghrfdcuoehsohhrvggrrhesfhgrshhtmhgrihhlrdgtohhmqeenuc
+    ggtffrrghtthgvrhhnpeejueehgedtueetgefhheejjeeigffhieefjeehuddvueegtdfh
+    heevgfeggfektdenucffohhmrghinhepihhnfhhrrgguvggrugdrohhrghenucevlhhush
+    htvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehsohhrvggrrhesfhgr
+    shhtmhgrihhlrdgtohhm
+X-ME-Proxy: <xmx:ruWtZFINdeVy2Tu7AFvjCQh5HLPtp41lNBD9P5BWs7DwZezURBZM2Q>
+    <xmx:ruWtZBHESYX33_ZX2cdWtqo081vGLJZoYKxZL_WY_k5XX6aJnxSs2Q>
+    <xmx:ruWtZJWFf8Dc8EXhuDLdDfLeKQr71vJdeqgJlhRWSwA8qPMWkI8zeA>
+    <xmx:r-WtZIfgFADk3lWllqWaYK9UyBemtvNq-6lngyFHo7R8iuqu_QhZ6Q>
+Feedback-ID: i84414492:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id DB8D0A60076; Tue, 11 Jul 2023 19:28:46 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.9.0-alpha0-531-gfdfa13a06d-fm-20230703.001-gfdfa13a0
+Mime-Version: 1.0
+Message-Id: <33dd566f-adfc-4148-9bef-362935ddb606@app.fastmail.com>
+In-Reply-To: <20230711225212.11542-1-palmer@rivosinc.com>
+References: <20230711225212.11542-1-palmer@rivosinc.com>
+Date:   Tue, 11 Jul 2023 19:28:25 -0400
+From:   "Stefan O'Rear" <sorear@fastmail.com>
+To:     "Palmer Dabbelt" <palmer@rivosinc.com>,
+        "Conor Dooley" <conor@kernel.org>
+Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: RISC-V: Re-word the I extension binding
+Content-Type: text/plain
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/07/2023 02:04, Konrad Dybcio wrote:
-> On 12.07.2023 01:01, Dmitry Baryshkov wrote:
->> On Wed, 12 Jul 2023 at 01:59, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
->>>
->>> On 12.07.2023 00:39, Dmitry Baryshkov wrote:
->>>> On 12/07/2023 00:36, Konrad Dybcio wrote:
->>>>> On 9.07.2023 06:19, Dmitry Baryshkov wrote:
->>>>>> Add the nb7vpq904m, onboard USB-C redriver / retimer.
->>>>>>
->>>>>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->>>>>> ---
->>>>> [...]
->>>>>
->>>>>> +            port@1 {
->>>>>> +                reg = <1>;
->>>>>> +
->>>>>> +                redriver_phy_con_ss: endpoint {
->>>>>> +                    remote-endpoint = <&usb_1_qmpphy_typec_mux_in>;
->>>>>> +                    data-lanes = <0 1 2 3>;
->>>>> That's USB+DP lines combined, or how does it work? I'm confused :/
->>>>
->>>> 4 generic purpose SS lanes, which can be purposed for USB or for DP.
->>> Okay, so my gut did better than my brain.
->>>
->>> Other than that, I'm reading the bindings and it looks like ports 0 and
->>> 1 may possibly be swapped?
->>
->> Yes. But if I get schematics right, the lanes are not swapped in this case.
-> I'm not talking about the 0123-3210 swap, but rather in/out being swapped.
-> Unless I'm reading the bindings wrong (or they may be written in a
-> confusing way).
+On Tue, Jul 11, 2023, at 6:52 PM, Palmer Dabbelt wrote:
+> I'd argue this changes the definition of the I binding, as there was
+> more than just the counters that got split out (CSRs and fence.i at
+> least).  We haven't released these bindings yet, so IIUC it's OK to
+> change the definition still.
+>
+> I think this matches the original intent, or at least what the
+> implementation does.
+>
+> Fixes: aeb71e42caae ("dt-bindings: riscv: deprecate riscv,isa")
+> Signed-off-by: Palmer Dabbelt <palmer@rivosinc.com>
+> ---
+>  .../devicetree/bindings/riscv/extensions.yaml        | 12 +++++-------
+>  1 file changed, 5 insertions(+), 7 deletions(-)
+>
+> diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml 
+> b/Documentation/devicetree/bindings/riscv/extensions.yaml
+> index cc1f546fdbdc..31ec244bd32f 100644
+> --- a/Documentation/devicetree/bindings/riscv/extensions.yaml
+> +++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
+> @@ -67,13 +67,11 @@ properties:
+>        anyOf:
+>          # single letter extensions, in canonical order
+>          - const: i
+> -          description: |
+> -            The base integer instruction set, as ratified in the 
+> 20191213
+> -            version of the unprivileged ISA specification.
+> -
+> -            This does not include Chapter 10, "Counters", which was 
+> moved into
+> -            the Zicntr and Zihpm extensions after the ratification of 
+> the
+> -            20191213 version of the unprivileged specification.
+> +          description:
+> +            The base integer instruction set, as specified by the 2.2
+> +            version of the unprivileged ISA specification, formally 
+> known as
+> +            the user-level ISA.  This definition of I includes various
+> +            extensions that were later split out.
 
-Hmm, no. port@0 goes to the connector, port@1 to SS PHY, port@2 to SBU 
-source.
+Nitpick: the 2.2 unprivileged ISA uses the pre-ratification memory model
+(essentially Alpha), which is much weaker than the memory model in 20191213.
+
+-s
 
 > 
-> Konrad
->>
->>>
->>> Konrad
->>>>
->>>>>
->>>>> Konrad
->>>>>> +                };
->>>>>> +            };
->>>>>> +
->>>>>> +            port@2 {
->>>>>> +                reg = <2>;
->>>>>> +
->>>>>> +                redriver_usb_con_sbu: endpoint {
->>>>>> +                    remote-endpoint = <&pm8150b_typec_sbu_out>;
->>>>>> +                };
->>>>>> +            };
->>>>>> +        };
->>>>>> +    };
->>>>>>    };
->>>>>>      &mdss {
->>>>>> @@ -1294,7 +1334,7 @@ &usb_1_qmpphy {
->>>>>>    };
->>>>>>      &usb_1_qmpphy_typec_mux_in {
->>>>>> -    remote-endpoint = <&pm8150b_typec_mux_out>;
->>>>>> +    remote-endpoint = <&redriver_phy_con_ss>;
->>>>>>    };
->>>>>>      &usb_2 {
->>>>>> @@ -1382,7 +1422,15 @@ pm8150b_role_switch_out: endpoint {
->>>>>>                port@1 {
->>>>>>                    reg = <1>;
->>>>>>                    pm8150b_typec_mux_out: endpoint {
->>>>>> -                    remote-endpoint = <&usb_1_qmpphy_typec_mux_in>;
->>>>>> +                    remote-endpoint = <&redriver_usb_con_ss>;
->>>>>> +                };
->>>>>> +            };
->>>>>> +
->>>>>> +            port@2 {
->>>>>> +                reg = <2>;
->>>>>> +
->>>>>> +                pm8150b_typec_sbu_out: endpoint {
->>>>>> +                    remote-endpoint = <&redriver_usb_con_sbu>;
->>>>>>                    };
->>>>>>                };
->>>>>>            };
->>>>
->>
->>
->>
-
--- 
-With best wishes
-Dmitry
-
+>          - const: m
+>            description:
+> -- 
+> 2.40.1
+>
+>
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
