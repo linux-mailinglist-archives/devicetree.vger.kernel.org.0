@@ -2,118 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 26B9474EF1F
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 14:38:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A7EB74EF42
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 14:48:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232462AbjGKMio (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jul 2023 08:38:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42592 "EHLO
+        id S229959AbjGKMr5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jul 2023 08:47:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51462 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233009AbjGKMiN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 08:38:13 -0400
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7591A1736;
-        Tue, 11 Jul 2023 05:37:53 -0700 (PDT)
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36BAmxwL018566;
-        Tue, 11 Jul 2023 14:36:14 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=iEhiiDAE5VGpzYoUKMDzsWW+FQbM/7CMQsKlEZM++LU=;
- b=DCavd3BD8Ib/w2kzYs4c7q/cj8Hkq7PqNT4020gfru75qfHko1knOyyxZEvCj7/zjzAt
- 6J1fd0CgaQqbPifmabIATh76imkZmt7Q31Qo1BTgatMGwdqwh9SPU2EieSAk/E3VPTtR
- X8O3s4+eYPLC2YnlYAaKjgsO7Sac/c9LlA+wUBDSzAg2um2/Cb4bJHMYdPZGSzRSl7di
- IyRYDuYEcI4QkkwhiEkkT4RuYMQZkOAayuHOJWfIDEM0oEKF8v1OpMOiXJt0O9gtb59f
- SRT8HOLyDWYuBURXScMMluBWe7Ovi1D2G6zYZpiwcepM2gghJqH53ZmUIoMvjF1LKlM1 vw== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3rs311t6rv-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 11 Jul 2023 14:36:14 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 08ED4100058;
-        Tue, 11 Jul 2023 14:36:13 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 801DF2248B2;
-        Tue, 11 Jul 2023 14:36:12 +0200 (CEST)
-Received: from [10.201.21.122] (10.201.21.122) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Tue, 11 Jul
- 2023 14:36:12 +0200
-Message-ID: <6fa4ea12-bc7d-4977-8b7e-bfbea2ef2955@foss.st.com>
-Date:   Tue, 11 Jul 2023 14:36:11 +0200
+        with ESMTP id S229637AbjGKMr4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 08:47:56 -0400
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9FDF11B;
+        Tue, 11 Jul 2023 05:47:54 -0700 (PDT)
+Received: by mail-lj1-x232.google.com with SMTP id 38308e7fff4ca-2b6fbf0c0e2so87765811fa.2;
+        Tue, 11 Jul 2023 05:47:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1689079673; x=1691671673;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=kZwIWsyHBDhjLad84NzaNva3BNfXjZe5vkLfQsOCjCc=;
+        b=pSipQ/AW/mGoObrbdhJv/oCUAvq/UliTyS5/cglEVv63+SguNkGYr3f6H/Y/IG84AP
+         e7WD1fpm7cUeIwneC6KY8Vswr6oN7bJ/ihMg4j5F5IyYFNXfgXsYX47taxWsJuuTyF0y
+         uVjZNj4AmS8XannHsmJj1pbkUAEFOyVjqRMIlYEhf4fGff04iJAgUeeaFPbvLhE+MeNw
+         rNjd5kpsTGMkV/d5K7jtXfmfpR2Ff+JeUyou0zsYmaexL0myCvU7Z8CDndwxvscM4Up6
+         Kh4A5pFzQPyNNeSHbjGbmoEjSBYKkbx6PupXR0MFB43WLJ23W4N+1bp9EtpLACaZ54ND
+         k5Dw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689079673; x=1691671673;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=kZwIWsyHBDhjLad84NzaNva3BNfXjZe5vkLfQsOCjCc=;
+        b=NJ6fWbtUY1cKB22A2cFPAiSpspR29JtF8NKrSExhkOviIv7LrsjrRTtlbtdwkZxFNv
+         AymAK2OdfILJ3h2M/QZWPRlMnSbhCiPez9uzom/MRvjMa0Lyh6ATG2rl6FxcqjEHEkyl
+         Up7imMJMC9mT70GJeg850ZL1rMYFSjLF+3dw7Qthre/1cc7uULxpqKw8bGI9VY+GEZCw
+         CgYK/Iqv+aqnltUgU3kzto9mUcP7dXHNb2U26oqk4tQZWLqI4OU17yxwjRdb4udr/3qz
+         jZ9xHqCiK7LqVquzjK2SlutVpWPCc7+OhVTmdMBYy/X+2aB9ScjHpkxFTyID3NlJdcH1
+         h3+A==
+X-Gm-Message-State: ABy/qLZrX/Ap9C2Jy0nmV3ZjVahAj0N5/qBwEcMj7LSBpREMPh0PUlep
+        zAkBjpv/PEVvYVCvzICeYUk=
+X-Google-Smtp-Source: APBJJlGTGVjSGfPVElIc+uEX2MYdYCtrEOxoN7Wt0fbZwaLSqMQOuoY9bsbAGNYMsMh3SViR3GwrCw==
+X-Received: by 2002:a19:4f42:0:b0:4fb:7de4:c837 with SMTP id a2-20020a194f42000000b004fb7de4c837mr12264673lfk.68.1689079672996;
+        Tue, 11 Jul 2023 05:47:52 -0700 (PDT)
+Received: from mobilestation ([85.249.18.12])
+        by smtp.gmail.com with ESMTPSA id er24-20020a05651248d800b004fb75943aa0sm305920lfb.196.2023.07.11.05.47.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 11 Jul 2023 05:47:52 -0700 (PDT)
+Date:   Tue, 11 Jul 2023 15:47:49 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc:     jingoohan1@gmail.com, gustavo.pimentel@synopsys.com,
+        lpieralisi@kernel.org, robh+dt@kernel.org, kw@linux.com,
+        bhelgaas@google.com, kishon@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        marek.vasut+renesas@gmail.com, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v17 01/20] PCI: Add INTx Mechanism Messages macros
+Message-ID: <7jry4cvtqw56xt5tbuorla5dq3ikrfboy5sltsnbe6ttdi5h7h@fqfal75irzwe>
+References: <20230705114206.3585188-1-yoshihiro.shimoda.uh@renesas.com>
+ <20230705114206.3585188-2-yoshihiro.shimoda.uh@renesas.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v1] ARM: dts: stm32: prtt1c: Add PoDL PSE regulator nodes
-Content-Language: en-US
-To:     Oleksij Rempel <o.rempel@pengutronix.de>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        =?UTF-8?B?SsOpcsO0bWUgUG91aWxsZXI=?= <jerome.pouiller@silabs.com>
-CC:     <kernel@pengutronix.de>, <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <netdev@vger.kernel.org>
-References: <20230323123242.3763673-1-o.rempel@pengutronix.de>
-From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
-In-Reply-To: <20230323123242.3763673-1-o.rempel@pengutronix.de>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.201.21.122]
-X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-07-11_06,2023-07-11_01,2023-05-22_02
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230705114206.3585188-2-yoshihiro.shimoda.uh@renesas.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Oleksij
+On Wed, Jul 05, 2023 at 08:41:47PM +0900, Yoshihiro Shimoda wrote:
+> Add "Implicit Message Routing" and "INTx Mechanism Messages" macros
+> to send a message by a PCIe driver.
 
-On 3/23/23 13:32, Oleksij Rempel wrote:
-> This commit introduces Power over Data Line (PoDL) Power Source
-> Equipment (PSE) regulator nodes to the PRTT1C devicetree. The addition
-> of these nodes enables support for PoDL in PRTT1C devices, allowing
-> power delivery and data transmission over a single twisted pair.
+Adding to the patch log why they are needed would shed some light to
+the patch context for the reviewers unfamiliar with the series.
+Normally the submitters provide the context of the preparation patches
+to simplify the review. Adding a reference to the respective part of
+the PCIe specification would be also appropriate here.
+
+Other than that no objection from my side:
+Reviewed-by: Serge Semin <fancer.lancer@gmail.com>
+
+-Serge(y)
+
 > 
-> The new PoDL PSE regulator nodes provide voltage capability information
-> of the current board design, which can be used as a hint for system
-> administrators when configuring and managing power settings. This
-> update enhances the versatility and simplifies the power management of
-> PRTT1C devices while ensuring compatibility with connected Powered
-> Devices (PDs).
-> 
-> After applying this patch, the power delivery can be controlled from
-> user space with a patched [1] ethtool version using the following commands:
->    ethtool --set-pse t1l2 podl-pse-admin-control enable
-> to enable power delivery, and
->    ethtool --show-pse t1l2
-> to display the PoDL PSE settings.
-> 
-> By integrating PoDL PSE support into the PRTT1C devicetree, users can
-> benefit from streamlined power and data connections in their
-> deployments, improving overall system efficiency and reducing cabling
-> complexity.
-> 
-> [1] https://lore.kernel.org/all/20230317093024.1051999-1-o.rempel@pengutronix.de/
-> 
-> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
 > ---
-
-Applied on stm32-next.
-
-cheers
-Alex
-
-
-
-
+>  drivers/pci/pci.h | 18 ++++++++++++++++++
+>  1 file changed, 18 insertions(+)
+> 
+> diff --git a/drivers/pci/pci.h b/drivers/pci/pci.h
+> index a4c397434057..45673cc9c724 100644
+> --- a/drivers/pci/pci.h
+> +++ b/drivers/pci/pci.h
+> @@ -13,6 +13,24 @@
+>  
+>  #define PCIE_LINK_RETRAIN_TIMEOUT_MS	1000
+>  
+> +/* Implicit Message Routing (r[2:0]) */
+> +#define PCI_MSG_TYPE_R_ROUTING_RC	0
+> +#define PCI_MSG_TYPE_R_ROUTING_ADDR	1
+> +#define PCI_MSG_TYPE_R_ROUTING_ID	2
+> +#define PCI_MSG_TYPE_R_ROUTING_BC	3
+> +#define PCI_MSG_TYPE_R_ROUTING_LOCAL	4
+> +#define PCI_MSG_TYPE_R_ROUTING_GATHER	5
+> +
+> +/* INTx Mechanism Messages */
+> +#define PCI_MSG_CODE_ASSERT_INTA	0x20
+> +#define PCI_MSG_CODE_ASSERT_INTB	0x21
+> +#define PCI_MSG_CODE_ASSERT_INTC	0x22
+> +#define PCI_MSG_CODE_ASSERT_INTD	0x23
+> +#define PCI_MSG_CODE_DEASSERT_INTA	0x24
+> +#define PCI_MSG_CODE_DEASSERT_INTB	0x25
+> +#define PCI_MSG_CODE_DEASSERT_INTC	0x26
+> +#define PCI_MSG_CODE_DEASSERT_INTD	0x27
+> +
+>  extern const unsigned char pcie_link_speed[];
+>  extern bool pci_early_dump;
+>  
+> -- 
+> 2.25.1
+> 
