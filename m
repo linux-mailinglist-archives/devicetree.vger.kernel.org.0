@@ -2,221 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3BE1A74F14E
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 16:12:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E7D5174F167
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 16:14:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229928AbjGKOMb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jul 2023 10:12:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49574 "EHLO
+        id S231712AbjGKOOc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jul 2023 10:14:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51510 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233407AbjGKOMa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 10:12:30 -0400
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FB0BE69
-        for <devicetree@vger.kernel.org>; Tue, 11 Jul 2023 07:12:29 -0700 (PDT)
-Received: by mail-wr1-x435.google.com with SMTP id ffacd0b85a97d-31441dfbf97so6515737f8f.1
-        for <devicetree@vger.kernel.org>; Tue, 11 Jul 2023 07:12:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1689084748; x=1691676748;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=kfD1QKdUUlCP07+roOoFywxk5muRqmFooE0qd5aLBns=;
-        b=Kt9VufYvB/j33LbCFZgmXbkZGy73eeJnSwJU6p4I6FPhIWqWc/XSW9TCpHoNIlP8rV
-         OTYAZr32mXwnI6z3yyXxO3bpKIrZwF4CJPrTbU2HTgCOTL8WMBFfMHVQkP+g87VqCPXM
-         qfcuNn4l4ev0h26GQGWG3Mj1Xjeoo7InCIXUFEca6NR+P2cDr5X8/3eeI8WqJoWAg2TN
-         iFQSJqpzrhAGrQ2tebTqq7MlT5APaAGqd1W+pXzuOdgmFeQ6Ka8F9I90N6QOuceU/gy6
-         pk6Xn9jWWHFGkTJ+GvzoQk6r/PRePEf4t7JPhZchGETRjvERS3nflezo9XljrQUBYOa2
-         thgg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689084748; x=1691676748;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=kfD1QKdUUlCP07+roOoFywxk5muRqmFooE0qd5aLBns=;
-        b=JtbP7QwYhP4t1WJipkXw9jUA2Bm/A2mpOhspt9LwXYX4UvQF7jsPUQ+u4D9q6oXwlV
-         ldaKrYbi0UAf/+7vtT+mAjaLroyp5LhOSw7S2tyyVkwcZCBnP4FtLYU9gMid0reqvWM8
-         rEYKS5GBcVb6LMUWxMklEUHfxKjD6ngMR+Lo/j+mgdT3DuUT4BwTLh0gvh7L2y0gMn4b
-         TpELd40OlWW7gtxux3B6UnBav/FUVVZKtaagumwCeR4FmQTuNMhVd/rmmDQtlwp/HN9M
-         8aIW6jOOCDcWPkzlwkQLNjl/ek/qeodSScjp7W9B54iYh8otRTqw74MAJtWOToKxlj9I
-         Zb4A==
-X-Gm-Message-State: ABy/qLY5nz0+AvqKQ2TUg3qZas+QK357n/Vi8rrfC9UaoOq2exI5YBdF
-        OiqTASc/zCXUu0X+Ll6Hfsc9HQ==
-X-Google-Smtp-Source: APBJJlHdpMDer9jq8C+08J0C6lUJOUhXFT5I8NKyZycrI5aqDIXOSH3usMO5vCEWntD4j587cS4rRw==
-X-Received: by 2002:adf:db04:0:b0:313:ee73:cc9a with SMTP id s4-20020adfdb04000000b00313ee73cc9amr13524583wri.70.1689084747658;
-        Tue, 11 Jul 2023 07:12:27 -0700 (PDT)
-Received: from localhost (2001-1ae9-1c2-4c00-20f-c6b4-1e57-7965.ip6.tmcz.cz. [2001:1ae9:1c2:4c00:20f:c6b4:1e57:7965])
-        by smtp.gmail.com with ESMTPSA id o18-20020adfe812000000b00314417f5272sm2354907wrm.64.2023.07.11.07.12.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 Jul 2023 07:12:27 -0700 (PDT)
-Date:   Tue, 11 Jul 2023 16:12:26 +0200
-From:   Andrew Jones <ajones@ventanamicro.com>
-To:     Anup Patel <apatel@ventanamicro.com>
-Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Atish Patra <atishp@atishpatra.org>,
-        Sunil V L <sunilvl@ventanamicro.com>,
-        Conor Dooley <conor@kernel.org>,
-        Saravana Kannan <saravanak@google.com>,
-        Anup Patel <anup@brainfault.org>,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v5 2/9] irqchip/riscv-intc: Add support for RISC-V AIA
-Message-ID: <20230711-df9211fcae3b67948896b77f@orel>
-References: <20230710094321.1378351-1-apatel@ventanamicro.com>
- <20230710094321.1378351-3-apatel@ventanamicro.com>
+        with ESMTP id S230402AbjGKOOb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 10:14:31 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E949173B;
+        Tue, 11 Jul 2023 07:14:14 -0700 (PDT)
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36BDgmSJ016118;
+        Tue, 11 Jul 2023 14:14:06 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=RvPHFLpAmvzGLbsJ72EIfWc+2UWGYpP46DTbD7yV1Rw=;
+ b=Bc6pnFeRT6B1Is+QtpFGPFCFHIWfNTPEYVoOoy6QbPQzIaGO18yGGNO/7wkoKwILqYWB
+ wy8DqjJmXPKCxvzZK6XGotgJgvl9stjlRGfPPNaoEr3t9p+Rf9SqwU41eAZlIq6XsNSz
+ jYoEFErXCQ3Pf12ok0NLRdq/gmyLa79CcODpX37tcSVygkCfCmCR1LxaPVcdq99zYCPy
+ xRCmR49sxI85iL+2SgX4rgdA4f5s99OWK7E/4t1EF40T985YBkNfXEHufD5F+KpHojD3
+ DswWQ8fgruKHSvcWAde1HrjXjW4lVcq5H8LZJtWwf6ABS99gM2/GBz7bOLD1bp6TVUj3 xg== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3rs87082ha-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 11 Jul 2023 14:14:06 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 36BEE5rP002562
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 11 Jul 2023 14:14:05 GMT
+Received: from [10.201.3.91] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Tue, 11 Jul
+ 2023 07:14:01 -0700
+Message-ID: <1b050086-07c5-add6-6002-d7368d532566@quicinc.com>
+Date:   Tue, 11 Jul 2023 19:43:58 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230710094321.1378351-3-apatel@ventanamicro.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH 1/6] dt-bindings: thermal: tsens: Add nvmem cells for
+ calibration data
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <amitk@kernel.org>,
+        <thara.gopinath@gmail.com>, <rafael@kernel.org>,
+        <daniel.lezcano@linaro.org>, <rui.zhang@intel.com>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC:     <quic_varada@quicinc.com>
+References: <20230710103735.1375847-1-quic_ipkumar@quicinc.com>
+ <20230710103735.1375847-2-quic_ipkumar@quicinc.com>
+ <09e33a89-c060-69b1-b94f-b21c45d1d249@linaro.org>
+ <59ea653e-c5da-71cb-eb85-1aa3c72e2089@quicinc.com>
+ <37aa7ae8-206e-3a48-b90d-22d49e86c675@linaro.org>
+From:   Praveenkumar I <quic_ipkumar@quicinc.com>
+In-Reply-To: <37aa7ae8-206e-3a48-b90d-22d49e86c675@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: EWWRYlSxxc5YrFfFDfOz-zBJqW1Ya1nB
+X-Proofpoint-ORIG-GUID: EWWRYlSxxc5YrFfFDfOz-zBJqW1Ya1nB
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-07-11_08,2023-07-11_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 spamscore=0
+ clxscore=1015 adultscore=0 mlxlogscore=999 suspectscore=0
+ priorityscore=1501 impostorscore=0 mlxscore=0 bulkscore=0
+ lowpriorityscore=0 phishscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2305260000 definitions=main-2307110128
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 10, 2023 at 03:13:14PM +0530, Anup Patel wrote:
-> The RISC-V advanced interrupt architecture (AIA) extends the per-HART
-> local interrupts in following ways:
-> 1. Minimum 64 local interrupts for both RV32 and RV64
-> 2. Ability to process multiple pending local interrupts in same
->    interrupt handler
-> 3. Priority configuration for each local interrupts
-> 4. Special CSRs to configure/access the per-HART MSI controller
 
-afaict, we're only doing (1) and (2) from this list in this patch.
-
-> 
-> This patch adds support for RISC-V AIA in the RISC-V intc driver.
-> 
-> Signed-off-by: Anup Patel <apatel@ventanamicro.com>
-> ---
->  drivers/irqchip/irq-riscv-intc.c | 36 ++++++++++++++++++++++++++------
->  1 file changed, 30 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/irqchip/irq-riscv-intc.c b/drivers/irqchip/irq-riscv-intc.c
-> index 4adeee1bc391..e235bf1708a4 100644
-> --- a/drivers/irqchip/irq-riscv-intc.c
-> +++ b/drivers/irqchip/irq-riscv-intc.c
-> @@ -17,6 +17,7 @@
->  #include <linux/module.h>
->  #include <linux/of.h>
->  #include <linux/smp.h>
-> +#include <asm/hwcap.h>
->  
->  static struct irq_domain *intc_domain;
->  
-> @@ -30,6 +31,15 @@ static asmlinkage void riscv_intc_irq(struct pt_regs *regs)
->  	generic_handle_domain_irq(intc_domain, cause);
->  }
->  
-> +static asmlinkage void riscv_intc_aia_irq(struct pt_regs *regs)
-> +{
-> +	unsigned long topi;
-> +
-> +	while ((topi = csr_read(CSR_TOPI)))
-> +		generic_handle_domain_irq(intc_domain,
-> +					  topi >> TOPI_IID_SHIFT);
-> +}
-> +
->  /*
->   * On RISC-V systems local interrupts are masked or unmasked by writing
->   * the SIE (Supervisor Interrupt Enable) CSR.  As CSRs can only be written
-> @@ -39,12 +49,18 @@ static asmlinkage void riscv_intc_irq(struct pt_regs *regs)
->  
->  static void riscv_intc_irq_mask(struct irq_data *d)
->  {
-> -	csr_clear(CSR_IE, BIT(d->hwirq));
-> +	if (d->hwirq < BITS_PER_LONG)
-> +		csr_clear(CSR_IE, BIT(d->hwirq));
-> +	else
-> +		csr_clear(CSR_IEH, BIT(d->hwirq - BITS_PER_LONG));
-
-We can optimize rv64 by allowing the compiler to remove the branch
-
- if (IS_ENABLED(CONFIG_32BIT) && d->hwirq >= 32)
-    csr_clear(CSR_IEH, BIT(d->hwirq - 32));
- else
-    csr_clear(CSR_IE, BIT(d->hwirq));
-
-
->  }
->  
->  static void riscv_intc_irq_unmask(struct irq_data *d)
->  {
-> -	csr_set(CSR_IE, BIT(d->hwirq));
-> +	if (d->hwirq < BITS_PER_LONG)
-> +		csr_set(CSR_IE, BIT(d->hwirq));
-> +	else
-> +		csr_set(CSR_IEH, BIT(d->hwirq - BITS_PER_LONG));
-
-Same comment as above.
-
->  }
->  
->  static void riscv_intc_irq_eoi(struct irq_data *d)
-> @@ -115,16 +131,22 @@ static struct fwnode_handle *riscv_intc_hwnode(void)
->  
->  static int __init riscv_intc_init_common(struct fwnode_handle *fn)
->  {
-> -	int rc;
-> +	int rc, nr_irqs = BITS_PER_LONG;
-> +
-> +	if (riscv_isa_extension_available(NULL, SxAIA) && BITS_PER_LONG == 32)
-> +		nr_irqs = nr_irqs * 2;
-
-The AIA spec states sie and sip are explicitly 64, so how about writing
-this as
-
- int rc, nr_irqs = BITS_PER_LONG;
-
- if (riscv_isa_extension_available(NULL, SxAIA))
-     nr_irqs = 64;
-
->  
-> -	intc_domain = irq_domain_create_linear(fn, BITS_PER_LONG,
-> +	intc_domain = irq_domain_create_linear(fn, nr_irqs,
->  					       &riscv_intc_domain_ops, NULL);
->  	if (!intc_domain) {
->  		pr_err("unable to add IRQ domain\n");
->  		return -ENXIO;
->  	}
->  
-> -	rc = set_handle_irq(&riscv_intc_irq);
-> +	if (riscv_isa_extension_available(NULL, SxAIA))
-> +		rc = set_handle_irq(&riscv_intc_aia_irq);
-> +	else
-> +		rc = set_handle_irq(&riscv_intc_irq);
-
-nit: blank line here
-
->  	if (rc) {
->  		pr_err("failed to set irq handler\n");
->  		return rc;
-> @@ -132,7 +154,9 @@ static int __init riscv_intc_init_common(struct fwnode_handle *fn)
->  
->  	riscv_set_intc_hwnode_fn(riscv_intc_hwnode);
->  
-> -	pr_info("%d local interrupts mapped\n", BITS_PER_LONG);
-> +	pr_info("%d local interrupts mapped%s\n",
-> +		nr_irqs, (riscv_isa_extension_available(NULL, SxAIA)) ?
-
-nit: unnecessary ()
-
-> +			 " using AIA" : "");
->  
->  	return 0;
->  }
-> -- 
-> 2.34.1
+On 7/11/2023 3:22 PM, Krzysztof Kozlowski wrote:
+> On 11/07/2023 11:39, Praveenkumar I wrote:
+>> On 7/11/2023 1:40 AM, Krzysztof Kozlowski wrote:
+>>> On 10/07/2023 12:37, Praveenkumar I wrote:
+>>>> Add TSENS V2 calibration nvmem cells for IPQ5332
+>>>>
+>>>> Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
+>>>> ---
+>>>>    .../bindings/thermal/qcom-tsens.yaml          | 26 +++++++++++++++++--
+>>>>    1 file changed, 24 insertions(+), 2 deletions(-)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+>>>> index 27e9e16e6455..8b7863c3989e 100644
+>>>> --- a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+>>>> +++ b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+>>>> @@ -91,7 +91,7 @@ properties:
+>>>>        maxItems: 2
+>>>>    
+>>>>      nvmem-cells:
+>>>> -    oneOf:
+>>>> +    anyOf:
+>>>>          - minItems: 1
+>>>>            maxItems: 2
+>>>>            description:
+>>>> @@ -106,9 +106,13 @@ properties:
+>>>>            description: |
+>>>>              Reference to nvmem cells for the calibration mode, two calibration
+>>>>              bases and two cells per each sensor, main and backup copies, plus use_backup cell
+>>>> +      - maxItems: 17
+>>>> +        description: |
+>>>> +          V2 of TSENS, reference to nvmem cells for the calibration mode, two calibration
+>>>> +          bases and one cell per each sensor
+>>> I think this is already included in one of the previous entries.
+>>> Otherwise, are you sure that all new devices will have exactly 17 entries?
+>> Previous entries does not support TSENS version 2.X.X QFPROM. TSENS V2
+>> QFPROM has mode, base0, base1 and s[0-15]+_offset.
+>> Ideally it should be like,
+>> - minItems: 4
+>> - maxItems: 19
+> I see it covered:
+> minItems: 5
+> maxItems: 35
 >
+> I think 17 is between 5 and 35.
+Okay, will remove the nvmem-cells entry.
+>
+>> But dt binding check fails in oneOf / anyOf condition. So added the
+>> IPQ5332 properties which is exactly 17.
+>>>>    
+>>>>      nvmem-cell-names:
+>>>> -    oneOf:
+>>>> +    anyOf:
+>>>>          - minItems: 1
+>>>>            items:
+>>>>              - const: calib
+>>>> @@ -205,6 +209,24 @@ properties:
+>>>>              - const: s9_p2_backup
+>>>>              - const: s10_p1_backup
+>>>>              - const: s10_p2_backup
+>>>> +      - items:
+>>>> +          - const: mode
+>>>> +          - const: base0
+>>>> +          - const: base1
+>>>> +          - const: s0_offset
+>>>> +          - const: s3_offset
+>>>> +          - const: s4_offset
+>>>> +          - const: s5_offset
+>>>> +          - const: s6_offset
+>>>> +          - const: s7_offset
+>>>> +          - const: s8_offset
+>>>> +          - const: s9_offset
+>>>> +          - const: s10_offset
+>>>> +          - const: s11_offset
+>>>> +          - const: s12_offset
+>>>> +          - const: s13_offset
+>>>> +          - const: s14_offset
+>>>> +          - const: s15_offset
+>>> Don't introduce new naming style. Existing uses s[0-9]+, without offset
+>>> suffix. Why this should be different?
+>> As I mentioned above, s[0-9]+_p1 / s[0-9]+p2 is for TSENS V1. TSENS V2
+>> QFPROM layout is different from the existing one.
+> I know, I did not write about p1/p2.
+>
+>> I would like to add mode, base0, base1 and 16 patterns
+>> '^s[0-15]+_offset$'. But DT binding check is failing in oneOf/ anyOf
+>> condintion.
+> This does not explain why you need different style - this "offset" suffix.
+In QFPROM, the BIT field names are s0_offset, s3_offset to s15_offset. 
+s1_offset and s2_offset not present in IPQ5332.
+Hence used the same "offset" suffix here. May I know in this case, which 
+nvmem-cells-names you are suggesting to use?
 
+--
 Thanks,
-drew
+Praveenkumar
+>
+> Best regards,
+> Krzysztof
+>
