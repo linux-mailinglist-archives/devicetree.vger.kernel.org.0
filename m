@@ -2,189 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 545BA74EF22
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 14:39:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 26B9474EF1F
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 14:38:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232608AbjGKMjL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jul 2023 08:39:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43434 "EHLO
+        id S232462AbjGKMio (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jul 2023 08:38:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42592 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232690AbjGKMjC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 08:39:02 -0400
-Received: from mx1.sberdevices.ru (mx1.sberdevices.ru [37.18.73.165])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7526171B;
-        Tue, 11 Jul 2023 05:38:34 -0700 (PDT)
-Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
-        by mx1.sberdevices.ru (Postfix) with ESMTP id 3D4C9100008;
-        Tue, 11 Jul 2023 15:27:11 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 3D4C9100008
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-        s=mail; t=1689078431;
-        bh=Em0Nwj2RjzE3YgcQQ2O+XnCh35XtEE94lU9MJvN+QNE=;
-        h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
-        b=GAYjgXpvNQyrBZw2emWEI2gvhlNMWWmJwCNT3hzy0OZTC8qV4cijs+vj0q3YaLF7O
-         iVaK9lwKqVn6buRIoarxmnyyFzxzXvr6rEfQGzjxqo3LnWbYjY66jj2mTZQSmbxmKi
-         epuBVjxqWF34wiJ9yFMAf6v36KYf/aQB3gBAmkxs39I4MXWg4Q0XPnnmVlh9KD/tXQ
-         j4i2fu4Ic9UYAOB6qkgsIYAyg0LUMvX4hY+nhSLGnEUuDX2y029UAt58o4GtjEsYf5
-         UUze35yp4kyp0eUcr2AwMfw+J6nH8aRcUX3q0RCriKWS5qO7qUkgGu7NUoGbeA/t7/
-         /P1tkXpkaFnkQ==
-Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mx1.sberdevices.ru (Postfix) with ESMTPS;
-        Tue, 11 Jul 2023 15:27:11 +0300 (MSK)
-Received: from localhost.localdomain (100.64.160.123) by
- p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.30; Tue, 11 Jul 2023 15:27:02 +0300
-From:   Arseniy Krasnov <AVKrasnov@sberdevices.ru>
-To:     Liang Yang <liang.yang@amlogic.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-CC:     <oxffffaa@gmail.com>, <kernel@sberdevices.ru>,
-        Arseniy Krasnov <AVKrasnov@sberdevices.ru>,
-        <linux-mtd@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-Subject: [RFC PATCH v3 3/3] mtd: rawnand: meson: support for 512B ECC step size
-Date:   Tue, 11 Jul 2023 15:21:29 +0300
-Message-ID: <20230711122129.2635558-4-AVKrasnov@sberdevices.ru>
-X-Mailer: git-send-email 2.35.0
-In-Reply-To: <20230711122129.2635558-1-AVKrasnov@sberdevices.ru>
-References: <20230711122129.2635558-1-AVKrasnov@sberdevices.ru>
+        with ESMTP id S233009AbjGKMiN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 08:38:13 -0400
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7591A1736;
+        Tue, 11 Jul 2023 05:37:53 -0700 (PDT)
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36BAmxwL018566;
+        Tue, 11 Jul 2023 14:36:14 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=iEhiiDAE5VGpzYoUKMDzsWW+FQbM/7CMQsKlEZM++LU=;
+ b=DCavd3BD8Ib/w2kzYs4c7q/cj8Hkq7PqNT4020gfru75qfHko1knOyyxZEvCj7/zjzAt
+ 6J1fd0CgaQqbPifmabIATh76imkZmt7Q31Qo1BTgatMGwdqwh9SPU2EieSAk/E3VPTtR
+ X8O3s4+eYPLC2YnlYAaKjgsO7Sac/c9LlA+wUBDSzAg2um2/Cb4bJHMYdPZGSzRSl7di
+ IyRYDuYEcI4QkkwhiEkkT4RuYMQZkOAayuHOJWfIDEM0oEKF8v1OpMOiXJt0O9gtb59f
+ SRT8HOLyDWYuBURXScMMluBWe7Ovi1D2G6zYZpiwcepM2gghJqH53ZmUIoMvjF1LKlM1 vw== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3rs311t6rv-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 11 Jul 2023 14:36:14 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 08ED4100058;
+        Tue, 11 Jul 2023 14:36:13 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 801DF2248B2;
+        Tue, 11 Jul 2023 14:36:12 +0200 (CEST)
+Received: from [10.201.21.122] (10.201.21.122) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Tue, 11 Jul
+ 2023 14:36:12 +0200
+Message-ID: <6fa4ea12-bc7d-4977-8b7e-bfbea2ef2955@foss.st.com>
+Date:   Tue, 11 Jul 2023 14:36:11 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [100.64.160.123]
-X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
- p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 178541 [Jul 11 2023]
-X-KSMG-AntiSpam-Version: 5.9.59.0
-X-KSMG-AntiSpam-Envelope-From: AVKrasnov@sberdevices.ru
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 521 521 0c3391dd6036774f2e1052158c81e48587b96e95, {Tracking_from_domain_doesnt_match_to}, 127.0.0.199:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;p-i-exch-sc-m01.sberdevices.ru:5.0.1,7.1.1;sberdevices.ru:5.0.1,7.1.1;100.64.160.123:7.1.2, FromAlignment: s, {Tracking_white_helo}, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean
-X-KSMG-LinksScanning: Clean
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/07/11 10:54:00 #21597245
-X-KSMG-AntiVirus-Status: Clean, skipped
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v1] ARM: dts: stm32: prtt1c: Add PoDL PSE regulator nodes
+Content-Language: en-US
+To:     Oleksij Rempel <o.rempel@pengutronix.de>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        =?UTF-8?B?SsOpcsO0bWUgUG91aWxsZXI=?= <jerome.pouiller@silabs.com>
+CC:     <kernel@pengutronix.de>, <linux-kernel@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <netdev@vger.kernel.org>
+References: <20230323123242.3763673-1-o.rempel@pengutronix.de>
+From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <20230323123242.3763673-1-o.rempel@pengutronix.de>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.201.21.122]
+X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-07-11_06,2023-07-11_01,2023-05-22_02
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Meson NAND supports both 512B and 1024B ECC step size.
+Hi Oleksij
 
-Signed-off-by: Arseniy Krasnov <AVKrasnov@sberdevices.ru>
----
- drivers/mtd/nand/raw/meson_nand.c | 45 +++++++++++++++++++++++--------
- 1 file changed, 34 insertions(+), 11 deletions(-)
+On 3/23/23 13:32, Oleksij Rempel wrote:
+> This commit introduces Power over Data Line (PoDL) Power Source
+> Equipment (PSE) regulator nodes to the PRTT1C devicetree. The addition
+> of these nodes enables support for PoDL in PRTT1C devices, allowing
+> power delivery and data transmission over a single twisted pair.
+> 
+> The new PoDL PSE regulator nodes provide voltage capability information
+> of the current board design, which can be used as a hint for system
+> administrators when configuring and managing power settings. This
+> update enhances the versatility and simplifies the power management of
+> PRTT1C devices while ensuring compatibility with connected Powered
+> Devices (PDs).
+> 
+> After applying this patch, the power delivery can be controlled from
+> user space with a patched [1] ethtool version using the following commands:
+>    ethtool --set-pse t1l2 podl-pse-admin-control enable
+> to enable power delivery, and
+>    ethtool --show-pse t1l2
+> to display the PoDL PSE settings.
+> 
+> By integrating PoDL PSE support into the PRTT1C devicetree, users can
+> benefit from streamlined power and data connections in their
+> deployments, improving overall system efficiency and reducing cabling
+> complexity.
+> 
+> [1] https://lore.kernel.org/all/20230317093024.1051999-1-o.rempel@pengutronix.de/
+> 
+> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+> ---
 
-diff --git a/drivers/mtd/nand/raw/meson_nand.c b/drivers/mtd/nand/raw/meson_nand.c
-index 345212e8c691..369e81356240 100644
---- a/drivers/mtd/nand/raw/meson_nand.c
-+++ b/drivers/mtd/nand/raw/meson_nand.c
-@@ -135,6 +135,7 @@ struct meson_nfc_nand_chip {
- struct meson_nand_ecc {
- 	u32 bch;
- 	u32 strength;
-+	u32 size;
- };
- 
- struct meson_nfc_data {
-@@ -190,7 +191,8 @@ struct meson_nfc {
- };
- 
- enum {
--	NFC_ECC_BCH8_1K		= 2,
-+	NFC_ECC_BCH8_512	= 1,
-+	NFC_ECC_BCH8_1K,
- 	NFC_ECC_BCH24_1K,
- 	NFC_ECC_BCH30_1K,
- 	NFC_ECC_BCH40_1K,
-@@ -198,15 +200,16 @@ enum {
- 	NFC_ECC_BCH60_1K,
- };
- 
--#define MESON_ECC_DATA(b, s)	{ .bch = (b),	.strength = (s)}
-+#define MESON_ECC_DATA(b, s, sz)	{ .bch = (b), .strength = (s), .size = (sz) }
- 
- static struct meson_nand_ecc meson_ecc[] = {
--	MESON_ECC_DATA(NFC_ECC_BCH8_1K, 8),
--	MESON_ECC_DATA(NFC_ECC_BCH24_1K, 24),
--	MESON_ECC_DATA(NFC_ECC_BCH30_1K, 30),
--	MESON_ECC_DATA(NFC_ECC_BCH40_1K, 40),
--	MESON_ECC_DATA(NFC_ECC_BCH50_1K, 50),
--	MESON_ECC_DATA(NFC_ECC_BCH60_1K, 60),
-+	MESON_ECC_DATA(NFC_ECC_BCH8_512, 8,  512),
-+	MESON_ECC_DATA(NFC_ECC_BCH8_1K,  8,  1024),
-+	MESON_ECC_DATA(NFC_ECC_BCH24_1K, 24, 1024),
-+	MESON_ECC_DATA(NFC_ECC_BCH30_1K, 30, 1024),
-+	MESON_ECC_DATA(NFC_ECC_BCH40_1K, 40, 1024),
-+	MESON_ECC_DATA(NFC_ECC_BCH50_1K, 50, 1024),
-+	MESON_ECC_DATA(NFC_ECC_BCH60_1K, 60, 1024),
- };
- 
- static int meson_nand_calc_ecc_bytes(int step_size, int strength)
-@@ -224,8 +227,27 @@ static int meson_nand_calc_ecc_bytes(int step_size, int strength)
- 
- NAND_ECC_CAPS_SINGLE(meson_gxl_ecc_caps,
- 		     meson_nand_calc_ecc_bytes, 1024, 8, 24, 30, 40, 50, 60);
--NAND_ECC_CAPS_SINGLE(meson_axg_ecc_caps,
--		     meson_nand_calc_ecc_bytes, 1024, 8);
-+
-+static const int axg_stepinfo_strengths[] = { 8 };
-+static const struct nand_ecc_step_info axg_stepinfo_1024 = {
-+	.stepsize = 1024,
-+	.strengths = axg_stepinfo_strengths,
-+	.nstrengths = ARRAY_SIZE(axg_stepinfo_strengths)
-+};
-+
-+static const struct nand_ecc_step_info axg_stepinfo_512 = {
-+	.stepsize = 512,
-+	.strengths = axg_stepinfo_strengths,
-+	.nstrengths = ARRAY_SIZE(axg_stepinfo_strengths)
-+};
-+
-+static const struct nand_ecc_step_info axg_stepinfo[] = { axg_stepinfo_1024, axg_stepinfo_512 };
-+
-+static const struct nand_ecc_caps meson_axg_ecc_caps = {
-+	.stepinfos = axg_stepinfo,
-+	.nstepinfos = ARRAY_SIZE(axg_stepinfo),
-+	.calc_ecc_bytes = meson_nand_calc_ecc_bytes,
-+};
- 
- static struct meson_nfc_nand_chip *to_meson_nand(struct nand_chip *nand)
- {
-@@ -1259,7 +1281,8 @@ static int meson_nand_bch_mode(struct nand_chip *nand)
- 		return -EINVAL;
- 
- 	for (i = 0; i < ARRAY_SIZE(meson_ecc); i++) {
--		if (meson_ecc[i].strength == nand->ecc.strength) {
-+		if (meson_ecc[i].strength == nand->ecc.strength &&
-+		    meson_ecc[i].size == nand->ecc.size) {
- 			meson_chip->bch_mode = meson_ecc[i].bch;
- 			return 0;
- 		}
--- 
-2.35.0
+Applied on stm32-next.
+
+cheers
+Alex
+
+
+
 
