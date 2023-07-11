@@ -2,112 +2,221 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 129D774F13E
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 16:09:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3BE1A74F14E
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 16:12:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233354AbjGKOJb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jul 2023 10:09:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47624 "EHLO
+        id S229928AbjGKOMb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jul 2023 10:12:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49574 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233346AbjGKOJb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 10:09:31 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7102F10CA;
-        Tue, 11 Jul 2023 07:09:30 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 0390D61516;
-        Tue, 11 Jul 2023 14:09:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 62AA9C433CB;
-        Tue, 11 Jul 2023 14:09:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689084569;
-        bh=wPU4WgrILHi9+5F2DlhzPw9Lp0u+27HoJUb3pFKm1oY=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=RCuZZ7PXyIN3eOhGs1bf0ErA04156k9Ond9Tt1No7pzS2UVgv5CBkmePw7dDii6xn
-         J+DCbc98kpLrJqwFB9eR8mRpuIIiv7GlvBdbOQSS6FXDOyaeNGkDbF+EK2HrNdroeL
-         D3KHqS3rFWHxUf3cDYoUyolysl/c+Ve4O9pASw++RfxReTh2WliugG/VTRBisxonnx
-         TKxvWb75v4UOiVV8SVOwlp3RzLjpAAvSm7StvrDY1aRrGuuB9EjiuSf595RzfBUyVA
-         TsBCOrEZpdVEIhmZzsL0gqiyax+JdDihy3MfT/FLDVFl826dFDBdqWylF3LT9Vh+PG
-         Nu0EUC32hDt3A==
-Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-2b6fdaf6eefso89775321fa.0;
-        Tue, 11 Jul 2023 07:09:29 -0700 (PDT)
-X-Gm-Message-State: ABy/qLbzKUYjcCt4X5WCk9bi8saNLT2BGmI5+eHzt6gnAFobVXnFBQyn
-        Rtl+EXDN82d3L5oUfMGChWqbaOqSdKlw+1Ks5A==
-X-Google-Smtp-Source: APBJJlFEr5SnwtzLsObTkneUOhTe4Giozatn3QjuQu5+oxJvELnDikg/9hzm9xsBK89Dbapr0ULFsJF5oBzL6l5rJHE=
-X-Received: by 2002:a2e:7a04:0:b0:2b6:eb5a:6504 with SMTP id
- v4-20020a2e7a04000000b002b6eb5a6504mr13751911ljc.18.1689084567351; Tue, 11
- Jul 2023 07:09:27 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230707210646.868758-1-robh@kernel.org> <20230710-underling-angelfish-c47d363a59f5@spud>
- <CAL_Jsq+5mtgCAfFZOZTUjqFLW0DM5A6exD+PbznO71A8SDyyTA@mail.gmail.com> <20230710-octane-disarray-44b363c02f73@spud>
-In-Reply-To: <20230710-octane-disarray-44b363c02f73@spud>
-From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 11 Jul 2023 08:09:14 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLBTGeyJgCgPjQL1SdMc73=DBWRRmcsO6YXQkPSAAvWXQ@mail.gmail.com>
-Message-ID: <CAL_JsqLBTGeyJgCgPjQL1SdMc73=DBWRRmcsO6YXQkPSAAvWXQ@mail.gmail.com>
-Subject: Re: [PATCH] media: dt-bindings: Convert Omnivision OV7251 to DT schema
-To:     Conor Dooley <conor@kernel.org>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        with ESMTP id S233407AbjGKOMa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 10:12:30 -0400
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FB0BE69
+        for <devicetree@vger.kernel.org>; Tue, 11 Jul 2023 07:12:29 -0700 (PDT)
+Received: by mail-wr1-x435.google.com with SMTP id ffacd0b85a97d-31441dfbf97so6515737f8f.1
+        for <devicetree@vger.kernel.org>; Tue, 11 Jul 2023 07:12:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ventanamicro.com; s=google; t=1689084748; x=1691676748;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=kfD1QKdUUlCP07+roOoFywxk5muRqmFooE0qd5aLBns=;
+        b=Kt9VufYvB/j33LbCFZgmXbkZGy73eeJnSwJU6p4I6FPhIWqWc/XSW9TCpHoNIlP8rV
+         OTYAZr32mXwnI6z3yyXxO3bpKIrZwF4CJPrTbU2HTgCOTL8WMBFfMHVQkP+g87VqCPXM
+         qfcuNn4l4ev0h26GQGWG3Mj1Xjeoo7InCIXUFEca6NR+P2cDr5X8/3eeI8WqJoWAg2TN
+         iFQSJqpzrhAGrQ2tebTqq7MlT5APaAGqd1W+pXzuOdgmFeQ6Ka8F9I90N6QOuceU/gy6
+         pk6Xn9jWWHFGkTJ+GvzoQk6r/PRePEf4t7JPhZchGETRjvERS3nflezo9XljrQUBYOa2
+         thgg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689084748; x=1691676748;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=kfD1QKdUUlCP07+roOoFywxk5muRqmFooE0qd5aLBns=;
+        b=JtbP7QwYhP4t1WJipkXw9jUA2Bm/A2mpOhspt9LwXYX4UvQF7jsPUQ+u4D9q6oXwlV
+         ldaKrYbi0UAf/+7vtT+mAjaLroyp5LhOSw7S2tyyVkwcZCBnP4FtLYU9gMid0reqvWM8
+         rEYKS5GBcVb6LMUWxMklEUHfxKjD6ngMR+Lo/j+mgdT3DuUT4BwTLh0gvh7L2y0gMn4b
+         TpELd40OlWW7gtxux3B6UnBav/FUVVZKtaagumwCeR4FmQTuNMhVd/rmmDQtlwp/HN9M
+         8aIW6jOOCDcWPkzlwkQLNjl/ek/qeodSScjp7W9B54iYh8otRTqw74MAJtWOToKxlj9I
+         Zb4A==
+X-Gm-Message-State: ABy/qLY5nz0+AvqKQ2TUg3qZas+QK357n/Vi8rrfC9UaoOq2exI5YBdF
+        OiqTASc/zCXUu0X+Ll6Hfsc9HQ==
+X-Google-Smtp-Source: APBJJlHdpMDer9jq8C+08J0C6lUJOUhXFT5I8NKyZycrI5aqDIXOSH3usMO5vCEWntD4j587cS4rRw==
+X-Received: by 2002:adf:db04:0:b0:313:ee73:cc9a with SMTP id s4-20020adfdb04000000b00313ee73cc9amr13524583wri.70.1689084747658;
+        Tue, 11 Jul 2023 07:12:27 -0700 (PDT)
+Received: from localhost (2001-1ae9-1c2-4c00-20f-c6b4-1e57-7965.ip6.tmcz.cz. [2001:1ae9:1c2:4c00:20f:c6b4:1e57:7965])
+        by smtp.gmail.com with ESMTPSA id o18-20020adfe812000000b00314417f5272sm2354907wrm.64.2023.07.11.07.12.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 11 Jul 2023 07:12:27 -0700 (PDT)
+Date:   Tue, 11 Jul 2023 16:12:26 +0200
+From:   Andrew Jones <ajones@ventanamicro.com>
+To:     Anup Patel <apatel@ventanamicro.com>
+Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Todor Tomov <todor.too@gmail.com>, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Atish Patra <atishp@atishpatra.org>,
+        Sunil V L <sunilvl@ventanamicro.com>,
+        Conor Dooley <conor@kernel.org>,
+        Saravana Kannan <saravanak@google.com>,
+        Anup Patel <anup@brainfault.org>,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v5 2/9] irqchip/riscv-intc: Add support for RISC-V AIA
+Message-ID: <20230711-df9211fcae3b67948896b77f@orel>
+References: <20230710094321.1378351-1-apatel@ventanamicro.com>
+ <20230710094321.1378351-3-apatel@ventanamicro.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230710094321.1378351-3-apatel@ventanamicro.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 10, 2023 at 12:20=E2=80=AFPM Conor Dooley <conor@kernel.org> wr=
-ote:
->
-> On Mon, Jul 10, 2023 at 12:03:38PM -0600, Rob Herring wrote:
-> > On Mon, Jul 10, 2023 at 11:57=E2=80=AFAM Conor Dooley <conor@kernel.org=
-> wrote:
-> > >
-> > > On Fri, Jul 07, 2023 at 03:06:46PM -0600, Rob Herring wrote:
-> > > > Convert the OmniVision OV7251 Image Sensor binding to DT schema for=
-mat.
-> > > >
-> > > > vddd-supply was listed as required, but the example and actual user
-> > > > don't have it. Also, the data brief says it has an internal regulat=
-or,
-> > > > so perhaps it is truly optional.
-> > >
-> > > ov7251.c:
-> > >         ov7251->core_regulator =3D devm_regulator_get(dev, "vddd");
-> > >         if (IS_ERR(ov7251->core_regulator)) {
-> > >                 dev_err(dev, "cannot get core regulator\n");
-> > >                 return PTR_ERR(ov7251->core_regulator);
-> > >         }
-> > >
-> > > Looks like the driver's probe function disagrees?
-> >
-> > Doesn't the regulator framework return a dummy regulator if missing?
->
-> Huh, I think I misunderstood how _regulator_get() worked. Apologies for
-> the noise, I thought it was returning an error when it used a dummy.
->
-> > > I was going to ask how it worked, but the one user has
-> > > status =3D "disabled"...
-> >
-> > Saw that too, but figured there's some other include with that
-> > overridden. We should really add a built .dts output target to avoid
-> > trying to manually walk includes.
->
-> Probably gonna sound like an eejit, but the user is in a dts - can an
-> include overwrite that status?
+On Mon, Jul 10, 2023 at 03:13:14PM +0530, Anup Patel wrote:
+> The RISC-V advanced interrupt architecture (AIA) extends the per-HART
+> local interrupts in following ways:
+> 1. Minimum 64 local interrupts for both RV32 and RV64
+> 2. Ability to process multiple pending local interrupts in same
+>    interrupt handler
+> 3. Priority configuration for each local interrupts
+> 4. Special CSRs to configure/access the per-HART MSI controller
 
-Yes, sometimes .dts files are both built into a dtb and included. Say
-you have a board with and without an optional camera sensor.
+afaict, we're only doing (1) and (2) from this list in this patch.
 
-Rob
+> 
+> This patch adds support for RISC-V AIA in the RISC-V intc driver.
+> 
+> Signed-off-by: Anup Patel <apatel@ventanamicro.com>
+> ---
+>  drivers/irqchip/irq-riscv-intc.c | 36 ++++++++++++++++++++++++++------
+>  1 file changed, 30 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/irqchip/irq-riscv-intc.c b/drivers/irqchip/irq-riscv-intc.c
+> index 4adeee1bc391..e235bf1708a4 100644
+> --- a/drivers/irqchip/irq-riscv-intc.c
+> +++ b/drivers/irqchip/irq-riscv-intc.c
+> @@ -17,6 +17,7 @@
+>  #include <linux/module.h>
+>  #include <linux/of.h>
+>  #include <linux/smp.h>
+> +#include <asm/hwcap.h>
+>  
+>  static struct irq_domain *intc_domain;
+>  
+> @@ -30,6 +31,15 @@ static asmlinkage void riscv_intc_irq(struct pt_regs *regs)
+>  	generic_handle_domain_irq(intc_domain, cause);
+>  }
+>  
+> +static asmlinkage void riscv_intc_aia_irq(struct pt_regs *regs)
+> +{
+> +	unsigned long topi;
+> +
+> +	while ((topi = csr_read(CSR_TOPI)))
+> +		generic_handle_domain_irq(intc_domain,
+> +					  topi >> TOPI_IID_SHIFT);
+> +}
+> +
+>  /*
+>   * On RISC-V systems local interrupts are masked or unmasked by writing
+>   * the SIE (Supervisor Interrupt Enable) CSR.  As CSRs can only be written
+> @@ -39,12 +49,18 @@ static asmlinkage void riscv_intc_irq(struct pt_regs *regs)
+>  
+>  static void riscv_intc_irq_mask(struct irq_data *d)
+>  {
+> -	csr_clear(CSR_IE, BIT(d->hwirq));
+> +	if (d->hwirq < BITS_PER_LONG)
+> +		csr_clear(CSR_IE, BIT(d->hwirq));
+> +	else
+> +		csr_clear(CSR_IEH, BIT(d->hwirq - BITS_PER_LONG));
+
+We can optimize rv64 by allowing the compiler to remove the branch
+
+ if (IS_ENABLED(CONFIG_32BIT) && d->hwirq >= 32)
+    csr_clear(CSR_IEH, BIT(d->hwirq - 32));
+ else
+    csr_clear(CSR_IE, BIT(d->hwirq));
+
+
+>  }
+>  
+>  static void riscv_intc_irq_unmask(struct irq_data *d)
+>  {
+> -	csr_set(CSR_IE, BIT(d->hwirq));
+> +	if (d->hwirq < BITS_PER_LONG)
+> +		csr_set(CSR_IE, BIT(d->hwirq));
+> +	else
+> +		csr_set(CSR_IEH, BIT(d->hwirq - BITS_PER_LONG));
+
+Same comment as above.
+
+>  }
+>  
+>  static void riscv_intc_irq_eoi(struct irq_data *d)
+> @@ -115,16 +131,22 @@ static struct fwnode_handle *riscv_intc_hwnode(void)
+>  
+>  static int __init riscv_intc_init_common(struct fwnode_handle *fn)
+>  {
+> -	int rc;
+> +	int rc, nr_irqs = BITS_PER_LONG;
+> +
+> +	if (riscv_isa_extension_available(NULL, SxAIA) && BITS_PER_LONG == 32)
+> +		nr_irqs = nr_irqs * 2;
+
+The AIA spec states sie and sip are explicitly 64, so how about writing
+this as
+
+ int rc, nr_irqs = BITS_PER_LONG;
+
+ if (riscv_isa_extension_available(NULL, SxAIA))
+     nr_irqs = 64;
+
+>  
+> -	intc_domain = irq_domain_create_linear(fn, BITS_PER_LONG,
+> +	intc_domain = irq_domain_create_linear(fn, nr_irqs,
+>  					       &riscv_intc_domain_ops, NULL);
+>  	if (!intc_domain) {
+>  		pr_err("unable to add IRQ domain\n");
+>  		return -ENXIO;
+>  	}
+>  
+> -	rc = set_handle_irq(&riscv_intc_irq);
+> +	if (riscv_isa_extension_available(NULL, SxAIA))
+> +		rc = set_handle_irq(&riscv_intc_aia_irq);
+> +	else
+> +		rc = set_handle_irq(&riscv_intc_irq);
+
+nit: blank line here
+
+>  	if (rc) {
+>  		pr_err("failed to set irq handler\n");
+>  		return rc;
+> @@ -132,7 +154,9 @@ static int __init riscv_intc_init_common(struct fwnode_handle *fn)
+>  
+>  	riscv_set_intc_hwnode_fn(riscv_intc_hwnode);
+>  
+> -	pr_info("%d local interrupts mapped\n", BITS_PER_LONG);
+> +	pr_info("%d local interrupts mapped%s\n",
+> +		nr_irqs, (riscv_isa_extension_available(NULL, SxAIA)) ?
+
+nit: unnecessary ()
+
+> +			 " using AIA" : "");
+>  
+>  	return 0;
+>  }
+> -- 
+> 2.34.1
+>
+
+Thanks,
+drew
