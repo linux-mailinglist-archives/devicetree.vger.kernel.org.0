@@ -2,108 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DE71B74E75D
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 08:32:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4632B74E766
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 08:34:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229558AbjGKGcG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jul 2023 02:32:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57456 "EHLO
+        id S231579AbjGKGeK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jul 2023 02:34:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58548 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231416AbjGKGcG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 02:32:06 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12208A6;
-        Mon, 10 Jul 2023 23:32:05 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 36B6VwhA057997;
-        Tue, 11 Jul 2023 01:31:58 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1689057118;
-        bh=NT//xZOavgQ88cKD7CQnQDQ/Qu7FIJsFVnx2izFec1Y=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=TquH3BuJkR2GjS3gjonYVOchmH28liUTJY6nkwuUtPNCRGDR2Yg8/MzSvBcIfjcBr
-         bGSDssVEFY0B33e9j+cS88c5lClyGRLw83E/2YYS83djTvf9/MGGC//JawVkxUg3H4
-         Z81u6ulnboxDoYNfGAM8D6t6+Sx1i2YZ4z5n+3bk=
-Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 36B6Vw4h100161
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 11 Jul 2023 01:31:58 -0500
-Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 11
- Jul 2023 01:31:58 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 11 Jul 2023 01:31:58 -0500
-Received: from [10.24.68.113] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 36B6Vsok023503;
-        Tue, 11 Jul 2023 01:31:55 -0500
-Message-ID: <d0fce3b5-222c-fc0f-ba16-988e4cc0520e@ti.com>
-Date:   Tue, 11 Jul 2023 12:01:54 +0530
+        with ESMTP id S229903AbjGKGeI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 02:34:08 -0400
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1A60E74
+        for <devicetree@vger.kernel.org>; Mon, 10 Jul 2023 23:34:04 -0700 (PDT)
+Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-98e011f45ffso608849666b.3
+        for <devicetree@vger.kernel.org>; Mon, 10 Jul 2023 23:34:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1689057243; x=1691649243;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=PGCWjcfxiQ3gZrIHV8xXlPXazSWRuwdZd5KsYoVmkEw=;
+        b=lW9wrsgS0xuRn0BldBSAtCkAG/xvrcHnt+KSEnhWxn+0HYb3hgW6ZAmsIvwZ687tDl
+         qIGNN5urQiizOTKAsGr+auLd3ybzyrvBi7vxmQ2BDTU1mCaIM4TSWt2fiSvkEQAPjjcJ
+         Cm8WBtHlGhC8/iaJGzdwsRL69t2JwM97wdaPemFeN76PWo7tEzd54ztpwZS8EB6A3007
+         7ExKB1TE2ZxGO6GnUXjCf2fVkcaVerEx77rmUbCNwBEsob1wbtOBBUS20Y+XN/ou/ikn
+         xKp2a00Kryymi8VliXxevhIM95/XPO8szIpsd+DFCBN20XhUaMdbblTTT5TJjAyjaBoC
+         mn+g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689057243; x=1691649243;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=PGCWjcfxiQ3gZrIHV8xXlPXazSWRuwdZd5KsYoVmkEw=;
+        b=PTwJ1M87fjo4itctXp7UP8IvygK30MVlbt3tu/HWQF8VwhxDKUHP8OJ+V1Z/tTl8mL
+         h92B9LfBqY0uOskSe118c9DdeClhZ9etuL5UTBKgGXeK+BxsZYVEM6b7n3i+xT06NsuF
+         RFy7ccqsF2BQ2UfZMTHcHZfvO/2Ca5KKEVIvws7oVL9jJpzUXEbvn1HMI4lr/QwuJPEq
+         UFxb7BLWOHTcxRS7waxXxdPOvl4nJ1wQrP6WmjNZlito/ZmPiUcV9+bWRhyfrPAhlTuU
+         EpkyRrTKxCHPzqsUcit7CD953pQj2BiRIjLots/yoonv/d43AY7TecBnL1KeFaBfPT7d
+         jGrA==
+X-Gm-Message-State: ABy/qLYWV8id6o2XRwLZaoR9bA72/kUW/c4mJlLSQX5HMl59DUQ3Vojg
+        Xf3UNjOjZIFklXw6NFakoE5Egg==
+X-Google-Smtp-Source: APBJJlGMPmsubyu2deM1+C9ib+4PQJBqlAYcGORczvM0biVnkBNQzxbsN7w/J1dpCR5dkJNjot+GgQ==
+X-Received: by 2002:a17:906:1092:b0:993:fba5:cdfa with SMTP id u18-20020a170906109200b00993fba5cdfamr7290749eju.26.1689057243370;
+        Mon, 10 Jul 2023 23:34:03 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id r11-20020a1709067fcb00b009929d998abcsm686124ejs.209.2023.07.10.23.34.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 10 Jul 2023 23:34:02 -0700 (PDT)
+Message-ID: <31eb0ecb-858d-6913-fae1-d88a7f203efb@linaro.org>
+Date:   Tue, 11 Jul 2023 08:34:01 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v5 1/5] arm64: dts: ti: k3-j784s4-main: Add system
- controller and SERDES lane mux
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v3 1/3] dt-bindings: power: rpmhpd: Add Generic RPMh PD
+ indexes
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, <nm@ti.com>,
-        <vigneshr@ti.com>
-CC:     <krzysztof.kozlowski+dt@linaro.org>, <afd@ti.com>,
-        <s-vadapalli@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20230710101705.154119-1-j-choudhary@ti.com>
- <20230710101705.154119-2-j-choudhary@ti.com>
- <23833669-b9f7-94aa-ea42-56843842cba6@linaro.org>
-From:   Jayesh Choudhary <j-choudhary@ti.com>
-In-Reply-To: <23833669-b9f7-94aa-ea42-56843842cba6@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To:     Rohit Agarwal <quic_rohiagar@quicinc.com>, agross@kernel.org,
+        andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <1689054169-10800-1-git-send-email-quic_rohiagar@quicinc.com>
+ <1689054169-10800-2-git-send-email-quic_rohiagar@quicinc.com>
+ <2040226e-9b45-b409-3edd-a5b86d86daa8@linaro.org>
+ <8a3124ce-a11d-2491-eaee-1695cec70b17@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <8a3124ce-a11d-2491-eaee-1695cec70b17@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 10/07/23 17:13, Krzysztof Kozlowski wrote:
-> On 10/07/2023 12:17, Jayesh Choudhary wrote:
->> From: Siddharth Vadapalli <s-vadapalli@ti.com>
->>
->> The system controller node manages the CTRL_MMR0 region.
->> Add serdes_ln_ctrl node which is used for controlling the SERDES lane mux.
->>
->> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
->> [j-choudhary@ti.com: Add reg property to fix dtc warning]
->> Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
->> ---
->>   arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi | 23 ++++++++++++++++++++++
->>   1 file changed, 23 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
->> index 2ea0adae6832..68cc2fa053e7 100644
->> --- a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
->> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
->> @@ -5,6 +5,9 @@
->>    * Copyright (C) 2022 Texas Instruments Incorporated - https://www.ti.com/
->>    */
->>   
->> +#include <dt-bindings/mux/mux.h>
->> +#include <dt-bindings/mux/ti-serdes.h>
+On 11/07/2023 08:17, Rohit Agarwal wrote:
 > 
-> Why? What do you use from that binding?
-> 
+> On 7/11/2023 11:22 AM, Krzysztof Kozlowski wrote:
+>> On 11/07/2023 07:42, Rohit Agarwal wrote:
+>>> Add Generic RPMh Power Domain indexes that can be used
+>>> for all the Qualcomm SoC henceforth.
+>>>
+>>> Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
+>>> Suggested-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+>>> ---
+>>>   include/dt-bindings/power/qcom-rpmhpd.h | 30 ++++++++++++++++++++++++++++++
+>>>   1 file changed, 30 insertions(+)
+>>>   create mode 100644 include/dt-bindings/power/qcom-rpmhpd.h
+>>>
+>>> diff --git a/include/dt-bindings/power/qcom-rpmhpd.h b/include/dt-bindings/power/qcom-rpmhpd.h
+>>> new file mode 100644
+>>> index 0000000..4da2e04
+>>> --- /dev/null
+>>> +++ b/include/dt-bindings/power/qcom-rpmhpd.h
+>> Filename based on compatible.
+> This is not specific for SDX75. These are generic ones that should be 
+> used for all other targets.
 
-Missed idle-state in the mux-controller node here for default values.
-I will wait for more feedback and then re-spin the series.
+qcom,rpmhpd.h
 
-Thanks,
--Jayesh
+Best regards,
+Krzysztof
 
