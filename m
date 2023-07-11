@@ -2,113 +2,279 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B879274EFF3
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 15:14:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E723B74F008
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 15:22:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232972AbjGKNOB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jul 2023 09:14:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41588 "EHLO
+        id S229491AbjGKNWk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jul 2023 09:22:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45420 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233003AbjGKNN6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 09:13:58 -0400
-Received: from mail-io1-f54.google.com (mail-io1-f54.google.com [209.85.166.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25F00E60;
-        Tue, 11 Jul 2023 06:13:54 -0700 (PDT)
-Received: by mail-io1-f54.google.com with SMTP id ca18e2360f4ac-78666f06691so190508239f.0;
-        Tue, 11 Jul 2023 06:13:54 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689081233; x=1691673233;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=NWpP4+fEKqWe2iQI82jLwDEACDw2gqnxMbAmFifLElw=;
-        b=NZNU/OFmLgLeAWyJesl0g666kJ5GAIklW8smtcdjn5gO5HkDqx8ce0ynsAlsB5YoK4
-         95Bo/PjZSrqWumrLni65k1PwEmS3OlckHUOmBs7WJzVFpDF/8I8HWw+cZiW7oIWrxOxE
-         c5WCDbMM6Xb4LbnB9e05uG0D37DTaz/z32h4denerFyCsgpMF3DzENfl9+u5D+IgUxj4
-         A1C0gAc/jP894GxIlOQESuJ42iJngEzjR8XoY+pZbrV8nkIhPbnwhZQYCUBDE651CSdK
-         VnninPVvDGmyFlGtQH7HN2aq7YAzSTV+OF1moHlPv1+nNQewo8thVR9WxtewTN+s/hoh
-         HAUw==
-X-Gm-Message-State: ABy/qLYAQsLpTKfr7xA5iCELIJvQlLKs05RCbrAyW4ky9fRQN0fcsefD
-        wCJyDoBSsttW5Nytjfe7dwBqPqof6Q==
-X-Google-Smtp-Source: APBJJlH0f3M58j0GXXQis+UmNXxff+m6WDBMiwo9rAt1gCISYr4pmF6Cv55ooDei9fMghPrqjHeWFg==
-X-Received: by 2002:a5e:c910:0:b0:77e:3d2f:d1f4 with SMTP id z16-20020a5ec910000000b0077e3d2fd1f4mr14965853iol.15.1689081233268;
-        Tue, 11 Jul 2023 06:13:53 -0700 (PDT)
-Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id c21-20020a056602335500b0078702f4894asm620420ioz.9.2023.07.11.06.13.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 Jul 2023 06:13:52 -0700 (PDT)
-Received: (nullmailer pid 802164 invoked by uid 1000);
-        Tue, 11 Jul 2023 13:13:50 -0000
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S230013AbjGKNWj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 09:22:39 -0400
+Received: from smtp2.axis.com (smtp2.axis.com [195.60.68.18])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FB0818D;
+        Tue, 11 Jul 2023 06:22:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=axis.com; q=dns/txt; s=axis-central1; t=1689081759;
+  x=1720617759;
+  h=message-id:date:subject:to:cc:references:from:
+   in-reply-to:content-transfer-encoding:mime-version;
+  bh=ejwo9Q+sc9ZHhgDLJslkmrhLigR8fRXmA+QLUxKhE+A=;
+  b=NfM4ik7/2x1vdwpKDv4JRp+BBFHqNyZgtCVZMDAE6lpt5hYTiMmhsU9H
+   I3ZbuxUw2sfcVZiu784LrKsqvwXwp9dar52r3RZCqUQrTwpdxQbFxDzh9
+   5io3xdU1K6pT+94jKRmYLAsmgYgtxbUX+1qPup+1vc7d/YfjXS9tP7jH6
+   XQcXDexLizV6cWDgpG5vd+DjaurFTXV7+Pfw2/b0Rzg39rUEdQHtiCygI
+   6S5Eyc+dfo0amkTO2DYDkW6UAIdgZ7WUQ28pmjCWk2TvT7CQLBJMHqPbp
+   s720J7+fYUO58J8gNS4Jtk+1f8kqhzD7SnFWSQCXOe+X+e4OvpiodnhwR
+   A==;
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=XenU1oa15BGFloUdq1qqhxFkHx96sbyoTONgBbsTv5CYiBNoB0yHvKq+BYQMH/JVSFnaucBSoiNhE4BNVZXAoAhT6VWl4/gYvOyK4lcM+uetPH8Q4bVisLhL0goI+QT+q7bPTyC8JQeTDbhBDRtEtnj3kvk9qQRSLAtjo/LHMskqadgghsKPsxYTg+bPj6PxFnPqDoD6Ef39TjcJCW+uUJg2Miy3F0q0JKx+2SEcYWV9FZacLDmCyPrRWrCijKl/4fa2sAX8t2405h0kM3jTnWgPvpuGpO5+r8pFGPrWSI4xdk2NysUx+SfOd27jp1LSeZNfzhTw+uE4ZqySARDS/A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ejwo9Q+sc9ZHhgDLJslkmrhLigR8fRXmA+QLUxKhE+A=;
+ b=VL15HAt+FZgdWQTn12iDJR0DhtgN8wzSMiWZl6zy13TxsphYJTiRKpA5LUoDyGbfGYFYXn+IFtRAE5/69op3a0V1W3phOcaB7TtkxdxZvY8CsE7zsuGY7A+ixjK3BYUxwX6QX1a//pOJD7hKmpSLMpQ7DI4mde8+UuSf6IovMMC1aNFedEVCk+e5FDgMYy8++KF+nUK+d/m9mLUmPZVcQIfggZvzpXx8hyXUfR9QA/XcMkb5oR8sgqsuhDJXT0oEk7Ki9gCWMe6EhQgWq4p0pd9PNVdFMLMqBIsV9HOU11A6OVqjE0800Vxs8AYwfDTKXqskLC6DLbZ8d4nuTFOhZg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=2n.com; dmarc=pass action=none header.from=axis.com; dkim=pass
+ header.d=axis.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=axis365.onmicrosoft.com; s=selector2-axis365-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ejwo9Q+sc9ZHhgDLJslkmrhLigR8fRXmA+QLUxKhE+A=;
+ b=LizKXUXP+ll+qBql6k334//eH+pQYJJUNGHez1CWWxHE1n0Pqw/Wtpr2pBbV34upmN1gVbyUJfpIlVJxA+kstkRq1gFN329wkhENjhrwkJLvSBnzn8zTGcioHM19A9BB5tvBlIDOsrb44mSsfms0N2ABBy3s5y+GbZiSJre48/I=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=axis.com;
+Message-ID: <3b02a7f4-4598-93cd-757d-27bbfdae5182@axis.com>
+Date:   Tue, 11 Jul 2023 15:22:31 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v4 1/2] dt-bindings: input: microchip,cap11xx: add
+ advanced sensitivity settings
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>
+CC:     <krzysztof.kozlowski+dt@linaro.org>, <dmitry.torokhov@gmail.com>,
+        <devicetree@vger.kernel.org>, <linux-input@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <u.kleine-koenig@pengutronix.de>
+References: <20230627065316.1065911-1-jiriv@axis.com>
+ <20230627065316.1065911-2-jiriv@axis.com>
+ <20230629151635.GA3003066-robh@kernel.org>
+From:   Jiri Valek - 2N <jiriv@axis.com>
+In-Reply-To: <20230629151635.GA3003066-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: FR0P281CA0046.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:48::23) To PAXPR02MB7263.eurprd02.prod.outlook.com
+ (2603:10a6:102:1c5::18)
 MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        cros-qcom-dts-watchers@chromium.org,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Georgi Djakov <djakov@kernel.org>, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-In-Reply-To: <20230708-topic-rpmh_icc_rsc-v1-2-b223bd2ac8dd@linaro.org>
-References: <20230708-topic-rpmh_icc_rsc-v1-0-b223bd2ac8dd@linaro.org>
- <20230708-topic-rpmh_icc_rsc-v1-2-b223bd2ac8dd@linaro.org>
-Message-Id: <168908123059.802078.8312643733472251777.robh@kernel.org>
-Subject: Re: [PATCH 02/53] dt-bindings: interconnect: qcom,bcm-voter: Add
- qcom,bcm-voter-idx
-Date:   Tue, 11 Jul 2023 07:13:50 -0600
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no
-        autolearn_force=no version=3.4.6
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR02MB7263:EE_|DB9PR02MB6668:EE_
+X-MS-Office365-Filtering-Correlation-Id: c59689e3-6cfb-455a-8e1f-08db8211e293
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: x32Mvaf/wODn772Ilb9ItNFusUcX2A9G4Bl39gXgGFI4+JWCPoPIq/dU1Qa0/es34ubxjoDdyVQjBH+87TkUdpUIO+z3UrRgL98b2CEPGjsNjjk7GrQ6/LKntu98nlft1e5pUpPrCmkD2eOEMGrTTJVT7gL2/cSZqrCrlhs8fdL9zguCRYwaoAm1gcpXafpr6WVcFK1fiwfIZw9BRoaNSi2F+Y/3WETRAi2JRS/mG1oI2bm+bhikjCKaMheMOZnmBZpEr9CCGMNSzzmv5roWAuoY9zRWzTyAo6AkaZPEgFnrC2OfKBrQxca4Ln85lf4BglLhz0Bos04v04U1KgHSvoGd4XqSuPTOFy3Kjunq+Bi2vBPQ9H2X63ukz3o7/uyD/+MzFxD4Nko1l3qAnK+z48Lo0gh8h3+DuhK5tdSADRFc/68OKb5mzXfRM6IGCeVVKJBk5vqCqJxArdegharQSzJxDw2swiE0eKfIgVSC3Lrj6TmfAs5oZvj/7+hrx0vBS9NOXr2RnZBhEGuwUXNN8ciDdim6FuejleTBRTa9nOVS96nizDXU9yL1ckxUj02mLt5qARuJWdCwvqtxRQqZ+xK+aE6QAwNMcbso4D9oC8TYxieUrAjqu1t/qqzbHypwNZjfQbRV4eOq0kWNNv9oPA==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR02MB7263.eurprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(346002)(396003)(366004)(136003)(39860400002)(376002)(451199021)(478600001)(31696002)(186003)(6506007)(26005)(5660300002)(8676002)(8936002)(53546011)(41300700001)(38100700002)(66556008)(66476007)(4326008)(6916009)(66946007)(2906002)(83380400001)(31686004)(36756003)(2616005)(6486002)(42882007)(316002)(6512007)(83170400001)(45980500001)(43740500002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZHhyYkJNeU5rT2lkbHExQnBhd2REdk9QdlYxVTAyWWtTUkN6c01KNFArcFhn?=
+ =?utf-8?B?QUF0c0ZsdW5iNGZSZ0FKV1BtR2xxSXpZcm5CYzlER3ZtdkVFa1J6dWZOQzYv?=
+ =?utf-8?B?V0tWeHlkRnIxMVRhNVY1SlRiejF6cnJZVitHRFlOVFRNWVdndTVsTG5JUWhB?=
+ =?utf-8?B?QUlBMnppR3B2VWZuR2RXRkZjV2NxdTVXT2luOEVXUVhZbjhnWEhNR3IveFd3?=
+ =?utf-8?B?djZvNTJ0TE84cTF6SmYwMThjb1Jma3RxakdDNDBNSU1vaHh6VEVMREQwclZ0?=
+ =?utf-8?B?cVVzQXMyTVRQcHg5NCtHT0lDMnZnTnV0THZsN0RBczhjVWdBTW5zSUhKT1lY?=
+ =?utf-8?B?ZElkWDAxczRKSkpaRGhvQzM2Ry9zOWlDYXVVYkZ4NWQrVWZiYzFCOE80ZDd3?=
+ =?utf-8?B?MnVEVmVOM3Q5cGZJMmk3ak0zLys4THpCQ3RFbS9SZGFmZnVuNUM5QzZpVE5G?=
+ =?utf-8?B?U0ZRWlROUTJXNkw1bUIvRzBNejBTZkZBanFwVzVGSXJiU3RsM0ZuL0ZNUndk?=
+ =?utf-8?B?NXJMNVZCMWNFbTlHaEc2YkVXNjZqMUJRWmNjem5SM1hQcUhhaUpjeFlma3VO?=
+ =?utf-8?B?NW9IeENab3BQMGY1dEFqYi9pdUJQcWROMGZSVmhKYjBMeUZmWXVYTXhSU0Fa?=
+ =?utf-8?B?VTNLWWZBZExOQlBOd1hzN1Zva1ZpVU8zRGFvMGhJNXZiUXRiTFkybGU5anpt?=
+ =?utf-8?B?RjVBOGwrRkxpYTFFdWd5cmN1UlY2YmN0QlphbHBEU2lLZUF6ZnlUUGtwQTVu?=
+ =?utf-8?B?QjdwOXdWV01zV0JuejRyUWZ1QUdmS2FSdHhwUkNJQnZtaGd5T1VsRTIzVktm?=
+ =?utf-8?B?VHhHZ09sYzNGZmFjWVFZenJwUXI2TEtCU0xsSEM1bG5BYkZ6OGlkdmJ3bnVn?=
+ =?utf-8?B?MDJSbWNrV3FLSFc0bzlKSzJSc2NoRDdEREtXN0krWE04RUF3aGwrK04vMXhN?=
+ =?utf-8?B?cnM2aWlscEd6SWpQT05lYStaSFExK0lIblEvTFRYRmR4aTZnbnJWY3pHUzQ1?=
+ =?utf-8?B?K0ZzenZSdlhydWRQODhrcUdwWGFqMVYvU1lRelEwZUViRzNRcm4xcytNV2pL?=
+ =?utf-8?B?OEFJUHRPZFoyVGN4WFdWbEY2Y2grZHFLQjNjVTE1V2E0LzRLZjREM0REL1k0?=
+ =?utf-8?B?bjN1bE92VHgrMTUraU83dWJOeWVFZ1F5eUk2T0R6dUJ0WlZhUmNnSWx3cXlY?=
+ =?utf-8?B?ZGF6dXJEOThla1l3ZDVSY1J3L2YrYUxqdXp4N1ViQkxxQ1hGcmJaa0E1OGhr?=
+ =?utf-8?B?MExTbVd6MVRHV3RRUCtOVXRFT29jYS90WVY4VksvQUVSU3JVd0NGWURNdnpI?=
+ =?utf-8?B?R2xuWVhVRHlzZlNBdU55d2tCM3hGRjB2ejFhNHFtb1NVOGIrWDBxWUdSMVNH?=
+ =?utf-8?B?UCtCM1dweWdybnQ2c3ZoSTY1cGV1UUtQdDJZZzJNZXVQSVJ3R1hadFZqV0lX?=
+ =?utf-8?B?cGNRT1JCdWR0TGJrb2NGZU9Kb3ZFeGNXazd1V2w2ZHZLa3RLMjRlYlhWcGFJ?=
+ =?utf-8?B?KzVNbGs3NEpTeUxDNDZqejBGRE5SOUFVaXJmV2pmdnp3SHRjbTRVbldKeC9v?=
+ =?utf-8?B?c3MwbDBCbGFZSUhjazJYQlNQWTdMMUV3UXRiZW16dUhQMU5MK3VMUG9lT3BV?=
+ =?utf-8?B?dCszZ3dIZXpSbXJEMzBJSUlEdW9TNkozcTdHY2xOU1dIM2JzUHkwbWVkMzBy?=
+ =?utf-8?B?UVBoZnJMWlQrYmtUeHdDQi93UW5lTmdSVFJzcEJqTW5XZ3ZqcGVTNTVnd0Q1?=
+ =?utf-8?B?dU1GYzhMS250TE1UUldaUURKbXE4UFAxVUROdXRXNTQvZ2NsWTc4b3BQOGJ4?=
+ =?utf-8?B?K3p0KzRTUWQ2a2VXaXpvT1l1LzNiVGdYdU90SVJJUE51MUh6akhpc0pXZE04?=
+ =?utf-8?B?dGN0emxCQlJablg2dXRqbUhSc2ZDV1gzdnQ0UXJodWZFRzRZOHlTOEpDdmJr?=
+ =?utf-8?B?TFF6ZmpZZTNFTzFaalR0a2dBTDdLakszekZyTjFHRjhMc0tTUTJrQ2lwR21H?=
+ =?utf-8?B?aGtFSlFUSk1FYnk4ZGQ2WDFXM2FJeVB3ZUpUQkdzRFRjYUNCNC9leDQ1T2lt?=
+ =?utf-8?B?eEVmM1hXT240NHh5NnFUSFdjZHBIeDB6eFpIVjNKTFFmNllvVzlMOXp1UERv?=
+ =?utf-8?Q?wAc/PhbZs2xMWXof4ez4MUDjk?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: c59689e3-6cfb-455a-8e1f-08db8211e293
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR02MB7263.eurprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Jul 2023 13:22:33.1133
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 78703d3c-b907-432f-b066-88f7af9ca3af
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 890UrzNc65REw6bBX+b5YjeSEivSPCwnB82AAvRuLZAfXfVRLX4VVyEwWLMEMNGr
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR02MB6668
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On Tue, 11 Jul 2023 14:18:01 +0200, Konrad Dybcio wrote:
-> In order to (at least partially) untangle the global BCM voter lookup
-> (as again, they are shared throughout the entire system and not bound to
-> individual buses/providers), introduce a new required property to assign
-> a unique identifier to each BCM voter.
+On 6/29/23 17:16, Rob Herring wrote:
+> On Tue, Jun 27, 2023 at 08:53:15AM +0200, Jiri Valek - 2N wrote:
+>> Add support for advanced sensitivity settings and signal guard feature.
+>>
+>> Signed-off-by: Jiri Valek - 2N <jiriv@axis.com>
+>> ---
+>>  .../bindings/input/microchip,cap11xx.yaml     | 77 +++++++++++++++++--
+>>  1 file changed, 72 insertions(+), 5 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/input/microchip,cap11xx.yaml b/Documentation/devicetree/bindings/input/microchip,cap11xx.yaml
+>> index 5fa625b5c5fb..b69dac1fba0e 100644
+>> --- a/Documentation/devicetree/bindings/input/microchip,cap11xx.yaml
+>> +++ b/Documentation/devicetree/bindings/input/microchip,cap11xx.yaml
+>> @@ -45,13 +45,13 @@ properties:
+>>        Enables the Linux input system's autorepeat feature on the input device.
+>>  
+>>    linux,keycodes:
+>> -    minItems: 6
+>> -    maxItems: 6
+>> +    minItems: 3
+>> +    maxItems: 8
+>>      description: |
+>>        Specifies an array of numeric keycode values to
+>>        be used for the channels. If this property is
+>>        omitted, KEY_A, KEY_B, etc are used as defaults.
+>> -      The array must have exactly six entries.
+>> +      The number of entries must correspond to the number of channels.
 > 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
->  .../devicetree/bindings/interconnect/qcom,bcm-voter.yaml       | 10 ++++++++++
->  1 file changed, 10 insertions(+)
+> This change seems unrelated? Or maybe advanced sensitivity means more 
+> channels? If so, explain this in the commit msg.
+
+This driver is already used for more CAPxxxx types.
+The smallest have only 3 inputs and the biggest one have 8 inputs.
+So keycode definition array length can be from 3 to 8 items long.
+
 > 
+>>  
+>>    microchip,sensor-gain:
+>>      $ref: /schemas/types.yaml#/definitions/uint32
+>> @@ -70,6 +70,55 @@ properties:
+>>        open drain. This property allows using the active
+>>        high push-pull output.
+>>  
+>> +  microchip,sensitivity-delta-sense:
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +    default: 32
+>> +    enum: [1, 2, 4, 8, 16, 32, 64, 128]
+>> +    description:
+>> +      Optional parameter. Controls the sensitivity multiplier of a touch detection.
+>> +      At the more sensitive settings, touches are detected for a smaller delta
+>> +      capacitance corresponding to a “lighter” touch.
+>> +
+>> +  microchip,signal-guard:
+>> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+>> +    minItems: 3
+>> +    maxItems: 8
+>> +    items:
+>> +      minimum: 0
+>> +      maximum: 1
+>> +    description: |
+>> +      Optional parameter supported only for CAP129x.
+>> +      0 - off
+>> +      1 - on
+>> +      The signal guard isolates the signal from virtual grounds.
+>> +      If enabled then the behavior of the channel is changed to signal guard.
+>> +      The number of entries must correspond to the number of channels.
+>> +
+>> +  microchip,input-treshold:
+>> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+>> +    minItems: 3
+>> +    maxItems: 8
+>> +    items:
+>> +      minimum: 0
+>> +      maximum: 127
+>> +    description:
+>> +      Optional parameter. Specifies the delta threshold that is used to
+>> +      determine if a touch has been detected.
+>> +      The number of entries must correspond to the number of channels.
+>> +
+>> +  microchip,calib-sensitivity:
+>> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+>> +    minItems: 3
+>> +    maxItems: 8
+>> +    items:
+>> +      minimum: 1
+>> +      maximum: 4
+>> +    description:
+>> +      Optional parameter supported only for CAP129x. Specifies an array of
+>> +      numeric values that controls the gain used by the calibration routine to
+>> +      enable sensor inputs to be more sensitive for proximity detection.
+>> +      The number of entries must correspond to the number of channels.
+>> +
+>>  patternProperties:
+>>    "^led@[0-7]$":
+>>      type: object
+>> @@ -98,10 +147,23 @@ allOf:
+>>          compatible:
+>>            contains:
+>>              enum:
+>> -              - microchip,cap1106
+>> +              - microchip,cap1188
+>>      then:
+>>        patternProperties:
+>> -        "^led@[0-7]$": false
+>> +        "^led@[0-7]$": true
+>> +
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          contains:
+>> +            enum:
+>> +              - microchip,cap1293
+>> +              - microchip,cap1298
+>> +
+>> +    then:
+>> +      properties:
+>> +        microchip,signal-guard: true
+>> +        microchip,calib-sensitivity: true
+> 
+> This 'if' doesn't do anything. These properties are already allowed. You 
+> need an if for the cases they aren't allowed.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Oh, thanks for the explanation. I will fix it.
 
-yamllint warnings/errors:
+> 
+>>  
+>>  required:
+>>    - compatible
+>> @@ -122,6 +184,11 @@ examples:
+>>          reg = <0x28>;
+>>          autorepeat;
+>>          microchip,sensor-gain = <2>;
+>> +        microchip,sensitivity-delta-sense = <16>;
+>> +
+>> +        microchip,signal-guard = <0>, <0>, <0>, <0>, <0>, <0>;
+>> +        microchip,input-treshold = <21>, <18>, <46>, <46>, <46>, <21>;
+>> +        microchip,calib-sensitivity = <1>, <2>, <2>, <1>, <1>, <2>;
+>>  
+>>          linux,keycodes = <103>,	/* KEY_UP */
+>>                           <106>,	/* KEY_RIGHT */
+>> -- 
+>> 2.25.1
+>>
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/soc/qcom/qcom,rpmh-rsc.example.dtb: rsc@18200000: bcm-voter: 'qcom,bcm-voter-idx' is a required property
-	from schema $id: http://devicetree.org/schemas/soc/qcom/qcom,rpmh-rsc.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/soc/qcom/qcom,rpmh-rsc.example.dtb: bcm-voter: 'qcom,bcm-voter-idx' is a required property
-	from schema $id: http://devicetree.org/schemas/interconnect/qcom,bcm-voter.yaml#
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230708-topic-rpmh_icc_rsc-v1-2-b223bd2ac8dd@linaro.org
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+BR
+Jiri
 
