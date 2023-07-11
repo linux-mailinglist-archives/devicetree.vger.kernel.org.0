@@ -2,77 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3CCF074EFC8
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 15:02:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 80B1774EFD1
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 15:06:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232553AbjGKNC1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jul 2023 09:02:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34746 "EHLO
+        id S232654AbjGKNGA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jul 2023 09:06:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37042 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232643AbjGKNC0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 09:02:26 -0400
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5FF5C10F9;
-        Tue, 11 Jul 2023 06:02:05 -0700 (PDT)
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36B9Sx2x026949;
-        Tue, 11 Jul 2023 15:01:03 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=CcJYk6OSmAh/ZRlDaYkuV0Et2MLWaOhRgR+ej3SaWJc=;
- b=8MfxHLPnPm+POlrdjBx/RA/yUfCPOH39vHMbTd1S2+R/VXraTD7dXMVTtQNwMZJ8ZHaC
- eCMcTe1cxl+mAhZqaatOdWOmxwMIZ+q+t2VOp4cj4lzgFhoh0pmhCsQi7PMqkXbKbjfa
- z0TSvldsQCmuBz6BSPD7cGTiyjvCvFpyTXJ7OFdPQYeplLEkuBACbFjb0WZFAWmufPFp
- CixPugFKuJ2J4io6bnbdheD5s/FPR/KrN6ippp7I/lkVhtg/ZryKVxLjgTz/1mSDsqt2
- J3zpIgCesTzBhZjq8t3canoc+iejYg3nMei9GIbjfVwaH46RjgBpAmkBtapfYsMjagKe lw== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3rrs59dfe2-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 11 Jul 2023 15:01:03 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id B663E100070;
-        Tue, 11 Jul 2023 15:01:01 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id A5194226FAE;
-        Tue, 11 Jul 2023 15:01:01 +0200 (CEST)
-Received: from [10.201.21.122] (10.201.21.122) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Tue, 11 Jul
- 2023 15:01:00 +0200
-Message-ID: <531a282f-9a0d-cb64-d1d1-ebaf9356b717@foss.st.com>
-Date:   Tue, 11 Jul 2023 15:00:59 +0200
-MIME-Version: 1.0
+        with ESMTP id S231190AbjGKNF7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 09:05:59 -0400
+Received: from smtp1.axis.com (smtp1.axis.com [195.60.68.17])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D918298;
+        Tue, 11 Jul 2023 06:05:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=axis.com; q=dns/txt; s=axis-central1; t=1689080757;
+  x=1720616757;
+  h=message-id:date:subject:to:cc:references:from:
+   in-reply-to:content-transfer-encoding:mime-version;
+  bh=BVwKb4iqeUDCRhQCHyhOPXG3EtTCrFnNB28/XFBbOjg=;
+  b=PabK0+doNFEkb0n9X8PiYhLSlGt9P6Ix7KNCGk8KBxTZA+8JDrLA5+8d
+   hWCJNVsTPD+eiqakW9fMr1vYd781tgyWY9A4yzvFquesPMa9GD3MPonuB
+   73ZVYCrVw64BKE1oBUuBrSbKHcwyojKGQAy96doSkW5bU3IOkgM50ADSX
+   UZ1Q18ZAHYlGDXE2gHvChYoAgafvLNGcDveUyahLb8T4PspEsG4nBZtiR
+   063PqE/lQvf/cRBCS13Jd9NCcXXiAHNHz/XxH9nH8P4amLMGiv2hhKub/
+   Y+NZ14R2R9f0kKrjuBxyPNGDRhiLcHLLIvW0gWOGA+pVHo38X86BmJQr3
+   Q==;
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=XRZycfcF/xyipn3Gt/0PhGqSaXYjebgeKQlFUidE6pFxt5e1M4phgBbNw1F3pivimmPrkdzIJ8vPZ688pAyAXkC0mK+5GR5/RdEP1erlWNTDChaJ5D1MJC0jK5puhN0XS+tAIKERB+KprHuDnvhPUDjtmNknwC+7+Zbsdv7CxMuY4Xbbet951I4vJlZGeTdrRJKef1xUPKAO5kKJs/TNp5W2yOzwHVEQ1ZpBEL6GnOoG9Q3f32A/eb4fKEGUeIR+9lj7grjYFR7pndEz4syr2mPSEKMrIIe6Y3tTFB0CL2Zc1+82HcFvXnocqdTskKJu4SAI+OjLdMofaEW0vLs28A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=BVwKb4iqeUDCRhQCHyhOPXG3EtTCrFnNB28/XFBbOjg=;
+ b=OPGFMda+CLbtBDbiGem3wO95GDSVQVVl10Ur6CWuNdm1IRgL+KnQiG5yT7b+nOaK3VOEMCFuz6CIQNqSVqvLNsg3DMY86Cuj5zHlTr+1X6iSjcs6YXS36j5lUlVfMcwrBGhCuv5xDRybF7pDIqfzgwo5E4lOeRXjOhvO3Lwt6K8JbPGDG3zP3HpU12oTN18AleHg5hVMU9WcVsNHOqLhpeSVgu/NwTOzM4Tjz9hKGAq/uokTMrkpsW5BV1noi+w0Egk9+DkyBHqD2JKbSQeVDxNuR9I4nUt6T7BVgCyS9oS+Hobv1o8uy3eto87rH/7BQhPC/eDX93ZtR5LiTSNa5Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=2n.com; dmarc=pass action=none header.from=axis.com; dkim=pass
+ header.d=axis.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=axis365.onmicrosoft.com; s=selector2-axis365-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=BVwKb4iqeUDCRhQCHyhOPXG3EtTCrFnNB28/XFBbOjg=;
+ b=YPPnrNk4GMbc/RA2m6o9maN7GgvgrHz8LKWjoMSGvFSI6Spn0riLRXOwsEsoafdDtm6Gk1c8ZrtImEfPgom6Uc5qpO4iLbimvtYt09zdFSaYtoFUoY67fI/eEbLBg2kGdiUrwX4tBifjDmsQzdW/YL0STm7HK3zb0c1IY0Fpr4Q=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=axis.com;
+Message-ID: <3b085b09-bff9-7b71-6984-3dfd27a235a6@axis.com>
+Date:   Tue, 11 Jul 2023 15:05:52 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH v2 8/8] ARM: dts: stm32: Add Octavo OSD32MP1-RED board
+Subject: Re: [PATCH v4 2/2] Input: cap11xx - add advanced sensitivity settings
 Content-Language: en-US
-To:     Sean Nyekjaer <sean@geanix.com>, <a.fatoum@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>
-CC:     <dantuguf14105@gmail.com>,
-        Olivier Moysan <olivier.moysan@foss.st.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20230621063339.1361073-1-sean@geanix.com>
- <20230621063339.1361073-8-sean@geanix.com>
-From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
-In-Reply-To: <20230621063339.1361073-8-sean@geanix.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>
+CC:     <krzysztof.kozlowski+dt@linaro.org>, <devicetree@vger.kernel.org>,
+        <linux-input@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <robh+dt@kernel.org>, <u.kleine-koenig@pengutronix.de>
+References: <20230627065316.1065911-1-jiriv@axis.com>
+ <20230627065316.1065911-3-jiriv@axis.com> <ZJyEpuat1A8Z+Ft4@google.com>
+From:   Jiri Valek - 2N <jiriv@axis.com>
+In-Reply-To: <ZJyEpuat1A8Z+Ft4@google.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.201.21.122]
-X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-07-11_07,2023-07-11_01,2023-05-22_02
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+X-ClientProxiedBy: FR0P281CA0119.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:a8::17) To PAXPR02MB7263.eurprd02.prod.outlook.com
+ (2603:10a6:102:1c5::18)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR02MB7263:EE_|PAWPR02MB10165:EE_
+X-MS-Office365-Filtering-Correlation-Id: 366858dc-d03f-46aa-f554-08db820f8e77
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: ayRKYm9+qSCkosWwnuhDJ9PR1n1KFK5CzdCogLpczIWw+JDbrH8te48XezXl024u+E7Af3vMbMNm0fr9Cs29V51NXpiVZjWRiXwMHjLPL6r1SGfmYFhSiBUvFSxAv6yqFuS/eaBzbshVcoM5O9DS/WTtw7qNv2aYP3Z/0g0HM2sK3Ep2uF5zZ0HV0nno/5NbaJ5vGFHgVeex8HWQy2bXRxHJIGTgHdt4eJRz7X2QjNHT6bA8NaLffC1StGcIv039eM8tTlew36njKkqu4umzlqOxd7vNP0eR53+g7H7Fh+OGeWrszSVWdGpAQD5Tv6lrmZQY5RCz8cOIrI12XHNj9y0MLOwNGESk2K+X4B3/xebWI7EhcJaTu5Xliuw063BNqhgsroqnC2YoyIFjbpCdRXbshv7bAeZtJXmXoui6pDEKUXASvXZmwc0OPGBirIQNxu30dqfX7fNgJrDq6taOjS908tli3FL6QChQeTQWfJtgOTq+HG0TMaTXoCFsmTke1y55UMjhwW0yMhqpaYGcyCHGhI4ZEDSoZHirwyEtUBkEnQD7S67hSIOkkoqWqLPNYaGAGvosJ+qUHJTzM403/idOsJCLJl7+qOscOxQqvZov7j7OlE8WckaDNOpIolVYfHlfQ/ypZPK/ka5SuJ2o5A==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR02MB7263.eurprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(346002)(136003)(39860400002)(396003)(376002)(366004)(451199021)(8936002)(31686004)(5660300002)(8676002)(38100700002)(83170400001)(41300700001)(2906002)(316002)(4326008)(66946007)(6916009)(66556008)(66476007)(31696002)(6506007)(83380400001)(478600001)(2616005)(42882007)(53546011)(186003)(6486002)(6512007)(36756003)(26005)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZUdkM0dOR3JrN0hIRUxDd1hUQjNIMWRGWGdzMHlhbU9sak9ZK254WHViMWNY?=
+ =?utf-8?B?a1BUa3c4MlRkZlk0S2ZSRHI5MElnc0JmK3FLSkxyVWgrWW53TCs2Skh4MkdH?=
+ =?utf-8?B?aW9xUUY0VW9ZU2RTRnI1bjF1dE1PRHpoOVR2bU80RVFNVkJNTVByUGZDK21r?=
+ =?utf-8?B?K2d0YVdHU0NhOENRbWRZR0JmZWh5MThJaXFUbWJxeVJLUlkvcm4zaDZmN21H?=
+ =?utf-8?B?L3BpNHdia3pyOCtKMFNrdUhCNksxWS84ZjRmSlhMQjBWd3ZXK0NNSDFodTdw?=
+ =?utf-8?B?VjhSVVBUMWdUcVk3RjR0SnFZcEdnQWVJVitJZjRsMjVIMHpLampzUDFBSHNT?=
+ =?utf-8?B?cFgwMlZCUnpoV3htTFJUSWhLQ2U1a2dWMlIzWlNpMGJNVUJEZlZaWGs4cHR5?=
+ =?utf-8?B?QkpXVVVPck55NnlUbVorYWJWQ21pQVc3UVd0NTVhcjhhZ1VMRStlOUJnQ1BF?=
+ =?utf-8?B?NjlkZ1J1bC8wQ1ZzRHFZem5WQmZjaTBBVFk3bjQvdm1EWXlIWVdZbzJEVHJp?=
+ =?utf-8?B?TGNCZkNQcGtPcThKR2hvbjRTOGlhSjVjSHFLYVBraTY2eXNSOTgrVitJNXpk?=
+ =?utf-8?B?ckxKUFNmM1ZlaWZKUEFPakR5bHhNUm5RWEEzVGwxWVJoeURwdEJCZEg1OWVs?=
+ =?utf-8?B?dWQxN2IxTVNBVXgxanpYVnJZNGpwcXpoYUl0OFA4MHFXTFNZa2dXa1lIOXFH?=
+ =?utf-8?B?ODF4cUVKRVZ5alpmbjRzWW5zUG1jU1E4NWw4MHhaNDgza3QvNWFOSG1mU1lU?=
+ =?utf-8?B?bG10MDRsUHl3QU5KT3pDK1pPZ3FNbm1DMTRzSnJ6K2RqbU5yd04zU1dRWGl4?=
+ =?utf-8?B?NHRaVnk3U1NOSy9ueXNIZ1laSjZoOEtLZmFWcHpHQ3g4Q2NJTGFKV01RWlFW?=
+ =?utf-8?B?N0NSc1d5SUwzVDNkZGpOYmVjcFJIbDFUZm5vekthSFZFSGpjbzZKMTlmM2Ji?=
+ =?utf-8?B?UzczbXVLUUxqSHVsNWIvL1V2ZGVJSzdGSU9jRzFDcFllWGJlQkNpV0VYMkF5?=
+ =?utf-8?B?enVBSENVR3VOeEZlR0dmUmdPUnJHMlg1NTBkODNYVlNBRlh6TkU0Mm5EaSt5?=
+ =?utf-8?B?cGNIK0VtVWdDT1lZU25LZ1R0TWV0ejVKa3Iyc2hXNlVWYUNhZVl0QXc3NHkz?=
+ =?utf-8?B?bzFIVytqTmtNTlAxRnI4NmFjY2syZ09KYW9mS2RmdzJCRWxLRzVabTdzcmtC?=
+ =?utf-8?B?aGtkY3NncUVIYjNkL1crN25QVFJ3WlloZXkyMFVJZU5CWHZvR2l5NVQ3MWty?=
+ =?utf-8?B?RnlHRW1laHREK0FvK0xwcC85OCswYzIwTCtob0g4ZERNL1RaaDdJcFNwaGQ5?=
+ =?utf-8?B?U3VKdFI2WW96aFVZRVZqVVZWTzBJczg5d2h4OS9DcURNUFI4THlUdHhrR0Iz?=
+ =?utf-8?B?NHIrblAvTnVqek9vN0tvVU5TcnYzcTdRQnQxcG1tZlpWSlpZR3YveVlxRGVj?=
+ =?utf-8?B?VWluYzFwcWRlVnJEbzVmOEN2SThSSE9NUUhzVlZodXQ3WExBalByenZBUFdr?=
+ =?utf-8?B?SUs4d2ltZVZrdThzZHFGUW1iSlMrR0JJa1hMV1lGL3B6SGhmS3N0bTdTLzVP?=
+ =?utf-8?B?MDVGb09WSjZGanQ4QmtGUmFpZXhZdFBhRnMweWZ4ZkxMSnVzZ3did09zQjRx?=
+ =?utf-8?B?R0wvUFRpREFFMkVBbXd4K2lGQ2tJYnppTmluSzhmR2xsQk8raTNadlFoNnpz?=
+ =?utf-8?B?dmYwRzNWdTFEU2xyM0c3NHUwZmVmZW9yd2cxVHNEUGd3OXV0ZlQ1MVJxbFhL?=
+ =?utf-8?B?NXI0REgwT1pkOWxRalNnVDRGc2hVMnlYUHZLN2MvTHZLNGE4T0Vhc2NiYStR?=
+ =?utf-8?B?cm8rVzcyNHEyME0zTTcya2dLZnVOTnRHNEZHWHlEUWFhT1dwMi90MFAwUkVE?=
+ =?utf-8?B?b2hWOEtWVVFMdXBpQk8zWlk4S1pxOFBCRUFjSzNKZ3NUM3JOWjY5bHlZdFBF?=
+ =?utf-8?B?QkZBT2tnRUxsRFkvMkxwK3h0QTRWbWlCeGpHeWtBMlV5QXVGdHY2M1NFTC90?=
+ =?utf-8?B?V3dUL2U5RXJtU3ZTK3FzVTNLYm0rdlBiZW1rbC9Bbng1bWNUSHhhWjRzaGt6?=
+ =?utf-8?B?ZjhRNEFxV2RiS0pHRzlNL2lDVmZzblpCelhWdktUcVZMNzhBYVFKY1h5QlZV?=
+ =?utf-8?Q?K5Rp/tAf4W4japsKXTkNOhaDu?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 366858dc-d03f-46aa-f554-08db820f8e77
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR02MB7263.eurprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Jul 2023 13:05:53.0550
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 78703d3c-b907-432f-b066-88f7af9ca3af
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: jD8YNCP01XG1onPZPEytCbJR+j2ZSFmbEkGnCGWSNjjOGJWOy7tVAIR7WvjNRWUd
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAWPR02MB10165
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
         URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,267 +129,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sean
-
-On 6/21/23 08:33, Sean Nyekjaer wrote:
-> Add support for the Octavo OSD32MP1-RED development board.
+On 6/28/23 21:06, Dmitry Torokhov wrote:
+> Hi Jiri,
 > 
-> General features:
->   - STM32MP157C
->   - 512MB DDR3
->   - CAN-FD
->   - HDMI
->   - USB-C OTG
->   - UART
+> On Tue, Jun 27, 2023 at 08:53:16AM +0200, Jiri Valek - 2N wrote:
+>> @@ -439,7 +589,7 @@ static int cap11xx_i2c_probe(struct i2c_client *i2c_client)
+>>  	priv->idev->id.bustype = BUS_I2C;
+>>  	priv->idev->evbit[0] = BIT_MASK(EV_KEY);
+>>  
+>> -	if (of_property_read_bool(node, "autorepeat"))
+>> +	if (of_property_read_bool(dev->of_node, "autorepeat"))
 > 
-> Signed-off-by: Sean Nyekjaer <sean@geanix.com>
-> Reviewed-by: Olivier Moysan <olivier.moysan@foss.st.com>
-> ---
+> It would be good to have this driver switched from of_property_*() to
+> device_property_() API.
 
-You must update Makefile if you want I build it :). In the same time you 
-could also ordering your phandle nodes by alphabetic order. It makes the 
-file easier to read.
-
-Regards
-Alex
-
-> Changes since v1:
->   - Fixed comments from Ahmad
+Yes, I do this after my changes.
 > 
->   .../arm/boot/dts/stm32mp157c-osd32mp1-red.dts | 226 ++++++++++++++++++
->   1 file changed, 226 insertions(+)
->   create mode 100644 arch/arm/boot/dts/stm32mp157c-osd32mp1-red.dts
+>>  		__set_bit(EV_REP, priv->idev->evbit);
+>>  
+>>  	for (i = 0; i < cap->num_channels; i++)
+>> @@ -474,14 +624,8 @@ static int cap11xx_i2c_probe(struct i2c_client *i2c_client)
+>>  	if (error)
+>>  		return error;
+>>  
+>> -	irq = irq_of_parse_and_map(node, 0);
+>> -	if (!irq) {
+>> -		dev_err(dev, "Unable to parse or map IRQ\n");
+>> -		return -ENXIO;
+>> -	}
+>> -
+>> -	error = devm_request_threaded_irq(dev, irq, NULL, cap11xx_thread_func,
+>> -					  IRQF_ONESHOT, dev_name(dev), priv);
+>> +	error = devm_request_threaded_irq(dev, i2c_client->irq, NULL,
+>> +					cap11xx_thread_func, IRQF_ONESHOT, dev_name(dev), priv);
 > 
-> diff --git a/arch/arm/boot/dts/stm32mp157c-osd32mp1-red.dts b/arch/arm/boot/dts/stm32mp157c-osd32mp1-red.dts
-> new file mode 100644
-> index 000000000000..f840b7faf02a
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/stm32mp157c-osd32mp1-red.dts
-> @@ -0,0 +1,226 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause)
-> +/*
-> + * Copyright (C) Geanix ApS 2023 - All Rights Reserved
-> + * Author: Sean Nyekjaer <sean@geanix.com>
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "stm32mp157.dtsi"
-> +#include "stm32mp15xc.dtsi"
-> +#include "stm32mp15xx-osd32.dtsi"
-> +#include "stm32mp15xxac-pinctrl.dtsi"
-> +
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/pinctrl/stm32-pinfunc.h>
-> +
-> +/ {
-> +	model = "Octavo OSD32MP1 RED board";
-> +	compatible = "oct,stm32mp157c-osd32-red", "oct,stm32mp15xx-osd32", "st,stm32mp157";
-> +
-> +	aliases {
-> +		serial0 = &uart4;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial0:115200n8";
-> +	};
-> +
-> +	led-controller-0 {
-> +		compatible = "gpio-leds";
-> +
-> +		led-0 {
-> +			label = "heartbeat";
-> +			gpios = <&gpiod 11 GPIO_ACTIVE_HIGH>;
-> +			linux,default-trigger = "heartbeat";
-> +		};
-> +	};
-> +};
-> +
-> +&ethernet0 {
-> +	status = "okay";
-> +	pinctrl-0 = <&ethernet0_rgmii_pins_a>;
-> +	pinctrl-1 = <&ethernet0_rgmii_sleep_pins_a>;
-> +	pinctrl-names = "default", "sleep";
-> +	phy-mode = "rgmii-id";
-> +	max-speed = <1000>;
-> +	phy-handle = <&phy0>;
-> +	st,eth-clk-sel;
-> +
-> +	mdio0 {
-> +		compatible = "snps,dwmac-mdio";
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		phy0: ethernet-phy@3 {
-> +			reg = <3>;
-> +		};
-> +	};
-> +};
-> +
-> +
-> +&i2s2 {
-> +	clocks = <&rcc SPI2>, <&rcc SPI2_K>, <&rcc CK_PER>, <&rcc PLL3_R>;
-> +	clock-names = "pclk", "i2sclk", "x8k", "x11k";
-> +	pinctrl-names = "default", "sleep";
-> +	pinctrl-0 = <&i2s2_pins_b>;
-> +	pinctrl-1 = <&i2s2_sleep_pins_b>;
-> +	status = "okay";
-> +
-> +	i2s2_port: port {
-> +		i2s2_endpoint: endpoint {
-> +			remote-endpoint = <&sii9022_tx_endpoint>;
-> +			format = "i2s";
-> +			mclk-fs = <256>;
-> +		};
-> +	};
-> +};
-> +
-> +&iwdg2 {
-> +	timeout-sec = <32>;
-> +	status = "okay";
-> +};
-> +
-> +&pwr_regulators {
-> +	vdd-supply = <&vdd>;
-> +	vdd_3v3_usbfs-supply = <&vdd_usb>;
-> +};
-> +
-> +&ltdc {
-> +	status = "okay";
-> +
-> +	port {
-> +		ltdc_ep0_out: endpoint@0 {
-> +			reg = <0>;
-> +			remote-endpoint = <&sii9022_in>;
-> +		};
-> +	};
-> +};
-> +
-> +&i2c1 {
-> +	pinctrl-names = "default", "sleep";
-> +	pinctrl-0 = <&i2c1_pins_a>;
-> +	pinctrl-1 = <&i2c1_sleep_pins_a>;
-> +	status = "okay";
-> +	i2c-scl-rising-time-ns = <100>;
-> +	i2c-scl-falling-time-ns = <7>;
-> +	/delete-property/dmas;
-> +	/delete-property/dma-names;
-> +
-> +	hdmi-transmitter@39 {
-> +		compatible = "sil,sii9022";
-> +		reg = <0x39>;
-> +		reset-gpios = <&gpiog 0 GPIO_ACTIVE_LOW>;
-> +		interrupts = <1 IRQ_TYPE_EDGE_FALLING>;
-> +		interrupt-parent = <&gpiog>;
-> +		pinctrl-names = "default", "sleep";
-> +		pinctrl-0 = <&ltdc_pins_e>;
-> +		pinctrl-1 = <&ltdc_sleep_pins_e>;
-> +		status = "okay";
-> +
-> +		ports {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			port@0 {
-> +				reg = <0>;
-> +				sii9022_in: endpoint {
-> +					remote-endpoint = <&ltdc_ep0_out>;
-> +				};
-> +			};
-> +
-> +			port@1 {
-> +				reg = <1>;
-> +				sii9022_tx_endpoint: endpoint {
-> +					remote-endpoint = <&i2s2_endpoint>;
-> +				};
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&sdmmc1 {
-> +	pinctrl-names = "default", "opendrain", "sleep";
-> +	pinctrl-0 = <&sdmmc1_b4_pins_a>;
-> +	pinctrl-1 = <&sdmmc1_b4_od_pins_a>;
-> +	pinctrl-2 = <&sdmmc1_b4_sleep_pins_a>;
-> +	cd-gpios = <&gpioe 7 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-> +	disable-wp;
-> +	st,neg-edge;
-> +	bus-width = <4>;
-> +	vmmc-supply = <&v3v3>;
-> +	status = "okay";
-> +};
-> +
-> +&sdmmc2 {
-> +	pinctrl-names = "default", "opendrain", "sleep";
-> +	pinctrl-0 = <&sdmmc2_b4_pins_a &sdmmc2_d47_pins_d>;
-> +	pinctrl-1 = <&sdmmc2_b4_od_pins_a>;
-> +	pinctrl-2 = <&sdmmc2_b4_sleep_pins_a &sdmmc2_d47_sleep_pins_d>;
-> +	non-removable;
-> +	no-sd;
-> +	no-sdio;
-> +	st,neg-edge;
-> +	bus-width = <8>;
-> +	vmmc-supply = <&v3v3>;
-> +	vqmmc-supply = <&vdd>;
-> +	mmc-ddr-3_3v;
-> +	status = "okay";
-> +};
-> +
-> +&uart4 {
-> +	pinctrl-names = "default", "sleep", "idle";
-> +	pinctrl-0 = <&uart4_pins_a>;
-> +	pinctrl-1 = <&uart4_sleep_pins_a>;
-> +	pinctrl-2 = <&uart4_idle_pins_a>;
-> +	/delete-property/dmas;
-> +	/delete-property/dma-names;
-> +	status = "okay";
-> +};
-> +
-> +&m_can1 {
-> +	pinctrl-names = "default", "sleep";
-> +	pinctrl-0 = <&m_can1_pins_d>;
-> +	pinctrl-1 = <&m_can1_sleep_pins_d>;
-> +	status = "okay";
-> +};
-> +
-> +&usbh_ehci {
-> +	phys = <&usbphyc_port0>;
-> +	phy-names = "usb";
-> +	status = "okay";
-> +};
-> +
-> +&usbh_ohci {
-> +	phys = <&usbphyc_port0>;
-> +	phy-names = "usb";
-> +	status = "okay";
-> +};
-> +
-> +&usbotg_hs {
-> +	vbus-supply = <&vbus_otg>;
-> +};
-> +
-> +&usbphyc {
-> +	status = "okay";
-> +};
-> +
-> +&usbphyc_port0 {
-> +	phy-supply = <&vdd_usb>;
-> +};
-> +
-> +&usbphyc_port1 {
-> +	phy-supply = <&vdd_usb>;
-> +};
-> +
-> +&rtc {
-> +	status = "okay";
-> +};
-> +
-> +&crc1 {
-> +	status = "okay";
-> +};
-> +
-> +&dts {
-> +	status = "okay";
-> +};
+> I would prefer this change be a separate patch.
 
+Agree, I will prepare separate patch
+
+> 
+> Thanks.
+> 
+
+BR
+Jiri
