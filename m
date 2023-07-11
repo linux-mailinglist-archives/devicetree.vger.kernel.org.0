@@ -2,148 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E02BB74E89B
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 10:00:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DB09074E8A0
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 10:03:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231702AbjGKIA5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jul 2023 04:00:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33538 "EHLO
+        id S229551AbjGKIDQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jul 2023 04:03:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35538 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231721AbjGKIAx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 04:00:53 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15C9DE5C;
-        Tue, 11 Jul 2023 01:00:42 -0700 (PDT)
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36B7mHhD018472;
-        Tue, 11 Jul 2023 08:00:38 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references; s=qcppdkim1;
- bh=9MzliAnqFZmJVnQfQhjw7eHWeG8MKdDCklNfu2rE8pg=;
- b=RrYcKhCb5d7HzdEmi/SM9w6V/ta6A5TlqX2lNw/3VoRCJ9Vg8rP3rEtXbZD9K5erq9uZ
- nuynklv8hTvaGyzY8XNKuIfPoaJMlMMnhM8OJ8WZ5R4nF31rcOQDbWecVll5mZUkzmae
- QFDqeqPPsYklmGUSgFyr2//ejDVqCUwE3hSeXaPeRq9uS6l8BCaxZdg2QHs6zqn6C/5m
- AUiBalViL2eQNif+pdTRedBrBy/dkD2IeH4Rb2kWFZat8ufwd7ffQOfDgadZxpR3uspg
- oGpqGwB3K7rKZAhDe3XADK2S01++iweWI9oI2katVNIXRlz+eVU8UUUCjbcNwMJkgI2E bg== 
-Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3rs0ekg9m1-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 11 Jul 2023 08:00:38 +0000
-Received: from pps.filterd (APBLRPPMTA02.qualcomm.com [127.0.0.1])
-        by APBLRPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 36B80NUe006421;
-        Tue, 11 Jul 2023 08:00:23 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-        by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 3rq0vm2xm2-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
-        Tue, 11 Jul 2023 08:00:23 +0000
-Received: from APBLRPPMTA02.qualcomm.com (APBLRPPMTA02.qualcomm.com [127.0.0.1])
-        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 36B80MvP006338;
-        Tue, 11 Jul 2023 08:00:23 GMT
-Received: from hu-sgudaval-hyd.qualcomm.com (hu-rohiagar-hyd.qualcomm.com [10.213.106.138])
-        by APBLRPPMTA02.qualcomm.com (PPS) with ESMTP id 36B80NN0006355;
-        Tue, 11 Jul 2023 08:00:23 +0000
-Received: by hu-sgudaval-hyd.qualcomm.com (Postfix, from userid 3970568)
-        id 74602505E; Tue, 11 Jul 2023 13:30:22 +0530 (+0530)
-From:   Rohit Agarwal <quic_rohiagar@quicinc.com>
-To:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Rohit Agarwal <quic_rohiagar@quicinc.com>
-Subject: [PATCH v3 3/3] regulator: qcom-rpmh: Add regulators support for PMX75
-Date:   Tue, 11 Jul 2023 13:30:14 +0530
-Message-Id: <1689062414-3654-4-git-send-email-quic_rohiagar@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1689062414-3654-1-git-send-email-quic_rohiagar@quicinc.com>
-References: <1689062414-3654-1-git-send-email-quic_rohiagar@quicinc.com>
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: leS0ax_P1fy7KpLWkgO45Hd61orx5RKn
-X-Proofpoint-GUID: leS0ax_P1fy7KpLWkgO45Hd61orx5RKn
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-07-11_04,2023-07-06_02,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 malwarescore=0
- spamscore=0 clxscore=1015 impostorscore=0 lowpriorityscore=0 mlxscore=0
- mlxlogscore=999 suspectscore=0 priorityscore=1501 phishscore=0 bulkscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2305260000
- definitions=main-2307110070
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no
-        autolearn_force=no version=3.4.6
+        with ESMTP id S229831AbjGKIDP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 04:03:15 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12A24AF;
+        Tue, 11 Jul 2023 01:03:13 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 36B831jp003735;
+        Tue, 11 Jul 2023 03:03:01 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1689062581;
+        bh=rjsooygLZp8hiL8v3o9Cz9avKfcSEri3Z+I7BSF1yjE=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=UhK+qwQ/UrMV//1lbDyCZrUR6y042aBa2zlkj70/Z1i3bmkBNbdOPbBvyJ9ZRN9z4
+         m/iqXz1V9lhp1pNiWT7dS4BPpTpy7+18YTpFbSR0UcgkRSVfLACSJMGV4e/JZHQJqA
+         flMKq29smBXXrKymw6IFHNKhO20ndxvcI+dGsa3I=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 36B831Pe120719
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 11 Jul 2023 03:03:01 -0500
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 11
+ Jul 2023 03:03:00 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 11 Jul 2023 03:03:00 -0500
+Received: from [10.24.68.113] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 36B82vBh019881;
+        Tue, 11 Jul 2023 03:02:58 -0500
+Message-ID: <ebc34b27-31b2-b57a-ec0c-fb4e0fa25c1e@ti.com>
+Date:   Tue, 11 Jul 2023 13:32:56 +0530
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH] dt-bindings: ti-serdes-mux: Add defines for SERDES4 in
+ J784S4 SoC
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <peda@axentia.se>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
+CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <s-vadapalli@ti.com>
+References: <20230710102712.155195-1-j-choudhary@ti.com>
+ <d136d58d-9582-3833-861f-086b64c1ad36@linaro.org>
+ <ecbb6d34-e024-f6c6-5921-ba7bc6fe2e5e@ti.com>
+ <97436a92-2cbd-0498-8aad-444ac3fab99b@linaro.org>
+ <d54b0cc2-91d9-b081-fc39-0bbba715ee5b@ti.com>
+ <80a43533-f6d6-b498-b677-08f7e608155a@linaro.org>
+From:   Jayesh Choudhary <j-choudhary@ti.com>
+In-Reply-To: <80a43533-f6d6-b498-b677-08f7e608155a@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support from RPMH regulators found in PMX75 for SDX75 platform.
 
-Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
----
- drivers/regulator/qcom-rpmh-regulator.c | 38 +++++++++++++++++++++++++++++++++
- 1 file changed, 38 insertions(+)
 
-diff --git a/drivers/regulator/qcom-rpmh-regulator.c b/drivers/regulator/qcom-rpmh-regulator.c
-index f3b280a..0881e91 100644
---- a/drivers/regulator/qcom-rpmh-regulator.c
-+++ b/drivers/regulator/qcom-rpmh-regulator.c
-@@ -1273,6 +1273,40 @@ static const struct rpmh_vreg_init_data pmx65_vreg_data[] = {
- 	{}
- };
- 
-+static const struct rpmh_vreg_init_data pmx75_vreg_data[] = {
-+	RPMH_VREG("smps1",   "smp%s1",    &pmic5_ftsmps525_lv, "vdd-s1"),
-+	RPMH_VREG("smps2",   "smp%s2",    &pmic5_ftsmps525_lv, "vdd-s2"),
-+	RPMH_VREG("smps3",   "smp%s3",    &pmic5_ftsmps525_lv, "vdd-s3"),
-+	RPMH_VREG("smps4",   "smp%s4",    &pmic5_ftsmps525_mv, "vdd-s4"),
-+	RPMH_VREG("smps5",   "smp%s5",    &pmic5_ftsmps525_lv, "vdd-s5"),
-+	RPMH_VREG("smps6",   "smp%s6",    &pmic5_ftsmps525_lv, "vdd-s6"),
-+	RPMH_VREG("smps7",   "smp%s7",    &pmic5_ftsmps525_lv, "vdd-s7"),
-+	RPMH_VREG("smps8",   "smp%s8",    &pmic5_ftsmps525_lv, "vdd-s8"),
-+	RPMH_VREG("smps9",   "smp%s9",    &pmic5_ftsmps525_lv, "vdd-s9"),
-+	RPMH_VREG("smps10",  "smp%s10",   &pmic5_ftsmps525_lv, "vdd-s10"),
-+	RPMH_VREG("ldo1",    "ldo%s1",    &pmic5_nldo515,   "vdd-l1"),
-+	RPMH_VREG("ldo2",    "ldo%s2",    &pmic5_nldo515,   "vdd-l2-18"),
-+	RPMH_VREG("ldo3",    "ldo%s3",    &pmic5_nldo515,   "vdd-l3"),
-+	RPMH_VREG("ldo4",    "ldo%s4",    &pmic5_nldo515,   "vdd-l4-l16"),
-+	RPMH_VREG("ldo5",    "ldo%s5",    &pmic5_pldo_lv,   "vdd-l5-l6"),
-+	RPMH_VREG("ldo6",    "ldo%s6",    &pmic5_pldo_lv,   "vdd-l5-l6"),
-+	RPMH_VREG("ldo7",    "ldo%s7",    &pmic5_nldo515,   "vdd-l7"),
-+	RPMH_VREG("ldo8",    "ldo%s8",    &pmic5_nldo515,   "vdd-l8-l9"),
-+	RPMH_VREG("ldo9",    "ldo%s9",    &pmic5_nldo515,   "vdd-l8-l9"),
-+	RPMH_VREG("ldo10",   "ldo%s10",   &pmic5_pldo,      "vdd-l10"),
-+	RPMH_VREG("ldo11",   "ldo%s11",   &pmic5_pldo,      "vdd-l11-l13"),
-+	RPMH_VREG("ldo12",   "ldo%s12",   &pmic5_nldo515,   "vdd-l12"),
-+	RPMH_VREG("ldo13",   "ldo%s13",   &pmic5_pldo,      "vdd-l11-l13"),
-+	RPMH_VREG("ldo14",   "ldo%s14",   &pmic5_nldo515,   "vdd-l14"),
-+	RPMH_VREG("ldo15",   "ldo%s15",   &pmic5_nldo515,   "vdd-l15"),
-+	RPMH_VREG("ldo16",   "ldo%s16",   &pmic5_nldo515,   "vdd-l4-l16"),
-+	RPMH_VREG("ldo17",   "ldo%s17",   &pmic5_nldo515,   "vdd-l17"),
-+	/* ldo18 not configured */
-+	RPMH_VREG("ldo19",   "ldo%s19",   &pmic5_nldo515,   "vdd-l19"),
-+	RPMH_VREG("ldo20",   "ldo%s20",   &pmic5_nldo515,   "vdd-l20-l21"),
-+	RPMH_VREG("ldo21",   "ldo%s21",   &pmic5_nldo515,   "vdd-l20-l21"),
-+};
-+
- static const struct rpmh_vreg_init_data pm7325_vreg_data[] = {
- 	RPMH_VREG("smps1",  "smp%s1",  &pmic5_hfsmps510, "vdd-s1"),
- 	RPMH_VREG("smps2",  "smp%s2",  &pmic5_ftsmps520, "vdd-s2"),
-@@ -1495,6 +1529,10 @@ static const struct of_device_id __maybe_unused rpmh_regulator_match_table[] = {
- 		.data = pmx65_vreg_data,
- 	},
- 	{
-+		.compatible = "qcom,pmx75-rpmh-regulators",
-+		.data = pmx75_vreg_data,
-+	},
-+	{
- 		.compatible = "qcom,pm7325-rpmh-regulators",
- 		.data = pm7325_vreg_data,
- 	},
--- 
-2.7.4
+On 11/07/23 13:05, Krzysztof Kozlowski wrote:
+> On 11/07/2023 09:21, Jayesh Choudhary wrote:
+>>
+>>
+>> On 11/07/23 11:34, Krzysztof Kozlowski wrote:
+>>> On 11/07/2023 07:55, Jayesh Choudhary wrote:
+>>>> Hello Krzysztof,
+>>>>
+>>>> On 10/07/23 17:11, Krzysztof Kozlowski wrote:
+>>>>> On 10/07/2023 12:27, Jayesh Choudhary wrote:
+>>>>>> SERDES4 has 4 lanes. Add lane definitions for it.
+>>>>>>
+>>>>>> Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
+>>>>>> ---
+>>>>>>     include/dt-bindings/mux/ti-serdes.h | 20 ++++++++++++++++++++
+>>>>>
+>>>>> Where are the users of this binding constants? IOW, why do you need to
+>>>>> add these?
+>>>>>
+>>>>> I don't see users of existing constants either...
+>>>>>
+>>>>
+>>>> These constants are propagated in the idle-state property for the
+>>>> mux-controller node (named serdes_ln_ctrl) usually in the final
+>>>> board dts files and occasionally in the main dtsi files for TI SoCs.
+>>>
+>>> So they are not used.
+>>
+>> 'They' as in SERDES4 definition or others as well??
+> 
+> I made quick greps and it seems that none of the defines - existing and
+> new - are used. But here anyway we talk about this patch, which without
+> users does not have any rationale.
+These defines are yet to be added. For reference:
+https://lore.kernel.org/all/20230522092201.127598-3-s-vadapalli@ti.com/
 
+SERDES4 by default is used for display but it can be configured for 
+QSGMII too. There are users for that configuration as well. So it felt 
+reasonable to add the definitions for SERDES4 which were missed earlier.
+
+Warm Regards,
+-Jayesh
