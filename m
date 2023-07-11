@@ -2,59 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B39D74F07B
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 15:43:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B5EA74F0A3
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 15:48:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230048AbjGKNng (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jul 2023 09:43:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57038 "EHLO
+        id S232441AbjGKNsJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jul 2023 09:48:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33334 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230238AbjGKNnf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 09:43:35 -0400
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12807BC;
-        Tue, 11 Jul 2023 06:43:32 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 36BDhI5T018313;
-        Tue, 11 Jul 2023 08:43:18 -0500
+        with ESMTP id S233190AbjGKNsI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 09:48:08 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D58C794;
+        Tue, 11 Jul 2023 06:48:07 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 36BDlCwn079124;
+        Tue, 11 Jul 2023 08:47:12 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1689082998;
-        bh=OEc9D11iS7tix/d9n9bXotQAwZFaT/M0Qmu4zO2T/r0=;
+        s=ti-com-17Q1; t=1689083232;
+        bh=jioZ5EQ6Mj77h+zJzp0xw4/D4yqXi/fQM1xolPBvavU=;
         h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=QFI3TpQZTjcdPyNlVQ2d3NWK1MyVTSsG8v1d2F8WbPg8HHZy0vicj5SsLoD2/zmTj
-         iSJA2LLonDzIR/GTEKm3tnbO5p2tbHePNSjsR0y6edfp/HHtSmwQxQ24rFiDYQgPEM
-         7jo+WIFFsCS9jFN8QZ6vIguNOp1o2l4t4yvWWOVw=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 36BDhIDD061455
+        b=SGTbx1tyiHUFSMI6+gnlqYlK+n0Gnw2cM/JOMG4fXzaPqKsSIOtaArPVnkABV0PB4
+         xPXvQ8nt3S6s2FJWmudtAYvltL1ImtOrbEx90L9NYq8QQ9xBCdTR81cVlcbKF6zZNr
+         rIEjMGR4VwZVDVl1docB2ndwqPT0z67kfMlfcLEg=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 36BDlC14098679
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 11 Jul 2023 08:43:18 -0500
-Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+        Tue, 11 Jul 2023 08:47:12 -0500
+Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 11
- Jul 2023 08:43:18 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ Jul 2023 08:47:12 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 11 Jul 2023 08:43:18 -0500
+ Frontend Transport; Tue, 11 Jul 2023 08:47:12 -0500
 Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 36BDhIsk063152;
-        Tue, 11 Jul 2023 08:43:18 -0500
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 36BDlCN5067893;
+        Tue, 11 Jul 2023 08:47:12 -0500
 From:   Nishanth Menon <nm@ti.com>
-To:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
+To:     David Lechner <david@lechnology.com>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
         <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-omap@vger.kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 CC:     Nishanth Menon <nm@ti.com>
-Subject: Re: [PATCH] arm64: dts: ti: minor whitespace cleanup around '='
-Date:   Tue, 11 Jul 2023 08:43:17 -0500
-Message-ID: <168908291580.1710849.17607734826509861707.b4-ty@ti.com>
+Subject: Re: (subset) [PATCH 1/2] ARM: dts: ti: add missing space before {
+Date:   Tue, 11 Jul 2023 08:47:09 -0500
+Message-ID: <168908320330.1713088.7826931422248348480.b4-ty@ti.com>
 X-Mailer: git-send-email 2.40.0
-In-Reply-To: <20230702185221.44319-1-krzysztof.kozlowski@linaro.org>
-References: <20230702185221.44319-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230705145755.292927-1-krzysztof.kozlowski@linaro.org>
+References: <20230705145755.292927-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -71,17 +77,16 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hi Krzysztof Kozlowski,
 
-On Sun, 02 Jul 2023 20:52:21 +0200, Krzysztof Kozlowski wrote:
-> The DTS code coding style expects exactly one space before and after '='
-> sign.
+On Wed, 05 Jul 2023 16:57:54 +0200, Krzysztof Kozlowski wrote:
+> Add missing whitespace between node name/label and opening {.
 > 
 > 
 
 I have applied the following to branch ti-k3-dts-next on [1].
 Thank you!
 
-[1/1] arm64: dts: ti: minor whitespace cleanup around '='
-      commit: 414772b8f7d7a9ccbfb5f0f3fd51bbfb8d54501a
+[2/2] arm64: dts: ti: add missing space before {
+      commit: 48a498a269c60cd3ca3de87761a1016aa7de9593
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent up the chain during
