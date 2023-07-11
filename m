@@ -2,89 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6018074E68D
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 07:53:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D726A74E698
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 07:55:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230047AbjGKFxv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jul 2023 01:53:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37560 "EHLO
+        id S229449AbjGKFzi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jul 2023 01:55:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38856 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230035AbjGKFxt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 01:53:49 -0400
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 461E11A2
-        for <devicetree@vger.kernel.org>; Mon, 10 Jul 2023 22:53:47 -0700 (PDT)
-Received: by mail-lj1-x233.google.com with SMTP id 38308e7fff4ca-2b6ef64342aso83633661fa.3
-        for <devicetree@vger.kernel.org>; Mon, 10 Jul 2023 22:53:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689054825; x=1691646825;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=VYgPeMSCL3nNziCu2Z17cxZzWPhKGfRWNw9RgpV/GLs=;
-        b=gVqQHkutiocfEv2pnMd0jHZ+FUNYXoqq69H5hH/mm/zbNFlWIfx5yLSj4m8ZDUrtdw
-         jWaICxwg0Zmd9qOFmhd5A95xrhC1wZoER7C1KyCced8M+FZd4NpvV3zX3OqgRSD3Bt5T
-         IcugLGA7tnyttr+QYK+zRfJnfs8Q5uxSuTFoTtY1NCyFWS60B3/9Lxw4U4gMz5Q0aBBJ
-         LoNpXKrYhOjF57NW7s6u1WM08hN6pBgpU0Gga/V9gueL6Vbw0dpDNU+t5aJoGcighFMm
-         P0UQJ8Or2Ee46FwssADTVTVEk7pxsU3FhnaSoslp4uRvQZB2t0WUuj9MeOOM7IcQPjmT
-         Tw6w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689054825; x=1691646825;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=VYgPeMSCL3nNziCu2Z17cxZzWPhKGfRWNw9RgpV/GLs=;
-        b=Yge4DCnuZmco8IgKD7LTMe87tWMNWLrsSK8xYdPikANfw7HwooPKf+zQONgEkE+yhF
-         YfjFnYZ4HbAXSJ+33qUIYtokk4pOmPMiGG3OLmPasjQ0Mt44qZW0lmWupA4zzhQ96yTc
-         auJMQFOZef6th73FUjevSlc1U6AH0QISMdo+9hwy0vQzJt/l7ZQP7HkYH7X2TUwilig5
-         u6C2PG6Sz5zcTGqjBK1OMs7/6wysA08/aObSkIapddDkHivxAdlIVukJj9nMTUUy/qyZ
-         6ltLfnuamkzG/GXE3FucPQsurueMoX49DNi9kqlrIcWAYKkT9+yD57vggU+p9KfqvIRF
-         eY0Q==
-X-Gm-Message-State: ABy/qLaLxJwGN5Bry0dslwQVEJiCfoIFDfJScXOjSXSld2ijWHEjNr7+
-        W0Th2ZAaBm4tZ8mJ/rlqUmz5Ew==
-X-Google-Smtp-Source: APBJJlFV9GMTTfMplww67OlM4c38B4zQ3xlLIq0Y2DFMx149QmJv4/QIo8CBE4IQ+dWRG7ueBNzMrg==
-X-Received: by 2002:a2e:7c09:0:b0:2b6:e7b7:a163 with SMTP id x9-20020a2e7c09000000b002b6e7b7a163mr11749149ljc.27.1689054825381;
-        Mon, 10 Jul 2023 22:53:45 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id i13-20020a1709061ccd00b00993017b64a9sm634944ejh.223.2023.07.10.22.53.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 10 Jul 2023 22:53:44 -0700 (PDT)
-Message-ID: <afbab9c3-ae67-1a30-6fc5-e031f9f30286@linaro.org>
-Date:   Tue, 11 Jul 2023 07:53:43 +0200
+        with ESMTP id S229845AbjGKFze (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 01:55:34 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 262501AC;
+        Mon, 10 Jul 2023 22:55:32 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 36B5tMl2041466;
+        Tue, 11 Jul 2023 00:55:22 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1689054922;
+        bh=yykvZgnCoI6gaQWerwj2eoEr1FlZ4CXV/wzlrynEAUE=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=up0SHfiWxC95aybfKVAspgZmAog3rl042L+UD4fS8WE2k/V4Xd/e3j07Ds57fdY8Z
+         bMGWrAgw0OrH746pdE/MfJMWW0QUO8XQCRpAQqLrypFLADJTAaqfdR70lDE2QLrr3E
+         LMqfhtnitfhzwf04QjSh14mJpcS6j1eWGwfndbxw=
+Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 36B5tM6u091944
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 11 Jul 2023 00:55:22 -0500
+Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 11
+ Jul 2023 00:55:21 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 11 Jul 2023 00:55:22 -0500
+Received: from [10.24.68.113] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 36B5tImQ058676;
+        Tue, 11 Jul 2023 00:55:19 -0500
+Message-ID: <ecbb6d34-e024-f6c6-5921-ba7bc6fe2e5e@ti.com>
+Date:   Tue, 11 Jul 2023 11:25:18 +0530
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v3 2/3] dt-bindings: power: Add compatible for sdx75
+ Thunderbird/102.11.0
+Subject: Re: [PATCH] dt-bindings: ti-serdes-mux: Add defines for SERDES4 in
+ J784S4 SoC
 Content-Language: en-US
-To:     Rohit Agarwal <quic_rohiagar@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <1689054169-10800-1-git-send-email-quic_rohiagar@quicinc.com>
- <1689054169-10800-3-git-send-email-quic_rohiagar@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1689054169-10800-3-git-send-email-quic_rohiagar@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <peda@axentia.se>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
+CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <s-vadapalli@ti.com>
+References: <20230710102712.155195-1-j-choudhary@ti.com>
+ <d136d58d-9582-3833-861f-086b64c1ad36@linaro.org>
+From:   Jayesh Choudhary <j-choudhary@ti.com>
+In-Reply-To: <d136d58d-9582-3833-861f-086b64c1ad36@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/07/2023 07:42, Rohit Agarwal wrote:
-> Add a compatible string that can be used to list PDs for sdx75.
+Hello Krzysztof,
+
+On 10/07/23 17:11, Krzysztof Kozlowski wrote:
+> On 10/07/2023 12:27, Jayesh Choudhary wrote:
+>> SERDES4 has 4 lanes. Add lane definitions for it.
+>>
+>> Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
+>> ---
+>>   include/dt-bindings/mux/ti-serdes.h | 20 ++++++++++++++++++++
 > 
-> Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
-> ---
+> Where are the users of this binding constants? IOW, why do you need to
+> add these?
+> 
+> I don't see users of existing constants either...
+> 
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+These constants are propagated in the idle-state property for the
+mux-controller node (named serdes_ln_ctrl) usually in the final
+board dts files and occasionally in the main dtsi files for TI SoCs.
 
-Best regards,
-Krzysztof
-
+-Jayesh
