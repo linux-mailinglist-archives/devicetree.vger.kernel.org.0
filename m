@@ -2,262 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AFA7974EEB6
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 14:23:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D2B274EE8B
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 14:21:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232240AbjGKMXe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jul 2023 08:23:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52370 "EHLO
+        id S232198AbjGKMVz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jul 2023 08:21:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52564 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232174AbjGKMXE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 08:23:04 -0400
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D17F910F6
-        for <devicetree@vger.kernel.org>; Tue, 11 Jul 2023 05:21:36 -0700 (PDT)
-Received: by mail-lj1-x22d.google.com with SMTP id 38308e7fff4ca-2b703a0453fso88425091fa.3
-        for <devicetree@vger.kernel.org>; Tue, 11 Jul 2023 05:21:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689077976; x=1691669976;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=hSHC4l0gplSJLLulVhlWKIZdx5+fKnKYFEmJEyGDU+A=;
-        b=foJDSaBicnp7FQezuElZP030n0/FHiLPO9Fb9DgJh3gvHDsN4ZzbB8v0voLZ5iMeGs
-         Qcd0tb880CQOtwLeCPMGv69H30FrFJuXxr03VgECOk5Z/AJkkWQ0zFF4qIh8CwOVZaqO
-         Fc8xciynpGkbZbzdsWxDZukLIk49LO65y/9rYUjCG/gpRIeFUlK67IujuMqvTQK9kQJG
-         PNrXavuemFDYZ+E8xqZ2cWe/hS2ImNg15AK/sAG4QyMJozRzbaYIklRs3g4mBnEx1Mdj
-         ZwMdn8IcsY/aY4qjkUkh+DAbvApgYvXuGaOIF7k09F/BPEzzQiEiUc7o6FdMD7PFzxRq
-         LEfg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689077976; x=1691669976;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=hSHC4l0gplSJLLulVhlWKIZdx5+fKnKYFEmJEyGDU+A=;
-        b=MTgwqoAPs2eQOHfBAFNGTq/E0APk2LKRfdGw/32O5bXn4TvTwfqERKFNFun7RWm5bO
-         f4qRzKjLm6XiSlG2c0G32JA8OW7Iu5bZlpm1zZ1OzMnOYgR6BICA7x2k5cyRfPEeMBJK
-         8ElYutWgZrEQ81IEdpkCXru3E2MqqZaNhPssHDEn75L7/37M1Qd9x8XZlo0crdmH5nwS
-         hIaAsNnLL0fupoXH51rqE+Ayp9eg27/sZsNaGZSG+4YtEkSOjw6K/WcNavvAUc+9JNg4
-         h+lDy90VvAxR4UJgD785u5nRltNhaOqv650sk7YV7asThN6tDXGSNaVjy+U34mgk0k2C
-         Ov9g==
-X-Gm-Message-State: ABy/qLZRsZGVGSRUgVKr0yZfiQ9NusS0CqKL7SuvauIRW8Lq45Ijpbs9
-        E+hCxT4qT2lr75FX6ilUvuDKtA==
-X-Google-Smtp-Source: APBJJlEU9I11aEXrAvD0lMzre2JXwbJszN+iFqWDfzBtJ6UCVwR0/JRGXW5+TgQ8uUK8clcH2V8gUQ==
-X-Received: by 2002:a2e:990f:0:b0:2b7:1c0f:f215 with SMTP id v15-20020a2e990f000000b002b71c0ff215mr6566247lji.2.1689077976203;
-        Tue, 11 Jul 2023 05:19:36 -0700 (PDT)
-Received: from [192.168.1.101] (abyl96.neoplus.adsl.tpnet.pl. [83.9.31.96])
-        by smtp.gmail.com with ESMTPSA id d18-20020a2e96d2000000b002b708450951sm435563ljj.88.2023.07.11.05.19.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 Jul 2023 05:19:35 -0700 (PDT)
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Date:   Tue, 11 Jul 2023 14:18:52 +0200
-Subject: [PATCH 53/53] interconnect: qcom: sm8550: Point camera paths to
- the camera RSC
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230708-topic-rpmh_icc_rsc-v1-53-b223bd2ac8dd@linaro.org>
-References: <20230708-topic-rpmh_icc_rsc-v1-0-b223bd2ac8dd@linaro.org>
-In-Reply-To: <20230708-topic-rpmh_icc_rsc-v1-0-b223bd2ac8dd@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Georgi Djakov <djakov@kernel.org>,
+        with ESMTP id S232208AbjGKMVQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 08:21:16 -0400
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 0435E2713;
+        Tue, 11 Jul 2023 05:20:06 -0700 (PDT)
+Received: from loongson.cn (unknown [112.20.109.108])
+        by gateway (Coremail) with SMTP id _____8AxV_HESK1kK4EDAA--.10297S3;
+        Tue, 11 Jul 2023 20:19:16 +0800 (CST)
+Received: from localhost.localdomain (unknown [112.20.109.108])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8BxniPDSK1kBa0oAA--.9337S2;
+        Tue, 11 Jul 2023 20:19:16 +0800 (CST)
+From:   Binbin Zhou <zhoubinbin@loongson.cn>
+To:     Binbin Zhou <zhoubb.aaron@gmail.com>,
+        Huacai Chen <chenhuacai@loongson.cn>,
+        Vinod Koul <vkoul@kernel.org>, dmaengine@vger.kernel.org,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        cros-qcom-dts-watchers@chromium.org
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1689077904; l=5762;
- i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=W6na5tQubESsXoW9+LUn1M9R9sjGfLBb8AasT+sD/gg=;
- b=LJKdtd94KUc+CXD5JNWf2ab3MiRf13typSRJvQgEbZhLudJiAhYDUF0t9U94EeCcSdhQdDg6d
- QOliq5sd1MMASebL8OKCdJ1d1h0gofCmuRajrDkEZu5wA0dZ9sXu5ii
-X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
- pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
+Cc:     Huacai Chen <chenhuacai@kernel.org>,
+        loongson-kernel@lists.loongnix.cn, Xuerui Wang <kernel@xen0n.name>,
+        loongarch@lists.linux.dev, Yingkun Meng <mengyingkun@loongson.cn>,
+        Binbin Zhou <zhoubinbin@loongson.cn>
+Subject: [PATCH v3 0/2] New driver for the Loongson LS2X APB DMA Controller
+Date:   Tue, 11 Jul 2023 20:18:59 +0800
+Message-Id: <cover.1689075791.git.zhoubinbin@loongson.cn>
+X-Mailer: git-send-email 2.39.3
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: AQAAf8BxniPDSK1kBa0oAA--.9337S2
+X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/
+X-Coremail-Antispam: 1Uk129KBj93XoW7ur43WFW7JFyDJw18ArWfXrc_yoW8GF4rpa
+        y3ua9akFyjqFW3CrZ3Ga48ur1fZ3WfJ39rWa9xAw1UZ3y7Cryjq3yfKanY9FWUCayIqFWj
+        vFZ5GFyUCFnrZrcCm3ZEXasCq-sJn29KB7ZKAUJUUUU5529EdanIXcx71UUUUU7KY7ZEXa
+        sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
+        0xBIdaVrnRJUUUk0b4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
+        IYs7xG6rWj6s0DM7CIcVAFz4kK6r106r15M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
+        e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Gr0_Xr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
+        0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVWxJr0_GcWl84ACjcxK6I8E87Iv6xkF7I0E14v2
+        6F4UJVW0owAS0I0E0xvYzxvE52x082IY62kv0487Mc804VCY07AIYIkI8VC2zVCFFI0UMc
+        02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWUXVWUAwAv7VC2z280aVAF
+        wI0_Gr0_Cr1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcxkI7VAKI48JMxAIw28IcxkI7V
+        AKI48JMxC20s026xCaFVCjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCj
+        r7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY6x
+        IIjxv20xvE14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVWUJVW8JwCI42IY6xAI
+        w20EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x
+        0267AKxVWUJVW8JbIYCTnIWIevJa73UjIFyTuYvjxUcrWFUUUUU
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The _CAM_n paths are expected to go through the respective channels of
-the CAM RSC. Point them to the correct places.
+Hi all:
 
-Fixes: e6f0d6a30f73 ("interconnect: qcom: Add SM8550 interconnect provider driver")
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
- drivers/interconnect/qcom/sm8550.c | 36 ++++++++++++++++++------------------
- 1 file changed, 18 insertions(+), 18 deletions(-)
+This patchset introduces you to the LS2X apbdma controller.
 
-diff --git a/drivers/interconnect/qcom/sm8550.c b/drivers/interconnect/qcom/sm8550.c
-index 41314b214cbe..8970fd6505f5 100644
---- a/drivers/interconnect/qcom/sm8550.c
-+++ b/drivers/interconnect/qcom/sm8550.c
-@@ -1696,21 +1696,21 @@ static struct qcom_icc_bcm bcm_sh1_disp = {
- static struct qcom_icc_bcm bcm_acv_cam_ife_0 = {
- 	.name = "ACV",
- 	.enable_mask = 0x0,
--	.voter_idx = ICC_BCM_VOTER_APPS,
-+	.voter_idx = ICC_BCM_VOTER_CAM0,
- 	.num_nodes = 1,
- 	.nodes = { &ebi_cam_ife_0 },
- };
- 
- static struct qcom_icc_bcm bcm_mc0_cam_ife_0 = {
- 	.name = "MC0",
--	.voter_idx = ICC_BCM_VOTER_APPS,
-+	.voter_idx = ICC_BCM_VOTER_CAM0,
- 	.num_nodes = 1,
- 	.nodes = { &ebi_cam_ife_0 },
- };
- 
- static struct qcom_icc_bcm bcm_mm0_cam_ife_0 = {
- 	.name = "MM0",
--	.voter_idx = ICC_BCM_VOTER_APPS,
-+	.voter_idx = ICC_BCM_VOTER_CAM0,
- 	.num_nodes = 1,
- 	.nodes = { &qns_mem_noc_hf_cam_ife_0 },
- };
-@@ -1718,7 +1718,7 @@ static struct qcom_icc_bcm bcm_mm0_cam_ife_0 = {
- static struct qcom_icc_bcm bcm_mm1_cam_ife_0 = {
- 	.name = "MM1",
- 	.enable_mask = 0x1,
--	.voter_idx = ICC_BCM_VOTER_APPS,
-+	.voter_idx = ICC_BCM_VOTER_CAM0,
- 	.num_nodes = 4,
- 	.nodes = { &qnm_camnoc_hf_cam_ife_0, &qnm_camnoc_icp_cam_ife_0,
- 		   &qnm_camnoc_sf_cam_ife_0, &qns_mem_noc_sf_cam_ife_0 },
-@@ -1726,7 +1726,7 @@ static struct qcom_icc_bcm bcm_mm1_cam_ife_0 = {
- 
- static struct qcom_icc_bcm bcm_sh0_cam_ife_0 = {
- 	.name = "SH0",
--	.voter_idx = ICC_BCM_VOTER_APPS,
-+	.voter_idx = ICC_BCM_VOTER_CAM0,
- 	.num_nodes = 1,
- 	.nodes = { &qns_llcc_cam_ife_0 },
- };
-@@ -1734,7 +1734,7 @@ static struct qcom_icc_bcm bcm_sh0_cam_ife_0 = {
- static struct qcom_icc_bcm bcm_sh1_cam_ife_0 = {
- 	.name = "SH1",
- 	.enable_mask = 0x1,
--	.voter_idx = ICC_BCM_VOTER_APPS,
-+	.voter_idx = ICC_BCM_VOTER_CAM0,
- 	.num_nodes = 3,
- 	.nodes = { &qnm_mnoc_hf_cam_ife_0, &qnm_mnoc_sf_cam_ife_0,
- 		   &qnm_pcie_cam_ife_0 },
-@@ -1743,21 +1743,21 @@ static struct qcom_icc_bcm bcm_sh1_cam_ife_0 = {
- static struct qcom_icc_bcm bcm_acv_cam_ife_1 = {
- 	.name = "ACV",
- 	.enable_mask = 0x0,
--	.voter_idx = ICC_BCM_VOTER_APPS,
-+	.voter_idx = ICC_BCM_VOTER_CAM1,
- 	.num_nodes = 1,
- 	.nodes = { &ebi_cam_ife_1 },
- };
- 
- static struct qcom_icc_bcm bcm_mc0_cam_ife_1 = {
- 	.name = "MC0",
--	.voter_idx = ICC_BCM_VOTER_APPS,
-+	.voter_idx = ICC_BCM_VOTER_CAM1,
- 	.num_nodes = 1,
- 	.nodes = { &ebi_cam_ife_1 },
- };
- 
- static struct qcom_icc_bcm bcm_mm0_cam_ife_1 = {
- 	.name = "MM0",
--	.voter_idx = ICC_BCM_VOTER_APPS,
-+	.voter_idx = ICC_BCM_VOTER_CAM1,
- 	.num_nodes = 1,
- 	.nodes = { &qns_mem_noc_hf_cam_ife_1 },
- };
-@@ -1765,7 +1765,7 @@ static struct qcom_icc_bcm bcm_mm0_cam_ife_1 = {
- static struct qcom_icc_bcm bcm_mm1_cam_ife_1 = {
- 	.name = "MM1",
- 	.enable_mask = 0x1,
--	.voter_idx = ICC_BCM_VOTER_APPS,
-+	.voter_idx = ICC_BCM_VOTER_CAM1,
- 	.num_nodes = 4,
- 	.nodes = { &qnm_camnoc_hf_cam_ife_1, &qnm_camnoc_icp_cam_ife_1,
- 		   &qnm_camnoc_sf_cam_ife_1, &qns_mem_noc_sf_cam_ife_1 },
-@@ -1773,7 +1773,7 @@ static struct qcom_icc_bcm bcm_mm1_cam_ife_1 = {
- 
- static struct qcom_icc_bcm bcm_sh0_cam_ife_1 = {
- 	.name = "SH0",
--	.voter_idx = ICC_BCM_VOTER_APPS,
-+	.voter_idx = ICC_BCM_VOTER_CAM1,
- 	.num_nodes = 1,
- 	.nodes = { &qns_llcc_cam_ife_1 },
- };
-@@ -1781,7 +1781,7 @@ static struct qcom_icc_bcm bcm_sh0_cam_ife_1 = {
- static struct qcom_icc_bcm bcm_sh1_cam_ife_1 = {
- 	.name = "SH1",
- 	.enable_mask = 0x1,
--	.voter_idx = ICC_BCM_VOTER_APPS,
-+	.voter_idx = ICC_BCM_VOTER_CAM1,
- 	.num_nodes = 3,
- 	.nodes = { &qnm_mnoc_hf_cam_ife_1, &qnm_mnoc_sf_cam_ife_1,
- 		   &qnm_pcie_cam_ife_1 },
-@@ -1790,21 +1790,21 @@ static struct qcom_icc_bcm bcm_sh1_cam_ife_1 = {
- static struct qcom_icc_bcm bcm_acv_cam_ife_2 = {
- 	.name = "ACV",
- 	.enable_mask = 0x0,
--	.voter_idx = ICC_BCM_VOTER_APPS,
-+	.voter_idx = ICC_BCM_VOTER_CAM2,
- 	.num_nodes = 1,
- 	.nodes = { &ebi_cam_ife_2 },
- };
- 
- static struct qcom_icc_bcm bcm_mc0_cam_ife_2 = {
- 	.name = "MC0",
--	.voter_idx = ICC_BCM_VOTER_APPS,
-+	.voter_idx = ICC_BCM_VOTER_CAM2,
- 	.num_nodes = 1,
- 	.nodes = { &ebi_cam_ife_2 },
- };
- 
- static struct qcom_icc_bcm bcm_mm0_cam_ife_2 = {
- 	.name = "MM0",
--	.voter_idx = ICC_BCM_VOTER_APPS,
-+	.voter_idx = ICC_BCM_VOTER_CAM2,
- 	.num_nodes = 1,
- 	.nodes = { &qns_mem_noc_hf_cam_ife_2 },
- };
-@@ -1812,7 +1812,7 @@ static struct qcom_icc_bcm bcm_mm0_cam_ife_2 = {
- static struct qcom_icc_bcm bcm_mm1_cam_ife_2 = {
- 	.name = "MM1",
- 	.enable_mask = 0x1,
--	.voter_idx = ICC_BCM_VOTER_APPS,
-+	.voter_idx = ICC_BCM_VOTER_CAM2,
- 	.num_nodes = 4,
- 	.nodes = { &qnm_camnoc_hf_cam_ife_2, &qnm_camnoc_icp_cam_ife_2,
- 		   &qnm_camnoc_sf_cam_ife_2, &qns_mem_noc_sf_cam_ife_2 },
-@@ -1820,7 +1820,7 @@ static struct qcom_icc_bcm bcm_mm1_cam_ife_2 = {
- 
- static struct qcom_icc_bcm bcm_sh0_cam_ife_2 = {
- 	.name = "SH0",
--	.voter_idx = ICC_BCM_VOTER_APPS,
-+	.voter_idx = ICC_BCM_VOTER_CAM2,
- 	.num_nodes = 1,
- 	.nodes = { &qns_llcc_cam_ife_2 },
- };
-@@ -1828,7 +1828,7 @@ static struct qcom_icc_bcm bcm_sh0_cam_ife_2 = {
- static struct qcom_icc_bcm bcm_sh1_cam_ife_2 = {
- 	.name = "SH1",
- 	.enable_mask = 0x1,
--	.voter_idx = ICC_BCM_VOTER_APPS,
-+	.voter_idx = ICC_BCM_VOTER_CAM2,
- 	.num_nodes = 3,
- 	.nodes = { &qnm_mnoc_hf_cam_ife_2, &qnm_mnoc_sf_cam_ife_2,
- 		   &qnm_pcie_cam_ife_2 },
+The Loongson LS2X APB DMA controller is available on Loongson-2K chips.
+It is a single-channel, configurable DMA controller IP core based on the
+AXI bus, whose main function is to integrate DMA functionality on a chip
+dedicated to carrying data between memory and peripherals in APB bus
+(e.g. nand).
+
+Thanks.
+
+----
+V3:
+patch(1/2)
+  - Add clocks property;
+  - Drop dma-channels property, for we are single-channel dmac.
+patch(2/2)
+  - Add clk support. 
+
+Link to V2:
+https://lore.kernel.org/dmaengine/cover.1686192243.git.zhoubinbin@loongson.cn/
+
+V2:
+patch(1/2)
+  - Minor changes from Conor;
+  - Add Reviewed-by tag.
+patch(2/2)
+  - Fix build errors from lkp@intel.com.
+
+Link to V1:
+https://lore.kernel.org/dmaengine/cover.1685448898.git.zhoubinbin@loongson.cn/
+
+Binbin Zhou (2):
+  dt-bindings: dmaengine: Add Loongson LS2X APB DMA controller
+  dmaengine: ls2x-apb: new driver for the Loongson LS2X APB DMA
+    controller
+
+ .../bindings/dma/loongson,ls2x-apbdma.yaml    |  62 ++
+ MAINTAINERS                                   |   7 +
+ drivers/dma/Kconfig                           |  14 +
+ drivers/dma/Makefile                          |   1 +
+ drivers/dma/ls2x-apb-dma.c                    | 684 ++++++++++++++++++
+ 5 files changed, 768 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/dma/loongson,ls2x-apbdma.yaml
+ create mode 100644 drivers/dma/ls2x-apb-dma.c
 
 -- 
-2.41.0
+2.39.3
 
