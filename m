@@ -2,122 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4FE2174F303
+	by mail.lfdr.de (Postfix) with ESMTP id 0918374F302
 	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 17:09:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230331AbjGKPI4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jul 2023 11:08:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33168 "EHLO
+        id S229921AbjGKPI5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jul 2023 11:08:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33182 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230253AbjGKPIj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 11:08:39 -0400
-Received: from hel-mailgw-01.vaisala.com (hel-mailgw-01.vaisala.com [193.143.230.17])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D0CC100;
-        Tue, 11 Jul 2023 08:08:37 -0700 (PDT)
-Received: from HEL-SMTP.corp.vaisala.com (HEL-SMTP.corp.vaisala.com [172.24.1.225])
-        by hel-mailgw-01.vaisala.com (Postfix) with ESMTP id 7706D601F064;
-        Tue, 11 Jul 2023 18:08:36 +0300 (EEST)
-Received: from yocto-vm.localdomain ([172.24.253.44]) by HEL-SMTP.corp.vaisala.com over TLS secured channel with Microsoft SMTPSVC(8.5.9600.16384);
-         Tue, 11 Jul 2023 18:08:36 +0300
-From:   =?UTF-8?q?Vesa=20J=C3=A4=C3=A4skel=C3=A4inen?= 
-        <vesa.jaaskelainen@vaisala.com>
-Cc:     vesa.jaaskelainen@vaisala.com, Wei Fang <wei.fang@nxp.com>,
-        Shenwei Wang <shenwei.wang@nxp.com>,
-        Clark Wang <xiaoning.wang@nxp.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        with ESMTP id S230257AbjGKPIo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 11:08:44 -0400
+Received: from mail-4018.proton.ch (mail-4018.proton.ch [185.70.40.18])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92202A0
+        for <devicetree@vger.kernel.org>; Tue, 11 Jul 2023 08:08:42 -0700 (PDT)
+Date:   Tue, 11 Jul 2023 15:08:31 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=connolly.tech;
+        s=protonmail; t=1689088119; x=1689347319;
+        bh=VIjn5Sgr+XaI5m5nuTNBKwgTaDZhQimElHATfB00U6o=;
+        h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+         Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+         Message-ID:BIMI-Selector;
+        b=hQD30D9TLLyDcO2bVl3okDKDs2kzhhC5933d/BlWVXxUwQTaMAx3k3rghCgId7t20
+         k6HMSplZ3mlQOqHW09SZiGGpWfONV5kXZs53aG1Ih0OouFOKpT6AWs4loYxgwXJBdG
+         yUJdaQEcExbliNS5agrIVUaRAlobvtUZR3TVaqds=
+To:     Bjorn Andersson <andersson@kernel.org>,
+        Gergo Koteles <soyer@irl.hu>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>
+From:   Caleb Connolly <caleb@connolly.tech>
+Cc:     Jonathan Corbet <corbet@lwn.net>, Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Russell King <linux@armlinux.org.uk>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 2/2] ARM: imx: imx6sx: Add support for TX clock controls
-Date:   Tue, 11 Jul 2023 18:08:05 +0300
-Message-Id: <20230711150808.18714-3-vesa.jaaskelainen@vaisala.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230711150808.18714-1-vesa.jaaskelainen@vaisala.com>
-References: <20230711150808.18714-1-vesa.jaaskelainen@vaisala.com>
+        Jiri Kosina <jikos@kernel.org>,
+        Benjamin Tissoires <benjamin.tissoires@redhat.com>,
+        linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 2/3] Input: add ABS_SND_PROFILE
+Message-ID: <65708872-3209-bd7b-d873-45e75a9e34bb@connolly.tech>
+In-Reply-To: <20230407171103.5jf46g4hw3fed7dn@ripper>
+References: <cover.1677022414.git.soyer@irl.hu> <1a4752739568afbdbaaff48436d2bb595d2bda0d.1677022414.git.soyer@irl.hu> <20230407171103.5jf46g4hw3fed7dn@ripper>
+Feedback-ID: 10753939:user:proton
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-OriginalArrivalTime: 11 Jul 2023 15:08:36.0120 (UTC) FILETIME=[90CD0180:01D9B409]
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device tree configuration support whether Ethernet controller's
-ENETx_TX_CLK output driver is enabled.
 
-Also add device tree configuration support whether Ethernet controller's
-ENETx_TX_CLK pin is used as reference clock for Ethernet. If not defined
-then ref_enetpllx is used as reference clock.
 
-If the new properties are not present then the existing behavior is
-preserved.
+On 07/04/2023 18:11, Bjorn Andersson wrote:
+> On Wed, Feb 22, 2023 at 01:10:33AM +0100, Gergo Koteles wrote:
+>> ABS_SND_PROFILE used to describe the state of a multi-value sound profil=
+e
+>> switch. This will be used for the alert-slider on OnePlus phones or othe=
+r
+>> phones.
+>>
+>> Profile values added as SND_PROFLE_(SILENT|VIBRATE|RING) identifiers
+>> to input-event-codes.h so they can be used from DTS.
+>>
+>> Signed-off-by: Gergo Koteles <soyer@irl.hu>
+>> ---
+>>  Documentation/input/event-codes.rst    | 6 ++++++
+>>  drivers/hid/hid-debug.c                | 1 +
+>>  include/uapi/linux/input-event-codes.h | 9 +++++++++
+>>  3 files changed, 16 insertions(+)
+>>
+>> diff --git a/Documentation/input/event-codes.rst b/Documentation/input/e=
+vent-codes.rst
+>> index b4557462edd7..d43336e64d6a 100644
+>> --- a/Documentation/input/event-codes.rst
+>> +++ b/Documentation/input/event-codes.rst
+>> @@ -241,6 +241,12 @@ A few EV_ABS codes have special meanings:
+>>      emitted only when the selected profile changes, indicating the newl=
+y
+>>      selected profile value.
+>>
+...
+>>
+>> +/*
+>> + * ABS_SND_PROFILE values
+>> + */
+>> +
+>> +#define SND_PROFILE_SILENT=090x00
+>> +#define SND_PROFILE_VIBRATE=090x01
+>> +#define SND_PROFILE_RING=090x02
+>=20
+> The patch looks good to me, bu I'd need these header file additions in
+> order to merge the dts patch. Could I get an ack and take it through the
+> Qualocmm tree, or could you pick it up for 6.4, and then I can merge the
+> dts change after that?
 
-Signed-off-by: Vesa Jääskeläinen <vesa.jaaskelainen@vaisala.com>
----
- arch/arm/mach-imx/mach-imx6sx.c | 27 +++++++++++++++++++++++++--
- 1 file changed, 25 insertions(+), 2 deletions(-)
+Bump, I think this might have gotten lost.
+>=20
+> Regards,
+> Bjorn
+>=20
+>> +
+>>  #endif
+>> --
+>> 2.39.2
+>>
 
-diff --git a/arch/arm/mach-imx/mach-imx6sx.c b/arch/arm/mach-imx/mach-imx6sx.c
-index e65ed5218f53..b535579ccaa4 100644
---- a/arch/arm/mach-imx/mach-imx6sx.c
-+++ b/arch/arm/mach-imx/mach-imx6sx.c
-@@ -17,14 +17,37 @@
- 
- static void __init imx6sx_enet_clk_sel(void)
- {
-+	struct device_node *enet_np, *from = NULL;
-+	unsigned int clock_mux = 0;
-+	unsigned int clock_dir = 0;
- 	struct regmap *gpr;
-+	int i;
-+
-+	/* Loop thru both FECs found from chip */
-+	for (i = 0; i < 2; i++) {
-+		enet_np = of_find_compatible_node(from, NULL, "fsl,imx6sx-fec");
-+		if (!enet_np)
-+			break;
-+
-+		if (from)
-+			of_node_put(from);
-+		from = enet_np;
-+
-+		if (of_property_read_bool(enet_np, "fsl,fec-tx-clock-output"))
-+			clock_dir |= 1 << (17 /* ENETx_TX_CLK_DIR */ + i);
-+
-+		if (of_property_read_bool(enet_np, "fsl,fec-tx-clk-as-ref-clock"))
-+			clock_mux |= 1 << (13 /* ENETx_CLK_SEL */ + i);
-+	}
-+	if (from)
-+		of_node_put(from);
- 
- 	gpr = syscon_regmap_lookup_by_compatible("fsl,imx6sx-iomuxc-gpr");
- 	if (!IS_ERR(gpr)) {
- 		regmap_update_bits(gpr, IOMUXC_GPR1,
--				   IMX6SX_GPR1_FEC_CLOCK_MUX_SEL_MASK, 0);
-+				   IMX6SX_GPR1_FEC_CLOCK_MUX_SEL_MASK, clock_mux);
- 		regmap_update_bits(gpr, IOMUXC_GPR1,
--				   IMX6SX_GPR1_FEC_CLOCK_PAD_DIR_MASK, 0);
-+				   IMX6SX_GPR1_FEC_CLOCK_PAD_DIR_MASK, clock_dir);
- 	} else {
- 		pr_err("failed to find fsl,imx6sx-iomux-gpr regmap\n");
- 	}
--- 
-2.34.1
+--=20
+Kind Regards,
+Caleb
 
