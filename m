@@ -2,162 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AD28E74F2D1
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 16:55:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C14474F2DA
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 16:59:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231154AbjGKOz4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jul 2023 10:55:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58758 "EHLO
+        id S230394AbjGKO7I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jul 2023 10:59:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59698 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230311AbjGKOzz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 10:55:55 -0400
-Received: from mail-il1-x12e.google.com (mail-il1-x12e.google.com [IPv6:2607:f8b0:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BDA31BB
-        for <devicetree@vger.kernel.org>; Tue, 11 Jul 2023 07:55:52 -0700 (PDT)
-Received: by mail-il1-x12e.google.com with SMTP id e9e14a558f8ab-345f4a3ff76so22410645ab.2
-        for <devicetree@vger.kernel.org>; Tue, 11 Jul 2023 07:55:52 -0700 (PDT)
+        with ESMTP id S230119AbjGKO7I (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 10:59:08 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 197DBA0
+        for <devicetree@vger.kernel.org>; Tue, 11 Jul 2023 07:59:06 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-4f95bf5c493so8701532e87.3
+        for <devicetree@vger.kernel.org>; Tue, 11 Jul 2023 07:59:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=9elements.com; s=google; t=1689087351; x=1691679351;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=NOHj/qmcYw6nskkjE8RKDb9CPghG0QuzHmlycmErO7k=;
-        b=UAqGemQ5+fR3NqE1iuHNZOYmiRCYtr+lfFL/vlAa543KS13WS3iNlyK260KwuyvrJQ
-         oDQLBIWWtOAGxsz1EPlMPeNGOdAUixriKE2ItDSySz8c0lU+mLjKVsYDAcGWhwK8/CkS
-         7PiX/dORprzdKayTOhfCChPNll0xVQ08X3v/mkcbzQGA6cPo7/KuIBTGyC1CpB6xCFm0
-         F2EiqxlHeQnMw6DnvmXGIUyyjyAYvNUWlZWoYooym3r3QsguLK64Pqsdgz+aoWy9hyFu
-         UTUsFzNW9YnuvSxDab/nBF9V/lzVJU+/kJNw2dUz2+6qfFjugcTqHOCpQj6H2YjqcVvl
-         oFGg==
+        d=linaro.org; s=google; t=1689087544; x=1691679544;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=/BBSi3Y2p51GXr/kdqXZWgeltZiMvocxuPhmv54PXCk=;
+        b=m+crFpHVwUmNM1IevtAkCKRHO2NdXi4Nv5/sUrEBbC/6G0nqVk8jGFXEAycB2kX3/L
+         yvpyGo1nZPsvQ4GyyX94zgLaMZrnPUkVphABTvta+rc1eml+Om6KmMMO4if+VkCc8nnE
+         RZE1XinaqSkpC3X7oR2fPKc479VXNwDGzIsXrzYOrRVxNtPGrJ7S2R6gHn0TFLuVKh0C
+         g18BnSXimKeLS0zSqaCI37EeNROn24C5wMu4bX6B61wwlkKwyDqcfqCGMWfVui+WP4co
+         73Qj8z6Gln/VVpK0hrN3zfZDaXosWyu5cy62er1WWnY1FcXuqsNq0aeer9cm3PdNkqGK
+         nScQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689087351; x=1691679351;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=NOHj/qmcYw6nskkjE8RKDb9CPghG0QuzHmlycmErO7k=;
-        b=l2d8t6S1FULCg2LrgdRK7i4UyNulDqW3b3pFoBGiLMoEUUAn7KJB+aPWPLPKtWuYtl
-         u0M2Q3S9/IjUHGFtv9SMlXqjFiBrx/gMzfNrV6WEyCKxU7qQAFlxjP+erL6BjE7KMeHE
-         ds+FvIobBms3GI3wY5A8G+sVb5lZNyScWBOYt/C3bv6iNjP+BLk7+loJbw6j1to1tmVJ
-         65B8/8GMafIDIc9iX1V0t2MWdjgf19klVM8LW3kjMDBE+bp28CJ2cAsiAxmeW//vpo/0
-         TXq+Z4Q0anTjKOfOxuIRGPgzO9ua5WVrfPXOFvXDRSzUjsSXQgd09a0BUOc91WO8aPAV
-         dX6g==
-X-Gm-Message-State: ABy/qLZO5EaZzqzyiUqFIJVi4TjxSdFzxovP9LArqoIKhHRNcN/Sw88C
-        lpni+vhTX1dq/GwySlF+3FyE32KGDutN6f6rkhE33SbQ0LwkSdFsV5E=
-X-Google-Smtp-Source: APBJJlF+eJdBZOlOB49QOJ5FpF5SkOggxkdoD6E1mtnuZ4LSL2JTrp8Pbfbcny9ON0zp5Ijoyl87nE15mEOaswTpBSA=
-X-Received: by 2002:a92:da86:0:b0:346:6dc2:997b with SMTP id
- u6-20020a92da86000000b003466dc2997bmr2950323iln.23.1689087351401; Tue, 11 Jul
- 2023 07:55:51 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1689087544; x=1691679544;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=/BBSi3Y2p51GXr/kdqXZWgeltZiMvocxuPhmv54PXCk=;
+        b=Z2i8ado2Tbk8T2sOKx4EAOkJ11y3ON+5P3B2Wy+T6Bh5u8vw7TOl00YXRWuw/NqRtN
+         AFUtTtwo5C805EIgpOsE3GeCvcNwCh2c/HUMBxBMVL352L62wtA2/UT7zyKOnEd2ZNtV
+         lFciG1rVWqfNxl0lixF/vyttvWJDiYF6vCwnmX55tB7motvEI4O15Anm4ZTBU2AufvtX
+         o1IHwFlKz2Vftdm3Uta8maMHBsMHIBV9+JJkHNNV3blDgFeD6MMt8mdA5zNnXKvobcSM
+         U2HLexoB01H5lC6N89eBPzQU5JzSN5RlKhoyKtnj+/T4Tu7CFWUyuC5rMDmFwlA2h9TE
+         emLg==
+X-Gm-Message-State: ABy/qLYwEU6xe2njWdtJVbeS4azWn2IV+XvBGGjXvEkINqRCn3gtqEJG
+        AO0mupx/fiLUqRDMRtYMB8dlSg==
+X-Google-Smtp-Source: APBJJlEmv479eisRoP1W7B2jI6/9ZRK/5ke7XvBE3vPvencrHGUfD1y6xArNgZUCsv/KhIU2Uxl+bg==
+X-Received: by 2002:a05:6512:128a:b0:4f8:5ab0:68c4 with SMTP id u10-20020a056512128a00b004f85ab068c4mr16389336lfs.59.1689087544345;
+        Tue, 11 Jul 2023 07:59:04 -0700 (PDT)
+Received: from ?IPV6:2001:14ba:a0db:1f00::8a5? (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
+        by smtp.gmail.com with ESMTPSA id j14-20020a19f50e000000b004f7618c67a7sm349351lfb.76.2023.07.11.07.59.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 11 Jul 2023 07:59:03 -0700 (PDT)
+Message-ID: <4330df82-77a9-27ce-3f24-144718cc082e@linaro.org>
+Date:   Tue, 11 Jul 2023 17:59:03 +0300
 MIME-Version: 1.0
-References: <20230710162724.827833-1-Naresh.Solanki@9elements.com> <1f4c500b-e706-a090-516d-992b68f44f0d@roeck-us.net>
-In-Reply-To: <1f4c500b-e706-a090-516d-992b68f44f0d@roeck-us.net>
-From:   Naresh Solanki <naresh.solanki@9elements.com>
-Date:   Tue, 11 Jul 2023 16:55:39 +0200
-Message-ID: <CABqG17jU8HYzOx=OCH6=shJo37MZWRBPydOQsrnDBk3xNaQE5w@mail.gmail.com>
-Subject: Re: [PATCH] hwmon: (peci/cputemp) Add Intel Sapphire Rapids support
-To:     Guenter Roeck <linux@roeck-us.net>
-Cc:     devicetree@vger.kernel.org, Jean Delvare <jdelvare@suse.com>,
-        Iwona Winiarska <iwona.winiarska@intel.com>,
-        linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
-        Patrick Rudolph <patrick.rudolph@9elements.com>,
-        openbmc@lists.ozlabs.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH v3 1/3] dt-bindings: power: rpmhpd: Add Generic RPMh PD
+ indexes
+Content-Language: en-GB
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rohit Agarwal <quic_rohiagar@quicinc.com>, agross@kernel.org,
+        andersson@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <1689054169-10800-1-git-send-email-quic_rohiagar@quicinc.com>
+ <1689054169-10800-2-git-send-email-quic_rohiagar@quicinc.com>
+ <2040226e-9b45-b409-3edd-a5b86d86daa8@linaro.org>
+ <8a3124ce-a11d-2491-eaee-1695cec70b17@quicinc.com>
+ <e885383b-a231-75a1-32ce-bf850f0cb022@linaro.org>
+ <8c3468f0-3069-95e3-e2f1-279fca78a578@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <8c3468f0-3069-95e3-e2f1-279fca78a578@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Guenter,
+On 11/07/2023 14:44, Konrad Dybcio wrote:
+> On 11.07.2023 08:22, Krzysztof Kozlowski wrote:
+>> On 11/07/2023 08:17, Rohit Agarwal wrote:
+>>>
+>>> On 7/11/2023 11:22 AM, Krzysztof Kozlowski wrote:
+>>>> On 11/07/2023 07:42, Rohit Agarwal wrote:
+>>>>> Add Generic RPMh Power Domain indexes that can be used
+>>>>> for all the Qualcomm SoC henceforth.
+>>>>>
+>>>>> Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
+>>>>> Suggested-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+>>>>> ---
+>>>>>    include/dt-bindings/power/qcom-rpmhpd.h | 30 ++++++++++++++++++++++++++++++
+>>>>>    1 file changed, 30 insertions(+)
+>>>>>    create mode 100644 include/dt-bindings/power/qcom-rpmhpd.h
+>>>>>
+>>>>> diff --git a/include/dt-bindings/power/qcom-rpmhpd.h b/include/dt-bindings/power/qcom-rpmhpd.h
+>>>>> new file mode 100644
+>>>>> index 0000000..4da2e04
+>>>>> --- /dev/null
+>>>>> +++ b/include/dt-bindings/power/qcom-rpmhpd.h
+>>>> Filename based on compatible.
+>>> This is not specific for SDX75. These are generic ones that should be
+>>> used for all other targets.
+>>> Konrad suggested in v1 to avoid target specific prefixes everytime and
+>>> to create a new generic
+>>> dt-bindings that can be reused.
+>>>>> @@ -0,0 +1,30 @@
+>>>>> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
+>>>>> +/*
+>>>>> + * Copyright (c) 2023, Qualcomm Innovation Center, Inc. All rights reserved.
+>>>>> + */
+>>>>> +
+>>>>> +#ifndef _DT_BINDINGS_POWER_QCOM_RPMHPD_H
+>>>>> +#define _DT_BINDINGS_POWER_QCOM_RPMHPD_H
+>>>>> +
+>>>>> +/* Generic RPMH Power Domain Indexes */
+>>>>> +#define CX               0
+>>>> These are very generic names, usually not used in global headers. Please
+>>>> use some reasonable prefix.
+>>> This was based on the suggestion from Konrad in v2 to drop the RPMHPD
+>>> prefix and we can go only with names like CX, etc.
+>>
+>> I don't think having so generic name in tree-wide header is good idea.
+> Conversely, I think that it would be very clear in files including this header.
 
-On Mon, 10 Jul 2023 at 19:43, Guenter Roeck <linux@roeck-us.net> wrote:
->
-> On 7/10/23 09:27, Naresh Solanki wrote:
-> > From: Patrick Rudolph <patrick.rudolph@9elements.com>
-> >
-> > Add support to read DTS for reading Intel Sapphire Rapids platform.
-> >
-> > Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
->
-> This patch touches code outside the hwmon subsystem, so I won't be able
-> to apply it without Ack from a maintainer.
-Yes.  I'll split the patch & resubmit.
-~Naresh
->
-> Guenter
->
-> > ---
-> >   drivers/hwmon/peci/cputemp.c | 18 ++++++++++++++++++
-> >   drivers/peci/cpu.c           |  5 +++++
-> >   2 files changed, 23 insertions(+)
-> >
-> > diff --git a/drivers/hwmon/peci/cputemp.c b/drivers/hwmon/peci/cputemp.c
-> > index e5b65a382772..a812c15948d9 100644
-> > --- a/drivers/hwmon/peci/cputemp.c
-> > +++ b/drivers/hwmon/peci/cputemp.c
-> > @@ -363,6 +363,7 @@ static int init_core_mask(struct peci_cputemp *priv)
-> >       switch (peci_dev->info.model) {
-> >       case INTEL_FAM6_ICELAKE_X:
-> >       case INTEL_FAM6_ICELAKE_D:
-> > +     case INTEL_FAM6_SAPPHIRERAPIDS_X:
-> >               ret = peci_ep_pci_local_read(peci_dev, 0, reg->bus, reg->dev,
-> >                                            reg->func, reg->offset + 4, &data);
-> >               if (ret)
-> > @@ -531,6 +532,13 @@ static struct resolved_cores_reg resolved_cores_reg_icx = {
-> >       .offset = 0xd0,
-> >   };
-> >
-> > +static struct resolved_cores_reg resolved_cores_reg_spr = {
-> > +     .bus = 31,
-> > +     .dev = 30,
-> > +     .func = 6,
-> > +     .offset = 0x80,
-> > +};
-> > +
-> >   static const struct cpu_info cpu_hsx = {
-> >       .reg            = &resolved_cores_reg_hsx,
-> >       .min_peci_revision = 0x33,
-> > @@ -549,6 +557,12 @@ static const struct cpu_info cpu_icx = {
-> >       .thermal_margin_to_millidegree = &dts_ten_dot_six_to_millidegree,
-> >   };
-> >
-> > +static const struct cpu_info cpu_spr = {
-> > +     .reg            = &resolved_cores_reg_spr,
-> > +     .min_peci_revision = 0x40,
-> > +     .thermal_margin_to_millidegree = &dts_ten_dot_six_to_millidegree,
-> > +};
-> > +
-> >   static const struct auxiliary_device_id peci_cputemp_ids[] = {
-> >       {
-> >               .name = "peci_cpu.cputemp.hsx",
-> > @@ -574,6 +588,10 @@ static const struct auxiliary_device_id peci_cputemp_ids[] = {
-> >               .name = "peci_cpu.cputemp.icxd",
-> >               .driver_data = (kernel_ulong_t)&cpu_icx,
-> >       },
-> > +     {
-> > +             .name = "peci_cpu.cputemp.spr",
-> > +             .driver_data = (kernel_ulong_t)&cpu_spr,
-> > +     },
-> >       { }
-> >   };
-> >   MODULE_DEVICE_TABLE(auxiliary, peci_cputemp_ids);
-> > diff --git a/drivers/peci/cpu.c b/drivers/peci/cpu.c
-> > index de4a7b3e5966..3668a908d259 100644
-> > --- a/drivers/peci/cpu.c
-> > +++ b/drivers/peci/cpu.c
-> > @@ -318,6 +318,11 @@ static const struct peci_device_id peci_cpu_device_ids[] = {
-> >               .model  = INTEL_FAM6_ICELAKE_X,
-> >               .data   = "icx",
-> >       },
-> > +     { /* Sapphire Rapids Xeon */
-> > +             .family = 6,
-> > +             .model  = INTEL_FAM6_SAPPHIRERAPIDS_X,
-> > +             .data   = "spr",
-> > +     },
-> >       { /* Icelake Xeon D */
-> >               .family = 6,
-> >               .model  = INTEL_FAM6_ICELAKE_D,
-> >
-> > base-commit: 4dbbaf8fbdbd13adc80731b2452257857e4c2d8b
->
+It is expected to be included into dtsi and into rpmhpd driver (only). 
+However I'd also suggest adding some generic prefix (e.g. RPMHPD_CX). 
+Just `CX' is too short and has a sensible possibility of getting  a 
+symbol conflict.
+
+> 
+> Konrad
+>> CX can mean anything.
+>>
+>> Best regards,
+>> Krzysztof
+>>
+
+-- 
+With best wishes
+Dmitry
+
