@@ -2,97 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 87D1174F6A3
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 19:13:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8260B74F6AA
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 19:17:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229655AbjGKRNk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jul 2023 13:13:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59392 "EHLO
+        id S230464AbjGKRRJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jul 2023 13:17:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60206 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231418AbjGKRNi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 13:13:38 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 303F5E75;
-        Tue, 11 Jul 2023 10:13:36 -0700 (PDT)
-Received: from jupiter.universe (dyndsl-091-248-213-212.ewe-ip-backbone.de [91.248.213.212])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: sre)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id BB6D36606FD5;
-        Tue, 11 Jul 2023 18:13:34 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1689095614;
-        bh=zkoGz/x1Q/pDR1kqIW7+X33wiVyNSQbwTUWJIEyKbJk=;
-        h=From:To:Cc:Subject:Date:From;
-        b=XxW8O4kegDe7y7iFxSSWFaHGyFYv6U7oJxPJFJrPmmfer8VWjoZE5sspjYF/wjdJK
-         WWC/rPljbhJWgTKjAnX8H7SHJqj1JyzuvOd4OV0Cn65dvbMGM/o2+2c3RUK8FPb9jb
-         qVxleJuJoDkeyY03v/93tfpzDJQN4hodflopUGHvXP4YhM7fxmmV/UAfgmyC6mD54F
-         EuvBLtG1ETOJB9TvpwWwivho7pBPaBKsW3qL3e/eyk6dEokdZbrCSK+GWeleaqmV5Z
-         p2F46fuQdg+3Zqr425H0Sa9C7hF9AJJMOeeazorx51YXPMeM1ilblB2zhl9SgryvE6
-         HZkIqbmK6uPuw==
-Received: by jupiter.universe (Postfix, from userid 1000)
-        id DFD18480592; Tue, 11 Jul 2023 19:13:32 +0200 (CEST)
-From:   Sebastian Reichel <sebastian.reichel@collabora.com>
-To:     linux-rockchip@lists.infradead.org,
-        Heiko Stuebner <heiko@sntech.de>
-Cc:     Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Sebastian Reichel <sebastian.reichel@collabora.com>,
-        kernel@collabora.com
-Subject: [PATCH v1 1/1] arm64: dts: rockchip: rk3588-evb1: add SATA
-Date:   Tue, 11 Jul 2023 19:13:30 +0200
-Message-Id: <20230711171330.52535-1-sebastian.reichel@collabora.com>
-X-Mailer: git-send-email 2.40.1
+        with ESMTP id S230398AbjGKRRI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 13:17:08 -0400
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 423BA133
+        for <devicetree@vger.kernel.org>; Tue, 11 Jul 2023 10:17:07 -0700 (PDT)
+Received: by mail-wr1-x432.google.com with SMTP id ffacd0b85a97d-3142ee41fd2so6030323f8f.3
+        for <devicetree@vger.kernel.org>; Tue, 11 Jul 2023 10:17:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rivosinc-com.20221208.gappssmtp.com; s=20221208; t=1689095826; x=1691687826;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=GKFZ1fsOWMTwkYmCF5xZHlaiZPqOrQjG51XkXG8xsuk=;
+        b=D5y3LWruBfCLfjEqzVCNKUET3kISp5tN0QhzQ0iP6goxPbl+uI/RYpL2N0LVcglj2X
+         0lEe3icLlxNx4dmUGdWBogGMZxmkMerhMKo2z8Taa3yXYB3F57C+Q2sZZ9VXeCqZ1vq3
+         IfL9lqdd5K5jEEB9K4m63l4Kg4qdSuit0mNh1SO1qcpywK/UyGuuA0teNwWRy6oTR7Gs
+         wLcYjMziDvFC8xmLXoA0agYIot8X/qnhT+7xau9EO5vMz5j9yHLUmsY6lbF5hdrTb5mJ
+         DUY5ssopkfJz2b5PCInx3UMPHhbXj3vW8qRufrU2DYx+0RSqiK1S21dNcjePJd3seafz
+         PqDg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689095826; x=1691687826;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=GKFZ1fsOWMTwkYmCF5xZHlaiZPqOrQjG51XkXG8xsuk=;
+        b=FK/zDI5zSKN4izcPV38rSWIh6AmFulJZEJymcGVn+nEUCYion2hT5VetuJhUVW2VfU
+         3FTEv4M4nwJcySCMXQEcKIFZ4160DRiILB7BGQoyKqZM4oIt/wn0EK5r3PCr9c4CedS8
+         cblAmLHjPAxR98cutjlKRRwaRdgBPMhfw/mFT2MNolsxSv4pSnHAndUfT/h7RTXgEKqB
+         VdyytvMrQhTvmXQfTIGDHoVUd+HPhB4CedYo9LOnwBuWzYEEtMTocpNMml3ejQ+BMzvY
+         TvbkGrCIHWJyUi0xuiw8kILD9yyBvrqY+2+9S0zhdkPgCW1hCHmCMTXfLIbn5E9BF/mj
+         C7vQ==
+X-Gm-Message-State: ABy/qLZeP+ehTdYEjX4D4BBBgSJ0b3xJ2E6c3a/qSayiu3m9dx5bjnCu
+        /RGMI3rC/4Dtdru8czWcqJXXMA==
+X-Google-Smtp-Source: APBJJlHP0y7SeY1nrbv57HJV7f8WoCTfGdEzwRBf4kmtBVsQ6FUsVRpK3RM24Y5TlmLXsB9e6E8P0w==
+X-Received: by 2002:a05:6000:150:b0:306:46c4:d313 with SMTP id r16-20020a056000015000b0030646c4d313mr13962528wrx.28.1689095825620;
+        Tue, 11 Jul 2023 10:17:05 -0700 (PDT)
+Received: from vermeer ([2a01:cb1d:81a9:dd00:b570:b34c:ffd4:c805])
+        by smtp.gmail.com with ESMTPSA id d3-20020a5d6443000000b0031433443265sm2783203wrw.53.2023.07.11.10.17.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 11 Jul 2023 10:17:05 -0700 (PDT)
+Date:   Tue, 11 Jul 2023 19:17:02 +0200
+From:   Samuel Ortiz <sameo@rivosinc.com>
+To:     Heiko Stuebner <heiko.stuebner@vrull.eu>
+Cc:     Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        linux-riscv@lists.infradead.org, linux@rivosinc.com,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        Anup Patel <apatel@ventanamicro.com>,
+        linux-kernel@vger.kernel.org,
+        "Hongren (Zenithal) Zheng" <i@zenithal.me>,
+        Guo Ren <guoren@kernel.org>, Atish Patra <atishp@rivosinc.com>,
+        =?iso-8859-1?Q?Bj=F6rn_T=F6pel?= <bjorn@rivosinc.com>,
+        Evan Green <evan@rivosinc.com>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 4/4] RISC-V: Implement archrandom when Zkr is available
+Message-ID: <ZK2OjvchhqzEKZWR@vermeer>
+References: <20230709115549.2666557-1-sameo@rivosinc.com>
+ <20230709115549.2666557-5-sameo@rivosinc.com>
+ <3566075.R56niFO833@phil>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <3566075.R56niFO833@phil>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for the SATA0_0 port found on the RK3588 EVB1. The
-second port (SATA0_1) does not work, which matches the downstream
-behaviour.
+Hi Heiko,
 
-Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
----
- arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts | 8 ++++++++
- 1 file changed, 8 insertions(+)
+On Sun, Jul 09, 2023 at 04:06:16PM +0200, Heiko Stuebner wrote:
+> Am Sonntag, 9. Juli 2023, 13:55:46 CEST schrieb Samuel Ortiz:
+> > The Zkr extension is ratified and provides 16 bits of entropy seed when
+> > reading the SEED CSR.
+> > 
+> > We can implement arch_get_random_seed_longs() by doing multiple csrrw to
+> > that CSR and filling an unsigned long with valid entropy bits.
+> > 
+> > Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> > Signed-off-by: Samuel Ortiz <sameo@rivosinc.com>
+> > ---
+> 
+> > +static inline size_t __must_check arch_get_random_seed_longs(unsigned long *v, size_t max_longs)
+> > +{
+> > +	if (!max_longs)
+> > +		return 0;
+> > +
+> > +	/*
+> > +	 * If Zkr is supported and csr_seed_long succeeds, we return one long
+> > +	 * worth of entropy.
+> > +	 */
+> > +	if (riscv_has_extension_likely(RISCV_ISA_EXT_ZKR) && csr_seed_long(v))
+> 
+> While this whole thing looks really nice, I don't think you can only
+> check the ZKR existence though.
+> 
+> To access the seed csr from supervisor-mode, it looks like the SSEED
+> bit in the mseccfg register also needs to be set by firmware.
+> And in the kernel we will likely need to check this setting somehow
+> before enabling access.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts b/arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts
-index f06b2ddcfcb6..eeab8f0478a5 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts
-@@ -49,6 +49,10 @@ vcc5v0_sys: vcc5v0-sys-regulator {
- 	};
- };
- 
-+&combphy0_ps {
-+	status = "okay";
-+};
-+
- &cpu_b0 {
- 	cpu-supply = <&vdd_cpu_big0_s0>;
- };
-@@ -759,6 +763,10 @@ regulator-state-mem {
- 	};
- };
- 
-+&sata0 {
-+	status = "okay";
-+};
-+
- &uart2 {
- 	pinctrl-0 = <&uart2m0_xfer>;
- 	status = "okay";
--- 
-2.40.1
+We can't check it as msseccfg is an M-mode only CSR. While reviewing v2
+of this patchset, Stephen suggested to either document the SSEED
+requirement with the dt-bindings documentation, use the SBI FWFEATURE
+extension to ask firmware to set mseecfg properly, or trap seed access
+and feed the caller with a virtual entropy source.
+I'd like to go with the second proposed approach (FWFEATURE) but that
+requires the corresponding pending patch to be merged first. So for now,
+I will only document the SSEED requirement when passing the Zkr
+extension, so that we at least have a contract definition for firmwares
+that enable Zkr through DT. When they do, they're required to at least
+set SSEED in MSSECFG.
 
+I have a couple of pending patches ([1],[2]) related to that, so that an
+OpenSBI+qemu+linux combination works as expected when enabling Zkr. I am
+going to submit them upstream as well.
+
+Cheers,
+Samuel.
+
+[1] https://github.com/qemu/qemu/commit/2a146057099ada946bf4a9c2e355a5a290c23c80
+[2] https://github.com/riscv-software-src/opensbi/pull/315
