@@ -2,144 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CEB9B74F9DE
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 23:37:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BAAFD74FA8F
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 00:04:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229766AbjGKVhU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jul 2023 17:37:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40526 "EHLO
+        id S231736AbjGKWEN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jul 2023 18:04:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50114 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229521AbjGKVhT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 17:37:19 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C2121FCD
-        for <devicetree@vger.kernel.org>; Tue, 11 Jul 2023 14:36:54 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-4fb8574a3a1so9691488e87.1
-        for <devicetree@vger.kernel.org>; Tue, 11 Jul 2023 14:36:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689111389; x=1691703389;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=NrSX7PhPKOGnA92pPm2YdNBTlBhRtkFT2QjTzX6SGZI=;
-        b=rtPZbS4PGX83gYcAKsGtXuy7/HFRYvxeEKew1hmWfVgNZ5jtsyvTcvqu9uZ0nwB8C8
-         sy9Wncq0GfGluYHEnwcwt1oREemNWxvdGtV5rATUhZisrtLmLf6+thIxGsyjEXSUCyXv
-         FswX3LlRToL2g0U700lFE6maQEupl82vZZp9lOQCGBUjNqKyhZTpwQffLZ7z5zE6g8BP
-         s21GkOZv7PnLCT05hCJwIQX5QGW+QvmyiMafr3dFFwuVfvj/fSnVNXyRsoW0ete/Cmm0
-         s37jxOstrvIE0VWbnoM6FDskalvRIbmQuUqRsS2TBNafIdf0rdeEXhsfxjK+7E1eNlzN
-         VEIw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689111389; x=1691703389;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=NrSX7PhPKOGnA92pPm2YdNBTlBhRtkFT2QjTzX6SGZI=;
-        b=UUG+lCzLleUOSVSVP2XDEKQPd4j8IDhOgxh1C6cQ+Wa+LrMX7dOZwqIFQpi2EsGtT4
-         OAkgVuqe1/nD8boMYLB7OqUvqhA4kg2YG1ox6rztQk6nr0DaDAMwR9MISoQTAnLKtwHb
-         T5nyru+S9BzL8vKj+DbjNdxeDq1xubnxY/yHFsDigW0NmIC975yTctzrINP/OOKb1rRO
-         gCuIC7kGhT7Wp7ObulZTAWN/mpStREhSnMJvKwluFkvq5C7A1wK9dnLYeTgc4T+opjFp
-         BHmadBDWFXEpvFSrDDocxgHish80xqwT+IjvPubAwP6LzpNUabJ8YMx4/QUFOucg5b81
-         phNA==
-X-Gm-Message-State: ABy/qLaoqM+bKdSadH6/9frTRikslISvN85XnWC1bh9T/U3cLHtTU8qx
-        lFaFvtGC+PEwWjTlJhVOF5Ts3w==
-X-Google-Smtp-Source: APBJJlFUOSi8MCkUH+Y0rUL8y5Im/qUftlZYctWGmBHInd6hTEn4AKz8A/LXxDZ5a/Ta/o2gsyLoCw==
-X-Received: by 2002:ac2:5b9c:0:b0:4f8:6800:86f6 with SMTP id o28-20020ac25b9c000000b004f8680086f6mr13412888lfn.49.1689111389300;
-        Tue, 11 Jul 2023 14:36:29 -0700 (PDT)
-Received: from [192.168.1.101] (abyl96.neoplus.adsl.tpnet.pl. [83.9.31.96])
-        by smtp.gmail.com with ESMTPSA id t3-20020ac24c03000000b004f8730eecf4sm453442lfq.184.2023.07.11.14.36.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 11 Jul 2023 14:36:28 -0700 (PDT)
-Message-ID: <d80fab4d-f581-f6fa-4aa8-f8952f0c710c@linaro.org>
-Date:   Tue, 11 Jul 2023 23:36:27 +0200
+        with ESMTP id S231724AbjGKWEJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 18:04:09 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA34B1986;
+        Tue, 11 Jul 2023 15:04:07 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 6E920615FF;
+        Tue, 11 Jul 2023 22:04:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 489BDC433C7;
+        Tue, 11 Jul 2023 22:04:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1689113046;
+        bh=WZFBYnlBH0nabsea0EgGhIkFx++Poh0q/PfFbXQbviw=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=Ph2Q1Skexi74PjjyajBlIKdntO7u+CL65M1XUgzexfi6H3zQiGnmOzrafU9ad+3IG
+         L61ESRw/Tmzu4fhwPlhSPbQRccH1z/zw65Lk55RNUKpBUHSXaPENU4qFPJlx4xCoHO
+         Gltjwy8+YJ8I6rT+KgWV4CsnUlaImnHjnGv2xH0S644Efb2QzCeshIza4zkUrIVa0N
+         sLK4RAwtOoD5pSvH0A2si3d5WPxqEJYD3kZiFjxqG9CWdmDag4GfrCLsmyYXbt+CJU
+         OZj2/qG5cDFGHaZowRNDsoyKsCATQEtEH92XbpqEYby7/a8KpjPG+ggkSHn/98u1Sv
+         HbQpyhGrm8EPA==
+From:   Mark Brown <broonie@kernel.org>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>
+Cc:     Jon Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org,
+        linux-spi@vger.kernel.org, linux-tegra@vger.kernel.org
+In-Reply-To: <20230705152603.2514235-1-thierry.reding@gmail.com>
+References: <20230705152603.2514235-1-thierry.reding@gmail.com>
+Subject: Re: [PATCH 1/3] dt-bindings: spi: tegra-slink: Convert to
+ json-schema
+Message-Id: <168911304501.642798.11023438191378643161.b4-ty@kernel.org>
+Date:   Tue, 11 Jul 2023 23:04:05 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH 3/5] arm64: dts: qcom: qrb5165-rb5: add onboard USB-C
- redriver
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Stephen Boyd <swboyd@chromium.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org
-References: <20230709041926.4052245-1-dmitry.baryshkov@linaro.org>
- <20230709041926.4052245-4-dmitry.baryshkov@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230709041926.4052245-4-dmitry.baryshkov@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
+X-Mailer: b4 0.13-dev-099c9
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9.07.2023 06:19, Dmitry Baryshkov wrote:
-> Add the nb7vpq904m, onboard USB-C redriver / retimer.
+On Wed, 05 Jul 2023 17:26:01 +0200, Thierry Reding wrote:
+> Convert the Tegra SLINK bindings from the free-form text format to
+> json-schema.
 > 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
-[...]
+> 
 
-> +			port@1 {
-> +				reg = <1>;
-> +
-> +				redriver_phy_con_ss: endpoint {
-> +					remote-endpoint = <&usb_1_qmpphy_typec_mux_in>;
-> +					data-lanes = <0 1 2 3>;
-That's USB+DP lines combined, or how does it work? I'm confused :/
+Applied to
 
-Konrad
-> +				};
-> +			};
-> +
-> +			port@2 {
-> +				reg = <2>;
-> +
-> +				redriver_usb_con_sbu: endpoint {
-> +					remote-endpoint = <&pm8150b_typec_sbu_out>;
-> +				};
-> +			};
-> +		};
-> +	};
->  };
->  
->  &mdss {
-> @@ -1294,7 +1334,7 @@ &usb_1_qmpphy {
->  };
->  
->  &usb_1_qmpphy_typec_mux_in {
-> -	remote-endpoint = <&pm8150b_typec_mux_out>;
-> +	remote-endpoint = <&redriver_phy_con_ss>;
->  };
->  
->  &usb_2 {
-> @@ -1382,7 +1422,15 @@ pm8150b_role_switch_out: endpoint {
->  			port@1 {
->  				reg = <1>;
->  				pm8150b_typec_mux_out: endpoint {
-> -					remote-endpoint = <&usb_1_qmpphy_typec_mux_in>;
-> +					remote-endpoint = <&redriver_usb_con_ss>;
-> +				};
-> +			};
-> +
-> +			port@2 {
-> +				reg = <2>;
-> +
-> +				pm8150b_typec_sbu_out: endpoint {
-> +					remote-endpoint = <&redriver_usb_con_sbu>;
->  				};
->  			};
->  		};
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+
+Thanks!
+
+[1/3] dt-bindings: spi: tegra-slink: Convert to json-schema
+      commit: 8c87a46e2ce3d5aaf315ffb61dcda62417e41bbf
+[2/3] dt-bindings: spi: tegra-sflash: Convert to json-schema
+      commit: 17a9ab02f72c832293155a432895c889842b7da4
+[3/3] dt-bindings: spi: Convert Tegra114 SPI to json-schema
+      commit: b8968c388b69d9cf31d7f5b1721ac7fe9f932cb9
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
