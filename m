@@ -2,62 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 48B4274EDEB
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 14:18:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 257CD74EDEE
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 14:18:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231651AbjGKMSc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S231676AbjGKMSc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Tue, 11 Jul 2023 08:18:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51940 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51952 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229769AbjGKMSa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 08:18:30 -0400
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9937CE67
-        for <devicetree@vger.kernel.org>; Tue, 11 Jul 2023 05:18:27 -0700 (PDT)
-Received: by mail-lj1-x231.google.com with SMTP id 38308e7fff4ca-2b703c900e3so87378841fa.1
-        for <devicetree@vger.kernel.org>; Tue, 11 Jul 2023 05:18:27 -0700 (PDT)
+        with ESMTP id S231603AbjGKMSb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 08:18:31 -0400
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADC0AE6F
+        for <devicetree@vger.kernel.org>; Tue, 11 Jul 2023 05:18:28 -0700 (PDT)
+Received: by mail-lj1-x22c.google.com with SMTP id 38308e7fff4ca-2b6a084a34cso85734441fa.1
+        for <devicetree@vger.kernel.org>; Tue, 11 Jul 2023 05:18:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689077906; x=1691669906;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=ge+hjy1ytS3fWV6a0cnAiNI+XNr+wbfujfaDkKlcW1Y=;
-        b=lKGVu4/leGvJTRgUrgFiHw0Xqd08JRXEdUBnLtOufAfgIMn7SPWxrOrNBNKMfsnioR
-         +MTqd/mpBGAIF8ftjonFVh6XzyRm4JZnsDpB1wdipbSk7+CIebXTmGqYjpjjZxvsRYLt
-         yxJ0p1hbGvul44m3GWLQa1GneolSJjYOBOTfyi95zHULpH5LT0nigldAQt9JLneMbyQA
-         eR3S8QkcpjM0lTn9PeBUtdQp4ZuvdYQ8tp3v0hWk2MwtpaukiKA+SZjb+Ejh106ZAkpk
-         8PNE7V3N1x0jSEGQ/GQiCPIYqOabGFccMavoeQzbhokUqH3eTEsA/bjgROlyiv6WhlHc
-         8crw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689077906; x=1691669906;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=linaro.org; s=google; t=1689077907; x=1691669907;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=ge+hjy1ytS3fWV6a0cnAiNI+XNr+wbfujfaDkKlcW1Y=;
-        b=Y37HDvNd1gVXiOGJ64cQQNvbRUnIUeYxInhL5+GrVvlnkA6LjW3advxwSUXMiMHnYO
-         Vom/XapSltOHLvtOXSFaVs6W2HMr/V53yZ3l9p1tSU3yx4Nzec8xlyqyiAwM2FvZr6ts
-         YcUknT/FlBmsRPYwq9uWD2gQ3StlvyT0HsCti4XSzvNu6K1XDC4X2+SpYdrvNj2HauKx
-         TP1Zqz7N3py/yQbvby6EQiDC8voBI/yemDOM65Xe96o+r5DbBUWwzEBFiKihv5tVFqGP
-         D3COyzCnpoWe9LkMc40OZDQM5dMup3ZfglIZ+aTYSgj5j30gUISvDYLPtx6jYJawhMXy
-         diCQ==
-X-Gm-Message-State: ABy/qLb96U5gQqRrDmGPkKpWxH2F0ROLqA+U1L/t5Pjtn60LltaJpyUp
-        itbNFbW2210/awDrDeFhRTeXxA==
-X-Google-Smtp-Source: APBJJlEe7jF73xVl9Xnl+Gn0QpIn+S2PUKPPg/0Lj/trUSzp9bNR52JqL2cta6wvrOqHJ7cTqdyIDA==
-X-Received: by 2002:a2e:9216:0:b0:2b6:ec2b:659 with SMTP id k22-20020a2e9216000000b002b6ec2b0659mr12236809ljg.17.1689077905830;
-        Tue, 11 Jul 2023 05:18:25 -0700 (PDT)
+        bh=gXcfnAFG0ALqJ5wchl9zMk96ke46h0gdnZo33aXqC6o=;
+        b=VonMOp0i5+expziTeWEBTHMUNC7qXDeGRqyBPoJ1wkAUuR3RhU2Ey3IYC+JawK9rh6
+         bHI9uJjJTWpyxc+pRRnma1cuAF16RAAcxjDTqfJT6s4+9D2lvb1crKrbG6E4T7E3j3JE
+         7MBA0ngRqYrmXBTmKhP8l+hs9rWnbXQSPVyMw7DbtLvV9/KjkIbn9stCTJCLeYJ8Siq5
+         7i6lnvVM71Lo1lZSupzYng3WE+l4ju3i2NfEvdXOdYzXzUSKWLTohxXt0Q13+Y0mjbSM
+         kXXdY0gVkT+n4/u+ipmWfAu03x0bq1UG9/bal13n2vWRq52X43EVZGTNJNQro/YhG8uU
+         ocRw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689077907; x=1691669907;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=gXcfnAFG0ALqJ5wchl9zMk96ke46h0gdnZo33aXqC6o=;
+        b=HxgVSg2CyPzd+8M4NMahW6lJoQqIHEBjCO/wYW070uCXGR8zB+uF3DJ9pFI5693y0P
+         0H5k+41eOmwOYTeJvPQg9GfLs8Yk8kfYFv+3SwBX5ybLvlifn1UCy1LNUY1L/wGAkNW3
+         cwnatOO3HF7F2Uxr17RZX7SIE0AvhC4iiDDhipYajf1k3j8dMYEuqvjyUS02f8GWyusI
+         RfHx9txjmyCpHoujqmJx7zqybiEZC9Mj8WF8P4WebAJa6mBAX0suLQEgfeCrmr4SM7mh
+         3mqNuF8Nk8Vh7hWO8MziEv6N9sSOYTvHA+K4ZCoMVL9cRbivBI2qRRVd/KvyJozfMg8f
+         VCjA==
+X-Gm-Message-State: ABy/qLY/qM9kjwghI4ocYODr8lo8vgJiylrMgN5CqbB0xhMuaArs3GYP
+        dla/NPtGvHVpaMmtbS3wYnG8Fg==
+X-Google-Smtp-Source: APBJJlHATZyGrxjvNQ4UHts/OGjmEwK4EuBMFcRIRxrV1Y/bvqWGJbi81Vw/Tydk5ULRpDptO1qfDQ==
+X-Received: by 2002:a2e:91d7:0:b0:2b6:e0b8:946e with SMTP id u23-20020a2e91d7000000b002b6e0b8946emr13108332ljg.51.1689077907043;
+        Tue, 11 Jul 2023 05:18:27 -0700 (PDT)
 Received: from [192.168.1.101] (abyl96.neoplus.adsl.tpnet.pl. [83.9.31.96])
-        by smtp.gmail.com with ESMTPSA id d18-20020a2e96d2000000b002b708450951sm435563ljj.88.2023.07.11.05.18.24
+        by smtp.gmail.com with ESMTPSA id d18-20020a2e96d2000000b002b708450951sm435563ljj.88.2023.07.11.05.18.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 Jul 2023 05:18:25 -0700 (PDT)
+        Tue, 11 Jul 2023 05:18:26 -0700 (PDT)
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Subject: [PATCH 00/53] icc-rpmh multi-RSC voting groundwork
-Date:   Tue, 11 Jul 2023 14:17:59 +0200
-Message-Id: <20230708-topic-rpmh_icc_rsc-v1-0-b223bd2ac8dd@linaro.org>
+Date:   Tue, 11 Jul 2023 14:18:00 +0200
+Subject: [PATCH 01/53] dt-bindings: interconnect: qcom,icc: Introduce fixed
+ BCM voter indices
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAHhIrWQC/x2N0QrCMAxFf2Xk2UKsD5v+ishoY2oDsyuJijD27
- wYfz7kc7gbGKmxwGTZQ/ojJ2hyOhwGopvbgIHdniBhPOOIUXmsXCtqfdRaiWY1Cmc6+YMkRR/A
- wJ+OQNTWqnrb3srjsykW+/6frbd9/lcHIh3kAAAA=
+Message-Id: <20230708-topic-rpmh_icc_rsc-v1-1-b223bd2ac8dd@linaro.org>
+References: <20230708-topic-rpmh_icc_rsc-v1-0-b223bd2ac8dd@linaro.org>
+In-Reply-To: <20230708-topic-rpmh_icc_rsc-v1-0-b223bd2ac8dd@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Georgi Djakov <djakov@kernel.org>,
@@ -70,15 +71,15 @@ Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         Konrad Dybcio <konrad.dybcio@linaro.org>
 X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1689077904; l=7841;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1689077904; l=1189;
  i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=Rei3R9n4uCU+u2iJ+J2m+Ko7NiZGPGkR7HWezlPw+hQ=;
- b=VpWSByJM2AvVTsGuUMxF9PX3d/YlFvF7k1f2BwyYhtmvirx+8MZ+C9lRN6l1gsja9k7POci2c
- LmuuJeAnqvnBq/QHVgrI4jt5neFMqEcH0znLMWQDoAhPEpr5v31Ieq3
+ bh=9/TmGzQ1xk3CQ8ToyRcpOQBYP1VhR10l+JU+aSmEvI0=;
+ b=N1JxOuvEYm4h/wsNdORtSNFT8AF68EXhuMFZexG+clfwKvtG5+uxA4rn/Z4fouP9EkKmuRWz+
+ 7R/htFQncM5BE7iN2tU0kXbvvV7s3St2Rs+MKybBnVpLAaPzAPW+821
 X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
  pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -87,144 +88,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Many parts of Qualcomm SoCs are entirely independent of each other and can
-run when the other parts are off. The RPMh system architecture embraces
-this by giving each (loosely defined) subsystem its own connection (as in,
-physical wires) to the AOSS, terminated by per-subsystem RSCs (Resource
-State Coordinators) that barter for power, bandwidth etc.
+It makes zero (or less) sense to consume BCM voters per interconnect
+provider. They are shared throughout the entire system and it's enough
+to keep a single reference to each of them.
 
-This series introduces the groundwork necessary for voting for resources
-through non-APPS RSCs. It should allow for lower-latency vote adjustments
-(e.g. for very high bandwidth / multiple displays) and could potentially
-allow for full APSS collapse while keeping e.g. MDSS operating (say
-refreshing an image from a RAM buffer).
-
-On top of that, a rather necessary and overdue cleanup is performed to
-stop adding more and more arguments to the insane preprocessor macros.
-
-Partially reverting (or reimplementing the revert) [1] will be necessary
-to coordinate the rather complex relationship between the DPU and RSC
-drivers.
-
-The "Point x paths to the x RSC" patches won't do anything (check the
-compatibility workaround qcom_icc_pre_aggregate()) until disp_rsc is
-properly described in the device tree, along with its BCM voter),
-but they prepare ground for when that happens.
-
-I was able to test sending requests through the DISP_RSC on SM8450, but
-I had to hack its clocks (_rscc_ in dispcc) to be always-on, as we don't
-have any clk handling for qcom,rpmh-rsc today.
-
-Boot-tested on SM8350 and SM8450, nothing exploded.
-
-[1] https://patchwork.kernel.org/project/dri-devel/patch/1521827074-28424-1-git-send-email-ryadav@codeaurora.org/
-
-Dependencies:
-[2] https://lore.kernel.org/linux-arm-msm/113b50f8-35f6-73fc-4fc9-302262927c5e@quicinc.com/
-[3] https://lore.kernel.org/linux-arm-msm/20230703-topic-8250_qup_icc-v2-0-9ba0a9460be2@linaro.org/
+Storing them in a shared array at fixed indices will let us improve both
+the representation of the RPMh architecture (every RSC can hold a resource
+vote on any bus, they're not limited in that regard) and save as much as
+kilobytes worth of RAM.
 
 Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
-Konrad Dybcio (53):
-      dt-bindings: interconnect: qcom,icc: Introduce fixed BCM voter indices
-      dt-bindings: interconnect: qcom,bcm-voter: Add qcom,bcm-voter-idx
-      interconnect: qcom: icc-rpmh: Store direct BCM voter references
-      interconnect: qcom: icc-rpmh: Retire dead code
-      interconnect: qcom: icc-rpmh: Implement voting on non-APPS RSCs
-      interconnect: qcom: sc7180: Retire DEFINE_QNODE
-      interconnect: qcom: sdm670: Retire DEFINE_QNODE
-      interconnect: qcom: sdm845: Retire DEFINE_QNODE
-      interconnect: qcom: sdx55: Retire DEFINE_QNODE
-      interconnect: qcom: sdx65: Retire DEFINE_QNODE
-      interconnect: qcom: sm6350: Retire DEFINE_QNODE
-      interconnect: qcom: sm8150: Retire DEFINE_QNODE
-      interconnect: qcom: sm8250: Retire DEFINE_QNODE
-      interconnect: qcom: sm8350: Retire DEFINE_QNODE
-      interconnect: qcom: icc-rpmh: Retire DEFINE_QNODE
-      interconnect: qcom: sc7180: Retire DEFINE_QBCM
-      interconnect: qcom: sdm670: Retire DEFINE_QBCM
-      interconnect: qcom: sdm845: Retire DEFINE_QBCM
-      interconnect: qcom: sdx55: Retire DEFINE_QBCM
-      interconnect: qcom: sdx65: Retire DEFINE_QBCM
-      interconnect: qcom: sm6350: Retire DEFINE_QBCM
-      interconnect: qcom: sm8150: Retire DEFINE_QBCM
-      interconnect: qcom: sm8250: Retire DEFINE_QBCM
-      interconnect: qcom: sm8350: Retire DEFINE_QBCM
-      interconnect: qcom: icc-rpmh: Retire DEFINE_QBCM
-      interconnect: qcom: qdu1000: Explicitly assign voter_idx
-      interconnect: qcom: sa8775p: Explicitly assign voter_idx
-      interconnect: qcom: sc7280: Explicitly assign voter_idx
-      interconnect: qcom: sc8180x: Explicitly assign voter_idx
-      interconnect: qcom: sc8280xp: Explicitly assign voter_idx
-      interconnect: qcom: sm8450: Explicitly assign voter_idx
-      interconnect: qcom: sm8550: Explicitly assign voter_idx
-      arm64: dts: qcom: qdu1000: add qcom,bcm-voter-idx
-      arm64: dts: qcom: sa8775p: add qcom,bcm-voter-idx
-      arm64: dts: qcom: sc7180: add qcom,bcm-voter-idx
-      arm64: dts: qcom: sc7280: add qcom,bcm-voter-idx
-      arm64: dts: qcom: sc8180x: add qcom,bcm-voter-idx
-      arm64: dts: qcom: sc8280xp: add qcom,bcm-voter-idx
-      arm64: dts: qcom: sdm670: add qcom,bcm-voter-idx
-      arm64: dts: qcom: sdm845: add qcom,bcm-voter-idx
-      arm64: dts: qcom: sdx75: add qcom,bcm-voter-idx
-      arm64: dts: qcom: sm6350: add qcom,bcm-voter-idx
-      arm64: dts: qcom: sm8150: add qcom,bcm-voter-idx
-      arm64: dts: qcom: sm8250: add qcom,bcm-voter-idx
-      arm64: dts: qcom: sm8350: add qcom,bcm-voter-idx
-      arm64: dts: qcom: sm8450: add qcom,bcm-voter-idx
-      arm64: dts: qcom: sm8550: add qcom,bcm-voter-idx
-      arm64: dts: qcom: sdx55: add qcom,bcm-voter-idx
-      arm64: dts: qcom: sdx65: add qcom,bcm-voter-idx
-      interconnect: qcom: sm8350: Point display paths to the display RSC
-      interconnect: qcom: sm8450: Point display paths to the display RSC
-      interconnect: qcom: sm8550: Point display paths to the display RSC
-      interconnect: qcom: sm8550: Point camera paths to the camera RSC
+ include/dt-bindings/interconnect/qcom,icc.h | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
- .../bindings/interconnect/qcom,bcm-voter.yaml      |   10 +
- arch/arm/boot/dts/qcom/qcom-sdx55.dtsi             |    1 +
- arch/arm/boot/dts/qcom/qcom-sdx65.dtsi             |    1 +
- arch/arm64/boot/dts/qcom/qdu1000.dtsi              |    2 +
- arch/arm64/boot/dts/qcom/sa8775p.dtsi              |    1 +
- arch/arm64/boot/dts/qcom/sc7180.dtsi               |    1 +
- arch/arm64/boot/dts/qcom/sc7280.dtsi               |    2 +
- arch/arm64/boot/dts/qcom/sc8180x.dtsi              |    2 +
- arch/arm64/boot/dts/qcom/sc8280xp.dtsi             |    2 +
- arch/arm64/boot/dts/qcom/sdm670.dtsi               |    2 +
- arch/arm64/boot/dts/qcom/sdm845.dtsi               |    2 +
- arch/arm64/boot/dts/qcom/sdx75.dtsi                |    2 +
- arch/arm64/boot/dts/qcom/sm6350.dtsi               |    1 +
- arch/arm64/boot/dts/qcom/sm8150.dtsi               |    2 +
- arch/arm64/boot/dts/qcom/sm8250.dtsi               |    2 +
- arch/arm64/boot/dts/qcom/sm8350.dtsi               |    2 +
- arch/arm64/boot/dts/qcom/sm8450.dtsi               |    2 +
- arch/arm64/boot/dts/qcom/sm8550.dtsi               |    2 +
- drivers/interconnect/qcom/bcm-voter.c              |   75 +-
- drivers/interconnect/qcom/bcm-voter.h              |    9 -
- drivers/interconnect/qcom/icc-rpmh.c               |   53 +-
- drivers/interconnect/qcom/icc-rpmh.h               |   14 +-
- drivers/interconnect/qcom/qdu1000.c                |   11 +
- drivers/interconnect/qcom/sa8775p.c                |   28 +
- drivers/interconnect/qcom/sc7180.c                 | 1637 +++++++++++++++--
- drivers/interconnect/qcom/sc7280.c                 |   27 +
- drivers/interconnect/qcom/sc8180x.c                |   23 +
- drivers/interconnect/qcom/sc8280xp.c               |   27 +
- drivers/interconnect/qcom/sdm670.c                 | 1410 +++++++++++++--
- drivers/interconnect/qcom/sdm845.c                 | 1683 ++++++++++++++++--
- drivers/interconnect/qcom/sdx55.c                  |  863 ++++++++-
- drivers/interconnect/qcom/sdx65.c                  |  850 ++++++++-
- drivers/interconnect/qcom/sm6350.c                 | 1551 +++++++++++++++--
- drivers/interconnect/qcom/sm8150.c                 | 1714 ++++++++++++++++--
- drivers/interconnect/qcom/sm8250.c                 | 1772 +++++++++++++++++--
- drivers/interconnect/qcom/sm8350.c                 | 1830 ++++++++++++++++++--
- drivers/interconnect/qcom/sm8450.c                 |   24 +
- drivers/interconnect/qcom/sm8550.c                 |   42 +
- include/dt-bindings/interconnect/qcom,icc.h        |    8 +
- 39 files changed, 12320 insertions(+), 1370 deletions(-)
----
-base-commit: 82cee168d497ffcb79e4889fe3c7384788e89f4d
-change-id: 20230708-topic-rpmh_icc_rsc-f897080fb207
+diff --git a/include/dt-bindings/interconnect/qcom,icc.h b/include/dt-bindings/interconnect/qcom,icc.h
+index cd34f36daaaa..9c13ef8a044e 100644
+--- a/include/dt-bindings/interconnect/qcom,icc.h
++++ b/include/dt-bindings/interconnect/qcom,icc.h
+@@ -23,4 +23,12 @@
+ #define QCOM_ICC_TAG_ALWAYS		(QCOM_ICC_TAG_AMC | QCOM_ICC_TAG_WAKE |\
+ 					 QCOM_ICC_TAG_SLEEP)
+ 
++#define ICC_BCM_VOTER_APPS		0
++#define ICC_BCM_VOTER_DISP		1
++#define ICC_BCM_VOTER_CAM0		2
++#define ICC_BCM_VOTER_CAM1		3
++#define ICC_BCM_VOTER_CAM2		4
++
++#define ICC_BCM_VOTER_MAX		64
++
+ #endif
 
-Best regards,
 -- 
-Konrad Dybcio <konrad.dybcio@linaro.org>
+2.41.0
 
