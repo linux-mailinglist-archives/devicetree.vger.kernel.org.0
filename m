@@ -2,338 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CEDF274E9AE
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 11:01:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E622A74E9B6
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 11:02:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231661AbjGKJBn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jul 2023 05:01:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36322 "EHLO
+        id S231839AbjGKJCY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jul 2023 05:02:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36666 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231787AbjGKJBj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 05:01:39 -0400
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 748B6E56
-        for <devicetree@vger.kernel.org>; Tue, 11 Jul 2023 02:01:30 -0700 (PDT)
-Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36B7BVEW017827;
-        Tue, 11 Jul 2023 11:01:12 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=GSbtv7oYZNlIwc+SEv/2oauRU0hPDW3mgy8S/x3uSt0=;
- b=elEmutBizO89tIt7aHRghx3lRm40VSBV7d9GFcdZbsEI+E8hpXJM2O1UQxB+ZWlNiba6
- UhhetK0jGAEmc6r7FO7foKGWOF9wqgUHA8/cnbOH9W5QjM7ane0/TnENErgxbfIUVfLO
- y6JxXTLKfWAA5HvmufnHm1fgSknbVKxrafcxdp1sj8uTmXNsrLJcb2FNyZv00YPwvKXY
- YjmxOicDftJvAbxBcr4jAYvWIit3CKtlckxMMYcwDMQ9vDcXc4l3NZVxNpl+/IQ0Rn+K
- 9oVp2p7I+W9VZzVhFJ3YOLC/lPKDylhXzmQKvk01WMHryHav8++YiaFs7wX6QSheJubb Fw== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3rs2fr8w9g-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 11 Jul 2023 11:01:12 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 5260D10005E;
-        Tue, 11 Jul 2023 11:01:11 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 3AEB9216EC9;
-        Tue, 11 Jul 2023 11:01:11 +0200 (CEST)
-Received: from [10.201.21.122] (10.201.21.122) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Tue, 11 Jul
- 2023 11:01:10 +0200
-Message-ID: <27e09571-76b0-43bf-6d20-9f6d79cc7b0d@foss.st.com>
-Date:   Tue, 11 Jul 2023 11:01:09 +0200
+        with ESMTP id S231797AbjGKJCS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 05:02:18 -0400
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8EE2293
+        for <devicetree@vger.kernel.org>; Tue, 11 Jul 2023 02:02:16 -0700 (PDT)
+Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-992acf67388so627414966b.1
+        for <devicetree@vger.kernel.org>; Tue, 11 Jul 2023 02:02:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1689066135; x=1691658135;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=5FA+/QEntU0LG5SCj9kJTqmfkcpSYPKv5C0T3kXVRCI=;
+        b=dEhY4MX19hr4ctPkpyO9K/PgHdzXEhVjIhuc4856r8d3s5Lf3/56+LFzEIuTDJabqC
+         DNNDnH0kWM/HmZPd+REBhBgaV63KSCv+JEg7GUoe/31XRn0x2/83Z1ym/DM2jEmTJhd+
+         tgpp7rpXjxahMYtTSm6zGpUo9RO8HGX2JcP/illZQqYdzupl1s3gJlvDFynRa0HIX94P
+         x5DVHlGGqpbrxXDomGX+ix+TT3ZfOgGBzAdNGCfh9q7mJTS9w+pFKpigHvyfOEC+8NjV
+         qyLj4E0Y7u64lLOMf7lnzj45zahzukcmzMg4HgdMFwUceYu9rsrhY9YAWAJEne11mf5J
+         xdRQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689066135; x=1691658135;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=5FA+/QEntU0LG5SCj9kJTqmfkcpSYPKv5C0T3kXVRCI=;
+        b=SAJq7gZwUm1A0ubumxGU2OvAAc7DEZyTzvcTaiGUphLja5+E/wMrYZRN0J5FWSLogc
+         Gcw2t9oS5/lpYviF4RXU5wbhrh08jn4cMaByt9p1dsFXovAHFBb1d0+D7uSfNrxedq9P
+         Diu80Gp12pZ8YtJcbR2gdt/JxS+kLH+WQY7Dav9y1L+zrFWPuUTTeDQS4WxCOgnlHsnZ
+         txRd3hM+PvF37lyJG3eyQ5GVdsgzkmsohQRcLpPcY8yJ8OaHs1S/jaOeVA1dFIZr7M9u
+         oPO3vSch5FXQEk4hFmG/KYUij7+Agk2xR44T2Vaz2c6/cbAkWd1XVzS57ot/qhWyC7FB
+         vrUg==
+X-Gm-Message-State: ABy/qLb/Ghx80EEYeFLcKGwo7wJzTMdkWEhOhq4gFHmYMt1/sa4Zs5AA
+        ohKbQLUW6WFEqGaV6smZPop9kg==
+X-Google-Smtp-Source: APBJJlG37y8uEFiTXGPVZXECGPfO8QctpW441f9tYtuSYBfOP80+BrY4WwF7MOu48j9LhGXuAjBN1w==
+X-Received: by 2002:a17:906:6491:b0:993:d7f3:f055 with SMTP id e17-20020a170906649100b00993d7f3f055mr10863110ejm.11.1689066135075;
+        Tue, 11 Jul 2023 02:02:15 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id rk21-20020a170907215500b00993150e5325sm880513ejb.60.2023.07.11.02.02.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 11 Jul 2023 02:02:14 -0700 (PDT)
+Message-ID: <3b81541d-e9b0-7617-f9c7-ab8ed053c422@linaro.org>
+Date:   Tue, 11 Jul 2023 11:02:10 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH] ARM: dts: stm32: Deduplicate DSI node
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v3 1/6] dt-bindings: usb: dwc3: Add IPQ5332 compatible
 Content-Language: en-US
-To:     Marek Vasut <marex@denx.de>, <linux-arm-kernel@lists.infradead.org>
-CC:     Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>,
-        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>
-References: <20230531231044.574541-1-marex@denx.de>
-From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
-In-Reply-To: <20230531231044.574541-1-marex@denx.de>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To:     Varadarajan Narayanan <quic_varada@quicinc.com>, agross@kernel.org,
+        andersson@kernel.org, konrad.dybcio@linaro.org, vkoul@kernel.org,
+        kishon@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        gregkh@linuxfoundation.org, catalin.marinas@arm.com,
+        will@kernel.org, p.zabel@pengutronix.de, arnd@arndb.de,
+        geert+renesas@glider.be, neil.armstrong@linaro.org,
+        nfraprado@collabora.com, broonie@kernel.org, rafal@milecki.pl,
+        quic_srichara@quicinc.com, quic_varada@quicinc.org,
+        quic_wcheng@quicinc.com, linux-arm-msm@vger.kernel.org,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <cover.1689065318.git.quic_varada@quicinc.com>
+ <c1173429e75b493a8290ac5af6fa566f7f9ebfb8.1689065318.git.quic_varada@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <c1173429e75b493a8290ac5af6fa566f7f9ebfb8.1689065318.git.quic_varada@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.201.21.122]
-X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-07-11_04,2023-07-06_02,2023-05-22_02
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marek
-
-On 6/1/23 01:10, Marek Vasut wrote:
-> All boards using the DSI node duplicate the same pattern common pattern
-> in board DTs, that pattern is ports with endpoint labels and the same
-> in-SoC regulator connection. Move that common pattern into stm32mp157.dtsi
-> instead.
+On 11/07/2023 10:51, Varadarajan Narayanan wrote:
+> Document the IPQ5332 dwc3 compatible.
 > 
-> The two boards which do define panel@0 directly in the DSI bridge node now
-> have #address-cells/#size-cells in their board DT instead of it being in
-> stm32mp157.dtsi and activated incorrectly for all boards, even the ones
-> which use e.g. another DSI-to-something bridge.
-> 
-> Signed-off-by: Marek Vasut <marex@denx.de>
-
-
-
-Applied on stm32-next.
-
-Thanks.
-Alex
-
-
+> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
 > ---
-> Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>
-> Cc: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Cc: linux-arm-kernel@lists.infradead.org
-> Cc: linux-stm32@st-md-mailman.stormreply.com
-> ---
->   arch/arm/boot/dts/stm32mp157.dtsi             | 18 ++++++++++++
->   ...tm32mp157a-icore-stm32mp1-ctouch2-of10.dts | 24 ++++------------
->   .../stm32mp157a-icore-stm32mp1-edimm2.2.dts   | 28 ++++++-------------
->   arch/arm/boot/dts/stm32mp157c-dk2.dts         | 28 ++++++-------------
->   arch/arm/boot/dts/stm32mp157c-ev1.dts         | 28 ++++++-------------
->   5 files changed, 48 insertions(+), 78 deletions(-)
-> 
-> diff --git a/arch/arm/boot/dts/stm32mp157.dtsi b/arch/arm/boot/dts/stm32mp157.dtsi
-> index 5e733cd16ff9e..6197d878894de 100644
-> --- a/arch/arm/boot/dts/stm32mp157.dtsi
-> +++ b/arch/arm/boot/dts/stm32mp157.dtsi
-> @@ -22,9 +22,27 @@ dsi: dsi@5a000000 {
->   			reg = <0x5a000000 0x800>;
->   			clocks = <&rcc DSI_K>, <&clk_hse>, <&rcc DSI_PX>;
->   			clock-names = "pclk", "ref", "px_clk";
-> +			phy-dsi-supply = <&reg18>;
->   			resets = <&rcc DSI_R>;
->   			reset-names = "apb";
->   			status = "disabled";
-> +
-> +			ports {
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +
-> +				port@0 {
-> +					reg = <0>;
-> +					dsi_in: endpoint {
-> +					};
-> +				};
-> +
-> +				port@1 {
-> +					reg = <1>;
-> +					dsi_out: endpoint {
-> +					};
-> +				};
-> +			};
->   		};
->   	};
->   };
-> diff --git a/arch/arm/boot/dts/stm32mp157a-icore-stm32mp1-ctouch2-of10.dts b/arch/arm/boot/dts/stm32mp157a-icore-stm32mp1-ctouch2-of10.dts
-> index 4279b26547dfd..df97e03d2a5ac 100644
-> --- a/arch/arm/boot/dts/stm32mp157a-icore-stm32mp1-ctouch2-of10.dts
-> +++ b/arch/arm/boot/dts/stm32mp157a-icore-stm32mp1-ctouch2-of10.dts
-> @@ -46,26 +46,14 @@ panel_in_lvds: endpoint {
->   
->   &dsi {
->   	status = "okay";
-> -	phy-dsi-supply = <&reg18>;
-> -
-> -	ports {
-> -		#address-cells = <1>;
-> -		#size-cells = <0>;
-> +};
->   
-> -		port@0 {
-> -			reg = <0>;
-> -			dsi_in: endpoint {
-> -				remote-endpoint = <&ltdc_ep0_out>;
-> -			};
-> -		};
-> +&dsi_in {
-> +	remote-endpoint = <&ltdc_ep0_out>;
-> +};
->   
-> -		port@1 {
-> -			reg = <1>;
-> -			dsi_out: endpoint {
-> -				remote-endpoint = <&bridge_in>;
-> -			};
-> -		};
-> -	};
-> +&dsi_out {
-> +	remote-endpoint = <&bridge_in>;
->   };
->   
->   &i2c6 {
-> diff --git a/arch/arm/boot/dts/stm32mp157a-icore-stm32mp1-edimm2.2.dts b/arch/arm/boot/dts/stm32mp157a-icore-stm32mp1-edimm2.2.dts
-> index efba542898207..f8e4043463964 100644
-> --- a/arch/arm/boot/dts/stm32mp157a-icore-stm32mp1-edimm2.2.dts
-> +++ b/arch/arm/boot/dts/stm32mp157a-icore-stm32mp1-edimm2.2.dts
-> @@ -46,26 +46,14 @@ panel_out_bridge: endpoint {
->   
->   &dsi {
->   	status = "okay";
-> -	phy-dsi-supply = <&reg18>;
-> -
-> -	ports {
-> -		#address-cells = <1>;
-> -		#size-cells = <0>;
-> +};
->   
-> -		port@0 {
-> -			reg = <0>;
-> -			dsi_in_ltdc: endpoint {
-> -				remote-endpoint = <&ltdc_out_dsi>;
-> -			};
-> -		};
-> +&dsi_in {
-> +	remote-endpoint = <&ltdc_out_dsi>;
-> +};
->   
-> -		port@1 {
-> -			reg = <1>;
-> -			dsi_out_bridge: endpoint {
-> -				remote-endpoint = <&bridge_in_dsi>;
-> -			};
-> -		};
-> -	};
-> +&dsi_out {
-> +	remote-endpoint = <&bridge_in_dsi>;
->   };
->   
->   &i2c6 {
-> @@ -88,7 +76,7 @@ ports {
->   			port@0 {
->   				reg = <0>;
->   				bridge_in_dsi: endpoint {
-> -					remote-endpoint = <&dsi_out_bridge>;
-> +					remote-endpoint = <&dsi_out>;
->   					data-lanes = <1 2>;
->   				};
->   			};
-> @@ -108,7 +96,7 @@ &ltdc {
->   
->   	port {
->   		ltdc_out_dsi: endpoint {
-> -			remote-endpoint = <&dsi_in_ltdc>;
-> +			remote-endpoint = <&dsi_in>;
->   		};
->   	};
->   };
-> diff --git a/arch/arm/boot/dts/stm32mp157c-dk2.dts b/arch/arm/boot/dts/stm32mp157c-dk2.dts
-> index 4bef2300ed7ca..510cca5acb79c 100644
-> --- a/arch/arm/boot/dts/stm32mp157c-dk2.dts
-> +++ b/arch/arm/boot/dts/stm32mp157c-dk2.dts
-> @@ -34,26 +34,6 @@ &dsi {
->   	#address-cells = <1>;
->   	#size-cells = <0>;
->   	status = "okay";
-> -	phy-dsi-supply = <&reg18>;
-> -
-> -	ports {
-> -		#address-cells = <1>;
-> -		#size-cells = <0>;
-> -
-> -		port@0 {
-> -			reg = <0>;
-> -			dsi_in: endpoint {
-> -				remote-endpoint = <&ltdc_ep1_out>;
-> -			};
-> -		};
-> -
-> -		port@1 {
-> -			reg = <1>;
-> -			dsi_out: endpoint {
-> -				remote-endpoint = <&panel_in>;
-> -			};
-> -		};
-> -	};
->   
->   	panel@0 {
->   		compatible = "orisetech,otm8009a";
-> @@ -70,6 +50,14 @@ panel_in: endpoint {
->   	};
->   };
->   
-> +&dsi_in {
-> +	remote-endpoint = <&ltdc_ep1_out>;
-> +};
-> +
-> +&dsi_out {
-> +	remote-endpoint = <&panel_in>;
-> +};
-> +
->   &i2c1 {
->   	touchscreen@38 {
->   		compatible = "focaltech,ft6236";
-> diff --git a/arch/arm/boot/dts/stm32mp157c-ev1.dts b/arch/arm/boot/dts/stm32mp157c-ev1.dts
-> index 49ca94c19b02b..874770c997997 100644
-> --- a/arch/arm/boot/dts/stm32mp157c-ev1.dts
-> +++ b/arch/arm/boot/dts/stm32mp157c-ev1.dts
-> @@ -100,30 +100,10 @@ dcmi_0: endpoint {
->   };
->   
->   &dsi {
-> -	phy-dsi-supply = <&reg18>;
->   	#address-cells = <1>;
->   	#size-cells = <0>;
->   	status = "okay";
->   
-> -	ports {
-> -		#address-cells = <1>;
-> -		#size-cells = <0>;
-> -
-> -		port@0 {
-> -			reg = <0>;
-> -			dsi_in: endpoint {
-> -				remote-endpoint = <&ltdc_ep0_out>;
-> -			};
-> -		};
-> -
-> -		port@1 {
-> -			reg = <1>;
-> -			dsi_out: endpoint {
-> -				remote-endpoint = <&dsi_panel_in>;
-> -			};
-> -		};
-> -	};
-> -
->   	panel@0 {
->   		compatible = "raydium,rm68200";
->   		reg = <0>;
-> @@ -140,6 +120,14 @@ dsi_panel_in: endpoint {
->   	};
->   };
->   
-> +&dsi_in {
-> +	remote-endpoint = <&ltdc_ep0_out>;
-> +};
-> +
-> +&dsi_out {
-> +	remote-endpoint = <&dsi_panel_in>;
-> +};
-> +
->   &ethernet0 {
->   	status = "okay";
->   	pinctrl-0 = <&ethernet0_rgmii_pins_a>;
+> v1:
+> 	Add ipq5332 to interrupts sections
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
 
