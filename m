@@ -2,404 +2,292 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E51F974F772
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 19:45:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1175674F77F
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 19:50:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229744AbjGKRp5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jul 2023 13:45:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47460 "EHLO
+        id S230148AbjGKRuL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jul 2023 13:50:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48542 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229537AbjGKRp4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 13:45:56 -0400
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (mail-bn7nam10on2090.outbound.protection.outlook.com [40.107.92.90])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68662E4D;
-        Tue, 11 Jul 2023 10:45:54 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Gs4MBiqhSCpwTIM712U9wvAw3js12MlL63KfwU3YZPGv6viWugKlKidCeVbl65l0xGIMcxBSdsxy1qMGefbKnGFVh9XlRtTvIQ5sXTrw9LZAs2V7c0gd/4AjI5HVFY0+GHoGNJBb8iGAyYa0EnQWkyyPllA0O4d0otJbZJn0JMjPozETReijX/bSMiNy5AUCJ/2DUMUTVnx5HoueTmwshaECMvjVP3pMIGPFHHgc3GconIZnio6E795wmVTQAx9qY78vFED2zB3mZuD3OLJhbFDOXq526xPR424fAnDrxxunvFJ+vZfELaL/uIznt8C4BFPAYrey0fkCw0n1v9Mm5Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=6387FydgPVvoTaiKbL4MGM2QP/I7o3dCh89SLQBxAkI=;
- b=nvqEB4CfceW/zELtMkPQC0rmnFMGaNxbpm6wd2MvVPWcrojgCEDjHcYO91bmcYVAiUmRMW0svwmTc8ZWW1pt/U5YXcDi8cm1BYGjyOP//e21RIhUAZlK1OwWDZCtZi2UWabfgRF3+7T4a8nfCoM05Qy2wrvsz40a8ArsMRur48lAIEqwIBcUKkPOYA6FVHiNfZMC/MmndYrEy+qvWJm0ys52nhDPlA9ZHBhSEUY/2sbqcwEZtHes8IbyJoY5w9Tg5CGCp0EC5yBB6mpwTySIqqRzfxHxGkW78nogkpUU8Z+Bh40JccKIlIwgRX4OdA/ERvQkWtCKrupHRzJS0XHxoQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=corigine.com; dmarc=pass action=none header.from=corigine.com;
- dkim=pass header.d=corigine.com; arc=none
+        with ESMTP id S231308AbjGKRuK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 13:50:10 -0400
+Received: from mail-pf1-x42e.google.com (mail-pf1-x42e.google.com [IPv6:2607:f8b0:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B86D310EF
+        for <devicetree@vger.kernel.org>; Tue, 11 Jul 2023 10:50:06 -0700 (PDT)
+Received: by mail-pf1-x42e.google.com with SMTP id d2e1a72fcca58-666e5f0d60bso3466991b3a.3
+        for <devicetree@vger.kernel.org>; Tue, 11 Jul 2023 10:50:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=corigine.onmicrosoft.com; s=selector2-corigine-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=6387FydgPVvoTaiKbL4MGM2QP/I7o3dCh89SLQBxAkI=;
- b=udOVfApOgJdlrf5YFSsY7dbUdB63A74XB8S8NowEEZJn6HT8uJ0tGm6e0TVaudOP7usmHeBV+ouSH/bUbvMnip35zGbTbU0HxRag16YviuG7J0rBbLHNnkq2eDwTAVOyvIfTF35vv8rYTMZF8zC0Fc3PJb8+HlRCra740EsHcyA=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=corigine.com;
-Received: from PH0PR13MB4842.namprd13.prod.outlook.com (2603:10b6:510:78::6)
- by SJ2PR13MB6523.namprd13.prod.outlook.com (2603:10b6:a03:55e::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6565.31; Tue, 11 Jul
- 2023 17:45:49 +0000
-Received: from PH0PR13MB4842.namprd13.prod.outlook.com
- ([fe80::d23a:8c12:d561:470]) by PH0PR13MB4842.namprd13.prod.outlook.com
- ([fe80::d23a:8c12:d561:470%6]) with mapi id 15.20.6588.017; Tue, 11 Jul 2023
- 17:45:48 +0000
-Date:   Tue, 11 Jul 2023 18:45:41 +0100
-From:   Simon Horman <simon.horman@corigine.com>
-To:     MD Danish Anwar <danishanwar@ti.com>
-Cc:     Randy Dunlap <rdunlap@infradead.org>,
-        Roger Quadros <rogerq@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        d=linaro.org; s=google; t=1689097806; x=1691689806;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=xCOkP5CDdhGizUYOgGdZHkLCur4OBITVBmD5gPvHVWc=;
+        b=NCgHZUD2RZASGsxd1ZfpCcPz7oJJsSZaGM98LHpY9wSUi8y/xzFhJGEhNmJHKdwuMZ
+         F4RTyJsX7mJM0NsbL3kCm9cEfcLJUMRwEZyBLRcMyr9C1411K9EnmYqG1upok8/dtHHf
+         KVOG0Ca2JGUF0CH2iLyPUQA2LcjZhyZT8esWRZPc4v1awv1Wj6Z2y+d2v+V0rkNPhD6h
+         NOmYD/PJ5HcyIZTr3nwITUwEbNAU84h+nVyz7JhXKgn1n8fpfuYiU8+vz/za3DuAYVDh
+         fLOKDAsTpKbkrHEWU2g2HxuLEOl8k1GeL1MzmIIfcZQ3U0XYBYspBKYqtc0AF66xjLhV
+         warg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689097806; x=1691689806;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=xCOkP5CDdhGizUYOgGdZHkLCur4OBITVBmD5gPvHVWc=;
+        b=kbRDPNKS1gLSQBB++XqgCz+qeY+0bOilJUvS2UK9KCfCfhUIYpF4Vamkyhb0iLy/h/
+         B13djqOGU+u8WyvusLhZaZEs2EcSI3/CqxtgDq/A7xi7TrT6pXXoaedukN2SRn+iUzRn
+         O+dsaL7gnX1GJbdTKBhf+RUqmEduYtgKRRAW9llDDBoFikaRPVsPXrAi+besryLbHIAm
+         PhyAiKAG1mf0QDAoS4X7hoGL3WWnZ2yrIQ69/ppRY7XvxFQXIbkNlZDycnokOqgCQly2
+         magifm43DkcExD1/obT/H+WPjYjE5F1u9y6AtYunKeCeOVZF9DwBFk4Ewpsu5asY7Tai
+         vQEA==
+X-Gm-Message-State: ABy/qLbZ2O0/bvXGb1+0wCC00lvEtw+hN/TxIM6WJykPtw9V758tFoY7
+        vQ9/0EPIXRJyWOeCQSOvzbH02c9UKeZbNHLzRZ4EMg==
+X-Google-Smtp-Source: APBJJlGHgdMWYyEXVwg+gW4btUFN31cDzzu6vMOtLlJ7QM1fNSgVYfXs9vQeN4RUv43NlnBDdkhgEg==
+X-Received: by 2002:a05:6a20:2444:b0:132:7ca6:54ca with SMTP id t4-20020a056a20244400b001327ca654camr1679651pzc.24.1689097806079;
+        Tue, 11 Jul 2023 10:50:06 -0700 (PDT)
+Received: from p14s ([2604:3d09:148c:c800:9b4d:d526:6948:59a2])
+        by smtp.gmail.com with ESMTPSA id jd10-20020a170903260a00b001acae9734c0sm2191168plb.266.2023.07.11.10.50.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 11 Jul 2023 10:50:05 -0700 (PDT)
+Date:   Tue, 11 Jul 2023 11:50:03 -0600
+From:   Mathieu Poirier <mathieu.poirier@linaro.org>
+To:     Tinghan Shen <tinghan.shen@mediatek.com>
+Cc:     Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Eric Dumazet <edumazet@google.com>,
-        "David S. Miller" <davem@davemloft.net>, nm@ti.com, srk@ti.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        netdev@vger.kernel.org, linux-omap@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v8 2/2] net: ti: icssg-prueth: Add ICSSG ethernet driver
-Message-ID: <ZK2VRYwW8DxIZCY2@corigine.com>
-References: <20230710053550.89160-1-danishanwar@ti.com>
- <20230710053550.89160-3-danishanwar@ti.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Subject: Re: [PATCH v14 07/12] remoteproc: mediatek: Remove dependency of
+ MT8195 SCP L2TCM power control on dual-core SCP
+Message-ID: <ZK2WS+cldx/8+VGA@p14s>
+References: <20230707052612.27521-1-tinghan.shen@mediatek.com>
+ <20230707052612.27521-8-tinghan.shen@mediatek.com>
+MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230710053550.89160-3-danishanwar@ti.com>
-X-ClientProxiedBy: LO2P265CA0214.GBRP265.PROD.OUTLOOK.COM
- (2603:10a6:600:9e::34) To PH0PR13MB4842.namprd13.prod.outlook.com
- (2603:10b6:510:78::6)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH0PR13MB4842:EE_|SJ2PR13MB6523:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3dea915d-874a-40bb-8e12-08db8236a962
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: hr/wsP2P4qlxQVFo9Q5mQnOPPK1X973p8s2HCGiawKrQCLk0oHDqW/WXBU+J78B06qBD7PsyEEVJzbMdFq5CPSzdL673l9vTxnsvVDhfBEENCrbIDGj9NlUKdZ1n/kdsK/jjygP+7yGSMb+q/EWWmDEE1n92gYlPJNGv3Rfw+V96YW+5pTniCm/FK8Okb63q7uEGwWZMhNeuW3CB0Y6Cji6bveMH7BkyE1vCWO1XWOzQeS+FGiWHNaNqntwYojdkdCPvcv5XbEwuiZrAfwhaj3uc5892BDyphuAlI6h8MFB20R5eHVI9pWaZJQKAtALoMK61/CwV0/dFn4Y6G2TwX9+Yvrb8si066vxClsfwANvNoyLJd8wbA0g8U1AeeZSsodFCitBz4KxQdQe9b4BbIpbuWpOqwrIeaBIsHYpe+ZnGOib3Hy3HUNfDzyTRVoqYdlQC3vFsgU7Aheya2kw/v+3Rj5SlzdK10VB5OBcy2kszMSghqA6ncztK2tbF6/cWA9CNxC+TNBSW6BRtRe44qRxQDlfx826mwl2d2ix2pDllSNHLU/c0UjOCEa7XKpUMIhBGNhOTlduCL0hfUOE3Mu4wb+eEJboPKj78697Cqlc=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH0PR13MB4842.namprd13.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(39840400004)(346002)(136003)(376002)(396003)(366004)(451199021)(36756003)(86362001)(38100700002)(478600001)(8936002)(54906003)(6486002)(6512007)(8676002)(44832011)(5660300002)(7416002)(316002)(2906002)(6916009)(4326008)(66556008)(66946007)(66476007)(41300700001)(2616005)(6666004)(26005)(6506007)(83380400001)(186003);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?/ZjT1HyyHrQ6wdVhgJoMBkfQmd91C2PBu0yzLZ93geGZUSUniFyBjt02jmt+?=
- =?us-ascii?Q?AONozjT9LCRp3WWT0D5SyqWAC5jj17chXdBEd+4tjwTEHwWN53YTeygVqvMD?=
- =?us-ascii?Q?IZU8FOKvDiOXg5lwF89tG46ggwqfPpm89Zqg05ZeKsXD/cisTKs0awBC3yBJ?=
- =?us-ascii?Q?bTh1rBEJ9J2BqPhH1HOBX4TJ0//JnHQ4sNBi58ZXbwbVXJpKhd8kS7azcRLu?=
- =?us-ascii?Q?LsvjLYDrdGGcFAZhqwVcPzOQylJhz/diYb+4bnCefXaW8062HQp6atkWhgAF?=
- =?us-ascii?Q?9ZpylbSAUYe0uKqIR/YAyQhofmWpcBnBjN3lzRSUbBcOuENKVBA7wQRBGjbO?=
- =?us-ascii?Q?D2/whXPb8k2FpfJmswDx1p2CgoLepx3I1AQ/oEErBMyId1okos2hJC+Frl+m?=
- =?us-ascii?Q?mVv3eivss5uk+15DrQhJHhWFOcs7D1w8VfElvtfxJ0azlB5w8XoSkL2J1Rnh?=
- =?us-ascii?Q?uiDurYfob+woHC7y/KIUwq0bkQH/8jJg9fgSMkhIM+hZtKXYLaU8uBNFE7YJ?=
- =?us-ascii?Q?XmK6Zjk0ve8EuRV7UEBUFURBbsqZXL/VL6FJaw8ZO5zk1YemvDvGvAPnyacc?=
- =?us-ascii?Q?qCHXQTpEUhZ/BCj2Vqv9nSO1UWaNkLyqyY9DWooxXJ/cw6zDpcmB82NbaplV?=
- =?us-ascii?Q?Ts3x5/+upi7jZfoX4JJ8DqnUSkh41QOk1Yx8ecd6R+/bTSDvjAfj59N3anLw?=
- =?us-ascii?Q?s/1ndpNpRtaV+DZsARRfnQVJX+3Gb9r06GPGuwaprm81lbAmdgom146zmuSs?=
- =?us-ascii?Q?WzIovtqxqAFhBynVkooauBuelv2JD3byZB2nsBuP0iZ5Au+SeX+cfgZm6myD?=
- =?us-ascii?Q?eJJZm8XsF1PPvwQ3TJzsuXjP2eqZDW/WWDItWwkaZGSIFlsJwS64e9jBrk+u?=
- =?us-ascii?Q?D17HtVwQ6/FEDbZ5uFkIL3VglRVbrv4KAGSOW4VZoCASW2PiU6hp+V4SPq1d?=
- =?us-ascii?Q?y05iYNQIemIIGJtLhxNio5VJ0vgbn4KPzFw0wvELM/EcxtzrIc8Wkv3Z0K3z?=
- =?us-ascii?Q?teHEzDwf4XhnZ8KMJ416tPFiHEshDO1jf1IE/FkzPfVySDy2V9YrHvhG9kL6?=
- =?us-ascii?Q?DPJRbv22LP0/HFCJqVVPevNvv1AIeAb1IjC3MwvtNttel14fVidM6Xxbva7+?=
- =?us-ascii?Q?8+Q789PLe0VgvFyUNVva65HnYs1R91MLj0ylkeUuFpHsZsRaWZQoWOxRMo8z?=
- =?us-ascii?Q?S/ZMPeB78KV5dtCudU2LOCZaW+eEywnxls3NlNdytaoJHXOrNNTuiW4r8Hty?=
- =?us-ascii?Q?+/RCnlOjHw5x64YDQ2QxSXNGLN2Jj+Jg/Q4LHAd1zq/ztbDCksbEXs4/Uf3N?=
- =?us-ascii?Q?rV0noJBDoQrFwr9oJ8rYZKTqg56fFlg3Dr4K/wyv5GDF1t+A7xXtX0huVTrJ?=
- =?us-ascii?Q?7LB4hP7ENTDpyRnE3Zks2vnvspNcQdStsLZCozOIx/QDb9X4WY+JLyjwAD4H?=
- =?us-ascii?Q?vwhuAuwk0UWAMH0FEkpq7p+4ZSNE4tt5+jSf/+bs5La1AMSsR/VDydH1s2Be?=
- =?us-ascii?Q?cMGmXxrvb1WM5SCDQYg5se3cRgCu3TlQ1xguAPga1hLgZWdafOzaTt2v5Z2W?=
- =?us-ascii?Q?ayFGTzpCSMfwZ9AMtY5vgX5d7mK+tmi8L8AXdB/No23Fk+CXJBtVO+6gd6Z/?=
- =?us-ascii?Q?OA=3D=3D?=
-X-OriginatorOrg: corigine.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3dea915d-874a-40bb-8e12-08db8236a962
-X-MS-Exchange-CrossTenant-AuthSource: PH0PR13MB4842.namprd13.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Jul 2023 17:45:48.8182
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: fe128f2c-073b-4c20-818e-7246a585940c
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 4XOkiLz8u15J8V8MftHY8gxbJmLiAXyIjl1l9r9jLXvrmQ0h7EnzTlY0e7k9gqXCZ5uFN88hEBmCX3iFlhrcsTCWzOwNlUvfuhIsyMJNKbA=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR13MB6523
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+In-Reply-To: <20230707052612.27521-8-tinghan.shen@mediatek.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 10, 2023 at 11:05:50AM +0530, MD Danish Anwar wrote:
-> From: Roger Quadros <rogerq@ti.com>
-> 
-> This is the Ethernet driver for TI AM654 Silicon rev. 2
-> with the ICSSG PRU Sub-system running dual-EMAC firmware.
-> 
-> The Programmable Real-time Unit and Industrial Communication Subsystem
-> Gigabit (PRU_ICSSG) is a low-latency microcontroller subsystem in the TI
-> SoCs. This subsystem is provided for the use cases like implementation of
-> custom peripheral interfaces, offloading of tasks from the other
-> processor cores of the SoC, etc.
-> 
-> Every ICSSG core has two Programmable Real-Time Unit(PRUs),
-> two auxiliary Real-Time Transfer Unit (RT_PRUs), and
-> two Transmit Real-Time Transfer Units (TX_PRUs). Each one of these runs
-> its own firmware. Every ICSSG core has two MII ports connect to these
-> PRUs and also a MDIO port.
-> 
-> The cores can run different firmwares to support different protocols and
-> features like switch-dev, timestamping, etc.
-> 
-> It uses System DMA to transfer and receive packets and
-> shared memory register emulation between the firmware and
-> driver for control and configuration.
-> 
-> This patch adds support for basic EMAC functionality with 1Gbps
-> and 100Mbps link speed. 10M and half duplex mode are not supported
-> currently as they require IEP, the support for which will be added later.
-> Support for switch-dev, timestamp, etc. will be added later
-> by subsequent patch series.
-> 
-> Signed-off-by: Roger Quadros <rogerq@ti.com>
-> [Vignesh Raghavendra: add 10M full duplex support]
-> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
-> [Grygorii Strashko: add support for half duplex operation]
-> Signed-off-by: Grygorii Strashko <grygorii.strashko@ti.com>
-> Signed-off-by: Puranjay Mohan <p-mohan@ti.com>
-> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
-> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
+On Fri, Jul 07, 2023 at 01:26:07PM +0800, Tinghan Shen wrote:
+> Previously, SCP core 0 controlled the power of L2TCM and dictated that
+> SCP core 1 could only boot after SCP core 0. To address this constraint,
+> extracted the power control flow of L2TCM and made it shared
+> between both cores, enabling support of arbitrary boot order.
 
-...
+Definitely an improvement.
 
-> +/**
-> + * struct map - ICSSG Queue Map
-> + * @queue: Queue number
-> + * @pd_addr_start: Packet descriptor queue reserved memory
-> + * @flags: Flags
-> + * @special: Indicates whether this queue is a special queue or not
-> + */
-> +struct map {
-> +	int queue;
-> +	u32 pd_addr_start;
-> +	u32 flags;
-> +	bool special;
-> +};
-> +
-> +/* Hardware queue map for ICSSG */
-> +const struct map hwq_map[2][ICSSG_NUM_OTHER_QUEUES] = {
+> 
+> The flow for controlling L2TCM power has been incorporated into the
+> mt8195_scp_before_load() and mt8195_scp_stop() APIs, which are
+> respectively invoked during the rproc->ops->start() and
+> rproc->ops->stop() operations. These APIs effectively serve the same
+> purpose as the rproc prepare()/unprepare() APIs."
 
-Should this be static?
+I'm not fond of that custom API but it is so widespread in this driver that I
+will go with it.
 
-> +	{
-> +		{ PORT_HI_Q_SLICE0, PORT_DESC0_HI, 0x200000, 0 },
-> +		{ PORT_LO_Q_SLICE0, PORT_DESC0_LO, 0, 0 },
-> +		{ HOST_HI_Q_SLICE0, HOST_DESC0_HI, 0x200000, 0 },
-> +		{ HOST_LO_Q_SLICE0, HOST_DESC0_LO, 0, 0 },
-> +		{ HOST_SPL_Q_SLICE0, HOST_SPPD0, 0x400000, 1 },
-> +	},
-> +	{
-> +		{ PORT_HI_Q_SLICE1, PORT_DESC1_HI, 0xa00000, 0 },
-> +		{ PORT_LO_Q_SLICE1, PORT_DESC1_LO, 0x800000, 0 },
-> +		{ HOST_HI_Q_SLICE1, HOST_DESC1_HI, 0xa00000, 0 },
-> +		{ HOST_LO_Q_SLICE1, HOST_DESC1_LO, 0x800000, 0 },
-> +		{ HOST_SPL_Q_SLICE1, HOST_SPPD1, 0xc00000, 1 },
-> +	},
-> +};
+> 
+> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
+> ---
+>  drivers/remoteproc/mtk_common.h |  1 +
+>  drivers/remoteproc/mtk_scp.c    | 80 ++++++++++++++++++++++++++-------
+>  2 files changed, 66 insertions(+), 15 deletions(-)
+> 
+> diff --git a/drivers/remoteproc/mtk_common.h b/drivers/remoteproc/mtk_common.h
+> index 56395e8664cb..41e1b4732b75 100644
+> --- a/drivers/remoteproc/mtk_common.h
+> +++ b/drivers/remoteproc/mtk_common.h
+> @@ -130,6 +130,7 @@ struct mtk_scp {
+>  	struct rproc_subdev *rpmsg_subdev;
+>  
+>  	struct list_head elem;
+> +	struct platform_device *cluster_pdev;
+
+This isn't needed.  rproc->dev.parent is pdev->dev.  Use container_of() to
+get to the platform device. 
+
+
+>  };
+>  
+>  /**
+> diff --git a/drivers/remoteproc/mtk_scp.c b/drivers/remoteproc/mtk_scp.c
+> index 3349488e5f21..94602272c05f 100644
+> --- a/drivers/remoteproc/mtk_scp.c
+> +++ b/drivers/remoteproc/mtk_scp.c
+> @@ -29,6 +29,10 @@ struct mtk_scp_of_cluster {
+>  	size_t l1tcm_size;
+>  	phys_addr_t l1tcm_phys;
+>  	struct list_head mtk_scp_list;
 > +
-> +static void icssg_config_mii_init(struct prueth_emac *emac)
-> +{
-> +	u32 rxcfg, txcfg, rxcfg_reg, txcfg_reg, pcnt_reg;
-> +	struct prueth *prueth = emac->prueth;
-> +	int slice = prueth_emac_slice(emac);
-> +	struct regmap *mii_rt;
+> +	/* Prevent concurrent operations of L2TCM power control. */
+> +	struct mutex l2tcm_lock;
+> +	u32 l2tcm_refcnt;
+>  };
+>  
+>  /**
+> @@ -449,7 +453,7 @@ static int mt8192_scp_before_load(struct mtk_scp *scp)
+>  
+>  	writel(1, scp->reg_base + MT8192_CORE0_SW_RSTN_SET);
+>  
+> -	/* enable SRAM clock */
+> +	/* enable SRAM power */
+>  	scp_sram_power_on(scp->reg_base + MT8192_L2TCM_SRAM_PD_0, 0);
+>  	scp_sram_power_on(scp->reg_base + MT8192_L2TCM_SRAM_PD_1, 0);
+>  	scp_sram_power_on(scp->reg_base + MT8192_L2TCM_SRAM_PD_2, 0);
+> @@ -462,19 +466,38 @@ static int mt8192_scp_before_load(struct mtk_scp *scp)
+>  	return 0;
+>  }
+>  
+> -static int mt8195_scp_before_load(struct mtk_scp *scp)
+> +static int mt8195_scp_l2tcm_on(struct mtk_scp *scp)
+>  {
+> -	/* clear SPM interrupt, SCP2SPM_IPC_CLR */
+> -	writel(0xff, scp->reg_base + MT8192_SCP2SPM_IPC_CLR);
+> +	struct mtk_scp_of_cluster *scp_cluster = platform_get_drvdata(scp->cluster_pdev);
 > +
-> +	mii_rt = prueth->mii_rt;
+> +	mutex_lock(&scp_cluster->l2tcm_lock);
 > +
-> +	rxcfg_reg = (slice == ICSS_MII0) ? PRUSS_MII_RT_RXCFG0 :
-> +				       PRUSS_MII_RT_RXCFG1;
-> +	txcfg_reg = (slice == ICSS_MII0) ? PRUSS_MII_RT_TXCFG0 :
-> +				       PRUSS_MII_RT_TXCFG1;
-> +	pcnt_reg = (slice == ICSS_MII0) ? PRUSS_MII_RT_RX_PCNT0 :
-> +				       PRUSS_MII_RT_RX_PCNT1;
+> +	if (scp_cluster->l2tcm_refcnt == 0) {
+> +		/* clear SPM interrupt, SCP2SPM_IPC_CLR */
+> +		writel(0xff, scp->reg_base + MT8192_SCP2SPM_IPC_CLR);
 > +
-> +	rxcfg = MII_RXCFG_DEFAULT;
-> +	txcfg = MII_TXCFG_DEFAULT;
-> +
-> +	if (slice == ICSS_MII1)
-> +		rxcfg |= PRUSS_MII_RT_RXCFG_RX_MUX_SEL;
-> +
-> +	/* In MII mode TX lines swapped inside ICSSG, so TX_MUX_SEL cfg need
-> +	 * to be swapped also comparing to RGMII mode.
-> +	 */
-> +	if (emac->phy_if == PHY_INTERFACE_MODE_MII && slice == ICSS_MII0)
-> +		txcfg |= PRUSS_MII_RT_TXCFG_TX_MUX_SEL;
-> +	else if (emac->phy_if != PHY_INTERFACE_MODE_MII && slice == ICSS_MII1)
-> +		txcfg |= PRUSS_MII_RT_TXCFG_TX_MUX_SEL;
-> +
-> +	regmap_write(mii_rt, rxcfg_reg, rxcfg);
-> +	regmap_write(mii_rt, txcfg_reg, txcfg);
-> +	regmap_write(mii_rt, pcnt_reg, 0x1);
-> +}
-> +
-> +static void icssg_miig_queues_init(struct prueth *prueth, int slice)
-> +{
-> +	struct regmap *miig_rt = prueth->miig_rt;
-> +	void __iomem *smem = prueth->shram.va;
-> +	u8 pd[ICSSG_SPECIAL_PD_SIZE];
-> +	int queue = 0, i, j;
-> +	u32 *pdword;
-> +
-> +	/* reset hwqueues */
-> +	if (slice)
-> +		queue = ICSSG_NUM_TX_QUEUES;
-> +
-> +	for (i = 0; i < ICSSG_NUM_TX_QUEUES; i++) {
-> +		regmap_write(miig_rt, ICSSG_QUEUE_RESET_OFFSET, queue);
-> +		queue++;
+> +		/* Power on L2TCM */
+> +		scp_sram_power_on(scp->reg_base + MT8192_L2TCM_SRAM_PD_0, 0);
+> +		scp_sram_power_on(scp->reg_base + MT8192_L2TCM_SRAM_PD_1, 0);
+> +		scp_sram_power_on(scp->reg_base + MT8192_L2TCM_SRAM_PD_2, 0);
+> +		scp_sram_power_on(scp->reg_base + MT8192_L1TCM_SRAM_PDN,
+> +				  MT8195_L1TCM_SRAM_PDN_RESERVED_RSI_BITS);
 > +	}
 > +
-> +	queue = slice ? RECYCLE_Q_SLICE1 : RECYCLE_Q_SLICE0;
-> +	regmap_write(miig_rt, ICSSG_QUEUE_RESET_OFFSET, queue);
+> +	scp_cluster->l2tcm_refcnt += 1;
+>  
+> +	mutex_unlock(&scp_cluster->l2tcm_lock);
 > +
-> +	for (i = 0; i < ICSSG_NUM_OTHER_QUEUES; i++) {
-> +		regmap_write(miig_rt, ICSSG_QUEUE_RESET_OFFSET,
-> +			     hwq_map[slice][i].queue);
-> +	}
-> +
-> +	/* initialize packet descriptors in SMEM */
-> +	/* push pakcet descriptors to hwqueues */
-> +
-> +	pdword = (u32 *)pd;
-> +	for (j = 0; j < ICSSG_NUM_OTHER_QUEUES; j++) {
-> +		const struct map *mp;
-> +		int pd_size, num_pds;
-> +		u32 pdaddr;
-> +
-> +		mp = &hwq_map[slice][j];
-> +		if (mp->special) {
-> +			pd_size = ICSSG_SPECIAL_PD_SIZE;
-> +			num_pds = ICSSG_NUM_SPECIAL_PDS;
-> +		} else	{
-> +			pd_size = ICSSG_NORMAL_PD_SIZE;
-> +			num_pds = ICSSG_NUM_NORMAL_PDS;
-> +		}
-> +
-> +		for (i = 0; i < num_pds; i++) {
-> +			memset(pd, 0, pd_size);
-> +
-> +			pdword[0] &= cpu_to_le32(ICSSG_FLAG_MASK);
-> +			pdword[0] |= cpu_to_le32(mp->flags);
-
-Sparse warns that the endieness of pdword is not le32.
-There are also other sparse warnings added by this patch.
-Please look over them.
-
-> +			pdaddr = mp->pd_addr_start + i * pd_size;
-> +
-> +			memcpy_toio(smem + pdaddr, pd, pd_size);
-> +			queue = mp->queue;
-> +			regmap_write(miig_rt, ICSSG_QUEUE_OFFSET + 4 * queue,
-> +				     pdaddr);
-> +		}
-> +	}
-> +}
-
-...
-
-> +static int prueth_netdev_init(struct prueth *prueth,
-> +			      struct device_node *eth_node)
-> +{
-> +	int ret, num_tx_chn = PRUETH_MAX_TX_QUEUES;
-> +	struct prueth_emac *emac;
-> +	struct net_device *ndev;
-> +	enum prueth_port port;
-> +	enum prueth_mac mac;
-> +
-> +	port = prueth_node_port(eth_node);
-> +	if (port < 0)
-> +		return -EINVAL;
-> +
-> +	mac = prueth_node_mac(eth_node);
-> +	if (mac < 0)
-> +		return -EINVAL;
-> +
-> +	ndev = alloc_etherdev_mq(sizeof(*emac), num_tx_chn);
-> +	if (!ndev)
-> +		return -ENOMEM;
-
-...
-
 > +	return 0;
+> +}
 > +
-> +free:
-> +	pruss_release_mem_region(prueth->pruss, &emac->dram);
-> +free_wq:
-> +	destroy_workqueue(emac->cmd_wq);
-> +free_ndev:
-> +	free_netdev(ndev);
-> +	prueth->emac[mac] = NULL;
+> +static int mt8195_scp_before_load(struct mtk_scp *scp)
+> +{
+>  	writel(1, scp->reg_base + MT8192_CORE0_SW_RSTN_SET);
+>  
+> +	mt8195_scp_l2tcm_on(scp);
 > +
-> +	return ret;
+>  	/* enable SRAM clock */
+> -	scp_sram_power_on(scp->reg_base + MT8192_L2TCM_SRAM_PD_0, 0);
+> -	scp_sram_power_on(scp->reg_base + MT8192_L2TCM_SRAM_PD_1, 0);
+> -	scp_sram_power_on(scp->reg_base + MT8192_L2TCM_SRAM_PD_2, 0);
+> -	scp_sram_power_on(scp->reg_base + MT8192_L1TCM_SRAM_PDN,
+> -			  MT8195_L1TCM_SRAM_PDN_RESERVED_RSI_BITS);
+>  	scp_sram_power_on(scp->reg_base + MT8192_CPU0_SRAM_PD, 0);
+>  
+>  	/* enable MPU for all memory regions */
+> @@ -487,6 +510,8 @@ static int mt8195_scp_c1_before_load(struct mtk_scp *scp)
+>  {
+>  	scp->data->scp_reset_assert(scp);
+>  
+> +	mt8195_scp_l2tcm_on(scp);
+> +
+>  	scp_sram_power_on(scp->reg_base + MT8195_CPU1_SRAM_PD, 0);
+>  
+>  	/* enable MPU for all memory regions */
+> @@ -653,14 +678,30 @@ static void mt8192_scp_stop(struct mtk_scp *scp)
+>  	writel(0, scp->reg_base + MT8192_CORE0_WDT_CFG);
+>  }
+>  
+> +static void mt8195_scp_l2tcm_off(struct mtk_scp *scp)
+> +{
+> +	struct mtk_scp_of_cluster *scp_cluster = platform_get_drvdata(scp->cluster_pdev);
+> +
+> +	mutex_lock(&scp_cluster->l2tcm_lock);
+> +
 
-ndev appears to be leaked here.
+What happens if ->l2tcm_refcnt is 0 and this function is called?
 
-...
 
-> +	prueth->dev = dev;
-> +	eth_ports_node = of_get_child_by_name(np, "ethernet-ports");
-> +	if (!eth_ports_node)
-> +		return -ENOENT;
+> +	scp_cluster->l2tcm_refcnt -= 1;
 > +
-> +	for_each_child_of_node(eth_ports_node, eth_node) {
-> +		u32 reg;
-> +
-> +		if (strcmp(eth_node->name, "port"))
-> +			continue;
-> +		ret = of_property_read_u32(eth_node, "reg", &reg);
-> +		if (ret < 0) {
-> +			dev_err(dev, "%pOF error reading port_id %d\n",
-> +				eth_node, ret);
-> +		}
-> +
-> +		of_node_get(eth_node);
-> +
-> +		if (reg == 0) {
-> +			eth0_node = eth_node;
-> +			if (!of_device_is_available(eth0_node)) {
-> +				of_node_put(eth0_node);
-> +				eth0_node = NULL;
-> +			}
-> +		} else if (reg == 1) {
-> +			eth1_node = eth_node;
-> +			if (!of_device_is_available(eth1_node)) {
-> +				of_node_put(eth1_node);
-> +				eth1_node = NULL;
-> +			}
-> +		} else {
-> +			dev_err(dev, "port reg should be 0 or 1\n");
-
-Should this be treated as an error and either return or goto an
-unwind path?
-
-> +		}
+> +	if (scp_cluster->l2tcm_refcnt == 0) {
+> +		/* Power off L2TCM */
+> +		scp_sram_power_off(scp->reg_base + MT8192_L2TCM_SRAM_PD_0, 0);
+> +		scp_sram_power_off(scp->reg_base + MT8192_L2TCM_SRAM_PD_1, 0);
+> +		scp_sram_power_off(scp->reg_base + MT8192_L2TCM_SRAM_PD_2, 0);
+> +		scp_sram_power_off(scp->reg_base + MT8192_L1TCM_SRAM_PDN, 0);
+> +		scp_sram_power_off(scp->reg_base + MT8192_CPU0_SRAM_PD, 0);
 > +	}
 > +
-> +	of_node_put(eth_ports_node);
+> +	mutex_unlock(&scp_cluster->l2tcm_lock);
+> +}
 > +
-> +	/* At least one node must be present and available else we fail */
-> +	if (!eth0_node && !eth1_node) {
-
-Smatch warns that eth0_node and eth1_node may be uninitialised here.
-
-> +		dev_err(dev, "neither port0 nor port1 node available\n");
-> +		return -ENODEV;
-> +	}
+>  static void mt8195_scp_stop(struct mtk_scp *scp)
+>  {
+> -	/* Disable SRAM clock */
+> -	scp_sram_power_off(scp->reg_base + MT8192_L2TCM_SRAM_PD_0, 0);
+> -	scp_sram_power_off(scp->reg_base + MT8192_L2TCM_SRAM_PD_1, 0);
+> -	scp_sram_power_off(scp->reg_base + MT8192_L2TCM_SRAM_PD_2, 0);
+> -	scp_sram_power_off(scp->reg_base + MT8192_L1TCM_SRAM_PDN,
+> -			   MT8195_L1TCM_SRAM_PDN_RESERVED_RSI_BITS);
+> +	mt8195_scp_l2tcm_off(scp);
 > +
-> +	if (eth0_node == eth1_node) {
-> +		dev_err(dev, "port0 and port1 can't have same reg\n");
-> +		of_node_put(eth0_node);
-> +		return -ENODEV;
-> +	}
-
-...
-
--- 
-pw-bot: changes-requested
+>  	scp_sram_power_off(scp->reg_base + MT8192_CPU0_SRAM_PD, 0);
+>  
+>  	/* Disable SCP watchdog */
+> @@ -669,6 +710,8 @@ static void mt8195_scp_stop(struct mtk_scp *scp)
+>  
+>  static void mt8195_scp_c1_stop(struct mtk_scp *scp)
+>  {
+> +	mt8195_scp_l2tcm_off(scp);
+> +
+>  	/* Power off CPU SRAM */
+>  	scp_sram_power_off(scp->reg_base + MT8195_CPU1_SRAM_PD, 0);
+>  
+> @@ -976,6 +1019,8 @@ static int scp_add_single_core(struct platform_device *pdev)
+>  	if (IS_ERR(scp))
+>  		return PTR_ERR(scp);
+>  
+> +	scp->cluster_pdev = pdev;
+> +
+>  	ret = rproc_add(scp->rproc);
+>  	if (ret) {
+>  		dev_err(dev, "Failed to add rproc\n");
+> @@ -1028,6 +1073,8 @@ static int scp_add_multi_core(struct platform_device *pdev)
+>  			goto init_fail;
+>  		}
+>  
+> +		scp->cluster_pdev = pdev;
+> +
+>  		ret = rproc_add(scp->rproc);
+>  		if (ret) {
+>  			dev_err(dev, "Failed to add rproc of core %d\n", core_id);
+> @@ -1114,6 +1161,7 @@ static int scp_probe(struct platform_device *pdev)
+>  	}
+>  
+>  	INIT_LIST_HEAD(&scp_cluster->mtk_scp_list);
+> +	mutex_init(&scp_cluster->l2tcm_lock);
+>  	platform_set_drvdata(pdev, scp_cluster);
+>  
+>  	ret = devm_of_platform_populate(dev);
+> @@ -1137,6 +1185,8 @@ static void scp_remove(struct platform_device *pdev)
+>  		rproc_del(scp->rproc);
+>  		scp_free(scp);
+>  	}
+> +
+> +	mutex_destroy(&scp_cluster->l2tcm_lock);
+>  }
+>  
+>  static const struct mtk_scp_of_data mt8183_of_data = {
+> -- 
+> 2.18.0
+> 
