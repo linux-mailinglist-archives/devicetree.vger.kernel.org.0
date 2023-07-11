@@ -2,140 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4845E74F115
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 16:04:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 129D774F13E
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 16:09:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233296AbjGKOEq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jul 2023 10:04:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42986 "EHLO
+        id S233354AbjGKOJb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jul 2023 10:09:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47624 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233276AbjGKOEn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 10:04:43 -0400
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com (mail-dm6nam04on20623.outbound.protection.outlook.com [IPv6:2a01:111:f400:7e8b::623])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17CB910FD;
-        Tue, 11 Jul 2023 07:04:36 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=LxatZr4RtkXewKTYK6yxJ6/i9sHvzsE8B+OusUMjudJGQPerU7qPKXaDWqgyyxY6gAXIDP7jO1CynwDpKHV/xpx9u5Zyfa0AaMCX+u8ke4OP60mvdGFHlwXBczSspPlJhssLW0SwzUA/tk0F1WjA6QWQl4Y2BtYjQ96I/Z3ZVmX0c486HtBuvxgwj4fxFA5GsN4qAzHmwq6BefYOHO2oq64A4iy4cionqjEw2x9nYyGhrUrdAm0rS1w8nyx40ZQow/NMRAgEKEaIf8OjJa3011NRLerrqPBTGpUh3t/eHA4twCfjOE8d0u5p2nYhDm/PQ36lGnHt5Y7kb/cfvgvIDA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=+pTSYvFETht6sMCSzKuPJd8oWLrcMVXn8r75pgS3Uyg=;
- b=MW0AybhfdRvB6X+Dpp97ChhX6+jogIW2nt5kq3zHRx6N70sH5Pu9Gxy9wwKeOViyiBCX5fU8jxrG5Rb6Rrdd0IZJz+BSRChpwps88fgiWuKRj4v3fVx2TKlgkDIbCLGdv9zhSIBTusYZ/EnXcuigAcVvw1QzD5fllvpNZ/cbZrwT4zBamNQpjriV3XMo4PpUoxLwv6nwv01dzl5BN4/o3npPHXq8xDPbM0nUmQ8fQyF0Op6MHHPEhxCSbixF3NZKtSw8KY6GD8vDK+zxFs/C9MPsjF5EcITGGiJZyTjiMjLpUGIuykNKVI+1oVs0lr/EZ0huzIg1NXORXx/b32E00Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=+pTSYvFETht6sMCSzKuPJd8oWLrcMVXn8r75pgS3Uyg=;
- b=ub5AfDrg5sSrdAjFZjUIaFKA7kTGer2xM+AA2jfMUFZwaDjMsquOsJTcUMmjZnTWXP6fbw9HMtkVVtwdvMwkYQKPsq7jt4DgP0L6L0qNVUrVl/5FhzG+oA3Ii/V3c+vkaBtrPDyVyoJRlbcdwZQoLcBcQXSGKz63piwOp0RnEoA=
-Received: from BN9PR03CA0153.namprd03.prod.outlook.com (2603:10b6:408:f4::8)
- by IA1PR12MB7518.namprd12.prod.outlook.com (2603:10b6:208:419::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6565.31; Tue, 11 Jul
- 2023 14:04:31 +0000
-Received: from BN8NAM11FT041.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:f4:cafe::9b) by BN9PR03CA0153.outlook.office365.com
- (2603:10b6:408:f4::8) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6588.20 via Frontend
- Transport; Tue, 11 Jul 2023 14:04:31 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BN8NAM11FT041.mail.protection.outlook.com (10.13.177.18) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6588.20 via Frontend Transport; Tue, 11 Jul 2023 14:04:31 +0000
-Received: from localhost (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.23; Tue, 11 Jul
- 2023 09:04:06 -0500
-From:   Michal Simek <michal.simek@amd.com>
-To:     <linux-kernel@vger.kernel.org>, <monstr@monstr.eu>,
-        <michal.simek@xilinx.com>, <git@xilinx.com>
-CC:     Appana Durga Kedareswara rao <appana.durga.rao@xilinx.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        Naga Sureshkumar Relli <naga.sureshkumar.relli@xilinx.com>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-can@vger.kernel.org>, <netdev@vger.kernel.org>
-Subject: [PATCH 1/2] dt-bindings: can: xilinx_can: Add reset description
-Date:   Tue, 11 Jul 2023 16:03:54 +0200
-Message-ID: <c8e7f86d60b56a9ca2592d9ee30a3a64e535f429.1689084227.git.michal.simek@amd.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <cover.1689084227.git.michal.simek@amd.com>
-References: <cover.1689084227.git.michal.simek@amd.com>
+        with ESMTP id S233346AbjGKOJb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 10:09:31 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7102F10CA;
+        Tue, 11 Jul 2023 07:09:30 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 0390D61516;
+        Tue, 11 Jul 2023 14:09:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 62AA9C433CB;
+        Tue, 11 Jul 2023 14:09:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1689084569;
+        bh=wPU4WgrILHi9+5F2DlhzPw9Lp0u+27HoJUb3pFKm1oY=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=RCuZZ7PXyIN3eOhGs1bf0ErA04156k9Ond9Tt1No7pzS2UVgv5CBkmePw7dDii6xn
+         J+DCbc98kpLrJqwFB9eR8mRpuIIiv7GlvBdbOQSS6FXDOyaeNGkDbF+EK2HrNdroeL
+         D3KHqS3rFWHxUf3cDYoUyolysl/c+Ve4O9pASw++RfxReTh2WliugG/VTRBisxonnx
+         TKxvWb75v4UOiVV8SVOwlp3RzLjpAAvSm7StvrDY1aRrGuuB9EjiuSf595RzfBUyVA
+         TsBCOrEZpdVEIhmZzsL0gqiyax+JdDihy3MfT/FLDVFl826dFDBdqWylF3LT9Vh+PG
+         Nu0EUC32hDt3A==
+Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-2b6fdaf6eefso89775321fa.0;
+        Tue, 11 Jul 2023 07:09:29 -0700 (PDT)
+X-Gm-Message-State: ABy/qLbzKUYjcCt4X5WCk9bi8saNLT2BGmI5+eHzt6gnAFobVXnFBQyn
+        Rtl+EXDN82d3L5oUfMGChWqbaOqSdKlw+1Ks5A==
+X-Google-Smtp-Source: APBJJlFEr5SnwtzLsObTkneUOhTe4Giozatn3QjuQu5+oxJvELnDikg/9hzm9xsBK89Dbapr0ULFsJF5oBzL6l5rJHE=
+X-Received: by 2002:a2e:7a04:0:b0:2b6:eb5a:6504 with SMTP id
+ v4-20020a2e7a04000000b002b6eb5a6504mr13751911ljc.18.1689084567351; Tue, 11
+ Jul 2023 07:09:27 -0700 (PDT)
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=800; i=michal.simek@amd.com; h=from:subject:message-id; bh=ktU+oCYPYvHUPIoixLda/q7IbfISa1Uix454Pt+/r4c=; b=owGbwMvMwCR4yjP1tKYXjyLjabUkhpS1iR5Rpknq+1d2KzfNUPmifqZtTbbZEp7cmMKXe3/Ps Hz3vzi4I5aFQZCJQVZMkUXa5sqZvZUzpghfPCwHM4eVCWQIAxenAEzEiYlhvmu71MsLn5mzPlgE c7M+XPuiPf+GL8M8LQGXJbcC5rdmFkU8ibkksku1SNIZAA==
-X-Developer-Key: i=michal.simek@amd.com; a=openpgp; fpr=67350C9BF5CCEE9B5364356A377C7F21FE3D1F91
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN8NAM11FT041:EE_|IA1PR12MB7518:EE_
-X-MS-Office365-Filtering-Correlation-Id: 387bd894-0502-4f1f-e2cd-08db8217bfc4
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 8PXPV9Hb4wKG7SNV9WGpeGpHufjzyWqhiazmCQmDhR9vtvvPg/dWnTyQCVIYDXzYEIYkCF2OY/Z1Ysw/sOsLoGNdob+pumbr1k3Df1BrbzgdzHNSCxCfkuanI8Bnyh8EWzde3RXkgPympT5kN7gD0CZ4RR9cn4DK8/t+Q5FM47L6/7ctu2sjp2j3mJBuhnMj2FIsIdR6HyLmjzu0b9D6WeIUuX99jJUq6oyZzP1T1wVSFuMhk0Qg4gReiokISnmRnjSUdvlTh76bkED2ZX5LAMKxbGHywX1KykabVVpJ+y6Qz8eznH5FgUDnolgF+G7/wcRYJUpC5hCXmbw9kp8F7qGSz7UowJ2N8/koKR0HvzPED441FlPmBhYJV1h3BVgevoR44ogpwwIIgUp/oXuWSFCR60K3ji95XIQ/SjfkLxdKutDBKvVC+jYchRSxXg1t52yddHqyXPexYQukHZj+C6dSr1Ssjzo6qhMbzHFu8YsTb+RZeF5eogkmNFcgCTJ6MawCGvKXAOg4hiLriODzn58EboTNLDXJOOM/S8mkWYyrf2lMbp/3SWijZeAOejaY0vTT0G+eQh31RRzZFqKBvoM7W3x3bDTZ97MuDEM4wVSkrE1s8MFR+n1TCKyErY+Br2UY9Pq0UNH3an+ktWWfX6mW07F725xD6INIuSmGO/s8W/YuUhJV8Er/6fnM7WgalrSzLt07Yzd+WbSOAqcfJWm/DYKuo+0nwHcTzVmecoXPrmCDd+ulrEkw7XPKbQ2/TSaLgmtiCC4P7HbKkqe9SlyknKipjBDLdt0YmrA3iJI=
-X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230028)(4636009)(396003)(136003)(39860400002)(376002)(346002)(451199021)(36840700001)(46966006)(40470700004)(36860700001)(36756003)(82310400005)(86362001)(40480700001)(40460700003)(110136005)(81166007)(356005)(82740400003)(478600001)(6666004)(54906003)(8676002)(316002)(44832011)(7416002)(5660300002)(2906002)(4326008)(70586007)(70206006)(41300700001)(8936002)(4744005)(2616005)(426003)(336012)(26005)(47076005)(16526019)(186003)(83380400001)(2101003)(36900700001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Jul 2023 14:04:31.5798
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 387bd894-0502-4f1f-e2cd-08db8217bfc4
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT041.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB7518
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
+References: <20230707210646.868758-1-robh@kernel.org> <20230710-underling-angelfish-c47d363a59f5@spud>
+ <CAL_Jsq+5mtgCAfFZOZTUjqFLW0DM5A6exD+PbznO71A8SDyyTA@mail.gmail.com> <20230710-octane-disarray-44b363c02f73@spud>
+In-Reply-To: <20230710-octane-disarray-44b363c02f73@spud>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 11 Jul 2023 08:09:14 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLBTGeyJgCgPjQL1SdMc73=DBWRRmcsO6YXQkPSAAvWXQ@mail.gmail.com>
+Message-ID: <CAL_JsqLBTGeyJgCgPjQL1SdMc73=DBWRRmcsO6YXQkPSAAvWXQ@mail.gmail.com>
+Subject: Re: [PATCH] media: dt-bindings: Convert Omnivision OV7251 to DT schema
+To:     Conor Dooley <conor@kernel.org>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Todor Tomov <todor.too@gmail.com>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-IP core has input for reset signal which can be connected that's why
-describe optional reset property.
+On Mon, Jul 10, 2023 at 12:20=E2=80=AFPM Conor Dooley <conor@kernel.org> wr=
+ote:
+>
+> On Mon, Jul 10, 2023 at 12:03:38PM -0600, Rob Herring wrote:
+> > On Mon, Jul 10, 2023 at 11:57=E2=80=AFAM Conor Dooley <conor@kernel.org=
+> wrote:
+> > >
+> > > On Fri, Jul 07, 2023 at 03:06:46PM -0600, Rob Herring wrote:
+> > > > Convert the OmniVision OV7251 Image Sensor binding to DT schema for=
+mat.
+> > > >
+> > > > vddd-supply was listed as required, but the example and actual user
+> > > > don't have it. Also, the data brief says it has an internal regulat=
+or,
+> > > > so perhaps it is truly optional.
+> > >
+> > > ov7251.c:
+> > >         ov7251->core_regulator =3D devm_regulator_get(dev, "vddd");
+> > >         if (IS_ERR(ov7251->core_regulator)) {
+> > >                 dev_err(dev, "cannot get core regulator\n");
+> > >                 return PTR_ERR(ov7251->core_regulator);
+> > >         }
+> > >
+> > > Looks like the driver's probe function disagrees?
+> >
+> > Doesn't the regulator framework return a dummy regulator if missing?
+>
+> Huh, I think I misunderstood how _regulator_get() worked. Apologies for
+> the noise, I thought it was returning an error when it used a dummy.
+>
+> > > I was going to ask how it worked, but the one user has
+> > > status =3D "disabled"...
+> >
+> > Saw that too, but figured there's some other include with that
+> > overridden. We should really add a built .dts output target to avoid
+> > trying to manually walk includes.
+>
+> Probably gonna sound like an eejit, but the user is in a dts - can an
+> include overwrite that status?
 
-Signed-off-by: Michal Simek <michal.simek@amd.com>
----
+Yes, sometimes .dts files are both built into a dtb and included. Say
+you have a board with and without an optional camera sensor.
 
- Documentation/devicetree/bindings/net/can/xilinx,can.yaml | 3 +++
- 1 file changed, 3 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/net/can/xilinx,can.yaml b/Documentation/devicetree/bindings/net/can/xilinx,can.yaml
-index 897d2cbda45b..64d57c343e6f 100644
---- a/Documentation/devicetree/bindings/net/can/xilinx,can.yaml
-+++ b/Documentation/devicetree/bindings/net/can/xilinx,can.yaml
-@@ -46,6 +46,9 @@ properties:
-     $ref: /schemas/types.yaml#/definitions/uint32
-     description: CAN Tx mailbox buffer count (CAN FD)
- 
-+  resets:
-+    maxItems: 1
-+
- required:
-   - compatible
-   - reg
--- 
-2.36.1
-
+Rob
