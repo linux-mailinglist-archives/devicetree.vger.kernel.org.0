@@ -2,72 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A34874F2CF
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 16:54:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AD28E74F2D1
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 16:55:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230306AbjGKOy5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jul 2023 10:54:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58586 "EHLO
+        id S231154AbjGKOz4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jul 2023 10:55:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58758 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229744AbjGKOy4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 10:54:56 -0400
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C331E5C;
-        Tue, 11 Jul 2023 07:54:55 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id 2adb3069b0e04-4fb863edcb6so9229145e87.0;
-        Tue, 11 Jul 2023 07:54:55 -0700 (PDT)
+        with ESMTP id S230311AbjGKOzz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 10:55:55 -0400
+Received: from mail-il1-x12e.google.com (mail-il1-x12e.google.com [IPv6:2607:f8b0:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BDA31BB
+        for <devicetree@vger.kernel.org>; Tue, 11 Jul 2023 07:55:52 -0700 (PDT)
+Received: by mail-il1-x12e.google.com with SMTP id e9e14a558f8ab-345f4a3ff76so22410645ab.2
+        for <devicetree@vger.kernel.org>; Tue, 11 Jul 2023 07:55:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1689087293; x=1691679293;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=EGlOt2o4Q8FcB3M3yiW6rTLz1+uV1iY2yTAo8ZK7p7Q=;
-        b=q2y5LMjq7UPh5MomsYF+YZxA1DG9YdMGUbFV0hQSkL3R+VSwM98eZPUoy//uAw8H7J
-         WdO5bGCHtGAjIx1FEXdRmYyFVNnLGiLuGzRVVtcoSBzz5LMYnX/dY3vPAUSJ7aB7W+ur
-         MWmHEQleT0K8quajj21FqdpyzFxQuvbcLGXN0PdBT2KcPhrW4NpXURb1Mq1hbO6/lJqs
-         m8FTLc+Sd6fq7iPfbGjpqz4Q9bAHCNeRXe9+JevFWcdgdEBegymxqLDI/OzNVtRC1A7Q
-         0/3WSseqdUFkMep2nL8xwmBGf5R3HQd6cJO5f3B06iY5zUZSZ8ZbNUkPS4KP7N6SZrsw
-         4YSA==
+        d=9elements.com; s=google; t=1689087351; x=1691679351;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=NOHj/qmcYw6nskkjE8RKDb9CPghG0QuzHmlycmErO7k=;
+        b=UAqGemQ5+fR3NqE1iuHNZOYmiRCYtr+lfFL/vlAa543KS13WS3iNlyK260KwuyvrJQ
+         oDQLBIWWtOAGxsz1EPlMPeNGOdAUixriKE2ItDSySz8c0lU+mLjKVsYDAcGWhwK8/CkS
+         7PiX/dORprzdKayTOhfCChPNll0xVQ08X3v/mkcbzQGA6cPo7/KuIBTGyC1CpB6xCFm0
+         F2EiqxlHeQnMw6DnvmXGIUyyjyAYvNUWlZWoYooym3r3QsguLK64Pqsdgz+aoWy9hyFu
+         UTUsFzNW9YnuvSxDab/nBF9V/lzVJU+/kJNw2dUz2+6qfFjugcTqHOCpQj6H2YjqcVvl
+         oFGg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689087293; x=1691679293;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=EGlOt2o4Q8FcB3M3yiW6rTLz1+uV1iY2yTAo8ZK7p7Q=;
-        b=JahW7U7J6U1MWn150Tnk0OAwdfNC1vKEB6a50xQJKJnwVVUZ+Dnfwhga5wsArPqpCj
-         4guCCTHkGgrI5p7agYTem6ZpPm7kNWWJLUFE29uBvmfhtf4SSobwqqrR5TdcuczNPf4M
-         TO9sIA/rzv+gOrJ0/PQpVe8AiwS9/eOwqRjuX4ebrTs/uFQDFEaafXg3VLhLqIkb8jGi
-         wRvyRXGl5NXER3aHwk4cddKwFdWmnbRYjZLjxw3pDU/pNZn3KbFtx216jIixLpAwhO3/
-         3RRhqOpttq9RJwBf5jksniO41O8pxRlsTTE8cS00y0U4Z5AD0YfqFfA+HVVvwbgTYL8U
-         G8Qg==
-X-Gm-Message-State: ABy/qLZtikugKySLK3hfWRFo3tVYy7CSO7PTe/os6HMmufOOepvoU+L4
-        kP3dSl2/SnOXBFP9Zk+l/Js=
-X-Google-Smtp-Source: APBJJlFTTvhc+SJ5FcDvEi9TJAR9GdLJr6xBTUK/PpCg9nPU3BIbOG6UzprSmHox6rnBDFLxE0389g==
-X-Received: by 2002:a19:e059:0:b0:4f8:6d54:72f9 with SMTP id g25-20020a19e059000000b004f86d5472f9mr12251450lfj.61.1689087293391;
-        Tue, 11 Jul 2023 07:54:53 -0700 (PDT)
-Received: from mobilestation ([85.249.18.12])
-        by smtp.gmail.com with ESMTPSA id w25-20020a19c519000000b004fa5f4fd094sm349186lfe.266.2023.07.11.07.54.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 Jul 2023 07:54:52 -0700 (PDT)
-Date:   Tue, 11 Jul 2023 17:54:49 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     jingoohan1@gmail.com, gustavo.pimentel@synopsys.com,
-        lpieralisi@kernel.org, robh+dt@kernel.org, kw@linux.com,
-        bhelgaas@google.com, kishon@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        marek.vasut+renesas@gmail.com, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v17 05/20] PCI: dwc: Add outbound MSG TLPs support
-Message-ID: <p6nfh7pxmtxboc5zkbojp7xryx46aezdkugykim4cjn7wfcixh@rj3wyxswzcmp>
-References: <20230705114206.3585188-1-yoshihiro.shimoda.uh@renesas.com>
- <20230705114206.3585188-6-yoshihiro.shimoda.uh@renesas.com>
+        d=1e100.net; s=20221208; t=1689087351; x=1691679351;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=NOHj/qmcYw6nskkjE8RKDb9CPghG0QuzHmlycmErO7k=;
+        b=l2d8t6S1FULCg2LrgdRK7i4UyNulDqW3b3pFoBGiLMoEUUAn7KJB+aPWPLPKtWuYtl
+         u0M2Q3S9/IjUHGFtv9SMlXqjFiBrx/gMzfNrV6WEyCKxU7qQAFlxjP+erL6BjE7KMeHE
+         ds+FvIobBms3GI3wY5A8G+sVb5lZNyScWBOYt/C3bv6iNjP+BLk7+loJbw6j1to1tmVJ
+         65B8/8GMafIDIc9iX1V0t2MWdjgf19klVM8LW3kjMDBE+bp28CJ2cAsiAxmeW//vpo/0
+         TXq+Z4Q0anTjKOfOxuIRGPgzO9ua5WVrfPXOFvXDRSzUjsSXQgd09a0BUOc91WO8aPAV
+         dX6g==
+X-Gm-Message-State: ABy/qLZO5EaZzqzyiUqFIJVi4TjxSdFzxovP9LArqoIKhHRNcN/Sw88C
+        lpni+vhTX1dq/GwySlF+3FyE32KGDutN6f6rkhE33SbQ0LwkSdFsV5E=
+X-Google-Smtp-Source: APBJJlF+eJdBZOlOB49QOJ5FpF5SkOggxkdoD6E1mtnuZ4LSL2JTrp8Pbfbcny9ON0zp5Ijoyl87nE15mEOaswTpBSA=
+X-Received: by 2002:a92:da86:0:b0:346:6dc2:997b with SMTP id
+ u6-20020a92da86000000b003466dc2997bmr2950323iln.23.1689087351401; Tue, 11 Jul
+ 2023 07:55:51 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230705114206.3585188-6-yoshihiro.shimoda.uh@renesas.com>
+References: <20230710162724.827833-1-Naresh.Solanki@9elements.com> <1f4c500b-e706-a090-516d-992b68f44f0d@roeck-us.net>
+In-Reply-To: <1f4c500b-e706-a090-516d-992b68f44f0d@roeck-us.net>
+From:   Naresh Solanki <naresh.solanki@9elements.com>
+Date:   Tue, 11 Jul 2023 16:55:39 +0200
+Message-ID: <CABqG17jU8HYzOx=OCH6=shJo37MZWRBPydOQsrnDBk3xNaQE5w@mail.gmail.com>
+Subject: Re: [PATCH] hwmon: (peci/cputemp) Add Intel Sapphire Rapids support
+To:     Guenter Roeck <linux@roeck-us.net>
+Cc:     devicetree@vger.kernel.org, Jean Delvare <jdelvare@suse.com>,
+        Iwona Winiarska <iwona.winiarska@intel.com>,
+        linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
+        Patrick Rudolph <patrick.rudolph@9elements.com>,
+        openbmc@lists.ozlabs.org
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -75,79 +69,95 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 05, 2023 at 08:41:51PM +0900, Yoshihiro Shimoda wrote:
-> Add "code" and "routing" into struct dw_pcie_ob_atu_cfg for sending
-> MSG by iATU in the PCIe endpoint mode in near the future.
-> PCIE_ATU_INHIBIT_PAYLOAD is set to issue TLP type of Msg instead of
-> MsgD. So, this implementation supports the data-less messages only
-> for now.
+Hi Guenter,
 
-Looks good. Thanks!
-Reviewed-by: Serge Semin <fancer.lancer@gmail.com>
-
--Serge(y)
-
-> 
-> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-> ---
->  drivers/pci/controller/dwc/pcie-designware.c | 9 +++++++--
->  drivers/pci/controller/dwc/pcie-designware.h | 4 ++++
->  2 files changed, 11 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/pci/controller/dwc/pcie-designware.c b/drivers/pci/controller/dwc/pcie-designware.c
-> index e4ac1def7363..a531dc50abea 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware.c
-> +++ b/drivers/pci/controller/dwc/pcie-designware.c
-> @@ -498,7 +498,7 @@ int dw_pcie_prog_outbound_atu(struct dw_pcie *pci,
->  	dw_pcie_writel_atu_ob(pci, atu->index, PCIE_ATU_UPPER_TARGET,
->  			      upper_32_bits(atu->pci_addr));
->  
-> -	val = atu->type | PCIE_ATU_FUNC_NUM(atu->func_no);
-> +	val = atu->type | atu->routing | PCIE_ATU_FUNC_NUM(atu->func_no);
->  	if (upper_32_bits(limit_addr) > upper_32_bits(cpu_addr) &&
->  	    dw_pcie_ver_is_ge(pci, 460A))
->  		val |= PCIE_ATU_INCREASE_REGION_SIZE;
-> @@ -506,7 +506,12 @@ int dw_pcie_prog_outbound_atu(struct dw_pcie *pci,
->  		val = dw_pcie_enable_ecrc(val);
->  	dw_pcie_writel_atu_ob(pci, atu->index, PCIE_ATU_REGION_CTRL1, val);
->  
-> -	dw_pcie_writel_atu_ob(pci, atu->index, PCIE_ATU_REGION_CTRL2, PCIE_ATU_ENABLE);
-> +	val = PCIE_ATU_ENABLE;
-> +	if (atu->type == PCIE_ATU_TYPE_MSG) {
-> +		/* The data-less messages only for now */
-> +		val |= PCIE_ATU_INHIBIT_PAYLOAD | atu->code;
-> +	}
-> +	dw_pcie_writel_atu_ob(pci, atu->index, PCIE_ATU_REGION_CTRL2, val);
->  
->  	/*
->  	 * Make sure ATU enable takes effect before any subsequent config
-> diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci/controller/dwc/pcie-designware.h
-> index 85de0d8346fa..c626d21243b0 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware.h
-> +++ b/drivers/pci/controller/dwc/pcie-designware.h
-> @@ -147,11 +147,13 @@
->  #define PCIE_ATU_TYPE_IO		0x2
->  #define PCIE_ATU_TYPE_CFG0		0x4
->  #define PCIE_ATU_TYPE_CFG1		0x5
-> +#define PCIE_ATU_TYPE_MSG		0x10
->  #define PCIE_ATU_TD			BIT(8)
->  #define PCIE_ATU_FUNC_NUM(pf)           ((pf) << 20)
->  #define PCIE_ATU_REGION_CTRL2		0x004
->  #define PCIE_ATU_ENABLE			BIT(31)
->  #define PCIE_ATU_BAR_MODE_ENABLE	BIT(30)
-> +#define PCIE_ATU_INHIBIT_PAYLOAD	BIT(22)
->  #define PCIE_ATU_FUNC_NUM_MATCH_EN      BIT(19)
->  #define PCIE_ATU_LOWER_BASE		0x008
->  #define PCIE_ATU_UPPER_BASE		0x00C
-> @@ -292,6 +294,8 @@ struct dw_pcie_ob_atu_cfg {
->  	int index;
->  	int type;
->  	u8 func_no;
-> +	u8 code;
-> +	u8 routing;
->  	u64 cpu_addr;
->  	u64 pci_addr;
->  	u64 size;
-> -- 
-> 2.25.1
-> 
+On Mon, 10 Jul 2023 at 19:43, Guenter Roeck <linux@roeck-us.net> wrote:
+>
+> On 7/10/23 09:27, Naresh Solanki wrote:
+> > From: Patrick Rudolph <patrick.rudolph@9elements.com>
+> >
+> > Add support to read DTS for reading Intel Sapphire Rapids platform.
+> >
+> > Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
+>
+> This patch touches code outside the hwmon subsystem, so I won't be able
+> to apply it without Ack from a maintainer.
+Yes.  I'll split the patch & resubmit.
+~Naresh
+>
+> Guenter
+>
+> > ---
+> >   drivers/hwmon/peci/cputemp.c | 18 ++++++++++++++++++
+> >   drivers/peci/cpu.c           |  5 +++++
+> >   2 files changed, 23 insertions(+)
+> >
+> > diff --git a/drivers/hwmon/peci/cputemp.c b/drivers/hwmon/peci/cputemp.c
+> > index e5b65a382772..a812c15948d9 100644
+> > --- a/drivers/hwmon/peci/cputemp.c
+> > +++ b/drivers/hwmon/peci/cputemp.c
+> > @@ -363,6 +363,7 @@ static int init_core_mask(struct peci_cputemp *priv)
+> >       switch (peci_dev->info.model) {
+> >       case INTEL_FAM6_ICELAKE_X:
+> >       case INTEL_FAM6_ICELAKE_D:
+> > +     case INTEL_FAM6_SAPPHIRERAPIDS_X:
+> >               ret = peci_ep_pci_local_read(peci_dev, 0, reg->bus, reg->dev,
+> >                                            reg->func, reg->offset + 4, &data);
+> >               if (ret)
+> > @@ -531,6 +532,13 @@ static struct resolved_cores_reg resolved_cores_reg_icx = {
+> >       .offset = 0xd0,
+> >   };
+> >
+> > +static struct resolved_cores_reg resolved_cores_reg_spr = {
+> > +     .bus = 31,
+> > +     .dev = 30,
+> > +     .func = 6,
+> > +     .offset = 0x80,
+> > +};
+> > +
+> >   static const struct cpu_info cpu_hsx = {
+> >       .reg            = &resolved_cores_reg_hsx,
+> >       .min_peci_revision = 0x33,
+> > @@ -549,6 +557,12 @@ static const struct cpu_info cpu_icx = {
+> >       .thermal_margin_to_millidegree = &dts_ten_dot_six_to_millidegree,
+> >   };
+> >
+> > +static const struct cpu_info cpu_spr = {
+> > +     .reg            = &resolved_cores_reg_spr,
+> > +     .min_peci_revision = 0x40,
+> > +     .thermal_margin_to_millidegree = &dts_ten_dot_six_to_millidegree,
+> > +};
+> > +
+> >   static const struct auxiliary_device_id peci_cputemp_ids[] = {
+> >       {
+> >               .name = "peci_cpu.cputemp.hsx",
+> > @@ -574,6 +588,10 @@ static const struct auxiliary_device_id peci_cputemp_ids[] = {
+> >               .name = "peci_cpu.cputemp.icxd",
+> >               .driver_data = (kernel_ulong_t)&cpu_icx,
+> >       },
+> > +     {
+> > +             .name = "peci_cpu.cputemp.spr",
+> > +             .driver_data = (kernel_ulong_t)&cpu_spr,
+> > +     },
+> >       { }
+> >   };
+> >   MODULE_DEVICE_TABLE(auxiliary, peci_cputemp_ids);
+> > diff --git a/drivers/peci/cpu.c b/drivers/peci/cpu.c
+> > index de4a7b3e5966..3668a908d259 100644
+> > --- a/drivers/peci/cpu.c
+> > +++ b/drivers/peci/cpu.c
+> > @@ -318,6 +318,11 @@ static const struct peci_device_id peci_cpu_device_ids[] = {
+> >               .model  = INTEL_FAM6_ICELAKE_X,
+> >               .data   = "icx",
+> >       },
+> > +     { /* Sapphire Rapids Xeon */
+> > +             .family = 6,
+> > +             .model  = INTEL_FAM6_SAPPHIRERAPIDS_X,
+> > +             .data   = "spr",
+> > +     },
+> >       { /* Icelake Xeon D */
+> >               .family = 6,
+> >               .model  = INTEL_FAM6_ICELAKE_D,
+> >
+> > base-commit: 4dbbaf8fbdbd13adc80731b2452257857e4c2d8b
+>
