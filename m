@@ -2,167 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4498274F2EF
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 17:06:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 87EBB74F300
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 17:09:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229634AbjGKPGp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jul 2023 11:06:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60684 "EHLO
+        id S229975AbjGKPIz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jul 2023 11:08:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33124 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229626AbjGKPGo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 11:06:44 -0400
-Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC78110D2
-        for <devicetree@vger.kernel.org>; Tue, 11 Jul 2023 08:06:42 -0700 (PDT)
-Received: by mail-pj1-x102d.google.com with SMTP id 98e67ed59e1d1-26307d808a4so4287525a91.1
-        for <devicetree@vger.kernel.org>; Tue, 11 Jul 2023 08:06:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=9elements.com; s=google; t=1689088002; x=1691680002;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=JvD88681HbiR2SoA2cEn2GGKO41btg39V7tlXMdvHns=;
-        b=SVxtXNSX/kk+vJJKUkRSVBRWD1pizRMYKn3HL0clFDyxAD/8hCluES1y3RMCdY63hR
-         /+KoCLJD7jD6dXnlqLbcuIuASY+2JsGoGy1fRXXMTUAcQKU35+etOofgjGazN7fNyEw3
-         vakYdfPQfA3ZW8jCjhyhbLwp8uOWsF+aectobcPRJO50KIVh9qSPKIXhhmwe1QVU7rqQ
-         RrP60Ps0s4wf1/XbulQeaE+rsPNHzoVxj7i+Gav14CO2UDAQRrLUnP7lQT4kJknDTR6X
-         p3D5Ymrq18qQ1DTz0p5KnygCq+e7Z/zF96du2xWPHRoeroGq5p/lpkrYckrxVcsF9eRl
-         P1Sw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689088002; x=1691680002;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=JvD88681HbiR2SoA2cEn2GGKO41btg39V7tlXMdvHns=;
-        b=TvlCGZqdCPOVfV9W2xLwtR0jINV6j8kQbWi1NHSzkSxYKHaf2TB/Z02TKTh8ygccDb
-         iTYI465MEUZJnXu1j6azOX1hiTXLFbTtcA/4sbn/5S9ELTZ3wW5WCnXT3OT40iZ+5coZ
-         4HKUVeUuvP5UcZLDTfeRKznzDEo46H2vMIfR7Q8iFuKFI2+Q9/uIIXGxVNq91E2JScMw
-         eGsPAyl9AdGvSuSy67/VGSLZi5n4qKHC65lmXMe4AJinoaZ1BcOWOmY9lG1PEut7PMEP
-         RYQ6nPQmfWqtXwdJLmd5wIQcGv14rfKBOXJdTCSePZhFwpPr1PiyQghhaJgP+ihIAymb
-         yl1w==
-X-Gm-Message-State: ABy/qLYavxlAHxf+CyBmubZvF24dv1A8CV3sCfbyfJXYWpEOaLnQ9w3H
-        a+y/aOJT8cjzGD8EGp5vT6ylQyn+trTQAAP3szIRAA==
-X-Google-Smtp-Source: APBJJlFioyrNC+tB096lda4kFRj/UzJoN48xYCtcyAoXLHRvqiM1qJKYlTnKrYWB6Pr0UoaN+kLQW+T0aBD1vXiuBbI=
-X-Received: by 2002:a17:90a:ac0d:b0:262:ec13:d3a with SMTP id
- o13-20020a17090aac0d00b00262ec130d3amr17436983pjq.28.1689088001969; Tue, 11
- Jul 2023 08:06:41 -0700 (PDT)
+        with ESMTP id S230236AbjGKPIa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 11:08:30 -0400
+Received: from hel-mailgw-01.vaisala.com (hel-mailgw-01.vaisala.com [193.143.230.17])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C421C10CF;
+        Tue, 11 Jul 2023 08:08:28 -0700 (PDT)
+Received: from HEL-SMTP.corp.vaisala.com (HEL-SMTP.corp.vaisala.com [172.24.1.225])
+        by hel-mailgw-01.vaisala.com (Postfix) with ESMTP id 1CA64601EE01;
+        Tue, 11 Jul 2023 18:08:27 +0300 (EEST)
+Received: from yocto-vm.localdomain ([172.24.253.44]) by HEL-SMTP.corp.vaisala.com over TLS secured channel with Microsoft SMTPSVC(8.5.9600.16384);
+         Tue, 11 Jul 2023 18:08:26 +0300
+From:   =?UTF-8?q?Vesa=20J=C3=A4=C3=A4skel=C3=A4inen?= 
+        <vesa.jaaskelainen@vaisala.com>
+Cc:     vesa.jaaskelainen@vaisala.com, Wei Fang <wei.fang@nxp.com>,
+        Shenwei Wang <shenwei.wang@nxp.com>,
+        Clark Wang <xiaoning.wang@nxp.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Russell King <linux@armlinux.org.uk>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH 0/2] ARM: imx: imx6sx: Add support for TX clock controls
+Date:   Tue, 11 Jul 2023 18:08:03 +0300
+Message-Id: <20230711150808.18714-1-vesa.jaaskelainen@vaisala.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-References: <20230710164705.3985996-1-Naresh.Solanki@9elements.com>
- <20230710164705.3985996-2-Naresh.Solanki@9elements.com> <a307e9d6-bdd3-4fff-bf9b-f8919b6b0d69@roeck-us.net>
-In-Reply-To: <a307e9d6-bdd3-4fff-bf9b-f8919b6b0d69@roeck-us.net>
-From:   Naresh Solanki <naresh.solanki@9elements.com>
-Date:   Tue, 11 Jul 2023 17:06:30 +0200
-Message-ID: <CABqG17iNH7tzs4GqJKu=Wd+nq3e03zjrJMKOcrd9eGpBf0aRWw@mail.gmail.com>
-Subject: Re: [PATCH 2/2] hwmon: (dimmtemp) Add Sapphire Rappids support
-To:     Guenter Roeck <linux@roeck-us.net>
-Cc:     devicetree@vger.kernel.org, Jean Delvare <jdelvare@suse.com>,
-        Iwona Winiarska <iwona.winiarska@intel.com>,
-        linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
-        Patrick Rudolph <patrick.rudolph@9elements.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-OriginalArrivalTime: 11 Jul 2023 15:08:26.0759 (UTC) FILETIME=[8B38A170:01D9B409]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Guenter,
+Add device tree configuration support whether Ethernet controller's
+ENETx_TX_CLK output driver is enabled.
 
-On Mon, 10 Jul 2023 at 20:48, Guenter Roeck <linux@roeck-us.net> wrote:
->
-> On Mon, Jul 10, 2023 at 06:47:04PM +0200, Naresh Solanki wrote:
-> > From: Patrick Rudolph <patrick.rudolph@9elements.com>
-> >
-> > This patch extends the functionality of the hwmon (dimmtemp) to include
-> > support for Sapphire Rappids platform.
-> >
-> > Sapphire Rappids can accommodate up to 8 CPUs, each with 16 DIMMs. To
-> > accommodate this configuration, the maximum supported DIMM count is
-> > increased, and the corresponding Sapphire Rappids ID and threshold code
-> > are added.
-> >
-> > The patch has been tested on a 4S system with 64 DIMMs installed.
-> > Default thresholds are utilized for Sapphire Rappids, as accessing the
-> > threshold requires accessing the UBOX device on Uncore bus 0, which can
-> > only be achieved using MSR access. The non-PCI-compliant MMIO BARs are
-> > not available for this purpose.
-> >
-> > Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
->
-> Does this patch depend on the other patch, the one introducing
-> Sapphire Rappids to peci/cputemp ?
-Yes they are dependent.
-Will bundle them together & resend.
+Also add device tree configuration support whether Ethernet controller's
+ENETx_TX_CLK pin is used as reference clock for Ethernet. If not defined
+then ref_enetpllx is used as reference clock.
 
-~Naresh
+If the new properties are not present then the existing behavior is
+preserved.
 
->
-> Guenter
->
-> > ---
-> >  drivers/hwmon/peci/dimmtemp.c | 24 +++++++++++++++++++++++-
-> >  1 file changed, 23 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/hwmon/peci/dimmtemp.c b/drivers/hwmon/peci/dimmtemp.c
-> > index ce89da3937a0..ea4ac5a023cf 100644
-> > --- a/drivers/hwmon/peci/dimmtemp.c
-> > +++ b/drivers/hwmon/peci/dimmtemp.c
-> > @@ -30,8 +30,10 @@
-> >  #define DIMM_IDX_MAX_ON_ICX  2
-> >  #define CHAN_RANK_MAX_ON_ICXD        4
-> >  #define DIMM_IDX_MAX_ON_ICXD 2
-> > +#define CHAN_RANK_MAX_ON_SPR 128
-> > +#define DIMM_IDX_MAX_ON_SPR  2
-> >
-> > -#define CHAN_RANK_MAX                CHAN_RANK_MAX_ON_HSX
-> > +#define CHAN_RANK_MAX                CHAN_RANK_MAX_ON_SPR
-> >  #define DIMM_IDX_MAX         DIMM_IDX_MAX_ON_HSX
-> >  #define DIMM_NUMS_MAX                (CHAN_RANK_MAX * DIMM_IDX_MAX)
-> >
-> > @@ -534,6 +536,15 @@ read_thresholds_icx(struct peci_dimmtemp *priv, int dimm_order, int chan_rank, u
-> >       return 0;
-> >  }
-> >
-> > +static int
-> > +read_thresholds_spr(struct peci_dimmtemp *priv, int dimm_order, int chan_rank, u32 *data)
-> > +{
-> > +     /* Use defaults */
-> > +     *data = (95 << 16) | (90 << 8);
-> > +
-> > +     return 0;
-> > +}
-> > +
-> >  static const struct dimm_info dimm_hsx = {
-> >       .chan_rank_max  = CHAN_RANK_MAX_ON_HSX,
-> >       .dimm_idx_max   = DIMM_IDX_MAX_ON_HSX,
-> > @@ -576,6 +587,13 @@ static const struct dimm_info dimm_icxd = {
-> >       .read_thresholds = &read_thresholds_icx,
-> >  };
-> >
-> > +static const struct dimm_info dimm_spr = {
-> > +     .chan_rank_max  = CHAN_RANK_MAX_ON_SPR,
-> > +     .dimm_idx_max   = DIMM_IDX_MAX_ON_SPR,
-> > +     .min_peci_revision = 0x40,
-> > +     .read_thresholds = &read_thresholds_spr,
-> > +};
-> > +
-> >  static const struct auxiliary_device_id peci_dimmtemp_ids[] = {
-> >       {
-> >               .name = "peci_cpu.dimmtemp.hsx",
-> > @@ -601,6 +619,10 @@ static const struct auxiliary_device_id peci_dimmtemp_ids[] = {
-> >               .name = "peci_cpu.dimmtemp.icxd",
-> >               .driver_data = (kernel_ulong_t)&dimm_icxd,
-> >       },
-> > +     {
-> > +             .name = "peci_cpu.dimmtemp.spr",
-> > +             .driver_data = (kernel_ulong_t)&dimm_spr,
-> > +     },
-> >       { }
-> >  };
-> >  MODULE_DEVICE_TABLE(auxiliary, peci_dimmtemp_ids);
-> > --
-> > 2.41.0
-> >
+Vesa Jääskeläinen (2):
+  dt-bindings: net: fsl,fec: Add TX clock controls
+  ARM: imx: imx6sx: Add support for TX clock controls
+
+ .../devicetree/bindings/net/fsl,fec.yaml      | 15 +++++++++++
+ arch/arm/mach-imx/mach-imx6sx.c               | 27 +++++++++++++++++--
+ 2 files changed, 40 insertions(+), 2 deletions(-)
+
+-- 
+2.34.1
+
