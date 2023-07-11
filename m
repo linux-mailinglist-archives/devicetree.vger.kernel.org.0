@@ -2,183 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 15C3B74FACA
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 00:15:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 782D474FB01
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 00:38:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231308AbjGKWP0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jul 2023 18:15:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57978 "EHLO
+        id S230393AbjGKWi0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jul 2023 18:38:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36846 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230233AbjGKWP0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 18:15:26 -0400
-Received: from finn.localdomain (finn.gateworks.com [108.161.129.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E959110EF;
-        Tue, 11 Jul 2023 15:15:24 -0700 (PDT)
-Received: from 068-189-091-139.biz.spectrum.com ([68.189.91.139] helo=tharvey.pdc.gateworks.com)
-        by finn.localdomain with esmtp (Exim 4.93)
-        (envelope-from <tharvey@gateworks.com>)
-        id 1qJLdg-0074mC-7o; Tue, 11 Jul 2023 22:15:20 +0000
-From:   Tim Harvey <tharvey@gateworks.com>
-To:     Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Tim Harvey <tharvey@gateworks.com>
-Subject: [PATCH] arm64: dts: imx8mp: add imx8mp-venice-gw74xx-imx219 overlay for rpi v2 camera
-Date:   Tue, 11 Jul 2023 15:15:18 -0700
-Message-Id: <20230711221518.2127861-1-tharvey@gateworks.com>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S229786AbjGKWiZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 18:38:25 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A94FEE49
+        for <devicetree@vger.kernel.org>; Tue, 11 Jul 2023 15:38:24 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id 2adb3069b0e04-4fafe87c6fbso10107126e87.3
+        for <devicetree@vger.kernel.org>; Tue, 11 Jul 2023 15:38:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1689115103; x=1691707103;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Oopt9erZoUG2dizfs7Owm/xRql9gq++ePXLLqwiHV8A=;
+        b=tyKULaBlK5XrfbFwGoXhn+M4ot8tb3G6f4XXaU4jXcKcu2CB5oIl+Di3FQyZ0kOZ4z
+         Dy3TebhmZH6OWqjlDt9t2TPIsXn+tcJMVopCvitY/ArzQvuO7gJHowcY+kRW8a3YVhbL
+         K0tVohEcJKMW9mA7Noo4hYWvg/DJtTm6wGz+PIX62yf15Ho5W4xBjPURWLZhpZrI//AK
+         Tr8TWsy5m1M6dfy0tg1sSwCLkbbRlHzz1RcOG/sbrL7tILQqcxix825QoAJGX3WGf6nF
+         55zot4JQdww2ZjpW469olLo9ANDwiqcByB/vIaqtnB/ZDucX8s3/kgKJQmRelbCb2aMw
+         eh4A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689115103; x=1691707103;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Oopt9erZoUG2dizfs7Owm/xRql9gq++ePXLLqwiHV8A=;
+        b=hT7pHi9dTBITu1UE0ACkW6jCeJM3gpUms2lVvNIeXb4PseN3nzUkpCPi2gMfreFSU4
+         qByXs+UJrWzLegyNnFBmih1MR4tLKmCCpkMJkbhxZ2VvFe+GG6HOKT4sQ3rvOHfcHWSg
+         RhfbWbMELB6HKEpQBwJXBgTojtSU1mVCTlAqALvWfnhoJDjW72mkn8cOksyzSkFXJ6EA
+         yPtnNSaJIxl0i/E17Aj8dFLnMLgrD9RdPaB1EG166iKNBxNtFFCWUOKCEHWW1jnbCvW0
+         FQOOnfPRIMyfS6oc7N4eO5jYZuzB6Dvzjy2MPJ0/UUj7W9K1oeAS8Ipi1PglNzaSIewq
+         5ZZA==
+X-Gm-Message-State: ABy/qLYZ4huMYKp2YRNGL2uKFlJnrtyazD43d3hxvmXwZzzqw0G7whRp
+        Y1AFf3pfbQuEuJBtXlWhUaWM5Q==
+X-Google-Smtp-Source: APBJJlHZcrBfnaxu6wbfavyBNnhRHUabHpZntt6MxNUWvmQldCJw2Ge+GSBZ/PjAjdEs6Ps30+OvyQ==
+X-Received: by 2002:a05:6512:451:b0:4f9:5ac3:4133 with SMTP id y17-20020a056512045100b004f95ac34133mr12649630lfk.25.1689115102732;
+        Tue, 11 Jul 2023 15:38:22 -0700 (PDT)
+Received: from ?IPV6:2001:14ba:a0db:1f00::8a5? (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
+        by smtp.gmail.com with ESMTPSA id x7-20020ac259c7000000b004f84b36a24fsm469763lfn.51.2023.07.11.15.38.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 11 Jul 2023 15:38:22 -0700 (PDT)
+Message-ID: <fdc3cec2-b6e2-a6f4-ef68-94d3a1fe3689@linaro.org>
+Date:   Wed, 12 Jul 2023 01:38:21 +0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH 2/5] arm64: dts: qcom: sm8250: Add DisplayPort device node
+Content-Language: en-GB
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Stephen Boyd <swboyd@chromium.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org
+References: <20230709041926.4052245-1-dmitry.baryshkov@linaro.org>
+ <20230709041926.4052245-3-dmitry.baryshkov@linaro.org>
+ <da7cf83c-8026-c6dc-e3cb-c632c1b59d96@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <da7cf83c-8026-c6dc-e3cb-c632c1b59d96@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for the RaspberryPi Camera v2 which is an IMX219 8MP module:
- - https://datasheets.raspberrypi.com/camera/camera-v2-schematics.pdf
- - has its own on-board 24MHz osc so no clock required from baseboard
- - pin 11 enables 1.8V and 2.8V LDO which is connected to
-   GW74xx MIPI_GPIO4 (IMX8MP GPIO1_IO4) so we use this as a gpio
+On 12/07/2023 00:34, Konrad Dybcio wrote:
+> On 9.07.2023 06:19, Dmitry Baryshkov wrote:
+>> Declare the displayport controller present on the Qualcomm SM8250 SoC.
+>>
+>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>> ---
+> [...]
+> 
+>> +				dp_opp_table: opp-table {
+>> +					compatible = "operating-points-v2";
+>> +
+>> +					opp-160000000 {
+>> +						opp-hz = /bits/ 64 <160000000>;
+>> +						required-opps = <&rpmhpd_opp_low_svs>;
+> 19.2 MHz, VDD_MIN
 
-Support is added via a device-tree overlay.
+I don't think so, the lowest working point is 162 MHz for RBR. 19.2 is 
+just just artificial. I'll check, maybe it would be better to drop this 
+completely.
 
-The IMX219 supports RAW8/RAW10 image formats.
+> 
+>> +					};
+>> +
+>> +					opp-270000000 {
+>> +						opp-hz = /bits/ 64 <270000000>;
+>> +						required-opps = <&rpmhpd_opp_svs>;
+> 270 MHz, LOW_SVS
 
-Example configuration:
-media-ctl -l "'imx219 3-0010':0->'csis-32e40000.csi':0[1]"
-media-ctl -v -V "'imx219 3-0010':0 [fmt:SRGGB8/640x480 field:none]"
-media-ctl -v -V "'crossbar':0 [fmt:SRGGB8/640x480 field:none]"
-media-ctl -v -V "'mxc_isi.0':0 [fmt:SRGGB8/640x480 field:none]"
-v4l2-ctl --set-fmt-video=width=640,height=480,pixelformat=RGGB
-v4l2-ctl --stream-mmap --stream-to=frame.raw --stream-count=1
-convert -size 640x480 -depth 8 gray:frame.raw frame.png
-gst-launch-1.0 v4l2src ! \
-  video/x-bayer,format=rggb,width=640,height=480,framerate=10/1 ! \
-  bayer2rgb ! fbdevsink
+Ack. Which probably means that we should fix all existing DP opp tables. 
+They all should be using low_svs here.
 
-Signed-off-by: Tim Harvey <tharvey@gateworks.com>
----
- arch/arm64/boot/dts/freescale/Makefile        |  2 +
- .../imx8mp-venice-gw74xx-imx219.dtso          | 80 +++++++++++++++++++
- 2 files changed, 82 insertions(+)
- create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx-imx219.dtso
+>> +					};
+>> +
+>> +					opp-540000000 {
+>> +						opp-hz = /bits/ 64 <540000000>;
+>> +						required-opps = <&rpmhpd_opp_svs_l1>;
+> 540 MHz, SVS_L1 (ok)
+>> +					};
+>> +
+>> +					opp-810000000 {
+>> +						opp-hz = /bits/ 64 <810000000>;
+>> +						required-opps = <&rpmhpd_opp_nom>;
+> 810 MHz, NOM (also ok)
+> 
+> (but then - there's qcom,max-pclk-frequency-khz = <675000>;)
+> 
+> also, what's up with the PIXEL1 clocks etc.?
+> they are capped at the aforementioned 675 Mhz but I have no idea
+> what they're for
 
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index 60a69e114442..9dc3c1be1899 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -156,6 +156,7 @@ imx8mm-venice-gw73xx-0x-rpidsi-dtbs	:= imx8mm-venice-gw73xx-0x.dtb imx8mm-venice
- imx8mm-venice-gw73xx-0x-rs232-rts-dtbs	:= imx8mm-venice-gw73xx-0x.dtb imx8mm-venice-gw73xx-0x-rs232-rts.dtbo
- imx8mm-venice-gw73xx-0x-rs422-dtbs	:= imx8mm-venice-gw73xx-0x.dtb imx8mm-venice-gw73xx-0x-rs422.dtbo
- imx8mm-venice-gw73xx-0x-rs485-dtbs	:= imx8mm-venice-gw73xx-0x.dtb imx8mm-venice-gw73xx-0x-rs485.dtbo
-+imx8mp-venice-gw74xx-imx219-dtbs	:= imx8mp-venice-gw74xx.dtb imx8mp-venice-gw74xx-imx219.dtbo
- imx8mp-venice-gw74xx-rpidsi-dtbs	:= imx8mp-venice-gw74xx.dtb imx8mp-venice-gw74xx-rpidsi.dtbo
- 
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw72xx-0x-imx219.dtb
-@@ -168,6 +169,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw73xx-0x-rpidsi.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw73xx-0x-rs232-rts.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw73xx-0x-rs422.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw73xx-0x-rs485.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx8mp-venice-gw74xx-imx219.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-venice-gw74xx-rpidsi.dtb
- 
- dtb-$(CONFIG_ARCH_S32) += s32g274a-evb.dtb
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx-imx219.dtso b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx-imx219.dtso
-new file mode 100644
-index 000000000000..270a9114da97
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx-imx219.dtso
-@@ -0,0 +1,80 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright 2023 Gateworks Corporation
-+ */
-+
-+#include <dt-bindings/gpio/gpio.h>
-+
-+#include "imx8mp-pinfunc.h"
-+
-+/dts-v1/;
-+/plugin/;
-+
-+&{/} {
-+	compatible = "gw,imx8mp-gw74xx", "fsl,imx8mp";
-+
-+	reg_cam: regulator-cam {
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_reg_cam>;
-+		compatible = "regulator-fixed";
-+		regulator-name = "reg_cam";
-+		gpio = <&gpio1 4 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+	};
-+
-+	cam24m: cam24m {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <24000000>;
-+		clock-output-names = "cam24m";
-+	};
-+};
-+
-+&i2c4 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	imx219: sensor@10 {
-+		compatible = "sony,imx219";
-+		reg = <0x10>;
-+		clocks = <&cam24m>;
-+		VDIG-supply = <&reg_cam>;
-+
-+		port {
-+			/* MIPI CSI-2 bus endpoint */
-+			imx219_to_mipi_csi2: endpoint {
-+				remote-endpoint = <&mipi_csi_0_in>;
-+				clock-lanes = <0>;
-+				data-lanes = <1 2>;
-+				link-frequencies = /bits/ 64 <456000000>;
-+			};
-+		};
-+	};
-+};
-+
-+&isi_0 {
-+	status = "okay";
-+};
-+
-+&mipi_csi_0 {
-+	status = "okay";
-+
-+	ports {
-+		port@0 {
-+			mipi_csi_0_in: endpoint {
-+				remote-endpoint = <&imx219_to_mipi_csi2>;
-+				data-lanes = <1 2>;
-+			};
-+		};
-+	};
-+};
-+
-+&iomuxc {
-+	pinctrl_reg_cam: regcamgrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_GPIO1_IO04__GPIO1_IO04	0x41
-+		>;
-+	};
-+};
+I think PIXEL1 is used for DP MST.
+
+> 
+> Konrad
+>> +					};
+>> +				};
+>> +			};
+>> +
+>>   			mdss_dsi0: dsi@ae94000 {
+>>   				compatible = "qcom,sm8250-dsi-ctrl",
+>>   					     "qcom,mdss-dsi-ctrl";
+
 -- 
-2.25.1
+With best wishes
+Dmitry
 
