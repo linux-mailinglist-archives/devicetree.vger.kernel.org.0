@@ -2,401 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F139B74EBB8
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 12:28:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C88E74EBDD
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 12:43:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230200AbjGKK20 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jul 2023 06:28:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54622 "EHLO
+        id S229837AbjGKKnH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jul 2023 06:43:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59270 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229744AbjGKK20 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 06:28:26 -0400
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45D881BB
-        for <devicetree@vger.kernel.org>; Tue, 11 Jul 2023 03:28:24 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-4fb8574a3a1so8446943e87.1
-        for <devicetree@vger.kernel.org>; Tue, 11 Jul 2023 03:28:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689071302; x=1691663302;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=NyZ8tGGEOmeJVu8EC8qxSRaeNCjOU6ONoIt2Vl89luE=;
-        b=X5buVxt+KuCkOgj/KaZqhBOVzH2mKBG2uR/fietaam6PmKctkFr/m+xqMp3kXCTYi/
-         oBGjo9HYIEacnJPqbPVoH4wLIBoXjp2yKrK/Ga7v7/+7qDG5lEuKHiWhwlhY7mZD5xw1
-         i0JH7JtfQ2iFf3TCUD3uJn+Rc7lUkzWfU2Ob2Th0SPOhUhUbZsHmJ9NqZ76VBs80cc7v
-         26RqbmeduzcSDhspc2R/yTJrz2ddh08AfORZZCR0arBBosdCcYTkdAMw8vGjmWCToGOu
-         jEI+kZy1SQ4VzjB5wbqtQqXBbi1oPRkkqm5Dgh3qff9xP8an3rqssV+oMkt2fxykTRG/
-         W5Qg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689071302; x=1691663302;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=NyZ8tGGEOmeJVu8EC8qxSRaeNCjOU6ONoIt2Vl89luE=;
-        b=jDoIN9+BZph4yz35XU16H8qmRwesgGwEdU3zkM8d9LrIFiMnv1dOtvQ3/fXonVNVhs
-         4kOBsoHXk/Uu0OrWgZKwfSaXtteOdHeDHqWvVl/apw3dooUTk3/+2T0M4MABCw4uep/y
-         +VF9XEkxkstn+sXee1+Y+U9Jz6+GBYzduZVmQWs3V+/DGyacc9Q8ygJGraUbmVaZLlJT
-         bnqrb8ijvZcy9iLS5bXnh4/5/9w+sA8Vd1dy7Jhw1fXeGpbOFLBaxlhpjim3uLZDLNnv
-         LQhSeSyI2l1HP/BAGUgAwogW7tWgSuB5MCK1I5WhBItO0sFemRCWJGi/UZaqOxPCtuEP
-         FiRg==
-X-Gm-Message-State: ABy/qLZFJ3eeIzVpbFxDhnA+KNA/dbX5yFZfUfgHS4dyf/vxbk6Ihql8
-        qS+2VuI8qpzJvf+mVlm16L+pGQ==
-X-Google-Smtp-Source: APBJJlFY0OPAg9KBzEmGJo45IrEN8V/NYW2KAtXpBh6A2uqQLVZwfCfuC168pnIIbKJ9GMQ8pCfbOA==
-X-Received: by 2002:a19:6601:0:b0:4fb:7447:e724 with SMTP id a1-20020a196601000000b004fb7447e724mr12807977lfc.8.1689071302424;
-        Tue, 11 Jul 2023 03:28:22 -0700 (PDT)
-Received: from [192.168.1.101] (abyl96.neoplus.adsl.tpnet.pl. [83.9.31.96])
-        by smtp.gmail.com with ESMTPSA id b26-20020ac247fa000000b004fbb207ee0asm260092lfp.206.2023.07.11.03.28.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 Jul 2023 03:28:22 -0700 (PDT)
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Date:   Tue, 11 Jul 2023 12:28:17 +0200
-Subject: [PATCH] arm64: dts: qcom: qrb2210-rb1: Add regulators
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230711-topic-rb1_regulator-v1-1-bc4398c35800@linaro.org>
-X-B4-Tracking: v=1; b=H4sIAMAurWQC/x2N0QrCMAwAf2Xk2cDaFUV/RWSkXdwCpR3pJsLYv
- xt8vIPjDmiswg0e3QHKH2lSi4G7dJAWKjOjTMbgez/0N+dwq6sk1OhG5XnPtFXFEFKgie+DD1e
- wMlJjjEolLdaWPWeTq/Jbvv/V83WeP+qmkcl6AAAA
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        with ESMTP id S229479AbjGKKnG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 06:43:06 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CF53E60;
+        Tue, 11 Jul 2023 03:43:05 -0700 (PDT)
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36B9Pl1I005030;
+        Tue, 11 Jul 2023 10:43:01 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id; s=qcppdkim1;
+ bh=KcrIkF1sJE8FlF7BTNekoVJT3EBQCC1E51sDa804sIo=;
+ b=TWV2umHC/2jS525s6LXrO1Z5kmWl6eIq1sRYg2QQK7n4sdVhcjZNGYlQOOGtXhSDlDFN
+ CiJdvqS14sB5px89hvpE+LhbAWjRLgc7sC+kVmK6wWS1iUWu3imOI3FRX3dzEMFz6SsF
+ R1e2vAL60HXEdj9nS6ri+CcRPyE9Bv47KPMk4B0Wr17tyiG6QOKDntqGbQyw+1Jtt75R
+ bA7kR+xnqo64DABQOlEsNdwPb+Q0U4661KRTE1rLrvqXQwqrlsTTj1JV7Nsrbnbo2EYU
+ yUPQiT5xS8+Aocj8Xt1RlRLUxk+Cnhj5aAarKG1DLwPioMGcML9yFs9XMpK8D018iTMA Nw== 
+Received: from apblrppmta01.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3rs3vh86an-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 11 Jul 2023 10:43:01 +0000
+Received: from pps.filterd (APBLRPPMTA01.qualcomm.com [127.0.0.1])
+        by APBLRPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 36BAeCwc021490;
+        Tue, 11 Jul 2023 10:42:58 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+        by APBLRPPMTA01.qualcomm.com (PPS) with ESMTPS id 3rq0vkm6gf-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
+        Tue, 11 Jul 2023 10:42:58 +0000
+Received: from APBLRPPMTA01.qualcomm.com (APBLRPPMTA01.qualcomm.com [127.0.0.1])
+        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 36BAgwOq023577;
+        Tue, 11 Jul 2023 10:42:58 GMT
+Received: from hu-maiyas-hyd.qualcomm.com (hu-nitirawa-hyd.qualcomm.com [10.213.109.152])
+        by APBLRPPMTA01.qualcomm.com (PPS) with ESMTP id 36BAgvHr023576;
+        Tue, 11 Jul 2023 10:42:58 +0000
+Received: by hu-maiyas-hyd.qualcomm.com (Postfix, from userid 2342877)
+        id 18FFC5000AA; Tue, 11 Jul 2023 16:12:57 +0530 (+0530)
+From:   Nitin Rawat <quic_nitirawa@quicinc.com>
+To:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1689071300; l=8057;
- i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=Iba3nS85j60Hy+togLR/dX0iY23cMPgt7+PGSw52Izc=;
- b=sZMBSlLzoztBrESJW0fOCRIgMEf10JSI/h9W9GIfu1cLcJ/vF6qyKTpQMfgfkblHkvZXJLuQb
- FQPaZdWgZt7CoBniFotFMyYx+uUHWx9Z+xBu+gZyZX+k8NGbDq7teOv
-X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
- pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        Naveen Kumar Goud Arepalli <quic_narepall@quicinc.com>
+Subject: [PATCH V1] arm64: dts: qcom: sa8775p-ride: Update L4C parameters
+Date:   Tue, 11 Jul 2023 16:12:55 +0530
+Message-Id: <20230711104255.16488-1-quic_nitirawa@quicinc.com>
+X-Mailer: git-send-email 2.17.1
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: zh_l20uUVBrtsJ5Q6-lVp7w98VV25frk
+X-Proofpoint-ORIG-GUID: zh_l20uUVBrtsJ5Q6-lVp7w98VV25frk
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-07-11_05,2023-07-11_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 mlxlogscore=955
+ clxscore=1011 mlxscore=0 malwarescore=0 phishscore=0 suspectscore=0
+ bulkscore=0 spamscore=0 lowpriorityscore=0 priorityscore=1501
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2305260000 definitions=main-2307110094
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add and assign RPM regulators coming from PM2250.
+From: Naveen Kumar Goud Arepalli <quic_narepall@quicinc.com>
 
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+L4c is the supply for UFS vccq, As per UFS spec range of vccq is
+1.14V to 1.26V, There are stability issues when operating at
+marginal voltage. Hence configure the min and max vccq voltages
+to 1.2V.
+
+Signed-off-by: Naveen Kumar Goud Arepalli <quic_narepall@quicinc.com>
 ---
- arch/arm64/boot/dts/qcom/qrb2210-rb1.dts | 266 +++++++++++++++++++++++++++++++
- 1 file changed, 266 insertions(+)
+ arch/arm64/boot/dts/qcom/sa8775p-ride.dts | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/qrb2210-rb1.dts b/arch/arm64/boot/dts/qcom/qrb2210-rb1.dts
-index ef3616093289..eadba066972e 100644
---- a/arch/arm64/boot/dts/qcom/qrb2210-rb1.dts
-+++ b/arch/arm64/boot/dts/qcom/qrb2210-rb1.dts
-@@ -38,6 +38,91 @@ key-volume-up {
- 			wakeup-source;
- 		};
- 	};
-+
-+	vreg_hdmi_out_1p2: regulator-hdmi-out-1p2 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VREG_HDMI_OUT_1P2";
-+		regulator-min-microvolt = <1200000>;
-+		regulator-max-microvolt = <1200000>;
-+		vin-supply = <&vdc_1v2>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	lt9611_3v3: regulator-lt9611-3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "LT9611_3V3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vdc_3v3>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	/* Main barrel jack input */
-+	vdc_12v: regulator-vdc-12v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "DC_12V";
-+		regulator-min-microvolt = <12000000>;
-+		regulator-max-microvolt = <12000000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	/* 1.2V supply stepped down from the barrel jack input */
-+	vdc_1v2: regulator-vdc-1v2 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDC_1V2";
-+		regulator-min-microvolt = <1200000>;
-+		regulator-max-microvolt = <1200000>;
-+		vin-supply = <&vdc_12v>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	/* 3.3V supply stepped down from the barrel jack input */
-+	vdc_3v3: regulator-vdc-3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDC_3V3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vdc_12v>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	/* 5V supply stepped down from the barrel jack input */
-+	vdc_5v: regulator-vdc-5v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDC_5V";
-+
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	/* "Battery" voltage for the SoM, stepped down from the barrel jack input */
-+	vdc_vbat_som: regulator-vdc-vbat {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VBAT_SOM";
-+		regulator-min-microvolt = <4200000>;
-+		regulator-max-microvolt = <4200000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	/* PM2250 charger out, supplied by VBAT */
-+	vph_pwr: regulator-vph-pwr {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vph_pwr";
-+		regulator-min-microvolt = <3700000>;
-+		regulator-max-microvolt = <3700000>;
-+		vin-supply = <&vdc_vbat_som>;
-+
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
- };
+diff --git a/arch/arm64/boot/dts/qcom/sa8775p-ride.dts b/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
+index ab767cfa51ff..26f5a4e0ffed 100644
+--- a/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
++++ b/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
+@@ -153,8 +153,8 @@
  
- &pm2250_resin {
-@@ -49,7 +134,183 @@ &qupv3_id_0 {
- 	status = "okay";
- };
- 
-+&rpm_requests {
-+	regulators {
-+		compatible = "qcom,rpm-pm2250-regulators";
-+		vdd_s3-supply = <&vph_pwr>;
-+		vdd_s4-supply = <&vph_pwr>;
-+		vdd_l1_l2_l3_l5_l6_l7_l8_l9_l10_l11_l12-supply = <&pm2250_s3>;
-+		vdd_l4_l17_l18_l19_l20_l21_l22-supply = <&vph_pwr>;
-+		vdd_l13_l14_l15_l16-supply = <&pm2250_s4>;
-+
-+		/*
-+		 * S1 - VDD_APC
-+		 * S2 - VDD_CX
-+		 */
-+
-+		pm2250_s3: s3 {
-+			/* 0.4V-1.6625V -> 1.3V (Power tree requirements) */
-+			regulator-min-microvolts = <1350000>;
-+			regulator-max-microvolts = <1350000>;
-+			regulator-boot-on;
-+		};
-+
-+		pm2250_s4: s4 {
-+			/* 1.2V-2.35V -> 2.05V (Power tree requirements) */
-+			regulator-min-microvolts = <2072000>;
-+			regulator-max-microvolts = <2072000>;
-+			regulator-boot-on;
-+		};
-+
-+		/* L1 - VDD_MX */
-+
-+		pm2250_l2: l2 {
-+			/* LPDDR4X VDD2 */
-+			regulator-min-microvolts = <1136000>;
-+			regulator-max-microvolts = <1136000>;
-+			regulator-always-on;
-+			regulator-boot-on;
-+		};
-+
-+		pm2250_l3: l3 {
-+			/* LPDDR4X VDDQ */
-+			regulator-min-microvolts = <616000>;
-+			regulator-max-microvolts = <616000>;
-+			regulator-always-on;
-+			regulator-boot-on;
-+		};
-+
-+		pm2250_l4: l4 {
-+			/* max = 3.05V -> max = just below 3V (SDHCI2) */
-+			regulator-min-microvolts = <1648000>;
-+			regulator-max-microvolts = <2992000>;
-+			regulator-allow-set-load;
-+		};
-+
-+		pm2250_l5: l5 {
-+			/* CSI/DSI */
-+			regulator-min-microvolts = <1232000>;
-+			regulator-max-microvolts = <1232000>;
-+			regulator-allow-set-load;
-+			regulator-boot-on;
-+		};
-+
-+		pm2250_l6: l6 {
-+			/* DRAM PLL */
-+			regulator-min-microvolts = <928000>;
-+			regulator-max-microvolts = <928000>;
-+			regulator-always-on;
-+			regulator-boot-on;
-+		};
-+
-+		pm2250_l7: l7 {
-+			/* Wi-Fi CX/MX */
-+			regulator-min-microvolts = <664000>;
-+			regulator-max-microvolts = <664000>;
-+		};
-+
-+		/*
-+		 * L8 - VDD_LPI_CX
-+		 * L9 - VDD_LPI_MX
-+		 */
-+
-+		pm2250_l10: l10 {
-+			/* Wi-Fi RFA */
-+			regulator-min-microvolts = <1300000>;
-+			regulator-max-microvolts = <1300000>;
-+		};
-+
-+		pm2250_l11: l11 {
-+			/* GPS RF1 */
-+			regulator-min-microvolts = <1000000>;
-+			regulator-max-microvolts = <1000000>;
-+			regulator-boot-on;
-+		};
-+
-+		pm2250_l12: l12 {
-+			/* USB PHYs */
-+			regulator-min-microvolts = <928000>;
-+			regulator-max-microvolts = <928000>;
-+			regulator-allow-set-load;
-+			regulator-boot-on;
-+		};
-+
-+		pm2250_l13: l13 {
-+			/* USB/QFPROM/PLLs */
-+			regulator-min-microvolts = <1800000>;
-+			regulator-max-microvolts = <1800000>;
-+			regulator-allow-set-load;
-+			regulator-boot-on;
-+		};
-+
-+		pm2250_l14: l14 {
-+			/* SDHCI1 VQMMC */
-+			regulator-min-microvolts = <1800000>;
-+			regulator-max-microvolts = <1800000>;
-+			regulator-allow-set-load;
-+			/* Broken hardware, never turn it off! */
-+			regulator-always-on;
-+		};
-+
-+		pm2250_l15: l15 {
-+			/* WCD/DSI/BT VDDIO */
-+			regulator-min-microvolts = <1800000>;
-+			regulator-max-microvolts = <1800000>;
-+			regulator-allow-set-load;
-+			regulator-always-on;
-+			regulator-boot-on;
-+		};
-+
-+		pm2250_l16: l16 {
-+			/* GPS RF2 */
-+			regulator-min-microvolts = <1800000>;
-+			regulator-max-microvolts = <1800000>;
-+			regulator-boot-on;
-+		};
-+
-+		pm2250_l17: l17 {
-+			regulator-min-microvolts = <3000000>;
-+			regulator-max-microvolts = <3000000>;
-+		};
-+
-+		pm2250_l18: l18 {
-+			/* VDD_PXn */
-+			regulator-min-microvolts = <1800000>;
-+			regulator-max-microvolts = <1800000>;
-+		};
-+
-+		pm2250_l19: l19 {
-+			/* VDD_PXn */
-+			regulator-min-microvolts = <1800000>;
-+			regulator-max-microvolts = <1800000>;
-+		};
-+
-+		pm2250_l20: l20 {
-+			/* SDHCI1 VMMC */
-+			regulator-min-microvolts = <2856000>;
-+			regulator-max-microvolts = <2856000>;
-+			regulator-allow-set-load;
-+		};
-+
-+		pm2250_l21: l21 {
-+			/* SDHCI2 VMMC */
-+			regulator-min-microvolts = <2960000>;
-+			regulator-max-microvolts = <3300000>;
-+			regulator-allow-set-load;
-+			regulator-boot-on;
-+		};
-+
-+		pm2250_l22: l22 {
-+			/* Wi-Fi */
-+			regulator-min-microvolts = <3312000>;
-+			regulator-max-microvolts = <3312000>;
-+		};
-+	};
-+};
-+
- &sdhc_1 {
-+	vmmc-supply = <&pm2250_l20>;
-+	vqmmc-supply = <&pm2250_l14>;
- 	pinctrl-0 = <&sdc1_state_on>;
- 	pinctrl-1 = <&sdc1_state_off>;
- 	pinctrl-names = "default", "sleep";
-@@ -61,6 +322,8 @@ &sdhc_1 {
- };
- 
- &sdhc_2 {
-+	vmmc-supply = <&pm2250_l21>;
-+	vqmmc-supply = <&pm2250_l4>;
- 	cd-gpios = <&tlmm 88 GPIO_ACTIVE_LOW>;
- 	pinctrl-0 = <&sdc2_state_on &sd_det_in_on>;
- 	pinctrl-1 = <&sdc2_state_off &sd_det_in_off>;
-@@ -104,6 +367,9 @@ &usb {
- };
- 
- &usb_hsphy {
-+	vdd-supply = <&pm2250_l12>;
-+	vdda-pll-supply = <&pm2250_l13>;
-+	vdda-phy-dpdm-supply = <&pm2250_l21>;
- 	status = "okay";
- };
- 
-
----
-base-commit: 8e4b7f2f3d6071665b1dfd70786229c8a5d6c256
-change-id: 20230711-topic-rb1_regulator-44c4ade93246
-
-Best regards,
+ 		vreg_l4c: ldo4 {
+ 			regulator-name = "vreg_l4c";
+-			regulator-min-microvolt = <1100000>;
+-			regulator-max-microvolt = <1300000>;
++			regulator-min-microvolt = <1200000>;
++			regulator-max-microvolt = <1200000>;
+ 			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+ 			/*
+ 			 * FIXME: This should have regulator-allow-set-load but
 -- 
-Konrad Dybcio <konrad.dybcio@linaro.org>
+2.17.1
 
