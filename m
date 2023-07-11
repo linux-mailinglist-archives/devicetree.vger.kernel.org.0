@@ -2,149 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8EAAC74E947
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 10:42:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B7D474E950
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 10:45:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230150AbjGKImZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jul 2023 04:42:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53118 "EHLO
+        id S230308AbjGKIp3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jul 2023 04:45:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54614 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229774AbjGKImV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 04:42:21 -0400
-Received: from imap5.colo.codethink.co.uk (imap5.colo.codethink.co.uk [78.40.148.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0AD4BF;
-        Tue, 11 Jul 2023 01:42:20 -0700 (PDT)
-Received: from 82-132-229-125.dab.02.net ([82.132.229.125] helo=[192.168.252.81])
-        by imap5.colo.codethink.co.uk with esmtpsa  (Exim 4.94.2 #2 (Debian))
-        id 1qJ8wN-007Gds-VX; Tue, 11 Jul 2023 09:41:48 +0100
-Message-ID: <74385f9d-ed8d-8906-13e3-b3091dae7993@codethink.co.uk>
-Date:   Tue, 11 Jul 2023 09:41:43 +0100
+        with ESMTP id S230241AbjGKIp1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 04:45:27 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9E55AD;
+        Tue, 11 Jul 2023 01:45:26 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 17CEF660700A;
+        Tue, 11 Jul 2023 09:45:25 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1689065125;
+        bh=6DEYd15MttBbh1X726uK3mCyLE6btpkMXJHDkuDOM7M=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=MIZttZTRS6brVyCd9tt/IvWW6aPhi0+7UrniYZMZsY55P7kbljqpNvkRHTg4wUSCW
+         Wu5Oq+W3+iO6MBxTU8BXYgWVU2oQRnJFNoF/3id56f/GIQQ4KrzaIAXYqZb30fyLKu
+         XMpgQMh7XPg9/Haomgxmt+w2l6keWpk+QFkLjM7hcoekl/cJSwQlBayaqxnxrXYvlb
+         CKWyGWs6deR+HmvFI3GGVBTBlLivkK3Sdspsj7xWnlm5v4JDSqE9HSn6lkDozhXjCN
+         vxtsLzWW6GmuWSxj3skq8nkvs459gOx+5gFZQaCMvm8MLlXgkotadisQmwgZKj7BfH
+         kn+RvIZpcENiQ==
+Message-ID: <ab8c87c2-6a25-1639-911a-4bc8240514a3@collabora.com>
+Date:   Tue, 11 Jul 2023 10:45:23 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
-Subject: Re: [PATCH 2/3] soc: sifive: Add SiFive private L2 cache PMU driver
-Content-Language: en-GB
-To:     Eric Lin <eric.lin@sifive.com>,
-        Conor Dooley <conor.dooley@microchip.com>
-Cc:     conor@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, palmer@dabbelt.com,
-        paul.walmsley@sifive.com, aou@eecs.berkeley.edu, maz@kernel.org,
-        chenhuacai@kernel.org, baolu.lu@linux.intel.com, will@kernel.org,
-        kan.liang@linux.intel.com, nnac123@linux.ibm.com,
-        pierre.gondois@arm.com, jgross@suse.com, chao.gao@intel.com,
-        maobibo@loongson.cn, linux-riscv@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dslin1010@gmail.com, Greentime Hu <greentime.hu@sifive.com>,
-        Zong Li <zong.li@sifive.com>, Nick Hu <nick.hu@sifive.com>
-References: <20230616063210.19063-1-eric.lin@sifive.com>
- <20230616063210.19063-3-eric.lin@sifive.com>
- <20230616-revision-speed-a83dc926b334@wendy>
- <CAPqJEFo5genyjY7qJBaESzeppbEnTiDe9qzv98ETLhWfMZeG4A@mail.gmail.com>
-From:   Ben Dooks <ben.dooks@codethink.co.uk>
-Organization: Codethink Limited.
-In-Reply-To: <CAPqJEFo5genyjY7qJBaESzeppbEnTiDe9qzv98ETLhWfMZeG4A@mail.gmail.com>
+Subject: Re: [PATCH v2 4/4] arm64: dts: Add MediaTek MT8188 dts and evaluation
+ board and Makefile
+Content-Language: en-US
+To:     Jason-ch Chen <jason-ch.chen@mediatek.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     =?UTF-8?Q?N=c3=adcolas_F_=2e_R_=2e_A_=2e_Prado?= 
+        <nfraprado@collabora.com>, Chen-Yu Tsai <wenst@chromium.org>,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
+References: <20230711023929.14381-1-jason-ch.chen@mediatek.com>
+ <20230711023929.14381-5-jason-ch.chen@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20230711023929.14381-5-jason-ch.chen@mediatek.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/06/2023 04:14, Eric Lin wrote:
-> On Fri, Jun 16, 2023 at 6:13 PM Conor Dooley <conor.dooley@microchip.com> wrote:
->>
->> On Fri, Jun 16, 2023 at 02:32:09PM +0800, Eric Lin wrote:
->>> From: Greentime Hu <greentime.hu@sifive.com>
->>>
->>> This adds SiFive private L2 cache PMU driver. User
->>> can use perf tool to profile by event name and event id.
->>>
->>> Example:
->>> $ perf stat -C 0 -e /sifive_pl2_pmu/inner_acquire_block_btot/
->>>                  -e /sifive_pl2_pmu/inner_acquire_block_ntob/
->>>                  -e /sifive_pl2_pmu/inner_acquire_block_ntot/ ls
->>>
->>>   Performance counter stats for 'CPU(s) 0':
->>>
->>>                 300      sifive_pl2_pmu/inner_acquire_block_btot/
->>>               17801      sifive_pl2_pmu/inner_acquire_block_ntob/
->>>                5253      sifive_pl2_pmu/inner_acquire_block_ntot/
->>>
->>>         0.088917326 seconds time elapsed
->>>
->>> $ perf stat -C 0 -e /sifive_pl2_pmu/event=0x10001/
->>>                  -e /sifive_pl2_pmu/event=0x4001/
->>>                  -e /sifive_pl2_pmu/event=0x8001/ ls
->>>
->>>   Performance counter stats for 'CPU(s) 0':
->>>
->>>                 251      sifive_pl2_pmu/event=0x10001/
->>>                2620      sifive_pl2_pmu/event=0x4001/
->>>                 644      sifive_pl2_pmu/event=0x8001/
->>>
->>>         0.092827110 seconds time elapsed
->>>
->>> Signed-off-by: Greentime Hu <greentime.hu@sifive.com>
->>> Signed-off-by: Eric Lin <eric.lin@sifive.com>
->>> Reviewed-by: Zong Li <zong.li@sifive.com>
->>> Reviewed-by: Nick Hu <nick.hu@sifive.com>
->>> ---
->>>   drivers/soc/sifive/Kconfig            |   9 +
->>>   drivers/soc/sifive/Makefile           |   1 +
->>>   drivers/soc/sifive/sifive_pl2.h       |  20 +
->>>   drivers/soc/sifive/sifive_pl2_cache.c |  16 +
->>>   drivers/soc/sifive/sifive_pl2_pmu.c   | 669 ++++++++++++++++++++++++++
->>
->> Perf drivers should be in drivers/perf, no?
->>
+Il 11/07/23 04:39, Jason-ch Chen ha scritto:
+> From: jason-ch chen <Jason-ch.Chen@mediatek.com>
 > 
-> Hi Conor,
+> MT8188 is a SoC based on 64bit ARMv8 architecture. It contains 6 CA55
+> and 2 CA78 cores. MT8188 share many HW IP with MT65xx series.
 > 
-> Yes, I see most of the drivers are in the drivers/perf.
+> We add basic chip support for MediaTek MT8188 on evaluation board.
 > 
-> But I grep perf_pmu_register(), it seems not all the pmu drivers are
-> in drivers/perf as below:
+> Signed-off-by: jason-ch chen <Jason-ch.Chen@mediatek.com>
+> ---
+>   arch/arm64/boot/dts/mediatek/Makefile       |   1 +
+>   arch/arm64/boot/dts/mediatek/mt8188-evb.dts | 401 +++++++++
+>   arch/arm64/boot/dts/mediatek/mt8188.dtsi    | 951 ++++++++++++++++++++
+>   3 files changed, 1353 insertions(+)
+>   create mode 100644 arch/arm64/boot/dts/mediatek/mt8188-evb.dts
+>   create mode 100644 arch/arm64/boot/dts/mediatek/mt8188.dtsi
 > 
-> arch/arm/mach-imx/mmdc.c:517:   ret =
-> perf_pmu_register(&(pmu_mmdc->pmu), name, -1);
-> arch/arm/mm/cache-l2x0-pmu.c:552:       ret =
-> perf_pmu_register(l2x0_pmu, l2x0_name, -1);
-> ...
-> drivers/dma/idxd/perfmon.c:627: rc = perf_pmu_register(&idxd_pmu->pmu,
-> idxd_pmu->name, -1);
-> drivers/fpga/dfl-fme-perf.c:904:static int
-> fme_perf_pmu_register(struct platform_device *pdev,
-> drivers/fpga/dfl-fme-perf.c:929:        ret = perf_pmu_register(pmu, name, -1);
-> ...
-> drivers/gpu/drm/amd/amdgpu/amdgpu_pmu.c:549:    ret =
-> perf_pmu_register(&pmu_entry->pmu, pmu_name, -1);
-> drivers/gpu/drm/i915/i915_pmu.c:1190:   ret =
-> perf_pmu_register(&pmu->base, pmu->name, -1);
-> drivers/hwtracing/coresight/coresight-etm-perf.c:907:   ret =
-> perf_pmu_register(&etm_pmu, CORESIGHT_ETM_PMU_NAME, -1);
-> drivers/hwtracing/ptt/hisi_ptt.c:895:   ret =
-> perf_pmu_register(&hisi_ptt->hisi_ptt_pmu, pmu_name, -1);
-> drivers/iommu/intel/perfmon.c:570:      return
-> perf_pmu_register(&iommu_pmu->pmu, iommu_pmu->pmu.name, -1);
-> drivers/nvdimm/nd_perf.c:309:   rc = perf_pmu_register(&nd_pmu->pmu,
-> nd_pmu->pmu.name, -1);
-> ...
-> 
-> I just wondering what kind of pmu drivers should be in drivers/perf
-> and what kind of pmu drivers should not be in drivers/perf.
-> Thanks.
->
+> diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dts/mediatek/Makefile
+> index c99c3372a4b5..9bd2324259a3 100644
+> --- a/arch/arm64/boot/dts/mediatek/Makefile
+> +++ b/arch/arm64/boot/dts/mediatek/Makefile
+> @@ -44,6 +44,7 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-krane-sku0.dtb
+>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-krane-sku176.dtb
+>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-pumpkin.dtb
+>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-evb.dtb
+> +dtb-$(CONFIG_ARCH_MEDIATEK) += mt8188-evb.dtb
+>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8192-asurada-hayato-r1.dtb
+>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8192-asurada-spherion-r0.dtb
+>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8192-evb.dtb
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8188-evb.dts b/arch/arm64/boot/dts/mediatek/mt8188-evb.dts
+> new file mode 100644
+> index 000000000000..6c1e829f7df6
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/mediatek/mt8188-evb.dts
+> @@ -0,0 +1,401 @@
+> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> +/*
+> + * Copyright (C) 2023 MediaTek Inc.
+> + */
+> +/dts-v1/;
+> +#include "mt8188.dtsi"
+> +#include "mt6359.dtsi"
+> +
+> +/ {
 
-Given the registers for the l2 cache controls and l2 pmu don't overlap
-do we need the pmu and general cache drivers together?
+..snip..
 
--- 
-Ben Dooks				http://www.codethink.co.uk/
-Senior Engineer				Codethink - Providing Genius
+> +
+> +&u3phy0 {
+> +	status="okay";
 
-https://www.codethink.co.uk/privacy.html
+You missed the spaces around '=' here.
+
+	status = "okay";
+
+> +};
+> +
+> +&u3phy1 {
+> +	status="okay";
+> +};
+> +
+> +&u3phy2 {
+> +	status="okay";
+> +};
+> +
+
+After fixing that,
+
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
