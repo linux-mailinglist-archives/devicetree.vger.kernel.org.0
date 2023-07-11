@@ -2,22 +2,22 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F94274FAC1
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 00:12:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E99B374FAC8
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 00:14:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231736AbjGKWMI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jul 2023 18:12:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56122 "EHLO
+        id S230180AbjGKWOs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jul 2023 18:14:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57588 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231822AbjGKWMH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 18:12:07 -0400
+        with ESMTP id S230233AbjGKWOr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 18:14:47 -0400
 Received: from finn.localdomain (finn.gateworks.com [108.161.129.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D741F1BE5;
-        Tue, 11 Jul 2023 15:11:32 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAF59170C;
+        Tue, 11 Jul 2023 15:14:45 -0700 (PDT)
 Received: from 068-189-091-139.biz.spectrum.com ([68.189.91.139] helo=tharvey.pdc.gateworks.com)
         by finn.localdomain with esmtp (Exim 4.93)
         (envelope-from <tharvey@gateworks.com>)
-        id 1qJLZu-0074lE-JO; Tue, 11 Jul 2023 22:11:26 +0000
+        id 1qJLd4-0074lo-E0; Tue, 11 Jul 2023 22:14:42 +0000
 From:   Tim Harvey <tharvey@gateworks.com>
 To:     Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
@@ -29,9 +29,9 @@ Cc:     Rob Herring <robh+dt@kernel.org>,
         Fabio Estevam <festevam@gmail.com>,
         NXP Linux Team <linux-imx@nxp.com>,
         Tim Harvey <tharvey@gateworks.com>
-Subject: [PATCH] arm64: dts: imx8mm: add imx8mm-venice-gw72xx-0x-rpidsi overlay for display
-Date:   Tue, 11 Jul 2023 15:11:24 -0700
-Message-Id: <20230711221124.2127186-1-tharvey@gateworks.com>
+Subject: [PATCH] arm64: dts: imx8mp: add imx8mp-venice-gw74xx-rpidsi overlay for display
+Date:   Tue, 11 Jul 2023 15:14:40 -0700
+Message-Id: <20230711221440.2127784-1-tharvey@gateworks.com>
 X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -60,50 +60,46 @@ yet supported as polling mode is needed.
 Signed-off-by: Tim Harvey <tharvey@gateworks.com>
 ---
  arch/arm64/boot/dts/freescale/Makefile        |  2 +
- .../imx8mm-venice-gw72xx-0x-rpidsi.dtso       | 87 +++++++++++++++++++
- 2 files changed, 89 insertions(+)
- create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx-0x-rpidsi.dtso
+ .../imx8mp-venice-gw74xx-rpidsi.dtso          | 86 +++++++++++++++++++
+ 2 files changed, 88 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx-rpidsi.dtso
 
 diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index df572cfd0931..454b07ed09fc 100644
+index 454b07ed09fc..60a69e114442 100644
 --- a/arch/arm64/boot/dts/freescale/Makefile
 +++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -147,6 +147,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8ulp-evk.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx93-11x11-evk.dtb
- 
- imx8mm-venice-gw72xx-0x-imx219-dtbs	:= imx8mm-venice-gw72xx-0x.dtb imx8mm-venice-gw72xx-0x-imx219.dtbo
-+imx8mm-venice-gw72xx-0x-rpidsi-dtbs	:= imx8mm-venice-gw72xx-0x.dtb imx8mm-venice-gw72xx-0x-rpidsi.dtbo
- imx8mm-venice-gw72xx-0x-rs232-rts-dtbs	:= imx8mm-venice-gw72xx-0x.dtb imx8mm-venice-gw72xx-0x-rs232-rts.dtbo
- imx8mm-venice-gw72xx-0x-rs422-dtbs	:= imx8mm-venice-gw72xx-0x.dtb imx8mm-venice-gw72xx-0x-rs422.dtbo
- imx8mm-venice-gw72xx-0x-rs485-dtbs	:= imx8mm-venice-gw72xx-0x.dtb imx8mm-venice-gw72xx-0x-rs485.dtbo
-@@ -157,6 +158,7 @@ imx8mm-venice-gw73xx-0x-rs422-dtbs	:= imx8mm-venice-gw73xx-0x.dtb imx8mm-venice-
+@@ -156,6 +156,7 @@ imx8mm-venice-gw73xx-0x-rpidsi-dtbs	:= imx8mm-venice-gw73xx-0x.dtb imx8mm-venice
+ imx8mm-venice-gw73xx-0x-rs232-rts-dtbs	:= imx8mm-venice-gw73xx-0x.dtb imx8mm-venice-gw73xx-0x-rs232-rts.dtbo
+ imx8mm-venice-gw73xx-0x-rs422-dtbs	:= imx8mm-venice-gw73xx-0x.dtb imx8mm-venice-gw73xx-0x-rs422.dtbo
  imx8mm-venice-gw73xx-0x-rs485-dtbs	:= imx8mm-venice-gw73xx-0x.dtb imx8mm-venice-gw73xx-0x-rs485.dtbo
++imx8mp-venice-gw74xx-rpidsi-dtbs	:= imx8mp-venice-gw74xx.dtb imx8mp-venice-gw74xx-rpidsi.dtbo
  
  dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw72xx-0x-imx219.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw72xx-0x-rpidsi.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw72xx-0x-rs232-rts.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw72xx-0x-rs422.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw72xx-0x-rs485.dtb
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx-0x-rpidsi.dtso b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx-0x-rpidsi.dtso
+ dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw72xx-0x-rpidsi.dtb
+@@ -167,6 +168,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw73xx-0x-rpidsi.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw73xx-0x-rs232-rts.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw73xx-0x-rs422.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw73xx-0x-rs485.dtb
++dtb-$(CONFIG_ARCH_MXC) += imx8mp-venice-gw74xx-rpidsi.dtb
+ 
+ dtb-$(CONFIG_ARCH_S32) += s32g274a-evb.dtb
+ dtb-$(CONFIG_ARCH_S32) += s32g274a-rdb2.dtb
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx-rpidsi.dtso b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx-rpidsi.dtso
 new file mode 100644
-index 000000000000..45bf88fa7c16
+index 000000000000..eec635ead119
 --- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx-0x-rpidsi.dtso
-@@ -0,0 +1,87 @@
++++ b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx-rpidsi.dtso
+@@ -0,0 +1,86 @@
 +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
 +/*
 + * Copyright 2023 Gateworks Corporation
 + */
 +
-+#include <dt-bindings/gpio/gpio.h>
-+
-+#include "imx8mm-pinfunc.h"
-+
 +/dts-v1/;
 +/plugin/;
 +
 +&{/} {
-+	compatible = "gw,imx8mm-gw73xx-0x", "fsl,imx8mm";
++	compatible = "gateworks,imx8mp-gw74xx", "fsl,imx8mp";
 +
 +	panel {
 +		compatible = "powertip,ph800480t013-idf02";
@@ -118,7 +114,7 @@ index 000000000000..45bf88fa7c16
 +	};
 +};
 +
-+&i2c3 {
++&i2c4 {
 +	#address-cells = <1>;
 +	#size-cells = <0>;
 +
@@ -128,7 +124,7 @@ index 000000000000..45bf88fa7c16
 +	};
 +};
 +
-+&lcdif {
++&lcdif1 {
 +	status = "okay";
 +};
 +
@@ -158,6 +154,7 @@ index 000000000000..45bf88fa7c16
 +
 +			port@1 {
 +				reg = <1>;
++
 +				bridge_out: endpoint {
 +					remote-endpoint = <&panel_in>;
 +				};
@@ -171,7 +168,9 @@ index 000000000000..45bf88fa7c16
 +
 +		port@1 {
 +			reg = <1>;
++
 +			dsi_out: endpoint {
++				data-lanes = <1 2>;
 +				remote-endpoint = <&bridge_in>;
 +			};
 +		};
