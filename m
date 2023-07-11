@@ -2,65 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E935074F7F7
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 20:24:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 60DA074F807
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jul 2023 20:29:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229637AbjGKSYr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jul 2023 14:24:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36824 "EHLO
+        id S231613AbjGKS3N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jul 2023 14:29:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39326 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229547AbjGKSYr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 14:24:47 -0400
+        with ESMTP id S229762AbjGKS3M (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 14:29:12 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5AA2BA7;
-        Tue, 11 Jul 2023 11:24:46 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55C7EE74;
+        Tue, 11 Jul 2023 11:29:11 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id E330B615BA;
-        Tue, 11 Jul 2023 18:24:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 56524C433C7;
-        Tue, 11 Jul 2023 18:24:42 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id DD4DD614C6;
+        Tue, 11 Jul 2023 18:29:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7316C433C7;
+        Tue, 11 Jul 2023 18:29:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689099885;
-        bh=zJPtfI/auSCS+FXnUdN2m+m5+pRku+Q7oweliXmmQCI=;
+        s=k20201202; t=1689100150;
+        bh=4WHgf4NH3QhoBoMxrjIbPFE8U3So6T1/ORPBCNz8mSU=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=jy8+pLrpW2sllchUXbaisHq93qc5rUvsUIaccrabrs4feG5vBgkLHH5scuoHHqh6P
-         wAfxhKU3kFAj+t/a6AZQZ+ZQMNJJeS3WoPMpzzJpT1U7HBK/1zNsaJ2LVWGxqchL9k
-         SvonL5sypVn4RHmddCGkitBHQi72pp+yvv6jgUqfrsceQ5PNb+QUQA3WTNUbMThtj9
-         +zgpGM27Mo+//EkMnYVOMbf7hq1FHWmSN2SAIDgW0Y3J8i++R39+995iMA7OjNzasO
-         dChxtjIUtCV2xROgGzBsIBbaCxzjQoZCKJ8cklMQ4UtEbPj+aSj7jVJrDE4tvMdLAW
-         e6JXuzO2I3a+A==
-Date:   Tue, 11 Jul 2023 19:24:40 +0100
+        b=JSt8zgsy1qxDAeeFc8lsgbkWcmZPOWoXyP2xM1kV9XdSJXv+O2Lj4a1D4nR9sAPd6
+         WBp4EX3vLY2g56P9I+UleRLL66kmymXo2FCwNVoIfjqgW6QE59eg65G6Ci+RlyvT6u
+         gvtiQ9O3X2uyTNY/XaF6mSVlWBE0/yWOHcoS3dVC+nxR93UerGkJcXXuF1Cm1mNamp
+         1gfZ1loriSzwd88AhVnvnhYOnA0bA4YHWwVnD8hsF3fKxv+vS3nsPQ8JcqCLu28FZ5
+         pn1g3COnbfGlFQjjp7NDPidt1iF0BK2G8dcL3Ue/fOSvTSuY/0mmZbIkw2TFr8RMhj
+         Z2C0CxKiXuQ7g==
+Date:   Tue, 11 Jul 2023 19:29:04 +0100
 From:   Conor Dooley <conor@kernel.org>
-To:     Alexandre Mergnat <amergnat@baylibre.com>
-Cc:     Neil Armstrong <neil.armstrong@linaro.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Guillaume La Roque <glaroque@baylibre.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/3] dt-bindings: display: panel: add startek
- kd070fhfid015 support
-Message-ID: <20230711-expiring-properly-297b5d5a03c1@spud>
-References: <20230711-startek_display-v1-0-163917bed385@baylibre.com>
- <20230711-startek_display-v1-1-163917bed385@baylibre.com>
+To:     Samuel Ortiz <sameo@rivosinc.com>
+Cc:     Rob Herring <robh@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        linux-riscv@lists.infradead.org, linux@rivosinc.com,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        Heiko Stuebner <heiko.stuebner@vrull.eu>,
+        Anup Patel <apatel@ventanamicro.com>,
+        linux-kernel@vger.kernel.org,
+        "Hongren (Zenithal) Zheng" <i@zenithal.me>,
+        Guo Ren <guoren@kernel.org>, Atish Patra <atishp@rivosinc.com>,
+        =?iso-8859-1?Q?Bj=F6rn_T=F6pel?= <bjorn@rivosinc.com>,
+        Evan Green <evan@rivosinc.com>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 2/4] dt-bindings: riscv: Document the 1.0 scalar
+ cryptography extensions
+Message-ID: <20230711-deceiving-pulverize-6d167ba904cd@spud>
+References: <20230709115549.2666557-1-sameo@rivosinc.com>
+ <20230709115549.2666557-3-sameo@rivosinc.com>
+ <20230710151624.GA1987602-robh@kernel.org>
+ <20230710-education-evolution-f12520405842@spud>
+ <ZK2RN7EKqmW87tyQ@vermeer>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="dWksGz8zakQe6R4S"
+        protocol="application/pgp-signature"; boundary="YcnOMAWI/8l3k2Bk"
 Content-Disposition: inline
-In-Reply-To: <20230711-startek_display-v1-1-163917bed385@baylibre.com>
+In-Reply-To: <ZK2RN7EKqmW87tyQ@vermeer>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -68,84 +73,64 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---dWksGz8zakQe6R4S
+--YcnOMAWI/8l3k2Bk
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Jul 11, 2023 at 05:36:27PM +0200, Alexandre Mergnat wrote:
-> The Startek KD070FHFID015 is a 7-inch TFT LCD display with a resolution
-> of 1024 x 600 pixels.
+On Tue, Jul 11, 2023 at 07:28:23PM +0200, Samuel Ortiz wrote:
+> On Mon, Jul 10, 2023 at 04:42:42PM +0100, Conor Dooley wrote:
+> > On Mon, Jul 10, 2023 at 09:16:24AM -0600, Rob Herring wrote:
+> > > On Sun, Jul 09, 2023 at 01:55:44PM +0200, Samuel Ortiz wrote:
+> > > > The RISC-V cryptography extensions define a set of instructions, CSR
+> > > > definitions, architectural interfaces and also extension shorthands=
+ for
+> > > > running scalar and vector based cryptography operations on RISC-V
+> > > > systems.
+> > > >=20
+> > > > This documents all the dt-bindings for the scalar cryptography
+> > > > extensions, including the Zk, Zkn and Zks shorthands.
+> > > >=20
+> > > > Signed-off-by: Samuel Ortiz <sameo@rivosinc.com>
+> > > > ---
+> > > >  .../devicetree/bindings/riscv/extensions.yaml | 82 +++++++++++++++=
+++++
+> > > >  1 file changed, 82 insertions(+)
+> > > >=20
+> > > > diff --git a/Documentation/devicetree/bindings/riscv/extensions.yam=
+l b/Documentation/devicetree/bindings/riscv/extensions.yaml
+> > > > index cc1f546fdbdc..361756978da1 100644
+> > > > --- a/Documentation/devicetree/bindings/riscv/extensions.yaml
+> > > > +++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
+> > > > @@ -190,6 +190,24 @@ properties:
+> > > >              instructions as ratified at commit 6d33919 ("Merge pul=
+l request #158
+> > > >              from hirooih/clmul-fix-loop-end-condition") of riscv-b=
+itmanip.
+> > > > =20
+> > > > +        - const: zbkb
+> > > > +          description: |
+> > >=20
+> > > Don't need '|' if no formatting to preserve.
+> >=20
+> > The existing binding only adds the `|` where the commit message contains
+> > a #, please drop the `|`s if you end up re-submitting. Otherwise,
 >=20
-> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
-> ---
->  .../display/panel/startek,kd070fhfid015.yaml       | 51 ++++++++++++++++=
-++++++
->  1 file changed, 51 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/display/panel/startek,kd07=
-0fhfid015.yaml b/Documentation/devicetree/bindings/display/panel/startek,kd=
-070fhfid015.yaml
-> new file mode 100644
-> index 000000000000..857658e002fd
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/panel/startek,kd070fhfid0=
-15.yaml
-> @@ -0,0 +1,51 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/panel/startek,kd070fhfid015.y=
-aml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Startek Electronic Technology Co. kd070fhfid015 7 inch TFT LCD pa=
-nel
-> +
-> +maintainers:
-> +  - Alexandre Mergnat <amergnat@baylibre.com>
-> +
-> +allOf:
-> +  - $ref: panel-common.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: startek,kd070fhfid015
-> +
-> +  dcdc-gpios: true
-> +
-> +  height-mm:
-> +    const: 151
+> I think the `|` is needed because the messages contains a `:`? This is
+> the case as the messages in this patch have a "Zvk:..." string.
+> Removing the `|` makes dt_binding_check fail because of that.
 
-Are height-mm and width-mm useful if they are always a fixed value?
+Right you are. Please keep them so!
 
-Otherwise, it looks grand to me,
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-
-Cheers,
-Conor.
-
-> +
-> +  iovcc-supply:
-> +    description: Reference to the regulator powering the panel IO pins.
-> +
-> +  reg:
-> +    maxItems: 1
-> +    description: DSI virtual channel
-
-nit: usually reg gets sorted after compatible, even if everything else
-is in alphabetical order, but hardly important.
-
-
---dWksGz8zakQe6R4S
+--YcnOMAWI/8l3k2Bk
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZK2eZwAKCRB4tDGHoIJi
-0lLgAQCMb1PplJgTtOG7x2uyoj1EXik6O19bpIBNBdF79BMKxwD/T3mMvbBEowXo
-mHoVlAsjsPjjzJxrxpefepaliX1CDgI=
-=QhPy
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZK2fcAAKCRB4tDGHoIJi
+0sA9AP9PT0XjbJmH26JVrXZ4zmZU6HqrgHX70VBPn0ThkaXXMwEAg8UsAr1Jm2ZB
+aAgTSGrrXOlUT1di0+5Mgxs4ijOGogI=
+=XdIy
 -----END PGP SIGNATURE-----
 
---dWksGz8zakQe6R4S--
+--YcnOMAWI/8l3k2Bk--
