@@ -2,165 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 07A52750FA2
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 19:25:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4DE57750FB2
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 19:34:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231221AbjGLRZ4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jul 2023 13:25:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37496 "EHLO
+        id S232973AbjGLReT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jul 2023 13:34:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40218 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230360AbjGLRZz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 13:25:55 -0400
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82E8A2112;
-        Wed, 12 Jul 2023 10:25:43 -0700 (PDT)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id A1B38862DA;
-        Wed, 12 Jul 2023 19:25:40 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1689182741;
-        bh=+/9P2RDXkiWPawrkFasbFUXp9kTFyBQDTDMgqnS3V40=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=rPSZVMpsSu5adOopxN6lmiMgXGvSBMEb75b3Ay6TjHJpd5yt5Ei6qx3fvD7gRbYJK
-         XhTRohT+EeRlEvi2TwZAXrfPYVC9n+pjcaLSqMIDBa8aj+JM1n2c6Orq+dt+Npo8HZ
-         OJ/DXUjUfLxAV2mxBpLXBRGtTnZZD97SQZSK1/RpULtQ751VU91yo4JwQselLbZev+
-         ocLKwv4oUdO8FOkyvhlUfJNVnB8gpSXyXXUq04uy6b3z4DFqOtt54/54hGOz500I1C
-         c/wKEiaabF3xdx5pNxdFz4sr3D0wj4Dc7wSRZ7mfWrTy/aCIhfPyG61w1x/qbowxy5
-         m2Zb5YYroIkaw==
-Message-ID: <ff5270e7-573d-2700-881f-1358683f2618@denx.de>
-Date:   Wed, 12 Jul 2023 19:25:40 +0200
+        with ESMTP id S232644AbjGLReS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 13:34:18 -0400
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 376291BD
+        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 10:34:17 -0700 (PDT)
+Received: by mail-lf1-x129.google.com with SMTP id 2adb3069b0e04-4f004cc54f4so10908963e87.3
+        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 10:34:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=shruggie-ro.20221208.gappssmtp.com; s=20221208; t=1689183255; x=1691775255;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=THupXVrcQgstmKZ7g3sWCpKEqGRDMCR0S1cuPxvrmm0=;
+        b=CEkTls9NpLa7QXntC+qxjwisHZSsRQgQwgxURUxzFeBcv9LvOyTjJworuQN7WatsWZ
+         2K8NdX0u0LbxZ2lR1yUo79lVYV7Up0UpO2i2X/Rw8KhfiAEoAlYYFuDPvs0u48lBYlby
+         Hr1UZ63ywo5FibwhwcS7qoubUmXWRJA5tgVIa0eFHOuV/v7sNq3UfNSWZ7LHxLcnsYO7
+         4av0aEY16DDYWnZRJoM4szLJmn5o+qjXQ6Ny2xJEot+VxVVdx7Lp4Q3D7xvuoXEsOoCE
+         +AVENbJNR+oens7/f65Ii+msEkHaRKqN92l7wvCOx7qSEv3ZeIceedllAlVUezPkND2D
+         psnA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689183255; x=1691775255;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=THupXVrcQgstmKZ7g3sWCpKEqGRDMCR0S1cuPxvrmm0=;
+        b=AuIJUqAwaGOcmWnEDBWHvCJiWE+xRgtas/eWmrSAVh53xBuj29rKysC5uVU/9cRa8R
+         mZSwajCzLoWZb7R70s/X2Wv+HO8HgIO5+ZvxVyFBWHUBlrmB1+Yh9DrV1Ae7bUeSHyvK
+         7/azky7zmbRGSD/Y4CYIQpW25Rkjv75AqqfgvnC0E29c0qMj0/sLn+Rd8ncsTSWkv2WC
+         Sv/KHOxKvs44tCAAX/atY16F/j3G9owZkktuPc2wAxyIovTErhPY999WZxYxccSv9ngY
+         OoffawV9FnLPprY7Sc+vXN9inemy2EZUjBIdOI/13/sXMHH2yDZ76SGdDoMGhv1aR7p3
+         dnxQ==
+X-Gm-Message-State: ABy/qLZ07xA0wzKrljR3Kw1/RjSfjnaAlD0xmTmJ2rI1wpWYqrCB3Ufr
+        0cLKzgD/twUe4491Orz49j5pH16IMZKmzXiGdin/jA==
+X-Google-Smtp-Source: APBJJlHvVk6KQIaeMx+Y8djfpAYOUtMArgWEG07w/d6ONkJCrU9E2j1ZpgldQFTViBw1jnRhyDheAmQQeSboRoBB5SI=
+X-Received: by 2002:a05:6512:3287:b0:4fb:89f2:278e with SMTP id
+ p7-20020a056512328700b004fb89f2278emr17145159lfe.68.1689183255338; Wed, 12
+ Jul 2023 10:34:15 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v4 3/3] drm/panel-fannal-c3004: Add fannal c3004 DSI panel
-Content-Language: en-US
-To:     Paulo Pavacic <pavacic.p@gmail.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Maya Matuszczyk <maccraft123mc@gmail.com>,
-        neil.armstrong@linaro.org, sam@ravnborg.org, airlied@gmail.com,
-        daniel@ffwll.ch, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org
-References: <20230607151127.1542024-1-pavacic.p@gmail.com>
- <CACRpkdbrEA54qmfTKSsFRG9ZS4u8hM6P5TXtOjRAiW+TD_v-fQ@mail.gmail.com>
- <CAO9szn00vRFm+iM1m7KgkW0WRuKyJEgVU4tVx4f5tF6KPnE=2w@mail.gmail.com>
- <CACRpkdaw8M3dSkmiV5QDOt3BBB7Jo6NxT0Og=zvA4REMA_7y9g@mail.gmail.com>
- <CAO9szn29A0qCABG0ACni42UGpsGKLwG7OT1y_ho3DgQ0WLvfmw@mail.gmail.com>
- <CACRpkdYXtQwmZR1u-1fwmyC_8Yq4bMkjDBcUCfuGqSz_UhXWJQ@mail.gmail.com>
- <CAO9szn0OuKW+-JZMs3TPUHiwLCe6cUPcsUq+og64K2utMyZpqQ@mail.gmail.com>
- <CACRpkdb5stXKb7FNk_FC-PKduCngRX3sZTbzcxN+kRskz78fuQ@mail.gmail.com>
- <CAO9szn3oTzrrwiyr91H14ep7OPUkA-SDST3CSQAQHvFFnkJWfA@mail.gmail.com>
- <0d43e653-32cd-b25e-40fa-6f0571048467@denx.de>
- <CAO9szn20RY3uBDceyUJ1S+gb=FN8Hd5qqMfOSbitHFyFCZ+iLg@mail.gmail.com>
- <8b0ae1d1-c769-1f55-0452-4bbc62da133b@denx.de>
- <CAO9szn1QdB5WGshuyCOGqb0qbBWHqoikeiMkk+bNGhAF5TX5ew@mail.gmail.com>
- <45488dcc-226e-1e7c-c681-c1d9be17bcbb@denx.de>
- <CAO9szn3scWfrP3mB8QnvPewZegV0=6iD8PE2bOS09HuN6gywmg@mail.gmail.com>
-From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <CAO9szn3scWfrP3mB8QnvPewZegV0=6iD8PE2bOS09HuN6gywmg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+References: <20230706081554.1616839-1-alex@shruggie.ro> <20230706081554.1616839-2-alex@shruggie.ro>
+ <9c37e2d5-a430-4a0f-b6b9-5de0dc14033f@lunn.ch>
+In-Reply-To: <9c37e2d5-a430-4a0f-b6b9-5de0dc14033f@lunn.ch>
+From:   Alexandru Ardelean <alex@shruggie.ro>
+Date:   Wed, 12 Jul 2023 20:34:03 +0300
+Message-ID: <CAH3L5Qp_887Jg4QN8qo1QQWJGhyLmvafKKTBRF-Yu3nkLE0G+g@mail.gmail.com>
+Subject: Re: [PATCH 2/2] dt-bindings: net: phy: vsc8531: document
+ 'vsc8531,clkout-freq-mhz' property
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, davem@davemloft.net,
+        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, hkallweit1@gmail.com, linux@armlinux.org.uk,
+        olteanv@gmail.com, marius.muresan@mxt.ro
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 7/12/23 17:10, Paulo Pavacic wrote:
+On Sat, Jul 8, 2023 at 9:25=E2=80=AFPM Andrew Lunn <andrew@lunn.ch> wrote:
+>
+> On Thu, Jul 06, 2023 at 11:15:54AM +0300, Alexandru Ardelean wrote:
+> > For VSC8351 and similar PHYs, a new property was added to generate a cl=
+ock
+> > signal on the CLKOUT pin.
+> > This change documents the change in the device-tree bindings doc.
+> >
+> > Signed-off-by: Alexandru Ardelean <alex@shruggie.ro>
+> > ---
+> >  Documentation/devicetree/bindings/net/mscc-phy-vsc8531.txt | 5 +++++
+> >  1 file changed, 5 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/net/mscc-phy-vsc8531.txt=
+ b/Documentation/devicetree/bindings/net/mscc-phy-vsc8531.txt
+> > index 0a3647fe331b..133bdd644618 100644
+> > --- a/Documentation/devicetree/bindings/net/mscc-phy-vsc8531.txt
+> > +++ b/Documentation/devicetree/bindings/net/mscc-phy-vsc8531.txt
+> > @@ -31,6 +31,10 @@ Optional properties:
+> >                         VSC8531_LINK_100_ACTIVITY (2),
+> >                         VSC8531_LINK_ACTIVITY (0) and
+> >                         VSC8531_DUPLEX_COLLISION (8).
+> > +- vsc8531,clkout-freq-mhz : For VSC8531 and similar PHYs, this will ou=
+tput
+> > +                       a clock signal on the CLKOUT pin of the chip.
+> > +                       The supported values are 25, 50 & 125 Mhz.
+> > +                       Default value is no clock signal on the CLKOUT =
+pin.
+>
+> It is possible this could cause regressions. The bootloader could
+> turned the clock on, and then Linux leaves it alone. Now, it will get
+> turned off unless a DT property is added.
+>
+> I prefer to explicitly have the property, so there is no dependency on
+> the bootloader, so lets leave it like this. But if we do get
+> regressions reported, this might need to change.
 
-Hi,
+Well, we could also need add a "mscc,clkout-freq-mhz =3D <0>" handling
+where the CLKOUT pin gets disabled explicitly (if needed, after the
+bootloade), for some weird corner cases.
+Though, to-be-honest, I can't think of any (remotely) reasonable ones.
 
-[...]
+It would definitely be simple to just make sure that Linux does not do
+any changes if this property isn't present.
 
->>>> Or whether it makes sense to outright have a separate driver. The later
->>>> would introduce duplication, but maybe that much duplication is OK.
->>>
->>> I would like to create new driver because panel-st7701 seems to be
->>> outdated and is using non-standard macro (ST7701_WRITE()
->>
->> There is no such macro:
->>
->> $ git grep ST7701_WRITE drivers/gpu/drm/panel/ | wc -l
->> 0
->>
->> There never was such a macro used in the driver either, are you sure you
->> are not using some hacked up patched downstream fork of the driver ?
-> 
-> I meant ST7701_DSI() macro; It can be replaced with
-> mipi_dsi_generic_write_seq from kernel 6.3. Sorry for the confusion.
+If you're on board about having this as-is, I will keep it; and spin a
+V2 just with 'vsc8531,clkout-freq-mhz ' -> 'mscc,clkout-freq-mhz' as
+Rob requested.
 
-OK
+Thanks
+Alex
 
->> $ git log -p next/master --
->> drivers/gpu/drm/panel/panel-sitronix-st7701.c | grep ST7701_WRITE | wc -l
->> 0
->>
->>> ) and for me
->>> it is crashing kernel 5.15.
->>
->> Have you based all the aforementioned discussion and argumentation on
->> year and half old Linux 5.15.y code base too ?
->>
->> If so, you are missing many patches:
->>
->> $ git log --oneline --no-merges v5.15..next/master --
->> drivers/gpu/drm/panel/panel-sitronix-st7701.c
->> 5a2854e577dc2 drm: panel: Add orientation support for st7701
->> e89838968ee44 drm: panel: Add Elida KD50T048A to Sitronix ST7701 driver
->> c62102165dd79 drm/panel/panel-sitronix-st7701: Remove panel on DSI
->> attach failure
->> 49ee766b364ed drm/panel/panel-sitronix-st7701: Clean up CMDnBKx selection
->> c1cdee9b685a1 drm/panel/panel-sitronix-st7701: Fix RTNI calculation
->> 57b2efce45ef5 drm/panel/panel-sitronix-st7701: Add Densitron
->> DMT028VGHMCMI-1A TFT
->> 42542c7904cf2 drm/panel/panel-sitronix-st7701: Split GIP and init sequences
->> 83b7a8e7e88e7 drm/panel/panel-sitronix-st7701: Parametrize voltage and
->> timing
->> de2b4917843cd drm/panel/panel-sitronix-st7701: Infer horizontal pixel
->> count from TFT mode
->> 82f9cee25598a drm/panel/panel-sitronix-st7701: Adjust porch control
->> bitfield name
->> 1ba85119afb5e drm/panel/panel-sitronix-st7701: Infer vertical line count
->> from TFT mode
->> 779c84fea3dbd drm/panel/panel-sitronix-st7701: Make gamma correction TFT
->> specific
->> 7fa8e07128ed6 drm/panel/panel-sitronix-st7701: Make voltage supplies
->> common to ST7701
->> a6c225be3da7e drm/panel/panel-sitronix-st7701: Enable DSI burst mode,
->> LPM, non-continuous clock
->> 6f481afe220d3 drm/panel/panel-sitronix-st7701: Make DSI mode flags
->> common to ST7701
->> 79abca2b39900 drm/mipi-dsi: Make remove callback return void
-> 
-> I will try backporting those patches to 5.15 and applying them to see
-> whether it will then work with initialization sequences provided in
-> this merge request just to be sure not to have duplication. We are
-> still working on transitioning to newer kernel so for the time being
-> I'm using mostly 5.15.
-> 
-> On 5.15 kernel I have following kernel panic only with st7701 from the
-> panel drivers I have tried:
-> 
-> [   20.255322] Kernel panic - not syncing: Asynchronous SError Interrupt
-> [   20.255326] CPU: 1 PID: 36 Comm: kworker/1:1 Tainted: G           O
->       5.15.77-5.15.77-2.1.0 #1
-
-The latest 5.15.y is 5.15.120 , can you re-test on that version ?
-
-> [   20.255330] Hardware name: XXX i.MX8XX board:XXX (DT)
-
-Is this some NXP downstream kernel fork with thousands of extra patches?
-The version string 2.1.0 looks very much like NXP versioning scheme ...
-
-[...]
+>
+>    Andrew
