@@ -2,410 +2,184 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3DDBD750F91
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 19:23:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 025D4750F94
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 19:23:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231797AbjGLRXJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jul 2023 13:23:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35606 "EHLO
+        id S233058AbjGLRXO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jul 2023 13:23:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35640 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232096AbjGLRXI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 13:23:08 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 592461BD
-        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 10:23:05 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id 2adb3069b0e04-4f96d680399so10900974e87.0
-        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 10:23:05 -0700 (PDT)
+        with ESMTP id S233059AbjGLRXM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 13:23:12 -0400
+Received: from mail-qv1-xf2f.google.com (mail-qv1-xf2f.google.com [IPv6:2607:f8b0:4864:20::f2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3FBB1BF7
+        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 10:23:11 -0700 (PDT)
+Received: by mail-qv1-xf2f.google.com with SMTP id 6a1803df08f44-635eb3a1d93so53285976d6.1
+        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 10:23:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689182583; x=1689787383;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=XPaxsksQJ1TH6iZEGOUjk8TgWOqMia45twF/E2He4DE=;
-        b=Z80mvnG823CbpEvanfATB6fSBt9Y0OEy0oKSZYTLVjDlVO/aWjj8Wk2tb9VqYEU0Iw
-         GuLkqv2UAXclv/5WEkc+8uR3uT+vanC8IChXwGaDEkySLOlJ80HPL3/gwHjq0BA4Uczi
-         LXyOg0+agBXPBCGsUcYsY15+sdIeUoS1JyC0U4xr3oX2MDsCyB0inKZUzRipetu3PvnZ
-         IfiQhODECE6jw5NbEce2RsLGugS7cNWGeditPOIGGC7s9XlcNGHtMfJAij+yKSg6qAwV
-         JeLMy99cXrS53UeUrf02zVEFBIkBTS94CjmSX0EbZ7qS+HcLpY2VzpMVH98/QuDPKOGc
-         dE2A==
+        d=broadcom.com; s=google; t=1689182591; x=1691774591;
+        h=mime-version:references:in-reply-to:message-id:date:subject:cc:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=6iKNU8dTU9eCXs3vAMqDnVXSkdpzP9An+Pg/1dADx8s=;
+        b=G2wMLXsKcxG6rXV6660GrUJGLdEI5BMg20HzulFnGoKLHecmXgPOsB0Zvw5jEkY4Me
+         FokP8v1v++KpdcF81rFmEUhe83ou/4aIHp0oY0uoPsHorbBfI6gIAqM5HYIoi++GJo/9
+         /hOvoV0oX4jiz3EQHox/kRleFrEArS42mXaXc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689182583; x=1689787383;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XPaxsksQJ1TH6iZEGOUjk8TgWOqMia45twF/E2He4DE=;
-        b=NXEH0JUrLAntmFxnCEZ+Ulpe9G9ZKzHhya+aiJRfytaYJOBQJP/3S34agHv0fLrvPg
-         4xGH8JWcZDcGDtGtc9UdDvHRPA37KCJj2nNG47//ZvAqW2sJOo61zNKCo/MVd/i90zJL
-         Mzs4jbmfCEL0B/kMLqJdSH9hSW3Vl2pewB344W8Z1eDSwGkAmbsHF6sJi/yno1nIz3Tr
-         2tpZ7RueuDo/FuWpgtyrVo2Da+2DSMH49+S6TokRascItvQTxZuX3I0BmWroyWo6CeEH
-         WKSyj2BSgdmdovrOT5HaBunhne5DylHpCPmULBu4or0D6gcsrlMa9wv7xd4/eDAeubWF
-         OuZA==
-X-Gm-Message-State: ABy/qLaRFx6jrhK5Z7utQUd3xO86fgTjo1KEvrrL3VLlR41Dh0kSVsrQ
-        O5n+BhDp7xIBc6vWAzYOUvnW/A==
-X-Google-Smtp-Source: APBJJlGIZtbg43PJ+1uxHAV+h9svTZSPCEN2YoXLV3LMGXeS2aVo8OZgH6vyuK1ny6pAopBcAE9ihg==
-X-Received: by 2002:a05:6512:36c5:b0:4fb:8f79:631 with SMTP id e5-20020a05651236c500b004fb8f790631mr15483556lfs.46.1689182583538;
-        Wed, 12 Jul 2023 10:23:03 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:a0db:1f00::8a5? (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
-        by smtp.gmail.com with ESMTPSA id l15-20020ac2554f000000b004fb87638fc4sm796860lfk.19.2023.07.12.10.23.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 12 Jul 2023 10:23:03 -0700 (PDT)
-Message-ID: <be734fa0-1b16-0dad-6205-d1f1acb1f179@linaro.org>
-Date:   Wed, 12 Jul 2023 20:23:02 +0300
+        d=1e100.net; s=20221208; t=1689182591; x=1691774591;
+        h=mime-version:references:in-reply-to:message-id:date:subject:cc:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=6iKNU8dTU9eCXs3vAMqDnVXSkdpzP9An+Pg/1dADx8s=;
+        b=kUSQuVWCeejp6K2vl8r7K7OWRrakY0q7W1chUOIrYcDFFYQf5vPOCF7PLWaokBEJHh
+         yduK8cDZmssrgVkjXCcrPS+CegVWQeVjh+8SxknCmcS3mZmhSLK/YG+RPM7aM0dF2x4D
+         +UAcRYD0evhlelRglvREOUrkyXN6KO3tR2Pa5L9FfPwpYOL3FjRCTsXulnD4SmSrUFe2
+         WQDmXeNJmSCzq0a45NOP4Xb4SDCFsoovKCRNf1Ua1muKK5NfLrk+BcDZ4q9HCzgofl4J
+         8dOmL7TYfiIyc9t22bZnwgHuj32XYDrIupThWsUxki8VoF5A8piNXaV4x8KBOD1iKLSO
+         3nHQ==
+X-Gm-Message-State: ABy/qLY5ahYvaBQEhjREhFk37McesicGpGvVx+IoAomJFSSebYWtQOIK
+        YXHSld/nf+8btYXSflnndJQYYw==
+X-Google-Smtp-Source: APBJJlH8rn0gddcK6Rpx1q1HzAg/aw8zoQuECjgBEJmsaCloaQkBbCCfLh/E5olljXhI8awGMkm9bQ==
+X-Received: by 2002:a0c:df90:0:b0:632:207d:b834 with SMTP id w16-20020a0cdf90000000b00632207db834mr16487199qvl.58.1689182590811;
+        Wed, 12 Jul 2023 10:23:10 -0700 (PDT)
+Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id j6-20020a05620a146600b00767dcf6f4adsm2278922qkl.51.2023.07.12.10.23.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 12 Jul 2023 10:23:10 -0700 (PDT)
+From:   Florian Fainelli <florian.fainelli@broadcom.com>
+To:     bcm-kernel-feedback-list@broadcom.com,
+        =?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <zajec5@gmail.com>
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Andre Przywara <andre.przywara@arm.com>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        =?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <rafal@milecki.pl>
+Subject: Re: [PATCH 3/4] ARM: dts: BCM53573: Add cells sizes to PCIe node
+Date:   Wed, 12 Jul 2023 10:23:07 -0700
+Message-Id: <20230712172307.2601466-1-florian.fainelli@broadcom.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230707114004.2740-3-zajec5@gmail.com>
+References: <20230707114004.2740-1-zajec5@gmail.com> <20230707114004.2740-3-zajec5@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH 14/14] scsi: ufs: qcom: Add support for scaling
- interconnects
-Content-Language: en-GB
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     vireshk@kernel.org, nm@ti.com, sboyd@kernel.org,
-        myungjoo.ham@samsung.com, kyungmin.park@samsung.com,
-        cw00.choi@samsung.com, andersson@kernel.org,
-        konrad.dybcio@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        quic_asutoshd@quicinc.com, quic_cang@quicinc.com,
-        quic_nitirawa@quicinc.com, quic_narepall@quicinc.com,
-        quic_bhaskarv@quicinc.com, quic_richardp@quicinc.com,
-        quic_nguyenb@quicinc.com, quic_ziqichen@quicinc.com,
-        bmasney@redhat.com, krzysztof.kozlowski@linaro.org
-References: <20230712103213.101770-1-manivannan.sadhasivam@linaro.org>
- <20230712103213.101770-19-manivannan.sadhasivam@linaro.org>
- <107aad9f-40c0-f32b-9f74-6c82ee6785bf@linaro.org>
- <20230712164114.GH102757@thinkpad>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20230712164114.GH102757@thinkpad>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
+        boundary="00000000000050c6b106004d78a9"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/07/2023 19:41, Manivannan Sadhasivam wrote:
-> On Wed, Jul 12, 2023 at 04:22:51PM +0300, Dmitry Baryshkov wrote:
->> On 12/07/2023 13:32, Manivannan Sadhasivam wrote:
->>> Qcom SoCs require scaling the interconnect paths for proper working of the
->>> peripherals connected through interconnects. Even for accessing the UFS
->>> controller, someone should setup the interconnect paths. So far, the
->>> bootloaders used to setup the interconnect paths before booting linux as
->>> they need to access the UFS storage for things like fetching boot firmware.
->>> But with the advent of multi boot options, bootloader nowadays like in
->>> SA8540p SoC do not setup the interconnect paths at all.
->>>
->>> So trying to configure UFS in the absence of the interconnect path
->>> configuration, results in boot crash.
->>>
->>> To fix this issue and also to dynamically scale the interconnects (UFS-DDR
->>> and CPU-UFS), interconnect API support is added to the Qcom UFS driver.
->>> With this support, the interconnect paths are scaled dynamically based on
->>> the gear configuration.
->>>
->>> During the early stage of ufs_qcom_init(), ufs_qcom_icc_init() will setup
->>> the paths to max bandwidth to allow configuring the UFS registers. Touching
->>> the registers without configuring the icc paths would result in a crash.
->>> However, we don't really need to set max vote for the icc paths as any
->>> minimal vote would suffice. But the max value would allow initialization to
->>> be done faster. After init, the bandwidth will get updated using
->>> ufs_qcom_icc_update_bw() based on the gear and lane configuration.
->>>
->>> The bandwidth values defined in ufs_qcom_bw_table struct are taken from
->>> Qcom downstream vendor devicetree source and are calculated as per the
->>> UFS3.1 Spec, Section 6.4.1, HS Gear Rates. So it is fixed across platforms.
->>>
->>> Cc: Brian Masney <bmasney@redhat.com>
->>> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
->>> ---
->>>    drivers/ufs/host/ufs-qcom.c | 131 +++++++++++++++++++++++++++++++++++-
->>>    drivers/ufs/host/ufs-qcom.h |   3 +
->>>    2 files changed, 133 insertions(+), 1 deletion(-)
->>>
->>> diff --git a/drivers/ufs/host/ufs-qcom.c b/drivers/ufs/host/ufs-qcom.c
->>> index 8d6fd4c3324f..8a3132d45a65 100644
->>> --- a/drivers/ufs/host/ufs-qcom.c
->>> +++ b/drivers/ufs/host/ufs-qcom.c
->>> @@ -7,6 +7,7 @@
->>>    #include <linux/time.h>
->>>    #include <linux/clk.h>
->>>    #include <linux/delay.h>
->>> +#include <linux/interconnect.h>
->>>    #include <linux/module.h>
->>>    #include <linux/of.h>
->>>    #include <linux/platform_device.h>
->>> @@ -46,6 +47,49 @@ enum {
->>>    	TSTBUS_MAX,
->>>    };
->>> +#define QCOM_UFS_MAX_GEAR 4
->>> +#define QCOM_UFS_MAX_LANE 2
->>> +
->>> +enum {
->>> +	MODE_MIN,
->>> +	MODE_PWM,
->>> +	MODE_HS_RA,
->>> +	MODE_HS_RB,
->>> +	MODE_MAX,
->>
->> MODE_MIN and MODE_MAX seem to be unused
->>
+--00000000000050c6b106004d78a9
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+From: Florian Fainelli <f.fainelli@gmail.com>
+
+On Fri,  7 Jul 2023 13:40:03 +0200, Rafał Miłecki <zajec5@gmail.com> wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
 > 
-> No, they are used in the driver.
-
-Ack, missed that. Will comment inline.
-
+> This fixes:
+> arch/arm/boot/dts/broadcom/bcm47189-luxul-xap-1440.dtb: pcie@2000: '#address-cells' is a required property
+>         From schema: /lib/python3.10/site-packages/dtschema/schemas/pci/pci-bus.yaml
+> arch/arm/boot/dts/broadcom/bcm47189-luxul-xap-1440.dtb: pcie@2000: '#size-cells' is a required property
+>         From schema: /lib/python3.10/site-packages/dtschema/schemas/pci/pci-bus.yaml
 > 
->>> +};
->>> +
->>> +struct __ufs_qcom_bw_table {
->>> +	u32 bw1;
->>> +	u32 bw2;
->>
->> Please consider:
->>
->> s/bw1/mem_bw/
->> s/bw2/cfg_bw/
->>
+> Two properties that need to be added later are "device_type" and
+> "ranges". Adding "device_type" on its own causes a new warning and the
+> value of "ranges" needs to be determined yet.
 > 
-> Ok.
-> 
->>> +} ufs_qcom_bw_table[MODE_MAX + 1][QCOM_UFS_MAX_GEAR + 1][QCOM_UFS_MAX_LANE + 1] = {
->>
->> I'd say, these +1's are slightly confusing and unnecessary.
->>
-> 
-> These max values itself are used in the table. Without adding 1 to them, we will
-> end up with out of bounds access.
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> ---
 
+Applied to https://github.com/Broadcom/stblinux/commits/devicetree/next, thanks!
+--
+Florian
 
+--00000000000050c6b106004d78a9
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Description: S/MIME Cryptographic Signature
 
-> 
->>> +	[MODE_MIN][0][0] = { 0,		0 },	/* Bandwidth values are in KB/s */
->>
->> I'd say, this becomes impossible to check. Can you please structure it?
-> 
-> What do you mean by "impossible to check"?
-> 
->> Either by inclusion:
->>
->> [MODE_PWM] = {
->>    [1] = {
->>       [1] = { .. },
->>       [2] = { .. },
->>    },
->>    // etc.
-> 
-> Now, this seems confusion to me. The existing table looks fine IMO.
-
-Fine with me then, your call!
-
-> 
->> };
->>
->> Also, do we have defines for gears? Can we use them instead of indices?
->>
-> 
-> There are defines for the gears but not for lanes. So I ended up using numbers
-> for simplicity.
-
-My suggestion would be to use them for gears at least. Then it becomes 
-cleaner (and maybe will solve some of my other comments).
-
-> 
-> - Mani
-> 
->>> +	[MODE_PWM][1][1] = { 922,	1000 },
->>> +	[MODE_PWM][2][1] = { 1844,	1000 },
->>> +	[MODE_PWM][3][1] = { 3688,	1000 },
->>> +	[MODE_PWM][4][1] = { 7376,	1000 },
->>> +	[MODE_PWM][1][2] = { 1844,	1000 },
->>> +	[MODE_PWM][2][2] = { 3688,	1000 },
->>> +	[MODE_PWM][3][2] = { 7376,	1000 },
->>> +	[MODE_PWM][4][2] = { 14752,	1000 },
->>> +	[MODE_HS_RA][1][1] = { 127796,	1000 },
->>> +	[MODE_HS_RA][2][1] = { 255591,	1000 },
->>> +	[MODE_HS_RA][3][1] = { 1492582,	102400 },
->>> +	[MODE_HS_RA][4][1] = { 2915200,	204800 },
->>> +	[MODE_HS_RA][1][2] = { 255591,	1000 },
->>> +	[MODE_HS_RA][2][2] = { 511181,	1000 },
->>> +	[MODE_HS_RA][3][2] = { 1492582,	204800 },
->>> +	[MODE_HS_RA][4][2] = { 2915200,	409600 },
->>> +	[MODE_HS_RB][1][1] = { 149422,	1000 },
->>> +	[MODE_HS_RB][2][1] = { 298189,	1000 },
->>> +	[MODE_HS_RB][3][1] = { 1492582,	102400 },
->>> +	[MODE_HS_RB][4][1] = { 2915200,	204800 },
->>> +	[MODE_HS_RB][1][2] = { 298189,	1000 },
->>> +	[MODE_HS_RB][2][2] = { 596378,	1000 },
->>> +	[MODE_HS_RB][3][2] = { 1492582,	204800 },
->>> +	[MODE_HS_RB][4][2] = { 2915200,	409600 },
->>> +	[MODE_MAX][0][0] = { 7643136, 307200 },
->>> +};
->>> +
->>>    static struct ufs_qcom_host *ufs_qcom_hosts[MAX_UFS_QCOM_HOSTS];
->>>    static void ufs_qcom_get_default_testbus_cfg(struct ufs_qcom_host *host);
->>> @@ -789,6 +833,51 @@ static void ufs_qcom_dev_ref_clk_ctrl(struct ufs_qcom_host *host, bool enable)
->>>    	}
->>>    }
->>> +static int ufs_qcom_icc_set_bw(struct ufs_qcom_host *host, u32 bw1, u32 bw2)
->>> +{
->>> +	struct device *dev = host->hba->dev;
->>> +	int ret;
->>> +
->>> +	ret = icc_set_bw(host->icc_ddr, 0, bw1);
->>> +	if (ret < 0) {
->>> +		dev_err(dev, "failed to set bandwidth request: %d\n", ret);
->>> +		return ret;
->>> +	}
->>> +
->>> +	ret = icc_set_bw(host->icc_cpu, 0, bw2);
->>> +	if (ret < 0) {
->>> +		dev_err(dev, "failed to set bandwidth request: %d\n", ret);
->>> +		return ret;
->>> +	}
->>> +
->>> +	return 0;
->>> +}
->>> +
->>> +static struct __ufs_qcom_bw_table ufs_qcom_get_bw_table(struct ufs_qcom_host *host)
->>> +{
->>> +	struct ufs_pa_layer_attr *p = &host->dev_req_params;
->>> +	int gear = max_t(u32, p->gear_rx, p->gear_tx);
->>> +	int lane = max_t(u32, p->lane_rx, p->lane_tx);
->>> +
->>> +	if (ufshcd_is_hs_mode(p)) {
->>> +		if (p->hs_rate == PA_HS_MODE_B)
->>> +			return ufs_qcom_bw_table[MODE_HS_RB][gear][lane];
->>> +		else
->>> +			return ufs_qcom_bw_table[MODE_HS_RA][gear][lane];
->>> +	} else {
->>> +		return ufs_qcom_bw_table[MODE_PWM][gear][lane];
->>> +	}
->>> +}
->>> +
->>> +static int ufs_qcom_icc_update_bw(struct ufs_qcom_host *host)
->>> +{
->>> +	struct __ufs_qcom_bw_table bw_table;
->>> +
->>> +	bw_table = ufs_qcom_get_bw_table(host);
->>> +
->>> +	return ufs_qcom_icc_set_bw(host, bw_table.bw1, bw_table.bw2);
->>> +}
->>> +
->>>    static int ufs_qcom_pwr_change_notify(struct ufs_hba *hba,
->>>    				enum ufs_notify_change_status status,
->>>    				struct ufs_pa_layer_attr *dev_max_params,
->>> @@ -852,6 +941,8 @@ static int ufs_qcom_pwr_change_notify(struct ufs_hba *hba,
->>>    		memcpy(&host->dev_req_params,
->>>    				dev_req_params, sizeof(*dev_req_params));
->>> +		ufs_qcom_icc_update_bw(host);
->>> +
->>>    		/* disable the device ref clock if entered PWM mode */
->>>    		if (ufshcd_is_hs_mode(&hba->pwr_info) &&
->>>    			!ufshcd_is_hs_mode(dev_req_params))
->>> @@ -981,7 +1072,9 @@ static int ufs_qcom_setup_clocks(struct ufs_hba *hba, bool on,
->>>    	switch (status) {
->>>    	case PRE_CHANGE:
->>> -		if (!on) {
->>> +		if (on) {
->>> +			ufs_qcom_icc_update_bw(host);
->>> +		} else {
->>>    			if (!ufs_qcom_is_link_active(hba)) {
->>>    				/* disable device ref_clk */
->>>    				ufs_qcom_dev_ref_clk_ctrl(host, false);
->>> @@ -993,6 +1086,9 @@ static int ufs_qcom_setup_clocks(struct ufs_hba *hba, bool on,
->>>    			/* enable the device ref clock for HS mode*/
->>>    			if (ufshcd_is_hs_mode(&hba->pwr_info))
->>>    				ufs_qcom_dev_ref_clk_ctrl(host, true);
->>> +		} else {
->>> +			ufs_qcom_icc_set_bw(host, ufs_qcom_bw_table[MODE_MIN][0][0].bw1,
->>> +					    ufs_qcom_bw_table[MODE_MIN][0][0].bw2);
-
-With MODE_MIN values being initialised to 0, can we use the value 
-directly instead? You are not defining the whole table for MODE_MIN anyway.
-
->>>    		}
->>>    		break;
->>>    	}
->>> @@ -1031,6 +1127,34 @@ static const struct reset_control_ops ufs_qcom_reset_ops = {
->>>    	.deassert = ufs_qcom_reset_deassert,
->>>    };
->>> +static int ufs_qcom_icc_init(struct ufs_qcom_host *host)
->>> +{
->>> +	struct device *dev = host->hba->dev;
->>> +	int ret;
->>> +
->>> +	host->icc_ddr = devm_of_icc_get(dev, "ufs-ddr");
->>> +	if (IS_ERR(host->icc_ddr))
->>> +		return dev_err_probe(dev, PTR_ERR(host->icc_ddr),
->>> +				    "failed to acquire interconnect path\n");
->>> +
->>> +	host->icc_cpu = devm_of_icc_get(dev, "cpu-ufs");
->>> +	if (IS_ERR(host->icc_cpu))
->>> +		return dev_err_probe(dev, PTR_ERR(host->icc_cpu),
->>> +				    "failed to acquire interconnect path\n");
->>> +
->>> +	/*
->>> +	 * Set Maximum bandwidth vote before initializing the UFS controller and
->>> +	 * device. Ideally, a minimal interconnect vote would suffice for the
->>> +	 * initialization, but a max vote would allow faster initialization.
->>> +	 */
->>> +	ret = ufs_qcom_icc_set_bw(host, ufs_qcom_bw_table[MODE_MAX][0][0].bw1,
->>> +				  ufs_qcom_bw_table[MODE_MAX][0][0].bw2);
-
-If this is a static value, can we define it separately? You don't have a 
-full gear/lanes enumeration anyway.
-
->>> +	if (ret < 0)
->>> +		return dev_err_probe(dev, ret, "failed to set bandwidth request\n");
->>> +
->>> +	return 0;
->>> +}
->>> +
->>>    /**
->>>     * ufs_qcom_init - bind phy with controller
->>>     * @hba: host controller instance
->>> @@ -1085,6 +1209,10 @@ static int ufs_qcom_init(struct ufs_hba *hba)
->>>    		}
->>>    	}
->>> +	err = ufs_qcom_icc_init(host);
->>> +	if (err)
->>> +		goto out_variant_clear;
->>> +
->>>    	host->device_reset = devm_gpiod_get_optional(dev, "reset",
->>>    						     GPIOD_OUT_HIGH);
->>>    	if (IS_ERR(host->device_reset)) {
->>> @@ -1282,6 +1410,7 @@ static int ufs_qcom_clk_scale_notify(struct ufs_hba *hba,
->>>    				    dev_req_params->pwr_rx,
->>>    				    dev_req_params->hs_rate,
->>>    				    false);
->>> +		ufs_qcom_icc_update_bw(host);
->>>    		ufshcd_uic_hibern8_exit(hba);
->>>    	}
->>> diff --git a/drivers/ufs/host/ufs-qcom.h b/drivers/ufs/host/ufs-qcom.h
->>> index 6289ad5a42d0..dc27395ecba1 100644
->>> --- a/drivers/ufs/host/ufs-qcom.h
->>> +++ b/drivers/ufs/host/ufs-qcom.h
->>> @@ -206,6 +206,9 @@ struct ufs_qcom_host {
->>>    	struct clk *tx_l1_sync_clk;
->>>    	bool is_lane_clks_enabled;
->>> +	struct icc_path *icc_ddr;
->>> +	struct icc_path *icc_cpu;
->>> +
->>>    #ifdef CONFIG_SCSI_UFS_CRYPTO
->>>    	struct qcom_ice *ice;
->>>    #endif
->>
->> -- 
->> With best wishes
->> Dmitry
->>
-> 
-
--- 
-With best wishes
-Dmitry
-
+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
+riBJ/K1AFUjRAjFhGV64l++td7dkmnq/X8ET75ti+w1s4FRpFqkD2m7pg5NxdsZphYIXAgMBAAGj
+QjBAMA4GA1UdDwEB/wQEAwIBBjAPBgNVHRMBAf8EBTADAQH/MB0GA1UdDgQWBBSP8Et/qC5FJK5N
+UPpjmove4t0bvDANBgkqhkiG9w0BAQsFAAOCAQEAS0DbwFCq/sgM7/eWVEVJu5YACUGssxOGhigH
+M8pr5nS5ugAtrqQK0/Xx8Q+Kv3NnSoPHRHt44K9ubG8DKY4zOUXDjuS5V2yq/BKW7FPGLeQkbLmU
+Y/vcU2hnVj6DuM81IcPJaP7O2sJTqsyQiunwXUaMld16WCgaLx3ezQA3QY/tRG3XUyiXfvNnBB4V
+14qWtNPeTCekTBtzc3b0F5nCH3oO4y0IrQocLP88q1UOD5F+NuvDV0m+4S4tfGCLw0FREyOdzvcy
+a5QBqJnnLDMfOjsl0oZAzjsshnjJYS8Uuu7bVW/fhO4FCU29KNhyztNiUGUe65KXgzHZs7XKR1g/
+XzCCBVgwggRAoAMCAQICDBP8P9hKRVySg3Qv5DANBgkqhkiG9w0BAQsFADBbMQswCQYDVQQGEwJC
+RTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTExMC8GA1UEAxMoR2xvYmFsU2lnbiBHQ0MgUjMg
+UGVyc29uYWxTaWduIDIgQ0EgMjAyMDAeFw0yMjA5MTAxMjE4MTFaFw0yNTA5MTAxMjE4MTFaMIGW
+MQswCQYDVQQGEwJJTjESMBAGA1UECBMJS2FybmF0YWthMRIwEAYDVQQHEwlCYW5nYWxvcmUxFjAU
+BgNVBAoTDUJyb2FkY29tIEluYy4xGTAXBgNVBAMTEEZsb3JpYW4gRmFpbmVsbGkxLDAqBgkqhkiG
+9w0BCQEWHWZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tMIIBIjANBgkqhkiG9w0BAQEFAAOC
+AQ8AMIIBCgKCAQEA+oi3jMmHltY4LMUy8Up5+1zjd1iSgUBXhwCJLj1GJQF+GwP8InemBbk5rjlC
+UwbQDeIlOfb8xGqHoQFGSW8p9V1XUw+cthISLkycex0AJ09ufePshLZygRLREU0H4ecNPMejxCte
+KdtB4COST4uhBkUCo9BSy1gkl8DJ8j/BQ1KNUx6oYe0CntRag+EnHv9TM9BeXBBLfmMRnWNhvOSk
+nSmRX0J3d9/G2A3FIC6WY2XnLW7eAZCQPa1Tz3n2B5BGOxwqhwKLGLNu2SRCPHwOdD6e0drURF7/
+Vax85/EqkVnFNlfxtZhS0ugx5gn2pta7bTdBm1IG4TX+A3B1G57rVwIDAQABo4IB3jCCAdowDgYD
+VR0PAQH/BAQDAgWgMIGjBggrBgEFBQcBAQSBljCBkzBOBggrBgEFBQcwAoZCaHR0cDovL3NlY3Vy
+ZS5nbG9iYWxzaWduLmNvbS9jYWNlcnQvZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3J0MEEG
+CCsGAQUFBzABhjVodHRwOi8vb2NzcC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWdu
+MmNhMjAyMDBNBgNVHSAERjBEMEIGCisGAQQBoDIBKAowNDAyBggrBgEFBQcCARYmaHR0cHM6Ly93
+d3cuZ2xvYmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADBJBgNVHR8EQjBAMD6gPKA6
+hjhodHRwOi8vY3JsLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNy
+bDAoBgNVHREEITAfgR1mbG9yaWFuLmZhaW5lbGxpQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggr
+BgEFBQcDBDAfBgNVHSMEGDAWgBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUUwwfJ6/F
+KL0fRdVROal/Lp4lAF0wDQYJKoZIhvcNAQELBQADggEBAKBgfteDc1mChZjKBY4xAplC6uXGyBrZ
+kNGap1mHJ+JngGzZCz+dDiHRQKGpXLxkHX0BvEDZLW6LGOJ83ImrW38YMOo3ZYnCYNHA9qDOakiw
+2s1RH00JOkO5SkYdwCHj4DB9B7KEnLatJtD8MBorvt+QxTuSh4ze96Jz3kEIoHMvwGFkgObWblsc
+3/YcLBmCgaWpZ3Ksev1vJPr5n8riG3/N4on8gO5qinmmr9Y7vGeuf5dmZrYMbnb+yCBalkUmZQwY
+NxADYvcRBA0ySL6sZpj8BIIhWiXiuusuBmt2Mak2eEv0xDbovE6Z6hYyl/ZnRadbgK/ClgbY3w+O
+AfUXEZ0xggJtMIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52
+LXNhMTEwLwYDVQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwT
+/D/YSkVckoN0L+QwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIBVYeFpXyYxYPSPv
+/E6qDopBEnTCmPrcdE1cSNxyzwK3MBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcN
+AQkFMQ8XDTIzMDcxMjE3MjMxMVowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZI
+AWUDBAEWMAsGCWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEH
+MAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQA7rF4dplBdZWXVleithkRwT3L+WMdArloZ
+kFA1yWLsojvmcbpAhPUpmzHMLWzPKPi0/WcpCmqRYtxAyUvjtvSQ1uCeDQ2B07nZEEx/4hydfawY
+MoyR3uQVd2A6Owc6GjOWN5CblSlMsVsCCaBuDoCazbr93OOCtZDwe/Y089GLbfF+3grAsb44VdSa
+PgRjXWo3GlK5gTZ8xb3Pv8DsRL3d2CGZVL7yMizFEs5Wv5FRsfLc6E3APFmmHcjTzzQ8YFlDdnQ+
+WRPeDiZfzPkjIcNQdVPzuleLzJ5w4l8pbjR3Pw+PLOCZuvo2VWgjD8Vq2UgEMt+5AeYyG2AuKlhu
+5Zr7
+--00000000000050c6b106004d78a9--
