@@ -2,81 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 60564750770
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 14:04:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4434275078D
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 14:07:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231218AbjGLMEo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jul 2023 08:04:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55376 "EHLO
+        id S231867AbjGLMHj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jul 2023 08:07:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57512 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232279AbjGLMEm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 08:04:42 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D279A1995
-        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 05:04:38 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-991c786369cso837467166b.1
-        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 05:04:38 -0700 (PDT)
+        with ESMTP id S233163AbjGLMHc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 08:07:32 -0400
+Received: from mail-io1-xd2e.google.com (mail-io1-xd2e.google.com [IPv6:2607:f8b0:4864:20::d2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBE2C1FD8;
+        Wed, 12 Jul 2023 05:07:22 -0700 (PDT)
+Received: by mail-io1-xd2e.google.com with SMTP id ca18e2360f4ac-78372625badso307750639f.3;
+        Wed, 12 Jul 2023 05:07:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689163477; x=1691755477;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Vd8MWhBmnS04Aiq7zVFQ14FEWv2Wo1c1C/C8yhC8Id0=;
-        b=le6F9keT9ljyZRT5LbljxlaxWV9KiNZrUSeA+19dTnDjTdmXMhX81547hhEgNeEDDF
-         VbcmPtnmrFSi79AfNcRSZbQoPngqE2SvJAHz6iKdJdoCm1FKq/9ktwvIfQg+n09vtIcP
-         hV4vqfPMWYvffaGUXXZG+/CSxcJaqZxE1eyEXsL2KA7gJyGqjFYeqEgtXJopeu5ln9UM
-         Nxu6R3QwA/89rDDHwoZa/FObzIDipuAVIaE1TCSKwaEmJ+aurE+Jq2r7W1ggN/HVqOJJ
-         1NQV+twNkAQrdsb73PMisqrTKmyiMIVh8/LEkQKOmkndnbnL27kHHsyDdYeYgcFvF6HN
-         uWug==
+        d=gmail.com; s=20221208; t=1689163641; x=1691755641;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=js9A+LroJpKyjly1c+m3wIj1/hOhy81EZTbGk7lLc9w=;
+        b=QJDFf6a2qcjPXjiPm97eZlxkt0nwP+Cy792/OnHUSjEnI5bVgRJOZlFiDEhc9oPi6V
+         8Ukf3UAhhORVbhHiJLowqUCvznS3tlqmqp+oI2JYlf1FRg/EVkPBXdub7EjPGyE8LFcQ
+         vJY4YUMoSH/dFomzmMcsTFyx0k/FBuivXQWCR9tm6o33eGWo8GmiSO8lRHiZDWPKVnc1
+         34Kl8LzDooi5FS626w9o36EXvlrHFUt4EOMEg3wWkSxeC7szYcDl6zD0/II0YC5WkiLP
+         eLrjT4FAVw7NGfD33CKrdeg86PxkCNS24anRmf7ctv8V9cgolZXJlFBrEDyeLw+TMIBz
+         Al9w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689163477; x=1691755477;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Vd8MWhBmnS04Aiq7zVFQ14FEWv2Wo1c1C/C8yhC8Id0=;
-        b=d6kNBjrSKq1rKppJUkW9Ay4cgCMGEP0bCDH0B+tHPPM4JuxX66rG38kcciwPiFyRHB
-         j7Kg8+Y2m+6/KyOqb5LP6ZrEL1wzLSkk/GWerPSmJiZX/8Kp87IUpM3EL6Jfi+dB/o2Y
-         zbJ+IaPw3uMgQFTQj9Q0hatWedrMb3VrXSgcQHHrsjoukiZx1NFECcjSNpcusnxqxK49
-         aHJWRqPD17j6ALLp5E9+w/oyKKfWr9FdwghD4T+wcrowd8CxgxuldQ7uMCmKxHldduO7
-         UM3n9Ul1+MbdB79ZTBaGYgm0qw+ZXciO+jz0mPDAfZbVheT/YOFZhsUjHl/aTj5Dj0rB
-         1jgw==
-X-Gm-Message-State: ABy/qLZ1vgRfbXFLruLCzzaHu8qytv6K7huyR39Ejw2AylZAQT5jGKGO
-        e1t9RKbNvmnULnSspvT3PXwmWw==
-X-Google-Smtp-Source: APBJJlHnPryYP9w3uG+1r8eDpkL93+kzmPWH5LYuGcs+JVPilF1y9IKiQbU4pJxkZeGKp6ZOswvrYA==
-X-Received: by 2002:a17:906:2202:b0:993:fe68:569c with SMTP id s2-20020a170906220200b00993fe68569cmr10347515ejs.6.1689163477302;
-        Wed, 12 Jul 2023 05:04:37 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id z25-20020a170906271900b009786c8249d6sm2502172ejc.175.2023.07.12.05.04.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 12 Jul 2023 05:04:36 -0700 (PDT)
-Message-ID: <13555184-1708-befd-1f2c-5e6f7e04a6ce@linaro.org>
-Date:   Wed, 12 Jul 2023 14:04:28 +0200
+        d=1e100.net; s=20221208; t=1689163641; x=1691755641;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=js9A+LroJpKyjly1c+m3wIj1/hOhy81EZTbGk7lLc9w=;
+        b=D5+kt8vnrSibkZrgsUEwWRNPs+5KNPjftDgWWqEIRMi/l0HREd3SxmjNwJgtYRCDKv
+         3J42NIcCa8C3ON3oqH2XF2OcMFVJPg/qWgt3e39DE1yhToK3AyuWVFiIPr5SUMP4IKs4
+         /uHdEPr28LR7cDUGwvGMsJ9Lm89L3vlxURKGnnZCZUf8vMoQ55m4Zbo6JCvNGIpE1n6G
+         e4rVjs3JLY+LomLF9a+7KoFk0znW3w8rdVWNLMojHfYRXU1OuSA5eYt8fBHDiynhoEAR
+         6FJGYt1jfKHckn1DKjjlGel6ZN2c3kpMELIUQD063SipnjqOs7phhtm9meAziHWxKW74
+         ZfCw==
+X-Gm-Message-State: ABy/qLaOw0Mi/aRgggHCs5ovZ3ci++OdKgziDYvqw6NqnWyzDyJ94vCC
+        GMAJIj26wXmYHrwmCEq+Xrjui8FspLXegWDhHbQ=
+X-Google-Smtp-Source: APBJJlETKzUMF2OAd9kTWv7lkEdSNYU4Mqa9EYSDW3Wz3B8ikNrnIT5lFXObmJx47ZNPP7nh7b1m66J9NjVwYTQm1Zg=
+X-Received: by 2002:a5d:8848:0:b0:783:606b:740f with SMTP id
+ t8-20020a5d8848000000b00783606b740fmr18734048ios.15.1689163641507; Wed, 12
+ Jul 2023 05:07:21 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v4 4/6] arm64: dts: qcom: ipq5332: Add USB related nodes
-Content-Language: en-US
-To:     Varadarajan Narayanan <quic_varada@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org, vkoul@kernel.org,
-        kishon@kernel.org, robh+dt@kernel.org,
+References: <20230607151127.1542024-1-pavacic.p@gmail.com> <20230607151127.1542024-4-pavacic.p@gmail.com>
+ <CACRpkdbrEA54qmfTKSsFRG9ZS4u8hM6P5TXtOjRAiW+TD_v-fQ@mail.gmail.com>
+ <CAO9szn00vRFm+iM1m7KgkW0WRuKyJEgVU4tVx4f5tF6KPnE=2w@mail.gmail.com>
+ <CACRpkdaw8M3dSkmiV5QDOt3BBB7Jo6NxT0Og=zvA4REMA_7y9g@mail.gmail.com>
+ <CAO9szn29A0qCABG0ACni42UGpsGKLwG7OT1y_ho3DgQ0WLvfmw@mail.gmail.com>
+ <CACRpkdYXtQwmZR1u-1fwmyC_8Yq4bMkjDBcUCfuGqSz_UhXWJQ@mail.gmail.com>
+ <CAO9szn0OuKW+-JZMs3TPUHiwLCe6cUPcsUq+og64K2utMyZpqQ@mail.gmail.com>
+ <CACRpkdb5stXKb7FNk_FC-PKduCngRX3sZTbzcxN+kRskz78fuQ@mail.gmail.com>
+ <CAO9szn3oTzrrwiyr91H14ep7OPUkA-SDST3CSQAQHvFFnkJWfA@mail.gmail.com>
+ <0d43e653-32cd-b25e-40fa-6f0571048467@denx.de> <CAO9szn20RY3uBDceyUJ1S+gb=FN8Hd5qqMfOSbitHFyFCZ+iLg@mail.gmail.com>
+ <8b0ae1d1-c769-1f55-0452-4bbc62da133b@denx.de>
+In-Reply-To: <8b0ae1d1-c769-1f55-0452-4bbc62da133b@denx.de>
+From:   Paulo Pavacic <pavacic.p@gmail.com>
+Date:   Wed, 12 Jul 2023 14:07:10 +0200
+Message-ID: <CAO9szn1QdB5WGshuyCOGqb0qbBWHqoikeiMkk+bNGhAF5TX5ew@mail.gmail.com>
+Subject: Re: [PATCH v4 3/3] drm/panel-fannal-c3004: Add fannal c3004 DSI panel
+To:     Marek Vasut <marex@denx.de>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Maya Matuszczyk <maccraft123mc@gmail.com>,
+        neil.armstrong@linaro.org, sam@ravnborg.org, airlied@gmail.com,
+        daniel@ffwll.ch, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        gregkh@linuxfoundation.org, catalin.marinas@arm.com,
-        will@kernel.org, p.zabel@pengutronix.de, arnd@arndb.de,
-        geert+renesas@glider.be, neil.armstrong@linaro.org,
-        nfraprado@collabora.com, rafal@milecki.pl,
-        quic_srichara@quicinc.com, quic_varada@quicinc.org,
-        quic_wcheng@quicinc.com, linux-arm-msm@vger.kernel.org,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <cover.1689160067.git.quic_varada@quicinc.com>
- <1f99805b6437aa8d6eaa4663e8d27b98ee595f00.1689160067.git.quic_varada@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1f99805b6437aa8d6eaa4663e8d27b98ee595f00.1689160067.git.quic_varada@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
         URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -85,57 +84,87 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/07/2023 13:38, Varadarajan Narayanan wrote:
-> Add USB phy and controller nodes.
-> 
-> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
-> ---
-> v4:
-> 	Change node name
-> 	Remove blank line
-> 	'make CHECK_DTBS=y DT_SCHEMA_FILES=qcom qcom/ipq5332-rdp441.dtb' passed
-> v1:
-> 	Rename phy node
-> 	Change compatible from m31,ipq5332-usb-hsphy -> qcom,ipq5332-usb-hsphy
-> 	Remove 'qscratch' from phy node
-> 	Fix alignment and upper-case hex no.s
-> 	Add clock definition for the phy
-> 	Remove snps,ref-clock-period-ns as it is not used. dwc3_ref_clk_period()
-> 	in dwc3/core.c takes the frequency from ref clock and calculates fladj
-> 	as appropriate.
-> ---
->  arch/arm64/boot/dts/qcom/ipq5332.dtsi | 53 +++++++++++++++++++++++++++++++++++
->  1 file changed, 53 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/ipq5332.dtsi b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
-> index 8bfc2db..8118356 100644
-> --- a/arch/arm64/boot/dts/qcom/ipq5332.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
-> @@ -405,6 +405,59 @@
->  				status = "disabled";
->  			};
->  		};
-> +
-> +		usbphy0: usb-phy@7b000 {
-> +			compatible = "qcom,ipq5332-usb-hsphy";
-> +			reg = <0x0007b000 0x12c>;
-> +
-> +			clocks = <&gcc GCC_USB0_PHY_CFG_AHB_CLK>;
-> +			clock-names = "cfg_ahb";
-> +
-> +			resets = <&gcc GCC_QUSB2_0_PHY_BCR>;
-> +
-> +			status = "disabled";
-> +		};
-> +
-> +		usb2: usb2@8a00000 {
+Hello all,
 
-So you responded to my comments, wait ten minutes and send v2? No need
-to wait for my feedback, right?
+sub, 8. srp 2023. u 14:53 Marek Vasut <marex@denx.de> napisao je:
+>
+> On 7/7/23 17:26, Paulo Pavacic wrote:
+> > Hello Marek,
+>
+> Hi,
+>
+> > =C4=8Det, 6. srp 2023. u 17:26 Marek Vasut <marex@denx.de> napisao je:
+> >>
+> >> On 7/6/23 17:18, Paulo Pavacic wrote:
+> >>> Hello Linus,
+> >>>
+> >>> =C4=8Det, 22. lip 2023. u 10:22 Linus Walleij <linus.walleij@linaro.o=
+rg> napisao je:
+> >>>>
+> >>>> On Wed, Jun 21, 2023 at 5:09=E2=80=AFPM Paulo Pavacic <pavacic.p@gma=
+il.com> wrote:
+> >>>>
+> >>>>> A lot of modifications to st7701 are required. I believe it would
+> >>>>> result in a driver that doesn't look or work the same. e.g compare
+> >>>>> delays between initialization sequences of panel-fannal-c3004 and
+> >>>>> panel-st7701. I think it would be optimal to create st7701s driver =
+and
+> >>>>> have special handling for st7701s panels. If there was a flag for
+> >>>>> whether panel is st7701 or st7701s it would end up looking like a
+> >>>>> mess.
+> >>>>
+> >>>> What matters is if the original authors of the old st7701 driver are
+> >>>> around and reviewing and testing patches at all. What we need is
+> >>>> active maintainers. (Added Jagan, Marek & Maya).
+> >>>>
+> >>>> I buy the reasoning that the st7701s is perhaps substantially differ=
+ent
+> >>>> from st7701.
+> >>>>
+> >>>> If st7701s is very different then I suppose it needs a separate driv=
+er,
+> >>>> then all we need to to name the driver properly, i.e.
+> >>>> panel-sitronix-st7701s.c.
+> >>>
+> >>> I had in person talk with Paul Kocialkowski and I have concluded that
+> >>> this is the best solution.
+> >>> I believe I should rename it to st7701s due to the hardware changes. =
+I
+> >>> would like to create V5 patch with driver renamed to st7701s.
+> >>> Please let me know if you agree / disagree.
+> >>
+> >> If I recall it right, the ST7701 and ST7701S are basically the same
+> >> chip, aren't they ?
+> >
+> > I'm currently exploring all the differences. There aren't a lot of
+> > differences, but there are some.
+> > So far I can see that default register values are different, new
+> > previously unused registers are now used and there has been some
+> > reordering of how info is placed in registers [1] (data bits are in
+> > different order). Moreover, instructions to some commands have been
+> > changed and meaning of what data bits mean [2][3]. Also, new features
+> > have been added [2]; there is now PCLKS 3 for example.
+> >
+> > You can see few differences in following images. Same images were
+> > attached in this mail:
+> > [1] https://ibb.co/NmgbZmy - GAMACTRL_st7701.png
+> > [2] https://ibb.co/G79y235 - PCLKS2.png
+>
+> Ouch. I wonder if this is still something that can be abstracted out
+> with some helper accessor functions like:
+>
+> if (model =3D=3D ST7701)
+>    write something
+> else
+>    write the other layout
+>
+> Or whether it makes sense to outright have a separate driver. The later
+> would introduce duplication, but maybe that much duplication is OK.
 
-No, it's not ok. This is "usb", not "usb2". Are you saying you have
-second device with the same address?
+I would like to create new driver because panel-st7701 seems to be
+outdated and is using non-standard macro (ST7701_WRITE()) and for me
+it is crashing kernel 5.15.
+Does anyone have similar issues with it?
 
-Best regards,
-Krzysztof
-
+Br,
+Paulo
