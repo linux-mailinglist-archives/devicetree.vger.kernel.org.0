@@ -2,50 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7080575068C
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 13:46:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DFEEB75068F
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 13:47:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232478AbjGLLq6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jul 2023 07:46:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36702 "EHLO
+        id S232777AbjGLLrX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jul 2023 07:47:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36984 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232540AbjGLLqz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 07:46:55 -0400
+        with ESMTP id S232824AbjGLLrR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 07:47:17 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09DD91BC1;
-        Wed, 12 Jul 2023 04:46:49 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FCDB1FC1;
+        Wed, 12 Jul 2023 04:47:03 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 9B1C76179D;
-        Wed, 12 Jul 2023 11:46:48 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EE6FAC433CC;
-        Wed, 12 Jul 2023 11:46:44 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 8C52B617A0;
+        Wed, 12 Jul 2023 11:47:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 14254C433C8;
+        Wed, 12 Jul 2023 11:46:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689162408;
-        bh=TfYXCDxUmVUxSwQOO9/NMcMApKt7tS2ywxqe784ZU2s=;
+        s=k20201202; t=1689162422;
+        bh=QhVaK0LsU7eehMipwwCOTnQKn7A7QZ/0f5Q1VZIwGuA=;
         h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=ExmBsOQqJe3sMrBHNa6sBltdfVww5GGgVG69y/XJgG4ZToDjr+hUayOgITI3SKFnS
-         9IbEe+ViobENcNR4klosGGZncfa9i+OHHA6WPQE+q2TescPnibLAohJggRPQpldSRc
-         0f5ppmK5qbNAkQxJ8Bz0ReabzetYktb76AiAOoxKyykm0VnS2+fNB3V+lXvhWbaWwJ
-         dWSic2EF3tcjdZAIyLwOeyyO5irRrUQv6iORKU3SqzM1UBLWK7esF37cdnhX75FEnq
-         HpbWesuGjMvEa2J36BU4/IOlSzq10nmpTU2jHIwK8OB7Z1kc3tSiYJouWiVv2LKzp0
-         kG9Qa0ihYrOQg==
+        b=GUdoi12+nwBnrPTbxYZ2a9geyEqe0U28by0VFwg6tqYv117M3vJeo7W/c3Pf+4e79
+         r2F0W5C/3UO3uWWhtMs/W70+WVAtPg6XXuuAqOhcLxR9qj9zDMgABk3t4NgHH+Dk/B
+         BxY/P+ZUcLNmE5YBLA+Dtu+huFUqYJwg75B5MHnv4mR/QPOc8U81qsaUeEj81gMPvu
+         /Bu9qNp5H337C4v2CNQhCHMPKOlb4szHXTtmmNdzjicIAk24uoczmt7db7QUR/dBbG
+         p9wmn7CIh20RMyzN0MbM2MyCNcUQhjq/s5IV+/jEfsnU0L2X0zrAXnrgbGzuiRNMiy
+         wFPmrWQk+3Plg==
 From:   Mark Brown <broonie@kernel.org>
-To:     Seven Lee <wtli@nuvoton.com>
-Cc:     lgirdwood@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, YHCHuang@nuvoton.com,
-        KCHSU0@nuvoton.com, CTLIN0@nuvoton.com, WTLI@nuvoton.com,
-        SJLIN0@nuvoton.com, scott6986@gmail.com, supercraig0719@gmail.com,
-        dardar923@gmail.com
-In-Reply-To: <20230628085009.1130318-1-wtli@nuvoton.com>
-References: <20230628085009.1130318-1-wtli@nuvoton.com>
-Subject: Re: [PATCH] ASoC: dt-bindings: nau8821: Convert to dtschema
-Message-Id: <168916240469.46574.6320216062589774248.b4-ty@kernel.org>
-Date:   Wed, 12 Jul 2023 12:46:44 +0100
+To:     cros-qcom-dts-watchers@chromium.org,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Benjamin Li <benl@squareup.com>,
+        James Willcox <jwillcox@squareup.com>,
+        Joseph Gates <jgates@squareup.com>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Zac Crosby <zac@squareup.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Banajit Goswami <bgoswami@quicinc.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Lee Jones <lee@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Xu Yang <xu.yang_2@nxp.com>, Peng Fan <peng.fan@nxp.com>,
+        Christian Marangi <ansuelsmth@gmail.com>,
+        Wesley Cheng <quic_wcheng@quicinc.com>,
+        Jun Nie <jun.nie@linaro.org>, Max Chen <mchen@squareup.com>,
+        Shawn Guo <shawn.guo@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Vincent Knecht <vincent.knecht@mailoo.org>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        alsa-devel@alsa-project.org, iommu@lists.linux.dev,
+        linux-usb@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Leo Yan <leo.yan@linaro.org>, Rob Herring <robh@kernel.org>,
+        Andy Gross <andy.gross@linaro.org>
+In-Reply-To: <20230627-topic-more_bindings-v1-0-6b4b6cd081e5@linaro.org>
+References: <20230627-topic-more_bindings-v1-0-6b4b6cd081e5@linaro.org>
+Subject: Re: (subset) [PATCH 00/11] Even more msm bindings fixes
+Message-Id: <168916241380.46574.15546639128394124503.b4-ty@kernel.org>
+Date:   Wed, 12 Jul 2023 12:46:53 +0100
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
@@ -60,10 +88,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 28 Jun 2023 16:50:09 +0800, Seven Lee wrote:
-> Convert the NAU8821 audio CODEC bindings to DT schema.
+On Tue, 27 Jun 2023 18:24:16 +0200, Konrad Dybcio wrote:
+> This series contains couple more random dt schema warning fixes, centered
+> around linux-msm.
+> 
+> All of the patches (except) the last two are pretty much independent.
+> Patch 1 is not only a bindings fix, but also a functional one.
 > 
 > 
+> [...]
 
 Applied to
 
@@ -71,8 +104,8 @@ Applied to
 
 Thanks!
 
-[1/1] ASoC: dt-bindings: nau8821: Convert to dtschema
-      commit: 754d1ce3ab6bec057bf94b0ec1a789fdfa2fef99
+[05/11] dt-bindings: sound: Convert pm8916-wcd-analog-codec to YAML
+        commit: e125891c2ed6f6d3f59375caf04d76802c86efae
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
