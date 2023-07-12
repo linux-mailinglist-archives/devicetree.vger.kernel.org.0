@@ -2,74 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7091D750F9B
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 19:24:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 07A52750FA2
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 19:25:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233105AbjGLRYH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jul 2023 13:24:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36188 "EHLO
+        id S231221AbjGLRZ4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jul 2023 13:25:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37496 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233120AbjGLRYF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 13:24:05 -0400
-Received: from mail-qt1-x82a.google.com (mail-qt1-x82a.google.com [IPv6:2607:f8b0:4864:20::82a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 696C81BFA
-        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 10:24:02 -0700 (PDT)
-Received: by mail-qt1-x82a.google.com with SMTP id d75a77b69052e-403c653d934so6523161cf.2
-        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 10:24:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1689182641; x=1691774641;
-        h=mime-version:references:in-reply-to:message-id:date:subject:cc:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=2KltygklQ/OJnyDjJ49dEz6DUVXkFMa0aHdWBhTjbhM=;
-        b=K5Rs4quzJVXyKpZIcEBcitguwHoKRtF8cKXZvSQp+wD9fp2rFQAtE12EIVLNoFJmso
-         7UXSAJchONJkP3fQ2s5L7kvyIpzNoLEmrD2I86WxZNaa6tYcB53QWnoZQnw+Mcaay7BA
-         dGVBsMB6BjYyE/TJukYwWb1WIIUhXDL+iUt/8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689182641; x=1691774641;
-        h=mime-version:references:in-reply-to:message-id:date:subject:cc:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2KltygklQ/OJnyDjJ49dEz6DUVXkFMa0aHdWBhTjbhM=;
-        b=XYI/+TDQTOsI7zGYnwXyzY3SeVFOnmieL5aOsKFkOWPT+6z1epLZZJ3jjROXXo3jw3
-         l1qOCFPXgYWj3gAslh01B5F/KbW3WGfyJngAET+S8ufcB0yA+TiPZi5bH4rv2ZsLXtKf
-         nQFDcwQNouOgEXUQIqRYJeMHgC9WrXUunOCBB4E9uSbBwP/1tq+BLb5wyN/PGvjIWNyd
-         JjPK6SHhmkv3om7HQ+jFHl5vgceq9yzsdvaC3kj67gqGOppn7NegAa1rdGidAbLgA5D7
-         ZkunoO7R9++4sTALxjU6CapbhNE340OniSAroVaRwj+QDr/6SdNfNbR3cnpoNUXa5esF
-         RzIw==
-X-Gm-Message-State: ABy/qLYh35uq6/xj2ZNqTzN48Cw9HYOxK3UExT/WHjUYFGIkVEjH6pSd
-        ru0aKK7l2IVoABDzB+04qZqfAAcW3BSoNmpHO4SNug==
-X-Google-Smtp-Source: APBJJlG+8xKZy6g9CpRj1Wj81vgTMsdF00G4jwQaZYlzMFzW0GrTupKfsPfnKM/Fy7sB1ZwOZmFTGA==
-X-Received: by 2002:a05:622a:450:b0:403:b6bf:ee50 with SMTP id o16-20020a05622a045000b00403b6bfee50mr8133345qtx.14.1689182641184;
-        Wed, 12 Jul 2023 10:24:01 -0700 (PDT)
-Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id q14-20020a05622a04ce00b00400a99b8b38sm2392510qtx.78.2023.07.12.10.23.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Jul 2023 10:24:00 -0700 (PDT)
-From:   Florian Fainelli <florian.fainelli@broadcom.com>
-To:     bcm-kernel-feedback-list@broadcom.com,
-        Christian Marangi <ansuelsmth@gmail.com>,
-        Florian Fainelli <florian.fainelli@broadcom.com>,
-        Hauke Mehrtens <hauke@hauke-m.de>,
-        =?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <zajec5@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        =?iso-8859-1?b?UmVu6Q==?= Kjellerup <rk.katana.steel@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        Aleksey Nasibulin <alealexpro100@ya.ru>, stable@vger.kernel.org
-Subject: Re: [PATCH] ARM: dts: BCM5301X: Extend RAM to full 256MB for Linksys EA6500 V2
-Date:   Wed, 12 Jul 2023 10:23:57 -0700
-Message-Id: <20230712172357.2601721-1-florian.fainelli@broadcom.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230712014017.28123-1-ansuelsmth@gmail.com>
-References: <20230712014017.28123-1-ansuelsmth@gmail.com>
+        with ESMTP id S230360AbjGLRZz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 13:25:55 -0400
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82E8A2112;
+        Wed, 12 Jul 2023 10:25:43 -0700 (PDT)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id A1B38862DA;
+        Wed, 12 Jul 2023 19:25:40 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1689182741;
+        bh=+/9P2RDXkiWPawrkFasbFUXp9kTFyBQDTDMgqnS3V40=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=rPSZVMpsSu5adOopxN6lmiMgXGvSBMEb75b3Ay6TjHJpd5yt5Ei6qx3fvD7gRbYJK
+         XhTRohT+EeRlEvi2TwZAXrfPYVC9n+pjcaLSqMIDBa8aj+JM1n2c6Orq+dt+Npo8HZ
+         OJ/DXUjUfLxAV2mxBpLXBRGtTnZZD97SQZSK1/RpULtQ751VU91yo4JwQselLbZev+
+         ocLKwv4oUdO8FOkyvhlUfJNVnB8gpSXyXXUq04uy6b3z4DFqOtt54/54hGOz500I1C
+         c/wKEiaabF3xdx5pNxdFz4sr3D0wj4Dc7wSRZ7mfWrTy/aCIhfPyG61w1x/qbowxy5
+         m2Zb5YYroIkaw==
+Message-ID: <ff5270e7-573d-2700-881f-1358683f2618@denx.de>
+Date:   Wed, 12 Jul 2023 19:25:40 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-        boundary="000000000000502e4e06004d7b9d"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v4 3/3] drm/panel-fannal-c3004: Add fannal c3004 DSI panel
+Content-Language: en-US
+To:     Paulo Pavacic <pavacic.p@gmail.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Maya Matuszczyk <maccraft123mc@gmail.com>,
+        neil.armstrong@linaro.org, sam@ravnborg.org, airlied@gmail.com,
+        daniel@ffwll.ch, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org
+References: <20230607151127.1542024-1-pavacic.p@gmail.com>
+ <CACRpkdbrEA54qmfTKSsFRG9ZS4u8hM6P5TXtOjRAiW+TD_v-fQ@mail.gmail.com>
+ <CAO9szn00vRFm+iM1m7KgkW0WRuKyJEgVU4tVx4f5tF6KPnE=2w@mail.gmail.com>
+ <CACRpkdaw8M3dSkmiV5QDOt3BBB7Jo6NxT0Og=zvA4REMA_7y9g@mail.gmail.com>
+ <CAO9szn29A0qCABG0ACni42UGpsGKLwG7OT1y_ho3DgQ0WLvfmw@mail.gmail.com>
+ <CACRpkdYXtQwmZR1u-1fwmyC_8Yq4bMkjDBcUCfuGqSz_UhXWJQ@mail.gmail.com>
+ <CAO9szn0OuKW+-JZMs3TPUHiwLCe6cUPcsUq+og64K2utMyZpqQ@mail.gmail.com>
+ <CACRpkdb5stXKb7FNk_FC-PKduCngRX3sZTbzcxN+kRskz78fuQ@mail.gmail.com>
+ <CAO9szn3oTzrrwiyr91H14ep7OPUkA-SDST3CSQAQHvFFnkJWfA@mail.gmail.com>
+ <0d43e653-32cd-b25e-40fa-6f0571048467@denx.de>
+ <CAO9szn20RY3uBDceyUJ1S+gb=FN8Hd5qqMfOSbitHFyFCZ+iLg@mail.gmail.com>
+ <8b0ae1d1-c769-1f55-0452-4bbc62da133b@denx.de>
+ <CAO9szn1QdB5WGshuyCOGqb0qbBWHqoikeiMkk+bNGhAF5TX5ew@mail.gmail.com>
+ <45488dcc-226e-1e7c-c681-c1d9be17bcbb@denx.de>
+ <CAO9szn3scWfrP3mB8QnvPewZegV0=6iD8PE2bOS09HuN6gywmg@mail.gmail.com>
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <CAO9szn3scWfrP3mB8QnvPewZegV0=6iD8PE2bOS09HuN6gywmg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
         URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,106 +77,90 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---000000000000502e4e06004d7b9d
-Content-Transfer-Encoding: 8bit
+On 7/12/23 17:10, Paulo Pavacic wrote:
 
-From: Florian Fainelli <f.fainelli@gmail.com>
+Hi,
 
-On Wed, 12 Jul 2023 03:40:17 +0200, Christian Marangi <ansuelsmth@gmail.com> wrote:
-> From: Aleksey Nasibulin <alealexpro100@ya.ru>
+[...]
+
+>>>> Or whether it makes sense to outright have a separate driver. The later
+>>>> would introduce duplication, but maybe that much duplication is OK.
+>>>
+>>> I would like to create new driver because panel-st7701 seems to be
+>>> outdated and is using non-standard macro (ST7701_WRITE()
+>>
+>> There is no such macro:
+>>
+>> $ git grep ST7701_WRITE drivers/gpu/drm/panel/ | wc -l
+>> 0
+>>
+>> There never was such a macro used in the driver either, are you sure you
+>> are not using some hacked up patched downstream fork of the driver ?
 > 
-> Linksys ea6500-v2 have 256MB of ram. Currently we only use 128MB.
-> Expand the definition to use all the available RAM.
+> I meant ST7701_DSI() macro; It can be replaced with
+> mipi_dsi_generic_write_seq from kernel 6.3. Sorry for the confusion.
+
+OK
+
+>> $ git log -p next/master --
+>> drivers/gpu/drm/panel/panel-sitronix-st7701.c | grep ST7701_WRITE | wc -l
+>> 0
+>>
+>>> ) and for me
+>>> it is crashing kernel 5.15.
+>>
+>> Have you based all the aforementioned discussion and argumentation on
+>> year and half old Linux 5.15.y code base too ?
+>>
+>> If so, you are missing many patches:
+>>
+>> $ git log --oneline --no-merges v5.15..next/master --
+>> drivers/gpu/drm/panel/panel-sitronix-st7701.c
+>> 5a2854e577dc2 drm: panel: Add orientation support for st7701
+>> e89838968ee44 drm: panel: Add Elida KD50T048A to Sitronix ST7701 driver
+>> c62102165dd79 drm/panel/panel-sitronix-st7701: Remove panel on DSI
+>> attach failure
+>> 49ee766b364ed drm/panel/panel-sitronix-st7701: Clean up CMDnBKx selection
+>> c1cdee9b685a1 drm/panel/panel-sitronix-st7701: Fix RTNI calculation
+>> 57b2efce45ef5 drm/panel/panel-sitronix-st7701: Add Densitron
+>> DMT028VGHMCMI-1A TFT
+>> 42542c7904cf2 drm/panel/panel-sitronix-st7701: Split GIP and init sequences
+>> 83b7a8e7e88e7 drm/panel/panel-sitronix-st7701: Parametrize voltage and
+>> timing
+>> de2b4917843cd drm/panel/panel-sitronix-st7701: Infer horizontal pixel
+>> count from TFT mode
+>> 82f9cee25598a drm/panel/panel-sitronix-st7701: Adjust porch control
+>> bitfield name
+>> 1ba85119afb5e drm/panel/panel-sitronix-st7701: Infer vertical line count
+>> from TFT mode
+>> 779c84fea3dbd drm/panel/panel-sitronix-st7701: Make gamma correction TFT
+>> specific
+>> 7fa8e07128ed6 drm/panel/panel-sitronix-st7701: Make voltage supplies
+>> common to ST7701
+>> a6c225be3da7e drm/panel/panel-sitronix-st7701: Enable DSI burst mode,
+>> LPM, non-continuous clock
+>> 6f481afe220d3 drm/panel/panel-sitronix-st7701: Make DSI mode flags
+>> common to ST7701
+>> 79abca2b39900 drm/mipi-dsi: Make remove callback return void
 > 
-> Fixes: 03e96644d7a8 ("ARM: dts: BCM5301X: Add basic DT for Linksys EA6500 V2")
-> Signed-off-by: Aleksey Nasibulin <alealexpro100@ya.ru>
-> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> Cc: stable@vger.kernel.org
-> ---
+> I will try backporting those patches to 5.15 and applying them to see
+> whether it will then work with initialization sequences provided in
+> this merge request just to be sure not to have duplication. We are
+> still working on transitioning to newer kernel so for the time being
+> I'm using mostly 5.15.
+> 
+> On 5.15 kernel I have following kernel panic only with st7701 from the
+> panel drivers I have tried:
+> 
+> [   20.255322] Kernel panic - not syncing: Asynchronous SError Interrupt
+> [   20.255326] CPU: 1 PID: 36 Comm: kworker/1:1 Tainted: G           O
+>       5.15.77-5.15.77-2.1.0 #1
 
-Applied to https://github.com/Broadcom/stblinux/commits/devicetree/next, thanks!
---
-Florian
+The latest 5.15.y is 5.15.120 , can you re-test on that version ?
 
---000000000000502e4e06004d7b9d
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
+> [   20.255330] Hardware name: XXX i.MX8XX board:XXX (DT)
 
-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
-riBJ/K1AFUjRAjFhGV64l++td7dkmnq/X8ET75ti+w1s4FRpFqkD2m7pg5NxdsZphYIXAgMBAAGj
-QjBAMA4GA1UdDwEB/wQEAwIBBjAPBgNVHRMBAf8EBTADAQH/MB0GA1UdDgQWBBSP8Et/qC5FJK5N
-UPpjmove4t0bvDANBgkqhkiG9w0BAQsFAAOCAQEAS0DbwFCq/sgM7/eWVEVJu5YACUGssxOGhigH
-M8pr5nS5ugAtrqQK0/Xx8Q+Kv3NnSoPHRHt44K9ubG8DKY4zOUXDjuS5V2yq/BKW7FPGLeQkbLmU
-Y/vcU2hnVj6DuM81IcPJaP7O2sJTqsyQiunwXUaMld16WCgaLx3ezQA3QY/tRG3XUyiXfvNnBB4V
-14qWtNPeTCekTBtzc3b0F5nCH3oO4y0IrQocLP88q1UOD5F+NuvDV0m+4S4tfGCLw0FREyOdzvcy
-a5QBqJnnLDMfOjsl0oZAzjsshnjJYS8Uuu7bVW/fhO4FCU29KNhyztNiUGUe65KXgzHZs7XKR1g/
-XzCCBVgwggRAoAMCAQICDBP8P9hKRVySg3Qv5DANBgkqhkiG9w0BAQsFADBbMQswCQYDVQQGEwJC
-RTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTExMC8GA1UEAxMoR2xvYmFsU2lnbiBHQ0MgUjMg
-UGVyc29uYWxTaWduIDIgQ0EgMjAyMDAeFw0yMjA5MTAxMjE4MTFaFw0yNTA5MTAxMjE4MTFaMIGW
-MQswCQYDVQQGEwJJTjESMBAGA1UECBMJS2FybmF0YWthMRIwEAYDVQQHEwlCYW5nYWxvcmUxFjAU
-BgNVBAoTDUJyb2FkY29tIEluYy4xGTAXBgNVBAMTEEZsb3JpYW4gRmFpbmVsbGkxLDAqBgkqhkiG
-9w0BCQEWHWZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tMIIBIjANBgkqhkiG9w0BAQEFAAOC
-AQ8AMIIBCgKCAQEA+oi3jMmHltY4LMUy8Up5+1zjd1iSgUBXhwCJLj1GJQF+GwP8InemBbk5rjlC
-UwbQDeIlOfb8xGqHoQFGSW8p9V1XUw+cthISLkycex0AJ09ufePshLZygRLREU0H4ecNPMejxCte
-KdtB4COST4uhBkUCo9BSy1gkl8DJ8j/BQ1KNUx6oYe0CntRag+EnHv9TM9BeXBBLfmMRnWNhvOSk
-nSmRX0J3d9/G2A3FIC6WY2XnLW7eAZCQPa1Tz3n2B5BGOxwqhwKLGLNu2SRCPHwOdD6e0drURF7/
-Vax85/EqkVnFNlfxtZhS0ugx5gn2pta7bTdBm1IG4TX+A3B1G57rVwIDAQABo4IB3jCCAdowDgYD
-VR0PAQH/BAQDAgWgMIGjBggrBgEFBQcBAQSBljCBkzBOBggrBgEFBQcwAoZCaHR0cDovL3NlY3Vy
-ZS5nbG9iYWxzaWduLmNvbS9jYWNlcnQvZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3J0MEEG
-CCsGAQUFBzABhjVodHRwOi8vb2NzcC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWdu
-MmNhMjAyMDBNBgNVHSAERjBEMEIGCisGAQQBoDIBKAowNDAyBggrBgEFBQcCARYmaHR0cHM6Ly93
-d3cuZ2xvYmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADBJBgNVHR8EQjBAMD6gPKA6
-hjhodHRwOi8vY3JsLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNy
-bDAoBgNVHREEITAfgR1mbG9yaWFuLmZhaW5lbGxpQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggr
-BgEFBQcDBDAfBgNVHSMEGDAWgBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUUwwfJ6/F
-KL0fRdVROal/Lp4lAF0wDQYJKoZIhvcNAQELBQADggEBAKBgfteDc1mChZjKBY4xAplC6uXGyBrZ
-kNGap1mHJ+JngGzZCz+dDiHRQKGpXLxkHX0BvEDZLW6LGOJ83ImrW38YMOo3ZYnCYNHA9qDOakiw
-2s1RH00JOkO5SkYdwCHj4DB9B7KEnLatJtD8MBorvt+QxTuSh4ze96Jz3kEIoHMvwGFkgObWblsc
-3/YcLBmCgaWpZ3Ksev1vJPr5n8riG3/N4on8gO5qinmmr9Y7vGeuf5dmZrYMbnb+yCBalkUmZQwY
-NxADYvcRBA0ySL6sZpj8BIIhWiXiuusuBmt2Mak2eEv0xDbovE6Z6hYyl/ZnRadbgK/ClgbY3w+O
-AfUXEZ0xggJtMIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52
-LXNhMTEwLwYDVQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwT
-/D/YSkVckoN0L+QwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIOAnyZznxpuAtMyH
-Bw8ID3dYZ1toHC1fql55PlN2FmG5MBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcN
-AQkFMQ8XDTIzMDcxMjE3MjQwMVowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZI
-AWUDBAEWMAsGCWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEH
-MAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQCFYDpc32AatVIAztv1CHekgIa35JCB+lZf
-+AbRe3Sr0AZFlysI29LwnWLD6tNUy/23NVg+paeMH5OqKmSlNHrN3Hp8JnsnJIPGBA+sSfvxpXJz
-OP7gDTZIYzt2eYu+0Pt2Kr97IFyQ0BoYhEfU8Z5M8nlDS4yiAm1Js196T0276kqipPJ4+TxwnZqg
-fnVnQGvyjm48Wloe3oTjificymA9ouab6fVZIs6X4hqQQ1awLW/pRIaFyrGC7/WkfTNmX8At9e21
-NZJTX0uhJOV2zcbps3LBBE9r4fNHK0FOSlXz3hiUb6GkVA5CEix83I4/IblCuzkNWfgn1aCqRjQ7
-vo9P
---000000000000502e4e06004d7b9d--
+Is this some NXP downstream kernel fork with thousands of extra patches?
+The version string 2.1.0 looks very much like NXP versioning scheme ...
+
+[...]
