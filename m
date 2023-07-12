@@ -2,204 +2,217 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B316C7509CB
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 15:42:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 950E8750A13
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 15:53:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232650AbjGLNmN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jul 2023 09:42:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58786 "EHLO
+        id S232221AbjGLNxw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jul 2023 09:53:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36660 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229572AbjGLNmM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 09:42:12 -0400
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0E7CE69;
-        Wed, 12 Jul 2023 06:42:09 -0700 (PDT)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id EF3DF86AB0;
-        Wed, 12 Jul 2023 15:42:05 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1689169326;
-        bh=oTpaJ+N64GlPta96y4JefSoHhuag66BJ/Yy5shmc4jo=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=Pnrdcw2+6b+14qfsN11u6aPp3zu6Z9B9QdShSgZ/jEJo804DIorGEaB6qkGKVHzR+
-         C9D4OhEeX+HkjaG7t6w5K53fICxfpe1pZo8o3NkKhlWBpkESzXmsCqNjR4GxN6ZIsW
-         BoxwkU6Vh7u6GD2z0nUk1JilMlHJ+TYPCtmJlFYTtdJSrv3lmpX+pguh2UKDVvA9YJ
-         cWWpz3tvLXIUaxIlUXzy8fnvJ95yaECyweBiVWqjY0C300VPmJ334MvwPV4V3zd87W
-         rcViqbeBbbFLp3tK1ZOm7IIexz3tXG4wkoJbJeJ5sz5GCaPU/kX9mV8D5WpyzRMpG0
-         10TkvY5sCuvLw==
-Message-ID: <45488dcc-226e-1e7c-c681-c1d9be17bcbb@denx.de>
-Date:   Wed, 12 Jul 2023 15:42:05 +0200
+        with ESMTP id S231302AbjGLNxv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 09:53:51 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37AB9E74;
+        Wed, 12 Jul 2023 06:53:50 -0700 (PDT)
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36CBRlVV032033;
+        Wed, 12 Jul 2023 13:53:28 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=WNF/7l4V0z/b41e1Or2MthOLiwBjpuDAS7snjo562Vg=;
+ b=AUSFV0Do5Gu0CMcI4/7ywzgjIokzQMneC6y69Y+05MK8GVF0sevTpp+OiRvyLiY6HhxA
+ FxQqYyvN7AVULK/GR/JZoriCRo0DqvGhYCopUnPPD/3hLeNZPiR+xNN17Xq6zlhtPiup
+ srYRK9Yxk0/U5EeouiN/qWnNOXXc1jEwVUSL1cge0Y6PsJYhV4j+8w5vymNvNofRi83M
+ EPh+I3p21TbMH6yUWMW+1wrY+5zXaRV5AAs4R0zm3voD2aKrnrrV3UUf5fxnq2+l5WtN
+ Q2eUXtQ1dBC5biHNu+Pnxt1V7dsUjxBH6piLNBq6+hRksOUBw577iuXx91TqPvqYFJiO Sg== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3rser0spry-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 12 Jul 2023 13:53:28 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 36CDrQN3010385
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 12 Jul 2023 13:53:27 GMT
+Received: from [10.239.133.211] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Wed, 12 Jul
+ 2023 06:53:22 -0700
+Message-ID: <d3849c2a-8826-62a7-1749-0d4b3ee47259@quicinc.com>
+Date:   Wed, 12 Jul 2023 21:53:02 +0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v4 3/3] drm/panel-fannal-c3004: Add fannal c3004 DSI panel
-To:     Paulo Pavacic <pavacic.p@gmail.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Maya Matuszczyk <maccraft123mc@gmail.com>,
-        neil.armstrong@linaro.org, sam@ravnborg.org, airlied@gmail.com,
-        daniel@ffwll.ch, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org
-References: <20230607151127.1542024-1-pavacic.p@gmail.com>
- <20230607151127.1542024-4-pavacic.p@gmail.com>
- <CACRpkdbrEA54qmfTKSsFRG9ZS4u8hM6P5TXtOjRAiW+TD_v-fQ@mail.gmail.com>
- <CAO9szn00vRFm+iM1m7KgkW0WRuKyJEgVU4tVx4f5tF6KPnE=2w@mail.gmail.com>
- <CACRpkdaw8M3dSkmiV5QDOt3BBB7Jo6NxT0Og=zvA4REMA_7y9g@mail.gmail.com>
- <CAO9szn29A0qCABG0ACni42UGpsGKLwG7OT1y_ho3DgQ0WLvfmw@mail.gmail.com>
- <CACRpkdYXtQwmZR1u-1fwmyC_8Yq4bMkjDBcUCfuGqSz_UhXWJQ@mail.gmail.com>
- <CAO9szn0OuKW+-JZMs3TPUHiwLCe6cUPcsUq+og64K2utMyZpqQ@mail.gmail.com>
- <CACRpkdb5stXKb7FNk_FC-PKduCngRX3sZTbzcxN+kRskz78fuQ@mail.gmail.com>
- <CAO9szn3oTzrrwiyr91H14ep7OPUkA-SDST3CSQAQHvFFnkJWfA@mail.gmail.com>
- <0d43e653-32cd-b25e-40fa-6f0571048467@denx.de>
- <CAO9szn20RY3uBDceyUJ1S+gb=FN8Hd5qqMfOSbitHFyFCZ+iLg@mail.gmail.com>
- <8b0ae1d1-c769-1f55-0452-4bbc62da133b@denx.de>
- <CAO9szn1QdB5WGshuyCOGqb0qbBWHqoikeiMkk+bNGhAF5TX5ew@mail.gmail.com>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH v6 09/13] Add nodes for dsb edge control
 Content-Language: en-US
-From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <CAO9szn1QdB5WGshuyCOGqb0qbBWHqoikeiMkk+bNGhAF5TX5ew@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+CC:     Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+        Konrad Dybcio <konradybcio@gmail.com>,
+        Mike Leach <mike.leach@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jinlong Mao <quic_jinlmao@quicinc.com>,
+        Leo Yan <leo.yan@linaro.org>, <coresight@lists.linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Tingwei Zhang <quic_tingweiz@quicinc.com>,
+        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Hao Zhang <quic_hazha@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <andersson@kernel.org>
+References: <1687246361-23607-1-git-send-email-quic_taozha@quicinc.com>
+ <1687246361-23607-10-git-send-email-quic_taozha@quicinc.com>
+ <2023062024-sincere-tripod-95dc@gregkh>
+ <3aca4a55-0dc7-b34c-d2c0-111a96c33ec3@quicinc.com>
+ <e82385f1-de55-4c70-5c5c-35b93a5b2488@arm.com>
+From:   Tao Zhang <quic_taozha@quicinc.com>
+In-Reply-To: <e82385f1-de55-4c70-5c5c-35b93a5b2488@arm.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: lkv3c6CNrQZrHTcMIFfTohgNMLjs4a0b
+X-Proofpoint-ORIG-GUID: lkv3c6CNrQZrHTcMIFfTohgNMLjs4a0b
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-07-12_08,2023-07-11_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
+ priorityscore=1501 malwarescore=0 adultscore=0 impostorscore=0 mlxscore=0
+ suspectscore=0 phishscore=0 bulkscore=0 lowpriorityscore=0 mlxlogscore=999
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2305260000 definitions=main-2307120124
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 7/12/23 14:07, Paulo Pavacic wrote:
-> Hello all,
-> 
-> sub, 8. srp 2023. u 14:53 Marek Vasut <marex@denx.de> napisao je:
+
+On 6/20/2023 9:41 PM, Suzuki K Poulose wrote:
+> On 20/06/2023 09:31, Tao Zhang wrote:
 >>
->> On 7/7/23 17:26, Paulo Pavacic wrote:
->>> Hello Marek,
->>
->> Hi,
->>
->>> čet, 6. srp 2023. u 17:26 Marek Vasut <marex@denx.de> napisao je:
+>> On 6/20/2023 3:37 PM, Greg Kroah-Hartman wrote:
+>>> On Tue, Jun 20, 2023 at 03:32:37PM +0800, Tao Zhang wrote:
+>>>> Add the nodes to set value for DSB edge control and DSB edge
+>>>> control mask. Each DSB subunit TPDM has maximum of n(n<16) EDCR
+>>>> resgisters to configure edge control. DSB edge detection control
+>>>> 00: Rising edge detection
+>>>> 01: Falling edge detection
+>>>> 10: Rising and falling edge detection (toggle detection)
+>>>> And each DSB subunit TPDM has maximum of m(m<8) ECDMR registers to
+>>>> configure mask. Eight 32 bit registers providing DSB interface
+>>>> edge detection mask control.
 >>>>
->>>> On 7/6/23 17:18, Paulo Pavacic wrote:
->>>>> Hello Linus,
->>>>>
->>>>> čet, 22. lip 2023. u 10:22 Linus Walleij <linus.walleij@linaro.org> napisao je:
->>>>>>
->>>>>> On Wed, Jun 21, 2023 at 5:09 PM Paulo Pavacic <pavacic.p@gmail.com> wrote:
->>>>>>
->>>>>>> A lot of modifications to st7701 are required. I believe it would
->>>>>>> result in a driver that doesn't look or work the same. e.g compare
->>>>>>> delays between initialization sequences of panel-fannal-c3004 and
->>>>>>> panel-st7701. I think it would be optimal to create st7701s driver and
->>>>>>> have special handling for st7701s panels. If there was a flag for
->>>>>>> whether panel is st7701 or st7701s it would end up looking like a
->>>>>>> mess.
->>>>>>
->>>>>> What matters is if the original authors of the old st7701 driver are
->>>>>> around and reviewing and testing patches at all. What we need is
->>>>>> active maintainers. (Added Jagan, Marek & Maya).
->>>>>>
->>>>>> I buy the reasoning that the st7701s is perhaps substantially different
->>>>>> from st7701.
->>>>>>
->>>>>> If st7701s is very different then I suppose it needs a separate driver,
->>>>>> then all we need to to name the driver properly, i.e.
->>>>>> panel-sitronix-st7701s.c.
->>>>>
->>>>> I had in person talk with Paul Kocialkowski and I have concluded that
->>>>> this is the best solution.
->>>>> I believe I should rename it to st7701s due to the hardware changes. I
->>>>> would like to create V5 patch with driver renamed to st7701s.
->>>>> Please let me know if you agree / disagree.
+>>>> Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
+>>>> ---
+>>>>   .../ABI/testing/sysfs-bus-coresight-devices-tpdm   |  32 +++++
+>>>>   drivers/hwtracing/coresight/coresight-tpdm.c       | 143 
+>>>> ++++++++++++++++++++-
+>>>>   drivers/hwtracing/coresight/coresight-tpdm.h       |  22 ++++
+>>>>   3 files changed, 196 insertions(+), 1 deletion(-)
 >>>>
->>>> If I recall it right, the ST7701 and ST7701S are basically the same
->>>> chip, aren't they ?
+>>>> diff --git 
+>>>> a/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm 
+>>>> b/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
+>>>> index 2a82cd0..34189e4a 100644
+>>>> --- a/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
+>>>> +++ b/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
+>>>> @@ -60,3 +60,35 @@ Description:
+>>>>           Bit[3] : Set to 0 for low performance mode.
+>>>>                    Set to 1 for high performance mode.
+>>>>           Bit[4:8] : Select byte lane for high performance mode.
+>>>> +
+>>>> +What: /sys/bus/coresight/devices/<tpdm-name>/dsb_edge_ctrl
+>>>> +Date:        March 2023
+>>>> +KernelVersion    6.5
+>>>> +Contact:    Jinlong Mao (QUIC) <quic_jinlmao@quicinc.com>, Tao 
+>>>> Zhang (QUIC) <quic_taozha@quicinc.com>
+>>>> +Description:
+>>>> +        Read/Write a set of the edge control registers of the DSB
+>>>> +        in TPDM.
+>>>> +
+>>>> +        Expected format is the following:
+>>>> +        <integer1> <integer2> <integer3>
+>>> sysfs is "one value", not 3.  Please never have to parse a sysfs file.
+>>
+>> Do you mean sysfs file can only accept "one value"?
+>>
+>> I see that more than one value are written to the sysfs file 
+>> "trigout_attach".
+>>
 >>>
->>> I'm currently exploring all the differences. There aren't a lot of
->>> differences, but there are some.
->>> So far I can see that default register values are different, new
->>> previously unused registers are now used and there has been some
->>> reordering of how info is placed in registers [1] (data bits are in
->>> different order). Moreover, instructions to some commands have been
->>> changed and meaning of what data bits mean [2][3]. Also, new features
->>> have been added [2]; there is now PCLKS 3 for example.
->>>
->>> You can see few differences in following images. Same images were
->>> attached in this mail:
->>> [1] https://ibb.co/NmgbZmy - GAMACTRL_st7701.png
->>> [2] https://ibb.co/G79y235 - PCLKS2.png
+>>>> +static ssize_t dsb_edge_ctrl_show(struct device *dev,
+>>>> +                       struct device_attribute *attr,
+>>>> +                       char *buf)
+>>>> +{
+>>>> +    struct tpdm_drvdata *drvdata = dev_get_drvdata(dev->parent);
+>>>> +    ssize_t size = 0;
+>>>> +    unsigned long bytes;
+>>>> +    int i;
+>>>> +
+>>>> +    spin_lock(&drvdata->spinlock);
+>>>> +    for (i = 0; i < TPDM_DSB_MAX_EDCR; i++) {
+>>>> +        bytes = sysfs_emit_at(buf, size,
+>>>> +                  "Index:0x%x Val:0x%x\n", i,
+>>> Again, no, one value, no "string" needed to parse anything.
 >>
->> Ouch. I wonder if this is still something that can be abstracted out
->> with some helper accessor functions like:
+>> I also see other sysfs files can be read more than one value in other 
+>> drivers.
 >>
->> if (model == ST7701)
->>     write something
->> else
->>     write the other layout
+>> Is this "one value" limitation the usage rule of Linux sysfs system?
 >>
->> Or whether it makes sense to outright have a separate driver. The later
->> would introduce duplication, but maybe that much duplication is OK.
-> 
-> I would like to create new driver because panel-st7701 seems to be
-> outdated and is using non-standard macro (ST7701_WRITE()
+>> Or am I misunderstanding what you mean?
+>
+> Please fix the other sysfs tunables in the following patches.
 
-There is no such macro:
+List a new solution for the similar cases below, please see if this 
+design is reasonable?
 
-$ git grep ST7701_WRITE drivers/gpu/drm/panel/ | wc -l
-0
+1. Two SysFS files("dsb_edge_ctrl_idx" and "dsb_edge_ctrl_val") will be 
+created in this case.
 
-There never was such a macro used in the driver either, are you sure you 
-are not using some hacked up patched downstream fork of the driver ?
+2. First write to the node "dsb_edge_ctrl_idx" to set the index number 
+of the edge detection.
 
-$ git log -p next/master -- 
-drivers/gpu/drm/panel/panel-sitronix-st7701.c | grep ST7701_WRITE | wc -l
-0
+3. Then write to the node "dsb_edge_ctrl_val" to set the value of the 
+edge detection.
 
-> ) and for me
-> it is crashing kernel 5.15.
+For example, if we need need to set "Falling edge detection" to the edge 
+detection #220-#222, we can issue the following commands.
 
-Have you based all the aforementioned discussion and argumentation on 
-year and half old Linux 5.15.y code base too ?
+echo 0xdc > tpdm1/dsb_edge_ctrl_idx
 
-If so, you are missing many patches:
+echo 0x1 > tpdm1/dsb_edge_ctrl_val
 
-$ git log --oneline --no-merges v5.15..next/master -- 
-drivers/gpu/drm/panel/panel-sitronix-st7701.c
-5a2854e577dc2 drm: panel: Add orientation support for st7701
-e89838968ee44 drm: panel: Add Elida KD50T048A to Sitronix ST7701 driver
-c62102165dd79 drm/panel/panel-sitronix-st7701: Remove panel on DSI 
-attach failure
-49ee766b364ed drm/panel/panel-sitronix-st7701: Clean up CMDnBKx selection
-c1cdee9b685a1 drm/panel/panel-sitronix-st7701: Fix RTNI calculation
-57b2efce45ef5 drm/panel/panel-sitronix-st7701: Add Densitron 
-DMT028VGHMCMI-1A TFT
-42542c7904cf2 drm/panel/panel-sitronix-st7701: Split GIP and init sequences
-83b7a8e7e88e7 drm/panel/panel-sitronix-st7701: Parametrize voltage and 
-timing
-de2b4917843cd drm/panel/panel-sitronix-st7701: Infer horizontal pixel 
-count from TFT mode
-82f9cee25598a drm/panel/panel-sitronix-st7701: Adjust porch control 
-bitfield name
-1ba85119afb5e drm/panel/panel-sitronix-st7701: Infer vertical line count 
-from TFT mode
-779c84fea3dbd drm/panel/panel-sitronix-st7701: Make gamma correction TFT 
-specific
-7fa8e07128ed6 drm/panel/panel-sitronix-st7701: Make voltage supplies 
-common to ST7701
-a6c225be3da7e drm/panel/panel-sitronix-st7701: Enable DSI burst mode, 
-LPM, non-continuous clock
-6f481afe220d3 drm/panel/panel-sitronix-st7701: Make DSI mode flags 
-common to ST7701
-79abca2b39900 drm/mipi-dsi: Make remove callback return void
+echo 0xdd > tpdm1/dsb_edge_ctrl_idx
 
-> Does anyone have similar issues with it?
+echo 0x1 > tpdm1/dsb_edge_ctrl_val
 
-No, I am using it in production.
+echo 0xde > tpdm1/dsb_edge_ctrl_idx
+
+echo 0x1 > tpdm1/dsb_edge_ctrl_val
+
+If this design is acceptable, we will rewrite other similar nodes based 
+on this solution.
+
+Let me know if you have any concerns or good suggestions for this solution.
+
+
+Best,
+
+Tao
+
+>
+> Kind regards
+> Suzuki
+>
+>
