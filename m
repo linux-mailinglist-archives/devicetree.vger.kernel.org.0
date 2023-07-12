@@ -2,275 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 30A0C750467
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 12:30:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2651675046E
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 12:32:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229762AbjGLKaJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jul 2023 06:30:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46102 "EHLO
+        id S230175AbjGLKci (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jul 2023 06:32:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46736 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229506AbjGLKaI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 06:30:08 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 553CD106;
-        Wed, 12 Jul 2023 03:30:07 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id 2adb3069b0e04-4fbcbf4375dso771844e87.0;
-        Wed, 12 Jul 2023 03:30:07 -0700 (PDT)
+        with ESMTP id S229551AbjGLKci (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 06:32:38 -0400
+Received: from mail-oi1-x22f.google.com (mail-oi1-x22f.google.com [IPv6:2607:f8b0:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3FC1199E
+        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 03:32:35 -0700 (PDT)
+Received: by mail-oi1-x22f.google.com with SMTP id 5614622812f47-39ca120c103so4863249b6e.2
+        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 03:32:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1689157805; x=1691749805;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=JibM4f+C+jgO7J8IldglQAMCDPTs7d1S6aXmcnJhuxY=;
-        b=PN0YpNFjNXYtlBBMolshKR6lCst2nYPWNAti8pn+OLmK1CG/rt9m9/yBi4xvD+ZXcO
-         DOIueI8TO6RBvB1t+EJwXQ7iuYhY3QqZeyXBovPtn6yTVzBJZef5qOg17TgWGZ8lgJFI
-         CF0gTnmPnJBCp7hmAODISItjeCOiNmLILuMpJPUIo9iccxp+cjK4LR2ySCCzldW7WfeP
-         u+oHiFpge9ubw+Slf+Jh4pfKWNAn78l1U4ueg6aIlU4cm4okK6Lslh4qVY/xsKPdXjVH
-         pxvbYwVFFDUQs3tyjwa6RnWKPL712bEb9crteWQYGEwVRkQjzXnscIcITDgvG8NYAE2R
-         6bIQ==
+        d=linaro.org; s=google; t=1689157955; x=1691749955;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=gW/Rn79XK+Jon3f7wv6t0M4u9Do+bTGAD75094KkDlA=;
+        b=AKB+GTSaHk3kq6eQL8Ppv5Y493xUK+Ldnsux+eGTp0AvWXw8ooSAEY44HAyzYIm8Ln
+         pZBtI4GHPsgh5Sqrow6NyaSybhVNEgjt1iNis0reg9/tHup7NTfyMobbj1BFysr9dPbX
+         sSVX9+atlY9mIDX0SL90ifniWIFJaqLjcq1x6BInFSiPwWRgVcMvHoxUxrKPmnEPH8ft
+         Yt7EpVm/e34biWKF+gQ3WllBXdbWW3wlROwPWefgqkTJ6NKuoX80bStnV7AboTW1EA08
+         riv/82CTVT9eP4FwKXYby+b3Z5AQlrlzzdm069kDKiv5c5OhU1pWKfw1oYZP1WALU/Mt
+         4d/w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689157805; x=1691749805;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=JibM4f+C+jgO7J8IldglQAMCDPTs7d1S6aXmcnJhuxY=;
-        b=QgnrCZhXvr4ACbWTUv0YZrQdcljB1MRc67UjxXtG3SPR0qcCDal4D+F2aGi6EdmAVc
-         j82HZITPFhxKPiamSGzdXEiysFYnl/GHpWIQV3AmvYxVsC3DFmiGhV6PE32PM7fAeyjw
-         7sUrwhg+pBhgHFSvzS/q7Fgq5kiVFQ2Hu4hT0H96eOIr9GP4jdzKknKg2NyOBupk1wV8
-         ODIKPTWXTdVCsUfk9kx/JTijtV1rP3k6YEWCNMEAsWwR/yx6V6THVKDcMKsjp/nFpi1p
-         Qx7VeRZYM3KqzTZgdzRpHu6ZjWd2gOLIh5jaWV+6+Busei/a4YI6TeoFyw7I+S48bBtw
-         6ijg==
-X-Gm-Message-State: ABy/qLa76aCiNMVYcFeeBHDY2k9Hyt7532jq0nEretQxSMmK9OwvdOtm
-        Kl5Nh7T4rnLRW4TPooO31Z4=
-X-Google-Smtp-Source: APBJJlGpwOiSAFpVwXGujz8IWjbU5Mz8GK443TsMs898Xfs+ha7GqizyVmcDrXda80Ut5666yMNTuA==
-X-Received: by 2002:a05:6512:3d89:b0:4f8:5e4e:52ad with SMTP id k9-20020a0565123d8900b004f85e4e52admr660218lfv.23.1689157805194;
-        Wed, 12 Jul 2023 03:30:05 -0700 (PDT)
-Received: from mobilestation ([85.249.22.88])
-        by smtp.gmail.com with ESMTPSA id a23-20020a19f817000000b004faeedbb29dsm652185lff.64.2023.07.12.03.30.03
+        d=1e100.net; s=20221208; t=1689157955; x=1691749955;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=gW/Rn79XK+Jon3f7wv6t0M4u9Do+bTGAD75094KkDlA=;
+        b=l979kv79TcekCnSxPADVZh85k+SfvFc9W4SGhUc+JyUCw6AffI6x8QtrPJaA+SfT5/
+         e4WyOOErFkBq0C3t5yrE3/zrG67zViAz7Lxt0MEgvD63RzZPiMxI2BwgTI7f0ue4EfEk
+         Ksp1b1Dq9hRzwH5UmwE8eSdlqXRfkcXUoIETAhQx9FyFJzDsf7A+B3vb31DflAJPQ4gG
+         350zJYxSNXV9TF3boTQPJ8L53UoZWR8Ten7tP2lwDxVgId8ed+0Cybu/nZ/ePQkTs13W
+         8pVGRJVyHmXqdLEyNYMqDnAfS23vrKAbKGWLqW38AvVTzYskRWOiFd/9ADZdDw9p+H8g
+         dYpg==
+X-Gm-Message-State: ABy/qLbrGZYj70i1tbG+MWAs7Ig3ZDBwv519dKl6TAMWRCMxXbAXePgO
+        9nXBdr1AJjYyVFdcq9nIzJze
+X-Google-Smtp-Source: APBJJlHrRbVOwjEDykKU3VS/JLdZbI3DQPaXVwR/4RwYHk98KK4TQ3GcyQXHCXG0cl8AgXwHOhFKFg==
+X-Received: by 2002:a54:4f91:0:b0:3a4:2545:1cec with SMTP id g17-20020a544f91000000b003a425451cecmr1602518oiy.38.1689157955107;
+        Wed, 12 Jul 2023 03:32:35 -0700 (PDT)
+Received: from localhost.localdomain ([117.207.27.131])
+        by smtp.gmail.com with ESMTPSA id k15-20020aa790cf000000b00666b3706be6sm3247860pfk.107.2023.07.12.03.32.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Jul 2023 03:30:04 -0700 (PDT)
-Date:   Wed, 12 Jul 2023 13:30:01 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     "jingoohan1@gmail.com" <jingoohan1@gmail.com>,
-        "gustavo.pimentel@synopsys.com" <gustavo.pimentel@synopsys.com>,
-        "lpieralisi@kernel.org" <lpieralisi@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "kw@linux.com" <kw@linux.com>,
-        "bhelgaas@google.com" <bhelgaas@google.com>,
-        "kishon@kernel.org" <kishon@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "marek.vasut+renesas@gmail.com" <marek.vasut+renesas@gmail.com>,
-        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>, Rob Herring <robh@kernel.org>,
-        Manivannan Sadhasivam <mani@kernel.org>
-Subject: Re: [PATCH v17 16/20] dt-bindings: PCI: renesas: Add R-Car Gen4 PCIe
- Endpoint
-Message-ID: <ucg4tyyht44izu2z4zmvpr54gvrywwdhdsnjtzvuaqzbh3b3bb@h4qhiz3y5oom>
-References: <20230705114206.3585188-1-yoshihiro.shimoda.uh@renesas.com>
- <20230705114206.3585188-17-yoshihiro.shimoda.uh@renesas.com>
- <rk52tz3tmpzg6s7szkh3u44vnr3sncgtb7535fn5alf4fj4dlh@ljmhmtjee3rw>
- <TYBPR01MB534172B437BA8146E05808C7D836A@TYBPR01MB5341.jpnprd01.prod.outlook.com>
+        Wed, 12 Jul 2023 03:32:34 -0700 (PDT)
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     vireshk@kernel.org, nm@ti.com, sboyd@kernel.org,
+        myungjoo.ham@samsung.com, kyungmin.park@samsung.com,
+        cw00.choi@samsung.com, andersson@kernel.org,
+        konrad.dybcio@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Cc:     linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        quic_asutoshd@quicinc.com, quic_cang@quicinc.com,
+        quic_nitirawa@quicinc.com, quic_narepall@quicinc.com,
+        quic_bhaskarv@quicinc.com, quic_richardp@quicinc.com,
+        quic_nguyenb@quicinc.com, quic_ziqichen@quicinc.com,
+        bmasney@redhat.com, krzysztof.kozlowski@linaro.org,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Subject: [PATCH 00/14] UFS: Add OPP and interconnect support
+Date:   Wed, 12 Jul 2023 16:01:55 +0530
+Message-Id: <20230712103213.101770-1-manivannan.sadhasivam@linaro.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <TYBPR01MB534172B437BA8146E05808C7D836A@TYBPR01MB5341.jpnprd01.prod.outlook.com>
-X-Spam-Status: No, score=1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_SBL,RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
-X-Spam-Level: *
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 12, 2023 at 12:17:47AM +0000, Yoshihiro Shimoda wrote:
-> Hello Serge,
-> 
-> > From: Serge Semin, Sent: Wednesday, July 12, 2023 6:03 AM
-> > 
-> > On Wed, Jul 05, 2023 at 08:42:02PM +0900, Yoshihiro Shimoda wrote:
-> > > Document bindings for Renesas R-Car Gen4 and R-Car S4-8 (R8A779F0)
-> > > PCIe endpoint module.
-> > >
-> > > Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-> > > Reviewed-by: Rob Herring <robh@kernel.org>
-> > > Reviewed-by: Serge Semin <fancer.lancer@gmail.com>
-> > > Acked-by: Manivannan Sadhasivam <mani@kernel.org>
-> > > ---
-> > >  .../bindings/pci/rcar-gen4-pci-ep.yaml        | 106 ++++++++++++++++++
-> > >  1 file changed, 106 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/pci/rcar-gen4-pci-ep.yaml
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/pci/rcar-gen4-pci-ep.yaml
-> > b/Documentation/devicetree/bindings/pci/rcar-gen4-pci-ep.yaml
-> > > new file mode 100644
-> > > index 000000000000..4e6be856104c
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/pci/rcar-gen4-pci-ep.yaml
-> > > @@ -0,0 +1,106 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > +# Copyright (C) 2022-2023 Renesas Electronics Corp.
-> > > +%YAML 1.2
-> > > +---
-> > > +$id:
-> <snip URL>
-> > > +$schema:
-> <snip URL>
-> > > +
-> > > +title: Renesas R-Car Gen4 PCIe Endpoint
-> > > +
-> > > +maintainers:
-> > > +  - Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-> > > +
-> > > +allOf:
-> > > +  - $ref: snps,dw-pcie-ep.yaml#
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    items:
-> > > +      - const: renesas,r8a779f0-pcie-ep   # R-Car S4-8
-> > > +      - const: renesas,rcar-gen4-pcie-ep  # R-Car Gen4
-> > > +
-> > > +  reg:
-> > > +    maxItems: 6
-> > > +
-> > > +  reg-names:
-> > > +    items:
-> > > +      - const: dbi
-> > > +      - const: dbi2
-> > > +      - const: atu
-> > > +      - const: dma
-> > > +      - const: app
-> > > +      - const: addr_space
-> > > +
-> > > +  interrupts:
-> > > +    maxItems: 3
-> > > +
-> > > +  interrupt-names:
-> > > +    items:
-> > > +      - const: dma
-> > > +      - const: sft_ce
-> > > +      - const: app
-> > > +
-> > > +  power-domains:
-> > > +    maxItems: 1
-> > > +
-> > > +  resets:
-> > > +    maxItems: 1
-> > > +
-> > > +  clocks:
-> > > +    maxItems: 2
-> > > +
-> > > +  clock-names:
-> > > +    items:
-> > > +      - const: core
-> > > +      - const: ref
-> > > +
-> > > +  max-functions:
-> > > +    maximum: 2
-> > > +
-> > > +  max-link-speed:
-> > > +    maximum: 4
-> > > +
-> > > +  num-lanes:
-> > > +    maximum: 4
-> > > +
-> > > +required:
-> > > +  - compatible
-> > > +  - reg
-> > > +  - reg-names
-> > > +  - interrupts
-> > > +  - resets
-> > > +  - power-domains
-> > > +  - clocks
-> > > +  - clock-names
-> > > +
-> > > +unevaluatedProperties: false
-> > > +
-> > > +examples:
-> > > +  - |
-> > > +    #include <dt-bindings/clock/r8a779f0-cpg-mssr.h>
-> > > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > > +    #include <dt-bindings/power/r8a779f0-sysc.h>
-> > > +
-> > > +    soc {
-> > > +        #address-cells = <2>;
-> > > +        #size-cells = <2>;
-> > > +
-> > > +        pcie0_ep: pcie-ep@e65d0000 {
-> > > +            compatible = "renesas,r8a779f0-pcie-ep", "renesas,rcar-gen4-pcie-ep";
-> > 
-> > > +            reg = <0 0xe65d0000 0 0x2000>, <0 0xe65d2800 0 0x0800>,
-> > > +                  <0 0xe65d3000 0 0x2000>, <0 0xe65d5000 0 0x1200>,
-> > > +                  <0 0xe65d6200 0 0x0e00>, <0 0xfe000000 0 0x400000>;
-> > > +            reg-names = "dbi", "dbi2", "atu", "dma", "app", "addr_space";
-> > 
-> > I'll ask it once again since you didn't address my comment in v16 and
-> > haven't fixed the example node in the bindings:
-> 
-> Thank you for your review! I'm sorry, I completely forgot about this...
-> 
-> > I see you defining the dbi2 space as <0 _0xe65d2800_ 0 0x0800>. But
-> > sometime before you mentioned that your device has the next CSRs
-> > layout:
-> > ! +0x0000 : Function 0 (common address in Root port and Endpoint mode)
-> >   +0x1000 : Function 1 (Endpoint mode only)
-> >   +0x2000 : Shadow register for Function 0
-> > ! +0x2800 : Shadow register for Function 1
-> > it means the DT-bindings example node has the dbi space defined for
-> > both functions meanwhile the dbi2 space defined for _function #1_ only
-> > (it's 0xe65d0000 + 0x2800). So AFAICS either you have wrong space
-> > defined in the example node or the node is wrong in your platform DTS
-> > too and you have a malfunction end-point mode. Am I missing something?
-> > In any case based on your End-point driver implementation dbi2 is
-> > supposed to be defined at the 0xe65d2000 base address.
-> > 
-> > Am I wrong? Could you clarify this?
-> 
-> You're correct. So, I had investigated this topic, and then the current
-> actual dtsi file has the following about the reg property:
-> 
-> +                       reg = <0 0xe65d0000 0 0x2000>, <0 0xe65d2000 0 0x1000>,
-> +                             <0 0xe65d3000 0 0x2000>, <0 0xe65d5000 0 0x1200>,
-> +                             <0 0xe65d6200 0 0x0e00>, <0 0xfe000000 0 0x400000>;
-> 
-> After that, the driver could not work correctly on v16 patch series.
-> So, I had investigated why, and then I found this was related to
-> the dbi2 offset. That's why I added a new patch [1] on v17 patch series.
-> 
-> [1] "[PATCH v17 07/20] PCI: dwc: endpoint: Add multiple PFs support for dbi2"
-> 
-> Anyway, I'll revise this dt-bindings doc too on v18 patch series.
+Hi,
 
-Got it. Thanks for clarification.
+This series adds OPP (Operating Points) support to UFSHCD driver and
+interconnect support to Qcom UFS driver.
 
--Serge(y)
+Motivation behind adding OPP support is to scale both clocks as well as
+regulators/performance state dynamically. Currently, UFSHCD just scales
+clock frequency during runtime with the help of "freq-table-hz" property
+defined in devicetree. With the addition of OPP tables in devicetree (as
+done for Qcom SDM845 and SM8250 SoCs in this series) UFSHCD can now scale
+both clocks and performance state of power domain which helps in power
+saving.
 
-> 
-> Best regards,
-> Yoshihiro Shimoda
-> 
-> > -Serge(y)
-> > 
-> > > +            interrupts = <GIC_SPI 417 IRQ_TYPE_LEVEL_HIGH>,
-> > > +                         <GIC_SPI 418 IRQ_TYPE_LEVEL_HIGH>,
-> > > +                         <GIC_SPI 422 IRQ_TYPE_LEVEL_HIGH>;
-> > > +            interrupt-names = "dma", "sft_ce", "app";
-> > > +            clocks = <&cpg CPG_MOD 624>, <&pcie0_clkref>;
-> > > +            clock-names = "core", "ref";
-> > > +            power-domains = <&sysc R8A779F0_PD_ALWAYS_ON>;
-> > > +            resets = <&cpg 624>;
-> > > +            num-lanes = <2>;
-> > > +            max-link-speed = <4>;
-> > > +            max-functions = /bits/ 8 <2>;
-> > > +        };
-> > > +    };
-> > > --
-> > > 2.25.1
-> > >
+For the addition of OPP support to UFSHCD, there are changes required to
+the OPP framework and devfreq drivers which are also added in this series.
+
+Finally, interconnect support is added to Qcom UFS driver for scaling the
+interconnect path dynamically. This is required to avoid boot crash in
+recent SoCs and also to save power during runtime. More information is
+available in patch 13/13.
+
+Credits
+=======
+
+This series is a continuation of previous work by Krzysztof Kozlowski [1]
+and Brian Masney [2]. Ideally, this could've split into two series (OPP
+and interconnect) but since there will be a dependency in the devicetree,
+I decided to keep them in a single series.
+
+Testing
+=======
+
+This series is tested on 96Boards RB3 (SDM845 SoC) and RB5 (SM8250 SoC)
+development boards.
+
+Merging Strategy
+================
+
+An immutable branch might be required between OPP and SCSI trees because of
+the API dependency (devfreq too). And I leave it up to the maintainers to
+decide.
+
+Thanks,
+Mani
+
+[1] https://lore.kernel.org/all/20220513061347.46480-1-krzysztof.kozlowski@linaro.org/
+[2] https://lore.kernel.org/all/20221117104957.254648-1-bmasney@redhat.com/
+
+Krzysztof Kozlowski (2):
+  dt-bindings: ufs: common: add OPP table
+  arm64: dts: qcom: sdm845: Add OPP table support to UFSHC
+
+Manivannan Sadhasivam (12):
+  dt-bindings: opp: Increase maxItems for opp-hz property
+  arm64: dts: qcom: sdm845: Add missing RPMh power domain to GCC
+  arm64: dts: qcom: sdm845: Fix the min frequency of "ice_core_clk"
+  arm64: dts: qcom: sm8250: Add OPP table support to UFSHC
+  OPP: Introduce dev_pm_opp_find_freq_{ceil/floor}_indexed() APIs
+  OPP: Introduce dev_pm_opp_get_freq_indexed() API
+  PM / devfreq: Switch to dev_pm_opp_find_freq_{ceil/floor}_indexed()
+    APIs
+  scsi: ufs: core: Add OPP support for scaling clocks and regulators
+  scsi: ufs: host: Add support for parsing OPP
+  arm64: dts: qcom: sdm845: Add interconnect paths to UFSHC
+  arm64: dts: qcom: sm8250: Add interconnect paths to UFSHC
+  scsi: ufs: qcom: Add support for scaling interconnects
+
+ .../devicetree/bindings/opp/opp-v2-base.yaml  |   2 +-
+ .../devicetree/bindings/ufs/ufs-common.yaml   |  34 ++++-
+ arch/arm64/boot/dts/qcom/sdm845.dtsi          |  47 ++++--
+ arch/arm64/boot/dts/qcom/sm8250.dtsi          |  43 ++++--
+ drivers/devfreq/devfreq.c                     |  14 +-
+ drivers/opp/core.c                            |  76 ++++++++++
+ drivers/ufs/core/ufshcd.c                     | 142 ++++++++++++++----
+ drivers/ufs/host/ufs-qcom.c                   | 131 +++++++++++++++-
+ drivers/ufs/host/ufs-qcom.h                   |   3 +
+ drivers/ufs/host/ufshcd-pltfrm.c              | 116 ++++++++++++++
+ include/linux/pm_opp.h                        |  26 ++++
+ include/ufs/ufshcd.h                          |   4 +
+ 12 files changed, 574 insertions(+), 64 deletions(-)
+
+-- 
+2.25.1
+
