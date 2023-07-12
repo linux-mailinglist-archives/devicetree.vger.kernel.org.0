@@ -2,69 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DC0BB74FEAD
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 07:26:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 047D174FEB6
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 07:32:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229718AbjGLF0C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jul 2023 01:26:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37692 "EHLO
+        id S229718AbjGLFca (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jul 2023 01:32:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38786 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229473AbjGLF0B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 01:26:01 -0400
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B25D9F0
-        for <devicetree@vger.kernel.org>; Tue, 11 Jul 2023 22:25:59 -0700 (PDT)
-Received: by mail-lj1-x234.google.com with SMTP id 38308e7fff4ca-2b71ae5fa2fso52841341fa.0
-        for <devicetree@vger.kernel.org>; Tue, 11 Jul 2023 22:25:59 -0700 (PDT)
+        with ESMTP id S229668AbjGLFc3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 01:32:29 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FA441712
+        for <devicetree@vger.kernel.org>; Tue, 11 Jul 2023 22:32:28 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-98dfb3f9af6so837260966b.2
+        for <devicetree@vger.kernel.org>; Tue, 11 Jul 2023 22:32:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689139558; x=1691731558;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1689139947; x=1691731947;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=AK4eb7KoL8ndmCPLluj+EXz7PDkhjxyHzXKMz5A/aGE=;
-        b=LNTsca7LfYc7UmuC05LHt7V+LYFMGnX7TjiIjqBrGFlds42YrhoVki5mAffAjYjga+
-         mjnwnc5Uwuf2zAtW/7Las4tscJg6LZSDxa49UnP5UUeQ7eNq8gPlC2TWiGD0sZCcPNoo
-         E0eo1+bF97Qf8uGYolSBxZVPSV97+9KGPEboAlFQ/9tc2aGCaGj9IgYqmhQphJGox23c
-         5V2d0Q270czKJpZhg1UEbWsO84+8gRLAoQKB+cU0aEIonhrqEJJC33fbK5LbkPhc9Q3i
-         Lg+mPl2eirurAYV9cs6fErGzsuFz89sL5p5S2BoP5KlzIWMEUaAwjnjxUFgyznRK/Gj5
-         5Gbg==
+        bh=cm9lqU5pPuyE1DC++4NWH2zRUzX6wSqTAdFnrSF5Rww=;
+        b=VNigY0kXhCTUccMmpH3lWTI7nxi83g7n5A1t1tz1XYVlSBCWD9Kg6QLd7Ops/wOXIW
+         JgrqUmfdDm7UX7cnWLkVBMz95ScQmC5AjulXn8LK3+WDjp1VALtpm2QZaqJhnA0NcZQn
+         74vY8XFWcy9hvefzgIeiXi9CVfmzZhB2dDky+W8StXKW5ohrK75wLI7kmcv4t0q4chrj
+         G15AqQCc3VxVHvxHXXFbpi3bbtG1xGhSpn8HQ1X0Dv9tcPXm50LjdF8YHfucYTp52V5Q
+         UkXEV8WZD76Tsp55o0hKxcAGY9S3gKTMPf53nhiPGnKPdRbRepfjLIHJYHqzEESRp/fk
+         5cQQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689139558; x=1691731558;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1689139947; x=1691731947;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=AK4eb7KoL8ndmCPLluj+EXz7PDkhjxyHzXKMz5A/aGE=;
-        b=BsPOoK67ekkabjrY4LekhieivL04yQd7nOxE0WLvLnOQKzI+aZ6UABCWTkLEm0cytI
-         8vwpnD+jFVjwT5asVGrJGCwYq+XeOm6JnBjc9JA4mG2uGvcFswKG1dpuy/nkxGZ18BaG
-         z075UZ1ex89D4WVnPeDALNoMsrDd0b7VYdynVCyAliv9ETed4I4dkWd2fSBgDRpFR4Hg
-         DgM9ldthJfjHnaU8YdFkKZdM2Evtz7LRP9sNgjfSe4ANaZLjdVp0owoBIp70qwB3SiMp
-         jIIpv89faaMqkF3uidqmJjDgjGsal7SHFD3poEd/XDGPxi7ozLKR0Qsbv8EV3nuuL0Gt
-         sTwQ==
-X-Gm-Message-State: ABy/qLbrgxpXUbdX7GnppRO0fw75FinA++KscSlT8X+sdKuhbHXiA/KZ
-        dF3+W2m9mMyCUHPL2UBT9C8tow==
-X-Google-Smtp-Source: APBJJlHtrGyx7YwUFhU7r6vqVS9mppAzhhjskmPXgB60TsCyGLrwu57v+FF1PLGFyf4SFUkcfG2jjg==
-X-Received: by 2002:a05:651c:112:b0:2b7:3b73:2589 with SMTP id a18-20020a05651c011200b002b73b732589mr400249ljb.32.1689139557117;
-        Tue, 11 Jul 2023 22:25:57 -0700 (PDT)
+        bh=cm9lqU5pPuyE1DC++4NWH2zRUzX6wSqTAdFnrSF5Rww=;
+        b=GY/IrGQkZlBaZqvnROWhiUirFqvxxmUljec/X3/28ZnjoMEnM/9pCP+J7/o9zaFYoX
+         Fb5B7wH3j8kCOm8LrJr1gySsiD11gm2LeFkpbtrY0AYm1dqezBqMnicFrKlpVmmeEYz+
+         kLOrhzwbMgPrtLJrXy6b2xk99nbtQeedecNIm9xWoIivy5QIjHvkYTo2SegJzvPethvD
+         JKlhlIenCKqZcdKGneJWi4/4HlZZqK4+bsrSHmfU6BUFqYHZRgSo4Y2SGaIg/yxwW3oL
+         VFpBhGtPadJ7lmb3hs5xo3dZPNhD8sZsRbew5JK2epyc73Ly7Zo4kJrIaEvhKKSom0Ga
+         XPog==
+X-Gm-Message-State: ABy/qLb2YAupKA7rCGf9//Su7DOh0id40ejhUv8/yQTyKih7cOL8l6Il
+        V9BJxwTQIF/ZUcuP6huaUCzs9w==
+X-Google-Smtp-Source: APBJJlG4YRdWN+SCSbzyfd58UWeDDH8s4zkWWVj4TV7KjDSCdVdE1A1W2FG3adOSrHXkUmi0u3mGVA==
+X-Received: by 2002:a17:906:33d0:b0:992:b3a3:81f9 with SMTP id w16-20020a17090633d000b00992b3a381f9mr15779053eja.71.1689139946740;
+        Tue, 11 Jul 2023 22:32:26 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id u17-20020a170906069100b00985bdb7dd5fsm1986826ejb.201.2023.07.11.22.25.55
+        by smtp.gmail.com with ESMTPSA id g11-20020a170906394b00b00982b204678fsm1976336eje.207.2023.07.11.22.32.24
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 11 Jul 2023 22:25:56 -0700 (PDT)
-Message-ID: <a7761c1e-9327-38f7-8e7b-0b3c3007668e@linaro.org>
-Date:   Wed, 12 Jul 2023 07:25:54 +0200
+        Tue, 11 Jul 2023 22:32:26 -0700 (PDT)
+Message-ID: <14bed951-22ae-4aa8-5fcb-b2cd92ebdbef@linaro.org>
+Date:   Wed, 12 Jul 2023 07:32:24 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
-Subject: Re: [PATCH v1] ASoC: dt-bindings: Add tas2505 audio amplifier
-To:     Kevin Lu <luminlong@139.com>, broonie@kernel.org,
-        lgirdwood@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        tiwai@suse.com
-Cc:     kevin-lu@ti.com, shenghao-ding@ti.com, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230712044006.48456-1-luminlong@139.com>
+Subject: Re: [PATCH 1/3] dt-bindings: display: panel: add startek
+ kd070fhfid015 support
 Content-Language: en-US
+To:     Alexandre Mergnat <amergnat@baylibre.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>
+Cc:     Guillaume La Roque <glaroque@baylibre.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20230711-startek_display-v1-0-163917bed385@baylibre.com>
+ <20230711-startek_display-v1-1-163917bed385@baylibre.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230712044006.48456-1-luminlong@139.com>
+In-Reply-To: <20230711-startek_display-v1-1-163917bed385@baylibre.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -77,90 +86,75 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/07/2023 06:40, Kevin Lu wrote:
-> Create tas2505.yaml for tas2505.
+On 11/07/2023 17:36, Alexandre Mergnat wrote:
+> The Startek KD070FHFID015 is a 7-inch TFT LCD display with a resolution
+> of 1024 x 600 pixels.
 > 
-> Signed-off-by: Kevin Lu <luminlong@139.com>
+> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
 > ---
->  .../devicetree/bindings/sound/tas2505.yaml    | 72 +++++++++++++++++++
->  1 file changed, 72 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/sound/tas2505.yaml
-
-Filename like compatible.
-
+>  .../display/panel/startek,kd070fhfid015.yaml       | 51 ++++++++++++++++++++++
+>  1 file changed, 51 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/sound/tas2505.yaml b/Documentation/devicetree/bindings/sound/tas2505.yaml
+> diff --git a/Documentation/devicetree/bindings/display/panel/startek,kd070fhfid015.yaml b/Documentation/devicetree/bindings/display/panel/startek,kd070fhfid015.yaml
 > new file mode 100644
-> index 0000000..6cc3fe4
+> index 000000000000..857658e002fd
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/sound/tas2505.yaml
-> @@ -0,0 +1,72 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright (C) 2019 Texas Instruments Incorporated
+> +++ b/Documentation/devicetree/bindings/display/panel/startek,kd070fhfid015.yaml
+> @@ -0,0 +1,51 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
 > +%YAML 1.2
 > +---
-> +$id: "http://devicetree.org/schemas/sound/tas2505.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-
-Drop quotes
-
+> +$id: http://devicetree.org/schemas/display/panel/startek,kd070fhfid015.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Texas Instruments TAS2505 Mono Audio Amplifier
+> +title: Startek Electronic Technology Co. kd070fhfid015 7 inch TFT LCD panel
 > +
 > +maintainers:
-> +  - Kevin Lu <kevin-lu@ti.com>
-> +
-> +description: |
-> +  The TAS2505 is a mono Class-D speaker amp that supports both Digital
-> +  and Analog inputs. The device is ideal for automotive instrument cluster,
-> +  emergency call (eCall), and telematics applications. Direct I2S input
-> +  removes the need for an external DAC in the audio signal path.
-> +  An on-chip PLL provides the high speed clock needed by the DSP.
-> +  The volume level is register controlled.
-> +
-> +  Specifications about the audio amplifier can be found at:
-> +    https://www.ti.com/lit/gpn/tas2505
+> +  - Alexandre Mergnat <amergnat@baylibre.com>
 > +
 > +allOf:
-> +  - $ref: dai-common.yaml#
+> +  - $ref: panel-common.yaml#
 > +
 > +properties:
 > +  compatible:
-> +    enum:
-> +      - ti,tas2505
+> +    const: startek,kd070fhfid015
+> +
+> +  dcdc-gpios: true
 
-Why are you adding duplicated binding?
+From where does this come? Which schema defines it?
 
+> +
+> +  height-mm:
+> +    const: 151
+> +
+> +  iovcc-supply:
+> +    description: Reference to the regulator powering the panel IO pins.
 > +
 > +  reg:
 > +    maxItems: 1
-> +    description: |
-> +       I2C address of the device can be set to 0x18.> +
-> +  reset-gpios:
-> +    maxItems: 1
-> +    description: GPIO used to reset the device.
-
-Drop description, it's obvious.
-
+> +    description: DSI virtual channel
 > +
-> +  clock-source:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: Sets TDM clock sourse.
-
-source, but anyway that is not the way to set clocks. Use "clocks"
-property for your future bindings.
-
-> +    enum:
-> +      - 0 # Select MLCK
-> +      - 1 # Select BLCK
+> +  reset-gpios: true
 > +
-> +  '#sound-dai-cells':
-> +    # The codec has a single DAI, the #sound-dai-cells=<1>; case is left in for backward
-> +    # compatibility but is deprecated.
+> +  port: true
+> +
+> +  power-supply: true
+> +
+> +  width-mm:
+> +    const: 95
+> +
+> +additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - dcdc-gpios
+> +  - iovcc-supply
+> +  - reg
+> +  - reset-gpios
+> +  - port
+> +  - power-supply
 
-This is the first submission so there is no "deprecated" or "backwards
-compatibility".
-
+Missing example.
 
 Best regards,
 Krzysztof
