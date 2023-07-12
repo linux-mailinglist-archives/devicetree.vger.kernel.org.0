@@ -2,106 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3EC7E750F29
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 19:01:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 39F9D750F45
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 19:07:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232968AbjGLRBy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jul 2023 13:01:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55798 "EHLO
+        id S232644AbjGLRHG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jul 2023 13:07:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58514 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232323AbjGLRBo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 13:01:44 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 149DF10C7;
-        Wed, 12 Jul 2023 10:01:43 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 9A5C761874;
-        Wed, 12 Jul 2023 17:01:42 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BB08CC433C7;
-        Wed, 12 Jul 2023 17:01:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689181302;
-        bh=W61o7LlkQs9LBIYjzHUJMBy72qDnWFS0/a8qJkXf2Fc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=M4J4H42OR/vtD+rw+wG1NQ6vEDrz8rXSySfrrPLrIUeoN4Ct2aPEuAjOwvaWRv3cW
-         aJpJmYYaiUoBOBEWGod9Vj5UcUS9Jpnhrh1jnK7lJ1dZIBIZLevH1E0muun1AfMPp0
-         NZvnUEEWhWG5FZNi/qjgIZUziApMhuQYsmtor+dQ1OXuNc68zMZng55dohedv2dWQJ
-         tRqa+mluwl9C5ERDwSrejHNbTQ+QBu+WlSJW+4t+5NuP9ZZSumjXCBfMYndqKB+FDm
-         NMEnBHPbyEg7iqHtKbHvCZ+yEYper6sgCEWs3nQthxV46vv2CSNymBgVVrX/r3IiWh
-         7tzLiibgRBjjg==
-Date:   Wed, 12 Jul 2023 18:01:36 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Palmer Dabbelt <palmer@dabbelt.com>
-Cc:     xingyu.wu@starfivetech.com, linux-riscv@lists.infradead.org,
-        devicetree@vger.kernel.org, mturquette@baylibre.com,
-        sboyd@kernel.org, p.zabel@pengutronix.de, kernel@esmil.dk,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        aou@eecs.berkeley.edu, hal.feng@starfivetech.com,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
-Subject: Re: [PATCH v7 0/9] Add STG/ISP/VOUT clock and reset drivers for
- StarFive JH7110
-Message-ID: <20230712-unsold-impound-02608d701dfb@spud>
-References: <20230712092007.31013-1-xingyu.wu@starfivetech.com>
- <mhng-d3795910-5414-4555-bf3d-75ebe769ed2b@palmer-ri-x1c9a>
+        with ESMTP id S231758AbjGLRHF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 13:07:05 -0400
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B138E19A7;
+        Wed, 12 Jul 2023 10:07:04 -0700 (PDT)
+Received: by mail-lj1-x234.google.com with SMTP id 38308e7fff4ca-2b703cbfaf5so117532781fa.1;
+        Wed, 12 Jul 2023 10:07:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1689181623; x=1691773623;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=FE5KwK6xtbJwjxewxFtWZgkPMU4+i3I7JpZZxSBsN4A=;
+        b=I2UcMynPls0dwldfCvndqaeg/Ab3Ry7stGdckHltSYfHU4A3xXoS54lkGsjdXMXlve
+         5bgK7vzoerqhgjb0dUDBYOz6TWqov11sMF3c2hqlcXkeFp/M54mQZOfe90aGcCoEJACj
+         XjgALzq/xWEQ+rkFCzZoLVbMZsQWyxoGZsypVTEAXqsOC96LlYtDIZqAvk7Or++6T4bo
+         DaFlW0IqUPGjE7+jar7uG6XiDED21uNPoA6loJ7R91GXHXULsAm5Eo3ZQMpnIGiOlz5K
+         rQFw9TyBCbAQ4HuQDoA+X0B7IQocWp0Ue7PBGcgx7V0xDWq31pj4xJZREg+yM7kU78ya
+         J9SA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689181623; x=1691773623;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=FE5KwK6xtbJwjxewxFtWZgkPMU4+i3I7JpZZxSBsN4A=;
+        b=PSUjKU/qvG7p5IkqBjPt9mmUAOIz6aWYinsTyf38JNnYbjKHVRa245TxJ7QpKmP26/
+         jf4mT6LAkgvvRtd/XyWSZ35DCDs8Ny71lytsiD9HhrmC8xho0e/M9YdutznSgawWFSn2
+         uwFUzUz/fjVKMVHShHb3AzIQWMTbeRiTw2rUI0InWnz4lC2VcARGkKMBBoNh+PiSIS/g
+         uuRuC7+x5G50/l26EhJLhhjkJh1IWOPWnfmSdezH+Yy2XYQLzaN72c+EZydTk0K2C7T6
+         V+fsUGXezsOYu9/OGWCVWk3JvjDFHkpwMJXAHNoQMRMXywf4OB90QXF3Rd4KfRFeTJX6
+         VxJw==
+X-Gm-Message-State: ABy/qLbBztHUCSfBzj7mVjv7C9MnrlESERE4TNBFkPcB8z1MdDt1+3bu
+        bCddPAVqbvqCh/TINIvxqlc=
+X-Google-Smtp-Source: APBJJlE/iL1XcNM0oII5gni/wrAbTIUN+TnAxxUWdLc/w1rOTECLURpXdUouZp8t0yEnE5O9OH4NVg==
+X-Received: by 2002:a2e:9958:0:b0:2b6:dec9:2812 with SMTP id r24-20020a2e9958000000b002b6dec92812mr17074978ljj.33.1689181622542;
+        Wed, 12 Jul 2023 10:07:02 -0700 (PDT)
+Received: from [192.168.26.149] (031011218106.poznan.vectranet.pl. [31.11.218.106])
+        by smtp.googlemail.com with ESMTPSA id j11-20020a2e3c0b000000b002b6ee0ff9bbsm1015556lja.67.2023.07.12.10.07.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 12 Jul 2023 10:07:02 -0700 (PDT)
+Message-ID: <2beb9364-7b5d-4cf7-9003-2d70122731c3@gmail.com>
+Date:   Wed, 12 Jul 2023 19:07:00 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="YXK2FfLMDg7K1UTe"
-Content-Disposition: inline
-In-Reply-To: <mhng-d3795910-5414-4555-bf3d-75ebe769ed2b@palmer-ri-x1c9a>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH] ARM: dts: BCM5301X: Extend RAM to full 256MB for Linksys
+ EA6500 V2
+To:     Andrew Lunn <andrew@lunn.ch>,
+        Christian Marangi <ansuelsmth@gmail.com>
+Cc:     Florian Fainelli <florian.fainelli@broadcom.com>,
+        Hauke Mehrtens <hauke@hauke-m.de>,
+        Broadcom internal kernel review list 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        =?UTF-8?Q?Ren=c3=a9_Kjellerup?= <rk.katana.steel@gmail.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Aleksey Nasibulin <alealexpro100@ya.ru>, stable@vger.kernel.org
+References: <20230712014017.28123-1-ansuelsmth@gmail.com>
+ <fc94da45-aba8-4e69-a1a0-c1d58a90c68c@lunn.ch>
+Content-Language: en-US
+From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+In-Reply-To: <fc94da45-aba8-4e69-a1a0-c1d58a90c68c@lunn.ch>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 12.07.2023 17:23, Andrew Lunn wrote:
+>> --- a/arch/arm/boot/dts/broadcom/bcm4708-linksys-ea6500-v2.dts
+>> +++ b/arch/arm/boot/dts/broadcom/bcm4708-linksys-ea6500-v2.dts
+>> @@ -19,7 +19,8 @@ chosen {
+>>   
+>>   	memory@0 {
+>>   		device_type = "memory";
+>> -		reg = <0x00000000 0x08000000>;
+>> +		reg = <0x00000000 0x08000000>,
+>> +		      <0x88000000 0x08000000>;
+> 
+> So there is a hole in the middle? Does this require any special
+> CONFIG_ option to support sparse memory?
 
---YXK2FfLMDg7K1UTe
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This is how RAM is mapped on all known Northstar devices. Using two
+blocks.
 
-On Wed, Jul 12, 2023 at 09:50:37AM -0700, Palmer Dabbelt wrote:
-> On Wed, 12 Jul 2023 02:19:58 PDT (-0700), xingyu.wu@starfivetech.com wrot=
-e:
-> > This patch serises are base on the basic JH7110 SYSCRG/AONCRG
-> > drivers and add new partial clock drivers and reset supports
-> > about System-Top-Group(STG), Image-Signal-Process(ISP)
-> > and Video-Output(VOUT) for the StarFive JH7110 RISC-V SoC. These
-> > clocks and resets could be used by DMA, VIN and Display modules.
+I've heard there is a way to design Northstar SoC board to have all RAM
+in one region but thay requires disabling something (I don't remember
+what) and in practice to vendor decided to do that.
 
-> Happy to take it through the RISC-V tree if folks want, but IMO it's
-> probably better aimed at the clock/reset folks.  Either way I'd want to g=
-ive
-> them a chance to ack/review it, so I'm going to drop it from my list.
->=20
-> Acked-by: Palmer Dabbelt <palmer@rivosinc.com>
-
-I had a look through it & I am generally happy with it - everything has
-either an R-b from DT folk or Hal on the drivers.
-I was going to propose the same thing as the PLL patchset - if Emil is
-happy with it, then I intend sending Stephen a PR for the drivers &
-bindings.
-
-Thanks,
-Conor.
-
---YXK2FfLMDg7K1UTe
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZK7ccAAKCRB4tDGHoIJi
-0j6sAP42I2NRHZdpOyf2izUoUuaLCqoRMvx4DDBgBCweGvshWAEA7O4i3W5C2V/L
-ndm2wUnu6OPIY1snKnd2INzwEwr2XwA=
-=kp3i
------END PGP SIGNATURE-----
-
---YXK2FfLMDg7K1UTe--
+AFAIK no extra CONFIG_* option is needed to make Linux map multiple RAM
+regions.
