@@ -2,68 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B3081750F97
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 19:23:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7091D750F9B
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 19:24:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233059AbjGLRXv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jul 2023 13:23:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36054 "EHLO
+        id S233105AbjGLRYH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jul 2023 13:24:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36188 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232968AbjGLRXv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 13:23:51 -0400
-Received: from mail-ua1-x92b.google.com (mail-ua1-x92b.google.com [IPv6:2607:f8b0:4864:20::92b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 539E51BF9
-        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 10:23:50 -0700 (PDT)
-Received: by mail-ua1-x92b.google.com with SMTP id a1e0cc1a2514c-79492b8f4bbso2487996241.2
-        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 10:23:50 -0700 (PDT)
+        with ESMTP id S233120AbjGLRYF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 13:24:05 -0400
+Received: from mail-qt1-x82a.google.com (mail-qt1-x82a.google.com [IPv6:2607:f8b0:4864:20::82a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 696C81BFA
+        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 10:24:02 -0700 (PDT)
+Received: by mail-qt1-x82a.google.com with SMTP id d75a77b69052e-403c653d934so6523161cf.2
+        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 10:24:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1689182629; x=1691774629;
+        d=broadcom.com; s=google; t=1689182641; x=1691774641;
         h=mime-version:references:in-reply-to:message-id:date:subject:cc:to
          :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=M64z9cOTsrm23V8xoM3lWcVEt3+nsQrBLhEGOkYtRdY=;
-        b=SCSosPydFurQy3C+UMlvopJ/NXEhFL/lNd5CDBDnDz5EGYzumAlqlcIaMV5v6JvOGn
-         1FpSbZz7g65t1GzvejEEsrf22cB6BAjmxEDTUqgGXUn6ZrIm0crQLgmjhkOsLp1l5lww
-         6dzmWEjbafJNQxBGFcsOUppjKUK08hUz9rJx4=
+        bh=2KltygklQ/OJnyDjJ49dEz6DUVXkFMa0aHdWBhTjbhM=;
+        b=K5Rs4quzJVXyKpZIcEBcitguwHoKRtF8cKXZvSQp+wD9fp2rFQAtE12EIVLNoFJmso
+         7UXSAJchONJkP3fQ2s5L7kvyIpzNoLEmrD2I86WxZNaa6tYcB53QWnoZQnw+Mcaay7BA
+         dGVBsMB6BjYyE/TJukYwWb1WIIUhXDL+iUt/8=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689182629; x=1691774629;
+        d=1e100.net; s=20221208; t=1689182641; x=1691774641;
         h=mime-version:references:in-reply-to:message-id:date:subject:cc:to
          :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=M64z9cOTsrm23V8xoM3lWcVEt3+nsQrBLhEGOkYtRdY=;
-        b=CdBndRBKAo3HDljEAZtHHwBLJPUDcr3pT02pwhpSF/8bNXKTxi1zVeNEKPEoF3CAYf
-         B6z5fd/Kq1K9OBLUiZ6i/Mz7u11ImAIw6cs83kmonF9GXIlZoPuTD9lk95z7tCQAPRZ4
-         5Y2Tv/YzXHd1DUJxt3kUfIbxT/th81RoJew3+MgMdg6dNdcunkWFuA2XfR/zMlTHf0Yf
-         mJnyn9ydUndsGp8+Q6wrgl1BNnIdgPVSGLykRnv9O7/ERD4g1cxKZ/VuzaBy1I07k/7R
-         audYE1xbFD7S66PW0gkykt/dt3qnDAyC0oczH1KnrasSTtgzp0L7ErqKCXku+dIE+/Ha
-         tBWQ==
-X-Gm-Message-State: ABy/qLZxKtnT3U8cXUbTncEf8kgGMO4e4310gMZpSdAUlJbADVX8p4o9
-        5YUvfapt4t20mRMAE6Dh/eWAkI+3nuh9yBQvaa+ICQ==
-X-Google-Smtp-Source: APBJJlFXTnO2+UYRUippbkAEZAjtsaGpf772+hcd/TZO5yQs8f/+jLDQeKpjl09u7r0XseXLu7FEdQ==
-X-Received: by 2002:a67:ff91:0:b0:443:8eab:c664 with SMTP id v17-20020a67ff91000000b004438eabc664mr8707000vsq.13.1689182629349;
-        Wed, 12 Jul 2023 10:23:49 -0700 (PDT)
+        bh=2KltygklQ/OJnyDjJ49dEz6DUVXkFMa0aHdWBhTjbhM=;
+        b=XYI/+TDQTOsI7zGYnwXyzY3SeVFOnmieL5aOsKFkOWPT+6z1epLZZJ3jjROXXo3jw3
+         l1qOCFPXgYWj3gAslh01B5F/KbW3WGfyJngAET+S8ufcB0yA+TiPZi5bH4rv2ZsLXtKf
+         nQFDcwQNouOgEXUQIqRYJeMHgC9WrXUunOCBB4E9uSbBwP/1tq+BLb5wyN/PGvjIWNyd
+         JjPK6SHhmkv3om7HQ+jFHl5vgceq9yzsdvaC3kj67gqGOppn7NegAa1rdGidAbLgA5D7
+         ZkunoO7R9++4sTALxjU6CapbhNE340OniSAroVaRwj+QDr/6SdNfNbR3cnpoNUXa5esF
+         RzIw==
+X-Gm-Message-State: ABy/qLYh35uq6/xj2ZNqTzN48Cw9HYOxK3UExT/WHjUYFGIkVEjH6pSd
+        ru0aKK7l2IVoABDzB+04qZqfAAcW3BSoNmpHO4SNug==
+X-Google-Smtp-Source: APBJJlG+8xKZy6g9CpRj1Wj81vgTMsdF00G4jwQaZYlzMFzW0GrTupKfsPfnKM/Fy7sB1ZwOZmFTGA==
+X-Received: by 2002:a05:622a:450:b0:403:b6bf:ee50 with SMTP id o16-20020a05622a045000b00403b6bfee50mr8133345qtx.14.1689182641184;
+        Wed, 12 Jul 2023 10:24:01 -0700 (PDT)
 Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id b14-20020a0ccd0e000000b0063627a022b0sm2360439qvm.49.2023.07.12.10.23.47
+        by smtp.gmail.com with ESMTPSA id q14-20020a05622a04ce00b00400a99b8b38sm2392510qtx.78.2023.07.12.10.23.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Jul 2023 10:23:48 -0700 (PDT)
+        Wed, 12 Jul 2023 10:24:00 -0700 (PDT)
 From:   Florian Fainelli <florian.fainelli@broadcom.com>
 To:     bcm-kernel-feedback-list@broadcom.com,
-        =?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <zajec5@gmail.com>
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        Christian Marangi <ansuelsmth@gmail.com>,
+        Florian Fainelli <florian.fainelli@broadcom.com>,
+        Hauke Mehrtens <hauke@hauke-m.de>,
+        =?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <zajec5@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
+        =?iso-8859-1?b?UmVu6Q==?= Kjellerup <rk.katana.steel@gmail.com>,
         linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        =?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <rafal@milecki.pl>,
-        Rob Herring <robh@kernel.org>,
-        Conor Dooley <conor.dooley@microchip.com>
-Subject: Re: [PATCH V3] dt-bindings: arm: bcm: add BCM53573 SoCs family binding
-Date:   Wed, 12 Jul 2023 10:23:46 -0700
-Message-Id: <20230712172346.2601635-1-florian.fainelli@broadcom.com>
+        linux-kernel@vger.kernel.org
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        Aleksey Nasibulin <alealexpro100@ya.ru>, stable@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: BCM5301X: Extend RAM to full 256MB for Linksys EA6500 V2
+Date:   Wed, 12 Jul 2023 10:23:57 -0700
+Message-Id: <20230712172357.2601721-1-florian.fainelli@broadcom.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230710175944.32631-1-zajec5@gmail.com>
-References: <20230710175944.32631-1-zajec5@gmail.com>
+In-Reply-To: <20230712014017.28123-1-ansuelsmth@gmail.com>
+References: <20230712014017.28123-1-ansuelsmth@gmail.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-        boundary="00000000000099deca06004d7a9e"
+        boundary="000000000000502e4e06004d7b9d"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,
@@ -74,35 +77,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---00000000000099deca06004d7a9e
-Content-Type: text/plain; charset=UTF-8
+--000000000000502e4e06004d7b9d
 Content-Transfer-Encoding: 8bit
 
 From: Florian Fainelli <f.fainelli@gmail.com>
 
-On Mon, 10 Jul 2023 19:59:44 +0200, Rafał Miłecki <zajec5@gmail.com> wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
+On Wed, 12 Jul 2023 03:40:17 +0200, Christian Marangi <ansuelsmth@gmail.com> wrote:
+> From: Aleksey Nasibulin <alealexpro100@ya.ru>
 > 
-> BCM53573 is a family derived from Northstar with some important
-> differences:
-> 1. Cortex-A9 replaced by Cortex-A7
-> 2. XHCI controller dropped
-> 3. Two Ethernet interfaces removed
-> 4. Two 802.11ac cores embedded
+> Linksys ea6500-v2 have 256MB of ram. Currently we only use 128MB.
+> Expand the definition to use all the available RAM.
 > 
-> Linux already contains DTS files for some on those devices so add a
-> proper binding for it.
-> 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> Fixes: 03e96644d7a8 ("ARM: dts: BCM5301X: Add basic DT for Linksys EA6500 V2")
+> Signed-off-by: Aleksey Nasibulin <alealexpro100@ya.ru>
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> Cc: stable@vger.kernel.org
 > ---
 
 Applied to https://github.com/Broadcom/stblinux/commits/devicetree/next, thanks!
 --
 Florian
 
---00000000000099deca06004d7a9e
+--000000000000502e4e06004d7b9d
 Content-Type: application/pkcs7-signature; name="smime.p7s"
 Content-Transfer-Encoding: base64
 Content-Disposition: attachment; filename="smime.p7s"
@@ -173,14 +169,14 @@ kNGap1mHJ+JngGzZCz+dDiHRQKGpXLxkHX0BvEDZLW6LGOJ83ImrW38YMOo3ZYnCYNHA9qDOakiw
 NxADYvcRBA0ySL6sZpj8BIIhWiXiuusuBmt2Mak2eEv0xDbovE6Z6hYyl/ZnRadbgK/ClgbY3w+O
 AfUXEZ0xggJtMIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52
 LXNhMTEwLwYDVQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwT
-/D/YSkVckoN0L+QwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIHPbLMM7Ft65R+jD
-4Wfv/uKvLB8KfvgIA40zEXd4SQ7nMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcN
-AQkFMQ8XDTIzMDcxMjE3MjM0OVowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZI
+/D/YSkVckoN0L+QwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIOAnyZznxpuAtMyH
+Bw8ID3dYZ1toHC1fql55PlN2FmG5MBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcN
+AQkFMQ8XDTIzMDcxMjE3MjQwMVowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZI
 AWUDBAEWMAsGCWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEH
-MAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQDaK24LI9+jzuVjZVZ+Saigr7d537FAeM3B
-A6lnQ60nXmo3fctUicO2L+ryib8uiaqICkfzdXsluX6HEwqQzTeXIjWc9PEmhb+KGa+6Dw/5fnV4
-m2aiBB+GZA2lxlEoyHQukTKxytoEy5BgQ7qH6wmMBen5uwbSqXcH166ElvfFdHgI9hfc6zIx3FGw
-K5JFc1MW5twhs3yx22FFszWk63n+Lr7+4HM6y6vqaIMcpbwZccsn4ZMKakYPMFRa2IMI7ggFUfal
-g4jMSaMywF2LHwg5RBjFMxUbzNY56uk892qqBKXN1Bc6DjCMxWSzSzKqPDS19tPgUFwYhHnyOyIM
-m/kJ
---00000000000099deca06004d7a9e--
+MAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQCFYDpc32AatVIAztv1CHekgIa35JCB+lZf
++AbRe3Sr0AZFlysI29LwnWLD6tNUy/23NVg+paeMH5OqKmSlNHrN3Hp8JnsnJIPGBA+sSfvxpXJz
+OP7gDTZIYzt2eYu+0Pt2Kr97IFyQ0BoYhEfU8Z5M8nlDS4yiAm1Js196T0276kqipPJ4+TxwnZqg
+fnVnQGvyjm48Wloe3oTjificymA9ouab6fVZIs6X4hqQQ1awLW/pRIaFyrGC7/WkfTNmX8At9e21
+NZJTX0uhJOV2zcbps3LBBE9r4fNHK0FOSlXz3hiUb6GkVA5CEix83I4/IblCuzkNWfgn1aCqRjQ7
+vo9P
+--000000000000502e4e06004d7b9d--
