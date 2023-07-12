@@ -2,107 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F26657502B5
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 11:19:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DC0787502B9
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 11:19:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230504AbjGLJTE convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 12 Jul 2023 05:19:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35392 "EHLO
+        id S232099AbjGLJTF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jul 2023 05:19:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35360 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232571AbjGLJTA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 05:19:00 -0400
-Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com [209.85.219.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 856EB1992;
-        Wed, 12 Jul 2023 02:18:50 -0700 (PDT)
-Received: by mail-yb1-f171.google.com with SMTP id 3f1490d57ef6-bff27026cb0so7556505276.1;
-        Wed, 12 Jul 2023 02:18:50 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689153529; x=1691745529;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=kG5q3OE8NA2B1Rd9ySf5DoQyHhC234Q++094p9pDpiY=;
-        b=RbH09Fh2Rwv6i44q4mz6r0oVcyoQAmM6oNtMIiFFXM8FMEcgMyskmz3Tm5oe9glduN
-         IqWw9q6resuXdGdh7FPxWvhQtE2Hs4MEydHvfXDgG8zLVIs1CgOb7B2IIV26ZctgKQkv
-         Z/4OjJM9oki+AhQl/1RlqwpTeqcT0un2SuAH/WoZtgjFJcjDLMAxr7Ybtl6078Lw4/nd
-         3Np3WUiMX/xJ2/zmiRoKAICGUu8Kk/VWWlEeR9GIhkDESuOFtdEcLkUPRtB5KHClxI+I
-         wrmdMjGQQa9/MD/jfjOMmztwvesyEbo4//amxwm9GOqJmSVH33YofGzA3rmvlCLFhE8A
-         yP+Q==
-X-Gm-Message-State: ABy/qLYyo+pKia4zmRJtKbiKpbRDGeTjaZQM1Sme2lFJVvnNv9q+Q4s2
-        FvTaG3BUvfcp7b245UM0zgwDilsuURGXCQ==
-X-Google-Smtp-Source: APBJJlGSFjNRvHJZkkk5bVWMKipJUpBqL7O06x8V3NpRJN+bkNydqcdBtcR9WubwFNCK3NzcOaMKcw==
-X-Received: by 2002:a25:cd85:0:b0:c60:fb80:99f7 with SMTP id d127-20020a25cd85000000b00c60fb8099f7mr15710840ybf.16.1689153529555;
-        Wed, 12 Jul 2023 02:18:49 -0700 (PDT)
-Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com. [209.85.219.171])
-        by smtp.gmail.com with ESMTPSA id w8-20020a253008000000b00be4f34d419asm860867ybw.37.2023.07.12.02.18.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 12 Jul 2023 02:18:49 -0700 (PDT)
-Received: by mail-yb1-f171.google.com with SMTP id 3f1490d57ef6-c84fd44593aso3341486276.0;
-        Wed, 12 Jul 2023 02:18:49 -0700 (PDT)
-X-Received: by 2002:a25:748e:0:b0:c69:b15:3e79 with SMTP id
- p136-20020a25748e000000b00c690b153e79mr17478596ybc.28.1689153528941; Wed, 12
- Jul 2023 02:18:48 -0700 (PDT)
+        with ESMTP id S230393AbjGLJTE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 05:19:04 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D016FB
+        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 02:19:03 -0700 (PDT)
+Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <a.fatoum@pengutronix.de>)
+        id 1qJVzm-0005QN-Qy; Wed, 12 Jul 2023 11:18:50 +0200
+Message-ID: <d57fdae4-9931-6e37-56e1-9649074b3142@pengutronix.de>
+Date:   Wed, 12 Jul 2023 11:18:48 +0200
 MIME-Version: 1.0
-References: <20230707074337.3120530-1-quic_rohkumar@quicinc.com>
-In-Reply-To: <20230707074337.3120530-1-quic_rohkumar@quicinc.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 12 Jul 2023 11:18:35 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXRt_9BzfnaqVJUAS4QdvGBDZk3B+R_cERUykZhyNWtzQ@mail.gmail.com>
-Message-ID: <CAMuHMdXRt_9BzfnaqVJUAS4QdvGBDZk3B+R_cERUykZhyNWtzQ@mail.gmail.com>
-Subject: Re: [PATCH v2] ASoC: dt-bindings: Update maintainer email id
-To:     Rohit kumar <quic_rohkumar@quicinc.com>
-Cc:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        srinivas.kandagatla@linaro.org, bgoswami@quicinc.com,
-        agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        cychiang@chromium.org, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+Subject: Re: [PATCH v3 7/8] dt-bindings: arm: stm32: add extra SiP compatible
+ for oct,stm32mp157c-osd32-red
+Content-Language: en-US
+To:     Sean Nyekjaer <sean@geanix.com>,
+        Leonard Goehrs <l.goehrs@pengutronix.de>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        dantuguf14105@gmail.com, Conor Dooley <conor.dooley@microchip.com>,
+        devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Pengutronix Kernel Team <kernel@pengutronix.de>
+References: <20230712062954.2194505-1-sean@geanix.com>
+ <20230712062954.2194505-7-sean@geanix.com>
+ <92f7f4cd-c9cc-8a1a-74c7-39eed955cd6a@pengutronix.de>
+ <92C36A18-F359-497E-8267-03E5C62811F6@geanix.com>
+From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
+In-Reply-To: <92C36A18-F359-497E-8267-03E5C62811F6@geanix.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
+X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rohit,
+On 12.07.23 11:11, Sean Nyekjaer wrote:
+>> On 12 Jul 2023, at 10.38, Ahmad Fatoum <a.fatoum@pengutronix.de> wrote:
+>> On 12.07.23 08:29, Sean Nyekjaer wrote:
+>>> Add binding support for the Octavo OSD32MP1-RED development board.
+>>>
+>>> General features:
+>>> - STM32MP157C
+>>> - 512MB DDR3
+>>> - CAN-FD
+>>> - HDMI
+>>> - USB-C OTG
+>>> - UART
+>>>
+>>> Signed-off-by: Sean Nyekjaer <sean@geanix.com>
+>>> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+>>
+>> Just a heads up: The LXA TAC, another OSD32MP1 board has been merged into
+>> stm32-next yesterday, so applying your series onto that tree may result
+>> in conflicts. You may want to rebase for v4.
+>>
+>> Cheers,
+>> Ahmad
+> 
+> Thanks, will do :)
+> 
+> Can I get you to look at 4/8, 5/8 and 6/8 in this series? Will they break anything for LXA TAC?
 
-Thanks for your patch!
+Leonard, does the LXA TAC have an implicit dependency on any of the rails that Sean is
+now turning off by default?
 
-On Fri, Jul 7, 2023 at 9:49 AM Rohit kumar <quic_rohkumar@quicinc.com> wrote:
-> [PATCH v2] ASoC: dt-bindings: Update maintainer email id
+Cheers,
+Ahmad
 
-Thank you for stepping forward to become a maintainer for all ASoC
-DT bindings ;-)
-
-> Updated my mail id to latest quicinc id.
->
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Rohit kumar <quic_rohkumar@quicinc.com>
-> ---
-> v2: Updated commit header
->
->  .../devicetree/bindings/sound/google,sc7180-trogdor.yaml        | 2 +-
->  Documentation/devicetree/bindings/sound/qcom,lpass-cpu.yaml     | 2 +-
-
-Oh wait, this is not for all of ASoC...
-
-Please use one-line summaries that reflect the actual changes.
-Thanks!
-
-Gr{oetje,eeting}s,
-
-                        Geert
+> 
+> /Sean
+> 
+>>
+>>
+>>> ---
+>>> Documentation/devicetree/bindings/arm/stm32/stm32.yaml | 3 ++-
+>>> 1 file changed, 2 insertions(+), 1 deletion(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/arm/stm32/stm32.yaml b/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
+>>> index 13e34241145b..55e45db1af26 100644
+>>> --- a/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
+>>> +++ b/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
+>>> @@ -143,7 +143,8 @@ properties:
+>>>       - description: Octavo OSD32MP15x System-in-Package based boards
+>>>         items:
+>>>           - enum:
+>>> -              - lxa,stm32mp157c-mc1 # Linux Automation MC-1
+>>> +              - lxa,stm32mp157c-mc1       # Linux Automation MC-1
+>>> +              - oct,stm32mp157c-osd32-red # Octavo OSD32MP1 RED board
+>>>           - const: oct,stm32mp15xx-osd32
+>>>           - enum:
+>>>               - st,stm32mp157
+>>
+>> -- 
+>> Pengutronix e.K.                           |                             |
+>> Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+>> 31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+>> Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+> 
+> 
+> 
+> 
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
