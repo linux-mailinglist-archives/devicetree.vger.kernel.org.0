@@ -2,159 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A16F750DC3
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 18:14:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9FF2E750E3A
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 18:20:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232117AbjGLQOX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jul 2023 12:14:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49046 "EHLO
+        id S231593AbjGLQUi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jul 2023 12:20:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51740 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232255AbjGLQOW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 12:14:22 -0400
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40F511FE3
-        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 09:14:03 -0700 (PDT)
-Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-99313a34b2dso825720366b.1
-        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 09:14:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gateworks-com.20221208.gappssmtp.com; s=20221208; t=1689178441; x=1691770441;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8hsh27VfLipK2Sy82ZMIVbK5qspq4ELXL7rgrXndros=;
-        b=OJvvlyYxaTyhZ3LLzGxktzK7OzNa+/frIcP7p3nsuMQie5Suwmlrmn5qBVa4xrZtxE
-         cC99Y83ZgTtOZSySyqknnWnXyhTEfmBo5yTKgQPfx/I74rCW79iMqd+MJ2aptbMoMmdc
-         frwNp4vm+rJMNd8uSz1WD3hqxfYAhPwU91TYjX1YSV5hS6BhsBuUHT4PXrBXcuhF960R
-         Z8JRoQnyrvvBxX5rqtfhwj+V3kx7JecXP9VeHlcEcXrjrWG1vDdgEEU4j1SLjuRRdz0P
-         ayZ+FLFx7EoPV1YXKyU6wjJGQXTMsLGBW0KNuu0XNylg8xNzR1/iIi2gtN6Ajlbt6h/B
-         kRcQ==
+        with ESMTP id S233289AbjGLQUZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 12:20:25 -0400
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A02A358B
+        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 09:18:25 -0700 (PDT)
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 41FBF3F171
+        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 16:17:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1689178657;
+        bh=n4utYa35TfD5wsVmOiQcm6vCoFn5Vk1dm6HnZfMUVHA=;
+        h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+         To:Cc:Content-Type;
+        b=BelSOFoEXJZuPw9qSbtmGvAZwt+XdHsvcFLf43IxGxMSwkee5Hc6ER27QMrq7wup4
+         3ZcHFnwoihNQSL42Cb7UDdN+nFf6baBp0oRAIXK1UqDZ3OwHuNQPlpPjl8hOpL4wIE
+         NElidWowb3vWMqj4RVCIXSN/ldbrDk3Hsno3fynM36GSbLs6piP8PZigfOtkUpMl31
+         xP+9jZkJ0+FowcGZ2NPXVyuKJsfiPG33tDG0lnqIlZITV2sy7/7I6ruLVJUmjE0rNe
+         /y7XLGBxoe81R+0wgDDKqC9LU3+6xWncIYVOmzP5KJ58etSsfkQXj7dTr81q2d2SLI
+         exmDTSLJzqoNQ==
+Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-400fea3d458so81249051cf.1
+        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 09:17:37 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689178441; x=1691770441;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=8hsh27VfLipK2Sy82ZMIVbK5qspq4ELXL7rgrXndros=;
-        b=URoRtR01kTE9iO5FQ94Si9rMiEnqW5A4P9BDQTr2KbDFl67rhotJj6mxtJrDWfrg89
-         WQe2n1YGVNPq4GAtEa6i70xe93QanYBxMld6sCrGDTmPbepd4MW4XdV7KSdG7pgwOl0Q
-         iI9RfbC05d/ILWi7Fw0WHO6wWWAob6XnIwnh89mbBpCNFO67MLiCbkjBeT3e2/rdKhqa
-         0F9CGgG8Bb5eJ49kv29cP4HHRjYhRMkWSRN0CX+2UWlHWYK8cVwGxFslRtVVlpLJ0gA/
-         AiapxqrLARB1QcuPq2tKZG5Jx4YMoHGhqKnVxhPutD48MdRTqH1pTc9++cU/IuBC9kra
-         tjoQ==
-X-Gm-Message-State: ABy/qLZJBPGFh8O17GvdU3oqXFR0qLQK/dTfo5Lwg9KXdzQogo5W4EPH
-        +rygyvQa4NRcKDZxPdMt+8U0PaoJ0fLJruz2YnF9cQ==
-X-Google-Smtp-Source: APBJJlGLJiXF89OpaVHOq/z10qnEtxaCcE8UAvCpcflnEUomKxNct43v25dOygk2HWyvOI5MpFhaPr+Fd0MvbxdRWSM=
-X-Received: by 2002:a17:907:900f:b0:989:34a0:45b0 with SMTP id
- ay15-20020a170907900f00b0098934a045b0mr19759922ejc.49.1689178441228; Wed, 12
- Jul 2023 09:14:01 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1689178656; x=1691770656;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=n4utYa35TfD5wsVmOiQcm6vCoFn5Vk1dm6HnZfMUVHA=;
+        b=NZ/Jwca1I4e69cZ/luqYvrydzC7clFACtjwiCyE9H8q24qpw9a1Nl6cPy4x0Tctp3h
+         2rBJYHfrY4de5oH+6K1C2wOH7WxPHYWnJ3UucISIS6oPo6QExn95C+Nf73mvw1hEmbfP
+         mAU78SVLPbu8CqiNI43E7lFTtOuTOEgiPIBYL4yYyQoJtFmiG+Kyce8TooaAOuQZw/oj
+         gBWRMy1YPOiOdvAZkxHBSl8TGUfFT17zXgBfo6RXQMadv9Vo4zFl2giNJRVrQ5/46lAy
+         JyOcYE0ZHfj+R5aAXcLpMl/O8RIeEf/7H3COsnUhiUANTAZE16929OmNYiElHbO94lf7
+         HCeQ==
+X-Gm-Message-State: ABy/qLaUFDtyTCma7N4kRu3RM9YeSCyKre3Ko0/+zhweia9cIT2ot1BZ
+        nzniHeU/2DrCTMH/iqRXcFYMcpRTy3qlSxqJ+5BL2ECn3Mfpeuuj6NwU3k2dGswaE7ZLep+G6j7
+        WrAg7gNUJlmn9+FZelkohnG4Q7y9KQAjIa02c4nQ9CDc0LeJCkMEH/As=
+X-Received: by 2002:ac8:5f85:0:b0:3f8:4905:9533 with SMTP id j5-20020ac85f85000000b003f849059533mr23586489qta.50.1689178656007;
+        Wed, 12 Jul 2023 09:17:36 -0700 (PDT)
+X-Google-Smtp-Source: APBJJlGIBX2v4lrFqkh9MfymlkmrtaXYfI6hDGPQE1rbvkzdatafBb02lOAezmx4BfX0Q5/dFkKHZd/2bxyPDMKAUcQ=
+X-Received: by 2002:ac8:5f85:0:b0:3f8:4905:9533 with SMTP id
+ j5-20020ac85f85000000b003f849059533mr23586470qta.50.1689178655789; Wed, 12
+ Jul 2023 09:17:35 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230606153238.1448463-1-tharvey@gateworks.com>
-In-Reply-To: <20230606153238.1448463-1-tharvey@gateworks.com>
-From:   Tim Harvey <tharvey@gateworks.com>
-Date:   Wed, 12 Jul 2023 09:13:49 -0700
-Message-ID: <CAJ+vNU0t0ErCcu2W-nFzgjXSwM4Oq3KCK1BQBRe3c_=vj6ZK-A@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: imx8mm-venice-gw7901: add cpu-supply node for cpufreq
-To:     Shawn Guo <shawnguo@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Li Yang <leoyang.li@nxp.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20230627080620.329873-1-felix.moessbauer@siemens.com> <20230710-villain-dainty-d1a90ce57a27@spud>
+In-Reply-To: <20230710-villain-dainty-d1a90ce57a27@spud>
+From:   Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Date:   Wed, 12 Jul 2023 18:17:19 +0200
+Message-ID: <CAJM55Z_0X+UT1s9s4kqKuyg4hF2JooTMXe4RYTAzoEgY=+8A1Q@mail.gmail.com>
+Subject: Re: [PATCH 1/1] riscv: dts: Enable device-tree overlay support for
+ starfive devices
+To:     Conor Dooley <conor@kernel.org>
+Cc:     Felix Moessbauer <felix.moessbauer@siemens.com>,
+        Walker Chen <walker.chen@starfivetech.com>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Rob Herring <robh+dt@kernel.org>,
+        Daniel Bovensiepen <daniel.bovensiepen@siemens.com>,
+        Jan Kiszka <jan.kiszka@siemens.com>,
+        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 6, 2023 at 8:32=E2=80=AFAM Tim Harvey <tharvey@gateworks.com> w=
-rote:
+On Mon, 10 Jul 2023 at 20:29, Conor Dooley <conor@kernel.org> wrote:
 >
-> Add regulator config for cpu-supply in order to support cpufreq.
 >
-> Signed-off-by: Tim Harvey <tharvey@gateworks.com>
-> ---
->  .../dts/freescale/imx8mm-venice-gw7901.dts     | 18 +++++++++++++++++-
->  1 file changed, 17 insertions(+), 1 deletion(-)
+> Emil, Walker,
 >
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts b/arc=
-h/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts
-> index df3b2c93d2d5..d022b5807a24 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts
-> @@ -242,6 +242,22 @@ reg_wifi: regulator-wifi {
->         };
->  };
+> On Tue, Jun 27, 2023 at 04:06:20PM +0800, Felix Moessbauer wrote:
+> > Add the '-@' DTC option for the starfive devices. This option
+> > populates the '__symbols__' node that contains all the necessary symbols
+> > for supporting device-tree overlays (for instance from the firmware or
+> > the bootloader) on these devices.
+> >
+> > The starfive devices allow various modules to be connected and this
+> > enables users to create out-of-tree device-tree overlays for these modules.
+> >
+> > Please note that this change does increase the size of the resulting DTB
+> > by ~20%. For example, with v6.4 increase in size is as follows:
 >
-> +&A53_0 {
-> +       cpu-supply =3D <&buck2>;
-> +};
-> +
-> +&A53_1 {
-> +       cpu-supply =3D <&buck2>;
-> +};
-> +
-> +&A53_2 {
-> +       cpu-supply =3D <&buck2>;
-> +};
-> +
-> +&A53_3 {
-> +       cpu-supply =3D <&buck2>;
-> +};
-> +
->  &ddrc {
->         operating-points-v2 =3D <&ddrc_opp_table>;
->
-> @@ -511,7 +527,7 @@ BUCK1 {
->                         };
->
->                         /* vdd_arm: 0.805-1.0V (typ=3D0.9V) */
-> -                       BUCK2 {
-> +                       buck2: BUCK2 {
->                                 regulator-name =3D "buck2";
->                                 regulator-min-microvolt =3D <700000>;
->                                 regulator-max-microvolt =3D <1300000>;
-> --
-> 2.25.1
->
+> Whatcha think?
 
-Hi Shawn,
+I'm fine with it. I just wonder why it's only the Nvidia Tegra boards
+and the VisionFive's that need this. Surely other boards have pins for
+expansion cards.
 
-I noticed this and several other of my pending patches delegated to
-you got marked as 'archived' and no longer appear as new in my
-patchwork queue [1]. I wanted to make sure they are still in your
-queue or see if I need to resubmit them. I'm not sure what the process
-is that you follow and if they got archived by you or something else.
-Please let me know if I need to do anything:
+Acked-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+/Emil
 
-arm64: dts: imx8mm: add imx8mm-venice-gw73xx-0x-rpidsi overlay for display
-arm64: dts: freescale: fix imx8mm-venice-gw72xx-0x-imx219 overlay
-arm64: dts: freescale: Introduce imx8mp-venice-gw73xx-2x
-dt-bindings: arm: Add Gateworks i.MX8M GW73xx-2x board
-arm64: dts: freescale: Introduce imx8mp-venice-gw72xx-2x
-dt-bindings: arm: Add Gateworks i.MX8M GW72xx-2x board
-arm64: dts: freescale: Introduce imx8mp-venice-gw71xx-2x
-dt-bindings: arm: Add Gateworks i.MX8M GW71xx-2x board
-arm64: dts: freescale: Introduce imx8mm-venice-gw7905-0x
-dt-bindings: arm: Add Gateworks i.MX8M GW7905-0x board
-arm64: dts: imx8mm-venice-gw7904: disable disp_blk_ctrl
-arm64: dts: imx8mm-venice-gw7903: disable disp_blk_ctrl
-arm64: dts: imx8mm-venice-gw7904: enable UART1 hardware flow control
-arm64: dts: imx8m{m,n}-venice-gw7902: add SDR50/SDR104 SDIO support for wif=
-i
-arm64: dts: imx8mm-venice-gw7901: add SDR50/SDR104 SDIO support for wifi
-arm64: dts: imx8mm-venice-gw7901: add cpu-supply node for cpufreq
-arm64: dts: imx8mp-venice-gw74xx: update to revB PCB
-
-best regards,
-
-Tim
-[1] https://patchwork.kernel.org/project/linux-arm-kernel/list/?submitter=
-=3D75211
+> > jh7100-beaglev-starlight.dtb 6192 -> 7339
+> > jh7100-starfive-visionfive-v1.dtb 6281 -> 7428
+> > jh7110-starfive-visionfive-2-v1.2a.dtb 11101 -> 13447
+> > jh7110-starfive-visionfive-2-v1.3b.dtb 11101 -> 13447
+> >
+> > Signed-off-by: Felix Moessbauer <felix.moessbauer@siemens.com>
+> > ---
+> >  arch/riscv/boot/dts/starfive/Makefile | 6 ++++++
+> >  1 file changed, 6 insertions(+)
+> >
+> > diff --git a/arch/riscv/boot/dts/starfive/Makefile b/arch/riscv/boot/dts/starfive/Makefile
+> > index 170956846d49..0141504c0f5c 100644
+> > --- a/arch/riscv/boot/dts/starfive/Makefile
+> > +++ b/arch/riscv/boot/dts/starfive/Makefile
+> > @@ -1,4 +1,10 @@
+> >  # SPDX-License-Identifier: GPL-2.0
+> > +# Enables support for device-tree overlays
+> > +DTC_FLAGS_jh7100-beaglev-starlight := -@
+> > +DTC_FLAGS_jh7100-starfive-visionfive-v1 := -@
+> > +DTC_FLAGS_jh7110-starfive-visionfive-2-v1.2a := -@
+> > +DTC_FLAGS_jh7110-starfive-visionfive-2-v1.3b := -@
+> > +
+> >  dtb-$(CONFIG_ARCH_STARFIVE) += jh7100-beaglev-starlight.dtb
+> >  dtb-$(CONFIG_ARCH_STARFIVE) += jh7100-starfive-visionfive-v1.dtb
+> >
+> > --
+> > 2.39.2
+> >
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
