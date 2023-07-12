@@ -2,139 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F8E275084D
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 14:30:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3735C750851
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 14:32:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231944AbjGLMaM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jul 2023 08:30:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48782 "EHLO
+        id S231721AbjGLMc3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jul 2023 08:32:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49830 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231773AbjGLMaL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 08:30:11 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3733BA7
-        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 05:30:10 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-51e344efd75so1542469a12.1
-        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 05:30:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689165008; x=1691757008;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=As5jovVz/stLB9HCpNmduJGzBJFBIZbh6f6RqqdbEgU=;
-        b=FywtFp7I+uYfwVkjEUr6hIuKhYCX/lOI70IZ16WSmcisfLjfp9CqVlbuAjPivT97/p
-         +i2j14ibDGIHhmVmUBWtu9zNpsdpkPR4iMDqs9qlGq3r4NnXChlqeh1TXXK562wMg+kk
-         gVDJPSKt8fn1Aw4WiUndWEUX8HOfclhEowcRrAUdbzVcg6IjGDiVDCkRwPKBS5rRjfYE
-         IXiBgQoaBkT+OPrQKqAY6qnIJeHMD63qxz0Zt3YNBsO8Iw+pnOR/K0Du9s2K/uAM2DY8
-         7nskj9lBRgyVUCXNQpQZ0NtL/noyrsRo1/CVrDq1Yc+H9ZIFdBY29OrWsr54tyqnPfzr
-         6pqw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689165008; x=1691757008;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=As5jovVz/stLB9HCpNmduJGzBJFBIZbh6f6RqqdbEgU=;
-        b=OceijRz1lZ6aX0rPB/1E6fAMr9V6JDUGSzKJ8MRpFtLTfkpDVMa1nwv5DP7m9ualEF
-         f6LHkGV6jl4DNLYw7lWwrfIOeHRLIJxMfz4Xh4q1DJvX+y1GlA0RDh0ADNJEebESHnWn
-         +fnrtzxtofV+Y8+oa6bnAvPHnPWx2J6q4aWSzUs62DmIyhIGQO5gDRgCFklwcFT3zzRc
-         m5uYPQhiXbPWAOZwqzpxxfsXlXto9nkLzQ4lu8c4hNLfw3trcR8C9ZUvtKTmZ3CZD59F
-         mVfaGdcuAUjgZDXq2hsQFQ5R4jdE6BxFuxI034n16BOh6sR1Tz0A8rWcAkMH7gtq/jnX
-         WQxA==
-X-Gm-Message-State: ABy/qLaCq/s7Vr8YC6FKVltB8f8Rft3zhC7rB1amOxE0OjmuGSSUk7ha
-        8j1pwr/qdcEpQki7XAAPgoWDIA==
-X-Google-Smtp-Source: APBJJlFyqdAsr2Xmn7ERB3sVUUTbBaVW3d7pl/dph84q5U/gYteuRGrHlU/zsVSve6Jjadzi3Tfy8A==
-X-Received: by 2002:aa7:cd78:0:b0:51d:a2d9:85a3 with SMTP id ca24-20020aa7cd78000000b0051da2d985a3mr2463329edb.8.1689165008692;
-        Wed, 12 Jul 2023 05:30:08 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id s17-20020a056402165100b0051dd19d6d6esm2732667edx.73.2023.07.12.05.30.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 12 Jul 2023 05:30:08 -0700 (PDT)
-Message-ID: <0865b422-d587-c1c7-9463-510832ddddf4@linaro.org>
-Date:   Wed, 12 Jul 2023 14:30:06 +0200
+        with ESMTP id S229610AbjGLMc3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 08:32:29 -0400
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C08ABB0;
+        Wed, 12 Jul 2023 05:32:27 -0700 (PDT)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 0559D24000C;
+        Wed, 12 Jul 2023 12:32:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1689165146;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=EMAmlAAfV/E3+8xeb2DY6C2+zCz1wmbuPYuto9/gghs=;
+        b=UIBF8vAIz5VH3xswnjijkgkjrvCSy+4uPDwLYpvSwymiFlzJz4j1cFtt/yUspvcmzqK4gx
+        EGE/KIKQliTr6P5p7ZFxIf4Xb40v5dQQ/zgKyWgmUS+nhjM3NmvvPrgoUs6ZAqjSgKUS9e
+        fTGWEW3kcixsXElORuQ75dMrpu6ciq/iv5CVyyQvTtlV3402JqUShoUQVU/95L8fFffnd2
+        8jg9i10QjT7qIkILpdq+uLXnsHED36kbzME51KUa59jFalwQIWEUbmcfLOMGQ0G4wPSwsC
+        qDFwMbVMVrY26baRGsd47JnlMURXmPAXCcAOF6pyRQjnrJxGsbTYWLBqOVCQMg==
+Date:   Wed, 12 Jul 2023 14:32:20 +0200
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Chris Packham <chris.packham@alliedtelesis.co.nz>
+Cc:     richard@nod.at, vigneshr@ti.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        gregory.clement@bootlin.com, linux-mtd@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/3] dt-bindings: mtd: Add AC5 specific binding
+Message-ID: <20230712143220.06a3d6eb@xps-13>
+In-Reply-To: <20230703035044.2063303-2-chris.packham@alliedtelesis.co.nz>
+References: <20230703035044.2063303-1-chris.packham@alliedtelesis.co.nz>
+        <20230703035044.2063303-2-chris.packham@alliedtelesis.co.nz>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH 3/3] dt-bindings: riscv: sifive: Add SiFive Private L2
- cache controller
-Content-Language: en-US
-To:     Eric Lin <eric.lin@sifive.com>
-Cc:     conor@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dslin1010@gmail.com,
-        Zong Li <zong.li@sifive.com>, vincent.chen@sifive.com,
-        Greentime Hu <greentime.hu@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>
-References: <20230616063210.19063-1-eric.lin@sifive.com>
- <20230616063210.19063-4-eric.lin@sifive.com>
- <2437bda9-bbdb-ad80-7201-1e16e1388890@linaro.org>
- <CAPqJEFoTsmVZ4kvsSB0RkQZaQGyXC96KV6RvdpeC5XxURCOZ0w@mail.gmail.com>
- <8c9ed2d4-83ab-ecc0-a300-e6bc8e2047b6@linaro.org>
- <CAPqJEFqhmxksvEgvC61cJcRGR0DrSWDZxJC3J7tdgcG8UY+sFw@mail.gmail.com>
- <f5275617-d68c-c76b-d799-106f67cc2071@linaro.org>
- <20230712110908.GA23216@hsinchu16>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230712110908.GA23216@hsinchu16>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/07/2023 13:09, Eric Lin wrote:
-> On Sat, Jul 01, 2023 at 10:22:25AM +0200, Krzysztof Kozlowski wrote:
->> On 28/06/2023 18:31, Eric Lin wrote:
->>
->>>>>>
->>>>>>> +      - enum:
->>>>>>> +          - sifive,pL2Cache0
->>>>>>> +          - sifive,pL2Cache1
->>>>>>
->>>>>> What is "0" and "1" here? What do these compatibles represent? Why they
->>>>>> do not have any SoC related part?
->>>>>
->>>>> The pL2Cache1 has minor changes in hardware, but it can use the same
->>>>> pl2 cache driver.
->>>>
->>>> Then why aren't they compatible?
->>>>
->>>
->>> The pL2Cache1 has removed some unused bits in the register compared to
->>> pl2Cache0.
->>> From the hardware perspective, they are not compatible but they can
->>> share the same pl2 cache driver in software.
->>
->> So they are compatible... If they were not compatible, you wouldn't be
->> able to use the same match in the driver.
->>
->>> Thus, we would like to keep both. It would be great if you can provide
->>> some suggestions. Thanks.
->>
->> I propose to make them compatible, like every other piece of SoC. I
->> don't see any benefit of having them separate.
->>
-> 
-> Hi Krzysztof,
-> 
-> Sorry for the late reply.
-> The pl2 cache is our internal platform IP and is not part of any SoC. 
-> 
-> The reason why this driver is compatible with the hardware "pl2cache0" and hardware "pl2cache1"
-> is that it doesn't program the different parts of the config register
-> However, our internal software (e.g., bare-metal software) will program these different parts,
-> so it needs to rely on the different compatible string to identify the hardware.
->   
-> Additionally, we would like the compatible strings to reflect which hardware is being used Thanks.
+Hi Chris,
 
-I don't understand how does it contradicts anything I said. So you do
-agree with me? Or what?
+chris.packham@alliedtelesis.co.nz wrote on Mon,  3 Jul 2023 15:50:42
++1200:
 
-Best regards,
-Krzysztof
+> Add binding for AC5 SoC. This SoC only supports NAND SDR timings up to
+> mode 3 so a specific compatible value is needed.
+>=20
+> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
+I need DT-binding maintainer's ack to take this patch, but this commit
+did not receive feedback (positive of negative) from them and is no
+longer in their patchwork. Can you please resend the series?
+
+The other patches LGTM.
+
+
+> ---
+>=20
+> Notes:
+>     Changes in v3:
+>     - Collect ack from Conor
+>     Changes in v2:
+>     - Keep compatibles in alphabetical order
+>     - Explain AC5 limitations in commit message
+>=20
+>  .../devicetree/bindings/mtd/marvell,nand-controller.yaml         | 1 +
+>  1 file changed, 1 insertion(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/mtd/marvell,nand-controlle=
+r.yaml b/Documentation/devicetree/bindings/mtd/marvell,nand-controller.yaml
+> index a10729bb1840..1ecea848e8b9 100644
+> --- a/Documentation/devicetree/bindings/mtd/marvell,nand-controller.yaml
+> +++ b/Documentation/devicetree/bindings/mtd/marvell,nand-controller.yaml
+> @@ -16,6 +16,7 @@ properties:
+>            - const: marvell,armada-8k-nand-controller
+>            - const: marvell,armada370-nand-controller
+>        - enum:
+> +          - marvell,ac5-nand-controller
+>            - marvell,armada370-nand-controller
+>            - marvell,pxa3xx-nand-controller
+>        - description: legacy bindings
+
+
+Thanks,
+Miqu=C3=A8l
