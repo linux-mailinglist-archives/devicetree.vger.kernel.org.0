@@ -2,116 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BBB91750791
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 14:07:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8724B7507A5
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 14:11:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229879AbjGLMHu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jul 2023 08:07:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57744 "EHLO
+        id S231693AbjGLMLu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jul 2023 08:11:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32864 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232462AbjGLMHs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 08:07:48 -0400
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A19419BE
-        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 05:07:35 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-9939fbb7191so151459766b.0
-        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 05:07:34 -0700 (PDT)
+        with ESMTP id S229891AbjGLMLt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 08:11:49 -0400
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3DE68E65
+        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 05:11:48 -0700 (PDT)
+Received: by mail-lj1-x234.google.com with SMTP id 38308e7fff4ca-2b6a6f224a1so113249391fa.1
+        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 05:11:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689163653; x=1691755653;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=yIlGfu8m5d5ZQkeZoOR0iSZhRUvPSChL4hPGHRMsFF0=;
-        b=g/1xVqjy/HPBV5OmMqyjLrlIDKpCIp3xzzy81/AMgFSyXl4v5CvWjM1AmYYRy+7TdE
-         jfwW9wv/FJzEd8MdK2XWlQMffknItrG95PHwgBlleVcgmho7dbwS8TwhO87+FSt0P2T1
-         45UnZzOXv8Ce/MSH5T+aOxTkOXSR+8+QAS4VoBqAGglkowXLgV7z2G5GF2/vtPPFQIpx
-         7xo+/1H0FzrBfQ1oHUPXV4LQtBB/mA25ITDQKFB2W6b1us7blXZgu9Rr7h4I+nkv9+5F
-         Sc74Emd/VUyTrIRapYlktFn90wjboJKRZp8Vvhf4YzK4MCBUXLOYzaOAuZjocosnpMHB
-         Yemg==
+        d=linaro.org; s=google; t=1689163906; x=1691755906;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=3K3L1z6H/Jl14Mmz6QekO68wz73mQz13XTIjAHvmQqA=;
+        b=VfOcQGXFNbLoNG983UM9HHP01DkcBXp/hPNXk78DCABNBrDBeu1ydogeBsb4rh3ZLV
+         EMQtfpm83rlOYCWbb79fxeT7QwLQmPMUHmTCCv8M4ungyXPAi3kTun03fG2gtB2C6Zhr
+         G8ADegoFsiRmOyAlfsndo9P6JGSjBJ8eDkbulDLi6stmR2Ta+LhMj+dEADhUkAwoNSNW
+         9MbnZCwsfX0UpaQ2y/7p9jYLbFhF6LC0b/IJFJqMPm9Y2VwOBM5c3HC9Gcp1qsDw3xhZ
+         GG4RAs2ZikHkCOfpVb6TTDl3tRcwEcIVbcIPr/zXxyhPL/HokQWKqjJilMZPALcOru0u
+         Orsw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689163653; x=1691755653;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=yIlGfu8m5d5ZQkeZoOR0iSZhRUvPSChL4hPGHRMsFF0=;
-        b=f4zsCKIFy36JoMqtxcQI4q6JxxmvUpG3SBGw3KMe4EFsspS30rRdCKnl5ziBG66xqs
-         jnPJOKv2A5pne7m8DNwOt/WrufhcJ1zFQShVK5WDAvBOHh/FqRdd51tfseXa9ELRUyZi
-         0pbyvOj8dRA/KI5CmR60CWmH7pyf7MhtjDdmLJuaLvD8g1mYoLfoTQ5Xm3QEt804k0B5
-         4EScwKYpmKvK4jw/uwEpBt5KM4krnnZLpuu/NQA++2qgV9iFLYMka/bU5hNrjEJ/swjz
-         Fl2Q12L1i1nYcZb4AFmPe3+abt7yVoHYPwz03+AgUTFh/lQudtAiAtKgFE/DqzTQ6mws
-         oo8w==
-X-Gm-Message-State: ABy/qLbNeB88XUtp8dYpMCFEV7pBQZ2C4k+ISkEgi8F0EJm4eZxgNKkw
-        KagH4DAn/KrCQug0RxRqSxOgKju3mZh7LxApMb8=
-X-Google-Smtp-Source: APBJJlEykDE6ERuH6spFAbf69B6y/WO55GrI76PSo9E9V8DqXVkCs5tSDioJtQrJYxUHVR6wBeikUg==
-X-Received: by 2002:a17:906:8e:b0:993:e81a:f093 with SMTP id 14-20020a170906008e00b00993e81af093mr2496708ejc.26.1689163653331;
-        Wed, 12 Jul 2023 05:07:33 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id sd6-20020a170906ce2600b0099275c59bc9sm2488709ejb.33.2023.07.12.05.07.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 12 Jul 2023 05:07:32 -0700 (PDT)
-Message-ID: <36182c36-07fc-e6f6-eb63-bf51ee3d8a86@linaro.org>
-Date:   Wed, 12 Jul 2023 14:07:31 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH] dt-bindings: hwmon: moortec, mr75203: fix multipleOf for
- coefficients
-Content-Language: en-US
-To:     "Farber, Eliav" <farbere@amazon.com>,
-        Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>,
+        d=1e100.net; s=20221208; t=1689163906; x=1691755906;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3K3L1z6H/Jl14Mmz6QekO68wz73mQz13XTIjAHvmQqA=;
+        b=DNlbDCV7WjpDnmVxRucyPnlF1k77sh7ypdqiKzVjUnaHCIDTk9u0bVolLdtEIXs+ET
+         4nQ42wGiO8nv7h8A9NyjVlIMjo4NKJPFXHg+bwzI4YUu/0VbzjpQdZzecSEXTNOjhzw5
+         RQUWco2+HMR7TIW3AinPWWi5F6o13XpOoB4rG1KgKNBhfwpWL/OAHYmfUMn+ygct8PMb
+         UABOiKvoumGWcicjMV4WsZ5ohwGsGV7icJtLJ2ly6hXB2dWKAyEdOCzQKf3OSxrg0f2V
+         J1Q1S09GgrQ2v7H969lu84e3Wmttf0jpFURYti8496myD1AeFN9XnA1a6KT+ZgxjTdJ/
+         d2hg==
+X-Gm-Message-State: ABy/qLbPHnBGhQxoImg7KsDtxc4z5BhwidFnEzTDT0cJorNSmSblMGmF
+        66/p5JoMSm1/5Sx5cMeDSN0KUA==
+X-Google-Smtp-Source: APBJJlFIvTTTpjP6vYotlLnUf/OtRjwWQVGnYkZgtEomA+mnUxdLIwbX/0a5xcbGFJmaK44tw6980A==
+X-Received: by 2002:a2e:980b:0:b0:2b6:dc55:c3c7 with SMTP id a11-20020a2e980b000000b002b6dc55c3c7mr17011894ljj.20.1689163906493;
+        Wed, 12 Jul 2023 05:11:46 -0700 (PDT)
+Received: from eriador.lan (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
+        by smtp.gmail.com with ESMTPSA id p14-20020a2ea40e000000b002b6c8cf48bfsm913135ljn.104.2023.07.12.05.11.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 12 Jul 2023 05:11:46 -0700 (PDT)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Rahul Tanwar <rtanwar@maxlinear.com>,
-        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230712081124.110345-1-krzysztof.kozlowski@linaro.org>
- <4d9a0899-145e-3223-41da-b91b81afaaa2@amazon.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <4d9a0899-145e-3223-41da-b91b81afaaa2@amazon.com>
-Content-Type: text/plain; charset=UTF-8
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Stephen Boyd <swboyd@chromium.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org
+Subject: [PATCH v2 0/8] MDSS reg bus interconnect
+Date:   Wed, 12 Jul 2023 15:11:37 +0300
+Message-Id: <20230712121145.1994830-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.40.1
+MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/07/2023 13:58, Farber, Eliav wrote:
-> On 7/12/2023 11:11 AM, Krzysztof Kozlowski wrote:
->> Few coefficients use default values multiple of 100, not 1000 (in the
->> example DTS and in the Linux driver):
->>
->>  moortec,mr75203.example.dtb: pvt@e0680000: moortec,ts-coeff-g:0:0: 
->> 61400 is not a multiple of 1000
-> 
-> Why isn't multiple of 1000 correct?
+Per agreement with Konrad, picked up this patch series.
 
-61400 is not a multiple of 1000, at least not in integers. 61400 is a
-multiple of 100.
+Apart from the already handled data bus (MAS_MDP_Pn<->DDR), there's
+another path that needs to be handled to ensure MDSS functions properly,
+namely the "reg bus", a.k.a the CPU-MDSS interconnect.
 
-> According to the Moortec datasheet for the series 6 of the temperature 
-> sensor
-> the coefficients are:
-> G = 57.4 (57.4 * 1000 = 57400)
+Gating that path may have a variety of effects. from none to otherwise
+inexplicable DSI timeouts.
 
-57.4 is not integer. With that approach 1 is also multiple of 1000, because:
+This series tries to address the lack of that.
 
-G = 1 * 0.001 * 1000.
+Changes since v1:
+- Dropped the DPU part, the MDSS vote seems to be enough
+- Reworked MDSS voting patch. Replaced static bw value with the
+  per-platform confgurable values.
+- Added sm8450 DT patch.
 
-> H = 249.4
-> For series 5 coefficients are:
-> G = 60 (60 * 1000 = 60000)
-> H = 200
-> J = -0.1
+Dmitry Baryshkov (6):
+  drm/msm/mdss: correct UBWC programming for SM8550
+  drm/msm/mdss: switch mdss to use devm_of_icc_get()
+  drm/msm/mdss: inline msm_mdss_icc_request_bw()
+  drm/msm/mdss: populate missing data
+  drm/msm/mdss: Handle the reg bus ICC path
+  arm64: dts: qcom: sm8450: provide MDSS cfg interconnect
 
-Trim the context of replies. No need to quote entire text below.
+Konrad Dybcio (2):
+  dt-bindings: display/msm: Add reg bus and rotator interconnects
+  drm/msm/mdss: Rename path references to mdp_path
 
-Best regards,
-Krzysztof
+ .../bindings/display/msm/mdss-common.yaml     |   2 +
+ arch/arm64/boot/dts/qcom/sm8450.dtsi          |   9 +-
+ drivers/gpu/drm/msm/msm_mdss.c                | 138 +++++++++++++-----
+ 3 files changed, 108 insertions(+), 41 deletions(-)
+
+-- 
+2.40.1
 
