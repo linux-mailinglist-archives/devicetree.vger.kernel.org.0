@@ -2,68 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E6117750F87
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 19:21:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CDAFB750F8B
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 19:21:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229473AbjGLRVC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jul 2023 13:21:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34812 "EHLO
+        id S232714AbjGLRVP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jul 2023 13:21:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34970 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232969AbjGLRVB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 13:21:01 -0400
-Received: from mail-qv1-xf32.google.com (mail-qv1-xf32.google.com [IPv6:2607:f8b0:4864:20::f32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 927F41980
-        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 10:20:59 -0700 (PDT)
-Received: by mail-qv1-xf32.google.com with SMTP id 6a1803df08f44-635e54e22d6so53130676d6.2
-        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 10:20:59 -0700 (PDT)
+        with ESMTP id S232383AbjGLRVO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 13:21:14 -0400
+Received: from mail-qk1-x72e.google.com (mail-qk1-x72e.google.com [IPv6:2607:f8b0:4864:20::72e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA3791BF7
+        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 10:21:12 -0700 (PDT)
+Received: by mail-qk1-x72e.google.com with SMTP id af79cd13be357-7672073e7b9so540630285a.0
+        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 10:21:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1689182458; x=1691774458;
+        d=broadcom.com; s=google; t=1689182472; x=1691774472;
         h=mime-version:references:in-reply-to:message-id:date:subject:cc:to
          :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=QF7YH8kIZnd+fpr295+z4prm0pbTDRDXZ76uD3tXaww=;
-        b=OEf1IwY45LiPD1pEbRBgqJOcSqXbXJyeRLZsOp5D/6f9Pws58UE0tB9a+qe8vnIOuj
-         2rv8cSO+OwItJpiz3kPWG8R8FpI9m+z4oCK3pLvp3Vwf928zu7idUAx9qUFpnOw7hOIH
-         WXe9rPHOQOCYdJ98aeaaHOq3BO33zxZcmWDg0=
+        bh=GWRrx5Ai9HT+mCWSgWLZBJxGuMDgaI1MIzToVtpfVpY=;
+        b=H9H1keIO0KB7/CLi8QLehn7hYYowdI75YTwQ8IzB6kkp0cbL1Y4XsIoJZUqy2Gi5kz
+         e0bm+Em+oy0E/mAPOArCCevzrTGeM5+Ewo39MVj8QhQWaAn8V0S4Xm0vQdXcsSl7ieKF
+         XwSYau0qCNOCHxLMEv5mNF7MLdFRPJLGDEWs8=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689182458; x=1691774458;
+        d=1e100.net; s=20221208; t=1689182472; x=1691774472;
         h=mime-version:references:in-reply-to:message-id:date:subject:cc:to
          :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=QF7YH8kIZnd+fpr295+z4prm0pbTDRDXZ76uD3tXaww=;
-        b=FKc51S3lhxZxcaxtyluSFIWzy8wh4QDaPEZaJ/h8F9HTqLpbE+HZfZRUJmDLclNI44
-         SwblrucyBM9VH7oX3GMYZnYhN/5eESNF9yK6FL/NpaFZasbp8bv08OjXVA5qCblJRTSe
-         ah3ht2tN/4FBFJoYOdav7R4+CigYAq3FN6O9u1gD+AbjoCNVkyyJaPIMrdR2WSyatguP
-         k22GeY/3dMIzhoC5BYos4J0kJTTBF7g5PG2rotAt4CS6IIv0stl9HDsjmkLPWXodpObK
-         5Icp9LZXBsHf10H7ZmD+4XGvSnSeII4tvjwdYIxIaGpAJvCWCS+hDuzOJ42GJ4+Lnffr
-         cRFg==
-X-Gm-Message-State: ABy/qLbTa5sKs1Sj/Ul0o0uMvbTqmFqJ+6Zdy2FFoQJQ3yxuqfkbqQhI
-        x1Xqtz5DmhgGdfyaWocffZ7tShNbx2X+nx8cGmgiVQ==
-X-Google-Smtp-Source: APBJJlGTXykZCRET7D8TMyeU8EKATxfBcGM6UPBXIzpfRPoQmSJwQtROMyO+tA1XVPQQZWDgOK/hbA==
-X-Received: by 2002:a0c:b393:0:b0:636:439b:a6ce with SMTP id t19-20020a0cb393000000b00636439ba6cemr18627588qve.13.1689182458684;
-        Wed, 12 Jul 2023 10:20:58 -0700 (PDT)
+        bh=GWRrx5Ai9HT+mCWSgWLZBJxGuMDgaI1MIzToVtpfVpY=;
+        b=JGCNM4dE14ntXIk7eF3vjzv1ARgH/hVt5NV+jqoKaa7AFnrCRELHpgdf4OeG6chHR0
+         y3XHi4yTjn/W4f7lXJjChnGhPqJB3HcCJYd6edfp85Pys4rsrWG9Aor4uZX0cYMqwVB8
+         B1CW6CKENTwhB3LftKfsLPlawVoWqd2DudIcjAvkH0k14OyB8XMPFYzeObCIbaCk4qD6
+         eQMVbKnHLLOilDKKnX+kPCXI4dkFT2pAugtjEpoOGBDARuBel7ejU6BFRbAmLLMso9L8
+         XQi6ZT522bFgU1RE55DAlohTz4uudeBe0XD96dblIvB8NFkiqodPY071FvYL55D+6f4C
+         m5PA==
+X-Gm-Message-State: ABy/qLadPI58WQZOHypno7kYsi5b2nAovTwVUTI0IkLGB8fl3bjF4czq
+        iS80KwCC4/WCIQt9zK0UALv3iFkpo1r1fnwLbju7+w==
+X-Google-Smtp-Source: APBJJlG85XCoz3eodnunX8XGCUFb/HR4RvWqSS3RuQuGqT9+VSjJw1UBG3xvjMOm5e+nY3IK0poWaw==
+X-Received: by 2002:a05:622a:148b:b0:401:ec6d:3870 with SMTP id t11-20020a05622a148b00b00401ec6d3870mr22577200qtx.11.1689182471817;
+        Wed, 12 Jul 2023 10:21:11 -0700 (PDT)
 Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id y16-20020a0cf150000000b00635e822b1a6sm2347610qvl.35.2023.07.12.10.20.56
+        by smtp.gmail.com with ESMTPSA id r14-20020ac8424e000000b0040321ca109fsm2367562qtm.96.2023.07.12.10.21.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Jul 2023 10:20:58 -0700 (PDT)
+        Wed, 12 Jul 2023 10:21:11 -0700 (PDT)
 From:   Florian Fainelli <florian.fainelli@broadcom.com>
 To:     bcm-kernel-feedback-list@broadcom.com,
-        Dan Haab <riproute@gmail.com>
+        =?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <zajec5@gmail.com>
 Cc:     Florian Fainelli <f.fainelli@gmail.com>,
         Hauke Mehrtens <hauke@hauke-m.de>,
-        =?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <zajec5@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
         Conor Dooley <conor+dt@kernel.org>,
         linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Dan Haab <dan.haab@luxul.com>
-Subject: Re: [PATCH] ARM: dts: BCM5301X: Add Wi-Fi regulatory mappings for Luxul devices
-Date:   Wed, 12 Jul 2023 10:20:55 -0700
-Message-Id: <20230712172055.2601116-1-florian.fainelli@broadcom.com>
+        =?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <rafal@milecki.pl>
+Subject: Re: [PATCH] ARM: dts: BCM5301X: Add Ethernet interfaces links
+Date:   Wed, 12 Jul 2023 10:21:09 -0700
+Message-Id: <20230712172109.2601197-1-florian.fainelli@broadcom.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230705153251.739236-1-riproute@gmail.com>
-References: <20230705153251.739236-1-riproute@gmail.com>
+In-Reply-To: <20230707091519.21673-1-zajec5@gmail.com>
+References: <20230707091519.21673-1-zajec5@gmail.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-        boundary="0000000000006d714106004d70f4"
+        boundary="00000000000037462d06004d71ee"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,
@@ -74,24 +73,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---0000000000006d714106004d70f4
+--00000000000037462d06004d71ee
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
 From: Florian Fainelli <f.fainelli@gmail.com>
 
-On Wed,  5 Jul 2023 09:32:51 -0600, Dan Haab <riproute@gmail.com> wrote:
-> From: Dan Haab <dan.haab@luxul.com>
+On Fri,  7 Jul 2023 11:15:19 +0200, Rafał Miłecki <zajec5@gmail.com> wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
 > 
-> This allows setting FullMAC firmware regulatory domain.
+> Northstar SoCs have 3 usable Ethernet interfaces each connected to one
+> of switch ports. They all use fixed links.
 > 
-> Signed-off-by: Dan Haab <dan.haab@luxul.com>
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 > ---
 
 Applied to https://github.com/Broadcom/stblinux/commits/devicetree/next, thanks!
 --
 Florian
 
---0000000000006d714106004d70f4
+--00000000000037462d06004d71ee
 Content-Type: application/pkcs7-signature; name="smime.p7s"
 Content-Transfer-Encoding: base64
 Content-Disposition: attachment; filename="smime.p7s"
@@ -162,14 +163,14 @@ kNGap1mHJ+JngGzZCz+dDiHRQKGpXLxkHX0BvEDZLW6LGOJ83ImrW38YMOo3ZYnCYNHA9qDOakiw
 NxADYvcRBA0ySL6sZpj8BIIhWiXiuusuBmt2Mak2eEv0xDbovE6Z6hYyl/ZnRadbgK/ClgbY3w+O
 AfUXEZ0xggJtMIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52
 LXNhMTEwLwYDVQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwT
-/D/YSkVckoN0L+QwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIGowwmVBVlg/mVfj
-A7wBSO1Iu9joNyhlDXnF7O9fkeghMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcN
-AQkFMQ8XDTIzMDcxMjE3MjA1OFowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZI
+/D/YSkVckoN0L+QwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIK9jXW4T+OBJXNdt
+FSbpOkhMqolrKzwa0ingPwICyHCZMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcN
+AQkFMQ8XDTIzMDcxMjE3MjExMlowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZI
 AWUDBAEWMAsGCWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEH
-MAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQDeuXCkPgEPkykXM3iMdnEanZrXflzEHvPL
-PyKWrdCXBNlfRp8shsB0HA5j71h71gxeHAOblSyK6UkR1oQdlrznqU/yRxpuU4vdKtjEyxuwi37b
-rEBYPzCzxa7IgxwxHgtHaImdJ5X1QPDdfqCprzlccazN4JBy8Ae4oIqUOlbKdCpHkC7x/p8gLEXO
-LVwKait+uaQjneFglRxzNiUnSIm5sRFWGFpTw5Mg6IcF6x4ZQw495l4UXf4YiJkqnskbb10EUqOi
-hl4P1SJ1VOqYF0hyt38S80RkyTmx+H7hDNBfW94Ltex2DkE59OPtSdrTKSp/yEC1k5WrABxcu3bG
-V3Em
---0000000000006d714106004d70f4--
+MAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQCDv6WIHUz5jE25HgFU3kNLAsC8oVYCQuPr
+fwXj7FASu4T1eRUnlo/q7y8FblkSucNCPV/tsKUUbcdzYADl9bATpCZwgjL1A2qB21BnXtcLHquJ
+bXmV/CvyS4hqqqBcoGUnakY7s/3/CSRWWoe4K49G+0NryIeppvkFMq7B9qnBCxfVqLvjB9UtMmy6
+FZog5TfcbRGLmYLy9CqNuXfsDQIzTvHoDqUBwgRqsDra971594IBezqD5rVIgEeVS+yVY5XO66t1
+XGFMzxVXLkX/xmLer1MtjCgwCb0A9bZQtEjS51PF4Shc/pl8zfZ2h4D0J7nHSrhivp2SR9i2AdeR
+Osvd
+--00000000000037462d06004d71ee--
