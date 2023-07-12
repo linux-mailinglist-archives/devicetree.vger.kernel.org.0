@@ -2,60 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 34563750E62
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 18:24:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9FD07750E98
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 18:31:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233554AbjGLQYK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jul 2023 12:24:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55452 "EHLO
+        id S231461AbjGLQbO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jul 2023 12:31:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36264 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232984AbjGLQX6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 12:23:58 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 752E82D50
-        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 09:23:28 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 1366061830
-        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 16:23:28 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8B45DC433C8;
-        Wed, 12 Jul 2023 16:23:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689179007;
-        bh=nP0kTFEzVGID4WJotsstb9GIh2dmb5GIqR/6xgOaqr0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=tBGbEOrDGNBhQJNOnloI2fTTfkYFnqnJrln+pqy6lCpNyh1RNAh98UOUWIfTFcAzD
-         dHPTSiRLGH5C34jyfdwGnbq6QGlRJj3h4OGVyBjpIR+8xNicVtM3/T449rQrITY9Dv
-         XMDKJo2MUJruLN1ffYPbiEYTW2yR3x2sCw3L6HSrKxaQh8rVESVE4YiDvTMfO+VHHc
-         3qx076iFNqyAfdgXja2zDT1HGZhKgqNve9mQ1GoSXOAlmim9Ms89oYsXQIGlrgx6Zz
-         VCG4ruh64MdRHMEZGkS45BVpDqq3tf4bJlNXrL9QBC/GMZEaOPJHVW6hOsjeOklMAf
-         en4nlRmU+hdUw==
-Date:   Wed, 12 Jul 2023 17:23:23 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Cc:     Felix Moessbauer <felix.moessbauer@siemens.com>,
-        Walker Chen <walker.chen@starfivetech.com>,
-        Emil Renner Berthing <kernel@esmil.dk>,
+        with ESMTP id S230252AbjGLQbN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 12:31:13 -0400
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87662EA;
+        Wed, 12 Jul 2023 09:31:05 -0700 (PDT)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id E5336FF802;
+        Wed, 12 Jul 2023 16:31:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1689179464;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=4I7KqMlGQ1jWsPHpCvnpP3x5qLJt8ehVJksZQDgy4Q4=;
+        b=kbOWBmv3V/Hpg9K2nq6/gdiXQqeTc6XG6mhSwoSP4xxQMpzzIeFH0eaAR3TkYmbxkpAi23
+        C8YQfn60PsEWz1mnXbdTPTY+ZF+bZzIkODW5adoUYUgf/AjGPD0RdB5ZA9Uw25fMGSzT8Z
+        jlgQ/eTVvxU3AsradvGIBgTrLc994AzFahLqeHEoRfWVZFtStnGsxtPC4gVdC/tcHp10cM
+        8Z1IXWSjSBmauEAwlocXfZVP77emoHD748l2IsDWZ60bdyDW2EbunyRi8fwHuIYXPAEWGS
+        MJzFG7E8SH0BHEIZV0auqfcfNmJ03jCDlAj94KtpQ6DjE5S5mBZOmgAnwUfOFw==
+Date:   Wed, 12 Jul 2023 18:31:00 +0200
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Sebastian Reichel <sre@kernel.org>
+Cc:     Gerald Loacker <gerald.loacker@wolfvision.net>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
-        Daniel Bovensiepen <daniel.bovensiepen@siemens.com>,
-        Jan Kiszka <jan.kiszka@siemens.com>,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/1] riscv: dts: Enable device-tree overlay support for
- starfive devices
-Message-ID: <20230712-single-crestless-93bf57c09773@spud>
-References: <20230627080620.329873-1-felix.moessbauer@siemens.com>
- <20230710-villain-dainty-d1a90ce57a27@spud>
- <CAJM55Z_0X+UT1s9s4kqKuyg4hF2JooTMXe4RYTAzoEgY=+8A1Q@mail.gmail.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v2 00/13] Add Inanbo T28CP45TN89 panel support
+Message-ID: <20230712183100.690b33c5@xps-13>
+In-Reply-To: <20230422205012.2464933-1-sre@kernel.org>
+References: <20230422205012.2464933-1-sre@kernel.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="6yhNlt3iEraEviEJ"
-Content-Disposition: inline
-In-Reply-To: <CAJM55Z_0X+UT1s9s4kqKuyg4hF2JooTMXe4RYTAzoEgY=+8A1Q@mail.gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -63,59 +62,65 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Sebastian,
 
---6yhNlt3iEraEviEJ
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
++ Thomas
 
-On Wed, Jul 12, 2023 at 06:17:19PM +0200, Emil Renner Berthing wrote:
-> On Mon, 10 Jul 2023 at 20:29, Conor Dooley <conor@kernel.org> wrote:
-> >
-> >
-> > Emil, Walker,
-> >
-> > On Tue, Jun 27, 2023 at 04:06:20PM +0800, Felix Moessbauer wrote:
-> > > Add the '-@' DTC option for the starfive devices. This option
-> > > populates the '__symbols__' node that contains all the necessary symb=
-ols
-> > > for supporting device-tree overlays (for instance from the firmware or
-> > > the bootloader) on these devices.
-> > >
-> > > The starfive devices allow various modules to be connected and this
-> > > enables users to create out-of-tree device-tree overlays for these mo=
-dules.
-> > >
-> > > Please note that this change does increase the size of the resulting =
-DTB
-> > > by ~20%. For example, with v6.4 increase in size is as follows:
-> >
-> > Whatcha think?
+sre@kernel.org wrote on Sat, 22 Apr 2023 22:49:59 +0200:
+
+> Hi,
 >=20
-> I'm fine with it. I just wonder why it's only the Nvidia Tegra boards
-> and the VisionFive's that need this. Surely other boards have pins for
-> expansion cards.
+> This adds panel support for Inanbo T28CP45TN89, which I found inside of a
+> handheld thermal camera. The panel is based on the st7789v controller. All
+> information is based on reverse engineering.
 
-It's totally not just these two - there's been a flurry of similar
-patches recently. The RPi stuff got it - I think I Acked that one from
-the DT side while Rob and Krzysztof were out of office, partially on the
-basis that the Nvidia stuff had it (and IIRC Renesas).
-Since then there's been a couple other ones that got the same treatment,
-including 32-bit ARM Microchip stuff. I've been avoiding doing it for the
-RISC-V Microchip to see if Rob decides that what I Acked was a problem.
+I haven't seen another version for this series so I assume it is still
+the one to look at. As you already know, I also want to add support for
+a panel based on the st7789 display controller. As discussed, I rebased
+my changes on top of yours as you actually sent them upstream
+much earlier than I did.
 
-It seems generally helpful, so I've been a little suspicious as to why
-it was not done already...
+As a single minor comment was made to this version of the series, I
+would like to know if you wanted to send a new version soon? Or if it
+would make sense to send a bigger series with all our common patches in
+one single shot (mine should apply cleanly without further work on
+yours). Let me know how we can move forward.
 
---6yhNlt3iEraEviEJ
-Content-Type: application/pgp-signature; name="signature.asc"
+For the record, here are my patches.
 
------BEGIN PGP SIGNATURE-----
+Link: https://lore.kernel.org/all/20230619155958.3119181-1-miquel.raynal@bo=
+otlin.com/
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZK7TewAKCRB4tDGHoIJi
-0nFMAP4z0kyCJ9bo9NdV1fEaEaWPTMD3SWgash90+nz8lEEzgAD/Yp90Wvv/78Va
-3OsBKHedafWudPyyGbZWiAK2dfxTmwQ=
-=13KF
------END PGP SIGNATURE-----
+Thanks a lot,
+Miqu=C3=A8l
 
---6yhNlt3iEraEviEJ--
+>=20
+> Changes since PATCHv1:
+>  * https://lore.kernel.org/all/20230317232355.1554980-1-sre@kernel.org/
+>  * Apply DT binding changes requested by Krzysztof Kozlowski and his Ack
+>  * I changed the driver patches to avoid code duplication and splitted
+>    the code a bit more
+>=20
+> -- Sebastian
+>=20
+> Sebastian Reichel (13):
+>   dt-bindings: vendor-prefixes: add Inanbo
+>   dt-bindings: display: st7789v: add Inanbo T28CP45TN89
+>   drm/panel: sitronix-st7789v: add SPI ID table
+>   drm/panel: sitronix-st7789v: remove unused constants
+>   drm/panel: sitronix-st7789v: make reset GPIO optional
+>   drm/panel: sitronix-st7789v: simplify st7789v_spi_write
+>   drm/panel: sitronix-st7789v: improve error handling
+>   drm/panel: sitronix-st7789v: avoid hardcoding mode info
+>   drm/panel: sitronix-st7789v: avoid hardcoding panel size
+>   drm/panel: sitronix-st7789v: add media bus format
+>   drm/panel: sitronix-st7789v: avoid hardcoding invert mode
+>   drm/panel: sitronix-st7789v: avoid hardcoding polarity info
+>   drm/panel: sitronix-st7789v: add Inanbo T28CP45TN89 support
+>=20
+>  .../display/panel/sitronix,st7789v.yaml       |   5 +-
+>  .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+>  .../gpu/drm/panel/panel-sitronix-st7789v.c    | 148 ++++++++++++++----
+>  3 files changed, 120 insertions(+), 35 deletions(-)
+>=20
+
