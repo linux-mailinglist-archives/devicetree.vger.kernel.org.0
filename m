@@ -2,99 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E08F7512A4
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 23:28:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9193E7512AD
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 23:34:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229636AbjGLV22 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jul 2023 17:28:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49234 "EHLO
+        id S231461AbjGLVeN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jul 2023 17:34:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50358 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229512AbjGLV21 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 17:28:27 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50366CF;
-        Wed, 12 Jul 2023 14:28:26 -0700 (PDT)
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36CHgItg032565;
-        Wed, 12 Jul 2023 21:28:06 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=pFnVUYqDut2tT+LTzWe2AAcZdkToKwokw2/YqTsEkRE=;
- b=aWqWbbwDHCPurRn2KCT/yZB1h2sAFXHfjlf0S3S0yMnfQ6WdqDt0Vq28ZZbGm5ZJmHNi
- qOsGOhV1fZI6lhW1NDiPlLLJMmANKNc1Y9YVTxaXtM8EP8IcYgQtjbisluHdLz6AsOY5
- +VJLylQrZ8Ar4jmi4O5Yg4Kpqj/iynPyb+BBMlxN7A47aBXDThEC4J+9AfbsY28LNPoK
- OJC6MzwF5wsJwiIlby/zAzQ4wIfeiwc9cJBhmxEQ72K2xmHRvR2esUjDaCdtxzZGYs1y
- PRHezMlr9A0/SD9HJK3NHGFwP7Ho87wHcfNmFKF0gfCceU/aLB/YN0E0R8c1T8wJXI2m xg== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3rsf51jmp1-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 12 Jul 2023 21:28:05 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 36CLS2NG003675
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 12 Jul 2023 21:28:02 GMT
-Received: from [10.134.70.142] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Wed, 12 Jul
- 2023 14:28:01 -0700
-Message-ID: <16659770-a839-ebfe-22d1-9a941ba07583@quicinc.com>
-Date:   Wed, 12 Jul 2023 14:28:00 -0700
+        with ESMTP id S229512AbjGLVeM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 17:34:12 -0400
+Received: from mail-pf1-x42c.google.com (mail-pf1-x42c.google.com [IPv6:2607:f8b0:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E870CF;
+        Wed, 12 Jul 2023 14:34:11 -0700 (PDT)
+Received: by mail-pf1-x42c.google.com with SMTP id d2e1a72fcca58-6687466137bso51301b3a.0;
+        Wed, 12 Jul 2023 14:34:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1689197651; x=1691789651;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=hObg29JRk6/1LQWWBeEfqotC31ErNS5bG8ya2MZm260=;
+        b=TgutQI7GQHwPQKQth/3mIvwVQQaZmsBB7iAovc7JiEPnC9SQzb9QvRkJoGKijLCTnt
+         nhBrTBY/2aBsFJBV0rBaKbE4OH95nMgw7E2xUSRXcwpq6Ubnhyo0sAq4h6mMklzwCcnT
+         Av6vsZlMUZ8ZqE4JOBxFpFksugVzm3UIf0oCOq+xchqRN7fNsrM3cR15oQw/3PMUmm3G
+         ttLZSxwqqlVBbcbamFR3gv6ml6sIypzJY6w0uykaG/48TsnCI+/IEc1RMD9I1P/qlmpZ
+         WCE7Bnn2No5SEYjqxM6texZmnoqL0G2oH+dE8qeWl88NDyoHNDPpA4UuefuogSzxBjUu
+         oyqA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689197651; x=1691789651;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=hObg29JRk6/1LQWWBeEfqotC31ErNS5bG8ya2MZm260=;
+        b=Bug6p4HaWdKAed+edbuWj66AUBAae5bbE2lKhv4pokLWJcCvQNzBcVuFTp3EqDlnLR
+         y6oNBFw9JD5kZhuZ1YQWbzdr9RGeg0C/rH0XstfyKJPwxqGAV3cTvxPYf3jUeUY8rn7S
+         zCMji9fFLZUCe2hriCS9VzoGJzzWSCcoiKbYfryHtmsS+yU1Hso2yCvyo5UfTo0gYF0N
+         lH/fNIxFtkMkCu8R+N3+z+sRvLZh1p4VcQuCf/gpPa+PEdq9besaRcEQErHsYk6lpDaX
+         9uLLnIXn0iVocCEz2K8K3Ji9dT8gSFI2N9tQea9gVswQvq0VLntYMnAZ2mjdrj3VD624
+         yW5w==
+X-Gm-Message-State: ABy/qLbYORoMBAwmm8oJZbYd5CCAhVq17M10MqDDor5ZRx+L5rtVF32x
+        oa1yrPiHEpp42PyKeY00hOQ=
+X-Google-Smtp-Source: APBJJlETIhDpKPGCF9zzWcHeSRWFk338EvTpHf2ZGQsz70E5L94yFU/bzDHUP52lVdoayW1KEYGoTg==
+X-Received: by 2002:a05:6a21:3814:b0:126:9081:2156 with SMTP id yi20-20020a056a21381400b0012690812156mr13201145pzb.4.1689197650792;
+        Wed, 12 Jul 2023 14:34:10 -0700 (PDT)
+Received: from google.com ([2620:15c:9d:2:a606:1b1e:7f66:3ee0])
+        by smtp.gmail.com with ESMTPSA id r13-20020a62e40d000000b00666912d8a52sm4011483pfh.197.2023.07.12.14.34.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 12 Jul 2023 14:34:10 -0700 (PDT)
+Date:   Wed, 12 Jul 2023 14:34:07 -0700
+From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To:     Jeff LaBundy <jeff@labundy.com>
+Cc:     robh+dt@kernel.org, linux-input@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 0/2] Add support for Azoteq IQS7210A/7211A/E
+Message-ID: <ZK8cT9imYrEwBqdn@google.com>
+References: <ZHVD/9OgRTAwBhqx@nixie71>
+ <ZK8aoiVOoZgWSCDc@nixie71>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v2 01/15] drm/msm/dsi: Drop unused regulators from QCM2290
- 14nm DSI PHY config
-Content-Language: en-US
-To:     Marijn Suijten <marijn.suijten@somainline.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Krishna Manikandan <quic_mkrishn@quicinc.com>,
-        Loic Poulain <loic.poulain@linaro.org>,
-        "Konrad Dybcio" <konrad.dybcio@somainline.org>
-CC:     <~postmarketos/upstreaming@lists.sr.ht>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        "Jami Kettunen" <jami.kettunen@somainline.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        "Krzysztof Kozlowski" <krzk@kernel.org>,
-        <linux-clk@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <freedreno@lists.freedesktop.org>, "Lux Aliaga" <they@mint.lgbt>
-References: <20230627-sm6125-dpu-v2-0-03e430a2078c@somainline.org>
- <20230627-sm6125-dpu-v2-1-03e430a2078c@somainline.org>
-From:   Abhinav Kumar <quic_abhinavk@quicinc.com>
-In-Reply-To: <20230627-sm6125-dpu-v2-1-03e430a2078c@somainline.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 6YY-ieJCYwmXQO1wH3VhSQ2y26Y9X-PW
-X-Proofpoint-GUID: 6YY-ieJCYwmXQO1wH3VhSQ2y26Y9X-PW
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-07-12_15,2023-07-11_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501 mlxscore=0
- bulkscore=0 lowpriorityscore=0 clxscore=1011 phishscore=0 malwarescore=0
- mlxlogscore=977 impostorscore=0 spamscore=0 suspectscore=0 adultscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2305260000
- definitions=main-2307120189
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZK8aoiVOoZgWSCDc@nixie71>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,FSL_HELO_FAKE,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
         URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -103,18 +71,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 6/27/2023 1:14 PM, Marijn Suijten wrote:
-> The regulator setup was likely copied from other SoCs by mistake.  Just
-> like SM6125 the DSI PHY on this platform is not getting power from a
-> regulator but from the MX power domain.
+On Wed, Jul 12, 2023 at 04:26:58PM -0500, Jeff LaBundy wrote:
+> Hi Dmitry,
 > 
-> Fixes: 572e9fd6d14a ("drm/msm/dsi: Add phy configuration for QCM2290")
-> Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
-> ---
->   drivers/gpu/drm/msm/dsi/phy/dsi_phy_14nm.c | 2 --
->   1 file changed, 2 deletions(-)
+> On Mon, May 29, 2023 at 07:31:59PM -0500, Jeff LaBundy wrote:
+> > This series introduces support for the Azoteq IQS7210A, IQS7211A and
+> > IQS7211E trackpad/touchscreen controllers. Optimized for wearable
+> > applications, these devices track up to two contacts and are capable
+> > of reporting an array of gestures.
+> > 
+> > The IQS7210A includes an additional channel to support an inductive
+> > or capacitive button, while the IQS7211E adds an advanced assortment
+> > of gestures. All three devices are demonstrated in [1].
+> > 
+> > These devices can be configured during production using OTP memory,
+> > or over I2C using the device tree. For the latter case, the binding
+> > covers all major parameters called out by the vendor in [2].
+> > 
+> > [1] https://youtu.be/RjB8rNkzQJQ
+> > [2] https://www.azoteq.com/images/stories/pdf/azd123_iqs721xy_trackpad_userguide.pdf
+> > 
+> > Jeff LaBundy (2):
+> >   dt-bindings: input: Add bindings for Azoteq IQS7210A/7211A/E
+> >   Input: add support for Azoteq IQS7210A/7211A/E
+> > 
+> >  .../input/touchscreen/azoteq,iqs7211.yaml     |  769 +++++
+> >  drivers/input/touchscreen/Kconfig             |   10 +
+> >  drivers/input/touchscreen/Makefile            |    1 +
+> >  drivers/input/touchscreen/iqs7211.c           | 2569 +++++++++++++++++
+> >  4 files changed, 3349 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/input/touchscreen/azoteq,iqs7211.yaml
+> >  create mode 100644 drivers/input/touchscreen/iqs7211.c
+> > 
+> > -- 
+> > 2.34.1
+> > 
 > 
+> Just bumping this one; any interest in taking it?
 
-Reviewed-by: Abhinav Kumar <quic_abhinavk@quicinc.com>
+Ah, sorry, I missed Rob's reviewed-by for the bindings. Applied, thank
+you.
+
+-- 
+Dmitry
