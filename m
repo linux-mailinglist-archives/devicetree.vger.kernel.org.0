@@ -2,57 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 91289750F04
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 18:52:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3EC7E750F29
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 19:01:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229473AbjGLQwv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jul 2023 12:52:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50276 "EHLO
+        id S232968AbjGLRBy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jul 2023 13:01:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55798 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233351AbjGLQws (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 12:52:48 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A84081734;
-        Wed, 12 Jul 2023 09:52:46 -0700 (PDT)
-Received: from jupiter.universe (dyndsl-091-248-191-111.ewe-ip-backbone.de [91.248.191.111])
+        with ESMTP id S232323AbjGLRBo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 13:01:44 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 149DF10C7;
+        Wed, 12 Jul 2023 10:01:43 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        (Authenticated sender: sre)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 14E4E660702E;
-        Wed, 12 Jul 2023 17:52:45 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1689180765;
-        bh=2VVwOOwLYFVfiLx9s3vRhudNAVz3rkLWFj9+rMW24Lo=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=KEwnWd1nCvePb64/F4kDhtsNX+nq0clMGpQs+SvEyr5qzPZjA+nyifqkgDmDB6qud
-         KtE+Mi6DiOhATsh+678XONtgoBdNptGj2sJrugSjrXmVPYS5K5tHVMCaSRwJulvx54
-         D4EMgkwQE1Ns6Dn5qksLD1+fiWPqRrWBanI/liB1kAQnZGf5rQu29+D9IPz1ZeQtEk
-         tQO0V+icVV3HagTU9eC9gG22Fd//gV1OmwnTXn1sQp10speFgzqKKwjeNRVAGjbRoN
-         pkQtdxmVCKcklodUIpDmTz2qHkeQggtyT3w2H0aU4731TDxkg9fhucc2sEsTK9ZSLn
-         FvdTIi/Flqb0w==
-Received: by jupiter.universe (Postfix, from userid 1000)
-        id 1CD914805A0; Wed, 12 Jul 2023 18:52:43 +0200 (CEST)
-From:   Sebastian Reichel <sebastian.reichel@collabora.com>
-To:     linux-rockchip@lists.infradead.org,
-        Heiko Stuebner <heiko@sntech.de>
-Cc:     Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Sebastian Reichel <sebastian.reichel@collabora.com>,
-        kernel@collabora.com
-Subject: [PATCH v1 4/4] arm64: dts: rockchip: rk3588s-rock5a: add USB2
-Date:   Wed, 12 Jul 2023 18:51:06 +0200
-Message-Id: <20230712165106.65603-5-sebastian.reichel@collabora.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230712165106.65603-1-sebastian.reichel@collabora.com>
-References: <20230712165106.65603-1-sebastian.reichel@collabora.com>
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 9A5C761874;
+        Wed, 12 Jul 2023 17:01:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BB08CC433C7;
+        Wed, 12 Jul 2023 17:01:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1689181302;
+        bh=W61o7LlkQs9LBIYjzHUJMBy72qDnWFS0/a8qJkXf2Fc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=M4J4H42OR/vtD+rw+wG1NQ6vEDrz8rXSySfrrPLrIUeoN4Ct2aPEuAjOwvaWRv3cW
+         aJpJmYYaiUoBOBEWGod9Vj5UcUS9Jpnhrh1jnK7lJ1dZIBIZLevH1E0muun1AfMPp0
+         NZvnUEEWhWG5FZNi/qjgIZUziApMhuQYsmtor+dQ1OXuNc68zMZng55dohedv2dWQJ
+         tRqa+mluwl9C5ERDwSrejHNbTQ+QBu+WlSJW+4t+5NuP9ZZSumjXCBfMYndqKB+FDm
+         NMEnBHPbyEg7iqHtKbHvCZ+yEYper6sgCEWs3nQthxV46vv2CSNymBgVVrX/r3IiWh
+         7tzLiibgRBjjg==
+Date:   Wed, 12 Jul 2023 18:01:36 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Palmer Dabbelt <palmer@dabbelt.com>
+Cc:     xingyu.wu@starfivetech.com, linux-riscv@lists.infradead.org,
+        devicetree@vger.kernel.org, mturquette@baylibre.com,
+        sboyd@kernel.org, p.zabel@pengutronix.de, kernel@esmil.dk,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        aou@eecs.berkeley.edu, hal.feng@starfivetech.com,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+Subject: Re: [PATCH v7 0/9] Add STG/ISP/VOUT clock and reset drivers for
+ StarFive JH7110
+Message-ID: <20230712-unsold-impound-02608d701dfb@spud>
+References: <20230712092007.31013-1-xingyu.wu@starfivetech.com>
+ <mhng-d3795910-5414-4555-bf3d-75ebe769ed2b@palmer-ri-x1c9a>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="YXK2FfLMDg7K1UTe"
+Content-Disposition: inline
+In-Reply-To: <mhng-d3795910-5414-4555-bf3d-75ebe769ed2b@palmer-ri-x1c9a>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -60,124 +62,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable USB2 (EHCI and OCHI mode) support for the Radxa ROCK 5 Model A.
-This adds USB support for the on-board WLAN/BT chip, the two USB2
-ports, the USB available from the 2x20 connector and the lower USB3
-port (in USB2 mode).
 
-The upper USB3 (further away from the PCB) uses the RK3588S USB TypeC
-OTG controller for USB2 and USB3 and thus is not supported at all at
-the moment.
+--YXK2FfLMDg7K1UTe
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
----
- .../boot/dts/rockchip/rk3588s-rock-5a.dts     | 78 +++++++++++++++++++
- 1 file changed, 78 insertions(+)
+On Wed, Jul 12, 2023 at 09:50:37AM -0700, Palmer Dabbelt wrote:
+> On Wed, 12 Jul 2023 02:19:58 PDT (-0700), xingyu.wu@starfivetech.com wrot=
+e:
+> > This patch serises are base on the basic JH7110 SYSCRG/AONCRG
+> > drivers and add new partial clock drivers and reset supports
+> > about System-Top-Group(STG), Image-Signal-Process(ISP)
+> > and Video-Output(VOUT) for the StarFive JH7110 RISC-V SoC. These
+> > clocks and resets could be used by DMA, VIN and Display modules.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
-index a6dff117b459..66eab281c2c9 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
-@@ -64,6 +64,20 @@ vcc12v_dcin: vcc12v-dcin-regulator {
- 		regulator-max-microvolt = <12000000>;
- 	};
- 
-+	vcc5v0_host: vcc5v0-host-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc5v0_host";
-+		regulator-boot-on;
-+		regulator-always-on;
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		enable-active-high;
-+		gpio = <&gpio4 RK_PB5 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&vcc5v0_host_en>;
-+		vin-supply = <&vcc5v0_sys>;
-+	};
-+
- 	vcc5v0_sys: vcc5v0-sys-regulator {
- 		compatible = "regulator-fixed";
- 		regulator-name = "vcc5v0_sys";
-@@ -292,6 +306,34 @@ rtl8211f_rst: rtl8211f-rst {
- 			rockchip,pins = <3 RK_PB7 RK_FUNC_GPIO &pcfg_pull_none>;
- 		};
- 	};
-+
-+	usb {
-+		vcc5v0_host_en: vcc5v0-host-en {
-+			rockchip,pins = <4 RK_PB5 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
-+	wifibt {
-+		wl_reset: wl-reset {
-+			rockchip,pins = <0 RK_PD0 RK_FUNC_GPIO &pcfg_pull_up>;
-+		};
-+
-+		wl_dis: wl-dis {
-+			rockchip,pins = <0 RK_PD5 RK_FUNC_GPIO &pcfg_output_high>;
-+		};
-+
-+		wl_wake_host: wl-wake-host {
-+			rockchip,pins = <0 RK_PC7 RK_FUNC_GPIO &pcfg_pull_up>;
-+		};
-+
-+		bt_dis: bt-dis {
-+			rockchip,pins = <0 RK_PD4 RK_FUNC_GPIO &pcfg_output_high>;
-+		};
-+
-+		bt_wake_host: bt-wake-host {
-+			rockchip,pins = <0 RK_PC5 RK_FUNC_GPIO &pcfg_pull_up>;
-+		};
-+	};
- };
- 
- &pwm3 {
-@@ -650,7 +692,43 @@ regulator-state-mem {
- 	};
- };
- 
-+&u2phy2 {
-+	status = "okay";
-+};
-+
-+&u2phy2_host {
-+	status = "okay";
-+	phy-supply = <&vcc5v0_host>;
-+};
-+
-+&u2phy3 {
-+	status = "okay";
-+};
-+
-+&u2phy3_host {
-+	phy-supply = <&vcc5v0_host>;
-+	status = "okay";
-+};
-+
- &uart2 {
- 	pinctrl-0 = <&uart2m0_xfer>;
- 	status = "okay";
- };
-+
-+&usb_host0_ehci {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&wl_reset &wl_dis &wl_wake_host &bt_dis &bt_wake_host>;
-+};
-+
-+&usb_host0_ohci {
-+	status = "okay";
-+};
-+
-+&usb_host1_ehci {
-+	status = "okay";
-+};
-+
-+&usb_host1_ohci {
-+	status = "okay";
-+};
--- 
-2.40.1
+> Happy to take it through the RISC-V tree if folks want, but IMO it's
+> probably better aimed at the clock/reset folks.  Either way I'd want to g=
+ive
+> them a chance to ack/review it, so I'm going to drop it from my list.
+>=20
+> Acked-by: Palmer Dabbelt <palmer@rivosinc.com>
 
+I had a look through it & I am generally happy with it - everything has
+either an R-b from DT folk or Hal on the drivers.
+I was going to propose the same thing as the PLL patchset - if Emil is
+happy with it, then I intend sending Stephen a PR for the drivers &
+bindings.
+
+Thanks,
+Conor.
+
+--YXK2FfLMDg7K1UTe
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZK7ccAAKCRB4tDGHoIJi
+0j6sAP42I2NRHZdpOyf2izUoUuaLCqoRMvx4DDBgBCweGvshWAEA7O4i3W5C2V/L
+ndm2wUnu6OPIY1snKnd2INzwEwr2XwA=
+=kp3i
+-----END PGP SIGNATURE-----
+
+--YXK2FfLMDg7K1UTe--
