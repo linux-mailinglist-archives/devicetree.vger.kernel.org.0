@@ -2,83 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AF7227508AA
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 14:48:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 07ED77508AF
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 14:49:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233287AbjGLMs4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jul 2023 08:48:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58568 "EHLO
+        id S232555AbjGLMtf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jul 2023 08:49:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58950 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231174AbjGLMsz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 08:48:55 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93ADA1727;
-        Wed, 12 Jul 2023 05:48:54 -0700 (PDT)
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36CCJP25002477;
-        Wed, 12 Jul 2023 12:48:42 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=rXIuXoAEhI7O3qWcksCIs8vl+k8098kXLaBDeBMr0vQ=;
- b=jTTZJ+aBwiOduMuSXCZtYQjeQ8PfuxPD9wyT6GJFSNUhtXLGCnwaq7mYIY4LB+aCuaqe
- vWHsSQkTF0jRw3iewyphAcs3iIGTARDbp8ZXnuuXUNSGU/ksSQ0ZnSMZfXSqVB9I9uGK
- qZmVlw5T6dex7ajd3JfVaNj466GryPpRhyIDpMMyCt9Ry+EqN6Oy+96y4rLJmFSmas69
- WIDo1kQ20OmeOdl7oC4rMb320Mvw9nYx/vipXBqOfQIFF6uH0U0M7OASaGRf/HqVnvNp
- le+6gB29NR4VdQSUFeS/WdxIOBB+UPEmK1oEgWVi8Vgx0+Px/1F/wHa9PChn+dG1TtX1 /w== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3rsf87hggh-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 12 Jul 2023 12:48:42 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 36CCmfS4003346
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 12 Jul 2023 12:48:41 GMT
-Received: from [10.201.3.91] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Wed, 12 Jul
- 2023 05:48:36 -0700
-Message-ID: <61346e56-3877-37c0-0df5-2436f97064e7@quicinc.com>
-Date:   Wed, 12 Jul 2023 18:18:32 +0530
+        with ESMTP id S232525AbjGLMte (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 08:49:34 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B9461712;
+        Wed, 12 Jul 2023 05:49:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1689166173; x=1720702173;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=AHerdfplQxVzMVmIE7yitFw6DX49G+yaoHF+TRw2CtE=;
+  b=qbgxSDGGVLoo1rLxAnKPL69WmAc710bdrbphTuBs0hfEm3dIBUaBmhVK
+   O4D4z9dXZ2EKTwwNQDkxbs/DfSkHj/HkhA2VXxyreRmgZkHaMU1Zc2oLS
+   9Zvqs31NTG3/ZDdm37cz3GePsU+LSiztl7b+mpgfMlqw0uTqV4vHMkosJ
+   qPAcbmCSaSRGL3Pto9w1UggLEUi2fY6veeb48asklWa+XXKi6S8+2Vwvt
+   Dgrk3QWdQUQBk7JNOYdVz+aL4uMHwY4wDCSAt8ks7NjzZBaWmj2oLzDav
+   cQKNCOfY/g3DP0fdfPvvHmCx/VBdbMwWfAc86AaSuIdUaANn4C1Ar25+Z
+   w==;
+X-IronPort-AV: E=Sophos;i="6.01,199,1684825200"; 
+   d="asc'?scan'208";a="161005954"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 12 Jul 2023 05:49:31 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Wed, 12 Jul 2023 05:49:31 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex02.mchp-main.com
+ (10.10.85.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
+ Transport; Wed, 12 Jul 2023 05:49:29 -0700
+Date:   Wed, 12 Jul 2023 13:48:58 +0100
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+CC:     Eric Lin <eric.lin@sifive.com>, <conor@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <dslin1010@gmail.com>,
+        Zong Li <zong.li@sifive.com>, <vincent.chen@sifive.com>,
+        Greentime Hu <greentime.hu@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>
+Subject: Re: [PATCH 3/3] dt-bindings: riscv: sifive: Add SiFive Private L2
+ cache controller
+Message-ID: <20230712-parking-acting-e91f24204467@wendy>
+References: <20230616063210.19063-1-eric.lin@sifive.com>
+ <20230616063210.19063-4-eric.lin@sifive.com>
+ <2437bda9-bbdb-ad80-7201-1e16e1388890@linaro.org>
+ <CAPqJEFoTsmVZ4kvsSB0RkQZaQGyXC96KV6RvdpeC5XxURCOZ0w@mail.gmail.com>
+ <8c9ed2d4-83ab-ecc0-a300-e6bc8e2047b6@linaro.org>
+ <CAPqJEFqhmxksvEgvC61cJcRGR0DrSWDZxJC3J7tdgcG8UY+sFw@mail.gmail.com>
+ <f5275617-d68c-c76b-d799-106f67cc2071@linaro.org>
+ <20230712110908.GA23216@hsinchu16>
+ <0865b422-d587-c1c7-9463-510832ddddf4@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v2 3/5] arm64: dts: qcom: ipq5332: Add tsens node
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, <amitk@kernel.org>,
-        <thara.gopinath@gmail.com>, <agross@kernel.org>,
-        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
-        <rafael@kernel.org>, <daniel.lezcano@linaro.org>,
-        <rui.zhang@intel.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <linux-pm@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC:     <quic_varada@quicinc.com>
-References: <20230712113539.4029941-1-quic_ipkumar@quicinc.com>
- <20230712113539.4029941-4-quic_ipkumar@quicinc.com>
- <a95dd01a-943f-e2d4-777f-a139fbc25238@linaro.org>
-From:   Praveenkumar I <quic_ipkumar@quicinc.com>
-In-Reply-To: <a95dd01a-943f-e2d4-777f-a139fbc25238@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: LuJVjy9CbJTPJJZScFi8q5TWucNj-56n
-X-Proofpoint-ORIG-GUID: LuJVjy9CbJTPJJZScFi8q5TWucNj-56n
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-07-12_08,2023-07-11_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 mlxscore=0
- lowpriorityscore=0 phishscore=0 mlxlogscore=915 malwarescore=0
- adultscore=0 clxscore=1015 priorityscore=1501 bulkscore=0 spamscore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2305260000 definitions=main-2307120114
-X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="CU9LDp6QRihEXXU7"
+Content-Disposition: inline
+In-Reply-To: <0865b422-d587-c1c7-9463-510832ddddf4@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,
+        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -86,114 +80,101 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+--CU9LDp6QRihEXXU7
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 7/12/2023 5:54 PM, Dmitry Baryshkov wrote:
-> On 12/07/2023 14:35, Praveenkumar I wrote:
->> IPQ5332 has tsens v2.3.3 peripheral. This patch adds the tsense
->> node with nvmem cells for calibration data.
->>
->> Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
->> ---
->> [v2]:
->>     Included qfprom nodes only for available sensors and removed
->>     the offset suffix.
->>
->>   arch/arm64/boot/dts/qcom/ipq5332.dtsi | 66 +++++++++++++++++++++++++++
->>   1 file changed, 66 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/ipq5332.dtsi 
->> b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
->> index 8bfc2db44624..0eef77e36609 100644
->> --- a/arch/arm64/boot/dts/qcom/ipq5332.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
->> @@ -150,6 +150,46 @@ qfprom: efuse@a4000 {
->>               reg = <0x000a4000 0x721>;
->>               #address-cells = <1>;
->>               #size-cells = <1>;
->> +
->> +            tsens_mode: mode@3e1 {
->> +                reg = <0x3e1 0x1>;
->> +                bits = <0 3>;
->> +            };
->> +
->> +            tsens_base0: base0@3e1 {
->> +                reg = <0x3e1 0x2>;
->> +                bits = <3 10>;
->> +            };
->> +
->> +            tsens_base1: base1@3e2 {
->> +                reg = <0x3e2 0x2>;
->> +                bits = <5 10>;
->> +            };
->> +
->> +            s11: s11@3a5 {
->> +                reg = <0x3a5 0x1>;
->> +                bits = <4 4>;
->> +            };
->> +
->> +            s12: s12@3a6 {
->> +                reg = <0x3a6 0x1>;
->> +                bits = <0 4>;
->> +            };
->> +
->> +            s13: s13@3a6 {
->> +                reg = <0x3a6 0x1>;
->> +                bits = <4 4>;
->> +            };
->> +
->> +            s14: s14@3ad {
->> +                reg = <0x3ad 0x2>;
->> +                bits = <7 4>;
->> +            };
->> +
->> +            s15: s15@3ae {
->> +                reg = <0x3ae 0x1>;
->> +                bits = <3 4>;
->> +            };
->>           };
->>             rng: rng@e3000 {
->> @@ -159,6 +199,32 @@ rng: rng@e3000 {
->>               clock-names = "core";
->>           };
->>   +        tsens: thermal-sensor@4a9000 {
->> +            compatible = "qcom,ipq5332-tsens";
->> +            reg = <0x4a9000 0x1000>,
->> +                  <0x4a8000 0x1000>;
->> +            nvmem-cells = <&tsens_mode>,
->> +                      <&tsens_base0>,
->> +                      <&tsens_base1>,
->> +                      <&s11>,
->> +                      <&s12>,
->> +                      <&s13>,
->> +                      <&s14>,
->> +                      <&s15>;
->> +            nvmem-cell-names = "mode",
->> +                       "base0",
->> +                       "base1",
->> +                       "s11",
->> +                       "s12",
->> +                       "s13",
->> +                       "s14",
->> +                       "s15";
->
-> Previously you had data for other sensors here. Are they not used at 
-> all, not wired, have no known-good placement? I think it might be 
-> better to declare all sensors here (and in the driver too) and then 
-> consider enabling only a pile of them in the thermal-zone node.
+On Wed, Jul 12, 2023 at 02:30:06PM +0200, Krzysztof Kozlowski wrote:
+> On 12/07/2023 13:09, Eric Lin wrote:
+> > On Sat, Jul 01, 2023 at 10:22:25AM +0200, Krzysztof Kozlowski wrote:
+> >> On 28/06/2023 18:31, Eric Lin wrote:
+> >>
+> >>>>>>
+> >>>>>>> +      - enum:
+> >>>>>>> +          - sifive,pL2Cache0
+> >>>>>>> +          - sifive,pL2Cache1
+> >>>>>>
+> >>>>>> What is "0" and "1" here? What do these compatibles represent? Why=
+ they
+> >>>>>> do not have any SoC related part?
+> >>>>>
+> >>>>> The pL2Cache1 has minor changes in hardware, but it can use the same
+> >>>>> pl2 cache driver.
+> >>>>
+> >>>> Then why aren't they compatible?
+> >>>>
+> >>>
+> >>> The pL2Cache1 has removed some unused bits in the register compared to
+> >>> pl2Cache0.
+> >>> From the hardware perspective, they are not compatible but they can
+> >>> share the same pl2 cache driver in software.
+> >>
+> >> So they are compatible... If they were not compatible, you wouldn't be
+> >> able to use the same match in the driver.
+> >>
+> >>> Thus, we would like to keep both. It would be great if you can provide
+> >>> some suggestions. Thanks.
+> >>
+> >> I propose to make them compatible, like every other piece of SoC. I
+> >> don't see any benefit of having them separate.
+> >>
+> > Sorry for the late reply.
+> > The pl2 cache is our internal platform IP and is not part of any SoC.=
+=20
+> >=20
+> > The reason why this driver is compatible with the hardware "pl2cache0" =
+and hardware "pl2cache1"
+> > is that it doesn't program the different parts of the config register
+> > However, our internal software (e.g., bare-metal software) will program=
+ these different parts,
+> > so it needs to rely on the different compatible string to identify the =
+hardware.
+> >  =20
+> > Additionally, we would like the compatible strings to reflect which har=
+dware is being used Thanks.
+>=20
+> I don't understand how does it contradicts anything I said. So you do
+> agree with me? Or what?
 
-Remaining sensors are not used at all. It is not wired. Only above 
-sensors are placed in SoC.
+I probably should've been keeping a closer eye here, sorry.
 
-- Praveenkumar
+I assume what Krzysztof means is why do you permit both
+"sifive,pL2Cache0" and "sifive,pL2Cache1" appearing in isolation. IOW,
+both of
+compatible =3D "sifive,pl2cache0";
+and
+compatible =3D "sifive,pl2cache1";
+are valid in your binding.
 
->
->> +            interrupts = <GIC_SPI 320 IRQ_TYPE_LEVEL_HIGH>;
->> +            interrupt-names = "combined";
->> +            #qcom,sensors = <5>;
->> +            #thermal-sensor-cells = <1>;
->> +        };
->> +
->>           tlmm: pinctrl@1000000 {
->>               compatible = "qcom,ipq5332-tlmm";
->>               reg = <0x01000000 0x300000>;
->
+The hardware for both might be different, and their full featuresets may
+be incompatible, but they implement a compatible subset of features. I
+would expect that the following would be the permitted compatible setups:
+compatible =3D "sifive,pl2cache0";
+and
+compatible =3D "sifive,pl2cache1", "sifive,pl2cache0";
+
+A consumer of the DT that does care for the differences should be
+looking for the specific compatible, and OS code that does not care can
+always bind to the "0" version.
+
+Do the "0" & "1" here refer to the IP version, as in
+sifive-blocks-ip-versioning.txt? I didn't think the compatibles
+containing those IP versions were supposed to appear in isolation,
+without a soc-specific one?
+
+Thanks,
+Conor.
+
+--CU9LDp6QRihEXXU7
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZK6hOQAKCRB4tDGHoIJi
+0u6kAQDnxOYwgeV+62r679GBsIIYf5NNa99MaO9EeUMAlI+TNQD9G3vpXDAUE94T
+A/l9b6xBjLKF8+2Ag3R54+tIC9OqEgc=
+=dQpf
+-----END PGP SIGNATURE-----
+
+--CU9LDp6QRihEXXU7--
