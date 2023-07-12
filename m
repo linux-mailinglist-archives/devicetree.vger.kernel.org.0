@@ -2,155 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C02957502E2
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 11:20:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A0A27502F1
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 11:23:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232819AbjGLJUj convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 12 Jul 2023 05:20:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36944 "EHLO
+        id S230207AbjGLJXU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jul 2023 05:23:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38418 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232494AbjGLJUW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 05:20:22 -0400
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 416BC19A3;
-        Wed, 12 Jul 2023 02:20:18 -0700 (PDT)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id A8BE58339;
-        Wed, 12 Jul 2023 17:20:15 +0800 (CST)
-Received: from EXMBX061.cuchost.com (172.16.6.61) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 12 Jul
- 2023 17:20:15 +0800
-Received: from localhost.localdomain (183.27.98.46) by EXMBX061.cuchost.com
- (172.16.6.61) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 12 Jul
- 2023 17:20:14 +0800
-From:   Xingyu Wu <xingyu.wu@starfivetech.com>
-To:     <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        "Michael Turquette" <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        "Philipp Zabel" <p.zabel@pengutronix.de>,
-        Conor Dooley <conor@kernel.org>,
-        "Emil Renner Berthing" <kernel@esmil.dk>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Hal Feng <hal.feng@starfivetech.com>,
-        Xingyu Wu <xingyu.wu@starfivetech.com>,
-        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>
-Subject: [PATCH v7 9/9] riscv: dts: starfive: jh7110: Add STGCRG/ISPCRG/VOUTCRG nodes
-Date:   Wed, 12 Jul 2023 17:20:07 +0800
-Message-ID: <20230712092007.31013-10-xingyu.wu@starfivetech.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230712092007.31013-1-xingyu.wu@starfivetech.com>
-References: <20230712092007.31013-1-xingyu.wu@starfivetech.com>
+        with ESMTP id S233269AbjGLJWy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 05:22:54 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4290F2129
+        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 02:22:14 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id 2adb3069b0e04-4fbb281eec6so10551372e87.1
+        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 02:22:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1689153723; x=1691745723;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=1NjGqRq5zWFdsly/kg1kDssbJCalEae2wRAUaYUdM+g=;
+        b=htcZzW1OS/gE5qeL+aoGVb+2cnRqTmLWUBuKnWqAyaELuoRXnlY54d5Gk83+MQxl7z
+         dOZuI3IYpxR2VjlVQ18FNEf/0F2Ti57PekZn8/vYah4HtK60xcb5/z5H1qqfyVMsZjR4
+         E2sEvVNJoDfjd4WaHC0+G+55hrvSO4AOB+jqCgzok1wDaKTmh7DfIj6HmyoXGJ+nelAr
+         f3NZOP0q2/UmM/ex2LQHDpoe8erPK8XZKAJNQQ8CJIJ04xtdqeJf9qqG7b0ib8lTo639
+         1sS6yx4//OVp6dpbnWYKfNd9ckc0e3n1yPimpSAPq7OaSqvH4Q5Gy1oUoUngzlam9jTI
+         Wffg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689153723; x=1691745723;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=1NjGqRq5zWFdsly/kg1kDssbJCalEae2wRAUaYUdM+g=;
+        b=f+nYIRID1AnO82VWV7dImyVI+nsuLzPvV/30m68fjfxfWLxlUiW4x4YGckGv0H4qRV
+         S+MkPoB5aJG60Hc9XnmdX/Rr4lpQARrL9KZCi3YSVxuCsTDeOcdiGsInpgbX5nG+isOf
+         HF8obZIWuMdTMxqIwzQsiuEsBwv89iJFaepLtjJ6LmZitfsBhVBhF1PsNLUBWNwNzRf4
+         dOpcr+bPW2fiNufHih5WTCHCVmAwgEMrtknYEpjBNZlgeihznnwnqiguCw87hF3PJ+J4
+         f3Net5heodd7p6UtL47VmwCHmOC459X9ANTSCk6XbvHQiY+3mO9URmSz6U5RXY5rEN5T
+         BmVQ==
+X-Gm-Message-State: ABy/qLZEg/VscfvE+G/5vtrXIvtkk2brnJt1u50rscE0jart/jPBQa4b
+        NXZnyHVij0N4S9ONGsLKl4y6dA==
+X-Google-Smtp-Source: APBJJlEaxJehnHDdYGksUXZVL4/FaFAeZB6Ghl/w8pfsxWfXUSB5H2x9pQGJSkSWkSc2kuQ9f9tb+Q==
+X-Received: by 2002:a05:6512:2025:b0:4f8:6625:f2ca with SMTP id s5-20020a056512202500b004f86625f2camr13186563lfs.61.1689153723165;
+        Wed, 12 Jul 2023 02:22:03 -0700 (PDT)
+Received: from [192.168.1.101] (abxh6.neoplus.adsl.tpnet.pl. [83.9.1.6])
+        by smtp.gmail.com with ESMTPSA id u22-20020ac243d6000000b004fbbf9e58bbsm621222lfl.126.2023.07.12.02.22.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 12 Jul 2023 02:22:02 -0700 (PDT)
+Message-ID: <af0e1e5f-c284-a33a-7626-f143b1a4b30e@linaro.org>
+Date:   Wed, 12 Jul 2023 11:22:01 +0200
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [183.27.98.46]
-X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX061.cuchost.com
- (172.16.6.61)
-X-YovoleRuleAgent: yovoleflag
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v3 1/3] dt-bindings: power: rpmhpd: Add Generic RPMh PD
+ indexes
+To:     Rohit Agarwal <quic_rohiagar@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        agross@kernel.org, andersson@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <1689054169-10800-1-git-send-email-quic_rohiagar@quicinc.com>
+ <1689054169-10800-2-git-send-email-quic_rohiagar@quicinc.com>
+ <6746ceb6-dac4-ee8e-411f-8de0ff8f12e0@linaro.org>
+ <77991119-a200-fbfe-5dba-580a0b0d3228@quicinc.com>
+Content-Language: en-US
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <77991119-a200-fbfe-5dba-580a0b0d3228@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add STGCRG/ISPCRG/VOUTCRG new node to support JH7110
-System-Top-Group, Image-Signal-Process and Video-Output
-clock and reset drivers for the JH7110 RISC-V SoC.
+On 12.07.2023 10:24, Rohit Agarwal wrote:
+> 
+> On 7/11/2023 8:41 PM, Dmitry Baryshkov wrote:
+>> On 11/07/2023 08:42, Rohit Agarwal wrote:
+>>> Add Generic RPMh Power Domain indexes that can be used
+>>> for all the Qualcomm SoC henceforth.
+>>>
+>>> Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
+>>> Suggested-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+>>> ---
+>>>   include/dt-bindings/power/qcom-rpmhpd.h | 30 ++++++++++++++++++++++++++++++
+>>>   1 file changed, 30 insertions(+)
+>>>   create mode 100644 include/dt-bindings/power/qcom-rpmhpd.h
+>>>
+>>> diff --git a/include/dt-bindings/power/qcom-rpmhpd.h b/include/dt-bindings/power/qcom-rpmhpd.h
+>>> new file mode 100644
+>>> index 0000000..4da2e04
+>>> --- /dev/null
+>>> +++ b/include/dt-bindings/power/qcom-rpmhpd.h
+>>> @@ -0,0 +1,30 @@
+>>> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
+>>> +/*
+>>> + * Copyright (c) 2023, Qualcomm Innovation Center, Inc. All rights reserved.
+>>> + */
+>>> +
+>>> +#ifndef _DT_BINDINGS_POWER_QCOM_RPMHPD_H
+>>> +#define _DT_BINDINGS_POWER_QCOM_RPMHPD_H
+>>> +
+>>> +/* Generic RPMH Power Domain Indexes */
+>>> +#define CX               0
+>>> +#define MX               1
+>>> +#define CX_AO            2
+>>> +#define MX_AO            3
+>>> +#define GFX              4
+>>> +#define MSS              5
+>>> +#define EBI              6
+>>> +#define LCX              7
+>>> +#define LMX              8
+>>> +#define MMCX             9
+>>> +#define MMCX_AO          10
+>>> +#define MXC              11
+>>> +#define MXC_AO           12
+>>> +#define NSP              13
+>>> +#define NSP0             14
+>>> +#define NSP1             15
+>>> +#define QPHY             16
+>>> +#define DDR              17
+>>> +#define XO               18
+>>
+>> I went through the existing defines. If we adopt the order of defines for sm8550, we can migrate that platform and all of sm8[234]50 without breaking ABI. This would be a minor gain, but still something.
+>>
+> Actually, I added them in the sequence based on the frequency with which they occur in the driver, so that there are less NULL entries created for any target additions. Shouldnt we keep it this way and ignore for previous targets then?
+Don't bother yourself with this, we've already dragged you through
+some bindings mess ;)
 
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
----
- arch/riscv/boot/dts/starfive/jh7110.dtsi | 55 ++++++++++++++++++++++++
- 1 file changed, 55 insertions(+)
+Dmitry just noticed that a happy coincidence occured and we could
+swap out SM8[234]_50 indices with these ones and they would still
+match. It'd be a separate patch though.
 
-diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-index e9c1e4ad71a2..0005fa163a78 100644
---- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-@@ -6,6 +6,7 @@
- 
- /dts-v1/;
- #include <dt-bindings/clock/starfive,jh7110-crg.h>
-+#include <dt-bindings/power/starfive,jh7110-pmu.h>
- #include <dt-bindings/reset/starfive,jh7110-crg.h>
- 
- / {
-@@ -398,6 +399,25 @@ i2c2: i2c@10050000 {
- 			status = "disabled";
- 		};
- 
-+		stgcrg: clock-controller@10230000 {
-+			compatible = "starfive,jh7110-stgcrg";
-+			reg = <0x0 0x10230000 0x0 0x10000>;
-+			clocks = <&osc>,
-+				 <&syscrg JH7110_SYSCLK_HIFI4_CORE>,
-+				 <&syscrg JH7110_SYSCLK_STG_AXIAHB>,
-+				 <&syscrg JH7110_SYSCLK_USB_125M>,
-+				 <&syscrg JH7110_SYSCLK_CPU_BUS>,
-+				 <&syscrg JH7110_SYSCLK_HIFI4_AXI>,
-+				 <&syscrg JH7110_SYSCLK_NOCSTG_BUS>,
-+				 <&syscrg JH7110_SYSCLK_APB_BUS>;
-+			clock-names = "osc", "hifi4_core",
-+				      "stg_axiahb", "usb_125m",
-+				      "cpu_bus", "hifi4_axi",
-+				      "nocstg_bus", "apb_bus";
-+			#clock-cells = <1>;
-+			#reset-cells = <1>;
-+		};
-+
- 		uart3: serial@12000000 {
- 			compatible = "snps,dw-apb-uart";
- 			reg = <0x0 0x12000000 0x0 0x10000>;
-@@ -558,5 +578,40 @@ pwrc: power-controller@17030000 {
- 			interrupts = <111>;
- 			#power-domain-cells = <1>;
- 		};
-+
-+		ispcrg: clock-controller@19810000 {
-+			compatible = "starfive,jh7110-ispcrg";
-+			reg = <0x0 0x19810000 0x0 0x10000>;
-+			clocks = <&syscrg JH7110_SYSCLK_ISP_TOP_CORE>,
-+				 <&syscrg JH7110_SYSCLK_ISP_TOP_AXI>,
-+				 <&syscrg JH7110_SYSCLK_NOC_BUS_ISP_AXI>,
-+				 <&dvp_clk>;
-+			clock-names = "isp_top_core", "isp_top_axi",
-+				      "noc_bus_isp_axi", "dvp_clk";
-+			resets = <&syscrg JH7110_SYSRST_ISP_TOP>,
-+				 <&syscrg JH7110_SYSRST_ISP_TOP_AXI>,
-+				 <&syscrg JH7110_SYSRST_NOC_BUS_ISP_AXI>;
-+			#clock-cells = <1>;
-+			#reset-cells = <1>;
-+			power-domains = <&pwrc JH7110_PD_ISP>;
-+		};
-+
-+		voutcrg: clock-controller@295c0000 {
-+			compatible = "starfive,jh7110-voutcrg";
-+			reg = <0x0 0x295c0000 0x0 0x10000>;
-+			clocks = <&syscrg JH7110_SYSCLK_VOUT_SRC>,
-+				 <&syscrg JH7110_SYSCLK_VOUT_TOP_AHB>,
-+				 <&syscrg JH7110_SYSCLK_VOUT_TOP_AXI>,
-+				 <&syscrg JH7110_SYSCLK_VOUT_TOP_HDMITX0_MCLK>,
-+				 <&syscrg JH7110_SYSCLK_I2STX0_BCLK>,
-+				 <&hdmitx0_pixelclk>;
-+			clock-names = "vout_src", "vout_top_ahb",
-+				      "vout_top_axi", "vout_top_hdmitx0_mclk",
-+				      "i2stx0_bclk", "hdmitx0_pixelclk";
-+			resets = <&syscrg JH7110_SYSRST_VOUT_TOP_SRC>;
-+			#clock-cells = <1>;
-+			#reset-cells = <1>;
-+			power-domains = <&pwrc JH7110_PD_VOUT>;
-+		};
- 	};
- };
--- 
-2.25.1
-
+Konrad
+> 
+> Thanks,
+> Rohit.
+>>> +
+>>> +#endif
+>>
