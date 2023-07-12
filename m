@@ -2,346 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D4447750914
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 15:02:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 46A85750891
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 14:44:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233400AbjGLNCi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jul 2023 09:02:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38924 "EHLO
+        id S231893AbjGLMoX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jul 2023 08:44:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56544 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233404AbjGLNCd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 09:02:33 -0400
-Received: from www530.your-server.de (www530.your-server.de [188.40.30.78])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9971F198B;
-        Wed, 12 Jul 2023 06:02:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=geanix.com;
-        s=default2211; h=Content-Transfer-Encoding:MIME-Version:References:
-        In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
-        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID;
-        bh=kNMrFGES7NPyloTYFnGi6EEQKp1AtpDzCVH9fxreOdQ=; b=zrYR3XF1TnQnweFsLg5cGVJ0PI
-        H6p6De9H2pCyJ1jX616+PKXugFR/u0TaHUuWzLx9WEXDWQQVRTs5629HTlFvahNLoOuLK8U79cAWZ
-        kb0c8f7XaS4Y8XbQQwFbeWG34QCwE+OJSzt9O8HthuRjMXuEfTWLHAof6zuUyvNhKQmxJH3/S+PuK
-        IhG6y8gkjXpNPoxNPzsm9se696XM8zdHuhEkjzV+eUViT5NxtBaAsQAk3Mdu5PoQ/LZ3OPxpQN4Jd
-        VvWnIukW97m8tkWGlAVINqhET1oFtM10G1Sj4ghc7XaPtwjN4B+BK85aKaGgtjKsdTIxG25VztrjJ
-        OSY7rLmA==;
-Received: from sslproxy05.your-server.de ([78.46.172.2])
-        by www530.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <sean@geanix.com>)
-        id 1qJZBk-000NNx-VB; Wed, 12 Jul 2023 14:43:24 +0200
-Received: from [185.17.218.86] (helo=zen..)
-        by sslproxy05.your-server.de with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <sean@geanix.com>)
-        id 1qJZBk-000L9W-B3; Wed, 12 Jul 2023 14:43:24 +0200
-From:   Sean Nyekjaer <sean@geanix.com>
-To:     l.goehrs@pengutronix.de, a.fatoum@pengutronix.de,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>
-Cc:     Sean Nyekjaer <sean@geanix.com>, dantuguf14105@gmail.com,
-        Olivier Moysan <olivier.moysan@foss.st.com>,
-        devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v4 9/9] ARM: dts: stm32: Add Octavo OSD32MP1-RED board
-Date:   Wed, 12 Jul 2023 14:42:47 +0200
-Message-Id: <20230712124248.2400862-9-sean@geanix.com>
-X-Mailer: git-send-email 2.40.0
-In-Reply-To: <20230712124248.2400862-1-sean@geanix.com>
-References: <20230712124248.2400862-1-sean@geanix.com>
+        with ESMTP id S231827AbjGLMoW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 08:44:22 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50131170E;
+        Wed, 12 Jul 2023 05:44:21 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 36CCi072074962;
+        Wed, 12 Jul 2023 07:44:00 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1689165840;
+        bh=spNPRZC8sNqm2PQf0XbXqwzo32+EsCDsDsMeIh9M4Z8=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=jMx6srzwxb/krEsgytQxdgYR90Wj5DndQ6KGyDaxcuzfJJ09W3e1X3F3hsB6sMj92
+         Z4CAWCZJpt9F/o7jeqAI5QVw0obe7ZFZ0jc5jjTQ9CoRB4SXolJBg0hbL59V8Em2VU
+         5joebqaNcwMnYWPDo1nTjzKxmvQRWThq1CFU4EXc=
+Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 36CCi0pL017505
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 12 Jul 2023 07:44:00 -0500
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 12
+ Jul 2023 07:43:59 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 12 Jul 2023 07:43:59 -0500
+Received: from [172.24.227.112] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 36CChuwa070068;
+        Wed, 12 Jul 2023 07:43:56 -0500
+Message-ID: <5d2ec125-1f05-2316-1e9a-24b5d85aa4c9@ti.com>
+Date:   Wed, 12 Jul 2023 18:13:55 +0530
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Authenticated-Sender: sean@geanix.com
-X-Virus-Scanned: Clear (ClamAV 0.103.8/26967/Wed Jul 12 09:28:32 2023)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v5 1/5] arm64: dts: ti: k3-j784s4-main: Add system
+ controller and SERDES lane mux
+Content-Language: en-US
+To:     Roger Quadros <rogerq@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Nishanth Menon <nm@ti.com>
+CC:     <vigneshr@ti.com>, <krzysztof.kozlowski+dt@linaro.org>,
+        <afd@ti.com>, <s-vadapalli@ti.com>, <kristo@kernel.org>,
+        <robh+dt@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20230710101705.154119-1-j-choudhary@ti.com>
+ <20230710101705.154119-2-j-choudhary@ti.com>
+ <23833669-b9f7-94aa-ea42-56843842cba6@linaro.org>
+ <d0fce3b5-222c-fc0f-ba16-988e4cc0520e@ti.com>
+ <20230711153144.jvofubaez5uoog5p@unmanaged>
+ <1e3b4fa4-6de7-e7bb-f1f7-266a73d87fb0@linaro.org>
+ <b24c2124-fe3b-246c-9af9-3ecee9fb32d4@kernel.org>
+From:   Jayesh Choudhary <j-choudhary@ti.com>
+In-Reply-To: <b24c2124-fe3b-246c-9af9-3ecee9fb32d4@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for the Octavo OSD32MP1-RED development board.
 
-General features:
- - STM32MP157C
- - 512MB DDR3
- - CAN-FD
- - HDMI
- - USB-C OTG
- - UART
 
-Signed-off-by: Sean Nyekjaer <sean@geanix.com>
-Reviewed-by: Olivier Moysan <olivier.moysan@foss.st.com>
----
-Changes since v1:
- - Fixed comments from Ahmad
+On 12/07/23 16:51, Roger Quadros wrote:
+> 
+> 
+> On 12/07/2023 08:44, Krzysztof Kozlowski wrote:
+>> On 11/07/2023 17:31, Nishanth Menon wrote:
+>>> On 12:01-20230711, Jayesh Choudhary wrote:
+>>>>
+>>>>
+>>>> On 10/07/23 17:13, Krzysztof Kozlowski wrote:
+>>>>> On 10/07/2023 12:17, Jayesh Choudhary wrote:
+>>>>>> From: Siddharth Vadapalli <s-vadapalli@ti.com>
+>>>>>>
+>>>>>> The system controller node manages the CTRL_MMR0 region.
+>>>>>> Add serdes_ln_ctrl node which is used for controlling the SERDES lane mux.
+>>>>>>
+>>>>>> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+>>>>>> [j-choudhary@ti.com: Add reg property to fix dtc warning]
+>>>>>> Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
+>>>>>> ---
+>>>>>>    arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi | 23 ++++++++++++++++++++++
+>>>>>>    1 file changed, 23 insertions(+)
+>>>>>>
+>>>>>> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
+>>>>>> index 2ea0adae6832..68cc2fa053e7 100644
+>>>>>> --- a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
+>>>>>> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
+>>>>>> @@ -5,6 +5,9 @@
+>>>>>>     * Copyright (C) 2022 Texas Instruments Incorporated - https://www.ti.com/
+>>>>>>     */
+>>>>>> +#include <dt-bindings/mux/mux.h>
+>>>>>> +#include <dt-bindings/mux/ti-serdes.h>
+>>>>>
+>>>>> Why? What do you use from that binding?
+>>>>>
+>>>>
+>>>> Missed idle-state in the mux-controller node here for default values.
+>>>> I will wait for more feedback and then re-spin the series.
+>>>
+>>> btw, I am wondering if ti-serdes.h should even exist in dt-bindings -
+>>> are any of the macros used in the driver? or should this follow the
+>>> pinctrl style macros that could happily reside in arch/arm64/boot/dts/ti
+>>> ?
+>>
+>> I don't see any usage in drivers, which is a clear indication that it
+>> might not be suitable for bindings. What are these values? Look like
+>> some register values, which there is little sense in making a binding.
+>>
+>> Best regards,
+>> Krzysztof
+>>
+>>
+> 
+> You are right. They are constants not used in the driver directly.
+> mmio-mux driver uses it to set the idle state of the mux via the
+> 'idle-states' property.
+> 
+> I agree with Nishanth that they should be moved to arch/arm64/boot/dts/ti
+> 
 
-Changes since v2:
- - Reordered phandles alfabetically
- - Added devicetree to Makefile
+Then I will do the cleanup for all platforms and then post the dependent
+series before spinning v6.
 
-Changes since v3:
- - Explained the dma disable
- - Removed the status ok for hdmi-transmitter
-
- arch/arm/boot/dts/st/Makefile                 |   3 +-
- .../boot/dts/st/stm32mp157c-osd32mp1-red.dts  | 226 ++++++++++++++++++
- 2 files changed, 228 insertions(+), 1 deletion(-)
- create mode 100644 arch/arm/boot/dts/st/stm32mp157c-osd32mp1-red.dts
-
-diff --git a/arch/arm/boot/dts/st/Makefile b/arch/arm/boot/dts/st/Makefile
-index 44b264c399ec..94feb1f1d569 100644
---- a/arch/arm/boot/dts/st/Makefile
-+++ b/arch/arm/boot/dts/st/Makefile
-@@ -59,7 +59,8 @@ dtb-$(CONFIG_ARCH_STM32) += \
- 	stm32mp157c-lxa-tac-gen1.dtb \
- 	stm32mp157c-lxa-tac-gen2.dtb \
- 	stm32mp157c-odyssey.dtb \
--	stm32mp157c-phycore-stm32mp1-3.dtb
-+	stm32mp157c-phycore-stm32mp1-3.dtb \
-+	stm32mp157c-osd32mp1-red.dtb
- dtb-$(CONFIG_ARCH_U8500) += \
- 	ste-snowball.dtb \
- 	ste-hrefprev60-stuib.dtb \
-diff --git a/arch/arm/boot/dts/st/stm32mp157c-osd32mp1-red.dts b/arch/arm/boot/dts/st/stm32mp157c-osd32mp1-red.dts
-new file mode 100644
-index 000000000000..2e2751a62aaf
---- /dev/null
-+++ b/arch/arm/boot/dts/st/stm32mp157c-osd32mp1-red.dts
-@@ -0,0 +1,226 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause)
-+/*
-+ * Copyright (C) Geanix ApS 2023 - All Rights Reserved
-+ * Author: Sean Nyekjaer <sean@geanix.com>
-+ */
-+
-+/dts-v1/;
-+
-+#include "stm32mp157.dtsi"
-+#include "stm32mp15xc.dtsi"
-+#include "stm32mp15xx-osd32.dtsi"
-+#include "stm32mp15xxac-pinctrl.dtsi"
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/pinctrl/stm32-pinfunc.h>
-+
-+/ {
-+	model = "Octavo OSD32MP1 RED board";
-+	compatible = "oct,stm32mp157c-osd32-red", "oct,stm32mp15xx-osd32", "st,stm32mp157";
-+
-+	aliases {
-+		serial0 = &uart4;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	led-controller-0 {
-+		compatible = "gpio-leds";
-+
-+		led-0 {
-+			label = "heartbeat";
-+			gpios = <&gpiod 11 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "heartbeat";
-+		};
-+	};
-+};
-+
-+&crc1 {
-+	status = "okay";
-+};
-+
-+&dts {
-+	status = "okay";
-+};
-+
-+&ethernet0 {
-+	pinctrl-names = "default", "sleep";
-+	pinctrl-0 = <&ethernet0_rgmii_pins_a>;
-+	pinctrl-1 = <&ethernet0_rgmii_sleep_pins_a>;
-+	phy-mode = "rgmii-id";
-+	max-speed = <1000>;
-+	phy-handle = <&phy0>;
-+	st,eth-clk-sel;
-+	status = "okay";
-+
-+	mdio {
-+		compatible = "snps,dwmac-mdio";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		phy0: ethernet-phy@3 {
-+			reg = <3>;
-+		};
-+	};
-+};
-+
-+&iwdg2 {
-+	timeout-sec = <32>;
-+	status = "okay";
-+};
-+
-+&i2c1 {
-+	pinctrl-names = "default", "sleep";
-+	pinctrl-0 = <&i2c1_pins_a>;
-+	pinctrl-1 = <&i2c1_sleep_pins_a>;
-+	status = "okay";
-+	i2c-scl-rising-time-ns = <100>;
-+	i2c-scl-falling-time-ns = <7>;
-+	/* spare dmas for other usage */
-+	/delete-property/dmas;
-+	/delete-property/dma-names;
-+
-+	hdmi-transmitter@39 {
-+		compatible = "sil,sii9022";
-+		reg = <0x39>;
-+		reset-gpios = <&gpiog 0 GPIO_ACTIVE_LOW>;
-+		interrupts = <1 IRQ_TYPE_EDGE_FALLING>;
-+		interrupt-parent = <&gpiog>;
-+		pinctrl-names = "default", "sleep";
-+		pinctrl-0 = <&ltdc_pins_e>;
-+		pinctrl-1 = <&ltdc_sleep_pins_e>;
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			port@0 {
-+				reg = <0>;
-+				sii9022_in: endpoint {
-+					remote-endpoint = <&ltdc_ep0_out>;
-+				};
-+			};
-+
-+			port@1 {
-+				reg = <1>;
-+				sii9022_tx_endpoint: endpoint {
-+					remote-endpoint = <&i2s2_endpoint>;
-+				};
-+			};
-+		};
-+	};
-+};
-+
-+&i2s2 {
-+	clocks = <&rcc SPI2>, <&rcc SPI2_K>, <&rcc CK_PER>, <&rcc PLL3_R>;
-+	clock-names = "pclk", "i2sclk", "x8k", "x11k";
-+	pinctrl-names = "default", "sleep";
-+	pinctrl-0 = <&i2s2_pins_b>;
-+	pinctrl-1 = <&i2s2_sleep_pins_b>;
-+	status = "okay";
-+
-+	i2s2_port: port {
-+		i2s2_endpoint: endpoint {
-+			remote-endpoint = <&sii9022_tx_endpoint>;
-+			format = "i2s";
-+			mclk-fs = <256>;
-+		};
-+	};
-+};
-+
-+&ltdc {
-+	status = "okay";
-+
-+	port {
-+		ltdc_ep0_out: endpoint@0 {
-+			reg = <0>;
-+			remote-endpoint = <&sii9022_in>;
-+		};
-+	};
-+};
-+
-+&m_can1 {
-+	pinctrl-names = "default", "sleep";
-+	pinctrl-0 = <&m_can1_pins_d>;
-+	pinctrl-1 = <&m_can1_sleep_pins_d>;
-+	status = "okay";
-+};
-+
-+&pwr_regulators {
-+	vdd-supply = <&vdd>;
-+	vdd_3v3_usbfs-supply = <&vdd_usb>;
-+};
-+
-+&rtc {
-+	status = "okay";
-+};
-+
-+&sdmmc1 {
-+	pinctrl-names = "default", "opendrain", "sleep";
-+	pinctrl-0 = <&sdmmc1_b4_pins_a>;
-+	pinctrl-1 = <&sdmmc1_b4_od_pins_a>;
-+	pinctrl-2 = <&sdmmc1_b4_sleep_pins_a>;
-+	cd-gpios = <&gpioe 7 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-+	disable-wp;
-+	st,neg-edge;
-+	bus-width = <4>;
-+	vmmc-supply = <&v3v3>;
-+	status = "okay";
-+};
-+
-+&sdmmc2 {
-+	pinctrl-names = "default", "opendrain", "sleep";
-+	pinctrl-0 = <&sdmmc2_b4_pins_a &sdmmc2_d47_pins_d>;
-+	pinctrl-1 = <&sdmmc2_b4_od_pins_a>;
-+	pinctrl-2 = <&sdmmc2_b4_sleep_pins_a &sdmmc2_d47_sleep_pins_d>;
-+	non-removable;
-+	no-sd;
-+	no-sdio;
-+	st,neg-edge;
-+	bus-width = <8>;
-+	vmmc-supply = <&v3v3>;
-+	vqmmc-supply = <&vdd>;
-+	mmc-ddr-3_3v;
-+	status = "okay";
-+};
-+
-+&uart4 {
-+	pinctrl-names = "default", "sleep", "idle";
-+	pinctrl-0 = <&uart4_pins_a>;
-+	pinctrl-1 = <&uart4_sleep_pins_a>;
-+	pinctrl-2 = <&uart4_idle_pins_a>;
-+	/* spare dmas for other usage */
-+	/delete-property/dmas;
-+	/delete-property/dma-names;
-+	status = "okay";
-+};
-+
-+&usbh_ehci {
-+	phys = <&usbphyc_port0>;
-+	phy-names = "usb";
-+	status = "okay";
-+};
-+
-+&usbh_ohci {
-+	phys = <&usbphyc_port0>;
-+	phy-names = "usb";
-+	status = "okay";
-+};
-+
-+&usbotg_hs {
-+	vbus-supply = <&vbus_otg>;
-+};
-+
-+&usbphyc {
-+	status = "okay";
-+};
-+
-+&usbphyc_port0 {
-+	phy-supply = <&vdd_usb>;
-+};
-+
-+&usbphyc_port1 {
-+	phy-supply = <&vdd_usb>;
-+};
--- 
-2.40.0
+Thanks and Warm regards,
+-Jayesh
 
