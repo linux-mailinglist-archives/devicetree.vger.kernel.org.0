@@ -2,517 +2,402 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 451EB751021
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 19:58:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 35A2D75102B
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 20:00:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232483AbjGLR6O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jul 2023 13:58:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54190 "EHLO
+        id S232420AbjGLSAN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jul 2023 14:00:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55396 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232311AbjGLR6J (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 13:58:09 -0400
-Received: from mail-pf1-x42d.google.com (mail-pf1-x42d.google.com [IPv6:2607:f8b0:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 718A8199E;
-        Wed, 12 Jul 2023 10:58:07 -0700 (PDT)
-Received: by mail-pf1-x42d.google.com with SMTP id d2e1a72fcca58-6726d5d92afso693096b3a.1;
-        Wed, 12 Jul 2023 10:58:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1689184687; x=1691776687;
-        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
-         :content-language:user-agent:mime-version:date:message-id:sender
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=pny1aYjNXYFl78WbEOF0DtXJPo5MK8VKFPATPLc74sA=;
-        b=sLvNEi+z4hHGnMamq7u+RTz0umPhBTkcwyH3v6+/86E/tfk3l+/rC/am7ydF8lp+JY
-         UzsIZEuiDP1cUSeL0rtLic7hz9KsYMGUu6bNkkpqOXWTti8jlH5QNL6FQBRcsWznTuGx
-         9ykD2KWrf2KzpnGec2DjpYrggKWRKBGQjPFl2A1Bo56P53omGf64z2fz29apHNh5QOto
-         7GpZecFfJLIOudkB4IFHtoafr2wIzkKNJpUV4T8SZs2a21Kt6WiTHmuqy6ETcIWcCSjJ
-         IBZvqt8MVsxfeoR5tWhQ0sC8LA9Spg9w19DURZ8NrBJHAkFtW2Qw/hIC/RP/4IDuc7VA
-         egDA==
+        with ESMTP id S232311AbjGLSAN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 14:00:13 -0400
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6EE6B1BE4
+        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 11:00:10 -0700 (PDT)
+Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 3EB453F189
+        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 18:00:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1689184808;
+        bh=ycPioG3gIzpzoZSQ8GeUHr/0JGk1P2Rb0KrP1ftWmew=;
+        h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+         To:Cc:Content-Type;
+        b=Zo6gazK0sBHJJPzDLFWk71gSwrv9t+m0/y4nvyGUnJumsnwSWxFZVZk/uOL7xqzAN
+         gR93y8PKNAQJeFt1Uhedwwe7sFsSWjABbR+SBLGqNeOZZ3A3b3cFxRH8IkkjBsJ9I1
+         zWs7P6Xfg8217t2wvESYwtfpMAlL1zcorkTH3a2D1CG1tMAeHT0CUYZDQUwL3rtkqg
+         VzL9vju3tpkBiizgKEdEeWpLSSpTz4W9LgsVizDhw+VqI8g8bXa1+tDG2DmCNzcHBB
+         HkqeiW1Ap4tDGnKnshsCKyY3ER/1Nw+GWvEEYZRVdnnoO6WTwq7v1uJL/PMmeLNgun
+         mDBoxPcs/niAg==
+Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-767564705f5so847237285a.1
+        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 11:00:08 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689184687; x=1691776687;
-        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
-         :content-language:user-agent:mime-version:date:message-id:sender
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=pny1aYjNXYFl78WbEOF0DtXJPo5MK8VKFPATPLc74sA=;
-        b=Lbzmy9FG4ol2hl3XL88cS8hHuqHqUbSUQTNYEmVm6lKiCvQpJ1FvnJVnTHW37olm3C
-         hEa/Hhd7R5xBPgeHoiBDQbFoc0QqO4tpX66OFgxmVIpx0wAytamKHmUudBjZw4pLN2sX
-         EoRR6He41H6TV9iSXs20O+04tCFGhP7lzbRq1CpjV0QmLtcTbBTIN2IqvOaYVxNvNxTV
-         5xaK8GTIxvjtcR31AXwScDEjK3kACU8rTfJfx8rFjHcTgv3SQUZz2Zd6ymZDF1bSb+d2
-         VD7mZhbwaH8xZfOKtWN6+kTD3OzYH3ZeA1T8TRDPJgSN4FcA7crGbsh2zIkBhHEAS5X9
-         sYkA==
-X-Gm-Message-State: ABy/qLaJuPLQg1Tw1dk1dheyioJoGREtoFjP4Rk6jg7s2gwEOwPWj+gO
-        gDuBhRe4Axl8VksI4J047Nggh0vToL0=
-X-Google-Smtp-Source: APBJJlFT01LHPaI9H6TatqoxUSnUeJ2G49ygoCTnDZNrhBgG9UKYUbnAtweP85MwzqdTvlP5xlFT0g==
-X-Received: by 2002:a17:902:708a:b0:1b8:76d1:f1e8 with SMTP id z10-20020a170902708a00b001b876d1f1e8mr2799494plk.28.1689184686635;
-        Wed, 12 Jul 2023 10:58:06 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id f9-20020a17090274c900b001b9df8f2907sm4204895plt.264.2023.07.12.10.58.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 12 Jul 2023 10:58:05 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <76aa2aa3-1d38-36a2-d664-00b719f37932@roeck-us.net>
-Date:   Wed, 12 Jul 2023 10:58:04 -0700
+        d=1e100.net; s=20221208; t=1689184806; x=1691776806;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ycPioG3gIzpzoZSQ8GeUHr/0JGk1P2Rb0KrP1ftWmew=;
+        b=U2fRnmNH/xDYsmHmFtkieIlchqqr5lQyQebRHvgYRUCH4jLLPfB684NsWfyTQPlaBt
+         GAjSohjurFnkRT/TtcmjbDTmAjnBBsyYeY3sscIY8D1CZxMh/G0ZBjWDRMSGdi5pqpzH
+         OkVrBfSe/bAuWKjK6EknMEAgWJCAF3E59p/ugWSfojk7pMil9PJjupsOkrhWp70qXKcE
+         v12/qDxkgh7ePDgd81ABgkb2NTeTCH5LxFABd8NWbwJyE6tf5qTC4Jc29ZFNsDp4bjEl
+         06gopQaDUKCWQa2GqGVe9JlrGxrXL0jLOS6Q8Iq3hTK6EG5RqFAPr0MMDh15BlDURsx0
+         /C/w==
+X-Gm-Message-State: ABy/qLaJ9RUa5afRr6DBKwBn1xmO3qM4D41PFbeBlW4gW4U+tc0mr7dy
+        NhFVDMUNLEuYOHNyXfNo1QySy3TFVZOEeHDXRDvax6k0lAEAEz/rdT5xGcLM1dazJHIUAoAyoTX
+        tumADDvmYAKA6bz8FHDMhIarhlPyM6Wmp+1BH/jWMsUQdkDVkuVuF7CM=
+X-Received: by 2002:ac8:5bd1:0:b0:403:a7a5:7314 with SMTP id b17-20020ac85bd1000000b00403a7a57314mr14857059qtb.37.1689184806515;
+        Wed, 12 Jul 2023 11:00:06 -0700 (PDT)
+X-Google-Smtp-Source: APBJJlGYV6FIqP+ozA9BZRYd3XOP3zXm8Fcuab2twwHiW4vKDUDKXJwLdlgN5hdwEU/eWFrjQpyUXchw9A8wesZnR9I=
+X-Received: by 2002:ac8:5bd1:0:b0:403:a7a5:7314 with SMTP id
+ b17-20020ac85bd1000000b00403a7a57314mr14857028qtb.37.1689184806211; Wed, 12
+ Jul 2023 11:00:06 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Content-Language: en-US
-To:     Naresh Solanki <naresh.solanki@9elements.com>,
-        devicetree@vger.kernel.org, Jean Delvare <jdelvare@suse.com>
-Cc:     linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
-        Patrick Rudolph <patrick.rudolph@9elements.com>
-References: <20230712114754.500477-1-Naresh.Solanki@9elements.com>
- <20230712114754.500477-6-Naresh.Solanki@9elements.com>
-From:   Guenter Roeck <linux@roeck-us.net>
-Subject: Re: [PATCH 6/8] hwmon: (pmbus/mp2975) Add support for MP2971 and
- MP2973
-In-Reply-To: <20230712114754.500477-6-Naresh.Solanki@9elements.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+References: <20230712092007.31013-1-xingyu.wu@starfivetech.com> <20230712092007.31013-5-xingyu.wu@starfivetech.com>
+In-Reply-To: <20230712092007.31013-5-xingyu.wu@starfivetech.com>
+From:   Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Date:   Wed, 12 Jul 2023 19:59:49 +0200
+Message-ID: <CAJM55Z8uv35BSH-RFg6bv8HO-uX0G774wgH+bqEoJBui=QTGkA@mail.gmail.com>
+Subject: Re: [PATCH v7 4/9] clk: starfive: Add StarFive JH7110
+ Image-Signal-Process clock driver
+To:     Xingyu Wu <xingyu.wu@starfivetech.com>
+Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Conor Dooley <conor@kernel.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Hal Feng <hal.feng@starfivetech.com>,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 7/12/23 04:47, Naresh Solanki wrote:
-> From: Patrick Rudolph <patrick.rudolph@9elements.com>
-> 
-> Add support for MP2971 and MP2973, the successor of MP2975.
-> 
-> The major differences are:
->   - On MP2973 and MP2971 the Vref cannot be read and thus most of
->     the OVP/current calculations won't work.
->   - MP2973 and MP2971 also support LINEAR format for VOUT
->   - MP2973 and MP2971 do not support OVP2
->   - On MP2973 and MP2971 most registers are in LINEAR format
->   - The IMVP9_EN bit has a different position
->   - Per phase current sense haven't been implemented.
-> 
-> As on MP2975 most of the FAULT_LIMIT and WARN_LIMIT registers
-> have been redefined and doesn't provide the functionality as
-> defined in PMBUS spec.
-> 
-> Tested on MP2973 and MP2971.
-> 
-> Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
-> Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
+On Wed, 12 Jul 2023 at 11:22, Xingyu Wu <xingyu.wu@starfivetech.com> wrote:
+>
+> Add driver for the StarFive JH7110 Image-Signal-Process clock controller.
+> And these clock controllers should power on and enable the clocks from
+> SYSCRG first before registering.
+>
+> Reviewed-by: Hal Feng <hal.feng@starfivetech.com>
+> Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
 > ---
->   drivers/hwmon/pmbus/mp2975.c | 262 +++++++++++++++++++++++++++++------
->   1 file changed, 221 insertions(+), 41 deletions(-)
-> 
-> diff --git a/drivers/hwmon/pmbus/mp2975.c b/drivers/hwmon/pmbus/mp2975.c
-> index 13d8b95eb992..83242595ccbe 100644
-> --- a/drivers/hwmon/pmbus/mp2975.c
-> +++ b/drivers/hwmon/pmbus/mp2975.c
-> @@ -35,6 +35,8 @@
->   #define MP2975_MFR_OVP_TH_SET		0xe5
->   #define MP2975_MFR_UVP_SET		0xe6
->   
-> +#define MP2973_MFR_RESO_SET		0xc7
+>  drivers/clk/starfive/Kconfig                  |   8 +
+>  drivers/clk/starfive/Makefile                 |   1 +
+>  .../clk/starfive/clk-starfive-jh7110-isp.c    | 232 ++++++++++++++++++
+>  drivers/clk/starfive/clk-starfive-jh7110.h    |   6 +
+>  4 files changed, 247 insertions(+)
+>  create mode 100644 drivers/clk/starfive/clk-starfive-jh7110-isp.c
+>
+> diff --git a/drivers/clk/starfive/Kconfig b/drivers/clk/starfive/Kconfig
+> index eb1023b5e95a..13b4d08cbcd2 100644
+> --- a/drivers/clk/starfive/Kconfig
+> +++ b/drivers/clk/starfive/Kconfig
+> @@ -47,3 +47,11 @@ config CLK_STARFIVE_JH7110_STG
+>         help
+>           Say yes here to support the System-Top-Group clock controller
+>           on the StarFive JH7110 SoC.
 > +
->   #define MP2975_VOUT_FORMAT		BIT(15)
->   #define MP2975_VID_STEP_SEL_R1		BIT(4)
->   #define MP2975_IMVP9_EN_R1		BIT(13)
-> @@ -49,8 +51,32 @@
->   #define MP2975_SENSE_AMPL_HALF		2
->   #define MP2975_VIN_UV_LIMIT_UNIT	8
->   
-> +#define MP2973_VOUT_FORMAT_R1		GENMASK(7, 6)
-> +#define MP2973_VOUT_FORMAT_R2		GENMASK(4, 3)
-> +#define MP2973_VOUT_FORMAT_DIRECT_R1	BIT(7)
-> +#define MP2973_VOUT_FORMAT_LINEAR_R1	BIT(6)
-> +#define MP2973_VOUT_FORMAT_DIRECT_R2	BIT(4)
-> +#define MP2973_VOUT_FORMAT_LINEAR_R2	BIT(3)
+> +config CLK_STARFIVE_JH7110_ISP
+> +       tristate "StarFive JH7110 Image-Signal-Process clock support"
+> +       depends on CLK_STARFIVE_JH7110_SYS && JH71XX_PMU
+> +       default m if ARCH_STARFIVE
+> +       help
+> +         Say yes here to support the Image-Signal-Process clock controller
+> +         on the StarFive JH7110 SoC.
+> diff --git a/drivers/clk/starfive/Makefile b/drivers/clk/starfive/Makefile
+> index b81e97ee2659..76fb9f8d628b 100644
+> --- a/drivers/clk/starfive/Makefile
+> +++ b/drivers/clk/starfive/Makefile
+> @@ -7,3 +7,4 @@ obj-$(CONFIG_CLK_STARFIVE_JH7100_AUDIO) += clk-starfive-jh7100-audio.o
+>  obj-$(CONFIG_CLK_STARFIVE_JH7110_SYS)  += clk-starfive-jh7110-sys.o
+>  obj-$(CONFIG_CLK_STARFIVE_JH7110_AON)  += clk-starfive-jh7110-aon.o
+>  obj-$(CONFIG_CLK_STARFIVE_JH7110_STG)  += clk-starfive-jh7110-stg.o
+> +obj-$(CONFIG_CLK_STARFIVE_JH7110_ISP)  += clk-starfive-jh7110-isp.o
+> diff --git a/drivers/clk/starfive/clk-starfive-jh7110-isp.c b/drivers/clk/starfive/clk-starfive-jh7110-isp.c
+> new file mode 100644
+> index 000000000000..7e51447060fe
+> --- /dev/null
+> +++ b/drivers/clk/starfive/clk-starfive-jh7110-isp.c
+> @@ -0,0 +1,232 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * StarFive JH7110 Image-Signal-Process Clock Driver
+> + *
+> + * Copyright (C) 2022-2023 StarFive Technology Co., Ltd.
+> + */
 > +
-> +#define MP2973_MFR_VR_MULTI_CONFIG_R1	0x0d
-> +#define MP2973_MFR_VR_MULTI_CONFIG_R2	0x1d
-> +#define MP2973_VID_STEP_SEL_R1		BIT(4)
-> +#define MP2973_IMVP9_EN_R1		BIT(14)
-> +#define MP2973_VID_STEP_SEL_R2		BIT(3)
-> +#define MP2973_IMVP9_EN_R2		BIT(13)
+> +#include <linux/clk.h>
+> +#include <linux/clk-provider.h>
+> +#include <linux/io.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/pm_runtime.h>
+> +#include <linux/reset.h>
 > +
-> +#define MP2973_MFR_READ_IOUT_PK		0x90
-> +#define MP2973_MFR_READ_POUT_PK		0x91
+> +#include <dt-bindings/clock/starfive,jh7110-crg.h>
 > +
->   #define MP2975_MAX_PHASE_RAIL1	8
->   #define MP2975_MAX_PHASE_RAIL2	4
+> +#include "clk-starfive-jh7110.h"
 > +
-> +#define MP2973_MAX_PHASE_RAIL1	14
-> +#define MP2973_MAX_PHASE_RAIL2	6
+> +/* external clocks */
+> +#define JH7110_ISPCLK_ISP_TOP_CORE             (JH7110_ISPCLK_END + 0)
+> +#define JH7110_ISPCLK_ISP_TOP_AXI              (JH7110_ISPCLK_END + 1)
+> +#define JH7110_ISPCLK_NOC_BUS_ISP_AXI          (JH7110_ISPCLK_END + 2)
+> +#define JH7110_ISPCLK_DVP_CLK                  (JH7110_ISPCLK_END + 3)
+> +#define JH7110_ISPCLK_EXT_END                  (JH7110_ISPCLK_END + 4)
 > +
-> +#define MP2971_MAX_PHASE_RAIL1	8
-> +#define MP2971_MAX_PHASE_RAIL2	3
-> +
->   #define MP2975_PAGE_NUM		2
->   
->   #define MP2975_RAIL2_FUNC	(PMBUS_HAVE_VOUT | PMBUS_HAVE_STATUS_VOUT | \
-> @@ -58,11 +84,13 @@
->   				 PMBUS_HAVE_POUT | PMBUS_PHASE_VIRTUAL)
->   
->   enum chips {
-> -	mp2975
-> +	mp2971, mp2973, mp2975
->   };
->   
->   static const int mp2975_max_phases[][MP2975_PAGE_NUM] = {
->   	[mp2975] = { MP2975_MAX_PHASE_RAIL1, MP2975_MAX_PHASE_RAIL2 },
-> +	[mp2973] = { MP2973_MAX_PHASE_RAIL1, MP2973_MAX_PHASE_RAIL2 },
-> +	[mp2971] = { MP2971_MAX_PHASE_RAIL1, MP2971_MAX_PHASE_RAIL2 },
->   };
->   
->   struct mp2975_data {
-> @@ -79,6 +107,8 @@ struct mp2975_data {
->   };
->   
->   static const struct i2c_device_id mp2975_id[] = {
-> +	{"mp2971", mp2971},
-> +	{"mp2973", mp2973},
->   	{"mp2975", mp2975},
->   	{}
->   };
-> @@ -215,6 +245,76 @@ mp2975_read_phases(struct i2c_client *client, struct mp2975_data *data,
->   	return ret;
->   }
->   
-> +static int mp2973_read_word_data(struct i2c_client *client, int page,
-> +				 int phase, int reg)
-> +{
-> +	const struct pmbus_driver_info *info = pmbus_get_driver_info(client);
-> +	struct mp2975_data *data = to_mp2975_data(info);
-> +	int ret;
-> +
-> +	switch (reg) {
-> +	case PMBUS_OT_FAULT_LIMIT:
-> +		ret = mp2975_read_word_helper(client, page, phase, reg,
-> +					      GENMASK(7, 0));
-> +		break;
-> +	case PMBUS_VIN_OV_FAULT_LIMIT:
-> +		ret = mp2975_read_word_helper(client, page, phase, reg,
-> +					      GENMASK(7, 0));
-> +		if (ret < 0)
-> +			return ret;
-> +
-> +		ret = DIV_ROUND_CLOSEST(ret, MP2975_VIN_UV_LIMIT_UNIT);
-> +		break;
-> +	case PMBUS_VOUT_OV_FAULT_LIMIT:
-> +		/*
-> +		 * MP2971 and mp2973 only supports tracking (ovp1) mode.
-> +		 */
-> +		ret = mp2975_read_word_helper(client, page, phase,
-> +					      MP2975_MFR_OVP_TH_SET,
-> +					      GENMASK(2, 0));
-> +		if (ret < 0)
-> +			return ret;
-> +
-> +		ret = data->vout_max[page] + 50 * (ret + 1);
-> +		break;
-> +	case PMBUS_VOUT_UV_FAULT_LIMIT:
-> +		ret = mp2975_read_word_helper(client, page, phase, reg,
-> +					      GENMASK(8, 0));
-> +		if (ret < 0)
-> +			return ret;
-> +		ret = mp2975_vid2direct(info->vrm_version[page], ret);
-> +		break;
-> +	case PMBUS_VIRT_READ_POUT_MAX:
-> +		ret = pmbus_read_word_data(client, page, phase,
-> +					   MP2973_MFR_READ_POUT_PK);
-> +		break;
-> +	case PMBUS_VIRT_READ_IOUT_MAX:
-> +		ret = pmbus_read_word_data(client, page, phase,
-> +					   MP2973_MFR_READ_IOUT_PK);
-> +		break;
-> +	case PMBUS_UT_WARN_LIMIT:
-> +	case PMBUS_UT_FAULT_LIMIT:
-> +	case PMBUS_VIN_UV_WARN_LIMIT:
-> +	case PMBUS_VIN_UV_FAULT_LIMIT:
-> +	case PMBUS_VOUT_UV_WARN_LIMIT:
-> +	case PMBUS_VOUT_OV_WARN_LIMIT:
-> +	case PMBUS_VIN_OV_WARN_LIMIT:
-> +	case PMBUS_IIN_OC_FAULT_LIMIT:
-> +	case PMBUS_IOUT_OC_LV_FAULT_LIMIT:
-> +	case PMBUS_IOUT_OC_WARN_LIMIT:
-> +	case PMBUS_IOUT_OC_FAULT_LIMIT:
-> +	case PMBUS_IOUT_UC_FAULT_LIMIT:
-> +	case PMBUS_POUT_OP_FAULT_LIMIT:
-> +	case PMBUS_POUT_OP_WARN_LIMIT:
-> +	case PMBUS_PIN_OP_WARN_LIMIT:
-> +		return -ENXIO;
-> +	default:
-> +		return -ENODATA;
-> +	}
-> +
-> +	return ret;
-> +}
-> +
->   static int mp2975_read_word_data(struct i2c_client *client, int page,
->   				 int phase, int reg)
->   {
-> @@ -386,7 +486,7 @@ mp2975_identify_multiphase(struct i2c_client *client, struct mp2975_data *data,
->   }
->   
->   static int
-> -mp2975_identify_vid(struct i2c_client *client, struct mp2975_data *data,
-> +mp297x_identify_vid(struct i2c_client *client, struct mp2975_data *data,
-
-Please refrain from such cosmetic changes. It is perfectly fine to keep
-calling the function mp2975_identify_vid() even if it is called for
-other chips.
-
-Those changes only make it more difficult to review your patch and,
-on top of that, are not really related to introducing support for
-the new chips.
-
->   		    struct pmbus_driver_info *info, u32 reg, int page,
->   		    u32 imvp_bit, u32 vr_bit)
->   {
-> @@ -422,7 +522,7 @@ mp2975_identify_rails_vid(struct i2c_client *client, struct mp2975_data *data,
->   		return ret;
->   
->   	/* Identify VID mode for rail 1. */
-> -	ret = mp2975_identify_vid(client, data, info,
-> +	ret = mp297x_identify_vid(client, data, info,
->   				  MP2975_MFR_VR_MULTI_CONFIG_R1, 0,
->   				  MP2975_IMVP9_EN_R1, MP2975_VID_STEP_SEL_R1);
->   	if (ret < 0)
-> @@ -430,10 +530,39 @@ mp2975_identify_rails_vid(struct i2c_client *client, struct mp2975_data *data,
->   
->   	/* Identify VID mode for rail 2, if connected. */
->   	if (info->phases[1])
-> -		ret = mp2975_identify_vid(client, data, info,
-> +		ret = mp297x_identify_vid(client, data, info,
->   					  MP2975_MFR_VR_MULTI_CONFIG_R2, 1,
->   					  MP2975_IMVP9_EN_R2,
->   					  MP2975_VID_STEP_SEL_R2);
-> +
-> +	return ret;
-> +}
-> +
-> +static int
-> +mp2973_identify_rails_vid(struct i2c_client *client, struct mp2975_data *data,
-> +			  struct pmbus_driver_info *info)
-> +{
-> +	int ret;
-> +
-> +	ret = i2c_smbus_write_byte_data(client, PMBUS_PAGE, 2);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	/* Identify VID mode for rail 1. */
-> +	ret = mp297x_identify_vid(client, data, info,
-> +				  MP2973_MFR_VR_MULTI_CONFIG_R1, 0,
-> +				  MP2973_IMVP9_EN_R1, MP2973_VID_STEP_SEL_R1);
-> +
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	/* Identify VID mode for rail 2, if connected. */
-> +	if (info->phases[1])
-> +		ret = mp297x_identify_vid(client, data, info,
-> +					  MP2973_MFR_VR_MULTI_CONFIG_R2, 1,
-> +					  MP2973_IMVP9_EN_R2,
-> +					  MP2973_VID_STEP_SEL_R2);
-> +
->   	return ret;
->   }
->   
-> @@ -532,7 +661,7 @@ mp2975_vref_offset_get(struct i2c_client *client, struct mp2975_data *data,
->   }
->   
->   static int
-> -mp2975_vout_max_get(struct i2c_client *client, struct mp2975_data *data,
-> +mp297x_vout_max_get(struct i2c_client *client, struct mp2975_data *data,
->   		    struct pmbus_driver_info *info, int page)
->   {
->   	int ret;
-> @@ -548,17 +677,33 @@ mp2975_vout_max_get(struct i2c_client *client, struct mp2975_data *data,
->   }
->   
->   static int
-> -mp2975_set_vout_format(struct i2c_client *client,
-> +mp297x_set_vout_format(struct i2c_client *client,
->   		       struct mp2975_data *data, int page)
->   {
->   	int ret;
->   
-> -	ret = i2c_smbus_read_word_data(client, MP2975_MFR_DC_LOOP_CTRL);
-> -	if (ret < 0)
-> -		return ret;
->   	/* Enable DIRECT VOUT format 1mV/LSB */
-> -	ret &= ~MP2975_VOUT_FORMAT;
-> -	ret = i2c_smbus_write_word_data(client, MP2975_MFR_DC_LOOP_CTRL, ret);
-> +	if (data->chip_id == mp2975) {
-> +		ret = i2c_smbus_read_word_data(client, MP2975_MFR_DC_LOOP_CTRL);
-> +		if (ret < 0)
-> +			return ret;
-> +		ret &= ~MP2975_VOUT_FORMAT;
-> +		ret = i2c_smbus_write_word_data(client, MP2975_MFR_DC_LOOP_CTRL, ret);
-> +	} else {
-> +		ret = i2c_smbus_read_word_data(client, MP2973_MFR_RESO_SET);
-> +		if (ret < 0)
-> +			return ret;
-> +
-> +		if (page == 0) {
-> +			ret &= ~MP2973_VOUT_FORMAT_R1;
-> +			ret |= MP2973_VOUT_FORMAT_DIRECT_R1;
-> +		} else {
-> +			ret &= ~MP2973_VOUT_FORMAT_R2;
-> +			ret |= MP2973_VOUT_FORMAT_DIRECT_R2;
-> +		}
-> +
-> +		ret = i2c_smbus_write_word_data(client, MP2973_MFR_RESO_SET, ret);
-
-Same as with the previous patch: The value only needs to be written back if it differs
-from the value already configured in the chip.
-
-> +	}
->   	return ret;
->   }
->   
-> @@ -605,24 +750,28 @@ mp2975_vout_per_rail_config_get(struct i2c_client *client,
->   	for (i = 0; i < data->info.pages; i++) {
->   		ret = i2c_smbus_write_byte_data(client, PMBUS_PAGE, i);
->   		if (ret < 0)
-> -			return ret;
-> +			continue;
->   
-> -		/* Obtain voltage reference offsets. */
-> -		ret = mp2975_vref_offset_get(client, data, i);
-> +		/*
-> +		 * Set VOUT format for READ_VOUT command : direct.
-> +		 * Pages on same device can be configured with different
-> +		 * formats.
-> +		 */
-> +		ret = mp297x_set_vout_format(client, data, i);
->   		if (ret < 0)
->   			return ret;
->   
->   		/* Obtain maximum voltage values. */
-> -		ret = mp2975_vout_max_get(client, data, info, i);
-> +		ret = mp297x_vout_max_get(client, data, info, i);
->   		if (ret < 0)
->   			return ret;
->   
-> -		/*
-> -		 * Set VOUT format for READ_VOUT command : direct.
-> -		 * Pages on same device can be configured with different
-> -		 * formats.
-> -		 */
-> -		ret = mp2975_set_vout_format(client, data, i);
-> +		/* Skip if reading Vref is unsupported */
-> +		if (data->chip_id != mp2975)
-> +			continue;
-> +
-> +		/* Obtain voltage reference offsets. */
-> +		ret = mp2975_vref_offset_get(client, data, i);
->   		if (ret < 0)
->   			return ret;
->   
-> @@ -660,6 +809,23 @@ static struct pmbus_driver_info mp2975_info = {
->   	.read_word_data = mp2975_read_word_data,
->   };
->   
-> +static struct pmbus_driver_info mp2973_info = {
-> +	.pages = 1,
-> +	.format[PSC_VOLTAGE_IN] = linear,
-> +	.format[PSC_VOLTAGE_OUT] = direct,
-> +	.format[PSC_TEMPERATURE] = linear,
-> +	.format[PSC_CURRENT_IN] = linear,
-> +	.format[PSC_CURRENT_OUT] = linear,
-> +	.format[PSC_POWER] = linear,
-> +	.m[PSC_VOLTAGE_OUT] = 1,
-> +	.R[PSC_VOLTAGE_OUT] = 3,
-> +	.func[0] = PMBUS_HAVE_VIN | PMBUS_HAVE_VOUT | PMBUS_HAVE_STATUS_VOUT |
-> +		PMBUS_HAVE_IIN | PMBUS_HAVE_IOUT | PMBUS_HAVE_STATUS_IOUT |
-> +		PMBUS_HAVE_TEMP | PMBUS_HAVE_STATUS_TEMP | PMBUS_HAVE_POUT |
-> +		PMBUS_HAVE_PIN | PMBUS_HAVE_STATUS_INPUT,
-> +	.read_word_data = mp2973_read_word_data,
+> +static struct clk_bulk_data jh7110_isp_top_clks[] = {
+> +       { .id = "isp_top_core" },
+> +       { .id = "isp_top_axi" }
 > +};
 > +
->   static int mp2975_probe(struct i2c_client *client)
->   {
->   	struct pmbus_driver_info *info;
-> @@ -679,6 +845,11 @@ static int mp2975_probe(struct i2c_client *client)
->   	memcpy(data->max_phases, mp2975_max_phases[data->chip_id],
->   	       sizeof(data->max_phases));
->   
-> +	if (data->chip_id == mp2975)
-> +		memcpy(&data->info, &mp2975_info, sizeof(*info));
-> +	else
-> +		memcpy(&data->info, &mp2973_info, sizeof(*info));
+> +static const struct jh71x0_clk_data jh7110_ispclk_data[] = {
+> +       /* syscon */
+> +       JH71X0__DIV(JH7110_ISPCLK_DOM4_APB_FUNC, "dom4_apb_func", 15,
+> +                   JH7110_ISPCLK_ISP_TOP_AXI),
+> +       JH71X0__DIV(JH7110_ISPCLK_MIPI_RX0_PXL, "mipi_rx0_pxl", 8,
+> +                   JH7110_ISPCLK_ISP_TOP_CORE),
+> +       JH71X0__INV(JH7110_ISPCLK_DVP_INV, "dvp_inv", JH7110_ISPCLK_DVP_CLK),
+> +       /* vin */
+> +       JH71X0__DIV(JH7110_ISPCLK_M31DPHY_CFG_IN, "m31dphy_cfg_in", 16,
+> +                   JH7110_ISPCLK_ISP_TOP_CORE),
+> +       JH71X0__DIV(JH7110_ISPCLK_M31DPHY_REF_IN, "m31dphy_ref_in", 16,
+> +                   JH7110_ISPCLK_ISP_TOP_CORE),
+> +       JH71X0__DIV(JH7110_ISPCLK_M31DPHY_TX_ESC_LAN0, "m31dphy_tx_esc_lan0", 60,
+> +                   JH7110_ISPCLK_ISP_TOP_CORE),
+> +       JH71X0_GATE(JH7110_ISPCLK_VIN_APB, "vin_apb", 0,
+> +                   JH7110_ISPCLK_DOM4_APB_FUNC),
+> +       JH71X0__DIV(JH7110_ISPCLK_VIN_SYS, "vin_sys", 8, JH7110_ISPCLK_ISP_TOP_CORE),
+> +       JH71X0_GATE(JH7110_ISPCLK_VIN_PIXEL_IF0, "vin_pixel_if0", 0,
+> +                   JH7110_ISPCLK_MIPI_RX0_PXL),
+> +       JH71X0_GATE(JH7110_ISPCLK_VIN_PIXEL_IF1, "vin_pixel_if1", 0,
+> +                   JH7110_ISPCLK_MIPI_RX0_PXL),
+> +       JH71X0_GATE(JH7110_ISPCLK_VIN_PIXEL_IF2, "vin_pixel_if2", 0,
+> +                   JH7110_ISPCLK_MIPI_RX0_PXL),
+> +       JH71X0_GATE(JH7110_ISPCLK_VIN_PIXEL_IF3, "vin_pixel_if3", 0,
+> +                   JH7110_ISPCLK_MIPI_RX0_PXL),
+> +       JH71X0__MUX(JH7110_ISPCLK_VIN_P_AXI_WR, "vin_p_axi_wr", 2,
+> +                   JH7110_ISPCLK_MIPI_RX0_PXL,
+> +                   JH7110_ISPCLK_DVP_INV),
+> +       /* ispv2_top_wrapper */
+> +       JH71X0_GMUX(JH7110_ISPCLK_ISPV2_TOP_WRAPPER_C, "ispv2_top_wrapper_c", 0, 2,
+> +                   JH7110_ISPCLK_MIPI_RX0_PXL,
+> +                   JH7110_ISPCLK_DVP_INV),
+> +};
 > +
->   	info = &data->info;
->   
->   	/* Identify multiphase configuration for rail 2. */
-> @@ -693,30 +864,37 @@ static int mp2975_probe(struct i2c_client *client)
->   		data->info.func[1] = MP2975_RAIL2_FUNC;
->   	}
->   
-> -	/* Identify multiphase configuration. */
-> -	ret = mp2975_identify_multiphase(client, data, info);
-> -	if (ret)
-> -		return ret;
-> +	if (data->chip_id == mp2975) {
-> +		/* Identify multiphase configuration. */
-> +		ret = mp2975_identify_multiphase(client, data, info);
-> +		if (ret)
-> +			return ret;
->   
-> -	/* Identify VID setting per rail. */
-> -	ret = mp2975_identify_rails_vid(client, data, info);
-> -	if (ret < 0)
-> -		return ret;
-> +		/* Identify VID setting per rail. */
-> +		ret = mp2975_identify_rails_vid(client, data, info);
-> +		if (ret < 0)
-> +			return ret;
->   
-> -	/* Obtain current sense gain of power stage. */
-> -	ret = mp2975_current_sense_gain_get(client, data);
-> -	if (ret)
-> -		return ret;
-> +		/* Obtain current sense gain of power stage. */
-> +		ret = mp2975_current_sense_gain_get(client, data);
-> +		if (ret)
-> +			return ret;
->   
-> -	/* Obtain voltage reference values. */
-> -	ret = mp2975_vref_get(client, data, info);
-> -	if (ret)
-> -		return ret;
-> +		/* Obtain voltage reference values. */
-> +		ret = mp2975_vref_get(client, data, info);
-> +		if (ret)
-> +			return ret;
->   
-> -	/* Obtain vout over-voltage scales. */
-> -	ret = mp2975_vout_ov_scale_get(client, data, info);
-> -	if (ret < 0)
-> -		return ret;
-> +		/* Obtain vout over-voltage scales. */
-> +		ret = mp2975_vout_ov_scale_get(client, data, info);
-> +		if (ret < 0)
-> +			return ret;
-> +	} else {
-> +		/* Identify VID setting per rail. */
-> +		ret = mp2973_identify_rails_vid(client, data, info);
-> +		if (ret < 0)
-> +			return ret;
-> +	}
->   
->   	/* Obtain offsets, maximum and format for vout. */
->   	ret = mp2975_vout_per_rail_config_get(client, data, info);
-> @@ -727,6 +905,8 @@ static int mp2975_probe(struct i2c_client *client)
->   }
->   
->   static const struct of_device_id __maybe_unused mp2975_of_match[] = {
-> +	{.compatible = "mps,mp2971", .data = (void *)mp2971},
-> +	{.compatible = "mps,mp2973", .data = (void *)mp2973},
->   	{.compatible = "mps,mp2975", .data = (void *)mp2975},
->   	{}
->   };
+> +static inline int jh7110_isp_top_rst_init(struct jh71x0_clk_priv *priv)
+> +{
+> +       struct reset_control *top_rsts;
+> +
+> +       /* The resets should be shared and other ISP modules will use its. */
+> +       top_rsts = devm_reset_control_array_get_shared(priv->dev);
+> +       if (IS_ERR(top_rsts))
+> +               return dev_err_probe(priv->dev, PTR_ERR(top_rsts),
+> +                                    "failed to get top resets\n");
+> +
+> +       return reset_control_deassert(top_rsts);
+> +}
+> +
+> +static struct clk_hw *jh7110_ispclk_get(struct of_phandle_args *clkspec, void *data)
+> +{
+> +       struct jh71x0_clk_priv *priv = data;
+> +       unsigned int idx = clkspec->args[0];
+> +
+> +       if (idx < JH7110_ISPCLK_END)
+> +               return &priv->reg[idx].hw;
+> +
+> +       return ERR_PTR(-EINVAL);
+> +}
+> +
+> +#ifdef CONFIG_PM
+> +static int jh7110_ispcrg_suspend(struct device *dev)
+> +{
+> +       struct top_sysclk *top = dev_get_drvdata(dev);
+> +
+> +       clk_bulk_disable_unprepare(top->top_clks_num, top->top_clks);
+> +
+> +       return 0;
+> +}
+> +
+> +static int jh7110_ispcrg_resume(struct device *dev)
+> +{
+> +       struct top_sysclk *top = dev_get_drvdata(dev);
+> +
+> +       return clk_bulk_prepare_enable(top->top_clks_num, top->top_clks);
+> +}
+> +#endif
+> +
+> +static const struct dev_pm_ops jh7110_ispcrg_pm_ops = {
+> +       SET_RUNTIME_PM_OPS(jh7110_ispcrg_suspend, jh7110_ispcrg_resume, NULL)
+> +};
+> +
+> +static int jh7110_ispcrg_probe(struct platform_device *pdev)
+> +{
+> +       struct jh71x0_clk_priv *priv;
+> +       struct top_sysclk *top;
+> +       unsigned int idx;
+> +       int ret;
+> +
+> +       priv = devm_kzalloc(&pdev->dev,
+> +                           struct_size(priv, reg, JH7110_ISPCLK_END),
+> +                           GFP_KERNEL);
+> +       if (!priv)
+> +               return -ENOMEM;
+> +
+> +       top = devm_kzalloc(&pdev->dev, sizeof(*top), GFP_KERNEL);
+> +       if (!top)
+> +               return -ENOMEM;
+> +
+> +       spin_lock_init(&priv->rmw_lock);
+> +       priv->dev = &pdev->dev;
+> +       priv->base = devm_platform_ioremap_resource(pdev, 0);
+> +       if (IS_ERR(priv->base))
+> +               return PTR_ERR(priv->base);
+> +
+> +       top->top_clks = jh7110_isp_top_clks;
+> +       top->top_clks_num = ARRAY_SIZE(jh7110_isp_top_clks);
+> +       ret = devm_clk_bulk_get(priv->dev, top->top_clks_num, top->top_clks);
+> +       if (ret)
+> +               return dev_err_probe(priv->dev, ret, "failed to get main clocks\n");
+> +       dev_set_drvdata(priv->dev, top);
+> +
+> +       /* enable power domain and clocks */
+> +       pm_runtime_enable(priv->dev);
+> +       ret = pm_runtime_get_sync(priv->dev);
+> +       if (ret < 0)
+> +               return dev_err_probe(priv->dev, ret, "failed to turn on power\n");
+> +
+> +       ret = jh7110_isp_top_rst_init(priv);
+> +       if (ret)
+> +               goto err_exit;
+> +
+> +       for (idx = 0; idx < JH7110_ISPCLK_END; idx++) {
+> +               u32 max = jh7110_ispclk_data[idx].max;
+> +               struct clk_parent_data parents[4] = {};
+> +               struct clk_init_data init = {
+> +                       .name = jh7110_ispclk_data[idx].name,
+> +                       .ops = starfive_jh71x0_clk_ops(max),
+> +                       .parent_data = parents,
+> +                       .num_parents =
+> +                               ((max & JH71X0_CLK_MUX_MASK) >> JH71X0_CLK_MUX_SHIFT) + 1,
+> +                       .flags = jh7110_ispclk_data[idx].flags,
+> +               };
+> +               struct jh71x0_clk *clk = &priv->reg[idx];
+> +               unsigned int i;
+> +               const char *fw_name[JH7110_ISPCLK_EXT_END - JH7110_ISPCLK_END] = {
+> +                       "isp_top_core",
+> +                       "isp_top_axi",
+> +                       "noc_bus_isp_axi",
+> +                       "dvp_clk"
+> +               };
+> +
+> +               for (i = 0; i < init.num_parents; i++) {
+> +                       unsigned int pidx = jh7110_ispclk_data[idx].parents[i];
+> +
+> +                       if (pidx < JH7110_ISPCLK_END)
+> +                               parents[i].hw = &priv->reg[pidx].hw;
+> +                       else
+> +                               parents[i].fw_name = fw_name[pidx - JH7110_ISPCLK_END];
+> +               }
+> +
+> +               clk->hw.init = &init;
+> +               clk->idx = idx;
+> +               clk->max_div = max & JH71X0_CLK_DIV_MASK;
+> +
+> +               ret = devm_clk_hw_register(&pdev->dev, &clk->hw);
+> +               if (ret)
+> +                       goto err_exit;
+> +       }
+> +
+> +       ret = devm_of_clk_add_hw_provider(&pdev->dev, jh7110_ispclk_get, priv);
+> +       if (ret)
+> +               goto err_exit;
+> +
+> +       ret = jh7110_reset_controller_register(priv, "rst-isp", 3);
+> +       if (ret)
+> +               goto err_exit;
+> +
+> +       return 0;
+> +
+> +err_exit:
+> +       pm_runtime_put_sync(priv->dev);
+> +       pm_runtime_disable(priv->dev);
+> +       return ret;
+> +}
+> +
+> +static int jh7110_ispcrg_remove(struct platform_device *pdev)
+> +{
+> +       pm_runtime_put_sync(&pdev->dev);
+> +       pm_runtime_disable(&pdev->dev);
+> +
+> +       return 0;
+> +}
+> +
+> +static const struct of_device_id jh7110_ispcrg_match[] = {
+> +       { .compatible = "starfive,jh7110-ispcrg" },
+> +       { /* sentinel */ }
+> +};
+> +MODULE_DEVICE_TABLE(of, jh7110_ispcrg_match);
+> +
+> +static struct platform_driver jh7110_ispcrg_driver = {
+> +       .probe = jh7110_ispcrg_probe,
+> +       .remove = jh7110_ispcrg_remove,
+> +       .driver = {
+> +               .name = "clk-starfive-jh7110-isp",
+> +               .of_match_table = jh7110_ispcrg_match,
+> +               .pm = &jh7110_ispcrg_pm_ops,
+> +       },
+> +};
+> +module_platform_driver(jh7110_ispcrg_driver);
+> +
+> +MODULE_AUTHOR("Xingyu Wu <xingyu.wu@starfivetech.com>");
+> +MODULE_DESCRIPTION("StarFive JH7110 Image-Signal-Process clock driver");
+> +MODULE_LICENSE("GPL");
+> diff --git a/drivers/clk/starfive/clk-starfive-jh7110.h b/drivers/clk/starfive/clk-starfive-jh7110.h
+> index f29682b8d400..5425fd89394a 100644
+> --- a/drivers/clk/starfive/clk-starfive-jh7110.h
+> +++ b/drivers/clk/starfive/clk-starfive-jh7110.h
+> @@ -4,6 +4,12 @@
+>
+>  #include "clk-starfive-jh71x0.h"
+>
+> +/* top clocks of ISP/VOUT domain from SYSCRG */
+> +struct top_sysclk {
+> +       struct clk_bulk_data *top_clks;
+> +       int top_clks_num;
+> +};
+> +
 
+When reviewing this I was very confused what data the vout and isp
+clocks need to share. But as far as I can tell they don't actually
+share any data, it's just that they both need a struct like this. I
+guess that's ok to put here, but it should really be prefixed with
+jh7110_ like the function below. Eg. struct jh7110_top_clks { .. }
+
+With that fixed:
+Reviewed-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+
+>  int jh7110_reset_controller_register(struct jh71x0_clk_priv *priv,
+>                                      const char *adev_name,
+>                                      u32 adev_id);
+> --
+> 2.25.1
+>
+>
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
