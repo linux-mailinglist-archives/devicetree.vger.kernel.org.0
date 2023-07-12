@@ -2,108 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E1317506B5
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 13:48:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E9777506E5
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 13:49:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232890AbjGLLsV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jul 2023 07:48:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37792 "EHLO
+        id S233427AbjGLLtg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jul 2023 07:49:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38396 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233417AbjGLLsI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 07:48:08 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C51E4210E;
-        Wed, 12 Jul 2023 04:47:45 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 2A015617A0;
-        Wed, 12 Jul 2023 11:47:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 419D5C433C8;
-        Wed, 12 Jul 2023 11:47:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689162464;
-        bh=MmDyn1rAtTKX49+lb+u+gcqGTH+0y12gnihcalWBBkY=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=BInlGNRxi22YcYKoLBBL0iWHdsOgYLAyncWbHTg208cl14xmKKna6x+Uu1ZBcd2C5
-         k61hPujabWgYNCY1H9MSsS9uL8E69wYAZyK1Q6lCL3T2xw9F7QzmWPC4PJmbpSAm4v
-         sWvmDPdAlyaiMJ4Bf+DMG00PiTyX1Emowjls1/LH0OJb2DQ+j4mczEq5+wwif2ctdN
-         32FvZBIpK7EHaCDwsuibwF0+0DCuVJqrxFqWcLeIaeED4QPs74fKieEQgfH0m+G6Zu
-         zuPwFQmBEa5mnwaGnpM1NT3Jhz4s9ZkA4UOnG6veF4tKCNjyZigHSJHXcmjMjzCy20
-         VwfFSwPs5CvOA==
-From:   Mark Brown <broonie@kernel.org>
-To:     linux-spi@vger.kernel.org, Maksim Kiselev <bigunclemax@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
-        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org
-In-Reply-To: <20230624131632.2972546-1-bigunclemax@gmail.com>
-References: <20230624131632.2972546-1-bigunclemax@gmail.com>
-Subject: Re: (subset) [PATCH v1 0/3] Allwinner R329/D1/R528/T113s Dual/Quad
- SPI modes support
-Message-Id: <168916246098.47003.15457344630251001511.b4-ty@kernel.org>
-Date:   Wed, 12 Jul 2023 12:47:40 +0100
+        with ESMTP id S233247AbjGLLtE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 07:49:04 -0400
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAC4F1FF6
+        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 04:48:19 -0700 (PDT)
+Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-3fc0aecf15bso42720995e9.1
+        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 04:48:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=9elements.com; s=google; t=1689162494; x=1691754494;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=aBRkWVB0g8Qm8dyh6//o7Lwn4Q/uU6uVP9gh0M6sy3E=;
+        b=fTIJA5YWg1SqPJuzssiDs0yYHsqNJ66pstFXEt7VlU1tk8rVnITiG8JTQmwgl6hV8a
+         pSBRdwZaQ+pYkTnPGFrXvqEz+lRTDiG8MO4k6cwQYV4EgsNIJhNSKcferBqERRW+LZZE
+         kd3O9+1koszCdxgeP8kAK39Kq/PzenfZSPuF+rBe/vpMRKIWGzyAL+40FTlmqOI3Go5D
+         TO9WAlj//Q2nTbFJQyIS+GoVuevgITahxz53lRKXA2KUbC8IoLTKYV8omFo7KymmqicB
+         d29bf/G5ipf67kPN342AatvB+Z/5HHMT4ENfjMif5A7HM9J5hH6exDsDBPd8LoyyX9Gt
+         M0fg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689162494; x=1691754494;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=aBRkWVB0g8Qm8dyh6//o7Lwn4Q/uU6uVP9gh0M6sy3E=;
+        b=MEBcbQQA9cBoJZO0K2QiwJZYjv48R38AaunLlcowWTl/a8PsKchgsdRFn71LwspwCK
+         AT7rNyIMiBftszFPtJA5SNQjPjjHTK158pMHaOx5P0fAFhFv1H+w5c9byyTXYIhaSajs
+         iOj/fRNXLfltw3yHaQQC8KYg2RA3svprO17pDyaJQ9hS7Uqa7iLn40WZRa7GrzdzYtmR
+         aO30zY6khzabG9Vm5wnAkLyAM0OFthqNyosxwEz7PBWoSlSyOxvGbiTyq4yLQ5/YH1a+
+         6JQ9YZ4axr+rJTq18tdUO/QJZ2qcDN1k99UopbC/DoJ4f74zEKPi+gdaLUWp17YbTez/
+         WtYw==
+X-Gm-Message-State: ABy/qLYrUcw3mbnb2oK8VD21tZLF1rYU4k6oEweTxwUGqVlnOJtoGR+G
+        gsNRbbtR5HfgTeixPJOd86GhHDoC6IOiSuN8SesrAw==
+X-Google-Smtp-Source: APBJJlGcJ3tEr6V0Cb+m/2D2hJhmyD6Y5xsrI4FPimHxiVjapWiwFvDjPqdbTOabDiu5YYe0P/y2oQ==
+X-Received: by 2002:a7b:c7d9:0:b0:3fa:964e:e85 with SMTP id z25-20020a7bc7d9000000b003fa964e0e85mr18987790wmk.5.1689162494106;
+        Wed, 12 Jul 2023 04:48:14 -0700 (PDT)
+Received: from stroh80.sec.9e.network (ip-078-094-000-051.um19.pools.vodafone-ip.de. [78.94.0.51])
+        by smtp.gmail.com with ESMTPSA id j2-20020a5d4482000000b003143867d2ebsm4867463wrq.63.2023.07.12.04.48.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 12 Jul 2023 04:48:13 -0700 (PDT)
+From:   Naresh Solanki <naresh.solanki@9elements.com>
+X-Google-Original-From: Naresh Solanki <Naresh.Solanki@9elements.com>
+To:     devicetree@vger.kernel.org, Guenter Roeck <linux@roeck-us.net>,
+        Jean Delvare <jdelvare@suse.com>
+Cc:     linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
+        Patrick Rudolph <patrick.rudolph@9elements.com>,
+        Naresh Solanki <Naresh.Solanki@9elements.com>
+Subject: [PATCH 1/8] hwmon: (pmbus/mp2975) Fix whitespace error
+Date:   Wed, 12 Jul 2023 13:47:42 +0200
+Message-ID: <20230712114754.500477-1-Naresh.Solanki@9elements.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.13-dev-099c9
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 24 Jun 2023 16:16:21 +0300, Maksim Kiselev wrote:
-> This series extends the previous https://lore.kernel.org/all/20230510081121.3463710-1-bigunclemax@gmail.com
-> And adds support for Dual and Quad SPI modes for the listed SoCs.
-> Both modes have been tested on the T113s and should work on
-> other Allwinner's SoCs that have a similar SPI conttoller.
-> It may also work for previous SoCs that support Dual/Quad modes.
-> One of them are H6 and H616.
-> 
-> [...]
+From: Patrick Rudolph <patrick.rudolph@9elements.com>
 
-Applied to
+Fix whitespace error reported by checkpatch.pl
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
+Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
+---
+ drivers/hwmon/pmbus/mp2975.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Thanks!
+diff --git a/drivers/hwmon/pmbus/mp2975.c b/drivers/hwmon/pmbus/mp2975.c
+index 2109b0458a8b..130cfde52e42 100644
+--- a/drivers/hwmon/pmbus/mp2975.c
++++ b/drivers/hwmon/pmbus/mp2975.c
+@@ -600,7 +600,7 @@ mp2975_vout_ov_scale_get(struct i2c_client *client, struct mp2975_data *data,
+ 	if (ret < 0)
+ 		return ret;
+ 	thres_dev = ret & MP2975_PRT_THRES_DIV_OV_EN ? MP2975_PROT_DEV_OV_ON :
+-	                                               MP2975_PROT_DEV_OV_OFF;
++						       MP2975_PROT_DEV_OV_OFF;
+ 
+ 	/* Select the gain of remote sense amplifier. */
+ 	ret = i2c_smbus_read_word_data(client, PMBUS_VOUT_SCALE_LOOP);
 
-[1/3] spi: sun6i: add quirk for dual and quad SPI modes support
-      commit: 0605d9fb411f3337482976842a3901d6c125d298
-[2/3] spi: sun6i: add dual and quad SPI modes support for R329/D1/R528/T113s
-      commit: 25453d797d7abe8801951c8290ea11ea8bba7b96
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+base-commit: 4dbbaf8fbdbd13adc80731b2452257857e4c2d8b
+-- 
+2.41.0
 
