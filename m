@@ -2,151 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 987B2750ABB
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 16:22:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A1C8A750ADA
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 16:25:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232107AbjGLOWv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jul 2023 10:22:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56004 "EHLO
+        id S232932AbjGLOZe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jul 2023 10:25:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57616 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229632AbjGLOWu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 10:22:50 -0400
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D17C51BC5
-        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 07:22:40 -0700 (PDT)
-Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-51e28cac164so1766880a12.1
-        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 07:22:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689171759; x=1691763759;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=IqgIPueFUvObMdtqLpPDVT+S6vncjR3E3Hz6m9Y1oow=;
-        b=cIIzWRE4mtjWnQxfXCjdWnyeBPXXR53TA75FPRduSJYczxPCyzNzrbmb4czW05Prbo
-         J6JcIoLHWVTcj9tmtg45QVny+awIbjTF7+gnYbTIzra6CdEfaka1/j26SzZ4ndm+T3HN
-         l6QV5s6EFKIhjSn6g94sai9Bd7IveDKmX8h4n+GgUTkMkGUN62jEhbN2JscQw85yVC2K
-         zWY8QDfRTYBsKe3JhsN7TmuX/LmIKX46GhMBoM4gLccMBtJfLG4ZhYbbT7IlAFzJRqHL
-         bupDja5RwzdjuRx9LJNEo7O4YhGes2zYaVGfCZIyVPL1CIpUdb0KOLt45d3sHQ1kPfjH
-         UtDA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689171759; x=1691763759;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=IqgIPueFUvObMdtqLpPDVT+S6vncjR3E3Hz6m9Y1oow=;
-        b=efyELk/xtMnqyZs73oX/1mGk4Z7yMdy1b2+V93JeZQ46njcxuWUO8c8TW3w+h6k36l
-         9hKc82eDL/DEr2zRyUr17a4IqJ7l+GpATuDQynk8y/D1OlyjstvjbJUJzLuGt2CQmjXT
-         IHx/jNK30yTqc3xc3jtEhp+3RJp0Rzl1KJd9QYXno+Hc7t0XlWv/wlsQs5N7/ZWB/rT3
-         IAfMxa1AM29Uwh4O7vv84dgJEYJTw5jeuQbXInhG40odDC9qj7MP6CIKBcXNg/Ylc3lD
-         CNzuGPvBomGkdHyr5/7IEZCi6hIYgGKgHlfVEy/Y1rimD6s7duuK17HjTFb9AZEhIl+L
-         FWSw==
-X-Gm-Message-State: ABy/qLaysRO2JZIWMPt+CLYBpIIDjaTXEUBUB4Zj+nKWDcLjI5L1YzVC
-        zEAdQMwUioTfAAeXwO+/NRF+9Q==
-X-Google-Smtp-Source: APBJJlH4rWD1FiIK9TcwLHZ7qIEY9eOufK42OGUuMk0um7uxrlk9UIxsBVKWnp2Z884Kt/9jVeE4hw==
-X-Received: by 2002:a05:6402:440b:b0:51f:e0f0:f2cd with SMTP id y11-20020a056402440b00b0051fe0f0f2cdmr2774872eda.3.1689171759329;
-        Wed, 12 Jul 2023 07:22:39 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id e3-20020a50ec83000000b0051e0ea53eaasm2833835edr.97.2023.07.12.07.22.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 12 Jul 2023 07:22:38 -0700 (PDT)
-Message-ID: <69c01f0f-4eb0-bb44-a238-5c9ce5beede9@linaro.org>
-Date:   Wed, 12 Jul 2023 16:22:36 +0200
+        with ESMTP id S232463AbjGLOZX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 10:25:23 -0400
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22B2F198A;
+        Wed, 12 Jul 2023 07:25:18 -0700 (PDT)
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36CB447T022860;
+        Wed, 12 Jul 2023 16:24:39 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=selector1;
+ bh=vAQsihlA/fq+FWoOWW07sv8pi7Piaa0PlsJD/YDGoGk=;
+ b=IoKk4jjj06vQ3gX5xP1jfqaU6AcWeqB1zE3EuKDnft9NUYUX08pCGqr1A47Dw9+j6jpE
+ 2HTjud6efJvwQ8ov5wE0Pv7jcaISI/A33cwGmcmamV36TV9SAb4v0KRi96c2u8o4Y0YA
+ N7D+OizKgg/zy6qUFK8mHjo2G00DU1iF+bHmdspVGFWlXm+A5OP+6ym/UkGpUH3vOV5g
+ D42mbBmMVqxLJmdKimLPpk2J58k4+PxHR43AwaY9fNl9wpMWKBEnX9HHNIIgrQuKqKZ3
+ tSoFop/N2iaYx0D89yQPl+yFmWzyzFI0fL6M5ftjHLEFnp4TKVkCpLEH+NqMAHUaarfe WQ== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3rsr19b141-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 12 Jul 2023 16:24:39 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 78C9A100058;
+        Wed, 12 Jul 2023 16:24:36 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 6942B21BF65;
+        Wed, 12 Jul 2023 16:24:36 +0200 (CEST)
+Received: from localhost (10.252.136.3) by SHFDAG1NODE2.st.com (10.75.129.70)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Wed, 12 Jul
+ 2023 16:24:36 +0200
+From:   <p.paillet@foss.st.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+CC:     <p.paillet@foss.st.com>,
+        Etienne Carriere <etienne.carriere@foss.st.com>
+Subject: [PATCH 0/4] STM32MP13x expose SCMI regulators
+Date:   Wed, 12 Jul 2023 16:24:28 +0200
+Message-ID: <20230712142432.1885162-1-p.paillet@foss.st.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH 1/7] dt-bindings: soc: qcom: Add qcom-pbs bindings
-Content-Language: en-US
-To:     Anjelique Melendez <quic_amelende@quicinc.com>,
-        Rob Herring <robh@kernel.org>
-Cc:     pavel@ucw.cz, lee@kernel.org, thierry.reding@gmail.com,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        u.kleine-koenig@pengutronix.de, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-pwm@vger.kernel.org
-References: <20230621185949.2068-1-quic_amelende@quicinc.com>
- <20230621185949.2068-2-quic_amelende@quicinc.com>
- <20230626135857.GA3118929-robh@kernel.org>
- <2e871e21-a81d-0d7d-993b-9a9d7bd9d962@quicinc.com>
- <e7298704-5a03-0961-90a3-dab4af60c326@linaro.org>
- <32e9a512-fd74-b2f6-6b8a-fefb9ad5912d@quicinc.com>
- <431faa87-d152-5f7a-40fd-8b6fe26f0bb9@linaro.org>
- <71e1f36f-8fd8-9d61-d563-577d4fb54f10@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <71e1f36f-8fd8-9d61-d563-577d4fb54f10@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.252.136.3]
+X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE2.st.com
+ (10.75.129.70)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-07-12_09,2023-07-11_01,2023-05-22_02
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/07/2023 22:12, Anjelique Melendez wrote:
+From: Pascal Paillet <p.paillet@foss.st.com>
 
->>>
->>> On PMI632, peripherals are partitioned over 2 different SIDs
->>> (https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/qcom/pmi632.dtsi?h=v6.5-rc1#n42
->>> and https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/qcom/pmi632.dtsi?h=v6.5-rc1#n149).
->>> Unfortunately, the pbs peripheral and the lpg peripherals are on different
->>> PMI632 devices and therefore have different regmaps.
->>>  
->>> If we get rid of the pbs node we need to get a handle to the proper regmap.
->>> I see two possible options, we could either introduce a new client property
->>> which points to a peripheral on the same device as pbs.
->>>
->>> i.e.
->>> 	led-controller {
->>> 		compatible = "qcom,pmi632-lpg";
->>>       		#address-cells = <1>;
->>>       		#size-cells = <0>;
->>>       		#pwm-cells = <2>;
->>>      		nvmem-names = "lpg_chan_sdam";
->>>       		nvmem = <&pmi632_sdam7>;
->>>       		qcom,pbs-phandle = <&pmi632_gpios>;
->>>       		..... 
->>> 	};
->>> Then when client is probing could do something like the following to get the regmap
->>>
->>> 	dn = of_parse_phandle(node, "qcom,pbs-phandle", 0);
->>> 	pdev = of_find_device_by_node(dn);
->>> 	pbs_regmap = dev_get_regmap(&pdev->dev->parent, NULL);
->>>
->>>
->>>
->>> Or we could use the nvmem phandle and just have something like this in client's probe
->>>
->>> 	dn = of_parse_phandle(node, "nvmem", 0);
->>> 	pdev = of_find_device_by_node(dn);
->>> 	pbs_regmap = dev_get_regmap(&pdev->dev->parent, NULL);
->>>
->>>
->>>
->>> Let me know what your thoughts are on this.
->>
->> Rob asked you - "Is there more than 1 instance in a PMIC?" - and you did
->> not answer positively, just mentioned something about drivers in
->> downstream, which do not matter. So is the answer for that question:
->> yes, you have two instances of the same PMIC differing by presence of
->> PBS and other features"?
->>
-> Sorry that was a misunderstanding on my part.
-> Yes, answer to Rob's question should have been "We have two instances of PMI632,
-> where one instance holds the pbs peripheral and the other holds the lpg
-> peripherals. The child node for pbs is needed so lpg client can access
-> the PMI632 regmap which contains the pbs peripheral."
+Updates STM32MP13 DTS files to define the voltage regulators
+exposed by OP-TEE SCMI service and remove the fixed regulator
+abstraction previously used.
 
-I guess I miss here something. What is "LPG client"? I don't understand
-why this LPG client needs existence of PBS node, to be able to get the
-regmap.
+Etienne Carriere (3):
+  dt-bindings: rcc: stm32: add STM32MP13 SCMI regulators IDs
+  ARM: dts: stm32: STM32MP13x SoC exposes SCMI regulators
+  ARM: dts: stm32: add SCMI PMIC regulators on stm32mp135f-dk board
 
-PBS is a child of PMIC, so it can get regmap from the parent. What's
-more, which DT property passes the regmap from PMIC to LPG client?
+Pascal Paillet (1):
+  ARM: multi_v7_defconfig: Add SCMI regulator support
 
-Best regards,
-Krzysztof
+ arch/arm/boot/dts/st/stm32mp131.dtsi          | 50 +++++++-------
+ arch/arm/boot/dts/st/stm32mp135f-dk.dts       | 68 ++++++++-----------
+ arch/arm/configs/multi_v7_defconfig           |  1 +
+ .../regulator/st,stm32mp13-regulator.h        | 42 ++++++++++++
+ 4 files changed, 98 insertions(+), 63 deletions(-)
+ create mode 100644 include/dt-bindings/regulator/st,stm32mp13-regulator.h
+
+-- 
+2.25.1
 
