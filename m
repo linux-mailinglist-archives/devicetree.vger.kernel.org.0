@@ -2,267 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7BECB750957
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 15:15:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 02C1075095F
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 15:16:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232571AbjGLNPV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jul 2023 09:15:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45710 "EHLO
+        id S231856AbjGLNQE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jul 2023 09:16:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46236 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232235AbjGLNPU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 09:15:20 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F41E1736
-        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 06:15:15 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id 2adb3069b0e04-4fbcbf4375dso976209e87.0
-        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 06:15:14 -0700 (PDT)
+        with ESMTP id S233395AbjGLNQA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 09:16:00 -0400
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFBC91992
+        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 06:15:58 -0700 (PDT)
+Received: by mail-lj1-x229.google.com with SMTP id 38308e7fff4ca-2b717e9d423so9361151fa.1
+        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 06:15:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689167713; x=1691759713;
+        d=linaro.org; s=google; t=1689167757; x=1691759757;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=bXqt09tdVvvcw6pgsvaXQsZ0EYrCqzV7f8woQeEpum4=;
-        b=vOkATjh7+4it75svgAaTbe2ftmfOzH2OkYa5n+GWzYADnzKD0qv4h0QFV3FYNFSw9E
-         SnWMmnyS40nHU7Hj8Gba2JX5X98fplCo1SpcLHSFbp7ddomVWfFzY5/RoGti6mBT4b2w
-         QZOmD4zOnhDFTjCTmQ2qkbuQwvRsKbnl8B2UcYlLmJpze1WIVi88gLLTdfz9iC9+2blH
-         oRDU6wIvns8OANNueYhsWJjr0enXdb9E08kHFEG/Qbh2NRpx5kAWGn+0CfeImHk4OZGJ
-         BwGyc0//tOwvjFNfNVImsxF3iDyIQ2zhw+JKr6WyGCWDLYGn5/b67sseHDDSS4y0RUvG
-         fjoA==
+        bh=dn4rYyKdwTQMplFvM1YHg3Gp1VPxwOyOuPdjDZ4oTQs=;
+        b=MjXeUH9brINWRIL75SFSSvwFmVJG2jUS3gyV+2SmtbAKX/SQCvWGhRcT87fnTJmuiE
+         yMG3yUecRAAinZBdsfwGWunFL90IVP7OCaKSigAJzC66J5dq7lKbBHSjx0ts327vTI79
+         R6FrVsk6YWv4AUH45Vs+/hBbxAW4p9zlnVgkrsZCdNnZ2D2Rx4CM/y6xd3AyNpSg2Ghk
+         ViLO6OpihgDYF0R6FVEYVrhdXeOw0bOWgdZlkK+WA7ZX8c5gpscpLSWQhMOtt1yEaBUA
+         PfmaYmejlQt3Bhy0/On7Mv5QoUuB82vM32cdVkduN+DbKN3fPzntcD8r3hBE8SqLn4vS
+         Z4YQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689167713; x=1691759713;
+        d=1e100.net; s=20221208; t=1689167757; x=1691759757;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=bXqt09tdVvvcw6pgsvaXQsZ0EYrCqzV7f8woQeEpum4=;
-        b=gkakYbGmZI9ccYtvhO9Qt1tbt1006V7X8h0+cNyDGirZ7pAoIIpxjuQgfxaPlYvzRL
-         OG6A/36EaM/eIyDfvB6podKzeFmrKBrhdTlpaOEPvFNsG0GGitqupUT58oI008IkUy+H
-         u8QMzzeaSfkI23QJEqXEA933Ad8VlMLrvlakjj0z8dRP01WYJV2Dx23yQdLGYHZfx/tN
-         fmCWME/BhiDxZWyo2YcR3QfAv2/w2D391JINOfjlCUYeEgD1eDdol0uJcvErb4x8DZOO
-         36szpjthU90uCbfyhIhnpQolT93KmRd6nlTKz4esej2q5cTReT1ZNmempDdQUwpBsFk6
-         Xh8A==
-X-Gm-Message-State: ABy/qLYLXmrXWmR69h3BaTP5dSLUmXw8tdeYN6RnsLTbHaQUH/sdYxj5
-        q7qocMsjdMWFI1GFCE/qLBmhow==
-X-Google-Smtp-Source: APBJJlGJTt/9jUsw1+sCODIYotgo3mCBSUX95DB0ildo4FP9AFPo1PEBBYeQSP5gEJCrEVJIepwBJA==
-X-Received: by 2002:a05:6512:3c87:b0:4fb:9f08:2909 with SMTP id h7-20020a0565123c8700b004fb9f082909mr790297lfv.3.1689167713270;
-        Wed, 12 Jul 2023 06:15:13 -0700 (PDT)
+        bh=dn4rYyKdwTQMplFvM1YHg3Gp1VPxwOyOuPdjDZ4oTQs=;
+        b=Vxccg6Uisi3snrTWTqIvEZ2WgthedPB4VovUn1j6DqyzLA8/4hSmcSSoI2aB1I+0tO
+         hRo/wfk4PTzrckJKKlitRg9UCB0zgCdFYdNBJXkAOiyEaGQiLB6efswpwrV/rdlQk3r0
+         A2G3mHDYz7i/nnBVyxtplK+RvKKNwOq93CGI/MVupyrwfJdjdUq83frs4rqJ2fZm/HgC
+         tHcEOCgmHWimQItLlQahsQcQ6gtzMTsIi4CjSdJxNBlLxiWpq7vblInyCxW5NnL3nP/Z
+         mUSsUcKG8XD1EZPh+in9DYH3VbUDZjt9mc8rUbL7/ge258o+dRgJYegfBvoa2c6135eq
+         jfCA==
+X-Gm-Message-State: ABy/qLYD8Vj9W0NvbpS2NvMnDFGFVaHOiY2XaPoAXfNKVwg5efoTkEr0
+        /zjRNEFySPurC8LYrZxUweYp0g==
+X-Google-Smtp-Source: APBJJlF3SgFBdLW73ntgGd2gci24bmcZ/SHaaJOixefWrDQ+G8QUUfyYVuY0X5Z36wtyT5cVzOllFQ==
+X-Received: by 2002:a2e:7d14:0:b0:2b6:d0fa:7023 with SMTP id y20-20020a2e7d14000000b002b6d0fa7023mr792416ljc.24.1689167757034;
+        Wed, 12 Jul 2023 06:15:57 -0700 (PDT)
 Received: from ?IPV6:2001:14ba:a0db:1f00::8a5? (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
-        by smtp.gmail.com with ESMTPSA id p4-20020ac246c4000000b004fbe7b01b15sm713243lfo.62.2023.07.12.06.15.12
+        by smtp.gmail.com with ESMTPSA id p9-20020a2e8049000000b002b6ebc61e85sm962698ljg.54.2023.07.12.06.15.56
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 12 Jul 2023 06:15:12 -0700 (PDT)
-Message-ID: <e6a5129a-db07-977d-2ecd-328a52cbcdc0@linaro.org>
-Date:   Wed, 12 Jul 2023 16:15:12 +0300
+        Wed, 12 Jul 2023 06:15:56 -0700 (PDT)
+Message-ID: <3b677200-a201-680b-391f-fbf73064496a@linaro.org>
+Date:   Wed, 12 Jul 2023 16:15:56 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
-Subject: Re: [PATCH 11/14] scsi: ufs: host: Add support for parsing OPP
+Subject: Re: [PATCH 1/2] dt-bindings: display/msm: qcom,sdm845-mdss: add
+ memory-region property
 Content-Language: en-GB
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        vireshk@kernel.org, nm@ti.com, sboyd@kernel.org,
-        myungjoo.ham@samsung.com, kyungmin.park@samsung.com,
-        cw00.choi@samsung.com, andersson@kernel.org,
-        konrad.dybcio@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
-Cc:     linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        quic_asutoshd@quicinc.com, quic_cang@quicinc.com,
-        quic_nitirawa@quicinc.com, quic_narepall@quicinc.com,
-        quic_bhaskarv@quicinc.com, quic_richardp@quicinc.com,
-        quic_nguyenb@quicinc.com, quic_ziqichen@quicinc.com,
-        bmasney@redhat.com, krzysztof.kozlowski@linaro.org
-References: <20230712103213.101770-1-manivannan.sadhasivam@linaro.org>
- <20230712103213.101770-14-manivannan.sadhasivam@linaro.org>
+To:     Amit Pundir <amit.pundir@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Caleb Connolly <caleb.connolly@linaro.org>,
+        Bryan Donoghue <bryan.odonoghue@linaro.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Sean Paul <sean@poorly.run>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Krishna Manikandan <quic_mkrishn@quicinc.com>
+Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
+        freedreno <freedreno@lists.freedesktop.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        dt <devicetree@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>
+References: <20230712130215.666924-1-amit.pundir@linaro.org>
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20230712103213.101770-14-manivannan.sadhasivam@linaro.org>
+In-Reply-To: <20230712130215.666924-1-amit.pundir@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/07/2023 13:32, Manivannan Sadhasivam wrote:
-> OPP framework can be used to scale the clocks along with other entities
-> such as regulators, performance state etc... So let's add support for
-> parsing OPP from devicetree. OPP support in devicetree is added through
-> the "operating-points-v2" property which accepts the OPP table defining
-> clock frequency, regulator voltage, power domain performance state etc...
+On 12/07/2023 16:02, Amit Pundir wrote:
+> Add and document the reserved memory region property
+> in the qcom,sdm845-mdss schema.
 > 
-> Since the UFS controller requires multiple clocks to be controlled for
-> proper working, devm_pm_opp_set_config() has been used which supports
-> scaling multiple clocks through custom ufshcd_opp_config_clks() callback.
-> 
-> It should be noted that the OPP support is not compatible with the old
-> "freq-table-hz" property. So only one can be used at a time even though
-> the UFS core supports both.
-> 
-> Co-developed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> Signed-off-by: Amit Pundir <amit.pundir@linaro.org>
 > ---
->   drivers/ufs/host/ufshcd-pltfrm.c | 116 +++++++++++++++++++++++++++++++
->   1 file changed, 116 insertions(+)
+>   .../devicetree/bindings/display/msm/qcom,sdm845-mdss.yaml    | 5 +++++
+>   1 file changed, 5 insertions(+)
 > 
-> diff --git a/drivers/ufs/host/ufshcd-pltfrm.c b/drivers/ufs/host/ufshcd-pltfrm.c
-> index 0b7430033047..068c22378c88 100644
-> --- a/drivers/ufs/host/ufshcd-pltfrm.c
-> +++ b/drivers/ufs/host/ufshcd-pltfrm.c
-> @@ -8,8 +8,10 @@
->    *	Vinayak Holikatti <h.vinayak@samsung.com>
->    */
+> diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sdm845-mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sdm845-mdss.yaml
+> index 6ecb00920d7f..3ea1dbd7e317 100644
+> --- a/Documentation/devicetree/bindings/display/msm/qcom,sdm845-mdss.yaml
+> +++ b/Documentation/devicetree/bindings/display/msm/qcom,sdm845-mdss.yaml
+> @@ -39,6 +39,11 @@ properties:
+>     interconnect-names:
+>       maxItems: 2
 >   
-> +#include <linux/clk.h>
->   #include <linux/module.h>
->   #include <linux/platform_device.h>
-> +#include <linux/pm_opp.h>
->   #include <linux/pm_runtime.h>
->   #include <linux/of.h>
->   
-> @@ -17,6 +19,8 @@
->   #include "ufshcd-pltfrm.h"
->   #include <ufs/unipro.h>
->   
-> +#include <trace/events/ufs.h>
+> +  memory-region:
+> +    maxItems: 1
+> +    description:
+> +      Phandle to a node describing a reserved memory region.
 > +
->   #define UFSHCD_DEFAULT_LANES_PER_DIRECTION		2
->   
->   static int ufshcd_parse_clock_info(struct ufs_hba *hba)
-> @@ -205,6 +209,112 @@ static void ufshcd_init_lanes_per_dir(struct ufs_hba *hba)
->   	}
->   }
->   
-> +static int ufshcd_opp_config_clks(struct device *dev, struct opp_table *opp_table,
-> +				  struct dev_pm_opp *opp, void *data,
-> +				  bool scaling_down)
-> +{
-> +	struct ufs_hba *hba = dev_get_drvdata(dev);
-> +	struct list_head *head = &hba->clk_list_head;
-> +	struct ufs_clk_info *clki;
-> +	unsigned long freq;
-> +	u8 idx = 0;
-> +	int ret;
-> +
-> +	list_for_each_entry(clki, head, list) {
-> +		if (!IS_ERR_OR_NULL(clki->clk)) {
-> +			freq = dev_pm_opp_get_freq_indexed(opp, idx++);
-> +
-> +			/* Do not set rate for clocks having frequency as 0 */
-> +			if (!freq)
-> +				continue;
 
-Can we omit these clocks from the opp table? I don't think they serve 
-any purpose.
+Please add it to mdss-common.yaml instead
 
-Maybe it would even make sense to move this function to drivers/opp 
-then, as it will be generic enough.
-
-> +
-> +			ret = clk_set_rate(clki->clk, freq);
-> +			if (ret) {
-> +				dev_err(dev, "%s: %s clk set rate(%ldHz) failed, %d\n",
-> +					__func__, clki->name, freq, ret);
-> +				return ret;
-> +			}
-> +
-> +			trace_ufshcd_clk_scaling(dev_name(dev),
-> +				(scaling_down ? "scaled down" : "scaled up"),
-> +				clki->name, hba->clk_scaling.target_freq, freq);
-> +		}
-> +	}
-> +
-> +	return 0;
-> +} > +
-> +static int ufshcd_parse_operating_points(struct ufs_hba *hba)
-> +{
-> +	struct device *dev = hba->dev;
-> +	struct device_node *np = dev->of_node;
-> +	struct dev_pm_opp_config config = {};
-> +	struct ufs_clk_info *clki;
-> +	const char **clk_names;
-> +	int cnt, i, ret;
-> +
-> +	if (!of_find_property(np, "operating-points-v2", NULL))
-> +		return 0;
-> +
-> +	if (of_find_property(np, "freq-table-hz", NULL)) {
-> +		dev_err(dev, "%s: operating-points and freq-table-hz are incompatible\n",
-> +			 __func__);
-> +		return -EINVAL;
-> +	}
-> +
-> +	cnt = of_property_count_strings(np, "clock-names");
-> +	if (cnt <= 0) {
-> +		dev_err(dev, "%s: Missing clock-names\n",  __func__);
-> +		return -ENODEV;
-> +	}
-> +
-> +	/* OPP expects clk_names to be NULL terminated */
-> +	clk_names = devm_kcalloc(dev, cnt + 1, sizeof(*clk_names), GFP_KERNEL);
-> +	if (!clk_names)
-> +		return -ENOMEM;
-> +
-> +	/*
-> +	 * We still need to get reference to all clocks as the UFS core uses
-> +	 * them separately.
-> +	 */
-> +	for (i = 0; i < cnt; i++) {
-> +		ret = of_property_read_string_index(np, "clock-names", i,
-> +						    &clk_names[i]);
-> +		if (ret)
-> +			return ret;
-> +
-> +		clki = devm_kzalloc(dev, sizeof(*clki), GFP_KERNEL);
-> +		if (!clki)
-> +			return -ENOMEM;
-> +
-> +		clki->name = devm_kstrdup(dev, clk_names[i], GFP_KERNEL);
-> +		if (!clki->name)
-> +			return -ENOMEM;
-> +
-> +		if (!strcmp(clk_names[i], "ref_clk"))
-> +			clki->keep_link_active = true;
-> +
-> +		list_add_tail(&clki->list, &hba->clk_list_head);
-> +	}
-> +
-> +	config.clk_names = clk_names,
-> +	config.config_clks = ufshcd_opp_config_clks;
-> +
-> +	ret = devm_pm_opp_set_config(dev, &config);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = devm_pm_opp_of_add_table(dev);
-> +	if (ret) {
-> +		dev_err(dev, "Failed to add OPP table: %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	hba->use_pm_opp = true;
-> +
-> +	return 0;
-> +}
-> +
->   /**
->    * ufshcd_get_pwr_dev_param - get finally agreed attributes for
->    *                            power mode change
-> @@ -371,6 +481,12 @@ int ufshcd_pltfrm_init(struct platform_device *pdev,
->   
->   	ufshcd_init_lanes_per_dir(hba);
->   
-> +	err = ufshcd_parse_operating_points(hba);
-> +	if (err) {
-> +		dev_err(dev, "%s: OPP parse failed %d\n", __func__, err);
-> +		goto dealloc_host;
-> +	}
-> +
->   	err = ufshcd_init(hba, mmio_base, irq);
->   	if (err) {
->   		dev_err(dev, "Initialization failed\n");
+>   patternProperties:
+>     "^display-controller@[0-9a-f]+$":
+>       type: object
 
 -- 
 With best wishes
