@@ -2,97 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AA46474FEBA
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 07:35:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E3FE74FEC0
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 07:37:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231218AbjGLFe7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jul 2023 01:34:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39384 "EHLO
+        id S231145AbjGLFhq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jul 2023 01:37:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40298 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229668AbjGLFe6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 01:34:58 -0400
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2BE51716
-        for <devicetree@vger.kernel.org>; Tue, 11 Jul 2023 22:34:57 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-993d1f899d7so659637766b.2
-        for <devicetree@vger.kernel.org>; Tue, 11 Jul 2023 22:34:57 -0700 (PDT)
+        with ESMTP id S230048AbjGLFhp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 01:37:45 -0400
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE1731716
+        for <devicetree@vger.kernel.org>; Tue, 11 Jul 2023 22:37:44 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-4fb9ae4cef6so10601654e87.3
+        for <devicetree@vger.kernel.org>; Tue, 11 Jul 2023 22:37:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689140096; x=1691732096;
+        d=linaro.org; s=google; t=1689140263; x=1691732263;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=rzJbnI9xDPktX2PXM2vmFGHodNGh1pHwZKlhR5E7tY8=;
-        b=D+ciM8CzGJruO0NevH+0m/2WlZVARC7yZe+30xiAI07MJevCs5AYYvaKN4oqSK9iSv
-         kAeuL7tV3jswlEA+DP3L5qRlRpgL4k6K15CcnUZaIyMOM0tnXvBfyfbQd2zKk9klpKGU
-         sKv6ZWwXS/UM0wVaU4JN9302AM5wyZJk59zWFDh6fe/5Xxtvguquftn4eDWqmjRs2cN4
-         woY95YCRLU7W5nkdOleKvYIWG/qSA1NWC8Jx9E+Od0PVOmG9izcoYU93Pl+G2KV9nIMf
-         W3sYFSD0UoQwU9inQ3opeZb0GwMuuecJ1ZhirvtwLGX5ufejF1hj0hbpN2TtUSQ2dG5k
-         LY3g==
+        bh=+pDAwsES6/UJGMRnoH6Hw6ybZSO8OTJt1TeRcdDP7sc=;
+        b=aJtz6FNUeRcV1954EDvaz2DjKt0ooaO6XkF2f3HAIeuTpNylBKocZGx7tyt82eKCax
+         7j7TZayLViSKP/vwaG3NeGCXPvnFPyrIDLAKW21qpfmNLkLKWWxeeKFrrMN0R6hPEjMw
+         wsduODQAySQvq2EIzb8Wm7C6A39Dx4oGk+QHjfl0pgeuXAswYseoLyzux4tUtWep1tJX
+         BcbIXcuSCT3VsvHyFourgbu1CeukdgF6/42swclh+kWobVB3xigJAhvgk9tux9iMsvuX
+         i/W/weC7ErGg/PlyhkROoAAxXYSFYA6O6F+p2X/QS8QcROfF22lnWdCc/AExjAk1ySUY
+         reXw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689140096; x=1691732096;
+        d=1e100.net; s=20221208; t=1689140263; x=1691732263;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=rzJbnI9xDPktX2PXM2vmFGHodNGh1pHwZKlhR5E7tY8=;
-        b=HlyN+UfWzEpP4LtXmIpFUpORWIEy+uGokDD35FDYJ8aA55HnEYEYwjf7qPnpCNhtu5
-         gyNdzffE8I6jTVDgkvVYMtk53SSyEi8J+dmdc65n/5RrTwwh5AD7cGfD7+e+IeWsIWxz
-         qoI04peBDvfyrpP301gcHsgmhhVM19OdSwzQgTWLzOa/0j00JI/t05HEY8636n5lcb75
-         cfpWCgmVqxslTLdXaJOI3dviNfe/wsrKh3wYB52Folk9xEUuqxWP5L8Zp5AbwvDETDrJ
-         Khs4wiM/Eysuoxw4VB8gV5xSSHxXfwMfP22506p9/chTRHSk6SauQ/CaiI0O4X5Pbu2Z
-         66Hg==
-X-Gm-Message-State: ABy/qLYhbL9UYQXozwpDJKD2jM5Wr/7cMPRRvXAXZQ1JkHdNERO5o0jV
-        IR/x9QeAEj0ZM6hnqv43zZPM0Q==
-X-Google-Smtp-Source: APBJJlH1KLJ6R946VEt7ThL/DnXhPEDSh8WytqCiKirxOQ/jpWOssUPPgI4BskjuamxGT4fAc/YO/g==
-X-Received: by 2002:a17:906:b04c:b0:98d:5ae2:f1c with SMTP id bj12-20020a170906b04c00b0098d5ae20f1cmr15383503ejb.34.1689140095525;
-        Tue, 11 Jul 2023 22:34:55 -0700 (PDT)
+        bh=+pDAwsES6/UJGMRnoH6Hw6ybZSO8OTJt1TeRcdDP7sc=;
+        b=DD8h5Q0iTNP+3h2uqSD2RQGVatIr8kBrpWIQCqgZZUfa5OgIbhc+Pwi4TGdodS7xhw
+         K8qMcTU+ECzJXg9BOTTIcTAn4mZBf8l1Nu8GjSfwBf3BjR+qQYjEYqmv1+ddeqZ0MM5y
+         mmB6GnTtCH7IXdhryX/Hmw9sTWVhmBv8Q6bOFyEI68cqarpRY7P3V6ugwKKe4ZTdQsIN
+         5vYzfWLGvQyL2++C2i38Dy+6jALI82UZKU6AQTYkYC+L9c/ukOCRhsNvRg/v74l9c3jV
+         mUpVG/TOZVdV7Ly9pJftaAoV1aN2MAAR3DZiPQZSqT9n0SAN8xM4+AzJV9zCZRO5yX/V
+         nlKA==
+X-Gm-Message-State: ABy/qLaoHToo1RRTsKQ7VEw6uOs+nRzzIFB+peN4nKaDluErWIiXJLjD
+        edQsgwe6Yt68vfyT2/zzTsz6mA==
+X-Google-Smtp-Source: APBJJlEwqhkXOyt65V84KWLF0TrTw7ci9mw3/uJcSEo60JbAasj5LSNrmdrbPO3QWDCuzxL6PufJWg==
+X-Received: by 2002:ac2:51bb:0:b0:4fb:90c6:c31a with SMTP id f27-20020ac251bb000000b004fb90c6c31amr12514057lfk.14.1689140262956;
+        Tue, 11 Jul 2023 22:37:42 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id cx18-20020a170906c81200b00992e14af9c3sm2039633ejb.143.2023.07.11.22.34.53
+        by smtp.gmail.com with ESMTPSA id d18-20020aa7ce12000000b0051ddfb4385asm2199187edv.45.2023.07.11.22.37.39
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 11 Jul 2023 22:34:54 -0700 (PDT)
-Message-ID: <c2ae813b-c6d3-0137-b3bd-2938345ff186@linaro.org>
-Date:   Wed, 12 Jul 2023 07:34:52 +0200
+        Tue, 11 Jul 2023 22:37:42 -0700 (PDT)
+Message-ID: <b3723443-2a27-0a51-babd-b36eef095913@linaro.org>
+Date:   Wed, 12 Jul 2023 07:37:38 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
-Subject: Re: [PATCH v2 1/9] dt-bindings: mfd: Add bindings for SAM9X75 LCD
- controller
+Subject: Re: [PATCH v8 1/4] iio: adc: Kconfig change description for Allwinner
+ GPADC
 Content-Language: en-US
-To:     Manikandan Muralidharan <manikandan.m@microchip.com>,
-        lee@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
-        claudiu.beznea@microchip.com, sam@ravnborg.org,
-        bbrezillon@kernel.org, airlied@gmail.com, daniel@ffwll.ch,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
-Cc:     Hari.PrasathGE@microchip.com,
-        Balamanikandan.Gunasundar@microchip.com,
-        Durai.ManickamKR@microchip.com, Nayabbasha.Sayed@microchip.com,
-        Dharma.B@microchip.com, Varshini.Rajendran@microchip.com,
-        Balakrishnan.S@microchip.com
-References: <20230712024017.218921-1-manikandan.m@microchip.com>
- <20230712024017.218921-2-manikandan.m@microchip.com>
+To:     =?UTF-8?Q?Jernej_=c5=a0krabec?= <jernej.skrabec@gmail.com>,
+        linux-iio@vger.kernel.org, Maksim Kiselev <bigunclemax@gmail.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Samuel Holland <samuel@sholland.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+        Andre Przywara <andre.przywara@arm.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Cosmin Tanislav <demonsingur@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        =?UTF-8?Q?Leonard_G=c3=b6hrs?= <l.goehrs@pengutronix.de>,
+        ChiYuan Huang <cy_huang@richtek.com>,
+        Ramona Bolboaca <ramona.bolboaca@analog.com>,
+        Ibrahim Tilki <Ibrahim.Tilki@analog.com>,
+        ChiaEn Wu <chiaen_wu@richtek.com>,
+        William Breathitt Gray <william.gray@linaro.org>,
+        Haibo Chen <haibo.chen@nxp.com>,
+        Mike Looijmans <mike.looijmans@topic.nl>,
+        Quentin Schulz <quentin.schulz@free-electrons.com>,
+        Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+References: <20230619154252.3951913-1-bigunclemax@gmail.com>
+ <20230619154252.3951913-2-bigunclemax@gmail.com>
+ <2148594.irdbgypaU6@jernej-laptop>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230712024017.218921-2-manikandan.m@microchip.com>
+In-Reply-To: <2148594.irdbgypaU6@jernej-laptop>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/07/2023 04:40, Manikandan Muralidharan wrote:
-> Add new compatible string for the XLCD controller on sam9x75 variant
-> of the SAM9X7 SoC family.
-> The XLCD controller in sam9x75 variant supports interfacing with
-> LVDS and MIPI-DSI and parallel port RGB.
+On 11/07/2023 20:14, Jernej Škrabec wrote:
+> Dne ponedeljek, 19. junij 2023 ob 17:42:24 CEST je Maksim Kiselev napisal(a):
+>> This patch adds SoCs names to Allwinner GPADC description to
+>> make it more informative.
+> 
+> Please reword to remove "This patch".
+> 
+>>
+>> Fixes: d1caa9905538 ("iio: adc: add support for Allwinner SoCs ADC")
+> 
+> I'm fine with the patch in general, but does this really warrant fixes tag?
+> 
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+No, it's some fake fix. There is no bug here.
 
 Best regards,
 Krzysztof
