@@ -2,128 +2,208 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4DE57750FB2
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 19:34:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C6CF3750FBB
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 19:34:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232973AbjGLReT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jul 2023 13:34:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40218 "EHLO
+        id S233327AbjGLRew (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jul 2023 13:34:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40798 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232644AbjGLReS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 13:34:18 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 376291BD
-        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 10:34:17 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id 2adb3069b0e04-4f004cc54f4so10908963e87.3
-        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 10:34:17 -0700 (PDT)
+        with ESMTP id S233142AbjGLReu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 13:34:50 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F885210C
+        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 10:34:44 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id 2adb3069b0e04-4fa48b5dc2eso11667852e87.1
+        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 10:34:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=shruggie-ro.20221208.gappssmtp.com; s=20221208; t=1689183255; x=1691775255;
+        d=rivosinc-com.20221208.gappssmtp.com; s=20221208; t=1689183282; x=1691775282;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=THupXVrcQgstmKZ7g3sWCpKEqGRDMCR0S1cuPxvrmm0=;
-        b=CEkTls9NpLa7QXntC+qxjwisHZSsRQgQwgxURUxzFeBcv9LvOyTjJworuQN7WatsWZ
-         2K8NdX0u0LbxZ2lR1yUo79lVYV7Up0UpO2i2X/Rw8KhfiAEoAlYYFuDPvs0u48lBYlby
-         Hr1UZ63ywo5FibwhwcS7qoubUmXWRJA5tgVIa0eFHOuV/v7sNq3UfNSWZ7LHxLcnsYO7
-         4av0aEY16DDYWnZRJoM4szLJmn5o+qjXQ6Ny2xJEot+VxVVdx7Lp4Q3D7xvuoXEsOoCE
-         +AVENbJNR+oens7/f65Ii+msEkHaRKqN92l7wvCOx7qSEv3ZeIceedllAlVUezPkND2D
-         psnA==
+        bh=7Kn9GKWzSCL2y3w2iBtXzlaPYZE6roRbs1qwKy/TmHY=;
+        b=o6+YFgzBDpsGfJuM/ertNh1ht/TceQDD5URMBDxiTzgooE3nIvHSeo2ebIf1in/J7A
+         +F/OptuLwzFhjBxN2yMdo0uxGPfdfmlYgE5duf+IWZZFl4dW+F+tkI1KnIkAXsG5ExNa
+         0tRzmewVAtiO7Kch2Ml/5iQwg2aE0ES/KR3tgvYqknmWCG2OZIyGnVtS8hO+/aFOjARf
+         U8L72Wzsve03ef41G8okxF49C32zxtmTRMIj6xvdb+AkwLXrLo3B226rTerhSxAu6yAC
+         6ENUpGSc5LR0Iem+lN2brhVBBb20EMb7wvfwBXzbDv4BNRg1eATMXMfX/IaJNI5Kjwh+
+         0NnQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689183255; x=1691775255;
+        d=1e100.net; s=20221208; t=1689183282; x=1691775282;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=THupXVrcQgstmKZ7g3sWCpKEqGRDMCR0S1cuPxvrmm0=;
-        b=AuIJUqAwaGOcmWnEDBWHvCJiWE+xRgtas/eWmrSAVh53xBuj29rKysC5uVU/9cRa8R
-         mZSwajCzLoWZb7R70s/X2Wv+HO8HgIO5+ZvxVyFBWHUBlrmB1+Yh9DrV1Ae7bUeSHyvK
-         7/azky7zmbRGSD/Y4CYIQpW25Rkjv75AqqfgvnC0E29c0qMj0/sLn+Rd8ncsTSWkv2WC
-         Sv/KHOxKvs44tCAAX/atY16F/j3G9owZkktuPc2wAxyIovTErhPY999WZxYxccSv9ngY
-         OoffawV9FnLPprY7Sc+vXN9inemy2EZUjBIdOI/13/sXMHH2yDZ76SGdDoMGhv1aR7p3
-         dnxQ==
-X-Gm-Message-State: ABy/qLZ07xA0wzKrljR3Kw1/RjSfjnaAlD0xmTmJ2rI1wpWYqrCB3Ufr
-        0cLKzgD/twUe4491Orz49j5pH16IMZKmzXiGdin/jA==
-X-Google-Smtp-Source: APBJJlHvVk6KQIaeMx+Y8djfpAYOUtMArgWEG07w/d6ONkJCrU9E2j1ZpgldQFTViBw1jnRhyDheAmQQeSboRoBB5SI=
-X-Received: by 2002:a05:6512:3287:b0:4fb:89f2:278e with SMTP id
- p7-20020a056512328700b004fb89f2278emr17145159lfe.68.1689183255338; Wed, 12
- Jul 2023 10:34:15 -0700 (PDT)
+        bh=7Kn9GKWzSCL2y3w2iBtXzlaPYZE6roRbs1qwKy/TmHY=;
+        b=Xu+gVX55evXQhbkBjvg2xqXSKLJuvn5VxHYerbiTUAC6L7n8IKkwoGdqBBXhdM3XcO
+         d/3CKOzpdbuVtVsctX0+1IiR/+KAklYKydv7HoXMA46l2Vdbyil12rYAaHyw4CrZnecB
+         grj16RpXFhzaRonTyMN4OWWovOxGeudsYZON6GBOC20NwK37vI6eiCOrbi7nM5R+wQ3L
+         gbw6nUtpdCDxqsqcmY97YpM6ONEgVoNbDTHV5Ao316CArKM8rS4n3TS0Q6PZS872lDQR
+         UtdZfUOldp+JoRhYykql08se/KlH6gQluxe45x03SxEcu3M92rC02/A7Q26Qqt4oRjbC
+         I4dQ==
+X-Gm-Message-State: ABy/qLbaC3smtT/0tV0Sx/RNAycVpNcVKQemID45tU1eJcdDo2wzpexn
+        wgYp5LFiCicV+HoZr3jGEZHfKHakriv7NI7iZg14UA==
+X-Google-Smtp-Source: APBJJlGLe1857hveLUdO5LGGF1AxUUzRt+f/c/dzcQTQoh/f/dXe05qgO01maJoi+rxEnXtAHpOuHL5xkN7wEJ1BXNk=
+X-Received: by 2002:a05:6512:114b:b0:4f9:ec5e:d624 with SMTP id
+ m11-20020a056512114b00b004f9ec5ed624mr18739314lfg.38.1689183282151; Wed, 12
+ Jul 2023 10:34:42 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230706081554.1616839-1-alex@shruggie.ro> <20230706081554.1616839-2-alex@shruggie.ro>
- <9c37e2d5-a430-4a0f-b6b9-5de0dc14033f@lunn.ch>
-In-Reply-To: <9c37e2d5-a430-4a0f-b6b9-5de0dc14033f@lunn.ch>
-From:   Alexandru Ardelean <alex@shruggie.ro>
-Date:   Wed, 12 Jul 2023 20:34:03 +0300
-Message-ID: <CAH3L5Qp_887Jg4QN8qo1QQWJGhyLmvafKKTBRF-Yu3nkLE0G+g@mail.gmail.com>
-Subject: Re: [PATCH 2/2] dt-bindings: net: phy: vsc8531: document
- 'vsc8531,clkout-freq-mhz' property
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, davem@davemloft.net,
-        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, hkallweit1@gmail.com, linux@armlinux.org.uk,
-        olteanv@gmail.com, marius.muresan@mxt.ro
+References: <20230710-equipment-stained-dd042d66ba5d@wendy> <20230710-banker-visible-4c4cb3685dc1@wendy>
+In-Reply-To: <20230710-banker-visible-4c4cb3685dc1@wendy>
+From:   Evan Green <evan@rivosinc.com>
+Date:   Wed, 12 Jul 2023 10:34:06 -0700
+Message-ID: <CALs-HsstyS+qFJZjb7Lv_2LmygfhA_EAeEdoCSRhtaXnYfhw0w@mail.gmail.com>
+Subject: Re: [PATCH v4 05/11] RISC-V: repurpose riscv_isa_ext array in riscv_fill_hwcap()
+To:     Conor Dooley <conor.dooley@microchip.com>
+Cc:     palmer@dabbelt.com, conor@kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        Heiko Stuebner <heiko.stuebner@vrull.eu>,
+        Sunil V L <sunilvl@ventanamicro.com>,
+        linux-doc@vger.kernel.org, linux-riscv@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Jul 8, 2023 at 9:25=E2=80=AFPM Andrew Lunn <andrew@lunn.ch> wrote:
+On Mon, Jul 10, 2023 at 2:36=E2=80=AFAM Conor Dooley <conor.dooley@microchi=
+p.com> wrote:
 >
-> On Thu, Jul 06, 2023 at 11:15:54AM +0300, Alexandru Ardelean wrote:
-> > For VSC8351 and similar PHYs, a new property was added to generate a cl=
-ock
-> > signal on the CLKOUT pin.
-> > This change documents the change in the device-tree bindings doc.
-> >
-> > Signed-off-by: Alexandru Ardelean <alex@shruggie.ro>
-> > ---
-> >  Documentation/devicetree/bindings/net/mscc-phy-vsc8531.txt | 5 +++++
-> >  1 file changed, 5 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/net/mscc-phy-vsc8531.txt=
- b/Documentation/devicetree/bindings/net/mscc-phy-vsc8531.txt
-> > index 0a3647fe331b..133bdd644618 100644
-> > --- a/Documentation/devicetree/bindings/net/mscc-phy-vsc8531.txt
-> > +++ b/Documentation/devicetree/bindings/net/mscc-phy-vsc8531.txt
-> > @@ -31,6 +31,10 @@ Optional properties:
-> >                         VSC8531_LINK_100_ACTIVITY (2),
-> >                         VSC8531_LINK_ACTIVITY (0) and
-> >                         VSC8531_DUPLEX_COLLISION (8).
-> > +- vsc8531,clkout-freq-mhz : For VSC8531 and similar PHYs, this will ou=
-tput
-> > +                       a clock signal on the CLKOUT pin of the chip.
-> > +                       The supported values are 25, 50 & 125 Mhz.
-> > +                       Default value is no clock signal on the CLKOUT =
-pin.
+> In riscv_fill_hwcap() riscv_isa_ext array can be looped over, rather
+> than duplicating the list of extensions with individual
+> SET_ISA_EXT_MAP() usage. While at it, drop the statement-of-the-obvious
+> comments from the struct, rename uprop to something more suitable for
+> its new use & constify the members.
 >
-> It is possible this could cause regressions. The bootloader could
-> turned the clock on, and then Linux leaves it alone. Now, it will get
-> turned off unless a DT property is added.
+> Reviewed-by: Andrew Jones <ajones@ventanamicro.com>
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> ---
+> Changes in v2:
+> - Delete the now unused definition
+> ---
+>  arch/riscv/include/asm/hwcap.h |  7 ++-----
+>  arch/riscv/kernel/cpu.c        |  5 +++--
+>  arch/riscv/kernel/cpufeature.c | 26 +++++++-------------------
+>  3 files changed, 12 insertions(+), 26 deletions(-)
 >
-> I prefer to explicitly have the property, so there is no dependency on
-> the bootloader, so lets leave it like this. But if we do get
-> regressions reported, this might need to change.
-
-Well, we could also need add a "mscc,clkout-freq-mhz =3D <0>" handling
-where the CLKOUT pin gets disabled explicitly (if needed, after the
-bootloade), for some weird corner cases.
-Though, to-be-honest, I can't think of any (remotely) reasonable ones.
-
-It would definitely be simple to just make sure that Linux does not do
-any changes if this property isn't present.
-
-If you're on board about having this as-is, I will keep it; and spin a
-V2 just with 'vsc8531,clkout-freq-mhz ' -> 'mscc,clkout-freq-mhz' as
-Rob requested.
-
-Thanks
-Alex
-
+> diff --git a/arch/riscv/include/asm/hwcap.h b/arch/riscv/include/asm/hwca=
+p.h
+> index 7a57e6109aef..2460ac2fc7ed 100644
+> --- a/arch/riscv/include/asm/hwcap.h
+> +++ b/arch/riscv/include/asm/hwcap.h
+> @@ -55,7 +55,6 @@
+>  #define RISCV_ISA_EXT_ZIHPM            42
 >
->    Andrew
+>  #define RISCV_ISA_EXT_MAX              64
+> -#define RISCV_ISA_EXT_NAME_LEN_MAX     32
+>
+>  #ifdef CONFIG_RISCV_M_MODE
+>  #define RISCV_ISA_EXT_SxAIA            RISCV_ISA_EXT_SMAIA
+> @@ -70,10 +69,8 @@
+>  unsigned long riscv_get_elf_hwcap(void);
+>
+>  struct riscv_isa_ext_data {
+> -       /* Name of the extension displayed to userspace via /proc/cpuinfo=
+ */
+> -       char uprop[RISCV_ISA_EXT_NAME_LEN_MAX];
+> -       /* The logical ISA extension ID */
+> -       unsigned int isa_ext_id;
+> +       const unsigned int id;
+> +       const char *name;
+>  };
+>
+>  extern const struct riscv_isa_ext_data riscv_isa_ext[];
+> diff --git a/arch/riscv/kernel/cpu.c b/arch/riscv/kernel/cpu.c
+> index bf93293d51f3..aa17eeb0ec9a 100644
+> --- a/arch/riscv/kernel/cpu.c
+> +++ b/arch/riscv/kernel/cpu.c
+> @@ -168,9 +168,10 @@ static void print_isa_ext(struct seq_file *f)
+>  {
+>         for (int i =3D 0; i < riscv_isa_ext_count; i++) {
+>                 const struct riscv_isa_ext_data *edata =3D &riscv_isa_ext=
+[i];
+> -               if (!__riscv_isa_extension_available(NULL, edata->isa_ext=
+_id))
+> +               if (!__riscv_isa_extension_available(NULL, edata->id))
+>                         continue;
+> -               seq_printf(f, "_%s", edata->uprop);
+> +
+> +               seq_printf(f, "_%s", edata->name);
+>         }
+>  }
+>
+> diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeatur=
+e.c
+> index fb476153fffc..6d8cd45af723 100644
+> --- a/arch/riscv/kernel/cpufeature.c
+> +++ b/arch/riscv/kernel/cpufeature.c
+> @@ -99,11 +99,10 @@ static bool riscv_isa_extension_check(int id)
+>         return true;
+>  }
+>
+> -#define __RISCV_ISA_EXT_DATA(UPROP, EXTID) \
+> -       {                                                       \
+> -               .uprop =3D #UPROP,                                \
+> -               .isa_ext_id =3D EXTID,                            \
+> -       }
+> +#define __RISCV_ISA_EXT_DATA(_name, _id) {     \
+> +       .name =3D #_name,                         \
+> +       .id =3D _id,                              \
+> +}
+>
+>  /*
+>   * The canonical order of ISA extension names in the ISA string is defin=
+ed in
+> @@ -366,20 +365,9 @@ void __init riscv_fill_hwcap(void)
+>                                         set_bit(nr, isainfo->isa);
+>                                 }
+>                         } else {
+> -                               /* sorted alphabetically */
+> -                               SET_ISA_EXT_MAP("smaia", RISCV_ISA_EXT_SM=
+AIA);
+> -                               SET_ISA_EXT_MAP("ssaia", RISCV_ISA_EXT_SS=
+AIA);
+> -                               SET_ISA_EXT_MAP("sscofpmf", RISCV_ISA_EXT=
+_SSCOFPMF);
+> -                               SET_ISA_EXT_MAP("sstc", RISCV_ISA_EXT_SST=
+C);
+> -                               SET_ISA_EXT_MAP("svinval", RISCV_ISA_EXT_=
+SVINVAL);
+> -                               SET_ISA_EXT_MAP("svnapot", RISCV_ISA_EXT_=
+SVNAPOT);
+> -                               SET_ISA_EXT_MAP("svpbmt", RISCV_ISA_EXT_S=
+VPBMT);
+> -                               SET_ISA_EXT_MAP("zba", RISCV_ISA_EXT_ZBA)=
+;
+> -                               SET_ISA_EXT_MAP("zbb", RISCV_ISA_EXT_ZBB)=
+;
+> -                               SET_ISA_EXT_MAP("zbs", RISCV_ISA_EXT_ZBS)=
+;
+> -                               SET_ISA_EXT_MAP("zicbom", RISCV_ISA_EXT_Z=
+ICBOM);
+> -                               SET_ISA_EXT_MAP("zicboz", RISCV_ISA_EXT_Z=
+ICBOZ);
+> -                               SET_ISA_EXT_MAP("zihintpause", RISCV_ISA_=
+EXT_ZIHINTPAUSE);
+> +                               for (int i =3D 0; i < riscv_isa_ext_count=
+; i++)
+> +                                       SET_ISA_EXT_MAP(riscv_isa_ext[i].=
+name,
+
+Does this still work, given that SET_ISA_EXT_MAP() does sizeof(name)
+to get the string length? I worry that line of the macro is now
+evaluating to a constant sizeof(pointer), and the macro needs to
+change to use strlen().
+
+-Evan
