@@ -2,213 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A8BB07506FD
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 13:50:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A1DE67506EE
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 13:49:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233497AbjGLLt6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jul 2023 07:49:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38048 "EHLO
+        id S233282AbjGLLtl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jul 2023 07:49:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38492 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233089AbjGLLtR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 07:49:17 -0400
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2272E213C
-        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 04:48:33 -0700 (PDT)
-Received: by mail-wr1-x435.google.com with SMTP id ffacd0b85a97d-3159d75606dso3164519f8f.1
-        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 04:48:33 -0700 (PDT)
+        with ESMTP id S233285AbjGLLtN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 07:49:13 -0400
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBE7F212E
+        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 04:48:27 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-51cff235226so1472518a12.0
+        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 04:48:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=9elements.com; s=google; t=1689162503; x=1691754503;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=i5BOr/cNAxLqespyX9yFLeLzm/eFPOS6HvzeibnDsPE=;
-        b=eFKUE+hsXTXdVoZU/iamy44AFLV+pMDVAtXHkJgt9l4OlmmlA2YH61u8RCY83gil44
-         MCKUX0J08FctFthaeX6s6fQ+HYux1GlyfqMFsOR0LFMUUwwFIoA0qpVp0a/LRFz4LpSJ
-         AgV5JN4O1P8GwuvpWeCFmoksvBGgCezw5E5FiL4r9FthpPV0ksyOv+frifxdwixNXfcI
-         NXL259LldlSJpUs0XElVi8nJPj5vlKP9iywhwqmHSawEFtSWjnO+jjGqGWq44Tqz0vYb
-         7ScntcmRdSO9tzZwLmPJJWwnqIfTv9QNz7KcB15Ne443TV2uVcJuBWJ6i4ua4fQ2zF8C
-         9mow==
+        d=linaro.org; s=google; t=1689162501; x=1691754501;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=C0bqqbnM1vgDHL4/44kvm6PkazY/QumMJkjW1vAAr6k=;
+        b=fBm0+QsqoMQJ2GVY6BROKP/9+appv6LnzytHflrEjt1WEsk9yjwyEugEeO6R+mfsiE
+         QwuLZZhzv3qU1mY9xvDFDgAB69vJvDWk0f1fBsSzKgVEKz1GXKbSsrpStisdQ+Sf030j
+         qYrAQrsE4RG0owCp5UaLOFXxm0TYZzF54ryoPAkrgXCPdjb9IhhUf6v4emNvEdN+yh0x
+         ltZouG3eNA4dXbM97im675FZFTjws+bGPLDYS3Yrp3eiUlvAj8fCH3LnTPuRWcrq+FpC
+         z6+6w66Cd1ynF/NqsOBhYMGcuH9+Wi5B9tzubuUDDgoIEu2zg2cZ0HzbVdQDoanlCTuV
+         PClQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689162503; x=1691754503;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=i5BOr/cNAxLqespyX9yFLeLzm/eFPOS6HvzeibnDsPE=;
-        b=Xi1SZ6JdZKMdKo5XUfV6GGMbM2sGnwtUEoZzFkZZlIRyWq380JP+d4vy6mnIWX4Twb
-         OXiDF5Fq/2zVSlIbDdGBmeyHBaMS2Rrs7wkh03CRBZnzz/XlTdQD1yC1T4ScVEnthnnP
-         oPhBl+aYZdcCJfY9tB/sD7GtKn575rYSIiGz+/6Hp76fBBL0QMpiIt/OAlRG+pFXGplA
-         Ykp+XbQ/BEmUuYxqibi4CTGy1kXgjeN+bxOjHmxLNQvBFEL81bWv1GZyZF5wPurKUF2B
-         vZ43VhDmv+gK+ckvjPTGvDHsLLfQvsTP11AnKo2RB/KSjCYDS3hQ3EacM6WPs8sojgYT
-         IkSA==
-X-Gm-Message-State: ABy/qLbEhDWupSoPv1SOToW4liDHyBgsx49Q7bR9TekOYhIKcY8cjB9C
-        8hHEq8M2vWFwpCJSyXZOo6SsQ4SC3ZXcGbrboSwlyw==
-X-Google-Smtp-Source: APBJJlEEhHBvM+eUHyM06WHoH5MvzwC3d7TIGscJLcajhsTTUrYwOe65chTKH5iIbLWYddmuAffZkQ==
-X-Received: by 2002:a5d:4c88:0:b0:314:35df:4a3e with SMTP id z8-20020a5d4c88000000b0031435df4a3emr16296631wrs.7.1689162502828;
-        Wed, 12 Jul 2023 04:48:22 -0700 (PDT)
-Received: from stroh80.sec.9e.network (ip-078-094-000-051.um19.pools.vodafone-ip.de. [78.94.0.51])
-        by smtp.gmail.com with ESMTPSA id j2-20020a5d4482000000b003143867d2ebsm4867463wrq.63.2023.07.12.04.48.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Jul 2023 04:48:22 -0700 (PDT)
-From:   Naresh Solanki <naresh.solanki@9elements.com>
-X-Google-Original-From: Naresh Solanki <Naresh.Solanki@9elements.com>
-To:     devicetree@vger.kernel.org, Guenter Roeck <linux@roeck-us.net>,
-        Jean Delvare <jdelvare@suse.com>
-Cc:     linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
-        Patrick Rudolph <patrick.rudolph@9elements.com>,
-        Naresh Solanki <Naresh.Solanki@9elements.com>
-Subject: [PATCH 8/8] hwmon: (pmbus/mp2975) Add OCP limit
-Date:   Wed, 12 Jul 2023 13:47:49 +0200
-Message-ID: <20230712114754.500477-8-Naresh.Solanki@9elements.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20230712114754.500477-1-Naresh.Solanki@9elements.com>
-References: <20230712114754.500477-1-Naresh.Solanki@9elements.com>
+        d=1e100.net; s=20221208; t=1689162501; x=1691754501;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=C0bqqbnM1vgDHL4/44kvm6PkazY/QumMJkjW1vAAr6k=;
+        b=WXrI+3s03pXyx6Gy/SKym7prRZlXadH6Goi0RD+tDxjMbXA/5CbvO2v/yvNWkHOAR9
+         ncwL8z8dt8SR1F6SUwTYMxRUpr2A4m7LIa8hvO9sjGyxmxT5pWxmUzXHU50x54FlRMu1
+         Nyox9xyeTKJs85t89V4FFaP6HnvzNXwtGU1BbwyKEKDeEI7TzweVfBCJ0J3Pr/hTf0zj
+         5akzxbYAWySzsMNE86iWohsvGf51EM7njBOUIivihGmh40BeZ0Sq/5RTVnLr9KLuxMh6
+         zwoYjEISRu4l5Jb5W4ypKjrEYgzMt8uZH0UoGa5tyVHjnrLqfBQBXvDZb+zRb0tL2WJt
+         HR4Q==
+X-Gm-Message-State: ABy/qLbSwD/X7ZLujmvyCR3sNpmDtJ7QSk+2IjennMmR1b5CJ079WXwF
+        Pb65bZA44Y9NNawLnmTD5F5nlg==
+X-Google-Smtp-Source: APBJJlFQeZHKAi2oBkRMSAzPMEDSRrsxv9NhvgIUeOOAkRmLUgBAxAXBv0sRJvJUaA9FbKHwlb2a6A==
+X-Received: by 2002:a05:6402:358c:b0:51e:443a:25df with SMTP id y12-20020a056402358c00b0051e443a25dfmr2043522edc.19.1689162501273;
+        Wed, 12 Jul 2023 04:48:21 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id x19-20020aa7dad3000000b0051e28d315a2sm2637235eds.78.2023.07.12.04.48.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 12 Jul 2023 04:48:20 -0700 (PDT)
+Message-ID: <0ce7d468-c0f5-e29f-d4cc-3bdcfcc2bff4@linaro.org>
+Date:   Wed, 12 Jul 2023 13:48:19 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH 2/3] dt-bindings: gnss: u-blox: add "reset-gpios" binding
+Content-Language: en-US
+To:     Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        linux-renesas-soc@vger.kernel.org
+Cc:     Johan Hovold <johan@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230712113731.3306-1-wsa+renesas@sang-engineering.com>
+ <20230712113731.3306-3-wsa+renesas@sang-engineering.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230712113731.3306-3-wsa+renesas@sang-engineering.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Patrick Rudolph <patrick.rudolph@9elements.com>
+On 12/07/2023 13:37, Wolfram Sang wrote:
+> Needed to enable this chip on a Renesas KingFisher board. Description
+> copied over from the Mediatek driver which already supports it.
+> 
+> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+> ---
+>  Documentation/devicetree/bindings/gnss/u-blox,neo-6m.yaml | 7 +++++++
+>  1 file changed, 7 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/gnss/u-blox,neo-6m.yaml b/Documentation/devicetree/bindings/gnss/u-blox,neo-6m.yaml
+> index 4835a280b3bf..8f6992b97ca6 100644
+> --- a/Documentation/devicetree/bindings/gnss/u-blox,neo-6m.yaml
+> +++ b/Documentation/devicetree/bindings/gnss/u-blox,neo-6m.yaml
+> @@ -41,6 +41,12 @@ properties:
+>      description: >
+>        Backup voltage regulator
+>  
+> +  reset-gpios:
+> +    maxItems: 1
+> +    description: >
+> +      An optional reset line, with names such as RESET or NRESET.
+> +      If the line is active low it should be flagged with GPIO_ACTIVE_LOW.
+> +
+>  required:
+>    - compatible
+>    - vcc-supply
+> @@ -54,5 +60,6 @@ examples:
+>              compatible = "u-blox,neo-8";
+>              v-bckp-supply = <&gnss_v_bckp_reg>;
+>              vcc-supply = <&gnss_vcc_reg>;
+> +            reset-gpios = <&gpio 1 GPIO_ACTIVE_LOW>;
 
-Add support for PMBUS_IOUT_OC_FAULT_LIMIT.
-Add a helper function to convert the limit to LINEAR11 format
-and read data->info.phases[0] on MP2971 and MP2973 as well.
+This should complain with errors, because of missing header for the
+defines, so usual disclaimer:
 
-Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
-Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
----
- drivers/hwmon/pmbus/mp2975.c | 76 ++++++++++++++++++++++++++++++------
- 1 file changed, 65 insertions(+), 11 deletions(-)
+It does not look like you tested the bindings, at least after quick
+look. Please run `make dt_binding_check` (see
+Documentation/devicetree/bindings/writing-schema.rst for instructions).
+Maybe you need to update your dtschema and yamllint.
 
-diff --git a/drivers/hwmon/pmbus/mp2975.c b/drivers/hwmon/pmbus/mp2975.c
-index 27a9724aed68..0a6669f865f6 100644
---- a/drivers/hwmon/pmbus/mp2975.c
-+++ b/drivers/hwmon/pmbus/mp2975.c
-@@ -65,6 +65,10 @@
- #define MP2973_VID_STEP_SEL_R2		BIT(3)
- #define MP2973_IMVP9_EN_R2		BIT(13)
- 
-+#define MP2973_MFR_OCP_TOTAL_SET	0x5f
-+#define MP2973_OCP_TOTAL_CUR_MASK	GENMASK(6, 0)
-+#define MP2973_MFR_OCP_LEVEL_RES	BIT(15)
-+
- #define MP2973_MFR_READ_IOUT_PK		0x90
- #define MP2973_MFR_READ_POUT_PK		0x91
- 
-@@ -153,6 +157,41 @@ mp2975_vid2direct(int vrf, int val)
- 	return 0;
- }
- 
-+#define MAX_LIN_MANTISSA	(1023 * 1000)
-+#define MIN_LIN_MANTISSA	(511 * 1000)
-+
-+/* Converts a milli-unit DIRECT value to LINEAR11 format */
-+static u16 mp2975_data2reg_linear11(s64 val)
-+{
-+	s16 exponent = 0, mantissa;
-+	bool negative = false;
-+
-+	/* simple case */
-+	if (val == 0)
-+		return 0;
-+
-+	/* Reduce large mantissa until it fits into 10 bit */
-+	while (val >= MAX_LIN_MANTISSA && exponent < 15) {
-+		exponent++;
-+		val >>= 1;
-+	}
-+	/* Increase small mantissa to improve precision */
-+	while (val < MIN_LIN_MANTISSA && exponent > -15) {
-+		exponent--;
-+		val <<= 1;
-+	}
-+
-+	/* Convert mantissa from milli-units to units */
-+	mantissa = clamp_val(DIV_ROUND_CLOSEST_ULL(val, 1000), 0, 0x3ff);
-+
-+	/* restore sign */
-+	if (negative)
-+		mantissa = -mantissa;
-+
-+	/* Convert to 5 bit exponent, 11 bit mantissa */
-+	return (mantissa & 0x7ff) | ((exponent << 11) & 0xf800);
-+}
-+
- static int
- mp2975_read_phase(struct i2c_client *client, struct mp2975_data *data,
- 		  int page, int phase, u8 reg)
-@@ -297,6 +336,20 @@ static int mp2973_read_word_data(struct i2c_client *client, int page,
- 		ret = pmbus_read_word_data(client, page, phase,
- 					   MP2973_MFR_READ_IOUT_PK);
- 		break;
-+	case PMBUS_IOUT_OC_FAULT_LIMIT:
-+		ret = mp2975_read_word_helper(client, page, phase,
-+					      MP2973_MFR_OCP_TOTAL_SET,
-+					      GENMASK(15, 0));
-+		if (ret < 0)
-+			return ret;
-+
-+		if (ret & MP2973_MFR_OCP_LEVEL_RES)
-+			ret = 2 * (ret & MP2973_OCP_TOTAL_CUR_MASK);
-+		else
-+			ret = ret & MP2973_OCP_TOTAL_CUR_MASK;
-+
-+		ret = mp2975_data2reg_linear11(ret * info->phases[page] * 1000);
-+		break;
- 	case PMBUS_UT_WARN_LIMIT:
- 	case PMBUS_UT_FAULT_LIMIT:
- 	case PMBUS_VIN_UV_WARN_LIMIT:
-@@ -307,7 +360,6 @@ static int mp2973_read_word_data(struct i2c_client *client, int page,
- 	case PMBUS_IIN_OC_FAULT_LIMIT:
- 	case PMBUS_IOUT_OC_LV_FAULT_LIMIT:
- 	case PMBUS_IOUT_OC_WARN_LIMIT:
--	case PMBUS_IOUT_OC_FAULT_LIMIT:
- 	case PMBUS_IOUT_UC_FAULT_LIMIT:
- 	case PMBUS_POUT_OP_FAULT_LIMIT:
- 	case PMBUS_POUT_OP_WARN_LIMIT:
-@@ -481,11 +533,13 @@ mp2975_identify_multiphase(struct i2c_client *client, struct mp2975_data *data,
- 	if (info->phases[0] > data->max_phases[0])
- 		return -EINVAL;
- 
--	mp2975_set_phase_rail1(info);
--	num_phases2 = min(data->max_phases[0] - info->phases[0],
--			  data->max_phases[1]);
--	if (info->phases[1] && info->phases[1] <= num_phases2)
--		mp2975_set_phase_rail2(info, num_phases2);
-+	if (data->chip_id == mp2975) {
-+		mp2975_set_phase_rail1(info);
-+		num_phases2 = min(data->max_phases[0] - info->phases[0],
-+				  data->max_phases[1]);
-+		if (info->phases[1] && info->phases[1] <= num_phases2)
-+			mp2975_set_phase_rail2(info, num_phases2);
-+	}
- 
- 	return 0;
- }
-@@ -879,12 +933,12 @@ static int mp2975_probe(struct i2c_client *client)
- 			data->info.num_regulators = MP2975_PAGE_NUM;
- 	}
- 
--	if (data->chip_id == mp2975) {
--		/* Identify multiphase configuration. */
--		ret = mp2975_identify_multiphase(client, data, info);
--		if (ret)
--			return ret;
-+	/* Identify multiphase configuration. */
-+	ret = mp2975_identify_multiphase(client, data, info);
-+	if (ret)
-+		return ret;
- 
-+	if (data->chip_id == mp2975) {
- 		/* Identify VID setting per rail. */
- 		ret = mp2975_identify_rails_vid(client, data, info);
- 		if (ret < 0)
--- 
-2.41.0
+Best regards,
+Krzysztof
 
