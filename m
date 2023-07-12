@@ -2,114 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4BA167513CD
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 00:56:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F1677514CB
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 01:54:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230179AbjGLW4y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jul 2023 18:56:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47544 "EHLO
+        id S232542AbjGLXyh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jul 2023 19:54:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55550 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229572AbjGLW4x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 18:56:53 -0400
-Received: from mail-yw1-x1136.google.com (mail-yw1-x1136.google.com [IPv6:2607:f8b0:4864:20::1136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F7A212E
-        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 15:56:52 -0700 (PDT)
-Received: by mail-yw1-x1136.google.com with SMTP id 00721157ae682-57a6df91b1eso56493787b3.1
-        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 15:56:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689202611; x=1691794611;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=VB9ypz/KY/xV4cSqtZ+tUlnGhLGfTgqW2/3T6mN7ebg=;
-        b=zqXzgzWKFV6nFUVPIAAPE0mvcmohHovWT46vSnWqga+md0s0CjPw+S/slrQmtYD/+I
-         Fu0NJj/cGiDczTnmqqNEItLDzKpArQ+WRuNWc3U3XMwXODsKJkLrAVbsPysme2TvZlIQ
-         1nYVNxGO7F7Ylo2QbTcDyees8UGOWMay7cQq9+ubv3fb6bXR1CbmePyVVhhqIA0AS9RT
-         tL8OHX1Mp9QLdxnzRYNhfIXauDWWOUboIKDr0iOGH5r+D74mbNsha1Himxc8/xYDV/BD
-         jTjCUY8Qz1/Nl5IiMjzjvKt8+BjcT526DZvxuID7aGVOFHbTflMIReO9ZOI+Evkv/6ik
-         qlNA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689202611; x=1691794611;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=VB9ypz/KY/xV4cSqtZ+tUlnGhLGfTgqW2/3T6mN7ebg=;
-        b=NgIfna8Ovx7PU39pQG7q1EY5TkBtcYMFMib+p80gO4nLloPp/I0Ggv2PyPVjNuf/UD
-         sdDDAYBgM+44K4iJ+I+oeyykcVGIyDZxnUz7VSAQC0u1lNv3gcfrNx1KZXy2cFAk7cM/
-         U0uyxxGDcPknn3HTs/5mLQS3DVoYWacf6pthKLP5Ec+rYlJwPEL0VXKy2twEMXqoU7Qv
-         XmH9QHHb12zKhCoctlbbBwgRVyPG61ANkfmQSmGofipZ7uGlKzW1QU0/1AZSok04H8Eg
-         FLVN/7akbIZ+JaX7EYx+YlSI2M9knhjc3Pi0QMCW+8h012fwx4cvJxQ68KZxLu12f/DM
-         1NbQ==
-X-Gm-Message-State: ABy/qLaay85YQdfgPgI3DcoEG7phONR05EL2bgQmB7ZSOKVyFWsPH3jU
-        Uagh1/LJ27fG6JPYmh4SueGKBkejdbmI2w+OZ5esaQ==
-X-Google-Smtp-Source: APBJJlF4igHjEc2KmL3nrfbBjOxJjhZo34FKjrNMDYKyWYjw8zNV/gZXWKTyO+6j1ecKjSoqtvT+UHPYSbZAxvI2mT4=
-X-Received: by 2002:a81:9281:0:b0:57a:897e:abce with SMTP id
- j123-20020a819281000000b0057a897eabcemr24404ywg.7.1689202611241; Wed, 12 Jul
- 2023 15:56:51 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230706073719.1156288-1-thomas.bourgoin@foss.st.com>
- <20230706073719.1156288-3-thomas.bourgoin@foss.st.com> <CACRpkdaHn8fhZtuhU4sXHK1xoxO3-xYg_Xb=3=bX8i-uJM9KDA@mail.gmail.com>
- <a584c152-329e-9c79-ec62-795485302a55@foss.st.com>
-In-Reply-To: <a584c152-329e-9c79-ec62-795485302a55@foss.st.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 13 Jul 2023 00:56:39 +0200
-Message-ID: <CACRpkdYStm_dxo-FMo4Kdw_Lm3iG+xppf7O5W6cxtoiRy1DOsw@mail.gmail.com>
-Subject: Re: [PATCH 2/7] crypto: stm32 - add new algorithms support
-To:     Thomas BOURGOIN <thomas.bourgoin@foss.st.com>
-Cc:     Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S . Miller" <davem@davemloft.net>,
+        with ESMTP id S231237AbjGLXyg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 19:54:36 -0400
+Received: from ixit.cz (ip-89-177-23-149.bb.vodafone.cz [89.177.23.149])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E98921BF2;
+        Wed, 12 Jul 2023 16:54:30 -0700 (PDT)
+Received: from newone.lan (unknown [10.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by ixit.cz (Postfix) with ESMTPSA id 4D01B1601A6;
+        Thu, 13 Jul 2023 01:54:28 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
+        t=1689206068;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=vcAkwKRqCiZaNNizbMfa6cyGO7zi6dKM1cLZ0gd3wME=;
+        b=2ZAExiKvPdBsFv+pEHMckmjbY6M5XKzH6iio1c0Laqil9iawrYicgamHGHQs7+OWXzgNOh
+        v4rME+QfkBHfaxLMYYepXMuRDw53BKwfnTFT0olnYTZ59zfk0d3GOB/kBc/SUo/Ely9cxs
+        gmVJebYn1D+O51Kft5EA+FvhYh+bSS0=
+From:   David Heidelberg <david@ixit.cz>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Lionel Debieve <lionel.debieve@foss.st.com>,
-        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        Manivannan Sadhasivam <mani@kernel.org>
+Cc:     David Heidelberg <david@ixit.cz>, linux-arm-msm@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: remoteproc: qcom: adsp: document firmware-name property
+Date:   Thu, 13 Jul 2023 01:54:09 +0200
+Message-Id: <20230712235409.97213-1-david@ixit.cz>
+X-Mailer: git-send-email 2.40.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        RDNS_DYNAMIC,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 12, 2023 at 9:58=E2=80=AFAM Thomas BOURGOIN
-<thomas.bourgoin@foss.st.com> wrote:
+Signed-off-by: David Heidelberg <david@ixit.cz>
+---
+ Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-> Did you run your test only with the patch adding the support for
-> STM32MP13 or did you try the whole patch set ?
+diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml
+index 643ee787a81f..fdf659c0e69a 100644
+--- a/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml
++++ b/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml
+@@ -44,6 +44,10 @@ properties:
+     maxItems: 1
+     description: Reference to the reserved-memory for the Hexagon core
+ 
++  firmware-name:
++    $ref: /schemas/types.yaml#/definitions/string
++    description: Name of ADSP firmware
++
+ required:
+   - compatible
+ 
+-- 
+2.40.1
 
-Both, actually.
-
-> The error is on the test vector number 4, which is an HASH of 64 bytes
-> which is exactly the size of a blcok for SHA1.
->
-> Did you try to run the test for SHA256 ? (I guess you will see the same
-> error on test vector 4)
-
-Yes... I posted a log with both SHA256 and SHA1.
-
-> I found a typo in the number of CSR to save/restore for the SHA1 and
-> SHA256 algorithm. It should be 38 instead of 22.
-> Tell me if it fixes the regression.
-
-Yes this fixes the bug and the tests pass fine :)
-I wonder why SHA1 was affected? Same codepath?
-
-> It could be possible to divide the patch in 2 (one patch rework
-> preparing MP13 and one patch with the new algorithm) but for the
-> upstream I do not know if it is relevant to have 2 patches instead of one=
-.
-
-The major point of splitting patches to "one technical step" is to be
-able to do fine-grained git bisect to find bugs such as this one :D
-But admittedly the defintion of "techical step" is a bit fuzzy.
-
-Yours,
-Linus Walleij
