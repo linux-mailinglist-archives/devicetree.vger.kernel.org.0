@@ -2,205 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EAF9774FD16
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 04:32:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BF5D474FD21
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 04:40:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231693AbjGLCcc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jul 2023 22:32:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42798 "EHLO
+        id S229609AbjGLCkj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jul 2023 22:40:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45346 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231177AbjGLCcb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 22:32:31 -0400
-Received: from mail-yw1-x112d.google.com (mail-yw1-x112d.google.com [IPv6:2607:f8b0:4864:20::112d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 728F81732;
-        Tue, 11 Jul 2023 19:32:30 -0700 (PDT)
-Received: by mail-yw1-x112d.google.com with SMTP id 00721157ae682-57eb0df5265so930597b3.3;
-        Tue, 11 Jul 2023 19:32:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1689129149; x=1691721149;
-        h=content-transfer-encoding:in-reply-to:subject:from:content-language
-         :references:cc:to:user-agent:mime-version:date:message-id:sender
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=hBKRW0S5Mf8blCkjHGiPQy6RjmAAGKAQMgdU5bPh7yg=;
-        b=TN9VpxjghrJpLa6pizkPJyUxH7T0CXkRCDx1lqBd1LQ3tE0xAcvpvplgsJcF0TGpBe
-         AW0oX5aKcY5dh1gk/gc0QUBPLUKnPdpIeqWmddVDCMk73PJ/Yd6L1veOv1MQGBDePBUi
-         MOmEX39OQ4r2GzwDLIEVF/BAIaovClWBCHozGcYKkhQMYDdrRFEEr1AId0Bzo6RI21xo
-         5X7IXzsW1Af1PJZb2hWD0PZeKFDLr3zGDz8BGNffp7kJHEfkgaL/q9s4zQqfiZk6UEw8
-         nN15HhNesNe0Rie+QchwYSeJqcrQ4lcezdLUIOWSeFXmlYHkAjW+5+wPyZXuz7vVes2I
-         qamA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689129149; x=1691721149;
-        h=content-transfer-encoding:in-reply-to:subject:from:content-language
-         :references:cc:to:user-agent:mime-version:date:message-id:sender
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=hBKRW0S5Mf8blCkjHGiPQy6RjmAAGKAQMgdU5bPh7yg=;
-        b=K2vYrqMGLfrbiOp/5OrgAovPzJQMXNOYblZYa/k0PPf6od0pCpgR70ialhTqhvHIQm
-         qRQhXanAIwzSQjWvaVVVbvWlOsjvsqw+d52SxOqNelcMInwSXgOAk+Tz9YQOUf4ZPxdp
-         EHQmc/6vmW38w9NodkmB/AhbI9/mFtox6QJxIg2E87YSHEoGKtD6UXEyIb3DGUDxsFyZ
-         pJazT5L18KXUUZYOQUlhcFnlx7wLDuvMbfu05oQo/U5YJ4S6tZbexUE5XcS2+5Z6s0gL
-         RkrAN6luE5pcvM+B9GgCPGgntsFzBBCHBMeRGL4Jy2uKZY+QCvcNmHe5DG6gkhdXHv4I
-         +F0w==
-X-Gm-Message-State: ABy/qLbP43J8KruzfA/Jj9VqykPGlcAF1DbBJypAZl5/vXy7eItNIehU
-        4ATDnG2u4P7VgnPs3EENR0lyD8zwVOA=
-X-Google-Smtp-Source: APBJJlE/yn2HzUXc1Hn94yj0zHnXdSrZLWYykA7s7blZ+3XMAgHzzwVEhwzl/44UKkqUMAla+V3cJg==
-X-Received: by 2002:a81:6dd7:0:b0:559:ed0a:96c4 with SMTP id i206-20020a816dd7000000b00559ed0a96c4mr15761340ywc.44.1689129149398;
-        Tue, 11 Jul 2023 19:32:29 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id v145-20020a814897000000b0057a8de72338sm918311ywa.68.2023.07.11.19.32.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 11 Jul 2023 19:32:28 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <165cf95b-663b-5dac-b686-a515f2111656@roeck-us.net>
-Date:   Tue, 11 Jul 2023 19:32:25 -0700
+        with ESMTP id S229524AbjGLCki (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jul 2023 22:40:38 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9838F171F;
+        Tue, 11 Jul 2023 19:40:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1689129637; x=1720665637;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=UQ+Ty7QCLmzuZeUmH8ApBFkuw242Jg4ATJz0g4JujM4=;
+  b=PxYa3W/h5aTszJNsssfun5tqtwJ9e4qJe6tdLeupDgEwfqJwC0hrUveJ
+   +1Eoljn1LNvykmhCrPlEba+b6zQM/JF1jhwV0RWSnjZcOtoyp615qZD42
+   Kl4hNkr5/dQ/L4P+K/+1NEwFSL9UIXAawJWm1ajwznX/5h7ZVGvywXhsO
+   3ZnXCtGmmAF87pWiW3MCrm+dAFfoyFxt8lazykIIc2eOSYxAZJZ2PhPv7
+   5q38mE7FlV+A4IuvJStNj68mGL9P0rwe7R3Pqn9pBvN+EYbSR1mThyxtG
+   vcw7F1LUtO8RCnQq0UxttWZtqgjGwRQm85Sy4kcO1ME0GDP1W8bH0z8aO
+   w==;
+X-IronPort-AV: E=Sophos;i="6.01,198,1684825200"; 
+   d="scan'208";a="234987599"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 11 Jul 2023 19:40:36 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Tue, 11 Jul 2023 19:40:36 -0700
+Received: from che-lt-i67131.amer.actel.com (10.10.115.15) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
+ 15.1.2507.21 via Frontend Transport; Tue, 11 Jul 2023 19:40:27 -0700
+From:   Manikandan Muralidharan <manikandan.m@microchip.com>
+To:     <lee@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
+        <claudiu.beznea@microchip.com>, <sam@ravnborg.org>,
+        <bbrezillon@kernel.org>, <airlied@gmail.com>, <daniel@ffwll.ch>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <dri-devel@lists.freedesktop.org>
+CC:     <Hari.PrasathGE@microchip.com>,
+        <Balamanikandan.Gunasundar@microchip.com>,
+        <Durai.ManickamKR@microchip.com>, <Nayabbasha.Sayed@microchip.com>,
+        <Dharma.B@microchip.com>, <Varshini.Rajendran@microchip.com>,
+        <Balakrishnan.S@microchip.com>,
+        Manikandan Muralidharan <manikandan.m@microchip.com>
+Subject: [PATCH v2 0/9] Add support for XLCDC to sam9x7 SoC family.
+Date:   Wed, 12 Jul 2023 08:10:08 +0530
+Message-ID: <20230712024017.218921-1-manikandan.m@microchip.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-To:     huaqian.li@siemens.com, wim@linux-watchdog.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
-Cc:     huaqianlee@gmail.com, nm@ti.com, vigneshr@ti.com,
-        kristo@kernel.org, linux-watchdog@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, jan.kiszka@siemens.com,
-        baocheng.su@siemens.com
-References: <20230711091713.1113010-1-huaqian.li@siemens.com>
- <20230711091713.1113010-4-huaqian.li@siemens.com>
-Content-Language: en-US
-From:   Guenter Roeck <linux@roeck-us.net>
-Subject: Re: [PATCH v2 3/3] watchdog:rit_wdt: Add support for WDIOF_CARDRESET
-In-Reply-To: <20230711091713.1113010-4-huaqian.li@siemens.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,
+        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 7/11/23 02:17, huaqian.li@siemens.com wrote:
-> From: Li Hua Qian <huaqian.li@siemens.com>
-> 
-> This patch adds the WDIOF_CARDRESET support for the platform watchdog
-> whose hardware does not support this feature, to know if the board
-> reboot is due to a watchdog reset.
-> 
-> This is done via reserved memory(RAM), which indicates if specific
-> info saved, triggering the watchdog reset in last boot.
-> 
-> Signed-off-by: Li Hua Qian <huaqian.li@siemens.com>
-> ---
->   drivers/watchdog/rti_wdt.c | 48 ++++++++++++++++++++++++++++++++++++++
->   1 file changed, 48 insertions(+)
-> 
-> diff --git a/drivers/watchdog/rti_wdt.c b/drivers/watchdog/rti_wdt.c
-> index ce8f18e93aa9..77fd6b54137c 100644
-> --- a/drivers/watchdog/rti_wdt.c
-> +++ b/drivers/watchdog/rti_wdt.c
-> @@ -18,6 +18,7 @@
->   #include <linux/pm_runtime.h>
->   #include <linux/types.h>
->   #include <linux/watchdog.h>
-> +#include <linux/of.h>
->   
->   #define DEFAULT_HEARTBEAT 60
->   
-> @@ -52,6 +53,11 @@
->   
->   #define DWDST			BIT(1)
->   
-> +#define PON_REASON_SOF_NUM	0xBBBBCCCC
-> +#define PON_REASON_MAGIC_NUM	0xDDDDDDDD
-> +#define PON_REASON_EOF_NUM	0xCCCCBBBB
-> +#define PON_REASON_ITEM_BITS	0xFFFFFFFF
-> +
->   static int heartbeat = DEFAULT_HEARTBEAT;
->   
->   /*
-> @@ -198,6 +204,11 @@ static int rti_wdt_probe(struct platform_device *pdev)
->   	struct rti_wdt_device *wdt;
->   	struct clk *clk;
->   	u32 last_ping = 0;
-> +	u32 reserved_mem_size;
-> +	unsigned long *vaddr;
-> +	unsigned long paddr;
-> +	u32 data[3];
-> +	u32 reg[8];
->   
->   	wdt = devm_kzalloc(dev, sizeof(*wdt), GFP_KERNEL);
->   	if (!wdt)
-> @@ -284,6 +295,43 @@ static int rti_wdt_probe(struct platform_device *pdev)
->   		}
->   	}
->   
-> +	ret = of_property_read_variable_u32_array(pdev->dev.of_node, "reg", reg,
-> +					 0, ARRAY_SIZE(reg));
-> +	if (ret < 0) {
-> +		dev_err(dev, "cannot read the reg info.\n");
-> +		goto err_iomap;
-> +	}
+This patch series aims to add support for XLCDC IP of sam9x7 SoC family
+to the DRM subsystem.XLCDC IP has additional registers and new
+configuration bits compared to the existing register set of HLCDC IP.
+The new compatible string "microchip,sam9x75-xlcdc" is defined for sam9x75
+variant of the sam9x7 SoC family.The is_xlcdc flag under driver data helps
+to differentiate the XLCDC and existing HLCDC code within the same driver.
 
-This aborts if the property does not exist, which is unacceptable.
-Any such addition must be optional.
+changes in v2:
+* Change the driver compatible name from "microchip,sam9x7-xlcdc" to
+"microchip,sam9x75-xlcdc".
+* Move is_xlcdc flag to driver data.
+* Remove unsed Macro definitions.
+* Add co-developed-bys tags
+* Replace regmap_read() with regmap_read_poll_timeout() call
+* Split code into two helpers for code readablitity.
 
-> +
-> +	/*
-> +	 * If reserved memory is defined for watchdog reset cause.
-> +	 * Readout the Power-on(PON) reason and pass to bootstatus.
-> +	 */
-> +	if (ret == 8) {
-> +		paddr = reg[5];
-> +		reserved_mem_size = reg[7];
+Durai Manickam KR (1):
+  drm: atmel-hlcdc: Define SAM9X7 SoC XLCDC specific registers
 
-It seems odd that reserved_mem_size is not checked, and that it is even provided
-given that it needs to be (at least) 24 bytes, and any other value does not really
-make sense.
+Manikandan Muralidharan (8):
+  dt-bindings: mfd: Add bindings for SAM9X75 LCD controller
+  mfd: atmel-hlcdc: Add compatible for sam9x75 XLCD controller
+  drm: atmel-hlcdc: add flag to differentiate XLCDC and HLCDC IP
+  drm: atmel-hlcdc: add LCD controller layer definition for sam9x75
+  drm: atmel_hlcdc: Add support for XLCDC in atmel LCD driver
+  drm: atmel-hlcdc: add DPI mode support for XLCDC
+  drm: atmel-hlcdc: add vertical and horizontal scaling support for
+    XLCDC
+  drm: atmel-hlcdc: add support for DSI output formats
 
-> +		vaddr = memremap(paddr, reserved_mem_size, MEMREMAP_WB);
-> +		if (vaddr == NULL) {
-> +			dev_err(dev, "Failed to map memory-region.\n");
-> +			goto err_iomap;
+ .../devicetree/bindings/mfd/atmel-hlcdc.txt   |   1 +
+ .../gpu/drm/atmel-hlcdc/atmel_hlcdc_crtc.c    | 171 +++++++--
+ drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c  |  99 +++++
+ drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.h  |  48 +++
+ .../gpu/drm/atmel-hlcdc/atmel_hlcdc_plane.c   | 357 +++++++++++++++---
+ drivers/mfd/atmel-hlcdc.c                     |   1 +
+ include/linux/mfd/atmel-hlcdc.h               |  10 +
+ 7 files changed, 596 insertions(+), 91 deletions(-)
 
-This returns 8, which would be an odd error return.
-
-> +		}
-> +
-> +		data[0] = *vaddr & PON_REASON_ITEM_BITS;
-> +		data[1] = *(vaddr + 1) & PON_REASON_ITEM_BITS;
-> +		data[2] = *(vaddr + 2) & PON_REASON_ITEM_BITS;
-> +
-
-The & seems pointless / wasteful. Why ignore the upper 32 bits of each location ?
-Either make it u32 or make it u64 and use the entire 64 bit. Besides,
-vaddr[0..2] would make the code much easier to read.
-
-> +		dev_dbg(dev, "Watchdog: sof = %lX, data = %lX, eof = %lX\n",
-> +			data[0], data[1], data[2]);
-> +
-> +		if ((data[0] == PON_REASON_SOF_NUM)
-> +		    && (data[1] == PON_REASON_MAGIC_NUM)
-> +		    && (data[1] == PON_REASON_MAGIC_NUM)) {
-
-Unnecessary inner (), and I don't see the point of checking data[1] twice.
-
-> +			dev_info(dev, "Watchdog reset cause detected.\n");
-
-Unnecessary noise.
-
-> +			wdd->bootstatus |= WDIOF_CARDRESET;
-> +		}
-> +		memset(vaddr, 0, reserved_mem_size);
-> +		memunmap(vaddr);
-> +	}
-
-And some random data in the property is acceptable ? That is odd, especially
-after mandating the property itself.
-
-> +
->   	watchdog_init_timeout(wdd, heartbeat, dev);
->   
->   	ret = watchdog_register_device(wdd);
+-- 
+2.25.1
 
