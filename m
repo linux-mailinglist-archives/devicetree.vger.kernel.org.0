@@ -2,398 +2,196 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C949E750832
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 14:26:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E505750842
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 14:28:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233084AbjGLM0g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jul 2023 08:26:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45676 "EHLO
+        id S233351AbjGLM2N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jul 2023 08:28:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47088 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233076AbjGLM0f (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 08:26:35 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB0579B;
-        Wed, 12 Jul 2023 05:26:32 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 36CCQ45f076103;
-        Wed, 12 Jul 2023 07:26:04 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1689164764;
-        bh=2+TJV7UTEfg4twrLPPlTtGNNmrMyxqIzMxApzACFHn8=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=vgrvu5/QLnSnojItGoa7E7Wq1AClMgEqRoXk8s+kglmq9wKte1/oQ0Ml1LuK+KRV0
-         K+3+uF8dLc9wCt+Mpzw1XbRYDQ6knD0LfGXOIRstX/laT8yLCtxmPoPQqGfpm5I0LI
-         MwiMGEcGPadMOpmgIWMZPRcYBf/t6Ls8+d9KoL6U=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 36CCQ4Rb007083
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 12 Jul 2023 07:26:04 -0500
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 12
- Jul 2023 07:26:04 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 12 Jul 2023 07:26:04 -0500
-Received: from [10.249.135.225] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 36CCPwdO053774;
-        Wed, 12 Jul 2023 07:25:58 -0500
-Message-ID: <afbd4c9d-5ff7-e366-f866-6b718907d6fa@ti.com>
-Date:   Wed, 12 Jul 2023 17:55:57 +0530
+        with ESMTP id S232619AbjGLM2K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 08:28:10 -0400
+Received: from mail-pg1-x530.google.com (mail-pg1-x530.google.com [IPv6:2607:f8b0:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D4F0134
+        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 05:28:09 -0700 (PDT)
+Received: by mail-pg1-x530.google.com with SMTP id 41be03b00d2f7-55b22f82ac8so467313a12.1
+        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 05:28:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1689164889; x=1691756889;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=Ss8TgyARGa8R7ybKRI+zpQEGya6RyvZhqG69g7/1a8o=;
+        b=NnzMcvhNkva7W/6wMnD1NIt4d16zGTpmIwpmOCHrZ1AKi+58Iov+hYhrevzoxaG23M
+         DKVaJDXt1r0D5uqk5/Cn9l4UIAphvkLp5P5t+hLcKPmaJavcvaKfRmB1cfKI+4JoJpkY
+         iQ/JdPMOrCT1S1zJFwGY68TnLS6RhPY654cXCS29XMK2r3V4HxoYfNWMSq1/FjL23XTX
+         VmXu28hNGsataMoEAO5RK3usYZUkxBY+X226SsecxgM7Sb1W4ZB1IhxLySlk4OIbYypT
+         6V9xvckoZY9DPC8H2eqLrKtts5I2cztY0ZnjZE/6ua/BlQ23IG8wEuqgxihLs5TUR4cu
+         1Ypg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689164889; x=1691756889;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Ss8TgyARGa8R7ybKRI+zpQEGya6RyvZhqG69g7/1a8o=;
+        b=HzSbuXB8q4tiUX1PTpVIOUR8Ng+UIc+TjRlkhKWlvY2H3L1jGAF5Jn/9TdJ8+Y3U9X
+         GyXokGcwYrMtUXa8nKEcaTvlTdHzmAe52Qledbpi5UO0IchQwozJuX8OORgvfrum/y0p
+         EnD0pUv5PwFl7L5pC4JqEZRtHJhGVNMwNPDPVlSWoqWOQnbXM6ojmVIYmV7BvTtq7ZB+
+         19xgtSu2bpd5I10MFNV/yv5qneI5Yz+JTiKLYjpdCJvHFtqhscVt/x+/WvR5zfYoWKsC
+         sOJ7mlZzhPwKdeoSifIxLaqNGzg1fmuDyoVYK+jGWQV26B4NbL9BAZnCNARv6UNLzV64
+         L3/g==
+X-Gm-Message-State: ABy/qLZPRFrgkQ+MD3zAo4CM0U7fvPxc15juJEE47mlye3fqP7a3BzdR
+        IXvJlvwVanrxE3PKG6UnvSZ8
+X-Google-Smtp-Source: APBJJlG8ThheU5sQFDWNEBk5rKV899ROC1JFcrlLVU6uGeLmUaZENZV8342hP8okBYkTpASRWYL/FQ==
+X-Received: by 2002:a17:90b:1d07:b0:25b:f105:8372 with SMTP id on7-20020a17090b1d0700b0025bf1058372mr2517491pjb.5.1689164888909;
+        Wed, 12 Jul 2023 05:28:08 -0700 (PDT)
+Received: from thinkpad ([117.207.27.131])
+        by smtp.gmail.com with ESMTPSA id q4-20020a17090a4f8400b00264c262a033sm10665538pjh.12.2023.07.12.05.27.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 12 Jul 2023 05:28:08 -0700 (PDT)
+Date:   Wed, 12 Jul 2023 17:57:50 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     vireshk@kernel.org, nm@ti.com, sboyd@kernel.org,
+        myungjoo.ham@samsung.com, kyungmin.park@samsung.com,
+        cw00.choi@samsung.com, andersson@kernel.org,
+        konrad.dybcio@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        quic_asutoshd@quicinc.com, quic_cang@quicinc.com,
+        quic_nitirawa@quicinc.com, quic_narepall@quicinc.com,
+        quic_bhaskarv@quicinc.com, quic_richardp@quicinc.com,
+        quic_nguyenb@quicinc.com, quic_ziqichen@quicinc.com,
+        bmasney@redhat.com, krzysztof.kozlowski@linaro.org
+Subject: Re: [PATCH 00/14] UFS: Add OPP and interconnect support
+Message-ID: <20230712122750.GE102757@thinkpad>
+References: <20230712103213.101770-1-manivannan.sadhasivam@linaro.org>
+ <20230712104044.GA102214@thinkpad>
+ <3523988f-fa51-ce44-ded7-9f3c7acbf65e@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [EXTERNAL] Re: [PATCH v8 2/2] net: ti: icssg-prueth: Add ICSSG
- ethernet driver
-Content-Language: en-US
-To:     Simon Horman <simon.horman@corigine.com>,
-        MD Danish Anwar <danishanwar@ti.com>
-CC:     Randy Dunlap <rdunlap@infradead.org>,
-        Roger Quadros <rogerq@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Eric Dumazet <edumazet@google.com>,
-        "David S. Miller" <davem@davemloft.net>, <nm@ti.com>, <srk@ti.com>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <netdev@vger.kernel.org>, <linux-omap@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20230710053550.89160-1-danishanwar@ti.com>
- <20230710053550.89160-3-danishanwar@ti.com> <ZK2VRYwW8DxIZCY2@corigine.com>
-From:   "Anwar, Md Danish" <a0501179@ti.com>
-In-Reply-To: <ZK2VRYwW8DxIZCY2@corigine.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <3523988f-fa51-ce44-ded7-9f3c7acbf65e@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Simon
-On 7/11/2023 11:15 PM, Simon Horman wrote:
-> On Mon, Jul 10, 2023 at 11:05:50AM +0530, MD Danish Anwar wrote:
->> From: Roger Quadros <rogerq@ti.com>
->>
->> This is the Ethernet driver for TI AM654 Silicon rev. 2
->> with the ICSSG PRU Sub-system running dual-EMAC firmware.
->>
->> The Programmable Real-time Unit and Industrial Communication Subsystem
->> Gigabit (PRU_ICSSG) is a low-latency microcontroller subsystem in the TI
->> SoCs. This subsystem is provided for the use cases like implementation of
->> custom peripheral interfaces, offloading of tasks from the other
->> processor cores of the SoC, etc.
->>
->> Every ICSSG core has two Programmable Real-Time Unit(PRUs),
->> two auxiliary Real-Time Transfer Unit (RT_PRUs), and
->> two Transmit Real-Time Transfer Units (TX_PRUs). Each one of these runs
->> its own firmware. Every ICSSG core has two MII ports connect to these
->> PRUs and also a MDIO port.
->>
->> The cores can run different firmwares to support different protocols and
->> features like switch-dev, timestamping, etc.
->>
->> It uses System DMA to transfer and receive packets and
->> shared memory register emulation between the firmware and
->> driver for control and configuration.
->>
->> This patch adds support for basic EMAC functionality with 1Gbps
->> and 100Mbps link speed. 10M and half duplex mode are not supported
->> currently as they require IEP, the support for which will be added later.
->> Support for switch-dev, timestamp, etc. will be added later
->> by subsequent patch series.
->>
->> Signed-off-by: Roger Quadros <rogerq@ti.com>
->> [Vignesh Raghavendra: add 10M full duplex support]
->> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
->> [Grygorii Strashko: add support for half duplex operation]
->> Signed-off-by: Grygorii Strashko <grygorii.strashko@ti.com>
->> Signed-off-by: Puranjay Mohan <p-mohan@ti.com>
->> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
->> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
+On Wed, Jul 12, 2023 at 03:18:38PM +0300, Dmitry Baryshkov wrote:
+> On 12/07/2023 13:40, Manivannan Sadhasivam wrote:
+> > On Wed, Jul 12, 2023 at 04:01:55PM +0530, Manivannan Sadhasivam wrote:
+> > > Hi,
+> > > 
+> > > This series adds OPP (Operating Points) support to UFSHCD driver and
+> > > interconnect support to Qcom UFS driver.
+> > > 
+> > 
+> > Missed to cc SCSI folks. Will be resending this series. Sorry for the noise.
 > 
-> ...
-> 
->> +/**
->> + * struct map - ICSSG Queue Map
->> + * @queue: Queue number
->> + * @pd_addr_start: Packet descriptor queue reserved memory
->> + * @flags: Flags
->> + * @special: Indicates whether this queue is a special queue or not
->> + */
->> +struct map {
->> +	int queue;
->> +	u32 pd_addr_start;
->> +	u32 flags;
->> +	bool special;
->> +};
->> +
->> +/* Hardware queue map for ICSSG */
->> +const struct map hwq_map[2][ICSSG_NUM_OTHER_QUEUES] = {
-> 
-> Should this be static?
+> I'd say, there is a need for the resend anyway, the series got duplicate
+> patch indices.
 > 
 
-Yes this can be static. I will change this to static.
+Yeah, my script screwed up. Will wait for some time to get comments before
+resending though.
 
->> +	{
->> +		{ PORT_HI_Q_SLICE0, PORT_DESC0_HI, 0x200000, 0 },
->> +		{ PORT_LO_Q_SLICE0, PORT_DESC0_LO, 0, 0 },
->> +		{ HOST_HI_Q_SLICE0, HOST_DESC0_HI, 0x200000, 0 },
->> +		{ HOST_LO_Q_SLICE0, HOST_DESC0_LO, 0, 0 },
->> +		{ HOST_SPL_Q_SLICE0, HOST_SPPD0, 0x400000, 1 },
->> +	},
->> +	{
->> +		{ PORT_HI_Q_SLICE1, PORT_DESC1_HI, 0xa00000, 0 },
->> +		{ PORT_LO_Q_SLICE1, PORT_DESC1_LO, 0x800000, 0 },
->> +		{ HOST_HI_Q_SLICE1, HOST_DESC1_HI, 0xa00000, 0 },
->> +		{ HOST_LO_Q_SLICE1, HOST_DESC1_LO, 0x800000, 0 },
->> +		{ HOST_SPL_Q_SLICE1, HOST_SPPD1, 0xc00000, 1 },
->> +	},
->> +};
->> +
->> +static void icssg_config_mii_init(struct prueth_emac *emac)
->> +{
->> +	u32 rxcfg, txcfg, rxcfg_reg, txcfg_reg, pcnt_reg;
->> +	struct prueth *prueth = emac->prueth;
->> +	int slice = prueth_emac_slice(emac);
->> +	struct regmap *mii_rt;
->> +
->> +	mii_rt = prueth->mii_rt;
->> +
->> +	rxcfg_reg = (slice == ICSS_MII0) ? PRUSS_MII_RT_RXCFG0 :
->> +				       PRUSS_MII_RT_RXCFG1;
->> +	txcfg_reg = (slice == ICSS_MII0) ? PRUSS_MII_RT_TXCFG0 :
->> +				       PRUSS_MII_RT_TXCFG1;
->> +	pcnt_reg = (slice == ICSS_MII0) ? PRUSS_MII_RT_RX_PCNT0 :
->> +				       PRUSS_MII_RT_RX_PCNT1;
->> +
->> +	rxcfg = MII_RXCFG_DEFAULT;
->> +	txcfg = MII_TXCFG_DEFAULT;
->> +
->> +	if (slice == ICSS_MII1)
->> +		rxcfg |= PRUSS_MII_RT_RXCFG_RX_MUX_SEL;
->> +
->> +	/* In MII mode TX lines swapped inside ICSSG, so TX_MUX_SEL cfg need
->> +	 * to be swapped also comparing to RGMII mode.
->> +	 */
->> +	if (emac->phy_if == PHY_INTERFACE_MODE_MII && slice == ICSS_MII0)
->> +		txcfg |= PRUSS_MII_RT_TXCFG_TX_MUX_SEL;
->> +	else if (emac->phy_if != PHY_INTERFACE_MODE_MII && slice == ICSS_MII1)
->> +		txcfg |= PRUSS_MII_RT_TXCFG_TX_MUX_SEL;
->> +
->> +	regmap_write(mii_rt, rxcfg_reg, rxcfg);
->> +	regmap_write(mii_rt, txcfg_reg, txcfg);
->> +	regmap_write(mii_rt, pcnt_reg, 0x1);
->> +}
->> +
->> +static void icssg_miig_queues_init(struct prueth *prueth, int slice)
->> +{
->> +	struct regmap *miig_rt = prueth->miig_rt;
->> +	void __iomem *smem = prueth->shram.va;
->> +	u8 pd[ICSSG_SPECIAL_PD_SIZE];
->> +	int queue = 0, i, j;
->> +	u32 *pdword;
->> +
->> +	/* reset hwqueues */
->> +	if (slice)
->> +		queue = ICSSG_NUM_TX_QUEUES;
->> +
->> +	for (i = 0; i < ICSSG_NUM_TX_QUEUES; i++) {
->> +		regmap_write(miig_rt, ICSSG_QUEUE_RESET_OFFSET, queue);
->> +		queue++;
->> +	}
->> +
->> +	queue = slice ? RECYCLE_Q_SLICE1 : RECYCLE_Q_SLICE0;
->> +	regmap_write(miig_rt, ICSSG_QUEUE_RESET_OFFSET, queue);
->> +
->> +	for (i = 0; i < ICSSG_NUM_OTHER_QUEUES; i++) {
->> +		regmap_write(miig_rt, ICSSG_QUEUE_RESET_OFFSET,
->> +			     hwq_map[slice][i].queue);
->> +	}
->> +
->> +	/* initialize packet descriptors in SMEM */
->> +	/* push pakcet descriptors to hwqueues */
->> +
->> +	pdword = (u32 *)pd;
->> +	for (j = 0; j < ICSSG_NUM_OTHER_QUEUES; j++) {
->> +		const struct map *mp;
->> +		int pd_size, num_pds;
->> +		u32 pdaddr;
->> +
->> +		mp = &hwq_map[slice][j];
->> +		if (mp->special) {
->> +			pd_size = ICSSG_SPECIAL_PD_SIZE;
->> +			num_pds = ICSSG_NUM_SPECIAL_PDS;
->> +		} else	{
->> +			pd_size = ICSSG_NORMAL_PD_SIZE;
->> +			num_pds = ICSSG_NUM_NORMAL_PDS;
->> +		}
->> +
->> +		for (i = 0; i < num_pds; i++) {
->> +			memset(pd, 0, pd_size);
->> +
->> +			pdword[0] &= cpu_to_le32(ICSSG_FLAG_MASK);
->> +			pdword[0] |= cpu_to_le32(mp->flags);
-> 
-> Sparse warns that the endieness of pdword is not le32.
+- Mani
 
-I will fix this.
-
-> There are also other sparse warnings added by this patch.
-> Please look over them.
-
-There is one more warning for "expected restricted __le16 [usertype] 
-rx_base_flow got restricted __le32 [usertype]". I will fix this as well.
-
-There is one more sparse warning "warning: symbol 'icssg_ethtool_ops' 
-was not declared. Should it be static?". This should be ignored as no 
-need to change 'icssg_ethtool_ops' to static as this is decalred in 
-icssg_ethtool.c and used in icssg_prueth.c
-
+> > 
+> > - Mani
+> > 
+> > > Motivation behind adding OPP support is to scale both clocks as well as
+> > > regulators/performance state dynamically. Currently, UFSHCD just scales
+> > > clock frequency during runtime with the help of "freq-table-hz" property
+> > > defined in devicetree. With the addition of OPP tables in devicetree (as
+> > > done for Qcom SDM845 and SM8250 SoCs in this series) UFSHCD can now scale
+> > > both clocks and performance state of power domain which helps in power
+> > > saving.
+> > > 
+> > > For the addition of OPP support to UFSHCD, there are changes required to
+> > > the OPP framework and devfreq drivers which are also added in this series.
+> > > 
+> > > Finally, interconnect support is added to Qcom UFS driver for scaling the
+> > > interconnect path dynamically. This is required to avoid boot crash in
+> > > recent SoCs and also to save power during runtime. More information is
+> > > available in patch 13/13.
+> > > 
+> > > Credits
+> > > =======
+> > > 
+> > > This series is a continuation of previous work by Krzysztof Kozlowski [1]
+> > > and Brian Masney [2]. Ideally, this could've split into two series (OPP
+> > > and interconnect) but since there will be a dependency in the devicetree,
+> > > I decided to keep them in a single series.
+> > > 
+> > > Testing
+> > > =======
+> > > 
+> > > This series is tested on 96Boards RB3 (SDM845 SoC) and RB5 (SM8250 SoC)
+> > > development boards.
+> > > 
+> > > Merging Strategy
+> > > ================
+> > > 
+> > > An immutable branch might be required between OPP and SCSI trees because of
+> > > the API dependency (devfreq too). And I leave it up to the maintainers to
+> > > decide.
+> > > 
+> > > Thanks,
+> > > Mani
+> > > 
+> > > [1] https://lore.kernel.org/all/20220513061347.46480-1-krzysztof.kozlowski@linaro.org/
+> > > [2] https://lore.kernel.org/all/20221117104957.254648-1-bmasney@redhat.com/
+> > > 
+> > > Krzysztof Kozlowski (2):
+> > >    dt-bindings: ufs: common: add OPP table
+> > >    arm64: dts: qcom: sdm845: Add OPP table support to UFSHC
+> > > 
+> > > Manivannan Sadhasivam (12):
+> > >    dt-bindings: opp: Increase maxItems for opp-hz property
+> > >    arm64: dts: qcom: sdm845: Add missing RPMh power domain to GCC
+> > >    arm64: dts: qcom: sdm845: Fix the min frequency of "ice_core_clk"
+> > >    arm64: dts: qcom: sm8250: Add OPP table support to UFSHC
+> > >    OPP: Introduce dev_pm_opp_find_freq_{ceil/floor}_indexed() APIs
+> > >    OPP: Introduce dev_pm_opp_get_freq_indexed() API
+> > >    PM / devfreq: Switch to dev_pm_opp_find_freq_{ceil/floor}_indexed()
+> > >      APIs
+> > >    scsi: ufs: core: Add OPP support for scaling clocks and regulators
+> > >    scsi: ufs: host: Add support for parsing OPP
+> > >    arm64: dts: qcom: sdm845: Add interconnect paths to UFSHC
+> > >    arm64: dts: qcom: sm8250: Add interconnect paths to UFSHC
+> > >    scsi: ufs: qcom: Add support for scaling interconnects
+> > > 
+> > >   .../devicetree/bindings/opp/opp-v2-base.yaml  |   2 +-
+> > >   .../devicetree/bindings/ufs/ufs-common.yaml   |  34 ++++-
+> > >   arch/arm64/boot/dts/qcom/sdm845.dtsi          |  47 ++++--
+> > >   arch/arm64/boot/dts/qcom/sm8250.dtsi          |  43 ++++--
+> > >   drivers/devfreq/devfreq.c                     |  14 +-
+> > >   drivers/opp/core.c                            |  76 ++++++++++
+> > >   drivers/ufs/core/ufshcd.c                     | 142 ++++++++++++++----
+> > >   drivers/ufs/host/ufs-qcom.c                   | 131 +++++++++++++++-
+> > >   drivers/ufs/host/ufs-qcom.h                   |   3 +
+> > >   drivers/ufs/host/ufshcd-pltfrm.c              | 116 ++++++++++++++
+> > >   include/linux/pm_opp.h                        |  26 ++++
+> > >   include/ufs/ufshcd.h                          |   4 +
+> > >   12 files changed, 574 insertions(+), 64 deletions(-)
+> > > 
+> > > -- 
+> > > 2.25.1
+> > > 
+> > 
 > 
->> +			pdaddr = mp->pd_addr_start + i * pd_size;
->> +
->> +			memcpy_toio(smem + pdaddr, pd, pd_size);
->> +			queue = mp->queue;
->> +			regmap_write(miig_rt, ICSSG_QUEUE_OFFSET + 4 * queue,
->> +				     pdaddr);
->> +		}
->> +	}
->> +}
-> 
-> ...
-> 
->> +static int prueth_netdev_init(struct prueth *prueth,
->> +			      struct device_node *eth_node)
->> +{
->> +	int ret, num_tx_chn = PRUETH_MAX_TX_QUEUES;
->> +	struct prueth_emac *emac;
->> +	struct net_device *ndev;
->> +	enum prueth_port port;
->> +	enum prueth_mac mac;
->> +
->> +	port = prueth_node_port(eth_node);
->> +	if (port < 0)
->> +		return -EINVAL;
->> +
->> +	mac = prueth_node_mac(eth_node);
->> +	if (mac < 0)
->> +		return -EINVAL;
->> +
->> +	ndev = alloc_etherdev_mq(sizeof(*emac), num_tx_chn);
->> +	if (!ndev)
->> +		return -ENOMEM;
-> 
-> ...
-> 
->> +	return 0;
->> +
->> +free:
->> +	pruss_release_mem_region(prueth->pruss, &emac->dram);
->> +free_wq:
->> +	destroy_workqueue(emac->cmd_wq);
->> +free_ndev:
->> +	free_netdev(ndev);
->> +	prueth->emac[mac] = NULL;
->> +
->> +	return ret;
-> 
-> ndev appears to be leaked here.
-> 
-> ...
-> 
->> +	prueth->dev = dev;
->> +	eth_ports_node = of_get_child_by_name(np, "ethernet-ports");
->> +	if (!eth_ports_node)
->> +		return -ENOENT;
->> +
->> +	for_each_child_of_node(eth_ports_node, eth_node) {
->> +		u32 reg;
->> +
->> +		if (strcmp(eth_node->name, "port"))
->> +			continue;
->> +		ret = of_property_read_u32(eth_node, "reg", &reg);
->> +		if (ret < 0) {
->> +			dev_err(dev, "%pOF error reading port_id %d\n",
->> +				eth_node, ret);
->> +		}
->> +
->> +		of_node_get(eth_node);
->> +
->> +		if (reg == 0) {
->> +			eth0_node = eth_node;
->> +			if (!of_device_is_available(eth0_node)) {
->> +				of_node_put(eth0_node);
->> +				eth0_node = NULL;
->> +			}
->> +		} else if (reg == 1) {
->> +			eth1_node = eth_node;
->> +			if (!of_device_is_available(eth1_node)) {
->> +				of_node_put(eth1_node);
->> +				eth1_node = NULL;
->> +			}
->> +		} else {
->> +			dev_err(dev, "port reg should be 0 or 1\n");
-> 
-> Should this be treated as an error and either return or goto an
-> unwind path?
-> 
-
-I don't think we should error out or return to any goto label here. Here 
-we are checking 'reg' property in all available ports. If reg=0, we 
-assign the node to eth0_node. If reg=1, we assign the node to eth1_node. 
-If the reg is neither 0 nor 1, we will just keep looking through other 
-available ports, instead of returning error. We will eventually look 
-through all available nodes.
-
-Once we come out of the for loop, we should at least have one node with 
-reg property being either 0 or 1. If no node had reg as 0 or 1, both 
-eth0_node and eth1_node will be NULL, then we will error out with 
--ENODEV error by below if check.
-
-if (!eth0_node && !eth1_node) {
-	dev_err(dev, "neither port0 nor port1 node available\n");
-	return -ENODEV;
-}
-
->> +		}
->> +	}
->> +
->> +	of_node_put(eth_ports_node);
->> +
->> +	/* At least one node must be present and available else we fail */
->> +	if (!eth0_node && !eth1_node) {
-> 
-> Smatch warns that eth0_node and eth1_node may be uninitialised here.
-> 
-
-Sure, I will initialise eth0_node and eth1_node as NULL.
-
->> +		dev_err(dev, "neither port0 nor port1 node available\n");
->> +		return -ENODEV;
->> +	}
->> +
->> +	if (eth0_node == eth1_node) {
->> +		dev_err(dev, "port0 and port1 can't have same reg\n");
->> +		of_node_put(eth0_node);
->> +		return -ENODEV;
->> +	}
-> 
-> ...
+> -- 
+> With best wishes
+> Dmitry
 > 
 
 -- 
-Thanks and Regards,
-Md Danish Anwar
+மணிவண்ணன் சதாசிவம்
