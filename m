@@ -2,138 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A02B87501F1
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 10:43:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A21D75020B
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 10:52:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230236AbjGLInw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jul 2023 04:43:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40724 "EHLO
+        id S230393AbjGLIwo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jul 2023 04:52:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44942 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231786AbjGLInu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 04:43:50 -0400
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AEDBCBE;
-        Wed, 12 Jul 2023 01:43:47 -0700 (PDT)
-Received: by mail-lj1-x232.google.com with SMTP id 38308e7fff4ca-2b6ff1ada5dso107261361fa.2;
-        Wed, 12 Jul 2023 01:43:47 -0700 (PDT)
+        with ESMTP id S231398AbjGLIwn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 04:52:43 -0400
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5C39B1
+        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 01:52:41 -0700 (PDT)
+Received: by mail-wr1-x42b.google.com with SMTP id ffacd0b85a97d-31441bc0092so6604637f8f.1
+        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 01:52:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1689151425; x=1691743425;
-        h=content-transfer-encoding:content-language:in-reply-to:mime-version
-         :user-agent:date:message-id:from:references:cc:to:subject:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=qVexWb2xIiXfUmTRUoCRaVuTZQZYZCzaepAYfAfny6A=;
-        b=S8H1DZo6S6oQzSMdoqsaJsn2wsCdkpAS6Wr+I3Kjxr3lDPbQ85eUpKWcgRsiITqLdQ
-         wJzAQW7baTZr9RBhSDA+HatQjx591NVZ0LVv2rZ3d+oVGHVGJU1ESDjlbDeLUZbMG9PC
-         5cIppAmouxuH+LNS/TDrZDNHY7QtcYT3i098pf+E9c6S6108x7oGjCdNgbdCqYOkPpcI
-         sq1NLvXLSvzbFoDXtp50/1gCHTZ2qksUvh2apFoqTCB+NzJEJLUvXTPgI541YmkVjDgl
-         Kl1X26JqNjAJ276rAWr/sPACtx47sZ0k9EKq8H3qM805xZjIrCbqWDmzJaTgq+X6ct8P
-         NlAA==
+        d=9elements.com; s=google; t=1689151960; x=1691743960;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=3KQT6tn3IkIMgWvQdIWn/fFTIkPGq6wDM785k0TXyQ4=;
+        b=fCk/E7k6Bn7G1jB3D236SgDCOfp+FSKoiEbYUigL0ygKoT2l/c5FpK4FVwFC+1vZsH
+         NXRb3uv1hnEZ1dP0Tg2Et9reupONnDU2Pl+GetssCAHcVDagCq0PdxeMmq3ayNdX4hxn
+         3gM7rBzfmGWoyWNj5Hx+ajHD9Ov2Stl2GlPzikjkUpLZnafn9qsNr/lYC9YjQ4taEyTm
+         1T/sC+/Uw4c5c6S5PcTr/ooObNTzQR6MbuZCwTJJLWoRkhv+CUaXJIF38LllSGoenFes
+         weXA2qDI9KOXrhAhAOInpjN/PD3MJsjTuQ+GiS6AgjuswjO1uhmtxVjUVxz9lxb+OKVK
+         n+0Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689151425; x=1691743425;
-        h=content-transfer-encoding:content-language:in-reply-to:mime-version
-         :user-agent:date:message-id:from:references:cc:to:subject
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=qVexWb2xIiXfUmTRUoCRaVuTZQZYZCzaepAYfAfny6A=;
-        b=T2sBb8cCixc0yhHesMMZysRPX+yawoUXWyYprgZpvzPLKos8xJCxK21qoXErozz8sp
-         37kyNc44FUehJmTHbgRVwYZmfv3ku6YTiNNFA1m7UaWE9fvnhfUCD0O14aiHABGc7Q08
-         Zru+LUsvuq81KMK3NoKnIx90KYQWVypgkdaIJs2WTUsT9JMn+zjqZ08yKx4VSfKKZJY2
-         DGWH2ZH7dLh8kP93eV9t5igDUoqT2qPP0884fe/xh7fFbfogTNimN0U39mE/sjxyJJfy
-         IXakryvOqsneEeJ4XZ7/USfDvjaO/3fXmi9px6ylfVLz2aIu4ckyRjhbpIoyc4vZybc6
-         2Ceg==
-X-Gm-Message-State: ABy/qLbCvISypUt3u9RXI/dsdCpnyQN+pKTncmu1yuPKmxJ9YJZxrLUG
-        Z5x2KygC4btUiv64tClHejD+2YRdsNE=
-X-Google-Smtp-Source: APBJJlHYyuAaAq9x1E+AS9xHlZdQSOvaU3bH2T8KCkjCt4c+/0MdGf1zMrqalHo9Eu8nEvUrqhQTIA==
-X-Received: by 2002:a2e:a16e:0:b0:2b6:cf6f:159e with SMTP id u14-20020a2ea16e000000b002b6cf6f159emr15173716ljl.44.1689151425348;
-        Wed, 12 Jul 2023 01:43:45 -0700 (PDT)
-Received: from [192.168.1.103] ([31.173.82.245])
-        by smtp.gmail.com with ESMTPSA id l24-20020a2e8698000000b00295a96a0f6csm826389lji.102.2023.07.12.01.43.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 12 Jul 2023 01:43:44 -0700 (PDT)
-Subject: Re: [PATCH v1] riscv: dts: renesas: clean up dtbs_check W=1 warning
- due to empty phy node
-To:     Conor Dooley <conor.dooley@microchip.com>, geert+renesas@glider.be
-Cc:     conor@kernel.org, Magnus Damm <magnus.damm@gmail.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        d=1e100.net; s=20221208; t=1689151960; x=1691743960;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3KQT6tn3IkIMgWvQdIWn/fFTIkPGq6wDM785k0TXyQ4=;
+        b=dwDNz04ZZncGL71XLinpUrZMXBFG1SFKdBHfB3LIopF/A4s14nseg3mg7aHEdoISlE
+         7nz4TgdMrNVWK1vexfpeuEbEg9QuYG5ePS9E2KTrdhhrb0/ZbY5zSTA5zOulIB4Ynr2/
+         WSyGwY0o8QuHI97v0tloJwGDPAjuZ2at48cYLD5AHKphe9230NrniWWWm3i5ywfZHWrQ
+         z0GPaVO8n0NBJZfwoDSeLgPsqPtfrPiCOI7yHHt4mNmVGx9TqWtQlaKbpXW2jUcznLkA
+         wRuXKb5Tv0Vz8Xhb+6zCiUmT6dIUatDx/HrKdNCNRepUXLR+mWqkgkCHbYwc32+p0poH
+         HAFQ==
+X-Gm-Message-State: ABy/qLafC9ZONDXHON7hzT5b1HYWQRX4FmqJGYp9xOLVJJqjgRrY6ifh
+        hq7xk15m1Qo7QngWUbj7Rl/yKg==
+X-Google-Smtp-Source: APBJJlFyrNrVeGP+d5vQvvHiSEn3WlxIabBLopJEroWzR+YQwwdTDNSSb+n7pHkTmK1IDPvNwSMoLQ==
+X-Received: by 2002:a5d:45d1:0:b0:314:321a:4bc7 with SMTP id b17-20020a5d45d1000000b00314321a4bc7mr16268948wrs.15.1689151960309;
+        Wed, 12 Jul 2023 01:52:40 -0700 (PDT)
+Received: from stroh80.sec.9e.network (ip-078-094-000-051.um19.pools.vodafone-ip.de. [78.94.0.51])
+        by smtp.gmail.com with ESMTPSA id t9-20020a5d5349000000b003143b7449ffsm4475140wrv.25.2023.07.12.01.52.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 12 Jul 2023 01:52:39 -0700 (PDT)
+From:   Naresh Solanki <naresh.solanki@9elements.com>
+X-Google-Original-From: Naresh Solanki <Naresh.Solanki@9elements.com>
+To:     Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20230712-squealer-walmart-9587342ddec1@wendy>
-From:   Sergei Shtylyov <sergei.shtylyov@gmail.com>
-Message-ID: <18871eff-f2be-9eed-ee4c-99eba87686d8@gmail.com>
-Date:   Wed, 12 Jul 2023 11:43:43 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.1
+        Patrick Rudolph <patrick.rudolph@9elements.com>
+Cc:     Naresh Solanki <Naresh.Solanki@9elements.com>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2 1/2] dt-bindings: pinctrl: cypress,cy8c95x0: Add reset pin
+Date:   Wed, 12 Jul 2023 10:52:34 +0200
+Message-ID: <20230712085236.2496651-1-Naresh.Solanki@9elements.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-In-Reply-To: <20230712-squealer-walmart-9587342ddec1@wendy>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
-X-Spam-Level: *
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello!
+From: Patrick Rudolph <patrick.rudolph@9elements.com>
 
-On 7/12/23 11:14 AM, Conor Dooley wrote:
+This patch adds support for an optional reset pin.
 
-> dtbs_check w/ W=1 complains:
-> Warning (unit_address_vs_reg): /soc/ethernet@11c20000/ethernet-phy@7: node has a unit name, but no reg or ranges property
-> Warning (avoid_unnecessary_addr_size): /soc/ethernet@11c20000: unnecessary #address-cells/#size-cells without "ranges" or child "reg" property
-> 
-> The ethernet@11c20000 node is guarded by an `#if (!SW_ET0_EN_N)` in
-> rzg2ul-smarc-som.dtsi, where the phy child node is added. In
-> rzfive-smarc-som.dtsi, the ethernet node is marked disabled & the
-> interrupt properties are deleted from the phy child node. As a result,
-> the produced dts looks like:
-> 	ethernet@11c20000 {
-> 		compatible = "renesas,r9a07g043-gbeth\0renesas,rzg2l-gbeth";
-> 		/* snip */
-> 		#address-cells = <0x01>;
-> 		#size-cells = <0x00>;
-> 		status = "disabled";
-> 
-> 		ethernet-phy@7 {
-> 		};
-> 	};
-> 
-> Adding a corresponding `#if (!SW_ET0_EN_N)` around the node in
-> rzfive-smarc-som.dtsi avoids the complaint, as the empty child node is
-> not added:
-> 	ethernet@11c20000 {
-> 		compatible = "renesas,r9a07g043-gbeth\0renesas,rzg2l-gbeth";
-> 		/* snip */
-> 		#address-cells = <0x01>;
-> 		#size-cells = <0x00>;
-> 		status = "disabled";
-> 	};
-> 
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-[...]
+The reset pin is used to bring the chip into a known state and has an
+internal pull-down, allowing it to be left floating if not needed.
 
-> diff --git a/arch/riscv/boot/dts/renesas/rzfive-smarc-som.dtsi b/arch/riscv/boot/dts/renesas/rzfive-smarc-som.dtsi
-> index d6f18754eb5d..c62debc7ca7e 100644
-> --- a/arch/riscv/boot/dts/renesas/rzfive-smarc-som.dtsi
-> +++ b/arch/riscv/boot/dts/renesas/rzfive-smarc-som.dtsi
-> @@ -22,6 +22,7 @@ &dmac {
->  	status = "disabled";
->  };
->  
-> +#if (!SW_ET0_EN_N)
+Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
+Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
+---
+Changes in V2:
+- Update subject
+- Update reset-gpios description.
+---
+ .../devicetree/bindings/pinctrl/cypress,cy8c95x0.yaml         | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-   Are the parens really needed here?
+diff --git a/Documentation/devicetree/bindings/pinctrl/cypress,cy8c95x0.yaml b/Documentation/devicetree/bindings/pinctrl/cypress,cy8c95x0.yaml
+index 222d57541b65..2fa22160336f 100644
+--- a/Documentation/devicetree/bindings/pinctrl/cypress,cy8c95x0.yaml
++++ b/Documentation/devicetree/bindings/pinctrl/cypress,cy8c95x0.yaml
+@@ -51,6 +51,10 @@ properties:
+     description:
+       Optional power supply.
+ 
++  reset-gpios:
++    description: Reference to the GPIO connected to the XRES pin
++    maxItems: 1
++
+ patternProperties:
+   '-pins$':
+     type: object
 
->  &eth0 {
->  	status = "disabled";
->  
-[...]
+base-commit: 3bc551a3007a751a53bfba5b37fa16157f4fb861
+-- 
+2.41.0
 
-MBR, Sergey
