@@ -2,110 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E0057502AE
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 11:18:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CAECB7500A8
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 10:03:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231608AbjGLJR7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jul 2023 05:17:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34714 "EHLO
+        id S229536AbjGLIDl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jul 2023 04:03:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40652 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231361AbjGLJRv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 05:17:51 -0400
+        with ESMTP id S231260AbjGLIDK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 04:03:10 -0400
 Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56AF7FB;
-        Wed, 12 Jul 2023 02:17:50 -0700 (PDT)
-Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-3fbca8935bfso68656025e9.3;
-        Wed, 12 Jul 2023 02:17:50 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 520C61989
+        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 01:02:02 -0700 (PDT)
+Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-3fc0aecf15bso40769695e9.1
+        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 01:02:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1689153469; x=1691745469;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=X6FPPQORg8BA8HmUzK+CsSAH2CNPePIaX8RbDd2wjhw=;
-        b=CNn/x19mtxoqsmq4vc3WT3RNTrksvWMrfhJP/LHgEKIs9QJYpM/la9d8iYzmoOschq
-         k4UF8syzFoiaxdSA5N3Gj4PaIvB19d9OxYkKDmQ5WOunXNwdCONw136XUTl2zg0gbo4K
-         u22X10rENvm0zBDnpfYpWJn8ii1zKmAx7OGhiMyCTyPL18YHA0f3M2Q7AuX13mpqEe4p
-         /9K8RHXGP6kkAcbny6QVf8I4/8U80SWafScEOMclTEKWmRxhaXfVRAvpFMVHME4FKmqV
-         Ef2OfwTgbPPZ10y9K0oJZT86bCEso2seWtjm/VmAhA+tOh8tJ2eE9ctfMQ1q/JAIFuF+
-         0Ijg==
+        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1689148921; x=1691740921;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=YkIwyBsrrasbrw6SKcJzFKY+sZkplhIF1ednI0kruDo=;
+        b=bDSyjqZU/kFai51bS4zMV7wkn6IN8baUYkKTFjyQ9VhethzeBGEkbszBcepIHQbhX/
+         SR/g8PJirC6plcC2OT3jO68NN6EISfhUEmvt1ZcYlS/KOUSkMDDyzznSdhUpivM0iJrQ
+         13i1l9cefjz5I67sRJQjmQxF2fa4P6dQ1xUf9knjRn5qTZv38166mojcNDNcHvXl6FfO
+         ZPLuDOoK4MudT/YUB8wSHQ5pU5Z1S1Uo9G9e864mQVzsIieIc4ZhlEWbw2DVMhPKZv+y
+         9pxVVcRTZpHSUgTEL4Ayjp11/BWLsAVT7lgVUza3wY3VczprtRt4N1StlWKYkVsvVF/d
+         dVMw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689153469; x=1691745469;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=X6FPPQORg8BA8HmUzK+CsSAH2CNPePIaX8RbDd2wjhw=;
-        b=LB36IiVn0jHvA6UDx31Nu3VmOPrM12SmPbGfgvmI32DCU2aHoVlNKd0Vtuo8dFpqOW
-         6eAsTe0vvOEgHR1NcIm9zgiIRG9iZtpxocqVI4FJ2hJWb9EINpyCxmq8Sb2jQxhfVnBI
-         jlT1PXMthdy4L3xy/DwfJpoboMTiKL47rETFYZv13SU2U3Wc974uWLTPdDI77gL2ZV+1
-         1UGERxxuphwWVhw4b++cJ7HbOzbOynicyMb5Z8x5IMIBe14dQXWZFa6BuEL5VRQ8Sx0r
-         WrZP+oaokCQzZbq9gVnK/mXpoFsJSW1CgiWtVC+crJQpCHAWS8HxFtAaO0X7KN3ovSMr
-         Gplg==
-X-Gm-Message-State: ABy/qLZTieBt83j6cn5rfrfgYZPG8DbIXgzIS0GShmKiz2leVuvzcDs2
-        A26QBstTfNWmfgNPA3jCHlA=
-X-Google-Smtp-Source: APBJJlHZ1eN2ZaZnb+H58NL4fR23HmWYBW/tI+5EtbLZEgpGw6wydopI9h5/MfvsxwURhee45OjjOw==
-X-Received: by 2002:a05:600c:2153:b0:3fb:dbd0:a7ea with SMTP id v19-20020a05600c215300b003fbdbd0a7eamr16822816wml.37.1689153468295;
-        Wed, 12 Jul 2023 02:17:48 -0700 (PDT)
-Received: from localhost.localdomain (93-34-93-173.ip49.fastwebnet.it. [93.34.93.173])
-        by smtp.googlemail.com with ESMTPSA id s6-20020a05600c044600b003fbdf8292a7sm4467099wmb.46.2023.07.12.02.17.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Jul 2023 02:17:47 -0700 (PDT)
-From:   Christian Marangi <ansuelsmth@gmail.com>
-To:     Florian Fainelli <florian.fainelli@broadcom.com>,
-        Hauke Mehrtens <hauke@hauke-m.de>,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>,
-        Broadcom internal kernel review list 
-        <bcm-kernel-feedback-list@broadcom.com>,
+        d=1e100.net; s=20221208; t=1689148921; x=1691740921;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=YkIwyBsrrasbrw6SKcJzFKY+sZkplhIF1ednI0kruDo=;
+        b=hxaqb2YUgWhJysL0G++UAQ4jySJKBhJhTfZNnN4ilocEAdc+tvLOPhwYTRp0tDqimu
+         uQTAWQIWGhSTo7wvsAGrrJOHb7yxyqF9QqazFie+YYQAXSV5h9EULeRy7intyYNGid3R
+         nzFbioZgLryCgE8kFWNUUdiqbrdOt+ioXxY37Y8zk4Pi+j8+55zyvl0kUt1xF7Wc8nia
+         RTNuEgDmtezO6IAxnTcS36USkpxpK7SGgnM8mbZog3FvaupfqaSwY6IVzycUV6OFMVpP
+         zX9CHqU2Yb8LRH1P40mFzCL+tE2DJMoGtQmYfXJY2kpcyPgsPJvCsSqxS3XzOuF+0UWq
+         t07A==
+X-Gm-Message-State: ABy/qLbx1B9Sg6OxD4itHItc+wpHii+MfZn5u3c3pqzK3v1WMNSHsiCF
+        l22V/EM8DxcXwmJStJzo44oGzaj6bILNDNPO9wg=
+X-Google-Smtp-Source: APBJJlFBDoZQA2YW3Bxt2cfhjxIimssHNv6+Ox3A25mufenbLcs3GAodp0BeuMoLjGNPDIVyI6916Q==
+X-Received: by 2002:a1c:ed10:0:b0:3fb:b008:2002 with SMTP id l16-20020a1ced10000000b003fbb0082002mr18164102wmh.0.1689148920442;
+        Wed, 12 Jul 2023 01:02:00 -0700 (PDT)
+Received: from [192.168.1.172] ([93.5.22.158])
+        by smtp.gmail.com with ESMTPSA id g23-20020a7bc4d7000000b003fc02a410d0sm12536303wmk.48.2023.07.12.01.01.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 12 Jul 2023 01:02:00 -0700 (PDT)
+Message-ID: <a335efdc-2ecb-c25a-7507-5ef2e19c5ca1@baylibre.com>
+Date:   Wed, 12 Jul 2023 10:01:58 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH 1/3] dt-bindings: display: panel: add startek
+ kd070fhfid015 support
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        =?UTF-8?q?Ren=C3=A9=20Kjellerup?= <rk.katana.steel@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Aleksey Nasibulin <alealexpro100@ya.ru>,
-        Christian Marangi <ansuelsmth@gmail.com>,
-        stable@vger.kernel.org
-Subject: [PATCH] ARM: dts: BCM5301X: Extend RAM to full 256MB for Linksys EA6500 V2
-Date:   Wed, 12 Jul 2023 03:40:17 +0200
-Message-Id: <20230712014017.28123-1-ansuelsmth@gmail.com>
-X-Mailer: git-send-email 2.40.1
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-0.6 required=5.0 tests=BAYES_00,DATE_IN_PAST_06_12,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>
+Cc:     Guillaume La Roque <glaroque@baylibre.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20230711-startek_display-v1-0-163917bed385@baylibre.com>
+ <20230711-startek_display-v1-1-163917bed385@baylibre.com>
+ <14bed951-22ae-4aa8-5fcb-b2cd92ebdbef@linaro.org>
+Content-Language: en-US
+From:   Alexandre Mergnat <amergnat@baylibre.com>
+In-Reply-To: <14bed951-22ae-4aa8-5fcb-b2cd92ebdbef@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Aleksey Nasibulin <alealexpro100@ya.ru>
+Hi Krzysztof,
 
-Linksys ea6500-v2 have 256MB of ram. Currently we only use 128MB.
-Expand the definition to use all the available RAM.
+Thanks for your review
 
-Fixes: 03e96644d7a8 ("ARM: dts: BCM5301X: Add basic DT for Linksys EA6500 V2")
-Signed-off-by: Aleksey Nasibulin <alealexpro100@ya.ru>
-Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-Cc: stable@vger.kernel.org
----
- arch/arm/boot/dts/broadcom/bcm4708-linksys-ea6500-v2.dts | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+On 12/07/2023 07:32, Krzysztof Kozlowski wrote:
+> On 11/07/2023 17:36, Alexandre Mergnat wrote:
+>> The Startek KD070FHFID015 is a 7-inch TFT LCD display with a resolution
 
-diff --git a/arch/arm/boot/dts/broadcom/bcm4708-linksys-ea6500-v2.dts b/arch/arm/boot/dts/broadcom/bcm4708-linksys-ea6500-v2.dts
-index f1412ba83def..0454423fe166 100644
---- a/arch/arm/boot/dts/broadcom/bcm4708-linksys-ea6500-v2.dts
-+++ b/arch/arm/boot/dts/broadcom/bcm4708-linksys-ea6500-v2.dts
-@@ -19,7 +19,8 @@ chosen {
- 
- 	memory@0 {
- 		device_type = "memory";
--		reg = <0x00000000 0x08000000>;
-+		reg = <0x00000000 0x08000000>,
-+		      <0x88000000 0x08000000>;
- 	};
- 
- 	gpio-keys {
+snip
+
+>> +
+>> +  dcdc-gpios: true
+> 
+>  From where does this come? Which schema defines it?
+
+It's a miss. I will fix it and reset-gpios too by adding a maxItems and 
+a description.
+
+>> +
+>> +  height-mm:
+>> +    const: 151
+>> +
+>> +  iovcc-supply:
+>> +    description: Reference to the regulator powering the panel IO pins.
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +    description: DSI virtual channel
+>> +
+>> +  reset-gpios: true
+>> +
+>> +  port: true
+>> +
+>> +  power-supply: true
+>> +
+>> +  width-mm:
+>> +    const: 95
+>> +
+>> +additionalProperties: false
+>> +
+>> +required:
+>> +  - compatible
+>> +  - dcdc-gpios
+>> +  - iovcc-supply
+>> +  - reg
+>> +  - reset-gpios
+>> +  - port
+>> +  - power-supply
+> 
+> Missing example.
+
+I will add it.
+
 -- 
-2.40.1
-
+Regards,
+Alexandre
