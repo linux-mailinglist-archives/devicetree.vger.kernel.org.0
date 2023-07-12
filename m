@@ -2,276 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D07F4750EA1
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 18:34:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B46B2750EBE
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 18:40:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231984AbjGLQeb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jul 2023 12:34:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37870 "EHLO
+        id S229636AbjGLQkr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jul 2023 12:40:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42320 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230381AbjGLQe3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 12:34:29 -0400
-Received: from mail-pf1-x42a.google.com (mail-pf1-x42a.google.com [IPv6:2607:f8b0:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 673271718
-        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 09:34:26 -0700 (PDT)
-Received: by mail-pf1-x42a.google.com with SMTP id d2e1a72fcca58-6686ef86110so4092212b3a.2
-        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 09:34:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689179666; x=1691771666;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=Zs0m/En6zIrHPDFl9JK0/9X5KfaIqeG5U/i/N6mUb18=;
-        b=dZmhTxuRn0Ggjtqs7Bh6lAMu4tfGvsu0WZ9SUdcFP/B4T6mX3uy70bUfhDi9042rfX
-         0w2Kpe9GqHgRfCFx3IM+/gbqCwLtw+CXi9WVCPfaswrkiEKvi9403vfoSv2flY8D4yGd
-         uIZF91XZiq2jv9EivTdtyijlpWU8Pqh4a47wGkKnRYl46WGwPaPutTTmbqLkTlrX6YGb
-         pcM/M2xeyKa+/n0qDlp54qDX4hxN4kSt+9se04uxdrzTffT/c7/svnbkJrTQKCqbXg5r
-         CXyaPlMqT34ZD0s1r0JEGKJPIWN4qqd3Pe7EsfwQEIX/obwZLxneXh4eamZZ3TH6EMNR
-         GdQA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689179666; x=1691771666;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Zs0m/En6zIrHPDFl9JK0/9X5KfaIqeG5U/i/N6mUb18=;
-        b=D30+cgov4Bh1hwT71phR08coG4OY1ZlXoZp/CbHGCufBNVqGrWJE0ZSmQ/sQfyJP0z
-         qCjqZXtugqTCIRF3iqspHOmKB2eGlb3iowEKPqch698h3xTTvMTpTLaGGQRr/8tvJrKr
-         kUjXHy8ECab/6TsnsreG853MDYH2lOOUQFmri4cYNkRGlAXIjij/mE+jT6pBC13FfIyc
-         DVp6NLeZCENmE6wb403k75KK6L+Uwe7vVMoD2pLHGGx+cGgZEXL5SxEfBqEh8OtkXqK8
-         9YjNrq5CmOhe/QtrQ+d17TOrbANn0hpX2bETpqn/3tyQA858CG49W5Gb1RCanmSkkoZw
-         R6lA==
-X-Gm-Message-State: ABy/qLYE1ojfwh184doQZBbYXyKxKaNvE8jE3O6kBYDKWKlxBzD0a3Ul
-        ygThUP1iQQw7Pt91NyywfRqe
-X-Google-Smtp-Source: APBJJlFlBHP5AZssL4vukJEogJn8IyXWQu0xoAEj5zrJvcKufJwQ5DgtTZWoi4X/WVf8dBDZKaVjCQ==
-X-Received: by 2002:a05:6a21:6d84:b0:126:a80d:4936 with SMTP id wl4-20020a056a216d8400b00126a80d4936mr17918871pzb.27.1689179665747;
-        Wed, 12 Jul 2023 09:34:25 -0700 (PDT)
-Received: from thinkpad ([117.207.27.131])
-        by smtp.gmail.com with ESMTPSA id v23-20020aa78517000000b0064f95bc04d3sm3818864pfn.20.2023.07.12.09.34.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Jul 2023 09:34:25 -0700 (PDT)
-Date:   Wed, 12 Jul 2023 22:04:06 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     vireshk@kernel.org, nm@ti.com, sboyd@kernel.org,
-        myungjoo.ham@samsung.com, kyungmin.park@samsung.com,
-        cw00.choi@samsung.com, andersson@kernel.org,
-        konrad.dybcio@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        quic_asutoshd@quicinc.com, quic_cang@quicinc.com,
-        quic_nitirawa@quicinc.com, quic_narepall@quicinc.com,
-        quic_bhaskarv@quicinc.com, quic_richardp@quicinc.com,
-        quic_nguyenb@quicinc.com, quic_ziqichen@quicinc.com,
-        bmasney@redhat.com, krzysztof.kozlowski@linaro.org
-Subject: Re: [PATCH 11/14] scsi: ufs: host: Add support for parsing OPP
-Message-ID: <20230712163406.GG102757@thinkpad>
-References: <20230712103213.101770-1-manivannan.sadhasivam@linaro.org>
- <20230712103213.101770-14-manivannan.sadhasivam@linaro.org>
- <e6a5129a-db07-977d-2ecd-328a52cbcdc0@linaro.org>
+        with ESMTP id S232515AbjGLQkp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 12:40:45 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D66F010C7
+        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 09:40:43 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 6BFDB6184D
+        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 16:40:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DDBC7C433C8;
+        Wed, 12 Jul 2023 16:40:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1689180042;
+        bh=NaEjASo8miCEM8dHYi4Pq2EhZ+qM+1epK9npg8XNShk=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=ExW4awx5okU1EW9jtlQ3leXf82VONqpLmSsvBk+iZSR1F1BTppK7GkUSvRw6/W0Ai
+         nqh8a8Dy1FHrj7MZRMDWrxy/c1dnDnyTBbkueTx79VxJEa1GNCjGdLWfW0sjxzoFW/
+         /p7fvQ+BicoQ8kCYbrwW1fIGCv+QwYx68EstAVgaObPTc44g5znCjyuUQ9EJU52ivt
+         NIQoghGtxx9FXZxzNaLf7MlrXecRHHvWqsChP8NaVk6Ry/pwS3ZW0Wd5lL9XBCLYO9
+         0G0pqyk282k+jOQpFTc81bNlRp9pATloBQGknqazOq0pf1uSP/mt+4oCp/rQq1eYF6
+         bYUw/s2+603yA==
+From:   Conor Dooley <conor@kernel.org>
+To:     Emil Renner Berthing <kernel@esmil.dk>,
+        Felix Moessbauer <felix.moessbauer@siemens.com>
+Cc:     conor@kernel.org, Conor Dooley <conor.dooley@microchip.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Daniel Bovensiepen <daniel.bovensiepen@siemens.com>,
+        Jan Kiszka <jan.kiszka@siemens.com>,
+        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/1] riscv: dts: Enable device-tree overlay support for starfive devices
+Date:   Wed, 12 Jul 2023 17:40:27 +0100
+Message-Id: <20230712-legume-establish-d389b8e40984@spud>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20230627080620.329873-1-felix.moessbauer@siemens.com>
+References: <20230627080620.329873-1-felix.moessbauer@siemens.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Content-Type: text/plain; charset="utf-8"
+X-Developer-Signature: v=1; a=openpgp-sha256; l=668; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=gzdlf/v0s7NPqIfXdlJejLX56LsDjYc1MrowUq7PFns=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDCnrrlfYHZfen/Cv43/Yg3eTG75v4o6Z6TxZTzNasezOh FqtbfsyO0pZGMQ4GGTFFFkSb/e1SK3/47LDuectzBxWJpAhDFycAjCRM9oMf+UtZ773qVj9frq5 TNHb5T/P5kxexm1140pN8Y7IbROKlSoZ/id3dmpsN/DrWaP2hJVx7ZcNvlZRaZVrqmTnWpy8n3h Lih8A
+X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <e6a5129a-db07-977d-2ecd-328a52cbcdc0@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 12, 2023 at 04:15:12PM +0300, Dmitry Baryshkov wrote:
-> On 12/07/2023 13:32, Manivannan Sadhasivam wrote:
-> > OPP framework can be used to scale the clocks along with other entities
-> > such as regulators, performance state etc... So let's add support for
-> > parsing OPP from devicetree. OPP support in devicetree is added through
-> > the "operating-points-v2" property which accepts the OPP table defining
-> > clock frequency, regulator voltage, power domain performance state etc...
-> > 
-> > Since the UFS controller requires multiple clocks to be controlled for
-> > proper working, devm_pm_opp_set_config() has been used which supports
-> > scaling multiple clocks through custom ufshcd_opp_config_clks() callback.
-> > 
-> > It should be noted that the OPP support is not compatible with the old
-> > "freq-table-hz" property. So only one can be used at a time even though
-> > the UFS core supports both.
-> > 
-> > Co-developed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> > ---
-> >   drivers/ufs/host/ufshcd-pltfrm.c | 116 +++++++++++++++++++++++++++++++
-> >   1 file changed, 116 insertions(+)
-> > 
-> > diff --git a/drivers/ufs/host/ufshcd-pltfrm.c b/drivers/ufs/host/ufshcd-pltfrm.c
-> > index 0b7430033047..068c22378c88 100644
-> > --- a/drivers/ufs/host/ufshcd-pltfrm.c
-> > +++ b/drivers/ufs/host/ufshcd-pltfrm.c
-> > @@ -8,8 +8,10 @@
-> >    *	Vinayak Holikatti <h.vinayak@samsung.com>
-> >    */
-> > +#include <linux/clk.h>
-> >   #include <linux/module.h>
-> >   #include <linux/platform_device.h>
-> > +#include <linux/pm_opp.h>
-> >   #include <linux/pm_runtime.h>
-> >   #include <linux/of.h>
-> > @@ -17,6 +19,8 @@
-> >   #include "ufshcd-pltfrm.h"
-> >   #include <ufs/unipro.h>
-> > +#include <trace/events/ufs.h>
-> > +
-> >   #define UFSHCD_DEFAULT_LANES_PER_DIRECTION		2
-> >   static int ufshcd_parse_clock_info(struct ufs_hba *hba)
-> > @@ -205,6 +209,112 @@ static void ufshcd_init_lanes_per_dir(struct ufs_hba *hba)
-> >   	}
-> >   }
-> > +static int ufshcd_opp_config_clks(struct device *dev, struct opp_table *opp_table,
-> > +				  struct dev_pm_opp *opp, void *data,
-> > +				  bool scaling_down)
-> > +{
-> > +	struct ufs_hba *hba = dev_get_drvdata(dev);
-> > +	struct list_head *head = &hba->clk_list_head;
-> > +	struct ufs_clk_info *clki;
-> > +	unsigned long freq;
-> > +	u8 idx = 0;
-> > +	int ret;
-> > +
-> > +	list_for_each_entry(clki, head, list) {
-> > +		if (!IS_ERR_OR_NULL(clki->clk)) {
-> > +			freq = dev_pm_opp_get_freq_indexed(opp, idx++);
-> > +
-> > +			/* Do not set rate for clocks having frequency as 0 */
-> > +			if (!freq)
-> > +				continue;
+From: Conor Dooley <conor.dooley@microchip.com>
+
+On Tue, 27 Jun 2023 16:06:20 +0800, Felix Moessbauer wrote:
+> Add the '-@' DTC option for the starfive devices. This option
+> populates the '__symbols__' node that contains all the necessary symbols
+> for supporting device-tree overlays (for instance from the firmware or
+> the bootloader) on these devices.
 > 
-> Can we omit these clocks from the opp table? I don't think they serve any
-> purpose.
+> The starfive devices allow various modules to be connected and this
+> enables users to create out-of-tree device-tree overlays for these modules.
 > 
+> [...]
 
-No, we cannot. OPP requires the clocks and opp-hz to be of same length. And we
-cannot omit those clocks as well since linux needs to gate control them.
+Applied to riscv-dt-for-next, thanks!
 
-> Maybe it would even make sense to move this function to drivers/opp then, as
-> it will be generic enough.
-> 
+[1/1] riscv: dts: Enable device-tree overlay support for starfive devices
+      https://git.kernel.org/conor/c/ef6012f301f7
 
-There is already a generic function available in OPP core. But we cannot use it
-as we need to skip setting 0 freq and that's not applicable in OPP core as
-discussed with Viresh offline.
-
-- Mani
-
-> > +
-> > +			ret = clk_set_rate(clki->clk, freq);
-> > +			if (ret) {
-> > +				dev_err(dev, "%s: %s clk set rate(%ldHz) failed, %d\n",
-> > +					__func__, clki->name, freq, ret);
-> > +				return ret;
-> > +			}
-> > +
-> > +			trace_ufshcd_clk_scaling(dev_name(dev),
-> > +				(scaling_down ? "scaled down" : "scaled up"),
-> > +				clki->name, hba->clk_scaling.target_freq, freq);
-> > +		}
-> > +	}
-> > +
-> > +	return 0;
-> > +} > +
-> > +static int ufshcd_parse_operating_points(struct ufs_hba *hba)
-> > +{
-> > +	struct device *dev = hba->dev;
-> > +	struct device_node *np = dev->of_node;
-> > +	struct dev_pm_opp_config config = {};
-> > +	struct ufs_clk_info *clki;
-> > +	const char **clk_names;
-> > +	int cnt, i, ret;
-> > +
-> > +	if (!of_find_property(np, "operating-points-v2", NULL))
-> > +		return 0;
-> > +
-> > +	if (of_find_property(np, "freq-table-hz", NULL)) {
-> > +		dev_err(dev, "%s: operating-points and freq-table-hz are incompatible\n",
-> > +			 __func__);
-> > +		return -EINVAL;
-> > +	}
-> > +
-> > +	cnt = of_property_count_strings(np, "clock-names");
-> > +	if (cnt <= 0) {
-> > +		dev_err(dev, "%s: Missing clock-names\n",  __func__);
-> > +		return -ENODEV;
-> > +	}
-> > +
-> > +	/* OPP expects clk_names to be NULL terminated */
-> > +	clk_names = devm_kcalloc(dev, cnt + 1, sizeof(*clk_names), GFP_KERNEL);
-> > +	if (!clk_names)
-> > +		return -ENOMEM;
-> > +
-> > +	/*
-> > +	 * We still need to get reference to all clocks as the UFS core uses
-> > +	 * them separately.
-> > +	 */
-> > +	for (i = 0; i < cnt; i++) {
-> > +		ret = of_property_read_string_index(np, "clock-names", i,
-> > +						    &clk_names[i]);
-> > +		if (ret)
-> > +			return ret;
-> > +
-> > +		clki = devm_kzalloc(dev, sizeof(*clki), GFP_KERNEL);
-> > +		if (!clki)
-> > +			return -ENOMEM;
-> > +
-> > +		clki->name = devm_kstrdup(dev, clk_names[i], GFP_KERNEL);
-> > +		if (!clki->name)
-> > +			return -ENOMEM;
-> > +
-> > +		if (!strcmp(clk_names[i], "ref_clk"))
-> > +			clki->keep_link_active = true;
-> > +
-> > +		list_add_tail(&clki->list, &hba->clk_list_head);
-> > +	}
-> > +
-> > +	config.clk_names = clk_names,
-> > +	config.config_clks = ufshcd_opp_config_clks;
-> > +
-> > +	ret = devm_pm_opp_set_config(dev, &config);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	ret = devm_pm_opp_of_add_table(dev);
-> > +	if (ret) {
-> > +		dev_err(dev, "Failed to add OPP table: %d\n", ret);
-> > +		return ret;
-> > +	}
-> > +
-> > +	hba->use_pm_opp = true;
-> > +
-> > +	return 0;
-> > +}
-> > +
-> >   /**
-> >    * ufshcd_get_pwr_dev_param - get finally agreed attributes for
-> >    *                            power mode change
-> > @@ -371,6 +481,12 @@ int ufshcd_pltfrm_init(struct platform_device *pdev,
-> >   	ufshcd_init_lanes_per_dir(hba);
-> > +	err = ufshcd_parse_operating_points(hba);
-> > +	if (err) {
-> > +		dev_err(dev, "%s: OPP parse failed %d\n", __func__, err);
-> > +		goto dealloc_host;
-> > +	}
-> > +
-> >   	err = ufshcd_init(hba, mmio_base, irq);
-> >   	if (err) {
-> >   		dev_err(dev, "Initialization failed\n");
-> 
-> -- 
-> With best wishes
-> Dmitry
-> 
-
--- 
-மணிவண்ணன் சதாசிவம்
+Thanks,
+Conor.
