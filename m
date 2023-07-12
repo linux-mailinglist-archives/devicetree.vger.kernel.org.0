@@ -2,143 +2,242 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4BCCD75029D
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 11:14:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 00F697502B0
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 11:18:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232420AbjGLJON convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 12 Jul 2023 05:14:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60550 "EHLO
+        id S229731AbjGLJSA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jul 2023 05:18:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34732 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233018AbjGLJOI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 05:14:08 -0400
-Received: from mail-yb1-f169.google.com (mail-yb1-f169.google.com [209.85.219.169])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5408E1BD1;
-        Wed, 12 Jul 2023 02:13:59 -0700 (PDT)
-Received: by mail-yb1-f169.google.com with SMTP id 3f1490d57ef6-c4cb4919bb9so7517864276.3;
-        Wed, 12 Jul 2023 02:13:59 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689153238; x=1691745238;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=+pzM/ps0J0V255RZBWb0G0YFpNEXWLUJowIcR6XiYjk=;
-        b=ccgKbAGfadOP9Kn0mhM4AVbtPUFkE3L+kGzFT26ccT06cmjptR5IfLnsEbfU8BBLKG
-         LcRCcjg0MX90UTdl3hrYMjUNXhRrQd1nPXZYUN41wWhaRPaGzFKrsuVurx317xY6wqwR
-         lj+f8rGguqwSJEdmCrYt64HAhtmOXbpQC2LKlarW9hKGoagIZoBuKYVozCjoSN80ykXv
-         Pk7HKij6GT8+HpsZ26FVq97tekziyeZ23CW2hfWRvsnL0yRY0eji2TVRsLbchaImMolv
-         667mXbMwAI4JJ8ZjKBN2+nmWNP+VvPPPfoMM7Z7DxrAvMbosHqnssLCJoIa1Yn9Y9Z2/
-         D/zA==
-X-Gm-Message-State: ABy/qLZ7/csx2xDA2/ab1CUlk1PfTnCgLxIWRjvvNqpAGxAoLBxzjmqY
-        RE2Pij5qzmaxNx8+iFOZOsyWQPNgcsX18g==
-X-Google-Smtp-Source: APBJJlEGI9QOySKutu67FT+09g5HDKJW6QaQtkhmFtI2Gt7xYrmvF9FbCFeJua7FUXQZxkuoHvrPhw==
-X-Received: by 2002:a25:743:0:b0:c42:97f9:cda6 with SMTP id 64-20020a250743000000b00c4297f9cda6mr14923290ybh.29.1689153238377;
-        Wed, 12 Jul 2023 02:13:58 -0700 (PDT)
-Received: from mail-yb1-f179.google.com (mail-yb1-f179.google.com. [209.85.219.179])
-        by smtp.gmail.com with ESMTPSA id h6-20020a25e206000000b00be865f3d4fdsm808105ybe.62.2023.07.12.02.13.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 12 Jul 2023 02:13:57 -0700 (PDT)
-Received: by mail-yb1-f179.google.com with SMTP id 3f1490d57ef6-c5e76dfcc36so7536463276.2;
-        Wed, 12 Jul 2023 02:13:57 -0700 (PDT)
-X-Received: by 2002:a25:9a03:0:b0:bc1:dfa5:83a4 with SMTP id
- x3-20020a259a03000000b00bc1dfa583a4mr15070011ybn.13.1689153237624; Wed, 12
- Jul 2023 02:13:57 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230712-squealer-walmart-9587342ddec1@wendy> <18871eff-f2be-9eed-ee4c-99eba87686d8@gmail.com>
-In-Reply-To: <18871eff-f2be-9eed-ee4c-99eba87686d8@gmail.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 12 Jul 2023 11:13:43 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdX00X=L387jSrP_mZo04u0zkU8V6-g13Y2urrU1cRgS-A@mail.gmail.com>
-Message-ID: <CAMuHMdX00X=L387jSrP_mZo04u0zkU8V6-g13Y2urrU1cRgS-A@mail.gmail.com>
-Subject: Re: [PATCH v1] riscv: dts: renesas: clean up dtbs_check W=1 warning
- due to empty phy node
-To:     Sergei Shtylyov <sergei.shtylyov@gmail.com>
-Cc:     Conor Dooley <conor.dooley@microchip.com>, conor@kernel.org,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        with ESMTP id S232444AbjGLJR5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 05:17:57 -0400
+Received: from www530.your-server.de (www530.your-server.de [188.40.30.78])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1EFCFB;
+        Wed, 12 Jul 2023 02:17:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=geanix.com;
+        s=default2211; h=To:References:Message-Id:Content-Transfer-Encoding:Cc:Date:
+        In-Reply-To:From:Subject:Mime-Version:Content-Type:Sender:Reply-To:Content-ID
+        :Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:
+        Resent-Cc:Resent-Message-ID; bh=0KG+9/Us+bQr0mX8moldHf2l/y7AhroiqVYntd3LSiE=;
+        b=lE4TE/gmRdZIbwdU8PKbM2Jp8KQ0th2Wdtmpqw7CS5Ap1osRPv/EvHnOgU1QUINDpHpClPhKJux
+        hqFNzYBKCxPIAiVIcdwxn0pbuQ31FaWPb9fPx350yMtC0YGz5xt+ICjvbFslRDc8XwegO1mgngvQ3
+        UekS9SrDLbgHFoaeVMyP9tnpV+WXXp2Bdz+ETrTOqDv9M/ojRBCbpwKQQwAynsyePre5kw6W9ziUk
+        nwleGtFOlrdysbpihXE92PVQoy7RaWYr7BEy9L/FoB4p5mL2u4LXrXrbPW5+/KIcfxv4FUD8F+cTy
+        wOgUcpLOGWcpFEJ0u9WcnibfwbQzprFmwUoA==;
+Received: from sslproxy02.your-server.de ([78.47.166.47])
+        by www530.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <sean@geanix.com>)
+        id 1qJVys-000Fjb-1k; Wed, 12 Jul 2023 11:17:54 +0200
+Received: from [2a06:4004:10df:0:6cc7:3173:9f32:f330] (helo=smtpclient.apple)
+        by sslproxy02.your-server.de with esmtpsa (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+        (Exim 4.92)
+        (envelope-from <sean@geanix.com>)
+        id 1qJVyr-000PhP-AB; Wed, 12 Jul 2023 11:17:53 +0200
+Content-Type: text/plain;
+        charset=us-ascii
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3731.600.7\))
+Subject: Re: [PATCH v3 8/8] ARM: dts: stm32: Add Octavo OSD32MP1-RED board
+From:   Sean Nyekjaer <sean@geanix.com>
+In-Reply-To: <219612e4-f306-9ce3-c75c-33195f1167f2@linaro.org>
+Date:   Wed, 12 Jul 2023 11:17:42 +0200
+Cc:     Ahmad Fatoum <a.fatoum@pengutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        soc@kernel.org, dantuguf14105@gmail.com,
+        Olivier Moysan <olivier.moysan@foss.st.com>,
+        devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <4AE6040B-5F3F-4CBE-9D2E-ABBD1B5605F6@geanix.com>
+References: <20230712062954.2194505-1-sean@geanix.com>
+ <20230712062954.2194505-8-sean@geanix.com>
+ <219612e4-f306-9ce3-c75c-33195f1167f2@linaro.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: Apple Mail (2.3731.600.7)
+X-Authenticated-Sender: sean@geanix.com
+X-Virus-Scanned: Clear (ClamAV 0.103.8/26967/Wed Jul 12 09:28:32 2023)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sergei.
 
-On Wed, Jul 12, 2023 at 10:43 AM Sergei Shtylyov
-<sergei.shtylyov@gmail.com> wrote:
-> On 7/12/23 11:14 AM, Conor Dooley wrote:
->
-> > dtbs_check w/ W=1 complains:
-> > Warning (unit_address_vs_reg): /soc/ethernet@11c20000/ethernet-phy@7: node has a unit name, but no reg or ranges property
-> > Warning (avoid_unnecessary_addr_size): /soc/ethernet@11c20000: unnecessary #address-cells/#size-cells without "ranges" or child "reg" property
-> >
-> > The ethernet@11c20000 node is guarded by an `#if (!SW_ET0_EN_N)` in
-> > rzg2ul-smarc-som.dtsi, where the phy child node is added. In
-> > rzfive-smarc-som.dtsi, the ethernet node is marked disabled & the
-> > interrupt properties are deleted from the phy child node. As a result,
-> > the produced dts looks like:
-> >       ethernet@11c20000 {
-> >               compatible = "renesas,r9a07g043-gbeth\0renesas,rzg2l-gbeth";
-> >               /* snip */
-> >               #address-cells = <0x01>;
-> >               #size-cells = <0x00>;
-> >               status = "disabled";
-> >
-> >               ethernet-phy@7 {
-> >               };
-> >       };
-> >
-> > Adding a corresponding `#if (!SW_ET0_EN_N)` around the node in
-> > rzfive-smarc-som.dtsi avoids the complaint, as the empty child node is
-> > not added:
-> >       ethernet@11c20000 {
-> >               compatible = "renesas,r9a07g043-gbeth\0renesas,rzg2l-gbeth";
-> >               /* snip */
-> >               #address-cells = <0x01>;
-> >               #size-cells = <0x00>;
-> >               status = "disabled";
-> >       };
-> >
-> > Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> [...]
->
-> > diff --git a/arch/riscv/boot/dts/renesas/rzfive-smarc-som.dtsi b/arch/riscv/boot/dts/renesas/rzfive-smarc-som.dtsi
-> > index d6f18754eb5d..c62debc7ca7e 100644
-> > --- a/arch/riscv/boot/dts/renesas/rzfive-smarc-som.dtsi
-> > +++ b/arch/riscv/boot/dts/renesas/rzfive-smarc-som.dtsi
-> > @@ -22,6 +22,7 @@ &dmac {
-> >       status = "disabled";
-> >  };
-> >
-> > +#if (!SW_ET0_EN_N)
->
->    Are the parens really needed here?
 
-No they aren't. But this follows the existing style of the other users.
+> On 12 Jul 2023, at 10.34, Krzysztof Kozlowski =
+<krzysztof.kozlowski@linaro.org> wrote:
+>=20
+> On 12/07/2023 08:29, Sean Nyekjaer wrote:
+>> Add support for the Octavo OSD32MP1-RED development board.
+>>=20
+>> General features:
+>> - STM32MP157C
+>> - 512MB DDR3
+>> - CAN-FD
+>> - HDMI
+>> - USB-C OTG
+>> - UART
+>>=20
+>=20
+> ...
+>=20
+>> +
+>> +&i2c1 {
+>> + pinctrl-names =3D "default", "sleep";
+>> + pinctrl-0 =3D <&i2c1_pins_a>;
+>> + pinctrl-1 =3D <&i2c1_sleep_pins_a>;
+>> + status =3D "okay";
+>> + i2c-scl-rising-time-ns =3D <100>;
+>> + i2c-scl-falling-time-ns =3D <7>;
+>> + /delete-property/dmas;
+>> + /delete-property/dma-names;
+>=20
+> You should explain it with comment, unless it is quite common for all
+> STM32 boards to disable DMA for I2C...
 
->
-> >  &eth0 {
-> >       status = "disabled";
-> >
-> [...]
+Quite common for all STM32 boards, but I will add a comment anyway :)
 
-Gr{oetje,eeting}s,
+>=20
+>> +
+>> + hdmi-transmitter@39 {
+>> + compatible =3D "sil,sii9022";
+>> + reg =3D <0x39>;
+>> + reset-gpios =3D <&gpiog 0 GPIO_ACTIVE_LOW>;
+>> + interrupts =3D <1 IRQ_TYPE_EDGE_FALLING>;
+>> + interrupt-parent =3D <&gpiog>;
+>> + pinctrl-names =3D "default", "sleep";
+>> + pinctrl-0 =3D <&ltdc_pins_e>;
+>> + pinctrl-1 =3D <&ltdc_sleep_pins_e>;
+>> + status =3D "okay";
+>=20
+> Did anything disable this node?
 
-                        Geert
+No will remove.
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+>=20
+>> +
+>> + ports {
+>> + #address-cells =3D <1>;
+>> + #size-cells =3D <0>;
+>> +
+>> + port@0 {
+>> + reg =3D <0>;
+>> + sii9022_in: endpoint {
+>> + remote-endpoint =3D <&ltdc_ep0_out>;
+>> + };
+>> + };
+>> +
+>> + port@1 {
+>> + reg =3D <1>;
+>> + sii9022_tx_endpoint: endpoint {
+>> + remote-endpoint =3D <&i2s2_endpoint>;
+>> + };
+>> + };
+>> + };
+>> + };
+>> +};
+>> +
+>> +&i2s2 {
+>> + clocks =3D <&rcc SPI2>, <&rcc SPI2_K>, <&rcc CK_PER>, <&rcc =
+PLL3_R>;
+>> + clock-names =3D "pclk", "i2sclk", "x8k", "x11k";
+>> + pinctrl-names =3D "default", "sleep";
+>> + pinctrl-0 =3D <&i2s2_pins_b>;
+>> + pinctrl-1 =3D <&i2s2_sleep_pins_b>;
+>> + status =3D "okay";
+>> +
+>> + i2s2_port: port {
+>> + i2s2_endpoint: endpoint {
+>> + remote-endpoint =3D <&sii9022_tx_endpoint>;
+>> + format =3D "i2s";
+>> + mclk-fs =3D <256>;
+>> + };
+>> + };
+>> +};
+>> +
+>> +&ltdc {
+>> + status =3D "okay";
+>> +
+>> + port {
+>> + ltdc_ep0_out: endpoint@0 {
+>> + reg =3D <0>;
+>> + remote-endpoint =3D <&sii9022_in>;
+>> + };
+>> + };
+>> +};
+>> +
+>> +&m_can1 {
+>> + pinctrl-names =3D "default", "sleep";
+>> + pinctrl-0 =3D <&m_can1_pins_d>;
+>> + pinctrl-1 =3D <&m_can1_sleep_pins_d>;
+>> + status =3D "okay";
+>> +};
+>> +
+>> +&pwr_regulators {
+>> + vdd-supply =3D <&vdd>;
+>> + vdd_3v3_usbfs-supply =3D <&vdd_usb>;
+>> +};
+>> +
+>> +&rtc {
+>> + status =3D "okay";
+>> +};
+>> +
+>> +&sdmmc1 {
+>> + pinctrl-names =3D "default", "opendrain", "sleep";
+>> + pinctrl-0 =3D <&sdmmc1_b4_pins_a>;
+>> + pinctrl-1 =3D <&sdmmc1_b4_od_pins_a>;
+>> + pinctrl-2 =3D <&sdmmc1_b4_sleep_pins_a>;
+>> + cd-gpios =3D <&gpioe 7 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+>> + disable-wp;
+>> + st,neg-edge;
+>> + bus-width =3D <4>;
+>> + vmmc-supply =3D <&v3v3>;
+>> + status =3D "okay";
+>> +};
+>> +
+>> +&sdmmc2 {
+>> + pinctrl-names =3D "default", "opendrain", "sleep";
+>> + pinctrl-0 =3D <&sdmmc2_b4_pins_a &sdmmc2_d47_pins_d>;
+>> + pinctrl-1 =3D <&sdmmc2_b4_od_pins_a>;
+>> + pinctrl-2 =3D <&sdmmc2_b4_sleep_pins_a &sdmmc2_d47_sleep_pins_d>;
+>> + non-removable;
+>> + no-sd;
+>> + no-sdio;
+>> + st,neg-edge;
+>> + bus-width =3D <8>;
+>> + vmmc-supply =3D <&v3v3>;
+>> + vqmmc-supply =3D <&vdd>;
+>> + mmc-ddr-3_3v;
+>> + status =3D "okay";
+>> +};
+>> +
+>> +&uart4 {
+>> + pinctrl-names =3D "default", "sleep", "idle";
+>> + pinctrl-0 =3D <&uart4_pins_a>;
+>> + pinctrl-1 =3D <&uart4_sleep_pins_a>;
+>> + pinctrl-2 =3D <&uart4_idle_pins_a>;
+>> + /delete-property/dmas;
+>> + /delete-property/dma-names;
+>=20
+> Same concerns.
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Thanks for the review Krzysztof.
+
+/Sean
+
+>=20
+> Best regards,
+> Krzysztof
+>=20
+
+
