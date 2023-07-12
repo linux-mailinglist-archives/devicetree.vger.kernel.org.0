@@ -2,50 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ED6C3750693
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 13:47:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E1317506B5
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 13:48:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232739AbjGLLr1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jul 2023 07:47:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36980 "EHLO
+        id S232890AbjGLLsV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jul 2023 07:48:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37792 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232995AbjGLLrX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 07:47:23 -0400
+        with ESMTP id S233417AbjGLLsI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 07:48:08 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF06E1FFA;
-        Wed, 12 Jul 2023 04:47:06 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C51E4210E;
+        Wed, 12 Jul 2023 04:47:45 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id AA2D76179D;
-        Wed, 12 Jul 2023 11:47:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6BF00C433CA;
-        Wed, 12 Jul 2023 11:47:03 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 2A015617A0;
+        Wed, 12 Jul 2023 11:47:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 419D5C433C8;
+        Wed, 12 Jul 2023 11:47:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689162426;
-        bh=TGhw0BOQLfLCUfvKyBi3wy+x2YHrjsCaDwvjVbjEVZw=;
+        s=k20201202; t=1689162464;
+        bh=MmDyn1rAtTKX49+lb+u+gcqGTH+0y12gnihcalWBBkY=;
         h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=m+a21ZBwBD0dLXB9dUo3vmJ1K4Ko4ztyANwi9/iMKKtwbXia2rmAGh9lzTvFfquBH
-         bb6U6QwxZ8wz5c8QcOT52DKSEhGNA80SaZPpO1Cy3Rey2D0GydCcV3Io1jHm0wofH4
-         LDMYsllnFWxuLIFlPTNfOA2pvow6mzET8nKCuPljaLd5i/rxCwdbF446poiMzF1jIt
-         seC+a9Phb7jS92O2SlmY1cMWcicKAi1S7BXxs/8ylnfL0p7VRN8uBYJ7Q5acnQCluk
-         HPvXdIfUlRYx4pJ8YCre+jpIqPhLiygd3TvUK6kRTcbZWaCtGTExNgw35IYUSG/LqY
-         S5S5A1IJVXifQ==
+        b=BInlGNRxi22YcYKoLBBL0iWHdsOgYLAyncWbHTg208cl14xmKKna6x+Uu1ZBcd2C5
+         k61hPujabWgYNCY1H9MSsS9uL8E69wYAZyK1Q6lCL3T2xw9F7QzmWPC4PJmbpSAm4v
+         sWvmDPdAlyaiMJ4Bf+DMG00PiTyX1Emowjls1/LH0OJb2DQ+j4mczEq5+wwif2ctdN
+         32FvZBIpK7EHaCDwsuibwF0+0DCuVJqrxFqWcLeIaeED4QPs74fKieEQgfH0m+G6Zu
+         zuPwFQmBEa5mnwaGnpM1NT3Jhz4s9ZkA4UOnG6veF4tKCNjyZigHSJHXcmjMjzCy20
+         VwfFSwPs5CvOA==
 From:   Mark Brown <broonie@kernel.org>
-To:     lgirdwood@gmail.com, tiwai@suse.com, perex@perex.cz,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, matthias.bgg@gmail.com,
-        angelogioacchino.delregno@collabora.com,
-        Trevor Wu <trevor.wu@mediatek.com>
-Cc:     alsa-devel@alsa-project.org, linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-In-Reply-To: <20230629074348.21670-1-trevor.wu@mediatek.com>
-References: <20230629074348.21670-1-trevor.wu@mediatek.com>
-Subject: Re: [PATCH 0/2] ASoC: mt8188: add memory-region support
-Message-Id: <168916242315.46574.12917006493052835977.b4-ty@kernel.org>
-Date:   Wed, 12 Jul 2023 12:47:03 +0100
+To:     linux-spi@vger.kernel.org, Maksim Kiselev <bigunclemax@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-kernel@vger.kernel.org
+In-Reply-To: <20230624131632.2972546-1-bigunclemax@gmail.com>
+References: <20230624131632.2972546-1-bigunclemax@gmail.com>
+Subject: Re: (subset) [PATCH v1 0/3] Allwinner R329/D1/R528/T113s Dual/Quad
+ SPI modes support
+Message-Id: <168916246098.47003.15457344630251001511.b4-ty@kernel.org>
+Date:   Wed, 12 Jul 2023 12:47:40 +0100
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
@@ -60,26 +67,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 29 Jun 2023 15:43:46 +0800, Trevor Wu wrote:
-> This series introduces support for memory-region, allowing afe memif to
-> utilize the region specified in dts.
-> 
-> Trevor Wu (2):
->   ASoC: mediatek: mt8188: add memory-region support
->   ASoC: dt-bindings: mediatek,mt8188-afe: add memory-region
+On Sat, 24 Jun 2023 16:16:21 +0300, Maksim Kiselev wrote:
+> This series extends the previous https://lore.kernel.org/all/20230510081121.3463710-1-bigunclemax@gmail.com
+> And adds support for Dual and Quad SPI modes for the listed SoCs.
+> Both modes have been tested on the T113s and should work on
+> other Allwinner's SoCs that have a similar SPI conttoller.
+> It may also work for previous SoCs that support Dual/Quad modes.
+> One of them are H6 and H616.
 > 
 > [...]
 
 Applied to
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
 
 Thanks!
 
-[1/2] ASoC: mediatek: mt8188: add memory-region support
-      commit: fd9965235099fc4cccd94f82a371192bf7645a3e
-[2/2] ASoC: dt-bindings: mediatek,mt8188-afe: add memory-region
-      commit: e3326e3bc4937622b4dc6e9721262483109b0f0c
+[1/3] spi: sun6i: add quirk for dual and quad SPI modes support
+      commit: 0605d9fb411f3337482976842a3901d6c125d298
+[2/3] spi: sun6i: add dual and quad SPI modes support for R329/D1/R528/T113s
+      commit: 25453d797d7abe8801951c8290ea11ea8bba7b96
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
