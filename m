@@ -2,87 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5EB3B750B80
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 16:57:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 89DF0750B83
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 16:57:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231881AbjGLO5f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jul 2023 10:57:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47408 "EHLO
+        id S231299AbjGLO5v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jul 2023 10:57:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47654 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231144AbjGLO5d (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 10:57:33 -0400
-Received: from mail-il1-f178.google.com (mail-il1-f178.google.com [209.85.166.178])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC62EBB;
-        Wed, 12 Jul 2023 07:57:32 -0700 (PDT)
-Received: by mail-il1-f178.google.com with SMTP id e9e14a558f8ab-3457a3ada84so34763345ab.1;
-        Wed, 12 Jul 2023 07:57:32 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689173852; x=1691765852;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=eQpNG1b7wMLR5twQRHrEFSWGNQ5hbqj3LiEbepk0pAs=;
-        b=Qm9sgB1EyervI+L5tlZZwpLvgCeJPTHC8iOxx/ZKlOnxChlO1JkDCWsuoAY7/bGCQV
-         3sEkgfggHhuMQ4bQj6DFtuoCB3/nJzQOCll63jglYG4Nf1nYNpfsLB6wxM+xAHxkwe8a
-         ldHn7qltksafUnzeHwEMM28IIChTZizKm5tju7YKshzyzyQLj50YiJouZOP2YySXFedd
-         9olufL5b//pmbcuX8yGQCIF5ZCT7t8rmXRHFcStPOaPlvWcvP6pwLlzXmnYtJkq8Ysnj
-         Tj3BpFQ3j9MfmNreAyWTO2xHncrFgt/AEV2R4xTICjb12vkcWG59AzjM3B2EeFwU9I6y
-         xjZg==
-X-Gm-Message-State: ABy/qLYgkK+xldjgZidN5f0TU1osBW7mZNiZXAs4ujg35Z0XtF7v+M6m
-        kNwmB7fx8LuGNf0o39XeYA==
-X-Google-Smtp-Source: APBJJlHhBlEatXy+TeA0p640WcROEFN0Ctcfb+9Lz7BCpURusUfHQ+/RgjXT/eepAKQk9oWG5c9s5A==
-X-Received: by 2002:a92:d201:0:b0:346:b5d:c0ee with SMTP id y1-20020a92d201000000b003460b5dc0eemr16683818ily.0.1689173851928;
-        Wed, 12 Jul 2023 07:57:31 -0700 (PDT)
-Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id i10-20020a02b68a000000b0042b3dcb1106sm1289071jam.47.2023.07.12.07.57.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Jul 2023 07:57:31 -0700 (PDT)
-Received: (nullmailer pid 183580 invoked by uid 1000);
-        Wed, 12 Jul 2023 14:57:29 -0000
-Date:   Wed, 12 Jul 2023 08:57:29 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     linux-kernel@vger.kernel.org,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        devicetree@vger.kernel.org,
-        Cosmin Tanislav <cosmin.tanislav@analog.com>,
-        linux-iio@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
-        Cosmin Tanislav <demonsingur@gmail.com>
-Subject: Re: [PATCH] dt-bindings: iio: adi,ad74115: remove ref from -nanoamp
-Message-ID: <168917384908.183505.328888758911691646.robh@kernel.org>
-References: <20230712080512.94964-1-krzysztof.kozlowski@linaro.org>
+        with ESMTP id S231984AbjGLO5u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 10:57:50 -0400
+Received: from bombadil.infradead.org (bombadil.infradead.org [IPv6:2607:7c80:54:3::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22A9819BE;
+        Wed, 12 Jul 2023 07:57:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
+        Content-Type:In-Reply-To:From:References:To:Subject:MIME-Version:Date:
+        Message-ID:Sender:Reply-To:Cc:Content-ID:Content-Description;
+        bh=StVhosqjQMYv0ZshIKprVX9ygBpNqy+bhfO5eQ6rmxY=; b=Se3kptrBwtSU1KXt3hRwbpQIT0
+        G7zanPOjdZym2S4mAwXVxLpJ7eLi2bJfXPDvPlNGi9CUYMQXJGOz8xEMUQbc4hbIJNL+hIG76AIQM
+        x/sKZe7BrubR7DpwAWto2eQvGjrLjickWgVPJX5noMXdTakfPZcoGcJL3B4mNUzfFhIWLLTLfxs3n
+        k+0iKB9UqOqHKtOUuVXT1ZxIhNsEdLUEOmyAZL/GGYOun1vganeBMMXJAieyQ14XgWuNXZ5G92Fhy
+        Ztj6Q5MxUfzU8Iz8834O14TMSddc8XlafNIbTijT0ZBQBqLgAGgpYvohV5W/ACwzx401lQH4Yjveh
+        CtOw9Emw==;
+Received: from [2601:1c2:980:9ec0::2764]
+        by bombadil.infradead.org with esmtpsa (Exim 4.96 #2 (Red Hat Linux))
+        id 1qJbHh-000Fwy-1e;
+        Wed, 12 Jul 2023 14:57:41 +0000
+Message-ID: <6d712362-a0f9-7395-fbc0-e6a51eee9bcb@infradead.org>
+Date:   Wed, 12 Jul 2023 07:57:40 -0700
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230712080512.94964-1-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH v4 7/7] MAINTAINERS: Added maintainer details
+Content-Language: en-US
+To:     Pankaj Gupta <pankaj.gupta@nxp.com>, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, clin@suse.com,
+        conor+dt@kernel.org, pierre.gondois@arm.com, ping.bai@nxp.com,
+        xiaoning.wang@nxp.com, wei.fang@nxp.com, peng.fan@nxp.com,
+        haibo.chen@nxp.com, festevam@gmail.com, linux-imx@nxp.com,
+        davem@davemloft.net, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, gaurav.jain@nxp.com,
+        alexander.stein@ew.tq-group.com, sahil.malhotra@nxp.com,
+        aisheng.dong@nxp.com, V.Sethi@nxp.com
+References: <20230712121219.2654234-1-pankaj.gupta@nxp.com>
+ <20230712121219.2654234-8-pankaj.gupta@nxp.com>
+From:   Randy Dunlap <rdunlap@infradead.org>
+In-Reply-To: <20230712121219.2654234-8-pankaj.gupta@nxp.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi--
 
-On Wed, 12 Jul 2023 10:05:12 +0200, Krzysztof Kozlowski wrote:
-> dtschema v2023.06 comes with support for properties with -nanoamp
-> suffix, thus bindings should not have a ref for it:
+On 7/12/23 05:12, Pankaj Gupta wrote:
+> MAINTAINERS: Added maintainer details for se-fw driver.
 > 
->   adi,ad74115.yaml: properties:adi,ext1-burnout-current-nanoamp: '$ref' should not be valid under {'const': '$ref'}
-> 
-> Cc: Cosmin Tanislav <demonsingur@gmail.com>
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Pankaj Gupta <pankaj.gupta@nxp.com>
 > ---
->  Documentation/devicetree/bindings/iio/addac/adi,ad74115.yaml | 3 ---
->  1 file changed, 3 deletions(-)
+>  MAINTAINERS | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
 > 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 3be1bdfe8ecc..654c1628417d 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -13620,6 +13620,16 @@ F:	mm/
+>  F:	tools/mm/
+>  F:	tools/testing/selftests/mm/
+>  
 
-Acked-by: Rob Herring <robh@kernel.org>
+Nope, this is not in alphabetical order. The MAINTAINERS file
+is to be kept in alphabetical order.
 
+> +NXP EDGELOCK(SECURE) ENCLAVE FIRMWARE DRIVER
+> +M:	Pankaj Gupta <pankaj.gupta@nxp.com>
+> +R:	NXP Linux Team <linux-imx@nxp.com>
+> +L:	linux-kernel@vger.kernel.org
+> +S:	Maintained
+> +F:	Documentation/devicetree/bindings/arm/freescale/fsl,se-fw.yaml
+> +F:	drivers/firmware/imx/ele*.*
+> +F:	drivers/firmware/imx/se*.*
+> +F:	include/linux/firmware/imx/ele*.*
+> +
+>  MEMORY TECHNOLOGY DEVICES (MTD)
+>  M:	Miquel Raynal <miquel.raynal@bootlin.com>
+>  M:	Richard Weinberger <richard@nod.at>
+
+-- 
+~Randy
