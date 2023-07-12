@@ -2,132 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 070407510F4
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 21:07:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F7E9751128
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 21:24:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229757AbjGLTHk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jul 2023 15:07:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50134 "EHLO
+        id S232209AbjGLTYv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jul 2023 15:24:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55580 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232202AbjGLTHj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 15:07:39 -0400
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BC1B1BFA
-        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 12:07:37 -0700 (PDT)
-Received: by mail-ed1-x52d.google.com with SMTP id 4fb4d7f45d1cf-51a52a7d859so2452033a12.0
-        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 12:07:37 -0700 (PDT)
+        with ESMTP id S232210AbjGLTYv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 15:24:51 -0400
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A2DA1FF1
+        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 12:24:46 -0700 (PDT)
+Received: by mail-lf1-x129.google.com with SMTP id 2adb3069b0e04-4fbc0314a7bso12071635e87.2
+        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 12:24:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689188856; x=1691780856;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        d=linaro.org; s=google; t=1689189884; x=1691781884;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=P12/yloogXOzDhZA17e17hGhqvGduW+O8nRBGpE0kgo=;
-        b=U3Keanq3++4XqhwoDO9wSHMTcdLV8SYXN6C7H59iGRVD223k713+bqjC8Ut6WUSOis
-         nnnZpNBkhab3tQJ9yK+PaQLSIMm9uLBj7WEfYCjBPTekETkl2YBILpnq49SvxaLRI4AX
-         3FXH5Icd6YebH6aPlTGcubiJsXplDSjjRF16X8P84IRqm0MIEVDPYcq20aQBxs83Uy+U
-         Ne+MBh5+T+gNhB7BmKJ1aXCGOgmcgDQj8wl4hv4Qk4qiLmo2BUvgM/y7KXWvuyvTyUCq
-         auZBbLw4BeWtXRx55ifoBigx5CW2s6BHYUsQnnxuWKuy05I9w7MkpeLTLmLaPS5Jfx+5
-         EjaA==
+        bh=tuljcwj79SeCATTzgc6uDoymx0z61R4nV+VZRoJJeTA=;
+        b=oZiJ//xdw4IWYEMmBWCtYEvGdZPQJpjeg2kIZrJ++GLDxXgNWXoHgR/48CnLbuk8JH
+         fI8RJY6e6zH4iZUNIJxaHYPuzyIgCwTyKwMGUpu8eBc6jq9mm31v1IFRZjBD4aYor3XI
+         NTaDECo5+pjPu1QD5fIbEug6wxAAaU35vunNj2QWkauR30hPdqlNfNSx7gnvl2wnh5Iq
+         nFGzJ2XTx6rLmRj/DLnbilGaqvEOM70y85oU+HNRo904NmIUBboftFy9bOm7ximOHXys
+         pnCZY7KLAgmEDVZUZj1IyodREq449fJmNeD5hWO+3qqVFi1Xxyjou6CxmGT2fXYrHbxQ
+         e3iw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689188856; x=1691780856;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        d=1e100.net; s=20221208; t=1689189884; x=1691781884;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=P12/yloogXOzDhZA17e17hGhqvGduW+O8nRBGpE0kgo=;
-        b=GqInA3uxJXiJB9Hb+YZjCF9uK7h/j2oCnuWs1UksgMl3N8HcO6k2GqOpUZvRfxNCBC
-         haT7NXvOXVBDwTSaQdNUd1nR1aexkiSab3gf08DcPjKb2pHsNErcje17Tpdc/Fu5TMz7
-         WeYNuuOpXGtkeo31Yg7HTPzhjmYwJvNnxlhpBCgDrZQ46Xg753dH1xZo+xcurAioHR0J
-         Mnq+iGQCiz4P9+EjQc8Qw+EGhlDrtcDL4fZcllD+bYqNZnWPQFdtXsCwUtLwgoRXrbuo
-         RWDnJETi9XusN54igBWGbd+3j8bgB/2NkmuEyfTXcVJMTvi0Yyw2vkcZ3L9ZA+cS7vKa
-         CgcQ==
-X-Gm-Message-State: ABy/qLZXauzw+467LyTibjrFosrKj1xedrxtNa5x12eIBMLtKjBKoW32
-        ca3HI3B44PHocOeR2ag8hh8GrA==
-X-Google-Smtp-Source: APBJJlHezAjfoPC7CLpGqkGdvN5Da1zk7gvnMbhlXHSIxofv3+d9rDwvWM2ue6pnMtgs8d9Mz1L8Hg==
-X-Received: by 2002:a17:906:6492:b0:994:1805:1fad with SMTP id e18-20020a170906649200b0099418051fadmr4307254ejm.10.1689188855967;
-        Wed, 12 Jul 2023 12:07:35 -0700 (PDT)
+        bh=tuljcwj79SeCATTzgc6uDoymx0z61R4nV+VZRoJJeTA=;
+        b=HBwnQQ5BfDvQjxNotFoaKS6zLBV0MB20pSKavstdJoC4oPW61bwYvnWM05ijJQi6Q2
+         N/oKELCl538UPwJUYBJ/AWiEmr8pn7kG4CKkNEUIn3AnIdp6X8jHcnraHnYSqCPOFVzQ
+         SwmdiQhPQk8zJxdqtUG+UXcs7f1QTKzgYKDTckQegojnPOFjFQdaArTKWZvF6itklmdC
+         eNRpc+w7ExKARKpesvJp7+gmhAlHtN+kILC6oIrZRYflRCHqfRaF27RurqZOOoJHAJFz
+         rHsU+6zI8eE/SD3CFTdTciVIZUIG2kUudDwx+KTRDwmq76XTsr7ZqPBpK3/zmlqIE3d4
+         Dj2w==
+X-Gm-Message-State: ABy/qLZtjTAU+1RA4vwQtgw4e5421PKRcx4RiTewoCbglL+zxtXIezla
+        lgAfBjrso++caqz+wdbL9FFgKQ==
+X-Google-Smtp-Source: APBJJlHH9mhSup4nqjXg2f1Al0hr7uG7FxgO+71OzMqqLnsbjBcgF0gT7glYl3x2V45SA6PNZl7PQw==
+X-Received: by 2002:ac2:4e0b:0:b0:4fb:8cd1:1679 with SMTP id e11-20020ac24e0b000000b004fb8cd11679mr18570281lfr.44.1689189884583;
+        Wed, 12 Jul 2023 12:24:44 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id u16-20020a17090657d000b0098e42bef732sm2887999ejr.183.2023.07.12.12.07.33
+        by smtp.gmail.com with ESMTPSA id dy23-20020a05640231f700b0051e22d3f328sm3118471edb.96.2023.07.12.12.24.42
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 12 Jul 2023 12:07:35 -0700 (PDT)
-Message-ID: <29cb4426-a15e-7186-1713-427f749bc187@linaro.org>
-Date:   Wed, 12 Jul 2023 21:07:32 +0200
+        Wed, 12 Jul 2023 12:24:44 -0700 (PDT)
+Message-ID: <1a163ce6-030f-63de-fbfc-04d87a69c99d@linaro.org>
+Date:   Wed, 12 Jul 2023 21:24:41 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
-Subject: Re: [PATCH v4 4/7] arm64: dts: imx93-11x11-evk: added nxp secure
- enclave fw
+Subject: Re: [PATCH v2 1/8] dt-bindings: display/msm: Add reg bus and rotator
+ interconnects
 Content-Language: en-US
-To:     Pankaj Gupta <pankaj.gupta@nxp.com>, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, clin@suse.com,
-        conor+dt@kernel.org, pierre.gondois@arm.com, ping.bai@nxp.com,
-        xiaoning.wang@nxp.com, wei.fang@nxp.com, peng.fan@nxp.com,
-        haibo.chen@nxp.com, festevam@gmail.com, linux-imx@nxp.com,
-        davem@davemloft.net, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, gaurav.jain@nxp.com,
-        alexander.stein@ew.tq-group.com, sahil.malhotra@nxp.com,
-        aisheng.dong@nxp.com, V.Sethi@nxp.com
-References: <20230712121219.2654234-1-pankaj.gupta@nxp.com>
- <20230712121219.2654234-5-pankaj.gupta@nxp.com>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Stephen Boyd <swboyd@chromium.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org
+References: <20230712121145.1994830-1-dmitry.baryshkov@linaro.org>
+ <20230712121145.1994830-2-dmitry.baryshkov@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230712121219.2654234-5-pankaj.gupta@nxp.com>
+In-Reply-To: <20230712121145.1994830-2-dmitry.baryshkov@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/07/2023 14:12, Pankaj Gupta wrote:
-> Added support for NXP secure enclave called EdgeLock Enclave
-> firmware (se-fw) for imx93-11x11-evk.
+On 12/07/2023 14:11, Dmitry Baryshkov wrote:
+> From: Konrad Dybcio <konrad.dybcio@linaro.org>
 > 
-> Signed-off-by: Pankaj Gupta <pankaj.gupta@nxp.com>
-> ---
->  arch/arm64/boot/dts/freescale/imx93.dtsi | 11 ++++++++++-
->  1 file changed, 10 insertions(+), 1 deletion(-)
+> Apart from the already handled data bus (MAS_MDP_Pn<->DDR), there are
+> other connection paths:
+> - a path that connects rotator block to the DDR.
+> - a path that needs to be handled to ensure MDSS register access
+>   functions properly, namely the "reg bus", a.k.a the CPU-MDSS CFG
+>   interconnect.
 > 
-> diff --git a/arch/arm64/boot/dts/freescale/imx93.dtsi b/arch/arm64/boot/dts/freescale/imx93.dtsi
-> index 8643612ace8c..2b0f901d2709 100644
-> --- a/arch/arm64/boot/dts/freescale/imx93.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx93.dtsi
-> @@ -1,6 +1,6 @@
->  // SPDX-License-Identifier: (GPL-2.0+ OR MIT)
->  /*
-> - * Copyright 2022 NXP
-> + * Copyright 2022-2023 NXP
->   */
->  
->  #include <dt-bindings/clock/imx93-clock.h>
-> @@ -863,5 +863,14 @@ ddr-pmu@4e300dc0 {
->  			reg = <0x4e300dc0 0x200>;
->  			interrupts = <GIC_SPI 90 IRQ_TYPE_LEVEL_HIGH>;
->  		};
-> +
-> +		ele_fw: se-fw {
-> +			compatible = "fsl,imx93-ele";
-> +			mboxes = <&s4muap 0 0 &s4muap 1 0>;
-
-This should be two entries.
-
-> +			mbox-names = "tx", "rx";
-> +			fsl,mu-did = <3>;
-> +			fsl,mu-id = <2>;
-
-Drop both. Since you put it into the DTSI, it means it is compatible
-specific.
-
-> +			status = "okay";
-
-Drop.
+> Describe these paths bindings to allow using them in device trees and in
+> the driver
+> 
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
 
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
