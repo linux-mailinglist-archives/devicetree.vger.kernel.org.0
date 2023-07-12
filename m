@@ -2,122 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EAD067511B1
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 22:11:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6CCF67511DA
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 22:36:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231963AbjGLULs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jul 2023 16:11:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46052 "EHLO
+        id S232360AbjGLUgm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jul 2023 16:36:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52542 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231593AbjGLULr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 16:11:47 -0400
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8EF282115
-        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 13:11:41 -0700 (PDT)
-Received: by mail-wr1-x435.google.com with SMTP id ffacd0b85a97d-3094910b150so44830f8f.0
-        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 13:11:41 -0700 (PDT)
+        with ESMTP id S231532AbjGLUgl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 16:36:41 -0400
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6708B1FF1
+        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 13:36:39 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id 4fb4d7f45d1cf-51fe084cf3cso1334867a12.1
+        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 13:36:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689192700; x=1691784700;
+        d=linaro.org; s=google; t=1689194198; x=1691786198;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=mxj0vkKKD043p6PHtWv3KkxyrVuCumGrpEKjLxYyWJQ=;
-        b=nnOJSC6xtHB4u5pCaZlk7uAp1eT3XU5je1VAzlkF6Vx52tz4YCBE6or4dtGPTXb1QI
-         ENoIbxBCkQRdaTd9ySKijp9AbYUSQ+miYOJyXZFv41HAaCRiieTP4j/mi6QJntvokFWe
-         UUeMlwqlagtjaAJ9X4gj9j+6Lk7mfEY+wrYLV7YYImdbVNQmRMDE1URwWD7BW8bhyEbJ
-         1NNNraeHrZnYHBSUAx0hdIyampNie/FR8i69RREFAbv4r/AmFmBXQPLC2WDGIK5VSwqI
-         2ff5phLH+ZlbQ95x3OWEfEQ6dumLOmkkH169uiKB65YXw/b6QecFdq4tQV0ppcwumSYf
-         l8HQ==
+        bh=qTIfZiBXGeNx2LL2qDkANMIcRNuFQoGE8jZgmUEj/Bs=;
+        b=y+sINyL0AJvDXbwpXs4l+ZyafLmlSiYHCSuzz3gsyTZQVlTGfA6Lz9uFnL2VFF48vy
+         Vn1iVIMiOM8BeOdr+M51utyIo/cJtoKwpOK1R82IJ58PRdl/MGvHLQZHY2PQG6y/l/kp
+         OKlGDzND4jIND6udhfdWG+W2n8X5RfzOIFCT6BzxfMbRuc9dvIpshRmluKdQkD4yaPhG
+         HRyQDDXpxv5+PwrFqZ1MJ+1SscC82BMk7dqtOIT7XiRWlIVC0ZIfrRN0Pfu0B7WvESCF
+         kiTQ2GW/Z89xvc4X+pKKUL3wYq7h0inozKAd2Gx89lUsRhSsuVAhzgClSdvY7uAyA0Fz
+         OUZQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689192700; x=1691784700;
+        d=1e100.net; s=20221208; t=1689194198; x=1691786198;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=mxj0vkKKD043p6PHtWv3KkxyrVuCumGrpEKjLxYyWJQ=;
-        b=ZsTy+61RSvxihSPQ6R1rRw8INVosdfMonVMH0x7bhP6TOBoFjtBE6DP+XTcBEggJUI
-         cip492A0V+TtsJj7DYG5dJC/ejFBpXITOb0AsRkcypjZWIx5hP6NGeqVXOLzVL4AnvSn
-         UX+k3Lg6IeP9KNre9h/cSlAPwtnpS7mXxFcbm3Eu5N1Fbnse+m/w11Gxt98JUi9KOrvT
-         XcjyM2WUI7rq1Ob42TIEPLyv40B/nCm8VcDic/FsYxRK/ZCafkZRWqx3HEMOTgbdNZ2S
-         ELygpZlGZZs1cG3xOelkA5RyAfmQw3sadSqOe74fB+7Oo5FFbhHLb+GNjfc2Uv815gUp
-         RMmg==
-X-Gm-Message-State: ABy/qLapbuJ05cdY3m1A7vLlP53HY/tIjEd6/xagFqffmA+XilHn4VCR
-        59YsFnVIr8TtKFORthV5odhwrA==
-X-Google-Smtp-Source: APBJJlH+0TnOotXAYGx0jlKszWQEPcLmBqrbTs+ppgRqQnCJSOcv3BjmwS9Xi3KE3eQBYYJyEmjIng==
-X-Received: by 2002:adf:fd4f:0:b0:315:a74c:f627 with SMTP id h15-20020adffd4f000000b00315a74cf627mr5448716wrs.16.1689192700077;
-        Wed, 12 Jul 2023 13:11:40 -0700 (PDT)
+        bh=qTIfZiBXGeNx2LL2qDkANMIcRNuFQoGE8jZgmUEj/Bs=;
+        b=O5+LRHh19xuOEqt1wzQ3e9oN/+WVkaJ9CGeFdliHdyIqc6WvKEE+5De0Ik5yXtFH2D
+         iN/6SJZmt4f0yPUAfPfSfMKBJUm5XlXlFcafeGCEz8fHWA7QX3aaALmT7ZdnHbKKoZwh
+         Cib2SiE8tnVpa5Hztvl/+m65IH0WWX7JugXV5cI2NyAVgde68P4P7Cdhc7Ucl1m6Aq1j
+         SQaSfOzf0x3gqfRF9yZZt602v/vmptB4Z+vspMJvYhxv9Xm64AmZKi3MGkP/nG/W+DxS
+         zTQJpIR/y2gbEbUblTj8A0hKkkxNcOp035/mpOFt+pRt8hWOA8oDNRxCe8ZrpP0nx9+s
+         wgJQ==
+X-Gm-Message-State: ABy/qLYCOGol2HrPgcZD6DCDyNeXtaOAs4FH9pP5r3V2XCB2jf2tNojP
+        Yc3F64Tld+BZ1GpxlbTxJf050A==
+X-Google-Smtp-Source: APBJJlHhCGGtmxYQDbv6iLN7rNp7N/lmAxjHx0hFv2Tn4xTdwchatR/400eMahUldDdsgzTE8wW+xg==
+X-Received: by 2002:aa7:cd8b:0:b0:51e:1656:bb24 with SMTP id x11-20020aa7cd8b000000b0051e1656bb24mr15088788edv.26.1689194197823;
+        Wed, 12 Jul 2023 13:36:37 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id qo11-20020a170907212b00b00992b0745548sm2935867ejb.152.2023.07.12.13.11.37
+        by smtp.gmail.com with ESMTPSA id j20-20020aa7c0d4000000b0051d9ee1c9d3sm3254199edp.84.2023.07.12.13.36.35
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 12 Jul 2023 13:11:39 -0700 (PDT)
-Message-ID: <7ecf968b-45b2-c6b7-86a7-8d8caccf5002@linaro.org>
-Date:   Wed, 12 Jul 2023 22:11:36 +0200
+        Wed, 12 Jul 2023 13:36:37 -0700 (PDT)
+Message-ID: <006f9599-6aa4-52ac-068a-831893ec6bf8@linaro.org>
+Date:   Wed, 12 Jul 2023 22:36:35 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
-Subject: Re: [PATCH 1/7] dt-bindings: soc: qcom: Add qcom-pbs bindings
+Subject: Re: [PATCH 1/2] dt-bindings: net: fsl,fec: Add TX clock controls
 Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Anjelique Melendez <quic_amelende@quicinc.com>,
-        Rob Herring <robh@kernel.org>, pavel@ucw.cz, lee@kernel.org,
-        thierry.reding@gmail.com, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, agross@kernel.org, andersson@kernel.org,
-        konrad.dybcio@linaro.org, u.kleine-koenig@pengutronix.de,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-pwm@vger.kernel.org
-References: <20230621185949.2068-1-quic_amelende@quicinc.com>
- <20230621185949.2068-2-quic_amelende@quicinc.com>
- <20230626135857.GA3118929-robh@kernel.org>
- <2e871e21-a81d-0d7d-993b-9a9d7bd9d962@quicinc.com>
- <e7298704-5a03-0961-90a3-dab4af60c326@linaro.org>
- <32e9a512-fd74-b2f6-6b8a-fefb9ad5912d@quicinc.com>
- <431faa87-d152-5f7a-40fd-8b6fe26f0bb9@linaro.org>
- <71e1f36f-8fd8-9d61-d563-577d4fb54f10@quicinc.com>
- <69c01f0f-4eb0-bb44-a238-5c9ce5beede9@linaro.org>
- <CAA8EJppCSnEg1GjX8CavxRPiiE19JwVAOTspjWJR-OzdQMcu+g@mail.gmail.com>
+To:     =?UTF-8?B?VmVzYSBKw6TDpHNrZWzDpGluZW4=?= 
+        <vesa.jaaskelainen@vaisala.com>
+Cc:     Wei Fang <wei.fang@nxp.com>, Shenwei Wang <shenwei.wang@nxp.com>,
+        Clark Wang <xiaoning.wang@nxp.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Russell King <linux@armlinux.org.uk>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20230711150808.18714-1-vesa.jaaskelainen@vaisala.com>
+ <20230711150808.18714-2-vesa.jaaskelainen@vaisala.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAA8EJppCSnEg1GjX8CavxRPiiE19JwVAOTspjWJR-OzdQMcu+g@mail.gmail.com>
+In-Reply-To: <20230711150808.18714-2-vesa.jaaskelainen@vaisala.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/07/2023 16:35, Dmitry Baryshkov wrote:
->>>> Rob asked you - "Is there more than 1 instance in a PMIC?" - and you did
->>>> not answer positively, just mentioned something about drivers in
->>>> downstream, which do not matter. So is the answer for that question:
->>>> yes, you have two instances of the same PMIC differing by presence of
->>>> PBS and other features"?
->>>>
->>> Sorry that was a misunderstanding on my part.
->>> Yes, answer to Rob's question should have been "We have two instances of PMI632,
->>> where one instance holds the pbs peripheral and the other holds the lpg
->>> peripherals. The child node for pbs is needed so lpg client can access
->>> the PMI632 regmap which contains the pbs peripheral."
->>
->> I guess I miss here something. What is "LPG client"? I don't understand
->> why this LPG client needs existence of PBS node, to be able to get the
->> regmap.
->>
->> PBS is a child of PMIC, so it can get regmap from the parent. What's
->> more, which DT property passes the regmap from PMIC to LPG client?
+On 11/07/2023 17:08, Vesa Jääskeläinen wrote:
+> With fsl,fec-tx-clock-output one can control if TX clock is routed outside
+> of the chip.
 > 
-> There are some PMICs which claim two SPMI SIDs. For such PMICs, each
-> SID is a separate device, so it is not directly possible to get the
-> regmap of the other SID.
+> With fsl,fec-tx-clk-as-ref-clock one can select if external TX clock is as
+> reference clock.
+> 
+> Signed-off-by: Vesa Jääskeläinen <vesa.jaaskelainen@vaisala.com>
+> ---
+>  .../devicetree/bindings/net/fsl,fec.yaml          | 15 +++++++++++++++
+>  1 file changed, 15 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/fsl,fec.yaml b/Documentation/devicetree/bindings/net/fsl,fec.yaml
+> index b494e009326e..c09105878bc6 100644
+> --- a/Documentation/devicetree/bindings/net/fsl,fec.yaml
+> +++ b/Documentation/devicetree/bindings/net/fsl,fec.yaml
+> @@ -166,6 +166,21 @@ properties:
+>      description:
+>        If present, indicates that the hardware supports waking up via magic packet.
+>  
+> +  fsl,fec-tx-clock-output:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description:
+> +      If present, ENETx_TX_CLK output driver is enabled.
+> +      If not present, ENETx_TX_CLK output driver is disabled.
 
-OK, maybe after implementing all the review changes - including dropping
-that singleton pattern - this will be clearer. Please send new version
-and we will discuss it from there.
+Here...
 
-Thank you.
+> +
+> +  fsl,fec-tx-clk-as-ref-clock:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description:
+> +      If present, gets ENETx TX reference clk from the ENETx_TX_CLK pin. In
+> +      this use case, an external OSC provides the clock for both the external
+> +      PHY and the internal controller.
+> +      If not present, ENETx TX reference clock is driven by ref_enetpllx. This
+> +      clock is also output to pins via the IOMUX.ENET_REF_CLKx function.
+
+and here:
+In general, Common Clock Framework and its bindings should be used for
+handling clock providers and consumers. Why it cannot be used for these
+two cases?
+
+
 Best regards,
 Krzysztof
 
