@@ -2,146 +2,323 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3FA9175080A
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 14:21:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A3CB8750817
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 14:22:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232441AbjGLMVU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jul 2023 08:21:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41218 "EHLO
+        id S232516AbjGLMWf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jul 2023 08:22:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42570 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231398AbjGLMVT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 08:21:19 -0400
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12on2042.outbound.protection.outlook.com [40.107.244.42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D59FBA7;
-        Wed, 12 Jul 2023 05:21:17 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ZqU/eawJ68AzAxDOB3QhK4Tv/zvFkPBwv+XHnKr0lRp0929tdPXQZUDqPpTk3GS9gjmv583ryRiKhOT8HddeOrWGbVJuyLNEyejTYxMD2L1tkzEw8eDPw0DVrIQghWDJL5W6IIxaTFZ/p/qLbXrg/evqNpeMMdtomCEY7jS8T08Vf1f+O7qUkojIbOtssHuBV2Df/PuNKFdeV21ksE9VAv/oU6sEIHlbi637R+NP89DgNIapC2b03PXMYImtnAziZ17X10hmAPuLXKwwy11wQEsYwmS9SBBDn7kkHs+MPfuJ2iyncSugtLIY0YGwvj0DnuZ9CkQ34O5wUHS6P3IAGw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=fZK2viYlOMz7DiVwGEDNqFdhwqtbL/TD7wUyGaTS2gA=;
- b=ZEuwWq+XwNbnFDC5kc3afRG5SIISaAk9TFtXb9QM0cnUfAtqXVJBLmUpAfQBt4Ys46HWTaUoIjRWK8xHSJXVkpkILpWBDmIAyp7DHs+BV58fLGW7X3OcRlxpSVxlqfxSwBf+XhRpfTEQ5kSegYjsKHmuh5DJ+oIglSuKdot1ANBZAmUlb2V2eLMvGYrBGm/0XZh1C01GepPv4OLnkdN088vmSwGDeD1gvY3tDP7GpPZunXypJrwur1mpLrTpqti5nXBjEaQPO78vKg4Jxowqi3jZml2eiOSWp4dvNIDN9rCLBV8Xc7poAo7p2rB2ZglzIdL/p/lhkmgDewmVyIN2qw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=fZK2viYlOMz7DiVwGEDNqFdhwqtbL/TD7wUyGaTS2gA=;
- b=rZgcC+PUVFgZ/kGmIZ4skd5oWoDtxncU8jmkqscItm10kBE4Ja2xC6OMMhKqdFyvUUkxF9YcqRi52fDs5KQXeBgfo+wQ1hM2aMSTComOZGu9jvq3OQI8qN39O5o/pcVArP0y0z2tQc7kB/A1t9QX0zOoTT7s5GpvwdG2GG86kE0=
-Received: from BN9PR03CA0510.namprd03.prod.outlook.com (2603:10b6:408:130::35)
- by SA0PR12MB7478.namprd12.prod.outlook.com (2603:10b6:806:24b::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6565.26; Wed, 12 Jul
- 2023 12:21:15 +0000
-Received: from BN8NAM11FT021.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:130:cafe::f9) by BN9PR03CA0510.outlook.office365.com
- (2603:10b6:408:130::35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6588.22 via Frontend
- Transport; Wed, 12 Jul 2023 12:21:15 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BN8NAM11FT021.mail.protection.outlook.com (10.13.177.114) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6588.22 via Frontend Transport; Wed, 12 Jul 2023 12:21:15 +0000
-Received: from localhost (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.23; Wed, 12 Jul
- 2023 07:20:53 -0500
-From:   Michal Simek <michal.simek@amd.com>
-To:     <linux-kernel@vger.kernel.org>, <monstr@monstr.eu>,
-        <michal.simek@xilinx.com>, <git@xilinx.com>
-CC:     Conor Dooley <conor.dooley@microchip.com>,
-        Appana Durga Kedareswara rao <appana.durga.rao@xilinx.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        Naga Sureshkumar Relli <naga.sureshkumar.relli@xilinx.com>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-can@vger.kernel.org>, <netdev@vger.kernel.org>
-Subject: [PATCH v2 1/2] dt-bindings: can: xilinx_can: Add reset description
-Date:   Wed, 12 Jul 2023 14:20:45 +0200
-Message-ID: <bfaed896cc51af02fe5f290675313ab4dcab0d33.1689164442.git.michal.simek@amd.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <cover.1689164442.git.michal.simek@amd.com>
-References: <cover.1689164442.git.michal.simek@amd.com>
+        with ESMTP id S232334AbjGLMWe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 08:22:34 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5463B10F3
+        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 05:22:32 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id 2adb3069b0e04-4fbb281eec6so10836536e87.1
+        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 05:22:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1689164550; x=1691756550;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=q5S3zSEv0yO9SsxtBbGnOkP560bf6i4Hy58Sg3O0KaY=;
+        b=O2buq07F58l8H+wLvgYZrR2IsHS2NVscUoEgvXvp0Q1qrzsgzAyxNEJWhu39YdgtNp
+         lsdTL5koddHjai4I5RV7fmv0QFo5lv0vTNfMFMBhqJtkMdlajohSRt+ThcOV9QcJvJXj
+         yVJm1Vwn13j5HX12GOHY1z6Leoe0xh0j3/IqwR0aIIjetc3Jqr+5iaUAjQDT7AR2tUwY
+         zzOTYl0xrHE+7xYeFJrQdmjZFQP3DhyY7aVoeGmmhalT1aoo/tVMuX/n6zO6zR53lrHm
+         IP+EbwiGBkWPDaDJ55HYckiDycqYBnXcuBCo6sUzDJYcDRiBcr3/2k4zvNQu1q7V33FI
+         iElQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689164550; x=1691756550;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=q5S3zSEv0yO9SsxtBbGnOkP560bf6i4Hy58Sg3O0KaY=;
+        b=d4+x/9Iswe9bc5vOwsWek+bnYmUuojGSSFc69+or0O75MzQiGHE352h31QEGDSVNFe
+         oPp0MqnrJEKnCJg5EOv2TRAFVvFqHH86Hq5UjE6taO2rOgOT5Exu/osqhp0XbLj7Vsvr
+         J+ytvQpRI1uufVfsi0RMaa/9VqOWfuGUhkgJ+nxXJaRyDFuqGWEBCHcxkBfP851gSYVq
+         EJQJXkGJ/B+GXtjouDMDZACJVqyoldmFAZ+9AHm8Gmusi/4eDuD/fq1N35S/wrqlJrl+
+         3iUoU6cQtIYnccZaIGMh1GQ8USVQrTYbPgzN4T0djX/ye49Z8EtAFAWLuIMN/Cv0SSxM
+         bIBQ==
+X-Gm-Message-State: ABy/qLaAKlAgdvTG5Kh4Lb+2cc98J0hwUAGxO/gujm/ChgjeHbBu4pAt
+        xpErLDq6pbCalAc9U9yVoos3tA==
+X-Google-Smtp-Source: APBJJlGkOen3dIIxSEXeFzxeFbsqQh9z/9qhEqpAB3/vx8qovpT7q1OT3ojECQEj1hCvFTiw/FdCwQ==
+X-Received: by 2002:a05:6512:3149:b0:4fb:8de9:ac13 with SMTP id s9-20020a056512314900b004fb8de9ac13mr13710640lfi.23.1689164550426;
+        Wed, 12 Jul 2023 05:22:30 -0700 (PDT)
+Received: from ?IPV6:2001:14ba:a0db:1f00::8a5? (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
+        by smtp.gmail.com with ESMTPSA id s14-20020ac25fae000000b004fba759bf44sm685436lfe.277.2023.07.12.05.22.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 12 Jul 2023 05:22:30 -0700 (PDT)
+Message-ID: <44043ff6-e109-fa66-58c8-08cc25b9a4ad@linaro.org>
+Date:   Wed, 12 Jul 2023 15:22:29 +0300
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=890; i=michal.simek@amd.com; h=from:subject:message-id; bh=VhYAd1TqpHiv1k38ZgdGS3bzP4ZxBzUrP3KJHJ1fWHk=; b=owGbwMvMwCR4yjP1tKYXjyLjabUkhpR1s+ZoC19rPaGjeWXN1LcOHnqcDHM2nk28YHVVYP3bA n1j+/D2jlgWBkEmBlkxRRZpmytn9lbOmCJ88bAczBxWJpAhDFycAjARz1aGecYXp/dInq7ru/39 SufF3+r6P59HrWOYX9zyqph9USmPZd3iFa6bKkv//Z92CwA=
-X-Developer-Key: i=michal.simek@amd.com; a=openpgp; fpr=67350C9BF5CCEE9B5364356A377C7F21FE3D1F91
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN8NAM11FT021:EE_|SA0PR12MB7478:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8b8fb459-e16a-486d-a737-08db82d27ce8
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: +184hJj2nrI7IoUIw+mYei3v17AGmFZ9f+Y1NqVaNxUOtlsP9Ng2yqkB6sUX1qQPWTWHO2sXt+p2sb1mvNO0Z3B2LnNER0O7RjE1TnTCPa4RqMA3pPRcHBEUvCGyR19owKImL9ZxzbLsflLaQIwEwLirz9waahKtkBrMcDOBC6dWr+lNwIpnlMjsypIYqJzjJeEppFWtay/7eArQq9pcpiMvCZ9/VW8VQj1kPhoQI5dX9ysKbj8rhXsHSChnVPhlb2uk5+6xXH4evefnVIYN2K2rphhK5N7z9SHlcA1cTHxHs1QTF3QR5MVMvTQixxF5m/w+W6kJlSgwkL3SnADaywiZroUl0sU8TB74HjhGjqyZEui0heDtTTT7bAGQhfCqwtoyklsq8gmO55gYwO7wzjMecFZlMP/ytQSfOR6rwYOQe4eNnc2gDEQvstY00KTMQHq3X8WxFudHT5q4BvY9zYyjCLjX5i0mByaRs7mlKbv0k71oehm+fvCXM6IOl8GZDcNmgQeedzUrsMf9E3Hx3Cu2YxEFHwER3TErMLD5L0+3b9sr1nXUEcenqq846B3aAc0Padwd1FIpM+o4jh6sv2g/vR8SFPMQXUyYlo3w81s0R2IaHqpRKbbLbTqJyrbeIMbxyoGtkOa8nl8khrNfeSdwdWbIrNu+eZf5cd0nkCHL2TE8CiDCjyJRWVAHScAS0J8cWWkTYWF28edWXK6aY24MokgfNdd+q/fiGyKLuE4qwUrsWVGwLRSj58xGXbmG1LoqENoE7VNCtobEz2hksXJnBDTr4dtmEit0CjExKwY=
-X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230028)(4636009)(136003)(376002)(346002)(396003)(39860400002)(451199021)(36840700001)(40470700004)(46966006)(26005)(82740400003)(356005)(81166007)(336012)(16526019)(2616005)(83380400001)(47076005)(40480700001)(186003)(426003)(40460700003)(36860700001)(7416002)(2906002)(4744005)(44832011)(5660300002)(8676002)(8936002)(36756003)(70206006)(6666004)(478600001)(4326008)(70586007)(54906003)(110136005)(316002)(86362001)(41300700001)(82310400005)(2101003)(36900700001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jul 2023 12:21:15.2953
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8b8fb459-e16a-486d-a737-08db82d27ce8
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT021.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR12MB7478
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH v2 1/5] thermal/drivers/tsens: Add TSENS enable and
+ calibration support for V2
+Content-Language: en-GB
+To:     Praveenkumar I <quic_ipkumar@quicinc.com>, amitk@kernel.org,
+        thara.gopinath@gmail.com, agross@kernel.org, andersson@kernel.org,
+        konrad.dybcio@linaro.org, rafael@kernel.org,
+        daniel.lezcano@linaro.org, rui.zhang@intel.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     quic_varada@quicinc.com
+References: <20230712113539.4029941-1-quic_ipkumar@quicinc.com>
+ <20230712113539.4029941-2-quic_ipkumar@quicinc.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <20230712113539.4029941-2-quic_ipkumar@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-IP core has input for reset signal which can be connected that's why
-describe optional reset property.
+On 12/07/2023 14:35, Praveenkumar I wrote:
+> SoCs without RPM have to enable sensors and calibrate from the kernel.
+> Though TSENS IP supports 16 sensors, not all are used. So used hw_id
+> to enable the relevant sensors.
+> 
+> Added new calibration function for V2 as the tsens.c calib function
+> only supports V1.
+> 
+> Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
+> ---
+> [v2]:
+> 	Added separate init function for tsens v2 which calls init_common
+> 	and initialize the remaining fields. Reformatted calibrate function
+> 	and used hw_ids for sensors to enable.
+> 
+>   drivers/thermal/qcom/tsens-v2.c | 144 ++++++++++++++++++++++++++++++++
+>   drivers/thermal/qcom/tsens.c    |   2 +-
+>   drivers/thermal/qcom/tsens.h    |   3 +
+>   3 files changed, 148 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/thermal/qcom/tsens-v2.c b/drivers/thermal/qcom/tsens-v2.c
+> index 29a61d2d6ca3..ba74d971fe95 100644
+> --- a/drivers/thermal/qcom/tsens-v2.c
+> +++ b/drivers/thermal/qcom/tsens-v2.c
+> @@ -6,11 +6,23 @@
+>   
+>   #include <linux/bitops.h>
+>   #include <linux/regmap.h>
+> +#include <linux/nvmem-consumer.h>
+>   #include "tsens.h"
+>   
+>   /* ----- SROT ------ */
+>   #define SROT_HW_VER_OFF	0x0000
+>   #define SROT_CTRL_OFF		0x0004
+> +#define SROT_MEASURE_PERIOD	0x0008
+> +#define SROT_Sn_CONVERSION	0x0060
+> +#define V2_SHIFT_DEFAULT	0x0003
+> +#define V2_SLOPE_DEFAULT	0x0cd0
+> +#define V2_CZERO_DEFAULT	0x016a
+> +#define ONE_PT_SLOPE		0x0cd0
+> +#define TWO_PT_SHIFTED_GAIN	921600
+> +#define ONE_PT_CZERO_CONST	94
+> +#define SENSOR_CONVERSION(n)	(((n) * 4) + SROT_Sn_CONVERSION)
+> +#define CONVERSION_SLOPE_SHIFT	10
+> +#define CONVERSION_SHIFT_SHIFT	23
+>   
+>   /* ----- TM ------ */
+>   #define TM_INT_EN_OFF			0x0004
+> @@ -59,6 +71,11 @@ static const struct reg_field tsens_v2_regfields[MAX_REGFIELDS] = {
+>   	/* CTRL_OFF */
+>   	[TSENS_EN]     = REG_FIELD(SROT_CTRL_OFF,    0,  0),
+>   	[TSENS_SW_RST] = REG_FIELD(SROT_CTRL_OFF,    1,  1),
+> +	[SENSOR_EN]    = REG_FIELD(SROT_CTRL_OFF,    3,  18),
+> +	[CODE_OR_TEMP] = REG_FIELD(SROT_CTRL_OFF,    21, 21),
+> +
+> +	/* MAIN_MEASURE_PERIOD */
+> +	[MAIN_MEASURE_PERIOD] = REG_FIELD(SROT_MEASURE_PERIOD, 0, 7),
+>   
+>   	/* ----- TM ------ */
+>   	/* INTERRUPT ENABLE */
+> @@ -104,6 +121,133 @@ static const struct reg_field tsens_v2_regfields[MAX_REGFIELDS] = {
+>   	[TRDY] = REG_FIELD(TM_TRDY_OFF, 0, 0),
+>   };
+>   
+> +static int tsens_v2_calibrate_sensor(struct device *dev, struct tsens_sensor *sensor,
+> +				     struct regmap *map,  u32 mode, u32 base0, u32 base1)
+> +{
+> +	u32 slope, czero, val;
+> +	char name[15];
+> +	int ret;
+> +
+> +	/* Read offset value */
+> +	ret = snprintf(name, sizeof(name), "s%d", sensor->hw_id);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	ret = nvmem_cell_read_variable_le_u32(dev, name, &sensor->offset);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Based on calib mode, program SHIFT, SLOPE and CZERO */
+> +	switch (mode) {
+> +	case TWO_PT_CALIB:
+> +		slope = (TWO_PT_SHIFTED_GAIN / (base1 - base0));
+> +
+> +		czero = (base0 + sensor->offset - ((base1 - base0) / 3));
+> +
+> +		val = (V2_SHIFT_DEFAULT << CONVERSION_SHIFT_SHIFT) |
+> +		      (slope << CONVERSION_SLOPE_SHIFT) | czero;
+> +
+> +		fallthrough;
+> +	case ONE_PT_CALIB2:
+> +		czero = base0 + sensor->offset - ONE_PT_CZERO_CONST;
+> +
+> +		val = (V2_SHIFT_DEFAULT << CONVERSION_SHIFT_SHIFT) |
+> +		      (ONE_PT_SLOPE << CONVERSION_SLOPE_SHIFT) | czero;
+> +
+> +		break;
+> +	default:
+> +		dev_dbg(dev, "calibrationless mode\n");
+> +
+> +		val = (V2_SHIFT_DEFAULT << CONVERSION_SHIFT_SHIFT) |
+> +		      (V2_SLOPE_DEFAULT << CONVERSION_SLOPE_SHIFT) | V2_CZERO_DEFAULT;
+> +	}
+> +
+> +	regmap_write(map, SENSOR_CONVERSION(sensor->hw_id), val);
+> +
+> +	return 0;
+> +}
+> +
+> +static int tsens_v2_calibration(struct tsens_priv *priv)
+> +{
+> +	struct device *dev = priv->dev;
+> +	u32 mode, base0, base1;
+> +	int i, ret;
+> +
+> +	if (priv->num_sensors > MAX_SENSORS)
+> +		return -EINVAL;
+> +
+> +	ret = nvmem_cell_read_variable_le_u32(priv->dev, "mode", &mode);
+> +	if (ret == -ENOENT)
+> +		dev_warn(priv->dev, "Calibration data not present in DT\n");
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	dev_dbg(priv->dev, "calibration mode is %d\n", mode);
+> +
+> +	ret = nvmem_cell_read_variable_le_u32(priv->dev, "base0", &base0);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	ret = nvmem_cell_read_variable_le_u32(priv->dev, "base1", &base1);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	/* Calibrate each sensor */
+> +	for (i = 0; i < priv->num_sensors; i++) {
+> +		ret = tsens_v2_calibrate_sensor(dev, &priv->sensor[i], priv->srot_map,
+> +						mode, base0, base1);
+> +		if (ret < 0)
+> +			return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int __init init_tsens_v2(struct tsens_priv *priv)
+> +{
+> +	int i, ret;
+> +	u32 val = 0;
+> +	struct device *dev = priv->dev;
+> +
+> +	ret = init_common(priv);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	if (priv->feat->ver_major != VER_2_X_NO_RPM)
+> +		return 0;
 
-Signed-off-by: Michal Simek <michal.simek@amd.com>
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
----
+No need to, you can rename the function to init_tsens_v2_no_rpm(h?) and 
+use it just for non-rpm platforms.
 
-Changes in v2:
-- Add Conor's ACK
+> +
+> +	priv->rf[CODE_OR_TEMP] = devm_regmap_field_alloc(dev, priv->srot_map,
+> +							 priv->fields[CODE_OR_TEMP]);
+> +	if (IS_ERR(priv->rf[CODE_OR_TEMP]))
+> +		return PTR_ERR(priv->rf[CODE_OR_TEMP]);
+> +
+> +	priv->rf[MAIN_MEASURE_PERIOD] = devm_regmap_field_alloc(dev, priv->srot_map,
+> +								priv->fields[MAIN_MEASURE_PERIOD]);
+> +	if (IS_ERR(priv->rf[MAIN_MEASURE_PERIOD]))
+> +		return PTR_ERR(priv->rf[MAIN_MEASURE_PERIOD]);
+> +
+> +	regmap_field_write(priv->rf[TSENS_SW_RST], 0x1);
+> +
+> +	/* Update measure period to 2ms */
+> +	regmap_field_write(priv->rf[MAIN_MEASURE_PERIOD], 0x1);
+> +
+> +	/* Enable available sensors */
+> +	for (i = 0; i < priv->num_sensors; i++)
+> +		val |= 1 << priv->sensor[i].hw_id;
+> +
+> +	regmap_field_write(priv->rf[SENSOR_EN], val);
+> +
+> +	/* Real temperature format */
+> +	regmap_field_write(priv->rf[CODE_OR_TEMP], 0x1);
+> +
+> +	regmap_field_write(priv->rf[TSENS_SW_RST], 0x0);
+> +
+> +	/* Enable TSENS */
+> +	regmap_field_write(priv->rf[TSENS_EN], 0x1);
+> +
+> +	return 0;
+> +}
+> +
+>   static const struct tsens_ops ops_generic_v2 = {
+>   	.init		= init_common,
+>   	.get_temp	= get_temp_tsens_valid,
+> diff --git a/drivers/thermal/qcom/tsens.c b/drivers/thermal/qcom/tsens.c
+> index 98c356acfe98..5d2ad3b155ec 100644
+> --- a/drivers/thermal/qcom/tsens.c
+> +++ b/drivers/thermal/qcom/tsens.c
+> @@ -974,7 +974,7 @@ int __init init_common(struct tsens_priv *priv)
+>   	ret = regmap_field_read(priv->rf[TSENS_EN], &enabled);
+>   	if (ret)
+>   		goto err_put_device;
+> -	if (!enabled) {
+> +	if (!enabled && !VER_2_X_NO_RPM) {
 
- Documentation/devicetree/bindings/net/can/xilinx,can.yaml | 3 +++
- 1 file changed, 3 insertions(+)
+You probably meant something else here. `!const' is going to evaluate to 
+false.
 
-diff --git a/Documentation/devicetree/bindings/net/can/xilinx,can.yaml b/Documentation/devicetree/bindings/net/can/xilinx,can.yaml
-index 897d2cbda45b..64d57c343e6f 100644
---- a/Documentation/devicetree/bindings/net/can/xilinx,can.yaml
-+++ b/Documentation/devicetree/bindings/net/can/xilinx,can.yaml
-@@ -46,6 +46,9 @@ properties:
-     $ref: /schemas/types.yaml#/definitions/uint32
-     description: CAN Tx mailbox buffer count (CAN FD)
- 
-+  resets:
-+    maxItems: 1
-+
- required:
-   - compatible
-   - reg
+>   		dev_err(dev, "%s: device not enabled\n", __func__);
+>   		ret = -ENODEV;
+>   		goto err_put_device;
+> diff --git a/drivers/thermal/qcom/tsens.h b/drivers/thermal/qcom/tsens.h
+> index 2805de1c6827..b2e8f0f2b466 100644
+> --- a/drivers/thermal/qcom/tsens.h
+> +++ b/drivers/thermal/qcom/tsens.h
+> @@ -35,6 +35,7 @@ enum tsens_ver {
+>   	VER_0_1,
+>   	VER_1_X,
+>   	VER_2_X,
+> +	VER_2_X_NO_RPM,
+>   };
+>   
+>   enum tsens_irq_type {
+> @@ -168,6 +169,8 @@ enum regfield_ids {
+>   	TSENS_SW_RST,
+>   	SENSOR_EN,
+>   	CODE_OR_TEMP,
+> +	/* MEASURE_PERIOD */
+> +	MAIN_MEASURE_PERIOD,
+>   
+>   	/* ----- TM ------ */
+>   	/* TRDY */
+
 -- 
-2.36.1
+With best wishes
+Dmitry
 
