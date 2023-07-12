@@ -2,65 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2304D7504E6
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 12:40:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DC7987504F7
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 12:41:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232421AbjGLKj5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jul 2023 06:39:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54974 "EHLO
+        id S232126AbjGLKla (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jul 2023 06:41:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56718 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232206AbjGLKjz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 06:39:55 -0400
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D98B1BC1
-        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 03:39:48 -0700 (PDT)
-Received: by mail-lj1-x234.google.com with SMTP id 38308e7fff4ca-2b5c2433134so7867011fa.0
-        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 03:39:48 -0700 (PDT)
+        with ESMTP id S230482AbjGLKl3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 06:41:29 -0400
+Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com [IPv6:2607:f8b0:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F2FB1BEF
+        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 03:41:01 -0700 (PDT)
+Received: by mail-pl1-x629.google.com with SMTP id d9443c01a7336-1b8ad356f03so44746685ad.1
+        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 03:41:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689158387; x=1691750387;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=O/E17gR0NRv6xbVGP6Q/vcA5YPoNKAJhuiMOMg/O0kY=;
-        b=yjcm5rS5TfcoO++yEfMBKTRSXvPWJDvkn9XH+ua74Q0WSkJR/NedMJaBff1GLpQ9zl
-         wxZE6xmoWPJjEGLde4EscFAjJl17dUfX/HRJSIUcYv5mEexN2RRoVupVqZm3Qe42xTA9
-         p9nalb0yTfziAfcvA+0GXVXP7tYs1S24/7C2rcK1yzWSL8KKqxN9X096fuRxeF3z7P21
-         SrtE2/WqYxcOUxeUWKa8a2Rcoz4Th0IBat0soNwERrEZm4Ht9YadcTQudnudwXL5zKy+
-         nI/Gywl+NVTMO4qScImU00zYVJr8oC89eVKNG6vdlB/5GSfZ/UIvHEKRBrFQcuSNPVOL
-         /sRg==
+        d=linaro.org; s=google; t=1689158460; x=1691750460;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=TY2IIjSdcQMjQDDo3NQ71MCDsTeLijaeYYOPQ2zLf6w=;
+        b=vCxDwFOmIhQflnCYq44ljdF6MKjUjZ6+CnmKw6fPoDF9XZw298M0F92PIrfOL/ALm/
+         6oEMbZojofnMnrpH/zatGqrQxDXliOE9tvGoRXWETmnDmQ0VT4du0/1MBfjO2W0L5U2U
+         xxaP+pK6NrqmOBP325RFWqVJpx8ERxTWugGgg5a7PNqnDbFJ0IkLyzWXFT2AYWVzgHv8
+         8M+nTdZ3tyNoqfSsvOLF1IGS5JqGbzjEVGSwhds3sFh1Uo/9V5mSu/4+lLvBTjuLKHRF
+         /T+RhKXbzWWoBQmbCrGJr2YNWEQc/uvLB+T6tqDOPtTaqH+eqREYomcnSHqKKhieY98P
+         swVA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689158387; x=1691750387;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1689158460; x=1691750460;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=O/E17gR0NRv6xbVGP6Q/vcA5YPoNKAJhuiMOMg/O0kY=;
-        b=fEqkzqcLDohDupiVYDk+RzX9xPkDBhCRqVwVLeMx3qvPBq088bC3fjLq5Cg+hmtA+L
-         CfPITGrkmty5UVyjjBaGF3+aQSfKJ4uUdkRHk+7MXaqXTLPWSynkDcg33G5yzhOMHoH8
-         usbPWg4sXz13aB/L6vqyp5t1YwsGHIp54VFBfvNIdtFnIIu7ge3pQ4ZcpzH2uSk1kxR7
-         91tmpQGqZK1BxGwqaOlAvD6qWBEcMR3j2QEvQEOs6KYnlx1mfYaOjLuJkIsez7Hgreoh
-         JY7FJPX68ktuy6g/HjMrHTSHYOnZyb0nNnzFMzhv1wOP+pclFi5G3Wxt2d8Cmg1/VQZk
-         t4Rg==
-X-Gm-Message-State: ABy/qLbmpxHks4twed/g4sihBNVxV1ZRK34sA9pZyn8NM9vQ2ZqrEmSO
-        GQbx+sbJimSUY0sv9NfzODxqPw==
-X-Google-Smtp-Source: APBJJlF/w2ZtqwlejGDJFKlN7fYcwoKpwwuDmt3sJsDThkTfbVQk+lYfRCisc3NkiVsQPqiA90qsQQ==
-X-Received: by 2002:a2e:908a:0:b0:2b6:da61:d5b9 with SMTP id l10-20020a2e908a000000b002b6da61d5b9mr586633ljg.14.1689158386803;
-        Wed, 12 Jul 2023 03:39:46 -0700 (PDT)
-Received: from [192.168.1.101] (abyk15.neoplus.adsl.tpnet.pl. [83.9.30.15])
-        by smtp.gmail.com with ESMTPSA id x19-20020a2e8813000000b002b6d465583csm902983ljh.126.2023.07.12.03.39.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 12 Jul 2023 03:39:46 -0700 (PDT)
-Message-ID: <5c106f04-a452-db71-e3c6-e7b1c700136e@linaro.org>
-Date:   Wed, 12 Jul 2023 12:39:44 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH 03/14] arm64: dts: qcom: sdm845: Add missing RPMh power
- domain to GCC
-Content-Language: en-US
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        vireshk@kernel.org, nm@ti.com, sboyd@kernel.org,
+        bh=TY2IIjSdcQMjQDDo3NQ71MCDsTeLijaeYYOPQ2zLf6w=;
+        b=GqZ+V20pJlKf4Npf/2IxKfxjvXe2sEl9vwgmzzk+zI70v8KR5hOR1xhbRdqUz8JTYJ
+         97oSQGWNdR1NaUBuD9hzCzwzvqmOQQZJondb84xHatJYyRxG+z1jYPY/lDDVbxbCaX+u
+         /L64X46uzcCX0FupO91CDngkeSUpBRG6l4/hDZIJ+dQpyhKi7G6gRidK/Q8Lk7qGhta7
+         4OM1rludqVVE3eJ5sO0sECmQ/0w6YkEQESeNb8UjMOym6ww7qW8fb+hxWvyVoeoQvEbo
+         j1iG6R15dKO0P6zXOF4LvJk2WOFbDYScPoYwdTCax5lRNr1BUqlcxlSatxhHGLon8nH9
+         Eguw==
+X-Gm-Message-State: ABy/qLZz5Gi4AEAfuG+a/shYxqLJopLMl7NMc90B0JnGeBfbTV7cR4zD
+        RwXGr6AHDNLwG/G3nVYxFLCT
+X-Google-Smtp-Source: APBJJlGpsk4298IHzDRiGKybvKunOGtnoVa3TJRzFOHhKncevfgX6CMFIS9/1BJAcrUHgTBcXmO9BA==
+X-Received: by 2002:a17:902:d4c3:b0:1b8:1c9e:4453 with SMTP id o3-20020a170902d4c300b001b81c9e4453mr17330818plg.4.1689158459946;
+        Wed, 12 Jul 2023 03:40:59 -0700 (PDT)
+Received: from thinkpad ([117.207.27.131])
+        by smtp.gmail.com with ESMTPSA id b5-20020a170902d30500b001b80de83b10sm3590898plc.301.2023.07.12.03.40.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 12 Jul 2023 03:40:59 -0700 (PDT)
+Date:   Wed, 12 Jul 2023 16:10:44 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     vireshk@kernel.org, nm@ti.com, sboyd@kernel.org,
         myungjoo.ham@samsung.com, kyungmin.park@samsung.com,
-        cw00.choi@samsung.com, andersson@kernel.org, robh+dt@kernel.org,
+        cw00.choi@samsung.com, andersson@kernel.org,
+        konrad.dybcio@linaro.org, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
 Cc:     linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
@@ -69,14 +63,16 @@ Cc:     linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
         quic_bhaskarv@quicinc.com, quic_richardp@quicinc.com,
         quic_nguyenb@quicinc.com, quic_ziqichen@quicinc.com,
         bmasney@redhat.com, krzysztof.kozlowski@linaro.org
+Subject: Re: [PATCH 00/14] UFS: Add OPP and interconnect support
+Message-ID: <20230712104044.GA102214@thinkpad>
 References: <20230712103213.101770-1-manivannan.sadhasivam@linaro.org>
- <20230712103213.101770-4-manivannan.sadhasivam@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230712103213.101770-4-manivannan.sadhasivam@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230712103213.101770-1-manivannan.sadhasivam@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -85,32 +81,96 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12.07.2023 12:31, Manivannan Sadhasivam wrote:
-> GCC and it's GDSCs are under the RPMh CX power domain. So let's add the
-> missing RPMh power domain to the GCC node.
+On Wed, Jul 12, 2023 at 04:01:55PM +0530, Manivannan Sadhasivam wrote:
+> Hi,
 > 
-> Fixes: 6d4cf750d03a ("arm64: dts: sdm845: Add minimal dts/dtsi files for sdm845 SoC and MTP")
-> Co-developed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> ---
-The ratio of developers to lines of code changed is sus, but okay
-
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-
-Konrad
->  arch/arm64/boot/dts/qcom/sdm845.dtsi | 1 +
->  1 file changed, 1 insertion(+)
+> This series adds OPP (Operating Points) support to UFSHCD driver and
+> interconnect support to Qcom UFS driver.
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> index 02a6ea0b8b2c..9ed74bf72d05 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> @@ -1207,6 +1207,7 @@ gcc: clock-controller@100000 {
->  			#clock-cells = <1>;
->  			#reset-cells = <1>;
->  			#power-domain-cells = <1>;
-> +			power-domains = <&rpmhpd SDM845_CX>;
->  		};
->  
->  		qfprom@784000 {
+
+Missed to cc SCSI folks. Will be resending this series. Sorry for the noise.
+
+- Mani
+
+> Motivation behind adding OPP support is to scale both clocks as well as
+> regulators/performance state dynamically. Currently, UFSHCD just scales
+> clock frequency during runtime with the help of "freq-table-hz" property
+> defined in devicetree. With the addition of OPP tables in devicetree (as
+> done for Qcom SDM845 and SM8250 SoCs in this series) UFSHCD can now scale
+> both clocks and performance state of power domain which helps in power
+> saving.
+> 
+> For the addition of OPP support to UFSHCD, there are changes required to
+> the OPP framework and devfreq drivers which are also added in this series.
+> 
+> Finally, interconnect support is added to Qcom UFS driver for scaling the
+> interconnect path dynamically. This is required to avoid boot crash in
+> recent SoCs and also to save power during runtime. More information is
+> available in patch 13/13.
+> 
+> Credits
+> =======
+> 
+> This series is a continuation of previous work by Krzysztof Kozlowski [1]
+> and Brian Masney [2]. Ideally, this could've split into two series (OPP
+> and interconnect) but since there will be a dependency in the devicetree,
+> I decided to keep them in a single series.
+> 
+> Testing
+> =======
+> 
+> This series is tested on 96Boards RB3 (SDM845 SoC) and RB5 (SM8250 SoC)
+> development boards.
+> 
+> Merging Strategy
+> ================
+> 
+> An immutable branch might be required between OPP and SCSI trees because of
+> the API dependency (devfreq too). And I leave it up to the maintainers to
+> decide.
+> 
+> Thanks,
+> Mani
+> 
+> [1] https://lore.kernel.org/all/20220513061347.46480-1-krzysztof.kozlowski@linaro.org/
+> [2] https://lore.kernel.org/all/20221117104957.254648-1-bmasney@redhat.com/
+> 
+> Krzysztof Kozlowski (2):
+>   dt-bindings: ufs: common: add OPP table
+>   arm64: dts: qcom: sdm845: Add OPP table support to UFSHC
+> 
+> Manivannan Sadhasivam (12):
+>   dt-bindings: opp: Increase maxItems for opp-hz property
+>   arm64: dts: qcom: sdm845: Add missing RPMh power domain to GCC
+>   arm64: dts: qcom: sdm845: Fix the min frequency of "ice_core_clk"
+>   arm64: dts: qcom: sm8250: Add OPP table support to UFSHC
+>   OPP: Introduce dev_pm_opp_find_freq_{ceil/floor}_indexed() APIs
+>   OPP: Introduce dev_pm_opp_get_freq_indexed() API
+>   PM / devfreq: Switch to dev_pm_opp_find_freq_{ceil/floor}_indexed()
+>     APIs
+>   scsi: ufs: core: Add OPP support for scaling clocks and regulators
+>   scsi: ufs: host: Add support for parsing OPP
+>   arm64: dts: qcom: sdm845: Add interconnect paths to UFSHC
+>   arm64: dts: qcom: sm8250: Add interconnect paths to UFSHC
+>   scsi: ufs: qcom: Add support for scaling interconnects
+> 
+>  .../devicetree/bindings/opp/opp-v2-base.yaml  |   2 +-
+>  .../devicetree/bindings/ufs/ufs-common.yaml   |  34 ++++-
+>  arch/arm64/boot/dts/qcom/sdm845.dtsi          |  47 ++++--
+>  arch/arm64/boot/dts/qcom/sm8250.dtsi          |  43 ++++--
+>  drivers/devfreq/devfreq.c                     |  14 +-
+>  drivers/opp/core.c                            |  76 ++++++++++
+>  drivers/ufs/core/ufshcd.c                     | 142 ++++++++++++++----
+>  drivers/ufs/host/ufs-qcom.c                   | 131 +++++++++++++++-
+>  drivers/ufs/host/ufs-qcom.h                   |   3 +
+>  drivers/ufs/host/ufshcd-pltfrm.c              | 116 ++++++++++++++
+>  include/linux/pm_opp.h                        |  26 ++++
+>  include/ufs/ufshcd.h                          |   4 +
+>  12 files changed, 574 insertions(+), 64 deletions(-)
+> 
+> -- 
+> 2.25.1
+> 
+
+-- 
+மணிவண்ணன் சதாசிவம்
