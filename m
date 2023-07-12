@@ -2,144 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CAECB7500A8
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 10:03:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 348C47500B8
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 10:05:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229536AbjGLIDl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jul 2023 04:03:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40652 "EHLO
+        id S231881AbjGLIFV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jul 2023 04:05:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42662 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231260AbjGLIDK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 04:03:10 -0400
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 520C61989
-        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 01:02:02 -0700 (PDT)
-Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-3fc0aecf15bso40769695e9.1
-        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 01:02:02 -0700 (PDT)
+        with ESMTP id S231177AbjGLIFS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 04:05:18 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE3F611D
+        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 01:05:17 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-992b66e5affso824345766b.3
+        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 01:05:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1689148921; x=1691740921;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=YkIwyBsrrasbrw6SKcJzFKY+sZkplhIF1ednI0kruDo=;
-        b=bDSyjqZU/kFai51bS4zMV7wkn6IN8baUYkKTFjyQ9VhethzeBGEkbszBcepIHQbhX/
-         SR/g8PJirC6plcC2OT3jO68NN6EISfhUEmvt1ZcYlS/KOUSkMDDyzznSdhUpivM0iJrQ
-         13i1l9cefjz5I67sRJQjmQxF2fa4P6dQ1xUf9knjRn5qTZv38166mojcNDNcHvXl6FfO
-         ZPLuDOoK4MudT/YUB8wSHQ5pU5Z1S1Uo9G9e864mQVzsIieIc4ZhlEWbw2DVMhPKZv+y
-         9pxVVcRTZpHSUgTEL4Ayjp11/BWLsAVT7lgVUza3wY3VczprtRt4N1StlWKYkVsvVF/d
-         dVMw==
+        d=linaro.org; s=google; t=1689149116; x=1691741116;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=sSg23a2DXPnXPRfvvK9Mx/osRf8Ae4RG5mKJNQXhN5k=;
+        b=q7RjA0HivqD+RDHMx3UQZEqFsZdA6ydRdSed+xg0XxHFvRyUn0mD0/KdP57Yv38G44
+         AHL3lx1gkhfTKkLBJPjjzXiXhf/FHj8ItKxYEjQ5FTlaywH67WXZb+4KCqdyJWdIZPxF
+         56MRnxbTa4TcsZcW7vlXwUkAPFS3d9BdxX5uZfRUD13DInlF4vaj0tC15jhsY3I/IGVZ
+         qZDZrZcC/sBlm+K6fg6odsA5tIbc1qujGy0x3X2NsHpHCGJSDIlPYAAXvlLRaKJj3gX8
+         8JUcqTSvW4KwaSTV6PLBN49NoIUV7rPTP6/h+7am7At5+lYvkbvOqKirvGedFdnK83uO
+         Xkvg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689148921; x=1691740921;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=YkIwyBsrrasbrw6SKcJzFKY+sZkplhIF1ednI0kruDo=;
-        b=hxaqb2YUgWhJysL0G++UAQ4jySJKBhJhTfZNnN4ilocEAdc+tvLOPhwYTRp0tDqimu
-         uQTAWQIWGhSTo7wvsAGrrJOHb7yxyqF9QqazFie+YYQAXSV5h9EULeRy7intyYNGid3R
-         nzFbioZgLryCgE8kFWNUUdiqbrdOt+ioXxY37Y8zk4Pi+j8+55zyvl0kUt1xF7Wc8nia
-         RTNuEgDmtezO6IAxnTcS36USkpxpK7SGgnM8mbZog3FvaupfqaSwY6IVzycUV6OFMVpP
-         zX9CHqU2Yb8LRH1P40mFzCL+tE2DJMoGtQmYfXJY2kpcyPgsPJvCsSqxS3XzOuF+0UWq
-         t07A==
-X-Gm-Message-State: ABy/qLbx1B9Sg6OxD4itHItc+wpHii+MfZn5u3c3pqzK3v1WMNSHsiCF
-        l22V/EM8DxcXwmJStJzo44oGzaj6bILNDNPO9wg=
-X-Google-Smtp-Source: APBJJlFBDoZQA2YW3Bxt2cfhjxIimssHNv6+Ox3A25mufenbLcs3GAodp0BeuMoLjGNPDIVyI6916Q==
-X-Received: by 2002:a1c:ed10:0:b0:3fb:b008:2002 with SMTP id l16-20020a1ced10000000b003fbb0082002mr18164102wmh.0.1689148920442;
-        Wed, 12 Jul 2023 01:02:00 -0700 (PDT)
-Received: from [192.168.1.172] ([93.5.22.158])
-        by smtp.gmail.com with ESMTPSA id g23-20020a7bc4d7000000b003fc02a410d0sm12536303wmk.48.2023.07.12.01.01.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 12 Jul 2023 01:02:00 -0700 (PDT)
-Message-ID: <a335efdc-2ecb-c25a-7507-5ef2e19c5ca1@baylibre.com>
-Date:   Wed, 12 Jul 2023 10:01:58 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH 1/3] dt-bindings: display: panel: add startek
- kd070fhfid015 support
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        d=1e100.net; s=20221208; t=1689149116; x=1691741116;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=sSg23a2DXPnXPRfvvK9Mx/osRf8Ae4RG5mKJNQXhN5k=;
+        b=CRl5LQDGVRHmsKW9An7AXhmQHnNRGavTXPNQLsS4TpdialZAqAr8KjFOk/CGwim0Rk
+         66vH0Nwq7X2qnLrKtYHD+cO6whVURBjisoFxtI3YknjjCNJ0d0p385AF7gKTeyeSOQrb
+         CD5LGicx+mFcIP1ReEaeYkC4trKtaJkxfRRSYgOVDeSU9Zrrz0V0K42yJZIVkbJu1npq
+         eZpoBNRESqMOkggvw2mkemVYiW8dzBq+olZ+ZsvNJTl9JHFH/mGFxifV5JoLY/NLCUo+
+         nBtmB2dn/2QPPlOQXwPWnxmehPDe7190wtdM5ycVa8QPiqxt3GnXsAxFQkeVPXbS6fO/
+         aEYA==
+X-Gm-Message-State: ABy/qLYxKzRsX4ZNKPqfHRDQuq0sqe7U/9Znj27YRMH1wReQehJ6pdCj
+        HYMXldgax1R8MtpuCmq0uFLDgg==
+X-Google-Smtp-Source: APBJJlGuEMmKso5MUdYoEiFULb9iWDBQpQww6tTjmzPm+weanSTkadqatfy0QDEmRMC2bxom3PEksQ==
+X-Received: by 2002:a17:906:77ca:b0:993:d7c4:1a78 with SMTP id m10-20020a17090677ca00b00993d7c41a78mr14163744ejn.10.1689149116103;
+        Wed, 12 Jul 2023 01:05:16 -0700 (PDT)
+Received: from krzk-bin.. ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id h21-20020a170906261500b0099236e3f270sm2188441ejc.58.2023.07.12.01.05.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 12 Jul 2023 01:05:15 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Cosmin Tanislav <cosmin.tanislav@analog.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Jonathan Cameron <jic23@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>
-Cc:     Guillaume La Roque <glaroque@baylibre.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20230711-startek_display-v1-0-163917bed385@baylibre.com>
- <20230711-startek_display-v1-1-163917bed385@baylibre.com>
- <14bed951-22ae-4aa8-5fcb-b2cd92ebdbef@linaro.org>
-Content-Language: en-US
-From:   Alexandre Mergnat <amergnat@baylibre.com>
-In-Reply-To: <14bed951-22ae-4aa8-5fcb-b2cd92ebdbef@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Cosmin Tanislav <demonsingur@gmail.com>
+Subject: [PATCH] dt-bindings: iio: adi,ad74115: remove ref from -nanoamp
+Date:   Wed, 12 Jul 2023 10:05:12 +0200
+Message-Id: <20230712080512.94964-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+dtschema v2023.06 comes with support for properties with -nanoamp
+suffix, thus bindings should not have a ref for it:
 
-Thanks for your review
+  adi,ad74115.yaml: properties:adi,ext1-burnout-current-nanoamp: '$ref' should not be valid under {'const': '$ref'}
 
-On 12/07/2023 07:32, Krzysztof Kozlowski wrote:
-> On 11/07/2023 17:36, Alexandre Mergnat wrote:
->> The Startek KD070FHFID015 is a 7-inch TFT LCD display with a resolution
+Cc: Cosmin Tanislav <demonsingur@gmail.com>
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ Documentation/devicetree/bindings/iio/addac/adi,ad74115.yaml | 3 ---
+ 1 file changed, 3 deletions(-)
 
-snip
-
->> +
->> +  dcdc-gpios: true
-> 
->  From where does this come? Which schema defines it?
-
-It's a miss. I will fix it and reset-gpios too by adding a maxItems and 
-a description.
-
->> +
->> +  height-mm:
->> +    const: 151
->> +
->> +  iovcc-supply:
->> +    description: Reference to the regulator powering the panel IO pins.
->> +
->> +  reg:
->> +    maxItems: 1
->> +    description: DSI virtual channel
->> +
->> +  reset-gpios: true
->> +
->> +  port: true
->> +
->> +  power-supply: true
->> +
->> +  width-mm:
->> +    const: 95
->> +
->> +additionalProperties: false
->> +
->> +required:
->> +  - compatible
->> +  - dcdc-gpios
->> +  - iovcc-supply
->> +  - reg
->> +  - reset-gpios
->> +  - port
->> +  - power-supply
-> 
-> Missing example.
-
-I will add it.
-
+diff --git a/Documentation/devicetree/bindings/iio/addac/adi,ad74115.yaml b/Documentation/devicetree/bindings/iio/addac/adi,ad74115.yaml
+index 72d2e910f206..2594fa192f93 100644
+--- a/Documentation/devicetree/bindings/iio/addac/adi,ad74115.yaml
++++ b/Documentation/devicetree/bindings/iio/addac/adi,ad74115.yaml
+@@ -216,7 +216,6 @@ properties:
+     description: Whether to enable burnout current for EXT1.
+ 
+   adi,ext1-burnout-current-nanoamp:
+-    $ref: /schemas/types.yaml#/definitions/uint32
+     description:
+       Burnout current in nanoamps to be applied to EXT1.
+     enum: [0, 50, 500, 1000, 10000]
+@@ -233,7 +232,6 @@ properties:
+     description: Whether to enable burnout current for EXT2.
+ 
+   adi,ext2-burnout-current-nanoamp:
+-    $ref: /schemas/types.yaml#/definitions/uint32
+     description: Burnout current in nanoamps to be applied to EXT2.
+     enum: [0, 50, 500, 1000, 10000]
+     default: 0
+@@ -249,7 +247,6 @@ properties:
+     description: Whether to enable burnout current for VIOUT.
+ 
+   adi,viout-burnout-current-nanoamp:
+-    $ref: /schemas/types.yaml#/definitions/uint32
+     description: Burnout current in nanoamps to be applied to VIOUT.
+     enum: [0, 1000, 10000]
+     default: 0
 -- 
-Regards,
-Alexandre
+2.34.1
+
