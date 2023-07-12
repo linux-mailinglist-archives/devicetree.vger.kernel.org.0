@@ -2,70 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4BA1E7507CE
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 14:12:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EBC957507F1
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 14:17:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232767AbjGLMMf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jul 2023 08:12:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33758 "EHLO
+        id S233145AbjGLMQ7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jul 2023 08:16:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37824 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231488AbjGLMMe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 08:12:34 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B5F7E65;
-        Wed, 12 Jul 2023 05:12:33 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 9C5A5617A4;
-        Wed, 12 Jul 2023 12:12:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EAF63C433C8;
-        Wed, 12 Jul 2023 12:12:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689163952;
-        bh=9Vrfyl+qNlhjUuYQ+DzG4/zZwn6xt7e/Cc1IJTbESnE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=oSvkq3tqbXDLMRHAppG6fxYvOgma2Nw98ZLx5gO+HrZQArhxjxHK/Xlq37JNxEzyx
-         tRA502ufSiNAfgUGKOOwAqi9D/hNkVOATfE6wsCmkJxQ32gR3+ejocFOcVqncpsFVY
-         TAibI8d/hNOZCz99pK+oVTZzrn8sVuc5lYo8tfoN6cb80MfWziZF8mm+S5YcFoDn0r
-         u3uOhy1zo7nsF1jdCoGE6qlfIuDCjfvUlZDGbKyqbs7em2nmxoa5/8qiqv5dVyoyA7
-         hxcb2ftuH1r04yO31m6lGwRULaElhMnhJFK+MEvwBqEkVf3+webOjYxU7Is1ShgxfO
-         Q44nnk8GlLs+w==
-Received: from johan by xi.lan with local (Exim 4.96)
-        (envelope-from <johan@kernel.org>)
-        id 1qJYho-0005to-1X;
-        Wed, 12 Jul 2023 14:12:29 +0200
-Date:   Wed, 12 Jul 2023 14:12:28 +0200
-From:   Johan Hovold <johan@kernel.org>
-To:     Krishna Kurapati <quic_kriskura@quicinc.com>
-Cc:     Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        Wesley Cheng <quic_wcheng@quicinc.com>,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        quic_pkondeti@quicinc.com, quic_ppratap@quicinc.com,
-        quic_jackp@quicinc.com, quic_harshq@quicinc.com,
-        ahalaney@redhat.com, quic_shazhuss@quicinc.com
-Subject: Re: [PATCH v9 06/10] usb: dwc3: qcom: Add support to read IRQ's
- related to multiport
-Message-ID: <ZK6YrLMn9r39zEeB@hovoldconsulting.com>
-References: <20230621043628.21485-1-quic_kriskura@quicinc.com>
- <20230621043628.21485-7-quic_kriskura@quicinc.com>
+        with ESMTP id S232473AbjGLMQt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 08:16:49 -0400
+Received: from mail-io1-f43.google.com (mail-io1-f43.google.com [209.85.166.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD9F4173C;
+        Wed, 12 Jul 2023 05:16:42 -0700 (PDT)
+Received: by mail-io1-f43.google.com with SMTP id ca18e2360f4ac-7835e5fa459so237485539f.2;
+        Wed, 12 Jul 2023 05:16:42 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689164202; x=1691756202;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=YRfuEf8QvPMdA6+TuyHkkBUYH2h9XWzRNhgHoDqrdDk=;
+        b=USBixVWepPjrRE4rMcZ73maneDArQ0YIoGi6rNAd3c7iCEOYSLxxKjuVZyJ7kGnK4b
+         R3feBmisyrp0ofCPnfVnHGdUXff08tn7vjxsV/YJkWuzW/VO7zKPr3x7OUsrwCfTYa4w
+         DvWN3ZmHAthnqE8Z1gTx49KqaPZnzHsrmz3ILmOoLa77MJh1anqfK7yc3F61+/u5NV+7
+         RGDM9ZJc1mRrHvv/8j7kYJf36IsaAo5buU8WWjmVpRhRDJ8AI3j1YhQS15xaGHpG+sEb
+         zHt0r/rSicbUz6wzojHz93XPgmJ0XqAsLDKL+gthvSOvO5NrchVG5mwzWBYkG5hpF7X7
+         va3A==
+X-Gm-Message-State: ABy/qLaiEwiYaBd+5gubOKMnR2BhOk6yqchFJD2FCfaWyxQHnXSqY5iL
+        PqfnZrv9to6+zPlY2SojwA==
+X-Google-Smtp-Source: APBJJlHq/CeB5FNhXo+hvT0Ni2TOesVAeCW0bTRMn/zJugXXm3vQ2S8xupO8XpJFxby9VWQyKB/OUQ==
+X-Received: by 2002:a5d:8894:0:b0:760:e308:107e with SMTP id d20-20020a5d8894000000b00760e308107emr17856368ioo.0.1689164201781;
+        Wed, 12 Jul 2023 05:16:41 -0700 (PDT)
+Received: from robh_at_kernel.org ([64.188.179.250])
+        by smtp.gmail.com with ESMTPSA id dm26-20020a0566023b9a00b0077a1d1029fcsm1308179iob.28.2023.07.12.05.16.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 12 Jul 2023 05:16:41 -0700 (PDT)
+Received: (nullmailer pid 4079137 invoked by uid 1000);
+        Wed, 12 Jul 2023 12:16:39 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230621043628.21485-7-quic_kriskura@quicinc.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+From:   Rob Herring <robh@kernel.org>
+To:     Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc:     Johan Hovold <johan@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-renesas-soc@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-kernel@vger.kernel.org
+In-Reply-To: <20230712113731.3306-3-wsa+renesas@sang-engineering.com>
+References: <20230712113731.3306-1-wsa+renesas@sang-engineering.com>
+ <20230712113731.3306-3-wsa+renesas@sang-engineering.com>
+Message-Id: <168916419973.4079096.16108131261602732302.robh@kernel.org>
+Subject: Re: [PATCH 2/3] dt-bindings: gnss: u-blox: add "reset-gpios"
+ binding
+Date:   Wed, 12 Jul 2023 06:16:39 -0600
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,51 +68,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 21, 2023 at 10:06:24AM +0530, Krishna Kurapati wrote:
-> Add support to read Multiport IRQ's related to quad port controller
-> of SA8295 Device.
+
+On Wed, 12 Jul 2023 13:37:30 +0200, Wolfram Sang wrote:
+> Needed to enable this chip on a Renesas KingFisher board. Description
+> copied over from the Mediatek driver which already supports it.
 > 
-> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
+> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 > ---
->  drivers/usb/dwc3/dwc3-qcom.c | 108 +++++++++++++++++++++++++++++------
->  1 file changed, 91 insertions(+), 17 deletions(-)
+>  Documentation/devicetree/bindings/gnss/u-blox,neo-6m.yaml | 7 +++++++
+>  1 file changed, 7 insertions(+)
+> 
 
-> +static int dwc3_qcom_setup_mp_irq(struct platform_device *pdev)
-> +{
-> +	struct dwc3_qcom *qcom = platform_get_drvdata(pdev);
-> +	char irq_name[15];
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-The interrupt device-name string can not be allocated on the stack or
-reused as it is stored directly in each irqaction structure.
+yamllint warnings/errors:
 
-This can otherwise lead to random crashes when accessing
-/proc/interrupts:
+dtschema/dtc warnings/errors:
+Error: Documentation/devicetree/bindings/gnss/u-blox,neo-6m.example.dts:23.40-41 syntax error
+FATAL ERROR: Unable to parse input tree
+make[2]: *** [scripts/Makefile.lib:419: Documentation/devicetree/bindings/gnss/u-blox,neo-6m.example.dtb] Error 1
+make[2]: *** Waiting for unfinished jobs....
+make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1500: dt_binding_check] Error 2
+make: *** [Makefile:234: __sub-make] Error 2
 
-	https://lore.kernel.org/lkml/ZK6IV_jJPICX5r53@hovoldconsulting.com/
+doc reference errors (make refcheckdocs):
 
-> +	int irq;
-> +	int ret;
-> +	int i;
-> +
-> +	for (i = 0; i < 4; i++) {
-> +		if (qcom->dp_hs_phy_irq[i])
-> +			continue;
-> +
-> +		sprintf(irq_name, "dp%d_hs_phy_irq", i+1);
-> +		irq = dwc3_qcom_get_irq(pdev, irq_name, -1);
-> +		if (irq > 0) {
-> +			irq_set_status_flags(irq, IRQ_NOAUTOEN);
-> +			ret = devm_request_threaded_irq(qcom->dev, irq, NULL,
-> +					qcom_dwc3_resume_irq,
-> +					IRQF_TRIGGER_HIGH | IRQF_ONESHOT,
-> +					irq_name, qcom);
-> +			if (ret) {
-> +				dev_err(qcom->dev, "%s failed: %d\n", irq_name, ret);
-> +				return ret;
-> +			}
-> +		}
-> +
-> +		qcom->dp_hs_phy_irq[i] = irq;
-> +	}
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230712113731.3306-3-wsa+renesas@sang-engineering.com
 
-Johan
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
