@@ -2,187 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 13DD67507FB
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 14:18:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 149D8750800
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 14:19:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231608AbjGLMSr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jul 2023 08:18:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39400 "EHLO
+        id S231359AbjGLMTR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jul 2023 08:19:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39878 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231309AbjGLMSn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 08:18:43 -0400
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79B219B
-        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 05:18:41 -0700 (PDT)
-Received: by mail-lj1-x22c.google.com with SMTP id 38308e7fff4ca-2b717e9d423so8570691fa.1
-        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 05:18:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689164320; x=1691756320;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=KRzOGtPl93LqwIcit/8B2J8xTg5w549lcCceqtPK13c=;
-        b=tCDrJCD89Wt0gVMdSNhPrGqhUsTLlpFiDzPiy56glkjoByl9oQOJwPYyb4wDnToVd6
-         fi47x/wQz9S3njsxCWSqaRT1P4iwEdtMnD1XcGujLV6u1+RZOSHGwU7JOvYafFzjWdm9
-         SE3t7IhLbEdpCxYM6Cr+mi2OPJenJwUR5tQ/EYLjDLQC5tjhzYQmjG76SEY0g6Fh3l5z
-         nZfkZOpvco9XJg9fL5149zPzCGC0REejpnVteJVrKd1A2n+ueKnLvSMxuue/r3wtb1v8
-         Es+B+rZ0OgrUiPynYJdivI00s+xS5ovkE4J2VyKexlqGsYBr5+sVp8nkrRJmAY/eLkUk
-         QUbg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689164320; x=1691756320;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=KRzOGtPl93LqwIcit/8B2J8xTg5w549lcCceqtPK13c=;
-        b=Sk04Ghm0rHTiqvtwcBjQfzbjt84zKFT41XZ/Tm5eFXQQqEtKVomLakCbedh15y1l1l
-         ryyuq6dkQuktaHBOiLoGlSN1FEUsgXdeldOkX+H9yt/V/QqEJMSbKS8M+Df5adr/TlE+
-         1b6ohriv2KJAftCBqmpKmQRymkkJhaMvSkQObC8ZvIx7TPR9C1Hn1iKSjU0EtK2d0Nhz
-         wuRsBzxFNgB8RYdBZNdqrLxeZkuEz1jZkXrZXybD2XvcB/UupGW3tf2ToBCGTmDjVJTb
-         61EZZkHTdQ6On1b/9TnG3HhgjYkj1rTC2BKYwLFrsrNQzxGsix44EeW0XO3NYNJbnb/2
-         Ek/w==
-X-Gm-Message-State: ABy/qLaitGYn/v+KVacJI/nIl11Ne6QZjBWjH0RZnHdFqH8jxCnxeFB3
-        /Fu2Emo9aMXOPgIGZCage5N+SA==
-X-Google-Smtp-Source: APBJJlEy3ljbiuF/7Y5CJsnpdfh++Sek1AynGnWFOwY7diqxzJeX/scCNlJvvMlSZusU620MBmKZnw==
-X-Received: by 2002:a2e:9f08:0:b0:2b4:677e:1433 with SMTP id u8-20020a2e9f08000000b002b4677e1433mr706188ljk.5.1689164319762;
-        Wed, 12 Jul 2023 05:18:39 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:a0db:1f00::8a5? (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
-        by smtp.gmail.com with ESMTPSA id y21-20020a2e95d5000000b002b6d4a63cfdsm940990ljh.42.2023.07.12.05.18.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 12 Jul 2023 05:18:39 -0700 (PDT)
-Message-ID: <3523988f-fa51-ce44-ded7-9f3c7acbf65e@linaro.org>
-Date:   Wed, 12 Jul 2023 15:18:38 +0300
+        with ESMTP id S231989AbjGLMTQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 08:19:16 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18C38A0
+        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 05:19:13 -0700 (PDT)
+Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <l.goehrs@pengutronix.de>)
+        id 1qJYoJ-0001cW-3E; Wed, 12 Jul 2023 14:19:11 +0200
+Message-ID: <44633ed0-9401-6d03-000a-4fce5e16ae5c@pengutronix.de>
+Date:   Wed, 12 Jul 2023 14:19:08 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
-Subject: Re: [PATCH 00/14] UFS: Add OPP and interconnect support
-Content-Language: en-GB
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        vireshk@kernel.org, nm@ti.com, sboyd@kernel.org,
-        myungjoo.ham@samsung.com, kyungmin.park@samsung.com,
-        cw00.choi@samsung.com, andersson@kernel.org,
-        konrad.dybcio@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
-Cc:     linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        quic_asutoshd@quicinc.com, quic_cang@quicinc.com,
-        quic_nitirawa@quicinc.com, quic_narepall@quicinc.com,
-        quic_bhaskarv@quicinc.com, quic_richardp@quicinc.com,
-        quic_nguyenb@quicinc.com, quic_ziqichen@quicinc.com,
-        bmasney@redhat.com, krzysztof.kozlowski@linaro.org
-References: <20230712103213.101770-1-manivannan.sadhasivam@linaro.org>
- <20230712104044.GA102214@thinkpad>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20230712104044.GA102214@thinkpad>
+Subject: Re: [PATCH v3 7/8] dt-bindings: arm: stm32: add extra SiP compatible
+ for oct,stm32mp157c-osd32-red
+Content-Language: en-US-large
+To:     Ahmad Fatoum <a.fatoum@pengutronix.de>,
+        Sean Nyekjaer <sean@geanix.com>
+Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
+        devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        Conor Dooley <conor.dooley@microchip.com>,
+        dantuguf14105@gmail.com,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org
+References: <20230712062954.2194505-1-sean@geanix.com>
+ <20230712062954.2194505-7-sean@geanix.com>
+ <92f7f4cd-c9cc-8a1a-74c7-39eed955cd6a@pengutronix.de>
+ <92C36A18-F359-497E-8267-03E5C62811F6@geanix.com>
+ <d57fdae4-9931-6e37-56e1-9649074b3142@pengutronix.de>
+From:   =?UTF-8?Q?Leonard_G=c3=b6hrs?= <l.goehrs@pengutronix.de>
+In-Reply-To: <d57fdae4-9931-6e37-56e1-9649074b3142@pengutronix.de>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
+X-SA-Exim-Mail-From: l.goehrs@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/07/2023 13:40, Manivannan Sadhasivam wrote:
-> On Wed, Jul 12, 2023 at 04:01:55PM +0530, Manivannan Sadhasivam wrote:
->> Hi,
+
+On 12.07.23 11:18, Ahmad Fatoum wrote:
+> On 12.07.23 11:11, Sean Nyekjaer wrote:
+>>> On 12 Jul 2023, at 10.38, Ahmad Fatoum <a.fatoum@pengutronix.de> wrote:
+>>> On 12.07.23 08:29, Sean Nyekjaer wrote:
+>>>> Add binding support for the Octavo OSD32MP1-RED development board.
+>>>>
+>>>> General features:
+>>>> - STM32MP157C
+>>>> - 512MB DDR3
+>>>> - CAN-FD
+>>>> - HDMI
+>>>> - USB-C OTG
+>>>> - UART
+>>>>
+>>>> Signed-off-by: Sean Nyekjaer <sean@geanix.com>
+>>>> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+>>>
+>>> Just a heads up: The LXA TAC, another OSD32MP1 board has been merged into
+>>> stm32-next yesterday, so applying your series onto that tree may result
+>>> in conflicts. You may want to rebase for v4.
+>>>
+>>> Cheers,
+>>> Ahmad
 >>
->> This series adds OPP (Operating Points) support to UFSHCD driver and
->> interconnect support to Qcom UFS driver.
+>> Thanks, will do :)
+>>
+>> Can I get you to look at 4/8, 5/8 and 6/8 in this series? Will they break anything for LXA TAC?
+> 
+> Leonard, does the LXA TAC have an implicit dependency on any of the rails that Sean is
+> now turning off by default?
+
+No, removing the regulator-always-on for these three regulators on the LXA TAC should be fine.
+We do not use v1v2_hdmi and v1v8_audio at all and already have
+"/delete-property/regulator-always-on" in our stm32mp15xc-lxa-tac.dtsi for v3v3_hdmi,
+which becomes obsolete with this patch.
+I would appreciate it if you added patch to remove it from stm32mp15xc-lxa-tac.dtsi if you
+send a v4.
+
+You can add my Acked-by: Leonard Göhrs <l.goehrs@pengutronix.de> to these three patches,
+if you like.
+
+Greetings
+Leonard
+
+> Cheers,
+> Ahmad
+> 
+>>
+>> /Sean
+>>
+>>>
+>>>
+>>>> ---
+>>>> Documentation/devicetree/bindings/arm/stm32/stm32.yaml | 3 ++-
+>>>> 1 file changed, 2 insertions(+), 1 deletion(-)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/arm/stm32/stm32.yaml b/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
+>>>> index 13e34241145b..55e45db1af26 100644
+>>>> --- a/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
+>>>> +++ b/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
+>>>> @@ -143,7 +143,8 @@ properties:
+>>>>        - description: Octavo OSD32MP15x System-in-Package based boards
+>>>>          items:
+>>>>            - enum:
+>>>> -              - lxa,stm32mp157c-mc1 # Linux Automation MC-1
+>>>> +              - lxa,stm32mp157c-mc1       # Linux Automation MC-1
+>>>> +              - oct,stm32mp157c-osd32-red # Octavo OSD32MP1 RED board
+>>>>            - const: oct,stm32mp15xx-osd32
+>>>>            - enum:
+>>>>                - st,stm32mp157
+>>>
+>>> -- 
+>>> Pengutronix e.K.                           |                             |
+>>> Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+>>> 31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+>>> Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+>>
+>>
+>>
 >>
 > 
-> Missed to cc SCSI folks. Will be resending this series. Sorry for the noise.
-
-I'd say, there is a need for the resend anyway, the series got duplicate 
-patch indices.
-
-> 
-> - Mani
-> 
->> Motivation behind adding OPP support is to scale both clocks as well as
->> regulators/performance state dynamically. Currently, UFSHCD just scales
->> clock frequency during runtime with the help of "freq-table-hz" property
->> defined in devicetree. With the addition of OPP tables in devicetree (as
->> done for Qcom SDM845 and SM8250 SoCs in this series) UFSHCD can now scale
->> both clocks and performance state of power domain which helps in power
->> saving.
->>
->> For the addition of OPP support to UFSHCD, there are changes required to
->> the OPP framework and devfreq drivers which are also added in this series.
->>
->> Finally, interconnect support is added to Qcom UFS driver for scaling the
->> interconnect path dynamically. This is required to avoid boot crash in
->> recent SoCs and also to save power during runtime. More information is
->> available in patch 13/13.
->>
->> Credits
->> =======
->>
->> This series is a continuation of previous work by Krzysztof Kozlowski [1]
->> and Brian Masney [2]. Ideally, this could've split into two series (OPP
->> and interconnect) but since there will be a dependency in the devicetree,
->> I decided to keep them in a single series.
->>
->> Testing
->> =======
->>
->> This series is tested on 96Boards RB3 (SDM845 SoC) and RB5 (SM8250 SoC)
->> development boards.
->>
->> Merging Strategy
->> ================
->>
->> An immutable branch might be required between OPP and SCSI trees because of
->> the API dependency (devfreq too). And I leave it up to the maintainers to
->> decide.
->>
->> Thanks,
->> Mani
->>
->> [1] https://lore.kernel.org/all/20220513061347.46480-1-krzysztof.kozlowski@linaro.org/
->> [2] https://lore.kernel.org/all/20221117104957.254648-1-bmasney@redhat.com/
->>
->> Krzysztof Kozlowski (2):
->>    dt-bindings: ufs: common: add OPP table
->>    arm64: dts: qcom: sdm845: Add OPP table support to UFSHC
->>
->> Manivannan Sadhasivam (12):
->>    dt-bindings: opp: Increase maxItems for opp-hz property
->>    arm64: dts: qcom: sdm845: Add missing RPMh power domain to GCC
->>    arm64: dts: qcom: sdm845: Fix the min frequency of "ice_core_clk"
->>    arm64: dts: qcom: sm8250: Add OPP table support to UFSHC
->>    OPP: Introduce dev_pm_opp_find_freq_{ceil/floor}_indexed() APIs
->>    OPP: Introduce dev_pm_opp_get_freq_indexed() API
->>    PM / devfreq: Switch to dev_pm_opp_find_freq_{ceil/floor}_indexed()
->>      APIs
->>    scsi: ufs: core: Add OPP support for scaling clocks and regulators
->>    scsi: ufs: host: Add support for parsing OPP
->>    arm64: dts: qcom: sdm845: Add interconnect paths to UFSHC
->>    arm64: dts: qcom: sm8250: Add interconnect paths to UFSHC
->>    scsi: ufs: qcom: Add support for scaling interconnects
->>
->>   .../devicetree/bindings/opp/opp-v2-base.yaml  |   2 +-
->>   .../devicetree/bindings/ufs/ufs-common.yaml   |  34 ++++-
->>   arch/arm64/boot/dts/qcom/sdm845.dtsi          |  47 ++++--
->>   arch/arm64/boot/dts/qcom/sm8250.dtsi          |  43 ++++--
->>   drivers/devfreq/devfreq.c                     |  14 +-
->>   drivers/opp/core.c                            |  76 ++++++++++
->>   drivers/ufs/core/ufshcd.c                     | 142 ++++++++++++++----
->>   drivers/ufs/host/ufs-qcom.c                   | 131 +++++++++++++++-
->>   drivers/ufs/host/ufs-qcom.h                   |   3 +
->>   drivers/ufs/host/ufshcd-pltfrm.c              | 116 ++++++++++++++
->>   include/linux/pm_opp.h                        |  26 ++++
->>   include/ufs/ufshcd.h                          |   4 +
->>   12 files changed, 574 insertions(+), 64 deletions(-)
->>
->> -- 
->> 2.25.1
->>
-> 
-
--- 
-With best wishes
-Dmitry
-
