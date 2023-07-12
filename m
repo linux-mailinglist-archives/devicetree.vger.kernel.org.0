@@ -2,54 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3735C750851
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 14:32:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 782AC750884
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 14:40:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231721AbjGLMc3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jul 2023 08:32:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49830 "EHLO
+        id S233146AbjGLMkS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jul 2023 08:40:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54702 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229610AbjGLMc3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 08:32:29 -0400
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C08ABB0;
-        Wed, 12 Jul 2023 05:32:27 -0700 (PDT)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 0559D24000C;
-        Wed, 12 Jul 2023 12:32:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1689165146;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=EMAmlAAfV/E3+8xeb2DY6C2+zCz1wmbuPYuto9/gghs=;
-        b=UIBF8vAIz5VH3xswnjijkgkjrvCSy+4uPDwLYpvSwymiFlzJz4j1cFtt/yUspvcmzqK4gx
-        EGE/KIKQliTr6P5p7ZFxIf4Xb40v5dQQ/zgKyWgmUS+nhjM3NmvvPrgoUs6ZAqjSgKUS9e
-        fTGWEW3kcixsXElORuQ75dMrpu6ciq/iv5CVyyQvTtlV3402JqUShoUQVU/95L8fFffnd2
-        8jg9i10QjT7qIkILpdq+uLXnsHED36kbzME51KUa59jFalwQIWEUbmcfLOMGQ0G4wPSwsC
-        qDFwMbVMVrY26baRGsd47JnlMURXmPAXCcAOF6pyRQjnrJxGsbTYWLBqOVCQMg==
-Date:   Wed, 12 Jul 2023 14:32:20 +0200
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Chris Packham <chris.packham@alliedtelesis.co.nz>
-Cc:     richard@nod.at, vigneshr@ti.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        gregory.clement@bootlin.com, linux-mtd@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/3] dt-bindings: mtd: Add AC5 specific binding
-Message-ID: <20230712143220.06a3d6eb@xps-13>
-In-Reply-To: <20230703035044.2063303-2-chris.packham@alliedtelesis.co.nz>
-References: <20230703035044.2063303-1-chris.packham@alliedtelesis.co.nz>
-        <20230703035044.2063303-2-chris.packham@alliedtelesis.co.nz>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+        with ESMTP id S232498AbjGLMkR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 08:40:17 -0400
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31FA91711
+        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 05:40:15 -0700 (PDT)
+Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-3fbc244d384so70623495e9.0
+        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 05:40:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1689165613; x=1691757613;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=SkNQv7geS5CR2LiJ7vpq5fz0PNWmI57+KWeY+aP5fjo=;
+        b=w9wh4Pkr8rOHj8Cbmzkuimk9nKuqBy9JUTg8kjwlj8n8OPSxsfutY+Kk8wexoYVZX+
+         5xTPaDLVpb0WZ1xVXeOGb5YPK0rqIiTmWXMM+XytwPPKhxGylqcDYQxJnXSyIpgqBgDZ
+         ZlC7q6y7wxiej8SzCDfSNI2BXCYXpQaTQ3lTCUT9hSlWjyY5RbocTNvWbnF8GZT3eY0U
+         /eyMserg5zIMY1c+JA19IF6abF6bzOYSBc/fPK/AeOojgY/sKEhdFQ6jL+l7TkJgJCIh
+         2xG/fV/JRFf6gwsisfocp8jKlghZoi7JjGzlH/dRcdCo8U9wvoJOnlsujx7JfLc4BxN6
+         YDiw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689165613; x=1691757613;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=SkNQv7geS5CR2LiJ7vpq5fz0PNWmI57+KWeY+aP5fjo=;
+        b=TqRrqs7fE4wT7KNek09OYEaEDQOvWgNOEEGU+mXhd5HbDtHw/KyPt2QFoSzxgvK1ZI
+         PHRantgW9LbTcT/p9shIIY64yY1osHHX6KJNasLibt+YNacZtns8lxpcxMQLY1irxWIZ
+         AkyQ1rTRSo1ygvfCZ6HGCfbx4XR0V9OiWlnwIH9/zSWpHt0SVHYA59fvwpMFovXAc7vu
+         q4kqO+gBxAOVkv3+7NwV4jJXhnJkrlWL8QQ36ad61dCqGKlIUXx2FYmDg7u6juLkF+T5
+         r+RLMMI090gvsE2xgzw9LouYat1mrFqa++ul5JVFwgas0yorujQugJcuTSlhMxPUdkEq
+         RCQg==
+X-Gm-Message-State: ABy/qLb0mKgdDOEr47GaBN8x84GoyhxzWoFc33pBgygA+1jCsC4GE9X9
+        A/WZG2qtoB0ubPZT8NwWV4kgcA==
+X-Google-Smtp-Source: APBJJlF5yLpkbdjZuR9UBaY6jqLSbZs8oxILlpMjHaH5n0w7cV1ebVwGScR6HD9FlErXpx3JbkAshg==
+X-Received: by 2002:adf:d0c9:0:b0:314:1ce9:3c86 with SMTP id z9-20020adfd0c9000000b003141ce93c86mr16299116wrh.0.1689165613366;
+        Wed, 12 Jul 2023 05:40:13 -0700 (PDT)
+Received: from [192.168.1.172] ([93.5.22.158])
+        by smtp.gmail.com with ESMTPSA id l16-20020a1c7910000000b003fb40ec9475sm4978175wme.11.2023.07.12.05.40.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 12 Jul 2023 05:40:12 -0700 (PDT)
+Message-ID: <fab21c8b-13d7-1046-6b13-51a3d6684a2f@baylibre.com>
+Date:   Wed, 12 Jul 2023 14:40:11 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [RESEND 1/2] ASoC: mediatek: mt8188: add memory-region support
+Content-Language: en-US
+To:     Trevor Wu <trevor.wu@mediatek.com>, broonie@kernel.org,
+        lgirdwood@gmail.com, tiwai@suse.com, perex@perex.cz,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, matthias.bgg@gmail.com,
+        angelogioacchino.delregno@collabora.com
+Cc:     alsa-devel@alsa-project.org, linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20230712070821.23971-1-trevor.wu@mediatek.com>
+ <20230712070821.23971-2-trevor.wu@mediatek.com>
+From:   Alexandre Mergnat <amergnat@baylibre.com>
+In-Reply-To: <20230712070821.23971-2-trevor.wu@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -57,50 +80,64 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Chris,
-
-chris.packham@alliedtelesis.co.nz wrote on Mon,  3 Jul 2023 15:50:42
-+1200:
-
-> Add binding for AC5 SoC. This SoC only supports NAND SDR timings up to
-> mode 3 so a specific compatible value is needed.
->=20
-> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-
-I need DT-binding maintainer's ack to take this patch, but this commit
-did not receive feedback (positive of negative) from them and is no
-longer in their patchwork. Can you please resend the series?
-
-The other patches LGTM.
 
 
+On 12/07/2023 09:08, Trevor Wu wrote:
+> In certain projects, it is necessary to utilize the reserved memory
+> region for audio dma. The patch takes into account the dts property
+> 'memory-region', allowing for the specification of memory for afe memif
+> through device tree.
+> 
+> Signed-off-by: Trevor Wu <trevor.wu@mediatek.com>
 > ---
->=20
-> Notes:
->     Changes in v3:
->     - Collect ack from Conor
->     Changes in v2:
->     - Keep compatibles in alphabetical order
->     - Explain AC5 limitations in commit message
->=20
->  .../devicetree/bindings/mtd/marvell,nand-controller.yaml         | 1 +
->  1 file changed, 1 insertion(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/mtd/marvell,nand-controlle=
-r.yaml b/Documentation/devicetree/bindings/mtd/marvell,nand-controller.yaml
-> index a10729bb1840..1ecea848e8b9 100644
-> --- a/Documentation/devicetree/bindings/mtd/marvell,nand-controller.yaml
-> +++ b/Documentation/devicetree/bindings/mtd/marvell,nand-controller.yaml
-> @@ -16,6 +16,7 @@ properties:
->            - const: marvell,armada-8k-nand-controller
->            - const: marvell,armada370-nand-controller
->        - enum:
-> +          - marvell,ac5-nand-controller
->            - marvell,armada370-nand-controller
->            - marvell,pxa3xx-nand-controller
->        - description: legacy bindings
+>   sound/soc/mediatek/mt8188/mt8188-afe-pcm.c | 8 ++++++--
+>   1 file changed, 6 insertions(+), 2 deletions(-)
+> 
+> diff --git a/sound/soc/mediatek/mt8188/mt8188-afe-pcm.c b/sound/soc/mediatek/mt8188/mt8188-afe-pcm.c
+> index 6a24b339444b..5e14655c5617 100644
+> --- a/sound/soc/mediatek/mt8188/mt8188-afe-pcm.c
+> +++ b/sound/soc/mediatek/mt8188/mt8188-afe-pcm.c
+> @@ -16,6 +16,7 @@
+>   #include <linux/of.h>
+>   #include <linux/of_address.h>
+>   #include <linux/of_platform.h>
+> +#include <linux/of_reserved_mem.h>
+>   #include <linux/pm_runtime.h>
+>   #include <linux/soc/mediatek/infracfg.h>
+>   #include <linux/reset.h>
+> @@ -3193,11 +3194,15 @@ static int mt8188_afe_pcm_dev_probe(struct platform_device *pdev)
+>   {
+>   	struct mtk_base_afe *afe;
+>   	struct mt8188_afe_private *afe_priv;
+> -	struct device *dev;
+> +	struct device *dev = &pdev->dev;
 
+I think that make sense to replace all "&pdev->dev" by "dev" in the next 
+called functions:
+- dma_set_mask_and_coherent
+- devm_kzalloc
+- devm_kzalloc
 
-Thanks,
-Miqu=C3=A8l
+>   	struct reset_control *rstc;
+>   	struct regmap *infra_ao;
+>   	int i, irq_id, ret;
+>   
+> +	ret = of_reserved_mem_device_init(dev);
+> +	if (ret)
+> +		dev_dbg(dev, "failed to assign memory region: %d\n", ret);
+> +
+>   	ret = dma_set_mask_and_coherent(&pdev->dev, DMA_BIT_MASK(33));
+>   	if (ret)
+>   		return ret;
+> @@ -3213,7 +3218,6 @@ static int mt8188_afe_pcm_dev_probe(struct platform_device *pdev)
+>   
+>   	afe_priv = afe->platform_priv;
+>   	afe->dev = &pdev->dev;
+> -	dev = afe->dev;
+>   
+>   	afe->base_addr = devm_platform_ioremap_resource(pdev, 0);
+>   	if (IS_ERR(afe->base_addr))
+
+-- 
+Regards,
+Alexandre
