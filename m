@@ -2,71 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5002574FE9F
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 07:15:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DC0BB74FEAD
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 07:26:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231774AbjGLFPs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jul 2023 01:15:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35122 "EHLO
+        id S229718AbjGLF0C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jul 2023 01:26:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37692 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231819AbjGLFPr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 01:15:47 -0400
-Received: from mail-io1-f49.google.com (mail-io1-f49.google.com [209.85.166.49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C4481992;
-        Tue, 11 Jul 2023 22:15:41 -0700 (PDT)
-Received: by mail-io1-f49.google.com with SMTP id ca18e2360f4ac-78360b822abso224720239f.2;
-        Tue, 11 Jul 2023 22:15:41 -0700 (PDT)
+        with ESMTP id S229473AbjGLF0B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 01:26:01 -0400
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B25D9F0
+        for <devicetree@vger.kernel.org>; Tue, 11 Jul 2023 22:25:59 -0700 (PDT)
+Received: by mail-lj1-x234.google.com with SMTP id 38308e7fff4ca-2b71ae5fa2fso52841341fa.0
+        for <devicetree@vger.kernel.org>; Tue, 11 Jul 2023 22:25:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1689139558; x=1691731558;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=AK4eb7KoL8ndmCPLluj+EXz7PDkhjxyHzXKMz5A/aGE=;
+        b=LNTsca7LfYc7UmuC05LHt7V+LYFMGnX7TjiIjqBrGFlds42YrhoVki5mAffAjYjga+
+         mjnwnc5Uwuf2zAtW/7Las4tscJg6LZSDxa49UnP5UUeQ7eNq8gPlC2TWiGD0sZCcPNoo
+         E0eo1+bF97Qf8uGYolSBxZVPSV97+9KGPEboAlFQ/9tc2aGCaGj9IgYqmhQphJGox23c
+         5V2d0Q270czKJpZhg1UEbWsO84+8gRLAoQKB+cU0aEIonhrqEJJC33fbK5LbkPhc9Q3i
+         Lg+mPl2eirurAYV9cs6fErGzsuFz89sL5p5S2BoP5KlzIWMEUaAwjnjxUFgyznRK/Gj5
+         5Gbg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689138940; x=1691730940;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=wKSzmt8hMlbZubw8Bz3GqPF8upMRfti75E4k3sjCdto=;
-        b=Z3DoycGsbJo2KoFtDR7i+icfD0K/tDBdsKMsZ4hV6DVwQsunEc2ZThxSIinAT32DQV
-         SxXkwXZ6/SUJiOnuqprY83qk81UFQ3uCgsIDI8cBsa+EAKISWTS+jIF0zE1OatlAaOQb
-         VV9c+uesuxUkhyTQEac37xDLMWGg8YeEoz9G4qaum4G2ZisfDIWBeSM2gIcSZkw/5pH4
-         6uR4NE1H4qD08UYtUrffHU/4KSzGUXdX/z+A0Xk1JcbY6B1sF9BvDhGsI3/JvSdw2f1p
-         HUuKc1ID4nTutwY6jQ+U5qrXlwXaKss4Ht1i6Ab+nekL0cv04n7LldgXBqXphD5qCYou
-         2uCA==
-X-Gm-Message-State: ABy/qLY5fqcmxkRXtjj0HPYVh6E95rd+QQzOOt4t3FNyHoKE1q4U2eXZ
-        cunwpdLsEfo6E5tyUx0YGg==
-X-Google-Smtp-Source: APBJJlE0f1oUAsIvW5GwlxLOupfX0EVF6NhYj5beTh+z/lUbyjbik9bA0PsrX8MCvQVOw7HT0S4f1A==
-X-Received: by 2002:a5e:c910:0:b0:77e:3d2f:d1f4 with SMTP id z16-20020a5ec910000000b0077e3d2fd1f4mr17007246iol.15.1689138940157;
-        Tue, 11 Jul 2023 22:15:40 -0700 (PDT)
-Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id v6-20020a6b5b06000000b007870289f4fdsm1068756ioh.51.2023.07.11.22.15.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 Jul 2023 22:15:39 -0700 (PDT)
-Received: (nullmailer pid 2909708 invoked by uid 1000);
-        Wed, 12 Jul 2023 05:15:37 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+        d=1e100.net; s=20221208; t=1689139558; x=1691731558;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=AK4eb7KoL8ndmCPLluj+EXz7PDkhjxyHzXKMz5A/aGE=;
+        b=BsPOoK67ekkabjrY4LekhieivL04yQd7nOxE0WLvLnOQKzI+aZ6UABCWTkLEm0cytI
+         8vwpnD+jFVjwT5asVGrJGCwYq+XeOm6JnBjc9JA4mG2uGvcFswKG1dpuy/nkxGZ18BaG
+         z075UZ1ex89D4WVnPeDALNoMsrDd0b7VYdynVCyAliv9ETed4I4dkWd2fSBgDRpFR4Hg
+         DgM9ldthJfjHnaU8YdFkKZdM2Evtz7LRP9sNgjfSe4ANaZLjdVp0owoBIp70qwB3SiMp
+         jIIpv89faaMqkF3uidqmJjDgjGsal7SHFD3poEd/XDGPxi7ozLKR0Qsbv8EV3nuuL0Gt
+         sTwQ==
+X-Gm-Message-State: ABy/qLbrgxpXUbdX7GnppRO0fw75FinA++KscSlT8X+sdKuhbHXiA/KZ
+        dF3+W2m9mMyCUHPL2UBT9C8tow==
+X-Google-Smtp-Source: APBJJlHtrGyx7YwUFhU7r6vqVS9mppAzhhjskmPXgB60TsCyGLrwu57v+FF1PLGFyf4SFUkcfG2jjg==
+X-Received: by 2002:a05:651c:112:b0:2b7:3b73:2589 with SMTP id a18-20020a05651c011200b002b73b732589mr400249ljb.32.1689139557117;
+        Tue, 11 Jul 2023 22:25:57 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id u17-20020a170906069100b00985bdb7dd5fsm1986826ejb.201.2023.07.11.22.25.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 11 Jul 2023 22:25:56 -0700 (PDT)
+Message-ID: <a7761c1e-9327-38f7-8e7b-0b3c3007668e@linaro.org>
+Date:   Wed, 12 Jul 2023 07:25:54 +0200
 MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Kevin Lu <luminlong@139.com>
-Cc:     linux-kernel@vger.kernel.org, lgirdwood@gmail.com,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        shenghao-ding@ti.com, devicetree@vger.kernel.org, kevin-lu@ti.com,
-        alsa-devel@alsa-project.org, robh+dt@kernel.org, tiwai@suse.com,
-        broonie@kernel.org
-In-Reply-To: <20230712044006.48456-1-luminlong@139.com>
-References: <20230712044006.48456-1-luminlong@139.com>
-Message-Id: <168913893753.2909692.17813614972049441778.robh@kernel.org>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
 Subject: Re: [PATCH v1] ASoC: dt-bindings: Add tas2505 audio amplifier
-Date:   Tue, 11 Jul 2023 23:15:37 -0600
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no
-        autolearn_force=no version=3.4.6
+To:     Kevin Lu <luminlong@139.com>, broonie@kernel.org,
+        lgirdwood@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        tiwai@suse.com
+Cc:     kevin-lu@ti.com, shenghao-ding@ti.com, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230712044006.48456-1-luminlong@139.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230712044006.48456-1-luminlong@139.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On Wed, 12 Jul 2023 12:40:06 +0800, Kevin Lu wrote:
+On 12/07/2023 06:40, Kevin Lu wrote:
 > Create tas2505.yaml for tas2505.
 > 
 > Signed-off-by: Kevin Lu <luminlong@139.com>
@@ -74,41 +85,83 @@ On Wed, 12 Jul 2023 12:40:06 +0800, Kevin Lu wrote:
 >  .../devicetree/bindings/sound/tas2505.yaml    | 72 +++++++++++++++++++
 >  1 file changed, 72 insertions(+)
 >  create mode 100644 Documentation/devicetree/bindings/sound/tas2505.yaml
+
+Filename like compatible.
+
 > 
+> diff --git a/Documentation/devicetree/bindings/sound/tas2505.yaml b/Documentation/devicetree/bindings/sound/tas2505.yaml
+> new file mode 100644
+> index 0000000..6cc3fe4
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/tas2505.yaml
+> @@ -0,0 +1,72 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright (C) 2019 Texas Instruments Incorporated
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/sound/tas2505.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Drop quotes
 
-yamllint warnings/errors:
+> +
+> +title: Texas Instruments TAS2505 Mono Audio Amplifier
+> +
+> +maintainers:
+> +  - Kevin Lu <kevin-lu@ti.com>
+> +
+> +description: |
+> +  The TAS2505 is a mono Class-D speaker amp that supports both Digital
+> +  and Analog inputs. The device is ideal for automotive instrument cluster,
+> +  emergency call (eCall), and telematics applications. Direct I2S input
+> +  removes the need for an external DAC in the audio signal path.
+> +  An on-chip PLL provides the high speed clock needed by the DSP.
+> +  The volume level is register controlled.
+> +
+> +  Specifications about the audio amplifier can be found at:
+> +    https://www.ti.com/lit/gpn/tas2505
+> +
+> +allOf:
+> +  - $ref: dai-common.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - ti,tas2505
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/tas2505.example.dtb: codec@18: 'clocks' is a required property
-	from schema $id: http://devicetree.org/schemas/sound/ti,tlv320aic32x4.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/tas2505.example.dtb: codec@18: 'clock-names' is a required property
-	from schema $id: http://devicetree.org/schemas/sound/ti,tlv320aic32x4.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/tas2505.example.dtb: codec@18: 'iov-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/sound/ti,tlv320aic32x4.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/tas2505.example.dtb: codec@18: 'av-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/sound/ti,tlv320aic32x4.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/tas2505.example.dtb: codec@18: 'dv-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/sound/ti,tlv320aic32x4.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/tas2505.example.dtb: codec@18: 'clock-source' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/sound/ti,tlv320aic32x4.yaml#
+Why are you adding duplicated binding?
 
-doc reference errors (make refcheckdocs):
+> +
+> +  reg:
+> +    maxItems: 1
+> +    description: |
+> +       I2C address of the device can be set to 0x18.> +
+> +  reset-gpios:
+> +    maxItems: 1
+> +    description: GPIO used to reset the device.
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230712044006.48456-1-luminlong@139.com
+Drop description, it's obvious.
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
+> +
+> +  clock-source:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: Sets TDM clock sourse.
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+source, but anyway that is not the way to set clocks. Use "clocks"
+property for your future bindings.
 
-pip3 install dtschema --upgrade
+> +    enum:
+> +      - 0 # Select MLCK
+> +      - 1 # Select BLCK
+> +
+> +  '#sound-dai-cells':
+> +    # The codec has a single DAI, the #sound-dai-cells=<1>; case is left in for backward
+> +    # compatibility but is deprecated.
 
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+This is the first submission so there is no "deprecated" or "backwards
+compatibility".
+
+
+Best regards,
+Krzysztof
 
