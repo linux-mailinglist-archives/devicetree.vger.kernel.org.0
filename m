@@ -2,318 +2,229 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 523F4750EF3
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 18:49:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7BFF3750EFB
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 18:50:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230321AbjGLQtO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jul 2023 12:49:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48152 "EHLO
+        id S233346AbjGLQum (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jul 2023 12:50:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48976 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233000AbjGLQtM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 12:49:12 -0400
-Received: from mail-ot1-x331.google.com (mail-ot1-x331.google.com [IPv6:2607:f8b0:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 043F41BF2
-        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 09:49:11 -0700 (PDT)
-Received: by mail-ot1-x331.google.com with SMTP id 46e09a7af769-6b73b839025so6278467a34.1
-        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 09:49:10 -0700 (PDT)
+        with ESMTP id S233298AbjGLQul (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 12:50:41 -0400
+Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com [IPv6:2607:f8b0:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82D1310C7
+        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 09:50:38 -0700 (PDT)
+Received: by mail-pl1-x631.google.com with SMTP id d9443c01a7336-1b8ad907ba4so37910245ad.0
+        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 09:50:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689180550; x=1689785350;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2XIMtFIcFcFMC7yVVktduIclo5Hb2frGelq0Ttevbqw=;
-        b=bbpMGD2mH/4sebZtFUaA1YI4AFZoXqyyGftCEOmPJQM5rSVShXO4RMve0X/cBdu88O
-         ioSCwYZTYtZ/ZpYg6SMHoPFe2osO8lxFxWeBfZrx2YfE0lLf2MnCOwQnKXNxQSSRmb+W
-         r1/7kcHGWSI1Dzll8UD8OvALDnJToSQCAJ03G28M/6s9qEf3sEpFbQ1hBO7m0Gc4FoCD
-         5Wv77z9w5zzcC+RpfFXZTqQUkwRW1H/m0gu0/A27zw1GMg6RMO6npniu6Ni1/l9w2zwc
-         a3WfF8yqebA4EufJlc+0tbH1gEkOQ8c949nV0L1CkJKFyfdfKiA1fR/pLjqx/C6Dpcqi
-         SNVg==
+        d=dabbelt-com.20221208.gappssmtp.com; s=20221208; t=1689180638; x=1691772638;
+        h=content-transfer-encoding:mime-version:message-id:to:from:cc
+         :in-reply-to:subject:date:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=0CLMJN6SQopTIwnwmNS9impJEqYpU9dNFLx7FPHnABU=;
+        b=bOcj+LHGhLyyUjEQGsegCMcc4y7a3vOuavoOpSsV1ipFW54sopcCNkNbeOqzsUqaCB
+         NvStfWPha3Bk4NdmVpTk/uRYKDGndKWXIt5c/lsfM6B/CAn1s1W1r8kQRMV79pJtW5kt
+         fosTbocS/O+ZNYBWfTo5QRU8dsbVTGRDC+ddu2jgSt82HPCHGv+8jJJY/mxjwlmhJDmb
+         VBwq7QMAdGCnHYqm3JQP4xxez8vCGhcvD0TCWuHZEmsPqUU5+IBCA6mh09WoNrBPYpdF
+         O16DF0Iceyj1U1LiwM8N2IO8dKGlk31MUJdvDkjvC8kq+hiiPaGcRIh3i/KJE2N5GoLq
+         L49w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689180550; x=1689785350;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=2XIMtFIcFcFMC7yVVktduIclo5Hb2frGelq0Ttevbqw=;
-        b=ELk85tq59FGv8a7rdihwRVwhVCgnRkJvb4cs7iP0DfEWfXrvc/tya+1rKX0rd0mIFV
-         OdpHLbN356zUh0vnHRGTQIKxSmI4Vh9kxuRLxcUibzqijlSgratgearZldIeBFJi4PwL
-         PBuRbufVce0RjEHKilOYWWUsvgTHx2G31VpgzZ1fw1E6Lb8a6dPjPO6llGIype3sOIW7
-         Du+fxCf/SsNi9yfZk21N8xi2sWGuOlBL0PkamlilCiRmPdPqkNVAdZ7y4cb/S7v+4Sle
-         1eEqdmT00K760zs9CDSZuwopM79zkcar3EBA2wAxqQhvY++Y7lBZsW4tAKtB2qgLAaCz
-         Arsw==
-X-Gm-Message-State: ABy/qLYhFLhGpokUiFKjetu+yHLRAUdzmaRHHtI0k4TCnV/I5nCZY50g
-        bYYPdgnL7QSRTrOvjXXtiCBpShUsFoeBk8f2Q9TPHw==
-X-Google-Smtp-Source: APBJJlHRTRqvrEzKg8dyAYFefk7UU7UfK2KPwNB2P9NKMXcXF+8pQklpCd/FvcYYjO9f658CZnACG30agYz9dh+CtFg=
-X-Received: by 2002:a05:6830:1056:b0:6b9:9de6:b9 with SMTP id
- b22-20020a056830105600b006b99de600b9mr1916498otp.38.1689180550256; Wed, 12
- Jul 2023 09:49:10 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230712103213.101770-1-manivannan.sadhasivam@linaro.org>
- <20230712103213.101770-14-manivannan.sadhasivam@linaro.org>
- <e6a5129a-db07-977d-2ecd-328a52cbcdc0@linaro.org> <20230712163406.GG102757@thinkpad>
-In-Reply-To: <20230712163406.GG102757@thinkpad>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Wed, 12 Jul 2023 19:48:55 +0300
-Message-ID: <CAA8EJpovHr1qxepVprk6UvnhKe+nu4VuziyKKgjV3UzommFz6g@mail.gmail.com>
-Subject: Re: [PATCH 11/14] scsi: ufs: host: Add support for parsing OPP
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     vireshk@kernel.org, nm@ti.com, sboyd@kernel.org,
-        myungjoo.ham@samsung.com, kyungmin.park@samsung.com,
-        cw00.choi@samsung.com, andersson@kernel.org,
-        konrad.dybcio@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        quic_asutoshd@quicinc.com, quic_cang@quicinc.com,
-        quic_nitirawa@quicinc.com, quic_narepall@quicinc.com,
-        quic_bhaskarv@quicinc.com, quic_richardp@quicinc.com,
-        quic_nguyenb@quicinc.com, quic_ziqichen@quicinc.com,
-        bmasney@redhat.com, krzysztof.kozlowski@linaro.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        d=1e100.net; s=20221208; t=1689180638; x=1691772638;
+        h=content-transfer-encoding:mime-version:message-id:to:from:cc
+         :in-reply-to:subject:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=0CLMJN6SQopTIwnwmNS9impJEqYpU9dNFLx7FPHnABU=;
+        b=gMwlw+lyMbCCDee5agRuVSJslgPn5l5DwQLXzI9H1tCfBXNPFPaVP3fZua/iMLayJl
+         C+xdAUFf/GMrf249by4LoRS8HSreVV2ZZG25CjRMA7NK528uDYpPFUJVBYL87QW4tRR7
+         ueYLjenq6lAEJIn5BlhUXKdhrJXs2R7LjPxqU2TuzrHVo31GeSLW7G9GF4RW612PeG2n
+         dCau2Le5Sdx5ksHc2An5tCoypGzag+QCLK6QeqzlPEcUV03apG2eO/uXopzccW+xVsh4
+         Oxm8Bjh1Am56x97nE5P7t23B0ZJarKIEJA33HUN3C7wP4vYZv3k7psAGQfHpdxk16Wtc
+         24zQ==
+X-Gm-Message-State: ABy/qLbdARa+8UJM333UWPNBA14tI4lB20N8XGg3Dkg95jPW2uhNB6gR
+        FSKM8WyDyPSdrFbng0ldPr4IVQ==
+X-Google-Smtp-Source: APBJJlHzshkB9/uo3WnGkgqVS9hVIpmiLA+SHbio5fXcwwotBH3KMQX2SI5UvVzgmJo4v+1Mv7LVWQ==
+X-Received: by 2002:a17:902:ce8b:b0:1b9:e591:db38 with SMTP id f11-20020a170902ce8b00b001b9e591db38mr7319689plg.8.1689180637681;
+        Wed, 12 Jul 2023 09:50:37 -0700 (PDT)
+Received: from localhost ([50.38.6.230])
+        by smtp.gmail.com with ESMTPSA id d2-20020a170902728200b001b7e63cfa19sm1795849pll.234.2023.07.12.09.50.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 12 Jul 2023 09:50:37 -0700 (PDT)
+Date:   Wed, 12 Jul 2023 09:50:37 -0700 (PDT)
+X-Google-Original-Date: Wed, 12 Jul 2023 09:49:48 PDT (-0700)
+Subject:     Re: [PATCH v7 0/9] Add STG/ISP/VOUT clock and reset drivers for StarFive JH7110
+In-Reply-To: <20230712092007.31013-1-xingyu.wu@starfivetech.com>
+CC:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de,
+        Conor Dooley <conor@kernel.org>, kernel@esmil.dk,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        aou@eecs.berkeley.edu, hal.feng@starfivetech.com,
+        xingyu.wu@starfivetech.com, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org
+From:   Palmer Dabbelt <palmer@dabbelt.com>
+To:     xingyu.wu@starfivetech.com
+Message-ID: <mhng-d3795910-5414-4555-bf3d-75ebe769ed2b@palmer-ri-x1c9a>
+Mime-Version: 1.0 (MHng)
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 12 Jul 2023 at 19:34, Manivannan Sadhasivam
-<manivannan.sadhasivam@linaro.org> wrote:
+On Wed, 12 Jul 2023 02:19:58 PDT (-0700), xingyu.wu@starfivetech.com wrote:
+> This patch serises are base on the basic JH7110 SYSCRG/AONCRG
+> drivers and add new partial clock drivers and reset supports
+> about System-Top-Group(STG), Image-Signal-Process(ISP)
+> and Video-Output(VOUT) for the StarFive JH7110 RISC-V SoC. These
+> clocks and resets could be used by DMA, VIN and Display modules.
 >
-> On Wed, Jul 12, 2023 at 04:15:12PM +0300, Dmitry Baryshkov wrote:
-> > On 12/07/2023 13:32, Manivannan Sadhasivam wrote:
-> > > OPP framework can be used to scale the clocks along with other entiti=
-es
-> > > such as regulators, performance state etc... So let's add support for
-> > > parsing OPP from devicetree. OPP support in devicetree is added throu=
-gh
-> > > the "operating-points-v2" property which accepts the OPP table defini=
-ng
-> > > clock frequency, regulator voltage, power domain performance state et=
-c...
-> > >
-> > > Since the UFS controller requires multiple clocks to be controlled fo=
-r
-> > > proper working, devm_pm_opp_set_config() has been used which supports
-> > > scaling multiple clocks through custom ufshcd_opp_config_clks() callb=
-ack.
-> > >
-> > > It should be noted that the OPP support is not compatible with the ol=
-d
-> > > "freq-table-hz" property. So only one can be used at a time even thou=
-gh
-> > > the UFS core supports both.
-> > >
-> > > Co-developed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.or=
-g>
-> > > ---
-> > >   drivers/ufs/host/ufshcd-pltfrm.c | 116 ++++++++++++++++++++++++++++=
-+++
-> > >   1 file changed, 116 insertions(+)
-> > >
-> > > diff --git a/drivers/ufs/host/ufshcd-pltfrm.c b/drivers/ufs/host/ufsh=
-cd-pltfrm.c
-> > > index 0b7430033047..068c22378c88 100644
-> > > --- a/drivers/ufs/host/ufshcd-pltfrm.c
-> > > +++ b/drivers/ufs/host/ufshcd-pltfrm.c
-> > > @@ -8,8 +8,10 @@
-> > >    *        Vinayak Holikatti <h.vinayak@samsung.com>
-> > >    */
-> > > +#include <linux/clk.h>
-> > >   #include <linux/module.h>
-> > >   #include <linux/platform_device.h>
-> > > +#include <linux/pm_opp.h>
-> > >   #include <linux/pm_runtime.h>
-> > >   #include <linux/of.h>
-> > > @@ -17,6 +19,8 @@
-> > >   #include "ufshcd-pltfrm.h"
-> > >   #include <ufs/unipro.h>
-> > > +#include <trace/events/ufs.h>
-> > > +
-> > >   #define UFSHCD_DEFAULT_LANES_PER_DIRECTION                2
-> > >   static int ufshcd_parse_clock_info(struct ufs_hba *hba)
-> > > @@ -205,6 +209,112 @@ static void ufshcd_init_lanes_per_dir(struct uf=
-s_hba *hba)
-> > >     }
-> > >   }
-> > > +static int ufshcd_opp_config_clks(struct device *dev, struct opp_tab=
-le *opp_table,
-> > > +                             struct dev_pm_opp *opp, void *data,
-> > > +                             bool scaling_down)
-> > > +{
-> > > +   struct ufs_hba *hba =3D dev_get_drvdata(dev);
-> > > +   struct list_head *head =3D &hba->clk_list_head;
-> > > +   struct ufs_clk_info *clki;
-> > > +   unsigned long freq;
-> > > +   u8 idx =3D 0;
-> > > +   int ret;
-> > > +
-> > > +   list_for_each_entry(clki, head, list) {
-> > > +           if (!IS_ERR_OR_NULL(clki->clk)) {
-> > > +                   freq =3D dev_pm_opp_get_freq_indexed(opp, idx++);
-> > > +
-> > > +                   /* Do not set rate for clocks having frequency as=
- 0 */
-> > > +                   if (!freq)
-> > > +                           continue;
-> >
-> > Can we omit these clocks from the opp table? I don't think they serve a=
-ny
-> > purpose.
-> >
+> Patches 1 and 2 are about the System-Top-Group clock and reset
+> generator(STGCRG) part. The first patch adds docunmentation to
+> describe STG bindings, and the second patch adds clock driver to
+> support STG clocks and resets as auxiliary device for JH7110.
 >
-> No, we cannot. OPP requires the clocks and opp-hz to be of same length. A=
-nd we
-> cannot omit those clocks as well since linux needs to gate control them.
-
-Hmm, I thought we push the list of "interesting" clocks through
-config->clock_names.
-
+> Patches 3 and 4 are about the Image-Signal-Process clock and reset
+> gennerator(ISPCRG) part. The first patch adds docunmentation to
+> describe ISP bindings, and the second patch adds clock driver to
+> support ISP clocks and resets as auxiliary device for JH7110.
+> And ISP clocks should power on and enable the SYSCRG clocks first
+> before registering.
 >
-> > Maybe it would even make sense to move this function to drivers/opp the=
-n, as
-> > it will be generic enough.
-> >
+> Patches 5 and 6 are about the Video-Output clock and reset
+> generator(VOUTCRG) part. The first patch adds docunmentation to
+> describe VOUT bindings, and the second patch adds clock driver to
+> support VOUT clocks and resets as auxiliary device for JH7110.
+> And VOUT clocks also should power on and enable the SYSCRG clocks
+> first before registering.
 >
-> There is already a generic function available in OPP core. But we cannot =
-use it
-> as we need to skip setting 0 freq and that's not applicable in OPP core a=
-s
-> discussed with Viresh offline.
-
-Ack.
-
+> Patch 7 adds struct members to support STG/ISP/VOUT resets.
+> Patch 8 adds external clocks which ISP and VOUT clock driver need.
+> Patch 9 adds device node about STGCRG, ISPCRG and VOUTCRG to JH7110 dts.
 >
-> - Mani
+> Changes since v6:
+> - Rebased on the Linux 6.5-rc1.
+> - Dropped the unnecessary selections in the Kconfig.
+> - Dropped the patches about the PMU node and MAINTIANERS.
+> - Add the reviews.
 >
-> > > +
-> > > +                   ret =3D clk_set_rate(clki->clk, freq);
-> > > +                   if (ret) {
-> > > +                           dev_err(dev, "%s: %s clk set rate(%ldHz) =
-failed, %d\n",
-> > > +                                   __func__, clki->name, freq, ret);
-> > > +                           return ret;
-> > > +                   }
-> > > +
-> > > +                   trace_ufshcd_clk_scaling(dev_name(dev),
-> > > +                           (scaling_down ? "scaled down" : "scaled u=
-p"),
-> > > +                           clki->name, hba->clk_scaling.target_freq,=
- freq);
-> > > +           }
-> > > +   }
-> > > +
-> > > +   return 0;
-> > > +} > +
-> > > +static int ufshcd_parse_operating_points(struct ufs_hba *hba)
-> > > +{
-> > > +   struct device *dev =3D hba->dev;
-> > > +   struct device_node *np =3D dev->of_node;
-> > > +   struct dev_pm_opp_config config =3D {};
-> > > +   struct ufs_clk_info *clki;
-> > > +   const char **clk_names;
-> > > +   int cnt, i, ret;
-> > > +
-> > > +   if (!of_find_property(np, "operating-points-v2", NULL))
-> > > +           return 0;
-> > > +
-> > > +   if (of_find_property(np, "freq-table-hz", NULL)) {
-> > > +           dev_err(dev, "%s: operating-points and freq-table-hz are =
-incompatible\n",
-> > > +                    __func__);
-> > > +           return -EINVAL;
-> > > +   }
-> > > +
-> > > +   cnt =3D of_property_count_strings(np, "clock-names");
-> > > +   if (cnt <=3D 0) {
-> > > +           dev_err(dev, "%s: Missing clock-names\n",  __func__);
-> > > +           return -ENODEV;
-> > > +   }
-> > > +
-> > > +   /* OPP expects clk_names to be NULL terminated */
-> > > +   clk_names =3D devm_kcalloc(dev, cnt + 1, sizeof(*clk_names), GFP_=
-KERNEL);
-> > > +   if (!clk_names)
-> > > +           return -ENOMEM;
-> > > +
-> > > +   /*
-> > > +    * We still need to get reference to all clocks as the UFS core u=
-ses
-> > > +    * them separately.
-> > > +    */
-> > > +   for (i =3D 0; i < cnt; i++) {
-> > > +           ret =3D of_property_read_string_index(np, "clock-names", =
-i,
-> > > +                                               &clk_names[i]);
-> > > +           if (ret)
-> > > +                   return ret;
-> > > +
-> > > +           clki =3D devm_kzalloc(dev, sizeof(*clki), GFP_KERNEL);
-> > > +           if (!clki)
-> > > +                   return -ENOMEM;
-> > > +
-> > > +           clki->name =3D devm_kstrdup(dev, clk_names[i], GFP_KERNEL=
-);
-> > > +           if (!clki->name)
-> > > +                   return -ENOMEM;
-> > > +
-> > > +           if (!strcmp(clk_names[i], "ref_clk"))
-> > > +                   clki->keep_link_active =3D true;
-> > > +
-> > > +           list_add_tail(&clki->list, &hba->clk_list_head);
-> > > +   }
-> > > +
-> > > +   config.clk_names =3D clk_names,
-> > > +   config.config_clks =3D ufshcd_opp_config_clks;
-> > > +
-> > > +   ret =3D devm_pm_opp_set_config(dev, &config);
-> > > +   if (ret)
-> > > +           return ret;
-> > > +
-> > > +   ret =3D devm_pm_opp_of_add_table(dev);
-> > > +   if (ret) {
-> > > +           dev_err(dev, "Failed to add OPP table: %d\n", ret);
-> > > +           return ret;
-> > > +   }
-> > > +
-> > > +   hba->use_pm_opp =3D true;
-> > > +
-> > > +   return 0;
-> > > +}
-> > > +
-> > >   /**
-> > >    * ufshcd_get_pwr_dev_param - get finally agreed attributes for
-> > >    *                            power mode change
-> > > @@ -371,6 +481,12 @@ int ufshcd_pltfrm_init(struct platform_device *p=
-dev,
-> > >     ufshcd_init_lanes_per_dir(hba);
-> > > +   err =3D ufshcd_parse_operating_points(hba);
-> > > +   if (err) {
-> > > +           dev_err(dev, "%s: OPP parse failed %d\n", __func__, err);
-> > > +           goto dealloc_host;
-> > > +   }
-> > > +
-> > >     err =3D ufshcd_init(hba, mmio_base, irq);
-> > >     if (err) {
-> > >             dev_err(dev, "Initialization failed\n");
-> >
-> > --
-> > With best wishes
-> > Dmitry
-> >
+> v6: https://lore.kernel.org/all/20230518101234.143748-1-xingyu.wu@starfivetech.com/
 >
-> --
-> =E0=AE=AE=E0=AE=A3=E0=AE=BF=E0=AE=B5=E0=AE=A3=E0=AF=8D=E0=AE=A3=E0=AE=A9=
-=E0=AF=8D =E0=AE=9A=E0=AE=A4=E0=AE=BE=E0=AE=9A=E0=AE=BF=E0=AE=B5=E0=AE=AE=
-=E0=AF=8D
+> Changes since v5:
+> - Rebased on the Linux 6.4-rc2.
+> - Modified the reset name about VOUTCRG to fix the error with
+>   CONFIG_FORTIFY_SOURCE=y
+> - Added the patch about pmu node.
+>
+> v5: https://lore.kernel.org/all/20230424135409.6648-1-xingyu.wu@starfivetech.com/
+>
+> Changes since v4:
+> - Rebased on the lastest patches about fixing the basic clock and reset drivers.
+> - Dropped the 'dev_set_drvdata()' in STG clock driver.
+> - Modified the data with 'dev_set_drvdata()' in ISP/VOUT clock driver
+>   and move the struct about the data to JH7110 header file, which both
+>   ISP and VOUT clock drivers will use.
+>
+> v4: https://lore.kernel.org/all/20230411135558.44282-1-xingyu.wu@starfivetech.com/
+>
+> Changes since v3:
+> - Rebased on the lastest JH71X0 clock and reset driver of patchset[1]
+>   and modified the parameters of the register reset functions.
+> - The patch 1 combined three commits on STG/ISP/VOUT resets into one.
+>   And Changed the auxiliary_device_id name from
+>   "clk_starfive_jh71x0.reset-*" to "clk_starfive_jh7110_sys.rst-*".
+> - Added a maintainer in STARFIVE JH71X0 CLOCK DRIVERS.
+>
+> v3: https://lore.kernel.org/all/20230314124404.117592-1-xingyu.wu@starfivetech.com/
+>
+> Changes since v2:
+> Patch 1:
+> - Dropped the modification of maintainers.
+> - Modified clock and reset names in the dt-bindings header files.
+> Patch 3:
+> - Added 'Emil Renner Berthing' as the author.
+> - Used 'default m' in Kconfig file.
+> - Changed the flags of 'CLK_IGNORE_UNUSED' to 0 or 'CLK_IS_CRITICAL'.
+> Patch 4:
+> - Dropped the 'reset-names' property.
+> - Shortened the clock and reset names in the dt-bindings header files.
+> Pacth 6:
+> - Used 'default m' in Kconfig file.
+> - Changed the flags of 'CLK_IGNORE_UNUSED' to 0.
+> - Set reset_control struct to a local variable because it just is used
+>   one time in probe.
+> Pacth 7:
+> - Dropped the 'reset-names' property.
+> Patch 9:
+> - Used 'default m' in Kconfig file.
+> - Set reset_control struct to a local variable because it just is used
+>   one time in probe.
+> Patch 10:
+> - Changed the order of externel clock in alphanumerical order.
+> Patch 11:
+> - Dropped the 'reset-names' property in ispcrg and voutcrg node.
+>
+> v2: https://lore.kernel.org/all/20230221083323.302471-1-xingyu.wu@starfivetech.com/
+>
+> Changes since v1:
+> - Modified the binding and dropped the indentation.
+> - Removed the useless header files in the drivers.
+> - Used an array lookup instead of a pile of conditions about parent
+>   clocks' name.
+> - Added clocks operation on driver remove.
+>
+> v1: https://lore.kernel.org/all/20230120024445.244345-1-xingyu.wu@starfivetech.com/
+>
+> Emil Renner Berthing (1):
+>   clk: starfive: Add StarFive JH7110 System-Top-Group clock driver
+>
+> Xingyu Wu (8):
+>   dt-bindings: clock: Add StarFive JH7110 System-Top-Group clock and
+>     reset generator
+>   dt-bindings: clock: Add StarFive JH7110 Image-Signal-Process clock and
+>     reset generator
+>   clk: starfive: Add StarFive JH7110 Image-Signal-Process clock driver
+>   dt-bindings: clock: Add StarFive JH7110 Video-Output clock and reset
+>     generator
+>   clk: starfive: Add StarFive JH7110 Video-Output clock driver
+>   reset: starfive: jh7110: Add StarFive STG/ISP/VOUT resets support
+>   riscv: dts: starfive: jh7110: Add DVP and HDMI TX pixel external
+>     clocks
+>   riscv: dts: starfive: jh7110: Add STGCRG/ISPCRG/VOUTCRG nodes
+>
+>  .../clock/starfive,jh7110-ispcrg.yaml         |  87 +++++++
+>  .../clock/starfive,jh7110-stgcrg.yaml         |  82 ++++++
+>  .../clock/starfive,jh7110-voutcrg.yaml        |  90 +++++++
+>  .../jh7110-starfive-visionfive-2.dtsi         |   8 +
+>  arch/riscv/boot/dts/starfive/jh7110.dtsi      |  67 +++++
+>  drivers/clk/starfive/Kconfig                  |  24 ++
+>  drivers/clk/starfive/Makefile                 |   3 +
+>  .../clk/starfive/clk-starfive-jh7110-isp.c    | 232 +++++++++++++++++
+>  .../clk/starfive/clk-starfive-jh7110-stg.c    | 173 +++++++++++++
+>  .../clk/starfive/clk-starfive-jh7110-vout.c   | 239 ++++++++++++++++++
+>  drivers/clk/starfive/clk-starfive-jh7110.h    |   6 +
+>  .../reset/starfive/reset-starfive-jh7110.c    |  30 +++
+>  .../dt-bindings/clock/starfive,jh7110-crg.h   |  74 ++++++
+>  .../dt-bindings/reset/starfive,jh7110-crg.h   |  60 +++++
+>  14 files changed, 1175 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/starfive,jh7110-ispcrg.yaml
+>  create mode 100644 Documentation/devicetree/bindings/clock/starfive,jh7110-stgcrg.yaml
+>  create mode 100644 Documentation/devicetree/bindings/clock/starfive,jh7110-voutcrg.yaml
+>  create mode 100644 drivers/clk/starfive/clk-starfive-jh7110-isp.c
+>  create mode 100644 drivers/clk/starfive/clk-starfive-jh7110-stg.c
+>  create mode 100644 drivers/clk/starfive/clk-starfive-jh7110-vout.c
 
+Happy to take it through the RISC-V tree if folks want, but IMO it's 
+probably better aimed at the clock/reset folks.  Either way I'd want to 
+give them a chance to ack/review it, so I'm going to drop it from my 
+list.
 
+Acked-by: Palmer Dabbelt <palmer@rivosinc.com>
 
---=20
-With best wishes
-Dmitry
+in case anyone's looking for it, though.
+
+Thanks!
