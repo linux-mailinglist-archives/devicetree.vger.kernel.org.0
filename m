@@ -2,66 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C36FA75005A
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 09:46:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7637475005D
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 09:46:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230402AbjGLHqB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jul 2023 03:46:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32968 "EHLO
+        id S231544AbjGLHqX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jul 2023 03:46:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33074 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230308AbjGLHqA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 03:46:00 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B15721739
-        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 00:45:58 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id 2adb3069b0e04-4fa16c6a85cso10351896e87.3
-        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 00:45:58 -0700 (PDT)
+        with ESMTP id S229660AbjGLHqT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 03:46:19 -0400
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2A6E1990
+        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 00:46:15 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-51fe00bee8cso401061a12.0
+        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 00:46:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689147957; x=1691739957;
+        d=linaro.org; s=google; t=1689147974; x=1691739974;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=pebAsfz/DVvDsj5RbKcteoVoBJD27FSwU5r3Wri7LCk=;
-        b=HL6YR07d/vOgm0OMRsUstV38BpDXG0hMCdU9gCh0P3Yyz4eLQA85StITyqM9W4tcM8
-         nO46ikXlottN694F81ETrKz7ojBsCP2xeSSgKg4XAo5OBnH0VxyjzkMmvz1VXgiVhcaZ
-         0gGbXBlmZVwlyvcUZEDM3QlYfI6IgM9n+/GqzWvJjWDEs5hVVf9bcUg99oGPdST/aI6X
-         U6o4vVRfWaFZpn/qCiUAEV8HkWhxuELCJAepAzw/mxDfmTO4pfpHKylApcbnMsR9yvcJ
-         OEIIevT7vjxTbT6YyL2ldHfj/kxUzqGn8rnNmYKtyJpypZ8BEjFz7RSoASE/OWnjTh+F
-         9zfQ==
+        bh=VkQhsBhyouPRGGkx2Os6kmEjQJrOhH+54+849FheFKk=;
+        b=W2xHs3pWDOEFfM8IKIBBY2fadazpwvsfVPb247EQrIF67SnS1GW3YVYZmHH5QjzyMg
+         Baid2bTBC0t9imnegscXZ+eXs0fLTX2JkwgxEfEMFI8By5ytXGdz2rbSB9rv0x5Xpo9m
+         nqI2ZUmvLmAck7o6/P2qatgsyDbvk81Fo3bd/bKvjowLumH7aaQgwENla82YdEpokEiP
+         HnDPaNMq/5ct7HnpWuYJj6lGO/5C5hIVTkKAMWVW6o6mWz8tvz2A0Ic1HoAH114NVDo9
+         kRBM9Jm/9jO+4OkS1XclH/12LgRl1hmQaAaUsQn/Lnys3UuIkz6B51wpEJtGRGg3BQV7
+         xt+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689147957; x=1691739957;
+        d=1e100.net; s=20221208; t=1689147974; x=1691739974;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=pebAsfz/DVvDsj5RbKcteoVoBJD27FSwU5r3Wri7LCk=;
-        b=WJWp03O1KutOdsXhtvLOnrI33E6ZdN2/r/hqSm+39tXY58GwkNfLjBvt61z/XT5vik
-         UuELrXbVVhigYwkqPdGoWyzcfTQbVZESmreIo16SiGQwIjah/+NVAzKqqyw8Tl5BfSYw
-         PgtmkIP30ANFVGdur6FAGKgC6rtHrbQwV95bO/DBBjq4Z/Gn+JoPNXSt8lI8B8V4+gFF
-         YHh721w+rMVntEmrZnrONuDoS1wm/HkJXSqc5iph7B0RfgUW/wF1OSfONK2IbWAfp9W2
-         /Fru3IaGU9gm3TRan8LTan2vXiQKZZFXzUvXb1+YRQPxPBWthpLhkcmAusIxfCqyHbRT
-         8tSA==
-X-Gm-Message-State: ABy/qLYP31FGl0vcfNFYA0OZX6d3ve17uLuod1tWLDW8v0LABzzFncMY
-        KRPgHqvNo02OXVbU51LlQEl+NA==
-X-Google-Smtp-Source: APBJJlGWq3lc5m7abWB+8YEqLMEFLf3rl5U2j6t71fkG4aRelp0lwjWFC5YDxhyyi9mcuDlTUIL5LA==
-X-Received: by 2002:a05:6512:3da6:b0:4f9:5933:8eea with SMTP id k38-20020a0565123da600b004f959338eeamr18436879lfv.3.1689147956959;
-        Wed, 12 Jul 2023 00:45:56 -0700 (PDT)
+        bh=VkQhsBhyouPRGGkx2Os6kmEjQJrOhH+54+849FheFKk=;
+        b=PQhmOfXWPPUwxcJvGBxA4PX9oIffV0btYg6OqrLoniDkw7cTlO7ZniYb9UhXb/veko
+         PlTexCt8CPZpPSW+aaOWHFLH6stfKyV9qf7KQlFa7ZU4h2acoDUjQ+EtFp8S3M1/CVac
+         /BV/bwKln4DD2wK2WjyMKnRtGt6t0I+rSLIkO/rR7xkzwu75ivPjKe91mY0RR4QpJpnU
+         dAWFj4mVrDBod/suJ5f9y69HxNKFBcrfSTFty/yjXP/e2qvEgNggo8XqZ9P+H+5XJMSQ
+         zNIo9wRqQvVM2aSXfEz0fWEJEZANuSwnk+YJoofsB5twHvc7K4CTs1yvdJCYXYoZfsn6
+         erxA==
+X-Gm-Message-State: ABy/qLaeG5La8p5dZDu2cMKdFX0tv6qyEvunVp5yZYvon/vTlHm9bkHN
+        IB7rruNUcW0Pr8uXRdEghIunwg==
+X-Google-Smtp-Source: APBJJlEeXMefzjr/m4Nw5WK8HUu89TqyVraSow6vT9vuSwR1vo7ZNClAVgw81gr+2MpypfveDLHzHQ==
+X-Received: by 2002:a17:906:253:b0:993:f349:c98c with SMTP id 19-20020a170906025300b00993f349c98cmr12271515ejl.4.1689147974422;
+        Wed, 12 Jul 2023 00:46:14 -0700 (PDT)
 Received: from krzk-bin.. ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id b22-20020aa7dc16000000b0051bed21a635sm2352706edu.74.2023.07.12.00.45.55
+        by smtp.gmail.com with ESMTPSA id h7-20020a1709063c0700b0098e42bef736sm2181819ejg.176.2023.07.12.00.46.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Jul 2023 00:45:56 -0700 (PDT)
+        Wed, 12 Jul 2023 00:46:14 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Hoan Tran <hoan@os.amperecomputing.com>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Andy Shevchenko <andy@kernel.org>,
+To:     Manivannan Sadhasivam <mani@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] dt-bindings: gpio: snps,dw-apb: allow gpio-line-names
-Date:   Wed, 12 Jul 2023 09:45:53 +0200
-Message-Id: <20230712074553.35907-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] arm64: dts: bitmain: lowercase unit addresses
+Date:   Wed, 12 Jul 2023 09:46:11 +0200
+Message-Id: <20230712074611.35952-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -75,31 +72,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Allow the GPIO controller subnode to define GPIO names.  Already used in
-at least on DTS:
+Unit addresses are expected to be lower case.  Pointed also by W=1
+builds:
 
-  bitmain/bm1880-sophon-edge.dtb: gpio@50027000: gpio-controller@0: 'gpio-line-names' does not match any of the regexes: 'pinctrl-[0-9]+'
+  Warning (simple_bus_reg): /soc/serial@5801A000: simple-bus unit address format error, expected "5801a000"
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- Documentation/devicetree/bindings/gpio/snps,dw-apb-gpio.yaml | 4 ++++
- 1 file changed, 4 insertions(+)
+ arch/arm64/boot/dts/bitmain/bm1880.dtsi | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/gpio/snps,dw-apb-gpio.yaml b/Documentation/devicetree/bindings/gpio/snps,dw-apb-gpio.yaml
-index b391cc1b4590..209f03bba0a7 100644
---- a/Documentation/devicetree/bindings/gpio/snps,dw-apb-gpio.yaml
-+++ b/Documentation/devicetree/bindings/gpio/snps,dw-apb-gpio.yaml
-@@ -61,6 +61,10 @@ patternProperties:
-       '#gpio-cells':
-         const: 2
+diff --git a/arch/arm64/boot/dts/bitmain/bm1880.dtsi b/arch/arm64/boot/dts/bitmain/bm1880.dtsi
+index 53a9b76057aa..22a200fb07d2 100644
+--- a/arch/arm64/boot/dts/bitmain/bm1880.dtsi
++++ b/arch/arm64/boot/dts/bitmain/bm1880.dtsi
+@@ -184,7 +184,7 @@ uart0: serial@58018000 {
+ 			status = "disabled";
+ 		};
  
-+      gpio-line-names:
-+        minItems: 1
-+        maxItems: 32
-+
-       ngpios:
-         default: 32
-         minimum: 1
+-		uart1: serial@5801A000 {
++		uart1: serial@5801a000 {
+ 			compatible = "snps,dw-apb-uart";
+ 			reg = <0x0 0x5801a000 0x0 0x2000>;
+ 			clocks = <&clk BM1880_CLK_UART_500M>,
+@@ -197,7 +197,7 @@ uart1: serial@5801A000 {
+ 			status = "disabled";
+ 		};
+ 
+-		uart2: serial@5801C000 {
++		uart2: serial@5801c000 {
+ 			compatible = "snps,dw-apb-uart";
+ 			reg = <0x0 0x5801c000 0x0 0x2000>;
+ 			clocks = <&clk BM1880_CLK_UART_500M>,
+@@ -210,7 +210,7 @@ uart2: serial@5801C000 {
+ 			status = "disabled";
+ 		};
+ 
+-		uart3: serial@5801E000 {
++		uart3: serial@5801e000 {
+ 			compatible = "snps,dw-apb-uart";
+ 			reg = <0x0 0x5801e000 0x0 0x2000>;
+ 			clocks = <&clk BM1880_CLK_UART_500M>,
 -- 
 2.34.1
 
