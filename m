@@ -2,135 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E01A7505A0
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 13:09:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BC3977505AA
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 13:12:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232562AbjGLLJu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jul 2023 07:09:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43178 "EHLO
+        id S232825AbjGLLM1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jul 2023 07:12:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43780 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232486AbjGLLJt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 07:09:49 -0400
-Received: from mail-pf1-x42c.google.com (mail-pf1-x42c.google.com [IPv6:2607:f8b0:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54E5310CB
-        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 04:09:48 -0700 (PDT)
-Received: by mail-pf1-x42c.google.com with SMTP id d2e1a72fcca58-6686c74183cso6042799b3a.1
-        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 04:09:48 -0700 (PDT)
+        with ESMTP id S232848AbjGLLM1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 07:12:27 -0400
+Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com [IPv6:2607:f8b0:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 901121727
+        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 04:12:25 -0700 (PDT)
+Received: by mail-pf1-x42b.google.com with SMTP id d2e1a72fcca58-666e3b15370so4064777b3a.0
+        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 04:12:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1689160188; x=1691752188;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=WbKFLGGxnO5TsvoMTajzHD0NXptuvXCtrTMuAdwT1mY=;
-        b=XXLfuSnhT9hjGYE+SPfEcjSdPv40QUS+tTjfpr6MX/dToYh9QpBQ/kyZv/5PnHxqRG
-         AzwfrV87nVqIpApe8T+59F5ngK1reElykSPE0NVp46eTotAVpfcpxnZfGQ8NWjNXVPi1
-         No627XMUFrkD0+FBRViBI4zuRa9wOezxXq/qI5EFJgd5LZXuwjWgNjBx4JqoaHvvLIMy
-         miVDRnNK4LRl+SmdevpV69x5nGiH7sU9UxlYxaAfIKEkfY3WkmhBpGO4GRSCTwlQhGUA
-         EBPEp9+jxMDfmMimgIMUVCQqdDDSA/2Jx9jQhmgEpaIZ7pQXnGh/6aZInncrG32LM+5p
-         Yxwg==
+        d=linaro.org; s=google; t=1689160345; x=1691752345;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=nVwe3oATxadInKWfhPahYmr2Wuk+PoT6QXJO53ETr60=;
+        b=Jy4LBq1/y7Q0k9uVaWzUYa3AMrhNie3O3EdPzirb8suL2pzU/POTsrG1VzQFAz+gsq
+         AmHYiC+BfeddTyFWOP5hyJrUxkb1N9VRdWIkKo3WqUWGiJUU3V00Be7rwC2zbTmUhfRB
+         N/TcnPDEm496ciCi/6rRvYwN4nQbYW5xLvT/x3c8fdRwDRlpQ/TpcUJu5hSCxFANqo5Z
+         IVvAOhkvrmYBKJ9JBwYOgKehjoJGw9s2Y3snVz6aE89RKM9BGNWEZ5v6KBaxOq9e4h+s
+         G+rGGzFurBKpa6wSXSltZ1WxcBvZrKPEKXPH7uJTKqX62QsBo6Z/E93RcRHjyXu3CI1B
+         La4g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689160188; x=1691752188;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=WbKFLGGxnO5TsvoMTajzHD0NXptuvXCtrTMuAdwT1mY=;
-        b=CPKwGuLCsi4sQ3q8sltXtBheOVx+Mpd/JUBixXAnJm2AGjk7JoRFXKfeQX0Zi25UU+
-         wd5WmHCVNPyXW7IAvfl9ldW95Ph2XEJNwO/4s7OdIpW437yNR1+CfqGjUUDvubAF1qgy
-         KSQLu8erD91V4V9o6cOdytBzDCrLZLWiH803Do6CGsGEqO7zK2ShTmFYgeNlIuUBsZn3
-         Jf8+B0aJFzXYkZso5J+Q1vZJa+FmtTHkCDnx10XZKJULyXHOxZdHM2IF8yBatgC84Ltg
-         N5ApEVk6Z41bUQGH27/8sWWYv+S5WsL8vD/M5WaQSbOpzR46BCL6EN3nuPXp2niokxJl
-         R8hg==
-X-Gm-Message-State: ABy/qLZKvEYAiN+1DP9/+P6BTGuzMUydBX/yAc9UGYvG3hwiAdqY66DJ
-        V7htH9PwZED9W181OB8OtBS2qA==
-X-Google-Smtp-Source: APBJJlEkj+4MqB2CPiTfqApDhEK6QrNrJLvp3vE6L50wX4eg7NswLMhoNs9Gwav0qsQEF28PHRA1CQ==
-X-Received: by 2002:a17:903:11c8:b0:1b8:3601:9bf7 with SMTP id q8-20020a17090311c800b001b836019bf7mr22217656plh.24.1689160187849;
-        Wed, 12 Jul 2023 04:09:47 -0700 (PDT)
-Received: from hsinchu16 (59-124-168-89.hinet-ip.hinet.net. [59.124.168.89])
-        by smtp.gmail.com with ESMTPSA id w15-20020a1709027b8f00b001b9df74ba5asm3674375pll.210.2023.07.12.04.09.45
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Wed, 12 Jul 2023 04:09:47 -0700 (PDT)
-Date:   Wed, 12 Jul 2023 19:09:43 +0800
-From:   Eric Lin <eric.lin@sifive.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     conor@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dslin1010@gmail.com,
-        Zong Li <zong.li@sifive.com>, vincent.chen@sifive.com,
-        Greentime Hu <greentime.hu@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>
-Subject: Re: [PATCH 3/3] dt-bindings: riscv: sifive: Add SiFive Private L2
- cache controller
-Message-ID: <20230712110908.GA23216@hsinchu16>
-References: <20230616063210.19063-1-eric.lin@sifive.com>
- <20230616063210.19063-4-eric.lin@sifive.com>
- <2437bda9-bbdb-ad80-7201-1e16e1388890@linaro.org>
- <CAPqJEFoTsmVZ4kvsSB0RkQZaQGyXC96KV6RvdpeC5XxURCOZ0w@mail.gmail.com>
- <8c9ed2d4-83ab-ecc0-a300-e6bc8e2047b6@linaro.org>
- <CAPqJEFqhmxksvEgvC61cJcRGR0DrSWDZxJC3J7tdgcG8UY+sFw@mail.gmail.com>
- <f5275617-d68c-c76b-d799-106f67cc2071@linaro.org>
+        d=1e100.net; s=20221208; t=1689160345; x=1691752345;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=nVwe3oATxadInKWfhPahYmr2Wuk+PoT6QXJO53ETr60=;
+        b=grwbsKIyhipI9v1PzQ11k/c5qm9rDZ1HDlaoqJ4n5i+9BYQBshftB1b48VJzZpQGny
+         LUGtFhbvDZcDI8g9BsQCEnVr/V9lmxEXSzIxRdG0n15D4l7RqircI4689mpSb4AGW0F2
+         xl9k/1KYyHwtoEKqzxAeEBc1edeNY9DVTgV5isWDVQ2mvxo4Agq0kRcab38ok3OBpzEF
+         KTDIN5B4P6TQAS92fa3b/2f4ihM3gzyi2AM9CIfGIRvWxUnhcke+NS2hjl8dM37tulAu
+         arfXQ/CfbCH9VF3H1LLaprFrXns/IQyil+1PRFcd3ww/DQbtv1j7888SakXHJR96xp1l
+         Hdxw==
+X-Gm-Message-State: ABy/qLZQM6fk9uCO+XNV9mi1awRmuN4yXxWT/7Mm+feAgPI3f7ttCdnD
+        7ObEWZbiSnluMBKwlIWoiI+C
+X-Google-Smtp-Source: APBJJlFnl85MjQWlkwn1Zyl5TcKEjspNtR5ngVg7G/HHZviVEXVBaK04YsU6EWzsFEru4iHW4c8IVA==
+X-Received: by 2002:a17:903:32ce:b0:1b8:b4e5:15c2 with SMTP id i14-20020a17090332ce00b001b8b4e515c2mr17966878plr.22.1689160345081;
+        Wed, 12 Jul 2023 04:12:25 -0700 (PDT)
+Received: from thinkpad ([117.207.27.131])
+        by smtp.gmail.com with ESMTPSA id c1-20020a170902848100b001b03cda6389sm3695566plo.10.2023.07.12.04.12.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 12 Jul 2023 04:12:24 -0700 (PDT)
+Date:   Wed, 12 Jul 2023 16:42:08 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     John Garry <john.g.garry@oracle.com>
+Cc:     vireshk@kernel.org, nm@ti.com, sboyd@kernel.org,
+        myungjoo.ham@samsung.com, kyungmin.park@samsung.com,
+        cw00.choi@samsung.com, andersson@kernel.org,
+        konrad.dybcio@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        quic_asutoshd@quicinc.com, quic_cang@quicinc.com,
+        quic_nitirawa@quicinc.com, quic_narepall@quicinc.com,
+        quic_bhaskarv@quicinc.com, quic_richardp@quicinc.com,
+        quic_nguyenb@quicinc.com, quic_ziqichen@quicinc.com,
+        bmasney@redhat.com, krzysztof.kozlowski@linaro.org
+Subject: Re: [PATCH 00/14] UFS: Add OPP and interconnect support
+Message-ID: <20230712111208.GA102757@thinkpad>
+References: <20230712103213.101770-1-manivannan.sadhasivam@linaro.org>
+ <35256e49-2a34-1334-698c-161d443ab3fc@oracle.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <f5275617-d68c-c76b-d799-106f67cc2071@linaro.org>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <35256e49-2a34-1334-698c-161d443ab3fc@oracle.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Jul 01, 2023 at 10:22:25AM +0200, Krzysztof Kozlowski wrote:
-> On 28/06/2023 18:31, Eric Lin wrote:
+On Wed, Jul 12, 2023 at 12:02:37PM +0100, John Garry wrote:
+> Did you bcc linux-scsi on this series?
 > 
-> >>>>
-> >>>>> +      - enum:
-> >>>>> +          - sifive,pL2Cache0
-> >>>>> +          - sifive,pL2Cache1
-> >>>>
-> >>>> What is "0" and "1" here? What do these compatibles represent? Why they
-> >>>> do not have any SoC related part?
-> >>>
-> >>> The pL2Cache1 has minor changes in hardware, but it can use the same
-> >>> pl2 cache driver.
-> >>
-> >> Then why aren't they compatible?
-> >>
-> > 
-> > The pL2Cache1 has removed some unused bits in the register compared to
-> > pl2Cache0.
-> > From the hardware perspective, they are not compatible but they can
-> > share the same pl2 cache driver in software.
-> 
-> So they are compatible... If they were not compatible, you wouldn't be
-> able to use the same match in the driver.
-> 
-> > Thus, we would like to keep both. It would be great if you can provide
-> > some suggestions. Thanks.
-> 
-> I propose to make them compatible, like every other piece of SoC. I
-> don't see any benefit of having them separate.
+> I am just wondering why it came directly to my inbox and I am not the to: or
+> cc: list. I also notice replies in the archives which I have not received...
 > 
 
-Hi Krzysztof,
+I initially missed CCing scsi list and maintainers. So instead of resending the
+series (since it has too many people CCed), I just bounced the patches to scsi
+list and maintainers using Mutt.
 
-Sorry for the late reply.
-The pl2 cache is our internal platform IP and is not part of any SoC. 
+From the next iteration, I will make sure to add everyone. Sorry for the
+trouble.
 
-The reason why this driver is compatible with the hardware "pl2cache0" and hardware "pl2cache1"
-is that it doesn't program the different parts of the config register
-However, our internal software (e.g., bare-metal software) will program these different parts,
-so it needs to rely on the different compatible string to identify the hardware.
-  
-Additionally, we would like the compatible strings to reflect which hardware is being used Thanks.
+- Mani
 
-Best regards,
-Eric Lin
+> Thanks,
+> John
 
-> Best regards,
-> Krzysztof
-> 
+-- 
+மணிவண்ணன் சதாசிவம்
