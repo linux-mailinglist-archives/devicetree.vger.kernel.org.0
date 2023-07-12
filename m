@@ -2,120 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 59BC17500DB
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 10:11:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 089B2750138
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 10:20:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231886AbjGLILb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jul 2023 04:11:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44752 "EHLO
+        id S232051AbjGLIUP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jul 2023 04:20:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51164 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229909AbjGLILb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 04:11:31 -0400
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BCF3CA
-        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 01:11:29 -0700 (PDT)
-Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-51e5da79223so3451403a12.1
-        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 01:11:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689149488; x=1691741488;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=jHkdHjFrM5AfGKbyzbpp4QoR422wNpy9DNc8+HlwIYs=;
-        b=AzJbvXxgl40Rh5LpkFIrmNi/6CwG7cp23unkfzcyCmTh6Vfe+T7HaKu0u8e6ykzg8z
-         95T0Ho47gQFvBalUnsu3IHe3eFf2cX0jj/hlHVrQjRdVT2IFsSGObXP+3s21P0MlcY3k
-         jy/JBDKyKvq6v55fEeFaOAkDNM9jyuyuhB5md3cx1GKu2WpkcHN2gtUH1Bs/pZNq5L8j
-         1DOyiNXPxUGruMBe9F0xnub1wQKKSLACgevYyxMUQmHo5JATS4U1iHcswqNQcq01J4TU
-         y5bJJhyil0rBNkljL0YPehL6poUpoO9/hKvmRsC4IR6EeC3Idf0i1LpZtbUwOS2SuhON
-         LM+g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689149488; x=1691741488;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=jHkdHjFrM5AfGKbyzbpp4QoR422wNpy9DNc8+HlwIYs=;
-        b=QfYFpgIZArrSFO+JUcYJvUcP1eGZxB04XlF+G8htCYQ2qA+Ib9jgc2C7ecnAzBSiYg
-         2TBDmrhD78Kpepx26WxLOx5qGVlFX0VInlrowRksX3v0NwDb0foyq0jsfLSQSz7gcoRO
-         nWQkCT2YBGYv1QNaU2xM2eqfqJNRvto4m39xiR+a89k6utt0NSUjyK0QgkccSJM0O2PB
-         cLFEq1ZSCJ+HxkwgG3bEyufSesgnYLhow0whUhXQSIGzbycTGRAfuqHk9Q+QodmbngvB
-         cLtFUGokhS8SAmVYqOrLD3XAQGN6cFzI5WF4H03qfm6iwHobqtF4ZzGIh2DR725DLyEM
-         WwMw==
-X-Gm-Message-State: ABy/qLZNH504OrJ9vXYB6sZjqQV5uJJzWFG4nCsTqwgFks3JoQbDKQTD
-        GwyQ6OKXvrjjpgLGtkcR3L68Ew==
-X-Google-Smtp-Source: APBJJlG9168Y3yKpvGkO+PSj4hvN4VDwnF2KzycYIa/xWbJHW3ppkxTBzsAdI7Sty/NnqkSrhIdnRA==
-X-Received: by 2002:aa7:c544:0:b0:51e:1bf3:f4ac with SMTP id s4-20020aa7c544000000b0051e1bf3f4acmr15556921edr.27.1689149488039;
-        Wed, 12 Jul 2023 01:11:28 -0700 (PDT)
-Received: from krzk-bin.. ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id t3-20020aa7d4c3000000b0051d87e72159sm2368024edr.13.2023.07.12.01.11.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Jul 2023 01:11:27 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>,
+        with ESMTP id S232167AbjGLITe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 04:19:34 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BBDE26B8;
+        Wed, 12 Jul 2023 01:16:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1689149802; x=1720685802;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=eeJoNzKNu6qUVnwz+5GZhUrJMC3KM11Xsjrz/i3wt6I=;
+  b=bORo2nyuRMXkxuqqcETLxbxwuiJm5b6Ilf9kAJg6GwDe2mpDSF8x7Ls2
+   VTVwmhJSJLaAqHumMcmdkD2kPlutV16JT4cK1TC8Y7dwYu77zPwW4mHzD
+   PF4NCcQOOGSrHqzOhLF2H+2MCMyPv4EI9dRqbUoTJpkmVa9Kd337AIaVY
+   9VOCxiPSUcubbrnk4idBojz1iKNp9WoaR4lTa/EK0tL2cY3hclD5DTJmY
+   6h6+/TO6D1viSBp6PltN6lbBpvrJ3lYagNtL3MRsLRvJUCifu0ITAMbBw
+   sxwObKSodkhO3u/uuHnJ1b/yLgFzzcECNHKLmySLWDIAaOb64+rLKesW2
+   w==;
+X-IronPort-AV: E=Sophos;i="6.01,199,1684825200"; 
+   d="scan'208";a="235030971"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 12 Jul 2023 01:15:47 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Wed, 12 Jul 2023 01:15:40 -0700
+Received: from wendy.microchip.com (10.10.115.15) by chn-vm-ex04.mchp-main.com
+ (10.10.85.152) with Microsoft SMTP Server id 15.1.2507.21 via Frontend
+ Transport; Wed, 12 Jul 2023 01:15:38 -0700
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     <geert+renesas@glider.be>
+CC:     <conor@kernel.org>, <conor.dooley@microchip.com>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Rahul Tanwar <rtanwar@maxlinear.com>,
-        Eliav Farber <farbere@amazon.com>, linux-hwmon@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] dt-bindings: hwmon: moortec,mr75203: fix multipleOf for coefficients
-Date:   Wed, 12 Jul 2023 10:11:24 +0200
-Message-Id: <20230712081124.110345-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
+        <linux-renesas-soc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-riscv@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v1] riscv: dts: renesas: clean up dtbs_check W=1 warning due to empty phy node
+Date:   Wed, 12 Jul 2023 09:14:44 +0100
+Message-ID: <20230712-squealer-walmart-9587342ddec1@wendy>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2281; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=eeJoNzKNu6qUVnwz+5GZhUrJMC3KM11Xsjrz/i3wt6I=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDCnrEj6ZJprzlM1qf2eXt+dhTsY7CwupUy7/hFckhnO8Voic /GpzRykLgxgHg6yYIkvi7b4WqfV/XHY497yFmcPKBDKEgYtTACYi48/wP69ijZVUyPadHeuPb8oVc5 Ccwev1cfWPpzxix3MT5EIlhRgZ7t1t/yL6i43ZpMW0utjItHHiNqeb8rKb7ZIvuF/UdnzBCgA=
+X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Few coefficients use default values multiple of 100, not 1000 (in the
-example DTS and in the Linux driver):
+dtbs_check w/ W=1 complains:
+Warning (unit_address_vs_reg): /soc/ethernet@11c20000/ethernet-phy@7: node has a unit name, but no reg or ranges property
+Warning (avoid_unnecessary_addr_size): /soc/ethernet@11c20000: unnecessary #address-cells/#size-cells without "ranges" or child "reg" property
 
-  moortec,mr75203.example.dtb: pvt@e0680000: moortec,ts-coeff-g:0:0: 61400 is not a multiple of 1000
+The ethernet@11c20000 node is guarded by an `#if (!SW_ET0_EN_N)` in
+rzg2ul-smarc-som.dtsi, where the phy child node is added. In
+rzfive-smarc-som.dtsi, the ethernet node is marked disabled & the
+interrupt properties are deleted from the phy child node. As a result,
+the produced dts looks like:
+	ethernet@11c20000 {
+		compatible = "renesas,r9a07g043-gbeth\0renesas,rzg2l-gbeth";
+		/* snip */
+		#address-cells = <0x01>;
+		#size-cells = <0x00>;
+		status = "disabled";
 
-Fixes: bf1fdafdbc61 ("dt-bindings: hwmon: (mr75203) add coefficient properties for the thermal equation")
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+		ethernet-phy@7 {
+		};
+	};
+
+Adding a corresponding `#if (!SW_ET0_EN_N)` around the node in
+rzfive-smarc-som.dtsi avoids the complaint, as the empty child node is
+not added:
+	ethernet@11c20000 {
+		compatible = "renesas,r9a07g043-gbeth\0renesas,rzg2l-gbeth";
+		/* snip */
+		#address-cells = <0x01>;
+		#size-cells = <0x00>;
+		status = "disabled";
+	};
+
+Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
 ---
- .../devicetree/bindings/hwmon/moortec,mr75203.yaml          | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+CC: Geert Uytterhoeven <geert+renesas@glider.be>
+CC: Magnus Damm <magnus.damm@gmail.com>
+CC: Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+CC: Rob Herring <robh+dt@kernel.org>
+CC: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC: Conor Dooley <conor+dt@kernel.org>
+CC: linux-renesas-soc@vger.kernel.org
+CC: devicetree@vger.kernel.org
+CC: linux-riscv@lists.infradead.org
+CC: linux-kernel@vger.kernel.org
+---
+ arch/riscv/boot/dts/renesas/rzfive-smarc-som.dtsi | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/hwmon/moortec,mr75203.yaml b/Documentation/devicetree/bindings/hwmon/moortec,mr75203.yaml
-index ae4f68d4e696..bd67cfee6d19 100644
---- a/Documentation/devicetree/bindings/hwmon/moortec,mr75203.yaml
-+++ b/Documentation/devicetree/bindings/hwmon/moortec,mr75203.yaml
-@@ -105,7 +105,7 @@ properties:
-       G coefficient for temperature equation.
-       Default for series 5 = 60000
-       Default for series 6 = 57400
--    multipleOf: 1000
-+    multipleOf: 100
-     minimum: 1000
-     $ref: /schemas/types.yaml#/definitions/uint32
+diff --git a/arch/riscv/boot/dts/renesas/rzfive-smarc-som.dtsi b/arch/riscv/boot/dts/renesas/rzfive-smarc-som.dtsi
+index d6f18754eb5d..c62debc7ca7e 100644
+--- a/arch/riscv/boot/dts/renesas/rzfive-smarc-som.dtsi
++++ b/arch/riscv/boot/dts/renesas/rzfive-smarc-som.dtsi
+@@ -22,6 +22,7 @@ &dmac {
+ 	status = "disabled";
+ };
  
-@@ -114,7 +114,7 @@ properties:
-       H coefficient for temperature equation.
-       Default for series 5 = 200000
-       Default for series 6 = 249400
--    multipleOf: 1000
-+    multipleOf: 100
-     minimum: 1000
-     $ref: /schemas/types.yaml#/definitions/uint32
++#if (!SW_ET0_EN_N)
+ &eth0 {
+ 	status = "disabled";
  
-@@ -131,7 +131,7 @@ properties:
-       J coefficient for temperature equation.
-       Default for series 5 = -100
-       Default for series 6 = 0
--    multipleOf: 1000
-+    multipleOf: 100
-     maximum: 0
-     $ref: /schemas/types.yaml#/definitions/int32
+@@ -30,6 +31,7 @@ phy0: ethernet-phy@7 {
+ 		/delete-property/ interrupts;
+ 	};
+ };
++#endif
  
+ &eth1 {
+ 	status = "disabled";
 -- 
-2.34.1
+2.40.1
 
