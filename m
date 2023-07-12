@@ -2,128 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A3227750AEE
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 16:27:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C480750B07
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 16:29:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232714AbjGLO1T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jul 2023 10:27:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58724 "EHLO
+        id S231281AbjGLO3x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jul 2023 10:29:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34020 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232636AbjGLO05 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 10:26:57 -0400
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB65B1FDF
-        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 07:26:23 -0700 (PDT)
-Received: by mail-wr1-x42d.google.com with SMTP id ffacd0b85a97d-313f1085ac2so6870492f8f.1
-        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 07:26:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689171961; x=1691763961;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=HEPJI/E6yV3CwO+VdDjiz+PSHejgEU2vfzm1SMkxH3A=;
-        b=MPvAzmlWoXhxb83qkX6updmUHVNt6xqD+HTUX3IEEzEq6y4XQ+C0QukxCAjG7N7YXh
-         6cua3p7y45ZFi364PwWYwwgvSUnceZjZsyza5cxn2+L0Uu/a4N79uOt9Tws84TlpWCsR
-         ZUPXVeRtNWmuUoFcDBygdKjchpZCsfVwR2dWAuwhSpQLiB4LSfOCQk/4YaiwLVM+yTir
-         rnmUzfyADo1wFalUtneM5cI6Lzsv45IseAFTtWYWtB/eyf4lVn4LfcQTs+j0/TtSJkM+
-         8x2CrhLnqZJ0F5BF+o8w1STOgQKI/Fy2moZti7GKs/zAzMY1wdnuHuRl600+6xmbvBe8
-         gjpw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689171961; x=1691763961;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=HEPJI/E6yV3CwO+VdDjiz+PSHejgEU2vfzm1SMkxH3A=;
-        b=WeJ1qyNKq9UFwgNCIWQq0XEgcE4njPCCLN7AcSZjqpPxN+k81nOd86u18FBGR6yHUN
-         Yv+sxtKTrRrizhyALyhFwZLtynPoD+yF2cv6ZHFnSOlCKxlb3d0auzv/ddsBLaRqb8jY
-         TdKBp6dhIu6lRdIq08XFGSWRmiPtfWpqDrgD3dLNFhjLi36I+yGkK9rvLePk9s4si9NJ
-         OXXoGxpC+oFXpYtmydfa6HaLGF033cHz9BeWEGqbabI9W9GyTQmcFSahdkgzB9EVB3ul
-         gW+obhPjpae9T0h0RkciUwat+u9IMWbAKTPVvNF1/blfPkvVXqQWSKDqB6MvtnLu23lV
-         wccQ==
-X-Gm-Message-State: ABy/qLYy3tDrjKdkBsZPUHSfEBX2PU43da/emBTO4pFGakE8Rpj4Enqr
-        YLkIwOICmQxMhMKT72v6IHsqKQ==
-X-Google-Smtp-Source: APBJJlGLXkhnOaeBdMql99Dv42UdfZYy1MTsg1+Orh629ImTzsLh7CydO13AirJ2jx/fTgJiHJvgjg==
-X-Received: by 2002:a05:6000:c9:b0:314:25c6:7f6d with SMTP id q9-20020a05600000c900b0031425c67f6dmr17456989wrx.14.1689171960822;
-        Wed, 12 Jul 2023 07:26:00 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id y24-20020a170906471800b00992b71d8f19sm2631576ejq.133.2023.07.12.07.25.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 12 Jul 2023 07:26:00 -0700 (PDT)
-Message-ID: <f31e9ff1-807b-c252-6f7e-146aba844fd9@linaro.org>
-Date:   Wed, 12 Jul 2023 16:25:58 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v2 2/5] dt-bindings: thermal: tsens: Add ipq5332
- compatible
-Content-Language: en-US
-To:     Praveenkumar I <quic_ipkumar@quicinc.com>, amitk@kernel.org,
-        thara.gopinath@gmail.com, agross@kernel.org, andersson@kernel.org,
-        konrad.dybcio@linaro.org, rafael@kernel.org,
-        daniel.lezcano@linaro.org, rui.zhang@intel.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        with ESMTP id S232190AbjGLO3v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 10:29:51 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45B6E1BC6;
+        Wed, 12 Jul 2023 07:29:36 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id D8CD5617C7;
+        Wed, 12 Jul 2023 14:29:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D36FFC433C9;
+        Wed, 12 Jul 2023 14:29:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1689172175;
+        bh=St2V/LpnW7GRIEdHqQzm5rOiN0dUShCz4WxumLLy+Jw=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=qNF0dVz+HghqqcuDJWsnMh0OtokZNamEbOwytaewhMXhJsQB6J6kYRpF7LVNL2jpN
+         6q7yMYw10Qzae+CvdY6j/77khuY8Z5nmGLQzcEcM5eJm1n/uaGHniyhnaY7FIrELz7
+         NH5vZb6PRpmCiHSkNvtgKt3x2BiZeoovAxh1vh9WvCfjATnETYpZvJBLuHWoHlIyRi
+         TuukOdrRT6ZJO5S2Jldnh/SyTakjCWvJMJCLuP1yI3LfxX8OHsl95zaCBJ8xQbyziR
+         qzixhe1qo7FIZEDQ+BZLTZzONbjMgHdb/HJkCfuoNBKkSsTsxHdiEzsT91kDNTlo1d
+         Ym6O99GFfMlIA==
+From:   Mark Brown <broonie@kernel.org>
+To:     krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        cy_huang@richtek.com
+Cc:     robh+dt@kernel.org, lgirdwood@gmail.com,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     quic_varada@quicinc.com
-References: <20230712113539.4029941-1-quic_ipkumar@quicinc.com>
- <20230712113539.4029941-3-quic_ipkumar@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230712113539.4029941-3-quic_ipkumar@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
+In-Reply-To: <1687942037-14652-1-git-send-email-cy_huang@richtek.com>
+References: <1687942037-14652-1-git-send-email-cy_huang@richtek.com>
+Subject: Re: [PATCH 0/2] Add support for RT5733
+Message-Id: <168917217355.84133.14477051151431440172.b4-ty@kernel.org>
+Date:   Wed, 12 Jul 2023 15:29:33 +0100
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
+X-Mailer: b4 0.13-dev-099c9
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/07/2023 13:35, Praveenkumar I wrote:
-> IPQ5332 uses TSENS v2.3.3 with combined interrupt. RPM is not
-> available in the SoC, hence adding new compatible to have the
-> sensor enablement and calibration function.
+On Wed, 28 Jun 2023 16:47:15 +0800, cy_huang@richtek.com wrote:
+> This series is to add the compatible support for rt5733 based on rt5739.
 > 
-> This patch also adds nvmem-cell-names for ipq5332
+> ChiYuan Huang (2):
+>   regulator: dt-bindings: rt5739: Add compatible for rt5733
+>   regulator: rt5739: Add DID check and compatible for rt5733
 > 
-> Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
-> ---
-> [v2]:
-> 	Followed the order for ipq5332 and added nvmem-cell-names.
+> .../bindings/regulator/richtek,rt5739.yaml    |  1 +
+>  drivers/regulator/rt5739.c                    | 49 ++++++++++++++++---
+>  2 files changed, 42 insertions(+), 8 deletions(-)
 > 
->  .../devicetree/bindings/thermal/qcom-tsens.yaml      | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
-> index 27e9e16e6455..cca115906762 100644
-> --- a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
-> +++ b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
-> @@ -69,6 +69,7 @@ properties:
->  
->        - description: v2 of TSENS with combined interrupt
->          enum:
-> +          - qcom,ipq5332-tsens
->            - qcom,ipq8074-tsens
->  
->        - description: v2 of TSENS with combined interrupt
-> @@ -205,6 +206,15 @@ properties:
->            - const: s9_p2_backup
->            - const: s10_p1_backup
->            - const: s10_p2_backup
-> +      - items:
-> +          - const: mode
-> +          - const: base0
-> +          - const: base1
-> +          - pattern: '^s[0-9]+$'
-> +          - pattern: '^s[0-9]+$'
-> +          - pattern: '^s[0-9]+$'
-> +          - pattern: '^s[0-9]+$'
-> +          - pattern: '^s[0-9]+$'
+> [...]
 
-Previously there were 17 items here. What changed?
+Applied to
 
-Best regards,
-Krzysztof
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
+
+Thanks!
+
+[1/2] regulator: dt-bindings: rt5739: Add compatible for rt5733
+      commit: 8978af5ef662541bc0a5a7722ad6942cd19daed0
+[2/2] regulator: rt5739: Add DID check and compatible for rt5733
+      commit: 6f5e285839845729858b8f6ca7cf3dd35e1f9a29
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
 
