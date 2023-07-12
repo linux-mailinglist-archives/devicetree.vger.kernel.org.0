@@ -2,112 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A21D75020B
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 10:52:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ADCAC750218
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 10:54:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230393AbjGLIwo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jul 2023 04:52:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44942 "EHLO
+        id S229610AbjGLIye (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jul 2023 04:54:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46038 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231398AbjGLIwn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 04:52:43 -0400
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5C39B1
-        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 01:52:41 -0700 (PDT)
-Received: by mail-wr1-x42b.google.com with SMTP id ffacd0b85a97d-31441bc0092so6604637f8f.1
-        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 01:52:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=9elements.com; s=google; t=1689151960; x=1691743960;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=3KQT6tn3IkIMgWvQdIWn/fFTIkPGq6wDM785k0TXyQ4=;
-        b=fCk/E7k6Bn7G1jB3D236SgDCOfp+FSKoiEbYUigL0ygKoT2l/c5FpK4FVwFC+1vZsH
-         NXRb3uv1hnEZ1dP0Tg2Et9reupONnDU2Pl+GetssCAHcVDagCq0PdxeMmq3ayNdX4hxn
-         3gM7rBzfmGWoyWNj5Hx+ajHD9Ov2Stl2GlPzikjkUpLZnafn9qsNr/lYC9YjQ4taEyTm
-         1T/sC+/Uw4c5c6S5PcTr/ooObNTzQR6MbuZCwTJJLWoRkhv+CUaXJIF38LllSGoenFes
-         weXA2qDI9KOXrhAhAOInpjN/PD3MJsjTuQ+GiS6AgjuswjO1uhmtxVjUVxz9lxb+OKVK
-         n+0Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689151960; x=1691743960;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=3KQT6tn3IkIMgWvQdIWn/fFTIkPGq6wDM785k0TXyQ4=;
-        b=dwDNz04ZZncGL71XLinpUrZMXBFG1SFKdBHfB3LIopF/A4s14nseg3mg7aHEdoISlE
-         7nz4TgdMrNVWK1vexfpeuEbEg9QuYG5ePS9E2KTrdhhrb0/ZbY5zSTA5zOulIB4Ynr2/
-         WSyGwY0o8QuHI97v0tloJwGDPAjuZ2at48cYLD5AHKphe9230NrniWWWm3i5ywfZHWrQ
-         z0GPaVO8n0NBJZfwoDSeLgPsqPtfrPiCOI7yHHt4mNmVGx9TqWtQlaKbpXW2jUcznLkA
-         wRuXKb5Tv0Vz8Xhb+6zCiUmT6dIUatDx/HrKdNCNRepUXLR+mWqkgkCHbYwc32+p0poH
-         HAFQ==
-X-Gm-Message-State: ABy/qLafC9ZONDXHON7hzT5b1HYWQRX4FmqJGYp9xOLVJJqjgRrY6ifh
-        hq7xk15m1Qo7QngWUbj7Rl/yKg==
-X-Google-Smtp-Source: APBJJlFyrNrVeGP+d5vQvvHiSEn3WlxIabBLopJEroWzR+YQwwdTDNSSb+n7pHkTmK1IDPvNwSMoLQ==
-X-Received: by 2002:a5d:45d1:0:b0:314:321a:4bc7 with SMTP id b17-20020a5d45d1000000b00314321a4bc7mr16268948wrs.15.1689151960309;
-        Wed, 12 Jul 2023 01:52:40 -0700 (PDT)
-Received: from stroh80.sec.9e.network (ip-078-094-000-051.um19.pools.vodafone-ip.de. [78.94.0.51])
-        by smtp.gmail.com with ESMTPSA id t9-20020a5d5349000000b003143b7449ffsm4475140wrv.25.2023.07.12.01.52.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Jul 2023 01:52:39 -0700 (PDT)
-From:   Naresh Solanki <naresh.solanki@9elements.com>
-X-Google-Original-From: Naresh Solanki <Naresh.Solanki@9elements.com>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Patrick Rudolph <patrick.rudolph@9elements.com>
-Cc:     Naresh Solanki <Naresh.Solanki@9elements.com>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v2 1/2] dt-bindings: pinctrl: cypress,cy8c95x0: Add reset pin
-Date:   Wed, 12 Jul 2023 10:52:34 +0200
-Message-ID: <20230712085236.2496651-1-Naresh.Solanki@9elements.com>
-X-Mailer: git-send-email 2.41.0
+        with ESMTP id S232702AbjGLIya (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 04:54:30 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4D8D121
+        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 01:54:29 -0700 (PDT)
+Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <a.fatoum@pengutronix.de>)
+        id 1qJVcB-0002Jj-TE; Wed, 12 Jul 2023 10:54:27 +0200
+Message-ID: <c5528b09-249e-3dc0-3214-3384501394bf@pengutronix.de>
+Date:   Wed, 12 Jul 2023 10:54:26 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+Subject: Re: [PATCH 2/2] ARM: dts: imx6: pfla02: Fix SD card reboot problem
+Content-Language: en-US
+To:     Andrej Picej <andrej.picej@norik.com>,
+        Marco Felsch <m.felsch@pengutronix.de>
+Cc:     devicetree@vger.kernel.org, conor+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, festevam@gmail.com,
+        s.hauer@pengutronix.de, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org, linux-imx@nxp.com, kernel@pengutronix.de,
+        shawnguo@kernel.org, linux-arm-kernel@lists.infradead.org,
+        upstream@phytec.de
+References: <20230704080304.816942-1-andrej.picej@norik.com>
+ <20230704080304.816942-3-andrej.picej@norik.com>
+ <20230704081712.7dyj2mspj2m25rp7@pengutronix.de>
+ <7ed6fde0-37a4-a667-2629-0a6b8a202a69@norik.com>
+ <14cd16df-ef47-05b3-5266-ffff109a8326@pengutronix.de>
+ <3c0de35f-915a-7ae9-c369-9545b55dd2e4@norik.com>
+ <6a2e5b14-c5d3-b384-2539-033381768dca@norik.com>
+ <e9a08364-c277-bfec-cb31-b01b39e17bed@pengutronix.de>
+ <67f953cd-af17-2a5c-6a1f-ac902c1636ce@norik.com>
+From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
+In-Reply-To: <67f953cd-af17-2a5c-6a1f-ac902c1636ce@norik.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
+X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Patrick Rudolph <patrick.rudolph@9elements.com>
+Hello Andrej,
 
-This patch adds support for an optional reset pin.
+On 07.07.23 11:28, Andrej Picej wrote:
+> 
+> 
+> On 5. 07. 23 14:06, Ahmad Fatoum wrote:
+>> On 05.07.23 12:39, Andrej Picej wrote:> On 5. 07. 23 10:40, Andrej Picej wrote:
+>>>> On 5. 07. 23 10:30, Ahmad Fatoum wrote:
+>>>>> On 05.07.23 10:28, Andrej Picej wrote:
+>>>>>> I think the main reason for a failed boot is that the PMIC doesn't get reset and that the bootloader doesn't specifically enable the SD card regulator.
+>>>>>>
+>>>>>> Could this patch still be applied or should we put the fix in reset routine/bootloader?
+>>>>>
+>>>>> Is SD-Card not main boot medium? From your description, I thought BootROM
+>>>>> will fail to boot before bootloader has a chance to do anything about it.
+>>>>>
+>>>>
+>>>> Yes sorry, you are absolutly right, the BootROM fails. It confused me because I could see the booloader booting, but it was from one of the fallback mediums. So I guess fixing the bootloader is not really an option.
+>>>> Sorry for the confusion.
+>>>>
+>>>
+>>> Ok, the main problem is well known, that's why PHYTEC disables the imx watchdog and uses a PMIC one for the reboot handler. This one resets the board completely. The SD card regulator problem is really just the manifestation of that bug. Unfortunately I didn't noticed that. :(
+>>>
+>>> I will create a v2 with a proper fix, where imx watchdog gets disabled.
+>>
+>> I'd be wary about solving it this way at the DTSI level, because it can
+>> break existing users:
+>>
+>>    - Boot flow depends on reading boot reason, but with PMIC reset, everything
+>>      is power-on reset
+>>
+>>    - Bootloader starts i.MX watchdog, but new kernel will service only
+>>      PMIC watchdog leading to system reset
+>>
+>>    - Even if updating bootloader and kernel together, fallback of kernel
+>>      may end up that bootloader uses PMIC watchdog, but kernel uses i.MX
+>>      watchdog
+>>
+>>    - There can be valid reasons to use both watchdogs and disabling
+>>      one at the SoM level breaks that
+>> > I had a similar issue once (Board controller reset to be used instead 
+> of SoC
+>> reset) and settled on using the barebox watchdog-priority/restart-priority[1]
+>> binding to select the "better" watchdog and then fixed up this choice into
+>> the kernel command line (barebox CONFIG_SYSTEMD_OF_WATCHDOG).
+>>
+>> If you decide to fix it for the evaluation kits, please add some text
+>> into the commit message that this fix should not be backported to older kernels.
+>> While it's ultimately the correct thing to do, changing this is IMO not stable
+>> backport material.
+>>
+>> [1]: FWIW, there was past discussion about adding restart priorities to Linux, e.g.
+>> https://lore.kernel.org/all/20201006102949.dbw6b2mrgt2ltgpw@pengutronix.de/
+> 
+> Ok I see the problems this might raise. Nevertheless I think it would be good to sync upstream and PHYTEC downstream dts with this fix. Since by default imx watchdog reset is really a no-go with phyFLEX.
 
-The reset pin is used to bring the chip into a known state and has an
-internal pull-down, allowing it to be left floating if not needed.
+What does downstream do? Might've been useful to note in the commit message,
+especially if there's an erratum.
 
-Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
-Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
----
-Changes in V2:
-- Update subject
-- Update reset-gpios description.
----
- .../devicetree/bindings/pinctrl/cypress,cy8c95x0.yaml         | 4 ++++
- 1 file changed, 4 insertions(+)
+> We could add the aliases for the watchdogs, marking the PMIC watchdog as watchdog0, and imx watchdog as watchdog1 which I think should tell the kernel to use the PMIC reboot handler, but not really sure how is that any better then disabling the imx watchdog.
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/cypress,cy8c95x0.yaml b/Documentation/devicetree/bindings/pinctrl/cypress,cy8c95x0.yaml
-index 222d57541b65..2fa22160336f 100644
---- a/Documentation/devicetree/bindings/pinctrl/cypress,cy8c95x0.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/cypress,cy8c95x0.yaml
-@@ -51,6 +51,10 @@ properties:
-     description:
-       Optional power supply.
- 
-+  reset-gpios:
-+    description: Reference to the GPIO connected to the XRES pin
-+    maxItems: 1
-+
- patternProperties:
-   '-pins$':
-     type: object
+Restart priority is set by watchdog_set_restart_priority and both
+da906[23] and i.MX watchdog set the same value of 128 here. Might
+be worthwhile to increase PMIC over i.MX watchdog priority to ensure
+it's taken instead.
 
-base-commit: 3bc551a3007a751a53bfba5b37fa16157f4fb861
+> Why do you think this shouldn't be backported to older kernels? Because
+> someone might use this with "not compatible" bootloader?
+
+Yes. Selecting a different watchdog is IMO not something that should
+come in via a stable update.
+
+Cheers,
+Ahmad
+
+> 
+> Thanks for your help,
+> Andrej
+> 
+>>
+>> Cheers,
+>> Ahmad
+>>
+>>>
+>>> Thanks for your help,
+>>> Andrej
+>>>
+>>>
+>>>>
+>>>>>>
+>>>>>> Best regards,
+>>>>>> Andrej
+>>>>>>
+>>>>>>>
+>>>>>>> Regards,
+>>>>>>>      Marco
+>>>>>>>
+>>>>>>>>                 };
+>>>>>>>>                   vdd_sd1_reg: ldo10 {
+>>>>>>>> -- 
+>>>>>>>> 2.25.1
+>>>>>>>>
+>>>>>>>>
+>>>>>>>>
+>>>>>>
+>>>>>>
+>>>>>
+>>>
+>>
+> 
+
 -- 
-2.41.0
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
