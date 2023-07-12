@@ -2,67 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DDBD77504C4
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 12:36:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 69DC57504E7
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 12:40:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232191AbjGLKgj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jul 2023 06:36:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50170 "EHLO
+        id S232263AbjGLKj4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jul 2023 06:39:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54862 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232198AbjGLKgU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 06:36:20 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1EA5F1BFC;
-        Wed, 12 Jul 2023 03:36:00 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 89F0C61731;
-        Wed, 12 Jul 2023 10:35:59 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9964EC433C9;
-        Wed, 12 Jul 2023 10:35:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689158158;
-        bh=1ZR/RKV2DlzbR3SX6BTWRQmsK1bpq2+ZztUMiAfbqKc=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=R9SLZ09m1Rh3AEsPeUTnzP3pcQtwTY1lZJL2z1st0pNXkxRqvxcn/Nmx9tV4p9OF0
-         dfh1or+wnApHIvgivfrqFfPCjcdleJk3HlTrT544ztJCqGqpe7xYEc/sQdCzTcr9uW
-         HDZkEZxfUJR4t/ZezHV8ZmrbzE+sknAXDs+Pf+X9rWmVNtR70N5X9iYYz0+S6vWhXd
-         XWP0U61oJttz8YxhSwptD2oXxk+s22duHZAL11/mNC8Gul82BU/V9jiwNdfZzcL0fW
-         fDG+96uazkTSKaZ9A2UQtBOryEDfydBGaMzMhI+8+Xyp0KR3MUMFyQC7OqBA+tS+KH
-         iipaGVMPqQP7g==
-From:   Mark Brown <broonie@kernel.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Krishna Manikandan <quic_mkrishn@quicinc.com>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, Rob Herring <robh@kernel.org>
-In-Reply-To: <20230628-topic-refgen-v3-0-9fbf0e605d23@linaro.org>
-References: <20230628-topic-refgen-v3-0-9fbf0e605d23@linaro.org>
-Subject: Re: (subset) [PATCH v3 0/4] Qualcomm REFGEN regulator
-Message-Id: <168915815219.10612.17171163066599783994.b4-ty@kernel.org>
-Date:   Wed, 12 Jul 2023 11:35:52 +0100
+        with ESMTP id S231578AbjGLKjs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 06:39:48 -0400
+Received: from mail.zeus03.de (www.zeus03.de [194.117.254.33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1884AE5C
+        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 03:39:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        sang-engineering.com; h=from:to:cc:subject:date:message-id
+        :mime-version:content-transfer-encoding; s=k1; bh=hAryLDGRrsOSmX
+        ERGiB+C1mBG99Cn/6s0lKFEG1FTPQ=; b=YXoWev0KyTGtvp+bj7nkmCNVCELEw+
+        7TTy1JM9WhcgH+DQN9VUFr2SPCn9phdr6tmdNK1tmWbnG4q34QnM5uBw2vXV/vw3
+        C+a7gZCtEkSpZwPBCR8aroMGQ8Q2Gb0Eh6ZPVKC9xkNxg3ujXY8e6RJPcT2nNk+c
+        brtM9aBbEly14fgbVJB8Cj0ZlZJXePS59UYVMBZm2WPr6jTNqaM+GuhHc6Odgl8I
+        nfhxFxhW1CQULqJd1xViLFVU+jT8OZpvYi6NYR09q3Kv4Hpt6o923FMLSmu1Xu5i
+        NffGMwECvpLzLwyS0XNrmgcneI1DUcwwwHg6s+OpL7DhtT0W8f619ckg==
+Received: (qmail 1580036 invoked from network); 12 Jul 2023 12:39:38 +0200
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 12 Jul 2023 12:39:38 +0200
+X-UD-Smtp-Session: l3s3148p1@WKjb1EcA/L0ujnvL
+From:   Wolfram Sang <wsa+renesas@sang-engineering.com>
+To:     linux-renesas-soc@vger.kernel.org
+Cc:     Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pci@vger.kernel.org,
+        Marek Vasut <marek.vasut+renesas@gmail.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Subject: [PATCH v3 RESEND 0/2] KingFisher: support regulators for PCIe
+Date:   Wed, 12 Jul 2023 12:39:14 +0200
+Message-Id: <20230712103916.1631-1-wsa+renesas@sang-engineering.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.13-dev-099c9
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
+        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,43 +50,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 03 Jul 2023 20:15:53 +0200, Konrad Dybcio wrote:
-> Recent Qualcomm SoCs have a REFGEN (reference voltage generator) regulator
-> responsible for providing a reference voltage to some on-SoC IPs (like DSI
-> or PHYs). It can be turned off when unused to save power.
-> 
-> This series introduces the driver for it and lets the DSI driver
-> consume it.
-> 
-> [...]
+Here are the patches to make PCIe cards work in the slot CN15 on a
+KingFisher board. No code changes since v3, only rebased to 6.5-rc1 and
+Geert's tag on patch 2 added. I think all the acks are now in place.
+Please apply.
 
-Applied to
+Wolfram Sang (2):
+  dt-bindings: PCI: rcar-pci-host: add optional regulators
+  PCI: rcar-host: add support for optional regulators
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
+ .../devicetree/bindings/pci/rcar-pci-host.yaml   | 11 +++++++++++
+ drivers/pci/controller/pcie-rcar-host.c          | 16 +++++++++++++++-
+ 2 files changed, 26 insertions(+), 1 deletion(-)
 
-Thanks!
-
-[1/4] dt-bindings: regulator: Describe Qualcomm REFGEN regulator
-      commit: d16db38c2a66060ee25c6b86ee7b6d66d40fc8e0
-[2/4] regulator: Introduce Qualcomm REFGEN regulator driver
-      commit: 7cbfbe23796086fdb72b681e2c182b02acd36a04
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+-- 
+2.30.2
 
