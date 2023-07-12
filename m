@@ -2,104 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 097197501D5
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 10:39:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5368F7501DD
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 10:41:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231475AbjGLIj1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jul 2023 04:39:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34006 "EHLO
+        id S230398AbjGLIlm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jul 2023 04:41:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38642 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230472AbjGLIjE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 04:39:04 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3511C1BFA
-        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 01:38:44 -0700 (PDT)
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <a.fatoum@pengutronix.de>)
-        id 1qJVMm-0000ZG-1x; Wed, 12 Jul 2023 10:38:32 +0200
-Message-ID: <92f7f4cd-c9cc-8a1a-74c7-39eed955cd6a@pengutronix.de>
-Date:   Wed, 12 Jul 2023 10:38:29 +0200
+        with ESMTP id S229524AbjGLIll (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 04:41:41 -0400
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16654A7
+        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 01:41:39 -0700 (PDT)
+Received: by mail-lj1-x22b.google.com with SMTP id 38308e7fff4ca-2b734aea34aso16268021fa.0
+        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 01:41:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rivosinc-com.20221208.gappssmtp.com; s=20221208; t=1689151298; x=1691743298;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=AUbAuUSvAlU7VMm5cmtoV0SpHebNxqAw1L0b3txSkeA=;
+        b=q0AyVktPOJVBLAjWdHnUNM/pjTZmAsjJDDXL/tZPG2yS5iNCBt6aLEdnLrBoMnhnmz
+         WAc9c5eoOLd+gctm6PEInMsjY8PhtcDqwL3B1Dl5BDeMqL43Mw6VMUL5w7DnIn1mgmvD
+         yTQXB960YJxyFpnAYKsZN5cRdQPTji0LOy0TxUckPKJx/NpimVI7A8NiRL4DqA0gqmBo
+         Fb3sCT+6425IsW6GrkzsdGqNAPJFWqmNHYHWBN9RuJa/4AyJaBkFyXY3MqqFWOFoVN5U
+         HEqEFAE3wVMj1/uyQjkuxdT0TvC/lz5ONbcTueaNuzPJf52K2+ICCJ3+Fo5hE4yqZI2J
+         UkjQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689151298; x=1691743298;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=AUbAuUSvAlU7VMm5cmtoV0SpHebNxqAw1L0b3txSkeA=;
+        b=kHQTdv9tatHn+QiPEVpMd6K5ouTDkhx8xAHMUlUygj1aNrJ8UM1ItKyLHhoRjvbxIu
+         wFqmj4elJN5Dxx8K067g/DKN0ofU+0QUrSSaU5ImWyLToMRP0knnYvRW3g8dfr27hhXG
+         QDKyN1IM+6JruzsOf2amcDd2+aBYCwpnooSWCnaDRwMJmZyuyyLuPafCtPd7QuyYHQwi
+         jemOL3aBBZOePPuXZBGW7V/wpo4GVOLws9KN//31a3JbmYBzLMH+UedTJXXWn+LC/Xyi
+         RulaZ+kL59rJRBjIGG4BZ20eP4VUTNrXwIipi8rtUROqd7kttH00LDBK2nDucQAMxn3a
+         wUWw==
+X-Gm-Message-State: ABy/qLbWNgZuHGlZEBOVJ/9DjV/+aj9L2/cIk4JVa0S92SsWnqPAt3Ns
+        6VfWjBlCKpMOThG0NjSdBo2/YA==
+X-Google-Smtp-Source: APBJJlGKY0rPUEVIW0S4wt6ebCIbE/MCdi8SP1zuwJFBdbAWwb185JZBJ5tkEleUiq2f5q8wWYV9uA==
+X-Received: by 2002:a05:651c:120c:b0:2b7:ada:cb25 with SMTP id i12-20020a05651c120c00b002b70adacb25mr13810462lja.31.1689151298155;
+        Wed, 12 Jul 2023 01:41:38 -0700 (PDT)
+Received: from vermeer.tail79c99.ts.net ([2a01:cb1d:81a9:dd00:b570:b34c:ffd4:c805])
+        by smtp.gmail.com with ESMTPSA id z13-20020adfe54d000000b003143ac73fd0sm4496122wrm.1.2023.07.12.01.41.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 12 Jul 2023 01:41:37 -0700 (PDT)
+From:   Samuel Ortiz <sameo@rivosinc.com>
+To:     Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        linux-riscv@lists.infradead.org
+Cc:     Samuel Ortiz <sameo@rivosinc.com>, linux@rivosinc.com,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        Heiko Stuebner <heiko.stuebner@vrull.eu>,
+        Anup Patel <apatel@ventanamicro.com>,
+        linux-kernel@vger.kernel.org,
+        "Hongren (Zenithal) Zheng" <i@zenithal.me>,
+        Guo Ren <guoren@kernel.org>, Atish Patra <atishp@rivosinc.com>,
+        =?UTF-8?q?Bj=C3=B6rn=20T=C3=B6pel?= <bjorn@rivosinc.com>,
+        Evan Green <evan@rivosinc.com>, devicetree@vger.kernel.org,
+        sorear@fastmail.com
+Subject: [PATCH v4 0/4] RISC-V: archrandom support
+Date:   Wed, 12 Jul 2023 10:41:16 +0200
+Message-ID: <20230712084134.1648008-1-sameo@rivosinc.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-Subject: Re: [PATCH v3 7/8] dt-bindings: arm: stm32: add extra SiP compatible
- for oct,stm32mp157c-osd32-red
-Content-Language: en-US
-To:     Sean Nyekjaer <sean@geanix.com>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>
-Cc:     dantuguf14105@gmail.com, Conor Dooley <conor.dooley@microchip.com>,
-        devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20230712062954.2194505-1-sean@geanix.com>
- <20230712062954.2194505-7-sean@geanix.com>
-From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
-In-Reply-To: <20230712062954.2194505-7-sean@geanix.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Sean,
+This patchset adds support for the archrandom API to the RISC-V
+architecture.
 
-On 12.07.23 08:29, Sean Nyekjaer wrote:
-> Add binding support for the Octavo OSD32MP1-RED development board.
-> 
-> General features:
->  - STM32MP157C
->  - 512MB DDR3
->  - CAN-FD
->  - HDMI
->  - USB-C OTG
->  - UART
-> 
-> Signed-off-by: Sean Nyekjaer <sean@geanix.com>
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+The ratified crypto scalar extensions provide entropy bits via the seed
+CSR, as exposed by the Zkr extension.
 
-Just a heads up: The LXA TAC, another OSD32MP1 board has been merged into
-stm32-next yesterday, so applying your series onto that tree may result
-in conflicts. You may want to rebase for v4.
+The first patch of this patchset allows for detecting support of the Zbc
+and all scalar crypto extensions. The second patch documents the
+corresponding dt-bindings.
 
-Cheers,
-Ahmad
+The third patch exposes the Zbc and scalar crypto extensions through
+the hwprobe syscall.
+
+The last patch relies on the first ones to check for the Zkr support,
+and implements get_random_seed_longs by looping through a seed CSR
+read-write to return one long worth of entropy.
+
+---
+v4:
+
+- Documented the USEED and SSEED requirements when Zkr is enabled
+
+v3:
+
+- Increased the CSR SEED retry loop max iterations to 100
+- Documented the added extensions in the related dt-bindings file
+
+v2:
+
+- Fixed the ISA map setting for zkbx
+- Alphanumerically sorted the ISA map setting
+- Added my SOB on Hongren's patch
+- Fixed patch #1 commit message
+- Removed printk prefix from the archrandom implementation
+- Fixed needed_seeds computation (and make it const)
+- Replaced riscv_isa_extension_available() with
+  riscv_has_extension_likely()
+- Made the get_random_seed_longs implementation more readable
+
+---
+
+Hongren (Zenithal) Zheng (1):
+  RISC-V: Add Bitmanip/Scalar Crypto parsing from DT
+
+Samuel Ortiz (3):
+  dt-bindings: riscv: Document the 1.0 scalar cryptography extensions
+  RISC-V: hwprobe: Expose Zbc and the scalar crypto extensions
+  RISC-V: Implement archrandom when Zkr is available
+
+ .../devicetree/bindings/riscv/extensions.yaml | 87 +++++++++++++++++++
+ Documentation/riscv/hwprobe.rst               | 35 ++++++++
+ arch/riscv/include/asm/archrandom.h           | 70 +++++++++++++++
+ arch/riscv/include/asm/csr.h                  |  9 ++
+ arch/riscv/include/asm/hwcap.h                | 11 +++
+ arch/riscv/include/uapi/asm/hwprobe.h         | 11 +++
+ arch/riscv/kernel/cpu.c                       | 11 +++
+ arch/riscv/kernel/cpufeature.c                | 30 +++++++
+ arch/riscv/kernel/sys_riscv.c                 | 36 +++++---
+ 9 files changed, 286 insertions(+), 14 deletions(-)
+ create mode 100644 arch/riscv/include/asm/archrandom.h
 
 
-> ---
->  Documentation/devicetree/bindings/arm/stm32/stm32.yaml | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/stm32/stm32.yaml b/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
-> index 13e34241145b..55e45db1af26 100644
-> --- a/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
-> +++ b/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
-> @@ -143,7 +143,8 @@ properties:
->        - description: Octavo OSD32MP15x System-in-Package based boards
->          items:
->            - enum:
-> -              - lxa,stm32mp157c-mc1 # Linux Automation MC-1
-> +              - lxa,stm32mp157c-mc1       # Linux Automation MC-1
-> +              - oct,stm32mp157c-osd32-red # Octavo OSD32MP1 RED board
->            - const: oct,stm32mp15xx-osd32
->            - enum:
->                - st,stm32mp157
-
+base-commit: 06c2afb862f9da8dc5efa4b6076a0e48c3fbaaa5
 -- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+2.41.0
 
