@@ -2,110 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D92274FE25
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 06:19:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 654D274FE6A
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jul 2023 06:43:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231368AbjGLETl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jul 2023 00:19:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48462 "EHLO
+        id S231364AbjGLEnt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jul 2023 00:43:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55570 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231334AbjGLETk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 00:19:40 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E053E77;
-        Tue, 11 Jul 2023 21:19:39 -0700 (PDT)
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36C3gAUF023501;
-        Wed, 12 Jul 2023 04:19:36 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding : content-type; s=qcppdkim1;
- bh=7k1xhVCkwfclCKhQ2y58SznlKWKEGuMf3KXACHqEPDw=;
- b=ZXEhuE1CFUhAmVo/648RNptlf8p97WZU9Xo/L+d2glWo+ta+FDG8CcRKJjg/n6M85o+L
- 6ifhGpEpoHGIe9y3+C9kAfnguy1rRkFxlOR79InYNgED1TdEgdd0/UBo4UdJwLBLNGsp
- lxbW+nuRezQvZOPRpPw02/m/GVCHnSt0f/nzMa/cTiMGAGNzMpld7eVRRm+MsSnUbKGQ
- 6FCTRjJJ/shD2ay5jYgAmN9uMHU3gTmZbhD5ni2guu5GqOYtVnbyW84HEbBGpmxQhAcC
- DwOYC5ijTQMPS1rttLreytTLIlMWQy//yMzXKlBLqZ16CKRceGO0GeJKGt09IiFG8Y0k cg== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3rsfeq0gag-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 12 Jul 2023 04:19:36 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 36C4JZHP023903
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 12 Jul 2023 04:19:35 GMT
-Received: from hu-kathirav-blr.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.30; Tue, 11 Jul 2023 21:19:32 -0700
-From:   Kathiravan T <quic_kathirav@quicinc.com>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-CC:     <quic_saahtoma@quicinc.com>,
-        Kathiravan T <quic_kathirav@quicinc.com>
-Subject: [PATCH V2 2/2] soc: qcom: socinfo: drop the IPQ5019 SoC ID
-Date:   Wed, 12 Jul 2023 09:49:12 +0530
-Message-ID: <20230712041912.398724-3-quic_kathirav@quicinc.com>
+        with ESMTP id S229843AbjGLEns (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 00:43:48 -0400
+X-Greylist: delayed 206 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 11 Jul 2023 21:43:45 PDT
+Received: from n169-114.mail.139.com (n169-114.mail.139.com [120.232.169.114])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3DB911731;
+        Tue, 11 Jul 2023 21:43:44 -0700 (PDT)
+X-RM-TagInfo: emlType=0                                       
+X-RM-SPAM:                                                                                        
+X-RM-SPAM-FLAG: 00000000
+Received: from u22.. (unknown[14.26.80.93])
+        by rmsmtp-lg-appmail-43-12057 (RichMail) with SMTP id 2f1964ae2ea70d1-e0300;
+        Wed, 12 Jul 2023 12:40:11 +0800 (CST)
+X-RM-TRANSID: 2f1964ae2ea70d1-e0300
+From:   Kevin Lu <luminlong@139.com>
+To:     broonie@kernel.org, lgirdwood@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        tiwai@suse.com
+Cc:     kevin-lu@ti.com, shenghao-ding@ti.com, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Kevin Lu <luminlong@139.com>
+Subject: [PATCH v1] ASoC: dt-bindings: Add tas2505 audio amplifier
+Date:   Wed, 12 Jul 2023 12:40:06 +0800
+Message-Id: <20230712044006.48456-1-luminlong@139.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230712041912.398724-1-quic_kathirav@quicinc.com>
-References: <20230712041912.398724-1-quic_kathirav@quicinc.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: BzVFQQhSFH5tx14OWbaUvs9dM2Fo4BmS
-X-Proofpoint-GUID: BzVFQQhSFH5tx14OWbaUvs9dM2Fo4BmS
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-07-12_02,2023-07-11_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 impostorscore=0
- malwarescore=0 spamscore=0 lowpriorityscore=0 adultscore=0 clxscore=1015
- priorityscore=1501 mlxlogscore=812 suspectscore=0 mlxscore=0 phishscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2305260000
- definitions=main-2307120037
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,FREEMAIL_FROM,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-IPQ5019 SoC is never productized. So lets drop it.
+Create tas2505.yaml for tas2505.
 
-Signed-off-by: Kathiravan T <quic_kathirav@quicinc.com>
+Signed-off-by: Kevin Lu <luminlong@139.com>
 ---
-Changes in V2:
-	- Updated the commit message with the precise information for
-	  dropping this ID
+ .../devicetree/bindings/sound/tas2505.yaml    | 72 +++++++++++++++++++
+ 1 file changed, 72 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/tas2505.yaml
 
- drivers/soc/qcom/socinfo.c | 1 -
- 1 file changed, 1 deletion(-)
-
-diff --git a/drivers/soc/qcom/socinfo.c b/drivers/soc/qcom/socinfo.c
-index 4d49945b3a35..78293ab13c87 100644
---- a/drivers/soc/qcom/socinfo.c
-+++ b/drivers/soc/qcom/socinfo.c
-@@ -406,7 +406,6 @@ static const struct soc_id soc_id[] = {
- 	{ qcom_board_id(QRU1000) },
- 	{ qcom_board_id(QDU1000) },
- 	{ qcom_board_id(QDU1010) },
--	{ qcom_board_id(IPQ5019) },
- 	{ qcom_board_id(QRU1032) },
- 	{ qcom_board_id(QRU1052) },
- 	{ qcom_board_id(QRU1062) },
+diff --git a/Documentation/devicetree/bindings/sound/tas2505.yaml b/Documentation/devicetree/bindings/sound/tas2505.yaml
+new file mode 100644
+index 0000000..6cc3fe4
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/tas2505.yaml
+@@ -0,0 +1,72 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++# Copyright (C) 2019 Texas Instruments Incorporated
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/sound/tas2505.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: Texas Instruments TAS2505 Mono Audio Amplifier
++
++maintainers:
++  - Kevin Lu <kevin-lu@ti.com>
++
++description: |
++  The TAS2505 is a mono Class-D speaker amp that supports both Digital
++  and Analog inputs. The device is ideal for automotive instrument cluster,
++  emergency call (eCall), and telematics applications. Direct I2S input
++  removes the need for an external DAC in the audio signal path.
++  An on-chip PLL provides the high speed clock needed by the DSP.
++  The volume level is register controlled.
++
++  Specifications about the audio amplifier can be found at:
++    https://www.ti.com/lit/gpn/tas2505
++
++allOf:
++  - $ref: dai-common.yaml#
++
++properties:
++  compatible:
++    enum:
++      - ti,tas2505
++
++  reg:
++    maxItems: 1
++    description: |
++       I2C address of the device can be set to 0x18.
++
++  reset-gpios:
++    maxItems: 1
++    description: GPIO used to reset the device.
++
++  clock-source:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: Sets TDM clock sourse.
++    enum:
++      - 0 # Select MLCK
++      - 1 # Select BLCK
++
++  '#sound-dai-cells':
++    # The codec has a single DAI, the #sound-dai-cells=<1>; case is left in for backward
++    # compatibility but is deprecated.
++    enum: [0, 1]
++
++required:
++  - compatible
++  - reg
++
++unevaluatedProperties: false
++
++examples:
++  - |
++   #include <dt-bindings/gpio/gpio.h>
++   i2c {
++     #address-cells = <1>;
++     #size-cells = <0>;
++     codec: codec@18 {
++       compatible = "ti,tas2505";
++       reg = <0x18>;
++       #sound-dai-cells = <0>;
++       reset-gpios = <&gpio4 21 GPIO_ACTIVE_LOW>;
++       clock-source = <0>;
++     };
++   };
 -- 
 2.34.1
+
 
