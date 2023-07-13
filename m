@@ -2,83 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4834775278B
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 17:43:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 29C517527DD
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 17:59:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234930AbjGMPnV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jul 2023 11:43:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45398 "EHLO
+        id S229682AbjGMP7Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jul 2023 11:59:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55432 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234957AbjGMPnU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jul 2023 11:43:20 -0400
-Received: from mail-yb1-xb36.google.com (mail-yb1-xb36.google.com [IPv6:2607:f8b0:4864:20::b36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C472C2682
-        for <devicetree@vger.kernel.org>; Thu, 13 Jul 2023 08:43:18 -0700 (PDT)
-Received: by mail-yb1-xb36.google.com with SMTP id 3f1490d57ef6-c7a5600d04dso814027276.3
-        for <devicetree@vger.kernel.org>; Thu, 13 Jul 2023 08:43:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689262998; x=1689867798;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=91vNV3YrdzSjKOSREPIs1wSiF2NAZ5QLx0dAx8l+9Cs=;
-        b=rDxvl6mZuriokxBHc27a1IvWgQXE5WtWQswiLsM4jHgQP7vkELi7SgUvleLqEdYIIi
-         B9/qrxBoc+4j0fCZdTZIhjUHaRaf40Fse3iVbhOvpxTQxsHQgptK4AL7qbTv6mB/8g98
-         4kd0ufDwOyI8auYr+orVFJKIBCOxqO2WwlCZwsEpqVtWc5lWRgcC3RRHlwfWeecgV38y
-         nGBAe6NgwdEV6LivipYtblUKtzZmvJtqLRDZx3WnJBwQ1N1inP+HXpt4X1iLE6Vq6wY5
-         G7s/7BE9oCLkKLnlY2c7E2dPVpBKOHQ2ES1DRWo6GHXAqteGNAQeb4eyzFFVI9vySks/
-         cdyg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689262998; x=1689867798;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=91vNV3YrdzSjKOSREPIs1wSiF2NAZ5QLx0dAx8l+9Cs=;
-        b=l5UzTXvVQMx887Q0FoHl21Z4Nk7byFzo4VHBluoCVOs6vEVim+0Smmlk/SYZlIfI2E
-         5XORvEHjYd1Kb6FBPTcGABV23AonA/5IqFMsGq6vXQ+WgWAJDsHsHOdSWql9J85OHZss
-         cAXKTpwop8/eMSnyOLrIdLwMesuFkDKDdo6jytGcAsCvGEO8wLQRIGVWmGz9vxJij5f6
-         JUYxaS8BAvHFdsfKeBYhfJiXZAZAnvqwVXqFeYqbuHaoIohOndjrC48AqLJlTczmhkbC
-         97axCp/aVV6FPjP91vjz7Lo3hS/9BnPxxYvJIJ3f7uV7KIv+jmAbZfrpbAyR6rqE3v0L
-         4bRw==
-X-Gm-Message-State: ABy/qLZZ8sldRLHk9ghrWtVoKwTyvyaKH2tlVQ22VY6WczGPoMqCgYee
-        pjMUzGc1NwbAJ1zsatcIVgDaYNuUhv0t61GQ8hNAbg==
-X-Google-Smtp-Source: APBJJlEzqkIycBpd/dk78rxLiZ5DOQgoh2uewJ9I1h61UlwEZbrwkONkI8ayCwX25DFG4WRdWqcFsLGGtlya5l1nooE=
-X-Received: by 2002:a25:c0c8:0:b0:c4f:43d7:7daf with SMTP id
- c191-20020a25c0c8000000b00c4f43d77dafmr1554760ybf.1.1689262997949; Thu, 13
- Jul 2023 08:43:17 -0700 (PDT)
+        with ESMTP id S231166AbjGMP7Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jul 2023 11:59:24 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E98D1BEB;
+        Thu, 13 Jul 2023 08:59:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=kbRaRAb0JOL2/28VqRGpCqPBtBaSf/qjgEEPz4Ozblw=; b=0YXzfhdXgCkaLlwHWfhq7w7NBW
+        B2yrKFup3FthFeXz+uny9omFu8uiDopmfNCRlhggOeUmyNdYrKGpvg0BFkhNVzp4j+/EijFlqpEDw
+        yQT2CMGgWn0IUnANOuPuAnvUVnW5lUC6888a0ba4McrU1KWCPA+LVlSPS+Bo6KLGYF7c=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1qJyip-001Gmy-Eb; Thu, 13 Jul 2023 17:59:15 +0200
+Date:   Thu, 13 Jul 2023 17:59:15 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Pranavi Somisetty <pranavi.somisetty@amd.com>, davem@davemloft.net,
+        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, michal.simek@amd.com, harini.katakam@amd.com,
+        git@amd.com, radhey.shyam.pandey@amd.com, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH] dt-bindings: net: xilinx_gmii2rgmii: Convert to json
+ schema
+Message-ID: <a17b0a4f-619d-47dd-b0ad-d5f3c1a558fc@lunn.ch>
+References: <20230713103453.24018-1-pranavi.somisetty@amd.com>
+ <f6c11605-56d7-7228-b86d-bc317a8496d0@linaro.org>
 MIME-Version: 1.0
-References: <20230712130215.666924-1-amit.pundir@linaro.org>
- <3b677200-a201-680b-391f-fbf73064496a@linaro.org> <CAMi1Hd003r1kJ6e4r2urFtN1BEnCRatLcQ1Q7Eh5wBdj=2WDFA@mail.gmail.com>
-In-Reply-To: <CAMi1Hd003r1kJ6e4r2urFtN1BEnCRatLcQ1Q7Eh5wBdj=2WDFA@mail.gmail.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Thu, 13 Jul 2023 18:43:06 +0300
-Message-ID: <CAA8EJpp6yprRL3qzM9pHt2uJ6sb-nPhwas5qm9aDthegSaw7DQ@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: display/msm: qcom,sdm845-mdss: add
- memory-region property
-To:     Amit Pundir <amit.pundir@linaro.org>
-Cc:     Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Caleb Connolly <caleb.connolly@linaro.org>,
-        Bryan Donoghue <bryan.odonoghue@linaro.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Sean Paul <sean@poorly.run>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Krishna Manikandan <quic_mkrishn@quicinc.com>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        freedreno <freedreno@lists.freedesktop.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        dt <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <f6c11605-56d7-7228-b86d-bc317a8496d0@linaro.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -86,81 +54,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 13 Jul 2023 at 18:34, Amit Pundir <amit.pundir@linaro.org> wrote:
->
-> On Wed, 12 Jul 2023 at 18:45, Dmitry Baryshkov
-> <dmitry.baryshkov@linaro.org> wrote:
-> >
-> > On 12/07/2023 16:02, Amit Pundir wrote:
-> > > Add and document the reserved memory region property
-> > > in the qcom,sdm845-mdss schema.
-> > >
-> > > Signed-off-by: Amit Pundir <amit.pundir@linaro.org>
-> > > ---
-> > >   .../devicetree/bindings/display/msm/qcom,sdm845-mdss.yaml    | 5 +++++
-> > >   1 file changed, 5 insertions(+)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sdm845-mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sdm845-mdss.yaml
-> > > index 6ecb00920d7f..3ea1dbd7e317 100644
-> > > --- a/Documentation/devicetree/bindings/display/msm/qcom,sdm845-mdss.yaml
-> > > +++ b/Documentation/devicetree/bindings/display/msm/qcom,sdm845-mdss.yaml
-> > > @@ -39,6 +39,11 @@ properties:
-> > >     interconnect-names:
-> > >       maxItems: 2
-> > >
-> > > +  memory-region:
-> > > +    maxItems: 1
-> > > +    description:
-> > > +      Phandle to a node describing a reserved memory region.
-> > > +
-> >
-> > Please add it to mdss-common.yaml instead
->
-> mdss-common.yaml didn't like this property at all and
-> I ran into a lot of new dtbs_check warnings:
-> https://www.irccloud.com/pastebin/raw/pEYAeaB1
->
-> I need some help in decoding these please.
+> > +examples:
+> > +  - |
+> > +    mdio {
+> > +        #address-cells = <1>;
+> > +        #size-cells = <0>;
+> > +        phy: ethernet-phy@0 {
+> > +            reg = <0>;
+> > +        };
+> 
+> Drop this node, quite obvious.
 
-I'm not sure what happened there (and it's hard to understand without
-seeing your patch). But after applying your patch to mdss-common.yaml,
-`make dt_binding_check' passes:
+Dumb question. Isn't it needed since it is referenced by phy-handle =
+<&phy> below. Without it, the fragment is not valid DT and so the
+checking tools will fail?
 
-diff --git a/Documentation/devicetree/bindings/display/msm/mdss-common.yaml
-b/Documentation/devicetree/bindings/display/msm/mdss-common.yaml
-index ccd7d6417523..924fe383e4a1 100644
---- a/Documentation/devicetree/bindings/display/msm/mdss-common.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/mdss-common.yaml
-@@ -77,6 +77,11 @@ properties:
-     items:
-       - description: MDSS_CORE reset
+> > +        gmiitorgmii@8 {
+> > +            compatible = "xlnx,gmii-to-rgmii-1.0";
+> > +            reg = <8>;
+> > +            phy-handle = <&phy>;
+> > +        };
+> > +    };
 
-+  memory-region:
-+    maxItems: 1
-+    description:
-+      Phandle to a node describing a reserved memory region.
-+
- required:
-   - reg
-   - reg-names
-
-
->
-> Regards,
-> Amit Pundir
->
-> >
-> > >   patternProperties:
-> > >     "^display-controller@[0-9a-f]+$":
-> > >       type: object
-> >
-> > --
-> > With best wishes
-> > Dmitry
-> >
-
-
-
--- 
-With best wishes
-Dmitry
+	Andrew
