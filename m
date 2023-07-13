@@ -2,223 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4ADDF751C4F
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 10:55:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 76A60751C6E
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 11:00:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233893AbjGMIzM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jul 2023 04:55:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55278 "EHLO
+        id S233441AbjGMJAS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jul 2023 05:00:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58516 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233661AbjGMIzK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jul 2023 04:55:10 -0400
-Received: from mail-yw1-x1133.google.com (mail-yw1-x1133.google.com [IPv6:2607:f8b0:4864:20::1133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6971E4D
-        for <devicetree@vger.kernel.org>; Thu, 13 Jul 2023 01:55:08 -0700 (PDT)
-Received: by mail-yw1-x1133.google.com with SMTP id 00721157ae682-57712d00cc1so3884697b3.3
-        for <devicetree@vger.kernel.org>; Thu, 13 Jul 2023 01:55:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689238508; x=1691830508;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=mvy/EMrBnpulduSmMNLqJP+nI2s3mvHLILhwx65lZzg=;
-        b=n/4CMkr4qcI041dReHtmELq5ltPXDA8cbnDEnrDVW/N4+L5e3L8ni+CbAxQU/e4eP5
-         s81fZfsz295AJttgBoNxIGX7U2yru2axJ6M4pCLjn7tHYzkeHlvKC/0TD8ek3UphWmVp
-         05dFtg+DPS8skpG2b2VeGgh/Pt+5p38QTvjygKPWS47F5bmcjEH87Js6jWz5+SLT+dPZ
-         PZJPf0M1fHyqW5i/uzrhIrvPn5QbXq9KgS12S/A896e+ZLcYxOz2AkgHYX21oDVgDRQh
-         6NlYsNu4CcVtjDqZ28LpwMt2g4ZdYNNt1tV22wathsGULaafqPHisoq8qZ2VlxDtkLZm
-         u/VA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689238508; x=1691830508;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=mvy/EMrBnpulduSmMNLqJP+nI2s3mvHLILhwx65lZzg=;
-        b=K0dPLX+5DRypIYINkP+i1dZJNL4Ciy62KNeEM7AbgohVOxEUzVKK0EPOVDPx0DEV6h
-         KKrygtFuquvIoaXLr1TcWeKQQShSej3oLboFJntb+ZbMD3NTliHKELs7+A1JIgpnxsjx
-         A94YnPyO7BJCh2tkdlh1oht31StET6NZHUPUqwafbLG1aF7SKn/ERI+/KCxy84P9EVmt
-         pXWNGNCri5nXl4VtVIlX04hotld8ibeMwz0/lW5t947a9DCTcS9dHMOgqKD9qg+I9Ml5
-         Ao3JjKb1kKtEmfgmKEAdGfo0Km+cUvdi2AJJEiTbci7rMOqLVbjDs9JQUm2MNH7jjrnA
-         dLNA==
-X-Gm-Message-State: ABy/qLaR8qIwLc9yU7BYQtjq/nYXI++pphw6D+O2A8Cr84oL9M/iZyGy
-        hft6x4mnnU/m8biA/1O1cskFSne4ldemK2dNnGoUyA==
-X-Google-Smtp-Source: APBJJlHLk2NajIUnrpoa5kWE3qfd685DCFLowb3S1Uu55NjcG42lVYQrHMU7nHsK/lAXhXD6MXiXp51m+5u94OlNxT0=
-X-Received: by 2002:a0d:c884:0:b0:579:e8de:3580 with SMTP id
- k126-20020a0dc884000000b00579e8de3580mr1101134ywd.9.1689238507937; Thu, 13
- Jul 2023 01:55:07 -0700 (PDT)
+        with ESMTP id S234645AbjGMJAN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jul 2023 05:00:13 -0400
+Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4ED75268D;
+        Thu, 13 Jul 2023 01:59:55 -0700 (PDT)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id DF94E4000B;
+        Thu, 13 Jul 2023 08:59:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1689238793;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=Fp/T2auLWK8Fh3jBHDr22urRoZN6z4YaEPdbMmTfazs=;
+        b=SbSb0sexsiPU6to0djhloJ9Q46blZelElo9R8OOsyL1JJoNool3laht22HNcGTaN+X1oQ/
+        ABEVvuZlDh+rAtZR5TmJIRR1m3hgNeM4eamhXKT1NzCkZqlQEsqC51ED7qYR8ePoyPF7rB
+        pzR6CZNV8C3CNSClazlFDuDZzQ2hdPD3Pt383ouKqr9Sjf10clOc7E/b86dwLts9dQS4pz
+        KCmXSp9NzouXNAFqAkx2C6CO4O500HW8clabk9dtdnHkE1QktHlhzqurso5F+o/N7ZQZ6G
+        eikDmyNQzqeb10Z/VwAHk5CVpXUikGaPjj1ftndFA6/kV3dERjaeonkVhc+DaQ==
+From:   Gregory CLEMENT <gregory.clement@bootlin.com>
+To:     Chris Packham <chris.packham@alliedtelesis.co.nz>,
+        miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org
+Cc:     linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Chris Packham <chris.packham@alliedtelesis.co.nz>
+Subject: Re: [PATCH v3 2/3] arm64: dts: marvell: Add NAND flash controller
+ to AC5
+In-Reply-To: <20230703035044.2063303-3-chris.packham@alliedtelesis.co.nz>
+References: <20230703035044.2063303-1-chris.packham@alliedtelesis.co.nz>
+ <20230703035044.2063303-3-chris.packham@alliedtelesis.co.nz>
+Date:   Thu, 13 Jul 2023 10:59:52 +0200
+Message-ID: <87h6q82nlj.fsf@BL-laptop>
 MIME-Version: 1.0
-References: <1687246361-23607-1-git-send-email-quic_taozha@quicinc.com>
- <1687246361-23607-10-git-send-email-quic_taozha@quicinc.com>
- <2023062024-sincere-tripod-95dc@gregkh> <3aca4a55-0dc7-b34c-d2c0-111a96c33ec3@quicinc.com>
- <e82385f1-de55-4c70-5c5c-35b93a5b2488@arm.com> <d3849c2a-8826-62a7-1749-0d4b3ee47259@quicinc.com>
-In-Reply-To: <d3849c2a-8826-62a7-1749-0d4b3ee47259@quicinc.com>
-From:   Mike Leach <mike.leach@linaro.org>
-Date:   Thu, 13 Jul 2023 09:54:56 +0100
-Message-ID: <CAJ9a7VgRFDFoZgRQ_J62We7vJ2D_yULH18S5FwAnB4S+oi2npA@mail.gmail.com>
-Subject: Re: [PATCH v6 09/13] Add nodes for dsb edge control
-To:     Tao Zhang <quic_taozha@quicinc.com>
-Cc:     Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jinlong Mao <quic_jinlmao@quicinc.com>,
-        Leo Yan <leo.yan@linaro.org>, coresight@lists.linaro.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Tingwei Zhang <quic_tingweiz@quicinc.com>,
-        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Hao Zhang <quic_hazha@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, andersson@kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
+X-GND-Sasl: gregory.clement@bootlin.com
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-HI Tao,
+Chris Packham <chris.packham@alliedtelesis.co.nz> writes:
 
-On Wed, 12 Jul 2023 at 14:53, Tao Zhang <quic_taozha@quicinc.com> wrote:
+> The AC5/AC5X SoC has a NAND flash controller (NFC). Add this to
+> the base SoC dtsi file as a disabled node. The NFC integration
+> on the AC5/AC5X only supports SDR timing modes up to 3 so requires a
+> dedicated compatible property so this limitation can be enforced.
 >
->
-> On 6/20/2023 9:41 PM, Suzuki K Poulose wrote:
-> > On 20/06/2023 09:31, Tao Zhang wrote:
-> >>
-> >> On 6/20/2023 3:37 PM, Greg Kroah-Hartman wrote:
-> >>> On Tue, Jun 20, 2023 at 03:32:37PM +0800, Tao Zhang wrote:
-> >>>> Add the nodes to set value for DSB edge control and DSB edge
-> >>>> control mask. Each DSB subunit TPDM has maximum of n(n<16) EDCR
-> >>>> resgisters to configure edge control. DSB edge detection control
-> >>>> 00: Rising edge detection
-> >>>> 01: Falling edge detection
-> >>>> 10: Rising and falling edge detection (toggle detection)
-> >>>> And each DSB subunit TPDM has maximum of m(m<8) ECDMR registers to
-> >>>> configure mask. Eight 32 bit registers providing DSB interface
-> >>>> edge detection mask control.
-> >>>>
-> >>>> Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
-> >>>> ---
-> >>>>   .../ABI/testing/sysfs-bus-coresight-devices-tpdm   |  32 +++++
-> >>>>   drivers/hwtracing/coresight/coresight-tpdm.c       | 143
-> >>>> ++++++++++++++++++++-
-> >>>>   drivers/hwtracing/coresight/coresight-tpdm.h       |  22 ++++
-> >>>>   3 files changed, 196 insertions(+), 1 deletion(-)
-> >>>>
-> >>>> diff --git
-> >>>> a/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
-> >>>> b/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
-> >>>> index 2a82cd0..34189e4a 100644
-> >>>> --- a/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
-> >>>> +++ b/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
-> >>>> @@ -60,3 +60,35 @@ Description:
-> >>>>           Bit[3] : Set to 0 for low performance mode.
-> >>>>                    Set to 1 for high performance mode.
-> >>>>           Bit[4:8] : Select byte lane for high performance mode.
-> >>>> +
-> >>>> +What: /sys/bus/coresight/devices/<tpdm-name>/dsb_edge_ctrl
-> >>>> +Date:        March 2023
-> >>>> +KernelVersion    6.5
-> >>>> +Contact:    Jinlong Mao (QUIC) <quic_jinlmao@quicinc.com>, Tao
-> >>>> Zhang (QUIC) <quic_taozha@quicinc.com>
-> >>>> +Description:
-> >>>> +        Read/Write a set of the edge control registers of the DSB
-> >>>> +        in TPDM.
-> >>>> +
-> >>>> +        Expected format is the following:
-> >>>> +        <integer1> <integer2> <integer3>
-> >>> sysfs is "one value", not 3.  Please never have to parse a sysfs file.
-> >>
-> >> Do you mean sysfs file can only accept "one value"?
-> >>
-> >> I see that more than one value are written to the sysfs file
-> >> "trigout_attach".
-> >>
-> >>>
-> >>>> +static ssize_t dsb_edge_ctrl_show(struct device *dev,
-> >>>> +                       struct device_attribute *attr,
-> >>>> +                       char *buf)
-> >>>> +{
-> >>>> +    struct tpdm_drvdata *drvdata = dev_get_drvdata(dev->parent);
-> >>>> +    ssize_t size = 0;
-> >>>> +    unsigned long bytes;
-> >>>> +    int i;
-> >>>> +
-> >>>> +    spin_lock(&drvdata->spinlock);
-> >>>> +    for (i = 0; i < TPDM_DSB_MAX_EDCR; i++) {
-> >>>> +        bytes = sysfs_emit_at(buf, size,
-> >>>> +                  "Index:0x%x Val:0x%x\n", i,
-> >>> Again, no, one value, no "string" needed to parse anything.
-> >>
-> >> I also see other sysfs files can be read more than one value in other
-> >> drivers.
-> >>
-> >> Is this "one value" limitation the usage rule of Linux sysfs system?
-> >>
-> >> Or am I misunderstanding what you mean?
-> >
-> > Please fix the other sysfs tunables in the following patches.
->
-> List a new solution for the similar cases below, please see if this
-> design is reasonable?
->
-> 1. Two SysFS files("dsb_edge_ctrl_idx" and "dsb_edge_ctrl_val") will be
-> created in this case.
->
-> 2. First write to the node "dsb_edge_ctrl_idx" to set the index number
-> of the edge detection.
->
-> 3. Then write to the node "dsb_edge_ctrl_val" to set the value of the
-> edge detection.
->
-> For example, if we need need to set "Falling edge detection" to the edge
-> detection #220-#222, we can issue the following commands.
->
-> echo 0xdc > tpdm1/dsb_edge_ctrl_idx
->
-> echo 0x1 > tpdm1/dsb_edge_ctrl_val
->
-> echo 0xdd > tpdm1/dsb_edge_ctrl_idx
->
-> echo 0x1 > tpdm1/dsb_edge_ctrl_val
->
-> echo 0xde > tpdm1/dsb_edge_ctrl_idx
->
-> echo 0x1 > tpdm1/dsb_edge_ctrl_val
->
-> If this design is acceptable, we will rewrite other similar nodes based
-> on this solution.
->
+> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
 
-This index / value model is used in the coresight drivers so should be
-OK - eg etm4 has cntr_idx / cntrldvr / cntr_val / cntr_ctrl, where
-index selects the counter, and the other val registers are applied to
-that counter.
+Now that binding and code has beeen applied I can apply this one on
+mvebu/dt64
 
-Mike
+Thanks,
 
-> Let me know if you have any concerns or good suggestions for this solution.
->
->
-> Best,
->
-> Tao
->
-> >
-> > Kind regards
-> > Suzuki
-> >
-> >
+Gregory
 
-
+> ---
+>
+> Notes:
+>     Changes in v3:
+>     - Use correct clock for NFC
+>     Changes in v2:
+>     - New.
+>
+>  arch/arm64/boot/dts/marvell/ac5-98dx25xx.dtsi | 16 ++++++++++++++++
+>  1 file changed, 16 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/marvell/ac5-98dx25xx.dtsi b/arch/arm64/boot/dts/marvell/ac5-98dx25xx.dtsi
+> index c9ce1010c415..c64aaf51deb8 100644
+> --- a/arch/arm64/boot/dts/marvell/ac5-98dx25xx.dtsi
+> +++ b/arch/arm64/boot/dts/marvell/ac5-98dx25xx.dtsi
+> @@ -297,6 +297,16 @@ spi1: spi@805a8000 {
+>  			status = "disabled";
+>  		};
+>  
+> +		nand: nand-controller@805b0000 {
+> +			compatible = "marvell,ac5-nand-controller";
+> +			reg =  <0x0 0x805b0000 0x0 0x00000054>;
+> +			#address-cells = <0x1>;
+> +			#size-cells = <0x0>;
+> +			interrupts = <GIC_SPI 89 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&nand_clock>;
+> +			status = "disabled";
+> +		};
+> +
+>  		gic: interrupt-controller@80600000 {
+>  			compatible = "arm,gic-v3";
+>  			#interrupt-cells = <3>;
+> @@ -319,5 +329,11 @@ spi_clock: spi-clock {
+>  			#clock-cells = <0>;
+>  			clock-frequency = <200000000>;
+>  		};
+> +
+> +		nand_clock: nand-clock {
+> +			compatible = "fixed-clock";
+> +			#clock-cells = <0>;
+> +			clock-frequency = <400000000>;
+> +		};
+>  	};
+>  };
+> -- 
+> 2.41.0
+>
 
 -- 
-Mike Leach
-Principal Engineer, ARM Ltd.
-Manchester Design Centre. UK
+Gregory Clement, Bootlin
+Embedded Linux and Kernel engineering
+http://bootlin.com
