@@ -2,230 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B65CB7520FA
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 14:14:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 43380752127
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 14:21:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234652AbjGMMOC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jul 2023 08:14:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36916 "EHLO
+        id S234267AbjGMMV0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jul 2023 08:21:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44580 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234666AbjGMMNr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jul 2023 08:13:47 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A20C2D6D;
-        Thu, 13 Jul 2023 05:13:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1689250398; x=1720786398;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=Ao2V3XKzPyOMhVIBq5e6EqE2FH88Dgn3v9ob0DWGpxw=;
-  b=wCSgLbYVDQhniFQEDHfYL5cStT5IggHKWyDawes0KDwJDKfCElevMbes
-   ufPGHajyOrrtvC94CQ09K6C/isgxBwLtXpcZW08fTY6ZtPGqO6wsz4l4I
-   4g0CB1NuWpiX7UG77p1zzf+No+FNYiom5urW09adb5T2Ydx/tLrRvIutG
-   SAlAbG1Tew8DIbTctpNqEer4CbxJRPAWOjnoLxSck7i78mDdYs6raR9aG
-   Lk661bpqZ9cDLaqRH0lTuKrdTZJpm/e75A1XpTTvtq2nAQa7qYnJLdh9x
-   a6w9OWSrpVgYDDZ0lH3s/EpE/9CaVSz1a8M73wQugYGg0MZFwu0rSWNMG
-   Q==;
-X-IronPort-AV: E=Sophos;i="6.01,202,1684825200"; 
-   d="scan'208";a="220194646"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 13 Jul 2023 05:13:06 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
- chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Thu, 13 Jul 2023 05:13:02 -0700
-Received: from wendy.microchip.com (10.10.115.15) by chn-vm-ex02.mchp-main.com
- (10.10.85.144) with Microsoft SMTP Server id 15.1.2507.21 via Frontend
- Transport; Thu, 13 Jul 2023 05:12:59 -0700
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     <palmer@dabbelt.com>
-CC:     <conor@kernel.org>, <conor.dooley@microchip.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S233731AbjGMMVY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jul 2023 08:21:24 -0400
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11on2100.outbound.protection.outlook.com [40.107.236.100])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09C38272A;
+        Thu, 13 Jul 2023 05:20:49 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=RO+tL0RH5hcsHYxjbbGJ6x1kIU1LDA80YyifalsUSjZ+cAdZGH+KldMjYYocnJUpWFD8Xhedzaly75x4WUCcB1De+ABEpq20+Df24zmTJ7AnnJ1TRUgqqo3vfKwgOPRZgL27oNo1JYBeHEth1tk4oB0hWxMGkkAOQbSFe6xW2iVOf3oFICCXChfOjHg5IDdUwR8eztozle1Gaiaxorl7poLuDUoGYZxsIpnqyERujJ62OiFY/gToX6ypJVNpuglFhvtGNFhAySKXu5qrG959LB/FDzt0eIWa1jKUalhopPiNfeIhZr8OwkJcW5kPcPG2hdq3kRDOJnf+i0tCZ/8qsg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ANQ4C2tnrCk+CSroawOo7OH++aM+F0pp908RZsdICNA=;
+ b=nfBjdTOcM1Umy/0ZwMMzCqOos9WR691vZqcLbf63r+f3w+enz5hAqG7982LJbkkQm1oZ9YaPpvQhL7V7fzNkRVY5s/7aPfZo5XSve9ZGNcySRhgPkAzenkSsrSpJ5616HrbUiRZSQYM0WeV2O8mFrWK2Xxpar58D0dIkbbSbkTqUyC99Df4xiKFC6sZzQIjhrmg8qjckAf3hfWjsbNfM0in1sg0CHMhXzAQepObfJlFAYmFUf2Y66Y31CtBMtZfvvbfGJRtGHR55udq3Z7E5mwbzRYcnifsVRsuaxhkKdU/87wNSE/2lMzr/OLalcg9zZ/XiBfhMceIMf3TT4w8GLQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=corigine.com; dmarc=pass action=none header.from=corigine.com;
+ dkim=pass header.d=corigine.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=corigine.onmicrosoft.com; s=selector2-corigine-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ANQ4C2tnrCk+CSroawOo7OH++aM+F0pp908RZsdICNA=;
+ b=I7Q2lo3BbAYah6K9zhl0kX7bcs3VV18J5wkxc6qHn+EHWaJyZx56oZg+sMotbXdc34qkTPhFRZD8vEv6T2ZEepp0YMAP+5mfj7Z2zU3eHSGx0Wng61vemR53kgBmErt1ZPQgvkUc6A7DlnO9hVdTNhR2IGuihA2Juny/8EpY/Zw=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=corigine.com;
+Received: from PH0PR13MB4842.namprd13.prod.outlook.com (2603:10b6:510:78::6)
+ by MW5PR13MB5996.namprd13.prod.outlook.com (2603:10b6:303:1cd::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6565.31; Thu, 13 Jul
+ 2023 12:20:19 +0000
+Received: from PH0PR13MB4842.namprd13.prod.outlook.com
+ ([fe80::d23a:8c12:d561:470]) by PH0PR13MB4842.namprd13.prod.outlook.com
+ ([fe80::d23a:8c12:d561:470%6]) with mapi id 15.20.6588.024; Thu, 13 Jul 2023
+ 12:20:19 +0000
+Date:   Thu, 13 Jul 2023 13:20:11 +0100
+From:   Simon Horman <simon.horman@corigine.com>
+To:     Md Danish Anwar <a0501179@ti.com>
+Cc:     MD Danish Anwar <danishanwar@ti.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Roger Quadros <rogerq@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Conor Dooley <conor+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        "Jonathan Corbet" <corbet@lwn.net>,
-        Andrew Jones <ajones@ventanamicro.com>,
-        "Heiko Stuebner" <heiko.stuebner@vrull.eu>,
-        Evan Green <evan@rivosinc.com>,
-        Sunil V L <sunilvl@ventanamicro.com>,
-        <linux-doc@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Palmer Dabbelt <palmer@rivosinc.com>
-Subject: [PATCH v5 11/11] RISC-V: provide Kconfig & commandline options to control parsing "riscv,isa"
-Date:   Thu, 13 Jul 2023 13:11:09 +0100
-Message-ID: <20230713-aviator-plausibly-a35662485c2c@wendy>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230713-target-much-8ac624e90df8@wendy>
-References: <20230713-target-much-8ac624e90df8@wendy>
+        Rob Herring <robh+dt@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Eric Dumazet <edumazet@google.com>,
+        "David S. Miller" <davem@davemloft.net>, nm@ti.com, srk@ti.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        netdev@vger.kernel.org, linux-omap@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [EXTERNAL] Re: [EXTERNAL] Re: [PATCH v8 2/2] net: ti:
+ icssg-prueth: Add ICSSG ethernet driver
+Message-ID: <ZK/r+xgo4oeCjAxw@corigine.com>
+References: <20230710053550.89160-1-danishanwar@ti.com>
+ <20230710053550.89160-3-danishanwar@ti.com>
+ <ZK2VRYwW8DxIZCY2@corigine.com>
+ <afbd4c9d-5ff7-e366-f866-6b718907d6fa@ti.com>
+ <ZK+6zVnUSJG5GKd4@corigine.com>
+ <b6e49136-1bad-8d32-ac6c-f9185dfaa9d3@ti.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <b6e49136-1bad-8d32-ac6c-f9185dfaa9d3@ti.com>
+X-ClientProxiedBy: LO4P123CA0277.GBRP123.PROD.OUTLOOK.COM
+ (2603:10a6:600:195::12) To PH0PR13MB4842.namprd13.prod.outlook.com
+ (2603:10b6:510:78::6)
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=5841; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=Ao2V3XKzPyOMhVIBq5e6EqE2FH88Dgn3v9ob0DWGpxw=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDCnrX95I9v60+YCl/c5LJ3cqRWZvnjRp565oX06n/HV3lx+c ofDKq6OUhUGMg0FWTJEl8XZfi9T6Py47nHvewsxhZQIZwsDFKQATMexgZNgqPTXXwvqLudMPSY2f8V /b76280eY6dS/jD7am1S1P7WQZGZof1Ub+Pbw85ulcA+vHq+btfvHtIMc3/sxHlo/ZvUzrZ/ICAA==
-X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,
-        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH0PR13MB4842:EE_|MW5PR13MB5996:EE_
+X-MS-Office365-Filtering-Correlation-Id: 750ec54c-2c19-46ab-e10b-08db839b85d2
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: H7FAYXSJ3hNC9faHBJGas4NntJoTB1zGn05sxN9SqMa7f7k3DfNzZuHcbS3JjtZ3BlxRWgNsJs7hZL2cFeXUMDoXRquenJ8u0uK1gSCCPvaJTar1M/CSelC226dLdLkUkaY++2bkFwfFajrL+p/usQPq/lfses+0aQ0SN+lC9TFcQco+lfiVD3KrvZ5S2HkKzB0jqlf9l8YNzplWTqbJ2Tw4YQjVaYtBZfkJC6SrGwm/B5OrZvWcXyNIk03wec7QsiGmBq8WvtzudNngywjulQQMPAu8WJn1bvehULUkDgxV2DHCG+BlJuv54wHfwb+NbxFaR6pZFnJ6AJvRH/B4FzhGE5aXkIYY95SyA2oPVZ+QK4L/hE42zdyH9e9TtU1BG6qbklsT99o2RBIfHA6rRJoACnZgtmTOj+Uo92jRP6NT0Kq1G8KBsZw5ylT9a6OtPVMXC47RFjCYIlPUS65DNDDTZ0vybCf2afmYnOX9xbMnrDeXcqbJjgasYaTQ22dWaJ4kHMjz7J2D2SNXUoT6+LNO1jEyYvdmNaeAeg3AkKE4GCGSJHoNyM2gQrp/Joal0vyiqRESBOjghE11RBU/2F21Sgs/GPVuWGI3pRRbto8=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH0PR13MB4842.namprd13.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(39840400004)(396003)(136003)(366004)(346002)(376002)(451199021)(36756003)(86362001)(38100700002)(478600001)(6666004)(41300700001)(8676002)(54906003)(6486002)(6512007)(8936002)(44832011)(5660300002)(7416002)(2906002)(6916009)(4326008)(316002)(66476007)(66556008)(66946007)(2616005)(4744005)(186003)(26005)(6506007)(53546011)(83380400001);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?A8n9mpeKJpC8R08Z42Otz8qpKaLBWzEkwOi/sfXBOjEcR/vQwX5dNi0TIudl?=
+ =?us-ascii?Q?RaUFQbarbTdmAkOM1xbshwhDuBMG/5HovRmQ8/DqB3gWFA1LC/5oKkwEx2nZ?=
+ =?us-ascii?Q?uRT1LaqABPc6Xz1b65wwe9z1q7Osx51gr/f2Z8/QkX+2pPQ5LUC24YzuHuk7?=
+ =?us-ascii?Q?Lhx2TJRjeVgQfhxPqlsUBxy92++LtnXL9FR1rNh6aXRYNPoAWeEXQA2JUxbE?=
+ =?us-ascii?Q?HpSk6UVh5JcyOpOekI13Ag8nCTBAY8+KPdgVJQLy8vkeGOxKE1WPl/pEwN7R?=
+ =?us-ascii?Q?5ru6w8icHvAAmdpE3DYdlTXj4bOTPuqwswTCBDbo1yzdwMgdYp8kgvy5LcFm?=
+ =?us-ascii?Q?AM4VWxn/CIyMuNk48ySw/h6DDbhlRnptDiFJYWW09csZ6pIqInhAEb0XoZ47?=
+ =?us-ascii?Q?rbXwkGO/E9rPbocx48/Cpdt0TZyBR0qTFRazc9A7hQNM3DEMVpw6hMZ9gArn?=
+ =?us-ascii?Q?7VGqfPbDkMSgarK05h66JtC4mFzLuWl4mDedXefm7bU7J1AgCaTN2XCbQhD8?=
+ =?us-ascii?Q?2Vc4X9QFTtrFKHvHgDMz6fNa1+YpiOA7ggundYLRMlEabg6BZvU7JrlSqhAu?=
+ =?us-ascii?Q?VIv5RzJRNNT+9FwGGsEwaAazPvby3iTgQ1EGLbHMtZ26ilooFv31XAFtHYqg?=
+ =?us-ascii?Q?/+54+jGKC2ELjfR0cNkmPFwJVD+9L/pxLNx/WQQ0G7D6E/BIdVFAJTGFX1aQ?=
+ =?us-ascii?Q?g/wSb93Xi6uuLaOqUNuRTyT+htapPW4PTz3jo6yz0ffQLeuVP7YfDFbpEuB0?=
+ =?us-ascii?Q?kA1Pa2GkMLl/Rcp0yeGGZpGOSdbS2GyMdUkQJNqEQ/Xh7G7gKEVLtRAWMUzZ?=
+ =?us-ascii?Q?chG7A3bMFJZMDLXAJsLtrELJxTK1F36QSnoL0RnES3CgwsGhS/JUqqDboJl6?=
+ =?us-ascii?Q?jNPaNr40GJiwtUlxmHQ0rBQj6YtBPSLrkK6kTU0cMUWTWZlfu+7gjEe3P+8I?=
+ =?us-ascii?Q?BdJMDdppNuQ86Yd8uALq3s/mEL7FXmcpunr5zIiRAtAJsV6i1iZtKAeYqchV?=
+ =?us-ascii?Q?A/EJ+35uCC3LpML7w5wXl4dhPRq+yN+WocRphLLjsM7khUhJBfyajmDMp8SE?=
+ =?us-ascii?Q?HP1qilap6PsW4ArAQFFYPOZO30lVNQKZhrWv58W18kavIw+45ruD67jr3wjZ?=
+ =?us-ascii?Q?9810wm6Z9xmq26xLQozb+C2zTXY3HA5GNAFPFFxzv5ZwUHJW7cIJ3/JVxJfJ?=
+ =?us-ascii?Q?dejAHHbiuLez0DGIbzsf52BEFdsANc6JQMhuUE72nn+ER9STWpquQJOiRN8g?=
+ =?us-ascii?Q?9GeL/divTgl7NnQrOgJiDpaxOXwp3PCCZueqwMNiJhrjKJeOiuK7AUhjvAlP?=
+ =?us-ascii?Q?GM7t8V3ARVI6/Gf8iRkpLJHX1WyM6eKg1xeZz8desHhvwjpb72lhKie671ZF?=
+ =?us-ascii?Q?BL5WdY13+F/MgjukxQFjAwo4laOilfbxRkr9cv908v69k8PSHCa1yuXQZTBv?=
+ =?us-ascii?Q?auk+ApHc7hGi8KXGkDBTAA0Bq2eJS2339NxXt9f6HDGRGEAuXLvfpJ+7lU7q?=
+ =?us-ascii?Q?4ibW4HqmXLmD1oR6BtNq+uHgOkd/PLzDa7Z0AUUjILeLx8XbtCf6iJtPMrY9?=
+ =?us-ascii?Q?GUaMiKHTpl5R2j8rfmNHivmEYYDtWzKjbXeoj8plUHUcFMIHctS7Eibr4/BL?=
+ =?us-ascii?Q?qQ=3D=3D?=
+X-OriginatorOrg: corigine.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 750ec54c-2c19-46ab-e10b-08db839b85d2
+X-MS-Exchange-CrossTenant-AuthSource: PH0PR13MB4842.namprd13.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Jul 2023 12:20:19.2865
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: fe128f2c-073b-4c20-818e-7246a585940c
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: amoRQvsfVwvP9f3jZIqZjGePvTa1QO2Ewhla8nsARprPzVQXPQ+rcnmBqJoCN6G6HXyM1ivipfcHY8CeJhApL9mDTSGoWqeGHg4iPWHU8Xo=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW5PR13MB5996
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-As it says on the tin, provide Kconfig option to control parsing the
-"riscv,isa" devicetree property. If either option is used, the kernel
-will fall back to parsing "riscv,isa", where "riscv,isa-base" and
-"riscv,isa-extensions" are not present.
-The Kconfig options are set up so that the default kernel configuration
-will enable the fallback path, without needing the commandline option.
+Hi Danish,
 
-Suggested-by: Andrew Jones <ajones@ventanamicro.com>
-Suggested-by: Palmer Dabbelt <palmer@rivosinc.com>
-Reviewed-by: Andrew Jones <ajones@ventanamicro.com>
-Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
----
-Changes in v4:
-- add __init to fixup k210 build issue
-- use Drew's revised wording
+On Thu, Jul 13, 2023 at 05:11:12PM +0530, Md Danish Anwar wrote:
+> Hi Simon,
+> 
+> On 13/07/23 2:20 pm, Simon Horman wrote:
+> > Hi Anwar,
+> > 
+> > On Wed, Jul 12, 2023 at 05:55:57PM +0530, Anwar, Md Danish wrote:
+> >> Hi Simon
+> >> On 7/11/2023 11:15 PM, Simon Horman wrote:
+> >>> On Mon, Jul 10, 2023 at 11:05:50AM +0530, MD Danish Anwar wrote:
+> >>>> From: Roger Quadros <rogerq@ti.com>
 
-Changes in v3:
-- Invert the Kconfig entry. It's now default y & not hidden by
-  NONPORTABLE, but its entablement will now activate the fallback
-- Add a commandline option to enable the fallback on kernels that do not
-  enable it in Kconfig, as Drew suggested
-- Default the global var to the Kconfig option & override it with the
-  commandline one, rather than have checks for IS_ENABLED() and for the
-  commandline option in riscv_fill_hwcap() &
-  riscv_early_of_processor_hartid()
----
- .../admin-guide/kernel-parameters.txt          |  7 +++++++
- arch/riscv/Kconfig                             | 18 ++++++++++++++++++
- arch/riscv/include/asm/hwcap.h                 |  1 +
- arch/riscv/kernel/cpu.c                        |  8 +++++++-
- arch/riscv/kernel/cpufeature.c                 | 14 +++++++++++++-
- 5 files changed, 46 insertions(+), 2 deletions(-)
+...
 
-diff --git a/Documentation/admin-guide/kernel-parameters.txt b/Documentation/admin-guide/kernel-parameters.txt
-index a1457995fd41..bdc3fa712e92 100644
---- a/Documentation/admin-guide/kernel-parameters.txt
-+++ b/Documentation/admin-guide/kernel-parameters.txt
-@@ -5468,6 +5468,13 @@
- 			[KNL] Disable ring 3 MONITOR/MWAIT feature on supported
- 			CPUs.
- 
-+	riscv_isa_fallback [RISCV]
-+			When CONFIG_RISCV_ISA_FALLBACK is not enabled, permit
-+			falling back to detecting extension support by parsing
-+			"riscv,isa" property on devicetree systems when the
-+			replacement properties are not found. See the Kconfig
-+			entry for RISCV_ISA_FALLBACK.
-+
- 	ro		[KNL] Mount root device read-only on boot
- 
- 	rodata=		[KNL]
-diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
-index 4c07b9189c86..f52dd125ac5e 100644
---- a/arch/riscv/Kconfig
-+++ b/arch/riscv/Kconfig
-@@ -848,6 +848,24 @@ config XIP_PHYS_ADDR
- 	  be linked for and stored to.  This address is dependent on your
- 	  own flash usage.
- 
-+config RISCV_ISA_FALLBACK
-+	bool "Permit falling back to parsing riscv,isa for extension support by default"
-+	default y
-+	help
-+	  Parsing the "riscv,isa" devicetree property has been deprecated and
-+	  replaced by a list of explicitly defined strings. For compatibility
-+	  with existing platforms, the kernel will fall back to parsing the
-+	  "riscv,isa" property if the replacements are not found.
-+
-+	  Selecting N here will result in a kernel that does not use the
-+	  fallback, unless the commandline "riscv_isa_fallback" parameter is
-+	  present.
-+
-+	  Please see the dt-binding, located at
-+	  Documentation/devicetree/bindings/riscv/extensions.yaml for details
-+	  on the replacement properties, "riscv,isa-base" and
-+	  "riscv,isa-extensions".
-+
- endmenu # "Boot options"
- 
- config BUILTIN_DTB
-diff --git a/arch/riscv/include/asm/hwcap.h b/arch/riscv/include/asm/hwcap.h
-index e3cda14a486b..b7b58258f6c7 100644
---- a/arch/riscv/include/asm/hwcap.h
-+++ b/arch/riscv/include/asm/hwcap.h
-@@ -81,6 +81,7 @@ struct riscv_isa_ext_data {
- 
- extern const struct riscv_isa_ext_data riscv_isa_ext[];
- extern const size_t riscv_isa_ext_count;
-+extern bool riscv_isa_fallback;
- 
- unsigned long riscv_isa_extension_base(const unsigned long *isa_bitmap);
- 
-diff --git a/arch/riscv/kernel/cpu.c b/arch/riscv/kernel/cpu.c
-index 28d5af21f544..208f1a700121 100644
---- a/arch/riscv/kernel/cpu.c
-+++ b/arch/riscv/kernel/cpu.c
-@@ -41,7 +41,7 @@ int riscv_of_processor_hartid(struct device_node *node, unsigned long *hart)
- 	return 0;
- }
- 
--int riscv_early_of_processor_hartid(struct device_node *node, unsigned long *hart)
-+int __init riscv_early_of_processor_hartid(struct device_node *node, unsigned long *hart)
- {
- 	const char *isa;
- 
-@@ -87,6 +87,12 @@ int riscv_early_of_processor_hartid(struct device_node *node, unsigned long *har
- 	return 0;
- 
- old_interface:
-+	if (!riscv_isa_fallback) {
-+		pr_warn("CPU with hartid=%lu is invalid: this kernel does not parse \"riscv,isa\"",
-+			*hart);
-+		return -ENODEV;
-+	}
-+
- 	if (of_property_read_string(node, "riscv,isa", &isa)) {
- 		pr_warn("CPU with hartid=%lu has no \"riscv,isa-base\" or \"riscv,isa\" property\n",
- 			*hart);
-diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeature.c
-index fdc71e52dc2b..71fb840ee246 100644
---- a/arch/riscv/kernel/cpufeature.c
-+++ b/arch/riscv/kernel/cpufeature.c
-@@ -473,6 +473,18 @@ static int __init riscv_fill_hwcap_from_ext_list(unsigned long *isa2hwcap)
- 	return 0;
- }
- 
-+#ifdef CONFIG_RISCV_ISA_FALLBACK
-+bool __initdata riscv_isa_fallback = true;
-+#else
-+bool __initdata riscv_isa_fallback;
-+static int __init riscv_isa_fallback_setup(char *__unused)
-+{
-+	riscv_isa_fallback = true;
-+	return 1;
-+}
-+early_param("riscv_isa_fallback", riscv_isa_fallback_setup);
-+#endif
-+
- void __init riscv_fill_hwcap(void)
- {
- 	char print_str[NUM_ALPHA_EXTS + 1];
-@@ -492,7 +504,7 @@ void __init riscv_fill_hwcap(void)
- 	} else {
- 		int ret = riscv_fill_hwcap_from_ext_list(isa2hwcap);
- 
--		if (ret) {
-+		if (ret && riscv_isa_fallback) {
- 			pr_info("Falling back to deprecated \"riscv,isa\"\n");
- 			riscv_fill_hwcap_from_isa_string(isa2hwcap);
- 		}
--- 
-2.40.1
+> >>> Smatch warns that eth0_node and eth1_node may be uninitialised here.
+> >>>
+> >>
+> >> Sure, I will initialise eth0_node and eth1_node as NULL.
+> > 
+> > Thanks.
+> > 
+> > ...
+> 
+> I will fix all the sparse and smatch warning and send next revision.
 
+Perfect, thanks!
