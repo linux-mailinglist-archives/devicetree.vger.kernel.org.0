@@ -2,93 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B1737525CC
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 16:57:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 93CE7752607
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 17:04:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232268AbjGMO5z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jul 2023 10:57:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34422 "EHLO
+        id S230371AbjGMPEb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jul 2023 11:04:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39840 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232185AbjGMO5y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jul 2023 10:57:54 -0400
-Received: from mail-io1-f50.google.com (mail-io1-f50.google.com [209.85.166.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CD962D6A;
-        Thu, 13 Jul 2023 07:57:30 -0700 (PDT)
-Received: by mail-io1-f50.google.com with SMTP id ca18e2360f4ac-786bb09e595so45010439f.1;
-        Thu, 13 Jul 2023 07:57:30 -0700 (PDT)
+        with ESMTP id S232547AbjGMPE3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jul 2023 11:04:29 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2397FE68
+        for <devicetree@vger.kernel.org>; Thu, 13 Jul 2023 08:04:28 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-992af8b3b1bso118096266b.1
+        for <devicetree@vger.kernel.org>; Thu, 13 Jul 2023 08:04:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1689260666; x=1691852666;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=TwNGulIA2ho0EBWPPONOOw90suBzDLAU+ZErTuI+Vzc=;
+        b=hRZggRhob6aVHF8C/YtZ1wNcx/+AtkQw4WxbNzb/Y0jrRutfiQDp6DsjI+SCBxq7AA
+         6lRPJWVDWYzgXHmOLgZ3ASS9HoDyxaToeUAcKivABM8Bfo0G+zxLFbT+hwu05zZy2jJp
+         7kFfqBAiKA8whjWz4HoafKKQiK6IGSIxxoZNxCYrhLp9MeNcbLacGj3kIm+V+0uzct0V
+         kQvIOX/AH1+kaypzuHob1K0/+1roW0Op8OlPwHC0FrcQdlitNtK072ap5mKo+KeHto2u
+         H8S9rG/Xd5Qqny/FDkLCSi5in5nA4c6nO8mglpoVkE7SoGkaEnhu9yQLwnf1hJ63GRU1
+         GbzQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689260246; x=1691852246;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=yXTEiJgqTQSHTgMd2XgbWoza5WarJFfM5iZCV23PHFo=;
-        b=TqS/8nXmUg7DBqIp4YAPym5tZ23vnhJg7PSsH5g9SAPvE2D94+AGs9yLaIiPIMiyrR
-         OnwjaHbhPq0slfA2wC6HN09/GirII3MipD3GmtqpKaP2+fZPn0AvG/KO6E+jPPJ0D4Mv
-         wcLMxvJGiW8E8ZAXGOQGACmxkQQs83P7CMq3XpY+kw9ObbEVS1ACRwltvEMc5+NI9yHA
-         aydZLDpWwxXqhZ4l+K9OtPm/ZY9o1Zs6twhlWPfd7hjnj8hWMMFwEGlp/bLp4SxBNHCW
-         KpogEyNepiMzfyFhGFrJD4SUwOoqXtoA8QJQRcmeGdwJm8HDplEth6GmfvDXqgwiIPws
-         x3Jg==
-X-Gm-Message-State: ABy/qLZvwimLa7Tiy6lqzJoQUQGsnzUUr8D70l4FiEjfd05HbdC9l5yf
-        ly98/cMupTQ5h+baBLnTO1lUb6tFFQ==
-X-Google-Smtp-Source: APBJJlEbJtUGyiRAj/0oiEUGHUE6MDV5DC9yCYrFNINS6T3YHK29EQFfzahnTjX3plIUV34wtbPcAA==
-X-Received: by 2002:a92:c905:0:b0:346:3fc5:93e0 with SMTP id t5-20020a92c905000000b003463fc593e0mr1501585ilp.2.1689260246652;
-        Thu, 13 Jul 2023 07:57:26 -0700 (PDT)
-Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id y9-20020a92d809000000b003460b8505easm2113677ilm.19.2023.07.13.07.57.25
+        d=1e100.net; s=20221208; t=1689260666; x=1691852666;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=TwNGulIA2ho0EBWPPONOOw90suBzDLAU+ZErTuI+Vzc=;
+        b=HBgj/OtIqTFMSlPIneMswY6XXFznFW10FCMBhqFR22X0IRx8k+Sdx6g/XtQjKb4091
+         upDgSYcu1iJY2ERVoXtIsnRqCtfeAnyfQWiqAgprW1ynkhQVGHT8gY3FMgC6e51We2TX
+         XlAXmXG5bE16/GIlq5QNDiAhaOUMsrMx3E3gaXRWPSE2l16Wh+L2VbtT33cI6kBO0IV1
+         53LNmQvVIyQiApcVFWFiwm2Yktv4rZagU1JO0qnKRETsFHw5R95wr/J7VOM8FbiVFOqT
+         7Fk3WiPafh6z3vkNYnPy5ebPfYjaM9oir1jngmjkyDu0NwU8B5wTeNmLdi4yGEYYl6WL
+         zC2g==
+X-Gm-Message-State: ABy/qLZ5c1tB78On9o6vsnlbMY5+nTQ2n2vTxWEL2D3byOQf3tpyv7qy
+        vFmawCV2A6X/EpH+NVrsWkcdHQ==
+X-Google-Smtp-Source: APBJJlG70SgkGGn23vEi3FSKwCEUIJMon8LV4qYHTuV1LyiLcqxeGAwf1wxRGXZOoEsp5bCsKbtmeA==
+X-Received: by 2002:a17:906:7786:b0:993:d8be:53f5 with SMTP id s6-20020a170906778600b00993d8be53f5mr1818669ejm.14.1689260666585;
+        Thu, 13 Jul 2023 08:04:26 -0700 (PDT)
+Received: from blmsp.fritz.box ([2001:4091:a247:82fa:1d6d:d215:e7c4:dd5e])
+        by smtp.gmail.com with ESMTPSA id cd26-20020a170906b35a00b009929c39d5c4sm4102939ejb.36.2023.07.13.08.04.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 13 Jul 2023 07:57:25 -0700 (PDT)
-Received: (nullmailer pid 4005390 invoked by uid 1000);
-        Thu, 13 Jul 2023 14:57:24 -0000
-Date:   Thu, 13 Jul 2023 08:57:24 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Mark Brown <broonie@kernel.org>,
-        William Qiu <william.qiu@starfivetech.com>,
-        devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+        Thu, 13 Jul 2023 08:04:26 -0700 (PDT)
+From:   Markus Schneider-Pargmann <msp@baylibre.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Linus Walleij <linus.walleij@linaro.org>
-Subject: Re: [PATCH v2 2/3] dt-bindings: spi: constrain minItems of clocks
- and clock-names
-Message-ID: <20230713145724.GA3975811-robh@kernel.org>
-References: <20230713090015.127541-1-william.qiu@starfivetech.com>
- <20230713090015.127541-3-william.qiu@starfivetech.com>
- <c5ad1e1c-58f4-4833-b9c7-8876c1a0dc27@sirena.org.uk>
- <e3fd0d3f-3fe4-2e23-2548-ecbd487e9c9f@linaro.org>
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     Chun-Jie Chen <chun-jie.chen@mediatek.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Tinghan Shen <tinghan.shen@mediatek.com>,
+        Fabien Parent <parent.f@gmail.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Markus Schneider-Pargmann <msp@baylibre.com>
+Subject: [PATCH v7 0/8] soc: mediatek: MT8365 power support
+Date:   Thu, 13 Jul 2023 17:04:06 +0200
+Message-Id: <20230713150414.891893-1-msp@baylibre.com>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <e3fd0d3f-3fe4-2e23-2548-ecbd487e9c9f@linaro.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 13, 2023 at 02:39:19PM +0200, Krzysztof Kozlowski wrote:
-> On 13/07/2023 14:28, Mark Brown wrote:
-> > On Thu, Jul 13, 2023 at 05:00:14PM +0800, William Qiu wrote:
-> > 
-> >> The SPI controller only need apb_pclk clock to work properly on JH7110 SoC,
-> >> so there add minItems whose value is equal to 1. Other platforms do not
-> >> have this constraint.
-> > 
-> > Presumably this means that this is some variant of the usual pl022 IP,
-> 
-> Hm, in such case this could mean we need dedicated compatible.
+Hi,
 
-Except the vendor in the ID registers should be different if the IP is 
-modified.
+this version just fixes some small style issues and rebases to v6.5-rc1.
 
-I suspect that PCLK and SSPCLK are tied to the same clock source. There 
-must be an SSPCLK because that is the one used to clock the SPI bus and 
-we need to know the frequency of it.
+Thanks for any feedback!
 
-Rob
+Best,
+Markus
+
+Based on v6.5-rc1
+
+Changes in v7:
+- Rebased to v6.5-rc1
+- Fixed a couple of small style issues pointed out by Angelo
+
+Changes in v6:
+- Change flags field to be u8 instead of u32
+- Use macro concatenation to simplify BUS_PROT macros:
+  BUS_PROT_WR(_hwip, ...) etc.
+- Use the final bit values for scpsys_bus_prot_flags from the beginning
+  of the series.
+- Changed scpsys_domain_data->caps to be u16 to accommodate the new flag
+  MTK_SCPD_STRICT_BUS_PROTECTION.
+
+Changes in v5:
+- Create defines for all registers and bits in mt8365 power domain patch
+- Redesign scpsys_bus_prot_data to use flags to store reg_update,
+  clr_ack as well as the difference between SMI and INFRACFG. The code
+  uses the appropriate regmap depending on the flags.
+- The WAY_EN patch now uses two flags, one for inverted operations
+  'BUS_PROT_INVERTED' and one to use infracfg-nao for the status flags
+  'BUS_PROT_STA_COMPONENT_INFRA_NAO'.
+
+Changes in v4:
+- Redesigned WAY_EN patch and split it up in smaller patches.
+- Added two documentation patches.
+- Added mediatek,infracfg-nao field to the binding.
+
+Changes in v3:
+- Mainly redesigned WAY_EN patch to be easier to understand
+- Rebased onto v6.0-rc1
+- Several other stuff that is described in the individual patches
+
+Changes in v2:
+- Updated error handling path for scpsys_power_on()
+- Minor updates described in each patch
+
+Previous versions:
+v1 - https://lore.kernel.org/linux-mediatek/20220530204214.913251-1-fparent@baylibre.com/
+v2 - https://lore.kernel.org/linux-mediatek/20220725081853.1636444-1-msp@baylibre.com/
+v3 - https://lore.kernel.org/linux-mediatek/20220822144303.3438467-1-msp@baylibre.com/
+v4 - https://lore.kernel.org/linux-arm-kernel/20230105170735.1637416-1-msp@baylibre.com/
+v5 - https://lore.kernel.org/linux-arm-kernel/20230619085344.2885311-1-msp@baylibre.com/
+v6 - https://lore.kernel.org/linux-arm-kernel/20230627131040.3418538-1-msp@baylibre.com/
+
+Alexandre Bailon (2):
+  soc: mediatek: Add support for WAY_EN operations
+  soc: mediatek: Add support for MTK_SCPD_STRICT_BUS_PROTECTION cap
+
+Fabien Parent (2):
+  dt-bindings: power: Add MT8365 power domains
+  soc: mediatek: pm-domains: Add support for MT8365
+
+Markus Schneider-Pargmann (4):
+  soc: mediatek: pm-domains: Move bools to a flags field
+  soc: mediatek: pm-domains: Split bus_prot_mask
+  soc: mediatek: pm-domains: Create bus protection operation functions
+  soc: mediatek: pm-domains: Unify configuration for infracfg and smi
+
+ .../power/mediatek,power-controller.yaml      |   6 +
+ drivers/soc/mediatek/mt6795-pm-domains.h      |  16 +-
+ drivers/soc/mediatek/mt8167-pm-domains.h      |  20 +-
+ drivers/soc/mediatek/mt8173-pm-domains.h      |  16 +-
+ drivers/soc/mediatek/mt8183-pm-domains.h      | 125 ++++++----
+ drivers/soc/mediatek/mt8186-pm-domains.h      | 236 ++++++++++--------
+ drivers/soc/mediatek/mt8188-pm-domains.h      | 223 +++++++++++------
+ drivers/soc/mediatek/mt8192-pm-domains.h      | 112 ++++++---
+ drivers/soc/mediatek/mt8195-pm-domains.h      | 199 +++++++++------
+ drivers/soc/mediatek/mt8365-pm-domains.h      | 197 +++++++++++++++
+ drivers/soc/mediatek/mtk-pm-domains.c         | 157 ++++++++----
+ drivers/soc/mediatek/mtk-pm-domains.h         |  51 ++--
+ .../dt-bindings/power/mediatek,mt8365-power.h |  19 ++
+ include/linux/soc/mediatek/infracfg.h         |  41 +++
+ 14 files changed, 972 insertions(+), 446 deletions(-)
+ create mode 100644 drivers/soc/mediatek/mt8365-pm-domains.h
+ create mode 100644 include/dt-bindings/power/mediatek,mt8365-power.h
+
+
+base-commit: 06c2afb862f9da8dc5efa4b6076a0e48c3fbaaa5
+-- 
+2.40.1
+
