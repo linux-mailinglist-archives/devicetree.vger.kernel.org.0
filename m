@@ -2,109 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6AC0E752B5B
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 22:09:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D64D752B78
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 22:13:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231873AbjGMUJ4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jul 2023 16:09:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45262 "EHLO
+        id S233809AbjGMUNF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jul 2023 16:13:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48646 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231279AbjGMUJz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jul 2023 16:09:55 -0400
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 702A21720;
-        Thu, 13 Jul 2023 13:09:52 -0700 (PDT)
-Received: from i53875a50.versanet.de ([83.135.90.80] helo=phil.localnet)
-        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <heiko@sntech.de>)
-        id 1qK2d0-0007XX-UA; Thu, 13 Jul 2023 22:09:30 +0200
-From:   Heiko Stuebner <heiko@sntech.de>
-To:     linux-pci@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc:     Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Krzysztof =?utf-8?B?V2lsY3p5xYRza2k=?= <kw@linux.com>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Shawn Lin <shawn.lin@rock-chips.com>,
-        Simon Xue <xxm@rock-chips.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Sebastian Reichel <sebastian.reichel@collabora.com>,
-        kernel@collabora.com
-Subject: Re: [PATCH v2 0/3] RK3588 PCIe2 support
-Date:   Thu, 13 Jul 2023 22:09:29 +0200
-Message-ID: <9408492.EvYhyI6sBW@phil>
-In-Reply-To: <20230713171851.73052-1-sebastian.reichel@collabora.com>
-References: <20230713171851.73052-1-sebastian.reichel@collabora.com>
+        with ESMTP id S229930AbjGMUNE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jul 2023 16:13:04 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB1612D6A;
+        Thu, 13 Jul 2023 13:12:36 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 36DKC4Xq112372;
+        Thu, 13 Jul 2023 15:12:04 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1689279124;
+        bh=0S2ewqAxg7ILJY9MxheLt4LbCdAki+6jXINxMjiX69o=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=ZQAWguTaq0oJyQamAR6Zivi6qbRIvLgQIWQZlx9J9WE73yHjbhCjKyIr/MYZLwpdF
+         dTaCJ5AJghWNnFi9etSLlrvI1SIeazIKE1zeBVsd/8CDCrwfB9PG+grWocrVjP1fAG
+         wvN41ffEpVziD/63jxogNJQs8JhftAKMGYqLKIUU=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 36DKC4Bp026133
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 13 Jul 2023 15:12:04 -0500
+Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 13
+ Jul 2023 15:12:03 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 13 Jul 2023 15:12:03 -0500
+Received: from [10.250.32.50] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 36DKC3Fc081261;
+        Thu, 13 Jul 2023 15:12:03 -0500
+Message-ID: <b16568ec-0428-981b-01ca-571cc5d52704@ti.com>
+Date:   Thu, 13 Jul 2023 15:12:03 -0500
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        T_SPF_HELO_TEMPERROR autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v2] mux: mmio: use reg property when parent device is not
+ a syscon
+Content-Language: en-US
+To:     Peter Rosin <peda@axentia.se>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20230605154153.24025-1-afd@ti.com>
+From:   Andrew Davis <afd@ti.com>
+In-Reply-To: <20230605154153.24025-1-afd@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sebastian,
-
-Am Donnerstag, 13. Juli 2023, 19:18:48 CEST schrieb Sebastian Reichel:
-> Hi,
+On 6/5/23 10:41 AM, Andrew Davis wrote:
+> The DT binding for the reg-mux compatible states it can be used when the
+> "parent device of mux controller is not syscon device". It also allows
+> for a reg property. When the reg property is provided, use that to
+> identify the address space for this mux. If not provided fallback to
+> using the parent device as a regmap provider.
 > 
-> This adds PCIe v2 support for RK3588. The series has been tested with
-> the onboard RTL8125 network card on Rockchip RK3588 EVB1 (&pcie2x1l1)
-> and Radxa Rock 5B (&pcie2x1l2).
-> 
-> Changes since v1:
+> Signed-off-by: Andrew Davis <afd@ti.com>
+> ---
 
-Didn't Rob write that he applied patches 1-3 of the v1 series? [0]
-or did I miss further communication somehow?
+Ping, still needed and applies cleanly on v6.5-rc1.
 
-Thanks
-Heiko
+Andrew
 
-[0] https://lore.kernel.org/r/20230626193238.GA3553158-robh@kernel.org
-
->  * https://lore.kernel.org/all/20230616170022.76107-1-sebastian.reichel@collabora.com/
->  * Dropped patch adding 'RK3588' (queued by Rob)
->  * Updated patch adding legacy-interrupt-controller according to comments
->    from Rob and Serge
->     - added missing additionalProperties: false
->     - added all properties to new required property
->     - removed useless quotes around interrupt-controller
->     - added Rob's Reviewed-by
->  * Updated patch adding the missing RK356x/RK3588 interrupt names, so that it
->    provides more details about the interrupts
->  * Updated the DT patch according to the comment from Jonas Karlman, so that
->    the addresses are in 32 bit address space starting at 0x40000000
 > 
-> [0] https://lore.kernel.org/all/20230612171337.74576-1-sebastian.reichel@collabora.com/
+> Changes from v1:
+>   - Flip logic as suggested in v1[0]
 > 
-> Thanks,
+> [0] https://lore.kernel.org/lkml/1c27d9d4-b1cc-c158-90f7-f7e47e02c424@ti.com/T/
 > 
-> -- Sebastian
+>   drivers/mux/mmio.c | 9 ++++++---
+>   1 file changed, 6 insertions(+), 3 deletions(-)
 > 
-> Sebastian Reichel (3):
->   dt-bindings: PCI: dwc: rockchip: Fix interrupt-names issue
->   dt-bindings: PCI: dwc: rockchip: Add missing
->     legacy-interrupt-controller
->   arm64: dts: rockchip: rk3588: add PCIe2 support
-> 
->  .../bindings/pci/rockchip-dw-pcie.yaml        |  48 ++++++++
->  .../devicetree/bindings/pci/snps,dw-pcie.yaml |  76 +++++++++++-
->  arch/arm64/boot/dts/rockchip/rk3588.dtsi      |  54 +++++++++
->  arch/arm64/boot/dts/rockchip/rk3588s.dtsi     | 108 ++++++++++++++++++
->  4 files changed, 285 insertions(+), 1 deletion(-)
-> 
-> 
-
-
-
-
+> diff --git a/drivers/mux/mmio.c b/drivers/mux/mmio.c
+> index 44a7a0e885b8d..2c9e4df9d6f2c 100644
+> --- a/drivers/mux/mmio.c
+> +++ b/drivers/mux/mmio.c
+> @@ -44,10 +44,13 @@ static int mux_mmio_probe(struct platform_device *pdev)
+>   	int ret;
+>   	int i;
+>   
+> -	if (of_device_is_compatible(np, "mmio-mux"))
+> +	if (of_device_is_compatible(np, "mmio-mux")) {
+>   		regmap = syscon_node_to_regmap(np->parent);
+> -	else
+> -		regmap = dev_get_regmap(dev->parent, NULL) ?: ERR_PTR(-ENODEV);
+> +	} else {
+> +		regmap = device_node_to_regmap(np);
+> +		if (IS_ERR(regmap))
+> +			regmap = dev_get_regmap(dev->parent, NULL) ?: ERR_PTR(-ENODEV);
+> +	}
+>   	if (IS_ERR(regmap)) {
+>   		ret = PTR_ERR(regmap);
+>   		dev_err(dev, "failed to get regmap: %d\n", ret);
