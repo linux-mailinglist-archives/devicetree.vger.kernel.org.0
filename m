@@ -2,196 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ED037751D51
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 11:34:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0622E751DBA
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 11:51:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232835AbjGMJeH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jul 2023 05:34:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55322 "EHLO
+        id S234233AbjGMJvg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jul 2023 05:51:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37278 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230408AbjGMJeG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jul 2023 05:34:06 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 91D391FC7;
-        Thu, 13 Jul 2023 02:34:04 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id C60ED1570;
-        Thu, 13 Jul 2023 02:34:46 -0700 (PDT)
-Received: from [10.1.36.45] (FVFF763DQ05P.cambridge.arm.com [10.1.36.45])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D04143F740;
-        Thu, 13 Jul 2023 02:34:01 -0700 (PDT)
-Message-ID: <77343663-2d09-53bf-d463-36b979e433ea@arm.com>
-Date:   Thu, 13 Jul 2023 10:34:00 +0100
+        with ESMTP id S234236AbjGMJvc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jul 2023 05:51:32 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CE2C2691;
+        Thu, 13 Jul 2023 02:51:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1689241889; x=1720777889;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=p8KNXC84in4+3MzsSjHoAvZ5MDvUvWUUZHD9BXjeUJw=;
+  b=AHZr7sYw/WaxkyyKZBpEd3M2dMlq0rII/p1i60j2ZWE8xjsQYxBp6kmg
+   yNZhx0TYS8NiiLEYb6VCQOBAjelMFozT4cPy9FERNeE52QCE9no/r/MEm
+   PIVVstYa2vYua6+yWPhc/KZ9p5Qc7q3hc9dy4B6bVwcoR3xGO44ll4jRm
+   85YKxRzk4B8KTScYCS5xl3KdhsHlXPu0L1JYR8z2r21tnLit9xChez6dE
+   zqNM6cmkTiaLq1ThjZF3i7SJy5aDNAGylqV+9rT++odEQ0LywpKsT3QzT
+   2HyOPJPuz8dvbfhY27NXuST+9a1KRq2n14+hnvnF/ndQhgjlw6klUu6jJ
+   A==;
+X-IronPort-AV: E=Sophos;i="6.01,202,1684825200"; 
+   d="scan'208";a="222807459"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 13 Jul 2023 02:51:28 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Thu, 13 Jul 2023 02:51:25 -0700
+Received: from che-lt-i66125lx.microchip.com (10.10.115.15) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
+ 15.1.2507.21 via Frontend Transport; Thu, 13 Jul 2023 02:51:13 -0700
+From:   Durai Manickam KR <durai.manickamkr@microchip.com>
+To:     <Hari.PrasathGE@microchip.com>,
+        <balamanikandan.gunasundar@microchip.com>,
+        <manikandan.m@microchip.com>, <varshini.rajendran@microchip.com>,
+        <dharma.b@microchip.com>, <nayabbasha.sayed@microchip.com>,
+        <balakrishnan.s@microchip.com>, <cristian.birsan@microchip.com>,
+        <nicolas.ferre@microchip.com>, <krzysztof.kozlowski@linaro.org>,
+        <alexandre.belloni@bootlin.com>, <davem@davemloft.net>,
+        <arnd@arndb.de>, <olof@lixom.net>, <soc@kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <Kavyasree.Kotagiri@microchip.com>,
+        <Horatiu.Vultur@microchip.com>, <robh+dt@kernel.org>,
+        <andrew@lunn.ch>, <michael@walle.cc>, <jerry.ray@microchip.com>,
+        <conor+dt@kernel.org>, <jesper.nilsson@axis.com>,
+        <andre.przywara@arm.com>, <ada@thorsis.com>,
+        <radu_nicolae.pirea@upb.ro>, <richard.genoud@gmail.com>,
+        <gregkh@linuxfoundation.org>, <linux-spi@vger.kernel.org>,
+        <linux-serial@vger.kernel.org>
+CC:     Durai Manickam KR <durai.manickamkr@microchip.com>
+Subject: [PATCHv2 0/2] update at91 usart compatible for sam9x60
+Date:   Thu, 13 Jul 2023 15:21:09 +0530
+Message-ID: <20230713095111.335346-1-durai.manickamkr@microchip.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.12.0
-Subject: Re: [PATCH v6 09/13] Add nodes for dsb edge control
-To:     Mike Leach <mike.leach@linaro.org>,
-        Tao Zhang <quic_taozha@quicinc.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jinlong Mao <quic_jinlmao@quicinc.com>,
-        Leo Yan <leo.yan@linaro.org>, coresight@lists.linaro.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Tingwei Zhang <quic_tingweiz@quicinc.com>,
-        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Hao Zhang <quic_hazha@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, andersson@kernel.org
-References: <1687246361-23607-1-git-send-email-quic_taozha@quicinc.com>
- <1687246361-23607-10-git-send-email-quic_taozha@quicinc.com>
- <2023062024-sincere-tripod-95dc@gregkh>
- <3aca4a55-0dc7-b34c-d2c0-111a96c33ec3@quicinc.com>
- <e82385f1-de55-4c70-5c5c-35b93a5b2488@arm.com>
- <d3849c2a-8826-62a7-1749-0d4b3ee47259@quicinc.com>
- <CAJ9a7VgRFDFoZgRQ_J62We7vJ2D_yULH18S5FwAnB4S+oi2npA@mail.gmail.com>
-From:   Suzuki K Poulose <suzuki.poulose@arm.com>
-In-Reply-To: <CAJ9a7VgRFDFoZgRQ_J62We7vJ2D_yULH18S5FwAnB4S+oi2npA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,
+        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/07/2023 09:54, Mike Leach wrote:
-> HI Tao,
-> 
-> On Wed, 12 Jul 2023 at 14:53, Tao Zhang <quic_taozha@quicinc.com> wrote:
->>
->>
->> On 6/20/2023 9:41 PM, Suzuki K Poulose wrote:
->>> On 20/06/2023 09:31, Tao Zhang wrote:
->>>>
->>>> On 6/20/2023 3:37 PM, Greg Kroah-Hartman wrote:
->>>>> On Tue, Jun 20, 2023 at 03:32:37PM +0800, Tao Zhang wrote:
->>>>>> Add the nodes to set value for DSB edge control and DSB edge
->>>>>> control mask. Each DSB subunit TPDM has maximum of n(n<16) EDCR
->>>>>> resgisters to configure edge control. DSB edge detection control
->>>>>> 00: Rising edge detection
->>>>>> 01: Falling edge detection
->>>>>> 10: Rising and falling edge detection (toggle detection)
->>>>>> And each DSB subunit TPDM has maximum of m(m<8) ECDMR registers to
->>>>>> configure mask. Eight 32 bit registers providing DSB interface
->>>>>> edge detection mask control.
->>>>>>
->>>>>> Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
->>>>>> ---
->>>>>>    .../ABI/testing/sysfs-bus-coresight-devices-tpdm   |  32 +++++
->>>>>>    drivers/hwtracing/coresight/coresight-tpdm.c       | 143
->>>>>> ++++++++++++++++++++-
->>>>>>    drivers/hwtracing/coresight/coresight-tpdm.h       |  22 ++++
->>>>>>    3 files changed, 196 insertions(+), 1 deletion(-)
->>>>>>
->>>>>> diff --git
->>>>>> a/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
->>>>>> b/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
->>>>>> index 2a82cd0..34189e4a 100644
->>>>>> --- a/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
->>>>>> +++ b/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
->>>>>> @@ -60,3 +60,35 @@ Description:
->>>>>>            Bit[3] : Set to 0 for low performance mode.
->>>>>>                     Set to 1 for high performance mode.
->>>>>>            Bit[4:8] : Select byte lane for high performance mode.
->>>>>> +
->>>>>> +What: /sys/bus/coresight/devices/<tpdm-name>/dsb_edge_ctrl
->>>>>> +Date:        March 2023
->>>>>> +KernelVersion    6.5
->>>>>> +Contact:    Jinlong Mao (QUIC) <quic_jinlmao@quicinc.com>, Tao
->>>>>> Zhang (QUIC) <quic_taozha@quicinc.com>
->>>>>> +Description:
->>>>>> +        Read/Write a set of the edge control registers of the DSB
->>>>>> +        in TPDM.
->>>>>> +
->>>>>> +        Expected format is the following:
->>>>>> +        <integer1> <integer2> <integer3>
->>>>> sysfs is "one value", not 3.  Please never have to parse a sysfs file.
->>>>
->>>> Do you mean sysfs file can only accept "one value"?
->>>>
->>>> I see that more than one value are written to the sysfs file
->>>> "trigout_attach".
->>>>
->>>>>
->>>>>> +static ssize_t dsb_edge_ctrl_show(struct device *dev,
->>>>>> +                       struct device_attribute *attr,
->>>>>> +                       char *buf)
->>>>>> +{
->>>>>> +    struct tpdm_drvdata *drvdata = dev_get_drvdata(dev->parent);
->>>>>> +    ssize_t size = 0;
->>>>>> +    unsigned long bytes;
->>>>>> +    int i;
->>>>>> +
->>>>>> +    spin_lock(&drvdata->spinlock);
->>>>>> +    for (i = 0; i < TPDM_DSB_MAX_EDCR; i++) {
->>>>>> +        bytes = sysfs_emit_at(buf, size,
->>>>>> +                  "Index:0x%x Val:0x%x\n", i,
->>>>> Again, no, one value, no "string" needed to parse anything.
->>>>
->>>> I also see other sysfs files can be read more than one value in other
->>>> drivers.
->>>>
->>>> Is this "one value" limitation the usage rule of Linux sysfs system?
->>>>
->>>> Or am I misunderstanding what you mean?
->>>
->>> Please fix the other sysfs tunables in the following patches.
->>
->> List a new solution for the similar cases below, please see if this
->> design is reasonable?
->>
->> 1. Two SysFS files("dsb_edge_ctrl_idx" and "dsb_edge_ctrl_val") will be
->> created in this case.
->>
->> 2. First write to the node "dsb_edge_ctrl_idx" to set the index number
->> of the edge detection.
->>
->> 3. Then write to the node "dsb_edge_ctrl_val" to set the value of the
->> edge detection.
->>
->> For example, if we need need to set "Falling edge detection" to the edge
->> detection #220-#222, we can issue the following commands.
->>
->> echo 0xdc > tpdm1/dsb_edge_ctrl_idx
->>
->> echo 0x1 > tpdm1/dsb_edge_ctrl_val
->>
->> echo 0xdd > tpdm1/dsb_edge_ctrl_idx
->>
->> echo 0x1 > tpdm1/dsb_edge_ctrl_val
->>
->> echo 0xde > tpdm1/dsb_edge_ctrl_idx
->>
->> echo 0x1 > tpdm1/dsb_edge_ctrl_val
->>
->> If this design is acceptable, we will rewrite other similar nodes based
->> on this solution.
->>
-> 
-> This index / value model is used in the coresight drivers so should be
-> OK - eg etm4 has cntr_idx / cntrldvr / cntr_val / cntr_ctrl, where
-> index selects the counter, and the other val registers are applied to
-> that counter.
+There is only one debug unit in the sam9x60 SOC and it has the chipid 
+register. So defining these dbgu compatible strings to the flexcom usart
+is not correct and causes the SOC detection failure. So removing these 
+dbgu compatible strings defined under the flexcom usart and updating 
+the yaml file accordingly.
 
-True. That model is useful when there are variable number of "counters".
-I guess it doesn't hurt to have a 64bit (or even 32bit) file for each
-EDCR.
+Durai Manickam KR (2):
+  dt-bindings: serial: atmel,at91-usart: add compatible for sam9x60
+  ARM: dts: at91: sam9x60: fix the SOC detection
 
-e.g, edcr0...edcr15
+ .../bindings/serial/atmel,at91-usart.yaml     |  4 ++-
+ arch/arm/boot/dts/microchip/sam9x60.dtsi      | 26 +++++++++----------
+ 2 files changed, 16 insertions(+), 14 deletions(-)
 
-Given there are only 16 of them, it is fine to keep a file for each.
-This may be grouped under "mgmt" similar to what we have for other
-components. That way, it can be easily hidden by checking for the
-presence of DSB.
-
-Suzuki
+-- 
+2.25.1
 
