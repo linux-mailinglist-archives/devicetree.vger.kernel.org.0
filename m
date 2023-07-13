@@ -2,266 +2,196 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E6CD67529AB
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 19:19:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 11C8F7529B8
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 19:20:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232120AbjGMRTB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jul 2023 13:19:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46878 "EHLO
+        id S229833AbjGMRUe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jul 2023 13:20:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48494 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231567AbjGMRS7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jul 2023 13:18:59 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5EBC2708;
-        Thu, 13 Jul 2023 10:18:57 -0700 (PDT)
-Received: from jupiter.universe (dyndsl-091-248-214-236.ewe-ip-backbone.de [91.248.214.236])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: sre)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id E6C536607053;
-        Thu, 13 Jul 2023 18:18:55 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1689268736;
-        bh=7jLBbWCpB/tZLCVIuH0NgH3tkSVr74qYfvPJihqPkog=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=Nm36yIPwqE+rAA59em2MI8agz010jFeYsx59Oqq9FaeB6INm2P/R2sjT+N0v6+vGK
-         ERXa55cYGh5ZhjxFZaZsawX7vJbawRXhExzUDrbXXESfIqXMKlLCpUTHwcYrbWLnWJ
-         hKw/llKC9pxcm+849JPAsda+CgLNiBQ1UBA26/5EMQ+fvWVikr07ZdUWnUJg6gn0uY
-         7FXzosctIOmVIyAHmpISUmgWcnQQFKuDHQteXnw2UZDqL9q2uQ3y8DDbyNsX98AN6A
-         F+XKICrbK+QPG9S5gGTDSXafI1dXgzW2zgng1zzkH6jAvc5OYS7bIWSVMzUhMa82G3
-         /LA4rqsDHfo+Q==
-Received: by jupiter.universe (Postfix, from userid 1000)
-        id CD6F9480087; Thu, 13 Jul 2023 19:18:53 +0200 (CEST)
-From:   Sebastian Reichel <sebastian.reichel@collabora.com>
-To:     linux-pci@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        Serge Semin <fancer.lancer@gmail.com>
-Cc:     Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Shawn Lin <shawn.lin@rock-chips.com>,
-        Simon Xue <xxm@rock-chips.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Sebastian Reichel <sebastian.reichel@collabora.com>,
-        kernel@collabora.com, Kever Yang <kever.yang@rock-chips.com>
-Subject: [PATCH v2 3/3] arm64: dts: rockchip: rk3588: add PCIe2 support
-Date:   Thu, 13 Jul 2023 19:18:51 +0200
-Message-Id: <20230713171851.73052-4-sebastian.reichel@collabora.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230713171851.73052-1-sebastian.reichel@collabora.com>
-References: <20230713171851.73052-1-sebastian.reichel@collabora.com>
+        with ESMTP id S229788AbjGMRUc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jul 2023 13:20:32 -0400
+Received: from mail-pf1-x42d.google.com (mail-pf1-x42d.google.com [IPv6:2607:f8b0:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40B8130F1;
+        Thu, 13 Jul 2023 10:19:58 -0700 (PDT)
+Received: by mail-pf1-x42d.google.com with SMTP id d2e1a72fcca58-6682909acadso656644b3a.3;
+        Thu, 13 Jul 2023 10:19:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1689268791; x=1691860791;
+        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
+         :content-language:user-agent:mime-version:date:message-id:sender
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=B6q3yqHw5lCIHcrpempCEB7KMGH+tCMNgbL7f40MAuY=;
+        b=jAgjP/YVQgvUerdQbk9DZmbDd6WW69rrl+Vb0Pmr19zOvs4XWQlfbBzdQvhxY5MMqO
+         R/DslgZop0z0Yi+8Tx1oncf+xRJ3F4DrKDY6/DYAvICkGD+6wzo2qqHg5kWaDlzIZtf+
+         9k6jp5wJbojL6L0vTZEPAG4uVhXaIbcJCY2BMfmgHjwCeDicSDujoS3Fugf/OcGpLaBZ
+         5j5kV0i6Bn2uK77lYaSKpT8bqtaMa/UQ24dEPoB9L2VZyCT6QWmryrl72Q/oe0iZA8qg
+         fkXQB3aZ389gHI+QwnBhzDApKC4dJbcHCA1rAbpSs4SW9A+u7NsxunoBeyzADQg354oU
+         DoOA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689268791; x=1691860791;
+        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
+         :content-language:user-agent:mime-version:date:message-id:sender
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=B6q3yqHw5lCIHcrpempCEB7KMGH+tCMNgbL7f40MAuY=;
+        b=dSC4YxoaojFdHcomYOCmGh/Qp+J4x43CT/B8eeB26VJLza1CDedut6GnqMiNzyvS2s
+         t1EmiyHzWujfX38SjaWWSDF6n/a5l6Ixr6u8LtishrEvSpBA3lCD/ALsVH86pxp+Dj4F
+         tFvNypRnMymUf9i6dkC/MTBlZbyrEluod8pDDWuu+uHw3VZqiOAA7nTUuWekpo/4g1ef
+         wojVMl8gRXMY1WqbilbX0YwAkqs7Of4/bIrZd7EasAJPvLBhGVaAfN2qJIfFRmLtYqhY
+         Ac6Q/8jtGTj2a7kF4omBYQRv9JvRdx4mYistYKtK2Clv37VGzfYtSJL7i06lLGI3ycg7
+         F9Lg==
+X-Gm-Message-State: ABy/qLZm26ym/EZ7v4SMz4HOGD1+a1KW7ZsNbrSmWZGviebOcNo9LKMl
+        zeX/5Bub4FrgIiAQj8uCIl8=
+X-Google-Smtp-Source: APBJJlFK+jp89O6Uf/fdu37X+TR0XQ5OdJaVvAJzDHuc3bhgoA7Mcji5vntrlVvyeFSOyq8Sgw4bsQ==
+X-Received: by 2002:a05:6a20:12c8:b0:122:8096:7012 with SMTP id v8-20020a056a2012c800b0012280967012mr1796270pzg.3.1689268790647;
+        Thu, 13 Jul 2023 10:19:50 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id t16-20020a170902e85000b001b9de39905asm6180413plg.59.2023.07.13.10.19.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 13 Jul 2023 10:19:49 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <389c90f7-2df7-5998-068a-40bc8722893b@roeck-us.net>
+Date:   Thu, 13 Jul 2023 10:19:48 -0700
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Content-Language: en-US
+To:     huaqian.li@siemens.com, wim@linux-watchdog.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Cc:     huaqianlee@gmail.com, nm@ti.com, vigneshr@ti.com,
+        kristo@kernel.org, linux-watchdog@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, jan.kiszka@siemens.com,
+        baocheng.su@siemens.com
+References: <20230713095127.1230109-1-huaqian.li@siemens.com>
+ <20230713095127.1230109-4-huaqian.li@siemens.com>
+From:   Guenter Roeck <linux@roeck-us.net>
+Subject: Re: [PATCH v3 3/3] watchdog:rit_wdt: Add support for WDIOF_CARDRESET
+In-Reply-To: <20230713095127.1230109-4-huaqian.li@siemens.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add all three PCIe2 IP blocks to the RK3588 DT. Note, that RK3588
-also has two PCIe3 IP blocks, that will be handled separately.
+On 7/13/23 02:51, huaqian.li@siemens.com wrote:
+> From: Li Hua Qian <huaqian.li@siemens.com>
+> 
+> This patch adds the WDIOF_CARDRESET support for the platform watchdog
+> whose hardware does not support this feature, to know if the board
+> reboot is due to a watchdog reset.
+> 
+> This is done via reserved memory(RAM), which indicates if specific
+> info saved, triggering the watchdog reset in last boot.
+> 
+> Signed-off-by: Li Hua Qian <huaqian.li@siemens.com>
+> ---
+>   drivers/watchdog/rti_wdt.c | 51 ++++++++++++++++++++++++++++++++++++++
+>   1 file changed, 51 insertions(+)
+> 
+> diff --git a/drivers/watchdog/rti_wdt.c b/drivers/watchdog/rti_wdt.c
+> index ce8f18e93aa9..b9435b972cb9 100644
+> --- a/drivers/watchdog/rti_wdt.c
+> +++ b/drivers/watchdog/rti_wdt.c
+> @@ -18,6 +18,8 @@
+>   #include <linux/pm_runtime.h>
+>   #include <linux/types.h>
+>   #include <linux/watchdog.h>
+> +#include <linux/of_address.h>
+> +#include <linux/of.h>
+>   
 
-Co-developed-by: Kever Yang <kever.yang@rock-chips.com>
-Signed-off-by: Kever Yang <kever.yang@rock-chips.com>
-Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
----
- arch/arm64/boot/dts/rockchip/rk3588.dtsi  |  54 +++++++++++
- arch/arm64/boot/dts/rockchip/rk3588s.dtsi | 108 ++++++++++++++++++++++
- 2 files changed, 162 insertions(+)
+This driver so far managed to keep include files in alphabetic order.
+Please keep it that way.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588.dtsi b/arch/arm64/boot/dts/rockchip/rk3588.dtsi
-index 6be9bf81c09c..4d66ca6c2e4c 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3588.dtsi
-@@ -80,6 +80,60 @@ i2s10_8ch: i2s@fde00000 {
- 		status = "disabled";
- 	};
- 
-+	pcie2x1l0: pcie@fe170000 {
-+		compatible = "rockchip,rk3588-pcie", "rockchip,rk3568-pcie";
-+		#address-cells = <3>;
-+		#size-cells = <2>;
-+		bus-range = <0x20 0x2f>;
-+		clocks = <&cru ACLK_PCIE_1L0_MSTR>, <&cru ACLK_PCIE_1L0_SLV>,
-+			 <&cru ACLK_PCIE_1L0_DBI>, <&cru PCLK_PCIE_1L0>,
-+			 <&cru CLK_PCIE_AUX2>, <&cru CLK_PCIE1L0_PIPE>;
-+		clock-names = "aclk_mst", "aclk_slv",
-+			      "aclk_dbi", "pclk",
-+			      "aux", "pipe";
-+		device_type = "pci";
-+		interrupts = <GIC_SPI 243 IRQ_TYPE_LEVEL_HIGH 0>,
-+			     <GIC_SPI 242 IRQ_TYPE_LEVEL_HIGH 0>,
-+			     <GIC_SPI 241 IRQ_TYPE_LEVEL_HIGH 0>,
-+			     <GIC_SPI 240 IRQ_TYPE_LEVEL_HIGH 0>,
-+			     <GIC_SPI 239 IRQ_TYPE_LEVEL_HIGH 0>;
-+		interrupt-names = "sys", "pmc", "msg", "legacy", "err";
-+		#interrupt-cells = <1>;
-+		interrupt-map-mask = <0 0 0 7>;
-+		interrupt-map = <0 0 0 1 &pcie2x1l0_intc 0>,
-+				<0 0 0 2 &pcie2x1l0_intc 1>,
-+				<0 0 0 3 &pcie2x1l0_intc 2>,
-+				<0 0 0 4 &pcie2x1l0_intc 3>;
-+		linux,pci-domain = <2>;
-+		num-ib-windows = <8>;
-+		num-ob-windows = <8>;
-+		num-viewport = <4>;
-+		max-link-speed = <2>;
-+		msi-map = <0x2000 &its0 0x2000 0x1000>;
-+		num-lanes = <1>;
-+		phys = <&combphy1_ps PHY_TYPE_PCIE>;
-+		phy-names = "pcie-phy";
-+		power-domains = <&power RK3588_PD_PCIE>;
-+		ranges = <0x01000000 0x0 0xf2100000 0x0 0xf2100000 0x0 0x00100000>,
-+			 <0x02000000 0x0 0xf2200000 0x0 0xf2200000 0x0 0x00e00000>,
-+			 <0x03000000 0x0 0x40000000 0x9 0x80000000 0x0 0x40000000>;
-+		reg = <0xa 0x40800000 0x0 0x00400000>,
-+		      <0x0 0xfe170000 0x0 0x00010000>,
-+		      <0x0 0xf2000000 0x0 0x00100000>;
-+		reg-names = "dbi", "apb", "config";
-+		resets = <&cru SRST_PCIE2_POWER_UP>, <&cru SRST_P_PCIE2>;
-+		reset-names = "pwr", "pipe";
-+		status = "disabled";
-+
-+		pcie2x1l0_intc: legacy-interrupt-controller {
-+			interrupt-controller;
-+			#address-cells = <0>;
-+			#interrupt-cells = <1>;
-+			interrupt-parent = <&gic>;
-+			interrupts = <GIC_SPI 240 IRQ_TYPE_EDGE_RISING 0>;
-+		};
-+	};
-+
- 	gmac0: ethernet@fe1b0000 {
- 		compatible = "rockchip,rk3588-gmac", "snps,dwmac-4.20a";
- 		reg = <0x0 0xfe1b0000 0x0 0x10000>;
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-index c9f9dd2472f5..27d711d114d6 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-@@ -1227,6 +1227,114 @@ qos_vop_m1: qos@fdf82200 {
- 		reg = <0x0 0xfdf82200 0x0 0x20>;
- 	};
- 
-+	pcie2x1l1: pcie@fe180000 {
-+		compatible = "rockchip,rk3588-pcie", "rockchip,rk3568-pcie";
-+		#address-cells = <3>;
-+		#size-cells = <2>;
-+		bus-range = <0x30 0x3f>;
-+		clocks = <&cru ACLK_PCIE_1L1_MSTR>, <&cru ACLK_PCIE_1L1_SLV>,
-+			 <&cru ACLK_PCIE_1L1_DBI>, <&cru PCLK_PCIE_1L1>,
-+			 <&cru CLK_PCIE_AUX3>, <&cru CLK_PCIE1L1_PIPE>;
-+		clock-names = "aclk_mst", "aclk_slv",
-+			      "aclk_dbi", "pclk",
-+			      "aux", "pipe";
-+		device_type = "pci";
-+		interrupts = <GIC_SPI 248 IRQ_TYPE_LEVEL_HIGH 0>,
-+			     <GIC_SPI 247 IRQ_TYPE_LEVEL_HIGH 0>,
-+			     <GIC_SPI 246 IRQ_TYPE_LEVEL_HIGH 0>,
-+			     <GIC_SPI 245 IRQ_TYPE_LEVEL_HIGH 0>,
-+			     <GIC_SPI 244 IRQ_TYPE_LEVEL_HIGH 0>;
-+		interrupt-names = "sys", "pmc", "msg", "legacy", "err";
-+		#interrupt-cells = <1>;
-+		interrupt-map-mask = <0 0 0 7>;
-+		interrupt-map = <0 0 0 1 &pcie2x1l1_intc 0>,
-+				<0 0 0 2 &pcie2x1l1_intc 1>,
-+				<0 0 0 3 &pcie2x1l1_intc 2>,
-+				<0 0 0 4 &pcie2x1l1_intc 3>;
-+		linux,pci-domain = <3>;
-+		num-ib-windows = <8>;
-+		num-ob-windows = <8>;
-+		num-viewport = <4>;
-+		max-link-speed = <2>;
-+		msi-map = <0x3000 &its0 0x3000 0x1000>;
-+		num-lanes = <1>;
-+		phys = <&combphy2_psu PHY_TYPE_PCIE>;
-+		phy-names = "pcie-phy";
-+		power-domains = <&power RK3588_PD_PCIE>;
-+		ranges = <0x01000000 0x0 0xf3100000 0x0 0xf3100000 0x0 0x00100000>,
-+			 <0x02000000 0x0 0xf3200000 0x0 0xf3200000 0x0 0x00e00000>,
-+			 <0x03000000 0x0 0x40000000 0x9 0xc0000000 0x0 0x40000000>;
-+		reg = <0xa 0x40c00000 0x0 0x00400000>,
-+		      <0x0 0xfe180000 0x0 0x00010000>,
-+		      <0x0 0xf3000000 0x0 0x00100000>;
-+		reg-names = "dbi", "apb", "config";
-+		resets = <&cru SRST_PCIE3_POWER_UP>, <&cru SRST_P_PCIE3>;
-+		reset-names = "pwr", "pipe";
-+		status = "disabled";
-+
-+		pcie2x1l1_intc: legacy-interrupt-controller {
-+			interrupt-controller;
-+			#address-cells = <0>;
-+			#interrupt-cells = <1>;
-+			interrupt-parent = <&gic>;
-+			interrupts = <GIC_SPI 245 IRQ_TYPE_EDGE_RISING 0>;
-+		};
-+	};
-+
-+	pcie2x1l2: pcie@fe190000 {
-+		compatible = "rockchip,rk3588-pcie", "rockchip,rk3568-pcie";
-+		#address-cells = <3>;
-+		#size-cells = <2>;
-+		bus-range = <0x40 0x4f>;
-+		clocks = <&cru ACLK_PCIE_1L2_MSTR>, <&cru ACLK_PCIE_1L2_SLV>,
-+			 <&cru ACLK_PCIE_1L2_DBI>, <&cru PCLK_PCIE_1L2>,
-+			 <&cru CLK_PCIE_AUX4>, <&cru CLK_PCIE1L2_PIPE>;
-+		clock-names = "aclk_mst", "aclk_slv",
-+			      "aclk_dbi", "pclk",
-+			      "aux", "pipe";
-+		device_type = "pci";
-+		interrupts = <GIC_SPI 253 IRQ_TYPE_LEVEL_HIGH 0>,
-+			     <GIC_SPI 252 IRQ_TYPE_LEVEL_HIGH 0>,
-+			     <GIC_SPI 251 IRQ_TYPE_LEVEL_HIGH 0>,
-+			     <GIC_SPI 250 IRQ_TYPE_LEVEL_HIGH 0>,
-+			     <GIC_SPI 249 IRQ_TYPE_LEVEL_HIGH 0>;
-+		interrupt-names = "sys", "pmc", "msg", "legacy", "err";
-+		#interrupt-cells = <1>;
-+		interrupt-map-mask = <0 0 0 7>;
-+		interrupt-map = <0 0 0 1 &pcie2x1l2_intc 0>,
-+				<0 0 0 2 &pcie2x1l2_intc 1>,
-+				<0 0 0 3 &pcie2x1l2_intc 2>,
-+				<0 0 0 4 &pcie2x1l2_intc 3>;
-+		linux,pci-domain = <4>;
-+		num-ib-windows = <8>;
-+		num-ob-windows = <8>;
-+		num-viewport = <4>;
-+		max-link-speed = <2>;
-+		msi-map = <0x4000 &its0 0x4000 0x1000>;
-+		num-lanes = <1>;
-+		phys = <&combphy0_ps PHY_TYPE_PCIE>;
-+		phy-names = "pcie-phy";
-+		power-domains = <&power RK3588_PD_PCIE>;
-+		ranges = <0x01000000 0x0 0xf4100000 0x0 0xf4100000 0x0 0x00100000>,
-+			 <0x02000000 0x0 0xf4200000 0x0 0xf4200000 0x0 0x00e00000>,
-+			 <0x03000000 0x0 0x40000000 0xa 0x00000000 0x0 0x40000000>;
-+		reg = <0xa 0x41000000 0x0 0x00400000>,
-+		      <0x0 0xfe190000 0x0 0x00010000>,
-+		      <0x0 0xf4000000 0x0 0x00100000>;
-+		reg-names = "dbi", "apb", "config";
-+		resets = <&cru SRST_PCIE4_POWER_UP>, <&cru SRST_P_PCIE4>;
-+		reset-names = "pwr", "pipe";
-+		status = "disabled";
-+
-+		pcie2x1l2_intc: legacy-interrupt-controller {
-+			interrupt-controller;
-+			#address-cells = <0>;
-+			#interrupt-cells = <1>;
-+			interrupt-parent = <&gic>;
-+			interrupts = <GIC_SPI 250 IRQ_TYPE_EDGE_RISING 0>;
-+		};
-+	};
-+
- 	gmac1: ethernet@fe1c0000 {
- 		compatible = "rockchip,rk3588-gmac", "snps,dwmac-4.20a";
- 		reg = <0x0 0xfe1c0000 0x0 0x10000>;
--- 
-2.40.1
+>   #define DEFAULT_HEARTBEAT 60
+>   
+> @@ -52,6 +54,11 @@
+>   
+>   #define DWDST			BIT(1)
+>   
+> +#define PON_REASON_SOF_NUM	0xBBBBCCCC
+> +#define PON_REASON_MAGIC_NUM	0xDDDDDDDD
+> +#define PON_REASON_EOF_NUM	0xCCCCBBBB
+> +#define RESERVED_MEM_MIN_SIZE	12
+> +
+>   static int heartbeat = DEFAULT_HEARTBEAT;
+>   
+>   /*
+> @@ -198,6 +205,11 @@ static int rti_wdt_probe(struct platform_device *pdev)
+>   	struct rti_wdt_device *wdt;
+>   	struct clk *clk;
+>   	u32 last_ping = 0;
+> +	struct device_node *node;
+> +	u32 reserved_mem_size;
+> +	struct resource res;
+> +	u32 *vaddr;
+> +	u64 paddr;
+>   
+>   	wdt = devm_kzalloc(dev, sizeof(*wdt), GFP_KERNEL);
+>   	if (!wdt)
+> @@ -284,6 +296,45 @@ static int rti_wdt_probe(struct platform_device *pdev)
+>   		}
+>   	}
+>   
+> +	node = of_parse_phandle(pdev->dev.of_node, "memory-region", 0);
+> +	if (!node) {
+> +		dev_dbg(dev, "No memory-region specified.\n");
+
+If you really want that debug message, please keep the action part
+first. I personally think it is just noise; the devicetree can always
+be looked up if needed.
+
+> +	} else {
+> +		ret = of_address_to_resource(node, 0, &res);
+> +		if (ret) {
+> +			dev_err(dev, "No memory address assigned to the region.\n");
+> +			goto err_iomap;
+> +		}
+> +
+> +		/*
+> +		 * If reserved memory is defined for watchdog reset cause.
+> +		 * Readout the Power-on(PON) reason and pass to bootstatus.
+> +		 */
+> +		paddr = res.start;
+> +		reserved_mem_size = res.end - (res.start - 1);
+
+Please use resource_size().
+
+> +		if (reserved_mem_size < RESERVED_MEM_MIN_SIZE) {
+> +			dev_err(dev, "The size of reserved memory is too small.\n");
+> +			ret = -EINVAL;
+> +			goto err_iomap;
+> +		}
+> +
+> +		vaddr = memremap(paddr, reserved_mem_size, MEMREMAP_WB);
+> +		if (vaddr == NULL) {
+> +			dev_err(dev, "Failed to map memory-region.\n");
+> +			ret = -ENOMEM;
+> +			goto err_iomap;
+> +		}
+> +
+> +		if (vaddr[0] == PON_REASON_SOF_NUM &&
+> +		    vaddr[1] == PON_REASON_MAGIC_NUM &&
+> +		    vaddr[2] == PON_REASON_EOF_NUM) {
+> +			dev_dbg(dev, "Watchdog reset cause detected.\n");
+
+Isn't that a bit pointless ? That is obvious when reading the boot status.
+
+> +			wdd->bootstatus |= WDIOF_CARDRESET;
+> +		}
+> +		memset(vaddr, 0, reserved_mem_size);
+> +		memunmap(vaddr);
+> +	}
+> +
+>   	watchdog_init_timeout(wdd, heartbeat, dev);
+>   
+>   	ret = watchdog_register_device(wdd);
 
