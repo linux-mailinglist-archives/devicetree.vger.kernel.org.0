@@ -2,63 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 13438752694
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 17:18:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D2A307526AA
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 17:22:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234617AbjGMPSw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jul 2023 11:18:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51542 "EHLO
+        id S233984AbjGMPWr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jul 2023 11:22:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54834 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234069AbjGMPR4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jul 2023 11:17:56 -0400
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDCB52736;
-        Thu, 13 Jul 2023 08:17:32 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 36DFHFAC049319;
-        Thu, 13 Jul 2023 10:17:15 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1689261435;
-        bh=FLFw9Mu2Zx4IZrKWachypLONgs6nYIa6QVFe1GPvIHM=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=eUfHgq2af9CZPEDOjzoZB4Vz9hT+N7ZCniYSMcgLY7DYlJblrCRnaVr9TMqHPmswY
-         +TwW3a0pzCL+ubgoxOx+ZogEExWv6CsVbnmys60KwvuSnoRMZQOngSY2Qnvem3bNkZ
-         V7hYABwfN0i/MX8MhH9+IzxwEQ4YQR9pqaOUXDSI=
-Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 36DFHEEg028241
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 13 Jul 2023 10:17:15 -0500
-Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 13
- Jul 2023 10:17:13 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 13 Jul 2023 10:17:13 -0500
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 36DFHCEB021441;
-        Thu, 13 Jul 2023 10:17:13 -0500
-From:   Jayesh Choudhary <j-choudhary@ti.com>
-To:     <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <peda@axentia.se>, <rogerq@kernel.org>
-CC:     <s-vadapalli@ti.com>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <j-choudhary@ti.com>
-Subject: [PATCH 2/2] dt-bindings: ti-serdes-mux: Deprecate header with constants
-Date:   Thu, 13 Jul 2023 20:47:07 +0530
-Message-ID: <20230713151707.8109-3-j-choudhary@ti.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230713151707.8109-1-j-choudhary@ti.com>
-References: <20230713151707.8109-1-j-choudhary@ti.com>
+        with ESMTP id S232838AbjGMPWp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jul 2023 11:22:45 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE08C1B6;
+        Thu, 13 Jul 2023 08:22:44 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 8A6AE618D9;
+        Thu, 13 Jul 2023 15:22:44 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8E691C433C7;
+        Thu, 13 Jul 2023 15:22:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1689261764;
+        bh=YAmnTTFm0GwWsSdAoWWcGBrMe5QH0j2yUGMWo2AP1ww=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=j6iZOcYllQn0u0nW3hCage2h+NFDoOc3yL8/esZc84q3GLp6t1X4cohT/l5X9qPxD
+         tm3n2pt/FFF0TfU6PF1wfdzKAqNzt6mtsk90LirEgDsCWALvOFa95CPy5n+O4zRnmX
+         TrQ6gvqYFf65AR0D+8zPOwVmWqP2Iv7TSyAGbv4JYSPB//N8NJ/K0lWHkGFTGNFcbM
+         +GJE5vNL91mqX/e5TFG1WxHd4sF6yezkiGke0d/YikP9eWL8LouSCDMZokeSFL2auM
+         AxJ980mx4MngEYjtgEolUWvbHLWpBgbZwMCv+ZQIDET73NEx2Tv7cGBCRvI9b6QDhn
+         xoSm+zL3SEuig==
+Date:   Thu, 13 Jul 2023 16:22:36 +0100
+From:   Lee Jones <lee@kernel.org>
+To:     Manikandan Muralidharan <manikandan.m@microchip.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, nicolas.ferre@microchip.com,
+        alexandre.belloni@bootlin.com, claudiu.beznea@microchip.com,
+        sam@ravnborg.org, bbrezillon@kernel.org, airlied@gmail.com,
+        daniel@ffwll.ch, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, Hari.PrasathGE@microchip.com,
+        Balamanikandan.Gunasundar@microchip.com,
+        Durai.ManickamKR@microchip.com, Nayabbasha.Sayed@microchip.com,
+        Dharma.B@microchip.com, Varshini.Rajendran@microchip.com,
+        Balakrishnan.S@microchip.com
+Subject: Re: [PATCH v2 1/9] dt-bindings: mfd: Add bindings for SAM9X75 LCD
+ controller
+Message-ID: <20230713152236.GB968624@google.com>
+References: <20230712024017.218921-1-manikandan.m@microchip.com>
+ <20230712024017.218921-2-manikandan.m@microchip.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <20230712024017.218921-2-manikandan.m@microchip.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -66,37 +66,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The constants to define the idle state of SERDES MUX were defined in
-bindings header. They are used only in DTS and driver uses the dt property
-to set the idle state making it unsuitable for bindings.
-The constants are moved to header next to DTS ("arch/arm64/boot/dts/ti/")
-and all the references to bindings header are removed.
-So add a warning to mark this bindings header as deprecated.
+On Wed, 12 Jul 2023, Manikandan Muralidharan wrote:
 
-Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
----
- include/dt-bindings/mux/ti-serdes.h | 8 ++++++++
- 1 file changed, 8 insertions(+)
+> Add new compatible string for the XLCD controller on sam9x75 variant
+> of the SAM9X7 SoC family.
+> The XLCD controller in sam9x75 variant supports interfacing with
+> LVDS and MIPI-DSI and parallel port RGB.
+> 
+> Signed-off-by: Manikandan Muralidharan <manikandan.m@microchip.com>
+> ---
+>  Documentation/devicetree/bindings/mfd/atmel-hlcdc.txt | 1 +
+>  1 file changed, 1 insertion(+)
 
-diff --git a/include/dt-bindings/mux/ti-serdes.h b/include/dt-bindings/mux/ti-serdes.h
-index 669ca2d6abce..b0b1091aad6d 100644
---- a/include/dt-bindings/mux/ti-serdes.h
-+++ b/include/dt-bindings/mux/ti-serdes.h
-@@ -6,6 +6,14 @@
- #ifndef _DT_BINDINGS_MUX_TI_SERDES
- #define _DT_BINDINGS_MUX_TI_SERDES
- 
-+/*
-+ * These bindings are deprecated, because they do not match the actual
-+ * concept of bindings but rather contain pure constants values used only
-+ * in DTS board files.
-+ * Instead include the header in the DTS source directory.
-+ */
-+#warning "These bindings are deprecated. Instead, use the header in the DTS source directory."
-+
- /* J721E */
- 
- #define J721E_SERDES0_LANE0_QSGMII_LANE1	0x0
+Applied, thanks
+
 -- 
-2.25.1
-
+Lee Jones [李琼斯]
