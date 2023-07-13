@@ -2,133 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A52077526DE
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 17:26:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 93E71752718
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 17:31:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234614AbjGMP0z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jul 2023 11:26:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57676 "EHLO
+        id S230323AbjGMPau (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jul 2023 11:30:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58102 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234714AbjGMP0h (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jul 2023 11:26:37 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73A0B30E1;
-        Thu, 13 Jul 2023 08:26:20 -0700 (PDT)
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36DCraUi007421;
-        Thu, 13 Jul 2023 15:26:17 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding : content-type; s=qcppdkim1;
- bh=fgQQD5BT6zHmZYJ4hIT1i+LyHKGipeMbg1HN10ft5Ds=;
- b=PEE8bReNRuQCUOpT5qbG5Qe3IO3PakWiBpSwJh7RN1d4NB7eXxycGT8nJZALDTFmpxfe
- WOg52q2nqbeGYV9XhReCp0SVJaKqS4TXnZRKxS4o4RBuLtrpnIKTE7Yzq0xQiTRZlylh
- im83pNw8cTUco+8NM4af+zOpccZ/BbI4pJOYv8zbPEr2xtSSAqL7JqlzUqoeXG5Bbd/J
- hIi67YYfysyP7jtYT8QIltCzIFZaDxMlxtIjw3Vbth3xKjRr5WRDwlrCTqUe8PWqKMdc
- moIspFCXQP091QcMDYYQ5rOz2uFBUtey+mo/SErNeCwblT3g7WG276lcf4gsonGoUNqK Yw== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3rt3qfhuyc-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 13 Jul 2023 15:26:16 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 36DFQGq4006195
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 13 Jul 2023 15:26:16 GMT
-Received: from win-platform-upstream01.qualcomm.com (10.80.80.8) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.30; Thu, 13 Jul 2023 08:26:12 -0700
-From:   Sridharan S N <quic_sridsn@quicinc.com>
-To:     <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC:     Sridharan S N <quic_sridsn@quicinc.com>
-Subject: [PATCH v2 2/2] arm64: dts: qcom: ipq9574: add support for the RDP417 variant
-Date:   Thu, 13 Jul 2023 20:55:22 +0530
-Message-ID: <20230713152522.1063154-3-quic_sridsn@quicinc.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230713152522.1063154-1-quic_sridsn@quicinc.com>
-References: <20230713152522.1063154-1-quic_sridsn@quicinc.com>
+        with ESMTP id S235046AbjGMP1s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jul 2023 11:27:48 -0400
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8FE1C3A96;
+        Thu, 13 Jul 2023 08:27:17 -0700 (PDT)
+Received: by mail-wr1-x432.google.com with SMTP id ffacd0b85a97d-3143798f542so971005f8f.2;
+        Thu, 13 Jul 2023 08:27:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1689262012; x=1691854012;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=GdH/m7h/MNAU1FeEEW8i3XaU9ld39R41tJa+AFaiGOU=;
+        b=QKtrsey3zpXfpgm3Bv4t0y5Sjb7NZi0bcH2pjxyVei0u6jR/YK2hg2bdRjyJybG+Lz
+         YdB8wRY08AhHpZO+xir0li1X+N6PUYzRgY+tIuCi3MK2fOjcvxMzj9ZvV+7MY1F70u4I
+         sysOAaECbrYzGLBMKpI41OgeOUFUnQsfqxOPzxcMPY2yTKavUe3b6cvWZh8dinU5YsZp
+         3Dz25ZOgFfo1hFSNOOW+99WfW+vMnj7WWs/mCunx9nfKBd4mXkC5HsDewYMdGCI3Mymf
+         fLsapIhGVdzQzApa8O/yXGdiCBELz+gadB8PZJJUQnr7yDZtIF9lWIo1lzbNnHxCgXFn
+         7/zg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689262012; x=1691854012;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=GdH/m7h/MNAU1FeEEW8i3XaU9ld39R41tJa+AFaiGOU=;
+        b=blTiMswT6Xgd2sZz/6Z29kkuAbbv5bYWJ/UrKBhRTDAt8SrinRWA6fioQKBCpm1TnD
+         BbRXkJEOW99FwnNmExZ5vVstdrWD4ZW9Pc1MVB3O3IA6xkCzG8WuLwCsgpmb9EPKzevd
+         hN7vr14UDtZS1lVPGeDY0ZRk3jj1d69dCOJ8SnyXtpg1ec1GX22J5n19TKNX6i7MNVeY
+         veDYrrcJ8HaaOnuMJctMJI/zTcC62JQn8pmwZhFc+ge2SIjNFWJwUrtA7gkASEKbWDF4
+         ID/1taKXxHc5RlPO03tFRxZgyahltXTd24DkjMW1O2ASCkeTgaFpRHuM4h9TUG6n757b
+         zRrg==
+X-Gm-Message-State: ABy/qLay1qkonNuT45FbiyoIepKdl1iQSOSa8n8OAST6vBN+2SUt7/j/
+        /xWMzR0sw7y/aqOtSJsDgfs=
+X-Google-Smtp-Source: APBJJlHpvF7de7ncFCMbaiMA7VYeMWiwnN+HiaO/nViZCKuUW0/BItsvs6A4kHxx4csUhhuUtH7Lmg==
+X-Received: by 2002:adf:e8cf:0:b0:313:eb29:4436 with SMTP id k15-20020adfe8cf000000b00313eb294436mr2078230wrn.67.1689262012287;
+        Thu, 13 Jul 2023 08:26:52 -0700 (PDT)
+Received: from localhost (p200300e41f4b7100f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f4b:7100:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id j1-20020a5d4641000000b0031434936f0dsm8219592wrs.68.2023.07.13.08.26.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 13 Jul 2023 08:26:51 -0700 (PDT)
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jon Hunter <jonathanh@nvidia.com>
+Cc:     devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
+Subject: Re: [PATCH] arm64: tegra: Add missing alias for NVIDIA IGX Orin
+Date:   Thu, 13 Jul 2023 17:26:49 +0200
+Message-ID: <168926199654.2340273.3393121273193873802.b4-ty@nvidia.com>
+X-Mailer: git-send-email 2.41.0
+In-Reply-To: <20230703113537.75152-1-jonathanh@nvidia.com>
+References: <20230703113537.75152-1-jonathanh@nvidia.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: YyGTFzy2jC29qkR2YbGM3gykmbdnKF_-
-X-Proofpoint-GUID: YyGTFzy2jC29qkR2YbGM3gykmbdnKF_-
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-07-13_05,2023-07-13_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 bulkscore=0
- mlxscore=0 suspectscore=0 adultscore=0 priorityscore=1501 mlxlogscore=732
- phishscore=0 malwarescore=0 spamscore=0 impostorscore=0 lowpriorityscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2305260000
- definitions=main-2307130135
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the initial device tree support for the Reference Design
-Platform(RDP) 417 based on IPQ9574 family of SoC.
+From: Thierry Reding <treding@nvidia.com>
 
-Signed-off-by: Sridharan S N <quic_sridsn@quicinc.com>
----
-changes in v2:
-	- updated commit message.Moved dependency to change log
-	  This patch depends on below patchset:
-	  https://lore.kernel.org/lkml/20230713105909.14209-2-quic_anusha@quicinc.com/
-	
 
- arch/arm64/boot/dts/qcom/Makefile           |  1 +
- arch/arm64/boot/dts/qcom/ipq9574-rdp417.dts | 16 ++++++++++++++++
- 2 files changed, 17 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/ipq9574-rdp417.dts
+On Mon, 03 Jul 2023 12:35:37 +0100, Jon Hunter wrote:
+> The following error is seen on boot for the NVIDIA IGX Orin platform ...
+> 
+>  serial-tegra 3100000.serial: failed to get alias id, errno -19
+> 
+> Fix this by populating the necessary alias for the serial device.
+> 
+> 
+> [...]
 
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index 337abc4ceb17..9c30344d08c1 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -12,6 +12,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= ipq6018-cp01-c1.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= ipq8074-hk01.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= ipq8074-hk10-c1.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= ipq8074-hk10-c2.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= ipq9574-rdp417.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= ipq9574-rdp418.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= ipq9574-rdp433.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= ipq9574-rdp449.dtb
-diff --git a/arch/arm64/boot/dts/qcom/ipq9574-rdp417.dts b/arch/arm64/boot/dts/qcom/ipq9574-rdp417.dts
-new file mode 100644
-index 000000000000..9a5d4c3db1f2
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/ipq9574-rdp417.dts
-@@ -0,0 +1,16 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause)
-+/*
-+ * IPQ9574 RDP417 board device tree source
-+ *
-+ * Copyright (c) 2020-2021 The Linux Foundation. All rights reserved.
-+ * Copyright (c) 2022-2023 Qualcomm Innovation Center, Inc. All rights reserved.
-+ */
-+
-+/dts-v1/;
-+
-+#include "ipq9574-rdp-common.dtsi"
-+
-+/ {
-+	model = "Qualcomm Technologies, Inc. IPQ9574/AP-AL01-C1";
-+	compatible = "qcom,ipq9574-ap-al01-c1", "qcom,ipq9574";
-+};
+Applied, thanks!
+
+[1/1] arm64: tegra: Add missing alias for NVIDIA IGX Orin
+      commit: d97966df30ed8c7df0350b8ff6662e38ee88c39f
+
+Best regards,
 -- 
-2.34.1
-
+Thierry Reding <treding@nvidia.com>
