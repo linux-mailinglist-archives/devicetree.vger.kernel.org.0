@@ -2,78 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C0470751A86
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 09:58:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C6AFC751A83
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 09:58:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232882AbjGMH6U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jul 2023 03:58:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36750 "EHLO
+        id S232068AbjGMH6S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jul 2023 03:58:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37578 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233210AbjGMH54 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jul 2023 03:57:56 -0400
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39058210B
-        for <devicetree@vger.kernel.org>; Thu, 13 Jul 2023 00:57:33 -0700 (PDT)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id E680120003;
-        Thu, 13 Jul 2023 07:57:29 +0000 (UTC)
+        with ESMTP id S233379AbjGMH6B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jul 2023 03:58:01 -0400
+Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BCC92691;
+        Thu, 13 Jul 2023 00:57:38 -0700 (PDT)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id D7CDAC0006;
+        Thu, 13 Jul 2023 07:57:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1689235052;
+        t=1689235057;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:
          content-transfer-encoding:content-transfer-encoding:
          in-reply-to:in-reply-to:references:references;
-        bh=2F/bUME+pf0s7vBUvHy7WZs0ckzsbwRu5dNQlGBwthg=;
-        b=P8ftI59+SD0TPQod/rhciM+WFNJdIxxKI78PZ+JLD87iF4G1tAAG8gtr5QVEyEboB/3ZO8
-        3+ogFfV9VEIe1Qn1w4zB+gPnU1gFPPHC0/aKPfw61ikTeTdW/51WUeYFgVvNzUbavGmHJg
-        S1vKdTe5oUmRlhPbdV2gJ0N6CcqcaXfyUpRek8LM1m485q/LTcDqtdGz0fwi0Ttt6skgiL
-        q58R3IS2fdSkNCYeYHo3SX9B2nSF5eiWhqmVQHCc3sCXxhZNYQbWAOKL2kdpfoba1TmaXn
-        18VPEDPXf9YjbIdmqfDlKzgC4aapmc9yNV3KAYLCtbRH43Ie1Ww1qKdyxqqIDw==
+        bh=O91e1w6Iq4C7RGnZeF8oJ3LsJAQZj1iKYFvjsH6RaP4=;
+        b=iKYcGWdK82kH1t+evHPcN8+R3g2sn7/dp7bp4oJ0QqZx7fnZZY+DJOOR0CvL5CxD6UGxCM
+        Tr5LyKTkeUN6aYAOnDaJu3R9gKLCLucrEYcMkhkjoU1lcSLPX/kxWTJy5xFeH8sYxjBuYv
+        3gbPW1rd6eAI9Ncod53LbMKeZkCoUqrpUN/HlGW7cqxNBjU2viNS8NvOt528q+g9Raw3r4
+        k/4X8mM5/3vrYbUk7xYNAazebdDk4H6dIK5CUw0bZ4EbFQVJyT0Ji5yoQ8RetcFBLQ0+o1
+        3d7u105gujwoCHRN1XAG2Z/OrYdGJW/ZuruxpBv0LRPmuLnRvj8fqPMSMJw0pw==
 From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org
-Cc:     Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tudor Ambarus <tudor.ambarus@linaro.org>,
-        Pratyush Yadav <pratyush@kernel.org>,
-        Michael Walle <michael@walle.cc>,
-        linux-mtd@lists.infradead.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Maxime Ripard <mripard@kernel.org>
-Subject: Re: [PATCH v2] dt-bindings: mtd: Fix nand-controller.yaml license
-Date:   Thu, 13 Jul 2023 09:57:29 +0200
-Message-Id: <20230713075729.485928-1-miquel.raynal@bootlin.com>
+To:     Chris Packham <chris.packham@alliedtelesis.co.nz>,
+        miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, gregory.clement@bootlin.com
+Cc:     linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 3/3] mtd: rawnand: marvell: add support for AC5 SoC
+Date:   Thu, 13 Jul 2023 09:57:34 +0200
+Message-Id: <20230713075734.485960-1-miquel.raynal@bootlin.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230712151042.433593-1-miquel.raynal@bootlin.com>
+In-Reply-To: <20230703035044.2063303-4-chris.packham@alliedtelesis.co.nz>
 References: 
 MIME-Version: 1.0
 X-linux-mtd-patch-notification: thanks
-X-linux-mtd-patch-commit: b'2b42d718c7d7f4269d45fb58b4f74d7b2bfb08bd'
+X-linux-mtd-patch-commit: b'c7758249db25999ef01b054ed792c5e0be356668'
 Content-Transfer-Encoding: 8bit
 X-GND-Sasl: miquel.raynal@bootlin.com
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 2023-07-12 at 15:10:42 UTC, Miquel Raynal wrote:
-> Binding files should be dual licensed. This file was initially written
-> as a .txt file with no specific license, so was implicitely
-> GPLv2. Significant part of this file and its conversion into yaml were
-> written by Bootlin employees which agree to comply with the rules
-> regarding the dual licensing so let's fix the SPDX tag to reflect the
-> correct license by changing it from GPL to GPL + BSD-2-Clause.
+On Mon, 2023-07-03 at 03:50:44 UTC, Chris Packham wrote:
+> Add support for the AC5/AC5X SoC from Marvell. The NFC on this SoC only
+> supports SDR modes up to 3.
 > 
-> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> Acked-by: Maxime Ripard <mripard@kernel.org>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Marvell's SDK includes some predefined values for the ndtr registers.
+> These haven't been incorporated as the existing code seems to get good
+> values based on measurements taken with an oscilloscope.
+> 
+> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
 
-Applied to https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git nand/next.
+Applied to https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git nand/next, thanks.
 
 Miquel
