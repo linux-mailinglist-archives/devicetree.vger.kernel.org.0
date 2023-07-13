@@ -2,105 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EC98F752A84
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 20:52:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF6C8752A8C
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 20:54:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231911AbjGMSw6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jul 2023 14:52:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47426 "EHLO
+        id S232578AbjGMSyE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jul 2023 14:54:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48786 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232724AbjGMSw4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jul 2023 14:52:56 -0400
-Received: from mail-pg1-x530.google.com (mail-pg1-x530.google.com [IPv6:2607:f8b0:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC8E82D46;
-        Thu, 13 Jul 2023 11:52:55 -0700 (PDT)
-Received: by mail-pg1-x530.google.com with SMTP id 41be03b00d2f7-51f64817809so182780a12.1;
-        Thu, 13 Jul 2023 11:52:55 -0700 (PDT)
+        with ESMTP id S232517AbjGMSyD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jul 2023 14:54:03 -0400
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5FA0A30C4
+        for <devicetree@vger.kernel.org>; Thu, 13 Jul 2023 11:53:39 -0700 (PDT)
+Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-3fbf1b82de7so7040585e9.1
+        for <devicetree@vger.kernel.org>; Thu, 13 Jul 2023 11:53:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1689274375; x=1689879175;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4NixJWzqt1EjPHkU5qyxuUeApGxt4CQ82ymuiFFE918=;
-        b=ikaR+83VfC9yF4TiOsgy7ytWMqDdUYZMTJ3+XDHpD7/BBNmR5A5DXitguXoQ+ED4hz
-         Zi9dVBULac02D3tX++eGjShegtbcoPLSMKrYN2BLAS938V/jCrfBS4CdsySiiIaxktqB
-         QMW8Xfp7tz1K8/CjPDfGY9CH0C2l7oQGROY62LiPIcUHoKoRm2DeoqhsNwdkU7FX/dck
-         U7841corxG1iMD5sqMpK/0w7fh9OwPGrRxZRfoLpJYnyfh75s22eahO+y9hrwd5CF0zm
-         6tej33YD5i+3GdQgBkdSlMqUoh+uVGATRmxVXtFNV98dna/bkb5Z8ybbDDu4g9nLgQv9
-         Q/Sg==
+        d=linaro.org; s=google; t=1689274417; x=1691866417;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Xmc1sE9Mq+D+NHMQWiyH+jo9A18cWBOIkCA/5pe5/a0=;
+        b=AT2yZufGgFU4zc5kdeWcjkY+4EPwoYSGlVdmT5fsMKXBRAjXelkG637w7llP/wqvhk
+         49z+FNYxoKGtvpN8zvIL4YMlKSifYy7TTSip+6EzNNuPHt1rWvzlGzetQXwEtCXcV25B
+         GgXZoEimNeOu38gQjz6iWjiIpE3z2jTcb3Jb+gojFSt7BxlzR+trZPwRrHiv2oJAb19I
+         8Pk96Ytz/SZMxXM6eXtvPY4Kva4qzd52T7d/rbB4vTEqpOrhnxuxQ3Qc4fpTSj68lpd5
+         mrI2P3P0tsWC9Uayb4ohDEL1af0Q/fImjdX5JsIHWJ6tUQJdLVJLJaQi34hVgIzProCG
+         GJMQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689274375; x=1689879175;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=4NixJWzqt1EjPHkU5qyxuUeApGxt4CQ82ymuiFFE918=;
-        b=VQ/q7J4mGRhz9VBIVszu61RargmMZL/EVZDiglm2y2qj2U7sOf1TCIaTR7RhsdrU36
-         xs7P5WkOc1Y77baiLNsIQK34FwWhAwews7l3BcdQMDGF/Fn9v4QzA98Y5OsNDoXWLFYx
-         9DADq/2HEQ80JxgaX0iAhc6JXBnt9TBVcKder6wowQ2IooKgevpBZN74i16UJbwvpTMf
-         CjsDVq2y2LhcNEZakBs8l+e6lXV/1S8cK0DPn0tPZN3ObVMQNB9x5g1g7jMx6CzHkyQ3
-         0isMSGR9X2ZBeb8+ii4UWA/jwCq3lwcNmMd1lP/5zNlazpZ4Q0J4077RiXpIoMo7GnrJ
-         crEQ==
-X-Gm-Message-State: ABy/qLakzV5ZfukgrfBC6CbDSbr2WOw4MZTRFDkTlVWc1r2aC0LicI+v
-        gbXZ2PcbuNLOL4GXwxeH/CJavZO7XgjLVQmXC9Y=
-X-Google-Smtp-Source: APBJJlHNd2KOozWfR2CqzSzU/1z9m/tWYsp6uMyAwLsPMAWLc7dUpvYu7xpju0YYHNUlsMKDn0OlM+ilHQCddeaBgyQ=
-X-Received: by 2002:a17:90b:46d1:b0:263:a5b5:c538 with SMTP id
- jx17-20020a17090b46d100b00263a5b5c538mr2285459pjb.4.1689274375326; Thu, 13
- Jul 2023 11:52:55 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1689274417; x=1691866417;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Xmc1sE9Mq+D+NHMQWiyH+jo9A18cWBOIkCA/5pe5/a0=;
+        b=EP191GvVVotQ6b4VaqCEEiaCL403O2FQUE8wKKdxf4TfW+Z0PI7PSR/ubTKb/F5woH
+         qGfJipWVTyujZX+yNTRVNPFPl0GIzg6ehp/W9xd6XrFz+zvDYyaZyYm0URLW6G4PKlhy
+         v0qtDhEng2yrtSaIztq6yGudX9JjbwdyjIH9JVBqyEjGelA+IHKuUK/D1G22jcX79DKA
+         j3Jypml9HRQwS1HTmC6QBDNR/ail8A8IAli2IKy0VV7ACxoLzbX19rhEfOssvR1lQLaX
+         fgd+3TcWYS0W9PNIdPSUcrSx/mwxc//vogN++LZfJfCsRKewJOuGt+T4KIzFXiOwoxtY
+         cKqA==
+X-Gm-Message-State: ABy/qLbQ7/rRm9SaZ9I0PsoSjP5YQOQ18coyKLcYbeGN2JYvdQ5g+ivc
+        oWLRK0PA0IqN/GOhtR3PpRjYIg==
+X-Google-Smtp-Source: APBJJlFGcBOC1CQdQzgJvkJuHC7qUoBaELowjSnjyXxtm2hCTolZLj1cIz2922V2EK06GANygH9RJQ==
+X-Received: by 2002:a05:600c:ac6:b0:3fa:9741:5b73 with SMTP id c6-20020a05600c0ac600b003fa97415b73mr395202wmr.10.1689274417049;
+        Thu, 13 Jul 2023 11:53:37 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id l4-20020a1ced04000000b003fbe561f6a3sm19089261wmh.37.2023.07.13.11.53.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 13 Jul 2023 11:53:36 -0700 (PDT)
+Message-ID: <ebd30cd0-5081-f05d-28f7-5d5b637041e4@linaro.org>
+Date:   Thu, 13 Jul 2023 20:53:34 +0200
 MIME-Version: 1.0
-References: <20230711221518.2127861-1-tharvey@gateworks.com>
-In-Reply-To: <20230711221518.2127861-1-tharvey@gateworks.com>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Thu, 13 Jul 2023 15:52:44 -0300
-Message-ID: <CAOMZO5ByzpUoirrTKz=x+00F2_oi6UK12wvLw9jFu6p7S+LWwQ@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: imx8mp: add imx8mp-venice-gw74xx-imx219
- overlay for rpi v2 camera
-To:     Tim Harvey <tharvey@gateworks.com>
-Cc:     Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH] dt-bindings: net: xilinx_gmii2rgmii: Convert to json
+ schema
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     Pranavi Somisetty <pranavi.somisetty@amd.com>, davem@davemloft.net,
+        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, michal.simek@amd.com, harini.katakam@amd.com,
+        git@amd.com, radhey.shyam.pandey@amd.com, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20230713103453.24018-1-pranavi.somisetty@amd.com>
+ <f6c11605-56d7-7228-b86d-bc317a8496d0@linaro.org>
+ <a17b0a4f-619d-47dd-b0ad-d5f3c1a558fc@lunn.ch>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <a17b0a4f-619d-47dd-b0ad-d5f3c1a558fc@lunn.ch>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 11, 2023 at 7:15=E2=80=AFPM Tim Harvey <tharvey@gateworks.com> =
-wrote:
->
-> Add support for the RaspberryPi Camera v2 which is an IMX219 8MP module:
->  - https://datasheets.raspberrypi.com/camera/camera-v2-schematics.pdf
->  - has its own on-board 24MHz osc so no clock required from baseboard
->  - pin 11 enables 1.8V and 2.8V LDO which is connected to
->    GW74xx MIPI_GPIO4 (IMX8MP GPIO1_IO4) so we use this as a gpio
->
-> Support is added via a device-tree overlay.
->
-> The IMX219 supports RAW8/RAW10 image formats.
->
-> Example configuration:
-> media-ctl -l "'imx219 3-0010':0->'csis-32e40000.csi':0[1]"
-> media-ctl -v -V "'imx219 3-0010':0 [fmt:SRGGB8/640x480 field:none]"
-> media-ctl -v -V "'crossbar':0 [fmt:SRGGB8/640x480 field:none]"
-> media-ctl -v -V "'mxc_isi.0':0 [fmt:SRGGB8/640x480 field:none]"
-> v4l2-ctl --set-fmt-video=3Dwidth=3D640,height=3D480,pixelformat=3DRGGB
-> v4l2-ctl --stream-mmap --stream-to=3Dframe.raw --stream-count=3D1
-> convert -size 640x480 -depth 8 gray:frame.raw frame.png
-> gst-launch-1.0 v4l2src ! \
->   video/x-bayer,format=3Drggb,width=3D640,height=3D480,framerate=3D10/1 !=
- \
->   bayer2rgb ! fbdevsink
->
-> Signed-off-by: Tim Harvey <tharvey@gateworks.com>
+On 13/07/2023 17:59, Andrew Lunn wrote:
+>>> +examples:
+>>> +  - |
+>>> +    mdio {
+>>> +        #address-cells = <1>;
+>>> +        #size-cells = <0>;
+>>> +        phy: ethernet-phy@0 {
+>>> +            reg = <0>;
+>>> +        };
+>>
+>> Drop this node, quite obvious.
+> 
+> Dumb question. Isn't it needed since it is referenced by phy-handle =
+> <&phy> below. Without it, the fragment is not valid DT and so the
+> checking tools will fail?
 
-Reviewed-by: Fabio Estevam <festevam@gmail.com>
+No, because the example is compiled with silencing missing phandles.
+
+Best regards,
+Krzysztof
+
