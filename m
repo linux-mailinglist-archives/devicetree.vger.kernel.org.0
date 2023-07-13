@@ -2,64 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F156751629
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 04:18:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F82A751622
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 04:17:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233549AbjGMCSG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jul 2023 22:18:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44596 "EHLO
+        id S233429AbjGMCRW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jul 2023 22:17:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44040 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233619AbjGMCSB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 22:18:01 -0400
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 574F8211E;
-        Wed, 12 Jul 2023 19:17:56 -0700 (PDT)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id A4801809C;
-        Thu, 13 Jul 2023 10:17:48 +0800 (CST)
-Received: from EXMBX061.cuchost.com (172.16.6.61) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 13 Jul
- 2023 10:17:48 +0800
-Received: from [192.168.125.128] (183.27.98.46) by EXMBX061.cuchost.com
- (172.16.6.61) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 13 Jul
- 2023 10:17:47 +0800
-Message-ID: <7708edd8-d938-ecf1-ba11-fd6baeaa810e@starfivetech.com>
-Date:   Thu, 13 Jul 2023 10:14:35 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH v7 6/9] clk: starfive: Add StarFive JH7110 Video-Output
- clock driver
-Content-Language: en-US
-To:     Emil Renner Berthing <emil.renner.berthing@canonical.com>
-CC:     <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        "Michael Turquette" <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        "Philipp Zabel" <p.zabel@pengutronix.de>,
-        Conor Dooley <conor@kernel.org>,
-        "Emil Renner Berthing" <kernel@esmil.dk>,
+        with ESMTP id S233502AbjGMCRW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 22:17:22 -0400
+Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1C8E12D;
+        Wed, 12 Jul 2023 19:17:08 -0700 (PDT)
+Received: from local
+        by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+         (Exim 4.96)
+        (envelope-from <daniel@makrotopia.org>)
+        id 1qJlt9-0005Ul-17;
+        Thu, 13 Jul 2023 02:17:03 +0000
+Date:   Thu, 13 Jul 2023 03:16:43 +0100
+From:   Daniel Golle <daniel@makrotopia.org>
+To:     netdev@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Hal Feng <hal.feng@starfivetech.com>,
-        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>
-References: <20230712092007.31013-1-xingyu.wu@starfivetech.com>
- <20230712092007.31013-7-xingyu.wu@starfivetech.com>
- <CAJM55Z8VorFJKME+RDvXfXKCzriK4BBpEtFQBrWTXnvX-AH_kQ@mail.gmail.com>
-From:   Xingyu Wu <xingyu.wu@starfivetech.com>
-In-Reply-To: <CAJM55Z8VorFJKME+RDvXfXKCzriK4BBpEtFQBrWTXnvX-AH_kQ@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [183.27.98.46]
-X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX061.cuchost.com
- (172.16.6.61)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Felix Fietkau <nbd@nbd.name>, John Crispin <john@phrozen.org>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Mark Lee <Mark-MC.Lee@mediatek.com>,
+        Lorenzo Bianconi <lorenzo@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Russell King <linux@armlinux.org.uk>,
+        =?iso-8859-1?Q?Bj=F8rn?= Mork <bjorn@mork.no>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Greg Ungerer <gerg@kernel.org>
+Subject: [PATCH v2 net-next 0/9] net: ethernet: mtk_eth_soc: add basic
+ support for MT7988 SoC
+Message-ID: <cover.1689012506.git.daniel@makrotopia.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -67,305 +58,53 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2023/7/13 2:08, Emil Renner Berthing wrote:
-> On Wed, 12 Jul 2023 at 11:22, Xingyu Wu <xingyu.wu@starfivetech.com> wrote:
->>
->> Add driver for the StarFive JH7110 Video-Output clock controller.
->> And these clock controllers should power on and enable the clocks from
->> SYSCRG first before registering.
->>
->> Reviewed-by: Hal Feng <hal.feng@starfivetech.com>
->> Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
->> ---
->>  drivers/clk/starfive/Kconfig                  |   8 +
->>  drivers/clk/starfive/Makefile                 |   1 +
->>  .../clk/starfive/clk-starfive-jh7110-vout.c   | 239 ++++++++++++++++++
->>  3 files changed, 248 insertions(+)
->>  create mode 100644 drivers/clk/starfive/clk-starfive-jh7110-vout.c
->>
->> diff --git a/drivers/clk/starfive/Kconfig b/drivers/clk/starfive/Kconfig
->> index 13b4d08cbcd2..3fa983eb7d32 100644
->> --- a/drivers/clk/starfive/Kconfig
->> +++ b/drivers/clk/starfive/Kconfig
->> @@ -55,3 +55,11 @@ config CLK_STARFIVE_JH7110_ISP
->>         help
->>           Say yes here to support the Image-Signal-Process clock controller
->>           on the StarFive JH7110 SoC.
->> +
->> +config CLK_STARFIVE_JH7110_VOUT
->> +       tristate "StarFive JH7110 Video-Output clock support"
->> +       depends on CLK_STARFIVE_JH7110_SYS && JH71XX_PMU
->> +       default m if ARCH_STARFIVE
->> +       help
->> +         Say yes here to support the Video-Output clock controller
->> +         on the StarFive JH7110 SoC.
->> diff --git a/drivers/clk/starfive/Makefile b/drivers/clk/starfive/Makefile
->> index 76fb9f8d628b..841377e45bb6 100644
->> --- a/drivers/clk/starfive/Makefile
->> +++ b/drivers/clk/starfive/Makefile
->> @@ -8,3 +8,4 @@ obj-$(CONFIG_CLK_STARFIVE_JH7110_SYS)   += clk-starfive-jh7110-sys.o
->>  obj-$(CONFIG_CLK_STARFIVE_JH7110_AON)  += clk-starfive-jh7110-aon.o
->>  obj-$(CONFIG_CLK_STARFIVE_JH7110_STG)  += clk-starfive-jh7110-stg.o
->>  obj-$(CONFIG_CLK_STARFIVE_JH7110_ISP)  += clk-starfive-jh7110-isp.o
->> +obj-$(CONFIG_CLK_STARFIVE_JH7110_VOUT) += clk-starfive-jh7110-vout.o
->> diff --git a/drivers/clk/starfive/clk-starfive-jh7110-vout.c b/drivers/clk/starfive/clk-starfive-jh7110-vout.c
->> new file mode 100644
->> index 000000000000..743840e03d81
->> --- /dev/null
->> +++ b/drivers/clk/starfive/clk-starfive-jh7110-vout.c
->> @@ -0,0 +1,239 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +/*
->> + * StarFive JH7110 Video-Output Clock Driver
->> + *
->> + * Copyright (C) 2022-2023 StarFive Technology Co., Ltd.
->> + */
->> +
->> +#include <linux/clk.h>
->> +#include <linux/clk-provider.h>
->> +#include <linux/io.h>
->> +#include <linux/platform_device.h>
->> +#include <linux/pm_runtime.h>
->> +#include <linux/reset.h>
->> +
->> +#include <dt-bindings/clock/starfive,jh7110-crg.h>
->> +
->> +#include "clk-starfive-jh7110.h"
->> +
->> +/* external clocks */
->> +#define JH7110_VOUTCLK_VOUT_SRC                        (JH7110_VOUTCLK_END + 0)
->> +#define JH7110_VOUTCLK_VOUT_TOP_AHB            (JH7110_VOUTCLK_END + 1)
->> +#define JH7110_VOUTCLK_VOUT_TOP_AXI            (JH7110_VOUTCLK_END + 2)
->> +#define JH7110_VOUTCLK_VOUT_TOP_HDMITX0_MCLK   (JH7110_VOUTCLK_END + 3)
->> +#define JH7110_VOUTCLK_I2STX0_BCLK             (JH7110_VOUTCLK_END + 4)
->> +#define JH7110_VOUTCLK_HDMITX0_PIXELCLK                (JH7110_VOUTCLK_END + 5)
->> +#define JH7110_VOUTCLK_EXT_END                 (JH7110_VOUTCLK_END + 6)
->> +
->> +static struct clk_bulk_data jh7110_vout_top_clks[] = {
->> +       { .id = "vout_src" },
->> +       { .id = "vout_top_ahb" }
->> +};
->> +
->> +static const struct jh71x0_clk_data jh7110_voutclk_data[] = {
->> +       /* divider */
->> +       JH71X0__DIV(JH7110_VOUTCLK_APB, "apb", 8, JH7110_VOUTCLK_VOUT_TOP_AHB),
->> +       JH71X0__DIV(JH7110_VOUTCLK_DC8200_PIX, "dc8200_pix", 63, JH7110_VOUTCLK_VOUT_SRC),
->> +       JH71X0__DIV(JH7110_VOUTCLK_DSI_SYS, "dsi_sys", 31, JH7110_VOUTCLK_VOUT_SRC),
->> +       JH71X0__DIV(JH7110_VOUTCLK_TX_ESC, "tx_esc", 31, JH7110_VOUTCLK_VOUT_TOP_AHB),
->> +       /* dc8200 */
->> +       JH71X0_GATE(JH7110_VOUTCLK_DC8200_AXI, "dc8200_axi", 0, JH7110_VOUTCLK_VOUT_TOP_AXI),
->> +       JH71X0_GATE(JH7110_VOUTCLK_DC8200_CORE, "dc8200_core", 0, JH7110_VOUTCLK_VOUT_TOP_AXI),
->> +       JH71X0_GATE(JH7110_VOUTCLK_DC8200_AHB, "dc8200_ahb", 0, JH7110_VOUTCLK_VOUT_TOP_AHB),
->> +       JH71X0_GMUX(JH7110_VOUTCLK_DC8200_PIX0, "dc8200_pix0", 0, 2,
->> +                   JH7110_VOUTCLK_DC8200_PIX,
->> +                   JH7110_VOUTCLK_HDMITX0_PIXELCLK),
->> +       JH71X0_GMUX(JH7110_VOUTCLK_DC8200_PIX1, "dc8200_pix1", 0, 2,
->> +                   JH7110_VOUTCLK_DC8200_PIX,
->> +                   JH7110_VOUTCLK_HDMITX0_PIXELCLK),
->> +       /* LCD */
->> +       JH71X0_GMUX(JH7110_VOUTCLK_DOM_VOUT_TOP_LCD, "dom_vout_top_lcd", 0, 2,
->> +                   JH7110_VOUTCLK_DC8200_PIX0,
->> +                   JH7110_VOUTCLK_DC8200_PIX1),
->> +       /* dsiTx */
->> +       JH71X0_GATE(JH7110_VOUTCLK_DSITX_APB, "dsiTx_apb", 0, JH7110_VOUTCLK_DSI_SYS),
->> +       JH71X0_GATE(JH7110_VOUTCLK_DSITX_SYS, "dsiTx_sys", 0, JH7110_VOUTCLK_DSI_SYS),
->> +       JH71X0_GMUX(JH7110_VOUTCLK_DSITX_DPI, "dsiTx_dpi", 0, 2,
->> +                   JH7110_VOUTCLK_DC8200_PIX,
->> +                   JH7110_VOUTCLK_HDMITX0_PIXELCLK),
->> +       JH71X0_GATE(JH7110_VOUTCLK_DSITX_TXESC, "dsiTx_txesc", 0, JH7110_VOUTCLK_TX_ESC),
->> +       /* mipitx DPHY */
->> +       JH71X0_GATE(JH7110_VOUTCLK_MIPITX_DPHY_TXESC, "mipitx_dphy_txesc", 0,
->> +                   JH7110_VOUTCLK_TX_ESC),
->> +       /* hdmi */
->> +       JH71X0_GATE(JH7110_VOUTCLK_HDMI_TX_MCLK, "hdmi_tx_mclk", 0,
->> +                   JH7110_VOUTCLK_VOUT_TOP_HDMITX0_MCLK),
->> +       JH71X0_GATE(JH7110_VOUTCLK_HDMI_TX_BCLK, "hdmi_tx_bclk", 0,
->> +                   JH7110_VOUTCLK_I2STX0_BCLK),
->> +       JH71X0_GATE(JH7110_VOUTCLK_HDMI_TX_SYS, "hdmi_tx_sys", 0, JH7110_VOUTCLK_APB),
->> +};
->> +
->> +static int jh7110_vout_top_rst_init(struct jh71x0_clk_priv *priv)
->> +{
->> +       struct reset_control *top_rst;
->> +
->> +       /* The reset should be shared and other Vout modules will use its. */
->> +       top_rst = devm_reset_control_get_shared(priv->dev, NULL);
->> +       if (IS_ERR(top_rst))
->> +               return dev_err_probe(priv->dev, PTR_ERR(top_rst), "failed to get top reset\n");
->> +
->> +       return reset_control_deassert(top_rst);
->> +}
->> +
->> +static struct clk_hw *jh7110_voutclk_get(struct of_phandle_args *clkspec, void *data)
->> +{
->> +       struct jh71x0_clk_priv *priv = data;
->> +       unsigned int idx = clkspec->args[0];
->> +
->> +       if (idx < JH7110_VOUTCLK_END)
->> +               return &priv->reg[idx].hw;
->> +
->> +       return ERR_PTR(-EINVAL);
->> +}
->> +
->> +#ifdef CONFIG_PM
->> +static int jh7110_voutcrg_suspend(struct device *dev)
->> +{
->> +       struct top_sysclk *top = dev_get_drvdata(dev);
->> +
->> +       clk_bulk_disable_unprepare(top->top_clks_num, top->top_clks);
->> +
->> +       return 0;
->> +}
->> +
->> +static int jh7110_voutcrg_resume(struct device *dev)
->> +{
->> +       struct top_sysclk *top = dev_get_drvdata(dev);
->> +
->> +       return clk_bulk_prepare_enable(top->top_clks_num, top->top_clks);
->> +}
->> +#endif
-> 
-> nit: you could move this #endif down below jh7110_voutcrg_pm_ops, and then do
-> 
->   .pm = pm_ptr(&jh7110_voutcrg_pm_ops),
-> 
-> In any case
-> Reviewed-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+The MediaTek MT7988 SoC introduces a new version (3) of the NETSYS
+block and comes with three instead of two MACs.
 
-Will fix in both VOUTCRG and ISPCEG drivers. Thanks.
+The first MAC can be internally connected to a built-in Gigabit
+Ethernet switch with four 1000M/100M/10M twisted pair user ports.
 
-Best regards,
-Xingyu Wu
+The second MAC can be internally connected to a built-in 2500Base-T
+Ethernet PHY.
 
-> 
->> +static const struct dev_pm_ops jh7110_voutcrg_pm_ops = {
->> +       SET_RUNTIME_PM_OPS(jh7110_voutcrg_suspend, jh7110_voutcrg_resume, NULL)
->> +};
->> +
->> +static int jh7110_voutcrg_probe(struct platform_device *pdev)
->> +{
->> +       struct jh71x0_clk_priv *priv;
->> +       struct top_sysclk *top;
->> +       unsigned int idx;
->> +       int ret;
->> +
->> +       priv = devm_kzalloc(&pdev->dev,
->> +                           struct_size(priv, reg, JH7110_VOUTCLK_END),
->> +                           GFP_KERNEL);
->> +       if (!priv)
->> +               return -ENOMEM;
->> +
->> +       top = devm_kzalloc(&pdev->dev, sizeof(*top), GFP_KERNEL);
->> +       if (!top)
->> +               return -ENOMEM;
->> +
->> +       spin_lock_init(&priv->rmw_lock);
->> +       priv->dev = &pdev->dev;
->> +       priv->base = devm_platform_ioremap_resource(pdev, 0);
->> +       if (IS_ERR(priv->base))
->> +               return PTR_ERR(priv->base);
->> +
->> +       top->top_clks = jh7110_vout_top_clks;
->> +       top->top_clks_num = ARRAY_SIZE(jh7110_vout_top_clks);
->> +       ret = devm_clk_bulk_get(priv->dev, top->top_clks_num, top->top_clks);
->> +       if (ret)
->> +               return dev_err_probe(priv->dev, ret, "failed to get top clocks\n");
->> +       dev_set_drvdata(priv->dev, top);
->> +
->> +       /* enable power domain and clocks */
->> +       pm_runtime_enable(priv->dev);
->> +       ret = pm_runtime_get_sync(priv->dev);
->> +       if (ret < 0)
->> +               return dev_err_probe(priv->dev, ret, "failed to turn on power\n");
->> +
->> +       ret = jh7110_vout_top_rst_init(priv);
->> +       if (ret)
->> +               goto err_exit;
->> +
->> +       for (idx = 0; idx < JH7110_VOUTCLK_END; idx++) {
->> +               u32 max = jh7110_voutclk_data[idx].max;
->> +               struct clk_parent_data parents[4] = {};
->> +               struct clk_init_data init = {
->> +                       .name = jh7110_voutclk_data[idx].name,
->> +                       .ops = starfive_jh71x0_clk_ops(max),
->> +                       .parent_data = parents,
->> +                       .num_parents =
->> +                               ((max & JH71X0_CLK_MUX_MASK) >> JH71X0_CLK_MUX_SHIFT) + 1,
->> +                       .flags = jh7110_voutclk_data[idx].flags,
->> +               };
->> +               struct jh71x0_clk *clk = &priv->reg[idx];
->> +               unsigned int i;
->> +               const char *fw_name[JH7110_VOUTCLK_EXT_END - JH7110_VOUTCLK_END] = {
->> +                       "vout_src",
->> +                       "vout_top_ahb",
->> +                       "vout_top_axi",
->> +                       "vout_top_hdmitx0_mclk",
->> +                       "i2stx0_bclk",
->> +                       "hdmitx0_pixelclk"
->> +               };
->> +
->> +               for (i = 0; i < init.num_parents; i++) {
->> +                       unsigned int pidx = jh7110_voutclk_data[idx].parents[i];
->> +
->> +                       if (pidx < JH7110_VOUTCLK_END)
->> +                               parents[i].hw = &priv->reg[pidx].hw;
->> +                       else if (pidx < JH7110_VOUTCLK_EXT_END)
->> +                               parents[i].fw_name = fw_name[pidx - JH7110_VOUTCLK_END];
->> +               }
->> +
->> +               clk->hw.init = &init;
->> +               clk->idx = idx;
->> +               clk->max_div = max & JH71X0_CLK_DIV_MASK;
->> +
->> +               ret = devm_clk_hw_register(&pdev->dev, &clk->hw);
->> +               if (ret)
->> +                       goto err_exit;
->> +       }
->> +
->> +       ret = devm_of_clk_add_hw_provider(&pdev->dev, jh7110_voutclk_get, priv);
->> +       if (ret)
->> +               goto err_exit;
->> +
->> +       ret = jh7110_reset_controller_register(priv, "rst-vo", 4);
->> +       if (ret)
->> +               goto err_exit;
->> +
->> +       return 0;
->> +
->> +err_exit:
->> +       pm_runtime_put_sync(priv->dev);
->> +       pm_runtime_disable(priv->dev);
->> +       return ret;
->> +}
->> +
->> +static int jh7110_voutcrg_remove(struct platform_device *pdev)
->> +{
->> +       pm_runtime_put_sync(&pdev->dev);
->> +       pm_runtime_disable(&pdev->dev);
->> +
->> +       return 0;
->> +}
->> +
->> +static const struct of_device_id jh7110_voutcrg_match[] = {
->> +       { .compatible = "starfive,jh7110-voutcrg" },
->> +       { /* sentinel */ }
->> +};
->> +MODULE_DEVICE_TABLE(of, jh7110_voutcrg_match);
->> +
->> +static struct platform_driver jh7110_voutcrg_driver = {
->> +       .probe = jh7110_voutcrg_probe,
->> +       .remove = jh7110_voutcrg_remove,
->> +       .driver = {
->> +               .name = "clk-starfive-jh7110-vout",
->> +               .of_match_table = jh7110_voutcrg_match,
->> +               .pm = &jh7110_voutcrg_pm_ops,
->> +       },
->> +};
->> +module_platform_driver(jh7110_voutcrg_driver);
->> +
->> +MODULE_AUTHOR("Xingyu Wu <xingyu.wu@starfivetech.com>");
->> +MODULE_DESCRIPTION("StarFive JH7110 Video-Output clock driver");
->> +MODULE_LICENSE("GPL");
->> --
+There are two SerDes units which can be operated in USXGMII, 10GBase-(K)R,
+5GBase-R, 2500Base-X, 1000Base-X or SGMII interface mode.
 
+This series adds initial support for NETSYS v3 and the first MAC of the
+MT7988 SoC connecting the built-in DSA switch.
 
+The switch is supported since commit 110c18bfed414 ("net: dsa: mt7530:
+introduce driver for MT7988 built-in switch").
+
+Basic support for the 1000M/100M/10M built-in PHYs connected to the
+switch ports is present since commit ("98c485eaf509b net: phy: add
+driver for MediaTek SoC built-in GE PHYs").
+
+Changes since v1:
+  * Set MTK_MAX_DEVS to 3 instead of converting to dynamic number of
+    Ethernet MACs.
+  * use mtk_m32 when ever possible
+  * more small improvements and minor comments addressed
+
+Daniel Golle (3):
+  dt-bindings: net: mediatek,net: add missing mediatek,mt7621-eth
+  dt-bindings: net: mediatek,net: add mt7988-eth binding
+  net: ethernet: mtk_eth_soc: convert clock bitmap to u64
+
+Lorenzo Bianconi (6):
+  net: ethernet: mtk_eth_soc: add MTK_NETSYS_V1 capability bit
+  net: ethernet: mtk_eth_soc: increase MAX_DEVS to 3
+  net: ethernet: mtk_eth_soc: rely on MTK_MAX_DEVS and remove
+    MTK_MAC_COUNT
+  net: ethernet: mtk_eth_soc: add MTK_NETSYS_V3 capability bit
+  net: ethernet: mtk_eth_soc: convert caps in mtk_soc_data struct to u64
+  net: ethernet: mtk_eth_soc: add basic support for MT7988 SoC
+
+ .../devicetree/bindings/net/mediatek,net.yaml | 138 ++++++-
+ drivers/net/ethernet/mediatek/mtk_eth_path.c  |  36 +-
+ drivers/net/ethernet/mediatek/mtk_eth_soc.c   | 380 ++++++++++++++----
+ drivers/net/ethernet/mediatek/mtk_eth_soc.h   | 327 ++++++++++-----
+ 4 files changed, 678 insertions(+), 203 deletions(-)
+
+-- 
+2.41.0
