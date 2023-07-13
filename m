@@ -2,127 +2,224 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A2DB7521AB
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 14:48:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 61E77752329
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 15:15:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234827AbjGMMsZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jul 2023 08:48:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58578 "EHLO
+        id S233786AbjGMNP5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jul 2023 09:15:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50084 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234889AbjGMMsS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jul 2023 08:48:18 -0400
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 082AB273C
-        for <devicetree@vger.kernel.org>; Thu, 13 Jul 2023 05:47:54 -0700 (PDT)
-Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-3fb4146e8deso6206325e9.0
-        for <devicetree@vger.kernel.org>; Thu, 13 Jul 2023 05:47:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689252459; x=1691844459;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=z+Z95kHJar6LgJuF8EaQ4xrWI5fsRo898PQkWtblwYA=;
-        b=ZWtafz1E6fk6SAsYpf4lGZD1+nSgipZ/1yHk8BiiBeCPmDYFNw/BHXw8sle+l2vVmS
-         HiRfDaiEutO8CKyd/tWcIbzDH68IKAq0P+wq6L3O+yCRnGWEZXF20jAOZurQ/poTKzrb
-         g2OnlU1tMldBasNoMoKBcVuVSBCTsyKGMaByUKioVd4KMVuWxyelDtQjMhVnKsq5Iagw
-         6P15f+uhPUS8d9HS9De43ANQUipGV+9v29ZgjBforFnnWFgsbssKQyogmv4hd+73mvAv
-         lE4BynPqwqichj7yZRCL2JXaPbqySmT8UZO4u9PrfLAkj4WOjTJ+83c7+Pw5b6vArAq9
-         /iXQ==
+        with ESMTP id S234412AbjGMNP4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jul 2023 09:15:56 -0400
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF684173B
+        for <devicetree@vger.kernel.org>; Thu, 13 Jul 2023 06:15:54 -0700 (PDT)
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id F24093F71D
+        for <devicetree@vger.kernel.org>; Thu, 13 Jul 2023 13:15:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1689254152;
+        bh=lzWjLkz9jgGntegWn0jvL4sjWw5FNz46EKQK53j0qbY=;
+        h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+         To:Cc:Content-Type;
+        b=dlab18ZTlvOPTRt+i6sb53s16eMQi1SezGG9c06eew7yNfbBQb24LOw4dwdZimJgm
+         5C7DXGMa1j3Q4TR+0BbthYgSIrUC14Xa3VnSibr6pYu9KVIb05rSfuoHCY+mBSxlP0
+         PY2NFWAfF4vLZAbEVRBCFVChOPB0fGtXXdlPHNrXx9ruJhuYj7N1Mk5MbI4u44MpzG
+         AfpxYFqxIo06ia4D69YF+K6gntsHWl4Bd7UXlIt7xn9ssGF2i7XIxB/IRX5XIIeDSQ
+         6QehLhaq3Je+l18GUPfsVC+0AYSM4YLvgbvO0jlcBIEWYbsWfen4/dqT0K2k0qc22S
+         zTkX8pEkMXUug==
+Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-403b066c6e7so9453441cf.2
+        for <devicetree@vger.kernel.org>; Thu, 13 Jul 2023 06:15:51 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689252459; x=1691844459;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=z+Z95kHJar6LgJuF8EaQ4xrWI5fsRo898PQkWtblwYA=;
-        b=TNzYlMfv1gblX06fXkH1aK+j0lQ6BGTH4R1VMiXZEYGKPn63lOn8FKChZasir3QfPm
-         naQDno3hnU772xKGWGUWrtqNjpM9Fgg3xQyrg/R7Zb5jgBKoDD9ZWqaLbNW5LbaSfPIa
-         3aIhEqjOU+PO+nR3ARe83PRn8o26LCBqD1AAXIOoBZ0vkfdnfAfxRsUD2WeSuJ7UF0Fy
-         lefKdNWeEbMHuaNnres8eNGg/OQwRyKoOeEYtJqRTanqvxNkwvDETxR2crAqLlImSfOY
-         uvR7OfTbsF/IDhM2pDY8s7ZTVebw6niJxQgQ7PSTh1JzfQcyPIIrvtiob2PXmb7bcp4o
-         rC5A==
-X-Gm-Message-State: ABy/qLalZUjJ65/vwYgxFq5QRKWGKV4CGgUZHZHbIhyT1Ooc2XQYUg7M
-        QMX6+SKpm+blTJ5P+kNWoIjE6w==
-X-Google-Smtp-Source: APBJJlFbNLe7S8IsK2vPmgsjbKmKD9UvXXP3v3+dBxQYsKg50wEXZp6DtXoc8BrOfzOVUcWK2M8cHA==
-X-Received: by 2002:a05:6000:18f:b0:315:a1d5:a3d5 with SMTP id p15-20020a056000018f00b00315a1d5a3d5mr1544161wrx.22.1689252459616;
-        Thu, 13 Jul 2023 05:47:39 -0700 (PDT)
-Received: from [192.168.10.46] (146725694.box.freepro.com. [130.180.211.218])
-        by smtp.googlemail.com with ESMTPSA id m15-20020adfdc4f000000b003142ea7a661sm7905018wrj.21.2023.07.13.05.47.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 13 Jul 2023 05:47:39 -0700 (PDT)
-Message-ID: <cb852190-2128-ee92-ff64-a47bd262154a@linaro.org>
-Date:   Thu, 13 Jul 2023 14:47:37 +0200
+        d=1e100.net; s=20221208; t=1689254149; x=1691846149;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=lzWjLkz9jgGntegWn0jvL4sjWw5FNz46EKQK53j0qbY=;
+        b=Zy0DAf7BuTmRJ+yy2RoXILUAFAs0rYvAcW+IBM1K5fZxBKMWJJz2TqDg4Qm/UwwiN2
+         qDMJ7BFGU9RAGorJMNs8CF7c0A87Q6jFNtIOpKIOdXk9hovGIeqHLJbeZhILnZO5FK+f
+         Zy/isvVQnK1yugezD2fRyLtpeXFcYfxsyxLK7c4Isk1rDBBT2paY1yMKLpn4W01ICWiD
+         HkybR5bk7j3zvSr/u59BcYFrCBOFYGQ66tnxfNbTnnsm5Pi2YlpFKouXWe07Vggirh34
+         VBB4PUl0biAWtnQkK8gH7KxY2z0ALsmlP+Id/dZro77aq3wD16roijfqD5lvVjbKXvfG
+         iJcA==
+X-Gm-Message-State: ABy/qLZfKsDFJWR98uWHZk8W6LJWppcNIYHVhd+XtrXv1RIRzkg12WFr
+        R9vqVVFEbv3aj8iuIy2coowGhISPVTYS+yTCmf9BvpM1PCJkyOfIVMIfBrgPMd5bXuZ1zg5jRYs
+        xU7ZzCYBxXms3BfkB9ICj8E04Lfk6uLqulhmfH7EMiPVBO6+qhZXrKbg=
+X-Received: by 2002:ac8:5dcf:0:b0:400:9a75:d868 with SMTP id e15-20020ac85dcf000000b004009a75d868mr1784480qtx.53.1689254149349;
+        Thu, 13 Jul 2023 06:15:49 -0700 (PDT)
+X-Google-Smtp-Source: APBJJlFREZAUVHrD2WAPAOepNdisRg4PmYWg2KJmdiHvZLy8utdjhf7asfxlbZZKZpSBDSxQLR979i/SsgKi5ZyG1lw=
+X-Received: by 2002:ac8:5dcf:0:b0:400:9a75:d868 with SMTP id
+ e15-20020ac85dcf000000b004009a75d868mr1784462qtx.53.1689254149008; Thu, 13
+ Jul 2023 06:15:49 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v2 04/15] dt-bindings: timer: oxsemi,rps-timer: remove
- obsolete bindings
-Content-Language: en-US
-To:     Neil Armstrong <neil.armstrong@linaro.org>,
+References: <20230704064610.292603-1-xingyu.wu@starfivetech.com> <20230704064610.292603-6-xingyu.wu@starfivetech.com>
+In-Reply-To: <20230704064610.292603-6-xingyu.wu@starfivetech.com>
+From:   Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Date:   Thu, 13 Jul 2023 15:15:32 +0200
+Message-ID: <CAJM55Z-OSmQCV6mO+SD4R2eU5gfx9TArSqDy+d-M2aer6bKL_A@mail.gmail.com>
+Subject: Re: [RESEND PATCH v6 5/7] clk: starfive: jh7110-sys: Add PLL clocks
+ source from DTS
+To:     Xingyu Wu <xingyu.wu@starfivetech.com>
+Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
         Michael Turquette <mturquette@baylibre.com>,
         Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Andy Shevchenko <andy@kernel.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        Marc Zyngier <maz@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
-        netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-oxnas@groups.io,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Daniel Golle <daniel@makrotopia.org>
-References: <20230630-topic-oxnas-upstream-remove-v2-0-fb6ab3dea87c@linaro.org>
- <20230630-topic-oxnas-upstream-remove-v2-4-fb6ab3dea87c@linaro.org>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <20230630-topic-oxnas-upstream-remove-v2-4-fb6ab3dea87c@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Conor Dooley <conor@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Hal Feng <hal.feng@starfivetech.com>,
+        William Qiu <william.qiu@starfivetech.com>,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/06/2023 18:58, Neil Armstrong wrote:
-> Due to lack of maintenance and stall of development for a few years now,
-> and since no new features will ever be added upstream, remove the
-> OX810 and OX820 timer bindings.
-> 
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Acked-by: Linus Walleij <linus.walleij@linaro.org>
-> Acked-by: Arnd Bergmann <arnd@arndb.de>
-> Acked-by: Daniel Golle <daniel@makrotopia.org>
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+On Tue, 4 Jul 2023 at 08:49, Xingyu Wu <xingyu.wu@starfivetech.com> wrote:
+>
+> Modify PLL clocks source to be got from DTS or
+> the fixed factor clocks.
+>
+> Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
 > ---
+>  drivers/clk/starfive/Kconfig                  |  1 +
+>  .../clk/starfive/clk-starfive-jh7110-sys.c    | 45 +++++++++++--------
+>  2 files changed, 28 insertions(+), 18 deletions(-)
+>
+> diff --git a/drivers/clk/starfive/Kconfig b/drivers/clk/starfive/Kconfig
+> index 5195f7be5213..978b78ec08b1 100644
+> --- a/drivers/clk/starfive/Kconfig
+> +++ b/drivers/clk/starfive/Kconfig
+> @@ -35,6 +35,7 @@ config CLK_STARFIVE_JH7110_SYS
+>         select AUXILIARY_BUS
+>         select CLK_STARFIVE_JH71X0
+>         select RESET_STARFIVE_JH7110 if RESET_CONTROLLER
+> +       select CLK_STARFIVE_JH7110_PLL
+>         default ARCH_STARFIVE
+>         help
+>           Say yes here to support the system clock controller on the
+> diff --git a/drivers/clk/starfive/clk-starfive-jh7110-sys.c b/drivers/clk/starfive/clk-starfive-jh7110-sys.c
+> index e6031345ef05..d56f48013388 100644
+> --- a/drivers/clk/starfive/clk-starfive-jh7110-sys.c
+> +++ b/drivers/clk/starfive/clk-starfive-jh7110-sys.c
+> @@ -7,6 +7,7 @@
+>   */
+>
+>  #include <linux/auxiliary_bus.h>
+> +#include <linux/clk.h>
+>  #include <linux/clk-provider.h>
+>  #include <linux/init.h>
+>  #include <linux/io.h>
+> @@ -386,6 +387,7 @@ EXPORT_SYMBOL_GPL(jh7110_reset_controller_register);
+>
+>  static int __init jh7110_syscrg_probe(struct platform_device *pdev)
+>  {
+> +       bool use_fixed_pll = true;      /* PLL clocks use fixed factor clocks or PLL driver */
 
-Applied, thanks
+nit: reverse christmas tree ordering, eg. move this below priv
 
+>         struct jh71x0_clk_priv *priv;
+>         unsigned int idx;
+>         int ret;
+> @@ -402,28 +404,29 @@ static int __init jh7110_syscrg_probe(struct platform_device *pdev)
+>         if (IS_ERR(priv->base))
+>                 return PTR_ERR(priv->base);
+>
+> -       /*
+> -        * These PLL clocks are not actually fixed factor clocks and can be
+> -        * controlled by the syscon registers of JH7110. They will be dropped
+> -        * and registered in the PLL clock driver instead.
+> -        */
+> +       if (!IS_ERR(devm_clk_get(priv->dev, "pll0_out")))
+> +               use_fixed_pll = false;  /* can get pll clocks from PLL driver */
 
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+The devm_clk_get() variant will allocate memory for a callback to call
+clk_put() when the driver is unloaded, but proper references
+associated with the consumers of the pll0_out clock are already taken
+below. So unless we find a better way to detect if the pll references
+are specified in the device tree or not, maybe something like this
+instead:
 
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+priv->pll[0] = clk_get(priv->dev, "pll0_out);
+if (IS_ERR(priv->pll[0])) {
+  /* 24MHZ -> 1000.0MHz */
+  priv->pll[0] = ...
+  ...
 
+} else {
+  clk_put(priv->pll[0]);
+  priv->pll[0] = NULL;
+}
+
+> +       /* Use fixed factor clocks if can not get the PLL clocks from DTS */
+> +       if (use_fixed_pll) {
+>         /* 24MHz -> 1000.0MHz */
+
+These comments are not indented with the code, which just looks weird.
+
+> -       priv->pll[0] = devm_clk_hw_register_fixed_factor(priv->dev, "pll0_out",
+> -                                                        "osc", 0, 125, 3);
+> -       if (IS_ERR(priv->pll[0]))
+> -               return PTR_ERR(priv->pll[0]);
+> +               priv->pll[0] = devm_clk_hw_register_fixed_factor(priv->dev, "pll0_out",
+> +                                                                "osc", 0, 125, 3);
+> +               if (IS_ERR(priv->pll[0]))
+> +                       return PTR_ERR(priv->pll[0]);
+>
+>         /* 24MHz -> 1066.0MHz */
+> -       priv->pll[1] = devm_clk_hw_register_fixed_factor(priv->dev, "pll1_out",
+> -                                                        "osc", 0, 533, 12);
+> -       if (IS_ERR(priv->pll[1]))
+> -               return PTR_ERR(priv->pll[1]);
+> +               priv->pll[1] = devm_clk_hw_register_fixed_factor(priv->dev, "pll1_out",
+> +                                                                "osc", 0, 533, 12);
+> +               if (IS_ERR(priv->pll[1]))
+> +                       return PTR_ERR(priv->pll[1]);
+>
+>         /* 24MHz -> 1188.0MHz */
+> -       priv->pll[2] = devm_clk_hw_register_fixed_factor(priv->dev, "pll2_out",
+> -                                                        "osc", 0, 99, 2);
+> -       if (IS_ERR(priv->pll[2]))
+> -               return PTR_ERR(priv->pll[2]);
+> +               priv->pll[2] = devm_clk_hw_register_fixed_factor(priv->dev, "pll2_out",
+> +                                                                "osc", 0, 99, 2);
+> +               if (IS_ERR(priv->pll[2]))
+> +                       return PTR_ERR(priv->pll[2]);
+> +       }
+>
+>         for (idx = 0; idx < JH7110_SYSCLK_END; idx++) {
+>                 u32 max = jh7110_sysclk_data[idx].max;
+> @@ -462,8 +465,14 @@ static int __init jh7110_syscrg_probe(struct platform_device *pdev)
+>                                 parents[i].fw_name = "tdm_ext";
+>                         else if (pidx == JH7110_SYSCLK_MCLK_EXT)
+>                                 parents[i].fw_name = "mclk_ext";
+> -                       else
+> +                       else if (use_fixed_pll)
+
+else if (priv->pll[0])
+
+>                                 parents[i].hw = priv->pll[pidx - JH7110_SYSCLK_PLL0_OUT];
+> +                       else if (pidx == JH7110_SYSCLK_PLL0_OUT)
+> +                               parents[i].fw_name = "pll0_out";
+> +                       else if (pidx == JH7110_SYSCLK_PLL1_OUT)
+> +                               parents[i].fw_name = "pll1_out";
+> +                       else if (pidx == JH7110_SYSCLK_PLL2_OUT)
+> +                               parents[i].fw_name = "pll2_out";
+>                 }
+>
+>                 clk->hw.init = &init;
+> --
+> 2.25.1
+>
