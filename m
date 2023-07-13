@@ -2,147 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 57525752926
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 18:53:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 705007529A6
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 19:19:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235294AbjGMQxA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jul 2023 12:53:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33302 "EHLO
+        id S230026AbjGMRS7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jul 2023 13:18:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46860 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235422AbjGMQw6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jul 2023 12:52:58 -0400
-Received: from mail-il1-x12f.google.com (mail-il1-x12f.google.com [IPv6:2607:f8b0:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2A572708
-        for <devicetree@vger.kernel.org>; Thu, 13 Jul 2023 09:52:54 -0700 (PDT)
-Received: by mail-il1-x12f.google.com with SMTP id e9e14a558f8ab-3463de183b0so3911975ab.2
-        for <devicetree@vger.kernel.org>; Thu, 13 Jul 2023 09:52:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689267174; x=1691859174;
-        h=content-transfer-encoding:author:mime-version:references
-         :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=dcIGYFaQfGqSRzz1TR43A9wAS36o64Mm47YNW9KhJGo=;
-        b=rNKbM43IVbuLmaY5vpRk95N0ouqDf122oy6vp3z+XqzqJdSqzEJE49uA/+LAlaTvzC
-         va80pws1oE2LFizrEocPk3POxluC+DsEHwwhMXkn9kZxztlmon0JerXhq+Rv985t9dfJ
-         izZengGZk7DseJjSpHjHc9HrswDXf08dRy2VywcwJF8q6Qj2EP66+D0f8kQxk+lCznmY
-         Kon7SzME/qoenAAUA7B2HPEHQj2HTWWhYlvOOD1kqMp2ld4hf+6qAnnpwzEdHgCNCd1Z
-         Vr0lmId459CUK8susiATSTB9UXoPJ9XogCq9WhynQ50c7Z23C+gEFoBJiGw+x6n8hdHk
-         yXHA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689267174; x=1691859174;
-        h=content-transfer-encoding:author:mime-version:references
-         :in-reply-to:message-id:date:subject:cc:to:from:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=dcIGYFaQfGqSRzz1TR43A9wAS36o64Mm47YNW9KhJGo=;
-        b=W9bvfQbjhVI1hfM2DQeG3+660ubTri9ZkodZVLeZhYEZDFN95djDpq6nNHh17xtVqC
-         SGC08jcLj0QPrCi4nW0IFvK4IfYFVBSOkvDZy4C6XIcUQTW2fldydeXAMguhgsegTOhq
-         GFwBnPsjZWwl3gGVkTbJA5cJIfhzJ2SGTk4fNMPfW06SE/QnTl3crlyIk/atWOM9Heun
-         3v90lCZPTjAzBfrDhrz5LqDnkf8bfUFx5cwuGMncVSRH0oI8uU7KIHHEwmlCbuBeAl1E
-         V42Izgha+2nUnThqcfi4lte14JO5ln15X4YId0ERf/eGzZWe+8ySCwWx59vJMDvoIj+T
-         83SQ==
-X-Gm-Message-State: ABy/qLYCrERSfOUMofW+LubsHCB/hTrGR0KP/I7lqpl11ZsNPLuueFPo
-        Z+ibpsxZAG8O6Cwane5Em0wqHg==
-X-Google-Smtp-Source: APBJJlEXsdTd6Pdgx3SCjb2Ew/A5vqSryB0OA8QHjsU17e1cE61ltYcsbHB9o5es5L+hVdITQ4UnZA==
-X-Received: by 2002:a92:c6c7:0:b0:346:5813:f7f5 with SMTP id v7-20020a92c6c7000000b003465813f7f5mr2120484ilm.12.1689267174022;
-        Thu, 13 Jul 2023 09:52:54 -0700 (PDT)
-Received: from x-wing.lan ([49.207.50.231])
-        by smtp.gmail.com with ESMTPSA id d3-20020a17090abf8300b002633fa95ac2sm12009150pjs.13.2023.07.13.09.52.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 13 Jul 2023 09:52:53 -0700 (PDT)
-From:   Amit Pundir <amit.pundir@linaro.org>
-To:     Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        with ESMTP id S229656AbjGMRS6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jul 2023 13:18:58 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3511C2699;
+        Thu, 13 Jul 2023 10:18:57 -0700 (PDT)
+Received: from jupiter.universe (dyndsl-091-248-214-236.ewe-ip-backbone.de [91.248.214.236])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: sre)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id C9050660704F;
+        Thu, 13 Jul 2023 18:18:55 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1689268735;
+        bh=8SNAy+HvH8jQ2JIS228H02hqVwZkE4Q7e2sspvBi+Rw=;
+        h=From:To:Cc:Subject:Date:From;
+        b=U8nI13odssM7oE33SH8LuPAfkYxOW48OW0KhbokYZWk/yQ5pWtyIvFgdnL7KnfiCn
+         qclTNdpJfONcLQcIRuyudlZI3sh5i9a/8Oma3sHyqluGxDGEpYyNAsinoIQNn0zufp
+         rh0KQvg9TDXfEaW9yGfeaPpIiYrAuSCYMjyR1Z2HNMtrUPtz3M9lL44+Vsvsj2aSHW
+         fsBvca5LKECMhkI7n9uc3DqY/0dO9fOIuXGGN+cJ6kKkU458TUIS2iWD7Cc0Rws2P8
+         r73NMTCkxO2WSoaghP7u3n7AxnWZSlxH7CvTXdrBCAC5QxFmPZ3ch4kkRpcAjFV0Xa
+         Qhb3XLi+jlHdg==
+Received: by jupiter.universe (Postfix, from userid 1000)
+        id C896F480084; Thu, 13 Jul 2023 19:18:53 +0200 (CEST)
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
+To:     linux-pci@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        Serge Semin <fancer.lancer@gmail.com>
+Cc:     Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
+        Rob Herring <robh@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Caleb Connolly <caleb.connolly@linaro.org>,
-        Bryan Donoghue <bryan.odonoghue@linaro.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Sean Paul <sean@poorly.run>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Krishna Manikandan <quic_mkrishn@quicinc.com>
-Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
-        freedreno <freedreno@lists.freedesktop.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        dt <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>
-Subject: [PATCH v5 2/2] arm64: dts: qcom: sdm845-db845c: Mark cont splash memory region as reserved
-Date:   Thu, 13 Jul 2023 22:22:38 +0530
-Message-Id: <20230713165238.2814849-2-amit.pundir@linaro.org>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230713165238.2814849-1-amit.pundir@linaro.org>
-References: <20230713165238.2814849-1-amit.pundir@linaro.org>
+        Heiko Stuebner <heiko@sntech.de>,
+        Shawn Lin <shawn.lin@rock-chips.com>,
+        Simon Xue <xxm@rock-chips.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Sebastian Reichel <sebastian.reichel@collabora.com>,
+        kernel@collabora.com
+Subject: [PATCH v2 0/3] RK3588 PCIe2 support
+Date:   Thu, 13 Jul 2023 19:18:48 +0200
+Message-Id: <20230713171851.73052-1-sebastian.reichel@collabora.com>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-Author: Amit Pundir <amit.pundir@linaro.org>
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Adding a reserved memory region for the framebuffer memory
-(the splash memory region set up by the bootloader).
+Hi,
 
-Signed-off-by: Amit Pundir <amit.pundir@linaro.org>
----
-v5: Re-sending with updated dt-bindings patch in mdss-common
-    schema.
+This adds PCIe v2 support for RK3588. The series has been tested with
+the onboard RTL8125 network card on Rockchip RK3588 EVB1 (&pcie2x1l1)
+and Radxa Rock 5B (&pcie2x1l2).
 
-v4: Re-sending this along with a new dt-bindings patch to
-    document memory-region property in qcom,sdm845-mdss
-    schema and keep dtbs_check happy.
+Changes since v1:
+ * https://lore.kernel.org/all/20230616170022.76107-1-sebastian.reichel@collabora.com/
+ * Dropped patch adding 'RK3588' (queued by Rob)
+ * Updated patch adding legacy-interrupt-controller according to comments
+   from Rob and Serge
+    - added missing additionalProperties: false
+    - added all properties to new required property
+    - removed useless quotes around interrupt-controller
+    - added Rob's Reviewed-by
+ * Updated patch adding the missing RK356x/RK3588 interrupt names, so that it
+   provides more details about the interrupts
+ * Updated the DT patch according to the comment from Jonas Karlman, so that
+   the addresses are in 32 bit address space starting at 0x40000000
 
-v3: Point this reserved region to MDSS.
+[0] https://lore.kernel.org/all/20230612171337.74576-1-sebastian.reichel@collabora.com/
 
-v2: Updated commit message.
+Thanks,
 
-There was some dicussion on v1 but it didn't go anywhere,
-https://lore.kernel.org/linux-kernel/20230124182857.1524912-1-amit.pundir@linaro.org/T/#u.
-The general consensus is that this memory should be freed and be
-made resuable but that (releasing this piece of memory) has been
-tried before and it is not trivial to return the reserved memory
-node to the system RAM pool in this case.
+-- Sebastian
 
- arch/arm64/boot/dts/qcom/sdm845-db845c.dts | 9 +++++++++
- 1 file changed, 9 insertions(+)
+Sebastian Reichel (3):
+  dt-bindings: PCI: dwc: rockchip: Fix interrupt-names issue
+  dt-bindings: PCI: dwc: rockchip: Add missing
+    legacy-interrupt-controller
+  arm64: dts: rockchip: rk3588: add PCIe2 support
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-index d6b464cb61d6..f546f6f57c1e 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-@@ -101,6 +101,14 @@ hdmi_con: endpoint {
- 		};
- 	};
- 
-+	reserved-memory {
-+		/* Cont splash region set up by the bootloader */
-+		cont_splash_mem: framebuffer@9d400000 {
-+			reg = <0x0 0x9d400000 0x0 0x2400000>;
-+			no-map;
-+		};
-+	};
-+
- 	lt9611_1v8: lt9611-vdd18-regulator {
- 		compatible = "regulator-fixed";
- 		regulator-name = "LT9611_1V8";
-@@ -506,6 +514,7 @@ &i2c14 {
- };
- 
- &mdss {
-+	memory-region = <&cont_splash_mem>;
- 	status = "okay";
- };
- 
+ .../bindings/pci/rockchip-dw-pcie.yaml        |  48 ++++++++
+ .../devicetree/bindings/pci/snps,dw-pcie.yaml |  76 +++++++++++-
+ arch/arm64/boot/dts/rockchip/rk3588.dtsi      |  54 +++++++++
+ arch/arm64/boot/dts/rockchip/rk3588s.dtsi     | 108 ++++++++++++++++++
+ 4 files changed, 285 insertions(+), 1 deletion(-)
+
 -- 
-2.25.1
+2.40.1
 
