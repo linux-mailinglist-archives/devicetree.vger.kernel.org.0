@@ -2,252 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 30A01751C77
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 11:00:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B3D79751CA8
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 11:06:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234297AbjGMJAp convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 13 Jul 2023 05:00:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59316 "EHLO
+        id S233691AbjGMJGY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jul 2023 05:06:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36014 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234720AbjGMJA0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jul 2023 05:00:26 -0400
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C04D81BEB;
-        Thu, 13 Jul 2023 02:00:21 -0700 (PDT)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 01AE882EB;
-        Thu, 13 Jul 2023 17:00:19 +0800 (CST)
-Received: from EXMBX068.cuchost.com (172.16.6.68) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 13 Jul
- 2023 17:00:19 +0800
-Received: from williamqiu-virtual-machine.starfivetech.com (171.223.208.138)
- by EXMBX068.cuchost.com (172.16.6.68) with Microsoft SMTP Server (TLS) id
- 15.0.1497.42; Thu, 13 Jul 2023 17:00:18 +0800
-From:   William Qiu <william.qiu@starfivetech.com>
-To:     <devicetree@vger.kernel.org>, <linux-spi@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>
-CC:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        William Qiu <william.qiu@starfivetech.com>
-Subject: [PATCH v2 3/3] riscv: dts: starfive: Add spi node for JH7110 SoC
-Date:   Thu, 13 Jul 2023 17:00:15 +0800
-Message-ID: <20230713090015.127541-4-william.qiu@starfivetech.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230713090015.127541-1-william.qiu@starfivetech.com>
-References: <20230713090015.127541-1-william.qiu@starfivetech.com>
+        with ESMTP id S234028AbjGMJGH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jul 2023 05:06:07 -0400
+Received: from mail-yb1-xb32.google.com (mail-yb1-xb32.google.com [IPv6:2607:f8b0:4864:20::b32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 878E9127
+        for <devicetree@vger.kernel.org>; Thu, 13 Jul 2023 02:05:09 -0700 (PDT)
+Received: by mail-yb1-xb32.google.com with SMTP id 3f1490d57ef6-ca3cc52ee62so434034276.0
+        for <devicetree@vger.kernel.org>; Thu, 13 Jul 2023 02:05:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1689239108; x=1689843908;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=Xn6ei9/9nS3M5OJwomJN5UPa70NekYkgBc6ibiFgkyQ=;
+        b=xXXWLGivZPS53UODz4dM7TyUnoncEK5FE86gyc4bHY71qNzZeJmJb7w06cH4dFSdQR
+         P0x4CQqUTz9BiB+Qglq2I7MSPbtS+dJ5ItOA7QlFES435E7+Mf3mUb2I3tiNeoybdi7L
+         DqkicFGq+98dJizdYCYAz5xzgciVAWvFO2uELgtAJEfzfSwCsf8HJCf3DOeenRLzQpqr
+         9QqiWiDW3adGV24n9d4MOkj4Zzhj31CxxVZPlJcAMz2uIBY/biLf437FI+zp+L2HvZdc
+         tfGxdpDL6IH4vvexo9VaKW2x2eLCLDNHNWPYV+6cpdg2jvB9cuWvfBiU2YH3FpL+uvdl
+         2NYg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689239108; x=1689843908;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Xn6ei9/9nS3M5OJwomJN5UPa70NekYkgBc6ibiFgkyQ=;
+        b=Xm6YwHjLqVS3KRT6uLiao3jFeuO30mZUjGlcMKsxVEo9WwTwqjzCyoY2nK8sY1bG/n
+         NaJOCXgpDvkLGef24JxS3uSpEbjbpm7t7VWgGzgpw5QCIvjX1uCsLldMxohB7s1gYiz+
+         S7yscPF8uDtIAz4uIzWyGKTDRyIBA6Ql6s8khJSpd2Io5FPT1TG2NAuxXu4Wd238Qr5B
+         fetQHBVpm3dgnm0AnIUnRxyeMwA6LdzkG4A44fDNVTgPLKSiI9dEFT2dx/kycct8IYSt
+         eInu6qjP4ftEYyGwpAFcZFqgmnKMNkA1QG4pimKf/Pj4qDwigzHcCqTbPWlNKrq1ZYhw
+         DS0Q==
+X-Gm-Message-State: ABy/qLY+wcB5bm6NaUw3w3WA2f9RFPA7O/M/hXsK5lC9rt/CdlnZ7NzG
+        FzfzGEwuTRUd8Lm5ATB7MUhch+idxIGs70wJaORrvA==
+X-Google-Smtp-Source: APBJJlGXJvvYoDza1StirRlGQElXF0pCyCiFnb5V8pzk8ik9XDgwvV9D9fD7+yABjfcZa47O94WvNoZjX60yu5f73II=
+X-Received: by 2002:a25:aba2:0:b0:bad:125f:9156 with SMTP id
+ v31-20020a25aba2000000b00bad125f9156mr895305ybi.35.1689239108637; Thu, 13 Jul
+ 2023 02:05:08 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [171.223.208.138]
-X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX068.cuchost.com
- (172.16.6.68)
-X-YovoleRuleAgent: yovoleflag
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <20230712121145.1994830-1-dmitry.baryshkov@linaro.org>
+ <20230712121145.1994830-9-dmitry.baryshkov@linaro.org> <9587baf4-2316-494d-fbd1-73a86e742741@linaro.org>
+In-Reply-To: <9587baf4-2316-494d-fbd1-73a86e742741@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Thu, 13 Jul 2023 12:04:57 +0300
+Message-ID: <CAA8EJpqTBpUgpQSwhhLtctn=r8XwX-NwdFgUst3rARQSaGMrcg@mail.gmail.com>
+Subject: Re: [PATCH v2 8/8] arm64: dts: qcom: sm8450: provide MDSS cfg interconnect
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add spi node for JH7110 SoC.
+On Thu, 13 Jul 2023 at 11:41, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
+>
+> On 12.07.2023 14:11, Dmitry Baryshkov wrote:
+> > Add support for the MDSS cfg-cpu bus vote on the SM8450 platform.
+> >
+> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > ---
+> >  arch/arm64/boot/dts/qcom/sm8450.dtsi | 9 +++++++--
+> >  1 file changed, 7 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> > index 595533aeafc4..0b01f3027ee3 100644
+> > --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> > @@ -13,6 +13,7 @@
+> >  #include <dt-bindings/mailbox/qcom-ipcc.h>
+> >  #include <dt-bindings/phy/phy-qcom-qmp.h>
+> >  #include <dt-bindings/power/qcom-rpmpd.h>
+> > +#include <dt-bindings/interconnect/qcom,icc.h>
+> >  #include <dt-bindings/interconnect/qcom,sm8450.h>
+> >  #include <dt-bindings/soc/qcom,gpr.h>
+> >  #include <dt-bindings/soc/qcom,rpmh-rsc.h>
+> > @@ -2672,8 +2673,12 @@ mdss: display-subsystem@ae00000 {
+> >
+> >                       /* same path used twice */
+> >                       interconnects = <&mmss_noc MASTER_MDP_DISP 0 &mc_virt SLAVE_EBI1_DISP 0>,
+> > -                                     <&mmss_noc MASTER_MDP_DISP 0 &mc_virt SLAVE_EBI1_DISP 0>;
+> > -                     interconnect-names = "mdp0-mem", "mdp1-mem";
+> > +                                     <&mmss_noc MASTER_MDP_DISP 0 &mc_virt SLAVE_EBI1_DISP 0>,
+> > +                                     <&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
+> > +                                      &config_noc SLAVE_DISPLAY_CFG QCOM_ICC_TAG_ACTIVE_ONLY>;
+> Looking at icc_set_tag occurences in msm-5.10/techpack/display,
+> I *think* active-only is only possible for the data bus (MDP-EBI)
 
-Signed-off-by: William Qiu <william.qiu@starfivetech.com>
----
- .../jh7110-starfive-visionfive-2.dtsi         | 50 ++++++++++
- arch/riscv/boot/dts/starfive/jh7110.dtsi      | 98 +++++++++++++++++++
- 2 files changed, 148 insertions(+)
+Here I followed the vendor mdss fbdev driver (mdss_mdp.c), which
+explicitly states:
 
-diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-index fa0061eb33a7..ae3f39c33d3c 100644
---- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-@@ -143,6 +143,18 @@ &i2c6 {
- 	status = "okay";
- };
- 
-+&spi0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&spi0_pins>;
-+	status = "okay";
-+
-+	spi_dev0: flash@0 {
-+		compatible = "rohm,dh2228fv";
-+		reg = <0>;
-+		spi-max-frequency = <10000000>;
-+	};
-+};
-+
- &sysgpio {
- 	i2c0_pins: i2c0-0 {
- 		i2c-pins {
-@@ -200,6 +212,44 @@ GPOEN_SYS_I2C6_DATA,
- 		};
- 	};
- 
-+	spi0_pins: spi0-0 {
-+		mosi-pins {
-+			pinmux = <GPIOMUX(52, GPOUT_SYS_SPI0_TXD,
-+					      GPOEN_ENABLE,
-+					      GPI_NONE)>;
-+			bias-disable;
-+			input-disable;
-+			input-schmitt-disable;
-+		};
-+
-+		miso-pins {
-+			pinmux = <GPIOMUX(53, GPOUT_LOW,
-+					      GPOEN_DISABLE,
-+					      GPI_SYS_SPI0_RXD)>;
-+			bias-pull-up;
-+			input-enable;
-+			input-schmitt-enable;
-+		};
-+
-+		sck-pins {
-+			pinmux = <GPIOMUX(48, GPOUT_SYS_SPI0_CLK,
-+					      GPOEN_ENABLE,
-+					      GPI_SYS_SPI0_CLK)>;
-+			bias-disable;
-+			input-disable;
-+			input-schmitt-disable;
-+		};
-+
-+		ss-pins {
-+			pinmux = <GPIOMUX(48, GPOUT_SYS_SPI0_FSS,
-+					      GPOEN_ENABLE,
-+					      GPI_SYS_SPI0_FSS)>;
-+			bias-disable;
-+			input-disable;
-+			input-schmitt-disable;
-+		};
-+	};
-+
- 	uart0_pins: uart0-0 {
- 		tx-pins {
- 			pinmux = <GPIOMUX(5, GPOUT_SYS_UART0_TX,
-diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-index ec2e70011a73..13da297c18fe 100644
---- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-@@ -386,6 +386,48 @@ i2c2: i2c@10050000 {
- 			status = "disabled";
- 		};
- 
-+		spi0: spi@10060000 {
-+			compatible = "arm,pl022", "arm,primecell";
-+			reg = <0x0 0x10060000 0x0 0x10000>;
-+			clocks = <&syscrg JH7110_SYSCLK_SPI0_APB>;
-+			clock-names = "apb_pclk";
-+			resets = <&syscrg JH7110_SYSRST_SPI0_APB>;
-+			interrupts = <38>;
-+			arm,primecell-periphid = <0x00041022>;
-+			num-cs = <1>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			status = "disabled";
-+		};
-+
-+		spi1: spi@10070000 {
-+			compatible = "arm,pl022", "arm,primecell";
-+			reg = <0x0 0x10070000 0x0 0x10000>;
-+			clocks = <&syscrg JH7110_SYSCLK_SPI1_APB>;
-+			clock-names = "apb_pclk";
-+			resets = <&syscrg JH7110_SYSRST_SPI1_APB>;
-+			interrupts = <39>;
-+			arm,primecell-periphid = <0x00041022>;
-+			num-cs = <1>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			status = "disabled";
-+		};
-+
-+		spi2: spi@10080000 {
-+			compatible = "arm,pl022", "arm,primecell";
-+			reg = <0x0 0x10080000 0x0 0x10000>;
-+			clocks = <&syscrg JH7110_SYSCLK_SPI2_APB>;
-+			clock-names = "apb_pclk";
-+			resets = <&syscrg JH7110_SYSRST_SPI2_APB>;
-+			interrupts = <40>;
-+			arm,primecell-periphid = <0x00041022>;
-+			num-cs = <1>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			status = "disabled";
-+		};
-+
- 		uart3: serial@12000000 {
- 			compatible = "snps,dw-apb-uart";
- 			reg = <0x0 0x12000000 0x0 0x10000>;
-@@ -473,6 +515,62 @@ i2c6: i2c@12060000 {
- 			status = "disabled";
- 		};
- 
-+		spi3: spi@12070000 {
-+			compatible = "arm,pl022", "arm,primecell";
-+			reg = <0x0 0x12070000 0x0 0x10000>;
-+			clocks = <&syscrg JH7110_SYSCLK_SPI3_APB>;
-+			clock-names = "apb_pclk";
-+			resets = <&syscrg JH7110_SYSRST_SPI3_APB>;
-+			interrupts = <52>;
-+			arm,primecell-periphid = <0x00041022>;
-+			num-cs = <1>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			status = "disabled";
-+		};
-+
-+		spi4: spi@12080000 {
-+			compatible = "arm,pl022", "arm,primecell";
-+			reg = <0x0 0x12080000 0x0 0x10000>;
-+			clocks = <&syscrg JH7110_SYSCLK_SPI4_APB>;
-+			clock-names = "apb_pclk";
-+			resets = <&syscrg JH7110_SYSRST_SPI4_APB>;
-+			interrupts = <53>;
-+			arm,primecell-periphid = <0x00041022>;
-+			num-cs = <1>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			status = "disabled";
-+		};
-+
-+		spi5: spi@12090000 {
-+			compatible = "arm,pl022", "arm,primecell";
-+			reg = <0x0 0x12090000 0x0 0x10000>;
-+			clocks = <&syscrg JH7110_SYSCLK_SPI5_APB>;
-+			clock-names = "apb_pclk";
-+			resets = <&syscrg JH7110_SYSRST_SPI5_APB>;
-+			interrupts = <54>;
-+			arm,primecell-periphid = <0x00041022>;
-+			num-cs = <1>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			status = "disabled";
-+		};
-+
-+		spi6: spi@120a0000 {
-+			compatible = "arm,pl022", "arm,primecell";
-+			reg = <0x0 0x120A0000 0x0 0x10000>;
-+			clocks = <&syscrg JH7110_SYSCLK_SPI6_APB>;
-+			clock-names = "apb_pclk";
-+			resets = <&syscrg JH7110_SYSRST_SPI6_APB>;
-+			interrupts = <55>;
-+			arm,primecell-periphid = <0x00041022>;
-+			num-cs = <1>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			status = "disabled";
-+		};
-+
- 		syscrg: clock-controller@13020000 {
- 			compatible = "starfive,jh7110-syscrg";
- 			reg = <0x0 0x13020000 0x0 0x10000>;
+static struct msm_bus_scale_pdata mdp_reg_bus_scale_table = {
+        .usecase = mdp_reg_bus_usecases,
+        .num_usecases = ARRAY_SIZE(mdp_reg_bus_usecases),
+        .name = "mdss_reg",
+        .active_only = true,
+};
+
+>
+> Moreover, I think Linux is supposed to cast MDSS votes through the
+> APPS RSC (so, nodes without _DISP [1][2]) and conversely, DISP_RSC is
+> supposed to active-only votes
+
+We can change this once your DISP_RSC lands. Anyway, I think we will
+have to add the LLCC-MEM vote at some point later.
+
+>
+> Konrad
+>
+> [1] not that it matters today because it's not implemented yet
+> [2] https://lore.kernel.org/linux-arm-msm/20230708-topic-rpmh_icc_rsc-v1-0-b223bd2ac8dd@linaro.org
+>
+> > +                     interconnect-names = "mdp0-mem",
+> > +                                          "mdp1-mem",
+> > +                                          "cpu-cfg";
+> >
+> >                       resets = <&dispcc DISP_CC_MDSS_CORE_BCR>;
+> >
+
+
+
 -- 
-2.34.1
-
+With best wishes
+Dmitry
