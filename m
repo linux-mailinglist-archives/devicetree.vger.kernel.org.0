@@ -2,70 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B691752712
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 17:30:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8DFB175274D
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 17:34:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235047AbjGMPaT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jul 2023 11:30:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32986 "EHLO
+        id S235095AbjGMPe6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jul 2023 11:34:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37322 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234796AbjGMP3y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jul 2023 11:29:54 -0400
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CA8A2707
-        for <devicetree@vger.kernel.org>; Thu, 13 Jul 2023 08:29:53 -0700 (PDT)
-Received: by mail-wr1-x430.google.com with SMTP id ffacd0b85a97d-31434226a2eso1052246f8f.1
-        for <devicetree@vger.kernel.org>; Thu, 13 Jul 2023 08:29:53 -0700 (PDT)
+        with ESMTP id S230151AbjGMPek (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jul 2023 11:34:40 -0400
+Received: from mail-vs1-xe31.google.com (mail-vs1-xe31.google.com [IPv6:2607:f8b0:4864:20::e31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E399230D7
+        for <devicetree@vger.kernel.org>; Thu, 13 Jul 2023 08:34:33 -0700 (PDT)
+Received: by mail-vs1-xe31.google.com with SMTP id ada2fe7eead31-440b54708f2so377467137.0
+        for <devicetree@vger.kernel.org>; Thu, 13 Jul 2023 08:34:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689262192; x=1691854192;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=a92s0ZBpjasngrfkdppw5RA1B//7iWnSeb2Z8OjOQOc=;
-        b=AwzbtHX/Hy8teYyGGtfglN1H/KkE+USMpc9vXvkM0GmOr5NPj7RYfxH4Vj5fPxteep
-         6x07uaYMcmSXo2GI7aBk4uhuIHTmcak3aZolMGTv+YyBluvi/VVSXnbhC7THfVZoA4x/
-         vEOqsybWByv69J2HbONrZrXO5Y/sPukmHqHfXcF5iWS+gpQwVtRJ6CouutPM/uRAnlyL
-         8mdtTgccbd3/jDO/UtlhdXv2cn6FytJC00q693BzXQJdihqd6iD8Pdn9tZpTj32NOVs+
-         DsdzA3RbUQO1zk8cDZO81p7G+RwHYepte7DpDo36vp0cpidfu6aMCusBBOubrqdK7M6l
-         xtGA==
+        d=linaro.org; s=google; t=1689262473; x=1691854473;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=8yGwM2jMm6HeybAOlBLR6sZSi/DPAG/Mi6HWsPsP/EI=;
+        b=lOgFlERPhwtGjicLF2QHVlqBk2xSDjijmmistC6wxT3hqdtQKIp2OgtKqSDsPAiizS
+         wYQJQbXgXaCcxecOQofQ0NQysSDneQdw+H/6NYICtdMdrXApRr/VJmoKQm7+lqxz5CU9
+         7HKYEPG6Y7/vU/zy5asXo1RDZ57mV1rxJ4y90qbj11a79ceBVOuzDB33KSgDy0rN+mwi
+         0a9Ii2XIlGFExp3+2n6C/bBF8rtotem8PhWb1HeJSt7j+04dznqXCjeaK4i/v9L+b0pf
+         7gqFXvkVYT0gF2Gi1kf5amM7r4mq+0iDjg8T1vwPyROs/edZA8/yCHdovfdf9v1AbJiH
+         JfHQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689262192; x=1691854192;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20221208; t=1689262473; x=1691854473;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=a92s0ZBpjasngrfkdppw5RA1B//7iWnSeb2Z8OjOQOc=;
-        b=CgnXUSuhCZcOlEnVPTBkOfJa0n6/EKT06OdBS5NeyOT0eY0Ri4gqJvNyzUZWSvRXoT
-         56fOU808Ri43w0qFj2i5CqJHPiMrdgkd9OkQ3P7evlCg8UdRv3fDP499o8STkFvrJOp2
-         J68iNcHmFK19gCHcfi81E2n8Q4XfbpmmR5EujFbzMZQI2kfhxHotezPesc9i5a6GJBxe
-         GDnZ7ZUzjL4/PpthqCm2K4tjRVfs0SRTd0yVTkDO0dXryCq2Mnwcdebwuqw1LUub7p1g
-         z0APcCKm61rKCKKHg5ikAAqa6NHFGkpuhX2q888p7EhLfYmQ+0b1gzpPHnLU068sM4sr
-         WnPg==
-X-Gm-Message-State: ABy/qLYZloGUvO0g4Zt9XpgIQ3Fxw/+rcHYWladxdx8NQhnmU/slCHhy
-        fWS1SycdRLFf0bn16sY6FsdUbw==
-X-Google-Smtp-Source: APBJJlEZszP7Kjrwu0BtXJ+mxlydmEr7PvbzOrIwYYxYxXIWCWZun4+gNiEx1MV4LEY6YLDbaEzrmw==
-X-Received: by 2002:a5d:4443:0:b0:314:358a:64d5 with SMTP id x3-20020a5d4443000000b00314358a64d5mr2193139wrr.13.1689262191880;
-        Thu, 13 Jul 2023 08:29:51 -0700 (PDT)
-Received: from krzk-bin.. ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id w14-20020a5d608e000000b00314427091a2sm8245246wrt.98.2023.07.13.08.29.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 13 Jul 2023 08:29:51 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Rob Herring <robh+dt@kernel.org>,
+        bh=8yGwM2jMm6HeybAOlBLR6sZSi/DPAG/Mi6HWsPsP/EI=;
+        b=O2lGCt054rkSFeV7owFCqpP1xnv6yXCyOLxVURRn401L2KmfCfl8xKPf6jha8iDRqa
+         7ES2WfaFWzIJHmVwgYsujZDKbJpgCGEYkqvIK8gMEmVN8jHbVknRGW+T17fHywQnYcno
+         YSABVVSMAzuak9V0EFPlsuSAuG4PKH42QNqq5n1hppSBztPEZ1Uz1LW3h/WRR+AmjcOm
+         Tfzw8NzCDUnp6eNqNitmPzCdx1YG4jZEKmHBF2gQeJIgW4KK+vKaMOgn3jQDfXt1KNeA
+         w99w6R16uM4X/bQ/mG8tqi29UfBFSb2slXcQpGRyYJ4fhyb0RGlP4NVdEcZOO8hCItC2
+         fPVQ==
+X-Gm-Message-State: ABy/qLYfL0Xcg2CfyNGBil7zqlHudjHpR89VPYjhook3k245/82kJ08M
+        GHgHQBoJ3JPi5AEwl1B5GalxuytAzWF5E/oGu4DisbU9MShTujWKazU=
+X-Google-Smtp-Source: APBJJlGb1jVO/ngXjXmOiFV9ZYbghh/vfhZZW7PYWNC1fUiGbkak2hA/lfD7wwvwjJJq8+zZv1gdSRqmyIer2LH0nno=
+X-Received: by 2002:a05:6102:389:b0:444:c7fa:1aad with SMTP id
+ m9-20020a056102038900b00444c7fa1aadmr1171134vsq.17.1689262472963; Thu, 13 Jul
+ 2023 08:34:32 -0700 (PDT)
+MIME-Version: 1.0
+References: <20230712130215.666924-1-amit.pundir@linaro.org> <3b677200-a201-680b-391f-fbf73064496a@linaro.org>
+In-Reply-To: <3b677200-a201-680b-391f-fbf73064496a@linaro.org>
+From:   Amit Pundir <amit.pundir@linaro.org>
+Date:   Thu, 13 Jul 2023 21:03:56 +0530
+Message-ID: <CAMi1Hd003r1kJ6e4r2urFtN1BEnCRatLcQ1Q7Eh5wBdj=2WDFA@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: display/msm: qcom,sdm845-mdss: add
+ memory-region property
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] ARM: dts: imx1-apf9328: correct ethernet reg addresses (split)
-Date:   Thu, 13 Jul 2023 17:29:46 +0200
-Message-Id: <20230713152946.82938-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        Caleb Connolly <caleb.connolly@linaro.org>,
+        Bryan Donoghue <bryan.odonoghue@linaro.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Sean Paul <sean@poorly.run>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Krishna Manikandan <quic_mkrishn@quicinc.com>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        freedreno <freedreno@lists.freedesktop.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        dt <devicetree@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -76,30 +85,49 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The davicom,dm9000 Ethernet Controller accepts two reg addresses.
+On Wed, 12 Jul 2023 at 18:45, Dmitry Baryshkov
+<dmitry.baryshkov@linaro.org> wrote:
+>
+> On 12/07/2023 16:02, Amit Pundir wrote:
+> > Add and document the reserved memory region property
+> > in the qcom,sdm845-mdss schema.
+> >
+> > Signed-off-by: Amit Pundir <amit.pundir@linaro.org>
+> > ---
+> >   .../devicetree/bindings/display/msm/qcom,sdm845-mdss.yaml    | 5 +++++
+> >   1 file changed, 5 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sdm845-mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sdm845-mdss.yaml
+> > index 6ecb00920d7f..3ea1dbd7e317 100644
+> > --- a/Documentation/devicetree/bindings/display/msm/qcom,sdm845-mdss.yaml
+> > +++ b/Documentation/devicetree/bindings/display/msm/qcom,sdm845-mdss.yaml
+> > @@ -39,6 +39,11 @@ properties:
+> >     interconnect-names:
+> >       maxItems: 2
+> >
+> > +  memory-region:
+> > +    maxItems: 1
+> > +    description:
+> > +      Phandle to a node describing a reserved memory region.
+> > +
+>
+> Please add it to mdss-common.yaml instead
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- arch/arm/boot/dts/nxp/imx/imx1-apf9328.dts | 6 ++----
- 1 file changed, 2 insertions(+), 4 deletions(-)
+mdss-common.yaml didn't like this property at all and
+I ran into a lot of new dtbs_check warnings:
+https://www.irccloud.com/pastebin/raw/pEYAeaB1
 
-diff --git a/arch/arm/boot/dts/nxp/imx/imx1-apf9328.dts b/arch/arm/boot/dts/nxp/imx/imx1-apf9328.dts
-index 77b21aa7a146..1f11e9542a72 100644
---- a/arch/arm/boot/dts/nxp/imx/imx1-apf9328.dts
-+++ b/arch/arm/boot/dts/nxp/imx/imx1-apf9328.dts
-@@ -58,10 +58,8 @@ eth: eth@4,c00000 {
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&pinctrl_eth>;
- 		compatible = "davicom,dm9000";
--		reg = <
--			4 0x00c00000 0x2
--			4 0x00c00002 0x2
--		>;
-+		reg = <4 0x00c00000 0x2>,
-+		      <4 0x00c00002 0x2>;
- 		interrupt-parent = <&gpio2>;
- 		interrupts = <14 IRQ_TYPE_LEVEL_LOW>;
- 		fsl,weim-cs-timing = <0x0000c700 0x19190d01>;
--- 
-2.34.1
+I need some help in decoding these please.
 
+Regards,
+Amit Pundir
+
+>
+> >   patternProperties:
+> >     "^display-controller@[0-9a-f]+$":
+> >       type: object
+>
+> --
+> With best wishes
+> Dmitry
+>
