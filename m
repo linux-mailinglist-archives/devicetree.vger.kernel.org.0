@@ -2,98 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 19FDB7519DA
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 09:24:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B83427519E2
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 09:26:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234256AbjGMHYX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jul 2023 03:24:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45394 "EHLO
+        id S234182AbjGMH00 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jul 2023 03:26:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46952 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234123AbjGMHYU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jul 2023 03:24:20 -0400
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE84C2D4C
-        for <devicetree@vger.kernel.org>; Thu, 13 Jul 2023 00:23:56 -0700 (PDT)
-Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-3fc03aa6e04so2912735e9.2
-        for <devicetree@vger.kernel.org>; Thu, 13 Jul 2023 00:23:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689233030; x=1691825030;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=8OEo6fkU/i3JzBNmiaB+dxX8Uf+Q34nzBHgV0wIfnHU=;
-        b=E2UT07TExkP2asBLtmPaDoO7Z3DEqa8rQNXrQI/BcYx4w1aBRgh0ugPYU6EY/7VSY3
-         l1+L8fbXb9WE3Y/MDWTLh6V23uaw7/zkh5h2LCQyLMykp4kzlkBDXjqZRyR3nBWerueA
-         dhBmpO14ckbkA9Ts08BJtIvZMPKYKDQMu5nu01S39XPX8uIQOWFSWld7iVnRIF09c4cC
-         lLubvm95OpL3k2sTSRn2N8ot97bZ3Aqk2fSDMI0inaikajCe1/Ziizxx7LNn2hc/qwhW
-         qVNIVc0RASZJpvOPBZTrygsTG2jyWHrRgSc+A+Er1LyCmnS/41HpNN0PIhUmFKflliC1
-         E6Kg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689233030; x=1691825030;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8OEo6fkU/i3JzBNmiaB+dxX8Uf+Q34nzBHgV0wIfnHU=;
-        b=b+STfI8FvjbnAOjts4Q9EJkH2MbrQHg505pGderxgNkwgVXupKcWKC/OCxyFbioxXg
-         6RHDRiPMHH9dTHpBSe4hUYpaNIKe97ouuHWJ5LHR8AeKOMDrNZCOcpqMpx2h04b1Q3Sa
-         etPQfeUYku9VH8p7W/XkA770M5W/wtg5c4yWFm5LqhYeJCJVOI03B2TooI+rVHVqEF80
-         OZYfG0jcLPtq+V+n/0oeNi4VV6rhyw/SuA+1dukldHY/pEKk/ZpX/95NFiri/wuRhv4f
-         MJtvn5MxUYtx1jem3i7OocT7ZBuYUDhPdfLvkjFOiVLrFXH+lr/OH52eMATzDtcQqCj+
-         boyA==
-X-Gm-Message-State: ABy/qLZVoGWbl2Exz/c6lUf5jTJdu28sb2wmHxStPSbVUgbONuKEXSSx
-        OSF6GYlG0GEWRTHHxpseyGgSyw==
-X-Google-Smtp-Source: APBJJlFwjpkNKPs8sNZBDYzF12cK2QOWsZHkzLEuQ4eSVVd4ErROtfQLH46/oLpyXrPQs9qOId4QEg==
-X-Received: by 2002:a1c:f711:0:b0:3fb:ef86:e30 with SMTP id v17-20020a1cf711000000b003fbef860e30mr573822wmh.10.1689233029963;
-        Thu, 13 Jul 2023 00:23:49 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id q14-20020a1cf30e000000b003fbb25da65bsm6972214wmq.30.2023.07.13.00.23.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 13 Jul 2023 00:23:49 -0700 (PDT)
-Message-ID: <00453cc8-e595-cbd3-ac23-63190c73795f@linaro.org>
-Date:   Thu, 13 Jul 2023 09:23:47 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH] dt-bindings: remoteproc: qcom: adsp: document
- firmware-name property
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     David Heidelberg <david@ixit.cz>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        with ESMTP id S234181AbjGMH0M (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jul 2023 03:26:12 -0400
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D96C02D43;
+        Thu, 13 Jul 2023 00:25:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=PzFC7qNxQkAsCR0tnxCCk6SWQGRQ28U1/TaF6Fofsxw=; b=kx82qL2Q33zKRHoO0BsBb9bypQ
+        b/QA4Z4g7ZnzMhjGWZuUiXjAVa0VLM1P09FKH2yVnk2KzsCUZ3gg94n64QCCQiMVOLy4HFMF29QAB
+        DphIkiOPgi0BxVgyIM3UWf1sgH9kFGKtHmyP5M+GCxNDnIhRL3PUQdO8WD2M9GmvXuaWR1RWgbVq+
+        g3SfY4GuCSO3y5Lju41ITXb7zX2YNsChV8wtDJn3PgZNmR/lr+akGUrKuVz7rTwyhVoTsgF/Fo5ni
+        p0sSeVKXyWh832EjcVt3zPU8uMANW6yBARuSIC6XymXPEIde7oOQOsOgVd7JA42XsY6aUetKYs3wR
+        FK14PNMQ==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:56656)
+        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.96)
+        (envelope-from <linux@armlinux.org.uk>)
+        id 1qJqhx-0005sY-15;
+        Thu, 13 Jul 2023 08:25:49 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
+        (envelope-from <linux@shell.armlinux.org.uk>)
+        id 1qJqht-0005w9-QV; Thu, 13 Jul 2023 08:25:45 +0100
+Date:   Thu, 13 Jul 2023 08:25:45 +0100
+From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
+To:     Daniel Golle <daniel@makrotopia.org>
+Cc:     netdev@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Manivannan Sadhasivam <mani@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230712235409.97213-1-david@ixit.cz>
- <29358bac-6c1b-1e6e-9f21-20ec62518cec@linaro.org>
-In-Reply-To: <29358bac-6c1b-1e6e-9f21-20ec62518cec@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>,
+        Felix Fietkau <nbd@nbd.name>, John Crispin <john@phrozen.org>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Mark Lee <Mark-MC.Lee@mediatek.com>,
+        Lorenzo Bianconi <lorenzo@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        =?iso-8859-1?Q?Bj=F8rn?= Mork <bjorn@mork.no>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Greg Ungerer <gerg@kernel.org>
+Subject: Re: [PATCH v2 net-next 6/9] net: ethernet: mtk_eth_soc: add
+ MTK_NETSYS_V3 capability bit
+Message-ID: <ZK+m+ayRW/uaxl6u@shell.armlinux.org.uk>
+References: <cover.1689012506.git.daniel@makrotopia.org>
+ <6dc1e0ad7e8138835c959fc83a6c1564e8488c59.1689012506.git.daniel@makrotopia.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <6dc1e0ad7e8138835c959fc83a6c1564e8488c59.1689012506.git.daniel@makrotopia.org>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/07/2023 08:38, Krzysztof Kozlowski wrote:
-> On 13/07/2023 01:54, David Heidelberg wrote:
->> Signed-off-by: David Heidelberg <david@ixit.cz>
-> 
-> 
-> You miss commit msg. Anyway, this was sent:
-> 
-> https://lore.kernel.org/all/20230309083548.47205-1-krzysztof.kozlowski@linaro.org/
+on thu, jul 13, 2023 at 03:19:49am +0100, daniel golle wrote:
+> +
+> +		if (mtk_has_caps(eth->soc->caps, mtk_netsys_v3)) {
 
-I also now resent (again) my previous, old set:
-https://lore.kernel.org/linux-arm-msm/20230713072242.11268-1-krzysztof.kozlowski@linaro.org/T/#t
+this is a case in point for one of my previous comments...
 
-Best regards,
-Krzysztof
+this code started out believing that testing for mtk_netsys_v2 for v2
+features would be sufficient. your first patch ended up having to
+change that to !v1. how long until this becomes !v1 && !v2 because
+it gets used on v3 and v4 etc?
 
+this is why i think an integer version field would be a much saner
+approach.
+
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
