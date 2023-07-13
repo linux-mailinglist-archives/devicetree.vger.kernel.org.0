@@ -2,61 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BEDDD752B05
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 21:33:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 61111752B24
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 21:46:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233201AbjGMTdR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jul 2023 15:33:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36040 "EHLO
+        id S233148AbjGMTqX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jul 2023 15:46:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39654 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233139AbjGMTdR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jul 2023 15:33:17 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5516526AE;
-        Thu, 13 Jul 2023 12:33:16 -0700 (PDT)
+        with ESMTP id S230142AbjGMTqX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jul 2023 15:46:23 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 435FA269D;
+        Thu, 13 Jul 2023 12:46:22 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id D54BB61B44;
-        Thu, 13 Jul 2023 19:33:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49DFCC433C7;
-        Thu, 13 Jul 2023 19:33:12 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id C697F61B44;
+        Thu, 13 Jul 2023 19:46:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49D17C433C7;
+        Thu, 13 Jul 2023 19:46:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689276795;
-        bh=swwCrASK4MsXFccBmWXa9izIHsAa/Uh0k81oEqyv7x4=;
+        s=k20201202; t=1689277581;
+        bh=AGrJTyF1kQCmjhSQd29qxN+hkwd04kIQUDVunqRAgNU=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=nQw3MRSqqEIDFUADaHxiVnlxDr2krhWlvM8oWiEkQDnKzAAwBPKCCxBr7iYRQw8Mm
-         82iu/YBqpa1SMZ7JhbxlzWsVCwt4oJyuk9pcKM0DzgOu2SiHKU4GuQAPHr59AghAZ7
-         DCOFW5lzlox6yIvOSeW6qX58S7AM7H80jlA55EFoWoaQ7cHJ7185dtEV18NrN4KLBG
-         vIAICPNnoj9iOf237MBK2Y2iwFGx00LTO6fLDe7YCa9kwseeakg2DduOL9P9Zd+qk6
-         Dq0hosXDdqa7tIYEYmQeYqugdBes99Chen6PlbBHLVJBT9yvf1jQl8wa2GF6AtgZq2
-         gcdxJjfkhnDyg==
-Date:   Thu, 13 Jul 2023 20:33:09 +0100
+        b=OUb+x1Htqgdv9RFiQ/Ndl3aK9jclOdtAP/pomFM90Jgj77KpThOU6Lxr/+QilisyN
+         bXBtvp1S6DrDX/igCXgsyY4Bkw/qK3c9k/tHIZnwI891cYsEc+WRUyeG3ipoNGb59N
+         IHrLNgqNooqTHZSwHxbVYbI6GO/wZg/rbx5xRWcTtMKLwy5FhT5zze6VTK5to3Nctl
+         axXvEzuzBrR7S2aZikScrZ1hd9ijpJ+892FhgS5XyUO6islmNH179PU5qQXHPtM9mr
+         oQTE8v0UESWmYR6qNSV+uaIh6xpTpENac8yHgmxWG6FDXJmG8O0zR+DzUSmMQlGrvk
+         519OZ5ylSuvxQ==
+Date:   Thu, 13 Jul 2023 20:46:16 +0100
 From:   Conor Dooley <conor@kernel.org>
-To:     Thomas BOURGOIN <thomas.bourgoin@foss.st.com>
-Cc:     Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S . Miller" <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+To:     Rob Herring <robh@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Lionel Debieve <lionel.debieve@foss.st.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/7] dt-bindings: crypto: add new compatible for
- stm32-hash
-Message-ID: <20230713-scribble-unfounded-28ca40b49f57@spud>
-References: <20230713151518.1513949-1-thomas.bourgoin@foss.st.com>
- <20230713151518.1513949-2-thomas.bourgoin@foss.st.com>
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Wei Xu <xuwei5@hisilicon.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: arm: hisilicon,cpuctrl: Merge
+ "hisilicon,hix5hd2-clock" into parent binding
+Message-ID: <20230713-encounter-earmuff-ca0edd40e57b@spud>
+References: <20230707210700.869060-1-robh@kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="r2NqPxhuuW44NJK8"
+        protocol="application/pgp-signature"; boundary="adCi25htn3vGAWbH"
 Content-Disposition: inline
-In-Reply-To: <20230713151518.1513949-2-thomas.bourgoin@foss.st.com>
+In-Reply-To: <20230707210700.869060-1-robh@kernel.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
@@ -68,33 +61,34 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---r2NqPxhuuW44NJK8
+--adCi25htn3vGAWbH
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Thu, Jul 13, 2023 at 05:15:12PM +0200, Thomas BOURGOIN wrote:
-> From: Lionel Debieve <lionel.debieve@foss.st.com>
->=20
-> Add a new compatible for stm32mp13 support.
->=20
-> Signed-off-by: Lionel Debieve <lionel.debieve@foss.st.com>
-> Signed-off-by: Thomas Bourgoin <thomas.bourgoin@foss.st.com>
+On Fri, Jul 07, 2023 at 03:07:00PM -0600, Rob Herring wrote:
+> -Each clock is assigned an identifier and client nodes use this identifier
+> -to specify the clock which they consume.
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> -All these identifier could be found in <dt-bindings/clock/hix5hd2-clock.h>.
+
+Might've been nice to preserve the reference to the header containing
+the defines?
+
+Either way, this seems to have sat for a bit so,
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
 Cheers,
 Conor.
 
---r2NqPxhuuW44NJK8
+--adCi25htn3vGAWbH
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZLBRdQAKCRB4tDGHoIJi
-0gD7AQDZlMvw7qcfosAQRsO1dpFw+U1cXwLJ7wUdywXY6RAmRgEA60IxnVvAz1EF
-9VZFqXqKuxCBhtIgHsS6UJUlasNIEAI=
-=XSsY
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZLBUiAAKCRB4tDGHoIJi
+0quRAQDmc+bJ5QjRN9aDgaZD7JitN5GsZ1G7TexzypuR9ELl/wD+In6o2DXNID7x
+VIoDxySl+hzN+FrFvzXAHfutd9X6kAI=
+=DQuz
 -----END PGP SIGNATURE-----
 
---r2NqPxhuuW44NJK8--
+--adCi25htn3vGAWbH--
