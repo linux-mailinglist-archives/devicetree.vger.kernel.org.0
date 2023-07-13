@@ -2,123 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0AA97751FB7
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 13:17:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 52253751FC9
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 13:20:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234291AbjGMLRv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jul 2023 07:17:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57678 "EHLO
+        id S234374AbjGMLUm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jul 2023 07:20:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59072 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230514AbjGMLRv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jul 2023 07:17:51 -0400
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E70B1198A
-        for <devicetree@vger.kernel.org>; Thu, 13 Jul 2023 04:17:49 -0700 (PDT)
-Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-3fbea147034so5056055e9.0
-        for <devicetree@vger.kernel.org>; Thu, 13 Jul 2023 04:17:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689247068; x=1691839068;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=jQg97wBXe3P0z07YZIHkWsGOthPp2ylFeuaEh8lcL5g=;
-        b=fnT0JxbBGGoisk9+3XNkZZcv2SkvY8ojpQLL8pva71+onsqpaGXHZCsn7i2GLweYFl
-         9hWiYrw/Ewjk7pN7/Q5hwbkTvrXVeCgpEx8J3oXbWljZqUkCGAKsyFQqygMikg04m1fF
-         HgUD604I2qNi05XgZKtkc/j9dx+9YrXjRgGFlIay3w2t8ZeZghgJY4U6hMpzQvRy9aEU
-         pFd6SdERn3qrw+qEe0NjSzxnPDGKR3nzV9EP8axpOz0aQio+chMOpTFEkvU36KgwV37o
-         uqPYVo9RqPup0SGnN5xa4BZhhMvEhfjyispMYjYaPdLOG8gjoGPM5E1tCeNUjd/wd6Sp
-         nEBA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689247068; x=1691839068;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jQg97wBXe3P0z07YZIHkWsGOthPp2ylFeuaEh8lcL5g=;
-        b=gmeXjFlHOe/bUpTw/bms778mXx3UO6vlcaMvczAKsJjzWYj4llyJRi2oDQazX2nBdq
-         A8MYhbyQqZMLuk1VzZs0VgK6FMtZcsPC3QnaR0p/P6N7MBdWTxJefKtSFY8PYh909aE1
-         l/nS5jkhZ8KD0xCFv16LE5oTrXVRGZLJWeXWJy3hwC1aviSMUR6a1nFf3cfEP3+zY1Yd
-         IVutMN0aJLx1kO331SYahuQ5Jt1BrQq9Oeb1QCufDERkqvc6rRaIzObQc1KPVqrdqNbK
-         qh7jYB/PksfgpSM0bpcKCT5BETEuZOnvDW0WX8tdvcEB/34Qf2qaC94wy2tqBCnYU5TY
-         +hYQ==
-X-Gm-Message-State: ABy/qLaIOzkALSnr6wpZYHi9Qoa2GHJn2G6dnUtbopd40ecnPIMPIDMb
-        o67ujZLu2KAKnQLVj7+pIFWP+w==
-X-Google-Smtp-Source: APBJJlH87+cyagSht4LdOPuIJ+1dwMis7Qky9NEDILlxQd4l8J85GnFiCzPwZ/cdZ2oAsxEtwt50HA==
-X-Received: by 2002:a5d:5966:0:b0:313:ebbf:3696 with SMTP id e38-20020a5d5966000000b00313ebbf3696mr1098202wri.46.1689247068442;
-        Thu, 13 Jul 2023 04:17:48 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id n2-20020a05600c294200b003fc17e8a1efsm7832235wmd.45.2023.07.13.04.17.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 13 Jul 2023 04:17:48 -0700 (PDT)
-Message-ID: <61ca392d-fbfb-2c1d-16ce-771193252e67@linaro.org>
-Date:   Thu, 13 Jul 2023 13:17:45 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v2 net-next 2/9] dt-bindings: net: mediatek,net: add
- mt7988-eth binding
-Content-Language: en-US
-To:     Daniel Golle <daniel@makrotopia.org>, netdev@vger.kernel.org,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S234395AbjGMLUh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jul 2023 07:20:37 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 572782703;
+        Thu, 13 Jul 2023 04:20:33 -0700 (PDT)
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36D6RLps008957;
+        Thu, 13 Jul 2023 11:20:24 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : in-reply-to : references; s=qcppdkim1;
+ bh=a/X1FFHaWN2vRp3imLzc9nrTHycORh/+rtRoKayrDF8=;
+ b=NBsZnySsogpgApqYviOjs5HnnFI7Vj6DUJR9xLq841Zt6npaJeoC8V81JzObPvkgHGtO
+ +LtXtwfYLKmH+QDLHUm8oSohzaiICRC964j/tLQB4i4Rdsfomoxhrh/wn8SiCcAkH9fW
+ LRdGErtIhRlQBfRWWMM3OQuSlGAxEqg/NGGMFqTyeyaElGS/oojbc9GrG5p8KQmnLflc
+ 8gXAK8H5is0EwHP3sdC9KN4zX4I4FBt8opnESChpIXIga3t0usjZ3Y5s+SMqsYEQq5il
+ NpvE1l/85P7Vkcs10lYRtBlTSYGTWSMQWiG50EwSwDDVvG1olY8IGLjgn6EHSh4nAv4K /Q== 
+Received: from apblrppmta01.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3rshyubphe-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 13 Jul 2023 11:20:24 +0000
+Received: from pps.filterd (APBLRPPMTA01.qualcomm.com [127.0.0.1])
+        by APBLRPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 36DBKJ51011992;
+        Thu, 13 Jul 2023 11:20:19 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+        by APBLRPPMTA01.qualcomm.com (PPS) with ESMTPS id 3rq0vm0p8u-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
+        Thu, 13 Jul 2023 11:20:19 +0000
+Received: from APBLRPPMTA01.qualcomm.com (APBLRPPMTA01.qualcomm.com [127.0.0.1])
+        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 36DBKJEb011969;
+        Thu, 13 Jul 2023 11:20:19 GMT
+Received: from hu-sgudaval-hyd.qualcomm.com (hu-krichai-hyd.qualcomm.com [10.213.110.112])
+        by APBLRPPMTA01.qualcomm.com (PPS) with ESMTP id 36DBKIFg011966;
+        Thu, 13 Jul 2023 11:20:19 +0000
+Received: by hu-sgudaval-hyd.qualcomm.com (Postfix, from userid 4058933)
+        id 6F3C147C7; Thu, 13 Jul 2023 16:50:18 +0530 (+0530)
+From:   Krishna chaitanya chundru <quic_krichai@quicinc.com>
+To:     manivannan.sadhasivam@linaro.org
+Cc:     helgaas@kernel.org, linux-pci@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        quic_vbadigan@quicinc.com, quic_nitegupt@quicinc.com,
+        quic_skananth@quicinc.com, quic_ramkri@quicinc.com,
+        krzysztof.kozlowski@linaro.org,
+        Krishna chaitanya chundru <quic_krichai@quicinc.com>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
+        Rob Herring <robh@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Felix Fietkau <nbd@nbd.name>, John Crispin <john@phrozen.org>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Mark Lee <Mark-MC.Lee@mediatek.com>,
-        Lorenzo Bianconi <lorenzo@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Russell King <linux@armlinux.org.uk>,
-        =?UTF-8?Q?Bj=c3=b8rn_Mork?= <bjorn@mork.no>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Greg Ungerer <gerg@kernel.org>
-References: <cover.1689012506.git.daniel@makrotopia.org>
- <6c2e9caddfb9427444307d8443f1b231e500787b.1689012506.git.daniel@makrotopia.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <6c2e9caddfb9427444307d8443f1b231e500787b.1689012506.git.daniel@makrotopia.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS)
+Subject: [PATCH v8 1/3] dt-bindings: PCI: qcom: ep: Add interconnects path
+Date:   Thu, 13 Jul 2023 16:50:11 +0530
+Message-Id: <1689247213-13569-2-git-send-email-quic_krichai@quicinc.com>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1689247213-13569-1-git-send-email-quic_krichai@quicinc.com>
+References: <1689247213-13569-1-git-send-email-quic_krichai@quicinc.com>
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: UByQcKmYHZC2P1v21HJjIyAkGNCiF8I8
+X-Proofpoint-ORIG-GUID: UByQcKmYHZC2P1v21HJjIyAkGNCiF8I8
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-07-13_04,2023-07-11_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ malwarescore=0 bulkscore=0 spamscore=0 mlxlogscore=999 phishscore=0
+ clxscore=1015 mlxscore=0 adultscore=0 suspectscore=0 lowpriorityscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2305260000 definitions=main-2307130099
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/07/2023 04:17, Daniel Golle wrote:
-> Introduce DT bindings for the MT7988 SoC to mediatek,net.yaml.
-> The MT7988 SoC got 3 Ethernet MACs operating at a maximum of
-> 10 Gigabit/sec supported by 2 packet processor engines for
-> offloading tasks.
-> The first MAC is hard-wired to a built-in switch which exposes
-> four 1000Base-T PHYs as user ports.
-> It also comes with built-in 2500Base-T PHY which can be used
-> with the 2nd GMAC.
-> The 2nd and 3rd GMAC can be connected to external PHYs or provide
-> SFP(+) cages attached via SGMII, 1000Base-X, 2500Base-X, USXGMII,
-> 5GBase-R or 10GBase-KR.
-> 
-> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
+Some platforms may not boot if a device driver doesn't
+initialize the interconnect path. Mostly it is handled
+by the bootloader but we have starting to see cases
+where bootloader simply ignores them.
 
-It does not look like you tested the bindings, at least after quick
-look. Please run `make dt_binding_check` (see
-Documentation/devicetree/bindings/writing-schema.rst for instructions).
-Maybe you need to update your dtschema and yamllint.
+Add the "pcie-mem" interconnect path as a required property
+to the bindings.
 
-Beside that:
-1. no underscores in property names.
-2. Don't use syscon as an excuse for laziness. PLL is a clock, not syscon.
+Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+Acked-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
 
-Best regards,
-Krzysztof
+diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
+index 8111122..bc32e13 100644
+--- a/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
++++ b/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
+@@ -71,6 +71,13 @@ properties:
+     description: GPIO used as WAKE# output signal
+     maxItems: 1
+ 
++  interconnects:
++    maxItems: 1
++
++  interconnect-names:
++    items:
++      - const: pcie-mem
++
+   resets:
+     maxItems: 1
+ 
+@@ -98,6 +105,8 @@ required:
+   - interrupts
+   - interrupt-names
+   - reset-gpios
++  - interconnects
++  - interconnect-names
+   - resets
+   - reset-names
+   - power-domains
+@@ -167,7 +176,9 @@ examples:
+   - |
+     #include <dt-bindings/clock/qcom,gcc-sdx55.h>
+     #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/interconnect/qcom,sdx55.h>
+     #include <dt-bindings/interrupt-controller/arm-gic.h>
++
+     pcie_ep: pcie-ep@1c00000 {
+         compatible = "qcom,sdx55-pcie-ep";
+         reg = <0x01c00000 0x3000>,
+@@ -194,6 +205,8 @@ examples:
+         interrupts = <GIC_SPI 140 IRQ_TYPE_LEVEL_HIGH>,
+                      <GIC_SPI 145 IRQ_TYPE_LEVEL_HIGH>;
+         interrupt-names = "global", "doorbell";
++        interconnects = <&system_noc MASTER_PCIE &mc_virt SLAVE_EBI_CH0>;
++        interconnect-names = "pcie-mem";
+         reset-gpios = <&tlmm 57 GPIO_ACTIVE_LOW>;
+         wake-gpios = <&tlmm 53 GPIO_ACTIVE_LOW>;
+         resets = <&gcc GCC_PCIE_BCR>;
+-- 
+2.7.4
 
