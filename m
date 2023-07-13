@@ -2,148 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8639D751F9A
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 13:12:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 770B7751FAF
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 13:16:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234350AbjGMLMO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jul 2023 07:12:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55030 "EHLO
+        id S234071AbjGMLQ0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jul 2023 07:16:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57168 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229913AbjGMLMN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jul 2023 07:12:13 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF6402690
-        for <devicetree@vger.kernel.org>; Thu, 13 Jul 2023 04:12:11 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id 2adb3069b0e04-4fb960b7c9dso1074606e87.0
-        for <devicetree@vger.kernel.org>; Thu, 13 Jul 2023 04:12:11 -0700 (PDT)
+        with ESMTP id S233126AbjGMLQZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jul 2023 07:16:25 -0400
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8E62211E
+        for <devicetree@vger.kernel.org>; Thu, 13 Jul 2023 04:16:23 -0700 (PDT)
+Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-3fbea14706eso4991445e9.2
+        for <devicetree@vger.kernel.org>; Thu, 13 Jul 2023 04:16:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1689246730; x=1691838730;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=7F2VqRkNnanQmzsZgDU0wjctQv+3KrqiPN+MNUqHJRc=;
-        b=Sg2I5Mf23hj4V+3EoPmqRpAh/c1ef0z3Meo8cgXBGwW+btztGKueA/H45vOGx/tn8Z
-         Z8TxdJLOVFKZVvLNCDm/c04zNmuqbsNGvAFWp0vEh0ZjjRRmKVYHcAmicC6FJ2HrkF2e
-         as6sx8Lpb1PLpf5Z0jWvW5cq7s6sczgaN80fiiwdRC4EVaurZBYzh6hcMOydZUbOv32O
-         fnCoMmKZ53HFa51ZdW9B7Qus2dPlArOeZmsxcxZFE4J+DeKK/IL5Cis3rfWY9/xtDyuL
-         8cdExyJkDuwKUAh7G/L6QvUkoeibTnv2deJmU3aw1lrRPibPydSJO2Bc6Tr647kHSP9L
-         lDKg==
+        d=linaro.org; s=google; t=1689246982; x=1691838982;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=/t01C0EN/QpTHgEBz222IZKPLFehmewtEJJGjauLMaI=;
+        b=eRP3N/6ImevwUzf9czr7Mdt+g6cvqkQ7wpsBpGJHV8fbjaClh7al/4pY9OBafDFXYA
+         D5TdzfwwF2JW1E/2TjAQmgik9OXcJalB1dLjaOeaO2ITcgq3u2mxIoqJlZ1B/PdvVULq
+         jbEAGF9XLNZZpgq9dS/BlGBYpEVagd0o9mskBHewBAV95kCHgUzR3XylysPYiz+frBXz
+         glgLnxxraooy6deqE2iRPcirfNU3mtSea43nn7beyTfS5aD1PbQ51yh64ceH8hJtJWZo
+         La54GOgtvu8KVi7v78PRVbsRls5NHtkdWRIOZVeyWopj/iIw0gT8dFXTeOAhnieXx7oJ
+         MgLQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689246730; x=1691838730;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=7F2VqRkNnanQmzsZgDU0wjctQv+3KrqiPN+MNUqHJRc=;
-        b=O7zdmLtzCEtJVJUnlQgqN0zQCLmcIks+qpOCGV2THj4bu0eCwlNxzZJSJS08VVihxt
-         oX7v0Mdk56VNmLcGa4n7ky03UlYapYCQ82YdzxtPd4UPbgMDyFkK22XZfMJrdQCzXy+Z
-         kT9q36P2r1KQoROpSAUfJKfX1hs44F1mYWHN2UqNfzSMV6oLa5XYnpCJ3ul0+pCxDC8J
-         5gRYuR4yrGfHvAxUGEhU2yZ1ts8D2X82JWp2P5pNvf/x9ZteghQy96Tf41RyWLtSiumr
-         0ENuElIesQG6YixrwbPc0SLJq1cr5MxJtF/2/Ha9+wkvT5/D1ATYKu1XJEISLTIqsi5Z
-         H51Q==
-X-Gm-Message-State: ABy/qLbrwxRkNYoUZ00jm9A26Adp4AnjoE0x0azab0zU6P5tBVdYvmku
-        cD810l2QjM9iL42N9V9X2z4=
-X-Google-Smtp-Source: APBJJlGPNHzNklItxtLj6IhPMlCqzw7XU6HhPxNZ7iWY9jWyI7Dj4v074K+i+0hrofeALI4SmdbGNg==
-X-Received: by 2002:ac2:4e89:0:b0:4fb:9341:9921 with SMTP id o9-20020ac24e89000000b004fb93419921mr835866lfr.52.1689246729823;
-        Thu, 13 Jul 2023 04:12:09 -0700 (PDT)
-Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
-        by smtp.gmail.com with ESMTPSA id r4-20020ac252a4000000b004f8422b7991sm1070080lfm.154.2023.07.13.04.12.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 13 Jul 2023 04:12:09 -0700 (PDT)
-From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To:     Florian Fainelli <f.fainelli@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH] ARM: dts: BCM53573: Fix Ethernet info for Luxul devices
-Date:   Thu, 13 Jul 2023 13:11:45 +0200
-Message-Id: <20230713111145.14864-1-zajec5@gmail.com>
-X-Mailer: git-send-email 2.35.3
+        d=1e100.net; s=20221208; t=1689246982; x=1691838982;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=/t01C0EN/QpTHgEBz222IZKPLFehmewtEJJGjauLMaI=;
+        b=Wr5a5H00GGhUiNkpiicGJKJ8HOOMlp3EqqD66HK0P7tZqIqs0lRuU5c+RGoG4p9lTI
+         ruErQyfA3MQUFuwoaxr2VOMwQkzWwAUNPzrgH+2s3acFskw/Qh30OL+5qOAy18O2g0yu
+         aVFv54p+AP5tIw4y0wrtYXYlvHl2mkDdugOQNYsC5c5ucGPYlDSyrv+7LgJpm8HgzOFf
+         di/Ap7ysYjRXErOIC+6J8mZu4GUqjxvrsy9M/++V6l9nMuhkXjsjQbdB2n/XraqFiJpq
+         kI+3y5KnrwLFNQeDTTaDeu3eSuAC3iLP8txU8tsMr9VbhfygvNU0jThriHu6lCvMB2S4
+         /WlA==
+X-Gm-Message-State: ABy/qLZ0zLsl1LlY8lP7ujMDWc0OWjb5hNPz6992IBPdVEh+1LX4wyn+
+        KkVuDwVlT/70hQBOsnC8uSeyKQ==
+X-Google-Smtp-Source: APBJJlGmlptlgLgKMVcHCZdHYBHYEoZEjp0eeJuOJ8LpxrUplb1P3+Uoj54fMqYDX19vmUDfuXT51w==
+X-Received: by 2002:a05:6000:181b:b0:313:f86f:2851 with SMTP id m27-20020a056000181b00b00313f86f2851mr1336211wrh.3.1689246982433;
+        Thu, 13 Jul 2023 04:16:22 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id k4-20020a056000004400b00314326c91e2sm7702997wrx.28.2023.07.13.04.16.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 13 Jul 2023 04:16:21 -0700 (PDT)
+Message-ID: <f2cf63ac-9bf4-157a-b24e-58dc31336d63@linaro.org>
+Date:   Thu, 13 Jul 2023 13:16:18 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v2 net-next 1/9] dt-bindings: net: mediatek,net: add
+ missing mediatek,mt7621-eth
+Content-Language: en-US
+To:     Daniel Golle <daniel@makrotopia.org>, netdev@vger.kernel.org,
+        linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Felix Fietkau <nbd@nbd.name>, John Crispin <john@phrozen.org>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Mark Lee <Mark-MC.Lee@mediatek.com>,
+        Lorenzo Bianconi <lorenzo@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Russell King <linux@armlinux.org.uk>,
+        =?UTF-8?Q?Bj=c3=b8rn_Mork?= <bjorn@mork.no>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Greg Ungerer <gerg@kernel.org>
+References: <cover.1689012506.git.daniel@makrotopia.org>
+ <c472c5611c9c7133978b312a766295a975a0e91a.1689012506.git.daniel@makrotopia.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <c472c5611c9c7133978b312a766295a975a0e91a.1689012506.git.daniel@makrotopia.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rafał Miłecki <rafal@milecki.pl>
+On 13/07/2023 04:17, Daniel Golle wrote:
+> Document the Ethernet controller found in the MediaTek MT7621 MIPS SoC
+> family which is supported by the mtk_eth_soc driver.
+> 
+> Fixes: 889bcbdeee57 ("net: ethernet: mediatek: support MT7621 SoC ethernet hardware")
+> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
+> ---
 
-Both Luxul's XAP devices (XAP-810 and XAP-1440) are access points that
-use a non-default design. They don't include switch but have a single
-Ethernet port and BCM54210E PHY connected to the Ethernet controller's
-MDIO bus.
 
-Support for those devices regressed due to two changes:
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-1. Describing MDIO bus with switch
-After commit 9fb90ae6cae7 ("ARM: dts: BCM53573: Describe on-SoC BCM53125
-rev 4 switch") Linux stopped probing for MDIO devices.
-
-2. Dropping hardcoded BCM54210E delays
-In commit fea7fda7f50a ("net: phy: broadcom: Fix RGMII delays
-configuration for BCM54210E") support for other PHY modes was added but
-that requires a proper "phy-mode" value in DT.
-
-Both above changes are correct (they don't need to be reverted or
-anything) but they need this fix for DT data to be correct and for Linux
-to work properly.
-
-Fixes: 9fb90ae6cae7 ("ARM: dts: BCM53573: Describe on-SoC BCM53125 rev 4 switch")
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
----
- .../boot/dts/broadcom/bcm47189-luxul-xap-1440.dts   | 13 +++++++++++++
- .../boot/dts/broadcom/bcm47189-luxul-xap-810.dts    | 13 +++++++++++++
- 2 files changed, 26 insertions(+)
-
-diff --git a/arch/arm/boot/dts/broadcom/bcm47189-luxul-xap-1440.dts b/arch/arm/boot/dts/broadcom/bcm47189-luxul-xap-1440.dts
-index b9dd50844419..0f6d7fe30068 100644
---- a/arch/arm/boot/dts/broadcom/bcm47189-luxul-xap-1440.dts
-+++ b/arch/arm/boot/dts/broadcom/bcm47189-luxul-xap-1440.dts
-@@ -45,3 +45,16 @@ button-restart {
- 		};
- 	};
- };
-+
-+&gmac0 {
-+	phy-mode = "rgmii";
-+	phy-handle = <&bcm54210e>;
-+
-+	mdio {
-+		/delete-node/ switch@1e;
-+
-+		bcm54210e: ethernet-phy@0 {
-+			reg = <0>;
-+		};
-+	};
-+};
-diff --git a/arch/arm/boot/dts/broadcom/bcm47189-luxul-xap-810.dts b/arch/arm/boot/dts/broadcom/bcm47189-luxul-xap-810.dts
-index cb22ae2a02e5..4e0ef0af726f 100644
---- a/arch/arm/boot/dts/broadcom/bcm47189-luxul-xap-810.dts
-+++ b/arch/arm/boot/dts/broadcom/bcm47189-luxul-xap-810.dts
-@@ -81,3 +81,16 @@ pcie0_chipcommon: chipcommon@0 {
- 		};
- 	};
- };
-+
-+&gmac0 {
-+	phy-mode = "rgmii";
-+	phy-handle = <&bcm54210e>;
-+
-+	mdio {
-+		/delete-node/ switch@1e;
-+
-+		bcm54210e: ethernet-phy@0 {
-+			reg = <0>;
-+		};
-+	};
-+};
--- 
-2.35.3
+Best regards,
+Krzysztof
 
