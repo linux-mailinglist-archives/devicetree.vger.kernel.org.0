@@ -2,143 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5409F752A72
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 20:48:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EC98F752A84
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 20:52:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231638AbjGMSsQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jul 2023 14:48:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45132 "EHLO
+        id S231911AbjGMSw6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jul 2023 14:52:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47426 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232438AbjGMSsM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jul 2023 14:48:12 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2EED22D60;
-        Thu, 13 Jul 2023 11:48:09 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 36DIm0vd020271;
-        Thu, 13 Jul 2023 13:48:00 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1689274080;
-        bh=b2QaefHcNlxOonhFM5a+7hs2oTXj01jZJL4r4YLiLmM=;
-        h=From:To:CC:Subject:Date;
-        b=xGpUFcCwAoR+lgWoUEz7Ss0kBiSQjUYDHs38x4NI8kutzXSrFBWMFtZe5r6qtgHbA
-         stIHG0P/pTVolEddkZjnWv0idNELH2iykIvoV9OOHpgUmoK4z0nbSDPq2aZj5ya21q
-         bvB941gIdkI/ff9leTkaHfOSncAesLoahkok/8Os=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 36DIm0gP107148
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 13 Jul 2023 13:48:00 -0500
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 13
- Jul 2023 13:48:00 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 13 Jul 2023 13:47:59 -0500
-Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 36DIlxLQ003475;
-        Thu, 13 Jul 2023 13:47:59 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Tero Kristo <kristo@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Nishanth Menon <nm@ti.com>
-Subject: [PATCH] arm64: dts: ti: Fix compatible of ti,*-ehrpwm-tbclk
-Date:   Thu, 13 Jul 2023 13:47:59 -0500
-Message-ID: <20230713184759.3336536-1-nm@ti.com>
-X-Mailer: git-send-email 2.40.0
+        with ESMTP id S232724AbjGMSw4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jul 2023 14:52:56 -0400
+Received: from mail-pg1-x530.google.com (mail-pg1-x530.google.com [IPv6:2607:f8b0:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC8E82D46;
+        Thu, 13 Jul 2023 11:52:55 -0700 (PDT)
+Received: by mail-pg1-x530.google.com with SMTP id 41be03b00d2f7-51f64817809so182780a12.1;
+        Thu, 13 Jul 2023 11:52:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1689274375; x=1689879175;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=4NixJWzqt1EjPHkU5qyxuUeApGxt4CQ82ymuiFFE918=;
+        b=ikaR+83VfC9yF4TiOsgy7ytWMqDdUYZMTJ3+XDHpD7/BBNmR5A5DXitguXoQ+ED4hz
+         Zi9dVBULac02D3tX++eGjShegtbcoPLSMKrYN2BLAS938V/jCrfBS4CdsySiiIaxktqB
+         QMW8Xfp7tz1K8/CjPDfGY9CH0C2l7oQGROY62LiPIcUHoKoRm2DeoqhsNwdkU7FX/dck
+         U7841corxG1iMD5sqMpK/0w7fh9OwPGrRxZRfoLpJYnyfh75s22eahO+y9hrwd5CF0zm
+         6tej33YD5i+3GdQgBkdSlMqUoh+uVGATRmxVXtFNV98dna/bkb5Z8ybbDDu4g9nLgQv9
+         Q/Sg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689274375; x=1689879175;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=4NixJWzqt1EjPHkU5qyxuUeApGxt4CQ82ymuiFFE918=;
+        b=VQ/q7J4mGRhz9VBIVszu61RargmMZL/EVZDiglm2y2qj2U7sOf1TCIaTR7RhsdrU36
+         xs7P5WkOc1Y77baiLNsIQK34FwWhAwews7l3BcdQMDGF/Fn9v4QzA98Y5OsNDoXWLFYx
+         9DADq/2HEQ80JxgaX0iAhc6JXBnt9TBVcKder6wowQ2IooKgevpBZN74i16UJbwvpTMf
+         CjsDVq2y2LhcNEZakBs8l+e6lXV/1S8cK0DPn0tPZN3ObVMQNB9x5g1g7jMx6CzHkyQ3
+         0isMSGR9X2ZBeb8+ii4UWA/jwCq3lwcNmMd1lP/5zNlazpZ4Q0J4077RiXpIoMo7GnrJ
+         crEQ==
+X-Gm-Message-State: ABy/qLakzV5ZfukgrfBC6CbDSbr2WOw4MZTRFDkTlVWc1r2aC0LicI+v
+        gbXZ2PcbuNLOL4GXwxeH/CJavZO7XgjLVQmXC9Y=
+X-Google-Smtp-Source: APBJJlHNd2KOozWfR2CqzSzU/1z9m/tWYsp6uMyAwLsPMAWLc7dUpvYu7xpju0YYHNUlsMKDn0OlM+ilHQCddeaBgyQ=
+X-Received: by 2002:a17:90b:46d1:b0:263:a5b5:c538 with SMTP id
+ jx17-20020a17090b46d100b00263a5b5c538mr2285459pjb.4.1689274375326; Thu, 13
+ Jul 2023 11:52:55 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20230711221518.2127861-1-tharvey@gateworks.com>
+In-Reply-To: <20230711221518.2127861-1-tharvey@gateworks.com>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Thu, 13 Jul 2023 15:52:44 -0300
+Message-ID: <CAOMZO5ByzpUoirrTKz=x+00F2_oi6UK12wvLw9jFu6p7S+LWwQ@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: imx8mp: add imx8mp-venice-gw74xx-imx219
+ overlay for rpi v2 camera
+To:     Tim Harvey <tharvey@gateworks.com>
+Cc:     Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-TI EHRPWM compatible is just ti,*-ehrpwm-tbclk without needing a
-syscon compatibility.
+On Tue, Jul 11, 2023 at 7:15=E2=80=AFPM Tim Harvey <tharvey@gateworks.com> =
+wrote:
+>
+> Add support for the RaspberryPi Camera v2 which is an IMX219 8MP module:
+>  - https://datasheets.raspberrypi.com/camera/camera-v2-schematics.pdf
+>  - has its own on-board 24MHz osc so no clock required from baseboard
+>  - pin 11 enables 1.8V and 2.8V LDO which is connected to
+>    GW74xx MIPI_GPIO4 (IMX8MP GPIO1_IO4) so we use this as a gpio
+>
+> Support is added via a device-tree overlay.
+>
+> The IMX219 supports RAW8/RAW10 image formats.
+>
+> Example configuration:
+> media-ctl -l "'imx219 3-0010':0->'csis-32e40000.csi':0[1]"
+> media-ctl -v -V "'imx219 3-0010':0 [fmt:SRGGB8/640x480 field:none]"
+> media-ctl -v -V "'crossbar':0 [fmt:SRGGB8/640x480 field:none]"
+> media-ctl -v -V "'mxc_isi.0':0 [fmt:SRGGB8/640x480 field:none]"
+> v4l2-ctl --set-fmt-video=3Dwidth=3D640,height=3D480,pixelformat=3DRGGB
+> v4l2-ctl --stream-mmap --stream-to=3Dframe.raw --stream-count=3D1
+> convert -size 640x480 -depth 8 gray:frame.raw frame.png
+> gst-launch-1.0 v4l2src ! \
+>   video/x-bayer,format=3Drggb,width=3D640,height=3D480,framerate=3D10/1 !=
+ \
+>   bayer2rgb ! fbdevsink
+>
+> Signed-off-by: Tim Harvey <tharvey@gateworks.com>
 
-Fixes the following dtbs_check warnings:
- compatible: [''ti,am654-ehrpwm-tbclk, 'syscon'] is too long
- compatible: ['ti,am64-epwm-tbclk', 'syscon'] is too long
- compatible: ['ti,am62-epwm-tbclk', 'syscon'] is too long
-
-Signed-off-by: Nishanth Menon <nm@ti.com>
----
-Based on next-20230713
-Full list of warnings squashed is a bit long.. but
-https://gist.github.com/nmenon/5182ac2165297d5b07e2483d5f020e0c is the
-delta.
-
- arch/arm64/boot/dts/ti/k3-am62-main.dtsi  | 2 +-
- arch/arm64/boot/dts/ti/k3-am64-main.dtsi  | 2 +-
- arch/arm64/boot/dts/ti/k3-am65-main.dtsi  | 2 +-
- arch/arm64/boot/dts/ti/k3-j721e-main.dtsi | 2 +-
- 4 files changed, 4 insertions(+), 4 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-index 4a1dab9e40a0..5cea46be40f5 100644
---- a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-@@ -56,7 +56,7 @@ phy_gmii_sel: phy@4044 {
- 		};
- 
- 		epwm_tbclk: clock@4130 {
--			compatible = "ti,am62-epwm-tbclk", "syscon";
-+			compatible = "ti,am62-epwm-tbclk";
- 			reg = <0x4130 0x4>;
- 			#clock-cells = <1>;
- 		};
-diff --git a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-index a57ea7130ca3..d3dd8c426dad 100644
---- a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-@@ -222,7 +222,7 @@ phy_gmii_sel: phy@4044 {
- 		};
- 
- 		epwm_tbclk: clock@4140 {
--			compatible = "ti,am64-epwm-tbclk", "syscon";
-+			compatible = "ti,am64-epwm-tbclk";
- 			reg = <0x4130 0x4>;
- 			#clock-cells = <1>;
- 		};
-diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-index 791c6b38993d..350beddc3d3c 100644
---- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-@@ -503,7 +503,7 @@ dss_oldi_io_ctrl: dss-oldi-io-ctrl@41e0 {
- 		};
- 
- 		ehrpwm_tbclk: clock@4140 {
--			compatible = "ti,am654-ehrpwm-tbclk", "syscon";
-+			compatible = "ti,am654-ehrpwm-tbclk";
- 			reg = <0x4140 0x18>;
- 			#clock-cells = <1>;
- 		};
-diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-index 575435c1a984..6c9fe28b6de7 100644
---- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-@@ -76,7 +76,7 @@ usb_serdes_mux: mux-controller@4000 {
- 		};
- 
- 		ehrpwm_tbclk: clock-controller@4140 {
--			compatible = "ti,am654-ehrpwm-tbclk", "syscon";
-+			compatible = "ti,am654-ehrpwm-tbclk";
- 			reg = <0x4140 0x18>;
- 			#clock-cells = <1>;
- 		};
--- 
-2.40.0
-
+Reviewed-by: Fabio Estevam <festevam@gmail.com>
