@@ -2,100 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 442C0752163
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 14:39:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 35841752167
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 14:40:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234574AbjGMMjZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jul 2023 08:39:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53736 "EHLO
+        id S232014AbjGMMkx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jul 2023 08:40:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54160 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233364AbjGMMjY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jul 2023 08:39:24 -0400
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E47E3268D
-        for <devicetree@vger.kernel.org>; Thu, 13 Jul 2023 05:39:22 -0700 (PDT)
-Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-3fbc5d5742eso6003005e9.3
-        for <devicetree@vger.kernel.org>; Thu, 13 Jul 2023 05:39:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689251961; x=1691843961;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=o7hFNGhDsoWdE2O4YN92/eI74pnG6KmIvX3zGxiiC/w=;
-        b=xbQMjfJYZG5xGlH7W6WxJgCSO9B5u7zU/wqu37zOULkyPHL+nxjsCwcQBabaoBNZHc
-         79LkTqtZQV4tNueCmdjmb2jxSTFyYbz7PD30zKWi7Tto+htv3geXFknI738sJESeY9nD
-         imub6y3bVMCm5mw9dCarK+wvUuGONdC1E6R0khWlF5oRtNxhwkwSFystJFL5ULCg9Sse
-         ha2Q7RV6PTnXH0g9vqaBRugZAGv0B6Yahrl/x7GsRdJiLBzzy7eJvIn9HpO+dB6ia1Qv
-         tPsw0AzywAWaNWlpbJPzxTW5H2EmMURCzIB2ghhB47ZmnUPsTU2MusouAxS+qzl4/abE
-         UhGw==
+        with ESMTP id S229452AbjGMMkw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jul 2023 08:40:52 -0400
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 783F8213C
+        for <devicetree@vger.kernel.org>; Thu, 13 Jul 2023 05:40:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1689252003;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=8CZvuW47A9rnrw9h8tLb1kzJz8cR629REaGwxy53ZPA=;
+        b=a+1eqsWrSLYCcsxHEM+cmqyQK5zaEjL7H9JywjzscjJA81w3/QQz0rDBd2U0aIFP7Cb4iC
+        FXHro9OJ8zYZ/LU5RrBlMBjVyyS1VHrV0ml8iZLLWh36G5GtERQixl1h7Unx2xlSWdkvNr
+        z6eQTKysbjhzbHKANBGIHzqZpK05szg=
+Received: from mail-vk1-f198.google.com (mail-vk1-f198.google.com
+ [209.85.221.198]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-649-4vQVNX8sPTeVjwTKSRBpPg-1; Thu, 13 Jul 2023 08:40:02 -0400
+X-MC-Unique: 4vQVNX8sPTeVjwTKSRBpPg-1
+Received: by mail-vk1-f198.google.com with SMTP id 71dfb90a1353d-47dccba4cbcso44354e0c.0
+        for <devicetree@vger.kernel.org>; Thu, 13 Jul 2023 05:40:02 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689251961; x=1691843961;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=o7hFNGhDsoWdE2O4YN92/eI74pnG6KmIvX3zGxiiC/w=;
-        b=fYWbwYV7GyhDJukNpZapqU7D9sBVFt5WLYXEKeoM6JY6Qi43BTPjC0ZM7BYxyu5L97
-         NGVwJP9g9S7J/Ygld73KDIGE36Pn2iXfaUJfKczd2juYUKFAhsFDjXZxJHIzGZuy9bKz
-         K3a7MpSPlO4kiGsMa8oRvnfP84VxTB1xOpHclmCTEC75zES1Ki9G6HMOO6XXIo1lyJMb
-         kQGXiqcoZFVdXCtqqv8F5TU7Rp9j5oqcf2RuDGK0kGtdpjS9wmw02ngPxKf4LH/LwG+C
-         G3GfQmarrvHglGVkYbJJUz9HCSeyXLr1VWoc5B7HU53YjgWa6oSAhXrYC69om/acLUmk
-         SdRw==
-X-Gm-Message-State: ABy/qLbpRP02iDZifhvxgSRzS2u4IgmlCto9FktTfJbEnRcsW5RWxx9U
-        Es2LuHc9jd+04ACG+gk1Za2zOA==
-X-Google-Smtp-Source: APBJJlESELdVE1fjqV5C6AI5MqR/qUJYMMbrNP3VdlOetvKF5lMSl6c1ybsvTRlGq+uNjpRK5ta+xw==
-X-Received: by 2002:a05:600c:151:b0:3fb:a46c:7eac with SMTP id w17-20020a05600c015100b003fba46c7eacmr1409580wmm.7.1689251961370;
-        Thu, 13 Jul 2023 05:39:21 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id f18-20020a7bcd12000000b003fa999cefc0sm7728504wmj.36.2023.07.13.05.39.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 13 Jul 2023 05:39:20 -0700 (PDT)
-Message-ID: <e3fd0d3f-3fe4-2e23-2548-ecbd487e9c9f@linaro.org>
-Date:   Thu, 13 Jul 2023 14:39:19 +0200
+        d=1e100.net; s=20221208; t=1689252002; x=1691844002;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=8CZvuW47A9rnrw9h8tLb1kzJz8cR629REaGwxy53ZPA=;
+        b=dGsY7Ki2XiHSioQndiihZlxxLSZQTas5T7XyXRxQQaNwUOj0TI43uabHJJf9gyyWKd
+         1vEVIsabwSrXhh5Eooq59r+9GctiYBb84tk6j7TsZ3cscHW9RrITzAfc09mRiaPKkKq7
+         59TsK2e9wFp5Bv2SdFneqfp8v3i9sU3NVvhc/fYu2xmIbeSZ+H1RwGxceefH+4sKLmWy
+         5nyNde0iLIE28LF0Osi5kPSUBHFIb+a1Cp9kLb9nbKwHNF3LVlIp9v9X7GdaSTBb4lFQ
+         zUM1E4StEAbwrIqGfFoEd4uS+epImwZL3rccamKDTI8oqP5ApxBa+kJ4wPFTXAcvAOAA
+         497A==
+X-Gm-Message-State: ABy/qLaPkZa+46Jx0IX8nahfmTbxAfrZnHoCog7uOA0oNDnPZRzOOG/S
+        CwlEvNpjTyYSS59MkD73O8Ubv5Qq4AaVDcWtkH2bL/gNjELTChQDoFI3zA5qGJWuY5uhAeWSLqB
+        G2urwM+LV+6lJ/RAlPsRWkA==
+X-Received: by 2002:a05:6102:549f:b0:446:954b:3ecd with SMTP id bk31-20020a056102549f00b00446954b3ecdmr635529vsb.0.1689252002058;
+        Thu, 13 Jul 2023 05:40:02 -0700 (PDT)
+X-Google-Smtp-Source: APBJJlEsJ6FCrqJkPOBD8/yVWmSl1NPRq9EdaNMtrewkIoaHljouC4qqwm4w9JakDGHT4VOWH5wubA==
+X-Received: by 2002:a05:6102:549f:b0:446:954b:3ecd with SMTP id bk31-20020a056102549f00b00446954b3ecdmr635506vsb.0.1689252001814;
+        Thu, 13 Jul 2023 05:40:01 -0700 (PDT)
+Received: from gerbillo.redhat.com (146-241-235-188.dyn.eolo.it. [146.241.235.188])
+        by smtp.gmail.com with ESMTPSA id f23-20020a0caa97000000b0062ffbf23c22sm3019688qvb.131.2023.07.13.05.39.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 13 Jul 2023 05:40:01 -0700 (PDT)
+Message-ID: <1061620f76bfe8158e7b8159672e7bb0c8dc75f2.camel@redhat.com>
+Subject: Re: [PATCH 2/2] net: dwmac_socfpga: use the standard "ahb" reset
+From:   Paolo Abeni <pabeni@redhat.com>
+To:     Krzysztof Kozlowski <krzk@kernel.org>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Dinh Nguyen <dinguyen@kernel.org>
+Cc:     netdev@vger.kernel.org, davem@davemloft.net, edumazet@google.com,
+        joabreu@synopsys.com, robh+dt@kernel.org,
+        krzysztof.kozlowskii+dt@linaro.org, conor+dt@kernel.org,
+        devicetree@vger.kernel.org
+Date:   Thu, 13 Jul 2023 14:39:57 +0200
+In-Reply-To: <c8ffee03-8a6b-1612-37ee-e5ec69853ab7@kernel.org>
+References: <20230710211313.567761-1-dinguyen@kernel.org>
+         <20230710211313.567761-2-dinguyen@kernel.org>
+         <20230712170840.3d66da6a@kernel.org>
+         <c8ffee03-8a6b-1612-37ee-e5ec69853ab7@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4 (3.46.4-1.fc37) 
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v2 2/3] dt-bindings: spi: constrain minItems of clocks and
- clock-names
-To:     Mark Brown <broonie@kernel.org>,
-        William Qiu <william.qiu@starfivetech.com>
-Cc:     devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Linus Walleij <linus.walleij@linaro.org>
-References: <20230713090015.127541-1-william.qiu@starfivetech.com>
- <20230713090015.127541-3-william.qiu@starfivetech.com>
- <c5ad1e1c-58f4-4833-b9c7-8876c1a0dc27@sirena.org.uk>
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <c5ad1e1c-58f4-4833-b9c7-8876c1a0dc27@sirena.org.uk>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/07/2023 14:28, Mark Brown wrote:
-> On Thu, Jul 13, 2023 at 05:00:14PM +0800, William Qiu wrote:
-> 
->> The SPI controller only need apb_pclk clock to work properly on JH7110 SoC,
->> so there add minItems whose value is equal to 1. Other platforms do not
->> have this constraint.
-> 
-> Presumably this means that this is some variant of the usual pl022 IP,
+On Thu, 2023-07-13 at 10:24 +0200, Krzysztof Kozlowski wrote:
+> On 13/07/2023 02:08, Jakub Kicinski wrote:
+> > On Mon, 10 Jul 2023 16:13:13 -0500 Dinh Nguyen wrote:
+> > > -	dwmac->stmmac_ocp_rst =3D devm_reset_control_get_optional(dev, "stm=
+maceth-ocp");
+> > > -	if (IS_ERR(dwmac->stmmac_ocp_rst)) {
+> > > -		ret =3D PTR_ERR(dwmac->stmmac_ocp_rst);
+> > > -		dev_err(dev, "error getting reset control of ocp %d\n", ret);
+> > > -		goto err_remove_config_dt;
+> > > -	}
+> > > -
+> > > -	reset_control_deassert(dwmac->stmmac_ocp_rst);
+> >=20
+> > Noob question, perhaps - what's the best practice for incompatible
+> > device tree changes?
+>=20
+> They are an ABI break.
+>=20
+> > Updating the in-tree definitions is good enough?
+>=20
+> No, because this is an ABI so we expect:
+> 1. old DTS
+> 2. out-of-tree DTS
+> to work properly with new kernel (not broken by a change).
+>=20
+> However for ABI breaks with scope limited to only one given platform, it
+> is the platform's maintainer choice to allow or not allow ABI breaks.
+> What we, Devicetree maintainers expect, is to mention and provide
+> rationale for the ABI break in the commit msg.
 
-Hm, in such case this could mean we need dedicated compatible.
+@Dinh: you should at least update the commit message to provide such
+rationale, or possibly even better, drop this 2nd patch on next
+submission.
 
-> or that the clock is in fact present but is not modelled in your DT?
+Thanks,
 
-Best regards,
-Krzysztof
+Paolo
 
