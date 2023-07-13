@@ -2,55 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 16025751844
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 07:43:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CB20C75185A
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 07:53:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232978AbjGMFnI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jul 2023 01:43:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32788 "EHLO
+        id S233836AbjGMFxv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jul 2023 01:53:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34604 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229643AbjGMFnH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jul 2023 01:43:07 -0400
-Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com [IPv6:2607:f8b0:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 397FAE65
-        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 22:43:06 -0700 (PDT)
-Received: by mail-pf1-x434.google.com with SMTP id d2e1a72fcca58-6689430d803so180044b3a.0
-        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 22:43:06 -0700 (PDT)
+        with ESMTP id S233761AbjGMFxv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jul 2023 01:53:51 -0400
+Received: from mail-oi1-x235.google.com (mail-oi1-x235.google.com [IPv6:2607:f8b0:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61BDF1FD6
+        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 22:53:49 -0700 (PDT)
+Received: by mail-oi1-x235.google.com with SMTP id 5614622812f47-3a3b7fafd61so339918b6e.2
+        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 22:53:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689226986; x=1691818986;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=htTCMJvv8elHIEVT998xI0pGLMx8CVO3oMV4YmxuhY0=;
-        b=SEyXB3/hRRGbfVl/zdvIJiSrFPmvn8ypW7hac0xZfSvWaaLJ8xYimvW14dIPVDyysZ
-         lj4smglBwR7ntaCvPJEquB1axwVgKlXXKFq4faybegh7Ab2Oj8zLuo61ILmmo8YpbQEl
-         5uCHf2Sw/KL8yxbhOGnL5gOkEs69x9U4K4bMB0AZGLPyv1O0/j0sy6IsaI9TYojWiUqU
-         N3urALgEwdOse5lPN872rJQFKzcXvfmjMLya2cJCEGkLkvZ0pIM7MN35zhvupZSz4L8L
-         SlXmm/qOJpZbdsgENLXdTvWmprdMK6xX3+AxXjschJ0/y/1bu3+sJCV3H+EMqPoESndi
-         /Nsg==
+        d=linaro.org; s=google; t=1689227628; x=1691819628;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=G9WcmhiPaDbhClEKCeWjVz4d9o3HB8tMobRvLpjiDVg=;
+        b=B5YypG0ak4I6Rre7Vqs3E1Pr4Ekj9PUrVbecN4P8RA4VkXvK7AVN4d7Bl0r0LXBkrC
+         7UFLElNs0AxAziZt7hH98hh3DZM2pLvypWlCwmD16dwYLHM49KNGaFVGQ6+fM/OY2Uk0
+         TP57kZ+3OhRvgZPry5T13l9pRaPdOA47Hbmp7yzhc2pwDixLqJJSeAXwolDl7LCO3R/L
+         JWXN0kgKaL3+aFNity2FUAGMpq7aV7lN8QzH5F7IKTHpO1jBgCpQrjfQxDidf1rCTQqH
+         YPtM7osnmbwykT0fnqqXaq/IkR3z8G0cJYW0hPoB50TcCAZTe6nsbhvOaHiojkxZRfp4
+         N+nQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689226986; x=1691818986;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=htTCMJvv8elHIEVT998xI0pGLMx8CVO3oMV4YmxuhY0=;
-        b=gqXupuoP4PoMHp/iG/VxRFXc5IhgjAzY5+mmToOHatGJ/OW7/nB5nokR57ev8lUpOt
-         Ew028AirkApAjWdyJ2x4cHwBoNxf3VwFMjRTuYciAjFbi/Gq+YobO9UWaSzGtZ1mgbWM
-         9PqrbT1AwJezcL6hyj/24fTQNihxFzX3WYM8mmKwCnk3BG+IVE7iY+GsBZxB6bsdo217
-         No/1zv9wrGj2f2WRYlmfU3AE42x/OuQO2uDg4Nt741lnEV2+JqezW5mXCznPtnBkXrtY
-         yviUkcSVSi9I6Ra/DrUz0bMCr75qVZSW9ZiKsWo61mKO+D6Mdws2HDEo7no2zGn/cHlu
-         HCcA==
-X-Gm-Message-State: ABy/qLZAnSmO7CxEEW/1OW2gcofthudrdXBjSHoe87KCvVS73J6k+aJM
-        gNmqnTvjyz7/r4RqXBtVMvNoOw==
-X-Google-Smtp-Source: APBJJlGa1W2dYC+J3tKwswTp3gEhz2001aF3iHAajU/C02P+sRaVF0TFBw0Ue1gbNhJQcu2UtLqtwQ==
-X-Received: by 2002:a05:6a20:6d96:b0:130:d596:61bf with SMTP id gl22-20020a056a206d9600b00130d59661bfmr126783pzb.62.1689226985662;
-        Wed, 12 Jul 2023 22:43:05 -0700 (PDT)
-Received: from localhost ([122.172.87.195])
-        by smtp.gmail.com with ESMTPSA id j10-20020a170902da8a00b001b895336435sm4969787plx.21.2023.07.12.22.43.04
+        d=1e100.net; s=20221208; t=1689227628; x=1691819628;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=G9WcmhiPaDbhClEKCeWjVz4d9o3HB8tMobRvLpjiDVg=;
+        b=F4VIsFfmOy4XUULtjdRmV5zOvpOYa6Qq0yTf1UEFyTFIhQ3C5BOQZyPTYv3STH9Ggn
+         +6nHMoH6pLMafPOC9G51bEtsE+CYEkBMdmZAPnz2ix4fXp4BaVb7oimG6PROadfn0ati
+         TRT5bkgFgj649Rvtu5rDlm6rsNG42h5KmiieSgqmsN17vGZRfmEp4RfE7tkK7uYLAUza
+         /U7fN+ENIMVjM1u2ysyAf/p+4HUcvyM7DozzFKtjR/7L/TAR3WPumqfRisP8IVbfbnhb
+         azzFOPPzXg5vOk3qDz20wpkV3bXIpYd0zh4TUttskExvD0AqxX4az7BlIJgHWaQDq1Ey
+         gJYg==
+X-Gm-Message-State: ABy/qLb6UBLc+S0Tj8iMpP9wXXa6YJ0GVfnDnsmAMhXwwNoEImTeYxXq
+        oOrAwOHVRg0vgkKNSwSZW0X4
+X-Google-Smtp-Source: APBJJlEtSDOcLFFSsaVra3MhJEI2q1v/jqoFG4/1vf56Y3Q/69961njV+QB/qijFLB5voGRWjtEFWg==
+X-Received: by 2002:a05:6808:1153:b0:3a0:3a17:a146 with SMTP id u19-20020a056808115300b003a03a17a146mr839218oiu.57.1689227628648;
+        Wed, 12 Jul 2023 22:53:48 -0700 (PDT)
+Received: from thinkpad ([117.207.27.112])
+        by smtp.gmail.com with ESMTPSA id c2-20020aa78c02000000b00673e652985bsm4552692pfd.118.2023.07.12.22.53.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Jul 2023 22:43:05 -0700 (PDT)
-Date:   Thu, 13 Jul 2023 11:13:02 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+        Wed, 12 Jul 2023 22:53:48 -0700 (PDT)
+Date:   Thu, 13 Jul 2023 11:23:29 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Viresh Kumar <viresh.kumar@linaro.org>
 Cc:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, vireshk@kernel.org,
         nm@ti.com, sboyd@kernel.org, myungjoo.ham@samsung.com,
         kyungmin.park@samsung.com, cw00.choi@samsung.com,
@@ -64,7 +65,7 @@ Cc:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, vireshk@kernel.org,
         quic_nguyenb@quicinc.com, quic_ziqichen@quicinc.com,
         bmasney@redhat.com, krzysztof.kozlowski@linaro.org
 Subject: Re: [PATCH 11/14] scsi: ufs: host: Add support for parsing OPP
-Message-ID: <20230713054302.tu6fgd3meb5krsx5@vireshk-i7>
+Message-ID: <20230713055329.GF3047@thinkpad>
 References: <20230712103213.101770-1-manivannan.sadhasivam@linaro.org>
  <20230712103213.101770-14-manivannan.sadhasivam@linaro.org>
  <e6a5129a-db07-977d-2ecd-328a52cbcdc0@linaro.org>
@@ -74,13 +75,15 @@ References: <20230712103213.101770-1-manivannan.sadhasivam@linaro.org>
  <20230713050550.GB3047@thinkpad>
  <20230713051235.ob5z3li3lz52xtzm@vireshk-i7>
  <20230713052843.GE3047@thinkpad>
+ <20230713054302.tu6fgd3meb5krsx5@vireshk-i7>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20230713052843.GE3047@thinkpad>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230713054302.tu6fgd3meb5krsx5@vireshk-i7>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -88,40 +91,56 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Okay, sorry about missing one point first. I thought we are adding the
-clk config callback (which neglects 0 frequencies) to a Qcom only
-driver and so was okay-ish with that. But now that I realize that this
-is a generic driver instead (my mistake here), I wonder if it is the
-right thing to do anymore.
-
-On 13-07-23, 10:58, Manivannan Sadhasivam wrote:
-> On Thu, Jul 13, 2023 at 10:42:35AM +0530, Viresh Kumar wrote:
-> > On 13-07-23, 10:35, Manivannan Sadhasivam wrote:
-> > > We can settle with this custom callback for now. If there are drivers in the
-> > > future trying to do the same (skipping 0 freq) then we can generalize.
-> > 
-> > Just for completeness, there isn't much to generalize here apart from
-> > changing the DT order of clocks. Isn't it ?
-> > 
+On Thu, Jul 13, 2023 at 11:13:02AM +0530, Viresh Kumar wrote:
+> Okay, sorry about missing one point first. I thought we are adding the
+> clk config callback (which neglects 0 frequencies) to a Qcom only
+> driver and so was okay-ish with that. But now that I realize that this
+> is a generic driver instead (my mistake here), I wonder if it is the
+> right thing to do anymore.
 > 
-> Even with changing the order, driver has to know the "interesting" clocks
-> beforehand. But that varies between platforms (this is a generic driver for
-> ufshc platforms).
+
+That's the pre-opp behavior as well. Reason is, most of the platforms have only
+gate clocks supplied to the ufs controller and cannot change the frequency. Only
+Qcom requires changing the frequency of _some_ clocks, so that's why we have to
+use this hack of skipping 0 freq clocks.
+
+> On 13-07-23, 10:58, Manivannan Sadhasivam wrote:
+> > On Thu, Jul 13, 2023 at 10:42:35AM +0530, Viresh Kumar wrote:
+> > > On 13-07-23, 10:35, Manivannan Sadhasivam wrote:
+> > > > We can settle with this custom callback for now. If there are drivers in the
+> > > > future trying to do the same (skipping 0 freq) then we can generalize.
+> > > 
+> > > Just for completeness, there isn't much to generalize here apart from
+> > > changing the DT order of clocks. Isn't it ?
+> > > 
+> > 
+> > Even with changing the order, driver has to know the "interesting" clocks
+> > beforehand. But that varies between platforms (this is a generic driver for
+> > ufshc platforms).
+> > 
+> > And I do not know if clocks have any dependency between them, atleast not in
+> > Qcom platforms. But not sure about others.
 > 
-> And I do not know if clocks have any dependency between them, atleast not in
-> Qcom platforms. But not sure about others.
+> Maybe this requires some sort of callback, per-platform, which gets
+> you these details or the struct dev_pm_opp_config itself (so platforms
+> can choose the callback too, in case order is important).
+> 
 
-Maybe this requires some sort of callback, per-platform, which gets
-you these details or the struct dev_pm_opp_config itself (so platforms
-can choose the callback too, in case order is important).
+Yeah but that seems overkill since the current config_clks helper satisfies the
+requirement.
 
-> > The change require for the OPP core makes sense, I will probably just
-> > push it anyway.
+- Mani
 
-I tried to look at this code and I think it is doing the right thing
-currently, i.e. it matches clk-count with the number of frequencies in
-opp-hz, which should turn out to be the same in your case. So nothing
-to change here I guess.
+> > > The change require for the OPP core makes sense, I will probably just
+> > > push it anyway.
+> 
+> I tried to look at this code and I think it is doing the right thing
+> currently, i.e. it matches clk-count with the number of frequencies in
+> opp-hz, which should turn out to be the same in your case. So nothing
+> to change here I guess.
+> 
+> -- 
+> viresh
 
 -- 
-viresh
+மணிவண்ணன் சதாசிவம்
