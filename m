@@ -2,100 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 49DF97529FB
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 19:39:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A8BC3752A43
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 20:21:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233309AbjGMRjF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jul 2023 13:39:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57700 "EHLO
+        id S229764AbjGMSVV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jul 2023 14:21:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39500 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232990AbjGMRjE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jul 2023 13:39:04 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0364D270A;
-        Thu, 13 Jul 2023 10:39:04 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 90D4461ADA;
-        Thu, 13 Jul 2023 17:39:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 34900C433CA;
-        Thu, 13 Jul 2023 17:39:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689269943;
-        bh=WaQGx34kCLJckhXKFnj8LFhA5pJxWostoEupTv48m+I=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=rDBFBCOkylQq6CifU8SMFoYsNZLcmPRV9W2cHRXT4TkVZWpS8eX9u6IytXbDb16X8
-         GfIPeW7Q4aRYdXlwkcU/HxuhQXJ+zq6UGGwIXd2joHPXI8mXNWiPpw1sdMIWfGcHD7
-         hyhwWkj0LV8P9nSlr7R17t5x/CHxEv2Elk7wfCdYPiaoxrWG9Dg1f6NkZtQYrnNxjY
-         5+cZhylFWuV8JEkEe1ADk1TtW12Z2dgeZV+8+67HAgSyWzTMjqBb05a6s7IHXlEKzR
-         1JOW784yfoH63v+IiNkxEUovJNhOQfgEXuZ0iwwCZ595vI41FmoHfeST9FGN8/L+ar
-         MmdhNDXnqUBIg==
-Message-ID: <afe1ac02-da07-327c-a1ce-1777e1ac9fb1@kernel.org>
-Date:   Thu, 13 Jul 2023 20:38:55 +0300
+        with ESMTP id S231225AbjGMSVV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jul 2023 14:21:21 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 982252D43;
+        Thu, 13 Jul 2023 11:21:19 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 36DIL7Qk083022;
+        Thu, 13 Jul 2023 13:21:07 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1689272467;
+        bh=EujEkEbqmzWpWU/kv+bpKsFhVWw8zK17xtacArJ+lhA=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=jNc0ArRmJcvP8r1r52CMUBo65vO3qIX4C3OeYrwgIB80Js5PDYBYIw+Dl2J2vx1Ii
+         YvKfqA3taKIebSxCouq7cqxcwZDd26g9A87G0f6pNp+9mMOJ3ACYINiliZ/PtpP/qN
+         ICL9Enf9ZXHda8obQw93Fm69F4RS/Q3g/wjoDqyc=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 36DIL7ac091856
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 13 Jul 2023 13:21:07 -0500
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 13
+ Jul 2023 13:21:07 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 13 Jul 2023 13:21:07 -0500
+Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 36DIL7eC048060;
+        Thu, 13 Jul 2023 13:21:07 -0500
+Date:   Thu, 13 Jul 2023 13:21:07 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Jayesh Choudhary <j-choudhary@ti.com>
+CC:     <vigneshr@ti.com>, <krzysztof.kozlowski+dt@linaro.org>,
+        <afd@ti.com>, <s-vadapalli@ti.com>, <kristo@kernel.org>,
+        <robh+dt@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v5 3/5] arm64: dts: ti: k3-j784s4: Add WIZ and SERDES PHY
+ nodes
+Message-ID: <20230713182107.ashuygyg4x4j77s5@backboard>
+References: <20230710101705.154119-1-j-choudhary@ti.com>
+ <20230710101705.154119-4-j-choudhary@ti.com>
+ <20230712141828.lnpo4mhd5dv34rlz@census>
+ <18310450-05f3-172c-e4bc-fda114f333a4@ti.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH 0/2] Deprecate ti-serdes header file
-Content-Language: en-US
-To:     Jayesh Choudhary <j-choudhary@ti.com>, nm@ti.com, vigneshr@ti.com,
-        kristo@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        peda@axentia.se
-Cc:     s-vadapalli@ti.com, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230713151707.8109-1-j-choudhary@ti.com>
-From:   Roger Quadros <rogerq@kernel.org>
-In-Reply-To: <20230713151707.8109-1-j-choudhary@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <18310450-05f3-172c-e4bc-fda114f333a4@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 21:01-20230713, Jayesh Choudhary wrote:
+> 
+> 
+> On 12/07/23 19:48, Nishanth Menon wrote:
+> > On 15:47-20230710, Jayesh Choudhary wrote:
+> > > From: Siddharth Vadapalli <s-vadapalli@ti.com>
+> > > 
+> > > J784S4 SoC has 4 Serdes instances along with their respective WIZ
+> > > instances. Add device-tree nodes for them and disable them by default.
+> > > 
+> > > Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+> > > [j-choudhary@ti.com: fix serdes_wiz clock order]
+> > > Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
+> > > ---
+> > NAK. This patch introduces the following dtbs_check warning.
+> > arch/arm64/boot/dts/ti/k3-am69-sk.dtb: serdes-refclk: 'clock-frequency' is a required property
+> > 
+> 
+> Sorry for this. This property was added in the final board file.
+> I will fix it in the next revision.
+> I will add '0' as clock-property in the main file similar to j721e[1]
+> which will be overridden in the board file with required value to get
+> rid of this warning.
 
-
-On 13/07/2023 18:17, Jayesh Choudhary wrote:
-> This series moves the ti-serdes.h header to arch/arm64/boot/dts/ti/
-> as these constants do not have driver usage and are not suitable for
-> bindings as discussed in [1].
-> 
-> Deprecating the bindings header for now instead of dropping them based
-> on the discussion in [2].
-> We expect to remove this bindings header in the next cycle.
-> 
-> [1]: <https://lore.kernel.org/all/b24c2124-fe3b-246c-9af9-3ecee9fb32d4@kernel.org/>
-> [2]: <https://lore.kernel.org/linux-arm-kernel/71c7feff-4189-f12f-7353-bce41a61119d@linaro.org/>
-> 
-> Jayesh Choudhary (2):
->   arm64: dts: ti: Use local header for SERDES MUX idle-state values
->   dt-bindings: ti-serdes-mux: Deprecate header with constants
-> 
->  arch/arm64/boot/dts/ti/k3-am642-evm.dts       |   3 +-
->  .../dts/ti/k3-am642-phyboard-electra-rdk.dts  |   3 +-
->  arch/arm64/boot/dts/ti/k3-am642-sk.dts        |   3 +-
->  .../boot/dts/ti/k3-am68-sk-base-board.dts     |   3 +-
->  .../dts/ti/k3-j7200-common-proc-board.dts     |   3 +-
->  .../ti/k3-j7200-evm-quad-port-eth-exp.dtso    |   2 +-
->  .../ti/k3-j721e-evm-quad-port-eth-exp.dtso    |   2 +-
->  arch/arm64/boot/dts/ti/k3-j721e-main.dtsi     |   3 +-
->  .../dts/ti/k3-j721s2-common-proc-board.dts    |   3 +-
->  arch/arm64/boot/dts/ti/k3-serdes.h            | 204 ++++++++++++++++++
->  include/dt-bindings/mux/ti-serdes.h           |   8 +
->  11 files changed, 228 insertions(+), 9 deletions(-)
->  create mode 100644 arch/arm64/boot/dts/ti/k3-serdes.h
-> 
-
-For this series:
-Acked-by: Roger Quadros <rogerq@kernel.org>
+That would follow what renesas (r8a774a1.dtsi) and imx
+(imx8dxl-ss-conn.dtsi) seem to be doing as well. Just make sure to add
+documentation to the property to indicate expectation. Unless someone
+has objections to this approach.
 
 -- 
-cheers,
--roger
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
