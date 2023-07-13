@@ -2,334 +2,237 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2997B752877
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 18:36:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 14D1C7528EE
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 18:40:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233176AbjGMQgg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jul 2023 12:36:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46330 "EHLO
+        id S235371AbjGMQjz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jul 2023 12:39:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48502 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234562AbjGMQg0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jul 2023 12:36:26 -0400
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31CB02D6A;
-        Thu, 13 Jul 2023 09:36:01 -0700 (PDT)
-Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id EE549863E9;
-        Thu, 13 Jul 2023 18:35:34 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1689266135;
-        bh=7O5/jwiO9VRI7F3xNOCB11qeVXniM7yq8t6PhuICHRE=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=ppQ+OekI1TVlLh/z1RXz6T/kVcZBrGUG0lZeYJtyIjlFM1ULVYGRlM5AdfGoMkZPn
-         3Uvh7vdhO1YJHY01AyjeX02NlWuHbhfYfSZU2UH4UIuZW9e9Wf+pdPepvzyx17Y7Ve
-         rKvNf34d9VKRR/RdxPWI8dMhTmnvwkoPHLtCqawUntt8PtGz431829xzpW186P6lnj
-         Q4Ej+/glzTmt3ihkIDKbCVcJ2t6JN5bNKGjKb739xTQFSHVw6261dEA0UU6NvL+GfM
-         lxp/JVyyT6dK2WmJa1jwWfn514HmW53Mra/2fQcA9OUwINam3dqBx7g9pnRZRb34Id
-         9KQMzpF1patPg==
-From:   Marek Vasut <marex@denx.de>
-To:     linux-leds@vger.kernel.org
-Cc:     Isai Gaspar <isaiezequiel.gaspar@nxp.com>,
-        Marek Vasut <marex@denx.de>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lee Jones <lee@kernel.org>, Pavel Machek <pavel@ucw.cz>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH v4 2/2] leds: pca995x: Add support for PCA995X chips
-Date:   Thu, 13 Jul 2023 18:35:16 +0200
-Message-Id: <20230713163516.21644-2-marex@denx.de>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230713163516.21644-1-marex@denx.de>
-References: <20230713163516.21644-1-marex@denx.de>
+        with ESMTP id S235305AbjGMQjj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jul 2023 12:39:39 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 85F4A2D7D;
+        Thu, 13 Jul 2023 09:38:26 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id A1DA41570;
+        Thu, 13 Jul 2023 09:38:43 -0700 (PDT)
+Received: from [10.57.36.17] (unknown [10.57.36.17])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 7E88B3F73F;
+        Thu, 13 Jul 2023 09:37:58 -0700 (PDT)
+Message-ID: <edfd1a85-772d-01e1-12a1-61dcc1cc2068@arm.com>
+Date:   Thu, 13 Jul 2023 17:37:57 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
+ Gecko/20100101 Thunderbird/102.12.0
+Subject: Re: [PATCH v6 09/13] Add nodes for dsb edge control
+To:     Tao Zhang <quic_taozha@quicinc.com>,
+        Mike Leach <mike.leach@linaro.org>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+        Konrad Dybcio <konradybcio@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jinlong Mao <quic_jinlmao@quicinc.com>,
+        Leo Yan <leo.yan@linaro.org>, coresight@lists.linaro.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Tingwei Zhang <quic_tingweiz@quicinc.com>,
+        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Hao Zhang <quic_hazha@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, andersson@kernel.org
+References: <1687246361-23607-1-git-send-email-quic_taozha@quicinc.com>
+ <1687246361-23607-10-git-send-email-quic_taozha@quicinc.com>
+ <2023062024-sincere-tripod-95dc@gregkh>
+ <3aca4a55-0dc7-b34c-d2c0-111a96c33ec3@quicinc.com>
+ <e82385f1-de55-4c70-5c5c-35b93a5b2488@arm.com>
+ <d3849c2a-8826-62a7-1749-0d4b3ee47259@quicinc.com>
+ <CAJ9a7VgRFDFoZgRQ_J62We7vJ2D_yULH18S5FwAnB4S+oi2npA@mail.gmail.com>
+ <77343663-2d09-53bf-d463-36b979e433ea@arm.com>
+ <8cc7b48f-7fde-2f0b-13ca-c8fb23806ded@quicinc.com>
+From:   Suzuki K Poulose <suzuki.poulose@arm.com>
+In-Reply-To: <8cc7b48f-7fde-2f0b-13ca-c8fb23806ded@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Isai Gaspar <isaiezequiel.gaspar@nxp.com>
+On 13/07/2023 17:13, Tao Zhang wrote:
+> 
+> On 7/13/2023 5:34 PM, Suzuki K Poulose wrote:
+>> On 13/07/2023 09:54, Mike Leach wrote:
+>>> HI Tao,
+>>>
+>>> On Wed, 12 Jul 2023 at 14:53, Tao Zhang <quic_taozha@quicinc.com> wrote:
+>>>>
+>>>>
+>>>> On 6/20/2023 9:41 PM, Suzuki K Poulose wrote:
+>>>>> On 20/06/2023 09:31, Tao Zhang wrote:
+>>>>>>
+>>>>>> On 6/20/2023 3:37 PM, Greg Kroah-Hartman wrote:
+>>>>>>> On Tue, Jun 20, 2023 at 03:32:37PM +0800, Tao Zhang wrote:
+>>>>>>>> Add the nodes to set value for DSB edge control and DSB edge
+>>>>>>>> control mask. Each DSB subunit TPDM has maximum of n(n<16) EDCR
+>>>>>>>> resgisters to configure edge control. DSB edge detection control
+>>>>>>>> 00: Rising edge detection
+>>>>>>>> 01: Falling edge detection
+>>>>>>>> 10: Rising and falling edge detection (toggle detection)
+>>>>>>>> And each DSB subunit TPDM has maximum of m(m<8) ECDMR registers to
+>>>>>>>> configure mask. Eight 32 bit registers providing DSB interface
+>>>>>>>> edge detection mask control.
+>>>>>>>>
+>>>>>>>> Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
+>>>>>>>> ---
+>>>>>>>>    .../ABI/testing/sysfs-bus-coresight-devices-tpdm |  32 +++++
+>>>>>>>>    drivers/hwtracing/coresight/coresight-tpdm.c | 143
+>>>>>>>> ++++++++++++++++++++-
+>>>>>>>>    drivers/hwtracing/coresight/coresight-tpdm.h |  22 ++++
+>>>>>>>>    3 files changed, 196 insertions(+), 1 deletion(-)
+>>>>>>>>
+>>>>>>>> diff --git
+>>>>>>>> a/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
+>>>>>>>> b/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
+>>>>>>>> index 2a82cd0..34189e4a 100644
+>>>>>>>> --- a/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
+>>>>>>>> +++ b/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
+>>>>>>>> @@ -60,3 +60,35 @@ Description:
+>>>>>>>>            Bit[3] : Set to 0 for low performance mode.
+>>>>>>>>                     Set to 1 for high performance mode.
+>>>>>>>>            Bit[4:8] : Select byte lane for high performance mode.
+>>>>>>>> +
+>>>>>>>> +What: /sys/bus/coresight/devices/<tpdm-name>/dsb_edge_ctrl
+>>>>>>>> +Date:        March 2023
+>>>>>>>> +KernelVersion    6.5
+>>>>>>>> +Contact:    Jinlong Mao (QUIC) <quic_jinlmao@quicinc.com>, Tao
+>>>>>>>> Zhang (QUIC) <quic_taozha@quicinc.com>
+>>>>>>>> +Description:
+>>>>>>>> +        Read/Write a set of the edge control registers of the DSB
+>>>>>>>> +        in TPDM.
+>>>>>>>> +
+>>>>>>>> +        Expected format is the following:
+>>>>>>>> +        <integer1> <integer2> <integer3>
+>>>>>>> sysfs is "one value", not 3.  Please never have to parse a sysfs 
+>>>>>>> file.
+>>>>>>
+>>>>>> Do you mean sysfs file can only accept "one value"?
+>>>>>>
+>>>>>> I see that more than one value are written to the sysfs file
+>>>>>> "trigout_attach".
+>>>>>>
+>>>>>>>
+>>>>>>>> +static ssize_t dsb_edge_ctrl_show(struct device *dev,
+>>>>>>>> +                       struct device_attribute *attr,
+>>>>>>>> +                       char *buf)
+>>>>>>>> +{
+>>>>>>>> +    struct tpdm_drvdata *drvdata = dev_get_drvdata(dev->parent);
+>>>>>>>> +    ssize_t size = 0;
+>>>>>>>> +    unsigned long bytes;
+>>>>>>>> +    int i;
+>>>>>>>> +
+>>>>>>>> +    spin_lock(&drvdata->spinlock);
+>>>>>>>> +    for (i = 0; i < TPDM_DSB_MAX_EDCR; i++) {
+>>>>>>>> +        bytes = sysfs_emit_at(buf, size,
+>>>>>>>> +                  "Index:0x%x Val:0x%x\n", i,
+>>>>>>> Again, no, one value, no "string" needed to parse anything.
+>>>>>>
+>>>>>> I also see other sysfs files can be read more than one value in other
+>>>>>> drivers.
+>>>>>>
+>>>>>> Is this "one value" limitation the usage rule of Linux sysfs system?
+>>>>>>
+>>>>>> Or am I misunderstanding what you mean?
+>>>>>
+>>>>> Please fix the other sysfs tunables in the following patches.
+>>>>
+>>>> List a new solution for the similar cases below, please see if this
+>>>> design is reasonable?
+>>>>
+>>>> 1. Two SysFS files("dsb_edge_ctrl_idx" and "dsb_edge_ctrl_val") will be
+>>>> created in this case.
+>>>>
+>>>> 2. First write to the node "dsb_edge_ctrl_idx" to set the index number
+>>>> of the edge detection.
+>>>>
+>>>> 3. Then write to the node "dsb_edge_ctrl_val" to set the value of the
+>>>> edge detection.
+>>>>
+>>>> For example, if we need need to set "Falling edge detection" to the 
+>>>> edge
+>>>> detection #220-#222, we can issue the following commands.
+>>>>
+>>>> echo 0xdc > tpdm1/dsb_edge_ctrl_idx
+>>>>
+>>>> echo 0x1 > tpdm1/dsb_edge_ctrl_val
+>>>>
+>>>> echo 0xdd > tpdm1/dsb_edge_ctrl_idx
+>>>>
+>>>> echo 0x1 > tpdm1/dsb_edge_ctrl_val
+>>>>
+>>>> echo 0xde > tpdm1/dsb_edge_ctrl_idx
+>>>>
+>>>> echo 0x1 > tpdm1/dsb_edge_ctrl_val
+>>>>
+>>>> If this design is acceptable, we will rewrite other similar nodes based
+>>>> on this solution.
+>>>>
+>>>
+>>> This index / value model is used in the coresight drivers so should be
+>>> OK - eg etm4 has cntr_idx / cntrldvr / cntr_val / cntr_ctrl, where
+>>> index selects the counter, and the other val registers are applied to
+>>> that counter.
+>>
+>> True. That model is useful when there are variable number of "counters".
+>> I guess it doesn't hurt to have a 64bit (or even 32bit) file for each
+>> EDCR.
+>>
+>> e.g, edcr0...edcr15
+>>
+>> Given there are only 16 of them, it is fine to keep a file for each.
+>> This may be grouped under "mgmt" similar to what we have for other
+>> components. That way, it can be easily hidden by checking for the
+>> presence of DSB.
+> 
+> The number of EDCR registers is not fixed. The maximum range is [0:15].
+> 
+> But the address of the maximum number of the registers will be reserved 
+> first,
+> 
+> and can be accessed safely even if the TPDM doesn't have the maximum number
+> 
+> of  EDCR registers.
+> 
+> And we are not able to dynamically know the number of EDCR registers per 
+> DSB
+> 
+> TPDM.
+> 
+> Can we use our proposal in this case?
 
-The PCA995x chips are I2C controlled LED drivers. Each chip has
-up to 16 outputs, each one with an individual 8-bit resolution
-PWM for brightness control.
+Please provide a file edcrN for each of the 0 <= N < 16. That way it is
+easier to avoid locking the index. It doesn't matter how many EDCRs are
+supported, there is a maximum limit and it is always guaranteed to be
+write safe, if some are not implemented. Thus it is much easier from a 
+programming perspective too.
 
-Signed-off-by: Isai Gaspar <isaiezequiel.gaspar@nxp.com>
-Signed-off-by: Marek Vasut <marex@denx.de> # Basically rewrite the driver
----
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: Isai Gaspar <isaiezequiel.gaspar@nxp.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Lee Jones <lee@kernel.org>
-Cc: Marek Vasut <marex@denx.de>
-Cc: Pavel Machek <pavel@ucw.cz>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: devicetree@vger.kernel.org
-Cc: linux-leds@vger.kernel.org
----
-V2: - Fix pca995x_probe() type
-    - Fix device_get_match_data() cast
-V3: - Drop of_match_ptr()
-V4: - Macro cleanup (Lee)
----
- drivers/leds/Kconfig        |   9 ++
- drivers/leds/Makefile       |   1 +
- drivers/leds/leds-pca995x.c | 204 ++++++++++++++++++++++++++++++++++++
- 3 files changed, 214 insertions(+)
- create mode 100644 drivers/leds/leds-pca995x.c
+Suzuki
 
-diff --git a/drivers/leds/Kconfig b/drivers/leds/Kconfig
-index 6046dfeca16fc..b92208eccdea9 100644
---- a/drivers/leds/Kconfig
-+++ b/drivers/leds/Kconfig
-@@ -521,6 +521,15 @@ config LEDS_PCA963X
- 	  LED driver chip accessed via the I2C bus. Supported
- 	  devices include PCA9633 and PCA9634
- 
-+config LEDS_PCA995X
-+	tristate "LED Support for PCA995x I2C chips"
-+	depends on LEDS_CLASS
-+	depends on I2C
-+	help
-+	  This option enables support for LEDs connected to PCA995x
-+	  LED driver chips accessed via the I2C bus. Supported
-+	  devices include PCA9955BTW, PCA9952TW and PCA9955TW.
-+
- config LEDS_WM831X_STATUS
- 	tristate "LED support for status LEDs on WM831x PMICs"
- 	depends on LEDS_CLASS
-diff --git a/drivers/leds/Makefile b/drivers/leds/Makefile
-index d71f1226540c2..d7348e8bc019a 100644
---- a/drivers/leds/Makefile
-+++ b/drivers/leds/Makefile
-@@ -72,6 +72,7 @@ obj-$(CONFIG_LEDS_OT200)		+= leds-ot200.o
- obj-$(CONFIG_LEDS_PCA9532)		+= leds-pca9532.o
- obj-$(CONFIG_LEDS_PCA955X)		+= leds-pca955x.o
- obj-$(CONFIG_LEDS_PCA963X)		+= leds-pca963x.o
-+obj-$(CONFIG_LEDS_PCA995X)		+= leds-pca995x.o
- obj-$(CONFIG_LEDS_PM8058)		+= leds-pm8058.o
- obj-$(CONFIG_LEDS_POWERNV)		+= leds-powernv.o
- obj-$(CONFIG_LEDS_PWM)			+= leds-pwm.o
-diff --git a/drivers/leds/leds-pca995x.c b/drivers/leds/leds-pca995x.c
-new file mode 100644
-index 0000000000000..3ac99a433fcd2
---- /dev/null
-+++ b/drivers/leds/leds-pca995x.c
-@@ -0,0 +1,204 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * LED driver for PCA995x I2C LED drivers
-+ *
-+ * Copyright 2011 bct electronic GmbH
-+ * Copyright 2013 Qtechnology/AS
-+ * Copyright 2022 NXP
-+ * Copyright 2023 Marek Vasut
-+ */
-+
-+#include <linux/i2c.h>
-+#include <linux/leds.h>
-+#include <linux/module.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/property.h>
-+#include <linux/regmap.h>
-+
-+/* Register definition */
-+#define PCA995X_MODE1			0x00
-+#define PCA995X_MODE2			0x01
-+#define PCA995X_LEDOUT0			0x02
-+#define PCA9955B_PWM0			0x08
-+#define PCA9952_PWM0			0x0A
-+#define PCA9952_IREFALL			0x43
-+#define PCA9955B_IREFALL		0x45
-+
-+/* Auto-increment disabled. Normal mode */
-+#define PCA995X_MODE1_CFG		0x00
-+
-+/* LED select registers determine the source that drives LED outputs */
-+#define PCA995X_LED_OFF			0x0
-+#define PCA995X_LED_ON			0x1
-+#define PCA995X_LED_PWM_MODE		0x2
-+#define PCA995X_LDRX_MASK		0x3
-+#define PCA995X_LDRX_BITS		2
-+
-+#define PCA995X_MAX_OUTPUTS		16
-+#define PCA995X_OUTPUTS_PER_REG		4
-+
-+#define PCA995X_IREFALL_FULL_CFG	0xFF
-+#define PCA995X_IREFALL_HALF_CFG	(PCA995X_IREFALL_FULL_CFG / 2)
-+
-+#define PCA995X_TYPE_NON_B		0
-+#define PCA995X_TYPE_B			1
-+
-+#define ldev_to_led(c)	container_of(c, struct pca995x_led, ldev)
-+
-+struct pca995x_led {
-+	unsigned int led_no;
-+	struct led_classdev ldev;
-+	struct pca995x_chip *chip;
-+};
-+
-+struct pca995x_chip {
-+	struct regmap *regmap;
-+	struct pca995x_led leds[PCA995X_MAX_OUTPUTS];
-+	int btype;
-+};
-+
-+static int pca995x_brightness_set(struct led_classdev *led_cdev,
-+				  enum led_brightness brightness)
-+{
-+	struct pca995x_led *led = ldev_to_led(led_cdev);
-+	struct pca995x_chip *chip = led->chip;
-+	u8 ledout_addr, pwmout_addr;
-+	int shift, ret;
-+
-+	pwmout_addr = (chip->btype ? PCA9955B_PWM0 : PCA9952_PWM0) + led->led_no;
-+	ledout_addr = PCA995X_LEDOUT0 + (led->led_no / PCA995X_OUTPUTS_PER_REG);
-+	shift = PCA995X_LDRX_BITS * (led->led_no % PCA995X_OUTPUTS_PER_REG);
-+
-+	switch (brightness) {
-+	case LED_FULL:
-+		return regmap_update_bits(chip->regmap, ledout_addr,
-+					  PCA995X_LDRX_MASK << shift,
-+					  PCA995X_LED_ON << shift);
-+	case LED_OFF:
-+		return regmap_update_bits(chip->regmap, ledout_addr,
-+					  PCA995X_LDRX_MASK << shift, 0);
-+	default:
-+		/* Adjust brightness as per user input by changing individual PWM */
-+		ret = regmap_write(chip->regmap, pwmout_addr, brightness);
-+		if (ret)
-+			return ret;
-+
-+		/*
-+		 * Change LDRx configuration to individual brightness via PWM.
-+		 * LED will stop blinking if it's doing so.
-+		 */
-+		return regmap_update_bits(chip->regmap, ledout_addr,
-+					  PCA995X_LDRX_MASK << shift,
-+					  PCA995X_LED_PWM_MODE << shift);
-+	}
-+}
-+
-+static const struct regmap_config pca995x_regmap = {
-+	.reg_bits = 8,
-+	.val_bits = 8,
-+	.max_register = 0x49,
-+};
-+
-+static int pca995x_probe(struct i2c_client *client)
-+{
-+	struct fwnode_handle *led_fwnodes[PCA995X_MAX_OUTPUTS] = { 0 };
-+	struct fwnode_handle *np, *child;
-+	struct device *dev = &client->dev;
-+	struct pca995x_chip *chip;
-+	struct pca995x_led *led;
-+	int i, btype, reg, ret;
-+
-+	btype = (unsigned long)device_get_match_data(&client->dev);
-+
-+	np = dev_fwnode(dev);
-+	if (!np)
-+		return -ENODEV;
-+
-+	chip = devm_kzalloc(dev, sizeof(*chip), GFP_KERNEL);
-+	if (!chip)
-+		return -ENOMEM;
-+
-+	chip->btype = btype;
-+	chip->regmap = devm_regmap_init_i2c(client, &pca995x_regmap);
-+	if (IS_ERR(chip->regmap))
-+		return PTR_ERR(chip->regmap);
-+
-+	i2c_set_clientdata(client, chip);
-+
-+	fwnode_for_each_available_child_node(np, child) {
-+		ret = fwnode_property_read_u32(child, "reg", &reg);
-+		if (ret) {
-+			fwnode_handle_put(child);
-+			return ret;
-+		}
-+
-+		if (reg < 0 || reg >= PCA995X_MAX_OUTPUTS || led_fwnodes[reg]) {
-+			fwnode_handle_put(child);
-+			return -EINVAL;
-+		}
-+
-+		led = &chip->leds[reg];
-+		led_fwnodes[reg] = child;
-+		led->chip = chip;
-+		led->led_no = reg;
-+		led->ldev.brightness_set_blocking = pca995x_brightness_set;
-+		led->ldev.max_brightness = 255;
-+	}
-+
-+	for (i = 0; i < PCA995X_MAX_OUTPUTS; i++) {
-+		struct led_init_data init_data = {};
-+
-+		if (!led_fwnodes[i])
-+			continue;
-+
-+		init_data.fwnode = led_fwnodes[i];
-+
-+		ret = devm_led_classdev_register_ext(dev,
-+						     &chip->leds[i].ldev,
-+						     &init_data);
-+		if (ret < 0) {
-+			fwnode_handle_put(child);
-+			return dev_err_probe(dev, ret,
-+					     "Could not register LED %s\n",
-+					     chip->leds[i].ldev.name);
-+		}
-+	}
-+
-+	/* Disable LED all-call address and set normal mode */
-+	ret = regmap_write(chip->regmap, PCA995X_MODE1, PCA995X_MODE1_CFG);
-+	if (ret)
-+		return ret;
-+
-+	/* IREF Output current value for all LEDn outputs */
-+	return regmap_write(chip->regmap,
-+			    btype ? PCA9955B_IREFALL : PCA9952_IREFALL,
-+			    PCA995X_IREFALL_HALF_CFG);
-+}
-+
-+static const struct i2c_device_id pca995x_id[] = {
-+	{ "pca9952", .driver_data = (kernel_ulong_t)PCA995X_TYPE_NON_B },
-+	{ "pca9955b", .driver_data = (kernel_ulong_t)PCA995X_TYPE_B },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(i2c, pca995x_id);
-+
-+static const struct of_device_id pca995x_of_match[] = {
-+	{ .compatible = "nxp,pca9952",  .data = (void *)PCA995X_TYPE_NON_B },
-+	{ .compatible = "nxp,pca9955b", .data = (void *)PCA995X_TYPE_B },
-+	{},
-+};
-+MODULE_DEVICE_TABLE(i2c, pca995x_of_match);
-+
-+static struct i2c_driver pca995x_driver = {
-+	.driver = {
-+		.name = "leds-pca995x",
-+		.of_match_table = pca995x_of_match,
-+	},
-+	.probe = pca995x_probe,
-+	.id_table = pca995x_id,
-+};
-+module_i2c_driver(pca995x_driver);
-+
-+MODULE_AUTHOR("Isai Gaspar <isaiezequiel.gaspar@nxp.com>");
-+MODULE_DESCRIPTION("PCA995x LED driver");
-+MODULE_LICENSE("GPL");
--- 
-2.40.1
+
+
+> 
+> 
+> Best,
+> 
+> Tao
+> 
+>>
+>> Suzuki
+>>
 
