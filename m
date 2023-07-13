@@ -2,148 +2,214 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B3D79751CA8
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 11:06:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 57B6C751CB9
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 11:08:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233691AbjGMJGY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jul 2023 05:06:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36014 "EHLO
+        id S233130AbjGMJHa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jul 2023 05:07:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37280 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234028AbjGMJGH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jul 2023 05:06:07 -0400
-Received: from mail-yb1-xb32.google.com (mail-yb1-xb32.google.com [IPv6:2607:f8b0:4864:20::b32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 878E9127
-        for <devicetree@vger.kernel.org>; Thu, 13 Jul 2023 02:05:09 -0700 (PDT)
-Received: by mail-yb1-xb32.google.com with SMTP id 3f1490d57ef6-ca3cc52ee62so434034276.0
-        for <devicetree@vger.kernel.org>; Thu, 13 Jul 2023 02:05:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689239108; x=1689843908;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=Xn6ei9/9nS3M5OJwomJN5UPa70NekYkgBc6ibiFgkyQ=;
-        b=xXXWLGivZPS53UODz4dM7TyUnoncEK5FE86gyc4bHY71qNzZeJmJb7w06cH4dFSdQR
-         P0x4CQqUTz9BiB+Qglq2I7MSPbtS+dJ5ItOA7QlFES435E7+Mf3mUb2I3tiNeoybdi7L
-         DqkicFGq+98dJizdYCYAz5xzgciVAWvFO2uELgtAJEfzfSwCsf8HJCf3DOeenRLzQpqr
-         9QqiWiDW3adGV24n9d4MOkj4Zzhj31CxxVZPlJcAMz2uIBY/biLf437FI+zp+L2HvZdc
-         tfGxdpDL6IH4vvexo9VaKW2x2eLCLDNHNWPYV+6cpdg2jvB9cuWvfBiU2YH3FpL+uvdl
-         2NYg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689239108; x=1689843908;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Xn6ei9/9nS3M5OJwomJN5UPa70NekYkgBc6ibiFgkyQ=;
-        b=Xm6YwHjLqVS3KRT6uLiao3jFeuO30mZUjGlcMKsxVEo9WwTwqjzCyoY2nK8sY1bG/n
-         NaJOCXgpDvkLGef24JxS3uSpEbjbpm7t7VWgGzgpw5QCIvjX1uCsLldMxohB7s1gYiz+
-         S7yscPF8uDtIAz4uIzWyGKTDRyIBA6Ql6s8khJSpd2Io5FPT1TG2NAuxXu4Wd238Qr5B
-         fetQHBVpm3dgnm0AnIUnRxyeMwA6LdzkG4A44fDNVTgPLKSiI9dEFT2dx/kycct8IYSt
-         eInu6qjP4ftEYyGwpAFcZFqgmnKMNkA1QG4pimKf/Pj4qDwigzHcCqTbPWlNKrq1ZYhw
-         DS0Q==
-X-Gm-Message-State: ABy/qLY+wcB5bm6NaUw3w3WA2f9RFPA7O/M/hXsK5lC9rt/CdlnZ7NzG
-        FzfzGEwuTRUd8Lm5ATB7MUhch+idxIGs70wJaORrvA==
-X-Google-Smtp-Source: APBJJlGXJvvYoDza1StirRlGQElXF0pCyCiFnb5V8pzk8ik9XDgwvV9D9fD7+yABjfcZa47O94WvNoZjX60yu5f73II=
-X-Received: by 2002:a25:aba2:0:b0:bad:125f:9156 with SMTP id
- v31-20020a25aba2000000b00bad125f9156mr895305ybi.35.1689239108637; Thu, 13 Jul
- 2023 02:05:08 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230712121145.1994830-1-dmitry.baryshkov@linaro.org>
- <20230712121145.1994830-9-dmitry.baryshkov@linaro.org> <9587baf4-2316-494d-fbd1-73a86e742741@linaro.org>
-In-Reply-To: <9587baf4-2316-494d-fbd1-73a86e742741@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Thu, 13 Jul 2023 12:04:57 +0300
-Message-ID: <CAA8EJpqTBpUgpQSwhhLtctn=r8XwX-NwdFgUst3rARQSaGMrcg@mail.gmail.com>
-Subject: Re: [PATCH v2 8/8] arm64: dts: qcom: sm8450: provide MDSS cfg interconnect
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S230036AbjGMJHY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jul 2023 05:07:24 -0400
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2086.outbound.protection.outlook.com [40.107.22.86])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08DEAB4;
+        Thu, 13 Jul 2023 02:07:22 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=dBUucLMflSLWNklZLJZITqbKKa+tgOsLOuNsH4GYLsq8mwDYekPfXmVSYMcySX2Cwqpey43jTOuuw7BrRZCXvbggcfYv43z2Ox7ymH5KYWfNg2htzVeHNd0yz/GRiOMnFEPPGUYh93O07sr8mT0PCUsnJq1lJ40dX/W4LdqQaoiVRFJX68X11qRcNDW4F3WphRoAGU0zaTNxXNVyIVygiuNum1bcVH2vQ2CiSUeDEijqQII/mKTlFi/Z/mw6H0ju9wfFcuOlx9oYjJPQz9ZESjesXLh2IFyFgoVZRb788eXMDNP7pHJreW0LCefpfTDf6pLdztmQ+6xcaWfQp8IIdg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=nmCtY+4gzxNDiXZErN4AgFPXnQOrjhJFUCtU01QvHBc=;
+ b=Xw8cT6HhtiKPAQ3kioxut3ni2Z2kfyYFOi5i2tmp9HYW++a06WFkMd4pRAlz8v7+oappAQAKEtmL5geNsWsq2vx6bkYYOhpPiUxAnMjUViHURNcIVu2iggZRj9bKUJiE5C9L9cyfKGkySvjT+AaF1CAjjZk4H43IzOCl6IxYn0Ma+mtgSUkwxvyTUH3kV1BReicKWd00V5CxBTI8xiN0188tIDbR+Q5SdefSwYD2LbNWuWbMbmBOMZxjTA4f7f7J++zz3KHxlJCMSVScM31Q8XB3GlwEuptHLZ1sVyvWjbkPoc2ehSQMFUFy73nmEoqun17vhnf5UiZ84Vwd3oe5Yw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=vaisala.com; dmarc=pass action=none header.from=vaisala.com;
+ dkim=pass header.d=vaisala.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vaisala.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=nmCtY+4gzxNDiXZErN4AgFPXnQOrjhJFUCtU01QvHBc=;
+ b=ihcXBhzVjDJaTdRqo7YqniFbQ+eYNlW8hczCQciGylnTD21F3qwwXhPhK8ogRBFsbSNUqTvYhUCjW+EyG7tX1wfyUs4IeZ5YOBEjWUscZP9ERDRB20erqJIuiSambPhzhZk4n6JcJAZxc6pbbEhKFPliS/onLyRSr/GVz01UTYS0PQY+Zsymbm76nbAbtwNaq7C9qq00CPGc4ms1xZNE5llFEd8LlZM58s3xrHznNEONi6FeF42mkIPeEr46GXIM+RVh9D5T4lCoYqiQLn//KrKgHO4tpXqatWB77qiCdwbVpHbLN2qfu35fMF2bgwMA2lRr6QAvtZ97+CCEmsSa0Q==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=vaisala.com;
+Received: from HE1PR0602MB3241.eurprd06.prod.outlook.com (2603:10a6:7:17::28)
+ by AS5PR06MB8600.eurprd06.prod.outlook.com (2603:10a6:20b:677::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6565.31; Thu, 13 Jul
+ 2023 09:07:19 +0000
+Received: from HE1PR0602MB3241.eurprd06.prod.outlook.com
+ ([fe80::8413:b7d5:15ac:63a3]) by HE1PR0602MB3241.eurprd06.prod.outlook.com
+ ([fe80::8413:b7d5:15ac:63a3%3]) with mapi id 15.20.6588.024; Thu, 13 Jul 2023
+ 09:07:19 +0000
+Message-ID: <0e75c874-1d3b-7ccb-b201-2387e09e8516@vaisala.com>
+Date:   Thu, 13 Jul 2023 12:07:16 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH 1/2] dt-bindings: net: fsl,fec: Add TX clock controls
+Content-Language: en-US
+To:     Ahmad Fatoum <a.fatoum@pengutronix.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Russell King <linux@armlinux.org.uk>,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        Eric Dumazet <edumazet@google.com>,
+        Shenwei Wang <shenwei.wang@nxp.com>,
+        Clark Wang <xiaoning.wang@nxp.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Jakub Kicinski <kuba@kernel.org>, Wei Fang <wei.fang@nxp.com>,
+        netdev@vger.kernel.org, Paolo Abeni <pabeni@redhat.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        linux-arm-kernel@lists.infradead.org
+References: <20230711150808.18714-1-vesa.jaaskelainen@vaisala.com>
+ <20230711150808.18714-2-vesa.jaaskelainen@vaisala.com>
+ <006f9599-6aa4-52ac-068a-831893ec6bf8@linaro.org>
+ <49bf4392-299f-cb4b-ef4b-f920faa65866@vaisala.com>
+ <d72b2806-c4b0-50ef-98ea-7f06c47b1c6a@pengutronix.de>
+From:   =?UTF-8?B?VmVzYSBKw6TDpHNrZWzDpGluZW4=?= 
+        <vesa.jaaskelainen@vaisala.com>
+In-Reply-To: <d72b2806-c4b0-50ef-98ea-7f06c47b1c6a@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: GV3P280CA0007.SWEP280.PROD.OUTLOOK.COM
+ (2603:10a6:150:b::10) To HE1PR0602MB3241.eurprd06.prod.outlook.com
+ (2603:10a6:7:17::28)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: HE1PR0602MB3241:EE_|AS5PR06MB8600:EE_
+X-MS-Office365-Filtering-Correlation-Id: a36bbbc9-1653-4efc-2004-08db83808f75
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: in7c9II52GnjacCw/iTRg3iJCo/SAp3qTFC8mOE/moIIRA9B1qKoRWybYOgHfMkvelBvmq/b4+/m2dEKqgTp2e14tE4o6dgCjrr84OlzVPXfGTgfZX7UVSDCMBeW1FCg2FjjDnhVJnCNDtTdl0Ll8oknd+2uMn7VbsnDW4lbQTmWtj1hcFQTkbS5k+ozBD20F8DtFQ6AZEm3nviuINZapk5fciVkMv/rjfxMpIAap866M7PXWDoeSXBUtlHG4HSmHUpOFxl7TCfcR+0hBal8Fp86/M0MLdbK3XlDdVVLkFOTAXwZhSCtQYkkX6ihIdiE+gC/Fzy1HmCYBWQk25+wnfeBBaxCMhbS1gK7vPjmRfAMc++AW8eozby4nT1zUGGbNEjHEcOyNAsUd5YcJBrO7yTqOPHQAgBEjBJhYofd2po5x6v2t3OA+stV74QK9yIK3IvBwotgK5+bawYoeKza11yp1+bW3TcFQsitNAQ4P/2YLc5JQYQR/zUJ6QRBO9UocD28/ytqjNMlth850q927OfqfIemJSCMGJTEh2qzAVskEy27G4wX24N05FYxhKHvxyO4874eUXiavAHL7r8VaceZ+abFMZSxivi87KWSVJz43rFQxnj4Lw+MyYlib8GfJw4zDUfzH5S4jt8hkPTIuQ==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:HE1PR0602MB3241.eurprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(396003)(39860400002)(366004)(376002)(136003)(346002)(451199021)(26005)(31686004)(41300700001)(83380400001)(4326008)(66476007)(66574015)(316002)(31696002)(8936002)(8676002)(5660300002)(36756003)(85202003)(85182001)(7416002)(478600001)(38100700002)(54906003)(66556008)(110136005)(6486002)(6512007)(45080400002)(6666004)(966005)(2616005)(6506007)(86362001)(2906002)(53546011)(186003)(66946007)(45980500001)(43740500002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UHlNMk9hRHRVQU9TaDBmVVdyMzd5QXRNNGRoOUhHRmc4bGVqeHB5M1M3QkQv?=
+ =?utf-8?B?MkY4WjRCSmI3M3lWZWNPbnkrL29qdVFsQkFVN2s0QWpMakxLNkdld1JGR0FO?=
+ =?utf-8?B?NjQwYVpPMjZteHRTV1VUcVN3RHc3S1FwYyt1ZUlVS0NVNjRGR1RYNERreUor?=
+ =?utf-8?B?RUZ2cDJFbzdWcmNZbStBZWU1eFBDdHV6dzUzaVlHVkZnY0U3Nngxak5NQjlE?=
+ =?utf-8?B?ak5hRndZc1M2TFh6TGlETG5WSnRtQzZNVzAzMllHbVczTkN6RHliYWk5QWRJ?=
+ =?utf-8?B?Vm1PUkFJZ28rYm1LWDNTWnpIdEdDc2ZnRXNqNnVUdEpMOGNCTmRqZmNQUDJs?=
+ =?utf-8?B?U3NUYzZFQ0dKbzRLbnJDZ2xrNFVBK0ZDMERwWEtiMEd1SU9FeWg0QlE4WjZv?=
+ =?utf-8?B?cTY0ekVWM0xzZ21KNUpwVHZzcVVmeWdUUEtDVWxYQlRTaHVtL2lYQ1UwL2Vx?=
+ =?utf-8?B?eG80UDA0bldGQWdSM2sxRnB3THR0RUhPajd5eGlNcFc1bHlBWCtwMkRuOG1o?=
+ =?utf-8?B?cUt1RUFrazdPMGJucmQ0MUVkVlJ2SDdyQ1NhdjFJRkZCNXh1SzhobkRNUGx2?=
+ =?utf-8?B?bDdJRnE4UmhHSUZiTW10eSswWmZLRzlsQXZhY1pEVS94anM0RExHOVB6eWJ2?=
+ =?utf-8?B?am9tdktOQUlhUE1sUjZoWkgrVjhJdmVNZFVkdnp6MTAxU2xLVUxRZEE4S0Z4?=
+ =?utf-8?B?bHAvR2RzZi9tQUVKUEt0Z3JyRnRhLzFrR0hWT08zdGExVGpyaUgyZmN2ZS9M?=
+ =?utf-8?B?ZWNjbG0wOG1GazZiZmh1VjUyVnY0dU5mUXlhME1xRTh0eTA0OUNPQ2F1RzNo?=
+ =?utf-8?B?S2hPRUVFbVJBRFYrWmxjYnFUcDJoc2ZKTHJFRHdkUndrMEQwK0dvZW05cFNs?=
+ =?utf-8?B?SXphbnZDa3BNOFExQmRKTWF3MDNNSm1wWEcwUnFTSFMyL1VVNHpkSEFyVjNV?=
+ =?utf-8?B?cVA2K3luT2lGN2VDeXc0NXRJMEs5SFN5MjVJbmNYMVVlbjdxYmhVY3pWYUJR?=
+ =?utf-8?B?bjdTeHhyODFGMDh1R2RuYW16VFo4NEpXcWsxV0dmbURaYUJaem5TVjJKNk1h?=
+ =?utf-8?B?MkRLV2hJajAyQy9sK2RIZXJ4SVY3TGJFQUQvNGQxUWtIaytGWFRFeThrZFo1?=
+ =?utf-8?B?dzNuTFVvRjdxSkY3c3FoOTJLSldLTjlCUFdQeDZRYng2UmF3L2N5ZVFMWG9z?=
+ =?utf-8?B?Ymdxa2F4dXZiQ2pCNk1PUVk3TE1BT1hzbWcvejZGU3JvaDBIOURqM0N2YzNw?=
+ =?utf-8?B?M3pSMEUwV0krN0RZaGsrVzV1T2FINlhqc0Q0Ym8rbDhXazJ1eXBUSlRGUUho?=
+ =?utf-8?B?eXZ1RzBINHdrTWx1TC8ybWE3WHFQVjlpOGFIcFhHUnlhYnpYYU9GTU9XY0Zr?=
+ =?utf-8?B?SnlGREhQcEJBZ05qZmxtYlVMQ3hpNE5EL0hUUTl2SUR6WnlQeDBaUWJxWWpJ?=
+ =?utf-8?B?NlNIaWFXUWJKYUVMbVFsU3gxZ2tUNWhDcERKRGZ6YWFCUk1hdUhvRXA3TnhN?=
+ =?utf-8?B?dGFudE1GcGMrMnBXRFhWWEdScGlvb2FMNXZwcGszK3YzOUdHdXM3ZVRZSjV6?=
+ =?utf-8?B?aFRsYkVqUS9DZi80Y2o2ZG1nRWEwd2M0azF2MmRXajQ2MUt4U3pWRy8vbHJj?=
+ =?utf-8?B?V3F1QU8rLy9GR3UwNnpNNTROY1Rrb3hkZ2tNVmgwRVZzb0o0RmFabEY5aDNK?=
+ =?utf-8?B?ZGFOdFRzM29DY01yNUMzMFZCMWhaczRIelR3dXVtRkl2Q1pMZTkvbkt0eUJt?=
+ =?utf-8?B?ejc1eEtRZXJEc25MUGNwYmpzeVY1NUZxemI3T3FMUWRlMVFZdGkzbUVCaGl6?=
+ =?utf-8?B?NDlHTlBtTm5HU25mNlB3Z0ZMN0Fta2ZYZ3NESlV0NVlxM0Q3WmVhTHZ2ZURS?=
+ =?utf-8?B?U1RBRUx2WmtSc1pQcmkvSGw1Y0ZiWEpGZW5ZVEd1Y2xpdnJxQnZtanhsS0pV?=
+ =?utf-8?B?bHBIMlVpbEFLSXk5aERncm9uREdzdDFCYS9HZXkySGVPV2RiNnNCd1o2a09N?=
+ =?utf-8?B?cHNncWFxSTBlaU4rUDFhRDJ0SThYRGNPai9kZklpQjNGMW50dXV6azhieUZh?=
+ =?utf-8?B?ejJwQWRyM1NZMCtDaE15N1VZZ2hRNWtuK3dkSEdmQ29VdnNsanJ1eTBTZUxD?=
+ =?utf-8?B?R2dIMkh4Y2wrbFh1SVRZYUFQQnhPaGlTSnBIMDZmUmNJVzI1VDlpbFZraHYz?=
+ =?utf-8?B?emc9PQ==?=
+X-OriginatorOrg: vaisala.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a36bbbc9-1653-4efc-2004-08db83808f75
+X-MS-Exchange-CrossTenant-AuthSource: HE1PR0602MB3241.eurprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Jul 2023 09:07:19.0153
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 6d7393e0-41f5-4c2e-9b12-4c2be5da5c57
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: McnwSwYl91Secn8hAdXhn7F4twGFCti4t/P9cAkdZ6DsPIUJB66wXg0QDKV1YXbCiSALfh5TBQDpoCEscVtxu5HINUnbc+B1RBrRroVW90c=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS5PR06MB8600
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 13 Jul 2023 at 11:41, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
+Hi Ahmad,
+
+On 13.7.2023 11.47, Ahmad Fatoum wrote:
+> Hello Vesa,
 >
-> On 12.07.2023 14:11, Dmitry Baryshkov wrote:
-> > Add support for the MDSS cfg-cpu bus vote on the SM8450 platform.
-> >
-> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > ---
-> >  arch/arm64/boot/dts/qcom/sm8450.dtsi | 9 +++++++--
-> >  1 file changed, 7 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> > index 595533aeafc4..0b01f3027ee3 100644
-> > --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> > @@ -13,6 +13,7 @@
-> >  #include <dt-bindings/mailbox/qcom-ipcc.h>
-> >  #include <dt-bindings/phy/phy-qcom-qmp.h>
-> >  #include <dt-bindings/power/qcom-rpmpd.h>
-> > +#include <dt-bindings/interconnect/qcom,icc.h>
-> >  #include <dt-bindings/interconnect/qcom,sm8450.h>
-> >  #include <dt-bindings/soc/qcom,gpr.h>
-> >  #include <dt-bindings/soc/qcom,rpmh-rsc.h>
-> > @@ -2672,8 +2673,12 @@ mdss: display-subsystem@ae00000 {
-> >
-> >                       /* same path used twice */
-> >                       interconnects = <&mmss_noc MASTER_MDP_DISP 0 &mc_virt SLAVE_EBI1_DISP 0>,
-> > -                                     <&mmss_noc MASTER_MDP_DISP 0 &mc_virt SLAVE_EBI1_DISP 0>;
-> > -                     interconnect-names = "mdp0-mem", "mdp1-mem";
-> > +                                     <&mmss_noc MASTER_MDP_DISP 0 &mc_virt SLAVE_EBI1_DISP 0>,
-> > +                                     <&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-> > +                                      &config_noc SLAVE_DISPLAY_CFG QCOM_ICC_TAG_ACTIVE_ONLY>;
-> Looking at icc_set_tag occurences in msm-5.10/techpack/display,
-> I *think* active-only is only possible for the data bus (MDP-EBI)
-
-Here I followed the vendor mdss fbdev driver (mdss_mdp.c), which
-explicitly states:
-
-static struct msm_bus_scale_pdata mdp_reg_bus_scale_table = {
-        .usecase = mdp_reg_bus_usecases,
-        .num_usecases = ARRAY_SIZE(mdp_reg_bus_usecases),
-        .name = "mdss_reg",
-        .active_only = true,
-};
-
+> On 13.07.23 10:29, Vesa Jääskeläinen wrote:
+>> Hi Krzysztof,
+>>
+>> On 12.7.2023 23.36, Krzysztof Kozlowski wrote:
+>>> On 11/07/2023 17:08, Vesa Jääskeläinen wrote:
+>>>> With fsl,fec-tx-clock-output one can control if TX clock is routed outside
+>>>> of the chip.
+>>>>
+>>>> With fsl,fec-tx-clk-as-ref-clock one can select if external TX clock is as
+>>>> reference clock.
+>>>>
+>>>> Signed-off-by: Vesa Jääskeläinen <vesa.jaaskelainen@vaisala.com>
+>>>> ---
+>>>>    .../devicetree/bindings/net/fsl,fec.yaml          | 15 +++++++++++++++
+>>>>    1 file changed, 15 insertions(+)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/net/fsl,fec.yaml b/Documentation/devicetree/bindings/net/fsl,fec.yaml
+>>>> index b494e009326e..c09105878bc6 100644
+>>>> --- a/Documentation/devicetree/bindings/net/fsl,fec.yaml
+>>>> +++ b/Documentation/devicetree/bindings/net/fsl,fec.yaml
+>>>> @@ -166,6 +166,21 @@ properties:
+>>>>        description:
+>>>>          If present, indicates that the hardware supports waking up via magic packet.
+>>>>    +  fsl,fec-tx-clock-output:
+>>>> +    $ref: /schemas/types.yaml#/definitions/flag
+>>>> +    description:
+>>>> +      If present, ENETx_TX_CLK output driver is enabled.
+>>>> +      If not present, ENETx_TX_CLK output driver is disabled.
+>>> Here...
+>>>
+>>>> +
+>>>> +  fsl,fec-tx-clk-as-ref-clock:
+>>>> +    $ref: /schemas/types.yaml#/definitions/flag
+>>>> +    description:
+>>>> +      If present, gets ENETx TX reference clk from the ENETx_TX_CLK pin. In
+>>>> +      this use case, an external OSC provides the clock for both the external
+>>>> +      PHY and the internal controller.
+>>>> +      If not present, ENETx TX reference clock is driven by ref_enetpllx. This
+>>>> +      clock is also output to pins via the IOMUX.ENET_REF_CLKx function.
+>>> and here:
+>>> In general, Common Clock Framework and its bindings should be used for
+>>> handling clock providers and consumers. Why it cannot be used for these
+>>> two cases?
+>> Did you have something specific in mind on how it could be modeled?
+>>
+>> I tried to look at:
+>> Documentation/devicetree/bindings/clock/
+>>
+>> But didn't spot anything for this.
+> This has been implemented for i.MX6Q/DL using CCF. Please follow suit
+> for SoloX. See series at:
+> https://lore.kernel.org/all/20230131084642.709385-1-o.rempel@pengutronix.de/
 >
-> Moreover, I think Linux is supposed to cast MDSS votes through the
-> APPS RSC (so, nodes without _DISP [1][2]) and conversely, DISP_RSC is
-> supposed to active-only votes
+> Thanks,
+> Ahmad
 
-We can change this once your DISP_RSC lands. Anyway, I think we will
-have to add the LLCC-MEM vote at some point later.
+Thanks for the reference. This looks promising.
 
->
-> Konrad
->
-> [1] not that it matters today because it's not implemented yet
-> [2] https://lore.kernel.org/linux-arm-msm/20230708-topic-rpmh_icc_rsc-v1-0-b223bd2ac8dd@linaro.org
->
-> > +                     interconnect-names = "mdp0-mem",
-> > +                                          "mdp1-mem",
-> > +                                          "cpu-cfg";
-> >
-> >                       resets = <&dispcc DISP_CC_MDSS_CORE_BCR>;
-> >
+Let me try it out.
 
+Thanks,
+Vesa Jääskeläinen
 
-
--- 
-With best wishes
-Dmitry
