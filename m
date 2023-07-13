@@ -2,63 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 59CCB752583
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 16:50:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B1737525CC
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 16:57:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231671AbjGMOuT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jul 2023 10:50:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55848 "EHLO
+        id S232268AbjGMO5z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jul 2023 10:57:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34422 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229682AbjGMOuT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jul 2023 10:50:19 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5042273A;
-        Thu, 13 Jul 2023 07:49:58 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 3887561545;
-        Thu, 13 Jul 2023 14:49:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 03A37C433C8;
-        Thu, 13 Jul 2023 14:49:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689259797;
-        bh=oUeQBue4D+P5RKuXyNTqDYmkvCRh4FYVyWtbLqAKhmA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=XxKgmn1xsOU2pbWpxRsCyKp99xUi09w4uLO1jBoSotyiJJfgPbzmlDjlmVpBsS5Yx
-         ncIKrzKTaCItf5d2aokcdPa8m4ykTT8eLxOfOfaM0s0kk5LsbIPsp4OOzWcSmSj2I2
-         m2upGxLV5F+Dl4eoKKngsmTR1oinJHxiDWLERc+pK3cC2L/SLbYzEJBh6l+VzgNXy1
-         gv2T5CpLDQ/tDZKe3UfKnti5V1QizPVI3MCNRkrb5pmPRMSoOdFjbwbF5nhNvdPrzl
-         oOuAQTXH5PDOIdTy7qHbEezRIFzaPM5g7QeOP4kQaOO0fS76lgohHqzxEzRVcl5iWQ
-         /HxBJ7XGKXF9Q==
-Date:   Thu, 13 Jul 2023 15:49:50 +0100
-From:   Lee Jones <lee@kernel.org>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Bartosz Golaszewski <brgl@bgdev.pl>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S232185AbjGMO5y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jul 2023 10:57:54 -0400
+Received: from mail-io1-f50.google.com (mail-io1-f50.google.com [209.85.166.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CD962D6A;
+        Thu, 13 Jul 2023 07:57:30 -0700 (PDT)
+Received: by mail-io1-f50.google.com with SMTP id ca18e2360f4ac-786bb09e595so45010439f.1;
+        Thu, 13 Jul 2023 07:57:30 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689260246; x=1691852246;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=yXTEiJgqTQSHTgMd2XgbWoza5WarJFfM5iZCV23PHFo=;
+        b=TqS/8nXmUg7DBqIp4YAPym5tZ23vnhJg7PSsH5g9SAPvE2D94+AGs9yLaIiPIMiyrR
+         OnwjaHbhPq0slfA2wC6HN09/GirII3MipD3GmtqpKaP2+fZPn0AvG/KO6E+jPPJ0D4Mv
+         wcLMxvJGiW8E8ZAXGOQGACmxkQQs83P7CMq3XpY+kw9ObbEVS1ACRwltvEMc5+NI9yHA
+         aydZLDpWwxXqhZ4l+K9OtPm/ZY9o1Zs6twhlWPfd7hjnj8hWMMFwEGlp/bLp4SxBNHCW
+         KpogEyNepiMzfyFhGFrJD4SUwOoqXtoA8QJQRcmeGdwJm8HDplEth6GmfvDXqgwiIPws
+         x3Jg==
+X-Gm-Message-State: ABy/qLZvwimLa7Tiy6lqzJoQUQGsnzUUr8D70l4FiEjfd05HbdC9l5yf
+        ly98/cMupTQ5h+baBLnTO1lUb6tFFQ==
+X-Google-Smtp-Source: APBJJlEbJtUGyiRAj/0oiEUGHUE6MDV5DC9yCYrFNINS6T3YHK29EQFfzahnTjX3plIUV34wtbPcAA==
+X-Received: by 2002:a92:c905:0:b0:346:3fc5:93e0 with SMTP id t5-20020a92c905000000b003463fc593e0mr1501585ilp.2.1689260246652;
+        Thu, 13 Jul 2023 07:57:26 -0700 (PDT)
+Received: from robh_at_kernel.org ([64.188.179.250])
+        by smtp.gmail.com with ESMTPSA id y9-20020a92d809000000b003460b8505easm2113677ilm.19.2023.07.13.07.57.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 13 Jul 2023 07:57:25 -0700 (PDT)
+Received: (nullmailer pid 4005390 invoked by uid 1000);
+        Thu, 13 Jul 2023 14:57:24 -0000
+Date:   Thu, 13 Jul 2023 08:57:24 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Mark Brown <broonie@kernel.org>,
+        William Qiu <william.qiu@starfivetech.com>,
+        devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Philippe Schenker <philippe.schenker@toradex.com>,
-        Stefan Agner <stefan@agner.ch>, Marek Vasut <marex@denx.de>,
-        Steffen Trumtrar <s.trumtrar@pengutronix.de>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-input@vger.kernel.org, Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v5] dt-bindings: MFD: Convert STMPE to YAML schema
-Message-ID: <20230713144950.GE10768@google.com>
-References: <20230709-stmpe-dt-bindings-v5-1-34a3d6ee1e57@linaro.org>
+        Conor Dooley <conor+dt@kernel.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Linus Walleij <linus.walleij@linaro.org>
+Subject: Re: [PATCH v2 2/3] dt-bindings: spi: constrain minItems of clocks
+ and clock-names
+Message-ID: <20230713145724.GA3975811-robh@kernel.org>
+References: <20230713090015.127541-1-william.qiu@starfivetech.com>
+ <20230713090015.127541-3-william.qiu@starfivetech.com>
+ <c5ad1e1c-58f4-4833-b9c7-8876c1a0dc27@sirena.org.uk>
+ <e3fd0d3f-3fe4-2e23-2548-ecbd487e9c9f@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230709-stmpe-dt-bindings-v5-1-34a3d6ee1e57@linaro.org>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+In-Reply-To: <e3fd0d3f-3fe4-2e23-2548-ecbd487e9c9f@linaro.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -66,79 +72,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 09 Jul 2023, Linus Walleij wrote:
+On Thu, Jul 13, 2023 at 02:39:19PM +0200, Krzysztof Kozlowski wrote:
+> On 13/07/2023 14:28, Mark Brown wrote:
+> > On Thu, Jul 13, 2023 at 05:00:14PM +0800, William Qiu wrote:
+> > 
+> >> The SPI controller only need apb_pclk clock to work properly on JH7110 SoC,
+> >> so there add minItems whose value is equal to 1. Other platforms do not
+> >> have this constraint.
+> > 
+> > Presumably this means that this is some variant of the usual pl022 IP,
+> 
+> Hm, in such case this could mean we need dedicated compatible.
 
-> This converts the STMPE MFD device tree bindings to the YAML
-> schema.
-> 
-> Reference the existing schema for the ADC, just define the
-> other subnode schemas directly in the MFD schema.
-> 
-> Add two examples so we have examples covering both the simple
-> GPIO expander and the more complex with ADC and touchscreen.
-> 
-> Some in-tree users do not follow the naming conventions for nodes
-> so these DTS files need to be augmented to use proper node names
-> like "adc", "pwm", "gpio", "keyboard-controller" etc before the
-> bindings take effect on them.
-> 
-> Acked-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
-> ---
-> This adds the missing GPIO bindings for the STMPE port expander
-> and converts the existing MFD binding to YAML.
-> 
-> I suppose Lee can merge this when he's happy with it.
-> ---
-> Changes in v5:
-> - Rebase on v6.5-rc1 meaning GPIO binding is merged
->   upstream and can be dropped.
-> - Link to v4: https://lore.kernel.org/r/20230426-stmpe-dt-bindings-v4-0-36fdd53d9919@linaro.org
-> 
-> Changes in v4:
-> - Make the GPIO bindings a conversion: there were some old
->   text bindings for the STMPE GPIO, we now delete them as
->   part of the patch.
-> - I expect Lee or the DT binding tree to pick both patches.
-> - Link to v3: https://lore.kernel.org/r/20230426-stmpe-dt-bindings-v3-0-eac1d736e488@linaro.org
-> 
-> Changes in v3:
-> - Update to review feedback
-> - Collected some ack/review tags
-> - Link to v2: https://lore.kernel.org/r/20230426-stmpe-dt-bindings-v2-0-2f85a1fffcda@linaro.org
-> 
-> Changes in v2:
-> - Split off a separate GPIO binding
-> - Updated the MFD binding according to feedback
-> ---
-> ChangeLog v4->v5:
-> - Rebase on v6.5-rc1
-> ChangeLog v3->v4:
-> - No changes.
-> ChangeLog v2->v3:
-> - Drop the required pwm properties already required by the
->   template pwm schema.
-> - Add the number of PWM cells as const.
-> ChangeLog v1->v2:
-> - Split off the GPIO bindings to their own schema, as the old
->   bindings didn't even have any GPIO bindings. Put the GPIO
->   schema before this schema so we can use GPIO in the examples.
-> - Drop nodename and pattern as STMPE is not a generic name.
-> - Add maxItems to the resets.
-> - Make wakeup-source just :true, as it is a generic property.
-> - Move unevaluatedProperties for subnodes right before properties
->   as requested.
-> - Name devices "port-expander" in the examples.
-> - Use lowercase hex in line init.
-> ---
->  .../devicetree/bindings/input/stmpe-keypad.txt     |  41 ---
->  .../bindings/input/touchscreen/stmpe.txt           | 108 --------
->  .../devicetree/bindings/mfd/st,stmpe.yaml          | 297 +++++++++++++++++++++
->  Documentation/devicetree/bindings/mfd/stmpe.txt    |  42 ---
->  4 files changed, 297 insertions(+), 191 deletions(-)
+Except the vendor in the ID registers should be different if the IP is 
+modified.
 
-Applied, thanks
+I suspect that PCLK and SSPCLK are tied to the same clock source. There 
+must be an SSPCLK because that is the one used to clock the SPI bus and 
+we need to know the frequency of it.
 
--- 
-Lee Jones [李琼斯]
+Rob
