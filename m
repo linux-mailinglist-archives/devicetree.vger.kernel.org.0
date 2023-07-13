@@ -2,93 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C12957517A1
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 06:43:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 151C27517D5
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 07:06:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233666AbjGMEnH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jul 2023 00:43:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43506 "EHLO
+        id S233757AbjGMFGM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jul 2023 01:06:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49374 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233985AbjGMEnF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jul 2023 00:43:05 -0400
-Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2ABF1CF
-        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 21:43:04 -0700 (PDT)
-Received: from epcas1p2.samsung.com (unknown [182.195.41.46])
-        by mailout4.samsung.com (KnoxPortal) with ESMTP id 20230713044301epoutp048b8f4071b4802877dc4cbcd3853e69d4~xU7c1lHAr2149421494epoutp04X
-        for <devicetree@vger.kernel.org>; Thu, 13 Jul 2023 04:43:01 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20230713044301epoutp048b8f4071b4802877dc4cbcd3853e69d4~xU7c1lHAr2149421494epoutp04X
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1689223381;
-        bh=jnrbdUvnu2pvYRlibF+/arqX32ZF1+0djsgqKI7ySIc=;
-        h=Subject:Reply-To:From:To:CC:In-Reply-To:Date:References:From;
-        b=ng76qHqIFw4ZnoqnDBQo07nDEw2iX0Qle5+g3YB/Ku+j/bwfR1uVphFCkaOtE3n5H
-         tvMHVHjWQ7xMeDt8GjxxqJgTUv4vCVx/n15htDTvcwVHOs5/vMlSOYOjiGyNf9Towd
-         UDd+E01y/GBzHVPYpts8YTx5pm/SJKIIY/PxwlxY=
-Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
-        epcas1p4.samsung.com (KnoxPortal) with ESMTP id
-        20230713044301epcas1p46717b593de832342203ad87252fe3bb1~xU7cZaDn72021020210epcas1p4x;
-        Thu, 13 Jul 2023 04:43:01 +0000 (GMT)
-Received: from epsmges1p1.samsung.com (unknown [182.195.36.134]) by
-        epsnrtp2.localdomain (Postfix) with ESMTP id 4R1hmz5WcDz4x9Pv; Thu, 13 Jul
-        2023 04:42:59 +0000 (GMT)
-X-AuditID: b6c32a35-f8fff70000008374-3c-64af80d31aee
-Received: from epcas1p4.samsung.com ( [182.195.41.48]) by
-        epsmges1p1.samsung.com (Symantec Messaging Gateway) with SMTP id
-        D9.6B.33652.3D08FA46; Thu, 13 Jul 2023 13:42:59 +0900 (KST)
-Mime-Version: 1.0
-Subject: RE: [PATCH] dt-bindings: extcon: extcon-usb-gpio: convert to yaml
- format
-Reply-To: myungjoo.ham@samsung.com
-Sender: MyungJoo Ham <myungjoo.ham@samsung.com>
-From:   MyungJoo Ham <myungjoo.ham@samsung.com>
-To:     David Heidelberg <david@ixit.cz>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>
-CC:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-X-Priority: 3
-X-Content-Kind-Code: NORMAL
-In-Reply-To: <20230713002519.109392-1-david@ixit.cz>
-X-Drm-Type: N,general
-X-Msg-Generator: Mail
-X-Msg-Type: PERSONAL
-X-Reply-Demand: N
-Message-ID: <20230713044259epcms1p3a4de07b9ec965a30ac908619c47d6139@epcms1p3>
-Date:   Thu, 13 Jul 2023 13:42:59 +0900
-X-CMS-MailID: 20230713044259epcms1p3a4de07b9ec965a30ac908619c47d6139
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
-CMS-TYPE: 101P
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrNKsWRmVeSWpSXmKPExsWy7bCmge7lhvUpBv/3aFpc//Kc1eLYPnuL
-        +UfOsVr0vXjIbDHlz3Imi8u75rBZtO49wu7A7tHfeJDZY9OqTjaPO9f2sHn0bVnF6PF5k1wA
-        a1S2TUZqYkpqkUJqXnJ+SmZeuq2Sd3C8c7ypmYGhrqGlhbmSQl5ibqqtkotPgK5bZg7QFUoK
-        ZYk5pUChgMTiYiV9O5ui/NKSVIWM/OISW6XUgpScAtMCveLE3OLSvHS9vNQSK0MDAyNToMKE
-        7Ixl5/4zF1znqdj6dy5jA+NSni5GTg4JAROJd5M3sYPYQgI7GCWWv6jtYuTg4BUQlPi7Qxgk
-        LCwQLLHs6yWoEiWJhpv7mCHi+hIdD7YxgthsAroSWzfcZeli5OIQEbjKKHFx9yOwImaBOol1
-        3bvYIXbxSsxof8oCYUtLbF++FayZE+iGNRt+MUHERSVurn7LDmO/PzafEcIWkWi9d5YZwhaU
-        ePBzN1RcSuLJzslsIIslBLYxSuw4MgfK2c8oMeVhG9QkfYkzc0+ygdi8Ar4SS1dMB+tmEVCV
-        OHtpAVSNi8SkeX/ZIa7Wlli28DUzKCSYBTQl1u/ShwjzSbz72sMK88yOeU+gjlaTOLR7CdQY
-        GYnT0xdCHeohce3MSWZIyFVLnJ+5gXUCo/wsRPjOQrJsFsKyBYzMqxjFUguKc9NTiw0LDOEx
-        mpyfu4kRnAq1THcwTnz7Qe8QIxMH4yFGCQ5mJRFelW3rUoR4UxIrq1KL8uOLSnNSiw8xmgK9
-        OZFZSjQ5H5iM80riDU0sDUzMjIxNLAzNDJXEeZkf9aYICaQnlqRmp6YWpBbB9DFxcEo1MF2+
-        I/z2qqS4iiVz1e4FVs++cOj+mTJn50kxwcU7vLjfmy28G1Q+2/DHabMYXcN3xRds/kUHNC5Y
-        feC0m1uvwWZN4Vs9cu4MbksmpX7cfs05Y5lt4IdrTXcLNXVdiv+3FSyTD7Y+m+e6cJqt2/Hc
-        z5J3ft1XtlLdKcVm0Tnd/uDTVys2G8d7HdBN3Sr2vOCr9Js1RUZfztm3TZ5XeybYPXu+u8vN
-        584X1njsXvsjMzfsyYsD9VyTVs2p/qRjutsxcPaqPba9nVtWsaz1urhC9HBNG+tqeeZVeWYb
-        S/yOH+N/Vrz1dcrqg2bvX+V+UtrwN7kjcCrH5BTJudJTpz+Pj2LhaJStf3gp4RhDyq7QCe+V
-        WIozEg21mIuKEwGYKoSoDgQAAA==
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20230713002537epcas1p3a1b2049dd05d42a6c9df26edf7988ca6
-References: <20230713002519.109392-1-david@ixit.cz>
-        <CGME20230713002537epcas1p3a1b2049dd05d42a6c9df26edf7988ca6@epcms1p3>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        with ESMTP id S233728AbjGMFGL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jul 2023 01:06:11 -0400
+Received: from mail-pf1-x430.google.com (mail-pf1-x430.google.com [IPv6:2607:f8b0:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49211198A
+        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 22:06:09 -0700 (PDT)
+Received: by mail-pf1-x430.google.com with SMTP id d2e1a72fcca58-66c729f5618so351050b3a.1
+        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 22:06:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1689224769; x=1691816769;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=+Qk0spvjqelsgWYpeQ4kuozBgLhUKaEE8K+ZAEOKFHI=;
+        b=nc5qfVE+I1vS9zuVMeqaj6ZZnHW/m6LQosS9BCYtyi9vS/ZI/mRtPmNJV06jbclv2T
+         6OEUpPk3DNqV/q6zaAXs2IeBBeMqS4qFsyO30n401Y2JRIodmbGZQhN+t7QVwS9vi3R2
+         m+spgpGa9SDjPkuUcRuxdEovZwlp6419r3eKqI8A6a3XM9zYK3fyghxv1hYgfHAnBaw0
+         WjHgFUAaO8qxBknEjsSNIGUeD4mH4gdz9t++pAvOgrLkRo9dxu96yrGGa1zz0ySN0Z/l
+         Esaq8AgM+y+DwlwwwLYyn33FMVDEKefidr9ReAiKKORVRlv2YjXTqEUMgpDIHSPoEcGc
+         lTgA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689224769; x=1691816769;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=+Qk0spvjqelsgWYpeQ4kuozBgLhUKaEE8K+ZAEOKFHI=;
+        b=PeuCbyHsV8Dn52XseyXJrpNxEt+TzPkxZ/XqBG2h2eZ+Ua/i1o8bj8z8te60rSx8iL
+         acMRCSa1DJB/SYPBqCCfj2MFOyA1CD+SZY0SXzl6XZ18wFlAsACsDVpV1WCpFXdtbPnv
+         C1MehVmukfzwCepp9tf9copv7xHsRsqy2OjYJHbJMxFKvhn33cTuT2UtB5aKAMo8k6Xt
+         RGV7K2Arro64HXj5WTJq5bcNy4BjFRZIBJLROrJsGOgKjmbjhGLLvUlTcK2+zz3CtPYD
+         JIi2DSGv/6lHw17fUQtTdKuAnNqpWCuYn9h5ZcU8sZlv/uGh5E8NrCNl1GJ8+HSMq9JG
+         HM5g==
+X-Gm-Message-State: ABy/qLZ09nZ4JGxAS8dbYWDVlSJeVuNZgNhlxeHFxpzpNrRE6jyAEjFS
+        gsdrcmZ3gFD1W6/iHJwtu9Yb
+X-Google-Smtp-Source: APBJJlF/hqFCRZdE64GpVVbs24NyzUFsLplRA/w8LLjXD9OzLL/2jfLMegk0qSbqFNrpgcwWBLzCQQ==
+X-Received: by 2002:a05:6a00:2e94:b0:654:4a24:d787 with SMTP id fd20-20020a056a002e9400b006544a24d787mr977416pfb.12.1689224768761;
+        Wed, 12 Jul 2023 22:06:08 -0700 (PDT)
+Received: from thinkpad ([117.207.27.112])
+        by smtp.gmail.com with ESMTPSA id h25-20020a62b419000000b0063f00898245sm4589847pfn.146.2023.07.12.22.05.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 12 Jul 2023 22:06:08 -0700 (PDT)
+Date:   Thu, 13 Jul 2023 10:35:50 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Viresh Kumar <viresh.kumar@linaro.org>
+Cc:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, vireshk@kernel.org,
+        nm@ti.com, sboyd@kernel.org, myungjoo.ham@samsung.com,
+        kyungmin.park@samsung.com, cw00.choi@samsung.com,
+        andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        quic_asutoshd@quicinc.com, quic_cang@quicinc.com,
+        quic_nitirawa@quicinc.com, quic_narepall@quicinc.com,
+        quic_bhaskarv@quicinc.com, quic_richardp@quicinc.com,
+        quic_nguyenb@quicinc.com, quic_ziqichen@quicinc.com,
+        bmasney@redhat.com, krzysztof.kozlowski@linaro.org
+Subject: Re: [PATCH 11/14] scsi: ufs: host: Add support for parsing OPP
+Message-ID: <20230713050550.GB3047@thinkpad>
+References: <20230712103213.101770-1-manivannan.sadhasivam@linaro.org>
+ <20230712103213.101770-14-manivannan.sadhasivam@linaro.org>
+ <e6a5129a-db07-977d-2ecd-328a52cbcdc0@linaro.org>
+ <20230712163406.GG102757@thinkpad>
+ <CAA8EJpovHr1qxepVprk6UvnhKe+nu4VuziyKKgjV3UzommFz6g@mail.gmail.com>
+ <20230713040918.jnf5oqiwymrdnrmq@vireshk-i7>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230713040918.jnf5oqiwymrdnrmq@vireshk-i7>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -96,25 +87,73 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
->--------- Original Message ---------
->Sender : David Heidelberg=C2=A0<david=40ixit.cz>=0D=0A>Date=20=20=20:=2020=
-23-07-13=2009:25=20(GMT+9)=0D=0A>Title=20=20:=20=5BPATCH=5D=20dt-bindings:=
-=20extcon:=20extcon-usb-gpio:=20convert=20to=20yaml=20format=0D=0A>=C2=A0=
-=0D=0A>Signed-off-by:=20David=20Heidelberg=20<david=40ixit.cz>=0D=0A=0D=0AA=
-cked-by:=20MyungJoo=20Ham=20<myungjoo.ham=40samsung.com>=0D=0A=0D=0A>---=0D=
-=0A>=20.../bindings/extcon/extcon-usb-gpio.txt=C2=A0=20=C2=A0=20=C2=A0=20=
-=20=7C=2021=20---------=0D=0A>=20.../bindings/extcon/extcon-usb-gpio.yaml=
-=C2=A0=20=C2=A0=20=C2=A0=20=7C=2045=20+++++++++++++++++++=0D=0A>=202=20file=
-s=20changed,=2045=20insertions(+),=2021=20deletions(-)=0D=0A>=20delete=20mo=
-de=20100644=20Documentation/devicetree/bindings/extcon/extcon-usb-gpio.txt=
-=0D=0A>=20create=20mode=20100644=20Documentation/devicetree/bindings/extcon=
-/extcon-usb-gpio.yaml=0D=0A>=0D=0A>diff=20--git=20a/Documentation/devicetre=
-e/bindings/extcon/extcon-usb-gpio.txt=20b/Documentation/devicetree/bindings=
-/extcon/extcon-usb-gpio.txt=0D=0A>deleted=20file=20mode=20100644=0D=0A>inde=
-x=20dfc14f71e81f..000000000000=0D=0A>---=20a/Documentation/devicetree/bindi=
-ngs/extcon/extcon-usb-gpio.txt=0D=0A>+++=20/dev/null=0D=0A=5B=5D=0D=0A>diff=
-=20--git=20a/Documentation/devicetree/bindings/extcon/extcon-usb-gpio.yaml=
-=20b/Documentation/devicetree/bindings/extcon/extcon-usb-gpio.yaml=0D=0A>ne=
-w=20file=20mode=20100644=0D=0A>index=20000000000000..b345745013a2=0D=0A>---=
-=20/dev/null=0D=0A>+++=20b/Documentation/devicetree/bindings/extcon/extcon-=
-usb-gpio.yaml=0D=0A=5B=5D=0D=0A
+On Thu, Jul 13, 2023 at 09:39:18AM +0530, Viresh Kumar wrote:
+> On 12-07-23, 19:48, Dmitry Baryshkov wrote:
+> > On Wed, 12 Jul 2023 at 19:34, Manivannan Sadhasivam
+> > <manivannan.sadhasivam@linaro.org> wrote:
+> > > On Wed, Jul 12, 2023 at 04:15:12PM +0300, Dmitry Baryshkov wrote:
+> > > > On 12/07/2023 13:32, Manivannan Sadhasivam wrote:
+> 
+> > > > > +static int ufshcd_opp_config_clks(struct device *dev, struct opp_table *opp_table,
+> > > > > +                             struct dev_pm_opp *opp, void *data,
+> > > > > +                             bool scaling_down)
+> > > > > +{
+> > > > > +   struct ufs_hba *hba = dev_get_drvdata(dev);
+> > > > > +   struct list_head *head = &hba->clk_list_head;
+> > > > > +   struct ufs_clk_info *clki;
+> > > > > +   unsigned long freq;
+> > > > > +   u8 idx = 0;
+> > > > > +   int ret;
+> > > > > +
+> > > > > +   list_for_each_entry(clki, head, list) {
+> > > > > +           if (!IS_ERR_OR_NULL(clki->clk)) {
+> > > > > +                   freq = dev_pm_opp_get_freq_indexed(opp, idx++);
+> > > > > +
+> > > > > +                   /* Do not set rate for clocks having frequency as 0 */
+> > > > > +                   if (!freq)
+> > > > > +                           continue;
+> > > >
+> > > > Can we omit these clocks from the opp table? I don't think they serve any
+> > > > purpose.
+> > > >
+> > >
+> > > No, we cannot. OPP requires the clocks and opp-hz to be of same length.
+> 
+> I am okay with having a patch for the OPP core to modify this
+> behavior, as I told privately earlier.
+> 
+> > > And we
+> > > cannot omit those clocks as well since linux needs to gate control them.
+> > 
+> > Hmm, I thought we push the list of "interesting" clocks through
+> > config->clock_names.
+> 
+> Yes, another way to solve this would be keep the interesting clocks in
+> the beginning in "clock-names" field and let the platform pass only
+> those to the OPP core.
+> 
+> > >
+> > > > Maybe it would even make sense to move this function to drivers/opp then, as
+> > > > it will be generic enough.
+> > > >
+> > >
+> > > There is already a generic function available in OPP core. But we cannot use it
+> > > as we need to skip setting 0 freq and that's not applicable in OPP core as
+> > > discussed with Viresh offline.
+> > 
+> > Ack.
+> 
+> I am okay with either of the solutions, it is for you guys to decide
+> what works better for your platform.
+> 
+
+We can settle with this custom callback for now. If there are drivers in the
+future trying to do the same (skipping 0 freq) then we can generalize.
+
+- Mani
+
+> -- 
+> viresh
+
+-- 
+மணிவண்ணன் சதாசிவம்
