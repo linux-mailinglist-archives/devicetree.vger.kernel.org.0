@@ -2,78 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 601BD751AA9
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 10:00:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C59EC751ABA
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 10:03:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233560AbjGMIAz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jul 2023 04:00:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39756 "EHLO
+        id S233092AbjGMIDd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jul 2023 04:03:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39874 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233746AbjGMIAa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jul 2023 04:00:30 -0400
-Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::222])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77F663A96;
-        Thu, 13 Jul 2023 00:59:28 -0700 (PDT)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 0898640003;
-        Thu, 13 Jul 2023 07:59:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1689235159;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=Ns0g2x/HP1fLB+xSQBeMwCrjXfs2Pl1Rj64uL455UgE=;
-        b=EldaKwafz3O/wp0uatKayVJ96yu26PsAdFvBGj0+bcjNbmPvmYTzOBBZp97PX+ginQDyNb
-        Ir5iLYF/wI12ZM9iyNDeVFSY4xO9GqlPxA8ZtwgzNl3Rx8dz7D3uOGwtlJPSN8OY5saRP4
-        SK8PXkrOQzYkf3DmNi7XNPRwEn9+8mZJPGIuLWRn3Wxa00EpzGkcGbAeOjlsDcZH0eNlb0
-        HyAPWrQpPsJQwSiTSzbHOqWXsP8JZJOOtF2LGOCpkjT1jilP6XvaK48kVDi0QgeA3VNDt6
-        Ry9wPnR3AXn7DGDDWz+IIX71OAbsUsR9heCmTECyR7xNIj/dPSh3hp66QCUrxw==
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Neil Armstrong <neil.armstrong@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+        with ESMTP id S233379AbjGMICh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jul 2023 04:02:37 -0400
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 375D1420C;
+        Thu, 13 Jul 2023 01:00:56 -0700 (PDT)
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36D7NZTv002471;
+        Thu, 13 Jul 2023 09:59:52 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
+ mime-version : subject : to : references : from : cc : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=G/5P+GBYTXDjapoJpeo3kbVedPpgVPQ0maCG9CHv5+Q=;
+ b=HWz26JpNsdDJbJQoAb+xal5sc8dUbPMpZmAR/YzfV2icOKFol1B4tnKWHatZblUVB8+h
+ uRuScfuCSr4bG0QgV3S8E/DnOY9EC5a3kZl9B91ZbRRPhrk9MDijmBHIhXdm+9DLYEJB
+ 1/0sCeQUmsVZsiBc9azZcemNaAs3fbScUqJFlmPRoecUmqWfvwdd6EE7BeKV2VI5G9mv
+ BOijjoSqYCpU8NnL3CJZJEq2Xmt1SEaizoKqgTd7jd+I7+A4/0q8WpryHJEtR54Id8rB
+ v5qU7/jAUzEqZ6LWd17pu4xzRqA/3HIqxlOX0GqHXApIwd2EveX4xIwj5Wipm7Z7vlNb Xw== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3rtcud08ue-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 13 Jul 2023 09:59:52 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id AB4FC100058;
+        Thu, 13 Jul 2023 09:59:49 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id A3B922138CC;
+        Thu, 13 Jul 2023 09:59:49 +0200 (CEST)
+Received: from [10.201.22.9] (10.201.22.9) by SHFDAG1NODE3.st.com
+ (10.75.129.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Thu, 13 Jul
+ 2023 09:59:49 +0200
+Message-ID: <050aa1fb-34ab-b9e0-7772-af53ec32d312@foss.st.com>
+Date:   Thu, 13 Jul 2023 09:59:48 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.0
+Subject: Re: [PATCH 2/7] crypto: stm32 - add new algorithms support
+To:     Linus Walleij <linus.walleij@linaro.org>
+References: <20230706073719.1156288-1-thomas.bourgoin@foss.st.com>
+ <20230706073719.1156288-3-thomas.bourgoin@foss.st.com>
+ <CACRpkdaHn8fhZtuhU4sXHK1xoxO3-xYg_Xb=3=bX8i-uJM9KDA@mail.gmail.com>
+ <a584c152-329e-9c79-ec62-795485302a55@foss.st.com>
+ <CACRpkdYStm_dxo-FMo4Kdw_Lm3iG+xppf7O5W6cxtoiRy1DOsw@mail.gmail.com>
+From:   Thomas BOURGOIN <thomas.bourgoin@foss.st.com>
+CC:     Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S . Miller" <davem@davemloft.net>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
         Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Andy Shevchenko <andy@kernel.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        Marc Zyngier <maz@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
-        netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-oxnas@groups.io,
-        Arnd Bergmann <arnd@arndb.de>,
-        Daniel Golle <daniel@makrotopia.org>
-Subject: Re: [PATCH v2 05/15] nand: oxnas_nand: remove obsolete raw nand driver
-Date:   Thu, 13 Jul 2023 09:59:13 +0200
-Message-Id: <20230713075913.486714-1-miquel.raynal@bootlin.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To:  <20230630-topic-oxnas-upstream-remove-v2-5-fb6ab3dea87c@linaro.org>
-References: 
-MIME-Version: 1.0
-X-linux-mtd-patch-notification: thanks
-X-linux-mtd-patch-commit: b'ecdaf0ee79156ce0c103cc1a7e38634fa0de6a5a'
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Lionel Debieve <lionel.debieve@foss.st.com>,
+        <linux-crypto@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+In-Reply-To: <CACRpkdYStm_dxo-FMo4Kdw_Lm3iG+xppf7O5W6cxtoiRy1DOsw@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-GND-Sasl: miquel.raynal@bootlin.com
+X-Originating-IP: [10.201.22.9]
+X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE3.st.com
+ (10.75.129.71)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-07-13_04,2023-07-11_01,2023-05-22_02
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,17 +84,22 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 2023-06-30 at 16:58:30 UTC, Neil Armstrong wrote:
-> Due to lack of maintenance and stall of development for a few years now,
-> and since no new features will ever be added upstream, remove support
-> for OX810 and OX820 nand.
-> 
-> Acked-by: Linus Walleij <linus.walleij@linaro.org>
-> Acked-by: Arnd Bergmann <arnd@arndb.de>
-> Acked-by: Daniel Golle <daniel@makrotopia.org>
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> Acked-by: Miquel Raynal <miquel.raynal@bootlin.com>
+Hi Linus,
 
-Applied to https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git nand/next, thanks.
+On 7/13/23 00:56, Linus Walleij wrote:
+> Yes this fixes the bug and the tests pass fine 😄
 
-Miquel
+Great news
+
+> I wonder why SHA1 was affected? Same codepath?
+
+Yes the number of CSR to save is the same for SHA256 and SHA1. You can 
+look at the 'Context swapping' chapter (47.3.3) in the reference manual 
+for UX500. There is a note at the end telling that you do not have to 
+save all 54 register if you do HASH operation, only 38 are necessary :
+  > If the context swap does not involve HMAC operations, registers 
+cs_rk0 to cs_rk7 and
+> cs_rh0 to cs_rh7 can be ignored
+Best regards,
+
+Thomas
