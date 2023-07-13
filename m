@@ -2,143 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3561E75153B
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 02:25:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CA3437515CB
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 03:27:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231859AbjGMAZj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jul 2023 20:25:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39144 "EHLO
+        id S232341AbjGMB1G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jul 2023 21:27:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59274 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233368AbjGMAZa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 20:25:30 -0400
-Received: from ixit.cz (ip-89-177-23-149.bb.vodafone.cz [89.177.23.149])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 182A510EC;
-        Wed, 12 Jul 2023 17:25:28 -0700 (PDT)
-Received: from newone.lan (unknown [10.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by ixit.cz (Postfix) with ESMTPSA id 4F826160C4E;
-        Thu, 13 Jul 2023 02:25:26 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-        t=1689207926;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=o99awW2/5nshzVGu2kPPy6jzqmm9Okff9ZDqEfq4a0M=;
-        b=LQigs0oGR4PjrhwnXTBaI5eGF4ZFONXw6AULqTAO2Pg4atckzbtbgT1U9+8m4hAL5Cr+BV
-        UaGG2vI4AcHEZcHOyoRn/ZaPN+6J+DeP6Dq3oM2TOXaYp6bqHsp0lsDNFjO/s+YJ2mQSrh
-        +MgADUZwLfrUidc1tG9WLm7nc+gAJ8I=
-From:   David Heidelberg <david@ixit.cz>
-To:     MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S231791AbjGMB1F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 21:27:05 -0400
+Received: from mg.richtek.com (mg.richtek.com [220.130.44.152])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id D12451992;
+        Wed, 12 Jul 2023 18:27:01 -0700 (PDT)
+X-MailGates: (SIP:2,PASS,NONE)(compute_score:DELIVER,40,3)
+Received: from 192.168.10.47
+        by mg.richtek.com with MailGates ESMTPS Server V6.0(2932553:0:AUTH_RELAY)
+        (envelope-from <cy_huang@richtek.com>)
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256/256); Thu, 13 Jul 2023 09:26:42 +0800 (CST)
+Received: from ex4.rt.l (192.168.10.47) by ex4.rt.l (192.168.10.47) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.25; Thu, 13 Jul
+ 2023 09:26:41 +0800
+Received: from linuxcarl2.richtek.com (192.168.10.154) by ex4.rt.l
+ (192.168.10.45) with Microsoft SMTP Server id 15.2.1118.25 via Frontend
+ Transport; Thu, 13 Jul 2023 09:26:41 +0800
+Date:   Thu, 13 Jul 2023 09:26:41 +0800
+From:   ChiYuan Huang <cy_huang@richtek.com>
+To:     Sebastian Reichel <sre@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>
-Cc:     David Heidelberg <david@ixit.cz>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH] dt-bindings: extcon: extcon-usb-gpio: convert to yaml format
-Date:   Thu, 13 Jul 2023 02:25:18 +0200
-Message-Id: <20230713002519.109392-1-david@ixit.cz>
-X-Mailer: git-send-email 2.40.1
+        Conor Dooley <conor+dt@kernel.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Allen Chiang <allen_chiang@richtek.com>,
+        "open list:POWER SUPPLY CLASS/SUBSYSTEM and DRIVERS" 
+        <linux-pm@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Subject: Re: [PATCH RESEND v4 0/3] Add Richtek RT9759 smart cap divider
+ charger support
+Message-ID: <20230713012641.GB2003@linuxcarl2.richtek.com>
+References: <1688371229-1089-1-git-send-email-cy_huang@richtek.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        RDNS_DYNAMIC,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <1688371229-1089-1-git-send-email-cy_huang@richtek.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Signed-off-by: David Heidelberg <david@ixit.cz>
----
- .../bindings/extcon/extcon-usb-gpio.txt       | 21 ---------
- .../bindings/extcon/extcon-usb-gpio.yaml      | 45 +++++++++++++++++++
- 2 files changed, 45 insertions(+), 21 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/extcon/extcon-usb-gpio.txt
- create mode 100644 Documentation/devicetree/bindings/extcon/extcon-usb-gpio.yaml
+On Mon, Jul 03, 2023 at 04:00:26PM +0800, cy_huang@richtek.com wrote:
+> From: ChiYuan Huang <cy_huang@richtek.com>
+> 
+> This patch set is to add Richtek RT9759 smart cap divider charger.
+> 
+> The RT9759 is a high efficiency and high charge current charger.
+> The efficiency is up to 97.8% when VBAT=4.2V, IBAT=2.5A, and the maximum
+> charge current is up to 8A. The device integrates smart cap divider topology
+> with a dual-phase charge pump core and 9 channel high speed ADCs to monitor
+> the charging process.
+>
+Hi, 
+   Did I miss to mail loop any reviewer or cc mailing list?
 
-diff --git a/Documentation/devicetree/bindings/extcon/extcon-usb-gpio.txt b/Documentation/devicetree/bindings/extcon/extcon-usb-gpio.txt
-deleted file mode 100644
-index dfc14f71e81f..000000000000
---- a/Documentation/devicetree/bindings/extcon/extcon-usb-gpio.txt
-+++ /dev/null
-@@ -1,21 +0,0 @@
--USB GPIO Extcon device
--
--This is a virtual device used to generate USB cable states from the USB ID pin
--connected to a GPIO pin.
--
--Required properties:
--- compatible: Should be "linux,extcon-usb-gpio"
--
--Either one of id-gpio or vbus-gpio must be present. Both can be present as well.
--- id-gpio: gpio for USB ID pin. See gpio binding.
--- vbus-gpio: gpio for USB VBUS pin.
--
--Example: Examples of extcon-usb-gpio node in dra7-evm.dts as listed below:
--	extcon_usb1 {
--		compatible = "linux,extcon-usb-gpio";
--		id-gpio = <&gpio6 1 GPIO_ACTIVE_HIGH>;
--	}
--
--	&omap_dwc3_1 {
--		extcon = <&extcon_usb1>;
--	};
-diff --git a/Documentation/devicetree/bindings/extcon/extcon-usb-gpio.yaml b/Documentation/devicetree/bindings/extcon/extcon-usb-gpio.yaml
-new file mode 100644
-index 000000000000..b345745013a2
---- /dev/null
-+++ b/Documentation/devicetree/bindings/extcon/extcon-usb-gpio.yaml
-@@ -0,0 +1,45 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/extcon/extcon-usb-gpio.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: USB GPIO Extcon device
-+
-+maintainers:
-+  - Linus Walleij <linus.walleij@linaro.org>
-+
-+description:
-+  This is a virtual device used to generate USB cable states
-+  from the USB ID pin connected to a GPIO pin.
-+
-+properties:
-+  compatible:
-+    const: linux,extcon-usb-gpio
-+
-+  id-gpio:
-+    description: GPIO for USB ID pin.
-+
-+  vbus-gpio:
-+    description: GPIO for USB VBUS pin.
-+
-+required:
-+  - compatible
-+
-+anyOf:
-+  - required:
-+      - id-gpio
-+  - required:
-+      - vbus-gpio
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    extcon_usb1 {
-+        compatible = "linux,extcon-usb-gpio";
-+        id-gpio = <&gpio6 1 GPIO_ACTIVE_HIGH>;
-+    };
-+
-+...
--- 
-2.40.1
+I trace the mail record. This patch series is already pending above one half year.
 
+Do I need to still resend the patch series or restart a new one from v1?
+ 
+> Since v4:
+> - Since it's 2023 now, change date from 2022 to 2023 for source code and ABI.
+> 
+> Since v3:
+> - Fix 0002 patch title typo (from 'rt9471' to 'rt9759')
+> - Remove unused R_VAC_OVP range.
+> - Refer to ABI document, use 'status' to control battery charging, not 'online'
+> - Refer to ABI document, use 'online' to indicate bus state
+> 
+> Since v2:
+> - Add Reviewed-by tag for dt-binding patch
+> - Change ABI document date from Oct 2022 to Nov 2022 and KernelVersion
+>   from 6.1 to 6.2
+> 
+> ChiYuan Huang (3):
+>   dt-bindings: power: supply: Add Richtek RT9759 smart cap divider
+>     charger
+>   power: supply: Add Richtek RT9759 smart cap divider charger
+>   Documentation: power: rt9759: Document exported sysfs entries
+> 
+>  .../ABI/testing/sysfs-class-power-rt9759      |  37 ++
+>  .../bindings/power/supply/richtek,rt9759.yaml |  61 ++
+>  drivers/power/supply/Kconfig                  |  15 +
+>  drivers/power/supply/Makefile                 |   1 +
+>  drivers/power/supply/rt9759.c                 | 613 ++++++++++++++++++
+>  5 files changed, 727 insertions(+)
+>  create mode 100644 Documentation/ABI/testing/sysfs-class-power-rt9759
+>  create mode 100644 Documentation/devicetree/bindings/power/supply/richtek,rt9759.yaml
+>  create mode 100644 drivers/power/supply/rt9759.c
+> 
+> 
+> base-commit: a901a3568fd26ca9c4a82d8bc5ed5b3ed844d451
+> -- 
+> 2.40.1
+> 
