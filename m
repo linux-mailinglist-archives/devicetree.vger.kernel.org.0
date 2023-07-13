@@ -2,91 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 31174751F20
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 12:41:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AFA9F751F2E
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 12:43:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233269AbjGMKlv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jul 2023 06:41:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42532 "EHLO
+        id S234219AbjGMKnQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jul 2023 06:43:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43082 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232129AbjGMKlu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jul 2023 06:41:50 -0400
-Received: from sender4-op-o15.zoho.com (sender4-op-o15.zoho.com [136.143.188.15])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB5471BFA;
-        Thu, 13 Jul 2023 03:41:48 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1689244904; cv=none; 
-        d=zohomail.com; s=zohoarc; 
-        b=HWGAHfq2NA0fA/S8+tFTf3PF3oHtqnKv6qYKTziQL6WfHGDgwfo6FWYHzCve15UCS1vMARGO0tiYKZBAzLey3lc+NZ78Z5hc5Tt0w66wd770MMBujs5XgWhkFCufdvgPd8+DYwjSqUmkATWhDpHBHrwAu9H2p8PPXELy8jMYQeA=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-        t=1689244904; h=Content-Type:Content-Transfer-Encoding:Date:From:MIME-Version:Message-ID:Subject:To; 
-        bh=lEvsxzz+qJghQc8kzyg734nbqEHR6EFKqv5AJo4kZ2M=; 
-        b=eZeTPbCSWVujqjEwRZ4mKFVhgZGWpNPaerQlwncM2gObQP7K3bbRiwgh53gBVdPbxWH2prQG7mLg5EjEzhzujFJSefxgAZU8vytnz7Rj++Q64fAaFfSZu/5+HP09FtKhaEdZAa4nXp8GcG2zISbc2KGgRzN09YH/BNriJA34y1E=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-        dkim=pass  header.i=linux.beauty;
-        spf=pass  smtp.mailfrom=me@linux.beauty;
-        dmarc=pass header.from=<me@linux.beauty>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1689244904;
-        s=zmail; d=linux.beauty; i=me@linux.beauty;
-        h=Date:Date:From:From:To:To:Message-ID:In-Reply-To:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To:Cc;
-        bh=lEvsxzz+qJghQc8kzyg734nbqEHR6EFKqv5AJo4kZ2M=;
-        b=Zzr/IXD5lIGPVJUexUifXLTNgDhLmOoj/T+3Ub2XCvGUDK7opaP8gSjFThySbeMI
-        R5fJj2Oqo73uPBfuIL7OQq5WrWdhPGOQ5r3ZT8jOSSrvjIXmTp85BlkT1UtTpnBs7Um
-        QHVZWnNa253PfEaKH0Hj7MsqXvgFYNoblIDfKHuM=
-Received: from mail.zoho.com by mx.zohomail.com
-        with SMTP id 1689244901917389.12497445346855; Thu, 13 Jul 2023 03:41:41 -0700 (PDT)
-Date:   Thu, 13 Jul 2023 18:41:41 +0800
-From:   Li Chen <me@linux.beauty>
-To:     "Rob Herring" <robh+dt@kernel.org>,
-        "Frank Rowand" <frowand.list@gmail.com>,
-        "devicetree" <devicetree@vger.kernel.org>,
-        "linux-kernel" <linux-kernel@vger.kernel.org>
-Message-ID: <1894ed7a1a9.f5e49d5d141371.2744760538860302017@linux.beauty>
-In-Reply-To: 
-Subject: [PATCH] of: property: fw_devlink: fixup return value check of
-  strcmp_suffix in parse_gpios
+        with ESMTP id S234131AbjGMKnP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jul 2023 06:43:15 -0400
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CCD52101
+        for <devicetree@vger.kernel.org>; Thu, 13 Jul 2023 03:43:13 -0700 (PDT)
+Received: by mail-wr1-x42c.google.com with SMTP id ffacd0b85a97d-3143798f542so667550f8f.2
+        for <devicetree@vger.kernel.org>; Thu, 13 Jul 2023 03:43:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1689244991; x=1691836991;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=vjSQrGgpifABN2+Tqa28IPOmkn8g3hXtcUjb3gjMzpE=;
+        b=g5GkO/ls/kYH9vWlBFZrSm+lN6F5ll50WGXLMxcUf0uESccn6r+sqGeZZZkcCF4762
+         0vk6djImGyZBdB4RhUsWdpRXzOQAAytOD+W+bOm3VElr/zv9KecSNq0SUBWcornzKG70
+         suRx4XdHuPMnELtb2s2VSYkrL5bnRzMQh9NpOpiOy9Lwi8qsaOIpOnYyf/YLTEf0lBY3
+         +PNiys4Oqs+Y3tYuRwccE+3b3zoipoaWVQi75OP1EnihbQRfn4vNDBjEJaMRyFp5O3OG
+         YebU/exORsqOI70tHQmpBbebBsMI0t+WfOq4dn4V09XuTtc4ebWGFDG10cXbDYPPgYYn
+         bvqQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689244991; x=1691836991;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=vjSQrGgpifABN2+Tqa28IPOmkn8g3hXtcUjb3gjMzpE=;
+        b=aPcwo0LN0+nCl2EzerEKDdAMSp5ArCKvzWnmgHreO0fUQGs9Mv0tUTRql4sR4Mt1f5
+         zsgghB0RNl7Onz08BQ8YxPVKKbhbExYDibXGnD2sG16igpCnwbD0grIuwvtbe6cjR0/W
+         Gz2XXcKpgetRtsQUKzlLorZRMl+q0boJ26EB3i5g3AZDLwlIYqEqL84GO/f64rKLEIbC
+         nQjxGVLzbDrXecJafh5KI8hLIAz8rlRnOIu6id7EOSogGAcSjWAYjwwt/4F37+ZCeCZr
+         Wyt0bcM3FYURy10hLvWu+KHao5YVWSfjx1HUg2z59+jRIdteDlUNpSlA2eEiK0kpfKtM
+         ay3w==
+X-Gm-Message-State: ABy/qLYWY64rBh08Lt4Odjsoi4P6oTTsBS2B5H9YsoTA3gIxiym11LBj
+        T5HcLbxS8qOmX28pBI0EgifJtQ==
+X-Google-Smtp-Source: APBJJlEPziON1PD3aE57V4CJY4W5KzhUlKzeMzf4BNM8sBOOvTnEwKfgIq9PPdsa/SEsivNw3tYFFw==
+X-Received: by 2002:a05:6000:11c3:b0:313:f29f:5eb3 with SMTP id i3-20020a05600011c300b00313f29f5eb3mr1206111wrx.32.1689244991501;
+        Thu, 13 Jul 2023 03:43:11 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id k3-20020a5d66c3000000b00314398e4dd4sm7562311wrw.54.2023.07.13.03.43.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 13 Jul 2023 03:43:10 -0700 (PDT)
+Message-ID: <4fdc7ee1-e612-9be2-55b7-bb8ee9cdb161@linaro.org>
+Date:   Thu, 13 Jul 2023 12:43:07 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCHv2 2/2] ARM: dts: at91: sam9x60: fix the SOC detection
+Content-Language: en-US
+To:     Durai.ManickamKR@microchip.com, Hari.PrasathGE@microchip.com,
+        Balamanikandan.Gunasundar@microchip.com,
+        Manikandan.M@microchip.com, Varshini.Rajendran@microchip.com,
+        Dharma.B@microchip.com, Nayabbasha.Sayed@microchip.com,
+        Balakrishnan.S@microchip.com, Cristian.Birsan@microchip.com,
+        Nicolas.Ferre@microchip.com, alexandre.belloni@bootlin.com,
+        davem@davemloft.net, arnd@arndb.de, olof@lixom.net, soc@kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Kavyasree.Kotagiri@microchip.com,
+        Horatiu.Vultur@microchip.com, robh+dt@kernel.org, andrew@lunn.ch,
+        michael@walle.cc, Jerry.Ray@microchip.com, conor+dt@kernel.org,
+        jesper.nilsson@axis.com, andre.przywara@arm.com, ada@thorsis.com,
+        radu_nicolae.pirea@upb.ro, richard.genoud@gmail.com,
+        gregkh@linuxfoundation.org, linux-spi@vger.kernel.org,
+        linux-serial@vger.kernel.org
+References: <20230713095111.335346-1-durai.manickamkr@microchip.com>
+ <20230713095111.335346-3-durai.manickamkr@microchip.com>
+ <204ad135-5358-35d0-2df2-9495acf0432d@linaro.org>
+ <9a29d928-d1e6-ea55-c5dc-0a884978b8df@microchip.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <9a29d928-d1e6-ea55-c5dc-0a884978b8df@microchip.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Importance: Medium
-User-Agent: Zoho Mail
-X-Mailer: Zoho Mail
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Li Chen <lchen@ambarella.com>
+On 13/07/2023 12:28, Durai.ManickamKR@microchip.com wrote:
+> 
+> On 13/07/23 15:33, Krzysztof Kozlowski wrote:
+>> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+>>
+>> On 13/07/2023 11:51, Durai Manickam KR wrote:
+>>> Remove the dbgu compatible strings in the UART submodule of the
+>>> flexcom for the proper SOC detection.
+>> Why?
+>>
+>>> Fixes: 99c808335877 (ARM: dts: at91: sam9x60: Add missing flexcom definitions)
+>> If this is a bugfix, then please clearly describe the bug and its impact.
+> Please check the coverletter (PATCHv2 0/2) for the real problem. But 
+> will try to explain the bug a bit more in the next set of patches.
 
-This commit addresses an issue where enabling fw_devlink=on was causing
-a PCIe malfunction, resulting in endpoints missing.
-After thorough investigation, it was determined that the root cause was
-an incorrect usage of strcmp_suffix in parse_gpios.
+Commit should stand on its own. Cover letters are usually not part of
+the commits.
 
-Fixes: d473d32c2fba ("of: property: fw_devlink: do not link ".*,nr-gpios"")
-Signed-off-by: Li Chen <lchen@ambarella.com>
----
- drivers/of/property.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/of/property.c b/drivers/of/property.c
-index ddc75cd50825..261eb8f3be08 100644
---- a/drivers/of/property.c
-+++ b/drivers/of/property.c
-@@ -1272,7 +1272,7 @@ DEFINE_SUFFIX_PROP(gpio, "-gpio", "#gpio-cells")
- static struct device_node *parse_gpios(struct device_node *np,
- 				       const char *prop_name, int index)
- {
--	if (!strcmp_suffix(prop_name, ",nr-gpios"))
-+	if (strcmp_suffix(prop_name, ",nr-gpios"))
- 		return NULL;
- 
- 	return parse_suffix_prop_cells(np, prop_name, index, "-gpios",
--- 
-2.34.1
-
+Best regards,
+Krzysztof
 
