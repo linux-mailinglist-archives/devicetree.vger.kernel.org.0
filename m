@@ -2,91 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 009F3751A32
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 09:45:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C0470751A86
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 09:58:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232314AbjGMHpZ convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 13 Jul 2023 03:45:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57938 "EHLO
+        id S232882AbjGMH6U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jul 2023 03:58:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36750 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231238AbjGMHpY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jul 2023 03:45:24 -0400
-Received: from mail-yb1-f169.google.com (mail-yb1-f169.google.com [209.85.219.169])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E91BD26BB;
-        Thu, 13 Jul 2023 00:45:06 -0700 (PDT)
-Received: by mail-yb1-f169.google.com with SMTP id 3f1490d57ef6-cb37a0ea5b3so234950276.0;
-        Thu, 13 Jul 2023 00:45:06 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689234305; x=1691826305;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=SG3PKVPC3LXczbcdw4qaLpSGd2SI5ZbZgcR7us1BJMA=;
-        b=BpoQ3LjelVmCSi4TOb3wwISUoEiFraYRi//En+4xOkAj+dN9KdCfsfS30wnGwcBUSe
-         E7RV3BI4SUi/dwBYaRrOk2XU5Y4PyJfxOfanyRE8Dvp8Fd3ea+K/S/eXjrCquaDsSfve
-         OXZJvGMRGMQLCYND6SVikO71qRLl8jZf+1ooa8kTmbo6OqeCcLFWBfLt5/WAYKQlM4+3
-         XfZe6gAAkcNPzBCozTNQQyULesbeaTUq+AxDGERhnG+P4WUYzMXdDMdtOTWkAyaeJjZz
-         REU1jqAr6M4jHgaw6yH8gpH/N3o2fLWeKx3XGg8Ow/z/IPC2muHq3Wucj00VZ5oCr9hJ
-         +fXQ==
-X-Gm-Message-State: ABy/qLaD4J3460IMYTtekq9po4By32ANp2sWRSfiVUsQeolXwJNHpLid
-        aIMvdA+W5oybwCD7EFGg+WbOkdUCvB37ljS4
-X-Google-Smtp-Source: APBJJlGSOB2bMl83Dxb6f55d30Buz98iO4A2DfjDriBdJo0lybGGipCExURmkr/irWYNjjdangCe2A==
-X-Received: by 2002:a25:738b:0:b0:ca3:d53c:fff with SMTP id o133-20020a25738b000000b00ca3d53c0fffmr1097843ybc.1.1689234305535;
-        Thu, 13 Jul 2023 00:45:05 -0700 (PDT)
-Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com. [209.85.219.173])
-        by smtp.gmail.com with ESMTPSA id x7-20020a5b0947000000b00c5ec980da48sm1271130ybq.9.2023.07.13.00.45.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 13 Jul 2023 00:45:05 -0700 (PDT)
-Received: by mail-yb1-f173.google.com with SMTP id 3f1490d57ef6-cb37a0ea5b3so234922276.0;
-        Thu, 13 Jul 2023 00:45:05 -0700 (PDT)
-X-Received: by 2002:a0d:ea44:0:b0:580:83fe:25cc with SMTP id
- t65-20020a0dea44000000b0058083fe25ccmr2732248ywe.5.1689234304838; Thu, 13 Jul
- 2023 00:45:04 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230712151342.82690-1-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20230712151342.82690-1-biju.das.jz@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 13 Jul 2023 09:44:51 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdUJP2MMp25k4t4=cE6My6hnH1=H_FrSn2ekmbcUYSc3Jg@mail.gmail.com>
-Message-ID: <CAMuHMdUJP2MMp25k4t4=cE6My6hnH1=H_FrSn2ekmbcUYSc3Jg@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: renesas: rzg2lc-smarc-som: Enable PMIC and
- built-in RTC
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S233210AbjGMH54 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jul 2023 03:57:56 -0400
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::227])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39058210B
+        for <devicetree@vger.kernel.org>; Thu, 13 Jul 2023 00:57:33 -0700 (PDT)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id E680120003;
+        Thu, 13 Jul 2023 07:57:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1689235052;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=2F/bUME+pf0s7vBUvHy7WZs0ckzsbwRu5dNQlGBwthg=;
+        b=P8ftI59+SD0TPQod/rhciM+WFNJdIxxKI78PZ+JLD87iF4G1tAAG8gtr5QVEyEboB/3ZO8
+        3+ogFfV9VEIe1Qn1w4zB+gPnU1gFPPHC0/aKPfw61ikTeTdW/51WUeYFgVvNzUbavGmHJg
+        S1vKdTe5oUmRlhPbdV2gJ0N6CcqcaXfyUpRek8LM1m485q/LTcDqtdGz0fwi0Ttt6skgiL
+        q58R3IS2fdSkNCYeYHo3SX9B2nSF5eiWhqmVQHCc3sCXxhZNYQbWAOKL2kdpfoba1TmaXn
+        18VPEDPXf9YjbIdmqfDlKzgC4aapmc9yNV3KAYLCtbRH43Ie1Ww1qKdyxqqIDw==
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+        devicetree@vger.kernel.org
+Cc:     Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tudor Ambarus <tudor.ambarus@linaro.org>,
+        Pratyush Yadav <pratyush@kernel.org>,
+        Michael Walle <michael@walle.cc>,
+        linux-mtd@lists.infradead.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Maxime Ripard <mripard@kernel.org>
+Subject: Re: [PATCH v2] dt-bindings: mtd: Fix nand-controller.yaml license
+Date:   Thu, 13 Jul 2023 09:57:29 +0200
+Message-Id: <20230713075729.485928-1-miquel.raynal@bootlin.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230712151042.433593-1-miquel.raynal@bootlin.com>
+References: 
+MIME-Version: 1.0
+X-linux-mtd-patch-notification: thanks
+X-linux-mtd-patch-commit: b'2b42d718c7d7f4269d45fb58b4f74d7b2bfb08bd'
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 12, 2023 at 5:13 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> Enable PMIC RAA215300 and the built-in RTC on the RZ/G2LC SMARC
-> EVK.
->
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+On Wed, 2023-07-12 at 15:10:42 UTC, Miquel Raynal wrote:
+> Binding files should be dual licensed. This file was initially written
+> as a .txt file with no specific license, so was implicitely
+> GPLv2. Significant part of this file and its conversion into yaml were
+> written by Bootlin employees which agree to comply with the rules
+> regarding the dual licensing so let's fix the SPDX tag to reflect the
+> correct license by changing it from GPL to GPL + BSD-2-Clause.
+> 
+> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> Acked-by: Maxime Ripard <mripard@kernel.org>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v6.6.
+Applied to https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git nand/next.
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Miquel
