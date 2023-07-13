@@ -2,76 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B9D4751683
+	by mail.lfdr.de (Postfix) with ESMTP id A3164751684
 	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 04:55:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232130AbjGMCzp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jul 2023 22:55:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33402 "EHLO
+        id S232548AbjGMCzq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jul 2023 22:55:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33408 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229822AbjGMCzo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 22:55:44 -0400
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B3A119BE
-        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 19:55:42 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-9922d6f003cso41194266b.0
-        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 19:55:42 -0700 (PDT)
+        with ESMTP id S229822AbjGMCzp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jul 2023 22:55:45 -0400
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8D7B1BDA
+        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 19:55:43 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-992af8b3b1bso39821266b.1
+        for <devicetree@vger.kernel.org>; Wed, 12 Jul 2023 19:55:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689216941; x=1691808941;
+        d=linaro.org; s=google; t=1689216942; x=1691808942;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=OqHNrvvkveMwsMIqHlQIoLwl5eBjuqONVWnhr/JLhn4=;
-        b=eN3jdarnvR4nznoLzK5zUTHii6qCOqiXtRfjVHaIKMWuDMIfKvXB9YAaZN0nPQZHS2
-         jmRUIHLQkhWW9BGmgZtsOQHcveti4AuVEW/S9uGGT+wOUTQjND5SbxcxYKfB6RmcaLXs
-         nFyTSF2nebvS9+s1Mtpn5L4RxA/a7tQkd5CKYm7feh2z4QFSNczwcLbKK2VtNoMSKWMb
-         LtDwQ6cDPK/7p39M+mmIm66zaa85bP7YagJQaoj4rWoh9eRqYoLx8l4rn/G0fmDzF4KF
-         VusrS4GtDL5ZTsRL3EUP2R/sgV+Ra/+IBIZI7NjrgpLI1mpU1T1XOKWpgwunTN9EURO3
-         JImQ==
+        bh=kLlU58c++ci0IwqSkjxaHTSUcPb1zdpAeIzC2kjdIKM=;
+        b=BUNTBaE6LZt5r73fzC3XCFuLsZgsOT1IAJcT9VjwDbN8snUUYP1sEUvu6Qt76HZ4Zg
+         OwxWqOeNsG6U2s2NSrdUBLL8xhsSIi34mEjlpNIxzyeQZp/ddXhG7KnOJkKKEs34qJBA
+         tcFMCzGn4MCLJNv9swwhnkLRPzhlwJ1jU7HovZeRp8hN9GN+b2lsgQ42plEUsrAp7XCx
+         eLTSJBaIqw7Vf8bhJDh3X0ZWQWuetlnIm7cMIY5cCM9P894BH9tVxNemcVkjiv2Wyy54
+         +Io3GWchFGtwM+KBX222G93mTED7UKSdo1E2LyrXVNCaRCpbGDK25FLPCCD/4XXe4Md/
+         6KmA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689216941; x=1691808941;
+        d=1e100.net; s=20221208; t=1689216942; x=1691808942;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=OqHNrvvkveMwsMIqHlQIoLwl5eBjuqONVWnhr/JLhn4=;
-        b=Ld4IoUh2t8nUptidzX2Ip91P/KypSFxnnQYaO8LsXerDef70TKN/WFdlfatoiw+EGq
-         ZeK0RX6DhfvOXShtkq+HOLUt1OMJwVZZiuDWiIjMOwWsnERNCJpJsXYpeQUuAAsynnvU
-         3rAMnkLyUCbV7zhm3ehJ4b+r5I8OTinlxU0s5Xn1CADs/4Yz5zc1kNytEAk+zkDrJ0P9
-         717htx9Pb1NCPiQPl+plmCNOLRLPXeZ2cECvcq3ZfPlBhuFjLnprtORmaOJD3lxNG4O+
-         tee2ry0HL3JhldcTLAhITTRO/2OaCSxeam/7gG962KZuzGu4BPDUWzfm8FsvxSyJ4O3l
-         2b4w==
-X-Gm-Message-State: ABy/qLYkFkQPbT99mjwuPpzWiWUKj3pbJY7sg+VJqGhtsGK1HZ9Ghvl6
-        +gZQp5eBJzQgw99ksktWwNIO/g==
-X-Google-Smtp-Source: APBJJlGDnMuzqlM3S/oG7hu9iHGq/oNkTsE/4WQGNO7n9X4+zCDTU3xH98c4a1bZOahAZ8hZSg4SVQ==
-X-Received: by 2002:a17:906:2da:b0:994:30bf:5d4f with SMTP id 26-20020a17090602da00b0099430bf5d4fmr191988ejk.43.1689216940902;
-        Wed, 12 Jul 2023 19:55:40 -0700 (PDT)
+        bh=kLlU58c++ci0IwqSkjxaHTSUcPb1zdpAeIzC2kjdIKM=;
+        b=i1FE/ArtO651Nz6sgD6v3+Q4bTBsEd2g5ICYXQ30dvZ2B6l6tXNvPPIB2p/Ek4gqF4
+         ogT0qXLnofUdMCCoZoNuzkpg10K0broEmlpEzKOnCZxsexrKGD8onVPCHOTxf2GjZVE9
+         TGCTMy7VTBhp57dY0wqv36uSaJmyNqfpoJWHy8C0+xylKx9mLzyRHs0/yAB648ZU9Cg4
+         iqKe4P/9SepFc/KKL9j74gFrTBri2YUVQ404yfu+StbVRvJUVt30LLWrO7wlG5uHM4N/
+         bY+Dzp/I5DYzpTKdwj9x1Uh5ryolaCVx787AFTX/M+aHoDNa+/uHUF/gMwzB7p4m6Pds
+         077Q==
+X-Gm-Message-State: ABy/qLaN7Yxe3fJpMP2k3aSHJkjym1Bd/vjDTbzO1Wd+V+BK6GtFjYZT
+        Wznr5LFaLAbgiiB7A+NWcp0CiQ==
+X-Google-Smtp-Source: APBJJlFYMn/hMa04m/3HyPt1kQs3tR6WyEkeNn1QB7QSSGrd5pBpQej6DP/GuwOuNUdMOr5ZjXQoBA==
+X-Received: by 2002:a17:907:6025:b0:993:22a2:8158 with SMTP id fs37-20020a170907602500b0099322a28158mr120877ejc.61.1689216942405;
+        Wed, 12 Jul 2023 19:55:42 -0700 (PDT)
 Received: from 1.. ([79.115.63.146])
-        by smtp.gmail.com with ESMTPSA id gr19-20020a170906e2d300b0098e2eaec394sm3370236ejb.101.2023.07.12.19.55.38
+        by smtp.gmail.com with ESMTPSA id gr19-20020a170906e2d300b0098e2eaec394sm3370236ejb.101.2023.07.12.19.55.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Jul 2023 19:55:40 -0700 (PDT)
+        Wed, 12 Jul 2023 19:55:42 -0700 (PDT)
 From:   Tudor Ambarus <tudor.ambarus@linaro.org>
-To:     pratyush@kernel.org, miquel.raynal@bootlin.com, richard@nod.at,
-        vigneshr@ti.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
-Cc:     Tudor Ambarus <tudor.ambarus@linaro.org>, git@amd.com,
-        michael@walle.cc, linux-mtd@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        amitrkcian2002@gmail.com
-Subject: Re: [PATCH v4 0/2] mtd: spi-nor: Avoid setting SRWD bit in SR
-Date:   Thu, 13 Jul 2023 05:55:34 +0300
-Message-Id: <168921680625.27728.7198640017398565535.b4-ty@linaro.org>
+To:     Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Pratyush Yadav <pratyush@kernel.org>,
+        Michael Walle <michael@walle.cc>,
+        linux-mtd@lists.infradead.org,
+        Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Tudor Ambarus <tudor.ambarus@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: mtd: spi-nor: clarify the need for spi-nor compatibles
+Date:   Thu, 13 Jul 2023 05:55:35 +0300
+Message-Id: <168921680625.27728.11240136618925333880.b4-ty@linaro.org>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230630142233.63585-1-amit.kumar-mahapatra@amd.com>
-References: <20230630142233.63585-1-amit.kumar-mahapatra@amd.com>
+In-Reply-To: <20230616140054.2788684-1-miquel.raynal@bootlin.com>
+References: <20230616140054.2788684-1-miquel.raynal@bootlin.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1012; i=tudor.ambarus@linaro.org; h=from:subject:message-id; bh=TL4ydUNHMhdqUWLxKqFd7lLy6/tNy8U5gmeJJs96hZs=; b=owEBbQGS/pANAwAKAUtVT0eljRTpAcsmYgBkr2egmxlAykkZMsiy/cyeajbB6rZFaKpesMTmh Yq2b4bhul6JATMEAAEKAB0WIQQdQirKzw7IbV4d/t9LVU9HpY0U6QUCZK9noAAKCRBLVU9HpY0U 6cOvB/0e7UhW/YHvOwuKHQAjeP+VIVQrp+/QzlBBOeTrIbgqWMgMrMM/n5s5McDRv4JpX494XxJ 8TnIk2PifJVaM+qLC3p5UgQsvujGUsFoROBrpKfMxyrGeh4M5Vvg4Xqua1/D+6YDNVfGtEpHptZ 0V2UYr746KcBaa+ckfEtM4dvAm3Ij9Wn3t7UKpE/pTF5XtMQ7keQZ5vz133/vTv2oUp2rr6Q9FU 1Ke7UZ9/9Bno2Ha83CtRqUnOGxGQPoNYKf/kKd88NWp+JYJWq5/TlYd1pUMIztkKH98WP0Llrgv yxPiCp98V49f6xiBvlhnt9us6YmSm8hfwgbJCMc/YWhT5hia
+X-Developer-Signature: v=1; a=openpgp-sha256; l=867; i=tudor.ambarus@linaro.org; h=from:subject:message-id; bh=qQrf9UEl4mHPW7uYjAFEMB9b0BBwHqIyTsPDsR2h3mk=; b=owEBbQGS/pANAwAKAUtVT0eljRTpAcsmYgBkr2egyZ2R4+Mvk698dwEXY6GlaMZ18bERxOJDY aBqp0VccFqJATMEAAEKAB0WIQQdQirKzw7IbV4d/t9LVU9HpY0U6QUCZK9noAAKCRBLVU9HpY0U 6QhUB/9DOWFpM/PMJBKdEZGXzpjOlBDEtQppakwcE6ftjqQtApQcSiF33NkMhQ2Ts3M7eVuoDZQ x3/Zk+xmukkwKeje3dbmsJP6GoNFR1Z5XY7yKc4rYrPAW0pAG/tgLpP9zSVlx1dwYP6tcfDQNJn HBVwmW+zpyVvyZm5vXJwnSmpuy2b+bNstx7oolPgUl2xjZhJ6OuwMK2sD4RzmBrkqwdkkGjt4/M qAsH0wKGBkGYOV1OACviGl4nLdjjc2UbzcLXUgMPkbdohpDLGGMqmAF4fnIw0BVvaCKp8NcebnR BHJB4By13mDtzZnsE02HiuBUD862MCrPLSefT7wa/+OjF0ZU
 X-Developer-Key: i=tudor.ambarus@linaro.org; a=openpgp; fpr=280B06FD4CAAD2980C46DDDF4DB1B079AD29CF3D
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,24 +81,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 30 Jun 2023 19:52:31 +0530, Amit Kumar Mahapatra wrote:
-> Setting the status register write disable (SRWD) bit in the status
-> register (SR) with WP# signal of the flash not connected or wrongly tied to
-> GND (that includes internal pull-downs), will configure the SR permanently
-> as read-only. To avoid this a boolean type DT property "no-wp" is
-> introduced. If this property is defined, the spi-nor doesn't set the SRWD
-> bit in SR while performing flash protection operation.
+On Fri, 16 Jun 2023 16:00:54 +0200, Miquel Raynal wrote:
+> Most SPI NOR devices do not require a specific compatible, their ID can
+> in general be discovered with the JEDEC READ ID opcode. In this case,
+> only the "jedec,spi-nor" generic compatible is expected. Clarify this
+> information in the compatible description to (i) help device-tree
+> writers and (ii) prevent further attempts to extend this list with
+> useless information.
 > 
 > [...]
 
-Moved the of_property_read_bool() as suggested by Michael.
+[ta: s/JEDEC/JEDEC SFDP for clarity and s/JEDEC READ ID/READ ID as
+the opcode is not part of the JEDEC SFDP standard.]
+
 Applied to git://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git,
 spi-nor/next branch. Thanks!
 
-[1/2] dt-bindings: mtd: jedec, spi-nor: Add DT property to avoid setting SRWD bit in status register
-      https://git.kernel.org/mtd/c/cfc2928cb213
-[2/2] mtd: spi-nor: Avoid setting SRWD bit in SR if WP# signal not connected
-      https://git.kernel.org/mtd/c/18d7d01a0a0e
+[1/1] dt-bindings: mtd: spi-nor: clarify the need for spi-nor compatibles
+      https://git.kernel.org/mtd/c/4b0cb4e7ab2f
 
 Cheers,
 -- 
