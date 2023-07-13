@@ -2,107 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A67E57529F9
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 19:39:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 49DF97529FB
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 19:39:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232896AbjGMRjD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jul 2023 13:39:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57654 "EHLO
+        id S233309AbjGMRjF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jul 2023 13:39:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57700 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232845AbjGMRjD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jul 2023 13:39:03 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A176926BC
-        for <devicetree@vger.kernel.org>; Thu, 13 Jul 2023 10:39:01 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id 2adb3069b0e04-4fa16c6a85cso1769804e87.3
-        for <devicetree@vger.kernel.org>; Thu, 13 Jul 2023 10:39:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rockhopper.net; s=google; t=1689269940; x=1691861940;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=OlnIv1GsZFbVP3Mz1BXr5g6tvtlYrqCrnxeQatJWL5o=;
-        b=dgiY+HvO1FpJhCIGvHgXS0mUDVS3PxJF9No5QY2NVBT1Tj3CHHds3pcUK70WI7fiY8
-         Or+/PGk3KywJbVt5OtcINVfueInl1X1emfZGvye1yRtQgSmz8vyr2AOTbdTG6j/ORNSS
-         CVyxWZn2mYd/tI1arM+gVepPEVCghGikwGkIYO+D2jtyGfT7JHmuxO9IIZ4XqiF1LZ7h
-         eim6um7RqfDTccpdOrk1fjkdGbwxyLaRKebX92aur6uiFT3EMPB40rP8z3GVTr1ZB3Vp
-         IW9iSnSRx1GK533xqWZLhYe3FGAqHRIkUe15uwrVXNOveMN6hJz/aT1V2Ae2Sw3e7sgL
-         medQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689269940; x=1691861940;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=OlnIv1GsZFbVP3Mz1BXr5g6tvtlYrqCrnxeQatJWL5o=;
-        b=bJYsb+8KZiFNQcVKrLnZm0m12EfllCxiab1V/Zn317LbDO1DJp09LUBrCehrHEWTFb
-         WdAi+2tCUajjgoi08Hv3rUe4dAeV1HxCwzWGUd8MfrVev88XDVnz9k1dxotiB44KiRYi
-         59KjQ4wuwl9CBQA4vT5TusiF/jvtALCnUqh8yBqCG8MNAX7ockrGqUxx2oI7s2Ut6N0e
-         mjUIu0AqxDo6VJ4BGb2trFxj/HoHQOaIeFgh8lZZ9y0dTYaB+Wv2b2NpM9QDZQr7JLNS
-         qtYrmvNSR0+HcjEn8BMRToArhoN8WO293MKKVEYrtel7ebOYu4A3/srY/gmWa4NtT9xm
-         m3AQ==
-X-Gm-Message-State: ABy/qLatXevgdsurrlwJGHLamLur6zBEGSv+SvE+Hj7i2LbO/VKhSf0f
-        Tf9UBvhrLUrKCMhBDV2Sof7j3oj9hH7YKpUuDwMzxTZvYcyXnstf
-X-Google-Smtp-Source: APBJJlGX/JqfBDiTkKnXSfw8Jeta2jGHb+I9n/u/xraUGH8HRL532zdH+oRvB6XAeXbc5bOvnH8Jj87VgxutH3Y3jsc=
-X-Received: by 2002:a05:6512:b85:b0:4f8:442c:de25 with SMTP id
- b5-20020a0565120b8500b004f8442cde25mr1974614lfv.5.1689269939161; Thu, 13 Jul
- 2023 10:38:59 -0700 (PDT)
+        with ESMTP id S232990AbjGMRjE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jul 2023 13:39:04 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0364D270A;
+        Thu, 13 Jul 2023 10:39:04 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 90D4461ADA;
+        Thu, 13 Jul 2023 17:39:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 34900C433CA;
+        Thu, 13 Jul 2023 17:39:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1689269943;
+        bh=WaQGx34kCLJckhXKFnj8LFhA5pJxWostoEupTv48m+I=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=rDBFBCOkylQq6CifU8SMFoYsNZLcmPRV9W2cHRXT4TkVZWpS8eX9u6IytXbDb16X8
+         GfIPeW7Q4aRYdXlwkcU/HxuhQXJ+zq6UGGwIXd2joHPXI8mXNWiPpw1sdMIWfGcHD7
+         hyhwWkj0LV8P9nSlr7R17t5x/CHxEv2Elk7wfCdYPiaoxrWG9Dg1f6NkZtQYrnNxjY
+         5+cZhylFWuV8JEkEe1ADk1TtW12Z2dgeZV+8+67HAgSyWzTMjqBb05a6s7IHXlEKzR
+         1JOW784yfoH63v+IiNkxEUovJNhOQfgEXuZ0iwwCZ595vI41FmoHfeST9FGN8/L+ar
+         MmdhNDXnqUBIg==
+Message-ID: <afe1ac02-da07-327c-a1ce-1777e1ac9fb1@kernel.org>
+Date:   Thu, 13 Jul 2023 20:38:55 +0300
 MIME-Version: 1.0
-References: <CAHqEdrPuH4ayMiiq5FixaNjM=r44VJOw-v3iQ0mek55FTUWpsw@mail.gmail.com>
- <CAHqEdrPD_EX=V0RnvvycN1MyXs0e+jkCcQ-nfHwOmyZR2LecfA@mail.gmail.com> <20230706084511.gp4iuvekkw7lwhdl@bogus>
-In-Reply-To: <20230706084511.gp4iuvekkw7lwhdl@bogus>
-From:   Avram Lubkin <avram@rockhopper.net>
-Date:   Thu, 13 Jul 2023 13:38:48 -0400
-Message-ID: <CAHqEdrMmwHzDFUeMWxmXrpM273-yw9-rz-HFnQK+Br0rcf0m1w@mail.gmail.com>
-Subject: Re: Bug introduced in 724ba67 (ARM: dts: Move .dts files to vendor sub-directories)
-To:     Sudeep Holla <sudeep.holla@arm.com>
-Cc:     robh@kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        conor+dt@kernel.org, liviu.dudau@arm.com,
-        krzysztof.kozlowski+dt@linaro.org, lpieralisi@kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH 0/2] Deprecate ti-serdes header file
+Content-Language: en-US
+To:     Jayesh Choudhary <j-choudhary@ti.com>, nm@ti.com, vigneshr@ti.com,
+        kristo@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        peda@axentia.se
+Cc:     s-vadapalli@ti.com, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230713151707.8109-1-j-choudhary@ti.com>
+From:   Roger Quadros <rogerq@kernel.org>
+In-Reply-To: <20230713151707.8109-1-j-choudhary@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Thanks for submitting a patch. I saw it was acked. Will that get
-merged soon? It shouldn't need to for the next merge window since it's
-fixing an issue, right?
-Just wondering if I need to work around this or not.
 
-Thanks,
-Avram
 
-On Thu, Jul 6, 2023 at 4:45=E2=80=AFAM Sudeep Holla <sudeep.holla@arm.com> =
-wrote:
->
-> On Wed, Jul 05, 2023 at 10:16:19AM -0400, Avram Lubkin wrote:
-> > Resending in plain text mode
-> >
-> > SImple bug introduced in 724ba6751532055db75992fc6ae21c3e322e94a7.
-> >
-> > The file
-> >   arch/arm/boot/dts/vexpress-v2m-rs1.dtsi
-> > was moved to
-> >   arch/arm/boot/dts/arm/vexpress-v2m-rs1.dtsi
-> >
-> > However,
-> >   arch/arm64/boot/dts/arm/vexpress-v2m-rs1.dtsi
-> > is a symlink and still points to the old location
-> >   ../../../../arm/boot/dts/vexpress-v2m-rs1.dtsi
-> >
->
-> It doesn't break any compilation as it is taken care. I will submit a pat=
-ch
-> to remove the symlink soon. Thanks for the report.
->
->
-> --
-> Regards,
-> Sudeep
+On 13/07/2023 18:17, Jayesh Choudhary wrote:
+> This series moves the ti-serdes.h header to arch/arm64/boot/dts/ti/
+> as these constants do not have driver usage and are not suitable for
+> bindings as discussed in [1].
+> 
+> Deprecating the bindings header for now instead of dropping them based
+> on the discussion in [2].
+> We expect to remove this bindings header in the next cycle.
+> 
+> [1]: <https://lore.kernel.org/all/b24c2124-fe3b-246c-9af9-3ecee9fb32d4@kernel.org/>
+> [2]: <https://lore.kernel.org/linux-arm-kernel/71c7feff-4189-f12f-7353-bce41a61119d@linaro.org/>
+> 
+> Jayesh Choudhary (2):
+>   arm64: dts: ti: Use local header for SERDES MUX idle-state values
+>   dt-bindings: ti-serdes-mux: Deprecate header with constants
+> 
+>  arch/arm64/boot/dts/ti/k3-am642-evm.dts       |   3 +-
+>  .../dts/ti/k3-am642-phyboard-electra-rdk.dts  |   3 +-
+>  arch/arm64/boot/dts/ti/k3-am642-sk.dts        |   3 +-
+>  .../boot/dts/ti/k3-am68-sk-base-board.dts     |   3 +-
+>  .../dts/ti/k3-j7200-common-proc-board.dts     |   3 +-
+>  .../ti/k3-j7200-evm-quad-port-eth-exp.dtso    |   2 +-
+>  .../ti/k3-j721e-evm-quad-port-eth-exp.dtso    |   2 +-
+>  arch/arm64/boot/dts/ti/k3-j721e-main.dtsi     |   3 +-
+>  .../dts/ti/k3-j721s2-common-proc-board.dts    |   3 +-
+>  arch/arm64/boot/dts/ti/k3-serdes.h            | 204 ++++++++++++++++++
+>  include/dt-bindings/mux/ti-serdes.h           |   8 +
+>  11 files changed, 228 insertions(+), 9 deletions(-)
+>  create mode 100644 arch/arm64/boot/dts/ti/k3-serdes.h
+> 
+
+For this series:
+Acked-by: Roger Quadros <rogerq@kernel.org>
+
+-- 
+cheers,
+-roger
