@@ -2,58 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 21A3875291A
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 18:51:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 400AE752929
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 18:53:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230002AbjGMQvV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jul 2023 12:51:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60632 "EHLO
+        id S235354AbjGMQxB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jul 2023 12:53:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33064 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229681AbjGMQvU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jul 2023 12:51:20 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63DA81BF9
-        for <devicetree@vger.kernel.org>; Thu, 13 Jul 2023 09:51:19 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id EABD461AEA
-        for <devicetree@vger.kernel.org>; Thu, 13 Jul 2023 16:51:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DC8F7C433C8;
-        Thu, 13 Jul 2023 16:51:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689267078;
-        bh=W/DBBtggNPxcx48u53LFNXfUII6LqEjS3gR/CAjXJoM=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=EGb2yZNBaWH+ToInoE+zVz4NcSNnvQ2sehjIbmSHQAZUY3d9Sc0DT5eWml7jxFe2r
-         /fFVd5O1P/0LSHFMAiOqlNFvgnLhjrRfCzVvs9kwIZQu7y0WG67m0aVQVYbZhSmHk5
-         91K/zFbHLPshK9KvgGVvRHuX6k817Qj0G+iF6K4yRkYgyd3qFYYFc0iBXiCqzvcDbD
-         gazRIW3SWfP54kzPnnW4Le2RAKt8kgcc3rFG5NJQUvUh3oRrl+lHAcVGeAYnd9TUgX
-         4Qr/Q5hOpCAYqrh5JlSA9iHJyAjbDmeMUAK5RIm7CvYlMH2kl+SCgYYDtD6cQfyNoz
-         jR9ec/aQYg7ew==
-Date:   Thu, 13 Jul 2023 09:51:16 -0700
-From:   Jakub Kicinski <kuba@kernel.org>
-To:     Paolo Abeni <pabeni@redhat.com>
-Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
-        Dinh Nguyen <dinguyen@kernel.org>, netdev@vger.kernel.org,
-        davem@davemloft.net, edumazet@google.com, joabreu@synopsys.com,
-        robh+dt@kernel.org, krzysztof.kozlowskii+dt@linaro.org,
-        conor+dt@kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/2] net: dwmac_socfpga: use the standard "ahb" reset
-Message-ID: <20230713095116.15760660@kernel.org>
-In-Reply-To: <1061620f76bfe8158e7b8159672e7bb0c8dc75f2.camel@redhat.com>
-References: <20230710211313.567761-1-dinguyen@kernel.org>
-        <20230710211313.567761-2-dinguyen@kernel.org>
-        <20230712170840.3d66da6a@kernel.org>
-        <c8ffee03-8a6b-1612-37ee-e5ec69853ab7@kernel.org>
-        <1061620f76bfe8158e7b8159672e7bb0c8dc75f2.camel@redhat.com>
+        with ESMTP id S235357AbjGMQwt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jul 2023 12:52:49 -0400
+Received: from mail-oa1-x2d.google.com (mail-oa1-x2d.google.com [IPv6:2001:4860:4864:20::2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 214882700
+        for <devicetree@vger.kernel.org>; Thu, 13 Jul 2023 09:52:48 -0700 (PDT)
+Received: by mail-oa1-x2d.google.com with SMTP id 586e51a60fabf-1b0249f1322so702766fac.3
+        for <devicetree@vger.kernel.org>; Thu, 13 Jul 2023 09:52:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1689267167; x=1691859167;
+        h=content-transfer-encoding:author:mime-version:message-id:date
+         :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=/TQQu9i4zVTx/pAbl1XLa7p043pJkUqA0em0AaQVe1Q=;
+        b=EOJTZVfBLXbJ+tgLJUJRaAhYQO95hGodf9yyM3ZyJmDrHCRlhC2xTABoIUd+3Cl1Yo
+         XO6MFz+wN+mKMs6tq2jcRQ64XxumnSH7k9awmG8P4d7raV506yyFNuk+QzDmoxlG7chk
+         Xm8c4ZN86UiZ92TA62A3E7CqOGXkzsg58hlso09jztugiWJsrZlajfgdFEImk3AudVEl
+         cx4jXLpbjX+rbI6inQvzyxatK+J3NV0dtyEMl2rdalG0LM16oQKztrzu1e9wqiv4IAZx
+         OywlZGqh1gyC+BOajdMLtm5QuJcdzMOffKpKItqBLM8fiPpYEPx/vCTS+0PA28sPaCRn
+         hNEA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689267167; x=1691859167;
+        h=content-transfer-encoding:author:mime-version:message-id:date
+         :subject:cc:to:from:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/TQQu9i4zVTx/pAbl1XLa7p043pJkUqA0em0AaQVe1Q=;
+        b=FwiRKcjMyb6y0h3BIBER6TBGfjBTTO+lYZ0Rar3IoygGePp9BKflXPLFbrwnT0TMym
+         MAGv7xG3J05vVap0V1u3mjdmNXnf6HspjtWeo2fChZzIQ/r2K83yEalfPynb3/cZpRYE
+         ccvEWAM2rpVCU2F+kfdz4INfvKiVShylRpgOEixJ3pHy1+6rELg4cuLeNmCG1+7G5BSu
+         9z2zbxl/hbN9jtIKvpgqg9hiqX4XB1RKcqLDQ5MiHXcFJYJOIxSE6PES++u8Pg+8ToGP
+         NZRJFXM6mZAMkx/2zON9enNSvjfUqZPw1p6CYMLuFUiUxcnzhQrMhGX0qcl+iT2YNO2m
+         wfQw==
+X-Gm-Message-State: ABy/qLbiPV772DbvWiXnpzIPW7T2LEejDucA71KAA2qg/rsdMqJfAJ9U
+        DvkhyUj05WwziO7DAS0H1/J1ug==
+X-Google-Smtp-Source: APBJJlECN8Pkf5oJl1wriKAi9i7oMviETr74ANXnYL6u7bXmI8D7Lz2S54OFWvuw32qLmK8Qci/xoA==
+X-Received: by 2002:a05:6870:c188:b0:19f:5c37:abb9 with SMTP id h8-20020a056870c18800b0019f5c37abb9mr2495348oad.12.1689267167408;
+        Thu, 13 Jul 2023 09:52:47 -0700 (PDT)
+Received: from x-wing.lan ([49.207.50.231])
+        by smtp.gmail.com with ESMTPSA id d3-20020a17090abf8300b002633fa95ac2sm12009150pjs.13.2023.07.13.09.52.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 13 Jul 2023 09:52:46 -0700 (PDT)
+From:   Amit Pundir <amit.pundir@linaro.org>
+To:     Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Caleb Connolly <caleb.connolly@linaro.org>,
+        Bryan Donoghue <bryan.odonoghue@linaro.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Sean Paul <sean@poorly.run>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Krishna Manikandan <quic_mkrishn@quicinc.com>
+Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
+        freedreno <freedreno@lists.freedesktop.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        dt <devicetree@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>
+Subject: [PATCH v5 1/2] dt-bindings: display/msm: mdss-common: add memory-region property
+Date:   Thu, 13 Jul 2023 22:22:37 +0530
+Message-Id: <20230713165238.2814849-1-amit.pundir@linaro.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Author: Amit Pundir <amit.pundir@linaro.org>
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -61,16 +87,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 13 Jul 2023 14:39:57 +0200 Paolo Abeni wrote:
-> > However for ABI breaks with scope limited to only one given platform, it
-> > is the platform's maintainer choice to allow or not allow ABI breaks.
-> > What we, Devicetree maintainers expect, is to mention and provide
-> > rationale for the ABI break in the commit msg.  
-> 
-> @Dinh: you should at least update the commit message to provide such
-> rationale, or possibly even better, drop this 2nd patch on next
-> submission.
+Add and document the reserved memory region property in the
+mdss-common schema.
 
-Or support both bindings, because the reset looks optional. So maybe 
-instead of deleting the use of "stmmaceth-ocp", only go down that path
-if stpriv->plat->stmmac_ahb_rst is NULL?
+For now (sdm845-db845c), it points to a framebuffer memory
+region reserved by the bootloader for splash screen.
+
+Signed-off-by: Amit Pundir <amit.pundir@linaro.org>
+---
+v5: Moving the dt-binding to mdss-common schema with
+    updated commit message and property description.
+
+v4: Adding this new dt-binding patch, in qcom,sdm845-mdss
+    schema, in the v4 of the follow-up patch for
+    sdm845-db845c.
+    https://lore.kernel.org/lkml/20230712130215.666924-2-amit.pundir@linaro.org/
+
+ .../devicetree/bindings/display/msm/mdss-common.yaml         | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/display/msm/mdss-common.yaml b/Documentation/devicetree/bindings/display/msm/mdss-common.yaml
+index ccd7d6417523..84ed2757ded5 100644
+--- a/Documentation/devicetree/bindings/display/msm/mdss-common.yaml
++++ b/Documentation/devicetree/bindings/display/msm/mdss-common.yaml
+@@ -77,6 +77,12 @@ properties:
+     items:
+       - description: MDSS_CORE reset
+ 
++  memory-region:
++    maxItems: 1
++    description:
++      Phandle to a node describing a reserved framebuffer memory region.
++      For example, the splash memory region set up by the bootloader.
++
+ required:
+   - reg
+   - reg-names
+-- 
+2.25.1
+
