@@ -2,124 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 76A60751C6E
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 11:00:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 22D75751C74
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 11:00:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233441AbjGMJAS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jul 2023 05:00:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58516 "EHLO
+        id S234708AbjGMJAm convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 13 Jul 2023 05:00:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59030 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234645AbjGMJAN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jul 2023 05:00:13 -0400
-Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4ED75268D;
-        Thu, 13 Jul 2023 01:59:55 -0700 (PDT)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id DF94E4000B;
-        Thu, 13 Jul 2023 08:59:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1689238793;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=Fp/T2auLWK8Fh3jBHDr22urRoZN6z4YaEPdbMmTfazs=;
-        b=SbSb0sexsiPU6to0djhloJ9Q46blZelElo9R8OOsyL1JJoNool3laht22HNcGTaN+X1oQ/
-        ABEVvuZlDh+rAtZR5TmJIRR1m3hgNeM4eamhXKT1NzCkZqlQEsqC51ED7qYR8ePoyPF7rB
-        pzR6CZNV8C3CNSClazlFDuDZzQ2hdPD3Pt383ouKqr9Sjf10clOc7E/b86dwLts9dQS4pz
-        KCmXSp9NzouXNAFqAkx2C6CO4O500HW8clabk9dtdnHkE1QktHlhzqurso5F+o/N7ZQZ6G
-        eikDmyNQzqeb10Z/VwAHk5CVpXUikGaPjj1ftndFA6/kV3dERjaeonkVhc+DaQ==
-From:   Gregory CLEMENT <gregory.clement@bootlin.com>
-To:     Chris Packham <chris.packham@alliedtelesis.co.nz>,
-        miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org
-Cc:     linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Chris Packham <chris.packham@alliedtelesis.co.nz>
-Subject: Re: [PATCH v3 2/3] arm64: dts: marvell: Add NAND flash controller
- to AC5
-In-Reply-To: <20230703035044.2063303-3-chris.packham@alliedtelesis.co.nz>
-References: <20230703035044.2063303-1-chris.packham@alliedtelesis.co.nz>
- <20230703035044.2063303-3-chris.packham@alliedtelesis.co.nz>
-Date:   Thu, 13 Jul 2023 10:59:52 +0200
-Message-ID: <87h6q82nlj.fsf@BL-laptop>
+        with ESMTP id S234719AbjGMJA0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jul 2023 05:00:26 -0400
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 934CA213B;
+        Thu, 13 Jul 2023 02:00:23 -0700 (PDT)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id CB51B82CB;
+        Thu, 13 Jul 2023 17:00:16 +0800 (CST)
+Received: from EXMBX068.cuchost.com (172.16.6.68) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 13 Jul
+ 2023 17:00:16 +0800
+Received: from williamqiu-virtual-machine.starfivetech.com (171.223.208.138)
+ by EXMBX068.cuchost.com (172.16.6.68) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.42; Thu, 13 Jul 2023 17:00:15 +0800
+From:   William Qiu <william.qiu@starfivetech.com>
+To:     <devicetree@vger.kernel.org>, <linux-spi@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>
+CC:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        William Qiu <william.qiu@starfivetech.com>
+Subject: [PATCH v2 0/3] Add SPI module for StarFive JH7110 SoC
+Date:   Thu, 13 Jul 2023 17:00:12 +0800
+Message-ID: <20230713090015.127541-1-william.qiu@starfivetech.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Type: text/plain
-X-GND-Sasl: gregory.clement@bootlin.com
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-Originating-IP: [171.223.208.138]
+X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX068.cuchost.com
+ (172.16.6.68)
+X-YovoleRuleAgent: yovoleflag
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Chris Packham <chris.packham@alliedtelesis.co.nz> writes:
+Hi,
 
-> The AC5/AC5X SoC has a NAND flash controller (NFC). Add this to
-> the base SoC dtsi file as a disabled node. The NFC integration
-> on the AC5/AC5X only supports SDR timing modes up to 3 so requires a
-> dedicated compatible property so this limitation can be enforced.
->
-> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+This patchset adds initial rudimentary support for the StarFive
+SPI controller. And this driver will be used in StarFive's
+VisionFive 2 board. The first patch constrain minItems of clocks
+for JH7110 SPI and Patch 2 adds support for StarFive JH7110 SPI.
 
-Now that binding and code has beeen applied I can apply this one on
-mvebu/dt64
+Changes v1->v2:
+- Rebaed to v6.5rc1.
+- Submitted reference file separately.
+- Dropped 'status' node as it was 'okay' by default.
+- Dropped Co-developed-by message.
 
-Thanks,
+The patch series is based on v6.5rc1.
 
-Gregory
+William Qiu (3):
+  dt-bindings: spi: add reference file to YAML
+  dt-bindings: spi: constrain minItems of clocks and clock-names
+  riscv: dts: starfive: Add spi node for JH7110 SoC
 
-> ---
->
-> Notes:
->     Changes in v3:
->     - Use correct clock for NFC
->     Changes in v2:
->     - New.
->
->  arch/arm64/boot/dts/marvell/ac5-98dx25xx.dtsi | 16 ++++++++++++++++
->  1 file changed, 16 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/marvell/ac5-98dx25xx.dtsi b/arch/arm64/boot/dts/marvell/ac5-98dx25xx.dtsi
-> index c9ce1010c415..c64aaf51deb8 100644
-> --- a/arch/arm64/boot/dts/marvell/ac5-98dx25xx.dtsi
-> +++ b/arch/arm64/boot/dts/marvell/ac5-98dx25xx.dtsi
-> @@ -297,6 +297,16 @@ spi1: spi@805a8000 {
->  			status = "disabled";
->  		};
->  
-> +		nand: nand-controller@805b0000 {
-> +			compatible = "marvell,ac5-nand-controller";
-> +			reg =  <0x0 0x805b0000 0x0 0x00000054>;
-> +			#address-cells = <0x1>;
-> +			#size-cells = <0x0>;
-> +			interrupts = <GIC_SPI 89 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&nand_clock>;
-> +			status = "disabled";
-> +		};
-> +
->  		gic: interrupt-controller@80600000 {
->  			compatible = "arm,gic-v3";
->  			#interrupt-cells = <3>;
-> @@ -319,5 +329,11 @@ spi_clock: spi-clock {
->  			#clock-cells = <0>;
->  			clock-frequency = <200000000>;
->  		};
-> +
-> +		nand_clock: nand-clock {
-> +			compatible = "fixed-clock";
-> +			#clock-cells = <0>;
-> +			clock-frequency = <400000000>;
-> +		};
->  	};
->  };
-> -- 
-> 2.41.0
->
+ .../devicetree/bindings/spi/spi-pl022.yaml    | 11 ++-
+ .../jh7110-starfive-visionfive-2.dtsi         | 50 ++++++++++
+ arch/riscv/boot/dts/starfive/jh7110.dtsi      | 98 +++++++++++++++++++
+ 3 files changed, 156 insertions(+), 3 deletions(-)
 
--- 
-Gregory Clement, Bootlin
-Embedded Linux and Kernel engineering
-http://bootlin.com
+--
+2.34.1
+
