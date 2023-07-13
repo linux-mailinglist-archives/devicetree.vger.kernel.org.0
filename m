@@ -2,97 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F72E7526F2
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 17:28:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A46A752706
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 17:30:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229689AbjGMP2L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jul 2023 11:28:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57570 "EHLO
+        id S232154AbjGMP3x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jul 2023 11:29:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58356 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235049AbjGMP1s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jul 2023 11:27:48 -0400
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C6D63A9A;
-        Thu, 13 Jul 2023 08:27:18 -0700 (PDT)
-Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-3fbc0609cd6so7830645e9.1;
-        Thu, 13 Jul 2023 08:27:18 -0700 (PDT)
+        with ESMTP id S230483AbjGMP3P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jul 2023 11:29:15 -0400
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E1302712
+        for <devicetree@vger.kernel.org>; Thu, 13 Jul 2023 08:28:54 -0700 (PDT)
+Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-3fbab0d0b88so13574165e9.0
+        for <devicetree@vger.kernel.org>; Thu, 13 Jul 2023 08:28:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1689262013; x=1691854013;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/7lQ5ouR70Aypv2XQXFWU/jmz/ZI2ZaA+z3/htYKBig=;
-        b=bTLgR4nSNeVX2XJppFWdqt/cKkh8lR0SvIvFIzKd4O+4+6w9AkKrtD6CstluaBOi8D
-         lx4xOqDw/ZCGz6FwA93zBAG1jiguHZJG0jIcgvASDdOQRPT4Nh/3SAfmvYM9T/fakaTW
-         BKIrhWv0gXKceEW7OxQVFaWD/vB2yH3K4IR7AByMdyTyV2umH41og+irMOgCnOrSejOi
-         bpTxxo7ErFbZBO4+5k6CUmnys/2NbSp+MyPl7ZbhIrkNcDItJK7m1dcV04SBHXxCgTav
-         g3u15HvwdpP17hbKptn6J3dgYjbPtjV/SjbvWqWFhlQvPDvSKtQZNqsZBfQeNhflexsX
-         5BOQ==
+        d=linaro.org; s=google; t=1689262133; x=1691854133;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Dk7c3gz9VhsIx4qVgTGY12ilcIgctHPAd46AqzeX33s=;
+        b=cvKVgzY0rvgm4OkvM4Iyp4VIJ+PMtQ0TtSrTsq3VM3ULcOvJcio8bd6Sm3OT8W5bSv
+         ijBer0POVkuOR93O6WwiHa7TAwLdQXpWx7mykj/+4qZznjSfilLlZLzcxUOyPWK0YIe6
+         A189xDDkFTFaE14+wZpmkUGOw2fw+10Od0z05HNnCGPj160YV/yl1DOqRKHwRTd5HeCz
+         OKwhmrRDlCHqDeQsvvdUPxHL0mYQiKmTCni60oP/tyRSv9E910w/Fol7Js0dSeMlsyxb
+         thgC0pLBIaIIIFh8BqSkeh+ETqabVWiRNwx8KV460nyLaQiACy5oWAyD+AoJNwFQJ6DK
+         LHJA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689262013; x=1691854013;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=/7lQ5ouR70Aypv2XQXFWU/jmz/ZI2ZaA+z3/htYKBig=;
-        b=jiuZ5m3xUZJTHMFGrRRu6bLinKmPLi858+iK3GDwDFbZpkE88rrsjOidnekfUaozZ/
-         8kclRvgLOe87iM3BLpfI0uHcwjY8ivNN6e4mWVf+6y3becQpC/v/fXM9lUOBG5ZeKyjc
-         XTc61zvLDzWyqJb5ALgFii9NWNuaGSJDjoxFnFfV9FAHSrPA9wSAh94X6HTa4RL81yXN
-         DtAydqV2/diHm0Ei5JR1byaAfq4gUQI5IXxURScyF0ccsy3O7oWyxhQFpbEWp/utnKJ9
-         wrw4KI5orV3Vwr3R2I6aO//oSKz9FPYbRF8z/zEoyVUCoO4tmnlJyeWX9jLnNLH4JWAj
-         tGOQ==
-X-Gm-Message-State: ABy/qLaskyvIG21Y2OnfnIE0ryKBv00xlEhMZKJ9T5blKj+NLRczGm9l
-        pq3woaELH4bMhCeDQMW6Cdk=
-X-Google-Smtp-Source: APBJJlEpw5XP8b0gueX0CvzSmqjZ8tcwI/3hshe1l0lFuwkbDC0++RgpO3go35C/XIHuhfPDqUnaHw==
-X-Received: by 2002:a7b:cd85:0:b0:3fa:991c:2af9 with SMTP id y5-20020a7bcd85000000b003fa991c2af9mr1698674wmj.16.1689262013242;
-        Thu, 13 Jul 2023 08:26:53 -0700 (PDT)
-Received: from localhost (p200300e41f4b7100f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f4b:7100:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id n2-20020a05600c294200b003fc17e8a1efsm8406827wmd.45.2023.07.13.08.26.52
+        d=1e100.net; s=20221208; t=1689262133; x=1691854133;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Dk7c3gz9VhsIx4qVgTGY12ilcIgctHPAd46AqzeX33s=;
+        b=To/LBoLPiYKBayp6n6Dqzu9zz4+ejUYI0oxJFF8PFNu+Sq3EU7qgUuTXw/RytA9J04
+         hSGSAizDxMH2OVWpjCW+abc10xVewJh5m2F5mXACj6XYihLhnPHlT40U3/imL9q1Vf03
+         gtprjxAghPXUbW+I32OMrIavJLHA/VaUwa8nQ3xRihwhTroAAnq1xau9qkZuiMaEwobo
+         rugUFoCdufjyrDGQX4xXekasDegzaRpuOh592In8k/yXw9AF6M7wcw+nU0UdpWAyt23M
+         +knR5Q7E3ypTIKP4bYJIKX5+i0+DruuGz6rQW2onjude6b7ImX19BqpiHfY5PkKRTrtU
+         gmdQ==
+X-Gm-Message-State: ABy/qLaBmY/1PzltjuHCZqW32Jdev1x6l1JwOfxlRg7vkcaCaK0R3N08
+        to0evg7nFtmopnwEDjrzi9SmfQ==
+X-Google-Smtp-Source: APBJJlEWUoeuf5dGWkDvdxMoAKsG/Z2DJAjtQ1HCUphj+qd1f83rh/PkeY7QfHENnfGc0LkAkETEIg==
+X-Received: by 2002:a05:600c:3105:b0:3fa:9996:8e03 with SMTP id g5-20020a05600c310500b003fa99968e03mr14988wmo.10.1689262132820;
+        Thu, 13 Jul 2023 08:28:52 -0700 (PDT)
+Received: from krzk-bin.. ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id l22-20020a7bc456000000b003fbb5142c4bsm18563121wmi.18.2023.07.13.08.28.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 13 Jul 2023 08:26:52 -0700 (PDT)
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Thu, 13 Jul 2023 08:28:52 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jon Hunter <jonathanh@nvidia.com>
-Cc:     devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
-Subject: Re: [PATCH] arm64: tegra: Fix HSUART for Jetson AGX Orin
-Date:   Thu, 13 Jul 2023 17:26:50 +0200
-Message-ID: <168926199654.2340273.2674419687541112832.b4-ty@nvidia.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20230703113617.75311-1-jonathanh@nvidia.com>
-References: <20230703113617.75311-1-jonathanh@nvidia.com>
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Paul Cercueil <paul@crapouillou.net>,
+        Marek Vasut <marex@denx.de>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, netdev@vger.kernel.org
+Subject: [PATCH 0/3] dt-bindings: net: davicom,dm9000: convert to DT schema
+Date:   Thu, 13 Jul 2023 17:28:45 +0200
+Message-Id: <20230713152848.82752-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Thierry Reding <treding@nvidia.com>
+Hi,
 
+Memory controller bindings have to be updated before we can convert
+davicom,dm9000 to DT schema.
 
-On Mon, 03 Jul 2023 12:36:17 +0100, Jon Hunter wrote:
-> After commit 71de0a054d0e ("arm64: tegra: Drop serial clock-names and
-> reset-names") was applied, the HSUART failed to probe and the following
-> error is seen:
-> 
->  serial-tegra 3100000.serial: Couldn't get the reset
->  serial-tegra: probe of 3100000.serial failed with error -2
-> 
-> [...]
-
-Applied, thanks!
-
-[1/1] arm64: tegra: Fix HSUART for Jetson AGX Orin
-      commit: 861dbb2b15b1049113887fb95e856f7123eea0cc
+Please take it via net-next.
 
 Best regards,
+Krzysztof
+
+Krzysztof Kozlowski (3):
+  dt-bindings: memory-controllers: ingenic,nemc: reference peripheral
+    properties
+  dt-bindings: memory-controllers: reference TI GPMC peripheral
+    properties
+  dt-bindings: net: davicom,dm9000: convert to DT schema
+
+ .../memory-controllers/ingenic,nemc.yaml      |  1 +
+ .../mc-peripheral-props.yaml                  |  2 +
+ .../bindings/net/davicom,dm9000.yaml          | 59 +++++++++++++++++++
+ .../bindings/net/davicom-dm9000.txt           | 27 ---------
+ 4 files changed, 62 insertions(+), 27 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/davicom,dm9000.yaml
+ delete mode 100644 Documentation/devicetree/bindings/net/davicom-dm9000.txt
+
 -- 
-Thierry Reding <treding@nvidia.com>
+2.34.1
+
