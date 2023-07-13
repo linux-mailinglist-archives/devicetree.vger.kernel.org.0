@@ -2,117 +2,224 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A90FF752B8D
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 22:21:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 20177752BAA
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 22:30:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232854AbjGMUVd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jul 2023 16:21:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52542 "EHLO
+        id S233497AbjGMUay (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jul 2023 16:30:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56152 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232770AbjGMUVc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jul 2023 16:21:32 -0400
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9E71270B
-        for <devicetree@vger.kernel.org>; Thu, 13 Jul 2023 13:21:29 -0700 (PDT)
-Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-3fbc77e76abso10712265e9.1
-        for <devicetree@vger.kernel.org>; Thu, 13 Jul 2023 13:21:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=shruggie-ro.20221208.gappssmtp.com; s=20221208; t=1689279688; x=1691871688;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=tu/GDhcwUxsvL43jGqclDZQDypGt+f942j4Xw/QXrGg=;
-        b=YkD+Q83ltv+kU8HU1a1in/Vn+A/+Xwen6hJBVY+vo3OV5uUfwbiU2zsuoRGcRr6NXR
-         QKCBiPjoCJNEBsjd9EFvtNFI+wumxisFxgWc3yqfLfLTeL/CyOeSwCifte3tAXiu8WGn
-         XuXtW5w9SXyZEzJcQ/R9i7dj8YGVrFHwxR/pxPvTLTol/tZPHLKNqbjPiZmzf7rFDx6E
-         Rh0URafWo0vEiE2KSlyLKp/e9pmgUtMv27OxKaNiIBVOzaumAiv09OiMbpQXw/IE81dv
-         O14sgmFFcX3k9cC4fp1hgWZgjMzKx8Rx/H9XFSiAKOudZWz7G/z3nhjSvU4HoDw1y5Oz
-         dNRw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689279688; x=1691871688;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=tu/GDhcwUxsvL43jGqclDZQDypGt+f942j4Xw/QXrGg=;
-        b=AZRM5/lbu9kIQzKAMEawPoijVR824S251cgML6/l4YTwvWichnq7Yk4QpcgNOlIppm
-         bEa2vykYlaBIlNln4QqKVyEIoFGDRaoFL9DcO5ZrcF9zPGY6W+IJTNaoZFY84IF605C7
-         m1Tf1mtgvxQdI7mm/BS7FfjDEeu2Tk2SjrJyEL7XbLpl25eeCTQPR3IBedMV1u3Tf/O8
-         4AiO81qcv7NTz4/uiuFETk0VMQCzpXVfeFz77w5n1tQ7bqfzIGyAqrNrTRcyZ+MI+Wc5
-         p4scr4jC9EonAomMMYAUAo7gZp5KuEQoyKEDu7PgOV8S/854kgYT68FsPILFVrmzO0R6
-         eGLw==
-X-Gm-Message-State: ABy/qLbjAo5B72GIM4HP89grIUYfoU/qUuf1lytJda9Nhyg+1yNssGMo
-        fdZhDjIYGQaPxJ1W0eV9tPu0Sw==
-X-Google-Smtp-Source: APBJJlHBykbtYqkHA08c+4gz/CRYPt9l0egxhftE4bkM/EwH/3Exd9LU6Vp1eWCc+sTTmMpXsjpQlg==
-X-Received: by 2002:a7b:c40d:0:b0:3fc:1a6:7764 with SMTP id k13-20020a7bc40d000000b003fc01a67764mr2241997wmi.16.1689279688330;
-        Thu, 13 Jul 2023 13:21:28 -0700 (PDT)
-Received: from localhost.localdomain ([188.27.129.168])
-        by smtp.gmail.com with ESMTPSA id l13-20020a5d560d000000b0031590317c26sm8880170wrv.61.2023.07.13.13.21.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 13 Jul 2023 13:21:28 -0700 (PDT)
-From:   Alexandru Ardelean <alex@shruggie.ro>
-To:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        andrew@lunn.ch, hkallweit1@gmail.com, linux@armlinux.org.uk,
-        olteanv@gmail.com, alex@shruggie.ro, marius.muresan@mxt.ro
-Subject: [PATCH v2 2/2] dt-bindings: net: phy: vsc8531: document 'vsc8531,clkout-freq-mhz' property
-Date:   Thu, 13 Jul 2023 23:21:23 +0300
-Message-ID: <20230713202123.231445-2-alex@shruggie.ro>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20230713202123.231445-1-alex@shruggie.ro>
-References: <20230713202123.231445-1-alex@shruggie.ro>
+        with ESMTP id S230456AbjGMUax (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jul 2023 16:30:53 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 899A92120;
+        Thu, 13 Jul 2023 13:30:52 -0700 (PDT)
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36DJsYpk020458;
+        Thu, 13 Jul 2023 20:30:32 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : from : to : cc : references : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=vs8LTN8zAxmwQ45mO8Cvh/7DVenMQkWIcHjbBWki//w=;
+ b=U4qmgeJ6zKaSFk+MiBo4TJ6HKrOz2Xaz+CcN/+xW69xM0I+H+7Aw15sJRE8DUQfuYRK8
+ XBjJ/g0YUGpGzzcNVxMNImMNZrTY5Tl8yXAguO4RleYQynDfemoZ26PiRekPMvSDW6qa
+ 1U2okeuSweg19uXSytPCnZZRuZjCBZlV7LHyMTW0DnXtcrAvMsgKAUbDezQftR5v+9K+
+ dXHjMiDqfd5d1UxX+wxNGCWtxX3WW8BDuKRcnXrHrw8l1xBUMA210qlAKo60qsvanpiW
+ 2KAmYGTwwtAkjjAAgw+LuyYcAqQ1pdSYYqOsoguFR+pAEYXJkaN8FGkrBJCQ+kuAPsl7 +w== 
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3rtptu864u-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 13 Jul 2023 20:30:31 +0000
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+        by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 36DKUUkl029931
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 13 Jul 2023 20:30:30 GMT
+Received: from [10.110.48.195] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Thu, 13 Jul
+ 2023 13:28:35 -0700
+Message-ID: <04605642-cad8-1701-ff41-63f2f00ba5f6@quicinc.com>
+Date:   Thu, 13 Jul 2023 13:28:34 -0700
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v13 10/24] gunyah: vm_mgr: Add/remove user memory regions
+Content-Language: en-US
+From:   Elliot Berman <quic_eberman@quicinc.com>
+To:     Will Deacon <will@kernel.org>
+CC:     Alex Elder <elder@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
+        Murali Nalajala <quic_mnalajal@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
+        Carl van Schaik <quic_cvanscha@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        "Arnd Bergmann" <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        "Bagas Sanjaya" <bagasdotme@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        "Catalin Marinas" <catalin.marinas@arm.com>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <qperret@google.com>
+References: <20230509204801.2824351-1-quic_eberman@quicinc.com>
+ <20230509204801.2824351-11-quic_eberman@quicinc.com>
+ <20230519115948.GB2637@willie-the-truck>
+ <e22c31bd-10ed-f242-3e72-debf40e01e3c@quicinc.com>
+ <20230605141839.GD21212@willie-the-truck>
+ <3bd86221-ee2e-d157-009b-11f6ada98537@quicinc.com>
+ <eae302ab-b508-cdc6-847f-dff6a6b82798@quicinc.com>
+In-Reply-To: <eae302ab-b508-cdc6-847f-dff6a6b82798@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 3oym6Wpenj-Rn6j76kn-kvjFzKHYvRg7
+X-Proofpoint-ORIG-GUID: 3oym6Wpenj-Rn6j76kn-kvjFzKHYvRg7
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-07-13_08,2023-07-13_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ malwarescore=0 phishscore=0 lowpriorityscore=0 clxscore=1015 mlxscore=0
+ suspectscore=0 adultscore=0 mlxlogscore=812 spamscore=0 impostorscore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2306200000 definitions=main-2307130181
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-For VSC8351 and similar PHYs, a new property was added to generate a clock
-signal on the CLKOUT pin.
-This change documents the change in the device-tree bindings doc.
+Hi Will,
 
-Signed-off-by: Alexandru Ardelean <alex@shruggie.ro>
----
+On 6/22/2023 4:56 PM, Elliot Berman wrote:
+> 
+> 
+> On 6/7/2023 8:54 AM, Elliot Berman wrote:
+>>
+>>
+>> On 6/5/2023 7:18 AM, Will Deacon wrote:
+>>> Hi Elliot,
+>>>
+>>> [+Quentin since he's looked at the MMU notifiers]
+>>>
+>>> Sorry for the slow response, I got buried in email during a week away.
+>>>
+>>> On Fri, May 19, 2023 at 10:02:29AM -0700, Elliot Berman wrote:
+>>>> On 5/19/2023 4:59 AM, Will Deacon wrote:
+>>>>> On Tue, May 09, 2023 at 01:47:47PM -0700, Elliot Berman wrote:
+>>>>>> +    ret = account_locked_vm(ghvm->mm, mapping->npages, true);
+>>>>>> +    if (ret)
+>>>>>> +        goto free_mapping;
+>>>>>> +
+>>>>>> +    mapping->pages = kcalloc(mapping->npages, 
+>>>>>> sizeof(*mapping->pages), GFP_KERNEL_ACCOUNT);
+>>>>>> +    if (!mapping->pages) {
+>>>>>> +        ret = -ENOMEM;
+>>>>>> +        mapping->npages = 0; /* update npages for reclaim */
+>>>>>> +        goto unlock_pages;
+>>>>>> +    }
+>>>>>> +
+>>>>>> +    gup_flags = FOLL_LONGTERM;
+>>>>>> +    if (region->flags & GH_MEM_ALLOW_WRITE)
+>>>>>> +        gup_flags |= FOLL_WRITE;
+>>>>>> +
+>>>>>> +    pinned = pin_user_pages_fast(region->userspace_addr, 
+>>>>>> mapping->npages,
+>>>>>> +                    gup_flags, mapping->pages);
+>>>>>> +    if (pinned < 0) {
+>>>>>> +        ret = pinned;
+>>>>>> +        goto free_pages;
+>>>>>> +    } else if (pinned != mapping->npages) {
+>>>>>> +        ret = -EFAULT;
+>>>>>> +        mapping->npages = pinned; /* update npages for reclaim */
+>>>>>> +        goto unpin_pages;
+>>>>>> +    }
+>>>>>
+>>>>> Sorry if I missed it, but I still don't see where you reject file 
+>>>>> mappings
+>>>>> here.
+>>>>>
+>>>>
+>>>> Sure, I can reject file mappings. I didn't catch that was the ask 
+>>>> previously
+>>>> and thought it was only a comment about behavior of file mappings.
+>>>
+>>> I thought the mention of filesystem corruption was clear enough! It's
+>>> definitely something we shouldn't allow.
+>>>
+>>>>> This is also the wrong interface for upstream. Please get involved 
+>>>>> with
+>>>>> the fd-based guest memory discussions [1] and port your series to 
+>>>>> that.
+>>>>>
+>>>>
+>>>> The user interface design for *shared* memory aligns with
+>>>> KVM_SET_USER_MEMORY_REGION.
+>>>
+>>> I don't think it does. For example, file mappings don't work (as above),
+>>> you're placing additional rlimit requirements on the caller, read-only
+>>> memslots are not functional, the memory cannot be swapped or migrated,
+>>> dirty logging doesn't work etc. pKVM is in the same boat, but that's why
+>>> we're not upstreaming this part in its current form.
+>>>
+>>
+>> I thought pKVM was only holding off on upstreaming changes related to 
+>> guest-private memory?
+>>
+>>>> I understood we want to use restricted memfd for giving 
+>>>> guest-private memory
+>>>> (Gunyah calls this "lending memory"). When I went through the 
+>>>> changes, I
+>>>> gathered KVM is using restricted memfd only for guest-private memory 
+>>>> and not
+>>>> for shared memory. Thus, I dropped support for lending memory to the 
+>>>> guest
+>>>> VM and only retained the shared memory support in this series. I'd 
+>>>> like to
+>>>> merge what we can today and introduce the guest-private memory 
+>>>> support in
+>>>> tandem with the restricted memfd; I don't see much reason to delay the
+>>>> series.
+>>>
+>>> Right, protected guests will use the new restricted memfd ("guest mem"
+>>> now, I think?), but non-protected guests should implement the existing
+>>> interface *without* the need for the GUP pin on guest memory pages. Yes,
+>>> that means full support for MMU notifiers so that these pages can be
+>>> managed properly by the host kernel. We're working on that for pKVM, but
+>>> it requires a more flexible form of memory sharing over what we 
+>>> currently
+>>> have so that e.g. the zero page can be shared between multiple entities.
+>>
+>> Gunyah doesn't support swapping pages out while the guest is running 
+>> and the design of Gunyah isn't made to give host kernel full control 
+>> over the S2 page table for its guests. As best I can tell from reading 
+>> the respective drivers, ACRN and Nitro Enclaves both GUP pin guest 
+>> memory pages prior to giving them to the guest, so I don't think this 
+>> requirement from Gunyah is particularly unusual.
+>>
+> 
+> I read/dug into mmu notifiers more and I don't think it matches with 
+> Gunyah's features today. We don't allow the host to freely manage VM's 
+> pages because it requires the guest VM to have a level of trust on the 
+> host. Once a page is given to the guest, it's done for the lifetime of 
+> the VM. Allowing the host to replace pages in the guest memory map isn't 
+> part of any VM's security model that we run in Gunyah. With that 
+> requirement, longterm pinning looks like the correct approach to me.
 
-Changelog v1 -> v2:
-* https://lore.kernel.org/netdev/20230706081554.1616839-2-alex@shruggie.ro/
-* changed property name 'vsc8531,clkout-freq-mhz' -> 'mscc,clkout-freq-mhz'
-  as requested by Rob
-* added 'net-next' tag as requested by Andrew
-
- Documentation/devicetree/bindings/net/mscc-phy-vsc8531.txt | 5 +++++
- 1 file changed, 5 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/net/mscc-phy-vsc8531.txt b/Documentation/devicetree/bindings/net/mscc-phy-vsc8531.txt
-index 0a3647fe331b..085d0e8a834e 100644
---- a/Documentation/devicetree/bindings/net/mscc-phy-vsc8531.txt
-+++ b/Documentation/devicetree/bindings/net/mscc-phy-vsc8531.txt
-@@ -31,6 +31,10 @@ Optional properties:
- 			  VSC8531_LINK_100_ACTIVITY (2),
- 			  VSC8531_LINK_ACTIVITY (0) and
- 			  VSC8531_DUPLEX_COLLISION (8).
-+- mscc,clkout-freq-mhz	: For VSC8531 and similar PHYs, this will output
-+			  a clock signal on the CLKOUT pin of the chip.
-+			  The supported values are 25, 50 & 125 Mhz.
-+			  Default value is no clock signal on the CLKOUT pin.
- - load-save-gpios	: GPIO used for the load/save operation of the PTP
- 			  hardware clock (PHC).
- 
-@@ -69,5 +73,6 @@ Example:
-                 vsc8531,edge-slowdown	= <7>;
-                 vsc8531,led-0-mode	= <VSC8531_LINK_1000_ACTIVITY>;
-                 vsc8531,led-1-mode	= <VSC8531_LINK_100_ACTIVITY>;
-+                mscc,clkout-freq-mhz	= <50>;
- 		load-save-gpios		= <&gpio 10 GPIO_ACTIVE_HIGH>;
-         };
--- 
-2.41.0
-
+Is my approach of longterm pinning correct given that Gunyah doesn't 
+allow host to freely swap pages?
