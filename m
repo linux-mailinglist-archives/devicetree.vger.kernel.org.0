@@ -2,94 +2,233 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 47DB1752143
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 14:28:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A8FAA75214D
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 14:32:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234634AbjGMM22 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jul 2023 08:28:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49798 "EHLO
+        id S234253AbjGMMcP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jul 2023 08:32:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51270 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234287AbjGMM21 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jul 2023 08:28:27 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1C5119B;
-        Thu, 13 Jul 2023 05:28:26 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        with ESMTP id S234554AbjGMMcO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jul 2023 08:32:14 -0400
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89998268D
+        for <devicetree@vger.kernel.org>; Thu, 13 Jul 2023 05:32:12 -0700 (PDT)
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 85B66610E7;
-        Thu, 13 Jul 2023 12:28:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B4401C433C7;
-        Thu, 13 Jul 2023 12:28:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689251305;
-        bh=8f8B420S2iez6Nmhlz8hkDDgDQ2+6nOB0mFrfGPMq6c=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=GX1xK+lkiknPcbIVSTtjKp7sNrQf8Bk5hqaCJYa3bnt+geSrHWjFnoHsrBUKh6ZbC
-         /TK94u7I3SMgGYHawfX9CIMUscmzybc4kBak3nkM102nS9BIQ/o2ey/gBZtnXF1LoY
-         JjlbHjAJZpPuaFOwzopcXiZ7Pf9KLbm8KveUMJlwxbc8p3NdgKu+sIfo6to+qhRBnX
-         UBALvHEtr7eAjNnFUhufEZZsinz2y0SQGaxD+GAts1UQwW5YlI+zdF49VQ5qeR1NMe
-         wNpAzDb/2wkq2gu37qQbiEnzyF3B9u1OSRVN+SUhqFRLfbp1sMaNOiPbVxD5GzuIP3
-         PNcRlVksAXw1A==
-Date:   Thu, 13 Jul 2023 13:28:20 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     William Qiu <william.qiu@starfivetech.com>
-Cc:     devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id D00513F71E
+        for <devicetree@vger.kernel.org>; Thu, 13 Jul 2023 12:32:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1689251530;
+        bh=OmJAYdfXr11pAMCyImFxnsohime3j/dmz8eTaaKAUKk=;
+        h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+         To:Cc:Content-Type;
+        b=kTnza/5P3Qc5UCZ1ZtavGhm/swSIVdoNdb+IxJgtrkTVABAu27ZLbNQWC/Yh7tnfu
+         vZt1WSCDO0sqSIQFHk362d37rOvk4LgRMigo8f3HmzLDiNZgBlPjSD8fnimlv9PRyJ
+         dKu9Gh0imYVogOOvzZC44aNre+FZYH+g25a38HA8SmxzJk6FjL6mwRHqwxNUmrLBtk
+         kKupXxir/U6xLK7qG2vtghU4HnU2jwsxfXJSHSA96qfBAJPfvQ+SGlNmBXlGoielK8
+         /9zFRAw+dZ79vD+ks4VaYCkE+s/6yc+jg8yOoxINY9J/UQXh11XNtIOH+n2YEG07kh
+         pBpayfaVXtTGQ==
+Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-403b134421cso4992021cf.0
+        for <devicetree@vger.kernel.org>; Thu, 13 Jul 2023 05:32:10 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689251529; x=1691843529;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=OmJAYdfXr11pAMCyImFxnsohime3j/dmz8eTaaKAUKk=;
+        b=YEFOrRp9RewrFYboIrzvyIeevlTrR8UYykyF4ojD1AtUJdvIbf8aK1BIaYMPcYsW8F
+         x3RKQURGpSedzlDPtWIw3y7masAJ8OS95AWH/XHSFjBP/uhNCkZFRnGyWPmOQHW3jaLw
+         RW1djcaOAAQC8c1+0m5llRRIT2eJU/0iClL1MXdFdt8kvsV+9wtrvL8KmE+KHVdVRTaT
+         ngvJiYH1O99t3YDKCPyhyT2SX0AKWvjKQ8ktb2KkglO4pc748bJ0ZCIPSE5YxznKS+6i
+         4LUC49i0xfjAu8aBptVxiDDzx1VaesHcM82is9xpeu+BLagIIhjl8T06SqQStl3KZMl6
+         0v0g==
+X-Gm-Message-State: ABy/qLZYj+JHksuU+bIByqbI9ei0DsZ7t7hoMHrsth4X1vwDpEsTLwTd
+        4DOui7k5XF6/1FSStdWFLV6f6XZCMSLXAuUGtb6pMIzrlVgBKxB2tJiEiI9wv78g4/7S3XFjPA6
+        /e5kBfPrA51X+qyRTJJ4e5BiNhjpq1AM5UjDaoOk3lqRmv7HPzhjJTeU=
+X-Received: by 2002:a05:622a:13d3:b0:400:9346:bf36 with SMTP id p19-20020a05622a13d300b004009346bf36mr1833910qtk.17.1689251529210;
+        Thu, 13 Jul 2023 05:32:09 -0700 (PDT)
+X-Google-Smtp-Source: APBJJlHA5vK3hxfhXcY8G5rQmLZDXTBJyd7aSNs425ysD//K9J5R9Fx3mszf1d/OFc5OhPAt3GVAQ5/HeZZIq31NJYo=
+X-Received: by 2002:a05:622a:13d3:b0:400:9346:bf36 with SMTP id
+ p19-20020a05622a13d300b004009346bf36mr1833884qtk.17.1689251528953; Thu, 13
+ Jul 2023 05:32:08 -0700 (PDT)
+MIME-Version: 1.0
+References: <20230704064610.292603-1-xingyu.wu@starfivetech.com> <20230704064610.292603-3-xingyu.wu@starfivetech.com>
+In-Reply-To: <20230704064610.292603-3-xingyu.wu@starfivetech.com>
+From:   Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Date:   Thu, 13 Jul 2023 14:31:52 +0200
+Message-ID: <CAJM55Z_G-OA_zmYoYueOGgYKMFHjPurJYAypTBw=P4WLkyn9Bw@mail.gmail.com>
+Subject: Re: [RESEND PATCH v6 2/7] dt-bindings: soc: starfive: Add StarFive
+ syscon module
+To:     Xingyu Wu <xingyu.wu@starfivetech.com>
+Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Linus Walleij <linus.walleij@linaro.org>
-Subject: Re: [PATCH v2 2/3] dt-bindings: spi: constrain minItems of clocks
- and clock-names
-Message-ID: <c5ad1e1c-58f4-4833-b9c7-8876c1a0dc27@sirena.org.uk>
-References: <20230713090015.127541-1-william.qiu@starfivetech.com>
- <20230713090015.127541-3-william.qiu@starfivetech.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="NdTpCj8USvWVeToK"
-Content-Disposition: inline
-In-Reply-To: <20230713090015.127541-3-william.qiu@starfivetech.com>
-X-Cookie: MOUNT TAPE U1439 ON B3, NO RING
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Conor Dooley <conor@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Hal Feng <hal.feng@starfivetech.com>,
+        William Qiu <william.qiu@starfivetech.com>,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, 4 Jul 2023 at 08:49, Xingyu Wu <xingyu.wu@starfivetech.com> wrote:
+>
+> From: William Qiu <william.qiu@starfivetech.com>
+>
+> Add documentation to describe StarFive System Controller Registers.
+>
 
---NdTpCj8USvWVeToK
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Reviewed-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
 
-On Thu, Jul 13, 2023 at 05:00:14PM +0800, William Qiu wrote:
-
-> The SPI controller only need apb_pclk clock to work properly on JH7110 SoC,
-> so there add minItems whose value is equal to 1. Other platforms do not
-> have this constraint.
-
-Presumably this means that this is some variant of the usual pl022 IP,
-or that the clock is in fact present but is not modelled in your DT?
-
---NdTpCj8USvWVeToK
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmSv7eMACgkQJNaLcl1U
-h9A7eAf/USoycBJ8F/DS9P8f6DPSfiP5R4ajKsnjatuVuVfv7CtwU6QvKsBs+HXu
-sAfE7Ig2/LZNZJcmQohmMe5Iu3lcHZLQpbjhLVD25aDsWojcsz2KCg8/wXKoi8xG
-jdpYPYlfeS8nwDOKyyOCUti0aTx8wWRB42AFcnv4FQ0E/wTYjI23wyreGcjZDbwb
-+2i4KkIBIAfJmes1pBxZ9VTUgbj/1NFeeotZCK1kfMog5dffc5bNCwna2ZmwlVUd
-Zn3M2C7p2SlSytkklg4UBSaKF/hLj9FxVSwMEj3zNW3ueQ0go69khO3NdsFRPGV+
-81J//IT4oLSxCrgbu0t5913MDarLIQ==
-=fvSe
------END PGP SIGNATURE-----
-
---NdTpCj8USvWVeToK--
+> Co-developed-by: Xingyu Wu <xingyu.wu@starfivetech.com>
+> Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
+> Signed-off-by: William Qiu <william.qiu@starfivetech.com>
+> ---
+>  .../soc/starfive/starfive,jh7110-syscon.yaml  | 93 +++++++++++++++++++
+>  MAINTAINERS                                   |  7 ++
+>  2 files changed, 100 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/soc/starfive/starfive,jh7110-syscon.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/soc/starfive/starfive,jh7110-syscon.yaml b/Documentation/devicetree/bindings/soc/starfive/starfive,jh7110-syscon.yaml
+> new file mode 100644
+> index 000000000000..0039319e91fe
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/soc/starfive/starfive,jh7110-syscon.yaml
+> @@ -0,0 +1,93 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/soc/starfive/starfive,jh7110-syscon.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: StarFive JH7110 SoC system controller
+> +
+> +maintainers:
+> +  - William Qiu <william.qiu@starfivetech.com>
+> +
+> +description:
+> +  The StarFive JH7110 SoC system controller provides register information such
+> +  as offset, mask and shift to configure related modules such as MMC and PCIe.
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - items:
+> +          - const: starfive,jh7110-sys-syscon
+> +          - const: syscon
+> +          - const: simple-mfd
+> +      - items:
+> +          - enum:
+> +              - starfive,jh7110-aon-syscon
+> +              - starfive,jh7110-stg-syscon
+> +          - const: syscon
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clock-controller:
+> +    $ref: /schemas/clock/starfive,jh7110-pll.yaml#
+> +    type: object
+> +
+> +  "#power-domain-cells":
+> +    const: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: starfive,jh7110-sys-syscon
+> +    then:
+> +      required:
+> +        - clock-controller
+> +    else:
+> +      properties:
+> +        clock-controller: false
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: starfive,jh7110-aon-syscon
+> +    then:
+> +      required:
+> +        - "#power-domain-cells"
+> +    else:
+> +      properties:
+> +        "#power-domain-cells": false
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    syscon@10240000 {
+> +        compatible = "starfive,jh7110-stg-syscon", "syscon";
+> +        reg = <0x10240000 0x1000>;
+> +    };
+> +
+> +    syscon@13030000 {
+> +        compatible = "starfive,jh7110-sys-syscon", "syscon", "simple-mfd";
+> +        reg = <0x13030000 0x1000>;
+> +
+> +        clock-controller {
+> +            compatible = "starfive,jh7110-pll";
+> +            clocks = <&osc>;
+> +            #clock-cells = <1>;
+> +        };
+> +    };
+> +
+> +    syscon@17010000 {
+> +        compatible = "starfive,jh7110-aon-syscon", "syscon";
+> +        reg = <0x17010000 0x1000>;
+> +        #power-domain-cells = <1>;
+> +    };
+> +
+> +...
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 35e19594640d..58ba04bd0bc8 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -20127,6 +20127,12 @@ S:     Supported
+>  F:     Documentation/devicetree/bindings/mmc/starfive*
+>  F:     drivers/mmc/host/dw_mmc-starfive.c
+>
+> +STARFIVE JH7110 SYSCON
+> +M:     William Qiu <william.qiu@starfivetech.com>
+> +M:     Xingyu Wu <xingyu.wu@starfivetech.com>
+> +S:     Supported
+> +F:     Documentation/devicetree/bindings/soc/starfive/starfive,jh7110-syscon.yaml
+> +
+>  STARFIVE JH71X0 CLOCK DRIVERS
+>  M:     Emil Renner Berthing <kernel@esmil.dk>
+>  M:     Hal Feng <hal.feng@starfivetech.com>
+> @@ -20164,6 +20170,7 @@ STARFIVE SOC DRIVERS
+>  M:     Conor Dooley <conor@kernel.org>
+>  S:     Maintained
+>  T:     git https://git.kernel.org/pub/scm/linux/kernel/git/conor/linux.git/
+> +F:     Documentation/devicetree/bindings/soc/starfive/
+>  F:     drivers/soc/starfive/
+>
+>  STARFIVE TRNG DRIVER
+> --
+> 2.25.1
+>
