@@ -2,116 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A0D5751FBD
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 13:20:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 49C76751FD4
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jul 2023 13:23:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233775AbjGMLU2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jul 2023 07:20:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58910 "EHLO
+        id S233181AbjGMLXl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jul 2023 07:23:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33504 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232181AbjGMLU2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jul 2023 07:20:28 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F82D198A;
-        Thu, 13 Jul 2023 04:20:27 -0700 (PDT)
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36DB2N1X023710;
-        Thu, 13 Jul 2023 11:20:23 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references; s=qcppdkim1;
- bh=THevGgIaAz40LxJ7PoX5+QlN0ue7D25a3gYMNyvw4/8=;
- b=l6/utQTFQbj+BL6D6YxUkl/FFeiLoQtit6od6YsJTIon94ze4M1HmTHmbYldPVoGjpIF
- CYqGdtsjLg76DmlUPsZ7rxCz4p0XuMRKshXHFmo2V24PFNd0/u/5RnxnUSByvOJZ8Ryn
- dMU43siMkP1a5TZ2kGNtxLqxS+THk0+Gm9IbtPtJNitDrTgiTFiBPOf6zS3sycxTxByC
- uJiPHVJ7sLDX+gacHqIeryJLK9SvSeXEOzJk5UCcxLZlDECKHpfrXOSDoXMLFpAQNzFp
- 00k+o2UsN1EsGY1Jy4ZUAUMVnbc9Elo65r/vrUPPi41fszEZ4zvSQYB4UfTiBLoGg3/C qA== 
-Received: from apblrppmta01.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3rtg1sg13g-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 13 Jul 2023 11:20:23 +0000
-Received: from pps.filterd (APBLRPPMTA01.qualcomm.com [127.0.0.1])
-        by APBLRPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 36DBKJ9P012000;
-        Thu, 13 Jul 2023 11:20:19 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-        by APBLRPPMTA01.qualcomm.com (PPS) with ESMTPS id 3rq0vm0p90-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
-        Thu, 13 Jul 2023 11:20:19 +0000
-Received: from APBLRPPMTA01.qualcomm.com (APBLRPPMTA01.qualcomm.com [127.0.0.1])
-        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 36DBKJcX011981;
-        Thu, 13 Jul 2023 11:20:19 GMT
-Received: from hu-sgudaval-hyd.qualcomm.com (hu-krichai-hyd.qualcomm.com [10.213.110.112])
-        by APBLRPPMTA01.qualcomm.com (PPS) with ESMTP id 36DBKJAF011967;
-        Thu, 13 Jul 2023 11:20:19 +0000
-Received: by hu-sgudaval-hyd.qualcomm.com (Postfix, from userid 4058933)
-        id 9F5154AB2; Thu, 13 Jul 2023 16:50:18 +0530 (+0530)
-From:   Krishna chaitanya chundru <quic_krichai@quicinc.com>
-To:     manivannan.sadhasivam@linaro.org
-Cc:     helgaas@kernel.org, linux-pci@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        quic_vbadigan@quicinc.com, quic_nitegupt@quicinc.com,
-        quic_skananth@quicinc.com, quic_ramkri@quicinc.com,
-        krzysztof.kozlowski@linaro.org,
-        Krishna chaitanya chundru <quic_krichai@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS)
-Subject: [PATCH v8 2/3] arm: dts: qcom: sdx65: Add PCIe interconnect path
-Date:   Thu, 13 Jul 2023 16:50:12 +0530
-Message-Id: <1689247213-13569-3-git-send-email-quic_krichai@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1689247213-13569-1-git-send-email-quic_krichai@quicinc.com>
-References: <1689247213-13569-1-git-send-email-quic_krichai@quicinc.com>
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: aLJzmiYIxZT0slMDkbvkrjPlGOzZXA8d
-X-Proofpoint-ORIG-GUID: aLJzmiYIxZT0slMDkbvkrjPlGOzZXA8d
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-07-13_04,2023-07-11_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- bulkscore=0 mlxlogscore=864 spamscore=0 impostorscore=0 mlxscore=0
- suspectscore=0 adultscore=0 clxscore=1011 priorityscore=1501 phishscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2305260000 definitions=main-2307130099
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+        with ESMTP id S229737AbjGMLXk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jul 2023 07:23:40 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8B2710CB
+        for <devicetree@vger.kernel.org>; Thu, 13 Jul 2023 04:23:38 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id 2adb3069b0e04-4fb94b1423eso1052400e87.1
+        for <devicetree@vger.kernel.org>; Thu, 13 Jul 2023 04:23:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1689247417; x=1691839417;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=XdA26b3TlY+qVHFXfPT1loEQBlaITbodxKS5uFmTHFI=;
+        b=p998AEX5zIHGMjonVjUbgh8/6QXiGDq451oj4GhrOMbgxHlwnZ45wSU6N4fOY1nXCq
+         dQ19BR1al1G1NrDLgXCflOyr7ZtXl2BquH+coP6BfC6Cr6/PGdsTeKWrvIaB25vdsonP
+         dcPRwSM48VY60QKLAHO+hhMyD5EV//veREUy0rN2p7nJbnpyhyJ2Fq7O0wVgIISYC2Xi
+         vh0BKVFkYFPaYpn3ffOanHRSVDw+LIGOWSZ62hw3ct6AC3mbVVUjBLr6RpGs12Y350rJ
+         CtixOs+Q6PYq2ZJNoTkwXz054d4lePbxrRwEbiCdBw4LC91TVzhnvYwKdPIaLky4F6tB
+         kX3Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689247417; x=1691839417;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=XdA26b3TlY+qVHFXfPT1loEQBlaITbodxKS5uFmTHFI=;
+        b=ClUZTtbPnQKr7aOLH9RRPLx3ECL/tY5fZGQfU2FdMirb5qG1mVm2JRImGofFlWxscC
+         gTi8K8Lb3h+Mf8vkPDidSyGAWXLV3QHbggbCn6QAm7vR79nKVRlqy5/UGS3w/Yvaq7XQ
+         x19k1+PcKb7xB0COJXkW3IeHKJ1za2D0naFiUU9tM+2mVVB7kzNEzDvnPbTjm9LIEOD5
+         tqTUdFvV0CKiFdAVwGqOldV8rinDkIkzMOqPCdKGhJEEchDNb+1Qdty3OBcil2/phn2M
+         3QVdMBc2ExZvOkHhZMow3oHk3oGPUYc1Snq0IVmEDL+76khljPe1tehxISYAzTqOHc9v
+         3Y7A==
+X-Gm-Message-State: ABy/qLYz9GALxDVGMcZMnWQCt1zlrl5GQMymVAtqYdur8ywruMrfdhPE
+        SE6V+whtQNoxYgcgYlZ0xQRLjA==
+X-Google-Smtp-Source: APBJJlFOclpA9UTM6DzH6FOtAA8753K+Xc9Pk5yTtRuLx+RYqFXrAkPPpxbPMKd+GiA3HToh0ficQw==
+X-Received: by 2002:a05:6512:65:b0:4fb:c693:c73b with SMTP id i5-20020a056512006500b004fbc693c73bmr1040777lfo.64.1689247416988;
+        Thu, 13 Jul 2023 04:23:36 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id w16-20020a5d6810000000b003144b50034esm7675296wru.110.2023.07.13.04.23.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 13 Jul 2023 04:23:36 -0700 (PDT)
+Message-ID: <f6c11605-56d7-7228-b86d-bc317a8496d0@linaro.org>
+Date:   Thu, 13 Jul 2023 13:23:34 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH] dt-bindings: net: xilinx_gmii2rgmii: Convert to json
+ schema
+Content-Language: en-US
+To:     Pranavi Somisetty <pranavi.somisetty@amd.com>, davem@davemloft.net,
+        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, michal.simek@amd.com, harini.katakam@amd.com
+Cc:     git@amd.com, radhey.shyam.pandey@amd.com, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20230713103453.24018-1-pranavi.somisetty@amd.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230713103453.24018-1-pranavi.somisetty@amd.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add pcie-mem interconnect path to sdx65 platform.
+On 13/07/2023 12:34, Pranavi Somisetty wrote:
+> Convert the Xilinx GMII to RGMII Converter device tree binding
+> documentation to json schema.
+> This converter is usually used as gem <---> gmii2rgmii <---> external phy
+> and, it's phy-handle should point to the phandle of the external phy.
+> 
+> Signed-off-by: Pranavi Somisetty <pranavi.somisetty@amd.com>
 
-Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
----
- arch/arm/boot/dts/qcom/qcom-sdx65.dtsi | 3 +++
- 1 file changed, 3 insertions(+)
+...
 
-diff --git a/arch/arm/boot/dts/qcom/qcom-sdx65.dtsi b/arch/arm/boot/dts/qcom/qcom-sdx65.dtsi
-index 1a35830..77fa97c 100644
---- a/arch/arm/boot/dts/qcom/qcom-sdx65.dtsi
-+++ b/arch/arm/boot/dts/qcom/qcom-sdx65.dtsi
-@@ -332,6 +332,9 @@
- 				     <GIC_SPI 145 IRQ_TYPE_LEVEL_HIGH>;
- 			interrupt-names = "global", "doorbell";
- 
-+			interconnects = <&system_noc MASTER_PCIE_0 &mc_virt SLAVE_EBI1>;
-+			interconnect-names = "pcie-mem";
-+
- 			resets = <&gcc GCC_PCIE_BCR>;
- 			reset-names = "core";
- 
--- 
-2.7.4
+> +
+> +description:
+> +  The Gigabit Media Independent Interface (GMII) to Reduced Gigabit Media
+> +  Independent Interface (RGMII) core provides the RGMII between RGMII-compliant
+> +  ethernet physical media devices (PHY) and the Gigabit Ethernet controller.
+> +  This core can be used in all three modes of operation(10/100/1000 Mb/s).
+> +  The Management Data Input/Output (MDIO) interface is used to configure the
+> +  speed of operation. This core can switch dynamically between the three
+> +  different speed modes by configuring the converter register through mdio write.
+> +  The core cannot function without an external phy connected to it.
+> +
+> +properties:
+> +  compatible:
+> +    const: xlnx,gmii-to-rgmii-1.0
+> +
+> +  reg:
+> +    minimum: 0
+> +    maximum: 31
+> +    description: The ID number for the phy, usually a small integer.
+
+Drop the "usually small...", it's obvious from constraints.
+
+> +
+> +  phy-handle: true
+
+Where is this defined?
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - phy-handle
+> +
+> +unevaluatedProperties: false
+
+Either you miss $ref or this should be additionalProperties. I bet it's
+the first problem.
+
+> +
+> +examples:
+> +  - |
+> +    mdio {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +        phy: ethernet-phy@0 {
+> +            reg = <0>;
+> +        };
+
+Drop this node, quite obvious.
+
+> +        gmiitorgmii@8 {
+> +            compatible = "xlnx,gmii-to-rgmii-1.0";
+> +            reg = <8>;
+> +            phy-handle = <&phy>;
+> +        };
+> +    };
+
+Best regards,
+Krzysztof
 
