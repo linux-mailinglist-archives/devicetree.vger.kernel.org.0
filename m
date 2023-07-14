@@ -2,195 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F4D975314F
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jul 2023 07:32:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 95FFD753127
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jul 2023 07:30:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234538AbjGNFcN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jul 2023 01:32:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59120 "EHLO
+        id S234552AbjGNFam (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jul 2023 01:30:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58776 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234954AbjGNFbn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jul 2023 01:31:43 -0400
-Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64B3D3A9C
-        for <devicetree@vger.kernel.org>; Thu, 13 Jul 2023 22:31:19 -0700 (PDT)
-Received: from epcas2p2.samsung.com (unknown [182.195.41.54])
-        by mailout2.samsung.com (KnoxPortal) with ESMTP id 20230714053115epoutp02dda2a6a698dc8977e56c969b8b253407~xpO2QtaVE1737817378epoutp02x
-        for <devicetree@vger.kernel.org>; Fri, 14 Jul 2023 05:31:15 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20230714053115epoutp02dda2a6a698dc8977e56c969b8b253407~xpO2QtaVE1737817378epoutp02x
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1689312675;
-        bh=FH9ncGZNeuvXThGojUuRBNFIVkXtbRJVe1BwpUu+UwE=;
-        h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
-        b=bqM9DdJjGi3oZwRqTqqPGyIVusfLot9dqS6t9EyP/DNAUbnht6B9pG0LfZtsQUR6+
-         5c6KUHlPcrqmDiLQyTJWnjJ7PiQDsIJw5AbL5M0QfvXtZm26Hkf65QcGKjJ4Ij9MtF
-         YnpQmtc9Z7oGp7V2MYRxcOj9pVynugAy+oJPiVXw=
-Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
-        epcas2p2.samsung.com (KnoxPortal) with ESMTP id
-        20230714053115epcas2p2df39db9341dc7fb4d19e2cacf18fa7de~xpO18GDGp1685916859epcas2p2l;
-        Fri, 14 Jul 2023 05:31:15 +0000 (GMT)
-Received: from epsmges2p4.samsung.com (unknown [182.195.36.98]) by
-        epsnrtp2.localdomain (Postfix) with ESMTP id 4R2KpB633fz4x9Py; Fri, 14 Jul
-        2023 05:31:14 +0000 (GMT)
-Received: from epcas2p2.samsung.com ( [182.195.41.54]) by
-        epsmges2p4.samsung.com (Symantec Messaging Gateway) with SMTP id
-        23.E4.32393.2ADD0B46; Fri, 14 Jul 2023 14:31:14 +0900 (KST)
-Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
-        epcas2p1.samsung.com (KnoxPortal) with ESMTPA id
-        20230714053114epcas2p1ebc203b5522cc05c984a55b30bdbcd1b~xpO1Q82Ar3185131851epcas2p1E;
-        Fri, 14 Jul 2023 05:31:14 +0000 (GMT)
-Received: from epsmgmcp1.samsung.com (unknown [182.195.42.82]) by
-        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20230714053114epsmtrp2f7630b7f688b759da530ab3deca8f76e~xpO1P3dSl0594005940epsmtrp27;
-        Fri, 14 Jul 2023 05:31:14 +0000 (GMT)
-X-AuditID: b6c32a48-0fa7ca8000007e89-b8-64b0dda2df51
-Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
-        epsmgmcp1.samsung.com (Symantec Messaging Gateway) with SMTP id
-        EF.08.64355.2ADD0B46; Fri, 14 Jul 2023 14:31:14 +0900 (KST)
-Received: from [10.229.8.168] (unknown [10.229.8.168]) by
-        epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
-        20230714053114epsmtip29085bfc1299f6034c1ceadf41cdf3ec9~xpO09a-5i2248122481epsmtip25;
-        Fri, 14 Jul 2023 05:31:14 +0000 (GMT)
-Message-ID: <d5148039-e3f4-b9ca-d7e9-19d64ecc1445@samsung.com>
-Date:   Fri, 14 Jul 2023 14:28:41 +0900
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
-        Thunderbird/102.11.0
-Subject: Re: [PATCH] arm64: dts: exynos: add pwm node for exynosautov9-sadk
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        with ESMTP id S234778AbjGNFal (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jul 2023 01:30:41 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8088F19B4;
+        Thu, 13 Jul 2023 22:30:40 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 112B461C0A;
+        Fri, 14 Jul 2023 05:30:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A629C433CA;
+        Fri, 14 Jul 2023 05:30:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1689312639;
+        bh=Zmn4NeheusfOk3tm5PX2lZHGmvP/Ct+fKQyBjBgdVT8=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=b59UApgjxctYKqLTMw5dpvyKH+L+luO0L14Jbi+NwMAnkJgpd6urUBhq4yxT/V83w
+         KqUjJYJTGLA24mwfrUiBjInhA9iVIn/jH5EIvevx8mya3tCARsE4evg63LaQDT519v
+         eIqA5Pi7EWWV7oyntjgt1KLj/KUXI8aIYv6SyxoTMjpdT70mTrxRQYmE7MR8QUvWxF
+         ShLRgWZPpUAEqsVboF1hgiUNUFajQ5V3nqGijMUc+YjjF0NW5vzqSR4iNPAD/XYW4i
+         tYFbxl4MPeYyBry2qHOYHc1u1lgEwUeQDzW1BgvOJ/TKUM2xxxR7346geCQWaqFpl6
+         v914/2rKxyIxQ==
+From:   Bjorn Andersson <andersson@kernel.org>
+To:     Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Chanho Park <chanho61.park@samsung.com>
-Content-Language: en-US
-From:   Jaewon Kim <jaewon02.kim@samsung.com>
-In-Reply-To: <3bc9c34a-ba55-61c5-87ea-80b369841873@linaro.org>
-Content-Transfer-Encoding: 7bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrGJsWRmVeSWpSXmKPExsWy7bCmme6iuxtSDJ73GVo8mLeNzeLyfm2L
-        NXvPMVnMP3KO1aLvxUNmi72vt7JbbHp8jdXi8q45bBYzzu9jsmjde4Tdgctj06pONo871/aw
-        eWxeUu/Rt2UVo8fnTXIBrFHZNhmpiSmpRQqpecn5KZl56bZK3sHxzvGmZgaGuoaWFuZKCnmJ
-        uam2Si4+AbpumTlANykplCXmlAKFAhKLi5X07WyK8ktLUhUy8otLbJVSC1JyCswL9IoTc4tL
-        89L18lJLrAwNDIxMgQoTsjPufL3BVHBJsOLVzessDYyr+boYOTkkBEwkphx+zNbFyMUhJLCD
-        UeLw7C5GCOcTo8S/h18QnEfnnjPCtMw88I0dIrGTUWJm9xuo/teMEl3brrGAVPEK2Emcu7gc
-        zGYRUJX4tXU6M0RcUOLkzCdgcVGBaInWZffZQGxhAW+JBasaWUAGiQg8YZRYtK4BbDezwCZG
-        iV9dd8G6mQXEJW49mc8EYrMJaEt8X7+YFcTmBNq2+SrEVGYBeYntb+cwgzRLCMzkkJg78TMz
-        xOEuEg1tX5kgbGGJV8e3sEPYUhKf3+1lg7CzJdqn/2GFsCskLm6YDRU3lpj1rB3oIg6gBZoS
-        63fpg5gSAsoSR25BreWT6Dj8lx0izCvR0SYE0agmcX/qOaghMhKTjqyEOsBD4nHfU8YJjIqz
-        kIJlFpInZyF5ZhbC3gWMLKsYxVILinPTU4uNCkzg0Z2cn7uJEZxgtTx2MM5++0HvECMTB+Mh
-        RgkOZiURXpVt61KEeFMSK6tSi/Lji0pzUosPMZoCI2cis5Rocj4wxeeVxBuaWBqYmJkZmhuZ
-        GpgrifPea52bIiSQnliSmp2aWpBaBNPHxMEp1cDkUZ18WUCii11wWnjSRKnc/RzTJ/mxrDpb
-        zWFo5JLvH5RbMN/xWP47sSwlXvnqiCc8PmttfYva479zhx9ccurkHJdz+2xKBed8FDF/ppWh
-        mZ8lEuaanyqzwuuTz/2jLQcO9Xjap1y8eLAteNGCYPdlRpe28DGy7J2+cwfr9rkSK44/VZxb
-        WZrnHiCXJh+75I7By8+dlTLWEwRKHjZ6aD3Y9/KGSckrlbq/dTY7zybqe3ievSC2Pzb/3Iqg
-        q3sFzW4ffbaRQ/TFg8tn797mkdpyhvX5Yx2x8/dfrbx8OsMxzPpPRlyLryjLs/3SLq+fGm0S
-        59g1U+KrwuP8gw9yNtgv/S7y/JwuA4upgU6+S4QSS3FGoqEWc1FxIgA89uLoOQQAAA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFmpmkeLIzCtJLcpLzFFi42LZdlhJXnfR3Q0pBh2dghYP5m1js7i8X9ti
-        zd5zTBbzj5xjteh78ZDZYu/rrewWmx5fY7W4vGsOm8WM8/uYLFr3HmF34PLYtKqTzePOtT1s
-        HpuX1Hv0bVnF6PF5k1wAaxSXTUpqTmZZapG+XQJXxp2vN5gKLglWvLp5naWBcTVfFyMnh4SA
-        icTMA9/Yuxi5OIQEtjNKzLi5kBEiISOx/FkfG4QtLHG/5QgrRNFLRomXB04zgyR4Bewkzl1c
-        zgJiswioSvzaOh0qLihxcuYTsLioQLTE6s8XWEFsYQFviQWrGllABokIPGGUmD1vBxOIwyyw
-        iVHizOWnUHccZZS4vusDWAuzgLjErSfzmUBsNgFtie/rF4PFOYFWb74KsYJZwEyia2sXI4Qt
-        L7H97RzmCYxCs5BcMgvJqFlIWmYhaVnAyLKKUTS1oDg3PTe5wFCvODG3uDQvXS85P3cTIzie
-        tIJ2MC5b/1fvECMTB+MhRgkOZiURXpVt61KEeFMSK6tSi/Lji0pzUosPMUpzsCiJ8yrndKYI
-        CaQnlqRmp6YWpBbBZJk4OKUamFQvluUtv1/JrbnqouChl7OE3gbHrQo75ZqQOtmdO6zgsERj
-        2dWFcw+/Zzt7XfTg868NL39xbXyX+81A2vPMqyiZWLkrvNM0nIN/nf3XMlU+1FH5jjGjS6vg
-        lqI2q8qF61QDbNS1vvBcPhFg62v5SrrdleVycsC/q3G9n++5Rq7zkZ96VfvGoRgP9o74QGub
-        5gPu1lfn/SyQsklIj9ke1ZgsdG2n+a3T7cbnOR1Y33EL+9ouPC/Ofuj5l6Qr1bm7Px6fOzdj
-        +ktJ9QOCsYsmBfTL/Ly2t0uHYeWfx5pBt97O/L3cKO1ZOe/TBaG7jyQUsr1X9rj+odTiut2s
-        x5JiahoWr7ZtjbvEyrXlyEMDUSWW4oxEQy3mouJEAOTok90WAwAA
-X-CMS-MailID: 20230714053114epcas2p1ebc203b5522cc05c984a55b30bdbcd1b
-X-Msg-Generator: CA
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Stephen Boyd <swboyd@chromium.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org
+Subject: Re: (subset) [PATCH v2 0/8] MDSS reg bus interconnect
+Date:   Thu, 13 Jul 2023 22:33:55 -0700
+Message-ID: <168931284127.1538684.17964708755226748693.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.41.0
+In-Reply-To: <20230712121145.1994830-1-dmitry.baryshkov@linaro.org>
+References: <20230712121145.1994830-1-dmitry.baryshkov@linaro.org>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: AUTO_CONFIDENTIAL
-CMS-TYPE: 102P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20230714052025epcas2p46d5485a277c9f21ace14300dd9d7b4d8
-References: <CGME20230714052025epcas2p46d5485a277c9f21ace14300dd9d7b4d8@epcas2p4.samsung.com>
-        <20230714051521.22720-1-jaewon02.kim@samsung.com>
-        <3bc9c34a-ba55-61c5-87ea-80b369841873@linaro.org>
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof
 
+On Wed, 12 Jul 2023 15:11:37 +0300, Dmitry Baryshkov wrote:
+> Per agreement with Konrad, picked up this patch series.
+> 
+> Apart from the already handled data bus (MAS_MDP_Pn<->DDR), there's
+> another path that needs to be handled to ensure MDSS functions properly,
+> namely the "reg bus", a.k.a the CPU-MDSS interconnect.
+> 
+> Gating that path may have a variety of effects. from none to otherwise
+> inexplicable DSI timeouts.
+> 
+> [...]
 
-On 23. 7. 14. 14:26, Krzysztof Kozlowski wrote:
-> On 14/07/2023 07:15, Jaewon Kim wrote:
->> Add pwm node to support fan on exynosautov9-sadk board.
->> PWM channel 3 of ExynosAutov9 is connected to fan for SoC cooling
->> in SADK board.
->>
->> Signed-off-by: Jaewon Kim <jaewon02.kim@samsung.com>
->> ---
->>   arch/arm64/boot/dts/exynos/exynosautov9-sadk.dts | 6 ++++++
->>   arch/arm64/boot/dts/exynos/exynosautov9.dtsi     | 9 +++++++++
->>   2 files changed, 15 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/exynos/exynosautov9-sadk.dts b/arch/arm64/boot/dts/exynos/exynosautov9-sadk.dts
->> index 898c2fc345ed..e717bb1cad81 100644
->> --- a/arch/arm64/boot/dts/exynos/exynosautov9-sadk.dts
->> +++ b/arch/arm64/boot/dts/exynos/exynosautov9-sadk.dts
->> @@ -50,6 +50,12 @@
->>   	};
->>   };
->>   
->> +&pwm {
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&pwm_tout3>;
->> +	status = "okay";
->> +};
->> +
->>   &serial_0 {
->>   	pinctrl-0 = <&uart0_bus_dual>;
->>   	status = "okay";
->> diff --git a/arch/arm64/boot/dts/exynos/exynosautov9.dtsi b/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
->> index d3c5cdeff47f..e8860b03fe89 100644
->> --- a/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
->> +++ b/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
->> @@ -1560,6 +1560,15 @@
->>   			samsung,syscon-phandle = <&pmu_system_controller>;
->>   			samsung,cluster-index = <1>;
->>   		};
->> +
->> +		pwm: pwm@103f0000 {
->> +			compatible = "samsung,exynos4210-pwm";
-> Thanks for the patch. I think we should change existing practice for
-> Samsung SoC and start adding dedicated specific compatible for such
-> blocks. It's the same practice we follow in other SoCs. It's also
-> recommendation I give to other platforms.
->
-> Therefore this should be "samsung,exynosautov9-pwm",
-> "samsung,exynos4210-pwm". Feel free to update other DTS as well.
+Applied, thanks!
 
-Okay, I will update "samsung,exynosautov9-pwm" compatible in next version.
+[8/8] arm64: dts: qcom: sm8450: provide MDSS cfg interconnect
+      commit: 4e125191e6cb00d6c3f3a8e1b67fd242e639b3c3
 
-
->
->> +			reg = <0x103f0000 0x100>;
->> +			samsung,pwm-outputs = <0>, <1>, <2>, <3>;
->> +			#pwm-cells = <3>;
->> +			clocks = <&xtcxo>;
-> This does not look like correct clock. Are you sure XTCXO goes to PWM?
->
->
->
-> Best regards,
-> Krzysztof
->
->
-
-Thanks
-
-Jaewon Kim
-
+Best regards,
+-- 
+Bjorn Andersson <andersson@kernel.org>
