@@ -2,81 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 93852753F15
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jul 2023 17:37:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F504753F1D
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jul 2023 17:39:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235395AbjGNPhl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jul 2023 11:37:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58120 "EHLO
+        id S235407AbjGNPj1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jul 2023 11:39:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59316 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236016AbjGNPhd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jul 2023 11:37:33 -0400
-Received: from aposti.net (aposti.net [89.234.176.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D02F63AAC;
-        Fri, 14 Jul 2023 08:37:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
-        s=mail; t=1689349047;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=iB4MLkaNbIMlX2miQHHC4OLh5yJC/IsGcGP+bRXSFjA=;
-        b=mKKxX92whhko9sWa9pykrYKsScSbbnnwy1Mf7cvAx61n5Cltg0vHLy+Lq4M0sTvYEawirt
-        bIkI7b0gIgSsHeEMo+GUCcA/4B/5VUl2mZWVBrodQj1xNx2bYYYbdDPXNLG/OTd3vpsenB
-        zACSXIRjtQfqhAw31Vy79fbwdyK92y0=
-From:   Paul Cercueil <paul@crapouillou.net>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S234555AbjGNPj0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jul 2023 11:39:26 -0400
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8EBE1980
+        for <devicetree@vger.kernel.org>; Fri, 14 Jul 2023 08:39:23 -0700 (PDT)
+Received: from i53875a50.versanet.de ([83.135.90.80] helo=phil.lan)
+        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <heiko@sntech.de>)
+        id 1qKKt6-0004Kz-RY; Fri, 14 Jul 2023 17:39:20 +0200
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     Jagan Teki <jagan@edgeble.ai>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>
-Cc:     Alim Akhtar <alim.akhtar@samsung.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Paul Cercueil <paul@crapouillou.net>,
-        Sam Ravnborg <sam@ravnborg.org>, stable@vger.kernel.org
-Subject: [PATCH] ARM: dts: exynos/i9100: Fix LCD screen's physical size
-Date:   Fri, 14 Jul 2023 17:37:20 +0200
-Message-Id: <20230714153720.336990-1-paul@crapouillou.net>
+Cc:     Heiko Stuebner <heiko@sntech.de>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH 1/8] arm64: dts: rockchip: Add PMIC for edgeble-neu6b
+Date:   Fri, 14 Jul 2023 17:39:17 +0200
+Message-Id: <168934909030.2268788.16181690719660508455.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20230713143941.1756849-1-jagan@edgeble.ai>
+References: <20230713143941.1756849-1-jagan@edgeble.ai>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Spam: Yes
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The previous values were completely bogus, and resulted in the computed
-DPI ratio being much lower than reality, causing applications and UIs to
-misbehave.
+On Thu, 13 Jul 2023 20:09:34 +0530, Jagan Teki wrote:
+> This adds PMIC support for the Edgeble Neu6B NCM.
+> 
+> 
 
-The new values were measured by myself with a ruler.
+Applied, thanks!
 
-Signed-off-by: Paul Cercueil <paul@crapouillou.net>
-Acked-by: Sam Ravnborg <sam@ravnborg.org>
-Fixes: 8620cc2f99b7 ("ARM: dts: exynos: Add devicetree file for the Galaxy S2")
-Cc: <stable@vger.kernel.org> # v5.8+
----
- arch/arm/boot/dts/samsung/exynos4210-i9100.dts | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+With a bit of reordering and adding the missing "-regulator"
+to one node in the first patch.
 
-diff --git a/arch/arm/boot/dts/samsung/exynos4210-i9100.dts b/arch/arm/boot/dts/samsung/exynos4210-i9100.dts
-index 37cd4dde53e4..a9ec1f6c1dea 100644
---- a/arch/arm/boot/dts/samsung/exynos4210-i9100.dts
-+++ b/arch/arm/boot/dts/samsung/exynos4210-i9100.dts
-@@ -207,8 +207,8 @@ lcd@0 {
- 			power-on-delay = <10>;
- 			reset-delay = <10>;
- 
--			panel-width-mm = <90>;
--			panel-height-mm = <154>;
-+			panel-width-mm = <56>;
-+			panel-height-mm = <93>;
- 
- 			display-timings {
- 				timing {
+[1/8] arm64: dts: rockchip: Add PMIC for edgeble-neu6b
+      commit: 0d3f385d71cd9ed710ff5a0fd76c0d94c41edcae
+[2/8] arm64: dts: rockchip: Add microSD card for edgeble-neu6b
+      commit: 61808d9341338dc1041a9349a75984943cb1c8cb
+[3/8] arm64: dts: rockchip: Enable SATA for edgeble-neu6b
+      commit: 89f713b0590185c3d6f1afdd66791cccc74d54bb
+[4/8] arm64: defconfig: Enable PHY_ROCKCHIP_NANENG_COMBO_PHY
+      commit: ccc1b7ee2eb4021506838c5f12a8055955332357
+[5/8] arm64: dts: rockchip: Enable RTC for edgeble-neu6b
+      commit: 8f3aa4f7086e998cf14f7802c0a9265402847f7d
+[6/8] arm64: dts: rockchip: Enable PWM FAN for edgeble-neu6b
+      commit: b65814bfb8b329f95408142f1fa8d50072dedc2a
+[7/8] arm64: dts: rockchip: Enable RS232 for edgeble-neu6b
+      commit: 9ee9ea88e6c47fd8e02ab999e18ae1b49eb47ce4
+[8/8] arm64: dts: rockchip: Enable RS485 for edgeble-neu6b
+      commit: 9b9fb10b9d4dc08da2d0f9a2ac4a53e6a2e7ebb8
+
+Best regards,
 -- 
-2.40.1
-
+Heiko Stuebner <heiko@sntech.de>
