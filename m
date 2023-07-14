@@ -2,70 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4DA19753DBD
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jul 2023 16:41:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A5DC753DC6
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jul 2023 16:41:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235928AbjGNOlN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jul 2023 10:41:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52962 "EHLO
+        id S235868AbjGNOls (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jul 2023 10:41:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53256 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235868AbjGNOlM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jul 2023 10:41:12 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51655199;
-        Fri, 14 Jul 2023 07:41:11 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id 2adb3069b0e04-4fbf1f6c771so3417820e87.1;
-        Fri, 14 Jul 2023 07:41:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1689345669; x=1691937669;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=0GFXfG3reo7gZmpmqaifVMD9Ywczi+5KahuamZ75Qpg=;
-        b=VCgUkwRqEbzs14mdFc+Eo5FqElEi3oBLzDQoHowUxSn/jhAjEZIYlY922deghucoRC
-         elwcnbxB0d9FyX88KpFgf6EmnWrjuLhhtd09UgQUiMAAPQ02WHYf65OAL3S5s/hDKny+
-         3zLmTRn0g5botKmHQGiR6nHjcVREop33+HOznl2qgK1SObbvLk9W8jtVaTCwKbNciiTk
-         yM9Y4vu3se/JkDIZyglyyLGSV0f097LPvN1ToubjFwum5MN2Hbao8CxHSSAdSMoGrByi
-         EqEaCmJyW1FJDW2edk1NSj5NWUfkXdSs4Ng6rWPsMZ1BpJBjhiB4+e8/WCCgO3uEmfrk
-         S/FA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689345669; x=1691937669;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=0GFXfG3reo7gZmpmqaifVMD9Ywczi+5KahuamZ75Qpg=;
-        b=kr90OXeVhDMzugKELEyBXUY6P8BZWfy++36n6jVWbHmYzxUtlKMbAtfaNLvJqMUoTR
-         JfhSqbIxErAlNKnniwmagQPEz5sqz3bk9yoepzvl2T6sS9vWPPCXS665CSoQ3vU64u95
-         8M+TS7xnTSJiudkTYQTxMK9XePW03HiWj9peFJ0q5LZYk21iiAgeCF+S1i3j3XiDrH0p
-         TVs9xSkUI1tZFLwQ30CCk+u9/Kczh83wqvw+xFyeHRgnAui35HYqLlIWlM+7OXZqbPBL
-         VwoZeUlGCtrF9yeHFwTm8PtrQaTW4ROFA3RZVz1XBPYWWbj7S+4ihSOuR7JkXX7K9U7i
-         JaDA==
-X-Gm-Message-State: ABy/qLZx5H47dlxWg0ddfQY04+ITYLo5qngPETbu9sdcIt2HlD95Jue8
-        SlIOx26PM5XIceAmAhdKsJI=
-X-Google-Smtp-Source: APBJJlHJfBwBpIkWUdrLrSvuoRBoGZo/KBX3W5nddA5FjzV6g/OIV3r95WAn/szGCOGWVYQU3FBm9Q==
-X-Received: by 2002:a05:6512:3d22:b0:4f8:5dd2:21f5 with SMTP id d34-20020a0565123d2200b004f85dd221f5mr4457777lfv.67.1689345669276;
-        Fri, 14 Jul 2023 07:41:09 -0700 (PDT)
-Received: from orome (p200300e41f4b7100f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f4b:7100:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id bc7-20020a056402204700b0051df5eefa20sm5824445edb.76.2023.07.14.07.41.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 14 Jul 2023 07:41:08 -0700 (PDT)
-Date:   Fri, 14 Jul 2023 16:41:07 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, jonathanh@nvidia.com,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
-Subject: Re: [PATCH] arm64: tegra: Fix HSUART for Smaug
-Message-ID: <ZLFeg0-DICAD2-Di@orome>
-References: <20230714101018.10617-1-diogo.ivo@tecnico.ulisboa.pt>
+        with ESMTP id S236101AbjGNOlr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jul 2023 10:41:47 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 631522119
+        for <devicetree@vger.kernel.org>; Fri, 14 Jul 2023 07:41:46 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id E900A61D3D
+        for <devicetree@vger.kernel.org>; Fri, 14 Jul 2023 14:41:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 47644C433C8;
+        Fri, 14 Jul 2023 14:41:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1689345705;
+        bh=v+hmI+E8CFdIbhaPE1cYJ5+Z9tHO+FMtoE5Rt2xNFs4=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=KaySazSW4dAVye5Rx3jIjrpyFsxxWb121CCaz7nDXENbmARMFaZ4TAQCwliW2Kkmj
+         hrxhsdYCQsxkOLIsWVl+YCyeYjVkb4bY/6pDnEYwhP3veOkCuhUEz9Jk3CbKKDibTp
+         2xaV+f9PQrgRJ2IkZ8blE0te1inkgKWVz0q1x1XgNFpej/JGdezJWTM0CXBuPmEVBk
+         NY/bN81BkReE3BF0oK8A5VECg3CHjUqyj+/CKKC/VEVGSd3594UKKIKr9rciRTh2U4
+         /fQMSqeYC/cpWWCyX42/YVIoQ1rT60mjcSn29XuYRuOkPqZpnmhdABFaf2uVqhoruD
+         /DJUADUGvmNvQ==
+Message-ID: <26f27cf3-fd9b-462f-c337-a439e750dfb1@kernel.org>
+Date:   Fri, 14 Jul 2023 09:41:42 -0500
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="Gu3ptV3TIHutmV5J"
-Content-Disposition: inline
-In-Reply-To: <20230714101018.10617-1-diogo.ivo@tecnico.ulisboa.pt>
-User-Agent: Mutt/2.2.10 (2023-03-25)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH 2/2] net: dwmac_socfpga: use the standard "ahb" reset
+Content-Language: en-US
+To:     Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>
+Cc:     Krzysztof Kozlowski <krzk@kernel.org>, netdev@vger.kernel.org,
+        davem@davemloft.net, edumazet@google.com, joabreu@synopsys.com,
+        robh+dt@kernel.org, krzysztof.kozlowskii+dt@linaro.org,
+        conor+dt@kernel.org, devicetree@vger.kernel.org
+References: <20230710211313.567761-1-dinguyen@kernel.org>
+ <20230710211313.567761-2-dinguyen@kernel.org>
+ <20230712170840.3d66da6a@kernel.org>
+ <c8ffee03-8a6b-1612-37ee-e5ec69853ab7@kernel.org>
+ <1061620f76bfe8158e7b8159672e7bb0c8dc75f2.camel@redhat.com>
+ <20230713095116.15760660@kernel.org>
+From:   Dinh Nguyen <dinguyen@kernel.org>
+In-Reply-To: <20230713095116.15760660@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -75,72 +65,28 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---Gu3ptV3TIHutmV5J
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Fri, Jul 14, 2023 at 11:10:17AM +0100, Diogo Ivo wrote:
-> After commit 71de0a054d0e ("arm64: tegra: Drop serial clock-names and
-> reset-names") was applied, the HSUART failed to probe and the following
-> error is seen:
->=20
->  serial-tegra 70006300.serial: Couldn't get the reset
->  serial-tegra: probe of 70006300.serial failed with error -2
->=20
-> Commit 71de0a054d0e ("arm64: tegra: Drop serial clock-names and
-> reset-names") is correct because the "reset-names" property is not
-> needed for 8250 UARTs. However, the "reset-names" is required for the
-> HSUART and should have been populated as part of commit a63c0cd83720c
-> ("arm64: dts: tegra: smaug: Add Bluetooth node") that enabled the HSUART
-> for the Pixel C. Fix this by populating the "reset-names" property for
-> the HSUART on the Pixel C.
->=20
-> Fixes: a63c0cd83720 ("arm64: dts: tegra: smaug: Add Bluetooth node")
-> Signed-off-by: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
-> ---
->  arch/arm64/boot/dts/nvidia/tegra210-smaug.dts | 1 +
->  1 file changed, 1 insertion(+)
->=20
-> diff --git a/arch/arm64/boot/dts/nvidia/tegra210-smaug.dts b/arch/arm64/b=
-oot/dts/nvidia/tegra210-smaug.dts
-> index 2c608d645642..bcb533cc002c 100644
-> --- a/arch/arm64/boot/dts/nvidia/tegra210-smaug.dts
-> +++ b/arch/arm64/boot/dts/nvidia/tegra210-smaug.dts
-> @@ -1364,6 +1364,7 @@ serial@70006000 {
-> =20
->  	uartd: serial@70006300 {
->  		compatible =3D "nvidia,tegra30-hsuart";
-> +		reset-names =3D "serial";
->  		status =3D "okay";
-> =20
->  		bluetooth {
+On 7/13/23 11:51, Jakub Kicinski wrote:
+> On Thu, 13 Jul 2023 14:39:57 +0200 Paolo Abeni wrote:
+>>> However for ABI breaks with scope limited to only one given platform, it
+>>> is the platform's maintainer choice to allow or not allow ABI breaks.
+>>> What we, Devicetree maintainers expect, is to mention and provide
+>>> rationale for the ABI break in the commit msg.
+>>
+>> @Dinh: you should at least update the commit message to provide such
+>> rationale, or possibly even better, drop this 2nd patch on next
+>> submission.
+> 
+> Or support both bindings, because the reset looks optional. So maybe
+> instead of deleting the use of "stmmaceth-ocp", only go down that path
+> if stpriv->plat->stmmac_ahb_rst is NULL?
 
-FWIW, we need to do this for a whole bunch of devices. I've got a local
-patch for all the cases that allows schema validation. I'll pull in your
-patch and then rebase mine on top and send it out.
+I think in a way, it's already supporting both reset lines. The main 
+dwmac-platform is looking for "ahb" and the socfpga-dwmac is looking for 
+"stmmaceth-ocp".
 
-Thanks,
-Thierry
+So I'll just drop this patch.
 
---Gu3ptV3TIHutmV5J
-Content-Type: application/pgp-signature; name="signature.asc"
+Thanks for all the review.
 
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmSxXoMACgkQ3SOs138+
-s6H/PRAApwqB0Fcc1rUEw82k4uiqOP6c92Vaz0JWj9oLmYmb7gq4qf5ci1rM7B71
-jHDlzPqOk8s7I5M9ZV679M5FSgRscUlIkrh98mtZ3XGG5d4EZj29g7wTHHy5+Lki
-GYnUUFnpkqhRhzA75ZKgvcSlxguf52U/Ki1NMZ/Y76f0fp5YMOv5FKsYgbViOI8n
-HS46C78AGnCi2wsVK5Ygj1+aK8DiRFFED07ehJ+dTuq+gMpc7CmJJ9G0G+0vvxWC
-ukhTOTlerZPnzw95hNgilE13DQ3+OWMQMEsXWlfdX2riiA6NqrYmZ1dCkuULNY6o
-fXkIoVL8l3FAsuapLBUcjxcKQiXIY4fvfwhQoLaGAIYZ7GhMo2PRWg2iYFMZ3001
-4MyxpoT7usVR8CEVCfYbTtL1UaQUAj6g7Y/zKFkhwbJVwkK4MqQTeNNGscV9ruQ7
-gKT7KFPpT/OCRUiBvH4K5+Uuthis71vY+YlpnxJMUTVC68cgv+0FEiVhWrMsVbIr
-3fi4qUoNsZzFa4rHNh+std224mZJf6Rt2ehcjP/ePI6lbGYErn8em9dQXUp9FnOG
-c17KOKsFJutboOywTAXrGBQJdRr4pEnPH+GYPk1cVd8CXEeBlLxofNjkj7QjykAQ
-9EJcVQs3rjTUHHBlayPakMoFJ1BdKKcSk0M3QnsxYNoP7zugaJE=
-=rdgP
------END PGP SIGNATURE-----
-
---Gu3ptV3TIHutmV5J--
+Dinh
