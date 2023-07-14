@@ -2,96 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F9A2753936
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jul 2023 13:04:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E456753943
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jul 2023 13:09:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232382AbjGNLEZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jul 2023 07:04:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58098 "EHLO
+        id S229665AbjGNLJG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jul 2023 07:09:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59390 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234860AbjGNLEY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jul 2023 07:04:24 -0400
-Received: from wp530.webpack.hosteurope.de (wp530.webpack.hosteurope.de [80.237.130.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CAB830C4;
-        Fri, 14 Jul 2023 04:04:21 -0700 (PDT)
-Received: from [2a02:8108:8980:2478:8cde:aa2c:f324:937e]; authenticated
-        by wp530.webpack.hosteurope.de running ExIM with esmtpsa (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
-        id 1qKGav-000446-TI; Fri, 14 Jul 2023 13:04:17 +0200
-Message-ID: <c7461674-6be8-9438-55fa-ae6b4d56d3b5@leemhuis.info>
-Date:   Fri, 14 Jul 2023 13:04:16 +0200
+        with ESMTP id S229973AbjGNLJF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jul 2023 07:09:05 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 781DD12D;
+        Fri, 14 Jul 2023 04:09:04 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 7496D1570;
+        Fri, 14 Jul 2023 04:09:46 -0700 (PDT)
+Received: from bogus (unknown [10.57.96.99])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id CBF883F67D;
+        Fri, 14 Jul 2023 04:09:01 -0700 (PDT)
+Date:   Fri, 14 Jul 2023 12:08:37 +0100
+From:   Sudeep Holla <sudeep.holla@arm.com>
+To:     Avram Lubkin <avram@rockhopper.net>
+Cc:     robh@kernel.org, linux-arm-kernel@lists.infradead.org,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        conor+dt@kernel.org, liviu.dudau@arm.com,
+        krzysztof.kozlowski+dt@linaro.org, lpieralisi@kernel.org
+Subject: Re: Bug introduced in 724ba67 (ARM: dts: Move .dts files to vendor
+ sub-directories)
+Message-ID: <20230714110837.q2ya5lkucz4vs6jv@bogus>
+References: <CAHqEdrPuH4ayMiiq5FixaNjM=r44VJOw-v3iQ0mek55FTUWpsw@mail.gmail.com>
+ <CAHqEdrPD_EX=V0RnvvycN1MyXs0e+jkCcQ-nfHwOmyZR2LecfA@mail.gmail.com>
+ <20230706084511.gp4iuvekkw7lwhdl@bogus>
+ <CAHqEdrMmwHzDFUeMWxmXrpM273-yw9-rz-HFnQK+Br0rcf0m1w@mail.gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH] arm64: dts: qcom: sdm845-db845c: Move LVS regulator nodes
- up
-Content-Language: en-US, de-DE
-To:     Amit Pundir <amit.pundir@linaro.org>,
-        Linux regressions mailing list <regressions@lists.linux.dev>
-Cc:     Bjorn Andersson <andersson@kernel.org>,
-        Doug Anderson <dianders@chromium.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Caleb Connolly <caleb.connolly@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        dt <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>
-References: <20230602161246.1855448-1-amit.pundir@linaro.org>
- <358c69ad-fa8a-7386-fe75-92369883ee48@leemhuis.info>
- <0f6c9dcb-b7f6-fff9-6bed-f4585ea8e487@linaro.org>
- <CAD=FV=Xt2KYGY15+f+nHxkzKnwhHzw1A7=o+5kgCDWvHDv0DNg@mail.gmail.com>
- <20230620155902.clspxncyvpodixft@ripper>
- <5240ce3f-37fa-2747-92ee-23d71619f3ef@leemhuis.info>
- <CAMi1Hd2zunc=WNUE7KT-423RXTiX6LrY2hcWQdV3Dp3o8RdJtg@mail.gmail.com>
- <CAMi1Hd2L-j9GHQH+4O6j6m2+HGy5oEsdMv6Qyp4RaWZDNCj-Bw@mail.gmail.com>
-From:   "Linux regression tracking #update (Thorsten Leemhuis)" 
-        <regressions@leemhuis.info>
-Reply-To: Linux regressions mailing list <regressions@lists.linux.dev>
-In-Reply-To: <CAMi1Hd2L-j9GHQH+4O6j6m2+HGy5oEsdMv6Qyp4RaWZDNCj-Bw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-bounce-key: webpack.hosteurope.de;regressions@leemhuis.info;1689332661;26172418;
-X-HE-SMSGID: 1qKGav-000446-TI
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAHqEdrMmwHzDFUeMWxmXrpM273-yw9-rz-HFnQK+Br0rcf0m1w@mail.gmail.com>
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07.07.23 07:08, Amit Pundir wrote:
-> On Thu, 22 Jun 2023 at 17:18, Amit Pundir <amit.pundir@linaro.org> wrote:
->> On Thu, 22 Jun 2023 at 13:17, Linux regression tracking (Thorsten
->> Leemhuis) <regressions@leemhuis.info> wrote:
->>>
->>> As Linus will likely release 6.4 on this or the following Sunday a quick
->>> status inquiry so I can brief him appropriately: is there any hope the
->>> regression this patch tried to fix will be resolved any time soon?
->>
->> We are most likely to miss v6.4. I'm trying to reproduce the crash
->> with tracing enabled, to share some more debug information.
-> 
-> FWIW, I couldn't reproduce this bug on v6.5 merge window commit
-> d528014517f2 (Revert ".gitignore: ignore *.cover and *.mbx")
-> on 100+ boot tests last night.
-> For the time being I'm keeping an eye on it and will trigger the boot
-> tests occasionally in the v6.5 development cycle.
+On Thu, Jul 13, 2023 at 01:38:48PM -0400, Avram Lubkin wrote:
+> Thanks for submitting a patch. I saw it was acked. Will that get
+> merged soon? It shouldn't need to for the next merge window since it's
+> fixing an issue, right?
 
-No update since then, so I assume this remains fixed. I'll thus remove
-this from the tracking; please holler if you think it might make sense
-to continue tracking this.
+Yes I will send it as fix soon, just queued for -next testing last night.
 
-#regzbot resolved: apparently solved with during the 6.5 merge window
-#regzbot ignore-activity
+> Just wondering if I need to work around this or not.
 
-Ciao, Thorsten (wearing his 'the Linux kernel's regression tracker' hat)
+Not for long, I hope it will be merged soonish after I send pull request.
+
 --
-Everything you wanna know about Linux kernel regression tracking:
-https://linux-regtracking.leemhuis.info/about/#tldr
-That page also explains what to do if mails like this annoy you.
+Regards,
+Sudeep
