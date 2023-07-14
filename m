@@ -2,70 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B29C0753D90
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jul 2023 16:35:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 474BF753DAB
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jul 2023 16:38:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235136AbjGNOe6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jul 2023 10:34:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47998 "EHLO
+        id S235943AbjGNOiq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jul 2023 10:38:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51416 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236005AbjGNOeg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jul 2023 10:34:36 -0400
-Received: from mail-il1-f174.google.com (mail-il1-f174.google.com [209.85.166.174])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 719193AA9;
-        Fri, 14 Jul 2023 07:34:09 -0700 (PDT)
-Received: by mail-il1-f174.google.com with SMTP id e9e14a558f8ab-3461053677eso4406275ab.0;
-        Fri, 14 Jul 2023 07:34:09 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689345238; x=1691937238;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zgiht/lCckduqQild9xWBFcr10Bz7Z0qNdMiS2Y+g2s=;
-        b=Yk8qBH59huSWzSFAUZHWkSmfcXa48bAwO08SVsP8GihivmnhD3/Oh5dmHeZbzWNNcG
-         Gp66tSimm950RgodlZ+P/dJxmpHzhydsKsVIiE0krkm5HGQPkLSBlwwt6aE+OekQJ0PP
-         uCnfCa/NeZZhqS/ZHswILiqex/TQtcuYxNNr1muHnYg0t30vgh028OFfWL5C5CBhkCwC
-         m2gPJg/NwhpRrgQE4U8RkyZXK/AHKCGqtKhaB6r4nxeOkRxNHxi3v2QAP7BRlfkP1lWq
-         KJsgSLXaIB9E5kVdEQgr4GpQE42o3rbFfJQPR+3cTlzSUR6D2J14bcg10fsoyiCvDzw7
-         XMFw==
-X-Gm-Message-State: ABy/qLaBccxP6fppoHfe/NIXzPeoCWBMzklck6qeo9dMMd6uY2GykZTw
-        CjCdt7ygbGr58GLLlaBmBA==
-X-Google-Smtp-Source: APBJJlHc87RGDE4ioh1yw30FaD7V2nkRtIdOKWEAEqqS4SeVwBEFRxF8hNU6UpuUILrr1/1c601qQw==
-X-Received: by 2002:a92:d083:0:b0:345:b4e0:35d3 with SMTP id h3-20020a92d083000000b00345b4e035d3mr1939585ilh.9.1689345238217;
-        Fri, 14 Jul 2023 07:33:58 -0700 (PDT)
-Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id w17-20020a92c891000000b0034233fd80d3sm2788841ilo.22.2023.07.14.07.33.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 14 Jul 2023 07:33:57 -0700 (PDT)
-Received: (nullmailer pid 3490019 invoked by uid 1000);
-        Fri, 14 Jul 2023 14:33:55 -0000
-Date:   Fri, 14 Jul 2023 08:33:55 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Stanley Chang <stanley_chang@realtek.com>
-Cc:     Vinod Koul <vkoul@kernel.org>, Flavio Suligoi <f.suligoi@asem.it>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Roy Luo <royluo@google.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-kernel@vger.kernel.org, Matthias Kaehlcke <mka@chromium.org>,
-        linux-usb@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, Alan Stern <stern@rowland.harvard.edu>,
-        Rob Herring <robh+dt@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Ray Chi <raychi@google.com>
-Subject: Re: [PATCH v7 5/5] dt-bindings: phy: realtek: Add Realtek DHC RTD
- SoC USB 3.0 PHY
-Message-ID: <168934521641.3489578.4865141978582966306.robh@kernel.org>
-References: <20230707064725.25291-1-stanley_chang@realtek.com>
- <20230707064725.25291-5-stanley_chang@realtek.com>
+        with ESMTP id S235591AbjGNOip (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jul 2023 10:38:45 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11551134
+        for <devicetree@vger.kernel.org>; Fri, 14 Jul 2023 07:38:44 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1qKJwC-0006LT-5p; Fri, 14 Jul 2023 16:38:28 +0200
+Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1qKJwA-0005b8-QV; Fri, 14 Jul 2023 16:38:26 +0200
+Date:   Fri, 14 Jul 2023 16:38:26 +0200
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Fabio Estevam <festevam@gmail.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, shawnguo@kernel.org, kernel@pengutronix.de,
+        linux-imx@nxp.com, marex@denx.de, frieder.schrempf@kontron.de,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 3/3] arm64: dts: freescale: Add DEBIX SOM A and SOM A I/O
+ Board support
+Message-ID: <20230714143826.p3blstr5dpsgr46j@pengutronix.de>
+References: <20230704184109.991104-1-m.felsch@pengutronix.de>
+ <20230704184109.991104-3-m.felsch@pengutronix.de>
+ <CAOMZO5C21f9+ByLVHMaK9wHcCSF3R9W1c1ZCfirx7TuX=786Rw@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20230707064725.25291-5-stanley_chang@realtek.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAOMZO5C21f9+ByLVHMaK9wHcCSF3R9W1c1ZCfirx7TuX=786Rw@mail.gmail.com>
+User-Agent: NeoMutt/20180716
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,38 +55,126 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Fabio,
 
-On Fri, 07 Jul 2023 14:47:04 +0800, Stanley Chang wrote:
-> Document the USB PHY bindings for Realtek SoCs.
-> Realtek DHC (digital home center) RTD SoCs support DWC3 XHCI USB
-> controller and using USB 3.0 PHY transceiver.
+On 23-07-04, Fabio Estevam wrote:
+> Hi Marco,
 > 
-> Signed-off-by: Stanley Chang <stanley_chang@realtek.com>
-> ---
-> v6 to v7 change:
->     Revise the commit message.
-> v5 to v6 change:
->     Drop the labels of example.
-> v4 to v5 change:
->     1. Remove the compatible realtek,usb3phy.
->     2. Add the default of the property.
-> v3 to v4 change:
->     1. Remove the parameter and non hardware properties from dts.
->     2. Using the compatible data included the config and parameter
->        in driver.
-> v2 to v3 change:
->     1. Broken down into two patches, one for each of USB 2 & 3.
->     2. Add more description about Realtek RTD SoCs architecture.
->     3. Removed parameter v1 support for simplification.
->     4. Revised the compatible name for fallback compatible.
->     5. Remove some properties that can be set in the driver.
-> v1 to v2 change:
->     Add phy-cells for generic phy driver
-> ---
->  .../bindings/phy/realtek,usb3phy.yaml         | 107 ++++++++++++++++++
->  1 file changed, 107 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/phy/realtek,usb3phy.yaml
+> On Tue, Jul 4, 2023 at 3:41 PM Marco Felsch <m.felsch@pengutronix.de> wrote:
 > 
+> > +&fec {
+> > +       pinctrl-names = "default";
+> > +       pinctrl-0 = <&pinctrl_fec>;
+> > +       phy-mode = "rgmii-id";
+> > +       phy-handle = <&ethphy1>;
+> > +       fsl,magic-packet;
+> > +       phy-reset-gpios = <&gpio4 19 GPIO_ACTIVE_LOW>;
+> > +       phy-reset-duration = <10>;
+> > +       phy-reset-post-delay = <150>;
+> 
+> These properties are deprecated. Please move them under the mdio node.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+right
 
+> > +               /*
+> > +                * Since USB1 is binded to peripheral mode we need to ensure
+> 
+> s/binded/bound
+
+sure
+
+> > +/* µSD Card */
+> > +&usdhc2 {
+> > +       pinctrl-names = "default", "state_100mhz", "state_200mhz";
+> > +       pinctrl-0 = <&pinctrl_usdhc2>;
+> > +       pinctrl-1 = <&pinctrl_usdhc2_100mhz>;
+> > +       pinctrl-2 = <&pinctrl_usdhc2_200mhz>;
+> > +       vmmc-supply = <&reg_usdhc2_vmmc>;
+> > +       bus-width = <4>;
+> > +       disable-wp;
+> > +       no-sdio;
+> > +       no-mmc;
+> > +
+> 
+> No need for this blank line.
+
+I added the blank lines for a better separation, but I can drop these.
+
+> > +       assigned-clocks = <&clk IMX8MP_CLK_USDHC2>;
+> > +       assigned-clock-rates = <400000000>;
+> > +
+> 
+> Ditto.
+> 
+> > +
+> > +       pmic@25 {
+> > +               compatible = "nxp,pca9450c";
+> > +               reg = <0x25>;
+> > +               pinctrl-names = "default";
+> > +               pinctrl-0 = <&pinctrl_pmic>;
+> > +
+> > +               interrupt-parent = <&gpio1>;
+> > +               interrupts = <3 GPIO_ACTIVE_LOW>;
+> > +
+> > +               regulators {
+> > +                       buck1: BUCK1 {
+> > +                               regulator-name = "BUCK1";
+> > +                               regulator-min-microvolt = <600000>;
+> > +                               regulator-max-microvolt = <2187500>;
+> > +                               regulator-boot-on;
+> > +                               regulator-always-on;
+> > +                               regulator-ramp-delay = <3125>;
+> > +                       };
+> > +
+> > +                       buck2: BUCK2 {
+> > +                               regulator-name = "BUCK2";
+> > +                               regulator-min-microvolt = <600000>;
+> > +                               regulator-max-microvolt = <2187500>;
+> > +                               regulator-boot-on;
+> > +                               regulator-always-on;
+> > +                               regulator-ramp-delay = <3125>;
+> > +                               nxp,dvs-run-voltage = <950000>;
+> > +                               nxp,dvs-standby-voltage = <850000>;
+> > +                       };
+> > +
+> > +                       buck4: BUCK4{
+> 
+> Missing space after BUCK4.
+
+yes.
+
+> > +                               regulator-name = "BUCK4";
+> > +                               regulator-min-microvolt = <600000>;
+> > +                               regulator-max-microvolt = <3400000>;
+> > +                               regulator-boot-on;
+> > +                               regulator-always-on;
+> > +                       };
+> > +
+> > +                       buck5: BUCK5{
+> 
+> Ditto.
+
+yes.
+
+> > +&usdhc3 {
+> > +       pinctrl-names = "default", "state_100mhz", "state_200mhz";
+> > +       pinctrl-0 = <&pinctrl_usdhc3>;
+> > +       pinctrl-1 = <&pinctrl_usdhc3_100mhz>;
+> > +       pinctrl-2 = <&pinctrl_usdhc3_200mhz>;
+> > +       bus-width = <8>;
+> > +       non-removable;
+> > +
+> 
+> No need for this blank line.
+> 
+> 
+> > +       assigned-clocks = <&clk IMX8MP_CLK_USDHC3>;
+> > +       assigned-clock-rates = <400000000>;
+> > +
+> 
+> Ditto.
+
+Removed these as well. Thanks for your review :)
+
+Regards,
+  Marco
