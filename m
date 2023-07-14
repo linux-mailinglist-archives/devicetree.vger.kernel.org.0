@@ -2,708 +2,260 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 30234752F73
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jul 2023 04:35:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 08D0E752FC8
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jul 2023 05:14:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234348AbjGNCfh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jul 2023 22:35:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53810 "EHLO
+        id S234727AbjGNDOc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jul 2023 23:14:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39790 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234046AbjGNCfg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jul 2023 22:35:36 -0400
-Received: from APC01-SG2-obe.outbound.protection.outlook.com (mail-sgaapc01on2049.outbound.protection.outlook.com [40.107.215.49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE7772D41;
-        Thu, 13 Jul 2023 19:35:33 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=X6tR7AuPh5MLiXZov/mCMMwSZhDGlxQAsIvPOWRgEdAQii57ntuvK+b5KNx9YlWjcBAgDdImzIuMu0E77/DoIwlFgujs6+1OQBD3JU7Mn76vnIQ49y/rDBQ3WRqOLBnOkFaH6WUxacoE1LpzS/tcuaWpJrGbFIeG13BGXE/oJ2ZUK2r3QjCVtWHXaOr94d3SfCLimDfLUuJJaw3RdZkXQVMP5x5/WNFTXhiAqMiQtjnF16z4t4pWU3RflzRX2yluXX4QaAsSKYJTns21CXs1KznyKF4QtLOXfTWBAuZD4jacnNePzjqrOUWnqMAMT4TvE5kwT5Jpn/TrIUQtqmyemw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=uH1O5O85ETl+bNCKvDoR0y0afsqk4EEeuE1+gy3ZOlc=;
- b=DbvGRjFoXqdQp9BoD8e/p/bN0ohSwzKIfj3QBbnU8vkITHASW3GVJ9n2fzY9w2bqr+Ab73wI49OB8lpLdFHMn8eoWffFPk3MtsLQQC7FGFr0vh6yFQzKr5JfQ5udfmLzZwl/+k8s+AKABoW9uVOVmoTAovtfmQz1GYNrGz+qtJZvWuElp0vg6mDrBBPanp3KYg3eRdNWHDHFYcNe/InNMO4emtJtmjZOy7wTCNlAinJD9d9Yd1lTulzxm5gnQOfJZpPdp3tyZO+rh/L3+I2y77CA5Yb0NRMDhsa2tW6AhxwrBcdJHMD4MZbcwr7JbFocYe2gREmLPyhjprUnzgIJvQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
- 211.20.1.79) smtp.rcpttodomain=stwcx.xyz smtp.mailfrom=wiwynn.com; dmarc=fail
- (p=quarantine sp=quarantine pct=100) action=quarantine
- header.from=wiwynn.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wiwynn.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=uH1O5O85ETl+bNCKvDoR0y0afsqk4EEeuE1+gy3ZOlc=;
- b=3VbmLTw46TiHX0vHiCqjTjOc0H56Ra3dtQU0FNd6QD7i8j5pVXdNx/3hW7ZVOycjySbJy6E3e/9vY78EBIh1pokaTdJUHkkS7L3Ue+Gn5UCH3hncIMfmxTAnH3f2U3fBAGjnK5Q/ez2ykscqV/jjP76Wq7zF+kA+Tudm46Fomx+HLRs79QwomoEdxP3D7j2AW9FK/DZE4OzzNZcJuZs6n2cPaeocyAju79c5VVPUecP8JDE8IjA0xBz/Gp9U5vU9CmNtG3klRoPfVTBymUZyA79GR+vf4ySjePc8y3wLZpGVVTfMAYCl9adhngFY1igiQFEYb6wMRi73VnGx+wNGsA==
-Received: from SG2PR04CA0162.apcprd04.prod.outlook.com (2603:1096:4::24) by
- SEZPR04MB6874.apcprd04.prod.outlook.com (2603:1096:101:e7::9) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6588.27; Fri, 14 Jul 2023 02:35:27 +0000
-Received: from SG2APC01FT0057.eop-APC01.prod.protection.outlook.com
- (2603:1096:4:0:cafe::aa) by SG2PR04CA0162.outlook.office365.com
- (2603:1096:4::24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6588.25 via Frontend
- Transport; Fri, 14 Jul 2023 02:35:26 +0000
-X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 211.20.1.79)
- smtp.mailfrom=wiwynn.com; dkim=none (message not signed)
- header.d=none;dmarc=fail action=quarantine header.from=wiwynn.com;
-Received-SPF: Fail (protection.outlook.com: domain of wiwynn.com does not
- designate 211.20.1.79 as permitted sender) receiver=protection.outlook.com;
- client-ip=211.20.1.79; helo=localhost.localdomain;
-Received: from localhost.localdomain (211.20.1.79) by
- SG2APC01FT0057.mail.protection.outlook.com (10.13.36.138) with Microsoft SMTP
- Server id 15.20.6609.14 via Frontend Transport; Fri, 14 Jul 2023 02:35:25
- +0000
-From:   Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
-To:     patrick@stwcx.xyz, Arnd Bergmann <arnd@arndb.de>,
-        Olof Johansson <olof@lixom.net>, soc@kernel.org,
+        with ESMTP id S234753AbjGNDO2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jul 2023 23:14:28 -0400
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 478A130DB;
+        Thu, 13 Jul 2023 20:14:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1689304461; x=1720840461;
+  h=message-id:date:mime-version:cc:subject:to:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=W0M0Irt0GRR0M/wBK6Bo1dJ2wHgwJBI9j7flSidhoKw=;
+  b=WQkkjBbVLV/2u7p92xsJz/Dod+lEqkQiD1KDa39KFWIIhaqouNWm2uLe
+   ehOk6M0k7ZVi7V4tCmTVxzCW28bc852+4m80zQvJMrvKF2Z99cxrnCcyu
+   bMG2f1VDGTjVKwOr4qoJ6oCYrAiNZ8v3sS8Ydzowmv1ShLd8dDon4fLpA
+   DJpO33bXEWjHxOmq4bSgv/qaF1qZknsDLpXSfC7/fwfkaPcPwpkJyLkc1
+   I2tXRjiAO//3VjGmR8G1Z8B7K7u6Y6k+PFqgduLXsZrl48enlvoMus0Wx
+   BOhRBcHqxXwVjGeWAG3NE6gU2lEbXQtNCv2fAxqcKUNGItwsZZD+zufAf
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10770"; a="368018269"
+X-IronPort-AV: E=Sophos;i="6.01,204,1684825200"; 
+   d="scan'208";a="368018269"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Jul 2023 20:14:18 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10770"; a="757417300"
+X-IronPort-AV: E=Sophos;i="6.01,204,1684825200"; 
+   d="scan'208";a="757417300"
+Received: from blu2-mobl.ccr.corp.intel.com (HELO [10.252.191.49]) ([10.252.191.49])
+  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Jul 2023 20:14:12 -0700
+Message-ID: <2a6fe812-3881-8dc9-1e7e-237ce7490155@linux.intel.com>
+Date:   Fri, 14 Jul 2023 11:14:08 +0800
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Cc:     baolu.lu@linux.intel.com, Stanimir Varbanov <svarbanov@suse.de>,
+        linux-tegra@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        iommu@lists.linux.dev, linux-kernel@vger.kernel.org,
+        Krishna Reddy <vdumpa@nvidia.com>,
+        Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>
-Cc:     Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 2/2] ARM: dts: aspeed: yosemitev4: add Facebook Yosemite V4 BMC
-Date:   Fri, 14 Jul 2023 10:35:00 +0800
-Message-Id: <20230714023502.3225096-3-Delphine_CC_Chiu@wiwynn.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230714023502.3225096-1-Delphine_CC_Chiu@wiwynn.com>
-References: <20230712073752.54624-3-Delphine_CC_Chiu@wiwynn.com>
- <20230714023502.3225096-1-Delphine_CC_Chiu@wiwynn.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SG2APC01FT0057:EE_|SEZPR04MB6874:EE_
-Content-Type: text/plain
-X-MS-Office365-Filtering-Correlation-Id: aeea1acf-7e57-42f3-e2d7-08db8412fb65
-X-MS-Exchange-AtpMessageProperties: SA
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Wz6HwpyXKteitvNkLCCvC0YvU5QVJ3J3E306DAv0VAeGCm8Mdg/SXTQ6mc0qFBqysgq5N7L91GCzfhCj5+HpxyXNGCnxZt/5p5dHCcejPevcjCDH0a2a+ZNNcvJ9XpR8Tze7Mt1trtsrgPUQlutNmG1tq5NczunSapcG0hKcjA1kvh2jzHjVx7aUKmgeX7bltjZ4bQt+uOy34YGzOuorzNFXS6A6URXDdilOtr6KeSmr8ZI7dQBoylDxh1AORbnqQWIlyRgOI8coGpzPbI7sh2tOp392W9v8C9a7+MRdce+aYD8+vDQEoI9gfbrILzZen1L4rNvZ9jd63YqFSQEXYwAyR6txlFq/mwv8uvCR8Y1tY62GQjvpop/SFq8gyTXQHkCXEgzNSkSwa53nlg9g4ld69r6aLsVGEFashaUKzsTueQLEt2bNZ/brk1iTwH8toSliigBMSSEDng0gxWDCmzTe3Oz7H+tmyGZccYjMoJdfZpH6+AdqV6GuMRshHBnpXFiEXMYQrgXPKaf3y2rik0M8L295F6zf/p//GHJw9nv0w/rnFW5M+ZNHTa6z6LKfeUHO3vHvQxGmvrpEzLN6Wr8lJhfFVJXf+538eYecmjf0Y2CyMp335+mlM6gbbj8xuf/m/C+7Ja8lZtyEtDIA/S0e8UVV+FlnLt1WU72b7G23e7JOF0t337kvtntBgeEw9trabsspDzJ7YO93FKTPAA==
-X-Forefront-Antispam-Report: CIP:211.20.1.79;CTRY:TW;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:localhost.localdomain;PTR:211-20-1-79.hinet-ip.hinet.net;CAT:NONE;SFS:(13230028)(6069001)(4636009)(136003)(346002)(376002)(39860400002)(396003)(47680400002)(451199021)(46966006)(36840700001)(6486002)(6512007)(6666004)(36860700001)(47076005)(186003)(6506007)(2616005)(336012)(36756003)(82310400005)(956004)(86362001)(1076003)(356005)(82740400003)(81166007)(9316004)(40480700001)(26005)(4326008)(70586007)(70206006)(30864003)(41300700001)(2906002)(36736006)(316002)(7416002)(5660300002)(8676002)(8936002)(110136005)(478600001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: wiwynn.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Jul 2023 02:35:25.6812
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: aeea1acf-7e57-42f3-e2d7-08db8412fb65
-X-MS-Exchange-CrossTenant-Id: da6e0628-fc83-4caf-9dd2-73061cbab167
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=da6e0628-fc83-4caf-9dd2-73061cbab167;Ip=[211.20.1.79];Helo=[localhost.localdomain]
-X-MS-Exchange-CrossTenant-AuthSource: SG2APC01FT0057.eop-APC01.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEZPR04MB6874
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [RFC PATCH] iommu: arm-smmu-nvidia: Add default domain type
+ implementation op
+Content-Language: en-US
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Stanimir Varbanov <stanimir.varbanov@suse.com>
+References: <20230710082252.9702-1-svarbanov@suse.de> <ZKvgG4-IzqiYPSUT@orome>
+ <93026b47-3b72-8439-486e-e0cda21dd0fe@suse.com> <ZK17X4ueSI5rWKVL@orome>
+ <ZK_8uU2XJAWMk23M@orome>
+From:   Baolu Lu <baolu.lu@linux.intel.com>
+In-Reply-To: <ZK_8uU2XJAWMk23M@orome>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add linux device tree entry related to
-Yosemite V4 specific devices connected to BMC SoC.
+On 2023/7/13 21:31, Thierry Reding wrote:
+> On Tue, Jul 11, 2023 at 05:55:11PM +0200, Thierry Reding wrote:
+>> On Tue, Jul 11, 2023 at 01:58:34PM +0300, Stanimir Varbanov wrote:
+>>> Hi Thierry,
+>>>
+>>> Thank you for the comments!
+>>>
+>>> On 7/10/23 13:40, Thierry Reding wrote:
+>>>> On Mon, Jul 10, 2023 at 11:22:52AM +0300, Stanimir Varbanov wrote:
+>>>>> Add def_domain_type implementation op and override default IOMMU
+>>>>> domain Kconfig option (CONFIG_IOMMU_DEFAULT_PASSTHROUGH=y), which
+>>>>> could be enabled on some distros. The current quirk has been done
+>>>>> for Tegra234 machine, because I found the issue on it. The issue
+>>>>> itself appears on USB host controller which cannot be initialized
+>>>>> without IOMMU translation. Something more, we proved that IOMMU
+>>>>> translation is needed for display and GPU drivers as well.
+>>>>>
+>>>>> I evaluated few possible options to solve that:
+>>>>>
+>>>>>   a) select default IOMMU domain from .def_domain_type op
+>>>>>   b) Unset CONFIG_IOMMU_DEFAULT_PASSTHROUGH=n
+>>>>>   c) add iommu.passthrough=0 on the kernel cmdline
+>>>>>   d) firmware - ACPI / DT
+>>>>>
+>>>>> a) This option is implemented in the proposed patch.
+>>>>>
+>>>>> b) Since that the community has agreed that pass-through is preferred
+>>>>> as a default IOMMU domain option because this will avoid performance
+>>>>> impacts on some of the platforms [1]. On the other side we have examples
+>>>>> where you cannot even install Linux distribution on a machine where the
+>>>>> storage media cannot be detected and the system just hangs.
+>>>>
+>>>> That's not how I read that thread. It sounds more to me like Will and
+>>>> Robin had ideas on how to improve the performance and were planning to
+>>>> address these issues. It doesn't exactly sound to me like there was
+>>>> concensus to make passthrough the default.
+>>>>
+>>>> Having said that, given that it's possible for distributions and users
+>>>> to set CONFIG_IOMMU_DEFAULT_PASSTHROUGH=y, I think it would be useful in
+>>>> general to have a way of enforcing IOMMU translations if it's needed by
+>>>> the hardware.
+>>>
+>>> Exactly, the problem is that some platforms prefer passthrough to avoid
+>>> performance impacts but others cannot even boot the kernel (and thus
+>>> installation failure). Passing iommu.passthrough=0 should be an
+>>> administrator decision, balancing between security and performance.
+>>>
+>>> On the other hand the aforementioned mail thread gave some performance
+>>> numbers which might be are outdated having the improvements made in smmu
+>>> driver in mind. Unfortunately, I cannot confirm that the performance has
+>>> been improved during that time.
+>>>
+>>>>
+>>>> I'm not sure I fully understand the particular problems that you're
+>>>> seeing on Tegra234, though. I'm not aware of anything in the USB host
+>>>> controller driver (or hardware, for that matter) that would require the
+>>>> IOMMU to be enabled. The only peculiarity that I can think of is the
+>>>> firmware, which is typically loaded by an early bootloader and therefore
+>>>> might perhaps need the IOMMU to properly map this in the kernel.
+>>>> However, my understanding is that this firmware is loaded into special
+>>>> carveout regions which don't require remapping.
+>>>
+>>> On Jetson Orin AGX (R35.2.1) I see these errors:
+>>>
+>>> tegra-mc 2c00000.memory-controller: unknown: write @0x0000000000000080:
+>>> EMEM address decode error (EMEM decode error)
+>>>
+>>> tegra-xusb 3610000.usb: Error while assigning device slot ID
+>>> tegra-xusb 3610000.usb: Max number of devices this xHCI host supports is 36.
+>>> usb usb2-port3: couldn't allocate usb_device
+>>> tegra-mc 2c00000.memory-controller: unknown: write @0x0000000000000090:
+>>> EMEM address decode error (EMEM decode error)
+>>> tegra-xusb 3610000.usb: Error while assigning device slot ID
+>>> tegra-xusb 3610000.usb: Max number of devices this xHCI host supports is 36.
+>>> usb usb1-port3: couldn't allocate usb_device
+>>>
+>>> tegra-mc 2c00000.memory-controller: unknown: write @0x00000000000000a0:
+>>> EMEM address decode error (EMEM decode error)
+>>> tegra-xusb 3610000.usb: Error while assigning device slot ID
+>>> tegra-xusb 3610000.usb: Max number of devices this xHCI host supports is 36.
+>>> usb usb1-port4: couldn't allocate usb_device
+>>>
+>>>>
+>>>> However, passthrough is admittedly not something that we've thoroughly
+>>>> tested, so it's possible you're running into a use-case that I'm not
+>>>> aware of. In that case, could you provide a few more specifics (such as
+>>>> the DTB and .config) of your build configuration so that I can try and
+>>>> reproduce?
+>>>
+>>> To reproduce you have to add iommu.passthrough=1 on kernel cmdline. The
+>>> dtb is from Jetpack.
+>>
+>> I was able to reproduce this on Jetson Orin NX (the differences to AGX
+>> Orin should be negligible in this context), though I ended up patching
+>> the DTB to disable all SMMUs. What fixed it for me was to drop the
+>> dma-coherent property from the usb@3610000 node. Can you try that on
+>> your end to see if that works for you as well?
+>>
+>> Not that that's a proper solution, of course, but just trying to find
+>> out if there's perhaps something else going on.
+>>
+>>  From the looks of it, it seems like these devices aren't actually DMA
+>> coherent inherently, but rather the SMMU translations make the accesses
+>> to memory coherent. I'm trying to find out the exact details, but if it
+>> turns out to be the case, then what we really want is a way for an IOMMU
+>> to mark any devices that get attached to it as DMA coherent. It's not
+>> sufficient to hard-code this in DT because there are various ways in
+>> which device can end up not attached to an IOMMU despite what the DT
+>> says.
+>>
+>> Jason, or anyone of the IOMMU folks, any thoughts on how this could be
+>> achieved? DT already has a way of walking up the "DMA hierarchy" looking
+>> for a DMA coherent parent, but again, making this rely entirely on DT
+>> seems insufficient.
+> 
+> I've got a bit more information on what's happening here. There are
+> three different ways that a device's memory accesses can coherent on
+> Tegra: 1) when translated through the ARM SMMU, 2) some devices can
+> force coherency through configuration registers and 3) each device can
+> be forced to be coherent via the memory controller.
+> 
+> Option 3) is not something we have much control over because this is
+> configured during early boot and the corresponding registers locked
+> down, so the OS can at maximum read out the configuration.
+> 
+> Option 1) is what is typically used, so a common pattern is that if we
+> enable IOMMU translations via DT, we also set dma-coherent. Conversely,
+> if IOMMU translations are disabled via DT, the dma-coherent property
+> should also be removed because by default most devices will not be
+> hardcoded to be DMA coherent via option 3). Most device drivers will
+> also not program the device's configuration registers.
+> 
+> As a result the desired configuration is to always enable SMMU and rely
+> on the SMMU translations to provide DMA coherency. As we've seen this
+> can be problematic, because the device tree doesn't always tell the true
+> story. For example even if the iommus property exists, the device may
+> not end up attached to the IOMMU for a number of reasons (the IOMMU
+> could itself be disabled, a kernel command-line option could prevent the
+> attachment, or a device could even be detached explicitly).
+> 
+> So I think what we want to avoid is to mark all device tree nodes as
+> dma-coherent because it can lead to inconsistencies. A better option
+> would be to have this property inherited via the IOMMU if the IOMMU
+> translations themselves cause the coherency to be established. Now it
+> seems like DT already contains a way of doing that via the "DMA parent".
+> This works by looking up a special interconnects path called "dma-mem".
+> We already use this on Tegra to make the memory controller the DMA
+> parent of all memory clients (i.e. all DMA capable hardware blocks) in
+> order to enforce a bus-level DMA mask.
+> 
+> However, in order for the DMA parent mechanism to work for IOMMU, we'd
+> need to redirect the DMA parent to be the IOMMU, but in that case we
+> loose the link to the memory controller. Unless, perhaps, if there's a
+> way to construct an ICC path from device to IOMMU and then to memory
+> controller and external memory controller (EMC).
+> 
+> For reference, here's roughly what the data path looks like on Tegra:
+> 
+> 	device --> MC --> SMMU enabled --> SMMU --> EMC --> DRAM
+> 	              |                          ^
+> 	              --> SMMU bypass -----------|
+> 
+> SMMU can be enabled/disabled per device via a stream ID override
+> register in the memory controller.
+> 
+> The biggest downside of that mechanism is still that it's a static
+> configuration and doesn't respect the actual runtime attachment of a
+> device to an IOMMU.
+> 
+> Adding the DT folks to see if they have any good ideas on how best to
+> represent this from a DT point of view. Would it perhaps be an option
+> to consider the iommus property when walking up the DMA ancestry?
 
-Signed-off-by: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
----
- arch/arm/boot/dts/Makefile                    |   1 +
- .../dts/aspeed-bmc-facebook-yosemitev4.dts    | 577 ++++++++++++++++++
- 2 files changed, 578 insertions(+)
- create mode 100644 arch/arm/boot/dts/aspeed-bmc-facebook-yosemitev4.dts
+Is it possible to handle this dynamically in the code? Say, set device
+to be DMA coherent in probe_finalize callback of Tegra iommu driver if
+the IOMMU translation for this device is on. And clear it in the iommu
+release device path.
 
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index 59829fc90315..871e6d271262 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -1631,6 +1631,7 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
- 	aspeed-bmc-facebook-galaxy100.dtb \
- 	aspeed-bmc-facebook-greatlakes.dtb \
- 	aspeed-bmc-facebook-minipack.dtb \
-+	aspeed-bmc-facebook-yosemitev4.dtb \
- 	aspeed-bmc-facebook-tiogapass.dtb \
- 	aspeed-bmc-facebook-wedge40.dtb \
- 	aspeed-bmc-facebook-wedge100.dtb \
-diff --git a/arch/arm/boot/dts/aspeed-bmc-facebook-yosemitev4.dts b/arch/arm/boot/dts/aspeed-bmc-facebook-yosemitev4.dts
-new file mode 100644
-index 000000000000..cfe4838fae5a
---- /dev/null
-+++ b/arch/arm/boot/dts/aspeed-bmc-facebook-yosemitev4.dts
-@@ -0,0 +1,577 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+// Copyright 2022 Facebook Inc.
-+
-+/dts-v1/;
-+#include "aspeed-g6.dtsi"
-+#include <dt-bindings/gpio/aspeed-gpio.h>
-+#include <dt-bindings/leds/leds-pca955x.h>
-+#include <dt-bindings/i2c/i2c.h>
-+
-+/ {
-+	model = "Facebook Yosemite V4 BMC";
-+	compatible = "facebook,yosemitev4-bmc", "aspeed,ast2600";
-+
-+	aliases {
-+		serial4 = &uart5;
-+		serial5 = &uart6;
-+		serial6 = &uart7;
-+		serial7 = &uart8;
-+		serial8 = &uart9;
-+	};
-+
-+	chosen {
-+		bootargs = "console=ttyS4,57600n8";
-+	};
-+
-+	memory@80000000 {
-+		device_type = "memory";
-+		reg = <0x80000000 0x80000000>;
-+	};
-+
-+	iio-hwmon {
-+		compatible = "iio-hwmon";
-+		io-channels = <&adc0 0>, <&adc0 1>, <&adc0 2>, <&adc0 3>,
-+				<&adc0 4>, <&adc0 5>, <&adc0 6>, <&adc0 7>,
-+				<&adc1 0>, <&adc1 1>;
-+	};
-+};
-+
-+&uart1 {
-+	status = "okay";
-+};
-+
-+&uart2 {
-+	status = "okay";
-+};
-+
-+&uart3 {
-+	status = "okay";
-+};
-+
-+&uart4 {
-+	status = "okay";
-+};
-+
-+&uart5 {
-+	status = "okay";
-+};
-+
-+&uart6 {
-+	status = "okay";
-+};
-+
-+&uart7 {
-+	status = "okay";
-+};
-+
-+&uart8 {
-+	status = "okay";
-+};
-+
-+&uart9 {
-+	status = "okay";
-+};
-+
-+&wdt1 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_wdtrst1_default>;
-+	aspeed,reset-type = "soc";
-+	aspeed,external-signal;
-+	aspeed,ext-push-pull;
-+	aspeed,ext-active-high;
-+	aspeed,ext-pulse-duration = <256>;
-+};
-+
-+&mac2 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_rmii3_default>;
-+	no-hw-checksum;
-+	use-ncsi;
-+	mlx,multi-host;
-+	ncsi-ctrl,start-redo-probe;
-+	ncsi-ctrl,no-channel-monitor;
-+	ncsi-package = <1>;
-+	ncsi-channel = <1>;
-+	ncsi-rexmit = <1>;
-+	ncsi-timeout = <2>;
-+};
-+
-+&mac3 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_rmii4_default>;
-+	no-hw-checksum;
-+	use-ncsi;
-+	mlx,multi-host;
-+	ncsi-ctrl,start-redo-probe;
-+	ncsi-ctrl,no-channel-monitor;
-+	ncsi-package = <1>;
-+	ncsi-channel = <1>;
-+	ncsi-rexmit = <1>;
-+	ncsi-timeout = <2>;
-+};
-+
-+&rtc {
-+	status = "okay";
-+};
-+
-+&fmc {
-+	status = "okay";
-+	flash@0 {
-+		status = "okay";
-+		m25p,fast-read;
-+		label = "bmc";
-+		spi-rx-bus-width = <4>;
-+		spi-max-frequency = <50000000>;
-+#include "openbmc-flash-layout-64.dtsi"
-+	};
-+	flash@1 {
-+		status = "okay";
-+		m25p,fast-read;
-+		label = "bmc2";
-+		spi-rx-bus-width = <4>;
-+		spi-max-frequency = <50000000>;
-+	};
-+};
-+
-+&i2c0 {
-+	status = "okay";
-+	bus-frequency = <400000>;
-+	multi-master;
-+	power-sensor@40 {
-+		compatible = "adi,adm1278";
-+		reg = <0x40>;
-+	};
-+};
-+
-+&i2c1 {
-+	status = "okay";
-+	bus-frequency = <400000>;
-+	multi-master;
-+	power-sensor@40 {
-+		compatible = "adi,adm1278";
-+		reg = <0x40>;
-+	};
-+};
-+
-+&i2c2 {
-+	status = "okay";
-+	bus-frequency = <400000>;
-+	multi-master;
-+	power-sensor@40 {
-+		compatible = "adi,adm1278";
-+		reg = <0x40>;
-+	};
-+};
-+
-+&i2c3 {
-+	status = "okay";
-+	bus-frequency = <400000>;
-+	multi-master;
-+	power-sensor@40 {
-+		compatible = "adi,adm1278";
-+		reg = <0x40>;
-+	};
-+};
-+
-+&i2c4 {
-+	status = "okay";
-+	bus-frequency = <400000>;
-+	multi-master;
-+	power-sensor@40 {
-+		compatible = "adi,adm1278";
-+		reg = <0x40>;
-+	};
-+};
-+
-+&i2c5 {
-+	status = "okay";
-+	bus-frequency = <400000>;
-+	multi-master;
-+	power-sensor@40 {
-+		compatible = "adi,adm1278";
-+		reg = <0x40>;
-+	};
-+};
-+
-+&i2c6 {
-+	status = "okay";
-+	bus-frequency = <400000>;
-+	multi-master;
-+	power-sensor@40 {
-+		compatible = "adi,adm1278";
-+		reg = <0x40>;
-+	};
-+};
-+
-+&i2c7 {
-+	status = "okay";
-+	bus-frequency = <400000>;
-+	multi-master;
-+	power-sensor@40 {
-+		compatible = "adi,adm1278";
-+		reg = <0x40>;
-+	};
-+};
-+
-+&i2c8 {
-+	status = "okay";
-+	bus-frequency = <400000>;
-+	i2c-mux@70 {
-+		compatible = "nxp,pca9544";
-+		idle-state = <0>;
-+		i2c-mux-idle-disconnect;
-+		reg = <0x70>;
-+	};
-+};
-+
-+&i2c9 {
-+	status = "okay";
-+	bus-frequency = <400000>;
-+	i2c-mux@71 {
-+		compatible = "nxp,pca9544";
-+		idle-state = <0>;
-+		i2c-mux-idle-disconnect;
-+		reg = <0x71>;
-+	};
-+};
-+
-+&i2c10 {
-+	status = "okay";
-+	bus-frequency = <400000>;
-+};
-+
-+&i2c11 {
-+	status = "okay";
-+	bus-frequency = <400000>;
-+	power-sensor@10 {
-+		compatible = "adi, adm1272";
-+		reg = <0x10>;
-+	};
-+
-+	power-sensor@12 {
-+		compatible = "adi, adm1272";
-+		reg = <0x12>;
-+	};
-+
-+	gpio@20 {
-+		compatible = "nxp,pca9555";
-+		reg = <0x20>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+	};
-+
-+	gpio@21 {
-+		compatible = "nxp,pca9555";
-+		reg = <0x21>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+	};
-+
-+	gpio@22 {
-+		compatible = "nxp,pca9555";
-+		reg = <0x22>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+	};
-+
-+	gpio@23 {
-+		compatible = "nxp,pca9555";
-+		reg = <0x23>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+	};
-+
-+	gpio@24 {
-+		compatible = "nxp,pca9555";
-+		reg = <0x24>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+	};
-+
-+	temperature-sensor@48 {
-+		compatible = "ti,tmp75";
-+		reg = <0x48>;
-+	};
-+
-+	temperature-sensor@49 {
-+		compatible = "ti,tmp75";
-+		reg = <0x49>;
-+	};
-+
-+	temperature-sensor@4a {
-+		compatible = "ti,tmp75";
-+		reg = <0x4a>;
-+	};
-+
-+	temperature-sensor@4b {
-+		compatible = "ti,tmp75";
-+		reg = <0x4b>;
-+	};
-+
-+	eeprom@54 {
-+		compatible = "atmel,24c256";
-+		reg = <0x54>;
-+	};
-+};
-+
-+&i2c12 {
-+	status = "okay";
-+	bus-frequency = <400000>;
-+};
-+
-+&i2c13 {
-+	status = "okay";
-+	bus-frequency = <400000>;
-+};
-+
-+&i2c14 {
-+	status = "okay";
-+	bus-frequency = <400000>;
-+	adc@1d {
-+		compatible = "ti,adc128d818";
-+		reg = <0x1d>;
-+		ti,mode = /bits/ 8 <2>;
-+	};
-+
-+	adc@35 {
-+		compatible = "ti,adc128d818";
-+		reg = <0x35>;
-+		ti,mode = /bits/ 8 <2>;
-+	};
-+
-+	adc@37 {
-+		compatible = "ti,adc128d818";
-+		reg = <0x37>;
-+		ti,mode = /bits/ 8 <2>;
-+	};
-+
-+	power-sensor@40 {
-+		compatible = "ti,ina230";
-+		reg = <0x40>;
-+	};
-+
-+	power-sensor@41 {
-+		compatible = "ti,ina230";
-+		reg = <0x41>;
-+	};
-+
-+	power-sensor@42 {
-+		compatible = "ti,ina230";
-+		reg = <0x42>;
-+	};
-+
-+	power-sensor@41 {
-+		compatible = "ti,ina230";
-+		reg = <0x43>;
-+	};
-+
-+	power-sensor@44 {
-+		compatible = "ti,ina230";
-+		reg = <0x44>;
-+	};
-+
-+	temperature-sensor@48 {
-+		compatible = "ti,tmp75";
-+		reg = <0x48>;
-+	};
-+
-+	temperature-sensor@4e {
-+		compatible = "ti,tmp75";
-+		reg = <0x4e>;
-+	};
-+
-+	temperature-sensor@4f {
-+		compatible = "ti,tmp75";
-+		reg = <0x4f>;
-+	};
-+
-+	eeprom@50 {
-+		compatible = "atmel,24c128";
-+		reg = <0x50>;
-+	};
-+
-+	eeprom@51 {
-+		compatible = "atmel,24c128";
-+		reg = <0x51>;
-+	};
-+
-+	i2c-mux@71 {
-+		compatible = "nxp,pca9846";
-+		idle-state = <0>;
-+		i2c-mux-idle-disconnect;
-+		reg = <0x71>;
-+
-+		i2c@0 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <0>;
-+
-+			adc@1f {
-+				compatible = "ti,adc128d818";
-+				reg = <0x1f>;
-+				ti,mode = /bits/ 8 <2>;
-+			};
-+
-+			temperature-sensor@20{
-+				compatible = "max31790";
-+				reg = <0x20>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				fan-mode = "pwm";
-+				fanconfig = /bits/ 8 <0x19 0x19 0x19 0x18 0x18 0x18>;
-+			};
-+
-+			gpio@22{
-+				compatible = "ti,tca6424";
-+				reg = <0x22>;
-+			};
-+
-+			temperature-sensor@23{
-+				compatible = "max31790";
-+				reg = <0x23>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				fan-mode = "pwm";
-+				fanconfig = /bits/ 8 <0x19 0x19 0x19 0x18 0x18 0x18>;
-+			};
-+
-+			adc@33 {
-+				compatible = "maxim,max11615";
-+				reg = <0x33>;
-+			};
-+
-+			eeprom@52 {
-+				compatible = "atmel,24c128";
-+				reg = <0x52>;
-+			};
-+
-+			gpio@61 {
-+				compatible = "nxp,pca9552";
-+				reg = <0x61>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				gpio-controller;
-+				#gpio-cells = <2>;
-+			};
-+		};
-+
-+		i2c@1 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <0>;
-+
-+			adc@1f {
-+				compatible = "ti,adc128d818";
-+				reg = <0x1f>;
-+				ti,mode = /bits/ 8 <2>;
-+			};
-+
-+			temperature-sensor@20{
-+				compatible = "max31790";
-+				reg = <0x20>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				fan-mode = "pwm";
-+				fanconfig = /bits/ 8 <0x19 0x19 0x19 0x18 0x18 0x18>;
-+			};
-+
-+			gpio@22{
-+				compatible = "ti,tca6424";
-+				reg = <0x22>;
-+			};
-+
-+			temperature-sensor@23{
-+				compatible = "max31790";
-+				reg = <0x23>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				fan-mode = "pwm";
-+				fanconfig = /bits/ 8 <0x19 0x19 0x19 0x18 0x18 0x18>;
-+			};
-+
-+			adc@33 {
-+				compatible = "maxim,max11615";
-+				reg = <0x33>;
-+			};
-+
-+			eeprom@52 {
-+				compatible = "atmel,24c128";
-+				reg = <0x52>;
-+			};
-+
-+			gpio@61 {
-+				compatible = "nxp,pca9552";
-+				reg = <0x61>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				gpio-controller;
-+				#gpio-cells = <2>;
-+			};
-+		};
-+	};
-+
-+	i2c-mux@73 {
-+		compatible = "nxp,pca9544";
-+		idle-state = <0>;
-+		i2c-mux-idle-disconnect;
-+		reg = <0x73>;
-+
-+		i2c@0 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <0>;
-+
-+			adc@6a {
-+				compatible = "maxim,max11617";
-+				reg = <0x6a>;
-+			};
-+		};
-+
-+		i2c@1 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <0>;
-+
-+			adc@6a {
-+				compatible = "maxim,max11617";
-+				reg = <0x6a>;
-+			};
-+		};
-+	};
-+};
-+
-+&i2c15 {
-+	status = "okay";
-+	bus-frequency = <400000>;
-+};
-+
-+&adc0 {
-+	ref_voltage = <2500>;
-+	status = "okay";
-+	pinctrl-0 = <&pinctrl_adc0_default &pinctrl_adc1_default
-+			&pinctrl_adc2_default &pinctrl_adc3_default
-+			&pinctrl_adc4_default &pinctrl_adc5_default
-+			&pinctrl_adc6_default &pinctrl_adc7_default>;
-+};
-+
-+&adc1 {
-+	ref_voltage = <2500>;
-+	status = "okay";
-+	pinctrl-0 = <&pinctrl_adc8_default &pinctrl_adc9_default>;
-+};
-+
-+
-+&ehci0 {
-+	status = "okay";
-+};
-+
-+&ehci1 {
-+	status = "okay";
-+};
-+
-+&uhci {
-+	status = "okay";
-+};
--- 
-2.25.1
+Normally we switch the DMA ops in the probe_finalize callback and iommu
+device release.
 
+Best regards,
+baolu
