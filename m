@@ -2,90 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D3B4775421A
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jul 2023 20:05:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 93A5E754253
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jul 2023 20:11:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236577AbjGNSCW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jul 2023 14:02:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49086 "EHLO
+        id S236402AbjGNSLY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jul 2023 14:11:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58380 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236846AbjGNSCL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jul 2023 14:02:11 -0400
-Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com [209.85.210.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5AE203A8F;
-        Fri, 14 Jul 2023 11:01:32 -0700 (PDT)
-Received: by mail-ot1-f53.google.com with SMTP id 46e09a7af769-6b9c57c4d12so320489a34.1;
-        Fri, 14 Jul 2023 11:01:32 -0700 (PDT)
+        with ESMTP id S236202AbjGNSLV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jul 2023 14:11:21 -0400
+Received: from mail-io1-xd32.google.com (mail-io1-xd32.google.com [IPv6:2607:f8b0:4864:20::d32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB29230D8
+        for <devicetree@vger.kernel.org>; Fri, 14 Jul 2023 11:10:50 -0700 (PDT)
+Received: by mail-io1-xd32.google.com with SMTP id ca18e2360f4ac-786bb09e595so76451239f.1
+        for <devicetree@vger.kernel.org>; Fri, 14 Jul 2023 11:10:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ieee.org; s=google; t=1689358246; x=1691950246;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ElBmMm1ZevyAKtumVID4tVMI+TD8QnK9EnzezYAZC1A=;
+        b=Mpdbmrnz6XIJWmlHQJGoTmuC7D53w+ptxGvR1qzM5rcUr2yuAkawf06rjkPYMTBpFq
+         l6MjPg1ZjnoCWgc8pvFZw+blKr4qxg2V0sQF1H0WVPdY6+DHII+TihuXYaBMer6Ieai0
+         olDYpMIpFkabUds26CFLUeHKHqIZFPDKt93i0=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689357624; x=1691949624;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=oD3/Nwpd4WJ/So+epUL0cjI+Em8klOV8PbZ4Er1vnus=;
-        b=Ck7kSOptwP3pT34bumevST9sCI/JWndHXXDJ64+hzdFl7KOHbkdO+irhDIXExaU+v+
-         rzoiDM1igqDlamfyf3gDQfqvtgFkLYgvm+7Ts3dmhFJ+6/t3GmuNfMTuAmhixzNWooTl
-         7Xz3wjAXRxS7NrEifP3Lwz8RyiIVUbDA6NltMzP3Kyue+P3JMJPSaJHcxQfTD4mW59Rp
-         Nt43vzVrJINJfs7FYl6yQWlivEOd+RhnsKpTZ4fflB3IgsymAoOkw8w6CtAMNHOScdoJ
-         9fHRe1sQlNXTzdbwAl8+tZWKzDnQfK316Azt5YTvJXJ3GRzndW/1LuIDpM023VnehahD
-         Pmqw==
-X-Gm-Message-State: ABy/qLb1+VnkiQSNL2uL5mjSTPLpFgRySsMuhkOU/AvW/s5bSE97I7Su
-        y5iAueZXG6LW5LJUheISe8NIA2TbE0ye
-X-Google-Smtp-Source: APBJJlFVG4BlnE8e/gefDbF6oc9DvjMZ4WAVgq8QrgRHEibJv0xhLoUNCJhTGiSxb3ZZ48aipTm60Q==
-X-Received: by 2002:a05:6602:2565:b0:783:63d6:4cb with SMTP id dj5-20020a056602256500b0078363d604cbmr5308389iob.14.1689357158415;
-        Fri, 14 Jul 2023 10:52:38 -0700 (PDT)
-Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id a13-20020a6b660d000000b00786fe5039b8sm2805662ioc.46.2023.07.14.10.52.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 14 Jul 2023 10:52:37 -0700 (PDT)
-Received: (nullmailer pid 4068243 invoked by uid 1000);
-        Fri, 14 Jul 2023 17:51:51 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Walker Chen <walker.chen@starfivetech.com>,
-        Conor Dooley <conor@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] soc: starfive: Explicitly include correct DT includes
-Date:   Fri, 14 Jul 2023 11:51:49 -0600
-Message-Id: <20230714175149.4068174-1-robh@kernel.org>
-X-Mailer: git-send-email 2.40.1
+        d=1e100.net; s=20221208; t=1689358246; x=1691950246;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ElBmMm1ZevyAKtumVID4tVMI+TD8QnK9EnzezYAZC1A=;
+        b=F5CUkIjTPJninKZ9rp9DXQguXy96DQkeOBjZ64P9sLGoCXCYp0OS1sksUIZB/qfDEV
+         9IUlTuQc7CHRL8eea7/ZIfc0RwICZBsC0UWi3FAvBHHbCTkOz7PdEQ9EoYu2erAPcxoo
+         3e6KURMKbvcKMjSQ/Vueaclnl8D8SPN23XdG1Eqqd/6B8qXduonlyLjW91auyFWKslJh
+         wDx1Kl0QXMWuDeOq2JM92Ckdv/bjxAaxVuSjc8cf0rr/43Y3qIzeLWvUPnfP8rYugkMO
+         wBHuiHmHiOtE2yh6b2bKw7oTS4VntGRIVTrZRPI7U45xbD6UOOgu2FTsveCbCqA9XR2C
+         xIZg==
+X-Gm-Message-State: ABy/qLYJQ+LY8mD8TgSzMdmaQbTTrvhGLBi/Rg/q06FkGdz1heXK3sTM
+        ihGW1OPHmb8kjIfmR/hzY8S93w==
+X-Google-Smtp-Source: APBJJlGUGWVq3dRmIhivYzT09y1C8kNKMoIaBZuLBrLyn6F4EFbPgbam3zAfvH0LyeRyezDMUEgn+A==
+X-Received: by 2002:a05:6e02:221e:b0:346:bf9:76fb with SMTP id j30-20020a056e02221e00b003460bf976fbmr2505344ilf.6.1689358246007;
+        Fri, 14 Jul 2023 11:10:46 -0700 (PDT)
+Received: from [172.22.22.28] (c-98-61-227-136.hsd1.mn.comcast.net. [98.61.227.136])
+        by smtp.googlemail.com with ESMTPSA id ee14-20020a056638292e00b0042ad6abe0bbsm2820039jab.20.2023.07.14.11.10.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 14 Jul 2023 11:10:44 -0700 (PDT)
+Message-ID: <2af8ba3f-566a-756e-48bf-3e723bc713da@ieee.org>
+Date:   Fri, 14 Jul 2023 13:10:42 -0500
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [greybus-dev] [PATCH] staging: Explicitly include correct DT
+ includes
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Vaibhav Hiremath <hvaibhav.linux@gmail.com>,
+        Johan Hovold <johan@kernel.org>, Alex Elder <elder@kernel.org>,
+        Steve Longerbeam <slongerbeam@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Sowjanya Komatineni <skomatineni@nvidia.com>,
+        Luca Ceresoli <luca.ceresoli@bootlin.com>,
+        Parthiban Veerasooran <parthiban.veerasooran@microchip.com>,
+        Christian Gromm <christian.gromm@microchip.com>
+Cc:     devicetree@vger.kernel.org, linux-staging@lists.linux.dev,
+        linux-kernel@vger.kernel.org, greybus-dev@lists.linaro.org,
+        linux-media@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-tegra@vger.kernel.org
+References: <20230714175002.4064428-1-robh@kernel.org>
+From:   Alex Elder <elder@ieee.org>
+In-Reply-To: <20230714175002.4064428-1-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The DT of_device.h and of_platform.h date back to the separate
-of_platform_bus_type before it as merged into the regular platform bus.
-As part of that merge prepping Arm DT support 13 years ago, they
-"temporarily" include each other. They also include platform_device.h
-and of.h. As a result, there's a pretty much random mix of those include
-files used throughout the tree. In order to detangle these headers and
-replace the implicit includes with struct declarations, users need to
-explicitly include the correct includes.
+On 7/14/23 12:50 PM, Rob Herring wrote:
+> The DT of_device.h and of_platform.h date back to the separate
+> of_platform_bus_type before it as merged into the regular platform bus.
+> As part of that merge prepping Arm DT support 13 years ago, they
+> "temporarily" include each other. They also include platform_device.h
+> and of.h. As a result, there's a pretty much random mix of those include
+> files used throughout the tree. In order to detangle these headers and
+> replace the implicit includes with struct declarations, users need to
+> explicitly include the correct includes.
+> 
+> Signed-off-by: Rob Herring <robh@kernel.org>
 
-Signed-off-by: Rob Herring <robh@kernel.org>
----
- drivers/soc/starfive/jh71xx_pmu.c | 1 -
- 1 file changed, 1 deletion(-)
+For drivers/staging/greybus/arche-platform.c:
 
-diff --git a/drivers/soc/starfive/jh71xx_pmu.c b/drivers/soc/starfive/jh71xx_pmu.c
-index 7d5f50d71c0d..d3b78a619d40 100644
---- a/drivers/soc/starfive/jh71xx_pmu.c
-+++ b/drivers/soc/starfive/jh71xx_pmu.c
-@@ -10,7 +10,6 @@
- #include <linux/iopoll.h>
- #include <linux/module.h>
- #include <linux/of.h>
--#include <linux/of_device.h>
- #include <linux/platform_device.h>
- #include <linux/pm_domain.h>
- #include <dt-bindings/power/starfive,jh7110-pmu.h>
--- 
-2.40.1
+Acked-by: Alex Elder <elder@linaro.org>
+
+> ---
+>   drivers/staging/axis-fifo/axis-fifo.c             | 6 ++----
+>   drivers/staging/greybus/arche-platform.c          | 1 +
+
+. . .
 
