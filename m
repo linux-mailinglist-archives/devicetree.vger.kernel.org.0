@@ -2,145 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A32475306C
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jul 2023 06:13:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6AF1B753070
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jul 2023 06:16:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234820AbjGNENb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jul 2023 00:13:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60230 "EHLO
+        id S234497AbjGNEQT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jul 2023 00:16:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33334 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234957AbjGNENX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jul 2023 00:13:23 -0400
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A598B2D46
-        for <devicetree@vger.kernel.org>; Thu, 13 Jul 2023 21:13:21 -0700 (PDT)
-Received: by mail-wr1-x42f.google.com with SMTP id ffacd0b85a97d-3159d75606dso1535132f8f.1
-        for <devicetree@vger.kernel.org>; Thu, 13 Jul 2023 21:13:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689308000; x=1691900000;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=YABg4OT5HskdCrnMy3fonfRSK+TYxksn1HKEflOmZ9U=;
-        b=O0qZyyZtLoQCGZgpM5FaFcrYrvzYbXDbUSz53lM6i3M6/HLdU9T/ifHsOzhdd1If50
-         B67DARaGITXXc3IkD81uMnpTZwp0iR0anyYLo537xVo3TA6dJnwiFYcnX7qnOjaJpyy2
-         yU6+2aKAfe2CFemet11kGNUBBCF3428QtyvQGWcAR0iM5tnoAGrZj0ognuG/INgIm4t0
-         jOEsMpFvM873U3Ds5HZiKaZQfFKo8QuC1r0v0UOEUT1meKC3/kKhKIZWJXbHEXXtOi+C
-         ur6e6xbYWFwrx8ej5s6dgXtYU8IK4QuUv4Hy4+pL2/qMHpPkmEkQguL6on6HRo5g7ytv
-         hrJQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689308000; x=1691900000;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=YABg4OT5HskdCrnMy3fonfRSK+TYxksn1HKEflOmZ9U=;
-        b=O/N9i4x/Ab3UNeF2+99CpNhFqSJJy7uRLPIq/hZkFoWZDNgRDaQQgz7SvEAcux51IN
-         E2CyCsdnkLDR1YXrOHevHHnVgNdyvAW6cwIxAHsJZ93o1qoepbIxG418+uD+uTgwQTEe
-         tcM7qyaVKudlIuIzC/c9L6mUm4oJlc76zfKYxZt77G6lFpIMhPSHOHHH8iweL1592MtG
-         /Dz9ASIGzgEWcWOMczRwInyQ3hyzAPtyCzKiO8wQoaKWGuTY1q/U9wo8wY11rF3lVyVn
-         HWhETOXK8omApowqGY41/7KsTJq+IKWzbXw+CmdyX2WKTxg3xjqHphnRkwAT4dOEsTl5
-         vjdg==
-X-Gm-Message-State: ABy/qLaZnbYZUVrk9mP6vSMjPAthZq7amH63iYZjUmvb/p99Lk+mE6od
-        lXYnr8vVJwkNK+lJJ5jq3/smgw==
-X-Google-Smtp-Source: APBJJlHErXViedgAwi0LK++yL/hAfrmgSIvP0b1Uv4Vp3sj3YrfFJ573oWAV2G9T1wg1jFToFKR6Pg==
-X-Received: by 2002:a5d:4649:0:b0:30e:590f:78d1 with SMTP id j9-20020a5d4649000000b0030e590f78d1mr3120118wrs.63.1689308000246;
-        Thu, 13 Jul 2023 21:13:20 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id x3-20020a5d60c3000000b0030ae499da59sm9591129wrt.111.2023.07.13.21.13.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 13 Jul 2023 21:13:19 -0700 (PDT)
-Message-ID: <0e6e32db-40e1-aa9f-fc05-20f2c5bf544d@linaro.org>
-Date:   Fri, 14 Jul 2023 06:13:17 +0200
+        with ESMTP id S232770AbjGNEQS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jul 2023 00:16:18 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D23A91995;
+        Thu, 13 Jul 2023 21:16:17 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 36E4G7Jr089036;
+        Thu, 13 Jul 2023 23:16:07 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1689308167;
+        bh=o9qXvVzrLt8pzvs5YvzNSvqyyCgLwLeV5QnOLGpdb1s=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=bwQCR56GmenXjF0uETAcZbdon5Yi3HjeKQtoaSbZetscosLDa0b3Eg7F+9dUJXDRt
+         Sq3pP847gLQTtxO87Y4ZLJsrhvpzR6hqDP+p3ughNMTNIF17QZ4QSRCvNG8aSm80ij
+         YTj5OKykSUEMn8wIFPtw7YLEbb5/rrrL6wH2izOs=
+Received: from DLEE101.ent.ti.com (dlee101.ent.ti.com [157.170.170.31])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 36E4G7rR045601
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 13 Jul 2023 23:16:07 -0500
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE101.ent.ti.com
+ (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 13
+ Jul 2023 23:16:07 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 13 Jul 2023 23:16:07 -0500
+Received: from [172.24.227.94] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 36E4G4ut028349;
+        Thu, 13 Jul 2023 23:16:04 -0500
+Message-ID: <01af7104-1410-013e-4ad2-50bae51b8624@ti.com>
+Date:   Fri, 14 Jul 2023 09:46:03 +0530
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v2 2/2] ARM: dts: aspeed: yosemitev4: add Facebook
- Yosemite V4 BMC
+ Thunderbird/102.11.0
+Subject: Re: [PATCH] arm64: dts: ti: Fix compatible of ti,*-ehrpwm-tbclk
 Content-Language: en-US
-To:     Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>, patrick@stwcx.xyz,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        soc@kernel.org, Rob Herring <robh+dt@kernel.org>,
+To:     Nishanth Menon <nm@ti.com>, Conor Dooley <conor+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-References: <20230712073752.54624-3-Delphine_CC_Chiu@wiwynn.com>
- <20230714023502.3225096-1-Delphine_CC_Chiu@wiwynn.com>
- <20230714023502.3225096-3-Delphine_CC_Chiu@wiwynn.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230714023502.3225096-3-Delphine_CC_Chiu@wiwynn.com>
-Content-Type: text/plain; charset=UTF-8
+        Rob Herring <robh+dt@kernel.org>
+CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Tero Kristo <kristo@kernel.org>
+References: <20230713184759.3336536-1-nm@ti.com>
+From:   Vignesh Raghavendra <vigneshr@ti.com>
+In-Reply-To: <20230713184759.3336536-1-nm@ti.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/07/2023 04:35, Delphine CC Chiu wrote:
-> Add linux device tree entry related to
-> Yosemite V4 specific devices connected to BMC SoC.
+
+
+On 14/07/23 00:17, Nishanth Menon wrote:
+> TI EHRPWM compatible is just ti,*-ehrpwm-tbclk without needing a
+> syscon compatibility.
 > 
-> Signed-off-by: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
+> Fixes the following dtbs_check warnings:
+>  compatible: [''ti,am654-ehrpwm-tbclk, 'syscon'] is too long
+>  compatible: ['ti,am64-epwm-tbclk', 'syscon'] is too long
+>  compatible: ['ti,am62-epwm-tbclk', 'syscon'] is too long
+> 
+> Signed-off-by: Nishanth Menon <nm@ti.com>
 > ---
->  arch/arm/boot/dts/Makefile                    |   1 +
->  .../dts/aspeed-bmc-facebook-yosemitev4.dts    | 577 ++++++++++++++++++
->  2 files changed, 578 insertions(+)
->  create mode 100644 arch/arm/boot/dts/aspeed-bmc-facebook-yosemitev4.dts
-> 
-> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-> index 59829fc90315..871e6d271262 100644
-> --- a/arch/arm/boot/dts/Makefile
-> +++ b/arch/arm/boot/dts/Makefile
-> @@ -1631,6 +1631,7 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
->  	aspeed-bmc-facebook-galaxy100.dtb \
->  	aspeed-bmc-facebook-greatlakes.dtb \
->  	aspeed-bmc-facebook-minipack.dtb \
-> +	aspeed-bmc-facebook-yosemitev4.dtb \
->  	aspeed-bmc-facebook-tiogapass.dtb \
->  	aspeed-bmc-facebook-wedge40.dtb \
->  	aspeed-bmc-facebook-wedge100.dtb \
-> diff --git a/arch/arm/boot/dts/aspeed-bmc-facebook-yosemitev4.dts b/arch/arm/boot/dts/aspeed-bmc-facebook-yosemitev4.dts
-> new file mode 100644
-> index 000000000000..cfe4838fae5a
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/aspeed-bmc-facebook-yosemitev4.dts
-> @@ -0,0 +1,577 @@
-> +// SPDX-License-Identifier: GPL-2.0-or-later
-> +// Copyright 2022 Facebook Inc.
-> +
-> +/dts-v1/;
-> +#include "aspeed-g6.dtsi"
-> +#include <dt-bindings/gpio/aspeed-gpio.h>
-> +#include <dt-bindings/leds/leds-pca955x.h>
-> +#include <dt-bindings/i2c/i2c.h>
-> +
-> +/ {
-> +	model = "Facebook Yosemite V4 BMC";
-> +	compatible = "facebook,yosemitev4-bmc", "aspeed,ast2600";
-> +
-> +	aliases {
-> +		serial4 = &uart5;
-> +		serial5 = &uart6;
-> +		serial6 = &uart7;
-> +		serial7 = &uart8;
-> +		serial8 = &uart9;
-> +	};
-> +
-> +	chosen {
-> +		bootargs = "console=ttyS4,57600n8";
 
-Nothing improved, so you just ignored entire feedback and resent the same.
+Reviewed-by: Vignesh Raghavendra <vigneshr@ti.com>
 
-Sorry, that's not how responding to feedback works.
 
-NAK
-
-Best regards,
-Krzysztof
-
+-- 
+Regards
+Vignesh
