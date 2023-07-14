@@ -2,227 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E783875379D
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jul 2023 12:14:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 49ED57537D4
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jul 2023 12:19:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236062AbjGNKOO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jul 2023 06:14:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58134 "EHLO
+        id S236189AbjGNKTB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jul 2023 06:19:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34024 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236061AbjGNKON (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jul 2023 06:14:13 -0400
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F2731989;
-        Fri, 14 Jul 2023 03:14:11 -0700 (PDT)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id 3FCA724E16E;
-        Fri, 14 Jul 2023 18:14:10 +0800 (CST)
-Received: from EXMBX062.cuchost.com (172.16.6.62) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 14 Jul
- 2023 18:14:10 +0800
-Received: from starfive-sdk.starfivetech.com (171.223.208.138) by
- EXMBX062.cuchost.com (172.16.6.62) with Microsoft SMTP Server (TLS) id
- 15.0.1497.42; Fri, 14 Jul 2023 18:14:08 +0800
-From:   Samin Guo <samin.guo@starfivetech.com>
-To:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <netdev@vger.kernel.org>, Peter Geis <pgwipeout@gmail.com>,
-        Frank <Frank.Sae@motor-comm.com>
-CC:     "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Conor Dooley <conor@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        "Russell King" <linux@armlinux.org.uk>,
-        Samin Guo <samin.guo@starfivetech.com>,
-        "Yanhong Wang" <yanhong.wang@starfivetech.com>
-Subject: [PATCH v4 2/2] net: phy: motorcomm: Add pad drive strength cfg support
-Date:   Fri, 14 Jul 2023 18:14:06 +0800
-Message-ID: <20230714101406.17686-3-samin.guo@starfivetech.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230714101406.17686-1-samin.guo@starfivetech.com>
-References: <20230714101406.17686-1-samin.guo@starfivetech.com>
+        with ESMTP id S236108AbjGNKS4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jul 2023 06:18:56 -0400
+Received: from mail-oi1-x229.google.com (mail-oi1-x229.google.com [IPv6:2607:f8b0:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66D49358C;
+        Fri, 14 Jul 2023 03:18:40 -0700 (PDT)
+Received: by mail-oi1-x229.google.com with SMTP id 5614622812f47-3a40b756eb0so1075351b6e.2;
+        Fri, 14 Jul 2023 03:18:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1689329919; x=1691921919;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=G5S/Su+LnonQlJtv6h9aSSkyuGTPnasq4Gs6B9RnTFM=;
+        b=VNRWJ0vyETvMhGB3+48qAa5PT2NK/MARU30eKt5SIUMCo36TbT07+MGuFWUOU75kwn
+         9N4ENPVsAiqeCos8lwVFUgNCbBqN4VghsOWOcMLGJU0C6eWmxpLLOFb5temWQPOvvnyf
+         d+MBkEw/eV+X5Hy0BBNvVVLtTwavKPVuHAvJDEx2gksI45eodF27o+ZSmmXcF1WMEreI
+         TqLFQ1l3LJdeF9wJgPds1M24aiNnAGP2CwN2KYO9TcIczutklkOTHFS5LlZbXNHPaOuy
+         sifBZhHGvU1fviBCC4xY91oOZqMghBO6flASgNI9qJgpNGDp56Y6SyNqJCNkVHYpp8Tr
+         GQKg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689329919; x=1691921919;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=G5S/Su+LnonQlJtv6h9aSSkyuGTPnasq4Gs6B9RnTFM=;
+        b=DIWftiVk3G0Jw465u9czy8fko4b0Bth8DLlUgnZemU6S9QOZ36tW4DM7NegeXKMReX
+         fmSoIyuIRaSwke+Mn6bHVA22F6SN40IftAk1qEYhBa+ckkR2BUGK9MLfDC6FLAmsUvdL
+         T78ZZ0UeNxOKZmDiA9vSM/wYNGPHc0PmfMaN9GIk/UcEEr7dSU8gdZZHNqpbLyPvAMjt
+         FoDekVafzAnv5uyuciJS8iOg9LoG9MhIcDYe0dOpwnWFOP+X/2mxFY+bLKsHhmfF4nVE
+         y2wfJNQamZgeLmJxztZt4QJXl3PU7SyOlGqYOjaJk7k+NLY+DtOmCI268LB+vEXYitml
+         MVWw==
+X-Gm-Message-State: ABy/qLYxlTLZp06wpA8xeLY2dfct76VDVXCuvNzXIHi52XrdtiGoBqjq
+        MHK66tqdB3YQdIrcvcKdHxffFkQVDTpo+4EeBcA=
+X-Google-Smtp-Source: APBJJlFnmD26TrqVTOxm7Zyo2EOzSV61byUJyWgGAvIuT7uv/IVd5NbGKL7x4j5UPbh+Zfun/v4Fdt3+B1C0/pI0qWQ=
+X-Received: by 2002:a05:6808:13cf:b0:3a3:820e:2f05 with SMTP id
+ d15-20020a05680813cf00b003a3820e2f05mr4930470oiw.1.1689329919411; Fri, 14 Jul
+ 2023 03:18:39 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [171.223.208.138]
-X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX062.cuchost.com
- (172.16.6.62)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <CAGUgbhCqOJaEPjS96o2au21uW4NhqFScm4Ayd8PzOQvqxQ94SQ@mail.gmail.com>
+ <0b9dd5cf-f4ca-2e6b-624d-0b451bbc2f30@linaro.org> <0ba3767c-d481-6e2c-2d32-b79af0e1efd8@roeck-us.net>
+In-Reply-To: <0ba3767c-d481-6e2c-2d32-b79af0e1efd8@roeck-us.net>
+From:   =?UTF-8?B?6JSh5om/6YGU?= <billyking19920205@gmail.com>
+Date:   Fri, 14 Jul 2023 18:18:28 +0800
+Message-ID: <CAGUgbhC34-pUp4ECULc0ScaN7hUF1L-z69h+ji-TiVrv4gKd3Q@mail.gmail.com>
+Subject: Re: [v6 2/4] dt-bindings: hwmon: Add ASPEED TACH Control documentation
+To:     Guenter Roeck <linux@roeck-us.net>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        "jdelvare@suse.com" <jdelvare@suse.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "joel@jms.id.au" <joel@jms.id.au>,
+        "andrew@aj.id.au" <andrew@aj.id.au>,
+        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
+        "u.kleine-koenig@pengutronix.de" <u.kleine-koenig@pengutronix.de>,
+        "corbet@lwn.net" <corbet@lwn.net>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
+        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
+        "patrick@stwcx.xyz" <patrick@stwcx.xyz>,
+        Billy Tsai <billy_tsai@aspeedtech.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The motorcomm phy (YT8531) supports the ability to adjust the drive
-strength of the rx_clk/rx_data, and the default strength may not be
-suitable for all boards. So add configurable options to better match
-the boards.(e.g. StarFive VisionFive 2)
+Guenter Roeck <linux@roeck-us.net> =E6=96=BC 2023=E5=B9=B47=E6=9C=8814=E6=
+=97=A5 =E9=80=B1=E4=BA=94 =E4=B8=8B=E5=8D=885:59=E5=AF=AB=E9=81=93=EF=BC=9A
+>
+> On 7/14/23 00:13, Krzysztof Kozlowski wrote:
+> > On 14/07/2023 09:04, =E8=94=A1=E6=89=BF=E9=81=94 wrote:
+> >
+> >>          > This is because our register layout for PWM and Tach is not
+> >> continuous.
+> >>
+> >>          > PWM0 used 0x0 0x4, Tach0 used 0x8 0xc
+> >>
+> >>          > PWM1 used 0x10 0x14, Tach1 used 0x18 0x1c
+> >>
+> >>          > ...
+> >>
+> >>          > Each PWM/Tach instance has its own controller register and =
+is not
+> >> dependent on others.
+> >
+> > Your email reply quoting style is very difficult to read.
+> >
+> >>
+> >>
+> >>
+> >> Hi Guenter,
+> >>
+> >>
+> >>
+> >> Did you receive a response to my previous email?
+> >>
+> >> I would like to inquire if you have any further concerns regarding the=
+ PWM
+> >> and Tach with 16 instances.
+> >
+> > But isn't like this in all PWMs in all SoCs?
+> >
+>
+> Correct, pretty much every fan controller is implemented that way.
+> I don't understand the logic.
+>
 
-When we configure the drive strength, we need to read the current
-LDO voltage value to ensure that it is a legal value at that LDO
-voltage.
+Hi Krzysztof and Guenter,
 
-Reviewed-by: Hal Feng <hal.feng@starfivetech.com>
-Signed-off-by: Samin Guo <samin.guo@starfivetech.com>
----
- drivers/net/phy/motorcomm.c | 114 ++++++++++++++++++++++++++++++++++++
- 1 file changed, 114 insertions(+)
+Apologies for any confusion earlier.
+So, you think that the implementation with 16 instances of TACH/PWM
+device nodes in dts instead of one is ok to you, right?
 
-diff --git a/drivers/net/phy/motorcomm.c b/drivers/net/phy/motorcomm.c
-index 2fa5a90e073b..857a451fa35e 100644
---- a/drivers/net/phy/motorcomm.c
-+++ b/drivers/net/phy/motorcomm.c
-@@ -163,6 +163,10 @@
- 
- #define YT8521_CHIP_CONFIG_REG			0xA001
- #define YT8521_CCR_SW_RST			BIT(15)
-+#define YT8531_RGMII_LDO_VOL_MASK		GENMASK(5, 4)
-+#define YT8531_LDO_VOL_3V3			0x0
-+#define YT8531_LDO_VOL_1V8			0x2
-+
- /* 1b0 disable 1.9ns rxc clock delay  *default*
-  * 1b1 enable 1.9ns rxc clock delay
-  */
-@@ -236,6 +240,12 @@
-  */
- #define YTPHY_WCR_TYPE_PULSE			BIT(0)
- 
-+#define YTPHY_PAD_DRIVE_STRENGTH_REG		0xA010
-+#define YT8531_RGMII_RXC_DS_MASK		GENMASK(15, 13)
-+#define YT8531_RGMII_RXD_DS_HI_MASK		BIT(12)		/* Bit 2 of rxd_ds */
-+#define YT8531_RGMII_RXD_DS_LOW_MASK		GENMASK(5, 4)	/* Bit 1/0 of rxd_ds */
-+#define YT8531_RGMII_RX_DS_DEFAULT		0x3
-+
- #define YTPHY_SYNCE_CFG_REG			0xA012
- #define YT8521_SCR_SYNCE_ENABLE			BIT(5)
- /* 1b0 output 25m clock
-@@ -834,6 +844,106 @@ static int ytphy_rgmii_clk_delay_config_with_lock(struct phy_device *phydev)
- 	return ret;
- }
- 
-+/**
-+ * struct ytphy_ldo_vol_map - map a current value to a register value
-+ * @vol: ldo voltage
-+ * @ds:  value in the register
-+ * @cur: value in device configuration
-+ */
-+struct ytphy_ldo_vol_map {
-+	u32 vol;
-+	u32 ds;
-+	u32 cur;
-+};
-+
-+static const struct ytphy_ldo_vol_map yt8531_ldo_vol[] = {
-+	{.vol = YT8531_LDO_VOL_1V8, .ds = 0, .cur = 1200},
-+	{.vol = YT8531_LDO_VOL_1V8, .ds = 1, .cur = 2100},
-+	{.vol = YT8531_LDO_VOL_1V8, .ds = 2, .cur = 2700},
-+	{.vol = YT8531_LDO_VOL_1V8, .ds = 3, .cur = 2910},
-+	{.vol = YT8531_LDO_VOL_1V8, .ds = 4, .cur = 3110},
-+	{.vol = YT8531_LDO_VOL_1V8, .ds = 5, .cur = 3600},
-+	{.vol = YT8531_LDO_VOL_1V8, .ds = 6, .cur = 3970},
-+	{.vol = YT8531_LDO_VOL_1V8, .ds = 7, .cur = 4350},
-+	{.vol = YT8531_LDO_VOL_3V3, .ds = 0, .cur = 3070},
-+	{.vol = YT8531_LDO_VOL_3V3, .ds = 1, .cur = 4080},
-+	{.vol = YT8531_LDO_VOL_3V3, .ds = 2, .cur = 4370},
-+	{.vol = YT8531_LDO_VOL_3V3, .ds = 3, .cur = 4680},
-+	{.vol = YT8531_LDO_VOL_3V3, .ds = 4, .cur = 5020},
-+	{.vol = YT8531_LDO_VOL_3V3, .ds = 5, .cur = 5450},
-+	{.vol = YT8531_LDO_VOL_3V3, .ds = 6, .cur = 5740},
-+	{.vol = YT8531_LDO_VOL_3V3, .ds = 7, .cur = 6140},
-+};
-+
-+static u32 yt8531_get_ldo_vol(struct phy_device *phydev)
-+{
-+	u32 val;
-+
-+	val = ytphy_read_ext_with_lock(phydev, YT8521_CHIP_CONFIG_REG);
-+	val = FIELD_GET(YT8531_RGMII_LDO_VOL_MASK, val);
-+
-+	return val <= YT8531_LDO_VOL_1V8 ? val : YT8531_LDO_VOL_1V8;
-+}
-+
-+static u32 yt8531_get_ds_map(struct phy_device *phydev, u32 cur)
-+{
-+	u32 vol;
-+	int i;
-+
-+	vol = yt8531_get_ldo_vol(phydev);
-+	for (i = 0; i < ARRAY_SIZE(yt8531_ldo_vol); i++) {
-+		if (yt8531_ldo_vol[i].vol == vol && yt8531_ldo_vol[i].cur == cur)
-+			return yt8531_ldo_vol[i].ds;
-+	}
-+
-+	phydev_warn(phydev,
-+		    "No matching current value was found %d, Use default value.\n", cur);
-+
-+	return YT8531_RGMII_RX_DS_DEFAULT;
-+}
-+
-+static int yt8531_set_ds(struct phy_device *phydev)
-+{
-+	struct device_node *node = phydev->mdio.dev.of_node;
-+	u32 ds_field_low, ds_field_hi;
-+	u32 ds, val;
-+	int ret;
-+
-+	/* set rgmii rx clk driver strength */
-+	if (!of_property_read_u32(node, "motorcomm,rx-clk-driver-strength", &val))
-+		ds = yt8531_get_ds_map(phydev, val);
-+	else
-+		ds = YT8531_RGMII_RX_DS_DEFAULT;
-+
-+	ret = ytphy_modify_ext_with_lock(phydev,
-+					 YTPHY_PAD_DRIVE_STRENGTH_REG,
-+					 YT8531_RGMII_RXC_DS_MASK,
-+					 FIELD_PREP(YT8531_RGMII_RXC_DS_MASK, ds));
-+	if (ret < 0)
-+		return ret;
-+
-+	/* set rgmii rx data driver strength */
-+	if (!of_property_read_u32(node, "motorcomm,rx-data-driver-strength", &val))
-+		ds = yt8531_get_ds_map(phydev, val);
-+	else
-+		ds = YT8531_RGMII_RX_DS_DEFAULT;
-+
-+	ds_field_hi = FIELD_GET(BIT(2), ds);
-+	ds_field_hi = FIELD_PREP(YT8531_RGMII_RXD_DS_HI_MASK, ds_field_hi);
-+
-+	ds_field_low = FIELD_GET(GENMASK(1, 0), ds);
-+	ds_field_low = FIELD_PREP(YT8531_RGMII_RXD_DS_LOW_MASK, ds_field_low);
-+
-+	ret = ytphy_modify_ext_with_lock(phydev,
-+					 YTPHY_PAD_DRIVE_STRENGTH_REG,
-+					 YT8531_RGMII_RXD_DS_LOW_MASK | YT8531_RGMII_RXD_DS_HI_MASK,
-+					 ds_field_low | ds_field_hi);
-+	if (ret < 0)
-+		return ret;
-+
-+	return 0;
-+}
-+
- /**
-  * yt8521_probe() - read chip config then set suitable polling_mode
-  * @phydev: a pointer to a &struct phy_device
-@@ -1518,6 +1628,10 @@ static int yt8531_config_init(struct phy_device *phydev)
- 			return ret;
- 	}
- 
-+	ret = yt8531_set_ds(phydev);
-+	if (ret < 0)
-+		return ret;
-+
- 	return 0;
- }
- 
--- 
-2.17.1
+Thanks
 
+Best regards,
+Billy Tsai
