@@ -2,63 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C0C497531ED
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jul 2023 08:27:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B44397531F0
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jul 2023 08:29:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235175AbjGNG1s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jul 2023 02:27:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54742 "EHLO
+        id S235177AbjGNG3U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jul 2023 02:29:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55192 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234660AbjGNG1r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jul 2023 02:27:47 -0400
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E92C110FA;
-        Thu, 13 Jul 2023 23:27:44 -0700 (PDT)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id 1A84324E2E3;
-        Fri, 14 Jul 2023 14:27:42 +0800 (CST)
-Received: from EXMBX061.cuchost.com (172.16.6.61) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 14 Jul
- 2023 14:27:42 +0800
-Received: from [192.168.125.128] (183.27.98.46) by EXMBX061.cuchost.com
- (172.16.6.61) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 14 Jul
- 2023 14:27:40 +0800
-Message-ID: <1b55f255-a9b2-1f0a-9b8b-11c787e76a75@starfivetech.com>
-Date:   Fri, 14 Jul 2023 14:24:28 +0800
+        with ESMTP id S234953AbjGNG3T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jul 2023 02:29:19 -0400
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C170510D4
+        for <devicetree@vger.kernel.org>; Thu, 13 Jul 2023 23:29:18 -0700 (PDT)
+Received: by mail-wr1-x42a.google.com with SMTP id ffacd0b85a97d-313e742a787so931884f8f.1
+        for <devicetree@vger.kernel.org>; Thu, 13 Jul 2023 23:29:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1689316157; x=1691908157;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=+cyRXTnFMgML5LRDqLhIxccKlQ2SpeUYza0LDZOHMN8=;
+        b=gP66vUPyD3nRolEL+Es+rUKuIrtm3hjs2vXOFh1FT7zUuc+1//T3IHZZzh/SABAfJv
+         Oqwi29iWmXra8Z0qcNI41QuWDywQu+cCYNDKd5ZBsWGGqDEgVzuAFDbg4j1s1XCWajXR
+         NcPW589n0UrRpCvNVanNSvurpwOLRpN6Z+Opbb9eJHnooifrS0ULltLOAzx2MOIHT/p6
+         iOwDW80foTu74YCC3urGICk2eyqP036A50+oOcuQRLrpHOwbp/PjEtSI/oM8uQD3igdr
+         MSMjeMjmBSTtNa/4zvHg4jIxnaJv5ODTXM7T0MdzN1dt8nsw2S+dQruQAXw7hL8H2rxi
+         JNfg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689316157; x=1691908157;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=+cyRXTnFMgML5LRDqLhIxccKlQ2SpeUYza0LDZOHMN8=;
+        b=NDht5u5fC9dI/tUfZcPP/znmwv2IOeeuPH0yrqbtacErar8qt0PkYiWY36smPwGv/N
+         vSNxTYukbxW+BxHVXmH+y5fPkguaZfyqP98a+1tYsqDfEx2ayHLw1/orRLNhMQ2ee2ZM
+         V46rnq1sdjCNWxVuylcmDvlLVC4UCZgbSSkmQ2BZl/3LIXJ2/hv69Sp+cjRy48Giuk8i
+         UpR9qpJfj7bD9omHE4k6ql2thNAIfxR1WBVuvXenfTZWCW/RqgrrNwg7i3Sr+rkCEvKe
+         oXO3oiCCYNIJbSx7JFaz7UMTtfiivpKw1zVDdxu4Gd7CbSIFRj3KPU2/KgpT1g+VxO4j
+         37WA==
+X-Gm-Message-State: ABy/qLYzqGUBzhO3U3D+T6S39ofnY3Nbc9wLDjwFBTDb7tJet8Xa7EFW
+        b+bf7EVC5rpxLHMiNsCHNByC5w==
+X-Google-Smtp-Source: APBJJlFX97c6rmpOJv+zuK0yecZ5eLJsgb7VgCnWkfQT9x7ss+tkXR1k8x1JhoD1UmTNXxl92Sm/Tg==
+X-Received: by 2002:adf:f04f:0:b0:314:3108:500a with SMTP id t15-20020adff04f000000b003143108500amr1554118wro.0.1689316157230;
+        Thu, 13 Jul 2023 23:29:17 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id t14-20020adfe44e000000b00314374145e0sm9857803wrm.67.2023.07.13.23.29.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 13 Jul 2023 23:29:16 -0700 (PDT)
+Message-ID: <53b67388-8b64-f668-0e56-299dd1044db1@linaro.org>
+Date:   Fri, 14 Jul 2023 08:29:14 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [RESEND PATCH v6 1/7] dt-bindings: clock: Add StarFive JH7110 PLL
- clock generator
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH] arm64: dts: exynos: add pwm node for exynosautov9-sadk
 Content-Language: en-US
-To:     Emil Renner Berthing <emil.renner.berthing@canonical.com>
-CC:     <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        "Michael Turquette" <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Conor Dooley <conor@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        "Hal Feng" <hal.feng@starfivetech.com>,
-        William Qiu <william.qiu@starfivetech.com>,
-        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>
-References: <20230704064610.292603-1-xingyu.wu@starfivetech.com>
- <20230704064610.292603-2-xingyu.wu@starfivetech.com>
- <CAJM55Z8vj6KvpKZxRVh0+G_LCXrpnXzOR+oBad-igkHVTD_J=Q@mail.gmail.com>
-From:   Xingyu Wu <xingyu.wu@starfivetech.com>
-In-Reply-To: <CAJM55Z8vj6KvpKZxRVh0+G_LCXrpnXzOR+oBad-igkHVTD_J=Q@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+To:     Chanho Park <chanho61.park@samsung.com>,
+        'Jaewon Kim' <jaewon02.kim@samsung.com>,
+        'Rob Herring' <robh+dt@kernel.org>,
+        'Krzysztof Kozlowski' <krzysztof.kozlowski+dt@linaro.org>,
+        'Conor Dooley' <conor+dt@kernel.org>,
+        'Alim Akhtar' <alim.akhtar@samsung.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <CGME20230714052025epcas2p46d5485a277c9f21ace14300dd9d7b4d8@epcas2p4.samsung.com>
+ <20230714051521.22720-1-jaewon02.kim@samsung.com>
+ <3bc9c34a-ba55-61c5-87ea-80b369841873@linaro.org>
+ <000401d9b618$59a29d80$0ce7d880$@samsung.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <000401d9b618$59a29d80$0ce7d880$@samsung.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [183.27.98.46]
-X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX061.cuchost.com
- (172.16.6.61)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
         URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -67,112 +82,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2023/7/13 20:26, Emil Renner Berthing wrote:
-> On Tue, 4 Jul 2023 at 08:49, Xingyu Wu <xingyu.wu@starfivetech.com> wrote:
+On 14/07/2023 07:59, Chanho Park wrote:
+>>> +			reg = <0x103f0000 0x100>;
+>>> +			samsung,pwm-outputs = <0>, <1>, <2>, <3>;
+>>> +			#pwm-cells = <3>;
+>>> +			clocks = <&xtcxo>;
 >>
->> Add bindings for the PLL clock generator on the JH7110 RISC-V SoC.
->>
->> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
->> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
->> ---
->>  .../bindings/clock/starfive,jh7110-pll.yaml   | 46 +++++++++++++++++++
->>  .../dt-bindings/clock/starfive,jh7110-crg.h   |  6 +++
->>  2 files changed, 52 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/clock/starfive,jh7110-pll.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/clock/starfive,jh7110-pll.yaml b/Documentation/devicetree/bindings/clock/starfive,jh7110-pll.yaml
->> new file mode 100644
->> index 000000000000..beb78add5a8d
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/clock/starfive,jh7110-pll.yaml
->> @@ -0,0 +1,46 @@
->> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/clock/starfive,jh7110-pll.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: StarFive JH7110 PLL Clock Generator
->> +
->> +description:
->> +  These PLLs are high speed, low jitter frequency synthesizers in JH7110.
+>> This does not look like correct clock. Are you sure XTCXO goes to PWM?
 > 
-> ..synthesizers in the JH7110.
+> Yes. XTXCO is the source clock of the pwm. Unlike any other exynos SoCs, the clock is directly derived from the external OSC.
+> Thus, it cannot be controllable such as gating.
 
-Will fix.
-
-> 
->> +  Each PLL works in integer mode or fraction mode, with configuration
->> +  registers in the sys syscon. So the PLLs node should be a child of
->> +  SYS-SYSCON node.
->> +  The formula for calculating frequency is
->> +  Fvco = Fref * (NI + NF) / M / Q1
->> +
->> +maintainers:
->> +  - Xingyu Wu <xingyu.wu@starfivetech.com>
->> +
->> +properties:
->> +  compatible:
->> +    const: starfive,jh7110-pll
->> +
->> +  clocks:
->> +    maxItems: 1
->> +    description: Main Oscillator (24 MHz)
->> +
->> +  '#clock-cells':
->> +    const: 1
->> +    description:
->> +      See <dt-bindings/clock/starfive,jh7110-crg.h> for valid indices.
->> +
->> +required:
->> +  - compatible
->> +  - clocks
->> +  - '#clock-cells'
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    clock-controller {
->> +      compatible = "starfive,jh7110-pll";
->> +      clocks = <&osc>;
->> +      #clock-cells = <1>;
->> +    };
->> diff --git a/include/dt-bindings/clock/starfive,jh7110-crg.h b/include/dt-bindings/clock/starfive,jh7110-crg.h
->> index 06257bfd9ac1..086a6ddcf380 100644
->> --- a/include/dt-bindings/clock/starfive,jh7110-crg.h
->> +++ b/include/dt-bindings/clock/starfive,jh7110-crg.h
->> @@ -6,6 +6,12 @@
->>  #ifndef __DT_BINDINGS_CLOCK_STARFIVE_JH7110_CRG_H__
->>  #define __DT_BINDINGS_CLOCK_STARFIVE_JH7110_CRG_H__
->>
->> +/* PLL clocks */
->> +#define JH7110_CLK_PLL0_OUT                    0
->> +#define JH7110_CLK_PLL1_OUT                    1
->> +#define JH7110_CLK_PLL2_OUT                    2
->> +#define JH7110_PLLCLK_END                      3
-> 
-> It would be nice if these names followed the same pattern as the
-> clocks below. Eg. something like JH7110_PLLCLK_PLL?_OUT and
-> JH7110_PLLCLK_END.
-> 
-> But maybe these defines are not even needed, since you just do <&pll
-> 0>, <&pll 1> and it's obvious what that means.
-
-I prefer to keep these names because they are used in the PLL driver
-and are more easy to understand than numbers.
-I will use the JH7110_PLLCLK_PLL?_OUT to follow the same pattern
-in next version.
+Sure, thanks for clarifying.
 
 Best regards,
-Xingyu Wu
-
-> 
->>  /* SYSCRG clocks */
->>  #define JH7110_SYSCLK_CPU_ROOT                 0
->>  #define JH7110_SYSCLK_CPU_CORE                 1
->> --
->> 2.25.1
->>
+Krzysztof
 
