@@ -2,189 +2,247 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7833D7536B4
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jul 2023 11:36:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D8C2B7536BD
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jul 2023 11:36:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235197AbjGNJgA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jul 2023 05:36:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60238 "EHLO
+        id S235522AbjGNJgz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jul 2023 05:36:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60416 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234938AbjGNJf5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jul 2023 05:35:57 -0400
-Received: from mail-yw1-x1136.google.com (mail-yw1-x1136.google.com [IPv6:2607:f8b0:4864:20::1136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF19E134
-        for <devicetree@vger.kernel.org>; Fri, 14 Jul 2023 02:35:46 -0700 (PDT)
-Received: by mail-yw1-x1136.google.com with SMTP id 00721157ae682-577497ec6c6so16820157b3.2
-        for <devicetree@vger.kernel.org>; Fri, 14 Jul 2023 02:35:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1689327345; x=1691919345;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=pt39Bw/1ICieuy3xPQ3V/nq5k9xeT5GMxbYyADM5Ukk=;
-        b=eslUTpMWrNAx2aATLEtT8SRgCHC+OB6UqLIj2Eer+pOjVMfBLWucrB0s3DvfklSfBl
-         2V4VfHd7NkbeQgvGYsSfgx9I7wtAQSam18rcFpP0OqWknK0FJBh6B76rdcsFuiOkyZsO
-         Wjx1v23ukYT2WqgnpMJx+ho5D8D4W/EmOzn9c3LllJl4v1U4P+p8x/cxUTYf72KhlUqa
-         etOO4BTiMJ9g1ZN/96rrcCGWDJhVlTS0gc/Aco6tLHOFXqU9CJO5oSK7w5lTHFCCLF+V
-         ge5aFp3/gdoaoDLiH2UJ8kCXvmP1Qa53CQCvBwdRYCPwN0IFlYi6aHG/NvBQ/wzLQkc5
-         Makg==
+        with ESMTP id S235913AbjGNJgg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jul 2023 05:36:36 -0400
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E1B535AF
+        for <devicetree@vger.kernel.org>; Fri, 14 Jul 2023 02:36:30 -0700 (PDT)
+Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com [209.85.219.70])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 30C403F18B
+        for <devicetree@vger.kernel.org>; Fri, 14 Jul 2023 09:36:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1689327387;
+        bh=+yiF1ij/z+iWY/wZthjD0aPjMSoVu9B46XxEpPJ5vvs=;
+        h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+         To:Cc:Content-Type;
+        b=oXQu9EtGrgtxHRToV1t0zuR4XnCGJn6QbytYS5UbrgroI8WdqfcekZEF8/+GBy9KA
+         CJtC11FYTCVMJmeVUCFck17lS8S6Vx5ETFOOlt1cy0ECiEZRfESkn1P25jGEZBeJrq
+         MGU/teMhYCkKZvokTZO1tLgknlXnZjMb6eQF0xjk0E4/7Gm/fE8rvqQL346p0pnTfK
+         oo/1rD+YYtNfK9jJPoq59p0S5LoUZroHCOzdycZogqMJ+eYEZyOfo12Fl0nnzCzryC
+         bLiUuKVx+Vmui7QtUKdCkbB42BW1SnsPqLMt6fBLdkga1oFbwrSEETJePnH3UDq4wq
+         xtY1l8WmfmCqQ==
+Received: by mail-qv1-f70.google.com with SMTP id 6a1803df08f44-634dacfa27bso17575526d6.3
+        for <devicetree@vger.kernel.org>; Fri, 14 Jul 2023 02:36:27 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689327345; x=1691919345;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=pt39Bw/1ICieuy3xPQ3V/nq5k9xeT5GMxbYyADM5Ukk=;
-        b=jxn1A9xSPJuHYKtKQcd3qkODhS7DiYp6/6ebcy7rdMi2u8lhNIbHzPtKCORU6qD8G3
-         OEv+R95zBnuLMYjWCC01aZPWaZpQJ5lZVyWUNZbV95PG9xM7QKbM6VTsc7+ciTLy0dEz
-         Lk8BH9ywO7LEIjmgSDuO2qtNukzXwScnMpA3JXfrd9WfYzw5aozNw/lwQIKfUU59Qv3T
-         5HopEDDCKMEQPz5HC4DatI2Ty/L8hS0AxI+lDGzu63cHcQ800eEmunsMFNU1xZuPU4mk
-         sy4InQPwVMjuQnimrcZaPX+Fbb1d+KYfmNuaYg2hNMIQGWNTFvraReZUg4aos3vsGOGY
-         EPWA==
-X-Gm-Message-State: ABy/qLZ7pXN0VlUArkeCRGsRuQUa2bdwRb82zQ30XXziPPTaFrQuRouN
-        +ux6rvAFN7C64qmEQTkPDaxwKxxJftXtb2YUQ15nOlSyUDPt+yCTR94=
-X-Google-Smtp-Source: APBJJlFnjaoGpAtQUN7x4jgU73upuuxFNXMx+nVUkht79U11I0K8h99tqhekeYm3ockpIX5yS0dq10/tiPAkFZJvpVE=
-X-Received: by 2002:a81:540a:0:b0:56d:2038:c254 with SMTP id
- i10-20020a81540a000000b0056d2038c254mr4796899ywb.44.1689327345450; Fri, 14
- Jul 2023 02:35:45 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1689327386; x=1691919386;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=+yiF1ij/z+iWY/wZthjD0aPjMSoVu9B46XxEpPJ5vvs=;
+        b=cEj/R7QoEokFjZoKUR8EIhwZyicLq0j8j+imx6+MCAIq79K5UwH0GB/5Evv0IL09ib
+         5Kc740lfxNRtQ7CAMTZkQSMAbdmNOL6sEGeCrtHsuM1qsj7a4CVJVCcPCX8jAb4ERFk3
+         aQI+cKuL2SKELSwDEe7arNxFsJEYPkE4k/aaf8/2eQyGRfOGhLkVsqsxJKCbtWf4RqS5
+         Hr9gBDaSbyK62ERDKzIQaAgHOj/7aXDKO3Ruy7nU93vFBl3uZgKlDRpZ1wKRSWT124NN
+         JlnnShsYD7QOe/ergyISVOatSnNEOtkr9hTrK3VquPUI2H7Mu8wv/kI9YdD6kHUL2n98
+         csaA==
+X-Gm-Message-State: ABy/qLYllqan4hx8bc5FLPi3CT4wt7mjFrLhlCtdUWLo8B/trdm3auwQ
+        TnrDNV4HlPj1jSyk/UDk2iXq5WUlUzjAwMqA4PBJ4og3luCKAVC4cXStbj/RQEuZ1oE6goQFABF
+        YNOXfrpyIIrpfoggaI4E/fMTwt3zZBELp3y4PSVMiQUmDfAlDKDP1ze8=
+X-Received: by 2002:a05:622a:181:b0:403:ac95:c6a9 with SMTP id s1-20020a05622a018100b00403ac95c6a9mr5242749qtw.30.1689327386204;
+        Fri, 14 Jul 2023 02:36:26 -0700 (PDT)
+X-Google-Smtp-Source: APBJJlGxE6bkszZ+7BBq2hyHda3ibW1kqoUiril9bmmHYh1J06irx78LOa5uu+I/iZMoL2sy2f6nXwFaMqHTE34JLQw=
+X-Received: by 2002:a05:622a:181:b0:403:ac95:c6a9 with SMTP id
+ s1-20020a05622a018100b00403ac95c6a9mr5242716qtw.30.1689327385565; Fri, 14 Jul
+ 2023 02:36:25 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230710094321.1378351-1-apatel@ventanamicro.com>
- <20230710094321.1378351-8-apatel@ventanamicro.com> <CAGETcx8kH8cJVdhcv5K4qNUo58godFZEBnOfTGKUUQ6VuUguvQ@mail.gmail.com>
- <86jzv2vpdb.wl-maz@kernel.org>
-In-Reply-To: <86jzv2vpdb.wl-maz@kernel.org>
-From:   Anup Patel <apatel@ventanamicro.com>
-Date:   Fri, 14 Jul 2023 15:05:34 +0530
-Message-ID: <CAK9=C2ULxsXednwnoyzYKjQFpe_zBSZ4v0FqUYFnxK2TpbiMtg@mail.gmail.com>
-Subject: Re: [PATCH v5 7/9] irqchip: Add RISC-V advanced PLIC driver
-To:     Marc Zyngier <maz@kernel.org>
-Cc:     Saravana Kannan <saravanak@google.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
+References: <20230704064610.292603-1-xingyu.wu@starfivetech.com>
+ <20230704064610.292603-6-xingyu.wu@starfivetech.com> <CAJM55Z-OSmQCV6mO+SD4R2eU5gfx9TArSqDy+d-M2aer6bKL_A@mail.gmail.com>
+ <9a2f0aa0-ad7e-c12d-245d-5f80928705d6@starfivetech.com>
+In-Reply-To: <9a2f0aa0-ad7e-c12d-245d-5f80928705d6@starfivetech.com>
+From:   Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Date:   Fri, 14 Jul 2023 11:36:09 +0200
+Message-ID: <CAJM55Z8rXOyT4Q-JbzZof5050qGqohDTRCj7RDavuzi1Zb6wMQ@mail.gmail.com>
+Subject: Re: [RESEND PATCH v6 5/7] clk: starfive: jh7110-sys: Add PLL clocks
+ source from DTS
+To:     Xingyu Wu <xingyu.wu@starfivetech.com>
+Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Atish Patra <atishp@atishpatra.org>,
-        Andrew Jones <ajones@ventanamicro.com>,
-        Sunil V L <sunilvl@ventanamicro.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
         Conor Dooley <conor@kernel.org>,
-        Anup Patel <anup@brainfault.org>,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Hal Feng <hal.feng@starfivetech.com>,
+        William Qiu <william.qiu@starfivetech.com>,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 14, 2023 at 2:31=E2=80=AFPM Marc Zyngier <maz@kernel.org> wrote=
-:
+On Fri, 14 Jul 2023 at 10:05, Xingyu Wu <xingyu.wu@starfivetech.com> wrote:
 >
-> Anup,
->
-> On Fri, 14 Jul 2023 00:56:22 +0100,
-> Saravana Kannan <saravanak@google.com> wrote:
+> On 2023/7/13 21:15, Emil Renner Berthing wrote:
+> > On Tue, 4 Jul 2023 at 08:49, Xingyu Wu <xingyu.wu@starfivetech.com> wrote:
+> >>
+> >> Modify PLL clocks source to be got from DTS or
+> >> the fixed factor clocks.
+> >>
+> >> Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
+> >> ---
+> >>  drivers/clk/starfive/Kconfig                  |  1 +
+> >>  .../clk/starfive/clk-starfive-jh7110-sys.c    | 45 +++++++++++--------
+> >>  2 files changed, 28 insertions(+), 18 deletions(-)
+> >>
+> >> diff --git a/drivers/clk/starfive/Kconfig b/drivers/clk/starfive/Kconfig
+> >> index 5195f7be5213..978b78ec08b1 100644
+> >> --- a/drivers/clk/starfive/Kconfig
+> >> +++ b/drivers/clk/starfive/Kconfig
+> >> @@ -35,6 +35,7 @@ config CLK_STARFIVE_JH7110_SYS
+> >>         select AUXILIARY_BUS
+> >>         select CLK_STARFIVE_JH71X0
+> >>         select RESET_STARFIVE_JH7110 if RESET_CONTROLLER
+> >> +       select CLK_STARFIVE_JH7110_PLL
+> >>         default ARCH_STARFIVE
+> >>         help
+> >>           Say yes here to support the system clock controller on the
+> >> diff --git a/drivers/clk/starfive/clk-starfive-jh7110-sys.c b/drivers/clk/starfive/clk-starfive-jh7110-sys.c
+> >> index e6031345ef05..d56f48013388 100644
+> >> --- a/drivers/clk/starfive/clk-starfive-jh7110-sys.c
+> >> +++ b/drivers/clk/starfive/clk-starfive-jh7110-sys.c
+> >> @@ -7,6 +7,7 @@
+> >>   */
+> >>
+> >>  #include <linux/auxiliary_bus.h>
+> >> +#include <linux/clk.h>
+> >>  #include <linux/clk-provider.h>
+> >>  #include <linux/init.h>
+> >>  #include <linux/io.h>
+> >> @@ -386,6 +387,7 @@ EXPORT_SYMBOL_GPL(jh7110_reset_controller_register);
+> >>
+> >>  static int __init jh7110_syscrg_probe(struct platform_device *pdev)
+> >>  {
+> >> +       bool use_fixed_pll = true;      /* PLL clocks use fixed factor clocks or PLL driver */
 > >
-> > On Mon, Jul 10, 2023 at 2:44=E2=80=AFAM Anup Patel <apatel@ventanamicro=
-.com> wrote:
-> > >
-> > > The RISC-V advanced interrupt architecture (AIA) specification define=
-s
-> > > a new interrupt controller for managing wired interrupts on a RISC-V
-> > > platform. This new interrupt controller is referred to as advanced
-> > > platform-level interrupt controller (APLIC) which can forward wired
-> > > interrupts to CPUs (or HARTs) as local interrupts OR as message
-> > > signaled interrupts.
-> > > (For more details refer https://github.com/riscv/riscv-aia)
-> > >
-> > > This patch adds an irqchip driver for RISC-V APLIC found on RISC-V
-> > > platforms.
-> > >
-> > > Signed-off-by: Anup Patel <apatel@ventanamicro.com>
->
-> [...]
->
-> > > +static int __init aplic_dt_init(struct device_node *node,
-> > > +                               struct device_node *parent)
-> > > +{
-> > > +       /*
-> > > +        * The APLIC platform driver needs to be probed early
-> > > +        * so for device tree:
-> > > +        *
-> > > +        * 1) Set the FWNODE_FLAG_BEST_EFFORT flag in fwnode which
-> > > +        *    provides a hint to the device driver core to probe the
-> > > +        *    platform driver early.
-> > > +        * 2) Clear the OF_POPULATED flag in device_node because
-> > > +        *    of_irq_init() sets it which prevents creation of
-> > > +        *    platform device.
-> > > +        */
-> > > +       node->fwnode.flags |=3D FWNODE_FLAG_BEST_EFFORT;
+> > nit: reverse christmas tree ordering, eg. move this below priv
 > >
-> > Please stop spamming us with broken patches. Already told you this is
-> > not an option.
+> >>         struct jh71x0_clk_priv *priv;
+> >>         unsigned int idx;
+> >>         int ret;
+> >> @@ -402,28 +404,29 @@ static int __init jh7110_syscrg_probe(struct platform_device *pdev)
+> >>         if (IS_ERR(priv->base))
+> >>                 return PTR_ERR(priv->base);
+> >>
+> >> -       /*
+> >> -        * These PLL clocks are not actually fixed factor clocks and can be
+> >> -        * controlled by the syscon registers of JH7110. They will be dropped
+> >> -        * and registered in the PLL clock driver instead.
+> >> -        */
+> >> +       if (!IS_ERR(devm_clk_get(priv->dev, "pll0_out")))
+> >> +               use_fixed_pll = false;  /* can get pll clocks from PLL driver */
 > >
-> > Nack.
+> > The devm_clk_get() variant will allocate memory for a callback to call
+> > clk_put() when the driver is unloaded, but proper references
+> > associated with the consumers of the pll0_out clock are already taken
+> > below. So unless we find a better way to detect if the pll references
+> > are specified in the device tree or not, maybe something like this
+> > instead:
+> >
 >
-> What puzzles me here is that *no other arch* requires this sort of
-> hack. What is so special about the APLIC that it requires it? I see
-> nothing in this patch that even hints at it, despite the "discussion"
-> in the last round.
+> Thanks. It looks more reasonable. I will follow it in next version.
 >
-> The rules are simple:
+> > priv->pll[0] = clk_get(priv->dev, "pll0_out);
 >
-> - either the APLIC is so fundamental to the system that it has to be
->   initialised super early, much like the GIC on arm64, at which point
->   it cannot be a platform device, and the story is pretty simple.
+> The priv->pll[] are clk_hw* struct no clk* struct and this could be failed
+> when building. So maybe use a temporary clk* struct.
+
+Ah yes, you're right. You'll need a local struct clk *clk for that then.
+
+> > if (IS_ERR(priv->pll[0])) {
+> >   /* 24MHZ -> 1000.0MHz */
+> >   priv->pll[0] = ...
+> >   ...
+> >
+> > } else {
+> >   clk_put(priv->pll[0]);
+> >   priv->pll[0] = NULL;
 >
-> - or it isn't that fundamental, and it can be probed as a platform
->   device using the dependency infrastructure that is already used by
->   multiple other interrupt controller drivers, without any need to
->   mess with internal flags. Again, this should be simple enough.
-
-APLIC manages all wired interrupts whereas IMSIC manages all
-MSIs. Both APLIC and IMSIC are fundamental devices which need
-to be probed super early.
-
-Now APLIC has two modes of operations:
-1) Direct mode where there is no IMSIC in the system and APLIC
-    directly injects interrupt to CPUs
-2) MSI mode where IMSIC is present in the system and APLIC
-    converts wired interrupts into MSIs
-
-The APLIC driver added by this patch is a common driver for
-both above modes.
-
-For #2, APLIC needs to be a platform device to create a device
-MSI domain using platform_msi_create_device_domain() which
-is why the APLIC driver is a platform driver.
-
+> >
+> >> +       /* Use fixed factor clocks if can not get the PLL clocks from DTS */
+> >> +       if (use_fixed_pll) {
+> >>         /* 24MHz -> 1000.0MHz */
+> >
+> > These comments are not indented with the code, which just looks weird.
 >
-> If these rules don't apply to your stuff, please explain what is so
-> different. And I mean actually explain the issue. Which isn't telling
-> us "it doesn't work without it". Because as things stand, there is no
-> way I will even consider taking this ugly mix of probing methods.
-
-Yes, I don't want this ugly FWNODE_FLAG_BEST_EFFORT hack
-in this driver.
-
-I tried several things but setting the FWNODE_FLAG_BEST_EFFORT
-flag is the only thing which works right now.
-
+> Will fix.
 >
-> In any case, reposting the same stuff ad nauseam is only going to
-> result in this series being ignored, which I don't think is what you
-> want.
+> >
+> >> -       priv->pll[0] = devm_clk_hw_register_fixed_factor(priv->dev, "pll0_out",
+> >> -                                                        "osc", 0, 125, 3);
+> >> -       if (IS_ERR(priv->pll[0]))
+> >> -               return PTR_ERR(priv->pll[0]);
+> >> +               priv->pll[0] = devm_clk_hw_register_fixed_factor(priv->dev, "pll0_out",
+> >> +                                                                "osc", 0, 125, 3);
+> >> +               if (IS_ERR(priv->pll[0]))
+> >> +                       return PTR_ERR(priv->pll[0]);
+> >>
+> >>         /* 24MHz -> 1066.0MHz */
+> >> -       priv->pll[1] = devm_clk_hw_register_fixed_factor(priv->dev, "pll1_out",
+> >> -                                                        "osc", 0, 533, 12);
+> >> -       if (IS_ERR(priv->pll[1]))
+> >> -               return PTR_ERR(priv->pll[1]);
+> >> +               priv->pll[1] = devm_clk_hw_register_fixed_factor(priv->dev, "pll1_out",
+> >> +                                                                "osc", 0, 533, 12);
+> >> +               if (IS_ERR(priv->pll[1]))
+> >> +                       return PTR_ERR(priv->pll[1]);
+> >>
+> >>         /* 24MHz -> 1188.0MHz */
+> >> -       priv->pll[2] = devm_clk_hw_register_fixed_factor(priv->dev, "pll2_out",
+> >> -                                                        "osc", 0, 99, 2);
+> >> -       if (IS_ERR(priv->pll[2]))
+> >> -               return PTR_ERR(priv->pll[2]);
+> >> +               priv->pll[2] = devm_clk_hw_register_fixed_factor(priv->dev, "pll2_out",
+> >> +                                                                "osc", 0, 99, 2);
+> >> +               if (IS_ERR(priv->pll[2]))
+> >> +                       return PTR_ERR(priv->pll[2]);
+> >> +       }
+> >>
+> >>         for (idx = 0; idx < JH7110_SYSCLK_END; idx++) {
+> >>                 u32 max = jh7110_sysclk_data[idx].max;
+> >> @@ -462,8 +465,14 @@ static int __init jh7110_syscrg_probe(struct platform_device *pdev)
+> >>                                 parents[i].fw_name = "tdm_ext";
+> >>                         else if (pidx == JH7110_SYSCLK_MCLK_EXT)
+> >>                                 parents[i].fw_name = "mclk_ext";
+> >> -                       else
+> >> +                       else if (use_fixed_pll)
+> >
+> > else if (priv->pll[0])
 >
-> Thanks,
+> Will change.
 >
->         M.
+> >
+> >>                                 parents[i].hw = priv->pll[pidx - JH7110_SYSCLK_PLL0_OUT];
+> >> +                       else if (pidx == JH7110_SYSCLK_PLL0_OUT)
+> >> +                               parents[i].fw_name = "pll0_out";
+> >> +                       else if (pidx == JH7110_SYSCLK_PLL1_OUT)
+> >> +                               parents[i].fw_name = "pll1_out";
+> >> +                       else if (pidx == JH7110_SYSCLK_PLL2_OUT)
+> >> +                               parents[i].fw_name = "pll2_out";
+> >>                 }
+> >>
+> >>                 clk->hw.init = &init;
+> >> --
+> >> 2.25.1
+> >>
 >
-> --
-> Without deviation from the norm, progress is not possible.
-
-Regards,
-Anup
+> Best regards,
+> Xingyu Wu
