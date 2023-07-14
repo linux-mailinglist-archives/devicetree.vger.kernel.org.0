@@ -2,104 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0538B753F33
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jul 2023 17:44:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EE502753F61
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jul 2023 17:56:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235238AbjGNPoL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jul 2023 11:44:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32970 "EHLO
+        id S236065AbjGNP4E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jul 2023 11:56:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37672 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234954AbjGNPoI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jul 2023 11:44:08 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA23A30F8;
-        Fri, 14 Jul 2023 08:44:07 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-9891c73e0fbso413481666b.1;
-        Fri, 14 Jul 2023 08:44:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1689349446; x=1691941446;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=O1pfuLmbVANsO+GIIPDG/ltya7NI3XS+7j/WykH9MY4=;
-        b=kxE8VWNZptMyis8Y6oNjtT1fkoRYZsqqlXPdk1nFimzWvp4na66AnmIRnmCExHfArr
-         SRtBXyshjwfWnJnbv85sGrx/eTrKY1X9Yp2AojFDzKvjrw4EKjM4xMZV5uMM57vKy4Xn
-         EuSDUFQTrkfBTNP1U7GOiYfTvRI1La5k8trs582kVimlps0B85L4QB9zFASgCuiKBBct
-         MtmVTDDusBjrUbTj55RuEBnlFBlDjbMSFafS8irfP+sam2bPguRwMBr8+KLesnIdV9J9
-         dgkmTjVj2iNNniYGPPfVR4TE3optkIuxrM3rbhCNvK/sv5bYAvfh1yH+qnGcBNwT9+WC
-         gaBg==
+        with ESMTP id S235974AbjGNP4C (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jul 2023 11:56:02 -0400
+Received: from mail-io1-f52.google.com (mail-io1-f52.google.com [209.85.166.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B385135A8;
+        Fri, 14 Jul 2023 08:55:57 -0700 (PDT)
+Received: by mail-io1-f52.google.com with SMTP id ca18e2360f4ac-78625caa702so81240139f.1;
+        Fri, 14 Jul 2023 08:55:57 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689349446; x=1691941446;
+        d=1e100.net; s=20221208; t=1689350156; x=1691942156;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=O1pfuLmbVANsO+GIIPDG/ltya7NI3XS+7j/WykH9MY4=;
-        b=UhinEn0zSJ6RGoZo9gwsBKZ6FSAuOSsaQiI5h3m/XKW5USOHFmXdsn7pUnscE96v+G
-         WMbz9W3FGbVYFeeFJg+pSUDmlDIc0um63X55tcV6enF3mGwxJMJWBD6uJZ4tTOs8KFaX
-         uje/XJzz7INreT3gf7xjqEr1iSPMzLwM/xoTeuo0tPE8K+EEXQR9n3HjIyCkV8aRQ0Gn
-         MYxp+auFuRAwJwkEZQFOcTXV7m/CQgLuchJO9E9u8FHxhT9QQeUcu6LgkN5bB/exH8MC
-         CokO65y/8SMOSCuT9x3USYDKLdZvnBHBbu4Dw9O7ixpKppXXIwqZwIh4NA8RkCf3QF0X
-         i/BA==
-X-Gm-Message-State: ABy/qLYDAW5v2D4VH+SQRp8TMY/eWYDuALZVzGrYFa3HBIv99m55sFdy
-        LkluouOq3CBdrK3TVmpRllc=
-X-Google-Smtp-Source: APBJJlEGSEbnZvapDgTg793Oybz1YdDATqOaxIjs+W9QdiXYr5yw5nRqBmHADKbFzpDR4DK3qTVFEg==
-X-Received: by 2002:a17:906:73d1:b0:992:1005:928d with SMTP id n17-20020a17090673d100b009921005928dmr3784405ejl.8.1689349445909;
-        Fri, 14 Jul 2023 08:44:05 -0700 (PDT)
-Received: from carbian ([2a02:8429:8177:5801:6621:b535:847b:1c33])
-        by smtp.gmail.com with ESMTPSA id c19-20020a170906171300b00991bba473e2sm5503699eje.85.2023.07.14.08.44.04
+        bh=YNZFP4mW99DwtXznitHmmJIt+x4d+svOUE0Ehy3Kg9c=;
+        b=AE9bMdabTXyw5SK9sUTYRXuyMcFtz5sThJTd7w/88yS+58+J1pQJhzA6GqrU0f9zy2
+         4qRAhIpa7yhpeFS0whOeR+qsgdyjVOrgTgKcUb564mxeXlCBMcl77HCz9hUNmPSBBcMZ
+         KTUqMKLHM1kgPpsWn2QvuWJBU590xWahHW+0+07KhLobFtLtd15RqCsRfAP7CVHBd6Xz
+         1qLX90Zvi4MKH11A5QEQ0tDGxSMHitoiV+kz+vFC05pkt4eyW6EGjoCE7yw2u77EDGv5
+         54RlhB890ptYqRVW/IjYg5QylO6tiAC5TmNRp09SlcmnadIdVrfQTX3Mu+G9Hk0XcjHh
+         BICg==
+X-Gm-Message-State: ABy/qLaxDHVPeaBcPLwK7NAi1H6JudwbfYTi3LFBL2Q2gJYh5uostM8p
+        Y2qdxZgbdtK6hfs9yPZZgw==
+X-Google-Smtp-Source: APBJJlE4L549pt9iOdB31Vv+jb4GGXjOF7BIKHFlzpjgKeW0XdyUUPL86H99oVrbGwrQ07NryN3fzQ==
+X-Received: by 2002:a5d:9b0d:0:b0:785:d4f5:2225 with SMTP id y13-20020a5d9b0d000000b00785d4f52225mr5028184ion.19.1689350156613;
+        Fri, 14 Jul 2023 08:55:56 -0700 (PDT)
+Received: from robh_at_kernel.org ([64.188.179.250])
+        by smtp.gmail.com with ESMTPSA id h17-20020a02c4d1000000b0042b8566a982sm2648207jaj.41.2023.07.14.08.55.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 14 Jul 2023 08:44:05 -0700 (PDT)
-Date:   Fri, 14 Jul 2023 17:44:03 +0200
-From:   Mehdi Djait <mehdi.djait.k@gmail.com>
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     mazziesaccount@gmail.com, krzysztof.kozlowski+dt@linaro.org,
-        andriy.shevchenko@linux.intel.com, robh+dt@kernel.org,
-        lars@metafoo.de, linux-iio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v6 0/7] iio: accel: Add support for Kionix/ROHM
- KX132-1211 accelerometer
-Message-ID: <ZLFtQ1exaa9WTRkS@carbian>
-References: <cover.1686651032.git.mehdi.djait.k@gmail.com>
- <20230708172336.79e68a0f@jic23-huawei>
+        Fri, 14 Jul 2023 08:55:55 -0700 (PDT)
+Received: (nullmailer pid 3916353 invoked by uid 1000);
+        Fri, 14 Jul 2023 15:55:53 -0000
+Date:   Fri, 14 Jul 2023 09:55:53 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Arseniy Krasnov <AVKrasnov@sberdevices.ru>
+Cc:     Liang Yang <liang.yang@amlogic.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        oxffffaa@gmail.com, kernel@sberdevices.ru,
+        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [RFC PATCH v3 2/3] dt-bindings: nand: meson: make ECC properties
+ dependent
+Message-ID: <20230714155553.GA3913802-robh@kernel.org>
+References: <20230711122129.2635558-1-AVKrasnov@sberdevices.ru>
+ <20230711122129.2635558-3-AVKrasnov@sberdevices.ru>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230708172336.79e68a0f@jic23-huawei>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230711122129.2635558-3-AVKrasnov@sberdevices.ru>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Jonathan,
+On Tue, Jul 11, 2023 at 03:21:28PM +0300, Arseniy Krasnov wrote:
+> ECC properties 'nand-ecc-strength' and 'nand-ecc-step-size' depends on
+> each other, so they must be both either set or not set. 
 
-On Sat, Jul 08, 2023 at 05:23:36PM +0100, Jonathan Cameron wrote:
-> On Tue, 13 Jun 2023 12:22:33 +0200
-> Mehdi Djait <mehdi.djait.k@gmail.com> wrote:
+Is that true for all drivers or just meson?
+
+> In first case
+> ECC core will try to use these values if possible (by checking ECC caps
+> provided by driver), in second case ECC core will select most optimal
+> values for both properties.
 > 
-> > Hello everyone,
-> > 
-> > Version 6 for adding support for the kx132-1211 accelerometer
-> > 
-> > KX132-1211 accelerometer is a sensor which:
-> > 	- supports G-ranges of (+/-) 2, 4, 8, and 16G
-> > 	- can be connected to I2C or SPI
-> > 	- has internal HW FIFO buffer
-> > 	- supports various ODRs (output data rates)
-> > 
-> > The KX132-1211 accelerometer is very similar to the KX022A. 
-> > One key difference is number of bits to report the number of data bytes that 
-> > have been stored in the buffer: 8 bits for KX022A vs 10 bits for
-> > KX132-1211.
-> > 
-> Just though I'd say that the series looks fine to me. I'm just waiting
-> on reply to Matti's query on the last patch before applying it.
-
-I will send a v7 to address the comment of Matti.
-
---
-Kind Regards
-Mehdi Djait
+> Signed-off-by: Arseniy Krasnov <AVKrasnov@sberdevices.ru>
+> ---
+>  Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
+> index e81757c9e0ed..4f6e56542a7e 100644
+> --- a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
+> +++ b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
+> @@ -58,6 +58,10 @@ patternProperties:
+>              meson-gxl-nfc 8, 16, 24, 30, 40, 50, 60
+>              meson-axg-nfc 8
+>  
+> +    dependencies:
+> +      nand-ecc-strength: ['nand-ecc-step-size']
+> +      nand-ecc-step-size: ['nand-ecc-strength']
+> +
+>  required:
+>    - compatible
+>    - reg
+> -- 
+> 2.35.0
+> 
