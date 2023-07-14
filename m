@@ -2,109 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A975175454A
-	for <lists+devicetree@lfdr.de>; Sat, 15 Jul 2023 01:09:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D1A9A75455C
+	for <lists+devicetree@lfdr.de>; Sat, 15 Jul 2023 01:27:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229504AbjGNXJF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jul 2023 19:09:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43354 "EHLO
+        id S229649AbjGNX1y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jul 2023 19:27:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46190 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229530AbjGNXJF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jul 2023 19:09:05 -0400
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D34F1980;
-        Fri, 14 Jul 2023 16:09:02 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 36EN8hp5083478;
-        Fri, 14 Jul 2023 18:08:43 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1689376123;
-        bh=SZjFVexzAzCIFb7LhRueGNFgHJ3Wlc+le9rBmsPg1lM=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=Ww2zlbnsUPJiW/yP8H2gOWAdZOa9jg2kaF7U2+ANd/n21k7r+3K1rkLLkXD7qKXx3
-         Uzbgjb0uerq+1dZ/403lDgbDT2kH8hSshDbmen3+fVoC5HR8aYdYFtfZdYdl3fprqF
-         SEsUZgcSI+y2DbGSISeaO8y8/7VvLHF3PMETY3EM=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 36EN8h8r023251
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 14 Jul 2023 18:08:43 -0500
-Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 14
- Jul 2023 18:08:43 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 14 Jul 2023 18:08:43 -0500
-Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 36EN8hXc103404;
-        Fri, 14 Jul 2023 18:08:43 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, Nishanth Menon <nm@ti.com>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Tero Kristo <kristo@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>
-Subject: Re: [PATCH] arm64: dts: ti: Fix compatible of ti,*-ehrpwm-tbclk
-Date:   Fri, 14 Jul 2023 18:08:42 -0500
-Message-ID: <168937611061.3756376.9972114281282940088.b4-ty@ti.com>
-X-Mailer: git-send-email 2.40.0
-In-Reply-To: <20230713184759.3336536-1-nm@ti.com>
-References: <20230713184759.3336536-1-nm@ti.com>
+        with ESMTP id S229611AbjGNX1x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jul 2023 19:27:53 -0400
+Received: from mail-pf1-x42d.google.com (mail-pf1-x42d.google.com [IPv6:2607:f8b0:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 832A63A87;
+        Fri, 14 Jul 2023 16:27:52 -0700 (PDT)
+Received: by mail-pf1-x42d.google.com with SMTP id d2e1a72fcca58-666e916b880so1659550b3a.2;
+        Fri, 14 Jul 2023 16:27:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1689377272; x=1691969272;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=PNHZ76ih19Fp+iv2zVmp4vUPN2JAZpilkacEs+GwIMk=;
+        b=ARFrS7d1ZD5U7uR0DTasdGjDv+nXkBOA1N+MAQv5XhSGKA27NcecmbCPUK0Krp8ZDq
+         6Oh7DlSy/ApB84Zsn6pB5oiWEnGjmDY1AP56fC5tbHb/OMgc/FW5bZB7N1U8JwK6IxsD
+         0J/LOIUaeVhttQ0gynuNaqLE+7v2kgjhrHtMZh6ALQLzFYoZVpsNQB2Yw2j9WJwpyfnW
+         1ophpwu1IkK/k+A9uE+MeGAXSkDRCJlG8w5VaFuETib7FLKqFNqbQct2bM+heYjPQWDW
+         GEasCl+nSJFX07+0ADXJej1ZC5mP1pEzsWckmDt85SknzjDhYvBJpe+xvVHGERFQvu0o
+         jnGg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689377272; x=1691969272;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=PNHZ76ih19Fp+iv2zVmp4vUPN2JAZpilkacEs+GwIMk=;
+        b=iscuhl4PkW5oVyittkFaPJSiBFzsb0nHZUI8PAK+d2osCaHtEt/EIQIaLoCzgGdzSk
+         bcnR9kamNyO2u0KDGNhrAZ0WbziMBpZ1cxKDhFwdjXczu4Ll6E21P3ogXUP+r8AxWEuE
+         vLhi9tquQX4Dxw1zYoYKMLYpsM2u/FE0RlAiaxxKlVWP1+Xt2z72cWbejLTgEw2IY32K
+         vO0/d9gSLpCHKwnFkFLj9GjLEQJ9YbS4j62RFBbGW9mRP9/1Mm2gD57E3YKiiW0cbXIP
+         4SOWTAYr2bepjKYhe3u2F5/zOrtWxJNZLNovv72MyaPMlpSWezxHUXKAv0nCcPw7aFZN
+         lQ5A==
+X-Gm-Message-State: ABy/qLYOD+lIhquaXzVUWETCbPH2AyHPZgHk1ig/QzrxPuKhS7eujzDr
+        BYPyRPIdeVAKzLH5OSXOheU=
+X-Google-Smtp-Source: APBJJlHXffSUGposmcbI1zI79Hzsgjr0SSrdKymNS66nBZAPJ0EIZhG2i4fmVS4/A+dDlq/LMwAATg==
+X-Received: by 2002:a05:6a00:2443:b0:682:4b93:a4d3 with SMTP id d3-20020a056a00244300b006824b93a4d3mr6198293pfj.1.1689377271928;
+        Fri, 14 Jul 2023 16:27:51 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id h25-20020a62b419000000b0063f00898245sm7869952pfn.146.2023.07.14.16.27.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 14 Jul 2023 16:27:50 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <0b0e6961-1211-4765-2a63-4b69789dbbb3@roeck-us.net>
+Date:   Fri, 14 Jul 2023 16:27:48 -0700
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v3 2/3] arm64: dts: ti: Add reserved memory for watchdog
+Content-Language: en-US
+To:     Nishanth Menon <nm@ti.com>, huaqian.li@siemens.com
+Cc:     wim@linux-watchdog.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        huaqianlee@gmail.com, vigneshr@ti.com, kristo@kernel.org,
+        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        jan.kiszka@siemens.com, baocheng.su@siemens.com
+References: <20230713095127.1230109-1-huaqian.li@siemens.com>
+ <20230713095127.1230109-3-huaqian.li@siemens.com>
+ <20230714225240.dvlwqaodp2l3cczm@disfigure>
+From:   Guenter Roeck <linux@roeck-us.net>
+In-Reply-To: <20230714225240.dvlwqaodp2l3cczm@disfigure>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Nishanth Menon,
-
-On Thu, 13 Jul 2023 13:47:59 -0500, Nishanth Menon wrote:
-> TI EHRPWM compatible is just ti,*-ehrpwm-tbclk without needing a
-> syscon compatibility.
+On 7/14/23 15:52, Nishanth Menon wrote:
+> On 17:51-20230713, huaqian.li@siemens.com wrote:
+>> From: Li Hua Qian <huaqian.li@siemens.com>
 > 
-> Fixes the following dtbs_check warnings:
->  compatible: [''ti,am654-ehrpwm-tbclk, 'syscon'] is too long
->  compatible: ['ti,am64-epwm-tbclk', 'syscon'] is too long
->  compatible: ['ti,am62-epwm-tbclk', 'syscon'] is too long
+> I guess I should be explicit about this: Lets keep this dts patch as
+> "DONOTMERGE" in subject line for driver subsystem maintainer (I don't
+> want a repeat of cpufreq maintainers picking up dts and associated
+> warnings that are now pending fixes), resubmit at next rc1 and I can
+> queue up the dts once the maintainers pick up the driver and bindings.
 > 
-> [...]
 
-I have applied the following to branch ti-k3-dts-next on [1].
-Thank you!
+FWIW, I never pick up patches outside drivers/hwmon without explicit Ack
+from responsible maintainers (and most definitely not dts patches unless
+a maintainer responsible for the file(s) specifically asks me to do it
+(which I think never happened).
 
-[1/1] arm64: dts: ti: Fix compatible of ti,*-ehrpwm-tbclk
-      commit: 2a7cc7bedb58d4eedc177e642efedc25d713445a
+Guenter
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent up the chain during
-the next merge window (or sooner if it is a relevant bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-[1] git://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+> Ref: https://lore.kernel.org/all/20230714084725.27847-1-krzysztof.kozlowski@linaro.org/
+> 
+>>
+>> This patch adds a reserved memory for the TI AM65X platform watchdog to
+>> reserve the specific info, triggering the watchdog reset in last boot,
+>> to know if the board reboot is due to a watchdog reset.
+>>
+>> Signed-off-by: Li Hua Qian <huaqian.li@siemens.com>
+>> ---
+>>   arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi | 10 ++++++++++
+>>   1 file changed, 10 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
+>> index e26bd988e522..4bb20d493651 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
+>> +++ b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
+>> @@ -63,6 +63,12 @@ rtos_ipc_memory_region: ipc-memories@a2000000 {
+>>   			alignment = <0x1000>;
+>>   			no-map;
+>>   		};
+>> +
+>> +		/* To reserve the power-on(PON) reason for watchdog reset */
+>> +		wdt_reset_memory_region: wdt-memory@a2200000 {
+>> +			reg = <0x00 0xa2200000 0x00 0x1000>;
+>> +			no-map;
+>> +		};
+>>   	};
+>>   
+>>   	leds {
+>> @@ -718,3 +724,7 @@ &mcu_r5fss0_core1 {
+>>   			<&mcu_r5fss0_core1_memory_region>;
+>>   	mboxes = <&mailbox0_cluster1>, <&mbox_mcu_r5fss0_core1>;
+>>   };
+>> +
+>> +&mcu_rti1 {
+>> +	memory-region = <&wdt_reset_memory_region>;
+>> +};
+>> -- 
+>> 2.34.1
+>>
+> 
 
