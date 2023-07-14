@@ -2,222 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A2FD75349F
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jul 2023 10:08:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DEA92753493
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jul 2023 10:05:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235596AbjGNIID (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jul 2023 04:08:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55392 "EHLO
+        id S235386AbjGNIF2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jul 2023 04:05:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55708 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234938AbjGNIH0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jul 2023 04:07:26 -0400
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4A2D35BD;
-        Fri, 14 Jul 2023 01:05:05 -0700 (PDT)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 13DB680C7;
-        Fri, 14 Jul 2023 16:05:03 +0800 (CST)
-Received: from EXMBX061.cuchost.com (172.16.6.61) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 14 Jul
- 2023 16:05:03 +0800
-Received: from [192.168.125.128] (183.27.98.46) by EXMBX061.cuchost.com
- (172.16.6.61) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 14 Jul
- 2023 16:05:01 +0800
-Message-ID: <9a2f0aa0-ad7e-c12d-245d-5f80928705d6@starfivetech.com>
-Date:   Fri, 14 Jul 2023 16:01:48 +0800
+        with ESMTP id S231396AbjGNIFA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jul 2023 04:05:00 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F3FA44AB
+        for <devicetree@vger.kernel.org>; Fri, 14 Jul 2023 01:03:08 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id 2adb3069b0e04-4fb73ba3b5dso2804031e87.1
+        for <devicetree@vger.kernel.org>; Fri, 14 Jul 2023 01:03:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1689321786; x=1691913786;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=xPlbjouEMCmtmH35L0gqCQg6vRDnBuMdkZij3f/ssMc=;
+        b=bhP8fYX9dEU6bOySzvgHG85Mf+FRPQJ29brY+5xL+9sI6Zk2L1zBr7GTr0g9agHgYR
+         zIslyE+apPJK65b1dc3D7F59KuGXOq7xmx/CQQP2zLBp/0lFfVRs+t0U05eDoFEIDJnF
+         0vx5nFx1lVNtV61P+85zRE/yms7crKlL4Ab7LXl4Xn7wwxcbAgFvDMLSKNSm6ie9qxZz
+         jKZkhqrT2JoOR76B33eQ/FE6leBS2sTEmJgMrDMqEU9CHgDSAIuoztc+0ACZfmw3IysD
+         /RwHIHWrrtUwBoFLxJYQTBQq823r4UbGZjCexmAGc9QOZmPJwD9z8Rm4Bua7DljOpD2j
+         MU6Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689321786; x=1691913786;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=xPlbjouEMCmtmH35L0gqCQg6vRDnBuMdkZij3f/ssMc=;
+        b=a6bX3AUmEW6gnKG/1J5PZWca92DgP6beM1AR0xwRJBUXZSRpEBkHpsv+EFMUuYxu7m
+         K7rAIm1naMyXwojoihDAAabP8HrA6FZsM8hawOgR6fGnzeKNhdc5Yi5kRB0lXbwqV8kv
+         awl44acgQUDSD/kiHl0g0soiUOqXqJE93km1rjqmyez1cViXdPhdAFSc58PcZP4jcJkY
+         uuBV3eiHHk3nHvvFAAAEZPbHXqh/sfq88UXNrjADf7rQnnVrG519B1/ihkG+WT0zKwP1
+         xhzFscUCXxEjA7VNAv4skFVJSEXNWKMWHGH5Q02YcuqGL4plKenGol0DyLrz+5Mu3lYq
+         USWA==
+X-Gm-Message-State: ABy/qLa5pY2H5LqmkSm3MHvUYcbw1FtpOXKXTnQa3kwujeE7gjTppXsv
+        9pDA0vMbjVt3h9K3BwqqCoKi6A==
+X-Google-Smtp-Source: APBJJlF60HULCfG7k/5a41y7t6j2dZdb5LzfuFbVWl51hjMtFsl7R8EmVJR0j5t4/VA4mA94vdHLYQ==
+X-Received: by 2002:a05:6512:3b90:b0:4f8:7524:8431 with SMTP id g16-20020a0565123b9000b004f875248431mr3592714lfv.44.1689321786367;
+        Fri, 14 Jul 2023 01:03:06 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id c24-20020aa7d618000000b0051df1797222sm5427691edr.11.2023.07.14.01.03.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 14 Jul 2023 01:03:05 -0700 (PDT)
+Message-ID: <eda7789d-a603-d565-c9da-edfe9493a05d@linaro.org>
+Date:   Fri, 14 Jul 2023 10:03:03 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [RESEND PATCH v6 5/7] clk: starfive: jh7110-sys: Add PLL clocks
- source from DTS
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v12 2/2] i2c: aspeed: support ast2600 i2c new register
+ mode driver
 Content-Language: en-US
-To:     Emil Renner Berthing <emil.renner.berthing@canonical.com>
-CC:     <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        "Michael Turquette" <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
+To:     Ryan Chen <ryan_chen@aspeedtech.com>, jk@codeconstruct.com.au,
+        Brendan Higgins <brendan.higgins@linux.dev>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andrew Jeffery <andrew@aj.id.au>,
         Philipp Zabel <p.zabel@pengutronix.de>,
-        Conor Dooley <conor@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        "Hal Feng" <hal.feng@starfivetech.com>,
-        William Qiu <william.qiu@starfivetech.com>,
-        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>
-References: <20230704064610.292603-1-xingyu.wu@starfivetech.com>
- <20230704064610.292603-6-xingyu.wu@starfivetech.com>
- <CAJM55Z-OSmQCV6mO+SD4R2eU5gfx9TArSqDy+d-M2aer6bKL_A@mail.gmail.com>
-From:   Xingyu Wu <xingyu.wu@starfivetech.com>
-In-Reply-To: <CAJM55Z-OSmQCV6mO+SD4R2eU5gfx9TArSqDy+d-M2aer6bKL_A@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+        Wolfram Sang <wsa@kernel.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        linux-i2c@vger.kernel.org, Florian Fainelli <f.fainelli@gmail.com>,
+        Jean Delvare <jdelvare@suse.de>,
+        William Zhang <william.zhang@broadcom.com>,
+        Tyrone Ting <kfting@nuvoton.com>,
+        Tharun Kumar P <tharunkumar.pasumarthi@microchip.com>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Phil Edworthy <phil.edworthy@renesas.com>,
+        openbmc@lists.ozlabs.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, =linux-kernel@vger.kernel.org,
+        Andi Shyti <andi.shyti@kernel.org>
+References: <20230714074522.23827-1-ryan_chen@aspeedtech.com>
+ <20230714074522.23827-3-ryan_chen@aspeedtech.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230714074522.23827-3-ryan_chen@aspeedtech.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [183.27.98.46]
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX061.cuchost.com
- (172.16.6.61)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2023/7/13 21:15, Emil Renner Berthing wrote:
-> On Tue, 4 Jul 2023 at 08:49, Xingyu Wu <xingyu.wu@starfivetech.com> wrote:
->>
->> Modify PLL clocks source to be got from DTS or
->> the fixed factor clocks.
->>
->> Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
->> ---
->>  drivers/clk/starfive/Kconfig                  |  1 +
->>  .../clk/starfive/clk-starfive-jh7110-sys.c    | 45 +++++++++++--------
->>  2 files changed, 28 insertions(+), 18 deletions(-)
->>
->> diff --git a/drivers/clk/starfive/Kconfig b/drivers/clk/starfive/Kconfig
->> index 5195f7be5213..978b78ec08b1 100644
->> --- a/drivers/clk/starfive/Kconfig
->> +++ b/drivers/clk/starfive/Kconfig
->> @@ -35,6 +35,7 @@ config CLK_STARFIVE_JH7110_SYS
->>         select AUXILIARY_BUS
->>         select CLK_STARFIVE_JH71X0
->>         select RESET_STARFIVE_JH7110 if RESET_CONTROLLER
->> +       select CLK_STARFIVE_JH7110_PLL
->>         default ARCH_STARFIVE
->>         help
->>           Say yes here to support the system clock controller on the
->> diff --git a/drivers/clk/starfive/clk-starfive-jh7110-sys.c b/drivers/clk/starfive/clk-starfive-jh7110-sys.c
->> index e6031345ef05..d56f48013388 100644
->> --- a/drivers/clk/starfive/clk-starfive-jh7110-sys.c
->> +++ b/drivers/clk/starfive/clk-starfive-jh7110-sys.c
->> @@ -7,6 +7,7 @@
->>   */
->>
->>  #include <linux/auxiliary_bus.h>
->> +#include <linux/clk.h>
->>  #include <linux/clk-provider.h>
->>  #include <linux/init.h>
->>  #include <linux/io.h>
->> @@ -386,6 +387,7 @@ EXPORT_SYMBOL_GPL(jh7110_reset_controller_register);
->>
->>  static int __init jh7110_syscrg_probe(struct platform_device *pdev)
->>  {
->> +       bool use_fixed_pll = true;      /* PLL clocks use fixed factor clocks or PLL driver */
+On 14/07/2023 09:45, Ryan Chen wrote:
+> Add i2c new register mode driver to support AST2600 i2c
+> new register mode. AST2600 i2c controller have legacy and
+> new register mode. The new register mode have global register
+> support 4 base clock for scl clock selection, and new clock
+> divider mode. The i2c new register mode have separate register
+> set to control i2c master and slave.
 > 
-> nit: reverse christmas tree ordering, eg. move this below priv
-> 
->>         struct jh71x0_clk_priv *priv;
->>         unsigned int idx;
->>         int ret;
->> @@ -402,28 +404,29 @@ static int __init jh7110_syscrg_probe(struct platform_device *pdev)
->>         if (IS_ERR(priv->base))
->>                 return PTR_ERR(priv->base);
->>
->> -       /*
->> -        * These PLL clocks are not actually fixed factor clocks and can be
->> -        * controlled by the syscon registers of JH7110. They will be dropped
->> -        * and registered in the PLL clock driver instead.
->> -        */
->> +       if (!IS_ERR(devm_clk_get(priv->dev, "pll0_out")))
->> +               use_fixed_pll = false;  /* can get pll clocks from PLL driver */
-> 
-> The devm_clk_get() variant will allocate memory for a callback to call
-> clk_put() when the driver is unloaded, but proper references
-> associated with the consumers of the pll0_out clock are already taken
-> below. So unless we find a better way to detect if the pll references
-> are specified in the device tree or not, maybe something like this
-> instead:
-> 
+> Signed-off-by: Ryan Chen <ryan_chen@aspeedtech.com>
+> ---
 
-Thanks. It looks more reasonable. I will follow it in next version.
+...
 
-> priv->pll[0] = clk_get(priv->dev, "pll0_out);
+> +	ret = devm_i2c_add_adapter(dev, &i2c_bus->adap);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return 0;
+> +}
+> +
+> +static int ast2600_i2c_remove(struct platform_device *pdev)
+> +{
+> +	struct ast2600_i2c_bus *i2c_bus = platform_get_drvdata(pdev);
+> +
+> +	/* Disable everything. */
+> +	writel(0, i2c_bus->reg_base + AST2600_I2CC_FUN_CTRL);
+> +	writel(0, i2c_bus->reg_base + AST2600_I2CM_IER);
+> +
+> +	i2c_del_adapter(&i2c_bus->adap);
 
-The priv->pll[] are clk_hw* struct no clk* struct and this could be failed
-when building. So maybe use a temporary clk* struct.
+I have doubts that you tested this. I think you have here double
+free/del of the adapter.
 
+> +	devm_free_irq(&pdev->dev, i2c_bus->irq, i2c_bus);
+> +
 
-> if (IS_ERR(priv->pll[0])) {
->   /* 24MHZ -> 1000.0MHz */
->   priv->pll[0] = ...
->   ...
-> 
-> } else {
->   clk_put(priv->pll[0]);
->   priv->pll[0] = NULL;
-
-> 
->> +       /* Use fixed factor clocks if can not get the PLL clocks from DTS */
->> +       if (use_fixed_pll) {
->>         /* 24MHz -> 1000.0MHz */
-> 
-> These comments are not indented with the code, which just looks weird.
-
-Will fix.
-
-> 
->> -       priv->pll[0] = devm_clk_hw_register_fixed_factor(priv->dev, "pll0_out",
->> -                                                        "osc", 0, 125, 3);
->> -       if (IS_ERR(priv->pll[0]))
->> -               return PTR_ERR(priv->pll[0]);
->> +               priv->pll[0] = devm_clk_hw_register_fixed_factor(priv->dev, "pll0_out",
->> +                                                                "osc", 0, 125, 3);
->> +               if (IS_ERR(priv->pll[0]))
->> +                       return PTR_ERR(priv->pll[0]);
->>
->>         /* 24MHz -> 1066.0MHz */
->> -       priv->pll[1] = devm_clk_hw_register_fixed_factor(priv->dev, "pll1_out",
->> -                                                        "osc", 0, 533, 12);
->> -       if (IS_ERR(priv->pll[1]))
->> -               return PTR_ERR(priv->pll[1]);
->> +               priv->pll[1] = devm_clk_hw_register_fixed_factor(priv->dev, "pll1_out",
->> +                                                                "osc", 0, 533, 12);
->> +               if (IS_ERR(priv->pll[1]))
->> +                       return PTR_ERR(priv->pll[1]);
->>
->>         /* 24MHz -> 1188.0MHz */
->> -       priv->pll[2] = devm_clk_hw_register_fixed_factor(priv->dev, "pll2_out",
->> -                                                        "osc", 0, 99, 2);
->> -       if (IS_ERR(priv->pll[2]))
->> -               return PTR_ERR(priv->pll[2]);
->> +               priv->pll[2] = devm_clk_hw_register_fixed_factor(priv->dev, "pll2_out",
->> +                                                                "osc", 0, 99, 2);
->> +               if (IS_ERR(priv->pll[2]))
->> +                       return PTR_ERR(priv->pll[2]);
->> +       }
->>
->>         for (idx = 0; idx < JH7110_SYSCLK_END; idx++) {
->>                 u32 max = jh7110_sysclk_data[idx].max;
->> @@ -462,8 +465,14 @@ static int __init jh7110_syscrg_probe(struct platform_device *pdev)
->>                                 parents[i].fw_name = "tdm_ext";
->>                         else if (pidx == JH7110_SYSCLK_MCLK_EXT)
->>                                 parents[i].fw_name = "mclk_ext";
->> -                       else
->> +                       else if (use_fixed_pll)
-> 
-> else if (priv->pll[0])
-
-Will change.
-
-> 
->>                                 parents[i].hw = priv->pll[pidx - JH7110_SYSCLK_PLL0_OUT];
->> +                       else if (pidx == JH7110_SYSCLK_PLL0_OUT)
->> +                               parents[i].fw_name = "pll0_out";
->> +                       else if (pidx == JH7110_SYSCLK_PLL1_OUT)
->> +                               parents[i].fw_name = "pll1_out";
->> +                       else if (pidx == JH7110_SYSCLK_PLL2_OUT)
->> +                               parents[i].fw_name = "pll2_out";
->>                 }
->>
->>                 clk->hw.init = &init;
->> --
->> 2.25.1
->>
 
 Best regards,
-Xingyu Wu
+Krzysztof
+
