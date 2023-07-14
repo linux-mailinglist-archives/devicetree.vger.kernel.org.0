@@ -2,149 +2,201 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D8892753ECE
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jul 2023 17:26:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 63F14753ED7
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jul 2023 17:28:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236133AbjGNP0g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jul 2023 11:26:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50020 "EHLO
+        id S235734AbjGNP2I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jul 2023 11:28:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51372 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236019AbjGNP0f (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jul 2023 11:26:35 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC42E30C0;
-        Fri, 14 Jul 2023 08:26:34 -0700 (PDT)
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36ECbstq019424;
-        Fri, 14 Jul 2023 15:26:12 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=KlTyfug7EZTBZKaQpxZzWcVPGIFRszohTvpxdR5Kc6k=;
- b=ixhfhWtHAH5MMBtVuvcB7T+CAwWuyvrqrit2WO+RxmSM4gZFUohL3Dt+SYWt6TAJbDsv
- UqNrJNSDvfOrEPizTj27/tMO1j/KiWGurbjxu4kiCQyewmL0rHY9VQAZFe/riA9QwqJx
- ZODC1f0JfTBrmnpyoqyh2DrjA45KDwymCTZtpl+TQ5fgLQW11OeXc+CC/l+ozDQJ0Uu6
- oAz7PziZ5lt2fqTKTHi6GMJcq08Si80VrKvqWyrMbBOb/ynoZNJdnLpDLQvnnveZfnUv
- glFvbv2Bf6gokOfQnvxVMNzTKK/ADJJDDfdkzsYpfQQDQWYLook+8liu+lL5Nc0NclSr TQ== 
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3rtpts23jr-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 14 Jul 2023 15:26:12 +0000
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-        by NASANPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 36EFQBK1031783
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 14 Jul 2023 15:26:11 GMT
-Received: from [10.216.56.39] (10.80.80.8) by nasanex01c.na.qualcomm.com
- (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Fri, 14 Jul
- 2023 08:25:59 -0700
-Message-ID: <d77f5601-2b08-a7c7-1400-7ab68b8add3a@quicinc.com>
-Date:   Fri, 14 Jul 2023 20:55:26 +0530
+        with ESMTP id S235711AbjGNP16 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jul 2023 11:27:58 -0400
+Received: from aposti.net (aposti.net [89.234.176.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DB7C269F;
+        Fri, 14 Jul 2023 08:27:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
+        s=mail; t=1689348473;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=4pIC2EQa0W5UA2DBrmWwQ0ZJQKXPUNXc31P2C1+6Z48=;
+        b=HIY1fXnAna2ilYcIaCpn6E4mJP0saT6co1mxHMQVB7aPVAuNptK6OitT18L0gyQ0WZuYP2
+        iloDMDPV3v7X8djbH9/Jiw8GxvaaAtVoi/Nv5l7VGO/0UWMqPiIGE+1fRr2QOgJBmMxj1y
+        /tfXW8V7L1g3zjW6enMKEhOGt98uf6Q=
+Message-ID: <b5647c230e4e2c473dc0ed66390301fafa561911.camel@crapouillou.net>
+Subject: Re: [PATCH 3/3] dt-bindings: net: davicom,dm9000: convert to DT
+ schema
+From:   Paul Cercueil <paul@crapouillou.net>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, Marek Vasut <marex@denx.de>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        netdev@vger.kernel.org
+Date:   Fri, 14 Jul 2023 17:27:51 +0200
+In-Reply-To: <20230713152848.82752-4-krzysztof.kozlowski@linaro.org>
+References: <20230713152848.82752-1-krzysztof.kozlowski@linaro.org>
+         <20230713152848.82752-4-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH v4 00/21] Add Qualcomm Minidump kernel driver related
- support
-To:     Kathiravan T <quic_kathirav@quicinc.com>, <corbet@lwn.net>,
-        <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <keescook@chromium.org>, <tony.luck@intel.com>,
-        <gpiccoli@igalia.com>, <mathieu.poirier@linaro.org>,
-        <catalin.marinas@arm.com>, <will@kernel.org>,
-        <linus.walleij@linaro.org>, <andy.shevchenko@gmail.com>
-CC:     <linux-doc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-hardening@vger.kernel.org>,
-        <linux-remoteproc@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-gpio@vger.kernel.org>
-References: <1687955688-20809-1-git-send-email-quic_mojha@quicinc.com>
- <c712597e-f870-f224-fc1b-90c6f8f19710@quicinc.com>
-Content-Language: en-US
-From:   Mukesh Ojha <quic_mojha@quicinc.com>
-In-Reply-To: <c712597e-f870-f224-fc1b-90c6f8f19710@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: k6kW04K-HSKuFwXlBT09sQYlyELKk4zM
-X-Proofpoint-ORIG-GUID: k6kW04K-HSKuFwXlBT09sQYlyELKk4zM
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-07-14_06,2023-07-13_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
- impostorscore=0 phishscore=0 spamscore=0 bulkscore=0 malwarescore=0
- lowpriorityscore=0 mlxscore=0 priorityscore=1501 mlxlogscore=999
- clxscore=1015 adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2306200000 definitions=main-2307140140
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Krzysztof,
 
-> 
-> Hi Mukesh,
-> 
-> For IPQ chipsets, for the crashdump to work, we need the below patch
-> 
-> firmware: scm: Modify only the download bits in TCSR register
-> 
-> can you post the below patches separately? Looks like minidump will take 
-> some time and also I don't see any dependencies for these to go along 
-> with the minidump. Given that, will it be possible to post the below 
-> patches separately?
-> 
->    firmware: qcom_scm: provide a read-modify-write function
->    pinctrl: qcom: Use qcom_scm_io_update_field()
->    firmware: scm: Modify only the download bits in TCSR register
-> 
-> Do let us know if we can take these patches and post it separately.
+Le jeudi 13 juillet 2023 =C3=A0 17:28 +0200, Krzysztof Kozlowski a =C3=A9cr=
+it=C2=A0:
+> Convert the Davicom DM9000 Fast Ethernet Controller bindings to DT
+> schema.
+>=20
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+> =C2=A0.../bindings/net/davicom,dm9000.yaml=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 | 59
+> +++++++++++++++++++
+> =C2=A0.../bindings/net/davicom-dm9000.txt=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 27 ---------
+> =C2=A02 files changed, 59 insertions(+), 27 deletions(-)
+> =C2=A0create mode 100644
+> Documentation/devicetree/bindings/net/davicom,dm9000.yaml
+> =C2=A0delete mode 100644 Documentation/devicetree/bindings/net/davicom-
+> dm9000.txt
+>=20
+> diff --git
+> a/Documentation/devicetree/bindings/net/davicom,dm9000.yaml
+> b/Documentation/devicetree/bindings/net/davicom,dm9000.yaml
+> new file mode 100644
+> index 000000000000..66a7c6eec767
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/davicom,dm9000.yaml
+> @@ -0,0 +1,59 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/davicom,dm9000.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Davicom DM9000 Fast Ethernet Controller
+> +
+> +maintainers:
+> +=C2=A0 - Paul Cercueil <paul@crapouillou.net>
 
-Yes, we can post this separately.
+Did you decide that by yourself? :)
 
--Mukesh
-> 
->>
->>   Documentation/admin-guide/index.rst                |   1 +
->>   Documentation/admin-guide/qcom_minidump.rst        | 293 +++++++++++
->>   .../devicetree/bindings/soc/qcom/qcom,ramoops.yaml | 126 +++++
->>   MAINTAINERS                                        |  15 +
->>   arch/arm64/boot/dts/qcom/sm8450.dtsi               |  12 +
->>   arch/arm64/configs/defconfig                       |   4 +
->>   drivers/firmware/Kconfig                           |  11 -
->>   drivers/firmware/qcom_scm.c                        |  85 ++-
->>   drivers/pinctrl/qcom/pinctrl-msm.c                 |  12 +-
->>   drivers/remoteproc/qcom_common.c                   | 142 +----
->>   drivers/soc/qcom/Kconfig                           |  39 ++
->>   drivers/soc/qcom/Makefile                          |   3 +
->>   drivers/soc/qcom/qcom_minidump.c                   | 582 
->> +++++++++++++++++++++
->>   drivers/soc/qcom/qcom_minidump_internal.h          |  98 ++++
->>   drivers/soc/qcom/qcom_minidump_smem.c              | 387 ++++++++++++++
->>   drivers/soc/qcom/qcom_pstore_minidump.c            | 210 ++++++++
->>   drivers/soc/qcom/smem.c                            |   9 +
->>   fs/pstore/ram.c                                    |  26 +-
->>   include/linux/firmware/qcom/qcom_scm.h             |   2 +
->>   include/linux/pstore_ram.h                         |   2 +
->>   include/soc/qcom/qcom_minidump.h                   |  64 +++
->>   kernel/kallsyms.c                                  |   2 +-
->>   22 files changed, 1973 insertions(+), 152 deletions(-)
->>   create mode 100644 Documentation/admin-guide/qcom_minidump.rst
->>   create mode 100644 
->> Documentation/devicetree/bindings/soc/qcom/qcom,ramoops.yaml
->>   create mode 100644 drivers/soc/qcom/qcom_minidump.c
->>   create mode 100644 drivers/soc/qcom/qcom_minidump_internal.h
->>   create mode 100644 drivers/soc/qcom/qcom_minidump_smem.c
->>   create mode 100644 drivers/soc/qcom/qcom_pstore_minidump.c
->>   create mode 100644 include/soc/qcom/qcom_minidump.h
->>
+I do have one of these on my MIPS CI20 board, so I'm fine with
+maintaining it - but a head's up would have been nice.
+
+Cheers,
+-Paul
+
+> +
+> +properties:
+> +=C2=A0 compatible:
+> +=C2=A0=C2=A0=C2=A0 const: davicom,dm9000
+> +
+> +=C2=A0 reg:
+> +=C2=A0=C2=A0=C2=A0 items:
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - description: Address registers
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - description: Data registers
+> +
+> +=C2=A0 interrupts:
+> +=C2=A0=C2=A0=C2=A0 maxItems: 1
+> +
+> +=C2=A0 davicom,no-eeprom:
+> +=C2=A0=C2=A0=C2=A0 type: boolean
+> +=C2=A0=C2=A0=C2=A0 description: Configuration EEPROM is not available
+> +
+> +=C2=A0 davicom,ext-phy:
+> +=C2=A0=C2=A0=C2=A0 type: boolean
+> +=C2=A0=C2=A0=C2=A0 description: Use external PHY
+> +
+> +=C2=A0 reset-gpios:
+> +=C2=A0=C2=A0=C2=A0 maxItems: 1
+> +
+> +=C2=A0 vcc-supply: true
+> +
+> +required:
+> +=C2=A0 - compatible
+> +=C2=A0 - reg
+> +=C2=A0 - interrupts
+> +
+> +allOf:
+> +=C2=A0 - $ref: /schemas/memory-controllers/mc-peripheral-props.yaml#
+> +=C2=A0 - $ref: /schemas/net/ethernet-controller.yaml#
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +=C2=A0 - |
+> +=C2=A0=C2=A0=C2=A0 #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +=C2=A0=C2=A0=C2=A0 ethernet@a8000000 {
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compatible =3D "davicom,dm900=
+0";
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 reg =3D <0xa8000000 0x2>, <0x=
+a8000002 0x2>;
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 interrupt-parent =3D <&gph1>;
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 interrupts =3D <1 IRQ_TYPE_LE=
+VEL_HIGH>;
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 local-mac-address =3D [00 00 =
+de ad be ef];
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 davicom,no-eeprom;
+> +=C2=A0=C2=A0=C2=A0 };
+> diff --git a/Documentation/devicetree/bindings/net/davicom-dm9000.txt
+> b/Documentation/devicetree/bindings/net/davicom-dm9000.txt
+> deleted file mode 100644
+> index 64c159e9cbf7..000000000000
+> --- a/Documentation/devicetree/bindings/net/davicom-dm9000.txt
+> +++ /dev/null
+> @@ -1,27 +0,0 @@
+> -Davicom DM9000 Fast Ethernet controller
+> -
+> -Required properties:
+> -- compatible =3D "davicom,dm9000";
+> -- reg : physical addresses and sizes of registers, must contain 2
+> entries:
+> -=C2=A0=C2=A0=C2=A0 first entry : address register,
+> -=C2=A0=C2=A0=C2=A0 second entry : data register.
+> -- interrupts : interrupt specifier specific to interrupt controller
+> -
+> -Optional properties:
+> -- davicom,no-eeprom : Configuration EEPROM is not available
+> -- davicom,ext-phy : Use external PHY
+> -- reset-gpios : phandle of gpio that will be used to reset chip
+> during probe
+> -- vcc-supply : phandle of regulator that will be used to enable
+> power to chip
+> -
+> -Example:
+> -
+> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0ethernet@18000000 {
+> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0compatible =3D "davicom,dm9000";
+> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0reg =3D <0x18000000 0x2 0x18000004 0x2>;
+> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0interrupt-parent =3D <&gpn>;
+> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0interrupts =3D <7 4>;
+> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0local-mac-address =3D [00 00 de ad be ef];
+> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0davicom,no-eeprom;
+> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0reset-gpios =3D <&gpf 12 GPIO_ACTIVE_LOW>;
+> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0vcc-supply =3D <&eth0_power>;
+> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0};
+
