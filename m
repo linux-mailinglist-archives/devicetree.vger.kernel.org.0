@@ -2,57 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2BFBE753DF8
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jul 2023 16:45:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3FD08753E16
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jul 2023 16:52:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235487AbjGNOpp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jul 2023 10:45:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56050 "EHLO
+        id S235849AbjGNOwf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jul 2023 10:52:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58202 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234757AbjGNOpo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jul 2023 10:45:44 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45447213F;
-        Fri, 14 Jul 2023 07:45:44 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id BFED361D27;
-        Fri, 14 Jul 2023 14:45:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 51C58C433C7;
-        Fri, 14 Jul 2023 14:45:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689345943;
-        bh=DGbd0VWtacVrAzm6zW6x+FrQbCSf5aCaCOwo48a615k=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=BaU6WuOYZ0qIb0SGT+qZ7g+1HDR1xa6fwdGlCBrv+juQ3mUwbywqWoMw55ThCYVpE
-         EgLRU7fZxJUGskYxdVBe27myjZt+7xXjarUSP51q9fu23KOJFuaTiq6mAoR48oe+Z9
-         yS+Ty74blHdkrLGfbgHfhtHezDQlRDjlIL5B+B1Jt9xc7SHjHrUYe07gjg7fM3Phhy
-         ut1FcAlTG7ooKHCYtXQiFSX/ZwlnvC2Lh4eKmJh1/hFSGeoxOrhthzUr6milR/nZDD
-         uo7BtjbyFdhcn0kCK1q/om+8KnS7PDAszSQsyZ1u3bAvCWue6VCMEr7Hvi19Vz4Utf
-         rmJcyL5hRbOwg==
-Date:   Fri, 14 Jul 2023 20:15:38 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Changhuang Liang <changhuang.liang@starfivetech.com>
-Cc:     Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Jack Zhu <jack.zhu@starfivetech.com>,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 2/2] phy: starfive: Add mipi dphy rx support
-Message-ID: <ZLFfkhnxZbRS7s9y@matsya>
-References: <20230630093056.46904-1-changhuang.liang@starfivetech.com>
- <20230630093056.46904-3-changhuang.liang@starfivetech.com>
+        with ESMTP id S235235AbjGNOwe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jul 2023 10:52:34 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 439661BD4;
+        Fri, 14 Jul 2023 07:52:33 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-4f4b2bc1565so3365413e87.2;
+        Fri, 14 Jul 2023 07:52:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1689346351; x=1691938351;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=J+63zxq+/vb/ooO5mOHfkIKljG/BDJD6/rDoJDD4yF4=;
+        b=nRXQAneJXtWCUrCikkQQCiaMq0uRb37TeZDR4/RqPYHpzjL8g/kDZiM4f/FQ3Mv+4f
+         pjZeZH9RnQ4WLliu9NvP+LaRP+06ecTCHxTIu0Fbclx+kn2NVl/s3/y5PV0+SlE9B6FK
+         qq138//7x5ytFIV+/Y2NSPr1GY8lNfFj7PIwOC2uV25hp0puTLGeLIlQwD6IQxyKMBpm
+         Mr2K5JA9bYrV3MYPduF4HeuOS3eEq4xvUTnFH1g46jSxf/JqLzsT4Nc2BNI9WK1JlKtx
+         T1lX2iB19Wj4HspM7lqIzfqmdZnUlXXGNnk7Pk8vn3TRlOoxcS5+sAynvz6lkSIpwhEC
+         N5pA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689346351; x=1691938351;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=J+63zxq+/vb/ooO5mOHfkIKljG/BDJD6/rDoJDD4yF4=;
+        b=UWoMoa2CU+DPUVKcJnw6sx8JdzlsWAW4K8tgdYq7ttc245jIYVFNTaaUycfZVvV9xR
+         UNZkQwMj34q1OJ2stLWDSAjuTa/2ZqI7sIOFHTn6UmvJawYtFH3PXxqK6O0ab5WyOctI
+         vD52AHwN7SAY4cTZ1TUQQgHjr0FmHdBfLJh7nJVrf8IjTnKBfD0yhDFjzhBbFqj6/5du
+         Vo93s5uw3S2MnKvBmwc4hp/ON0Vx9OdGxNPy+AWIR1SjZhiW0CcVl//HWIM37zMXxnKn
+         JWNtwk1hlstupBYqAJZBfCRjPtxl9jHdlgorzBJGSLva9WPSC30ssps0jOprFBKian5K
+         UKow==
+X-Gm-Message-State: ABy/qLZX9zefZFGSuyA2YcwEK3fBjYXgP4Q4d7Fz1jpoxSqLTFL3TYXT
+        WwxW9rCWpt4v7XUnYLzfqNg=
+X-Google-Smtp-Source: APBJJlHfm0ISeA2BOTvP9HovVHMKEww6eTOvNRoiFruQ8E4WNScWP6gVoVZYOlbU/OCdBZeH+O8rzQ==
+X-Received: by 2002:a05:6512:31d3:b0:4f8:5792:3802 with SMTP id j19-20020a05651231d300b004f857923802mr4464626lfe.10.1689346351201;
+        Fri, 14 Jul 2023 07:52:31 -0700 (PDT)
+Received: from localhost (p200300e41f4b7100f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f4b:7100:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id l19-20020aa7d953000000b0051de018af1esm5880234eds.59.2023.07.14.07.52.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 14 Jul 2023 07:52:30 -0700 (PDT)
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, thierry.reding@gmail.com,
+        jonathanh@nvidia.com, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org,
+        Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
+Subject: Re: [PATCH] arm64: tegra: Fix HSUART for Smaug
+Date:   Fri, 14 Jul 2023 16:52:25 +0200
+Message-ID: <168934632796.2822346.3024686778789394351.b4-ty@nvidia.com>
+X-Mailer: git-send-email 2.41.0
+In-Reply-To: <20230714101018.10617-1-diogo.ivo@tecnico.ulisboa.pt>
+References: <20230714101018.10617-1-diogo.ivo@tecnico.ulisboa.pt>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230630093056.46904-3-changhuang.liang@starfivetech.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -61,23 +74,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30-06-23, 02:30, Changhuang Liang wrote:
-> Add mipi dphy rx support for the StarFive JH7110 SoC. It is used to
-> transfer CSI camera data.
+From: Thierry Reding <treding@nvidia.com>
+
+
+On Fri, 14 Jul 2023 11:10:17 +0100, Diogo Ivo wrote:
+> After commit 71de0a054d0e ("arm64: tegra: Drop serial clock-names and
+> reset-names") was applied, the HSUART failed to probe and the following
+> error is seen:
 > 
-> Signed-off-by: Changhuang Liang <changhuang.liang@starfivetech.com>
-> ---
->  MAINTAINERS                                 |   7 +
->  drivers/phy/Kconfig                         |   1 +
->  drivers/phy/Makefile                        |   1 +
->  drivers/phy/starfive/Kconfig                |  13 ++
->  drivers/phy/starfive/Makefile               |   2 +
->  drivers/phy/starfive/phy-starfive-dphy-rx.c | 230 ++++++++++++++++++++
->  6 files changed, 254 insertions(+)
->  create mode 100644 drivers/phy/starfive/Kconfig
->  create mode 100644 drivers/phy/starfive/Makefile
+>  serial-tegra 70006300.serial: Couldn't get the reset
+>  serial-tegra: probe of 70006300.serial failed with error -2
+> 
+> [...]
 
-This need rebase as files exist now
+Applied, thanks!
 
+[1/1] arm64: tegra: Fix HSUART for Smaug
+      commit: 590bfe51838f6345a6a3288507661dc9b7208464
+
+Best regards,
 -- 
-~Vinod
+Thierry Reding <treding@nvidia.com>
