@@ -2,91 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A5DC753DC6
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jul 2023 16:41:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A48E3753DDD
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jul 2023 16:43:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235868AbjGNOls (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jul 2023 10:41:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53256 "EHLO
+        id S236118AbjGNOnI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jul 2023 10:43:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54190 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236101AbjGNOlr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jul 2023 10:41:47 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 631522119
-        for <devicetree@vger.kernel.org>; Fri, 14 Jul 2023 07:41:46 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id E900A61D3D
-        for <devicetree@vger.kernel.org>; Fri, 14 Jul 2023 14:41:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 47644C433C8;
-        Fri, 14 Jul 2023 14:41:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689345705;
-        bh=v+hmI+E8CFdIbhaPE1cYJ5+Z9tHO+FMtoE5Rt2xNFs4=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=KaySazSW4dAVye5Rx3jIjrpyFsxxWb121CCaz7nDXENbmARMFaZ4TAQCwliW2Kkmj
-         hrxhsdYCQsxkOLIsWVl+YCyeYjVkb4bY/6pDnEYwhP3veOkCuhUEz9Jk3CbKKDibTp
-         2xaV+f9PQrgRJ2IkZ8blE0te1inkgKWVz0q1x1XgNFpej/JGdezJWTM0CXBuPmEVBk
-         NY/bN81BkReE3BF0oK8A5VECg3CHjUqyj+/CKKC/VEVGSd3594UKKIKr9rciRTh2U4
-         /fQMSqeYC/cpWWCyX42/YVIoQ1rT60mjcSn29XuYRuOkPqZpnmhdABFaf2uVqhoruD
-         /DJUADUGvmNvQ==
-Message-ID: <26f27cf3-fd9b-462f-c337-a439e750dfb1@kernel.org>
-Date:   Fri, 14 Jul 2023 09:41:42 -0500
+        with ESMTP id S236156AbjGNOmy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jul 2023 10:42:54 -0400
+Received: from mail-il1-f175.google.com (mail-il1-f175.google.com [209.85.166.175])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96D7710FA
+        for <devicetree@vger.kernel.org>; Fri, 14 Jul 2023 07:42:48 -0700 (PDT)
+Received: by mail-il1-f175.google.com with SMTP id e9e14a558f8ab-346129c9512so4377035ab.1
+        for <devicetree@vger.kernel.org>; Fri, 14 Jul 2023 07:42:48 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689345768; x=1691937768;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=KafqaUPjCBQvFb5pvwK1WdmWPTr611IYKGNe6Y4q1jw=;
+        b=d/UZpbCLcicDYkSkBr9hh1+VfSe0C3RvSqB7HlUtelEBTWfV+9upv1UiRnPfFaeILp
+         rR5h9f5rgf/GfC4k+dJ5kTW+nF4OtCgCQ1g38JlLk19LvcrlA5ufeQzZnY/1W0xJUMQh
+         mMyy++TJNlWZhbFr9qPPg66779XyspYgSZGu7J47b6JviSedJfGV4miaBC1Wyf4EYXKx
+         Y4saDw3IIWpwLj6dXODcNQ8KJXE5ltlfm05PdfXdBBofZwiI+/3LHoxLgYs6cBt7p2tD
+         /qnrf3s77sAUP31aE4eMHPq2tTBoVoan/dkzIPZvIDq1XTGTlCt/5bShNjQ16IG3l0Ur
+         v+mA==
+X-Gm-Message-State: ABy/qLaIM0QxYKDiewEALaHAPqPpigVYV3l/5GR3GjtfYi4kZ5o1jnRE
+        nRTEX2VXF1gCtNiwDoY4MA==
+X-Google-Smtp-Source: APBJJlGgw+aS9LF9nyYrifeO4PKMHlwWzPPjDwEY0tG7a8ECRbrBNcvL4TYX5yATAdGS/P2F6DiReg==
+X-Received: by 2002:a05:6e02:1a62:b0:348:72fe:8de0 with SMTP id w2-20020a056e021a6200b0034872fe8de0mr443527ilv.14.1689345767787;
+        Fri, 14 Jul 2023 07:42:47 -0700 (PDT)
+Received: from robh_at_kernel.org ([64.188.179.250])
+        by smtp.gmail.com with ESMTPSA id h12-20020a92d84c000000b0034267d3fcc5sm2788971ilq.55.2023.07.14.07.42.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 14 Jul 2023 07:42:47 -0700 (PDT)
+Received: (nullmailer pid 3499251 invoked by uid 1000);
+        Fri, 14 Jul 2023 14:42:45 -0000
+Date:   Fri, 14 Jul 2023 08:42:45 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc:     Mark Brown <broonie@kernel.org>,
+        Cezary Rojewski <cezary.rojewski@intel.com>,
+        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        =?utf-8?B?IkFtYWRldXN6IFPFgmF3acWEc2tpIg==?= 
+        <amadeuszx.slawinski@linux.intel.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 14/15] ASoC: dt-bindings: renesas,rsnd.yaml: add
+ common port-def
+Message-ID: <20230714144245.GA3492124-robh@kernel.org>
+References: <87mt04o96f.wl-kuninori.morimoto.gx@renesas.com>
+ <87351wo921.wl-kuninori.morimoto.gx@renesas.com>
+ <20230710151956.GA1992791-robh@kernel.org>
+ <87lefn8gh9.wl-kuninori.morimoto.gx@renesas.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH 2/2] net: dwmac_socfpga: use the standard "ahb" reset
-Content-Language: en-US
-To:     Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>
-Cc:     Krzysztof Kozlowski <krzk@kernel.org>, netdev@vger.kernel.org,
-        davem@davemloft.net, edumazet@google.com, joabreu@synopsys.com,
-        robh+dt@kernel.org, krzysztof.kozlowskii+dt@linaro.org,
-        conor+dt@kernel.org, devicetree@vger.kernel.org
-References: <20230710211313.567761-1-dinguyen@kernel.org>
- <20230710211313.567761-2-dinguyen@kernel.org>
- <20230712170840.3d66da6a@kernel.org>
- <c8ffee03-8a6b-1612-37ee-e5ec69853ab7@kernel.org>
- <1061620f76bfe8158e7b8159672e7bb0c8dc75f2.camel@redhat.com>
- <20230713095116.15760660@kernel.org>
-From:   Dinh Nguyen <dinguyen@kernel.org>
-In-Reply-To: <20230713095116.15760660@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <87lefn8gh9.wl-kuninori.morimoto.gx@renesas.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 7/13/23 11:51, Jakub Kicinski wrote:
-> On Thu, 13 Jul 2023 14:39:57 +0200 Paolo Abeni wrote:
->>> However for ABI breaks with scope limited to only one given platform, it
->>> is the platform's maintainer choice to allow or not allow ABI breaks.
->>> What we, Devicetree maintainers expect, is to mention and provide
->>> rationale for the ABI break in the commit msg.
->>
->> @Dinh: you should at least update the commit message to provide such
->> rationale, or possibly even better, drop this 2nd patch on next
->> submission.
+On Tue, Jul 11, 2023 at 09:00:18AM +0900, Kuninori Morimoto wrote:
 > 
-> Or support both bindings, because the reset looks optional. So maybe
-> instead of deleting the use of "stmmaceth-ocp", only go down that path
-> if stpriv->plat->stmmac_ahb_rst is NULL?
+> Hi Rob
+> 
+> Thank you for reviewing
+> 
+> 
+> > > diff --git a/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml b/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
+> > > index 8a821dec9526..d9808b130e8d 100644
+> > > --- a/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
+> > > +++ b/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
+> > > @@ -9,6 +9,20 @@ title: Renesas R-Car Sound Driver
+> > >  maintainers:
+> > >    - Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> > >  
+> > > +definitions:
+> > 
+> > $defs
+> 
+> Hmm... many drivers are using "definitions" ?
 
-I think in a way, it's already supporting both reset lines. The main 
-dwmac-platform is looking for "ahb" and the socfpga-dwmac is looking for 
-"stmmaceth-ocp".
+Patches welcome to change them. I don't think it's many (not counting 
+types.yaml). Use of "definitions" or "$defs" is an exception.
 
-So I'll just drop this patch.
+> This kind of indication is very confusable...
 
-Thanks for all the review.
+"definitions" was common convention in early json-schema. "$defs" was 
+added to the specification to standardize it.
 
-Dinh
+> > >    port:
+> > > -    $ref: audio-graph-port.yaml#/definitions/port-base
+> > > -    unevaluatedProperties: false
+> > > -    patternProperties:
+> > > -      "^endpoint(@[0-9a-f]+)?":
+> > > -        $ref: audio-graph-port.yaml#/definitions/endpoint-base
+> > > -        properties:
+> > > -          playback:
+> > > -            $ref: /schemas/types.yaml#/definitions/phandle-array
+> > > -          capture:
+> > > -            $ref: /schemas/types.yaml#/definitions/phandle-array
+> > > -        unevaluatedProperties: false
+> > > +    $ref: "#/definitions/port-def"
+> > 
+> > It would be better if users just always used "ports { port {}; };" even 
+> > in the single port case.
+> 
+> "ports" support is added, we can't modify past.
+
+I don't understand. The graph APIs all work the same with or without 
+'ports'. Changing the DT shouldn't affect the ABI.
+
+Rob
