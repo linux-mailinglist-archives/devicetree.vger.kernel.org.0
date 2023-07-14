@@ -2,116 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C680F753563
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jul 2023 10:47:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A2DA375359F
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jul 2023 10:51:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235413AbjGNIrq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jul 2023 04:47:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53960 "EHLO
+        id S235620AbjGNIvM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jul 2023 04:51:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56534 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235632AbjGNIrh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jul 2023 04:47:37 -0400
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D054426B3
-        for <devicetree@vger.kernel.org>; Fri, 14 Jul 2023 01:47:34 -0700 (PDT)
-Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-51e57874bfdso1975578a12.0
-        for <devicetree@vger.kernel.org>; Fri, 14 Jul 2023 01:47:34 -0700 (PDT)
+        with ESMTP id S235617AbjGNIvL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jul 2023 04:51:11 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABE0126B2
+        for <devicetree@vger.kernel.org>; Fri, 14 Jul 2023 01:51:09 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-991f956fb5aso209575166b.0
+        for <devicetree@vger.kernel.org>; Fri, 14 Jul 2023 01:51:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689324453; x=1691916453;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Xfnzqz2i7m5w9zMzOs0RqunR9vvDiHlmabhYNl07DtU=;
-        b=QRTexeIsaQuwzZmHHH1qWjMfaVgQohb1jM0TSX3h4pKx34oQYn6cbwXTCromOfGYcL
-         Tta5/ZU3WfrIC8LZEwrhwIv6Fl5UViGAHoX4Z40wOK0wfmiDGYo6M1P6RYRh92tvEm1A
-         lgjoNI1FK4t3XozduDsu/mzKG2HtaKxRew6IKwKC+SHAtHe2meEXKda8QekvCoagcIO6
-         KTWXFl0cFonQ/GYkBq3XXft+Mu0GybbpwqYcmIi8CIbvPujfORGmzQPb5wgTdps6gVYC
-         XOQqon7bQHYJpakPB9YpjonH7WCwfyozV/VhsVBrmvQZoqqXDWTApIdqBkRxZJmpK9Mo
-         jkEA==
+        d=linaro.org; s=google; t=1689324668; x=1691916668;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=AA400F82oAmi6pERwPSVC1qSgSS17NSxKmCHMIAbTTo=;
+        b=lz9ham2WZ/uKM8V9JrlP3W1/oWDSZgMqvENb2rBr1YZ/NjE4cPEOameleQFscAwNHr
+         90iHQFIf+RUYjNfaMy2PC+VmKk3NDRyUqzEPcLzFlzfFexZiTfSUeC6VmQ3xtRqJ/w9K
+         vmE2gLOCMK7QUrd4gabcBhpwphXkMY0Ii3PA1GAIGqfMFG1CHiEsSCseA+PqORNPM+sL
+         zKI4Q6K4hQfwOI61UR96v8DghoxuC6cUkcMxKQartiudOOMwAumZ6SBd50YSHlk3woyr
+         6wu/fVxCSVlzzHKCtUdNCUwqmIzqIkRFtM6Zt9Y0Q1mGiWarVfiAOp4jFGBlrODLNr0v
+         p6qA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689324453; x=1691916453;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Xfnzqz2i7m5w9zMzOs0RqunR9vvDiHlmabhYNl07DtU=;
-        b=GCpalz9/+tBmQ+bpZjIHy5ZLIey8oO41VZuc3M47wjqDuz+F0BBP3Q0TVCF7SX2NDH
-         3tltixXbcJuK1gEvatVm1X97INYQbgL//t/QhXyaD7jy47ZFAQKdd9sYISQcsYFrRJcx
-         v9YLh0VWqJQ5KbcMBmfY0dZtcDyrhWSOrHjnxtqYlat/NFbFFB0ThvQQncsyFexMzdzY
-         E+h1pGMv2Rka8ymbWcWEdLYorYfECTrDDPLlJdjNSSn8W38AB/Gp7N9hbY5lWw4WyHhO
-         b0989bObDbIlLLZWEvwuI0j3g0dpRXGSzBTrBDEzse6NwBlniZemt3LVPo4x+/0AgSGc
-         UB0Q==
-X-Gm-Message-State: ABy/qLbnUglJc4rWH86tr9X+Z1Fes7f/k7sZ9Z+bljEHAyiHhbb8U4ql
-        6uQxYTMzX5PhXDhlf9N+XuVfJg==
-X-Google-Smtp-Source: APBJJlEuf4i2pzMRoEofkzTMljBMlpAzj4iNGEl1v3hbp1MIkjUaSwOo0LcuFm7jwuef4HKv2BzhmA==
-X-Received: by 2002:aa7:d359:0:b0:51e:4bd6:ce4a with SMTP id m25-20020aa7d359000000b0051e4bd6ce4amr4058266edr.11.1689324453302;
-        Fri, 14 Jul 2023 01:47:33 -0700 (PDT)
-Received: from krzk-bin.. ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id w24-20020aa7cb58000000b0051e0f8aac74sm5480662edt.8.2023.07.14.01.47.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 14 Jul 2023 01:47:32 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Conor Dooley <conor@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Nishanth Menon <nm@ti.com>, linux-riscv@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        Jonathan Corbet <corbet@lwn.net>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        soc@kernel.org, workflows@vger.kernel.org,
-        linux-doc@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 3/3] MAINTAINER: samsung: document dtbs_check requirement for Samsung
-Date:   Fri, 14 Jul 2023 10:47:25 +0200
-Message-Id: <20230714084725.27847-3-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230714084725.27847-1-krzysztof.kozlowski@linaro.org>
-References: <20230714084725.27847-1-krzysztof.kozlowski@linaro.org>
+        d=1e100.net; s=20221208; t=1689324668; x=1691916668;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=AA400F82oAmi6pERwPSVC1qSgSS17NSxKmCHMIAbTTo=;
+        b=B0w/Y6DH8iXLUE+nP/oNRhhscNSTJAkRkPBQ6tkGarMmZjMDgvgfn8nwE8GZS0kO13
+         tOT1jvSSWRJMMi90R9wz9DTSjhfI893l9Ir7meYYNoCIG1gttEGQuhgNa1ezrkwfbhAA
+         Ji/UggD1GfqwTM9EX1qwiYnkxZ0uZOAF6PoVC7u37pgvln+rr9lPM3G6M8H/K44HHhb5
+         5Wan/J7bxuP0g/U7/qx2SQCNiw1akXuHv4uAB/FF1XukHV6S8ZtA1tM3YwD4N8ebTyH6
+         hpJNFKkIBq75J70IEYhILb0O/C/FppeXQ8Vt+K+35Tg31H2BzUAhex/QLsBoq604LeWp
+         t6ig==
+X-Gm-Message-State: ABy/qLa7UM2irbYlsRCBm11NL23Tow4NAmFDSsOt3lEQuwimz2gwb6Fs
+        uAes50j/laBMTeCWx0v2/IqL2A==
+X-Google-Smtp-Source: APBJJlFgNNfzLiYIyWQu4MS6PqDCXwzQncQfsuKandKde1IOd03hugnMV5pIJPl9p4d2SrOGIObX4Q==
+X-Received: by 2002:a17:907:1112:b0:967:21:5887 with SMTP id qu18-20020a170907111200b0096700215887mr3081876ejb.40.1689324667825;
+        Fri, 14 Jul 2023 01:51:07 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id a22-20020a170906245600b00992c92af6easm5024952ejb.161.2023.07.14.01.51.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 14 Jul 2023 01:51:07 -0700 (PDT)
+Message-ID: <e2daa887-4cd3-84a8-3450-bfebd94c1b7e@linaro.org>
+Date:   Fri, 14 Jul 2023 10:51:05 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v3 1/2] dt-bindings: pinctrl: cypress,cy8c95x0: Add reset
+ pin
+Content-Language: en-US
+To:     Naresh Solanki <naresh.solanki@9elements.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Patrick Rudolph <patrick.rudolph@9elements.com>
+Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230714081902.2621771-1-Naresh.Solanki@9elements.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230714081902.2621771-1-Naresh.Solanki@9elements.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Samsung ARM/ARM64 SoCs (including legacy S3C64xx and S5PV210) are also
-expected not to bring any new dtbs_check warnings.  In fact this have
-been already enforced and tested since few release.
+On 14/07/2023 10:19, Naresh Solanki wrote:
+> From: Patrick Rudolph <patrick.rudolph@9elements.com>
+> 
+> This patch adds support for an optional reset pin.
+> 
+> The reset pin is used to bring the chip into a known state and has an
+> internal pull-down, allowing it to be left floating if not needed.
+> 
+> Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
+> Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
+> ---
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
----
-
-Previous idea was here:
-https://lore.kernel.org/all/20230712084131.127982-1-krzysztof.kozlowski@linaro.org/
----
- MAINTAINERS | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 7405fb6e38c3..9a539af4d775 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -2632,6 +2632,7 @@ R:	Alim Akhtar <alim.akhtar@samsung.com>
- L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
- L:	linux-samsung-soc@vger.kernel.org
- S:	Maintained
-+P:	Documentation/process/maintainer-soc-clean-dts.rst
- Q:	https://patchwork.kernel.org/project/linux-samsung-soc/list/
- B:	mailto:linux-samsung-soc@vger.kernel.org
- C:	irc://irc.libera.chat/linux-exynos
--- 
-2.34.1
+Best regards,
+Krzysztof
 
