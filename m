@@ -2,134 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EE07F754371
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jul 2023 21:53:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 501E47543C6
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jul 2023 22:33:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235667AbjGNTxP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jul 2023 15:53:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48072 "EHLO
+        id S230093AbjGNUdE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jul 2023 16:33:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59812 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229915AbjGNTxO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jul 2023 15:53:14 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01E2D2D57;
-        Fri, 14 Jul 2023 12:53:13 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 89FDB61DE3;
-        Fri, 14 Jul 2023 19:53:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EA1AAC43397;
-        Fri, 14 Jul 2023 19:53:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689364392;
-        bh=DnEjVGiuXfP3swFolvK4a+TN59hjw2gEVcLZQUXBvDY=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=FXKiP07/uyYnn3J52Pv/xGbI+H0dryvs1yPK9kNiAMLZ37UglPGpr5hwF8t9AgGFR
-         MbIgF/qFjKJ0zZE4JovQWRruybyKuF8xDZ1GJGD2TnPr5JS687MRuqJUXrlRbe9upM
-         awQsA1ywU6bfbkYq1156RNRo6klGk5DtuE3hAs5Dr7gqosk7Nnh0v9e1sSdKlaFjI8
-         +26/qgf8uY+Bn785pgvNo3KxQ6je6+toUywNN7cX9E+dIlZMUc5naKyO1BPxRYk8VC
-         jGYUIPR3evafAcz/Wcra6MNLR45SJWOMsDsqQ2XDSbumIY7WxofkDLNV3q2ai3RKXC
-         iR2h6K4R4H+Ww==
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-4fb7dc16ff0so3872508e87.2;
-        Fri, 14 Jul 2023 12:53:11 -0700 (PDT)
-X-Gm-Message-State: ABy/qLbJMWbxAhbaUBKgPpELt8dPXaa8xqUmIDrdAlujMEGhiY9ODESO
-        4nMnqD00Pn9OOP6yh/NibeJPQ/EtEFQCKT+40Q==
-X-Google-Smtp-Source: APBJJlFIVq6SSfDGp/7zlzMmel1HUM1zDWT3EoUpkE1rCFI61SUoU0+rrNxJc3PIb6p4Jh4x1E4RyP9tWO4eKUbbP0E=
-X-Received: by 2002:a2e:9a8a:0:b0:2b4:765b:f6ee with SMTP id
- p10-20020a2e9a8a000000b002b4765bf6eemr4915096lji.41.1689364389871; Fri, 14
- Jul 2023 12:53:09 -0700 (PDT)
+        with ESMTP id S235954AbjGNUc7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jul 2023 16:32:59 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16EC535AD;
+        Fri, 14 Jul 2023 13:32:58 -0700 (PDT)
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36EJRF0V032181;
+        Fri, 14 Jul 2023 20:32:46 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=wOEuZ0axDfpKHVOu0u/ZkL+Xp0dWtcUrVMCcIi3yLtQ=;
+ b=T3n94NJgFrWm5u6CDeOYjOsRLB05FcOfMssSwbQiD2+n/HI02B+rhTEvXyQhrC4IjLtJ
+ 8gP/zKLi6feqdMr3kj2UJwrDHaAIbTVb3OOIbRFISeVKNlWNAg4zt1uhIV7OSH09TK/1
+ AejVXUfoRwrIlBEk2j7frnVm+h+jNw8QDp7VAPD9I2VB7Tx5waFZN9RPb3JG1ONsW+Uk
+ pQv8uWgot/M0sqDbIGoTQ+Ny8v/VkNhZtJY12JPWIqyhQ6YjbDxSQ90+pLka70BAGWgw
+ QFQBkXebOkZhvscGMWXGSL5LK6AViyvbZ+a2TfY43IRTzINUpUElqTRVJMIV4bHC5uFa Iw== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3rtpu92t68-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 14 Jul 2023 20:32:46 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 36EKWiTf012707
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 14 Jul 2023 20:32:44 GMT
+Received: from [10.110.52.193] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Fri, 14 Jul
+ 2023 13:32:43 -0700
+Message-ID: <511a84a8-ecb4-13bb-2eab-982b19758ba5@quicinc.com>
+Date:   Fri, 14 Jul 2023 13:32:33 -0700
 MIME-Version: 1.0
-References: <20230714175008.4064592-1-robh@kernel.org> <CAJZ5v0i-OByOSjpxrj5d9S9QHRySK-MEUo+bK_J_4ihsCBmnSg@mail.gmail.com>
-In-Reply-To: <CAJZ5v0i-OByOSjpxrj5d9S9QHRySK-MEUo+bK_J_4ihsCBmnSg@mail.gmail.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Fri, 14 Jul 2023 13:52:57 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLy22S5bTFu-ZKXhSMtMPPq9z1Gdb5kJMVmhui55miDsQ@mail.gmail.com>
-Message-ID: <CAL_JsqLy22S5bTFu-ZKXhSMtMPPq9z1Gdb5kJMVmhui55miDsQ@mail.gmail.com>
-Subject: Re: [PATCH] thermal: Explicitly include correct DT includes
-To:     "Rafael J. Wysocki" <rafael@kernel.org>
-Cc:     Guillaume La Roque <glaroque@baylibre.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Florian Fainelli <florian.fainelli@broadcom.com>,
-        Broadcom internal kernel review list 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        Markus Mayer <mmayer@broadcom.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Thara Gopinath <thara.gopinath@gmail.com>,
-        =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
-        Bartlomiej Zolnierkiewicz <bzolnier@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Orson Zhai <orsonzhai@gmail.com>,
-        Baolin Wang <baolin.wang@linux.alibaba.com>,
-        Chunyan Zhang <zhang.lyra@gmail.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Vasily Khoruzhick <anarsoul@gmail.com>,
-        Yangtao Li <tiny.windzz@gmail.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
-        Masami Hiramatsu <mhiramat@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-rpi-kernel@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-sunxi@lists.linux.dev, linux-tegra@vger.kernel.org,
-        linux-mediatek@lists.infradead.org
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH 1/7] dt-bindings: soc: qcom: Add qcom-pbs bindings
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC:     Rob Herring <robh@kernel.org>, <pavel@ucw.cz>, <lee@kernel.org>,
+        <thierry.reding@gmail.com>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <u.kleine-koenig@pengutronix.de>,
+        <linux-leds@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-pwm@vger.kernel.org>
+References: <20230621185949.2068-1-quic_amelende@quicinc.com>
+ <20230621185949.2068-2-quic_amelende@quicinc.com>
+ <20230626135857.GA3118929-robh@kernel.org>
+ <2e871e21-a81d-0d7d-993b-9a9d7bd9d962@quicinc.com>
+ <e7298704-5a03-0961-90a3-dab4af60c326@linaro.org>
+ <32e9a512-fd74-b2f6-6b8a-fefb9ad5912d@quicinc.com>
+ <431faa87-d152-5f7a-40fd-8b6fe26f0bb9@linaro.org>
+ <71e1f36f-8fd8-9d61-d563-577d4fb54f10@quicinc.com>
+ <69c01f0f-4eb0-bb44-a238-5c9ce5beede9@linaro.org>
+ <CAA8EJppCSnEg1GjX8CavxRPiiE19JwVAOTspjWJR-OzdQMcu+g@mail.gmail.com>
+ <7ecf968b-45b2-c6b7-86a7-8d8caccf5002@linaro.org>
+From:   Anjelique Melendez <quic_amelende@quicinc.com>
+In-Reply-To: <7ecf968b-45b2-c6b7-86a7-8d8caccf5002@linaro.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: FpwwqSAF9ChKQNg_KKIZS6HGqS4kVtvO
+X-Proofpoint-ORIG-GUID: FpwwqSAF9ChKQNg_KKIZS6HGqS4kVtvO
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-07-14_10,2023-07-13_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
+ priorityscore=1501 mlxlogscore=781 clxscore=1011 adultscore=0 spamscore=0
+ impostorscore=0 lowpriorityscore=0 bulkscore=0 malwarescore=0 phishscore=0
+ mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2306200000 definitions=main-2307140188
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 14, 2023 at 12:54=E2=80=AFPM Rafael J. Wysocki <rafael@kernel.o=
-rg> wrote:
->
-> On Fri, Jul 14, 2023 at 7:51=E2=80=AFPM Rob Herring <robh@kernel.org> wro=
-te:
-> >
-> > The DT of_device.h and of_platform.h date back to the separate
-> > of_platform_bus_type before it as merged into the regular platform bus.
-> > As part of that merge prepping Arm DT support 13 years ago, they
-> > "temporarily" include each other. They also include platform_device.h
-> > and of.h. As a result, there's a pretty much random mix of those includ=
-e
-> > files used throughout the tree. In order to detangle these headers and
-> > replace the implicit includes with struct declarations, users need to
-> > explicitly include the correct includes.
-> >
-> > Signed-off-by: Rob Herring <robh@kernel.org>
->
-> Acked-by: Rafael J. Wysocki <rafael@kernel.org>
->
-> or please let me know if you want me to pick this up.
 
-Single patch in your subsystem with no dependencies. Please pick it up.
 
-Rob
+On 7/12/2023 1:11 PM, Krzysztof Kozlowski wrote:
+> On 12/07/2023 16:35, Dmitry Baryshkov wrote:
+>>>>> Rob asked you - "Is there more than 1 instance in a PMIC?" - and you did
+>>>>> not answer positively, just mentioned something about drivers in
+>>>>> downstream, which do not matter. So is the answer for that question:
+>>>>> yes, you have two instances of the same PMIC differing by presence of
+>>>>> PBS and other features"?
+>>>>>
+>>>> Sorry that was a misunderstanding on my part.
+>>>> Yes, answer to Rob's question should have been "We have two instances of PMI632,
+>>>> where one instance holds the pbs peripheral and the other holds the lpg
+>>>> peripherals. The child node for pbs is needed so lpg client can access
+>>>> the PMI632 regmap which contains the pbs peripheral."
+>>>
+>>> I guess I miss here something. What is "LPG client"? I don't understand
+>>> why this LPG client needs existence of PBS node, to be able to get the
+>>> regmap.
+>>>
+>>> PBS is a child of PMIC, so it can get regmap from the parent. What's
+>>> more, which DT property passes the regmap from PMIC to LPG client?
+>>
+>> There are some PMICs which claim two SPMI SIDs. For such PMICs, each
+>> SID is a separate device, so it is not directly possible to get the
+>> regmap of the other SID.
+> 
+> OK, maybe after implementing all the review changes - including dropping
+> that singleton pattern - this will be clearer. Please send new version
+> and we will discuss it from there.
+> 
+Sure, will work on getting that new version sent but I did just have clarifying question.
+When you say "dropping that singleton pattern" are you referring to dropping the 
+PBS node?
+Want to make sure we are all on the same page with what the next version will include :)
+
+Thanks,
+Anjelique
