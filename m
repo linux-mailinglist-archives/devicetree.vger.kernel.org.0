@@ -2,132 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4948A753BDF
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jul 2023 15:35:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B2579753C11
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jul 2023 15:51:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235711AbjGNNfz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jul 2023 09:35:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40888 "EHLO
+        id S235841AbjGNNvg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jul 2023 09:51:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47262 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235717AbjGNNft (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jul 2023 09:35:49 -0400
-Received: from mail-io1-xd2a.google.com (mail-io1-xd2a.google.com [IPv6:2607:f8b0:4864:20::d2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2B272699
-        for <devicetree@vger.kernel.org>; Fri, 14 Jul 2023 06:35:43 -0700 (PDT)
-Received: by mail-io1-xd2a.google.com with SMTP id ca18e2360f4ac-783698a37beso77485639f.0
-        for <devicetree@vger.kernel.org>; Fri, 14 Jul 2023 06:35:43 -0700 (PDT)
+        with ESMTP id S235522AbjGNNvf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jul 2023 09:51:35 -0400
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E227E35A2
+        for <devicetree@vger.kernel.org>; Fri, 14 Jul 2023 06:51:31 -0700 (PDT)
+Received: by mail-lj1-x22e.google.com with SMTP id 38308e7fff4ca-2b6ff1a637bso28949641fa.3
+        for <devicetree@vger.kernel.org>; Fri, 14 Jul 2023 06:51:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689341743; x=1691933743;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=OrrlpET1J++D0rWn+MEFzbX9FlSrTXFzI92fTxQjI5s=;
-        b=mwlleTSR8yEy1PaS939rfY4GuBWcXyWA0t8fIi9rgz1Pxwi/AZM6vk8gypg4p5WTzN
-         3l7l9N0d2tmi5avur0AIPBn2UGUs0QwvXlI0WKiDqpNWGNJ/AuIXhmjcfFnulgwYWBAA
-         X+49Py+hY3mt+d74cTdPjb5XxMIDZJ0xJyxvcIPsfmzc3pIpDwiuVUjUPq/9aBdv2sNL
-         QoI+5pQVpxo8l97IjqVAlNtXgafrbO+bUDvXxazPH9RnXtHMpi/JyiZD99DxSTx/OM2q
-         aPAjXC4cLsATkJFzSo6W+NX6Z7Gy4rEUMpn2BfcMY5Vc6ahqzi+2o9ykaVuui1QUJkr6
-         nvFg==
+        d=9elements.com; s=google; t=1689342690; x=1691934690;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=aBRkWVB0g8Qm8dyh6//o7Lwn4Q/uU6uVP9gh0M6sy3E=;
+        b=Zi6m+bT1LbXG3N25RVbGeYgxQ56d0Diy7az6zxJQxnUUTzeZKdpCWT7EexnOSqVO+I
+         +PKvpO1facfQ0DHxNSVICdVH0UOesiAUkHlDUZswzriCZh1MMZx/VLuA+BCG61YXZLrU
+         qTHBjc4AL/ao7lyeiEBPpYloHZuoBCM2m9O++P2qXnW+DUKvV+5JucEo/jSwIb5LxQx4
+         SU3zMn1ha3oYgC/JpSKD/tAt11u5tdVyN4IVUubZIoGsZXkuOtkX+k5EKBjc0EbViE5i
+         K0Yrj5PdZkNkSOTb5GUB6KiGXpSu34fIpNmT36pS4yJC7egfxF1UMZPNwacDKqkQfDzi
+         f/VQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689341743; x=1691933743;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=OrrlpET1J++D0rWn+MEFzbX9FlSrTXFzI92fTxQjI5s=;
-        b=eSEq17qvIYOG2OkJf/lAT8K97hjkVMId3q5inV1+L4Ym8qjjDglRX9t3W2gfEwQ+cq
-         8TFW61pDNvlacv5rqWawJWNFiYBh2ymDHN5JijxSKe7xBdE7FMgQImOhxI9IutZv8SRj
-         87f6peGSItOOAwiy74xO0s0XrSXMJfJcSCvTpQbFGaIuawz21NHS7nzd3LwuMe47MkO7
-         dACTFrSKjlbK+G0jFb7ZF6aVh1A5ANwPugoBedcnhgzwEnYlxW1GKqnvdCbJ7rD1nFq+
-         HZG7PbPB5NQ4T1IXUvzb8GXzoWUgqW9r39EhbPzNmMc9/aqTBHfGNqRpMYn/fgYUtU4y
-         G4lg==
-X-Gm-Message-State: ABy/qLaERim0IoG/ITfkfCK0xBXkQNdpRh+xevPkxmsxMPNFsXPt8zDo
-        34BQ5c0vXzMTW39ArM7JQwI6bg==
-X-Google-Smtp-Source: APBJJlEoST73Soh2t45u8KhAHwB+dZMgEFJ5zGII3htqmtNMTdG4c4gXQU4m3cr5Uaw+nkupDpxMlA==
-X-Received: by 2002:a6b:3c0c:0:b0:785:ff35:f340 with SMTP id k12-20020a6b3c0c000000b00785ff35f340mr4830684iob.14.1689341743082;
-        Fri, 14 Jul 2023 06:35:43 -0700 (PDT)
-Received: from [172.22.22.28] (c-98-61-227-136.hsd1.mn.comcast.net. [98.61.227.136])
-        by smtp.gmail.com with ESMTPSA id v6-20020a6b5b06000000b007870289f4fdsm2623774ioh.51.2023.07.14.06.35.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 14 Jul 2023 06:35:42 -0700 (PDT)
-Message-ID: <c3a8bb16-7016-c3d6-1cf9-0e56535e51e2@linaro.org>
-Date:   Fri, 14 Jul 2023 08:35:40 -0500
+        d=1e100.net; s=20221208; t=1689342690; x=1691934690;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=aBRkWVB0g8Qm8dyh6//o7Lwn4Q/uU6uVP9gh0M6sy3E=;
+        b=ZmKpqNibepsEYGNUCl7nJNyP0BYdfWMa8BInaJJGzDuuxB2C9rWUdanu0f/MAsXKDD
+         yTASbflWLwB13JMbHjdyN4BBhHIQ9kMepRRaVhUiMehG1j1z0plec/z1KLgtJLWPUhe2
+         qTxWSHG/AlepRES8gB3vqVx1LFOQn2UtKCpnBc44p1JMBarvFI+Xf2bFJxv2HckC2zdr
+         LY0fwJc56UTVd7IYAkLfJO6U8PpHY/jVz/f2UUOc7H70fUUSUyr88MVn1ALHyPl/8zpn
+         c1Gbv1PPF+hC46jc3vANu8UtiUe0ulfKrJ/1YgOEx1rtUd2ukKTRe0cd12YeTEsYdLRZ
+         5oMA==
+X-Gm-Message-State: ABy/qLZ6vinL5SYYoRnxMJ13HlFdNQ6KFBY3Nl2c97itKOwjeOtifv85
+        5cDCpcTQIsHN6qkRyCgBf5K5NnTjSKvNZuwLtStm2Q==
+X-Google-Smtp-Source: APBJJlEuLw1IGzH4fZS1r8RK5XTuiItRrFc/00qhHzD6ekUP9PRWebDQk9UN1vFtpSECd0OXh3o4nA==
+X-Received: by 2002:a2e:9c97:0:b0:2b6:dec9:2812 with SMTP id x23-20020a2e9c97000000b002b6dec92812mr4342904lji.33.1689342689670;
+        Fri, 14 Jul 2023 06:51:29 -0700 (PDT)
+Received: from stroh80.sec.9e.network (ip-078-094-000-051.um19.pools.vodafone-ip.de. [78.94.0.51])
+        by smtp.gmail.com with ESMTPSA id h21-20020a170906261500b0099236e3f270sm5405991ejc.58.2023.07.14.06.51.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 14 Jul 2023 06:51:29 -0700 (PDT)
+From:   Naresh Solanki <naresh.solanki@9elements.com>
+X-Google-Original-From: Naresh Solanki <Naresh.Solanki@9elements.com>
+To:     devicetree@vger.kernel.org, Guenter Roeck <linux@roeck-us.net>,
+        Jean Delvare <jdelvare@suse.com>
+Cc:     linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
+        Patrick Rudolph <patrick.rudolph@9elements.com>,
+        Naresh Solanki <Naresh.Solanki@9elements.com>
+Subject: [PATCH v2 1/8] hwmon: (pmbus/mp2975) Fix whitespace error
+Date:   Fri, 14 Jul 2023 15:51:09 +0200
+Message-ID: <20230714135124.2645339-1-Naresh.Solanki@9elements.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v14 01/25] docs: gunyah: Introduce Gunyah Hypervisor
-Content-Language: en-US
-To:     Elliot Berman <quic_eberman@quicinc.com>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
-        Jonathan Corbet <corbet@lwn.net>
-Cc:     Murali Nalajala <quic_mnalajal@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
-        Carl van Schaik <quic_cvanscha@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bagas Sanjaya <bagasdotme@gmail.com>,
-        Will Deacon <will@kernel.org>, Andy Gross <agross@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20230613172054.3959700-1-quic_eberman@quicinc.com>
- <20230613172054.3959700-2-quic_eberman@quicinc.com>
- <cb1d4b05-26f3-22f5-ce8e-813d255cda8a@linaro.org>
- <5dc7438c-e161-915c-c037-19c5099a274f@quicinc.com>
-From:   Alex Elder <elder@linaro.org>
-In-Reply-To: <5dc7438c-e161-915c-c037-19c5099a274f@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 7/3/23 5:41 PM, Elliot Berman wrote:
->> If it's signaled after every message is sent, does it
->> indicate that the message has been *received* by VM_B
->> (versus just received and copied by Gunyah)?
->>
-> 
-> To connect some dots: the Tx vIRQ is fired when the reader reads a 
-> message and the number of messages still in the queue decrements to the 
-> "not full" threshold.
-> 
-> https://github.com/quic/gunyah-hypervisor/blob/3d4014404993939f898018cfb1935c2d9bfc2830/hyp/ipc/msgqueue/src/msgqueue_common.c#L142-L148
+From: Patrick Rudolph <patrick.rudolph@9elements.com>
 
-So the Tx vIRQ on the sender is only fired when the state of the
-receiver's Rx queue goes from "full" to "not full".
+Fix whitespace error reported by checkpatch.pl
 
-Normally there is no signal sent, and a sender sends messages
-until it gets a "queue full" flag back from a gh_msgq_send()
-call.  At that point it should stop sending, until the Tx vIRQ
-fires to indicate the receiver queue has "room" (fewer than
-the "full threshold" messages are consumed).
+Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
+Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
+---
+ drivers/hwmon/pmbus/mp2975.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-There is no way (at this layer of the protocol) to tell whether
-a given message has been *received*, only that it has been *sent*
-(meaning the hypervisor has accepted it).  And Gunyah provides
-reliable delivery (each message received in send order, exactly
-once).
+diff --git a/drivers/hwmon/pmbus/mp2975.c b/drivers/hwmon/pmbus/mp2975.c
+index 2109b0458a8b..130cfde52e42 100644
+--- a/drivers/hwmon/pmbus/mp2975.c
++++ b/drivers/hwmon/pmbus/mp2975.c
+@@ -600,7 +600,7 @@ mp2975_vout_ov_scale_get(struct i2c_client *client, struct mp2975_data *data,
+ 	if (ret < 0)
+ 		return ret;
+ 	thres_dev = ret & MP2975_PRT_THRES_DIV_OV_EN ? MP2975_PROT_DEV_OV_ON :
+-	                                               MP2975_PROT_DEV_OV_OFF;
++						       MP2975_PROT_DEV_OV_OFF;
+ 
+ 	/* Select the gain of remote sense amplifier. */
+ 	ret = i2c_smbus_read_word_data(client, PMBUS_VOUT_SCALE_LOOP);
 
-Now that I re-read what you said it makes sense and I guess I
-just misunderstood.  There *might* be a way to reword slightly
-to prevent any misinterpretation.
+base-commit: 4dbbaf8fbdbd13adc80731b2452257857e4c2d8b
+-- 
+2.41.0
 
-Thanks.
-
-					-Alex
