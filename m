@@ -2,92 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BC92A754318
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jul 2023 21:15:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B89CB754331
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jul 2023 21:28:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236285AbjGNTPH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jul 2023 15:15:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35578 "EHLO
+        id S235844AbjGNT2R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jul 2023 15:28:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39002 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236232AbjGNTPC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jul 2023 15:15:02 -0400
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 900C435B3
-        for <devicetree@vger.kernel.org>; Fri, 14 Jul 2023 12:14:59 -0700 (PDT)
-Received: by mail-wr1-x434.google.com with SMTP id ffacd0b85a97d-314319c0d3eso2311251f8f.0
-        for <devicetree@vger.kernel.org>; Fri, 14 Jul 2023 12:14:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689362098; x=1691954098;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=y12WgpFka58+f6g+Nl0WMIlla4WR+fOUMvVj/dW10Y8=;
-        b=qB0NRgmgdTpJof+h7iqbUX75cUEkrKlGAc9n7A3C1HHaj5tV6j3CcN1wD17p1TwpTP
-         eg+WYMwZqQ2cm6mwXWZmiTUSddg2NnWuAH9UkQFliGvXVRlvfm8CbgrZzyLGFjQuoF2d
-         CiQap4YpOViHaT5X0i9JA7d7MKxcN3TNQUmP02fXtCmv8wW2nDcfG7TceliSnxU5xZvN
-         q/fdANHKJXHd6DQF83Kypena3xqmUfr8OZOnaOqmn4yverYr4DAw/cbFT6KIM36dMSH1
-         3zVXArM87g7Y1tsytpHTt0giMxmZJZBiFuPqoHuX0NSl3G+CF2qQRmMfzQ3N5Rj7XQxw
-         hCIw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689362098; x=1691954098;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=y12WgpFka58+f6g+Nl0WMIlla4WR+fOUMvVj/dW10Y8=;
-        b=cxLHi0lMm/gqvsZg87i7Lxr7XzLWDENVUBpPbaE7j4OCG2Y0NH5amvovOrBY2WX5qM
-         tYb6CIUxncDqJ2H/jAonpvE5tPiS+T23WIUpZBvgsKODUmKdDK3Ei1Mlgz1iuZXmGYTs
-         iN6IdREYxrhjj/VKFo9GHHjktGBcgUF0CLQ2QbzWHx7kKmfy5616JCf7L22zwan2HbAs
-         81p03ZlZZ5FPVk0uQ2VpMm63CGH05BhsiSlleQQXPASSLGbz77KhMGwx87KSYM/vquYd
-         aMmYgGygCN9T2ntssCzbNRKVbcs5nLeO2z+vAzOLfC4CxpqHumOcdret7VUb8BBmd7Fw
-         OtPg==
-X-Gm-Message-State: ABy/qLYVbdunU+zrZHSVebU714Zc7voX77FjRLE8mDkOu7spa4bWgRJB
-        45NL5LU3KVq2VGrvHLxo1QDrqA==
-X-Google-Smtp-Source: APBJJlFsdTklPzao72K+369OsrAdnINLI412JcepClB5WQXDyqbaFXbRRGvqow3gnANHVJI7a8Qsrg==
-X-Received: by 2002:adf:dd88:0:b0:313:e741:1caa with SMTP id x8-20020adfdd88000000b00313e7411caamr5441671wrl.25.1689362098005;
-        Fri, 14 Jul 2023 12:14:58 -0700 (PDT)
-Received: from [192.168.2.199] (host-92-17-99-126.as13285.net. [92.17.99.126])
-        by smtp.gmail.com with ESMTPSA id t12-20020a5d6a4c000000b00314329f7d8asm11596586wrw.29.2023.07.14.12.14.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 14 Jul 2023 12:14:57 -0700 (PDT)
-Message-ID: <09470a60-6f46-ec0f-9747-f64c0ba81996@linaro.org>
-Date:   Fri, 14 Jul 2023 20:14:56 +0100
+        with ESMTP id S233461AbjGNT2Q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jul 2023 15:28:16 -0400
+Received: from mx1.sberdevices.ru (mx1.sberdevices.ru [37.18.73.165])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD00E3A84;
+        Fri, 14 Jul 2023 12:28:14 -0700 (PDT)
+Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
+        by mx1.sberdevices.ru (Postfix) with ESMTP id 52498100005;
+        Fri, 14 Jul 2023 22:28:13 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 52498100005
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+        s=mail; t=1689362893;
+        bh=Y+EKy5Ok08NhyZskIXQaHaX4WP3np3p1O2H4uO0MI3M=;
+        h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:From;
+        b=J3nT8QVlHEw0rbCHKaR0Wxo0ubAaFwxu9KdT3g8pPyTfqGPZbKJHwqXgl1DBcDL4B
+         sPm6DJr7iHU7xpU7Qp2+1WC7/h/UZHNDQynAH3+xqvOwNihNt3pmSSN8FhhgwjeewV
+         k3r0RzNOUeGokT3WXIK2e8882vb5JS55vAMaxGvVPNNQJquLDsUuzoG6OHJW4bFMj9
+         vw14id/UjsvZ+B9OHGHOQOqfg0b0CnnWa1APRb8FFUfL3Zm+cvYDY+3FYm5/oI0FVa
+         rhAvnb9LlxEtuLLTwDdKwXKgLWlRvFs+rYieiJ6fol88Rkjl3MoAFeOrAhGROlK9XD
+         Dz6yUrF21FfpQ==
+Received: from p-i-exch-sc-m02.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mx1.sberdevices.ru (Postfix) with ESMTPS;
+        Fri, 14 Jul 2023 22:28:13 +0300 (MSK)
+Received: from [192.168.0.12] (100.64.160.123) by
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.30; Fri, 14 Jul 2023 22:27:38 +0300
+Message-ID: <840a9364-352d-b79b-6e7a-c54912e2297a@sberdevices.ru>
+Date:   Fri, 14 Jul 2023 22:22:53 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH v5 2/2] arm64: dts: qcom: sdm845-db845c: Mark cont splash
- memory region as reserved
+ Thunderbird/102.7.1
+Subject: Re: [RFC PATCH v3 2/3] dt-bindings: nand: meson: make ECC properties
+ dependent
 Content-Language: en-US
-To:     Amit Pundir <amit.pundir@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+To:     Rob Herring <robh@kernel.org>
+CC:     Liang Yang <liang.yang@amlogic.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Bryan Donoghue <bryan.odonoghue@linaro.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Sean Paul <sean@poorly.run>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Krishna Manikandan <quic_mkrishn@quicinc.com>
-Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
-        freedreno <freedreno@lists.freedesktop.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        dt <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>
-References: <20230713165238.2814849-1-amit.pundir@linaro.org>
- <20230713165238.2814849-2-amit.pundir@linaro.org>
-From:   Caleb Connolly <caleb.connolly@linaro.org>
-In-Reply-To: <20230713165238.2814849-2-amit.pundir@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        <oxffffaa@gmail.com>, <kernel@sberdevices.ru>,
+        <linux-mtd@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+References: <20230711122129.2635558-1-AVKrasnov@sberdevices.ru>
+ <20230711122129.2635558-3-AVKrasnov@sberdevices.ru>
+ <20230714155553.GA3913802-robh@kernel.org>
+From:   Arseniy Krasnov <avkrasnov@sberdevices.ru>
+In-Reply-To: <20230714155553.GA3913802-robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
+X-Originating-IP: [100.64.160.123]
+X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 178634 [Jul 14 2023]
+X-KSMG-AntiSpam-Version: 5.9.59.0
+X-KSMG-AntiSpam-Envelope-From: AVKrasnov@sberdevices.ru
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 523 523 523027ce26ed1d9067f7a52a4756a876e54db27c, {Tracking_uf_ne_domains}, {Tracking_from_domain_doesnt_match_to}, d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2;p-i-exch-sc-m02.sberdevices.ru:5.0.1,7.1.1;sberdevices.ru:5.0.1,7.1.1;lore.kernel.org:7.1.1;100.64.160.123:7.1.2, FromAlignment: s, {Tracking_white_helo}, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean, bases: 2023/07/14 17:22:00
+X-KSMG-LinksScanning: Clean, bases: 2023/07/14 17:22:00
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/07/14 14:48:00 #21614190
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -96,62 +98,45 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 13/07/2023 17:52, Amit Pundir wrote:
-> Adding a reserved memory region for the framebuffer memory
-> (the splash memory region set up by the bootloader).
+On 14.07.2023 18:55, Rob Herring wrote:
+> On Tue, Jul 11, 2023 at 03:21:28PM +0300, Arseniy Krasnov wrote:
+>> ECC properties 'nand-ecc-strength' and 'nand-ecc-step-size' depends on
+>> each other, so they must be both either set or not set. 
 > 
-> Signed-off-by: Amit Pundir <amit.pundir@linaro.org>
+> Is that true for all drivers or just meson?
 
-Reviewed-by: Caleb Connolly <caleb.connolly@linaro.org>
-> ---
-> v5: Re-sending with updated dt-bindings patch in mdss-common
->     schema.
-> 
-> v4: Re-sending this along with a new dt-bindings patch to
->     document memory-region property in qcom,sdm845-mdss
->     schema and keep dtbs_check happy.
-> 
-> v3: Point this reserved region to MDSS.
-> 
-> v2: Updated commit message.
-> 
-> There was some dicussion on v1 but it didn't go anywhere,
-> https://lore.kernel.org/linux-kernel/20230124182857.1524912-1-amit.pundir@linaro.org/T/#u.
-> The general consensus is that this memory should be freed and be
-> made resuable but that (releasing this piece of memory) has been
-> tried before and it is not trivial to return the reserved memory
-> node to the system RAM pool in this case.
-> 
->  arch/arm64/boot/dts/qcom/sdm845-db845c.dts | 9 +++++++++
->  1 file changed, 9 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-> index d6b464cb61d6..f546f6f57c1e 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-> @@ -101,6 +101,14 @@ hdmi_con: endpoint {
->  		};
->  	};
->  
-> +	reserved-memory {
-> +		/* Cont splash region set up by the bootloader */
-> +		cont_splash_mem: framebuffer@9d400000 {
-> +			reg = <0x0 0x9d400000 0x0 0x2400000>;
-> +			no-map;
-> +		};
-> +	};
-> +
->  	lt9611_1v8: lt9611-vdd18-regulator {
->  		compatible = "regulator-fixed";
->  		regulator-name = "LT9611_1V8";
-> @@ -506,6 +514,7 @@ &i2c14 {
->  };
->  
->  &mdss {
-> +	memory-region = <&cont_splash_mem>;
->  	status = "okay";
->  };
->  
+As Miquel Raynal suggested, this will be implemented only for Meson driver at this moment.
+Here is link with reply:
+https://lore.kernel.org/linux-mtd/20230705065434.297040-1-AVKrasnov@sberdevices.ru/T/#m88705a0039fb30c18a9bb2b03a1add5f7e212a3b
 
--- 
-// Caleb (they/them)
+Thanks, Arseniy
+
+> 
+>> In first case
+>> ECC core will try to use these values if possible (by checking ECC caps
+>> provided by driver), in second case ECC core will select most optimal
+>> values for both properties.
+>>
+>> Signed-off-by: Arseniy Krasnov <AVKrasnov@sberdevices.ru>
+>> ---
+>>  Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml | 4 ++++
+>>  1 file changed, 4 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
+>> index e81757c9e0ed..4f6e56542a7e 100644
+>> --- a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
+>> +++ b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
+>> @@ -58,6 +58,10 @@ patternProperties:
+>>              meson-gxl-nfc 8, 16, 24, 30, 40, 50, 60
+>>              meson-axg-nfc 8
+>>  
+>> +    dependencies:
+>> +      nand-ecc-strength: ['nand-ecc-step-size']
+>> +      nand-ecc-step-size: ['nand-ecc-strength']
+>> +
+>>  required:
+>>    - compatible
+>>    - reg
+>> -- 
+>> 2.35.0
+>>
