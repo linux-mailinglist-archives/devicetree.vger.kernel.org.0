@@ -2,89 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9CC04753DB4
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jul 2023 16:40:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4DA19753DBD
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jul 2023 16:41:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235132AbjGNOk0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jul 2023 10:40:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52282 "EHLO
+        id S235928AbjGNOlN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jul 2023 10:41:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52962 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234896AbjGNOkZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jul 2023 10:40:25 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B2B7134
-        for <devicetree@vger.kernel.org>; Fri, 14 Jul 2023 07:40:24 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1qKJxv-0006eR-RA; Fri, 14 Jul 2023 16:40:15 +0200
-Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1qKJxv-0005ir-C7; Fri, 14 Jul 2023 16:40:15 +0200
-Date:   Fri, 14 Jul 2023 16:40:15 +0200
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+        with ESMTP id S235868AbjGNOlM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jul 2023 10:41:12 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51655199;
+        Fri, 14 Jul 2023 07:41:11 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id 2adb3069b0e04-4fbf1f6c771so3417820e87.1;
+        Fri, 14 Jul 2023 07:41:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1689345669; x=1691937669;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=0GFXfG3reo7gZmpmqaifVMD9Ywczi+5KahuamZ75Qpg=;
+        b=VCgUkwRqEbzs14mdFc+Eo5FqElEi3oBLzDQoHowUxSn/jhAjEZIYlY922deghucoRC
+         elwcnbxB0d9FyX88KpFgf6EmnWrjuLhhtd09UgQUiMAAPQ02WHYf65OAL3S5s/hDKny+
+         3zLmTRn0g5botKmHQGiR6nHjcVREop33+HOznl2qgK1SObbvLk9W8jtVaTCwKbNciiTk
+         yM9Y4vu3se/JkDIZyglyyLGSV0f097LPvN1ToubjFwum5MN2Hbao8CxHSSAdSMoGrByi
+         EqEaCmJyW1FJDW2edk1NSj5NWUfkXdSs4Ng6rWPsMZ1BpJBjhiB4+e8/WCCgO3uEmfrk
+         S/FA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689345669; x=1691937669;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=0GFXfG3reo7gZmpmqaifVMD9Ywczi+5KahuamZ75Qpg=;
+        b=kr90OXeVhDMzugKELEyBXUY6P8BZWfy++36n6jVWbHmYzxUtlKMbAtfaNLvJqMUoTR
+         JfhSqbIxErAlNKnniwmagQPEz5sqz3bk9yoepzvl2T6sS9vWPPCXS665CSoQ3vU64u95
+         8M+TS7xnTSJiudkTYQTxMK9XePW03HiWj9peFJ0q5LZYk21iiAgeCF+S1i3j3XiDrH0p
+         TVs9xSkUI1tZFLwQ30CCk+u9/Kczh83wqvw+xFyeHRgnAui35HYqLlIWlM+7OXZqbPBL
+         VwoZeUlGCtrF9yeHFwTm8PtrQaTW4ROFA3RZVz1XBPYWWbj7S+4ihSOuR7JkXX7K9U7i
+         JaDA==
+X-Gm-Message-State: ABy/qLZx5H47dlxWg0ddfQY04+ITYLo5qngPETbu9sdcIt2HlD95Jue8
+        SlIOx26PM5XIceAmAhdKsJI=
+X-Google-Smtp-Source: APBJJlHJfBwBpIkWUdrLrSvuoRBoGZo/KBX3W5nddA5FjzV6g/OIV3r95WAn/szGCOGWVYQU3FBm9Q==
+X-Received: by 2002:a05:6512:3d22:b0:4f8:5dd2:21f5 with SMTP id d34-20020a0565123d2200b004f85dd221f5mr4457777lfv.67.1689345669276;
+        Fri, 14 Jul 2023 07:41:09 -0700 (PDT)
+Received: from orome (p200300e41f4b7100f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f4b:7100:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id bc7-20020a056402204700b0051df5eefa20sm5824445edb.76.2023.07.14.07.41.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 14 Jul 2023 07:41:08 -0700 (PDT)
+Date:   Fri, 14 Jul 2023 16:41:07 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
 Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, shawnguo@kernel.org, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com, marex@denx.de,
-        frieder.schrempf@kontron.de, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 3/3] arm64: dts: freescale: Add DEBIX SOM A and SOM A I/O
- Board support
-Message-ID: <20230714144015.epiwqqjhw54wsjl6@pengutronix.de>
-References: <20230704184109.991104-1-m.felsch@pengutronix.de>
- <20230704184109.991104-3-m.felsch@pengutronix.de>
- <0a664d16-22e7-6061-db0e-9669ab40af73@linaro.org>
+        conor+dt@kernel.org, jonathanh@nvidia.com,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
+Subject: Re: [PATCH] arm64: tegra: Fix HSUART for Smaug
+Message-ID: <ZLFeg0-DICAD2-Di@orome>
+References: <20230714101018.10617-1-diogo.ivo@tecnico.ulisboa.pt>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="Gu3ptV3TIHutmV5J"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <0a664d16-22e7-6061-db0e-9669ab40af73@linaro.org>
-User-Agent: NeoMutt/20180716
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20230714101018.10617-1-diogo.ivo@tecnico.ulisboa.pt>
+User-Agent: Mutt/2.2.10 (2023-03-25)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23-07-05, Krzysztof Kozlowski wrote:
-> On 04/07/2023 20:41, Marco Felsch wrote:
-> > Add support for the Debix SOM A + SOM A I/O board. The commit enables
-> > only the basic features like:
-> >  - 2x UART
-> >  - 2x Network
-> >  - eMMC/µSD
-> >  - CAN
-> >  - QSPI
-> 
-> ...
-> 
-> > +&i2c1 {
-> > +	clock-frequency = <400000>;
-> > +	pinctrl-names = "default";
-> > +	pinctrl-0 = <&pinctrl_i2c1>;
-> > +	status = "okay";
-> > +
-> > +	pmic@25 {
-> > +		compatible = "nxp,pca9450c";
-> > +		reg = <0x25>;
-> > +		pinctrl-names = "default";
-> > +		pinctrl-0 = <&pinctrl_pmic>;
-> > +
-> > +		interrupt-parent = <&gpio1>;
-> > +		interrupts = <3 GPIO_ACTIVE_LOW>;
-> 
-> Wrong flag.
 
-Sure, I will fix this. Thanks.
+--Gu3ptV3TIHutmV5J
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Regards,
-  Marco
+On Fri, Jul 14, 2023 at 11:10:17AM +0100, Diogo Ivo wrote:
+> After commit 71de0a054d0e ("arm64: tegra: Drop serial clock-names and
+> reset-names") was applied, the HSUART failed to probe and the following
+> error is seen:
+>=20
+>  serial-tegra 70006300.serial: Couldn't get the reset
+>  serial-tegra: probe of 70006300.serial failed with error -2
+>=20
+> Commit 71de0a054d0e ("arm64: tegra: Drop serial clock-names and
+> reset-names") is correct because the "reset-names" property is not
+> needed for 8250 UARTs. However, the "reset-names" is required for the
+> HSUART and should have been populated as part of commit a63c0cd83720c
+> ("arm64: dts: tegra: smaug: Add Bluetooth node") that enabled the HSUART
+> for the Pixel C. Fix this by populating the "reset-names" property for
+> the HSUART on the Pixel C.
+>=20
+> Fixes: a63c0cd83720 ("arm64: dts: tegra: smaug: Add Bluetooth node")
+> Signed-off-by: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
+> ---
+>  arch/arm64/boot/dts/nvidia/tegra210-smaug.dts | 1 +
+>  1 file changed, 1 insertion(+)
+>=20
+> diff --git a/arch/arm64/boot/dts/nvidia/tegra210-smaug.dts b/arch/arm64/b=
+oot/dts/nvidia/tegra210-smaug.dts
+> index 2c608d645642..bcb533cc002c 100644
+> --- a/arch/arm64/boot/dts/nvidia/tegra210-smaug.dts
+> +++ b/arch/arm64/boot/dts/nvidia/tegra210-smaug.dts
+> @@ -1364,6 +1364,7 @@ serial@70006000 {
+> =20
+>  	uartd: serial@70006300 {
+>  		compatible =3D "nvidia,tegra30-hsuart";
+> +		reset-names =3D "serial";
+>  		status =3D "okay";
+> =20
+>  		bluetooth {
+
+FWIW, we need to do this for a whole bunch of devices. I've got a local
+patch for all the cases that allows schema validation. I'll pull in your
+patch and then rebase mine on top and send it out.
+
+Thanks,
+Thierry
+
+--Gu3ptV3TIHutmV5J
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmSxXoMACgkQ3SOs138+
+s6H/PRAApwqB0Fcc1rUEw82k4uiqOP6c92Vaz0JWj9oLmYmb7gq4qf5ci1rM7B71
+jHDlzPqOk8s7I5M9ZV679M5FSgRscUlIkrh98mtZ3XGG5d4EZj29g7wTHHy5+Lki
+GYnUUFnpkqhRhzA75ZKgvcSlxguf52U/Ki1NMZ/Y76f0fp5YMOv5FKsYgbViOI8n
+HS46C78AGnCi2wsVK5Ygj1+aK8DiRFFED07ehJ+dTuq+gMpc7CmJJ9G0G+0vvxWC
+ukhTOTlerZPnzw95hNgilE13DQ3+OWMQMEsXWlfdX2riiA6NqrYmZ1dCkuULNY6o
+fXkIoVL8l3FAsuapLBUcjxcKQiXIY4fvfwhQoLaGAIYZ7GhMo2PRWg2iYFMZ3001
+4MyxpoT7usVR8CEVCfYbTtL1UaQUAj6g7Y/zKFkhwbJVwkK4MqQTeNNGscV9ruQ7
+gKT7KFPpT/OCRUiBvH4K5+Uuthis71vY+YlpnxJMUTVC68cgv+0FEiVhWrMsVbIr
+3fi4qUoNsZzFa4rHNh+std224mZJf6Rt2ehcjP/ePI6lbGYErn8em9dQXUp9FnOG
+c17KOKsFJutboOywTAXrGBQJdRr4pEnPH+GYPk1cVd8CXEeBlLxofNjkj7QjykAQ
+9EJcVQs3rjTUHHBlayPakMoFJ1BdKKcSk0M3QnsxYNoP7zugaJE=
+=rdgP
+-----END PGP SIGNATURE-----
+
+--Gu3ptV3TIHutmV5J--
