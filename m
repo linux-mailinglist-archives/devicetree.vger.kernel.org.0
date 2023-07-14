@@ -2,137 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B33A75373F
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jul 2023 11:59:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 57055753746
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jul 2023 12:00:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235404AbjGNJ7q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jul 2023 05:59:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47504 "EHLO
+        id S232239AbjGNKAF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jul 2023 06:00:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47698 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234881AbjGNJ7p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jul 2023 05:59:45 -0400
-Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com [IPv6:2607:f8b0:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C328E211E;
-        Fri, 14 Jul 2023 02:59:43 -0700 (PDT)
-Received: by mail-pl1-x636.google.com with SMTP id d9443c01a7336-1b852785a65so11004165ad.0;
-        Fri, 14 Jul 2023 02:59:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1689328783; x=1691920783;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=vShZQMcarPkzUmWVXK6Ziq55LsnSbqaxjxY6sf8cpZQ=;
-        b=K4QzBf7A6YFEWHUA6ixpR5W1HoUYkbJ4J1W17P4+oIwAt4hv00eR5M3A3DYwAiyYjl
-         Cjhii1S2FLEqAefU1CBl2X9rFNItYL/fGQlJMxPXKPyUGG4FDXri1Ih33KHD/9hn/lMN
-         NQ0G9M7ye3B4cQl1ZvnapuP2jXPAHTKFlVrBt23TKLyNNc7zAp1PHl7yViwtSvzO0bqV
-         liXLvZ3vVOMKUviDUwGEALJnSnSmTuxXNrUATYeEnDbMAiHwPUvuzG43gGffELywmCcf
-         jM7gPAux+Gc5dhxfbdaHdPyoX6/L4dCz+Kxd4eSHxIoem3MZU0hK60IE1u6b6YMy7vw2
-         L/Fg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689328783; x=1691920783;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=vShZQMcarPkzUmWVXK6Ziq55LsnSbqaxjxY6sf8cpZQ=;
-        b=XldzDDrr4CkKSAT2cNl+Umw9pKrYOMV6pTANsp0fzuQEcJbraD5zTUSvF2h3Mc4Y0b
-         pDMTNLHySh+eFteNHOZriopV5ObS9drBSTTJuTAB2ClC/mK04nI+aRWne1hGoEgA3e0I
-         SaUTHfQ8EzZTjupeN24qV9EgYSBZpciKWueXtQvxKQxrCru2CZgyf+Ke1SGPXqcax99c
-         RsgK1kLS9RghdehPCsYp4g/46eBUHWSSHPQd6UulWCeOCWSL+Wtn4dtHTrbKir4Alrkt
-         lP+pjAXqiEtKnP9WFSGHIiTwKx9IQ8tCRQdFmiGNkREpotZpbc+zfdZ6aJMIIDQFvtVm
-         WOgw==
-X-Gm-Message-State: ABy/qLbu87vwBhWz6nrcpPirWkr7y///AC7NYNMUGmdvJkO4qEPUo2Fm
-        BfogrxC6rQg5MO8WagpSNhk=
-X-Google-Smtp-Source: APBJJlHHDmGNSykHBKxMZGwxSLLnEVvuoPUPo9OdWpoStDfN/OVYQwEXP4FINTJblZuIsfG93KAeHQ==
-X-Received: by 2002:a17:902:f2d4:b0:1b8:a39e:ff4b with SMTP id h20-20020a170902f2d400b001b8a39eff4bmr1847417plc.32.1689328782949;
-        Fri, 14 Jul 2023 02:59:42 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id c1-20020a170902848100b001b801044466sm7400745plo.114.2023.07.14.02.59.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 14 Jul 2023 02:59:42 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <0ba3767c-d481-6e2c-2d32-b79af0e1efd8@roeck-us.net>
-Date:   Fri, 14 Jul 2023 02:59:40 -0700
+        with ESMTP id S232713AbjGNKAE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jul 2023 06:00:04 -0400
+Received: from mail11.truemail.it (mail11.truemail.it [IPv6:2001:4b7e:0:8::81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A55FB1BD4;
+        Fri, 14 Jul 2023 02:59:58 -0700 (PDT)
+Received: from francesco-nb.int.toradex.com (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
+        by mail11.truemail.it (Postfix) with ESMTPA id D964B209BD;
+        Fri, 14 Jul 2023 11:59:51 +0200 (CEST)
+Date:   Fri, 14 Jul 2023 11:59:47 +0200
+From:   Francesco Dolcini <francesco@dolcini.it>
+To:     Marc Kleine-Budde <mkl@pengutronix.de>
+Cc:     Judith Mendez <jm@ti.com>,
+        Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, linux-can@vger.kernel.org,
+        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Schuyler Patton <spatton@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org,
+        Oliver Hartkopp <socketcan@hartkopp.net>,
+        Simon Horman <simon.horman@corigine.com>
+Subject: Re: [PATCH v10 0/2] Enable multiple MCAN on AM62x
+Message-ID: <ZLEckxW0oLklkMtn@francesco-nb.int.toradex.com>
+References: <20230707204714.62964-1-jm@ti.com>
+ <20230710-overheat-ruined-12d17707e324-mkl@pengutronix.de>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [v6 2/4] dt-bindings: hwmon: Add ASPEED TACH Control
- documentation
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        =?UTF-8?B?6JSh5om/6YGU?= <billyking19920205@gmail.com>,
-        "jdelvare@suse.com" <jdelvare@suse.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "joel@jms.id.au" <joel@jms.id.au>,
-        "andrew@aj.id.au" <andrew@aj.id.au>,
-        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
-        "u.kleine-koenig@pengutronix.de" <u.kleine-koenig@pengutronix.de>,
-        "corbet@lwn.net" <corbet@lwn.net>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
-        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
-        "patrick@stwcx.xyz" <patrick@stwcx.xyz>,
-        Billy Tsai <billy_tsai@aspeedtech.com>
-References: <CAGUgbhCqOJaEPjS96o2au21uW4NhqFScm4Ayd8PzOQvqxQ94SQ@mail.gmail.com>
- <0b9dd5cf-f4ca-2e6b-624d-0b451bbc2f30@linaro.org>
-From:   Guenter Roeck <linux@roeck-us.net>
-In-Reply-To: <0b9dd5cf-f4ca-2e6b-624d-0b451bbc2f30@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230710-overheat-ruined-12d17707e324-mkl@pengutronix.de>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 7/14/23 00:13, Krzysztof Kozlowski wrote:
-> On 14/07/2023 09:04, 蔡承達 wrote:
-> 
->>          > This is because our register layout for PWM and Tach is not
->> continuous.
->>
->>          > PWM0 used 0x0 0x4, Tach0 used 0x8 0xc
->>
->>          > PWM1 used 0x10 0x14, Tach1 used 0x18 0x1c
->>
->>          > ...
->>
->>          > Each PWM/Tach instance has its own controller register and is not
->> dependent on others.
-> 
-> Your email reply quoting style is very difficult to read.
-> 
->>
->>
->>
->> Hi Guenter,
->>
->>
->>
->> Did you receive a response to my previous email?
->>
->> I would like to inquire if you have any further concerns regarding the PWM
->> and Tach with 16 instances.
-> 
-> But isn't like this in all PWMs in all SoCs?
-> 
+Hello Mark,
 
-Correct, pretty much every fan controller is implemented that way.
-I don't understand the logic.
+On Mon, Jul 10, 2023 at 11:57:51AM +0200, Marc Kleine-Budde wrote:
+> On 07.07.2023 15:47:12, Judith Mendez wrote:
+> > On AM62x there are two MCANs in MCU domain. The MCANs in MCU domain
+> > were not enabled since there is no hardware interrupt routed to A53
+> > GIC interrupt controller. Therefore A53 Linux cannot be interrupted
+> > by MCU MCANs.
+...
 
-Guenter
+> Applied to linux-can-next/testing.
 
+Did you forgot to push your changes out? Nothing here
+git.kernel.org/pub/scm/linux/kernel/git/mkl/linux-can-next.git
+
+Francesco
 
