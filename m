@@ -2,81 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 82C087542CD
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jul 2023 20:50:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BBE3D7542D4
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jul 2023 20:51:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235999AbjGNSt7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jul 2023 14:49:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53992 "EHLO
+        id S235804AbjGNSve (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jul 2023 14:51:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54810 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236091AbjGNSt4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jul 2023 14:49:56 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35F0E2D6B;
-        Fri, 14 Jul 2023 11:49:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=jdawOEEHyRUT7F57ZiuPLdAc3zWki3KVkFdsKJ+iCp0=; b=3OB7ozN7Bi7W1GClBi9FNObJ1b
-        3R3hCiaACaJAKSBr30C0ShpVIzJcIHDy4xnxGn3GLFYXLJ8pLDHnHTBdE4A1JG8ddQytsoId3KsE0
-        fKvTUMvmeQy6gBdcUYkIxY/yZmQ9tT9qiTZfnc+8/JiKOXVw8wyZgyaDAE2xrWlkv/hg=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1qKNrR-001NkM-TZ; Fri, 14 Jul 2023 20:49:49 +0200
-Date:   Fri, 14 Jul 2023 20:49:49 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Samin Guo <samin.guo@starfivetech.com>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        netdev@vger.kernel.org, Peter Geis <pgwipeout@gmail.com>,
-        Frank <Frank.Sae@motor-comm.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Conor Dooley <conor@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Yanhong Wang <yanhong.wang@starfivetech.com>
-Subject: Re: [PATCH v4 2/2] net: phy: motorcomm: Add pad drive strength cfg
- support
-Message-ID: <55cd8a47-89e5-4f62-8162-c744e1a99ad5@lunn.ch>
-References: <20230714101406.17686-1-samin.guo@starfivetech.com>
- <20230714101406.17686-3-samin.guo@starfivetech.com>
+        with ESMTP id S230149AbjGNSvd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jul 2023 14:51:33 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB0B62D6B;
+        Fri, 14 Jul 2023 11:51:32 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 6642A61CEA;
+        Fri, 14 Jul 2023 18:51:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BC148C433C7;
+        Fri, 14 Jul 2023 18:51:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1689360691;
+        bh=75P5bsMunT6wijRx+XHlIke36CUI4vRQg315QeNciy8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Bx45JmWpw3YldzFhH5s6ix/Rdr46B/eBj7iAH367RmnbohY7JRDobL8hUeX0QE1KN
+         KNP8spldtJRSz8iF7X2sx3IpZXAtOuMwpXe6cmm0R8FTLs99BcFRtDiu4a1dMwzzLo
+         0wwTu1ijAw70sv/lB3BPPty4yS+6fWjN9lQWKZ8OH7+sVQBwRhS5spTQqbBqXVWM0B
+         0jNrwkOGIRmXsfODczggwzths92xZqqUHA7a923G0fvVHcC1fBJZdTcpW4CgmnZn07
+         bT8F4SfYnJFfPOSUdOZ8xVJYOmPs59277wdk6MPsw4y1bk5rozKtOBx25BjfthBx6e
+         NKlSMBMPJCc3Q==
+Date:   Fri, 14 Jul 2023 19:51:27 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Daire McNamara <daire.mcnamara@microchip.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+Subject: Re: [PATCH] soc: microchip: Explicitly include correct DT includes
+Message-ID: <20230714-handcart-batting-e805e7567231@spud>
+References: <20230714175139.4067685-1-robh@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="jizOvC+TdPQbkhjW"
 Content-Disposition: inline
-In-Reply-To: <20230714101406.17686-3-samin.guo@starfivetech.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230714175139.4067685-1-robh@kernel.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> +static u32 yt8531_get_ds_map(struct phy_device *phydev, u32 cur)
-> +{
-> +	u32 vol;
-> +	int i;
-> +
-> +	vol = yt8531_get_ldo_vol(phydev);
-> +	for (i = 0; i < ARRAY_SIZE(yt8531_ldo_vol); i++) {
-> +		if (yt8531_ldo_vol[i].vol == vol && yt8531_ldo_vol[i].cur == cur)
-> +			return yt8531_ldo_vol[i].ds;
-> +	}
-> +
-> +	phydev_warn(phydev,
-> +		    "No matching current value was found %d, Use default value.\n", cur);
-> +
-> +	return YT8531_RGMII_RX_DS_DEFAULT;
 
-If there is a value in DT and it is invalid, return -EINVAL and fail
-the probe. Only use the default if there is no value in DT.
+--jizOvC+TdPQbkhjW
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-    Andrew
+On Fri, Jul 14, 2023 at 11:51:38AM -0600, Rob Herring wrote:
+> The DT of_device.h and of_platform.h date back to the separate
+> of_platform_bus_type before it as merged into the regular platform bus.
+> As part of that merge prepping Arm DT support 13 years ago, they
+> "temporarily" include each other. They also include platform_device.h
+> and of.h. As a result, there's a pretty much random mix of those include
+> files used throughout the tree. In order to detangle these headers and
+> replace the implicit includes with struct declarations, users need to
+> explicitly include the correct includes.
+>=20
+> Signed-off-by: Rob Herring <robh@kernel.org>
+
+Hmm, usually these go to different places. I'll push them both to the
+at91 repo.
+
+> ---
+>  drivers/soc/atmel/sfr.c                     | 1 -
+>  drivers/soc/microchip/mpfs-sys-controller.c | 2 +-
+>  2 files changed, 1 insertion(+), 2 deletions(-)
+>=20
+> diff --git a/drivers/soc/atmel/sfr.c b/drivers/soc/atmel/sfr.c
+> index 0525eef49d1a..cc94ca1b494c 100644
+> --- a/drivers/soc/atmel/sfr.c
+> +++ b/drivers/soc/atmel/sfr.c
+> @@ -10,7 +10,6 @@
+>  #include <linux/nvmem-provider.h>
+>  #include <linux/random.h>
+>  #include <linux/of.h>
+> -#include <linux/of_device.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/regmap.h>
+> =20
+> diff --git a/drivers/soc/microchip/mpfs-sys-controller.c b/drivers/soc/mi=
+crochip/mpfs-sys-controller.c
+> index 216d9f4ea0ce..fbcd5fd24d7c 100644
+> --- a/drivers/soc/microchip/mpfs-sys-controller.c
+> +++ b/drivers/soc/microchip/mpfs-sys-controller.c
+> @@ -13,7 +13,7 @@
+>  #include <linux/module.h>
+>  #include <linux/jiffies.h>
+>  #include <linux/interrupt.h>
+> -#include <linux/of_platform.h>
+> +#include <linux/of.h>
+>  #include <linux/mailbox_client.h>
+>  #include <linux/platform_device.h>
+>  #include <soc/microchip/mpfs.h>
+> --=20
+> 2.40.1
+>=20
+>=20
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
+
+--jizOvC+TdPQbkhjW
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZLGZLwAKCRB4tDGHoIJi
+0jrYAQDw7C52D/rlhw9ADfh3Tidha+PsWlRE8UAzBK5ZyW8ZfAD+M+zjTm+uTux4
+jG/xdu1L8A0cXPKX4J+cAJDgImqV5Aw=
+=jETL
+-----END PGP SIGNATURE-----
+
+--jizOvC+TdPQbkhjW--
