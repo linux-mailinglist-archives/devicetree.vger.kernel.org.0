@@ -2,267 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B8203753E1E
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jul 2023 16:53:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 86587753D86
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jul 2023 16:33:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235911AbjGNOxf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jul 2023 10:53:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59104 "EHLO
+        id S235996AbjGNOdx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jul 2023 10:33:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47202 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236077AbjGNOxd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jul 2023 10:53:33 -0400
-X-Greylist: delayed 1604 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 14 Jul 2023 07:53:32 PDT
-Received: from mx08-00376f01.pphosted.com (mx08-00376f01.pphosted.com [91.207.212.86])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 264E126A5;
-        Fri, 14 Jul 2023 07:53:31 -0700 (PDT)
-Received: from pps.filterd (m0168888.ppops.net [127.0.0.1])
-        by mx08-00376f01.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 36EBtqSa022399;
-        Fri, 14 Jul 2023 15:25:39 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=imgtec.com; h=
-        from:to:cc:subject:date:message-id:content-transfer-encoding
-        :content-type:mime-version; s=dk201812; bh=lJF9YwzBSbKwzuwNVB9O/
-        3JaF/reeNNDtpItKVJUM9M=; b=AF7FLPxzTWKokhvzVYCCvqwegF+SVqO9ftfhI
-        wVR7eDn+2FxDs8zyT16uXvcEdIe8jdrI6MwlPUBjIMKuX+S0TKL0DInHrKVZN3Fj
-        j2IpAmbarWzw3IsgCKQn/d5EAJXJ7GwVAj+iL3E1zE+axwdHMqZr9+WPFf3+nP6J
-        EcFkYV/UomoZrgzPHg+UYoSiXpJOr89kHgOwp6iIgFSuzS+vPKy/71iOBJDQmfQS
-        XCtgi3m+U8pgSGmsVfbz7trtJS96uNiteLw8KjllpMjUPaMntPV6nePjLbr7VZsA
-        8q7c7TYzzHV0fhE34wLcCXdA4WBFD74/O2vDn7NXBd+zzz0Sw==
-Received: from hhmail05.hh.imgtec.org ([217.156.249.195])
-        by mx08-00376f01.pphosted.com (PPS) with ESMTPS id 3rtpu80m4r-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
-        Fri, 14 Jul 2023 15:25:38 +0100 (BST)
-Received: from HHMAIL05.hh.imgtec.org (10.100.10.120) by
- HHMAIL05.hh.imgtec.org (10.100.10.120) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Fri, 14 Jul 2023 15:25:38 +0100
-Received: from GBR01-LO2-obe.outbound.protection.outlook.com (104.47.21.55) by
- email.imgtec.com (10.100.10.121) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27 via Frontend
- Transport; Fri, 14 Jul 2023 15:25:37 +0100
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=kmB689WxLM1xxpTYqVMvzs47PnLyu/DeADmsOtmZD9A8c2QtR0T0Et0whUw7NQr/ScqZbou9PSkZC7evhdfDTvt5FqEoDU2fpYFbOpU21ziDqovonc4yy4oNQjh1vneKzmBU5uQ0TP1Yjab7zECsqLnPYom49Vu4duU7yL//RVcYTybZP6GmQUhe87NeZtHQLJdjS3Kx5JX4URhawVFbf+Xm01VngvMckIWGf6AmZvliAWpsG/OdzaCcNVp2ZQY4l6CVaEquCzyh4b5yqKl3ZYHjnrOtNdlVieb+KrYV6MZ84XatsSW9Zpwbe/9k6QWbaiRBnAJQ8anbGIDdalDUfA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=lJF9YwzBSbKwzuwNVB9O/3JaF/reeNNDtpItKVJUM9M=;
- b=VcDHQsqWA/lWBms3qUWb0zSaQ0GJ1gni8J7kR8YO+IsgVaxu7fMi4iCaJj2qJ4sQJykMNdNqpk6rJa1axyeqNOlwv3Rc/CKH+jcJvp9XiW/+yjJEm+5VYnDDBUAp2QCMQzowskOFuAIv3n16W3NzMk/adE5Ou8D5idpPGa9YF4y138KRFP5e9cbp5Mho3YyOdLRBAJUqpNvGEMbwzD5coXZSRGGibwICw9OjA9DicZTe7KY6L8Vf6NBBBW4c+HoVo7KI0aCT9u0/igTxcGnOXaiyXXiMe3fkPNFNoph1bdF0IW8rJuJquf5lpHmtWYCHrnGK1sgM+2J0+xOHTemfBQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=imgtec.com; dmarc=pass action=none header.from=imgtec.com;
- dkim=pass header.d=imgtec.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=IMGTecCRM.onmicrosoft.com; s=selector2-IMGTecCRM-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=lJF9YwzBSbKwzuwNVB9O/3JaF/reeNNDtpItKVJUM9M=;
- b=Tb7fovW8cU38Ldjw1b3LcB1ledItzhsBFosP5dyJS57TnHIMr28J18KJGMXRHQbyJEyRW7DnWaMcE8rRfmvBX5M1DJwClpReucRrgBRKhH+zbAFAeO7K0MKoS+TImGif0m4BgNchyjjqMP+ww6yGuyRlgec06ZFRK7tIkS35QIE=
-Received: from CWLP265MB4817.GBRP265.PROD.OUTLOOK.COM (2603:10a6:400:170::9)
- by LOYP265MB2077.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:11f::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6588.27; Fri, 14 Jul
- 2023 14:25:37 +0000
-Received: from CWLP265MB4817.GBRP265.PROD.OUTLOOK.COM
- ([fe80::f042:5122:eb28:4131]) by CWLP265MB4817.GBRP265.PROD.OUTLOOK.COM
- ([fe80::f042:5122:eb28:4131%5]) with mapi id 15.20.6588.027; Fri, 14 Jul 2023
- 14:25:37 +0000
-From:   Sarah Walker <sarah.walker@imgtec.com>
-To:     <dri-devel@lists.freedesktop.org>
-CC:     <frank.binns@imgtec.com>, <donald.robson@imgtec.com>,
-        <boris.brezillon@collabora.com>, <faith.ekstrand@collabora.com>,
-        <airlied@gmail.com>, <daniel@ffwll.ch>,
-        <maarten.lankhorst@linux.intel.com>, <mripard@kernel.org>,
-        <tzimmermann@suse.de>, <afd@ti.com>, <hns@goldelico.com>,
-        <matthew.brost@intel.com>, <christian.koenig@amd.com>,
-        <luben.tuikov@amd.com>, <dakr@redhat.com>,
-        <linux-kernel@vger.kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <devicetree@vger.kernel.org>
-Subject: [PATCH v4 02/17] dt-bindings: gpu: Add Imagination Technologies PowerVR GPU
-Date:   Fri, 14 Jul 2023 15:25:26 +0100
-Message-Id: <20230714142526.111569-1-sarah.walker@imgtec.com>
-X-Mailer: git-send-email 2.25.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: LO2P265CA0453.GBRP265.PROD.OUTLOOK.COM
- (2603:10a6:600:e::33) To CWLP265MB4817.GBRP265.PROD.OUTLOOK.COM
- (2603:10a6:400:170::9)
+        with ESMTP id S235984AbjGNOdw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jul 2023 10:33:52 -0400
+Received: from mail-il1-f174.google.com (mail-il1-f174.google.com [209.85.166.174])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFEA33A96;
+        Fri, 14 Jul 2023 07:33:13 -0700 (PDT)
+Received: by mail-il1-f174.google.com with SMTP id e9e14a558f8ab-345f3e28082so8384585ab.1;
+        Fri, 14 Jul 2023 07:33:13 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689345184; x=1691937184;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=zf90yCWC/Qqdnr0SRBoZ5jMgO+4zIAgRXZgbEEN5z0k=;
+        b=AVt2GpDIyyWMXCHhEjYAdwxsWyD+VGJo7BJIoOFAoel7UuXvpGsMqRO4qVFOVrIR6p
+         H8Q7YZ0R5/V8NVkoD0FTF+DT+S7KgoI0/Y3HzI8MD+JVxuG3WAAChOBFIfs3elh5s269
+         6LfR2rjifSaG4c1zkwYh6EUdO7fRJWaMjpMG811m6LfsTdbWqu5oEh+ye1brsvo0PHIV
+         rci/IglimmLalam1/bzBLhKEuFSJaQJKyBmq86j8dP2MxKcn67siXzJSMprC924ZFb8d
+         1tJcx0auK1QYN7fj+/uKJZApCDWc8KTFXRdXHDcnetI92fi9wzsxUj6cE0R1yGcEZDtu
+         FrXA==
+X-Gm-Message-State: ABy/qLZWH6xKUzzN3kI34HdbaMzb9Bk22AUVlJ8Sq0XIcDx0NrywcLO4
+        cm4vUL054ivGJE/nwyt96g==
+X-Google-Smtp-Source: APBJJlG+Si+Ds9hRccCS0//Wm2Kl1639AFJzVjLprZtZCtSIorBGRW0ShYQ8I+sjmJMhcxfg1FSiJQ==
+X-Received: by 2002:a92:1a52:0:b0:345:775f:1a2f with SMTP id z18-20020a921a52000000b00345775f1a2fmr4681914ill.14.1689345183884;
+        Fri, 14 Jul 2023 07:33:03 -0700 (PDT)
+Received: from robh_at_kernel.org ([64.188.179.250])
+        by smtp.gmail.com with ESMTPSA id f17-20020a056e0204d100b00345de23f6b6sm2759553ils.6.2023.07.14.07.33.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 14 Jul 2023 07:33:03 -0700 (PDT)
+Received: (nullmailer pid 3488768 invoked by uid 1000);
+        Fri, 14 Jul 2023 14:33:00 -0000
+Date:   Fri, 14 Jul 2023 08:33:00 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Stanley Chang <stanley_chang@realtek.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Ray Chi <raychi@google.com>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Roy Luo <royluo@google.com>, Vinod Koul <vkoul@kernel.org>,
+        Flavio Suligoi <f.suligoi@asem.it>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Alan Stern <stern@rowland.harvard.edu>,
+        linux-phy@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>,
+        linux-kernel@vger.kernel.org,
+        Kishon Vijay Abraham I <kishon@kernel.org>
+Subject: Re: [PATCH v7 4/5] dt-bindings: phy: realtek: Add Realtek DHC RTD
+ SoC USB 2.0 PHY
+Message-ID: <168934517988.3488706.6095305078054455561.robh@kernel.org>
+References: <20230707064725.25291-1-stanley_chang@realtek.com>
+ <20230707064725.25291-4-stanley_chang@realtek.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CWLP265MB4817:EE_|LOYP265MB2077:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3622dca5-bb47-4291-4cc0-08db84763126
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 1YZ3kQw5xMxm1T8I8yGtOeou3PyXJdHp3Dslxte1+eNHMcS6lGeroZ5+XubopJRp7UIWGnd8yT7VqjYFW/nGPF5o0bW+kM+WyUTe+/9gloI+LsCE1omXpn7w9rkHweq4o0K1K1dTvkk7u8m8ukV3HHkJD3Yis/D9y0J1dDLjgYNI3gWEu2eRMqWmyL3VnFINVofoI6kAsi/TlwZV7L4sj0265yV7B8pZofPVdWH4aLF/+Lqz6iKCdbiX0KCyh5gYTkyedOOureY3krJrD2CYX5u85e1ivPHx4rH+gSyinfV4SOOiXi7lrdbwonKKkprsAb+81IoMUyBupBCPOrwRxH9UtLaEKRUS79eLsgWgdBsmhqBzl7zyMa1bgw72MzohSa+MVltobtwNjx31QXm/7+i6Y0d+9dDZY3LCyED94Y/PDEbpSKemKVpOKXZ+b6mFgwL6AKi8kQl1W4JqIvxUuvd6ZOteJII3f/RsdmhKAmpMpLq2vtz/PLHuqwtYHsI9FKyzlw74N0pnf/igOXwcwnzxbfnk2bTMs9Lg/PMA6nUFh4vvQ7kgh7rcYzlXlB4lMIbwfT7HpAkHOJUC76Wg870Sn/HUCzMSpsh9XTbrAZM=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CWLP265MB4817.GBRP265.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230028)(346002)(136003)(366004)(376002)(396003)(39850400004)(451199021)(41300700001)(44832011)(66476007)(7416002)(4326008)(66946007)(66556008)(6916009)(478600001)(5660300002)(2906002)(316002)(8936002)(8676002)(6666004)(6486002)(52116002)(966005)(6512007)(86362001)(1076003)(26005)(6506007)(186003)(83380400001)(36756003)(38350700002)(2616005)(38100700002);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?P+48hmJ7FMr9tUCHqcpMY2+r/9GkvPurnsOlTmpONZuceeTvvM13UwOmeAzi?=
- =?us-ascii?Q?7R57nzSf1cLZGnwcTde2CmrwcfV03bW5sCINTyEc+qpG491ZSWJTFswTGj1K?=
- =?us-ascii?Q?irOW9e1ICCtwc4Lz05Tifshts1LPuhFo1rqG6+yzQcw/rZJM6hH8/hT1pVjU?=
- =?us-ascii?Q?bKM+cpetbKUMp1y8TRfjEp6qGzwfVg4DQKfJTKM4/WYHyJ9FLf0PVVekLgEv?=
- =?us-ascii?Q?PnC2Ot0GkdVLVhM3DnlV+GQUha1U5b1w/uPhgg48cxAKgA/SrUf9rxw2yb3t?=
- =?us-ascii?Q?C+t3cX0CVzAEQSCTjhath1otfh5NsP9GGC36UkOnis6XyWmBRDRwyte2ryg1?=
- =?us-ascii?Q?nSbAcDW5sgwXF792hjkUXhrfYaQAHuWHse1BvTWP2y3TAvbZ26css8/wC9q3?=
- =?us-ascii?Q?2IHC9j2i1g6EWbs2IkTMyhHYHXodePQMzWrSdhhB4KjLFH8lIHvYoYnmhk3e?=
- =?us-ascii?Q?JV0UgOexdQtiR9dhJSxunAoVBcOkn6KCRrBuK4zCJSefSzCt/ZPOpkHl1Vrk?=
- =?us-ascii?Q?zNqFXPD/SqkQ02hFt+s+gU4RHUVFJi3r3QBP+VEhSoOcpv4A1mV695e0cm87?=
- =?us-ascii?Q?mqFtqhH4pmS7TFeis4hUKMO+PEBim1L5GbQeCcHNe5syUk/2XZp2alK3m94Y?=
- =?us-ascii?Q?R9VEU40FsKA6nHe6VT/NNt/eQ4eBtmau8lpxMHqZBzvPEHq2nLxhKau/kaqL?=
- =?us-ascii?Q?/JOUKP+0FFYftcRA2iErY59A5nM0GclC7YadGhympBP7WSZDu0w1wFPpFqbs?=
- =?us-ascii?Q?Q8gJa8Htyrltc3tWgmUJZ2r25cZtuZ5N2HviZaPUCJcngqx80yOop4gJa4XU?=
- =?us-ascii?Q?hBGg6Sj16CMGZuXOBK26ELg9NQE+m6M3FZH7TDizGZYzwYPzzKdlXLl7cdXZ?=
- =?us-ascii?Q?kmyApdpahE0OxzFXxdOIVPfWyow67yo5V8QlS5Xeu1SozpyDiulbxMw+88wq?=
- =?us-ascii?Q?2bplv2+QawwW0hRIGeTWj0xQiQL3zIIC7BK6kJsoVoYtt/g/Q51HBxTdIT/j?=
- =?us-ascii?Q?3ez6UsAU2vB1j0wUySoOw1WGTp8otfC7z+3OeOx1x+6NU2RqqyvJhxCY5Vvs?=
- =?us-ascii?Q?zydyWZfYzrVAp2XusniELwJD9x0eTmhBILHV7yNByv1XG80/feXSXHPEAcx+?=
- =?us-ascii?Q?dPq1KJFu7kKhVBmRewmHEm6aQD4Ql1X+8suNVF+CuIlL47PqO8BWEOoew8tx?=
- =?us-ascii?Q?AobDkpppR//aSRpmVlCbXYNDukmHvJRNuYYhqTrQOimSblF9HpCDGZQ7+5K2?=
- =?us-ascii?Q?LxvM5jV7nAsofD+LutGVdhQYeFNZYlW6NUU9RZKsciSQPp6TJwRPagqYZmMF?=
- =?us-ascii?Q?uaz+/bP/BcGHRQNkcMiCdQNxPhShugckvKIZfygJQ1v9WEKshHoyCfOqmSdJ?=
- =?us-ascii?Q?ysiz8iyusj+2rKmpp0AAoGZ9RfneMsQVedr/155r6+TIp7XMwho+JSTTQIo8?=
- =?us-ascii?Q?drLQP9jhw0gLNXJenqqBjdv1TGflAOu2B71cpfCTMkXiQ+7LdZKsr70tr3dE?=
- =?us-ascii?Q?3z8jFYfD2sjW0Edt/PnzIl6j3Y9N7+Pmd4lrHZpeLcOvrwsJp/nB3vkZOgLp?=
- =?us-ascii?Q?QLG+b284SlIvDd91tPT5y1BqfcwHlumFEksF0PKGXlruyzXi3rU9x48j+LuC?=
- =?us-ascii?Q?9w=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3622dca5-bb47-4291-4cc0-08db84763126
-X-MS-Exchange-CrossTenant-AuthSource: CWLP265MB4817.GBRP265.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Jul 2023 14:25:36.9943
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 0d5fd8bb-e8c2-4e0a-8dd5-2c264f7140fe
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Z+7xIHIMtAIxqulwcUdImp3nlR3ZTgXSgUzdGoYNJujX76cj3j6U8uhA4WaKSzVyo4RKv9qn8BkL+PMYuJqvIg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LOYP265MB2077
-X-OriginatorOrg: imgtec.com
-X-EXCLAIMER-MD-CONFIG: 15a78312-3e47-46eb-9010-2e54d84a9631
-X-Proofpoint-ORIG-GUID: FP64EOKhokCop1KTsu6mJuCImfC3KIyE
-X-Proofpoint-GUID: FP64EOKhokCop1KTsu6mJuCImfC3KIyE
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230707064725.25291-4-stanley_chang@realtek.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the device tree binding documentation for the Series AXE GPU used in
-TI AM62 SoCs.
 
-Changes since v3:
-- Remove oneOf in compatible property
-- Remove power-supply (not used on AM62)
+On Fri, 07 Jul 2023 14:47:03 +0800, Stanley Chang wrote:
+> Document the USB PHY bindings for Realtek SoCs.
+> Realtek DHC (digital home center) RTD SoCs support DWC3 XHCI USB
+> controller and using USB 2.0 PHY transceiver.
+> 
+> Signed-off-by: Stanley Chang <stanley_chang@realtek.com>
+> ---
+> v6 to v7 change:
+>     1. Revise the commit message
+>     2. Change the property name for realtek,driving-level-compensate
+>     3. Add if/then schema for specific properties
+> v5 to v6 change:
+>     Drop the redundant examples
+>     Drop the label of example
+> v4 to v5 change:
+>     1. Add more examples.
+>     2. Remove the compatible realtek,usb2phy.
+>     3. Revise the descriptor of the property.
+>     4. Add the default of the property.
+> v3 to v4 change:
+>     1. Remove the parameter and non hardware properties from dts.
+>     2. Using the compatible data included the config and parameter
+>        in driver.
+> v2 to v3 change:
+>     1. Broken down into two patches, one for each of USB 2 & 3.
+>     2. Add more description about Realtek RTD SoCs architecture.
+>     3. Removed parameter v1 support for simplification.
+>     4. Revised the compatible name for fallback compatible.
+>     5. Remove some properties that can be set in the driver.
+> v1 to v2 change:
+>     Add phy-cells for generic phy driver
+> ---
+>  .../bindings/phy/realtek,usb2phy.yaml         | 175 ++++++++++++++++++
+>  1 file changed, 175 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/phy/realtek,usb2phy.yaml
+> 
 
-Changes since v2:
-- Add commit message description
-- Remove mt8173-gpu support (not currently supported)
-- Drop quotes from $id and $schema
-- Remove reg: minItems
-- Drop _clk suffixes from clock-names
-- Remove operating-points-v2 property and cooling-cells (not currently
-  used)
-- Add additionalProperties: false
-- Remove stray blank line at the end of file
-
-Signed-off-by: Sarah Walker <sarah.walker@imgtec.com>
----
- .../devicetree/bindings/gpu/img,powervr.yaml  | 68 +++++++++++++++++++
- MAINTAINERS                                   |  7 ++
- 2 files changed, 75 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/gpu/img,powervr.yaml
-
-diff --git a/Documentation/devicetree/bindings/gpu/img,powervr.yaml b/Documentation/devicetree/bindings/gpu/img,powervr.yaml
-new file mode 100644
-index 000000000000..3292a0440465
---- /dev/null
-+++ b/Documentation/devicetree/bindings/gpu/img,powervr.yaml
-@@ -0,0 +1,68 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+# Copyright (c) 2022 Imagination Technologies Ltd.
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/gpu/img,powervr.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Imagination Technologies PowerVR GPU
-+
-+maintainers:
-+  - Sarah Walker <sarah.walker@imgtec.com>
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - ti,am62-gpu
-+      - const: img,powervr-seriesaxe
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    minItems: 1
-+    maxItems: 3
-+
-+  clock-names:
-+    items:
-+      - const: core
-+      - const: mem
-+      - const: sys
-+    minItems: 1
-+
-+  interrupts:
-+    items:
-+      - description: GPU interrupt
-+
-+  interrupt-names:
-+    items:
-+      - const: gpu
-+
-+  power-domains:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+  - interrupts
-+  - interrupt-names
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    gpu: gpu@fd00000 {
-+        compatible = "ti,am62-gpu", "img,powervr-seriesaxe";
-+        reg = <0x0fd00000 0x20000>;
-+        power-domains = <&some_pds 187>;
-+        clocks = <&k3_clks 187 0>;
-+        clock-names = "core";
-+        interrupts = <GIC_SPI 86 IRQ_TYPE_LEVEL_HIGH>;
-+        interrupt-names = "gpu";
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 9852d6bfdb95..0763388b31ef 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -10099,6 +10099,13 @@ IMGTEC IR DECODER DRIVER
- S:	Orphan
- F:	drivers/media/rc/img-ir/
- 
-+IMGTEC POWERVR DRM DRIVER
-+M:	Frank Binns <frank.binns@imgtec.com>
-+M:	Sarah Walker <sarah.walker@imgtec.com>
-+M:	Donald Robson <donald.robson@imgtec.com>
-+S:	Supported
-+F:	Documentation/devicetree/bindings/gpu/img,powervr.yaml
-+
- IMON SOUNDGRAPH USB IR RECEIVER
- M:	Sean Young <sean@mess.org>
- L:	linux-media@vger.kernel.org
--- 
-2.41.0
+Reviewed-by: Rob Herring <robh@kernel.org>
 
