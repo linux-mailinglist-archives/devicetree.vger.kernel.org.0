@@ -2,122 +2,340 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E8D0754068
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jul 2023 19:25:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 50F1875406C
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jul 2023 19:26:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235769AbjGNRYu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jul 2023 13:24:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49142 "EHLO
+        id S235883AbjGNR0B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jul 2023 13:26:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50014 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235772AbjGNRYs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jul 2023 13:24:48 -0400
-Received: from mail-io1-f48.google.com (mail-io1-f48.google.com [209.85.166.48])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D56F359F;
-        Fri, 14 Jul 2023 10:24:47 -0700 (PDT)
-Received: by mail-io1-f48.google.com with SMTP id ca18e2360f4ac-78654448524so84110739f.2;
-        Fri, 14 Jul 2023 10:24:47 -0700 (PDT)
+        with ESMTP id S235519AbjGNR0A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jul 2023 13:26:00 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 090B03593;
+        Fri, 14 Jul 2023 10:25:59 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id 2adb3069b0e04-4f4b2bc1565so3647558e87.2;
+        Fri, 14 Jul 2023 10:25:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1689355557; x=1691947557;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=ww5uJ/kx1wfWM4Xur4cXw8tinYasBTMoIjV5PBf4gjU=;
+        b=I0fxvmInW8sNnGe01PIwOZmewXIoHduL/HlegqaiGExAAGi+p3n09de0huGb8EaFKO
+         kCl/bXaNPoL91fvm66qdZ35BrpoRk/1eJLPmGmdzvP4Yu7KwE+OIS/zSy7dAl6V+JirW
+         jSagclYVn7FZQf7iwl3y5lAgsR9nsm3JTStlFd+32uvj1C2uRLGwfDxWvjNwMq1Me2QX
+         jfilnSG2WYOQ2wffuEdhhlYN8zZ31w8VGT7v/Zu8JMcZaujRINyDI86YhZ/C4kADAGFz
+         8+LhuVRJs3IUyIbaEmykfaQr+CJWhcIAtAj+cl0vD8nZVQQeFpz5EGWLxEv+NdF+yL5q
+         FGAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689355487; x=1691947487;
+        d=1e100.net; s=20221208; t=1689355557; x=1691947557;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=38SB8JSzOcrI7IJ42Nd3yrcEKyK7JHRpErlbmfrx1QM=;
-        b=IFHlsFRi5A8Ypk73xX5Y2EU5uoXdG9OSeBoq4Jrsd0ai+NyGLKmlzZh08DABKIfJO2
-         C4HwnPqh8bgSaN17Yp4GbnOKLi6VUO7ml9GX+AzJ61hA8hiQZ9Go1Q70i2zG9WAac1X1
-         UjE2jH8xhfjp/fIQI/BAWfpoGwa5fxpzYB8ZSM/e/0JWMQtOIPNAUTX4MXfic6XJ+Zyf
-         FQcCU72PjX0vkb1+0gHVB/gfvoM4bawe9Al8WGkQi+Gpq8srCKDzU0pZaP91kwSA38Yt
-         EMC1q2smOcUosDHg0w/4AEqSY7AMgULOzPhTSOexZejW63lEYe1ic6Q6GSaQK2xoRvf/
-         ipFg==
-X-Gm-Message-State: ABy/qLafDmh9CnWaiNi7+6MUqiPl58+DqqkrDt5zDbYXTTSxd0GTtBLg
-        Gcfo4X1y/SOfLi1yIX+T0Q==
-X-Google-Smtp-Source: APBJJlHjy7NQb45aTJubpQC/KkFW4I126CzjwcHnZGS3P92nyelRg6dygeLUfW1iOMQHcZqRO1g6jg==
-X-Received: by 2002:a6b:c40a:0:b0:783:344d:6b46 with SMTP id y10-20020a6bc40a000000b00783344d6b46mr5039194ioa.21.1689355486815;
-        Fri, 14 Jul 2023 10:24:46 -0700 (PDT)
-Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id u6-20020a02cb86000000b0042b298507b3sm2722992jap.42.2023.07.14.10.24.44
+        bh=ww5uJ/kx1wfWM4Xur4cXw8tinYasBTMoIjV5PBf4gjU=;
+        b=hge+ewns41e9O7ahbJdoVLT2HOBrnX3Ta57u5iddvHlBx7N6+mkReAdHc45QLyGCyx
+         BLbPbaIO0o5ByKmZLkSmzPMrGK4ZpQMkZIpgCXoh7Mjv+kUNeMgrdgUy7Axok1+ctlUK
+         JGU/4cSARk9Wy/hA0WkiSNJWNry0tMlSPPRueO+pl2uWJ9gzWQKN3ASXG/wQwT8XJwQ0
+         i2S9BPSwpHG9i5DyfWdYJiHpCNh1RKozyUAKmkxwgpEpQwLJcUiBnIt5DIEafsAQ2VGl
+         XXJut5mKi8F8n7Fp7YIvsWdDA9eTr32fpvuZikjel5fMVwvIDoI/s4DV64zmTp70Zz14
+         VuWA==
+X-Gm-Message-State: ABy/qLabk1wQyPCbJxL5d+coNcnwD2rm/m7JFZ7TT70eYkj/ibJwACPA
+        pSm2U+EgFQMgYmAoylXJG3c=
+X-Google-Smtp-Source: APBJJlGQ5pQ9sQipWBgmbsSHJXr1DZi9MEQZKP8iArAD2FG3Fpih0+NmK1CLpCo+IBW0kWX8/J7Hwg==
+X-Received: by 2002:a05:6512:1110:b0:4fc:6e21:ff51 with SMTP id l16-20020a056512111000b004fc6e21ff51mr4622039lfg.40.1689355556883;
+        Fri, 14 Jul 2023 10:25:56 -0700 (PDT)
+Received: from mobilestation ([85.249.18.201])
+        by smtp.gmail.com with ESMTPSA id n4-20020ac24904000000b004f1383d57ecsm1546224lfi.202.2023.07.14.10.25.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 14 Jul 2023 10:24:46 -0700 (PDT)
-Received: (nullmailer pid 4013008 invoked by uid 1000);
-        Fri, 14 Jul 2023 17:24:44 -0000
-Date:   Fri, 14 Jul 2023 11:24:44 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Alexandru Ardelean <alex@shruggie.ro>
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, davem@davemloft.net,
-        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        andrew@lunn.ch, hkallweit1@gmail.com, linux@armlinux.org.uk,
-        olteanv@gmail.com, marius.muresan@mxt.ro
-Subject: Re: [PATCH v2 2/2] dt-bindings: net: phy: vsc8531: document
- 'vsc8531,clkout-freq-mhz' property
-Message-ID: <20230714172444.GA4003281-robh@kernel.org>
-References: <20230713202123.231445-1-alex@shruggie.ro>
- <20230713202123.231445-2-alex@shruggie.ro>
+        Fri, 14 Jul 2023 10:25:56 -0700 (PDT)
+Date:   Fri, 14 Jul 2023 20:25:52 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Sebastian Reichel <sebastian.reichel@collabora.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh@kernel.org>
+Cc:     linux-pci@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Shawn Lin <shawn.lin@rock-chips.com>,
+        Simon Xue <xxm@rock-chips.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        kernel@collabora.com
+Subject: Re: [PATCH v2 1/3] dt-bindings: PCI: dwc: rockchip: Fix
+ interrupt-names issue
+Message-ID: <mikpjlkg65ubb75jrcrbiomzq6npte5iheuoexgrtu4kqej5do@qbwcbcgorg3k>
+References: <20230713171851.73052-1-sebastian.reichel@collabora.com>
+ <20230713171851.73052-2-sebastian.reichel@collabora.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230713202123.231445-2-alex@shruggie.ro>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20230713171851.73052-2-sebastian.reichel@collabora.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 13, 2023 at 11:21:23PM +0300, Alexandru Ardelean wrote:
-> For VSC8351 and similar PHYs, a new property was added to generate a clock
-> signal on the CLKOUT pin.
+Hi Sebastian
 
-Sorry, didn't think about it on v1, but I would imagine other vendors' 
-PHYs have similar functionality. We should have something common. We 
-have the clock binding for clocks already, so we should consider if 
-that should be used here. It may look like an overkill for what you 
-need, but things always start out that way. What if you want to turn the 
-clock on and off as well?
-
-> This change documents the change in the device-tree bindings doc.
-
-That's obvious.
-
+On Thu, Jul 13, 2023 at 07:18:49PM +0200, Sebastian Reichel wrote:
+> The RK356x (and RK3588) have 5 ganged interrupts. For example the
+> "legacy" interrupt combines "inta/intb/intc/intd" with a register
+> providing the details.
 > 
-> Signed-off-by: Alexandru Ardelean <alex@shruggie.ro>
+> Currently the binding is not specifying these interrupts resulting
+> in a bunch of errors for all rk356x boards using PCIe.
+> 
+> Fix this by specifying the interrupts and add them to the example
+> to prevent regressions.
+> 
+> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
 > ---
+>  .../bindings/pci/rockchip-dw-pcie.yaml        | 18 +++++
+>  .../devicetree/bindings/pci/snps,dw-pcie.yaml | 76 ++++++++++++++++++-
+>  2 files changed, 93 insertions(+), 1 deletion(-)
 > 
-> Changelog v1 -> v2:
-> * https://lore.kernel.org/netdev/20230706081554.1616839-2-alex@shruggie.ro/
-> * changed property name 'vsc8531,clkout-freq-mhz' -> 'mscc,clkout-freq-mhz'
->   as requested by Rob
-> * added 'net-next' tag as requested by Andrew
-> 
->  Documentation/devicetree/bindings/net/mscc-phy-vsc8531.txt | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/mscc-phy-vsc8531.txt b/Documentation/devicetree/bindings/net/mscc-phy-vsc8531.txt
-> index 0a3647fe331b..085d0e8a834e 100644
-> --- a/Documentation/devicetree/bindings/net/mscc-phy-vsc8531.txt
-> +++ b/Documentation/devicetree/bindings/net/mscc-phy-vsc8531.txt
-> @@ -31,6 +31,10 @@ Optional properties:
->  			  VSC8531_LINK_100_ACTIVITY (2),
->  			  VSC8531_LINK_ACTIVITY (0) and
->  			  VSC8531_DUPLEX_COLLISION (8).
-> +- mscc,clkout-freq-mhz	: For VSC8531 and similar PHYs, this will output
-> +			  a clock signal on the CLKOUT pin of the chip.
-> +			  The supported values are 25, 50 & 125 Mhz.
-> +			  Default value is no clock signal on the CLKOUT pin.
->  - load-save-gpios	: GPIO used for the load/save operation of the PTP
->  			  hardware clock (PHC).
+> diff --git a/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
+> index a4f61ced5e88..aad53c7d8485 100644
+> --- a/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
+> +++ b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
+> @@ -60,6 +60,17 @@ properties:
+>        - const: aux
+>        - const: pipe
 >  
-> @@ -69,5 +73,6 @@ Example:
->                  vsc8531,edge-slowdown	= <7>;
->                  vsc8531,led-0-mode	= <VSC8531_LINK_1000_ACTIVITY>;
->                  vsc8531,led-1-mode	= <VSC8531_LINK_100_ACTIVITY>;
-> +                mscc,clkout-freq-mhz	= <50>;
->  		load-save-gpios		= <&gpio 10 GPIO_ACTIVE_HIGH>;
->          };
+> +  interrupts:
+> +    maxItems: 5
+> +
+> +  interrupt-names:
+> +    items:
+> +      - const: sys
+> +      - const: pmc
+> +      - const: msg
+> +      - const: legacy
+> +      - const: err
+> +
+>    msi-map: true
+>  
+>    num-lanes: true
+> @@ -108,6 +119,7 @@ unevaluatedProperties: false
+>  
+>  examples:
+>    - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+>  
+>      bus {
+>          #address-cells = <2>;
+> @@ -127,6 +139,12 @@ examples:
+>                            "aclk_dbi", "pclk",
+>                            "aux";
+>              device_type = "pci";
+> +            interrupts = <GIC_SPI 160 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 159 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 158 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 157 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 156 IRQ_TYPE_LEVEL_HIGH>;
+> +            interrupt-names = "sys", "pmc", "msg", "legacy", "err";
+>              linux,pci-domain = <2>;
+>              max-link-speed = <2>;
+>              msi-map = <0x2000 &its 0x2000 0x1000>;
+> diff --git a/Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml b/Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml
+> index 1a83f0f65f19..973bf8f2730d 100644
+> --- a/Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml
+> +++ b/Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml
+> @@ -193,9 +193,83 @@ properties:
+>            oneOf:
+>              - description: See native "app" IRQ for details
+>                enum: [ intr ]
+> +        - description:
+> +            Combined legacy interrupt, which is used to signal the following
+> +            interrupts
+> +              * inta
+> +              * intb
+> +              * intc
+> +              * intd
+> +          const: legacy
+> +        - description:
+> +            Combined system interrupt, which is used to signal the following
+> +            interrupts
+> +              * phy_link_up
+> +              * dll_link_up
+> +              * link_req_rst_not
+> +              * hp_pme
+> +              * hp
+> +              * hp_msi
+> +              * link_auto_bw
+> +              * link_auto_bw_msi
+> +              * bw_mgt
+> +              * bw_mgt_msi
+> +              * edma_wr
+> +              * edma_rd
+> +              * dpa_sub_upd
+> +              * rbar_update
+> +              * link_eq_req
+> +              * ep_elbi_app
+> +          const: sys
+> +        - description:
+> +            Combined PM interrupt, which is used to signal the following
+> +            interrupts
+> +              * linkst_in_l1sub
+> +              * linkst_in_l1
+> +              * linkst_in_l2
+> +              * linkst_in_l0s
+> +              * linkst_out_l1sub
+> +              * linkst_out_l1
+> +              * linkst_out_l2
+> +              * linkst_out_l0s
+> +              * pm_dstate_update
+> +          const: pmc
+> +        - description:
+> +            Combined message interrupt, which is used to signal the following
+> +            interrupts
+> +              * ven_msg
+> +              * unlock_msg
+> +              * ltr_msg
+> +              * cfg_pme
+> +              * cfg_pme_msi
+> +              * pm_pme
+> +              * pm_to_ack
+> +              * pm_turnoff
+
+> +              * obff_idle
+> +              * obff_obff
+> +              * obff_cpu_active
+
+These are marked is "inputs" (from the DW PCIe controller point of
+view) in the HW manual. Are you sure they are supposed to generate any
+IRQ? Based on the DW PCIe HW-manual they are supposed to be set by the
+_application_ (a.k.a your driver or vendor-specific RTL block) as a
+request to the DW PCIe controller to emit an OBFF message. There is a
+signal marked as "output" and named as "app_obff_msg_grant" which most
+likely is relevant here.
+
+> +          const: msg
+> +        - description:
+> +            Combined error interrupt, which is used to signal the following
+> +            interrupts
+> +              * aer_rc_err
+> +              * aer_rc_err_msi
+> +              * rx_cpl_timeout
+> +              * tx_cpl_timeout
+> +              * cor_err_sent
+> +              * nf_err_sent
+> +              * f_err_sent
+> +              * cor_err_rx
+> +              * nf_err_rx
+> +              * f_err_rx
+> +              * radm_qoverflow
+> +          const: err
+
+The most of the signals you cited in the description properties are a
+part of the so called "System Information Interface" defined in the DW
+PCIe databook. Here is what the doc says regarding these signals:
+
+"The SII exchanges various system-related information between the
+controller and your application. Most of the SII signals are provided
+for flexibility. Your application is not required to use all of the
+SII signals. Your application logic is expected to drive and monitor
+the signals that it needs to function correctly. SII inputs that your
+application does not require, must be driven to 0."
+
+Amongst tons of various informational signals available in the
+framework of SII, there is "SII: Interrupt Signals" which are normally
+utilized by the vendor-specific controller implementations and which
+are defined as generic in this DT-bindings. (MSI IRQ signal is defined
+separately from SII as "MSI Interface Signals".)
+
+What is normally expected is that all the generic SII IRQs are
+supplied as the separate signals meanwhile the rest of the SII signals
+are combined in an additional line named like "app".
+
+In your case we find an intermix of the SII generic IRQs and some SII
+signals (though some of the names listed in your descriptions don't
+match to what is defined in the DW PCIe HW manual). So what you said
+in v1:
+
+On Thu, Jul 13, 2023 at 7:47PM +0200, Sebastian Reichel wrote:
+> I suppose "sys", "pmc", "msg" and "err" all fit for "app", since
+> they are vendor specific with the extra layer? But obviously I
+> cannot specify "app" more than once."
+
+is mainly correct. For instance, the most of the generic SII interrupt
+signals are combined in your "sys" IRQ, like "hp", "bw_au", "bw_mg",
+"dma", "l_eq"; your "pmc" and "msg" IRQs are a set of the SII signals
+not listed in the "SII Interrupt Signals" list; the "err" IRQ has the
+"aer" generic SII Interrupt, but the rest of the signals are common SII
+signals.
+
+I am not fully certain of what to do in this case. Some possible options:
+
+1. Keep the names defined as is, add them to the list of generic IRQ
+names, describe them as "Combined IRQ signals" but with no specific
+signals listed and with some generic meaningful description.
+Alternatively create a separate sub-schema in the generic
+"interrupt-names" property constraints in the same way as it's done
+for the "vendor-specific IRQ names" and do the same with the names
+descriptions. In anyway move your detailed descriptions to the
+Rockchip DW PCIe DT-schema. In this case we imply that your names
+could be re-used for some other device bindings.
+
+2. Keep the names defined as is, add them to the list of
+"vendor-specific IRQ names" sub-schema in the "interrupt-names"
+property, describe each of them as "Combined IRQ signals" but with no
+specific signals listed and with some generic meaningful description.
+Move your detailed descriptions to the Rockchip DW PCIe DT-schema.
+
+3. Add "app_" prefix to all your IRQs (except "legacy") and convert
+the generic "app" IRQ name constraint to accepting a pattern like
+'^app(_.*)?$' or similar. Move your detailed descriptions to the
+Rockchip DW PCIe DT-schema.
+
+4. Add Rockchip-specific prefix to the names (except "legacy"), add
+all of them (for instance as a pattern-like schema) to the
+vendor-specific IRQ names part of the "interrupt-names" items list
+with a description referring to the Rockchip DT-bindings. Move your
+detailed descriptions to the Rockchip DW PCIe DT-schema.
+
+Doubtfully the categorization chosen by the Rockchip HW designers is
+fully universal so the names could be utilized for other devices. Thus
+IMO the options 2-4 might be more preferable over 1.
+
+In anyway the detailed descriptions with the listed lines should be
+in the Rockchip DW PCIe DT-bindings since they are definitely
+vendor-specific.
+
+Regarding the "legacy" name used as a combined "int(a|b|c|d)" IRQ.
+Alas we can't change it. So it's either option 1 or 2. 
+
+What do you think? Rob, Krzysztof, any better idea?
+
+> +
+
+>      allOf:
+>        - contains:
+> -          const: msi
+> +          enum:
+> +            - msi
+> +            - msg
+
+Based on the above the "msg" interrupt doesn't get to be required.
+Rob, is it possible to have a constraint which would require either
+the "msi" IRQ name or the "msi-map" DT-property or both?
+
+-Serge(y)
+
+>  
+>  additionalProperties: true
+>  
 > -- 
-> 2.41.0
+> 2.40.1
 > 
