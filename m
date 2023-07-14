@@ -2,205 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B4FF5753892
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jul 2023 12:45:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F9A2753936
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jul 2023 13:04:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235602AbjGNKpa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jul 2023 06:45:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47772 "EHLO
+        id S232382AbjGNLEZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jul 2023 07:04:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58098 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235212AbjGNKpa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jul 2023 06:45:30 -0400
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EAAFD30EF;
-        Fri, 14 Jul 2023 03:45:26 -0700 (PDT)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 8916024DD81;
-        Fri, 14 Jul 2023 18:45:25 +0800 (CST)
-Received: from EXMBX062.cuchost.com (172.16.6.62) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 14 Jul
- 2023 18:45:25 +0800
-Received: from starfive-sdk.starfivetech.com (171.223.208.138) by
- EXMBX062.cuchost.com (172.16.6.62) with Microsoft SMTP Server (TLS) id
- 15.0.1497.42; Fri, 14 Jul 2023 18:45:23 +0800
-From:   Samin Guo <samin.guo@starfivetech.com>
-To:     <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <netdev@vger.kernel.org>
-CC:     Emil Renner Berthing <kernel@esmil.dk>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        Conor Dooley <conor@kernel.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Richard Cochran <richardcochran@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        "Jakub Kicinski" <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Yanhong Wang <yanhong.wang@starfivetech.com>,
-        Samin Guo <samin.guo@starfivetech.com>,
-        Tommaso Merciai <tomm.merciai@gmail.com>
-Subject: [PATCH v1 2/2] riscv: dts: starfive: visionfive 2: Add configuration of gmac and phy
-Date:   Fri, 14 Jul 2023 18:45:21 +0800
-Message-ID: <20230714104521.18751-3-samin.guo@starfivetech.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230714104521.18751-1-samin.guo@starfivetech.com>
-References: <20230714104521.18751-1-samin.guo@starfivetech.com>
+        with ESMTP id S234860AbjGNLEY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jul 2023 07:04:24 -0400
+Received: from wp530.webpack.hosteurope.de (wp530.webpack.hosteurope.de [80.237.130.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CAB830C4;
+        Fri, 14 Jul 2023 04:04:21 -0700 (PDT)
+Received: from [2a02:8108:8980:2478:8cde:aa2c:f324:937e]; authenticated
+        by wp530.webpack.hosteurope.de running ExIM with esmtpsa (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
+        id 1qKGav-000446-TI; Fri, 14 Jul 2023 13:04:17 +0200
+Message-ID: <c7461674-6be8-9438-55fa-ae6b4d56d3b5@leemhuis.info>
+Date:   Fri, 14 Jul 2023 13:04:16 +0200
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [171.223.208.138]
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX062.cuchost.com
- (172.16.6.62)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH] arm64: dts: qcom: sdm845-db845c: Move LVS regulator nodes
+ up
+Content-Language: en-US, de-DE
+To:     Amit Pundir <amit.pundir@linaro.org>,
+        Linux regressions mailing list <regressions@lists.linux.dev>
+Cc:     Bjorn Andersson <andersson@kernel.org>,
+        Doug Anderson <dianders@chromium.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Caleb Connolly <caleb.connolly@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        dt <devicetree@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>
+References: <20230602161246.1855448-1-amit.pundir@linaro.org>
+ <358c69ad-fa8a-7386-fe75-92369883ee48@leemhuis.info>
+ <0f6c9dcb-b7f6-fff9-6bed-f4585ea8e487@linaro.org>
+ <CAD=FV=Xt2KYGY15+f+nHxkzKnwhHzw1A7=o+5kgCDWvHDv0DNg@mail.gmail.com>
+ <20230620155902.clspxncyvpodixft@ripper>
+ <5240ce3f-37fa-2747-92ee-23d71619f3ef@leemhuis.info>
+ <CAMi1Hd2zunc=WNUE7KT-423RXTiX6LrY2hcWQdV3Dp3o8RdJtg@mail.gmail.com>
+ <CAMi1Hd2L-j9GHQH+4O6j6m2+HGy5oEsdMv6Qyp4RaWZDNCj-Bw@mail.gmail.com>
+From:   "Linux regression tracking #update (Thorsten Leemhuis)" 
+        <regressions@leemhuis.info>
+Reply-To: Linux regressions mailing list <regressions@lists.linux.dev>
+In-Reply-To: <CAMi1Hd2L-j9GHQH+4O6j6m2+HGy5oEsdMv6Qyp4RaWZDNCj-Bw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-bounce-key: webpack.hosteurope.de;regressions@leemhuis.info;1689332661;26172418;
+X-HE-SMSGID: 1qKGav-000446-TI
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-v1.3B:
-  v1.3B uses motorcomm YT8531(rgmii-id phy) x2, need delay and
-  inverse configurations.
-  The tx_clk of v1.3B uses an external clock and needs to be
-  switched to an external clock source.
+On 07.07.23 07:08, Amit Pundir wrote:
+> On Thu, 22 Jun 2023 at 17:18, Amit Pundir <amit.pundir@linaro.org> wrote:
+>> On Thu, 22 Jun 2023 at 13:17, Linux regression tracking (Thorsten
+>> Leemhuis) <regressions@leemhuis.info> wrote:
+>>>
+>>> As Linus will likely release 6.4 on this or the following Sunday a quick
+>>> status inquiry so I can brief him appropriately: is there any hope the
+>>> regression this patch tried to fix will be resolved any time soon?
+>>
+>> We are most likely to miss v6.4. I'm trying to reproduce the crash
+>> with tracing enabled, to share some more debug information.
+> 
+> FWIW, I couldn't reproduce this bug on v6.5 merge window commit
+> d528014517f2 (Revert ".gitignore: ignore *.cover and *.mbx")
+> on 100+ boot tests last night.
+> For the time being I'm keeping an eye on it and will trigger the boot
+> tests occasionally in the v6.5 development cycle.
 
-v1.2A:
-  v1.2A gmac0 uses motorcomm YT8531(rgmii-id) PHY, and needs delay
-  configurations.
-  v1.2A gmac1 uses motorcomm YT8512(rmii) PHY, and needs to
-  switch rx and rx to external clock sources.
+No update since then, so I assume this remains fixed. I'll thus remove
+this from the tracking; please holler if you think it might make sense
+to continue tracking this.
 
-Tested-by: Tommaso Merciai <tomm.merciai@gmail.com>
-Signed-off-by: Samin Guo <samin.guo@starfivetech.com>
----
- .../jh7110-starfive-visionfive-2-v1.2a.dts    | 13 +++++++
- .../jh7110-starfive-visionfive-2-v1.3b.dts    | 31 +++++++++++++++++
- .../jh7110-starfive-visionfive-2.dtsi         | 34 +++++++++++++++++++
- 3 files changed, 78 insertions(+)
+#regzbot resolved: apparently solved with during the 6.5 merge window
+#regzbot ignore-activity
 
-diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-v1.2a.dts b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-v1.2a.dts
-index 4af3300f3cf3..205a13d8c8b1 100644
---- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-v1.2a.dts
-+++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-v1.2a.dts
-@@ -11,3 +11,16 @@
- 	model = "StarFive VisionFive 2 v1.2A";
- 	compatible = "starfive,visionfive-2-v1.2a", "starfive,jh7110";
- };
-+
-+&gmac1 {
-+	phy-mode = "rmii";
-+	assigned-clocks = <&syscrg JH7110_SYSCLK_GMAC1_TX>,
-+			  <&syscrg JH7110_SYSCLK_GMAC1_RX>;
-+	assigned-clock-parents = <&syscrg JH7110_SYSCLK_GMAC1_RMII_RTX>,
-+				 <&syscrg JH7110_SYSCLK_GMAC1_RMII_RTX>;
-+};
-+
-+&phy0 {
-+	rx-internal-delay-ps = <1900>;
-+	tx-internal-delay-ps = <1350>;
-+};
-diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-v1.3b.dts b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-v1.3b.dts
-index 9230cc3d8946..36f74d4eda01 100644
---- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-v1.3b.dts
-+++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-v1.3b.dts
-@@ -11,3 +11,34 @@
- 	model = "StarFive VisionFive 2 v1.3B";
- 	compatible = "starfive,visionfive-2-v1.3b", "starfive,jh7110";
- };
-+
-+&gmac0 {
-+	starfive,tx-use-rgmii-clk;
-+	assigned-clocks = <&aoncrg JH7110_AONCLK_GMAC0_TX>;
-+	assigned-clock-parents = <&aoncrg JH7110_AONCLK_GMAC0_RMII_RTX>;
-+};
-+
-+&gmac1 {
-+	starfive,tx-use-rgmii-clk;
-+	assigned-clocks = <&syscrg JH7110_SYSCLK_GMAC1_TX>;
-+	assigned-clock-parents = <&syscrg JH7110_SYSCLK_GMAC1_RMII_RTX>;
-+};
-+
-+&phy0 {
-+	motorcomm,tx-clk-adj-enabled;
-+	motorcomm,tx-clk-100-inverted;
-+	motorcomm,tx-clk-1000-inverted;
-+	motorcomm,rx-clk-driver-strength = <3970>;
-+	motorcomm,rx-data-driver-strength = <2910>;
-+	rx-internal-delay-ps = <1500>;
-+	tx-internal-delay-ps = <1500>;
-+};
-+
-+&phy1 {
-+	motorcomm,tx-clk-adj-enabled;
-+	motorcomm,tx-clk-100-inverted;
-+	motorcomm,rx-clk-driver-strength = <3970>;
-+	motorcomm,rx-data-driver-strength = <2910>;
-+	rx-internal-delay-ps = <300>;
-+	tx-internal-delay-ps = <0>;
-+};
-diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-index fa0061eb33a7..fcb45db42df5 100644
---- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-@@ -11,6 +11,8 @@
- 
- / {
- 	aliases {
-+		ethernet0 = &gmac0;
-+		ethernet1 = &gmac1;
- 		i2c0 = &i2c0;
- 		i2c2 = &i2c2;
- 		i2c5 = &i2c5;
-@@ -86,6 +88,38 @@
- 	clock-frequency = <49152000>;
- };
- 
-+&gmac0 {
-+	phy-handle = <&phy0>;
-+	phy-mode = "rgmii-id";
-+	status = "okay";
-+
-+	mdio {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		compatible = "snps,dwmac-mdio";
-+
-+		phy0: ethernet-phy@0 {
-+			reg = <0>;
-+		};
-+	};
-+};
-+
-+&gmac1 {
-+	phy-handle = <&phy1>;
-+	phy-mode = "rgmii-id";
-+	status = "okay";
-+
-+	mdio {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		compatible = "snps,dwmac-mdio";
-+
-+		phy1: ethernet-phy@1 {
-+			reg = <0>;
-+		};
-+	};
-+};
-+
- &i2c0 {
- 	clock-frequency = <100000>;
- 	i2c-sda-hold-time-ns = <300>;
--- 
-2.17.1
-
+Ciao, Thorsten (wearing his 'the Linux kernel's regression tracker' hat)
+--
+Everything you wanna know about Linux kernel regression tracking:
+https://linux-regtracking.leemhuis.info/about/#tldr
+That page also explains what to do if mails like this annoy you.
