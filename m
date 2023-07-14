@@ -2,362 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 10C62753256
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jul 2023 08:56:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EC16E753268
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jul 2023 09:00:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233081AbjGNG4x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jul 2023 02:56:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42424 "EHLO
+        id S230297AbjGNHAN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jul 2023 03:00:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44782 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232692AbjGNG4v (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jul 2023 02:56:51 -0400
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FF631FF1;
-        Thu, 13 Jul 2023 23:56:49 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-51d95aed33aso1778925a12.3;
-        Thu, 13 Jul 2023 23:56:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1689317807; x=1691909807;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wPb0IpHExepFSS8AXjqT5uPHoWnDc8tyYxdhzyJGpP4=;
-        b=Tn/tFtotoj3kKWGu/JeFCWLAdynH7BSSFEU2fT6alKvccsV98nUG36uaNDdrSJH7uX
-         sug4xoJ4Joim8NEL2ut/TLKgwOG1Ukr6nd4GnOeuCpP55/m2d7bH1PdG1ntxsI1/9udE
-         ZTDPrjBWC9xn2L2bukiBiuS+UqWiEO3QXjPhby85+ZJZdP0Zs0cHDYSj/Ru0z+ubKF1v
-         tE6WLqQZa72GPLZ2NtWtkVKTc65j+m+5xwRx96KSjRA7M5LTUjtgePQLs7gthHUEhvh8
-         NnnPAi/5UnluiHCywIFJ+1xMvNYWmBn+8qKu0AOMuZJw6S+k9reoVEuBiYh7BWKjYxdt
-         klGA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689317807; x=1691909807;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=wPb0IpHExepFSS8AXjqT5uPHoWnDc8tyYxdhzyJGpP4=;
-        b=R1aFFYrsSvx02iipFuVNXGa47iJzDkDt/kepTvDjBeJXgDazsfQV7qVvv8PwY8IpwU
-         wz26KcM7o6eMEf30jtp40MGZ0WIVfE/1fa0hEgVZgAVjpkksj1giH6Q3A1I88dUdFc+9
-         Q9hB9aDmaCCSptfRuKNEh+JD06Lw9ly1PGYREU7G/spIKmYrESrOIRDuhNfiiIS3myNV
-         qo2Yy4wUWvciizdfz1wJ5eIXUtorUeGqFJ1C8LNu/SjLtNmJdqX+slL+eM8v2lPs2Bah
-         X1KE1sM8FAlftsLiTJsisQ6uAS3nHPvg29AyD17wOAQmzhMU85MuwKcfzSNWiHJs8ymZ
-         4Q8g==
-X-Gm-Message-State: ABy/qLbyP+K8FSBDLvxP4qBtvnCeXLV32qvdzRbjDVf0xTCe+V2MsNVx
-        E+zECXdzf5BFuTYEF00Y5To=
-X-Google-Smtp-Source: APBJJlHP8ZGSCoWsVEJI8fyskK0DGjUW9zRUPX9p4poeYfNF02mfyM0n6gDfoS1lWJSkrsQTKOFDGg==
-X-Received: by 2002:a05:6402:b26:b0:51d:92bf:e6ae with SMTP id bo6-20020a0564020b2600b0051d92bfe6aemr3724889edb.18.1689317807282;
-        Thu, 13 Jul 2023 23:56:47 -0700 (PDT)
-Received: from orome (p200300e41f4b7100f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f4b:7100:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id d3-20020aa7c1c3000000b0051de52f8adesm5288703edp.32.2023.07.13.23.56.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 13 Jul 2023 23:56:46 -0700 (PDT)
-Date:   Fri, 14 Jul 2023 08:56:44 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Baolu Lu <baolu.lu@linux.intel.com>
-Cc:     Stanimir Varbanov <stanimir.varbanov@suse.com>,
-        Stanimir Varbanov <svarbanov@suse.de>,
-        linux-tegra@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        iommu@lists.linux.dev, linux-kernel@vger.kernel.org,
-        Krishna Reddy <vdumpa@nvidia.com>,
-        Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [RFC PATCH] iommu: arm-smmu-nvidia: Add default domain type
- implementation op
-Message-ID: <ZLDxrDMoLsniQx4x@orome>
-References: <20230710082252.9702-1-svarbanov@suse.de>
- <ZKvgG4-IzqiYPSUT@orome>
- <93026b47-3b72-8439-486e-e0cda21dd0fe@suse.com>
- <ZK17X4ueSI5rWKVL@orome>
- <ZK_8uU2XJAWMk23M@orome>
- <2a6fe812-3881-8dc9-1e7e-237ce7490155@linux.intel.com>
+        with ESMTP id S234301AbjGNHAK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jul 2023 03:00:10 -0400
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2068.outbound.protection.outlook.com [40.107.22.68])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA87C2719;
+        Fri, 14 Jul 2023 00:00:08 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=EPBo8UtjS70tACsur15cXib5aWmIyx5uVNh+WLW3fTL/aJOo9HUhHepSyhYkSgEOHJsz1Qd8FfSHSg2+hOxEtUB8yaomyipD/6GdbIUdwbSeA73O+Q7JjHqiZQSlpgwHQyLEy9DrYybJvcrG5eIbmsRnLc9kKGiIS9Fflgjt7tEYGzawQhtTfi/oQHLnoBuCDNPbIyIixmKQfgjwVKRHV2zJYm6veeP5K4zWREwjSUbL5jQgCMG0uxOhw5c22iVbnnhC094es4PLDtdGRfti/A/nmdJ6uttutpSoB9WiJwg76G/CKT64rxAThRX+5Rg6ZpP2ufAH4VBOOJCyYSTLpA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=eoXTnf3ubQCz2RfeX1LXpNMKWrwNo8mM22y/fM+kBss=;
+ b=MtwshNOu6+nB38cqG+ouJlBpJB/pnQRsO7cgYT7aKkj+nkKM9qSp4gxRpCUVUOEnmeMZVwYxpwwxAw1atgNZ8w2ytRbXWvoQhb9BtOd/66WM65+fZ9S4BgZCOQOz9Rf3uyfwR2ogqZWjzmFRqQ9neEA6hRg57qptpFc+wub1dLIv85al8Vk7Ml0GbB3qygKMP7crexn/iftJdEuiExfl/eDrV2vLoSMcIKjugGP3J8+1ScBHzsbbWbVSnBk5K41DAzQbvPwugbGLBfd+qzA53pSVZ5eVzuZ7fb2mFm0rRK+uQWVfoM8R11qYMFC9VO/6ZsTVI7O/eNYFfEmi//kykA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 194.138.21.76) smtp.rcpttodomain=roeck-us.net smtp.mailfrom=siemens.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=siemens.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=siemens.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=eoXTnf3ubQCz2RfeX1LXpNMKWrwNo8mM22y/fM+kBss=;
+ b=AUD99zFHesxrjmVWky9NLXdvXfFZgQYBP7g2LuiaeeiM1qgipW9Sp+DpmjFQUdux6c+3SASKpPeKhWSEdgO0JGgfyeqZJp+IBSTnwBTT3X7f82DjfaYzFY1yzCxIXBuAHmNRDVQqwaDEMmadZptFdWgNdXrWCeYjYbsJ2uoiylUz6ExTeeiQOlRQgtzUHiQDpSdfVauvp177LBJzfnpPnnyQlpFab58DS1D63ex9qvRHPieCaxsaIQwaKb9wNOV0KiEyWeFKI+caChiQ/kL1HTMoh/d5mTqHhL/LIIgAEkzdI3nv8driD45kxHmtDfojJJ43Us/CzJn4NHDUKxfUKg==
+Received: from FR0P281CA0202.DEUP281.PROD.OUTLOOK.COM (2603:10a6:d10:ad::17)
+ by AM7PR10MB3857.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:14d::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6565.31; Fri, 14 Jul
+ 2023 07:00:06 +0000
+Received: from VE1EUR01FT091.eop-EUR01.prod.protection.outlook.com
+ (2603:10a6:d10:ad:cafe::82) by FR0P281CA0202.outlook.office365.com
+ (2603:10a6:d10:ad::17) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6609.15 via Frontend
+ Transport; Fri, 14 Jul 2023 07:00:06 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 194.138.21.76)
+ smtp.mailfrom=siemens.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=siemens.com;
+Received-SPF: Pass (protection.outlook.com: domain of siemens.com designates
+ 194.138.21.76 as permitted sender) receiver=protection.outlook.com;
+ client-ip=194.138.21.76; helo=hybrid.siemens.com; pr=C
+Received: from hybrid.siemens.com (194.138.21.76) by
+ VE1EUR01FT091.mail.protection.outlook.com (10.152.3.27) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6609.14 via Frontend Transport; Fri, 14 Jul 2023 07:00:05 +0000
+Received: from CNPEK01M05MSX.ad011.siemens.net (139.24.237.222) by
+ DEMCHDC8VSA.ad011.siemens.net (194.138.21.76) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.30; Fri, 14 Jul 2023 09:00:04 +0200
+Received: from CNPEK01M03MSX.ad011.siemens.net (139.24.237.220) by
+ CNPEK01M05MSX.ad011.siemens.net (139.24.237.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.27; Fri, 14 Jul 2023 15:00:02 +0800
+Received: from CNPEK01M03MSX.ad011.siemens.net ([139.24.237.220]) by
+ CNPEK01M03MSX.ad011.siemens.net ([139.24.237.220]) with mapi id
+ 15.01.2507.027; Fri, 14 Jul 2023 15:00:02 +0800
+From:   "Li, Hua Qian" <HuaQian.Li@siemens.com>
+To:     "linux@roeck-us.net" <linux@roeck-us.net>,
+        "wim@linux-watchdog.org" <wim@linux-watchdog.org>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>
+CC:     "kristo@kernel.org" <kristo@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "huaqianlee@gmail.com" <huaqianlee@gmail.com>,
+        "nm@ti.com" <nm@ti.com>, "vigneshr@ti.com" <vigneshr@ti.com>,
+        "Kiszka, Jan" <jan.kiszka@siemens.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "Su, Bao Cheng" <baocheng.su@siemens.com>,
+        "linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>
+Subject: Re: [PATCH v3 0/3] Add support for WDIOF_CARDRESET on TI AM65x
+Thread-Topic: [PATCH v3 0/3] Add support for WDIOF_CARDRESET on TI AM65x
+Thread-Index: AQHZtW+mZ/ETSk0+rU2NBd5Xb9D67q+3a/EAgADkrQA=
+Date:   Fri, 14 Jul 2023 07:00:02 +0000
+Message-ID: <840f5d90fdb794e4d07db3f6fb71a14e144e91b7.camel@siemens.com>
+References: <20230713095127.1230109-1-huaqian.li@siemens.com>
+         <3eec9b79-0505-0b15-f7a0-fcc7f4031c85@roeck-us.net>
+In-Reply-To: <3eec9b79-0505-0b15-f7a0-fcc7f4031c85@roeck-us.net>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [139.24.108.35]
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <B529882224570447BB7F69C16EC1DF09@siemens.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="I3VsAWuDrtgMS3gi"
-Content-Disposition: inline
-In-Reply-To: <2a6fe812-3881-8dc9-1e7e-237ce7490155@linux.intel.com>
-User-Agent: Mutt/2.2.10 (2023-03-25)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: VE1EUR01FT091:EE_|AM7PR10MB3857:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1688e629-51e2-489b-4dff-08db8437f42e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: r0hoksouxtMTJ6JCnKlUyIrG+EmISMvNfJnX30VTQl25/oUThUKi3i1mXt7uE7sz+9ZWQa1ysLlqvmrS22W3iCJwIUKWGegGCdPci0x8oVngme3T3jkMugLuja6+UcwYKuX7JOP7qvum8pkEs5Ml1WE9FphTiFzaSpIL6JoTKkPu614pQK7ZSbogQacuXlurHaEAGeFlcCKpOX3xzzFlqTDxs3U6wqjOFG/LTw18Ed5/8L5/TBg75n7XD7KxkboxyCzXA/5JVkQ0CTOgV9JdtUA8Pg4WahBOB9WgafKZ3xCmuHzUXUgRqoBc0bk6IS9K0Tv00vsDrY+wxsu/jFxNZRvlBYrS13nUTdooOm/1ceWN+puPe5CtiwlQkpX0l15rNx47TNRrHwuNS1Pf7jI8rzRD0f8kHCsfEJZjJsf7i0HDNiD/YxRiI9om4ZZlXN3gDRUG7K+9acRQnzO3o3XNViCjXnTO7k2yhjpcK6f1pUaThexjSCMidcdrOd5gggmnhtFKLi6VjlEfazEPMu3HAVqlvh9bK1qwN2Zju1XLl9aV25H7UyQcJawnmZiivsnKC60d+fNIogwEDEisnh1nCQHHObPjS3+6JBcXOIIRq67CyLB4usU+rsSE78Az/U4CRTqXXJnX7WTfxHWLByuUdHcW8KnfGCo/Hs7euTFiJLUt73Mz6AfzTmKKcYVfz9Yu6S8QsYeZJhN9GCZdqMdD25csWKDOpeHLb+gzm49LFvDIurMR/KWdq3BNdc87LXc18pqlN1XIlpX0FR7AcMwhyg9nxNZkpK7FhTvPkuyM/EQ=
+X-Forefront-Antispam-Report: CIP:194.138.21.76;CTRY:DE;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:hybrid.siemens.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230028)(4636009)(39860400002)(396003)(376002)(136003)(346002)(451199021)(36840700001)(40470700004)(46966006)(26005)(82310400005)(41300700001)(4326008)(47076005)(316002)(8676002)(82740400003)(36756003)(5660300002)(8936002)(82960400001)(7416002)(40460700003)(81166007)(40480700001)(356005)(478600001)(966005)(2906002)(956004)(110136005)(2616005)(36860700001)(86362001)(53546011)(186003)(45080400002)(336012)(54906003)(70206006)(70586007)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: siemens.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Jul 2023 07:00:05.7331
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1688e629-51e2-489b-4dff-08db8437f42e
+X-MS-Exchange-CrossTenant-Id: 38ae3bcd-9579-4fd4-adda-b42e1495d55a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=38ae3bcd-9579-4fd4-adda-b42e1495d55a;Ip=[194.138.21.76];Helo=[hybrid.siemens.com]
+X-MS-Exchange-CrossTenant-AuthSource: VE1EUR01FT091.eop-EUR01.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM7PR10MB3857
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---I3VsAWuDrtgMS3gi
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Fri, Jul 14, 2023 at 11:14:08AM +0800, Baolu Lu wrote:
-> On 2023/7/13 21:31, Thierry Reding wrote:
-> > On Tue, Jul 11, 2023 at 05:55:11PM +0200, Thierry Reding wrote:
-> > > On Tue, Jul 11, 2023 at 01:58:34PM +0300, Stanimir Varbanov wrote:
-> > > > Hi Thierry,
-> > > >=20
-> > > > Thank you for the comments!
-> > > >=20
-> > > > On 7/10/23 13:40, Thierry Reding wrote:
-> > > > > On Mon, Jul 10, 2023 at 11:22:52AM +0300, Stanimir Varbanov wrote:
-> > > > > > Add def_domain_type implementation op and override default IOMMU
-> > > > > > domain Kconfig option (CONFIG_IOMMU_DEFAULT_PASSTHROUGH=3Dy), w=
-hich
-> > > > > > could be enabled on some distros. The current quirk has been do=
-ne
-> > > > > > for Tegra234 machine, because I found the issue on it. The issue
-> > > > > > itself appears on USB host controller which cannot be initializ=
-ed
-> > > > > > without IOMMU translation. Something more, we proved that IOMMU
-> > > > > > translation is needed for display and GPU drivers as well.
-> > > > > >=20
-> > > > > > I evaluated few possible options to solve that:
-> > > > > >=20
-> > > > > >   a) select default IOMMU domain from .def_domain_type op
-> > > > > >   b) Unset CONFIG_IOMMU_DEFAULT_PASSTHROUGH=3Dn
-> > > > > >   c) add iommu.passthrough=3D0 on the kernel cmdline
-> > > > > >   d) firmware - ACPI / DT
-> > > > > >=20
-> > > > > > a) This option is implemented in the proposed patch.
-> > > > > >=20
-> > > > > > b) Since that the community has agreed that pass-through is pre=
-ferred
-> > > > > > as a default IOMMU domain option because this will avoid perfor=
-mance
-> > > > > > impacts on some of the platforms [1]. On the other side we have=
- examples
-> > > > > > where you cannot even install Linux distribution on a machine w=
-here the
-> > > > > > storage media cannot be detected and the system just hangs.
-> > > > >=20
-> > > > > That's not how I read that thread. It sounds more to me like Will=
- and
-> > > > > Robin had ideas on how to improve the performance and were planni=
-ng to
-> > > > > address these issues. It doesn't exactly sound to me like there w=
-as
-> > > > > concensus to make passthrough the default.
-> > > > >=20
-> > > > > Having said that, given that it's possible for distributions and =
-users
-> > > > > to set CONFIG_IOMMU_DEFAULT_PASSTHROUGH=3Dy, I think it would be =
-useful in
-> > > > > general to have a way of enforcing IOMMU translations if it's nee=
-ded by
-> > > > > the hardware.
-> > > >=20
-> > > > Exactly, the problem is that some platforms prefer passthrough to a=
-void
-> > > > performance impacts but others cannot even boot the kernel (and thus
-> > > > installation failure). Passing iommu.passthrough=3D0 should be an
-> > > > administrator decision, balancing between security and performance.
-> > > >=20
-> > > > On the other hand the aforementioned mail thread gave some performa=
-nce
-> > > > numbers which might be are outdated having the improvements made in=
- smmu
-> > > > driver in mind. Unfortunately, I cannot confirm that the performanc=
-e has
-> > > > been improved during that time.
-> > > >=20
-> > > > >=20
-> > > > > I'm not sure I fully understand the particular problems that you'=
-re
-> > > > > seeing on Tegra234, though. I'm not aware of anything in the USB =
-host
-> > > > > controller driver (or hardware, for that matter) that would requi=
-re the
-> > > > > IOMMU to be enabled. The only peculiarity that I can think of is =
-the
-> > > > > firmware, which is typically loaded by an early bootloader and th=
-erefore
-> > > > > might perhaps need the IOMMU to properly map this in the kernel.
-> > > > > However, my understanding is that this firmware is loaded into sp=
-ecial
-> > > > > carveout regions which don't require remapping.
-> > > >=20
-> > > > On Jetson Orin AGX (R35.2.1) I see these errors:
-> > > >=20
-> > > > tegra-mc 2c00000.memory-controller: unknown: write @0x0000000000000=
-080:
-> > > > EMEM address decode error (EMEM decode error)
-> > > >=20
-> > > > tegra-xusb 3610000.usb: Error while assigning device slot ID
-> > > > tegra-xusb 3610000.usb: Max number of devices this xHCI host suppor=
-ts is 36.
-> > > > usb usb2-port3: couldn't allocate usb_device
-> > > > tegra-mc 2c00000.memory-controller: unknown: write @0x0000000000000=
-090:
-> > > > EMEM address decode error (EMEM decode error)
-> > > > tegra-xusb 3610000.usb: Error while assigning device slot ID
-> > > > tegra-xusb 3610000.usb: Max number of devices this xHCI host suppor=
-ts is 36.
-> > > > usb usb1-port3: couldn't allocate usb_device
-> > > >=20
-> > > > tegra-mc 2c00000.memory-controller: unknown: write @0x0000000000000=
-0a0:
-> > > > EMEM address decode error (EMEM decode error)
-> > > > tegra-xusb 3610000.usb: Error while assigning device slot ID
-> > > > tegra-xusb 3610000.usb: Max number of devices this xHCI host suppor=
-ts is 36.
-> > > > usb usb1-port4: couldn't allocate usb_device
-> > > >=20
-> > > > >=20
-> > > > > However, passthrough is admittedly not something that we've thoro=
-ughly
-> > > > > tested, so it's possible you're running into a use-case that I'm =
-not
-> > > > > aware of. In that case, could you provide a few more specifics (s=
-uch as
-> > > > > the DTB and .config) of your build configuration so that I can tr=
-y and
-> > > > > reproduce?
-> > > >=20
-> > > > To reproduce you have to add iommu.passthrough=3D1 on kernel cmdlin=
-e. The
-> > > > dtb is from Jetpack.
-> > >=20
-> > > I was able to reproduce this on Jetson Orin NX (the differences to AGX
-> > > Orin should be negligible in this context), though I ended up patching
-> > > the DTB to disable all SMMUs. What fixed it for me was to drop the
-> > > dma-coherent property from the usb@3610000 node. Can you try that on
-> > > your end to see if that works for you as well?
-> > >=20
-> > > Not that that's a proper solution, of course, but just trying to find
-> > > out if there's perhaps something else going on.
-> > >=20
-> > >  From the looks of it, it seems like these devices aren't actually DMA
-> > > coherent inherently, but rather the SMMU translations make the access=
-es
-> > > to memory coherent. I'm trying to find out the exact details, but if =
-it
-> > > turns out to be the case, then what we really want is a way for an IO=
-MMU
-> > > to mark any devices that get attached to it as DMA coherent. It's not
-> > > sufficient to hard-code this in DT because there are various ways in
-> > > which device can end up not attached to an IOMMU despite what the DT
-> > > says.
-> > >=20
-> > > Jason, or anyone of the IOMMU folks, any thoughts on how this could be
-> > > achieved? DT already has a way of walking up the "DMA hierarchy" look=
-ing
-> > > for a DMA coherent parent, but again, making this rely entirely on DT
-> > > seems insufficient.
-> >=20
-> > I've got a bit more information on what's happening here. There are
-> > three different ways that a device's memory accesses can coherent on
-> > Tegra: 1) when translated through the ARM SMMU, 2) some devices can
-> > force coherency through configuration registers and 3) each device can
-> > be forced to be coherent via the memory controller.
-> >=20
-> > Option 3) is not something we have much control over because this is
-> > configured during early boot and the corresponding registers locked
-> > down, so the OS can at maximum read out the configuration.
-> >=20
-> > Option 1) is what is typically used, so a common pattern is that if we
-> > enable IOMMU translations via DT, we also set dma-coherent. Conversely,
-> > if IOMMU translations are disabled via DT, the dma-coherent property
-> > should also be removed because by default most devices will not be
-> > hardcoded to be DMA coherent via option 3). Most device drivers will
-> > also not program the device's configuration registers.
-> >=20
-> > As a result the desired configuration is to always enable SMMU and rely
-> > on the SMMU translations to provide DMA coherency. As we've seen this
-> > can be problematic, because the device tree doesn't always tell the true
-> > story. For example even if the iommus property exists, the device may
-> > not end up attached to the IOMMU for a number of reasons (the IOMMU
-> > could itself be disabled, a kernel command-line option could prevent the
-> > attachment, or a device could even be detached explicitly).
-> >=20
-> > So I think what we want to avoid is to mark all device tree nodes as
-> > dma-coherent because it can lead to inconsistencies. A better option
-> > would be to have this property inherited via the IOMMU if the IOMMU
-> > translations themselves cause the coherency to be established. Now it
-> > seems like DT already contains a way of doing that via the "DMA parent".
-> > This works by looking up a special interconnects path called "dma-mem".
-> > We already use this on Tegra to make the memory controller the DMA
-> > parent of all memory clients (i.e. all DMA capable hardware blocks) in
-> > order to enforce a bus-level DMA mask.
-> >=20
-> > However, in order for the DMA parent mechanism to work for IOMMU, we'd
-> > need to redirect the DMA parent to be the IOMMU, but in that case we
-> > loose the link to the memory controller. Unless, perhaps, if there's a
-> > way to construct an ICC path from device to IOMMU and then to memory
-> > controller and external memory controller (EMC).
-> >=20
-> > For reference, here's roughly what the data path looks like on Tegra:
-> >=20
-> > 	device --> MC --> SMMU enabled --> SMMU --> EMC --> DRAM
-> > 	              |                          ^
-> > 	              --> SMMU bypass -----------|
-> >=20
-> > SMMU can be enabled/disabled per device via a stream ID override
-> > register in the memory controller.
-> >=20
-> > The biggest downside of that mechanism is still that it's a static
-> > configuration and doesn't respect the actual runtime attachment of a
-> > device to an IOMMU.
-> >=20
-> > Adding the DT folks to see if they have any good ideas on how best to
-> > represent this from a DT point of view. Would it perhaps be an option
-> > to consider the iommus property when walking up the DMA ancestry?
->=20
-> Is it possible to handle this dynamically in the code? Say, set device
-> to be DMA coherent in probe_finalize callback of Tegra iommu driver if
-> the IOMMU translation for this device is on. And clear it in the iommu
-> release device path.
->=20
-> Normally we switch the DMA ops in the probe_finalize callback and iommu
-> device release.
-
-Yeah, I had looked into this as well. Intel, AMD and VirtIO all seem to
-do this during .probe_finalize(), whereas on ARM64 this happens as part
-of the bus' .dma_configure() callback.
-
-One thing that we could potentially do is fiddle with the struct device
-=2Edma_coherent member in .probe_finalize() and .release_device(), but I'm
-not sure about the potential ramifications. That is, do we have places
-in the code that assume dev->dma_coherent to be statically set during
-device instantiation?
-
-We would have to default to not marking devices as dma-coherent in DT
-for that to work, though, because otherwise if someone were to disable
-the IOMMU altogether, .probe_finalize() and .release_device() would
-never get called and we'd never get a chance to override.
-
-I wonder if we could also use this to dynamically switch a device into
-coherent mode. For example, if it is marked as dma-coherent in device
-tree but doesn't end up as dev->dma_coherent when the driver probes, we
-could try and force coherency via the device's configuration registers.
-
-I don't know yet if that's really a good idea, though. For correctness
-it would be enough if we can detect at runtime whether a device is DMA
-coherent or not via the IOMMU.
-
-Thierry
-
---I3VsAWuDrtgMS3gi
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmSw8aoACgkQ3SOs138+
-s6EWbhAAwo/8z3JSQ1oOm2xnLriiNX/bJG4zIyVFglxa+6W27VnYdvEhuGSLQ2+H
-6PXcTKE10qxYAGgC/Rdldl6NGAmmE4UXcmP2c+lJ8MRg5e2s5DkHNKu8VfbduX7i
-qznQAJp5DrQ6HAZGCVLUph2pYJhF46edMXWfoueyFJO31XudIp/Ycq7wbFA6F83y
-sASHvixoAPA6BJQG0C1KTN1b0PJuBxw58BTGcaNQdoNMBEQoABbm0L0r7VCsC6P6
-2krh9j3HnCvNdOgLLV+5DHsIFjDeqqiHD/HqQHQHpi2RxjuGAmEoJkQ68invySfa
-4rBzLo8C+UOFrROvhG1TW7QkcyFGMFj2RSZpvxrH04z4d6IbYSCBHPMz7/J3VWzO
-PtlJ1A6/QGDbdngYvWAyhbE2Wa8n++G4SB5/QJXDGZydHJTErQHBTroVJJNpm3cl
-yjZ49iBAs94R2NevNp9d3D9q0zXlCElNeVw8YuMuSZHo+WNnBeQArQJnzKIHnwWe
-L+liXsMMO+/HjVcYbtMIHPuPuqmV7aKVKWpB0jWpZ1yYQ5iPlcojkt7Sy/ff655m
-SSOEoJq8702zf20Nkld8yymiTnu4VB+MHwp3Hm8rS6y57OFUvYSeStZ6crk6NuIw
-WK8Hd6/fpdz316dUSronCZJZtSWVSzDHKflwPpKeEeZX4sMhof8=
-=8DJA
------END PGP SIGNATURE-----
-
---I3VsAWuDrtgMS3gi--
+T24gVGh1LCAyMDIzLTA3LTEzIGF0IDEwOjIxIC0wNzAwLCBHdWVudGVyIFJvZWNrIHdyb3RlOg0K
+PiBPbiA3LzEzLzIzIDAyOjUxLCBodWFxaWFuLmxpQHNpZW1lbnMuY29twqB3cm90ZToNCj4gPiBG
+cm9tOiBMaSBIdWEgUWlhbiA8aHVhcWlhbi5saUBzaWVtZW5zLmNvbT4NCj4gPiANCj4gPiBUaGUg
+d2F0Y2hkb2cgaGFyZHdhcmUgb2YgVEkgQU02NVggcGxhdGZvcm0gZG9lcyBub3Qgc3VwcG9ydA0K
+PiA+IFdESU9GX0NBUkRSRVNFVCBmZWF0dXJlLCBhZGQgYSByZXNlcnZlZCBtZW1vcnkgdG8gc2F2
+ZSB0aGUgd2F0Y2hkb2cNCj4gPiByZXNldCBjYXVzZSwgdG8ga25vdyBpZiB0aGUgYm9hcmQgcmVi
+b290IGlzIGR1ZSB0byBhIHdhdGNoZG9nDQo+ID4gcmVzZXQuDQo+ID4gDQo+IA0KPiBPbmUgdGhp
+bmcgSSBrZWVwIHdvbmRlcmluZyBhYm91dDogV2hhdCBwcmV2ZW50cyB0aGUgTGludXgga2VybmVs
+IGZyb20NCj4gdHJlYXRpbmcgdGhlIHNwZWNpYWwgbWVtb3J5IGFyZWEgbGlrZSBub3JtYWwgbWVt
+b3J5ID8gSSB3b3VsZCBoYXZlDQo+IGV4cGVjdGVkDQo+IHNvbWUgdXNhZ2Ugbm90ZSwgc3VjaCBh
+cyB0aGF0IHRoZSBtZW1vcnkgYXJlYSBtdXN0IGJlIHJlcG9ydGVkIGFzDQo+IHJlc2VydmVkDQo+
+IHRvIHRoZSBrZXJuZWwsIGJ1dCBJIGRvbid0IHNlZSBhbnl0aGluZyBsaWtlIHRoYXQuDQo+IA0K
+PiBHdWVudGVyDQoNCkNvdWxkIHlvdSBoZWxwIHRvIHN1Z2dlc3QgaG93IHRvIGhhbmRsZSBpdD8g
+DQoNCkkgYW0gbm90IHN1cmUgd2hlcmUgaXMgYSBnb29kIHBsYWNlIHRvIHdyaXRlIHRoZSB1c2Fn
+ZSBub3RlLiBJIGFtDQp0aGlua2luZyB0byBhZGQgaXQgaW4gdjQgdG8gRFQgYmluZGluZy4NCg0K
+QmVzdCByZWdhcmRzLA0KTGkgSHVhIFFpYW4NCj4gDQo+ID4gQ2hhbmdlcyBpbiB2MzoNCj4gPiAt
+IEFkZCBtZW1vcnktcmVnaW9uIGJhY2sgZm9yIHRoZSByZXNlcnZlZCBtZW1vcnksIGFuZCByZW1v
+dmUNCj4gPiByZXNlcnZlZA0KPiA+IMKgwqAgbWVtb3J5IGZyb20gdGhlIHdhdGNoZG9nIElPIGFk
+ZHJlc3Mgc3BhY2UuDQo+ID4gLSBBZGQgY2hhbmdlbG9nLg0KPiA+IC0gTGluayB0byB2MjoNCj4g
+PiDCoMKgDQo+ID4gaHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcvbGludXgtd2F0Y2hkb2cvMjAyMzA3
+MTEwOTE3MTMuMTExMzAxMC0xLWh1YXFpYW4ubGlAc2llbWVucy5jb20NCj4gPiANCj4gPiBDaGFu
+Z2VzIGluIHYyOg0KPiA+IC0gUmVtb3ZlIG1lbW9yeS1yZWdpb24gYW5kIG1lbW9yeS1zaXplIHBy
+b3BlcnRpZXMsIGFuZCBiaW5kIHRoZQ0KPiA+IHJlc2VydmVkDQo+ID4gwqDCoCBtZW1vcnkgdG8g
+d2F0Y2hkb2cgSU8gYWRkcmVzcyBzcGFjZS4NCj4gPiAtIFJlbW92ZSB0aGUgdW5uZWNlc3Nhcnkg
+cnRpX3dkdF9pb2N0bC4NCj4gPiAtIEZpeCB0aGUgbWFpbCBsaXN0DQo+ID4gLSBMaW5rIHRvIHYx
+Og0KPiA+IMKgwqANCj4gPiBodHRwczovL2xvcmUua2VybmVsLm9yZy9hbGwvMzEzN2Q4N2U1NmVm
+NzViYTBiOGE5MjNkNDA3YjJmZWNhY2U2Y2NiZC5jYW1lbEBzaWVtZW5zLmNvbS8NCj4gPiDCoMKg
+IHYxIGhhZCBhIHdyb25nIG1haWwgbGlzdCBhdCB0aGUgYmVnaW5uaW5nLCBhbmQgdGhlIG1haWwg
+dGhyZWFkDQo+ID4gd2FzDQo+ID4gwqDCoCBtZXNzZWQgdXAuDQo+ID4gDQo+ID4gTGkgSHVhIFFp
+YW4gKDMpOg0KPiA+IMKgwqAgZHQtYmluZGluZ3M6IHdhdGNoZG9nOiB0aSxydGktd2R0OiBBZGQg
+c3VwcG9ydCBmb3INCj4gPiBXRElPRl9DQVJEUkVTRVQNCj4gPiDCoMKgIGFybTY0OiBkdHM6IHRp
+OiBBZGQgcmVzZXJ2ZWQgbWVtb3J5IGZvciB3YXRjaGRvZw0KPiA+IMKgwqAgd2F0Y2hkb2c6cml0
+X3dkdDogQWRkIHN1cHBvcnQgZm9yIFdESU9GX0NBUkRSRVNFVA0KPiA+IA0KPiA+IMKgIC4uLi9i
+aW5kaW5ncy93YXRjaGRvZy90aSxydGktd2R0LnlhbWzCoMKgwqDCoMKgwqDCoMKgIHwgMTIgKysr
+KysNCj4gPiDCoCAuLi4vYm9vdC9kdHMvdGkvazMtYW02NS1pb3QyMDUwLWNvbW1vbi5kdHNpwqDC
+oCB8IDEwICsrKysNCj4gPiDCoCBkcml2ZXJzL3dhdGNoZG9nL3J0aV93ZHQuY8KgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHwgNTENCj4gPiArKysrKysrKysrKysrKysrKysr
+DQo+ID4gwqAgMyBmaWxlcyBjaGFuZ2VkLCA3MyBpbnNlcnRpb25zKCspDQo+ID4gDQo+IA0KDQo=
