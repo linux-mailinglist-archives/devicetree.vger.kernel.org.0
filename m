@@ -2,124 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 93A5E754253
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jul 2023 20:11:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 82C087542CD
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jul 2023 20:50:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236402AbjGNSLY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jul 2023 14:11:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58380 "EHLO
+        id S235999AbjGNSt7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jul 2023 14:49:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53992 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236202AbjGNSLV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jul 2023 14:11:21 -0400
-Received: from mail-io1-xd32.google.com (mail-io1-xd32.google.com [IPv6:2607:f8b0:4864:20::d32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB29230D8
-        for <devicetree@vger.kernel.org>; Fri, 14 Jul 2023 11:10:50 -0700 (PDT)
-Received: by mail-io1-xd32.google.com with SMTP id ca18e2360f4ac-786bb09e595so76451239f.1
-        for <devicetree@vger.kernel.org>; Fri, 14 Jul 2023 11:10:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ieee.org; s=google; t=1689358246; x=1691950246;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ElBmMm1ZevyAKtumVID4tVMI+TD8QnK9EnzezYAZC1A=;
-        b=Mpdbmrnz6XIJWmlHQJGoTmuC7D53w+ptxGvR1qzM5rcUr2yuAkawf06rjkPYMTBpFq
-         l6MjPg1ZjnoCWgc8pvFZw+blKr4qxg2V0sQF1H0WVPdY6+DHII+TihuXYaBMer6Ieai0
-         olDYpMIpFkabUds26CFLUeHKHqIZFPDKt93i0=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689358246; x=1691950246;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ElBmMm1ZevyAKtumVID4tVMI+TD8QnK9EnzezYAZC1A=;
-        b=F5CUkIjTPJninKZ9rp9DXQguXy96DQkeOBjZ64P9sLGoCXCYp0OS1sksUIZB/qfDEV
-         9IUlTuQc7CHRL8eea7/ZIfc0RwICZBsC0UWi3FAvBHHbCTkOz7PdEQ9EoYu2erAPcxoo
-         3e6KURMKbvcKMjSQ/Vueaclnl8D8SPN23XdG1Eqqd/6B8qXduonlyLjW91auyFWKslJh
-         wDx1Kl0QXMWuDeOq2JM92Ckdv/bjxAaxVuSjc8cf0rr/43Y3qIzeLWvUPnfP8rYugkMO
-         wBHuiHmHiOtE2yh6b2bKw7oTS4VntGRIVTrZRPI7U45xbD6UOOgu2FTsveCbCqA9XR2C
-         xIZg==
-X-Gm-Message-State: ABy/qLYJQ+LY8mD8TgSzMdmaQbTTrvhGLBi/Rg/q06FkGdz1heXK3sTM
-        ihGW1OPHmb8kjIfmR/hzY8S93w==
-X-Google-Smtp-Source: APBJJlGUGWVq3dRmIhivYzT09y1C8kNKMoIaBZuLBrLyn6F4EFbPgbam3zAfvH0LyeRyezDMUEgn+A==
-X-Received: by 2002:a05:6e02:221e:b0:346:bf9:76fb with SMTP id j30-20020a056e02221e00b003460bf976fbmr2505344ilf.6.1689358246007;
-        Fri, 14 Jul 2023 11:10:46 -0700 (PDT)
-Received: from [172.22.22.28] (c-98-61-227-136.hsd1.mn.comcast.net. [98.61.227.136])
-        by smtp.googlemail.com with ESMTPSA id ee14-20020a056638292e00b0042ad6abe0bbsm2820039jab.20.2023.07.14.11.10.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 14 Jul 2023 11:10:44 -0700 (PDT)
-Message-ID: <2af8ba3f-566a-756e-48bf-3e723bc713da@ieee.org>
-Date:   Fri, 14 Jul 2023 13:10:42 -0500
+        with ESMTP id S236091AbjGNSt4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jul 2023 14:49:56 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35F0E2D6B;
+        Fri, 14 Jul 2023 11:49:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=jdawOEEHyRUT7F57ZiuPLdAc3zWki3KVkFdsKJ+iCp0=; b=3OB7ozN7Bi7W1GClBi9FNObJ1b
+        3R3hCiaACaJAKSBr30C0ShpVIzJcIHDy4xnxGn3GLFYXLJ8pLDHnHTBdE4A1JG8ddQytsoId3KsE0
+        fKvTUMvmeQy6gBdcUYkIxY/yZmQ9tT9qiTZfnc+8/JiKOXVw8wyZgyaDAE2xrWlkv/hg=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1qKNrR-001NkM-TZ; Fri, 14 Jul 2023 20:49:49 +0200
+Date:   Fri, 14 Jul 2023 20:49:49 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Samin Guo <samin.guo@starfivetech.com>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        netdev@vger.kernel.org, Peter Geis <pgwipeout@gmail.com>,
+        Frank <Frank.Sae@motor-comm.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Conor Dooley <conor@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Yanhong Wang <yanhong.wang@starfivetech.com>
+Subject: Re: [PATCH v4 2/2] net: phy: motorcomm: Add pad drive strength cfg
+ support
+Message-ID: <55cd8a47-89e5-4f62-8162-c744e1a99ad5@lunn.ch>
+References: <20230714101406.17686-1-samin.guo@starfivetech.com>
+ <20230714101406.17686-3-samin.guo@starfivetech.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [greybus-dev] [PATCH] staging: Explicitly include correct DT
- includes
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Vaibhav Hiremath <hvaibhav.linux@gmail.com>,
-        Johan Hovold <johan@kernel.org>, Alex Elder <elder@kernel.org>,
-        Steve Longerbeam <slongerbeam@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Sowjanya Komatineni <skomatineni@nvidia.com>,
-        Luca Ceresoli <luca.ceresoli@bootlin.com>,
-        Parthiban Veerasooran <parthiban.veerasooran@microchip.com>,
-        Christian Gromm <christian.gromm@microchip.com>
-Cc:     devicetree@vger.kernel.org, linux-staging@lists.linux.dev,
-        linux-kernel@vger.kernel.org, greybus-dev@lists.linaro.org,
-        linux-media@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-tegra@vger.kernel.org
-References: <20230714175002.4064428-1-robh@kernel.org>
-From:   Alex Elder <elder@ieee.org>
-In-Reply-To: <20230714175002.4064428-1-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230714101406.17686-3-samin.guo@starfivetech.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 7/14/23 12:50 PM, Rob Herring wrote:
-> The DT of_device.h and of_platform.h date back to the separate
-> of_platform_bus_type before it as merged into the regular platform bus.
-> As part of that merge prepping Arm DT support 13 years ago, they
-> "temporarily" include each other. They also include platform_device.h
-> and of.h. As a result, there's a pretty much random mix of those include
-> files used throughout the tree. In order to detangle these headers and
-> replace the implicit includes with struct declarations, users need to
-> explicitly include the correct includes.
-> 
-> Signed-off-by: Rob Herring <robh@kernel.org>
+> +static u32 yt8531_get_ds_map(struct phy_device *phydev, u32 cur)
+> +{
+> +	u32 vol;
+> +	int i;
+> +
+> +	vol = yt8531_get_ldo_vol(phydev);
+> +	for (i = 0; i < ARRAY_SIZE(yt8531_ldo_vol); i++) {
+> +		if (yt8531_ldo_vol[i].vol == vol && yt8531_ldo_vol[i].cur == cur)
+> +			return yt8531_ldo_vol[i].ds;
+> +	}
+> +
+> +	phydev_warn(phydev,
+> +		    "No matching current value was found %d, Use default value.\n", cur);
+> +
+> +	return YT8531_RGMII_RX_DS_DEFAULT;
 
-For drivers/staging/greybus/arche-platform.c:
+If there is a value in DT and it is invalid, return -EINVAL and fail
+the probe. Only use the default if there is no value in DT.
 
-Acked-by: Alex Elder <elder@linaro.org>
-
-> ---
->   drivers/staging/axis-fifo/axis-fifo.c             | 6 ++----
->   drivers/staging/greybus/arche-platform.c          | 1 +
-
-. . .
-
+    Andrew
