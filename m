@@ -2,237 +2,267 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4361A753C78
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jul 2023 16:05:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B8203753E1E
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jul 2023 16:53:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235710AbjGNOFW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jul 2023 10:05:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56876 "EHLO
+        id S235911AbjGNOxf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jul 2023 10:53:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59104 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235525AbjGNOFV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jul 2023 10:05:21 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 598A2269F
-        for <devicetree@vger.kernel.org>; Fri, 14 Jul 2023 07:05:20 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id 2adb3069b0e04-4fb7769f15aso3314882e87.0
-        for <devicetree@vger.kernel.org>; Fri, 14 Jul 2023 07:05:20 -0700 (PDT)
+        with ESMTP id S236077AbjGNOxd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jul 2023 10:53:33 -0400
+X-Greylist: delayed 1604 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 14 Jul 2023 07:53:32 PDT
+Received: from mx08-00376f01.pphosted.com (mx08-00376f01.pphosted.com [91.207.212.86])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 264E126A5;
+        Fri, 14 Jul 2023 07:53:31 -0700 (PDT)
+Received: from pps.filterd (m0168888.ppops.net [127.0.0.1])
+        by mx08-00376f01.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 36EBtqSa022399;
+        Fri, 14 Jul 2023 15:25:39 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=imgtec.com; h=
+        from:to:cc:subject:date:message-id:content-transfer-encoding
+        :content-type:mime-version; s=dk201812; bh=lJF9YwzBSbKwzuwNVB9O/
+        3JaF/reeNNDtpItKVJUM9M=; b=AF7FLPxzTWKokhvzVYCCvqwegF+SVqO9ftfhI
+        wVR7eDn+2FxDs8zyT16uXvcEdIe8jdrI6MwlPUBjIMKuX+S0TKL0DInHrKVZN3Fj
+        j2IpAmbarWzw3IsgCKQn/d5EAJXJ7GwVAj+iL3E1zE+axwdHMqZr9+WPFf3+nP6J
+        EcFkYV/UomoZrgzPHg+UYoSiXpJOr89kHgOwp6iIgFSuzS+vPKy/71iOBJDQmfQS
+        XCtgi3m+U8pgSGmsVfbz7trtJS96uNiteLw8KjllpMjUPaMntPV6nePjLbr7VZsA
+        8q7c7TYzzHV0fhE34wLcCXdA4WBFD74/O2vDn7NXBd+zzz0Sw==
+Received: from hhmail05.hh.imgtec.org ([217.156.249.195])
+        by mx08-00376f01.pphosted.com (PPS) with ESMTPS id 3rtpu80m4r-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
+        Fri, 14 Jul 2023 15:25:38 +0100 (BST)
+Received: from HHMAIL05.hh.imgtec.org (10.100.10.120) by
+ HHMAIL05.hh.imgtec.org (10.100.10.120) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.27; Fri, 14 Jul 2023 15:25:38 +0100
+Received: from GBR01-LO2-obe.outbound.protection.outlook.com (104.47.21.55) by
+ email.imgtec.com (10.100.10.121) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27 via Frontend
+ Transport; Fri, 14 Jul 2023 15:25:37 +0100
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=kmB689WxLM1xxpTYqVMvzs47PnLyu/DeADmsOtmZD9A8c2QtR0T0Et0whUw7NQr/ScqZbou9PSkZC7evhdfDTvt5FqEoDU2fpYFbOpU21ziDqovonc4yy4oNQjh1vneKzmBU5uQ0TP1Yjab7zECsqLnPYom49Vu4duU7yL//RVcYTybZP6GmQUhe87NeZtHQLJdjS3Kx5JX4URhawVFbf+Xm01VngvMckIWGf6AmZvliAWpsG/OdzaCcNVp2ZQY4l6CVaEquCzyh4b5yqKl3ZYHjnrOtNdlVieb+KrYV6MZ84XatsSW9Zpwbe/9k6QWbaiRBnAJQ8anbGIDdalDUfA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=lJF9YwzBSbKwzuwNVB9O/3JaF/reeNNDtpItKVJUM9M=;
+ b=VcDHQsqWA/lWBms3qUWb0zSaQ0GJ1gni8J7kR8YO+IsgVaxu7fMi4iCaJj2qJ4sQJykMNdNqpk6rJa1axyeqNOlwv3Rc/CKH+jcJvp9XiW/+yjJEm+5VYnDDBUAp2QCMQzowskOFuAIv3n16W3NzMk/adE5Ou8D5idpPGa9YF4y138KRFP5e9cbp5Mho3YyOdLRBAJUqpNvGEMbwzD5coXZSRGGibwICw9OjA9DicZTe7KY6L8Vf6NBBBW4c+HoVo7KI0aCT9u0/igTxcGnOXaiyXXiMe3fkPNFNoph1bdF0IW8rJuJquf5lpHmtWYCHrnGK1sgM+2J0+xOHTemfBQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=imgtec.com; dmarc=pass action=none header.from=imgtec.com;
+ dkim=pass header.d=imgtec.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=brainfault-org.20221208.gappssmtp.com; s=20221208; t=1689343518; x=1691935518;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=YnFTCmfQr51Jyi3FZr0J8MFBJPMMvcfdmJ7yH61hf14=;
-        b=NpgncndOWMiRR8Xyml8UoEY1xzREMaqFk6QiyYloSb5x6ozVoS1i4YFMkBiWcERulW
-         CadO6Ij+N310y5vrkesaZ6tl6T1Fz7F5oo+XTtkocuAI0QTCISMoteiXsdUdKBwIBCqg
-         6PDiAayVs2G/7MzXv6OnGG7u27l4Dx9v2dZm1sRTK3YRjDOCaovkEIVtNu2W1ulxZ+2S
-         CR7kRszFBFq72utvKF16frB9IgQnWfk84FQsK0alxT2lmo9lUUD1Oo8gFCRZpCZN7+om
-         Af8mcFXOm+BMxU7HPEASSRQJcwdJt1cUNsn0OTzfl7cjytcsOqjKW+n44Y/X0QgOTkIi
-         fE9w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689343518; x=1691935518;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=YnFTCmfQr51Jyi3FZr0J8MFBJPMMvcfdmJ7yH61hf14=;
-        b=ZV2uaww0WiOhYDl+eK+/cXfNgBvrhxIm1mCYD/nWpHWGGKbPMAnSCufhEBhmgenrKE
-         Bmwtl9wABWR5mia9wzN/74N82d9BUhr9EuuYRK3OxlOc050wj3c6RIoh+PbUq79eiZK4
-         nqa8j9YDjj4Bktbtdp6el/K0xUMIMcJSJMrtB+5kaAKGXnU51MGSYcSdDqLebKyQ2ixB
-         BrQn2Wbb6wWgwvq1+c82XABYQ9N95+y01IMC+Vkfe7f2CRS56zB6Vp0bjqTaZJe7DLqa
-         tCXTxki/bNXRESTPiwK8iWUHm0lIXwy/EeMkS2hADamtxNFOhISp04oiK/EDXb8lCIQW
-         H4GQ==
-X-Gm-Message-State: ABy/qLaey8OH8GAg7d1JH4nHtgGLWjXVBdUX73tN6OjRnpxGkgLEirct
-        5+qNgaLXCGc1gcNnmweLe847LCf/NibGwPzvasVbIg==
-X-Google-Smtp-Source: APBJJlHpiApDHfRtmrkPWenZ82kudEb1Dy7+1/rcFajH80YzpIcFj6SCENrVeYhu0lDwrFpyjLGg/WUEpyGXT3oMhhQ=
-X-Received: by 2002:a05:6512:340b:b0:4fb:9f24:bba9 with SMTP id
- i11-20020a056512340b00b004fb9f24bba9mr4627841lfr.5.1689343518371; Fri, 14 Jul
- 2023 07:05:18 -0700 (PDT)
+ d=IMGTecCRM.onmicrosoft.com; s=selector2-IMGTecCRM-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=lJF9YwzBSbKwzuwNVB9O/3JaF/reeNNDtpItKVJUM9M=;
+ b=Tb7fovW8cU38Ldjw1b3LcB1ledItzhsBFosP5dyJS57TnHIMr28J18KJGMXRHQbyJEyRW7DnWaMcE8rRfmvBX5M1DJwClpReucRrgBRKhH+zbAFAeO7K0MKoS+TImGif0m4BgNchyjjqMP+ww6yGuyRlgec06ZFRK7tIkS35QIE=
+Received: from CWLP265MB4817.GBRP265.PROD.OUTLOOK.COM (2603:10a6:400:170::9)
+ by LOYP265MB2077.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:11f::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6588.27; Fri, 14 Jul
+ 2023 14:25:37 +0000
+Received: from CWLP265MB4817.GBRP265.PROD.OUTLOOK.COM
+ ([fe80::f042:5122:eb28:4131]) by CWLP265MB4817.GBRP265.PROD.OUTLOOK.COM
+ ([fe80::f042:5122:eb28:4131%5]) with mapi id 15.20.6588.027; Fri, 14 Jul 2023
+ 14:25:37 +0000
+From:   Sarah Walker <sarah.walker@imgtec.com>
+To:     <dri-devel@lists.freedesktop.org>
+CC:     <frank.binns@imgtec.com>, <donald.robson@imgtec.com>,
+        <boris.brezillon@collabora.com>, <faith.ekstrand@collabora.com>,
+        <airlied@gmail.com>, <daniel@ffwll.ch>,
+        <maarten.lankhorst@linux.intel.com>, <mripard@kernel.org>,
+        <tzimmermann@suse.de>, <afd@ti.com>, <hns@goldelico.com>,
+        <matthew.brost@intel.com>, <christian.koenig@amd.com>,
+        <luben.tuikov@amd.com>, <dakr@redhat.com>,
+        <linux-kernel@vger.kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <devicetree@vger.kernel.org>
+Subject: [PATCH v4 02/17] dt-bindings: gpu: Add Imagination Technologies PowerVR GPU
+Date:   Fri, 14 Jul 2023 15:25:26 +0100
+Message-Id: <20230714142526.111569-1-sarah.walker@imgtec.com>
+X-Mailer: git-send-email 2.25.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: LO2P265CA0453.GBRP265.PROD.OUTLOOK.COM
+ (2603:10a6:600:e::33) To CWLP265MB4817.GBRP265.PROD.OUTLOOK.COM
+ (2603:10a6:400:170::9)
 MIME-Version: 1.0
-References: <20230710094321.1378351-1-apatel@ventanamicro.com>
- <20230710094321.1378351-8-apatel@ventanamicro.com> <CAGETcx8kH8cJVdhcv5K4qNUo58godFZEBnOfTGKUUQ6VuUguvQ@mail.gmail.com>
- <86jzv2vpdb.wl-maz@kernel.org> <CAK9=C2ULxsXednwnoyzYKjQFpe_zBSZ4v0FqUYFnxK2TpbiMtg@mail.gmail.com>
- <86cz0uvcof.wl-maz@kernel.org>
-In-Reply-To: <86cz0uvcof.wl-maz@kernel.org>
-From:   Anup Patel <anup@brainfault.org>
-Date:   Fri, 14 Jul 2023 19:35:07 +0530
-Message-ID: <CAAhSdy2sAaA_dmVCt9162kpw8-Ub1wjH_MNKxPOFN_VbW7M7vQ@mail.gmail.com>
-Subject: Re: [PATCH v5 7/9] irqchip: Add RISC-V advanced PLIC driver
-To:     Marc Zyngier <maz@kernel.org>
-Cc:     Anup Patel <apatel@ventanamicro.com>,
-        Saravana Kannan <saravanak@google.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Atish Patra <atishp@atishpatra.org>,
-        Andrew Jones <ajones@ventanamicro.com>,
-        Sunil V L <sunilvl@ventanamicro.com>,
-        Conor Dooley <conor@kernel.org>,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CWLP265MB4817:EE_|LOYP265MB2077:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3622dca5-bb47-4291-4cc0-08db84763126
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 1YZ3kQw5xMxm1T8I8yGtOeou3PyXJdHp3Dslxte1+eNHMcS6lGeroZ5+XubopJRp7UIWGnd8yT7VqjYFW/nGPF5o0bW+kM+WyUTe+/9gloI+LsCE1omXpn7w9rkHweq4o0K1K1dTvkk7u8m8ukV3HHkJD3Yis/D9y0J1dDLjgYNI3gWEu2eRMqWmyL3VnFINVofoI6kAsi/TlwZV7L4sj0265yV7B8pZofPVdWH4aLF/+Lqz6iKCdbiX0KCyh5gYTkyedOOureY3krJrD2CYX5u85e1ivPHx4rH+gSyinfV4SOOiXi7lrdbwonKKkprsAb+81IoMUyBupBCPOrwRxH9UtLaEKRUS79eLsgWgdBsmhqBzl7zyMa1bgw72MzohSa+MVltobtwNjx31QXm/7+i6Y0d+9dDZY3LCyED94Y/PDEbpSKemKVpOKXZ+b6mFgwL6AKi8kQl1W4JqIvxUuvd6ZOteJII3f/RsdmhKAmpMpLq2vtz/PLHuqwtYHsI9FKyzlw74N0pnf/igOXwcwnzxbfnk2bTMs9Lg/PMA6nUFh4vvQ7kgh7rcYzlXlB4lMIbwfT7HpAkHOJUC76Wg870Sn/HUCzMSpsh9XTbrAZM=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CWLP265MB4817.GBRP265.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230028)(346002)(136003)(366004)(376002)(396003)(39850400004)(451199021)(41300700001)(44832011)(66476007)(7416002)(4326008)(66946007)(66556008)(6916009)(478600001)(5660300002)(2906002)(316002)(8936002)(8676002)(6666004)(6486002)(52116002)(966005)(6512007)(86362001)(1076003)(26005)(6506007)(186003)(83380400001)(36756003)(38350700002)(2616005)(38100700002);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?P+48hmJ7FMr9tUCHqcpMY2+r/9GkvPurnsOlTmpONZuceeTvvM13UwOmeAzi?=
+ =?us-ascii?Q?7R57nzSf1cLZGnwcTde2CmrwcfV03bW5sCINTyEc+qpG491ZSWJTFswTGj1K?=
+ =?us-ascii?Q?irOW9e1ICCtwc4Lz05Tifshts1LPuhFo1rqG6+yzQcw/rZJM6hH8/hT1pVjU?=
+ =?us-ascii?Q?bKM+cpetbKUMp1y8TRfjEp6qGzwfVg4DQKfJTKM4/WYHyJ9FLf0PVVekLgEv?=
+ =?us-ascii?Q?PnC2Ot0GkdVLVhM3DnlV+GQUha1U5b1w/uPhgg48cxAKgA/SrUf9rxw2yb3t?=
+ =?us-ascii?Q?C+t3cX0CVzAEQSCTjhath1otfh5NsP9GGC36UkOnis6XyWmBRDRwyte2ryg1?=
+ =?us-ascii?Q?nSbAcDW5sgwXF792hjkUXhrfYaQAHuWHse1BvTWP2y3TAvbZ26css8/wC9q3?=
+ =?us-ascii?Q?2IHC9j2i1g6EWbs2IkTMyhHYHXodePQMzWrSdhhB4KjLFH8lIHvYoYnmhk3e?=
+ =?us-ascii?Q?JV0UgOexdQtiR9dhJSxunAoVBcOkn6KCRrBuK4zCJSefSzCt/ZPOpkHl1Vrk?=
+ =?us-ascii?Q?zNqFXPD/SqkQ02hFt+s+gU4RHUVFJi3r3QBP+VEhSoOcpv4A1mV695e0cm87?=
+ =?us-ascii?Q?mqFtqhH4pmS7TFeis4hUKMO+PEBim1L5GbQeCcHNe5syUk/2XZp2alK3m94Y?=
+ =?us-ascii?Q?R9VEU40FsKA6nHe6VT/NNt/eQ4eBtmau8lpxMHqZBzvPEHq2nLxhKau/kaqL?=
+ =?us-ascii?Q?/JOUKP+0FFYftcRA2iErY59A5nM0GclC7YadGhympBP7WSZDu0w1wFPpFqbs?=
+ =?us-ascii?Q?Q8gJa8Htyrltc3tWgmUJZ2r25cZtuZ5N2HviZaPUCJcngqx80yOop4gJa4XU?=
+ =?us-ascii?Q?hBGg6Sj16CMGZuXOBK26ELg9NQE+m6M3FZH7TDizGZYzwYPzzKdlXLl7cdXZ?=
+ =?us-ascii?Q?kmyApdpahE0OxzFXxdOIVPfWyow67yo5V8QlS5Xeu1SozpyDiulbxMw+88wq?=
+ =?us-ascii?Q?2bplv2+QawwW0hRIGeTWj0xQiQL3zIIC7BK6kJsoVoYtt/g/Q51HBxTdIT/j?=
+ =?us-ascii?Q?3ez6UsAU2vB1j0wUySoOw1WGTp8otfC7z+3OeOx1x+6NU2RqqyvJhxCY5Vvs?=
+ =?us-ascii?Q?zydyWZfYzrVAp2XusniELwJD9x0eTmhBILHV7yNByv1XG80/feXSXHPEAcx+?=
+ =?us-ascii?Q?dPq1KJFu7kKhVBmRewmHEm6aQD4Ql1X+8suNVF+CuIlL47PqO8BWEOoew8tx?=
+ =?us-ascii?Q?AobDkpppR//aSRpmVlCbXYNDukmHvJRNuYYhqTrQOimSblF9HpCDGZQ7+5K2?=
+ =?us-ascii?Q?LxvM5jV7nAsofD+LutGVdhQYeFNZYlW6NUU9RZKsciSQPp6TJwRPagqYZmMF?=
+ =?us-ascii?Q?uaz+/bP/BcGHRQNkcMiCdQNxPhShugckvKIZfygJQ1v9WEKshHoyCfOqmSdJ?=
+ =?us-ascii?Q?ysiz8iyusj+2rKmpp0AAoGZ9RfneMsQVedr/155r6+TIp7XMwho+JSTTQIo8?=
+ =?us-ascii?Q?drLQP9jhw0gLNXJenqqBjdv1TGflAOu2B71cpfCTMkXiQ+7LdZKsr70tr3dE?=
+ =?us-ascii?Q?3z8jFYfD2sjW0Edt/PnzIl6j3Y9N7+Pmd4lrHZpeLcOvrwsJp/nB3vkZOgLp?=
+ =?us-ascii?Q?QLG+b284SlIvDd91tPT5y1BqfcwHlumFEksF0PKGXlruyzXi3rU9x48j+LuC?=
+ =?us-ascii?Q?9w=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3622dca5-bb47-4291-4cc0-08db84763126
+X-MS-Exchange-CrossTenant-AuthSource: CWLP265MB4817.GBRP265.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Jul 2023 14:25:36.9943
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 0d5fd8bb-e8c2-4e0a-8dd5-2c264f7140fe
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Z+7xIHIMtAIxqulwcUdImp3nlR3ZTgXSgUzdGoYNJujX76cj3j6U8uhA4WaKSzVyo4RKv9qn8BkL+PMYuJqvIg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LOYP265MB2077
+X-OriginatorOrg: imgtec.com
+X-EXCLAIMER-MD-CONFIG: 15a78312-3e47-46eb-9010-2e54d84a9631
+X-Proofpoint-ORIG-GUID: FP64EOKhokCop1KTsu6mJuCImfC3KIyE
+X-Proofpoint-GUID: FP64EOKhokCop1KTsu6mJuCImfC3KIyE
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 14, 2023 at 7:05=E2=80=AFPM Marc Zyngier <maz@kernel.org> wrote=
-:
->
-> On Fri, 14 Jul 2023 10:35:34 +0100,
-> Anup Patel <apatel@ventanamicro.com> wrote:
-> >
-> > On Fri, Jul 14, 2023 at 2:31=E2=80=AFPM Marc Zyngier <maz@kernel.org> w=
-rote:
-> > >
-> > > Anup,
-> > >
-> > > On Fri, 14 Jul 2023 00:56:22 +0100,
-> > > Saravana Kannan <saravanak@google.com> wrote:
-> > > >
-> > > > On Mon, Jul 10, 2023 at 2:44=E2=80=AFAM Anup Patel <apatel@ventanam=
-icro.com> wrote:
-> > > > >
-> > > > > The RISC-V advanced interrupt architecture (AIA) specification de=
-fines
-> > > > > a new interrupt controller for managing wired interrupts on a RIS=
-C-V
-> > > > > platform. This new interrupt controller is referred to as advance=
-d
-> > > > > platform-level interrupt controller (APLIC) which can forward wir=
-ed
-> > > > > interrupts to CPUs (or HARTs) as local interrupts OR as message
-> > > > > signaled interrupts.
-> > > > > (For more details refer https://github.com/riscv/riscv-aia)
-> > > > >
-> > > > > This patch adds an irqchip driver for RISC-V APLIC found on RISC-=
-V
-> > > > > platforms.
-> > > > >
-> > > > > Signed-off-by: Anup Patel <apatel@ventanamicro.com>
-> > >
-> > > [...]
-> > >
-> > > > > +static int __init aplic_dt_init(struct device_node *node,
-> > > > > +                               struct device_node *parent)
-> > > > > +{
-> > > > > +       /*
-> > > > > +        * The APLIC platform driver needs to be probed early
-> > > > > +        * so for device tree:
-> > > > > +        *
-> > > > > +        * 1) Set the FWNODE_FLAG_BEST_EFFORT flag in fwnode whic=
-h
-> > > > > +        *    provides a hint to the device driver core to probe =
-the
-> > > > > +        *    platform driver early.
-> > > > > +        * 2) Clear the OF_POPULATED flag in device_node because
-> > > > > +        *    of_irq_init() sets it which prevents creation of
-> > > > > +        *    platform device.
-> > > > > +        */
-> > > > > +       node->fwnode.flags |=3D FWNODE_FLAG_BEST_EFFORT;
-> > > >
-> > > > Please stop spamming us with broken patches. Already told you this =
-is
-> > > > not an option.
-> > > >
-> > > > Nack.
-> > >
-> > > What puzzles me here is that *no other arch* requires this sort of
-> > > hack. What is so special about the APLIC that it requires it? I see
-> > > nothing in this patch that even hints at it, despite the "discussion"
-> > > in the last round.
-> > >
-> > > The rules are simple:
-> > >
-> > > - either the APLIC is so fundamental to the system that it has to be
-> > >   initialised super early, much like the GIC on arm64, at which point
-> > >   it cannot be a platform device, and the story is pretty simple.
-> > >
-> > > - or it isn't that fundamental, and it can be probed as a platform
-> > >   device using the dependency infrastructure that is already used by
-> > >   multiple other interrupt controller drivers, without any need to
-> > >   mess with internal flags. Again, this should be simple enough.
-> >
-> > APLIC manages all wired interrupts whereas IMSIC manages all
-> > MSIs. Both APLIC and IMSIC are fundamental devices which need
-> > to be probed super early.
-> >
-> > Now APLIC has two modes of operations:
-> > 1) Direct mode where there is no IMSIC in the system and APLIC
-> >     directly injects interrupt to CPUs
-> > 2) MSI mode where IMSIC is present in the system and APLIC
-> >     converts wired interrupts into MSIs
-> >
-> > The APLIC driver added by this patch is a common driver for
-> > both above modes.
->
-> Which it doesn't need to be. You are pointlessly making life difficult
-> for yourself, and everyone else. The MSI bridge behaviour has *zero*
-> reason to be the same driver as the main "I need it super early"
-> driver. They may be called the same, but they *are* different things
-> in the system.
->
-> They can share code, but they are fundamentally a different thing in
-> the system. And I guess this silly approach has other ramifications:
-> the IMSIC is also some early driver when it really doesn't need to be.
-> Who needs MSIs that early in the life of the system? I don't buy this
-> for even a second.
+Add the device tree binding documentation for the Series AXE GPU used in
+TI AM62 SoCs.
 
-IMSIC also provides IPIs which are required super early so I think
-we can't make IMSIC as a platform driver.
+Changes since v3:
+- Remove oneOf in compatible property
+- Remove power-supply (not used on AM62)
 
->
-> Frankly, this whole thing needs to be taken apart and rebuilt from the
-> ground up.
->
-> > For #2, APLIC needs to be a platform device to create a device
-> > MSI domain using platform_msi_create_device_domain() which
-> > is why the APLIC driver is a platform driver.
->
-> You can't have your cake and eat it. If needed super early, and it
-> cannot be a platform driver. End of the story.
->
-> And to my earlier point: IMSIC and APLIC-as-MSI-bridge have no purpose
-> being early drivers. They must be platform drivers, and only that.
+Changes since v2:
+- Add commit message description
+- Remove mt8173-gpu support (not currently supported)
+- Drop quotes from $id and $schema
+- Remove reg: minItems
+- Drop _clk suffixes from clock-names
+- Remove operating-points-v2 property and cooling-cells (not currently
+  used)
+- Add additionalProperties: false
+- Remove stray blank line at the end of file
 
-We can have IMSIC and APLIC-Direct-Mode as non-platform driver
-whereas APLIC-as-MSI-bridge will be a platform driver.
+Signed-off-by: Sarah Walker <sarah.walker@imgtec.com>
+---
+ .../devicetree/bindings/gpu/img,powervr.yaml  | 68 +++++++++++++++++++
+ MAINTAINERS                                   |  7 ++
+ 2 files changed, 75 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/gpu/img,powervr.yaml
 
-Both APLIC-Direct-Mode and APLIC-as-MSI-bridge can share a large
-part of the current driver.
+diff --git a/Documentation/devicetree/bindings/gpu/img,powervr.yaml b/Documentation/devicetree/bindings/gpu/img,powervr.yaml
+new file mode 100644
+index 000000000000..3292a0440465
+--- /dev/null
++++ b/Documentation/devicetree/bindings/gpu/img,powervr.yaml
+@@ -0,0 +1,68 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++# Copyright (c) 2022 Imagination Technologies Ltd.
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/gpu/img,powervr.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Imagination Technologies PowerVR GPU
++
++maintainers:
++  - Sarah Walker <sarah.walker@imgtec.com>
++
++properties:
++  compatible:
++    items:
++      - enum:
++          - ti,am62-gpu
++      - const: img,powervr-seriesaxe
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    minItems: 1
++    maxItems: 3
++
++  clock-names:
++    items:
++      - const: core
++      - const: mem
++      - const: sys
++    minItems: 1
++
++  interrupts:
++    items:
++      - description: GPU interrupt
++
++  interrupt-names:
++    items:
++      - const: gpu
++
++  power-domains:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - clock-names
++  - interrupts
++  - interrupt-names
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++
++    gpu: gpu@fd00000 {
++        compatible = "ti,am62-gpu", "img,powervr-seriesaxe";
++        reg = <0x0fd00000 0x20000>;
++        power-domains = <&some_pds 187>;
++        clocks = <&k3_clks 187 0>;
++        clock-names = "core";
++        interrupts = <GIC_SPI 86 IRQ_TYPE_LEVEL_HIGH>;
++        interrupt-names = "gpu";
++    };
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 9852d6bfdb95..0763388b31ef 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -10099,6 +10099,13 @@ IMGTEC IR DECODER DRIVER
+ S:	Orphan
+ F:	drivers/media/rc/img-ir/
+ 
++IMGTEC POWERVR DRM DRIVER
++M:	Frank Binns <frank.binns@imgtec.com>
++M:	Sarah Walker <sarah.walker@imgtec.com>
++M:	Donald Robson <donald.robson@imgtec.com>
++S:	Supported
++F:	Documentation/devicetree/bindings/gpu/img,powervr.yaml
++
+ IMON SOUNDGRAPH USB IR RECEIVER
+ M:	Sean Young <sean@mess.org>
+ L:	linux-media@vger.kernel.org
+-- 
+2.41.0
 
->
-> > > If these rules don't apply to your stuff, please explain what is so
-> > > different. And I mean actually explain the issue. Which isn't telling
-> > > us "it doesn't work without it". Because as things stand, there is no
-> > > way I will even consider taking this ugly mix of probing methods.
-> >
-> > Yes, I don't want this ugly FWNODE_FLAG_BEST_EFFORT hack
-> > in this driver.
->
-> And yet you are hammering it even when told this is wrong.
->
-> > I tried several things but setting the FWNODE_FLAG_BEST_EFFORT
-> > flag is the only thing which works right now.
->
-> How about you take a step back and realise that the way you've
-> architected your drivers makes little sense? I don't think you have
-> tried *that*.
-
-Both APLIC and IMSIC are separate devices as defined by the AIA spec.
-
-There are three possible systems:
-1) Systems with only APLIC (i.e. only wired interrupts)
-2) Systems with only IMSIC (i.e. only MSIs)
-3) Systems with both APLIC and IMSIC (i.e. both wired interrupts and MSIs)
-
-To address the above, APLIC and IMSIC are separate drivers. I am okay
-with splitting the APLIC driver into two separate drivers .
-
-Regards,
-Anup
