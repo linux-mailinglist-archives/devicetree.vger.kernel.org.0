@@ -2,369 +2,211 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CF5F3753B85
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jul 2023 15:08:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 676E6753BDB
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jul 2023 15:35:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235833AbjGNNIc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jul 2023 09:08:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59514 "EHLO
+        id S235675AbjGNNfS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jul 2023 09:35:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40480 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231362AbjGNNIc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jul 2023 09:08:32 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A65941BF9;
-        Fri, 14 Jul 2023 06:08:30 -0700 (PDT)
+        with ESMTP id S235219AbjGNNfS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jul 2023 09:35:18 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E072C1991;
+        Fri, 14 Jul 2023 06:35:16 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 3130B61D1A;
-        Fri, 14 Jul 2023 13:08:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B062FC433C7;
-        Fri, 14 Jul 2023 13:08:28 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 5CF5E61D21;
+        Fri, 14 Jul 2023 13:35:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A81D4C433C7;
+        Fri, 14 Jul 2023 13:35:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689340109;
-        bh=ZhslqMZHPYic+SukuZQhssKNUTXL/XJqa03gcn9IPzM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=IZHLGmXQHIvsXjwttHW1CZXeOyA3iBzL6xm2+ZbyKUFtM6Wby8Df1RYuQ6o3VjGsv
-         3XDpkNUsToRrWllx70Fvo6sdFLQUqIqGkzAVYcr8ruLjcp5iXvAx93XNNqopKyILl4
-         2YFoblAQiSbxw3VQkEwk6KYcjZkq/QkXFvDeiWq6vlc5MlStRQ8DkACFO2271RQ22N
-         K2YzqpVu/1VnMFofIaBYeoAj0teiOixTGUhdvIXoCfbTZotBZtniFNIPvvyS+1bggV
-         1Mdd4ipSSTyK2cIGazTpjtZTOPVHE6BZsOcdhP3WQnclQbRwYHXi++Id2viSO+K3xb
-         +XNE0b3FSmnWA==
-Date:   Fri, 14 Jul 2023 18:38:25 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Varadarajan Narayanan <quic_varada@quicinc.com>
-Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        kishon@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        gregkh@linuxfoundation.org, catalin.marinas@arm.com,
-        will@kernel.org, p.zabel@pengutronix.de, arnd@arndb.de,
-        geert+renesas@glider.be, neil.armstrong@linaro.org,
-        nfraprado@collabora.com, rafal@milecki.pl,
-        quic_srichara@quicinc.com, quic_varada@quicinc.org,
-        quic_wcheng@quicinc.com, linux-arm-msm@vger.kernel.org,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v4 3/6] phy: qcom-m31: Introduce qcom,m31 USB phy driver
-Message-ID: <ZLFIya5kH216id2h@matsya>
-References: <cover.1689160067.git.quic_varada@quicinc.com>
- <3a8baa278457c62f24504ab817b7ba5431391394.1689160067.git.quic_varada@quicinc.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <3a8baa278457c62f24504ab817b7ba5431391394.1689160067.git.quic_varada@quicinc.com>
+        s=k20201202; t=1689341715;
+        bh=LmNuxSDhR2xVlR/o8NTwfyzlHy/wLO/mPMqtHawGjwQ=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=Loi/16pfanheWa+qvyOzRQD2Ww3aZH0SazgDvpO4Xu+BEjwUixhWJ87f6gM5vozGQ
+         npReio+qWUrWpngEa4Mb2oGpLVdx6SgmWPQtsobjXEJc7aLylypC6YBGIB+6Ea9RiV
+         FkGD/Jae6rigsdElpq6PbOBaH2qv+qAk1IR5NaurpPYO/50uUGxM7/VE5vf/LuOiFX
+         G21zStG3Bq3+UY/ZFNBbU/ZtMODMUVto1aZSPO+wfcc26YicqYJ1bal61RwrW7m/zL
+         T7yT6KhGIMJffVit3lqc7MZzK9sXAEJUJk4aErNEeA1z5mAuCtCiTn6DTD1lA1LBap
+         kEklyJ90rvVHQ==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.95)
+        (envelope-from <maz@kernel.org>)
+        id 1qKIwz-00D7Bz-7Y;
+        Fri, 14 Jul 2023 14:35:13 +0100
+Date:   Fri, 14 Jul 2023 14:35:12 +0100
+Message-ID: <86cz0uvcof.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Anup Patel <apatel@ventanamicro.com>
+Cc:     Saravana Kannan <saravanak@google.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Atish Patra <atishp@atishpatra.org>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        Sunil V L <sunilvl@ventanamicro.com>,
+        Conor Dooley <conor@kernel.org>,
+        Anup Patel <anup@brainfault.org>,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v5 7/9] irqchip: Add RISC-V advanced PLIC driver
+In-Reply-To: <CAK9=C2ULxsXednwnoyzYKjQFpe_zBSZ4v0FqUYFnxK2TpbiMtg@mail.gmail.com>
+References: <20230710094321.1378351-1-apatel@ventanamicro.com>
+        <20230710094321.1378351-8-apatel@ventanamicro.com>
+        <CAGETcx8kH8cJVdhcv5K4qNUo58godFZEBnOfTGKUUQ6VuUguvQ@mail.gmail.com>
+        <86jzv2vpdb.wl-maz@kernel.org>
+        <CAK9=C2ULxsXednwnoyzYKjQFpe_zBSZ4v0FqUYFnxK2TpbiMtg@mail.gmail.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/28.2
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: apatel@ventanamicro.com, saravanak@google.com, palmer@dabbelt.com, paul.walmsley@sifive.com, tglx@linutronix.de, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, atishp@atishpatra.org, ajones@ventanamicro.com, sunilvl@ventanamicro.com, conor@kernel.org, anup@brainfault.org, linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12-07-23, 17:08, Varadarajan Narayanan wrote:
-> Add the M31 USB2 phy driver.
-> 
-> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
-> ---
-> v4:
-> 	Remove unused enum
-> 	Error handling for devm_clk_get
-> v1:
-> 	Combine driver, makefile and kconfig into 1 patch
-> 	Remove 'qscratch' region and its usage. The controller driver takes care
-> 	of those settings
-> 	Use compatible/data to handle ipq5332 init
-> 	Drop the default case
-> 	Get resources by index instead of name as there is only one resource
-> 	Add clock
-> 	Fix review comments in the driver
-> ---
->  drivers/phy/qualcomm/Kconfig        |  11 ++
->  drivers/phy/qualcomm/Makefile       |   1 +
->  drivers/phy/qualcomm/phy-qcom-m31.c | 256 ++++++++++++++++++++++++++++++++++++
->  3 files changed, 268 insertions(+)
->  create mode 100644 drivers/phy/qualcomm/phy-qcom-m31.c
-> 
-> diff --git a/drivers/phy/qualcomm/Kconfig b/drivers/phy/qualcomm/Kconfig
-> index 97ca595..76be191 100644
-> --- a/drivers/phy/qualcomm/Kconfig
-> +++ b/drivers/phy/qualcomm/Kconfig
-> @@ -197,3 +197,14 @@ config PHY_QCOM_SGMII_ETH
->  	help
->  	  Enable this to support the internal SerDes/SGMII PHY on various
->  	  Qualcomm chipsets.
-> +
-> +config PHY_QCOM_M31_USB
+On Fri, 14 Jul 2023 10:35:34 +0100,
+Anup Patel <apatel@ventanamicro.com> wrote:
+>=20
+> On Fri, Jul 14, 2023 at 2:31=E2=80=AFPM Marc Zyngier <maz@kernel.org> wro=
+te:
+> >
+> > Anup,
+> >
+> > On Fri, 14 Jul 2023 00:56:22 +0100,
+> > Saravana Kannan <saravanak@google.com> wrote:
+> > >
+> > > On Mon, Jul 10, 2023 at 2:44=E2=80=AFAM Anup Patel <apatel@ventanamic=
+ro.com> wrote:
+> > > >
+> > > > The RISC-V advanced interrupt architecture (AIA) specification defi=
+nes
+> > > > a new interrupt controller for managing wired interrupts on a RISC-V
+> > > > platform. This new interrupt controller is referred to as advanced
+> > > > platform-level interrupt controller (APLIC) which can forward wired
+> > > > interrupts to CPUs (or HARTs) as local interrupts OR as message
+> > > > signaled interrupts.
+> > > > (For more details refer https://github.com/riscv/riscv-aia)
+> > > >
+> > > > This patch adds an irqchip driver for RISC-V APLIC found on RISC-V
+> > > > platforms.
+> > > >
+> > > > Signed-off-by: Anup Patel <apatel@ventanamicro.com>
+> >
+> > [...]
+> >
+> > > > +static int __init aplic_dt_init(struct device_node *node,
+> > > > +                               struct device_node *parent)
+> > > > +{
+> > > > +       /*
+> > > > +        * The APLIC platform driver needs to be probed early
+> > > > +        * so for device tree:
+> > > > +        *
+> > > > +        * 1) Set the FWNODE_FLAG_BEST_EFFORT flag in fwnode which
+> > > > +        *    provides a hint to the device driver core to probe the
+> > > > +        *    platform driver early.
+> > > > +        * 2) Clear the OF_POPULATED flag in device_node because
+> > > > +        *    of_irq_init() sets it which prevents creation of
+> > > > +        *    platform device.
+> > > > +        */
+> > > > +       node->fwnode.flags |=3D FWNODE_FLAG_BEST_EFFORT;
+> > >
+> > > Please stop spamming us with broken patches. Already told you this is
+> > > not an option.
+> > >
+> > > Nack.
+> >
+> > What puzzles me here is that *no other arch* requires this sort of
+> > hack. What is so special about the APLIC that it requires it? I see
+> > nothing in this patch that even hints at it, despite the "discussion"
+> > in the last round.
+> >
+> > The rules are simple:
+> >
+> > - either the APLIC is so fundamental to the system that it has to be
+> >   initialised super early, much like the GIC on arm64, at which point
+> >   it cannot be a platform device, and the story is pretty simple.
+> >
+> > - or it isn't that fundamental, and it can be probed as a platform
+> >   device using the dependency infrastructure that is already used by
+> >   multiple other interrupt controller drivers, without any need to
+> >   mess with internal flags. Again, this should be simple enough.
+>=20
+> APLIC manages all wired interrupts whereas IMSIC manages all
+> MSIs. Both APLIC and IMSIC are fundamental devices which need
+> to be probed super early.
+>=20
+> Now APLIC has two modes of operations:
+> 1) Direct mode where there is no IMSIC in the system and APLIC
+>     directly injects interrupt to CPUs
+> 2) MSI mode where IMSIC is present in the system and APLIC
+>     converts wired interrupts into MSIs
+>=20
+> The APLIC driver added by this patch is a common driver for
+> both above modes.
 
-Sorted alphabetically please
+Which it doesn't need to be. You are pointlessly making life difficult
+for yourself, and everyone else. The MSI bridge behaviour has *zero*
+reason to be the same driver as the main "I need it super early"
+driver. They may be called the same, but they *are* different things
+in the system.
 
-> +	tristate "Qualcomm M31 HS PHY driver support"
-> +	depends on (USB || USB_GADGET) && ARCH_QCOM
-> +	select USB_PHY
-> +	help
-> +	  Enable this to support M31 HS PHY transceivers on Qualcomm chips
-> +	  with DWC3 USB core. It handles PHY initialization, clock
-> +	  management required after resetting the hardware and power
-> +	  management. This driver is required even for peripheral only or
-> +	  host only mode configurations.
-> diff --git a/drivers/phy/qualcomm/Makefile b/drivers/phy/qualcomm/Makefile
-> index b030858..0b5dd66 100644
-> --- a/drivers/phy/qualcomm/Makefile
-> +++ b/drivers/phy/qualcomm/Makefile
-> @@ -22,3 +22,4 @@ obj-$(CONFIG_PHY_QCOM_USB_SS)		+= phy-qcom-usb-ss.o
->  obj-$(CONFIG_PHY_QCOM_USB_SNPS_FEMTO_V2)+= phy-qcom-snps-femto-v2.o
->  obj-$(CONFIG_PHY_QCOM_IPQ806X_USB)	+= phy-qcom-ipq806x-usb.o
->  obj-$(CONFIG_PHY_QCOM_SGMII_ETH)	+= phy-qcom-sgmii-eth.o
-> +obj-$(CONFIG_PHY_QCOM_M31_USB)		+= phy-qcom-m31.o
+They can share code, but they are fundamentally a different thing in
+the system. And I guess this silly approach has other ramifications:
+the IMSIC is also some early driver when it really doesn't need to be.
+Who needs MSIs that early in the life of the system? I don't buy this
+for even a second.
 
-this one too
+Frankly, this whole thing needs to be taken apart and rebuilt from the
+ground up.
 
-> diff --git a/drivers/phy/qualcomm/phy-qcom-m31.c b/drivers/phy/qualcomm/phy-qcom-m31.c
-> new file mode 100644
-> index 0000000..fd568ef
-> --- /dev/null
-> +++ b/drivers/phy/qualcomm/phy-qcom-m31.c
-> @@ -0,0 +1,256 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/*
-> + * Copyright (c) 2014-2016, 2020, The Linux Foundation. All rights reserved.
-> + */
+> For #2, APLIC needs to be a platform device to create a device
+> MSI domain using platform_msi_create_device_domain() which
+> is why the APLIC driver is a platform driver.
 
-we are in 2023
+You can't have your cake and eat it. If needed super early, and it
+cannot be a platform driver. End of the story.
 
-> +
-> +#include <linux/clk.h>
-> +#include <linux/delay.h>
-> +#include <linux/err.h>
-> +#include <linux/io.h>
-> +#include <linux/kernel.h>
-> +#include <linux/module.h>
-> +#include <linux/of_device.h>
-> +#include <linux/of.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/reset.h>
-> +#include <linux/slab.h>
-> +#include <linux/usb/of.h>
-> +#include <linux/usb/phy.h>
-> +
-> +#define USB2PHY_PORT_UTMI_CTRL1		0x40
-> +
-> +#define USB2PHY_PORT_UTMI_CTRL2		0x44
-> + #define UTMI_ULPI_SEL			BIT(7)
-> + #define UTMI_TEST_MUX_SEL		BIT(6)
-> +
-> +#define HS_PHY_CTRL_REG			0x10
-> + #define UTMI_OTG_VBUS_VALID		BIT(20)
-> + #define SW_SESSVLD_SEL			BIT(28)
-> +
-> +#define USB_PHY_UTMI_CTRL0		0x3c
-> +
-> +#define USB_PHY_UTMI_CTRL5		0x50
-> + #define POR_EN				BIT(1)
-> + #define ATERESET			~BIT(0)
+And to my earlier point: IMSIC and APLIC-as-MSI-bridge have no purpose
+being early drivers. They must be platform drivers, and only that.
 
-??
+> > If these rules don't apply to your stuff, please explain what is so
+> > different. And I mean actually explain the issue. Which isn't telling
+> > us "it doesn't work without it". Because as things stand, there is no
+> > way I will even consider taking this ugly mix of probing methods.
+>=20
+> Yes, I don't want this ugly FWNODE_FLAG_BEST_EFFORT hack
+> in this driver.
 
-> +
-> +#define USB_PHY_HS_PHY_CTRL_COMMON0	0x54
-> + #define COMMONONN			BIT(7)
-> + #define FSEL				BIT(4)
-> + #define RETENABLEN			BIT(3)
-> + #define FREQ_24MHZ			(5 << 4)
+And yet you are hammering it even when told this is wrong.
 
-Use GENMASK for these
+> I tried several things but setting the FWNODE_FLAG_BEST_EFFORT
+> flag is the only thing which works right now.
 
-> +
-> +#define USB_PHY_HS_PHY_CTRL2		0x64
-> + #define USB2_SUSPEND_N_SEL		BIT(3)
-> + #define USB2_SUSPEND_N			BIT(2)
-> + #define USB2_UTMI_CLK_EN		BIT(1)
-> +
-> +#define USB_PHY_CFG0			0x94
-> + #define UTMI_PHY_OVERRIDE_EN		BIT(1)
-> +
-> +#define USB_PHY_REFCLK_CTRL		0xa0
-> + #define CLKCORE			BIT(1)
-> +
-> +#define USB2PHY_PORT_POWERDOWN		0xa4
-> + #define POWER_UP			BIT(0)
-> + #define POWER_DOWN			0
-> +
-> +#define USB_PHY_FSEL_SEL		0xb8
-> + #define FREQ_SEL			BIT(0)
-> +
-> +#define USB2PHY_USB_PHY_M31_XCFGI_1	0xbc
-> + #define USB2_0_TX_ENABLE		BIT(2)
-> +
-> +#define USB2PHY_USB_PHY_M31_XCFGI_4	0xc8
-> + #define HSTX_SLEW_RATE_565PS		GENMASK(1, 0)
-> + #define PLL_CHARGING_PUMP_CURRENT_35UA	GENMASK(4, 3)
-> + #define ODT_VALUE_38_02_OHM		GENMASK(7, 6)
-> +
-> +#define USB2PHY_USB_PHY_M31_XCFGI_5	0xcc
-> + #define ODT_VALUE_45_02_OHM		BIT(2)
-> + #define HSTX_PRE_EMPHASIS_LEVEL_0_55MA	BIT(0)
-> +
-> +#define USB2PHY_USB_PHY_M31_XCFGI_11	0xe4
-> + #define XCFG_COARSE_TUNE_NUM		BIT(1)
-> + #define XCFG_FINE_TUNE_NUM		BIT(3)
-> +
-> +struct m31_phy_regs {
-> +	u32 off;
-> +	u32 val;
-> +	u32 delay;
-> +};
-> +
-> +struct m31_priv_data {
-> +	bool				ulpi_mode;
-> +	const struct m31_phy_regs	*regs;
-> +};
-> +
-> +#define M31_REG(__o, __v, __d)	\
-> +	{ .off = __o, .val = __v, .delay = __d }
-> +
-> +#define M31_REG_INVALID			0xffffffffu
-> +
-> +struct m31_phy_regs m31_ipq5332_regs[] = {
-> +	M31_REG(USB_PHY_CFG0, UTMI_PHY_OVERRIDE_EN, 0),
-> +	M31_REG(USB_PHY_UTMI_CTRL5, POR_EN, 15),
-> +	M31_REG(USB_PHY_FSEL_SEL, FREQ_SEL, 0),
-> +	M31_REG(USB_PHY_HS_PHY_CTRL_COMMON0,
-> +		COMMONONN | FREQ_24MHZ | RETENABLEN, 0),
-> +	M31_REG(USB_PHY_UTMI_CTRL5, POR_EN & ATERESET, 0),
-> +	M31_REG(USB_PHY_HS_PHY_CTRL2,
-> +		USB2_SUSPEND_N_SEL | USB2_SUSPEND_N | USB2_UTMI_CLK_EN, 0),
-> +	M31_REG(USB2PHY_USB_PHY_M31_XCFGI_11,
-> +		XCFG_COARSE_TUNE_NUM  | XCFG_FINE_TUNE_NUM, 0),
-> +	M31_REG(USB2PHY_USB_PHY_M31_XCFGI_4,
-> +		HSTX_SLEW_RATE_565PS | PLL_CHARGING_PUMP_CURRENT_35UA |
-> +		ODT_VALUE_38_02_OHM, 0),
-> +	M31_REG(USB2PHY_USB_PHY_M31_XCFGI_1, USB2_0_TX_ENABLE, 0),
-> +	M31_REG(USB2PHY_USB_PHY_M31_XCFGI_5,
-> +		ODT_VALUE_45_02_OHM | HSTX_PRE_EMPHASIS_LEVEL_0_55MA, 4),
-> +	M31_REG(USB_PHY_UTMI_CTRL5, 0x0, 0),
-> +	M31_REG(USB_PHY_HS_PHY_CTRL2, USB2_SUSPEND_N | USB2_UTMI_CLK_EN, 0),
-> +	M31_REG(M31_REG_INVALID, 0, 0),
-> +};
-> +
-> +struct m31usb_phy {
-> +	struct usb_phy			phy;
-> +	void __iomem			*base;
-> +	const struct m31_phy_regs	*regs;
-> +
-> +	struct clk			*cfg_ahb_clk;
-> +	struct reset_control		*phy_reset;
-> +
-> +	bool				cable_connected;
-> +	bool				suspended;
-> +	bool				ulpi_mode;
-> +};
-> +
-> +static void m31usb_phy_enable_clock(struct m31usb_phy *qphy)
-> +{
-> +	const struct m31_phy_regs *regs = qphy->regs;
-> +
-> +	for (; regs->off != M31_REG_INVALID; regs++) {
+How about you take a step back and realise that the way you've
+architected your drivers makes little sense? I don't think you have
+tried *that*.
 
-why have last entry as invalid and check that, this is an array so you
-can use ARRAY_SIZE to define the count of regs
+Thanks,
 
-> +		writel(regs->val, qphy->base + regs->off);
-> +		if (regs->delay)
-> +			udelay(regs->delay);
-> +	}
-> +}
-> +
-> +static int m31usb_phy_init(struct usb_phy *phy)
-> +{
-> +	int ret;
-> +	struct m31usb_phy *qphy = container_of(phy, struct m31usb_phy, phy);
-> +
-> +	ret = clk_prepare_enable(qphy->cfg_ahb_clk);
-> +	if (ret) {
-> +		dev_err(phy->dev, "failed to enable cfg ahb clock, %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	/* Perform phy reset */
-> +	reset_control_assert(qphy->phy_reset);
-> +	udelay(5);
-> +	reset_control_deassert(qphy->phy_reset);
-> +
-> +	/* configure for ULPI mode if requested */
-> +	if (qphy->ulpi_mode)
-> +		writel(0x0, qphy->base + USB2PHY_PORT_UTMI_CTRL2);
-> +
-> +	/* Enable the PHY */
-> +	writel(POWER_UP, qphy->base + USB2PHY_PORT_POWERDOWN);
-> +
-> +	/* Make sure above write completed */
-> +	wmb();
-> +
-> +	/* Turn on phy ref clock */
-> +	m31usb_phy_enable_clock(qphy);
-> +
-> +	return 0;
-> +}
-> +
-> +static void m31usb_phy_shutdown(struct usb_phy *phy)
-> +{
-> +	struct m31usb_phy *qphy = container_of(phy, struct m31usb_phy, phy);
-> +
-> +	/* Disable the PHY */
-> +	writel_relaxed(POWER_DOWN, qphy->base + USB2PHY_PORT_POWERDOWN);
-> +	/* Make sure above write completed */
-> +	wmb();
-> +
-> +	clk_disable_unprepare(qphy->cfg_ahb_clk);
-> +}
-> +
-> +static int m31usb_phy_probe(struct platform_device *pdev)
-> +{
-> +	const struct m31_priv_data *data;
-> +	struct device *dev = &pdev->dev;
-> +	struct m31usb_phy *qphy;
-> +	int ret;
-> +
-> +	qphy = devm_kzalloc(dev, sizeof(*qphy), GFP_KERNEL);
-> +	if (!qphy)
-> +		return -ENOMEM;
-> +
-> +	qphy->phy.dev = dev;
-> +
-> +	qphy->base = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(qphy->base))
-> +		return PTR_ERR(qphy->base);
-> +
-> +	qphy->phy_reset = devm_reset_control_get_exclusive_by_index(dev, 0);
-> +	if (IS_ERR(qphy->phy_reset))
-> +		return PTR_ERR(qphy->phy_reset);
-> +
-> +	qphy->cfg_ahb_clk = devm_clk_get(dev, "cfg_ahb");
-> +	if (IS_ERR(qphy->cfg_ahb_clk)) {
-> +		ret = PTR_ERR(qphy->cfg_ahb_clk);
-> +		dev_err(dev, "failed to get cfg_ahb clock, %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	platform_set_drvdata(pdev, qphy);
-> +
-> +	data = of_device_get_match_data(dev);
-> +	qphy->regs = data->regs;
-> +	qphy->ulpi_mode = data->ulpi_mode;
-> +
-> +	qphy->phy.label			= "m31-usb-phy";
-> +	qphy->phy.init			= m31usb_phy_init;
-> +	qphy->phy.shutdown		= m31usb_phy_shutdown;
-> +	qphy->phy.type			= USB_PHY_TYPE_USB2;
-> +
-> +	ret = usb_add_phy_dev(&qphy->phy);
+	M.
 
-why usb and not devm_phy_create()? It should be generic phy here
-
--- 
-~Vinod
+--=20
+Without deviation from the norm, progress is not possible.
