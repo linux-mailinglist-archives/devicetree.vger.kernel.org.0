@@ -2,96 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C2C367534DC
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jul 2023 10:16:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F27697534EB
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jul 2023 10:19:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235147AbjGNIQV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jul 2023 04:16:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36124 "EHLO
+        id S234777AbjGNITJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jul 2023 04:19:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39690 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235028AbjGNIP4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jul 2023 04:15:56 -0400
-Received: from aposti.net (aposti.net [89.234.176.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7736330EB;
-        Fri, 14 Jul 2023 01:15:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
-        s=mail; t=1689322538;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=KsipixUfNNIYvS1Su+tDY3+aBff0I+kz0FoxPFL3Kjg=;
-        b=DvKxmR5Fy7ezNzUpnj1l39UcuzzkVbmYKyCrMEepMqVGs7BxXYQQLYrWJZ65cfixlmevr3
-        +XePbNWCXiXH8F6/h+9FW63k+wzimZhm6eXvU+7vV69EEQSiNKX23/gDXckRMyJZ3scqOv
-        syDR4X2x+CgMA2SC26tAQuGciv2D70k=
-Message-ID: <5ae98ac651d6cc69d6bfd3c25b4879307f3c2c76.camel@crapouillou.net>
-Subject: Re: [PATCH v2 0/3] Galaxy S2 (i9100) panel updates v2
-From:   Paul Cercueil <paul@crapouillou.net>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        with ESMTP id S233722AbjGNITI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jul 2023 04:19:08 -0400
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C45D12C
+        for <devicetree@vger.kernel.org>; Fri, 14 Jul 2023 01:19:06 -0700 (PDT)
+Received: by mail-wr1-x42a.google.com with SMTP id ffacd0b85a97d-3142a9ffa89so1844394f8f.0
+        for <devicetree@vger.kernel.org>; Fri, 14 Jul 2023 01:19:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=9elements.com; s=google; t=1689322744; x=1691914744;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=e6rkw/d3NUtBafblKczwAEcy96n0x+1MYdeOk8yK+6k=;
+        b=MHJoUKOhwKAQ7wFX1MRaWJ9nMOhZRndFHlfeUyd0oWsPlxA+jT9EYx8k/6Y9P3idRk
+         z7B4yvCTNfzRuwwHG6AmfvCFUe+a66634dwX8yQt3ofAkF4Q8s3jmeT54r7+I3zq6HlN
+         90oJ+SunUU97ACXJFilGucB/UvablPM3Z1p5f40P3ohfUOp6J3NartY5L11gnzJ+Wt+7
+         nHs+ImIdScLYVwZkXqfHsuBGUdJUVYFEvKERdrrIAt3YC3x12A3VmyFGzg5RGLN5SpPB
+         dWkhr7QDmqxXRw/wAsr+cvn0JC9FheQwsMokAwGxTkxPDWh+T57kGYHugmu94hzDz6ZE
+         FEVQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689322744; x=1691914744;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=e6rkw/d3NUtBafblKczwAEcy96n0x+1MYdeOk8yK+6k=;
+        b=fn+ftMAuW7+I4mBOqd3ctjetot2uKBRf6h8PNmxi7f67teAmJ6/5No2is9ZR8ixbZ9
+         +dJRiE2Vd66/vjhzFkllaCDcP9cQ5E7ACH+oBVjiBlI3WsdkgERdXDGhd/WD7w45LpeJ
+         OMYPJT+sx/sbUmJG52a3XX8PeClKQ+vDDEQnFmc1PQfnTxbZkHfxIrkszumQlsCwTpxU
+         hFA/qlJBm+EeuYmsHf4rCXyo1NSUl08ApymSj+yONGzLsQ65pEYp0pX3G23llqePdj34
+         IRLBj7GxqLNLFcnbgH5CkT2UhotyRgKdx18VyKqHslPbPJnvRnCVp71DIBrdIF4rJXpN
+         4HeA==
+X-Gm-Message-State: ABy/qLajdYTIyjZjQIbGtCIoLKaBUj1f+l8yb9ujyDf0PEDPZi9HXNgq
+        sgtygUBw88RHxKqnD2701Ficygu8EB7rGhPF466iWw==
+X-Google-Smtp-Source: APBJJlEKqU1J2yGOt6XwTChfB3zLqIdH9NO4jSnyb9Tgl7SxnTOCCaF5J/DtMjOpYX3xWK41+zbhGQ==
+X-Received: by 2002:a5d:4e85:0:b0:313:ef24:6feb with SMTP id e5-20020a5d4e85000000b00313ef246febmr3679680wru.3.1689322744461;
+        Fri, 14 Jul 2023 01:19:04 -0700 (PDT)
+Received: from stroh80.sec.9e.network (ip-078-094-000-051.um19.pools.vodafone-ip.de. [78.94.0.51])
+        by smtp.gmail.com with ESMTPSA id w16-20020a5d6810000000b003144b50034esm10143635wru.110.2023.07.14.01.19.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 14 Jul 2023 01:19:04 -0700 (PDT)
+From:   Naresh Solanki <naresh.solanki@9elements.com>
+X-Google-Original-From: Naresh Solanki <Naresh.Solanki@9elements.com>
+To:     Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Sam Ravnborg <sam@ravnborg.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org
-Date:   Fri, 14 Jul 2023 10:15:36 +0200
-In-Reply-To: <20230708084027.18352-1-paul@crapouillou.net>
-References: <20230708084027.18352-1-paul@crapouillou.net>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        Patrick Rudolph <patrick.rudolph@9elements.com>
+Cc:     Naresh Solanki <Naresh.Solanki@9elements.com>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v3 1/2] dt-bindings: pinctrl: cypress,cy8c95x0: Add reset pin
+Date:   Fri, 14 Jul 2023 10:19:00 +0200
+Message-ID: <20230714081902.2621771-1-Naresh.Solanki@9elements.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Patches 1/3 and 2/3 applied to drm-misc-next.
+From: Patrick Rudolph <patrick.rudolph@9elements.com>
 
-I'll resend patch 3/3 as standalone.
+This patch adds support for an optional reset pin.
 
-Cheers,
--Paul
+The reset pin is used to bring the chip into a known state and has an
+internal pull-down, allowing it to be left floating if not needed.
 
-Le samedi 08 juillet 2023 =C3=A0 10:40 +0200, Paul Cercueil a =C3=A9crit=C2=
-=A0:
-> Hi,
->=20
-> Follow-up on my patchset that fixes the display of the Samsung Galaxy
-> S2
-> when running PostmarketOS.
->=20
-> The first two patches update the LD9040 panel driver so that it looks
-> much better, and supports setting the backlight.
->=20
-> The third patch fixes the size of the panel in the Device Tree. The
-> previous values were completely bogus and caused Phosh (PmOS' UI) to
-> display tiny icons and text as it thought the DPI was much lower.
->=20
-> Changes since V1:
-> [1/3]: Remove spurious new line
-> [2/3]: Remove .get_brightness() callback, use bl_get_data() and
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 backlight_get_brightness()
->=20
-> Cheers,
-> -Paul
->=20
-> Paul Cercueil (3):
-> =C2=A0 drm/panel: ld9040: Use better magic values
-> =C2=A0 drm/panel: ld9040: Register a backlight device
-> =C2=A0 ARM: dts: exynos/i9100: Fix LCD screen's physical size
->=20
-> =C2=A0arch/arm/boot/dts/exynos4210-i9100.dts=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 |=C2=A0 4 +-
-> =C2=A0drivers/gpu/drm/panel/panel-samsung-ld9040.c | 42 +++++++++++++++++=
--
-> --
-> =C2=A02 files changed, 38 insertions(+), 8 deletions(-)
->=20
+Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
+Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
+---
+Changes in V3:
+- Update reset-gpios description.
+Changes in V2:
+- Update subject
+- Update reset-gpios description.
+---
+ .../devicetree/bindings/pinctrl/cypress,cy8c95x0.yaml         | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/pinctrl/cypress,cy8c95x0.yaml b/Documentation/devicetree/bindings/pinctrl/cypress,cy8c95x0.yaml
+index 222d57541b65..7f30ec2f1e54 100644
+--- a/Documentation/devicetree/bindings/pinctrl/cypress,cy8c95x0.yaml
++++ b/Documentation/devicetree/bindings/pinctrl/cypress,cy8c95x0.yaml
+@@ -51,6 +51,10 @@ properties:
+     description:
+       Optional power supply.
+ 
++  reset-gpios:
++    description: GPIO connected to the XRES pin
++    maxItems: 1
++
+ patternProperties:
+   '-pins$':
+     type: object
+
+base-commit: 3bc551a3007a751a53bfba5b37fa16157f4fb861
+-- 
+2.41.0
 
