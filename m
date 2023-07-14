@@ -2,458 +2,362 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 50CC175322B
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jul 2023 08:43:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 10C62753256
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jul 2023 08:56:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232408AbjGNGnt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jul 2023 02:43:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36422 "EHLO
+        id S233081AbjGNG4x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jul 2023 02:56:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42424 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231854AbjGNGnr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jul 2023 02:43:47 -0400
-Received: from mail-il1-x143.google.com (mail-il1-x143.google.com [IPv6:2607:f8b0:4864:20::143])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7637B2698;
-        Thu, 13 Jul 2023 23:43:45 -0700 (PDT)
-Received: by mail-il1-x143.google.com with SMTP id e9e14a558f8ab-34617b29276so6532995ab.0;
-        Thu, 13 Jul 2023 23:43:45 -0700 (PDT)
+        with ESMTP id S232692AbjGNG4v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jul 2023 02:56:51 -0400
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FF631FF1;
+        Thu, 13 Jul 2023 23:56:49 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-51d95aed33aso1778925a12.3;
+        Thu, 13 Jul 2023 23:56:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1689317025; x=1691909025;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=gmail.com; s=20221208; t=1689317807; x=1691909807;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=wffe1vS+f752A0Pf7z40C5tMz30DOBDsupKmEE8rn28=;
-        b=mNw+LvfacCZx9yOGa/5EMlRgaS2skq7Miz4rOkLVhKo/i2EDN3iI5vsIainIjRA1t8
-         gq8JunED6hSsC55+yM5fKHsiG8ZkvyqmVoKitFviEXM5sg3PEPtgWRnpkV8yPFtvhVPs
-         jcRi5a/1DI3hWsWKossEF5BHRyb6n6Jz/sbCj3YibwPWLjP2hK/zap3ajB/hr/Xu/GSd
-         SAUigJKoueiyYuCxmx7izWDHvaRAbpSvBUCC4UZHfgX0+CLXbqfjROY1sxfP9KlO5X3s
-         nMkamW9tsrx2JthL9xmDw1AQyo9vAfvdFHXZ9y7ZaBXREhQJLop0lLoqbm2995lAEvKS
-         TSQg==
+        bh=wPb0IpHExepFSS8AXjqT5uPHoWnDc8tyYxdhzyJGpP4=;
+        b=Tn/tFtotoj3kKWGu/JeFCWLAdynH7BSSFEU2fT6alKvccsV98nUG36uaNDdrSJH7uX
+         sug4xoJ4Joim8NEL2ut/TLKgwOG1Ukr6nd4GnOeuCpP55/m2d7bH1PdG1ntxsI1/9udE
+         ZTDPrjBWC9xn2L2bukiBiuS+UqWiEO3QXjPhby85+ZJZdP0Zs0cHDYSj/Ru0z+ubKF1v
+         tE6WLqQZa72GPLZ2NtWtkVKTc65j+m+5xwRx96KSjRA7M5LTUjtgePQLs7gthHUEhvh8
+         NnnPAi/5UnluiHCywIFJ+1xMvNYWmBn+8qKu0AOMuZJw6S+k9reoVEuBiYh7BWKjYxdt
+         klGA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689317025; x=1691909025;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20221208; t=1689317807; x=1691909807;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=wffe1vS+f752A0Pf7z40C5tMz30DOBDsupKmEE8rn28=;
-        b=CDlMzjphD9aiLu3TSrM0Bv80RUMQP2opP1lbkchpxoq8JQkKR3oR6CpgX9h/RMAFGs
-         VzodFQOEJzzBWU+Qn74BvwuVCKaFlROZ3DMyXntoXVuRwonH6nTrAA2uv4VEzwgWW2DG
-         Th4DZreXj3Lu4Rdo/afqBaIwuDhKdcDOvLITbWDY9PZpswJe6MoTu5OHYIOhx8mU7D1c
-         hy2b4P2MkarmrXlk8MlpcwN5iKm298oB6PKqEpvUfZcHlZZpHBdY8V69fbibPoAXXrLE
-         gG3S7Wu3L+yxcgm+hufl0lN9rWfunSB7PytmsWNuPviRApeGWzUqOpjkdCpLO2+ci9uD
-         XEkg==
-X-Gm-Message-State: ABy/qLYZ5nmX+clPXyeEcDp8Ahfeac4uzV/nrx/Uvb35EaiBC/Y4papM
-        zFTf65nNpYAtGKni9ZF6XVA=
-X-Google-Smtp-Source: APBJJlEc/biaFQQCtvNmMmTkro7jijDLiq2Tzfp4FV8q1R2pOZXaD2+IKCkXxOaPrOcFmK6bj1dzag==
-X-Received: by 2002:a05:6e02:1d84:b0:345:9d3a:709c with SMTP id h4-20020a056e021d8400b003459d3a709cmr1433081ila.12.1689317024589;
-        Thu, 13 Jul 2023 23:43:44 -0700 (PDT)
-Received: from ws-565760.systec.local ([212.185.67.148])
-        by smtp.gmail.com with ESMTPSA id t28-20020a02ccbc000000b0042b3bf0baacsm2390245jap.138.2023.07.13.23.43.43
+        bh=wPb0IpHExepFSS8AXjqT5uPHoWnDc8tyYxdhzyJGpP4=;
+        b=R1aFFYrsSvx02iipFuVNXGa47iJzDkDt/kepTvDjBeJXgDazsfQV7qVvv8PwY8IpwU
+         wz26KcM7o6eMEf30jtp40MGZ0WIVfE/1fa0hEgVZgAVjpkksj1giH6Q3A1I88dUdFc+9
+         Q9hB9aDmaCCSptfRuKNEh+JD06Lw9ly1PGYREU7G/spIKmYrESrOIRDuhNfiiIS3myNV
+         qo2Yy4wUWvciizdfz1wJ5eIXUtorUeGqFJ1C8LNu/SjLtNmJdqX+slL+eM8v2lPs2Bah
+         X1KE1sM8FAlftsLiTJsisQ6uAS3nHPvg29AyD17wOAQmzhMU85MuwKcfzSNWiHJs8ymZ
+         4Q8g==
+X-Gm-Message-State: ABy/qLbyP+K8FSBDLvxP4qBtvnCeXLV32qvdzRbjDVf0xTCe+V2MsNVx
+        E+zECXdzf5BFuTYEF00Y5To=
+X-Google-Smtp-Source: APBJJlHP8ZGSCoWsVEJI8fyskK0DGjUW9zRUPX9p4poeYfNF02mfyM0n6gDfoS1lWJSkrsQTKOFDGg==
+X-Received: by 2002:a05:6402:b26:b0:51d:92bf:e6ae with SMTP id bo6-20020a0564020b2600b0051d92bfe6aemr3724889edb.18.1689317807282;
+        Thu, 13 Jul 2023 23:56:47 -0700 (PDT)
+Received: from orome (p200300e41f4b7100f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f4b:7100:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id d3-20020aa7c1c3000000b0051de52f8adesm5288703edp.32.2023.07.13.23.56.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 13 Jul 2023 23:43:44 -0700 (PDT)
-From:   Andre Werner <werneazc@gmail.com>
-X-Google-Original-From: Andre Werner <andre.werner@systec-electronic.com>
-To:     jdelvare@suse.com, linux@roeck-us.net, robh+dt@kernel.org
-Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        Andre Werner <andre.werner@systec-electronic.com>
-Subject: [PATCH v2 2/2] hwmon: (hs3001) Add driver for Renesas HS3001
-Date:   Fri, 14 Jul 2023 08:43:36 +0200
-Message-ID: <20230714064336.28371-2-andre.werner@systec-electronic.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20230714064336.28371-1-andre.werner@systec-electronic.com>
-References: <20230714064336.28371-1-andre.werner@systec-electronic.com>
+        Thu, 13 Jul 2023 23:56:46 -0700 (PDT)
+Date:   Fri, 14 Jul 2023 08:56:44 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Baolu Lu <baolu.lu@linux.intel.com>
+Cc:     Stanimir Varbanov <stanimir.varbanov@suse.com>,
+        Stanimir Varbanov <svarbanov@suse.de>,
+        linux-tegra@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        iommu@lists.linux.dev, linux-kernel@vger.kernel.org,
+        Krishna Reddy <vdumpa@nvidia.com>,
+        Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [RFC PATCH] iommu: arm-smmu-nvidia: Add default domain type
+ implementation op
+Message-ID: <ZLDxrDMoLsniQx4x@orome>
+References: <20230710082252.9702-1-svarbanov@suse.de>
+ <ZKvgG4-IzqiYPSUT@orome>
+ <93026b47-3b72-8439-486e-e0cda21dd0fe@suse.com>
+ <ZK17X4ueSI5rWKVL@orome>
+ <ZK_8uU2XJAWMk23M@orome>
+ <2a6fe812-3881-8dc9-1e7e-237ce7490155@linux.intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="I3VsAWuDrtgMS3gi"
+Content-Disposition: inline
+In-Reply-To: <2a6fe812-3881-8dc9-1e7e-237ce7490155@linux.intel.com>
+User-Agent: Mutt/2.2.10 (2023-03-25)
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add base support for Renesas HS3001 temperature
-and humidity sensors and its compatibles HS3002,
-HS3003 and HS3004.
 
-The sensor has a fix I2C address 0x44. The resolution
-is fixed to 14bit (ref. Missing feature).
+--I3VsAWuDrtgMS3gi
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Missing feature:
-- Accessing non-volatile memory: Custom board has no
-  possibility to control voltage supply of sensor. Thus,
-  we cannot send the necessary control commands within
-  the first 10ms after power-on.
+On Fri, Jul 14, 2023 at 11:14:08AM +0800, Baolu Lu wrote:
+> On 2023/7/13 21:31, Thierry Reding wrote:
+> > On Tue, Jul 11, 2023 at 05:55:11PM +0200, Thierry Reding wrote:
+> > > On Tue, Jul 11, 2023 at 01:58:34PM +0300, Stanimir Varbanov wrote:
+> > > > Hi Thierry,
+> > > >=20
+> > > > Thank you for the comments!
+> > > >=20
+> > > > On 7/10/23 13:40, Thierry Reding wrote:
+> > > > > On Mon, Jul 10, 2023 at 11:22:52AM +0300, Stanimir Varbanov wrote:
+> > > > > > Add def_domain_type implementation op and override default IOMMU
+> > > > > > domain Kconfig option (CONFIG_IOMMU_DEFAULT_PASSTHROUGH=3Dy), w=
+hich
+> > > > > > could be enabled on some distros. The current quirk has been do=
+ne
+> > > > > > for Tegra234 machine, because I found the issue on it. The issue
+> > > > > > itself appears on USB host controller which cannot be initializ=
+ed
+> > > > > > without IOMMU translation. Something more, we proved that IOMMU
+> > > > > > translation is needed for display and GPU drivers as well.
+> > > > > >=20
+> > > > > > I evaluated few possible options to solve that:
+> > > > > >=20
+> > > > > >   a) select default IOMMU domain from .def_domain_type op
+> > > > > >   b) Unset CONFIG_IOMMU_DEFAULT_PASSTHROUGH=3Dn
+> > > > > >   c) add iommu.passthrough=3D0 on the kernel cmdline
+> > > > > >   d) firmware - ACPI / DT
+> > > > > >=20
+> > > > > > a) This option is implemented in the proposed patch.
+> > > > > >=20
+> > > > > > b) Since that the community has agreed that pass-through is pre=
+ferred
+> > > > > > as a default IOMMU domain option because this will avoid perfor=
+mance
+> > > > > > impacts on some of the platforms [1]. On the other side we have=
+ examples
+> > > > > > where you cannot even install Linux distribution on a machine w=
+here the
+> > > > > > storage media cannot be detected and the system just hangs.
+> > > > >=20
+> > > > > That's not how I read that thread. It sounds more to me like Will=
+ and
+> > > > > Robin had ideas on how to improve the performance and were planni=
+ng to
+> > > > > address these issues. It doesn't exactly sound to me like there w=
+as
+> > > > > concensus to make passthrough the default.
+> > > > >=20
+> > > > > Having said that, given that it's possible for distributions and =
+users
+> > > > > to set CONFIG_IOMMU_DEFAULT_PASSTHROUGH=3Dy, I think it would be =
+useful in
+> > > > > general to have a way of enforcing IOMMU translations if it's nee=
+ded by
+> > > > > the hardware.
+> > > >=20
+> > > > Exactly, the problem is that some platforms prefer passthrough to a=
+void
+> > > > performance impacts but others cannot even boot the kernel (and thus
+> > > > installation failure). Passing iommu.passthrough=3D0 should be an
+> > > > administrator decision, balancing between security and performance.
+> > > >=20
+> > > > On the other hand the aforementioned mail thread gave some performa=
+nce
+> > > > numbers which might be are outdated having the improvements made in=
+ smmu
+> > > > driver in mind. Unfortunately, I cannot confirm that the performanc=
+e has
+> > > > been improved during that time.
+> > > >=20
+> > > > >=20
+> > > > > I'm not sure I fully understand the particular problems that you'=
+re
+> > > > > seeing on Tegra234, though. I'm not aware of anything in the USB =
+host
+> > > > > controller driver (or hardware, for that matter) that would requi=
+re the
+> > > > > IOMMU to be enabled. The only peculiarity that I can think of is =
+the
+> > > > > firmware, which is typically loaded by an early bootloader and th=
+erefore
+> > > > > might perhaps need the IOMMU to properly map this in the kernel.
+> > > > > However, my understanding is that this firmware is loaded into sp=
+ecial
+> > > > > carveout regions which don't require remapping.
+> > > >=20
+> > > > On Jetson Orin AGX (R35.2.1) I see these errors:
+> > > >=20
+> > > > tegra-mc 2c00000.memory-controller: unknown: write @0x0000000000000=
+080:
+> > > > EMEM address decode error (EMEM decode error)
+> > > >=20
+> > > > tegra-xusb 3610000.usb: Error while assigning device slot ID
+> > > > tegra-xusb 3610000.usb: Max number of devices this xHCI host suppor=
+ts is 36.
+> > > > usb usb2-port3: couldn't allocate usb_device
+> > > > tegra-mc 2c00000.memory-controller: unknown: write @0x0000000000000=
+090:
+> > > > EMEM address decode error (EMEM decode error)
+> > > > tegra-xusb 3610000.usb: Error while assigning device slot ID
+> > > > tegra-xusb 3610000.usb: Max number of devices this xHCI host suppor=
+ts is 36.
+> > > > usb usb1-port3: couldn't allocate usb_device
+> > > >=20
+> > > > tegra-mc 2c00000.memory-controller: unknown: write @0x0000000000000=
+0a0:
+> > > > EMEM address decode error (EMEM decode error)
+> > > > tegra-xusb 3610000.usb: Error while assigning device slot ID
+> > > > tegra-xusb 3610000.usb: Max number of devices this xHCI host suppor=
+ts is 36.
+> > > > usb usb1-port4: couldn't allocate usb_device
+> > > >=20
+> > > > >=20
+> > > > > However, passthrough is admittedly not something that we've thoro=
+ughly
+> > > > > tested, so it's possible you're running into a use-case that I'm =
+not
+> > > > > aware of. In that case, could you provide a few more specifics (s=
+uch as
+> > > > > the DTB and .config) of your build configuration so that I can tr=
+y and
+> > > > > reproduce?
+> > > >=20
+> > > > To reproduce you have to add iommu.passthrough=3D1 on kernel cmdlin=
+e. The
+> > > > dtb is from Jetpack.
+> > >=20
+> > > I was able to reproduce this on Jetson Orin NX (the differences to AGX
+> > > Orin should be negligible in this context), though I ended up patching
+> > > the DTB to disable all SMMUs. What fixed it for me was to drop the
+> > > dma-coherent property from the usb@3610000 node. Can you try that on
+> > > your end to see if that works for you as well?
+> > >=20
+> > > Not that that's a proper solution, of course, but just trying to find
+> > > out if there's perhaps something else going on.
+> > >=20
+> > >  From the looks of it, it seems like these devices aren't actually DMA
+> > > coherent inherently, but rather the SMMU translations make the access=
+es
+> > > to memory coherent. I'm trying to find out the exact details, but if =
+it
+> > > turns out to be the case, then what we really want is a way for an IO=
+MMU
+> > > to mark any devices that get attached to it as DMA coherent. It's not
+> > > sufficient to hard-code this in DT because there are various ways in
+> > > which device can end up not attached to an IOMMU despite what the DT
+> > > says.
+> > >=20
+> > > Jason, or anyone of the IOMMU folks, any thoughts on how this could be
+> > > achieved? DT already has a way of walking up the "DMA hierarchy" look=
+ing
+> > > for a DMA coherent parent, but again, making this rely entirely on DT
+> > > seems insufficient.
+> >=20
+> > I've got a bit more information on what's happening here. There are
+> > three different ways that a device's memory accesses can coherent on
+> > Tegra: 1) when translated through the ARM SMMU, 2) some devices can
+> > force coherency through configuration registers and 3) each device can
+> > be forced to be coherent via the memory controller.
+> >=20
+> > Option 3) is not something we have much control over because this is
+> > configured during early boot and the corresponding registers locked
+> > down, so the OS can at maximum read out the configuration.
+> >=20
+> > Option 1) is what is typically used, so a common pattern is that if we
+> > enable IOMMU translations via DT, we also set dma-coherent. Conversely,
+> > if IOMMU translations are disabled via DT, the dma-coherent property
+> > should also be removed because by default most devices will not be
+> > hardcoded to be DMA coherent via option 3). Most device drivers will
+> > also not program the device's configuration registers.
+> >=20
+> > As a result the desired configuration is to always enable SMMU and rely
+> > on the SMMU translations to provide DMA coherency. As we've seen this
+> > can be problematic, because the device tree doesn't always tell the true
+> > story. For example even if the iommus property exists, the device may
+> > not end up attached to the IOMMU for a number of reasons (the IOMMU
+> > could itself be disabled, a kernel command-line option could prevent the
+> > attachment, or a device could even be detached explicitly).
+> >=20
+> > So I think what we want to avoid is to mark all device tree nodes as
+> > dma-coherent because it can lead to inconsistencies. A better option
+> > would be to have this property inherited via the IOMMU if the IOMMU
+> > translations themselves cause the coherency to be established. Now it
+> > seems like DT already contains a way of doing that via the "DMA parent".
+> > This works by looking up a special interconnects path called "dma-mem".
+> > We already use this on Tegra to make the memory controller the DMA
+> > parent of all memory clients (i.e. all DMA capable hardware blocks) in
+> > order to enforce a bus-level DMA mask.
+> >=20
+> > However, in order for the DMA parent mechanism to work for IOMMU, we'd
+> > need to redirect the DMA parent to be the IOMMU, but in that case we
+> > loose the link to the memory controller. Unless, perhaps, if there's a
+> > way to construct an ICC path from device to IOMMU and then to memory
+> > controller and external memory controller (EMC).
+> >=20
+> > For reference, here's roughly what the data path looks like on Tegra:
+> >=20
+> > 	device --> MC --> SMMU enabled --> SMMU --> EMC --> DRAM
+> > 	              |                          ^
+> > 	              --> SMMU bypass -----------|
+> >=20
+> > SMMU can be enabled/disabled per device via a stream ID override
+> > register in the memory controller.
+> >=20
+> > The biggest downside of that mechanism is still that it's a static
+> > configuration and doesn't respect the actual runtime attachment of a
+> > device to an IOMMU.
+> >=20
+> > Adding the DT folks to see if they have any good ideas on how best to
+> > represent this from a DT point of view. Would it perhaps be an option
+> > to consider the iommus property when walking up the DMA ancestry?
+>=20
+> Is it possible to handle this dynamically in the code? Say, set device
+> to be DMA coherent in probe_finalize callback of Tegra iommu driver if
+> the IOMMU translation for this device is on. And clear it in the iommu
+> release device path.
+>=20
+> Normally we switch the DMA ops in the probe_finalize callback and iommu
+> device release.
 
-Signed-off-by: Andre Werner <andre.werner@systec-electronic.com>
----
- Documentation/hwmon/hs3001.rst |  37 +++++
- MAINTAINERS                    |   6 +
- drivers/hwmon/Kconfig          |  10 ++
- drivers/hwmon/Makefile         |   1 +
- drivers/hwmon/hs3001.c         | 259 +++++++++++++++++++++++++++++++++
- 5 files changed, 313 insertions(+)
- create mode 100644 Documentation/hwmon/hs3001.rst
- create mode 100644 drivers/hwmon/hs3001.c
+Yeah, I had looked into this as well. Intel, AMD and VirtIO all seem to
+do this during .probe_finalize(), whereas on ARM64 this happens as part
+of the bus' .dma_configure() callback.
 
-diff --git a/Documentation/hwmon/hs3001.rst b/Documentation/hwmon/hs3001.rst
-new file mode 100644
-index 000000000000..703fb9c45313
---- /dev/null
-+++ b/Documentation/hwmon/hs3001.rst
-@@ -0,0 +1,37 @@
-+.. SPDX-License-Identifier: GPL-2.0-or-later
-+
-+Kernel driver HS3001
-+===================
-+
-+Supported chips:
-+
-+  * Renesas HS3001, HS3002, HS3003, HS3004
-+
-+    Prefix: 'hs3001'
-+
-+    Addresses scanned: -
-+
-+    Datasheet: https://www.renesas.com/us/en/document/dst/hs300x-datasheet?r=417401
-+
-+Author:
-+
-+  - Andre Werner <andre.werner@systec-electronic.com>
-+
-+Description
-+-----------
-+
-+This driver implements support for the Renesas HS3001 chips, a humidity
-+and temperature family. Temperature is measured in degrees celsius, relative
-+humidity is expressed as a percentage. In the sysfs interface, all values are
-+scaled by 1000, i.e. the value for 31.5 degrees celsius is 31500.
-+
-+The device communicates with the I2C protocol. Sensors have the I2C
-+address 0x44 by default.
-+
-+sysfs-Interface
-+---------------
-+
-+===============================================================================
-+temp1_input:        temperature input
-+humidity1_input:    humidity input
-+===============================================================================
-diff --git a/MAINTAINERS b/MAINTAINERS
-index dfbb271f1667..4d8603436f9f 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -9484,6 +9484,12 @@ S:	Maintained
- W:	http://artax.karlin.mff.cuni.cz/~mikulas/vyplody/hpfs/index-e.cgi
- F:	fs/hpfs/
- 
-+HS3001 Hardware Temperature and Humidity Sensor
-+M:	Andre Werner <andre.werner@systec-electronic.com>
-+L:	linux-hwmon@vger.kernel.org
-+S:	Maintained
-+F:	drivers/hwmon/hs3001.c
-+
- HSI SUBSYSTEM
- M:	Sebastian Reichel <sre@kernel.org>
- S:	Maintained
-diff --git a/drivers/hwmon/Kconfig b/drivers/hwmon/Kconfig
-index 307477b8a371..ca6be5a23271 100644
---- a/drivers/hwmon/Kconfig
-+++ b/drivers/hwmon/Kconfig
-@@ -734,6 +734,16 @@ config SENSORS_HIH6130
- 	  This driver can also be built as a module. If so, the module
- 	  will be called hih6130.
- 
-+config SENSORS_HS3001
-+	tristate "Renesas HS3001 humidity and temperature sensors"
-+	depends on I2C
-+	help
-+	  If you say yes here you get support for the Renesas HS3001,
-+	  to HS3004 humidity and temperature sensors.
-+
-+	  This driver can also be built as a module. If so, the module
-+	  will be called hs3001.
-+
- config SENSORS_IBMAEM
- 	tristate "IBM Active Energy Manager temperature/power sensors and control"
- 	select IPMI_SI
-diff --git a/drivers/hwmon/Makefile b/drivers/hwmon/Makefile
-index 3f4b0fda0998..cdae4e1fc919 100644
---- a/drivers/hwmon/Makefile
-+++ b/drivers/hwmon/Makefile
-@@ -86,6 +86,7 @@ obj-$(CONFIG_SENSORS_GSC)	+= gsc-hwmon.o
- obj-$(CONFIG_SENSORS_GPIO_FAN)	+= gpio-fan.o
- obj-$(CONFIG_SENSORS_GXP_FAN_CTRL) += gxp-fan-ctrl.o
- obj-$(CONFIG_SENSORS_HIH6130)	+= hih6130.o
-+obj-$(CONFIG_SENSORS_HS3001)	+= hs3001.o
- obj-$(CONFIG_SENSORS_ULTRA45)	+= ultra45_env.o
- obj-$(CONFIG_SENSORS_I5500)	+= i5500_temp.o
- obj-$(CONFIG_SENSORS_I5K_AMB)	+= i5k_amb.o
-diff --git a/drivers/hwmon/hs3001.c b/drivers/hwmon/hs3001.c
-new file mode 100644
-index 000000000000..af8ad72dccb0
---- /dev/null
-+++ b/drivers/hwmon/hs3001.c
-@@ -0,0 +1,259 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/* This is a non-complete driver implementation for the
-+ * HS3001 humidity and temperature sensor and compatibles. It does not include
-+ * the configuration possibilities, where it needs to be set to 'programming mode'
-+ * during power-up.
-+ *
-+ *
-+ * Copyright (C) 2022 SYS TEC electronic AG
-+ * Author: Andre Werner <andre.werner@systec-electronic.com>
-+ */
-+
-+#include <linux/delay.h>
-+#include <linux/err.h>
-+#include <linux/hwmon.h>
-+#include <linux/i2c.h>
-+#include <linux/init.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/of_device.h>
-+#include <linux/slab.h>
-+#include <linux/types.h>
-+
-+/* Measurement times */
-+#define HS3001_WAKEUP_TIME		100		/* us */
-+#define HS3001_8BIT_RESOLUTION	550		/* us */
-+#define HS3001_10BIT_RESOLUTION	1310	/* us */
-+#define HS3001_12BIT_RESOLUTION	4500	/* us */
-+#define HS3001_14BIT_RESOLUTION	16900	/* us */
-+
-+#define HS3001_RESPONSE_LENGTH	4
-+
-+#define HS3001_FIXPOINT_ARITH	1000
-+#define HS3001_MIN_TEMPERATURE	(-40 * HS3001_FIXPOINT_ARITH)	/* milli degree */
-+#define HS3001_MAX_TEMPERATURE	(125 * HS3001_FIXPOINT_ARITH)	/* milli degree */
-+#define HS3001_MIN_HUMIDITY		(0 * HS3001_FIXPOINT_ARITH)	/* milli percent */
-+#define HS3001_MAX_HUMIDITY		(100 * HS3001_FIXPOINT_ARITH)	/* milli percent */
-+
-+#define HS3001_MASK_HUMIDITY_0X3FFF		0x3FFF
-+#define HS3001_MASK_TEMPERATURE_0XFFFC	0xFFFC
-+#define HS3001_MASK_STATUS_0XC0			0xC0
-+#define HS3001_STATUS_SHIFT				6
-+
-+/* Definitions for Status Bits of A/D Data */
-+#define HS3001_DATA_VALID	0x00	/* Valid Data */
-+#define HS3001_DATA_STALE	0x01	/* Stale Data */
-+
-+#define LIMIT_MAX	0
-+#define LIMIT_MIN	1
-+
-+enum hs3001_chips {
-+	hs3001,
-+};
-+
-+struct hs3001_data {
-+	struct i2c_client *client;
-+	enum hs3001_chips type;
-+	u32 wait_time;		/* in us */
-+	int temperature;	/* in milli degree */
-+	u32 humidity;		/* in milli % */
-+};
-+
-+static int hs3001_extract_temperature(u16 raw)
-+{
-+	/* fixpoint arithmetic 1 digit */
-+	int temp = ((raw & HS3001_MASK_TEMPERATURE_0XFFFC) >> 2) *
-+	    HS3001_FIXPOINT_ARITH;
-+
-+	temp /= (1 << 14) - 1;
-+
-+	return temp * 165 - 40 * HS3001_FIXPOINT_ARITH;
-+}
-+
-+static u32 hs3001_extract_humidity(u16 raw)
-+{
-+	int hum = (raw & HS3001_MASK_HUMIDITY_0X3FFF) * HS3001_FIXPOINT_ARITH;
-+
-+	hum /= (1 << 14) - 1;
-+
-+	return hum * 100;
-+}
-+
-+static int hs3001_data_fetch_command(struct i2c_client *client,
-+				     struct hs3001_data *data)
-+{
-+	int ret;
-+	u8 buf[HS3001_RESPONSE_LENGTH];
-+	u8 hs3001_status;
-+
-+	ret = i2c_master_recv(client, buf, HS3001_RESPONSE_LENGTH);
-+
-+	if (ret != HS3001_RESPONSE_LENGTH) {
-+		ret = ret < 0 ? ret : -EIO;
-+		dev_dbg(&client->dev,
-+			"Error in i2c communication. Error code: %d.\n", ret);
-+		return ret;
-+	}
-+
-+	hs3001_status = (buf[0] & HS3001_MASK_STATUS_0XC0) >>
-+	    HS3001_STATUS_SHIFT;
-+	if (hs3001_status == HS3001_DATA_STALE) {
-+		dev_dbg(&client->dev, "Sensor busy.\n");
-+		return -EBUSY;
-+	} else if (hs3001_status != HS3001_DATA_VALID) {
-+		dev_dbg(&client->dev, "Data invalid.\n");
-+		return -EIO;
-+	}
-+
-+	data->humidity =
-+	    hs3001_extract_humidity(be16_to_cpup((__be16 *)&buf[0]));
-+	data->temperature =
-+	    hs3001_extract_temperature(be16_to_cpup((__be16 *)&buf[2]));
-+
-+	return 0;
-+}
-+
-+umode_t hs3001_is_visible(const void *data, enum hwmon_sensor_types type,
-+			  u32 attr, int channel)
-+{
-+	/* Both, humidity and temperature can only be read. */
-+	return 0444;
-+}
-+
-+int hs3001_read(struct device *dev, enum hwmon_sensor_types type,
-+		u32 attr, int channel, long *val)
-+{
-+	struct hs3001_data *data = dev_get_drvdata(dev);
-+	struct i2c_client *client = data->client;
-+	int ret;
-+	unsigned char buf[1] = { 0x00 };
-+
-+	ret = i2c_master_send(client, buf, 0);
-+	if (ret < 0)
-+		return ret;
-+
-+	/* Sensor needs some time to process measurement depending on
-+	 * resolution
-+	 */
-+	fsleep(data->wait_time);
-+
-+	ret = hs3001_data_fetch_command(client, data);
-+	if (ret < 0)
-+		return ret;
-+
-+	switch (type) {
-+	case hwmon_temp:
-+		switch (attr) {
-+		case hwmon_temp_input:
-+			*val = data->temperature;
-+			break;
-+		default:
-+			return -EINVAL;
-+		}
-+		break;
-+	case hwmon_humidity:
-+		switch (attr) {
-+		case hwmon_humidity_input:
-+			*val = data->humidity;
-+			break;
-+		default:
-+			return -EINVAL;
-+		}
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	return 0;
-+}
-+
-+static const struct hwmon_channel_info *hs3001_info[] = {
-+	HWMON_CHANNEL_INFO(temp, HWMON_T_INPUT),
-+	HWMON_CHANNEL_INFO(humidity, HWMON_H_INPUT),
-+	NULL
-+};
-+
-+static const struct hwmon_ops hs3001_hwmon_ops = {
-+	.is_visible = hs3001_is_visible,
-+	.read = hs3001_read,
-+};
-+
-+static const struct hwmon_chip_info hs3001_chip_info = {
-+	.ops = &hs3001_hwmon_ops,
-+	.info = hs3001_info,
-+};
-+
-+/* device ID table */
-+static const struct i2c_device_id hs3001_ids[] = {
-+	{ "hs3001", hs3001 },
-+	{ },
-+};
-+
-+MODULE_DEVICE_TABLE(i2c, hs3001_ids);
-+
-+static const struct of_device_id hs3001_of_match[] = {
-+	{.compatible = "renesas,hs3001",
-+	 .data = (void *)hs3001
-+	},
-+	{ },
-+};
-+
-+MODULE_DEVICE_TABLE(of, hs3001_of_match);
-+
-+static int hs3001_probe(struct i2c_client *client)
-+{
-+	struct hs3001_data *data;
-+	struct device *hwmon_dev;
-+	struct device *dev = &client->dev;
-+	int ret;
-+
-+	if (!i2c_check_functionality(client->adapter, I2C_FUNC_I2C))
-+		return -EOPNOTSUPP;
-+
-+	data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
-+	if (!data)
-+		return -ENOMEM;
-+
-+	data->client = client;
-+
-+	if (client->dev.of_node)
-+		data->type = (enum hs3001_chips)of_device_get_match_data(&client->dev);
-+	else
-+		data->type = i2c_match_id(hs3001_ids, client)->driver_data;
-+
-+	/* Measurement time = wake-up time + measurement time temperature
-+	 * + measurment time humidity. This is currently static, because
-+	 * enabling programming mode is not supported, yet.
-+	 */
-+	data->wait_time = (HS3001_WAKEUP_TIME + HS3001_14BIT_RESOLUTION +
-+			   HS3001_14BIT_RESOLUTION);
-+
-+	/* Test access to device */
-+	ret = i2c_master_send(client, NULL, 0);
-+	if (ret)
-+		return ret;
-+
-+	hwmon_dev = devm_hwmon_device_register_with_info(dev,
-+				client->name, data, &hs3001_chip_info, NULL);
-+
-+	if (IS_ERR(hwmon_dev))
-+		return dev_err_probe(dev, PTR_ERR(hwmon_dev),
-+				     "Unable to register hwmon device.\n");
-+
-+	return 0;
-+}
-+
-+static struct i2c_driver hs3001_i2c_driver = {
-+	.driver = {
-+		   .name = "hs3001",
-+		   .of_match_table = hs3001_of_match,
-+	},
-+	.probe_new = hs3001_probe,
-+	.id_table = hs3001_ids,
-+};
-+
-+module_i2c_driver(hs3001_i2c_driver);
-+
-+MODULE_AUTHOR("Andre Werner <andre.werner@systec-electronic.com>");
-+MODULE_DESCRIPTION("HS3001 humidity and temperature sensor base  driver");
-+MODULE_LICENSE("GPL");
--- 
-2.41.0
+One thing that we could potentially do is fiddle with the struct device
+=2Edma_coherent member in .probe_finalize() and .release_device(), but I'm
+not sure about the potential ramifications. That is, do we have places
+in the code that assume dev->dma_coherent to be statically set during
+device instantiation?
 
+We would have to default to not marking devices as dma-coherent in DT
+for that to work, though, because otherwise if someone were to disable
+the IOMMU altogether, .probe_finalize() and .release_device() would
+never get called and we'd never get a chance to override.
+
+I wonder if we could also use this to dynamically switch a device into
+coherent mode. For example, if it is marked as dma-coherent in device
+tree but doesn't end up as dev->dma_coherent when the driver probes, we
+could try and force coherency via the device's configuration registers.
+
+I don't know yet if that's really a good idea, though. For correctness
+it would be enough if we can detect at runtime whether a device is DMA
+coherent or not via the IOMMU.
+
+Thierry
+
+--I3VsAWuDrtgMS3gi
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmSw8aoACgkQ3SOs138+
+s6EWbhAAwo/8z3JSQ1oOm2xnLriiNX/bJG4zIyVFglxa+6W27VnYdvEhuGSLQ2+H
+6PXcTKE10qxYAGgC/Rdldl6NGAmmE4UXcmP2c+lJ8MRg5e2s5DkHNKu8VfbduX7i
+qznQAJp5DrQ6HAZGCVLUph2pYJhF46edMXWfoueyFJO31XudIp/Ycq7wbFA6F83y
+sASHvixoAPA6BJQG0C1KTN1b0PJuBxw58BTGcaNQdoNMBEQoABbm0L0r7VCsC6P6
+2krh9j3HnCvNdOgLLV+5DHsIFjDeqqiHD/HqQHQHpi2RxjuGAmEoJkQ68invySfa
+4rBzLo8C+UOFrROvhG1TW7QkcyFGMFj2RSZpvxrH04z4d6IbYSCBHPMz7/J3VWzO
+PtlJ1A6/QGDbdngYvWAyhbE2Wa8n++G4SB5/QJXDGZydHJTErQHBTroVJJNpm3cl
+yjZ49iBAs94R2NevNp9d3D9q0zXlCElNeVw8YuMuSZHo+WNnBeQArQJnzKIHnwWe
+L+liXsMMO+/HjVcYbtMIHPuPuqmV7aKVKWpB0jWpZ1yYQ5iPlcojkt7Sy/ff655m
+SSOEoJq8702zf20Nkld8yymiTnu4VB+MHwp3Hm8rS6y57OFUvYSeStZ6crk6NuIw
+WK8Hd6/fpdz316dUSronCZJZtSWVSzDHKflwPpKeEeZX4sMhof8=
+=8DJA
+-----END PGP SIGNATURE-----
+
+--I3VsAWuDrtgMS3gi--
