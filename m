@@ -2,95 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CFB36754A12
-	for <lists+devicetree@lfdr.de>; Sat, 15 Jul 2023 18:16:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A44E5754A18
+	for <lists+devicetree@lfdr.de>; Sat, 15 Jul 2023 18:19:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229729AbjGOQQG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 15 Jul 2023 12:16:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45340 "EHLO
+        id S230090AbjGOQTj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 15 Jul 2023 12:19:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46464 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229593AbjGOQQF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Jul 2023 12:16:05 -0400
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAD4AE52;
-        Sat, 15 Jul 2023 09:16:03 -0700 (PDT)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id AD7BAC000A;
-        Sat, 15 Jul 2023 16:15:59 +0000 (UTC)
+        with ESMTP id S230134AbjGOQTi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Jul 2023 12:19:38 -0400
+Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::226])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66CF43599;
+        Sat, 15 Jul 2023 09:19:34 -0700 (PDT)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id D8A1AC0004;
+        Sat, 15 Jul 2023 16:19:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1689437762;
+        t=1689437973;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         to:to:cc:cc:mime-version:mime-version:
          content-transfer-encoding:content-transfer-encoding:
          in-reply-to:in-reply-to:references:references;
-        bh=rLvZjvyKtYjdqlbWdTcVIvaH5ulaFg7tfDn1cNGzLjk=;
-        b=duVRSGeKTPFmrl+NBpnM0ULc8COFL8Tq5toYfJ/mkhRQb9/blw/BI+uTD6n0/Aaqif4tOd
-        dVf2jhP+Gv5PbFyfFHhXUwcKlIyc5LUN2mqTcLOH3HYup9YQD8h2v3Eo3eceyV7UupedDO
-        8mnwyxoGv0KTGKx47VnrrEvKfNHUsVDO/zwUlbJzU+mG4sXPLjAwK7V9/6Q3neo8RuIEQA
-        Pd0Jn6rKYAq9hYWODN/bn1oMcmzJt8eZNeQvSwcF72iAHTffAZ58tQr+DtGbDTUjObtJnY
-        Vs4PC5+fHKlPZzXiHxp5e6rjPJiDQSg0pY1qPh5FuzTuHTx/ExQBIYAsB1YCLQ==
-Date:   Sat, 15 Jul 2023 18:15:53 +0200
+        bh=X0EHZy2XjLvntFqJM+bGFxi3ZWSm7Ym0ibsWZEusD5I=;
+        b=a6ojviiGKtfXUfdc2PbMCTxlacZRUJvVHquHB0a/e73TYA6hL/zHDp4hs8LyLlfraIScVd
+        OGEhrRD2K3bUCWNcUnRxpRwVw66ZN4u/0q6PxZZiqMR/YfEFrIOu9KsGzy3uLuKV+M2CCQ
+        9mpwYKWkeVTylnwPEk2puMCiIOWP7TJezZS42cx8ZFxOg3lp3Sjk12mXLayvx4kO/iL9G1
+        lWrDJAcYu+gYK8zX+5qIQEQr7zlmNtCsh+hRJM2gQUDb51vWF0a8eUk0G3hs4jWdHtICfV
+        H2yn15H3hroKJizV19X1L+LST6CMlmHQo2bCfKp1Cxnk0967zYB3QMtmTUamEw==
 From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Arseniy Krasnov <AVKrasnov@sberdevices.ru>
-Cc:     Liang Yang <liang.yang@amlogic.com>,
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
         Richard Weinberger <richard@nod.at>,
         Vignesh Raghavendra <vigneshr@ti.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        <oxffffaa@gmail.com>, <kernel@sberdevices.ru>,
-        <linux-mtd@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [RFC PATCH v3 0/3] support 512B ECC step size for Meson NAND
-Message-ID: <20230715181553.1d2b5637@xps-13>
-In-Reply-To: <20230711122129.2635558-1-AVKrasnov@sberdevices.ru>
-References: <20230711122129.2635558-1-AVKrasnov@sberdevices.ru>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Hauke Mehrtens <hauke@hauke-m.de>,
+        =?utf-8?b?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Broadcom internal kernel review list 
+        <bcm-kernel-feedback-list@broadcom.com>
+Cc:     linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v4 1/2] dt-bindings: mtd: Add SEAMA partition bindings
+Date:   Sat, 15 Jul 2023 18:19:31 +0200
+Message-Id: <20230715161931.20674-1-miquel.raynal@bootlin.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230713-seama-partitions-v4-1-69e577453d40@linaro.org>
+References: 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+X-linux-mtd-patch-notification: thanks
+X-linux-mtd-patch-commit: b'de2a5d52f2c052814349013e8a77d1bc02717d74'
+Content-Transfer-Encoding: 8bit
 X-GND-Sasl: miquel.raynal@bootlin.com
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Arseniy,
+On Wed, 2023-07-12 at 22:16:41 UTC, Linus Walleij wrote:
+> This types of NAND partitions appear in OpenWrt and
+> U-Boot.
+> 
+> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
-AVKrasnov@sberdevices.ru wrote on Tue, 11 Jul 2023 15:21:26 +0300:
+Applied to https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git mtd/next, thanks.
 
-> Hello,
->=20
-> this patchset adds support for 512B ECC step size for Meson NAND. Current
-> implementation only supports 1024B. There are three patches:
->=20
-> 1) Update for device tree bindings to replace 'const' type of field
->    'nand-ecc-step-size' with 'enum' which contains 512 and 1024.
->=20
-> 2) Update for device tree bindings to add dependency between properties
->    'nand-ecc-strength' and 'nand-ecc-step-size'.
->=20
-> 3) Update for Meson driver - new enum value for 512B ECC and reworked
->    ECC capabilities structure to support both 512B and 1024B ECC. By
->    default this driver uses 1024B ECC, 512B could be enabled in device
->    tree.
-
-This series does not apply correctly on nand/next, would you mind
-rebasing (nand/next on linux-mtd) and sending it again?
-
-BTW the "rfc" prefix is only needed for the "first" submission, when
-you try something "new", otherwise it is no longer required.
-
-Thanks,
-Miqu=C3=A8l
+Miquel
