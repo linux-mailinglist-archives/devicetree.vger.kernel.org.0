@@ -2,82 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 344807549A1
-	for <lists+devicetree@lfdr.de>; Sat, 15 Jul 2023 17:11:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9714A7549A8
+	for <lists+devicetree@lfdr.de>; Sat, 15 Jul 2023 17:11:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229800AbjGOPLT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 15 Jul 2023 11:11:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58524 "EHLO
+        id S229815AbjGOPLy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 15 Jul 2023 11:11:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58724 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229815AbjGOPLS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Jul 2023 11:11:18 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CED0C2D63
-        for <devicetree@vger.kernel.org>; Sat, 15 Jul 2023 08:11:16 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-4fbf09a9139so4812527e87.2
-        for <devicetree@vger.kernel.org>; Sat, 15 Jul 2023 08:11:16 -0700 (PDT)
+        with ESMTP id S230079AbjGOPLx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Jul 2023 11:11:53 -0400
+Received: from mail-il1-x132.google.com (mail-il1-x132.google.com [IPv6:2607:f8b0:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 395EB30E2
+        for <devicetree@vger.kernel.org>; Sat, 15 Jul 2023 08:11:50 -0700 (PDT)
+Received: by mail-il1-x132.google.com with SMTP id e9e14a558f8ab-3461053677eso6531795ab.0
+        for <devicetree@vger.kernel.org>; Sat, 15 Jul 2023 08:11:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689433875; x=1692025875;
+        d=ieee.org; s=google; t=1689433909; x=1692025909;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=uahl0JK8EKsnvSfqLyeXPnd2KJauvmsFvzs6gaaLC+Q=;
-        b=cEQKLfs+irNYlu4PHC7FcXJnmKVMQpjgceJ73Dz9W9kZUya7PARB2vlIWIRdz+da8A
-         8Idoso99nNolkI4/+4/SXjxa0c2yRNvDHRgddHTDHOou+7H9yk2qwIaIW8ifTsnvgiLb
-         NzgMpFWltHaUNBoRZHMDbTn9UulcLojYKHAj0uqKPGxg7nOjrBW+/dRrKCZXpQxQ7fR1
-         f7Cykva76SaJ/zEk2/RMDLIqZXn+VSLojMv8az12trqaeY/7X3WNuUmQrojOLV9vczJF
-         qBGP+SjB5KDILKLcusMDcQQwA08HVG7bLs19yn5zq6tNrHztIrEYKn6CtkqUU3RvgsMQ
-         T+sA==
+        bh=x9XlpRMNdAAEFImKOS7TDT4umEsjSeY77+bJ4P1MRe8=;
+        b=KpbiwA9NRF8+W6tdUk7oAEajedYliLcT3fLwx1hKWNPafETFpJG9nnPmhVRp1UdI1a
+         ec9mVwfBesk49WkdsrPfeQTQNowRCIhbKJuP16XD7dO7TZekJ8yDxNsj6kgUO5dmVinN
+         O/xItmOPmt9BnCnKdfjfmpm5zf8eizKb7wHPU=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689433875; x=1692025875;
+        d=1e100.net; s=20221208; t=1689433909; x=1692025909;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=uahl0JK8EKsnvSfqLyeXPnd2KJauvmsFvzs6gaaLC+Q=;
-        b=Z1/zx/2OyGXX8q8lv7rq8WLnO7nEifNAbFdmkHBDH7Y+iK3GmfJ5Vve1Xt6yqt/ZRU
-         Hb3p531h2vo/575bPFY2Nc8sMpdSE1pwZnkZvcPUrPTTZ1Vtlc9/rqz6VIDXcssSG7Ro
-         DtkAPYktBI3sQB10NwM9D4SEd/4Xbs2/IQbmGNdg3TmAyB/qL9/HenMTcvuF77iWPdwa
-         rxo+9hr2XV7qIUytExpGSSLC19OOYI04AkZ0s3SVRFHy7CBMZpOpbiR3Euua796/nvfT
-         Eq/px/zVgPP6YxjkVaZAAYyoWnEaJq4i3EfhxUP8YY/wDdMSo4SwvGfsQqVz8z3TCefb
-         MqOg==
-X-Gm-Message-State: ABy/qLb4GOgFiKgpUFsG3vjrbzmGrUkz6eQ/xnab2xdedUbnVhHm6MDV
-        FAy71Cs52oNlrFGWnLtVQlM32w==
-X-Google-Smtp-Source: APBJJlF8jICyjjbV1u/4xnF/oNp/tqc4zSp4PrfGF2zGzjcKVvb18AyYpYbdJHF6+FvSU7aOHyw/XA==
-X-Received: by 2002:a05:6512:ea9:b0:4f8:752f:3722 with SMTP id bi41-20020a0565120ea900b004f8752f3722mr6549825lfb.5.1689433875119;
-        Sat, 15 Jul 2023 08:11:15 -0700 (PDT)
-Received: from [192.168.1.101] (abxi167.neoplus.adsl.tpnet.pl. [83.9.2.167])
-        by smtp.gmail.com with ESMTPSA id f15-20020ac2532f000000b004fb745fd232sm1914885lfh.30.2023.07.15.08.11.13
+        bh=x9XlpRMNdAAEFImKOS7TDT4umEsjSeY77+bJ4P1MRe8=;
+        b=W0rs6rNPkvj92jXKcAKiG9uFV3M9QLWJJfgZMpUh51dl1nMpY4oI74W806d0sjcddC
+         ZapOBognK+nYJe20hiagzno4O+uN/TH2YsZkvdoS1Uu52NisJYQDqFSkIaxOO8rp4GbK
+         u3ewyzH30K1b6vWwq4Yi9GygdMB2JEx4k9tJhuAj828qdzvDu8bzfhQ4/sNLDDsKD4z3
+         DCFvzrlb+k+c2F/3fxIUqzvuBuUMKj223RIHzYMHTAlUhy3DpsZo7mMemPvzR0pHkQSP
+         bzKttowBR4DmUutGlwCMyuKaiuaUnFd7OvICLESv37IknNDr4gLXCRrutyt5WRv29n42
+         FheA==
+X-Gm-Message-State: ABy/qLYRVk9cRTWl4sYqQ67UZ+GhKdYODAk0Sgc4UysuiSevBcY16vR8
+        wmQPLyBE1utcGeMdixIEotRrAwNQ+1OdT65hRSMI+A==
+X-Google-Smtp-Source: APBJJlGJVqbBu5lKEA54CgyQF24n/fOTJfhIYz9w3XH4VGOvH3KCmWksDsEmgsEiSCeG83sO26Hgmw==
+X-Received: by 2002:a05:6e02:1148:b0:343:ef5e:8286 with SMTP id o8-20020a056e02114800b00343ef5e8286mr3847417ill.7.1689433909634;
+        Sat, 15 Jul 2023 08:11:49 -0700 (PDT)
+Received: from [10.211.55.3] (c-98-61-227-136.hsd1.mn.comcast.net. [98.61.227.136])
+        by smtp.googlemail.com with ESMTPSA id f8-20020a056638022800b0042b2959e6dcsm3321388jaq.87.2023.07.15.08.11.47
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 15 Jul 2023 08:11:14 -0700 (PDT)
-Message-ID: <7774d80e-81d4-2283-59ec-87012bb28294@linaro.org>
-Date:   Sat, 15 Jul 2023 17:11:13 +0200
+        Sat, 15 Jul 2023 08:11:48 -0700 (PDT)
+Message-ID: <1c6175fc-496a-843c-c8c5-2173e065eaa8@ieee.org>
+Date:   Sat, 15 Jul 2023 10:11:46 -0500
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
-Subject: Re: [PATCH 4/5] arm64: dts: qcom: qrb5165-rb5: enable displayport
- controller
+Subject: Re: [PATCH] net: Explicitly include correct DT includes
 Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Stephen Boyd <swboyd@chromium.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org
-References: <20230709041926.4052245-1-dmitry.baryshkov@linaro.org>
- <20230709041926.4052245-5-dmitry.baryshkov@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230709041926.4052245-5-dmitry.baryshkov@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+To:     Rob Herring <robh@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, Alex Elder <elder@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-can@vger.kernel.org,
+        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-mediatek@lists.infradead.org, linuxppc-dev@lists.ozlabs.org,
+        linux-renesas-soc@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-amlogic@lists.infradead.org, linux-oxnas@groups.io,
+        linux-tegra@vger.kernel.org, linux-omap@vger.kernel.org,
+        linux-wpan@vger.kernel.org, ath10k@lists.infradead.org,
+        linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
+        wcn36xx@lists.infradead.org
+References: <20230714174809.4060885-1-robh@kernel.org>
+From:   Alex Elder <elder@ieee.org>
+In-Reply-To: <20230714174809.4060885-1-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
         URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -86,42 +84,58 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9.07.2023 06:19, Dmitry Baryshkov wrote:
-> Enable the onboard displayport controller, connect it to QMP PHY.
+On 7/14/23 12:48 PM, Rob Herring wrote:
+> The DT of_device.h and of_platform.h date back to the separate
+> of_platform_bus_type before it as merged into the regular platform bus.
+> As part of that merge prepping Arm DT support 13 years ago, they
+> "temporarily" include each other. They also include platform_device.h
+> and of.h. As a result, there's a pretty much random mix of those include
+> files used throughout the tree. In order to detangle these headers and
+> replace the implicit includes with struct declarations, users need to
+> explicitly include the correct includes.
 > 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> Signed-off-by: Rob Herring <robh@kernel.org>
 
-Konrad
->  arch/arm64/boot/dts/qcom/qrb5165-rb5.dts | 13 +++++++++++++
->  1 file changed, 13 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-> index a03f334a3d01..210c60025c32 100644
-> --- a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-> +++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-> @@ -656,6 +656,15 @@ &mdss {
->  	status = "okay";
->  };
->  
-> +&mdss_dp {
-> +	status = "okay";
-> +};
-> +
-> +&mdss_dp_out {
-> +	data-lanes = <0 1>;
-> +	remote-endpoint = <&usb_1_qmpphy_dp_in>;
-> +};
-> +
->  &mdss_dsi0 {
->  	status = "okay";
->  	vdda-supply = <&vreg_l9a_1p2>;
-> @@ -1436,3 +1445,7 @@ pm8150b_typec_sbu_out: endpoint {
->  		};
->  	};
->  };
-> +
-> +&usb_1_qmpphy_dp_in {
-> +	remote-endpoint = <&mdss_dp_out>;
-> +};
+(I significantly reduced the addressee list to permit the message
+to be sent.)
+
+For "drivers/net/ipa/ipa_main.c":
+
+Acked-by: Alex Elder <elder@linaro.org>
+
+> ---
+>   drivers/net/can/bxcan.c                                 | 1 -
+>   drivers/net/can/ifi_canfd/ifi_canfd.c                   | 1 -
+. . .
+>   drivers/net/ieee802154/ca8210.c                         | 1 -
+>   drivers/net/ipa/ipa_main.c                              | 2 +-
+>   drivers/net/pcs/pcs-rzn1-miic.c                         | 1 +
+>   drivers/net/phy/marvell-88x2222.c                       | 1 -
+>   drivers/net/phy/mediatek-ge-soc.c                       | 2 --
+>   drivers/net/wireless/ath/ath10k/ahb.c                   | 2 +-
+>   drivers/net/wireless/ath/ath11k/qmi.c                   | 1 -
+>   drivers/net/wireless/ath/wcn36xx/main.c                 | 3 +--
+>   drivers/net/wireless/intersil/orinoco/airport.c         | 2 +-
+>   drivers/net/wireless/mediatek/mt76/mt7915/soc.c         | 1 -
+>   drivers/net/wireless/silabs/wfx/bus_sdio.c              | 2 +-
+>   net/core/of_net.c                                       | 1 +
+>   124 files changed, 110 insertions(+), 120 deletions(-)
+
+. . .
+
+> diff --git a/drivers/net/ipa/ipa_main.c b/drivers/net/ipa/ipa_main.c
+> index 6a2f2fc2f501..da853353a5c7 100644
+> --- a/drivers/net/ipa/ipa_main.c
+> +++ b/drivers/net/ipa/ipa_main.c
+> @@ -13,8 +13,8 @@
+>   #include <linux/firmware.h>
+>   #include <linux/module.h>
+>   #include <linux/of.h>
+> -#include <linux/of_device.h>
+>   #include <linux/of_address.h>
+> +#include <linux/platform_device.h>
+>   #include <linux/pm_runtime.h>
+>   #include <linux/firmware/qcom/qcom_scm.h>
+>   #include <linux/soc/qcom/mdt_loader.h>
+
+. . .
