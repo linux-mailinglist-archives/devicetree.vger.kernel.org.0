@@ -2,103 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E709754A3A
-	for <lists+devicetree@lfdr.de>; Sat, 15 Jul 2023 18:55:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1AC36754A3F
+	for <lists+devicetree@lfdr.de>; Sat, 15 Jul 2023 18:56:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229502AbjGOQzm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 15 Jul 2023 12:55:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53700 "EHLO
+        id S229483AbjGOQ4a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 15 Jul 2023 12:56:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54100 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229483AbjGOQzl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Jul 2023 12:55:41 -0400
-Received: from mail-pf1-x436.google.com (mail-pf1-x436.google.com [IPv6:2607:f8b0:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92D2FFD;
-        Sat, 15 Jul 2023 09:55:40 -0700 (PDT)
-Received: by mail-pf1-x436.google.com with SMTP id d2e1a72fcca58-666e64e97e2so2147609b3a.1;
-        Sat, 15 Jul 2023 09:55:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1689440140; x=1692032140;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ubGyv1/Ygc3r0aejvSCA4OLowIeO/QtJDtMmWSuLbbA=;
-        b=fzrnUjCr7PbCvdmX9z+HiWchCOfsiRzoqKnSIEyCXGwDe/iSWnthmjiOtjoalVTaiu
-         bwDrRhoAvkYJ88WYaQ4rfd11vj7znKX4TLilqXyxFWTOWcM8tSSaqJecr+CAdIlrmNy5
-         iuRrAAxeF8d70ZxNirl/zOrR7EnUA9Ye4e90QdRxIxrCOLyhtmtyeKIuQXKxi7MiUXzv
-         qvNbVuQahDlB2S4OTtPx/bFhv+7uo3DKEW0NqSGFtkYhV/NQxUCsxiSiwNIsKZd6Q8wk
-         +lXOVoU5cCVHR5uan3DOc8ngVbwt5GheOlu0mJkEl+bqoVZC4oSDsFOmK5nO/JzqYFCC
-         q3Vw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689440140; x=1692032140;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ubGyv1/Ygc3r0aejvSCA4OLowIeO/QtJDtMmWSuLbbA=;
-        b=QmuQKN6K94p5ZdzLfCCJzYf5SheGtL6Y3m9/Fs9wH9plQMymXWtP7iNmcLnlgIcKdw
-         QWa+4Q5JsP7u4mOTbpPLB2xpXW6vufJcPtwci8Ow6Rxwtp/no1ZYkH1bePTaEyHbeeh2
-         ISaG6ykkPIAO+Z34recocK77L/isXjmX7GffhBrTlKRiTxk2AIAnGlu6t+J8TWKDd6UT
-         2hZHE5Zv+raKFd213MoxEoZLTPGLwPwa0qbTAMZGsjC4JZS6F13DV2Gi1ESw/jc29KdQ
-         MSeT0uGo5CEZgQV4YKzZOdzCRc4YqLMJ2xIYexYV3EaWoyVDZRMFHRQ66dET6gltW+ha
-         v/cA==
-X-Gm-Message-State: ABy/qLauNy0KMG3TaGLqJOHf/faeuoV0LzldqKofIZaSpNSHY+sjn8rl
-        Kje1lMPlH4giOZrDwkUfrpq02M2ADLE=
-X-Google-Smtp-Source: APBJJlGDhaXWS+ae0J4ItsPOsBi6CjK6+MtngxLk1oc11DllicWU7qKMFYrUsJaRbQsY0y/1bBTzSA==
-X-Received: by 2002:a17:903:455:b0:1b8:a4a9:6225 with SMTP id iw21-20020a170903045500b001b8a4a96225mr6961436plb.7.1689440140062;
-        Sat, 15 Jul 2023 09:55:40 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id f28-20020a63755c000000b005501b24b1c9sm9419828pgn.62.2023.07.15.09.55.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 15 Jul 2023 09:55:39 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Sat, 15 Jul 2023 09:55:38 -0700
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Jean Delvare <jdelvare@suse.com>, Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Jean-Marie Verdun <verdun@hpe.com>,
-        Nick Hawkins <nick.hawkins@hpe.com>,
-        Charles Keepax <ckeepax@opensource.cirrus.com>,
-        Richard Fitzgerald <rf@opensource.cirrus.com>,
-        Robert Marko <robert.marko@sartura.hr>,
-        Saravanan Sekar <sravanhome@gmail.com>,
-        Luka Perkov <luka.perkov@sartura.hr>,
-        Liviu Dudau <liviu.dudau@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        devicetree@vger.kernel.org, linux-hwmon@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, patches@opensource.cirrus.com
-Subject: Re: [PATCH] hwmon: Explicitly include correct DT includes
-Message-ID: <e0e1b465-8419-419e-90ae-4b72f5189469@roeck-us.net>
-References: <20230714174607.4057185-1-robh@kernel.org>
+        with ESMTP id S229549AbjGOQ43 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Jul 2023 12:56:29 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F545FD;
+        Sat, 15 Jul 2023 09:56:28 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 13DB060BC1;
+        Sat, 15 Jul 2023 16:56:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9ED3EC433C8;
+        Sat, 15 Jul 2023 16:56:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1689440187;
+        bh=j/X9HRq0NyQ4TPbLatI7AanH8hVgXhQxEBtgYHZrvtc=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=WLzOSMOdM44mfL5kBzIcDEDGoVjKLBznKxpV0f9t1pKPr4fGqgWst/nE+SffYVFzJ
+         ecp1J7ClSaeYBkpP9Xql0YBcm2Ysrgq1WZ9BCYtWVBYUVFt+5vdj28LpHdOzt4XMRC
+         7h5hIUPFYZmrZwmnr08FoRvo92K+AwgLdhoFRlA8Wxiu/2nrfgozwMFItX3lzZCgZ0
+         uIUp+8KRHfjZnXUCErK23UhwD6s0bRwQpr/VcsjVl3K8hJuTtYWHbcXsRG8gJdgHis
+         w42MPuXFXmkGUxUki4i790/uMkhIcJRfQDdWiGPp1Y6QUw6qy+qltI5CvkRl9evJJQ
+         O0tmUoHRdO6aA==
+Date:   Sat, 15 Jul 2023 17:56:18 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Lars-Peter Clausen <lars@metafoo.de>, linux-iio@vger.kernel.org
+Subject: Re: [PATCH v2 1/8] dt-bindings: iio: adc: qcom,spmi-adc7: use
+ predefined channel ids
+Message-ID: <20230715175618.10f00d48@jic23-huawei>
+In-Reply-To: <e8700bea-73d5-8ca2-9517-737c13ad3679@linaro.org>
+References: <20230707123027.1510723-1-dmitry.baryshkov@linaro.org>
+        <20230707123027.1510723-2-dmitry.baryshkov@linaro.org>
+        <e8700bea-73d5-8ca2-9517-737c13ad3679@linaro.org>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230714174607.4057185-1-robh@kernel.org>
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 14, 2023 at 11:46:04AM -0600, Rob Herring wrote:
-> The DT of_device.h and of_platform.h date back to the separate
-> of_platform_bus_type before it as merged into the regular platform bus.
-> As part of that merge prepping Arm DT support 13 years ago, they
-> "temporarily" include each other. They also include platform_device.h
-> and of.h. As a result, there's a pretty much random mix of those include
-> files used throughout the tree. In order to detangle these headers and
-> replace the implicit includes with struct declarations, users need to
-> explicitly include the correct includes.
-> 
-> Signed-off-by: Rob Herring <robh@kernel.org>
+On Mon, 10 Jul 2023 11:03:04 +0200
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
 
-Applied to hwmon-next.
+> On 07/07/2023 14:30, Dmitry Baryshkov wrote:
+> > Each of qcom,spmi-adc7-pm*.h headers define a set of ADC channels that
+> > can be used for monitoring on thie particular chip. Switch them to use
+> > channel IDs defined in the dt-bindings/iio/qcom,spmi-vadc.h header
+> > instead of specifying the numeric IDs.
+> > 
+> > Suggested-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>  
+> 
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> Best regards,
+> Krzysztof
+> 
+
+Applied to the togreg branch of iio.git
 
 Thanks,
-Guenter
+
+Jonathan
