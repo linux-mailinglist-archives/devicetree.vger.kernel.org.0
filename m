@@ -2,61 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DA670754839
-	for <lists+devicetree@lfdr.de>; Sat, 15 Jul 2023 12:40:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0617F754842
+	for <lists+devicetree@lfdr.de>; Sat, 15 Jul 2023 12:47:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230081AbjGOKkb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 15 Jul 2023 06:40:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39336 "EHLO
+        id S230029AbjGOKrX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 15 Jul 2023 06:47:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40820 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229854AbjGOKka (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Jul 2023 06:40:30 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C49753A88;
-        Sat, 15 Jul 2023 03:40:29 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 59D1560303;
-        Sat, 15 Jul 2023 10:40:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AB3F1C433C8;
-        Sat, 15 Jul 2023 10:40:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689417628;
-        bh=wTBz1S2hSZwl9POKXMBD1OXuh1TzdFtjpS1qwGx+jkU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=AzOsA2qFOz4tvHXjRervo3hsjJMpV6Wh6vmXrC9HBvJufqG5Rxd2QWn4Ytf9WmKT3
-         ujHHRaZ6EHvH9eJq5Bo2tUdsmlaScYysaiAgNR5GV/wUns4qUKnTOnwwuRUszRu1mj
-         4qvEGI7Q96XZXeehYXzyZx/h+k8lBAetCYLTvmZoAJuV5oqUtFL/b5h5rDuBdToy79
-         LlOPbpvXntlRlSlMzqmc1z6eguAX/wxLQFmPbaLavZ+57NQu0BY6V2btUGLmjFKQek
-         vDqhRkXReWmtyZWxzFjTYSctCOWNIJE4N1xbj3OiHtccADkleRhF4jBxF2aF3HsgF3
-         RgCDKpsDhMdRA==
-Date:   Sat, 15 Jul 2023 11:40:22 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Sarah Walker <sarah.walker@imgtec.com>
-Cc:     dri-devel@lists.freedesktop.org, frank.binns@imgtec.com,
-        donald.robson@imgtec.com, boris.brezillon@collabora.com,
-        faith.ekstrand@collabora.com, airlied@gmail.com, daniel@ffwll.ch,
-        maarten.lankhorst@linux.intel.com, mripard@kernel.org,
-        tzimmermann@suse.de, afd@ti.com, hns@goldelico.com,
-        matthew.brost@intel.com, christian.koenig@amd.com,
-        luben.tuikov@amd.com, dakr@redhat.com,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 02/17] dt-bindings: gpu: Add Imagination Technologies
- PowerVR GPU
-Message-ID: <20230715-paramount-straining-6a486f8af20d@spud>
-References: <20230714142526.111569-1-sarah.walker@imgtec.com>
+        with ESMTP id S229632AbjGOKrW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Jul 2023 06:47:22 -0400
+Received: from mailrelay3-1.pub.mailoutpod2-cph3.one.com (mailrelay3-1.pub.mailoutpod2-cph3.one.com [IPv6:2a02:2350:5:402::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D53FD35AA
+        for <devicetree@vger.kernel.org>; Sat, 15 Jul 2023 03:47:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ravnborg.org; s=rsa1;
+        h=in-reply-to:content-type:mime-version:references:message-id:subject:cc:to:
+         from:date:from;
+        bh=+y08/Sz0j0ceiva4EnYXZhe0QdQSUP910NVfEzb7p30=;
+        b=qQ8LzKqCqB4Me2Z6mRU5utFJiV8Z8MhKhmpjQzjZioWnGCJTgFwTW3uvgRQ0CJ1JH1YIJIcVG0U6C
+         eeoUZG3EUwleXDFjOze4lZEdNZw2shweIhrpRZcuhtpk8WgUFpmfWsDHBJbvAxnZUr5jMhK8osX/KI
+         GKbVntwb71vAD120WZenoyMCIW5EruriGYAIJUfWA8uhf5oWSl+qmrs7Z9wh5/REzDEtwaUEMBAeFe
+         zRgnJgjT6nNYTb7wmiorpHXJYhsYshFwponmWUCNmLnwW0SOS92DZVM7FqWM7snUhjYdqP8A4e5/gr
+         dqiFkSl8PPaTt0vsqO/Ubw9q1OoNe5Q==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed;
+        d=ravnborg.org; s=ed1;
+        h=in-reply-to:content-type:mime-version:references:message-id:subject:cc:to:
+         from:date:from;
+        bh=+y08/Sz0j0ceiva4EnYXZhe0QdQSUP910NVfEzb7p30=;
+        b=q5gAgGxWm+Lq82yVCxruopEp8Q15KK7JPg5M0rlZHoroDgpt+UV3v6TmTa1/jWhSs5JS/m0jDvhWL
+         +ozmuloAw==
+X-HalOne-ID: f7413334-22fc-11ee-b310-b90637070a9d
+Received: from ravnborg.org (2-105-2-98-cable.dk.customer.tdc.net [2.105.2.98])
+        by mailrelay3 (Halon) with ESMTPSA
+        id f7413334-22fc-11ee-b310-b90637070a9d;
+        Sat, 15 Jul 2023 10:47:18 +0000 (UTC)
+Date:   Sat, 15 Jul 2023 12:47:16 +0200
+From:   Sam Ravnborg <sam@ravnborg.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org, linux-crypto@vger.kernel.org,
+        sparclinux@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] sparc: Explicitly include correct DT includes
+Message-ID: <20230715104716.GA251436@ravnborg.org>
+References: <20230714174048.4040702-1-robh@kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="PGVJVVq7kVn9L8A9"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230714142526.111569-1-sarah.walker@imgtec.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+In-Reply-To: <20230714174048.4040702-1-robh@kernel.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -64,102 +60,22 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Rob.
 
---PGVJVVq7kVn9L8A9
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Fri, Jul 14, 2023 at 11:40:46AM -0600, Rob Herring wrote:
+> The DT of_device.h and of_platform.h date back to the separate
+> of_platform_bus_type before it as merged into the regular platform bus.
+> As part of that merge prepping Arm DT support 13 years ago, they
+> "temporarily" include each other. They also include platform_device.h
+> and of.h. As a result, there's a pretty much random mix of those include
+> files used throughout the tree. In order to detangle these headers and
+> replace the implicit includes with struct declarations, users need to
+> explicitly include the correct includes.
+> 
+> Signed-off-by: Rob Herring <robh@kernel.org>
+Looks fine, for good measure I did a defconfig build of sparc32 and
+sparc64. Both were OK.
+There were a trivial conflict when applying to current master - but that
+is expected for a patch touching this amount of files.
 
-Hey Sarah,
-
-Your series does not appear to be threaded. `git send-email` can be
-passed, for example, a directory containing a whole series & will set
-the correct in-reply-to headers so that the series is in a single
-thread.
-
-On Fri, Jul 14, 2023 at 03:25:26PM +0100, Sarah Walker wrote:
-> Add the device tree binding documentation for the Series AXE GPU used in
-> TI AM62 SoCs.
-
-> Changes since v3:
-> - Remove oneOf in compatible property
-> - Remove power-supply (not used on AM62)
->=20
-> Changes since v2:
-> - Add commit message description
-> - Remove mt8173-gpu support (not currently supported)
-> - Drop quotes from $id and $schema
-> - Remove reg: minItems
-> - Drop _clk suffixes from clock-names
-> - Remove operating-points-v2 property and cooling-cells (not currently
->   used)
-> - Add additionalProperties: false
-> - Remove stray blank line at the end of file
-
-The changelog should go below the --- line.
-
-> Signed-off-by: Sarah Walker <sarah.walker@imgtec.com>
-> ---
->  .../devicetree/bindings/gpu/img,powervr.yaml  | 68 +++++++++++++++++++
->  MAINTAINERS                                   |  7 ++
->  2 files changed, 75 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/gpu/img,powervr.yaml
-
-> diff --git a/Documentation/devicetree/bindings/gpu/img,powervr.yaml b/Doc=
-umentation/devicetree/bindings/gpu/img,powervr.yaml
-> new file mode 100644
-> index 000000000000..3292a0440465
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/gpu/img,powervr.yaml
-> @@ -0,0 +1,68 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright (c) 2022 Imagination Technologies Ltd.
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/gpu/img,powervr.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Imagination Technologies PowerVR GPU
-> +
-> +maintainers:
-> +  - Sarah Walker <sarah.walker@imgtec.com>
-
-> +  interrupts:
-> +    items:
-> +      - description: GPU interrupt
-
-The description here doesn't add any value, since there is only one
-interrupt, so you can drop it and do maxItems: 1 as you have done
-elsewhere.
-
-> +  interrupt-names:
-> +    items:
-> +      - const: gpu
-
-And this
-items:
-  - const: gpu
-can just be
-const: gpu
-
-Although, if there is only one interrupt this is probably not
-particularly helpful. Are there other implementations of this IP that
-have more interrupts?
-
-Otherwise, this looks good to me.
-
-Thanks,
-Conor.
-
---PGVJVVq7kVn9L8A9
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZLJ3lgAKCRB4tDGHoIJi
-0j3aAQDVMC24k6fauiEV0VhEg6EVlCN4u/NEO2bgeg06XEa29wD/RMfmf/un5KW6
-LVpJKv8SHRhzcCHfOR387DPgS+VIDgE=
-=XdJ6
------END PGP SIGNATURE-----
-
---PGVJVVq7kVn9L8A9--
+Acked-by: Sam Ravnborg <sam@ravnborg.org>
