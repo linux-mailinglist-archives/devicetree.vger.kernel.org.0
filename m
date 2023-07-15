@@ -2,70 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 04EAF754933
-	for <lists+devicetree@lfdr.de>; Sat, 15 Jul 2023 16:13:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C774775493B
+	for <lists+devicetree@lfdr.de>; Sat, 15 Jul 2023 16:16:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229482AbjGOONW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 15 Jul 2023 10:13:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41054 "EHLO
+        id S230108AbjGOOQe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 15 Jul 2023 10:16:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43028 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229556AbjGOONW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Jul 2023 10:13:22 -0400
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07E891BD4
-        for <devicetree@vger.kernel.org>; Sat, 15 Jul 2023 07:13:20 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-4fba8f2197bso4853316e87.3
-        for <devicetree@vger.kernel.org>; Sat, 15 Jul 2023 07:13:19 -0700 (PDT)
+        with ESMTP id S229967AbjGOOQe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Jul 2023 10:16:34 -0400
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 477741BDA
+        for <devicetree@vger.kernel.org>; Sat, 15 Jul 2023 07:16:32 -0700 (PDT)
+Received: by mail-lj1-x229.google.com with SMTP id 38308e7fff4ca-2b703d7ed3aso45050521fa.1
+        for <devicetree@vger.kernel.org>; Sat, 15 Jul 2023 07:16:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689430398; x=1692022398;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        d=linaro.org; s=google; t=1689430590; x=1692022590;
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=5pjJI9w8CFYJrlO278g5PFbKv5pKnn17lMTGBT+3ydM=;
-        b=cJn5Gz01cO+cq0uBVhD8cZf87mpRtNHRLa84O3sHr2CyzmT62tYv1SEEstzuGV0AUx
-         AJLfnGpA8LikdPUZ94WAgSgqiBZpTlUdU5w6Uto6C401wyW2UCHEN+24KtlaYE6zPsiv
-         1BYP/BqKUTzPOsZ0YYqfWrRlXq6idmUF9iVkPHMVJZcn/ZHYuzsAMkeDQD6z/tdXyr/4
-         CIayY8suMp3JlBf4vGwSj8zHNZUHVl0jXkf5DWPV8j6JgBrbBlVA91QbUq+4cQQYV8Oq
-         hlf7g2vtSMQf3qX1/9rZyAatfHFueuOQY7VSB3NfgU7Dih/3H9hRfLbtYqCeLq6cv5h6
-         Iatw==
+        bh=VOkFVk3aE5gj9JDSN53HeX/jL7zEDWWGQudrXPTPABQ=;
+        b=r0KRmGipoMO1dW9ldKc1SIScIEXhs1DTrrN1t9cwRuMKk2t1sokIHloRc2ZLbcZ0pO
+         D4S+i9V0tqUPMr84CoRrzLIe5Mn2fnnOWiMAsKZrqfkx08HTJOtNAEZlQARHIrd78835
+         66/HF275MWdBHJ2BFJ3bSYX9B83ExGzK3po0kUmiZGsIekJNAzfNzwYWcFS4DH9fYIMt
+         T9rBlnS9oK7XUGqBNPzXTLylIReTKr9AbGicMEGriEBJNaD/Pi82WitStYNHPGtBKdaK
+         iJ/pwXnKKzCRe/5AFp+fJogRrywW8xHoVp7T0EBXOaYhIKi3m8m5CEz4dCCMuhsp/RBW
+         WPhA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689430398; x=1692022398;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        d=1e100.net; s=20221208; t=1689430590; x=1692022590;
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=5pjJI9w8CFYJrlO278g5PFbKv5pKnn17lMTGBT+3ydM=;
-        b=PUetP/xdg0YMOCgFjc9RF6l+Ym1q1NlZypfTAsTfJ+5oAClZv+5NKKFo8wgWzVlICh
-         bqw8P+B1LlJCo7gzVzTcKO1jPCSFHUfI8Z7CwY3PPmI8sFk6H/SZz2R842kfwK/Xe/O0
-         S7fGBE+7muXxw1Ebkrwav8a+4maeTwDMJCMU2bmbcO7lp3h+b9VJpTyNIhiqL9vP8Q6b
-         Vbx/Nl98x3cLMyFp7l/J5/hjRJyHZ6gAuL1hcIlBwP2khaTjD7cxp2FS96spUqe8Js1g
-         kPuGC+SMnNKY+DCyRtfe8GKEufHu3YZi7NY+b0+13yCmltPr9GwppGBjXPy/5p/J75JO
-         VSKQ==
-X-Gm-Message-State: ABy/qLYJ6aPCG7OReOHqMqQO70TR5Ht3JRBhN4JI1tfgSo8GEXsRseHE
-        qS3C+og7divEDFBCvNKQpSvZ+Ozy51T+AHL8/eBncQ==
-X-Google-Smtp-Source: APBJJlH0xNy2URzHQZxZqhffBIQMXcMWLWBBCQv1AQehwlwJCbmBo/SZSG2sdKsAziqgWPIw0tE9+w==
-X-Received: by 2002:a05:6512:39d2:b0:4f6:3000:94a0 with SMTP id k18-20020a05651239d200b004f6300094a0mr6428959lfu.61.1689430398238;
-        Sat, 15 Jul 2023 07:13:18 -0700 (PDT)
+        bh=VOkFVk3aE5gj9JDSN53HeX/jL7zEDWWGQudrXPTPABQ=;
+        b=UFa7jhwjeWE6j7vheCrvpG4thZwYhSdI9wioRE5mYUtsc7j6rHn7qlTWa3RZ7K5YbW
+         3WXk2G1l2O4FkJls4LoUwSaGqEio1LQhTWPtCYNvD/2BsCvnQ2w/DmtaP1pY7A5Ba//f
+         FziPikyP9AGPew4B7zuUFqeCa1kEgwUloVtDFG/Pldi54XZkydOBAmcJ/YGXnE1Zs042
+         fyUS6BdYFDD+axYTpF2XokyfpETCsSpStMO8K+x8BMIcy1oq6Q9El89AC8xWsD4q3z4c
+         +tFj3dNk6slADq5++U6qen+3UYckx45F1LCJlPU/m2e9+LYd0uPGV2GoZSbelCHcHxmI
+         HLew==
+X-Gm-Message-State: ABy/qLbOU+ztywgTr80PflK/mMtfTcPhU6+E8hP6kKc0qgiLPc6/In6s
+        a64mw/SS5R9xpm5Rg+/9UdbAmA==
+X-Google-Smtp-Source: APBJJlEt8ybhaONj9h+i07UrVHkWzsDdsmsMjF6pVEq7ABL71Tin1p1Or5L4Y8LGbGESTlhiy8NzOw==
+X-Received: by 2002:a2e:9184:0:b0:2ad:a78a:df0d with SMTP id f4-20020a2e9184000000b002ada78adf0dmr5023753ljg.44.1689430590557;
+        Sat, 15 Jul 2023 07:16:30 -0700 (PDT)
 Received: from [192.168.1.101] (abxi167.neoplus.adsl.tpnet.pl. [83.9.2.167])
-        by smtp.gmail.com with ESMTPSA id t19-20020ac243b3000000b004fbc0da55b4sm1905515lfl.112.2023.07.15.07.13.17
+        by smtp.gmail.com with ESMTPSA id b19-20020a2e8953000000b002b6e00a3e19sm2523363ljk.132.2023.07.15.07.16.29
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 15 Jul 2023 07:13:17 -0700 (PDT)
-Message-ID: <bb80d65e-b6e5-37ac-b4eb-01166af6f39c@linaro.org>
-Date:   Sat, 15 Jul 2023 16:13:16 +0200
+        Sat, 15 Jul 2023 07:16:30 -0700 (PDT)
+Message-ID: <55446d48-bc6d-1d7b-1580-0b9dc7323a21@linaro.org>
+Date:   Sat, 15 Jul 2023 16:16:28 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
-Subject: Re: [PATCH v3 1/2] arm64: dts: qcom: qdu1000-idp: Update reserved
- memory region
+Subject: Re: [PATCH V4 1/2] arm64: dts: qcom: ipq5332: enable GPIO based LEDs
+ and Buttons
 Content-Language: en-US
-To:     Komal Bajaj <quic_kbajaj@quicinc.com>, agross@kernel.org,
+To:     Sridharan S N <quic_sridsn@quicinc.com>, agross@kernel.org,
         andersson@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-References: <20230706125129.20969-1-quic_kbajaj@quicinc.com>
- <20230706125129.20969-2-quic_kbajaj@quicinc.com>
+References: <20230616083238.20690-1-quic_sridsn@quicinc.com>
+ <20230616083238.20690-2-quic_sridsn@quicinc.com>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230706125129.20969-2-quic_kbajaj@quicinc.com>
+In-Reply-To: <20230616083238.20690-2-quic_sridsn@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -78,50 +78,87 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6.07.2023 14:51, Komal Bajaj wrote:
-> Add missing reserved regions as described in QDU1000 memory map.
+On 16.06.2023 10:32, Sridharan S N wrote:
+> Add support for wlan-2g LED on GPIO 36 and wps buttons on GPIO 35.
 > 
-> Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
+> Signed-off-by: Sridharan S N <quic_sridsn@quicinc.com>
 > ---
-Are you sure you want to reserve 4352 MiB?
+> Changes in V4:
+> 	- Added patch dependency. This change depends on below patch set
+> 	  https://lore.kernel.org/linux-arm-msm/20230615090001.10970-1-quic_sridsn@quicinc.com/
+> 
+> Changes in V3:
+> 	- Updated patch series title. Mentioned platform in series
+> 	  title
+> 
+> Changes in V2:
+> 	- Used the hypen in node name instead of underscore
+> 	- Dropped the status property
+> 
+>  .../boot/dts/qcom/ipq5332-rdp-common.dtsi     | 39 +++++++++++++++++++
+>  1 file changed, 39 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/ipq5332-rdp-common.dtsi b/arch/arm64/boot/dts/qcom/ipq5332-rdp-common.dtsi
+> index 97dc0e5c15f0..a8671a4ac2e4 100644
+> --- a/arch/arm64/boot/dts/qcom/ipq5332-rdp-common.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/ipq5332-rdp-common.dtsi
+> @@ -19,6 +19,31 @@
+>  	chosen {
+>  		stdout-path = "serial0";
+>  	};
+> +
+> +	gpio-keys {
+> +		compatible = "gpio-keys";
+> +		pinctrl-0 = <&gpio_keys_default>;
+> +		pinctrl-names = "default";
+> +
+> +		button-wps {
+> +			label = "wps";
+> +			linux,code = <KEY_WPS_BUTTON>;
+> +			gpios = <&tlmm 35 GPIO_ACTIVE_LOW>;
+> +			debounce-interval = <60>;
+That's purely your choice, but don't you wanna make it wakeup-capable?
+
+Otherwise:
+
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
->  arch/arm64/boot/dts/qcom/qdu1000-idp.dts | 22 ++++++++++++++++++++++
->  1 file changed, 22 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/qdu1000-idp.dts b/arch/arm64/boot/dts/qcom/qdu1000-idp.dts
-> index 1d22f87fd238..8446eb438a34 100644
-> --- a/arch/arm64/boot/dts/qcom/qdu1000-idp.dts
-> +++ b/arch/arm64/boot/dts/qcom/qdu1000-idp.dts
-> @@ -448,6 +448,28 @@ &qupv3_id_0 {
->  	status = "okay";
+> +		};
+> +	};
+> +
+> +	leds {
+> +		compatible = "gpio-leds";
+> +		pinctrl-0 = <&gpio_leds_default>;
+> +		pinctrl-names = "default";
+> +
+> +		led-0 {
+> +			gpios = <&tlmm 36 GPIO_ACTIVE_HIGH>;
+> +			linux,default-trigger = "phy0tx";
+> +			default-state = "off";
+> +		};
+> +	};
 >  };
-> 
-> +&reserved_memory {
-> +	ecc_meta_data_mem: ecc-meta-data@e0000000 {
-> +		reg = <0x0 0xe0000000 0x0 0x20000000>;
-> +		no-map;
+>  
+>  &blsp1_i2c1 {
+> @@ -52,6 +77,20 @@
+>  /* PINCTRL */
+>  
+>  &tlmm {
+> +	gpio_keys_default: gpio-keys-default-state {
+> +		pins = "gpio35";
+> +		function = "gpio";
+> +		drive-strength = <8>;
+> +		bias-pull-up;
 > +	};
 > +
-> +	harq_buffer_mem: harq-buffer@800000000 {
-> +		reg = <0x8 0x0 0x0 0x80000000>;
-> +		no-map;
+> +	gpio_leds_default: gpio-leds-default-state {
+> +		pins = "gpio36";
+> +		function = "gpio";
+> +		drive-strength = <8>;
+> +		bias-pull-down;
 > +	};
 > +
-> +	tenx_sp_buffer_mem: tenx-sp-buffer@880000000 {
-> +		reg = <0x8 0x80000000 0x0 0x50000000>;
-> +		no-map;
-> +	};
-> +
-> +	fapi_buffer_mem: fapi-buffer@8d0000000 {
-> +		reg = <0x8 0xd0000000 0x0 0x20000000>;
-> +		no-map;
-> +	};
-> +};
-> +
->  &sdhc {
->  	pinctrl-0 = <&sdc_on_state>;
->  	pinctrl-1 = <&sdc_off_state>;
-> --
-> 2.40.1
-> 
+>  	i2c_1_pins: i2c-1-state {
+>  		pins = "gpio29", "gpio30";
+>  		function = "blsp1_i2c0";
