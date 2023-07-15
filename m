@@ -2,70 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C48E6754831
-	for <lists+devicetree@lfdr.de>; Sat, 15 Jul 2023 12:29:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DA670754839
+	for <lists+devicetree@lfdr.de>; Sat, 15 Jul 2023 12:40:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229861AbjGOK3x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 15 Jul 2023 06:29:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37322 "EHLO
+        id S230081AbjGOKkb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 15 Jul 2023 06:40:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39336 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229494AbjGOK3x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Jul 2023 06:29:53 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58DD935AA;
-        Sat, 15 Jul 2023 03:29:52 -0700 (PDT)
+        with ESMTP id S229854AbjGOKka (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Jul 2023 06:40:30 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C49753A88;
+        Sat, 15 Jul 2023 03:40:29 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id E978A60B94;
-        Sat, 15 Jul 2023 10:29:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D9C87C433C8;
-        Sat, 15 Jul 2023 10:29:46 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 59D1560303;
+        Sat, 15 Jul 2023 10:40:29 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AB3F1C433C8;
+        Sat, 15 Jul 2023 10:40:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689416991;
-        bh=CH/l+e3PeGDEEGxcizi8F/Qwtn5DnbYB9Arg2+4cEzU=;
+        s=k20201202; t=1689417628;
+        bh=wTBz1S2hSZwl9POKXMBD1OXuh1TzdFtjpS1qwGx+jkU=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=BS7tNxA4PhjrLdLFPXcSc/hOWx2p+Q5Y3/gWbVbGoEL07TdkjGj7pPdGkdoLJPCU9
-         efQ4LK9E+DgYJI+4rFb6XFartpO56lpPaf261HnpICqDHppIbdxZ1DKLDfZLg+4EIs
-         tJFXn3VzSc/Sg3Swv0XdccXFce8PH5bHpjL38PopjMwrEYLvOioSb0n73CyOcxun93
-         TatS8CrNJmxux8zpjpNLY6fZThxN8QFp6lvroh7NIllI4YCIPh3K1A8OBJ6GaeKA5J
-         IbVtzrc7Se2vRdSYvKvZ1Y5sTuvuuLu61QuXVbiPt3WRRoy46fMHZpMYbT7Jd5b+Mr
-         TEtLSTLgYihoA==
-Date:   Sat, 15 Jul 2023 11:29:44 +0100
+        b=AzOsA2qFOz4tvHXjRervo3hsjJMpV6Wh6vmXrC9HBvJufqG5Rxd2QWn4Ytf9WmKT3
+         ujHHRaZ6EHvH9eJq5Bo2tUdsmlaScYysaiAgNR5GV/wUns4qUKnTOnwwuRUszRu1mj
+         4qvEGI7Q96XZXeehYXzyZx/h+k8lBAetCYLTvmZoAJuV5oqUtFL/b5h5rDuBdToy79
+         LlOPbpvXntlRlSlMzqmc1z6eguAX/wxLQFmPbaLavZ+57NQu0BY6V2btUGLmjFKQek
+         vDqhRkXReWmtyZWxzFjTYSctCOWNIJE4N1xbj3OiHtccADkleRhF4jBxF2aF3HsgF3
+         RgCDKpsDhMdRA==
+Date:   Sat, 15 Jul 2023 11:40:22 +0100
 From:   Conor Dooley <conor@kernel.org>
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc:     linux-phy@lists.infradead.org, linux-rockchip@lists.infradead.org,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Rob Herring <robh@kernel.org>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Shawn Lin <shawn.lin@rock-chips.com>,
-        Simon Xue <xxm@rock-chips.com>, John Clark <inindev@gmail.com>,
-        Qu Wenruo <wqu@suse.com>, devicetree@vger.kernel.org,
-        linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, kernel@collabora.com
-Subject: Re: [PATCH v1 1/2] dt-bindings: phy: rockchip: add RK3588 PCIe v3 phy
-Message-ID: <20230715-rudder-unbent-ff7754bec4b4@spud>
-References: <20230714175331.112923-1-sebastian.reichel@collabora.com>
- <20230714175331.112923-2-sebastian.reichel@collabora.com>
+To:     Sarah Walker <sarah.walker@imgtec.com>
+Cc:     dri-devel@lists.freedesktop.org, frank.binns@imgtec.com,
+        donald.robson@imgtec.com, boris.brezillon@collabora.com,
+        faith.ekstrand@collabora.com, airlied@gmail.com, daniel@ffwll.ch,
+        maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+        tzimmermann@suse.de, afd@ti.com, hns@goldelico.com,
+        matthew.brost@intel.com, christian.koenig@amd.com,
+        luben.tuikov@amd.com, dakr@redhat.com,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 02/17] dt-bindings: gpu: Add Imagination Technologies
+ PowerVR GPU
+Message-ID: <20230715-paramount-straining-6a486f8af20d@spud>
+References: <20230714142526.111569-1-sarah.walker@imgtec.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="A9wMCNuEv+mNAcmd"
+        protocol="application/pgp-signature"; boundary="PGVJVVq7kVn9L8A9"
 Content-Disposition: inline
-In-Reply-To: <20230714175331.112923-2-sebastian.reichel@collabora.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20230714142526.111569-1-sarah.walker@imgtec.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -73,28 +65,101 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---A9wMCNuEv+mNAcmd
+--PGVJVVq7kVn9L8A9
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Jul 14, 2023 at 07:53:30PM +0200, Sebastian Reichel wrote:
-> When the RK3568 PCIe v3 PHY supported has been upstreamed, RK3588
-> support was included, but the DT binding does not reflect this.
-> This adds the missing bits.
+Hey Sarah,
 
-Thanks for rectifying that!
+Your series does not appear to be threaded. `git send-email` can be
+passed, for example, a directory containing a whole series & will set
+the correct in-reply-to headers so that the series is in a single
+thread.
 
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+On Fri, Jul 14, 2023 at 03:25:26PM +0100, Sarah Walker wrote:
+> Add the device tree binding documentation for the Series AXE GPU used in
+> TI AM62 SoCs.
 
---A9wMCNuEv+mNAcmd
+> Changes since v3:
+> - Remove oneOf in compatible property
+> - Remove power-supply (not used on AM62)
+>=20
+> Changes since v2:
+> - Add commit message description
+> - Remove mt8173-gpu support (not currently supported)
+> - Drop quotes from $id and $schema
+> - Remove reg: minItems
+> - Drop _clk suffixes from clock-names
+> - Remove operating-points-v2 property and cooling-cells (not currently
+>   used)
+> - Add additionalProperties: false
+> - Remove stray blank line at the end of file
+
+The changelog should go below the --- line.
+
+> Signed-off-by: Sarah Walker <sarah.walker@imgtec.com>
+> ---
+>  .../devicetree/bindings/gpu/img,powervr.yaml  | 68 +++++++++++++++++++
+>  MAINTAINERS                                   |  7 ++
+>  2 files changed, 75 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/gpu/img,powervr.yaml
+
+> diff --git a/Documentation/devicetree/bindings/gpu/img,powervr.yaml b/Doc=
+umentation/devicetree/bindings/gpu/img,powervr.yaml
+> new file mode 100644
+> index 000000000000..3292a0440465
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/gpu/img,powervr.yaml
+> @@ -0,0 +1,68 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright (c) 2022 Imagination Technologies Ltd.
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/gpu/img,powervr.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Imagination Technologies PowerVR GPU
+> +
+> +maintainers:
+> +  - Sarah Walker <sarah.walker@imgtec.com>
+
+> +  interrupts:
+> +    items:
+> +      - description: GPU interrupt
+
+The description here doesn't add any value, since there is only one
+interrupt, so you can drop it and do maxItems: 1 as you have done
+elsewhere.
+
+> +  interrupt-names:
+> +    items:
+> +      - const: gpu
+
+And this
+items:
+  - const: gpu
+can just be
+const: gpu
+
+Although, if there is only one interrupt this is probably not
+particularly helpful. Are there other implementations of this IP that
+have more interrupts?
+
+Otherwise, this looks good to me.
+
+Thanks,
+Conor.
+
+--PGVJVVq7kVn9L8A9
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZLJ1GAAKCRB4tDGHoIJi
-0qC2AQDLhuOu8q2be4MO3J7WuzO0cCDIq88igm6teBgavhzglQD/S0kOknT+dRpF
-RgFKkdHBfEi2/D6JSy9HXCkHgpbkdAM=
-=cYpP
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZLJ3lgAKCRB4tDGHoIJi
+0j3aAQDVMC24k6fauiEV0VhEg6EVlCN4u/NEO2bgeg06XEa29wD/RMfmf/un5KW6
+LVpJKv8SHRhzcCHfOR387DPgS+VIDgE=
+=XdJ6
 -----END PGP SIGNATURE-----
 
---A9wMCNuEv+mNAcmd--
+--PGVJVVq7kVn9L8A9--
