@@ -2,77 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 352867548B7
-	for <lists+devicetree@lfdr.de>; Sat, 15 Jul 2023 15:21:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 91D997548B5
+	for <lists+devicetree@lfdr.de>; Sat, 15 Jul 2023 15:20:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229586AbjGONU6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 15 Jul 2023 09:20:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59404 "EHLO
+        id S229709AbjGONUM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 15 Jul 2023 09:20:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59462 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230057AbjGONTS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Jul 2023 09:19:18 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 848692D75
-        for <devicetree@vger.kernel.org>; Sat, 15 Jul 2023 06:19:15 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-4fba74870abso4847640e87.0
-        for <devicetree@vger.kernel.org>; Sat, 15 Jul 2023 06:19:15 -0700 (PDT)
+        with ESMTP id S229494AbjGONUL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Jul 2023 09:20:11 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D669359E
+        for <devicetree@vger.kernel.org>; Sat, 15 Jul 2023 06:20:09 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id 2adb3069b0e04-4fbb281eec6so4720852e87.1
+        for <devicetree@vger.kernel.org>; Sat, 15 Jul 2023 06:20:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689427154; x=1692019154;
+        d=linaro.org; s=google; t=1689427208; x=1692019208;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=FXoY4wuUPjDOldwD7dE7gOpwgLhPzZMlyDRvF1aAR3s=;
-        b=C2axjIxHAFyqA4pUT/iwr5T1Zw72zeD8qKwd9L/sJczW2aQrkfwLl4JweSQOSQ/EJK
-         wVy804oYSTkALOAsniiYbueY8iRQSAHpgUqGMiQfsGikk4rRU85fZmGLJV9oPK6SxvjF
-         0xEwTpEdWmO2XItPKI8ISVG3r4XGuiCTAVkljGB3f0JF2sLBm0iLFRN7kjNJ5JykAmav
-         TRc28QFk5wjdlNIxAF7/z5sT44YxJE5v6DLDUuJL1f3D1yR5GzsRPpBKZ8kOPewVYOCY
-         OAmFCh+7zAxA/VxU9a7qN5g6c/kFKFzlQrSt1JIbKpOxedTGVFXt49J4/XAoi+1a96nd
-         oepQ==
+        bh=LQhW1Szg22yqLkreXfyXXQvcUFN3IT4if2hwRUU8Cro=;
+        b=NvdsTgoHDj9lXC27YxlV+qyjrrqmsN3ASm9uJKOxzM8fGqcHBtp+G/5vHiFoHiEV7f
+         5nY6ReNSZy3379lMIBDJpnCI9E4+PvF2BupzxYxetcrQfuema/wf9bKmF3+ULS7+xIEQ
+         1aMK5F8dsXlXOypgqjDm+0pv/V7XluGjHQQHkYuRXCWLRbajn7z6lNE4fCFnI4Uy3G7P
+         AOS43d7wD/gvc+088w4tENBN4oSbZFyAnKBBv3aW75IEaXwXihLXKcFhfm4Rab1fPdly
+         18tuV1PCJrJl/9AizCtwi/4R0ajHTkcB0gK6OlySUFutT6nR9G+KWAct9tsWPbT9Q9QN
+         XGHQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689427154; x=1692019154;
+        d=1e100.net; s=20221208; t=1689427208; x=1692019208;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=FXoY4wuUPjDOldwD7dE7gOpwgLhPzZMlyDRvF1aAR3s=;
-        b=Bfb9Bz6zFkHqKCWIFN83+ijd3DGI7zbgi5e2pvmXSwT2NbCu9AkvQkUkKXLcupK5eO
-         kEGpknzsthYeGA1rgJeqyGFb0wkFkLjFa7SKAVQHRcA1dQKQONMfU1Xq2J0+rrIyMqiy
-         oELPp04BcxW2TKE5mwcZ3FjLcgJasdBPIi0ZvAXt1Ac1JOwbjoolHDurz6JavVrGzXJZ
-         r0tuK/DNnW4Wost2VQ/jDwnLKnl7CmGDKEc+attZiGZS228BN8i077GZufsvpSZKqt8f
-         bZkzONGh4vFTh4mO5ZSkNv+FxF7LTL26C+YFLOKce2h3VPJ6QAG1Ky5w1Lm9+szizyca
-         03tg==
-X-Gm-Message-State: ABy/qLaKwg7xtfd1ikd0377msgSJTAze9rm+DqKlY1LQ2EQvU1d8CL3j
-        ApRxDE6aUwIi8NfTMPAr5qY/bQ==
-X-Google-Smtp-Source: APBJJlHNHGPM6ATv15FJZUAumex5mVufXUwPA28GGXr0NLXlGIQ+FshHvcE2kpVgnkdPPX9VCM7m1A==
-X-Received: by 2002:a05:6512:3b14:b0:4fb:8771:e898 with SMTP id f20-20020a0565123b1400b004fb8771e898mr7541862lfv.15.1689427153761;
-        Sat, 15 Jul 2023 06:19:13 -0700 (PDT)
+        bh=LQhW1Szg22yqLkreXfyXXQvcUFN3IT4if2hwRUU8Cro=;
+        b=bzxy5f2wA/kIibz7l2HDNz89uz5uumL5HSE/SLjPglzlUVHAmIjT6kWJhkSD09WGqH
+         lKwpAWmynAOs8GyJTCKXyiA7eriv6VVsMVAtRNrKwUC5jyFXw4SFVZWViCgPxGhJFIFG
+         NCQUeisAq6DRG/2fj+c8pCBSN9osGvpJIwu78wsxDWVv6G+Cf95hmKZK3vK1FhmPG0Ap
+         EPouVJrtKVhCQbnPvbdls7i0M714JYM9LKe6wJuQ/iAomF12AEZSJqIJNO1t4myQUARp
+         geiur1RNQwypNSO6caouwPgugeNZt7nAEdzlaTQ+JPx60tPf4DpxVu+K6dXZKEWOOo/n
+         1RVQ==
+X-Gm-Message-State: ABy/qLZZiPYjrjX3Usluwqyacj4qErjFZu5RUXk1VDp3iT4OdE3NDvNR
+        7YS0UFK+H7GfOerUPXQfbU+Miw==
+X-Google-Smtp-Source: APBJJlES0cvWT/cjYNdwu6j4QPnvmRbj3dgKlgYXs0/CAx0JRyeNJftRz20dfFsV4Lm2Iqeydw5o0Q==
+X-Received: by 2002:a19:6459:0:b0:4fb:9105:58b0 with SMTP id b25-20020a196459000000b004fb910558b0mr4853169lfj.20.1689427207697;
+        Sat, 15 Jul 2023 06:20:07 -0700 (PDT)
 Received: from [192.168.1.101] (abxi167.neoplus.adsl.tpnet.pl. [83.9.2.167])
-        by smtp.gmail.com with ESMTPSA id v3-20020ac25583000000b004fcdd81355csm591322lfg.269.2023.07.15.06.19.11
+        by smtp.gmail.com with ESMTPSA id n6-20020a195506000000b004fd36c89c3csm437698lfe.43.2023.07.15.06.20.06
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 15 Jul 2023 06:19:12 -0700 (PDT)
-Message-ID: <6d709bda-afb3-35ce-7653-7703120699af@linaro.org>
-Date:   Sat, 15 Jul 2023 15:19:11 +0200
+        Sat, 15 Jul 2023 06:20:07 -0700 (PDT)
+Message-ID: <a2d362d0-3a58-0835-5106-fb60f0c3e4d0@linaro.org>
+Date:   Sat, 15 Jul 2023 15:20:05 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
-Subject: Re: [PATCH v2 7/8] drm/msm/mdss: Handle the reg bus ICC path
+Subject: Re: [PATCH V3 4/6] clk: qcom: gcc-qdu1000: Update GCC clocks as per
+ the latest hw version
 Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+To:     Imran Shaik <quic_imrashai@quicinc.com>,
         Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Stephen Boyd <swboyd@chromium.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org
-References: <20230712121145.1994830-1-dmitry.baryshkov@linaro.org>
- <20230712121145.1994830-8-dmitry.baryshkov@linaro.org>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     Bjorn Andersson <andersson@kernel.org>,
+        Taniya Das <quic_tdas@quicinc.com>,
+        Melody Olvera <quic_molvera@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Jagadeesh Kona <quic_jkona@quicinc.com>,
+        Satya Priya Kakitapalli <quic_skakitap@quicinc.com>,
+        Ajit Pandey <quic_ajipan@quicinc.com>
+References: <20230706105045.633076-1-quic_imrashai@quicinc.com>
+ <20230706105045.633076-5-quic_imrashai@quicinc.com>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230712121145.1994830-8-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20230706105045.633076-5-quic_imrashai@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -85,233 +89,61 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12.07.2023 14:11, Dmitry Baryshkov wrote:
-> Apart from the already handled data bus (MAS_MDP_Pn<->DDR), there's
-> another path that needs to be handled to ensure MDSS functions properly,
-> namely the "reg bus", a.k.a the CPU-MDSS interconnect.
+On 6.07.2023 12:50, Imran Shaik wrote:
+> Update the GCC clocks as per the latest hw version of QDU1000 and
+> QRU100 SoCs.
 > 
-> Gating that path may have a variety of effects, from none to otherwise
-> inexplicable DSI timeouts.
-> 
-> Provide a way for MDSS driver to vote on this bus.
-> 
-> A note regarding vote values. Newer platforms have corresponding
-> bandwidth values in the vendor DT files. For the older platforms there
-> was a static vote in the mdss_mdp and rotator drivers. I choose to be
-> conservative here and choose this value as a default.
-> 
-> Co-developed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Co-developed-by: Taniya Das <quic_tdas@quicinc.com>
+> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
+> Signed-off-by: Imran Shaik <quic_imrashai@quicinc.com>
 > ---
-We can store data in icc units (without the *1000).
-
-Konrad
->  drivers/gpu/drm/msm/msm_mdss.c | 51 +++++++++++++++++++++++++++++++---
->  1 file changed, 47 insertions(+), 4 deletions(-)
+> Changes since v2:
+>  - Split the patch as per the review comments
+>  - Newly added
 > 
-> diff --git a/drivers/gpu/drm/msm/msm_mdss.c b/drivers/gpu/drm/msm/msm_mdss.c
-> index b7765e63d549..ee31a9ab88d4 100644
-> --- a/drivers/gpu/drm/msm/msm_mdss.c
-> +++ b/drivers/gpu/drm/msm/msm_mdss.c
-> @@ -26,6 +26,8 @@
->  
->  #define MIN_IB_BW	400000000UL /* Min ib vote 400MB */
->  
-> +#define DEFAULT_REG_BW	153600000UL /* Used in mdss fbdev driver */
-> +
->  struct msm_mdss_data {
->  	u32 ubwc_version;
->  	/* can be read from register 0x58 */
-> @@ -34,6 +36,8 @@ struct msm_mdss_data {
->  	u32 ubwc_static;
->  	u32 highest_bank_bit;
->  	u32 macrotile_mode;
-> +
-> +	unsigned long reg_bus_bw;
+>  drivers/clk/qcom/gcc-qdu1000.c | 22 ++++++++++++++++++++++
+>  1 file changed, 22 insertions(+)
+> 
+> diff --git a/drivers/clk/qcom/gcc-qdu1000.c b/drivers/clk/qcom/gcc-qdu1000.c
+> index 8df7b7983968..991fb2bc97e9 100644
+> --- a/drivers/clk/qcom/gcc-qdu1000.c
+> +++ b/drivers/clk/qcom/gcc-qdu1000.c
+> @@ -1131,6 +1131,26 @@ static struct clk_branch gcc_ddrss_ecpri_dma_clk = {
+>  	},
 >  };
 >  
->  struct msm_mdss {
-> @@ -50,6 +54,7 @@ struct msm_mdss {
->  	const struct msm_mdss_data *mdss_data;
->  	struct icc_path *mdp_path[2];
->  	u32 num_mdp_paths;
-> +	struct icc_path *reg_bus_path;
->  };
->  
->  static int msm_mdss_parse_data_bus_icc_path(struct device *dev,
-> @@ -57,6 +62,7 @@ static int msm_mdss_parse_data_bus_icc_path(struct device *dev,
->  {
->  	struct icc_path *path0;
->  	struct icc_path *path1;
-> +	struct icc_path *reg_bus_path;
->  
->  	path0 = devm_of_icc_get(dev, "mdp0-mem");
->  	if (IS_ERR_OR_NULL(path0))
-> @@ -71,6 +77,10 @@ static int msm_mdss_parse_data_bus_icc_path(struct device *dev,
->  		msm_mdss->num_mdp_paths++;
->  	}
->  
-> +	reg_bus_path = of_icc_get(dev, "cpu-cfg");
-> +	if (!IS_ERR_OR_NULL(reg_bus_path))
-> +		msm_mdss->reg_bus_path = reg_bus_path;
-> +
->  	return 0;
->  }
->  
-> @@ -231,6 +241,13 @@ static int msm_mdss_enable(struct msm_mdss *msm_mdss)
->  	for (i = 0; i < msm_mdss->num_mdp_paths; i++)
->  		icc_set_bw(msm_mdss->mdp_path[i], 0, Bps_to_icc(MIN_IB_BW));
->  
-> +	if (msm_mdss->mdss_data && msm_mdss->mdss_data->reg_bus_bw)
-> +		icc_set_bw(msm_mdss->reg_bus_path, 0,
-> +			   Bps_to_icc(msm_mdss->mdss_data->reg_bus_bw));
-> +	else
-> +		icc_set_bw(msm_mdss->reg_bus_path, 0,
-> +			   Bps_to_icc(DEFAULT_REG_BW));
-> +
->  	ret = clk_bulk_prepare_enable(msm_mdss->num_clocks, msm_mdss->clocks);
->  	if (ret) {
->  		dev_err(msm_mdss->dev, "clock enable failed, ret:%d\n", ret);
-> @@ -288,6 +305,9 @@ static int msm_mdss_disable(struct msm_mdss *msm_mdss)
->  	for (i = 0; i < msm_mdss->num_mdp_paths; i++)
->  		icc_set_bw(msm_mdss->mdp_path[i], 0, 0);
->  
-> +	if (msm_mdss->reg_bus_path)
-> +		icc_set_bw(msm_mdss->reg_bus_path, 0, 0);
-> +
->  	return 0;
->  }
->  
-> @@ -374,6 +394,8 @@ static struct msm_mdss *msm_mdss_init(struct platform_device *pdev, bool is_mdp5
->  	if (!msm_mdss)
->  		return ERR_PTR(-ENOMEM);
->  
-> +	msm_mdss->mdss_data = of_device_get_match_data(&pdev->dev);
-> +
->  	msm_mdss->mmio = devm_platform_ioremap_resource_byname(pdev, is_mdp5 ? "mdss_phys" : "mdss");
->  	if (IS_ERR(msm_mdss->mmio))
->  		return ERR_CAST(msm_mdss->mmio);
-> @@ -464,8 +486,6 @@ static int mdss_probe(struct platform_device *pdev)
->  	if (IS_ERR(mdss))
->  		return PTR_ERR(mdss);
->  
-> -	mdss->mdss_data = of_device_get_match_data(&pdev->dev);
-> -
->  	platform_set_drvdata(pdev, mdss);
->  
->  	/*
-> @@ -499,11 +519,13 @@ static const struct msm_mdss_data msm8998_data = {
->  	.ubwc_version = UBWC_1_0,
->  	.ubwc_dec_version = UBWC_1_0,
->  	.highest_bank_bit = 1,
-> +	.reg_bus_bw = 76800 * 1000,
->  };
->  
->  static const struct msm_mdss_data qcm2290_data = {
->  	/* no UBWC */
->  	.highest_bank_bit = 0x2,
-> +	.reg_bus_bw = 76800 * 1000,
->  };
->  
->  static const struct msm_mdss_data sc7180_data = {
-> @@ -511,6 +533,7 @@ static const struct msm_mdss_data sc7180_data = {
->  	.ubwc_dec_version = UBWC_2_0,
->  	.ubwc_static = 0x1e,
->  	.highest_bank_bit = 0x3,
-> +	.reg_bus_bw = 76800 * 1000,
->  };
->  
->  static const struct msm_mdss_data sc7280_data = {
-> @@ -520,6 +543,7 @@ static const struct msm_mdss_data sc7280_data = {
->  	.ubwc_static = 1,
->  	.highest_bank_bit = 1,
->  	.macrotile_mode = 1,
-> +	.reg_bus_bw = 74000 * 1000,
->  };
->  
->  static const struct msm_mdss_data sc8180x_data = {
-> @@ -527,6 +551,7 @@ static const struct msm_mdss_data sc8180x_data = {
->  	.ubwc_dec_version = UBWC_3_0,
->  	.highest_bank_bit = 3,
->  	.macrotile_mode = 1,
-> +	.reg_bus_bw = 76800 * 1000,
->  };
->  
->  static const struct msm_mdss_data sc8280xp_data = {
-> @@ -536,12 +561,14 @@ static const struct msm_mdss_data sc8280xp_data = {
->  	.ubwc_static = 1,
->  	.highest_bank_bit = 2,
->  	.macrotile_mode = 1,
-> +	.reg_bus_bw = 76800 * 1000,
->  };
->  
->  static const struct msm_mdss_data sdm845_data = {
->  	.ubwc_version = UBWC_2_0,
->  	.ubwc_dec_version = UBWC_2_0,
->  	.highest_bank_bit = 2,
-> +	.reg_bus_bw = 76800 * 1000,
->  };
->  
->  static const struct msm_mdss_data sm6350_data = {
-> @@ -550,12 +577,14 @@ static const struct msm_mdss_data sm6350_data = {
->  	.ubwc_swizzle = 6,
->  	.ubwc_static = 0x1e,
->  	.highest_bank_bit = 1,
-> +	.reg_bus_bw = 76800 * 1000,
->  };
->  
->  static const struct msm_mdss_data sm8150_data = {
->  	.ubwc_version = UBWC_3_0,
->  	.ubwc_dec_version = UBWC_3_0,
->  	.highest_bank_bit = 2,
-> +	.reg_bus_bw = 76800 * 1000,
->  };
->  
->  static const struct msm_mdss_data sm6115_data = {
-> @@ -564,6 +593,7 @@ static const struct msm_mdss_data sm6115_data = {
->  	.ubwc_swizzle = 7,
->  	.ubwc_static = 0x11f,
->  	.highest_bank_bit = 0x1,
-> +	.reg_bus_bw = 76800 * 1000,
->  };
->  
->  static const struct msm_mdss_data sm8250_data = {
-> @@ -574,6 +604,18 @@ static const struct msm_mdss_data sm8250_data = {
->  	/* TODO: highest_bank_bit = 2 for LP_DDR4 */
->  	.highest_bank_bit = 3,
->  	.macrotile_mode = 1,
-> +	.reg_bus_bw = 76800 * 1000,
+> +static struct clk_branch gcc_ddrss_ecpri_gsi_clk = {
+> +	.halt_reg = 0x54298,
+> +	.halt_check = BRANCH_HALT_VOTED,
+> +	.hwcg_reg = 0x54298,
+> +	.hwcg_bit = 1,
+> +	.clkr = {
+> +		.enable_reg = 0x54298,
+> +		.enable_mask = BIT(0),
+> +		.hw.init = &(const struct clk_init_data) {
+> +			.name = "gcc_ddrss_ecpri_gsi_clk",
+> +			.parent_hws = (const struct clk_hw*[]) {
+> +				&gcc_aggre_noc_ecpri_gsi_clk_src.clkr.hw,
+> +			},
+> +			.num_parents = 1,
+> +			.flags = CLK_SET_RATE_PARENT,
+> +			.ops = &clk_branch2_aon_ops,
+> +		},
+> +	},
 > +};
 > +
-> +static const struct msm_mdss_data sm8350_data = {
-> +	.ubwc_version = UBWC_4_0,
-> +	.ubwc_dec_version = UBWC_4_0,
-> +	.ubwc_swizzle = 6,
-> +	.ubwc_static = 1,
-> +	/* TODO: highest_bank_bit = 2 for LP_DDR4 */
-> +	.highest_bank_bit = 3,
-> +	.macrotile_mode = 1,
-> +	.reg_bus_bw = 74000 * 1000,
+>  static struct clk_branch gcc_ecpri_ahb_clk = {
+>  	.halt_reg = 0x3a008,
+>  	.halt_check = BRANCH_HALT_VOTED,
+> @@ -2521,6 +2541,8 @@ static struct clk_regmap *gcc_qdu1000_clocks[] = {
+>  	[GCC_AGGRE_NOC_ECPRI_GSI_CLK] = &gcc_aggre_noc_ecpri_gsi_clk.clkr,
+>  	[GCC_PCIE_0_PHY_AUX_CLK_SRC] = &gcc_pcie_0_phy_aux_clk_src.clkr,
+>  	[GCC_PCIE_0_PIPE_CLK_SRC] = &gcc_pcie_0_pipe_clk_src.clkr,
+> +	[GCC_GPLL1_OUT_EVEN] = &gcc_gpll1_out_even.clkr,
+Looks like you split it too much.. this clock is not being defined in this patch.
+
+Konrad
+> +	[GCC_DDRSS_ECPRI_GSI_CLK] = &gcc_ddrss_ecpri_gsi_clk.clkr,
 >  };
 >  
->  static const struct msm_mdss_data sm8550_data = {
-> @@ -584,6 +626,7 @@ static const struct msm_mdss_data sm8550_data = {
->  	/* TODO: highest_bank_bit = 2 for LP_DDR4 */
->  	.highest_bank_bit = 3,
->  	.macrotile_mode = 1,
-> +	.reg_bus_bw = 57000 * 1000,
->  };
->  
->  static const struct of_device_id mdss_dt_match[] = {
-> @@ -600,8 +643,8 @@ static const struct of_device_id mdss_dt_match[] = {
->  	{ .compatible = "qcom,sm6375-mdss", .data = &sm6350_data },
->  	{ .compatible = "qcom,sm8150-mdss", .data = &sm8150_data },
->  	{ .compatible = "qcom,sm8250-mdss", .data = &sm8250_data },
-> -	{ .compatible = "qcom,sm8350-mdss", .data = &sm8250_data },
-> -	{ .compatible = "qcom,sm8450-mdss", .data = &sm8250_data },
-> +	{ .compatible = "qcom,sm8350-mdss", .data = &sm8350_data },
-> +	{ .compatible = "qcom,sm8450-mdss", .data = &sm8350_data },
->  	{ .compatible = "qcom,sm8550-mdss", .data = &sm8550_data },
->  	{}
->  };
+>  static const struct qcom_reset_map gcc_qdu1000_resets[] = {
