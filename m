@@ -2,85 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C9F29754C35
-	for <lists+devicetree@lfdr.de>; Sat, 15 Jul 2023 23:45:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B622754C9A
+	for <lists+devicetree@lfdr.de>; Sun, 16 Jul 2023 00:10:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229729AbjGOVps (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 15 Jul 2023 17:45:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54022 "EHLO
+        id S229930AbjGOWKT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 15 Jul 2023 18:10:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55870 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229567AbjGOVpr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Jul 2023 17:45:47 -0400
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35C73213F;
-        Sat, 15 Jul 2023 14:45:45 -0700 (PDT)
-Received: from i53875a6a.versanet.de ([83.135.90.106] helo=phil.localnet)
-        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <heiko@sntech.de>)
-        id 1qKn4z-00038e-5n; Sat, 15 Jul 2023 23:45:29 +0200
-From:   Heiko Stuebner <heiko@sntech.de>
-To:     Michael Hennerich <michael.hennerich@analog.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Alexandru Tachici <alexandru.tachici@analog.com>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+        with ESMTP id S229567AbjGOWKS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Jul 2023 18:10:18 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98C072D63;
+        Sat, 15 Jul 2023 15:10:12 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 2B45360C44;
+        Sat, 15 Jul 2023 22:10:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 87A2FC433C7;
+        Sat, 15 Jul 2023 22:10:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1689459011;
+        bh=+njgR16KeaRwaOnw3RjnYmJAzJ6KXN5pPE/bZ1BAMyE=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=nwhRBQQhoM24RB+AUbLJL17CZFOntpFGD7zVrISbaqpzdbXQhOOOwnmm6tyiCKI4I
+         9dKggfWcw07uSpUoGwi5g41kNPdU34zEbgVDYOAe9cRgvD/S2CmT7UarUYRM2NeG9b
+         clVOf/UDuOBdLDjyXOno6rnydQVjNw2qLBFaHXg6weYczvMGZQ/32PhQuKaIeMwa04
+         APZ/UQryvUdU90yNYG+/TK8ckxOIBZrxZ0yxg5e9U0ICNhWCRY9lghQbVpXraLrF+l
+         2HfcHK2F2vwcz96Y9OxYupv1kGF7UkSUJWGErbT/YYZebE0UEue95wNFnBmINUaFy3
+         lFBONn/8TbHsw==
+From:   Bjorn Andersson <andersson@kernel.org>
+To:     Andy Gross <agross@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Orson Zhai <orsonzhai@gmail.com>,
-        Baolin Wang <baolin.wang@linux.alibaba.com>,
-        Chunyan Zhang <zhang.lyra@gmail.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Crt Mori <cmo@melexis.com>, Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-        linux-rockchip@lists.infradead.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH] iio: adc: Explicitly include correct DT includes
-Date:   Sat, 15 Jul 2023 23:45:27 +0200
-Message-ID: <3695486.atdPhlSkOF@phil>
-In-Reply-To: <20230714174628.4057920-1-robh@kernel.org>
-References: <20230714174628.4057920-1-robh@kernel.org>
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Alexey Minnekhanov <alexeymin@postmarketos.org>
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: (subset) [PATCH v2 1/3] dt-bindings: remoteproc: qcom,msm8996-mss-pil: Add SDM660 compatible
+Date:   Sat, 15 Jul 2023 15:13:27 -0700
+Message-ID: <168945921479.1805013.17611108938068565205.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.41.0
+In-Reply-To: <20230621175046.61521-1-alexeymin@postmarketos.org>
+References: <20230621175046.61521-1-alexeymin@postmarketos.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        T_SPF_HELO_TEMPERROR autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Freitag, 14. Juli 2023, 19:46:26 CEST schrieb Rob Herring:
-> The DT of_device.h and of_platform.h date back to the separate
-> of_platform_bus_type before it as merged into the regular platform bus.
-> As part of that merge prepping Arm DT support 13 years ago, they
-> "temporarily" include each other. They also include platform_device.h
-> and of.h. As a result, there's a pretty much random mix of those include
-> files used throughout the tree. In order to detangle these headers and
-> replace the implicit includes with struct declarations, users need to
-> explicitly include the correct includes.
+
+On Wed, 21 Jun 2023 20:50:44 +0300, Alexey Minnekhanov wrote:
+> Mention sdm660-mss-pil in compatibles list.
 > 
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
+> 
 
->  drivers/iio/adc/rockchip_saradc.c  | 1 -
+Applied, thanks!
 
-Acked-by: Heiko Stuebner <heiko@sntech.de>
+[1/3] dt-bindings: remoteproc: qcom,msm8996-mss-pil: Add SDM660 compatible
+      commit: ed50ac266f67829d4732c8ca61ef1953c2cc63d0
+[2/3] remoteproc: qcom: q6v5-mss: Add support for SDM630/636/660
+      commit: 10b6fec2c8c99b5d1ccbcd070da1fc8e96da0046
 
-
+Best regards,
+-- 
+Bjorn Andersson <andersson@kernel.org>
