@@ -2,148 +2,482 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 91D997548B5
-	for <lists+devicetree@lfdr.de>; Sat, 15 Jul 2023 15:20:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 307AE754906
+	for <lists+devicetree@lfdr.de>; Sat, 15 Jul 2023 15:58:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229709AbjGONUM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 15 Jul 2023 09:20:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59462 "EHLO
+        id S229650AbjGON6K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 15 Jul 2023 09:58:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37242 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229494AbjGONUL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Jul 2023 09:20:11 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D669359E
-        for <devicetree@vger.kernel.org>; Sat, 15 Jul 2023 06:20:09 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id 2adb3069b0e04-4fbb281eec6so4720852e87.1
-        for <devicetree@vger.kernel.org>; Sat, 15 Jul 2023 06:20:09 -0700 (PDT)
+        with ESMTP id S229472AbjGON6J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Jul 2023 09:58:09 -0400
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAF312D65
+        for <devicetree@vger.kernel.org>; Sat, 15 Jul 2023 06:58:07 -0700 (PDT)
+Received: by mail-lj1-x22b.google.com with SMTP id 38308e7fff4ca-2b6fdaf6eefso43605171fa.0
+        for <devicetree@vger.kernel.org>; Sat, 15 Jul 2023 06:58:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689427208; x=1692019208;
+        d=linaro.org; s=google; t=1689429486; x=1692021486;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=LQhW1Szg22yqLkreXfyXXQvcUFN3IT4if2hwRUU8Cro=;
-        b=NvdsTgoHDj9lXC27YxlV+qyjrrqmsN3ASm9uJKOxzM8fGqcHBtp+G/5vHiFoHiEV7f
-         5nY6ReNSZy3379lMIBDJpnCI9E4+PvF2BupzxYxetcrQfuema/wf9bKmF3+ULS7+xIEQ
-         1aMK5F8dsXlXOypgqjDm+0pv/V7XluGjHQQHkYuRXCWLRbajn7z6lNE4fCFnI4Uy3G7P
-         AOS43d7wD/gvc+088w4tENBN4oSbZFyAnKBBv3aW75IEaXwXihLXKcFhfm4Rab1fPdly
-         18tuV1PCJrJl/9AizCtwi/4R0ajHTkcB0gK6OlySUFutT6nR9G+KWAct9tsWPbT9Q9QN
-         XGHQ==
+        bh=dvdKCYQuPX8/3jghEw7l+bBgatYxQRkdI1/Xcmy4Ga0=;
+        b=Y5hx1znOW6KyRAY1S4ztPoPn0TUEaB/CukRqFUBIwBYf44pxKAI8hnHWbRjICc2ct1
+         E9KQ1EJVP8HKVYNAy4wcIgmeKzp3sdH+TiY3sEAHO5IdRdfvF7PCnO1cyief5NQAM0xM
+         tb+bXs8yfCDD4eCaKuZu0gPs6JtfzRoTXvocjfQMyKZqa2Fm+ni8nwXVgWgxP3ed4Xlx
+         Pptomq4ScwyKBuoF7kD61jdBFS0FEd3J9J+1i2jU1OZ2KnlkWIsdfy8aSb1wdBlKKL8R
+         P6w4D7lm5GG1ZZM1GFGTzJN2NvN6Zdc2+8JX+P1uOAjoKq7lqLr70/W523VExm6PHANq
+         b9EQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689427208; x=1692019208;
+        d=1e100.net; s=20221208; t=1689429486; x=1692021486;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=LQhW1Szg22yqLkreXfyXXQvcUFN3IT4if2hwRUU8Cro=;
-        b=bzxy5f2wA/kIibz7l2HDNz89uz5uumL5HSE/SLjPglzlUVHAmIjT6kWJhkSD09WGqH
-         lKwpAWmynAOs8GyJTCKXyiA7eriv6VVsMVAtRNrKwUC5jyFXw4SFVZWViCgPxGhJFIFG
-         NCQUeisAq6DRG/2fj+c8pCBSN9osGvpJIwu78wsxDWVv6G+Cf95hmKZK3vK1FhmPG0Ap
-         EPouVJrtKVhCQbnPvbdls7i0M714JYM9LKe6wJuQ/iAomF12AEZSJqIJNO1t4myQUARp
-         geiur1RNQwypNSO6caouwPgugeNZt7nAEdzlaTQ+JPx60tPf4DpxVu+K6dXZKEWOOo/n
-         1RVQ==
-X-Gm-Message-State: ABy/qLZZiPYjrjX3Usluwqyacj4qErjFZu5RUXk1VDp3iT4OdE3NDvNR
-        7YS0UFK+H7GfOerUPXQfbU+Miw==
-X-Google-Smtp-Source: APBJJlES0cvWT/cjYNdwu6j4QPnvmRbj3dgKlgYXs0/CAx0JRyeNJftRz20dfFsV4Lm2Iqeydw5o0Q==
-X-Received: by 2002:a19:6459:0:b0:4fb:9105:58b0 with SMTP id b25-20020a196459000000b004fb910558b0mr4853169lfj.20.1689427207697;
-        Sat, 15 Jul 2023 06:20:07 -0700 (PDT)
+        bh=dvdKCYQuPX8/3jghEw7l+bBgatYxQRkdI1/Xcmy4Ga0=;
+        b=FNQ8TMaaAI1HQyqTgtVCDtAJpLOiTvA67bF3vcntemMTrUv4PR2wwayiXrvBCyLCaW
+         HVOLoCH4fO81ML6UpwkV4x7MWr4FMrjltuxymNKqFqaZP4pdFjd/YnQA3ksvewPrQ3iI
+         HBzsPZtTvZ25d+ldlO8YNKifcx7ag1ajKx4JY2HvekkbIRmoeNwhZmyoPzfrLuC5R/uZ
+         sQeggvNmKHQOGjuqRyAP+Kyv8/7nZPsY79xXaaYAhdzZMirLXoId5I7ihAxh5gWA/hIJ
+         rbQdonwEErUhTdCv5KdLwJhK3aM4c88Y+4yo3QuXqODOGtNo6mSgDMox+3bsUra+vrxw
+         gnDw==
+X-Gm-Message-State: ABy/qLaNxuE73mZpV9SBsknPyPQUCc5nood/26ulTaa4uouogIq/LCVB
+        w/+CljHIsoaW34KabwsRr7BrLg==
+X-Google-Smtp-Source: APBJJlEjRTL0TYidciKAmwAEAEPl4C0orxedBlQS0O2ue/5+wcEzy9yftbj/TQPIxjOPHJiVP9xOUw==
+X-Received: by 2002:a2e:9bcb:0:b0:2b6:dec9:2813 with SMTP id w11-20020a2e9bcb000000b002b6dec92813mr6265513ljj.29.1689429486008;
+        Sat, 15 Jul 2023 06:58:06 -0700 (PDT)
 Received: from [192.168.1.101] (abxi167.neoplus.adsl.tpnet.pl. [83.9.2.167])
-        by smtp.gmail.com with ESMTPSA id n6-20020a195506000000b004fd36c89c3csm437698lfe.43.2023.07.15.06.20.06
+        by smtp.gmail.com with ESMTPSA id e24-20020a2e9858000000b002b3318c8d6fsm2526278ljj.28.2023.07.15.06.58.04
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 15 Jul 2023 06:20:07 -0700 (PDT)
-Message-ID: <a2d362d0-3a58-0835-5106-fb60f0c3e4d0@linaro.org>
-Date:   Sat, 15 Jul 2023 15:20:05 +0200
+        Sat, 15 Jul 2023 06:58:05 -0700 (PDT)
+Message-ID: <2bf7ac6e-eeba-a082-2b0e-4fc302bef70a@linaro.org>
+Date:   Sat, 15 Jul 2023 15:58:04 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
-Subject: Re: [PATCH V3 4/6] clk: qcom: gcc-qdu1000: Update GCC clocks as per
- the latest hw version
+Subject: Re: [PATCH V2 1/2] arm64: dts: qcom: ipq9574: Add common RDP dtsi
+ file
 Content-Language: en-US
-To:     Imran Shaik <quic_imrashai@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     Bjorn Andersson <andersson@kernel.org>,
-        Taniya Das <quic_tdas@quicinc.com>,
-        Melody Olvera <quic_molvera@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Jagadeesh Kona <quic_jkona@quicinc.com>,
-        Satya Priya Kakitapalli <quic_skakitap@quicinc.com>,
-        Ajit Pandey <quic_ajipan@quicinc.com>
-References: <20230706105045.633076-1-quic_imrashai@quicinc.com>
- <20230706105045.633076-5-quic_imrashai@quicinc.com>
+To:     Anusha Rao <quic_anusha@quicinc.com>, agross@kernel.org,
+        andersson@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     quic_saahtoma@quicinc.com
+References: <20230713105909.14209-1-quic_anusha@quicinc.com>
+ <20230713105909.14209-2-quic_anusha@quicinc.com>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230706105045.633076-5-quic_imrashai@quicinc.com>
+In-Reply-To: <20230713105909.14209-2-quic_anusha@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6.07.2023 12:50, Imran Shaik wrote:
-> Update the GCC clocks as per the latest hw version of QDU1000 and
-> QRU100 SoCs.
+On 13.07.2023 12:59, Anusha Rao wrote:
+> Add a dtsi file to include interfaces that are common
+> across RDPs.
 > 
-> Co-developed-by: Taniya Das <quic_tdas@quicinc.com>
-> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
-> Signed-off-by: Imran Shaik <quic_imrashai@quicinc.com>
+> Signed-off-by: Anusha Rao <quic_anusha@quicinc.com>
 > ---
-> Changes since v2:
->  - Split the patch as per the review comments
->  - Newly added
-> 
->  drivers/clk/qcom/gcc-qdu1000.c | 22 ++++++++++++++++++++++
->  1 file changed, 22 insertions(+)
-> 
-> diff --git a/drivers/clk/qcom/gcc-qdu1000.c b/drivers/clk/qcom/gcc-qdu1000.c
-> index 8df7b7983968..991fb2bc97e9 100644
-> --- a/drivers/clk/qcom/gcc-qdu1000.c
-> +++ b/drivers/clk/qcom/gcc-qdu1000.c
-> @@ -1131,6 +1131,26 @@ static struct clk_branch gcc_ddrss_ecpri_dma_clk = {
->  	},
->  };
->  
-> +static struct clk_branch gcc_ddrss_ecpri_gsi_clk = {
-> +	.halt_reg = 0x54298,
-> +	.halt_check = BRANCH_HALT_VOTED,
-> +	.hwcg_reg = 0x54298,
-> +	.hwcg_bit = 1,
-> +	.clkr = {
-> +		.enable_reg = 0x54298,
-> +		.enable_mask = BIT(0),
-> +		.hw.init = &(const struct clk_init_data) {
-> +			.name = "gcc_ddrss_ecpri_gsi_clk",
-> +			.parent_hws = (const struct clk_hw*[]) {
-> +				&gcc_aggre_noc_ecpri_gsi_clk_src.clkr.hw,
-> +			},
-> +			.num_parents = 1,
-> +			.flags = CLK_SET_RATE_PARENT,
-> +			.ops = &clk_branch2_aon_ops,
-> +		},
-> +	},
-> +};
-> +
->  static struct clk_branch gcc_ecpri_ahb_clk = {
->  	.halt_reg = 0x3a008,
->  	.halt_check = BRANCH_HALT_VOTED,
-> @@ -2521,6 +2541,8 @@ static struct clk_regmap *gcc_qdu1000_clocks[] = {
->  	[GCC_AGGRE_NOC_ECPRI_GSI_CLK] = &gcc_aggre_noc_ecpri_gsi_clk.clkr,
->  	[GCC_PCIE_0_PHY_AUX_CLK_SRC] = &gcc_pcie_0_phy_aux_clk_src.clkr,
->  	[GCC_PCIE_0_PIPE_CLK_SRC] = &gcc_pcie_0_pipe_clk_src.clkr,
-> +	[GCC_GPLL1_OUT_EVEN] = &gcc_gpll1_out_even.clkr,
-Looks like you split it too much.. this clock is not being defined in this patch.
+[...]
+
+>  		data-pins {
+>  			pins = "gpio0", "gpio1", "gpio2",
+> -			       "gpio3", "gpio6", "gpio7",
+> -			       "gpio8", "gpio9";
+> +				"gpio3", "gpio6", "gpio7",
+> +				"gpio8", "gpio9";
+This (and a similar one in the other file) change looks unrelated
+and I think it makes the indentation worse :/
 
 Konrad
-> +	[GCC_DDRSS_ECPRI_GSI_CLK] = &gcc_ddrss_ecpri_gsi_clk.clkr,
+>  			function = "sdc_data";
+>  			drive-strength = <8>;
+>  			bias-pull-up;
+> @@ -110,15 +60,4 @@
+>  			bias-pull-down;
+>  		};
+>  	};
+> -
+> -	spi_0_pins: spi-0-state {
+> -		pins = "gpio11", "gpio12", "gpio13", "gpio14";
+> -		function = "blsp0_spi";
+> -		drive-strength = <8>;
+> -		bias-disable;
+> -	};
+> -};
+> -
+> -&xo_board_clk {
+> -	clock-frequency = <24000000>;
+>  };
+> diff --git a/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts b/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts
+> index 877026ccc6e2..7685176f90ef 100644
+> --- a/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts
+> +++ b/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts
+> @@ -8,69 +8,11 @@
+>  
+>  /dts-v1/;
+>  
+> -#include "ipq9574.dtsi"
+> +#include "ipq9574-rdp-common.dtsi"
+>  
+>  / {
+>  	model = "Qualcomm Technologies, Inc. IPQ9574/AP-AL02-C7";
+>  	compatible = "qcom,ipq9574-ap-al02-c7", "qcom,ipq9574";
+> -
+> -	aliases {
+> -		serial0 = &blsp1_uart2;
+> -	};
+> -
+> -	chosen {
+> -		stdout-path = "serial0:115200n8";
+> -	};
+> -
+> -	regulator_fixed_3p3: s3300 {
+> -		compatible = "regulator-fixed";
+> -		regulator-min-microvolt = <3300000>;
+> -		regulator-max-microvolt = <3300000>;
+> -		regulator-boot-on;
+> -		regulator-always-on;
+> -		regulator-name = "fixed_3p3";
+> -	};
+> -
+> -	regulator_fixed_0p925: s0925 {
+> -		compatible = "regulator-fixed";
+> -		regulator-min-microvolt = <925000>;
+> -		regulator-max-microvolt = <925000>;
+> -		regulator-boot-on;
+> -		regulator-always-on;
+> -		regulator-name = "fixed_0p925";
+> -	};
+> -};
+> -
+> -&blsp1_uart2 {
+> -	pinctrl-0 = <&uart2_pins>;
+> -	pinctrl-names = "default";
+> -	status = "okay";
+> -};
+> -
+> -&rpm_requests {
+> -	regulators {
+> -		compatible = "qcom,rpm-mp5496-regulators";
+> -
+> -		ipq9574_s1: s1 {
+> -		/*
+> -		 * During kernel bootup, the SoC runs at 800MHz with 875mV set by the bootloaders.
+> -		 * During regulator registration, kernel not knowing the initial voltage,
+> -		 * considers it as zero and brings up the regulators with minimum supported voltage.
+> -		 * Update the regulator-min-microvolt with SVS voltage of 725mV so that
+> -		 * the regulators are brought up with 725mV which is sufficient for all the
+> -		 * corner parts to operate at 800MHz
+> -		 */
+> -			regulator-min-microvolt = <725000>;
+> -			regulator-max-microvolt = <1075000>;
+> -		};
+> -
+> -		mp5496_l2: l2 {
+> -			regulator-min-microvolt = <1800000>;
+> -			regulator-max-microvolt = <1800000>;
+> -			regulator-always-on;
+> -			regulator-boot-on;
+> -		};
+> -	};
 >  };
 >  
->  static const struct qcom_reset_map gcc_qdu1000_resets[] = {
+>  &sdhc_1 {
+> @@ -85,10 +27,6 @@
+>  	status = "okay";
+>  };
+>  
+> -&sleep_clk {
+> -	clock-frequency = <32000>;
+> -};
+> -
+>  &tlmm {
+>  	sdc_default_state: sdc-default-state {
+>  		clk-pins {
+> @@ -107,8 +45,8 @@
+>  
+>  		data-pins {
+>  			pins = "gpio0", "gpio1", "gpio2",
+> -			       "gpio3", "gpio6", "gpio7",
+> -			       "gpio8", "gpio9";
+> +				"gpio3", "gpio6", "gpio7",
+> +				"gpio8", "gpio9";
+>  			function = "sdc_data";
+>  			drive-strength = <8>;
+>  			bias-pull-up;
+> @@ -122,30 +60,3 @@
+>  		};
+>  	};
+>  };
+> -
+> -&usb_0_dwc3 {
+> -	dr_mode = "host";
+> -};
+> -
+> -&usb_0_qmpphy {
+> -	vdda-pll-supply = <&mp5496_l2>;
+> -	vdda-phy-supply = <&regulator_fixed_0p925>;
+> -
+> -	status = "okay";
+> -};
+> -
+> -&usb_0_qusbphy {
+> -	vdd-supply = <&regulator_fixed_0p925>;
+> -	vdda-pll-supply = <&mp5496_l2>;
+> -	vdda-phy-dpdm-supply = <&regulator_fixed_3p3>;
+> -
+> -	status = "okay";
+> -};
+> -
+> -&usb3 {
+> -	status = "okay";
+> -};
+> -
+> -&xo_board_clk {
+> -	clock-frequency = <24000000>;
+> -};
+> diff --git a/arch/arm64/boot/dts/qcom/ipq9574-rdp449.dts b/arch/arm64/boot/dts/qcom/ipq9574-rdp449.dts
+> index c8fa54e1a62c..d36d1078763e 100644
+> --- a/arch/arm64/boot/dts/qcom/ipq9574-rdp449.dts
+> +++ b/arch/arm64/boot/dts/qcom/ipq9574-rdp449.dts
+> @@ -8,73 +8,10 @@
+>  
+>  /dts-v1/;
+>  
+> -#include "ipq9574.dtsi"
+> +#include "ipq9574-rdp-common.dtsi"
+>  
+>  / {
+>  	model = "Qualcomm Technologies, Inc. IPQ9574/AP-AL02-C6";
+>  	compatible = "qcom,ipq9574-ap-al02-c6", "qcom,ipq9574";
+>  
+> -	aliases {
+> -		serial0 = &blsp1_uart2;
+> -	};
+> -
+> -	chosen {
+> -		stdout-path = "serial0:115200n8";
+> -	};
+> -};
+> -
+> -&blsp1_spi0 {
+> -	pinctrl-0 = <&spi_0_pins>;
+> -	pinctrl-names = "default";
+> -	status = "okay";
+> -
+> -	flash@0 {
+> -		compatible = "micron,n25q128a11", "jedec,spi-nor";
+> -		reg = <0>;
+> -		#address-cells = <1>;
+> -		#size-cells = <1>;
+> -		spi-max-frequency = <50000000>;
+> -	};
+> -};
+> -
+> -&blsp1_uart2 {
+> -	pinctrl-0 = <&uart2_pins>;
+> -	pinctrl-names = "default";
+> -	status = "okay";
+> -};
+> -
+> -&rpm_requests {
+> -	regulators {
+> -		compatible = "qcom,rpm-mp5496-regulators";
+> -
+> -		ipq9574_s1: s1 {
+> -		/*
+> -		 * During kernel bootup, the SoC runs at 800MHz with 875mV set by the bootloaders.
+> -		 * During regulator registration, kernel not knowing the initial voltage,
+> -		 * considers it as zero and brings up the regulators with minimum supported voltage.
+> -		 * Update the regulator-min-microvolt with SVS voltage of 725mV so that
+> -		 * the regulators are brought up with 725mV which is sufficient for all the
+> -		 * corner parts to operate at 800MHz
+> -		 */
+> -			regulator-min-microvolt = <725000>;
+> -			regulator-max-microvolt = <1075000>;
+> -		};
+> -	};
+> -};
+> -
+> -&sleep_clk {
+> -	clock-frequency = <32000>;
+> -};
+> -
+> -&tlmm {
+> -	spi_0_pins: spi-0-state {
+> -		pins = "gpio11", "gpio12", "gpio13", "gpio14";
+> -		function = "blsp0_spi";
+> -		drive-strength = <8>;
+> -		bias-disable;
+> -	};
+> -};
+> -
+> -&xo_board_clk {
+> -	clock-frequency = <24000000>;
+>  };
+> diff --git a/arch/arm64/boot/dts/qcom/ipq9574-rdp453.dts b/arch/arm64/boot/dts/qcom/ipq9574-rdp453.dts
+> index f01de6628c3b..c30c9fbedf26 100644
+> --- a/arch/arm64/boot/dts/qcom/ipq9574-rdp453.dts
+> +++ b/arch/arm64/boot/dts/qcom/ipq9574-rdp453.dts
+> @@ -8,73 +8,10 @@
+>  
+>  /dts-v1/;
+>  
+> -#include "ipq9574.dtsi"
+> +#include "ipq9574-rdp-common.dtsi"
+>  
+>  / {
+>  	model = "Qualcomm Technologies, Inc. IPQ9574/AP-AL02-C8";
+>  	compatible = "qcom,ipq9574-ap-al02-c8", "qcom,ipq9574";
+>  
+> -	aliases {
+> -		serial0 = &blsp1_uart2;
+> -	};
+> -
+> -	chosen {
+> -		stdout-path = "serial0:115200n8";
+> -	};
+> -};
+> -
+> -&blsp1_spi0 {
+> -	pinctrl-0 = <&spi_0_pins>;
+> -	pinctrl-names = "default";
+> -	status = "okay";
+> -
+> -	flash@0 {
+> -		compatible = "micron,n25q128a11", "jedec,spi-nor";
+> -		reg = <0>;
+> -		#address-cells = <1>;
+> -		#size-cells = <1>;
+> -		spi-max-frequency = <50000000>;
+> -	};
+> -};
+> -
+> -&blsp1_uart2 {
+> -	pinctrl-0 = <&uart2_pins>;
+> -	pinctrl-names = "default";
+> -	status = "okay";
+> -};
+> -
+> -&rpm_requests {
+> -	regulators {
+> -		compatible = "qcom,rpm-mp5496-regulators";
+> -
+> -		ipq9574_s1: s1 {
+> -		/*
+> -		 * During kernel bootup, the SoC runs at 800MHz with 875mV set by the bootloaders.
+> -		 * During regulator registration, kernel not knowing the initial voltage,
+> -		 * considers it as zero and brings up the regulators with minimum supported voltage.
+> -		 * Update the regulator-min-microvolt with SVS voltage of 725mV so that
+> -		 * the regulators are brought up with 725mV which is sufficient for all the
+> -		 * corner parts to operate at 800MHz
+> -		 */
+> -			regulator-min-microvolt = <725000>;
+> -			regulator-max-microvolt = <1075000>;
+> -		};
+> -	};
+> -};
+> -
+> -&sleep_clk {
+> -	clock-frequency = <32000>;
+> -};
+> -
+> -&tlmm {
+> -	spi_0_pins: spi-0-state {
+> -		pins = "gpio11", "gpio12", "gpio13", "gpio14";
+> -		function = "blsp0_spi";
+> -		drive-strength = <8>;
+> -		bias-disable;
+> -	};
+> -};
+> -
+> -&xo_board_clk {
+> -	clock-frequency = <24000000>;
+>  };
+> diff --git a/arch/arm64/boot/dts/qcom/ipq9574-rdp454.dts b/arch/arm64/boot/dts/qcom/ipq9574-rdp454.dts
+> index 6efae3426cb8..0dc382f5d5ec 100644
+> --- a/arch/arm64/boot/dts/qcom/ipq9574-rdp454.dts
+> +++ b/arch/arm64/boot/dts/qcom/ipq9574-rdp454.dts
+> @@ -8,73 +8,9 @@
+>  
+>  /dts-v1/;
+>  
+> -#include "ipq9574.dtsi"
+> +#include "ipq9574-rdp-common.dtsi"
+>  
+>  / {
+>  	model = "Qualcomm Technologies, Inc. IPQ9574/AP-AL02-C9";
+>  	compatible = "qcom,ipq9574-ap-al02-c9", "qcom,ipq9574";
+> -
+> -	aliases {
+> -		serial0 = &blsp1_uart2;
+> -	};
+> -
+> -	chosen {
+> -		stdout-path = "serial0:115200n8";
+> -	};
+> -};
+> -
+> -&blsp1_spi0 {
+> -	pinctrl-0 = <&spi_0_pins>;
+> -	pinctrl-names = "default";
+> -	status = "okay";
+> -
+> -	flash@0 {
+> -		compatible = "micron,n25q128a11", "jedec,spi-nor";
+> -		reg = <0>;
+> -		#address-cells = <1>;
+> -		#size-cells = <1>;
+> -		spi-max-frequency = <50000000>;
+> -	};
+> -};
+> -
+> -&blsp1_uart2 {
+> -	pinctrl-0 = <&uart2_pins>;
+> -	pinctrl-names = "default";
+> -	status = "okay";
+> -};
+> -
+> -&rpm_requests {
+> -	regulators {
+> -		compatible = "qcom,rpm-mp5496-regulators";
+> -
+> -		ipq9574_s1: s1 {
+> -		/*
+> -		 * During kernel bootup, the SoC runs at 800MHz with 875mV set by the bootloaders.
+> -		 * During regulator registration, kernel not knowing the initial voltage,
+> -		 * considers it as zero and brings up the regulators with minimum supported voltage.
+> -		 * Update the regulator-min-microvolt with SVS voltage of 725mV so that
+> -		 * the regulators are brought up with 725mV which is sufficient for all the
+> -		 * corner parts to operate at 800MHz
+> -		 */
+> -			regulator-min-microvolt = <725000>;
+> -			regulator-max-microvolt = <1075000>;
+> -		};
+> -	};
+> -};
+> -
+> -&sleep_clk {
+> -	clock-frequency = <32000>;
+> -};
+> -
+> -&tlmm {
+> -	spi_0_pins: spi-0-state {
+> -		pins = "gpio11", "gpio12", "gpio13", "gpio14";
+> -		function = "blsp0_spi";
+> -		drive-strength = <8>;
+> -		bias-disable;
+> -	};
+> -};
+> -
+> -&xo_board_clk {
+> -	clock-frequency = <24000000>;
+>  };
