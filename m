@@ -2,148 +2,219 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DE6F77547F3
-	for <lists+devicetree@lfdr.de>; Sat, 15 Jul 2023 11:26:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9388E75481B
+	for <lists+devicetree@lfdr.de>; Sat, 15 Jul 2023 12:02:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229981AbjGOJ0y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 15 Jul 2023 05:26:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55718 "EHLO
+        id S229991AbjGOKCZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 15 Jul 2023 06:02:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34546 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229665AbjGOJ0w (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Jul 2023 05:26:52 -0400
-Received: from mail-oa1-x32.google.com (mail-oa1-x32.google.com [IPv6:2001:4860:4864:20::32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A156B2D75;
-        Sat, 15 Jul 2023 02:26:50 -0700 (PDT)
-Received: by mail-oa1-x32.google.com with SMTP id 586e51a60fabf-1ba4460f0a4so1016438fac.0;
-        Sat, 15 Jul 2023 02:26:50 -0700 (PDT)
+        with ESMTP id S229549AbjGOKCZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Jul 2023 06:02:25 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A6622726;
+        Sat, 15 Jul 2023 03:02:23 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-5216f44d881so1260005a12.1;
+        Sat, 15 Jul 2023 03:02:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1689413210; x=1692005210;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wHphB4LnIXM8B5KTzxaE1knTLhvmv4UUsDUmEXJtUjc=;
-        b=KNtkg40Donc1RJ+Y/N6bMmujMSl9cywEa6fXVSQYqV4W4lT8G1IFlO5DKCTqezy9NY
-         lefwY54PRhNWProidCgY7SJny7AEfavu3g+BjFgAL5dZzNMIElbAwgo4QZnm4OLwjy+V
-         CVJWSo1L7gWOhYkpGKP0r9oukax6+UlfkfofBx8xxPcLUf3ek7zbTjABn/JHDdvTWXCu
-         WWDX31kpkxyfmd7Q/WE+0i7y3grMAoIl2p8ABV+V0g6ZwAueUBzPNbjvXwLF4/1Voo58
-         THpoQ4ecU8W2lHElPdLC420Acx2PDSK/3KkrYlQGhj1Cbwmy3bV4wSFCbbKfSoIqtJyV
-         8cKw==
+        d=gmail.com; s=20221208; t=1689415342; x=1692007342;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=9bOirRu6EADR4lQ+to8XFoY/uoEmIKfleVanV2j96+8=;
+        b=Ps8nmE8yOES7YE0jt2bn6eP+DPJc31u6tnebmhKJBOOug0eoGMfCw0Qiv1AAFXP4cH
+         aEmpGq/v0G9ygn1NBPJy51WCrzOGSwymWQivtv6cftJdR4NuRaV4r53PPRt7zjYMjlUq
+         GBFSXcvzGjCIAnwzkBPE9zAHLaJKdWwgydNHaMXWx3cHVkMbYqcl/7GXUL9HUcu6SHJF
+         JuIqY70DDRYtOEmHkiv2YVNXQgtSz3rJxoqdmSyWaVirR7TARxilkDrhihSu6jiim7Ye
+         tVgbEN+Tkds2uSIdF2hUKPn/0LHk/LJ9koeZZ7qnzq15RMsOw1m3M7qoagUBiR4hkFqF
+         rXFw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689413210; x=1692005210;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=wHphB4LnIXM8B5KTzxaE1knTLhvmv4UUsDUmEXJtUjc=;
-        b=JiGU52lQ8FfyJkp6QjJQSRzyHbk7kqyAUFscruPUEYIw7RNWvZZ21NHMBrIeQbhqD1
-         6GtMln/NTVUZw49joEErfXV/f6tgMdbGdAZnOfAP2YKB4uuCv6bIGP4HTyjTqlGjSoac
-         grXLh0eefJph+lUq1Z4xoT1vHI8tR8OZP223JRtIXP5ozuQBw1UGNmT266Qc7uFcqybh
-         vajWY4OVbOaEcuuvLzlH5too7GCT7CssvOXAt81dSvNxxrimlcQBf3SlZbhnQKh3/LCx
-         DHTC23/Jwgn4onqFXjA+V5CvyStnfidFSV8/OCeIFgGH00MADcc+bbkWEbELFNACTjkj
-         NYRA==
-X-Gm-Message-State: ABy/qLaY+efmPdXrwZqHx79HVnpLXMlNT08ZV5WWBpmQIssnVrzkVTFm
-        vcyCdAU0RNP7yc8sKOtjzkCWTdpLZNeNCQprWPM=
-X-Google-Smtp-Source: APBJJlGwdJmxyzGjSGIAgoqFi7CGlWiMJBmcsPBzo9lxW5BLyYxxPOYfHlixbBaupkZxkAV8b0mEWpZJ8j8VMX6oWRI=
-X-Received: by 2002:a05:6870:328d:b0:177:a158:9ef6 with SMTP id
- q13-20020a056870328d00b00177a1589ef6mr6679986oac.52.1689413209848; Sat, 15
- Jul 2023 02:26:49 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1689415342; x=1692007342;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=9bOirRu6EADR4lQ+to8XFoY/uoEmIKfleVanV2j96+8=;
+        b=iII5sdk4r47ULNHSnay0lGNbdSeV7TyeUoeBqztRHTH6XrYTyrCo48dG8GjpRlfmT/
+         0OBgz2nHTyyzDAf99ON3+V4giSIJoZlyjgq7TM5fCYkQrB5MCE9vumOGAXw01amnrAnD
+         ofL5xJEiTJztVlPI7PfzebKRGSmskWvjftFswQPawftQ9MtvckT6Z0pFoA5r4i6IoYeZ
+         9mfN2KpD9/l4uaHf3i9CQCRXTzc/jNhEa2MuQjv7gq93TFeWKtOhs5ZqwM78X4Bpfvb2
+         EjAulI9q/Ou7XRMCuwYDg7SGXlwgVEEnSBwM6ZxZcqVnnLjdF0kWxBZYiDtqWTStcXxy
+         EeVQ==
+X-Gm-Message-State: ABy/qLZkzVIfvhm8P0qGk1tiLuCDspLeR9iewEz5eJHg2W5UYDV9rKt8
+        jW0VrC/vsN3/4y/MbPfGKZQ=
+X-Google-Smtp-Source: APBJJlHFdDR9Ve0U9O2+dL66w23HZjO4wRRKs6m+N/Z7kX1eYtMJ5nqBJOTDtXcf1wvq80mJ5t2QAw==
+X-Received: by 2002:a05:6402:31f4:b0:51a:5a25:6631 with SMTP id dy20-20020a05640231f400b0051a5a256631mr6854782edb.3.1689415341548;
+        Sat, 15 Jul 2023 03:02:21 -0700 (PDT)
+Received: from localhost (dslb-094-220-187-252.094.220.pools.vodafone-ip.de. [94.220.187.252])
+        by smtp.gmail.com with ESMTPSA id z17-20020aa7c651000000b0051df54c6a27sm6864439edr.56.2023.07.15.03.02.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 15 Jul 2023 03:02:20 -0700 (PDT)
+From:   Jonas Gorski <jonas.gorski@gmail.com>
+To:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: spi: convert spi-brcm63xx.txt to YAML
+Date:   Sat, 15 Jul 2023 12:02:10 +0200
+Message-Id: <20230715100211.14726-1-jonas.gorski@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-References: <20230714174841.4061919-1-robh@kernel.org>
-In-Reply-To: <20230714174841.4061919-1-robh@kernel.org>
-From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Date:   Sat, 15 Jul 2023 11:26:38 +0200
-Message-ID: <CAMhs-H-6tAV-+U-4zZDKs47eKCJr+kZ-Op8vR4SyJyE5LK_2aw@mail.gmail.com>
-Subject: Re: [PATCH] phy: Explicitly include correct DT includes
-To:     Rob Herring <robh@kernel.org>
-Cc:     Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Justin Chen <justin.chen@broadcom.com>,
-        Al Cooper <alcooperx@gmail.com>,
-        Broadcom internal kernel review list 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Ioana Ciornei <ioana.ciornei@nxp.com>,
-        Yu Chen <chenyu56@huawei.com>,
-        Binghui Wang <wangbinghui@hisilicon.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Lubomir Rintel <lkundrak@v3.sk>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        Alban Bedel <albeu@free.fr>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Robert Marko <robert.marko@sartura.hr>,
-        Luka Perkov <luka.perkov@sartura.hr>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
-        Masami Hiramatsu <mhiramat@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Vincent Shih <vincent.sunplus@gmail.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        JC Kuo <jckuo@nvidia.com>, devicetree@vger.kernel.org,
-        linux-phy@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
-        netdev@vger.kernel.org, linux-usb@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        linux-mediatek@lists.infradead.org, linux-can@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        linux-rockchip@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-tegra@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 14, 2023 at 7:49=E2=80=AFPM Rob Herring <robh@kernel.org> wrote=
-:
->
-> The DT of_device.h and of_platform.h date back to the separate
-> of_platform_bus_type before it as merged into the regular platform bus.
-> As part of that merge prepping Arm DT support 13 years ago, they
-> "temporarily" include each other. They also include platform_device.h
-> and of.h. As a result, there's a pretty much random mix of those include
-> files used throughout the tree. In order to detangle these headers and
-> replace the implicit includes with struct declarations, users need to
-> explicitly include the correct includes.
->
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
->  drivers/phy/ralink/phy-mt7621-pci.c                   | 3 +--
+Changes done during conversion:
 
-Acked-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+* added a description, lifting and adapting the limitation sentence from
+  brcm,bcm63xx-hsspi.yml
+* added appropriate compatibles for all SoCs that are supported by
+  bcm63xx/bmips
 
-Thanks,
-    Sergio Paracuellos
+Signed-off-by: Jonas Gorski <jonas.gorski@gmail.com>
+---
+ .../bindings/spi/brcm,bcm63xx-spi.yaml        | 71 +++++++++++++++++++
+ .../devicetree/bindings/spi/spi-bcm63xx.txt   | 33 ---------
+ MAINTAINERS                                   |  2 +-
+ 3 files changed, 72 insertions(+), 34 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/spi/brcm,bcm63xx-spi.yaml
+ delete mode 100644 Documentation/devicetree/bindings/spi/spi-bcm63xx.txt
+
+diff --git a/Documentation/devicetree/bindings/spi/brcm,bcm63xx-spi.yaml b/Documentation/devicetree/bindings/spi/brcm,bcm63xx-spi.yaml
+new file mode 100644
+index 000000000000..53e0c058b8b1
+--- /dev/null
++++ b/Documentation/devicetree/bindings/spi/brcm,bcm63xx-spi.yaml
+@@ -0,0 +1,71 @@
++# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/spi/brcm,bcm63xx-spi.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Broadcom BCM6348/BCM6358 SPI controller
++
++maintainers:
++  - Jonas Gorski <jonas.gorski@gmail.com>
++
++description: |
++  Broadcom "Low Speed" SPI controller found in many older MIPS based Broadband
++  SoCs.
++
++  This controller has a limitation that can not keep the chip select line active
++  between the SPI transfers within the same SPI message. This can terminate the
++  transaction to some SPI devices prematurely. The issue can be worked around by
++  the controller's prepend mode.
++
++allOf:
++  - $ref: spi-controller.yaml#
++
++properties:
++  compatible:
++    oneOf:
++      - items:
++          - enum:
++              - brcm,bcm6368-spi
++              - brcm,bcm6362-spi
++              - brcm,bcm63268-spi
++          - const: brcm,bcm6358-spi
++      - const: brcm,bcm6348-spi
++      - const: brcm,bcm6358-spi
++
++  reg:
++    items:
++      - description: main registers
++
++  clocks:
++    items:
++      - description: SPI master reference clock
++
++  clock-names:
++    items:
++      - const: spi
++
++  interrupts:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - clock-names
++  - interrupts
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    spi@10000800 {
++        compatible = "brcm,bcm6368-spi", "brcm,bcm6358-spi";
++        reg = <0x10000800 0x70c>;
++        interrupts = <1>;
++        clocks = <&clkctl 9>;
++        clock-names = "spi";
++        num-cs = <5>;
++        #address-cells = <1>;
++        #size-cells = <0>;
++    };
+diff --git a/Documentation/devicetree/bindings/spi/spi-bcm63xx.txt b/Documentation/devicetree/bindings/spi/spi-bcm63xx.txt
+deleted file mode 100644
+index 1c16f6692613..000000000000
+--- a/Documentation/devicetree/bindings/spi/spi-bcm63xx.txt
++++ /dev/null
+@@ -1,33 +0,0 @@
+-Binding for Broadcom BCM6348/BCM6358 SPI controller
+-
+-Required properties:
+-- compatible: must contain one of "brcm,bcm6348-spi", "brcm,bcm6358-spi".
+-- reg: Base address and size of the controllers memory area.
+-- interrupts: Interrupt for the SPI block.
+-- clocks: phandle of the SPI clock.
+-- clock-names: has to be "spi".
+-- #address-cells: <1>, as required by generic SPI binding.
+-- #size-cells: <0>, also as required by generic SPI binding.
+-
+-Optional properties:
+-- num-cs: some controllers have less than 8 cs signals. Defaults to 8
+-  if absent.
+-
+-Child nodes as per the generic SPI binding.
+-
+-Example:
+-
+-	spi@10000800 {
+-		compatible = "brcm,bcm6368-spi", "brcm,bcm6358-spi";
+-		reg = <0x10000800 0x70c>;
+-
+-		interrupts = <1>;
+-
+-		clocks = <&clkctl 9>;
+-		clock-names = "spi";
+-
+-		num-cs = <5>;
+-
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+-	};
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 238f50f9498e..3cb77cdb92f7 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -4125,7 +4125,7 @@ BROADCOM BCM6348/BCM6358 SPI controller DRIVER
+ M:	Jonas Gorski <jonas.gorski@gmail.com>
+ L:	linux-spi@vger.kernel.org
+ S:	Odd Fixes
+-F:	Documentation/devicetree/bindings/spi/spi-bcm63xx.txt
++F:	Documentation/devicetree/bindings/spi/brcm,bcm63xx-spi.yaml
+ F:	drivers/spi/spi-bcm63xx.c
+ 
+ BROADCOM ETHERNET PHY DRIVERS
+-- 
+2.34.1
+
