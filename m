@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3BDDA754A0C
-	for <lists+devicetree@lfdr.de>; Sat, 15 Jul 2023 18:12:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F8CD754A0E
+	for <lists+devicetree@lfdr.de>; Sat, 15 Jul 2023 18:13:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229483AbjGOQMh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 15 Jul 2023 12:12:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43810 "EHLO
+        id S229631AbjGOQNA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 15 Jul 2023 12:13:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44170 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229472AbjGOQMg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Jul 2023 12:12:36 -0400
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 730B62D51
-        for <devicetree@vger.kernel.org>; Sat, 15 Jul 2023 09:11:51 -0700 (PDT)
+        with ESMTP id S229621AbjGOQM7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Jul 2023 12:12:59 -0400
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E015810D1
+        for <devicetree@vger.kernel.org>; Sat, 15 Jul 2023 09:12:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1689437510;
+        s=mimecast20190719; t=1689437537;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:content-type:content-type:
          in-reply-to:in-reply-to:references:references;
-        bh=Js70kE6M4tQuHcgETIy8XYzF63AeuA3GvQidoiOZKq8=;
-        b=DdRurhm/yiydoX4ioYtZBcbkIg9ebeX3qhnCaWP74Ze/RpgyUIHq1AFxUR8c+4+eq28oY9
-        uDuNDwIIpJeBo+FEHGNsslWCs69zqKz0R2HSyr8OJuqtVTK1HYAFEnDWpgEULGc2+lt33a
-        Igvzf1RvPpbqWmAu4YQqwq1UlphqPPA=
-Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
- [209.85.128.69]) by relay.mimecast.com with ESMTP with STARTTLS
+        bh=dF7OtGXMRje1f7jke9Bs430OqzMpDW752u+Jth/n5k0=;
+        b=Ff2hFNfBeB9d3mdbB1FwC/CZ/bceqnlLGmuiTOjZIbG37ZvjxYzTI4gsxTo+Ib9F8yilyx
+        w0BUWtsKmbyMO1IFiKp117jc7QySbmubpTy0PT25bE/T2LL5Dzb/dhk8Lv9Y98ybTd/hmB
+        8z7UnIPBfOn3+OnFsXmHCijmdXuM5fM=
+Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com
+ [209.85.128.72]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-549-fVD93zk4OFqK8BYvaHGwew-1; Sat, 15 Jul 2023 12:11:48 -0400
-X-MC-Unique: fVD93zk4OFqK8BYvaHGwew-1
-Received: by mail-wm1-f69.google.com with SMTP id 5b1f17b1804b1-3fa8db49267so14994535e9.3
-        for <devicetree@vger.kernel.org>; Sat, 15 Jul 2023 09:11:48 -0700 (PDT)
+ us-mta-318-JeSL_V4ZMLyUFjaNa6VaZA-1; Sat, 15 Jul 2023 12:12:15 -0400
+X-MC-Unique: JeSL_V4ZMLyUFjaNa6VaZA-1
+Received: by mail-wm1-f72.google.com with SMTP id 5b1f17b1804b1-3fc0855dcc5so15548705e9.2
+        for <devicetree@vger.kernel.org>; Sat, 15 Jul 2023 09:12:15 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689437508; x=1692029508;
+        d=1e100.net; s=20221208; t=1689437534; x=1692029534;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Js70kE6M4tQuHcgETIy8XYzF63AeuA3GvQidoiOZKq8=;
-        b=UwQC0siaZNmbyHB3s6kdiuVetXc5kOI1BdbUeHGWA19AT29Dmn9PJVRr5rCR/CDKHh
-         kLXj6UnX1PKK1H+b08SnQ3C13zGnKfqGZrBzSR2tHrVLoXylnbB8xV1yt1JPi1fmbZKj
-         jiyy2z173bgpaSXFhtpWtO4N18FV5Qj3U6XW4iy5sda1PhK/gcrOB+S1jTWZmBfvmoK6
-         EEV1E6/x0JKn58IAZ6DSDGY00+bXXG/4doDtf/46OrizlrM+XLHzLX1joqtxEtQ1K6Gf
-         p3nCvQf1TmAt+EA7kF4OhW7nVs5+pHxykX8AaNC7hUQ/JSK3bvmAORfygQ2pOti95oXl
-         2AfA==
-X-Gm-Message-State: ABy/qLZdkaH9BMyrLu9C81kJ+b3MTa6JsilKUF93Pk8IaoU6HL5sIVXj
-        n8RB1wJsBIuMXtYa2PI4qA+pi6JN8OKKiiPH8+qa9nISO8ZrIB8KheSX7aaDf68XnIi+AkmnLHu
-        72qQLfzOO7exCapPKwC7SgA==
-X-Received: by 2002:a7b:c40d:0:b0:3fc:1a6:7764 with SMTP id k13-20020a7bc40d000000b003fc01a67764mr6353259wmi.16.1689437507834;
-        Sat, 15 Jul 2023 09:11:47 -0700 (PDT)
-X-Google-Smtp-Source: APBJJlG69QqpP0KlK6PdSqxWvSyyuu5NRgXyRxSUWxITz0TGdie9WxsU5U+VqP/uxSgCoNT0EjL9WQ==
-X-Received: by 2002:a7b:c40d:0:b0:3fc:1a6:7764 with SMTP id k13-20020a7bc40d000000b003fc01a67764mr6353234wmi.16.1689437507258;
-        Sat, 15 Jul 2023 09:11:47 -0700 (PDT)
+        bh=dF7OtGXMRje1f7jke9Bs430OqzMpDW752u+Jth/n5k0=;
+        b=e2oVyL6vyx/qP1MMm9JBLZRUXuesNlzjOAom3wnHJTbs8FvoBJkV51OcE398DAzMKw
+         HlZVygu+6wG7g9Uinl9dxAE4S0W8ciioCUwTSvSqFfX7ZgU2me3HpnyXTRbm/fq+1GvR
+         B3/U488lC3vg/GnQFeEQZq5V4ItaLrJmpvtNGr6HC+ZDxlUUoLhXHt92xI9vDEj7kcsm
+         iW1B5OvaA8gI3mIS2oAiqorzfLt9xDqej1vOY1HFOwIeMN9g4weoVqg9Qg1+uOs7HsQX
+         bjoBJEgT3OL0Imhd4KreMjINNQL8IXfLE/255Hi485eEEh2nWV4lhMyinJlOqMIQ8BbI
+         G84A==
+X-Gm-Message-State: ABy/qLaEZkxpwdv7HFiZq+vL+rkC8bFn4NkcNZL81lEC9zebr4i/Q5ax
+        J5TmzjnCCZCCUzYWkHPEFDyxb7V9wAR71d/nSIodTgd5GIqbvi+07lV4Tar/Xx/9ziAlL4ScyQG
+        O7/OI+ylnt2Y55bTZsOl80Q==
+X-Received: by 2002:a7b:cd96:0:b0:3fc:10:b25b with SMTP id y22-20020a7bcd96000000b003fc0010b25bmr6623422wmj.21.1689437534441;
+        Sat, 15 Jul 2023 09:12:14 -0700 (PDT)
+X-Google-Smtp-Source: APBJJlFpxpfSQFWVxs5xId56kuqovmHBkCRVcENJq+und24xVDDj0feG9wpZsKiSMo/jJvMcazXpMg==
+X-Received: by 2002:a7b:cd96:0:b0:3fc:10:b25b with SMTP id y22-20020a7bcd96000000b003fc0010b25bmr6623408wmj.21.1689437534192;
+        Sat, 15 Jul 2023 09:12:14 -0700 (PDT)
 Received: from localhost (net-130-25-106-149.cust.vodafonedsl.it. [130.25.106.149])
-        by smtp.gmail.com with ESMTPSA id y6-20020a1c4b06000000b003fc3b03e631sm3602905wma.1.2023.07.15.09.11.46
+        by smtp.gmail.com with ESMTPSA id y17-20020a1c4b11000000b003fb739d27aesm3922717wma.35.2023.07.15.09.12.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 15 Jul 2023 09:11:46 -0700 (PDT)
-Date:   Sat, 15 Jul 2023 18:11:44 +0200
+        Sat, 15 Jul 2023 09:12:13 -0700 (PDT)
+Date:   Sat, 15 Jul 2023 18:12:11 +0200
 From:   Lorenzo Bianconi <lorenzo.bianconi@redhat.com>
 To:     "Russell King (Oracle)" <linux@armlinux.org.uk>
 Cc:     Daniel Golle <daniel@makrotopia.org>, netdev@vger.kernel.org,
@@ -78,22 +78,22 @@ Cc:     Daniel Golle <daniel@makrotopia.org>, netdev@vger.kernel.org,
         =?iso-8859-1?Q?Bj=F8rn?= Mork <bjorn@mork.no>,
         Florian Fainelli <f.fainelli@gmail.com>,
         Greg Ungerer <gerg@kernel.org>
-Subject: Re: [PATCH v2 net-next 6/9] net: ethernet: mtk_eth_soc: add
- MTK_NETSYS_V3 capability bit
-Message-ID: <ZLLFQJ/CMvqQqRgN@lore-desk>
+Subject: Re: [PATCH v2 net-next 3/9] net: ethernet: mtk_eth_soc: add
+ MTK_NETSYS_V1 capability bit
+Message-ID: <ZLLFWyr5LbeB/Px1@lore-desk>
 References: <cover.1689012506.git.daniel@makrotopia.org>
- <6dc1e0ad7e8138835c959fc83a6c1564e8488c59.1689012506.git.daniel@makrotopia.org>
- <ZK+m+ayRW/uaxl6u@shell.armlinux.org.uk>
+ <a2022fd2db0f7ed54ab07bb93b04aa9fc59033b5.1689012506.git.daniel@makrotopia.org>
+ <ZK+ibBKWFRniQ8rK@shell.armlinux.org.uk>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="Eh7tZsXyDFZVqJbt"
+        protocol="application/pgp-signature"; boundary="yB+7pERcjQZkUudn"
 Content-Disposition: inline
-In-Reply-To: <ZK+m+ayRW/uaxl6u@shell.armlinux.org.uk>
+In-Reply-To: <ZK+ibBKWFRniQ8rK@shell.armlinux.org.uk>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
         RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,
         SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -101,24 +101,32 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---Eh7tZsXyDFZVqJbt
+--yB+7pERcjQZkUudn
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-> on thu, jul 13, 2023 at 03:19:49am +0100, daniel golle wrote:
-> > +
-> > +		if (mtk_has_caps(eth->soc->caps, mtk_netsys_v3)) {
+> On Thu, Jul 13, 2023 at 03:18:23AM +0100, Daniel Golle wrote:
+> > From: Lorenzo Bianconi <lorenzo@kernel.org>
+> >=20
+> > Introduce MTK_NETSYS_V1 bit in the device capabilities for
+> > MT7621/MT7622/MT7623/MT7628/MT7629 SoCs.
+> > Use !MTK_NETSYS_V1 instead of MTK_NETSYS_V2 in the driver codebase.
+> > This is a preliminary patch to introduce support for MT7988 SoC.
 >=20
-> this is a case in point for one of my previous comments...
+> Rather than using capability bits for versions, would it make more
+> sense to use an integer for this, so you can do:
 >=20
-> this code started out believing that testing for mtk_netsys_v2 for v2
-> features would be sufficient. your first patch ended up having to
-> change that to !v1. how long until this becomes !v1 && !v2 because
-> it gets used on v3 and v4 etc?
+> 	if (eth->soc->netsys_version >=3D 2) {
+> 		version 2 and later stuff
+> 	} else {
+> 		previous version stuff
+> 	}
 >=20
-> this is why i think an integer version field would be a much saner
-> approach.
+> ?
+>=20
+> I'm just thinking ahead to when we end up with stuff that v1 and v2
+> need but v3 and later don't.
 
 ack, I will fix it.
 
@@ -131,16 +139,16 @@ Lorenzo
 > FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 >=20
 
---Eh7tZsXyDFZVqJbt
+--yB+7pERcjQZkUudn
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZLLFQAAKCRA6cBh0uS2t
-rGs9AP49MdY//QxPjTry+O5HMEDUJz0xScmT7VFDAbt7wb7HwwEAn0Yz8q6MfSkC
-djHk8lPoM7OXLyH5gZ4UFWEqt305dgI=
-=nLva
+iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZLLFWwAKCRA6cBh0uS2t
+rBvlAQDy03bEQ4loaAkQrbJsOLuS7fpBgSkRYBHq+v1STiH+dwEAhaatBwH6Dv5n
+6nKwAO3GR06rfY1eFCm7uJkttIs/XwM=
+=TLpK
 -----END PGP SIGNATURE-----
 
---Eh7tZsXyDFZVqJbt--
+--yB+7pERcjQZkUudn--
 
