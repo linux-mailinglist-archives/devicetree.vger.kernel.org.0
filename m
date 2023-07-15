@@ -2,115 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8CF21754924
-	for <lists+devicetree@lfdr.de>; Sat, 15 Jul 2023 16:08:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 04EAF754933
+	for <lists+devicetree@lfdr.de>; Sat, 15 Jul 2023 16:13:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230051AbjGOOIp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 15 Jul 2023 10:08:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39542 "EHLO
+        id S229482AbjGOONW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 15 Jul 2023 10:13:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41054 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229910AbjGOOIn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Jul 2023 10:08:43 -0400
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C42E5173B
-        for <devicetree@vger.kernel.org>; Sat, 15 Jul 2023 07:08:40 -0700 (PDT)
-Received: by mail-lj1-x229.google.com with SMTP id 38308e7fff4ca-2b74fa5e7d7so44905301fa.2
-        for <devicetree@vger.kernel.org>; Sat, 15 Jul 2023 07:08:40 -0700 (PDT)
+        with ESMTP id S229556AbjGOONW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Jul 2023 10:13:22 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07E891BD4
+        for <devicetree@vger.kernel.org>; Sat, 15 Jul 2023 07:13:20 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-4fba8f2197bso4853316e87.3
+        for <devicetree@vger.kernel.org>; Sat, 15 Jul 2023 07:13:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689430119; x=1692022119;
+        d=linaro.org; s=google; t=1689430398; x=1692022398;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=6Ll+dFRODO/7ee6rRlWXrO/wH1U0TwY1Wqw8OK3QY9U=;
-        b=Kw7fSn1NkSVkKGb3Cl/TVCZFuPgCl18Mb1lDONdgsL1l72mZ/audBVhO2kdo4MNX3d
-         kfQpU7tgK7Y1/e4naNhimnpGpcatIcBjppEraE+KwYCm6eNXQavCMBjZqTWlddt4fWNo
-         j+bKCRbUVR/FvrOv1+C4OlUFhwLxV05C8Ft/AWz+juDr3xLzUqH1BtCmOyL5x/CB21zE
-         9WSqG0NWpadnB6XujTiqccMTV49m4tLJvrbgmtZVGHCXhaskyn0Qq0MBhlOLtromjzwI
-         ZiPwr8g9nE/Qhc4ZGA2wS4K1WNuQlMMyCW+GuU66eu+rlUX9yeVUzcNRkibnl5vKA9Ld
-         NHog==
+        bh=5pjJI9w8CFYJrlO278g5PFbKv5pKnn17lMTGBT+3ydM=;
+        b=cJn5Gz01cO+cq0uBVhD8cZf87mpRtNHRLa84O3sHr2CyzmT62tYv1SEEstzuGV0AUx
+         AJLfnGpA8LikdPUZ94WAgSgqiBZpTlUdU5w6Uto6C401wyW2UCHEN+24KtlaYE6zPsiv
+         1BYP/BqKUTzPOsZ0YYqfWrRlXq6idmUF9iVkPHMVJZcn/ZHYuzsAMkeDQD6z/tdXyr/4
+         CIayY8suMp3JlBf4vGwSj8zHNZUHVl0jXkf5DWPV8j6JgBrbBlVA91QbUq+4cQQYV8Oq
+         hlf7g2vtSMQf3qX1/9rZyAatfHFueuOQY7VSB3NfgU7Dih/3H9hRfLbtYqCeLq6cv5h6
+         Iatw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689430119; x=1692022119;
+        d=1e100.net; s=20221208; t=1689430398; x=1692022398;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6Ll+dFRODO/7ee6rRlWXrO/wH1U0TwY1Wqw8OK3QY9U=;
-        b=Fan7azf0ZCr1yyqTMoDOJxWAUR3IZiCwRbRh5ivUwggAYRjOwPcUjBP7H+D+iW0lNp
-         JYblYcfuBRw6uVrq2PHty54Z/xYPFU0uassEwdnxiMTZcZaRV+5yyeVAmS1zu2L73Owp
-         oJNmGjHD3+qzLsyDuo2G7K9xheJucs84bUYg25VoVaD9KBlFwiGy3XiSE7kY7TqLmyWj
-         fUE24NU5UR66qm5P/fUoz7lzRj96AYtX69Yq5JKTZIJmlYFDI/yGzrRD6rJl2Z5fZlLO
-         G7DRLzxaBSxW/0m3i5EnTKYOUJh8fZ2A6ma4kn09X6/Vh5MrMo0lypVbwp47+3ujIEeO
-         R5Gw==
-X-Gm-Message-State: ABy/qLYcq3UN1lUHZWmj+24uZSYo3JVzIqY2Q2ugF34UG3e+AR6PlYk3
-        dRI0VKTIPYMq44eU5VBHWmVAKQ==
-X-Google-Smtp-Source: APBJJlH7VKNPGyyy4U7Wb6bR6bZlBUUanCcsH6t6s5sQy0mmPU5TmlD3Ev1JRSoDGDOv2Wdn01X4wA==
-X-Received: by 2002:a05:6512:1190:b0:4fb:9f93:365e with SMTP id g16-20020a056512119000b004fb9f93365emr6344267lfr.41.1689430119087;
-        Sat, 15 Jul 2023 07:08:39 -0700 (PDT)
+        bh=5pjJI9w8CFYJrlO278g5PFbKv5pKnn17lMTGBT+3ydM=;
+        b=PUetP/xdg0YMOCgFjc9RF6l+Ym1q1NlZypfTAsTfJ+5oAClZv+5NKKFo8wgWzVlICh
+         bqw8P+B1LlJCo7gzVzTcKO1jPCSFHUfI8Z7CwY3PPmI8sFk6H/SZz2R842kfwK/Xe/O0
+         S7fGBE+7muXxw1Ebkrwav8a+4maeTwDMJCMU2bmbcO7lp3h+b9VJpTyNIhiqL9vP8Q6b
+         Vbx/Nl98x3cLMyFp7l/J5/hjRJyHZ6gAuL1hcIlBwP2khaTjD7cxp2FS96spUqe8Js1g
+         kPuGC+SMnNKY+DCyRtfe8GKEufHu3YZi7NY+b0+13yCmltPr9GwppGBjXPy/5p/J75JO
+         VSKQ==
+X-Gm-Message-State: ABy/qLYJ6aPCG7OReOHqMqQO70TR5Ht3JRBhN4JI1tfgSo8GEXsRseHE
+        qS3C+og7divEDFBCvNKQpSvZ+Ozy51T+AHL8/eBncQ==
+X-Google-Smtp-Source: APBJJlH0xNy2URzHQZxZqhffBIQMXcMWLWBBCQv1AQehwlwJCbmBo/SZSG2sdKsAziqgWPIw0tE9+w==
+X-Received: by 2002:a05:6512:39d2:b0:4f6:3000:94a0 with SMTP id k18-20020a05651239d200b004f6300094a0mr6428959lfu.61.1689430398238;
+        Sat, 15 Jul 2023 07:13:18 -0700 (PDT)
 Received: from [192.168.1.101] (abxi167.neoplus.adsl.tpnet.pl. [83.9.2.167])
-        by smtp.gmail.com with ESMTPSA id m26-20020ac24ada000000b004fcdea129b1sm581684lfp.279.2023.07.15.07.08.37
+        by smtp.gmail.com with ESMTPSA id t19-20020ac243b3000000b004fbc0da55b4sm1905515lfl.112.2023.07.15.07.13.17
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 15 Jul 2023 07:08:38 -0700 (PDT)
-Message-ID: <3275085e-e4ed-6b0b-c108-cde90a8283b8@linaro.org>
-Date:   Sat, 15 Jul 2023 16:08:37 +0200
+        Sat, 15 Jul 2023 07:13:17 -0700 (PDT)
+Message-ID: <bb80d65e-b6e5-37ac-b4eb-01166af6f39c@linaro.org>
+Date:   Sat, 15 Jul 2023 16:13:16 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
-Subject: Re: [PATCH] ARM: dts: qcom: msm8226: provide dsi phy clocks to mmcc
+Subject: Re: [PATCH v3 1/2] arm64: dts: qcom: qdu1000-idp: Update reserved
+ memory region
 Content-Language: en-US
-To:     Luca Weiss <luca@z3ntu.xyz>, ~postmarketos/upstreaming@lists.sr.ht,
-        phone-devel@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
+To:     Komal Bajaj <quic_kbajaj@quicinc.com>, agross@kernel.org,
+        andersson@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
 Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-References: <20230712-msm8226-dsi-clock-fixup-v1-1-71010b0b89ca@z3ntu.xyz>
+References: <20230706125129.20969-1-quic_kbajaj@quicinc.com>
+ <20230706125129.20969-2-quic_kbajaj@quicinc.com>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230712-msm8226-dsi-clock-fixup-v1-1-71010b0b89ca@z3ntu.xyz>
+In-Reply-To: <20230706125129.20969-2-quic_kbajaj@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12.07.2023 09:52, Luca Weiss wrote:
-> Some mmcc clocks have dsi0pll & dsi0pllbyte as clock parents so we
-> should provide them in the dt, which I missed in the commit adding the
-> mdss nodes.
+On 6.07.2023 14:51, Komal Bajaj wrote:
+> Add missing reserved regions as described in QDU1000 memory map.
 > 
-> Fixes: d5fb01ad5eb4 ("ARM: dts: qcom: msm8226: Add mdss nodes")
-> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+> Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
 > ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Are you sure you want to reserve 4352 MiB?
 
 Konrad
->  arch/arm/boot/dts/qcom/qcom-msm8226.dtsi | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+>  arch/arm64/boot/dts/qcom/qdu1000-idp.dts | 22 ++++++++++++++++++++++
+>  1 file changed, 22 insertions(+)
 > 
-> diff --git a/arch/arm/boot/dts/qcom/qcom-msm8226.dtsi b/arch/arm/boot/dts/qcom/qcom-msm8226.dtsi
-> index b6ae4b7936e3..d2d09f2f3cee 100644
-> --- a/arch/arm/boot/dts/qcom/qcom-msm8226.dtsi
-> +++ b/arch/arm/boot/dts/qcom/qcom-msm8226.dtsi
-> @@ -404,8 +404,8 @@ mmcc: clock-controller@fd8c0000 {
->  				 <&gcc GPLL0_VOTE>,
->  				 <&gcc GPLL1_VOTE>,
->  				 <&rpmcc RPM_SMD_GFX3D_CLK_SRC>,
-> -				 <0>,
-> -				 <0>;
-> +				 <&mdss_dsi0_phy 1>,
-> +				 <&mdss_dsi0_phy 0>;
->  			clock-names = "xo",
->  				      "mmss_gpll0_vote",
->  				      "gpll0_vote",
+> diff --git a/arch/arm64/boot/dts/qcom/qdu1000-idp.dts b/arch/arm64/boot/dts/qcom/qdu1000-idp.dts
+> index 1d22f87fd238..8446eb438a34 100644
+> --- a/arch/arm64/boot/dts/qcom/qdu1000-idp.dts
+> +++ b/arch/arm64/boot/dts/qcom/qdu1000-idp.dts
+> @@ -448,6 +448,28 @@ &qupv3_id_0 {
+>  	status = "okay";
+>  };
 > 
-> ---
-> base-commit: 40b055fe7f276cf2c1da47316c52f2ff9255a68a
-> change-id: 20230712-msm8226-dsi-clock-fixup-ad8bfd411eb9
+> +&reserved_memory {
+> +	ecc_meta_data_mem: ecc-meta-data@e0000000 {
+> +		reg = <0x0 0xe0000000 0x0 0x20000000>;
+> +		no-map;
+> +	};
+> +
+> +	harq_buffer_mem: harq-buffer@800000000 {
+> +		reg = <0x8 0x0 0x0 0x80000000>;
+> +		no-map;
+> +	};
+> +
+> +	tenx_sp_buffer_mem: tenx-sp-buffer@880000000 {
+> +		reg = <0x8 0x80000000 0x0 0x50000000>;
+> +		no-map;
+> +	};
+> +
+> +	fapi_buffer_mem: fapi-buffer@8d0000000 {
+> +		reg = <0x8 0xd0000000 0x0 0x20000000>;
+> +		no-map;
+> +	};
+> +};
+> +
+>  &sdhc {
+>  	pinctrl-0 = <&sdc_on_state>;
+>  	pinctrl-1 = <&sdc_off_state>;
+> --
+> 2.40.1
 > 
-> Best regards,
