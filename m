@@ -2,139 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A9AD4754873
-	for <lists+devicetree@lfdr.de>; Sat, 15 Jul 2023 13:33:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4DCA5754886
+	for <lists+devicetree@lfdr.de>; Sat, 15 Jul 2023 14:36:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229866AbjGOLdT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 15 Jul 2023 07:33:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48782 "EHLO
+        id S229809AbjGOMgT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 15 Jul 2023 08:36:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53150 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229891AbjGOLdS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Jul 2023 07:33:18 -0400
-X-Greylist: delayed 439 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sat, 15 Jul 2023 04:33:16 PDT
-Received: from out-61.mta0.migadu.com (out-61.mta0.migadu.com [IPv6:2001:41d0:1004:224b::3d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E286535AA
-        for <devicetree@vger.kernel.org>; Sat, 15 Jul 2023 04:33:16 -0700 (PDT)
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jookia.org; s=key1;
-        t=1689420371;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=S19A3FkW85iI4MOdVdogxGLjgMY/8iwm4JrY7sESR78=;
-        b=cdJmkzztUHM/iqtbwjQjVkdiFsgm/eGDU+PkljtPsRl3jELhJy42itIlhqCej7tose959G
-        HWkaa2M7uo5U5q7zbvOC/FOMHeDWjCFgMcxg+RQHOApUy4hUhXc0MKiCbadQoSBhf6RdOq
-        njc8oIOkK0qqMmjsh1mBB9anhgLqPBo/4+clV+6dwGjnD+TbTeBFNKmLi5pcDTKF5/XR2P
-        4byUU9a8JmBl8z9SJOdhHRCxPi14lrPbaVhAuh5Go+4973EgQG6ZWtPFx2lo3kQg6knWsl
-        S2kO8GLro8HxzMtATj90i3jnjWUxse3KO9ZqyKVouEaFBfiZT3P9QrgvV14kCg==
-From:   Jookia <contact@jookia.org>
-To:     linux-sunxi@lists.linux.dev
-Cc:     John Watts <contact@jookia.org>, devicetree@vger.kernel.org,
-        linux-can@vger.kernel.org, linux-riscv@lists.infradead.org,
-        Fabien Poussin <fabien.poussin@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Chen-Yu Tsai <wens@csie.org>
-Subject: [PATCH 4/4] can: sun4i_can: Correctly set acceptance registers on the D1
-Date:   Sat, 15 Jul 2023 21:25:22 +1000
-Message-ID: <20230715112523.2533742-5-contact@jookia.org>
-In-Reply-To: <20230715112523.2533742-1-contact@jookia.org>
-References: <20230715112523.2533742-1-contact@jookia.org>
+        with ESMTP id S229473AbjGOMgS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Jul 2023 08:36:18 -0400
+Received: from mail-yb1-xb33.google.com (mail-yb1-xb33.google.com [IPv6:2607:f8b0:4864:20::b33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88CAC3A81
+        for <devicetree@vger.kernel.org>; Sat, 15 Jul 2023 05:36:17 -0700 (PDT)
+Received: by mail-yb1-xb33.google.com with SMTP id 3f1490d57ef6-cb4de3bd997so3554070276.1
+        for <devicetree@vger.kernel.org>; Sat, 15 Jul 2023 05:36:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1689424575; x=1692016575;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=dpJ+fMs1IOI6v0cEM4uyI8KOLiMJF74uY2KcNd4wMZA=;
+        b=XRMoaDrV9xzJt4GcRI1SJzWMqAqfQA7QdP2W1NH2uC3lt3rejwhCKHSgpCRazRFdh7
+         mcXHP9x0UHQvwQJ2KjkqJ12ycfiTd9KUvfFGtDiEeqGTAzso0TyOCdJEe815KubpJZUi
+         GlPWyDx82A66bpwH2qgE5RuFkAizPrWoOSDkNcoad4hKENo86O9rw6xEcPKqE6aQRK+F
+         jXVGAT4HqggzQSS1YWQ6KNqN3Zr1pm4W6oqLX5kjDjjskgIjW1NTLjk9uvPBuXyMCQX6
+         zzGQoS9nmP57tFybZKXMH3ueVehgWX7mN5+kaJucRdKNp8qIdOKFc0zKimegh6MUQIcQ
+         uoGQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689424575; x=1692016575;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=dpJ+fMs1IOI6v0cEM4uyI8KOLiMJF74uY2KcNd4wMZA=;
+        b=a+BKq150sXPTX3CCrBKNOFBOE2ztWXbA+3wfLjWrXOK6ZCIIKMeh1Iix6PG+yUHSyr
+         4xiOodrURb1eiLUyfV7PJDXAnXcqF/ZIsynaRFBC4dr3DTrm5wu+jI9HcE+B7IxhmGM7
+         IEa6BhqHrXLC9XfIqGRzEgPwTHDRi8P9eiV3vsTkFBCsoyVjdbY27QmeQN67n4YpoBx0
+         jU+8+C6zzSX+703m8aJOA88BGADvAv8S5dFTTgjxa6nD1lPAJdimHvzBB0T4CQet3P/9
+         WSHgquf0+KNFDpsz+c1wLqrchx9ZNyx0hs/nSmWHE/9un6pOm7tACMEUcBu6fukdD27s
+         2jKg==
+X-Gm-Message-State: ABy/qLZO6OUfiai/WHLQXMTkY6ZpAYawkXYdNu0DbwemRFy9yHjMwk6G
+        5eZyXhtgLKK7048S27Sn3aMgJFiwNpak1Jb8Zqnw6g==
+X-Google-Smtp-Source: APBJJlGDF63mhRSyH4p9VTQc6rjgrJyCAVzT5nfkkrOuEPVRsn5X+Iw3TWaDpHP8YQbCm0sO287AOirXsFnAaHBT3r0=
+X-Received: by 2002:a0d:e649:0:b0:57a:15c0:2f5b with SMTP id
+ p70-20020a0de649000000b0057a15c02f5bmr6283853ywe.8.1689424575647; Sat, 15 Jul
+ 2023 05:36:15 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Migadu-Flow: FLOW_OUT
+References: <20230607124628.157465-1-ulf.hansson@linaro.org>
+ <20230607124628.157465-10-ulf.hansson@linaro.org> <20230614230044.GA3019052-robh@kernel.org>
+ <CAPDyKFoDQ12yUB-3f_V222kcUivP_NUcvcM+8s7CraLaBy7tBQ@mail.gmail.com> <CAL_Jsq+GMA62hey6+KYMmVSWsDEkGfD0B=0V9AbdmRqdE6VW1g@mail.gmail.com>
+In-Reply-To: <CAL_Jsq+GMA62hey6+KYMmVSWsDEkGfD0B=0V9AbdmRqdE6VW1g@mail.gmail.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Sat, 15 Jul 2023 14:35:38 +0200
+Message-ID: <CAPDyKFrk92v-d63L8vKyyaVv4LQfG74otWx+LUYLo12m-Norgw@mail.gmail.com>
+Subject: Re: [PATCH 09/16] dt-bindings: firmware: arm,scmi: Extend bindings
+ for protocol@13
+To:     Rob Herring <robh@kernel.org>
+Cc:     Sudeep Holla <sudeep.holla@arm.com>,
+        Cristian Marussi <cristian.marussi@arm.com>,
+        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Nikunj Kela <nkela@quicinc.com>,
+        Prasad Sodagudi <psodagud@quicinc.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: John Watts <contact@jookia.org>
+On Fri, 14 Jul 2023 at 19:15, Rob Herring <robh@kernel.org> wrote:
+>
+> On Thu, Jun 15, 2023 at 3:11=E2=80=AFAM Ulf Hansson <ulf.hansson@linaro.o=
+rg> wrote:
+> >
+> > On Thu, 15 Jun 2023 at 01:00, Rob Herring <robh@kernel.org> wrote:
+> > >
+> > > On Wed, Jun 07, 2023 at 02:46:21PM +0200, Ulf Hansson wrote:
+> > > > The protocol@13 node is describing the performance scaling option f=
+or the
+> > > > ARM SCMI interface, as a clock provider. This is unnecessary limiti=
+ng, as
+> > > > performance scaling is in many cases not limited to switching a clo=
+ck's
+> > > > frequency.
+> > > >
+> > > > Therefore, let's extend the binding so the interface can be modelle=
+d as a
+> > > > generic "performance domain" too. The common way to describe this, =
+is to
+> > > > use the "power-domain" bindings, so let's use that.
+> > >
+> > > What's wrong with the performance-domain binding?
+> >
+> > In my opinion I think the performance-domain binding is superfluous.
+> > We already have plenty of power-domains that do performance scaling
+> > too - and they stick with the power-domain binding, as it's
+> > sufficient.
+>
+> IMO, power-domains should be for power islands which can be power
+> gated. I know they are abused though. Of course, when things are
+> hidden in firmware, you don't really know. A power-domain could be
+> just a clock or a clock could be multiple physical clocks.
 
-The Allwinner D1's CAN controllers have the ACPC and ACPM registers
-moved down. Compensate for this by adding an offset quirk for the
-acceptance registers.
+I would also like to point out that it's perfectly possible that a
+power-domain can be a combination of a "power-island" and a
+performance-domain. In fact we have those cases already (Qcom, Tegra).
 
-Signed-off-by: John Watts <contact@jookia.org>
----
- drivers/net/can/sun4i_can.c | 13 +++++++++++--
- 1 file changed, 11 insertions(+), 2 deletions(-)
+>
+> > That said, I would rather follow the defacto standard that has been
+> > used for many years in the kernel. Do you have a preference that we
+> > should stick to?
+>
+> If power-domains are sufficient, then why do we have
+> performance-domains? We need clear rules for when to use what.
 
-diff --git a/drivers/net/can/sun4i_can.c b/drivers/net/can/sun4i_can.c
-index 06f2cf05aaf5..c508a328e38d 100644
---- a/drivers/net/can/sun4i_can.c
-+++ b/drivers/net/can/sun4i_can.c
-@@ -91,6 +91,8 @@
- #define SUN4I_REG_BUF12_ADDR	0x0070	/* CAN Tx/Rx Buffer 12 */
- #define SUN4I_REG_ACPC_ADDR	0x0040	/* CAN Acceptance Code 0 */
- #define SUN4I_REG_ACPM_ADDR	0x0044	/* CAN Acceptance Mask 0 */
-+#define SUN4I_REG_ACPC_ADDR_D1	0x0028	/* CAN Acceptance Code 0 on the D1 */
-+#define SUN4I_REG_ACPM_ADDR_D1	0x002C	/* CAN Acceptance Mask 0 on the D1 */
- #define SUN4I_REG_RBUF_RBACK_START_ADDR	0x0180	/* CAN transmit buffer start */
- #define SUN4I_REG_RBUF_RBACK_END_ADDR	0x01b0	/* CAN transmit buffer end */
- 
-@@ -205,9 +207,11 @@
-  * struct sun4ican_quirks - Differences between SoC variants.
-  *
-  * @has_reset: SoC needs reset deasserted.
-+ * @acp_offset: Offset of ACPC and ACPM registers
-  */
- struct sun4ican_quirks {
- 	bool has_reset;
-+	int acp_offset;
- };
- 
- struct sun4ican_priv {
-@@ -216,6 +220,7 @@ struct sun4ican_priv {
- 	struct clk *clk;
- 	struct reset_control *reset;
- 	spinlock_t cmdreg_lock;	/* lock for concurrent cmd register writes */
-+	int acp_offset;
- };
- 
- static const struct can_bittiming_const sun4ican_bittiming_const = {
-@@ -338,8 +343,8 @@ static int sun4i_can_start(struct net_device *dev)
- 	}
- 
- 	/* set filters - we accept all */
--	writel(0x00000000, priv->base + SUN4I_REG_ACPC_ADDR);
--	writel(0xFFFFFFFF, priv->base + SUN4I_REG_ACPM_ADDR);
-+	writel(0x00000000, priv->base + SUN4I_REG_ACPC_ADDR + priv->acp_offset);
-+	writel(0xFFFFFFFF, priv->base + SUN4I_REG_ACPM_ADDR + priv->acp_offset);
- 
- 	/* clear error counters and error code capture */
- 	writel(0, priv->base + SUN4I_REG_ERRC_ADDR);
-@@ -768,14 +773,17 @@ static const struct ethtool_ops sun4ican_ethtool_ops = {
- 
- static const struct sun4ican_quirks sun4ican_quirks_a10 = {
- 	.has_reset = false,
-+	.acp_offset = 0,
- };
- 
- static const struct sun4ican_quirks sun4ican_quirks_r40 = {
- 	.has_reset = true,
-+	.acp_offset = 0,
- };
- 
- static const struct sun4ican_quirks sun4ican_quirks_d1 = {
- 	.has_reset = true,
-+	.acp_offset = (SUN4I_REG_ACPC_ADDR_D1 - SUN4I_REG_ACPC_ADDR),
- };
- 
- static const struct of_device_id sun4ican_of_match[] = {
-@@ -877,6 +885,7 @@ static int sun4ican_probe(struct platform_device *pdev)
- 	priv->base = addr;
- 	priv->clk = clk;
- 	priv->reset = reset;
-+	priv->acp_offset = quirks->acp_offset;
- 	spin_lock_init(&priv->cmdreg_lock);
- 
- 	platform_set_drvdata(pdev, dev);
--- 
-2.41.0
+Well, I think we invented the performance-domains bindings, especially
+with CPUs in mind. So far, that's the only use-case too (Mediatek,
+Apple). Even if I think the power-domains bindings would have worked
+fine for these cases too, maybe we should limit the
+performance-domains binding to be used for CPUs?
 
+Anyway, for the more generic use-case, I think the power-domains DT
+binding is better to stick with (it's what we have used for many years
+by now), as it provides us with the flexibility of hooking up an
+opp-table to the power-domain, allowing us to make the domain
+"performance-capable" too.
+
+Kind regards
+Uffe
