@@ -2,174 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EDAB9754889
-	for <lists+devicetree@lfdr.de>; Sat, 15 Jul 2023 14:36:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A881F7548A0
+	for <lists+devicetree@lfdr.de>; Sat, 15 Jul 2023 15:12:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229910AbjGOMg0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 15 Jul 2023 08:36:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53204 "EHLO
+        id S230014AbjGONMa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 15 Jul 2023 09:12:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57328 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229733AbjGOMgZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Jul 2023 08:36:25 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61D5A3A84
-        for <devicetree@vger.kernel.org>; Sat, 15 Jul 2023 05:36:23 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id 2adb3069b0e04-4fbf1f6c771so4778190e87.1
-        for <devicetree@vger.kernel.org>; Sat, 15 Jul 2023 05:36:23 -0700 (PDT)
+        with ESMTP id S229593AbjGONM3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Jul 2023 09:12:29 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F2DB2D75
+        for <devicetree@vger.kernel.org>; Sat, 15 Jul 2023 06:12:28 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-4fba8f2197bso4802518e87.3
+        for <devicetree@vger.kernel.org>; Sat, 15 Jul 2023 06:12:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689424581; x=1692016581;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        d=linaro.org; s=google; t=1689426746; x=1692018746;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=OQh1RqnYtSQG/u4OzhJ8MZUxL/+/aRY/L+fqZJTYF4g=;
-        b=nT4Bg8WYmt+w7liTUcMwOy0n7JPxVjemZTuHxAfPlX6sDs4qi9R91DYWZr0mE4q0Vt
-         XKolK/2BgsetcbJ2A3jICOptLBHtcJhc1aG5l35usGaC/pXzVaP+/09mPB9us7kGWddm
-         7mNqDG9wfwAblk5JuGqvqS+5H18tub6PCIWr+mqrPPixy46quXe5miq8Reowf52xKspA
-         jPiZPL9KMxvEQ9EtbEBSPOb8DMVZ4CUTwLG0ODV3xYlqSpNkI92Izfw0N7LgxOu8JzVW
-         CEcMwhk9gWv+Hy7GYoxMnSX8V4avbWdaAL2VwMMFEKdxRgtZfy+N9r8tneTpcShU5swS
-         Q0Dg==
+        bh=obDUffjTF2zRBMvLiGVPVDGsQ4MqX71EFjXjfxceF88=;
+        b=drCGM8XUvG+PkDCVSHDeEZ4FlI4Kqh8AvEHYtEU1kKiOiKPtykvL/Z+LlzQrkiVga/
+         omIBf29M576/3zynvsIiY+E5rZG7xKlG6ZsQSN8dKDGvbnMTlRlHcpKKxRHxwFnmpHwZ
+         KePcAm7vB+ejRedicS9DtvjfC8u+d6GPzB16rn8j5O7bjucWJa2j8mjijgOzy4qP9lsa
+         KIhR0nsIl6EzXYjgDx2ltZhqETCs/qAWCjNHiLGZoU4ntt1uhp0grIIKeMlv46+bEs5m
+         GxlYfVR/b2HrfLsy6wxu6qeLZG9ouhj9eQg7w5m3jMRgbfSj2ZCF/TAWaJZM5NV8duP0
+         RNUw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689424581; x=1692016581;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        d=1e100.net; s=20221208; t=1689426746; x=1692018746;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=OQh1RqnYtSQG/u4OzhJ8MZUxL/+/aRY/L+fqZJTYF4g=;
-        b=YZ4IggKf/6aZJ4lW0lerrfj7AD7MDDxMbb4vax0Xxa9k6w7P1KZwEsog1LLeUfWuQn
-         ENvbZYsO13gsM7qUDg+DaSSZDPN5oeE5aqe4jibwOKiVjfmjnN8mkTjWBhucRhN1R9Fx
-         fug8pS853f18uQNKrMa0xqgG1vXBrUshc9QK+bPVNw7Bfmb6tUsOWQ6kPj5r7mrBTPOl
-         YTiKKnogLs0yBYmvJi5sBGOw2a2ntTsA+QJT1L3TWgeizVDE7ofO+6CIbRkhCYgxezud
-         Vj6qd5kesZSIv8rRlBVka6elKn4TRPeG8swr1L/FRLJBQ8LWswzZXWdH+xIS1h8fKP2N
-         0EmQ==
-X-Gm-Message-State: ABy/qLY6F6tStv8op+R9WlSferwNm4tdcfOtNchgcyX1vw0RsGN/AvQz
-        sZaBhCGtynAiRox3VQEllMVWNQ==
-X-Google-Smtp-Source: APBJJlGk2A5i2kVSs9kXxMPfC00oOdJikOH/eqNKi7gO/8COjEdmJWtOg99/mke4kY2DyOA1vU4+Dw==
-X-Received: by 2002:a2e:9159:0:b0:2b6:ece0:a3c1 with SMTP id q25-20020a2e9159000000b002b6ece0a3c1mr6016039ljg.35.1689424581496;
-        Sat, 15 Jul 2023 05:36:21 -0700 (PDT)
+        bh=obDUffjTF2zRBMvLiGVPVDGsQ4MqX71EFjXjfxceF88=;
+        b=P0pza527FzCZIEp4knwsqG67X+hfsnMuH3GjfwkoiMe08OHZ+5nxQufYSuMVMDSz1M
+         +PyY/mOvByk75uDRMQMmQ3bg8lhsh6Ze88ytAiDQF099Y3nVYaFlW6GgMbpb/Eb/H++W
+         w3P+ICFRhCrGOapVit80KDDMXWXR8n+Y2JccehIVhFgZZBoUeasMlhMZsNzyZ/8+qbX+
+         3ZU3UNK8qt9vWoEBXfSddtFIMEp2pVNLfzg6E3dWmY0xTsxRhgT/dJ7Ucz3i2i0RcxSu
+         JhgplBGHnJLfeLkeAE8KEbR/JAI/5/sajDWheTr3vKA5PcP8To4seuEThXilgizTM9yd
+         OriA==
+X-Gm-Message-State: ABy/qLbh/hYtBZTwI9XInr4fH8I/MvNY8UthXcbSrNyy4S6n6O2/IGna
+        Q9hZ3LfXitSnCQJM/r3oR463HA==
+X-Google-Smtp-Source: APBJJlE8XDJli3tUl9UaORSKozUioC+k7HlH9S/5Q/brZimYM0tJsVC+RVZTsqtwP7NSuS8xlpCBYQ==
+X-Received: by 2002:a05:6512:3143:b0:4f8:67a5:94df with SMTP id s3-20020a056512314300b004f867a594dfmr4925508lfi.15.1689426746394;
+        Sat, 15 Jul 2023 06:12:26 -0700 (PDT)
 Received: from [192.168.1.101] (abxi167.neoplus.adsl.tpnet.pl. [83.9.2.167])
-        by smtp.gmail.com with ESMTPSA id n17-20020a2e8791000000b002b6ca937d60sm2487484lji.8.2023.07.15.05.36.19
+        by smtp.gmail.com with ESMTPSA id p12-20020a19f00c000000b004fb7359ab83sm1884308lfc.80.2023.07.15.06.12.24
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 15 Jul 2023 05:36:20 -0700 (PDT)
-Message-ID: <cfafdde2-4ded-517f-7c69-a751e53984e3@linaro.org>
-Date:   Sat, 15 Jul 2023 14:36:18 +0200
+        Sat, 15 Jul 2023 06:12:25 -0700 (PDT)
+Message-ID: <3176ac93-da55-f3f3-756a-46d0d33901a7@linaro.org>
+Date:   Sat, 15 Jul 2023 15:12:23 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
-Subject: Re: [PATCH v4 4/6] arm64: dts: qcom: ipq5332: Add USB related nodes
+Subject: Re: [PATCH 11/13] arm64: dts: qcom: sdm845: Add interconnect paths to
+ UFSHC
 Content-Language: en-US
-To:     Varadarajan Narayanan <quic_varada@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, vkoul@kernel.org, kishon@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, gregkh@linuxfoundation.org,
-        catalin.marinas@arm.com, will@kernel.org, p.zabel@pengutronix.de,
-        arnd@arndb.de, geert+renesas@glider.be, neil.armstrong@linaro.org,
-        nfraprado@collabora.com, rafal@milecki.pl,
-        quic_srichara@quicinc.com, quic_varada@quicinc.org,
-        quic_wcheng@quicinc.com, linux-arm-msm@vger.kernel.org,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <cover.1689160067.git.quic_varada@quicinc.com>
- <1f99805b6437aa8d6eaa4663e8d27b98ee595f00.1689160067.git.quic_varada@quicinc.com>
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        vireshk@kernel.org, nm@ti.com, sboyd@kernel.org,
+        myungjoo.ham@samsung.com, kyungmin.park@samsung.com,
+        cw00.choi@samsung.com, andersson@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Cc:     linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        quic_asutoshd@quicinc.com, quic_cang@quicinc.com,
+        quic_nitirawa@quicinc.com, quic_narepall@quicinc.com,
+        quic_bhaskarv@quicinc.com, quic_richardp@quicinc.com,
+        quic_nguyenb@quicinc.com, quic_ziqichen@quicinc.com,
+        bmasney@redhat.com, krzysztof.kozlowski@linaro.org
+References: <20230712103213.101770-1-manivannan.sadhasivam@linaro.org>
+ <20230712103213.101770-13-manivannan.sadhasivam@linaro.org>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <1f99805b6437aa8d6eaa4663e8d27b98ee595f00.1689160067.git.quic_varada@quicinc.com>
+In-Reply-To: <20230712103213.101770-13-manivannan.sadhasivam@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12.07.2023 13:38, Varadarajan Narayanan wrote:
-> Add USB phy and controller nodes.
+On 12.07.2023 12:32, Manivannan Sadhasivam wrote:
+> UFS host controller requires interconnect path configuration for proper
+> working. So let's specify them for SDM845 SoC.
 > 
-> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 > ---
-> v4:
-> 	Change node name
-> 	Remove blank line
-> 	'make CHECK_DTBS=y DT_SCHEMA_FILES=qcom qcom/ipq5332-rdp441.dtb' passed
-DT_SCHEMA_FILES accepts yaml files
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
-> v1:
-> 	Rename phy node
-> 	Change compatible from m31,ipq5332-usb-hsphy -> qcom,ipq5332-usb-hsphy
-> 	Remove 'qscratch' from phy node
-> 	Fix alignment and upper-case hex no.s
-> 	Add clock definition for the phy
-> 	Remove snps,ref-clock-period-ns as it is not used. dwc3_ref_clk_period()
-> 	in dwc3/core.c takes the frequency from ref clock and calculates fladj
-> 	as appropriate.
-> ---
->  arch/arm64/boot/dts/qcom/ipq5332.dtsi | 53 +++++++++++++++++++++++++++++++++++
->  1 file changed, 53 insertions(+)
+>  arch/arm64/boot/dts/qcom/sdm845.dtsi | 5 +++++
+>  1 file changed, 5 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/ipq5332.dtsi b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
-> index 8bfc2db..8118356 100644
-> --- a/arch/arm64/boot/dts/qcom/ipq5332.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
-> @@ -405,6 +405,59 @@
->  				status = "disabled";
->  			};
->  		};
-> +
-> +		usbphy0: usb-phy@7b000 {
-> +			compatible = "qcom,ipq5332-usb-hsphy";
-> +			reg = <0x0007b000 0x12c>;
-> +
-> +			clocks = <&gcc GCC_USB0_PHY_CFG_AHB_CLK>;
-> +			clock-names = "cfg_ahb";
-> +
-> +			resets = <&gcc GCC_QUSB2_0_PHY_BCR>;
-> +
-> +			status = "disabled";
-> +		};
-> +
-> +		usb2: usb2@8a00000 {
-> +			compatible = "qcom,ipq5332-dwc3", "qcom,dwc3";
-> +			reg = <0x08af8800 0x400>;
-> +
-> +			interrupts = <GIC_SPI 62 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-names = "hs_phy_irq";
-> +
-> +			clocks = <&gcc GCC_USB0_MASTER_CLK>,
-> +				 <&gcc GCC_SNOC_USB_CLK>,
-> +				 <&gcc GCC_USB0_SLEEP_CLK>,
-> +				 <&gcc GCC_USB0_MOCK_UTMI_CLK>;
-> +			clock-names = "core",
-> +				      "iface",
-> +				      "sleep",
-> +				      "mock_utmi";
-> +
-> +			resets = <&gcc GCC_USB_BCR>;
-> +
-> +			qcom,select-utmi-as-pipe-clk;
-> +
-> +			#address-cells = <1>;
-> +			#size-cells = <1>;
-> +			ranges;
-> +
-> +			status = "disabled";
-> +
-> +			usb2_0_dwc: usb@8a00000 {
-> +				compatible = "snps,dwc3";
-> +				reg = <0x08a00000 0xe000>;
-> +				clocks = <&gcc GCC_USB0_MOCK_UTMI_CLK>;
-> +				clock-names = "ref";
-> +				interrupts = <GIC_SPI 64 IRQ_TYPE_LEVEL_HIGH>;
-> +				usb-phy = <&usbphy0>;
-> +				tx-fifo-resize;
-> +				snps,is-utmi-l1-suspend;
-> +				snps,hird-threshold = /bits/ 8 <0x0>;
-> +				snps,dis_u2_susphy_quirk;
-> +				snps,dis_u3_susphy_quirk;
-> +			};
-> +		};
->  	};
+> diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> index e04a3cbb1017..2ea6eb44953e 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> @@ -2607,6 +2607,11 @@ ufs_mem_hc: ufshc@1d84000 {
+>  				<&gcc GCC_UFS_PHY_ICE_CORE_CLK>;
 >  
->  	timer {
+>  			operating-points-v2 = <&ufs_opp_table>;
+> +
+> +			interconnects = <&aggre1_noc MASTER_UFS_MEM 0 &mem_noc SLAVE_EBI1 0>,
+> +					<&gladiator_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_UFS_MEM_CFG 0>;
+> +			interconnect-names = "ufs-ddr", "cpu-ufs";
+> +
+>  			status = "disabled";
+>  
+>  			ufs_opp_table: opp-table {
