@@ -2,91 +2,287 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 924DB754BD7
-	for <lists+devicetree@lfdr.de>; Sat, 15 Jul 2023 21:49:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 682F4754BDA
+	for <lists+devicetree@lfdr.de>; Sat, 15 Jul 2023 21:52:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229628AbjGOTt4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 15 Jul 2023 15:49:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39096 "EHLO
+        id S229631AbjGOTwE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 15 Jul 2023 15:52:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39926 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229597AbjGOTtz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Jul 2023 15:49:55 -0400
-Received: from mail-yw1-x1136.google.com (mail-yw1-x1136.google.com [IPv6:2607:f8b0:4864:20::1136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDDE6E5C
-        for <devicetree@vger.kernel.org>; Sat, 15 Jul 2023 12:49:54 -0700 (PDT)
-Received: by mail-yw1-x1136.google.com with SMTP id 00721157ae682-5768a7e3adbso63889127b3.0
-        for <devicetree@vger.kernel.org>; Sat, 15 Jul 2023 12:49:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689450594; x=1692042594;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2yEv6eKAuSe0Kz+0k8MmuU8ikB8Aj5bM/CELpHQ0gMM=;
-        b=wYv+ZsaTaEP2A45rv1sjNOeHYAFX2V0lVgEyE07Ojf6YAntYV0YxIwcZgZQ7u+0os3
-         UKm6yT3m/YgrqDsFcgGd+XE/cnUs3fa3sNGaUepi+7z89dAwLGd5aM82qa4azsAuqutb
-         hUtKd5pQPj9lJ/uBRW7c188TFADSyr5OQlKUZlVD3wRfHhZs7mqXSEwbnmmQK4ZVDMSf
-         94q54nBE5JsAa3nEoodOwy/KE430zsTqvO4RiyRCRpUU5Tug6ww42eekYYJzC/4za8mC
-         YmQJ12Bnt8pbzEVelvSL9wo/W81t/XB/0uUea0OYK+t5TqypS8LsfKGrpQFaaQziN+wS
-         QbIw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689450594; x=1692042594;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=2yEv6eKAuSe0Kz+0k8MmuU8ikB8Aj5bM/CELpHQ0gMM=;
-        b=lY5STMEia9+Vqx5BU/Hl11ZakAQD3Q7fO3VwOrPoRFVHLJ4wxy/r/6eolULDQW+JSN
-         HD4HPGyXJUKh6C85s52mIAcLWu6aABxfghL+rLKZnSqkR5vazJWrkuaqL1bUl46sdKpZ
-         SqAL6Adp0ZKG8GLjPV5UXIQFPXD0yWO836fxNUA3ulP3fGO04WyqPvq2gwk+Dv+/3VKu
-         uUJuTq9R5iJwDSCqew2KhlYTE19Q0J5T1GWBNwjsKDY604ydu09m1CwSvSW3ouDnw/xR
-         hNO/IQqEuIT+dFzNfVQ1XW0KpmiBVABF+EzpaOUHUYOCibtFsz4kkL5gWszFt07OGxB/
-         ythQ==
-X-Gm-Message-State: ABy/qLZKc+x4bdCi5lbMpfvRPa1ieiCt/9sWeF4gKK2O22QmPcUs724Q
-        hdd8AhCfelyux6f8FN0riCod6ar30vWUDSQDTZepLg==
-X-Google-Smtp-Source: APBJJlHDX1l/02CkrPB4AA+mf1Cf9BnpPzp8eeatR/+0KdBd23LlTWLRqBFXzkUgceXyN3+q+M2QVQIfXwJjTJmfsD8=
-X-Received: by 2002:a0d:e645:0:b0:579:e6e4:a165 with SMTP id
- p66-20020a0de645000000b00579e6e4a165mr6926436ywe.10.1689450594020; Sat, 15
- Jul 2023 12:49:54 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230713002519.109392-1-david@ixit.cz>
-In-Reply-To: <20230713002519.109392-1-david@ixit.cz>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Sat, 15 Jul 2023 21:49:42 +0200
-Message-ID: <CACRpkdY8LqRsjSbHX+fPhUrCswOHYiOHuGovCbVz6=LjFtG6iQ@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: extcon: extcon-usb-gpio: convert to yaml format
-To:     David Heidelberg <david@ixit.cz>, Rob Herring <robh+dt@kernel.org>
-Cc:     MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
+        with ESMTP id S229567AbjGOTwD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Jul 2023 15:52:03 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22AD41B6
+        for <devicetree@vger.kernel.org>; Sat, 15 Jul 2023 12:52:02 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1qKlJA-00044x-JJ; Sat, 15 Jul 2023 21:52:00 +0200
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1qKlJ9-00Edgc-2g; Sat, 15 Jul 2023 21:51:59 +0200
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1qKlJ7-0058U7-RP; Sat, 15 Jul 2023 21:51:57 +0200
+Date:   Sat, 15 Jul 2023 21:51:56 +0200
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Ben Dooks <ben.dooks@sifive.com>
+Cc:     linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, ben.dooks@codethink.co.uk,
+        Thierry Reding <thierry.reding@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        Greentime Hu <greentime.hu@sifive.com>,
+        jarkko.nikula@linux.intel.com,
+        William Salmon <william.salmon@sifive.com>,
+        Jude Onyenegecha <jude.onyenegecha@sifive.com>
+Subject: Re: [PATCH v8 5/5] pwm: dwc: add of/platform support
+Message-ID: <20230715195156.fahd2btntvbqpd66@pengutronix.de>
+References: <20230614171457.69191-1-ben.dooks@sifive.com>
+ <20230614171457.69191-6-ben.dooks@sifive.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="uk3g2pfod6i5g7sl"
+Content-Disposition: inline
+In-Reply-To: <20230614171457.69191-6-ben.dooks@sifive.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 13, 2023 at 2:25=E2=80=AFAM David Heidelberg <david@ixit.cz> wr=
-ote:
 
-> +maintainers:
-> +  - Linus Walleij <linus.walleij@linaro.org>
+--uk3g2pfod6i5g7sl
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-I don't see why I should be listed for this? I have nothing to
-do with it, I think.
+On Wed, Jun 14, 2023 at 06:14:57PM +0100, Ben Dooks wrote:
+> The dwc pwm controller can be used in non-PCI systems, so allow
+> either platform or OF based probing.
 
-On the topic:
-Can't this just reuse Rob's excellent binding in
-Documentation/devicetree/bindings/connector/usb-connector.yaml
-just add id-gpios to it and list const: linux,extcon-usb-gpio as a
-deprecated compatible.
+A document describing the binding is needed here.
 
-(Then we should make the Linux driver probe from the existing
-and better compatibles from that file, but it's a whole other issue.)
+>=20
+> Signed-off-by: Ben Dooks <ben.dooks@sifive.com>
+> ---
+> v8:
+>  - add compile test for of-case
+>  - add module namespace
+>  - move later in the series
+> v7:
+>  - fixup kconfig from previous pcie changes
+> v5:
+>  - fix missing " in kconfig
+>  - remove .remove method, devm already sorts this.
+>  - merge pwm-number code
+>  - split the of code out of the core
+>  - get bus clock
+> v4:
+>  - moved the compile test code earlier
+>  - fixed review comments
+>  - used NS_PER_SEC
+>  - use devm_clk_get_enabled
+>  - ensure we get the bus clock
+> v3:
+>  - changed compatible name
+> ---
+>  drivers/pwm/Kconfig        | 10 +++++
+>  drivers/pwm/Makefile       |  1 +
+>  drivers/pwm/pwm-dwc-core.c |  6 +++
+>  drivers/pwm/pwm-dwc-of.c   | 78 ++++++++++++++++++++++++++++++++++++++
+>  drivers/pwm/pwm-dwc.c      |  1 +
+>  drivers/pwm/pwm-dwc.h      |  1 +
+>  6 files changed, 97 insertions(+)
+>  create mode 100644 drivers/pwm/pwm-dwc-of.c
+>=20
+> diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
+> index 7c54cdcb97a0..61f5d3f30fd7 100644
+> --- a/drivers/pwm/Kconfig
+> +++ b/drivers/pwm/Kconfig
+> @@ -205,6 +205,16 @@ config PWM_DWC
+>  	  To compile this driver as a module, choose M here: the module
+>  	  will be called pwm-dwc.
+> =20
+> +config PWM_DWC_OF
+> +	tristate "DesignWare PWM Controller (OF bus)"
+> +	depends on HAS_IOMEM && (OF || COMPILE_TEST)
+> +	select PWM_DWC_CORE
+> +	help
+> +	  PWM driver for Synopsys DWC PWM Controller on an OF bus.
+> +
+> +	  To compile this driver as a module, choose M here: the module
+> +	  will be called pwm-dwc-of.
+> +
+>  config PWM_EP93XX
+>  	tristate "Cirrus Logic EP93xx PWM support"
+>  	depends on ARCH_EP93XX || COMPILE_TEST
+> diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
+> index de3ed77e8d7c..d27dfbb850b7 100644
+> --- a/drivers/pwm/Makefile
+> +++ b/drivers/pwm/Makefile
+> @@ -17,6 +17,7 @@ obj-$(CONFIG_PWM_CRC)		+=3D pwm-crc.o
+>  obj-$(CONFIG_PWM_CROS_EC)	+=3D pwm-cros-ec.o
+>  obj-$(CONFIG_PWM_DWC_CORE)	+=3D pwm-dwc-core.o
+>  obj-$(CONFIG_PWM_DWC)		+=3D pwm-dwc.o
+> +obj-$(CONFIG_PWM_DWC_OF)	+=3D pwm-dwc-of.o
+>  obj-$(CONFIG_PWM_EP93XX)	+=3D pwm-ep93xx.o
+>  obj-$(CONFIG_PWM_FSL_FTM)	+=3D pwm-fsl-ftm.o
+>  obj-$(CONFIG_PWM_HIBVT)		+=3D pwm-hibvt.o
+> diff --git a/drivers/pwm/pwm-dwc-core.c b/drivers/pwm/pwm-dwc-core.c
+> index 0f07e26e6c30..ed102fc4b30a 100644
+> --- a/drivers/pwm/pwm-dwc-core.c
+> +++ b/drivers/pwm/pwm-dwc-core.c
+> @@ -16,6 +16,7 @@
+>  #include <linux/kernel.h>
+>  #include <linux/module.h>
+>  #include <linux/pci.h>
+> +#include <linux/clk.h>
+>  #include <linux/pm_runtime.h>
+>  #include <linux/pwm.h>
+> =20
+> @@ -44,6 +45,9 @@ static int __dwc_pwm_configure_timer(struct dwc_pwm *dw=
+c,
+>  	u32 high;
+>  	u32 low;
+> =20
+> +	if (dwc->clk)
+> +		dwc->clk_rate =3D clk_get_rate(dwc->clk);
+> +
+>  	/*
+>  	 * Calculate width of low and high period in terms of input clock
+>  	 * periods and check are the result within HW limits between 1 and
+> @@ -128,6 +132,8 @@ static int dwc_pwm_get_state(struct pwm_chip *chip, s=
+truct pwm_device *pwm,
+> =20
+>  	pm_runtime_get_sync(chip->dev);
+> =20
+> +	if (dwc->clk)
+> +		dwc->clk_rate =3D clk_get_rate(dwc->clk);
+>  	clk_rate =3D dwc->clk_rate;
+> =20
+>  	ctrl =3D dwc_pwm_readl(dwc, DWC_TIM_CTRL(pwm->hwpwm));
+> diff --git a/drivers/pwm/pwm-dwc-of.c b/drivers/pwm/pwm-dwc-of.c
+> new file mode 100644
+> index 000000000000..13a0b534b383
+> --- /dev/null
+> +++ b/drivers/pwm/pwm-dwc-of.c
+> @@ -0,0 +1,78 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * DesignWare PWM Controller driver OF
+> + *
+> + * Copyright (C) 2022 SiFive, Inc.
+> + */
+> +
+> +#define DEFAULT_MODULE_NAMESACE dwc_pwm
 
-Yours,
-Linus Walleij
+missing P? I'd have put this into drivers/pwm/pwm-dwc.h.
+
+> +
+> +#include <linux/bitops.h>
+> +#include <linux/export.h>
+> +#include <linux/kernel.h>
+> +#include <linux/module.h>
+> +#include <linux/clk.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/pm_runtime.h>
+> +#include <linux/pwm.h>
+> +#include <linux/io.h>
+> +
+> +#include "pwm-dwc.h"
+> +
+> +static int dwc_pwm_plat_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev =3D &pdev->dev;
+> +	struct dwc_pwm *dwc;
+> +	struct clk *bus;
+> +	u32 nr_pwm;
+> +
+> +	dwc =3D dwc_pwm_alloc(dev);
+> +	if (!dwc)
+> +		return -ENOMEM;
+> +
+> +	if (!device_property_read_u32(dev, "snps,pwm-number", &nr_pwm)) {
+> +		if (nr_pwm > DWC_TIMERS_TOTAL)
+> +			dev_err(dev, "too many PWMs (%d) specified, capping at %d\n",
+> +				nr_pwm, dwc->chip.npwm);
+> +		else
+> +			dwc->chip.npwm =3D nr_pwm;
+> +	}
+> +
+> +	dwc->base =3D devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(dwc->base))
+> +		return PTR_ERR(dwc->base);
+> +
+> +	bus =3D devm_clk_get_enabled(dev, NULL);
+> +	if (IS_ERR(bus))
+> +		return dev_err_probe(dev, PTR_ERR(bus),
+> +				     "failed to get clock\n");
+> +
+> +	dwc->clk =3D devm_clk_get_enabled(dev, "timer");
+> +	if (IS_ERR(dwc->clk))
+> +		return dev_err_probe(dev, PTR_ERR(dwc->clk),
+> +				     "failed to get timer clock\n");
+> +
+> +	dwc->clk_rate =3D clk_get_rate(dwc->clk);
+
+Do you need this here? Isn't clk_rate assigned each time it's used when
+clk !=3D NULL?
+
+> +	return devm_pwmchip_add(dev, &dwc->chip);
+> +}
+> +
+> +static const struct of_device_id dwc_pwm_dt_ids[] =3D {
+> +	{ .compatible =3D "snps,dw-apb-timers-pwm2" },
+> +	{ },
+> +};
+> +MODULE_DEVICE_TABLE(of, dwc_pwm_dt_ids);
+> +
+> +static struct platform_driver dwc_pwm_plat_driver =3D {
+> +	.driver =3D {
+> +		.name		=3D "dwc-pwm",
+> +		.of_match_table  =3D dwc_pwm_dt_ids,
+> +	},
+> +	.probe	=3D dwc_pwm_plat_probe,
+> +};
+> +
+> +module_platform_driver(dwc_pwm_plat_driver);
+> +
+> +MODULE_ALIAS("platform:dwc-pwm-of");
+> +MODULE_AUTHOR("Ben Dooks <ben.dooks@sifive.com>");
+
+Given that this email address is (or soon will be) unavailable, maybe
+better put your codethink address here?
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--uk3g2pfod6i5g7sl
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmSy+NsACgkQj4D7WH0S
+/k4BVQgAgfQrkmy+1RRLl6Zk0usiTE06K0JbHbbmLLWB3uN8Cvs93wmS6zP+Fj87
+rvkghgOBWnxYNK85RLDvG7ywrEsahkXJhfgJlVtqYsT4JysZCTwqUzr8Ewd7id75
+mCrdJbEOfHENR7C0TvJ5Zg4sW+TDDTnNCAm4p6wvb9Wkj3+F7IUwnQ0SFqWlaGt0
+2ORJsKR/bLjK3389fIhBCuU0XMrAg+7l6ypk2Q4nqrfqzFYP7+w+oQhJU1TFcli3
+4Be0CErhKkiTfzWiVSatzRYWtM4ylvH7O7hwgC8FEG2PwbuzoQKjJtCKeQf1qT/p
+jpfiiIGI/5LFOguflEhupNKS6DGO5g==
+=22Se
+-----END PGP SIGNATURE-----
+
+--uk3g2pfod6i5g7sl--
