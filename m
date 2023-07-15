@@ -2,67 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DF80375484A
-	for <lists+devicetree@lfdr.de>; Sat, 15 Jul 2023 12:48:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A3AB575484D
+	for <lists+devicetree@lfdr.de>; Sat, 15 Jul 2023 12:49:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229986AbjGOKs3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 15 Jul 2023 06:48:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41616 "EHLO
+        id S229904AbjGOKtY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 15 Jul 2023 06:49:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42548 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229904AbjGOKs2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Jul 2023 06:48:28 -0400
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 253E13A86;
-        Sat, 15 Jul 2023 03:48:27 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-992ca792065so386685366b.2;
-        Sat, 15 Jul 2023 03:48:27 -0700 (PDT)
+        with ESMTP id S230174AbjGOKtX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Jul 2023 06:49:23 -0400
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42EE33A86;
+        Sat, 15 Jul 2023 03:49:21 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-98377c5d53eso384360166b.0;
+        Sat, 15 Jul 2023 03:49:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1689418105; x=1692010105;
-        h=content-transfer-encoding:content-language:cc:to:subject:from
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=rn5C5YBsaSogUUgEp4dzGB5xBo5qBNnix/jnrz9gqkM=;
-        b=fDx9RWHqR3WdveXG/OlDdrTexq4fbNMPt2ZBSoL0Xwa6tCqLAuScCyfOnhhX1ac0ts
-         ysauNt9TuGVshmSJpp5FWmLJP1S7eZv3nO5o3BkKAlr9SWOY4qDMxuGQTwjL9Ne5lEZ3
-         vF2k0HrrOg5DSsIuQFpsnjMzvuJY1zJE1a95jfDi33rLE/Ohan1/JiD1h1Izom+IFNnc
-         pvuiC0DnrG/+ow/XT250CZBIS9DlpHVnyCHBKFn2fTETBQPFuWbs4sCGk3feLD/NENCw
-         Kh1Ms1RYHTE/kZLsebUXxFSmw9KEad17kJPeKU8q/wG1Xstw1s+uZjp1OXzZA6aTpAWp
-         JYcA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689418105; x=1692010105;
-        h=content-transfer-encoding:content-language:cc:to:subject:from
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+        d=gmail.com; s=20221208; t=1689418159; x=1692010159;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:subject:from:user-agent:mime-version:date:message-id:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=rn5C5YBsaSogUUgEp4dzGB5xBo5qBNnix/jnrz9gqkM=;
-        b=XooRytEg5uFPV6qv8HqzOuSVCzEnO/yoq/0uUhDTu9JMu475PEdK13LmLmjpmjPvhL
-         hmkMtpMuUo507ddYNt8ZMcotZ9Fu3aCHXEPcDaHnFLje4CW5PF9QPeAHMlZ187SMhbCk
-         omwhBk0RUn5wSgtC1/xXYh95Txe+pRrQgFWf7TnJLtaPKC5/I71Vu/FnDvfyv4CtXGDb
-         UedZfFqJ6Jbb1zWqnaUizEoepEbcnvF2eydLlvJC0Y5U8CEFM2mS0XvR4GpYDEASwrkE
-         e74PH2a18r2nadcVTv2jbQ/fYPD2g3gYJLvh6PV8AKmk1B/0TY7sWmCNI4Z6JQcAZEfl
-         TLaA==
-X-Gm-Message-State: ABy/qLaWeZL8svIyg5hXsGsQuet+FQptVxcmCB94PRbNX7dSjcbCUPEj
-        wlsRKkKFA9QkkaxgCwUiYSI=
-X-Google-Smtp-Source: APBJJlFwpbjDxF/L0eWHgxk3zF1ODVea2/iA4Nkl2naDwD6iIjyL37Vd+GItE2wutNZVuketriyBRQ==
-X-Received: by 2002:a17:906:6884:b0:988:4dc:e3a3 with SMTP id n4-20020a170906688400b0098804dce3a3mr6496371ejr.31.1689418105356;
-        Sat, 15 Jul 2023 03:48:25 -0700 (PDT)
+        bh=2Msya+OeUKFjaaFNFKi9RZdmhf47ggR6awj7JcHGF44=;
+        b=TXA2VCYmB6a4U/vUInFYKG7TlY+AVtTjKuD+KP3zKcgdrzlp759XldO4vhbWti9UWi
+         /HJ1vqHtUbBIlFykt1kpf28dAcwALFxLGZOXiac+pqbqwiE3LFLQ3x7sNkhdRgHdH7rO
+         Cnm0BKEiiIGUcpq8CgQY6QK0xMpLKJ0U1KclbjIaNTTEb1XvEfrlndufTkVjcqVP8hHI
+         CiyYJ0kaZK02txAhkc12Sg1Zd/YY1REu/h8NishYTKioEKGcXwl71mutDjusNGeN5BaQ
+         I2OxLKolJyNR/wtx4W3jupK7TxyR+qB9vAQK9YnPXMiDWZYFpCJvyiCK1aPLkuSatrhm
+         JHNQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689418159; x=1692010159;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:subject:from:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=2Msya+OeUKFjaaFNFKi9RZdmhf47ggR6awj7JcHGF44=;
+        b=KqncbE+f7rzN1xEkFkq0iCGMLzkWWc3YBEoHBmitG71WKapuUu673iPyHeHlCmASAY
+         8tPWG4SLVXvm6GzbzNMx2rlmYJVUTNUhiLGNZTXEtjZBYRIcVRBWBQlFYPgErJtV9h3i
+         m0MV5GEDBaCk+iMRhwyZ5YH/cAEdkXuoEzpVmRQ6wFZeiOjgF8ecv/BF7+ZlsiJ+Bkcg
+         5TTzpavME2kWCFx7PoZbWNgd/AtVasVGja8y3eMsG9UUywd1gkatiA5phxEPD2aHWMOC
+         C2VTv7kEzRudb2oImRdXFOS6XjZ0GnHGzTqL+lwlhtjqnDexbt34/554vClOVhSW9LPx
+         CK+A==
+X-Gm-Message-State: ABy/qLYAPKPE/nlx32RM9kuzVcMPnjTk3zKxUGTRx8L8XzSTd0r93CRB
+        8EjIZzn6lQZpRPIzUPYHIGk=
+X-Google-Smtp-Source: APBJJlE0jCxwHJaDfSipFXMCIjpsixSBRfEfBBeX6dxD3uNE4NTXk/pNOu6Sss9sA4LNV8RKWntj1w==
+X-Received: by 2002:a17:907:2093:b0:991:b2a2:e424 with SMTP id pv19-20020a170907209300b00991b2a2e424mr6408079ejb.76.1689418159698;
+        Sat, 15 Jul 2023 03:49:19 -0700 (PDT)
 Received: from [192.168.2.1] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id d20-20020a17090648d400b00993feabdc6asm6642782ejt.157.2023.07.15.03.48.24
+        by smtp.gmail.com with ESMTPSA id a15-20020a17090680cf00b0099251a40184sm6685749ejx.99.2023.07.15.03.49.18
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 15 Jul 2023 03:48:24 -0700 (PDT)
-Message-ID: <61c84262-cd98-1e60-d95b-9b0492083994@gmail.com>
-Date:   Sat, 15 Jul 2023 12:48:16 +0200
+        Sat, 15 Jul 2023 03:49:19 -0700 (PDT)
+Message-ID: <2b0dc481-562f-c8df-545e-dcf6548adb07@gmail.com>
+Date:   Sat, 15 Jul 2023 12:49:18 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
 From:   Johan Jonker <jbx6244@gmail.com>
-Subject: [PATCH v1 1/2] dt-bindings: mtd: nand-controller: add
- nand-skip-bbtscan and nand-no-bbm-quirk DT options
+Subject: [PATCH v1 2/2] mtd: rawnand: add nand-skip-bbtscan and
+ nand-no-bbm-quirk DT options
 To:     miquel.raynal@bootlin.com
 Cc:     richard@nod.at, vigneshr@ti.com, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
         linux-mtd@lists.infradead.org, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org
+References: <61c84262-cd98-1e60-d95b-9b0492083994@gmail.com>
 Content-Language: en-US
+In-Reply-To: <61c84262-cd98-1e60-d95b-9b0492083994@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -96,33 +98,26 @@ Previous discussion:
 [PATCH v3 3/3] mtd: rawnand: rockchip-nand-controller: add skipbbt option
 https://lore.kernel.org/linux-mtd/1618382560.2326931.1689261435022.JavaMail.zimbra@nod.at/
 ---
- .../devicetree/bindings/mtd/nand-controller.yaml    | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+ drivers/mtd/nand/raw/nand_base.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/mtd/nand-controller.yaml b/Documentation/devicetree/bindings/mtd/nand-controller.yaml
-index f70a32d2d9d4..ca04d06a0377 100644
---- a/Documentation/devicetree/bindings/mtd/nand-controller.yaml
-+++ b/Documentation/devicetree/bindings/mtd/nand-controller.yaml
-@@ -103,6 +103,19 @@ patternProperties:
-           the boot ROM or similar restrictions.
-         $ref: /schemas/types.yaml#/definitions/flag
+diff --git a/drivers/mtd/nand/raw/nand_base.c b/drivers/mtd/nand/raw/nand_base.c
+index a6af521832aa..f0fa5c3519b1 100644
+--- a/drivers/mtd/nand/raw/nand_base.c
++++ b/drivers/mtd/nand/raw/nand_base.c
+@@ -5521,6 +5521,12 @@ static int rawnand_dt_init(struct nand_chip *chip)
+ 	if (of_property_read_bool(dn, "nand-is-boot-medium"))
+ 		chip->options |= NAND_IS_BOOT_MEDIUM;
 
-+      nand-no-bbm-quirk:
-+        description:
-+          Some controllers with pipelined ECC engines override the BBM marker with
-+          data or ECC bytes, thus making bad block detection through bad block marker
-+          impossible. Let's flag those chips so the core knows it shouldn't check the
-+          BBM and consider all blocks good.
-+        $ref: /schemas/types.yaml#/definitions/flag
++	if (of_property_read_bool(dn, "nand-no-bbm-quirk"))
++		chip->options |= NAND_NO_BBM_QUIRK;
 +
-+      nand-skip-bbtscan:
-+        description:
-+          This option skips the BBT scan during initialization.
-+        $ref: /schemas/types.yaml#/definitions/flag
++	if (of_property_read_bool(dn, "nand-skip-bbtscan"))
++		chip->options |= NAND_SKIP_BBTSCAN;
 +
-       nand-rb:
-         description:
-           Contains the native Ready/Busy IDs.
+ 	if (of_property_read_bool(dn, "nand-on-flash-bbt"))
+ 		chip->bbt_options |= NAND_BBT_USE_FLASH;
+
 --
 2.30.2
 
