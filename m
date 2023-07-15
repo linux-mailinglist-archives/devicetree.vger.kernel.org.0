@@ -2,30 +2,30 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D73CE754C0A
-	for <lists+devicetree@lfdr.de>; Sat, 15 Jul 2023 22:42:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BA886754C10
+	for <lists+devicetree@lfdr.de>; Sat, 15 Jul 2023 23:05:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229729AbjGOUmC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 15 Jul 2023 16:42:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45908 "EHLO
+        id S229601AbjGOVFl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 15 Jul 2023 17:05:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47850 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229543AbjGOUmB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Jul 2023 16:42:01 -0400
-Received: from mail-4027.protonmail.ch (mail-4027.protonmail.ch [185.70.40.27])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7F6BB3;
-        Sat, 15 Jul 2023 13:42:00 -0700 (PDT)
-Date:   Sat, 15 Jul 2023 20:41:45 +0000
+        with ESMTP id S229530AbjGOVFk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Jul 2023 17:05:40 -0400
+Received: from mail-4318.protonmail.ch (mail-4318.protonmail.ch [185.70.43.18])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1A5A2738;
+        Sat, 15 Jul 2023 14:05:39 -0700 (PDT)
+Date:   Sat, 15 Jul 2023 21:05:31 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-        s=protonmail3; t=1689453718; x=1689712918;
-        bh=nfq894edfLj7KJhL0ovu2fYW+vNvVLWaaCXHQzABep4=;
+        s=protonmail3; t=1689455137; x=1689714337;
+        bh=p4IaxbwpaHv+xOOMu8SedVmfPdSj/FMf57pnmMhXBrA=;
         h=Date:To:From:Cc:Subject:Message-ID:Feedback-ID:From:To:Cc:Date:
          Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
-        b=vM9WFj3pCl919CeJU2Yds05u/oO4rBXT2D4TgG9upfKRf7EmrDYVfv6K8VeTo5nOX
-         pQEkqNJd5UYhGOZd+2p/t8D5ifDa2g8aGfTBLlIzdgQauGCMucsiFf8EmId0E75v/a
-         N38NjQzWTkEV04a0Wb/gbzpI1Q4dhilVqTH2yPW1m7bJ0t4GtqnK5t59mghaU8xJ5X
-         QIxU/1W05c2SrDLKl/IGLOqFEs+90sRsSzbqkNHMYPfHWv4qTr9MZMzqoUxZjHdeFy
-         K9PAVwRr0k3dZKXHr8feRXBuMxi60dv5mmGMM10LgtiN85Wbu+yB2I2wS7k4nTVv7y
-         +SOcoIVo4ngug==
+        b=oZPOyal7jiELXgpPFrXV4x0bXBjCM3MRG5a0sj+aF9n/iidZ+kzWf+KxNEdB97+eu
+         cbE//hMFM96tzR2gii+/01V3p3ZKn5l61opRtARNe6unExvHnyh3d8xpFV95UNO1+J
+         I/4CyiSSEw685i2AI6oVf3Y00yNFLQyKycFK65Iv4KjUgCr/bybpczD8ezQNQxkqYz
+         BUvnEGRvH6csy4xhnawLQ61qhTPDTJCFMexnO66lR51xkiyLWhhwDwEXbo42lppHnd
+         RAqTPXwcR4lOIXSKSpiPKl7ydEy4ynhNHKH6MDWGlrOoB5KNZTRMnclEqmOI2CLden
+         S5kaPwopdJVLw==
 To:     linux-kernel@vger.kernel.org
 From:   "Lin, Meng-Bo" <linmengbo0689@protonmail.com>
 Cc:     Andy Gross <agross@kernel.org>,
@@ -37,8 +37,8 @@ Cc:     Andy Gross <agross@kernel.org>,
         Stephan Gerhold <stephan@gerhold.net>,
         Nikita Travkin <nikita@trvn.ru>, linux-arm-msm@vger.kernel.org,
         devicetree@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-Subject: [PATCH] arm64: dts: qcom: msm8916-samsung-e2015: Add accelerometer
-Message-ID: <20230715204128.12612-1-linmengbo0689@protonmail.com>
+Subject: [PATCH v2] arm64: dts: qcom: msm8916-samsung-e2015: Add accelerometer (v2)
+Message-ID: <20230715210515.13783-1-linmengbo0689@protonmail.com>
 Feedback-ID: 40467236:user:proton
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
@@ -54,6 +54,8 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+v2: fix interrupt-parent =3D <&msmgpio>;
+
 E5, E7 and Grand Max have ST LIS2HH12 accelerometer.
 Add support for it.
 
@@ -65,7 +67,7 @@ Signed-off-by: Lin, Meng-Bo <linmengbo0689@protonmail.com>
 
 diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-e2015-common.dtsi b/a=
 rch/arm64/boot/dts/qcom/msm8916-samsung-e2015-common.dtsi
-index 0cdd6af7817f..ef7c7ac40e05 100644
+index 0cdd6af7817f..6f65fd4b3ed3 100644
 --- a/arch/arm64/boot/dts/qcom/msm8916-samsung-e2015-common.dtsi
 +++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-e2015-common.dtsi
 @@ -42,10 +42,27 @@ reg_touch_key: regulator-touch-key {
@@ -81,7 +83,7 @@ index 0cdd6af7817f..ef7c7ac40e05 100644
 +=09=09compatible =3D "st,lis2hh12";
 +=09=09reg =3D <0x1d>;
 +
-+=09=09interrupt-parent =3D <&msmgpio>;
++=09=09interrupt-parent =3D <&tlmm>;
 +=09=09interrupts =3D <115 IRQ_TYPE_LEVEL_HIGH>;
 +
 +=09=09vdd-supply =3D <&pm8916_l5>;
