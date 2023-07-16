@@ -2,126 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F691755000
-	for <lists+devicetree@lfdr.de>; Sun, 16 Jul 2023 19:05:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D5484755003
+	for <lists+devicetree@lfdr.de>; Sun, 16 Jul 2023 19:08:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229495AbjGPRFW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 16 Jul 2023 13:05:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58520 "EHLO
+        id S229515AbjGPRI2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 16 Jul 2023 13:08:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58828 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229454AbjGPRFW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Jul 2023 13:05:22 -0400
-Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com [IPv6:2607:f8b0:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9477BE52;
-        Sun, 16 Jul 2023 10:05:21 -0700 (PDT)
-Received: by mail-pl1-x636.google.com with SMTP id d9443c01a7336-1b9d80e33fbso22506425ad.0;
-        Sun, 16 Jul 2023 10:05:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1689527121; x=1692119121;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=56N0FWY67kwv0l0oCm41cdPkUcQgcQjinlre/d9a1zU=;
-        b=M4oX9j2woHibPfW3PxFbPA2ksy0QWa8kxicR5FrNnVkaq/yCjO6mv8FQ16ZLCdEIcU
-         l9XKWKj30McT5LlPIg0wnKYitys5Aiew3fshgiQQi5bLHY0U3gpFkXxEXOD0CzCIurgv
-         3gaIsFI0XdU97DGoEoXNWnUOfrvqgAlK3QT1/hRUyMqeZjwxulYQm86YovRHMrjXkte+
-         6ltoRC37sx//NnXlskA8LC590KQsBLPG1OA1cL2Rpj1fjZhaHggv0U03QBgZ3euXuut/
-         BPcuXh6agm9rSgyeFodUPlAenI4vvwtx/ZCPu/PerNP8iN4IRL3p64h/WRIzDUQWPgSU
-         EkgQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689527121; x=1692119121;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=56N0FWY67kwv0l0oCm41cdPkUcQgcQjinlre/d9a1zU=;
-        b=TrnOYrVAIpTNFj64zguXy8rJbX+Ep+pclCenIBHx3jkXFv02/bkiq+sLiybvIN/7bh
-         xkdf82TOxZ9Sj8NwWk4OjUaH8lrSruuPcaxnyWKO6BSGWZ7ga579BlprrLI13r8OFnLR
-         RqZ7lsE5hB3XjO8bwqaBck5AQ61bJy+CHF38A7JYi+qR47665zUoLKSHojAYTttrcFbY
-         1pjlHTz/ZnximTVe1yJQu/W1jvSuIaUI2ScxspRkV4OBh/ZZ2dWWHL48X4Zw0uCPJVXN
-         tx/TZW5PJuBhmh+RLOQkS03WlwY16AjfAo2WWWTST8tYMUbF3M/ixPrtbCXSwJeVKaD4
-         nTyA==
-X-Gm-Message-State: ABy/qLbW+OoepNsRqYi7Bl9APxDJzPDapyhI9IHw4b/49WUzauJMFTWS
-        WldFxhBMUC3z7yyrJP4KsLL5EuakHDU=
-X-Google-Smtp-Source: APBJJlE5Gwc8TJ1An6zIfMpovJfBWIaH9GHYqjMawBey5XOo4r9n86875z8dknTOs+6G0jvEFnripA==
-X-Received: by 2002:a17:902:ea05:b0:1b8:9b17:f63d with SMTP id s5-20020a170902ea0500b001b89b17f63dmr12304871plg.23.1689527120792;
-        Sun, 16 Jul 2023 10:05:20 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id 17-20020a170902e9d100b001b8ab115ce4sm11218068plk.278.2023.07.16.10.05.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 16 Jul 2023 10:05:20 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <9ca518f1-4cd1-f024-4e67-5abc67eb6507@roeck-us.net>
-Date:   Sun, 16 Jul 2023 10:05:19 -0700
+        with ESMTP id S229454AbjGPRI1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Jul 2023 13:08:27 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 262AB109
+        for <devicetree@vger.kernel.org>; Sun, 16 Jul 2023 10:08:26 -0700 (PDT)
+Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mkl@pengutronix.de>)
+        id 1qL5EI-0006nk-3h; Sun, 16 Jul 2023 19:08:18 +0200
+Received: from pengutronix.de (unknown [172.20.34.65])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (Client did not present a certificate)
+        (Authenticated sender: mkl-all@blackshift.org)
+        by smtp.blackshift.org (Postfix) with ESMTPSA id D858F1F1E4D;
+        Sun, 16 Jul 2023 17:08:14 +0000 (UTC)
+Date:   Sun, 16 Jul 2023 19:08:13 +0200
+From:   Marc Kleine-Budde <mkl@pengutronix.de>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Justin Chen <justin.chen@broadcom.com>,
+        Al Cooper <alcooperx@gmail.com>,
+        Broadcom internal kernel review list 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Ioana Ciornei <ioana.ciornei@nxp.com>,
+        Yu Chen <chenyu56@huawei.com>,
+        Binghui Wang <wangbinghui@hisilicon.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Lubomir Rintel <lkundrak@v3.sk>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        Alban Bedel <albeu@free.fr>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Robert Marko <robert.marko@sartura.hr>,
+        Luka Perkov <luka.perkov@sartura.hr>,
+        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+        Masami Hiramatsu <mhiramat@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Vincent Shih <vincent.sunplus@gmail.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        JC Kuo <jckuo@nvidia.com>, devicetree@vger.kernel.org,
+        linux-phy@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
+        netdev@vger.kernel.org, linux-usb@vger.kernel.org,
+        dri-devel@lists.freedesktop.org,
+        linux-mediatek@lists.infradead.org, linux-can@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        linux-rockchip@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-tegra@vger.kernel.org
+Subject: Re: [PATCH] phy: Explicitly include correct DT includes
+Message-ID: <20230716-rippling-wafer-1c986e593fc5-mkl@pengutronix.de>
+References: <20230714174841.4061919-1-robh@kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v2 1/2] dt-bindings: hwmon: Add description for new hwmon
- driver hs3001
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzk@kernel.org>,
-        Andre Werner <werneazc@gmail.com>, jdelvare@suse.com,
-        robh+dt@kernel.org
-Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        Andre Werner <andre.werner@systec-electronic.com>
-References: <20230716150556.26155-1-andre.werner@systec-electronic.com>
- <f0c8adfb-bc72-3424-c021-d694e98a8537@kernel.org>
-From:   Guenter Roeck <linux@roeck-us.net>
-In-Reply-To: <f0c8adfb-bc72-3424-c021-d694e98a8537@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="nbfpe5avx7koqgt4"
+Content-Disposition: inline
+In-Reply-To: <20230714174841.4061919-1-robh@kernel.org>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:b01:1d::7b
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 7/16/23 09:33, Krzysztof Kozlowski wrote:
-> On 16/07/2023 17:05, Andre Werner wrote:
->> This is the initial description.
->>
->> Signed-off-by: Andre Werner <andre.werner@systec-electronic.com>
-> 
-> Duplicated patch, but my comments stay - you did not CC people I asked for.
-> 
->> ---
->>   Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
->>   1 file changed, 2 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
->> index ba2bfb547909..5a5de3f6cd37 100644
->> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
->> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
->> @@ -320,6 +320,8 @@ properties:
->>               # Rohm DH2228FV
->>             - rohm,dh2228fv
->>               # S524AD0XF1 (128K/256K-bit Serial EEPROM for Low Power)
->> +          - renesas,hs3001
->> +            # Renesas HS300[1,2,3,4] Temperature and Relative Humidity Sensors
-> 
-> wrong comment.
-> 
 
-Maybe clarify that the comment comes first, i.e., that it should be
+--nbfpe5avx7koqgt4
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-+            # Renesas HS300[1,2,3,4] Temperature and Relative Humidity Sensors
-+          - renesas,hs3001
+On 14.07.2023 11:48:35, Rob Herring wrote:
+> The DT of_device.h and of_platform.h date back to the separate
+> of_platform_bus_type before it as merged into the regular platform bus.
+> As part of that merge prepping Arm DT support 13 years ago, they
+> "temporarily" include each other. They also include platform_device.h
+> and of.h. As a result, there's a pretty much random mix of those include
+> files used throughout the tree. In order to detangle these headers and
+> replace the implicit includes with struct declarations, users need to
+> explicitly include the correct includes.
+>=20
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+>  drivers/phy/phy-can-transceiver.c                     | 1 +
 
-and that it should be added before renesas,isl29501 to retain alphabetic order.
+Acked-by: Marc Kleine-Budde <mkl@pengutronix.de> # for drivers/phy/phy-can-=
+transceiver.c
 
-Guenter
+regards,
+Marc
 
->>             - samsung,24ad0xd1
-> 
-> Samsung, not Renesas
-> 
-> 
-> Best regards,
-> Krzysztof
-> 
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde          |
+Embedded Linux                   | https://www.pengutronix.de |
+Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
 
+--nbfpe5avx7koqgt4
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEDs2BvajyNKlf9TJQvlAcSiqKBOgFAmS0I/oACgkQvlAcSiqK
+BOjjrwgArExbry3lxXJ0IU/QstoPtXDWo1kq+VrGdKo90TUKc6zRFxqvnUNRrjBk
+9aVhw60wUadmaqmq+5XBpVPES7N6/lzVGQxqKvMo90pMkksfG+isH43EGgJKSCGW
+50aecO37i/0V2xhrIoHdcChv/8G2ND7TCQRoREFPHZZAZCY8ounBXRoNZD0XmC8y
+SxL3qs9NG4rSdKSzQuXZ9tNqThZ5R+dU+jXGeBYK2/yhaiBr9bLokg9qS4ZA2Keh
+OIbgZeiYE8RrbwcPL1CrMYM/mY1MEyVqOTrWb6xzJZYYzJENZi11xoPi5nB+x2zP
+F5frwLP70qIiMDMihQLMvpd/SRkwEA==
+=Qdmr
+-----END PGP SIGNATURE-----
+
+--nbfpe5avx7koqgt4--
