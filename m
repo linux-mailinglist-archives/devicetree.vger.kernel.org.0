@@ -2,69 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E92A9754DDE
-	for <lists+devicetree@lfdr.de>; Sun, 16 Jul 2023 10:48:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7EFD2754E12
+	for <lists+devicetree@lfdr.de>; Sun, 16 Jul 2023 11:26:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229545AbjGPIsj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 16 Jul 2023 04:48:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51464 "EHLO
+        id S229544AbjGPJ0j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 16 Jul 2023 05:26:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58776 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229462AbjGPIsj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Jul 2023 04:48:39 -0400
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE7E6D1
-        for <devicetree@vger.kernel.org>; Sun, 16 Jul 2023 01:48:36 -0700 (PDT)
-Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-3fbca8935bfso30545595e9.3
-        for <devicetree@vger.kernel.org>; Sun, 16 Jul 2023 01:48:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1689497315; x=1692089315;
-        h=to:subject:message-id:date:from:reply-to:mime-version:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=VAlw7dzSKHfnCSCBqIjoLWqepO5xuvhk0bi0gzGO6Fs=;
-        b=ZWJ7933CUj+8vsrwUNy/oZ/TEcsrPVCnc05Vr9qvKC2J4UbnWrcJTe/SclhBIQUQO6
-         Cx2Z7n8jnJoH9MqOODnlmgKJXINXDXzdyNxa5vk9TARzmDEJpo6wVoRLfQeTfOMXkek9
-         pGJgjEwEwFBzQ0p7onfXmtbYkHWVaD8zaPI8b9C1deXIAHelvWwy1cCS31xrq5Z1dvVQ
-         LcJ8NYRw81qpwm8lcfiS6HLP9J/R3Rva+ymSvam55WzRo+cXcJDzU7vgB33x+92K55KN
-         HDswErQBew9ToGm9VdLe2LSXPOQ23m0kplGPIBxSKNiqaoyM7zpdbERomqBY3nvZd0tH
-         6s4A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689497315; x=1692089315;
-        h=to:subject:message-id:date:from:reply-to:mime-version
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=VAlw7dzSKHfnCSCBqIjoLWqepO5xuvhk0bi0gzGO6Fs=;
-        b=VDTsy4DPoUSI2fv2Ep8HfZ17yLSRlQXfI8IMzijHu9d9wqjXyf00hEgKYMrk58gc9+
-         e6roEddr74iIRd16X6lvHl9ifbbV4sK375Rsz4Et+Hl2YLOK+zAyovz06mPqG3ZD1Pvy
-         iBtR6aPBaARMPClf90Y3jaNozadFyL+M8SwMrUczqoPRBcXsgQq+/8NzB/LqIeT2N0oQ
-         yMWcCPlcfNm+NJryfjn07+y9/d8595sR1XgbUwMtByW6nCDAD++Bo8gdtN5BQZm6hmY7
-         yt0JF2SB/0rfDRMaNg2QwMZHzp7ZE5RyYP6SlCt4GYXuSrUGX/+vge/doTtlTC5S43kG
-         ylAw==
-X-Gm-Message-State: ABy/qLYp6QzUZEAJn72m7PpSg4ac2vNrL1GFVAI/nsZZxxM6+ENAJA7U
-        7nPzSf/8lmJfKuY0sVpSp09z+1FjVwVz+Xoh+W4=
-X-Google-Smtp-Source: APBJJlHGFuZPZuIKwSOsdtNfXxmPLDjyQajtuw4ybC27bs/tIFCZVkf3Jt61HPUTpe8MnPI2c4ZBr/mpP2gK8u0WUKg=
-X-Received: by 2002:a1c:ed0c:0:b0:3fa:9590:a365 with SMTP id
- l12-20020a1ced0c000000b003fa9590a365mr6980018wmh.17.1689497315095; Sun, 16
- Jul 2023 01:48:35 -0700 (PDT)
+        with ESMTP id S229701AbjGPJ0d (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Jul 2023 05:26:33 -0400
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED13B10E0;
+        Sun, 16 Jul 2023 02:26:30 -0700 (PDT)
+Received: from i53875a6a.versanet.de ([83.135.90.106] helo=phil.localnet)
+        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <heiko@sntech.de>)
+        id 1qKy04-0005tq-1S; Sun, 16 Jul 2023 11:25:08 +0200
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     Liviu Dudau <liviu.dudau@arm.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <rfoss@kernel.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Liu Ying <victor.liu@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Inki Dae <inki.dae@samsung.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Russell King <linux+etnaviv@armlinux.org.uk>,
+        Christian Gmeiner <christian.gmeiner@gmail.com>,
+        Seung-Woo Kim <sw0312.kim@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Xinliang Liu <xinliang.liu@linaro.org>,
+        Tian Tao <tiantao6@hisilicon.com>,
+        Xinwei Kong <kong.kongxinwei@hisilicon.com>,
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        Yongqin Liu <yongqin.liu@linaro.org>,
+        John Stultz <jstultz@google.com>,
+        Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>,
+        Paul Cercueil <paul@crapouillou.net>,
+        Qiang Yu <yuq825@gmail.com>,
+        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Marek Vasut <marex@denx.de>, Stefan Agner <stefan@agner.ch>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Jerry Han <hanxu5@huaqin.corp-partner.google.com>,
+        Icenowy Zheng <icenowy@aosc.io>, Ondrej Jirman <megi@xff.cz>,
+        Javier Martinez Canillas <javierm@redhat.com>,
+        Guido =?ISO-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>,
+        Purism Kernel Team <kernel@puri.sm>,
+        Jianhua Lu <lujianhua000@gmail.com>,
+        Florian Fainelli <florian.fainelli@broadcom.com>,
+        Broadcom internal kernel review list 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Artur Weber <aweber.kernel@gmail.com>,
+        Tomeu Vizoso <tomeu.vizoso@collabora.com>,
+        Steven Price <steven.price@arm.com>,
+        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
+        Emma Anholt <emma@anholt.net>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        Sandy Huang <hjc@rock-chips.com>,
+        Orson Zhai <orsonzhai@gmail.com>,
+        Baolin Wang <baolin.wang@linux.alibaba.com>,
+        Chunyan Zhang <zhang.lyra@gmail.com>,
+        Alain Volmat <alain.volmat@foss.st.com>,
+        Yannick Fertre <yannick.fertre@foss.st.com>,
+        Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>,
+        Philippe Cornu <philippe.cornu@foss.st.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Samuel Holland <samuel@sholland.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Mikko Perttunen <mperttunen@nvidia.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Jyri Sarha <jyri.sarha@iki.fi>,
+        Tomi Valkeinen <tomba@kernel.org>,
+        Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>,
+        Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, Ondrej Jirman <megous@megous.com>,
+        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        etnaviv@lists.freedesktop.org, linux-samsung-soc@vger.kernel.org,
+        linux-mips@vger.kernel.org, lima@lists.freedesktop.org,
+        linux-mediatek@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+        freedreno@lists.freedesktop.org,
+        linux-rpi-kernel@lists.infradead.org,
+        linux-renesas-soc@vger.kernel.org,
+        linux-rockchip@lists.infradead.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-sunxi@lists.linux.dev, linux-tegra@vger.kernel.org,
+        xen-devel@lists.xenproject.org
+Subject: Re: [PATCH] drm: Explicitly include correct DT includes
+Date:   Sun, 16 Jul 2023 11:25:03 +0200
+Message-ID: <114500369.nniJfEyVGO@phil>
+In-Reply-To: <20230714174545.4056287-1-robh@kernel.org>
+References: <20230714174545.4056287-1-robh@kernel.org>
 MIME-Version: 1.0
-Received: by 2002:a05:6021:930d:b0:290:2410:eb22 with HTTP; Sun, 16 Jul 2023
- 01:48:34 -0700 (PDT)
-Reply-To: mrslinzhang@gmail.com
-From:   Mrs Lin Zhang <nasiratsefiu20@gmail.com>
-Date:   Sun, 16 Jul 2023 01:48:34 -0700
-Message-ID: <CADCWOpQ+9-cBUEmbyMqQiFuh3jiTf-DFc4qRbx5ia3oNd9mzqw@mail.gmail.com>
-Subject: Re
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=4.5 required=5.0 tests=BAYES_50,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,FREEMAIL_REPLYTO,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
-        SPF_PASS,T_HK_NAME_FM_MR_MRS,T_SCC_BODY_TEXT_LINE,UNDISC_FREEM
-        autolearn=no autolearn_force=no version=3.4.6
-X-Spam-Level: ****
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+        RCVD_IN_DNSWL_BLOCKED,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        T_SPF_HELO_TEMPERROR autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-I have a business partnership to be done with you,Kindly get back to
-me via this email address: mrslinzhang@gmail.com
+Am Freitag, 14. Juli 2023, 19:45:34 CEST schrieb Rob Herring:
+> The DT of_device.h and of_platform.h date back to the separate
+> of_platform_bus_type before it as merged into the regular platform bus.
+> As part of that merge prepping Arm DT support 13 years ago, they
+> "temporarily" include each other. They also include platform_device.h
+> and of.h. As a result, there's a pretty much random mix of those include
+> files used throughout the tree. In order to detangle these headers and
+> replace the implicit includes with struct declarations, users need to
+> explicitly include the correct includes.
+> 
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+
+[...]
+
+> diff --git a/drivers/gpu/drm/rockchip/dw-mipi-dsi-rockchip.c b/drivers/gpu/drm/rockchip/dw-mipi-dsi-rockchip.c
+> index 917e79951aac..2744d8f4a6fa 100644
+> --- a/drivers/gpu/drm/rockchip/dw-mipi-dsi-rockchip.c
+> +++ b/drivers/gpu/drm/rockchip/dw-mipi-dsi-rockchip.c
+> @@ -12,7 +12,9 @@
+>  #include <linux/mfd/syscon.h>
+>  #include <linux/module.h>
+>  #include <linux/of_device.h>
+> +#include <linux/of_platform.h>
+>  #include <linux/phy/phy.h>
+> +#include <linux/platform_device.h>
+>  #include <linux/pm_runtime.h>
+>  #include <linux/regmap.h>
+
+I'm not sure if I'm just misreading something, but in all other places
+of_device.h gets removed while here is stays as an include. Is this
+correct this way?
+
+Thanks
+Heiko
+
+
