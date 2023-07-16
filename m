@@ -2,119 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 200F0754EA7
-	for <lists+devicetree@lfdr.de>; Sun, 16 Jul 2023 14:52:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D1C2754EC9
+	for <lists+devicetree@lfdr.de>; Sun, 16 Jul 2023 15:24:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229539AbjGPMwD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 16 Jul 2023 08:52:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51984 "EHLO
+        id S229461AbjGPNYO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 16 Jul 2023 09:24:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55684 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229617AbjGPMwC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Jul 2023 08:52:02 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE15026AF;
-        Sun, 16 Jul 2023 05:51:40 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id AE74860C97;
-        Sun, 16 Jul 2023 12:51:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 13645C433C8;
-        Sun, 16 Jul 2023 12:51:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689511899;
-        bh=S4v2KgibSFbKIsZlQ38KnV9FNhJrX3MV15+dg8ot1js=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=OoMtJPxf7SjsyC9RQZnYmoXwB+n88i+P2G7rOdEkw9RoB5uPg/I4n3t5iPuRiosl7
-         2DKBw0lWtczzb/MSi1ChJDKVVNFP0HzTJfvccGdVovQ/JWfHEXZgCB7TSBCh6XDGnk
-         t4Ug7X+hqG2YWshHr22sGhHjvUj7QsXPsSB1bnj/cxB67nvFpCy+WaWJw0Z1IaDS+L
-         oRxrO9IXemmp0UhqbC8v+VikVtD2cij0PEFzv02BHOI1xfwe1MqZtrinSrrhoGJ5tE
-         jME9UYXynE+aatcqiQxhDW/iIqWj9LuvckE+Zs4neqN20A0+uX/INMlL3Lv7OxkyEj
-         FudMxeewLMnKw==
-From:   Mark Brown <broonie@kernel.org>
-To:     Liam Girdwood <lgirdwood@gmail.com>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Cristian Ciocaltea <cristian.ciocaltea@gmail.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Saravanan Sekar <sravanhome@gmail.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
-        Masami Hiramatsu <mhiramat@kernel.org>,
-        Liviu Dudau <liviu.dudau@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-actions@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-omap@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com
-In-Reply-To: <20230714174930.4063320-1-robh@kernel.org>
-References: <20230714174930.4063320-1-robh@kernel.org>
-Subject: Re: [PATCH] regulator: Explicitly include correct DT includes
-Message-Id: <168951189379.112004.11594538020708568822.b4-ty@kernel.org>
-Date:   Sun, 16 Jul 2023 13:51:33 +0100
+        with ESMTP id S229450AbjGPNYN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Jul 2023 09:24:13 -0400
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC7AFE6B;
+        Sun, 16 Jul 2023 06:24:10 -0700 (PDT)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 395481C0005;
+        Sun, 16 Jul 2023 13:24:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1689513849;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=ZlAJuoojWBheC8JWE/2d5ZWEyMAatM5WLPn8urq2pfs=;
+        b=pxlpXq30z8NQhVbblNWq1AJDPI30WimwJl1hF8f6qibGV5xcoD05V90VqdTf841xQE9pX8
+        navcvSLTkpk3oYJkRjoCJM697aaFOkRsFlge77hLR1gr8UkgdbdOlRvjHsKOBmrB6+C35h
+        tlT7+2v6o2Hwvw67jotDSktY0H5h/Gbtiv41Ld8T4fLjcZLtEqhtp9BiHFxNF6YjM3Qpsy
+        XgiK8+9sGlyZqfNJHXF+blxpC8obu9KL391CUHCfrgfiOVEh+0jNBvb8BCRQv7ZNz9wKBJ
+        79M+ecl7Bm03bS84Pkby9io5YgZ8ZMWa7htwxwwtha5AqeLQwKqbyJLGmNIOIw==
+Date:   Sun, 16 Jul 2023 15:24:05 +0200
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Arseniy Krasnov <avkrasnov@sberdevices.ru>
+Cc:     Liang Yang <liang.yang@amlogic.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        <oxffffaa@gmail.com>, <kernel@sberdevices.ru>,
+        <linux-mtd@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [RFC PATCH v3 0/3] support 512B ECC step size for Meson NAND
+Message-ID: <20230716152405.729e0922@xps-13>
+In-Reply-To: <672e6a2f-21b3-77cd-fe83-04d4aa79f68e@sberdevices.ru>
+References: <20230711122129.2635558-1-AVKrasnov@sberdevices.ru>
+        <20230715181553.1d2b5637@xps-13>
+        <672e6a2f-21b3-77cd-fe83-04d4aa79f68e@sberdevices.ru>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.13-dev-099c9
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 14 Jul 2023 11:49:28 -0600, Rob Herring wrote:
-> The DT of_device.h and of_platform.h date back to the separate
-> of_platform_bus_type before it as merged into the regular platform bus.
-> As part of that merge prepping Arm DT support 13 years ago, they
-> "temporarily" include each other. They also include platform_device.h
-> and of.h. As a result, there's a pretty much random mix of those include
-> files used throughout the tree. In order to detangle these headers and
-> replace the implicit includes with struct declarations, users need to
-> explicitly include the correct includes.
-> 
-> [...]
+Hi Arseniy,
 
-Applied to
+avkrasnov@sberdevices.ru wrote on Sat, 15 Jul 2023 20:48:34 +0300:
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
+> Hello Miquel!
+>=20
+> On 15.07.2023 19:15, Miquel Raynal wrote:
+> > Hi Arseniy,
+> >=20
+> > AVKrasnov@sberdevices.ru wrote on Tue, 11 Jul 2023 15:21:26 +0300:
+> >  =20
+> >> Hello,
+> >>
+> >> this patchset adds support for 512B ECC step size for Meson NAND. Curr=
+ent
+> >> implementation only supports 1024B. There are three patches:
+> >>
+> >> 1) Update for device tree bindings to replace 'const' type of field
+> >>    'nand-ecc-step-size' with 'enum' which contains 512 and 1024.
+> >>
+> >> 2) Update for device tree bindings to add dependency between properties
+> >>    'nand-ecc-strength' and 'nand-ecc-step-size'.
+> >>
+> >> 3) Update for Meson driver - new enum value for 512B ECC and reworked
+> >>    ECC capabilities structure to support both 512B and 1024B ECC. By
+> >>    default this driver uses 1024B ECC, 512B could be enabled in device
+> >>    tree. =20
+> >=20
+> > This series does not apply correctly on nand/next, would you mind
+> > rebasing (nand/next on linux-mtd) and sending it again? =20
+>=20
+> Sure, as I see 0001 was applied to nand/next, so I can resend only 0002 a=
+nd 0003,
+> as 0002 is the first patch which fails to apply?
 
-Thanks!
+Yes indeed.
 
-[1/1] regulator: Explicitly include correct DT includes
-      commit: 045a44d4c9b32578aacf0811063e5bb741c7c32c
+>=20
+> >=20
+> > BTW the "rfc" prefix is only needed for the "first" submission, when
+> > you try something "new", otherwise it is no longer required. =20
+>=20
+> Ok, got it
+>=20
+> >=20
+> > Thanks,
+> > Miqu=C3=A8l =20
+>=20
+> Thanks, Arseniy
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
 
 Thanks,
-Mark
-
+Miqu=C3=A8l
