@@ -2,107 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8969A754F98
-	for <lists+devicetree@lfdr.de>; Sun, 16 Jul 2023 18:10:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 10CDD754FC0
+	for <lists+devicetree@lfdr.de>; Sun, 16 Jul 2023 18:31:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229469AbjGPQKg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 16 Jul 2023 12:10:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51062 "EHLO
+        id S229785AbjGPQbr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 16 Jul 2023 12:31:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53160 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230032AbjGPQKf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Jul 2023 12:10:35 -0400
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 072F1E61
-        for <devicetree@vger.kernel.org>; Sun, 16 Jul 2023 09:10:34 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-5216f44d881so2891757a12.1
-        for <devicetree@vger.kernel.org>; Sun, 16 Jul 2023 09:10:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689523832; x=1692115832;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=nunAbpgCigSo1UVgqQbYQX6rYQ6VpmSoXPi9uXeul5Y=;
-        b=y2xuaNJvhTccxmfME73dUThdAMdNSHSc5U+0lgVAL7vIM0EF2D/6bsFtNWat7FEDGU
-         h2TUbwy0IFacHqIdb0oaRB5J481WrwhffhNfdn0efsHtyYK4dE0slDPp4M5axdOo61fp
-         fq0+thbO8VUWFUAGklS0q8c6AKp+CHAtNaBSX76ynbaQw9pSby2VaTqlXPusM5WW+sF2
-         fFkCZHqO6WABZFnlGHFmKCGADv8NquI9gKc5m1xqi2wTu9SSi2dybFfZAW4LVxpHDOtn
-         NP1tOrE2puHNNIe0IBk+hICffWdjYtzvDtqkNLc4+qJDjyxjgrsoKLWmscps/Ov2ZHsC
-         A6Kw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689523832; x=1692115832;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=nunAbpgCigSo1UVgqQbYQX6rYQ6VpmSoXPi9uXeul5Y=;
-        b=cZdt64fZl2mdaoOPGPC59FDCJiEISDOat4K9DP78NxXS37nH14RGM/STUDJ1P9IkRO
-         Zk/brlgYG5LLcO9cmEZiy2P5WloNwhU8x50Uz+nFIyC7M5QOLg9rlWKht/MLbvqhIQPK
-         l+qy5ASACk9/V/Mz4klDGu1dVV2CF1mMbG/ApGBjj/gs/GpecW/Oj56n0UilYGicEHbe
-         ERm6YhXX9eRT4nv6jgP06lw2ZfVaR3Vd+bPNFF8BWpxAfaSdoyr1Cd9700mSKa7jVtZ1
-         7qNfaIcKs0aCYCW1rj7N/h5Kb7CchHDavInLYptlxjiSSzaoysKbH+I9Lo0ht8k+wYiw
-         74Xw==
-X-Gm-Message-State: ABy/qLYgIkVelQocHKAKRWb9u49JS2ogWn6GKW/OQpGXutaX4KIry6Ps
-        fSfo1ls8z4l1zBmO9EcpB8h5Bg==
-X-Google-Smtp-Source: APBJJlFZE6rc3YYDZaQSlbMBjCQrik0Gl8GkW7cit2/0wyKB/2+MlCfv6DNZXkuiK47emzXn16C42w==
-X-Received: by 2002:a05:6402:3445:b0:51b:f669:9df3 with SMTP id l5-20020a056402344500b0051bf6699df3mr9387480edc.4.1689523832553;
-        Sun, 16 Jul 2023 09:10:32 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id n16-20020a05640206d000b0051e0bf5807bsm8561066edy.49.2023.07.16.09.10.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 16 Jul 2023 09:10:32 -0700 (PDT)
-Message-ID: <ece51c2c-68a0-174e-f454-d44929181ac7@linaro.org>
-Date:   Sun, 16 Jul 2023 18:10:29 +0200
+        with ESMTP id S229461AbjGPQbq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Jul 2023 12:31:46 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAC1D1AD
+        for <devicetree@vger.kernel.org>; Sun, 16 Jul 2023 09:31:45 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 4EA7A60C81
+        for <devicetree@vger.kernel.org>; Sun, 16 Jul 2023 16:31:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DA1A6C433C7;
+        Sun, 16 Jul 2023 16:31:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1689525104;
+        bh=kC4csqxmW1jvloLCeA6zpyDElD3cBi7w8mE6pfrd01Q=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=UfQ3RXkoRmoxVV5I/e8e7G4PQC9oRJ2T3UPcntehsT+ueRjn3ixZpRVa1uQBhDANL
+         ryi7oNwNhaNjPqU3z1ENjFFpge+DfNMQ3ny7nOBZWQHm9DtDjE4cxN0RK4H3vGZ64Q
+         +gGPJFHL0bFM3P3/xKUQxR1DKzgbZEtJ0gtvjnX6lLYdIpQyVIV6pO8hOhPf6P4eVQ
+         WKSZzoKil9Fmm03yyezOj6v7cCENc3FiYdp3C3D5VYIkNLydzCOR3RTvGPXBXwOErw
+         hETi/usbsOqPnLrUL6K2cBKU9+e2cTQC2sO0mJXExgF80hZJH4AGjwAg18zprfXNIF
+         ZTiwwkvLSDmmw==
+Message-ID: <08ae1b98-5bf8-d165-47b5-f9e7cdca8898@kernel.org>
+Date:   Sun, 16 Jul 2023 18:31:38 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
-Subject: Re: [PATCH v2] arm64: dts: qcom: msm8916-samsung-e2015: Add
- accelerometer (v2)
+Subject: Re: [PATCH] dt-bindings: add device tree bindings for mxl-8611x PHY
 Content-Language: en-US
-To:     "Lin, Meng-Bo" <linmengbo0689@protonmail.com>,
-        linux-kernel@vger.kernel.org
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+To:     Nate Drude <nate.d@variscite.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Nikita Travkin <nikita@trvn.ru>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-References: <20230715210515.13783-1-linmengbo0689@protonmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230715210515.13783-1-linmengbo0689@protonmail.com>
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     Eran Matityahu <eran.m@variscite.com>
+References: <322ede0d-7cc5-6878-4aed-af4c120b4de9@variscite.com>
+ <6e9346b2-e241-a5c5-c74d-36ff98d20258@variscite.com>
+ <83d4d054-fa17-2d3e-e6bd-bf7416702dbf@kernel.org>
+ <94e84ae4-f8e3-2bd1-b876-9301a1d6cc78@variscite.com>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+In-Reply-To: <94e84ae4-f8e3-2bd1-b876-9301a1d6cc78@variscite.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/07/2023 23:05, Lin, Meng-Bo wrote:
-> v2: fix interrupt-parent = <&msmgpio>;
-
-Changelog goes under ---
-
-
+On 14/07/2023 14:53, Nate Drude wrote:
 > 
-> E5, E7 and Grand Max have ST LIS2HH12 accelerometer.
-> Add support for it.
-
-Your subject has weird addon: " (v2)"
+> Once again, thanks for your review. Hopefully when the driver patches 
+> are sent for Linux this will have been helpful.
 
 
-> 
-> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
-> Signed-off-by: Lin, Meng-Bo <linmengbo0689@protonmail.com>
-> ---
->  .../qcom/msm8916-samsung-e2015-common.dtsi    | 21 +++++++++++++++++--
->  1 file changed, 19 insertions(+), 2 deletions(-)
-
+Driver patches are not really necessary here and I would say are
+independent. So as I said - submit bindings to the Linux kernel, so they
+will get proper review. Otherwise it does not matter what I say here. It
+does not guarantee absolutely any stable bindings because whatever
+someone submits to Linux kernel will later overrule it. Therefore I do
+not see any benefit of your approach - you will not be able to create
+Linux kernel ABI (bindings) by sending binding patch to U-Boot. It does
+not work like that.
 
 Best regards,
 Krzysztof
