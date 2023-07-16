@@ -2,99 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AF66575575B
-	for <lists+devicetree@lfdr.de>; Sun, 16 Jul 2023 23:20:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B24F6755761
+	for <lists+devicetree@lfdr.de>; Sun, 16 Jul 2023 23:26:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230253AbjGPVUV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 16 Jul 2023 17:20:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49124 "EHLO
+        id S230284AbjGPV0t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 16 Jul 2023 17:26:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50080 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229881AbjGPVUU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Jul 2023 17:20:20 -0400
-Received: from mail-yw1-x1130.google.com (mail-yw1-x1130.google.com [IPv6:2607:f8b0:4864:20::1130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18CCA136
-        for <devicetree@vger.kernel.org>; Sun, 16 Jul 2023 14:20:19 -0700 (PDT)
-Received: by mail-yw1-x1130.google.com with SMTP id 00721157ae682-577637de4beso38733447b3.0
-        for <devicetree@vger.kernel.org>; Sun, 16 Jul 2023 14:20:19 -0700 (PDT)
+        with ESMTP id S229469AbjGPV0s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Jul 2023 17:26:48 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72A721B5;
+        Sun, 16 Jul 2023 14:26:47 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-993d1f899d7so569658466b.2;
+        Sun, 16 Jul 2023 14:26:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689542418; x=1692134418;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
+        d=gmail.com; s=20221208; t=1689542806; x=1692134806;
+        h=content-transfer-encoding:cc:to:content-language:subject:from
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=g5jVNQL7Cqqr60okI8mc7o8ZzfhGkfsuMA8PNwkU7+4=;
-        b=nZrzudf6xWNgDh9pI1qUJneWfZZ979ATLS6xoZ5hymfxndprmeWruOujesfVNEI09I
-         imgYXL5vPi+KQbDW/5KpR+WqF2IbuLxDAoGRwDZOkCSomygdREedz7TIyvPhIW4T8HEQ
-         Kt/oCml68TYo1IfQTRpYtbqyCrwWR/WX8oNl9zPPtMAWFuOH1jAK8a6w+ij5laChENWX
-         dPuuWPHSgDQ2UUK9RqRGemmyAgLUjVEBUDoVX+9MkgSZm7F3SmnWtCCstm8nltqTK+NK
-         gyVl/1WGHoIAqIanzO4RdVju//vpXy+qQfT65rYde56kb5xHqBtOWIiaWduXVrYpxINK
-         xjpA==
+        bh=r9fUriBNhyXlFqH896tCKceodeOZncM96JEwNdZlGmY=;
+        b=nnIYBAC8QvA7YAUa4Vzzqe5yckDs8Z498G+x/Kq3QIoULdgv0aoANmELok8XkG84Bf
+         WSuw46lDKWrE2RdDOuuZAAJbgNLSkKtFIMVxifvZOzVPtxyxZckD+qnNtf/Lqjlh1Rjv
+         F2eBNx8tqsL/juliwMDHuOrTtPA+Z23xBMGBIHANbHzzjplW6itXOin70Qotxg9YZRoj
+         peNLcGuhkEvsNYudvkFcDYHYMkn39canCPVSFkLZ7vBqGyE7FAtYkPuBhosJCk+TiDvl
+         BXCtwA9MnaMLcnTeSYVmz+BcCtyqUePF7cZCKiuhUu1wtXBOvdLs0be6usDS5+RQtxG+
+         mC4g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689542418; x=1692134418;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=g5jVNQL7Cqqr60okI8mc7o8ZzfhGkfsuMA8PNwkU7+4=;
-        b=TYHsw/ixT4W0tWOoAEjlOms+WYQjkr27/FbnHtk7AiZFmysiS6chXtFAW5yFNUOwQu
-         LjhUWZInZo37lC2Dpj0mZN+Xx7R0xPwQRZgWX8xMbnnkIOcoOVIxGqh1kHVk7pDs4U1y
-         41ikkh0IBUacWzbALM0HY5dK3KfkGqX8XR35s1p5fvHuWzfv2CORXruvv8lCyolG18Kd
-         9YnPH54P6BU313Iv+g8YmNXGgWWtIPYEXDr56xMtwv2h+kmDq/8Ca0jRClClZVUeSgyF
-         r+Bn7wHo/tq7s04N5GodDP9v3Uyr6EG544sWD1EB0hvZT/uMfpOpwkZpELqH5g1m0rdd
-         XtjA==
-X-Gm-Message-State: ABy/qLYyhwNp1dgcTp8wDxnvz6pThj6rzbBnEa3MDJOJpxQgJpqKmGKa
-        e2fiWMgO2Dbn9dVNPZDeOl/w8JdrvFFCXypNR8uPMg==
-X-Google-Smtp-Source: APBJJlHFulXWKieW8R5pU5+4sBV9kVYwKWI7RxXFv0PMRLSfeuSHf71kiTm/P4n/g1hxXDT2l3GQ0t6WmONXnWG1MKc=
-X-Received: by 2002:a0d:cb4a:0:b0:56d:4b45:f9e1 with SMTP id
- n71-20020a0dcb4a000000b0056d4b45f9e1mr10803683ywd.3.1689542418359; Sun, 16
- Jul 2023 14:20:18 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1689542806; x=1692134806;
+        h=content-transfer-encoding:cc:to:content-language:subject:from
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=r9fUriBNhyXlFqH896tCKceodeOZncM96JEwNdZlGmY=;
+        b=fFdMo9dZv0//DzQLFpkZ0UQPxHyjPGlONeyOKCNWkWc1IctUYeEx71TCnIL3e5g/ER
+         qG3Zs/2CVJ0b88RPxxwrAO+hvJD/+EFQEK9lqgu33gALNqInbk3xOPxBDrCza3hF+R04
+         SRUmdFFemlv/dz6tzWZJwd1jFS5oJHes9SydAOwbBHuy2fVzdashh+LKvcJRqpPNX8ZP
+         ZQMmpBY9ZEcHDChzjV9djgcaBmQHshSL9A+4Rt74QS52Yc3jii2F+BeimmabYFKp9PWd
+         73Tm1EEZ32UqziVKW7nHLpsvsg5ndwOD2LiSBTk4t/q9IlsRQ4zSWadKNm14EJ0QgiQe
+         qHXw==
+X-Gm-Message-State: ABy/qLbZFPQEU1uvYqzKWhu9F35eN89jMoeYUG4LlWqRc99oJrnp7rWF
+        iAFbQj+TAKwMCjVZ8LL65ys=
+X-Google-Smtp-Source: APBJJlFB+YxCHXbGHtsl4KGzq9AcRZqCuCujF7+0ct5y7H2DgRNPXht5p00ijnzk8gso+SpqYa/jAw==
+X-Received: by 2002:a17:906:7397:b0:994:18c4:3303 with SMTP id f23-20020a170906739700b0099418c43303mr10188827ejl.18.1689542805589;
+        Sun, 16 Jul 2023 14:26:45 -0700 (PDT)
+Received: from [192.168.4.4] (host-95-237-109-246.retail.telecomitalia.it. [95.237.109.246])
+        by smtp.gmail.com with ESMTPSA id la16-20020a170906ad9000b0098d2261d189sm8498147ejb.19.2023.07.16.14.26.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 16 Jul 2023 14:26:45 -0700 (PDT)
+Message-ID: <0414e2e4-a17d-3435-e9e7-35b110233a6d@gmail.com>
+Date:   Sun, 16 Jul 2023 23:26:43 +0200
 MIME-Version: 1.0
-References: <20230714122441.3098337-1-huqiang.qin@amlogic.com> <20230714122441.3098337-3-huqiang.qin@amlogic.com>
-In-Reply-To: <20230714122441.3098337-3-huqiang.qin@amlogic.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Sun, 16 Jul 2023 23:20:07 +0200
-Message-ID: <CACRpkdbbUga0biH=1tkCgRzUqNiDGdVf2woda5X2s43ct-na7Q@mail.gmail.com>
-Subject: Re: [PATCH V3 2/2] pinctrl: Add driver support for Amlogic C3 SoCs
-To:     Huqiang Qin <huqiang.qin@amlogic.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, neil.armstrong@linaro.org,
-        khilman@baylibre.com, jbrunet@baylibre.com,
-        martin.blumenstingl@googlemail.com, brgl@bgdev.pl, andy@kernel.org,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+From:   Andrea Collamati <andrea.collamati@gmail.com>
+Subject: =?UTF-8?Q?=5bPATCH_v2_0/2=5d_add_mcp4728_I2C_DAC_driver=e2=80=8b?=
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        William Breathitt Gray <william.gray@linaro.org>,
+        Angelo Dureghello <angelo.dureghello@timesys.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Lukas Bulwahn <lukas.bulwahn@gmail.com>,
+        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "andrea.collamati@gmail.com" <andrea.collamati@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Huqiang,
+Dear Krzysztof
 
-thanks for your patch!
+I release a V2 version. I hope I have understood all your requests.
+See below.
 
-On Fri, Jul 14, 2023 at 2:25=E2=80=AFPM Huqiang Qin <huqiang.qin@amlogic.co=
-m> wrote:
-
-> Add a new pinctrl driver for Amlogic C3 SoCs which share
-> the same register layout as the previous Amloigc S4.
-
-How is the spelling of amlogic there in the end.
-
-> Signed-off-by: Huqiang Qin <huqiang.qin@amlogic.com>
-> ---
+> 2. Please use scripts/get_maintainers.pl to get a list of necessary
+> people and lists to CC (and consider --no-git-fallback argument). It
+> might happen, that command when run on an older kernel, gives you
+> outdated entries. Therefore please be sure you base your patches on
+> recent Linux kernel.
 >
-> V1 -> V2:
->   Added a comma to the last item of the array and a period to
->   the commit message.
+I was using branch master git://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git but
 
-Andy had more comments about the header inclusion. Please
-include all used headers directly as requested, I think it's a good
-idea and avoids confusing compile problems.
+I saw it was too old. I switched to branch testing.
+> 6. mcp or MCP? What is this? Proper title is missing... also no
+> description.
+>
+I don't know whether using small o capital letters. Usually manufacturers use capital letter to identify the component
+but kernel drivers use lowercase in code.
+>
+> Shouldn't this binding be just merged with existing mcp4725? Are you
+> sure it's not similar device, IOW, are you sure you do not have vref supply?
+>
+Unfortunately they are not that similar. MCP4728 has two vref choices:
 
-Yours,
-Linus Walleij
+- Use Vdd (power supply) as Vref
+
+- User Internal 2.048 V Vref source.
+
+
+Andrea Collamati (2):
+  dt-bindings: iio: dac: add mcp4728.yaml
+  iio: add mcp4728 I2C DAC driver
+
+ .../bindings/iio/dac/microchip,mcp4728.yaml   | 42 +++++++++
+ drivers/iio/dac/mcp4728.c                     | 93 +++++++++----------
+ 2 files changed, 86 insertions(+), 49 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/iio/dac/microchip,mcp4728.yaml
+
+-- 
+2.34.1
+
