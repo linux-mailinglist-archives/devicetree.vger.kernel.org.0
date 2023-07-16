@@ -2,61 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 66601754EDA
-	for <lists+devicetree@lfdr.de>; Sun, 16 Jul 2023 15:40:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C3255754F0C
+	for <lists+devicetree@lfdr.de>; Sun, 16 Jul 2023 16:44:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229954AbjGPNkO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 16 Jul 2023 09:40:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57390 "EHLO
+        id S229736AbjGPOoz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 16 Jul 2023 10:44:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35100 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229450AbjGPNkN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Jul 2023 09:40:13 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A04C3E71
-        for <devicetree@vger.kernel.org>; Sun, 16 Jul 2023 06:40:12 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 1075A60CF5
-        for <devicetree@vger.kernel.org>; Sun, 16 Jul 2023 13:40:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6CD1FC433C7;
-        Sun, 16 Jul 2023 13:40:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689514811;
-        bh=+VPC5bFm+43XjH7XAqtqGhlQ4PlHcHyxoyChNGxrI0I=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=gJTz/ZUKQNsXAPjgf72oNOZaljhbouePTqb+2E5h/gE/BfbA5eXKXWIh1Ko/crg2Q
-         vXs/4uOYjIfvCYZhuSwQTcBQ11RXLwJaMLwJrNQudWakw8RJvnCJ/OV1lEwvVLC9tJ
-         /kohjDYnQgwgBcKIEETZsoxaUWZsQvsAd+N8XpoYbdC+A2HaRnBNrVYSuKKQmBVqWp
-         SuX7eDBi2lKf+iONlW4Gw9h//6ubfncj7KLrxQOWr90a+QPwbn1ZXZtTqqiwcth/nw
-         XYfteHpW49oCVf+lRyEY90MKX2BOonWq6MD2pYaWJddQYD5rhwZV+lPyzA1z4TqAPX
-         2uMtOYTO7qhkg==
-Date:   Sun, 16 Jul 2023 21:39:56 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Markus Niebel <Markus.Niebel@ew.tq-group.com>,
-        Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 3/3] ARM: dts: imx6qdl-mba6: Add missing supply regulator
- for lm75 and at24
-Message-ID: <20230716133956.GA4048@dragon>
-References: <20230503113112.1751886-1-alexander.stein@ew.tq-group.com>
- <20230503113112.1751886-3-alexander.stein@ew.tq-group.com>
- <3268282.VLH7GnMWUR@steina-w>
+        with ESMTP id S229710AbjGPOoz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Jul 2023 10:44:55 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0A2CFA;
+        Sun, 16 Jul 2023 07:44:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=SVZM4PFndxxCcq66T7tUspDKRLmLt+kbA9O41zp70/o=; b=oGDUJcA4aEU6/rxu5VxEYiuq4Z
+        QeF7R8Cy24XDCcxbvD+5MahvthcCdw0eFFVBWBjalgoZ03jiQr4QKLyicPSb6jk4TWOMR2nUrgh8H
+        r01JYDQ2KDY53FH1ldTxyeHoc+N6gnMxp6iPiNNyjNILD5F0CZNTKeLjyFGqT22w6RiY=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1qL2zI-001U0x-2c; Sun, 16 Jul 2023 16:44:40 +0200
+Date:   Sun, 16 Jul 2023 16:44:40 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Alexandru Ardelean <alex@shruggie.ro>
+Cc:     Rob Herring <robh@kernel.org>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, hkallweit1@gmail.com, linux@armlinux.org.uk,
+        olteanv@gmail.com, marius.muresan@mxt.ro
+Subject: Re: [PATCH v2 2/2] dt-bindings: net: phy: vsc8531: document
+ 'vsc8531,clkout-freq-mhz' property
+Message-ID: <7fa2d457-4ae9-42f5-be73-80549aae558c@lunn.ch>
+References: <20230713202123.231445-1-alex@shruggie.ro>
+ <20230713202123.231445-2-alex@shruggie.ro>
+ <20230714172444.GA4003281-robh@kernel.org>
+ <CAH3L5Qoj+sue=QnR2Lp12x3Hz2t2BNnarZHJiqxL3Gtf6M=bsA@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <3268282.VLH7GnMWUR@steina-w>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+In-Reply-To: <CAH3L5Qoj+sue=QnR2Lp12x3Hz2t2BNnarZHJiqxL3Gtf6M=bsA@mail.gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -64,18 +55,50 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 16, 2023 at 11:42:19AM +0200, Alexander Stein wrote:
-> Hi Shawn,
+> So, there's the adin.c PHY driver which has a similar functionality
+> with the adin_config_clk_out().
+> Something in the micrel.c PHY driver (with
+> micrel,rmii-reference-clock-select-25-mhz); hopefully I did not
+> misread the code about that one.
+> And the at803x.c PHY driver has a 'qca,clk-out-frequency' property too.
 > 
-> Am Mittwoch, 3. Mai 2023, 13:31:12 CEST schrieb Alexander Stein:
-> > Fixes the warnings:
-> > at24 0-0057: supply vcc not found, using dummy regulator
-> > lm75 0-0049: supply vs not found, using dummy regulator
-> > 
-> > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> Now with the mscc.c driver, there is a common-ality that could use a framework.
 > 
-> You applied patch 1 & 2. Is something missing for this patch to be applied?
+> @Rob are you suggesting something like registering a clock provider
+> (somewhere in the PHY framework) and let the PHY drivers use it?
+> Usually, these clock signals (once enabled on startup), don't get
+> turned off; but I've worked mostly on reference designs; somewhere
+> down the line some people get different requirements.
+> These clocks get connected back to the MAC (usually), and are usually
+> like a "fixed-clock" driver.
 
-Sorry.  I missed it.  Could you rebase and resend?
+They are not necessarily fixed clocks. The clock you are adding here
+has three frequencies. Two frequencies is common for PHY devices. So
+you need to use something more than clk-fixed-rate.c. Also, mostly
+PHYs allows the clock to be gated.
 
-Shawn
+> In our case, turning off the clock would be needed if the PHY
+> negotiates a non-gigabit link; i.e 100 or 10 Mbps; in that case, the
+> CLKOUT signal is not needed and it can be turned off.
+
+Who does not need it? The PHY, or the MAC? If it is the MAC, it should
+really be the MAC driver which uses the common clock API to turn it
+off. Just watch out for deadlocks with phydev->lock.
+
+> Maybe start out with a hook in 'struct phy_driver'?
+> Like "int (*config_clk_out)(struct phy_device *dev);" or something?
+> And underneath, this delegates to the CLK framework?
+
+Yes, have phy_device.c implement that registration/unregister of the
+clock, deal with locking, and call into the PHY driver to actually
+manipulate the clock. You missed the requested frequency in the
+function prototype. I would also call it refclk. Three is sometimes
+confusion about the different clocks.
+
+Traditionally, clk_enable() can be called in atomic context, but that
+is not allowed with phylib, it always assume thread context. I don't
+know if the clock framework has some helpers for that, but i also
+don't see there being a real need for MAC to enable the clock in
+atomic context.
+
+	Andrew
