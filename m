@@ -2,228 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 69563754FF2
-	for <lists+devicetree@lfdr.de>; Sun, 16 Jul 2023 19:03:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F691755000
+	for <lists+devicetree@lfdr.de>; Sun, 16 Jul 2023 19:05:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229515AbjGPRDP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 16 Jul 2023 13:03:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56882 "EHLO
+        id S229495AbjGPRFW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 16 Jul 2023 13:05:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58520 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229461AbjGPRDN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Jul 2023 13:03:13 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77A431B1
-        for <devicetree@vger.kernel.org>; Sun, 16 Jul 2023 10:03:12 -0700 (PDT)
-Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mkl@pengutronix.de>)
-        id 1qL58u-0006CV-5l; Sun, 16 Jul 2023 19:02:44 +0200
-Received: from pengutronix.de (unknown [172.20.34.65])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        (Authenticated sender: mkl-all@blackshift.org)
-        by smtp.blackshift.org (Postfix) with ESMTPSA id 1B66C1F1E34;
-        Sun, 16 Jul 2023 17:02:35 +0000 (UTC)
-Date:   Sun, 16 Jul 2023 19:02:33 +0200
-From:   Marc Kleine-Budde <mkl@pengutronix.de>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Dario Binacchi <dario.binacchi@amarulasolutions.com>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Florian Fainelli <florian.fainelli@broadcom.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        Kurt Kanzenbach <kurt@linutronix.de>,
-        Woojung Huh <woojung.huh@microchip.com>,
-        UNGLinuxDriver@microchip.com,
-        =?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
-        Daniel Golle <daniel@makrotopia.org>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        DENG Qingfang <dqfext@gmail.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Cla udiu Manoil <claudiu.manoil@nxp.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Alvin =?utf-8?Q?=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
-        George McCollister <george.mccollister@gmail.com>,
-        Andreas Larsson <andreas@gaisler.com>,
-        Iyappan Subramanian <iyappan@os.amperecomputing.com>,
-        Keyur Chudgar <keyur@os.amperecomputing.com>,
-        Chris Snook <chris.snook@gmail.com>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>,
-        Madalin Bucur <madalin.bucur@nxp.com>,
-        Wei Fang <wei.fang@nxp.com>,
-        Shenwei Wang <shenwei.wang@nxp.com>,
-        Clark Wang <xiaoning.wang@nxp.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Sean Anderson <sean.anderson@seco.com>,
-        Pantelis Antoniou <pantelis.antoniou@gmail.com>,
-        Li Yang <leoyang.li@nxp.com>,
-        Yisen Zhuang <yisen.zhuang@huawei.com>,
-        Salil Mehta <salil.mehta@huawei.com>,
-        Douglas Miller <dougmill@linux.ibm.com>,
-        Marcin Wojtas <mw@semihalf.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Tara s Chornyi <taras.chornyi@plvision.eu>,
-        Mirko Lindner <mlindner@marvell.com>,
-        Stephen Hemminger <stephen@networkplumber.org>,
-        Felix Fietkau <nbd@nbd.name>, John Crispin <john@phrozen.org>,
-        Mark Lee <Mark-MC.Lee@mediatek.com>,
-        Lorenzo Bianconi <lorenzo@kernel.org>,
-        Horatiu Vultur <horatiu.vultur@microchip.com>,
-        Timur Tabi <timur@kernel.org>,
-        Sergey Shtylyov <s.shtylyov@omp.ru>,
-        Steve Glendinning <steve.glendinning@shawell.net>,
-        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Vinod Ko ul <vkoul@kernel.org>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Samin Guo <samin.guo@starfivetech.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        Kevin Brace <kevinbrace@bracecomputerlab.com>,
-        Francois Romieu <romieu@fr.zoreil.com>,
-        Michal Simek <michal.simek@amd.com>,
-        Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>,
-        Alexander Aring <alex.aring@gmail.com>,
-        Stefan Schmidt <stefan@datenfreihafen.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Alex Elder <elder@kernel.org>,
-        =?utf-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        SkyLake Huang <SkyLake.Huang@mediatek.com>,
-        Kalle Valo <kvalo@kernel.org>,
-        Loic Poulain <loic.poulain@linaro.org>,
-        Ryder Lee <ryder.lee@mediatek.com>,
-        Shayne Chen <shayne.chen@mediatek.com>,
-        =?utf-8?B?SsOpcsO0bWU=?= Pouille r <jerome.pouiller@silabs.com>,
-        Richard Cochran <richardcochran@gmail.com>,
-        devicetree@vger.kernel.org, linux-can@vger.kernel.org,
-        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-mediatek@lists.infradead.org, linuxppc-dev@lists.ozlabs.org,
-        linux-renesas-soc@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-amlogic@lists.infradead.org, linux-oxnas@groups.io,
-        linux-tegra@vger.kernel.org, linux-omap@vger.kernel.org,
-        linux-wpan@vger.kernel.org, ath10k@lists.infradead.org,
-        linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
-        wcn36xx@lists.infradead.org
-Subject: Re: [PATCH] net: Explicitly include correct DT includes
-Message-ID: <20230716-stout-grudging-1f91d771de85-mkl@pengutronix.de>
-References: <20230714174809.4060885-1-robh@kernel.org>
+        with ESMTP id S229454AbjGPRFW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Jul 2023 13:05:22 -0400
+Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com [IPv6:2607:f8b0:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9477BE52;
+        Sun, 16 Jul 2023 10:05:21 -0700 (PDT)
+Received: by mail-pl1-x636.google.com with SMTP id d9443c01a7336-1b9d80e33fbso22506425ad.0;
+        Sun, 16 Jul 2023 10:05:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1689527121; x=1692119121;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=56N0FWY67kwv0l0oCm41cdPkUcQgcQjinlre/d9a1zU=;
+        b=M4oX9j2woHibPfW3PxFbPA2ksy0QWa8kxicR5FrNnVkaq/yCjO6mv8FQ16ZLCdEIcU
+         l9XKWKj30McT5LlPIg0wnKYitys5Aiew3fshgiQQi5bLHY0U3gpFkXxEXOD0CzCIurgv
+         3gaIsFI0XdU97DGoEoXNWnUOfrvqgAlK3QT1/hRUyMqeZjwxulYQm86YovRHMrjXkte+
+         6ltoRC37sx//NnXlskA8LC590KQsBLPG1OA1cL2Rpj1fjZhaHggv0U03QBgZ3euXuut/
+         BPcuXh6agm9rSgyeFodUPlAenI4vvwtx/ZCPu/PerNP8iN4IRL3p64h/WRIzDUQWPgSU
+         EkgQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689527121; x=1692119121;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=56N0FWY67kwv0l0oCm41cdPkUcQgcQjinlre/d9a1zU=;
+        b=TrnOYrVAIpTNFj64zguXy8rJbX+Ep+pclCenIBHx3jkXFv02/bkiq+sLiybvIN/7bh
+         xkdf82TOxZ9Sj8NwWk4OjUaH8lrSruuPcaxnyWKO6BSGWZ7ga579BlprrLI13r8OFnLR
+         RqZ7lsE5hB3XjO8bwqaBck5AQ61bJy+CHF38A7JYi+qR47665zUoLKSHojAYTttrcFbY
+         1pjlHTz/ZnximTVe1yJQu/W1jvSuIaUI2ScxspRkV4OBh/ZZ2dWWHL48X4Zw0uCPJVXN
+         tx/TZW5PJuBhmh+RLOQkS03WlwY16AjfAo2WWWTST8tYMUbF3M/ixPrtbCXSwJeVKaD4
+         nTyA==
+X-Gm-Message-State: ABy/qLbW+OoepNsRqYi7Bl9APxDJzPDapyhI9IHw4b/49WUzauJMFTWS
+        WldFxhBMUC3z7yyrJP4KsLL5EuakHDU=
+X-Google-Smtp-Source: APBJJlE5Gwc8TJ1An6zIfMpovJfBWIaH9GHYqjMawBey5XOo4r9n86875z8dknTOs+6G0jvEFnripA==
+X-Received: by 2002:a17:902:ea05:b0:1b8:9b17:f63d with SMTP id s5-20020a170902ea0500b001b89b17f63dmr12304871plg.23.1689527120792;
+        Sun, 16 Jul 2023 10:05:20 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id 17-20020a170902e9d100b001b8ab115ce4sm11218068plk.278.2023.07.16.10.05.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 16 Jul 2023 10:05:20 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <9ca518f1-4cd1-f024-4e67-5abc67eb6507@roeck-us.net>
+Date:   Sun, 16 Jul 2023 10:05:19 -0700
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="g5fw27woy7qbit6d"
-Content-Disposition: inline
-In-Reply-To: <20230714174809.4060885-1-robh@kernel.org>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:b01:1d::7b
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v2 1/2] dt-bindings: hwmon: Add description for new hwmon
+ driver hs3001
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzk@kernel.org>,
+        Andre Werner <werneazc@gmail.com>, jdelvare@suse.com,
+        robh+dt@kernel.org
+Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        Andre Werner <andre.werner@systec-electronic.com>
+References: <20230716150556.26155-1-andre.werner@systec-electronic.com>
+ <f0c8adfb-bc72-3424-c021-d694e98a8537@kernel.org>
+From:   Guenter Roeck <linux@roeck-us.net>
+In-Reply-To: <f0c8adfb-bc72-3424-c021-d694e98a8537@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 7/16/23 09:33, Krzysztof Kozlowski wrote:
+> On 16/07/2023 17:05, Andre Werner wrote:
+>> This is the initial description.
+>>
+>> Signed-off-by: Andre Werner <andre.werner@systec-electronic.com>
+> 
+> Duplicated patch, but my comments stay - you did not CC people I asked for.
+> 
+>> ---
+>>   Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
+>>   1 file changed, 2 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
+>> index ba2bfb547909..5a5de3f6cd37 100644
+>> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
+>> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+>> @@ -320,6 +320,8 @@ properties:
+>>               # Rohm DH2228FV
+>>             - rohm,dh2228fv
+>>               # S524AD0XF1 (128K/256K-bit Serial EEPROM for Low Power)
+>> +          - renesas,hs3001
+>> +            # Renesas HS300[1,2,3,4] Temperature and Relative Humidity Sensors
+> 
+> wrong comment.
+> 
 
---g5fw27woy7qbit6d
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="vxeub4efr4nku2wd"
-Content-Disposition: inline
+Maybe clarify that the comment comes first, i.e., that it should be
 
++            # Renesas HS300[1,2,3,4] Temperature and Relative Humidity Sensors
++          - renesas,hs3001
 
---vxeub4efr4nku2wd
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="2mmyiduer253ii4f"
-Content-Disposition: inline
+and that it should be added before renesas,isl29501 to retain alphabetic order.
 
+Guenter
 
---2mmyiduer253ii4f
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+>>             - samsung,24ad0xd1
+> 
+> Samsung, not Renesas
+> 
+> 
+> Best regards,
+> Krzysztof
+> 
 
-On 14.07.2023 11:48:00, Rob Herring wrote:
-> The DT of_device.h and of_platform.h date back to the separate
-> of_platform_bus_type before it as merged into the regular platform bus.
-> As part of that merge prepping Arm DT support 13 years ago, they
-> "temporarily" include each other. They also include platform_device.h
-> and of.h. As a result, there's a pretty much random mix of those include
-> files used throughout the tree. In order to detangle these headers and
-> replace the implicit includes with struct declarations, users need to
-> explicitly include the correct includes.
->=20
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
->  drivers/net/can/bxcan.c                                 | 1 -
->  drivers/net/can/ifi_canfd/ifi_canfd.c                   | 1 -
->  drivers/net/can/m_can/m_can.c                           | 1 -
->  drivers/net/can/m_can/m_can.h                           | 1 -
->  drivers/net/can/rcar/rcar_canfd.c                       | 1 -
->  drivers/net/can/sja1000/sja1000_platform.c              | 1 -
->  drivers/net/can/sun4i_can.c                             | 1 -
->  drivers/net/can/ti_hecc.c                               | 1 -
-
-Acked-by: Marc Kleine-Budde <mkl@pengutronix.de> # for drivers/net/can
-
-regards,
-Marc
-
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
-
---2mmyiduer253ii4f--
-
---vxeub4efr4nku2wd--
-
---g5fw27woy7qbit6d
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEDs2BvajyNKlf9TJQvlAcSiqKBOgFAmS0IqYACgkQvlAcSiqK
-BOhfLQgAnOPxJiYWHd0YYYBr6D5Xvaa7YD/llBx5YeP2Eol6zKlE5NW1xdwBoHP/
-oxs3PENqI/mVuAtWhs6sNCSEtOEssWtUWrx23I9bxRa2AE/DUWfpg/NP/sy3ZVsV
-sYgzGHOJqf+S+OMzalvZ9hIDu+a6xxhA9rUTaK2lNn0nBeWxEf92JhPV+nGREldR
-CHY3WW/trL1qHxxtn7ZWhI2IVounTWpkXZnJz9DRocIQrm1mPmNz5lcwkr+ST1th
-C92e2GJEahuxXdOMXfuuGMUSGzFqGZRtKT3WAx9/8l/lUsyKZ9Jhn1Rv7NE9zNPG
-R640Tfvr5cFRQIVusYrKVMlQ8URlUg==
-=ICgU
------END PGP SIGNATURE-----
-
---g5fw27woy7qbit6d--
