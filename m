@@ -2,159 +2,290 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AE9BD755F99
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 11:43:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 94B8B755FC6
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 11:48:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230168AbjGQJnK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jul 2023 05:43:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45598 "EHLO
+        id S231223AbjGQJsy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jul 2023 05:48:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51428 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230358AbjGQJmf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 05:42:35 -0400
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DF261BEE
-        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 02:42:23 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-51cff235226so8865868a12.0
-        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 02:42:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689586941; x=1692178941;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=jCDAGW2zq1t7/jPzA/fgOnsdSvQf00Y9+7qWRffe9fk=;
-        b=YQpq3KyVlRs3zZwrdMaJspv9qlA3D8BuY+DwXmoIKajt5fTqGLf+QSAZZyyhs82RSN
-         xEgdgoyKHay1QMqkPiG0Ugqgjmm8DSrier9hFO/t83+QPaVQqQupS/dsQQUT5LPiG0mi
-         r4GR6mbRKhyocW0NdKhgNk/6Ub+AHt0nEsrHBvmW4wLwIuvcZmQjL98Sgvo2hZ2B+b5B
-         pe4eRZ9rKcWQTKdNPVWGNOndXXzjW1GrMM5GBDicW8JEZ58fKPfm8H6NyuqSDpymc0Q9
-         UNUWMGlyR+s9MC34KF1v9kDhCTVWZEFQ1X0OGsRo2x9Wy8e6mlK8spIPuGkIIiL7R1db
-         MiAw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689586941; x=1692178941;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jCDAGW2zq1t7/jPzA/fgOnsdSvQf00Y9+7qWRffe9fk=;
-        b=MU47WksNnuxegKsyJAzkQNFtEvfz24Z7DxJ3lf+kUcpC1BnFILnI8mePtbOeKyKXIw
-         xaNbs81CwNmaaeg7SpCpGjv5qh/hv4z9ZXRGUMnlyCI0nmid6ljlTn01wx8c2u8AR7Rq
-         +KVGScZ/ay8sl+/UgO4UL99xEyFVIcStFg/sQrdOOpDP7RosVMhBl7Twh5gG4ezBVFVX
-         VmepN0sggOFBxro92BbIw8ocRkXZ3G90sjN/2ixpvTsc5EOoxOifuS90lKlaK4Wbucth
-         +8w40Z3+m8SVaGS9hxh9qMg/PM7cK+bJ8jrquHTwv6aU4IB7e+H+h9HWGl26untwNSeD
-         XZig==
-X-Gm-Message-State: ABy/qLaIZ1pVM8naMOHMb9qCOJ05yJppohmdbD0yWDj92HvabtXNXDen
-        NeiQo6YEGjpMMy5KaD9Q1zaz4g==
-X-Google-Smtp-Source: APBJJlHbgWepWBWj84txt0/Slx87FDXphJzB1ZHPwKsQE0Dqov00G0ZBqyHLIMdatfRuuxL4VcSOoQ==
-X-Received: by 2002:a05:6402:524e:b0:51d:cf7b:c9f0 with SMTP id t14-20020a056402524e00b0051dcf7bc9f0mr12003216edd.12.1689586941388;
-        Mon, 17 Jul 2023 02:42:21 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id j4-20020a50ed04000000b0051e2a6cef4fsm9734491eds.36.2023.07.17.02.42.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 17 Jul 2023 02:42:20 -0700 (PDT)
-Message-ID: <9a3dc092-7278-cda1-cd4e-c157e0e2c431@linaro.org>
-Date:   Mon, 17 Jul 2023 11:42:18 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH] usb: dwc2: combine platform specific data for Intel
- Agilex and Stratix10
-Content-Language: en-US
-To:     Meng Li <Meng.Li@windriver.com>, gregkh@linuxfoundation.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, dinguyen@kernel.org, hminas@synopsys.com,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org
-References: <20230717085053.1075077-1-Meng.Li@windriver.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230717085053.1075077-1-Meng.Li@windriver.com>
+        with ESMTP id S229623AbjGQJsd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 05:48:33 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28DE813D;
+        Mon, 17 Jul 2023 02:48:32 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 938D761000;
+        Mon, 17 Jul 2023 09:48:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C7658C433C8;
+        Mon, 17 Jul 2023 09:48:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1689587311;
+        bh=JdKVUUp6m0Uye11so85pYdbz5La3leOelaYQhIMR/ow=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=oxoQSO72xKHk5tAprUaf/IoUnkyd4nPgQOmA4cNPs0Pwqvf7arZNFCaNDtXqnKyDm
+         LwriU5lzm7OQtL2/QtWxb4lJPBaQcP6es/8cDYuI5/LTfHYQeR51ECAQHTKLas0eXb
+         5Ti50RDLr5eHNO8fv53d0BeMuugKkPukujsw/g6d+EXMBUE/jG/HVz8UHvb6pT9yN0
+         BELBKLd229ZPw6fnG3ElF2ltYVVFi/ceD5Jb0HVbSlLd9gfNqMDw0e+gsGSiMVVE0n
+         rLX77uGJtjxGAHl/r4PGOFZRfE0GDkyCsAPg058zTd3X4UhPlfVPmlsuEwNKWE1VRw
+         6xSJNGo55N1gA==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.95)
+        (envelope-from <maz@kernel.org>)
+        id 1qLKqC-00DgoU-Ej;
+        Mon, 17 Jul 2023 10:48:28 +0100
+Date:   Mon, 17 Jul 2023 10:48:28 +0100
+Message-ID: <865y6ivpg3.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Anup Patel <apatel@ventanamicro.com>
+Cc:     Anup Patel <anup@brainfault.org>,
+        Saravana Kannan <saravanak@google.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Atish Patra <atishp@atishpatra.org>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        Sunil V L <sunilvl@ventanamicro.com>,
+        Conor Dooley <conor@kernel.org>,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v5 7/9] irqchip: Add RISC-V advanced PLIC driver
+In-Reply-To: <CAK9=C2UmU_Kvj6x_ZRJ70DAtdpehN9XQ6pdzFJ7-NLA_+XPyZQ@mail.gmail.com>
+References: <20230710094321.1378351-1-apatel@ventanamicro.com>
+        <20230710094321.1378351-8-apatel@ventanamicro.com>
+        <CAGETcx8kH8cJVdhcv5K4qNUo58godFZEBnOfTGKUUQ6VuUguvQ@mail.gmail.com>
+        <86jzv2vpdb.wl-maz@kernel.org>
+        <CAK9=C2ULxsXednwnoyzYKjQFpe_zBSZ4v0FqUYFnxK2TpbiMtg@mail.gmail.com>
+        <86cz0uvcof.wl-maz@kernel.org>
+        <CAAhSdy2sAaA_dmVCt9162kpw8-Ub1wjH_MNKxPOFN_VbW7M7vQ@mail.gmail.com>
+        <868rbfufn2.wl-maz@kernel.org>
+        <CAK9=C2UmU_Kvj6x_ZRJ70DAtdpehN9XQ6pdzFJ7-NLA_+XPyZQ@mail.gmail.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/28.2
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+Content-Transfer-Encoding: quoted-printable
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: apatel@ventanamicro.com, anup@brainfault.org, saravanak@google.com, palmer@dabbelt.com, paul.walmsley@sifive.com, tglx@linutronix.de, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, atishp@atishpatra.org, ajones@ventanamicro.com, sunilvl@ventanamicro.com, conor@kernel.org, linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/07/2023 10:50, Meng Li wrote:
-> Intel Stratix10 is very the same with Agilex platform, the DWC2 IP on
-> the Stratix platform also does not support clock-gating. So, based on
-> commit 3d8d3504d233("usb: dwc2: Add platform specific data for
-> Intel's Agilex"), combine platform specific data for Intel Agilex and
-> Stratix10 together. In additional, in order to avoid breaking the old
-> device tree, keep compatible string "intel,socfpga-agilex-hsotg" unchanged.
-> 
-> Signed-off-by: Meng Li <Meng.Li@windriver.com>
-> ---
->  Documentation/devicetree/bindings/usb/dwc2.yaml   | 2 ++
+On Mon, 17 Jul 2023 10:05:01 +0100,
+Anup Patel <apatel@ventanamicro.com> wrote:
+>=20
+> On Mon, Jul 17, 2023 at 1:35=E2=80=AFPM Marc Zyngier <maz@kernel.org> wro=
+te:
+> >
+> > On Fri, 14 Jul 2023 15:05:07 +0100,
+> > Anup Patel <anup@brainfault.org> wrote:
+> > >
+> > > On Fri, Jul 14, 2023 at 7:05=E2=80=AFPM Marc Zyngier <maz@kernel.org>=
+ wrote:
+> > > >
+> > > > On Fri, 14 Jul 2023 10:35:34 +0100,
+> > > > Anup Patel <apatel@ventanamicro.com> wrote:
+> > > > >
+> > > > > On Fri, Jul 14, 2023 at 2:31=E2=80=AFPM Marc Zyngier <maz@kernel.=
+org> wrote:
+> > > > > >
+> > > > > > Anup,
+> > > > > >
+> > > > > > On Fri, 14 Jul 2023 00:56:22 +0100,
+> > > > > > Saravana Kannan <saravanak@google.com> wrote:
+> > > > > > >
+> > > > > > > On Mon, Jul 10, 2023 at 2:44=E2=80=AFAM Anup Patel <apatel@ve=
+ntanamicro.com> wrote:
+> > > > > > > >
+> > > > > > > > The RISC-V advanced interrupt architecture (AIA) specificat=
+ion defines
+> > > > > > > > a new interrupt controller for managing wired interrupts on=
+ a RISC-V
+> > > > > > > > platform. This new interrupt controller is referred to as a=
+dvanced
+> > > > > > > > platform-level interrupt controller (APLIC) which can forwa=
+rd wired
+> > > > > > > > interrupts to CPUs (or HARTs) as local interrupts OR as mes=
+sage
+> > > > > > > > signaled interrupts.
+> > > > > > > > (For more details refer https://github.com/riscv/riscv-aia)
+> > > > > > > >
+> > > > > > > > This patch adds an irqchip driver for RISC-V APLIC found on=
+ RISC-V
+> > > > > > > > platforms.
+> > > > > > > >
+> > > > > > > > Signed-off-by: Anup Patel <apatel@ventanamicro.com>
+> > > > > >
+> > > > > > [...]
+> > > > > >
+> > > > > > > > +static int __init aplic_dt_init(struct device_node *node,
+> > > > > > > > +                               struct device_node *parent)
+> > > > > > > > +{
+> > > > > > > > +       /*
+> > > > > > > > +        * The APLIC platform driver needs to be probed ear=
+ly
+> > > > > > > > +        * so for device tree:
+> > > > > > > > +        *
+> > > > > > > > +        * 1) Set the FWNODE_FLAG_BEST_EFFORT flag in fwnod=
+e which
+> > > > > > > > +        *    provides a hint to the device driver core to =
+probe the
+> > > > > > > > +        *    platform driver early.
+> > > > > > > > +        * 2) Clear the OF_POPULATED flag in device_node be=
+cause
+> > > > > > > > +        *    of_irq_init() sets it which prevents creation=
+ of
+> > > > > > > > +        *    platform device.
+> > > > > > > > +        */
+> > > > > > > > +       node->fwnode.flags |=3D FWNODE_FLAG_BEST_EFFORT;
+> > > > > > >
+> > > > > > > Please stop spamming us with broken patches. Already told you=
+ this is
+> > > > > > > not an option.
+> > > > > > >
+> > > > > > > Nack.
+> > > > > >
+> > > > > > What puzzles me here is that *no other arch* requires this sort=
+ of
+> > > > > > hack. What is so special about the APLIC that it requires it? I=
+ see
+> > > > > > nothing in this patch that even hints at it, despite the "discu=
+ssion"
+> > > > > > in the last round.
+> > > > > >
+> > > > > > The rules are simple:
+> > > > > >
+> > > > > > - either the APLIC is so fundamental to the system that it has =
+to be
+> > > > > >   initialised super early, much like the GIC on arm64, at which=
+ point
+> > > > > >   it cannot be a platform device, and the story is pretty simpl=
+e.
+> > > > > >
+> > > > > > - or it isn't that fundamental, and it can be probed as a platf=
+orm
+> > > > > >   device using the dependency infrastructure that is already us=
+ed by
+> > > > > >   multiple other interrupt controller drivers, without any need=
+ to
+> > > > > >   mess with internal flags. Again, this should be simple enough.
+> > > > >
+> > > > > APLIC manages all wired interrupts whereas IMSIC manages all
+> > > > > MSIs. Both APLIC and IMSIC are fundamental devices which need
+> > > > > to be probed super early.
+> > > > >
+> > > > > Now APLIC has two modes of operations:
+> > > > > 1) Direct mode where there is no IMSIC in the system and APLIC
+> > > > >     directly injects interrupt to CPUs
+> > > > > 2) MSI mode where IMSIC is present in the system and APLIC
+> > > > >     converts wired interrupts into MSIs
+> > > > >
+> > > > > The APLIC driver added by this patch is a common driver for
+> > > > > both above modes.
+> > > >
+> > > > Which it doesn't need to be. You are pointlessly making life diffic=
+ult
+> > > > for yourself, and everyone else. The MSI bridge behaviour has *zero*
+> > > > reason to be the same driver as the main "I need it super early"
+> > > > driver. They may be called the same, but they *are* different things
+> > > > in the system.
+> > > >
+> > > > They can share code, but they are fundamentally a different thing in
+> > > > the system. And I guess this silly approach has other ramifications:
+> > > > the IMSIC is also some early driver when it really doesn't need to =
+be.
+> > > > Who needs MSIs that early in the life of the system? I don't buy th=
+is
+> > > > for even a second.
+> > >
+> > > IMSIC also provides IPIs which are required super early so I think
+> > > we can't make IMSIC as a platform driver.
+> >
+> > Then split this part further. Just because the architecture lumps two
+> > completely unrelated concepts together doesn't mean we need to follow
+> > the same organisation.
+>=20
+> IPIs are supported as software injected MSIs. Basically, each HART
+> has its own MSI controller and one HART can inject IPI to other HART
+> by writing its MSI MMIO register.
+>=20
+> >
+> > >
+> > > >
+> > > > Frankly, this whole thing needs to be taken apart and rebuilt from =
+the
+> > > > ground up.
+> > > >
+> > > > > For #2, APLIC needs to be a platform device to create a device
+> > > > > MSI domain using platform_msi_create_device_domain() which
+> > > > > is why the APLIC driver is a platform driver.
+> > > >
+> > > > You can't have your cake and eat it. If needed super early, and it
+> > > > cannot be a platform driver. End of the story.
+> > > >
+> > > > And to my earlier point: IMSIC and APLIC-as-MSI-bridge have no purp=
+ose
+> > > > being early drivers. They must be platform drivers, and only that.
+> > >
+> > > We can have IMSIC and APLIC-Direct-Mode as non-platform driver
+> > > whereas APLIC-as-MSI-bridge will be a platform driver.
+> > >
+> > > Both APLIC-Direct-Mode and APLIC-as-MSI-bridge can share a large
+> > > part of the current driver.
+> > >
+> > > >
+> > > > > > If these rules don't apply to your stuff, please explain what i=
+s so
+> > > > > > different. And I mean actually explain the issue. Which isn't t=
+elling
+> > > > > > us "it doesn't work without it". Because as things stand, there=
+ is no
+> > > > > > way I will even consider taking this ugly mix of probing method=
+s.
+> > > > >
+> > > > > Yes, I don't want this ugly FWNODE_FLAG_BEST_EFFORT hack
+> > > > > in this driver.
+> > > >
+> > > > And yet you are hammering it even when told this is wrong.
+> > > >
+> > > > > I tried several things but setting the FWNODE_FLAG_BEST_EFFORT
+> > > > > flag is the only thing which works right now.
+> > > >
+> > > > How about you take a step back and realise that the way you've
+> > > > architected your drivers makes little sense? I don't think you have
+> > > > tried *that*.
+> > >
+> > > Both APLIC and IMSIC are separate devices as defined by the AIA spec.
+> > >
+> > > There are three possible systems:
+> > > 1) Systems with only APLIC (i.e. only wired interrupts)
+> > > 2) Systems with only IMSIC (i.e. only MSIs)
+> >
+> > How is that possible? Are you saying that even things like timers are
+> > firing as MSIs?
+>=20
+> No, timer interrupts are triggered through INTC.
 
-Bindings are always separate patch.
+So all the above is BS. All you need is timers and IPIs to be
+supported early.  Everything else can be postponed until you probe the
+rest of the interrupt hierarchy.
 
->  arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi | 4 ++--
+	M.
 
-As DTS is.
-
->  drivers/usb/dwc2/params.c                         | 6 ++++--
->  3 files changed, 8 insertions(+), 4 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/usb/dwc2.yaml b/Documentation/devicetree/bindings/usb/dwc2.yaml
-> index dc4988c0009c..c98ca98d5033 100644
-> --- a/Documentation/devicetree/bindings/usb/dwc2.yaml
-> +++ b/Documentation/devicetree/bindings/usb/dwc2.yaml
-> @@ -51,6 +51,7 @@ properties:
->                - amlogic,meson-gxbb-usb
->                - amlogic,meson-g12a-usb
->                - intel,socfpga-agilex-hsotg
-> +              - intel,socfpga-hsotg
-
-Where is SoC specific compatible?
-
->            - const: snps,dwc2
->        - const: amcc,dwc-otg
->        - const: apm,apm82181-dwc-otg
-> @@ -64,6 +65,7 @@ properties:
->            - const: snps,dwc2
->        - const: samsung,s3c6400-hsotg
->        - const: intel,socfpga-agilex-hsotg
-> +      - const: intel,socfpga-hsotg
->  
->    reg:
->      maxItems: 1
-> diff --git a/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi b/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
-> index ea788a920eab..c5a51636f657 100644
-> --- a/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
-> +++ b/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
-
-...
-
-> diff --git a/drivers/usb/dwc2/params.c b/drivers/usb/dwc2/params.c
-> index 8eab5f38b110..6bb27a24e9e1 100644
-> --- a/drivers/usb/dwc2/params.c
-> +++ b/drivers/usb/dwc2/params.c
-> @@ -93,7 +93,7 @@ static void dwc2_set_s3c6400_params(struct dwc2_hsotg *hsotg)
->  	p->phy_utmi_width = 8;
->  }
->  
-> -static void dwc2_set_socfpga_agilex_params(struct dwc2_hsotg *hsotg)
-> +static void dwc2_set_socfpga_params(struct dwc2_hsotg *hsotg)
-
-Why? Old name was ok...
-
->  {
->  	struct dwc2_core_params *p = &hsotg->params;
->  
-> @@ -266,7 +266,9 @@ const struct of_device_id dwc2_of_match_table[] = {
->  	{ .compatible = "st,stm32mp15-hsotg",
->  	  .data = dwc2_set_stm32mp15_hsotg_params },
->  	{ .compatible = "intel,socfpga-agilex-hsotg",
-> -	  .data = dwc2_set_socfpga_agilex_params },
-> +	  .data = dwc2_set_socfpga_params },
-> +	{ .compatible = "intel,socfpga-hsotg",
-> +	  .data = dwc2_set_socfpga_params },
-
-Aren't they compatible? Why do you need new entry for compatible devices?
-
-Best regards,
-Krzysztof
-
+--=20
+Without deviation from the norm, progress is not possible.
