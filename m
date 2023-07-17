@@ -2,159 +2,234 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5801E755EE2
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 11:00:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E3D3B755EE9
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 11:01:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230197AbjGQJAl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jul 2023 05:00:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56018 "EHLO
+        id S229814AbjGQJBs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jul 2023 05:01:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57030 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230253AbjGQJAf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 05:00:35 -0400
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDF9A10DF
-        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 02:00:32 -0700 (PDT)
-Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id CBC923F71E
-        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 09:00:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1689584427;
-        bh=JHnHS0B61qcl/Td8/lm9RDjYsfSOyiiTTr5PsC3FWaA=;
-        h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-         To:Cc:Content-Type;
-        b=EfZJaB6Q53XXZ61RSRfnDiY+SHP2Acv7nEC0WY5n6b7AUWQFhLhocJthL44wXAuu9
-         pyqUQa8kzTSwzXzd9mhWVhq7vwB46njI01P4Krw8qiecEI8C2k+4mhwNaVxGA96BvA
-         4Ms1ulAkHRbwrOxsZJs6qMfWCBvAcrO3uKHM1kqMAaAqaaceorhxZBNalqDhu/PlWa
-         5c5+Aw45o9gGrfSkvo4KvYbiIf/Nw11nuopFywTF5n5fGCoLiGyaplaRDIA1yCJJa/
-         Mij5h+kaPpLRoajasj6BUONXfs8wX0anl+p8EpXbMlgmf17+4jQsJqknswzHr/kCuk
-         9E/jDIheqFBAw==
-Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-635a4267cf5so34157216d6.2
-        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 02:00:27 -0700 (PDT)
+        with ESMTP id S229765AbjGQJBl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 05:01:41 -0400
+Received: from mail-oa1-x2d.google.com (mail-oa1-x2d.google.com [IPv6:2001:4860:4864:20::2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27B4AE54;
+        Mon, 17 Jul 2023 02:01:40 -0700 (PDT)
+Received: by mail-oa1-x2d.google.com with SMTP id 586e51a60fabf-1b0606bee45so3323607fac.3;
+        Mon, 17 Jul 2023 02:01:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1689584499; x=1692176499;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=jxldzEnqhxU11I1qenml6kr6jYXmqVdQ8A5TZLTLFXc=;
+        b=YbJ2jFbuBvsxsq+FFnLBHzWtJWttbm0hbVvB1eIgpYvmPoezlwAfRDw3+SJ8ZGbUSF
+         D32HEvc89R9TKCdMxLVLozQ9yFbCR5Dk09Ehy6X0RA2S9uvIWamDXLiZ2urXjvTwx+cv
+         FcBr44cXJ/oAerRc1E0gcq7EMLZcUOKxz8hDBLM9CCdN6Lai6G8fIzqQO/5S8/z92YHP
+         4M7ckb0YPjOcMVai8RnzdoJ8cqgqdj8nbfaUaPFf9zak0mx/H0Do5C9BonfGe5h+6pYI
+         jAhno5X0mJ9eViSgtmH6Mr6hHOYwDrEA+I0d7n+23O70odDsHeXw7X1ZSZS+JFeDlcRk
+         176g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689584422; x=1692176422;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=JHnHS0B61qcl/Td8/lm9RDjYsfSOyiiTTr5PsC3FWaA=;
-        b=LBjtra3jyce5yhZRf2q4TfEvnGME2lo9YKcmx6dTAexNT6mMqFpw+M51T1Ia7MaEjW
-         FnnRCsy7d+V1QxsHdHlX4tL9UE/fruHoCb4xmcXLv44P/8srkwNzBglhulI4FDN8ZW7w
-         R4+7RNC8JIdTQDNjzB8mlSxJIW5IDt1K28CxEsGlw8QlPU+y2of4xhcaO5PU4k05UZlo
-         gPoA6WqiCLTpOmM+s6kuLuY22emqV1VL8l+GHqKeR/9cugRZ7hVSoF3t128oAflrodIz
-         LknRp0N3D7e1x+zb+BNL9+kpVDFqSeWEZZzC+Rk6EaNRahtrNaUZ3dNdSGjoHCmor+Z6
-         fo1w==
-X-Gm-Message-State: ABy/qLYl6cHvShz2u49UyxIvk98wFSv9IRYLaZG4rBUSbR31nggQRt58
-        gOQLxJ9pqro4NYBOFznNPjBsyxFzKdggsMvbe1930yRYuQ8Z+t2VrugWqJfMGAwc3qSLQkr/ZKW
-        diFvKYVCOgpqlxYYdo7YbsGb37ov1MOWGKNoac7CZBHb2VGy1koul3vc=
-X-Received: by 2002:ac8:7c48:0:b0:403:2dfd:1fdf with SMTP id o8-20020ac87c48000000b004032dfd1fdfmr15892579qtv.23.1689584401507;
-        Mon, 17 Jul 2023 02:00:01 -0700 (PDT)
-X-Google-Smtp-Source: APBJJlEMazgMYki8IR1CHHFS4st+/s+/y1hah0oj0+nBQlO+NhXDM06BTdCzgvWJM4HcjDSd4KVriXj5Pmlo8MNpIrE=
-X-Received: by 2002:ac8:7c48:0:b0:403:2dfd:1fdf with SMTP id
- o8-20020ac87c48000000b004032dfd1fdfmr15892526qtv.23.1689584401259; Mon, 17
- Jul 2023 02:00:01 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1689584499; x=1692176499;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=jxldzEnqhxU11I1qenml6kr6jYXmqVdQ8A5TZLTLFXc=;
+        b=NHvjOwoOfWoOmP0tESvhT2zkmilNF99yAP6izgW9ggYh46Tnf6NxZjsMgx99zkbcfR
+         va15+a8BWah02w+eweqoNcwlcVSuo09uXMzfVIs1cOhUV1zX5zY2eehsCsbXYrZu88UQ
+         xxpg9PzW1W57mEEMTvbOj4GlOdmez0nbei5X7iShuecYlzDOSXcwdeQxf0t1SgyXqv1r
+         uNLm4kKvk3POuhGmCf2IIXC5Dm3CqVR16Xm2z34JZWeylsSP2e9yPhnPcWXl9TYDiExy
+         e9jEtIw8S0FsJ4ytGS29HQxxtuDI8bFX/iQsbgkSfOVrt5YmFopwiT1L8sE4Kb5KRiLa
+         z9XA==
+X-Gm-Message-State: ABy/qLYdudGaRZWnB8lrviNMuO/4/wxHauSM/k4X1pm6ImJgLmWoRQA8
+        NsAI8YkqnEt7ATIgllCmUsDLvMTQGHn0BFCm7WzZnLfo+vYnl2Qb
+X-Google-Smtp-Source: APBJJlHgS3n1gQn4Oax9fTF+hYKgAcdQqB9afBeR6x0UgGsHhp289g1cgQIuZwJ37pl3ns1pDcKlMFedVXvZ0dTUDmg=
+X-Received: by 2002:a05:6870:589b:b0:1b0:40b0:114c with SMTP id
+ be27-20020a056870589b00b001b040b0114cmr12150916oab.43.1689584499214; Mon, 17
+ Jul 2023 02:01:39 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230714174901.4062397-1-robh@kernel.org>
-In-Reply-To: <20230714174901.4062397-1-robh@kernel.org>
-From:   Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Date:   Mon, 17 Jul 2023 10:59:45 +0200
-Message-ID: <CAJM55Z_Eba-LKxKAH0i0_vDM6JO_HvWgDLCLFQDave2+UFLMzA@mail.gmail.com>
-Subject: Re: [PATCH] pinctrl: Explicitly include correct DT includes
-To:     Rob Herring <robh@kernel.org>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        Broadcom internal kernel review list 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        Dong Aisheng <aisheng.dong@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Shawn Guo <shawnguo@kernel.org>, Jacky Bai <ping.bai@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Sean Wang <sean.wang@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Chester Lin <clin@suse.com>, NXP S32 Linux Team <s32@nxp.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Damien Le Moal <dlemoal@kernel.org>,
-        Vladimir Zapolskiy <vz@mleia.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Tony Lindgren <tony@atomide.com>,
-        Haojian Zhuang <haojian.zhuang@linaro.org>,
-        Daniel Mack <daniel@zonque.org>,
-        Robert Jarzmik <robert.jarzmik@free.fr>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Tomasz Figa <tomasz.figa@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Shiraz Hashim <shiraz.linux.kernel@gmail.com>, soc@kernel.org,
-        Orson Zhai <orsonzhai@gmail.com>,
-        Baolin Wang <baolin.wang@linux.alibaba.com>,
-        Chunyan Zhang <zhang.lyra@gmail.com>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Jianlong Huang <jianlong.huang@starfivetech.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Dvorkin Dmitry <dvorkin@tibbo.com>,
-        Wells Lu <wellslutw@gmail.com>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-riscv@lists.infradead.org,
-        linux-oxnas@groups.io, linux-rockchip@lists.infradead.org,
-        linux-omap@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-sunxi@lists.linux.dev, linux-tegra@vger.kernel.org
+References: <CAGUgbhCqOJaEPjS96o2au21uW4NhqFScm4Ayd8PzOQvqxQ94SQ@mail.gmail.com>
+ <0b9dd5cf-f4ca-2e6b-624d-0b451bbc2f30@linaro.org> <0ba3767c-d481-6e2c-2d32-b79af0e1efd8@roeck-us.net>
+ <CAGUgbhC34-pUp4ECULc0ScaN7hUF1L-z69h+ji-TiVrv4gKd3Q@mail.gmail.com>
+ <7b198d57-ddec-3074-314a-3e5e5b8f48f9@roeck-us.net> <CAGUgbhDbFedVe-pc+muD_NtDpjHpGqMDdrS3A73C-QbxeHn4oQ@mail.gmail.com>
+ <cf91edc9-1093-495b-48eb-6b05198c2541@linaro.org> <7a69bda1-5f4c-5b1f-8eb6-6fd58917a9b1@roeck-us.net>
+In-Reply-To: <7a69bda1-5f4c-5b1f-8eb6-6fd58917a9b1@roeck-us.net>
+From:   =?UTF-8?B?6JSh5om/6YGU?= <billyking19920205@gmail.com>
+Date:   Mon, 17 Jul 2023 17:01:28 +0800
+Message-ID: <CAGUgbhCTDPGt_vpbfaEreX+iuLJ3WUBqt4kppxyaFZQus9Zf0Q@mail.gmail.com>
+Subject: Re: [v6 2/4] dt-bindings: hwmon: Add ASPEED TACH Control documentation
+To:     Guenter Roeck <linux@roeck-us.net>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        "jdelvare@suse.com" <jdelvare@suse.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "joel@jms.id.au" <joel@jms.id.au>,
+        "andrew@aj.id.au" <andrew@aj.id.au>,
+        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
+        "u.kleine-koenig@pengutronix.de" <u.kleine-koenig@pengutronix.de>,
+        "corbet@lwn.net" <corbet@lwn.net>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
+        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
+        "patrick@stwcx.xyz" <patrick@stwcx.xyz>,
+        Billy Tsai <billy_tsai@aspeedtech.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 14 Jul 2023 at 19:52, Rob Herring <robh@kernel.org> wrote:
+Guenter Roeck <linux@roeck-us.net> =E6=96=BC 2023=E5=B9=B47=E6=9C=8817=E6=
+=97=A5 =E9=80=B1=E4=B8=80 =E4=B8=8A=E5=8D=881:00=E5=AF=AB=E9=81=93=EF=BC=9A
 >
-> The DT of_device.h and of_platform.h date back to the separate
-> of_platform_bus_type before it as merged into the regular platform bus.
-> As part of that merge prepping Arm DT support 13 years ago, they
-> "temporarily" include each other. They also include platform_device.h
-> and of.h. As a result, there's a pretty much random mix of those include
-> files used throughout the tree. In order to detangle these headers and
-> replace the implicit includes with struct declarations, users need to
-> explicitly include the correct includes.
+> On 7/16/23 09:08, Krzysztof Kozlowski wrote:
 >
-> Signed-off-by: Rob Herring <robh@kernel.org>
+> [ ... ]
+>
+> >>
+> >> This patch serial doesn't use to binding the fan control h/w. It is
+> >> used to binding the two independent h/w blocks.
+> >> One is used to provide pwm output and another is used to monitor the
+> >> speed of the input.
+> >> My patch is used to point out that the pwm and the tach is the
+> >> different function and don't need to
+> >> bind together. You can not only combine them as the fan usage but also
+> >> treat them as the individual module for
+> >> use. For example: the pwm can use to be the beeper (pwm-beeper.c), the
+> >> tach can be used to monitor the heart beat signal.
+> >
+> > Isn't this exactly the same as in every other SoC? PWMs can be used in
+> > different ways?
+> >
+>
+> ... and in every fan controller. Not that it really makes sense because
+> normally the pwm controller part of such chips is tied to the fan input,
+> to enable automatic fan control, but it is technically possible.
+> In many cases this is also the case in SoCs, for example, in ast2500.
+> Apparently this was redesigned in ast2600 where they two blocks are
+> only lightly coupled (there are two pwm status bits in the fan status
+> register, but I have no idea what those mean). If the blocks are tightly
+> coupled, separate drivers don't really make sense.
+>
+> There are multiple ways to separate the pwm controller part from the
+> fan inputs if that is really necessary. One would be to provide a
+> sequence of address mappings, the other would be to pass the memory
+> region from an mfd driver. It is not necessary to have N instances
+> of the fan controller, even if the address space is not continuous.
+>
 
->  drivers/pinctrl/starfive/pinctrl-starfive-jh7110-aon.c | 5 +----
->  drivers/pinctrl/starfive/pinctrl-starfive-jh7110-sys.c | 2 --
->  drivers/pinctrl/starfive/pinctrl-starfive-jh7110.c     | 1 -
+Hi Guenter,
 
-Acked-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+May I ask about the meaning of the sequence of address mappings? It appears
+to consist of multiple tuples within the 'reg' property, indicating
+the usage of PWM/Tach
+registers within a single instance. After that I can use the dts like follo=
+wing:
 
-Thanks,
-/Emil
+pwm: pwm@1e610000 {
+...
+reg =3D <0x1e610000 0x8
+0x1e610010 0x8
+0x1e610020 0x8
+0x1e610030 0x8
+0x1e610040 0x8
+0x1e610050 0x8
+0x1e610060 0x8
+0x1e610070 0x8
+0x1e610080 0x8
+0x1e610090 0x8
+0x1e6100A0 0x8
+0x1e6100B0 0x8
+0x1e6100C0 0x8
+0x1e6100D0 0x8
+0x1e6100E0 0x8
+0x1e6100F0 0x8>;
+...
+};
+
+tach: tach@
+...
+reg =3D <0x1e610008 0x8
+0x1e610018 0x8
+0x1e610028 0x8
+0x1e610038 0x8
+0x1e610048 0x8
+0x1e610058 0x8
+0x1e610068 0x8
+0x1e610078 0x8
+0x1e610088 0x8
+0x1e610098 0x8
+0x1e6100A8 0x8
+0x1e6100B8 0x8
+0x1e6100C8 0x8
+0x1e6100D8 0x8
+0x1e6100E8 0x8
+0x1e6100F8 0x8>;
+...
+};
+
+correct?
+
+Thanks
+
+> Guenter
+>
+> > Anyway, it is tricky to keep the discussion since you avoid posting
+> > entire DTS. I already said:
+> >
+> > "I will start NAKing such patches without DTS user. It's like reviewing
+> > fake code for some unknown solution and trying to get from you piece of
+> > answers one by one, because you do not want to share entire part."
+> >
+
+Hi Krzysztof,
+
+Do you mean the DTS example of the usage in the binding, like the
+following right?
+PWM:
+pwm0: pwm0@1e610000 {
+compatible =3D "aspeed,ast2600-pwm";
+reg =3D <0x1e610000 0x8>;
+#pwm-cells =3D <3>;
+#address-cells =3D <1>;
+#size-cells =3D <0>;
+pinctrl-names =3D "default";
+pinctrl-0 =3D <&pinctrl_pwm0_default>;
+clocks =3D <&syscon ASPEED_CLK_AHB>;
+resets =3D <&syscon ASPEED_RESET_PWM>;
+};
+
+TACH:
+examples:
+- |
+tach0: tach0@1e610008 {
+        compatible =3D "aspeed,ast2600-tach";
+        reg =3D <0x1e610008 0x8>;
+        #address-cells =3D <1>;
+        #size-cells =3D <0>;
+        pinctrl-names =3D "default";
+        pinctrl-0 =3D <&pinctrl_tach0_default>;
+        clocks =3D <&syscon ASPEED_CLK_AHB>;
+        resets =3D <&syscon ASPEED_RESET_PWM>;
+};
+
+Thanks
+
+> >
+> >
+> > Best regards,
+> > Krzysztof
+> >
+>
