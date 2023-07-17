@@ -2,57 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 188167558BC
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 02:10:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 499D97558C1
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 02:12:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229591AbjGQAJ6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 16 Jul 2023 20:09:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49588 "EHLO
+        id S230173AbjGQAMr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 16 Jul 2023 20:12:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50590 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229496AbjGQAJ6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Jul 2023 20:09:58 -0400
+        with ESMTP id S230184AbjGQAMq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Jul 2023 20:12:46 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 064E61A5;
-        Sun, 16 Jul 2023 17:09:57 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25BBA1B7;
+        Sun, 16 Jul 2023 17:12:46 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 79FAD60EC9;
-        Mon, 17 Jul 2023 00:09:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AD044C433C8;
-        Mon, 17 Jul 2023 00:09:51 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id ADA8F60EC9;
+        Mon, 17 Jul 2023 00:12:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9DF2AC433C7;
+        Mon, 17 Jul 2023 00:12:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689552595;
-        bh=Z9dg4ellLpkQabLVyn6gLd88300q6gBXA05WHBUVT6c=;
+        s=k20201202; t=1689552765;
+        bh=MaEcBaYE19WdJ0QreuY8MWAgOhh/JJXmnevhdjfrlXI=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=X9zdy6C74PMKc/L9e61POBhoywdbASXG1Tiekjkz6fuSIzjTM4sPEDRTB9LYDxhNF
-         Er9MCPB5DKSiW+9VbY/xk0PBKMmfT+YstwJ8xjCzx+cLrMjfv+vyrnXKG8U51af676
-         HiBgheAezNfZbeGEPic7oFS41tD3tJqcukXAU/hnobeyT60oiruFcyMrLGtEmaTdE7
-         b50WPT/4JR1V+vLHKBNBepjWUKJH4fJC2J6lniAZyq0AOdrjxYv/jZHUFAbLbKuqVL
-         YnODtxfh8aUH8xawuZGb2A0xGWYZiheqSkn5EmFNoIJ5X++GRMJZzAsgI2C5rgeL0O
-         BwnbB1yfnFmyw==
-Date:   Mon, 17 Jul 2023 08:09:45 +0800
+        b=pVu9Y11PNVpvw0mBl6bdwRatOQpqE2gcna/chtZVugGi1z3Y4gpLoDMoCXH8jmolP
+         ZVJarNeCbfundKjMq4G5Ds8FXpoZ49YSKe6AREWuK7EoxsUwjZQjDhZcL4KgDP8BdB
+         WZP2o2ky0dzSK3i+qS2ffdx4m7B0Ex+tP+GsDrheBtarJstMebZRx4d65CoWFYbmI4
+         yWgbQSq2voXGTvdnNiGRncLQ/5eJj2rUuZpA5b9F2V82lUuI4buw7LznpBr1jOfowN
+         wnuNHU2kC07vo4g4NDfqn+s8sxQnxL4nfAwP69dY8+PleIeWsUIba7eaBPXHOm2vlN
+         dOv/Lnxc/2JVg==
+Date:   Mon, 17 Jul 2023 08:12:34 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
 To:     Tim Harvey <tharvey@gateworks.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+Cc:     linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Sascha Hauer <s.hauer@pengutronix.de>,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
         Fabio Estevam <festevam@gmail.com>,
         NXP Linux Team <linux-imx@nxp.com>,
         Li Yang <leoyang.li@nxp.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] arm64: dts: imx8mm-venice-gw7901: add cpu-supply node
- for cpufreq
-Message-ID: <20230717000945.GC9559@dragon>
-References: <20230606153238.1448463-1-tharvey@gateworks.com>
- <CAJ+vNU0t0ErCcu2W-nFzgjXSwM4Oq3KCK1BQBRe3c_=vj6ZK-A@mail.gmail.com>
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: imx8mm-venice-gw7901: add SDR50/SDR104 SDIO
+ support for wifi
+Message-ID: <20230717001234.GD9559@dragon>
+References: <20230606153351.1448596-1-tharvey@gateworks.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAJ+vNU0t0ErCcu2W-nFzgjXSwM4Oq3KCK1BQBRe3c_=vj6ZK-A@mail.gmail.com>
+In-Reply-To: <20230606153351.1448596-1-tharvey@gateworks.com>
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -63,65 +62,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 12, 2023 at 09:13:49AM -0700, Tim Harvey wrote:
-> On Tue, Jun 6, 2023 at 8:32 AM Tim Harvey <tharvey@gateworks.com> wrote:
-> >
-> > Add regulator config for cpu-supply in order to support cpufreq.
-> >
-> > Signed-off-by: Tim Harvey <tharvey@gateworks.com>
-> > ---
-> >  .../dts/freescale/imx8mm-venice-gw7901.dts     | 18 +++++++++++++++++-
-> >  1 file changed, 17 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts
-> > index df3b2c93d2d5..d022b5807a24 100644
-> > --- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts
-> > +++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts
-> > @@ -242,6 +242,22 @@ reg_wifi: regulator-wifi {
-> >         };
-> >  };
-> >
-> > +&A53_0 {
-> > +       cpu-supply = <&buck2>;
-> > +};
-> > +
-> > +&A53_1 {
-> > +       cpu-supply = <&buck2>;
-> > +};
-> > +
-> > +&A53_2 {
-> > +       cpu-supply = <&buck2>;
-> > +};
-> > +
-> > +&A53_3 {
-> > +       cpu-supply = <&buck2>;
-> > +};
-> > +
-> >  &ddrc {
-> >         operating-points-v2 = <&ddrc_opp_table>;
-> >
-> > @@ -511,7 +527,7 @@ BUCK1 {
-> >                         };
-> >
-> >                         /* vdd_arm: 0.805-1.0V (typ=0.9V) */
-> > -                       BUCK2 {
-> > +                       buck2: BUCK2 {
-> >                                 regulator-name = "buck2";
-> >                                 regulator-min-microvolt = <700000>;
-> >                                 regulator-max-microvolt = <1300000>;
-> > --
-> > 2.25.1
-> >
+On Tue, Jun 06, 2023 at 08:33:51AM -0700, Tim Harvey wrote:
+> The GW7901 has a Murata LBEE5H 802.11abgnac / BT5 module based on the
+> Cypress CYW43455 which supports SDR50/SDR104.
 > 
-> Hi Shawn,
+> Add dt pinctrl for the 100mhz and 200mhz states to support SDR50/SDR104.
 > 
-> I noticed this and several other of my pending patches delegated to
-> you got marked as 'archived' and no longer appear as new in my
-> patchwork queue [1]. I wanted to make sure they are still in your
-> queue or see if I need to resubmit them. I'm not sure what the process
-> is that you follow and if they got archived by you or something else.
-> Please let me know if I need to do anything:
+> While at it add the dt node for the CYW43455 wifi for the brcmfmac
+> driver.
+> 
+> Signed-off-by: Tim Harvey <tharvey@gateworks.com>
 
-I do not use patchwork, so it doesn't reflect any status on my side.
-
-Shawn
+Applied, thanks!
