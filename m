@@ -2,173 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 194AB756E7C
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 22:41:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A05D4756E8A
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 22:48:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231154AbjGQUlf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jul 2023 16:41:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39498 "EHLO
+        id S231299AbjGQUsB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jul 2023 16:48:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41462 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230397AbjGQUle (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 16:41:34 -0400
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6E741AC
-        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 13:41:31 -0700 (PDT)
-Received: by mail-wr1-x42c.google.com with SMTP id ffacd0b85a97d-315adee6ac8so4846284f8f.2
-        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 13:41:31 -0700 (PDT)
+        with ESMTP id S231307AbjGQUsA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 16:48:00 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30DAA10C0
+        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 13:47:58 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id 2adb3069b0e04-4f95bf5c493so7858838e87.3
+        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 13:47:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689626490; x=1692218490;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=Dxs4QoOQ/zuyVwrQI4lubKrrMktOwLFYVCg8BWpDqAE=;
-        b=i94RzqOBda0we6gStVXydLDozZedYS0fpZK7pAsIMIN7IJXNvyYVF2RumNOfBFIbAl
-         WdWWZ2wsboobWEoBVfcjdQ5hYQ41X02Po46s83kFC6MmsbxflQ4mc952aTGhRbHGnKFb
-         ulthz7ivLuKDhoYyzkfR+S+03giW7cDlMeB+L53yZYdLVdG5RXcUAtBQ8a9uD16erK6q
-         wPQxWL3uGqAXZIOaaAJ5TqWhs56TkUxo8WwL8iyYILzt6UOgZuATex3R1BW25lOltVxy
-         pHcclVdPi/puXIvpgzrqhFBOdpkdA2oI/s8oCU/lCibCpuZo6mhhSsR3At3zsNbDlOje
-         2+kQ==
+        d=linaro.org; s=google; t=1689626876; x=1692218876;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=0o8ckZBUZuUaMhooSth+n6+S+US/RZWlBGdRuFJcW8E=;
+        b=oVHLqHD6B9siyR8qNsDpRZJsNGZyeh9TN2wzGKfYdl10D55MvOWqT9Qjw22KFxtFy3
+         olT26wyF5wwSEe/e1pDasBKFm4rSgfNYZ7P2Jjv2U/ubLhzk+ExSLGr8/zcbCrZH+sBg
+         F/XaFTUJyhCbjYM9A6ZbS+QzV59AmZbXjPkl6URO6mrowW7xdgMeLmtdxQ6iMH2H4Mtu
+         Hhu0+FOLekw9qsk+9erbLaTqi+YhfdvaTgA1q72G4mKqAER0oa1aALlAaUMO32KfdE0H
+         CD7IilKyhVIybp5ei3f2gruo/s0qZu6vmN+PBIS96eqgsyZXPsxYteSYuFRakS9ICW0c
+         VwmA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689626490; x=1692218490;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Dxs4QoOQ/zuyVwrQI4lubKrrMktOwLFYVCg8BWpDqAE=;
-        b=CQhPIcgpuZxD9bOzCUJ3y6IYXeV0ad6tSVXIh8VHdQGCnRyL4/o5JFbVxB2bHBG0Zz
-         //1Qd8DAkk5DLT3m8RqLJXHhyqNX1oIcuFt6JNrTWkNLIW6Z1n+GLwyYC6D1jJ37F8Ed
-         tTEwGs1j+6TaGEvdUbgWZ/hOfX667p2Y7uuJhYQbxdV3zXE2ou+rsHsozZzyDARGYxEf
-         D1XYovroXXuaReMPG7EdkmNEIvPIGRpFvTCHYd5gn5UbUiASJL77fruydnSnYB6+LS7W
-         OIMZZ9ydG+haDfIccNaXwki6lKw64zYBuSp9PHajryYhxzOw4gzUbQXXwu2zuVI4Q3sg
-         MUNg==
-X-Gm-Message-State: ABy/qLY/ZnUycCzn0T0dfQhYJpKsaBlVQdSGhnmsiQJaDGP/ec1xyBgY
-        lqmbpigdpYs8RwBLducz/K/eZ/XMh4RUcyaKtcV6Yg==
-X-Google-Smtp-Source: APBJJlGSsV9rxiUISE+EtvohXTTyc6XC/XcPBnbdT6/SNm9+KvD19buO7D7jOsInc4V4JwLvQnwrAacAmUqhMj/w9B8=
-X-Received: by 2002:adf:ffca:0:b0:314:1f1e:3a85 with SMTP id
- x10-20020adfffca000000b003141f1e3a85mr9589916wrs.61.1689626490362; Mon, 17
- Jul 2023 13:41:30 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1689626876; x=1692218876;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=0o8ckZBUZuUaMhooSth+n6+S+US/RZWlBGdRuFJcW8E=;
+        b=YLfi4TnQfrisM3XYIWlEadSCi6eWEVfpPtEAvrQnp8vSFJYaGpjdFguGKdbb03ZFMw
+         B+xSq5f09Hv4Ux30eHI/bsNhg1SxrsIS+jXWOk01se6MsH3UK/vKoiEvfbtLgyE028HI
+         RdZ7TqteycbtHSLQv8doAK63ObNY6wlNaXjVLaseHePP+eRiqTNtPcIGF5Yy9tfhhzj8
+         Ak809j9+tCvcxvz0Y8TQ8fU/pGEcMm3D6URquhNHnkd4BfyXDRbfZkqTZLiDLcOx56nZ
+         AWFrRN6adBuUqBDN4WtI/5EGF46TVKe4biBk8blZj4lGYoyweZrrs8Z/hOkzYjd3LkAt
+         FwnA==
+X-Gm-Message-State: ABy/qLZGMn4yNffhE5t1e+0ibr6y8cdjDjWPvzExGmY0W8zwY7znw/5E
+        wiHoE6amVkbMClEH3vGXXpsWjA==
+X-Google-Smtp-Source: APBJJlFALZDQq5DOa2yxPMX33d+1cHKLT9pUDzNAnNYlfepByUkKnpdlix9l3gU/Sm2a6teyqVFjxw==
+X-Received: by 2002:a05:6512:23a7:b0:4fd:c771:ed76 with SMTP id c39-20020a05651223a700b004fdc771ed76mr1595068lfv.38.1689626876309;
+        Mon, 17 Jul 2023 13:47:56 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id i19-20020aa7dd13000000b0051de3c6c5e5sm107992edv.94.2023.07.17.13.47.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 17 Jul 2023 13:47:55 -0700 (PDT)
+Message-ID: <ee81e955-32be-66ea-377b-263ee60a2632@linaro.org>
+Date:   Mon, 17 Jul 2023 22:47:53 +0200
 MIME-Version: 1.0
-References: <20230717103236.1246771-1-bhupesh.sharma@linaro.org>
- <20230717103236.1246771-4-bhupesh.sharma@linaro.org> <ZLUbyocjNT2bGvVt@gerhold.net>
- <CAH=2NtzM=jaVtjeHHO0rY0_wHu9==Jpdz4zx5nCK3gBh2kpL=A@mail.gmail.com>
- <ZLWHwnjjMkJx_ACH@gerhold.net> <CAH=2NtxHekJVvzaD5SNhZZmAHXhc=7v4Pr7RMEFNTXXH6x_AgQ@mail.gmail.com>
- <81491f7e-bd2c-7e3c-14c4-a7547d76c307@linaro.org> <CAH=2NtxX9jC6-7=bWEWTtgO=5VqX5U_ngnC6vWFZxDJUdsdg+g@mail.gmail.com>
- <5f415647-0cec-b4cd-f9a8-6b6690615498@linaro.org>
-In-Reply-To: <5f415647-0cec-b4cd-f9a8-6b6690615498@linaro.org>
-From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Date:   Tue, 18 Jul 2023 02:11:18 +0530
-Message-ID: <CAH=2NtySyCVaxca_MVpDz6eOWvpGTSM3XHfjGUcNCeGXMXVtbQ@mail.gmail.com>
-Subject: Re: [PATCH v8 3/4] arm64: dts: qcom: sm6115: Add EUD dt node and dwc3 connector
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     Stephan Gerhold <stephan@gerhold.net>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-usb@vger.kernel.org, agross@kernel.org, andersson@kernel.org,
-        linux-kernel@vger.kernel.org, bhupesh.linux@gmail.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        krzysztof.kozlowski@linaro.org, quic_schowdhu@quicinc.com,
-        gregkh@linuxfoundation.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH 1/2] dt-bindings: reset: Updated binding for Versal-NET
+ reset driver
+Content-Language: en-US
+To:     Conor Dooley <conor@kernel.org>,
+        Piyush Mehta <piyush.mehta@amd.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, p.zabel@pengutronix.de, michal.simek@amd.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        git@amd.com
+References: <20230717112348.1381367-1-piyush.mehta@amd.com>
+ <20230717112348.1381367-2-piyush.mehta@amd.com>
+ <20230717-explode-caucus-82c12e340e39@spud>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230717-explode-caucus-82c12e340e39@spud>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 18 Jul 2023 at 01:54, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
->
-> On 17.07.2023 22:22, Bhupesh Sharma wrote:
-> > On Tue, 18 Jul 2023 at 01:49, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
-> >>
-> >> On 17.07.2023 22:09, Bhupesh Sharma wrote:
-> >>> On Mon, 17 Jul 2023 at 23:58, Stephan Gerhold <stephan@gerhold.net> wrote:
-> >>>>
-> >>>> On Mon, Jul 17, 2023 at 11:33:40PM +0530, Bhupesh Sharma wrote:
-> >>>>> On Mon, 17 Jul 2023 at 16:15, Stephan Gerhold <stephan@gerhold.net> wrote:
-> >>>>>>
-> >>>>>> On Mon, Jul 17, 2023 at 04:02:35PM +0530, Bhupesh Sharma wrote:
-> >>>>>>> Add the Embedded USB Debugger(EUD) device tree node for
-> >>>>>>> SM6115 / SM4250 SoC.
-> >>>>>>>
-> >>>>>>> The node contains EUD base register region, EUD mode manager
-> >>>>>>> register region and TCSR Base register region along with the
-> >>>>>>> interrupt entry.
-> >>>>>>>
-> >>>>>>> [...]
-> >>>>>>>
-> >>>>>>> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> >>>>>>> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-> >>>>>>> ---
-> >>>>>>>  arch/arm64/boot/dts/qcom/sm6115.dtsi | 50 ++++++++++++++++++++++++++++
-> >>>>>>>  1 file changed, 50 insertions(+)
-> >>>>>>>
-> >>>>>>> diff --git a/arch/arm64/boot/dts/qcom/sm6115.dtsi b/arch/arm64/boot/dts/qcom/sm6115.dtsi
-> >>>>>>> index 839c603512403..db45337c1082c 100644
-> >>>>>>> --- a/arch/arm64/boot/dts/qcom/sm6115.dtsi
-> >>>>>>> +++ b/arch/arm64/boot/dts/qcom/sm6115.dtsi
-> >>>>>>> [...]
-> >>>>>>> @@ -789,6 +801,37 @@ gcc: clock-controller@1400000 {
-> >>>>>>>                       #power-domain-cells = <1>;
-> >>>>>>>               };
-> >>>>>>>
-> >>>>>>> +             eud: eud@1610000 {
-> >>>>>>> +                     compatible = "qcom,sm6115-eud", "qcom,eud";
-> >>>>>>> +                     reg = <0x0 0x01610000 0x0 0x2000>,
-> >>>>>>> +                           <0x0 0x01612000 0x0 0x1000>,
-> >>>>>>> +                           <0x0 0x003c0000 0x0 0x40000>;
-> >>>>>>> +                     reg-names = "eud-base", "eud-mode-mgr", "tcsr-base";
-> >>>>>>
-> >>>>>> TCSR is a separate hardware block unrelated to the EUD. IMHO it
-> >>>>>> shouldn't be listed as "reg" here.
-> >>>>>>
-> >>>>>> Typically we describe it as syscon and then reference it from other
-> >>>>>> nodes. See e.g. sm8450.dtsi "tcsr: syscon@1fc0000" referenced in &scm
-> >>>>>> "qcom,dload-mode = <&tcsr 0x13000>". This is pretty much exactly the
-> >>>>>> same use case as you have. It also uses this to write something with
-> >>>>>> qcom_scm_io_writel() at the end.
-> >>>>>
-> >>>>> That was discussed a bit during v1 patchset review. Basically, if we
-> >>>>> use a tcsr syscon approach here, we will need to define a 'qcom,xx'
-> >>>>> vendor specific dt-property and use something like this in the eud
-> >>>>> node:
-> >>>>>
-> >>>>> qcom,eud-sec-reg = <&tcsr_reg yyyy>
-> >>>>>
-> >>>>> which would be then used by the eud driver (via
-> >>>>> syscon_regmap_lookup_by_phandle()).
-> >>>>>
-> >>>>> But for sm6115 / qcm2290 this would be an over complicated solution as
-> >>>>> normally the eud driver (say sc7280) doesn't need tcsr based secure
-> >>>>> mode manager access. So defining a new soc / vendor specific
-> >>>>> dt-property might be an overkill.
-> >>>>>
-> >>>>
-> >>>> IMO a vendor-specific DT property is still better than messing up the
-> >>>> device separation in the device tree. The same "tcsr-base" reg would
-> >>>> also appear on the actual tcsr syscon device tree node. Having two
-> >>>> device tree nodes with the same reg region is generally not valid.
-> >>>>
-> >>>> Something like qcom,eud-sec-reg = <&tcsr_reg yyyy> would at least make
-> >>>> clear that this points into a region that is shared between multiple
-> >>>> different devices, while adding it as reg suggests that TCSR belongs
-> >>>> exclusively to EUD.
-> >>>
-> >>> I understand your point but since for sm6115 / qcm2290 devices TCSR is
-> >>> not used for any other purpose than EUD, I still think introducing a
-> >>> new soc / vendor specific dt-property might be an overkill for this
-> >>> changeset.
-> >> Untrue, there's some mumblings around the PHY properties and PSHOLD.
-> >> I think Stephan may be correct here.
-> >
-> > Can you share the links to those discussions?
-> It just seemed off to me that TCSR was not used by anything else (even
-> from Linux, it would obviously be used by something else higher up in
-> the boot chain as it contains various configuration registers), so I
-> took a glance at the downstream device tree and I noticed there are
-> more users.
+On 17/07/2023 20:40, Conor Dooley wrote:
+> On Mon, Jul 17, 2023 at 04:53:47PM +0530, Piyush Mehta wrote:
+>> Added documentation and Versal-NET reset indices to describe about
+>> Versal-Net reset driver bindings.
+>>
+>> In Versal-NET all reset indices includes Class, SubClass, Type, Index
+>> information whereas class refers to clock, reset, power etc.,
+>> Underlying firmware in Versal have such classification and expects
+>> the ID to be this way.
+>> [13:0] - Index bits
+>> [19:14] - Type bits
+>> [25:20] - SubClass bits
+>> [31:26] - Class bits.
+> 
+> Riight.. I'm not sure that describing these as "indices" is really all
+> that valid, given only 13:0 are actually the index.
+> I'd be inclined to say that the type/class/subclass stuff should not be
+> part of the dt-bindings, and instead looked up inside the driver
+> depending on the index.
+> 
+> Hopefully Rob or Krzysztof can comment further.
 
-Ok, let me recheck the downstream code and come back.
+This confuses me as well. I don't understand why do you need it in the
+bindings. Nothing uses these values, so storing them as bindings seems
+pointless.
+> 
+> Thanks,
+> Conor.
+> 
+>>
+>> Signed-off-by: Piyush Mehta <piyush.mehta@amd.com>
+>> ---
+>>  .../bindings/reset/xlnx,zynqmp-reset.yaml     |   4 +
+>>  .../reset/xlnx-versal-net-resets.h            | 127 ++++++++++++++++++
+>>  2 files changed, 131 insertions(+)
+>>  create mode 100644 include/dt-bindings/reset/xlnx-versal-net-resets.h
+>>
+>> diff --git a/Documentation/devicetree/bindings/reset/xlnx,zynqmp-reset.yaml b/Documentation/devicetree/bindings/reset/xlnx,zynqmp-reset.yaml
+>> index 0d50f6a54af3..b996fc1d4e53 100644
+>> --- a/Documentation/devicetree/bindings/reset/xlnx,zynqmp-reset.yaml
+>> +++ b/Documentation/devicetree/bindings/reset/xlnx,zynqmp-reset.yaml
+>> @@ -27,11 +27,15 @@ description: |
+>>    For list of all valid reset indices for Versal
+>>    <dt-bindings/reset/xlnx-versal-resets.h>
+>>  
+>> +  For list of all valid reset indices for Versal-NET
+>> +  <dt-bindings/reset/xlnx-versal-net-resets.h>
+>> +
+>>  properties:
+>>    compatible:
+>>      enum:
+>>        - xlnx,zynqmp-reset
+>>        - xlnx,versal-reset
+>> +      - xlnx,versal-net-reset
+>>  
+>>    "#reset-cells":
+>>      const: 1
+>> diff --git a/include/dt-bindings/reset/xlnx-versal-net-resets.h b/include/dt-bindings/reset/xlnx-versal-net-resets.h
+>> new file mode 100644
+>> index 000000000000..b3e7d5e4c33e
+>> --- /dev/null
+>> +++ b/include/dt-bindings/reset/xlnx-versal-net-resets.h
+>> @@ -0,0 +1,127 @@
+>> +/* SPDX-License-Identifier: GPL-2.0 */
+>> +/*
+>> + *  Copyright (C) 2023 Advanced Micro Devices, Inc. All Rights Reserved.
+>> + */
+>> +
+>> +#ifndef _DT_BINDINGS_VERSAL_NET_RESETS_H
+>> +#define _DT_BINDINGS_VERSAL_NET_RESETS_H
+>> +
+>> +#define PM_RST_PMC_POR                          (0xc30c001U)
 
-Thanks,
-Bhupesh
+IDs start from 0 and are incremented by 1.
+
+Best regards,
+Krzysztof
+
