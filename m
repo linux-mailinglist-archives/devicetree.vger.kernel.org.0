@@ -2,94 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 23B79755A69
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 06:01:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EE568755A78
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 06:07:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230381AbjGQEBi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jul 2023 00:01:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50878 "EHLO
+        id S230229AbjGQEHO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jul 2023 00:07:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53460 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229489AbjGQEBd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 00:01:33 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA5AE1BC;
-        Sun, 16 Jul 2023 21:01:32 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 5E52460EF9;
-        Mon, 17 Jul 2023 04:01:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 041D3C433C8;
-        Mon, 17 Jul 2023 04:01:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689566491;
-        bh=Q8HivdgN0OL6bq4ZKkophdSmpX3+e7PbxMGhWwxCixw=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=MujKx3gpE5F0rZ+QF6LHP/GxGfyKVj6s/STk9hmgJplxJlC2KXY41ikMHBwMeD2hd
-         oX++frOrOtZJnkkuokutw+COM5rPP2wM0pGJDKL/ZB1KOTyHocXlzgnPopWcoGYRBw
-         yYOBTHWyoZy3d1OQWiXPT3yZCDz7W2n+2TWgmZ83xEvS7HxIMzbnsqykDUAJI/jJ0L
-         Dr+awOKq718H3u3A257V8fnE/X8/X83DGtaSoQsSPld/P/Wigxc1ez8gj+Iy201Sst
-         bxwqR3N7fMgf6vMTpGlr0OvdWnr62wOfRFaE69idR7bcupDKEu/MaUNqmoDG8V5EYh
-         RpaPsFQYnP4Gg==
-Date:   Mon, 17 Jul 2023 12:01:22 +0800
-From:   Tzung-Bi Shih <tzungbi@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Hector Martin <marcan@marcan.st>,
-        Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        with ESMTP id S230018AbjGQEHN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 00:07:13 -0400
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F7E5109;
+        Sun, 16 Jul 2023 21:07:10 -0700 (PDT)
+Received: by codeconstruct.com.au (Postfix, from userid 10001)
+        id AE8C72017A; Mon, 17 Jul 2023 12:07:07 +0800 (AWST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=codeconstruct.com.au; s=2022a; t=1689566827;
+        bh=J4YSVvFjLnQ3mI1/zP8hCJYOjWeuxIwHszllpuTd1Jg=;
+        h=From:To:Cc:Subject:Date;
+        b=FpUThJTKq53oIkG7Ia3s49SoCqk6iAj4wCL2DreMi5ISkt2UgX+joM6nWNhs4aAMN
+         IQQ23roJntAoJ373YwT+YkLHkhf7gIygGq2kD/wyIjAZHqbWfyh+yQkPOl1OS72c1v
+         3X/a6jzgL3UeG2GkvRsBM+5c3EzpCX6MHeIjyDDbvAy1mAj0DTbjmJBwH1rYxnbpR8
+         zz79uD/SyK23lGVCiN77KgJkABVxv/rjg0euhyYQV9aFnwJiX32dtFogYqXTL6NUu5
+         R0+LUDmi4Et5ThQzkOM6nrF6v1uiYMPTmy7cQaTuTwp9EecXnqLX4nFH8ptV605J3r
+         wywx9XGYLLtUw==
+From:   Matt Johnston <matt@codeconstruct.com.au>
+To:     linux-i3c@lists.infradead.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Jeremy Kerr <jk@codeconstruct.com.au>,
         Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>,
-        Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Paul Cercueil <paul@crapouillou.net>,
-        Vladimir Zapolskiy <vz@mleia.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Daire McNamara <daire.mcnamara@microchip.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Michael Walle <michael@walle.cc>,
-        Orson Zhai <orsonzhai@gmail.com>,
-        Baolin Wang <baolin.wang@linux.alibaba.com>,
-        Chunyan Zhang <zhang.lyra@gmail.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Hammer Hsieh <hammerh0314@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
-        devicetree@vger.kernel.org, linux-pwm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, asahi@lists.linux.dev,
-        linux-arm-kernel@lists.infradead.org,
-        chrome-platform@lists.linux.dev, linux-mips@vger.kernel.org,
-        linux-amlogic@lists.infradead.org, linux-riscv@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-tegra@vger.kernel.org
-Subject: Re: [PATCH] pwm: Explicitly include correct DT includes
-Message-ID: <ZLS9EleWQlyY+jv3@google.com>
-References: <20230714174852.4062251-1-robh@kernel.org>
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Subject: [PATCH net-next v2 0/3] I3C MCTP net driver
+Date:   Mon, 17 Jul 2023 12:06:35 +0800
+Message-Id: <20230717040638.1292536-1-matt@codeconstruct.com.au>
+X-Mailer: git-send-email 2.37.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230714174852.4062251-1-robh@kernel.org>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -97,17 +53,71 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 14, 2023 at 11:48:50AM -0600, Rob Herring wrote:
-> The DT of_device.h and of_platform.h date back to the separate
-> of_platform_bus_type before it as merged into the regular platform bus.
-> As part of that merge prepping Arm DT support 13 years ago, they
-> "temporarily" include each other. They also include platform_device.h
-> and of.h. As a result, there's a pretty much random mix of those include
-> files used throughout the tree. In order to detangle these headers and
-> replace the implicit includes with struct declarations, users need to
-> explicitly include the correct includes.
-> 
-> Signed-off-by: Rob Herring <robh@kernel.org>
+This series adds an I3C transport for the kernel's MCTP network
+protocol. MCTP is a communication protocol between system components
+(BMCs, drives, NICs etc), with higher level protocols such as NVMe-MI or
+PLDM built on top of it (in userspace). It runs over various transports
+such as I2C, PCIe, or I3C.
 
-For pwm-cros-ec.c:
-Reviewed-by: Tzung-Bi Shih <tzungbi@kernel.org>
+The mctp-i3c driver follows a similar approach to the kernel's existing
+mctp-i2c driver, creating a "mctpi3cX" network interface for each
+numbered I3C bus. Busses opt in to support by adding a "mctp-controller"
+property to the devicetree:
+
+&i3c0 {
+        mctp-controller;
+}
+
+The driver will bind to MCTP class devices (DCR 0xCC) that are on a
+supported I3C bus. Each bus is represented by a `struct mctp_i3c_bus`
+that keeps state for the network device. An individual I3C device
+(struct mctp_i3c_device) performs operations using the "parent"
+mctp_i3c_bus object. The I3C notify/enumeration patch is needed so that
+the mctp-i3c driver can handle creating/removing mctp_i3c_bus objects as
+required.
+
+The mctp-i3c driver is using the Provisioned ID as an identifier for
+target I3C devices (the neighbour address), as that will be more stable
+than the I3C dynamic address. The driver internally translates that to a
+dynamic address for bus operations.
+
+The driver has been tested using an AST2600 platform. A remote endpoint 
+has been tested against Qemu, as well as using the target mode support 
+in Aspeed's vendor tree.
+
+I've rebased to net-next since that is the faster moving tree. If I3C 
+maintainers would prefer I can submit the I3C bus enumeration patch 
+by itself and let it take another cycle to get into net-next, though 
+it wouldn't have any in-tree user. I'll leave that to maintainers.
+
+Thanks,
+Matt
+
+---
+
+v2:
+
+- Rebased to net-next
+- Removed unnecessary pr_ printing
+- Fixed reverse christmas tree ordering
+- Reworded DT property description to match I2C
+
+Jeremy Kerr (1):
+  i3c: Add support for bus enumeration & notification
+
+Matt Johnston (2):
+  dt-bindings: i3c: Add mctp-controller property
+  mctp i3c: MCTP I3C driver
+
+ .../devicetree/bindings/i3c/i3c.yaml          |   6 +
+ drivers/i3c/master.c                          |  35 +
+ drivers/net/mctp/Kconfig                      |   9 +
+ drivers/net/mctp/Makefile                     |   1 +
+ drivers/net/mctp/mctp-i3c.c                   | 777 ++++++++++++++++++
+ include/linux/i3c/master.h                    |  11 +
+ 6 files changed, 839 insertions(+)
+ create mode 100644 drivers/net/mctp/mctp-i3c.c
+
+-- 
+2.37.2
+
