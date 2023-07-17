@@ -2,50 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 06FCF756A29
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 19:24:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B7E6756A2F
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 19:24:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230168AbjGQRYj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jul 2023 13:24:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40916 "EHLO
+        id S229688AbjGQRYz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jul 2023 13:24:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41078 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230465AbjGQRYh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 13:24:37 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20F57E55
-        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 10:24:36 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1qLRxR-0001ux-89; Mon, 17 Jul 2023 19:24:25 +0200
-Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1qLRxQ-00042D-9U; Mon, 17 Jul 2023 19:24:24 +0200
-Date:   Mon, 17 Jul 2023 19:24:24 +0200
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     Ahmad Fatoum <a.fatoum@pengutronix.de>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, shawnguo@kernel.org, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com,
-        laurent.pinchart@ideasonboard.com, dan.scally@ideasonboard.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 2/4] dt-bindings: arm: fsl: fix DEBIX binding
-Message-ID: <20230717172424.yru3qqfz4xd7qw3a@pengutronix.de>
-References: <20230717165127.2882535-1-m.felsch@pengutronix.de>
- <20230717165127.2882535-2-m.felsch@pengutronix.de>
- <66b096e1-fcdc-8af7-63ea-9b74013eb667@pengutronix.de>
+        with ESMTP id S230490AbjGQRYy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 13:24:54 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10FBD10E0;
+        Mon, 17 Jul 2023 10:24:48 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 827E6611AB;
+        Mon, 17 Jul 2023 17:24:47 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E7D02C433AD;
+        Mon, 17 Jul 2023 17:24:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1689614686;
+        bh=7K1NrqOEnIsov6LNPMbWxEcmOTQ8DoOSUXf5nazDWnY=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=d87713swd+8flnDOEBdwYxJh+zPcc7RahC04ehtpicfiWxmDmyXavKTgMxupa9u60
+         uE518sCiopXnFJ5xCs8ps7AxbLJpCW4AptGYKBTNIiQidXwSpvzEB5cKMRJ/MBlDoP
+         opnSkxxGtXA14auVA+sh/vudr8u275YmFGfUA91zf1AAcmAnxNFFf4fGJAdedgjWnV
+         ZSPzv/UMDBMpnzH2k96dEQ49n2MCVBSEQXB7YPqF3SeCNKY52z3KHOXEeRgekW2mOH
+         tDzxWE8RyIllj4sJeBybKdla3Urx8w4VbLFEfAhwfym2dc21ty7k7xWjwKiODqmKZK
+         phjNQroLqJXQg==
+Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-2b73564e98dso71283361fa.3;
+        Mon, 17 Jul 2023 10:24:46 -0700 (PDT)
+X-Gm-Message-State: ABy/qLaVSJKbwmzxBEVN4XOnzoEk7OnHeIzGYorUmotJIRl4kXFh5PKs
+        HjkeUKtxkKACACYw5E1v7OqzWCZ6Q/4tWuz2og==
+X-Google-Smtp-Source: APBJJlG8mEK4npwacHnkZf+THmzcOFSnKgn7HaAY1ey1gKBCNN6LRJvR5ho/gv5Qa7cQ6Y9pK6LCgVvVrpJDCMni1K8=
+X-Received: by 2002:a2e:9f17:0:b0:2b6:cb0d:56ae with SMTP id
+ u23-20020a2e9f17000000b002b6cb0d56aemr8218837ljk.11.1689614684790; Mon, 17
+ Jul 2023 10:24:44 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <66b096e1-fcdc-8af7-63ea-9b74013eb667@pengutronix.de>
-User-Agent: NeoMutt/20180716
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+References: <20230714174607.4057185-1-robh@kernel.org> <e0e1b465-8419-419e-90ae-4b72f5189469@roeck-us.net>
+In-Reply-To: <e0e1b465-8419-419e-90ae-4b72f5189469@roeck-us.net>
+From:   Rob Herring <robh@kernel.org>
+Date:   Mon, 17 Jul 2023 11:24:32 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJZcxoQEhaGr34Mk1P_8vc8wctcfzswWc8VbRrsv0S7zg@mail.gmail.com>
+Message-ID: <CAL_JsqJZcxoQEhaGr34Mk1P_8vc8wctcfzswWc8VbRrsv0S7zg@mail.gmail.com>
+Subject: Re: [PATCH] hwmon: Explicitly include correct DT includes
+To:     Guenter Roeck <linux@roeck-us.net>
+Cc:     Jean Delvare <jdelvare@suse.com>, Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Jean-Marie Verdun <verdun@hpe.com>,
+        Nick Hawkins <nick.hawkins@hpe.com>,
+        Charles Keepax <ckeepax@opensource.cirrus.com>,
+        Richard Fitzgerald <rf@opensource.cirrus.com>,
+        Robert Marko <robert.marko@sartura.hr>,
+        Saravanan Sekar <sravanhome@gmail.com>,
+        Luka Perkov <luka.perkov@sartura.hr>,
+        Liviu Dudau <liviu.dudau@arm.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        devicetree@vger.kernel.org, linux-hwmon@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, patches@opensource.cirrus.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -54,56 +76,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23-07-17, Ahmad Fatoum wrote:
-> On 17.07.23 18:51, Marco Felsch wrote:
-> > The current imx8mp-debix-model-a.dts uses all three compatibles. Fix the
-> > corresponding bindings by adding an own entry for it. Mark
-> > polyhex,imx8mp-debix as deprecated but keep it within the dts file since
-> > we already have a user for it [1].
-> > 
-> > [1] https://elixir.bootlin.com/barebox/v2023.07.1/source/arch/arm/ \
-> >     boards/polyhex-debix/board.c#L38
-> > 
-> > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
-> > ---
-> > Changelog:
-> > 
-> > v2:
-> > - deprecate polyhex,imx8mp-debix
-> > 
-> >  Documentation/devicetree/bindings/arm/fsl.yaml | 10 ++++++++--
-> >  1 file changed, 8 insertions(+), 2 deletions(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-> > index 15d4110840654..b29974e3c30b3 100644
-> > --- a/Documentation/devicetree/bindings/arm/fsl.yaml
-> > +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-> > @@ -1019,8 +1019,6 @@ properties:
-> >                - dmo,imx8mp-data-modul-edm-sbc # i.MX8MP eDM SBC
-> >                - fsl,imx8mp-evk            # i.MX8MP EVK Board
-> >                - gateworks,imx8mp-gw74xx   # i.MX8MP Gateworks Board
-> > -              - polyhex,imx8mp-debix      # Polyhex Debix boards
-> > -              - polyhex,imx8mp-debix-model-a # Polyhex Debix Model A Board
-> >                - toradex,verdin-imx8mp     # Verdin iMX8M Plus Modules
-> >                - toradex,verdin-imx8mp-nonwifi  # Verdin iMX8M Plus Modules without Wi-Fi / BT
-> >                - toradex,verdin-imx8mp-wifi  # Verdin iMX8M Plus Wi-Fi / BT Modules
-> > @@ -1054,6 +1052,14 @@ properties:
-> >            - const: phytec,imx8mp-phycore-som         # phyCORE-i.MX8MP SoM
-> >            - const: fsl,imx8mp
-> >  
-> > +      - description: Polyhex DEBIX i.MX8MP based SBCs
-> > +        items:
-> > +          - enum:
-> > +              - polyhex,imx8mp-debix-model-a        # Polyhex Debix Model A Board
-> > +          - const: polyhex,imx8mp-debix             # Polyhex Debix boards
-> > +            deprecated: true
-> 
-> I don't see why you need to deprecate this. Can't you just change the comment
-> to read "Polyhex i.MX8MP SBCs" or similar?
+On Sat, Jul 15, 2023 at 10:55=E2=80=AFAM Guenter Roeck <linux@roeck-us.net>=
+ wrote:
+>
+> On Fri, Jul 14, 2023 at 11:46:04AM -0600, Rob Herring wrote:
+> > The DT of_device.h and of_platform.h date back to the separate
+> > of_platform_bus_type before it as merged into the regular platform bus.
+> > As part of that merge prepping Arm DT support 13 years ago, they
+> > "temporarily" include each other. They also include platform_device.h
+> > and of.h. As a result, there's a pretty much random mix of those includ=
+e
+> > files used throughout the tree. In order to detangle these headers and
+> > replace the implicit includes with struct declarations, users need to
+> > explicitly include the correct includes.
+> >
+> > Signed-off-by: Rob Herring <robh@kernel.org>
+>
+> Applied to hwmon-next.
 
-This was suggested by Krzysztof, since polyhex,imx8mp-debix was to
-generic. I can keep it without the deprecation notice and just change
-the comment since we need to keep dts compatible anyway.
+I found there's a double include of of.h in lm75.c. Can you fix that
+up or do you want me to send a fix?
 
-Regards,
-  Marco
+Rob
