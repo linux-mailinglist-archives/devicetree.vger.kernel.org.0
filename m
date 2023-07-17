@@ -2,178 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CB88D7560E5
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 12:49:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B821C7560FA
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 12:59:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229872AbjGQKtu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jul 2023 06:49:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54044 "EHLO
+        id S229732AbjGQK7f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jul 2023 06:59:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56538 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230412AbjGQKtt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 06:49:49 -0400
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C02E10F1;
-        Mon, 17 Jul 2023 03:49:47 -0700 (PDT)
-Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-9928abc11deso619131366b.1;
-        Mon, 17 Jul 2023 03:49:47 -0700 (PDT)
+        with ESMTP id S229471AbjGQK7e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 06:59:34 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 048E1E48
+        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 03:59:33 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-4f95bf5c493so6734143e87.3
+        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 03:59:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1689590985; x=1692182985;
+        d=linaro.org; s=google; t=1689591571; x=1692183571;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Qa16i/7wXreM1XPm5VUwAx4KbT+PND+IKjgkjwF1pmM=;
-        b=ZqE7722idPYuOeZQMCwC/uzDK4c1q56fL57sL1UBgNozIMQx6v4nFN9uW+hvzR4zu5
-         m27aRXWsoTHtxNXd3TgfEvjSEOADpMXCTJNae36wZPHS2IOfUmVnDElqYp35uD5sXzY5
-         9e8nV0U5qQO8fqA7k0SlYh6/wcfBpgZ7iS/Z5kG3S16fmKiguQYYrZSVDKtTHJbk+bIL
-         0ld20pAYADjXXtBDEHZ66tYxNKV9vBeVxassuiNEwh4+0fn5LJoAMt5owyVXY2cgmXHo
-         tDOIxbhxmea5nqiAgSQAvet6NGRN7yTj8Z3Ouxztoxch7tE291wE0r8xsYHZo/Tyxblj
-         qnjA==
+        bh=T7SZG+2T9lEbrNjc07wlF2HjBaRW0VTkdwbTVSLTnRA=;
+        b=IAmEnx0BSltprjmxtxcr0+YjWd2LZZ8iRl7sm8xoHqfEhyKnQmSgA9daBznErbNNe9
+         ju/PF0917QVHIg6s6M7RHHj16axck6n1gN2DMtmrdy2XFAVIpDkYPmdX0Ytb/LOz+W0y
+         QP7dk/ZQDT0Svq4LJy21+0v5J3o6xO//6NfBeq5uvCPkeYFDGQXjq1k6tFpCZMr2uhHg
+         plSevJ8Nmpymfk1DKaSu7lrawmEoVQrABC8sv9imjaFy29mjhnd+6lxjdh0zg0YhFmba
+         y0+7+5pOBgBCFmvaCWbyXblFhvxQBj31XcxqSeeeYilD+4iXKcORjAToOWIpxyVwBV0C
+         ah6Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689590985; x=1692182985;
+        d=1e100.net; s=20221208; t=1689591571; x=1692183571;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Qa16i/7wXreM1XPm5VUwAx4KbT+PND+IKjgkjwF1pmM=;
-        b=AkYBLv44t+wc0AWHl0UFj4iEYS3jP9vJFHsAWjKJTaWANC7nWrpzE+9RnEptFE/IRZ
-         +G9ZhY80nIQASx1R8LM0kW7PTFvtviSxDwB1AP4SJYRRMPnnTh0LmEBPXA4scr11mjfh
-         /Fg/VGybFl9WV1e7xk1L3u9CQMnKqu2Xu7+4wChRYV0lAgwImwvPLq7ALRnpKxLSzmKX
-         msSeORH+NS34p6bwg/0fA+pXmhPyBR/6OkCCS9K3KwQXB8IDS/EPVdnH3Ff6YWBIfhuX
-         jnRVUUi8C/kYQ93eVmGREuhMpXp2dYOi1ZpHhXuSe9LFOxbsiA1wU4+qTvEWG8r2cYvo
-         1c5g==
-X-Gm-Message-State: ABy/qLbCloqU3Tyk/qPKv6qsEwpCn/4CKWmqfEHmvQSMhDKAc70Cdi57
-        Dhxhffx2t1/Uf1qT18tHvSA=
-X-Google-Smtp-Source: APBJJlEWhmWn35hrYy0jF9wZjTDg+bvwe/myoKAbq4TI8tpZsEjUjQS0k5+CrUVKhtBS5Pr76ZeI3w==
-X-Received: by 2002:a17:906:3f57:b0:94f:449e:75db with SMTP id f23-20020a1709063f5700b0094f449e75dbmr9046044ejj.52.1689590985266;
-        Mon, 17 Jul 2023 03:49:45 -0700 (PDT)
-Received: from [192.168.2.1] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id l9-20020a170906230900b0099342c87775sm9068788eja.20.2023.07.17.03.49.44
+        bh=T7SZG+2T9lEbrNjc07wlF2HjBaRW0VTkdwbTVSLTnRA=;
+        b=lOwQgVvyn5MwZoKumegpqnEBK2JsEGQYF1xNQRR3EqLLtioBIdOOxO1IJFGuDUv+bB
+         LXMnkCYiAD2pR5GxGqb837+UFTWx7nHJ3SFLhRruoJWjC/LO85IO99oKyBQxmyccrA+k
+         1l0sngZuG0ttWtTxmchItrUnplhkMPsgYzXe0SXw4/eLz/BAfAEB5X6FYmKHA3WVyOmE
+         tw+ZSnraLAxaG9a3TGnX1O/yOjKfKx7+jVPMaBP1E40CWz1xgNBqINViiXg6aps3UNDo
+         +Cn64uKQ55M1uzs3EAvWVOQEIkLyjH/LWRloyV5+x9lkd28iYoP87n0YPjZSkER77/Qe
+         W6wA==
+X-Gm-Message-State: ABy/qLah/tm2bj/UoEOn//ARadNvMUor3mna+oC1v6SIEJ+numLxB8Nl
+        qoQUDS3ktWa78oBmHgaVTlTNuA==
+X-Google-Smtp-Source: APBJJlEsw+2f8VSbGPFFqH0DQs+jkrIhjY2A10P+fUUx3XjHf1qljPsUqTTMCRCfPI+L1gu9CYECLA==
+X-Received: by 2002:a05:6512:3c92:b0:4fa:5e76:7ad4 with SMTP id h18-20020a0565123c9200b004fa5e767ad4mr9507508lfv.10.1689591571251;
+        Mon, 17 Jul 2023 03:59:31 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id n7-20020aa7c447000000b0051e22660835sm9826507edr.46.2023.07.17.03.59.28
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 17 Jul 2023 03:49:44 -0700 (PDT)
-Message-ID: <7448d35b-ce62-7e80-6467-ed929ad6838b@gmail.com>
-Date:   Mon, 17 Jul 2023 12:49:43 +0200
+        Mon, 17 Jul 2023 03:59:29 -0700 (PDT)
+Message-ID: <9b09afec-4e0e-a600-92e1-2104a1b2e36e@linaro.org>
+Date:   Mon, 17 Jul 2023 12:59:27 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v1 2/2] mtd: rawnand: add nand-skip-bbtscan and
- nand-no-bbm-quirk DT options
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     richard@nod.at, vigneshr@ti.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        linux-mtd@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <61c84262-cd98-1e60-d95b-9b0492083994@gmail.com>
- <2b0dc481-562f-c8df-545e-dcf6548adb07@gmail.com>
- <20230715175538.7142a141@xps-13>
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v4 1/2] dt-bindings: pwm: samsung: add exynosautov9
+ compatible
+To:     Jaewon Kim <jaewon02.kim@samsung.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>
+Cc:     linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org
+References: <20230717094202.18296-1-jaewon02.kim@samsung.com>
+ <CGME20230717094721epcas2p1c5c1254e24d4a1d0fb366e1b4d551536@epcas2p1.samsung.com>
+ <20230717094202.18296-2-jaewon02.kim@samsung.com>
 Content-Language: en-US
-From:   Johan Jonker <jbx6244@gmail.com>
-In-Reply-To: <20230715175538.7142a141@xps-13>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230717094202.18296-2-jaewon02.kim@samsung.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 7/15/23 17:55, Miquel Raynal wrote:
-> Hi Johan,
+On 17/07/2023 11:42, Jaewon Kim wrote:
+> Add samsung,exynosautov9-pwm compatible string to binding document.
 > 
-> jbx6244@gmail.com wrote on Sat, 15 Jul 2023 12:49:18 +0200:
+> Signed-off-by: Jaewon Kim <jaewon02.kim@samsung.com>
+> ---
+>  .../devicetree/bindings/pwm/pwm-samsung.yaml     | 16 ++++++++++------
+>  1 file changed, 10 insertions(+), 6 deletions(-)
 > 
->> A NAND chip can contain a different data format then the MTD framework
->> expects in the erase blocks for the Bad Block Table(BBT).
->> Result is a failed probe, while nothing wrong with the hardware.
->> Some MTD flags need to be set to gain access again.
->>
->> Skip the automatic BBT scan with the NAND_SKIP_BBTSCAN option
->> so that the original content is unchanged during the driver probe.
->> The NAND_NO_BBM_QUIRK option allows us to erase bad blocks with
->> the nand_erase_nand() function and the flash_erase command.
->>
->> Add nand-skip-bbtscan and nand-no-bbm-quirk Device Tree options,
->> so the user has the "freedom of choice" by neutral
->> access mode to read and write in whatever format is needed.
-> 
+> diff --git a/Documentation/devicetree/bindings/pwm/pwm-samsung.yaml b/Documentation/devicetree/bindings/pwm/pwm-samsung.yaml
+> index fe603fb1b2cc..6f65e2b52f52 100644
+> --- a/Documentation/devicetree/bindings/pwm/pwm-samsung.yaml
+> +++ b/Documentation/devicetree/bindings/pwm/pwm-samsung.yaml
+> @@ -20,12 +20,16 @@ description: |+
+>  
+>  properties:
+>    compatible:
+> -    enum:
+> -      - samsung,s3c2410-pwm             # 16-bit, S3C24xx
+> -      - samsung,s3c6400-pwm             # 32-bit, S3C64xx
+> -      - samsung,s5p6440-pwm             # 32-bit, S5P64x0
+> -      - samsung,s5pc100-pwm             # 32-bit, S5PC100, S5PV210, Exynos4210 rev0 SoCs
+> -      - samsung,exynos4210-pwm          # 32-bit, Exynos
+> +    oneOf:
+> +      - const: samsung,s3c2410-pwm        # 16-bit
+> +      - const: samsung,s3c6400-pwm        # 32-bit, S3C64xx
+> +      - const: samsung,s5p6440-pwm        # 32-bit, S5P64x0
+> +      - const: samsung,s5pc100-pwm        # 32-bit, S5PC100, S5PV210, Exynos4210 rev0 SoCs
+> +      - const: samsung,exynos4210-pwm     # 32-bit, Exynos
 
-> This sounds like a partial solution. How do you handle bad blocks?
+These are still an enum.
 
-Hi Miquel,
+> +      - items:
+> +          - enum:
+> +              - samsung,exynosautov9-pwm  # 32-bit, ExynosAutov9
 
-See below some Rockchip related links:
+Let's drop the comment?
 
-The file rk_ftl_arm_v7.S is marked GPL2, so I can freely refer/decode/hack to/in that.
-For rk3066 a closed source piece called usbplug is still needed to program initial U-boot.
-This usbplug contains similar code as in the S file and formats the NAND for FTL. 
-U-boot is not small enough yet (WIP if I have the time) to replace that.
-Long story short is that on Rockchip NAND's we can expect pages with various ECC and scrambled/randomized all over the place.
+> +          - const: samsung,exynos4210-pwm
+>  
 
-One effect is that when the MTD framework driver is probed a first time the BBT pages don't look what was expected.
-For this first probe to be successful I must be able to turn of the MTD internal BBT scan and then erase/format all blocks except boot blocks of course.
-During this first run bad blocks are handled by/tested/kept track of/set BBM in user space.
-This is not meant as permanent mode.(except maybe if this S file is converted as open source FTL (WIP))
+Best regards,
+Krzysztof
 
-Richard doesn't like module parameters, so I can't simply do modprobe for example in a script.
-After that the whole kernel/MTD must rebooted without these DT options.
- 
-This patch does make parameters/flags available for all.
-If that is too much freedom to handle I can parse them in the Rockchip driver, let me know.
- 
-Linux always gets away with the "it must be generic functionality" excuse.
-In U-boot there is the same driver with little or no interaction with the user, so we must deal with that.
-Please advise how we can solve this in a simple nice automated way.
-
-
-Johan
-
-===
-
-function FlashSetRandomizer()
-https://github.com/rockchip-linux/kernel/blob/develop-4.4/drivers/rk_nand/rk_ftl_arm_v7.S#L120
-https://github.com/rockchip-linux/u-boot/blob/next-dev/drivers/rknand/rk_ftl_arm_v7.S#L199
-
-Proof of concept for U-boot:
-[v2,06/11] rockchip: idb: add randomizer option
-http://patchwork.ozlabs.org/project/uboot/patch/0b295d0e-53d6-b35a-3058-861e203b4d83@gmail.com/
-
-> 
->> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
->> ---
->>
->> Previous discussion:
->> [PATCH v3 3/3] mtd: rawnand: rockchip-nand-controller: add skipbbt option
->> https://lore.kernel.org/linux-mtd/1618382560.2326931.1689261435022.JavaMail.zimbra@nod.at/
->> ---
->>  drivers/mtd/nand/raw/nand_base.c | 6 ++++++
->>  1 file changed, 6 insertions(+)
->>
->> diff --git a/drivers/mtd/nand/raw/nand_base.c b/drivers/mtd/nand/raw/nand_base.c
->> index a6af521832aa..f0fa5c3519b1 100644
->> --- a/drivers/mtd/nand/raw/nand_base.c
->> +++ b/drivers/mtd/nand/raw/nand_base.c
->> @@ -5521,6 +5521,12 @@ static int rawnand_dt_init(struct nand_chip *chip)
->>  	if (of_property_read_bool(dn, "nand-is-boot-medium"))
->>  		chip->options |= NAND_IS_BOOT_MEDIUM;
->>
->> +	if (of_property_read_bool(dn, "nand-no-bbm-quirk"))
->> +		chip->options |= NAND_NO_BBM_QUIRK;
->> +
->> +	if (of_property_read_bool(dn, "nand-skip-bbtscan"))
->> +		chip->options |= NAND_SKIP_BBTSCAN;
->> +
->>  	if (of_property_read_bool(dn, "nand-on-flash-bbt"))
->>  		chip->bbt_options |= NAND_BBT_USE_FLASH;
->>
->> --
->> 2.30.2
->>
-> 
-> 
-> Thanks,
-> Miquèl
