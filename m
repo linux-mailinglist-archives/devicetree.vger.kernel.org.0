@@ -2,228 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0AA31755F46
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 11:32:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 65C38755F5E
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 11:34:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230285AbjGQJcX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jul 2023 05:32:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39750 "EHLO
+        id S230476AbjGQJet (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jul 2023 05:34:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41520 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230257AbjGQJcT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 05:32:19 -0400
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4CA010E7;
-        Mon, 17 Jul 2023 02:32:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1689586335; x=1721122335;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=LFS6LLLj+IF5o3ypMHoQlPtEJ6gln3IM45y+5jIYUmM=;
-  b=n22E6DKPO9GXByWsT8eFx6tz5UhvDOZzHZsxZWDEFyYVWOdCRbkj0LcN
-   f/aSU0dcF+dvaHLgvmFq3UFT24o8W9dGUZTPspi3Fq04l1dP6DOwf3uLk
-   cc3jZX7C4KsCvkY5DPNNbsyrgLr2+tuOSlu8ERHR/6bZKNHliGonxOfgh
-   9TSh1c6Ars7zsjYYXMRnlV6a1xKRvOXD0g6l8AJNKmGlMeTAuGVjCF5qG
-   uxRTywm9spdTlxmV3FzZn/8XWlRWFYImJs6S/qFSq5PYldsbnqUaqPDnn
-   I0ylr8J6WXtUyHOJOHcxUrKbM6fD5Qmfn0dx26iT2rkWNayLDHiS36Rpt
-   g==;
-X-IronPort-AV: E=Sophos;i="6.01,211,1684792800"; 
-   d="scan'208";a="31959527"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 17 Jul 2023 11:32:12 +0200
-Received: from steina-w.localnet (unknown [10.123.53.21])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 5EA1A280078;
-        Mon, 17 Jul 2023 11:32:12 +0200 (CEST)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     andrzej.hajda@intel.com, neil.armstrong@linaro.org,
-        Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
-        jernej.skrabec@gmail.com, airlied@gmail.com, daniel@ffwll.ch,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com,
-        vkoul@kernel.org, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-        Sandor Yu <Sandor.yu@nxp.com>
-Cc:     kernel@pengutronix.de, linux-imx@nxp.com, Sandor.yu@nxp.com,
-        oliver.brown@nxp.com, sam@ravnborg.org
-Subject: Re: [PATCH v7 0/7] Initial support Cadence MHDP8501(HDMI/DP) for i.MX8MQ
-Date:   Mon, 17 Jul 2023 11:32:12 +0200
-Message-ID: <2690465.mvXUDI8C0e@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <cover.1689580812.git.Sandor.yu@nxp.com>
-References: <cover.1689580812.git.Sandor.yu@nxp.com>
+        with ESMTP id S230477AbjGQJe3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 05:34:29 -0400
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (mail-co1nam11on2040.outbound.protection.outlook.com [40.107.220.40])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCC81198E;
+        Mon, 17 Jul 2023 02:34:06 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=LZZEZODVHc6Sv68/Iaj4+dz7U4PqEtmeurRLnE3ff2UZhhZVmENaXZXizSLIaVlX41Smj4oKIxGXRDW6PZyehYFzoj5dTx1GGWQELc+8qoQbag0d10VrU2nVQeKy5ew4xlm4ecJM2aQSAyFOCHTUGV7yqvaUYbrQKss8gQECh0bOnjN92nX8EIRTBmSHx4ImWYJbbvsIPIo6vVAwEPIbtRU5S89uOH1LD6f3GJEIBCWCsZciuL3j7ahe37BjPLW0GtgAmUk71NsqgL8ZXHORg/xWjwDYU9/Z7RiM0TD++AHmUegWrYcUYI/ywTNePBPj3CpHPpS5+10ctwYzzRpzOA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Q1H+uCq1Ok0GnIROa6ixv0eDfPYskD0ojuSztD5PKkU=;
+ b=JGXq/gVGMV8jX5waZSreRCk1hKUa0SWI5uMC4TEGnR3BZKGIqisbi2GCAMzDEzM8iG9hBqbpODkWml2wkDpIt3IbYlZL2mZ4Xf25G5yb+sdQ8uZv52BtzXxPpV/azOFarEWVkyVtQ4oCAxiqPF7acvXix9Y0bjGk+/jL3q0pWHA27lKBLdLYYXI8yOy4lIvZRyruhm2VJBNYuRtDL+cegb3kOPj9WpNQleiRo7CEU+eGYO+INRczPxQ8FTyULR2aAySiT/Ti5xFJPRo95AH4CIpbAXKpo7NdQrFhoKWHsGdQbiXHfIsqDh3xraEVIyaNCVkKcv9cCGOEAyiSqeh+VA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=linaro.org smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Q1H+uCq1Ok0GnIROa6ixv0eDfPYskD0ojuSztD5PKkU=;
+ b=JRoZP/CM6BAptgzF4+uGp/WMY/k1wsC/t5eL9VR6KRxw2v3O/0WnqTNyNm+xuyN+2rce4tkyEJ69lNimEzdzw3YTPs6H/QGbIZpCUWXCffSB/6xFxJVOUgJ74lV+u0Vg0Fxr8fAhAZGMmPEDNoNyf/LAm+0InlOoxjBKSi7CDY4=
+Received: from DM6PR12CA0012.namprd12.prod.outlook.com (2603:10b6:5:1c0::25)
+ by SJ1PR12MB6171.namprd12.prod.outlook.com (2603:10b6:a03:45a::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6588.31; Mon, 17 Jul
+ 2023 09:34:04 +0000
+Received: from DM6NAM11FT041.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:5:1c0:cafe::92) by DM6PR12CA0012.outlook.office365.com
+ (2603:10b6:5:1c0::25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6588.32 via Frontend
+ Transport; Mon, 17 Jul 2023 09:34:03 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ DM6NAM11FT041.mail.protection.outlook.com (10.13.172.98) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6521.44 via Frontend Transport; Mon, 17 Jul 2023 09:34:03 +0000
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.23; Mon, 17 Jul
+ 2023 04:34:00 -0500
+Received: from xhdlakshmis40.xilinx.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.23 via Frontend
+ Transport; Mon, 17 Jul 2023 04:33:48 -0500
+From:   Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Michal Simek <michal.simek@amd.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Tanmay Shah <tanmay.shah@amd.com>,
+        Ben Levinsky <ben.levinsky@amd.com>,
+        Marek Vasut <marex@denx.de>,
+        Roman Gushchin <roman.gushchin@linux.dev>,
+        Arnd Bergmann <arnd@arndb.de>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <saikrishna12468@gmail.com>,
+        <git@amd.com>, Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
+Subject: [PATCH 0/4] ipinctrl: pinctrl-zynqmp: Add tri-state configuration support
+Date:   Mon, 17 Jul 2023 15:03:43 +0530
+Message-ID: <20230717093347.3869167-1-sai.krishna.potthuri@amd.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM6NAM11FT041:EE_|SJ1PR12MB6171:EE_
+X-MS-Office365-Filtering-Correlation-Id: ed65288f-de9b-4a1a-f765-08db86a8f5b0
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: OWFnT78F1Rr/zwveoBCu2+fWvrp1FT7Rt8WpPreGCv3FXNXyIAAoHkD5VKG3AMVdGHveeA4A4jR8LRCrqm62k635WKa+NLlD01vudNEV4ygqhTB0xWUnXBqV28U3z2lGXts5ValT50uSZn05NQcsOw/lYfzW2qNP0SsL87Kcr2AmIFuSWSBSZs46/A+poygzICavhTgcEBqaTg9awx1G1oR3iIvgxoAo/Tp6ULIem5PLzDBdi/KfaW54trzf+yKtyNxX4zvA/+uNyohZtG5r2Xxc02Htnrs0Ww7znaLUKNqDwaZaYBVhSxlpa9ahHKRuVYuNdFb7+m8LqdlZznybPamUHJZZl/lzfIxDFq+TMMrRNxX3JqlWNggRAff4KiF+98Y/scJfDB3ntjC8QtjEcoOVl/TR1YKbBH7Wk0i9+FlFSREKdFAHniyjpxAxbZdDRKJvSQTyiibsHDx3rGsFdK8AoCFu1vHoATKsy9I6desjoJWGp1eeMNXRumNgoheqbeLR88SagVlCD5WdWm9Q6jpk1E0O9MqfrJTO1uGuHj80PUOSu8hmfdOe1TcXduCDNjTejoBh4/uBGv3fG8rtScgBPCI7kTP5TXZVTxVNHz0XodBAl+OHbZsKVQjVN3DJVbbD+EO4vVWTooo/BeDFpxde/KJ6qSklxOfpqoO6Sd88DRoxuZ32XFjXJPjSMVM6g+KPYXVEzEzf+EQzELOT9WSoGqCDYEVQuNOdGEDyHrEHkcHNWHUs+PZ3xS1MePDfkjtgPeIUaQtQRL4Led3QbeZfV5t90rq19kPa8ETYHS8=
+X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230028)(4636009)(39860400002)(346002)(376002)(396003)(136003)(82310400008)(451199021)(40470700004)(36840700001)(46966006)(86362001)(2906002)(103116003)(36756003)(7416002)(40460700003)(40480700001)(186003)(336012)(36860700001)(426003)(47076005)(1076003)(26005)(82740400003)(921005)(356005)(81166007)(70206006)(6666004)(54906003)(110136005)(70586007)(316002)(2616005)(4326008)(478600001)(41300700001)(5660300002)(8676002)(8936002)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jul 2023 09:34:03.6919
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: ed65288f-de9b-4a1a-f765-08db86a8f5b0
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT041.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ1PR12MB6171
+X-Spam-Status: No, score=1.9 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sandor,
+Add pinctrl driver support to handle 'output-enable' and
+'bias-high-impedance' configurations with proper Configuration Set version
+check. This will ensure system not to crash even if older Xilinx ZynqMP
+Platform Management Firmware is used.
+Initial Commit details:
+Commit 133ad0d9af99bdca9070 ("dt-bindings: pinctrl-zynqmp: Add
+output-enable configuration").
+Commit ad2bea79ef0144043721 ("pinctrl: pinctrl-zynqmp: Add support
+for output-enable and bias-high-impedance").
 
-Am Montag, 17. Juli 2023, 10:03:46 CEST schrieb Sandor Yu:
-> The patch set initial support Cadence MHDP8501(HDMI/DP) DRM bridge
-> drivers and Cadence HDP-TX PHY(HDMI/DP) drivers for Freescale i.MX8MQ.
->=20
-> The patch set compose of DRM bridge drivers and PHY drivers.
->=20
-> Both of them need the followed two patches to pass build.
->   drm: bridge: Cadence: convert mailbox functions to macro functions
->   phy: Add HDMI configuration options
->=20
-> DRM bridges driver patches:
->   dt-bindings: display: bridge: Add Cadence MHDP850
->   drm: bridge: Cadence: Add MHDP8501 DP/HDMI driver
->=20
-> PHY driver patches:
->   dt-bindings: phy: Add Freescale iMX8MQ DP and HDMI PHY
->   phy: freescale: Add DisplayPort PHY driver for i.MX8MQ
->   phy: freescale: Add HDMI PHY driver for i.MX8MQ
->=20
-> v6->v7:
-> MHDP8501 HDMI/DP:
-> - Combine HDMI and DP driver into one mhdp8501 driver.
->   Use the connector type to load the corresponding functions.
-> - Remove connector init functions.
-> - Add <linux/hdmi.h> in phy_hdmi.h to reuse =E2=80=98enum hdmi_colorspace=
-=E2=80=99.
+With the above patches, using these pinctrl properties in the device-tree
+cause system hang issues with older Xilinx ZynqMP Platform Management
+Firmware, hence reverted the patches.
+Reverted Commit details:
+Commit ff8356060e3a5e126abb ("Revert "dt-bindings: pinctrl-zynqmp: Add
+output-enable configuration"").
+Commit 9989bc33c4894e075167 ("Revert "pinctrl: pinctrl-zynqmp: Add support
+for output-enable and bias-high-impedance"").
+With the latest firmware and driver changes, driver will ask firmware if
+that feature is supported or not by checking the version. This way it
+works with all Xilinx firmwares.
 
-Thanks for the update. This still works as before on my TQMa8Mx/MBa8Mx=20
-platform using HDMI output. I only had to address the compatible for the=20
-combined driver.
+Dhaval Shah (1):
+  firmware: xilinx: Add support to get platform information
 
-Tested-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+Sai Krishna Potthuri (3):
+  firmware: xilinx: Add version check for TRISTATE configuration
+  dt-bindings: pinctrl-zynqmp: Add output-enable configuration
+  pinctrl: pinctrl-zynqmp: Add support for output-enable and bias-high
+    impedance
 
-> HDMI/DP PHY:
-> - Lowercase hex values
-> - Fix parameters indent issue on some functions
-> - Replace =E2=80=98udelay=E2=80=99 with =E2=80=98usleep_range=E2=80=99
->=20
-> v5->v6:
-> HDMI/DP bridge driver
-> - 8501 is the part number of Cadence MHDP on i.MX8MQ.
->   Use MHDP8501 to name hdmi/dp drivers and files.
-> - Add compatible "fsl,imx8mq-mhdp8501-dp" for i.MX8MQ DP driver
-> - Add compatible "fsl,imx8mq-mhdp8501-hdmi" for i.MX8MQ HDMI driver
-> - Combine HDMI and DP dt-bindings into one file cdns,mhdp8501.yaml
-> - Fix HDMI scrambling is not enable issue when driver working in 4Kp60
->   mode.
-> - Add HDMI/DP PHY API mailbox protect.
->=20
-> HDMI/DP PHY driver:
-> - Rename DP and HDMI PHY files and move to folder phy/freescale/
-> - Remove properties num_lanes and link_rate from DP PHY driver.
-> - Combine HDMI and DP dt-bindings into one file fsl,imx8mq-dp-hdmi-phy.ya=
-ml
-> - Update compatible string to "fsl,imx8mq-dp-phy".
-> - Update compatible string to "fsl,imx8mq-hdmi-phy".
->=20
-> v4->v5:
-> - Drop "clk" suffix in clock name.
-> - Add output port property in the example of hdmi/dp.
->=20
-> v3->v4:
-> dt-bindings:
-> - Correct dt-bindings coding style and address review comments.
-> - Add apb_clk description.
-> - Add output port for HDMI/DP connector
-> PHY:
-> - Alphabetically sorted in Kconfig and Makefile for DP and HDMI PHY
-> - Remove unused registers define from HDMI and DP PHY drivers.
-> - More description in phy_hdmi.h.
-> - Add apb_clk to HDMI and DP phy driver.
-> HDMI/DP:
-> - Use get_unaligned_le32() to replace hardcode type conversion
->   in HDMI AVI infoframe data fill function.
-> - Add mailbox mutex lock in HDMI/DP driver for phy functions
->   to reslove race conditions between HDMI/DP and PHY drivers.
-> - Add apb_clk to both HDMI and DP driver.
-> - Rename some function names and add prefix with "cdns_hdmi/cdns_dp".
-> - Remove bpc 12 and 16 optional that not supported.
->=20
-> v2->v3:
-> Address comments for dt-bindings files.
-> - Correct dts-bindings file names
->   Rename phy-cadence-hdptx-dp.yaml to cdns,mhdp-imx8mq-dp.yaml
->   Rename phy-cadence-hdptx-hdmi.yaml to cdns,mhdp-imx8mq-hdmi.yaml
-> - Drop redundant words and descriptions.
-> - Correct hdmi/dp node name.
->=20
-> v2 is a completely different version compared to v1.
-> Previous v1 can be available here [1].
->=20
-> v1->v2:
-> - Reuse Cadence mailbox access functions from mhdp8546 instead of
->   rockchip DP.
-> - Mailbox access functions be convert to marco functions
->   that will be referenced by HDP-TX PHY(HDMI/DP) driver too.
-> - Plain bridge instead of component driver.
-> - Standalone Cadence HDP-TX PHY(HDMI/DP) driver.
-> - Audio driver are removed from the patch set, it will be add in another
->   patch set later.
->=20
-> [1]
-> https://patchwork.kernel.org/project/linux-rockchip/cover/cover.159098288=
-1.
-> git.Sandor.yu@nxp.com/
->=20
-> Sandor Yu (7):
->   drm: bridge: Cadence: convert mailbox functions to macro functions
->   phy: Add HDMI configuration options
->   dt-bindings: display: bridge: Add Cadence MHDP850
->   drm: bridge: Cadence: Add MHDP8501 DP/HDMI driver
->   dt-bindings: phy: Add Freescale iMX8MQ DP and HDMI PHY
->   phy: freescale: Add DisplayPort PHY driver for i.MX8MQ
->   phy: freescale: Add HDMI PHY driver for i.MX8MQ
->=20
->  .../display/bridge/cdns,mhdp8501.yaml         | 105 ++
->  .../bindings/phy/fsl,imx8mq-dp-hdmi-phy.yaml  |  53 +
->  drivers/gpu/drm/bridge/cadence/Kconfig        |  15 +
->  drivers/gpu/drm/bridge/cadence/Makefile       |   2 +
->  .../drm/bridge/cadence/cdns-mhdp8501-core.c   | 313 ++++++
->  .../drm/bridge/cadence/cdns-mhdp8501-core.h   | 410 ++++++++
->  .../gpu/drm/bridge/cadence/cdns-mhdp8501-dp.c | 780 +++++++++++++++
->  .../drm/bridge/cadence/cdns-mhdp8501-hdmi.c   | 674 +++++++++++++
->  .../drm/bridge/cadence/cdns-mhdp8546-core.c   | 195 +---
->  .../drm/bridge/cadence/cdns-mhdp8546-core.h   |   1 -
->  drivers/phy/freescale/Kconfig                 |  18 +
->  drivers/phy/freescale/Makefile                |   2 +
->  drivers/phy/freescale/phy-fsl-imx8mq-dp.c     | 698 ++++++++++++++
->  drivers/phy/freescale/phy-fsl-imx8mq-hdmi.c   | 907 ++++++++++++++++++
->  include/drm/bridge/cdns-mhdp-mailbox.h        | 240 +++++
->  include/linux/phy/phy-hdmi.h                  |  24 +
->  include/linux/phy/phy.h                       |   7 +-
->  17 files changed, 4248 insertions(+), 196 deletions(-)
->  create mode 100644
-> Documentation/devicetree/bindings/display/bridge/cdns,mhdp8501.yaml create
-> mode 100644
-> Documentation/devicetree/bindings/phy/fsl,imx8mq-dp-hdmi-phy.yaml create
-> mode 100644 drivers/gpu/drm/bridge/cadence/cdns-mhdp8501-core.c create mo=
-de
-> 100644 drivers/gpu/drm/bridge/cadence/cdns-mhdp8501-core.h create mode
-> 100644 drivers/gpu/drm/bridge/cadence/cdns-mhdp8501-dp.c create mode 1006=
-44
-> drivers/gpu/drm/bridge/cadence/cdns-mhdp8501-hdmi.c create mode 100644
-> drivers/phy/freescale/phy-fsl-imx8mq-dp.c
->  create mode 100644 drivers/phy/freescale/phy-fsl-imx8mq-hdmi.c
->  create mode 100644 include/drm/bridge/cdns-mhdp-mailbox.h
->  create mode 100644 include/linux/phy/phy-hdmi.h
+ .../bindings/pinctrl/xlnx,zynqmp-pinctrl.yaml |  4 ++
+ drivers/firmware/xilinx/zynqmp.c              | 51 +++++++++++++++++++
+ drivers/pinctrl/pinctrl-zynqmp.c              |  9 ++++
+ include/linux/firmware/xlnx-zynqmp.h          | 15 ++++++
+ 4 files changed, 79 insertions(+)
 
-
-=2D-=20
-TQ-Systems GmbH | M=C3=BChlstra=C3=9Fe 2, Gut Delling | 82229 Seefeld, Germ=
-any
-Amtsgericht M=C3=BCnchen, HRB 105018
-Gesch=C3=A4ftsf=C3=BChrer: Detlef Schneider, R=C3=BCdiger Stahl, Stefan Sch=
-neider
-http://www.tq-group.com/
-
+-- 
+2.25.1
 
