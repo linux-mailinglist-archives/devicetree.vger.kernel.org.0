@@ -2,30 +2,30 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D822756FC5
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 00:27:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1DB70756FCE
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 00:30:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229999AbjGQW1W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jul 2023 18:27:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41888 "EHLO
+        id S230205AbjGQWab (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jul 2023 18:30:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43044 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229742AbjGQW1W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 18:27:22 -0400
+        with ESMTP id S229583AbjGQWaa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 18:30:30 -0400
 Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 564B6C0;
-        Mon, 17 Jul 2023 15:27:19 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1E76C0;
+        Mon, 17 Jul 2023 15:30:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
         s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
         References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
         Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
         Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=eokIwBNJv5OtIZE3uQ713rkqW4eN4iVKfN1MALeYmUA=; b=R8pOWROGxLsJn3q6owdrhbLuoZ
-        edDM8s5U3mYHmqIMH32wwAV+PYc1ROKE9P3gR3GA2TmRS0vyc7bi6UY6pSF29amyzd9AG7s3hJsxE
-        81nOpsRYwvvq6sR3PMkbqhvQVAftvLwAbRRYZsp+SJltnl89UXEJYl/pjlFHqPj+59ds=;
+        bh=22T4AJNsPZJV+E1q24Ne8LGvDnuZIqG3AB+8sQzRH74=; b=dAN1+K0qIXYM5HsDssNUMlrTaI
+        lTPDmbzC1brsIBqdZPHnL6gT1qu8B8B2LBejDqIULI9Jhs/rWiwkme6wd/Qb7BgEJpTqtzZbb9YL6
+        UoddfQmk7T5ZH1GmmbLUHO7j6GPaIWppJtRC5DQIMSfiprNUd6hwLc80P5vQo33flGiE=;
 Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
         (envelope-from <andrew@lunn.ch>)
-        id 1qLWgI-001aGJ-CE; Tue, 18 Jul 2023 00:27:02 +0200
-Date:   Tue, 18 Jul 2023 00:27:02 +0200
+        id 1qLWjT-001aHO-HH; Tue, 18 Jul 2023 00:30:19 +0200
+Date:   Tue, 18 Jul 2023 00:30:19 +0200
 From:   Andrew Lunn <andrew@lunn.ch>
 To:     Marco Felsch <m.felsch@pengutronix.de>
 Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
@@ -39,7 +39,7 @@ Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
         linux-arm-kernel@lists.infradead.org, kernel@pengutronix.de
 Subject: Re: [PATCH net-next 2/2] net: stmmac: platform: add support for
  phy-supply
-Message-ID: <cd8c177e-7840-4636-a039-dbe8884b3d2b@lunn.ch>
+Message-ID: <accc8d89-7565-460e-a874-a491b755bbb8@lunn.ch>
 References: <20230717164307.2868264-1-m.felsch@pengutronix.de>
  <20230717164307.2868264-2-m.felsch@pengutronix.de>
 MIME-Version: 1.0
@@ -56,45 +56,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> +static int stmmac_phy_power(struct platform_device *pdev,
-> +			    struct plat_stmmacenet_data *plat,
-> +			    bool enable)
-> +{
-> +	struct regulator *regulator = plat->phy_regulator;
-> +	int ret = 0;
-> +
-> +	if (regulator) {
-> +		if (enable)
-> +			ret = regulator_enable(regulator);
-> +		else
-> +			regulator_disable(regulator);
+On Mon, Jul 17, 2023 at 06:43:07PM +0200, Marco Felsch wrote:
+> Add generic phy-supply handling support to control the phy regulator.
+> Use the common stmmac_platform code path so all drivers using
+> stmmac_probe_config_dt() and stmmac_pltfr_pm_ops can use it.
+> 
+> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> ---
+>  .../ethernet/stmicro/stmmac/stmmac_platform.c | 51 +++++++++++++++++++
+>  include/linux/stmmac.h                        |  1 +
+>  2 files changed, 52 insertions(+)
+> 
+> diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
+> index eb0b2898daa3d..6193d42b53fb7 100644
+> --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
+> +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
+> @@ -10,6 +10,7 @@
+>  
+>  #include <linux/platform_device.h>
+>  #include <linux/pm_runtime.h>
+> +#include <linux/regulator/consumer.h>
+>  #include <linux/module.h>
+>  #include <linux/io.h>
+>  #include <linux/of.h>
+> @@ -423,6 +424,15 @@ stmmac_probe_config_dt(struct platform_device *pdev, u8 *mac)
+>  	if (plat->interface < 0)
+>  		plat->interface = plat->phy_interface;
+>  
+> +	/* Optional regulator for PHY */
+> +	plat->phy_regulator = devm_regulator_get_optional(&pdev->dev, "phy");
+> +	if (IS_ERR(plat->phy_regulator)) {
+> +		if (PTR_ERR(plat->phy_regulator) == -EPROBE_DEFER)
+> +			return ERR_CAST(plat->phy_regulator);
+> +		dev_info(&pdev->dev, "No regulator found\n");
+> +		plat->phy_regulator = NULL;
 > +	}
 > +
-> +	if (ret)
-> +		dev_err(&pdev->dev, "Fail to enable regulator\n");
 
-'enable' is only correct 50% of the time.
+So this gets the regulator. When do you actually turn it on?
 
-> @@ -742,6 +786,8 @@ static int __maybe_unused stmmac_pltfr_suspend(struct device *dev)
->  	if (priv->plat->exit)
->  		priv->plat->exit(pdev, priv->plat->bsp_priv);
->  
-> +	stmmac_phy_power_off(pdev, priv->plat);
-> +
-
-What about WOL? You probably want to leave the PHY with power in that
-case.
-
-> @@ -757,6 +803,11 @@ static int __maybe_unused stmmac_pltfr_resume(struct device *dev)
->  	struct net_device *ndev = dev_get_drvdata(dev);
->  	struct stmmac_priv *priv = netdev_priv(ndev);
->  	struct platform_device *pdev = to_platform_device(dev);
-> +	int ret;
-> +
-> +	ret = stmmac_phy_power_on(pdev, priv->plat);
-> +	if (ret)
-> +		return ret;
-
-And this needs to balance with _suspend when WOL is being used.
-
-    Andrew
+     Andrew
