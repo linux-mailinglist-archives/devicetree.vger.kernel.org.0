@@ -2,112 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 06ADB75671D
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 17:04:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF392756733
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 17:10:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230192AbjGQPEd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jul 2023 11:04:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43248 "EHLO
+        id S230526AbjGQPKG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jul 2023 11:10:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46280 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230260AbjGQPEc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 11:04:32 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 113CF10CF
-        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 08:04:31 -0700 (PDT)
-Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mkl@pengutronix.de>)
-        id 1qLPlq-0000FH-8h; Mon, 17 Jul 2023 17:04:18 +0200
-Received: from pengutronix.de (unknown [172.20.34.65])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        (Authenticated sender: mkl-all@blackshift.org)
-        by smtp.blackshift.org (Postfix) with ESMTPSA id E0CE11F3756;
-        Mon, 17 Jul 2023 15:04:16 +0000 (UTC)
-Date:   Mon, 17 Jul 2023 17:04:16 +0200
-From:   Marc Kleine-Budde <mkl@pengutronix.de>
-To:     Michal Simek <michal.simek@amd.com>
-Cc:     linux-kernel@vger.kernel.org, monstr@monstr.eu,
-        michal.simek@xilinx.com, git@xilinx.com,
-        Appana Durga Kedareswara rao <appana.durga.rao@xilinx.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Naga Sureshkumar Relli <naga.sureshkumar.relli@xilinx.com>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-can@vger.kernel.org, netdev@vger.kernel.org
-Subject: Re: [PATCH v2 0/2] can: xilinx_can: Add support for reset
-Message-ID: <20230717-acronym-surging-27c99c0a1aa4-mkl@pengutronix.de>
-References: <cover.1689164442.git.michal.simek@amd.com>
+        with ESMTP id S230474AbjGQPKF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 11:10:05 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BAE210D8
+        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 08:10:03 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-99313a34b2dso559603766b.1
+        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 08:10:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1689606602; x=1692198602;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=0QA5RqmiVdq9ytXPcXzIE1eDmERmeAj1yVlVq+29cak=;
+        b=NuXak2it5+OvgxyxGFQ+9iRpkh1horeYhUC/wdQedmHfHg/3yY6Xh4VLBP1JCQXapC
+         8Ccl2xFSqu1J5FyLrEHRJuKTynWfVViteN3zpakLNfc5ExsglOr+2S17zzUCwVMnWUpP
+         NEcdQXu6+M6o32GBJxOzUy5rAajZHVvAXDTGCruAcmMmONxnldvueAHycFkg1iXABtRq
+         K/kLwENns0VXO66ozC33hL1JnR+KEpsyFDaMIQ9I1ypjgDhQLg97euF+yUKoi4uSlstz
+         pACMqfuqb+XuME8Ay3wCEkfKBEC8OQcKpqQ7Tm/WWQlXqcx+yFScZKY+hKKU0HqGNcPn
+         vrQg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689606602; x=1692198602;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=0QA5RqmiVdq9ytXPcXzIE1eDmERmeAj1yVlVq+29cak=;
+        b=F9TqemfeptwkicCHPBdfyxb647ppb7h/KTN5dnZPfmtoeuOiMRQAYONK7tZL+kBf1z
+         FP27+RE5qZwOMGibhJRwsP+qQfwP5Q1ggf5rYz92xoyzKWs0fNSpPUvp80VWaTHQQrbR
+         wDLH43AV40LjaPwqUELvh2tRALzjKJd+eveksh65UdB3XEZYiny3XBtguqEF/UfGsTAs
+         AG2JJ1cYKp+rwmoHUCTID2Sdcm7AMDrB8dS0J/o9qps+7NwiObVIn2lgT3z5SK92cUcL
+         Zlz6O1pAOS9aRuKWVB0JsxnfzUEvgJ0LLBFUmeUBQzcnZOaOlQWqby5rqNGYRwGyDIA8
+         L7Zw==
+X-Gm-Message-State: ABy/qLbETh9qGvoIXx6ocSTxuf5H5su2qTtJLP7dXPeTfxUpE0baLf2x
+        mC9RwQXyrUc3Z/zoJpgML+r8Ag==
+X-Google-Smtp-Source: APBJJlFZWucYJH85n4jsJ42GxhVYcW8vMf3uChkJVcrGjKy3sX2RQAf0T4BKbSW1Z/ebPIkAVIKfug==
+X-Received: by 2002:a17:906:13:b0:993:e752:1a6f with SMTP id 19-20020a170906001300b00993e7521a6fmr13589495eja.6.1689606601763;
+        Mon, 17 Jul 2023 08:10:01 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id bi3-20020a170906a24300b0098d2f703408sm9295246ejb.118.2023.07.17.08.09.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 17 Jul 2023 08:10:00 -0700 (PDT)
+Message-ID: <5bb3e8fe-c947-352c-732b-11a5a1b36d04@linaro.org>
+Date:   Mon, 17 Jul 2023 17:09:58 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="i6dff7kuru4cvcda"
-Content-Disposition: inline
-In-Reply-To: <cover.1689164442.git.michal.simek@amd.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:b01:1d::7b
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v3 1/2] dt-bindings: interrupt-controller: mpm: Pass MSG
+ RAM slice through phandle
+Content-Language: en-US
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawn.guo@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20230328-topic-msgram_mpm-v3-0-2c72f27b4706@linaro.org>
+ <20230328-topic-msgram_mpm-v3-1-2c72f27b4706@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230328-topic-msgram_mpm-v3-1-2c72f27b4706@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 15/07/2023 16:37, Konrad Dybcio wrote:
+> -                           <91 260>;
+> +
+> +    remoteproc-rpm {
+> +      compatible = "qcom,msm8998-rpm-proc", "qcom,rpm-proc";
+> +
+> +        mpm: interrupt-controller {
 
---i6dff7kuru4cvcda
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Messed indentation.
 
-On 12.07.2023 14:20:44, Michal Simek wrote:
-> Hi,
->=20
-> IP core has option reset line which can be wired that's why add support
-> for optional reset.
->=20
-> Thanks,
-> Michal
->=20
-> Changes in v2:
-> - Add Conor's ACK
-> - Fix use-after-free in xcan_remove reported by Marc.
+> +            compatible = "qcom,mpm";
+> +            qcom,rpm-msg-ram = <&apss_mpm>;
+> +            interrupts = <GIC_SPI 197 IRQ_TYPE_EDGE_RISING>;
+> +            mboxes = <&apcs_glb 1>;
+> +            interrupt-controller;
 
-Added to linux-can-next/testing.
 
-Thanks,
-Marc
+Best regards,
+Krzysztof
 
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
-
---i6dff7kuru4cvcda
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEDs2BvajyNKlf9TJQvlAcSiqKBOgFAmS1WG0ACgkQvlAcSiqK
-BOgFNQf/SNgtjQihhGSwxvLoga11wYHClkMTuB7ZGEKSMQMpnvsa/qu5oOE7+pXJ
-bZq8nO9zrrBNsrmv500c8kDZDSGKenZdbT8QBDuCfmirh5YbQqEfBnL8Zos/s7Tq
-QkVzsVj+e6kMeIImbNqHpGqdn9p5zxxWsgb8EDiKMXIoUeU9KUiwPCCIiKRzEjPi
-MgOJpsVvPSYxQ/IRPUcVZ2ebzmuQHbvW1QKlFfRvY/N4AggPgFFPSukTg/jrVdmY
-sZ7M2H9CjZEbMobh8RlNo/+vxeoBRLhEEvuLxE9Ex/6y7Gqh1/4w/uGfxxpqiM7s
-dad1BzbRZp48K21DiDN2QOJnhpOVfA==
-=oPZ5
------END PGP SIGNATURE-----
-
---i6dff7kuru4cvcda--
