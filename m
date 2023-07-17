@@ -2,48 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CEDB4756EF0
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 23:26:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 43C53756F10
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 23:41:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229630AbjGQV0y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jul 2023 17:26:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55434 "EHLO
+        id S229589AbjGQVld (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jul 2023 17:41:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58418 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229931AbjGQV0y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 17:26:54 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8185123
-        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 14:26:52 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 7CC72612A5
-        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 21:26:52 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 165F7C433C8;
-        Mon, 17 Jul 2023 21:26:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689629211;
-        bh=ru6PH0BytRYKxOGCG2Y5Nb4sExU22RsB3910DnOcsF8=;
-        h=From:To:Cc:Subject:Date:From;
-        b=nHlL7xXkssHmGS545q2Bq3u/Wwt/VbvsMNLDoG3YGlicXsCv9P47X0cIXnPBAv0yK
-         twDfyvoxawtPtjQE9AyYPjUaqPX1uBU9+pHFyzmYXGsrfKGIv3juVuPjtA8yftY9m5
-         yoVWAXudZuRogB+zf81XmHj6vMjK3KIL+vvlU1TlCRof5GwS94DMzDeAnlsqcsq+B5
-         q4ZPenSNp2uD52zENK/JRJ6fI5Vej4JMjtpt5kTsXVR1up2O5X2pZWNs5666TNNXgw
-         e/RTaHAVZ1UCF6LKWyk/YtWPUUnCM1cHcwz8/Ve6uoXxrw0K1DOdy9cVxoVlqhcMZv
-         QPE3v27U+tSDw==
-From:   Dinh Nguyen <dinguyen@kernel.org>
-To:     robh+dt@kernel.org, krzysztof.kozlowskii+dt@linaro.org,
-        conor+dt@kernel.org
-Cc:     dinguyen@kernel.org, devicetree@vger.kernel.org
-Subject: [PATCHv2] arm64: dts: socfpga: change the reset-name of "stmmaceth-ocp" to "ahb"
-Date:   Mon, 17 Jul 2023 16:26:44 -0500
-Message-Id: <20230717212644.635910-1-dinguyen@kernel.org>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S229450AbjGQVld (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 17:41:33 -0400
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 278A5136;
+        Mon, 17 Jul 2023 14:41:32 -0700 (PDT)
+Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-51f7fb9a944so7016104a12.3;
+        Mon, 17 Jul 2023 14:41:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1689630090; x=1692222090;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=oJvtasqqKaQL2h12DaU6LUoGc2FmpEmVYsuyHj/CRRg=;
+        b=duu9wh20NcF95Nck9xqBAxn04Ry/Dw+nqY0yUR6C0IeSbVveaTBmVj3rGX2QAr2eJl
+         F+QuAAPfvoXtO6CVe1OyE7aeJNPF34U5RftZDXgG0nppZJzSDckPrsEIqv+/FBXVOBQC
+         i9neGxH85O3m+3dyh6PRB8hGE4wWGVY8R4wiGAIurWhsPru5dOIimYza/PyClWynKO8T
+         ecHeSR5oToqZGHRQzbq1tjuLKpP836Z1knplTTT0ENJSfyAFCMTlUzvSPJkzfIh06cCQ
+         x5IzX4vIiUx8Lqv7eIwXgeHzJrGCsjf2mD5/eOtAjnHJ0B8YK5c+EfSEPUvOZr3JbIQA
+         h1zg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689630090; x=1692222090;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=oJvtasqqKaQL2h12DaU6LUoGc2FmpEmVYsuyHj/CRRg=;
+        b=BaaVYe5ocQnZVbkHAWz3tAm/n7Ggzuo4PHpJ++0S+4vpSo0R1sVOrzGa1tfKEn8tf/
+         532KKm8ap5gmpvd+cLzgRUGolaCuRmKBXbJFBd+qaQklFY7A0/5SKzGvN90H2syR3+As
+         93CjoR9xMlQnT0ROzmHdGd5Zz285B7AFCILyzaZj5uf+bjfenynz6MvrZsJqQKNITQYu
+         HY0YqsSNeZVyssk2TdUHcoLQPXlt5gxz6wweBzQZj3ZWGHYNe96NGpFhAQyozkzbetMq
+         rfMx6Lj6/fD0HdbLRar0Sb+pGzYwA8rlNbXGmExYjWdy2aStqDQMU1rRTMbWTUYtZ8Xo
+         U8Ag==
+X-Gm-Message-State: ABy/qLYN+eBf/a/b/z/kL8irxIb5jzK81sMWHO2MbIdMgOzdd6det+/x
+        PadT/IlCMgf6CNLPyGqXhvjy221SbHobINDOeE5H8wPCt6I=
+X-Google-Smtp-Source: APBJJlE+8JxaBZ/3Qgz7WWzKvQxFgSufFLpbWADS/LQwPkbBegwuUOKouKFwUvRqfTTzOtMxjpfFXaqsM8SyBbHOBUk=
+X-Received: by 2002:aa7:c9d6:0:b0:51e:ebd:9f5b with SMTP id
+ i22-20020aa7c9d6000000b0051e0ebd9f5bmr11115742edt.36.1689630089934; Mon, 17
+ Jul 2023 14:41:29 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+References: <20230717205357.2779473-1-samuel.holland@sifive.com> <20230717205357.2779473-2-samuel.holland@sifive.com>
+In-Reply-To: <20230717205357.2779473-2-samuel.holland@sifive.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Tue, 18 Jul 2023 00:40:53 +0300
+Message-ID: <CAHp75VeD=R2kp4wbCkJUEzi3TP4GXAhciAdWkQm247tgwR7-Ww@mail.gmail.com>
+Subject: Re: [PATCH 1/2] of/irq: Export of_irq_count()
+To:     Samuel Holland <samuel.holland@sifive.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Andy Shevchenko <andy@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -52,120 +72,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The "stmmaceth-ocp" reset line on the SoCFPGA stmmac ethernet driver is
-the same as the "ahb" reset on a standard stmmac ethernet.
+On Mon, Jul 17, 2023 at 11:54=E2=80=AFPM Samuel Holland
+<samuel.holland@sifive.com> wrote:
+>
+> This function is used by the SiFive GPIO driver. Export it so that
+> driver can be built as a module.
 
-commit ("843f603762a5 dt-bindings: net: snps,dwmac: Add 'ahb'
-reset/reset-name") documented the second reset signal as 'ahb' instead
-of 'stmmaceth-ocp'. Change the reset-names of the SoCFPGA DWMAC driver to
-'ahb'. In order not to break ABI, we will keep support in thedwmac-socfpga
-driver to still make use of "stmmaceth-ocp".
+Can we rather reduce use of of_*() APIs?
+For example, why not use platform_irq_count()?
 
-This also fixes the dtbs_check warning:
-ethernet@ff802000: reset-names:1: 'ahb' was expected
-
-Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
----
-v2: update commit message to further describe the reason for the change
----
- arch/arm/boot/dts/intel/socfpga/socfpga_arria10.dtsi | 6 +++---
- arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi    | 6 +++---
- arch/arm64/boot/dts/intel/socfpga_agilex.dtsi        | 6 +++---
- 3 files changed, 9 insertions(+), 9 deletions(-)
-
-diff --git a/arch/arm/boot/dts/intel/socfpga/socfpga_arria10.dtsi b/arch/arm/boot/dts/intel/socfpga/socfpga_arria10.dtsi
-index 72c55e5187ca..f36063c57c7f 100644
---- a/arch/arm/boot/dts/intel/socfpga/socfpga_arria10.dtsi
-+++ b/arch/arm/boot/dts/intel/socfpga/socfpga_arria10.dtsi
-@@ -440,7 +440,7 @@ gmac0: ethernet@ff800000 {
- 			clocks = <&l4_mp_clk>, <&peri_emac_ptp_clk>;
- 			clock-names = "stmmaceth", "ptp_ref";
- 			resets = <&rst EMAC0_RESET>, <&rst EMAC0_OCP_RESET>;
--			reset-names = "stmmaceth", "stmmaceth-ocp";
-+			reset-names = "stmmaceth", "ahb";
- 			snps,axi-config = <&socfpga_axi_setup>;
- 			status = "disabled";
- 		};
-@@ -460,7 +460,7 @@ gmac1: ethernet@ff802000 {
- 			clocks = <&l4_mp_clk>, <&peri_emac_ptp_clk>;
- 			clock-names = "stmmaceth", "ptp_ref";
- 			resets = <&rst EMAC1_RESET>, <&rst EMAC1_OCP_RESET>;
--			reset-names = "stmmaceth", "stmmaceth-ocp";
-+			reset-names = "stmmaceth", "ahb";
- 			snps,axi-config = <&socfpga_axi_setup>;
- 			status = "disabled";
- 		};
-@@ -480,7 +480,7 @@ gmac2: ethernet@ff804000 {
- 			clocks = <&l4_mp_clk>, <&peri_emac_ptp_clk>;
- 			clock-names = "stmmaceth", "ptp_ref";
- 			resets = <&rst EMAC2_RESET>, <&rst EMAC2_OCP_RESET>;
--			reset-names = "stmmaceth", "stmmaceth-ocp";
-+			reset-names = "stmmaceth", "ahb";
- 			snps,axi-config = <&socfpga_axi_setup>;
- 			status = "disabled";
- 		};
-diff --git a/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi b/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
-index 1c846f13539c..439497ab967d 100644
---- a/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
-+++ b/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
-@@ -153,7 +153,7 @@ gmac0: ethernet@ff800000 {
- 			interrupt-names = "macirq";
- 			mac-address = [00 00 00 00 00 00];
- 			resets = <&rst EMAC0_RESET>, <&rst EMAC0_OCP_RESET>;
--			reset-names = "stmmaceth", "stmmaceth-ocp";
-+			reset-names = "stmmaceth", "ahb";
- 			clocks = <&clkmgr STRATIX10_EMAC0_CLK>, <&clkmgr STRATIX10_EMAC_PTP_CLK>;
- 			clock-names = "stmmaceth", "ptp_ref";
- 			tx-fifo-depth = <16384>;
-@@ -171,7 +171,7 @@ gmac1: ethernet@ff802000 {
- 			interrupt-names = "macirq";
- 			mac-address = [00 00 00 00 00 00];
- 			resets = <&rst EMAC1_RESET>, <&rst EMAC1_OCP_RESET>;
--			reset-names = "stmmaceth", "stmmaceth-ocp";
-+			reset-names = "stmmaceth", "ahb";
- 			clocks = <&clkmgr STRATIX10_EMAC1_CLK>, <&clkmgr STRATIX10_EMAC_PTP_CLK>;
- 			clock-names = "stmmaceth", "ptp_ref";
- 			tx-fifo-depth = <16384>;
-@@ -189,7 +189,7 @@ gmac2: ethernet@ff804000 {
- 			interrupt-names = "macirq";
- 			mac-address = [00 00 00 00 00 00];
- 			resets = <&rst EMAC2_RESET>, <&rst EMAC2_OCP_RESET>;
--			reset-names = "stmmaceth", "stmmaceth-ocp";
-+			reset-names = "stmmaceth", "ahb";
- 			clocks = <&clkmgr STRATIX10_EMAC2_CLK>, <&clkmgr STRATIX10_EMAC_PTP_CLK>;
- 			clock-names = "stmmaceth", "ptp_ref";
- 			tx-fifo-depth = <16384>;
-diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi b/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
-index fc047aef4911..d3adb6a130ae 100644
---- a/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
-+++ b/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
-@@ -158,7 +158,7 @@ gmac0: ethernet@ff800000 {
- 			interrupt-names = "macirq";
- 			mac-address = [00 00 00 00 00 00];
- 			resets = <&rst EMAC0_RESET>, <&rst EMAC0_OCP_RESET>;
--			reset-names = "stmmaceth", "stmmaceth-ocp";
-+			reset-names = "stmmaceth", "ahb";
- 			tx-fifo-depth = <16384>;
- 			rx-fifo-depth = <16384>;
- 			snps,multicast-filter-bins = <256>;
-@@ -176,7 +176,7 @@ gmac1: ethernet@ff802000 {
- 			interrupt-names = "macirq";
- 			mac-address = [00 00 00 00 00 00];
- 			resets = <&rst EMAC1_RESET>, <&rst EMAC1_OCP_RESET>;
--			reset-names = "stmmaceth", "stmmaceth-ocp";
-+			reset-names = "stmmaceth", "ahb";
- 			tx-fifo-depth = <16384>;
- 			rx-fifo-depth = <16384>;
- 			snps,multicast-filter-bins = <256>;
-@@ -194,7 +194,7 @@ gmac2: ethernet@ff804000 {
- 			interrupt-names = "macirq";
- 			mac-address = [00 00 00 00 00 00];
- 			resets = <&rst EMAC2_RESET>, <&rst EMAC2_OCP_RESET>;
--			reset-names = "stmmaceth", "stmmaceth-ocp";
-+			reset-names = "stmmaceth", "ahb";
- 			tx-fifo-depth = <16384>;
- 			rx-fifo-depth = <16384>;
- 			snps,multicast-filter-bins = <256>;
--- 
-2.25.1
-
+--=20
+With Best Regards,
+Andy Shevchenko
