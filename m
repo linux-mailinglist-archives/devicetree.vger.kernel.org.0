@@ -2,101 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 826E6755B5F
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 08:16:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C6CE755B41
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 08:14:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231448AbjGQGQj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jul 2023 02:16:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54546 "EHLO
+        id S231154AbjGQGN6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jul 2023 02:13:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52640 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230515AbjGQGQi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 02:16:38 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 673D81A6
-        for <devicetree@vger.kernel.org>; Sun, 16 Jul 2023 23:16:37 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-991ef0b464cso1123865866b.0
-        for <devicetree@vger.kernel.org>; Sun, 16 Jul 2023 23:16:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689574596; x=1692166596;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=2entuFfzv06LWf7ZDQbfS5AMpEjfwXM5BlDm2xKGsjc=;
-        b=Mw4RODoz4BE+XD5UXyudGlD1SjvpGTrtDS8Nlbz+8NMBgF1UAU+2YZMkj1sMSOHEV3
-         GKMh0FA7PCBGky8bkHzM5/mR55EH3QCQ5ONqhxJOMhxt2/suCeuPdEnWeJeYyGLD7qvK
-         ZduxDYWE8Z19fVC0qOlAIrsK2xE0OpGTX8DGKkfIP/ItdOn4u3+KbSlf87J3yA9r6+2B
-         GE8mcWp+yb/tzcp3cbeD7uqszVS+SvOIKDzf4hmhLisnDWzUzcIK5qr84QRrGofJkUgb
-         sih9Gfhuus0H0+/OdLiN2EQG/DR/0nsvyDk2iIB11GcGtWi9s3Pto1Qjth+4WK5x7fiR
-         U90Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689574596; x=1692166596;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2entuFfzv06LWf7ZDQbfS5AMpEjfwXM5BlDm2xKGsjc=;
-        b=lwMPOQ3fWv+cZPYvQulNvrqHxS7+3F9sNezNh5sqlU3StcLr9HCZ4PMQxvEFnOyWeJ
-         tGbiDWUNKJc/Q+owH15bRBaYhfVnJWPhFP203pSHNC/PbVg8MpBVVElX0ayseKURiRrs
-         GOzlOj/iFK4RsNG/emSciX1owjVLlPSKznrWajUOpx0HDWEnPeTrlOyBpuBGjPz8gtWc
-         uo5CIaUZYqpJBGn7s+hdkEZfvx0QVQf0whHhvPuTk60w2udrUGaltXbf4xNQJ9DM0VEk
-         guH8VS8jbjmOJxtG4i+h+2NWAg6A44lVz1loPCNySPzojuUL79EjJi91n78XlsmzDLPk
-         zrcA==
-X-Gm-Message-State: ABy/qLZYyw0KRynUD9yLblq1REoP1xnQXays3tnaapbGV/gcJZKUMUQr
-        J8bktq+p8MqsfNt6f8kggBwi5Q==
-X-Google-Smtp-Source: APBJJlFSRSJ3eceIL2mLhLg4cLl56txNob5VQD1I3l8rZT/MOUjVg+APcNTJdIk8JLaOzJPhmg4Gwg==
-X-Received: by 2002:a17:906:68c9:b0:989:450:e565 with SMTP id y9-20020a17090668c900b009890450e565mr9927308ejr.23.1689574595927;
-        Sun, 16 Jul 2023 23:16:35 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id qt11-20020a170906eceb00b00997c1d125fasm1416803ejb.170.2023.07.16.23.16.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 16 Jul 2023 23:16:35 -0700 (PDT)
-Message-ID: <f5ff9616-c71c-f71e-ce4a-7b9fa7055bb4@linaro.org>
-Date:   Mon, 17 Jul 2023 08:16:33 +0200
+        with ESMTP id S231126AbjGQGN4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 02:13:56 -0400
+Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2052.outbound.protection.outlook.com [40.107.20.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF454E6E
+        for <devicetree@vger.kernel.org>; Sun, 16 Jul 2023 23:13:50 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Mq9BPPzP6yx7G21ZB3tLiRAM3nskCL9igAAIPGbvV6vS8o3urWQd9elBM5yztywIz8e/4VG8RaXoqepO7fdeRwzTirf0TseKM/AMCF71FhDb1WDsq45nglF44BxmJa9ydliv+1eFfPzVpSyCUit7ySAHnFu6buAB1XiiFGWeUIESs/BKtddVc+xqY6ndLguYazgaC2VHJbF6U95SI5yxtI9mID6Cphbsnna4t9BKLPe4+oy1PORRVoGFWADXfUtEY1v4yRizKnXTYg9KKZxo4/qpHrbeoCxl9g5N2JJEtLJ0U/7qnfGOP9PEOFy7hZStEcRNqWx7AH/8Bx8ZPG05PQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=izxJ+1KPW2kK1Iwhav++SdH3hBfqa80vLCyWePQ7Q2o=;
+ b=b530X9ZmQd39QvpGYWlLEeyTbEcLLBsigY2nZSunNEQmPETcnTHVYtXzjy6xW4Q2Du3K0lYD3pVZ1g/Rm9FuffFFjzW6lEsDJN+UIZzylVpvf5JZsdIHisy6f2qhAnx0cWTlhQkXEvlueecDcheFZ7jGyQ3krsngve9Qprt9/nev81JKKTOtpPIxRvwwcxRGwxz0mojUdLx2Eft5gBcsvxN6onUEq5zMRPJlmZcCcl5EwkC8dmoipwAFhpuRAQx7Qlnd8FGEmz6ivgz544Izhehsx8j+CHpbaarO7Q2z4etQKZ4C4Tn+BTwCKXqOyT0d44AuwV4uJjsA8hrkZQcW4Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=izxJ+1KPW2kK1Iwhav++SdH3hBfqa80vLCyWePQ7Q2o=;
+ b=Wn3KkKiukin1SC3UqOGKrhUVJUH3tY0D/PoGVjhAHudgeGmpfxob24kMBmEbDc5dh8f0URqZhDPcepn54rPEnTRZpmlr/eT2q9XCZUmI7dUqoSIRV4Y3JWf+9cSmJ6vmwCZE38AS9wgyEKxDdsfk7wIbzoS6JDpVy+r2FmTF7x8=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
+ by AS8PR04MB9189.eurprd04.prod.outlook.com (2603:10a6:20b:44c::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6588.32; Mon, 17 Jul
+ 2023 06:13:48 +0000
+Received: from AM7PR04MB7046.eurprd04.prod.outlook.com
+ ([fe80::7af:d8d5:d0ce:f68e]) by AM7PR04MB7046.eurprd04.prod.outlook.com
+ ([fe80::7af:d8d5:d0ce:f68e%2]) with mapi id 15.20.6588.027; Mon, 17 Jul 2023
+ 06:13:48 +0000
+From:   Liu Ying <victor.liu@nxp.com>
+To:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Cc:     andrzej.hajda@intel.com, neil.armstrong@linaro.org,
+        rfoss@kernel.org, Laurent.pinchart@ideasonboard.com,
+        jonas@kwiboo.se, jernej.skrabec@gmail.com, airlied@gmail.com,
+        daniel@ffwll.ch, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com
+Subject: [PATCH 0/9] drm/bridge: imx: Add i.MX93 MIPI DSI support
+Date:   Mon, 17 Jul 2023 14:18:22 +0800
+Message-Id: <20230717061831.1826878-1-victor.liu@nxp.com>
+X-Mailer: git-send-email 2.37.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SI1PR02CA0060.apcprd02.prod.outlook.com
+ (2603:1096:4:1f5::17) To AM7PR04MB7046.eurprd04.prod.outlook.com
+ (2603:10a6:20b:113::22)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v4 0/3] Add support for WDIOF_CARDRESET on TI AM65x
-Content-Language: en-US
-To:     huaqian.li@siemens.com, wim@linux-watchdog.org, linux@roeck-us.net,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org
-Cc:     huaqianlee@gmail.com, nm@ti.com, vigneshr@ti.com,
-        kristo@kernel.org, linux-watchdog@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, jan.kiszka@siemens.com,
-        baocheng.su@siemens.com
-References: <20230717040723.1306374-1-huaqian.li@siemens.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230717040723.1306374-1-huaqian.li@siemens.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM7PR04MB7046:EE_|AS8PR04MB9189:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5e726a3a-ce63-499b-79ad-08db868cfbbb
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: Z+gob7Rw2G35hUsL9Z3nqytemRzHPOh4osU4MVZksInHHA39vJN5fSoW7QFox3ivBdQzGTMrep6eRCFiF4UfSR+Mw/0iETIbumx91RezTzXwFgiJJH/YLVzCoCAEQMXwtqWovz9YoEoVj8IVzAV+zOvnDFeh594VANDPOYrviUlEcnL1VnnaqLsS9S1yqzTKU5TbU6DW6d36FLn1uhpPgrPOWczwrG8iLE8KsnIrTa8c0lVdVH9GY1fL4HZWIWYMwE7xH6IYux+v1XDdcb+NpOoe7CrndHGX1tW5YvuxMjvTGQj43CSensDYDS3rLyGISKq67Z1u+RVSZy3mScUh0wfhnAV7lREoB41Bht877Ua2sJKaacFkY1ClqaIwrohywmyuA+z5FnQzu3TDlT4ezPVgPl0JGRRwE9cX8uZ4oaL9l7wf8Ub0TKxDN0Gl0gKeb2ClYfceJR+fs4aFLj+0ev+F8I/d7iDAmdJeb6C5/xQxjo/xNq5eIY5/2LZTlPbuI4nfuaVysXgkyQTFxB+VhpCnSO8cD5oJycuc3aw8Sm0bYRMKpYgM29ffAc6zMN/bAO4jMg5wQ7q6JTn49aORNmYhJ41pr+ztKvVuISBTaZhb8DvBRTo63MfqGXMX7f37
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR04MB7046.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(136003)(39860400002)(396003)(366004)(346002)(376002)(451199021)(478600001)(52116002)(6486002)(6666004)(186003)(1076003)(6506007)(26005)(6512007)(2906002)(41300700001)(316002)(66556008)(66476007)(4326008)(5660300002)(7416002)(36756003)(8936002)(8676002)(66946007)(38350700002)(38100700002)(86362001)(2616005)(83380400001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?MC+gP72cyC+S3/+bRNwX/hHYg7umPLW8Msj1W+5XazYBMHByUWeFQvmWMU6I?=
+ =?us-ascii?Q?+85lqu+Y2Mt+F9fWuKPsHepH4EEf2ZHekAJHfhqIZNylDbguMwcX1/huHPb4?=
+ =?us-ascii?Q?o6RHSBni4k/9W4XNCsSyzRQhs5MlCOWbtjcZl24qEjj2A51dtgyk7R23OKRi?=
+ =?us-ascii?Q?3dH8uh/juOga8HLwhO/1I+JvwqGGsoFQ71URapM2uBSCvEiuRF/g7TwNbVAy?=
+ =?us-ascii?Q?6iZIUz33MFdNnnnjDVrLUw1u5nUDYND/pRxaS+cXuo6ifRYmfTMfVW6UIYfG?=
+ =?us-ascii?Q?2RvVIMwHfNKrUGiU28qK70FHaOk87sxtolO/HF/+0sPPnOwomXorVAQ4MoBw?=
+ =?us-ascii?Q?wCcte8sxEqYnmz+GlZjVpnVu06rb0SYO5ETppGMTg/8K1UtmK100uuW7YqI8?=
+ =?us-ascii?Q?IKwJ1A7QJUDDSrH+pMYcVx2kuO11rUmH9Z9tqAaa9M1ClWvPDSpCJRrm1yPT?=
+ =?us-ascii?Q?Qmip92xRH388kNTI9JLM5x6HsizJGvhmjs8j0wfcdabzMIbfE2t17fpaeHJN?=
+ =?us-ascii?Q?twirbNz3Y4iaje/3Df+4WvvUufQVUbPaXPe+tvdcgAZDrv/EPYTiviXVNSbg?=
+ =?us-ascii?Q?K0isQGdFdOKW1PTGlaSzWSjBg8LhdT5lLZNKrd/F2cgbwoiD8xkNDfqEAKez?=
+ =?us-ascii?Q?LgRLx590Pig1e15EJoquTo78GdjAjQ+K/ey3JT3XJPgBcpFowU/uwJ/CvG1x?=
+ =?us-ascii?Q?k9zWCcggfesJ34SLY1KECCABxQjRe4KoNuzlCveb15ePwKsiGcnCJNeMppKn?=
+ =?us-ascii?Q?nkuOenp/rCYYfX8LBglur/HHPGGdBZBmhHeS6zXIhTao4u1yX6GgaMiuyQ0o?=
+ =?us-ascii?Q?oSoW8aE3LVdfj9x7k7JJvebTdrPRcXXrbbnYDCynsQHsJf/rs/pOS0PgB0lq?=
+ =?us-ascii?Q?RORsTkLTkjA9BeRs/nvnjQfBRsUcnMcZMkV+SmBhMD7cjqBEunbIZGBJZLF2?=
+ =?us-ascii?Q?PQSjwj2Vc/2tZByd9+JDNm35fcArE0gEb0Hgr1G1bURXAVIWdM/g33XfQI0e?=
+ =?us-ascii?Q?/INA1k4m51CR2zGHVYP1nW/V9pHyHh7wK4+naXGrDX0pfi1FAWDqsKFiBwfF?=
+ =?us-ascii?Q?IplfZgnWFjT5SEQQACPyGWlqMbMaF7c2MykM4ootECXNrhbfvqCxSnLiNU2S?=
+ =?us-ascii?Q?i5b9sZdQKmt0+Ql75EVMUoEZcMknDB5bf1eBKAr0Jz0AilsytnNrJtJJPAkz?=
+ =?us-ascii?Q?IY3cL9ijWWAEWr37w7dZ0pwkU5WoPIUOs9DUU2NCEzxgUCCshlEiVrcdFPwI?=
+ =?us-ascii?Q?s6tDGUc6ETGk28xbzgfdZ3PYoNNsO68/k5wClpb27W/bAoF0uWTAZJAoONbp?=
+ =?us-ascii?Q?ZbuH0ag5kGHp6QC8D2wl4zul8qNLO/jx9QuFueP9cfOXhEqaGTEp9VkL9k3l?=
+ =?us-ascii?Q?e/dBXuTYFx254YVpjAP8poWAgtoUJlt4HbDIG3C1xV7kGSYM+q24T+AGaR49?=
+ =?us-ascii?Q?YPR2pDkIyb9aL10jvEVzKxQgOHu9r2KEd6Tsh7z7mVLDjul7kFNHukrn5m7N?=
+ =?us-ascii?Q?TQpGA8RaKBBf33B2wWrf/f5nzJ2P+jh09oLoPpA00g7OZvlAS0Rr0gVlegMn?=
+ =?us-ascii?Q?GhG0tfLR5rjKAmLbSA17ChbZh0E9Xh3haBTygWIC?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5e726a3a-ce63-499b-79ad-08db868cfbbb
+X-MS-Exchange-CrossTenant-AuthSource: AM7PR04MB7046.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jul 2023 06:13:48.1904
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: TuapVDnhNwydeEYv2ab2/k7qDS70yRRcz+RPKPldtuTL6aUpbx8rISFlZ9IugCai1L/3Y/ZkBACNWQ2HxzEuFw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB9189
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/07/2023 06:07, huaqian.li@siemens.com wrote:
-> From: Li Hua Qian <huaqian.li@siemens.com>
-> 
-> The watchdog hardware of TI AM65X platform does not support
-> WDIOF_CARDRESET feature, add a reserved memory to save the watchdog
-> reset cause, to know if the board reboot is due to a watchdog reset.
-> 
-> Signed-off-by: Li Hua Qian <huaqian.li@siemens.com>
-> ---
-> Changes in v4:
-> - Fix the coding style.
-> - Add usage note for the reserved memory.
-> - Link to v3:
->   https://lore.kernel.org/linux-watchdog/20230713095127.1230109-1-huaqian.li@siemens.com
+Hi,
 
-Much more changed. You added example in the bindings which no one asked
-for. Then you added multiple fake review tags to all the patches.
+This series aims to add MIPI DSI support for Freescale i.MX93 SoC.
 
-Best regards,
-Krzysztof
+There is a Synopsys DesignWare MIPI DSI host controller and a Synopsys
+Designware MIPI DPHY embedded in i.MX93.  Some configurations and
+extensions to them are controlled by i.MX93 media blk-ctrl.
+
+Add a DRM bridge for i.MX93 MIPI DSI by using existing DW MIPI DSI
+bridge helpers and implementing i.MX93 MIPI DSI specific extensions.
+
+Note that since this series touches the dw-mipi-dsi driver, tests are
+needed to be done for meson, rockchip and stm.
+
+Patch 1 ~ 7 do preparation work for adding i.MX93 MIPI DSI DRM bridge driver.
+
+Patch 8 adds DT-binding documentation for i.MX93 MIPI DSI.
+
+Patch 9 adds i.MX93 MIPI DSI DRM bridge.
+
+Liu Ying (9):
+  drm/bridge: synopsys: dw-mipi-dsi: Add dw_mipi_dsi_get_bridge() helper
+  drm/bridge: synopsys: dw-mipi-dsi: Add input bus format negotiation
+    support
+  drm/bridge: synopsys: dw-mipi-dsi: Force input bus flags
+  drm/bridge: synopsys: dw-mipi-dsi: Add mode fixup support
+  drm/bridge: synopsys: dw-mipi-dsi: Use pixel clock rate to calculate
+    lbcc
+  drm/bridge: synopsys: dw-mipi-dsi: Set minimum lane byte clock cycles
+    for HSA and HBP
+  drm/bridge: synopsys: dw-mipi-dsi: Disable HSTX and LPRX timeout check
+  dt-bindings: display: bridge: Document Freescale i.MX93 MIPI DSI
+  drm/bridge: imx: Add i.MX93 MIPI DSI support
+
+ .../display/bridge/fsl,imx93-mipi-dsi.yaml    | 115 +++
+ drivers/gpu/drm/bridge/imx/Kconfig            |  10 +
+ drivers/gpu/drm/bridge/imx/Makefile           |   1 +
+ drivers/gpu/drm/bridge/imx/imx93-mipi-dsi.c   | 934 ++++++++++++++++++
+ drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi.c |  91 +-
+ include/drm/bridge/dw_mipi_dsi.h              |  16 +
+ 6 files changed, 1163 insertions(+), 4 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/fsl,imx93-mipi-dsi.yaml
+ create mode 100644 drivers/gpu/drm/bridge/imx/imx93-mipi-dsi.c
+
+-- 
+2.37.1
 
