@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EF82D7569C0
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 18:59:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E79D07569C5
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 19:00:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230089AbjGQQ70 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jul 2023 12:59:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57996 "EHLO
+        id S230268AbjGQRAY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jul 2023 13:00:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58624 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230168AbjGQQ7Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 12:59:25 -0400
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7298E103
-        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 09:59:23 -0700 (PDT)
-Received: by mail-lj1-x22d.google.com with SMTP id 38308e7fff4ca-2b703a0453fso76024911fa.3
-        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 09:59:23 -0700 (PDT)
+        with ESMTP id S230128AbjGQRAX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 13:00:23 -0400
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC48610D
+        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 10:00:21 -0700 (PDT)
+Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-52166c7f77cso5194547a12.2
+        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 10:00:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689613161; x=1692205161;
+        d=linaro.org; s=google; t=1689613220; x=1692205220;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=maPQHM1CFdZjddcyI2Mi729XdJZCqrzZE+2R5kAVyOA=;
-        b=PYqIGwENJg5G2cxqdiC57KddeldIZoWlUQOp2ZGpCslSCBAiKZPXNRMJx8vuDN4iuh
-         v2TB6QHvbxRhVBDfRN88edq2KSVgeYXEfkHLvPSgXs2sz2QBz/kFTfBjrL6mL5PwaFR4
-         Azp5Rhv3Sz/MZlTPkB40eEyQQlvqsZs5YVy8qbyxaG6egIrFfCqFkn6ZgxFNjmbO9fUR
-         F6Nr9KYcsRevZbxh2/34AwhfSXAelop2yFWVpoj1Z1HRssIsO0J7qNj3LjX794J6lyBe
-         TbKY9bsGR29VOgG1Lwhxu1Q6Q6LHK8dbmCVAap5ImJxKLVK9lKvxGi2hRa5ZchHq2gOl
-         TycQ==
+        bh=E3p33dWnkdeh3xpTQxAQgmV3R/uRJxOJYd91gzLj00A=;
+        b=m8yS9UZ+f2QdyKnO/qCfSMKXPU9QLDocZidXf4zNoBF9bsrA7Nbo4b+DIm99BE6fxJ
+         KJSYWutemCNe/339E6y1MnksqO8QZvyrbI2G2PZ9gpwVI7/H12f2DuJ32v2CKHFAqS0m
+         BQwxRyLMsvtfS5pcNf8bH2MfzngSW6mUoNLqW86jC7EoAHQExhbSkL3izemXZrmI4pao
+         I+1DcVKwswBGsjbgh1RFA0dcUQ3hhQk8SHHFv+SDH7yHgQrM15sLB7By7cRTZziX9f8Q
+         efKIzBi4/jOLgaR0bLIGZIsAM3N3Je1hm5VNHgMOHWSHifMSsyo+L0WBECO1czvku+0/
+         FsaA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689613161; x=1692205161;
+        d=1e100.net; s=20221208; t=1689613220; x=1692205220;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=maPQHM1CFdZjddcyI2Mi729XdJZCqrzZE+2R5kAVyOA=;
-        b=ihAKz+ieyu1Bs4Zoe1pFPuGT2NHAoiC76CicAZB5isjvNcEX4hahSm9U6bOXG3/H2I
-         IWZh9Nco5KUTaCjIH8cXSAqgdQj5ysYx0JPX168uTSE11H8gzsixQE1YoOzDhpCROmvh
-         248eRoWrDFi3JzAKkES50PFlaQxLGwoUsGtFVdeU6lO9DD10UFEGO3pYGrCIjZfPOsMU
-         Pd2AIrjP3gIQqUFsSKrrewsgA/felqC0nmxp/Ded2yoLYY471q0cQFL8MeXLxc074Tri
-         D6AgABZFcDa/V19IYtbeSMACskCIHyH0aswrgVtumbdBQz/DI9yh0wOYWrnS1o9fRijP
-         jTcQ==
-X-Gm-Message-State: ABy/qLZA5YMh1iS9o1xZKcKqAnJx83YbiwrFJu5BqUcgA5YcZ+tgPmTe
-        pj10T/49m0AGK1GlHQ/oF0Gscw==
-X-Google-Smtp-Source: APBJJlGCzEe3t3Q/MifWDEdbJEqoR1Ae9ID0e45R099ySZpH1Qqoy23w6RdzUQZoVarrwKejHW2TbA==
-X-Received: by 2002:a2e:3814:0:b0:2b9:4336:262e with SMTP id f20-20020a2e3814000000b002b94336262emr2248576lja.27.1689613161642;
-        Mon, 17 Jul 2023 09:59:21 -0700 (PDT)
+        bh=E3p33dWnkdeh3xpTQxAQgmV3R/uRJxOJYd91gzLj00A=;
+        b=c4d+eJs5No8hmut1ixfUiutYRcpUtJrjwOlU0WhHhD/kwmEsisjniohGl4S+mGlnLd
+         6UGRMIy9tu668m6tOl1olX8+WmZMCDZQlZLt38hGxleUnFZF+h5WOiutSoiB4dWm4L0J
+         yMkbSm1SefXhlLg4ddz3Yduw/P7G86r3gCvYWJ75QTS6+vard1ERTNJxUFwRnE94XQK3
+         K/0lkSmLtaBhWNX8HFvazh9ocR1BwWaQh9sDtszR3TqG7ERath3HKDgZis4Xfmvw7eFJ
+         oglH5YzdnMx3pDts4Z2V2rtcKinmw7c95wqgPi9piC+GfQyoJp57XoHqyPHdV/NdYl58
+         ZdxA==
+X-Gm-Message-State: ABy/qLYFi7WfqqrYdzHxdWI8Pa1pPtteVJNg4h4AI3WS/o0wqz6cpwNQ
+        HszJOvi+DErdfNNlz5fciM5DJQ==
+X-Google-Smtp-Source: APBJJlHmbLwM2HYUTllhtBE/n/VE5V3pybwFFBwmW+Iivch6NTA1sYDdu+NuAGFsEAEr204hYKYVEA==
+X-Received: by 2002:a05:6402:551:b0:51d:d5f2:121c with SMTP id i17-20020a056402055100b0051dd5f2121cmr397371edx.5.1689613220365;
+        Mon, 17 Jul 2023 10:00:20 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id b26-20020a170906151a00b00997b6696072sm2749735ejd.206.2023.07.17.09.59.18
+        by smtp.gmail.com with ESMTPSA id d18-20020aa7ce12000000b0051ddfb4385asm10250978edv.45.2023.07.17.10.00.18
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 17 Jul 2023 09:59:21 -0700 (PDT)
-Message-ID: <22d68e14-5198-59ce-44cc-37e9ff5e367c@linaro.org>
-Date:   Mon, 17 Jul 2023 18:59:18 +0200
+        Mon, 17 Jul 2023 10:00:19 -0700 (PDT)
+Message-ID: <3d1a260c-bc8c-6347-17be-5558343c85a4@linaro.org>
+Date:   Mon, 17 Jul 2023 19:00:18 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
@@ -72,7 +72,7 @@ Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -89,10 +89,6 @@ On 17/07/2023 18:51, Marco Felsch wrote:
 >     boards/polyhex-debix/board.c#L38
 > 
 > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
-
-Subject: fix is too generic and binding is redundant. You already state
-this is binding in your prefix. Describe more precise what you are doing.
-
 > ---
 > Changelog:
 > 
@@ -124,20 +120,9 @@ this is binding in your prefix. Describe more precise what you are doing.
 > +          - enum:
 > +              - polyhex,imx8mp-debix-model-a        # Polyhex Debix Model A Board
 > +          - const: polyhex,imx8mp-debix             # Polyhex Debix boards
-> +            deprecated: true
-> +          - const: fsl,imx8mp
 
-That's not how it works and it does not look like you tested the DTS
-against bindings. Please run `make dtbs_check` (see
-Documentation/devicetree/bindings/writing-schema.rst or
-https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
-for instructions).
-
-Don't deprecate some piece of entire compatible list, but entire list.
-
-The commit which deprecates compatible should bring a proper one.
-Otherwise at this point we have kernel only with deprecated compatibles.
-
+I cannot find patches which add new compatible to the binding and which
+fix the DTS. :/
 
 Best regards,
 Krzysztof
