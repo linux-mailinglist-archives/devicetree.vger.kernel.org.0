@@ -2,77 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 29EF7755AB8
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 07:04:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E4F68755ABF
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 07:08:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230015AbjGQFEy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jul 2023 01:04:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60614 "EHLO
+        id S229920AbjGQFI0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jul 2023 01:08:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33578 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229801AbjGQFEy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 01:04:54 -0400
-Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9D1AE54
-        for <devicetree@vger.kernel.org>; Sun, 16 Jul 2023 22:04:52 -0700 (PDT)
-Received: by mail-pj1-x1031.google.com with SMTP id 98e67ed59e1d1-263036d4bc3so2884047a91.2
-        for <devicetree@vger.kernel.org>; Sun, 16 Jul 2023 22:04:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1689570292; x=1692162292;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=eNYeV3LGJNDSjU9rdyxRY+kYnsL8oTpzciBaAdsXjdw=;
-        b=pFVcZKLHHSwYguk1P8Z8buW6liFYqiBFAfnxThWwQEwsHbaT8LgTuKCtNtZZahMwtZ
-         v2pGwXXr279uep/RwINe1yy0PZs6T802JwxpDAxffwb8lTJo1yMKrL9PBZ5J03FY95CR
-         EO15JvfPlnoz0pmtYRqvGvdMi7j/9ZOPof8ew+B6b7KOAkTPvMR0IkzZV4jLfEVgiRXy
-         EUvGml3Nsscs8Nk+cb7/G7BijJuMi+JW9Pny8vPSnFwqPta6oyyFpHCbYNZxr0P90IgD
-         AnRorZ0BFonzaR9x867Ych8Hw8OHCRxCoVTVd4rVQIMA/Ks6SlJkcG0Gtr+0p7aFyk6Y
-         9/jQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689570292; x=1692162292;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=eNYeV3LGJNDSjU9rdyxRY+kYnsL8oTpzciBaAdsXjdw=;
-        b=eRD8E+5WoZd55QZlD9G/9jdyhud0QM+iRqhsjBxCtdazKOJe94Lf9ZGg7eIQHiuDPx
-         fBjXfMeLa4gLeOEkvJ1VS6X4/DcOCuTaMvrazH/+Y/MQ+rkoHuoidudO6anQwq4PS0mW
-         X+nbwHQc9/F1mcxrTGya4m8e0fvDTCfUK52KvNsrtp8qfFf95nJ1i92DLIDckeF/l2Xi
-         /1iOlYZgNW87v0XmChhUmiWlGWudXtFpOcBBdEXJBk6NeYdvZDn5mPqczOlqfepQ4mX4
-         MAeCgpPPkbQvi8hGqF8+PtsB9lA1MppcfGSPI74r10S3+cpo8D7NhcVu+IifberlR1jN
-         rZjA==
-X-Gm-Message-State: ABy/qLYhxYFrGqkT8s5xjZb5aFW3v2wW5YZyggU7Mr0vPYOunLfpm/QH
-        cuh9gngTUH6OG+7d1+3lHVoUq3UBSOLEebMCf7Qcyg==
-X-Google-Smtp-Source: APBJJlHblKksdgvAv0N83Z/xC4BvMT4Q7gyebPtrATeDzpArpZorrhwxdo3OYkO5C+L0q4QbzcrVAwRIUVdEpj7E+Vk=
-X-Received: by 2002:a17:90a:4f81:b0:262:ece1:5fd9 with SMTP id
- q1-20020a17090a4f8100b00262ece15fd9mr10283082pjh.10.1689570291971; Sun, 16
- Jul 2023 22:04:51 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230710094321.1378351-1-apatel@ventanamicro.com>
- <20230710094321.1378351-2-apatel@ventanamicro.com> <20230711-3151a76400deb88b218e9f9b@orel>
-In-Reply-To: <20230711-3151a76400deb88b218e9f9b@orel>
-From:   Anup Patel <apatel@ventanamicro.com>
-Date:   Mon, 17 Jul 2023 10:34:40 +0530
-Message-ID: <CAK9=C2XABXWauDNJwK21eJQsknbb2CNUHkuTsgVmgSVgChnVTg@mail.gmail.com>
-Subject: Re: [PATCH v5 1/9] RISC-V: Add riscv_fw_parent_hartid() function
-To:     Andrew Jones <ajones@ventanamicro.com>
-Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
+        with ESMTP id S229476AbjGQFIZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 01:08:25 -0400
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1ECFE4;
+        Sun, 16 Jul 2023 22:08:24 -0700 (PDT)
+Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
+        by mx0a-00128a01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36H2N63N019915;
+        Mon, 17 Jul 2023 01:08:14 -0400
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+        by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3rutmpg0qy-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 17 Jul 2023 01:08:13 -0400
+Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
+        by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 36H58Cic017921
+        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 17 Jul 2023 01:08:12 -0400
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by ASHBMBX9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.14; Mon, 17 Jul
+ 2023 01:08:11 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Mon, 17 Jul 2023 01:08:11 -0400
+Received: from okan.localdomain (IST-LT-43126.ad.analog.com [10.25.36.12])
+        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 36H57loY008003;
+        Mon, 17 Jul 2023 01:07:50 -0400
+From:   Okan Sahin <okan.sahin@analog.com>
+To:     <okan.sahin@analog.com>
+CC:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Atish Patra <atishp@atishpatra.org>,
-        Sunil V L <sunilvl@ventanamicro.com>,
-        Conor Dooley <conor@kernel.org>,
-        Saravana Kannan <saravanak@google.com>,
-        Anup Patel <anup@brainfault.org>,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        Conor Dooley <conor+dt@kernel.org>,
+        Ibrahim Tilki <Ibrahim.Tilki@analog.com>,
+        Okan Sahin <Okan.Sahin@analog.com>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+Subject: [PATCH v3 0/2] Add MAX77857/59/MAX77831 Regulator Support
+Date:   Mon, 17 Jul 2023 08:07:33 +0300
+Message-ID: <20230717050736.10075-1-okan.sahin@analog.com>
+X-Mailer: git-send-email 2.30.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-ORIG-GUID: i1qDupAZlNYYK0Fs344YsDNrROKoNE7V
+X-Proofpoint-GUID: i1qDupAZlNYYK0Fs344YsDNrROKoNE7V
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-07-17_03,2023-07-13_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=457 spamscore=0
+ clxscore=1015 impostorscore=0 mlxscore=0 suspectscore=0 bulkscore=0
+ lowpriorityscore=0 malwarescore=0 priorityscore=1501 adultscore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2306200000 definitions=main-2307170046
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,96 +72,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 11, 2023 at 6:56=E2=80=AFPM Andrew Jones <ajones@ventanamicro.c=
-om> wrote:
->
-> On Mon, Jul 10, 2023 at 03:13:13PM +0530, Anup Patel wrote:
-> > We add common riscv_fw_parent_hartid() which help device drivers
-> > to get parent hartid of the INTC (i.e. local interrupt controller)
-> > fwnode. This should work for both DT and ACPI.
-> >
-> > Signed-off-by: Anup Patel <apatel@ventanamicro.com>
-> > ---
-> >  arch/riscv/include/asm/processor.h |  3 +++
-> >  arch/riscv/kernel/cpu.c            | 16 ++++++++++++++++
-> >  2 files changed, 19 insertions(+)
-> >
-> > diff --git a/arch/riscv/include/asm/processor.h b/arch/riscv/include/as=
-m/processor.h
-> > index c950a8d9edef..39dc23a18f88 100644
-> > --- a/arch/riscv/include/asm/processor.h
-> > +++ b/arch/riscv/include/asm/processor.h
-> > @@ -81,6 +81,9 @@ int riscv_of_processor_hartid(struct device_node *nod=
-e, unsigned long *hartid);
-> >  int riscv_early_of_processor_hartid(struct device_node *node, unsigned=
- long *hartid);
-> >  int riscv_of_parent_hartid(struct device_node *node, unsigned long *ha=
-rtid);
-> >
-> > +struct fwnode_handle;
-> > +int riscv_fw_parent_hartid(struct fwnode_handle *node, unsigned long *=
-hartid);
-> > +
-> >  extern void riscv_fill_hwcap(void);
-> >  extern int arch_dup_task_struct(struct task_struct *dst, struct task_s=
-truct *src);
-> >
-> > diff --git a/arch/riscv/kernel/cpu.c b/arch/riscv/kernel/cpu.c
-> > index a2fc952318e9..9be9b3b1f333 100644
-> > --- a/arch/riscv/kernel/cpu.c
-> > +++ b/arch/riscv/kernel/cpu.c
-> > @@ -96,6 +96,22 @@ int riscv_of_parent_hartid(struct device_node *node,=
- unsigned long *hartid)
-> >       return -1;
-> >  }
-> >
-> > +/* Find hart ID of the CPU fwnode under which given fwnode falls. */
->
-> This comment matches the comment for riscv_of_parent_hartid(), but I don'=
-t
-> think it will be correct for the !is_of_node(node) case since
-> fwnode_property_read_u64_array() isn't obliged to walk up its tree.
-> Looking ahead it appears riscv_fw_parent_hartid() is only called with the
-> parent node, so we could just drop this function and use
-> fwnode_property_read_u64_array() directly at the two call sites.
+High efficiency buck-boost regulator driver and bindings for
+MAX77857/59/MAX77831. The patches are required to be applied
+in sequence.
 
-I think the function name riscv_fw_parent_hartid() is misleading. It should
-be riscv_get_intc_hartid() because it is retrieving hartid based on INTC
-fwnode.
+Changes in v3:
+* Patch 1: "dt-bindings: regulator: max77857: Add ADI MAX77857/59/MAX77831
+    Regulator"
+  * Add second maintainer
+* Patch 2: "regulator: max77857: Add ADI MAX77857/59/MAX77831 Regulator Support"
+  * Change regmap cache_type
 
-Currently, this function is used in APLIC and IMSIC drivers but soon it
-will be also used in PLIC driver with the upcoming PLIC ACPI support.
+Changes in v2:
+* Patch 1: "dt-bindings: regulator: max77857: Add ADI MAX77857/59/MAX77831
+    Regulator"
+  * Add max77859 support
+* Patch 2: "regulator: max77857: Add ADI MAX77857/59/MAX77831 Regulator Support"
+  * Add max77859 support
+  * Drop interrupt support
+  * Change regmap cache_type
 
-In fact, this patch should also replace riscv_of_parent_hartid() with
-riscv_get_intc_hartid() in INTC and PLIC.
+Okan Sahin (2):
+  dt-bindings: regulator: max77857: Add ADI MAX77857/59/MAX77831
+    Regulator
+  regulator: max77857: Add ADI MAX77857/59/MAX77831 Regulator Support
 
-Regards,
-Anup
+ .../bindings/regulator/adi,max77857.yaml      |  86 ++++
+ drivers/regulator/Kconfig                     |  10 +
+ drivers/regulator/Makefile                    |   1 +
+ drivers/regulator/max77857-regulator.c        | 459 ++++++++++++++++++
+ 4 files changed, 556 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/regulator/adi,max77857.yaml
+ create mode 100644 drivers/regulator/max77857-regulator.c
 
->
-> Thanks,
-> drew
->
-> > +int riscv_fw_parent_hartid(struct fwnode_handle *node, unsigned long *=
-hartid)
-> > +{
-> > +     int rc;
-> > +     u64 temp;
-> > +
-> > +     if (!is_of_node(node)) {
-> > +             rc =3D fwnode_property_read_u64_array(node, "hartid", &te=
-mp, 1);
-> > +             if (!rc)
-> > +                     *hartid =3D temp;
-> > +     } else
-> > +             rc =3D riscv_of_parent_hartid(to_of_node(node), hartid);
-> > +
-> > +     return rc;
-> > +}
-> > +
-> >  DEFINE_PER_CPU(struct riscv_cpuinfo, riscv_cpuinfo);
-> >
-> >  unsigned long riscv_cached_mvendorid(unsigned int cpu_id)
-> > --
-> > 2.34.1
-> >
+-- 
+2.30.2
+
