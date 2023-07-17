@@ -2,117 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C544755FC1
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 11:47:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE9BD755F99
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 11:43:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231128AbjGQJrg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jul 2023 05:47:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50636 "EHLO
+        id S230168AbjGQJnK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jul 2023 05:43:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45598 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230371AbjGQJrc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 05:47:32 -0400
-Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EAB61E60
-        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 02:47:27 -0700 (PDT)
-Received: from epcas2p1.samsung.com (unknown [182.195.41.53])
-        by mailout2.samsung.com (KnoxPortal) with ESMTP id 20230717094723epoutp02ad0ab14f7fafba3cbcdefd85cb1895f4~ynqVYNi4y1819018190epoutp02m
-        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 09:47:23 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20230717094723epoutp02ad0ab14f7fafba3cbcdefd85cb1895f4~ynqVYNi4y1819018190epoutp02m
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1689587243;
-        bh=tSxJqs0xAf2OaWmufD5SkySGQ2OZB+41Bzu1pYFCO/A=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=d2hAleo3TbGbUabX+MccPJsx3lqY2mfHYuqn/FX/cO/uPYHytuMGNMtn/4Wnal2oG
-         j+0uyG6dtsWgoZyikLPHsvrbcBQXL2PVGf1p0sONrsK2NJNEfTSeagWH8zeM67QEU5
-         Sj+QoSUJGnieBMzjUkjuPtjNydjfofRCPCRokLi0=
-Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
-        epcas2p1.samsung.com (KnoxPortal) with ESMTP id
-        20230717094722epcas2p123972546ff441247d70cd070d4f83cb4~ynqU69-Kf2919929199epcas2p1b;
-        Mon, 17 Jul 2023 09:47:22 +0000 (GMT)
-Received: from epsmges2p3.samsung.com (unknown [182.195.36.97]) by
-        epsnrtp1.localdomain (Postfix) with ESMTP id 4R4HLL2rgVz4x9Pp; Mon, 17 Jul
-        2023 09:47:22 +0000 (GMT)
-Received: from epcas2p2.samsung.com ( [182.195.41.54]) by
-        epsmges2p3.samsung.com (Symantec Messaging Gateway) with SMTP id
-        3E.7C.32606.A2E05B46; Mon, 17 Jul 2023 18:47:22 +0900 (KST)
-Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
-        epcas2p4.samsung.com (KnoxPortal) with ESMTPA id
-        20230717094722epcas2p4408dc5ab0aca55e1da1a9eafdd3486f7~ynqUR5Qhz3045530455epcas2p4P;
-        Mon, 17 Jul 2023 09:47:22 +0000 (GMT)
-Received: from epsmgms1p2new.samsung.com (unknown [182.195.42.42]) by
-        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20230717094722epsmtrp23a4eea313d2fb2f2275cf8364d6081f8~ynqUQfrfj2542125421epsmtrp2N;
-        Mon, 17 Jul 2023 09:47:22 +0000 (GMT)
-X-AuditID: b6c32a47-9cbff70000007f5e-b3-64b50e2a01c9
-Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
-        epsmgms1p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        2F.0D.30535.92E05B46; Mon, 17 Jul 2023 18:47:21 +0900 (KST)
-Received: from localhost.localdomain (unknown [10.229.9.55]) by
-        epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
-        20230717094721epsmtip203feedf3fd86cbea3d035970faf9f247~ynqUDYJTk0585405854epsmtip2o;
-        Mon, 17 Jul 2023 09:47:21 +0000 (GMT)
-From:   Jaewon Kim <jaewon02.kim@samsung.com>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>
-Cc:     linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org,
-        Jaewon Kim <jaewon02.kim@samsung.com>
-Subject: [PATCH v4 2/2] arm64: dts: exynos: add pwm node for
- exynosautov9-sadk
-Date:   Mon, 17 Jul 2023 18:42:02 +0900
-Message-Id: <20230717094202.18296-3-jaewon02.kim@samsung.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230717094202.18296-1-jaewon02.kim@samsung.com>
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrFKsWRmVeSWpSXmKPExsWy7bCmma4W39YUg+O/hC0ezNvGZrFm7zkm
-        i/lHzrFa7Gg4wmrR9+Ihs8Wmx9dYLS7vmsNmcffuKkaLGef3MVm07j3CbvFz1zwWi9sTJzM6
-        8HjsnHWX3WPTqk42jzvX9rB5bF5S79H/18Cjb8sqRo/Pm+QC2KOybTJSE1NSixRS85LzUzLz
-        0m2VvIPjneNNzQwMdQ0tLcyVFPISc1NtlVx8AnTdMnOA7lRSKEvMKQUKBSQWFyvp29kU5ZeW
-        pCpk5BeX2CqlFqTkFJgX6BUn5haX5qXr5aWWWBkaGBiZAhUmZGdsaXrJUvCIu+LInpmMDYwP
-        ObsYOTgkBEwk+o4YdTFycQgJ7GCUONXewNjFyAnkfGKU2NvuAGF/Y5T42RwEYoPUb172mhmi
-        YS+jxM21z9ggij4ySry7qQ5iswloS3xfv5gVxBYRWMgk8ex+GUgDs8BpRom1t56wgCSEBQIk
-        GtbsYAKxWQRUJd4tn8sOYvMK2Er833SMBWKbvMTqDQeYQWxOATuJrTdBhnIBxf+ySxx9c5cZ
-        oshF4ufTL4wQtrDEq+Nb2CFsKYnP7/ayQdjZEu3T/7BC2BUSFzfMhoobS8x61s4ICgpmAU2J
-        9bv0IaGiLHHkFtgJzAJ8Eh2H/7JDhHklOtqEIBrVJO5PPQc1REZi0pGVTBC2h8Sl5a/YIeEz
-        kVHi1cRfjBMY5WYhLFjAyLiKUSy1oDg3PbXYqMAYHl3J+bmbGMGJUMt9B+OMtx/0DjEycTAe
-        YpTgYFYS4f2+alOKEG9KYmVValF+fFFpTmrxIUZTYNhNZJYSTc4HpuK8knhDE0sDEzMzQ3Mj
-        UwNzJXHee61zU4QE0hNLUrNTUwtSi2D6mDg4pRqY6s68fLNIccJxg7YFXeuOpkZNFuKYKxV6
-        4s/b3LXdvlk8DuK7ja1/yzTn31m8UaSuzSilbfftZTKSdQ+zNwjy7nCxSWz3tZHPEV3ANtef
-        d8ONc9U7HsXeldrwd9EtMfXdv+KvxupKfyo6kyCsvvxi1kUt7hVKJWXhUwxUv12aK7JrfW55
-        3E8j6/icTx953tSapdhuPbpU9aXQ4h1HKjP+f4i/9NXlqHDq7JBSiW03TKwfSFwsWrBKvLgn
-        xkniVOeZjNmTOC71TixwX7qnwOvU4i2LPq6LW8V4+db+t1Nz2kx+vak6L2W77OyFhzdTN6yp
-        XX5q5+wCURaxbn65TKmdse857LWVSurfVXesXKH2RYmlOCPRUIu5qDgRAAhQQzoNBAAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrJLMWRmVeSWpSXmKPExsWy7bCSvK4m39YUg53TzS0ezNvGZrFm7zkm
-        i/lHzrFa7Gg4wmrR9+Ihs8Wmx9dYLS7vmsNmcffuKkaLGef3MVm07j3CbvFz1zwWi9sTJzM6
-        8HjsnHWX3WPTqk42jzvX9rB5bF5S79H/18Cjb8sqRo/Pm+QC2KO4bFJSczLLUov07RK4MrY0
-        vWQpeMRdcWTPTMYGxoecXYycHBICJhKbl71m7mLk4hAS2M0oMXHlf2aIhIzE8md9bBC2sMT9
-        liOsEEXvGSVuzdvGDpJgE9CW+L5+MVhCRGAxk8Sb7odgDrPARUaJE3+uAFVxcAgL+Ek0rykE
-        aWARUJV4t3wuWDOvgK3E/03HWCA2yEus3nAAbDOngJ3E1psgQzmBttlKLHrdyj6BkW8BI8Mq
-        RsnUguLc9NxiwwKjvNRyveLE3OLSvHS95PzcTYzg0NXS2sG4Z9UHvUOMTByMhxglOJiVRHi/
-        r9qUIsSbklhZlVqUH19UmpNafIhRmoNFSZz32+veFCGB9MSS1OzU1ILUIpgsEwenVANTbnno
-        Bbv+2iUdm18e9nVkLF1myPV4uv++I+LivbVfdYyEmx9+feEb010usTaxaG9ZcEEY4xyFi6Zu
-        17Yn6npeu8EkrOrCZu3lqdEmobLh28drc+VXTjVdf7PFtFVgz/asqui737om9UxzW7KjgqXj
-        0br49wZ6NanpK7aJJXgKsU89GJnaIMjgriP389l5Ft8ug/MG7CeX/hXisgoWXKLLxWFrtXD9
-        2vBJX388dFG5f86dd4ZyVbZFFaP8bJlt776uNU1QuJvxoPHQjDWzla8/c+To07m+/sc97nV5
-        G0q2HneLvBkqZOWanHFH72iz2uQ0gYtGl71PXtshbfbdTdthjnvV9RDrPbwM1zqvRCuxFGck
-        GmoxFxUnAgBbss8wzAIAAA==
-X-CMS-MailID: 20230717094722epcas2p4408dc5ab0aca55e1da1a9eafdd3486f7
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: AUTO_CONFIDENTIAL
-CMS-TYPE: 102P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20230717094722epcas2p4408dc5ab0aca55e1da1a9eafdd3486f7
-References: <20230717094202.18296-1-jaewon02.kim@samsung.com>
-        <CGME20230717094722epcas2p4408dc5ab0aca55e1da1a9eafdd3486f7@epcas2p4.samsung.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        with ESMTP id S230358AbjGQJmf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 05:42:35 -0400
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DF261BEE
+        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 02:42:23 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-51cff235226so8865868a12.0
+        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 02:42:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1689586941; x=1692178941;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=jCDAGW2zq1t7/jPzA/fgOnsdSvQf00Y9+7qWRffe9fk=;
+        b=YQpq3KyVlRs3zZwrdMaJspv9qlA3D8BuY+DwXmoIKajt5fTqGLf+QSAZZyyhs82RSN
+         xEgdgoyKHay1QMqkPiG0Ugqgjmm8DSrier9hFO/t83+QPaVQqQupS/dsQQUT5LPiG0mi
+         r4GR6mbRKhyocW0NdKhgNk/6Ub+AHt0nEsrHBvmW4wLwIuvcZmQjL98Sgvo2hZ2B+b5B
+         pe4eRZ9rKcWQTKdNPVWGNOndXXzjW1GrMM5GBDicW8JEZ58fKPfm8H6NyuqSDpymc0Q9
+         UNUWMGlyR+s9MC34KF1v9kDhCTVWZEFQ1X0OGsRo2x9Wy8e6mlK8spIPuGkIIiL7R1db
+         MiAw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689586941; x=1692178941;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=jCDAGW2zq1t7/jPzA/fgOnsdSvQf00Y9+7qWRffe9fk=;
+        b=MU47WksNnuxegKsyJAzkQNFtEvfz24Z7DxJ3lf+kUcpC1BnFILnI8mePtbOeKyKXIw
+         xaNbs81CwNmaaeg7SpCpGjv5qh/hv4z9ZXRGUMnlyCI0nmid6ljlTn01wx8c2u8AR7Rq
+         +KVGScZ/ay8sl+/UgO4UL99xEyFVIcStFg/sQrdOOpDP7RosVMhBl7Twh5gG4ezBVFVX
+         VmepN0sggOFBxro92BbIw8ocRkXZ3G90sjN/2ixpvTsc5EOoxOifuS90lKlaK4Wbucth
+         +8w40Z3+m8SVaGS9hxh9qMg/PM7cK+bJ8jrquHTwv6aU4IB7e+H+h9HWGl26untwNSeD
+         XZig==
+X-Gm-Message-State: ABy/qLaIZ1pVM8naMOHMb9qCOJ05yJppohmdbD0yWDj92HvabtXNXDen
+        NeiQo6YEGjpMMy5KaD9Q1zaz4g==
+X-Google-Smtp-Source: APBJJlHbgWepWBWj84txt0/Slx87FDXphJzB1ZHPwKsQE0Dqov00G0ZBqyHLIMdatfRuuxL4VcSOoQ==
+X-Received: by 2002:a05:6402:524e:b0:51d:cf7b:c9f0 with SMTP id t14-20020a056402524e00b0051dcf7bc9f0mr12003216edd.12.1689586941388;
+        Mon, 17 Jul 2023 02:42:21 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id j4-20020a50ed04000000b0051e2a6cef4fsm9734491eds.36.2023.07.17.02.42.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 17 Jul 2023 02:42:20 -0700 (PDT)
+Message-ID: <9a3dc092-7278-cda1-cd4e-c157e0e2c431@linaro.org>
+Date:   Mon, 17 Jul 2023 11:42:18 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH] usb: dwc2: combine platform specific data for Intel
+ Agilex and Stratix10
+Content-Language: en-US
+To:     Meng Li <Meng.Li@windriver.com>, gregkh@linuxfoundation.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, dinguyen@kernel.org, hminas@synopsys.com,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org
+References: <20230717085053.1075077-1-Meng.Li@windriver.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230717085053.1075077-1-Meng.Li@windriver.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -120,54 +77,84 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add pwm node to support fan on exynosautov9-sadk board.
-PWM channel 3 of ExynosAutov9 is connected to fan for SoC cooling
-in SADK board.
+On 17/07/2023 10:50, Meng Li wrote:
+> Intel Stratix10 is very the same with Agilex platform, the DWC2 IP on
+> the Stratix platform also does not support clock-gating. So, based on
+> commit 3d8d3504d233("usb: dwc2: Add platform specific data for
+> Intel's Agilex"), combine platform specific data for Intel Agilex and
+> Stratix10 together. In additional, in order to avoid breaking the old
+> device tree, keep compatible string "intel,socfpga-agilex-hsotg" unchanged.
+> 
+> Signed-off-by: Meng Li <Meng.Li@windriver.com>
+> ---
+>  Documentation/devicetree/bindings/usb/dwc2.yaml   | 2 ++
 
-Signed-off-by: Jaewon Kim <jaewon02.kim@samsung.com>
----
- arch/arm64/boot/dts/exynos/exynosautov9-sadk.dts |  6 ++++++
- arch/arm64/boot/dts/exynos/exynosautov9.dtsi     | 10 ++++++++++
- 2 files changed, 16 insertions(+)
+Bindings are always separate patch.
 
-diff --git a/arch/arm64/boot/dts/exynos/exynosautov9-sadk.dts b/arch/arm64/boot/dts/exynos/exynosautov9-sadk.dts
-index 101f51bf565a..bc1815f6ada2 100644
---- a/arch/arm64/boot/dts/exynos/exynosautov9-sadk.dts
-+++ b/arch/arm64/boot/dts/exynos/exynosautov9-sadk.dts
-@@ -49,6 +49,12 @@
- 	};
- };
- 
-+&pwm {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pwm_tout3>;
-+	status = "okay";
-+};
-+
- &serial_0 {
- 	pinctrl-0 = <&uart0_bus_dual>;
- 	status = "okay";
-diff --git a/arch/arm64/boot/dts/exynos/exynosautov9.dtsi b/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
-index d3c5cdeff47f..3b906f4db907 100644
---- a/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
-+++ b/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
-@@ -1560,6 +1560,16 @@
- 			samsung,syscon-phandle = <&pmu_system_controller>;
- 			samsung,cluster-index = <1>;
- 		};
-+
-+		pwm: pwm@103f0000 {
-+			compatible = "samsung,exynosautov9-pwm",
-+				     "samsung,exynos4210-pwm";
-+			reg = <0x103f0000 0x100>;
-+			samsung,pwm-outputs = <0>, <1>, <2>, <3>;
-+			#pwm-cells = <3>;
-+			clocks = <&xtcxo>;
-+			clock-names = "timers";
-+		};
- 	};
- };
- 
--- 
-2.17.1
+>  arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi | 4 ++--
+
+As DTS is.
+
+>  drivers/usb/dwc2/params.c                         | 6 ++++--
+>  3 files changed, 8 insertions(+), 4 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/usb/dwc2.yaml b/Documentation/devicetree/bindings/usb/dwc2.yaml
+> index dc4988c0009c..c98ca98d5033 100644
+> --- a/Documentation/devicetree/bindings/usb/dwc2.yaml
+> +++ b/Documentation/devicetree/bindings/usb/dwc2.yaml
+> @@ -51,6 +51,7 @@ properties:
+>                - amlogic,meson-gxbb-usb
+>                - amlogic,meson-g12a-usb
+>                - intel,socfpga-agilex-hsotg
+> +              - intel,socfpga-hsotg
+
+Where is SoC specific compatible?
+
+>            - const: snps,dwc2
+>        - const: amcc,dwc-otg
+>        - const: apm,apm82181-dwc-otg
+> @@ -64,6 +65,7 @@ properties:
+>            - const: snps,dwc2
+>        - const: samsung,s3c6400-hsotg
+>        - const: intel,socfpga-agilex-hsotg
+> +      - const: intel,socfpga-hsotg
+>  
+>    reg:
+>      maxItems: 1
+> diff --git a/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi b/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
+> index ea788a920eab..c5a51636f657 100644
+> --- a/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
+> +++ b/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
+
+...
+
+> diff --git a/drivers/usb/dwc2/params.c b/drivers/usb/dwc2/params.c
+> index 8eab5f38b110..6bb27a24e9e1 100644
+> --- a/drivers/usb/dwc2/params.c
+> +++ b/drivers/usb/dwc2/params.c
+> @@ -93,7 +93,7 @@ static void dwc2_set_s3c6400_params(struct dwc2_hsotg *hsotg)
+>  	p->phy_utmi_width = 8;
+>  }
+>  
+> -static void dwc2_set_socfpga_agilex_params(struct dwc2_hsotg *hsotg)
+> +static void dwc2_set_socfpga_params(struct dwc2_hsotg *hsotg)
+
+Why? Old name was ok...
+
+>  {
+>  	struct dwc2_core_params *p = &hsotg->params;
+>  
+> @@ -266,7 +266,9 @@ const struct of_device_id dwc2_of_match_table[] = {
+>  	{ .compatible = "st,stm32mp15-hsotg",
+>  	  .data = dwc2_set_stm32mp15_hsotg_params },
+>  	{ .compatible = "intel,socfpga-agilex-hsotg",
+> -	  .data = dwc2_set_socfpga_agilex_params },
+> +	  .data = dwc2_set_socfpga_params },
+> +	{ .compatible = "intel,socfpga-hsotg",
+> +	  .data = dwc2_set_socfpga_params },
+
+Aren't they compatible? Why do you need new entry for compatible devices?
+
+Best regards,
+Krzysztof
 
