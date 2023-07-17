@@ -2,412 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 00F11755F7D
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 11:38:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D31BE755F86
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 11:41:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230469AbjGQJip (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jul 2023 05:38:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41478 "EHLO
+        id S230445AbjGQJlE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jul 2023 05:41:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45592 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231341AbjGQJiJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 05:38:09 -0400
-Received: from mail-pg1-x532.google.com (mail-pg1-x532.google.com [IPv6:2607:f8b0:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A68A2D75
-        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 02:36:39 -0700 (PDT)
-Received: by mail-pg1-x532.google.com with SMTP id 41be03b00d2f7-54290603887so2403914a12.1
-        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 02:36:39 -0700 (PDT)
+        with ESMTP id S230448AbjGQJkp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 05:40:45 -0400
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C83783C23
+        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 02:39:05 -0700 (PDT)
+Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-51a52a7d859so11428625a12.0
+        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 02:39:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1689586598; x=1692178598;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wVwbeKFI1ZAtbn024A7ZszekCSOqYIkVGAQ3AmevuV8=;
-        b=hmUL8AgTOU3B+5FiwZrMnBNCzBv8Ey4kZNQTRqaoq1X5YJFRqQ3evooKM/PEOhV22b
-         dBswTNdWwpv5QU1VeCZqFeR1OSAV4u3aI7K8LlALHtrfJLNtjwp/jw6Z4Yxtw86/rxy6
-         zEwdoWWHQVpTijv81iWqP+UOnYSFYgzY7uOottk8c9dPG33llSNHNZgPWAMJFWFOB7n1
-         xErIxoWWW+yz/xtD5NxsX+jPOM6LvxAuqsELQNplWnIcikz1/itvR/754rSUhGVsqxZ6
-         HmM9kIQROwnhp2TmtDx8T4hhcuyYdGP7hVu0wMf98zBcI8x6nZP7cbxFa+CyhAWSuJKJ
-         jQTA==
+        d=linaro.org; s=google; t=1689586744; x=1692178744;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=W0Abj6UC9IBcOuGYotmVfSuiZNB5aYWz62cWUjDEEUg=;
+        b=oNVQ4IxLU5eX07C5sklU29DxI6u6wg6e2WB+o1jYa8ec1pIsG+BAHCXbIxFDRp3qTl
+         /dzmITQUrQQAtrbiRbTKZ7mq/rdWdu+IY4bT2jTa5aUo9wx6WkrAvvLb0bRSd7M0ZydQ
+         b29rvFfZZGyNnhzH4VVO4rGTo0TGUdB9O6a27CQXtCHKjU0W1AvEl5NC9OA7pA5Ua0WT
+         2QAa11Z87kgv9ExsFKCWzMZMoLOgRhBMS8YGxwsV7sbWrTqGIVGhrip83rrcvyfi851o
+         rJzoec2YkfyS05pvyryJhBl8FoshXHTLwU2JZW7ssjAP1OaNkbGfKIRVXNLz5N+4DxLD
+         lKcg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689586598; x=1692178598;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=wVwbeKFI1ZAtbn024A7ZszekCSOqYIkVGAQ3AmevuV8=;
-        b=RcppcRkDWkUz/J12wuEz+uKXDPdcgawAfbPF7bIdEqAWGVCjcisA45/N2t7In2rFvx
-         a4yRTk93pLaX4eZS7lS9rVhLrLcto+VQ7CymoiLWywgdLw60LY48I1/mKzENeamwidlE
-         eK0OwIYP0E98AIh+SVw/3i7BEzlNDecFNISfOhar5wRm13P+taDW/EKJwwsNax5fvbua
-         kqvDq7adkV56zVaehCtChgR+cU1q3rAFYbWA0PRgss5aiD7v/1HvoLbuRHKJas5VlGJF
-         TtzFw/cxUyGVtj2CWL+F3Fh7VmovE6ImLwHQ/6RbTwgV0xHQNz85HXz9bGzqOZ0ap4Hm
-         CD3w==
-X-Gm-Message-State: ABy/qLZMNsXyoHkcP3eblRohco6bfuMdaXfevcV/2FJrlssZR4AigZGK
-        DtMxslYqJ/dd2Q5utovCY4iqnGJ3Ki9gNPTJ604xjQ==
-X-Google-Smtp-Source: APBJJlGcuyHTSmm3J+pQhixkvpQD9tqgmEmpQ96JylQBEwdK+bfa0MfsQnDCybSb/h7nPpHvboYizmj+3vbT6DMV4jA=
-X-Received: by 2002:a17:90a:ca06:b0:259:a879:cb8f with SMTP id
- x6-20020a17090aca0600b00259a879cb8fmr9575550pjt.7.1689586597595; Mon, 17 Jul
- 2023 02:36:37 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1689586744; x=1692178744;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=W0Abj6UC9IBcOuGYotmVfSuiZNB5aYWz62cWUjDEEUg=;
+        b=Y7vqUsYUeAnhk1hoQ2hSxIM1/NmUSqEH8urkvXduBa/rHtXc6I+2GnZiTRYVUND80Z
+         rbU4x8TewHiniLWkou+pbDXicQwTgTZne6DPdGdZEWxYqKLXoYA2oeRuo0dBTIRRZlBk
+         shVv2rHd30kWXur9SMd+iBa6hbywcpOSdTH7S2pk7jH5Fh/h9jc02hAtPlgnavBu13KI
+         NOaorMljyjk7wjDRKSiCpR0kJ7KIEl5oalSiXA/0p+N3mST8yR5NDzvEazw2rifbiwci
+         W3bOlPytDXG1c10j5YrAw4FfVAKLmC/xpVYfrEmpiBAJhEfukyTX/EY4IIPv4zE/GN/F
+         LQeg==
+X-Gm-Message-State: ABy/qLaBcJ/hjP7zo5gOtT1u+KDvHXR/edvJHmmHDBWNBSFu8ETH+gfR
+        6ZoUre36J8eojgK4Ss9RX8u21w==
+X-Google-Smtp-Source: APBJJlESrTNaJcx/BujEXJeNKPZNlBYFJGnbXsuE/wnWYk8Pltb8LBwpD6Msb01kwBYC5AzGsjQodw==
+X-Received: by 2002:a17:906:28a:b0:988:15f4:fdba with SMTP id 10-20020a170906028a00b0098815f4fdbamr12038269ejf.14.1689586744230;
+        Mon, 17 Jul 2023 02:39:04 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id ov4-20020a170906fc0400b00992b50fbbe9sm9051066ejb.90.2023.07.17.02.39.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 17 Jul 2023 02:39:03 -0700 (PDT)
+Message-ID: <b22b2ccc-6760-0db6-067b-109c3864d2e8@linaro.org>
+Date:   Mon, 17 Jul 2023 11:39:00 +0200
 MIME-Version: 1.0
-References: <20230710094321.1378351-1-apatel@ventanamicro.com>
- <20230710094321.1378351-8-apatel@ventanamicro.com> <CAGETcx8kH8cJVdhcv5K4qNUo58godFZEBnOfTGKUUQ6VuUguvQ@mail.gmail.com>
- <86jzv2vpdb.wl-maz@kernel.org> <CAK9=C2ULxsXednwnoyzYKjQFpe_zBSZ4v0FqUYFnxK2TpbiMtg@mail.gmail.com>
- <86cz0uvcof.wl-maz@kernel.org> <CAAhSdy2sAaA_dmVCt9162kpw8-Ub1wjH_MNKxPOFN_VbW7M7vQ@mail.gmail.com>
- <868rbfufn2.wl-maz@kernel.org> <CAK9=C2UmU_Kvj6x_ZRJ70DAtdpehN9XQ6pdzFJ7-NLA_+XPyZQ@mail.gmail.com>
-In-Reply-To: <CAK9=C2UmU_Kvj6x_ZRJ70DAtdpehN9XQ6pdzFJ7-NLA_+XPyZQ@mail.gmail.com>
-From:   Anup Patel <apatel@ventanamicro.com>
-Date:   Mon, 17 Jul 2023 15:06:27 +0530
-Message-ID: <CAK9=C2VzUzmjYkMFd6eYgWh_KyD1bp+7XCKqw4uGQYP5hjicvg@mail.gmail.com>
-Subject: Re: [PATCH v5 7/9] irqchip: Add RISC-V advanced PLIC driver
-To:     Marc Zyngier <maz@kernel.org>
-Cc:     Anup Patel <anup@brainfault.org>,
-        Saravana Kannan <saravanak@google.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Atish Patra <atishp@atishpatra.org>,
-        Andrew Jones <ajones@ventanamicro.com>,
-        Sunil V L <sunilvl@ventanamicro.com>,
-        Conor Dooley <conor@kernel.org>,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [v6 2/4] dt-bindings: hwmon: Add ASPEED TACH Control
+ documentation
+To:     =?UTF-8?B?6JSh5om/6YGU?= <billyking19920205@gmail.com>,
+        Guenter Roeck <linux@roeck-us.net>
+Cc:     "jdelvare@suse.com" <jdelvare@suse.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "joel@jms.id.au" <joel@jms.id.au>,
+        "andrew@aj.id.au" <andrew@aj.id.au>,
+        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
+        "u.kleine-koenig@pengutronix.de" <u.kleine-koenig@pengutronix.de>,
+        "corbet@lwn.net" <corbet@lwn.net>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
+        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
+        "patrick@stwcx.xyz" <patrick@stwcx.xyz>,
+        Billy Tsai <billy_tsai@aspeedtech.com>
+References: <CAGUgbhCqOJaEPjS96o2au21uW4NhqFScm4Ayd8PzOQvqxQ94SQ@mail.gmail.com>
+ <0b9dd5cf-f4ca-2e6b-624d-0b451bbc2f30@linaro.org>
+ <0ba3767c-d481-6e2c-2d32-b79af0e1efd8@roeck-us.net>
+ <CAGUgbhC34-pUp4ECULc0ScaN7hUF1L-z69h+ji-TiVrv4gKd3Q@mail.gmail.com>
+ <7b198d57-ddec-3074-314a-3e5e5b8f48f9@roeck-us.net>
+ <CAGUgbhDbFedVe-pc+muD_NtDpjHpGqMDdrS3A73C-QbxeHn4oQ@mail.gmail.com>
+ <cf91edc9-1093-495b-48eb-6b05198c2541@linaro.org>
+ <7a69bda1-5f4c-5b1f-8eb6-6fd58917a9b1@roeck-us.net>
+ <CAGUgbhCTDPGt_vpbfaEreX+iuLJ3WUBqt4kppxyaFZQus9Zf0Q@mail.gmail.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAGUgbhCTDPGt_vpbfaEreX+iuLJ3WUBqt4kppxyaFZQus9Zf0Q@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 17, 2023 at 2:35=E2=80=AFPM Anup Patel <apatel@ventanamicro.com=
-> wrote:
->
-> On Mon, Jul 17, 2023 at 1:35=E2=80=AFPM Marc Zyngier <maz@kernel.org> wro=
-te:
-> >
-> > On Fri, 14 Jul 2023 15:05:07 +0100,
-> > Anup Patel <anup@brainfault.org> wrote:
-> > >
-> > > On Fri, Jul 14, 2023 at 7:05=E2=80=AFPM Marc Zyngier <maz@kernel.org>=
- wrote:
-> > > >
-> > > > On Fri, 14 Jul 2023 10:35:34 +0100,
-> > > > Anup Patel <apatel@ventanamicro.com> wrote:
-> > > > >
-> > > > > On Fri, Jul 14, 2023 at 2:31=E2=80=AFPM Marc Zyngier <maz@kernel.=
-org> wrote:
-> > > > > >
-> > > > > > Anup,
-> > > > > >
-> > > > > > On Fri, 14 Jul 2023 00:56:22 +0100,
-> > > > > > Saravana Kannan <saravanak@google.com> wrote:
-> > > > > > >
-> > > > > > > On Mon, Jul 10, 2023 at 2:44=E2=80=AFAM Anup Patel <apatel@ve=
-ntanamicro.com> wrote:
-> > > > > > > >
-> > > > > > > > The RISC-V advanced interrupt architecture (AIA) specificat=
-ion defines
-> > > > > > > > a new interrupt controller for managing wired interrupts on=
- a RISC-V
-> > > > > > > > platform. This new interrupt controller is referred to as a=
-dvanced
-> > > > > > > > platform-level interrupt controller (APLIC) which can forwa=
-rd wired
-> > > > > > > > interrupts to CPUs (or HARTs) as local interrupts OR as mes=
-sage
-> > > > > > > > signaled interrupts.
-> > > > > > > > (For more details refer https://github.com/riscv/riscv-aia)
-> > > > > > > >
-> > > > > > > > This patch adds an irqchip driver for RISC-V APLIC found on=
- RISC-V
-> > > > > > > > platforms.
-> > > > > > > >
-> > > > > > > > Signed-off-by: Anup Patel <apatel@ventanamicro.com>
-> > > > > >
-> > > > > > [...]
-> > > > > >
-> > > > > > > > +static int __init aplic_dt_init(struct device_node *node,
-> > > > > > > > +                               struct device_node *parent)
-> > > > > > > > +{
-> > > > > > > > +       /*
-> > > > > > > > +        * The APLIC platform driver needs to be probed ear=
-ly
-> > > > > > > > +        * so for device tree:
-> > > > > > > > +        *
-> > > > > > > > +        * 1) Set the FWNODE_FLAG_BEST_EFFORT flag in fwnod=
-e which
-> > > > > > > > +        *    provides a hint to the device driver core to =
-probe the
-> > > > > > > > +        *    platform driver early.
-> > > > > > > > +        * 2) Clear the OF_POPULATED flag in device_node be=
-cause
-> > > > > > > > +        *    of_irq_init() sets it which prevents creation=
- of
-> > > > > > > > +        *    platform device.
-> > > > > > > > +        */
-> > > > > > > > +       node->fwnode.flags |=3D FWNODE_FLAG_BEST_EFFORT;
-> > > > > > >
-> > > > > > > Please stop spamming us with broken patches. Already told you=
- this is
-> > > > > > > not an option.
-> > > > > > >
-> > > > > > > Nack.
-> > > > > >
-> > > > > > What puzzles me here is that *no other arch* requires this sort=
- of
-> > > > > > hack. What is so special about the APLIC that it requires it? I=
- see
-> > > > > > nothing in this patch that even hints at it, despite the "discu=
-ssion"
-> > > > > > in the last round.
-> > > > > >
-> > > > > > The rules are simple:
-> > > > > >
-> > > > > > - either the APLIC is so fundamental to the system that it has =
-to be
-> > > > > >   initialised super early, much like the GIC on arm64, at which=
- point
-> > > > > >   it cannot be a platform device, and the story is pretty simpl=
-e.
-> > > > > >
-> > > > > > - or it isn't that fundamental, and it can be probed as a platf=
-orm
-> > > > > >   device using the dependency infrastructure that is already us=
-ed by
-> > > > > >   multiple other interrupt controller drivers, without any need=
- to
-> > > > > >   mess with internal flags. Again, this should be simple enough=
-.
-> > > > >
-> > > > > APLIC manages all wired interrupts whereas IMSIC manages all
-> > > > > MSIs. Both APLIC and IMSIC are fundamental devices which need
-> > > > > to be probed super early.
-> > > > >
-> > > > > Now APLIC has two modes of operations:
-> > > > > 1) Direct mode where there is no IMSIC in the system and APLIC
-> > > > >     directly injects interrupt to CPUs
-> > > > > 2) MSI mode where IMSIC is present in the system and APLIC
-> > > > >     converts wired interrupts into MSIs
-> > > > >
-> > > > > The APLIC driver added by this patch is a common driver for
-> > > > > both above modes.
-> > > >
-> > > > Which it doesn't need to be. You are pointlessly making life diffic=
-ult
-> > > > for yourself, and everyone else. The MSI bridge behaviour has *zero=
-*
-> > > > reason to be the same driver as the main "I need it super early"
-> > > > driver. They may be called the same, but they *are* different thing=
-s
-> > > > in the system.
-> > > >
-> > > > They can share code, but they are fundamentally a different thing i=
-n
-> > > > the system. And I guess this silly approach has other ramifications=
-:
-> > > > the IMSIC is also some early driver when it really doesn't need to =
-be.
-> > > > Who needs MSIs that early in the life of the system? I don't buy th=
-is
-> > > > for even a second.
-> > >
-> > > IMSIC also provides IPIs which are required super early so I think
-> > > we can't make IMSIC as a platform driver.
-> >
-> > Then split this part further. Just because the architecture lumps two
-> > completely unrelated concepts together doesn't mean we need to follow
-> > the same organisation.
->
-> IPIs are supported as software injected MSIs. Basically, each HART
-> has its own MSI controller and one HART can inject IPI to other HART
-> by writing its MSI MMIO register.
->
-> >
-> > >
-> > > >
-> > > > Frankly, this whole thing needs to be taken apart and rebuilt from =
-the
-> > > > ground up.
-> > > >
-> > > > > For #2, APLIC needs to be a platform device to create a device
-> > > > > MSI domain using platform_msi_create_device_domain() which
-> > > > > is why the APLIC driver is a platform driver.
-> > > >
-> > > > You can't have your cake and eat it. If needed super early, and it
-> > > > cannot be a platform driver. End of the story.
-> > > >
-> > > > And to my earlier point: IMSIC and APLIC-as-MSI-bridge have no purp=
-ose
-> > > > being early drivers. They must be platform drivers, and only that.
-> > >
-> > > We can have IMSIC and APLIC-Direct-Mode as non-platform driver
-> > > whereas APLIC-as-MSI-bridge will be a platform driver.
-> > >
-> > > Both APLIC-Direct-Mode and APLIC-as-MSI-bridge can share a large
-> > > part of the current driver.
-> > >
-> > > >
-> > > > > > If these rules don't apply to your stuff, please explain what i=
-s so
-> > > > > > different. And I mean actually explain the issue. Which isn't t=
-elling
-> > > > > > us "it doesn't work without it". Because as things stand, there=
- is no
-> > > > > > way I will even consider taking this ugly mix of probing method=
-s.
-> > > > >
-> > > > > Yes, I don't want this ugly FWNODE_FLAG_BEST_EFFORT hack
-> > > > > in this driver.
-> > > >
-> > > > And yet you are hammering it even when told this is wrong.
-> > > >
-> > > > > I tried several things but setting the FWNODE_FLAG_BEST_EFFORT
-> > > > > flag is the only thing which works right now.
-> > > >
-> > > > How about you take a step back and realise that the way you've
-> > > > architected your drivers makes little sense? I don't think you have
-> > > > tried *that*.
-> > >
-> > > Both APLIC and IMSIC are separate devices as defined by the AIA spec.
-> > >
-> > > There are three possible systems:
-> > > 1) Systems with only APLIC (i.e. only wired interrupts)
-> > > 2) Systems with only IMSIC (i.e. only MSIs)
-> >
-> > How is that possible? Are you saying that even things like timers are
-> > firing as MSIs?
->
-> No, timer interrupts are triggered through INTC.
->
-> In a full-blown AIA based system, we have three irqchips:
-> 1) RISC-V INTC (per-HART local interrupts): This irqchip handles
->     per-HART local interrupts such as timer, external interrupt, etc.
-> 2) IMSIC (per-HART MSI controller): This is the per-HART MSI
->     controller. Whenever an IMSIC of a HART receives MSI, it sets
->     the local external interrupt of that HART.
-> 3) APLIC (system-level wired interrupt): This is a system level
->     interrupt controller for managing wired interrupt. In direct mode,
->     APLIC will set a local external interrupt of that HART whereas
->     in MSI mode, APLIC will do a MSI write to one of the per-HART
->     IMSIC.
->
-> >
-> > > 3) Systems with both APLIC and IMSIC (i.e. both wired interrupts and =
-MSIs)
-> > >
-> > > To address the above, APLIC and IMSIC are separate drivers. I am okay
-> > > with splitting the APLIC driver into two separate drivers .
-> >
-> > Again, we don't have to follow the split established by the
-> > architecture. Instead, we should follow what is *functionally correct*
-> > for the kernel. If we were to write Risc-V-OS, that'd be an acceptable
-> > solution. But this is Linux, and the constraints are different.
-> >
-> > My take on this discussion is that we should have:
-> >
-> > - Direct-mode APLIC + IPI support as a an early irqchip driver
-> >
-> > - MSI-bridge APLIC + MSI support as platform driver
-> >
-> > Yes, these will likely share most of their code. But at least the
-> > split will be manageable, and will avoid ugly hacks.
->
-> APLIC only manages wired interrupts and does not support IPIs.
->
-> For systems with only wired interrupts, APLIC is used in direct mode
-> and IPI are triggered using SBI calls (firmware calls)
->
-> To summarize IPIs and device interrupts, here are the three
-> combinations:
-> 1) RISC-V systems with only wired interrupts: These systems
->     will use APLIC in direct mode for wired interrupts and IPIs
->     are injected using SBI calls.
-> 2) RISC-V systems with only MSIs: These systems will use IMSICs
->     for handling MSIs and IPIs are injected as software injected MSIs
-> 3) RISC-V systems with both wired interrupts and MSIs: These
->     systems use APLIC in MSI-mode for wired interrupts and IMSIC
->     for MSIs. The IPIs are injected as software injected MSIs.
->
-
-I have created two ascii diagrams which might help understand
-the RISC-V AIA.
-
-             Systems with only wired interrupts
-             ----------------------------------
-
-----------
-|  HART0 |
-|        |
-|  timer |
-|    |   |
-|    v   |
-| ------ |
-| |INTC|<-----------------------\
-| ------ |                      |
-----------                      |
-     .                      ---------
-     .                      |       |<------
-     .                      | APLIC |<------ Device Wired Interrupts
-     .                      |       |<------
-     .                      ---------
-----------                      |
-|  HARTN |                      |
-|        |                      |
-|  timer |                      |
-|    |   |                      |
-|    v   |                      |
-| ------ |                      |
-| |INTC|<-----------------------/
-| ------ |
-----------
+On 17/07/2023 11:01, 蔡承達 wrote:
+> Guenter Roeck <linux@roeck-us.net> 於 2023年7月17日 週一 上午1:00寫道：
+>>
+>> On 7/16/23 09:08, Krzysztof Kozlowski wrote:
+>>
+>> [ ... ]
+>>
+>>>>
+>>>> This patch serial doesn't use to binding the fan control h/w. It is
+>>>> used to binding the two independent h/w blocks.
+>>>> One is used to provide pwm output and another is used to monitor the
+>>>> speed of the input.
+>>>> My patch is used to point out that the pwm and the tach is the
+>>>> different function and don't need to
+>>>> bind together. You can not only combine them as the fan usage but also
+>>>> treat them as the individual module for
+>>>> use. For example: the pwm can use to be the beeper (pwm-beeper.c), the
+>>>> tach can be used to monitor the heart beat signal.
+>>>
+>>> Isn't this exactly the same as in every other SoC? PWMs can be used in
+>>> different ways?
+>>>
+>>
+>> ... and in every fan controller. Not that it really makes sense because
+>> normally the pwm controller part of such chips is tied to the fan input,
+>> to enable automatic fan control, but it is technically possible.
+>> In many cases this is also the case in SoCs, for example, in ast2500.
+>> Apparently this was redesigned in ast2600 where they two blocks are
+>> only lightly coupled (there are two pwm status bits in the fan status
+>> register, but I have no idea what those mean). If the blocks are tightly
+>> coupled, separate drivers don't really make sense.
+>>
+>> There are multiple ways to separate the pwm controller part from the
+>> fan inputs if that is really necessary. One would be to provide a
+>> sequence of address mappings, the other would be to pass the memory
+>> region from an mfd driver. It is not necessary to have N instances
+>> of the fan controller, even if the address space is not continuous.
+>>
+> 
+> Hi Guenter,
+> 
+> May I ask about the meaning of the sequence of address mappings? It appears
+> to consist of multiple tuples within the 'reg' property, indicating
+> the usage of PWM/Tach
+> registers within a single instance. After that I can use the dts like following:
+> 
+> pwm: pwm@1e610000 {
+> ...
+> reg = <0x1e610000 0x8
+> 0x1e610010 0x8
+> 0x1e610020 0x8
+> 0x1e610030 0x8
+> 0x1e610040 0x8
+> 0x1e610050 0x8
+> 0x1e610060 0x8
+> 0x1e610070 0x8
+> 0x1e610080 0x8
+> 0x1e610090 0x8
+> 0x1e6100A0 0x8
+> 0x1e6100B0 0x8
+> 0x1e6100C0 0x8
+> 0x1e6100D0 0x8
+> 0x1e6100E0 0x8
+> 0x1e6100F0 0x8>;
 
 
+Uh, no... I mean, why? We keep pointing out that this should not be done
+differently than any other SoC. Open any other SoC PWM controller and
+tell me why this is different? Why this cannot be one address space?
 
-             Systems with wired interrupts and MSIs
-             --------------------------------------
+Best regards,
+Krzysztof
 
-
-----------      /------------------- Device MSIs
-|  HART0 |      |
-|        |      |
-|  timer |      |
-|    |   |      |
-|    v   |      v
-| ------ |  ---------
-| |INTC|<---| IMSIC |<----------\
-| ------ |  ---------           |
-----------                      |
-     .                      ---------
-     .                      |       |<------
-     .                      | APLIC |<------ Device Wired Interrupts
-     .                      |       |<------
-     .                      ---------
-----------                      |
-|  HARTN |                      |
-|        |                      |
-|  timer |                      |
-|    |   |                      |
-|    v   |                      |
-| ------ |  ---------           |
-| |INTC|<---| IMSIC |<----------/
-| ------ |  ---------
-----------      ^
-                |
-                \------------------- Device MSIs
-
-
-
-As shown in the figures, we are dealing with three different irqchip.
-
-The INTC is inside the HART whereas we have one IMSIC next
-to each HART. The APLIC is a system-level irqchip.
-
-Furthermore, AIA is a modular specification so platforms might
-implement only APLIC or only IMSICs or both APLIC+IMSIC.
-
-Regards,
-Anup
