@@ -2,58 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CFEC1755C54
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 09:03:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 973BE755C67
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 09:07:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229734AbjGQHDa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jul 2023 03:03:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53104 "EHLO
+        id S230221AbjGQHHU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jul 2023 03:07:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55108 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229670AbjGQHD3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 03:03:29 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B30FF0
-        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 00:03:28 -0700 (PDT)
-Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mkl@pengutronix.de>)
-        id 1qLIGE-0000T3-Cf; Mon, 17 Jul 2023 09:03:10 +0200
-Received: from pengutronix.de (unknown [172.20.34.65])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        (Authenticated sender: mkl-all@blackshift.org)
-        by smtp.blackshift.org (Postfix) with ESMTPSA id 08B4F1F305E;
-        Mon, 17 Jul 2023 07:03:07 +0000 (UTC)
-Date:   Mon, 17 Jul 2023 09:03:06 +0200
-From:   Marc Kleine-Budde <mkl@pengutronix.de>
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     John Watts <contact@jookia.org>, linux-sunxi@lists.linux.dev,
-        devicetree@vger.kernel.org, linux-can@vger.kernel.org,
-        linux-riscv@lists.infradead.org,
-        Fabien Poussin <fabien.poussin@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Chen-Yu Tsai <wens@csie.org>
-Subject: Re: [PATCH 3/4] can: sun4i_can: Add send support for the Allwinner D1
-Message-ID: <20230717-aluminum-driven-a008473620ca-mkl@pengutronix.de>
-References: <20230715112523.2533742-1-contact@jookia.org>
- <20230715112523.2533742-4-contact@jookia.org>
- <f3b1240a-4be0-4c02-0a63-561499ad6d0d@kernel.org>
- <ZLQgQAigmhk9uYYd@titan>
- <eb2d6e5a-595f-85f2-fe36-8acbb76d3987@kernel.org>
+        with ESMTP id S230014AbjGQHHS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 03:07:18 -0400
+Received: from imap4.hz.codethink.co.uk (imap4.hz.codethink.co.uk [188.40.203.114])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02DC9E7D;
+        Mon, 17 Jul 2023 00:07:16 -0700 (PDT)
+Received: from [93.159.155.93] (helo=[172.20.8.34])
+        by imap4.hz.codethink.co.uk with esmtpsa  (Exim 4.94.2 #2 (Debian))
+        id 1qLIK8-00F7EA-5M; Mon, 17 Jul 2023 08:07:12 +0100
+Message-ID: <faa870b6-112e-46fa-2b98-f5700dd76263@codethink.co.uk>
+Date:   Mon, 17 Jul 2023 08:07:10 +0100
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="j7xfjmlq2qs7lfx4"
-Content-Disposition: inline
-In-Reply-To: <eb2d6e5a-595f-85f2-fe36-8acbb76d3987@kernel.org>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:b01:1d::7b
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v8 1/5] pwm: dwc: split pci out of core driver
+To:     =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
+        Ben Dooks <ben.dooks@sifive.com>
+Cc:     linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Greentime Hu <greentime.hu@sifive.com>,
+        jarkko.nikula@linux.intel.com,
+        William Salmon <william.salmon@sifive.com>,
+        Jude Onyenegecha <jude.onyenegecha@sifive.com>
+References: <20230614171457.69191-1-ben.dooks@sifive.com>
+ <20230614171457.69191-2-ben.dooks@sifive.com>
+ <20230715192832.hczmcchn4svzilnd@pengutronix.de>
+Content-Language: en-GB
+From:   Ben Dooks <ben.dooks@codethink.co.uk>
+Organization: Codethink Limited.
+In-Reply-To: <20230715192832.hczmcchn4svzilnd@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -61,67 +51,91 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 15/07/2023 20:28, Uwe Kleine-König wrote:
+> On Wed, Jun 14, 2023 at 06:14:53PM +0100, Ben Dooks wrote:
+>> Moving towards adding non-pci support for the driver, move the pci
+>> parts out of the core into their own module. This is partly due to
+>> the module_driver() code only being allowed once in a module and also
+>> to avoid a number of #ifdef if we build a single file in a system
+>> without pci support.
+>>
+>> Signed-off-by: Ben Dooks <ben.dooks@sifive.com>
+>> ---
+>> v8:
+>>   - add module namespace
+>>   - remove compile-test for pci case, doesn't make sense
+>>   - fix makefile, missed config symbol changes
+>> v7:
+>>   - re-order kconfig to make dwc core be selected by PCI driver
+>> v6:
+>>   - put DWC_PERIOD_NS back to avoid bisect issues
+>> v4:
+>>   - removed DWC_PERIOD_NS as not needed
+>> ---
+>>   drivers/pwm/Kconfig        |  14 ++-
+>>   drivers/pwm/Makefile       |   1 +
+>>   drivers/pwm/pwm-dwc-core.c | 176 +++++++++++++++++++++++++++++++++
+>>   drivers/pwm/pwm-dwc.c      | 197 +------------------------------------
+>>   drivers/pwm/pwm-dwc.h      |  60 +++++++++++
+>>   5 files changed, 253 insertions(+), 195 deletions(-)
+>>   create mode 100644 drivers/pwm/pwm-dwc-core.c
+>>   create mode 100644 drivers/pwm/pwm-dwc.h
+>>
+>> diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
+>> index 8df861b1f4a3..7c54cdcb97a0 100644
+>> --- a/drivers/pwm/Kconfig
+>> +++ b/drivers/pwm/Kconfig
+>> @@ -186,9 +186,19 @@ config PWM_CROS_EC
+>>   	  PWM driver for exposing a PWM attached to the ChromeOS Embedded
+>>   	  Controller.
+>>   
+>> +config PWM_DWC_CORE
+>> +	tristate
+>> +	depends on HAS_IOMEM
+>> +	help
+>> +	  PWM driver for Synopsys DWC PWM Controller.
+>> +
+>> +	  To compile this driver as a module, build the dependecies as
+>> +	  modules, this will be called pwm-dwc-core.
+>> +
+>>   config PWM_DWC
+>> -	tristate "DesignWare PWM Controller"
+>> -	depends on PCI
+>> +	tristate "DesignWare PWM Controller (PCI bus)"
+>> +	depends on HAS_IOMEM && PCI
+>> +	select PWM_DWC_CORE
+>>   	help
+>>   	  PWM driver for Synopsys DWC PWM Controller attached to a PCI bus.
+>>   
+>> diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
+>> index 19899b912e00..de3ed77e8d7c 100644
+>> --- a/drivers/pwm/Makefile
+>> +++ b/drivers/pwm/Makefile
+>> @@ -15,6 +15,7 @@ obj-$(CONFIG_PWM_CLK)		+= pwm-clk.o
+>>   obj-$(CONFIG_PWM_CLPS711X)	+= pwm-clps711x.o
+>>   obj-$(CONFIG_PWM_CRC)		+= pwm-crc.o
+>>   obj-$(CONFIG_PWM_CROS_EC)	+= pwm-cros-ec.o
+>> +obj-$(CONFIG_PWM_DWC_CORE)	+= pwm-dwc-core.o
+>>   obj-$(CONFIG_PWM_DWC)		+= pwm-dwc.o
+> 
+> Would it make sense to call this pwm-dwc-pci.o? And the symbol
+> CONFIG_PWM_DWC_PCI? (The latter would break make oldconfig. Hmm, I'm
+> unsure myself.)
 
---j7xfjmlq2qs7lfx4
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+i left the pci as the pwm-dwc so that anyone moving up and using
+this as a module won't have to change config or their module loading
+if they're not autoloading modules.
 
-On 17.07.2023 08:41:07, Krzysztof Kozlowski wrote:
-> On 16/07/2023 18:52, John Watts wrote:
-> > Hello,
-> >=20
-> > On Sun, Jul 16, 2023 at 06:36:03PM +0200, Krzysztof Kozlowski wrote:
-> >>> +static const struct sun4ican_quirks sun4ican_quirks_d1 =3D {
-> >>> +	.has_reset =3D true,
-> >>> +};
-> >>
-> >> Isn't this the same as previous?
-> >=20
-> > Yes, but I wanted to split up the new quirk in to its own patch.
->=20
-> I don't understand why you need this new, duplicated entry. Aren't
-> devices compatible?
+> I didn't check all the details, but assuming that this is a split
+> without further changes it looks ok to me.
+> 
+> Best regards
+> Uwe
+> 
 
-According to patch 4/4 the devices are not compatible.
+-- 
+Ben Dooks				http://www.codethink.co.uk/
+Senior Engineer				Codethink - Providing Genius
 
-> I also do not understand what 'own patch' has anything to do with it.
+https://www.codethink.co.uk/privacy.html
 
-Patch 4/4 adds a new quirk to the new device.
-
-Jookia, please let the patches build on each other so that the resulting
-kernel is consistent. The kernel at the state 3/4 will build and load
-the driver on the D1, but it will not work, as the new quirk is missing.
-Please exchange patches 3/4 and 4/4 (add the sun4ican_quirks_d1 in patch
-4/4 only).
-
-> > Is
-> > there a better way of doing that?
->=20
-> Devices are compatible, right? So express it in the bindings and DTS.
-
-regards,
-Marc
-
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
-
---j7xfjmlq2qs7lfx4
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEDs2BvajyNKlf9TJQvlAcSiqKBOgFAmS056cACgkQvlAcSiqK
-BOgTZgf+I68G1vUzidxsQq9n5fAC7r0kF1tOoX+Bdb/J+hxId7T1pN+ip8l6XrXY
-IaKMtl8z7JVcPJbcieeUFWxbhFjpKmpY16iQnukesYWseAggktWdtdFdv2gaa5XM
-XWQDvGB846jMQUv4yYC6NQfC4FNY8BZRYEJCMuggpntAx3CrLWR/b8sIC111cRb7
-0cS6k4VznFomJCrZB5XEuS5tD7PbIyuk4DiA6DHxBmfIbJVsFFrlGW9GsINKBtbC
-/mERFA1TB1VALhEnvlP809s/eLhMRrXV1wVVnAQpfp9i0bDQaAdJNmzuVe+5Aw7f
-H8y0DguEiwAG7bb4eTGkEi8uLKp31w==
-=v8dE
------END PGP SIGNATURE-----
-
---j7xfjmlq2qs7lfx4--
