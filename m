@@ -2,68 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 43C53756F10
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 23:41:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 174DA756F39
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 23:59:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229589AbjGQVld (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jul 2023 17:41:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58418 "EHLO
+        id S229633AbjGQV7m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jul 2023 17:59:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34330 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229450AbjGQVld (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 17:41:33 -0400
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 278A5136;
-        Mon, 17 Jul 2023 14:41:32 -0700 (PDT)
-Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-51f7fb9a944so7016104a12.3;
-        Mon, 17 Jul 2023 14:41:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1689630090; x=1692222090;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=oJvtasqqKaQL2h12DaU6LUoGc2FmpEmVYsuyHj/CRRg=;
-        b=duu9wh20NcF95Nck9xqBAxn04Ry/Dw+nqY0yUR6C0IeSbVveaTBmVj3rGX2QAr2eJl
-         F+QuAAPfvoXtO6CVe1OyE7aeJNPF34U5RftZDXgG0nppZJzSDckPrsEIqv+/FBXVOBQC
-         i9neGxH85O3m+3dyh6PRB8hGE4wWGVY8R4wiGAIurWhsPru5dOIimYza/PyClWynKO8T
-         ecHeSR5oToqZGHRQzbq1tjuLKpP836Z1knplTTT0ENJSfyAFCMTlUzvSPJkzfIh06cCQ
-         x5IzX4vIiUx8Lqv7eIwXgeHzJrGCsjf2mD5/eOtAjnHJ0B8YK5c+EfSEPUvOZr3JbIQA
-         h1zg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689630090; x=1692222090;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=oJvtasqqKaQL2h12DaU6LUoGc2FmpEmVYsuyHj/CRRg=;
-        b=BaaVYe5ocQnZVbkHAWz3tAm/n7Ggzuo4PHpJ++0S+4vpSo0R1sVOrzGa1tfKEn8tf/
-         532KKm8ap5gmpvd+cLzgRUGolaCuRmKBXbJFBd+qaQklFY7A0/5SKzGvN90H2syR3+As
-         93CjoR9xMlQnT0ROzmHdGd5Zz285B7AFCILyzaZj5uf+bjfenynz6MvrZsJqQKNITQYu
-         HY0YqsSNeZVyssk2TdUHcoLQPXlt5gxz6wweBzQZj3ZWGHYNe96NGpFhAQyozkzbetMq
-         rfMx6Lj6/fD0HdbLRar0Sb+pGzYwA8rlNbXGmExYjWdy2aStqDQMU1rRTMbWTUYtZ8Xo
-         U8Ag==
-X-Gm-Message-State: ABy/qLYN+eBf/a/b/z/kL8irxIb5jzK81sMWHO2MbIdMgOzdd6det+/x
-        PadT/IlCMgf6CNLPyGqXhvjy221SbHobINDOeE5H8wPCt6I=
-X-Google-Smtp-Source: APBJJlE+8JxaBZ/3Qgz7WWzKvQxFgSufFLpbWADS/LQwPkbBegwuUOKouKFwUvRqfTTzOtMxjpfFXaqsM8SyBbHOBUk=
-X-Received: by 2002:aa7:c9d6:0:b0:51e:ebd:9f5b with SMTP id
- i22-20020aa7c9d6000000b0051e0ebd9f5bmr11115742edt.36.1689630089934; Mon, 17
- Jul 2023 14:41:29 -0700 (PDT)
+        with ESMTP id S229379AbjGQV7l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 17:59:41 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1794E4F;
+        Mon, 17 Jul 2023 14:59:40 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 5CFAF61291;
+        Mon, 17 Jul 2023 21:59:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E28A5C433C8;
+        Mon, 17 Jul 2023 21:59:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1689631179;
+        bh=L4LNILElwEJuIvZsN9V0NhiSCNz4Ki8cQsqwvuJykvo=;
+        h=From:To:In-Reply-To:References:Subject:Date:From;
+        b=QXKgOwmHlEVnNI7mc/TIk7h7m85AZuTRJ2zI7MzW+kUSv8nw7c0nIfPZw3GdADPXM
+         h6mhCp1iMdTp6ujNMJLWw5wicHgBYOvLa8XCqRzRf3ne0F67BCEovoP2CyOxQo74Rf
+         NIKJ8cHBUKFWgD4CTxM9rbPnQvQjZWcDWiXNchnNHdygR5a0fLkLTJENfTpkG/DAuM
+         v9Y9X7zw9FmaRvTGBTmTR0zH/zlVWhn/P/GjoVdxhhK/2198ujTP/u2Mjms92yQf0D
+         OvkNTk/a9dJgWA9Nm/xUqEZXcBvY6FQJK/qJcKZ5eNGEOhjTf1Fz1PWSsJPj0fCLIa
+         GCvfo8sCDBS6w==
+From:   Mark Brown <broonie@kernel.org>
+To:     lgirdwood@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        shengjiu.wang@gmail.com, Xiubo.Lee@gmail.com, festevam@gmail.com,
+        nicoleotsuka@gmail.com, perex@perex.cz, tiwai@suse.com,
+        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
+        linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
+        Chancel Liu <chancel.liu@nxp.com>
+In-Reply-To: <20230714092913.1591195-1-chancel.liu@nxp.com>
+References: <20230714092913.1591195-1-chancel.liu@nxp.com>
+Subject: Re: [PATCH 0/2] Add support for rpmsg sound card on i.MX93
+ platform
+Message-Id: <168963117664.522208.15403610708641093351.b4-ty@kernel.org>
+Date:   Mon, 17 Jul 2023 22:59:36 +0100
 MIME-Version: 1.0
-References: <20230717205357.2779473-1-samuel.holland@sifive.com> <20230717205357.2779473-2-samuel.holland@sifive.com>
-In-Reply-To: <20230717205357.2779473-2-samuel.holland@sifive.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Tue, 18 Jul 2023 00:40:53 +0300
-Message-ID: <CAHp75VeD=R2kp4wbCkJUEzi3TP4GXAhciAdWkQm247tgwR7-Ww@mail.gmail.com>
-Subject: Re: [PATCH 1/2] of/irq: Export of_irq_count()
-To:     Samuel Holland <samuel.holland@sifive.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Andy Shevchenko <andy@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.13-dev-099c9
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -72,15 +60,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 17, 2023 at 11:54=E2=80=AFPM Samuel Holland
-<samuel.holland@sifive.com> wrote:
->
-> This function is used by the SiFive GPIO driver. Export it so that
-> driver can be built as a module.
+On Fri, 14 Jul 2023 17:29:11 +0800, Chancel Liu wrote:
+> Support rpmsg sound card on i.MX93 platform.
+> 
+> Chancel Liu (2):
+>   ASoC: dt-bindings: fsl_rpmsg: Add compatible string for i.MX93
+>   ASoC: fsl_rpmsg: Add support for i.MX93 platform
+> 
+>  Documentation/devicetree/bindings/sound/fsl,rpmsg.yaml | 1 +
+>  sound/soc/fsl/fsl_rpmsg.c                              | 8 ++++++++
+>  2 files changed, 9 insertions(+)
+> 
+> [...]
 
-Can we rather reduce use of of_*() APIs?
-For example, why not use platform_irq_count()?
+Applied to
 
---=20
-With Best Regards,
-Andy Shevchenko
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+
+Thanks!
+
+[1/2] ASoC: dt-bindings: fsl_rpmsg: Add compatible string for i.MX93
+      commit: 143f8c69a27f3fa8ed30c7f6790ea039fff57cfe
+[2/2] ASoC: fsl_rpmsg: Add support for i.MX93 platform
+      commit: 60f38a592efe08e5ced454e8a05f6814e6e221ec
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
