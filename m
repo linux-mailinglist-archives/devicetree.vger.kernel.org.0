@@ -2,164 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 74CF6756687
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 16:37:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B04A756695
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 16:38:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231551AbjGQOh0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jul 2023 10:37:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58406 "EHLO
+        id S231411AbjGQOil (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jul 2023 10:38:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59626 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231421AbjGQOhZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 10:37:25 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B02CCC0;
-        Mon, 17 Jul 2023 07:37:24 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 4653A6108C;
-        Mon, 17 Jul 2023 14:37:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 514ECC433C7;
-        Mon, 17 Jul 2023 14:37:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689604643;
-        bh=3KYO7KtyLAd/pTASmKd5Z6U9SP2SvfsV9oMlmbcorRQ=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=X5C7K3P+yB17TMXHQ6ezLU4ZnoSU9iirM5xckLLEsKZduRFTVTUiT5bosFgfa4W1S
-         MWKJaSybG9ds/hzk0UBtw+qEaFbDeGtE+/eKQTZwOsq11EBhntRxUsaHVmtEafkKm0
-         crn2MreJ1Va6Xzn4pM6mC2mgdGqHlaa2BxyvDZWIii4LTW9sBkZJGGQsePPyyTwlTO
-         oYDxg9xUrB0cBT454ea9ftYuX4gb4Zkmq0tJKJon9fHhJ+5Dc76xIRFXq9SwOWLb7M
-         4Bt+nZ0hzZndqnqfzoo7/nT5/ZRorercwEHcdjLbNy0BmPhdWszjGTMviTmWW5NyoY
-         NYuO2QdxrLNcg==
-Received: (nullmailer pid 1715882 invoked by uid 1000);
-        Mon, 17 Jul 2023 14:37:20 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH 2/2] of: Move of_device_{add,register,unregister} to platform.c
-Date:   Mon, 17 Jul 2023 08:37:17 -0600
-Message-Id: <20230717143718.1715773-2-robh@kernel.org>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230717143718.1715773-1-robh@kernel.org>
-References: <20230717143718.1715773-1-robh@kernel.org>
+        with ESMTP id S229517AbjGQOik (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 10:38:40 -0400
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89D841702
+        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 07:38:29 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-992e22c09edso555304966b.2
+        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 07:38:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1689604708; x=1692196708;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=5jvKHaT3vughoaStmuT2QRmed9/KJPScQvPNG1Af6IA=;
+        b=fDMBBuAqGrXdanhKgy6Kj3GaF1Cbqu1dNoGYEDHeKeBS9YmvhkOOIUL5/2NzBS36S1
+         WqJw1NB91/SMUgiN22Uplk0IO8CA2OuWwa61zWXHSt24c/mL4SVm6C45zrfXWHhu8SI0
+         pg49mrC9JHQRSFP+cus/9EjsKqUan3J/yXTh8XkurcA21iYrWGkaPqfIku5FOd7UWWEA
+         RC6ARNL95Do+TOB7Ry6xoVGuiepCmhvvxzaQFCWmdxxxSrv0+v9NAcph5wWD1behtrAg
+         0cMOr4fDZg7RbucNpjLvMObhWZXxRCn4vAcRhh+TUGQ8liu6Aw2ox/jBkCN2TtSDBkkj
+         5Ugw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689604708; x=1692196708;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=5jvKHaT3vughoaStmuT2QRmed9/KJPScQvPNG1Af6IA=;
+        b=SSKKJBpXxl9ZQwHbKvobhiygvyGdeLzpefWUzkQBvkR7s5J02F0N/PgMq0GdzU6lZt
+         kInC8OjOjE2IdrhCULH0u/Umy8q6cILjYkpbM6oK2lJ7REIfhfagYSmN1hHaL3hG8qLA
+         jEeF1HrUgdp5T3Nazmn1zMYBtH1fudOlWR+qJR0/xNg7FWj+cSs+BDRJEwiwAmPI8bq7
+         bvcQH4OX3iJsrRqU90NsECVd9OxdFIBmLwt8Xx9XUvTl+v3bcHh2lByT/2XSTxO5BsrU
+         QVkt5BBaAAruunZihSpFOIkeOheK7YfXQsRV/KV63tCHNCtXT9UZvvU4PMr3BIgJ6cDj
+         zc3A==
+X-Gm-Message-State: ABy/qLZY8jYRlsW/fdKko9LRRuUxAk2PpSRIivNt5N1Z4mp6VeGjauHm
+        yGtZUT10AS3x5SkViw7fixxvVg==
+X-Google-Smtp-Source: APBJJlHuDUBK5cwmhawGBolzcDQMvMHj53vUDDbfyeMPmszGPef9RxkAxivjFmjVxv7aIFk1NoOooQ==
+X-Received: by 2002:a17:906:151:b0:991:d2a8:6588 with SMTP id 17-20020a170906015100b00991d2a86588mr12500412ejh.51.1689604707729;
+        Mon, 17 Jul 2023 07:38:27 -0700 (PDT)
+Received: from krzk-bin.. ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id qx21-20020a170906fcd500b009937e7c4e54sm9264078ejb.39.2023.07.17.07.38.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 17 Jul 2023 07:38:26 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Subject: [PATCH] arm64: dts: qcom: sm8450-hdk: add other analogue microphones
+Date:   Mon, 17 Jul 2023 16:38:24 +0200
+Message-Id: <20230717143824.203352-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The declarations for of_device_{add,register,unregister} were moved into
-of_platform.h, so the implementations should be moved to platform.c as
-well.
+Add proper audio routes for onboard analogue microphones: AMIC[1345].
+Use also new DAPM input widget (TX SWR_INPUTn) for them, not the
+deprecated ADC one.  Change is not compatible with older kernels not
+having the new SWR_INPUTn input widget.
 
-Signed-off-by: Rob Herring <robh@kernel.org>
+Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
 ---
- drivers/of/device.c   | 32 --------------------------------
- drivers/of/platform.c | 32 ++++++++++++++++++++++++++++++++
- 2 files changed, 32 insertions(+), 32 deletions(-)
 
-diff --git a/drivers/of/device.c b/drivers/of/device.c
-index 0f00f1b80708..2319e0e73048 100644
---- a/drivers/of/device.c
-+++ b/drivers/of/device.c
-@@ -32,25 +32,6 @@ const struct of_device_id *of_match_device(const struct of_device_id *matches,
- }
- EXPORT_SYMBOL(of_match_device);
+Depends on ASoC driver changes:
+https://lore.kernel.org/alsa-devel/20230717140138.201745-1-krzysztof.kozlowski@linaro.org/T/#t
+This patch should wait till respective ASoC changes got merged.
+---
+ arch/arm64/boot/dts/qcom/sm8450-hdk.dts | 23 ++++++++++++++++-------
+ 1 file changed, 16 insertions(+), 7 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/sm8450-hdk.dts b/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
+index bd5e8181f2aa..9bd1ef401ca3 100644
+--- a/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
++++ b/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
+@@ -915,14 +915,23 @@ &sound {
+ 			"SpkrRight IN", "WSA_SPK2 OUT",
+ 			"IN1_HPHL", "HPHL_OUT",
+ 			"IN2_HPHR", "HPHR_OUT",
++			"AMIC1", "MIC BIAS1",
+ 			"AMIC2", "MIC BIAS2",
+-			"VA DMIC0", "MIC BIAS1",
+-			"VA DMIC1", "MIC BIAS1",
+-			"VA DMIC2", "MIC BIAS3",
+-			"TX DMIC0", "MIC BIAS1",
+-			"TX DMIC1", "MIC BIAS2",
+-			"TX DMIC2", "MIC BIAS3",
+-			"TX SWR_ADC1", "ADC2_OUTPUT";
++			"AMIC3", "MIC BIAS3",
++			"AMIC4", "MIC BIAS3",
++			"AMIC5", "MIC BIAS4",
++			"VA DMIC0", "MIC BIAS3",
++			"VA DMIC1", "MIC BIAS3",
++			"VA DMIC2", "MIC BIAS1",
++			"VA DMIC3", "MIC BIAS1",
++			"TX DMIC0", "MIC BIAS3",
++			"TX DMIC1", "MIC BIAS3",
++			"TX DMIC2", "MIC BIAS1",
++			"TX DMIC3", "MIC BIAS1",
++			"TX SWR_INPUT0", "ADC1_OUTPUT",
++			"TX SWR_INPUT1", "ADC2_OUTPUT",
++			"TX SWR_INPUT2", "ADC3_OUTPUT",
++			"TX SWR_INPUT3", "ADC4_OUTPUT";
  
--int of_device_add(struct platform_device *ofdev)
--{
--	BUG_ON(ofdev->dev.of_node == NULL);
--
--	/* name and id have to be set so that the platform bus doesn't get
--	 * confused on matching */
--	ofdev->name = dev_name(&ofdev->dev);
--	ofdev->id = PLATFORM_DEVID_NONE;
--
--	/*
--	 * If this device has not binding numa node in devicetree, that is
--	 * of_node_to_nid returns NUMA_NO_NODE. device_add will assume that this
--	 * device is on the same node as the parent.
--	 */
--	set_dev_node(&ofdev->dev, of_node_to_nid(ofdev->dev.of_node));
--
--	return device_add(&ofdev->dev);
--}
--
- static void
- of_dma_set_restricted_buffer(struct device *dev, struct device_node *np)
- {
-@@ -221,19 +202,6 @@ int of_dma_configure_id(struct device *dev, struct device_node *np,
- }
- EXPORT_SYMBOL_GPL(of_dma_configure_id);
- 
--int of_device_register(struct platform_device *pdev)
--{
--	device_initialize(&pdev->dev);
--	return of_device_add(pdev);
--}
--EXPORT_SYMBOL(of_device_register);
--
--void of_device_unregister(struct platform_device *ofdev)
--{
--	device_unregister(&ofdev->dev);
--}
--EXPORT_SYMBOL(of_device_unregister);
--
- const void *of_device_get_match_data(const struct device *dev)
- {
- 	const struct of_device_id *match;
-diff --git a/drivers/of/platform.c b/drivers/of/platform.c
-index e71adb394b41..8d03d9e65ef9 100644
---- a/drivers/of/platform.c
-+++ b/drivers/of/platform.c
-@@ -56,6 +56,38 @@ struct platform_device *of_find_device_by_node(struct device_node *np)
- }
- EXPORT_SYMBOL(of_find_device_by_node);
- 
-+int of_device_add(struct platform_device *ofdev)
-+{
-+	BUG_ON(ofdev->dev.of_node == NULL);
-+
-+	/* name and id have to be set so that the platform bus doesn't get
-+	 * confused on matching */
-+	ofdev->name = dev_name(&ofdev->dev);
-+	ofdev->id = PLATFORM_DEVID_NONE;
-+
-+	/*
-+	 * If this device has not binding numa node in devicetree, that is
-+	 * of_node_to_nid returns NUMA_NO_NODE. device_add will assume that this
-+	 * device is on the same node as the parent.
-+	 */
-+	set_dev_node(&ofdev->dev, of_node_to_nid(ofdev->dev.of_node));
-+
-+	return device_add(&ofdev->dev);
-+}
-+
-+int of_device_register(struct platform_device *pdev)
-+{
-+	device_initialize(&pdev->dev);
-+	return of_device_add(pdev);
-+}
-+EXPORT_SYMBOL(of_device_register);
-+
-+void of_device_unregister(struct platform_device *ofdev)
-+{
-+	device_unregister(&ofdev->dev);
-+}
-+EXPORT_SYMBOL(of_device_unregister);
-+
- #ifdef CONFIG_OF_ADDRESS
- /*
-  * The following routines scan a subtree and registers a device for
+ 	wcd-playback-dai-link {
+ 		link-name = "WCD Playback";
 -- 
-2.40.1
+2.34.1
 
