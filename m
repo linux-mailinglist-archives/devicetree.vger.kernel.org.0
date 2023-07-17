@@ -2,142 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 63807756DA2
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 21:51:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 79C8D756DC5
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 21:56:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230274AbjGQTvX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jul 2023 15:51:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44296 "EHLO
+        id S231394AbjGQT4B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jul 2023 15:56:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46306 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230194AbjGQTvT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 15:51:19 -0400
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 364EE129
-        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 12:51:18 -0700 (PDT)
-Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-51f7fb9a944so6890666a12.3
-        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 12:51:18 -0700 (PDT)
+        with ESMTP id S230118AbjGQTzy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 15:55:54 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2124B1FF1
+        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 12:55:28 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-9923833737eso592454366b.3
+        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 12:55:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689623476; x=1692215476;
+        d=linaro.org; s=google; t=1689623720; x=1692215720;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=4GRG9iOP216h8hNkp80ef+cG8Pcq3A3Xo2N0WkZohN4=;
-        b=WBKLVtSP2hwmqIJUbeUHRx90hA/4c13UDgRDiVJX62+IGwK1XVtu+iAslMRnlP2KQu
-         2pqZF55bUL9+y/82EQcyV2ZpNd3lQhvT/994ZMo1HyFeoT8Cw9MJwxGe25M8anm3eflr
-         4IFEMwSyw+SfyRZzMnZTdewQSq6CplcsoN46VU8t2oHKAoBIsGqzDJCagebKSfyHRRHQ
-         baqNnxE6pcAcq43PAwkLQfTsAwdn38zMOx+4S0+j1D6fwrXSpn9ehROLyAQK/Ss0rtsY
-         w5tpxc9EFzwLuTOO3n1+wZvTzj92kYIhMs1MbzU3/opKsn2suPZPs0dEoNhNawHMtEWv
-         fr8Q==
+        bh=zpIC/vheFt0sfkteBFunYkR3K/TvtDGb+njBwXb1bVw=;
+        b=B0ly1khsPWB96zrFc7dyjFKzz+VKXdbdmOleSWMI9iPNVnQJ9BaryBnfDkWN1vlW9C
+         qFSSeSyyLeZup1VbUMoFERdX+KS2zyerrB+4REY29FQVbJ7nYdGiLw0hq9i53CmAIJ1D
+         DjV2mZy1X6V+dbJscHvd40lhUsd0z42cMbmLefuXI1Y9M668Wu68QY9tDUXMhg+NLKUa
+         lawvu25/DOCqKm86OCV9hh0jjVACEQTPva599OrfrpTGm4T/G2936rqcgedBLJ0cY0Nc
+         XtxP0Vb/qk+AakD8LSHG5C9uaLo641EIM87qYBQjjI1lUqIpQ0NwDD2CDCnZdYkYca1m
+         xewg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689623476; x=1692215476;
+        d=1e100.net; s=20221208; t=1689623720; x=1692215720;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4GRG9iOP216h8hNkp80ef+cG8Pcq3A3Xo2N0WkZohN4=;
-        b=c/aAL+JW+eyZqSg7wqxJLdg4RdamwsBEm59kfFMG1MxSppUYCb1CF0sJ4cJJDcIiu7
-         N9Egxu35R2zTTSIIj6VouGk9C9wiX6xE+9+QZ8b0t15kXRDqfHPc1TQcIUJEm2xITTOS
-         EcKajwx1y4hVcrl3ujT1D32tZsEukJA6CFPyAle7tmJw2Ic36YUp2Iw6B9VDzyGG5F/f
-         Fz8kC8Z2bF1cWhK0lDYxyKERsfRnwTWc3wdz/kIUUGExvRU+t5mC0ZsgATKoo7o6e645
-         SpGrQucZIPa0MpS4MptSIRfMOvoC4QwrEgywdV4X/lKSEASYkCIkdFzka9JseOlmZ8lN
-         HGkQ==
-X-Gm-Message-State: ABy/qLbkrGoMZagWa0fDkT3ebOnNkAhzDUnpqcovmZZKtbBMnfllDa8q
-        nqKshtJ47B9F5QC4IRKLDSvmFA==
-X-Google-Smtp-Source: APBJJlEuwYvgVCvNXuxA5VjmKkQFBRHYrK+aCkoCeJFej7viXoOkOWaFHp4rCXYYqDysObD2DLg28A==
-X-Received: by 2002:aa7:c709:0:b0:51a:7bcd:a82d with SMTP id i9-20020aa7c709000000b0051a7bcda82dmr11838765edq.23.1689623476573;
-        Mon, 17 Jul 2023 12:51:16 -0700 (PDT)
+        bh=zpIC/vheFt0sfkteBFunYkR3K/TvtDGb+njBwXb1bVw=;
+        b=dtDCm35HxnuAGDSytWvZZ23wau2KzLnj9bLbZDh8Mekjf0J6XZhS8ppIHiMkAwWpSe
+         PbstS7iM97ZYlUkGJoUaQXeag8JWsOj7R0g9yu73dI8VYe9aNrx5pEbBiNtV60/lyTjx
+         8en12+1kEOhS/a3HoIlChBrYiXMn0YwaRK6KqyJs5h/OqqaQddyzwZRdmmxQIXp9bd7y
+         ILXZrSbmRmnL0sc2FIVhBwu6AxeXAU7jWo1S+Uk1v+MNKzMmLTjfseAKSatFK17cEntS
+         MAwoNOWRlxLDI5xHaXF87CWpt5jqzgsMWJBrCRnbBEYpP0A/OKtgga8dnqho4jkF6534
+         akMg==
+X-Gm-Message-State: ABy/qLYHHpv4GOXGfOMl6zeepGyOwrlzYBJQxI12PIjWcR4l+4LSuKLZ
+        KyTrFl+bGUfUqG1+evtsPiuU+w==
+X-Google-Smtp-Source: APBJJlH2ZBow7cATyCQicXDgX7fUHJgqQSPkaJq+UqX1f6NKkgZ6Mmi+m6jeuqTzgET/pn5dMaO6Dg==
+X-Received: by 2002:a17:906:77cd:b0:993:d9a5:dafe with SMTP id m13-20020a17090677cd00b00993d9a5dafemr12994208ejn.14.1689623720587;
+        Mon, 17 Jul 2023 12:55:20 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id y5-20020aa7ccc5000000b0051a1ef536c9sm57733edt.64.2023.07.17.12.51.14
+        by smtp.gmail.com with ESMTPSA id y26-20020a170906471a00b0098e78ff1a87sm85676ejq.120.2023.07.17.12.55.18
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 17 Jul 2023 12:51:15 -0700 (PDT)
-Message-ID: <152926f2-3c53-d788-9443-486fb5ed8024@linaro.org>
-Date:   Mon, 17 Jul 2023 21:51:13 +0200
+        Mon, 17 Jul 2023 12:55:19 -0700 (PDT)
+Message-ID: <9e46c996-3e3b-b437-f2c4-2ca86a1c7e6c@linaro.org>
+Date:   Mon, 17 Jul 2023 21:55:17 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
-Subject: Re: [PATCH v2 2/4] dt-bindings: arm: fsl: fix DEBIX binding
+Subject: Re: [PATCH v3 3/4] dt-bindings: soc: mediatek: pwrap: Add compatible
+ for MT8188
 Content-Language: en-US
-To:     Marco Felsch <m.felsch@pengutronix.de>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, shawnguo@kernel.org, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com,
-        laurent.pinchart@ideasonboard.com, dan.scally@ideasonboard.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20230717165127.2882535-1-m.felsch@pengutronix.de>
- <20230717165127.2882535-2-m.felsch@pengutronix.de>
- <3d1a260c-bc8c-6347-17be-5558343c85a4@linaro.org>
- <20230717171244.jdqwn5l7tiugxeyo@pengutronix.de>
+To:     Jason-ch Chen <jason-ch.chen@mediatek.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     =?UTF-8?Q?N=c3=adcolas_F_=2e_R_=2e_A_=2e_Prado?= 
+        <nfraprado@collabora.com>, Chen-Yu Tsai <wenst@chromium.org>,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
+References: <20230717120300.21388-1-jason-ch.chen@mediatek.com>
+ <20230717120300.21388-4-jason-ch.chen@mediatek.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230717171244.jdqwn5l7tiugxeyo@pengutronix.de>
+In-Reply-To: <20230717120300.21388-4-jason-ch.chen@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/07/2023 19:12, Marco Felsch wrote:
-> On 23-07-17, Krzysztof Kozlowski wrote:
->> On 17/07/2023 18:51, Marco Felsch wrote:
->>> The current imx8mp-debix-model-a.dts uses all three compatibles. Fix the
->>> corresponding bindings by adding an own entry for it. Mark
->>> polyhex,imx8mp-debix as deprecated but keep it within the dts file since
->>> we already have a user for it [1].
->>>
->>> [1] https://elixir.bootlin.com/barebox/v2023.07.1/source/arch/arm/ \
->>>     boards/polyhex-debix/board.c#L38
-
-Don't wrap links, they are not clickable.
-
->>>
->>> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
->>> ---
->>> Changelog:
->>>
->>> v2:
->>> - deprecate polyhex,imx8mp-debix
->>>
->>>  Documentation/devicetree/bindings/arm/fsl.yaml | 10 ++++++++--
->>>  1 file changed, 8 insertions(+), 2 deletions(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
->>> index 15d4110840654..b29974e3c30b3 100644
->>> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
->>> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
->>> @@ -1019,8 +1019,6 @@ properties:
->>>                - dmo,imx8mp-data-modul-edm-sbc # i.MX8MP eDM SBC
->>>                - fsl,imx8mp-evk            # i.MX8MP EVK Board
->>>                - gateworks,imx8mp-gw74xx   # i.MX8MP Gateworks Board
->>> -              - polyhex,imx8mp-debix      # Polyhex Debix boards
->>> -              - polyhex,imx8mp-debix-model-a # Polyhex Debix Model A Board
->>>                - toradex,verdin-imx8mp     # Verdin iMX8M Plus Modules
->>>                - toradex,verdin-imx8mp-nonwifi  # Verdin iMX8M Plus Modules without Wi-Fi / BT
->>>                - toradex,verdin-imx8mp-wifi  # Verdin iMX8M Plus Wi-Fi / BT Modules
->>> @@ -1054,6 +1052,14 @@ properties:
->>>            - const: phytec,imx8mp-phycore-som         # phyCORE-i.MX8MP SoM
->>>            - const: fsl,imx8mp
->>>  
->>> +      - description: Polyhex DEBIX i.MX8MP based SBCs
->>> +        items:
->>> +          - enum:
->>> +              - polyhex,imx8mp-debix-model-a        # Polyhex Debix Model A Board
->>> +          - const: polyhex,imx8mp-debix             # Polyhex Debix boards
->>
->> I cannot find patches which add new compatible to the binding and which
->> fix the DTS. :/
+On 17/07/2023 14:02, Jason-ch Chen wrote:
+> From: jason-ch chen <Jason-ch.Chen@mediatek.com>
 > 
-> Please see my commit message, we can't remove the compatible since we
-> already have one user of this compatible.
+> Add MT8188 PMIC Wrapper compatible to binding document.
 
+No improvements here - the compatible is already there. Subject has the
+same issue. Explain what you are doing and why.
 
-Indeed. I wonder then what is the goal of deprecating this compatible
-and what is the plan for dealing with it? There is no cover letter which
-would point me to it.
+> 
+> Signed-off-by: jason-ch chen <Jason-ch.Chen@mediatek.com>
+> ---
+>  .../devicetree/bindings/soc/mediatek/mediatek,pwrap.yaml    | 6 +++++-
+>  1 file changed, 5 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/soc/mediatek/mediatek,pwrap.yaml b/Documentation/devicetree/bindings/soc/mediatek/mediatek,pwrap.yaml
+> index a06ac2177444..4737e5f45d54 100644
+> --- a/Documentation/devicetree/bindings/soc/mediatek/mediatek,pwrap.yaml
+> +++ b/Documentation/devicetree/bindings/soc/mediatek/mediatek,pwrap.yaml
+> @@ -41,7 +41,6 @@ properties:
+>                - mediatek,mt8173-pwrap
+>                - mediatek,mt8183-pwrap
+>                - mediatek,mt8186-pwrap
+> -              - mediatek,mt8188-pwrap
+
+Look, here ^^^^
+
+>                - mediatek,mt8195-pwrap
+>                - mediatek,mt8365-pwrap
+>                - mediatek,mt8516-pwrap
+> @@ -50,6 +49,11 @@ properties:
+>                - mediatek,mt8186-pwrap
+>                - mediatek,mt8195-pwrap
+>            - const: syscon
+> +      - items:
+> +          - enum:
+> +              - mediatek,mt8188-pwrap
+
 
 Best regards,
 Krzysztof
