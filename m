@@ -2,117 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 31D8D756570
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 15:48:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 78CF67565A0
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 15:58:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230326AbjGQNs4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jul 2023 09:48:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54250 "EHLO
+        id S229967AbjGQN6H convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 17 Jul 2023 09:58:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59714 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229541AbjGQNrs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 09:47:48 -0400
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B4CF13E;
-        Mon, 17 Jul 2023 06:47:41 -0700 (PDT)
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36HCFANQ015564;
-        Mon, 17 Jul 2023 15:46:32 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
- subject : date : message-id : mime-version : content-transfer-encoding :
- content-type; s=selector1;
- bh=vSMfDNFzu4+99zvWf7Ylziy8xE7+meIevjquHFgBM4U=;
- b=3PYVlfAji+tyt9KhK3ZPksh+tgQ1B3IctqyEEg9dtIjoaIqT/3+7c9MtGndOy7tSsYB3
- 7un3lZe7K66CgZoFDH9klgZc7Sw2X7tr7066+myXg3quZIwXQyI59IIq8pze0DFeqQFE
- KHoJPzn3os6ZLwlhumOBYx0M72zi4sgepsfdxdpebGuNDVsuUAwOeZLquqUURYWRgbt9
- bbCuBq5s15DyDpg0TCoHjKnlByqgrGzzZABkEDCjSSi7uA4XmPgUni+NHydc6/fCSBR+
- x+N9HsyVRR+BWHAX1UNLwe2kJzHN9NHAKClWQPPapjhphgIj8pcr9b7W8DFlp52qYfD2 NA== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3rw3f0tdqw-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 17 Jul 2023 15:46:32 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id E953610002A;
-        Mon, 17 Jul 2023 15:46:31 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id E20142248AD;
-        Mon, 17 Jul 2023 15:46:31 +0200 (CEST)
-Received: from localhost (10.201.22.238) by SHFDAG1NODE2.st.com (10.75.129.70)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Mon, 17 Jul
- 2023 15:46:31 +0200
-From:   <p.paillet@foss.st.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-CC:     <p.paillet@foss.st.com>
-Subject: [PATCH] ARM: dts: stm32: fix dts check warnings on stm32mp15-scmi
-Date:   Mon, 17 Jul 2023 15:46:27 +0200
-Message-ID: <20230717134627.2064553-1-p.paillet@foss.st.com>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S229722AbjGQN6G (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 09:58:06 -0400
+Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com [209.85.128.175])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DB1FD1;
+        Mon, 17 Jul 2023 06:58:05 -0700 (PDT)
+Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-579dfae6855so46121057b3.1;
+        Mon, 17 Jul 2023 06:58:05 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689602284; x=1692194284;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=6GY8g2XJYhobD5XMmXXGSiDcdH93n2WuBZ9x5pzjlb0=;
+        b=R1P33IUvCbB1CyfeeqVN/J7QBLkZ6HY7yWB4XXj4ut7naPKTBJbgB75Pg6Rr2I5HkS
+         dYjZgn5Sr6atxC3wkaPpV53q0ePWntXY6jssH3TyM+Av7vnwQq1SF8s8DXQcNGcJQWaF
+         xyxO7blMYExPOmwHCil4A7VKNTdt18u4RaXhBvn4dVxgDrNc9Qq4xO+dRCSrvOApLQ8L
+         u7SyNU7w+OHnMFjWZTo/PiWgY3+8fOlBvD5o7EKawnw8qqXmgAvKa9oky4Jvs/J5O+1u
+         wfCgMHNBLNuXmuoH5MF01DAtqBcYGmuwQK2NyoqxBIwMyNsgh3Qi4scH1Jqc2s7pF0tf
+         QFFA==
+X-Gm-Message-State: ABy/qLaTFA8/br6jecLtaVxu74Bmc7LI60SPaLki2zxIc5WjzofqT9Nm
+        Y2iBMDNuo8MknaeHjuWICcBfQajKbIVj8A==
+X-Google-Smtp-Source: APBJJlFdT4/Yt2cig2+G2UVzhBFv1G+0PB7y2WmAYl2xvC+kVoF2lI69MNKxbyPzWK24ubSNY2GHNQ==
+X-Received: by 2002:a81:85c7:0:b0:56d:464e:db7e with SMTP id v190-20020a8185c7000000b0056d464edb7emr13549710ywf.13.1689602284050;
+        Mon, 17 Jul 2023 06:58:04 -0700 (PDT)
+Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com. [209.85.219.172])
+        by smtp.gmail.com with ESMTPSA id x134-20020a0dd58c000000b005832fe29034sm1023710ywd.89.2023.07.17.06.58.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 17 Jul 2023 06:58:03 -0700 (PDT)
+Received: by mail-yb1-f172.google.com with SMTP id 3f1490d57ef6-ca3cc52ee62so4604994276.0;
+        Mon, 17 Jul 2023 06:58:03 -0700 (PDT)
+X-Received: by 2002:a25:2105:0:b0:c14:68fd:6e30 with SMTP id
+ h5-20020a252105000000b00c1468fd6e30mr9475180ybh.16.1689602283054; Mon, 17 Jul
+ 2023 06:58:03 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.201.22.238]
-X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE2.st.com
- (10.75.129.70)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-07-17_11,2023-07-13_01,2023-05-22_02
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+References: <cover.1687423204.git.geert+renesas@glider.be> <2259ff548f007afcb5a315a4c95c83a0ee4b7e03.1687423204.git.geert+renesas@glider.be>
+ <20230622145213.GA1678457-robh@kernel.org>
+In-Reply-To: <20230622145213.GA1678457-robh@kernel.org>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 17 Jul 2023 15:57:51 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdX1Y9jkKv+cOAzs6YibkNoTrvY-qDY4FOzgrSyA4pHynQ@mail.gmail.com>
+Message-ID: <CAMuHMdX1Y9jkKv+cOAzs6YibkNoTrvY-qDY4FOzgrSyA4pHynQ@mail.gmail.com>
+Subject: Re: [PATCH 01/39] dt-bindings: display: Add Renesas SH-Mobile LCDC bindings
+To:     Rob Herring <robh@kernel.org>
+Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Pascal Paillet <p.paillet@foss.st.com>
+Hi Rob,
 
-Fix dts check warnings on stm32mp15-scmi reported by
-arm,scmi.yaml.
+Thanks for your review!
 
-Signed-off-by: Pascal Paillet <p.paillet@foss.st.com>
----
- arch/arm/boot/dts/st/stm32mp15-scmi.dtsi | 7 +++----
- 1 file changed, 3 insertions(+), 4 deletions(-)
+On Thu, Jun 22, 2023 at 4:52 PM Rob Herring <robh@kernel.org> wrote:
+> On Thu, Jun 22, 2023 at 11:21:13AM +0200, Geert Uytterhoeven wrote:
+> > Add device tree bindings for the LCD Controller (LCDC) found in Renesas
+> > SuperH SH-Mobile and ARM SH/R-Mobile SOCs.
+> >
+> > Based on a plain text prototype by Laurent Pinchart.
+> >
+> > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-diff --git a/arch/arm/boot/dts/st/stm32mp15-scmi.dtsi b/arch/arm/boot/dts/st/stm32mp15-scmi.dtsi
-index ad2584213d99..dc3b09f2f2af 100644
---- a/arch/arm/boot/dts/st/stm32mp15-scmi.dtsi
-+++ b/arch/arm/boot/dts/st/stm32mp15-scmi.dtsi
-@@ -34,22 +34,21 @@ scmi_reguls: regulators {
- 					#address-cells = <1>;
- 					#size-cells = <0>;
- 
--					scmi_reg11: reg11@0 {
-+					scmi_reg11: regulator@0 {
- 						reg = <0>;
- 						regulator-name = "reg11";
- 						regulator-min-microvolt = <1100000>;
- 						regulator-max-microvolt = <1100000>;
- 					};
- 
--					scmi_reg18: reg18@1 {
--						voltd-name = "reg18";
-+					scmi_reg18: regulator@1 {
- 						reg = <1>;
- 						regulator-name = "reg18";
- 						regulator-min-microvolt = <1800000>;
- 						regulator-max-microvolt = <1800000>;
- 					};
- 
--					scmi_usb33: usb33@2 {
-+					scmi_usb33: regulator@2 {
- 						reg = <2>;
- 						regulator-name = "usb33";
- 						regulator-min-microvolt = <3300000>;
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/display/renesas,shmobile-lcdc.yaml
+> > @@ -0,0 +1,108 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/display/renesas,shmobile-lcdc.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Renesas SH-Mobile LCD Controller (LCDC)
+> > +
+> > +maintainers:
+> > +  - Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - renesas,r8a7740-lcdc # R-Mobile A1
+> > +      - renesas,sh73a0-lcdc  # SH-Mobile AG5
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  interrupts:
+> > +    maxItems: 1
+> > +
+> > +  clocks:
+> > +    minItems: 1
+> > +    maxItems: 5
+> > +    description:
+> > +      Only the functional clock is mandatory.
+> > +      Some of the optional clocks are model-dependent (e.g. "video" (a.k.a.
+> > +      "vou" or "dv_clk") is available on R-Mobile A1 only).
+> > +
+> > +  clock-names:
+> > +    minItems: 1
+> > +    maxItems: 5
+> > +    items:
+> > +      enum: [ fck, media, lclk, hdmi, video ]
+> > +
+> > +  power-domains:
+> > +    maxItems: 1
+> > +
+> > +  ports:
+> > +    $ref: /schemas/graph.yaml#/properties/ports
+> > +    description: |
+> > +      The connections to the output video ports are modeled using the OF graph
+> > +      bindings specified in Documentation/devicetree/bindings/graph.txt.
+>
+> Please read this file.
+>
+> > +      The number of ports and their assignment are model-dependent.
+> > +      Each port shall have a single endpoint.
+>
+> I'd just drop the whole description.
+>
+> > +
+> > +    properties:
+> > +      port@0:
+> > +        $ref: /schemas/graph.yaml#/properties/port
+> > +        description: LCD port (R-Mobile A1 and SH-Mobile AG5)
+> > +        unevaluatedProperties: false
+>
+> Don't need this.
+
+You mean the "unevaluatedProperties: false"?
+Or more?
+
+Thanks again!
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
 -- 
-2.25.1
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
