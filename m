@@ -2,92 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 591D27558DB
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 02:32:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A20417558E5
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 02:40:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229591AbjGQAcE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 16 Jul 2023 20:32:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54740 "EHLO
+        id S230219AbjGQAkK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 16 Jul 2023 20:40:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56128 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229491AbjGQAcD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Jul 2023 20:32:03 -0400
+        with ESMTP id S229491AbjGQAkJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Jul 2023 20:40:09 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A6E3D9;
-        Sun, 16 Jul 2023 17:32:02 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99B04113;
+        Sun, 16 Jul 2023 17:40:08 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id DF01D60EE1;
-        Mon, 17 Jul 2023 00:32:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1FD69C433C7;
-        Mon, 17 Jul 2023 00:31:58 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 26D1360EEA;
+        Mon, 17 Jul 2023 00:40:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 563C6C433C7;
+        Mon, 17 Jul 2023 00:40:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689553921;
-        bh=paHDLzbIxR4t35jchB7wP2+mUhpnQT7MXpvr4zdD+90=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=NGAwd27d2QSwibXdeiJQOvz80aVEcGN2o1X5Hjn3a5g2reDFRFyB8/0fLCXReMZvu
-         OCdiN07ufnxbNjv8XKO9AB3fOzYhNQX9hRRd+h/U1a4skPAGtkOUSbo89sE0UTSZq4
-         MHxDW+6VsYq82Ji4usFwSlv9djC0J4miWFaoqvasAbn6A77yUoHokntrBKnmK+ojeX
-         73TPMhXlvwcSxQFh7SGJ2BMSqaMzIgF+6HqiY1QUz4pygGHzK6d7wKw1w2jlCzhIu+
-         UHgvoPArgFVA7qlBSHffdZr9a/oxJYOdh+fvM2oFhj21Q2AA9ed2m1alBHdtOf000/
-         8V30k5AiPZ+Yg==
-Message-ID: <ec511842-b978-b16d-fec3-248e6af37b07@kernel.org>
-Date:   Mon, 17 Jul 2023 09:31:58 +0900
+        s=k20201202; t=1689554407;
+        bh=aM2Haon+ICCogX1QFKZbHABrVWhCOzJmmB3MXOotN/8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=dN5CJjXWXGSyREaGO+p0L13g4Yy+JZFb23x+EqumgrqkhKHEJnX3GspHJifIMmWYA
+         vz5lJQRdsnXazF33p4eIfdQM6D+IparsOpg8rGnelmfs0aoemvv8iKQv0w6ylUTjRh
+         d6Fl7b7SJTkka93qfyQjNyz6eYbbKRf9cddMx2fMcUpD0TAq2P0+qC7GInzrnMe9xJ
+         PVY14iQYjJb5mxd10He06MU0EKo55l2VAtgK1i2Xb1EeEV7kV6gn1LK9989A+UHYe3
+         088t1IZL6rfZSglgQsVITpgfsXXxbUjA+itb7P1oAAQmFnnN/RCXBxLH7KleJCzVio
+         NyI3AP6dr8xbw==
+Date:   Mon, 17 Jul 2023 08:39:55 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Tim Harvey <tharvey@gateworks.com>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3] arm64: dts: imx8mp-venice-gw74xx: update to revB PCB
+Message-ID: <20230717003955.GJ9559@dragon>
+References: <20230609195220.3399055-1-tharvey@gateworks.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH] ata: Explicitly include correct DT includes
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Jens Axboe <axboe@kernel.dk>,
-        Sergey Shtylyov <s.shtylyov@omp.ru>,
-        Linus Walleij <linus.walleij@linaro.org>
-Cc:     devicetree@vger.kernel.org, linux-ide@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-tegra@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-References: <20230714174052.4040857-1-robh@kernel.org>
-From:   Damien Le Moal <dlemoal@kernel.org>
-Organization: Western Digital Research
-In-Reply-To: <20230714174052.4040857-1-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230609195220.3399055-1-tharvey@gateworks.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 7/15/23 02:40, Rob Herring wrote:
-> The DT of_device.h and of_platform.h date back to the separate
-> of_platform_bus_type before it as merged into the regular platform bus.
-> As part of that merge prepping Arm DT support 13 years ago, they
-> "temporarily" include each other. They also include platform_device.h
-> and of.h. As a result, there's a pretty much random mix of those include
-> files used throughout the tree. In order to detangle these headers and
-> replace the implicit includes with struct declarations, users need to
-> explicitly include the correct includes.
+On Fri, Jun 09, 2023 at 12:52:19PM -0700, Tim Harvey wrote:
+> Update the imx8mp-venice-gw74xx for revB:
+>  - add CAN1
+>  - add TIS-TPM on SPI2
+>  - add FAN controller
+>  - fix PMIC I2C bus (revA PMIC I2C was non-functional so no need for
+>    backward compatible option)
+>  - M2 socket GPIO's moved
 > 
-> Signed-off-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Tim Harvey <tharvey@gateworks.com>
 
-Applied to for-6.6. Thanks !
-
--- 
-Damien Le Moal
-Western Digital Research
-
+Applied, thanks!
