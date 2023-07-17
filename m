@@ -2,51 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F15997558B9
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 02:03:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 94E707558BA
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 02:06:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230247AbjGQAD4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 16 Jul 2023 20:03:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48928 "EHLO
+        id S229697AbjGQAGv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 16 Jul 2023 20:06:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49118 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230128AbjGQADz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Jul 2023 20:03:55 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1605D3
-        for <devicetree@vger.kernel.org>; Sun, 16 Jul 2023 17:03:53 -0700 (PDT)
+        with ESMTP id S229759AbjGQAGv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Jul 2023 20:06:51 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54FCAD3;
+        Sun, 16 Jul 2023 17:06:50 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 8FA8F60C61
-        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 00:03:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2346C433C7;
-        Mon, 17 Jul 2023 00:03:49 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id C3D1C60EE2;
+        Mon, 17 Jul 2023 00:06:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F10A7C433C7;
+        Mon, 17 Jul 2023 00:06:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689552232;
-        bh=IkPueG9cGYZxeD7AOs2Fq1L4D9d8CqsT9Y8ASg5S9XE=;
+        s=k20201202; t=1689552409;
+        bh=z5adB7qfGu6+f3IW5FVK6CsOLFfUrOYTr9YhLv+I454=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=sV1Z8b7nhjBFThca5bIrYWe+6v/SDLCQ9aSzj7xG8fZSperhw0X2cX/hsBiJB9TNO
-         WVqr4k/Shwre47l+i7ZHvYOXTTOW/ARPDCJyZzk05gzfCoekBtdM0UZ6++yFSUZKjL
-         zgEnkjPetdPYV8BrlUDNluRwAm5+BkAS7gRnrg8rm3AUmGUnsEHfTcUmZtrPtRDh90
-         BZ9V0MQeTFOOZEJU6SqXsPMqPjdbNNV8QIf4Ut9jhXH7P9hM7jzHPPh0gNmWxlbr1a
-         lpuw4p0jxIBdlwMZwF/xCIZEnn+XzNgz1vgcrxsxi/M7HvcuJT9/vE9SAvZVMCC+8g
-         eSPESdQlHFAmg==
-Date:   Mon, 17 Jul 2023 08:03:42 +0800
+        b=WGFPuJt9aAKHj+6dQfLc+iPUAVtKb6DJRAmn1dT85Nkg3WSJN+pGPXtcSKc+zNzL7
+         g46LtxUfTZDF5SRf5j4uXi3u7aZOXJHqLFo0e8We/MDU6rNITFM73JX4RemkkNkh7L
+         H3Q/JnDcqy69U4Q6zsqverYvplELeSNkuqbQVqoIRs3IBR9gF90JufJgDfLTHCH+UY
+         FYMX+WRZPDVn1JoVhXQV0iP+ZOGKCHXWKoikG2hyPR7OzNDm+ZULg0D1UcwfnN1oo9
+         MOf6WfaPiBOoxh/MPrpyv58IlI3NDpmjwLDCEenfj4eKB/J3M7mgBVsNdr33eqJaUQ
+         qFeSg7ud8lYCA==
+Date:   Mon, 17 Jul 2023 08:06:38 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
-To:     Xu Yang <xu.yang_2@nxp.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, linux-imx@nxp.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, jun.li@nxp.com
-Subject: Re: [PATCH] ARM: dts: imx6sll: fix wrong property name in usbphy node
-Message-ID: <20230717000342.GA9559@dragon>
-References: <20230606060106.2948626-1-xu.yang_2@nxp.com>
+To:     Tim Harvey <tharvey@gateworks.com>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Li Yang <leoyang.li@nxp.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: imx8mm-venice-gw7901: add cpu-supply node
+ for cpufreq
+Message-ID: <20230717000638.GB9559@dragon>
+References: <20230606153238.1448463-1-tharvey@gateworks.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230606060106.2948626-1-xu.yang_2@nxp.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+In-Reply-To: <20230606153238.1448463-1-tharvey@gateworks.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -55,34 +62,9 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 06, 2023 at 02:01:06PM +0800, Xu Yang wrote:
-> Property name "phy-3p0-supply" is used instead of "phy-reg_3p0-supply".
+On Tue, Jun 06, 2023 at 08:32:38AM -0700, Tim Harvey wrote:
+> Add regulator config for cpu-supply in order to support cpufreq.
 > 
-> Fixes: 9f30b6b1a957 ("ARM: dts: imx: Add basic dtsi file for imx6sll")
-> cc: <stable@vger.kernel.org>
-> Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
+> Signed-off-by: Tim Harvey <tharvey@gateworks.com>
 
-It doesn't apply to v6.5-rc1.  Could you rebase and resend?
-
-Shawn
-
-> ---
->  arch/arm/boot/dts/imx6sll.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm/boot/dts/imx6sll.dtsi b/arch/arm/boot/dts/imx6sll.dtsi
-> index 2873369a57c0..3659fd5ecfa6 100644
-> --- a/arch/arm/boot/dts/imx6sll.dtsi
-> +++ b/arch/arm/boot/dts/imx6sll.dtsi
-> @@ -552,7 +552,7 @@ usbphy2: usb-phy@20ca000 {
->  				reg = <0x020ca000 0x1000>;
->  				interrupts = <GIC_SPI 41 IRQ_TYPE_LEVEL_HIGH>;
->  				clocks = <&clks IMX6SLL_CLK_USBPHY2>;
-> -				phy-reg_3p0-supply = <&reg_3p0>;
-> +				phy-3p0-supply = <&reg_3p0>;
->  				fsl,anatop = <&anatop>;
->  			};
->  
-> -- 
-> 2.34.1
-> 
+Applied, thanks!
