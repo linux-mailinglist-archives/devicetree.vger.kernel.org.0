@@ -2,168 +2,280 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3BCBE756E33
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 22:28:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 924EA756E48
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 22:33:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230322AbjGQU2V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jul 2023 16:28:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60728 "EHLO
+        id S230511AbjGQUdt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jul 2023 16:33:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34820 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230040AbjGQU2T (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 16:28:19 -0400
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBC4118C
-        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 13:28:17 -0700 (PDT)
-Received: by mail-wr1-x434.google.com with SMTP id ffacd0b85a97d-31297125334so3103661f8f.0
-        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 13:28:17 -0700 (PDT)
+        with ESMTP id S230508AbjGQUdr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 16:33:47 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EA72171A
+        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 13:33:36 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-51e57870becso6489993a12.2
+        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 13:33:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689625696; x=1692217696;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1689626014; x=1692218014;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=AG7fGvafEd/lisvGfSpBrXxSbQJiXU+xkXO7Ug+DfFg=;
-        b=vJj5ns2hBibr8T92EKehctfcZ+HAd+4WAtmeNlCiv4wgtQ4ZasJ1bDtiJZEbq0CQiQ
-         NnmgFPPDS1HyW3inCNkpGqYhWX20gPZPcA9fZm1YpHOW3GqwSrUSZ1Il2ydvoz/8KgMH
-         MdYu150g8O+++oQ29UG12SoGWx2gCPeb41TY9vEDbPm0uYsA79wlcfWemluSqlP27n2o
-         +RcANGJEzeiy5jrXyyXkIhxkMt3S/xua//9HPgb3N06SMX3mSea+B+/pqfhYPmr9hFIR
-         50/ruasoH6F1g6HQ89H6gC6zpn0BMFH5C13b95ZT7LMhYPIXT8XB5x7ZYN5uBV2pR8ZQ
-         HWRA==
+        bh=SAFiMNxdlmBtCViQChOk/XFJQ0JSC5fbUjtDK9wgAoM=;
+        b=iSxMBi3rKH/6HnCc1X5leW3yiIjzjg9zHPJMFJaNMps+seelAPG9EAtxK3l1yY4qDb
+         asU5cq9S/Umd+tNQSe8JyDEnf525Mw08c5m1GsZZFRGlF8qAR/KawcgLyZvUXZ4HmmG6
+         5pXkdDbUkghcwnPJDykuc8PpUx4SSJE5xQhXz4f7PdcNnwApKkFFw0+9e1jDe+pu6MHB
+         Q7BpMxlmArSR1g8YfcA92+b1JW33rEt3jE3O4XIudZ+A6LecoxZqkD+jKsqxjgx9UbLv
+         GubpKQc8DVpVsnjOiMfaSP0mGB4r6yAr4cd7k5nXyYuDYdBnaSN2giEuGrwEmNQ9ow9B
+         iPMg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689625696; x=1692217696;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1689626014; x=1692218014;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=AG7fGvafEd/lisvGfSpBrXxSbQJiXU+xkXO7Ug+DfFg=;
-        b=Xvi7d06KT2kVgLIVnG129CJZWSvD9bFtEgv0nyV6jHPX2V84Bdn5oKf0p5BCUAwGmH
-         s1PIy0BEah+tw3Bgb8WkzkDpjVxKXfm1w5C0HNg+HCa+hIQcDQtJhnHvwAdl2dhowSdV
-         Z5G1JAFdIdkfLcHPuPvF2+125LSd56/5SW3VqmzEWAhYloizBgy8EG2jPkT8ruVBKEH4
-         coIUsnQBBwLEiB/TuBf4XSwzlz0fiGTkeqZyWq1Yvk0u+kCqFA1N97+4Y1FNprXKTM3P
-         xXzi/ObzJx/oC/xvWkDpn7cEkeZkEDuVJBkN+5hXGFwiiuqi7IfB+qtGCIwotVQ7gTTU
-         WV8Q==
-X-Gm-Message-State: ABy/qLbFJ3uiemC5/YFtsTZwoZ/AYboR7IKanB1dp9M1wudisdFx1iYN
-        ymd2LoIUlwhzCjo3+vTY7bpbFA==
-X-Google-Smtp-Source: APBJJlEBrSfU2cS21+fm2MoIe7W+6L9Lpz1+1PzSPvK7sQ+YdcnkmO/+0KK6jHlgouyAycsqc+MvnA==
-X-Received: by 2002:adf:e90a:0:b0:313:f000:5de6 with SMTP id f10-20020adfe90a000000b00313f0005de6mr8649051wrm.16.1689625696336;
-        Mon, 17 Jul 2023 13:28:16 -0700 (PDT)
-Received: from [192.168.2.199] (host-92-17-99-126.as13285.net. [92.17.99.126])
-        by smtp.gmail.com with ESMTPSA id v12-20020adfedcc000000b00314315071bbsm378022wro.38.2023.07.17.13.28.15
+        bh=SAFiMNxdlmBtCViQChOk/XFJQ0JSC5fbUjtDK9wgAoM=;
+        b=DbhVnVVVci7a3TKEw2/JbtDm+E+fEp7mQ0IWc7qUCKBgz/cTxsS4guNeM4aZoaQD0z
+         nSIw2SCmF03n5/9cwnEEZYgK1Fuozn8Mj2vILPHZNDqXOqwE2x8LhMT+9d5Hem7uy3Z1
+         mCSovKrxJMSB1UJ8UQvv9oNEq83qiRG2+VDaRwycyxn7iABdLUr1+YkbbJ2NOasnYPN1
+         r2eHAweGQeQYm3B2gMrQb1anMqBQ1PttXTqAaqaVSEGZ+2MhSvg3YV/BZroKB73RX0FK
+         0RhKw5JT/pLTyQUJck7DM4Xi3n00kA88hdnNS9prMxpxyjN7ZJhjCrs54SW4Efcxm0kL
+         IRTQ==
+X-Gm-Message-State: ABy/qLZoNA5/rE7r1qw1FP7eo1mnYwI8tbObFFH8ygCGs32R6ivsOM84
+        Czo/5/kJGw/SMiqt2f2LfeQHhA==
+X-Google-Smtp-Source: APBJJlFaEFzB40WLLllp7hDstkNtL0eOmE8wbJNRTUu6O38yJyr65Skc8hi6CYGIFXBli4PnnQ+sPQ==
+X-Received: by 2002:aa7:df08:0:b0:51e:d4b:3c9d with SMTP id c8-20020aa7df08000000b0051e0d4b3c9dmr12513969edy.23.1689626014529;
+        Mon, 17 Jul 2023 13:33:34 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id e19-20020aa7d7d3000000b0051e2a6cef4fsm113320eds.36.2023.07.17.13.33.32
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 17 Jul 2023 13:28:15 -0700 (PDT)
-Message-ID: <34a4a052-b76f-b49d-6703-405d65ffd597@linaro.org>
-Date:   Mon, 17 Jul 2023 21:28:15 +0100
+        Mon, 17 Jul 2023 13:33:33 -0700 (PDT)
+Message-ID: <0c534a51-dff3-84f1-34cb-41cae25d3871@linaro.org>
+Date:   Mon, 17 Jul 2023 22:33:31 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH] arm64: dts: qcom: sa8540p-ride: enable rtc
-To:     Eric Chanudet <echanude@redhat.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230717182351.3389252-1-echanude@redhat.com>
+ Thunderbird/102.13.0
+Subject: Re: [PATCH V1 1/5] ASoC: codecs: Add i2c and codec registration for
+ aw88261 and their associated operation functions
 Content-Language: en-US
-From:   Caleb Connolly <caleb.connolly@linaro.org>
-In-Reply-To: <20230717182351.3389252-1-echanude@redhat.com>
+To:     wangweidong.a@awinic.com, lgirdwood@gmail.com, broonie@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, perex@perex.cz, tiwai@suse.com,
+        rf@opensource.cirrus.co, shumingf@realtek.com,
+        herve.codina@bootlin.com, flatmax@flatmax.com,
+        ckeepax@opensource.cirrus.com, doug@schmorgal.com,
+        fido_max@inbox.ru, pierre-louis.bossart@linux.intel.com,
+        kiseok.jo@irondevice.com, liweilei@awinic.com,
+        colin.i.king@gmail.com, trix@redhat.com,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     yijiangtao@awinic.com, zhangjianming@awinic.com
+References: <20230717115845.297991-1-wangweidong.a@awinic.com>
+ <20230717115845.297991-2-wangweidong.a@awinic.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230717115845.297991-2-wangweidong.a@awinic.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 17/07/2023 19:23, Eric Chanudet wrote:
-> SA8540P-ride is one of the Qualcomm platforms that does not have access
-> to UEFI runtime services and on which the RTC registers are read-only,
-> as described in:
-> https://lore.kernel.org/all/20230202155448.6715-1-johan+linaro@kernel.org/
+On 17/07/2023 13:58, wangweidong.a@awinic.com wrote:
+> From: Weidong Wang <wangweidong.a@awinic.com>
 > 
-> Reserve four bytes in one of the PMIC registers to hold the RTC offset
-> the same way as it was done for sc8280xp-crd which has similar
-> limitations:
->     commit e67b45582c5e ("arm64: dts: qcom: sc8280xp-crd: enable rtc")
+> The AW88261 is an I2S/TDM input, high efficiency
+> digital Smart K audio amplifier with an integrated 10.25V
+> smart boost convert
 > 
-> One small difference on SA8540P-ride, the PMIC register bank SDAM6 is
-> not writable, so use SDAM7 instead.
-> 
-> Signed-off-by: Eric Chanudet <echanude@redhat.com>
-> ---
->  arch/arm64/boot/dts/qcom/sa8540p-pmics.dtsi | 10 +++++++++-
->  arch/arm64/boot/dts/qcom/sa8540p-ride.dts   | 15 +++++++++++++++
->  2 files changed, 24 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sa8540p-pmics.dtsi b/arch/arm64/boot/dts/qcom/sa8540p-pmics.dtsi
-> index 1221be89b3de..9c5dcad35cce 100644
-> --- a/arch/arm64/boot/dts/qcom/sa8540p-pmics.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sa8540p-pmics.dtsi
-> @@ -14,7 +14,7 @@ pmm8540a: pmic@0 {
->  		#address-cells = <1>;
->  		#size-cells = <0>;
->  
-> -		rtc@6000 {
-> +		pmm8540a_rtc: rtc@6000 {
->  			compatible = "qcom,pm8941-rtc";
->  			reg = <0x6000>, <0x6100>;
->  			reg-names = "rtc", "alarm";
-> @@ -22,6 +22,14 @@ rtc@6000 {
->  			wakeup-source;
->  		};
->  
-> +		pmm8540a_sdam_7: nvram@b610 {
-Johan disabled the SDAM node in their series for sc8280xp. Unless it's
-used on all sa8540p platforms, you should probably also do that here.
 
-			
-> +			compatible = "qcom,spmi-sdam";
-> +			reg = <0xb610>;
-> +			#address-cells = <1>;
-> +			#size-cells = <1>;
-> +			ranges = <0 0xb610 0xb0>;
-			status = "disabled";
+...
 
-With that fix,
-
-Reviewed-by: Caleb Connolly <caleb.connolly@linaro.org>
-> +		};
 > +
->  		pmm8540a_gpios: gpio@c000 {
->  			compatible = "qcom,pm8150-gpio", "qcom,spmi-gpio";
->  			reg = <0xc000>;
-> diff --git a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
-> index 5a26974dcf8f..608dd71a3f1c 100644
-> --- a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
-> +++ b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
-> @@ -407,6 +407,21 @@ &pcie3a_phy {
->  	status = "okay";
->  };
->  
-> +&pmm8540a_rtc {
-> +	nvmem-cells = <&rtc_offset>;
-> +	nvmem-cell-names = "offset";
+> +static int aw88261_request_firmware_file(struct aw88261 *aw88261)
+> +{
+> +	const struct firmware *cont = NULL;
+> +	int ret;
 > +
-> +	status = "okay";
+> +	aw88261->aw_pa->fw_status = AW88261_DEV_FW_FAILED;
+> +
+> +	ret = request_firmware(&cont, AW88261_ACF_FILE, aw88261->aw_pa->dev);
+> +	if ((ret < 0) || (!cont)) {
+> +		dev_err(aw88261->aw_pa->dev, "load [%s] failed!", AW88261_ACF_FILE);
+> +		return ret;
+
+return dev_err_probe?
+
+> +	}
+> +
+> +	dev_info(aw88261->aw_pa->dev, "loaded %s - size: %zu\n",
+> +			AW88261_ACF_FILE, cont ? cont->size : 0);> +
+> +	aw88261->aw_cfg = devm_kzalloc(aw88261->aw_pa->dev, cont->size + sizeof(int), GFP_KERNEL);
+> +	if (!aw88261->aw_cfg) {
+> +		release_firmware(cont);
+> +		return -ENOMEM;
+> +	}
+> +	aw88261->aw_cfg->len = (int)cont->size;
+> +	memcpy(aw88261->aw_cfg->data, cont->data, cont->size);
+> +	release_firmware(cont);
+> +
+> +	ret = aw88261_dev_load_acf_check(aw88261->aw_pa, aw88261->aw_cfg);
+> +	if (ret < 0) {
+> +		dev_err(aw88261->aw_pa->dev, "Load [%s] failed ....!", AW88261_ACF_FILE);
+> +		return ret;
+> +	}
+> +
+> +	dev_dbg(aw88261->aw_pa->dev, "%s : bin load success\n", __func__);
+
+Drop dev_dbg on simple probe success/failure. There is tracing
+infrastructure for this.
+
+> +
+> +	mutex_lock(&aw88261->lock);
+> +	/* aw device init */
+> +	ret = aw88261_dev_init(aw88261->aw_pa, aw88261->aw_cfg);
+> +	if (ret < 0)
+> +		dev_err(aw88261->aw_pa->dev, "dev init failed");
+> +	mutex_unlock(&aw88261->lock);
+> +
+> +	return ret;
+> +}
+> +
+> +static int aw88261_codec_probe(struct snd_soc_component *component)
+> +{
+> +	struct snd_soc_dapm_context *dapm = snd_soc_component_get_dapm(component);
+> +	struct aw88261 *aw88261 = snd_soc_component_get_drvdata(component);
+> +	int ret;
+> +
+> +	INIT_DELAYED_WORK(&aw88261->start_work, aw88261_startup_work);
+> +
+> +	ret = aw88261_request_firmware_file(aw88261);
+> +	if (ret < 0) {
+> +		dev_err(aw88261->aw_pa->dev, "aw88261_request_firmware_file failed\n");
+> +		return ret;
+
+Consider here dev_err_probe, to annotate possibility of probe deferal
+(e.g. missing rootfs). I think component probe is called for device probes?
+
+> +	}
+> +
+> +	/* add widgets */
+> +	ret = snd_soc_dapm_new_controls(dapm, aw88261_dapm_widgets,
+> +							ARRAY_SIZE(aw88261_dapm_widgets));
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	/* add route */
+> +	ret = snd_soc_dapm_add_routes(dapm, aw88261_audio_map,
+> +							ARRAY_SIZE(aw88261_audio_map));
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	ret = snd_soc_add_component_controls(component, aw88261_controls,
+> +							ARRAY_SIZE(aw88261_controls));
+> +
+> +	return ret;
+> +}
+> +
+
+> +static void aw88261_codec_remove(struct snd_soc_component *aw_codec)
+> +{
+> +	struct aw88261 *aw88261 = snd_soc_component_get_drvdata(aw_codec);
+> +
+> +	cancel_delayed_work_sync(&aw88261->start_work);
+> +}
+> +
+> +
+> +static void aw88261_hw_reset(struct aw88261 *aw88261)
+> +{
+> +	gpiod_set_value_cansleep(aw88261->reset_gpio, 0);
+> +	usleep_range(AW88261_1000_US, AW88261_1000_US + 10);
+> +	gpiod_set_value_cansleep(aw88261->reset_gpio, 1);
+> +	usleep_range(AW88261_1000_US, AW88261_1000_US + 10);
+> +}
+> +
+> +static int aw88261_i2c_probe(struct i2c_client *i2c)
+> +{
+> +	struct aw88261 *aw88261;
+> +	int ret;
+> +
+> +	if (!i2c_check_functionality(i2c->adapter, I2C_FUNC_I2C)) {
+> +		dev_err(&i2c->dev, "check_functionality failed");
+> +		return -EIO;
+> +	}
+> +
+> +	aw88261 = aw88261_malloc_init(i2c);
+> +	if (!aw88261) {
+> +		dev_err(&i2c->dev, "malloc aw88261 failed");
+
+Do not print messages on allocation errors.
+
+Also, there is little sense in moving one or two functions - kzalloc -
+to separate function. It does not make the code easier to read.
+
+> +		return -ENOMEM;
+> +	}
+> +	i2c_set_clientdata(i2c, aw88261);
+> +
+> +	aw88261->reset_gpio = devm_gpiod_get_optional(&i2c->dev, "reset", GPIOD_OUT_LOW);
+> +	if (IS_ERR(aw88261->reset_gpio))
+> +		dev_info(&i2c->dev, "reset gpio not defined\n");
+> +	else
+> +		aw88261_hw_reset(aw88261);
+> +
+> +	aw88261->regmap = devm_regmap_init_i2c(i2c, &aw88261_remap_config);
+> +	if (IS_ERR(aw88261->regmap)) {
+> +		ret = PTR_ERR(aw88261->regmap);
+> +		dev_err(&i2c->dev, "Failed to init regmap: %d\n", ret);
+> +		return ret;
+
+return dev_err_probe
+
+> +	}
+> +
+> +	/* aw pa init */
+> +	ret = aw88261_init(&aw88261->aw_pa, i2c, aw88261->regmap);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	ret = devm_snd_soc_register_component(&i2c->dev,
+> +			&soc_codec_dev_aw88261,
+> +			aw88261_dai, ARRAY_SIZE(aw88261_dai));
+> +	if (ret < 0)
+> +		dev_err(&i2c->dev, "failed to register aw88261: %d", ret);
+> +
+> +	return ret;
+> +}
+> +
+> +#ifdef CONFIG_OF
+
+Drop
+
+> +static const struct of_device_id aw88261_of_match[] = {
+> +	{ .compatible = "awinic,aw88261" },
+> +	{ },
 > +};
+> +MODULE_DEVICE_TABLE(of, aw88261_of_match);
+> +#endif
 > +
-> +&pmm8540a_sdam_7 {
-> +	status = "okay";> +
-> +	rtc_offset: rtc-offset@ac {
-> +		reg = <0xac 0x4>;
-> +	};
+> +static const struct i2c_device_id aw88261_i2c_id[] = {
+> +	{ AW88261_I2C_NAME, 0 },
+> +	{ }
 > +};
+> +MODULE_DEVICE_TABLE(i2c, aw88261_i2c_id);
 > +
->  &qup0 {
->  	status = "okay";
->  };
+> +static struct i2c_driver aw88261_i2c_driver = {
+> +	.driver = {
+> +		.name = AW88261_I2C_NAME,
+> +		.of_match_table = of_match_ptr(aw88261_of_match),
 
--- 
-// Caleb (they/them)
+Drop of_match_ptr.
+
+
+Best regards,
+Krzysztof
+
