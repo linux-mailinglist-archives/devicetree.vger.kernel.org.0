@@ -2,67 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AC5DA756EA0
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 22:54:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 56428756EAB
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 23:01:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230241AbjGQUyV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jul 2023 16:54:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44296 "EHLO
+        id S229697AbjGQVBD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jul 2023 17:01:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46926 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231338AbjGQUyD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 16:54:03 -0400
-Received: from mail-ot1-x32a.google.com (mail-ot1-x32a.google.com [IPv6:2607:f8b0:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E033E10CC
-        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 13:54:00 -0700 (PDT)
-Received: by mail-ot1-x32a.google.com with SMTP id 46e09a7af769-6b9d68a7abaso967286a34.3
-        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 13:54:00 -0700 (PDT)
+        with ESMTP id S229619AbjGQVBC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 17:01:02 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3043A4
+        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 14:01:00 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-991ef0b464cso1298439466b.0
+        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 14:01:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1689627240; x=1692219240;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=GawPkfDxLG3hfeDx0w3lYK35PM3sgJyj2R2oS+jmaF0=;
-        b=li1I5yuk/FWHcygoZC5vgoBrwA8v6JlxsaCGCv55YtcbRS6bLCFTylJhXUr68Vs/q6
-         KXvwTVdJpGs/J9Tk4kHohb98Ct3cPpQVWRQyNCN4fnyNYgY6BaEfA9zRYF+6wWcL7P4Z
-         HZkrpDbiYPtoXE9d/fu7pvxGeLgriwn/Fmwx+nectT77VXWtF2YZsB0+xO0AX4HyX+Li
-         npeXJn8Qv95Se3/xzM4zc5wysT6YMT9Qbxl4CToL7BWxP/dg5LBXT2M4/eSuCbOcV2E6
-         zOVsXqZU7xeIMLbMR9HgFR2gsbDEQgSjN4miqyiG8A8HjPJuSw0ydzlNG1zCz2K45T2S
-         8yiQ==
+        d=linaro.org; s=google; t=1689627659; x=1692219659;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=AnjHreWF4HQ2gd8gLooLMHw770F6qkj0Sftpoev0l60=;
+        b=Mx6aiakuHMHpp5y7Z2lsRn4qs1q6mwMOt2DvKCjAAGpWr9X3y0w6NcMDsyggz6xYvs
+         E/fhWtYojdu+GexF9HBY7o+YfMNvSQp68xkAezwLpsVueQD/lvqNipteQhz2+fKn6lMy
+         qm3jtb9aJf3OknVRW4gLVQjOrvPsKK12kgsZeNtmzqzutmpcoJdI59HFIhLPGLuYNyOa
+         VUbprYJsRuZJyzBrQyFq/Hd4dV31bI+hBf9+AHuCpZ5l2z/KfXOCfCsW5uRvbx68zIgu
+         2WjQHPGLBOeROn0ir89hqD2qFO16yPmxBsz4J4DTWA08nXN0ogp7csvvyPMOiqGFdB0H
+         Z6AQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689627240; x=1692219240;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=GawPkfDxLG3hfeDx0w3lYK35PM3sgJyj2R2oS+jmaF0=;
-        b=kTEgRPqCFP6b2OH00+849QrjzSlsZsQ7D4MPAvR2MQgfJ2YoZOrnYD9+YoG6M2iY+M
-         Nngdz8GGb9iCaVorHHv0K66zHW7UvrgdFMOltai2yuU8xYQsA5A0px38XbO3rL4uG49f
-         d42qwJbqnc2iqQHeRO48Kkg2E2atmwlwAJn31wMRWrkAfG221MucKRtOW98jl/5qmEcg
-         vyid2D8mbWMZilKyKcmUS/6ZQDBSCbhmF/RKdhwLCMeFs3VGgee8kDd44hNwD3ZCeT9U
-         1JbE9Cknj2PLnil4D0/mSHyZpV0pd0ADw1wLR1aYR3WxzHtFPOdzW9zNZsMiN6TcvZg8
-         ycQg==
-X-Gm-Message-State: ABy/qLZJKr4JuNtATYyjeWuTFu16OGcZRz5X6ZuqPsgzEWoS9+XkzF/j
-        VKoswF8/o04Uwr5D6I50dtH2BeYWtjLr1UgyUawrcw==
-X-Google-Smtp-Source: APBJJlF8PV5aAI+WEINa1054HAKho3sN3sqLpoatkwUoBsIZL2mwIwUlOkjl5BlFo06M5rImuQrP6g==
-X-Received: by 2002:a9d:748f:0:b0:6b9:bf1e:c141 with SMTP id t15-20020a9d748f000000b006b9bf1ec141mr7785270otk.23.1689627240249;
-        Mon, 17 Jul 2023 13:54:00 -0700 (PDT)
-Received: from sw06.internal.sifive.com ([64.62.193.194])
-        by smtp.gmail.com with ESMTPSA id z8-20020a63b048000000b0053031f7a367sm206991pgo.85.2023.07.17.13.53.59
+        d=1e100.net; s=20221208; t=1689627659; x=1692219659;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=AnjHreWF4HQ2gd8gLooLMHw770F6qkj0Sftpoev0l60=;
+        b=hlI7Mt/fbFg4DWsBZKjrmkr8xMiJx9127uXTQ38HQv5Yi1+lwidKNouK1ZRrL7D+bC
+         md6Shttm9dcLlo++l+VG504YFxD+AR6HwLcBuwKMpJGaPdJJp2vLQkUHD+/Bxg44ral8
+         i4Smc+qxCjm0SiTBnRz5bqcZ4kU9D2wOMupRg1BKZuzseLNQVRrbU1pDBXh/q8AKQrKg
+         KoJSAnCb+YnBVnlM8egqS0mocHkQwvNMICIyJB0oDGK7yVGujK13/df1DMUoUwMdhMhk
+         KvoIV3qQIHCAyUt+uQ9f9dpEx2F5z4a0ryel/3wxVrqufdvEghQpIFNINj5ldDp7/o+L
+         wcGg==
+X-Gm-Message-State: ABy/qLbXi25VXAH9mSDNn7hWxWuahwBmwvsEOxpqZc0v/WGIecZ/ehLQ
+        o8sKg08WgBN8BpRPRgd2IjCgSg==
+X-Google-Smtp-Source: APBJJlGMQK28GVmhsl4/oDUPAmhjGFlLEYUSj3Ugct7yLJzUxWoxWzUOQDQNN5cYhh8FnsOtviRl5g==
+X-Received: by 2002:a17:906:9746:b0:98e:3dac:6260 with SMTP id o6-20020a170906974600b0098e3dac6260mr12219537ejy.13.1689627659360;
+        Mon, 17 Jul 2023 14:00:59 -0700 (PDT)
+Received: from krzk-bin.. ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id rs14-20020a170907036e00b00987e2f84768sm178392ejb.0.2023.07.17.14.00.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 17 Jul 2023 13:53:59 -0700 (PDT)
-From:   Samuel Holland <samuel.holland@sifive.com>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Andy Shevchenko <andy@kernel.org>,
+        Mon, 17 Jul 2023 14:00:58 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-Cc:     Samuel Holland <samuel.holland@sifive.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 1/2] of/irq: Export of_irq_count()
-Date:   Mon, 17 Jul 2023 13:53:56 -0700
-Message-Id: <20230717205357.2779473-2-samuel.holland@sifive.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230717205357.2779473-1-samuel.holland@sifive.com>
-References: <20230717205357.2779473-1-samuel.holland@sifive.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 1/2] arm64: dts: qcom: sc8180x-primus: remove superfluous "input-enable"
+Date:   Mon, 17 Jul 2023 23:00:54 +0200
+Message-Id: <20230717210055.21979-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -75,27 +74,67 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This function is used by the SiFive GPIO driver. Export it so that
-driver can be built as a module.
+Pin configuration property "input-enable" was used with the intention to
+disable the output, but this is done by default by Linux drivers.  Since
+commit c4a48b0df8bf ("dt-bindings: pinctrl: qcom: tlmm should use
+output-disable, not input-enable") the property is not accepted anymore:
 
-Signed-off-by: Samuel Holland <samuel.holland@sifive.com>
+  sc8180x-primus.dtb: pinctrl@3100000: hall-int-active-state: 'oneOf' conditional failed, one must be fixed:
+    'bias-disable', 'function', 'input-enable', 'pins' do not match any of the regexes: '-pins$', 'pinctrl-[0-9]+'
+
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
 ---
 
- drivers/of/irq.c | 1 +
- 1 file changed, 1 insertion(+)
+That's my favorite commit.
+---
+ arch/arm64/boot/dts/qcom/sc8180x-primus.dts | 5 -----
+ 1 file changed, 5 deletions(-)
 
-diff --git a/drivers/of/irq.c b/drivers/of/irq.c
-index 174900072c18..9cea7632dd6a 100644
---- a/drivers/of/irq.c
-+++ b/drivers/of/irq.c
-@@ -489,6 +489,7 @@ int of_irq_count(struct device_node *dev)
+diff --git a/arch/arm64/boot/dts/qcom/sc8180x-primus.dts b/arch/arm64/boot/dts/qcom/sc8180x-primus.dts
+index 9b8695b92c48..aaac2da69286 100644
+--- a/arch/arm64/boot/dts/qcom/sc8180x-primus.dts
++++ b/arch/arm64/boot/dts/qcom/sc8180x-primus.dts
+@@ -580,7 +580,6 @@ hall_int_active_state: hall-int-active-state {
+ 		pins = "gpio121";
+ 		function = "gpio";
  
- 	return nr;
- }
-+EXPORT_SYMBOL_GPL(of_irq_count);
+-		input-enable;
+ 		bias-disable;
+ 	};
  
- /**
-  * of_irq_to_resource_table - Fill in resource table with node's IRQ info
+@@ -590,7 +589,6 @@ int-n-pins {
+ 			function = "gpio";
+ 
+ 			bias-pull-up;
+-			intput-enable;
+ 		};
+ 
+ 		kp-disable-pins {
+@@ -639,7 +637,6 @@ tp-int-pins {
+ 			function = "gpio";
+ 
+ 			bias-disable;
+-			input-enable;
+ 		};
+ 
+ 		tp-close-n-pins {
+@@ -647,7 +644,6 @@ tp-close-n-pins {
+ 			function = "gpio";
+ 
+ 			bias-disable;
+-			input-enable;
+ 		};
+ 	};
+ 
+@@ -656,7 +652,6 @@ int-n-pins {
+ 			pins = "gpio122";
+ 			function = "gpio";
+ 
+-			input-enable;
+ 			bias-disable;
+ 		};
+ 
 -- 
-2.40.1
+2.34.1
 
