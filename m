@@ -2,181 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 012B7756DDB
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 21:58:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7CC77756DDF
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 21:59:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230227AbjGQT60 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jul 2023 15:58:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49436 "EHLO
+        id S230253AbjGQT7l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jul 2023 15:59:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50974 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230465AbjGQT6T (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 15:58:19 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2EADC1737
-        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 12:58:10 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-9936b3d0286so700880866b.0
-        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 12:58:10 -0700 (PDT)
+        with ESMTP id S229793AbjGQT7k (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 15:59:40 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD663E7
+        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 12:59:38 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id 2adb3069b0e04-4fb863edcb6so8003668e87.0
+        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 12:59:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689623888; x=1692215888;
+        d=linaro.org; s=google; t=1689623977; x=1692215977;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=GCWvgKUXfcW1CPS5sL1xeCdhcIZJ7olcj1eoB35DPKY=;
-        b=FYiL78JQFAZQkZuMCP3Kkz2pXDfnIy2mkoW84p24YFfPCUYfyCa1OBXQXkps4rvxc0
-         VVG8IbaU0LhSDVy7/6+1MaAWpftz2fjvsomf+J0PsaBBMXm6wXC2bphsw6ScSzh++TAq
-         udgfArxo5zxNGgenWAZ9xms56ILBGMh25jhzYeaFYzuIEU62KlRSzh4xi3EfNGunnbCc
-         6wcJ2g6LLLlJLc9gZMZlKrlxhuVOsPJ5rLjCH7UPRObW1FZKFcg1ilBr/2lIpxNIypcM
-         wIsQuuPd8I+MHkU9nVqhjM1sayMZ8VHR93pQ46XXVYN81n33+o7FNZarAgcgxRzSGl+g
-         mFoQ==
+        bh=GvxfVjwQCk1tS/oslTGgVT+uAnXvEyTLoAROKgew5sE=;
+        b=M/3X+A8jovHdNAXQEux4zoUGZNz7ogggZLsVe7M2Nx/OFI0I9RvpFZSYOJCoFZmgGj
+         m2aKVDMFvWmWex104EZkKqM4tKCC/vg4w7GcsoHJgayGYn72cNyWUOCAJtyK/bb1Z0FP
+         CX68lfcgb/Ncncjks7En+K3Q+zM1PtT1Ka0/EkQKwsqex5Vt+AsictC4voEk5WAi3aet
+         8jMEEDf/5PCT7M2ajf8GQSN2NX/nc0q16/Zw4QTQxuLU6uHtc+HukY5QdqztFJzKjIjM
+         cfGPuSC+Ae+clZs4XUMg9/s4IgY9Se/TqkH9a71tuq+gJc2dMHjy9+10YQW3OGtACFYW
+         CV8g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689623888; x=1692215888;
+        d=1e100.net; s=20221208; t=1689623977; x=1692215977;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=GCWvgKUXfcW1CPS5sL1xeCdhcIZJ7olcj1eoB35DPKY=;
-        b=WAoAZk84g2Pl3lNTbg0wtCwu3hM7fJCODDB0BH54ZvEWURodC1GXA5WS0vCwATgo1s
-         tLJtO6BIF79NGCNXEXbSQ3LUsXfjcPdz9gH6d9JlTFPnCXR2R2PerB/nRsaqf1K9a8SL
-         bWZ3HOwr7+5cHD5kpASyBBXkh35x+Bwb3YRC6w0HobrBX5IKeulqgztxtsjuiW/JR0wc
-         o5uCZPbrMiDNHaDNPDMtn3eIyhjAtJPBmVL6ijdfDUP/XEoLokX8fC28X7mYTPWl6/Uo
-         hNht2Qpldbupmex+nK0SyvpUWX9OUjyQPl6anyIfpxALvE4vxdVAeCcvRLOBrJgcHXdf
-         wjYw==
-X-Gm-Message-State: ABy/qLZKp2t+AJ15cYZqb221XVNI1eO4MYuG20KRuBpKHaZg/eCK0XQj
-        z3X6EPn9khAzqxItTUtrR39HqQ==
-X-Google-Smtp-Source: APBJJlGPH/4WX3gvMsX76UHYK0bLVpi5LnmMFLDa/91Ewd2MMtPkpY4SnQrrAXgEujst5NHSR/yweg==
-X-Received: by 2002:a17:907:7709:b0:94f:3521:394 with SMTP id kw9-20020a170907770900b0094f35210394mr10161706ejc.51.1689623888534;
-        Mon, 17 Jul 2023 12:58:08 -0700 (PDT)
+        bh=GvxfVjwQCk1tS/oslTGgVT+uAnXvEyTLoAROKgew5sE=;
+        b=hMu0w0X4I2pmd6v5zf6+QARqTwppXQo0GN/5EypNfMV0JcLRafAt1x+uIsV3SzHv61
+         VnU4f5salg3NCOe5cavRQiubtk6r7Gbckcz2M0tdp5o77OYd5cj556gsbacUuBWj70mE
+         A/37myMSWa4ZJSTnh8aadHotWvxlkyXnEcFt0VH+eAn4O5vZ38vJho+A7GFmOaNYV8h/
+         leMQsg5rBY37wznanpeBmafWzw7zrMNxybduiwwegGtnDPC2QWsjSJlDLUSHwjfby7Fm
+         ODjaECovDdk+nXMDBFKPD6JiVchiB97NxGHORUZcz3m00Qe/6kN5DhcNVpJMTGLVK0E4
+         qp9Q==
+X-Gm-Message-State: ABy/qLZ+espoPd+QAC/aGNrYvFInxEnZ0y4DJz+uTCup8GSGvHeqTjV+
+        KcB2QIOMkmSr/76iX+cHxdVXbQ==
+X-Google-Smtp-Source: APBJJlHVBwe/J945YiJIdTO2oS6H9TlT4HIVSlpbPkVmkktYvSkLL2/0tr27q6IkeV4DOmf9+oEX3g==
+X-Received: by 2002:a05:6512:40b:b0:4fb:79b5:5512 with SMTP id u11-20020a056512040b00b004fb79b55512mr165033lfk.66.1689623976938;
+        Mon, 17 Jul 2023 12:59:36 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id h10-20020a170906828a00b0094e7d196aa4sm82784ejx.160.2023.07.17.12.58.06
+        by smtp.gmail.com with ESMTPSA id j9-20020aa7c409000000b0051e362db186sm68110edq.60.2023.07.17.12.59.34
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 17 Jul 2023 12:58:08 -0700 (PDT)
-Message-ID: <43ecf0b0-4b55-ab11-3b80-b9243b971c2c@linaro.org>
-Date:   Mon, 17 Jul 2023 21:58:06 +0200
+        Mon, 17 Jul 2023 12:59:36 -0700 (PDT)
+Message-ID: <6338cc75-e3fe-ba19-3df7-727b63fec245@linaro.org>
+Date:   Mon, 17 Jul 2023 21:59:33 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
-Subject: Re: [PATCH v3 4/4] arm64: dts: Add MediaTek MT8188 dts and evaluation
- board and Makefile
+Subject: Re: [PATCH v1 1/2] dt-bindings: input: qcom,pm8xxx-vib: add more PMIC
+ support
 Content-Language: en-US
-To:     Jason-ch Chen <jason-ch.chen@mediatek.com>,
+To:     Fenglin Wu <quic_fenglinw@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     =?UTF-8?Q?N=c3=adcolas_F_=2e_R_=2e_A_=2e_Prado?= 
-        <nfraprado@collabora.com>, Chen-Yu Tsai <wenst@chromium.org>,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
-References: <20230717120300.21388-1-jason-ch.chen@mediatek.com>
- <20230717120300.21388-5-jason-ch.chen@mediatek.com>
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     quic_collinsd@quicinc.com, quic_subbaram@quicinc.com,
+        quic_kamalw@quicinc.com, jestar@qti.qualcomm.com
+References: <20230717062547.2086869-1-quic_fenglinw@quicinc.com>
+ <20230717062547.2086869-2-quic_fenglinw@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230717120300.21388-5-jason-ch.chen@mediatek.com>
+In-Reply-To: <20230717062547.2086869-2-quic_fenglinw@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/07/2023 14:03, Jason-ch Chen wrote:
-> From: jason-ch chen <Jason-ch.Chen@mediatek.com>
+On 17/07/2023 08:25, Fenglin Wu wrote:
+> Add support for vibrator module inside Qualcomm PMI632, PM7250B, PM7325B
+> and PM7550BA PMICs.
 > 
-> MT8188 is a SoC based on 64bit ARMv8 architecture. It contains 6 CA55
-> and 2 CA78 cores. MT8188 share many HW IP with MT65xx series.
-> 
-> We add basic chip support for MediaTek MT8188 on evaluation board.
-> 
-> Signed-off-by: jason-ch chen <Jason-ch.Chen@mediatek.com>
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Signed-off-by: Fenglin Wu <quic_fenglinw@quicinc.com>
 > ---
->  arch/arm64/boot/dts/mediatek/Makefile       |   1 +
->  arch/arm64/boot/dts/mediatek/mt8188-evb.dts | 401 +++++++++
->  arch/arm64/boot/dts/mediatek/mt8188.dtsi    | 951 ++++++++++++++++++++
->  3 files changed, 1353 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/mediatek/mt8188-evb.dts
->  create mode 100644 arch/arm64/boot/dts/mediatek/mt8188.dtsi
+>  Documentation/devicetree/bindings/input/qcom,pm8xxx-vib.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dts/mediatek/Makefile
-> index c99c3372a4b5..9bd2324259a3 100644
-> --- a/arch/arm64/boot/dts/mediatek/Makefile
-> +++ b/arch/arm64/boot/dts/mediatek/Makefile
-> @@ -44,6 +44,7 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-krane-sku0.dtb
->  dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-krane-sku176.dtb
->  dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-pumpkin.dtb
->  dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-evb.dtb
-> +dtb-$(CONFIG_ARCH_MEDIATEK) += mt8188-evb.dtb
->  dtb-$(CONFIG_ARCH_MEDIATEK) += mt8192-asurada-hayato-r1.dtb
->  dtb-$(CONFIG_ARCH_MEDIATEK) += mt8192-asurada-spherion-r0.dtb
->  dtb-$(CONFIG_ARCH_MEDIATEK) += mt8192-evb.dtb
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8188-evb.dts b/arch/arm64/boot/dts/mediatek/mt8188-evb.dts
-> new file mode 100644
-> index 000000000000..d8906172390e
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/mediatek/mt8188-evb.dts
-> @@ -0,0 +1,401 @@
-> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> +/*
-> + * Copyright (C) 2023 MediaTek Inc.
-> + */
-> +/dts-v1/;
-> +#include "mt8188.dtsi"
-> +#include "mt6359.dtsi"
-> +
-> +/ {
-> +	model = "MediaTek MT8188 evaluation board";
-> +	compatible = "mediatek,mt8188-evb", "mediatek,mt8188";
-> +
-> +	aliases {
-> +		serial0 = &uart0;
-> +		i2c0 = &i2c0;
-> +		i2c1 = &i2c1;
-> +		i2c2 = &i2c2;
-> +		i2c3 = &i2c3;
-> +		i2c4 = &i2c4;
-> +		i2c5 = &i2c5;
-> +		i2c6 = &i2c6;
-> +		mmc0 = &mmc0;
-> +	};
-> +
-> +	chosen: chosen {
-> +		stdout-path = "serial0:115200n8";
-> +		kaslr-seed = <0 0>;
+> diff --git a/Documentation/devicetree/bindings/input/qcom,pm8xxx-vib.yaml b/Documentation/devicetree/bindings/input/qcom,pm8xxx-vib.yaml
+> index c8832cd0d7da..642408e2b35f 100644
+> --- a/Documentation/devicetree/bindings/input/qcom,pm8xxx-vib.yaml
+> +++ b/Documentation/devicetree/bindings/input/qcom,pm8xxx-vib.yaml
+> @@ -15,6 +15,10 @@ properties:
+>        - qcom,pm8058-vib
+>        - qcom,pm8916-vib
+>        - qcom,pm8921-vib
+> +      - qcom,pmi632-vib
+> +      - qcom,pm7250b-vib
+> +      - qcom,pm7325b-vib
+> +      - qcom,pm7550ba-vib
 
-It does not look like you tested the DTS against bindings. Please run
-`make dtbs_check` (see
-Documentation/devicetree/bindings/writing-schema.rst or
-https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
-for instructions).
-
-> +	};
-> +
-> +	memory@40000000 {
-> +		device_type = "memory";
-> +		reg = <0 0x40000000 0 0x80000000>;
-> +	};
-> +
-> +	reserved_memory: reserved-memory {
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +
-> +		scp_mem_reserved: scp_mem_region {
-
-No underscores in node names.
-
-> +			compatible = "shared-dma-pool";
-> +			reg = <0 0x50000000 0 0x2900000>;
-> +			no-map;
-> +		};
-> +	};
-
+Aren't the last two compatible?
 
 Best regards,
 Krzysztof
