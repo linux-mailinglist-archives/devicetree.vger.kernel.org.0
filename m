@@ -2,134 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 144FC75609B
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 12:37:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CB88D7560E5
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 12:49:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229954AbjGQKhW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jul 2023 06:37:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46620 "EHLO
+        id S229872AbjGQKtu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jul 2023 06:49:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54044 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229881AbjGQKhR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 06:37:17 -0400
-Received: from mail-pg1-x52b.google.com (mail-pg1-x52b.google.com [IPv6:2607:f8b0:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C203118;
-        Mon, 17 Jul 2023 03:37:16 -0700 (PDT)
-Received: by mail-pg1-x52b.google.com with SMTP id 41be03b00d2f7-55b1238a024so3335702a12.0;
-        Mon, 17 Jul 2023 03:37:16 -0700 (PDT)
+        with ESMTP id S230412AbjGQKtt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 06:49:49 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C02E10F1;
+        Mon, 17 Jul 2023 03:49:47 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-9928abc11deso619131366b.1;
+        Mon, 17 Jul 2023 03:49:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1689590236; x=1692182236;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/l5xqvDPNGoyvEYRfPhyK85Kw/zzYVcuJucCvVvL9ig=;
-        b=OqDfAU+Jn9QP3sHnEhBNasN57SAKS7a79TSjawpfjL4qZeoBPEkiqvwKlc+3i2wQ1A
-         AQodZVDulhq+6rUDlHebnmkXA7p7Y1cCVMiJ728dcPXsNc8FDBgtCDwEj3B79zUZZtud
-         2lSVkl1oObtyB+ibJgvypBttBJrItRwazZ/kCeIBbArDW4fJQxHEAuwwUlDVDjWwXuGZ
-         aS2GN+z5S6Pa3dolPUcQRpkX4NYradtezv+T5dL2pH5y7sjOckCVA1nxywNiGXACqaEz
-         fqu6xbKArM6S0Kwmakz6QoVsPyk3CgRlQPA/1nLZh1OQwF/z/sdzfouGGXLwdNM0gItB
-         kzTw==
+        d=gmail.com; s=20221208; t=1689590985; x=1692182985;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Qa16i/7wXreM1XPm5VUwAx4KbT+PND+IKjgkjwF1pmM=;
+        b=ZqE7722idPYuOeZQMCwC/uzDK4c1q56fL57sL1UBgNozIMQx6v4nFN9uW+hvzR4zu5
+         m27aRXWsoTHtxNXd3TgfEvjSEOADpMXCTJNae36wZPHS2IOfUmVnDElqYp35uD5sXzY5
+         9e8nV0U5qQO8fqA7k0SlYh6/wcfBpgZ7iS/Z5kG3S16fmKiguQYYrZSVDKtTHJbk+bIL
+         0ld20pAYADjXXtBDEHZ66tYxNKV9vBeVxassuiNEwh4+0fn5LJoAMt5owyVXY2cgmXHo
+         tDOIxbhxmea5nqiAgSQAvet6NGRN7yTj8Z3Ouxztoxch7tE291wE0r8xsYHZo/Tyxblj
+         qnjA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689590236; x=1692182236;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=/l5xqvDPNGoyvEYRfPhyK85Kw/zzYVcuJucCvVvL9ig=;
-        b=G3QIYqWAlMyGHerjiJ7AkHs0YtRP3xOlwisevsESwB7w0nMiNTXe0LYZMYIpjAOlxn
-         yel/lXeVFv0GR/ydNxmdbgCLGTklENol4W7PL/XkBfUnoCO2ICQp7D9JAJV/f1LXsvmU
-         w2uXuOZ3BsYyk08vW4HE11AA1HTrgC478HQ2IZgkG6k8jdIosRa3v3NEVv4UalHExgDO
-         CGujJbNn69Po5ovCVXkhDN5KyggkVYZBELU3fhrVUukGOyC049HC5fD9AkOwKqCtL5Jo
-         XO75vuYjirUp5OR9ph8IuELWxD8u5G22Gv3SCZEkxBHJ/aETZX4gulyclrJdPrREuxIr
-         4R7A==
-X-Gm-Message-State: ABy/qLYwnKmPAzudgW2A+7GmuMKEVGf9bCcHpM7EKLtdCrw6h36uSAT2
-        ityIH/+lfdRrobezIc9eTACQyh+Erl1+Cd6HyoY=
-X-Google-Smtp-Source: APBJJlEF4apZzBMkvVeoZzSw5LBPn6lTVsyPpvBDFjj39oUO7hD/9tcZM0nVGuaj6kTWJsCkDPTxNlts9pr1Ob4lK+g=
-X-Received: by 2002:a17:90a:d789:b0:267:909f:3719 with SMTP id
- z9-20020a17090ad78900b00267909f3719mr2984884pju.19.1689590235728; Mon, 17 Jul
- 2023 03:37:15 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1689590985; x=1692182985;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Qa16i/7wXreM1XPm5VUwAx4KbT+PND+IKjgkjwF1pmM=;
+        b=AkYBLv44t+wc0AWHl0UFj4iEYS3jP9vJFHsAWjKJTaWANC7nWrpzE+9RnEptFE/IRZ
+         +G9ZhY80nIQASx1R8LM0kW7PTFvtviSxDwB1AP4SJYRRMPnnTh0LmEBPXA4scr11mjfh
+         /Fg/VGybFl9WV1e7xk1L3u9CQMnKqu2Xu7+4wChRYV0lAgwImwvPLq7ALRnpKxLSzmKX
+         msSeORH+NS34p6bwg/0fA+pXmhPyBR/6OkCCS9K3KwQXB8IDS/EPVdnH3Ff6YWBIfhuX
+         jnRVUUi8C/kYQ93eVmGREuhMpXp2dYOi1ZpHhXuSe9LFOxbsiA1wU4+qTvEWG8r2cYvo
+         1c5g==
+X-Gm-Message-State: ABy/qLbCloqU3Tyk/qPKv6qsEwpCn/4CKWmqfEHmvQSMhDKAc70Cdi57
+        Dhxhffx2t1/Uf1qT18tHvSA=
+X-Google-Smtp-Source: APBJJlEWhmWn35hrYy0jF9wZjTDg+bvwe/myoKAbq4TI8tpZsEjUjQS0k5+CrUVKhtBS5Pr76ZeI3w==
+X-Received: by 2002:a17:906:3f57:b0:94f:449e:75db with SMTP id f23-20020a1709063f5700b0094f449e75dbmr9046044ejj.52.1689590985266;
+        Mon, 17 Jul 2023 03:49:45 -0700 (PDT)
+Received: from [192.168.2.1] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id l9-20020a170906230900b0099342c87775sm9068788eja.20.2023.07.17.03.49.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 17 Jul 2023 03:49:44 -0700 (PDT)
+Message-ID: <7448d35b-ce62-7e80-6467-ed929ad6838b@gmail.com>
+Date:   Mon, 17 Jul 2023 12:49:43 +0200
 MIME-Version: 1.0
-References: <20230717075123.1597977-1-dylan_hung@aspeedtech.com> <6dbf7628-da4e-6be6-27ed-b0bafa15d8bb@linaro.org>
-In-Reply-To: <6dbf7628-da4e-6be6-27ed-b0bafa15d8bb@linaro.org>
-From:   Chih-Jen Hung <kobedylan@gmail.com>
-Date:   Mon, 17 Jul 2023 18:37:04 +0800
-Message-ID: <CAKohO566nYsReUExwwX8KEU3pCHFGqvif56QR6r-bNrnvxawMw@mail.gmail.com>
-Subject: Re: [PATCH v2 RESEND] dt-bindings: clock: ast2600: Add I3C and MAC
- reset definitions
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v1 2/2] mtd: rawnand: add nand-skip-bbtscan and
+ nand-no-bbm-quirk DT options
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     richard@nod.at, vigneshr@ti.com, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, BMC-SW@aspeedtech.com,
-        Dylan Hung <dylan_hung@aspeedtech.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        linux-mtd@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <61c84262-cd98-1e60-d95b-9b0492083994@gmail.com>
+ <2b0dc481-562f-c8df-545e-dcf6548adb07@gmail.com>
+ <20230715175538.7142a141@xps-13>
+Content-Language: en-US
+From:   Johan Jonker <jbx6244@gmail.com>
+In-Reply-To: <20230715175538.7142a141@xps-13>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> =E6=96=BC 2023=E5=B9=
-=B47=E6=9C=8817=E6=97=A5 =E9=80=B1=E4=B8=80 =E4=B8=8B=E5=8D=884:00=E5=AF=AB=
-=E9=81=93=EF=BC=9A
->
-> On 17/07/2023 09:51, Dylan Hung wrote:
-> > Add reset definitions of AST2600 I3C and MAC controllers.
-> >
-> > Signed-off-by: Dylan Hung <dylan_hung@aspeedtech.com>
-> > ---
-> >
-> > Resend v2 patch through my gmail account as the aspeedtech.com domain i=
-s blocked by gmail.com
->
-> Where is the changelog?
->
 
-Apologies for the oversight. I will ensure to include the changelog in V3.
 
-> >
-> >  include/dt-bindings/clock/ast2600-clock.h | 12 ++++++++++++
-> >  1 file changed, 12 insertions(+)
-> >
-> > diff --git a/include/dt-bindings/clock/ast2600-clock.h b/include/dt-bin=
-dings/clock/ast2600-clock.h
-> > index e149eee61588..712782177c90 100644
-> > --- a/include/dt-bindings/clock/ast2600-clock.h
-> > +++ b/include/dt-bindings/clock/ast2600-clock.h
-> > @@ -90,7 +90,19 @@
-> >  /* Only list resets here that are not part of a clock gate + reset pai=
-r */
-> >  #define ASPEED_RESET_ADC             55
-> >  #define ASPEED_RESET_JTAG_MASTER2    54
-> > +
-> > +#define ASPEED_RESET_MAC4            53
-> > +#define ASPEED_RESET_MAC3            52
-> > +
-> > +#define ASPEED_RESET_I3C5            45
-> > +#define ASPEED_RESET_I3C4            44
-> > +#define ASPEED_RESET_I3C3            43
-> > +#define ASPEED_RESET_I3C2            42
-> > +#define ASPEED_RESET_I3C1            41
-> > +#define ASPEED_RESET_I3C0            40
-> > +#define ASPEED_RESET_I3C             39
-> >  #define ASPEED_RESET_I3C_DMA         39
->
-> Why adding duplicate ID? Your commit msg or a comment here should
-> explain this.
->
+On 7/15/23 17:55, Miquel Raynal wrote:
+> Hi Johan,
+> 
+> jbx6244@gmail.com wrote on Sat, 15 Jul 2023 12:49:18 +0200:
+> 
+>> A NAND chip can contain a different data format then the MTD framework
+>> expects in the erase blocks for the Bad Block Table(BBT).
+>> Result is a failed probe, while nothing wrong with the hardware.
+>> Some MTD flags need to be set to gain access again.
+>>
+>> Skip the automatic BBT scan with the NAND_SKIP_BBTSCAN option
+>> so that the original content is unchanged during the driver probe.
+>> The NAND_NO_BBM_QUIRK option allows us to erase bad blocks with
+>> the nand_erase_nand() function and the flash_erase command.
+>>
+>> Add nand-skip-bbtscan and nand-no-bbm-quirk Device Tree options,
+>> so the user has the "freedom of choice" by neutral
+>> access mode to read and write in whatever format is needed.
+> 
 
-There is no reset-line hardware available for `ASPEED_RESET_I3C_DMA`, so I =
-have
-added a new macro to provide a better representation of the hardware design=
-.
-However, since removing the old macro may affect all users, I decide to kee=
-p
-both the old and new macros. I will include the explainaion in the commit
-message of V3.
+> This sounds like a partial solution. How do you handle bad blocks?
 
-> Best regards,
-> Krzysztof
->
+Hi Miquel,
+
+See below some Rockchip related links:
+
+The file rk_ftl_arm_v7.S is marked GPL2, so I can freely refer/decode/hack to/in that.
+For rk3066 a closed source piece called usbplug is still needed to program initial U-boot.
+This usbplug contains similar code as in the S file and formats the NAND for FTL. 
+U-boot is not small enough yet (WIP if I have the time) to replace that.
+Long story short is that on Rockchip NAND's we can expect pages with various ECC and scrambled/randomized all over the place.
+
+One effect is that when the MTD framework driver is probed a first time the BBT pages don't look what was expected.
+For this first probe to be successful I must be able to turn of the MTD internal BBT scan and then erase/format all blocks except boot blocks of course.
+During this first run bad blocks are handled by/tested/kept track of/set BBM in user space.
+This is not meant as permanent mode.(except maybe if this S file is converted as open source FTL (WIP))
+
+Richard doesn't like module parameters, so I can't simply do modprobe for example in a script.
+After that the whole kernel/MTD must rebooted without these DT options.
+ 
+This patch does make parameters/flags available for all.
+If that is too much freedom to handle I can parse them in the Rockchip driver, let me know.
+ 
+Linux always gets away with the "it must be generic functionality" excuse.
+In U-boot there is the same driver with little or no interaction with the user, so we must deal with that.
+Please advise how we can solve this in a simple nice automated way.
+
+
+Johan
+
+===
+
+function FlashSetRandomizer()
+https://github.com/rockchip-linux/kernel/blob/develop-4.4/drivers/rk_nand/rk_ftl_arm_v7.S#L120
+https://github.com/rockchip-linux/u-boot/blob/next-dev/drivers/rknand/rk_ftl_arm_v7.S#L199
+
+Proof of concept for U-boot:
+[v2,06/11] rockchip: idb: add randomizer option
+http://patchwork.ozlabs.org/project/uboot/patch/0b295d0e-53d6-b35a-3058-861e203b4d83@gmail.com/
+
+> 
+>> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+>> ---
+>>
+>> Previous discussion:
+>> [PATCH v3 3/3] mtd: rawnand: rockchip-nand-controller: add skipbbt option
+>> https://lore.kernel.org/linux-mtd/1618382560.2326931.1689261435022.JavaMail.zimbra@nod.at/
+>> ---
+>>  drivers/mtd/nand/raw/nand_base.c | 6 ++++++
+>>  1 file changed, 6 insertions(+)
+>>
+>> diff --git a/drivers/mtd/nand/raw/nand_base.c b/drivers/mtd/nand/raw/nand_base.c
+>> index a6af521832aa..f0fa5c3519b1 100644
+>> --- a/drivers/mtd/nand/raw/nand_base.c
+>> +++ b/drivers/mtd/nand/raw/nand_base.c
+>> @@ -5521,6 +5521,12 @@ static int rawnand_dt_init(struct nand_chip *chip)
+>>  	if (of_property_read_bool(dn, "nand-is-boot-medium"))
+>>  		chip->options |= NAND_IS_BOOT_MEDIUM;
+>>
+>> +	if (of_property_read_bool(dn, "nand-no-bbm-quirk"))
+>> +		chip->options |= NAND_NO_BBM_QUIRK;
+>> +
+>> +	if (of_property_read_bool(dn, "nand-skip-bbtscan"))
+>> +		chip->options |= NAND_SKIP_BBTSCAN;
+>> +
+>>  	if (of_property_read_bool(dn, "nand-on-flash-bbt"))
+>>  		chip->bbt_options |= NAND_BBT_USE_FLASH;
+>>
+>> --
+>> 2.30.2
+>>
+> 
+> 
+> Thanks,
+> Miquèl
