@@ -2,119 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B52D756AB5
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 19:34:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F767756ACD
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 19:36:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231409AbjGQReZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jul 2023 13:34:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50334 "EHLO
+        id S231267AbjGQRf7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jul 2023 13:35:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51696 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230203AbjGQReY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 13:34:24 -0400
-Received: from mail-pf1-x429.google.com (mail-pf1-x429.google.com [IPv6:2607:f8b0:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 504B6CC;
-        Mon, 17 Jul 2023 10:34:23 -0700 (PDT)
-Received: by mail-pf1-x429.google.com with SMTP id d2e1a72fcca58-676f16e0bc4so3110098b3a.0;
-        Mon, 17 Jul 2023 10:34:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1689615262; x=1692207262;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=dUoi1Mmr8IMK534APH+CWG7qY8Kuyh2p4qso744suGo=;
-        b=dnzydAvEN9YKARwMthDayszanj76dr67zlOjek2z19bKs+DhWqcD0TxQOdtYPy0yLC
-         jtunZLbbV7avrJrx8DE05sppNwgr4k1WbozR5pICNcFaF4ohwYqi68Wwg0z3D2Z2tCJK
-         BCwuyzaNwrLn9S55IX/Qm5+k67U47Baow+iVxhAKTocY/EhYr7FAsWQozYbSHYGJ+V7h
-         hPy09nr4O6X38+slC+30vzZFCf1SxTpXsbbSiJUj4ChUA3t+jjmCS46i/pPKkCT75uBG
-         zN4Lwy8Q/UPax6vRK7ApcFMuiypogMlfS2qKE1CQMxnyOQXMYHRoqUiNskeR69OmBtmp
-         soqg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689615262; x=1692207262;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=dUoi1Mmr8IMK534APH+CWG7qY8Kuyh2p4qso744suGo=;
-        b=SxcGHGx/ayayCIIUOBUKXZNDU5fb0/8ArmIDAi8L+CyDuWJF0d5a2oQ8jU8KUnCboQ
-         eiWDovH6p7652GqXpoZJwZBSo2DkM7U9cd7eUnVWbfxUcgttafT+0Lq3DSxVV6YDO7dL
-         kmtC6EiGMdSegmgbbQIDZPX9X0Ad2ncT7d8uPD9G6qGulqhSkajFb0UgW9BnCUVzmKhN
-         hAn2VC3+4JZT8E4DvjZWzuUY2oUFfOYIXH+BvG72Ux9Tlw6fDZb4ReVlDQxu/v084wBP
-         LsxxFV4j1TU3yiqZoobaBDdGYJ9dze/LUUCVFhFTIQB4e1voq/m4HELG0zV+JeqPsDPx
-         TEDA==
-X-Gm-Message-State: ABy/qLYWJNqLMVwc0os5YfAu0n2foKNe5dgXt+hTxgChQcRcXOs7HQ9P
-        OTVTghlNoMul7wQD0s/wSkY=
-X-Google-Smtp-Source: APBJJlHgiE4S+MXfi6uaGWczHajeTCKhbKry4gKne+v0Nr5Vemydgez1HyMd0UNJpeoHBOwwOlVSZA==
-X-Received: by 2002:a05:6a00:17a1:b0:682:4ef7:9b17 with SMTP id s33-20020a056a0017a100b006824ef79b17mr16331177pfg.32.1689615262353;
-        Mon, 17 Jul 2023 10:34:22 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id t5-20020a62ea05000000b0063b96574b8bsm58971pfh.220.2023.07.17.10.34.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 17 Jul 2023 10:34:21 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <a4b0115d-7a06-100c-ec77-027493c86206@roeck-us.net>
-Date:   Mon, 17 Jul 2023 10:34:20 -0700
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH] hwmon: Explicitly include correct DT includes
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-Cc:     Jean Delvare <jdelvare@suse.com>, Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Jean-Marie Verdun <verdun@hpe.com>,
-        Nick Hawkins <nick.hawkins@hpe.com>,
-        Charles Keepax <ckeepax@opensource.cirrus.com>,
-        Richard Fitzgerald <rf@opensource.cirrus.com>,
-        Robert Marko <robert.marko@sartura.hr>,
-        Saravanan Sekar <sravanhome@gmail.com>,
-        Luka Perkov <luka.perkov@sartura.hr>,
-        Liviu Dudau <liviu.dudau@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
+        with ESMTP id S230172AbjGQRf5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 13:35:57 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01B35B5;
+        Mon, 17 Jul 2023 10:35:37 -0700 (PDT)
+Received: from jupiter.universe (dyndsl-091-248-189-171.ewe-ip-backbone.de [91.248.189.171])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: sre)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id C8B636602329;
+        Mon, 17 Jul 2023 18:35:15 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1689615315;
+        bh=UU4KGgu8RlPQoKudc9GjsMWwW3SITngefu1mV+NgQcg=;
+        h=From:To:Cc:Subject:Date:From;
+        b=F6/uz/GiaXgc9Ic/keIGvkOBL24+/kpGMZuaaIy4CtWXCXPFjURzQbp2hv/eivLO6
+         nbTFikqKdLkCu2icFLkARl4ge5pX2870nMmA1sE7L19p2rXgER+7+mXYBJm4wi7ZXA
+         i7H3AtPl5ZNG8Q2DE8RTyfw67ZycQvYyLoktX253Y0+ElDwIzM/IUR2kTC1BauV9qi
+         zAtCQ9Wol7suTuT9Vem0SgylvJWSMuhdTnzg/z+6okJSIt0F/GYD1KswIpYLWmAjo/
+         lRfm/ErsEfbZKliNc2YY0q3BDlGThCjUtTwBjiW8AmuwyRrpQCi2wpf84EFMbai/dR
+         rQYfC5Bt9RwUA==
+Received: by jupiter.universe (Postfix, from userid 1000)
+        id D1BD1480C72; Mon, 17 Jul 2023 19:35:12 +0200 (CEST)
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
+To:     linux-phy@lists.infradead.org, linux-rockchip@lists.infradead.org
+Cc:     Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
         Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        devicetree@vger.kernel.org, linux-hwmon@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, patches@opensource.cirrus.com
-References: <20230714174607.4057185-1-robh@kernel.org>
- <e0e1b465-8419-419e-90ae-4b72f5189469@roeck-us.net>
- <CAL_JsqJZcxoQEhaGr34Mk1P_8vc8wctcfzswWc8VbRrsv0S7zg@mail.gmail.com>
-From:   Guenter Roeck <linux@roeck-us.net>
-In-Reply-To: <CAL_JsqJZcxoQEhaGr34Mk1P_8vc8wctcfzswWc8VbRrsv0S7zg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
+        Rob Herring <robh@kernel.org>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Shawn Lin <shawn.lin@rock-chips.com>,
+        Simon Xue <xxm@rock-chips.com>, John Clark <inindev@gmail.com>,
+        Qu Wenruo <wqu@suse.com>, devicetree@vger.kernel.org,
+        linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Sebastian Reichel <sebastian.reichel@collabora.com>,
+        kernel@collabora.com
+Subject: [PATCH v2 0/2] RK3588 PCIe3 support
+Date:   Mon, 17 Jul 2023 19:35:10 +0200
+Message-Id: <20230717173512.65169-1-sebastian.reichel@collabora.com>
+X-Mailer: git-send-email 2.40.1
+MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 7/17/23 10:24, Rob Herring wrote:
-> On Sat, Jul 15, 2023 at 10:55 AM Guenter Roeck <linux@roeck-us.net> wrote:
->>
->> On Fri, Jul 14, 2023 at 11:46:04AM -0600, Rob Herring wrote:
->>> The DT of_device.h and of_platform.h date back to the separate
->>> of_platform_bus_type before it as merged into the regular platform bus.
->>> As part of that merge prepping Arm DT support 13 years ago, they
->>> "temporarily" include each other. They also include platform_device.h
->>> and of.h. As a result, there's a pretty much random mix of those include
->>> files used throughout the tree. In order to detangle these headers and
->>> replace the implicit includes with struct declarations, users need to
->>> explicitly include the correct includes.
->>>
->>> Signed-off-by: Rob Herring <robh@kernel.org>
->>
->> Applied to hwmon-next.
-> 
-> I found there's a double include of of.h in lm75.c. Can you fix that
-> up or do you want me to send a fix?
-> 
+Hi,
 
-I fixed it up. Thanks a lot for noticing.
+This adds PCIe v3 support for RK3588. The series depends on the PCIe
+v2 series [0], since the the same binding is used. It has been tested
+on Rockchip EVB1 and Radxa Rock 5B.
 
-Guenter
+Note, that the PCIe3 PHY driver is currently missing bifurcation
+support for RK3588. Thus after this series only PCIe3x4 is usable
+(in aggregated x4 mode) without adding support for the PHY's
+"rockchip,pcie30-phymode" DT property, which allows configuring
+how the lanes are distributed. Aggregated 3x4 mode seems to be the
+most common configuration. Both EVB1 and Rock 5B use it, so I
+cannot test anything else anyways.
 
+[0] https://lore.kernel.org/all/20230717172651.64324-1-sebastian.reichel@collabora.com/
+
+Changes since v1:
+ * https://lore.kernel.org/all/20230714175331.112923-1-sebastian.reichel@collabora.com/
+ * Collected Acked-by from Conor Dooley
+ * Dropped deprecated and useless num-ib-windows/num-ob-windows/num-viewport
+   properties from DT (Serge Semin)
+
+-- Sebastian
+
+Sebastian Reichel (2):
+  dt-bindings: phy: rockchip: add RK3588 PCIe v3 phy
+  arm64: dts: rockchip: rk3588: add PCIe3 support
+
+ .../bindings/phy/rockchip,pcie3-phy.yaml      |  33 ++++-
+ arch/arm64/boot/dts/rockchip/rk3588.dtsi      | 120 ++++++++++++++++++
+ 2 files changed, 148 insertions(+), 5 deletions(-)
+
+-- 
+2.40.1
 
