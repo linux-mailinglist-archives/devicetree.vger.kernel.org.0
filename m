@@ -2,34 +2,34 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CAACC755FF8
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 12:01:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 10176755FFC
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 12:01:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231330AbjGQKB2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jul 2023 06:01:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57030 "EHLO
+        id S229774AbjGQKBa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jul 2023 06:01:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57038 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230432AbjGQKBZ (ORCPT
+        with ESMTP id S231301AbjGQKBZ (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 06:01:25 -0400
 Received: from mout01.posteo.de (mout01.posteo.de [185.67.36.65])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27BF4E5A
-        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 03:01:17 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6CD9188
+        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 03:01:18 -0700 (PDT)
 Received: from submission (posteo.de [185.67.36.169]) 
-        by mout01.posteo.de (Postfix) with ESMTPS id C905E240027
-        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 12:01:15 +0200 (CEST)
+        by mout01.posteo.de (Postfix) with ESMTPS id 538FD240027
+        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 12:01:17 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=posteo.de; s=2017;
-        t=1689588075; bh=12nb+rFwdgv0Wijomngor2Tznv5lsVGYBIEwRfZVf6g=;
+        t=1689588077; bh=vr3gsYDTkmHcdQXLBVcauJWuxFs06mWWDQ0zCFL/fb8=;
         h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:
          Content-Transfer-Encoding:From;
-        b=kbN5NJNYKj4q3ag033VW0ZLtLzeYFBVtBlGvaDaZqyLZ6Wk+sEr04TaJwUNfZ1xhB
-         hyFI9zj/MIUYMjZuX8VHfPWTHWexZzXiD/QgjcVhkEW4K4b7LSfVlvsTFiCyLGDRFP
-         KOCJCNhx2eIk3x7Ffqfu12shZnAVbOAXsCpZaLN4KjpWePVNutFG+l//VYh/dCfIRZ
-         QUspObvuJkHO653AVN58TpJYFlzgH6NBXQlbgmZowaU95HZpBDXoLgwIEWyCfjOg+h
-         jJvoB/1SmaKl/k2QRALLM9ApmwfZaeXoOzG0gJFu3FTs01n+Ky2DP4J/UNdYbrQ43+
-         R+cIAmxnUS0HQ==
+        b=X/psIeoY2sKAcd0D0HavJ9jhbn0vNYmssPg8wbbZMf9ALiTIhvnLEv4PLYhfTM1Q2
+         kchZ3z4wcEujm1DBxhDfOohPuRJEZGls0QAZFnko5AInONWsdewhfLamQMW2hv3Uk2
+         TeDFsGwQyTxfZDLMC81NG02nfAIupV7dadcg0ktAa4M+kfV1PzaHkumgW8qjwDuroQ
+         5zXrCv4ugdZLsXCf3GGc9I3IDBrJVKHGfeMGllP1oYNpJPMeKZCLPFgGUYKqDwCVCk
+         T5LsV8B97DjSPDehGEh4NfP2cnAhhLdbPDA6O2toEZMW2swRUoJtWlv4y9DdmQUx5F
+         Xy6Mfcps3Kt6w==
 Received: from customer (localhost [127.0.0.1])
-        by submission (posteo.de) with ESMTPSA id 4R4HfK6ZRHz6tww;
-        Mon, 17 Jul 2023 12:01:13 +0200 (CEST)
+        by submission (posteo.de) with ESMTPSA id 4R4HfM2t6kz6tvw;
+        Mon, 17 Jul 2023 12:01:15 +0200 (CEST)
 From:   Martin Kepplinger <martink@posteo.de>
 To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
         conor+dt@kernel.org, shawnguo@kernel.org, festevam@gmail.com
@@ -38,9 +38,9 @@ Cc:     kernel@pengutronix.de, linux-imx@nxp.com, kernel@puri.sm,
         linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
         Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>,
         Martin Kepplinger <martin.kepplinger@puri.sm>
-Subject: [PATCH v1 2/4] arm64: dts: imx8mq-librem5-r4: Bump up proximity sensor's near level
-Date:   Mon, 17 Jul 2023 10:00:54 +0000
-Message-Id: <20230717100056.4047292-3-martink@posteo.de>
+Subject: [PATCH v1 3/4] arm64: dts: imx8mq-librem5: Mark tps65982 as wakeup source
+Date:   Mon, 17 Jul 2023 10:00:55 +0000
+Message-Id: <20230717100056.4047292-4-martink@posteo.de>
 In-Reply-To: <20230717100056.4047292-1-martink@posteo.de>
 References: <20230717100056.4047292-1-martink@posteo.de>
 MIME-Version: 1.0
@@ -57,26 +57,27 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>
 
-There is at least one Evergreen phone out there that reports levels
-of 5-6 at rest: https://gitlab.gnome.org/GNOME/calls/-/issues/560
+This allows to wake up from system suspend on USB-C plug/unplug.
 
 Signed-off-by: Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>
 Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
 ---
- arch/arm64/boot/dts/freescale/imx8mq-librem5-r4.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mq-librem5-r4.dts b/arch/arm64/boot/dts/freescale/imx8mq-librem5-r4.dts
-index 97577c0a77158..33f398b48119b 100644
---- a/arch/arm64/boot/dts/freescale/imx8mq-librem5-r4.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mq-librem5-r4.dts
-@@ -23,5 +23,5 @@ &lcd_panel {
- };
+diff --git a/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi b/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi
+index ab47bdc35cebd..3f251910b3949 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi
+@@ -796,6 +796,8 @@ typec_pd: usb-pd@3f {
+ 		interrupt-parent = <&gpio1>;
+ 		interrupts = <10 IRQ_TYPE_LEVEL_LOW>;
+ 		interrupt-names = "irq";
++		extcon = <&usb3_phy0>;
++		wakeup-source;
  
- &proximity {
--	proximity-near-level = <5>;
-+	proximity-near-level = <7>;
- };
+ 		connector {
+ 			compatible = "usb-c-connector";
 -- 
 2.30.2
 
