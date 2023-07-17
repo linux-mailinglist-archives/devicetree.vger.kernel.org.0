@@ -2,118 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C35B475650C
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 15:33:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B1F5F75655D
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 15:46:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229553AbjGQNd3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jul 2023 09:33:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43408 "EHLO
+        id S231640AbjGQNq0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jul 2023 09:46:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52874 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229517AbjGQNd3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 09:33:29 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69A5B8F;
-        Mon, 17 Jul 2023 06:33:28 -0700 (PDT)
+        with ESMTP id S230388AbjGQNqY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 09:46:24 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EE6394;
+        Mon, 17 Jul 2023 06:46:23 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id F202361050;
-        Mon, 17 Jul 2023 13:33:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 59548C433C7;
-        Mon, 17 Jul 2023 13:33:24 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id E0BE060F04;
+        Mon, 17 Jul 2023 13:46:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AC886C433C7;
+        Mon, 17 Jul 2023 13:46:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689600807;
-        bh=6vaYo9hRLCt/NfLnm9tEovMmyqkg7M1p+KIm3omd/ic=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=sg/FPr17C2vjofle9KTJT2l4N21PnfXzNYaBhAn8VpLbLFV8MKW9QjcbjARlMpmTP
-         qfl8G6cO6XsMvRqpcqyHh96ob1EKftSA7mJtWp24FJpwdJ41UYNo2N7ol2nGeskGw0
-         9jrSFLJOXmnG1czg55YBAxuLu2ZTibe9rb0NlrV1/TpHikTMvwZv4OsqlZmlmJun3k
-         PNlJ9Lz6OFkXn/LIlmCldEfbzR1NXR0cmhlOUNqXRYJlI4n0M67EiEWBPur3/SGLwA
-         UkgdUwliWD9vxOtk0imdsRrnWmpBF8MhD0G/DNOvWjDU5MQECM2/vj20XRGc+y+TJF
-         OTSVSOKel+YRw==
-Date:   Mon, 17 Jul 2023 14:33:21 +0100
+        s=k20201202; t=1689601582;
+        bh=ltbT0neaTI80Kv3uMvqwGiUa139evSlEeXzktSAdHZ8=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=iCp1ic08pw/vUCChN53tyAHS/JocJG8x0BrvsA0ogBciQSPr5Wro3WafJQkmLVGnI
+         AaZl1BtIIYU2LA/I+e/jHTj4VLN9aMea/Lm+q+XKuR0piMIilu1boaflynVLd9yYFk
+         nylTQqnARHhmLHocGJIrKia04qY6ULpO7NXDsOKDHXUicsl58LtJnPry4Y0rkDwhXd
+         aUhFzkCeaU9j5a51j/2g9bM9AVLpotZz5ouhx2GBiEdd49vLnkNqE5+Fm5ZoAO3msy
+         CkAn1IPGLGbERAtjDOnrtk1yH6QPhAWS/rKV3Issu/+20cIV/CPs6AjCuHGNbG/6ce
+         S0B7/ZKPv7vAw==
 From:   Mark Brown <broonie@kernel.org>
-To:     Joy Zou <joy.zou@nxp.com>
-Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Jacky Bai <ping.bai@nxp.com>,
-        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [EXT] Re: [PATCH v1 2/3] regulator: pca9450: add pca9451a support
-Message-ID: <2c1dabb7-f1fd-478c-a249-994c450eb758@sirena.org.uk>
-References: <20230531065724.3671795-1-joy.zou@nxp.com>
- <3505527.iIbC2pHGDl@steina-w>
- <VI1PR04MB5936370C11D1523558437D9BE12FA@VI1PR04MB5936.eurprd04.prod.outlook.com>
- <4630917.iIbC2pHGDl@steina-w>
- <AM6PR04MB5925D0B730978A949D48E25BE13BA@AM6PR04MB5925.eurprd04.prod.outlook.com>
+To:     Okan Sahin <okan.sahin@analog.com>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Ibrahim Tilki <Ibrahim.Tilki@analog.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20230711162751.7094-1-okan.sahin@analog.com>
+References: <20230711162751.7094-1-okan.sahin@analog.com>
+Subject: Re: [PATCH v2 0/2] Add MAX77857/59/MAX77831 Regulator Support
+Message-Id: <168960158041.186271.14250946295408785273.b4-ty@kernel.org>
+Date:   Mon, 17 Jul 2023 14:46:20 +0100
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="lnvs8OB3JnKKLcTO"
-Content-Disposition: inline
-In-Reply-To: <AM6PR04MB5925D0B730978A949D48E25BE13BA@AM6PR04MB5925.eurprd04.prod.outlook.com>
-X-Cookie: Not a flying toy.
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.13-dev-099c9
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, 11 Jul 2023 19:27:46 +0300, Okan Sahin wrote:
+> High efficiency buck-boost regulator driver and bindings for
+> MAX77857/59/MAX77831. The patches are required to be applied
+> in sequence.
+> 
+> Changes in v2:
+> * Patch 1: "dt-bindings: regulator: max77857: Add ADI MAX77857/59/MAX77831
+>     Regulator"
+>   * Add max77859 support
+> * Patch 2: "regulator: max77857: Add ADI MAX77857/59/MAX77831 Regulator Support"
+>   * Add max77859 support
+>   * Drop interrupt support
+>   * Change regmap cache_type
+> 
+> [...]
 
---lnvs8OB3JnKKLcTO
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Applied to
 
-On Mon, Jul 17, 2023 at 09:53:15AM +0000, Joy Zou wrote:
->=20
-> > -----Original Message-----
-> > From: Alexander Stein <alexander.stein@ew.tq-group.com>
-> > Sent: 2023=E5=B9=B47=E6=9C=885=E6=97=A5 21:13
-> > To: Jacky Bai <ping.bai@nxp.com>; lgirdwood@gmail.com;
-> > broonie@kernel.org; robh+dt@kernel.org; krzysztof.kozlowski+dt@linaro.o=
-rg;
-> > conor+dt@kernel.org; shawnguo@kernel.org; s.hauer@pengutronix.de;
-> > linux-arm-kernel@lists.infradead.org; Joy Zou <joy.zou@nxp.com>
-> > Cc: kernel@pengutronix.de; festevam@gmail.com; dl-linux-imx
-> > <linux-imx@nxp.com>; devicetree@vger.kernel.org;
-> > linux-arm-kernel@lists.infradead.org; linux-kernel@vger.kernel.org
-> > Subject: [EXT] Re: [PATCH v1 2/3] regulator: pca9450: add pca9451a supp=
-ort
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
 
-Please delete unneeded context from mails when replying.  Doing this
-makes it much easier to find your reply in the message, helping ensure
-it won't be missed by people scrolling through the irrelevant quoted
-material.
+Thanks!
 
---lnvs8OB3JnKKLcTO
-Content-Type: application/pgp-signature; name="signature.asc"
+[1/2] dt-bindings: regulator: max77857: Add ADI MAX77857/59/MAX77831 Regulator
+      (no commit info)
+[2/2] regulator: max77857: Add ADI MAX77857/59/MAX77831 Regulator Support
+      commit: af71cccadecedad3484c2208e2c4fc8eff927d4a
 
------BEGIN PGP SIGNATURE-----
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmS1QyAACgkQJNaLcl1U
-h9BkUQf/eG50jyD0n2+Xpz629uluZVbPW+HAbEbW9LbfrdgWePvwWGPDWJGTICIO
-cAOdr3YJVZPU/ZCjPQOmPd1Wbud6ZLCyAC2zm5MvMD8owGJMSWHH4mxSoyOaBl+d
-BHiAG3YIqEwddHxU80Nz8U0b+MKX+4ebaGyNyewxKvfC1iNsPIu50MTLzuH6kNXy
-4Ms9+UW8WBZolqZPHMFRx8HQABibpHJ5uFqV6gYWIalrOhCK123tUu/Ww8JzofxU
-iEKXSDV7gwV/vlLkLSqEvEOVcw8qDU8IOaEdSRsnNcdVZa6tfd67ym3ixDGqkWf3
-b2SmvW4NbPx0PoUH3O7UED3CY1D5RQ==
-=BMR8
------END PGP SIGNATURE-----
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
---lnvs8OB3JnKKLcTO--
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
