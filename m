@@ -2,99 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8CB72755996
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 04:31:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E078755A34
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 05:50:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230525AbjGQCbD convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Sun, 16 Jul 2023 22:31:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52138 "EHLO
+        id S230136AbjGQDuU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 16 Jul 2023 23:50:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48096 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230504AbjGQCau (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Jul 2023 22:30:50 -0400
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3910A1AA;
-        Sun, 16 Jul 2023 19:30:49 -0700 (PDT)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id 0489E24E29D;
-        Mon, 17 Jul 2023 10:30:48 +0800 (CST)
-Received: from EXMBX061.cuchost.com (172.16.6.61) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 17 Jul
- 2023 10:30:48 +0800
-Received: from localhost.localdomain (113.72.147.86) by EXMBX061.cuchost.com
- (172.16.6.61) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 17 Jul
- 2023 10:30:46 +0800
-From:   Xingyu Wu <xingyu.wu@starfivetech.com>
-To:     <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        "Michael Turquette" <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Conor Dooley <conor@kernel.org>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>
-CC:     Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Hal Feng <hal.feng@starfivetech.com>,
-        Xingyu Wu <xingyu.wu@starfivetech.com>,
-        "William Qiu" <william.qiu@starfivetech.com>,
-        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>
-Subject: [PATCH v7 7/7] riscv: dts: starfive: jh7110: Add PLL clocks source in SYSCRG node
-Date:   Mon, 17 Jul 2023 10:30:40 +0800
-Message-ID: <20230717023040.78860-8-xingyu.wu@starfivetech.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230717023040.78860-1-xingyu.wu@starfivetech.com>
-References: <20230717023040.78860-1-xingyu.wu@starfivetech.com>
+        with ESMTP id S229725AbjGQDuT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Jul 2023 23:50:19 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 340ADF4;
+        Sun, 16 Jul 2023 20:50:18 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id BD34960EBD;
+        Mon, 17 Jul 2023 03:50:17 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 970EAC433C7;
+        Mon, 17 Jul 2023 03:50:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1689565817;
+        bh=gXfYH7V2kM1Y538mSmiEnBw9D2Olq+4SnpNIVM3FhNU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=tDuYNli+lCUffUuvmVeq+JucDtgYy9hvhCBF5b7KYRdTGh4g03kmMB5x3XS6Jkrp2
+         5193jfvFuoerRJqNPNV0+Wvlc5aOEsdXA0dGWiQZ0LaHTOH97QdbksGKpKlCTO/n0o
+         O/WENGr6HGKjhW54yM+rWQRRd0Y6QzBCetlyD/jbsEfD2i72LLfMtPUwE3NXwABQJp
+         jfRN7MZF6DySzTLq01L55Rt38hTGImMgCWXvGtYwU5bO61VAgHfqTG6sz+QEZ5OcAa
+         AYTM2u6RQlfQFgNTZssR3v2nYb7PM9ER+Ige0FH/qUgOTPi53n87PuoyPSuTRAoSNp
+         0B+dQxPNQNwYA==
+Date:   Mon, 17 Jul 2023 11:50:13 +0800
+From:   Tzung-Bi Shih <tzungbi@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Mark Gross <markgross@kernel.org>,
+        Vadim Pasternak <vadimp@nvidia.com>,
+        devicetree@vger.kernel.org, chrome-platform@lists.linux.dev,
+        linux-kernel@vger.kernel.org, platform-driver-x86@vger.kernel.org
+Subject: Re: [PATCH] platform: Explicitly include correct DT includes
+Message-ID: <ZLS6dchiyqFQlRwJ@google.com>
+References: <20230714174909.4062739-1-robh@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [113.72.147.86]
-X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX061.cuchost.com
- (172.16.6.61)
-X-YovoleRuleAgent: yovoleflag
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230714174909.4062739-1-robh@kernel.org>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add PLL clocks input from PLL clocks driver in SYSCRG node.
+On Fri, Jul 14, 2023 at 11:49:09AM -0600, Rob Herring wrote:
+> The DT of_device.h and of_platform.h date back to the separate
+> of_platform_bus_type before it as merged into the regular platform bus.
+> As part of that merge prepping Arm DT support 13 years ago, they
+> "temporarily" include each other. They also include platform_device.h
+> and of.h. As a result, there's a pretty much random mix of those include
+> files used throughout the tree. In order to detangle these headers and
+> replace the implicit includes with struct declarations, users need to
+> explicitly include the correct includes.
+> 
+> Signed-off-by: Rob Herring <robh@kernel.org>
 
-Reviewed-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
----
- arch/riscv/boot/dts/starfive/jh7110.dtsi | 8 ++++++--
- 1 file changed, 6 insertions(+), 2 deletions(-)
+For cros_ec:
+Reviewed-by: Tzung-Bi Shih <tzungbi@kernel.org>
 
-diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-index c49f5570625c..0067f1fd2cb1 100644
---- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-@@ -485,12 +485,16 @@ syscrg: clock-controller@13020000 {
- 				 <&gmac1_rgmii_rxin>,
- 				 <&i2stx_bclk_ext>, <&i2stx_lrck_ext>,
- 				 <&i2srx_bclk_ext>, <&i2srx_lrck_ext>,
--				 <&tdm_ext>, <&mclk_ext>;
-+				 <&tdm_ext>, <&mclk_ext>,
-+				 <&pllclk JH7110_PLLCLK_PLL0_OUT>,
-+				 <&pllclk JH7110_PLLCLK_PLL1_OUT>,
-+				 <&pllclk JH7110_PLLCLK_PLL2_OUT>;
- 			clock-names = "osc", "gmac1_rmii_refin",
- 				      "gmac1_rgmii_rxin",
- 				      "i2stx_bclk_ext", "i2stx_lrck_ext",
- 				      "i2srx_bclk_ext", "i2srx_lrck_ext",
--				      "tdm_ext", "mclk_ext";
-+				      "tdm_ext", "mclk_ext",
-+				      "pll0_out", "pll1_out", "pll2_out";
- 			#clock-cells = <1>;
- 			#reset-cells = <1>;
- 		};
--- 
-2.25.1
+The driver uses platform_device_unregister() which is in platform_device.h.
 
+> diff --git a/drivers/platform/chrome/cros_ec.c b/drivers/platform/chrome/cros_ec.c
+> index 8b7949220382..5d36fbc75e1b 100644
+> --- a/drivers/platform/chrome/cros_ec.c
+> +++ b/drivers/platform/chrome/cros_ec.c
+> @@ -12,6 +12,7 @@
+>  #include <linux/interrupt.h>
+>  #include <linux/module.h>
+>  #include <linux/of_platform.h>
+> +#include <linux/platform_device.h>
+>  #include <linux/platform_data/cros_ec_commands.h>
+>  #include <linux/platform_data/cros_ec_proto.h>
+>  #include <linux/slab.h>
+
+nit: if we want to maintain the sort, "platform_device" should come after
+"platform_data".
