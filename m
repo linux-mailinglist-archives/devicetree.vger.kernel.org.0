@@ -2,81 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B031755C8E
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 09:17:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 099FC755C96
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 09:18:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230247AbjGQHRg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jul 2023 03:17:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60308 "EHLO
+        id S230136AbjGQHSO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jul 2023 03:18:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60834 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229962AbjGQHRf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 03:17:35 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1098B188
-        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 00:17:34 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-993d1f899d7so606092466b.2
-        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 00:17:33 -0700 (PDT)
+        with ESMTP id S230260AbjGQHSM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 03:18:12 -0400
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B65E10DC;
+        Mon, 17 Jul 2023 00:18:10 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-5217bb5ae05so2173527a12.0;
+        Mon, 17 Jul 2023 00:18:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689578252; x=1692170252;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=bears7qmNayvkyvSpBGDpm7cFMqEk6Zkcv4MJmrzivQ=;
-        b=aWIEP+GLIsj6qBQrfye4O6KdMlc2qKtB32OyZA2VFueZ5QZN29/hBHS27zxvGgKxOg
-         iSRDxIpisCiiJTUHUr84An8ZbzsFfO+2uYn0EPv0PeO/F8+Wvh0a5jNdkmZDILZAHJil
-         byToVJMTf2ofRHSI1g4tbnvDobal6tp4DTzc6P5u1fPebj+KtP3J5eknOpFHekW7q5Ic
-         vzlBlMKAwjF0O/GZraJk5MtIwbPIvjKgUJctxmxzfufvd1QWFBGaJy5JZ+uh2AS7nRkW
-         /StRDER/OLu7sORA1So1RlF2/tUhVACimQXFJRcR7s0m1fl9LtsUHAslCUKwIr1jwaVE
-         kbhg==
+        d=gmail.com; s=20221208; t=1689578289; x=1692170289;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=2EMrmpU0dWa8Mwjz50d/l0emxjMG8G1dTCZtvgJ0j9Y=;
+        b=JKSa5/p5A0TvX+LWBpC9OCela2Bv81r6IfZJLvQc5r5llp1ubDmRhjgWU9+77sKlCX
+         rMl6Xwia9PE4/yrZdZr2sg0Y6/f3/Ww4mcgz3Q5DuxKmnRx+q8socsImWHwjideALIpB
+         Dp9MzBAQw2h8MiJpzKAOhxbRNXcuAhXWKuNsSbAb3vkt9EUXMCaW87I53CRW+SqZAXJ+
+         4q1KvlsSyWt5juPuU5q8fc1wHAd9fZBZxnFaBpmltoC+O4ub/d1E6eY9YatD4ul7Sha5
+         HnTUsVUG1MANjxewjksqD178Bfc90iEYuG+0e32Ok1AHqSl+z8WESwr23NfFPumy1vRt
+         oGDQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689578252; x=1692170252;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=bears7qmNayvkyvSpBGDpm7cFMqEk6Zkcv4MJmrzivQ=;
-        b=JJkU7PjZC7yLiOCHMA0BLvz0NJOr3m4zESF00n/cBr9AIY3s6spgO/yCzt/t21LXT3
-         kTSZsAlDk55v+CbZGUyVjn0v2skyLgXXwOx58gHY6Ylutao4UofSr/AWaKif4FeKnNs8
-         H/FzTmh1s2QYDOmlK5ODoEFmEe8vPkmWjHPcGParm9xkgTbSne/HGgBTI5GPeF1guM5E
-         xB8JPxl6kensGzTOE5mQ8baqtG4SPjAi/7uXsIQTTMoq/9DuBYkTvXAIZ44xao8HikBX
-         8HLaR86K64SllKWVC3q1lT6HBNuV0VAvcfLPlMiHTp25s5xzPwDx6rVzxgQTuuS927Fr
-         XYHg==
-X-Gm-Message-State: ABy/qLYS0aTBl1iiTtJeh7fvcpdSeUGvdlYoBgXWurXOqYviQKmc3Exx
-        mM7aXee67Jakmrj06bpJ2vWxPQ==
-X-Google-Smtp-Source: APBJJlG7DAUOZJcM6TGPHYOHzO7eUSejpitgzW5kbOUSMAkSlJidQ4O0kpPl0UaXyIVdczM0v8gttA==
-X-Received: by 2002:a17:907:7894:b0:993:8899:a3ac with SMTP id ku20-20020a170907789400b009938899a3acmr10121867ejc.74.1689578252560;
-        Mon, 17 Jul 2023 00:17:32 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id um10-20020a170906cf8a00b0098e78ff1a87sm8745082ejb.120.2023.07.17.00.17.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 17 Jul 2023 00:17:32 -0700 (PDT)
-Message-ID: <46bccbca-1343-aed4-4dfe-eb5182b8f6a1@linaro.org>
-Date:   Mon, 17 Jul 2023 09:17:29 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: =?UTF-8?Q?Re=3a_=5bPATCH_v2_0/2=5d_add_mcp4728_I2C_DAC_driver?=
- =?UTF-8?B?4oCL?=
-Content-Language: en-US
-To:     Andrea Collamati <andrea.collamati@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        William Breathitt Gray <william.gray@linaro.org>,
-        Angelo Dureghello <angelo.dureghello@timesys.com>,
+        d=1e100.net; s=20221208; t=1689578289; x=1692170289;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=2EMrmpU0dWa8Mwjz50d/l0emxjMG8G1dTCZtvgJ0j9Y=;
+        b=hWg72lHKG86wQZI3jIANcrXBjGIDViDxCetQZ5kFspZ+A8z8gxTsmWFln6N7gBi8pV
+         PsSXLqCQzHkWDLbcEXe6z4ILqArqKHeLA/ALQjp2kWkPMDd/PksK0is824GP9pHR94sR
+         wuN55aXkUyaEYgLIlBPWcRVhaJwpQVq8GGEK2h0Zvg6uAUicooikK737TNzsWNkDpmf8
+         5QrMvhitS2RRwQwE6aSpNeysryQQGoMr8O8fzQptAiZjfDOcIHBCu4sFn5iMi1nuCAMd
+         ilSoIWLdxnODnbsqjgSJe+/CZlSmwID7an0kIoqECjKi9C0if3XYz9Fxr/8c7ZUDBD1c
+         qHsg==
+X-Gm-Message-State: ABy/qLbq5ihSpkG8Smg1SI9zoqi60wtbj1B4dPQKQnu8tPyDYEYtqVtX
+        jMRbZXFsHCQoBYZ0a0gtnR7Nq580Q8M=
+X-Google-Smtp-Source: APBJJlGnytOxsxnbz2kkKo9AqAcNbbvErgBRMa6XbXN7rJv/6UVj68JzoNxDlvkBS7Ex7WLynhtMKQ==
+X-Received: by 2002:aa7:dd09:0:b0:521:7181:e8b7 with SMTP id i9-20020aa7dd09000000b005217181e8b7mr4484671edv.40.1689578288608;
+        Mon, 17 Jul 2023 00:18:08 -0700 (PDT)
+Received: from orome (p200300e41f4b7100f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f4b:7100:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id t3-20020aa7d4c3000000b0051d87e72159sm9471778edr.13.2023.07.17.00.18.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 17 Jul 2023 00:18:08 -0700 (PDT)
+Date:   Mon, 17 Jul 2023 09:18:06 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Sudeep Holla <sudeep.holla@arm.com>,
+        Cristian Marussi <cristian.marussi@arm.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
         Fabio Estevam <festevam@gmail.com>,
-        Lukas Bulwahn <lukas.bulwahn@gmail.com>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <0414e2e4-a17d-3435-e9e7-35b110233a6d@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <0414e2e4-a17d-3435-e9e7-35b110233a6d@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Florian Fainelli <florian.fainelli@broadcom.com>,
+        Broadcom internal kernel review list 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Dinh Nguyen <dinguyen@kernel.org>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Michal Simek <michal.simek@amd.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        linux-rpi-kernel@lists.infradead.org, linux-tegra@vger.kernel.org
+Subject: Re: [PATCH] firmware: Explicitly include correct DT includes
+Message-ID: <ZLTrLq5Hp1sHckMJ@orome>
+References: <20230714174438.4054854-1-robh@kernel.org>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="TiNl3sY2kGGAUSEk"
+Content-Disposition: inline
+In-Reply-To: <20230714174438.4054854-1-robh@kernel.org>
+User-Agent: Mutt/2.2.10 (2023-03-25)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -85,46 +90,56 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/07/2023 23:26, Andrea Collamati wrote:
-> Dear Krzysztof
-> 
-> I release a V2 version. I hope I have understood all your requests.
-> See below.
-> 
->> 2. Please use scripts/get_maintainers.pl to get a list of necessary
->> people and lists to CC (and consider --no-git-fallback argument). It
->> might happen, that command when run on an older kernel, gives you
->> outdated entries. Therefore please be sure you base your patches on
->> recent Linux kernel.
->>
-> I was using branch master git://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git but
 
-Should be fine. I still doubt that you used it, though. If you got
-Conor's email, then for sure you should have got my email.
+--TiNl3sY2kGGAUSEk
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> 
-> I saw it was too old. I switched to branch testing.
->> 6. mcp or MCP? What is this? Proper title is missing... also no
->> description.
->>
-> I don't know whether using small o capital letters. Usually manufacturers use capital letter to identify the component
-> but kernel drivers use lowercase in code.
+On Fri, Jul 14, 2023 at 11:44:37AM -0600, Rob Herring wrote:
+> The DT of_device.h and of_platform.h date back to the separate
+> of_platform_bus_type before it as merged into the regular platform bus.
+> As part of that merge prepping Arm DT support 13 years ago, they
+> "temporarily" include each other. They also include platform_device.h
+> and of.h. As a result, there's a pretty much random mix of those include
+> files used throughout the tree. In order to detangle these headers and
+> replace the implicit includes with struct declarations, users need to
+> explicitly include the correct includes.
+>=20
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+>  drivers/firmware/arm_scmi/driver.c | 4 ++--
+>  drivers/firmware/imx/imx-dsp.c     | 1 -
+>  drivers/firmware/imx/imx-scu-irq.c | 1 +
+>  drivers/firmware/imx/imx-scu.c     | 1 +
+>  drivers/firmware/mtk-adsp-ipc.c    | 1 -
+>  drivers/firmware/raspberrypi.c     | 1 +
+>  drivers/firmware/scpi_pm_domain.c  | 3 ++-
+>  drivers/firmware/stratix10-rsu.c   | 1 -
+>  drivers/firmware/tegra/bpmp.c      | 3 +--
+>  drivers/firmware/xilinx/zynqmp.c   | 1 +
+>  10 files changed, 9 insertions(+), 8 deletions(-)
 
-Use what is in datasheet.
+Acked-by: Thierry Reding <treding@nvidia.com>
 
->>
->> Shouldn't this binding be just merged with existing mcp4725? Are you
->> sure it's not similar device, IOW, are you sure you do not have vref supply?
->>
-> Unfortunately they are not that similar. MCP4728 has two vref choices:
-> 
-> - Use Vdd (power supply) as Vref
-> 
-> - User Internal 2.048 V Vref source.
+--TiNl3sY2kGGAUSEk
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Exactly the same as existing mcp4726, so what is the problem?
+-----BEGIN PGP SIGNATURE-----
 
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmS06y4ACgkQ3SOs138+
+s6H3vxAAt+q3FQ+MBS2z+u74V8zvjMkyymL79TZvk56JPufzsPYsS6gvjgQeEJg8
+R/slJzQCTxr3jPo3Z+wNWyfyEfE/1M58LbOBii5LVVxiQadLFmzqS/x9Zhy+LOVq
+LI1xBxmIE7fiC98G8rS5E0F/N8PPUm2KiNOtAelj0xeiy3TkG+kdNeTDQlt+yuHx
+tSTz992PllOwY2WSlYhXGwKJXZmibO5zmb6z1gWXYZZnzzIuyL2KeIuF0pRw/4Y9
+HoWX10J/985/8uaeWWci4ucp87WAYX0Z1/DfLBVjVFXA7rDcw5To/JwvwR8JkgXo
+2iF65qla1iOdqpq8KzWf485wdHISrWNwSiTLmhzeMNW3SagUNlsGtQCyCmDhIXD5
+A2nj+9NUWQmVlhkEbEMcJug9GUNtluuFCyWz6F7ipkz+l6r0hxFAUVDlntgWDt7w
+xRdCGvohvX3squFZ2NxeU0AX7NGxBRyEVlnmExUYjsdlYRrNFATYrV0Xyu1GKTjt
+QcaBe5bhIx9anBIZCfbb2OjHXYguN9LGABN0CepVZEJQ+92CHsS9o5fAMasquHTg
+BKnkPKO9/hwB+oY/kV6DgMCReLLL9Xl1CCKW1IktCempLLX+M7oTpXSR1Gt4Iolj
+CUo463ao93rGLkBXs7nlXnzDf1iykUqesITmjzEcbV9NwI1AxFw=
+=lAG5
+-----END PGP SIGNATURE-----
 
-Best regards,
-Krzysztof
-
+--TiNl3sY2kGGAUSEk--
