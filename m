@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 924EA756E48
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 22:33:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D9C95756E72
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 22:39:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230511AbjGQUdt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jul 2023 16:33:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34820 "EHLO
+        id S229476AbjGQUjP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jul 2023 16:39:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38092 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230508AbjGQUdr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 16:33:47 -0400
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EA72171A
-        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 13:33:36 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-51e57870becso6489993a12.2
-        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 13:33:36 -0700 (PDT)
+        with ESMTP id S231183AbjGQUjO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 16:39:14 -0400
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC4D6E6C
+        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 13:39:11 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-99454855de1so418599866b.2
+        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 13:39:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689626014; x=1692218014;
+        d=linaro.org; s=google; t=1689626350; x=1692218350;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=SAFiMNxdlmBtCViQChOk/XFJQ0JSC5fbUjtDK9wgAoM=;
-        b=iSxMBi3rKH/6HnCc1X5leW3yiIjzjg9zHPJMFJaNMps+seelAPG9EAtxK3l1yY4qDb
-         asU5cq9S/Umd+tNQSe8JyDEnf525Mw08c5m1GsZZFRGlF8qAR/KawcgLyZvUXZ4HmmG6
-         5pXkdDbUkghcwnPJDykuc8PpUx4SSJE5xQhXz4f7PdcNnwApKkFFw0+9e1jDe+pu6MHB
-         Q7BpMxlmArSR1g8YfcA92+b1JW33rEt3jE3O4XIudZ+A6LecoxZqkD+jKsqxjgx9UbLv
-         GubpKQc8DVpVsnjOiMfaSP0mGB4r6yAr4cd7k5nXyYuDYdBnaSN2giEuGrwEmNQ9ow9B
-         iPMg==
+        bh=gmNkfDah6O+uPw4Ib3W9slf1ycVoQFYR0H5sgdKTjwI=;
+        b=Qe2A4+QegpFejdVnrN5POOEeWtjx8ab8C0UDC1TZ/2ISJ+fKzl8uf1A9x+LeQK3WR7
+         s/LjpJUWuYe4u0IITKRiqrf8gojjrfn4ES9GmnFqrQtmWFG0wggg5aHuzV6QqfkMT4UY
+         NrAaN3avPkOXX7iPde8eJkKI+W0QxIhj5v3TjH0/73Qkd0dS+jeZ9IKg5zgCjcOAcTfz
+         Ht6HEmCWTU4eFRRxZOT4zXYUR8TRa6JBECdQ6JfDA2phRot1PQ4L411I+IlIkUnC7NXh
+         qAl+CxwurmcfYZJskg2VFhtnJTWhpIqOOxXoDtG5SjbIySfI5fp3ZOihTFhpKXk7pbWg
+         ylKw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689626014; x=1692218014;
+        d=1e100.net; s=20221208; t=1689626350; x=1692218350;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=SAFiMNxdlmBtCViQChOk/XFJQ0JSC5fbUjtDK9wgAoM=;
-        b=DbhVnVVVci7a3TKEw2/JbtDm+E+fEp7mQ0IWc7qUCKBgz/cTxsS4guNeM4aZoaQD0z
-         nSIw2SCmF03n5/9cwnEEZYgK1Fuozn8Mj2vILPHZNDqXOqwE2x8LhMT+9d5Hem7uy3Z1
-         mCSovKrxJMSB1UJ8UQvv9oNEq83qiRG2+VDaRwycyxn7iABdLUr1+YkbbJ2NOasnYPN1
-         r2eHAweGQeQYm3B2gMrQb1anMqBQ1PttXTqAaqaVSEGZ+2MhSvg3YV/BZroKB73RX0FK
-         0RhKw5JT/pLTyQUJck7DM4Xi3n00kA88hdnNS9prMxpxyjN7ZJhjCrs54SW4Efcxm0kL
-         IRTQ==
-X-Gm-Message-State: ABy/qLZoNA5/rE7r1qw1FP7eo1mnYwI8tbObFFH8ygCGs32R6ivsOM84
-        Czo/5/kJGw/SMiqt2f2LfeQHhA==
-X-Google-Smtp-Source: APBJJlFaEFzB40WLLllp7hDstkNtL0eOmE8wbJNRTUu6O38yJyr65Skc8hi6CYGIFXBli4PnnQ+sPQ==
-X-Received: by 2002:aa7:df08:0:b0:51e:d4b:3c9d with SMTP id c8-20020aa7df08000000b0051e0d4b3c9dmr12513969edy.23.1689626014529;
-        Mon, 17 Jul 2023 13:33:34 -0700 (PDT)
+        bh=gmNkfDah6O+uPw4Ib3W9slf1ycVoQFYR0H5sgdKTjwI=;
+        b=IZDZhu9rEt7LeBcbNKWfWD++36ap/fub0mHC5AyFQTf8tO3T3xEALz5Swoka+rgcWC
+         FIs2hxsamGCuJJTz36/R3MkttbJtuFvRBjAg10FnnQ9eGFtIeAmuDd/Bn+/wrs9zKfhn
+         w+k33ZrmwG3WpNgLtrL9D/kU4U8iO3aZOpuwgVBb71A0WC8bL0KVfK+7aN6rYh9ich4T
+         N6Xpsk/LoyU+ejm1g/FR4vai0Dnus/zRR4RdZWYcuXHjiGGOtuJ+ViZ6QDIVDdcx2U26
+         KsDU50aRkNqnTJ5Pmtc89Mwd7WmOxo2Jy8/LyzAM3LoQKvKZptnXf2HTqp02o4f6InoZ
+         bMjA==
+X-Gm-Message-State: ABy/qLYiO8+i6tG9/ZhkRmOLEC4207hZUB9cNREK+ismR4GB3zwtMd1R
+        LMS8nvia1QGcGdIqpb6K4J9spA==
+X-Google-Smtp-Source: APBJJlEcyhWZAO0MBPswLPa/ZIbl8mavuG7TjjlAudVH8Oks+LQPu3vA+mJ81Wq/x+wex65JIo+xbQ==
+X-Received: by 2002:a17:907:b0a:b0:993:6382:6e34 with SMTP id h10-20020a1709070b0a00b0099363826e34mr9815665ejl.72.1689626350230;
+        Mon, 17 Jul 2023 13:39:10 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id e19-20020aa7d7d3000000b0051e2a6cef4fsm113320eds.36.2023.07.17.13.33.32
+        by smtp.gmail.com with ESMTPSA id s1-20020a1709067b8100b009875a6d28b0sm141129ejo.51.2023.07.17.13.39.08
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 17 Jul 2023 13:33:33 -0700 (PDT)
-Message-ID: <0c534a51-dff3-84f1-34cb-41cae25d3871@linaro.org>
-Date:   Mon, 17 Jul 2023 22:33:31 +0200
+        Mon, 17 Jul 2023 13:39:09 -0700 (PDT)
+Message-ID: <4ef0d83e-b0c9-1f6e-c1a4-24d650630fe4@linaro.org>
+Date:   Mon, 17 Jul 2023 22:39:07 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
-Subject: Re: [PATCH V1 1/5] ASoC: codecs: Add i2c and codec registration for
- aw88261 and their associated operation functions
+Subject: Re: [PATCH V1 2/5] ASoC: codecs: aw88261 function for ALSA Audio
+ Driver
 Content-Language: en-US
 To:     wangweidong.a@awinic.com, lgirdwood@gmail.com, broonie@kernel.org,
         robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
@@ -70,9 +70,9 @@ To:     wangweidong.a@awinic.com, lgirdwood@gmail.com, broonie@kernel.org,
         linux-kernel@vger.kernel.org
 Cc:     yijiangtao@awinic.com, zhangjianming@awinic.com
 References: <20230717115845.297991-1-wangweidong.a@awinic.com>
- <20230717115845.297991-2-wangweidong.a@awinic.com>
+ <20230717115845.297991-3-wangweidong.a@awinic.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230717115845.297991-2-wangweidong.a@awinic.com>
+In-Reply-To: <20230717115845.297991-3-wangweidong.a@awinic.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -91,189 +91,116 @@ On 17/07/2023 13:58, wangweidong.a@awinic.com wrote:
 > The AW88261 is an I2S/TDM input, high efficiency
 > digital Smart K audio amplifier with an integrated 10.25V
 > smart boost convert
+
+It's the same as in patch before. This does not help and does not
+justify having one driver split into two.
+
 > 
 
 ...
 
 > +
-> +static int aw88261_request_firmware_file(struct aw88261 *aw88261)
+> +static void aw_dev_i2s_tx_enable(struct aw_device *aw_dev, bool flag)
 > +{
-> +	const struct firmware *cont = NULL;
 > +	int ret;
 > +
-> +	aw88261->aw_pa->fw_status = AW88261_DEV_FW_FAILED;
+> +	if (flag) {
+> +		ret = regmap_update_bits(aw_dev->regmap, AW88261_I2SCFG1_REG,
+> +			~AW88261_I2STXEN_MASK, AW88261_I2STXEN_ENABLE_VALUE);
+> +	} else {
+> +		ret = regmap_update_bits(aw_dev->regmap, AW88261_I2SCFG1_REG,
+> +			~AW88261_I2STXEN_MASK, AW88261_I2STXEN_DISABLE_VALUE);
+> +	}
+
+You should not need {} here and in multiple other places.
+
+> +	if (ret)
+> +		dev_dbg(aw_dev->dev, "%s failed", __func__);
+
+Why you are not handling the errors properly?
+
+> +}
 > +
-> +	ret = request_firmware(&cont, AW88261_ACF_FILE, aw88261->aw_pa->dev);
-> +	if ((ret < 0) || (!cont)) {
-> +		dev_err(aw88261->aw_pa->dev, "load [%s] failed!", AW88261_ACF_FILE);
+> +static void aw_dev_pwd(struct aw_device *aw_dev, bool pwd)
+> +{
+> +	int ret;
+> +
+> +	if (pwd) {
+> +		ret = regmap_update_bits(aw_dev->regmap, AW88261_SYSCTRL_REG,
+> +				~AW88261_PWDN_MASK,	AW88261_PWDN_POWER_DOWN_VALUE);
+> +	} else {
+> +		ret = regmap_update_bits(aw_dev->regmap, AW88261_SYSCTRL_REG,
+> +				~AW88261_PWDN_MASK,	AW88261_PWDN_WORKING_VALUE);
+> +	}
+> +	if (ret)
+> +		dev_dbg(aw_dev->dev, "%s failed", __func__);
+> +}
+> +
+
+...
+
+> +
+> +int aw88261_dev_fw_update(struct aw_device *aw_dev)
+> +{
+> +	struct aw_prof_desc *prof_index_desc;
+> +	struct aw_sec_data_desc *sec_desc;
+> +	char *prof_name;
+> +	int ret;
+> +
+> +	prof_name = aw88261_dev_get_prof_name(aw_dev, aw_dev->prof_index);
+> +	if (!prof_name) {
+> +		dev_err(aw_dev->dev, "get prof name failed");
+> +		return -EINVAL;
+> +	}
+> +
+> +	dev_dbg(aw_dev->dev, "start update %s", prof_name);
+> +
+> +	ret = aw88261_dev_get_prof_data(aw_dev, aw_dev->prof_index, &prof_index_desc);
+> +	if (ret)
 > +		return ret;
-
-return dev_err_probe?
-
-> +	}
 > +
-> +	dev_info(aw88261->aw_pa->dev, "loaded %s - size: %zu\n",
-> +			AW88261_ACF_FILE, cont ? cont->size : 0);> +
-> +	aw88261->aw_cfg = devm_kzalloc(aw88261->aw_pa->dev, cont->size + sizeof(int), GFP_KERNEL);
-> +	if (!aw88261->aw_cfg) {
-> +		release_firmware(cont);
-> +		return -ENOMEM;
-> +	}
-> +	aw88261->aw_cfg->len = (int)cont->size;
-> +	memcpy(aw88261->aw_cfg->data, cont->data, cont->size);
-> +	release_firmware(cont);
-> +
-> +	ret = aw88261_dev_load_acf_check(aw88261->aw_pa, aw88261->aw_cfg);
-> +	if (ret < 0) {
-> +		dev_err(aw88261->aw_pa->dev, "Load [%s] failed ....!", AW88261_ACF_FILE);
+> +	/* update reg */
+> +	sec_desc = prof_index_desc->sec_desc;
+> +	ret = aw_dev_reg_update(aw_dev, sec_desc[AW88261_DATA_TYPE_REG].data,
+> +					sec_desc[AW88261_DATA_TYPE_REG].len);
+> +	if (ret) {
+> +		dev_err(aw_dev->dev, "update reg failed");
 > +		return ret;
 > +	}
 > +
-> +	dev_dbg(aw88261->aw_pa->dev, "%s : bin load success\n", __func__);
-
-Drop dev_dbg on simple probe success/failure. There is tracing
-infrastructure for this.
-
-> +
-> +	mutex_lock(&aw88261->lock);
-> +	/* aw device init */
-> +	ret = aw88261_dev_init(aw88261->aw_pa, aw88261->aw_cfg);
-> +	if (ret < 0)
-> +		dev_err(aw88261->aw_pa->dev, "dev init failed");
-> +	mutex_unlock(&aw88261->lock);
+> +	aw_dev->prof_cur = aw_dev->prof_index;
 > +
 > +	return ret;
 > +}
+> +EXPORT_SYMBOL_GPL(aw88261_dev_fw_update);
+
+Why do you need to export this? Where is the user?
+
 > +
-> +static int aw88261_codec_probe(struct snd_soc_component *component)
+> +int aw88261_dev_reg_update(struct aw_device *aw_dev, bool force)
 > +{
-> +	struct snd_soc_dapm_context *dapm = snd_soc_component_get_dapm(component);
-> +	struct aw88261 *aw88261 = snd_soc_component_get_drvdata(component);
 > +	int ret;
 > +
-> +	INIT_DELAYED_WORK(&aw88261->start_work, aw88261_startup_work);
-> +
-> +	ret = aw88261_request_firmware_file(aw88261);
-> +	if (ret < 0) {
-> +		dev_err(aw88261->aw_pa->dev, "aw88261_request_firmware_file failed\n");
-> +		return ret;
-
-Consider here dev_err_probe, to annotate possibility of probe deferal
-(e.g. missing rootfs). I think component probe is called for device probes?
-
+> +	if (force) {
+> +		aw88261_dev_soft_reset(aw_dev);
+> +		ret = aw88261_dev_fw_update(aw_dev);
+> +		if (ret < 0)
+> +			return ret;
+> +	} else {
+> +		if (aw_dev->prof_cur != aw_dev->prof_index) {
+> +			ret = aw88261_dev_fw_update(aw_dev);
+> +			if (ret < 0)
+> +				return ret;
+> +		}
 > +	}
 > +
-> +	/* add widgets */
-> +	ret = snd_soc_dapm_new_controls(dapm, aw88261_dapm_widgets,
-> +							ARRAY_SIZE(aw88261_dapm_widgets));
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	/* add route */
-> +	ret = snd_soc_dapm_add_routes(dapm, aw88261_audio_map,
-> +							ARRAY_SIZE(aw88261_audio_map));
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	ret = snd_soc_add_component_controls(component, aw88261_controls,
-> +							ARRAY_SIZE(aw88261_controls));
+> +	aw_dev->prof_cur = aw_dev->prof_index;
 > +
 > +	return ret;
 > +}
-> +
+> +EXPORT_SYMBOL_GPL(aw88261_dev_reg_update);
 
-> +static void aw88261_codec_remove(struct snd_soc_component *aw_codec)
-> +{
-> +	struct aw88261 *aw88261 = snd_soc_component_get_drvdata(aw_codec);
-> +
-> +	cancel_delayed_work_sync(&aw88261->start_work);
-> +}
-> +
-> +
-> +static void aw88261_hw_reset(struct aw88261 *aw88261)
-> +{
-> +	gpiod_set_value_cansleep(aw88261->reset_gpio, 0);
-> +	usleep_range(AW88261_1000_US, AW88261_1000_US + 10);
-> +	gpiod_set_value_cansleep(aw88261->reset_gpio, 1);
-> +	usleep_range(AW88261_1000_US, AW88261_1000_US + 10);
-> +}
-> +
-> +static int aw88261_i2c_probe(struct i2c_client *i2c)
-> +{
-> +	struct aw88261 *aw88261;
-> +	int ret;
-> +
-> +	if (!i2c_check_functionality(i2c->adapter, I2C_FUNC_I2C)) {
-> +		dev_err(&i2c->dev, "check_functionality failed");
-> +		return -EIO;
-> +	}
-> +
-> +	aw88261 = aw88261_malloc_init(i2c);
-> +	if (!aw88261) {
-> +		dev_err(&i2c->dev, "malloc aw88261 failed");
-
-Do not print messages on allocation errors.
-
-Also, there is little sense in moving one or two functions - kzalloc -
-to separate function. It does not make the code easier to read.
-
-> +		return -ENOMEM;
-> +	}
-> +	i2c_set_clientdata(i2c, aw88261);
-> +
-> +	aw88261->reset_gpio = devm_gpiod_get_optional(&i2c->dev, "reset", GPIOD_OUT_LOW);
-> +	if (IS_ERR(aw88261->reset_gpio))
-> +		dev_info(&i2c->dev, "reset gpio not defined\n");
-> +	else
-> +		aw88261_hw_reset(aw88261);
-> +
-> +	aw88261->regmap = devm_regmap_init_i2c(i2c, &aw88261_remap_config);
-> +	if (IS_ERR(aw88261->regmap)) {
-> +		ret = PTR_ERR(aw88261->regmap);
-> +		dev_err(&i2c->dev, "Failed to init regmap: %d\n", ret);
-> +		return ret;
-
-return dev_err_probe
-
-> +	}
-> +
-> +	/* aw pa init */
-> +	ret = aw88261_init(&aw88261->aw_pa, i2c, aw88261->regmap);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	ret = devm_snd_soc_register_component(&i2c->dev,
-> +			&soc_codec_dev_aw88261,
-> +			aw88261_dai, ARRAY_SIZE(aw88261_dai));
-> +	if (ret < 0)
-> +		dev_err(&i2c->dev, "failed to register aw88261: %d", ret);
-> +
-> +	return ret;
-> +}
-> +
-> +#ifdef CONFIG_OF
-
-Drop
-
-> +static const struct of_device_id aw88261_of_match[] = {
-> +	{ .compatible = "awinic,aw88261" },
-> +	{ },
-> +};
-> +MODULE_DEVICE_TABLE(of, aw88261_of_match);
-> +#endif
-> +
-> +static const struct i2c_device_id aw88261_i2c_id[] = {
-> +	{ AW88261_I2C_NAME, 0 },
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(i2c, aw88261_i2c_id);
-> +
-> +static struct i2c_driver aw88261_i2c_driver = {
-> +	.driver = {
-> +		.name = AW88261_I2C_NAME,
-> +		.of_match_table = of_match_ptr(aw88261_of_match),
-
-Drop of_match_ptr.
+Same question. And in all other places as well.
 
 
 Best regards,
