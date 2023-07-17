@@ -2,206 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A89D755D9D
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 09:58:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C4E6755DAB
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 10:00:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231178AbjGQH6M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jul 2023 03:58:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56682 "EHLO
+        id S231126AbjGQIAp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jul 2023 04:00:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57920 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231229AbjGQH6H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 03:58:07 -0400
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E654BC7
-        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 00:58:05 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-9939fbb7191so864848966b.0
-        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 00:58:05 -0700 (PDT)
+        with ESMTP id S229634AbjGQIAn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 04:00:43 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 547D3DE
+        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 01:00:40 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-9922d6f003cso596094666b.0
+        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 01:00:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689580684; x=1692172684;
+        d=linaro.org; s=google; t=1689580839; x=1692172839;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=FmNQm9M+0zn/nMrIBNBkshVCde1QUTYeyBhIVjKtHnY=;
-        b=sQNpV1XUH/ZgObuv1zrTnKpPMULBMO+AzfSKXjvsS1gay3a2emm3/9jpD6YLn7ixyv
-         jqXWoFyybylAJcWZgtp1rebtgXsklM5cTyI7JZs3FsDT/qYKb+eKVg77Ids8kU0kUA0r
-         BjeSfAiC9y3fHSvYk+EgihQ50nn7SHkXzlOJfXmok3IBfsVXlkDx4mnEas4xQGJw3O8f
-         1r+8G17PPMIuNVEPHgd3KUWhc4WSIkYDR9KnM8hwrp10tHEMdHQ7NuC52eFpZ50IGkSW
-         UsggA7SYOg8U88CMuMQvyfvFh7ndq99ePxJVakwAtXKJgfJ964M/sgBB+a786C8XKtVD
-         TsWA==
+        bh=THHFMED/jbOMH1YRv1UObCpRHTU3JeymiO4m4VH30UI=;
+        b=JVkc2lCRmJaOr1H3tOGjczXY4e7+wGGkwH424uoSMLfFGyuQwfYbf4VVztm+wtgQM0
+         k1KtafwTOYyffgHZqwXgnXqmN/FS/nZoRG/s35hkxZhxG7kmcdaFzKRh8AaFyR/a1NuR
+         k2F86TuPe/XBLIQCP4C9q5pNTZwGAbUXCxhp6qGgLgk6As+S4h0Dnn7Yj6/b7fKzZqFU
+         X/6GxUUmkSa2tiVLlllntz4up8imTnP0JF2PT+gSW8419n/qIEoMN19TOD7ycyJPtznc
+         BePOJ2L+o8VSMPAG/YkbLjdpoHKFvNwtllz8JMTEjJ+pLam/MhEs4jW2d+NcahMHyYMn
+         1efA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689580684; x=1692172684;
+        d=1e100.net; s=20221208; t=1689580839; x=1692172839;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=FmNQm9M+0zn/nMrIBNBkshVCde1QUTYeyBhIVjKtHnY=;
-        b=lZYkj3ZkE8VknVvIy6fyMEc+S0DLl3BmSUeXINwh+qgZlb4fDuvSbDOG7wJ3PTr40c
-         OSNmSSRVmeVvIgvZLxhskY3BXdz1QUgCvwUHG+ve2t3JBZnVUIKftHp6lkxAXXNtk+66
-         GhaYavkgpUy0ydPAizhWTdImUVGGG57xmp8PsrFxijvPHc400uc5kLH86RzYdHZNIzl5
-         0JNqry/CsShBCyFMvaCnQgIk/RspaR6TTj6ZLrGVHho6wF32fEaWPKKtp1QLBE0M/wCY
-         R2Dh0drDpqv5sBlq/tfv3K6H7ZeK3BXywy+n1Bv+iUf3I5RK1mN2Zu7Sg0AgMxJX81fC
-         uHpw==
-X-Gm-Message-State: ABy/qLaCgzG/oPUtG9VxD0OA0KXzpAU/2+7mfG3U0k9SMuriuV8p/gqf
-        a3wOGPvi7/d4pyACSPgiLqOc8A==
-X-Google-Smtp-Source: APBJJlGtCX9k5iJy3dI+RGwPFkVJmxznXKt3Y4+Mj8D95AdYaZc3jwO8W52PEiMJ5W/r28uuapZFJA==
-X-Received: by 2002:a17:906:225c:b0:994:5407:9ac9 with SMTP id 28-20020a170906225c00b0099454079ac9mr9978026ejr.5.1689580684429;
-        Mon, 17 Jul 2023 00:58:04 -0700 (PDT)
+        bh=THHFMED/jbOMH1YRv1UObCpRHTU3JeymiO4m4VH30UI=;
+        b=hoFb1MYixUaxH19yNVZFOd52ssLU8frNT9RyBSJvpdQNA3qaOBvoM/09fkMPD4Iepf
+         KiwgFlbfgA2EA+2kZjwm6dbZIuPSe9X//GztgjoAdSGlQquju9xkVtb1z2ERBPG33eJV
+         hlsGhTGTuQezSNFtdE6De1f7IQGnPYaxPKSY8/68WEwakRbCGF9ao45+7ONkHiLRiWCK
+         kzqLHXW7jqMaWALQ/LrZ9EkNs4oAMW+MBSNp7/jzQ3OA6Y3fss3cpyR6acrNy2Om1frQ
+         Ci8rtEZWWK8o/g0ohGuJUQEi2cyHTdSnzgvvRpJ1XDGdUbS/Z4J2Fl66cP7gv8p6897g
+         Uhww==
+X-Gm-Message-State: ABy/qLYkEXLY1wDMEG43hnKM+M3WnadAjY0BlL061fVRvaLyihPe2F1u
+        old9TZv/u2pxSc2FxK70/uRqSA==
+X-Google-Smtp-Source: APBJJlE6vsMf+xJHq0O08ELQG4D+gllwRFuPlzUBGX6jzdz35fNbMZ5xU3jC0NMYESeFySVfqn8/vw==
+X-Received: by 2002:a17:907:8a11:b0:993:e691:6dd5 with SMTP id sc17-20020a1709078a1100b00993e6916dd5mr12922667ejc.7.1689580838733;
+        Mon, 17 Jul 2023 01:00:38 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id s7-20020a1709064d8700b00993004239a4sm8794738eju.215.2023.07.17.00.58.01
+        by smtp.gmail.com with ESMTPSA id j8-20020a1709064b4800b009929c09abdfsm8914264ejv.70.2023.07.17.01.00.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 17 Jul 2023 00:58:03 -0700 (PDT)
-Message-ID: <66cff026-3e7d-f88b-e99f-8100233231bb@linaro.org>
-Date:   Mon, 17 Jul 2023 09:58:00 +0200
+        Mon, 17 Jul 2023 01:00:38 -0700 (PDT)
+Message-ID: <6dbf7628-da4e-6be6-27ed-b0bafa15d8bb@linaro.org>
+Date:   Mon, 17 Jul 2023 10:00:36 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
-Subject: Re: [PATCH 2/3] Documentation/process: maintainer-soc: add clean
- platforms profile
+Subject: Re: [PATCH v2 RESEND] dt-bindings: clock: ast2600: Add I3C and MAC
+ reset definitions
 Content-Language: en-US
-To:     Conor Dooley <conor@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Nishanth Menon <nm@ti.com>, linux-riscv@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        Jonathan Corbet <corbet@lwn.net>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        soc@kernel.org, workflows@vger.kernel.org,
-        linux-doc@vger.kernel.org
-References: <20230714084725.27847-1-krzysztof.kozlowski@linaro.org>
- <20230714084725.27847-2-krzysztof.kozlowski@linaro.org>
- <20230714-verbose-unwound-fb8b1df29d25@spud>
+To:     Dylan Hung <kobedylan@gmail.com>, mturquette@baylibre.com,
+        sboyd@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     BMC-SW@aspeedtech.com, Dylan Hung <dylan_hung@aspeedtech.com>
+References: <20230717075123.1597977-1-dylan_hung@aspeedtech.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230714-verbose-unwound-fb8b1df29d25@spud>
+In-Reply-To: <20230717075123.1597977-1-dylan_hung@aspeedtech.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/07/2023 14:50, Conor Dooley wrote:
-> Hey Krzysztof,
+On 17/07/2023 09:51, Dylan Hung wrote:
+> Add reset definitions of AST2600 I3C and MAC controllers.
 > 
-> On Fri, Jul 14, 2023 at 10:47:24AM +0200, Krzysztof Kozlowski wrote:
->> Some SoC platforms require that commits must not bring any new
->> dtbs_check warnings.  Maintainers of such platforms usually have some
->> automation set, so any new warning will be spotted sooner or later.
->> Worst case: they run the tests themselves.  Document requirements for
->> such platforms, so contributors can expect their patches being dropped
->> or ignored, if they bring new warnings for existing boards.
+> Signed-off-by: Dylan Hung <dylan_hung@aspeedtech.com>
+> ---
 > 
-> Definitely a more scalable approach than your previous version!
-> 
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> ---
->>  .../process/maintainer-handbooks.rst          |  1 +
->>  .../process/maintainer-soc-clean-dts.rst      | 22 +++++++++++++++++++
->>  MAINTAINERS                                   |  2 +-
->>  3 files changed, 24 insertions(+), 1 deletion(-)
->>  create mode 100644 Documentation/process/maintainer-soc-clean-dts.rst
->>
->> diff --git a/Documentation/process/maintainer-handbooks.rst b/Documentation/process/maintainer-handbooks.rst
->> index 9992bfd7eaa3..976391cec528 100644
->> --- a/Documentation/process/maintainer-handbooks.rst
->> +++ b/Documentation/process/maintainer-handbooks.rst
->> @@ -17,5 +17,6 @@ Contents:
->>  
->>     maintainer-netdev
->>     maintainer-soc
->> +   maintainer-soc-clean-dts
->>     maintainer-tip
->>     maintainer-kvm-x86
->> diff --git a/Documentation/process/maintainer-soc-clean-dts.rst b/Documentation/process/maintainer-soc-clean-dts.rst
->> new file mode 100644
->> index 000000000000..87feeb5543ff
->> --- /dev/null
->> +++ b/Documentation/process/maintainer-soc-clean-dts.rst
->> @@ -0,0 +1,22 @@
->> +.. SPDX-License-Identifier: GPL-2.0
->> +
->> +=============================
->> +SoC Platforms with Strict DTS
-> 
-> I don't think that this title makes much sense, it feels like it has
-> been truncated. Perhaps add "Requirements" to the end?
+> Resend v2 patch through my gmail account as the aspeedtech.com domain is blocked by gmail.com
 
-OK, but maybe better then
-
-SoC Platforms with DTS Compliance Requirements
-?
+Where is the changelog?
 
 > 
->> +=============================
->> +
->> +Overview
->> +--------
->> +
->> +SoC platforms or subarchitectures follow all the rules from
+>  include/dt-bindings/clock/ast2600-clock.h | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
 > 
-> s/follow/should follow/?
+> diff --git a/include/dt-bindings/clock/ast2600-clock.h b/include/dt-bindings/clock/ast2600-clock.h
+> index e149eee61588..712782177c90 100644
+> --- a/include/dt-bindings/clock/ast2600-clock.h
+> +++ b/include/dt-bindings/clock/ast2600-clock.h
+> @@ -90,7 +90,19 @@
+>  /* Only list resets here that are not part of a clock gate + reset pair */
+>  #define ASPEED_RESET_ADC		55
+>  #define ASPEED_RESET_JTAG_MASTER2	54
+> +
+> +#define ASPEED_RESET_MAC4		53
+> +#define ASPEED_RESET_MAC3		52
+> +
+> +#define ASPEED_RESET_I3C5		45
+> +#define ASPEED_RESET_I3C4		44
+> +#define ASPEED_RESET_I3C3		43
+> +#define ASPEED_RESET_I3C2		42
+> +#define ASPEED_RESET_I3C1		41
+> +#define ASPEED_RESET_I3C0		40
+> +#define ASPEED_RESET_I3C		39
+>  #define ASPEED_RESET_I3C_DMA		39
 
-Ack
-
-> 
->> +Documentation/process/maintainer-soc.rst.  However platforms referencing this
->> +document impose additional requirements listed below.
->> +
->> +Strict DTS DT schema compliance
->> +-------------------------------
-> Should there be a blank line here to match the other section headings?
-
-Ack
-
-> Also, to match the title case you used elsewhere, "Schema Compliance"?
-
-Ack
-
-> 
->> +None of the changes to the SoC platform Devicetree sources (DTS files) can
->> +bring new ``make dtbs_check W=1`` warnings.  The platform maintainers have
-> 
-> Nitpickery again, but perhaps the first sentence here would read better as
-> "No changes to the SoC platform Devicetree sources (DTS files) should
-> introduce new ``make dtbs_check W=1`` warnings."?
-
-Ack
-
-> 
->> +automation in place which should point out any new warnings.
->> +
->> +If a commit introducing new warning gets accepted somehow, the resulting issues
->> +shall be fixed in reasonable time (e.g. within one release) or the commit
->> +reverted.
-> 
-> It is loosely related, but I was wondering if we should also try to push
-> people that change the platform's bindings to update the DTS also, so
-> that binding changes do not introduce W=1 complaints?
-
-Makes sense, we could add such rule to Devicetree maintainer profile.
-Anyway enforcing it relies on Rob's bot reporting the warnings, which
-seems silent recently.
-
-> For many bindings the platform entry in MAINTAINERS does not cover them,
-> but things like the arm64 Apple stuff mention them specifically & others
-> will get coverage due to regexes.
-> 
-> Anyway, nitpickery aside I like this approach.
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-> 
-
+Why adding duplicate ID? Your commit msg or a comment here should
+explain this.
 
 Best regards,
 Krzysztof
