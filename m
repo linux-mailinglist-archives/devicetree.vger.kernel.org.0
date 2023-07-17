@@ -2,131 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B04A756695
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 16:38:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C572756710
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 17:03:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231411AbjGQOil (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jul 2023 10:38:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59626 "EHLO
+        id S229583AbjGQPDD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jul 2023 11:03:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41514 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229517AbjGQOik (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 10:38:40 -0400
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89D841702
-        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 07:38:29 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-992e22c09edso555304966b.2
-        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 07:38:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689604708; x=1692196708;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=5jvKHaT3vughoaStmuT2QRmed9/KJPScQvPNG1Af6IA=;
-        b=fDMBBuAqGrXdanhKgy6Kj3GaF1Cbqu1dNoGYEDHeKeBS9YmvhkOOIUL5/2NzBS36S1
-         WqJw1NB91/SMUgiN22Uplk0IO8CA2OuWwa61zWXHSt24c/mL4SVm6C45zrfXWHhu8SI0
-         pg49mrC9JHQRSFP+cus/9EjsKqUan3J/yXTh8XkurcA21iYrWGkaPqfIku5FOd7UWWEA
-         RC6ARNL95Do+TOB7Ry6xoVGuiepCmhvvxzaQFCWmdxxxSrv0+v9NAcph5wWD1behtrAg
-         0cMOr4fDZg7RbucNpjLvMObhWZXxRCn4vAcRhh+TUGQ8liu6Aw2ox/jBkCN2TtSDBkkj
-         5Ugw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689604708; x=1692196708;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=5jvKHaT3vughoaStmuT2QRmed9/KJPScQvPNG1Af6IA=;
-        b=SSKKJBpXxl9ZQwHbKvobhiygvyGdeLzpefWUzkQBvkR7s5J02F0N/PgMq0GdzU6lZt
-         kInC8OjOjE2IdrhCULH0u/Umy8q6cILjYkpbM6oK2lJ7REIfhfagYSmN1hHaL3hG8qLA
-         jEeF1HrUgdp5T3Nazmn1zMYBtH1fudOlWR+qJR0/xNg7FWj+cSs+BDRJEwiwAmPI8bq7
-         bvcQH4OX3iJsrRqU90NsECVd9OxdFIBmLwt8Xx9XUvTl+v3bcHh2lByT/2XSTxO5BsrU
-         QVkt5BBaAAruunZihSpFOIkeOheK7YfXQsRV/KV63tCHNCtXT9UZvvU4PMr3BIgJ6cDj
-         zc3A==
-X-Gm-Message-State: ABy/qLZY8jYRlsW/fdKko9LRRuUxAk2PpSRIivNt5N1Z4mp6VeGjauHm
-        yGtZUT10AS3x5SkViw7fixxvVg==
-X-Google-Smtp-Source: APBJJlHuDUBK5cwmhawGBolzcDQMvMHj53vUDDbfyeMPmszGPef9RxkAxivjFmjVxv7aIFk1NoOooQ==
-X-Received: by 2002:a17:906:151:b0:991:d2a8:6588 with SMTP id 17-20020a170906015100b00991d2a86588mr12500412ejh.51.1689604707729;
-        Mon, 17 Jul 2023 07:38:27 -0700 (PDT)
-Received: from krzk-bin.. ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id qx21-20020a170906fcd500b009937e7c4e54sm9264078ejb.39.2023.07.17.07.38.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 17 Jul 2023 07:38:26 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        with ESMTP id S230526AbjGQPBc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 11:01:32 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7EBB1720
+        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 08:01:28 -0700 (PDT)
+Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mkl@pengutronix.de>)
+        id 1qLPiz-0008Qa-9d; Mon, 17 Jul 2023 17:01:21 +0200
+Received: from pengutronix.de (unknown [172.20.34.65])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (Client did not present a certificate)
+        (Authenticated sender: mkl-all@blackshift.org)
+        by smtp.blackshift.org (Postfix) with ESMTPSA id 8006D1F3749;
+        Mon, 17 Jul 2023 15:01:20 +0000 (UTC)
+Date:   Mon, 17 Jul 2023 17:01:20 +0200
+From:   Marc Kleine-Budde <mkl@pengutronix.de>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Wolfgang Grandegger <wg@grandegger.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, devicetree@vger.kernel.org,
+        linux-can@vger.kernel.org, netdev@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Subject: [PATCH] arm64: dts: qcom: sm8450-hdk: add other analogue microphones
-Date:   Mon, 17 Jul 2023 16:38:24 +0200
-Message-Id: <20230717143824.203352-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
+Subject: Re: [PATCH] can: Explicitly include correct DT includes
+Message-ID: <20230717-unlit-cryptic-3d86dbc80e62-mkl@pengutronix.de>
+References: <20230714174757.4060748-1-robh@kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="eejmmsymfflajlff"
+Content-Disposition: inline
+In-Reply-To: <20230714174757.4060748-1-robh@kernel.org>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:b01:1d::7b
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add proper audio routes for onboard analogue microphones: AMIC[1345].
-Use also new DAPM input widget (TX SWR_INPUTn) for them, not the
-deprecated ADC one.  Change is not compatible with older kernels not
-having the new SWR_INPUTn input widget.
 
-Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+--eejmmsymfflajlff
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
----
+On 14.07.2023 11:47:57, Rob Herring wrote:
+> The DT of_device.h and of_platform.h date back to the separate
+> of_platform_bus_type before it as merged into the regular platform bus.
+> As part of that merge prepping Arm DT support 13 years ago, they
+> "temporarily" include each other. They also include platform_device.h
+> and of.h. As a result, there's a pretty much random mix of those include
+> files used throughout the tree. In order to detangle these headers and
+> replace the implicit includes with struct declarations, users need to
+> explicitly include the correct includes.
+>=20
+> Signed-off-by: Rob Herring <robh@kernel.org>
 
-Depends on ASoC driver changes:
-https://lore.kernel.org/alsa-devel/20230717140138.201745-1-krzysztof.kozlowski@linaro.org/T/#t
-This patch should wait till respective ASoC changes got merged.
----
- arch/arm64/boot/dts/qcom/sm8450-hdk.dts | 23 ++++++++++++++++-------
- 1 file changed, 16 insertions(+), 7 deletions(-)
+Applied to linux-can-next/testing.
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8450-hdk.dts b/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
-index bd5e8181f2aa..9bd1ef401ca3 100644
---- a/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
-@@ -915,14 +915,23 @@ &sound {
- 			"SpkrRight IN", "WSA_SPK2 OUT",
- 			"IN1_HPHL", "HPHL_OUT",
- 			"IN2_HPHR", "HPHR_OUT",
-+			"AMIC1", "MIC BIAS1",
- 			"AMIC2", "MIC BIAS2",
--			"VA DMIC0", "MIC BIAS1",
--			"VA DMIC1", "MIC BIAS1",
--			"VA DMIC2", "MIC BIAS3",
--			"TX DMIC0", "MIC BIAS1",
--			"TX DMIC1", "MIC BIAS2",
--			"TX DMIC2", "MIC BIAS3",
--			"TX SWR_ADC1", "ADC2_OUTPUT";
-+			"AMIC3", "MIC BIAS3",
-+			"AMIC4", "MIC BIAS3",
-+			"AMIC5", "MIC BIAS4",
-+			"VA DMIC0", "MIC BIAS3",
-+			"VA DMIC1", "MIC BIAS3",
-+			"VA DMIC2", "MIC BIAS1",
-+			"VA DMIC3", "MIC BIAS1",
-+			"TX DMIC0", "MIC BIAS3",
-+			"TX DMIC1", "MIC BIAS3",
-+			"TX DMIC2", "MIC BIAS1",
-+			"TX DMIC3", "MIC BIAS1",
-+			"TX SWR_INPUT0", "ADC1_OUTPUT",
-+			"TX SWR_INPUT1", "ADC2_OUTPUT",
-+			"TX SWR_INPUT2", "ADC3_OUTPUT",
-+			"TX SWR_INPUT3", "ADC4_OUTPUT";
- 
- 	wcd-playback-dai-link {
- 		link-name = "WCD Playback";
--- 
-2.34.1
+Thanks,
+Marc
 
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde          |
+Embedded Linux                   | https://www.pengutronix.de |
+Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
+
+--eejmmsymfflajlff
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEDs2BvajyNKlf9TJQvlAcSiqKBOgFAmS1V70ACgkQvlAcSiqK
+BOgfVwgAjKwx+4nk8AlCGfzojqzFw8CxJ/sSJRYeT+8oIH9JKqVLXm1xfoh1ij0A
+ce3Vj7dqN2LucKDYB0P1Ts7pa35vBQhvR4U3GA6t9K6Pu3PDw9iwfis6EcTXBC6+
+no8gVHH/crA4tR9dhdH0Se0zPhcECl6xtZquB2e86kFs3Z+YzvjIm9P4SC48DxdZ
+HQceBStpwt/4/hYqa4S5gQmGcXVpS3zgYIvVOVCIEnVjR7A+zVg7c3hajg+EhViJ
+omy6lIAguP3CudXvVZGIOCS3fMsYf4ZOsZWkGQV1ZhE09pKD/lJ4JmhYjZnYKexX
+TQh8Fgh+uCidTXw/njkR3XyVQHwlnw==
+=aehg
+-----END PGP SIGNATURE-----
+
+--eejmmsymfflajlff--
