@@ -2,96 +2,214 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B01C756290
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 14:13:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D47B375629B
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 14:22:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229779AbjGQMNf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jul 2023 08:13:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45454 "EHLO
+        id S229652AbjGQMWE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jul 2023 08:22:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47548 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229608AbjGQMNe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 08:13:34 -0400
-Received: from mail-pf1-x430.google.com (mail-pf1-x430.google.com [IPv6:2607:f8b0:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E662A118;
-        Mon, 17 Jul 2023 05:13:33 -0700 (PDT)
-Received: by mail-pf1-x430.google.com with SMTP id d2e1a72fcca58-67ef5af0ce8so4560627b3a.2;
-        Mon, 17 Jul 2023 05:13:33 -0700 (PDT)
+        with ESMTP id S229697AbjGQMWD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 08:22:03 -0400
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A871EE1
+        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 05:22:01 -0700 (PDT)
+Received: by mail-wr1-x42b.google.com with SMTP id ffacd0b85a97d-3141c3a7547so4202963f8f.2
+        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 05:22:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1689596013; x=1692188013;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=t7mGkEFG/BBY8i1FxVeGw7e6gM5cItBSc8cgFSjGd4w=;
-        b=YfPGG9my9lEnguT2SNwXZKvSdi8mAM5GSP34OK/6lDn5JVemYBY6UY3iEhQB4+HSwU
-         TFWJThPRrBJdSOifFr7KXTit991XI1d4B3i6+2Vl9zcShrZ9U8uMRi2/ONcAsJob1Xob
-         WieQJrPcwUK3zgSfNhMMbxwItgXdKOBsf3xiF0NphmBNS9wDDCJvvkvJPANQO9EjgC+v
-         6fs+N6RbnLLX2PUdX3gocyQWmBa7vdSuAHON6JuStezrnottWN3UihHJvO/kJOtAmr9w
-         PRZIwH14FoH+CpVb1O3e5yl7SyeorI1v55pQ37Y98ey1h0ZTH0pAMBTOyymFgEFLfjEC
-         XqLQ==
+        d=linaro.org; s=google; t=1689596520; x=1692188520;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=nMAA88M8Z/93RtoRIAUU64QloDepHPouDJtQ0xvz1Fs=;
+        b=wrEsWogMJQ2JL4V9KZL9DLxBxHrwZnxlc4BXb0izdLzR97PaMJ1ff7C5ZFusnrABJ/
+         +uZ+9C5XFUfQulRJw/cgor17YzV7Y/oyVZDPlU5k1SHEjgOgBmCgjnVn6HX20XKXcWyP
+         AbowoNdENYpfWRNXApsxt3E+vjQw+eK6bYD5vOyxCvgU1ANCJJl4hgnfZXAJGT4LCEKE
+         Q8uo8LafdGVuZ6D5f9TQmBt5fSTwtSRMyK1VKyhXQt8B5sKraXii66qGP+zqzH3ELcRA
+         Jcikmqlrk2KMJ5yg9EwQijrtPWP4Fc5kRa4++r7yZNz/jPOxFpBkLuAFex8GN6TUy9bY
+         fhkQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689596013; x=1692188013;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=t7mGkEFG/BBY8i1FxVeGw7e6gM5cItBSc8cgFSjGd4w=;
-        b=OjFvAAi2O+3lyZPqThZqAbZxNHyzNmRrXHUrECo9CRvAbtEdJTG+0zqvxB5jhH9RSP
-         H6uoyHa1Leun2ARe1T454KdqTW5siuwFabmf9AQUWs4SYCLUbAsU6FmoTAaL+OHmuPeT
-         Znewxt0NUqCMRdHSPNTVWlKTsli5NDoSJQ4hj0W0linhwjnMnhngvNfpalpcDMnZ0DxS
-         qFTEmTZ2KScDN6yweiWSK4JfMxxgi6lYwsfTsnRVP4/O0NmhNNkhh5TI/61ai3g7zQIp
-         ptNPTvC9EjLrA5+a/zeniVEhmkmn9OBR1rSy/O7UjGafUPRmpRB39EDtbotLQDpORh7G
-         /1xQ==
-X-Gm-Message-State: ABy/qLa/ICY5z9Qojtjj6+n1uVn6dCO/yMrIdo55QuCQ56PnMsny61rK
-        IagQoYRgy522zN9ywwGsrHCIfU8606E=
-X-Google-Smtp-Source: APBJJlGj0lHYpLdbzSreLZstrO6fHiwNc5WkCSTSq3H+UhbbRMa8JtFWuzafHld+wv5ysTDXEkvFTw==
-X-Received: by 2002:a05:6a00:1353:b0:682:537f:2cb8 with SMTP id k19-20020a056a00135300b00682537f2cb8mr15587596pfu.26.1689596013188;
-        Mon, 17 Jul 2023 05:13:33 -0700 (PDT)
-Received: from zephyrusG14 ([103.251.210.195])
-        by smtp.gmail.com with ESMTPSA id x17-20020aa79191000000b0067738f65039sm11782892pfa.83.2023.07.17.05.13.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 17 Jul 2023 05:13:32 -0700 (PDT)
-Date:   Mon, 17 Jul 2023 17:43:25 +0530
-From:   Yogesh Hegde <yogi.kernel@gmail.com>
-To:     Vincent Legoll <vincent.legoll@gmail.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, heiko@sntech.de, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-kernel-mentees@lists.linuxfoundation.org,
-        skhan@linuxfoundation.org, ivan.orlov0322@gmail.com
-Subject: Re: [PATCH] arm64: dts: rockchip: Fix Wifi/Bluetooth on ROCK Pi 4
- boards
-Message-ID: <ZLUwZTy3Opx/gdIf@zephyrusG14>
-References: <ZLO450xOIQ29VoBT@zephyrusG14>
- <CAEwRq=rUXpFpkrfKyCG8Eede10cCeo6V3RCDxv0McWA_g9t0CA@mail.gmail.com>
+        d=1e100.net; s=20221208; t=1689596520; x=1692188520;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=nMAA88M8Z/93RtoRIAUU64QloDepHPouDJtQ0xvz1Fs=;
+        b=VqdKCTBCEvzjtZsi3DegzKFYtI/fDerH8IKWotlBtCCqDNKyznRiO8sjzOu7pYJSfW
+         8WMAkE/h0VwpKt02xNLXAVQ9Jek5S8ALZU4bFD1rJIX1CBXI/WCXQnn6mCDdDUjvGRnu
+         41PtCpxHP4N+wsVkeg9F8bQVoijMDl1bV8MA1VoIEV3m8SD+4OoaQ0hSTqA7maJR/iM+
+         wVvPTjCj0lRqyluujUGskBs18CSNcP26WWnHcFFZ8WF47ghebNJpaZ6GHk9Ioru9j7bZ
+         wT4OC4TDn/m0j0a/BD+IMHKzQSPfDegx3TFDRqLWBLtIFRTsdk3bbwuUne7iL+ybuOdf
+         kMuQ==
+X-Gm-Message-State: ABy/qLa5GuiU85O/f2JgydyY/5ZISI/PLcYBloVcM3Xts+OJvY2G6Qtj
+        o7T5PaRFcncLYT0Z/bHNAtW4Fw==
+X-Google-Smtp-Source: APBJJlHLY6alj/T5BQnCm2wWxdtVAEKgFNKJX00IQJAWpV69kXciH127Aofl6aZo/pJHb9Yb9ACnrw==
+X-Received: by 2002:a5d:4c41:0:b0:316:d887:624a with SMTP id n1-20020a5d4c41000000b00316d887624amr9821491wrt.15.1689596520155;
+        Mon, 17 Jul 2023 05:22:00 -0700 (PDT)
+Received: from [192.168.27.65] (home.beaume.starnux.net. [82.66.176.246])
+        by smtp.gmail.com with ESMTPSA id y18-20020adffa52000000b00313f031876esm19040691wrr.43.2023.07.17.05.21.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 17 Jul 2023 05:21:59 -0700 (PDT)
+Message-ID: <dce349df-e3e6-7976-3b02-f5eac275b4ce@linaro.org>
+Date:   Mon, 17 Jul 2023 14:21:55 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAEwRq=rUXpFpkrfKyCG8Eede10cCeo6V3RCDxv0McWA_g9t0CA@mail.gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v2 01/19] clk: meson: introduce meson-clkc-utils
+Content-Language: en-US
+To:     Jerome Brunet <jbrunet@baylibre.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20230607-topic-amlogic-upstream-clkid-public-migration-v2-0-38172d17c27a@linaro.org>
+ <20230607-topic-amlogic-upstream-clkid-public-migration-v2-1-38172d17c27a@linaro.org>
+ <1ja5w1xrly.fsf@starbuckisacylon.baylibre.com>
+Organization: Linaro Developer Services
+In-Reply-To: <1ja5w1xrly.fsf@starbuckisacylon.baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Vincent,
-On Sun, Jul 16, 2023 at 03:53:22PM +0000, Vincent Legoll wrote:
-> Hello,
+On 12/07/2023 14:03, Jerome Brunet wrote:
 > 
-> On Sun, Jul 16, 2023 at 9:32 AM Yogesh Hegde <yogi.kernel@gmail.com> wrote:
-> > Commit f471b1b2db08 ("arm64: dts: rockchip: Fix Bluetooth
-> > on ROCK Pi 4 boards") introduced a problem with the clock configuration.
+> On Mon 12 Jun 2023 at 11:57, Neil Armstrong <neil.armstrong@linaro.org> wrote:
 > 
-> Maybe you should add a "Fixes:" tag.
-> Look at:
-> Documentation/process/submitting-patches.rst
-> for details.
-Thanks for taking the time to review and provide feedback on the patch. 
-I will send a v2 with the "Fixes:" tag. 
+>> Let's introduce a new module called meson-clkc-utils that
+>> will contain shared utility functions for all Amlogic clock
+>> controller drivers.
+>>
+>> The first utility function is a replacement of of_clk_hw_onecell_get
+>> in order to get rid of the NR_CLKS define in all Amlogic clock
+>> drivers.
+>>
+>> The goal is to move all duplicate probe and init code in this module.
+>>
+>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> 
+> Hi Neil,
+> 
+> checkpatch complains about the MODULE_LICENSE()
+> 
+> WARNING: Prefer "GPL" over "GPL v2" - see commit bf7fbeeae6db ("module: Cure the MODULE_LICENSE "GPL" vs. "GPL v2" bogosity")
+> #185: FILE: drivers/clk/meson/meson-clkc-utils.c:25:
+> +MODULE_LICENSE("GPL v2");
 
-Thanks & Regards 
--- Yogesh
+Damn, sorry for that
+
+> 
+> I don't mind fixing this up while applying if it is Ok with you.
+> 
+
+Yes please, I'm OoO and won't be able to send a v3 soonish.
+
+Thanks,
+Neil
+
+>> ---
+>>   drivers/clk/meson/Kconfig            |  3 +++
+>>   drivers/clk/meson/Makefile           |  1 +
+>>   drivers/clk/meson/meson-clkc-utils.c | 25 +++++++++++++++++++++++++
+>>   drivers/clk/meson/meson-clkc-utils.h | 19 +++++++++++++++++++
+>>   4 files changed, 48 insertions(+)
+>>
+>> diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
+>> index 8ce846fdbe43..d03adad31318 100644
+>> --- a/drivers/clk/meson/Kconfig
+>> +++ b/drivers/clk/meson/Kconfig
+>> @@ -30,6 +30,9 @@ config COMMON_CLK_MESON_VID_PLL_DIV
+>>   	tristate
+>>   	select COMMON_CLK_MESON_REGMAP
+>>   
+>> +config COMMON_CLK_MESON_CLKC_UTILS
+>> +	tristate
+>> +
+>>   config COMMON_CLK_MESON_AO_CLKC
+>>   	tristate
+>>   	select COMMON_CLK_MESON_REGMAP
+>> diff --git a/drivers/clk/meson/Makefile b/drivers/clk/meson/Makefile
+>> index d5288662881d..cd961cc4f4db 100644
+>> --- a/drivers/clk/meson/Makefile
+>> +++ b/drivers/clk/meson/Makefile
+>> @@ -1,6 +1,7 @@
+>>   # SPDX-License-Identifier: GPL-2.0-only
+>>   # Amlogic clock drivers
+>>   
+>> +obj-$(CONFIG_COMMON_CLK_MESON_CLKC_UTILS) += meson-clkc-utils.o
+>>   obj-$(CONFIG_COMMON_CLK_MESON_AO_CLKC) += meson-aoclk.o
+>>   obj-$(CONFIG_COMMON_CLK_MESON_CPU_DYNDIV) += clk-cpu-dyndiv.o
+>>   obj-$(CONFIG_COMMON_CLK_MESON_DUALDIV) += clk-dualdiv.o
+>> diff --git a/drivers/clk/meson/meson-clkc-utils.c b/drivers/clk/meson/meson-clkc-utils.c
+>> new file mode 100644
+>> index 000000000000..9a0620bcc161
+>> --- /dev/null
+>> +++ b/drivers/clk/meson/meson-clkc-utils.c
+>> @@ -0,0 +1,25 @@
+>> +// SPDX-License-Identifier: GPL-2.0+
+>> +/*
+>> + * Copyright (c) 2023 Neil Armstrong <neil.armstrong@linaro.org>
+>> + */
+>> +
+>> +#include <linux/of_device.h>
+>> +#include <linux/clk-provider.h>
+>> +#include <linux/module.h>
+>> +#include "meson-clkc-utils.h"
+>> +
+>> +struct clk_hw *meson_clk_hw_get(struct of_phandle_args *clkspec, void *clk_hw_data)
+>> +{
+>> +	const struct meson_clk_hw_data *data = clk_hw_data;
+>> +	unsigned int idx = clkspec->args[0];
+>> +
+>> +	if (idx >= data->num) {
+>> +		pr_err("%s: invalid index %u\n", __func__, idx);
+>> +		return ERR_PTR(-EINVAL);
+>> +	}
+>> +
+>> +	return data->hws[idx];
+>> +}
+>> +EXPORT_SYMBOL_GPL(meson_clk_hw_get);
+>> +
+>> +MODULE_LICENSE("GPL v2");
+>> diff --git a/drivers/clk/meson/meson-clkc-utils.h b/drivers/clk/meson/meson-clkc-utils.h
+>> new file mode 100644
+>> index 000000000000..fe6f40728949
+>> --- /dev/null
+>> +++ b/drivers/clk/meson/meson-clkc-utils.h
+>> @@ -0,0 +1,19 @@
+>> +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+>> +/*
+>> + * Copyright (c) 2023 Neil Armstrong <neil.armstrong@linaro.org>
+>> + */
+>> +
+>> +#ifndef __MESON_CLKC_UTILS_H__
+>> +#define __MESON_CLKC_UTILS_H__
+>> +
+>> +#include <linux/of_device.h>
+>> +#include <linux/clk-provider.h>
+>> +
+>> +struct meson_clk_hw_data {
+>> +	struct clk_hw	**hws;
+>> +	unsigned int	num;
+>> +};
+>> +
+>> +struct clk_hw *meson_clk_hw_get(struct of_phandle_args *clkspec, void *clk_hw_data);
+>> +
+>> +#endif
+> 
+
