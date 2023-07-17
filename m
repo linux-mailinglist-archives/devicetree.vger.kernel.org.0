@@ -2,61 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5CA84756B11
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 19:56:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AD995756B3B
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 20:04:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229995AbjGQR4n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jul 2023 13:56:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60094 "EHLO
+        id S231356AbjGQSEk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jul 2023 14:04:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35694 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229690AbjGQR4m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 13:56:42 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71E221A8;
-        Mon, 17 Jul 2023 10:56:41 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 0675A611C0;
-        Mon, 17 Jul 2023 17:56:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 66CFAC433C9;
-        Mon, 17 Jul 2023 17:56:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689616600;
-        bh=fzHrMGh0Yj/kJuw8RUaoA1HCHINcccP3u06P2gi9rYc=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=ahKLL5xxLcLUhSf23OSvavdp6Z5MnYbgsu6bn/wm9LvNsVs/y0VURNIkKZeBhRoAy
-         hbxRrfuK6cAsNlS0kRAzd52Pa30Pz+U43eBBk6lqHY/rUJIHDAYccBiQS4svTItxwg
-         V7W8nw4ur8EmOBe29oyjAwTzPO5DbpCIcOltiPtr9zEqoMkgIj4xoZq7OL8JMOh6XV
-         y4aQU/8BBFn4zGkqshRQM/f7HnG6eYWk/J2zh2SvVoHC4eAjP5IU4+HnMzYRicQQxm
-         WH6AtVK7oM0+N8XWURmSpRfueogNHUtebHN6Rh7jXmXC1NDpxvOGm3hftpjSG7s1GS
-         2ItQtTTN40JJg==
-Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2b74fa5e7d7so73505961fa.2;
-        Mon, 17 Jul 2023 10:56:40 -0700 (PDT)
-X-Gm-Message-State: ABy/qLb6ZabbSvy0rql5kOVSZQz+t1RRnUh9jor1s7R72xRWYV1DTnX8
-        KZQvrjgKj9tBNxCvpnaVueJGBFyDhMT9zBIx8w==
-X-Google-Smtp-Source: APBJJlFzgmAiojRLT2v8l5rv7LxOyvEahELMjlKTtgtIjqiS3x3HFdu11OMXyuHQsLkCFUs8zvCwvwgi7smdnN7qfJI=
-X-Received: by 2002:a05:651c:112:b0:2b9:43a7:376e with SMTP id
- a18-20020a05651c011200b002b943a7376emr1864800ljb.29.1689616598431; Mon, 17
- Jul 2023 10:56:38 -0700 (PDT)
+        with ESMTP id S231510AbjGQSEY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 14:04:24 -0400
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB65B1BF9
+        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 11:03:55 -0700 (PDT)
+Received: by mail-wr1-x434.google.com with SMTP id ffacd0b85a97d-316f589549cso2168799f8f.1
+        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 11:03:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1689617031; x=1692209031;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=vzbsDx8AKByFFeQb4eON82BRtlQ7HwpTGTuo1yVO7vg=;
+        b=gaCzn541IrqgxWEmbQvUqnmSv/6zhTi7DIeAZ801aYQokAv9u745TXLpdbu29zWWjS
+         eGPR0ZohCwWiqOrQHbElpCG7Z8u8an0h40TWu+JGU/JDhLzSliCKVzWv9ryKzaCqhgiy
+         aw5bqjnV7g0CP0CLRbFZ2WRQKzXI6G2hsU1DWiUBrN63F3zZmMALWCkhcT35E4TpSjAD
+         lQ7XGqc3R2pVs6Zip0klr8Ltu1KcdZRmi6It8aYT3mAvThALqzdHXrloL7EHxSr08FMU
+         OuaFWgzGJBgdGfi7EsaGQXA2I8zluEYs6p2DjoZvKjDTbPeVoIMamF3OFl/BiKEBKbEP
+         Zlmw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689617031; x=1692209031;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=vzbsDx8AKByFFeQb4eON82BRtlQ7HwpTGTuo1yVO7vg=;
+        b=NJGQoNICDgIdJCHBfSf5250utsS1fqYrWUsxrmw3/QrX79YeFRUh5lqJjHxP5AQFVL
+         ovb9S+zZBvuvWgEi4dE1l2YFmcTWPsjjfDPL/OGjn6YbsOXm6KLaUmMEFkGBk5DPq7UC
+         +sfn29j7TFQ7mshzwAKO5NQuLj3twhn7BNrTFebv/e7j38zhpk0xXgtGe1lA2Bku2OJa
+         2m1tTptB48sjlsBKuQD0litTfGHGnNzZFqpRXCEIQdNMMtr+4+nb13ByG8f+UWDa5uVF
+         SmNmVpA20L1OKKty3gFieUISVqrWdOhwyliSSvVEPIKQjHnsNVQN9a+6XiTdp1F8MZO/
+         ABQw==
+X-Gm-Message-State: ABy/qLb9Yot+C4GayJW08ESQhFuG51FG0JBQxClrLp+NmCJtBmCcHNAV
+        A4Nt/hDO8rdpy7tpot5iIKnADE7HXe1Gew7TGJKw+A==
+X-Google-Smtp-Source: APBJJlH6iyWjTr3ij3IbpJL7CfATiUf6oE6XdwvX293fZ2AUUPmBjFwI19R/zwUR+0huN6WD2uVCrjxCJgWpPuxK4FY=
+X-Received: by 2002:adf:fa47:0:b0:316:f3f3:a1db with SMTP id
+ y7-20020adffa47000000b00316f3f3a1dbmr6221218wrr.32.1689617031529; Mon, 17 Jul
+ 2023 11:03:51 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230714174021.4039807-1-robh@kernel.org> <20230717090601.GA7868@willie-the-truck>
-In-Reply-To: <20230717090601.GA7868@willie-the-truck>
-From:   Rob Herring <robh@kernel.org>
-Date:   Mon, 17 Jul 2023 11:56:25 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLgS_xv6N++2dVot5shWAw0Cv9StLW0OdZr_yUhAf29sQ@mail.gmail.com>
-Message-ID: <CAL_JsqLgS_xv6N++2dVot5shWAw0Cv9StLW0OdZr_yUhAf29sQ@mail.gmail.com>
-Subject: Re: [PATCH] arm64: Explicitly include correct DT includes
-To:     Will Deacon <will@kernel.org>
-Cc:     Catalin Marinas <catalin.marinas@arm.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
+References: <20230717103236.1246771-1-bhupesh.sharma@linaro.org>
+ <20230717103236.1246771-4-bhupesh.sharma@linaro.org> <ZLUbyocjNT2bGvVt@gerhold.net>
+In-Reply-To: <ZLUbyocjNT2bGvVt@gerhold.net>
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Date:   Mon, 17 Jul 2023 23:33:40 +0530
+Message-ID: <CAH=2NtzM=jaVtjeHHO0rY0_wHu9==Jpdz4zx5nCK3gBh2kpL=A@mail.gmail.com>
+Subject: Re: [PATCH v8 3/4] arm64: dts: qcom: sm6115: Add EUD dt node and dwc3 connector
+To:     Stephan Gerhold <stephan@gerhold.net>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-usb@vger.kernel.org, agross@kernel.org, andersson@kernel.org,
+        konrad.dybcio@linaro.org, linux-kernel@vger.kernel.org,
+        bhupesh.linux@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, krzysztof.kozlowski@linaro.org,
+        quic_schowdhu@quicinc.com, gregkh@linuxfoundation.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -64,43 +71,63 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 17, 2023 at 3:06=E2=80=AFAM Will Deacon <will@kernel.org> wrote=
-:
+On Mon, 17 Jul 2023 at 16:15, Stephan Gerhold <stephan@gerhold.net> wrote:
 >
-> On Fri, Jul 14, 2023 at 11:40:20AM -0600, Rob Herring wrote:
-> > The DT of_device.h and of_platform.h date back to the separate
-> > of_platform_bus_type before it as merged into the regular platform bus.
-> > As part of that merge prepping Arm DT support 13 years ago, they
-> > "temporarily" include each other. They also include platform_device.h
-> > and of.h. As a result, there's a pretty much random mix of those includ=
-e
-> > files used throughout the tree. In order to detangle these headers and
-> > replace the implicit includes with struct declarations, users need to
-> > explicitly include the correct includes.
+> On Mon, Jul 17, 2023 at 04:02:35PM +0530, Bhupesh Sharma wrote:
+> > Add the Embedded USB Debugger(EUD) device tree node for
+> > SM6115 / SM4250 SoC.
 > >
-> > Signed-off-by: Rob Herring <robh@kernel.org>
+> > The node contains EUD base register region, EUD mode manager
+> > register region and TCSR Base register region along with the
+> > interrupt entry.
+> >
+> > [...]
+> >
+> > Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> > Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
 > > ---
-> >  arch/arm64/kernel/cpuidle.c | 2 --
-> >  arch/arm64/kernel/pci.c     | 2 --
-> >  2 files changed, 4 deletions(-)
+> >  arch/arm64/boot/dts/qcom/sm6115.dtsi | 50 ++++++++++++++++++++++++++++
+> >  1 file changed, 50 insertions(+)
 > >
-> > diff --git a/arch/arm64/kernel/cpuidle.c b/arch/arm64/kernel/cpuidle.c
-> > index d1f68599c29f..f372295207fb 100644
-> > --- a/arch/arm64/kernel/cpuidle.c
-> > +++ b/arch/arm64/kernel/cpuidle.c
-> > @@ -9,8 +9,6 @@
-> >  #include <linux/acpi.h>
-> >  #include <linux/cpuidle.h>
-> >  #include <linux/cpu_pm.h>
-> > -#include <linux/of.h>
-> > -#include <linux/of_device.h>
-> >  #include <linux/psci.h>
+> > diff --git a/arch/arm64/boot/dts/qcom/sm6115.dtsi b/arch/arm64/boot/dts/qcom/sm6115.dtsi
+> > index 839c603512403..db45337c1082c 100644
+> > --- a/arch/arm64/boot/dts/qcom/sm6115.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/sm6115.dtsi
+> > [...]
+> > @@ -789,6 +801,37 @@ gcc: clock-controller@1400000 {
+> >                       #power-domain-cells = <1>;
+> >               };
+> >
+> > +             eud: eud@1610000 {
+> > +                     compatible = "qcom,sm6115-eud", "qcom,eud";
+> > +                     reg = <0x0 0x01610000 0x0 0x2000>,
+> > +                           <0x0 0x01612000 0x0 0x1000>,
+> > +                           <0x0 0x003c0000 0x0 0x40000>;
+> > +                     reg-names = "eud-base", "eud-mode-mgr", "tcsr-base";
 >
-> I don't grok how dropping 'linux/of.h' follows from the commit message.
-> Is it simply not needed by this file?
+> TCSR is a separate hardware block unrelated to the EUD. IMHO it
+> shouldn't be listed as "reg" here.
+>
+> Typically we describe it as syscon and then reference it from other
+> nodes. See e.g. sm8450.dtsi "tcsr: syscon@1fc0000" referenced in &scm
+> "qcom,dload-mode = <&tcsr 0x13000>". This is pretty much exactly the
+> same use case as you have. It also uses this to write something with
+> qcom_scm_io_writel() at the end.
 
-The motivation is to disentangle of_device.h includes. The fix is
-making sure the explicit DT includes match what is used. The result
-varies and here none of the DT headers are needed.
+That was discussed a bit during v1 patchset review. Basically, if we
+use a tcsr syscon approach here, we will need to define a 'qcom,xx'
+vendor specific dt-property and use something like this in the eud
+node:
 
-Rob
+qcom,eud-sec-reg = <&tcsr_reg yyyy>
+
+which would be then used by the eud driver (via
+syscon_regmap_lookup_by_phandle()).
+
+But for sm6115 / qcm2290 this would be an over complicated solution as
+normally the eud driver (say sc7280) doesn't need tcsr based secure
+mode manager access. So defining a new soc / vendor specific
+dt-property might be an overkill.
+
+Thanks,
+Bhupesh
