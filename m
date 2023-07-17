@@ -2,90 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3164F755C01
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 08:43:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 177A2755C0A
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 08:44:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229875AbjGQGnr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jul 2023 02:43:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41512 "EHLO
+        id S229669AbjGQGoX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jul 2023 02:44:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43270 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229760AbjGQGnp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 02:43:45 -0400
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D4A81BC
-        for <devicetree@vger.kernel.org>; Sun, 16 Jul 2023 23:43:43 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-992acf67388so519981166b.1
-        for <devicetree@vger.kernel.org>; Sun, 16 Jul 2023 23:43:42 -0700 (PDT)
+        with ESMTP id S229449AbjGQGoW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 02:44:22 -0400
+Received: from mail-yw1-x1132.google.com (mail-yw1-x1132.google.com [IPv6:2607:f8b0:4864:20::1132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7AB64E71
+        for <devicetree@vger.kernel.org>; Sun, 16 Jul 2023 23:44:13 -0700 (PDT)
+Received: by mail-yw1-x1132.google.com with SMTP id 00721157ae682-57a8080e4a7so41700747b3.0
+        for <devicetree@vger.kernel.org>; Sun, 16 Jul 2023 23:44:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689576221; x=1692168221;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=b9Ume/qTRfngrnyWbD+BRJS3/e2BWmcYqf3mdPXfSMQ=;
-        b=cjZeXkVU6Pk6nF2snpWM2Mj6uikGUWkkeFnF8CZ86VOUjvH2prV0v9Hnd+TbPRR4H0
-         2iXmJ2dg2PR4uHWEAe8j3TggGHcmd+LWqlF2NYhDxVcQWoilhH8lEMi3UBqvEqx4KErX
-         UkKlxBPeuMwIwoDq0CLSGFm1cejon3fgLl/miymqlGDIcQ8lgOK4hcfsfsas6Yl69hTz
-         ZnQ3ekP/zzWtdWMo2BhdMDervZM+scIP3a568xKL4ogZrpf5Z599ix04F3aqeth6iRId
-         aaQ1DLRAaKqdCbfIVc2yGMc6svibja7UHDX6HQ0+BZOovxTYg7D5Fxnnr2x5T/UId8dA
-         C/jg==
+        d=amarulasolutions.com; s=google; t=1689576252; x=1692168252;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=CPxyXhOq0yMhGwdIhN47SQ9mxxoFo8fBqlACSvCMBec=;
+        b=C9354NTV9FJDNTweJtAEiUmBpjXaDX0eREwuXJzRaaZY98lvuHksDVHM5II29JYduV
+         KfJva2PKr67iGdjh0RT2tlYFg5DS7pSPBX9bTS7Qn8Chc2bdlkQaQIJE3J5i12PAwQIo
+         syWCIKABedWaaegTdoQ0vQ7NFCfU8YpePUuyU=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689576221; x=1692168221;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=b9Ume/qTRfngrnyWbD+BRJS3/e2BWmcYqf3mdPXfSMQ=;
-        b=guEMmdM9LJJ5l7cqOLm2R7RwlBoYTUDuSPGE6gKnguc4bce/ICApvhZ6hD+kM8yr/4
-         EY3nhfB5Plue45WUZkYYuK/UKoRj6QlGCJMJTjRJ1pxDN//ywp8vHmJr4kY66uWnPqmG
-         qcOXs9BAs4Cehdq8sd9dyYHBlM4ctnBFwRbDTw31rfd8PKJbVSLCLtDVbnawebmNAhvV
-         H6QNhpXWrhA+h34RqSFL8i+XXS0/cM5NQTBDP571VGUk5duU/rZIyLCeO1vTKE3PK5p4
-         IyR392HNNJXKhi4A61tGXStLoKpJ5HBT2uh/NSsjXg5jBAnO32edC35EUnFc1U93EJn9
-         i9lg==
-X-Gm-Message-State: ABy/qLZ/tpTL8sa9gK9PBhmyzFabbRQaSrwXxXPe/XbgF0nnCp8opE/v
-        d/16jqcwMlenh2kYWyO74wx9eg==
-X-Google-Smtp-Source: APBJJlGR/Ol29HxtOvmYMnrVhmgGMv1ul3W+ZJjHfrbgeyHhp5GcsB6SnEqFlu9Iz5t8zfTpaSWIGA==
-X-Received: by 2002:a17:906:20d6:b0:994:4e9c:30c6 with SMTP id c22-20020a17090620d600b009944e9c30c6mr3619450ejc.57.1689576221485;
-        Sun, 16 Jul 2023 23:43:41 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id d21-20020a170906c21500b0098884f86e41sm8679105ejz.123.2023.07.16.23.43.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 16 Jul 2023 23:43:41 -0700 (PDT)
-Message-ID: <c266f810-6fb3-2fcd-1c44-163f9b0a0dbc@linaro.org>
-Date:   Mon, 17 Jul 2023 08:43:38 +0200
+        d=1e100.net; s=20221208; t=1689576252; x=1692168252;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=CPxyXhOq0yMhGwdIhN47SQ9mxxoFo8fBqlACSvCMBec=;
+        b=PFvu/erJ4YzeJmheQnwMXn/V3JlcqwT4SS6hpghkUG8ceahNBNiXypGlwXlHKh4kAP
+         VweRdeB1MKCOfa3KqX5Jths2betc1am0LtetLNZa42SPi8oDlbFm9nT1ZRR9bkLSr3T9
+         5srW8Mwa0f2fpwi49eGGOAcinsNmqBfdsGRYlJIDDR5koCcAOPtr/ptmniimIrqwc+dz
+         8Dg5pHP1GxUzDpRulBRvEQH9KFHqjfi8Ei/SJ9+EG7nFtQhVMhQhKz9vV7RXs+iskHYY
+         VLoU0NdkHU/WBskNeut9lCbc2Eck3LrRqEI/DxWFKlQcW5icIpZwXXZ8Bn41WhzxuE/P
+         1zxg==
+X-Gm-Message-State: ABy/qLYhesApHRQTKYmzPObOzyzuXKTToiDqJT0ymheSK4Og9QT6bsj4
+        47V3hb7zocZ4oTG2LZM716oUbbrQGZpR01dtn/NVts8A+8Ykp6QTyKA=
+X-Google-Smtp-Source: APBJJlECuOWcElxDEP2lLqU6Yd6rgdXMubn7FwQoBuI4bs08qGhUgEoxcWDfgPFkaYGvh8rXyJJfyL4vMMG5ewt62+s=
+X-Received: by 2002:a81:6d0d:0:b0:577:f47:3d8d with SMTP id
+ i13-20020a816d0d000000b005770f473d8dmr11544158ywc.25.1689576252737; Sun, 16
+ Jul 2023 23:44:12 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v4 0/3] Add support for WDIOF_CARDRESET on TI AM65x
-Content-Language: en-US
-To:     "Li, Hua Qian" <HuaQian.Li@siemens.com>,
-        "wim@linux-watchdog.org" <wim@linux-watchdog.org>,
-        "linux@roeck-us.net" <linux@roeck-us.net>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>
-Cc:     "Su, Bao Cheng" <baocheng.su@siemens.com>,
-        "kristo@kernel.org" <kristo@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "huaqianlee@gmail.com" <huaqianlee@gmail.com>,
-        "nm@ti.com" <nm@ti.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "Kiszka, Jan" <jan.kiszka@siemens.com>,
-        "linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>,
-        "vigneshr@ti.com" <vigneshr@ti.com>
-References: <20230717040723.1306374-1-huaqian.li@siemens.com>
- <f5ff9616-c71c-f71e-ce4a-7b9fa7055bb4@linaro.org>
- <e57e5d8efc3107b5f2c4e66492650b9d0c17b898.camel@siemens.com>
- <625a92b8-b629-a4ef-6176-635e1b7885db@linaro.org>
- <b82847f51ec00d873a38eab21b7ada885593aeb8.camel@siemens.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <b82847f51ec00d873a38eab21b7ada885593aeb8.camel@siemens.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+References: <20230717061831.1826878-1-victor.liu@nxp.com> <20230717061831.1826878-10-victor.liu@nxp.com>
+In-Reply-To: <20230717061831.1826878-10-victor.liu@nxp.com>
+From:   Jagan Teki <jagan@amarulasolutions.com>
+Date:   Mon, 17 Jul 2023 12:14:01 +0530
+Message-ID: <CAMty3ZAdzASJCz+j4iOTJ+wCXWP2Z48jFL687kxDmJLPU7T6gA@mail.gmail.com>
+Subject: Re: [PATCH 9/9] drm/bridge: imx: Add i.MX93 MIPI DSI support
+To:     Liu Ying <victor.liu@nxp.com>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, neil.armstrong@linaro.org,
+        conor+dt@kernel.org, rfoss@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, jonas@kwiboo.se,
+        shawnguo@kernel.org, s.hauer@pengutronix.de,
+        jernej.skrabec@gmail.com, robh+dt@kernel.org,
+        Laurent.pinchart@ideasonboard.com, andrzej.hajda@intel.com,
+        kernel@pengutronix.de, linux-imx@nxp.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -93,63 +71,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/07/2023 08:34, Li, Hua Qian wrote:
-> On Mon, 2023-07-17 at 08:27 +0200, Krzysztof Kozlowski wrote:
->> On 17/07/2023 08:24, Li, Hua Qian wrote:
->>> On Mon, 2023-07-17 at 08:16 +0200, Krzysztof Kozlowski wrote:
->>>> On 17/07/2023 06:07, huaqian.li@siemens.com wrote:
->>>>> From: Li Hua Qian <huaqian.li@siemens.com>
->>>>>
->>>>> The watchdog hardware of TI AM65X platform does not support
->>>>> WDIOF_CARDRESET feature, add a reserved memory to save the
->>>>> watchdog
->>>>> reset cause, to know if the board reboot is due to a watchdog
->>>>> reset.
->>>>>
->>>>> Signed-off-by: Li Hua Qian <huaqian.li@siemens.com>
->>>>> ---
->>>>> Changes in v4:
->>>>> - Fix the coding style.
->>>>> - Add usage note for the reserved memory.
->>>>> - Link to v3:
->>>>>  
->>>>> https://lore.kernel.org/linux-watchdog/20230713095127.1230109-1-huaqian.li@siemens.com
->>>>
->>>> Much more changed. You added example in the bindings which no one
->>>> asked
->>>> for. Then you added multiple fake review tags to all the patches.
->>>>
->>>> Best regards,
->>>> Krzysztof
->>>>
->>> Hi,
->>>
->>> Sorry for the wrong statement. I missed some key information and
->>> missunderstood `Reviewed-by`, I treated `Reviewed-by` as `Who
->>> has reviewed`.
->>
->> But you don't have even that information who has reviewed! Where do
->> you
->> see any reviews coming from me for patch #2? Where do you see reviews
->> from Rob for patch #3?
->>
->> Best regards,
->> Krzysztof
->>
-> I got these information from my email thread. Anyway I made a stupid
-> mistake, sorry for wasting your time.
-> 
-> By the way, when you wrote the following in '[PATCH v3 1/3] dt-
-> bindings: watchdog: ti,rti-wdt: Add support for WDIOF_CARDRESET', you
-> were kind of saying that it looks good to you if I remove the extra
-> empty line, right?
-> 
-> In any case:
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+On Mon, Jul 17, 2023 at 11:44=E2=80=AFAM Liu Ying <victor.liu@nxp.com> wrot=
+e:
+>
+> Freescale i.MX93 SoC embeds a Synopsys Designware MIPI DSI host
+> controller and a Synopsys Designware MIPI DPHY.  Some configurations
+> and extensions to them are controlled by i.MX93 media blk-ctrl.
+>
+> Add a DRM bridge for i.MX93 MIPI DSI by using existing DW MIPI DSI
+> bridge helpers and implementing i.MX93 MIPI DSI specific extensions.
 
-This was patch 1. But you added my review to patch 2 also. Why then not
-adding to patch 3? What logic is driving this?
+I think the better way would add compatibility to be part of existing
+dw-mipi-dsi.c with specific driver data. This way it avoids all the
+platform-related helpers(extensions) and makes the driver generic to
+all SoCs which use DW DSI IP. It would be a straightforward change as
+the imx93 drm pipeline already supports bridge topology.
 
-Best regards,
-Krzysztof
-
+Thanks,
+Jagan.
