@@ -2,211 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8968D755E51
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 10:19:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B9239755E58
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 10:20:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230006AbjGQITK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jul 2023 04:19:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42388 "EHLO
+        id S231337AbjGQIUW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jul 2023 04:20:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42760 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229863AbjGQITJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 04:19:09 -0400
-Received: from mail.skyhub.de (mail.skyhub.de [IPv6:2a01:4f8:190:11c2::b:1457])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7361C1B1;
-        Mon, 17 Jul 2023 01:19:08 -0700 (PDT)
-Received: from mail.alien8.de (mail.alien8.de [65.109.113.108])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id CFF571EC0C97;
-        Mon, 17 Jul 2023 10:19:06 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
-        t=1689581946;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
-        bh=E8Mc8hrwNRZNiGGRUF+jDN/TTdRi0hE+BapCL3Hbkds=;
-        b=mxRCdyr7tROwiYi/hC8BSkqTYwGSYxpI0dvWR+nFXOpK16WChegjgi0bL7zc+Yvsaf0R9c
-        XEOccbcN8KwX6mDrUnVNvjmz66aMfQxG0s+ZT6SRfYqKAggO5oMZ7H13mkxwNIwabgr876
-        yI+Syb/Ljcmsxwhn14qcVr25tpUNEQg=
-X-Virus-Scanned: Debian amavisd-new at mail.alien8.de
-Authentication-Results: mail.alien8.de (amavisd-new); dkim=pass (4096-bit key)
-        header.d=alien8.de
-Received: from mail.alien8.de ([127.0.0.1])
-        by localhost (mail.alien8.de [127.0.0.1]) (amavisd-new, port 10026)
-        with ESMTP id kVW6yaRpHO0d; Mon, 17 Jul 2023 08:19:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=alien8;
-        t=1689581942; bh=E8Mc8hrwNRZNiGGRUF+jDN/TTdRi0hE+BapCL3Hbkds=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=KmhJoEmJoS9fgW2NvK78czo8MUDWlBvaqU6eG/d2yC7Zwj4dloVJj7PaXI+0iSKNx
-         5V5UnB98M3MGbyHVJmnYSD5UsXzRRUkQqeChW/3pT1kK0H8yzBm5BY399CDOOd0hph
-         HKA16LvvoyZs8V2CJefK/AEMeAdEl8cxKYNekytwFiQ/dSTiOwy3azqnO5zD+eqJOg
-         5v03utDyB98MJDfrWsjgd8qLN4/MEcJ3iUyJD6VinFLSehkPFuYvTMxK4CAz5E1Ey+
-         /X9kKOq9F+6mHtWLgwcGOqBnIYb5QBnKC6cn8Mcz631sHcx8U6ztviZjbXbajH4X1P
-         LgE/sGuYzoL0t6j5V2YMaxkis3qGSK4zE75NBs8S3u+ElzOXx9gIhYNv8oeUTY9twK
-         vqr3A+Z1NuSRWtYsYoh3uKT4LA+eM/iAwPlVbSm+fg9q81+3lLLLy2hz/kebH5ZvYT
-         SvJj8cJImiTmx85LW+ZNrnDvAQW3PnL4Q2BJ8RUDOt45C6bQSVUyizeeFmk8yCwuhC
-         +K127P3+LJ7hqMugWhSC84ENJXV0mxlE0EZD1SvsT0D5Vsm+P9t5PKb0sWY2qVk0R4
-         wSZWg4YpklgDzl0tzikTpVorjxfuyzZobzr56+iNZVtwQD0Y6ZitnXAq6+g8yL2r+w
-         cWAvsiHy492SusNXmq2xs/KQ=
-Received: from zn.tnic (pd9530d32.dip0.t-ipconnect.de [217.83.13.50])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature ECDSA (P-256) server-digest SHA256)
-        (No client certificate requested)
-        by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 0706940E0033;
-        Mon, 17 Jul 2023 08:18:47 +0000 (UTC)
-Date:   Mon, 17 Jul 2023 10:18:41 +0200
-From:   Borislav Petkov <bp@alien8.de>
-To:     Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
-Cc:     linux-edac@vger.kernel.org, git@amd.com,
-        krzysztof.kozlowski@linaro.org, devicetree@vger.kernel.org,
-        tony.luck@intel.com, james.morse@arm.com, mchehab@kernel.org,
-        rric@kernel.org, michal.simek@amd.com, sboyd@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org
-Subject: Re: [PATCH v7 2/2] EDAC/versal: Add a Xilinx Versal memory
- controller driver
-Message-ID: <20230717081841.GDZLT5Yc/PT77hZ+Xa@fat_crate.local>
-References: <20230614042852.5575-1-shubhrajyoti.datta@amd.com>
- <20230614042852.5575-3-shubhrajyoti.datta@amd.com>
+        with ESMTP id S229496AbjGQIUV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 04:20:21 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 35916130;
+        Mon, 17 Jul 2023 01:20:20 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 2B87413D5;
+        Mon, 17 Jul 2023 01:21:03 -0700 (PDT)
+Received: from [10.57.37.37] (unknown [10.57.37.37])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 41CB33F73F;
+        Mon, 17 Jul 2023 01:19:59 -0700 (PDT)
+Message-ID: <e2c69d34-7523-98ae-93a2-04e132745ebd@arm.com>
+Date:   Mon, 17 Jul 2023 09:19:59 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20230614042852.5575-3-shubhrajyoti.datta@amd.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH] drm: Explicitly include correct DT includes
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, Ondrej Jirman <megous@megous.com>,
+        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        etnaviv@lists.freedesktop.org, linux-samsung-soc@vger.kernel.org,
+        linux-mips@vger.kernel.org, lima@lists.freedesktop.org,
+        linux-mediatek@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+        freedreno@lists.freedesktop.org,
+        linux-rpi-kernel@lists.infradead.org,
+        linux-renesas-soc@vger.kernel.org,
+        linux-rockchip@lists.infradead.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-sunxi@lists.linux.dev, linux-tegra@vger.kernel.org,
+        xen-devel@lists.xenproject.org, Liviu Dudau <liviu.dudau@arm.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <rfoss@kernel.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Liu Ying <victor.liu@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Inki Dae <inki.dae@samsung.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Russell King <linux+etnaviv@armlinux.org.uk>,
+        Christian Gmeiner <christian.gmeiner@gmail.com>,
+        Seung-Woo Kim <sw0312.kim@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Xinliang Liu <xinliang.liu@linaro.org>,
+        Tian Tao <tiantao6@hisilicon.com>,
+        Xinwei Kong <kong.kongxinwei@hisilicon.com>,
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        Yongqin Liu <yongqin.liu@linaro.org>,
+        John Stultz <jstultz@google.com>,
+        Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>,
+        Paul Cercueil <paul@crapouillou.net>,
+        Qiang Yu <yuq825@gmail.com>,
+        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry B aryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Marek Vasut <marex@denx.de>, Stefan Agner <stefan@agner.ch>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Jerry Han <hanxu5@huaqin.corp-partner.google.com>,
+        Icenowy Zheng <icenowy@aosc.io>, Ondrej Jirman <megi@xff.cz>,
+        Javier Martinez Canillas <javierm@redhat.com>,
+        =?UTF-8?Q?Guido_G=c3=bcnther?= <agx@sigxcpu.org>,
+        Purism Kernel Team <kernel@puri.sm>,
+        Jianhua Lu <lujianhua000@gmail.com>,
+        Florian Fainelli <florian.fainelli@broadcom.com>,
+        Broadcom internal kernel review list 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Artur Weber <aweber.kernel@gmail.com>,
+        Tomeu Vizoso <tomeu.vizoso@collabora.com>,
+        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
+        Emma Anholt <emma@anholt.net>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        Sandy Huang <hjc@rock-chips.com>,
+        =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>,
+        Orson Zhai <orsonzhai@gmail.com>,
+        Baolin Wang <baolin.wang@linux.alibaba.com>,
+        Chunyan Zhang <zhang.lyra@gmail.com>,
+        Alain Volmat <alain.volmat@foss.st.com>,
+        Yannick Fertre <yannick.fertre@foss.st.com>,
+        Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>,
+        Philippe Cornu <philippe.cornu@foss.st.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Samuel Holland <samuel@sholland.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Mikko Perttunen <mperttunen@nvidia.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Jyri Sarha <jyri.sarha@iki.fi>,
+        Tomi Valkeinen <tomba@kernel.org>,
+        Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>
+References: <20230714174545.4056287-1-robh@kernel.org>
+Content-Language: en-GB
+From:   Steven Price <steven.price@arm.com>
+In-Reply-To: <20230714174545.4056287-1-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 14, 2023 at 09:58:52AM +0530, Shubhrajyoti Datta wrote:
->  MAINTAINERS                          |    7 +
->  drivers/edac/Kconfig                 |   11 +
->  drivers/edac/Makefile                |    1 +
->  drivers/edac/versal_edac.c           | 1065 ++++++++++++++++++++++++++
->  include/linux/firmware/xlnx-zynqmp.h |   10 +
->  5 files changed, 1094 insertions(+)
->  create mode 100644 drivers/edac/versal_edac.c
+On 14/07/2023 18:45, Rob Herring wrote:
+> The DT of_device.h and of_platform.h date back to the separate
+> of_platform_bus_type before it as merged into the regular platform bus.
+> As part of that merge prepping Arm DT support 13 years ago, they
+> "temporarily" include each other. They also include platform_device.h
+> and of.h. As a result, there's a pretty much random mix of those include
+> files used throughout the tree. In order to detangle these headers and
+> replace the implicit includes with struct declarations, users need to
+> explicitly include the correct includes.
+> 
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+[...]
+> diff --git a/drivers/gpu/drm/panfrost/panfrost_drv.c b/drivers/gpu/drm/panfrost/panfrost_drv.c
+> index bbada731bbbd..20c25c836198 100644
+> --- a/drivers/gpu/drm/panfrost/panfrost_drv.c
+> +++ b/drivers/gpu/drm/panfrost/panfrost_drv.c
+> @@ -4,8 +4,9 @@
+>  /* Copyright 2019 Collabora ltd. */
+>  
+>  #include <linux/module.h>
+> -#include <linux/of_platform.h>
+> +#include <linux/of.h>
+>  #include <linux/pagemap.h>
+> +#include <linux/platform_device.h>
+>  #include <linux/pm_runtime.h>
+>  #include <drm/panfrost_drm.h>
+>  #include <drm/drm_drv.h>
 
-I've done some changes ontop, see below:
+Panfrost part:
 
-That toggling of interrupts at the end of mc_probe() happens only for
-debugfs's sake so they can move inside the ifdef.
+Reviewed-by: Steven Price <steven.price@arm.com>
 
-Right?
+Steve
 
----
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 4f3514e8116a..569c48368458 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -23410,7 +23410,7 @@ M:	Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
- M:	Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
- S:	Maintained
- F:	Documentation/devicetree/bindings/memory-controllers/xlnx,versal-ddrmc-edac.yaml
--F:	drivers/edac/xilinx_ddrmc_edac.c
-+F:	drivers/edac/versal_edac.c
- 
- XILINX WATCHDOG DRIVER
- M:	Srinivas Neeli <srinivas.neeli@amd.com>
-diff --git a/drivers/edac/versal_edac.c b/drivers/edac/versal_edac.c
-index 4aa073ffa827..07a07641172c 100644
---- a/drivers/edac/versal_edac.c
-+++ b/drivers/edac/versal_edac.c
-@@ -195,7 +195,7 @@ union edac_info {
- struct ecc_status {
- 	union ecc_error_info ceinfo[2];
- 	union ecc_error_info ueinfo[2];
--	bool channel;
-+	u8 channel;
- 	u8 error_type;
- };
- 
-@@ -637,38 +637,38 @@ static void mc_init(struct mem_ctl_info *mci, struct platform_device *pdev)
- 	init_csrows(mci);
- }
- 
--static void enable_intr(struct edac_priv *priv)
-+static void disable_all_intr(struct edac_priv *priv)
- {
- 	/* Unlock the PCSR registers */
- 	writel(PCSR_UNLOCK_VAL, priv->ddrmc_baseaddr + XDDR_PCSR_OFFSET);
- 
--	/* Enable UE and CE Interrupts to support the interrupt case */
--	writel(XDDR_IRQ_CE_MASK | XDDR_IRQ_UE_MASK,
--	       priv->ddrmc_baseaddr + XDDR_IRQ_EN_OFFSET);
-+	writel(XDDR_IRQ_ALL,
-+	       priv->ddrmc_baseaddr + XDDR_IRQ_DIS_OFFSET);
-+	writel(XDDR_IRQ_ALL,
-+	       priv->ddrmc_baseaddr + XDDR_IRQ1_DIS_OFFSET);
- 
--	writel(XDDR_IRQ_UE_MASK,
--	       priv->ddrmc_baseaddr + XDDR_IRQ1_EN_OFFSET);
- 	/* Lock the PCSR registers */
- 	writel(1, priv->ddrmc_baseaddr + XDDR_PCSR_OFFSET);
- }
- 
--static void disable_all_intr(struct edac_priv *priv)
-+#ifdef CONFIG_EDAC_DEBUG
-+#define to_mci(k) container_of(k, struct mem_ctl_info, dev)
-+
-+static void enable_intr(struct edac_priv *priv)
- {
- 	/* Unlock the PCSR registers */
- 	writel(PCSR_UNLOCK_VAL, priv->ddrmc_baseaddr + XDDR_PCSR_OFFSET);
- 
--	writel(XDDR_IRQ_ALL,
--	       priv->ddrmc_baseaddr + XDDR_IRQ_DIS_OFFSET);
--	writel(XDDR_IRQ_ALL,
--	       priv->ddrmc_baseaddr + XDDR_IRQ1_DIS_OFFSET);
-+	/* Enable UE and CE Interrupts to support the interrupt case */
-+	writel(XDDR_IRQ_CE_MASK | XDDR_IRQ_UE_MASK,
-+	       priv->ddrmc_baseaddr + XDDR_IRQ_EN_OFFSET);
- 
-+	writel(XDDR_IRQ_UE_MASK,
-+	       priv->ddrmc_baseaddr + XDDR_IRQ1_EN_OFFSET);
- 	/* Lock the PCSR registers */
- 	writel(1, priv->ddrmc_baseaddr + XDDR_PCSR_OFFSET);
- }
- 
--#ifdef CONFIG_EDAC_DEBUG
--#define to_mci(k) container_of(k, struct mem_ctl_info, dev)
--
- /**
-  * poison_setup - Update poison registers.
-  * @priv:	DDR memory controller private instance data.
-@@ -787,7 +787,7 @@ static const struct file_operations xddr_inject_enable_fops = {
- 	.llseek = generic_file_llseek,
- };
- 
--static void edac_create_debugfs_attributes(struct mem_ctl_info *mci)
-+static void create_debugfs_attributes(struct mem_ctl_info *mci)
- {
- 	struct edac_priv *priv = mci->pvt_info;
- 
-@@ -1012,13 +1012,12 @@ static int mc_probe(struct platform_device *pdev)
- 		goto del_mc;
- 	}
- 
--	disable_all_intr(priv);
- #ifdef CONFIG_EDAC_DEBUG
--	edac_create_debugfs_attributes(mci);
--
-+	disable_all_intr(priv);
-+	create_debugfs_attributes(mci);
- 	setup_address_map(priv);
--#endif
- 	enable_intr(priv);
-+#endif
- 	return rc;
- 
- del_mc:
-
--- 
-Regards/Gruss,
-    Boris.
-
-https://people.kernel.org/tglx/notes-about-netiquette
