@@ -2,189 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 63918755AE7
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 07:39:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 94EE2755B07
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 07:59:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231208AbjGQFjr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jul 2023 01:39:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38706 "EHLO
+        id S231340AbjGQF7A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jul 2023 01:59:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45876 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231218AbjGQFjp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 01:39:45 -0400
-Received: from mx1.sberdevices.ru (mx2.sberdevices.ru [45.89.224.132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16395E6D;
-        Sun, 16 Jul 2023 22:39:43 -0700 (PDT)
-Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
-        by mx1.sberdevices.ru (Postfix) with ESMTP id 8297112000F;
-        Mon, 17 Jul 2023 08:39:41 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 8297112000F
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-        s=mail; t=1689572381;
-        bh=ScCXR9HXhnFNVkOIKX8tcXBCrwrwJ57BZ2yHabgHWv4=;
-        h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
-        b=UFyEiHu12dn/4lkzf3Se8v8qAWntQPQCDHu4ABUAdUkPbToc16O1nkVOs/Wd49Y9Y
-         lbwFX5qgkLIy//Y+7nB+n5s0aT2cOcqlp1eUXQQEONKdHbnAGvKtDzCq6uSd0vTlim
-         3KeyL2sw+CH6FGf4Eee3wBJ1zz/R2CZjHu8nMhXJzHx5XSaz/qIylwNleXFOzD7OVN
-         QUX8MUu59bv+wumBN45OmOWzMczeNJwiXEwF0aCHcADv5YTzdZkqpocRFz8gNDCYQE
-         EOBOrKa1S3GVu2duEIqfJx+akqt8KWHoZ7cXwM6JZpgHnTCZwP8OLx4kze0gMRC1pv
-         1YoyB7qYbz3Iw==
-Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mx1.sberdevices.ru (Postfix) with ESMTPS;
-        Mon, 17 Jul 2023 08:39:41 +0300 (MSK)
-Received: from localhost.localdomain (100.64.160.123) by
- p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.30; Mon, 17 Jul 2023 08:38:46 +0300
-From:   Arseniy Krasnov <AVKrasnov@sberdevices.ru>
-To:     Liang Yang <liang.yang@amlogic.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
+        with ESMTP id S229920AbjGQF67 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 01:58:59 -0400
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3880E4C
+        for <devicetree@vger.kernel.org>; Sun, 16 Jul 2023 22:58:57 -0700 (PDT)
+Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-51e6113437cso5409290a12.2
+        for <devicetree@vger.kernel.org>; Sun, 16 Jul 2023 22:58:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1689573536; x=1692165536;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=k631ugiro94uqzvQOpxnR6/BSCvO3zY6daW5g9o+b4c=;
+        b=noOLwLxY+8VAm0GPn80Qt4djj2hliItvWMeuYPZ/VfTfgfhYBFycibxIxgGcwk33Lp
+         u/O3HL17SUAbD3NcKuxcc6GjqP8tSLuRaKgSgG1C0grYZbJQGXkDJJjX4j6ZSGYaGHi+
+         RrI2unE/l6vQZUTdCLbShqcRYz09++k5rEqKdfWyJ4FCoBUPP8QLlc4AfAFYENcTPHT3
+         8hE3Vin1cthOnb/8miTb6ChvPIEE/pNB/iIOSunjO8Qc/P1jkAxi/qZraRM2bYVRH0CT
+         LCXha+Mc32qhmi7/0nra1k3eMBcBWDtXkT26BiBP54XoiDsMuRbE4TmkvSThBhHoBMIO
+         1MEw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689573536; x=1692165536;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=k631ugiro94uqzvQOpxnR6/BSCvO3zY6daW5g9o+b4c=;
+        b=it+xujH8RsLpN+DoniZJwBuxPWXRi7a4VIYuat4rX7XCeXYbnMrTVOMMisuKc52KA3
+         WhLXaYE+neDnnWHit5377cjMU7klBqu3sOL5SMAKocrLNMVa4q0+5rJz0Dm4sZNlXqaC
+         Hy4zY6ZIdf+S8NomA8qUeNu1+yC1CO2Z0QnczgNzoGm7mEaNiQfUmicudpENm70McSjU
+         FI2xKkLSkmRJdRKTRXbi3uctw50ZmbRIi1+JoUYeo1po1VnD1Xw+6vvU9xysI3aMvYFB
+         YHCI6tS50wjFOY+TepwKnalfGRXueR5nNlCliX5DiNgc+6wlCmDK1Fk/GmcTfm38FQnv
+         /9dA==
+X-Gm-Message-State: ABy/qLbTBRlTU0nJ12ZpS33r3QutgrA4irIdi8YK7ItIrzeRqDd/Y4gl
+        CP5wgAxG+FCMDVKLCqSivOMMXA==
+X-Google-Smtp-Source: APBJJlHgKqIdlmRkFNftYeegIddWrsGKkE5tQaWsbAjoEdQ4qunH1DIhrT2XP16EPef81XkUgI71JQ==
+X-Received: by 2002:a17:906:74c4:b0:993:fba5:cdfa with SMTP id z4-20020a17090674c400b00993fba5cdfamr9395356ejl.26.1689573536167;
+        Sun, 16 Jul 2023 22:58:56 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id s7-20020a1709064d8700b00993004239a4sm8678232eju.215.2023.07.16.22.58.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 16 Jul 2023 22:58:55 -0700 (PDT)
+Message-ID: <31af3a96-7e98-8bb1-f9e9-53ccb0441310@linaro.org>
+Date:   Mon, 17 Jul 2023 07:58:53 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v2 2/3] pwm: samsung: Add compatible for ExynosAutov9 SoC
+To:     Jaewon Kim <jaewon02.kim@samsung.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-CC:     <oxffffaa@gmail.com>, <kernel@sberdevices.ru>,
-        Arseniy Krasnov <AVKrasnov@sberdevices.ru>,
-        <linux-mtd@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v4 2/2] mtd: rawnand: meson: support for 512B ECC step size
-Date:   Mon, 17 Jul 2023 08:34:01 +0300
-Message-ID: <20230717053402.1203724-3-AVKrasnov@sberdevices.ru>
-X-Mailer: git-send-email 2.35.0
-In-Reply-To: <20230717053402.1203724-1-AVKrasnov@sberdevices.ru>
-References: <20230717053402.1203724-1-AVKrasnov@sberdevices.ru>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [100.64.160.123]
-X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
- p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 178635 [Jul 15 2023]
-X-KSMG-AntiSpam-Version: 5.9.59.0
-X-KSMG-AntiSpam-Envelope-From: AVKrasnov@sberdevices.ru
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 523 523 523027ce26ed1d9067f7a52a4756a876e54db27c, {Tracking_from_domain_doesnt_match_to}, d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2;sberdevices.ru:5.0.1,7.1.1;100.64.160.123:7.1.2;p-i-exch-sc-m01.sberdevices.ru:5.0.1,7.1.1, FromAlignment: s, {Tracking_white_helo}, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean
-X-KSMG-LinksScanning: Clean
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/07/17 00:56:00 #21624503
-X-KSMG-AntiVirus-Status: Clean, skipped
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Alim Akhtar <alim.akhtar@samsung.com>
+Cc:     linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org,
+        Chanho Park <chanho61.park@samsung.com>
+References: <20230714100929.94563-1-jaewon02.kim@samsung.com>
+ <CGME20230714101434epcas2p3e2475698c527ca72dee797225d3dad37@epcas2p3.samsung.com>
+ <20230714100929.94563-3-jaewon02.kim@samsung.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230714100929.94563-3-jaewon02.kim@samsung.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Meson NAND supports both 512B and 1024B ECC step size.
+On 14/07/2023 12:09, Jaewon Kim wrote:
+> Add new compatible string to support ExynosAutov9 SoC.
+> 
+> Signed-off-by: Jaewon Kim <jaewon02.kim@samsung.com>
+> ---
+>  drivers/pwm/pwm-samsung.c | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/drivers/pwm/pwm-samsung.c b/drivers/pwm/pwm-samsung.c
+> index e8828f57ab15..50a88565c440 100644
+> --- a/drivers/pwm/pwm-samsung.c
+> +++ b/drivers/pwm/pwm-samsung.c
+> @@ -513,6 +513,7 @@ static const struct of_device_id samsung_pwm_matches[] = {
+>  	{ .compatible = "samsung,s5p6440-pwm", .data = &s5p64x0_variant },
+>  	{ .compatible = "samsung,s5pc100-pwm", .data = &s5pc100_variant },
+>  	{ .compatible = "samsung,exynos4210-pwm", .data = &s5p64x0_variant },
+> +	{ .compatible = "samsung,exynosautov9-pwm", .data = &s5p64x0_variant },
 
-Signed-off-by: Arseniy Krasnov <AVKrasnov@sberdevices.ru>
----
- drivers/mtd/nand/raw/meson_nand.c | 45 +++++++++++++++++++++++--------
- 1 file changed, 34 insertions(+), 11 deletions(-)
+That's not what I asked for. You do not need entry here. Devices are
+compatible.
 
-diff --git a/drivers/mtd/nand/raw/meson_nand.c b/drivers/mtd/nand/raw/meson_nand.c
-index 91eeac49d18f..9bdea97abe4c 100644
---- a/drivers/mtd/nand/raw/meson_nand.c
-+++ b/drivers/mtd/nand/raw/meson_nand.c
-@@ -135,6 +135,7 @@ struct meson_nfc_nand_chip {
- struct meson_nand_ecc {
- 	u32 bch;
- 	u32 strength;
-+	u32 size;
- };
- 
- struct meson_nfc_data {
-@@ -190,7 +191,8 @@ struct meson_nfc {
- };
- 
- enum {
--	NFC_ECC_BCH8_1K		= 2,
-+	NFC_ECC_BCH8_512	= 1,
-+	NFC_ECC_BCH8_1K,
- 	NFC_ECC_BCH24_1K,
- 	NFC_ECC_BCH30_1K,
- 	NFC_ECC_BCH40_1K,
-@@ -198,15 +200,16 @@ enum {
- 	NFC_ECC_BCH60_1K,
- };
- 
--#define MESON_ECC_DATA(b, s)	{ .bch = (b),	.strength = (s)}
-+#define MESON_ECC_DATA(b, s, sz)	{ .bch = (b), .strength = (s), .size = (sz) }
- 
- static struct meson_nand_ecc meson_ecc[] = {
--	MESON_ECC_DATA(NFC_ECC_BCH8_1K, 8),
--	MESON_ECC_DATA(NFC_ECC_BCH24_1K, 24),
--	MESON_ECC_DATA(NFC_ECC_BCH30_1K, 30),
--	MESON_ECC_DATA(NFC_ECC_BCH40_1K, 40),
--	MESON_ECC_DATA(NFC_ECC_BCH50_1K, 50),
--	MESON_ECC_DATA(NFC_ECC_BCH60_1K, 60),
-+	MESON_ECC_DATA(NFC_ECC_BCH8_512, 8,  512),
-+	MESON_ECC_DATA(NFC_ECC_BCH8_1K,  8,  1024),
-+	MESON_ECC_DATA(NFC_ECC_BCH24_1K, 24, 1024),
-+	MESON_ECC_DATA(NFC_ECC_BCH30_1K, 30, 1024),
-+	MESON_ECC_DATA(NFC_ECC_BCH40_1K, 40, 1024),
-+	MESON_ECC_DATA(NFC_ECC_BCH50_1K, 50, 1024),
-+	MESON_ECC_DATA(NFC_ECC_BCH60_1K, 60, 1024),
- };
- 
- static int meson_nand_calc_ecc_bytes(int step_size, int strength)
-@@ -224,8 +227,27 @@ static int meson_nand_calc_ecc_bytes(int step_size, int strength)
- 
- NAND_ECC_CAPS_SINGLE(meson_gxl_ecc_caps,
- 		     meson_nand_calc_ecc_bytes, 1024, 8, 24, 30, 40, 50, 60);
--NAND_ECC_CAPS_SINGLE(meson_axg_ecc_caps,
--		     meson_nand_calc_ecc_bytes, 1024, 8);
-+
-+static const int axg_stepinfo_strengths[] = { 8 };
-+static const struct nand_ecc_step_info axg_stepinfo_1024 = {
-+	.stepsize = 1024,
-+	.strengths = axg_stepinfo_strengths,
-+	.nstrengths = ARRAY_SIZE(axg_stepinfo_strengths)
-+};
-+
-+static const struct nand_ecc_step_info axg_stepinfo_512 = {
-+	.stepsize = 512,
-+	.strengths = axg_stepinfo_strengths,
-+	.nstrengths = ARRAY_SIZE(axg_stepinfo_strengths)
-+};
-+
-+static const struct nand_ecc_step_info axg_stepinfo[] = { axg_stepinfo_1024, axg_stepinfo_512 };
-+
-+static const struct nand_ecc_caps meson_axg_ecc_caps = {
-+	.stepinfos = axg_stepinfo,
-+	.nstepinfos = ARRAY_SIZE(axg_stepinfo),
-+	.calc_ecc_bytes = meson_nand_calc_ecc_bytes,
-+};
- 
- static struct meson_nfc_nand_chip *to_meson_nand(struct nand_chip *nand)
- {
-@@ -1257,7 +1279,8 @@ static int meson_nand_bch_mode(struct nand_chip *nand)
- 		return -EINVAL;
- 
- 	for (i = 0; i < ARRAY_SIZE(meson_ecc); i++) {
--		if (meson_ecc[i].strength == nand->ecc.strength) {
-+		if (meson_ecc[i].strength == nand->ecc.strength &&
-+		    meson_ecc[i].size == nand->ecc.size) {
- 			meson_chip->bch_mode = meson_ecc[i].bch;
- 			return 0;
- 		}
--- 
-2.35.0
+Best regards,
+Krzysztof
 
