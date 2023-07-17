@@ -2,111 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 736407562A4
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 14:23:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B39A77562B3
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 14:26:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229564AbjGQMXd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jul 2023 08:23:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48298 "EHLO
+        id S230422AbjGQM0f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jul 2023 08:26:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49754 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230252AbjGQMXa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 08:23:30 -0400
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E0A7E4C;
-        Mon, 17 Jul 2023 05:23:29 -0700 (PDT)
-Received: by mail-lf1-x12e.google.com with SMTP id 2adb3069b0e04-4f122ff663eso6921478e87.2;
-        Mon, 17 Jul 2023 05:23:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1689596608; x=1692188608;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:subject:from:user-agent:mime-version:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=sVqNfRjsiIYCh2syrD6lJFA4rvlIOlkMNpbFEJwYjlI=;
-        b=eHGphcCtv+cNXSjHxh2VftOQjs4R+87gmt4SpBBGKPkQEjSgKBWJLIowfPrrdwcHpY
-         4YAI6NMcxnSeSVSe08DbRb45zNoSa/W7XG4Jbmh6hNsHj1Vo3tEyURD3uLbi8nlNYLBC
-         6MsRGhzv2PPn9U0HWn6K0mhj5Y1oDvuVOoW2usu+IkBk3Lgf/+MGXfEzdvbXur/Pa4ee
-         zQ3ygYJyr3WooPaxS9oaPwTxQEkm1UVB8fb2mf35qSH6FAkoUc2Qi6jq8TB1orFgnTXD
-         NnMR6eAkeuRcYcs26A9DP4CtjCP92ymIxVsNWzEu2h6nV/bKlWatprqiLhVC9kJLeYqu
-         AZuA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689596608; x=1692188608;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:subject:from:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=sVqNfRjsiIYCh2syrD6lJFA4rvlIOlkMNpbFEJwYjlI=;
-        b=D/oSxYkgVMTt+7MbXqntizuyypi/2NxNl5yPyvNY0LDCYG9U1g00L1UzsBmwbQmGbm
-         AG1uzHrgKw3wj4J6lLEf1KQQhdoaE7p4gf5Lef09aUawSrx5A7giy6eMUVLoD/xaeeD9
-         d/dJSZ6snL/DU6jV1QlfTCC23RhMEVrjMSj+iIMgXDXeEKdPs7Z2pcyEaX2kaMRbiv1u
-         Xfd+fPQUNDipCwGIm7syVTL0vgHz2GIQAAiq7+kgy0sv8HDkZCxm9kH9NdQP4K5tTvaz
-         FueM/05xfqpEzDkC3tItFRFpqhNp90QSFQlBWYU/bQzPQ3y5MtP09/N79RVobkkUZnna
-         d6oA==
-X-Gm-Message-State: ABy/qLbMcvKnfLjWJgpjArjsl5Agg/eWkSIE04/yVgNRqPBH/WGrKTR0
-        jHhTb70EyV0bt1u79QvcRTk=
-X-Google-Smtp-Source: APBJJlFXDDTv9a4VrKTlnTEXqqxmTD1PhHVIngzaKnIHpLM28z8emGQQr3cnFOm/h5F9Hm1Jovf4sg==
-X-Received: by 2002:a05:6512:31d2:b0:4fd:b1f6:b6cb with SMTP id j18-20020a05651231d200b004fdb1f6b6cbmr4055607lfe.26.1689596607439;
-        Mon, 17 Jul 2023 05:23:27 -0700 (PDT)
-Received: from [192.168.4.4] (host-95-237-109-246.retail.telecomitalia.it. [95.237.109.246])
-        by smtp.gmail.com with ESMTPSA id m18-20020aa7d352000000b0051a4fcf7187sm9906971edr.62.2023.07.17.05.23.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 17 Jul 2023 05:23:27 -0700 (PDT)
-Message-ID: <72df284b-66dd-2deb-13c2-cc0c9f4105cb@gmail.com>
-Date:   Mon, 17 Jul 2023 14:23:26 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-From:   Andrea Collamati <andrea.collamati@gmail.com>
-Subject: =?UTF-8?Q?Re=3a_=5bPATCH_v2_0/2=5d_add_mcp4728_I2C_DAC_driver?=
- =?UTF-8?B?4oCL?=
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        William Breathitt Gray <william.gray@linaro.org>,
-        Angelo Dureghello <angelo.dureghello@timesys.com>,
+        with ESMTP id S230311AbjGQM0d (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 08:26:33 -0400
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 824BDB9;
+        Mon, 17 Jul 2023 05:26:30 -0700 (PDT)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id BE0D32000C;
+        Mon, 17 Jul 2023 12:26:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1689596788;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=xfIQQUGuk2YngWOS8fdrYDdOu8Z6QhNBtgynXxqIkxI=;
+        b=pu6DLejjSYrxTONDk5/XdeXoNmahir1eSWyr0IAyC5+CzV+z7kVIv0SIU1WMmF5on1CgqD
+        KQMv7HISFwBD83UgHXeIYvA6rMs4zilESREno4fIl9tHoG5j8KuMGef30GXaJomEjoNSXB
+        b27ZnZ9I2DkJ16lt7XoMqFe9mN2ip4prfSVsj2SpNBgHGroLTT9anwzmDU7ZmjHgcKavfM
+        YT6a5qXXuO8iNNI928PNokmiYbnOK1bsbfPyiXo6MfvnS5M/07LrFJlHjhELObDmMRCvQo
+        UvLPoo3HQls1bUDPug12g+YVs2SccW7y5VCvmnwJJIZUaBWuD6j/7/vLgvzENw==
+Date:   Mon, 17 Jul 2023 14:26:14 +0200
+From:   Luca Ceresoli <luca.ceresoli@bootlin.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Andreas =?UTF-8?Q?F=C3=A4rber?= <afaerber@suse.de>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>,
+        Florian Fainelli <florian.fainelli@broadcom.com>,
+        Broadcom internal kernel review list 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Cristian Marussi <cristian.marussi@arm.com>,
+        Alex Helms <alexander.helms.jy@renesas.com>,
+        Abel Vesa <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
         Fabio Estevam <festevam@gmail.com>,
-        Lukas Bulwahn <lukas.bulwahn@gmail.com>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <0414e2e4-a17d-3435-e9e7-35b110233a6d@gmail.com>
- <46bccbca-1343-aed4-4dfe-eb5182b8f6a1@linaro.org>
-Content-Language: en-US
-In-Reply-To: <46bccbca-1343-aed4-4dfe-eb5182b8f6a1@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        NXP Linux Team <linux-imx@nxp.com>,
+        Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Dinh Nguyen <dinguyen@kernel.org>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Shiraz Hashim <shiraz.linux.kernel@gmail.com>, soc@kernel.org,
+        Orson Zhai <orsonzhai@gmail.com>,
+        Baolin Wang <baolin.wang@linux.alibaba.com>,
+        Chunyan Zhang <zhang.lyra@gmail.com>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Hal Feng <hal.feng@starfivetech.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Emilio =?UTF-8?Q?L=C3=B3pez?= <emilio@elopez.com.ar>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        Prashant Gaikwad <pgaikwad@nvidia.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+        Masami Hiramatsu <mhiramat@kernel.org>,
+        Michal Simek <michal.simek@amd.com>,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-actions@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-rpi-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-oxnas@groups.io,
+        linux-mediatek@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        linux-rockchip@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-tegra@vger.kernel.org
+Subject: Re: [PATCH] clk: Explicitly include correct DT includes
+Message-ID: <20230717142614.78db5c4e@booty>
+In-Reply-To: <20230714174342.4052882-1-robh@kernel.org>
+References: <20230714174342.4052882-1-robh@kernel.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-GND-Sasl: luca.ceresoli@bootlin.com
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 7/17/23 09:17, Krzysztof Kozlowski wrote:
->>> Shouldn't this binding be just merged with existing mcp4725? Are you
->>> sure it's not similar device, IOW, are you sure you do not have vref supply?
->>>
->> Unfortunately they are not that similar. MCP4728 has two vref choices:
->>
->> - Use Vdd (power supply) as Vref
->>
->> - User Internal 2.048 V Vref source.
-> Exactly the same as existing mcp4726, so what is the problem?
+On Fri, 14 Jul 2023 11:43:29 -0600
+Rob Herring <robh@kernel.org> wrote:
 
-MCP4726 has 2 separate pins, VDD and VREF that can be both used as external Vref depending on configuration.
+>  drivers/clk/clk-versaclock5.c                    | 1 -
 
-MCP4728 has only one external vref pin, VDD pin. The other vref source is internal and fixed to 2.048V.
+Reviewed-by: Luca Ceresoli <luca.ceresoli@bootlin.com> # versaclock5
 
-Furthermore MCP4728  has four independent channels. For each channels it's possible to choose whether
-
-using VDD (External VRef) or 2.048V (Internal Vref).
-
-Best regards
-
-            Andrea
-
-
+-- 
+Luca Ceresoli, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
