@@ -2,149 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E563075617F
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 13:25:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A370756193
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 13:29:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229994AbjGQLZA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jul 2023 07:25:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40368 "EHLO
+        id S229774AbjGQL3b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jul 2023 07:29:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43666 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229450AbjGQLY7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 07:24:59 -0400
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12on2089.outbound.protection.outlook.com [40.107.243.89])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 909C210D5;
-        Mon, 17 Jul 2023 04:24:55 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ny4nP1E+e4donYkJalMkgdcDoGMQ051Qf4N09cZqilZ1aocfv/7iu6P4qDV53E6Qth1I0R1waVoXwItyCHreWsbpFvx9wuC1KkeaIthyDDfbBUuMYYWakOlUyrzbgmeojL7W4IxkM1ztSMcPruBnTCJSyrCcYCNJrW8X2qCZpq6UFo68Su4T9+fJE1rViY+c0ye2wT/pHlYkHCz25iMYlpJCr+wbavup9iWqPnQnnQjGeYdQWADsu4Uyrc2eMdBmmGhCuBRWTGfZ17479oImVhEzrO4IESRCnnGYt7oUWRyB/gdR2FzIVhHqOieiqDq7i5ZiHqQnFOipZlpZVZCq1g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=wCeVRG4Z8c6IvROxNigIyzoyYOdsqldxjFadt/VZYNQ=;
- b=cGchgmhkfrKVutCWbxwMvfIUFU5csSPETjETIqc7p9Rynsqp+TFfAXCLEG49zAwDing+h7Hjqb6sREM6wPaDYflKpdWWhuhMNDlIP7P4TsdCunTsWxXcoCpeKDXnw3G2+uEZJLxwzGsq4RhBwMhUajCfKvH4Wglg3XxDepPNDqwrJxP76vWkvGxuMFeCQvAff1lEgBhFYzzi4yfFRuURYLfz/AaDoxCrf7KMtJq9yseup1JjPST3KcfdD7RtCX2ha+p8POXMei7gEhOYC/mVAEVh3+FuuwSXyi0HS5/H03jf08gayv39u92hd5/PnMSrGz3e0M2P/icn1Wg5o3nEbQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wCeVRG4Z8c6IvROxNigIyzoyYOdsqldxjFadt/VZYNQ=;
- b=Iqz6dpZoRzjFYkMCNy6832G6CnZRDyBIOCmr+sOYEXgrMrxEXzGW8AMyRxsYzRkeHxnCWSAtHUTv/mb69uj/eG/3NH1Ih+ap62VkwDW2b/NiujZCOT8GepdTFniNmBXZnUFm0KMZaslFk4/mysd0QLrwwd5ZNtYI+mFsAecmvTs=
-Received: from MW2PR16CA0004.namprd16.prod.outlook.com (2603:10b6:907::17) by
- DS0PR12MB7875.namprd12.prod.outlook.com (2603:10b6:8:14d::7) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6544.24; Mon, 17 Jul 2023 11:24:51 +0000
-Received: from CO1NAM11FT020.eop-nam11.prod.protection.outlook.com
- (2603:10b6:907:0:cafe::a) by MW2PR16CA0004.outlook.office365.com
- (2603:10b6:907::17) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6588.32 via Frontend
- Transport; Mon, 17 Jul 2023 11:24:50 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CO1NAM11FT020.mail.protection.outlook.com (10.13.174.149) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6588.32 via Frontend Transport; Mon, 17 Jul 2023 11:24:50 +0000
-Received: from SATLEXMB07.amd.com (10.181.41.45) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.23; Mon, 17 Jul
- 2023 06:24:44 -0500
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB07.amd.com
- (10.181.41.45) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.6; Mon, 17 Jul
- 2023 04:24:20 -0700
-Received: from xhdnavam40.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.23 via Frontend
- Transport; Mon, 17 Jul 2023 06:24:17 -0500
-From:   Piyush Mehta <piyush.mehta@amd.com>
-To:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <p.zabel@pengutronix.de>,
-        <michal.simek@amd.com>
-CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <git@amd.com>, Piyush Mehta <piyush.mehta@amd.com>
-Subject: [PATCH 2/2] reset: reset-zynqmp: add support for Versal NET platform
-Date:   Mon, 17 Jul 2023 16:53:48 +0530
-Message-ID: <20230717112348.1381367-3-piyush.mehta@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230717112348.1381367-1-piyush.mehta@amd.com>
-References: <20230717112348.1381367-1-piyush.mehta@amd.com>
+        with ESMTP id S229885AbjGQL3a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 07:29:30 -0400
+Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8B4CE4F
+        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 04:29:28 -0700 (PDT)
+Received: from epcas2p1.samsung.com (unknown [182.195.41.53])
+        by mailout4.samsung.com (KnoxPortal) with ESMTP id 20230717112924epoutp04e2f8f8227c5898d48bc8099fafb9dd99~ypDaN0L8O2706827068epoutp04D
+        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 11:29:24 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20230717112924epoutp04e2f8f8227c5898d48bc8099fafb9dd99~ypDaN0L8O2706827068epoutp04D
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1689593364;
+        bh=H2KX3xxqbjqVVqfxb+F/mTUgcUDaR1aEJF+PWgOAHCs=;
+        h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
+        b=VxOX6K0il6r+bFHxEey+vDmIvpa+23qRqbi34jQwIgS0NHPcLRqoYtUwxWoI6Cl5n
+         z2ckqXMbYt7W0HkEWlwyMgZw7tZlVxmjpMYiWC0zo4XPONKd6oZwJgKoFg+Dkkcj32
+         KFmryEhcsv1dhaMNx8sSfIQQccyCr26hlHr2Vn28=
+Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
+        epcas2p3.samsung.com (KnoxPortal) with ESMTP id
+        20230717112923epcas2p3a41493ec521d76b7fecbeab6e36eb6b8~ypDY6Pabi1217512175epcas2p3T;
+        Mon, 17 Jul 2023 11:29:23 +0000 (GMT)
+Received: from epsmges2p4.samsung.com (unknown [182.195.36.69]) by
+        epsnrtp2.localdomain (Postfix) with ESMTP id 4R4Kc2536Kz4x9Pw; Mon, 17 Jul
+        2023 11:29:22 +0000 (GMT)
+Received: from epcas2p2.samsung.com ( [182.195.41.54]) by
+        epsmges2p4.samsung.com (Symantec Messaging Gateway) with SMTP id
+        13.65.32393.21625B46; Mon, 17 Jul 2023 20:29:22 +0900 (KST)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+        epcas2p3.samsung.com (KnoxPortal) with ESMTPA id
+        20230717112922epcas2p3dab51c237946b72f45579b982607a624~ypDYKtt4Q0748707487epcas2p3A;
+        Mon, 17 Jul 2023 11:29:22 +0000 (GMT)
+Received: from epsmgmcp1.samsung.com (unknown [182.195.42.82]) by
+        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20230717112922epsmtrp1b2b77a121268c9f0ec4e7294705673af~ypDYJ9Oo32008320083epsmtrp1n;
+        Mon, 17 Jul 2023 11:29:22 +0000 (GMT)
+X-AuditID: b6c32a48-87fff70000007e89-12-64b526120d67
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+        epsmgmcp1.samsung.com (Symantec Messaging Gateway) with SMTP id
+        36.27.64355.21625B46; Mon, 17 Jul 2023 20:29:22 +0900 (KST)
+Received: from [10.229.8.168] (unknown [10.229.8.168]) by
+        epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
+        20230717112921epsmtip11f71a721ab1f8ba35168e37640dc1bf4~ypDX56Dz_0385703857epsmtip1d;
+        Mon, 17 Jul 2023 11:29:21 +0000 (GMT)
+Message-ID: <68aacadd-f27d-76d3-36a1-78f5662ecb97@samsung.com>
+Date:   Mon, 17 Jul 2023 20:26:48 +0900
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1NAM11FT020:EE_|DS0PR12MB7875:EE_
-X-MS-Office365-Filtering-Correlation-Id: 982fef9d-5c37-48a7-326b-08db86b86f75
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: STdmS2UFJJ5fJXMsTpGTeD9c3QqKguwnoBHlAGuzAThfEXlWAxKyZvWH+zS+c5lJZNAWbkkrJIRO945It0Z9XDWBQatI3ljMQjwRBw3HreYTHvMWTlKUx0sR+vkMY/62/skpSHvbJEIWeC2mr/HPTdujs1+EBPJxtBmv/wSkCsPZsfr9O8EaE3QHxggEXVCnMk1/OJDR6uGuPuqczEqSQTIYSxoIRf/JRx62Qs7NfG2meKBJ3KX4skCEExB0CpdauQWD78srsb6dM5dWpy42+rn4bsi9jSkV/VD2uyMDlTdDtDq9jHT2Ihrc9mKYZJ8bfcyEYsuUJshEXQ749lFvddPsPuxlsjb8UumpxxxbeXEwjffo1bAXcbzPMLYHSzUVLoMjZELcnYTqhi8hdL6IgROAP14i3Dj76y9SydB18bMZtn2fdHc7P8YTHediOis2uSqCqrqZo00t3lmtVZALBM7cFOJeNY11NG7/oqorlFHN4IOXKezNhg1SJ6+HhCAynWXqDzDTmawSv15BUrjeK1omNNSw3j2IfnYePvPOgHlvKQr6zuX2GbvAAfVGYK/YML0EcZ5xF2M93vn3heoAFqY98R8K2DIakYj9g4d9JN6ExPoZObUkFIcQddSr1U9fWxtQVMexNSqUA4WZArwdafmwQHOKN9fwqc+rxSDvJnEU0a1GoOG5zzswopua5dtixPLEGB8IdK5i5wGKmIdPNe6rHJAASwlcfuIULDGKCkPZbN7QyVpj7BH6ouvWCfG1g+rqNuz15IMC7sX/mnJaug==
-X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230028)(4636009)(376002)(136003)(396003)(346002)(39860400002)(451199021)(82310400008)(46966006)(36840700001)(40470700004)(426003)(81166007)(1076003)(6636002)(70586007)(44832011)(4326008)(8676002)(110136005)(36756003)(316002)(70206006)(2906002)(8936002)(5660300002)(478600001)(41300700001)(336012)(40460700003)(54906003)(36860700001)(86362001)(40480700001)(356005)(83380400001)(186003)(26005)(6666004)(2616005)(47076005)(82740400003)(36900700001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jul 2023 11:24:50.3550
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 982fef9d-5c37-48a7-326b-08db86b86f75
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT020.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB7875
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+        Thunderbird/102.11.0
+Subject: Re: [PATCH v4 1/2] dt-bindings: pwm: samsung: add exynosautov9
+ compatible
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>
+Cc:     linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org
+From:   Jaewon Kim <jaewon02.kim@samsung.com>
+In-Reply-To: <9b09afec-4e0e-a600-92e1-2104a1b2e36e@linaro.org>
+Content-Transfer-Encoding: 7bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrBJsWRmVeSWpSXmKPExsWy7bCmma6Q2tYUg8031SwezNvGZrFm7zkm
+        i/lHzrFa9L14yGyx9/VWdotNj6+xWlzeNYfN4u7dVYwWM87vY7Jo3XuE3eLnrnksFrcnTmZ0
+        4PHYOesuu8emVZ1sHneu7WHz2Lyk3qP/r4FH35ZVjB6fN8kFsEdl22SkJqakFimk5iXnp2Tm
+        pdsqeQfHO8ebmhkY6hpaWpgrKeQl5qbaKrn4BOi6ZeYA3amkUJaYUwoUCkgsLlbSt7Mpyi8t
+        SVXIyC8usVVKLUjJKTAv0CtOzC0uzUvXy0stsTI0MDAyBSpMyM7Y/3k5W8F7vooTHYsYGxi7
+        uLsYOTkkBEwkbsycwNrFyMUhJLCDUeLkjs2sIAkhgU+MEr/uykAkQOzpPYwwHS/WTGaESOxk
+        lPgwbzVU+2tGiZ1HXjGDVPEK2EncPzWdDcRmEVCVaJwynwkiLihxcuYTFhBbVCBaonXZfbAa
+        YYEQiXPd28F6mQXEJW49Aann4hARuMokcXjzJmYQh1lgCaPEg8XP2EGq2AS0Jb6vXwy0moOD
+        E2jb+RYviGZ5ie1v54DVSwjs4ZCY9/AFO8TdLhJXr31nhbCFJV4d3wIVl5J42d8GZWdLtE//
+        A1VTIXFxw2w2CNtYYtazdkaQXcwCmhLrd+mDmBICyhJHbrFArOWT6Dj8lx0izCvR0SYE0agm
+        cX/qOaghMhKTjqxkgrA9JA6t7WWZwKg4CylUZiH5fhaSZ2Yh7F3AyLKKUSy1oDg3PbXYqMAE
+        HtnJ+bmbGMFJWMtjB+Pstx/0DjEycTAeYpTgYFYS4f2+alOKEG9KYmVValF+fFFpTmrxIUZT
+        YNxMZJYSTc4H5oG8knhDE0sDEzMzQ3MjUwNzJXHee61zU4QE0hNLUrNTUwtSi2D6mDg4pRqY
+        ds16VOAf/H5Hv5bmDZENkkvFr7k/Lbw69WPunwPunlOTfA7JT5sXlBY5bdGsM8dLlq/xtfpY
+        cHfGo/Upj85tXPzb+0GqB7eI827ftf/EqlwWuD/OnBjPW+c2MXQll9GCjC0e/wL15L8821E0
+        9+yNd/wMHIKZTTzlbh6uiWWGu5gju2cwH5rrYLrqU/7t51mv7zp/3FMRdo2R7/9FM/lFJcmL
+        DwSYLDJzf6wmK/qxhnNzxW6vI6xJUv9tLuxxeXtN/ttJCy+fR0Gc+0Wbq475Vr284LhmXniN
+        Qar6hOn/K1XZwu/qzPz/+cmGk1d9luiw7u6Rb/u+pDlj19m7eXkpZUF+fO+3s3mn+Vx5cc3C
+        R4mlOCPRUIu5qDgRAHNHUnJLBAAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprKIsWRmVeSWpSXmKPExsWy7bCSnK6Q2tYUgxezOSwezNvGZrFm7zkm
+        i/lHzrFa9L14yGyx9/VWdotNj6+xWlzeNYfN4u7dVYwWM87vY7Jo3XuE3eLnrnksFrcnTmZ0
+        4PHYOesuu8emVZ1sHneu7WHz2Lyk3qP/r4FH35ZVjB6fN8kFsEdx2aSk5mSWpRbp2yVwZez/
+        vJyt4D1fxYmORYwNjF3cXYycHBICJhIv1kxmBLGFBLYzSnw7EAgRl5FY/qyPDcIWlrjfcoS1
+        i5ELqOYlo0Tvzx6wBl4BO4n7p6aDFbEIqEo0TpnPBBEXlDg58wkLiC0qEC2x+vMFVhBbWCBE
+        4lz3dmYQm1lAXOLWE5B6Lg4RgetMEufO3GYEcZgFljBKXH4N0g2y7iejRPvtk+wgLWwC2hLf
+        1y8GGsXBwQm0+nyLF8QkM4murV2MELa8xPa3c5gnMArNQnLILCQLZyFpmYWkZQEjyypG0dSC
+        4tz03OQCQ73ixNzi0rx0veT83E2M4JjTCtrBuGz9X71DjEwcjIcYJTiYlUR4v6/alCLEm5JY
+        WZValB9fVJqTWnyIUZqDRUmcVzmnM0VIID2xJDU7NbUgtQgmy8TBKdXAxNofK+9cxGDa29C2
+        r+/Fcy2rC6EPevWKOM+emPrF3mrTw2sPGXNYjN/1fak1iRBpWJF9/SOXWr3ZXw292aLGj7vr
+        LNMfJ5r+WrPp+GcODR1BUX7+3DMzYs5t9j899QT7utb06acy2j2PBNxd7jRjf6DimT+CUyzm
+        x6RGX3Z9mPX426X1r/g1Yudv2dj8e2N7dWjPNi6z/64vGaZmH691Zvj16r/9jsoDCtMYEqw7
+        278UfH+4p8eMWY1xv7d8Ec9JnuIsLknpzTs+lNhvYlFd8Yv3n/b/Dade8y/jNJrPqL/IWONh
+        ppn4nhqnjcveSkor2exi++H7Kbz7YHCMufH8ntzzZ8Sv9C2TzI8Sc0hQYinOSDTUYi4qTgQA
+        ayMlCCgDAAA=
+X-CMS-MailID: 20230717112922epcas2p3dab51c237946b72f45579b982607a624
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20230717094721epcas2p1c5c1254e24d4a1d0fb366e1b4d551536
+References: <20230717094202.18296-1-jaewon02.kim@samsung.com>
+        <CGME20230717094721epcas2p1c5c1254e24d4a1d0fb366e1b4d551536@epcas2p1.samsung.com>
+        <20230717094202.18296-2-jaewon02.kim@samsung.com>
+        <9b09afec-4e0e-a600-92e1-2104a1b2e36e@linaro.org>
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Updated the reset driver to support Versal NET platform.
-As part of adding support for versal NET:
-- Added Versal NET specific compatible string.
-- Reset Id and number of resets.
 
-Signed-off-by: Piyush Mehta <piyush.mehta@amd.com>
----
- drivers/reset/reset-zynqmp.c | 7 +++++++
- 1 file changed, 7 insertions(+)
+On 23. 7. 17. 19:59, Krzysztof Kozlowski wrote:
+> On 17/07/2023 11:42, Jaewon Kim wrote:
+>> Add samsung,exynosautov9-pwm compatible string to binding document.
+>>
+>> Signed-off-by: Jaewon Kim <jaewon02.kim@samsung.com>
+>> ---
+>>   .../devicetree/bindings/pwm/pwm-samsung.yaml     | 16 ++++++++++------
+>>   1 file changed, 10 insertions(+), 6 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/pwm/pwm-samsung.yaml b/Documentation/devicetree/bindings/pwm/pwm-samsung.yaml
+>> index fe603fb1b2cc..6f65e2b52f52 100644
+>> --- a/Documentation/devicetree/bindings/pwm/pwm-samsung.yaml
+>> +++ b/Documentation/devicetree/bindings/pwm/pwm-samsung.yaml
+>> @@ -20,12 +20,16 @@ description: |+
+>>   
+>>   properties:
+>>     compatible:
+>> -    enum:
+>> -      - samsung,s3c2410-pwm             # 16-bit, S3C24xx
+>> -      - samsung,s3c6400-pwm             # 32-bit, S3C64xx
+>> -      - samsung,s5p6440-pwm             # 32-bit, S5P64x0
+>> -      - samsung,s5pc100-pwm             # 32-bit, S5PC100, S5PV210, Exynos4210 rev0 SoCs
+>> -      - samsung,exynos4210-pwm          # 32-bit, Exynos
+>> +    oneOf:
+>> +      - const: samsung,s3c2410-pwm        # 16-bit
+>> +      - const: samsung,s3c6400-pwm        # 32-bit, S3C64xx
+>> +      - const: samsung,s5p6440-pwm        # 32-bit, S5P64x0
+>> +      - const: samsung,s5pc100-pwm        # 32-bit, S5PC100, S5PV210, Exynos4210 rev0 SoCs
+>> +      - const: samsung,exynos4210-pwm     # 32-bit, Exynos
+> These are still an enum.
+Okay I will change const to enum.
+>
+>> +      - items:
+>> +          - enum:
+>> +              - samsung,exynosautov9-pwm  # 32-bit, ExynosAutov9
+> Let's drop the comment?
 
-diff --git a/drivers/reset/reset-zynqmp.c b/drivers/reset/reset-zynqmp.c
-index 59dc0ff9af9e..2391ac16a180 100644
---- a/drivers/reset/reset-zynqmp.c
-+++ b/drivers/reset/reset-zynqmp.c
-@@ -14,6 +14,7 @@
- #define ZYNQMP_NR_RESETS (ZYNQMP_PM_RESET_END - ZYNQMP_PM_RESET_START)
- #define ZYNQMP_RESET_ID ZYNQMP_PM_RESET_START
- #define VERSAL_NR_RESETS	95
-+#define VERSAL_NET_NR_RESETS	176
- 
- struct zynqmp_reset_soc_data {
- 	u32 reset_id;
-@@ -88,6 +89,11 @@ static const struct zynqmp_reset_soc_data versal_reset_data = {
- 	.num_resets = VERSAL_NR_RESETS,
- };
- 
-+static const struct zynqmp_reset_soc_data versal_net_reset_data = {
-+	.reset_id = 0,
-+	.num_resets = VERSAL_NET_NR_RESETS,
-+};
-+
- static const struct reset_control_ops zynqmp_reset_ops = {
- 	.reset = zynqmp_reset_reset,
- 	.assert = zynqmp_reset_assert,
-@@ -122,6 +128,7 @@ static int zynqmp_reset_probe(struct platform_device *pdev)
- static const struct of_device_id zynqmp_reset_dt_ids[] = {
- 	{ .compatible = "xlnx,zynqmp-reset", .data = &zynqmp_reset_data, },
- 	{ .compatible = "xlnx,versal-reset", .data = &versal_reset_data, },
-+	{ .compatible = "xlnx,versal-net-reset", .data = &versal_net_reset_data, },
- 	{ /* sentinel */ },
- };
- 
--- 
-2.25.1
+Should I just delete this comment or delete all comments in the 
+enum(16-bit,S3C24xx, .....).
+
+>
+>> +          - const: samsung,exynos4210-pwm
+>>   
+> Best regards,
+> Krzysztof
+>
+>
+
+Thanks
+
+Jaewon Kim
 
