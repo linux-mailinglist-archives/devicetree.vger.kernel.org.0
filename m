@@ -2,116 +2,190 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 36BAE7563BB
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 15:03:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CF3A17563D9
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 15:09:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230469AbjGQND5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jul 2023 09:03:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45894 "EHLO
+        id S231454AbjGQNJF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jul 2023 09:09:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49602 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230129AbjGQND4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 09:03:56 -0400
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::221])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CA0A94;
-        Mon, 17 Jul 2023 06:03:55 -0700 (PDT)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id E222A240007;
-        Mon, 17 Jul 2023 13:03:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1689599033;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:to:
-         cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=xFeGyiq0O4aqT1RUTL56PF+dTsP0yAysyKq2Bq6RFK4=;
-        b=cS0kE+gtPXUZbb8K7Nu1gitcwIb6Pi9bf5JoKFGRrIJTtw9e/YFBjZISfZLgiXM/CovQeA
-        bb8IJGJgqyZuC9I7xVEF1sQG6e4YFSwp8GSpTRg8KX7bowLLh9rCUFbyp9ZZpCW9Sw/jVR
-        dYM4cFH/bI9TVl5RJFVnNKkMvXZhfFfH6iAlL1RNQNIkyla6Z7DZZsVxXhDS2KEI0XJl2a
-        soutzWQACYIHJ/enPaSNhmmx5Mz7W6ziViz1BYP0xKw6fM1psf22brvmnzrmkpvCLfDj/4
-        by7RaqWLBgEHRvYlX773BTuFMEDJfqQYCkf5/Td1fOsULThYpxgsYwnoJYoFJg==
-Date:   Mon, 17 Jul 2023 15:03:51 +0200
-From:   Herve Codina <herve.codina@bootlin.com>
-Cc:     shumingf@realtek.com, flatmax@flatmax.com,
-        ckeepax@opensource.cirrus.com, doug@schmorgal.com,
-        fido_max@inbox.ru, pierre-louis.bossart@linux.intel.com,
-        kiseok.jo@irondevice.com, liweilei@awinic.com,
-        colin.i.king@gmail.com, trix@redhat.com,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, yijiangtao@awinic.com,
-        zhangjianming@awinic.com
-Subject: Re: [PATCH V1 0/5]  ASoC: codecs: Add Awinic AW88261 audio
- amplifier driver
-Message-ID: <20230717145456.5afee0cf@bootlin.com>
-In-Reply-To: <20230717115845.297991-1-wangweidong.a@awinic.com>
-References: <20230717115845.297991-1-wangweidong.a@awinic.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-redhat-linux-gnu)
+        with ESMTP id S230469AbjGQNJB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 09:09:01 -0400
+Received: from mail-qt1-x82f.google.com (mail-qt1-x82f.google.com [IPv6:2607:f8b0:4864:20::82f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B820C10FF
+        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 06:08:55 -0700 (PDT)
+Received: by mail-qt1-x82f.google.com with SMTP id d75a77b69052e-4036bd4fff1so517971cf.0
+        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 06:08:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20221208; t=1689599334; x=1692191334;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=BwG4pLwbZpbFz2f3UA6M57C15TupxBqSjFfM0xiN0Bs=;
+        b=LkZLyoCtKwuPaDgwjMHTWolxgkFRRuSNSK/4tmQJNiypXR3syR61t3f/pVa96sfK1c
+         +C3+qein6/FUMNUMIAkSdsO6hFPayWQGE2EdZxMvWsyPWcadTBIXvfwnXCuytgq11K1+
+         xt7u2293j6E4Z4X7z83THXO77GcftUNmzfrH+2P5EqhZAu+pm8JOkF/1mjEkw1IfhUow
+         OeCkLzenry+/JPgObmaWcpQ4n7G+xfLG+pIK7kAIad0x0bqDz4QgZgHnuz7mQBIPDl8Z
+         hkOF9FhiPVmTC54ddJ7XmekvR5VP1ie/JxkMCgeXkbPYBRswxddSis3L4SWJ+h6y2Hgo
+         Ywkw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689599334; x=1692191334;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=BwG4pLwbZpbFz2f3UA6M57C15TupxBqSjFfM0xiN0Bs=;
+        b=Kqid/yaLB4T+jqmFwLKDCUP4UzgSIwcezWUYLhEVOoIjAlXQBwjE30HaSywdQWe3G7
+         T+LC4xelf9rpHJXgNgu9wKHk9n/YPHv+iyVbdVGkhYshJ/PFXXwQDf4GbP3zFIW3unMR
+         VU5Ozd94myjrJjD6rdgNB54eKoGR2uwqZnqT/A14JWcWqqmvyi4pjCUeVTDanjqakob6
+         4iQuiRvzkyRUWP/v7Ro7sHVKTVXUWdelGlm2aqu1QarSpfYqqwlYTwXDSqyJ5sooulEz
+         +4aCKQ3tiIkzDptP1W372bVn7Khb8pAP2fNM+FsBncFf2XIy/C3DUBqcERtl5ngwcpz/
+         OCmw==
+X-Gm-Message-State: ABy/qLav408Tj/MJz/5u3rR+OfCa1i01rtV27RgZShqnFbB/SaSc2/jz
+        on+fDxX8cck18zQaeJWNlcLwil4XFB8Lb1d5g5UCVA==
+X-Google-Smtp-Source: APBJJlEzIwNRmj7Q3owFw5MctOPvb+9dGkANchM532Bs3lCdASQgBI+y5KaXn0Lzx4BwCDAgO1yL5/laqQe50ve5MWY=
+X-Received: by 2002:a05:622a:307:b0:403:b1e5:bcae with SMTP id
+ q7-20020a05622a030700b00403b1e5bcaemr1385264qtw.10.1689599334071; Mon, 17 Jul
+ 2023 06:08:54 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: herve.codina@bootlin.com
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,MISSING_HEADERS,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+References: <20230712072853.1755559-1-kyletso@google.com> <20230712072853.1755559-2-kyletso@google.com>
+ <20230714160912.GA3920890-robh@kernel.org>
+In-Reply-To: <20230714160912.GA3920890-robh@kernel.org>
+From:   Kyle Tso <kyletso@google.com>
+Date:   Mon, 17 Jul 2023 21:08:38 +0800
+Message-ID: <CAGZ6i=3yjsLha8RvwoZiJZ+eqM5Mcntw2X312j6k9yvnZQN62Q@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: connector: Add child nodes for multiple
+ PD capabilities
+To:     Rob Herring <robh@kernel.org>
+Cc:     krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        linux@roeck-us.net, heikki.krogerus@linux.intel.com,
+        gregkh@linuxfoundation.org, badhri@google.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Weidong,
+On Sat, Jul 15, 2023 at 12:09=E2=80=AFAM Rob Herring <robh@kernel.org> wrot=
+e:
+>
+> On Wed, Jul 12, 2023 at 03:28:52PM +0800, Kyle Tso wrote:
+> > Define a new optional property "capabilities" which is a child node
+> > under connector to contain multiple USB Power Delivery capabilities.
+>
+> Is multiple capabilities a USB spec thing or some Linux feature? I think
+> DT should only define the limits of the h/w capabilities and if the OS
+> wants to define multiple profiles within those limits that's its
+> problem.
+>
 
-On Mon, 17 Jul 2023 19:58:40 +0800
-wangweidong.a@awinic.com wrote:
+It is a feature introduced in the commit 662a60102c12 ("usb: typec:
+Separate USB Power Delivery from USB Type-C")
 
-> From: Weidong Wang <wangweidong.a@awinic.com>
-> 
-> The AW88261 is an I2S/TDM input, high efficiency
-> digital Smart K audio amplifier with an integrated 10.25V
-> smart boost convert
-> 
-> Add a DT schema for describing Awinic aw88261 audio amplifiers. They are
-> controlled using I2C.
-> 
-> Weidong Wang (5):
->   ASoC: codecs: Add i2c and codec registration for aw88261 and their
->     associated operation functions
->   ASoC: codecs: aw88261 function for ALSA Audio Driver
->   ASoC: codecs: ACF bin parsing and check library file for aw88261
->   ASoC: codecs: aw88261 chip register file, data type file and Kconfig
->     Makefile
->   ASoC: dt-bindings: Add schema for "awinic,aw88261"
-> 
->  .../bindings/sound/awinic,aw88261.yaml        |  53 +
->  sound/soc/codecs/Kconfig                      |  17 +
->  sound/soc/codecs/Makefile                     |   5 +
->  sound/soc/codecs/aw88261/aw88261.c            | 539 ++++++++++
->  sound/soc/codecs/aw88261/aw88261.h            |  52 +
->  sound/soc/codecs/aw88261/aw88261_data_type.h  | 144 +++
->  sound/soc/codecs/aw88261/aw88261_device.c     | 959 +++++++++++++++++
->  sound/soc/codecs/aw88261/aw88261_device.h     | 114 ++
->  sound/soc/codecs/aw88261/aw88261_lib.c        | 997 ++++++++++++++++++
->  sound/soc/codecs/aw88261/aw88261_lib.h        |  91 ++
->  sound/soc/codecs/aw88261/aw88261_reg.h        | 377 +++++++
->  11 files changed, 3348 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/sound/awinic,aw88261.yaml
->  create mode 100644 sound/soc/codecs/aw88261/aw88261.c
->  create mode 100644 sound/soc/codecs/aw88261/aw88261.h
->  create mode 100644 sound/soc/codecs/aw88261/aw88261_data_type.h
->  create mode 100644 sound/soc/codecs/aw88261/aw88261_device.c
->  create mode 100644 sound/soc/codecs/aw88261/aw88261_device.h
->  create mode 100644 sound/soc/codecs/aw88261/aw88261_lib.c
->  create mode 100644 sound/soc/codecs/aw88261/aw88261_lib.h
->  create mode 100644 sound/soc/codecs/aw88261/aw88261_reg.h
-> 
-> 
-> base-commit: 8d7868c41df58edabc4e408d119a1aef58a54d9d
+> >
+> > Define a new property with pattern (e.g. caps0, caps1) which is a child
+> > node under "capabilities". Each node contains PDO data of a selectable
+> > Power Delivery capability.
+> >
+> > Signed-off-by: Kyle Tso <kyletso@google.com>
+> > ---
+> >  .../bindings/connector/usb-connector.yaml     | 44 +++++++++++++++++++
+> >  1 file changed, 44 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/connector/usb-connector.=
+yaml b/Documentation/devicetree/bindings/connector/usb-connector.yaml
+> > index 1c4d3eb87763..b8c96d0a127a 100644
+> > --- a/Documentation/devicetree/bindings/connector/usb-connector.yaml
+> > +++ b/Documentation/devicetree/bindings/connector/usb-connector.yaml
+> > @@ -228,6 +228,50 @@ properties:
+> >        SNK_READY for non-pd link.
+> >      type: boolean
+> >
+> > +  capabilities:
+> > +    description: A child node to contain all the selectable USB Power =
+Delivery capabilities.
+> > +    type: object
+> > +
+> > +    patternProperties:
+> > +      "^caps[0-9]+$":
+>
+> caps-[0-9] is more the convention.
+>
 
-A lot of code looks pretty similar (the same ?) to what was done for aw88395
-  sound/soc/codecs/aw88395/
+will update in v2
 
-Is there a way to use common code instead of duplication ?
+> > +        description: Child nodes under "capabilities" node. Each node =
+contains a selectable USB
+> > +          Power Delivery capability.
+> > +        type: object
+> > +
+> > +        properties:
+> > +          source-pdos:
+>
+> You are now defining the same property twice. You can use '$defs' to
+> define common properties and then reference them. Or put all the PD
+> properties into its own schema file and reference it.
+>
 
-Best regards,
-Hervé Codina
+will update in v2
+
+> > +            description: An array of u32 with each entry providing sup=
+ported power
+> > +              source data object(PDO), the detailed bit definitions of=
+ PDO can be found
+> > +              in "Universal Serial Bus Power Delivery Specification" c=
+hapter 6.4.1.2
+> > +              Source_Capabilities Message, the order of each entry(PDO=
+) should follow
+> > +              the PD spec chapter 6.4.1. Required for power source and=
+ power dual role.
+> > +              User can specify the source PDO array via PDO_FIXED/BATT=
+/VAR/PPS_APDO()
+> > +              defined in dt-bindings/usb/pd.h.
+> > +            $ref: /schemas/types.yaml#/definitions/uint32-array
+> > +            minItems: 1
+> > +            maxItems: 7
+> > +
+> > +          sink-pdos:
+> > +            description: An array of u32 with each entry providing sup=
+ported power sink
+> > +              data object(PDO), the detailed bit definitions of PDO ca=
+n be found in
+> > +              "Universal Serial Bus Power Delivery Specification" chap=
+ter 6.4.1.3
+> > +              Sink Capabilities Message, the order of each entry(PDO) =
+should follow the
+> > +              PD spec chapter 6.4.1. Required for power sink and power=
+ dual role. User
+> > +              can specify the sink PDO array via PDO_FIXED/BATT/VAR/PP=
+S_APDO() defined
+> > +              in dt-bindings/usb/pd.h.
+> > +            $ref: /schemas/types.yaml#/definitions/uint32-array
+> > +            minItems: 1
+> > +            maxItems: 7
+> > +
+> > +          op-sink-microwatt:
+> > +            description: Sink required operating power in microwatt, i=
+f source can't
+> > +              offer the power, Capability Mismatch is set. Required fo=
+r power sink and
+> > +              power dual role.
+> > +
+> > +        additionalProperties: false
+> > +
+> > +    additionalProperties: false
+> > +
+> >  dependencies:
+> >    sink-vdos-v1: [ 'sink-vdos' ]
+> >    sink-vdos: [ 'sink-vdos-v1' ]
+> > --
+> > 2.41.0.255.g8b1d071c50-goog
+> >
