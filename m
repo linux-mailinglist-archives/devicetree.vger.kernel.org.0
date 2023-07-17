@@ -2,59 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 718A9756D90
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 21:45:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 63807756DA2
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 21:51:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230206AbjGQTp0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jul 2023 15:45:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41104 "EHLO
+        id S230274AbjGQTvX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jul 2023 15:51:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44296 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229954AbjGQTpZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 15:45:25 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D58F9E1
-        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 12:45:22 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-51e99584a82so6614897a12.1
-        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 12:45:22 -0700 (PDT)
+        with ESMTP id S230194AbjGQTvT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 15:51:19 -0400
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 364EE129
+        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 12:51:18 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-51f7fb9a944so6890666a12.3
+        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 12:51:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689623121; x=1692215121;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1689623476; x=1692215476;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=e1S5yFcn7XaVnH1NB6zBxrj5DGFzqHNVY6eSAQKHA3c=;
-        b=GjIoeLRCs7hLCzRDWXOKkVLtdm6sw/OZSIr2O5Ymv0U6HyTY+sMkelAW+dPBP/p3lm
-         COR5sqbBU25CkNaxn/s1qOxver9CowDMtiP3T9VyD25r21pvc0a5OeBAgLNLk05oxhFk
-         2H6rj0HApRZyZkTK+9NtZwa3qkhiQLsfrX3ko1P80F4EhSkwz0PkNUOTx8TDJhDCoRbg
-         iVjxXFpYUjRgwSSfqxxbDofBqhWvjxuSsXblZoMe/LBzvuMMuJA1Y2/GiHplh176bmal
-         qdG5x/9MJaQNhyQHJsZqQ2DbRZ4BNkRSdo43ggufFqAvfBiTvx7INWvqzeAi//CyYlvY
-         QvRA==
+        bh=4GRG9iOP216h8hNkp80ef+cG8Pcq3A3Xo2N0WkZohN4=;
+        b=WBKLVtSP2hwmqIJUbeUHRx90hA/4c13UDgRDiVJX62+IGwK1XVtu+iAslMRnlP2KQu
+         2pqZF55bUL9+y/82EQcyV2ZpNd3lQhvT/994ZMo1HyFeoT8Cw9MJwxGe25M8anm3eflr
+         4IFEMwSyw+SfyRZzMnZTdewQSq6CplcsoN46VU8t2oHKAoBIsGqzDJCagebKSfyHRRHQ
+         baqNnxE6pcAcq43PAwkLQfTsAwdn38zMOx+4S0+j1D6fwrXSpn9ehROLyAQK/Ss0rtsY
+         w5tpxc9EFzwLuTOO3n1+wZvTzj92kYIhMs1MbzU3/opKsn2suPZPs0dEoNhNawHMtEWv
+         fr8Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689623121; x=1692215121;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1689623476; x=1692215476;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=e1S5yFcn7XaVnH1NB6zBxrj5DGFzqHNVY6eSAQKHA3c=;
-        b=LXeKyJ3tDPX5H9E24vltoUA/aGH59m5N/id5kuymow3UUeJDEDn+kMZvaULNad+EUS
-         PboVxDny9hXIo9fpvyocDPCM9JFYYXh6Tos+4CqPM3aYLGd2sU4ETtrc0gnfFBIMRHd9
-         wD4Y4wByosqp/C7RDeeyDWMKVjDQmANIyNsidxQikl8icCWYqzcMKCtaSoj/TmUPI214
-         sdGRiQ+YEYGtD+NoMTVDehz/qYRlwqqmTwSmeU0B8rzq6cdD/FqlxmYBnpomP0ogY4Tp
-         ew/2QwhbhH13TTzBGgOEPdeAtJMkUF+eRyHBlEOOASsjForz+4LytlI1j3Cy+v7g1x1o
-         PEPQ==
-X-Gm-Message-State: ABy/qLYW6DV/vpsxLFPhp0N/HZS0HY96addY2hqxPvI4JJQOkK0wrgCC
-        r2gXzZY7ROV44E6c+8t0OXGC7A==
-X-Google-Smtp-Source: APBJJlHBVSrjPfzkbaAp2AaxOr8sQghVbFPvPQLd+hzc5Dv+QGQEUNSA8Inotoqe5CLFf2iaXp5CzA==
-X-Received: by 2002:a05:6402:74d:b0:51e:2d16:8473 with SMTP id p13-20020a056402074d00b0051e2d168473mr14156275edy.36.1689623121199;
-        Mon, 17 Jul 2023 12:45:21 -0700 (PDT)
+        bh=4GRG9iOP216h8hNkp80ef+cG8Pcq3A3Xo2N0WkZohN4=;
+        b=c/aAL+JW+eyZqSg7wqxJLdg4RdamwsBEm59kfFMG1MxSppUYCb1CF0sJ4cJJDcIiu7
+         N9Egxu35R2zTTSIIj6VouGk9C9wiX6xE+9+QZ8b0t15kXRDqfHPc1TQcIUJEm2xITTOS
+         EcKajwx1y4hVcrl3ujT1D32tZsEukJA6CFPyAle7tmJw2Ic36YUp2Iw6B9VDzyGG5F/f
+         Fz8kC8Z2bF1cWhK0lDYxyKERsfRnwTWc3wdz/kIUUGExvRU+t5mC0ZsgATKoo7o6e645
+         SpGrQucZIPa0MpS4MptSIRfMOvoC4QwrEgywdV4X/lKSEASYkCIkdFzka9JseOlmZ8lN
+         HGkQ==
+X-Gm-Message-State: ABy/qLbkrGoMZagWa0fDkT3ebOnNkAhzDUnpqcovmZZKtbBMnfllDa8q
+        nqKshtJ47B9F5QC4IRKLDSvmFA==
+X-Google-Smtp-Source: APBJJlEuwYvgVCvNXuxA5VjmKkQFBRHYrK+aCkoCeJFej7viXoOkOWaFHp4rCXYYqDysObD2DLg28A==
+X-Received: by 2002:aa7:c709:0:b0:51a:7bcd:a82d with SMTP id i9-20020aa7c709000000b0051a7bcda82dmr11838765edq.23.1689623476573;
+        Mon, 17 Jul 2023 12:51:16 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id x11-20020aa7d6cb000000b0051e0bf5807bsm57722edr.49.2023.07.17.12.45.18
+        by smtp.gmail.com with ESMTPSA id y5-20020aa7ccc5000000b0051a1ef536c9sm57733edt.64.2023.07.17.12.51.14
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 17 Jul 2023 12:45:20 -0700 (PDT)
-Message-ID: <a9665eb0-f63b-dbbb-c52c-5f3c05b10446@linaro.org>
-Date:   Mon, 17 Jul 2023 21:45:17 +0200
+        Mon, 17 Jul 2023 12:51:15 -0700 (PDT)
+Message-ID: <152926f2-3c53-d788-9443-486fb5ed8024@linaro.org>
+Date:   Mon, 17 Jul 2023 21:51:13 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
 Subject: Re: [PATCH v2 2/4] dt-bindings: arm: fsl: fix DEBIX binding
+Content-Language: en-US
 To:     Marco Felsch <m.felsch@pengutronix.de>
 Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
         conor+dt@kernel.org, shawnguo@kernel.org, kernel@pengutronix.de,
@@ -64,24 +65,23 @@ Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
         linux-arm-kernel@lists.infradead.org
 References: <20230717165127.2882535-1-m.felsch@pengutronix.de>
  <20230717165127.2882535-2-m.felsch@pengutronix.de>
- <22d68e14-5198-59ce-44cc-37e9ff5e367c@linaro.org>
- <20230717171423.tf5i7hhjl5thoye7@pengutronix.de>
-Content-Language: en-US
+ <3d1a260c-bc8c-6347-17be-5558343c85a4@linaro.org>
+ <20230717171244.jdqwn5l7tiugxeyo@pengutronix.de>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230717171423.tf5i7hhjl5thoye7@pengutronix.de>
+In-Reply-To: <20230717171244.jdqwn5l7tiugxeyo@pengutronix.de>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/07/2023 19:14, Marco Felsch wrote:
+On 17/07/2023 19:12, Marco Felsch wrote:
 > On 23-07-17, Krzysztof Kozlowski wrote:
 >> On 17/07/2023 18:51, Marco Felsch wrote:
 >>> The current imx8mp-debix-model-a.dts uses all three compatibles. Fix the
@@ -91,12 +91,11 @@ On 17/07/2023 19:14, Marco Felsch wrote:
 >>>
 >>> [1] https://elixir.bootlin.com/barebox/v2023.07.1/source/arch/arm/ \
 >>>     boards/polyhex-debix/board.c#L38
+
+Don't wrap links, they are not clickable.
+
 >>>
 >>> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
->>
->> Subject: fix is too generic and binding is redundant. You already state
->> this is binding in your prefix. Describe more precise what you are doing.
->>
 >>> ---
 >>> Changelog:
 >>>
@@ -128,36 +127,17 @@ On 17/07/2023 19:14, Marco Felsch wrote:
 >>> +          - enum:
 >>> +              - polyhex,imx8mp-debix-model-a        # Polyhex Debix Model A Board
 >>> +          - const: polyhex,imx8mp-debix             # Polyhex Debix boards
->>> +            deprecated: true
->>> +          - const: fsl,imx8mp
 >>
->> That's not how it works and it does not look like you tested the DTS
-
-Actually this could pass the test because this is used by DTS. Quite
-surprising.
-
->> against bindings. Please run `make dtbs_check` (see
->> Documentation/devicetree/bindings/writing-schema.rst or
->> https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
->> for instructions).
->>
->> Don't deprecate some piece of entire compatible list, but entire list.
->>
->> The commit which deprecates compatible should bring a proper one.
+>> I cannot find patches which add new compatible to the binding and which
+>> fix the DTS. :/
 > 
-> What did you mean by that?
-
-Exactly what I wrote below:
-
-> 
-> Regards,
->   Marco
-> 
->> Otherwise at this point we have kernel only with deprecated compatibles.
-
-You now have kernel without proper compatible, because it is deprecated.
+> Please see my commit message, we can't remove the compatible since we
+> already have one user of this compatible.
 
 
+Indeed. I wonder then what is the goal of deprecating this compatible
+and what is the plan for dealing with it? There is no cover letter which
+would point me to it.
 
 Best regards,
 Krzysztof
