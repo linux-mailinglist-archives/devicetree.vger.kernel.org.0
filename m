@@ -2,99 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B7E6756A2F
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 19:24:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E26AD756A4C
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 19:27:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229688AbjGQRYz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jul 2023 13:24:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41078 "EHLO
+        id S231261AbjGQR1P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jul 2023 13:27:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42962 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230490AbjGQRYy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 13:24:54 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10FBD10E0;
-        Mon, 17 Jul 2023 10:24:48 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        with ESMTP id S230512AbjGQR1D (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 13:27:03 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECBFADD;
+        Mon, 17 Jul 2023 10:26:57 -0700 (PDT)
+Received: from jupiter.universe (dyndsl-091-248-189-171.ewe-ip-backbone.de [91.248.189.171])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 827E6611AB;
-        Mon, 17 Jul 2023 17:24:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E7D02C433AD;
-        Mon, 17 Jul 2023 17:24:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689614686;
-        bh=7K1NrqOEnIsov6LNPMbWxEcmOTQ8DoOSUXf5nazDWnY=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=d87713swd+8flnDOEBdwYxJh+zPcc7RahC04ehtpicfiWxmDmyXavKTgMxupa9u60
-         uE518sCiopXnFJ5xCs8ps7AxbLJpCW4AptGYKBTNIiQidXwSpvzEB5cKMRJ/MBlDoP
-         opnSkxxGtXA14auVA+sh/vudr8u275YmFGfUA91zf1AAcmAnxNFFf4fGJAdedgjWnV
-         ZSPzv/UMDBMpnzH2k96dEQ49n2MCVBSEQXB7YPqF3SeCNKY52z3KHOXEeRgekW2mOH
-         tDzxWE8RyIllj4sJeBybKdla3Urx8w4VbLFEfAhwfym2dc21ty7k7xWjwKiODqmKZK
-         phjNQroLqJXQg==
-Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-2b73564e98dso71283361fa.3;
-        Mon, 17 Jul 2023 10:24:46 -0700 (PDT)
-X-Gm-Message-State: ABy/qLaVSJKbwmzxBEVN4XOnzoEk7OnHeIzGYorUmotJIRl4kXFh5PKs
-        HjkeUKtxkKACACYw5E1v7OqzWCZ6Q/4tWuz2og==
-X-Google-Smtp-Source: APBJJlG8mEK4npwacHnkZf+THmzcOFSnKgn7HaAY1ey1gKBCNN6LRJvR5ho/gv5Qa7cQ6Y9pK6LCgVvVrpJDCMni1K8=
-X-Received: by 2002:a2e:9f17:0:b0:2b6:cb0d:56ae with SMTP id
- u23-20020a2e9f17000000b002b6cb0d56aemr8218837ljk.11.1689614684790; Mon, 17
- Jul 2023 10:24:44 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230714174607.4057185-1-robh@kernel.org> <e0e1b465-8419-419e-90ae-4b72f5189469@roeck-us.net>
-In-Reply-To: <e0e1b465-8419-419e-90ae-4b72f5189469@roeck-us.net>
-From:   Rob Herring <robh@kernel.org>
-Date:   Mon, 17 Jul 2023 11:24:32 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJZcxoQEhaGr34Mk1P_8vc8wctcfzswWc8VbRrsv0S7zg@mail.gmail.com>
-Message-ID: <CAL_JsqJZcxoQEhaGr34Mk1P_8vc8wctcfzswWc8VbRrsv0S7zg@mail.gmail.com>
-Subject: Re: [PATCH] hwmon: Explicitly include correct DT includes
-To:     Guenter Roeck <linux@roeck-us.net>
-Cc:     Jean Delvare <jdelvare@suse.com>, Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Jean-Marie Verdun <verdun@hpe.com>,
-        Nick Hawkins <nick.hawkins@hpe.com>,
-        Charles Keepax <ckeepax@opensource.cirrus.com>,
-        Richard Fitzgerald <rf@opensource.cirrus.com>,
-        Robert Marko <robert.marko@sartura.hr>,
-        Saravanan Sekar <sravanhome@gmail.com>,
-        Luka Perkov <luka.perkov@sartura.hr>,
-        Liviu Dudau <liviu.dudau@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
+        (Authenticated sender: sre)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id CDA85660297B;
+        Mon, 17 Jul 2023 18:26:55 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1689614816;
+        bh=br7WffVrrPWJblI6hMOtAA0jJageWK+7UkJ5nR07nqU=;
+        h=From:To:Cc:Subject:Date:From;
+        b=JVOOWYXgss8UA4sAVTgkYDtjcBT/b6kAw/X48OcmDdWKC7MgBaUKwgFoWBWaK9pWl
+         480byhNk9NwbJ1RIyLepO5zC2pVEdDGmt9F8RZp9r2yO3CzbcUA6cVCYRm4zCG7Xnh
+         Pc1xQMC8jP2n5p8NHF7pWOPdTXZzCF6nJ0g9b75+xNY1PGJscSHdTwA+tD3QcBlkAP
+         xbl3z2WMoFMJjokghr0P2YmcmE1hdxpDPy/lXC8fGMJRLjENSCkD3CDcj6ENQN+4y2
+         OixAH6wUx+BOUMrMRjjDhk8MsGUJNEhjcc3nKlkS6y8chaso5eG6zOXmtwR3nFVARg
+         RVJ8qqXAkSNgw==
+Received: by jupiter.universe (Postfix, from userid 1000)
+        id 17F5B480C72; Mon, 17 Jul 2023 19:26:53 +0200 (CEST)
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
+To:     linux-pci@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        Serge Semin <fancer.lancer@gmail.com>
+Cc:     Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
         Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        devicetree@vger.kernel.org, linux-hwmon@vger.kernel.org,
+        =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Shawn Lin <shawn.lin@rock-chips.com>,
+        Simon Xue <xxm@rock-chips.com>, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, patches@opensource.cirrus.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Sebastian Reichel <sebastian.reichel@collabora.com>,
+        kernel@collabora.com
+Subject: [PATCH v3 0/5] RK3588 PCIe2 support
+Date:   Mon, 17 Jul 2023 19:26:46 +0200
+Message-Id: <20230717172651.64324-1-sebastian.reichel@collabora.com>
+X-Mailer: git-send-email 2.40.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Jul 15, 2023 at 10:55=E2=80=AFAM Guenter Roeck <linux@roeck-us.net>=
- wrote:
->
-> On Fri, Jul 14, 2023 at 11:46:04AM -0600, Rob Herring wrote:
-> > The DT of_device.h and of_platform.h date back to the separate
-> > of_platform_bus_type before it as merged into the regular platform bus.
-> > As part of that merge prepping Arm DT support 13 years ago, they
-> > "temporarily" include each other. They also include platform_device.h
-> > and of.h. As a result, there's a pretty much random mix of those includ=
-e
-> > files used throughout the tree. In order to detangle these headers and
-> > replace the implicit includes with struct declarations, users need to
-> > explicitly include the correct includes.
-> >
-> > Signed-off-by: Rob Herring <robh@kernel.org>
->
-> Applied to hwmon-next.
+Hi,
 
-I found there's a double include of of.h in lm75.c. Can you fix that
-up or do you want me to send a fix?
+This adds PCIe v2 support for RK3588. The series has been tested with
+the onboard RTL8125 network card on Rockchip RK3588 EVB1 (&pcie2x1l1)
+and Radxa Rock 5B (&pcie2x1l2).
 
-Rob
+Changes since v2:
+ * https://lore.kernel.org/all/20230713171851.73052-1-sebastian.reichel@collabora.com/
+ * Removed num-ib-windows/num-ob-windows/num-viewport from DT
+ * Added patch making 'msi' irq optional, if 'msi-map' property is available
+ * Updated binding according two discussion with Serge Semin, I provided two
+   options by adding one extra patch that should be squashed into the main
+   one or dropped depending on preferences from DT binding  maintainers.
+ * Collected Reviewed-by/Tested-by from Jagan Teki
+
+Changes since v1:
+ * https://lore.kernel.org/all/20230616170022.76107-1-sebastian.reichel@collabora.com/
+ * Dropped patch adding 'RK3588' (queued by Rob)
+ * Updated patch adding legacy-interrupt-controller according to comments
+   from Rob and Serge
+    - added missing additionalProperties: false
+    - added all properties to new required property
+    - removed useless quotes around interrupt-controller
+    - added Rob's Reviewed-by
+ * Updated patch adding the missing RK356x/RK3588 interrupt names, so that it
+   provides more details about the interrupts
+ * Updated the DT patch according to the comment from Jonas Karlman, so that
+   the addresses are in 32 bit address space starting at 0x40000000
+
+[0] https://lore.kernel.org/all/20230612171337.74576-1-sebastian.reichel@collabora.com/
+
+Thanks,
+
+-- Sebastian
+
+Sebastian Reichel (5):
+  dt-bindings: PCI: dwc: improve msi handling
+  dt-bindings: PCI: dwc: rockchip: Fix interrupt-names issue
+  dt-bindings: PCI: dwc: rockchip: Use generic binding
+  dt-bindings: PCI: dwc: rockchip: Add missing
+    legacy-interrupt-controller
+  arm64: dts: rockchip: rk3588: add PCIe2 support
+
+ .../bindings/pci/rockchip-dw-pcie.yaml        |  70 ++++++++++++
+ .../devicetree/bindings/pci/snps,dw-pcie.yaml |  18 +++-
+ arch/arm64/boot/dts/rockchip/rk3588.dtsi      |  51 +++++++++
+ arch/arm64/boot/dts/rockchip/rk3588s.dtsi     | 102 ++++++++++++++++++
+ 4 files changed, 237 insertions(+), 4 deletions(-)
+
+-- 
+2.40.1
+
