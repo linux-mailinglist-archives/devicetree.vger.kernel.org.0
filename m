@@ -2,92 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C0F44755B16
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 08:04:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D243755B1E
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 08:06:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230284AbjGQGEm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jul 2023 02:04:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47660 "EHLO
+        id S229725AbjGQGGK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jul 2023 02:06:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48356 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229725AbjGQGEm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 02:04:42 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1AFD71A2;
-        Sun, 16 Jul 2023 23:04:38 -0700 (PDT)
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36H5fVVI029153;
-        Mon, 17 Jul 2023 06:04:29 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=B9GtKlwnztF0FiPj/X/9qJH2wGXsUE01gQZoOBUtfeY=;
- b=fvRgA1f4Y4JTR5ywi1bqhwKHTA8Mt3mQv67oOFAxz8hSDedSK071B64IUt5oJyfD0joE
- A73JytdUEJF+OECffOHPE1/9RBzLeIFMS2nb3q9aPQjc8OSxKl3VNm+ak+vkgbw+Cydo
- xKrY04zxES+kfIe30FhLeFsI0LWSFOn+sM0VVg6YIe4avx2jeF7fQy254VAvChW3APjZ
- K7opLks/5tGLqDz0QK9mGYIvzlBHfCT2d/6mQ9vKWI8xsbwsRz9JGxIZxryhQdkaoW6P
- aQcll0AJmNpn1g/XHO5uRxBvFPT821BnhOb4L9it9cWlz7nSWp0jzpm/0bDCyQf2EVXS jw== 
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3run1gjjta-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 17 Jul 2023 06:04:29 +0000
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-        by NASANPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 36H64SHt008247
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 17 Jul 2023 06:04:28 GMT
-Received: from [10.216.42.53] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Sun, 16 Jul
- 2023 23:04:22 -0700
-Message-ID: <986b0cbe-23b8-9347-8b08-6968c306ec1c@quicinc.com>
-Date:   Mon, 17 Jul 2023 11:34:13 +0530
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH V3 4/6] clk: qcom: gcc-qdu1000: Update GCC clocks as per
- the latest hw version
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+        with ESMTP id S231164AbjGQGGI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 02:06:08 -0400
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3234EE4C
+        for <devicetree@vger.kernel.org>; Sun, 16 Jul 2023 23:06:07 -0700 (PDT)
+Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-51e57870becso5297983a12.2
+        for <devicetree@vger.kernel.org>; Sun, 16 Jul 2023 23:06:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1689573965; x=1692165965;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=rObatz14ueoF+HCkin+hbIMgtGfTqQ6Ld8ncZsAxwcY=;
+        b=qLOgEzHNGvVAoU8wOniw8eXFPi4VklA0xlUgO4lyXSlRfh3ayCpZbcAV5Zpy1MwMNd
+         eJv8cGQzg8dfeY8P2VOBphrZL8n8HlvjQxQOWPTIIZaYMyTE0HIaQl29JoZaC8/0P9eO
+         bRc1KhSiMlrpLF0cOP4e8TkDNqIxxYQb97F4YIJw2svQfx3YxzHhpIY5+yIxBCO1rvuu
+         HBnzGBurPZO8zS74mIj+vhcR9+RL3gKpZA1kiF0tBB9TfilmTyvZ6VpgksYrTXmTJRQu
+         tt67n90mbo+8HXKV+YCel1MvB/edCj3uA49sYwy7lpCojXYvg+G92KqF/lJA9a+YoF8s
+         Hl1Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689573965; x=1692165965;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=rObatz14ueoF+HCkin+hbIMgtGfTqQ6Ld8ncZsAxwcY=;
+        b=l3Vk2KmT735kzKz04VcVr9UTNST+fu1x/NKFczAVWHBQx5RaGAfhbda1kviuR2h6y/
+         qD4nYPvQIfc+iLjJAT2GiOyHcJTM+7e9eKftAqdwaPf/p//JbRXO37jpkaREZgMr9EXf
+         Kz1zP4wzG2wmYCyCIk6nWjWreIa+xWCKtJoA8aSYTv1JZiv0FnqNhO5/ogEKv+ZpHfpP
+         YHhV08yTM1WVD+7BTvDxfz+8l3qiX/YQ6iYPa9gMwHcF0C5NJ+e97eR4hIoGNHjYpLPL
+         XSdyOl18+8nY1+9Yyn6qSFxwno5iZ481z2UhO9wdpOrHYMDz0+fRv015FiDYvIBeLYEv
+         YgMg==
+X-Gm-Message-State: ABy/qLZaXgekeMsAnm3qGroH2CfyCaUDmll3Fwvl3dLbFdZxXp4ZzjRk
+        x8rDRyR9hjlnKkFgnXoWFGYNqQ==
+X-Google-Smtp-Source: APBJJlGTHRC3PuFHAHtEUyE8XzlIJ9U3PtRyIgUAzbM1Zty2/lq/BcA2oclI2EfQshmAed/s0k7p8Q==
+X-Received: by 2002:a17:906:535b:b0:993:fba5:cdef with SMTP id j27-20020a170906535b00b00993fba5cdefmr10319928ejo.8.1689573965708;
+        Sun, 16 Jul 2023 23:06:05 -0700 (PDT)
+Received: from krzk-bin.. ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id h19-20020a170906719300b00993cc1242d4sm8733671ejk.151.2023.07.16.23.06.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 16 Jul 2023 23:06:05 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC:     Bjorn Andersson <andersson@kernel.org>,
-        Taniya Das <quic_tdas@quicinc.com>,
-        Melody Olvera <quic_molvera@quicinc.com>,
-        "Dmitry Baryshkov" <dmitry.baryshkov@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Jagadeesh Kona <quic_jkona@quicinc.com>,
-        Satya Priya Kakitapalli <quic_skakitap@quicinc.com>,
-        Ajit Pandey <quic_ajipan@quicinc.com>
-References: <20230706105045.633076-1-quic_imrashai@quicinc.com>
- <20230706105045.633076-5-quic_imrashai@quicinc.com>
- <a2d362d0-3a58-0835-5106-fb60f0c3e4d0@linaro.org>
-Content-Language: en-US
-From:   Imran Shaik <quic_imrashai@quicinc.com>
-In-Reply-To: <a2d362d0-3a58-0835-5106-fb60f0c3e4d0@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: HfdmzrGXXC3Gmj2MJLFuzzpdd1pZuSZ2
-X-Proofpoint-GUID: HfdmzrGXXC3Gmj2MJLFuzzpdd1pZuSZ2
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-07-17_04,2023-07-13_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 spamscore=0
- priorityscore=1501 impostorscore=0 suspectscore=0 phishscore=0
- malwarescore=0 clxscore=1015 bulkscore=0 adultscore=0 lowpriorityscore=0
- mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2306200000 definitions=main-2307170054
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>,
+        Paul Cercueil <paul@crapouillou.net>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Sam Ravnborg <sam@ravnborg.org>, stable@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: exynos/i9100: Fix LCD screen's physical size
+Date:   Mon, 17 Jul 2023 08:06:02 +0200
+Message-Id: <168957395552.5244.10002368214051254757.b4-ty@linaro.org>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230714153720.336990-1-paul@crapouillou.net>
+References: <20230714153720.336990-1-paul@crapouillou.net>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -95,70 +79,21 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-
-On 7/15/2023 6:50 PM, Konrad Dybcio wrote:
-> On 6.07.2023 12:50, Imran Shaik wrote:
->> Update the GCC clocks as per the latest hw version of QDU1000 and
->> QRU100 SoCs.
->>
->> Co-developed-by: Taniya Das <quic_tdas@quicinc.com>
->> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
->> Signed-off-by: Imran Shaik <quic_imrashai@quicinc.com>
->> ---
->> Changes since v2:
->>   - Split the patch as per the review comments
->>   - Newly added
->>
->>   drivers/clk/qcom/gcc-qdu1000.c | 22 ++++++++++++++++++++++
->>   1 file changed, 22 insertions(+)
->>
->> diff --git a/drivers/clk/qcom/gcc-qdu1000.c b/drivers/clk/qcom/gcc-qdu1000.c
->> index 8df7b7983968..991fb2bc97e9 100644
->> --- a/drivers/clk/qcom/gcc-qdu1000.c
->> +++ b/drivers/clk/qcom/gcc-qdu1000.c
->> @@ -1131,6 +1131,26 @@ static struct clk_branch gcc_ddrss_ecpri_dma_clk = {
->>   	},
->>   };
->>   
->> +static struct clk_branch gcc_ddrss_ecpri_gsi_clk = {
->> +	.halt_reg = 0x54298,
->> +	.halt_check = BRANCH_HALT_VOTED,
->> +	.hwcg_reg = 0x54298,
->> +	.hwcg_bit = 1,
->> +	.clkr = {
->> +		.enable_reg = 0x54298,
->> +		.enable_mask = BIT(0),
->> +		.hw.init = &(const struct clk_init_data) {
->> +			.name = "gcc_ddrss_ecpri_gsi_clk",
->> +			.parent_hws = (const struct clk_hw*[]) {
->> +				&gcc_aggre_noc_ecpri_gsi_clk_src.clkr.hw,
->> +			},
->> +			.num_parents = 1,
->> +			.flags = CLK_SET_RATE_PARENT,
->> +			.ops = &clk_branch2_aon_ops,
->> +		},
->> +	},
->> +};
->> +
->>   static struct clk_branch gcc_ecpri_ahb_clk = {
->>   	.halt_reg = 0x3a008,
->>   	.halt_check = BRANCH_HALT_VOTED,
->> @@ -2521,6 +2541,8 @@ static struct clk_regmap *gcc_qdu1000_clocks[] = {
->>   	[GCC_AGGRE_NOC_ECPRI_GSI_CLK] = &gcc_aggre_noc_ecpri_gsi_clk.clkr,
->>   	[GCC_PCIE_0_PHY_AUX_CLK_SRC] = &gcc_pcie_0_phy_aux_clk_src.clkr,
->>   	[GCC_PCIE_0_PIPE_CLK_SRC] = &gcc_pcie_0_pipe_clk_src.clkr,
->> +	[GCC_GPLL1_OUT_EVEN] = &gcc_gpll1_out_even.clkr,
-> Looks like you split it too much.. this clock is not being defined in this patch.
+On Fri, 14 Jul 2023 17:37:20 +0200, Paul Cercueil wrote:
+> The previous values were completely bogus, and resulted in the computed
+> DPI ratio being much lower than reality, causing applications and UIs to
+> misbehave.
 > 
-> Konrad
+> The new values were measured by myself with a ruler.
+> 
+> 
+> [...]
 
-This clock was already defined in the initial gcc changes and now adding 
-it to gcc_qdu1000_clocks[] to register it with the clock framework.
+Applied, thanks!
 
-Thanks,
-Imran
+[1/1] ARM: dts: exynos/i9100: Fix LCD screen's physical size
+      https://git.kernel.org/krzk/linux/c/b3f3fc32e5ff1e848555af8616318cc667457f90
 
->> +	[GCC_DDRSS_ECPRI_GSI_CLK] = &gcc_ddrss_ecpri_gsi_clk.clkr,
->>   };
->>   
->>   static const struct qcom_reset_map gcc_qdu1000_resets[] = {
+Best regards,
+-- 
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
