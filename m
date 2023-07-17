@@ -2,79 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 38187755CCF
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 09:26:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 08A7B755CE1
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 09:29:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230144AbjGQH0P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jul 2023 03:26:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36606 "EHLO
+        id S230205AbjGQH3z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jul 2023 03:29:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38918 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230317AbjGQH0O (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 03:26:14 -0400
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A92F10E7
-        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 00:26:10 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-51e48e1f6d1so5523565a12.1
-        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 00:26:10 -0700 (PDT)
+        with ESMTP id S229772AbjGQH3y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 03:29:54 -0400
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F21F186
+        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 00:29:53 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-992b66e5affso594410266b.3
+        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 00:29:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689578769; x=1692170769;
+        d=linaro.org; s=google; t=1689578991; x=1692170991;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=8NyLL7xIHFr8TM9wgkdAiK0RyCfmwsOPlj/7DHoIVLg=;
-        b=JdfgC8rC468QIy07zzQ9PkbABPnq0krXDaXPZSbVqGDg6mLQ7/WyTwIDDRIPT8tk/K
-         6Mp0KNG+0cB2rRc46Jzog/xUf/VTInxyQOZeo4t5M6oOFKJO/zU+22rrFSXvaRCZe4gQ
-         Ul6em6JGJHgVtnzzYVxTSzdP6/cBl9n/KXk3uAWAbzi+wKiVH9jSS33sCzK4JhMhkN/t
-         xQM0iKojs2H//BgG5SNoonrZPm7KzVYJxgLiSUsI2gVo34rWjhjYD57mSLsLUDw3ravZ
-         A94PbnT9TdmKWZ6jTK4OnDxFxTwTz+ySHr9IBhaNZiIrxJt/dWAPrxvSjR7IXgYNojTr
-         VA7A==
+        bh=rReCVFYee/yGUM7XZ3iRLWyfw7FhCzkdqRLH9Zjfw6U=;
+        b=PeDIBzoG3C5s0UUNsV9m0040W7pLbmCU1FqLL2czoylDiej5CQypZ+liZSFcaPKm/o
+         2HlsEO+8XBGpAW9vNlAgHhi/NdD+IUqlb5vpON7eifVnAwMBxInWvQPingBGEnyBC3yK
+         QdGbWAFlduX+nUsazjCZ41pJfOKq4oTSbwtBHMQK4Roryv1uxOGDdJ+iW3lPUrzDCXRG
+         sBK/Ylcnpt32q12NdFhD8ptDlDS6I7hji+9yhkMWTukCk88sn1ApkccD7tQFjQ87UeOg
+         cgbZLmm2i4rGJ8vtrZArkAYQoWYWvGsDABPBBjmUjR1QCZec43TY2Jh8/NpiGy2jSPI3
+         uKeA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689578769; x=1692170769;
+        d=1e100.net; s=20221208; t=1689578991; x=1692170991;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8NyLL7xIHFr8TM9wgkdAiK0RyCfmwsOPlj/7DHoIVLg=;
-        b=k9+KxCzvkRTdppJp3/YYCmdwcW8bq6vG+A/l2A/fuIsyyOYz/l8hz6XSJ//E9kFdsf
-         7A+PYMc3yXLhIc2LzwlcXVNSNGzpuiD/SJklDBpL8RFrlxrLp13dLp0aB9Dj/Q1sswyN
-         J/0NuF+mjqigCbpGAO5iO+LIjJjA17eqMJGUuRVpZ+hfdcVMKBPHzlkQH/7WPd5O36Ry
-         Xqt3H25b4dN1/Kn6QBa/cfuX2uD/LE3VsQCwOr0WzTpwL9pMl/6BZ93zfsH+R5Nzv0b7
-         L2t9bD5EGKhUfIS7wzo9AEdXLVb1wF+BtlRBoyyx3wDhVS0/sGr23V54+S1vgR0wukgb
-         r28A==
-X-Gm-Message-State: ABy/qLY9qwFBw/yLKziIGTiLPd6qANndcF3283tNz8wplJy6hknLVOMn
-        DHqoE0BcEuWxj9pcwsViOjRuwg==
-X-Google-Smtp-Source: APBJJlE22ZFdkIUR/k32sD9ntkgnOqDp+SIuqLRIXRHbsi5WrLBE9vSWsH4Qp/COnyAo7f04OEA9Rg==
-X-Received: by 2002:a17:906:7a59:b0:973:cc48:f19c with SMTP id i25-20020a1709067a5900b00973cc48f19cmr8750922ejo.56.1689578768619;
-        Mon, 17 Jul 2023 00:26:08 -0700 (PDT)
+        bh=rReCVFYee/yGUM7XZ3iRLWyfw7FhCzkdqRLH9Zjfw6U=;
+        b=Yu+v6n1LYFxMqvXnUL9OFKm2lKWm8fxhjy6Y+lPiS6q6BpRSvPiJsbsC2ALWH43hDk
+         EMNt+/uO0bjz4NQVBz8DeDiDKxyxE1Bf0cMTQ5On7/c8qnPMAHY8N5EO8A4xjgFDuUYw
+         dD9RdKsLDDxHv6GhFRS1Oklx+DdaIAPObB4O3SSf+HtIf+HAxHhcv3OdAjrx98ScBiHT
+         mS0ZzpeRY9j/e+ylKGhkCaa7SMPwjOvJ7JMM097j4cHaU2SXCD3kZapmwYA1zjQnYaJF
+         5/Gd/SfMSUpy/MSmks2ZFb/mlqjmkTVsvB21SYj/nDgcFp1TRi+vkbPPo+uHSSfWExcU
+         dWfw==
+X-Gm-Message-State: ABy/qLacwprhZJo5bFCs3EkCyrwSfRCxkNxuK6ujTnXXaBXAoQYJAAU2
+        2qC97qw5Xt15a2J2gEr26KIEEg==
+X-Google-Smtp-Source: APBJJlGqpg7l7AYEFoORxE7kx/O7QvzrLx1fhEfmx+uK+tDkEMYYRhUr4kegL7+LH4+QJ58h1Zwd+A==
+X-Received: by 2002:a17:906:b04:b0:992:d013:1135 with SMTP id u4-20020a1709060b0400b00992d0131135mr10072944ejg.63.1689578991547;
+        Mon, 17 Jul 2023 00:29:51 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id z15-20020a17090655cf00b00987e2f84768sm8808852ejp.0.2023.07.17.00.26.06
+        by smtp.gmail.com with ESMTPSA id g18-20020a1709064e5200b009930042510csm8830347ejw.222.2023.07.17.00.29.49
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 17 Jul 2023 00:26:08 -0700 (PDT)
-Message-ID: <5c6f7a88-2660-12b4-2c9b-f0eb4f108f5b@linaro.org>
-Date:   Mon, 17 Jul 2023 09:26:05 +0200
+        Mon, 17 Jul 2023 00:29:51 -0700 (PDT)
+Message-ID: <19a7dae4-a9bd-187f-49f8-fe9c47f44eff@linaro.org>
+Date:   Mon, 17 Jul 2023 09:29:48 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
-Subject: Re: [PATCH v2 6/6] arm64: dts: qcom: sa8775p-ride: enable pcie nodes
+Subject: Re: [PATCH v4 02/17] dt-bindings: gpu: Add Imagination Technologies
+ PowerVR GPU
 Content-Language: en-US
-To:     Mrinmay Sarkar <quic_msarkar@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, konrad.dybcio@linaro.org, mani@kernel.org
-Cc:     quic_shazhuss@quicinc.com, quic_nitegupt@quicinc.com,
-        quic_ramkri@quicinc.com, quic_nayiluri@quicinc.com,
-        dmitry.baryshkov@linaro.org,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
-        Rob Herring <robh@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org
-References: <1689311319-22054-1-git-send-email-quic_msarkar@quicinc.com>
- <1689311319-22054-7-git-send-email-quic_msarkar@quicinc.com>
+To:     Sarah Walker <sarah.walker@imgtec.com>,
+        dri-devel@lists.freedesktop.org
+Cc:     frank.binns@imgtec.com, donald.robson@imgtec.com,
+        boris.brezillon@collabora.com, faith.ekstrand@collabora.com,
+        airlied@gmail.com, daniel@ffwll.ch,
+        maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+        tzimmermann@suse.de, afd@ti.com, hns@goldelico.com,
+        matthew.brost@intel.com, christian.koenig@amd.com,
+        luben.tuikov@amd.com, dakr@redhat.com,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        devicetree@vger.kernel.org
+References: <20230714142526.111569-1-sarah.walker@imgtec.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1689311319-22054-7-git-send-email-quic_msarkar@quicinc.com>
+In-Reply-To: <20230714142526.111569-1-sarah.walker@imgtec.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -87,36 +84,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/07/2023 07:08, Mrinmay Sarkar wrote:
-> Enable pcie0, pcie1 nodes and their respective phy's.
+On 14/07/2023 16:25, Sarah Walker wrote:
+> Add the device tree binding documentation for the Series AXE GPU used in
+> TI AM62 SoCs.
 > 
-> Signed-off-by: Mrinmay Sarkar <quic_msarkar@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/sa8775p-ride.dts | 80 +++++++++++++++++++++++++++++++
->  1 file changed, 80 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sa8775p-ride.dts b/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
-> index b2aa160..d3b2ab0 100644
-> --- a/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
-> +++ b/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
-> @@ -552,6 +552,86 @@
->  			bias-pull-down;
->  		};
->  	};
+
+...
+
 > +
-> +	pcie0_default_state: pcie0-default {
-> +		perst {
+> +  clocks:
+> +    minItems: 1
+> +    maxItems: 3
+> +
+> +  clock-names:
+> +    items:
+> +      - const: core
+> +      - const: mem
+> +      - const: sys
+> +    minItems: 1
 
-Really?
+Why clocks for this device vary? That's really unusual to have a SoC IP
+block which can have a clock physically disconnected, depending on the
+board (not SoC!).
 
-This is a friendly reminder during the review process.
-
-It seems my previous comments were not fully addressed. Maybe my
-feedback got lost between the quotes, maybe you just forgot to apply it.
-Please go back to the previous discussion and either implement all
-requested changes or keep discussing them.
-
-Thank you.
 
 Best regards,
 Krzysztof
