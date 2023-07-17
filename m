@@ -2,111 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9DB18756979
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 18:45:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 39744756985
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 18:47:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230500AbjGQQpt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jul 2023 12:45:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50024 "EHLO
+        id S231132AbjGQQrm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jul 2023 12:47:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51420 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231375AbjGQQpo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 12:45:44 -0400
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76B8010D5;
-        Mon, 17 Jul 2023 09:45:42 -0700 (PDT)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 31CA4E0002;
-        Mon, 17 Jul 2023 16:45:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1689612341;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=9R0G8NSJjToV+64LK3uPlbmnb/IZocOABxVYbM+R0so=;
-        b=NXv9FuO8QVkPCzHzbbUxvL19fGDuldDfOCcp/EqbAJTxd30SmGFTIvIQ0dqgAzfIRmJCkg
-        q4QPbsI98ghOtTP8Kupk7Y2inf7DpQ/V/Fn1iK/xpBcP3ndf2oLwRusdwXsgYCXCs67aXF
-        ZmaUGX70t+sqj0GZcsDCmRbTtwKCYLl9vDC1eYkhpRNb31Q+xQVFtaNpkJbWf7XpgRGUnA
-        8WRQG+FhESla5CuKYnqkq9S/Tfq6ObxwnSqKXYIsY2L6WKjHXUH292qm/9prS9LjU7qPLG
-        dLAYcj8C8TByxpNOh7ig1piUxMpwiOjWAl481B8EwgtoSbuoq7laHGBRnj8Dpg==
-Date:   Mon, 17 Jul 2023 18:45:37 +0200
-From:   Luca Ceresoli <luca.ceresoli@bootlin.com>
-To:     Francesco Dolcini <francesco@dolcini.it>
-Cc:     Jun Li <jun.li@nxp.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Francesco Dolcini <francesco.dolcini@toradex.com>,
-        Xu Yang <xu.yang_2@nxp.com>
-Subject: Re: [PATCH v2 2/3] usb: chipidea: imx: support disabling runtime-pm
-Message-ID: <20230717184537.6d6ed607@booty>
-In-Reply-To: <ZKaWL3+ClI7iNr/4@francesco-nb.int.toradex.com>
-References: <20230504162312.1506763-1-luca.ceresoli@bootlin.com>
-        <ZFPiRvoF5l8uGzzZ@francesco-nb.int.toradex.com>
-        <PA4PR04MB96403377F5E37C12AD8C25B389729@PA4PR04MB9640.eurprd04.prod.outlook.com>
-        <20230505120618.2f4cf22c@booty>
-        <ZFThyn/D/dDK9nk3@francesco-nb.int.toradex.com>
-        <PA4PR04MB96405EE2468555EA900B340189739@PA4PR04MB9640.eurprd04.prod.outlook.com>
-        <ZFjaNzY32x8o2XG7@francesco-nb.int.toradex.com>
-        <20230508151756.785ec07e@booty>
-        <20230529121825.71e9b6d6@booty>
-        <PA4PR04MB96405138465D215C34285F02894B9@PA4PR04MB9640.eurprd04.prod.outlook.com>
-        <ZKaWL3+ClI7iNr/4@francesco-nb.int.toradex.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+        with ESMTP id S229603AbjGQQrl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 12:47:41 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE254F7
+        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 09:47:39 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-992ca792065so664546966b.2
+        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 09:47:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1689612458; x=1692204458;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=JK6TkOQBHFr4q96srFPr4OjrpsieTptoErK+rdA0Pjs=;
+        b=gSVw5wcPbsf/QbpAH0hRSagM9a9kzssQWbI6taOsnZI7l2LvzXCps64xOZn4gkhSU0
+         VOg60k5Q+3/LglcekmxcrdMyHmB5OJxtspd+ZWW1eqD5Cu84C8zFkh4q2G3RYCv4T+ur
+         WobKpSvcRu+vALFSu0nNRRtNiSXKlxdSPDycdiuYam+noheKXbGRr104HAojgjhKTLki
+         hzdezggTjMF40whEQPEVlWXLKeAD5A8t7EQzRTHc/a4rRu3V0bpHI3gi2ZP1NYW3UIhE
+         bcnfghSfTbDRJIRAdUcCAUwc8dXgXakX4mgmDb5N5ECFGIKeJxvpScEr3fFYpVInMzn/
+         CqeQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689612458; x=1692204458;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=JK6TkOQBHFr4q96srFPr4OjrpsieTptoErK+rdA0Pjs=;
+        b=YBT6KZW+iSmyZrxhiYcwEtTB1qsounigGoq+JNrmaF45f4ZG4r9cyJenEF60tdniYg
+         qNjmbgruKTZNPABSxtQ4MpMBaZ2KJA284PR3QgxBM0Xlh7TQoISSnpx/I4DWG1/hNzMq
+         mjkPd5L8L7nqXKpmXqoC+dnOA/S0TUn2LZi6rv7tLHS+BA82xX5YtFCQa+hAigz4BY06
+         QlFsxRrR6mk6rHz99qolBuOhNdXcU9J7JfhsoGR4Y3Z4UOMa6MDnErVyYgPxEMkfW3lu
+         WIQyXVSKLB5Ipd3iT43FtsS5zIpIDAYKaQ3lV+QuY4jMvuX2K7oR0f6S2/rgg/rdNss2
+         OyjQ==
+X-Gm-Message-State: ABy/qLaIgQNWhRV04Lim7HOGEIBVEH21uctQG+tfQS8CUAngllirUAN3
+        t++WqWgp+WjJ66ZosTgti1S2Fg==
+X-Google-Smtp-Source: APBJJlH0qMy8XozwM95e5By8BV0d4jRKCPbiiNYUEYx+N2c06vencG+JUCyJcZsjwFwwdoHev4v5Bg==
+X-Received: by 2002:a17:906:3109:b0:994:54ff:10f6 with SMTP id 9-20020a170906310900b0099454ff10f6mr6962190ejx.30.1689612458219;
+        Mon, 17 Jul 2023 09:47:38 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id n7-20020a1709062bc700b00992e14af9c3sm4616559ejg.143.2023.07.17.09.47.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 17 Jul 2023 09:47:37 -0700 (PDT)
+Message-ID: <a34ef1ed-e204-77ba-a4b1-1a4bbabdac7a@linaro.org>
+Date:   Mon, 17 Jul 2023 18:47:34 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH net-next 1/2] dt-bindings: net: snps,dwmac: add phy-supply
+ support
+To:     Marco Felsch <m.felsch@pengutronix.de>, davem@davemloft.net,
+        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, peppe.cavallaro@st.com,
+        alexandre.torgue@foss.st.com, joabreu@synopsys.com,
+        mcoquelin.stm32@gmail.com
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, kernel@pengutronix.de
+References: <20230717164307.2868264-1-m.felsch@pengutronix.de>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230717164307.2868264-1-m.felsch@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-GND-Sasl: luca.ceresoli@bootlin.com
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Ciao Francesco,
-
-On Thu, 6 Jul 2023 12:23:43 +0200
-Francesco Dolcini <francesco@dolcini.it> wrote:
-
-> Hello Luca,
+On 17/07/2023 18:43, Marco Felsch wrote:
+> Document the common phy-supply property to be able to specify a phy
+> regulator.
 > 
-> On Tue, May 30, 2023 at 11:22:51AM +0000, Jun Li wrote:
-> > Yes, your understanding is correct, talked with Xu(in CC), he will take this
-> > soon.  
+> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> ---
+>  Documentation/devicetree/bindings/net/snps,dwmac.yaml | 3 +++
+>  1 file changed, 3 insertions(+)
 > 
-> A series was posted
-> https://lore.kernel.org/all/20230627110353.1879477-1-xu.yang_2@nxp.com/,
-> I had no time to try or look at it yet.
+> diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> index 363b3e3ea3a60..f66d1839cf561 100644
+> --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> @@ -159,6 +159,9 @@ properties:
+>        can be passive (no SW requirement), and requires that the MAC operate
+>        in a different mode than the PHY in order to function.
+>  
+> +  phy-supply:
+> +    description: PHY regulator
+> +
 
-Thanks for keeping me up to date on this topic, which is still totally
-relevant to me.
-
-I looked at the series, but it does not seem to be addressing the
-problem with USB host not detecting new devices when VBUS is not
-directly connected, e.g. in the Colibri imx6ull SoM.
-
-Xu, do you confirm the series at the link is _not_ solving the problem
-being discussed here?
+Isn't this property of the PHY? Why would the Ethernet controller play
+with a supply of a phy?
 
 Best regards,
+Krzysztof
 
-Luca
-
--- 
-Luca Ceresoli, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
