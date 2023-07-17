@@ -2,260 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B837756A4E
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 19:27:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B52D756AB5
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 19:34:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230526AbjGQR1T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jul 2023 13:27:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43078 "EHLO
+        id S231409AbjGQReZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jul 2023 13:34:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50334 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230527AbjGQR1M (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 13:27:12 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B898991;
-        Mon, 17 Jul 2023 10:27:03 -0700 (PDT)
-Received: from jupiter.universe (dyndsl-091-248-189-171.ewe-ip-backbone.de [91.248.189.171])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: sre)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 506E6660701C;
-        Mon, 17 Jul 2023 18:26:58 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1689614818;
-        bh=iJEV5hp8TWN3be/f2X5Jvjfl1ZZIqLvw4EgQ1zURuRM=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=amNXOZA5M4AahwkI/tBTxFzARFVnwQTiWDEiZ8aExhCDyIdFSr7pdLtc5OEHL2DZY
-         Ej/3aM/rgiY0HgFFkLcvuooC/xkykLdHKhSp8KiBjw27Qg0FNROV6D/GgTb/sYiQ8G
-         d3LMG7Lb7bFG1uHlmSkKkxCBQuKku2oz6xtdZrSwEzQxj8pXbeSi37dWBT7hPsaAN0
-         uzyK1y0awcip1zy5y4te9EwYVOu3ER5SAUs0QUznTKED2HkbXyiH8/1IXqDkCAF5Ig
-         MFG04QJ6kpizjL9gtfm+RBP31+UtlYRrkUa6YDkduivEj0qgi+DdGltx9GuxHICqif
-         PdEMC3lvWMPzA==
-Received: by jupiter.universe (Postfix, from userid 1000)
-        id 208EE480C7B; Mon, 17 Jul 2023 19:26:53 +0200 (CEST)
-From:   Sebastian Reichel <sebastian.reichel@collabora.com>
-To:     linux-pci@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        Serge Semin <fancer.lancer@gmail.com>
-Cc:     Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Shawn Lin <shawn.lin@rock-chips.com>,
-        Simon Xue <xxm@rock-chips.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Sebastian Reichel <sebastian.reichel@collabora.com>,
-        kernel@collabora.com, Kever Yang <kever.yang@rock-chips.com>,
-        Jagan Teki <jagan@edgeble.ai>
-Subject: [PATCH v3 5/5] arm64: dts: rockchip: rk3588: add PCIe2 support
-Date:   Mon, 17 Jul 2023 19:26:51 +0200
-Message-Id: <20230717172651.64324-6-sebastian.reichel@collabora.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230717172651.64324-1-sebastian.reichel@collabora.com>
-References: <20230717172651.64324-1-sebastian.reichel@collabora.com>
+        with ESMTP id S230203AbjGQReY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 13:34:24 -0400
+Received: from mail-pf1-x429.google.com (mail-pf1-x429.google.com [IPv6:2607:f8b0:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 504B6CC;
+        Mon, 17 Jul 2023 10:34:23 -0700 (PDT)
+Received: by mail-pf1-x429.google.com with SMTP id d2e1a72fcca58-676f16e0bc4so3110098b3a.0;
+        Mon, 17 Jul 2023 10:34:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1689615262; x=1692207262;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=dUoi1Mmr8IMK534APH+CWG7qY8Kuyh2p4qso744suGo=;
+        b=dnzydAvEN9YKARwMthDayszanj76dr67zlOjek2z19bKs+DhWqcD0TxQOdtYPy0yLC
+         jtunZLbbV7avrJrx8DE05sppNwgr4k1WbozR5pICNcFaF4ohwYqi68Wwg0z3D2Z2tCJK
+         BCwuyzaNwrLn9S55IX/Qm5+k67U47Baow+iVxhAKTocY/EhYr7FAsWQozYbSHYGJ+V7h
+         hPy09nr4O6X38+slC+30vzZFCf1SxTpXsbbSiJUj4ChUA3t+jjmCS46i/pPKkCT75uBG
+         zN4Lwy8Q/UPax6vRK7ApcFMuiypogMlfS2qKE1CQMxnyOQXMYHRoqUiNskeR69OmBtmp
+         soqg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689615262; x=1692207262;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=dUoi1Mmr8IMK534APH+CWG7qY8Kuyh2p4qso744suGo=;
+        b=SxcGHGx/ayayCIIUOBUKXZNDU5fb0/8ArmIDAi8L+CyDuWJF0d5a2oQ8jU8KUnCboQ
+         eiWDovH6p7652GqXpoZJwZBSo2DkM7U9cd7eUnVWbfxUcgttafT+0Lq3DSxVV6YDO7dL
+         kmtC6EiGMdSegmgbbQIDZPX9X0Ad2ncT7d8uPD9G6qGulqhSkajFb0UgW9BnCUVzmKhN
+         hAn2VC3+4JZT8E4DvjZWzuUY2oUFfOYIXH+BvG72Ux9Tlw6fDZb4ReVlDQxu/v084wBP
+         LsxxFV4j1TU3yiqZoobaBDdGYJ9dze/LUUCVFhFTIQB4e1voq/m4HELG0zV+JeqPsDPx
+         TEDA==
+X-Gm-Message-State: ABy/qLYWJNqLMVwc0os5YfAu0n2foKNe5dgXt+hTxgChQcRcXOs7HQ9P
+        OTVTghlNoMul7wQD0s/wSkY=
+X-Google-Smtp-Source: APBJJlHgiE4S+MXfi6uaGWczHajeTCKhbKry4gKne+v0Nr5Vemydgez1HyMd0UNJpeoHBOwwOlVSZA==
+X-Received: by 2002:a05:6a00:17a1:b0:682:4ef7:9b17 with SMTP id s33-20020a056a0017a100b006824ef79b17mr16331177pfg.32.1689615262353;
+        Mon, 17 Jul 2023 10:34:22 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id t5-20020a62ea05000000b0063b96574b8bsm58971pfh.220.2023.07.17.10.34.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 17 Jul 2023 10:34:21 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <a4b0115d-7a06-100c-ec77-027493c86206@roeck-us.net>
+Date:   Mon, 17 Jul 2023 10:34:20 -0700
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH] hwmon: Explicitly include correct DT includes
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>
+Cc:     Jean Delvare <jdelvare@suse.com>, Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Jean-Marie Verdun <verdun@hpe.com>,
+        Nick Hawkins <nick.hawkins@hpe.com>,
+        Charles Keepax <ckeepax@opensource.cirrus.com>,
+        Richard Fitzgerald <rf@opensource.cirrus.com>,
+        Robert Marko <robert.marko@sartura.hr>,
+        Saravanan Sekar <sravanhome@gmail.com>,
+        Luka Perkov <luka.perkov@sartura.hr>,
+        Liviu Dudau <liviu.dudau@arm.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        devicetree@vger.kernel.org, linux-hwmon@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, patches@opensource.cirrus.com
+References: <20230714174607.4057185-1-robh@kernel.org>
+ <e0e1b465-8419-419e-90ae-4b72f5189469@roeck-us.net>
+ <CAL_JsqJZcxoQEhaGr34Mk1P_8vc8wctcfzswWc8VbRrsv0S7zg@mail.gmail.com>
+From:   Guenter Roeck <linux@roeck-us.net>
+In-Reply-To: <CAL_JsqJZcxoQEhaGr34Mk1P_8vc8wctcfzswWc8VbRrsv0S7zg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add all three PCIe2 IP blocks to the RK3588 DT. Note, that RK3588
-also has two PCIe3 IP blocks, that will be handled separately.
+On 7/17/23 10:24, Rob Herring wrote:
+> On Sat, Jul 15, 2023 at 10:55 AM Guenter Roeck <linux@roeck-us.net> wrote:
+>>
+>> On Fri, Jul 14, 2023 at 11:46:04AM -0600, Rob Herring wrote:
+>>> The DT of_device.h and of_platform.h date back to the separate
+>>> of_platform_bus_type before it as merged into the regular platform bus.
+>>> As part of that merge prepping Arm DT support 13 years ago, they
+>>> "temporarily" include each other. They also include platform_device.h
+>>> and of.h. As a result, there's a pretty much random mix of those include
+>>> files used throughout the tree. In order to detangle these headers and
+>>> replace the implicit includes with struct declarations, users need to
+>>> explicitly include the correct includes.
+>>>
+>>> Signed-off-by: Rob Herring <robh@kernel.org>
+>>
+>> Applied to hwmon-next.
+> 
+> I found there's a double include of of.h in lm75.c. Can you fix that
+> up or do you want me to send a fix?
+> 
 
-Co-developed-by: Kever Yang <kever.yang@rock-chips.com>
-Signed-off-by: Kever Yang <kever.yang@rock-chips.com>
-Tested-by: Jagan Teki <jagan@edgeble.ai> # edgeble-neu6a, 6b
-Reviewed-by: Jagan Teki <jagan@edgeble.ai>
-Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
----
- arch/arm64/boot/dts/rockchip/rk3588.dtsi  |  51 +++++++++++
- arch/arm64/boot/dts/rockchip/rk3588s.dtsi | 102 ++++++++++++++++++++++
- 2 files changed, 153 insertions(+)
+I fixed it up. Thanks a lot for noticing.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588.dtsi b/arch/arm64/boot/dts/rockchip/rk3588.dtsi
-index 6be9bf81c09c..88d702575db2 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3588.dtsi
-@@ -80,6 +80,57 @@ i2s10_8ch: i2s@fde00000 {
- 		status = "disabled";
- 	};
- 
-+	pcie2x1l0: pcie@fe170000 {
-+		compatible = "rockchip,rk3588-pcie", "rockchip,rk3568-pcie";
-+		#address-cells = <3>;
-+		#size-cells = <2>;
-+		bus-range = <0x20 0x2f>;
-+		clocks = <&cru ACLK_PCIE_1L0_MSTR>, <&cru ACLK_PCIE_1L0_SLV>,
-+			 <&cru ACLK_PCIE_1L0_DBI>, <&cru PCLK_PCIE_1L0>,
-+			 <&cru CLK_PCIE_AUX2>, <&cru CLK_PCIE1L0_PIPE>;
-+		clock-names = "aclk_mst", "aclk_slv",
-+			      "aclk_dbi", "pclk",
-+			      "aux", "pipe";
-+		device_type = "pci";
-+		interrupts = <GIC_SPI 243 IRQ_TYPE_LEVEL_HIGH 0>,
-+			     <GIC_SPI 242 IRQ_TYPE_LEVEL_HIGH 0>,
-+			     <GIC_SPI 241 IRQ_TYPE_LEVEL_HIGH 0>,
-+			     <GIC_SPI 240 IRQ_TYPE_LEVEL_HIGH 0>,
-+			     <GIC_SPI 239 IRQ_TYPE_LEVEL_HIGH 0>;
-+		interrupt-names = "sys", "pmc", "msg", "legacy", "err";
-+		#interrupt-cells = <1>;
-+		interrupt-map-mask = <0 0 0 7>;
-+		interrupt-map = <0 0 0 1 &pcie2x1l0_intc 0>,
-+				<0 0 0 2 &pcie2x1l0_intc 1>,
-+				<0 0 0 3 &pcie2x1l0_intc 2>,
-+				<0 0 0 4 &pcie2x1l0_intc 3>;
-+		linux,pci-domain = <2>;
-+		max-link-speed = <2>;
-+		msi-map = <0x2000 &its0 0x2000 0x1000>;
-+		num-lanes = <1>;
-+		phys = <&combphy1_ps PHY_TYPE_PCIE>;
-+		phy-names = "pcie-phy";
-+		power-domains = <&power RK3588_PD_PCIE>;
-+		ranges = <0x01000000 0x0 0xf2100000 0x0 0xf2100000 0x0 0x00100000>,
-+			 <0x02000000 0x0 0xf2200000 0x0 0xf2200000 0x0 0x00e00000>,
-+			 <0x03000000 0x0 0x40000000 0x9 0x80000000 0x0 0x40000000>;
-+		reg = <0xa 0x40800000 0x0 0x00400000>,
-+		      <0x0 0xfe170000 0x0 0x00010000>,
-+		      <0x0 0xf2000000 0x0 0x00100000>;
-+		reg-names = "dbi", "apb", "config";
-+		resets = <&cru SRST_PCIE2_POWER_UP>, <&cru SRST_P_PCIE2>;
-+		reset-names = "pwr", "pipe";
-+		status = "disabled";
-+
-+		pcie2x1l0_intc: legacy-interrupt-controller {
-+			interrupt-controller;
-+			#address-cells = <0>;
-+			#interrupt-cells = <1>;
-+			interrupt-parent = <&gic>;
-+			interrupts = <GIC_SPI 240 IRQ_TYPE_EDGE_RISING 0>;
-+		};
-+	};
-+
- 	gmac0: ethernet@fe1b0000 {
- 		compatible = "rockchip,rk3588-gmac", "snps,dwmac-4.20a";
- 		reg = <0x0 0xfe1b0000 0x0 0x10000>;
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-index c9f9dd2472f5..b9b509257aaa 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-@@ -1227,6 +1227,108 @@ qos_vop_m1: qos@fdf82200 {
- 		reg = <0x0 0xfdf82200 0x0 0x20>;
- 	};
- 
-+	pcie2x1l1: pcie@fe180000 {
-+		compatible = "rockchip,rk3588-pcie", "rockchip,rk3568-pcie";
-+		#address-cells = <3>;
-+		#size-cells = <2>;
-+		bus-range = <0x30 0x3f>;
-+		clocks = <&cru ACLK_PCIE_1L1_MSTR>, <&cru ACLK_PCIE_1L1_SLV>,
-+			 <&cru ACLK_PCIE_1L1_DBI>, <&cru PCLK_PCIE_1L1>,
-+			 <&cru CLK_PCIE_AUX3>, <&cru CLK_PCIE1L1_PIPE>;
-+		clock-names = "aclk_mst", "aclk_slv",
-+			      "aclk_dbi", "pclk",
-+			      "aux", "pipe";
-+		device_type = "pci";
-+		interrupts = <GIC_SPI 248 IRQ_TYPE_LEVEL_HIGH 0>,
-+			     <GIC_SPI 247 IRQ_TYPE_LEVEL_HIGH 0>,
-+			     <GIC_SPI 246 IRQ_TYPE_LEVEL_HIGH 0>,
-+			     <GIC_SPI 245 IRQ_TYPE_LEVEL_HIGH 0>,
-+			     <GIC_SPI 244 IRQ_TYPE_LEVEL_HIGH 0>;
-+		interrupt-names = "sys", "pmc", "msg", "legacy", "err";
-+		#interrupt-cells = <1>;
-+		interrupt-map-mask = <0 0 0 7>;
-+		interrupt-map = <0 0 0 1 &pcie2x1l1_intc 0>,
-+				<0 0 0 2 &pcie2x1l1_intc 1>,
-+				<0 0 0 3 &pcie2x1l1_intc 2>,
-+				<0 0 0 4 &pcie2x1l1_intc 3>;
-+		linux,pci-domain = <3>;
-+		max-link-speed = <2>;
-+		msi-map = <0x3000 &its0 0x3000 0x1000>;
-+		num-lanes = <1>;
-+		phys = <&combphy2_psu PHY_TYPE_PCIE>;
-+		phy-names = "pcie-phy";
-+		power-domains = <&power RK3588_PD_PCIE>;
-+		ranges = <0x01000000 0x0 0xf3100000 0x0 0xf3100000 0x0 0x00100000>,
-+			 <0x02000000 0x0 0xf3200000 0x0 0xf3200000 0x0 0x00e00000>,
-+			 <0x03000000 0x0 0x40000000 0x9 0xc0000000 0x0 0x40000000>;
-+		reg = <0xa 0x40c00000 0x0 0x00400000>,
-+		      <0x0 0xfe180000 0x0 0x00010000>,
-+		      <0x0 0xf3000000 0x0 0x00100000>;
-+		reg-names = "dbi", "apb", "config";
-+		resets = <&cru SRST_PCIE3_POWER_UP>, <&cru SRST_P_PCIE3>;
-+		reset-names = "pwr", "pipe";
-+		status = "disabled";
-+
-+		pcie2x1l1_intc: legacy-interrupt-controller {
-+			interrupt-controller;
-+			#address-cells = <0>;
-+			#interrupt-cells = <1>;
-+			interrupt-parent = <&gic>;
-+			interrupts = <GIC_SPI 245 IRQ_TYPE_EDGE_RISING 0>;
-+		};
-+	};
-+
-+	pcie2x1l2: pcie@fe190000 {
-+		compatible = "rockchip,rk3588-pcie", "rockchip,rk3568-pcie";
-+		#address-cells = <3>;
-+		#size-cells = <2>;
-+		bus-range = <0x40 0x4f>;
-+		clocks = <&cru ACLK_PCIE_1L2_MSTR>, <&cru ACLK_PCIE_1L2_SLV>,
-+			 <&cru ACLK_PCIE_1L2_DBI>, <&cru PCLK_PCIE_1L2>,
-+			 <&cru CLK_PCIE_AUX4>, <&cru CLK_PCIE1L2_PIPE>;
-+		clock-names = "aclk_mst", "aclk_slv",
-+			      "aclk_dbi", "pclk",
-+			      "aux", "pipe";
-+		device_type = "pci";
-+		interrupts = <GIC_SPI 253 IRQ_TYPE_LEVEL_HIGH 0>,
-+			     <GIC_SPI 252 IRQ_TYPE_LEVEL_HIGH 0>,
-+			     <GIC_SPI 251 IRQ_TYPE_LEVEL_HIGH 0>,
-+			     <GIC_SPI 250 IRQ_TYPE_LEVEL_HIGH 0>,
-+			     <GIC_SPI 249 IRQ_TYPE_LEVEL_HIGH 0>;
-+		interrupt-names = "sys", "pmc", "msg", "legacy", "err";
-+		#interrupt-cells = <1>;
-+		interrupt-map-mask = <0 0 0 7>;
-+		interrupt-map = <0 0 0 1 &pcie2x1l2_intc 0>,
-+				<0 0 0 2 &pcie2x1l2_intc 1>,
-+				<0 0 0 3 &pcie2x1l2_intc 2>,
-+				<0 0 0 4 &pcie2x1l2_intc 3>;
-+		linux,pci-domain = <4>;
-+		max-link-speed = <2>;
-+		msi-map = <0x4000 &its0 0x4000 0x1000>;
-+		num-lanes = <1>;
-+		phys = <&combphy0_ps PHY_TYPE_PCIE>;
-+		phy-names = "pcie-phy";
-+		power-domains = <&power RK3588_PD_PCIE>;
-+		ranges = <0x01000000 0x0 0xf4100000 0x0 0xf4100000 0x0 0x00100000>,
-+			 <0x02000000 0x0 0xf4200000 0x0 0xf4200000 0x0 0x00e00000>,
-+			 <0x03000000 0x0 0x40000000 0xa 0x00000000 0x0 0x40000000>;
-+		reg = <0xa 0x41000000 0x0 0x00400000>,
-+		      <0x0 0xfe190000 0x0 0x00010000>,
-+		      <0x0 0xf4000000 0x0 0x00100000>;
-+		reg-names = "dbi", "apb", "config";
-+		resets = <&cru SRST_PCIE4_POWER_UP>, <&cru SRST_P_PCIE4>;
-+		reset-names = "pwr", "pipe";
-+		status = "disabled";
-+
-+		pcie2x1l2_intc: legacy-interrupt-controller {
-+			interrupt-controller;
-+			#address-cells = <0>;
-+			#interrupt-cells = <1>;
-+			interrupt-parent = <&gic>;
-+			interrupts = <GIC_SPI 250 IRQ_TYPE_EDGE_RISING 0>;
-+		};
-+	};
-+
- 	gmac1: ethernet@fe1c0000 {
- 		compatible = "rockchip,rk3588-gmac", "snps,dwmac-4.20a";
- 		reg = <0x0 0xfe1c0000 0x0 0x10000>;
--- 
-2.40.1
+Guenter
+
 
