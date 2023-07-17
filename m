@@ -2,120 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4AA91756916
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 18:28:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E3DCE756931
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 18:32:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230049AbjGQQ2p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jul 2023 12:28:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38968 "EHLO
+        id S229619AbjGQQc3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jul 2023 12:32:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42784 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229566AbjGQQ2o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 12:28:44 -0400
-Received: from mo4-p02-ob.smtp.rzone.de (mo4-p02-ob.smtp.rzone.de [85.215.255.84])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55DAB191;
-        Mon, 17 Jul 2023 09:28:42 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1689611320; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=TxN3ptB8TJ6yQXOez25FmsPlGHDfaoOtLRQzozLZr26Qfm9ByRqv4ZMgRtYqQoU+aa
-    IkAylqfV7dYeTu0R0g07RdiV38P7TKcCt2kqUZ4Wk/F8FZLcluPtHmTuVrgx2HQQ5eHz
-    6uf1UrKejPY+HpPrJY1XC1TgJZvDYZMe6hzZDuQAhwoIjTdpDDOltbH0e8DrL7/JD1t5
-    1E5c8ISwfUJXTDyj7ZrVMauvW+Q5cJPZa1NBvx8MLupiBVit7dhe+ma/G23VvPO8JRJZ
-    u8HQyCSsESaIm7Ea4HJtzbf11eATGdb6irR+E/oJw4ZmMnveLbPdAUqi+WimecL3DvJW
-    rlCA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1689611320;
-    s=strato-dkim-0002; d=strato.com;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=dZFLrSk66UYp7OAUD98hNzXLHwBxgqQLoMU4bLna6aU=;
-    b=ZQIbpA7wMe6TSSlHQaM+EvaL8EmWmEWI99FR1TqucNvwSAxJ1ThJyeO4wTDlcNakwT
-    aIZwB1C23uEOGUXibmy53nva9L35NirmueO6Q1cYX8lJ28JYK9+xRIYIgWax3MA27Fqb
-    y/AztOnGBRMLSOpCDL6efyTUf+NamFq25ueAQzMPvRnRqa9MMI3sY1EBitM+q1FxNrwL
-    O6+dEfNkTt8jLeAEVY3gHPwahBLAsk1TZ4N/oOd/pac8HrM89j0YvHaxhprcB7xI1hsP
-    G83/ys9GzckDe7fwNVUzXHTuhyIHpt99DYGs4dvguSu4GxPeMw3Viq2ehlWfMgIEnrog
-    XHbw==
-ARC-Authentication-Results: i=1; strato.com;
-    arc=none;
-    dkim=none
-X-RZG-CLASS-ID: mo02
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1689611320;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=dZFLrSk66UYp7OAUD98hNzXLHwBxgqQLoMU4bLna6aU=;
-    b=aeaAIHja89VAPmM40foHQP3GOU4n6ksSMUcYmWqX27Jl83H34SIn21o1IpR+alDfqc
-    xJqKnZFtBaQsyNDPttkB1yfsJVVxm88QQEmh3QtP5XPdBZwi2+Q7RoCTZMKRpbI/y6M+
-    cG2wYP1pveYFmwMKU3fIXy9MOiDYcjED64zrGAdhzh2TZ5IMatBlWmr8r2jy8kRAvGxi
-    kOBARUWxcXY+RYMEpEq1WxvXueqjlW7rmPq/xOu4hrhlcqbriy3x2rsSF5Y1hi9n0zma
-    V9Y0+sNDZhs2ndX5apuXOphLFuZu1SDSbv+jLi8zIsg5oFEu60lp1umeh8GTxbmpr1iJ
-    zL4A==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1689611320;
-    s=strato-dkim-0003; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=dZFLrSk66UYp7OAUD98hNzXLHwBxgqQLoMU4bLna6aU=;
-    b=MvqkobRSWCLCbTT85QaoRyNXN47vawJ6h4tOX+UY8PIdoHjPjQTXa8toQK1OxtCtDh
-    ohkpM7xYH8THMqIMKtCA==
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u261EJF5OxJD4paA8Z2L1A=="
-Received: from gerhold.net
-    by smtp.strato.de (RZmta 49.6.0 DYNA|AUTH)
-    with ESMTPSA id D0d0a8z6HGSeZCQ
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Mon, 17 Jul 2023 18:28:40 +0200 (CEST)
-Date:   Mon, 17 Jul 2023 18:28:39 +0200
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 15/15] arm64: dts: qcom: sm6115: Add VDD_CX to GPU_CCC
-Message-ID: <ZLVsN40kYsvQm1z6@gerhold.net>
-References: <20230717-topic-branch_aon_cleanup-v1-0-27784d27a4f4@linaro.org>
- <20230717-topic-branch_aon_cleanup-v1-15-27784d27a4f4@linaro.org>
+        with ESMTP id S232201AbjGQQcW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 12:32:22 -0400
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6EFDE10CC;
+        Mon, 17 Jul 2023 09:32:16 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-9936b3d0286so675492166b.0;
+        Mon, 17 Jul 2023 09:32:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1689611535; x=1692203535;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=QwmJ3yCNTCffdq4//w6fdOcgjZ1/3t3V+Qy6dQDsUO8=;
+        b=JQyoefJbnZhc9GPOFmzwe2Z+bDw9EHQ7Z5VwTp/otpSVy/PddtFLcl8+7d2zeJ0Lx/
+         F7tXrtgElYDTGnIC2Hr49UXf1ubMs0DPoik8V9LqNyBPcycwoGPY5DXcHF6gwvZRVOeF
+         tNTyVIzhmYx1IJS8aZ7N1VcK6oEmoZNgpF3DbrgMFXFtQ0cpMHcrGso7RpWzx7HIRmP0
+         v90PBfnimdyNKaaV1AJnQGy46rEJt8K9Id/25I+VV1fHy6aSthJaONMfzpD5tqu3H/gN
+         iNsKtJXrOUfbo+Y2cAPk2VkXWIgCOTDcCxuCkl9RaXzF8VECpCL2sqFdf13L3fjFcw6v
+         WBWQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689611535; x=1692203535;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=QwmJ3yCNTCffdq4//w6fdOcgjZ1/3t3V+Qy6dQDsUO8=;
+        b=aihhMNBwhrzVZoiWyFSK3rT2UxJaIG0QHhuVtnsmRF5/roESeKtA+YdGRxIsCKbEFJ
+         7DHeRYZfMrGbvw55i/tNWVxpHc4pqsVY7imsTKuqylTTPsBrG3TBMtvWhoVIuspheL7B
+         zQKpK/c6r1eJtXbm8On2VglXy62QXOrNOa/fY3EIvmS9qX8+iKARceVZtYz75EHCrNeR
+         7JwurKx3/zmh9M5fEE7gLzkpS3qnCCpwH5GF0UN3mPAnzjD5/foo1vhbfmFhyAy8ZF1j
+         4xPhaHUymtRYjDXHcNAh3cROzYy+mQm9rO0Wl7UYSn/NxDb74/WU1hAQmtt8LkgOA86T
+         No3Q==
+X-Gm-Message-State: ABy/qLY3vYAwSnHlKGVBaDfC0TBnN9szQX0n8lx8qIksFayfw8343cHI
+        qizi+cOQR0LAdlef0Fz1yb4=
+X-Google-Smtp-Source: APBJJlFO7FNcPt3ZvGbp/akaO6GeHf+QICxrDDUS1ywejfsEUPYjxrf5k1/ZMmd4h/mBw3xHcZbENQ==
+X-Received: by 2002:a17:906:b213:b0:992:a80e:e5bd with SMTP id p19-20020a170906b21300b00992a80ee5bdmr10234037ejz.48.1689611534628;
+        Mon, 17 Jul 2023 09:32:14 -0700 (PDT)
+Received: from localhost (p200300e41f4b7100f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f4b:7100:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id h19-20020a170906719300b00993cc1242d4sm9366116ejk.151.2023.07.17.09.32.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 17 Jul 2023 09:32:14 -0700 (PDT)
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Jon Hunter <jonathanh@nvidia.com>, linux-tegra@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH 1/4] arm64: tegra: Remove dmas and dma-names for debug UART
+Date:   Mon, 17 Jul 2023 18:32:10 +0200
+Message-ID: <20230717163213.1033592-1-thierry.reding@gmail.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230717-topic-branch_aon_cleanup-v1-15-27784d27a4f4@linaro.org>
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 17, 2023 at 05:19:22PM +0200, Konrad Dybcio wrote:
-> The GPU_CC block is powered by VDD_CX. Describe that.
-> 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/sm6115.dtsi | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm6115.dtsi b/arch/arm64/boot/dts/qcom/sm6115.dtsi
-> index 29b5b388cd94..bfaaa1801a4d 100644
-> --- a/arch/arm64/boot/dts/qcom/sm6115.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm6115.dtsi
-> @@ -1430,6 +1430,8 @@ gpucc: clock-controller@5990000 {
->  			clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>,
->  				 <&gcc GCC_GPU_GPLL0_CLK_SRC>,
->  				 <&gcc GCC_GPU_GPLL0_DIV_CLK_SRC>;
-> +			power-domains = <&rpmpd SM6115_VDDCX>;
-> +			required-opps = <&rpmpd_opp_low_svs>;
+From: Thierry Reding <treding@nvidia.com>
 
-Where is this required-opp coming from? The clocks in gpucc seem to have
-different voltage requirements depending on the rates, but we usually
-handle that in the OPP tables of the consumer.
+The debug UART doesn't support DMA and the DT bindings prohibit the use
+of the dmas and dma-names properties for it, so remove them.
 
-Thanks,
-Stephan
+Signed-off-by: Thierry Reding <treding@nvidia.com>
+---
+ arch/arm64/boot/dts/nvidia/tegra132-norrin.dts     | 2 ++
+ arch/arm64/boot/dts/nvidia/tegra210-p2180.dtsi     | 2 ++
+ arch/arm64/boot/dts/nvidia/tegra210-p2530.dtsi     | 2 ++
+ arch/arm64/boot/dts/nvidia/tegra210-p2894.dtsi     | 2 ++
+ arch/arm64/boot/dts/nvidia/tegra210-p3450-0000.dts | 2 ++
+ arch/arm64/boot/dts/nvidia/tegra210-smaug.dts      | 2 ++
+ arch/arm64/boot/dts/nvidia/tegra234-sim-vdk.dts    | 2 ++
+ 7 files changed, 14 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/nvidia/tegra132-norrin.dts b/arch/arm64/boot/dts/nvidia/tegra132-norrin.dts
+index d4c034ac1244..bbc2e9bef08d 100644
+--- a/arch/arm64/boot/dts/nvidia/tegra132-norrin.dts
++++ b/arch/arm64/boot/dts/nvidia/tegra132-norrin.dts
+@@ -531,6 +531,8 @@ soc_warm_reset_l {
+ 	};
+ 
+ 	serial@70006000 {
++		/delete-property/ dmas;
++		/delete-property/ dma-names;
+ 		status = "okay";
+ 	};
+ 
+diff --git a/arch/arm64/boot/dts/nvidia/tegra210-p2180.dtsi b/arch/arm64/boot/dts/nvidia/tegra210-p2180.dtsi
+index 92163b680980..0ae5a44f7d07 100644
+--- a/arch/arm64/boot/dts/nvidia/tegra210-p2180.dtsi
++++ b/arch/arm64/boot/dts/nvidia/tegra210-p2180.dtsi
+@@ -28,6 +28,8 @@ gpu@57000000 {
+ 
+ 	/* debug port */
+ 	serial@70006000 {
++		/delete-property/ dmas;
++		/delete-property/ dma-names;
+ 		status = "okay";
+ 	};
+ 
+diff --git a/arch/arm64/boot/dts/nvidia/tegra210-p2530.dtsi b/arch/arm64/boot/dts/nvidia/tegra210-p2530.dtsi
+index 0a70daeffd85..f0d53f0b4117 100644
+--- a/arch/arm64/boot/dts/nvidia/tegra210-p2530.dtsi
++++ b/arch/arm64/boot/dts/nvidia/tegra210-p2530.dtsi
+@@ -21,6 +21,8 @@ memory@80000000 {
+ 
+ 	/* debug port */
+ 	serial@70006000 {
++		/delete-property/ dmas;
++		/delete-property/ dma-names;
+ 		status = "okay";
+ 	};
+ 
+diff --git a/arch/arm64/boot/dts/nvidia/tegra210-p2894.dtsi b/arch/arm64/boot/dts/nvidia/tegra210-p2894.dtsi
+index 1f263fd32a7a..bbd6ff0564da 100644
+--- a/arch/arm64/boot/dts/nvidia/tegra210-p2894.dtsi
++++ b/arch/arm64/boot/dts/nvidia/tegra210-p2894.dtsi
+@@ -1321,6 +1321,8 @@ shutdown {
+ 	};
+ 
+ 	serial@70006000 {
++		/delete-property/ dmas;
++		/delete-property/ dma-names;
+ 		status = "okay";
+ 	};
+ 
+diff --git a/arch/arm64/boot/dts/nvidia/tegra210-p3450-0000.dts b/arch/arm64/boot/dts/nvidia/tegra210-p3450-0000.dts
+index b4cc7d40911c..ac8c91f548e2 100644
+--- a/arch/arm64/boot/dts/nvidia/tegra210-p3450-0000.dts
++++ b/arch/arm64/boot/dts/nvidia/tegra210-p3450-0000.dts
+@@ -126,6 +126,8 @@ dvfs_pwm_pbb1 {
+ 
+ 	/* debug port */
+ 	serial@70006000 {
++		/delete-property/ dmas;
++		/delete-property/ dma-names;
+ 		status = "okay";
+ 	};
+ 
+diff --git a/arch/arm64/boot/dts/nvidia/tegra210-smaug.dts b/arch/arm64/boot/dts/nvidia/tegra210-smaug.dts
+index 9c9c269158db..515a0e637cb7 100644
+--- a/arch/arm64/boot/dts/nvidia/tegra210-smaug.dts
++++ b/arch/arm64/boot/dts/nvidia/tegra210-smaug.dts
+@@ -1312,6 +1312,8 @@ shutdown {
+ 	};
+ 
+ 	serial@70006000 {
++		/delete-property/ dmas;
++		/delete-property/ dma-names;
+ 		status = "okay";
+ 	};
+ 
+diff --git a/arch/arm64/boot/dts/nvidia/tegra234-sim-vdk.dts b/arch/arm64/boot/dts/nvidia/tegra234-sim-vdk.dts
+index 5804acfc428a..9f3e9f30c3f7 100644
+--- a/arch/arm64/boot/dts/nvidia/tegra234-sim-vdk.dts
++++ b/arch/arm64/boot/dts/nvidia/tegra234-sim-vdk.dts
+@@ -19,6 +19,8 @@ chosen {
+ 
+ 	bus@0 {
+ 		serial@3100000 {
++			/delete-property/ dmas;
++			/delete-property/ dma-names;
+ 			status = "okay";
+ 		};
+ 
+-- 
+2.41.0
+
