@@ -2,128 +2,248 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E79D07569C5
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 19:00:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 13B5B7569DD
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 19:10:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230268AbjGQRAY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jul 2023 13:00:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58624 "EHLO
+        id S229861AbjGQRKW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jul 2023 13:10:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33924 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230128AbjGQRAX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 13:00:23 -0400
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC48610D
-        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 10:00:21 -0700 (PDT)
-Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-52166c7f77cso5194547a12.2
-        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 10:00:21 -0700 (PDT)
+        with ESMTP id S229968AbjGQRKH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 13:10:07 -0400
+Received: from mail-pf1-x432.google.com (mail-pf1-x432.google.com [IPv6:2607:f8b0:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7ED44131
+        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 10:10:06 -0700 (PDT)
+Received: by mail-pf1-x432.google.com with SMTP id d2e1a72fcca58-6686708c986so4867277b3a.0
+        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 10:10:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689613220; x=1692205220;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=E3p33dWnkdeh3xpTQxAQgmV3R/uRJxOJYd91gzLj00A=;
-        b=m8yS9UZ+f2QdyKnO/qCfSMKXPU9QLDocZidXf4zNoBF9bsrA7Nbo4b+DIm99BE6fxJ
-         KJSYWutemCNe/339E6y1MnksqO8QZvyrbI2G2PZ9gpwVI7/H12f2DuJ32v2CKHFAqS0m
-         BQwxRyLMsvtfS5pcNf8bH2MfzngSW6mUoNLqW86jC7EoAHQExhbSkL3izemXZrmI4pao
-         I+1DcVKwswBGsjbgh1RFA0dcUQ3hhQk8SHHFv+SDH7yHgQrM15sLB7By7cRTZziX9f8Q
-         efKIzBi4/jOLgaR0bLIGZIsAM3N3Je1hm5VNHgMOHWSHifMSsyo+L0WBECO1czvku+0/
-         FsaA==
+        d=linaro.org; s=google; t=1689613806; x=1692205806;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=ui+5kFaQhEBk/elAgYltOKQsUH4OF0/XGE8UzsMb61M=;
+        b=hZkcqmTWpwz6l3X+yRVS+3eyE9e6WH73zBq+ZqaKx/EFC7QTbvEVfvQ6K4ed7xhq/9
+         pX1z0TOwttgKekgJZ3a/fQlGAIvw+VzrgRnxbOsfTbCtC8g8vEO7MU56mDphY3bJKiRr
+         +LA80t6lkbKXrqS86nZS5/KTCwm2GE194ttbXJ18E5wL9VNt4KSZMQLBtp7MWVivq/DW
+         QIrg3BSGWPepHYI4v9T/JR/xTMAZBPS+RNEQT/hZIoaSok9OinlAlQQJ3GXGvHBrI5zm
+         9E7pzPrLwoR7MbhZ0r7IIBo88DYRxlW5U8wczj3kUHn7NYPfvuIAoD9EHL1ilmPkdn5P
+         J7ew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689613220; x=1692205220;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=E3p33dWnkdeh3xpTQxAQgmV3R/uRJxOJYd91gzLj00A=;
-        b=c4d+eJs5No8hmut1ixfUiutYRcpUtJrjwOlU0WhHhD/kwmEsisjniohGl4S+mGlnLd
-         6UGRMIy9tu668m6tOl1olX8+WmZMCDZQlZLt38hGxleUnFZF+h5WOiutSoiB4dWm4L0J
-         yMkbSm1SefXhlLg4ddz3Yduw/P7G86r3gCvYWJ75QTS6+vard1ERTNJxUFwRnE94XQK3
-         K/0lkSmLtaBhWNX8HFvazh9ocR1BwWaQh9sDtszR3TqG7ERath3HKDgZis4Xfmvw7eFJ
-         oglH5YzdnMx3pDts4Z2V2rtcKinmw7c95wqgPi9piC+GfQyoJp57XoHqyPHdV/NdYl58
-         ZdxA==
-X-Gm-Message-State: ABy/qLYFi7WfqqrYdzHxdWI8Pa1pPtteVJNg4h4AI3WS/o0wqz6cpwNQ
-        HszJOvi+DErdfNNlz5fciM5DJQ==
-X-Google-Smtp-Source: APBJJlHmbLwM2HYUTllhtBE/n/VE5V3pybwFFBwmW+Iivch6NTA1sYDdu+NuAGFsEAEr204hYKYVEA==
-X-Received: by 2002:a05:6402:551:b0:51d:d5f2:121c with SMTP id i17-20020a056402055100b0051dd5f2121cmr397371edx.5.1689613220365;
-        Mon, 17 Jul 2023 10:00:20 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id d18-20020aa7ce12000000b0051ddfb4385asm10250978edv.45.2023.07.17.10.00.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 17 Jul 2023 10:00:19 -0700 (PDT)
-Message-ID: <3d1a260c-bc8c-6347-17be-5558343c85a4@linaro.org>
-Date:   Mon, 17 Jul 2023 19:00:18 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v2 2/4] dt-bindings: arm: fsl: fix DEBIX binding
-Content-Language: en-US
-To:     Marco Felsch <m.felsch@pengutronix.de>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        shawnguo@kernel.org, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, laurent.pinchart@ideasonboard.com,
-        dan.scally@ideasonboard.com
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        d=1e100.net; s=20221208; t=1689613806; x=1692205806;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ui+5kFaQhEBk/elAgYltOKQsUH4OF0/XGE8UzsMb61M=;
+        b=DoWxVVUzxKjGHUP4RgbY5aRpRw6GWLCn593TuRKpXTgilUn+O8cLszWoW+cE40j+bi
+         7IvnlrV+IReQDHPhobopXygvg/ZuHlE0K1lB+B6nxGwqBJuX+Sche+HAr1NvCUT25384
+         F2BtcdpW0AhJ0ACb8tdmaN04wv3hSnuoMDAX9Kf1cjMLmEZ16Dmrnkrw/6QqBw+7U1c3
+         35Pr1X0mzI2o5yPIkiH4yoEpKURGLSxH2/EiX96JU7Ee5MiXeo1moMPpFkrICcTrme+K
+         rj+GsIChwI7VTRiz/qs+ZpHhYe8aTYaJKN9L2N7oWox1Q8cLOiKmtDsmlqIr8nGcB/Hs
+         Syng==
+X-Gm-Message-State: ABy/qLYhz2pOMV5T0tFjfoHrrij+Kf7ycSBLcvCyM+NwFlWDVNMUte60
+        hhZu/24bxBLZmQSx7LyNwHRfng==
+X-Google-Smtp-Source: APBJJlE5EMPbRsXVLlVD6FoW2+kRp86bPE0pinr29pc2aSdTHz1MeIxibB57BjDc+ITD78EDWml7zA==
+X-Received: by 2002:a05:6a20:158f:b0:134:7364:a59f with SMTP id h15-20020a056a20158f00b001347364a59fmr7150533pzj.29.1689613805900;
+        Mon, 17 Jul 2023 10:10:05 -0700 (PDT)
+Received: from p14s ([2604:3d09:148c:c800:3328:146c:de53:b695])
+        by smtp.gmail.com with ESMTPSA id r17-20020a63a011000000b0051b8172fa68sm65209pge.38.2023.07.17.10.10.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 17 Jul 2023 10:10:05 -0700 (PDT)
+Date:   Mon, 17 Jul 2023 11:10:02 -0600
+From:   Mathieu Poirier <mathieu.poirier@linaro.org>
+To:     Marek Vasut <marex@denx.de>
+Cc:     linux-remoteproc@vger.kernel.org,
+        Bjorn Andersson <andersson@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Peng Fan <peng.fan@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org
-References: <20230717165127.2882535-1-m.felsch@pengutronix.de>
- <20230717165127.2882535-2-m.felsch@pengutronix.de>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230717165127.2882535-2-m.felsch@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Subject: Re: [PATCH 2/2] remoteproc: imx_rproc: Switch iMX8MN/MP from SMCCC
+ to MMIO
+Message-ID: <ZLV16sCOX9gRJS+S@p14s>
+References: <20230707232626.374475-1-marex@denx.de>
+ <20230707232626.374475-2-marex@denx.de>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230707232626.374475-2-marex@denx.de>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/07/2023 18:51, Marco Felsch wrote:
-> The current imx8mp-debix-model-a.dts uses all three compatibles. Fix the
-> corresponding bindings by adding an own entry for it. Mark
-> polyhex,imx8mp-debix as deprecated but keep it within the dts file since
-> we already have a user for it [1].
+Good morning,
+
+On Sat, Jul 08, 2023 at 01:26:26AM +0200, Marek Vasut wrote:
+> The MX8M CM7 boot via SMC call is problematic, since not all versions
+> of ATF support this interface. Extend the MMIO support so it can boot
+> the CM7 on MX8MN/MP instead and discern the two alternatives using DT
+> compatible strings.
 > 
-> [1] https://elixir.bootlin.com/barebox/v2023.07.1/source/arch/arm/ \
->     boards/polyhex-debix/board.c#L38
-> 
-> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> Signed-off-by: Marek Vasut <marex@denx.de>
 > ---
-> Changelog:
+> Cc: Bjorn Andersson <andersson@kernel.org>
+> Cc: Conor Dooley <conor+dt@kernel.org>
+> Cc: Fabio Estevam <festevam@gmail.com>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
+> Cc: NXP Linux Team <linux-imx@nxp.com>
+> Cc: Peng Fan <peng.fan@nxp.com>
+> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Sascha Hauer <s.hauer@pengutronix.de>
+> Cc: Shawn Guo <shawnguo@kernel.org>
+> Cc: devicetree@vger.kernel.org
+> Cc: linux-arm-kernel@lists.infradead.org
+> Cc: linux-remoteproc@vger.kernel.org
+> ---
+>  drivers/remoteproc/imx_rproc.c | 53 ++++++++++++++++++++++++++++++++--
+>  drivers/remoteproc/imx_rproc.h |  2 ++
+>  2 files changed, 53 insertions(+), 2 deletions(-)
 > 
-> v2:
-> - deprecate polyhex,imx8mp-debix
-> 
->  Documentation/devicetree/bindings/arm/fsl.yaml | 10 ++++++++--
->  1 file changed, 8 insertions(+), 2 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-> index 15d4110840654..b29974e3c30b3 100644
-> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
-> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-> @@ -1019,8 +1019,6 @@ properties:
->                - dmo,imx8mp-data-modul-edm-sbc # i.MX8MP eDM SBC
->                - fsl,imx8mp-evk            # i.MX8MP EVK Board
->                - gateworks,imx8mp-gw74xx   # i.MX8MP Gateworks Board
-> -              - polyhex,imx8mp-debix      # Polyhex Debix boards
-> -              - polyhex,imx8mp-debix-model-a # Polyhex Debix Model A Board
->                - toradex,verdin-imx8mp     # Verdin iMX8M Plus Modules
->                - toradex,verdin-imx8mp-nonwifi  # Verdin iMX8M Plus Modules without Wi-Fi / BT
->                - toradex,verdin-imx8mp-wifi  # Verdin iMX8M Plus Wi-Fi / BT Modules
-> @@ -1054,6 +1052,14 @@ properties:
->            - const: phytec,imx8mp-phycore-som         # phyCORE-i.MX8MP SoM
->            - const: fsl,imx8mp
+> diff --git a/drivers/remoteproc/imx_rproc.c b/drivers/remoteproc/imx_rproc.c
+> index d0eb96d6a4fe1..09589f664a2be 100644
+> --- a/drivers/remoteproc/imx_rproc.c
+> +++ b/drivers/remoteproc/imx_rproc.c
+> @@ -41,6 +41,12 @@
+>  #define IMX7D_M4_STOP			(IMX7D_ENABLE_M4 | IMX7D_SW_M4C_RST | \
+>  					 IMX7D_SW_M4C_NON_SCLR_RST)
 >  
-> +      - description: Polyhex DEBIX i.MX8MP based SBCs
-> +        items:
-> +          - enum:
-> +              - polyhex,imx8mp-debix-model-a        # Polyhex Debix Model A Board
-> +          - const: polyhex,imx8mp-debix             # Polyhex Debix boards
+> +#define IMX8M_M7_STOP			(IMX7D_ENABLE_M4 | IMX7D_SW_M4C_RST)
+> +#define IMX8M_M7_POLL			IMX7D_ENABLE_M4
+> +
+> +#define IMX8M_GPR22			0x58
+> +#define IMX8M_GPR22_CM7_CPUWAIT		BIT(0)
+> +
+>  /* Address: 0x020D8000 */
+>  #define IMX6SX_SRC_SCR			0x00
+>  #define IMX6SX_ENABLE_M4		BIT(22)
+> @@ -92,6 +98,7 @@ static int imx_rproc_detach_pd(struct rproc *rproc);
+>  struct imx_rproc {
+>  	struct device			*dev;
+>  	struct regmap			*regmap;
+> +	struct regmap			*gpr;
+>  	struct rproc			*rproc;
+>  	const struct imx_rproc_dcfg	*dcfg;
+>  	struct imx_rproc_mem		mem[IMX_RPROC_MEM_MAX];
+> @@ -287,6 +294,18 @@ static const struct imx_rproc_att imx_rproc_att_imx6sx[] = {
+>  	{ 0x80000000, 0x80000000, 0x60000000, 0 },
+>  };
+>  
+> +static const struct imx_rproc_dcfg imx_rproc_cfg_imx8mn_mmio = {
+> +	.src_reg	= IMX7D_SRC_SCR,
+> +	.src_mask	= IMX7D_M4_RST_MASK,
+> +	.src_start	= IMX7D_M4_START,
+> +	.src_stop	= IMX8M_M7_STOP,
+> +	.gpr_reg	= IMX8M_GPR22,
+> +	.gpr_wait	= IMX8M_GPR22_CM7_CPUWAIT,
+> +	.att		= imx_rproc_att_imx8mn,
+> +	.att_size	= ARRAY_SIZE(imx_rproc_att_imx8mn),
+> +	.method		= IMX_RPROC_MMIO,
+> +};
+> +
+>  static const struct imx_rproc_dcfg imx_rproc_cfg_imx8mn = {
+>  	.att		= imx_rproc_att_imx8mn,
+>  	.att_size	= ARRAY_SIZE(imx_rproc_att_imx8mn),
+> @@ -367,8 +386,14 @@ static int imx_rproc_start(struct rproc *rproc)
+>  
+>  	switch (dcfg->method) {
+>  	case IMX_RPROC_MMIO:
+> -		ret = regmap_update_bits(priv->regmap, dcfg->src_reg, dcfg->src_mask,
+> -					 dcfg->src_start);
+> +		if (priv->gpr) {
+> +			ret = regmap_clear_bits(priv->gpr, dcfg->gpr_reg,
+> +						dcfg->gpr_wait);
+> +		} else {
+> +			ret = regmap_update_bits(priv->regmap, dcfg->src_reg,
+> +						 dcfg->src_mask,
+> +						 dcfg->src_start);
+> +		}
+>  		break;
+>  	case IMX_RPROC_SMC:
+>  		arm_smccc_smc(IMX_SIP_RPROC, IMX_SIP_RPROC_START, 0, 0, 0, 0, 0, 0, &res);
+> @@ -400,6 +425,16 @@ static int imx_rproc_stop(struct rproc *rproc)
+>  
+>  	switch (dcfg->method) {
+>  	case IMX_RPROC_MMIO:
+> +		if (priv->gpr) {
+> +			ret = regmap_set_bits(priv->gpr, dcfg->gpr_reg,
+> +					      dcfg->gpr_wait);
+> +			if (ret) {
+> +				dev_err(priv->dev,
+> +					"Failed to quiescence M4 platform!\n");
+> +				return ret;
+> +			}
+> +		}
+> +
+>  		ret = regmap_update_bits(priv->regmap, dcfg->src_reg, dcfg->src_mask,
+>  					 dcfg->src_stop);
+>  		break;
+> @@ -988,6 +1023,10 @@ static int imx_rproc_detect_mode(struct imx_rproc *priv)
+>  		break;
+>  	}
+>  
+> +	priv->gpr = syscon_regmap_lookup_by_phandle(dev->of_node, "gpr");
+> +	if (IS_ERR(priv->gpr))
+> +		priv->gpr = NULL;
+> +
+>  	regmap = syscon_regmap_lookup_by_phandle(dev->of_node, "syscon");
+>  	if (IS_ERR(regmap)) {
+>  		dev_err(dev, "failed to find syscon\n");
+> @@ -997,6 +1036,14 @@ static int imx_rproc_detect_mode(struct imx_rproc *priv)
+>  	priv->regmap = regmap;
+>  	regmap_attach_dev(dev, regmap, &config);
+>  
+> +	if (priv->gpr) {
+> +		ret = regmap_read(priv->gpr, dcfg->gpr_reg, &val);
+> +		if (val & dcfg->gpr_wait) {
+> +			imx_rproc_stop(priv->rproc);
+> +			return 0;
+> +		}
+> +	}
 
-I cannot find patches which add new compatible to the binding and which
-fix the DTS. :/
+Can you provide a comment to explain what is happening above?  In what kind of
+scenario would a GPR be set with the wait bit on startup?
 
-Best regards,
-Krzysztof
+Thanks,
+Mathieu
 
+> +
+>  	ret = regmap_read(regmap, dcfg->src_reg, &val);
+>  	if (ret) {
+>  		dev_err(dev, "Failed to read src\n");
+> @@ -1142,6 +1189,8 @@ static const struct of_device_id imx_rproc_of_match[] = {
+>  	{ .compatible = "fsl,imx8mm-cm4", .data = &imx_rproc_cfg_imx8mq },
+>  	{ .compatible = "fsl,imx8mn-cm7", .data = &imx_rproc_cfg_imx8mn },
+>  	{ .compatible = "fsl,imx8mp-cm7", .data = &imx_rproc_cfg_imx8mn },
+> +	{ .compatible = "fsl,imx8mn-cm7-mmio", .data = &imx_rproc_cfg_imx8mn_mmio },
+> +	{ .compatible = "fsl,imx8mp-cm7-mmio", .data = &imx_rproc_cfg_imx8mn_mmio },
+>  	{ .compatible = "fsl,imx8qxp-cm4", .data = &imx_rproc_cfg_imx8qxp },
+>  	{ .compatible = "fsl,imx8qm-cm4", .data = &imx_rproc_cfg_imx8qm },
+>  	{ .compatible = "fsl,imx8ulp-cm33", .data = &imx_rproc_cfg_imx8ulp },
+> diff --git a/drivers/remoteproc/imx_rproc.h b/drivers/remoteproc/imx_rproc.h
+> index 1c7e2127c7584..79a1b8956d142 100644
+> --- a/drivers/remoteproc/imx_rproc.h
+> +++ b/drivers/remoteproc/imx_rproc.h
+> @@ -31,6 +31,8 @@ struct imx_rproc_dcfg {
+>  	u32				src_mask;
+>  	u32				src_start;
+>  	u32				src_stop;
+> +	u32				gpr_reg;
+> +	u32				gpr_wait;
+>  	const struct imx_rproc_att	*att;
+>  	size_t				att_size;
+>  	enum imx_rproc_method		method;
+> -- 
+> 2.40.1
+> 
