@@ -2,111 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 52A90756EAD
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 23:01:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CEDB4756EF0
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jul 2023 23:26:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230017AbjGQVBG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jul 2023 17:01:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46944 "EHLO
+        id S229630AbjGQV0y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jul 2023 17:26:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55434 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229924AbjGQVBE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 17:01:04 -0400
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF63C10C7
-        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 14:01:02 -0700 (PDT)
-Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-52166c7f77cso5526177a12.2
-        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 14:01:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689627661; x=1692219661;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=C+DQimrAqq5HrJuayvWKjqIpTBMUfwE2q6SblHTJ6nQ=;
-        b=hig07dFEoE/VRC8eVzIyt4N5BQ9j5Vtqo5SweTa2x9QdauVRXa4mi8yoIN2Bx2yxCu
-         9AKfg4DYMNEf7G2JaS0odJ8yRAU/R7oBxnyZWRv8whWQqK0AbUEK5PExmTYLThLKpeoP
-         MplkJBZ3B5is2ylNwhWPCm5ht2HFIw7Dg7miR+caxMYEFAP0irRaebN909McVjdtcX5J
-         VNKH70w8emiDWt4PnnF8wDciOxoK6zwbj0UlvI6vV9DbC0tXLUloKGmFgnDgqfdVBdBe
-         xEg9iSXWJjFHCVzonONSTe5T0yxTiO0b8pbtD4XUtPsyokevk1BS8m+JdEmjHNXtOEyV
-         F9Sw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689627661; x=1692219661;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=C+DQimrAqq5HrJuayvWKjqIpTBMUfwE2q6SblHTJ6nQ=;
-        b=JJfGNDtSrKAUEaJ3KtY+qEn7VR/d7QHKhLtjqyODrYzYXcl73fIhixBAGw0077fveY
-         7/5d4nXNHtMkL6UA43RLJ5iMs5p+JDLcmIoh0GtMvVuL686aCyURWi02iLXyIT7pd8QC
-         W6YqWLhV1Zdyxty6voUPjxUykz++T5sdSi3r0zC1jpA7LJiAc+KPlOL5Jwq34AduCjJ7
-         BJi5JmnFDkFrwXVu4wil2wscpqUfNKmfjCLbYU1nBP587STtKOoIfKMdAXAVHlA7Iura
-         UKv5B8y9OgiGR9jGEXH6o+1aE7pev+9hRQfNWa54aqJz0d/CEL7fj2fwiqRSDckxlGTO
-         jz5A==
-X-Gm-Message-State: ABy/qLYNZcY9hElQWPIPV2IB6eaE9rsV4hygtOVBKbNMeOdn8MQ6uYcV
-        XkWIrFAilwMwdqPzKJi5LkKuVQ==
-X-Google-Smtp-Source: APBJJlF/sm1slZ8Xso6i6fpxS7espnblLLE+1R3arjQ+z12DdP8u0owRxflvA2N9wGQaJHupNJW7lQ==
-X-Received: by 2002:a17:906:253:b0:993:eb4b:ed51 with SMTP id 19-20020a170906025300b00993eb4bed51mr499998ejl.27.1689627661213;
-        Mon, 17 Jul 2023 14:01:01 -0700 (PDT)
-Received: from krzk-bin.. ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id rs14-20020a170907036e00b00987e2f84768sm178392ejb.0.2023.07.17.14.00.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 17 Jul 2023 14:01:00 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 2/2] arm64: dts: qcom: sm8250-pdx203: add required pin function
-Date:   Mon, 17 Jul 2023 23:00:55 +0200
-Message-Id: <20230717210055.21979-2-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230717210055.21979-1-krzysztof.kozlowski@linaro.org>
-References: <20230717210055.21979-1-krzysztof.kozlowski@linaro.org>
+        with ESMTP id S229931AbjGQV0y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 17:26:54 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8185123
+        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 14:26:52 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 7CC72612A5
+        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 21:26:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 165F7C433C8;
+        Mon, 17 Jul 2023 21:26:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1689629211;
+        bh=ru6PH0BytRYKxOGCG2Y5Nb4sExU22RsB3910DnOcsF8=;
+        h=From:To:Cc:Subject:Date:From;
+        b=nHlL7xXkssHmGS545q2Bq3u/Wwt/VbvsMNLDoG3YGlicXsCv9P47X0cIXnPBAv0yK
+         twDfyvoxawtPtjQE9AyYPjUaqPX1uBU9+pHFyzmYXGsrfKGIv3juVuPjtA8yftY9m5
+         yoVWAXudZuRogB+zf81XmHj6vMjK3KIL+vvlU1TlCRof5GwS94DMzDeAnlsqcsq+B5
+         q4ZPenSNp2uD52zENK/JRJ6fI5Vej4JMjtpt5kTsXVR1up2O5X2pZWNs5666TNNXgw
+         e/RTaHAVZ1UCF6LKWyk/YtWPUUnCM1cHcwz8/Ve6uoXxrw0K1DOdy9cVxoVlqhcMZv
+         QPE3v27U+tSDw==
+From:   Dinh Nguyen <dinguyen@kernel.org>
+To:     robh+dt@kernel.org, krzysztof.kozlowskii+dt@linaro.org,
+        conor+dt@kernel.org
+Cc:     dinguyen@kernel.org, devicetree@vger.kernel.org
+Subject: [PATCHv2] arm64: dts: socfpga: change the reset-name of "stmmaceth-ocp" to "ahb"
+Date:   Mon, 17 Jul 2023 16:26:44 -0500
+Message-Id: <20230717212644.635910-1-dinguyen@kernel.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DT bindings expect function in each pin state in the pin configuration:
+The "stmmaceth-ocp" reset line on the SoCFPGA stmmac ethernet driver is
+the same as the "ahb" reset on a standard stmmac ethernet.
 
-  sm8250-sony-xperia-edo-pdx203.dtb: pinctrl@f100000: cam-pwr-b-state: 'oneOf' conditional failed, one must be fixed:
-    'function' is a required property
+commit ("843f603762a5 dt-bindings: net: snps,dwmac: Add 'ahb'
+reset/reset-name") documented the second reset signal as 'ahb' instead
+of 'stmmaceth-ocp'. Change the reset-names of the SoCFPGA DWMAC driver to
+'ahb'. In order not to break ABI, we will keep support in thedwmac-socfpga
+driver to still make use of "stmmaceth-ocp".
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+This also fixes the dtbs_check warning:
+ethernet@ff802000: reset-names:1: 'ahb' was expected
+
+Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
 ---
- arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo-pdx203.dts | 2 ++
- 1 file changed, 2 insertions(+)
+v2: update commit message to further describe the reason for the change
+---
+ arch/arm/boot/dts/intel/socfpga/socfpga_arria10.dtsi | 6 +++---
+ arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi    | 6 +++---
+ arch/arm64/boot/dts/intel/socfpga_agilex.dtsi        | 6 +++---
+ 3 files changed, 9 insertions(+), 9 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo-pdx203.dts b/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo-pdx203.dts
-index f4c4575eb03b..b70bf9261ba9 100644
---- a/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo-pdx203.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo-pdx203.dts
-@@ -366,6 +366,7 @@ &tlmm {
- 
- 	cam_pwr_b_cs: cam-pwr-b-state {
- 		pins = "gpio69";
-+		function = "gpio";
- 		drive-strength = <2>;
- 		bias-disable;
- 		output-low;
-@@ -373,6 +374,7 @@ cam_pwr_b_cs: cam-pwr-b-state {
- 
- 	cam_pwr_a_cs: cam-pwr-a-state {
- 		pins = "gpio71";
-+		function = "gpio";
- 		drive-strength = <2>;
- 		bias-disable;
- 		output-low;
+diff --git a/arch/arm/boot/dts/intel/socfpga/socfpga_arria10.dtsi b/arch/arm/boot/dts/intel/socfpga/socfpga_arria10.dtsi
+index 72c55e5187ca..f36063c57c7f 100644
+--- a/arch/arm/boot/dts/intel/socfpga/socfpga_arria10.dtsi
++++ b/arch/arm/boot/dts/intel/socfpga/socfpga_arria10.dtsi
+@@ -440,7 +440,7 @@ gmac0: ethernet@ff800000 {
+ 			clocks = <&l4_mp_clk>, <&peri_emac_ptp_clk>;
+ 			clock-names = "stmmaceth", "ptp_ref";
+ 			resets = <&rst EMAC0_RESET>, <&rst EMAC0_OCP_RESET>;
+-			reset-names = "stmmaceth", "stmmaceth-ocp";
++			reset-names = "stmmaceth", "ahb";
+ 			snps,axi-config = <&socfpga_axi_setup>;
+ 			status = "disabled";
+ 		};
+@@ -460,7 +460,7 @@ gmac1: ethernet@ff802000 {
+ 			clocks = <&l4_mp_clk>, <&peri_emac_ptp_clk>;
+ 			clock-names = "stmmaceth", "ptp_ref";
+ 			resets = <&rst EMAC1_RESET>, <&rst EMAC1_OCP_RESET>;
+-			reset-names = "stmmaceth", "stmmaceth-ocp";
++			reset-names = "stmmaceth", "ahb";
+ 			snps,axi-config = <&socfpga_axi_setup>;
+ 			status = "disabled";
+ 		};
+@@ -480,7 +480,7 @@ gmac2: ethernet@ff804000 {
+ 			clocks = <&l4_mp_clk>, <&peri_emac_ptp_clk>;
+ 			clock-names = "stmmaceth", "ptp_ref";
+ 			resets = <&rst EMAC2_RESET>, <&rst EMAC2_OCP_RESET>;
+-			reset-names = "stmmaceth", "stmmaceth-ocp";
++			reset-names = "stmmaceth", "ahb";
+ 			snps,axi-config = <&socfpga_axi_setup>;
+ 			status = "disabled";
+ 		};
+diff --git a/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi b/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
+index 1c846f13539c..439497ab967d 100644
+--- a/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
++++ b/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
+@@ -153,7 +153,7 @@ gmac0: ethernet@ff800000 {
+ 			interrupt-names = "macirq";
+ 			mac-address = [00 00 00 00 00 00];
+ 			resets = <&rst EMAC0_RESET>, <&rst EMAC0_OCP_RESET>;
+-			reset-names = "stmmaceth", "stmmaceth-ocp";
++			reset-names = "stmmaceth", "ahb";
+ 			clocks = <&clkmgr STRATIX10_EMAC0_CLK>, <&clkmgr STRATIX10_EMAC_PTP_CLK>;
+ 			clock-names = "stmmaceth", "ptp_ref";
+ 			tx-fifo-depth = <16384>;
+@@ -171,7 +171,7 @@ gmac1: ethernet@ff802000 {
+ 			interrupt-names = "macirq";
+ 			mac-address = [00 00 00 00 00 00];
+ 			resets = <&rst EMAC1_RESET>, <&rst EMAC1_OCP_RESET>;
+-			reset-names = "stmmaceth", "stmmaceth-ocp";
++			reset-names = "stmmaceth", "ahb";
+ 			clocks = <&clkmgr STRATIX10_EMAC1_CLK>, <&clkmgr STRATIX10_EMAC_PTP_CLK>;
+ 			clock-names = "stmmaceth", "ptp_ref";
+ 			tx-fifo-depth = <16384>;
+@@ -189,7 +189,7 @@ gmac2: ethernet@ff804000 {
+ 			interrupt-names = "macirq";
+ 			mac-address = [00 00 00 00 00 00];
+ 			resets = <&rst EMAC2_RESET>, <&rst EMAC2_OCP_RESET>;
+-			reset-names = "stmmaceth", "stmmaceth-ocp";
++			reset-names = "stmmaceth", "ahb";
+ 			clocks = <&clkmgr STRATIX10_EMAC2_CLK>, <&clkmgr STRATIX10_EMAC_PTP_CLK>;
+ 			clock-names = "stmmaceth", "ptp_ref";
+ 			tx-fifo-depth = <16384>;
+diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi b/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
+index fc047aef4911..d3adb6a130ae 100644
+--- a/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
++++ b/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
+@@ -158,7 +158,7 @@ gmac0: ethernet@ff800000 {
+ 			interrupt-names = "macirq";
+ 			mac-address = [00 00 00 00 00 00];
+ 			resets = <&rst EMAC0_RESET>, <&rst EMAC0_OCP_RESET>;
+-			reset-names = "stmmaceth", "stmmaceth-ocp";
++			reset-names = "stmmaceth", "ahb";
+ 			tx-fifo-depth = <16384>;
+ 			rx-fifo-depth = <16384>;
+ 			snps,multicast-filter-bins = <256>;
+@@ -176,7 +176,7 @@ gmac1: ethernet@ff802000 {
+ 			interrupt-names = "macirq";
+ 			mac-address = [00 00 00 00 00 00];
+ 			resets = <&rst EMAC1_RESET>, <&rst EMAC1_OCP_RESET>;
+-			reset-names = "stmmaceth", "stmmaceth-ocp";
++			reset-names = "stmmaceth", "ahb";
+ 			tx-fifo-depth = <16384>;
+ 			rx-fifo-depth = <16384>;
+ 			snps,multicast-filter-bins = <256>;
+@@ -194,7 +194,7 @@ gmac2: ethernet@ff804000 {
+ 			interrupt-names = "macirq";
+ 			mac-address = [00 00 00 00 00 00];
+ 			resets = <&rst EMAC2_RESET>, <&rst EMAC2_OCP_RESET>;
+-			reset-names = "stmmaceth", "stmmaceth-ocp";
++			reset-names = "stmmaceth", "ahb";
+ 			tx-fifo-depth = <16384>;
+ 			rx-fifo-depth = <16384>;
+ 			snps,multicast-filter-bins = <256>;
 -- 
-2.34.1
+2.25.1
 
