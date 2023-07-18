@@ -2,65 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F9D3758886
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 00:33:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 46FBA75889B
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 00:38:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229476AbjGRWdf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jul 2023 18:33:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51430 "EHLO
+        id S229614AbjGRWiz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jul 2023 18:38:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54008 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230046AbjGRWde (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 18:33:34 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B1A7199A;
-        Tue, 18 Jul 2023 15:33:20 -0700 (PDT)
+        with ESMTP id S229562AbjGRWiy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 18:38:54 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0315E198E;
+        Tue, 18 Jul 2023 15:38:54 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 78EB36129A;
-        Tue, 18 Jul 2023 22:33:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0BE48C433C7;
-        Tue, 18 Jul 2023 22:33:16 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 9539D6126C;
+        Tue, 18 Jul 2023 22:38:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CFD43C433C7;
+        Tue, 18 Jul 2023 22:38:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689719598;
-        bh=6MTyHxtYHfxixee7H4APrS6m+5lNQnJTGfCeYq0C57M=;
+        s=k20201202; t=1689719933;
+        bh=ft0pZeRGcxSCLViSj0gpccBQLxFThl7+npAOY8U0YXk=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=g2TcgOiLAT9i4N5/MyNynSBpIypudtWwZXSRLPmdqjIzzj1UEXGBqP7rtSB3CLkid
-         2AC+4AJNSv2m7r/VcXveFj/x2pfYhaorP2ZsMW8JH/uS2TOY5J5cCpcirqp2R15L9X
-         aQwOHqV1t81As+vVAK+iWJe290SUEtQKxk8+jZ+sIVNJgaAlS6/NIDVlTULR0Dl123
-         1GaHZ67hNDbmMPhn7BKM/ubQdvvpGcli6L9bSXoYoWClvrzAktqNVpE20zj3nY3vaL
-         E4exEKKuvHqP8mfudddWyqYAlKrZM0VlGL882hOLhV6GE1/HGZV7NF0XWSXDtiiETq
-         /GYSjb/zsae6w==
-Received: (nullmailer pid 2131885 invoked by uid 1000);
-        Tue, 18 Jul 2023 22:33:16 -0000
-Date:   Tue, 18 Jul 2023 16:33:16 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Sandor Yu <Sandor.yu@nxp.com>
-Cc:     shawnguo@kernel.org, linux-arm-kernel@lists.infradead.org,
-        festevam@gmail.com, linux-imx@nxp.com, daniel@ffwll.ch,
-        oliver.brown@nxp.com, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, airlied@gmail.com,
-        andrzej.hajda@intel.com, Laurent.pinchart@ideasonboard.com,
-        vkoul@kernel.org, neil.armstrong@linaro.org,
-        linux-kernel@vger.kernel.org, s.hauer@pengutronix.de,
-        alexander.stein@ew.tq-group.com, sam@ravnborg.org,
-        linux-phy@lists.infradead.org, kernel@pengutronix.de,
-        jonas@kwiboo.se, jernej.skrabec@gmail.com,
-        dri-devel@lists.freedesktop.org, krzysztof.kozlowski+dt@linaro.org
-Subject: Re: [PATCH v7 5/7] dt-bindings: phy: Add Freescale iMX8MQ DP and
- HDMI PHY
-Message-ID: <168971959565.2131824.2007290149769233766.robh@kernel.org>
-References: <cover.1689580812.git.Sandor.yu@nxp.com>
- <a782c749ecf8192a4f89ba270e30c7fb1d245c51.1689580812.git.Sandor.yu@nxp.com>
+        b=qbLHYHwJ16vjba/YKmSZ6+kQdtrhywcnd7NEm1UhXFKhq28m9ej/cfF1oAHVOozqp
+         tHVNcbCaznUp2eCrx+NeRljdoOXCoHWB+0sRJQOiSVTFcQDr3GAcnKR5xl8GofAP45
+         OtFqPxllJ8SxO/OYH7qAXozA/25q1J8BQ0FvQEAGGVrG8YHhL68LucWtSVQiFuALn4
+         70Gvu2MFWVna7T99qYIjf3EYdpDSMk/HtZw4RwO661Ih8VN7WXwRrIcnnVXJISPHUS
+         0C7MJz2/kzrzMJ7Zpl24pdn8nOqOGJmBR7WK4TtX0oIQoKdFBfgseu/Va8voylNbET
+         4FUA7b0nETmpg==
+Date:   Tue, 18 Jul 2023 23:38:48 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Ben Dooks <ben.dooks@codethink.co.uk>, Jookia <contact@jookia.org>,
+        linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org,
+        linux-can@vger.kernel.org, linux-riscv@lists.infradead.org,
+        Fabien Poussin <fabien.poussin@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Chen-Yu Tsai <wens@csie.org>
+Subject: Re: [PATCH 0/4] Add support for Allwinner D1 CAN controllers
+Message-ID: <20230718-matron-backlit-ddf56c391f8a@spud>
+References: <20230715112523.2533742-1-contact@jookia.org>
+ <96641e09-c676-2702-149c-885002f45a64@codethink.co.uk>
+ <20230718221504.GA2015343-robh@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="cqqc/lv3UK4SVqTX"
 Content-Disposition: inline
-In-Reply-To: <a782c749ecf8192a4f89ba270e30c7fb1d245c51.1689580812.git.Sandor.yu@nxp.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20230718221504.GA2015343-robh@kernel.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -68,15 +63,36 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Mon, 17 Jul 2023 16:03:51 +0800, Sandor Yu wrote:
-> Add bindings for Freescale iMX8MQ DP and HDMI PHY.
-> 
-> Signed-off-by: Sandor Yu <Sandor.yu@nxp.com>
-> ---
->  .../bindings/phy/fsl,imx8mq-dp-hdmi-phy.yaml  | 53 +++++++++++++++++++
->  1 file changed, 53 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/phy/fsl,imx8mq-dp-hdmi-phy.yaml
-> 
+--cqqc/lv3UK4SVqTX
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+On Tue, Jul 18, 2023 at 04:15:04PM -0600, Rob Herring wrote:
+> On Mon, Jul 17, 2023 at 09:00:47AM +0100, Ben Dooks wrote:
+> > On 15/07/2023 12:25, Jookia wrote:
+> > > From: John Watts <contact@jookia.org>
+> >=20
+> > It would be better if you sent your sending email to be the same
+> > as the from, I think you'd technically need a signed-off-by from
+> > "Jookia" as well.
+>=20
+> The email needs to be an actual person. 'contact' doesn't appear to be=20
+> one.
 
+I don't think it is that complicated, a cursory check of the domain
+suggests that "Jookia" is a nickname & there's surely nothing wrong with
+not having your name in your email address.
+
+--cqqc/lv3UK4SVqTX
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZLcUeAAKCRB4tDGHoIJi
+0gFRAP97y0ufNPfdKPAqRJk0x2B640Tp0m/2UvKiv1Kb+/FzHwEApZbMd48vDPFx
+97j93TdvKGT2uC1XqbKlFQL+p1TpFgw=
+=VWl0
+-----END PGP SIGNATURE-----
+
+--cqqc/lv3UK4SVqTX--
