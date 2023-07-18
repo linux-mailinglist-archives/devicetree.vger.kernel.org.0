@@ -2,72 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 77456758196
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 18:01:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4AA207581A2
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 18:04:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231280AbjGRQBt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jul 2023 12:01:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53410 "EHLO
+        id S231225AbjGRQE2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jul 2023 12:04:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55332 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231892AbjGRQBp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 12:01:45 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F38221737;
-        Tue, 18 Jul 2023 09:01:41 -0700 (PDT)
-Received: from mercury (dyndsl-091-248-212-239.ewe-ip-backbone.de [91.248.212.239])
+        with ESMTP id S230388AbjGRQE2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 12:04:28 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 618B8EE;
+        Tue, 18 Jul 2023 09:04:27 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        (Authenticated sender: sre)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 06D716607029;
-        Tue, 18 Jul 2023 17:01:40 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1689696100;
-        bh=fjD/ofT/AJheOC0PpncIwEm97OhHZA/Z2aAcGGQekfE=;
+        by dfw.source.kernel.org (Postfix) with ESMTPS id F2F5A61636;
+        Tue, 18 Jul 2023 16:04:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6B152C433C8;
+        Tue, 18 Jul 2023 16:04:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1689696266;
+        bh=KpLtuC/owlDra2MRE8Ta8/1qVd8xTu4USdwqr246vPE=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=QgKIwJjTZLCYtJFI9C3oTjp3n/iC1v4sfaZySSF6luarFGrq212CEA63pyZN4Wv4w
-         I9SYa9dQcjJfBCZSbae+1xeSgfb3V/Eo6CrPj5rv3RovFYVc9xJa18Iq8xboSoO/uX
-         Ye1IpLqjlGbw5GA4KE2SgMCqCGLsCfRqDhFErHd9biSHPiz/NxzIRsxMr3OgOrtosv
-         Ee9kTJptGs/bqm+oj806e66MWjpUt6u0QiaPfobNNYJd5lXFKjNG2MRRnE9odSH0uG
-         x+QLk2GR9Q1M0YGcNg1GixOkLrl2bV1YJ9un0qyRUbK1FJFfef7sxMruE4vmApL/MN
-         Uo0XN6rFUBzAA==
-Received: by mercury (Postfix, from userid 1000)
-        id 78BB510607FA; Tue, 18 Jul 2023 18:01:37 +0200 (CEST)
-Date:   Tue, 18 Jul 2023 18:01:37 +0200
-From:   Sebastian Reichel <sebastian.reichel@collabora.com>
-To:     Liviu Dudau <liviu@dudau.co.uk>
-Cc:     linux-phy@lists.infradead.org, linux-rockchip@lists.infradead.org,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Rob Herring <robh@kernel.org>,
-        Serge Semin <fancer.lancer@gmail.com>,
+        b=hGzvBXN2It4iW5ZVxE7FEZIkGeWmc1fn75D/PIR1wyodsQn2eG5agjcGTZ8veMOlW
+         I+9bIX6Tii3Ym69X5c3jj6DbzBQL+L9LocKNFFHS9QWwEboflAxZBLv+Xi07xoIwZG
+         NAaIRkWSnjS+fn+UOAyOH/T050pgXpXzmygkCUPcq1AVfb9pYFwMAUGVFIKJMpGyfx
+         NeCP3WaCKKqoNtnTzw99NNy9rpvLENWV4oyTYAj5dsW9lcDy38m5rBWzmaTP4JtDIo
+         SvIFGsewl9EB14iQyxS1wCIbg4t3oSsD4/Fckujqb8mNZvBrh8cpT3tEyHUt7BGXd0
+         Tx/DUqCpBSLxA==
+Date:   Tue, 18 Jul 2023 17:04:21 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Michael Riesch <michael.riesch@wolfvision.net>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Shawn Lin <shawn.lin@rock-chips.com>,
-        Simon Xue <xxm@rock-chips.com>, John Clark <inindev@gmail.com>,
-        Qu Wenruo <wqu@suse.com>, devicetree@vger.kernel.org,
-        linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, kernel@collabora.com
-Subject: Re: [PATCH v2 2/2] arm64: dts: rockchip: rk3588: add PCIe3 support
-Message-ID: <20230718160137.sfitnkl6gmyi75jx@mercury.elektranox.org>
-References: <20230717173512.65169-1-sebastian.reichel@collabora.com>
- <20230717173512.65169-3-sebastian.reichel@collabora.com>
- <ZLarQUvUK3v3m6Cg@bart.dudau.co.uk>
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Maxime Ripard <mripard@kernel.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        Gerald Loacker <gerald.loacker@wolfvision.net>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH 2/4] dt-bindings: display: st7789v: add jasonic
+ jt240mhqs-hwt-ek-e3 display
+Message-ID: <20230718-popper-unrivaled-dae204940094@spud>
+References: <20230718-feature-lcd-panel-v1-0-e9a85d5374fd@wolfvision.net>
+ <20230718-feature-lcd-panel-v1-2-e9a85d5374fd@wolfvision.net>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="4xub73vban4yxnem"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="dfkE5JaiJoHSnNRG"
 Content-Disposition: inline
-In-Reply-To: <ZLarQUvUK3v3m6Cg@bart.dudau.co.uk>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230718-feature-lcd-panel-v1-2-e9a85d5374fd@wolfvision.net>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -75,69 +69,57 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---4xub73vban4yxnem
+--dfkE5JaiJoHSnNRG
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Hi Liviu,
-
-On Tue, Jul 18, 2023 at 04:09:53PM +0100, Liviu Dudau wrote:
-> On Mon, Jul 17, 2023 at 07:35:12PM +0200, Sebastian Reichel wrote:
-> > Add both PCIe3 controllers together with the shared PHY.
-> >=20
-> > Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-> > ---
-> >  arch/arm64/boot/dts/rockchip/rk3588.dtsi | 120 +++++++++++++++++++++++
-> >  1 file changed, 120 insertions(+)
-> >=20
-> > diff --git a/arch/arm64/boot/dts/rockchip/rk3588.dtsi b/arch/arm64/boot=
-/dts/rockchip/rk3588.dtsi
-> > index 88d702575db2..8f210f002fac 100644
-> > --- a/arch/arm64/boot/dts/rockchip/rk3588.dtsi
-> > +++ b/arch/arm64/boot/dts/rockchip/rk3588.dtsi
-> > @@ -7,6 +7,11 @@
-> >  #include "rk3588-pinctrl.dtsi"
-> > =20
-> >  / {
-> > +	pcie30_phy_grf: syscon@fd5b8000 {
-> > +		compatible =3D "rockchip,rk3588-pcie3-phy-grf", "syscon";
-> > +		reg =3D <0x0 0xfd5b8000 0x0 0x10000>;
-> > +	};
-> > +
-> >  	pipe_phy1_grf: syscon@fd5c0000 {
-> >  		compatible =3D "rockchip,rk3588-pipe-phy-grf", "syscon";
-> >  		reg =3D <0x0 0xfd5c0000 0x0 0x100>;
+On Tue, Jul 18, 2023 at 05:31:51PM +0200, Michael Riesch wrote:
+> Add compatible for the Jasonic Technology Ltd. JT240MHQS-HWT-EK-E3
+> display.
 >=20
-> What tree is based this on? Even after applying your PCIe2 series I don't=
- have the above
-> node so the patch doesn't apply to mainline.
+> Signed-off-by: Michael Riesch <michael.riesch@wolfvision.net>
+> ---
+>  Documentation/devicetree/bindings/display/panel/sitronix,st7789v.yaml | =
+1 +
+>  1 file changed, 1 insertion(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/display/panel/sitronix,st7=
+789v.yaml b/Documentation/devicetree/bindings/display/panel/sitronix,st7789=
+v.yaml
+> index 905c064cd106..eb1a7256ac32 100644
+> --- a/Documentation/devicetree/bindings/display/panel/sitronix,st7789v.ya=
+ml
+> +++ b/Documentation/devicetree/bindings/display/panel/sitronix,st7789v.ya=
+ml
+> @@ -18,6 +18,7 @@ properties:
+>      enum:
+>        - edt,et028013dma
+>        - inanbo,t28cp45tn89-v17
+> +      - jasonic,jt240mhqs-hwt-ek-e3
 
-You are missing naneng-combphy support:
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-https://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.git/co=
-mmit/?h=3Dv6.6-armsoc/dts64&id=3D6ebd55b3bba383e0523b0c014f17c97f3ce80708
+Cheers,
+Conor.
 
--- Sebastian
+>        - sitronix,st7789v
+> =20
+>    reg: true
+>=20
+> --=20
+> 2.30.2
+>=20
 
---4xub73vban4yxnem
+--dfkE5JaiJoHSnNRG
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmS2t1IACgkQ2O7X88g7
-+pqi5w/+MtPLKzu0zQdj3a5g9sZvB/lE1Ajhuqbg99UmDnDpcKnAmovt4GrDpl9D
-czMjsyIfV2yuvu3cb2quGMdn0oU61vE/Kbi5vnr9PWCWAeljpko+f45Qm9qR9GHb
-+EWu4q5jtw5hsQrMLrGztOcKeM16eY/ArHFlwNtc2paHAS0AyAGDrJFsX31+3/b6
-rWGd2bdbeo+06VOcFjNO+eZPPb2ayUOzgPk8pvtUrUbHlE2pUj6XAAlvLHk7Cb/x
-yPkW9lw29OY/+acWnZTDBTCEGHfwHr8my8L3JN0K1ayMTFlDhDFWyxZCZH8iDweB
-Aiwmhnt7hR1GhY9590dIgOjt+GV3Qph1G2wVAaWV4KMEbBG6xf+X3IpOwC55nqDt
-W9/Z9wpb0OZye+JTIeap7L8tGPVP6SFjQdPf4fWt9D3O13EhgwHSOZLTCaq0oGXu
-Cp05ioeDHq9NU/NA6YrOa8YBC/i9FfheGwaRGcpKqMakhMxk9TNpMWqDQ00ASY+9
-33IgWjLXICSnrgogB0hXwrPwT7+loIBCbXNy8+U8F0IuICu0WCy6x0TlyDfJP+aM
-vAscSUpMqYRHVPSbfO5eOS+dUtnBOLimZt5GpRYHu0cjSisD1rAh+kzPAGpsAE6W
-sY9NKRcNxncmrDygY3nmTX6z7gVMVtPMXkBu19+KvRtq3y/o7U0=
-=hXOJ
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZLa4BAAKCRB4tDGHoIJi
+0lGcAQCzZ+ilxAtoiJh6JOa61LrzqrMCGZ9S+wVR5O9qT33nTgEA4xpTjrWZ96u0
+CmzULkM3CKVNhgrk4IxAI6N16acLAwM=
+=0upB
 -----END PGP SIGNATURE-----
 
---4xub73vban4yxnem--
+--dfkE5JaiJoHSnNRG--
