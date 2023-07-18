@@ -2,134 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ECE07757D34
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 15:20:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 291F2757D3E
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 15:21:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231730AbjGRNUc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jul 2023 09:20:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55584 "EHLO
+        id S232698AbjGRNVd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jul 2023 09:21:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56488 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230435AbjGRNUb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 09:20:31 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23C35FA
-        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 06:20:28 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-51d95aed33aso7746661a12.3
-        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 06:20:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689686426; x=1692278426;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=cWOtIA2FOFVa8PRRZ9oT4YgXxX5Q0c4ZWH1V2fHFko8=;
-        b=tuCv5nNpIgNZNOk9InN3JuvIrDKEMvTFVXBhXyPskz8m/khI6AYxDlmAvvbwlMYeRO
-         ZQq0+SnvDnXAIxwUeskNXgZB2AEMQf/Ge2t10snnrlfjD530P+xx3ZRqNeS9XzMEeedz
-         T+AEKGFrwYJQQT4pgUzKmKXVw/pPXKurgcdhDpZ4ZJw/o1BRb5diEiGFgeBmTPia0D8c
-         UMEHbm19zUUF5FNb192xqmCkGSGjTeAm8oQ353MQoVXSzx8kOO2EbwO5GBAtBlfGEZoS
-         kSQ+X9qxyWYGn0itaFOuy2fsSXqlbDPoa6Bj/X/V7VpdHlobyxnZaaHxF8F/eHqMMbIo
-         eFTg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689686426; x=1692278426;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=cWOtIA2FOFVa8PRRZ9oT4YgXxX5Q0c4ZWH1V2fHFko8=;
-        b=FOa8j7sF5OlUZlk3ndt+xSMPIl9oPFRqGsiY4XnEb/yg+YO+RqToF5NDcYT7pvhFO0
-         dRpp3E9OpajaVg7SI56LZr7vTP0lVnSuTfm1DebYmpmcSZSozYw8HWHH/PnLSG3KsaqT
-         Vmd/yOs09fJDhYBsOTGaDAI6EcUb9+fBGlc+LOgyRuekfZ91fgoWqT+r8fE3EusZqhUn
-         xTWE2K3lqvyEN573rBMVDxFuGIVudhYpEsSzqyX2j4vUgjb5FcSznKZKf5LwQenSynLq
-         0UIgHQ6Sc+Wso4NBB7WfLyV57Cbue/NWpu1kl5i7Q9NpDIikMKRXaa1BDbsknOM7+z2b
-         cMLA==
-X-Gm-Message-State: ABy/qLbIfFvwGK9hEjLASviEfqwN/+L2dpN//yeqCzJN+sVHkRt0RK/G
-        gnoTWCh9qumzUUEpShnZcwUzBQ==
-X-Google-Smtp-Source: APBJJlGmSDTqKT1bqClQ7VNG9peQWayYbYAKzZ52ByeEncXh9CsvydwFEyqgGiZGFAQdygdkc8BpqA==
-X-Received: by 2002:aa7:da51:0:b0:51e:22dd:5e90 with SMTP id w17-20020aa7da51000000b0051e22dd5e90mr11657748eds.4.1689686426505;
-        Tue, 18 Jul 2023 06:20:26 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id c18-20020aa7c752000000b00514a5f7a145sm1232174eds.37.2023.07.18.06.20.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 18 Jul 2023 06:20:25 -0700 (PDT)
-Message-ID: <22e7dc73-2411-5cb1-6cef-daa5f2af8297@linaro.org>
-Date:   Tue, 18 Jul 2023 15:20:24 +0200
+        with ESMTP id S232577AbjGRNVQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 09:21:16 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFC971739
+        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 06:21:05 -0700 (PDT)
+Received: from dude02.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::28])
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <m.felsch@pengutronix.de>)
+        id 1qLkdK-00062z-18; Tue, 18 Jul 2023 15:20:54 +0200
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        peppe.cavallaro@st.com, alexandre.torgue@foss.st.com,
+        joabreu@synopsys.com, mcoquelin.stm32@gmail.com
+Cc:     devicetree@vger.kernel.org, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org, kernel@pengutronix.de,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH net-next v2 1/2] dt-bindings: net: snps,dwmac: add phy-supply support
+Date:   Tue, 18 Jul 2023 15:20:48 +0200
+Message-Id: <20230718132049.3028341-1-m.felsch@pengutronix.de>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH 1/2] dt-bindings: reset: Updated binding for Versal-NET
- reset driver
-To:     Michal Simek <michal.simek@amd.com>,
-        Conor Dooley <conor@kernel.org>,
-        Piyush Mehta <piyush.mehta@amd.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, p.zabel@pengutronix.de,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        git@amd.com
-References: <20230717112348.1381367-1-piyush.mehta@amd.com>
- <20230717112348.1381367-2-piyush.mehta@amd.com>
- <20230717-explode-caucus-82c12e340e39@spud>
- <ee81e955-32be-66ea-377b-263ee60a2632@linaro.org>
- <e8f48a30-9aff-bc2f-d03f-793840a192c9@amd.com>
- <694a1314-0b25-ff5e-b19f-5a0efe07bf64@linaro.org>
- <cae162d0-843d-ca1f-80d3-5a0dfe1e3d0f@amd.com>
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <cae162d0-843d-ca1f-80d3-5a0dfe1e3d0f@amd.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:1101:1d::28
+X-SA-Exim-Mail-From: m.felsch@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/07/2023 15:11, Michal Simek wrote:
->>>
->>> That numbers in DT are virtual no matter if you use ID from 0 to max or random
->>> values it is up to code to handle them. Checking nr_pins against ID is done in
->>> core but it is up to drivers.
->>
->> No, you confuse "virtual" and "ID". IDs are not virtual. IDs are real
->> and have representation in Linux driver. You do not need to define
->> anything virtual in the bindings.
-> 
-> Not sure how you define ID itself. But HW doesn't know ID. HW knows only 
-> register which you can use to perform the reset. It is not really 128bit 
-> register where every bit targets to different IP.
-> 
-> And this is SW-firmware interface like SCMI reset driver.
-> 
-> Firmware is saying that ID 0 is QSPI, ID 1 is MMC.
-> Their Linux driver is asking for nr_reset via firmware call which can be 
-> different for different SOC and that's fine and I have no problem with it.
-> But only SCMI server is dictating that ID 0 is QSPI and ID 1 is MMC. Different 
-> SCMI server implementation can map it differently.
+Document the common phy-supply property to be able to specify a phy
+regulator.
 
-Sure, and all this points to: no need for bindings.
+Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ Documentation/devicetree/bindings/net/snps,dwmac.yaml | 3 +++
+ 1 file changed, 3 insertions(+)
 
-> 
-> 
->>> In our case that IDs are coming from firmware and driver itself is just matching
->>> them.
->>
->> So they are the same as if coming from hardware - no need for IDs.
-> 
-> It is hard to say what hardware here exactly is. From my perspective and I am 
-> not advocating not using IDs from 0 to max, it is just a number.
-> 
-> If my firmware knows that QSPI reset is 0xc10402dU then I will just pass it to 
-> reach my goal which is reset QSPI IP.
-> 
-> If you think that we should use IDs from 0 to max NR I am happy to pass this 
-> message to PM team and we should extend any SW to do translation between.
-
-When we talk about IDs and bindings, we mean IDs meaningful to Linux.
-Whatever is ignored by Linux and passed to anyone else - hardware or
-firmware - is not a ID anymore from bindings point of view. It's just
-some value.
-
-Best regards,
-Krzysztof
+diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+index 363b3e3ea3a60..f66d1839cf561 100644
+--- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
++++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+@@ -159,6 +159,9 @@ properties:
+       can be passive (no SW requirement), and requires that the MAC operate
+       in a different mode than the PHY in order to function.
+ 
++  phy-supply:
++    description: PHY regulator
++
+   snps,axi-config:
+     $ref: /schemas/types.yaml#/definitions/phandle
+     description:
+-- 
+2.39.2
 
