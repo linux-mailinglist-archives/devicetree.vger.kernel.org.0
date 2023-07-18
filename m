@@ -2,80 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 067F2757767
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 11:09:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 689E07577A4
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 11:17:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230364AbjGRJJg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jul 2023 05:09:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50002 "EHLO
+        id S232203AbjGRJRC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jul 2023 05:17:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55862 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229471AbjGRJJf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 05:09:35 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0B02E4C;
-        Tue, 18 Jul 2023 02:09:31 -0700 (PDT)
-Received: from eugen-station.. (unknown [82.76.24.202])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: ehristev)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 02201660702C;
-        Tue, 18 Jul 2023 10:09:29 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1689671370;
-        bh=LRgumKXnd6HM84mjqPVewOO4GAbvkbnnAGnSqH3ASMI=;
-        h=From:To:Cc:Subject:Date:From;
-        b=LA3ZsJ3+9vkedXXQOHUVhKKF9X4DaU/+cqVSkYFPUm3vYxLoFvr2h7SIFCwNPxCs8
-         BslBR6YzrSsk5soWRFYnoozpj49DLm5bY6IolMENAqGg4o5QOgrThCL8XjDVIrZ8HI
-         rC05vfQ55eYePb4uM3gSwhywP8gYY83c9/hGiGFfgp3I1mxWsKEaogCAtVqZSDXhMt
-         WTFhrm3tmVTR2eqvY1gOhlbmfpbMFQ+wFSfrYzst7sM79t6MaD8p2hs7fyOdX+2Kxx
-         2CvqLHepOq43ZHmJlaAJk5sS2pk23bkKSyOi7W7q2zAw3dCNpf0lD6p2kqu4kxuUpc
-         i49kF5T8bgD/g==
-From:   Eugen Hristev <eugen.hristev@collabora.com>
-To:     linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        netdev@vger.kernel.org
-Cc:     david.wu@rock-chips.com, heiko@sntech.de,
-        krzysztof.kozlowski+dt@linaro.org, kernel@collabora.com,
-        Eugen Hristev <eugen.hristev@collabora.com>
-Subject: [PATCH] dt-bindings: net: rockchip-dwmac: add default 'input' for clock_in_out
-Date:   Tue, 18 Jul 2023 12:09:14 +0300
-Message-Id: <20230718090914.282293-1-eugen.hristev@collabora.com>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S232209AbjGRJQx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 05:16:53 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 423DD1989;
+        Tue, 18 Jul 2023 02:16:26 -0700 (PDT)
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36I7tBVO006337;
+        Tue, 18 Jul 2023 09:13:01 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=6UY3mA8JU1z+rMDnfpEi65NaBIbbqhF+wr23GQYgRvE=;
+ b=F37Aa/yDIb56ETzuILLhkrVUHUsMiuBb1Wj0ZS5ReBW0dka2sLZkQ/gxcjE93C3yIxQt
+ tr6qBOcN3KeQ0VhsmbRoyoGM9pEFeKcTibTWn3YCD/uW+66if67w2COLiT333hdaIppS
+ +VMefakEApzx2EY9PiSV1A3iCeLP/lcEJcFgQm/R55cB6+tG5FYYP4spUf8MaCXqLKGs
+ M6Z/DD8r/hQdwj0jeToBXEf2acJTmvyLGwx/czJKXxUFMt8eQRE5NfvIJJ6EU5/dC8/c
+ QzYCQXKM1Chu2GCwGNFJKGD8Hy3PoISsb5o57ICHt1IcuMd+Wna5fPMipOL8mH2uLYn4 hQ== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3rwps585mm-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 18 Jul 2023 09:13:01 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 36I9CxEL021663
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 18 Jul 2023 09:12:59 GMT
+Received: from [10.216.57.55] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Tue, 18 Jul
+ 2023 02:12:51 -0700
+Message-ID: <e32b7dff-8735-e5a2-a782-e5fd6ca79934@quicinc.com>
+Date:   Tue, 18 Jul 2023 14:42:44 +0530
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH 4/6] clk: qcom: Add NSS clock Controller driver for
+ IPQ9574
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <mturquette@baylibre.com>,
+        <sboyd@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <catalin.marinas@arm.com>, <will@kernel.org>,
+        <p.zabel@pengutronix.de>, <richardcochran@gmail.com>,
+        <arnd@arndb.de>, <geert+renesas@glider.be>,
+        <neil.armstrong@linaro.org>, <nfraprado@collabora.com>,
+        <rafal@milecki.pl>, <linux-arm-msm@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <netdev@vger.kernel.org>
+CC:     <quic_saahtoma@quicinc.com>
+References: <20230711093529.18355-1-quic_devipriy@quicinc.com>
+ <20230711093529.18355-5-quic_devipriy@quicinc.com>
+ <fa2fae05-7ff3-ec6b-45a9-b256b9d5d92c@linaro.org>
+Content-Language: en-US
+From:   Devi Priya <quic_devipriy@quicinc.com>
+In-Reply-To: <fa2fae05-7ff3-ec6b-45a9-b256b9d5d92c@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: YMfWCmMZUbJdsLl2ySMjhQPQxQ1VjxRI
+X-Proofpoint-ORIG-GUID: YMfWCmMZUbJdsLl2ySMjhQPQxQ1VjxRI
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-07-17_15,2023-07-13_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 malwarescore=0
+ mlxlogscore=896 lowpriorityscore=0 suspectscore=0 bulkscore=0
+ priorityscore=1501 adultscore=0 impostorscore=0 phishscore=0 clxscore=1015
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2306200000 definitions=main-2307180083
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-'clock_in_out' property is optional, and it can be one of two enums.
-The binding does not specify what is the behavior when the property is
-missing altogether.
-Hence, add a default value that the driver can use.
 
-Signed-off-by: Eugen Hristev <eugen.hristev@collabora.com>
----
- Documentation/devicetree/bindings/net/rockchip-dwmac.yaml | 1 +
- 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml b/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
-index 176ea5f90251..bb943c96c196 100644
---- a/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
-+++ b/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
-@@ -80,6 +80,7 @@ properties:
-       "output" means GMAC provides the reference clock.
-     $ref: /schemas/types.yaml#/definitions/string
-     enum: [input, output]
-+    default: input
- 
-   rockchip,grf:
-     description: The phandle of the syscon node for the general register file.
--- 
-2.34.1
+On 7/11/2023 3:26 PM, Krzysztof Kozlowski wrote:
+> On 11/07/2023 11:35, Devi Priya wrote:
+>> Add Networking Sub System Clock Controller(NSSCC) driver for ipq9574 based
+>> devices.
+>>
+>> Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
+>> ---
+>>   drivers/clk/qcom/Kconfig         |    6 +
+>>   drivers/clk/qcom/Makefile        |    1 +
+>>   drivers/clk/qcom/nsscc-ipq9574.c | 3080 ++++++++++++++++++++++++++++++
+>>   3 files changed, 3087 insertions(+)
+>>   create mode 100644 drivers/clk/qcom/nsscc-ipq9574.c
+>>
+>> diff --git a/drivers/clk/qcom/Kconfig b/drivers/clk/qcom/Kconfig
+>> index 263e55d75e3f..5556063d204f 100644
+>> --- a/drivers/clk/qcom/Kconfig
+>> +++ b/drivers/clk/qcom/Kconfig
+>> @@ -195,6 +195,12 @@ config IPQ_GCC_9574
+>>   	  i2c, USB, SD/eMMC, etc. Select this for the root clock
+>>   	  of ipq9574.
+>>   
+>> +config IPQ_NSSCC_9574
+>> +	tristate "IPQ9574 NSS Clock Controller"
+> 
+> I think you do not run arm32 there, so missing depends on ARM64 ||
+> COMPILE_TEST
 
+Okay, will update this in V2
+
+Thanks,
+Devi Priya
+> 
+>> +	depends on IPQ_GCC_9574
+>> +	help
+>> +	  Support for NSS clock controller on ipq9574 devices.
+>> +
+> 
+> 
+> Best regards,
+> Krzysztof
+> 
