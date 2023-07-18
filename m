@@ -2,256 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 97361757A93
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 13:39:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 732AD757A50
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 13:21:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230022AbjGRLjf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jul 2023 07:39:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47328 "EHLO
+        id S230286AbjGRLV4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jul 2023 07:21:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38780 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229797AbjGRLjf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 07:39:35 -0400
-X-Greylist: delayed 598 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 18 Jul 2023 04:39:33 PDT
-Received: from mail.croughan.sh (mail.croughan.sh [135.181.193.41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4833E1AC;
-        Tue, 18 Jul 2023 04:39:33 -0700 (PDT)
-From:   Matthew Croughan <matthew.croughan@nix.how>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nix.how; s=mail;
-        t=1689679185; bh=EKwrix3EnhCGzCZ8LjEib/k02rDGeBqZS8NBwK4dCTE=;
-        h=From:To:Cc:Subject:Date;
-        b=dINMv/x9Xr89p1+jJC/hdQO1KTNVn1y+DsetZkQ2nOA4uhz7ngz1/iQIbg9/7rSnX
-         s5U7Lb8jANJpWWSyixmHakirWlfkm0lblBgxTRvQVrbOPRe1Foxry0AP3wJUcsnUaz
-         lA46FVu/kdJqbaycBVrZbbLsQ4qRb2GwqdzlO9wA=
+        with ESMTP id S230111AbjGRLVz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 07:21:55 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23568E8;
+        Tue, 18 Jul 2023 04:21:53 -0700 (PDT)
+X-UUID: 49b846d6255d11ee9cb5633481061a41-20230718
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=lKkjvXtoAymLFKitwFRjfHiPPpFieshzQX9Gwp7ANeA=;
+        b=ngUI8qlrZk/by8naYx8BOUt+OSW9Mr6tgLbPMReTFSz/mTZMfw8voUaj88pEWqw38f+BtEA8OnCZq7BlKD5PGCtCmIr+uLVndmAEbmFeTH5VtBu6X4oaNcXnJsmfh3WgwCy3UBTAzt/5o0Od6/4gibJ+lM5jlRbPCk2zk6RBC6U=;
+X-CID-UNFAMILIAR: 1
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.28,REQID:ed73ab56-fd64-4012-8f06-06e7d5bca952,IP:0,U
+        RL:0,TC:0,Content:-5,EDM:0,RT:0,SF:100,FILE:0,BULK:0,RULE:Release_Ham,ACTI
+        ON:release,TS:95
+X-CID-INFO: VERSION:1.1.28,REQID:ed73ab56-fd64-4012-8f06-06e7d5bca952,IP:0,URL
+        :0,TC:0,Content:-5,EDM:0,RT:0,SF:100,FILE:0,BULK:0,RULE:Spam_GS981B3D,ACTI
+        ON:quarantine,TS:95
+X-CID-META: VersionHash:176cd25,CLOUDID:898dc187-44fb-401c-8de7-6a5572f1f5d5,B
+        ulkID:230718192149NV4B6JMX,BulkQuantity:0,Recheck:0,SF:38|29|28|16|19|48,T
+        C:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
+        ,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_FSD,TF_CID_SPAM_SNR,TF_CID_SPAM_SDM,TF_CID_SPAM_ASC,
+        TF_CID_SPAM_USA
+X-UUID: 49b846d6255d11ee9cb5633481061a41-20230718
+Received: from mtkmbs14n1.mediatek.inc [(172.21.101.75)] by mailgw01.mediatek.com
+        (envelope-from <william-tw.lin@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1329607392; Tue, 18 Jul 2023 19:21:49 +0800
+Received: from mtkmbs13n2.mediatek.inc (172.21.101.108) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Tue, 18 Jul 2023 19:21:48 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs13n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Tue, 18 Jul 2023 19:21:48 +0800
+From:   William-tw Lin <william-tw.lin@mediatek.com>
 To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>
-Cc:     Matthew Croughan <matthew.croughan@nix.how>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: allwinner: h616: Add Mango Pi MQ-Quad DTS
-Date:   Tue, 18 Jul 2023 12:19:07 +0100
-Message-ID: <20230718111908.1178727-1-matthew.croughan@nix.how>
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Kevin Hilman <khilman@kernel.org>
+CC:     <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>,
+        William-tw Lin <william-tw.lin@mediatek.com>
+Subject: [PATCH 0/3] mtk-socinfo driver implementation
+Date:   Tue, 18 Jul 2023 19:21:40 +0800
+Message-ID: <20230718112143.14036-1-william-tw.lin@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Mango Pi MQ Quad is a H616 based SBC, add basic support for the board
-and its peripherals
----
- arch/arm64/boot/dts/allwinner/Makefile        |   1 +
- .../allwinner/sun50i-h616-mangopi-mq-quad.dts | 183 ++++++++++++++++++
- 2 files changed, 184 insertions(+)
- create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h616-mangopi-mq-quad.dts
+This purpose for these patches is to enable soc-related information 
+retrival. Such information includes manufacturer information, SoC name,
+SoC segment name, and SoC marketing name.
 
-diff --git a/arch/arm64/boot/dts/allwinner/Makefile b/arch/arm64/boot/dts/allwinner/Makefile
-index 6a96494a2e0a..fbc64885ef79 100644
---- a/arch/arm64/boot/dts/allwinner/Makefile
-+++ b/arch/arm64/boot/dts/allwinner/Makefile
-@@ -40,3 +40,4 @@ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-tanix-tx6.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-tanix-tx6-mini.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-orangepi-zero2.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-x96-mate.dtb
-+dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-mangopi-mq-quad.dtb
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616-mangopi-mq-quad.dts b/arch/arm64/boot/dts/allwinner/sun50i-h616-mangopi-mq-quad.dts
-new file mode 100644
-index 000000000000..752e5296c4af
---- /dev/null
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h616-mangopi-mq-quad.dts
-@@ -0,0 +1,183 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+// Copyright (C) 2020 Arm Ltd.
-+/*
-+ * Copyright (C) 2023 Matthew Croughan <matthew.croughan@nix.how>
-+ */
-+
-+/dts-v1/;
-+
-+#include "sun50i-h616.dtsi"
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/interrupt-controller/arm-gic.h>
-+#include <dt-bindings/leds/common.h>
-+
-+/ {
-+	model = "MangoPi MQ-Quad";
-+	compatible = "allwinner,sun50i-h616";
-+
-+	aliases {
-+		serial0 = &uart0;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		led-0 {
-+			function = LED_FUNCTION_STATUS;
-+			color = <LED_COLOR_ID_GREEN>;
-+			gpios = <&pio 2 13 GPIO_ACTIVE_HIGH>; /* PC13 */
-+		};
-+	};
-+
-+	reg_vcc5v: vcc5v {
-+		/* board wide 5V supply directly from the USB-C socket */
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc-5v";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		regulator-always-on;
-+	};
-+
-+	reg_vcc3v3: vcc3v3 {
-+		/* board wide 3V3 supply directly from SY8008 regulator */
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc-3v3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-always-on;
-+	};
-+
-+	wifi_pwrseq: wifi-pwrseq {
-+		compatible = "mmc-pwrseq-simple";
-+		reset-gpios = <&pio 6 18 GPIO_ACTIVE_LOW>; /* PG18 */
-+	};
-+};
-+
-+&ehci1 {
-+	status = "okay";
-+};
-+
-+/* USB 2 & 3 are on headers only. */
-+
-+&mmc0 {
-+	vmmc-supply = <&reg_vcc3v3>;
-+	cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>;	/* PF6 */
-+	bus-width = <4>;
-+	status = "okay";
-+};
-+
-+&mmc1 {
-+	bus-width = <4>;
-+	mmc-pwrseq = <&wifi_pwrseq>;
-+	non-removable;
-+	vmmc-supply = <&reg_vcc3v3>;
-+	vqmmc-supply = <&reg_vcc3v3>;
-+	pinctrl-0 = <&mmc1_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+
-+	rtl8723ds: wifi@1 {
-+		reg = <1>;
-+		interrupt-parent = <&pio>;
-+		interrupts = <6 15 IRQ_TYPE_LEVEL_LOW>; /* PG15 */
-+		interrupt-names = "host-wake";
-+	};
-+};
-+
-+
-+&uart1 {
-+	uart-has-rtscts;
-+	pinctrl-0 = <&uart1_pins>, <&uart1_rts_cts_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+
-+	bluetooth {
-+		compatible = "realtek,rtl8723ds-bt";
-+		device-wake-gpios = <&pio 6 17 GPIO_ACTIVE_HIGH>; /* PG17 */
-+		enable-gpios = <&pio 6 19 GPIO_ACTIVE_HIGH>; /* PG19 */
-+		host-wake-gpios = <&pio 6 16 GPIO_ACTIVE_HIGH>; /* PG16 */
-+	};
-+};
-+
-+&ohci1 {
-+	status = "okay";
-+};
-+
-+&r_i2c {
-+	status = "okay";
-+
-+	axp313a: pmic@36 {
-+		compatible = "x-powers,axp313a";
-+		reg = <0x36>;
-+		x-powers,self-working-mode;
-+		regulators {
-+			reg_aldo1: aldo1 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-name = "vcc-1v8";
-+			};
-+
-+			reg_dldo1: dldo1 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-name = "vcc-3v3-pmic";
-+			};
-+
-+			reg_dcdc1: dcdc1 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <810000>;
-+				regulator-max-microvolt = <990000>;
-+				regulator-name = "vdd-gpu-sys";
-+			};
-+
-+			reg_dcdc2: dcdc2 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <810000>;
-+				regulator-max-microvolt = <1100000>;
-+				regulator-name = "vdd-cpu";
-+			};
-+
-+			reg_dcdc3: dcdc3 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <1500000>;
-+				regulator-max-microvolt = <1500000>;
-+				regulator-name = "vdd-dram";
-+			};
-+
-+		};
-+	};
-+};
-+
-+&uart0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart0_ph_pins>;
-+	status = "okay";
-+};
-+
-+&usbotg {
-+	/*
-+	 * PHY0 pins are connected to a USB-C socket, but a role switch
-+	 * is not implemented: both CC pins are pulled to GND.
-+	 * The VBUS pins power the device, so a fixed peripheral mode
-+	 * is the best choice.
-+	 * The board can be powered via GPIOs, in this case port0 *can*
-+	 * act as a host (with a cable/adapter ignoring CC), as VBUS is
-+	 * then provided by the GPIOs. Any user of this setup would
-+	 * need to adjust the DT accordingly: dr_mode set to "host",
-+	 * enabling OHCI0 and EHCI0.
-+	 */
-+	dr_mode = "peripheral";
-+	status = "okay";
-+};
-+
-+&usbphy {
-+	usb1_vbus-supply = <&reg_vcc5v>;
-+	status = "okay";
-+};
+Based on tag: next-20230718, linux-next/master
+
+William-tw Lin (3):
+  soc: mediatek: mtk-socinfo: Add driver for getting chip information
+  dt-bindings: soc: mediatek: Add mtk-socinfo driver
+  arm64: dts: Add node for chip info driver
+
+ .../bindings/soc/mediatek/mtk-socinfo.yaml    |  58 +++++
+ arch/arm64/boot/dts/mediatek/mt8173.dtsi      |  15 ++
+ arch/arm64/boot/dts/mediatek/mt8183.dtsi      |  15 ++
+ arch/arm64/boot/dts/mediatek/mt8186.dtsi      |  10 +
+ arch/arm64/boot/dts/mediatek/mt8192.dtsi      |  14 ++
+ arch/arm64/boot/dts/mediatek/mt8195.dtsi      |   9 +
+ drivers/soc/mediatek/Kconfig                  |  18 ++
+ drivers/soc/mediatek/Makefile                 |   1 +
+ drivers/soc/mediatek/mtk-socinfo.c            | 203 +++++++++++++++++
+ drivers/soc/mediatek/mtk-socinfo.h            | 213 ++++++++++++++++++
+ 10 files changed, 556 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/soc/mediatek/mtk-socinfo.yaml
+ create mode 100644 drivers/soc/mediatek/mtk-socinfo.c
+ create mode 100644 drivers/soc/mediatek/mtk-socinfo.h
+
 -- 
-2.41.0
+2.18.0
 
