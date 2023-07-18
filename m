@@ -2,187 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 15D38758652
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 22:55:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C8CF075865D
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 23:00:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229553AbjGRUzq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jul 2023 16:55:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55358 "EHLO
+        id S231179AbjGRVAV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jul 2023 17:00:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57180 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231138AbjGRUzo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 16:55:44 -0400
-Received: from finn.localdomain (finn.gateworks.com [108.161.129.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC43A1992;
-        Tue, 18 Jul 2023 13:55:43 -0700 (PDT)
-Received: from 068-189-091-139.biz.spectrum.com ([68.189.91.139] helo=tharvey.pdc.gateworks.com)
-        by finn.localdomain with esmtp (Exim 4.93)
-        (envelope-from <tharvey@gateworks.com>)
-        id 1qLrjQ-007EVu-7i; Tue, 18 Jul 2023 20:55:40 +0000
-From:   Tim Harvey <tharvey@gateworks.com>
-To:     Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S231162AbjGRVAU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 17:00:20 -0400
+Received: from relay08.th.seeweb.it (relay08.th.seeweb.it [5.144.164.169])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 928D1198C
+        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 14:00:17 -0700 (PDT)
+Received: from SoMainline.org (94-211-6-86.cable.dynamic.v4.ziggo.nl [94.211.6.86])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id B80FB3F78F;
+        Tue, 18 Jul 2023 23:00:12 +0200 (CEST)
+Date:   Tue, 18 Jul 2023 23:00:10 +0200
+From:   Marijn Suijten <marijn.suijten@somainline.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Tim Harvey <tharvey@gateworks.com>
-Subject: [PATCH v2] arm64: dts: imx8mm: add imx8mm-venice-gw72xx-0x-rpidsi overlay for display
-Date:   Tue, 18 Jul 2023 13:55:38 -0700
-Message-Id: <20230718205538.4108487-1-tharvey@gateworks.com>
-X-Mailer: git-send-email 2.25.1
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Krishna Manikandan <quic_mkrishn@quicinc.com>,
+        Loic Poulain <loic.poulain@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        linux-clk@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, Lux Aliaga <they@mint.lgbt>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v2 10/15] dt-bindings: msm: dsi-phy-14nm: Document SM6125
+ variant
+Message-ID: <yzz4dddlh2no3lmuxrkuxhsuaf3brruo635pgfpnaxwffmnl6j@uk3jxtoarg7w>
+References: <20230627-sm6125-dpu-v2-0-03e430a2078c@somainline.org>
+ <20230627-sm6125-dpu-v2-10-03e430a2078c@somainline.org>
+ <285facd1-bf20-aff2-b680-f796e8830038@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <285facd1-bf20-aff2-b680-f796e8830038@linaro.org>
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for the following Raspberry Pi displays:
- - DFROBOT DRF0678 7in 800x480 TFT DSI capacitive touch
- - DFROBOT DRF0550 5in 800x480 TFT DSI capacitive touch
+On 2023-06-29 13:54:13, Dmitry Baryshkov wrote:
+> On 27/06/2023 23:14, Marijn Suijten wrote:
+> > Document availability of the 14nm DSI PHY on SM6125.  Note that this
+> > compatible uses the SoC-suffix variant, intead of postfixing an
+> > arbitrary number without the sm/sdm portion.  The PHY is not powered by
+> > a vcca regulator like on most SoCs, but by the MX power domain that is
+> > provided via the power-domains property and a single corresponding
+> > required-opps.
+> > 
+> > Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
+> > ---
+> >   .../devicetree/bindings/display/msm/dsi-phy-14nm.yaml         | 11 +++++++++++
+> >   1 file changed, 11 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/display/msm/dsi-phy-14nm.yaml b/Documentation/devicetree/bindings/display/msm/dsi-phy-14nm.yaml
+> > index a43e11d3b00d..183a26f8a6dc 100644
+> > --- a/Documentation/devicetree/bindings/display/msm/dsi-phy-14nm.yaml
+> > +++ b/Documentation/devicetree/bindings/display/msm/dsi-phy-14nm.yaml
+> > @@ -19,6 +19,7 @@ properties:
+> >         - qcom,dsi-phy-14nm-2290
+> >         - qcom,dsi-phy-14nm-660
+> >         - qcom,dsi-phy-14nm-8953
+> > +      - qcom,sm6125-dsi-phy-14nm
+> >   
+> >     reg:
+> >       items:
+> > @@ -35,6 +36,16 @@ properties:
+> >     vcca-supply:
+> >       description: Phandle to vcca regulator device node.
+> >   
+> > +  power-domains:
+> > +    description:
+> > +      A phandle and PM domain specifier for an optional power domain.
+> > +    maxItems: 1
+> > +
+> > +  required-opps:
+> > +    description:
+> > +      A phandle to an OPP node describing an optional performance point.
+> 
+> I'd rephrase this to be something more exact, like 'desribing power 
+> domain's performance point'.
 
-Both have the following hardware:
- - FocalTech FT5406 10pt touch controller (with no interrupt)
- - Powertip PH800480T013-IDF02 compatible panel
- - Toshiba TC358762 compatible DSI to DBI bridge
- - ATTINY based regulator used for backlight controller and panel enable
+Sure.  I'll leave out the word "optional", that becomes obvious from
+maxItems:1 without minItems, together with referencing a PM which itself
+is already optional.
 
-Support is added via a device-tree overlay. The touch controller is not
-yet supported as polling mode is needed.
+- Marijn
 
-Signed-off-by: Tim Harvey <tharvey@gateworks.com>
----
-v2:
- - add newline between properties and child nodes
----
- arch/arm64/boot/dts/freescale/Makefile        |  2 +
- .../imx8mm-venice-gw72xx-0x-rpidsi.dtso       | 90 +++++++++++++++++++
- 2 files changed, 92 insertions(+)
- create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx-0x-rpidsi.dtso
-
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index df572cfd0931..454b07ed09fc 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -147,6 +147,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8ulp-evk.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx93-11x11-evk.dtb
- 
- imx8mm-venice-gw72xx-0x-imx219-dtbs	:= imx8mm-venice-gw72xx-0x.dtb imx8mm-venice-gw72xx-0x-imx219.dtbo
-+imx8mm-venice-gw72xx-0x-rpidsi-dtbs	:= imx8mm-venice-gw72xx-0x.dtb imx8mm-venice-gw72xx-0x-rpidsi.dtbo
- imx8mm-venice-gw72xx-0x-rs232-rts-dtbs	:= imx8mm-venice-gw72xx-0x.dtb imx8mm-venice-gw72xx-0x-rs232-rts.dtbo
- imx8mm-venice-gw72xx-0x-rs422-dtbs	:= imx8mm-venice-gw72xx-0x.dtb imx8mm-venice-gw72xx-0x-rs422.dtbo
- imx8mm-venice-gw72xx-0x-rs485-dtbs	:= imx8mm-venice-gw72xx-0x.dtb imx8mm-venice-gw72xx-0x-rs485.dtbo
-@@ -157,6 +158,7 @@ imx8mm-venice-gw73xx-0x-rs422-dtbs	:= imx8mm-venice-gw73xx-0x.dtb imx8mm-venice-
- imx8mm-venice-gw73xx-0x-rs485-dtbs	:= imx8mm-venice-gw73xx-0x.dtb imx8mm-venice-gw73xx-0x-rs485.dtbo
- 
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw72xx-0x-imx219.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw72xx-0x-rpidsi.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw72xx-0x-rs232-rts.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw72xx-0x-rs422.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw72xx-0x-rs485.dtb
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx-0x-rpidsi.dtso b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx-0x-rpidsi.dtso
-new file mode 100644
-index 000000000000..e0768d408c3b
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx-0x-rpidsi.dtso
-@@ -0,0 +1,90 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright 2023 Gateworks Corporation
-+ */
-+
-+#include <dt-bindings/gpio/gpio.h>
-+
-+#include "imx8mm-pinfunc.h"
-+
-+/dts-v1/;
-+/plugin/;
-+
-+&{/} {
-+	compatible = "gw,imx8mm-gw73xx-0x", "fsl,imx8mm";
-+
-+	panel {
-+		compatible = "powertip,ph800480t013-idf02";
-+		power-supply = <&attiny>;
-+		backlight = <&attiny>;
-+
-+		port {
-+			panel_in: endpoint {
-+				remote-endpoint = <&bridge_out>;
-+			};
-+		};
-+	};
-+};
-+
-+&i2c3 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	attiny: regulator@45 {
-+		compatible = "raspberrypi,7inch-touchscreen-panel-regulator";
-+		reg = <0x45>;
-+	};
-+};
-+
-+&lcdif {
-+	status = "okay";
-+};
-+
-+&mipi_dsi {
-+	samsung,burst-clock-frequency = <891000000>;
-+	samsung,esc-clock-frequency = <54000000>;
-+	samsung,pll-clock-frequency = <27000000>;
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	status = "okay";
-+
-+	bridge@0 {
-+		compatible = "toshiba,tc358762";
-+		reg = <0>;
-+		vddc-supply = <&attiny>;
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			port@0 {
-+				reg = <0>;
-+
-+				bridge_in: endpoint {
-+					remote-endpoint = <&dsi_out>;
-+				};
-+			};
-+
-+			port@1 {
-+				reg = <1>;
-+
-+				bridge_out: endpoint {
-+					remote-endpoint = <&panel_in>;
-+				};
-+			};
-+		};
-+	};
-+
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		port@1 {
-+			reg = <1>;
-+
-+			dsi_out: endpoint {
-+				remote-endpoint = <&bridge_in>;
-+			};
-+		};
-+	};
-+};
--- 
-2.25.1
-
+> > +    maxItems: 1
+> > +
+> >   required:
+> >     - compatible
+> >     - reg
+> > 
+> 
+> -- 
+> With best wishes
+> Dmitry
+> 
