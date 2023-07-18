@@ -2,112 +2,225 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1703D7576C4
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 10:39:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5098D7576D2
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 10:40:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231899AbjGRIjD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jul 2023 04:39:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56422 "EHLO
+        id S231959AbjGRIko (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jul 2023 04:40:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58288 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231918AbjGRIjA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 04:39:00 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 221BB10F3
-        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 01:38:58 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1qLgEE-0003ai-SD; Tue, 18 Jul 2023 10:38:42 +0200
-Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1qLgED-0004fO-Eo; Tue, 18 Jul 2023 10:38:41 +0200
-Date:   Tue, 18 Jul 2023 10:38:41 +0200
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        peppe.cavallaro@st.com, alexandre.torgue@foss.st.com,
-        joabreu@synopsys.com, mcoquelin.stm32@gmail.com,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, kernel@pengutronix.de
-Subject: Re: [PATCH net-next 2/2] net: stmmac: platform: add support for
- phy-supply
-Message-ID: <20230718083841.p67wflhjlwnu56j4@pengutronix.de>
-References: <20230717164307.2868264-1-m.felsch@pengutronix.de>
- <20230717164307.2868264-2-m.felsch@pengutronix.de>
- <cd8c177e-7840-4636-a039-dbe8884b3d2b@lunn.ch>
+        with ESMTP id S229995AbjGRIkn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 04:40:43 -0400
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E8E31716
+        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 01:40:34 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-99364ae9596so768576266b.1
+        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 01:40:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1689669633; x=1692261633;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=CWZTBAgn0sS+qEaFaptfqAKbYTBQ+DgmJZTWl6nef1U=;
+        b=QqWpVaddIE2t/8XVvP/3VyDPBoo7sCh27hFVqsmka9a0CENOreiYjqjZCZNzPpfvnj
+         0NNNTHQhoKUp9jKGf27C40p4Ghh8X7VIGh3E/Q08cf4x6K+eKZf+l2NtQByWx9FL3uCW
+         0WsAAj2DfzrXGe+05VsD+njMxyaiVuu9cOrLjdRqdyD6k+DndbTUrqn8alMk8LKJ866Y
+         1G+hqsJrukJB7GYbafnMMS7qSnYXHXPD+yGdrjLpl/xjqIeuQW1WkDUcDLFx8f2TQBti
+         DObTe3wiffKTw2x/I8NG/rERN0faQEBCXoA/L4iFyAZHoWRaLepOhThwcrcF3r8nTOoG
+         fnog==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689669633; x=1692261633;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=CWZTBAgn0sS+qEaFaptfqAKbYTBQ+DgmJZTWl6nef1U=;
+        b=ZxEhy5sZCu6z0hTkSsGPc6tFgSIXOAuxZt/HEE3hEtEVZ2XsghcSDFK7HHeUQLHrmc
+         AiU2qlXkdFdgN8OuCmHoVNYq5oxes0+yeYcwi+5vpjV9xlxWw4etsE4Ra9S/sEzlIMXF
+         8FGTJPk2AAHp4JqkmDmInYOO9MBmixV5jmQZXY1Fovv4J+ofjGlTAoJFT+bu/vaZEvku
+         xx6caD5dfNMVM3Xpgx0iDCDawR8BCacjod9sXIjhrwaHWJmdunnvL5Gl40OjiQDyDnzE
+         H7p76y+iPomuSrKFU1tzmslDtSBqE9djDM23S8XfX5weZH/btbLjRR1DumpmKQN44sYh
+         fW0Q==
+X-Gm-Message-State: ABy/qLajcVJ96QLXuqnstJ+Mrt1Cq0F2pe7CKsNeIJ/8yjjfIUyXRczE
+        y4N39MS4dT4FhhT51DE2YpEzfA==
+X-Google-Smtp-Source: APBJJlGXvZzY/4ZnkMYEMZVjqUOmFmubBz1PHzs4Mn4Z4u51BwEhq7i+2TcH00XbtVWsX2YKrYCOfg==
+X-Received: by 2002:a17:906:6b97:b0:98e:26ae:9b01 with SMTP id l23-20020a1709066b9700b0098e26ae9b01mr12759543ejr.65.1689669633012;
+        Tue, 18 Jul 2023 01:40:33 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id lc11-20020a170906dfeb00b00992ae4cf3c1sm697275ejc.186.2023.07.18.01.40.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 18 Jul 2023 01:40:32 -0700 (PDT)
+Message-ID: <28bfbafb-88c3-7284-6933-052caf734681@linaro.org>
+Date:   Tue, 18 Jul 2023 10:40:30 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cd8c177e-7840-4636-a039-dbe8884b3d2b@lunn.ch>
-User-Agent: NeoMutt/20180716
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH] dt-bindings: clock: versal: Convert the
+ xlnx,zynqmp-clk.txt to yaml
+Content-Language: en-US
+To:     Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>,
+        devicetree@vger.kernel.org
+Cc:     git@amd.com, linux-clk@vger.kernel.org, michal.simek@amd.com,
+        conor+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        robh+dt@kernel.org, sboyd@kernel.org, mturquette@baylibre.com
+References: <20230718061035.9341-1-shubhrajyoti.datta@amd.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230718061035.9341-1-shubhrajyoti.datta@amd.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23-07-18, Andrew Lunn wrote:
-> > +static int stmmac_phy_power(struct platform_device *pdev,
-> > +			    struct plat_stmmacenet_data *plat,
-> > +			    bool enable)
-> > +{
-> > +	struct regulator *regulator = plat->phy_regulator;
-> > +	int ret = 0;
-> > +
-> > +	if (regulator) {
-> > +		if (enable)
-> > +			ret = regulator_enable(regulator);
-> > +		else
-> > +			regulator_disable(regulator);
-> > +	}
-> > +
-> > +	if (ret)
-> > +		dev_err(&pdev->dev, "Fail to enable regulator\n");
+On 18/07/2023 08:10, Shubhrajyoti Datta wrote:
+> Convert the xlnx,zynqmp-clk.txt to yaml.
+> versal-clk.yaml already exists that's why zynqmp is converted and
+> merged.
 > 
-> 'enable' is only correct 50% of the time.
+> Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
+> ---
+> Please let me know if the mergeing of the versal and zynqmp is fine 
+> or if a seperate yaml is preferred.
+> 
+> Rebased on [1] to avoid merge conflict.
+> 
+> [1] https://lore.kernel.org/all/20230620110137.5701-1-shubhrajyoti.datta@amd.com/
+> 
+>  .../bindings/clock/xlnx,versal-clk.yaml       | 73 +++++++++++++++++--
+>  .../bindings/clock/xlnx,zynqmp-clk.txt        | 63 ----------------
+>  2 files changed, 65 insertions(+), 71 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/clock/xlnx,zynqmp-clk.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/xlnx,versal-clk.yaml b/Documentation/devicetree/bindings/clock/xlnx,versal-clk.yaml
+> index e9cf747bf89b..1b69e2590478 100644
+> --- a/Documentation/devicetree/bindings/clock/xlnx,versal-clk.yaml
+> +++ b/Documentation/devicetree/bindings/clock/xlnx,versal-clk.yaml
+> @@ -20,6 +20,7 @@ properties:
+>    compatible:
+>      oneOf:
+>        - const: xlnx,versal-clk
+> +      - const: xlnx,zynqmp-clk
 
-You mean to move it under the enable path.
+These two are enum.
 
-> > @@ -742,6 +786,8 @@ static int __maybe_unused stmmac_pltfr_suspend(struct device *dev)
-> >  	if (priv->plat->exit)
-> >  		priv->plat->exit(pdev, priv->plat->bsp_priv);
-> >  
-> > +	stmmac_phy_power_off(pdev, priv->plat);
-> > +
-> 
-> What about WOL? You probably want to leave the PHY with power in that
-> case.
+>        - items:
+>            - enum:
+>                - xlnx,versal-net-clk
+> @@ -31,16 +32,9 @@ properties:
+>    clocks:
+>      description: List of clock specifiers which are external input
+>        clocks to the given clock controller.
+> -    items:
+> -      - description: reference clock
+> -      - description: alternate reference clock
+> -      - description: alternate reference clock for programmable logic
 
-Good point didn't consider WOL. Is there a way to check if WOL is
-enabled?
+Missing constraints.
 
-Regards,
-  Marco
+>  
+>    clock-names:
+> -    items:
+> -      - const: ref
+> -      - const: alt_ref
+> -      - const: pl_alt_ref
+> +    minItems: 3
 
-> 
-> > @@ -757,6 +803,11 @@ static int __maybe_unused stmmac_pltfr_resume(struct device *dev)
-> >  	struct net_device *ndev = dev_get_drvdata(dev);
-> >  	struct stmmac_priv *priv = netdev_priv(ndev);
-> >  	struct platform_device *pdev = to_platform_device(dev);
-> > +	int ret;
-> > +
-> > +	ret = stmmac_phy_power_on(pdev, priv->plat);
-> > +	if (ret)
-> > +		return ret;
-> 
-> And this needs to balance with _suspend when WOL is being used.
-> 
->     Andrew
-> 
+This cannot be min. You wanted maxItems.
+
+>  
+>  required:
+>    - compatible
+> @@ -50,6 +44,60 @@ required:
+>  
+>  additionalProperties: false
+>  
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - xlnx,versal-clk
+> +
+> +    then:
+> +      properties:
+> +        clocks:
+> +          items:
+> +            - description: reference clock
+> +            - description: alternate reference clock
+> +            - description: alternate reference clock for programmable logic
+> +
+> +        clock-names:
+> +          items:
+> +            - const: ref
+> +            - const: alt_ref
+> +            - const: pl_alt_ref
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - xlnx,zynqmp-clk
+> +
+> +    then:
+> +      properties:
+> +        clocks:
+> +          minItems: 5
+> +          items:
+> +            - description: PS reference clock
+> +            - description: reference clock for video system
+> +            - description: alternative PS reference clock
+> +            - description: auxiliary reference clock
+> +            - description: transceiver reference clock
+> +            - description: (E)MIO clock source  (Optional clock)
+
+So you have 5-6 items.
+
+> +
+> +        clock-names:
+> +          minItems: 5
+> +          items:
+> +            - const: pss_ref_clk
+> +            - const: video_clk
+> +            - const: pss_alt_ref_clk
+> +            - const: aux_ref_clk
+> +            - const: gt_crx_ref_clk
+> +            - const: mio_clk_50_or_51
+> +            - pattern: "^mio_clk[00-77]+.*$"
+> +            - pattern: "gem[0-3]+_emio_clk.*$"
+> +            - pattern: "swdt[0-1]+_ext_clk.*$"
+
+But here more. It's a mess.
+
+> +
+>  examples:
+>    - |
+>      firmware {
+> @@ -64,4 +112,13 @@ examples:
+>          };
+>        };
+>      };
+> +
+> +    clock-controller1{
+
+clock-controller
+
+
+> +        #clock-cells = <1>;
+> +        compatible = "xlnx,zynqmp-clk";
+> +        clocks = <&pss_ref_clk>, <&video_clk>, <&pss_alt_ref_clk>,
+> +                 <&aux_ref_clk>, <&gt_crx_ref_clk>;
+> +        clock-names = "pss_ref_clk", "video_clk", "pss_alt_ref_clk",
+> +                      "aux_ref_clk", "gt_crx_ref_clk";
+> +    };
+
+
+Best regards,
+Krzysztof
+
