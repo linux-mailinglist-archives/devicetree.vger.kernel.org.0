@@ -2,103 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5BB837583A2
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 19:38:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E02877583EA
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 19:55:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230383AbjGRRit (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jul 2023 13:38:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59712 "EHLO
+        id S233354AbjGRRze (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jul 2023 13:55:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40286 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229480AbjGRRis (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 13:38:48 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4363D3;
-        Tue, 18 Jul 2023 10:38:47 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 5880261626;
-        Tue, 18 Jul 2023 17:38:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 86057C433C7;
-        Tue, 18 Jul 2023 17:38:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689701926;
-        bh=2HFoHP9WBwjJISPakTGl2gr61R7RJNj7+5SjS9IPgg4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=u6QrX9PfTbf0MbOdEz1PlmQx48DsaqbvGwoP8aVgYaYLjgDbuDuhMXwIWvAutDKM0
-         0Zur29Xsc0BcVEStuQGx+Tro2F+z6vQj5XwHOqNUqWm9hFNmdXXFOOY4UpBvGU1ZDt
-         ls3LUkdEYEKSJtgK9wcxy3IVMeOleoS/22ZJfp30Ox7vLPanH9nOSlzYKYTO6PCtFs
-         kLE9TV34sf8EY1CoER5Ng1Bekq9s4xX26jhLIEzQAMPFiREmcoUtJn+H692/NDxiB+
-         ZUdsh+Rjv/Q0nbzE2k7NA2eoMlXMuGVeUae+OTHkmAs7phcIU6kqh1kD3VfysI0FDy
-         0dlb0iTOazkQw==
-Date:   Tue, 18 Jul 2023 18:38:41 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     "Sahin, Okan" <Okan.Sahin@analog.com>
-Cc:     Nathan Chancellor <nathan@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
+        with ESMTP id S231704AbjGRRza (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 13:55:30 -0400
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD043C0
+        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 10:55:29 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-5216f44d881so6203325a12.1
+        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 10:55:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1689702928; x=1692294928;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=pE1qUAyXgxKm4FKDn6d98dPZAsbuyVV+oDCpGCKIXhU=;
+        b=yKU7ey9m0xAO3Q8ywQtNs2uzVpbTKYk2Oz/Ja55cbIzHogaqystU603eY2x5/YqfGX
+         H9naCLbpROzYaCTVDOp6twWnsl5mpSp/Dgsp4I3itzTPTXDBboyf2yc6kLV/zPioOXOF
+         jvU3DR0kjkVNfcMjGtCq1OoqtT0R9oRe1EbyGkohqS5nP8DQK4hg+a6WfdjX/7NPp1VJ
+         PmhTujoe7StxAl788QGqCF0DEMGd5CplUQSa93Rbnq5eh6ufJ05uoRGnsRWB0clgWrqh
+         sX0OSCjjhSmETSwQB1Zg42ZXspK36gFDQnHY7rm8MBKSea8NYogWPy18kIhsH9+IknFs
+         LGOA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689702928; x=1692294928;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=pE1qUAyXgxKm4FKDn6d98dPZAsbuyVV+oDCpGCKIXhU=;
+        b=a9yW7HbbIqRxZlJOZsnKmAHrJ+qgOHwiaa026ePtivq8ncL0de/85NfzTegLgVTy65
+         9jDR4+qY6GKFCEcj9EWJ5mFsJoPHhlc6LW8oqoLEtMOpdbbHDieLtRbbrf2Gz8CDR/J0
+         dZVTOnFurOx2JNnpyiC2lbXtj/9oF8YPrQBqus3e/gNoIVmikOlSgKrsfWxwqCuywNpZ
+         Pcw2G4myNFL2WDyndjk0phCfdnz+9SLLuC0zUJCgD+rqq8sPYpPKsBCqIPeGW7In4IG/
+         PDubD1Q4NRs06vx1aljNj5SUro/DfAVAJCMpoXfn5eSpFHSOYKDRcDFPSvO4LtC3fPeN
+         nwBQ==
+X-Gm-Message-State: ABy/qLaNX/taRUSAhMrVh5HezAd6cGjYt8aEwOeqakYsomD0P5Mtx7kH
+        4W4bxxAYE0SOe9LWlLj76y7HjQ==
+X-Google-Smtp-Source: APBJJlHYuGKkFhUbj4/g+lnn7IHgZET+cWPwb/gciRk73Ap9ki4NtfiSuNyeWYGARK+7KsmckTS24Q==
+X-Received: by 2002:aa7:d412:0:b0:51d:e4b6:ff6b with SMTP id z18-20020aa7d412000000b0051de4b6ff6bmr377730edq.33.1689702928194;
+        Tue, 18 Jul 2023 10:55:28 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id a19-20020aa7cf13000000b00521936fadabsm1530499edy.89.2023.07.18.10.55.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 18 Jul 2023 10:55:27 -0700 (PDT)
+Message-ID: <715caa18-e772-0b5d-4dcd-49a05eedf2ec@linaro.org>
+Date:   Tue, 18 Jul 2023 19:55:25 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v3] arm64: dts: allwinner: h616: Add Mango Pi MQ-Quad DTS
+To:     Matthew Croughan <matthew.croughan@nix.how>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        "Tilki, Ibrahim" <Ibrahim.Tilki@analog.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "llvm@lists.linux.dev" <llvm@lists.linux.dev>
-Subject: Re: [PATCH v3 2/2] regulator: max77857: Add ADI MAX77857/59/MAX77831
- Regulator Support
-Message-ID: <94e1f1c9-df8c-4ce0-8d86-34cef6285954@sirena.org.uk>
-References: <20230717050736.10075-1-okan.sahin@analog.com>
- <20230717050736.10075-3-okan.sahin@analog.com>
- <20230718155502.GA3542993@dev-arch.thelio-3990X>
- <PH7PR03MB7391206E2D2F1FEF3992C354E738A@PH7PR03MB7391.namprd03.prod.outlook.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="lvFYwciWCWUtLyCA"
-Content-Disposition: inline
-In-Reply-To: <PH7PR03MB7391206E2D2F1FEF3992C354E738A@PH7PR03MB7391.namprd03.prod.outlook.com>
-X-Cookie: Nothing happens.
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Maxime Ripard <mripard@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+References: <20230718152206.1430313-1-matthew.croughan@nix.how>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230718152206.1430313-1-matthew.croughan@nix.how>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 18/07/2023 17:22, Matthew Croughan wrote:
+> Mango Pi MQ Quad is a H616 based SBC, add basic support for the board
+> and its peripherals
+> 
+> Signed-off-by: Matthew Croughan <matthew.croughan@nix.how>
+> ---
+> V1 -> V2: Alphabetical ordering, added "widora,mangopi-mq-quad" compatible
+> V2 -> V3: Added Signed-off-by, add to device-tree compatible/bindings documentation
 
---lvFYwciWCWUtLyCA
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Thank you for your patch. There is something to discuss/improve.
 
-On Tue, Jul 18, 2023 at 05:25:32PM +0000, Sahin, Okan wrote:
-> >From: Nathan Chancellor <nathan@kernel.org>
-> >Sent: Tuesday, July 18, 2023 6:55 PM
-> >To: Sahin, Okan <Okan.Sahin@analog.com>
-> >Cc: Liam Girdwood <lgirdwood@gmail.com>; Mark Brown <broonie@kernel.org>;
-> >Rob Herring <robh+dt@kernel.org>; Krzysztof Kozlowski
-> ><krzysztof.kozlowski+dt@linaro.org>; Conor Dooley <conor+dt@kernel.org>; Tilki,
-> >Ibrahim <Ibrahim.Tilki@analog.com>; linux-kernel@vger.kernel.org;
 
-Please delete unneeded context from mails when replying.  Doing this
-makes it much easier to find your reply in the message, helping ensure
-it won't be missed by people scrolling through the irrelevant quoted
-material.
+> 
+>  .../devicetree/bindings/arm/sunxi.yaml        |   5 +
 
---lvFYwciWCWUtLyCA
-Content-Type: application/pgp-signature; name="signature.asc"
+As checkpatch tells you - this must be a separate patch.
 
------BEGIN PGP SIGNATURE-----
+>  arch/arm64/boot/dts/allwinner/Makefile        |   1 +
+>  .../allwinner/sun50i-h616-mangopi-mq-quad.dts | 183 ++++++++++++++++++
+>  3 files changed, 189 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h616-mangopi-mq-quad.dts
+> 
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmS2ziAACgkQJNaLcl1U
-h9BpxQf9EbN28462LWbk9BzvnLxNM9+L2YjOW+QY3nqGoyLD+29ThpbDzpXNcP4+
-/MppZ6uPPUdM+cSvw0YA0wGuhNQeiItSyXYMexD5g7pDTfUrXSuRfutn+j9TpSuP
-sTBcleT7XXuWEOhdQUFtRReuOujIRMdQyXyuRI1eUHvDV+SbEOcWSvb+NJOJo29P
-El0IERfOqiStkDe8bl91XiF0TLp6NNyEsDJPLg2ao9QomZpwki+T5oozGtDcRWbY
-2/aA4AsYrZzME1aJ669zmF5oiktSMS7BwudSQnmwscmWQwvVQsl+Mq66FjClEi6I
-4W5Fc6UqQ/dm69c5fJHA+rHrhVyVOg==
-=cgpb
------END PGP SIGNATURE-----
 
---lvFYwciWCWUtLyCA--
+Best regards,
+Krzysztof
+
