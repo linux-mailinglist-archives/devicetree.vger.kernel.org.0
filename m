@@ -2,201 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EB580758444
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 20:12:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C8DD4758454
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 20:15:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231466AbjGRSMP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jul 2023 14:12:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49912 "EHLO
+        id S229558AbjGRSPi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jul 2023 14:15:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51342 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230195AbjGRSMO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 14:12:14 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A111DA
-        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 11:12:11 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-986d8332f50so780584266b.0
-        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 11:12:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689703929; x=1692295929;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=G6/8N7r9NBloAE8WS8tLLSB/dGe92+uxsdAAiPO77KA=;
-        b=oSI5k08opg8zIeSQxaPflm1lUXIVvEVqYOhxD5tQkyFBV9gAnPEVEtqCR7dFYvDnic
-         FKVy0HWkhEdYW+u5H1UtrjyeUd8iz6aKE9BaZ4L+cACl/hpOFCPK+8sPFWdVpJBLV+CL
-         59rLvRBit9BkPeXWDCpWH7hbAJnmN6A1RJBEU5IHrbcZAH2KFldaHd6v7Zh3FknlJRzF
-         eZeruZcmHuJoH0lrGlXVGIqtGXXbsi+mhxw+r11eMPH2QPMay8CHMTq6VpP1Jp3upmoi
-         Qao4AkWOxolfnm2BsSJ9jivCxGsCEjwHObpF4aoxWctu44LdrK7ZYJw8wqQoy2rH7x33
-         R3Eg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689703929; x=1692295929;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=G6/8N7r9NBloAE8WS8tLLSB/dGe92+uxsdAAiPO77KA=;
-        b=PRlNG9JXtBEChZFxOgRwMMjgVBhLXCoIl8ITCSy4hejoQP/PamChsYmbsU4VsET7E6
-         TqOQ+x/KCZsDHg2K17xUUfuw6TefkP4CpJho0OIu6dUKyhABE1Gg5nmdoMv6oq1D5Kf0
-         JAqEXlkbDgXK+CNyQi4Wncz7DZcCNJA5tc+e+LCKkwKThU9RE8fpm1P0ETDZ6Rotny9H
-         JaK0HusnGnayXYelc8ZMJs1JAva2zVCtQz3y2ZszhlJFbbfHX5lVoREfbChw3kpFP1Cb
-         ZpKZqT8dRf+sH2Q2tZGkJIyNSa6ig2ANuUvUHwH3IlHHwLkHyggg6LZ/HhxPOTJBRUrc
-         NBdQ==
-X-Gm-Message-State: ABy/qLbtbOczcDAUgzNLHWl1cftK9hESuDGcv1D1MATUN9zj183WSEC4
-        l8IwYluPbrYhJR9SlUV6gLoCVQ==
-X-Google-Smtp-Source: APBJJlHUEk+vIobvihIcsA3RE38Sv2dNpXe0EbyH+S5eZL1H+p8M7mY2hqQI/VxXI2DspF2gjXgJTA==
-X-Received: by 2002:a17:907:a48:b0:98a:29ca:c58e with SMTP id be8-20020a1709070a4800b0098a29cac58emr599294ejc.27.1689703929650;
-        Tue, 18 Jul 2023 11:12:09 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id sb6-20020a170906edc600b009888aa1da11sm1272105ejb.188.2023.07.18.11.12.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 18 Jul 2023 11:12:09 -0700 (PDT)
-Message-ID: <d05fcac3-1054-6b52-e9d8-15baba424863@linaro.org>
-Date:   Tue, 18 Jul 2023 20:12:07 +0200
+        with ESMTP id S229704AbjGRSPg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 14:15:36 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43B8E10B;
+        Tue, 18 Jul 2023 11:15:34 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id CA25F616A9;
+        Tue, 18 Jul 2023 18:15:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3AC62C433C9;
+        Tue, 18 Jul 2023 18:15:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1689704133;
+        bh=kHxVNW1fF7PzuKK1ys+0NZi4M8XowaLr/7P8gkpdlJI=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=ORusedm981Yj/+87SN8Dfy42m31DyCLpq9HqWv4ho+Z3KBXkCG5zYt1xECLY1h9UQ
+         FK8vM0+EOYl5JwIpVu6RsM/AW4ce1jHotCKLzfgoHQA5B0jwIuuLBO+20iCwv6yRBB
+         xEHN+GcJVpJsJ2xIOl9HVkaf5Q+lZWrS240/Pm8AYISW3D6gXZsNhNFT8y+hOOBBau
+         4ZFn3HOxn1BW0KJ+rk7XjsQ/UVxw10DAtsJyjQdzwivZXy2vkJZYZghTLZEONKu5yL
+         f6HbAnlhAW7VKw0PlwjWKZVskPOIKLloGmkTcS1tUVN7GMWjs+7h9Ca83jjkNCGDxT
+         TbK6CaPd77Ysg==
+Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2b703d7ed3aso94633341fa.1;
+        Tue, 18 Jul 2023 11:15:33 -0700 (PDT)
+X-Gm-Message-State: ABy/qLZ1xDyG+BZSL9+Y0Zvg6B1XIfcRf2pai3q0M6ISSQ+MD2GS8+9K
+        yVCDPhMP7+40Pbv1owLz51/1Flr3TXZIAYuSGw==
+X-Google-Smtp-Source: APBJJlETguQ1GeiGzi5H2NtBXJoWqk6KyqjpW8Bc6IS6lJOA4xgoNinovssDBzEvIoFur6Atchxk6+cTA5VSi5CZrA8=
+X-Received: by 2002:a2e:9901:0:b0:2b8:6f78:ffa0 with SMTP id
+ v1-20020a2e9901000000b002b86f78ffa0mr7549480lji.18.1689704131164; Tue, 18 Jul
+ 2023 11:15:31 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH 1/2] dt-bindings: arm: Add qcom specific hvc transport for
- SCMI
-Content-Language: en-US
-To:     Nikunj Kela <quic_nkela@quicinc.com>, sudeep.holla@arm.com
-Cc:     cristian.marussi@arm.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-References: <20230718160833.36397-1-quic_nkela@quicinc.com>
- <20230718160833.36397-2-quic_nkela@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230718160833.36397-2-quic_nkela@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+References: <1688059190-4225-3-git-send-email-lizhi.hou@amd.com>
+ <20230629225631.GA446944@bhelgaas> <20230629235226.GA92592-robh@kernel.org> <9f39fc3d-ae40-e5b1-8d40-8c27fc4e1022@amd.com>
+In-Reply-To: <9f39fc3d-ae40-e5b1-8d40-8c27fc4e1022@amd.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 18 Jul 2023 12:15:18 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLzGted2tYHM7uKZRYDHypz4P6KMXGDuYLgpYsJcUyU8Q@mail.gmail.com>
+Message-ID: <CAL_JsqLzGted2tYHM7uKZRYDHypz4P6KMXGDuYLgpYsJcUyU8Q@mail.gmail.com>
+Subject: Re: [PATCH V10 2/5] PCI: Create device tree node for bridge
+To:     Lizhi Hou <lizhi.hou@amd.com>
+Cc:     Bjorn Helgaas <helgaas@kernel.org>, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        max.zhen@amd.com, sonal.santan@amd.com,
+        stefano.stabellini@xilinx.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/07/2023 18:08, Nikunj Kela wrote:
-> Introduce compatible "qcom,scmi-hvc-shmem" for SCMI
-> transport channel for Qualcomm virtual platforms.
-> The compatible mandates a shared memory channel.
-> 
-> Signed-off-by: Nikunj Kela <quic_nkela@quicinc.com>
-> ---
->  .../bindings/firmware/arm,scmi.yaml           | 69 +++++++++++++++++++
->  1 file changed, 69 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-> index b138f3d23df8..605b1e997a85 100644
-> --- a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-> +++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-> @@ -45,6 +45,9 @@ properties:
->        - description: SCMI compliant firmware with OP-TEE transport
->          items:
->            - const: linaro,scmi-optee
-> +      - description: SCMI compliant firmware with Qualcomm hvc/shmem transport
-> +        items:
-> +          - const: qcom,scmi-hvc-shmem
->  
->    interrupts:
->      description:
-> @@ -321,6 +324,16 @@ else:
->        required:
->          - linaro,optee-channel-id
->  
-> +    else:
-> +      if:
-> +        properties:
-> +          compatible:
-> +            contains:
-> +              const: qcom,scmi-hvc-shmem
-> +      then:
-> +        required:
-> +          - shmem
+On Fri, Jun 30, 2023 at 12:25=E2=80=AFPM Lizhi Hou <lizhi.hou@amd.com> wrot=
+e:
+>
+>
+> On 6/29/23 16:52, Rob Herring wrote:
+> >>> +                   rp[i].child_addr[0] =3D j;
+> >>> +   ret =3D of_changeset_add_empty_prop(ocs, np, "dynamic");
+> >> It seems slightly confusing to use a "dynamic" property here when we
+> >> also have the OF_DYNAMIC dynamic flag above.  I think they have
+> >> different meanings, don't they?
+> > Hum, what's the property for? It's new in this version. Any DT property
+> > needs to be documented, but I don't see why we need it.
+>
+> This is mentioned in my previous reply for V9
+>
+> https://lore.kernel.org/lkml/af9b6bb3-a98d-4fb6-b51e-b48bca61dada@amd.com=
+/
+>
+> As we discussed before, "interrupt-map" was intended to be used here.
+>
+> And after thinking it more, it may not work for the cases where ppnode
+>
+> is not dynamically generated and it does not have "interrupt-map".
+>
+> For example the IBM ppc system, its device tree has nodes for pci bridge
+>
+> and it does not have "interrupt-map".
 
-Unfortunately this pattern if-else-if-else-if-else does not scale well.
-Please convert all entries first to allOf:if:then,if:then,if:then (in
-new patch), and then add new if:then:
+How do you know? I ask because usually the only way I have visibility
+there is when I break something. In traditional OpenFirmware, which
+IBM PPC is, all PCI devices have a DT node because it's the firmware
+telling the OS "these are the devices I discovered and this is how I
+configured them".
 
-> +
->  examples:
->    - |
->      firmware {
-> @@ -444,6 +457,62 @@ examples:
->          };
->      };
->  
-> +  - |
-> +    firmware {
-> +        scmi_dpu {
+> Based on previous discussions, OF_DYNAMIC should not be used here.
 
-No underscores in node names.
+For the same reasons, I don't think the behavior should change based
+on being dynamic. Now maybe the behavior when it's an ACPI system with
+DT overlays has to change, but that's a problem for later. I don't yet
+know if we'd handle that here somehow or elsewhere so that this node
+looks like a normal DT system.
 
-Node names should be generic. See also an explanation and list of
-examples (not exhaustive) in DT specification:
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+This should all work the same whether we've generated the nodes or
+they were already present in the FDT when we booted.
 
+> So I think adding "dynamic" might be a way to identify the dynamically
+>
+> added node. Or we can introduce a new flag e.g OF_IRQ_SWIZZLING.
 
+I hope not. The flags tend to be hacks.
 
-> +            compatible = "qcom,scmi-hvc-shmem";
-> +            shmem = <&shmem_dpu>;
-> +
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +
-> +            scmi_pd_dpu: protocol@11 {
-> +                reg = <0x11>;
-> +                #power-domain-cells = <1>;
-> +            };
-> +        };
-> +
-
-Add only one example, but then only if it differs significantly. I see
-no differences - except compatible - so maybe no point of examples.
-
-
-> +        scmi_gpu {
-> +            compatible = "qcom,scmi-hvc-shmem";
-> +            shmem = <&shmem_gpu>;
-
-This example for sure is not needed - you duplicate above.
-
-> +
-> +            interrupts = <GIC_SPI 931 IRQ_TYPE_EDGE_RISING>;
-> +            interrupt-names = "a2p";
-> +
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +
-> +            scmi_pd_gpu: protocol@11 {
-> +                reg = <0x11>;
-> +                #power-domain-cells = <1>;
-> +            };
-> +        };
-> +    };
-> +
-> +    soc {
-> +        #address-cells = <1>;
-> +        #size-cells = <1>;
-> +
-> +        sram@95c00000 {
-> +            compatible = "mmio-sram";
-> +            reg = <0x95c00000 0x10000>;
-> +
-> +            #address-cells = <1>;
-> +            #size-cells = <1>;
-> +            ranges;
-> +
-> +            shmem_dpu: scmi-sram-dpu@95c00000 {
-> +                compatible = "arm,scmi-shmem";
-> +                reg = <0x95c00000 0x3f0>;
-> +            };
-
-How does these differ from existing example?
-
-Best regards,
-Krzysztof
-
+Rob
