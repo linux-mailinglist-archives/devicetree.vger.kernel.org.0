@@ -2,474 +2,203 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 74B7C757A74
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 13:28:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 23050757AC2
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 13:44:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232010AbjGRL2q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jul 2023 07:28:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42748 "EHLO
+        id S231215AbjGRLoK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jul 2023 07:44:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51192 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232050AbjGRL2p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 07:28:45 -0400
-Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com [IPv6:2a00:1450:4864:20::343])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F043710FE;
-        Tue, 18 Jul 2023 04:28:42 -0700 (PDT)
-Received: by mail-wm1-x343.google.com with SMTP id 5b1f17b1804b1-3fb4146e8deso57987235e9.0;
-        Tue, 18 Jul 2023 04:28:42 -0700 (PDT)
+        with ESMTP id S231402AbjGRLnk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 07:43:40 -0400
+X-Greylist: delayed 98 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 18 Jul 2023 04:43:12 PDT
+Received: from mx07-00376f01.pphosted.com (mx07-00376f01.pphosted.com [185.132.180.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58182173C;
+        Tue, 18 Jul 2023 04:43:12 -0700 (PDT)
+Received: from pps.filterd (m0168889.ppops.net [127.0.0.1])
+        by mx07-00376f01.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 36I802Hn010417;
+        Tue, 18 Jul 2023 12:35:58 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=imgtec.com; h=
+        from:to:cc:subject:date:message-id:references:in-reply-to
+        :content-type:content-id:content-transfer-encoding:mime-version;
+         s=dk201812; bh=VjPw17ABUUV+z1jMGrh2P68uvZeLkhuYZtyq1G87jLM=; b=
+        W/LGnVH5S+VgI9cucEx/nNxBYxnlFBChgmBNDj897Oa+S7Clyy63YLTMMuEucIU2
+        XO/FtrsTRqcAH9XDyt5AIeYvC+kPzeXaVaSAFpeVzXCjuQAiT+SEcxsdfSSqDV+7
+        qXJxy7WBBLU2PM/j4G/ByfIiFKuulNVOk8D6nZrA9Ak2fmLQdz+Ytq26b4oG5fR1
+        FNlPdlEmos0Eddjfvdm3AES3qLmbm0JM44/RpJvaiWCrOg0XSpXY5Juqku37DHFh
+        tsY12OlshLr5+wnucuFDty3KLKucoXjBSKY2OLXLSrb6Tm9RluT18N3k8dJzL4VN
+        fEiIk2h993f+dYp6IT18Mg==
+Received: from hhmail05.hh.imgtec.org ([217.156.249.195])
+        by mx07-00376f01.pphosted.com (PPS) with ESMTPS id 3rutcx219c-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
+        Tue, 18 Jul 2023 12:35:57 +0100 (BST)
+Received: from HHMAIL05.hh.imgtec.org (10.100.10.120) by
+ HHMAIL05.hh.imgtec.org (10.100.10.120) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.27; Tue, 18 Jul 2023 12:35:57 +0100
+Received: from GBR01-CWL-obe.outbound.protection.outlook.com (104.47.20.58) by
+ email.imgtec.com (10.100.10.121) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27 via Frontend
+ Transport; Tue, 18 Jul 2023 12:35:57 +0100
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=bM7yxyQiIed7L013q4phnfcyGgFrJpZMBZyP7EktGzI4OhTxCmor80kJwr55MT8/DPIqbVVdC8uPwwP9CvJriViHfgzzLU635fVzA/qInZfut3c53XzOIhowd9KgOtjLoanuNn9OaHyyzCfhyZO1CRDUa4BAUGXpNXQMdLj956yPOe7zRWgX6mUMFcv+mz2/E/yozW4hE+2bDtAsi1IX+N+DhZ8eb90BpY17bS9UNs3xjOxNul+VM5VWtO2BUZzg/08brnT+v0VSaamSL/+5iU0U/rsq0O6wCDOFAfRnzPViAr1teYy41nPGfU46xpBeLT1xFSV9dJ2WwoE9bs9hkg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=VjPw17ABUUV+z1jMGrh2P68uvZeLkhuYZtyq1G87jLM=;
+ b=I4tzXNQUjLcRM9ttYHo3zwfENI9Z7Bqi6cnV4WT9GDESy/SfuRiWcMSdGg6PE2i0qJsdr5vFl/5+NXyHK2Fz7ubiklhqoBCMuGSBTJm6TdAVbUCKvrzUPNLZnCfJH7xF3Wn6ZsQaHL51Pwyr6GUMxZl/pdCQDtiHCHF62encJhtK3NR/VhdjAuwtBSnyppY/5KC5IdKsyDji4jVoscZ6uSAI8aI528YpsyBxlqIxkGFWxb3UtRE4oSiooDx6Qa+ndqosfT19YV59IgnuZiKyiyTbSH02kIlo5ixzioNb59h2boEBNua1kRIvjCoZVCKdclb4Pz0/9KqCtr1SUemqsQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=imgtec.com; dmarc=pass action=none header.from=imgtec.com;
+ dkim=pass header.d=imgtec.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1689679721; x=1692271721;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=jodyYJIboGlAv/P2zcpXsk9c6MZ/7Bhfs83Nl+3ElfU=;
-        b=CcRb2JRIULjRxa4hrsemwI9sl2eMfoBlB5RNmD4p1TPrXKhGfS04LE8I7uRmrKkfLh
-         Cfs7VALqxIfiPCKnBlCkJCqpzRISawiqCNJeQsr0Ri7hKWnacxZkgfxaIQVA3Fjzie5w
-         EE9z3E/eIl5nyxDhpIyoJQ4GRNtAPBtzEl+lLGTdyT0eZXLnuTd0ROuHbj1uEK5f50R9
-         BO78cDsBQBnvu4hkUhqE5FenH/UHEC1UcfgNR2F0vX/SamHXL/piEuNcrxtxdDwvt0E6
-         xK0fvR9UGbRWC6+8JA4upcm7jhZA4WKOB8UCFgWenNSc7oox8vrk+USLrW/ReIiKNsSw
-         c5nw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689679721; x=1692271721;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=jodyYJIboGlAv/P2zcpXsk9c6MZ/7Bhfs83Nl+3ElfU=;
-        b=kVkEx50T75OsFAXch/RUZ8PkLVHeZ0aU+76UT4NvW5DNnpHdrYoqsVFwoiI19f0DZ0
-         duN2am3u7cziee9UTq15SeTvAR3WvHDYvdtsaWtqA7DncAw5S4u0UWaHZi+5POUpMHtn
-         87pwzfpKPzjqu4rJxDQikuZC74cR1HdJRQ6XqOVARYvIp2cWQsDgXjE89JP7c9vwEw2u
-         qkAqcv6ZmxCPk7tQ5hiecaZdV8FifGQh3wf9c4PX2YsBqERo9FrO3RuwkB4evbk7x0ec
-         21P2F54EsnCghflLs7S9nEgl8MDvvyHtR+j0B3czHjLcn88CeAMaKNW+AOLvjEpzh27l
-         lxTw==
-X-Gm-Message-State: ABy/qLZ1Hy6sMwPRHlVyiqS9asVDQ6VAtoGi/ZfEjyyKF8gG+UEVFoGi
-        vf+mpyW/hLslogagNVxmpdw=
-X-Google-Smtp-Source: APBJJlGDyEJnI5PVdn3p1CknTYTUDFMF7OSrxSyxA0RPQV1l9m2G33eGm3/omvTxmkkiXWTfuQSbiA==
-X-Received: by 2002:a1c:6a0a:0:b0:3fa:aeac:e96c with SMTP id f10-20020a1c6a0a000000b003faaeace96cmr1870622wmc.9.1689679720972;
-        Tue, 18 Jul 2023 04:28:40 -0700 (PDT)
-Received: from ws-565760.systec.local ([212.185.67.148])
-        by smtp.gmail.com with ESMTPSA id x12-20020adfec0c000000b003142c85fbcdsm2155433wrn.11.2023.07.18.04.28.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 Jul 2023 04:28:40 -0700 (PDT)
-From:   Andre Werner <werneazc@gmail.com>
-X-Google-Original-From: Andre Werner <andre.werner@systec-electronic.com>
-To:     jdelvare@suse.com, linux@roeck-us.net,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        robh+dt@kernel.org
-Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Andre Werner <andre.werner@systec-electronic.com>
-Subject: [PATCH v3 2/2] hwmon: (hs3001) Add driver for Renesas HS3001
-Date:   Tue, 18 Jul 2023 13:28:10 +0200
-Message-ID: <20230718112810.21322-2-andre.werner@systec-electronic.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20230718112810.21322-1-andre.werner@systec-electronic.com>
-References: <20230718112810.21322-1-andre.werner@systec-electronic.com>
+ d=IMGTecCRM.onmicrosoft.com; s=selector2-IMGTecCRM-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=VjPw17ABUUV+z1jMGrh2P68uvZeLkhuYZtyq1G87jLM=;
+ b=G2QcJvVFwIedu49/wGOggY4OYgfArWM+DbLcromMFJfdaE9ID3bRbIINojYvYO+UiYKbfrqaNy8NDh++ur2RxR27Wtnm0bdyCyGBNXmMR6lhk00tiY77IBOdcVL1fkYnwvrjRJKfKg72ymcHpWVjY2HBbnzbamf0wnM01LFHsBY=
+Received: from LO6P265MB6032.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:2a5::14)
+ by LNXP265MB2425.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:130::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6588.33; Tue, 18 Jul
+ 2023 11:35:21 +0000
+Received: from LO6P265MB6032.GBRP265.PROD.OUTLOOK.COM
+ ([fe80::1871:e3c9:b5a7:a740]) by LO6P265MB6032.GBRP265.PROD.OUTLOOK.COM
+ ([fe80::1871:e3c9:b5a7:a740%3]) with mapi id 15.20.6588.031; Tue, 18 Jul 2023
+ 11:32:16 +0000
+From:   Frank Binns <Frank.Binns@imgtec.com>
+To:     "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+        "krzysztof.kozlowski@linaro.org" <krzysztof.kozlowski@linaro.org>,
+        "Sarah Walker" <Sarah.Walker@imgtec.com>
+CC:     "luben.tuikov@amd.com" <luben.tuikov@amd.com>,
+        "christian.koenig@amd.com" <christian.koenig@amd.com>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "tzimmermann@suse.de" <tzimmermann@suse.de>,
+        "mripard@kernel.org" <mripard@kernel.org>,
+        "matthew.brost@intel.com" <matthew.brost@intel.com>,
+        "daniel@ffwll.ch" <daniel@ffwll.ch>,
+        "hns@goldelico.com" <hns@goldelico.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "boris.brezillon@collabora.com" <boris.brezillon@collabora.com>,
+        "dakr@redhat.com" <dakr@redhat.com>,
+        "maarten.lankhorst@linux.intel.com" 
+        <maarten.lankhorst@linux.intel.com>, "afd@ti.com" <afd@ti.com>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "airlied@gmail.com" <airlied@gmail.com>,
+        Donald Robson <Donald.Robson@imgtec.com>,
+        "faith.ekstrand@collabora.com" <faith.ekstrand@collabora.com>
+Subject: Re: Re: [PATCH v4 02/17] dt-bindings: gpu: Add Imagination
+ Technologies PowerVR GPU
+Thread-Topic: Re: [PATCH v4 02/17] dt-bindings: gpu: Add Imagination
+ Technologies PowerVR GPU
+Thread-Index: AQHZuWuBCZHBbFY4BUi2pDr/v9ojZQ==
+Date:   Tue, 18 Jul 2023 11:32:16 +0000
+Message-ID: <6eeccb26e09aad67fb30ffcd523c793a43c79c2a.camel@imgtec.com>
+References: <20230714142526.111569-1-sarah.walker@imgtec.com>
+         <19a7dae4-a9bd-187f-49f8-fe9c47f44eff@linaro.org>
+In-Reply-To: <19a7dae4-a9bd-187f-49f8-fe9c47f44eff@linaro.org>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Evolution 3.36.5-0ubuntu1 
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: LO6P265MB6032:EE_|LNXP265MB2425:EE_
+x-ms-office365-filtering-correlation-id: e7aa6ba9-a0df-428d-61fb-08db8782a390
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: fFZsUy/D82xeLFvQE2c6Z7zYn3uOcgqdX5dA5q5MPUDoet93DRx7IOw7I2lIH3idzfCYRNj4BGF9bkqTTIhV2GeqktFyLisEvny75B04SkVJPZoKTfqnjG1VLA60P5aypCOZhBOkSueCp4qrI+Gpvtkm/ocjcXQxrUo6YcDvwSM3sAuqg+4ac5uas9T62FT4sRARhljegaHtsvJhK4RGEUGTO42r+Jl75sxFMIlWpU04cW1v5lfoD5Hr5zivmYoC/dHTtWHDmMj8hH988nSvES24x/UC9MCc+gUfbpoVG6Oerl2MYYx0COUyXNvlr7mJ5oh6pMGEpVQcZTyPUqZFwoSVir+mFWMnhqK/wFe5Q5L0h2Sa7K9PX1VgXNS/QQ75ylDQlsDr9ma8Ko+rXGrmr/8wXXSOwpthjxlV0tdGABsJ0qnYNc8JaqiqGqAZrgZnyEnpb7ElzYs0eaEelTXPGDW8Ly6rH3WSLIS1yKW+c7cYkKKCHTzCxZcoeWDdsMxHopwLLkbV/3ul0RfB+AuWWh5EovsqsSPtkrJJQvazky48rODJ4TcN0x048GALalUBOG1e+6K7FSZL0ElJDtktgqx/jnQR8RWSHspz0QBHnbndBNBfKEaHL8MK6yk4aa2l
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:LO6P265MB6032.GBRP265.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230028)(396003)(366004)(136003)(376002)(39850400004)(346002)(451199021)(6512007)(6506007)(53546011)(26005)(38100700002)(36756003)(110136005)(54906003)(38070700005)(122000001)(5660300002)(8936002)(8676002)(7416002)(2906002)(4326008)(6636002)(316002)(76116006)(64756008)(66446008)(66476007)(66556008)(86362001)(66946007)(41300700001)(6486002)(71200400001)(478600001)(2616005)(83380400001)(186003);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?Y3FtZExibVFrNExCZDVhYmQxdWEzT2lrRkJoT2dYUkZhQTlZbGswM09QTVlM?=
+ =?utf-8?B?ZzRQZ01WN0JwbGFTN00rWFAwTlUxZkwwSjRDcS82YW55T2RKcjMzZVRBaE52?=
+ =?utf-8?B?WGpmSDVnZ3Z5OTFrc3FIMlRBSXYvVHBBcGNIeVZRU1d1T09kSUJvMXNrQ3ll?=
+ =?utf-8?B?SUdqOHlHT2pGdDE5c1ZwYUwvK0FtN21RdkxUWnFNcERwSEJlRDFTUFBraEZj?=
+ =?utf-8?B?OEJNYnFiQWZIVlpUdHp6aXZZdnpGSG1KUlMvUy82RW44ZjV3TGtCMTFYc1A0?=
+ =?utf-8?B?U0pXQ1psRjNhL3QyRUVValVPc3drSFhHRkRaTDRKVE05UGE3NWdRVGxyRDRV?=
+ =?utf-8?B?OHFXdmRiWTNIUGFqT2w3S0ZtNkc2MmZjNEJORnBIVExUWnRaei9EZ0l6L1VF?=
+ =?utf-8?B?WitFZi9JellqQzR0c09pR3ZXaSs3RWt5am1jV2tDZ24rUkpXendTblcyOFg5?=
+ =?utf-8?B?QWRKR3RpNERDSS9CQm9EelJ4YTdLSmEyNkNkMjVPRFdSMUVUcDhhTFdEd21l?=
+ =?utf-8?B?S3h6c1ZsR0dsQS9YR1VVTmZUMDZ4SGlWczdXREhmLzAxVGx5WEVmUWZxTzNn?=
+ =?utf-8?B?WWdhclpQci91NjhGaUI4b3RrazR4TFNpcUpJanIvdFBsYzU0SHJxN25acnlt?=
+ =?utf-8?B?RXR0VEYvbGJjNXlLa0YwR2hlSVBJS1RJdzhQZFBLbVpqVzdNV3F4SGV0WW1U?=
+ =?utf-8?B?b1l0SFdyTXhLUkJTWVlyeEZYQ0FKNTJRcVZOQUdWSExVUkVZeUtWQk5yTmxT?=
+ =?utf-8?B?TjNKN050UTZ0QmhtaGF2SmYzdndUc0pTTHZFSGhxcUtyT0pOMUNiS09aV1Ji?=
+ =?utf-8?B?Z2VkaUovSXZUQ2pTV1dlMHJ5cmdiMENSMWtweCttMERJK2lCWHRDM3UwWGFI?=
+ =?utf-8?B?MFlacWZua281V1k5Q3R4c0pMT3RWY0NHS1kyWnlpb2ZMKzJ2UXJxMzJ2RWxQ?=
+ =?utf-8?B?WFJqZnROQWVreGpNcU1yWEJOTENqTWlWTjMyaHhqVHVldU9tQnYzeTA3bGRH?=
+ =?utf-8?B?Mm9LNkVGd1FYdm1PRm56VEZCSzRMOU1NZzJVS0hVSHhkY28yZTJSQUNjQmlz?=
+ =?utf-8?B?SG10WGxYVlRuTitSMDVES0FxdlEwS1p0Mmd5SVkrYTJOYjE0ODk5eHVBYldJ?=
+ =?utf-8?B?bmlqODJiL3EyTXdLNzVhUjFNMmh3OHZDQmMrbmNaLzdWOHErT096MUh4eWs3?=
+ =?utf-8?B?S2hjU3Q3T3lhdGJYQ1lTb2FxbDIxZE9KclhzeXRqeXlMV2VSbVR6dkRDUnNO?=
+ =?utf-8?B?WG52MFErb0RQNUF4Q3ZvVnBidFB0Y0ljMHNBVk1LN1llY21kVGlzY1Fub21h?=
+ =?utf-8?B?OU1abWdQRWtlRXBNTllFLzg1ZFVlc0ZwV0dJMTZYYUFXSVhRTnhoWEVzV1E4?=
+ =?utf-8?B?WkVrNEYwdDJoSHVhTVhxTnNWWU9xQzVhRExnTDRkbWMwRFBHQXpEcElPNndH?=
+ =?utf-8?B?QTJwRGNqTTFJLzhpWU1QcGdOWFUvZWVSb1pQM0xxVW1sL2h6SGxUWlBtWGly?=
+ =?utf-8?B?K1U4TUUxQlR6NlI2KytlQWU2YUEybk9rTFlwMDlNOXhlb28yR1g4b2pwWjY1?=
+ =?utf-8?B?YWhORzN0eEx2a0hHZEhGeGFLL3Qrc3lrTitueENrRFpzblNWc1JZNmR5R2Zt?=
+ =?utf-8?B?dkJ4M1VzRWluZ2NXS3VkaTFnY2k1a2JYTkF6Mk1ZQWNzc243YzFnT1VNSUZy?=
+ =?utf-8?B?QklTcEhmRWkvKzVOSDlIYVZWNmZZdWM2L01oV3V2S0ppQjErcXR1VkwvN2Jw?=
+ =?utf-8?B?cjF3RTFlMyswVEFxd3A5bE9DZFJVRzNlcnVCYldicFFtVnZlQWdxcEdPRnF5?=
+ =?utf-8?B?VG8rTldWOGpDZUdycFdTeWlTbld3Vll2TWxNZHg1dnJTWlFiVk1lcXZXVEpB?=
+ =?utf-8?B?RGdIdER2MVAxM1pEZ2VGT1ptdnZOS1ZpbWRGcGlIRS93NDhvdGpiTnBVS1pO?=
+ =?utf-8?B?b1MvSVZ0MDdySkhRK25iT1JmRWtJamVqYjNyaDBITFIxeG5DbzRQWkhLSnZ2?=
+ =?utf-8?B?a2k3dU45ZlovV3BjMkdEa1NwTkVXY2t6Q2ZZL0ttemU5VkdQRDh1aVF6cEZW?=
+ =?utf-8?B?dHBZU0xHeTVUdTlxRzJjdmF3TjdMWmU2Y1BOSkZxNXQ1Y1hjYXg1ZHdmeVgy?=
+ =?utf-8?B?VDJ3ZDdvK3Bqd003ZHRzK2NvWjJCOW9ucitBOVROZDRZdktZaFB0R0QxZ0p3?=
+ =?utf-8?B?WWc9PQ==?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <1F255F04C39EE148B7D3BF430ED5343F@GBRP265.PROD.OUTLOOK.COM>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: LO6P265MB6032.GBRP265.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: e7aa6ba9-a0df-428d-61fb-08db8782a390
+X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Jul 2023 11:32:16.2216
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 0d5fd8bb-e8c2-4e0a-8dd5-2c264f7140fe
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: bqnmYhKu4YXchMxtX09Q6RjLTdt8XNkyfeGqNH1EStM1+azeOGQuxojeTAc7lGmNh8mkh5Xtxegu4uozUCEKyw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LNXP265MB2425
+X-OriginatorOrg: imgtec.com
+X-EXCLAIMER-MD-CONFIG: 15a78312-3e47-46eb-9010-2e54d84a9631
+X-Proofpoint-GUID: eGI2ODiKPq4O8yTdqLFTZvDqfGII220c
+X-Proofpoint-ORIG-GUID: eGI2ODiKPq4O8yTdqLFTZvDqfGII220c
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add base support for Renesas HS3001 temperature
-and humidity sensors and its compatibles HS3002,
-HS3003 and HS3004.
-
-The sensor has a fix I2C address 0x44. The resolution
-is fixed to 14bit (ref. Missing feature).
-
-Missing feature:
-- Accessing non-volatile memory: Custom board has no
-  possibility to control voltage supply of sensor. Thus,
-  we cannot send the necessary control commands within
-  the first 10ms after power-on.
-
-Signed-off-by: Andre Werner <andre.werner@systec-electronic.com>
-
----
-Changelog:
-v1: Initial version
-v2: Extensive refactoring following recommendations of reviewers:
- - Delete unused defines and device properties. These are added in
-   the initial version because the device supports a programming mode,
-   but I was not able to implement it, because the custom board was
-   not able to control the power supply of the device and so I cannot
-   enter the programming mode of the device.
- - Correct missunderstanding comments for defines.
- - Delete mutexes for data and I2C bus accesses.
- - Replace attributes with recommented chip-info structure. In the
-   initial version I followed the sth3x.c implementation that uses
-   files and attributes in sysfs. The show functions are replaced by
-   is_visible and read callbacks from the HWMON ABI. I also  delete pointless
-   function argument checks.
- - Correct Yoda programming.
- - Refactor probe function and delete sleep and measurement of humidity
-   and temperature in probe function. I kept an initial I2C
-   communication to ensure that the device is accessible during probe.
- - Reduce the number of atteributes to humidity and temperature input.
- v3: Delete chip data because it is unused.
----
- Documentation/hwmon/hs3001.rst |  37 +++++
- MAINTAINERS                    |   6 +
- drivers/hwmon/Kconfig          |  10 ++
- drivers/hwmon/Makefile         |   1 +
- drivers/hwmon/hs3001.c         | 249 +++++++++++++++++++++++++++++++++
- 5 files changed, 303 insertions(+)
- create mode 100644 Documentation/hwmon/hs3001.rst
- create mode 100644 drivers/hwmon/hs3001.c
-
-diff --git a/Documentation/hwmon/hs3001.rst b/Documentation/hwmon/hs3001.rst
-new file mode 100644
-index 000000000000..703fb9c45313
---- /dev/null
-+++ b/Documentation/hwmon/hs3001.rst
-@@ -0,0 +1,37 @@
-+.. SPDX-License-Identifier: GPL-2.0-or-later
-+
-+Kernel driver HS3001
-+===================
-+
-+Supported chips:
-+
-+  * Renesas HS3001, HS3002, HS3003, HS3004
-+
-+    Prefix: 'hs3001'
-+
-+    Addresses scanned: -
-+
-+    Datasheet: https://www.renesas.com/us/en/document/dst/hs300x-datasheet?r=417401
-+
-+Author:
-+
-+  - Andre Werner <andre.werner@systec-electronic.com>
-+
-+Description
-+-----------
-+
-+This driver implements support for the Renesas HS3001 chips, a humidity
-+and temperature family. Temperature is measured in degrees celsius, relative
-+humidity is expressed as a percentage. In the sysfs interface, all values are
-+scaled by 1000, i.e. the value for 31.5 degrees celsius is 31500.
-+
-+The device communicates with the I2C protocol. Sensors have the I2C
-+address 0x44 by default.
-+
-+sysfs-Interface
-+---------------
-+
-+===============================================================================
-+temp1_input:        temperature input
-+humidity1_input:    humidity input
-+===============================================================================
-diff --git a/MAINTAINERS b/MAINTAINERS
-index aee340630eca..25d5282b43aa 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -9494,6 +9494,12 @@ S:	Maintained
- W:	http://artax.karlin.mff.cuni.cz/~mikulas/vyplody/hpfs/index-e.cgi
- F:	fs/hpfs/
- 
-+HS3001 Hardware Temperature and Humidity Sensor
-+M:	Andre Werner <andre.werner@systec-electronic.com>
-+L:	linux-hwmon@vger.kernel.org
-+S:	Maintained
-+F:	drivers/hwmon/hs3001.c
-+
- HSI SUBSYSTEM
- M:	Sebastian Reichel <sre@kernel.org>
- S:	Maintained
-diff --git a/drivers/hwmon/Kconfig b/drivers/hwmon/Kconfig
-index 307477b8a371..ca6be5a23271 100644
---- a/drivers/hwmon/Kconfig
-+++ b/drivers/hwmon/Kconfig
-@@ -734,6 +734,16 @@ config SENSORS_HIH6130
- 	  This driver can also be built as a module. If so, the module
- 	  will be called hih6130.
- 
-+config SENSORS_HS3001
-+	tristate "Renesas HS3001 humidity and temperature sensors"
-+	depends on I2C
-+	help
-+	  If you say yes here you get support for the Renesas HS3001,
-+	  to HS3004 humidity and temperature sensors.
-+
-+	  This driver can also be built as a module. If so, the module
-+	  will be called hs3001.
-+
- config SENSORS_IBMAEM
- 	tristate "IBM Active Energy Manager temperature/power sensors and control"
- 	select IPMI_SI
-diff --git a/drivers/hwmon/Makefile b/drivers/hwmon/Makefile
-index 3f4b0fda0998..cdae4e1fc919 100644
---- a/drivers/hwmon/Makefile
-+++ b/drivers/hwmon/Makefile
-@@ -86,6 +86,7 @@ obj-$(CONFIG_SENSORS_GSC)	+= gsc-hwmon.o
- obj-$(CONFIG_SENSORS_GPIO_FAN)	+= gpio-fan.o
- obj-$(CONFIG_SENSORS_GXP_FAN_CTRL) += gxp-fan-ctrl.o
- obj-$(CONFIG_SENSORS_HIH6130)	+= hih6130.o
-+obj-$(CONFIG_SENSORS_HS3001)	+= hs3001.o
- obj-$(CONFIG_SENSORS_ULTRA45)	+= ultra45_env.o
- obj-$(CONFIG_SENSORS_I5500)	+= i5500_temp.o
- obj-$(CONFIG_SENSORS_I5K_AMB)	+= i5k_amb.o
-diff --git a/drivers/hwmon/hs3001.c b/drivers/hwmon/hs3001.c
-new file mode 100644
-index 000000000000..162466d35cc2
---- /dev/null
-+++ b/drivers/hwmon/hs3001.c
-@@ -0,0 +1,249 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ * This is a non-complete driver implementation for the
-+ * HS3001 humidity and temperature sensor and compatibles. It does not include
-+ * the configuration possibilities, where it needs to be set to 'programming mode'
-+ * during power-up.
-+ *
-+ *
-+ * Copyright (C) 2023 SYS TEC electronic AG
-+ * Author: Andre Werner <andre.werner@systec-electronic.com>
-+ */
-+
-+#include <linux/delay.h>
-+#include <linux/err.h>
-+#include <linux/hwmon.h>
-+#include <linux/i2c.h>
-+#include <linux/init.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/of_device.h>
-+#include <linux/slab.h>
-+#include <linux/types.h>
-+
-+/* Measurement times */
-+#define HS3001_WAKEUP_TIME		100		/* us */
-+#define HS3001_8BIT_RESOLUTION	550		/* us */
-+#define HS3001_10BIT_RESOLUTION	1310	/* us */
-+#define HS3001_12BIT_RESOLUTION	4500	/* us */
-+#define HS3001_14BIT_RESOLUTION	16900	/* us */
-+
-+#define HS3001_RESPONSE_LENGTH	4
-+
-+#define HS3001_FIXPOINT_ARITH	1000
-+#define HS3001_MIN_TEMPERATURE	(-40 * HS3001_FIXPOINT_ARITH)	/* milli degree */
-+#define HS3001_MAX_TEMPERATURE	(125 * HS3001_FIXPOINT_ARITH)	/* milli degree */
-+#define HS3001_MIN_HUMIDITY		(0 * HS3001_FIXPOINT_ARITH)	/* milli percent */
-+#define HS3001_MAX_HUMIDITY		(100 * HS3001_FIXPOINT_ARITH)	/* milli percent */
-+
-+#define HS3001_MASK_HUMIDITY_0X3FFF		0x3FFF
-+#define HS3001_MASK_TEMPERATURE_0XFFFC	0xFFFC
-+#define HS3001_MASK_STATUS_0XC0			0xC0
-+#define HS3001_STATUS_SHIFT				6
-+
-+/* Definitions for Status Bits of A/D Data */
-+#define HS3001_DATA_VALID	0x00	/* Valid Data */
-+#define HS3001_DATA_STALE	0x01	/* Stale Data */
-+
-+#define LIMIT_MAX	0
-+#define LIMIT_MIN	1
-+
-+struct hs3001_data {
-+	struct i2c_client *client;
-+	u32 wait_time;		/* in us */
-+	int temperature;	/* in milli degree */
-+	u32 humidity;		/* in milli % */
-+};
-+
-+static int hs3001_extract_temperature(u16 raw)
-+{
-+	/* fixpoint arithmetic 1 digit */
-+	int temp = ((raw & HS3001_MASK_TEMPERATURE_0XFFFC) >> 2) *
-+	    HS3001_FIXPOINT_ARITH;
-+
-+	temp /= (1 << 14) - 1;
-+
-+	return temp * 165 - 40 * HS3001_FIXPOINT_ARITH;
-+}
-+
-+static u32 hs3001_extract_humidity(u16 raw)
-+{
-+	int hum = (raw & HS3001_MASK_HUMIDITY_0X3FFF) * HS3001_FIXPOINT_ARITH;
-+
-+	hum /= (1 << 14) - 1;
-+
-+	return hum * 100;
-+}
-+
-+static int hs3001_data_fetch_command(struct i2c_client *client,
-+				     struct hs3001_data *data)
-+{
-+	int ret;
-+	u8 buf[HS3001_RESPONSE_LENGTH];
-+	u8 hs3001_status;
-+
-+	ret = i2c_master_recv(client, buf, HS3001_RESPONSE_LENGTH);
-+
-+	if (ret != HS3001_RESPONSE_LENGTH) {
-+		ret = ret < 0 ? ret : -EIO;
-+		dev_dbg(&client->dev,
-+			"Error in i2c communication. Error code: %d.\n", ret);
-+		return ret;
-+	}
-+
-+	hs3001_status = (buf[0] & HS3001_MASK_STATUS_0XC0) >>
-+	    HS3001_STATUS_SHIFT;
-+	if (hs3001_status == HS3001_DATA_STALE) {
-+		dev_dbg(&client->dev, "Sensor busy.\n");
-+		return -EBUSY;
-+	} else if (hs3001_status != HS3001_DATA_VALID) {
-+		dev_dbg(&client->dev, "Data invalid.\n");
-+		return -EIO;
-+	}
-+
-+	data->humidity =
-+	    hs3001_extract_humidity(be16_to_cpup((__be16 *)&buf[0]));
-+	data->temperature =
-+	    hs3001_extract_temperature(be16_to_cpup((__be16 *)&buf[2]));
-+
-+	return 0;
-+}
-+
-+umode_t hs3001_is_visible(const void *data, enum hwmon_sensor_types type,
-+			  u32 attr, int channel)
-+{
-+	/* Both, humidity and temperature can only be read. */
-+	return 0444;
-+}
-+
-+int hs3001_read(struct device *dev, enum hwmon_sensor_types type,
-+		u32 attr, int channel, long *val)
-+{
-+	struct hs3001_data *data = dev_get_drvdata(dev);
-+	struct i2c_client *client = data->client;
-+	int ret;
-+
-+	ret = i2c_master_send(client, NULL, 0);
-+	if (ret < 0)
-+		return ret;
-+
-+	/*
-+	 * Sensor needs some time to process measurement depending on
-+	 * resolution
-+	 */
-+	fsleep(data->wait_time);
-+
-+	ret = hs3001_data_fetch_command(client, data);
-+	if (ret < 0)
-+		return ret;
-+
-+	switch (type) {
-+	case hwmon_temp:
-+		switch (attr) {
-+		case hwmon_temp_input:
-+			*val = data->temperature;
-+			break;
-+		default:
-+			return -EINVAL;
-+		}
-+		break;
-+	case hwmon_humidity:
-+		switch (attr) {
-+		case hwmon_humidity_input:
-+			*val = data->humidity;
-+			break;
-+		default:
-+			return -EINVAL;
-+		}
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	return 0;
-+}
-+
-+static const struct hwmon_channel_info *hs3001_info[] = {
-+	HWMON_CHANNEL_INFO(temp, HWMON_T_INPUT),
-+	HWMON_CHANNEL_INFO(humidity, HWMON_H_INPUT),
-+	NULL
-+};
-+
-+static const struct hwmon_ops hs3001_hwmon_ops = {
-+	.is_visible = hs3001_is_visible,
-+	.read = hs3001_read,
-+};
-+
-+static const struct hwmon_chip_info hs3001_chip_info = {
-+	.ops = &hs3001_hwmon_ops,
-+	.info = hs3001_info,
-+};
-+
-+/* device ID table */
-+static const struct i2c_device_id hs3001_ids[] = {
-+	{ "hs3001", 0 },
-+	{ },
-+};
-+
-+MODULE_DEVICE_TABLE(i2c, hs3001_ids);
-+
-+static const struct of_device_id hs3001_of_match[] = {
-+	{.compatible = "renesas,hs3001"},
-+	{ },
-+};
-+
-+MODULE_DEVICE_TABLE(of, hs3001_of_match);
-+
-+static int hs3001_probe(struct i2c_client *client)
-+{
-+	struct hs3001_data *data;
-+	struct device *hwmon_dev;
-+	struct device *dev = &client->dev;
-+	int ret;
-+
-+	if (!i2c_check_functionality(client->adapter, I2C_FUNC_I2C))
-+		return -EOPNOTSUPP;
-+
-+	data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
-+	if (!data)
-+		return -ENOMEM;
-+
-+	data->client = client;
-+
-+	/*
-+	 * Measurement time = wake-up time + measurement time temperature
-+	 * + measurment time humidity. This is currently static, because
-+	 * enabling programming mode is not supported, yet.
-+	 */
-+	data->wait_time = (HS3001_WAKEUP_TIME + HS3001_14BIT_RESOLUTION +
-+			   HS3001_14BIT_RESOLUTION);
-+
-+	/* Test access to device */
-+	ret = i2c_master_send(client, NULL, 0);
-+	if (ret)
-+		return ret;
-+
-+	hwmon_dev = devm_hwmon_device_register_with_info(dev,
-+				client->name, data, &hs3001_chip_info, NULL);
-+
-+	if (IS_ERR(hwmon_dev))
-+		return dev_err_probe(dev, PTR_ERR(hwmon_dev),
-+				     "Unable to register hwmon device.\n");
-+
-+	return 0;
-+}
-+
-+static struct i2c_driver hs3001_i2c_driver = {
-+	.driver = {
-+		   .name = "hs3001",
-+		   .of_match_table = hs3001_of_match,
-+	},
-+	.probe_new = hs3001_probe,
-+	.id_table = hs3001_ids,
-+};
-+
-+module_i2c_driver(hs3001_i2c_driver);
-+
-+MODULE_AUTHOR("Andre Werner <andre.werner@systec-electronic.com>");
-+MODULE_DESCRIPTION("HS3001 humidity and temperature sensor base  driver");
-+MODULE_LICENSE("GPL");
--- 
-2.41.0
-
+SGkgS3J6eXN6dG9mLA0KDQpPbiBNb24sIDIwMjMtMDctMTcgYXQgMDk6MjkgKzAyMDAsIEtyenlz
+enRvZiBLb3psb3dza2kgd3JvdGU6DQo+IE9uIDE0LzA3LzIwMjMgMTY6MjUsIFNhcmFoIFdhbGtl
+ciB3cm90ZToNCj4gPiBBZGQgdGhlIGRldmljZSB0cmVlIGJpbmRpbmcgZG9jdW1lbnRhdGlvbiBm
+b3IgdGhlIFNlcmllcyBBWEUgR1BVIHVzZWQgaW4NCj4gPiBUSSBBTTYyIFNvQ3MuDQo+ID4gDQo+
+IA0KPiAuLi4NCj4gDQo+ID4gKw0KPiA+ICsgIGNsb2NrczoNCj4gPiArICAgIG1pbkl0ZW1zOiAx
+DQo+ID4gKyAgICBtYXhJdGVtczogMw0KPiA+ICsNCj4gPiArICBjbG9jay1uYW1lczoNCj4gPiAr
+ICAgIGl0ZW1zOg0KPiA+ICsgICAgICAtIGNvbnN0OiBjb3JlDQo+ID4gKyAgICAgIC0gY29uc3Q6
+IG1lbQ0KPiA+ICsgICAgICAtIGNvbnN0OiBzeXMNCj4gPiArICAgIG1pbkl0ZW1zOiAxDQo+IA0K
+PiBXaHkgY2xvY2tzIGZvciB0aGlzIGRldmljZSB2YXJ5PyBUaGF0J3MgcmVhbGx5IHVudXN1YWwg
+dG8gaGF2ZSBhIFNvQyBJUA0KPiBibG9jayB3aGljaCBjYW4gaGF2ZSBhIGNsb2NrIHBoeXNpY2Fs
+bHkgZGlzY29ubmVjdGVkLCBkZXBlbmRpbmcgb24gdGhlDQo+IGJvYXJkIChub3QgU29DISkuDQoN
+CkJ5IGRlZmF1bHQsIHRoaXMgR1BVIElQIChTZXJpZXMgQVhFKSBvcGVyYXRlcyBvbiBhIHNpbmds
+ZSBjbG9jayAodGhlIGNvcmUNCmNsb2NrKSwgYnV0IHRoZSBTb0MgdmVuZG9yIGNhbiBjaG9vc2Ug
+YXQgSVAgaW50ZWdyYXRpb24gdGltZSB0byBydW4gdGhlIG1lbW9yeQ0KYW5kIFNvQyBpbnRlcmZh
+Y2VzIG9uIHNlcGFyYXRlIGNsb2NrcyAobWVtIGFuZCBzeXMgY2xvY2tzIHJlc3BlY3RpdmVseSku
+IFdlIGFsc28NCmhhdmUgSVAsIHN1Y2ggYXMgdGhlIFNlcmllcyA2WFQsIHRoYXQgcmVxdWlyZXMg
+YWxsIDMgY2xvY2tzLg0KDQpTbyB0aGUgc2l0dWF0aW9uIGhlcmUgaXMgdGhhdCBTZXJpZXMgQVhF
+IG1heSBoYXZlIDEgb3IgMyBjbG9ja3MsIGJ1dCB0aGUgVEkNCmltcGxlbWVudGF0aW9uIGJlaW5n
+IGFkZGVkIG9ubHkgaGFzIDEuDQoNCkkgZ3Vlc3Mgd2UgbmVlZCB0byBhZGQgc29tZXRoaW5nIGxp
+a2U6DQoNCiAgYWxsT2Y6DQogICAgLSBpZjoNCiAgICAgICAgcHJvcGVydGllczoNCiAgICAgICAg
+ICBjb21wYXRpYmxlOg0KICAgICAgICAgICAgY29udGFpbnM6DQogICAgICAgICAgICAgIGNvbnN0
+OiB0aSxhbTYyLWdwdQ0KICAgICAgdGhlbjoNCiAgICAgICAgcHJvcGVydGllczoNCiAgICAgICAg
+ICBjbG9ja3M6DQogICAgICAgICAgICBtYXhJdGVtczogMQ0KDQpPciBzaG91bGQgd2UgYmUgZG9p
+bmcgc29tZXRoaW5nIGVsc2U/DQoNClRoYW5rcw0KRnJhbmsNCg0KPiANCj4gDQo+IEJlc3QgcmVn
+YXJkcywNCj4gS3J6eXN6dG9mDQo+IA0K
