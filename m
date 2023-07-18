@@ -2,365 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2BC7F757FA0
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 16:33:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 266EC757FD1
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 16:41:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233242AbjGROdO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jul 2023 10:33:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52046 "EHLO
+        id S231229AbjGROl3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jul 2023 10:41:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57566 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233372AbjGROc7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 10:32:59 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB94C1BFF;
-        Tue, 18 Jul 2023 07:32:31 -0700 (PDT)
+        with ESMTP id S230268AbjGROl2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 10:41:28 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B725BEC;
+        Tue, 18 Jul 2023 07:41:27 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 57170615D8;
-        Tue, 18 Jul 2023 14:32:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 03CAAC433C7;
-        Tue, 18 Jul 2023 14:32:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689690750;
-        bh=eB/FeB1sGjf+0FZWSPXn/TL4skvhQzrenrp3THkJTqs=;
-        h=From:To:Cc:Subject:Date:From;
-        b=OpwvZzfjNPNbFB8hdrDTNUGjxZST0VETiSemlpcgT6S0ObyZQaNDKCFEFyr6wzad6
-         mj8Dh7rxgfPUaLGBO5tYJyuGkoPHNSKaHtZAEuPyzBdWoYXaeDlmVUoSPBUZ2fv9Ib
-         gKLeA5Rl1UqD9eTYDDfJ3xB+TnVuQwKLKALrweTlZzuhadQtjVVPx/hRaIoRmFHagG
-         rc9F9ACaR+YwR+OMoTd+BGypKXSPA657ly29AIy5wESJHFbIeDySNncyLMnjGvhVYG
-         ULf8yJSAl3lItzYl/8XwlhVKlZ0PHlLZUAkgy0mDjFYCW8J5LUsJLV066ViM81ulUT
-         6M/GExQov1tIA==
-Received: (nullmailer pid 1067250 invoked by uid 1000);
-        Tue, 18 Jul 2023 14:32:28 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Helge Deller <deller@gmx.de>, Michal Simek <michal.simek@amd.com>
-Cc:     devicetree@vger.kernel.org,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        linux-fbdev@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v2] fb: Explicitly include correct DT includes
-Date:   Tue, 18 Jul 2023 08:32:26 -0600
-Message-Id: <20230718143227.1067178-1-robh@kernel.org>
-X-Mailer: git-send-email 2.40.1
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 4C33E61600;
+        Tue, 18 Jul 2023 14:41:27 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1E631C433C9;
+        Tue, 18 Jul 2023 14:41:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1689691286;
+        bh=D8T7AaoTVgJ/zF9HYinCPbZygZRrtcxqIDjje7WsbPI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=mvR1udQqBCeJaUWDPCUNu5/EQd8aCFy0+W815lq/pHJcK82HzV2EFuJLA+UN4fDRP
+         MzCuUBkTOIACMSKbH19mHv2onbLm20hAUhwvPZPWAuy6iIqFfD3kqgXuRLMWzUXj2Z
+         a1OztjizlYDwMkjZT91+65ZEVB4WRt9mXRvrYn90=
+Date:   Tue, 18 Jul 2023 16:41:23 +0200
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     Mukesh Ojha <quic_mojha@quicinc.com>
+Cc:     linux-samsung-soc@vger.kernel.org,
+        linux-mediatek@lists.infradead.org, corbet@lwn.net,
+        agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        keescook@chromium.org, tony.luck@intel.com, gpiccoli@igalia.com,
+        catalin.marinas@arm.com, will@kernel.org,
+        andy.shevchenko@gmail.com, linux-doc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-hardening@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Alexander Shishkin <alexander.shishkin@linux.intel.com>
+Subject: Re: [PATCH v4 00/21] Add Qualcomm Minidump kernel driver related
+ support
+Message-ID: <2023071844-promptly-swimwear-f6f9@gregkh>
+References: <1687955688-20809-1-git-send-email-quic_mojha@quicinc.com>
+ <2023062814-chance-flounder-f002@gregkh>
+ <CAL_JsqLO9yey2-4FcWsaGxijiS6hGL0SH9VoMuiyei-u9=Cv=w@mail.gmail.com>
+ <CACRpkda3CJ7G4-wDPkWmzg6nyCoEfG+u2cQH6KXWNjbftd90ow@mail.gmail.com>
+ <355de4c7-180d-4edd-b6fd-9c8e29e40e42@quicinc.com>
+ <52650970-de78-764f-28e2-ee0115b7d5c6@quicinc.com>
+ <e4784d1c-73da-9cda-6aef-d02625e8efd2@quicinc.com>
+ <2023071833-clamshell-drinking-188c@gregkh>
+ <c8064592-bfac-67b4-1d7e-e173355c43f8@quicinc.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <c8064592-bfac-67b4-1d7e-e173355c43f8@quicinc.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The DT of_device.h and of_platform.h date back to the separate
-of_platform_bus_type before it as merged into the regular platform bus.
-As part of that merge prepping Arm DT support 13 years ago, they
-"temporarily" include each other. They also include platform_device.h
-and of.h. As a result, there's a pretty much random mix of those include
-files used throughout the tree. In order to detangle these headers and
-replace the implicit includes with struct declarations, users need to
-explicitly include the correct includes.
+On Tue, Jul 18, 2023 at 07:25:15PM +0530, Mukesh Ojha wrote:
+> 
+> 
+> On 7/18/2023 7:05 PM, Greg KH wrote:
+> > On Tue, Jul 18, 2023 at 11:17:12AM +0530, Mukesh Ojha wrote:
+> > > + linux-samsung-soc@vger.kernel.org
+> > > + linux-mediatek@lists.infradead.org
+> > 
+> > What does that do?
+> 
+> This is to seek their feedback, if they have something similar requirement
+> to debug end user device crashes.
 
-Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
-Signed-off-by: Rob Herring <robh@kernel.org>
----
-v2:
- - Drop whitespace changes in sbuslib.c
----
- drivers/video/fbdev/bw2.c                                | 3 ++-
- drivers/video/fbdev/cg14.c                               | 3 ++-
- drivers/video/fbdev/cg3.c                                | 3 ++-
- drivers/video/fbdev/cg6.c                                | 3 ++-
- drivers/video/fbdev/ffb.c                                | 3 ++-
- drivers/video/fbdev/grvga.c                              | 3 +--
- drivers/video/fbdev/leo.c                                | 3 ++-
- drivers/video/fbdev/mb862xx/mb862xxfb_accel.c            | 4 +---
- drivers/video/fbdev/mb862xx/mb862xxfbdrv.c               | 6 +++---
- drivers/video/fbdev/omap2/omapfb/displays/panel-dsi-cm.c | 2 +-
- drivers/video/fbdev/p9100.c                              | 3 ++-
- drivers/video/fbdev/platinumfb.c                         | 4 ++--
- drivers/video/fbdev/sbuslib.c                            | 2 +-
- drivers/video/fbdev/sunxvr1000.c                         | 3 ++-
- drivers/video/fbdev/sunxvr2500.c                         | 2 +-
- drivers/video/fbdev/sunxvr500.c                          | 2 +-
- drivers/video/fbdev/tcx.c                                | 3 ++-
- drivers/video/fbdev/xilinxfb.c                           | 5 ++---
- 18 files changed, 31 insertions(+), 26 deletions(-)
+Feedback to what?  There is no context here and no content either at
+all.
 
-diff --git a/drivers/video/fbdev/bw2.c b/drivers/video/fbdev/bw2.c
-index 025d663dc6fd..39f438de0d6b 100644
---- a/drivers/video/fbdev/bw2.c
-+++ b/drivers/video/fbdev/bw2.c
-@@ -17,7 +17,8 @@
- #include <linux/init.h>
- #include <linux/fb.h>
- #include <linux/mm.h>
--#include <linux/of_device.h>
-+#include <linux/of.h>
-+#include <linux/platform_device.h>
- 
- #include <asm/io.h>
- #include <asm/fbio.h>
-diff --git a/drivers/video/fbdev/cg14.c b/drivers/video/fbdev/cg14.c
-index 832a82f45c80..90fdc9d9bf5a 100644
---- a/drivers/video/fbdev/cg14.c
-+++ b/drivers/video/fbdev/cg14.c
-@@ -17,7 +17,8 @@
- #include <linux/fb.h>
- #include <linux/mm.h>
- #include <linux/uaccess.h>
--#include <linux/of_device.h>
-+#include <linux/of.h>
-+#include <linux/platform_device.h>
- 
- #include <asm/io.h>
- #include <asm/fbio.h>
-diff --git a/drivers/video/fbdev/cg3.c b/drivers/video/fbdev/cg3.c
-index 6335cd364c74..98c60f72046a 100644
---- a/drivers/video/fbdev/cg3.c
-+++ b/drivers/video/fbdev/cg3.c
-@@ -17,7 +17,8 @@
- #include <linux/init.h>
- #include <linux/fb.h>
- #include <linux/mm.h>
--#include <linux/of_device.h>
-+#include <linux/of.h>
-+#include <linux/platform_device.h>
- 
- #include <asm/io.h>
- #include <asm/fbio.h>
-diff --git a/drivers/video/fbdev/cg6.c b/drivers/video/fbdev/cg6.c
-index 6884572efea1..6427b85f1a94 100644
---- a/drivers/video/fbdev/cg6.c
-+++ b/drivers/video/fbdev/cg6.c
-@@ -17,7 +17,8 @@
- #include <linux/init.h>
- #include <linux/fb.h>
- #include <linux/mm.h>
--#include <linux/of_device.h>
-+#include <linux/of.h>
-+#include <linux/platform_device.h>
- 
- #include <asm/io.h>
- #include <asm/fbio.h>
-diff --git a/drivers/video/fbdev/ffb.c b/drivers/video/fbdev/ffb.c
-index c6d3111dcbb0..c473841eb6ff 100644
---- a/drivers/video/fbdev/ffb.c
-+++ b/drivers/video/fbdev/ffb.c
-@@ -16,7 +16,8 @@
- #include <linux/fb.h>
- #include <linux/mm.h>
- #include <linux/timer.h>
--#include <linux/of_device.h>
-+#include <linux/of.h>
-+#include <linux/platform_device.h>
- 
- #include <asm/io.h>
- #include <asm/upa.h>
-diff --git a/drivers/video/fbdev/grvga.c b/drivers/video/fbdev/grvga.c
-index 9aa15be29ea9..d4a9a58b3691 100644
---- a/drivers/video/fbdev/grvga.c
-+++ b/drivers/video/fbdev/grvga.c
-@@ -12,8 +12,7 @@
- 
- #include <linux/platform_device.h>
- #include <linux/dma-mapping.h>
--#include <linux/of_platform.h>
--#include <linux/of_device.h>
-+#include <linux/of.h>
- #include <linux/module.h>
- #include <linux/kernel.h>
- #include <linux/string.h>
-diff --git a/drivers/video/fbdev/leo.c b/drivers/video/fbdev/leo.c
-index 3ffc0a725f89..89ca48235dbe 100644
---- a/drivers/video/fbdev/leo.c
-+++ b/drivers/video/fbdev/leo.c
-@@ -16,8 +16,9 @@
- #include <linux/init.h>
- #include <linux/fb.h>
- #include <linux/mm.h>
--#include <linux/of_device.h>
- #include <linux/io.h>
-+#include <linux/of.h>
-+#include <linux/platform_device.h>
- 
- #include <asm/fbio.h>
- 
-diff --git a/drivers/video/fbdev/mb862xx/mb862xxfb_accel.c b/drivers/video/fbdev/mb862xx/mb862xxfb_accel.c
-index 61aed7fc0b8d..c35a7479fbf2 100644
---- a/drivers/video/fbdev/mb862xx/mb862xxfb_accel.c
-+++ b/drivers/video/fbdev/mb862xx/mb862xxfb_accel.c
-@@ -15,9 +15,7 @@
- #include <linux/module.h>
- #include <linux/pci.h>
- #include <linux/slab.h>
--#if defined(CONFIG_OF)
--#include <linux/of_platform.h>
--#endif
-+
- #include "mb862xxfb.h"
- #include "mb862xx_reg.h"
- #include "mb862xxfb_accel.h"
-diff --git a/drivers/video/fbdev/mb862xx/mb862xxfbdrv.c b/drivers/video/fbdev/mb862xx/mb862xxfbdrv.c
-index b5c8fcab9940..9dc347d163cf 100644
---- a/drivers/video/fbdev/mb862xx/mb862xxfbdrv.c
-+++ b/drivers/video/fbdev/mb862xx/mb862xxfbdrv.c
-@@ -18,11 +18,11 @@
- #include <linux/init.h>
- #include <linux/interrupt.h>
- #include <linux/pci.h>
--#if defined(CONFIG_OF)
-+#include <linux/of.h>
- #include <linux/of_address.h>
- #include <linux/of_irq.h>
--#include <linux/of_platform.h>
--#endif
-+#include <linux/platform_device.h>
-+
- #include "mb862xxfb.h"
- #include "mb862xx_reg.h"
- 
-diff --git a/drivers/video/fbdev/omap2/omapfb/displays/panel-dsi-cm.c b/drivers/video/fbdev/omap2/omapfb/displays/panel-dsi-cm.c
-index ba94a0a7bd4f..77fce1223a64 100644
---- a/drivers/video/fbdev/omap2/omapfb/displays/panel-dsi-cm.c
-+++ b/drivers/video/fbdev/omap2/omapfb/displays/panel-dsi-cm.c
-@@ -15,12 +15,12 @@
- #include <linux/gpio/consumer.h>
- #include <linux/interrupt.h>
- #include <linux/jiffies.h>
-+#include <linux/mod_devicetable.h>
- #include <linux/module.h>
- #include <linux/platform_device.h>
- #include <linux/sched/signal.h>
- #include <linux/slab.h>
- #include <linux/workqueue.h>
--#include <linux/of_device.h>
- 
- #include <video/omapfb_dss.h>
- #include <video/mipi_display.h>
-diff --git a/drivers/video/fbdev/p9100.c b/drivers/video/fbdev/p9100.c
-index 0876962c52eb..e2e747cae9b1 100644
---- a/drivers/video/fbdev/p9100.c
-+++ b/drivers/video/fbdev/p9100.c
-@@ -15,7 +15,8 @@
- #include <linux/init.h>
- #include <linux/fb.h>
- #include <linux/mm.h>
--#include <linux/of_device.h>
-+#include <linux/of.h>
-+#include <linux/platform_device.h>
- 
- #include <asm/io.h>
- #include <asm/fbio.h>
-diff --git a/drivers/video/fbdev/platinumfb.c b/drivers/video/fbdev/platinumfb.c
-index f8283fcd5edb..b27f43b3616e 100644
---- a/drivers/video/fbdev/platinumfb.c
-+++ b/drivers/video/fbdev/platinumfb.c
-@@ -30,9 +30,9 @@
- #include <linux/fb.h>
- #include <linux/init.h>
- #include <linux/nvram.h>
-+#include <linux/of.h>
- #include <linux/of_address.h>
--#include <linux/of_device.h>
--#include <linux/of_platform.h>
-+#include <linux/platform_device.h>
- 
- #include "macmodes.h"
- #include "platinumfb.h"
-diff --git a/drivers/video/fbdev/sbuslib.c b/drivers/video/fbdev/sbuslib.c
-index 7f79db827b07..21e9fd8e69e2 100644
---- a/drivers/video/fbdev/sbuslib.c
-+++ b/drivers/video/fbdev/sbuslib.c
-@@ -11,7 +11,7 @@
- #include <linux/fb.h>
- #include <linux/mm.h>
- #include <linux/uaccess.h>
--#include <linux/of_device.h>
-+#include <linux/of.h>
- 
- #include <asm/fbio.h>
- 
-diff --git a/drivers/video/fbdev/sunxvr1000.c b/drivers/video/fbdev/sunxvr1000.c
-index 490bd9a14763..17d61e1d11a6 100644
---- a/drivers/video/fbdev/sunxvr1000.c
-+++ b/drivers/video/fbdev/sunxvr1000.c
-@@ -8,7 +8,8 @@
- #include <linux/kernel.h>
- #include <linux/fb.h>
- #include <linux/init.h>
--#include <linux/of_device.h>
-+#include <linux/of.h>
-+#include <linux/platform_device.h>
- 
- struct gfb_info {
- 	struct fb_info		*info;
-diff --git a/drivers/video/fbdev/sunxvr2500.c b/drivers/video/fbdev/sunxvr2500.c
-index 2cab4b9be68a..e64ec7d0caf9 100644
---- a/drivers/video/fbdev/sunxvr2500.c
-+++ b/drivers/video/fbdev/sunxvr2500.c
-@@ -10,7 +10,7 @@
- #include <linux/fb.h>
- #include <linux/pci.h>
- #include <linux/init.h>
--#include <linux/of_device.h>
-+#include <linux/of.h>
- 
- #include <asm/io.h>
- 
-diff --git a/drivers/video/fbdev/sunxvr500.c b/drivers/video/fbdev/sunxvr500.c
-index 6ec358af1256..c4e01e871483 100644
---- a/drivers/video/fbdev/sunxvr500.c
-+++ b/drivers/video/fbdev/sunxvr500.c
-@@ -10,7 +10,7 @@
- #include <linux/fb.h>
- #include <linux/pci.h>
- #include <linux/init.h>
--#include <linux/of_device.h>
-+#include <linux/of.h>
- 
- #include <asm/io.h>
- 
-diff --git a/drivers/video/fbdev/tcx.c b/drivers/video/fbdev/tcx.c
-index fc3ac2301b45..255eb57aefa2 100644
---- a/drivers/video/fbdev/tcx.c
-+++ b/drivers/video/fbdev/tcx.c
-@@ -17,7 +17,8 @@
- #include <linux/init.h>
- #include <linux/fb.h>
- #include <linux/mm.h>
--#include <linux/of_device.h>
-+#include <linux/of.h>
-+#include <linux/platform_device.h>
- 
- #include <asm/io.h>
- #include <asm/fbio.h>
-diff --git a/drivers/video/fbdev/xilinxfb.c b/drivers/video/fbdev/xilinxfb.c
-index 2aa3a528277f..542baddd54ad 100644
---- a/drivers/video/fbdev/xilinxfb.c
-+++ b/drivers/video/fbdev/xilinxfb.c
-@@ -24,14 +24,13 @@
- #include <linux/module.h>
- #include <linux/kernel.h>
- #include <linux/errno.h>
-+#include <linux/platform_device.h>
- #include <linux/string.h>
- #include <linux/mm.h>
- #include <linux/fb.h>
- #include <linux/init.h>
- #include <linux/dma-mapping.h>
--#include <linux/of_device.h>
--#include <linux/of_platform.h>
--#include <linux/of_address.h>
-+#include <linux/of.h>
- #include <linux/io.h>
- #include <linux/slab.h>
- 
--- 
-2.40.1
+Just adding a mailing list to the top of a message doesn't actually send
+the thread there.
 
+confused,
+
+greg k-h
