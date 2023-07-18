@@ -2,441 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C0D237586B4
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 23:16:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F06F47586C5
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 23:24:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231311AbjGRVQo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jul 2023 17:16:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39432 "EHLO
+        id S229805AbjGRVYo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jul 2023 17:24:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42432 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231304AbjGRVQk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 17:16:40 -0400
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EE0919AD
-        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 14:16:37 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-99342a599e9so864424966b.3
-        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 14:16:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gateworks-com.20221208.gappssmtp.com; s=20221208; t=1689714996; x=1692306996;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=E3l5b6fjCqYkc1Ou+xz9fDA/3zqE2Nao7Y82ogOypK4=;
-        b=1GbbTX1wQ3HyzN+6JhzVk6tFEqPdThi7ya6ZBYCaSoPmTyIEciobKI0uKW3LqmbW2O
-         UnSBey/amOqVMKOeYKN++L33D+YcyCVvlFlciAAKZ3lo5Xo9NvJH0aYxD/Mu41p+ViXX
-         my0AxuJEqpfkhh/Wt7PB2tsG7PrkO+HDGAPrUcIFyq/zepnMtgsV9nnTSXUwZFo88M+6
-         ALdVi6gds82qtmYx+bruYddSKcUcWPuJe/5+BRNThgpzp05F6qp+T3B8yc3F5ooQVyvG
-         cTPglpBcSykd02PuH//Dz8uWtxStGt1zGyRHebduaMXxQd3bfH5kKfCraH0L8SHyc2zb
-         QsSQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689714996; x=1692306996;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=E3l5b6fjCqYkc1Ou+xz9fDA/3zqE2Nao7Y82ogOypK4=;
-        b=MutXpbVVzROpEVAXikmaHF11Q6D02hVkoac7bVoAziXdPq+V51umS/+PId7u7Q829t
-         466L301gW9uCcPCjJ8Dp4xsOxGdyOSNS6M/YQb9T+nVVCl62+GG66mAr9I4MMAFuF2C/
-         lpMtSVSQEC2zxsemcwAJa1u0sUgzND6Ixesy/hDHiB1C1d3S/4qSMZhtNhyze+XrLyYT
-         +R07we3tP+8P6uMV5W1twdA8gAoKU2UTxybBVhMHqEi5F9i1XGotJUNA6zxz63PdsFEa
-         J96hYBR6nSgmJct0sDqamlOzenrxIPeCaqNwUYKh2FXCyoiTYWhaZ72tt6a6gjLyLidA
-         wVpA==
-X-Gm-Message-State: ABy/qLa8LGcJpdIESCjfGjNxOUXCb6da7ASMMAzrEkpKQ1eHMB9L3G0w
-        QqxAnzzkllVYmHK4MAxhwXXWDKdCpsuUcYrHZNzhBQ==
-X-Google-Smtp-Source: APBJJlE+HnXXcT07j8t7C89/yxNlvYSRHCuNfd0fNYCV4MuOQPdATMP1uBMS49Yd4Ei7HXNOLMnKrT1/MHWtcviG0Kw=
-X-Received: by 2002:a17:906:51:b0:994:577:f9df with SMTP id
- 17-20020a170906005100b009940577f9dfmr737739ejg.4.1689714995726; Tue, 18 Jul
- 2023 14:16:35 -0700 (PDT)
+        with ESMTP id S229774AbjGRVYn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 17:24:43 -0400
+Received: from relay07.th.seeweb.it (relay07.th.seeweb.it [IPv6:2001:4b7a:2000:18::168])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6BD4C0
+        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 14:24:41 -0700 (PDT)
+Received: from Marijn-Arch-PC.localdomain (94-211-6-86.cable.dynamic.v4.ziggo.nl [94.211.6.86])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 1B03F3F5C7;
+        Tue, 18 Jul 2023 23:24:38 +0200 (CEST)
+From:   Marijn Suijten <marijn.suijten@somainline.org>
+Subject: [PATCH v3 00/15] drm/msm: Add SM6125 MDSS/DPU hardware and enable
+ Sony Xperia 10 II panel
+Date:   Tue, 18 Jul 2023 23:24:36 +0200
+Message-Id: <20230718-sm6125-dpu-v3-0-6c5a56e99820@somainline.org>
 MIME-Version: 1.0
-References: <20230607170724.2016988-1-tharvey@gateworks.com>
- <20230607170724.2016988-2-tharvey@gateworks.com> <20230717002717.GI9559@dragon>
-In-Reply-To: <20230717002717.GI9559@dragon>
-From:   Tim Harvey <tharvey@gateworks.com>
-Date:   Tue, 18 Jul 2023 14:16:22 -0700
-Message-ID: <CAJ+vNU2Wn0jf8QyZsGiw3f=XThZEfXajhGJTmZz2mnJXgprAhQ@mail.gmail.com>
-Subject: Re: [PATCH 2/2] arm64: dts: freescale: Add imx8mp-venice-gw71xx-2x
-To:     Shawn Guo <shawnguo@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org,
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIABQDt2QC/23NSw6CMBgE4KuYrq3pA1p05T2Miz5+oAm0pJVGQ
+ 7i7hZVGlzPJN7OgBNFBQpfDgiJkl1zwJfDjAZle+Q6wsyUjRhgnglU4jYKyGttpxgqsOQsuAaR
+ GBWiVAOuovOkL8fMwlHKK0Lrn/nC7l9y79AjxtR9murV/tzPFBFNbK8EbA7pl1xRG5fzgPJxC7
+ NC2ldmnl1+eFU84VJwoRmRjfvy6rm+B3UzY/gAAAA==
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Krishna Manikandan <quic_mkrishn@quicinc.com>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Loic Poulain <loic.poulain@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>
+Cc:     ~postmarketos/upstreaming@lists.sr.ht,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        linux-clk@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, Lux Aliaga <they@mint.lgbt>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.12.3
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jul 16, 2023 at 5:27=E2=80=AFPM Shawn Guo <shawnguo@kernel.org> wro=
-te:
->
-> On Wed, Jun 07, 2023 at 10:07:24AM -0700, Tim Harvey wrote:
-> > The Gateworks imx8mp-venice-gw71xx-2x consists of a SOM + baseboard.
-> >
-> > The GW702x SOM contains the following:
-> >  - i.MX8M Plus SoC
-> >  - LPDDR4 memory
-> >  - eMMC Boot device
-> >  - Gateworks System Controller (GSC) with integrated EEPROM, button
-> >    controller, and ADC's
-> >  - PMIC
-> >  - SOM connector providing:
-> >   - eQoS GbE MII
-> >   - 1x SPI
-> >   - 2x I2C
-> >   - 4x UART
-> >   - 2x USB 3.0
-> >   - 1x PCI
-> >   - 1x SDIO (4-bit 3.3V)
-> >   - 1x SDIO (4-bit 3.3V/1.8V)
-> >   - GPIO
-> >
-> > The GW71xx Baseboard contains the following:
-> >  - GPS
-> >  - RJ45 GbE (eQoS)
-> >  - off-board I/O connector with UART, I2C, SPI, GPIO
-> >  - EERPOM
-> >  - PCIe clock generator
-> >  - full-length miniPCIe socket with PCI/USB3 (via mux) and USB2.0
-> >  - USB Type-C with USB 2.0 host and peripheral support
-> >  - Wide range DC input supply
-> >
-> > Signed-off-by: Tim Harvey <tharvey@gateworks.com>
-> > ---
-> >  arch/arm64/boot/dts/freescale/Makefile        |   1 +
-> >  .../dts/freescale/imx8mp-venice-gw71xx-2x.dts |  19 ++
-> >  .../dts/freescale/imx8mp-venice-gw71xx.dtsi   | 236 ++++++++++++++++++
-> >  3 files changed, 256 insertions(+)
-> >  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-venice-gw71xx-=
-2x.dts
-> >  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-venice-gw71xx.=
-dtsi
-> >
-> > diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/d=
-ts/freescale/Makefile
-> > index 62f22b77b38b..b3bb823d0168 100644
-> > --- a/arch/arm64/boot/dts/freescale/Makefile
-> > +++ b/arch/arm64/boot/dts/freescale/Makefile
-> > @@ -101,6 +101,7 @@ dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-icore-mx8mp-edim=
-m2.2.dtb
-> >  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-msc-sm2s-ep1.dtb
-> >  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-phyboard-pollux-rdk.dtb
-> >  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-tqma8mpql-mba8mpxl.dtb
-> > +dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-venice-gw71xx-2x.dtb
-> >  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-venice-gw74xx.dtb
-> >  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-venice-gw7905-2x.dtb
-> >  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-verdin-nonwifi-dahlia.dtb
-> > diff --git a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw71xx-2x.dts =
-b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw71xx-2x.dts
-> > new file mode 100644
-> > index 000000000000..53120fc9cd7f
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw71xx-2x.dts
-> > @@ -0,0 +1,19 @@
-> > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> > +/*
-> > + * Copyright 2023 Gateworks Corporation
-> > + */
-> > +
-> > +/dts-v1/;
-> > +
-> > +#include "imx8mp.dtsi"
-> > +#include "imx8mp-venice-gw702x.dtsi"
-> > +#include "imx8mp-venice-gw71xx.dtsi"
-> > +
-> > +/ {
-> > +     model =3D "Gateworks Venice GW71xx-2x i.MX8MP Development Kit";
-> > +     compatible =3D "gateworks,imx8mp-gw71xx-2x", "fsl,imx8mp";
-> > +
-> > +     chosen {
-> > +             stdout-path =3D &uart2;
-> > +     };
-> > +};
-> > diff --git a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw71xx.dtsi b/=
-arch/arm64/boot/dts/freescale/imx8mp-venice-gw71xx.dtsi
-> > new file mode 100644
-> > index 000000000000..86999f52d4b2
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw71xx.dtsi
-> > @@ -0,0 +1,236 @@
-> > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> > +/*
-> > + * Copyright 2023 Gateworks Corporation
-> > + */
-> > +
-> > +#include <dt-bindings/gpio/gpio.h>
-> > +#include <dt-bindings/leds/common.h>
-> > +#include <dt-bindings/phy/phy-imx8-pcie.h>
-> > +
-> > +/ {
-> > +     led-controller {
-> > +             compatible =3D "gpio-leds";
-> > +             pinctrl-names =3D "default";
-> > +             pinctrl-0 =3D <&pinctrl_gpio_leds>;
-> > +
-> > +             led-0 {
-> > +                     function =3D LED_FUNCTION_STATUS;
-> > +                     color =3D <LED_COLOR_ID_GREEN>;
-> > +                     gpios =3D <&gpio4 1 GPIO_ACTIVE_HIGH>;
-> > +                     default-state =3D "on";
-> > +                     linux,default-trigger =3D "heartbeat";
-> > +             };
-> > +
-> > +             led-1 {
-> > +                     function =3D LED_FUNCTION_STATUS;
-> > +                     color =3D <LED_COLOR_ID_RED>;
-> > +                     gpios =3D <&gpio4 5 GPIO_ACTIVE_HIGH>;
-> > +                     default-state =3D "off";
-> > +             };
-> > +     };
-> > +
-> > +     pcie0_refclk: pcie0-refclk {
->
-> Can we name the node clock-xxx?
->
-> > +             compatible =3D "fixed-clock";
-> > +             #clock-cells =3D <0>;
-> > +             clock-frequency =3D <100000000>;
-> > +     };
-> > +
-> > +     pps {
-> > +             compatible =3D "pps-gpio";
-> > +             pinctrl-names =3D "default";
-> > +             pinctrl-0 =3D <&pinctrl_pps>;
-> > +             gpios =3D <&gpio4 3 GPIO_ACTIVE_HIGH>;
-> > +             status =3D "okay";
-> > +     };
-> > +};
-> > +
-> > +/* off-board header */
-> > +&ecspi2 {
-> > +     pinctrl-names =3D "default";
-> > +     pinctrl-0 =3D <&pinctrl_spi2>;
-> > +     cs-gpios =3D <&gpio5 13 GPIO_ACTIVE_LOW>;
-> > +     status =3D "okay";
-> > +};
-> > +
-> > +&gpio4 {
-> > +     gpio-line-names =3D
-> > +             "", "", "", "",
-> > +             "", "", "", "",
-> > +             "dio1", "", "", "dio0",
-> > +             "", "", "pci_usb_sel", "",
-> > +             "", "", "", "",
-> > +             "", "", "", "",
-> > +             "dio3", "", "dio2", "",
-> > +             "pci_wdis#", "", "", "";
-> > +};
-> > +
-> > +&i2c2 {
-> > +     clock-frequency =3D <400000>;
-> > +     pinctrl-names =3D "default";
-> > +     pinctrl-0 =3D <&pinctrl_i2c2>;
-> > +     status =3D "okay";
-> > +
-> > +     accelerometer@19 {
-> > +             pinctrl-names =3D "default";
-> > +             pinctrl-0 =3D <&pinctrl_accel>;
-> > +             compatible =3D "st,lis2de12";
-> > +             reg =3D <0x19>;
->
-> Can we start the property list from these two?
->
-> > +             st,drdy-int-pin =3D <1>;
-> > +             interrupt-parent =3D <&gpio4>;
-> > +             interrupts =3D <21 IRQ_TYPE_LEVEL_LOW>;
-> > +             interrupt-names =3D "INT1";
-> > +     };
-> > +};
-> > +
-> > +&pcie_phy {
-> > +     fsl,refclk-pad-mode =3D <IMX8_PCIE_REFCLK_PAD_INPUT>;
-> > +     fsl,clkreq-unsupported;
-> > +     clocks =3D <&pcie0_refclk>;
-> > +     clock-names =3D "ref";
-> > +     status =3D "okay";
-> > +};
-> > +
-> > +&pcie {
-> > +     pinctrl-names =3D "default";
-> > +     pinctrl-0 =3D <&pinctrl_pcie0>;
-> > +     reset-gpio =3D <&gpio4 29 GPIO_ACTIVE_LOW>;
-> > +     status =3D "okay";
-> > +};
-> > +
-> > +/* GPS */
-> > +&uart1 {
-> > +     pinctrl-names =3D "default";
-> > +     pinctrl-0 =3D <&pinctrl_uart1>;
-> > +     status =3D "okay";
-> > +};
-> > +
-> > +/* off-board header */
-> > +&uart3 {
-> > +     pinctrl-names =3D "default";
-> > +     pinctrl-0 =3D <&pinctrl_uart3>;
-> > +     status =3D "okay";
-> > +};
-> > +
-> > +/* USB1 Type-C front panel */
-> > +&usb3_0 {
-> > +     pinctrl-names =3D "default";
-> > +     pinctrl-0 =3D <&pinctrl_usb1>;
-> > +     fsl,over-current-active-low;
-> > +     status =3D "okay";
-> > +};
-> > +
-> > +&usb3_phy0 {
-> > +     status =3D "okay";
-> > +};
-> > +
-> > +&usb_dwc3_0 {
-> > +     /* dual role is implemented but not a full featured OTG */
-> > +     adp-disable;
-> > +     hnp-disable;
-> > +     srp-disable;
-> > +     dr_mode =3D "otg";
-> > +     usb-role-switch;
-> > +     role-switch-default-mode =3D "peripheral";
-> > +     status =3D "okay";
-> > +
-> > +     connector {
-> > +             pinctrl-names =3D "default";
-> > +             pinctrl-0 =3D <&pinctrl_usbcon1>;
-> > +             compatible =3D "gpio-usb-b-connector", "usb-b-connector";
->
-> Start the properties from 'compatible'?
->
-> Shawn
->
+Bring up the SM6125 DPU now that all preliminary series (such as INTF
+TE) have been merged (for me to test the hardware properly), and most
+other conflicting work (barring ongoing catalog *improvements*) has made
+its way in as well or is still being discussed.
 
-Hi Shawn,
+The second part of the series complements that by immediately utilizing
+this hardware in DT, and even enabling the MDSS/DSI nodes complete with
+a 6.0" 1080x2520 panel for Sony's Seine PDX201 (Xperia 10 II).
 
-My notes say that pinctrl should come first (if needed) followed by
-compatible, reg, other props, and finally status (if needed). Assuming
-I'm wrong about that where in the list should pinctrl be and is this
-documented anywhere for future reference?
+The last patch ("sm6125-seine: Configure MDSS, DSI and panel") depends
+on (an impending v2 of) my Sony panel collection series [1].
+
+[1]: https://lore.kernel.org/linux-arm-msm/20230521-drm-panels-sony-v1-0-541c341d6bee@somainline.org/
+
+---
+Changes in v3:
+- Drop status="disabled" from MDSS dt-bindings example;
+- Use "nom" instead of "svs" OPP for dsi-phy PD, matching downstream;
+- Add "retention" OPP to dispcc PD;
+- Reword dsi-phy required-opps documentation;
+- Rebased on latest -next and fixed conflicts in DT and DPU catalog;
+- Link to v2: https://lore.kernel.org/r/20230627-sm6125-dpu-v2-0-03e430a2078c@somainline.org
+
+Changes in v2:
+- Moved dispcc DT clock reordering to the right patch (--fixup on the
+  wrong hash) (Dmitry, Konrad multiple times);
+- Drop removal of GCC_DISP_AHB_CLK in dispcc bindings.  While it is
+  unused in the current driver, it is likely used to ensure a guaranteed
+  probe order between GCC and DISPCC downstream, as well as currently
+  relying on the fact that GCC_DISP_AHB_CLK is CLK_IS_CRITICAL and never
+  turned off (Bjorn);
+- Add GCC_DISP_GPLL0_DIV_CLK_SRC at the end of the dispcc clock list to
+  maintain some form of ABI stability (Krzysztof);
+- Use SoC-prefix format for 14nm DSI PHY qcom,sm6125-dsi-phy-14nm
+  compatible (Dmitry, Krzysztof);
+- Add patch to drop unused regulators from QCM2290 14nm DSI PHY (Konrad,
+  Dmitry);
+- Reuse QCM2290 14nm DSI PHY config struct for SM6125 compatible
+  (Konrad);
+- s/sde/mdss in pdx201.dts pinctrl node names and labels (Konrad);
+- Use MX power domain in DSI PHY with SVS OPP (Dmitry);
+- Use CX power domain with (already-existing) OPP table in DSI CTRL
+  (Konrad, Dmitry);
+- Rebased on top of DPU catalog rework [1] by inlining macro
+  invocations, and validated by diffing stripped dpu_hw_catalog.o that
+  there are no unexpected changes;
+- Unset min_llcc_ib because this platform has no LLCC (Konrad);
+- Fix UBWC comment to mention "encoding" version (Dmitry);
+- Reordered DT nodes to follow Konrad's requested sorting;
+- Add power-domains and required-opps properties to dsi-phy-14nm.yaml;
+- Link to v1: https://lore.kernel.org/r/20230624-sm6125-dpu-v1-0-1d5a638cebf2@somainline.org
+
+The discussions and this list ran quite long, apologies if I missed or
+mis-resolved anything in advance!
+
+[1]: https://lore.kernel.org/linux-arm-msm/20230619212519.875673-1-dmitry.baryshkov@linaro.org/
+
+---
+Marijn Suijten (15):
+      drm/msm/dsi: Drop unused regulators from QCM2290 14nm DSI PHY config
+      arm64: dts: qcom: sm6125: Sort spmi_bus node numerically by reg
+      dt-bindings: clock: qcom,dispcc-sm6125: Require GCC PLL0 DIV clock
+      dt-bindings: clock: qcom,dispcc-sm6125: Allow power-domains property
+      dt-bindings: display/msm: dsi-controller-main: Document SM6125
+      dt-bindings: display/msm: sc7180-dpu: Describe SM6125
+      dt-bindings: display/msm: Add SM6125 MDSS
+      drm/msm/dpu: Add SM6125 support
+      drm/msm/mdss: Add SM6125 support
+      dt-bindings: msm: dsi-phy-14nm: Document SM6125 variant
+      drm/msm/dsi: Reuse QCM2290 14nm DSI PHY configuration for SM6125
+      arm64: dts: qcom: sm6125: Switch fixed xo_board clock to RPM XO clock
+      arm64: dts: qcom: sm6125: Add dispcc node
+      arm64: dts: qcom: sm6125: Add display hardware nodes
+      arm64: dts: qcom: sm6125-seine: Configure MDSS, DSI and panel
+
+ .../bindings/clock/qcom,dispcc-sm6125.yaml         |  24 +-
+ .../bindings/display/msm/dsi-controller-main.yaml  |   2 +
+ .../bindings/display/msm/dsi-phy-14nm.yaml         |  11 +
+ .../bindings/display/msm/qcom,sc7180-dpu.yaml      |  14 ++
+ .../bindings/display/msm/qcom,sm6125-mdss.yaml     | 211 +++++++++++++++++
+ .../dts/qcom/sm6125-sony-xperia-seine-pdx201.dts   |  59 +++++
+ arch/arm64/boot/dts/qcom/sm6125.dtsi               | 255 +++++++++++++++++++--
+ .../gpu/drm/msm/disp/dpu1/catalog/dpu_5_4_sm6125.h | 236 +++++++++++++++++++
+ drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c     |   7 +
+ drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h     |   1 +
+ drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c            |   1 +
+ drivers/gpu/drm/msm/dsi/phy/dsi_phy.c              |   2 +
+ drivers/gpu/drm/msm/dsi/phy/dsi_phy_14nm.c         |   2 -
+ drivers/gpu/drm/msm/msm_mdss.c                     |   8 +
+ 14 files changed, 810 insertions(+), 23 deletions(-)
+---
+base-commit: 535ce75f2d80a47ce5407681014cd5a976646e38
+change-id: 20230624-sm6125-dpu-aedc9637ee7b
 
 Best regards,
+-- 
+Marijn Suijten <marijn.suijten@somainline.org>
 
-Tim
-
-> > +             type =3D "micro";
-> > +             label =3D "Type-C";
-> > +             id-gpios =3D <&gpio3 21 GPIO_ACTIVE_HIGH>;
-> > +     };
-> > +};
-> > +
-> > +/* USB2 - MiniPCIe socket */
-> > +&usb3_1 {
-> > +     fsl,permanently-attached;
-> > +     fsl,disable-port-power-control;
-> > +     status =3D "okay";
-> > +};
-> > +
-> > +&usb3_phy1 {
-> > +     status =3D "okay";
-> > +};
-> > +
-> > +&usb_dwc3_1 {
-> > +     dr_mode =3D "host";
-> > +     status =3D "okay";
-> > +};
-> > +
-> > +&iomuxc {
-> > +     pinctrl-names =3D "default";
-> > +     pinctrl-0 =3D <&pinctrl_hog>;
-> > +
-> > +     pinctrl_hog: hoggrp {
-> > +             fsl,pins =3D <
-> > +                     MX8MP_IOMUXC_SAI1_RXD6__GPIO4_IO08      0x4000014=
-6 /* DIO1 */
-> > +                     MX8MP_IOMUXC_SAI1_TXC__GPIO4_IO11       0x4000014=
-6 /* DIO0 */
-> > +                     MX8MP_IOMUXC_SAI1_TXD2__GPIO4_IO14      0x4000010=
-6 /* PCIE_USBSEL */
-> > +                     MX8MP_IOMUXC_SAI2_TXD0__GPIO4_IO26      0x4000014=
-6 /* DIO2 */
-> > +                     MX8MP_IOMUXC_SAI2_TXFS__GPIO4_IO24      0x4000014=
-6 /* DIO3 */
-> > +                     MX8MP_IOMUXC_SAI3_RXFS__GPIO4_IO28      0x4000010=
-6 /* PCIE_WDIS# */
-> > +             >;
-> > +     };
-> > +
-> > +     pinctrl_accel: accelgrp {
-> > +             fsl,pins =3D <
-> > +                     MX8MP_IOMUXC_SAI2_RXFS__GPIO4_IO21      0x150   /=
-* IRQ */
-> > +             >;
-> > +     };
-> > +
-> > +     pinctrl_gpio_leds: gpioledgrp {
-> > +             fsl,pins =3D <
-> > +                     MX8MP_IOMUXC_SAI1_RXC__GPIO4_IO01       0x6     /=
-* LEDG */
-> > +                     MX8MP_IOMUXC_SAI1_RXD3__GPIO4_IO05      0x6     /=
-* LEDR */
-> > +             >;
-> > +     };
-> > +
-> > +     pinctrl_pcie0: pcie0grp {
-> > +             fsl,pins =3D <
-> > +                     MX8MP_IOMUXC_SAI3_RXC__GPIO4_IO29       0x106
-> > +             >;
-> > +     };
-> > +
-> > +     pinctrl_pps: ppsgrp {
-> > +             fsl,pins =3D <
-> > +                     MX8MP_IOMUXC_SAI1_RXD1__GPIO4_IO03      0x146
-> > +             >;
-> > +     };
-> > +
-> > +     pinctrl_usb1: usb1grp {
-> > +             fsl,pins =3D <
-> > +                     MX8MP_IOMUXC_GPIO1_IO13__USB1_OTG_OC    0x140 /* =
-USB1_FLT# */
-> > +             >;
-> > +     };
-> > +
-> > +     pinctrl_usbcon1: usbcon1grp {
-> > +             fsl,pins =3D <
-> > +                     MX8MP_IOMUXC_SAI5_RXD0__GPIO3_IO21      0x140 /* =
-USB1_ID */
-> > +             >;
-> > +     };
-> > +
-> > +     pinctrl_spi2: spi2grp {
-> > +             fsl,pins =3D <
-> > +                     MX8MP_IOMUXC_ECSPI2_SCLK__ECSPI2_SCLK   0x140
-> > +                     MX8MP_IOMUXC_ECSPI2_MOSI__ECSPI2_MOSI   0x140
-> > +                     MX8MP_IOMUXC_ECSPI2_MISO__ECSPI2_MISO   0x140
-> > +                     MX8MP_IOMUXC_ECSPI2_SS0__GPIO5_IO13     0x140
-> > +             >;
-> > +     };
-> > +
-> > +     pinctrl_uart1: uart1grp {
-> > +             fsl,pins =3D <
-> > +                     MX8MP_IOMUXC_UART1_RXD__UART1_DCE_RX    0x140
-> > +                     MX8MP_IOMUXC_UART1_TXD__UART1_DCE_TX    0x140
-> > +             >;
-> > +     };
-> > +
-> > +     pinctrl_uart3: uart3grp {
-> > +             fsl,pins =3D <
-> > +                     MX8MP_IOMUXC_UART3_RXD__UART3_DCE_RX    0x140
-> > +                     MX8MP_IOMUXC_UART3_TXD__UART3_DCE_TX    0x140
-> > +             >;
-> > +     };
-> > +};
-> > --
-> > 2.25.1
-> >
