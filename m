@@ -2,147 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D560275813C
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 17:46:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B3EF758143
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 17:48:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231644AbjGRPqt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jul 2023 11:46:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43740 "EHLO
+        id S233022AbjGRPsB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jul 2023 11:48:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44358 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230320AbjGRPqs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 11:46:48 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E344AA9;
-        Tue, 18 Jul 2023 08:46:47 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 79B1D61644;
-        Tue, 18 Jul 2023 15:46:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C3494C433C7;
-        Tue, 18 Jul 2023 15:46:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689695206;
-        bh=76mVnJR9o74Ma8KmtRmvfVhR/CCcRdmixqoJDHlIGzg=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=JTqoea1e4JsUd0SgXsF3R8CUlUt42gzMufzNo8YkXur/QdtUJdJ5jhWDr5UneKhQy
-         JLxl3nBJQM80I/OEH5dR+H6AJTnJl9pUcsh7ioARJ1EbCqtgsiZgfUFyvcKkLGV93V
-         zLJ7K/I2ho+eoF1XcUZhSPCLd9k9edyAGCXX/cpl10COVm2lsY3afE/Et/KI+McnaH
-         /s+h6dNU5sXUu4N5BI7p5Buf1GYxt0YALSvDPaC7/xWplza8Cqqv0cqeyYoF/hS8vR
-         Y/aHDeQMGt38kLsWeviLvYz7tGi6C5cGJmdmHpslvjVR1xz5pyopZ/PjLwHMpik1sX
-         hJYpV6TyUgSOQ==
-Date:   Tue, 18 Jul 2023 16:46:42 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Johan Jonker <jbx6244@gmail.com>
-Cc:     miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, linux-mtd@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v1 1/2] dt-bindings: mtd: nand-controller: add
- nand-skip-bbtscan and nand-no-bbm-quirk DT options
-Message-ID: <20230718-curfew-jumble-aeafe95c5cc7@spud>
-References: <61c84262-cd98-1e60-d95b-9b0492083994@gmail.com>
+        with ESMTP id S233105AbjGRPru (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 11:47:50 -0400
+Received: from mailrelay6-1.pub.mailoutpod2-cph3.one.com (mailrelay6-1.pub.mailoutpod2-cph3.one.com [46.30.211.181])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2E07BB
+        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 08:47:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ravnborg.org; s=rsa1;
+        h=in-reply-to:content-type:mime-version:references:message-id:subject:cc:to:
+         from:date:from;
+        bh=SPDU5kPWAAgPJ4oaKrt1JSYg4VjyFkkAo26/4HsJa04=;
+        b=dLsM4dKkdPGEHfWhE3vOWnFlgqVcbUyXZFIoRiB/sV84rIprOtRr96GG5UiY7rQPW2Ga+rHh+MiZm
+         OGndJTN+MK6X0+EncQLeUWmTInpQOJALijDi8u7SecoAqs+Nd5Sx6EhoSt1Xus1NTKsfKw/a6kCQNT
+         8dfK+wUCKqBJLVM1AMgGxEIhOZU6HT1HuzvQUlcbBfhTq9aTbimXYpbC4tLA6ZZsY871YPtEgk4pYY
+         /advwv9+3ZzFLVjfrKdDKRoRb2pk3cMIwlOD7koEju4ysS7pFM/8q64GJXrGTsazm1+EfEJwccSxUD
+         LkEQHA4RNjKEvAf/fNbe47i7J1S0YqA==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed;
+        d=ravnborg.org; s=ed1;
+        h=in-reply-to:content-type:mime-version:references:message-id:subject:cc:to:
+         from:date:from;
+        bh=SPDU5kPWAAgPJ4oaKrt1JSYg4VjyFkkAo26/4HsJa04=;
+        b=D8EVbIV6H9KKEcuAqA4UX2ud8rTkGapXb7xDfioVd2x2qEvtJTYdzfwETPQFuaCb0ZyBBXolk6RU2
+         ejcFqvTAA==
+X-HalOne-ID: 4bc5dc98-2582-11ee-b1c1-6f01c1d0a443
+Received: from ravnborg.org (2-105-2-98-cable.dk.customer.tdc.net [2.105.2.98])
+        by mailrelay6 (Halon) with ESMTPSA
+        id 4bc5dc98-2582-11ee-b1c1-6f01c1d0a443;
+        Tue, 18 Jul 2023 15:46:45 +0000 (UTC)
+Date:   Tue, 18 Jul 2023 17:46:44 +0200
+From:   Sam Ravnborg <sam@ravnborg.org>
+To:     Ying Liu <victor.liu@nxp.com>
+Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "rfoss@kernel.org" <rfoss@kernel.org>,
+        "andrzej.hajda@intel.com" <andrzej.hajda@intel.com>,
+        "jonas@kwiboo.se" <jonas@kwiboo.se>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "jernej.skrabec@gmail.com" <jernej.skrabec@gmail.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "Laurent.pinchart@ideasonboard.com" 
+        <Laurent.pinchart@ideasonboard.com>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        dl-linux-imx <linux-imx@nxp.com>
+Subject: Re: [PATCH 9/9] drm/bridge: imx: Add i.MX93 MIPI DSI support
+Message-ID: <20230718154644.GD688726@ravnborg.org>
+References: <20230717061831.1826878-1-victor.liu@nxp.com>
+ <20230717061831.1826878-10-victor.liu@nxp.com>
+ <3174425.5fSG56mABF@steina-w>
+ <DB8PR04MB7051324184846E6206E495BF9838A@DB8PR04MB7051.eurprd04.prod.outlook.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="+7otubzjJ6EFgf8c"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <61c84262-cd98-1e60-d95b-9b0492083994@gmail.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <DB8PR04MB7051324184846E6206E495BF9838A@DB8PR04MB7051.eurprd04.prod.outlook.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H4,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Ying Liu,
 
---+7otubzjJ6EFgf8c
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Tue, Jul 18, 2023 at 09:00:25AM +0000, Ying Liu wrote:
+> > > +   if (IS_ERR(dsi->regmap)) {
+> > > +           ret = PTR_ERR(dsi->regmap);
+> > > +           DRM_DEV_ERROR(dev, "failed to get block ctrl regmap:
+> > %d\n", ret);
+> >
+> > Could you use dev_err_probe here instead?
+> 
+> Maybe, it's better to keep using DRM_DEV_ERROR to achieve consistent
+> error log format across the driver which is implemented in drm_dev_printk().
+> I see other DRM drivers do the same.
 
-On Sat, Jul 15, 2023 at 12:48:16PM +0200, Johan Jonker wrote:
-> A NAND chip can contain a different data format then the MTD framework
-> expects in the erase blocks for the Bad Block Table(BBT).
-> Result is a failed probe, while nothing wrong with the hardware.
-> Some MTD flags need to be set to gain access again.
->=20
-> Skip the automatic BBT scan with the NAND_SKIP_BBTSCAN option
-> so that the original content is unchanged during the driver probe.
-> The NAND_NO_BBM_QUIRK option allows us to erase bad blocks with
-> the nand_erase_nand() function and the flash_erase command.
->=20
-> Add nand-skip-bbtscan and nand-no-bbm-quirk Device Tree options,
-> so the user has the "freedom of choice" by neutral
-> access mode to read and write in whatever format is needed.
->=20
-> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
-> ---
->=20
-> Previous discussion:
-> [PATCH v3 3/3] mtd: rawnand: rockchip-nand-controller: add skipbbt option
-> https://lore.kernel.org/linux-mtd/1618382560.2326931.1689261435022.JavaMa=
-il.zimbra@nod.at/
-> ---
->  .../devicetree/bindings/mtd/nand-controller.yaml    | 13 +++++++++++++
->  1 file changed, 13 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/mtd/nand-controller.yaml b=
-/Documentation/devicetree/bindings/mtd/nand-controller.yaml
-> index f70a32d2d9d4..ca04d06a0377 100644
-> --- a/Documentation/devicetree/bindings/mtd/nand-controller.yaml
-> +++ b/Documentation/devicetree/bindings/mtd/nand-controller.yaml
-> @@ -103,6 +103,19 @@ patternProperties:
->            the boot ROM or similar restrictions.
->          $ref: /schemas/types.yaml#/definitions/flag
->=20
-> +      nand-no-bbm-quirk:
-> +        description:
-> +          Some controllers with pipelined ECC engines override the BBM m=
-arker with
-> +          data or ECC bytes, thus making bad block detection through bad=
- block marker
-> +          impossible. Let's flag those chips so the core knows it should=
-n't check the
-> +          BBM and consider all blocks good.
-> +        $ref: /schemas/types.yaml#/definitions/flag
+All the DRM_* macros are deprecated.
+New code shall use drm_*, dev_* or pr_ as appropriate.
 
-While this seems okay, as it seems to describe facet of the hardware...
+The appropriate variant here is dev_err_probe().
 
-> +      nand-skip-bbtscan:
-> +        description:
-> +          This option skips the BBT scan during initialization.
-> +        $ref: /schemas/types.yaml#/definitions/flag
-
-=2E..this seems to be used to control the behaviour of software, and does
-not describe the underlying hardware.
-
-Maybe I'm off, but the description of the property does not hint at the
-aspect of the hardware that this addresses.
-
-Thanks,
-Conor.
-
-> +
->        nand-rb:
->          description:
->            Contains the native Ready/Busy IDs.
-> --
-> 2.30.2
->=20
-
---+7otubzjJ6EFgf8c
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZLaz4gAKCRB4tDGHoIJi
-0g3xAPoCChSgHtJm/s66HpBbvjdcQLRTQYdBP7qBc021LHTnKAD+ML/axLivhd8k
-t9BrKrTs3wFm05P8sJkqLPbYdU9C5gg=
-=07DA
------END PGP SIGNATURE-----
-
---+7otubzjJ6EFgf8c--
+	Sam
