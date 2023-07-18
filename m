@@ -2,124 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4AA207581A2
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 18:04:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CB00B7581AC
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 18:07:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231225AbjGRQE2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jul 2023 12:04:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55332 "EHLO
+        id S231491AbjGRQHF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jul 2023 12:07:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57088 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230388AbjGRQE2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 12:04:28 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 618B8EE;
-        Tue, 18 Jul 2023 09:04:27 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id F2F5A61636;
-        Tue, 18 Jul 2023 16:04:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6B152C433C8;
-        Tue, 18 Jul 2023 16:04:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689696266;
-        bh=KpLtuC/owlDra2MRE8Ta8/1qVd8xTu4USdwqr246vPE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=hGzvBXN2It4iW5ZVxE7FEZIkGeWmc1fn75D/PIR1wyodsQn2eG5agjcGTZ8veMOlW
-         I+9bIX6Tii3Ym69X5c3jj6DbzBQL+L9LocKNFFHS9QWwEboflAxZBLv+Xi07xoIwZG
-         NAaIRkWSnjS+fn+UOAyOH/T050pgXpXzmygkCUPcq1AVfb9pYFwMAUGVFIKJMpGyfx
-         NeCP3WaCKKqoNtnTzw99NNy9rpvLENWV4oyTYAj5dsW9lcDy38m5rBWzmaTP4JtDIo
-         SvIFGsewl9EB14iQyxS1wCIbg4t3oSsD4/Fckujqb8mNZvBrh8cpT3tEyHUt7BGXd0
-         Tx/DUqCpBSLxA==
-Date:   Tue, 18 Jul 2023 17:04:21 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Michael Riesch <michael.riesch@wolfvision.net>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S232781AbjGRQHD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 12:07:03 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A7E0FD;
+        Tue, 18 Jul 2023 09:07:00 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id 2adb3069b0e04-4f95bf5c493so9567078e87.3;
+        Tue, 18 Jul 2023 09:07:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1689696419; x=1692288419;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=YeCwq3NAvGKoLBdtM+ZqWilWIkfGP+nzxQkw03W43jw=;
+        b=py923FTwOMCDnC8JmqUXd3moipT/chxFwEuQOS01u03mcDZH+qM63VBPcE6kTHeR+e
+         Zbw6ldttWJTYJnoRJWtbN76grxXk9zv8FoV3CTN498ENNbKkdzg1485yC300ux/X0m0h
+         m3ChdyXUdR4UJeV7O/ZwT2sTeyNjvi02FIFhp8ipq2hyJPaKU9Ryx9OoBkXJ6trsCGwP
+         57kOg+608pEaaCZ6o4E1yBJYaLmUvuscPCnkwQs+SEPWZAfhr6UxUa1qVGKm4IblM9ol
+         ttJyO6vUDGl8ZPoveKyRKqEhf2+LGMohTbBrECAiHfwLqrzyzzQeiaB73PzlyXeIrhrN
+         OGMw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689696419; x=1692288419;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=YeCwq3NAvGKoLBdtM+ZqWilWIkfGP+nzxQkw03W43jw=;
+        b=QIGJnGL6NVFj38Im9HMvkLFY0EGe/NEWUZexKyCzBTRuecgy9YJIITdIbg+siV275o
+         fQD4qct/WU4eq05mRWHtxFFeG7IKq5AM9HsYMFJlIznkgBW3lRttijrTMu5fKPD+8OWb
+         RWVoVJ5yx94B2c4p/HQJzGJBwgWyHIL4kI+ELE4q2hI+g5o01R9uRQ40LDA4RHO6K5oE
+         RJn8GKY7vYTedIVbeCeXBIpVV0sKN9l2smx9uecI85jjtVFMS5Hv6W2ysACcUGLxbW/N
+         adQQytqW6jRAhIakqsgIbvnK1dP24dQ3zOcFDR6k9LdYCFnVzsz3/s/gOzAtV6yD1Imp
+         4D2A==
+X-Gm-Message-State: ABy/qLbeEJZk0yKKyGg4+ra8WZVGtWz16ha4/tPeM5WlWjzsLyffvFom
+        FSD7wN2esy/T9wIbX1AsTyg=
+X-Google-Smtp-Source: APBJJlGwZIxXAsQCBhJaH60JYKMhPq73Lnu4wRDlLMiwDgHkggowOkoPweRz7w2RTlM4XaD52WJJbw==
+X-Received: by 2002:a05:6512:1ca:b0:4f8:70f8:d424 with SMTP id f10-20020a05651201ca00b004f870f8d424mr10354189lfp.65.1689696418378;
+        Tue, 18 Jul 2023 09:06:58 -0700 (PDT)
+Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
+        by smtp.gmail.com with ESMTPSA id t14-20020ac24c0e000000b004f86aef886asm502295lfq.54.2023.07.18.09.06.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 18 Jul 2023 09:06:58 -0700 (PDT)
+From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Maxime Ripard <mripard@kernel.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Sebastian Reichel <sre@kernel.org>,
-        Gerald Loacker <gerald.loacker@wolfvision.net>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH 2/4] dt-bindings: display: st7789v: add jasonic
- jt240mhqs-hwt-ek-e3 display
-Message-ID: <20230718-popper-unrivaled-dae204940094@spud>
-References: <20230718-feature-lcd-panel-v1-0-e9a85d5374fd@wolfvision.net>
- <20230718-feature-lcd-panel-v1-2-e9a85d5374fd@wolfvision.net>
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Michael Walle <michael@walle.cc>,
+        Christian Marangi <ansuelsmth@gmail.com>,
+        devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
+        linux-kernel@vger.kernel.org,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH 1/3] dt-bindings: nvmem: convert U-Boot env to NVMEM layout
+Date:   Tue, 18 Jul 2023 18:06:50 +0200
+Message-Id: <20230718160652.26756-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.35.3
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="dfkE5JaiJoHSnNRG"
-Content-Disposition: inline
-In-Reply-To: <20230718-feature-lcd-panel-v1-2-e9a85d5374fd@wolfvision.net>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Rafał Miłecki <rafal@milecki.pl>
 
---dfkE5JaiJoHSnNRG
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Use "nvmem-layout" and drop unused "mac" label while at it.
 
-On Tue, Jul 18, 2023 at 05:31:51PM +0200, Michael Riesch wrote:
-> Add compatible for the Jasonic Technology Ltd. JT240MHQS-HWT-EK-E3
-> display.
->=20
-> Signed-off-by: Michael Riesch <michael.riesch@wolfvision.net>
-> ---
->  Documentation/devicetree/bindings/display/panel/sitronix,st7789v.yaml | =
-1 +
->  1 file changed, 1 insertion(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/display/panel/sitronix,st7=
-789v.yaml b/Documentation/devicetree/bindings/display/panel/sitronix,st7789=
-v.yaml
-> index 905c064cd106..eb1a7256ac32 100644
-> --- a/Documentation/devicetree/bindings/display/panel/sitronix,st7789v.ya=
-ml
-> +++ b/Documentation/devicetree/bindings/display/panel/sitronix,st7789v.ya=
-ml
-> @@ -18,6 +18,7 @@ properties:
->      enum:
->        - edt,et028013dma
->        - inanbo,t28cp45tn89-v17
-> +      - jasonic,jt240mhqs-hwt-ek-e3
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+---
+ .../bindings/nvmem/layouts/nvmem-layout.yaml    |  1 +
+ .../nvmem/{ => layouts}/u-boot,env.yaml         | 17 +++++++++++------
+ 2 files changed, 12 insertions(+), 6 deletions(-)
+ rename Documentation/devicetree/bindings/nvmem/{ => layouts}/u-boot,env.yaml (87%)
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+diff --git a/Documentation/devicetree/bindings/nvmem/layouts/nvmem-layout.yaml b/Documentation/devicetree/bindings/nvmem/layouts/nvmem-layout.yaml
+index 3b40f7880774..382507060651 100644
+--- a/Documentation/devicetree/bindings/nvmem/layouts/nvmem-layout.yaml
++++ b/Documentation/devicetree/bindings/nvmem/layouts/nvmem-layout.yaml
+@@ -21,6 +21,7 @@ oneOf:
+   - $ref: fixed-layout.yaml
+   - $ref: kontron,sl28-vpd.yaml
+   - $ref: onie,tlv-layout.yaml
++  - $ref: u-boot,env.yaml
+ 
+ properties:
+   compatible: true
+diff --git a/Documentation/devicetree/bindings/nvmem/u-boot,env.yaml b/Documentation/devicetree/bindings/nvmem/layouts/u-boot,env.yaml
+similarity index 87%
+rename from Documentation/devicetree/bindings/nvmem/u-boot,env.yaml
+rename to Documentation/devicetree/bindings/nvmem/layouts/u-boot,env.yaml
+index 36d97fb87865..ebe3b71ba155 100644
+--- a/Documentation/devicetree/bindings/nvmem/u-boot,env.yaml
++++ b/Documentation/devicetree/bindings/nvmem/layouts/u-boot,env.yaml
+@@ -1,7 +1,7 @@
+ # SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+ %YAML 1.2
+ ---
+-$id: http://devicetree.org/schemas/nvmem/u-boot,env.yaml#
++$id: http://devicetree.org/schemas/nvmem/layouts/u-boot,env.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: U-Boot environment variables
+@@ -72,11 +72,14 @@ examples:
+         };
+ 
+         env: partition@40000 {
+-            compatible = "u-boot,env";
+             reg = <0x40000 0x10000>;
+ 
+-            mac: ethaddr {
+-                #nvmem-cell-cells = <1>;
++            nvmem-layout {
++                compatible = "u-boot,env";
++
++                ethaddr {
++                    #nvmem-cell-cells = <1>;
++                };
+             };
+         };
+     };
+@@ -92,9 +95,11 @@ examples:
+             label = "u-boot";
+ 
+             partition-u-boot-env {
+-                compatible = "brcm,env";
++                nvmem-layout {
++                    compatible = "brcm,env";
+ 
+-                ethaddr {
++                    ethaddr {
++                    };
+                 };
+             };
+         };
+-- 
+2.35.3
 
-Cheers,
-Conor.
-
->        - sitronix,st7789v
-> =20
->    reg: true
->=20
-> --=20
-> 2.30.2
->=20
-
---dfkE5JaiJoHSnNRG
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZLa4BAAKCRB4tDGHoIJi
-0lGcAQCzZ+ilxAtoiJh6JOa61LrzqrMCGZ9S+wVR5O9qT33nTgEA4xpTjrWZ96u0
-CmzULkM3CKVNhgrk4IxAI6N16acLAwM=
-=0upB
------END PGP SIGNATURE-----
-
---dfkE5JaiJoHSnNRG--
