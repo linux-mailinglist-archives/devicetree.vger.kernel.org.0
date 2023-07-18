@@ -2,268 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A03DE7575B6
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 09:52:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C8F727575D6
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 09:57:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230437AbjGRHwS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jul 2023 03:52:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56670 "EHLO
+        id S231737AbjGRH5O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jul 2023 03:57:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59374 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229521AbjGRHwR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 03:52:17 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D436C2;
-        Tue, 18 Jul 2023 00:52:16 -0700 (PDT)
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36I7hGVe013888;
-        Tue, 18 Jul 2023 07:52:09 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=oQ6BOhiyyrFevBw4ynJ7O3649893Zgi0w2EtY3I9Inw=;
- b=Sm8rK76Ri+mF7jHMxjUWqGiAcGSmstOlWa3rsmQETH/18bbftcRhDgVqkTb4Lv6iyZUk
- p05PV8z6gtvQseMZkqeH3zszFNymJ6VE7VbPYm3xNKKpQyxU8+vpiiVXgLGDXfn5qvJ6
- HN2+0ELNX6m8vdaiymsGq6x2600ejGVLRUAPeB4mwJWM0gD6d+J1jSVoCO9YIa3X3WPk
- vF1VwJCEdvM99J4Yhd5oCQ6Cwwev5BJ0QmsDHHCbocRLfJDHWqQe8LSGmabD/od76KNO
- qhtYRAitqt4hiLoiSZdidlObdSh32OQ9mDdsf/gf8oonmuUmHmENVnKU6KRFCtIuq3KA ww== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3rwfj78ud8-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 18 Jul 2023 07:52:09 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 36I7q7MP030165
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 18 Jul 2023 07:52:07 GMT
-Received: from [10.50.3.220] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Tue, 18 Jul
- 2023 00:52:03 -0700
-Message-ID: <2adb5ee2-7876-cdf1-d0c6-437615b4f52c@quicinc.com>
-Date:   Tue, 18 Jul 2023 13:21:59 +0530
+        with ESMTP id S231796AbjGRH5J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 03:57:09 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DDC981732
+        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 00:56:59 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-98de21518fbso743483566b.0
+        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 00:56:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1689667018; x=1692259018;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=j2mqKS21xBBL3zXrGxkLzWPef1bfANHcgljJaPtyzwU=;
+        b=NKVNVbSckCvKGu0R0gppl9879OSOLjK0QBshjeArkJbgy01VI80E4ELIEbae215ANi
+         mlgqB12E4Fo6xQNJRtM36yFXDtWXCOKWxa6H5eUVxm9udkLeWJiS7LQ1Nm04DbMZ0rg5
+         cYua6GM/+FQeZOjvuI7QLV7lj3Lutt+6PdiFNio2Vu5zcEABUD1PIxuyPB4EeNSujQbJ
+         kevbs/nBsPBMNvd+Ggn9Si+9c0yna5jTsVAdkOyE76Vjny3tXJE7Jv2Wlb+7vg3JZCcv
+         PDoyzNASsfa3aRZ8gXyq7l66lVxk+rAN0+Q4CK1V6xGjIJQd1I/x+lpEsf32dU+2cOqJ
+         c62g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689667018; x=1692259018;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=j2mqKS21xBBL3zXrGxkLzWPef1bfANHcgljJaPtyzwU=;
+        b=E0LwH2nWaXFSQls9totbycXtqO/t/WRFBdKc3NnKWyVs9PUbtv4kQbwJBhuJIYergr
+         44MFrxvXxB3Jv+5J8zioU3xPiid00mxjPAQMN+adbWfSZiHhtZ+WyOr567M5G1P2BQUr
+         51s1Da/ZLnVI9jXCrXnYjFqZuPo3sht2ktvIbMpHDb7V643DNKqEDeUoatSwmRMED1rA
+         //kKs1HJ7ZeE/bDMuSmL2bsDKfmjiCl82rW1iqazo0/MkcIjSNHcB1hCHjgoTwbO09TV
+         ZaXDXSw5w/4AOrMuLbUNZtr+PXxbOeJBTS/9z+eiZbAYgCZAP/RsdNAV4ZZ4fzCgNSON
+         6shg==
+X-Gm-Message-State: ABy/qLbJs+9X67/TjnJtTmUQkfMtntRfKbLYQPO2oYZtm6EPaKS0P6Kv
+        SfaiKP4FT59yO8bh1lqBlXTnZJM+7W8+/FJX0ueYwQ==
+X-Google-Smtp-Source: APBJJlHcVq7zSEK4BPdjL4HH9uIjX0xE3a8mSTjRnUA7ZqdPtwY+Rn4WkWqqCMKZQzwPF27zs9aTzA==
+X-Received: by 2002:a17:907:3d90:b0:997:d975:64eb with SMTP id he16-20020a1709073d9000b00997d97564ebmr1408272ejc.35.1689667017838;
+        Tue, 18 Jul 2023 00:56:57 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id gx19-20020a170906f1d300b0099275c59bc9sm684299ejb.33.2023.07.18.00.56.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 18 Jul 2023 00:56:57 -0700 (PDT)
+Message-ID: <81285b87-866e-198c-b32c-f09a0d3e9d24@linaro.org>
+Date:   Tue, 18 Jul 2023 09:56:55 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH v9 4/7] usb: misc: eud: Add driver support for SM6115 /
- SM4250
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH] usb: dwc2: add new compatible for Intel SoCFPGA Stratix10
+ platform
 Content-Language: en-US
-To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>
-CC:     <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <linux-kernel@vger.kernel.org>,
-        <bhupesh.linux@gmail.com>, <robh+dt@kernel.org>,
+To:     "Li, Meng" <Meng.Li@windriver.com>,
+        "dinguyen@kernel.org" <dinguyen@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
         <krzysztof.kozlowski+dt@linaro.org>,
-        <krzysztof.kozlowski@linaro.org>, <gregkh@linuxfoundation.org>,
-        <stephan@gerhold.net>, <linux-usb@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>
-References: <20230718061052.1332993-1-bhupesh.sharma@linaro.org>
- <20230718061052.1332993-5-bhupesh.sharma@linaro.org>
-From:   Souradeep Chowdhury <quic_schowdhu@quicinc.com>
-In-Reply-To: <20230718061052.1332993-5-bhupesh.sharma@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20230718030851.2014306-1-Meng.Li@windriver.com>
+ <78b06bf0-ab71-acdf-5799-1f6d849e7ead@linaro.org>
+ <PH0PR11MB519187156E9F27AA52C87063F138A@PH0PR11MB5191.namprd11.prod.outlook.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <PH0PR11MB519187156E9F27AA52C87063F138A@PH0PR11MB5191.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: w6giwMxFqSCAA8ImGtdm2dVVwcy_YUgB
-X-Proofpoint-ORIG-GUID: w6giwMxFqSCAA8ImGtdm2dVVwcy_YUgB
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-07-17_15,2023-07-13_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 adultscore=0
- mlxlogscore=999 impostorscore=0 clxscore=1011 phishscore=0 spamscore=0
- lowpriorityscore=0 priorityscore=1501 mlxscore=0 bulkscore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2306200000 definitions=main-2307180070
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Bhupesh,
-
-On 7/18/2023 11:40 AM, Bhupesh Sharma wrote:
-> Add SM6115 / SM4250 SoC EUD support in qcom_eud driver.
+On 18/07/2023 09:43, Li, Meng wrote:
 > 
-> On some SoCs (like the SM6115 / SM4250 SoC), the mode manager
-> needs to be accessed only via the secure world (through 'scm'
-> calls).
 > 
-> Also, the enable bit inside 'tcsr_check_reg' needs to be set
-> first to set the eud in 'enable' mode on these SoCs.
+>> -----Original Message-----
+>> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> Sent: Tuesday, July 18, 2023 2:11 PM
+>> To: Li, Meng <Meng.Li@windriver.com>; dinguyen@kernel.org;
+>> robh+dt@kernel.org; krzysztof.kozlowski+dt@linaro.org; conor+dt@kernel.org;
+>> devicetree@vger.kernel.org
+>> Cc: linux-kernel@vger.kernel.org
+>> Subject: Re: [PATCH] usb: dwc2: add new compatible for Intel SoCFPGA Stratix10
+>> platform
+>>
+>> CAUTION: This email comes from a non Wind River email account!
+>> Do not click links or open attachments unless you recognize the sender and
+>> know the content is safe.
+>>
+>> On 18/07/2023 05:08, Meng Li wrote:
+>>> Intel Stratix10 is very the same with Agilex platform, the DWC2 IP on
+>>> the Stratix platform also does not support clock-gating. The commit
+>>> 3d8d3504d233("usb: dwc2: Add platform specific data for Intel's
+>>> Agilex") had fixed this issue. So, add the essential compatible to
+>>> also use the specific data on Stratix10 platform.
+>>>
+>>> Signed-off-by: Meng Li <Meng.Li@windriver.com>
+>>> ---
+>>>  arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi | 4 ++--
+>>>  1 file changed, 2 insertions(+), 2 deletions(-)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
+>>> b/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
+>>> index ea788a920eab..b8dd5509c214 100644
+>>> --- a/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
+>>> +++ b/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
+>>> @@ -490,7 +490,7 @@ usbphy0: usbphy@0 {
+>>>               };
+>>>
+>>>               usb0: usb@ffb00000 {
+>>> -                     compatible = "snps,dwc2";
+>>> +                     compatible = "intel,socfpga-agilex-hsotg",
+>>> + "snps,dwc2";
+>>
+>> You miss SoC specific compatible.
+>>
 > 
-> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-> ---
->   drivers/usb/misc/Kconfig    |  2 +-
->   drivers/usb/misc/qcom_eud.c | 76 ++++++++++++++++++++++++++++++++++---
->   2 files changed, 72 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/usb/misc/Kconfig b/drivers/usb/misc/Kconfig
-> index 99b15b77dfd57..51eb5140caa14 100644
-> --- a/drivers/usb/misc/Kconfig
-> +++ b/drivers/usb/misc/Kconfig
-> @@ -146,7 +146,7 @@ config USB_APPLEDISPLAY
->   
->   config USB_QCOM_EUD
->   	tristate "QCOM Embedded USB Debugger(EUD) Driver"
-> -	depends on ARCH_QCOM || COMPILE_TEST
-> +	depends on (ARCH_QCOM && QCOM_SCM) || COMPILE_TEST
->   	select USB_ROLE_SWITCH
->   	help
->   	  This module enables support for Qualcomm Technologies, Inc.
-> diff --git a/drivers/usb/misc/qcom_eud.c b/drivers/usb/misc/qcom_eud.c
-> index 7f371ea1248c3..a5b28fc24116a 100644
-> --- a/drivers/usb/misc/qcom_eud.c
-> +++ b/drivers/usb/misc/qcom_eud.c
-> @@ -11,9 +11,12 @@
->   #include <linux/kernel.h>
->   #include <linux/module.h>
->   #include <linux/of.h>
-> +#include <linux/of_address.h>
-> +#include <linux/of_device.h>
->   #include <linux/platform_device.h>
->   #include <linux/slab.h>
->   #include <linux/sysfs.h>
-> +#include <linux/firmware/qcom/qcom_scm.h>
->   #include <linux/usb/role.h>
->   
->   #define EUD_REG_INT1_EN_MASK	0x0024
-> @@ -30,6 +33,10 @@
->   #define EUD_INT_SAFE_MODE	BIT(4)
->   #define EUD_INT_ALL		(EUD_INT_VBUS | EUD_INT_SAFE_MODE)
->   
-> +#define EUD_EN2_EN		BIT(0)
-> +#define EUD_EN2_DISABLE		(0)
-> +#define TCSR_CHECK_EN		BIT(0)
-> +
->   struct eud_chip {
->   	struct device			*dev;
->   	struct usb_role_switch		*role_sw;
-> @@ -39,6 +46,7 @@ struct eud_chip {
->   	int				irq;
->   	bool				enabled;
->   	bool				usb_attached;
-> +	phys_addr_t			secure_mode_mgr;
->   };
->   
->   static int enable_eud(struct eud_chip *priv)
-> @@ -46,7 +54,11 @@ static int enable_eud(struct eud_chip *priv)
->   	writel(EUD_ENABLE, priv->base + EUD_REG_CSR_EUD_EN);
->   	writel(EUD_INT_VBUS | EUD_INT_SAFE_MODE,
->   			priv->base + EUD_REG_INT1_EN_MASK);
-> -	writel(1, priv->mode_mgr + EUD_REG_EUD_EN2);
-> +
-> +	if (priv->secure_mode_mgr)
-> +		qcom_scm_io_writel(priv->secure_mode_mgr + EUD_REG_EUD_EN2, EUD_EN2_EN);
-> +	else
-> +		writel(EUD_EN2_EN, priv->mode_mgr + EUD_REG_EUD_EN2);
->   
->   	return usb_role_switch_set_role(priv->role_sw, USB_ROLE_DEVICE);
->   }
-> @@ -54,7 +66,11 @@ static int enable_eud(struct eud_chip *priv)
->   static void disable_eud(struct eud_chip *priv)
->   {
->   	writel(0, priv->base + EUD_REG_CSR_EUD_EN);
-> -	writel(0, priv->mode_mgr + EUD_REG_EUD_EN2);
-> +
-> +	if (priv->secure_mode_mgr)
-> +		qcom_scm_io_writel(priv->secure_mode_mgr + EUD_REG_EUD_EN2, EUD_EN2_DISABLE);
-> +	else
-> +		writel(EUD_EN2_DISABLE, priv->mode_mgr + EUD_REG_EUD_EN2);
->   }
->   
->   static ssize_t enable_show(struct device *dev,
-> @@ -175,9 +191,37 @@ static void eud_role_switch_release(void *data)
->   	usb_role_switch_put(chip->role_sw);
->   }
->   
-> +static int eud_find_secure_reg_addr(struct device *dev, u64 *addr)
-> +{
-> +	struct device_node *tcsr;
-> +	struct device_node *np = dev->of_node;
-> +	struct resource res;
-> +	u32 offset;
-> +	int ret;
-> +
-> +	tcsr = of_parse_phandle(np, "qcom,secure-eud-reg", 0);
-> +	if (!tcsr)
-> +		return 0;
-> +
-> +	ret = of_address_to_resource(tcsr, 0, &res);
-> +	of_node_put(tcsr);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = of_property_read_u32_index(np, "qcom,secure-eud-reg", 1, &offset);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	*addr = res.start + offset;
-> +
-> +	return 0;
-> +}
-> +
->   static int eud_probe(struct platform_device *pdev)
->   {
->   	struct eud_chip *chip;
-> +	struct resource *res;
-> +	phys_addr_t tcsr_check = 0;
->   	int ret;
->   
->   	chip = devm_kzalloc(&pdev->dev, sizeof(*chip), GFP_KERNEL);
-> @@ -200,9 +244,30 @@ static int eud_probe(struct platform_device *pdev)
->   	if (IS_ERR(chip->base))
->   		return PTR_ERR(chip->base);
->   
-> -	chip->mode_mgr = devm_platform_ioremap_resource(pdev, 1);
-> -	if (IS_ERR(chip->mode_mgr))
-> -		return PTR_ERR(chip->mode_mgr);
-> +	/*
-> +	 * EUD block on a few Qualcomm SoCs needs secure register access.
-> +	 * Check for the same via vendor-specific dt property.
-> +	 */
-> +	ret = eud_find_secure_reg_addr(&pdev->dev, &tcsr_check);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	if (tcsr_check) {
-> +		res = platform_get_resource(pdev, IORESOURCE_MEM, 1);
-> +		if (!res)
-> +			return dev_err_probe(chip->dev, -ENODEV,
-> +					     "failed to get secure_mode_mgr reg base\n");
-> +
-> +		chip->secure_mode_mgr = res->start;
+> Sorry! I don't understand what do you mean about SoC specific compatible.
+> I think agilex is the soc specific.
+> Could you please show your example?
 
-There are multiple instances where the addresses are being mapped from 
-the dt property without using the devm version. Either we should switch 
-to the later or ensure that these addresses are unmapped in the removal
-path of the driver.
+But this is stratix.
 
-Thanks,
-Souradeep
+rk3128.dtsi
 
-> +
-> +		ret = qcom_scm_io_writel(tcsr_check, TCSR_CHECK_EN);
-> +		if (ret)
-> +			return dev_err_probe(chip->dev, ret, "failed to write tcsr check reg\n");
-> +	} else {
-> +		chip->mode_mgr = devm_platform_ioremap_resource(pdev, 1);
-> +		if (IS_ERR(chip->mode_mgr))
-> +			return PTR_ERR(chip->mode_mgr);
-> +	}
->   
->   	chip->irq = platform_get_irq(pdev, 0);
->   	ret = devm_request_threaded_irq(&pdev->dev, chip->irq, handle_eud_irq,
-> @@ -230,6 +295,7 @@ static void eud_remove(struct platform_device *pdev)
->   
->   static const struct of_device_id eud_dt_match[] = {
->   	{ .compatible = "qcom,sc7280-eud" },
-> +	{ .compatible = "qcom,sm6115-eud" },
->   	{ }
->   };
->   MODULE_DEVICE_TABLE(of, eud_dt_match);
+Or many other devices in Linux kernel.
+
+Best regards,
+Krzysztof
+
