@@ -2,131 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CCD7C75750C
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 09:11:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D0A2757516
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 09:14:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231147AbjGRHLD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jul 2023 03:11:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35386 "EHLO
+        id S230189AbjGRHOf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jul 2023 03:14:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36736 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230369AbjGRHLC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 03:11:02 -0400
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12on2086.outbound.protection.outlook.com [40.107.243.86])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78CB31A2;
-        Tue, 18 Jul 2023 00:11:01 -0700 (PDT)
+        with ESMTP id S231622AbjGRHOe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 03:14:34 -0400
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2058.outbound.protection.outlook.com [40.107.22.58])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 363BB11C;
+        Tue, 18 Jul 2023 00:14:33 -0700 (PDT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=A3sSwQvFbCjlUQNqUgHQ22zEOHWuJ4wydnqadavu9phPnIFHKbxlPNs+upIvPlQgF8hTQvHNGdBDHFuJHMBmuK5gjXr4QZ3vVSlw9JeWpb1bfQWZSw1lsUxSPeI5r/2cMJZ0BxL7eaRU+0+KWmU5oSKXlorRWyS8vrdXlAeIrawa56bUEmp8l+PBT2ECGG+HkbKeSeiZD+rJIgQVb883WzBwZiUl+wBVr9Ia2sywnhTBYVqX8a3qyChNIKLH5Msmvr/BJeHiKGOnG30nWz94tUXmfOrL9CAywxzQVP0WE2AeBzDoWTfE9ALs4AoEK+JKKpfBVAFQMorMaQDPenLRGw==
+ b=NMzqwWurJF8NnDB3yDSM2PWYSvzU5TGfpDc879w6fXRVQjb83dFzdeRikdBWnBrnZgwyWvowDM7yciYBZUpoQCO4lJYo/+IpF47C45vyRo+r95lbkmPArDKQMlJky2AlMKmAh8dpB8xkAWpvigoIqQNel8nhiFe4BrknZ42l/vDMM9DCFoAfCj2mObhmvx74FUKTGhm/yWDza6147Sx41baon2kWPTsvIf4MUrzfZLuUqSC9tpJfeNw0YiWOTmDuN41SqS47wGr9Bpn7b6z2Ss2IcJbygS1GZRzXkpw721MURX/8lHIVJZgZU3Hqyh9J41JJxwVvFD34LF41i6poUQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=MWF+4PhLbibGkeiEMBAO1vv9QHFSRhA9GQqMu6Q8PP0=;
- b=FjlXFkfKr34rNWCW/j27k0pcZMUs19YIK7Z6R/XYIFxVEiQCyPrNGLWY6iqSJ//n1C6aZd+4df5VkwGZxOlcOxsAs9iWPOHl92HB85+OALDVVTsUQCcZg3h/1gMfvQnbc3URC3VUc57kfnX7P0RNETYNPVb1AStFkZDbDPGE7XboK7Jz1xHx1TBRu166X1Q0LlF2RUAGxDdVEEGCBLsyzWZTW3l852m7RuBvv2CYNpWylCKzbxnJwUSZMQOoJO4Ye3E7E20AhFEwa+ktSOxCke8+GurnRdl/5svc+dX86cOqR51FQuL8TJavZ1WJZ7tlxdeQNCDNtOGzN80hYMZwNQ==
+ bh=d/eBHhM54lM0ZC30/Ceryilg0g11gmGuvHRwQ2LWuFc=;
+ b=n31XlGqpeZ1YJ9BkoI/fWG/VlAuZU965gvbrxmSh9pJ+tlcEoiGrxwUeG79Sfd7zTNTUMSnzNzv3/zSQRLRpvDSwxgRR2FnQGdklLQ8uVI1V4T0KcMsX3//j3W8HkQ+DhykRtB4/HZlSfop+S8z6loyGqfmHBkZCx5TXzkVAUjHUgnT/s6LSY0KkaH8FufZEZOR5EGL/gZWpMbJ7uWMAvcq2FSL6FyxypmMn4Nca7LBic6mYAFhkOd0n3F2IdFK2LfDm/2cvN+3sJOUhGXk7L3Bp6WImSyD7Rc7yfFG5qoLqbhj88o7kbe7aU4ZqNXUn2ZOBUE/T1qLKlHLKk9GjxA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector2-NXP1-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=MWF+4PhLbibGkeiEMBAO1vv9QHFSRhA9GQqMu6Q8PP0=;
- b=AW1cyEUxkKiILp8PqxY9nhrcpkn8vnVAcjx+leVUCaYpnKOruoFwwAjXsQ66kB9YUOW4aPfCOtc69kudA6D4Fu+RhHH7hvQKFgi6h3wo5ApxvmB5U13itG28LO31nMpDT1Nd8dzCelPs6Ilv29hSfMlGHVqdUslRzCa1LVb+LLM=
+ bh=d/eBHhM54lM0ZC30/Ceryilg0g11gmGuvHRwQ2LWuFc=;
+ b=IfdWArK4tswdfupX4KGPt/99x6R3BP8yp17RB3bu9su6ibZB+7QIXWbd5uRbrkODTJdc/2d+04HuSRPYE08mYA3El5fXaBPwT8mgvXd6GlUBhvYbD+STOLeSYXNi/z+tgjJkJXdW471BhGrwHLyN8H3mwAZXVj2MmsPZUc+v5fg=
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BYAPR12MB4758.namprd12.prod.outlook.com (2603:10b6:a03:a5::28)
- by SJ2PR12MB7991.namprd12.prod.outlook.com (2603:10b6:a03:4d1::12) with
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
+ by DBBPR04MB7756.eurprd04.prod.outlook.com (2603:10a6:10:1e3::17) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6588.31; Tue, 18 Jul
- 2023 07:10:58 +0000
-Received: from BYAPR12MB4758.namprd12.prod.outlook.com
- ([fe80::be39:45a4:cd9b:4684]) by BYAPR12MB4758.namprd12.prod.outlook.com
- ([fe80::be39:45a4:cd9b:4684%3]) with mapi id 15.20.6588.031; Tue, 18 Jul 2023
- 07:10:58 +0000
-Message-ID: <e8f48a30-9aff-bc2f-d03f-793840a192c9@amd.com>
-Date:   Tue, 18 Jul 2023 09:10:53 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Conor Dooley <conor@kernel.org>,
-        Piyush Mehta <piyush.mehta@amd.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, p.zabel@pengutronix.de,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        git@amd.com
-References: <20230717112348.1381367-1-piyush.mehta@amd.com>
- <20230717112348.1381367-2-piyush.mehta@amd.com>
- <20230717-explode-caucus-82c12e340e39@spud>
- <ee81e955-32be-66ea-377b-263ee60a2632@linaro.org>
-From:   Michal Simek <michal.simek@amd.com>
-Subject: Re: [PATCH 1/2] dt-bindings: reset: Updated binding for Versal-NET
- reset driver
-In-Reply-To: <ee81e955-32be-66ea-377b-263ee60a2632@linaro.org>
+ 2023 07:14:29 +0000
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::c874:7c87:c13b:64f8]) by DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::c874:7c87:c13b:64f8%5]) with mapi id 15.20.6588.031; Tue, 18 Jul 2023
+ 07:14:29 +0000
+Message-ID: <55014520-ee7d-1b7d-209b-e3f7bbe29e13@oss.nxp.com>
+Date:   Tue, 18 Jul 2023 15:14:12 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Subject: Re: [PATCH v5 3/3] clk: imx: imx8: add audio clock mux driver
+To:     Shengjiu Wang <shengjiu.wang@nxp.com>, abelvesa@kernel.org,
+        peng.fan@nxp.com, mturquette@baylibre.com, sboyd@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        shengjiu.wang@gmail.com
+Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <1689322259-13504-1-git-send-email-shengjiu.wang@nxp.com>
+ <1689322259-13504-4-git-send-email-shengjiu.wang@nxp.com>
+From:   Peng Fan <peng.fan@oss.nxp.com>
+In-Reply-To: <1689322259-13504-4-git-send-email-shengjiu.wang@nxp.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: FR2P281CA0116.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:9d::9) To BYAPR12MB4758.namprd12.prod.outlook.com
- (2603:10b6:a03:a5::28)
+X-ClientProxiedBy: SI2PR01CA0018.apcprd01.prod.exchangelabs.com
+ (2603:1096:4:191::7) To DU0PR04MB9417.eurprd04.prod.outlook.com
+ (2603:10a6:10:358::11)
 MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BYAPR12MB4758:EE_|SJ2PR12MB7991:EE_
-X-MS-Office365-Filtering-Correlation-Id: e2fec4f3-5892-4924-69dd-08db875e22e0
-X-LD-Processed: 3dd8961f-e488-4e60-8e11-a82d994e183d,ExtAddr
+X-MS-TrafficTypeDiagnostic: DU0PR04MB9417:EE_|DBBPR04MB7756:EE_
+X-MS-Office365-Filtering-Correlation-Id: c4268fd3-5212-437d-8324-08db875ea05b
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: QCcoWx5sVx04YSF3jJ+k0F+FGS1b2tCP0nZhEyWkoY8k8/kAhZYGJts5WD9GHhe7tNhyeQDzrLTH0+iX6L8TARa/aq5XTyWtEVFYCONWl1q57Lh+GXTYXTqcQWmxxTGdhzfMb072hszCU2mLS0ocsVuQfyxDp/kGaJPXwYdhQvCoWP54CJyjfDOGr/m691dMbtFDVFPIqsUKvGudHshXAXnWNorcCCQVOn11vVjxnIeBSqRT0u+FwsDFJbrnP6fQzfdSx6uo6MeTQWuRTpHMi0ykNwgTK3vIwUfImLmkhVlLW2Q0c9m2aC2XuMdKddC64Y33YNucWj7gReNARVMZRUAAG/PhR1z5rqHL2AqauqxRQ5f7Ibi6zg/ZSe6TToT8xFpArpA/0PhFplCY93rTFq5V+HG3lvX2LnQVqN1wpEPoa9kbY6alLauP7dq5jjYu767oWNQ9Z0uZItsriTyY2Rkmw4Atwos5GhHvmVZEqdv7K8puuvJ1H2Dne/L0CtVE9Bfqu08/ocAwD4aY4JFOduhLvePT4Xo4VOP5TBaVADsN1Kqc87eUNv/wIKZf7bnC90NFsSx0tzPBiRxmMIV7LcDw9g267ZkadhflVdAAwwnFivbHKLgjR9RNeulIVFzFQRln0tX5a1FXH+YcsvrUib76xze/DUcCeGANfJZmTnGINURgPs6qW/Jro7zWpH/+
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BYAPR12MB4758.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(376002)(136003)(39860400002)(366004)(346002)(396003)(451199021)(31686004)(86362001)(31696002)(2906002)(36756003)(44832011)(6636002)(2616005)(966005)(6512007)(83380400001)(186003)(6506007)(26005)(53546011)(6486002)(38100700002)(6666004)(110136005)(4326008)(66946007)(66476007)(66556008)(5660300002)(478600001)(316002)(8676002)(41300700001)(8936002)(45980500001)(43740500002);DIR:OUT;SFP:1101;
+X-Microsoft-Antispam-Message-Info: zIg+ta9kSEulQA2IASL/O6xb13KiI8YAul/ok2H7rVm12RGh7TtfLvRm3cKlAWLHsYiEuOJFj0RT7uysFKW2NW9T/WOesVRvq3gSvxaKu3ufzcQftJ3hN0HzGSnOZg1Z/24Hq/hkfYmpyFUazBzQDPLvUoU71qbBRIEQBL/3/A3FgdIZfObxJ8XV8jg34FbQTCyvqdWs9IrxQec2IyXsKoz3dmH/zMnOvbhJ9tEa/RumgaA/EyuIPJlEIoCStLz4UDmwMwDRP1VGI1P3vMXlIIJuc3XGGA6qO9iqJ92ZVEfs8qDOUz6O5xFYQjCYakag83S2YlMbLEdGZf7Ob6kzfjxvQ6j3O5sg0p1JrpTPha8oOY7EvDBzV/m4jeHW1rBeqv33RgNfRmSVbC2YWCFu9FgAxxoO2H1egxmy2mIcl602ICvREd/tU6yV7ocPhRbDURHMkpP5YFEdvTNTzz0BBIrrp/8GeQprgzU0yHkJqRdl9o/m3QinZhWlFU4EL7gwP0Las2O2EYyvQeKjSbrWyZ0a1tYKqIxEWksw0UViMFOhU7kZGpWsQL4jLLnk0fFyAnyRwOMdGd/K5UPhCYJfzeN/B5iYgCWwmgrxWhqXbNDekT5o47/Iq9HH62er6aBV5RpXm0LMi5HGsuvNSriKzLcKEPDCEvf32XI4Qj3TxQE=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(366004)(396003)(346002)(39860400002)(376002)(136003)(451199021)(44832011)(478600001)(5660300002)(66556008)(66946007)(66476007)(4326008)(7416002)(316002)(8936002)(2906002)(8676002)(41300700001)(4744005)(6666004)(31686004)(6512007)(26005)(53546011)(6486002)(6506007)(38100700002)(186003)(921005)(2616005)(83380400001)(31696002)(86362001)(43740500002)(45980500001);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WStLUnpEOFB0SkUwWVB4ZmhJeThwSGU5Vkc1Z3FmQUx4RFRQa1VmYUdEc1F6?=
- =?utf-8?B?OENTeVFIL1lxdnd4c3BuZytLQjlXMmtoamVvSVdPaldqdk5aNFFPR1VlZ1d0?=
- =?utf-8?B?SHlPaVVMem5BZk9kWkJVWDJYeXRMamdIcWpRS2tHL01HalNEcm1pSlFsUlpS?=
- =?utf-8?B?anIzMFhiemFSUEs5bXFlUDJXWVIvODhFTGRscTRydmVFaitsMVVSdnJaSENR?=
- =?utf-8?B?dGJQSVoxcjN5QytEQUNkUzQyTU51SG1MVnU0S0FRMXd1STgydDZkMVU1dzhG?=
- =?utf-8?B?ZXIweFNpbHYzVlkwVkJJaXprdWJEMzBFOEdRS3RBclI2a0x1Q0M1bE9BZHIr?=
- =?utf-8?B?T2c2cFVHTXo0K0o3WGlzY0M5OVBkSklodGJsV3RYVnJxK3d6Vkgyc3BEazM2?=
- =?utf-8?B?eko3MnNaWCsrbEJ0bDNoNEswUFpyUzZQNmdkKytYbjBoQUtKREl5MEtyYzBY?=
- =?utf-8?B?Nnd6cVZwQys1UlZzdUZCWlN5MzhmUzdLbWwzWm8vckF6Z2VEWlZDc0VUQWsx?=
- =?utf-8?B?dWxOQTI3VmtUbUZDQXg2VU55ZFUySEhCYUdXWXRuS3VZYXJia1hDaXRkVnE3?=
- =?utf-8?B?SjY0c3lvc3ZDTUNYZDVmVHM0RXc1MTlvTEdkS213djNUL2c2YlJQYTlRSXpk?=
- =?utf-8?B?U0xsdk5ZTEoweUV0ekhSbXVKajJwS2szL280dVNvODNLWTRTWC93bkk5blMy?=
- =?utf-8?B?Y0NwS1JIdzROYW1ZaDRWTEpZTEg2N2FjakpIUDJCL2MyZEhWUHR1eU5pQUFo?=
- =?utf-8?B?ZkgzQ1ZqQW5TaWhNS2FqbHdxejFtdXllR1NsZ1dKbHhCT0dpaUpub09pbDly?=
- =?utf-8?B?SkJMUU0rR0poTnZLR0NTbENpTmpzV3E5NnVQV2VkZVZTaDhKWGxZRUo0c3Z5?=
- =?utf-8?B?MnZTOVEraFB4enZOWEg5Q2FFSHQzMFVucVhELzU5cUkybE0xbmhSK1o3TFp0?=
- =?utf-8?B?TzM0NXpHRWQ2cnVRakVacFd0Und2OFFUMFRKaGZnVFVWRjI2QnVoZmJlM2JT?=
- =?utf-8?B?SDBTbTJwZUlGQ21sNENqYmhVMUxvR0lvcjhWQXJEdW1Yc2tVRU9MOE42U0VV?=
- =?utf-8?B?QUYzbVdSWkFaZWJLWDNWZHBJV2ltSU1Udm50RGFhTXliUnRYMktQekYrTit5?=
- =?utf-8?B?M0RXTGJ3MEhuOEZWT2hsR3dmTlk4VXRwY05vUU9MTFFsd3I2eVBJSklUYTgr?=
- =?utf-8?B?YXNiNDd5cTVzUGxqcnU0NFVFcnkvbFlibFIxcC9zeG9RQUVHd3VZQXJUYnAv?=
- =?utf-8?B?YW9QUXVMRVVyNEdkM0puRGFXTXA3Y3lrdkR2NW5ZTXFJeW9qV0Q1ckQ0UWtH?=
- =?utf-8?B?WVllQ1g3NUtldFhzQU4rdDczUDVTVVlseTZoSCtLYWJ1RURVTjkwMk1qV2xy?=
- =?utf-8?B?MzZnTW5vRUtzMEJwMlVodkNwOTE4RFJndmJNZUpSbEZhSFVMUHFDd1lHTWZK?=
- =?utf-8?B?VlpxY3Uxc09HRG85c2Y1dnBodzRHQWJ5bWtsa2phUEJXNk1ubE02YTJ4Y2tt?=
- =?utf-8?B?ZW1uaENjdFJzTU93c2pkUUhCVXpaUmo0N0tlTjZWa3FxdlRtQ3pROFcrL29s?=
- =?utf-8?B?a2NZSGZXMmFoa0FoMVRBWWkyZElHWXBCSU5QY3I0MXBoVGtBejlUOHg2TTB6?=
- =?utf-8?B?TThFUWw5aHV4cVRuOXlIYmdRSDlwNmRQWVg2cjhPM0FYbXlzODdtcS9JWDZK?=
- =?utf-8?B?cnNHRmhRQ2JHS2lZWUtPMjVuU0NpdDJaTkZuSXJqYkRTZG9NTFI4Tm1MS0Vy?=
- =?utf-8?B?U2F1QUh6SExKTTRpMUxCYk9yS2pKYkVDdUF3TXMvVjBBVWdwTzFVSjV5My9p?=
- =?utf-8?B?OE9MMkhVRUh5UnlaV0MxZFVOK0o2YlhXZHJtNzI0MWRSUVROODdJS05JeStF?=
- =?utf-8?B?OTRhc1FxcFJTd3Y0dE1pNjhoY29jeGRBVnJ1NEo1UjMxWkNLRURFZjM1c041?=
- =?utf-8?B?SzlwaEh1c3lDbnVyYThGNnN5bVdHUVpFLzNkVFFOUHY1bmRlTjVkcUsrc1ZG?=
- =?utf-8?B?cHVzc3pPQXErVVlSREVzR1ZXMmFTdlRLdllWaWNITEg2cWFoYlFLdmpVL1Ft?=
- =?utf-8?B?Mmc2L0RyWE5OTFlvMGFaZGNvRGNJOTZzSzRJOXE3dVRXeVVwV2RUMG5pZlI5?=
- =?utf-8?Q?v0ta22y3ruCzwBb+WQ6bGP8xr?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e2fec4f3-5892-4924-69dd-08db875e22e0
-X-MS-Exchange-CrossTenant-AuthSource: BYAPR12MB4758.namprd12.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?STQxSi80djlQaFRFZmlrUEVmUEZacmgreERZZGgzZ3IxZ0tHUWU5QzNjUGVG?=
+ =?utf-8?B?MTVCN1dmOCs2Q3JZNGxwRlBvVWRIY1U1UUl6dTRDZUlDN3E5WjQ3cHozcmZm?=
+ =?utf-8?B?TjE3RitzREo0WmlFVStTMjNpY0huOXNkMlVzanJDQTJDY3ByeVFQcWRwMmEw?=
+ =?utf-8?B?SWdSb295WmxKaU04Y081VzJLd1BkMUQrakFXbFdoRjZZZGJySis3YlYreHdF?=
+ =?utf-8?B?NXprY0VDdUZFdStYMElZRitIVmE4OUdjajhLbW5raUNENHhGT0ZwdVNHcFNG?=
+ =?utf-8?B?ZGlTdElKQlAyRzhXbGRqeXZ1NVlJOVV5amhNbVlJdjI3bWlZdmcwUTNsZWxh?=
+ =?utf-8?B?c0xSdVhnc3ZyZHFJYVltdXEvY2d6SGNoZEI5MFFaWC9YL2R3UkExNmNJMzRp?=
+ =?utf-8?B?dmpkclgwc0hDZ2gwdXc0L1hWc08wb2FMRDNYaG9nTWY2MDF3ODhXZXM0MkMz?=
+ =?utf-8?B?cERrWUVjem1Kay8vbFk0RjVMb0lDcEd5ckJrTVF1dGpoUzNId282S3NubHd2?=
+ =?utf-8?B?TTEyTEdLT3JVeUlHSW4yMTJtQ3lCbkhPc0VqNG9nbU5Xbm1Hd3lLMkZ2ZFFK?=
+ =?utf-8?B?cGcvTUhHSDZ5WU1uU0YwY1ZJUVZGVnNrdFQ1RVYvWlJnWnNBRzJjVzdXSnJ2?=
+ =?utf-8?B?c1hVdlRSU0lxb1l0c2J4VGFoUXk3dFdaY3YxL0hOLzV5MS9HLzduWWw3KzQy?=
+ =?utf-8?B?SWQrMlZmTnlNR0Ixc2VaWnZJWE9vc1hlMU1CeEMxc3FUWFl5QUlxaWVKem8z?=
+ =?utf-8?B?YWxMR1J1bVBjVGxkYW53OVNLTnpiVVF3TGVsSFJQODlHMlpkSy93SEEzRzBD?=
+ =?utf-8?B?UzBrVGhQc29xTGJ3SG1BZGZhVUZPdCs5NW5KUmxaMWYyN0NvWjRrQ3g0dHpo?=
+ =?utf-8?B?Vk8ycVNmTkN5VEhOMGVaY3daOGZTTzM4ViswWFlNNU1WdHRzaytTcStsa21o?=
+ =?utf-8?B?Mkc4YTRQbGxhdDdIb0QxbnQ1YUx0Y2FFb3hsTmIvZGk2dXppTUwvaFA0bGVv?=
+ =?utf-8?B?M1VoSm8rSjUwYVBBNG5EbEFQeDdxR2dta3UwOXB4bWE0TjVHbm54VmVMQTZv?=
+ =?utf-8?B?REdKTDk2THh2OVJCdDl6d21hWVNrNkh5dTMxR2x5UUNFQWxET3R4MWVFa3ZY?=
+ =?utf-8?B?S3pnYThuQTVyZkR0R3JyNkRINXhMZWovbHB4blJGTnJDR21FSlk2akZLWWRq?=
+ =?utf-8?B?emg2NFh0Q0NORW9pQVBJTWlzQXpnc2l6SFFqQ0Jpa01nRHVSWDFMeWxKMmsy?=
+ =?utf-8?B?QndxdDQvK1BNaHJTM2ZRNVVDa21TSW5ETk9JYUFTWUc0TEppL29wNE9jUUZS?=
+ =?utf-8?B?Y0dndnAzOWt3RGUyalF4QWREWVgxVVZXbEhvamZGVXVLVXdkWTBFa2NSWWJt?=
+ =?utf-8?B?Vk01bHAzbXlOb2JpVzFHWHRvYVRJM2hmSHVaMjNoUFR1RFdJYkEyTTh1NkJN?=
+ =?utf-8?B?Nkl4cWp5M3hGUFBHS3V5SEdSNXBUbXVSeWNpbWIraEZJZ0Z6aGYyNWUxQ3Fw?=
+ =?utf-8?B?eGRsY3B5ZjRpUWxwNlNpb1NPWFREVUFZQUZITlFlY0JYOTdoKzFJako0alI4?=
+ =?utf-8?B?cnNxK1dxTzJZSG92UUZLR3NCN0Y4TVliVWhJdWNKQ0xvUWpBTm9XQnhaMjEr?=
+ =?utf-8?B?MGpsMDQ2ZXZoYVRJVDdOazZXZjNSY0Z4dExYdHVmZ0JhQW1ETldEV0xYZGVU?=
+ =?utf-8?B?ZzR3eXpTOThaRWlLVVNlOUpOQzZMT3R1Q3RQTHBkLzR4VXlTTTk5WFJBTmtw?=
+ =?utf-8?B?QUtzSW9JSWhEUlZrQXBnN093T3ZPNzIwekdEYnB3amMxekJ0MmYyZk5PbWlZ?=
+ =?utf-8?B?aE9PQzhvdmE4RVZQajJyVkVHT3dtbG9oZ2lLaWppbUFVLzl5K2VRaTI4WW43?=
+ =?utf-8?B?cktwS0JCZlhuRS9GTHNEVlZaeUpWbm1ES1UwVDlibUJZVm9YUjhuK1BlQm5G?=
+ =?utf-8?B?WXRmOEFNOFJMMCtHUE5FbmJiR3ZQakQ0NWFSZUttZFlzbXdGR1FLa0N6Vzda?=
+ =?utf-8?B?Q0pNMUlod2NUT1Z5Q2Q3NTFPMDNnRVBzUk9KZzRxNDRKcWdwbnI4OER1dzlK?=
+ =?utf-8?B?QW5CL2w0V2crWE5aOXFpN2w2akJxNFlPblYwOUc5aTRqUkkzWi9TbmJiQUZU?=
+ =?utf-8?Q?SctKuzHQRnTKB/o0HT7TmHax0?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c4268fd3-5212-437d-8324-08db875ea05b
+X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jul 2023 07:10:58.8095
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jul 2023 07:14:29.4020
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: N9ZtPScW05pPqFJ5NxG1BkTB3fxI0uXDG4D4QQ9ZRiZeZzUdS1VEbLmgS0AwPF24
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB7991
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no autolearn_force=no
-        version=3.4.6
+X-MS-Exchange-CrossTenant-UserPrincipalName: 3JOAOG0mdwhoSnSEOvQmCXzZlAHzTMJV3GgK37eplFijuvk3uxQqsEN3BapCQ49+qjU0Q6g31287XkWJedmf1w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBPR04MB7756
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -135,114 +133,14 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 7/17/23 22:47, Krzysztof Kozlowski wrote:
-> On 17/07/2023 20:40, Conor Dooley wrote:
->> On Mon, Jul 17, 2023 at 04:53:47PM +0530, Piyush Mehta wrote:
->>> Added documentation and Versal-NET reset indices to describe about
->>> Versal-Net reset driver bindings.
->>>
->>> In Versal-NET all reset indices includes Class, SubClass, Type, Index
->>> information whereas class refers to clock, reset, power etc.,
->>> Underlying firmware in Versal have such classification and expects
->>> the ID to be this way.
->>> [13:0] - Index bits
->>> [19:14] - Type bits
->>> [25:20] - SubClass bits
->>> [31:26] - Class bits.
->>
->> Riight.. I'm not sure that describing these as "indices" is really all
->> that valid, given only 13:0 are actually the index.
->> I'd be inclined to say that the type/class/subclass stuff should not be
->> part of the dt-bindings, and instead looked up inside the driver
->> depending on the index.
->>
->> Hopefully Rob or Krzysztof can comment further.
+On 7/14/2023 4:10 PM, Shengjiu Wang wrote:
+> The Audio Clock Mux (ACM) is a collection of control registers
+> and multiplexers that are used to route the audio source clocks
+> to the audio peripherals.
 > 
-> This confuses me as well. I don't understand why do you need it in the
-> bindings. Nothing uses these values, so storing them as bindings seems
-> pointless.
+> Each audio peripheral has its dedicated audio clock mux
+> (which differ based on usage) and control register.
+> 
+> Signed-off-by: Shengjiu Wang<shengjiu.wang@nxp.com>
 
-Power Management team wants to use these NodeID with format describe above to 
-identify that elements. And I already told them that ID (0-max) translation to 
-internal NodeID format should be done in firmware but they don't pretty much 
-agree with it.
-
- From DT binding perspective I think it doesn't really matter if numbers are 
-from 0 to max or they are from random high number to another random number 
-without step equal to 1.
-And it is driver implementation detail if driver itself is checking that 
-requested ID is bigger than number of pins passed.
-
-In connection to reset driver in Linux.
-
-Core has:
-static int of_reset_simple_xlate(struct reset_controller_dev *rcdev,
-                                  const struct of_phandle_args *reset_spec)
-{
-         if (reset_spec->args[0] >= rcdev->nr_resets)
-                 return -EINVAL;
-
-         return reset_spec->args[0];
-}
-
-/**
-  * reset_controller_register - register a reset controller device
-  * @rcdev: a pointer to the initialized reset controller device
-  */
-int reset_controller_register(struct reset_controller_dev *rcdev)
-{
-         if (!rcdev->of_xlate) {
-                 rcdev->of_reset_n_cells = 1;
-                 rcdev->of_xlate = of_reset_simple_xlate;
-         }
-...
-
-And zynqmp reset driver already defines of_xlate function that's why checking 
-against nr_resets is not done as is visible from code below.
-
-
-static int zynqmp_reset_of_xlate(struct reset_controller_dev *rcdev,
-                                  const struct of_phandle_args *reset_spec)
-{
-         return reset_spec->args[0];
-}
-
-
-And actually Xilinx Versal platform is using this for a while and you can find 
-IDs description here.
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/include/dt-bindings/reset/xlnx-versal-resets.h?h=v6.5-rc2
-
-Xilinx ZynqMP is using IDs from 0 to 119
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/include/dt-bindings/reset/xlnx-zynqmp-resets.h?h=v6.5-rc2
-
-
-but IDs itself are shifted by 1000:
-include/linux/firmware/xlnx-zynqmp.h:217:  ZYNQMP_PM_RESET_START = 1000,
-#define ZYNQMP_RESET_ID ZYNQMP_PM_RESET_START
-
-static const struct zynqmp_reset_soc_data zynqmp_reset_data = {
-         .reset_id = ZYNQMP_RESET_ID,
-         .num_resets = ZYNQMP_NR_RESETS,
-};
-
-static int zynqmp_reset_assert(struct reset_controller_dev *rcdev,
-                                unsigned long id)
-{
-         struct zynqmp_reset_data *priv = to_zynqmp_reset_data(rcdev);
-
-         return zynqmp_pm_reset_assert(priv->data->reset_id + id,
-                                       PM_RESET_ACTION_ASSERT);
-}
-
-
-That numbers in DT are virtual no matter if you use ID from 0 to max or random 
-values it is up to code to handle them. Checking nr_pins against ID is done in 
-core but it is up to drivers.
-In our case that IDs are coming from firmware and driver itself is just matching 
-them.
-At the end of day pretty much IDs in header can be from 0 to max and conversion 
-to IDs can be done in the driver itself or in driver probe firmware can be 
-requested to provide IDs with specific call.
-
-Thanks,
-Michal
+Reviewed-by: Peng Fan <peng.fan@nxp.com>
