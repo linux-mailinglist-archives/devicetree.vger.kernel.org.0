@@ -2,60 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4623175753D
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 09:23:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 251FE757540
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 09:25:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231174AbjGRHXj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jul 2023 03:23:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41454 "EHLO
+        id S231237AbjGRHZg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jul 2023 03:25:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42028 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231461AbjGRHXi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 03:23:38 -0400
+        with ESMTP id S230313AbjGRHZf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 03:25:35 -0400
 Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EE6E10E0
-        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 00:23:36 -0700 (PDT)
-Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-51e28b299adso7523225a12.2
-        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 00:23:36 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60BDAEC
+        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 00:25:34 -0700 (PDT)
+Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-521662a6c9cso5715078a12.1
+        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 00:25:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689665015; x=1692257015;
+        d=linaro.org; s=google; t=1689665133; x=1692257133;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=iSCltwnxHWzRk7Y0cpNIDArzz5ZlpHqXZ9iMuTI+OfI=;
-        b=J3Au4Ibv4sJBTBwp5hff3IG5hjiz2HQ7R60pq1w96sXSgKgHSZpCbiEmYh6VYt5D//
-         v26B4j5tRf+TzLdiXvmJDEN3otxqD4+DAiNx/xPqmiFQL5YSo6+brxkxz2Dck6rHgJQr
-         Ds7UajxieXovAmZ3F8+tXxuIVvSJmCJwmOyuWsB9hllCx5+FnwCAw/V160TW6/jxow10
-         NLu3hFA076fFgR9o4HOQHjlMmOVkCpmnYLsU6QYLGwiFiMWvxB5Hj7CVIkri3TsR8Kbq
-         Es8YHHxXEG9wVEnlKvyrYNLXSxMVsytHlGceVn//iPMy5GMgu6U4hqhSxY6S5ikrI45H
-         0yEw==
+        bh=JnChA2abQJj2t20iF0rmM2KRjUtf8yEoGrz0epdwIwA=;
+        b=s3KXxn3UjfmySXlb9R13dXwt2vOxldjL+SFerhMavt8UY5Bg4Ap33PKmouxryfUBUL
+         pSsnwc4xPzjpDKC6//dbnxjyd1V9y1wwohrpHJcDqWBqXZtlKTP+q7ElaSrsDN6FNiTt
+         OZ0FxmJjFbNL9+XjsjM9L5WJQ3/AN+Cvc+XGkq3MKZLbqPekyFh+wbG/Elf40koE617j
+         9fWJpVLvHSAZFn1I8XRTs3Q5iFGZbemwwMhyu7YXMnf40jgKJaKCHFOrK2rlrXmob27d
+         E3pB7+hoV/O6S3T6PYN5e8DepW4/IsU9o2CEAba/UTjCYuzypD6cuB9Khf2bBoCqc1Ev
+         wrZQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689665015; x=1692257015;
+        d=1e100.net; s=20221208; t=1689665133; x=1692257133;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=iSCltwnxHWzRk7Y0cpNIDArzz5ZlpHqXZ9iMuTI+OfI=;
-        b=H20oC4W9/ys+cVkkN1MAw6oUWHTG2HtchdPmbkEZeU8D6G+rLwvWspDadkxOuHFWUF
-         6cqUyS/m+bR7ySTD4c1z7fnuparfzMdQ/6Eq2QFIO4O1zbC5GyUxGx6JUo8LbsZxvuIy
-         Di8qNQZa4NnA6UCYC9GD1KdRR2aAh26qSGAc0Gmfot6G705fTDnQNwRP5ONG0GjmyHuD
-         BvXFBDB8Nyzq2dwRFeWyvZw8W8f5AUa8sXj+g2p4R4wgVg+10rsZKAlN1yUXmTf0e8nW
-         dsBzSZQvedyV5KBzOajMP7ZWYirkDmWWX1qCc3XXcd5Az0qTTjh+e9ZNBGNpChyVPTj8
-         43PA==
-X-Gm-Message-State: ABy/qLYuG2Y5+FQ0I8PAtCgIYBG9bx3bYsXYI04QIS9ryeKCqKojYh8w
-        Oow1NPPfgu/wpgF54gkxX+C23w==
-X-Google-Smtp-Source: APBJJlEJWK3IpPoAF1MaJSbNIxYudv8k8QIAIToUGUIbAOix+a6dif5mC+LwN0ZJE9o3qJu2NgnD3w==
-X-Received: by 2002:aa7:cd52:0:b0:51e:3558:5eb6 with SMTP id v18-20020aa7cd52000000b0051e35585eb6mr12997197edw.3.1689665015019;
-        Tue, 18 Jul 2023 00:23:35 -0700 (PDT)
+        bh=JnChA2abQJj2t20iF0rmM2KRjUtf8yEoGrz0epdwIwA=;
+        b=NYkAiqvqCM9MKiLhI6rp+dEeRu79nuyIt0Vr3rLNE47jj6BofzisFqi8WgyoPeIm+v
+         8Wfk0tMraIF6h9uat4TJthzXW9XWlha9vFGD/obWxooxmlOCXEx/yDyYiNNj+TEWx6u/
+         or1vfjQe26sXecM3Y4RRv1D56PKU50MMZOTIS6I890VQ5AfLDSHq0xGUM+gr3B/oUhOU
+         2K2ZMHUO03r3mGspOupybPO9mGJcPI7/ReZBZzNdy+cAaml9Zg9E/f2RJ1kL9diAYzZO
+         ZXOtR/Y6oa8nR+pKlHfz7Ea3ahZCwON3jTraSLa3TYkA2hOH41r/dtbhMlXGDEnn6rl3
+         nYSA==
+X-Gm-Message-State: ABy/qLaHKmJNLBaaB60tCzpJ5Gqe1tqtfO+7v2YG/NSCq3t7nWM1kcB0
+        hVjHOfx+Osh9MT5xO2QgzwONXg==
+X-Google-Smtp-Source: APBJJlHNIgdPzuJuy0x0YY6gCWMzF3fXiWlCo1CLf7hC2EVud/HeJbKo3c+l/iBnVk4NT6FJHwhTSw==
+X-Received: by 2002:aa7:d986:0:b0:51e:1638:e52f with SMTP id u6-20020aa7d986000000b0051e1638e52fmr11323553eds.40.1689665132900;
+        Tue, 18 Jul 2023 00:25:32 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id n3-20020aa7c683000000b005219864c7cfsm776223edq.39.2023.07.18.00.23.33
+        by smtp.gmail.com with ESMTPSA id x11-20020aa7d6cb000000b0051e0bf5807bsm769716edr.49.2023.07.18.00.25.31
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 18 Jul 2023 00:23:34 -0700 (PDT)
-Message-ID: <91725f89-f3fe-7879-1346-e4cd2eb8d2e9@linaro.org>
-Date:   Tue, 18 Jul 2023 09:23:32 +0200
+        Tue, 18 Jul 2023 00:25:32 -0700 (PDT)
+Message-ID: <fb19946c-b95c-cfd1-1034-7542d38e554e@linaro.org>
+Date:   Tue, 18 Jul 2023 09:25:30 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
-Subject: Re: [PATCH v2 1/2] dt-bindings: hwmon: Add description for new hwmon
- driver hs3001
+Subject: Re: [PATCH v2 2/2] hwmon: (hs3001) Add driver for Renesas HS3001
 Content-Language: en-US
 To:     Andre Werner <werneazc@gmail.com>, jdelvare@suse.com,
         linux@roeck-us.net, krzysztof.kozlowski+dt@linaro.org,
@@ -64,14 +63,15 @@ Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org,
         Andre Werner <andre.werner@systec-electronic.com>
 References: <20230718070114.3871-1-andre.werner@systec-electronic.com>
+ <20230718070114.3871-2-andre.werner@systec-electronic.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230718070114.3871-1-andre.werner@systec-electronic.com>
+In-Reply-To: <20230718070114.3871-2-andre.werner@systec-electronic.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -79,17 +79,122 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 18/07/2023 09:01, Andre Werner wrote:
-> This is the initial description.
+> Add base support for Renesas HS3001 temperature
+> and humidity sensors and its compatibles HS3002,
+> HS3003 and HS3004.
+> 
+> The sensor has a fix I2C address 0x44. The resolution
+> is fixed to 14bit (ref. Missing feature).
+> 
+
+> Missing feature:
+> - Accessing non-volatile memory: Custom board has no
+>   possibility to control voltage supply of sensor. Thus,
+>   we cannot send the necessary control commands within
+>   the first 10ms after power-on.
 > 
 > Signed-off-by: Andre Werner <andre.werner@systec-electronic.com>
 > 
-> v1: Using separate dt-binding hs300x.yaml
-> v2: Reviewer recommends documentation of driver dt-binding in
-> trivial-devices.yaml because the driver has no special properties
-> to describe.
+> Changelog:
+> v1: Initial version
+> v2: Extensive refactoring following recommendations of reviewers:
+>  - Delete unused defines and device properties. These are added in
+>    the initial version because the device supports a programming mode,
+>    but I was not able to implement it, because the custom board was
+>    not able to control the power supply of the device and so I cannot
+>    enter the programming mode of the device.
+>  - Correct missunderstanding comments for defines.
+>  - Delete mutexes for data and I2C bus accesses.
+>  - Replace attributes with recommented chip-info structure. In the
+>    initial version I followed the sth3x.c implementation that uses
+>    files and attributes in sysfs. The show functions are replaced by
+>    is_visible and read callbacks from the HWMON ABI. I also  delete pointless
+>    function argument checks.
+>  - Correct Yoda programming.
+>  - Refactor probe function and delete sleep and measurement of humidity
+>    and temperature in probe function. I kept an initial I2C
+>    communication to ensure that the device is accessible during probe.
+>  - Reduce the number of atteributes to humidity and temperature input.
 
-BTW, you already sent v2, so this is v3. Please version your patches
-correctly.
+Also wrong placement of SoB and changelog.
+
+> ---
+>  Documentation/hwmon/hs3001.rst |  37 +++++
+>  MAINTAINERS                    |   6 +
+>  drivers/hwmon/Kconfig          |  10 ++
+>  drivers/hwmon/Makefile         |   1 +
+>  drivers/hwmon/hs3001.c         | 261 +++++++++++++++++++++++++++++++++
+>  5 files changed, 315 insertions(+)
+>  create mode 100644 Documentation/hwmon/hs3001.rst
+>  create mode 100644 drivers/hwmon/hs3001.c
+
+...
+
+> +/* Definitions for Status Bits of A/D Data */
+> +#define HS3001_DATA_VALID	0x00	/* Valid Data */
+> +#define HS3001_DATA_STALE	0x01	/* Stale Data */
+> +
+> +#define LIMIT_MAX	0
+> +#define LIMIT_MIN	1
+> +
+> +enum hs3001_chips {
+> +	hs3001,
+
+Drop, not effectively used.
+
+> +};
+
+...
+
+> +
+> +/* device ID table */
+> +static const struct i2c_device_id hs3001_ids[] = {
+> +	{ "hs3001", hs3001 },
+
+Drop match data
+
+> +	{ },
+> +};
+> +
+> +MODULE_DEVICE_TABLE(i2c, hs3001_ids);
+> +
+> +static const struct of_device_id hs3001_of_match[] = {
+> +	{.compatible = "renesas,hs3001",
+> +	 .data = (void *)hs3001
+
+Drop
+
+> +	},
+> +	{ },
+> +};
+> +
+> +MODULE_DEVICE_TABLE(of, hs3001_of_match);
+> +
+> +static int hs3001_probe(struct i2c_client *client)
+> +{
+> +	struct hs3001_data *data;
+> +	struct device *hwmon_dev;
+> +	struct device *dev = &client->dev;
+> +	int ret;
+> +
+> +	if (!i2c_check_functionality(client->adapter, I2C_FUNC_I2C))
+> +		return -EOPNOTSUPP;
+> +
+> +	data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
+> +	if (!data)
+> +		return -ENOMEM;
+> +
+> +	data->client = client;
+> +
+> +	if (client->dev.of_node)
+> +		data->type = (enum hs3001_chips)of_device_get_match_data(&client->dev);
+> +	else
+> +		data->type = i2c_match_id(hs3001_ids, client)->driver_data;
+
+This is useless and dead code. You have only one type of device. Don't
+over-complicate simple things.
+
+
 
 Best regards,
 Krzysztof
