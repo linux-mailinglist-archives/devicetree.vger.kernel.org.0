@@ -2,111 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 643477585A9
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 21:38:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A88E9758619
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 22:32:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229812AbjGRTik (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jul 2023 15:38:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58552 "EHLO
+        id S229630AbjGRUck (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jul 2023 16:32:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45204 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229705AbjGRTij (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 15:38:39 -0400
-Received: from smtp.dudau.co.uk (dliviu.plus.com [80.229.23.120])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id E8C87198D;
-        Tue, 18 Jul 2023 12:38:37 -0700 (PDT)
-Received: from mail.dudau.co.uk (bart.dudau.co.uk [192.168.14.2])
-        by smtp.dudau.co.uk (Postfix) with SMTP id 1735441A7003;
-        Tue, 18 Jul 2023 20:38:36 +0100 (BST)
-Received: by mail.dudau.co.uk (sSMTP sendmail emulation); Tue, 18 Jul 2023 20:38:36 +0100
-Date:   Tue, 18 Jul 2023 20:38:36 +0100
-From:   Liviu Dudau <liviu@dudau.co.uk>
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc:     linux-phy@lists.infradead.org, linux-rockchip@lists.infradead.org,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Rob Herring <robh@kernel.org>,
-        Serge Semin <fancer.lancer@gmail.com>,
+        with ESMTP id S229451AbjGRUcj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 16:32:39 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CE5E19A4;
+        Tue, 18 Jul 2023 13:32:34 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 0A2D760DDA;
+        Tue, 18 Jul 2023 20:32:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8393FC433C8;
+        Tue, 18 Jul 2023 20:32:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1689712353;
+        bh=FLSmACyrVItJxGL2yS/j6SnE6NSUcX7aKrzHK7k9U3E=;
+        h=From:To:Cc:Subject:Date:From;
+        b=QyklfGbtk3VN1ylhAY7Qw8wPNB49l2zLLLb2XZTsD7k+TbHniEmA69uxamN67xBTd
+         AsZK/PkMW/bL0ZH7T1EaR899r0Q0GGqxkArQnuzKvPcyZDFx52gtzE7jnYRkQ6vSXz
+         IIy5u4GQY5SqlucvIQizDc3sCEYEldKGa+so2wBr9PpLEOGWaizlR3DMsttrZZorwH
+         mnzxFudb6Pr27N5Ol90+AEDir5xFUQ+eoeJVCrNmo+GXg9iM/chPilca1MdApzURS4
+         s+HHIE4BO/P/UDn+dfcqGajLjpcqM5SwGu11LJgbJFNqKSMfWrMSVOfEEz/YLmi4hp
+         Zm+x1fVwMUC/Q==
+Received: (nullmailer pid 1761854 invoked by uid 1000);
+        Tue, 18 Jul 2023 20:32:31 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Shawn Lin <shawn.lin@rock-chips.com>,
-        Simon Xue <xxm@rock-chips.com>, John Clark <inindev@gmail.com>,
-        Qu Wenruo <wqu@suse.com>, devicetree@vger.kernel.org,
-        linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, kernel@collabora.com
-Subject: Re: [PATCH v2 2/2] arm64: dts: rockchip: rk3588: add PCIe3 support
-Message-ID: <ZLbqPB5yP7Kn6FT6@bart.dudau.co.uk>
-References: <20230717173512.65169-1-sebastian.reichel@collabora.com>
- <20230717173512.65169-3-sebastian.reichel@collabora.com>
- <ZLarQUvUK3v3m6Cg@bart.dudau.co.uk>
- <20230718160137.sfitnkl6gmyi75jx@mercury.elektranox.org>
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH net-next] dt-bindings: net: dsa: Fix JSON pointer references
+Date:   Tue, 18 Jul 2023 14:32:03 -0600
+Message-Id: <20230718203202.1761304-1-robh@kernel.org>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20230718160137.sfitnkl6gmyi75jx@mercury.elektranox.org>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 18, 2023 at 06:01:37PM +0200, Sebastian Reichel wrote:
-> Hi Liviu,
-> 
-> On Tue, Jul 18, 2023 at 04:09:53PM +0100, Liviu Dudau wrote:
-> > On Mon, Jul 17, 2023 at 07:35:12PM +0200, Sebastian Reichel wrote:
-> > > Add both PCIe3 controllers together with the shared PHY.
-> > > 
-> > > Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-> > > ---
-> > >  arch/arm64/boot/dts/rockchip/rk3588.dtsi | 120 +++++++++++++++++++++++
-> > >  1 file changed, 120 insertions(+)
-> > > 
-> > > diff --git a/arch/arm64/boot/dts/rockchip/rk3588.dtsi b/arch/arm64/boot/dts/rockchip/rk3588.dtsi
-> > > index 88d702575db2..8f210f002fac 100644
-> > > --- a/arch/arm64/boot/dts/rockchip/rk3588.dtsi
-> > > +++ b/arch/arm64/boot/dts/rockchip/rk3588.dtsi
-> > > @@ -7,6 +7,11 @@
-> > >  #include "rk3588-pinctrl.dtsi"
-> > >  
-> > >  / {
-> > > +	pcie30_phy_grf: syscon@fd5b8000 {
-> > > +		compatible = "rockchip,rk3588-pcie3-phy-grf", "syscon";
-> > > +		reg = <0x0 0xfd5b8000 0x0 0x10000>;
-> > > +	};
-> > > +
-> > >  	pipe_phy1_grf: syscon@fd5c0000 {
-> > >  		compatible = "rockchip,rk3588-pipe-phy-grf", "syscon";
-> > >  		reg = <0x0 0xfd5c0000 0x0 0x100>;
-> > 
-> > What tree is based this on? Even after applying your PCIe2 series I don't have the above
-> > node so the patch doesn't apply to mainline.
-> 
-> You are missing naneng-combphy support:
-> 
-> https://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.git/commit/?h=v6.6-armsoc/dts64&id=6ebd55b3bba383e0523b0c014f17c97f3ce80708
+A JSON pointer reference to the entire document must not have a trailing
+"/" and should be just a "#". The existing jsonschema package allows
+these, but changes in 4.18 make allowed "$ref" URIs stricter and throw
+errors on these references.
 
-Thanks! It looks like the PCIe2 commit that adds support to rk3588(s).dtsi
-files is also missing an #include <dt-bindings/phy/phy.h> for the PHY_TYPE_PCIE
-use, otherwise the DTS fail to compile.
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+ Documentation/devicetree/bindings/net/dsa/dsa.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Best regards,
-Liviu
-
-> 
-> -- Sebastian
-
-
-
+diff --git a/Documentation/devicetree/bindings/net/dsa/dsa.yaml b/Documentation/devicetree/bindings/net/dsa/dsa.yaml
+index 8d971813bab6..ec74a660beda 100644
+--- a/Documentation/devicetree/bindings/net/dsa/dsa.yaml
++++ b/Documentation/devicetree/bindings/net/dsa/dsa.yaml
+@@ -36,7 +36,7 @@ additionalProperties: true
+ $defs:
+   ethernet-ports:
+     description: A DSA switch without any extra port properties
+-    $ref: '#/'
++    $ref: '#'
+ 
+     patternProperties:
+       "^(ethernet-)?ports$":
 -- 
-Everyone who uses computers frequently has had, from time to time,
-a mad desire to attack the precocious abacus with an axe.
-       	   	      	     	  -- John D. Clark, Ignition!
+2.40.1
+
