@@ -2,110 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F1C0C757414
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 08:27:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A17B775740B
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 08:26:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231305AbjGRG1X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jul 2023 02:27:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34692 "EHLO
+        id S230500AbjGRG0w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jul 2023 02:26:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34492 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231276AbjGRG1L (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 02:27:11 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1C121A5;
-        Mon, 17 Jul 2023 23:27:05 -0700 (PDT)
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36I483Sp015472;
-        Tue, 18 Jul 2023 06:27:01 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding : content-type; s=qcppdkim1;
- bh=DOiSuhikKILZQ3ltZPY7WPmQRpVQlaQy1lW6ywDJBds=;
- b=GEn6ym8ATePE++sRglounsmEvaeeFl8sM4gImdqP9QxXUlZEPq6Bvqe14SnmalX35VwP
- M0gHl4kgektqnpt8sSW7SC4ZuvJDu1hjHEEgB5GHvaDApjUUE/B+4ZXhrXnllWFObldq
- Wu4uAQVRPNk6K6vEn4LfVP0FX1MzhsXLAN9JBL1LqXcMBKZO7ST7lFeyQIMatJE46vQl
- 72Y4MHlk+x+qfJEuKfN6HiiSKzJOOAZfZAcmVyMbw9CsEkByrAkbb7et7VTWYjY9DiJr
- Hd7lKzQrmegegT3dRumzzbMxP5NCU4imBVMaISLYgfib1tnRBU9MGCXsu6kR+vzjW2TR 3A== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3rwk5bg8vj-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 18 Jul 2023 06:27:01 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 36I6R0KC000641
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 18 Jul 2023 06:27:00 GMT
-Received: from fenglinw2-gv.qualcomm.com (10.80.80.8) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.30; Mon, 17 Jul 2023 23:26:56 -0700
-From:   Fenglin Wu <quic_fenglinw@quicinc.com>
-To:     <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        "Andy Gross" <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        "Konrad Dybcio" <konrad.dybcio@linaro.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-input@vger.kernel.org>, <devicetree@vger.kernel.org>
-CC:     <quic_collinsd@quicinc.com>, <quic_subbaram@quicinc.com>,
-        <quic_fenglinw@quicinc.com>, <quic_kamalw@quicinc.com>,
-        <jestar@qti.qualcomm.com>
-Subject: [PATCH v2 1/2] dt-bindings: input: qcom,pm8xxx-vib: add more PMIC support
-Date:   Tue, 18 Jul 2023 14:26:38 +0800
-Message-ID: <20230718062639.2339589-2-quic_fenglinw@quicinc.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230718062639.2339589-1-quic_fenglinw@quicinc.com>
-References: <20230718062639.2339589-1-quic_fenglinw@quicinc.com>
+        with ESMTP id S229986AbjGRG0u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 02:26:50 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19415126
+        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 23:26:49 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-9936b3d0286so751612366b.0
+        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 23:26:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1689661607; x=1692253607;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=szAN6NYzvhN3ASqUWafz2JxFxR4dH9afImQ7y60YO2E=;
+        b=E0JyVuFuCBb4peQQ0mT0mID1+ZZoCN1HJ8ibGl0OJDdzKRrLBdnZ6SDkFTFU+00ABU
+         tM61HPH6r1LEakPG84iwVmxvUJL/jqBD20qtHsMyJAuIEANZNBKvE4jPUe9KiY96+1na
+         J+QTDkhx9E5cb+5WZe5t0OYiolQKIW4HzUw8aVwA+fZmFImNus3bkKq9I6x9lCCCVZ/s
+         7k+MEk9FE5OBw/sgtipzGpDhync959QOqxV+v3mlsGa4hruoqiQzeFmsM/FgSTUd0LIr
+         IcDhNIbL1tGAXUVZVlTXzA5yVddUo+jCOnjuq8R7K79q/d+WTy2r3JfDXzNlhSpRmo3p
+         UbjA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689661607; x=1692253607;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=szAN6NYzvhN3ASqUWafz2JxFxR4dH9afImQ7y60YO2E=;
+        b=d2DlUrtSo0p5yvuPZOU1ZtAyL7FpG4Ihlxw0SttG7rRzoX1awBYZ/319pKABrqegvG
+         kd10HAucOtvj1Iwm0B8grt1Fh3h8mZf//WDB/w9FSy4pMoKeMBmjgqMu9zB6w1L1wwnl
+         e807P5TrhtAY32W8VbH0ewqigsqAQefz1VAZcBhRZFpN1/uK7GedaJATTvCHOMNiB0Uw
+         vwy/Jgx6/gMkjBCEazktNGTYqN7kcCTKEfMnX62ptTNgA0fDZ4CYAn1jY9FIAc1nuZ63
+         L5+xMhaitgFCjQgDh8FyLStKTwGVpHqlZzM27UYilqL8Gr/rjdz+1pGqtq9bZnm1ivrp
+         wR+Q==
+X-Gm-Message-State: ABy/qLZADLbCCjpvCB3qBpapBj5hzV55LynVTcAru2x+FBwNVdlTnXX3
+        G71/m5r6g0FaLSTmtoH4XJiwAA==
+X-Google-Smtp-Source: APBJJlGgvuKsyZAcprltA4X0+Cto4HGQ00PxjW4f9QBYWcSXBe12JZDUy0xv9GffbNJiNd41CRPnpQ==
+X-Received: by 2002:a17:906:20a:b0:98b:dc6c:b304 with SMTP id 10-20020a170906020a00b0098bdc6cb304mr13222395ejd.38.1689661607642;
+        Mon, 17 Jul 2023 23:26:47 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id m11-20020a1709062b8b00b00991bba473e1sm599800ejg.3.2023.07.17.23.26.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 17 Jul 2023 23:26:46 -0700 (PDT)
+Message-ID: <4e2b6fae-7638-ae20-9de0-c14c16577726@linaro.org>
+Date:   Tue, 18 Jul 2023 08:26:44 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 6SmFWC8Ol-TziydCzrvxbvX-SCu3X1qU
-X-Proofpoint-ORIG-GUID: 6SmFWC8Ol-TziydCzrvxbvX-SCu3X1qU
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-07-17_15,2023-07-13_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 phishscore=0
- spamscore=0 adultscore=0 mlxlogscore=832 priorityscore=1501 clxscore=1015
- suspectscore=0 bulkscore=0 lowpriorityscore=0 malwarescore=0 mlxscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2306200000
- definitions=main-2307180058
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v9 2/7] dt-bindings: soc: qcom: eud: Document
+ vendor-specific 'secure mode' property
+Content-Language: en-US
+To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-usb@vger.kernel.org
+Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        linux-kernel@vger.kernel.org, bhupesh.linux@gmail.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        quic_schowdhu@quicinc.com, gregkh@linuxfoundation.org,
+        stephan@gerhold.net
+References: <20230718061052.1332993-1-bhupesh.sharma@linaro.org>
+ <20230718061052.1332993-3-bhupesh.sharma@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230718061052.1332993-3-bhupesh.sharma@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for vibrator module inside Qualcomm PMI632, PM7250B, PM7325B
-PMICs.
+On 18/07/2023 08:10, Bhupesh Sharma wrote:
+> On some SoCs (like the SM6115 / SM4250 SoC), the enable bit inside
+> 'tcsr_check_reg' needs to be set first to 'enable' EUD mode.
+> 
+> So introduce a vendor-specific dt-property 'qcom,secure-eud-reg'
+> which specifies the base address of the TCSR reg space and the offset
+> of the 'tcsr_check_reg'.
 
-Signed-off-by: Fenglin Wu <quic_fenglinw@quicinc.com>
----
- Documentation/devicetree/bindings/input/qcom,pm8xxx-vib.yaml | 3 +++
- 1 file changed, 3 insertions(+)
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-diff --git a/Documentation/devicetree/bindings/input/qcom,pm8xxx-vib.yaml b/Documentation/devicetree/bindings/input/qcom,pm8xxx-vib.yaml
-index c8832cd0d7da..481163105d24 100644
---- a/Documentation/devicetree/bindings/input/qcom,pm8xxx-vib.yaml
-+++ b/Documentation/devicetree/bindings/input/qcom,pm8xxx-vib.yaml
-@@ -15,6 +15,9 @@ properties:
-       - qcom,pm8058-vib
-       - qcom,pm8916-vib
-       - qcom,pm8921-vib
-+      - qcom,pmi632-vib
-+      - qcom,pm7250b-vib
-+      - qcom,pm7325b-vib
- 
-   reg:
-     maxItems: 1
--- 
-2.25.1
+Best regards,
+Krzysztof
 
