@@ -2,75 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 251FE757540
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 09:25:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DA2C975757D
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 09:39:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231237AbjGRHZg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jul 2023 03:25:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42028 "EHLO
+        id S229765AbjGRHj4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jul 2023 03:39:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48014 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230313AbjGRHZf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 03:25:35 -0400
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60BDAEC
-        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 00:25:34 -0700 (PDT)
-Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-521662a6c9cso5715078a12.1
-        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 00:25:34 -0700 (PDT)
+        with ESMTP id S231759AbjGRHjy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 03:39:54 -0400
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65A75171C
+        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 00:39:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689665133; x=1692257133;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=JnChA2abQJj2t20iF0rmM2KRjUtf8yEoGrz0epdwIwA=;
-        b=s3KXxn3UjfmySXlb9R13dXwt2vOxldjL+SFerhMavt8UY5Bg4Ap33PKmouxryfUBUL
-         pSsnwc4xPzjpDKC6//dbnxjyd1V9y1wwohrpHJcDqWBqXZtlKTP+q7ElaSrsDN6FNiTt
-         OZ0FxmJjFbNL9+XjsjM9L5WJQ3/AN+Cvc+XGkq3MKZLbqPekyFh+wbG/Elf40koE617j
-         9fWJpVLvHSAZFn1I8XRTs3Q5iFGZbemwwMhyu7YXMnf40jgKJaKCHFOrK2rlrXmob27d
-         E3pB7+hoV/O6S3T6PYN5e8DepW4/IsU9o2CEAba/UTjCYuzypD6cuB9Khf2bBoCqc1Ev
-         wrZQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689665133; x=1692257133;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=JnChA2abQJj2t20iF0rmM2KRjUtf8yEoGrz0epdwIwA=;
-        b=NYkAiqvqCM9MKiLhI6rp+dEeRu79nuyIt0Vr3rLNE47jj6BofzisFqi8WgyoPeIm+v
-         8Wfk0tMraIF6h9uat4TJthzXW9XWlha9vFGD/obWxooxmlOCXEx/yDyYiNNj+TEWx6u/
-         or1vfjQe26sXecM3Y4RRv1D56PKU50MMZOTIS6I890VQ5AfLDSHq0xGUM+gr3B/oUhOU
-         2K2ZMHUO03r3mGspOupybPO9mGJcPI7/ReZBZzNdy+cAaml9Zg9E/f2RJ1kL9diAYzZO
-         ZXOtR/Y6oa8nR+pKlHfz7Ea3ahZCwON3jTraSLa3TYkA2hOH41r/dtbhMlXGDEnn6rl3
-         nYSA==
-X-Gm-Message-State: ABy/qLaHKmJNLBaaB60tCzpJ5Gqe1tqtfO+7v2YG/NSCq3t7nWM1kcB0
-        hVjHOfx+Osh9MT5xO2QgzwONXg==
-X-Google-Smtp-Source: APBJJlHNIgdPzuJuy0x0YY6gCWMzF3fXiWlCo1CLf7hC2EVud/HeJbKo3c+l/iBnVk4NT6FJHwhTSw==
-X-Received: by 2002:aa7:d986:0:b0:51e:1638:e52f with SMTP id u6-20020aa7d986000000b0051e1638e52fmr11323553eds.40.1689665132900;
-        Tue, 18 Jul 2023 00:25:32 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id x11-20020aa7d6cb000000b0051e0bf5807bsm769716edr.49.2023.07.18.00.25.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 18 Jul 2023 00:25:32 -0700 (PDT)
-Message-ID: <fb19946c-b95c-cfd1-1034-7542d38e554e@linaro.org>
-Date:   Tue, 18 Jul 2023 09:25:30 +0200
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1689665979; x=1721201979;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=UJsIi3D4zDu0VjcUmmlsHRVnmLwOFqmIT/kb3xsdkMc=;
+  b=DgoeP6kWdf2SVyiyelbBpxp97X6AK3ruzXsOnOVP94SkuCODKiWeIMCF
+   iOo50vSVq8eaeMCD7VTpzE7PvmtW5a63x0fqA7Y7QrG+Xz5MIxmHBtw2p
+   QZkRQNuCLGjfxwONdwIYBpuUkdv1SKLreY4KK7Y5I6lWyaAo5RInfPsDf
+   Zm8cmm9Ev8GiOss3P7009kMgOObejnpzDW6GPkbS0KhNdDFR9/N9tqf5L
+   u6Efs/nBq8nuljFXKOf5aqWBXA1S+mWC9WLyljsyzPvgv47iAgQhEyb3W
+   gxzU+ntR4E/K+d6EbPUBrvRQzimYT9DHc1FOcxEO1vZHhUa1QZUzhxPAB
+   A==;
+X-IronPort-AV: E=Sophos;i="6.01,213,1684792800"; 
+   d="scan'208";a="31978588"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 18 Jul 2023 09:39:37 +0200
+Received: from steina-w.localnet (unknown [10.123.53.21])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id DA074280078;
+        Tue, 18 Jul 2023 09:39:36 +0200 (CEST)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Cc:     neil.armstrong@linaro.org, conor+dt@kernel.org, rfoss@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, jonas@kwiboo.se,
+        shawnguo@kernel.org, s.hauer@pengutronix.de,
+        jernej.skrabec@gmail.com, robh+dt@kernel.org,
+        Laurent.pinchart@ideasonboard.com, andrzej.hajda@intel.com,
+        kernel@pengutronix.de, linux-imx@nxp.com,
+        Liu Ying <victor.liu@nxp.com>
+Subject: Re: [PATCH 0/9] drm/bridge: imx: Add i.MX93 MIPI DSI support
+Date:   Tue, 18 Jul 2023 09:39:36 +0200
+Message-ID: <3750806.kQq0lBPeGt@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20230717061831.1826878-1-victor.liu@nxp.com>
+References: <20230717061831.1826878-1-victor.liu@nxp.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v2 2/2] hwmon: (hs3001) Add driver for Renesas HS3001
-Content-Language: en-US
-To:     Andre Werner <werneazc@gmail.com>, jdelvare@suse.com,
-        linux@roeck-us.net, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, robh+dt@kernel.org
-Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Andre Werner <andre.werner@systec-electronic.com>
-References: <20230718070114.3871-1-andre.werner@systec-electronic.com>
- <20230718070114.3871-2-andre.werner@systec-electronic.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230718070114.3871-2-andre.werner@systec-electronic.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
         URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,124 +65,75 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/07/2023 09:01, Andre Werner wrote:
-> Add base support for Renesas HS3001 temperature
-> and humidity sensors and its compatibles HS3002,
-> HS3003 and HS3004.
-> 
-> The sensor has a fix I2C address 0x44. The resolution
-> is fixed to 14bit (ref. Missing feature).
-> 
+Hi,
 
-> Missing feature:
-> - Accessing non-volatile memory: Custom board has no
->   possibility to control voltage supply of sensor. Thus,
->   we cannot send the necessary control commands within
->   the first 10ms after power-on.
-> 
-> Signed-off-by: Andre Werner <andre.werner@systec-electronic.com>
-> 
-> Changelog:
-> v1: Initial version
-> v2: Extensive refactoring following recommendations of reviewers:
->  - Delete unused defines and device properties. These are added in
->    the initial version because the device supports a programming mode,
->    but I was not able to implement it, because the custom board was
->    not able to control the power supply of the device and so I cannot
->    enter the programming mode of the device.
->  - Correct missunderstanding comments for defines.
->  - Delete mutexes for data and I2C bus accesses.
->  - Replace attributes with recommented chip-info structure. In the
->    initial version I followed the sth3x.c implementation that uses
->    files and attributes in sysfs. The show functions are replaced by
->    is_visible and read callbacks from the HWMON ABI. I also  delete pointless
->    function argument checks.
->  - Correct Yoda programming.
->  - Refactor probe function and delete sleep and measurement of humidity
->    and temperature in probe function. I kept an initial I2C
->    communication to ensure that the device is accessible during probe.
->  - Reduce the number of atteributes to humidity and temperature input.
+Am Montag, 17. Juli 2023, 08:18:22 CEST schrieb Liu Ying:
+> Hi,
+>=20
+> This series aims to add MIPI DSI support for Freescale i.MX93 SoC.
+>=20
+> There is a Synopsys DesignWare MIPI DSI host controller and a Synopsys
+> Designware MIPI DPHY embedded in i.MX93.  Some configurations and
+> extensions to them are controlled by i.MX93 media blk-ctrl.
+>=20
+> Add a DRM bridge for i.MX93 MIPI DSI by using existing DW MIPI DSI
+> bridge helpers and implementing i.MX93 MIPI DSI specific extensions.
+>=20
+> Note that since this series touches the dw-mipi-dsi driver, tests are
+> needed to be done for meson, rockchip and stm.
+>=20
+> Patch 1 ~ 7 do preparation work for adding i.MX93 MIPI DSI DRM bridge
+> driver.
+>=20
+> Patch 8 adds DT-binding documentation for i.MX93 MIPI DSI.
+>=20
+> Patch 9 adds i.MX93 MIPI DSI DRM bridge.
+>=20
+> Liu Ying (9):
+>   drm/bridge: synopsys: dw-mipi-dsi: Add dw_mipi_dsi_get_bridge() helper
+>   drm/bridge: synopsys: dw-mipi-dsi: Add input bus format negotiation
+>     support
+>   drm/bridge: synopsys: dw-mipi-dsi: Force input bus flags
+>   drm/bridge: synopsys: dw-mipi-dsi: Add mode fixup support
+>   drm/bridge: synopsys: dw-mipi-dsi: Use pixel clock rate to calculate
+>     lbcc
+>   drm/bridge: synopsys: dw-mipi-dsi: Set minimum lane byte clock cycles
+>     for HSA and HBP
+>   drm/bridge: synopsys: dw-mipi-dsi: Disable HSTX and LPRX timeout check
+>   dt-bindings: display: bridge: Document Freescale i.MX93 MIPI DSI
+>   drm/bridge: imx: Add i.MX93 MIPI DSI support
+>=20
+>  .../display/bridge/fsl,imx93-mipi-dsi.yaml    | 115 +++
+>  drivers/gpu/drm/bridge/imx/Kconfig            |  10 +
+>  drivers/gpu/drm/bridge/imx/Makefile           |   1 +
+>  drivers/gpu/drm/bridge/imx/imx93-mipi-dsi.c   | 934 ++++++++++++++++++
+>  drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi.c |  91 +-
+>  include/drm/bridge/dw_mipi_dsi.h              |  16 +
+>  6 files changed, 1163 insertions(+), 4 deletions(-)
+>  create mode 100644
+> Documentation/devicetree/bindings/display/bridge/fsl,imx93-mipi-dsi.yaml
+> create mode 100644 drivers/gpu/drm/bridge/imx/imx93-mipi-dsi.c
 
-Also wrong placement of SoB and changelog.
+Thanks for posting this patch series. I was trying to use this driver on ou=
+r=20
+TQMa93xxLA platform where the DSI signals are connected to a TC9595 (driver=
+=20
+tc358767) DSI-to-DP bridge.
+Unfortunately this bridge requires the DSI signals to be in LP-11 upon rese=
+t=20
+and while in idle, otherwise not even DP AUX channel is functional.
+Apparently DSI is currently not in LP-11. But reading the RM I have no idea=
+=20
+how to configure the DSI host to achieve that. Do you have additional=20
+information which might help me here?
+Also could you provide your DT configuration?
 
-> ---
->  Documentation/hwmon/hs3001.rst |  37 +++++
->  MAINTAINERS                    |   6 +
->  drivers/hwmon/Kconfig          |  10 ++
->  drivers/hwmon/Makefile         |   1 +
->  drivers/hwmon/hs3001.c         | 261 +++++++++++++++++++++++++++++++++
->  5 files changed, 315 insertions(+)
->  create mode 100644 Documentation/hwmon/hs3001.rst
->  create mode 100644 drivers/hwmon/hs3001.c
+Thanks and best regards,
+Alexander
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
 
-...
-
-> +/* Definitions for Status Bits of A/D Data */
-> +#define HS3001_DATA_VALID	0x00	/* Valid Data */
-> +#define HS3001_DATA_STALE	0x01	/* Stale Data */
-> +
-> +#define LIMIT_MAX	0
-> +#define LIMIT_MIN	1
-> +
-> +enum hs3001_chips {
-> +	hs3001,
-
-Drop, not effectively used.
-
-> +};
-
-...
-
-> +
-> +/* device ID table */
-> +static const struct i2c_device_id hs3001_ids[] = {
-> +	{ "hs3001", hs3001 },
-
-Drop match data
-
-> +	{ },
-> +};
-> +
-> +MODULE_DEVICE_TABLE(i2c, hs3001_ids);
-> +
-> +static const struct of_device_id hs3001_of_match[] = {
-> +	{.compatible = "renesas,hs3001",
-> +	 .data = (void *)hs3001
-
-Drop
-
-> +	},
-> +	{ },
-> +};
-> +
-> +MODULE_DEVICE_TABLE(of, hs3001_of_match);
-> +
-> +static int hs3001_probe(struct i2c_client *client)
-> +{
-> +	struct hs3001_data *data;
-> +	struct device *hwmon_dev;
-> +	struct device *dev = &client->dev;
-> +	int ret;
-> +
-> +	if (!i2c_check_functionality(client->adapter, I2C_FUNC_I2C))
-> +		return -EOPNOTSUPP;
-> +
-> +	data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
-> +	if (!data)
-> +		return -ENOMEM;
-> +
-> +	data->client = client;
-> +
-> +	if (client->dev.of_node)
-> +		data->type = (enum hs3001_chips)of_device_get_match_data(&client->dev);
-> +	else
-> +		data->type = i2c_match_id(hs3001_ids, client)->driver_data;
-
-This is useless and dead code. You have only one type of device. Don't
-over-complicate simple things.
-
-
-
-Best regards,
-Krzysztof
 
