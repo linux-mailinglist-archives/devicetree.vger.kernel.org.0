@@ -2,62 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6291A75783C
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 11:40:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 87BE475785D
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 11:47:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232324AbjGRJkp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jul 2023 05:40:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42278 "EHLO
+        id S231819AbjGRJrp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jul 2023 05:47:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46266 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231992AbjGRJkn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 05:40:43 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D5F1E5F
-        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 02:40:40 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-99454855de1so481927266b.2
-        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 02:40:40 -0700 (PDT)
+        with ESMTP id S232048AbjGRJre (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 05:47:34 -0400
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F6FAE7E
+        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 02:47:31 -0700 (PDT)
+Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-51cff235226so11357263a12.0
+        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 02:47:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689673239; x=1692265239;
+        d=linaro.org; s=google; t=1689673650; x=1692265650;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=M0N8btKrBEl8US0muPWkTHrV3A+jfker/XqFXbKhuNM=;
-        b=LiktnGMdMBgcrwGwBd55VnfmVE4V3+RMVccoWw1Whzak1pjDcIQtAermeh3RUAk7ol
-         Mu4FMjXKSp7ZY70SbVCPFwoKmFS51bLCwiZL1UqkrCaHMY2yunR5qSwKmcir9D0s5zCP
-         /kpXFTlhK4chBS5+jG7gYGiY6LeRuTWFVzM1f5z2t62jRSkpif4FTaXl73IlhLkHa30C
-         SdGowawyPq9EwUkJVdOXfNqk33FWSdBJK2vEL/gWDFm45BDv+kp9w8zTWqNLg3Ok6MwI
-         C/Z9p05zUD7wl5fpCZa8ay0ZmDhkjI/wXQs0nH58pjvJ/lSznudtW6WVAHx+C6J8d1mW
-         iw8Q==
+        bh=btOylq44qE3hGXl4wQpe3Auk+ZV3+DCDDTN42Bq3TwQ=;
+        b=lHLMOLv5J6z2rjvGcQUyoSNRu5DjFOGb5i7WqJScPEStEZIyvEjtHaLiysLzxSw3aq
+         dPemYOncMtcY9m7o4NljPVxAskxNylokj2/GGfwzCLvtU6AWk34W1HcUAvAyOxCzR5hO
+         n3gYFq6dLS7VHBDo1fpWfVTfbp66KR1ApglvtdkAQO9mr8cjulmRC2ZMK3/D1ICTdzbC
+         pXYnNU1lu1/TLQppkIjAKgIQ6VQuhWg2MwC9wxBiXD1jp8BzfoqIDpGiF3v9UdVZwV0r
+         934LNUBggElPpPeVu6ZsOiN1+GSBL0iIkaVy1ncgZjIHVyR48UWEe2txm5vSR7f1JylL
+         g7IQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689673239; x=1692265239;
+        d=1e100.net; s=20221208; t=1689673650; x=1692265650;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=M0N8btKrBEl8US0muPWkTHrV3A+jfker/XqFXbKhuNM=;
-        b=W1+m2T6XtD1fNVFj4pr6HetsVrQzhg+YEnZO1DNxVFrJzb+5kfnQC4Xb9BgLCcM+Rx
-         tY8VdI9iNViMNj3bWOc7qTP9C4EqwmTcZSc2zppr2E//ejxBqxHoD5kJxavNyGegqvuJ
-         ZJuAswUXsecJoPQEfWX+2DL1cLgr3iZFo2Otb38GCB16bxRSwllyeJFYpnwviPKEdxAO
-         Onigz2a5fPWlvs+iPUDclJLJF1JThEs53ww0+ltPwPbAHBRy2bOAYZ6p4K8vk1dsOh3Q
-         Fo/iTYdkwmQo3gB2gOAyhqHLqjYAC952HrcSCFEKWkcxVif86kckSfhOuZbYOscsseJm
-         taCA==
-X-Gm-Message-State: ABy/qLa+Ak2r/C8FHADq9/0a/JzTisQRTIA1NRsHRRrWseTl8kWxd1tD
-        DI8yqRbyhYpF25CGzDEv2s+e3g==
-X-Google-Smtp-Source: APBJJlE29PdR8LOpeQCVpY3BGmHmGV2bndVirQX9jqE36YcbNr53bhsq+2ZlKH7NGxw1s1x3ODVrMg==
-X-Received: by 2002:a17:906:739e:b0:993:e752:1a71 with SMTP id f30-20020a170906739e00b00993e7521a71mr14389092ejl.9.1689673238920;
-        Tue, 18 Jul 2023 02:40:38 -0700 (PDT)
-Received: from [192.168.1.194] ([5.133.47.210])
-        by smtp.googlemail.com with ESMTPSA id l22-20020a170906231600b00992e4d8cc89sm800293eja.57.2023.07.18.02.40.37
+        bh=btOylq44qE3hGXl4wQpe3Auk+ZV3+DCDDTN42Bq3TwQ=;
+        b=ilvTmJWEAcr4gHWW30mvvWlVZ6lH2w7s10MjWqIRJ21UVcgsoS9Ee65eg8A6HNiHjc
+         4swH6Nw9YAIS0rWDvwFxwwIzgsOMm9bfON+ttYd5aQNphQgw4ZKy/oCe0408faleAc+k
+         CfR69aATIvk2nwCf8II62vzMMpJ1+bHb9VP49z9G+Nk5sg2RZ2S8JqxKEsUu4VF6Aoca
+         lxDFymwJQ8txoTMp0HiLGOP39kPYXuJoBL3975cQl6Gx59wLvC06LC0aZVcWuPVWH4yO
+         RD/RVUMvWXgeLGHglBA3PxNiaf2/1AVNqxloIvqRGWpTDbR9LcrpmnpjWhgo0T7q5t1z
+         vVJA==
+X-Gm-Message-State: ABy/qLaVpY6xQ9jobEKxB0mdeP1qH8kiYZvm7mx1vTc9ha1hdHtTFHAL
+        qXgoru9aP754Ox1GhuuKRKkxWA==
+X-Google-Smtp-Source: APBJJlEACjV7y+0+WMDrNxfFGJkjSdUG+4wKfwPLuyevz4IqfWvcvjKI4V63E6+jJNKP4SAIgay07w==
+X-Received: by 2002:a05:6402:3550:b0:51e:5aac:6bad with SMTP id f16-20020a056402355000b0051e5aac6badmr14603995edd.11.1689673649807;
+        Tue, 18 Jul 2023 02:47:29 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id u25-20020aa7d899000000b0051e19bf66a4sm935507edq.83.2023.07.18.02.47.28
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 18 Jul 2023 02:40:38 -0700 (PDT)
-Message-ID: <76c99543-4f77-38c2-5940-517f2715060d@linaro.org>
-Date:   Tue, 18 Jul 2023 10:40:37 +0100
+        Tue, 18 Jul 2023 02:47:29 -0700 (PDT)
+Message-ID: <e25fb716-38f3-7f4b-d525-e20455cdae85@linaro.org>
+Date:   Tue, 18 Jul 2023 11:47:27 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
 Subject: Re: [PATCH] arm64: dts: qcom: sm8450-hdk: add other analogue
  microphones
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
@@ -67,78 +67,48 @@ To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 References: <20230717143824.203352-1-krzysztof.kozlowski@linaro.org>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-In-Reply-To: <20230717143824.203352-1-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+ <76c99543-4f77-38c2-5940-517f2715060d@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <76c99543-4f77-38c2-5940-517f2715060d@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 18/07/2023 11:40, Srinivas Kandagatla wrote:
+>> diff --git a/arch/arm64/boot/dts/qcom/sm8450-hdk.dts b/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
+>> index bd5e8181f2aa..9bd1ef401ca3 100644
+>> --- a/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
+>> +++ b/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
+>> @@ -915,14 +915,23 @@ &sound {
+>>   			"SpkrRight IN", "WSA_SPK2 OUT",
+>>   			"IN1_HPHL", "HPHL_OUT",
+>>   			"IN2_HPHR", "HPHR_OUT",
+>> +			"AMIC1", "MIC BIAS1",
+>>   			"AMIC2", "MIC BIAS2",
+>> -			"VA DMIC0", "MIC BIAS1",
+>> -			"VA DMIC1", "MIC BIAS1",
+>> -			"VA DMIC2", "MIC BIAS3",
+>> -			"TX DMIC0", "MIC BIAS1",
+>> -			"TX DMIC1", "MIC BIAS2",
+>> -			"TX DMIC2", "MIC BIAS3",
+>> -			"TX SWR_ADC1", "ADC2_OUTPUT";
+>> +			"AMIC3", "MIC BIAS3",
+>> +			"AMIC4", "MIC BIAS3",
+>> +			"AMIC5", "MIC BIAS4",
+> These should reflect the board-level wiring of MIC BIAS, are you sure 
+> that this is how the hdk is wired up?
 
+If I read the schematics correctly, then yes. You can double check, if I
+understood this right: page 40 of HDK schematics
 
-On 17/07/2023 15:38, Krzysztof Kozlowski wrote:
-> Add proper audio routes for onboard analogue microphones: AMIC[1345].
-> Use also new DAPM input widget (TX SWR_INPUTn) for them, not the
-> deprecated ADC one.  Change is not compatible with older kernels not
-> having the new SWR_INPUTn input widget.
-> 
-> Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> ---
-> 
-> Depends on ASoC driver changes:
-> https://lore.kernel.org/alsa-devel/20230717140138.201745-1-krzysztof.kozlowski@linaro.org/T/#t
-> This patch should wait till respective ASoC changes got merged.
-> ---
->   arch/arm64/boot/dts/qcom/sm8450-hdk.dts | 23 ++++++++++++++++-------
->   1 file changed, 16 insertions(+), 7 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8450-hdk.dts b/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
-> index bd5e8181f2aa..9bd1ef401ca3 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
-> +++ b/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
-> @@ -915,14 +915,23 @@ &sound {
->   			"SpkrRight IN", "WSA_SPK2 OUT",
->   			"IN1_HPHL", "HPHL_OUT",
->   			"IN2_HPHR", "HPHR_OUT",
-> +			"AMIC1", "MIC BIAS1",
->   			"AMIC2", "MIC BIAS2",
-> -			"VA DMIC0", "MIC BIAS1",
-> -			"VA DMIC1", "MIC BIAS1",
-> -			"VA DMIC2", "MIC BIAS3",
-> -			"TX DMIC0", "MIC BIAS1",
-> -			"TX DMIC1", "MIC BIAS2",
-> -			"TX DMIC2", "MIC BIAS3",
-> -			"TX SWR_ADC1", "ADC2_OUTPUT";
-> +			"AMIC3", "MIC BIAS3",
-> +			"AMIC4", "MIC BIAS3",
-> +			"AMIC5", "MIC BIAS4",
-These should reflect the board-level wiring of MIC BIAS, are you sure 
-that this is how the hdk is wired up?
+Best regards,
+Krzysztof
 
-> +			"VA DMIC0", "MIC BIAS3",
-> +			"VA DMIC1", "MIC BIAS3",
-> +			"VA DMIC2", "MIC BIAS1",
-> +			"VA DMIC3", "MIC BIAS1",
-> +			"TX DMIC0", "MIC BIAS3",
-> +			"TX DMIC1", "MIC BIAS3",
-> +			"TX DMIC2", "MIC BIAS1",
-> +			"TX DMIC3", "MIC BIAS1",
-Same here.
-
---srini
-> +			"TX SWR_INPUT0", "ADC1_OUTPUT",
-> +			"TX SWR_INPUT1", "ADC2_OUTPUT",
-> +			"TX SWR_INPUT2", "ADC3_OUTPUT",
-> +			"TX SWR_INPUT3", "ADC4_OUTPUT";
->   
->   	wcd-playback-dai-link {
->   		link-name = "WCD Playback";
