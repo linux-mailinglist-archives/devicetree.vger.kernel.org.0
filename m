@@ -2,58 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 75870758583
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 21:26:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 643477585A9
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 21:38:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229521AbjGRT0n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jul 2023 15:26:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53660 "EHLO
+        id S229812AbjGRTik (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jul 2023 15:38:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58552 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229525AbjGRT0m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 15:26:42 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFC201992;
-        Tue, 18 Jul 2023 12:26:41 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 6CF78616E1;
-        Tue, 18 Jul 2023 19:26:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E63CAC433C7;
-        Tue, 18 Jul 2023 19:26:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689708400;
-        bh=4L+ddEAbeJgqxtXEa7jtsoqEIjOZNcXsmm10kARcsx8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=KvxSW1oaaZkNnjh5vGJ6g/g5O048ARht2f2qjXlBvH3g3D/LIGXFmb/a3/Tv9GeBA
-         dryIkVAp/fybjL79uvuN5shCyiTPLhT2sMf2g0SV/2jeL31BfD2NQDW0J5oKKYX2Ef
-         bPofI77x55YjH3ZvdoiyHSwX0SOpvnms98wGyq4Kp+LvXmp3Yk+TkZkO6pa+XdzGIT
-         FRgVxdQ6y4brcg1jsyxbAQ8vygpKFyCBfX4StdTBjOwHb4dvVW+IXhEwQmThzt7038
-         i8M+qGpwH7xOFqdiNB8QgUeB1J7g3GgxrNozvXsscXy4UMlE6AZmmEL2BpyTTthDBJ
-         BE8CrlFpWTT/w==
-Date:   Tue, 18 Jul 2023 12:30:04 -0700
-From:   Bjorn Andersson <andersson@kernel.org>
-To:     Nikunj Kela <quic_nkela@quicinc.com>
-Cc:     sudeep.holla@arm.com, cristian.marussi@arm.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        agross@kernel.org, konrad.dybcio@linaro.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH 2/2] firmware: arm_scmi: Add qcom hvc/shmem transport
-Message-ID: <rum7gnnouoz2irn57taxn4j2aajkxf6em6ft6u4w3rxwsym2su@acgczsnl2huz>
-References: <20230718160833.36397-1-quic_nkela@quicinc.com>
- <20230718160833.36397-3-quic_nkela@quicinc.com>
- <xkw36iwjb47q7spf6qle5x3kcmx6fv7or6cwhlpkuvihn3xmt2@qhrhtug4htp2>
- <5c76250b-4415-950e-6aab-7ccbdc6ca83a@quicinc.com>
- <6uelwa7fpzbw757rbb2j3u4ogagypdzyqj5mykyhlkkkvrnfin@ttonjpfn7nxc>
- <d2d01794-ef13-07f9-7695-b56b58cc01ac@quicinc.com>
+        with ESMTP id S229705AbjGRTij (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 15:38:39 -0400
+Received: from smtp.dudau.co.uk (dliviu.plus.com [80.229.23.120])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id E8C87198D;
+        Tue, 18 Jul 2023 12:38:37 -0700 (PDT)
+Received: from mail.dudau.co.uk (bart.dudau.co.uk [192.168.14.2])
+        by smtp.dudau.co.uk (Postfix) with SMTP id 1735441A7003;
+        Tue, 18 Jul 2023 20:38:36 +0100 (BST)
+Received: by mail.dudau.co.uk (sSMTP sendmail emulation); Tue, 18 Jul 2023 20:38:36 +0100
+Date:   Tue, 18 Jul 2023 20:38:36 +0100
+From:   Liviu Dudau <liviu@dudau.co.uk>
+To:     Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc:     linux-phy@lists.infradead.org, linux-rockchip@lists.infradead.org,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+        Rob Herring <robh@kernel.org>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Shawn Lin <shawn.lin@rock-chips.com>,
+        Simon Xue <xxm@rock-chips.com>, John Clark <inindev@gmail.com>,
+        Qu Wenruo <wqu@suse.com>, devicetree@vger.kernel.org,
+        linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, kernel@collabora.com
+Subject: Re: [PATCH v2 2/2] arm64: dts: rockchip: rk3588: add PCIe3 support
+Message-ID: <ZLbqPB5yP7Kn6FT6@bart.dudau.co.uk>
+References: <20230717173512.65169-1-sebastian.reichel@collabora.com>
+ <20230717173512.65169-3-sebastian.reichel@collabora.com>
+ <ZLarQUvUK3v3m6Cg@bart.dudau.co.uk>
+ <20230718160137.sfitnkl6gmyi75jx@mercury.elektranox.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <d2d01794-ef13-07f9-7695-b56b58cc01ac@quicinc.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+In-Reply-To: <20230718160137.sfitnkl6gmyi75jx@mercury.elektranox.org>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -62,50 +58,55 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 18, 2023 at 12:10:16PM -0700, Nikunj Kela wrote:
+On Tue, Jul 18, 2023 at 06:01:37PM +0200, Sebastian Reichel wrote:
+> Hi Liviu,
 > 
-> On 7/18/2023 12:07 PM, Bjorn Andersson wrote:
-> > On Tue, Jul 18, 2023 at 11:53:24AM -0700, Nikunj Kela wrote:
-> > > On 7/18/2023 11:29 AM, Bjorn Andersson wrote:
-> > > > On Tue, Jul 18, 2023 at 09:08:33AM -0700, Nikunj Kela wrote:
-> > > > > diff --git a/drivers/firmware/arm_scmi/qcom_hvc.c b/drivers/firmware/arm_scmi/qcom_hvc.c
-> > [..]
-[..]
-> > > > > +#ifdef CONFIG_ARM64
-> > > > > +	cap_id = readq((void *)(scmi_info->shmem) + size +
-> > > > > +		       sizeof(unsigned long));
-> > > > > +#else
-> > > > > +	cap_id = readl((void *)(scmi_info->shmem) + size +
-> > > > > +		       sizeof(unsigned long));
-> > > > > +#endif
-> > > > Please don't make the in-memory representation depend on architecture
-> > > > specific data types. Quite likely you didn't compile test one of these
-> > > > variants?
-> > > > 
-> > > > Just define the in-memory representation as u32 + u64.
-> > > I tested this for ARM64, I didn't test it for 32bit since Hypervisor doesn't
-> > > support it currently. In future, it may add 32 bit support too.
-> > I'd not be surprised if the capability id is 64 bit on a 32-bit machine
-> > as well, it's not really a property of the architecture.
+> On Tue, Jul 18, 2023 at 04:09:53PM +0100, Liviu Dudau wrote:
+> > On Mon, Jul 17, 2023 at 07:35:12PM +0200, Sebastian Reichel wrote:
+> > > Add both PCIe3 controllers together with the shared PHY.
+> > > 
+> > > Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> > > ---
+> > >  arch/arm64/boot/dts/rockchip/rk3588.dtsi | 120 +++++++++++++++++++++++
+> > >  1 file changed, 120 insertions(+)
+> > > 
+> > > diff --git a/arch/arm64/boot/dts/rockchip/rk3588.dtsi b/arch/arm64/boot/dts/rockchip/rk3588.dtsi
+> > > index 88d702575db2..8f210f002fac 100644
+> > > --- a/arch/arm64/boot/dts/rockchip/rk3588.dtsi
+> > > +++ b/arch/arm64/boot/dts/rockchip/rk3588.dtsi
+> > > @@ -7,6 +7,11 @@
+> > >  #include "rk3588-pinctrl.dtsi"
+> > >  
+> > >  / {
+> > > +	pcie30_phy_grf: syscon@fd5b8000 {
+> > > +		compatible = "rockchip,rk3588-pcie3-phy-grf", "syscon";
+> > > +		reg = <0x0 0xfd5b8000 0x0 0x10000>;
+> > > +	};
+> > > +
+> > >  	pipe_phy1_grf: syscon@fd5c0000 {
+> > >  		compatible = "rockchip,rk3588-pipe-phy-grf", "syscon";
+> > >  		reg = <0x0 0xfd5c0000 0x0 0x100>;
+> > 
+> > What tree is based this on? Even after applying your PCIe2 series I don't have the above
+> > node so the patch doesn't apply to mainline.
 > 
-> on 32bit machine, you will have to use SMC32 convention. lt will mean that
-> the parameters can only be 32 bit long. If you keep cap-id 64 bit in 32bit
-> machines, then it has to be passed in two parameters. Are you suggesting, I
-> make this driver dependent on ARM64 and only care about 64 bit for now?
+> You are missing naneng-combphy support:
 > 
+> https://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.git/commit/?h=v6.6-armsoc/dts64&id=6ebd55b3bba383e0523b0c014f17c97f3ce80708
 
-I'm suggesting that the calling convention is one thing and the
-in-memory format for passing the information to the driver is a
-different thing.
+Thanks! It looks like the PCIe2 commit that adds support to rk3588(s).dtsi
+files is also missing an #include <dt-bindings/phy/phy.h> for the PHY_TYPE_PCIE
+use, otherwise the DTS fail to compile.
 
-Keep the arguments passed in memory architecture-independent (i.e. make
-it u64).
+Best regards,
+Liviu
 
-If you're saying that the calling convention would be different on a
-32-bit system, then you are also saying that your driver _is_ 64-bit
-specific. Please confirm what the size of your capability id would be in
-such a system and make sure the Kconfig and/or the code, reflects
-reality.
+> 
+> -- Sebastian
 
-Thanks,
-Bjorn
+
+
+-- 
+Everyone who uses computers frequently has had, from time to time,
+a mad desire to attack the precocious abacus with an axe.
+       	   	      	     	  -- John D. Clark, Ignition!
