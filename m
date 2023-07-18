@@ -2,170 +2,441 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 522D07586AF
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 23:16:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C0D237586B4
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 23:16:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230036AbjGRVQ3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jul 2023 17:16:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39230 "EHLO
+        id S231311AbjGRVQo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jul 2023 17:16:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39432 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229510AbjGRVQ2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 17:16:28 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EF02198C;
-        Tue, 18 Jul 2023 14:16:27 -0700 (PDT)
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36IL7KXu015522;
-        Tue, 18 Jul 2023 21:16:07 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=PqfrqoeAg+0b1g+Sc4EJfTTv6RRn4fSeA06NxQ7vN/E=;
- b=Onwnnv+g0Jv0RxApQWdDjRJ/jQLGzFw3a4UOipleGW5fQZeSwsC7q9i3GEGQfE8KxMYS
- 5WEseE3xiYfciHw+h9ID7DCpV3awHxgEpkaXdOIsASeoHoSb3RgrzZCCPvKJ7jW+WyI4
- zm0L4zQRgCoZsYbKziQ2ld2ljtK4mMkYZFtwpgSyJhLqVUp6+mQDS6Wpc9bc2xiVBeuk
- UzsSFikb4QvXQmOdUoxwfbvUaaNWkMKqjuGpADZY+LECcn+K311MHIVnf6a/V+4uupmI
- ERes7+WlzQLI+cduOgXnd31gVYyTBB88al07NduMIn0wnBk48kuMMyuKVgn+O0rsZqC0 iA== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3rwpphhrr4-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 18 Jul 2023 21:16:06 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 36ILG56L015128
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 18 Jul 2023 21:16:05 GMT
-Received: from [10.110.49.60] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Tue, 18 Jul
- 2023 14:16:05 -0700
-Message-ID: <e8399fcf-e0d8-cc31-d9a7-b0f4f7cc3e71@quicinc.com>
-Date:   Tue, 18 Jul 2023 14:16:04 -0700
+        with ESMTP id S231304AbjGRVQk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 17:16:40 -0400
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EE0919AD
+        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 14:16:37 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-99342a599e9so864424966b.3
+        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 14:16:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gateworks-com.20221208.gappssmtp.com; s=20221208; t=1689714996; x=1692306996;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=E3l5b6fjCqYkc1Ou+xz9fDA/3zqE2Nao7Y82ogOypK4=;
+        b=1GbbTX1wQ3HyzN+6JhzVk6tFEqPdThi7ya6ZBYCaSoPmTyIEciobKI0uKW3LqmbW2O
+         UnSBey/amOqVMKOeYKN++L33D+YcyCVvlFlciAAKZ3lo5Xo9NvJH0aYxD/Mu41p+ViXX
+         my0AxuJEqpfkhh/Wt7PB2tsG7PrkO+HDGAPrUcIFyq/zepnMtgsV9nnTSXUwZFo88M+6
+         ALdVi6gds82qtmYx+bruYddSKcUcWPuJe/5+BRNThgpzp05F6qp+T3B8yc3F5ooQVyvG
+         cTPglpBcSykd02PuH//Dz8uWtxStGt1zGyRHebduaMXxQd3bfH5kKfCraH0L8SHyc2zb
+         QsSQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689714996; x=1692306996;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=E3l5b6fjCqYkc1Ou+xz9fDA/3zqE2Nao7Y82ogOypK4=;
+        b=MutXpbVVzROpEVAXikmaHF11Q6D02hVkoac7bVoAziXdPq+V51umS/+PId7u7Q829t
+         466L301gW9uCcPCjJ8Dp4xsOxGdyOSNS6M/YQb9T+nVVCl62+GG66mAr9I4MMAFuF2C/
+         lpMtSVSQEC2zxsemcwAJa1u0sUgzND6Ixesy/hDHiB1C1d3S/4qSMZhtNhyze+XrLyYT
+         +R07we3tP+8P6uMV5W1twdA8gAoKU2UTxybBVhMHqEi5F9i1XGotJUNA6zxz63PdsFEa
+         J96hYBR6nSgmJct0sDqamlOzenrxIPeCaqNwUYKh2FXCyoiTYWhaZ72tt6a6gjLyLidA
+         wVpA==
+X-Gm-Message-State: ABy/qLa8LGcJpdIESCjfGjNxOUXCb6da7ASMMAzrEkpKQ1eHMB9L3G0w
+        QqxAnzzkllVYmHK4MAxhwXXWDKdCpsuUcYrHZNzhBQ==
+X-Google-Smtp-Source: APBJJlE+HnXXcT07j8t7C89/yxNlvYSRHCuNfd0fNYCV4MuOQPdATMP1uBMS49Yd4Ei7HXNOLMnKrT1/MHWtcviG0Kw=
+X-Received: by 2002:a17:906:51:b0:994:577:f9df with SMTP id
+ 17-20020a170906005100b009940577f9dfmr737739ejg.4.1689714995726; Tue, 18 Jul
+ 2023 14:16:35 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH 2/2] firmware: arm_scmi: Add qcom hvc/shmem transport
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <sudeep.holla@arm.com>
-CC:     <cristian.marussi@arm.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>
-References: <20230718160833.36397-1-quic_nkela@quicinc.com>
- <20230718160833.36397-3-quic_nkela@quicinc.com>
- <d9d5ffd5-6f85-f091-5d69-12cdd8d04c99@linaro.org>
- <3ae2d618-490a-06da-b4b6-b5a24b0a9747@quicinc.com>
- <ec3d7769-8a5f-d938-7f77-351ddfe6fb45@linaro.org>
-Content-Language: en-US
-From:   Nikunj Kela <quic_nkela@quicinc.com>
-In-Reply-To: <ec3d7769-8a5f-d938-7f77-351ddfe6fb45@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: KuPAXTxwQROxCiF9BTqLsOxJIvWxkS5B
-X-Proofpoint-ORIG-GUID: KuPAXTxwQROxCiF9BTqLsOxJIvWxkS5B
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-07-18_15,2023-07-18_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- adultscore=0 priorityscore=1501 impostorscore=0 spamscore=0 clxscore=1011
- bulkscore=0 mlxlogscore=999 malwarescore=0 mlxscore=0 suspectscore=0
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2306200000 definitions=main-2307180194
-X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <20230607170724.2016988-1-tharvey@gateworks.com>
+ <20230607170724.2016988-2-tharvey@gateworks.com> <20230717002717.GI9559@dragon>
+In-Reply-To: <20230717002717.GI9559@dragon>
+From:   Tim Harvey <tharvey@gateworks.com>
+Date:   Tue, 18 Jul 2023 14:16:22 -0700
+Message-ID: <CAJ+vNU2Wn0jf8QyZsGiw3f=XThZEfXajhGJTmZz2mnJXgprAhQ@mail.gmail.com>
+Subject: Re: [PATCH 2/2] arm64: dts: freescale: Add imx8mp-venice-gw71xx-2x
+To:     Shawn Guo <shawnguo@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Sun, Jul 16, 2023 at 5:27=E2=80=AFPM Shawn Guo <shawnguo@kernel.org> wro=
+te:
+>
+> On Wed, Jun 07, 2023 at 10:07:24AM -0700, Tim Harvey wrote:
+> > The Gateworks imx8mp-venice-gw71xx-2x consists of a SOM + baseboard.
+> >
+> > The GW702x SOM contains the following:
+> >  - i.MX8M Plus SoC
+> >  - LPDDR4 memory
+> >  - eMMC Boot device
+> >  - Gateworks System Controller (GSC) with integrated EEPROM, button
+> >    controller, and ADC's
+> >  - PMIC
+> >  - SOM connector providing:
+> >   - eQoS GbE MII
+> >   - 1x SPI
+> >   - 2x I2C
+> >   - 4x UART
+> >   - 2x USB 3.0
+> >   - 1x PCI
+> >   - 1x SDIO (4-bit 3.3V)
+> >   - 1x SDIO (4-bit 3.3V/1.8V)
+> >   - GPIO
+> >
+> > The GW71xx Baseboard contains the following:
+> >  - GPS
+> >  - RJ45 GbE (eQoS)
+> >  - off-board I/O connector with UART, I2C, SPI, GPIO
+> >  - EERPOM
+> >  - PCIe clock generator
+> >  - full-length miniPCIe socket with PCI/USB3 (via mux) and USB2.0
+> >  - USB Type-C with USB 2.0 host and peripheral support
+> >  - Wide range DC input supply
+> >
+> > Signed-off-by: Tim Harvey <tharvey@gateworks.com>
+> > ---
+> >  arch/arm64/boot/dts/freescale/Makefile        |   1 +
+> >  .../dts/freescale/imx8mp-venice-gw71xx-2x.dts |  19 ++
+> >  .../dts/freescale/imx8mp-venice-gw71xx.dtsi   | 236 ++++++++++++++++++
+> >  3 files changed, 256 insertions(+)
+> >  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-venice-gw71xx-=
+2x.dts
+> >  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-venice-gw71xx.=
+dtsi
+> >
+> > diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/d=
+ts/freescale/Makefile
+> > index 62f22b77b38b..b3bb823d0168 100644
+> > --- a/arch/arm64/boot/dts/freescale/Makefile
+> > +++ b/arch/arm64/boot/dts/freescale/Makefile
+> > @@ -101,6 +101,7 @@ dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-icore-mx8mp-edim=
+m2.2.dtb
+> >  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-msc-sm2s-ep1.dtb
+> >  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-phyboard-pollux-rdk.dtb
+> >  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-tqma8mpql-mba8mpxl.dtb
+> > +dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-venice-gw71xx-2x.dtb
+> >  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-venice-gw74xx.dtb
+> >  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-venice-gw7905-2x.dtb
+> >  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-verdin-nonwifi-dahlia.dtb
+> > diff --git a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw71xx-2x.dts =
+b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw71xx-2x.dts
+> > new file mode 100644
+> > index 000000000000..53120fc9cd7f
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw71xx-2x.dts
+> > @@ -0,0 +1,19 @@
+> > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> > +/*
+> > + * Copyright 2023 Gateworks Corporation
+> > + */
+> > +
+> > +/dts-v1/;
+> > +
+> > +#include "imx8mp.dtsi"
+> > +#include "imx8mp-venice-gw702x.dtsi"
+> > +#include "imx8mp-venice-gw71xx.dtsi"
+> > +
+> > +/ {
+> > +     model =3D "Gateworks Venice GW71xx-2x i.MX8MP Development Kit";
+> > +     compatible =3D "gateworks,imx8mp-gw71xx-2x", "fsl,imx8mp";
+> > +
+> > +     chosen {
+> > +             stdout-path =3D &uart2;
+> > +     };
+> > +};
+> > diff --git a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw71xx.dtsi b/=
+arch/arm64/boot/dts/freescale/imx8mp-venice-gw71xx.dtsi
+> > new file mode 100644
+> > index 000000000000..86999f52d4b2
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw71xx.dtsi
+> > @@ -0,0 +1,236 @@
+> > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> > +/*
+> > + * Copyright 2023 Gateworks Corporation
+> > + */
+> > +
+> > +#include <dt-bindings/gpio/gpio.h>
+> > +#include <dt-bindings/leds/common.h>
+> > +#include <dt-bindings/phy/phy-imx8-pcie.h>
+> > +
+> > +/ {
+> > +     led-controller {
+> > +             compatible =3D "gpio-leds";
+> > +             pinctrl-names =3D "default";
+> > +             pinctrl-0 =3D <&pinctrl_gpio_leds>;
+> > +
+> > +             led-0 {
+> > +                     function =3D LED_FUNCTION_STATUS;
+> > +                     color =3D <LED_COLOR_ID_GREEN>;
+> > +                     gpios =3D <&gpio4 1 GPIO_ACTIVE_HIGH>;
+> > +                     default-state =3D "on";
+> > +                     linux,default-trigger =3D "heartbeat";
+> > +             };
+> > +
+> > +             led-1 {
+> > +                     function =3D LED_FUNCTION_STATUS;
+> > +                     color =3D <LED_COLOR_ID_RED>;
+> > +                     gpios =3D <&gpio4 5 GPIO_ACTIVE_HIGH>;
+> > +                     default-state =3D "off";
+> > +             };
+> > +     };
+> > +
+> > +     pcie0_refclk: pcie0-refclk {
+>
+> Can we name the node clock-xxx?
+>
+> > +             compatible =3D "fixed-clock";
+> > +             #clock-cells =3D <0>;
+> > +             clock-frequency =3D <100000000>;
+> > +     };
+> > +
+> > +     pps {
+> > +             compatible =3D "pps-gpio";
+> > +             pinctrl-names =3D "default";
+> > +             pinctrl-0 =3D <&pinctrl_pps>;
+> > +             gpios =3D <&gpio4 3 GPIO_ACTIVE_HIGH>;
+> > +             status =3D "okay";
+> > +     };
+> > +};
+> > +
+> > +/* off-board header */
+> > +&ecspi2 {
+> > +     pinctrl-names =3D "default";
+> > +     pinctrl-0 =3D <&pinctrl_spi2>;
+> > +     cs-gpios =3D <&gpio5 13 GPIO_ACTIVE_LOW>;
+> > +     status =3D "okay";
+> > +};
+> > +
+> > +&gpio4 {
+> > +     gpio-line-names =3D
+> > +             "", "", "", "",
+> > +             "", "", "", "",
+> > +             "dio1", "", "", "dio0",
+> > +             "", "", "pci_usb_sel", "",
+> > +             "", "", "", "",
+> > +             "", "", "", "",
+> > +             "dio3", "", "dio2", "",
+> > +             "pci_wdis#", "", "", "";
+> > +};
+> > +
+> > +&i2c2 {
+> > +     clock-frequency =3D <400000>;
+> > +     pinctrl-names =3D "default";
+> > +     pinctrl-0 =3D <&pinctrl_i2c2>;
+> > +     status =3D "okay";
+> > +
+> > +     accelerometer@19 {
+> > +             pinctrl-names =3D "default";
+> > +             pinctrl-0 =3D <&pinctrl_accel>;
+> > +             compatible =3D "st,lis2de12";
+> > +             reg =3D <0x19>;
+>
+> Can we start the property list from these two?
+>
+> > +             st,drdy-int-pin =3D <1>;
+> > +             interrupt-parent =3D <&gpio4>;
+> > +             interrupts =3D <21 IRQ_TYPE_LEVEL_LOW>;
+> > +             interrupt-names =3D "INT1";
+> > +     };
+> > +};
+> > +
+> > +&pcie_phy {
+> > +     fsl,refclk-pad-mode =3D <IMX8_PCIE_REFCLK_PAD_INPUT>;
+> > +     fsl,clkreq-unsupported;
+> > +     clocks =3D <&pcie0_refclk>;
+> > +     clock-names =3D "ref";
+> > +     status =3D "okay";
+> > +};
+> > +
+> > +&pcie {
+> > +     pinctrl-names =3D "default";
+> > +     pinctrl-0 =3D <&pinctrl_pcie0>;
+> > +     reset-gpio =3D <&gpio4 29 GPIO_ACTIVE_LOW>;
+> > +     status =3D "okay";
+> > +};
+> > +
+> > +/* GPS */
+> > +&uart1 {
+> > +     pinctrl-names =3D "default";
+> > +     pinctrl-0 =3D <&pinctrl_uart1>;
+> > +     status =3D "okay";
+> > +};
+> > +
+> > +/* off-board header */
+> > +&uart3 {
+> > +     pinctrl-names =3D "default";
+> > +     pinctrl-0 =3D <&pinctrl_uart3>;
+> > +     status =3D "okay";
+> > +};
+> > +
+> > +/* USB1 Type-C front panel */
+> > +&usb3_0 {
+> > +     pinctrl-names =3D "default";
+> > +     pinctrl-0 =3D <&pinctrl_usb1>;
+> > +     fsl,over-current-active-low;
+> > +     status =3D "okay";
+> > +};
+> > +
+> > +&usb3_phy0 {
+> > +     status =3D "okay";
+> > +};
+> > +
+> > +&usb_dwc3_0 {
+> > +     /* dual role is implemented but not a full featured OTG */
+> > +     adp-disable;
+> > +     hnp-disable;
+> > +     srp-disable;
+> > +     dr_mode =3D "otg";
+> > +     usb-role-switch;
+> > +     role-switch-default-mode =3D "peripheral";
+> > +     status =3D "okay";
+> > +
+> > +     connector {
+> > +             pinctrl-names =3D "default";
+> > +             pinctrl-0 =3D <&pinctrl_usbcon1>;
+> > +             compatible =3D "gpio-usb-b-connector", "usb-b-connector";
+>
+> Start the properties from 'compatible'?
+>
+> Shawn
+>
 
-On 7/18/2023 11:42 AM, Krzysztof Kozlowski wrote:
-> On 18/07/2023 20:25, Nikunj Kela wrote:
->>>> +
->>>> +	scmi_info = devm_kzalloc(dev, sizeof(*scmi_info), GFP_KERNEL);
->>>> +	if (!scmi_info)
->>>> +		return -ENOMEM;
->>>> +
->>>> +	np = of_parse_phandle(cdev->of_node, "shmem", 0);
->>>> +	if (!of_device_is_compatible(np, "arm,scmi-shmem"))
->>> You leak here reference.
->> Wouldn't the devm_* API take care of that implicitly? It is same in
->> smc.c as well.
-> Thanks for bringing my attention to this. I sent a fix for smc.c. Fix
-> your patch as well, please.
-Thanks, I thought you were referring to kzalloc cleanup. Will include 
-this fix. BTW, you may need to fix mailbox.c as well.
->
->>>> +		return -ENXIO;
->>>> +
->>>> +	ret = of_address_to_resource(np, 0, &res);
->>>> +	of_node_put(np);
->>>> +	if (ret) {
->>>> +		dev_err(cdev, "failed to get SCMI Tx shared memory\n");
->>>> +		return ret;
->>>> +	}
->>>> +
->>>> +	size = resource_size(&res);
->>>> +
->>>> +	/* let's map 2 additional ulong since
->>>> +	 * func-id & capability-id are kept after shmem.
->>>> +	 *     +-------+
->>>> +	 *     |       |
->>>> +	 *     | shmem |
->>>> +	 *     |       |
->>>> +	 *     |       |
->>>> +	 *     +-------+ <-- size
->>>> +	 *     | funcId|
->>>> +	 *     +-------+ <-- size + sizeof(ulong)
->>>> +	 *     | capId |
->>>> +	 *     +-------+ <-- size + 2*sizeof(ulong)
->>>> +	 */
->>>> +
->>>> +	scmi_info->shmem = devm_ioremap(dev, res.start,
->>>> +					size + 2 * sizeof(unsigned long));
->>>> +	if (!scmi_info->shmem) {
->>>> +		dev_err(dev, "failed to ioremap SCMI Tx shared memory\n");
->>>> +		return -EADDRNOTAVAIL;
->>>> +	}
->>>> +
->>>> +	func_id = readl((void *)(scmi_info->shmem) + size);
->>>> +
->>>> +#ifdef CONFIG_ARM64
->>>> +	cap_id = readq((void *)(scmi_info->shmem) + size +
->>>> +		       sizeof(unsigned long));
->>>> +#else
->>>> +	cap_id = readl((void *)(scmi_info->shmem) + size +
->>>> +		       sizeof(unsigned long));
->>>> +#endif
->>>> +
->>>> +	/*
->>>> +	 * If there is an interrupt named "a2p", then the service and
->>>> +	 * completion of a message is signaled by an interrupt rather than by
->>>> +	 * the return of the hvc call.
->>>> +	 */
->>>> +	irq = of_irq_get_byname(cdev->of_node, "a2p");
->>>> +	if (irq > 0) {
->>>> +		ret = devm_request_irq(dev, irq, qcom_hvc_msg_done_isr,
->>>> +				       IRQF_NO_SUSPEND,
->>>> +				       dev_name(dev), scmi_info);
->>>> +		if (ret) {
->>>> +			dev_err(dev, "failed to setup SCMI completion irq\n");
->>> return dev_err_probe, unless this is not called in probe... but then
->>> using devm-interface raises questions.
->> This is copied as is from existing smc.c
-> I understand and I hope you understand the code you copied. If there is
-> a bug in existing code, please do not copy it to new code (like leaking
-> OF node reference).
->
-> Best regards,
-> Krzysztof
->
+Hi Shawn,
+
+My notes say that pinctrl should come first (if needed) followed by
+compatible, reg, other props, and finally status (if needed). Assuming
+I'm wrong about that where in the list should pinctrl be and is this
+documented anywhere for future reference?
+
+Best regards,
+
+Tim
+
+> > +             type =3D "micro";
+> > +             label =3D "Type-C";
+> > +             id-gpios =3D <&gpio3 21 GPIO_ACTIVE_HIGH>;
+> > +     };
+> > +};
+> > +
+> > +/* USB2 - MiniPCIe socket */
+> > +&usb3_1 {
+> > +     fsl,permanently-attached;
+> > +     fsl,disable-port-power-control;
+> > +     status =3D "okay";
+> > +};
+> > +
+> > +&usb3_phy1 {
+> > +     status =3D "okay";
+> > +};
+> > +
+> > +&usb_dwc3_1 {
+> > +     dr_mode =3D "host";
+> > +     status =3D "okay";
+> > +};
+> > +
+> > +&iomuxc {
+> > +     pinctrl-names =3D "default";
+> > +     pinctrl-0 =3D <&pinctrl_hog>;
+> > +
+> > +     pinctrl_hog: hoggrp {
+> > +             fsl,pins =3D <
+> > +                     MX8MP_IOMUXC_SAI1_RXD6__GPIO4_IO08      0x4000014=
+6 /* DIO1 */
+> > +                     MX8MP_IOMUXC_SAI1_TXC__GPIO4_IO11       0x4000014=
+6 /* DIO0 */
+> > +                     MX8MP_IOMUXC_SAI1_TXD2__GPIO4_IO14      0x4000010=
+6 /* PCIE_USBSEL */
+> > +                     MX8MP_IOMUXC_SAI2_TXD0__GPIO4_IO26      0x4000014=
+6 /* DIO2 */
+> > +                     MX8MP_IOMUXC_SAI2_TXFS__GPIO4_IO24      0x4000014=
+6 /* DIO3 */
+> > +                     MX8MP_IOMUXC_SAI3_RXFS__GPIO4_IO28      0x4000010=
+6 /* PCIE_WDIS# */
+> > +             >;
+> > +     };
+> > +
+> > +     pinctrl_accel: accelgrp {
+> > +             fsl,pins =3D <
+> > +                     MX8MP_IOMUXC_SAI2_RXFS__GPIO4_IO21      0x150   /=
+* IRQ */
+> > +             >;
+> > +     };
+> > +
+> > +     pinctrl_gpio_leds: gpioledgrp {
+> > +             fsl,pins =3D <
+> > +                     MX8MP_IOMUXC_SAI1_RXC__GPIO4_IO01       0x6     /=
+* LEDG */
+> > +                     MX8MP_IOMUXC_SAI1_RXD3__GPIO4_IO05      0x6     /=
+* LEDR */
+> > +             >;
+> > +     };
+> > +
+> > +     pinctrl_pcie0: pcie0grp {
+> > +             fsl,pins =3D <
+> > +                     MX8MP_IOMUXC_SAI3_RXC__GPIO4_IO29       0x106
+> > +             >;
+> > +     };
+> > +
+> > +     pinctrl_pps: ppsgrp {
+> > +             fsl,pins =3D <
+> > +                     MX8MP_IOMUXC_SAI1_RXD1__GPIO4_IO03      0x146
+> > +             >;
+> > +     };
+> > +
+> > +     pinctrl_usb1: usb1grp {
+> > +             fsl,pins =3D <
+> > +                     MX8MP_IOMUXC_GPIO1_IO13__USB1_OTG_OC    0x140 /* =
+USB1_FLT# */
+> > +             >;
+> > +     };
+> > +
+> > +     pinctrl_usbcon1: usbcon1grp {
+> > +             fsl,pins =3D <
+> > +                     MX8MP_IOMUXC_SAI5_RXD0__GPIO3_IO21      0x140 /* =
+USB1_ID */
+> > +             >;
+> > +     };
+> > +
+> > +     pinctrl_spi2: spi2grp {
+> > +             fsl,pins =3D <
+> > +                     MX8MP_IOMUXC_ECSPI2_SCLK__ECSPI2_SCLK   0x140
+> > +                     MX8MP_IOMUXC_ECSPI2_MOSI__ECSPI2_MOSI   0x140
+> > +                     MX8MP_IOMUXC_ECSPI2_MISO__ECSPI2_MISO   0x140
+> > +                     MX8MP_IOMUXC_ECSPI2_SS0__GPIO5_IO13     0x140
+> > +             >;
+> > +     };
+> > +
+> > +     pinctrl_uart1: uart1grp {
+> > +             fsl,pins =3D <
+> > +                     MX8MP_IOMUXC_UART1_RXD__UART1_DCE_RX    0x140
+> > +                     MX8MP_IOMUXC_UART1_TXD__UART1_DCE_TX    0x140
+> > +             >;
+> > +     };
+> > +
+> > +     pinctrl_uart3: uart3grp {
+> > +             fsl,pins =3D <
+> > +                     MX8MP_IOMUXC_UART3_RXD__UART3_DCE_RX    0x140
+> > +                     MX8MP_IOMUXC_UART3_TXD__UART3_DCE_TX    0x140
+> > +             >;
+> > +     };
+> > +};
+> > --
+> > 2.25.1
+> >
