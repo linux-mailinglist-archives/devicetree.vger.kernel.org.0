@@ -2,129 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A7C1757B75
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 14:08:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A0B98757B85
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 14:11:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230443AbjGRMIw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jul 2023 08:08:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38626 "EHLO
+        id S232251AbjGRMLD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jul 2023 08:11:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41594 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232446AbjGRMIe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 08:08:34 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17BB11730;
-        Tue, 18 Jul 2023 05:08:10 -0700 (PDT)
-Received: from [IPV6:2a01:e0a:212:79f0:8124:491b:6597:2479] (unknown [IPv6:2a01:e0a:212:79f0:8124:491b:6597:2479])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: aferraris)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id A01F8660703C;
-        Tue, 18 Jul 2023 13:08:08 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1689682088;
-        bh=0oNKTXxCKMopqaC3ISIz7JJ8CKr0aW9sUct1jjQcbtQ=;
-        h=Date:Subject:To:References:From:In-Reply-To:From;
-        b=djq4aj0nEVHJgN7E0IT8Bm5aS+xtU6Cl8I9MOJu3fgSVNfvsSR1jFVbxm+tvWc+Fy
-         MmukXVep08s0rVzcfsURKn1YvVrylBqCGleCAzv2/4aHG983WEPNEJZ6KAZdlX+8We
-         0t3KjwoY/g4dQJCcVt01Cip5ZVS647srooe0QB+huOX2MTVR/JEMIOty99+MHKGBmp
-         sm30iFiMaUAGkTVNTLjFDcz1BUVhqcstY6HU1QQ5NqrKbdOWB7kTQPwiK9umHmr/xm
-         zfT+b4LVQs4UbmHSuWMtSpFbG2Onk9zQa4rjcJWkGYZU4jfD/qhBBdfDEjK85s2JIV
-         z3nwTFgc1OMhQ==
-Message-ID: <02a66bb5-3029-3392-f2d2-47fa0d8a343c@collabora.com>
-Date:   Tue, 18 Jul 2023 14:08:06 +0200
+        with ESMTP id S232446AbjGRMKu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 08:10:50 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62AB919A1;
+        Tue, 18 Jul 2023 05:10:45 -0700 (PDT)
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36IBTbtf003046;
+        Tue, 18 Jul 2023 12:10:37 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=cl7vvBSj+vK/+YKHsnApVQB39LSReFzTOz9chWqUJjw=;
+ b=f+R6y5Z0bofo9HHEXzfJUN6nqE7FbVVuHdx9/kBe1tZobfHFy9R8ZfQM1V8r6hrEqhdF
+ oyFYAmR+Crlstfl22F+vGDjohTJb5O7kdDmVR53ORHBv1x90+deYfqpm+JVqHzFZbnYB
+ Pp/oBh0hGtZQTPW/3qsslB2oU5mxqjZJuOEL0r3nKcUH7iEcJ/PV7XF1avU+1+7B/22J
+ +dW8Gkmi32MevKCT9xtTPvaiyZ6EPjv/IKwOUHC89xV5QRF63lwjoerx1J9lf3UBdAZt
+ vS43WArWPxZtpAdM3yuTy7MGKQpaOmd6mK8eoUDPBtrzRmsuR5OEUb8T4is+MVPzTEJG Qg== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3rweag1gr0-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 18 Jul 2023 12:10:37 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 36ICAakU016605
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 18 Jul 2023 12:10:36 GMT
+Received: from [10.201.206.238] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Tue, 18 Jul
+ 2023 05:10:28 -0700
+Message-ID: <d038e912-9917-e581-c42c-bca712687734@quicinc.com>
+Date:   Tue, 18 Jul 2023 17:40:24 +0530
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH 00/21] imx258 improvements series
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.2
+Subject: Re: [PATCH V2 10/13] remoteproc: qcom: Add Hexagon based multipd
+ rproc driver
 Content-Language: en-US
-To:     Dave Stevenson <dave.stevenson@raspberrypi.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org
-References: <20230530173000.3060865-1-dave.stevenson@raspberrypi.com>
-From:   Arnaud Ferraris <arnaud.ferraris@collabora.com>
-In-Reply-To: <20230530173000.3060865-1-dave.stevenson@raspberrypi.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <jassisinghbrar@gmail.com>, <mathieu.poirier@linaro.org>,
+        <mturquette@baylibre.com>, <sboyd@kernel.org>,
+        <quic_eberman@quicinc.com>, <quic_mojha@quicinc.com>,
+        <kvalo@kernel.org>, <loic.poulain@linaro.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-remoteproc@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>
+CC:     <quic_srichara@quicinc.com>, <quic_sjaganat@quicinc.com>,
+        <quic_kathirav@quicinc.com>, <quic_anusha@quicinc.com>,
+        <quic_poovendh@quicinc.com>, <quic_varada@quicinc.com>,
+        <quic_devipriy@quicinc.com>
+References: <20230521222852.5740-1-quic_mmanikan@quicinc.com>
+ <20230521222852.5740-11-quic_mmanikan@quicinc.com>
+ <2061a641-4b97-1aa6-27cd-99f01a785033@linaro.org>
+ <54f06704-a849-7049-5956-31cb4765a1eb@quicinc.com>
+ <8cf34ab3-fa8b-90f4-215e-bbfb0c41fade@quicinc.com>
+ <bc56e3be-7d0b-5420-978e-125d66ae8f72@linaro.org>
+From:   Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
+In-Reply-To: <bc56e3be-7d0b-5420-978e-125d66ae8f72@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: x_sC7oCfWfguyRPwPN3ld5RJQWHf0P7B
+X-Proofpoint-GUID: x_sC7oCfWfguyRPwPN3ld5RJQWHf0P7B
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-07-18_08,2023-07-18_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ priorityscore=1501 malwarescore=0 adultscore=0 spamscore=0 mlxlogscore=453
+ phishscore=0 clxscore=1015 bulkscore=0 suspectscore=0 lowpriorityscore=0
+ mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2306200000 definitions=main-2307180111
+X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Dave,
 
-Le 30/05/2023 à 19:29, Dave Stevenson a écrit :
-> This is a set of patches for imx258 that allow it to work with alternate clock
-> frequencies, over either 2 or 4 lanes, and generally adding flexibility to the
-> driver.
->
-> Tested with an IMX258 module from Soho Enterprises that has a 24MHz oscillator.
-> Both 2 and 4 lane configurations work with correct link frequencies and pixel
-> rates.
->
-> Jacopo has tested on a PinePhone Pro which has an ~19.2MHz clock fed from the SoC,
-> He confirms that the two lower resolution modes work, but not the full res mode.
-> Comparing to the BSP it looks like they have some weird clock configuration in
-> the 4208x3120 mode (nominally 1224Mb/s/lane instead of 1267).
-> As it has never previously worked directly with the mainline driver this isn't a
-> regression but may indicate that there is a need for support of additional link
-> frequencies in the future.
 
-FYI, I have tested this series on PinePhone Pro as well, but this time 
-changing the clock to 24 MHz.
-I didn't test all modes (not sure how to do this), but feel free to add 
-my Tested-by to the whole series for v2.
+On 7/1/2023 4:25 PM, Krzysztof Kozlowski wrote:
+> On 30/06/2023 12:29, Manikanta Mylavarapu wrote:
+>>
+>>
+>> On 6/27/2023 6:09 PM, Manikanta Mylavarapu wrote:
+>>>
+>>>
+> 
+> Do you see the lines above? You quote my reply and claim it is you who
+> wrote it.
+> 
+> Please fix your mailer, it's making discussions unnecessary difficult.
+> 
+> 
 
-Thanks for your work on this,
-Arnaud
+Sure, i will correct it.
 
->
-> The last patch that makes HFLIP and VFLIP configurable may be contentious as I've
-> retained the default configuration of inverted from the original driver. I know
-> this was discussed recently, but I can't recall the final outcome.
->
-> I am relying on someone from Intel testing this out, as correcting the cropping
-> and supporting flips has changed the Bayer order. Seeing as this is all above
-> board in V4L2 terms I really hope that the layers above it behave themselves.
->
-> Cheers
->    Dave
->
-> Dave Stevenson (21):
->    media: i2c: imx258: Remove unused defines
->    media: i2c: imx258: Make image geometry meet sensor requirements
->    media: i2c: imx258: Disable digital cropping on binned modes
->    media: i2c: imx258: Remove redundant I2C writes.
->    media: i2c: imx258: Add regulator control
->    media: i2c: imx258: Make V4L2_CID_VBLANK configurable.
->    media: i2c: imx258: Split out common registers from the mode based
->      ones
->    media: i2c: imx258: Add support for 24MHz clock
->    media: i2c: imx258: Add support for running on 2 CSI data lanes
->    media: i2c: imx258: Follow normal V4L2 behaviours for clipping
->      exposure
->    media: i2c: imx258: Add get_selection for pixel array information
->    media: i2c: imx258: Allow configuration of clock lane behaviour
->    media: i2c: imx258: Correct max FRM_LENGTH_LINES value
->    media: i2c: imx258: Add support for long exposure modes
->    media: i2c: imx258: Issue reset before starting streaming
->    media: i2c: imx258: Set pixel_rate range to the same as the value
->    media: i2c: imx258: Support faster pixel rate on binned modes
->    dt-bindings: media: imx258: Rename to include vendor prefix
->    dt-bindings: media: imx258: Add alternate compatible strings
->    media: i2c: imx258: Change register settings for variants of the
->      sensor
->    media: i2c: imx258: Make HFLIP and VFLIP controls writable
->
->   .../i2c/{imx258.yaml => sony,imx258.yaml}     |   9 +-
->   MAINTAINERS                                   |   2 +-
->   drivers/media/i2c/imx258.c                    | 994 ++++++++++++------
->   3 files changed, 675 insertions(+), 330 deletions(-)
->   rename Documentation/devicetree/bindings/media/i2c/{imx258.yaml => sony,imx258.yaml} (90%)
->
+>>>>> +      Say y here to support the Qualcomm Secure Peripheral Image Loader
+>>>>> +      for the Hexagon based MultiPD model remote processors on e.g.
+>>>>> IPQ5018.
+>>>>> +      This is trustZone wireless subsystem.
+>>>>> +
+>>>>
+>>>> ...
+>>>>
+>> 	I didn't understand. Can you please elaborate your comment?
+> 
+> https://en.wikipedia.org/wiki/Ellipsis
+> 
+Got it.
 
+>>
+>>>>> +    int (*powerup_scm)(u32 peripheral);
+>>>>> +    int (*powerdown_scm)(u32 peripheral);
+>>>>> +};
+>>>>> +
+>>>>> +/**
+>>>>> + * qcom_get_pd_asid() - get the pd asid number from DT node
+>>>>
+>>>>   From node name? NAK. It does not work like that. Node names can change
+>>>> and you did not define this number as part of ABI.
+>>>>
+>>>> Probably you wanted unit address.
+>>>>
+>>
+>> 	Yeah i got your point. Each of the WCSS PD's are internally
+>> 	represented in Q6 with their corresponding "spawn" bit numbers.
+>> 	I will use same and remove the "PD-" hardcodings.
+>>
+>> 	Is this fine ?
+> 
+> I don't get what you are going to use, so post a patch. Talk is cheap.
+> 
+> 
+Sure, i posted a patch. Patch available here
+https://lore.kernel.org/linux-arm-msm/20230718120501.3205661-10-quic_mmanikan@quicinc.com/
+
+Thanks & Regards,
+Manikanta.
+
+> Best regards,
+> Krzysztof
+> 
