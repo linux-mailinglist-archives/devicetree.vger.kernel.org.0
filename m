@@ -2,73 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 133B2758065
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 17:06:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7BB60758071
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 17:09:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233070AbjGRPGy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jul 2023 11:06:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45546 "EHLO
+        id S231872AbjGRPJI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jul 2023 11:09:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46874 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232479AbjGRPGx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 11:06:53 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id D88F29D;
-        Tue, 18 Jul 2023 08:06:52 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1FC6C2F4;
-        Tue, 18 Jul 2023 08:07:36 -0700 (PDT)
-Received: from [10.57.33.56] (unknown [10.57.33.56])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 3555C3F67D;
-        Tue, 18 Jul 2023 08:06:51 -0700 (PDT)
-Message-ID: <6e1bdf71-7601-237d-3582-498352d8e0e0@arm.com>
-Date:   Tue, 18 Jul 2023 16:06:49 +0100
+        with ESMTP id S232576AbjGRPJI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 11:09:08 -0400
+Received: from mail.croughan.sh (mail.croughan.sh [IPv6:2a01:4f9:c011:cb0::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1375F1737;
+        Tue, 18 Jul 2023 08:09:05 -0700 (PDT)
+Message-ID: <0645409b-3f79-9109-26c1-6e84065e46bf@nix.how>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nix.how; s=mail;
+        t=1689692942; bh=/mhfgxqxtca1gPyaeAwDuQ1jXHYYV0q9p+QPHOPgwkY=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To;
+        b=U+Myn8Iz5ccNcfgclf5tfsw9wX0CAD+yR6jVmLL9Cwj0KvWZmhgRXkWW0znaxEFFY
+         iBfO/wOWha9+S59WB0S8WVEGlWAexEHXl3aZ6mqp/RCwePabAh93nEfGt2o1fU438M
+         255Wd8uU2PfF9D6Q1+KcOvGuwQ5gi3RJoVKKdN8w=
+Date:   Tue, 18 Jul 2023 16:09:00 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.12.0
-Subject: Re: [PATCH v2] hwtracing: coresight: Explicitly include correct DT
- includes
-To:     Rob Herring <robh@kernel.org>, Mike Leach <mike.leach@linaro.org>,
-        James Clark <james.clark@arm.com>,
-        Leo Yan <leo.yan@linaro.org>,
-        Alexander Shishkin <alexander.shishkin@linux.intel.com>
-Cc:     devicetree@vger.kernel.org, coresight@lists.linaro.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20230718143124.1065949-1-robh@kernel.org>
-From:   Suzuki K Poulose <suzuki.poulose@arm.com>
-In-Reply-To: <20230718143124.1065949-1-robh@kernel.org>
+Subject: Re: [PATCH v2] arm64: dts: allwinner: h616: Add Mango Pi MQ-Quad DTS
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+References: <20230718124752.1279094-1-matthew.croughan@nix.how>
+ <a85a6d11-a3de-958c-bd87-d2fffe446bca@linaro.org>
+From:   Matthew Croughan <matthew.croughan@nix.how>
+In-Reply-To: <a85a6d11-a3de-958c-bd87-d2fffe446bca@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/07/2023 15:31, Rob Herring wrote:
-> The DT of_device.h and of_platform.h date back to the separate
-> of_platform_bus_type before it as merged into the regular platform bus.
-> As part of that merge prepping Arm DT support 13 years ago, they
-> "temporarily" include each other. They also include platform_device.h
-> and of.h. As a result, there's a pretty much random mix of those include
-> files used throughout the tree. In order to detangle these headers and
-> replace the implicit includes with struct declarations, users need to
-> explicitly include the correct includes.
-> 
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
-> v2:
-> - Fix double include of of.h
-> ---
->   drivers/hwtracing/coresight/coresight-core.c     | 2 +-
->   drivers/hwtracing/coresight/coresight-platform.c | 2 --
->   2 files changed, 1 insertion(+), 3 deletions(-)
+On 18/07/2023 15:08, Krzysztof Kozlowski wrote:
 
-Rob,
+> On 18/07/2023 14:47, Matthew Croughan wrote:
+>> Mango Pi MQ Quad is a H616 based SBC, add basic support for the board
+>> and its peripherals
+>> ---
+> Third email within few hours - no, wait a day. There are so many issues
+> here that sending immediately won't help you.
+>
+> 1. Missing changelog, so did you ignore entire feedback?
+> 2. Missing Signed-off-by
+>
+>
+>>   arch/arm64/boot/dts/allwinner/Makefile        |   1 +
+>>   .../allwinner/sun50i-h616-mangopi-mq-quad.dts | 183 ++++++++++++++++++
+> Yeah, no bindings patch, so you did ignore the feedback.
+>
+> Sorry, that's a no.
+>
+> This is a friendly reminder during the review process.
+>
+> It seems my previous comments were not fully addressed. Maybe my
+> feedback got lost between the quotes, maybe you just forgot to apply it.
+> Please go back to the previous discussion and either implement all
+> requested changes or keep discussing them.
+>
+> Thank you.
+>
+> Best regards,
+> Krzysztof
 
-Thanks for the updated version, I will queue this.
+No problem, this is my first attempt at contribution to the kernel, and 
+my first time trying to follow the process on 
+https://docs.kernel.org/process/submitting-patches.html. The first reply 
+attempting to address your feedback, I screwed up and didn't add -v2 to 
+git format-patch. I wasn't sure if I'd get yelled at for that, so I 
+panicked and sent with the -v2 to correct it afterwards, hoping you'd 
+ignore it. It appears I've made it worse, spam was not the intent. 
+Please let me know if I've replied to this email with good etiquette 
+also, as I'm told I shouldn't be "top-posting". But I was born after 
+Email was obsolete, so am not sure if I'm doing it correctly.
 
-Suzuki
+Changelog: I'm sorry, I missed the part of submitting-patches.html that 
+said it would be good for other reviewers. I'll try making a changelog 
+on my next submission.
+
+Bindings: I just figured out that you meant I should add to the 
+`Documentation` folder, and that you were not suggesting the dt-bindings 
+in the #includes were inaccurate or missing.
+
+
+
+
 
