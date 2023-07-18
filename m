@@ -2,119 +2,216 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C8DD4758454
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 20:15:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A072275845B
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 20:17:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229558AbjGRSPi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jul 2023 14:15:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51342 "EHLO
+        id S229458AbjGRSR0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jul 2023 14:17:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52302 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229704AbjGRSPg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 14:15:36 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43B8E10B;
-        Tue, 18 Jul 2023 11:15:34 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id CA25F616A9;
-        Tue, 18 Jul 2023 18:15:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3AC62C433C9;
-        Tue, 18 Jul 2023 18:15:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689704133;
-        bh=kHxVNW1fF7PzuKK1ys+0NZi4M8XowaLr/7P8gkpdlJI=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=ORusedm981Yj/+87SN8Dfy42m31DyCLpq9HqWv4ho+Z3KBXkCG5zYt1xECLY1h9UQ
-         FK8vM0+EOYl5JwIpVu6RsM/AW4ce1jHotCKLzfgoHQA5B0jwIuuLBO+20iCwv6yRBB
-         xEHN+GcJVpJsJ2xIOl9HVkaf5Q+lZWrS240/Pm8AYISW3D6gXZsNhNFT8y+hOOBBau
-         4ZFn3HOxn1BW0KJ+rk7XjsQ/UVxw10DAtsJyjQdzwivZXy2vkJZYZghTLZEONKu5yL
-         f6HbAnlhAW7VKw0PlwjWKZVskPOIKLloGmkTcS1tUVN7GMWjs+7h9Ca83jjkNCGDxT
-         TbK6CaPd77Ysg==
-Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2b703d7ed3aso94633341fa.1;
-        Tue, 18 Jul 2023 11:15:33 -0700 (PDT)
-X-Gm-Message-State: ABy/qLZ1xDyG+BZSL9+Y0Zvg6B1XIfcRf2pai3q0M6ISSQ+MD2GS8+9K
-        yVCDPhMP7+40Pbv1owLz51/1Flr3TXZIAYuSGw==
-X-Google-Smtp-Source: APBJJlETguQ1GeiGzi5H2NtBXJoWqk6KyqjpW8Bc6IS6lJOA4xgoNinovssDBzEvIoFur6Atchxk6+cTA5VSi5CZrA8=
-X-Received: by 2002:a2e:9901:0:b0:2b8:6f78:ffa0 with SMTP id
- v1-20020a2e9901000000b002b86f78ffa0mr7549480lji.18.1689704131164; Tue, 18 Jul
- 2023 11:15:31 -0700 (PDT)
+        with ESMTP id S229437AbjGRSRZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 14:17:25 -0400
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 233C799
+        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 11:17:24 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-51e57874bfdso8565245a12.0
+        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 11:17:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1689704242; x=1692296242;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=AtdblGg5jBy/9UdjzY2MwuPaOGVdkK2ygs+jc/rHbsI=;
+        b=DQgV2zHYpUaxjuhMxzP6Oqc1LGh7YqOteKkDPGTEZzBXadvXn756Uubzfkgfjfq90X
+         qRxIKRWbdYNZit0s71pVEoEHFgMH0bIaI1QdKFyyOcxypPTE1a+s7MKmv8BsJXjVj+T2
+         NELmvM6fo6+mTf1BVawsd/BDQQuDEztFmIltRhyhkVGT2+CemLzmAj9HDAsY1bgyUeOa
+         mP+0o274YlrTwGwqMG7ly3T9/jWDe+i+GoYYEYXGaHX89/pbLON5jfM3KoumV5kDj//K
+         5AJLOi8GaeoUZqmqaQWob2EG9vfCC/URYT4Dq1XbCRTr8WLPLC/WG3m4VKR06U+yzK6P
+         eEmg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689704242; x=1692296242;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=AtdblGg5jBy/9UdjzY2MwuPaOGVdkK2ygs+jc/rHbsI=;
+        b=P7UZ29zwJxNNtDJw6Xp+EU8vQvkSX9Cmm3i/i9R4Uh0TRlU99N59xUlwd6EkSvfIy2
+         T2EmQTNsFTrdgwi4s745IdpomaS/OFNJ1MK2ALnoFbvTqXf+aVhmk1kOreE8HGhmEQd6
+         O9QoUj0n6YqJF2UKsI9TznCi43dnx1r48u4vCBBWWMze0Tt4hYUcEAQaXaGmZkCHKELX
+         MECsaoP8AF4paANYkYZHYIFOUShexsz+BCcNt99H1n80LFU7iwxefvtodADInPziHbpX
+         iVDnvgJk1UwCrqs3NyOa0QSwMLaUGiXzKJRrupVJbLtCbKerMzjExpEnEk50srewg7bV
+         ESQg==
+X-Gm-Message-State: ABy/qLa2I0r7u6Dey17RKGD/JEK7UDG7ntlyuv4GIskKrpcNUSEbriP7
+        0g61p//YZh5esJax9O/5/8K8GA==
+X-Google-Smtp-Source: APBJJlGiWY1EKNf9FkiAT/uOh62LJK1rZHb+JAcvP2bwDKhX7gSsrFR2Dvy9OXIbKA28S2qFehsUaQ==
+X-Received: by 2002:aa7:cd47:0:b0:51f:f079:8761 with SMTP id v7-20020aa7cd47000000b0051ff0798761mr563469edw.15.1689704242657;
+        Tue, 18 Jul 2023 11:17:22 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id v15-20020aa7d80f000000b0051e2670d599sm1571865edq.4.2023.07.18.11.17.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 18 Jul 2023 11:17:22 -0700 (PDT)
+Message-ID: <d9d5ffd5-6f85-f091-5d69-12cdd8d04c99@linaro.org>
+Date:   Tue, 18 Jul 2023 20:17:20 +0200
 MIME-Version: 1.0
-References: <1688059190-4225-3-git-send-email-lizhi.hou@amd.com>
- <20230629225631.GA446944@bhelgaas> <20230629235226.GA92592-robh@kernel.org> <9f39fc3d-ae40-e5b1-8d40-8c27fc4e1022@amd.com>
-In-Reply-To: <9f39fc3d-ae40-e5b1-8d40-8c27fc4e1022@amd.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 18 Jul 2023 12:15:18 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLzGted2tYHM7uKZRYDHypz4P6KMXGDuYLgpYsJcUyU8Q@mail.gmail.com>
-Message-ID: <CAL_JsqLzGted2tYHM7uKZRYDHypz4P6KMXGDuYLgpYsJcUyU8Q@mail.gmail.com>
-Subject: Re: [PATCH V10 2/5] PCI: Create device tree node for bridge
-To:     Lizhi Hou <lizhi.hou@amd.com>
-Cc:     Bjorn Helgaas <helgaas@kernel.org>, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        max.zhen@amd.com, sonal.santan@amd.com,
-        stefano.stabellini@xilinx.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH 2/2] firmware: arm_scmi: Add qcom hvc/shmem transport
+Content-Language: en-US
+To:     Nikunj Kela <quic_nkela@quicinc.com>, sudeep.holla@arm.com
+Cc:     cristian.marussi@arm.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+References: <20230718160833.36397-1-quic_nkela@quicinc.com>
+ <20230718160833.36397-3-quic_nkela@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230718160833.36397-3-quic_nkela@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 30, 2023 at 12:25=E2=80=AFPM Lizhi Hou <lizhi.hou@amd.com> wrot=
-e:
->
->
-> On 6/29/23 16:52, Rob Herring wrote:
-> >>> +                   rp[i].child_addr[0] =3D j;
-> >>> +   ret =3D of_changeset_add_empty_prop(ocs, np, "dynamic");
-> >> It seems slightly confusing to use a "dynamic" property here when we
-> >> also have the OF_DYNAMIC dynamic flag above.  I think they have
-> >> different meanings, don't they?
-> > Hum, what's the property for? It's new in this version. Any DT property
-> > needs to be documented, but I don't see why we need it.
->
-> This is mentioned in my previous reply for V9
->
-> https://lore.kernel.org/lkml/af9b6bb3-a98d-4fb6-b51e-b48bca61dada@amd.com=
-/
->
-> As we discussed before, "interrupt-map" was intended to be used here.
->
-> And after thinking it more, it may not work for the cases where ppnode
->
-> is not dynamically generated and it does not have "interrupt-map".
->
-> For example the IBM ppc system, its device tree has nodes for pci bridge
->
-> and it does not have "interrupt-map".
+On 18/07/2023 18:08, Nikunj Kela wrote:
+> Add a new transport channel to the SCMI firmware interface driver for
+> SCMI message exchange on Qualcomm virtual platforms.
+> 
+> The hypervisor associates an object-id also known as capability-id
+> with each hvc doorbell object. The capability-id is used to identify the
+> doorbell from the VM's capability namespace, similar to a file-descriptor.
+> 
 
-How do you know? I ask because usually the only way I have visibility
-there is when I break something. In traditional OpenFirmware, which
-IBM PPC is, all PCI devices have a DT node because it's the firmware
-telling the OS "these are the devices I discovered and this is how I
-configured them".
+...
 
-> Based on previous discussions, OF_DYNAMIC should not be used here.
+> +
+> +static bool qcom_hvc_chan_available(struct device_node *of_node, int idx)
+> +{
+> +	struct device_node *np = of_parse_phandle(of_node, "shmem", 0);
+> +
+> +	if (!np)
+> +		return false;
+> +
+> +	of_node_put(np);
+> +	return true;
+> +}
+> +
+> +static inline void qcom_hvc_channel_lock_init(struct scmi_qcom_hvc *scmi_info)
+> +{
+> +	mutex_init(&scmi_info->shmem_lock);
+> +}
+> +
+> +static inline void
+> +qcom_hvc_channel_lock_acquire(struct scmi_qcom_hvc *scmi_info,
+> +			      struct scmi_xfer *xfer __maybe_unused)
 
-For the same reasons, I don't think the behavior should change based
-on being dynamic. Now maybe the behavior when it's an ACPI system with
-DT overlays has to change, but that's a problem for later. I don't yet
-know if we'd handle that here somehow or elsewhere so that this node
-looks like a normal DT system.
+Why do you pass unused arguments?
 
-This should all work the same whether we've generated the nodes or
-they were already present in the FDT when we booted.
+> +{
+> +	mutex_lock(&scmi_info->shmem_lock);
 
-> So I think adding "dynamic" might be a way to identify the dynamically
->
-> added node. Or we can introduce a new flag e.g OF_IRQ_SWIZZLING.
+Why do you need these wrappers? Why not using mutexes directly?
+If they are needed, then add lock __acquires annotation.
 
-I hope not. The flags tend to be hacks.
 
-Rob
+> +}
+> +
+> +static inline void qcom_hvc_channel_lock_release(struct scmi_qcom_hvc
+> +						 *scmi_info)
+
+Same comments.
+
+> +{
+> +	mutex_unlock(&scmi_info->shmem_lock);
+> +}
+> +
+> +static int qcom_hvc_chan_setup(struct scmi_chan_info *cinfo,
+> +			       struct device *dev, bool tx)
+> +{
+> +	struct device *cdev = cinfo->dev;
+> +	struct scmi_qcom_hvc *scmi_info;
+> +	resource_size_t size;
+> +	struct resource res;
+> +	struct device_node *np;
+> +	unsigned long cap_id;
+> +	u32 func_id;
+> +	int ret, irq;
+> +
+> +	if (!tx)
+> +		return -ENODEV;
+> +
+> +	scmi_info = devm_kzalloc(dev, sizeof(*scmi_info), GFP_KERNEL);
+> +	if (!scmi_info)
+> +		return -ENOMEM;
+> +
+> +	np = of_parse_phandle(cdev->of_node, "shmem", 0);
+> +	if (!of_device_is_compatible(np, "arm,scmi-shmem"))
+
+You leak here reference.
+
+> +		return -ENXIO;
+> +
+> +	ret = of_address_to_resource(np, 0, &res);
+> +	of_node_put(np);
+> +	if (ret) {
+> +		dev_err(cdev, "failed to get SCMI Tx shared memory\n");
+> +		return ret;
+> +	}
+> +
+> +	size = resource_size(&res);
+> +
+> +	/* let's map 2 additional ulong since
+> +	 * func-id & capability-id are kept after shmem.
+> +	 *     +-------+
+> +	 *     |       |
+> +	 *     | shmem |
+> +	 *     |       |
+> +	 *     |       |
+> +	 *     +-------+ <-- size
+> +	 *     | funcId|
+> +	 *     +-------+ <-- size + sizeof(ulong)
+> +	 *     | capId |
+> +	 *     +-------+ <-- size + 2*sizeof(ulong)
+> +	 */
+> +
+> +	scmi_info->shmem = devm_ioremap(dev, res.start,
+> +					size + 2 * sizeof(unsigned long));
+> +	if (!scmi_info->shmem) {
+> +		dev_err(dev, "failed to ioremap SCMI Tx shared memory\n");
+> +		return -EADDRNOTAVAIL;
+> +	}
+> +
+> +	func_id = readl((void *)(scmi_info->shmem) + size);
+> +
+> +#ifdef CONFIG_ARM64
+> +	cap_id = readq((void *)(scmi_info->shmem) + size +
+> +		       sizeof(unsigned long));
+> +#else
+> +	cap_id = readl((void *)(scmi_info->shmem) + size +
+> +		       sizeof(unsigned long));
+> +#endif
+> +
+> +	/*
+> +	 * If there is an interrupt named "a2p", then the service and
+> +	 * completion of a message is signaled by an interrupt rather than by
+> +	 * the return of the hvc call.
+> +	 */
+> +	irq = of_irq_get_byname(cdev->of_node, "a2p");
+> +	if (irq > 0) {
+> +		ret = devm_request_irq(dev, irq, qcom_hvc_msg_done_isr,
+> +				       IRQF_NO_SUSPEND,
+> +				       dev_name(dev), scmi_info);
+> +		if (ret) {
+> +			dev_err(dev, "failed to setup SCMI completion irq\n");
+
+return dev_err_probe, unless this is not called in probe... but then
+using devm-interface raises questions.
+
+Best regards,
+Krzysztof
+
