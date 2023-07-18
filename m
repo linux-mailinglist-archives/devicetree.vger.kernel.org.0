@@ -2,47 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 96B4C75812E
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 17:42:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D560275813C
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 17:46:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231804AbjGRPmP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jul 2023 11:42:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41858 "EHLO
+        id S231644AbjGRPqt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jul 2023 11:46:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43740 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232905AbjGRPmN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 11:42:13 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 74ECD172A;
-        Tue, 18 Jul 2023 08:42:08 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 8D43F2F4;
-        Tue, 18 Jul 2023 08:42:51 -0700 (PDT)
-Received: from slackpad.lan (unknown [172.31.20.19])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 791343F67D;
-        Tue, 18 Jul 2023 08:42:06 -0700 (PDT)
-Date:   Tue, 18 Jul 2023 16:41:08 +0100
-From:   Andre Przywara <andre.przywara@arm.com>
-To:     Matthew Croughan <matthew.croughan@nix.how>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] arm64: dts: allwinner: h616: Add Mango Pi MQ-Quad
- DTS
-Message-ID: <20230718164052.6fab0c10@slackpad.lan>
-In-Reply-To: <20230718124752.1279094-1-matthew.croughan@nix.how>
-References: <20230718124752.1279094-1-matthew.croughan@nix.how>
-Organization: Arm Ltd.
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.31; x86_64-slackware-linux-gnu)
+        with ESMTP id S230320AbjGRPqs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 11:46:48 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E344AA9;
+        Tue, 18 Jul 2023 08:46:47 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 79B1D61644;
+        Tue, 18 Jul 2023 15:46:47 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C3494C433C7;
+        Tue, 18 Jul 2023 15:46:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1689695206;
+        bh=76mVnJR9o74Ma8KmtRmvfVhR/CCcRdmixqoJDHlIGzg=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=JTqoea1e4JsUd0SgXsF3R8CUlUt42gzMufzNo8YkXur/QdtUJdJ5jhWDr5UneKhQy
+         JLxl3nBJQM80I/OEH5dR+H6AJTnJl9pUcsh7ioARJ1EbCqtgsiZgfUFyvcKkLGV93V
+         zLJ7K/I2ho+eoF1XcUZhSPCLd9k9edyAGCXX/cpl10COVm2lsY3afE/Et/KI+McnaH
+         /s+h6dNU5sXUu4N5BI7p5Buf1GYxt0YALSvDPaC7/xWplza8Cqqv0cqeyYoF/hS8vR
+         Y/aHDeQMGt38kLsWeviLvYz7tGi6C5cGJmdmHpslvjVR1xz5pyopZ/PjLwHMpik1sX
+         hJYpV6TyUgSOQ==
+Date:   Tue, 18 Jul 2023 16:46:42 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Johan Jonker <jbx6244@gmail.com>
+Cc:     miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, linux-mtd@lists.infradead.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v1 1/2] dt-bindings: mtd: nand-controller: add
+ nand-skip-bbtscan and nand-no-bbm-quirk DT options
+Message-ID: <20230718-curfew-jumble-aeafe95c5cc7@spud>
+References: <61c84262-cd98-1e60-d95b-9b0492083994@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="+7otubzjJ6EFgf8c"
+Content-Disposition: inline
+In-Reply-To: <61c84262-cd98-1e60-d95b-9b0492083994@gmail.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -50,263 +58,91 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 18 Jul 2023 13:47:51 +0100
-Matthew Croughan <matthew.croughan@nix.how> wrote:
 
-Hi Matthew,
+--+7otubzjJ6EFgf8c
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> Mango Pi MQ Quad is a H616 based SBC, add basic support for the board
-> and its peripherals
-
-thanks for sending this!
-You would need to add a separate(!) binding patch for the board
-compatible, see:
-https://lore.kernel.org/linux-arm-kernel/20230420102409.1394618-1-ludwig.kormann@in-circuit.de/T/#u
-for an example.
-
-Some more comments inline:
-
+On Sat, Jul 15, 2023 at 12:48:16PM +0200, Johan Jonker wrote:
+> A NAND chip can contain a different data format then the MTD framework
+> expects in the erase blocks for the Bad Block Table(BBT).
+> Result is a failed probe, while nothing wrong with the hardware.
+> Some MTD flags need to be set to gain access again.
+>=20
+> Skip the automatic BBT scan with the NAND_SKIP_BBTSCAN option
+> so that the original content is unchanged during the driver probe.
+> The NAND_NO_BBM_QUIRK option allows us to erase bad blocks with
+> the nand_erase_nand() function and the flash_erase command.
+>=20
+> Add nand-skip-bbtscan and nand-no-bbm-quirk Device Tree options,
+> so the user has the "freedom of choice" by neutral
+> access mode to read and write in whatever format is needed.
+>=20
+> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
 > ---
->  arch/arm64/boot/dts/allwinner/Makefile        |   1 +
->  .../allwinner/sun50i-h616-mangopi-mq-quad.dts | 183 ++++++++++++++++++
->  2 files changed, 184 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h616-mangopi-mq-quad.dts
-> 
-> diff --git a/arch/arm64/boot/dts/allwinner/Makefile b/arch/arm64/boot/dts/allwinner/Makefile
-> index 6a96494a2e0a..06c5b97dbfc3 100644
-> --- a/arch/arm64/boot/dts/allwinner/Makefile
-> +++ b/arch/arm64/boot/dts/allwinner/Makefile
-> @@ -38,5 +38,6 @@ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-pine-h64.dtb
->  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-pine-h64-model-b.dtb
->  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-tanix-tx6.dtb
->  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-tanix-tx6-mini.dtb
-> +dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-mangopi-mq-quad.dtb
->  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-orangepi-zero2.dtb
->  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-x96-mate.dtb
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616-mangopi-mq-quad.dts b/arch/arm64/boot/dts/allwinner/sun50i-h616-mangopi-mq-quad.dts
-> new file mode 100644
-> index 000000000000..47fd49af2886
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h616-mangopi-mq-quad.dts
-> @@ -0,0 +1,183 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +// Copyright (C) 2020 Arm Ltd.
-> +/*
-> + * Copyright (C) 2023 Matthew Croughan <matthew.croughan@nix.how>
-> + */
+>=20
+> Previous discussion:
+> [PATCH v3 3/3] mtd: rawnand: rockchip-nand-controller: add skipbbt option
+> https://lore.kernel.org/linux-mtd/1618382560.2326931.1689261435022.JavaMa=
+il.zimbra@nod.at/
+> ---
+>  .../devicetree/bindings/mtd/nand-controller.yaml    | 13 +++++++++++++
+>  1 file changed, 13 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/mtd/nand-controller.yaml b=
+/Documentation/devicetree/bindings/mtd/nand-controller.yaml
+> index f70a32d2d9d4..ca04d06a0377 100644
+> --- a/Documentation/devicetree/bindings/mtd/nand-controller.yaml
+> +++ b/Documentation/devicetree/bindings/mtd/nand-controller.yaml
+> @@ -103,6 +103,19 @@ patternProperties:
+>            the boot ROM or similar restrictions.
+>          $ref: /schemas/types.yaml#/definitions/flag
+>=20
+> +      nand-no-bbm-quirk:
+> +        description:
+> +          Some controllers with pipelined ECC engines override the BBM m=
+arker with
+> +          data or ECC bytes, thus making bad block detection through bad=
+ block marker
+> +          impossible. Let's flag those chips so the core knows it should=
+n't check the
+> +          BBM and consider all blocks good.
+> +        $ref: /schemas/types.yaml#/definitions/flag
 
-Please unify the comment styles. If you have more than one line, just
-use one multi-line comment.
+While this seems okay, as it seems to describe facet of the hardware...
 
-> +
-> +/dts-v1/;
-> +
-> +#include "sun50i-h616.dtsi"
-> +
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> +#include <dt-bindings/leds/common.h>
-> +
-> +/ {
-> +	model = "MangoPi MQ-Quad";
-> +	compatible = "widora,mangopi-mq-quad", "allwinner,sun50i-h616";
-> +
-> +	aliases {
-> +		serial0 = &uart0;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial0:115200n8";
-> +	};
-> +
-> +	leds {
-> +		compatible = "gpio-leds";
-> +
-> +		led-0 {
-> +			function = LED_FUNCTION_STATUS;
-> +			color = <LED_COLOR_ID_GREEN>;
-> +			gpios = <&pio 2 13 GPIO_ACTIVE_HIGH>; /* PC13 */
-> +		};
-> +	};
-> +
-> +	reg_vcc5v: vcc5v {
-> +		/* board wide 5V supply directly from the USB-C socket */
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vcc-5v";
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +		regulator-always-on;
-> +	};
-> +
-> +	reg_vcc3v3: vcc3v3 {
-> +		/* board wide 3V3 supply directly from SY8008 regulator */
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vcc-3v3";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		regulator-always-on;
-> +	};
-> +
-> +	wifi_pwrseq: wifi-pwrseq {
-> +		compatible = "mmc-pwrseq-simple";
-> +		reset-gpios = <&pio 6 18 GPIO_ACTIVE_LOW>; /* PG18 */
-> +	};
-> +};
-> +
-> +&ehci1 {
-> +	status = "okay";
-> +};
-> +
-> +/* USB 2 & 3 are on headers only. */
-> +
-> +&mmc0 {
-> +	vmmc-supply = <&reg_vcc3v3>;
-> +	cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>;	/* PF6 */
-> +	bus-width = <4>;
-> +	status = "okay";
-> +};
-> +
-> +&mmc1 {
-> +	bus-width = <4>;
-> +	mmc-pwrseq = <&wifi_pwrseq>;
-> +	non-removable;
-> +	vmmc-supply = <&reg_vcc3v3>;
-> +	vqmmc-supply = <&reg_vcc3v3>;
-> +	pinctrl-0 = <&mmc1_pins>;
-> +	pinctrl-names = "default";
-> +	status = "okay";
-> +
-> +	rtl8723ds: wifi@1 {
-> +		reg = <1>;
-> +		interrupt-parent = <&pio>;
-> +		interrupts = <6 15 IRQ_TYPE_LEVEL_LOW>; /* PG15 */
-> +		interrupt-names = "host-wake";
-> +	};
-> +};
+> +      nand-skip-bbtscan:
+> +        description:
+> +          This option skips the BBT scan during initialization.
+> +        $ref: /schemas/types.yaml#/definitions/flag
 
-Can you please add the supplies for the GPIO ports?
-This avoids those warning messages about dummy supplies you might have
-spotted in the dmesg.
+=2E..this seems to be used to control the behaviour of software, and does
+not describe the underlying hardware.
 
-&pio {
-        vcc-pc-supply = <&reg_vcc3v3>;
-	...
+Maybe I'm off, but the description of the property does not hint at the
+aspect of the hardware that this addresses.
 
-You find them on the SoC pads named VCC_Px.
+Thanks,
+Conor.
 
 > +
-> +
-> +&uart1 {
-> +	uart-has-rtscts;
-> +	pinctrl-0 = <&uart1_pins>, <&uart1_rts_cts_pins>;
-> +	pinctrl-names = "default";
-> +	status = "okay";
-> +
-> +	bluetooth {
-> +		compatible = "realtek,rtl8723ds-bt";
-> +		device-wake-gpios = <&pio 6 17 GPIO_ACTIVE_HIGH>; /* PG17 */
-> +		enable-gpios = <&pio 6 19 GPIO_ACTIVE_HIGH>; /* PG19 */
-> +		host-wake-gpios = <&pio 6 16 GPIO_ACTIVE_HIGH>; /* PG16 */
-> +	};
-> +};
-> +
-> +&ohci1 {
-> +	status = "okay";
-> +};
-> +
-> +&r_i2c {
-> +	status = "okay";
-> +
-> +	axp313a: pmic@36 {
-> +		compatible = "x-powers,axp313a";
-> +		reg = <0x36>;
-> +		x-powers,self-working-mode;
+>        nand-rb:
+>          description:
+>            Contains the native Ready/Busy IDs.
+> --
+> 2.30.2
+>=20
 
-This property is only allowed for the AXP806. Please just remvoe it.
+--+7otubzjJ6EFgf8c
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> +		regulators {
+-----BEGIN PGP SIGNATURE-----
 
-You could add a comment here that ALDO1 supplies VCC-PLL and VCC-DCXO,
-plus the 1.8V part of the DRAM, to show that the always-on is justified.
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZLaz4gAKCRB4tDGHoIJi
+0g3xAPoCChSgHtJm/s66HpBbvjdcQLRTQYdBP7qBc021LHTnKAD+ML/axLivhd8k
+t9BrKrTs3wFm05P8sJkqLPbYdU9C5gg=
+=07DA
+-----END PGP SIGNATURE-----
 
-> +			reg_aldo1: aldo1 {
-> +				regulator-always-on;
-> +				regulator-min-microvolt = <1800000>;
-> +				regulator-max-microvolt = <1800000>;
-> +				regulator-name = "vcc-1v8";
-> +			};
-> +
-> +			reg_dldo1: dldo1 {
-
-I don't see from the schematic where this would be used. What happens
-if you keep that disabled? Is there anything that ceases working?
-
-
-The rest looks fine, I compared the properties against the schematic.
-
-Please wait for a day(!), to give others - like me ;-) - a chance for
-review, and to avoid confusion and overlaps (like what just happened
-now), then send a new version. You should also run checkpatch and
-dtbs_check.
-
-Cheers,
-Andre
-
-> +				regulator-always-on;
-> +				regulator-min-microvolt = <3300000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-name = "vcc-3v3-pmic";
-> +			};
-> +
-> +			reg_dcdc1: dcdc1 {
-> +				regulator-always-on;
-> +				regulator-min-microvolt = <810000>;
-> +				regulator-max-microvolt = <990000>;
-> +				regulator-name = "vdd-gpu-sys";
-> +			};
-> +
-> +			reg_dcdc2: dcdc2 {
-> +				regulator-always-on;
-> +				regulator-min-microvolt = <810000>;
-> +				regulator-max-microvolt = <1100000>;
-> +				regulator-name = "vdd-cpu";
-> +			};
-> +
-> +			reg_dcdc3: dcdc3 {
-> +				regulator-always-on;
-> +				regulator-min-microvolt = <1500000>;
-> +				regulator-max-microvolt = <1500000>;
-> +				regulator-name = "vdd-dram";
-> +			};
-> +
-> +		};
-> +	};
-> +};
-> +
-> +&uart0 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&uart0_ph_pins>;
-> +	status = "okay";
-> +};
-> +
-> +&usbotg {
-> +	/*
-> +	 * PHY0 pins are connected to a USB-C socket, but a role switch
-> +	 * is not implemented: both CC pins are pulled to GND.
-> +	 * The VBUS pins power the device, so a fixed peripheral mode
-> +	 * is the best choice.
-> +	 * The board can be powered via GPIOs, in this case port0 *can*
-> +	 * act as a host (with a cable/adapter ignoring CC), as VBUS is
-> +	 * then provided by the GPIOs. Any user of this setup would
-> +	 * need to adjust the DT accordingly: dr_mode set to "host",
-> +	 * enabling OHCI0 and EHCI0.
-> +	 */
-> +	dr_mode = "peripheral";
-> +	status = "okay";
-> +};
-> +
-> +&usbphy {
-> +	usb1_vbus-supply = <&reg_vcc5v>;
-> +	status = "okay";
-> +};
-
+--+7otubzjJ6EFgf8c--
