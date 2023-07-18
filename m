@@ -2,106 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 23C2A757997
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 12:51:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A6C587579E8
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 12:57:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229994AbjGRKv4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jul 2023 06:51:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50138 "EHLO
+        id S231846AbjGRK5A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jul 2023 06:57:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54824 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230218AbjGRKvz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 06:51:55 -0400
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C460CB0
-        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 03:51:53 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-4fcd615d7d6so8351745e87.3
-        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 03:51:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689677512; x=1692269512;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=5nLJMm6saFLlL+Ge11MSzI9uVMi3G0/N3KISKeEvm00=;
-        b=X+L4TZlNrTXJOde1cLGusZ9SOolO7Yh+XQQQemmAkvE4UyBbyInbV4epTLiukcbJI4
-         rXAvLxxd+EvCRLzSw0ZEmgOSm73YiUGRnGGVR3Wk0NWSxD/4tOTE0sFg+N6+MLFpoTt0
-         clSIvnnPbgKZTdWMb1ss+CNOavieC8GnEWd5Y+aurzX84WZOGio5mg5FnZaAoprdcqpb
-         jh65JFZH5juwkQ2sz0kSzVRDc0v92vBfRaXOGKIGEeExap/Vx+BRFHo3EVqD6gr8Ysy5
-         MdoGNp8Anl9e9fQz9GCgBnqA/4s4uQmPW6NTuLmAOBOdrU2U8WcvRlcAeTfIxeuS5GhA
-         DkBg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689677512; x=1692269512;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=5nLJMm6saFLlL+Ge11MSzI9uVMi3G0/N3KISKeEvm00=;
-        b=bjhHxtAxu/iJU2LoP6JMUHcuDiJvUPxYbv7RsPe/HKzpJsF7dmr6rbllFL2L7QSOaz
-         avXYxvz3PFZtuf45ky/ndOv1BjzezzWEbsVwtdQLjodat+rP40S09pGVCpt7UAzkZJzx
-         2RezNXRd3+oVCp+kLUETK+cLBbV+6WOe0mVV+GwqrCMFM/vT69xFWPxMinsYEPzs1OV5
-         7Coc2CdCe/TwM1EQVwCpFdZ/eo1mojWtUaDWATyPsgjofXFJJTVgaFAu2xht6JCqbxYX
-         PhsIMtzFZiA/ZIngGBAZXx7/HlXP3ZZzpzTXRKWgzU+KA37IdLAk0zVynEvFSGutDF1p
-         YLnQ==
-X-Gm-Message-State: ABy/qLZqKKNo3huTbJJzm5wn/UCIVTOJ5928RWbE/BJ9rKyqUUR9Nyfk
-        ODhNOoOQvbF+3r9uDqiFfL7o51HA779wFwxV8LQg+A==
-X-Google-Smtp-Source: APBJJlH+Egn7YtR5IaNXT7JWh8CdFi270dMCDR0T8bgvon9AHi9F4msUsQuTQxb7V4T4XaATJsKC1Q==
-X-Received: by 2002:ac2:5f79:0:b0:4ef:ed49:fcc2 with SMTP id c25-20020ac25f79000000b004efed49fcc2mr12776783lfc.26.1689677512068;
-        Tue, 18 Jul 2023 03:51:52 -0700 (PDT)
-Received: from [192.168.1.101] (abyj181.neoplus.adsl.tpnet.pl. [83.9.29.181])
-        by smtp.gmail.com with ESMTPSA id i2-20020a056512006200b004fb9d32719fsm385579lfo.36.2023.07.18.03.51.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 18 Jul 2023 03:51:51 -0700 (PDT)
-Message-ID: <1bf484c6-b648-a14a-8bac-4b95b3776294@linaro.org>
-Date:   Tue, 18 Jul 2023 12:51:50 +0200
+        with ESMTP id S231767AbjGRK4x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 06:56:53 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFE3410E0;
+        Tue, 18 Jul 2023 03:56:30 -0700 (PDT)
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36I3eJH4015314;
+        Tue, 18 Jul 2023 10:56:21 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=qZwnpv0YCK8FzDp7J93BxF86jFdcPHN4YucmCNPo87g=;
+ b=iuHHJPuCtfzf2FVrAJ/31vGflEyIpCzc8URleGnT4TUYs6cd7a4gqB+zTT7VZbAw6mt6
+ b3IQTRlp5Ic53Gojy4RuBdLaQbeuNRQE7gUYwZkWl8p93L+rjc2hf76b5kXVo/G4eeCj
+ Zq+K0+JSKaFMK36rYrrmZ4jXdg/IsFL8bDGIhopbgOGzwyS4pxLCVfEyYR1JkgRhrv0U
+ 2u5LbQjwlXf+MI+YmuDOH8JU2sAuhc6HrCaOnpNd+Y9ewD+jdLd40CX5JSU4yJtZriOi
+ BxENX51ik+PMMAb+CpBdy6e57PgQIAQosR4nZYLxs5DRNZCapq/NVvUPxuctIyyvVhIJ 6Q== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3rwhk5s1p1-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 18 Jul 2023 10:56:21 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 36IAuKol030057
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 18 Jul 2023 10:56:20 GMT
+Received: from [10.239.154.73] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Tue, 18 Jul
+ 2023 03:56:17 -0700
+Message-ID: <5697cbb5-3949-a295-0e8b-edf61cfa8824@quicinc.com>
+Date:   Tue, 18 Jul 2023 18:56:15 +0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
 Subject: Re: [PATCH v2 1/2] dt-bindings: input: qcom,pm8xxx-vib: add more PMIC
  support
 Content-Language: en-US
-To:     Fenglin Wu <quic_fenglinw@quicinc.com>,
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
         Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+        "Bjorn Andersson" <andersson@kernel.org>,
         Dmitry Torokhov <dmitry.torokhov@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     quic_collinsd@quicinc.com, quic_subbaram@quicinc.com,
-        quic_kamalw@quicinc.com, jestar@qti.qualcomm.com
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-input@vger.kernel.org>, <devicetree@vger.kernel.org>
+CC:     <quic_collinsd@quicinc.com>, <quic_subbaram@quicinc.com>,
+        <quic_kamalw@quicinc.com>, <jestar@qti.qualcomm.com>
 References: <20230718062639.2339589-1-quic_fenglinw@quicinc.com>
  <20230718062639.2339589-2-quic_fenglinw@quicinc.com>
  <cb534cdb-508e-b03e-4e39-50cd6654377a@linaro.org>
  <4cb9f443-bdea-695a-f1b7-3963747e9a17@quicinc.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <4cb9f443-bdea-695a-f1b7-3963747e9a17@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
+ <1bf484c6-b648-a14a-8bac-4b95b3776294@linaro.org>
+From:   Fenglin Wu <quic_fenglinw@quicinc.com>
+In-Reply-To: <1bf484c6-b648-a14a-8bac-4b95b3776294@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: cpYKvZE3tPbcGEY1dApWGuoENNNWAvcC
+X-Proofpoint-ORIG-GUID: cpYKvZE3tPbcGEY1dApWGuoENNNWAvcC
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-07-18_07,2023-07-18_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 phishscore=0
+ adultscore=0 mlxlogscore=644 spamscore=0 clxscore=1015 suspectscore=0
+ lowpriorityscore=0 impostorscore=0 bulkscore=0 priorityscore=1501
+ mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2306200000 definitions=main-2307180099
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18.07.2023 08:38, Fenglin Wu wrote:
-> 
-> 
-> On 7/18/2023 2:33 PM, Krzysztof Kozlowski wrote:
->> On 18/07/2023 08:26, Fenglin Wu wrote:
->>> Add support for vibrator module inside Qualcomm PMI632, PM7250B, PM7325B
->>> PMICs.
+
+
+On 7/18/2023 6:51 PM, Konrad Dybcio wrote:
+> On 18.07.2023 08:38, Fenglin Wu wrote:
+>>
+>>
+>> On 7/18/2023 2:33 PM, Krzysztof Kozlowski wrote:
+>>> On 18/07/2023 08:26, Fenglin Wu wrote:
+>>>> Add support for vibrator module inside Qualcomm PMI632, PM7250B, PM7325B
+>>>> PMICs.
+>>>>
+>>>> Signed-off-by: Fenglin Wu <quic_fenglinw@quicinc.com>
+>>>> ---
 >>>
->>> Signed-off-by: Fenglin Wu <quic_fenglinw@quicinc.com>
->>> ---
->>
->> I don't see changelog. No changes then?
->>
-> Sorry, I updated the change log in the cover letter which didn't seems to be sent to a wider audience, I will resend it by adding more receivers in the to list
-Please consider using the b4 tool which takes care of all that
+>>> I don't see changelog. No changes then?
+>>>
+>> Sorry, I updated the change log in the cover letter which didn't seems to be sent to a wider audience, I will resend it by adding more receivers in the to list
+> Please consider using the b4 tool which takes care of all that
+> 
+> https://b4.docs.kernel.org/en/latest/index.html
+> 
+Thanks Konrad, I will check and update at my side.
 
-https://b4.docs.kernel.org/en/latest/index.html
-
-Konrad
+> Konrad
