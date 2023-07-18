@@ -2,69 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 44A5B757607
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 10:00:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4EED1757616
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 10:01:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231890AbjGRIAE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jul 2023 04:00:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32798 "EHLO
+        id S231618AbjGRIBz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jul 2023 04:01:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33260 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231898AbjGRH7p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 03:59:45 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C98BC1FE9
-        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 00:58:44 -0700 (PDT)
-Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mkl@pengutronix.de>)
-        id 1qLfao-0005y5-CC; Tue, 18 Jul 2023 09:57:58 +0200
-Received: from pengutronix.de (unknown [172.20.34.65])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        (Authenticated sender: mkl-all@blackshift.org)
-        by smtp.blackshift.org (Postfix) with ESMTPSA id 51F291F3ED5;
-        Tue, 18 Jul 2023 07:57:50 +0000 (UTC)
-Date:   Tue, 18 Jul 2023 09:57:49 +0200
-From:   Marc Kleine-Budde <mkl@pengutronix.de>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Markus Schneider-Pargmann <msp@baylibre.com>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
-        Michal Kubiak <michal.kubiak@intel.com>,
-        Vivek Yadav <vivek.2311@samsung.com>,
-        linux-can@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Simon Horman <simon.horman@corigine.com>
-Subject: Re: [PATCH v2 5/6] can: tcan4x5x: Add support for tcan4552/4553
-Message-ID: <20230718-marigold-violation-8d40e9d264c2-mkl@pengutronix.de>
-References: <20230621093103.3134655-1-msp@baylibre.com>
- <20230621093103.3134655-6-msp@baylibre.com>
- <32557326-650c-192d-9a82-ca5451b01f70@linaro.org>
- <20230621123158.fd3pd6i7aefawobf@blmsp>
- <21f12495-ffa9-a0bf-190a-11b6ae30ca45@linaro.org>
- <20230622122339.6tkajdcenj5r3vdm@blmsp>
- <e2cc150b-49e3-7f2f-ce7f-a5982d129346@linaro.org>
- <20230627142300.heju4qccian5hsjk@blmsp>
- <e5bd4f01-0b00-4d70-c642-4fdfc0a139fc@linaro.org>
+        with ESMTP id S231476AbjGRIBg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 04:01:36 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C06E10F1;
+        Tue, 18 Jul 2023 01:00:52 -0700 (PDT)
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36I6DPVP014126;
+        Tue, 18 Jul 2023 07:59:21 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=mmRIA9BYdk6eGohD5TnYGznjvixrsuPS8i+DW7kqNi8=;
+ b=jA4THV9SDpsyfK83SJ1myf0rmeCtOWKhdfJyjKSrbWXAHZzOhqNR+JgwozjS7GgDTl5T
+ NgnkFx7CqFXktUf1C9ElItGS+MPiEDaJQpuNBD2pjB5+RSWm7xasNYtazb4TmZQXwy24
+ epPqCSJH0xRe/RT8Z1VpyLQPFk12cA248HOKV6G+T7DVp/QVUTbzaPqatxo3GkTSlup9
+ Mt6/Z8JJI0MqH00jhRxXubEi5CzE6/XtwrfscmhMjGLlYobq+6mzz090fiCPXtwLrcv6
+ kt4dwriRdYl2Vilv2DhQatqmw9OjAZlfIepOv2S2DC43c1ydKm9MmY3IyB3dqtT7ajUo Kw== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3rwn90879y-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 18 Jul 2023 07:59:20 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 36I7xJmw006490
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 18 Jul 2023 07:59:19 GMT
+Received: from [10.239.154.73] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Tue, 18 Jul
+ 2023 00:59:16 -0700
+Message-ID: <4210b137-2d5d-a467-ea8c-d047701fdcc2@quicinc.com>
+Date:   Tue, 18 Jul 2023 15:59:14 +0800
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="74iwm2jmiacg2jdx"
-Content-Disposition: inline
-In-Reply-To: <e5bd4f01-0b00-4d70-c642-4fdfc0a139fc@linaro.org>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:b01:1d::7b
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+Subject: Re: [PATCH v2 1/2] dt-bindings: input: qcom,pm8xxx-vib: add more PMIC
+ support
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-input@vger.kernel.org>, <devicetree@vger.kernel.org>
+CC:     <quic_collinsd@quicinc.com>, <quic_subbaram@quicinc.com>,
+        <quic_kamalw@quicinc.com>, <jestar@qti.qualcomm.com>,
+        <quic_huliu@quicinc.com>
+References: <20230718062639.2339589-1-quic_fenglinw@quicinc.com>
+ <20230718062639.2339589-2-quic_fenglinw@quicinc.com>
+ <cb534cdb-508e-b03e-4e39-50cd6654377a@linaro.org>
+ <4cb9f443-bdea-695a-f1b7-3963747e9a17@quicinc.com>
+ <5b7e624b-5d06-826d-92d1-2a721b7c83b7@quicinc.com>
+ <fec38f3a-f103-ff0f-138c-cffa3a808001@linaro.org>
+From:   Fenglin Wu <quic_fenglinw@quicinc.com>
+In-Reply-To: <fec38f3a-f103-ff0f-138c-cffa3a808001@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: mIEPHgr6ZUCcJMIngeDxooebNboTt3vs
+X-Proofpoint-ORIG-GUID: mIEPHgr6ZUCcJMIngeDxooebNboTt3vs
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-07-17_15,2023-07-13_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 malwarescore=0
+ bulkscore=0 phishscore=0 spamscore=0 adultscore=0 mlxlogscore=999
+ lowpriorityscore=0 mlxscore=0 suspectscore=0 impostorscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2306200000 definitions=main-2307180071
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
         URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -74,73 +94,67 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---74iwm2jmiacg2jdx
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On 01.07.2023 10:34:00, Krzysztof Kozlowski wrote:
-> On 27/06/2023 16:23, Markus Schneider-Pargmann wrote:
->=20
-> >>> The version information is always readable for that chip, regardless =
-of
-> >>> state and wake GPIOs as far as I know. So yes it is possible to setup
-> >>> the GPIOs based on the content of the ID register.
-> >>>
-> >>> I personally would prefer separate compatibles. The binding
-> >>> documentation needs to address that wake and state GPIOs are not
-> >>> available for tcan4552/4553. I think having compatibles that are for
-> >>> these chips would make sense then. However this is my opinion, you are
-> >>> the maintainer.
-> >>
-> >> We do not talk about compatibles in the bindings here. This is
-> >> discussion about your driver. The entire logic of validating DTB is
-> >> flawed and not needed. Detect the variant and act based on this.
-> >=20
-> > I thought it was about the bindings, sorry.
-> >=20
-> > So to summarize the compatibles ti,tcan4552 and ti,tcan4553 are fine.
-> > But the driver should use the ID register for detection and not compare
-> > the detected variant with the given compatible?
-> >=20
-> > In my opinion it is useful to have an error messages that says there is
-> > something wrong with the devicetree as this can be very helpful for the
-> > developers who bringup new devices. This helps to quickly find issues
-> > with the devicetree.
->=20
-> That's not a current policy for other drivers, so this shouldn't be
-> really special. Kernel is poor in validating DTS. It's not its job. It's
-> the job of the DT schema.
+On 7/18/2023 3:20 PM, Krzysztof Kozlowski wrote:
+> On 18/07/2023 09:06, Fenglin Wu wrote:
+>>
+>>
+>> On 7/18/2023 2:38 PM, Fenglin Wu wrote:
+>>>
+>>>
+>>> On 7/18/2023 2:33 PM, Krzysztof Kozlowski wrote:
+>>>> On 18/07/2023 08:26, Fenglin Wu wrote:
+>>>>> Add support for vibrator module inside Qualcomm PMI632, PM7250B, PM7325B
+>>>>> PMICs.
+>>>>>
+>>>>> Signed-off-by: Fenglin Wu <quic_fenglinw@quicinc.com>
+>>>>> ---
+>>>>
+>>>> I don't see changelog. No changes then?
+>>>>
+>>> Sorry, I updated the change log in the cover letter which didn't seems
+>>> to be sent to a wider audience, I will resend it by adding more
+>>> receivers in the to list
+>>>
+>>> Fenglin
+>>
+>> Just FYI,the change log was updated in the cover letter here:
+>> https://lore.kernel.org/linux-arm-msm/20230718062639.2339589-1-quic_fenglinw@quicinc.com/T/#m3819b50503ef19e0933a10bf797351a4af35537f
+>>
+>> Also the commit text and the driver change were also updated accordingly
+>> to address your review comment by removing 'pm7550ba-vib' compatible string.
+> 
+> Removing compatible was never my feedback. Did you read:
+> https://elixir.bootlin.com/linux/v6.1-rc1/source/Documentation/devicetree/bindings/writing-bindings.rst#L42
+> ?
+> 
+Okay, so do you want me to add 'pm7550ba-vib' as a fallback compatible 
+like this?
 
-Fine with me.
+  properties:
+    compatible:
+-    enum:
+-      - qcom,pm8058-vib
+-      - qcom,pm8916-vib
+-      - qcom,pm8921-vib
+-      - qcom,pmi632-vib
+-      - qcom,pm7250b-vib
+-      - qcom,pm7325b-vib
++    oneOf:
++      - enum:
++          - qcom,pm8058-vib
++          - qcom,pm8916-vib
++          - qcom,pm8921-vib
++          - qcom,pmi632-vib
++          - qcom,pm7250b-vib
++          - qcom,pm7325b-vib
++      - items:
++          - enum:
++              - qcom,pm7550ba-vib
++          - const: qcom,pm7325b-vib
 
-I decided to have a check of the auto-detected chip variant against the
-specified one in the mcp251xfd driver, as it widely used with raspi
-boards, where commonly DT overlays are used. It also helps remote
-diagnostics of people, who don't focus on kernel development.
 
-regards,
-Marc
 
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
-
---74iwm2jmiacg2jdx
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEDs2BvajyNKlf9TJQvlAcSiqKBOgFAmS2RfoACgkQvlAcSiqK
-BOj47Af7B3Hdzd2/p1G8Qprj/lvOLWeZU5GsBj4CDxEtl62ZGZUusqFDMpPC0lTS
-TrrEcTZBT9Uozu1YdUTXzLWds6qD8vR9XoK5bq1PpXuF/0pcxFeOVodE14FhPYYu
-plLFed2tRYmQkcksXLgNQh8UPhVC44O7BOHlvHgTl+9ew27r1MKG2Aeb3BsPDDXq
-o0mck7GdJ7mTejPZDktkBhhyLbzYMSyn5PgdZMPgMR/5SGcCX38JiXUxWrSjD2jt
-7Tg7NiYyj3dyzaqzWFRUJgyJkifirMS+8rNRPUq8vZFvQGq80TdENuzsKibCS0xu
-+PQFb7a+suiwV9hwL9FvrfsOlY4Gsw==
-=HGF4
------END PGP SIGNATURE-----
-
---74iwm2jmiacg2jdx--
+> Best regards,
+> Krzysztof
+> 
