@@ -2,26 +2,25 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CB08A757C1C
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 14:46:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 94072757C33
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 14:50:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229862AbjGRMq3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jul 2023 08:46:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59466 "EHLO
+        id S232126AbjGRMuH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jul 2023 08:50:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33964 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229573AbjGRMq3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 08:46:29 -0400
-X-Greylist: delayed 4614 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 18 Jul 2023 05:46:27 PDT
-Received: from mail.croughan.sh (mail.croughan.sh [IPv6:2a01:4f9:c011:cb0::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90A7D118;
-        Tue, 18 Jul 2023 05:46:27 -0700 (PDT)
+        with ESMTP id S232103AbjGRMuF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 08:50:05 -0400
+Received: from mail.croughan.sh (mail.croughan.sh [135.181.193.41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87A70198;
+        Tue, 18 Jul 2023 05:50:04 -0700 (PDT)
 From:   Matthew Croughan <matthew.croughan@nix.how>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nix.how; s=mail;
-        t=1689684382; bh=nwlBb65OLa7zMh3H51fSU4uBOp2MNxRFHVyMKLw7ne8=;
+        t=1689684600; bh=nwlBb65OLa7zMh3H51fSU4uBOp2MNxRFHVyMKLw7ne8=;
         h=From:To:Cc:Subject:Date;
-        b=hR5LXOnulatovy0TdCalKkSnVbxetiCg0o6EiI0kE4Dip1Ix8cNdyYF9QpMMfJRc+
-         s34SfoWYcFjbwEi2ydje8j0ew+mzc7V2txuLLaPwwfWxpqrtNy6MODeUrPVrk4HZj+
-         6whDa43x5x1RZ+wUqsaeksPtCFSu971qGxVBQ2pE=
+        b=WaeuGGt9ajw5LFAm9PDNAjkmciSaA2j0vsA3H9bhddl6D0Ohzg56Pnf6U679Lsx7+
+         FVAy3xzU9ct1hru3Ai2NRF7F4wPrGeZywShwD3XaxK3ltJq0pWDvI2wYQsSI2mU6Tz
+         z7cgHN9ox4UQZ2YpVcIw0vJM8jmPAL+AbWtIERo0=
 To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
@@ -31,9 +30,9 @@ To:     Rob Herring <robh+dt@kernel.org>,
 Cc:     Matthew Croughan <matthew.croughan@nix.how>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: allwinner: h616: Add Mango Pi MQ-Quad DTS
-Date:   Tue, 18 Jul 2023 13:46:01 +0100
-Message-ID: <20230718124602.1276663-1-matthew.croughan@nix.how>
+Subject: [PATCH v2] arm64: dts: allwinner: h616: Add Mango Pi MQ-Quad DTS
+Date:   Tue, 18 Jul 2023 13:47:51 +0100
+Message-ID: <20230718124752.1279094-1-matthew.croughan@nix.how>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
