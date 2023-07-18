@@ -2,158 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 14D45758722
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 23:26:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BDDA6758726
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 23:30:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231447AbjGRV0B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jul 2023 17:26:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43366 "EHLO
+        id S229638AbjGRVa1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jul 2023 17:30:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47560 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231501AbjGRVZe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 17:25:34 -0400
-Received: from relay06.th.seeweb.it (relay06.th.seeweb.it [5.144.164.167])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D1D91BC1;
-        Tue, 18 Jul 2023 14:25:02 -0700 (PDT)
-Received: from Marijn-Arch-PC.localdomain (94-211-6-86.cable.dynamic.v4.ziggo.nl [94.211.6.86])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id F31723F612;
-        Tue, 18 Jul 2023 23:24:58 +0200 (CEST)
-From:   Marijn Suijten <marijn.suijten@somainline.org>
-Date:   Tue, 18 Jul 2023 23:24:51 +0200
-Subject: [PATCH v3 15/15] arm64: dts: qcom: sm6125-seine: Configure MDSS,
- DSI and panel
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230718-sm6125-dpu-v3-15-6c5a56e99820@somainline.org>
-References: <20230718-sm6125-dpu-v3-0-6c5a56e99820@somainline.org>
-In-Reply-To: <20230718-sm6125-dpu-v3-0-6c5a56e99820@somainline.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+        with ESMTP id S229450AbjGRVa1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 17:30:27 -0400
+Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA8FBC0;
+        Tue, 18 Jul 2023 14:30:24 -0700 (PDT)
+Received: from local
+        by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+         (Exim 4.96)
+        (envelope-from <daniel@makrotopia.org>)
+        id 1qLsGe-0001Jh-1v;
+        Tue, 18 Jul 2023 21:30:00 +0000
+Date:   Tue, 18 Jul 2023 22:29:48 +0100
+From:   Daniel Golle <daniel@makrotopia.org>
+To:     "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Krishna Manikandan <quic_mkrishn@quicinc.com>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Loic Poulain <loic.poulain@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>
-Cc:     ~postmarketos/upstreaming@lists.sr.ht,
+        Felix Fietkau <nbd@nbd.name>, John Crispin <john@phrozen.org>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Mark Lee <Mark-MC.Lee@mediatek.com>,
+        Lorenzo Bianconi <lorenzo@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
         AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        linux-clk@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, Lux Aliaga <they@mint.lgbt>
-X-Mailer: b4 0.12.3
+        Russell King <linux@armlinux.org.uk>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Greg Ungerer <gerg@kernel.org>,
+        =?iso-8859-1?Q?Bj=F8rn?= Mork <bjorn@mork.no>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+Subject: [PATCH net-next v3 0/9] net: ethernet: mtk_eth_soc: add basic
+ support for MT7988 SoC
+Message-ID: <cover.1689714290.git.daniel@makrotopia.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable MDSS and DSI, and configure the Samsung SOFEF01-M ams597ut01
-6.0" 1080x2520 panel.
+The MediaTek MT7988 SoC introduces a new version (3) of the NETSYS
+block and comes with three instead of two MACs.
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
----
- .../dts/qcom/sm6125-sony-xperia-seine-pdx201.dts   | 59 ++++++++++++++++++++++
- 1 file changed, 59 insertions(+)
+The first MAC can be internally connected to a built-in Gigabit
+Ethernet switch with four 1000M/100M/10M twisted pair user ports.
 
-diff --git a/arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dts b/arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dts
-index 82b0da5bb794..62c3e6d8147c 100644
---- a/arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dts
-+++ b/arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dts
-@@ -179,6 +179,43 @@ &i2c3 {
- 	/* Cirrus Logic CS35L41 boosted audio amplifier @ 40 */
- };
- 
-+&mdss {
-+	status = "okay";
-+};
-+
-+&mdss_dsi0 {
-+	vdda-supply = <&pm6125_l18>;
-+	status = "okay";
-+
-+	panel@0 {
-+		compatible = "samsung,sofef01-m-ams597ut01";
-+		reg = <0>;
-+
-+		reset-gpios = <&tlmm 90 GPIO_ACTIVE_LOW>;
-+
-+		vddio-supply = <&pm6125_l12>;
-+
-+		pinctrl-0 = <&mdss_dsi_active &mdss_te_active_sleep>;
-+		pinctrl-1 = <&mdss_dsi_sleep &mdss_te_active_sleep>;
-+		pinctrl-names = "default", "sleep";
-+
-+		port {
-+			panel_in: endpoint {
-+				remote-endpoint = <&mdss_dsi0_out>;
-+			};
-+		};
-+	};
-+};
-+
-+&mdss_dsi0_out {
-+	remote-endpoint = <&panel_in>;
-+	data-lanes = <0 1 2 3>;
-+};
-+
-+&mdss_dsi0_phy {
-+	status = "okay";
-+};
-+
- &pm6125_adc {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&camera_flash_therm &emmc_ufs_therm &rf_pa1_therm>;
-@@ -469,6 +506,28 @@ vol_down_n: vol-down-n-state {
- 		drive-strength = <2>;
- 		bias-disable;
- 	};
-+
-+	mdss_te_active_sleep: mdss-te-active-sleep-state {
-+		pins = "gpio89";
-+		function = "mdp_vsync";
-+		drive-strength = <2>;
-+		bias-pull-down;
-+	};
-+
-+	mdss_dsi_active: mdss-dsi-active-state {
-+		pins = "gpio90";
-+		function = "gpio";
-+		drive-strength = <8>;
-+		bias-disable;
-+	};
-+
-+	mdss_dsi_sleep: mdss-dsi-sleep-state {
-+		pins = "gpio90";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-pull-down;
-+	};
-+
- };
- 
- &usb3 {
+The second MAC can be internally connected to a built-in 2500Base-T
+Ethernet PHY.
+
+There are two SerDes units which can be operated in USXGMII, 10GBase-(K)R,
+5GBase-R, 2500Base-X, 1000Base-X or SGMII interface mode.
+
+This series adds initial support for NETSYS v3 and the first MAC of the
+MT7988 SoC connecting the built-in DSA switch.
+
+The switch is supported since commit 110c18bfed414 ("net: dsa: mt7530:
+introduce driver for MT7988 built-in switch").
+
+Basic support for the 1000M/100M/10M built-in PHYs connected to the
+switch ports is present since commit ("98c485eaf509b net: phy: add
+driver for MediaTek SoC built-in GE PHYs").
+
+Changes since v2:
+  * Use version number instead of feature bits for NETSYS version
+  * Remove unneeded check for NULL when calling mtk_pcs_lynxi_destroy
+  * Reduce dt-bindings to what is actually needed at this point for
+    the driver to work.
+
+Changes since v1:
+  * Set MTK_MAX_DEVS to 3 instead of converting to dynamic number of
+    Ethernet MACs.
+  * use mtk_m32 when ever possible
+  * more small improvements and minor comments addressed
+
+Daniel Golle (3):
+  dt-bindings: net: mediatek,net: add missing mediatek,mt7621-eth
+  dt-bindings: net: mediatek,net: add mt7988-eth binding
+  net: ethernet: mtk_eth_soc: convert clock bitmap to u64
+
+Lorenzo Bianconi (6):
+  net: ethernet: mtk_eth_soc: add version in mtk_soc_data
+  net: ethernet: mtk_eth_soc: increase MAX_DEVS to 3
+  net: ethernet: mtk_eth_soc: rely on MTK_MAX_DEVS and remove
+    MTK_MAC_COUNT
+  net: ethernet: mtk_eth_soc: add NETSYS_V3 version support
+  net: ethernet: mtk_eth_soc: convert caps in mtk_soc_data struct to u64
+  net: ethernet: mtk_eth_soc: add basic support for MT7988 SoC
+
+ .../devicetree/bindings/net/mediatek,net.yaml | 101 ++++-
+ drivers/net/ethernet/mediatek/mtk_eth_path.c  |  36 +-
+ drivers/net/ethernet/mediatek/mtk_eth_soc.c   | 398 ++++++++++++++----
+ drivers/net/ethernet/mediatek/mtk_eth_soc.h   | 327 +++++++++-----
+ drivers/net/ethernet/mediatek/mtk_ppe.c       |  18 +-
+ .../net/ethernet/mediatek/mtk_ppe_offload.c   |   2 +-
+ drivers/net/ethernet/mediatek/mtk_wed.c       |   4 +-
+ 7 files changed, 661 insertions(+), 225 deletions(-)
 
 -- 
 2.41.0
-
