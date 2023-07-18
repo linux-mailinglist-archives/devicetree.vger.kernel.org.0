@@ -2,84 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B27C2757302
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 07:05:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 14328757314
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 07:19:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229619AbjGRFFD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jul 2023 01:05:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60162 "EHLO
+        id S229518AbjGRFTt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jul 2023 01:19:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34044 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229449AbjGRFFC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 01:05:02 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6890812F;
-        Mon, 17 Jul 2023 22:05:01 -0700 (PDT)
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36I2pOR7019061;
-        Tue, 18 Jul 2023 05:03:30 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=1flk7jxvxDsjJkwUB+uLvNS/121vaIX+FNpTZXRPiXk=;
- b=UP6yPqpr1zCIHyUAbAa/qFIpoT4d2NnugNIRIemVOmP9k76W8DuitoL+ddmfxVa92Da/
- 0Tq8BER+F1sfiV2hTVDzgr2TUREvqhi5XzKMzv1z2n0bzpZzCuzhSiEiCAGmWHFT5RfV
- FyW241X/HAyinxuLqHe32xaEXE8x8xvHqWS9rZGlHeVHFSWe9CAtUAUr3XPl0HBEtS2A
- hIP9QWQWpXWMgN31Z7HDBJkF3xjduFUzgbUesTJT96NJfQ8xksWoTQnNs8K3+2rNb+tx
- iXU2k7JvYCG+RoG04Nxon++X+WRhBSpAUZV+Ul3yn1YendLo39SIjnK45Ik3hB+yzJBG kA== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3rw7eeshm7-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 18 Jul 2023 05:03:30 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 36I53Ttw006442
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 18 Jul 2023 05:03:29 GMT
-Received: from [10.50.3.220] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Mon, 17 Jul
- 2023 22:03:25 -0700
-Message-ID: <c91e1aad-b81f-8afd-6ee1-c83ed4844b04@quicinc.com>
-Date:   Tue, 18 Jul 2023 10:33:09 +0530
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH V25 0/3] misc: Add driver support for Data Capture and
- Compare unit(DCC)
-To:     Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        with ESMTP id S229449AbjGRFTr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 01:19:47 -0400
+Received: from APC01-SG2-obe.outbound.protection.outlook.com (mail-sgaapc01on2047.outbound.protection.outlook.com [40.107.215.47])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 167E2199;
+        Mon, 17 Jul 2023 22:19:45 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=hPJK7/45Er9NwMnueUX/A5jSc0+dInkLR/qdDAY+s6x2ZfO/pxyCai8jZ7COxMgf5EfWuLGz7YUE8PasRp+NAEoZB9DkWU+ZnJJ+XDNfUnxMBS2EeEUW25zejs1hkwxZ8C07vMl7hEKdKY2b7HdSZZF2Z7ziVshKbS4nO7/fUksS44UBorpR7WbVG69vRwNoZfdO8EweZpjB+EURdXNBYqIxFBuOehS69T3v5hp4iFNyuiotZ+MdH7hDit1pAVY/3bCghrJw8xOqNSWFKGBl4y2xKlyJXz3byG14wpasLHe7w4Efjpvm42vnl6hr9IzzBhK04rUw3YtjWYA/BiSp7A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=GtmwA4CibYPr1aqkU5Y9tr49aFuSZIlpXnywhm3cFsY=;
+ b=TdHMfUgvjudAKB2bIcDo1w1npTyXQF+JVzU8FFFJ6S2OvbZ03KUtyyl1hBCrWJkh9ZHX5qZp+2zhgtZSf4+o8NYHatEYjK8qoxhGxHrPKlx7PpybwKYiyl4nydwFBBykbfXfUwPgoeCteH/fnRNGaGWYsTQqgX0m5n+UfpgqCg4PboIZjC8TwWzMfxTMW4wy9l9lwy81PGW9gmEZCm97nF7eLxXjpsZNwHsMlcImqFlyZWWTNn/UHAyn3PC7HLUn7YQp7cSp/xO6HbnO2CsyGQENXqCOfHTIJvGB19vQ6jk7cd8vQhO6IEleKM/g8G0uq794PjsG82mnU33ri/z8Ng==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=wiwynn.com; dmarc=pass action=none header.from=wiwynn.com;
+ dkim=pass header.d=wiwynn.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wiwynn.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=GtmwA4CibYPr1aqkU5Y9tr49aFuSZIlpXnywhm3cFsY=;
+ b=Pz1ENSh1CnDzhfuCunUOOed8/nkwS2c26Spe/NVE2RbRXtUc3m89KdFBAzo76gcvu0dZcPoLeHVHPcPhK1JzWMiiy40cEFI8rQwl8jMRNNe+izLy/qN1tKHKDZiYMKGzssWzGDU1BZtInZarhmh4utxr87LTef2/Jc5LlL91RMG/Es8QYdmc4i1DPjbULbbJu9AwE49DLWttZTITSP8+yJzAvbaw7duvAqqzxrmFcByJWhmwyCEPt8RPPXGV2BBT1ErsuBBKCRp585RkFoe7a2xp3DVw0IrSMZ1flq/uNEFieJaRYQKObSaftfhrIjYxnAd6UedmbY9Co43pi8h5NQ==
+Received: from PS2PR04MB3592.apcprd04.prod.outlook.com (2603:1096:300:61::21)
+ by KL1PR04MB7134.apcprd04.prod.outlook.com (2603:1096:820:fa::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6588.31; Tue, 18 Jul
+ 2023 05:19:41 +0000
+Received: from PS2PR04MB3592.apcprd04.prod.outlook.com
+ ([fe80::c49b:a607:6c17:a90f]) by PS2PR04MB3592.apcprd04.prod.outlook.com
+ ([fe80::c49b:a607:6c17:a90f%4]) with mapi id 15.20.6588.031; Tue, 18 Jul 2023
+ 05:19:40 +0000
+From:   Delphine_CC_Chiu/WYHQ/Wiwynn <Delphine_CC_Chiu@wiwynn.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Delphine_CC_Chiu/WYHQ/Wiwynn <Delphine_CC_Chiu@wiwynn.com>,
+        "patrick@stwcx.xyz" <patrick@stwcx.xyz>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        "soc@kernel.org" <soc@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, Alex Elder <elder@ieee.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, Sibi Sankar <quic_sibis@quicinc.com>,
-        Rajendra Nayak <quic_rjendra@quicinc.com>
-References: <cover.1687945879.git.quic_schowdhu@quicinc.com>
-Content-Language: en-US
-From:   Souradeep Chowdhury <quic_schowdhu@quicinc.com>
-In-Reply-To: <cover.1687945879.git.quic_schowdhu@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: G646Ird-UNiDLMSC4MXcM3_Ql8xvE2Zu
-X-Proofpoint-GUID: G646Ird-UNiDLMSC4MXcM3_Ql8xvE2Zu
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-07-17_15,2023-07-13_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501 mlxscore=0
- malwarescore=0 spamscore=0 lowpriorityscore=0 clxscore=1011
- mlxlogscore=999 adultscore=0 bulkscore=0 phishscore=0 impostorscore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2306200000 definitions=main-2307180046
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        Conor Dooley <conor+dt@kernel.org>,
+        Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>
+CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: RE: [PATCH v2 2/2] ARM: dts: aspeed: yosemitev4: add Facebook
+ Yosemite V4 BMC
+Thread-Topic: [PATCH v2 2/2] ARM: dts: aspeed: yosemitev4: add Facebook
+ Yosemite V4 BMC
+Thread-Index: AQHZtfvbsLPhRavEI0WpXdZKuK1E1a+4pxCAgASQ63A=
+Date:   Tue, 18 Jul 2023 05:19:40 +0000
+Message-ID: <PS2PR04MB3592631E9B38B642A3E38B38B738A@PS2PR04MB3592.apcprd04.prod.outlook.com>
+References: <20230712073752.54624-3-Delphine_CC_Chiu@wiwynn.com>
+ <20230714023502.3225096-1-Delphine_CC_Chiu@wiwynn.com>
+ <20230714023502.3225096-3-Delphine_CC_Chiu@wiwynn.com>
+ <0e6e32db-40e1-aa9f-fc05-20f2c5bf544d@linaro.org>
+In-Reply-To: <0e6e32db-40e1-aa9f-fc05-20f2c5bf544d@linaro.org>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=wiwynn.com;
+x-ms-exchange-messagesentrepresentingtype: 1
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: PS2PR04MB3592:EE_|KL1PR04MB7134:EE_
+x-ms-office365-filtering-correlation-id: 3224ae80-7068-4358-b62b-08db874e96c0
+x-ms-exchange-atpmessageproperties: SA
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: yhE4Iprkz/a/tTv6PsYPA468lyUQLzuYFuAoaBzNlam2OSNRVbs+5I2YX1StvWgfnoAISjWHZmFEH3hFM6u7DkpfQcOiv5M9MOIcdz+YoA8Ag5ery9TT8NWdJHdpJDzVRJpVr/n4fLaogJkqkOglJHRnGvIDPDqRTG6dFU3eqTa6PdYzjG4eM+8N9B2pOlb3qgcvZwsWb+QncX1Y+m9tBZKwAgUiDNToxubwvunTlcF59pY2ZxDmzI3rMu7KeWnxeLLC90i5kHQUG6FIEYy2F3UE1ZnwNbAWUXQFpZC9wzSq88EuCkHHrFzKVEAh5hxpRtbtgtAVr9pCMPCl3iItOBPAevfBBoWnUNMsVNenVw/SD5PbY7iwOcc0vQv99/Qf2s3inplEXLrSW2Temqe1qnt9e6XUhk60rMiPJ+QUWZQnISImosJrI3KcMN/OlKQmuVnv45dqd7qYjSVMJWNDAugR3jpTukBQMLksq4PPgH+hSGK0Ohz7Kru2pcFxZ3fe76ALmYJ8nBU8cKHZStJNbaIo8LC1etAMKmRGoHnJC8dy2p4mUi4LJ8wsrOl/9Mk21dvWQsfmdFYqQnq3HkpZWww7eRcIK3IPigz0RPTubVxC5A6lMhT7EL4eb3r8ZEvgg4ZdWlHisq0T2ak6qxCJmg==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PS2PR04MB3592.apcprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(376002)(136003)(39860400002)(366004)(346002)(396003)(47680400002)(451199021)(76116006)(7416002)(86362001)(2906002)(33656002)(38070700005)(55016003)(83380400001)(186003)(6506007)(9686003)(26005)(53546011)(921005)(7696005)(38100700002)(54906003)(110136005)(122000001)(66446008)(4326008)(66946007)(66476007)(64756008)(66556008)(71200400001)(5660300002)(478600001)(316002)(52536014)(8676002)(41300700001)(8936002);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?VFNnQUdXWUE3bTJUTlo1V3NQKzArY1dtQmN3eW1tMWdvRkYxekp3Z3pGVjBM?=
+ =?utf-8?B?b2tzTHdFb2F5Yk1ucHMzOFVNSndyY3ZkdTAwQzVvZDNjRy9icXFYTUpHNmJr?=
+ =?utf-8?B?eFhJd2RWUmE3UDFsY1NUR0l4K0xDNVZoa0hlbTk2blduaDBSNUlSU3d6TGYr?=
+ =?utf-8?B?TWRiMWozMmt3dWxFZkFNamVOeFgrUmtaWC9Jd1I1T0hrdWNmd2NrVVlZSGRQ?=
+ =?utf-8?B?WDVQWFM4MmhOa284UmJtVmw5Y09qOWhpTjFBUTl4blRrOHlvMTFVVFB3UmVK?=
+ =?utf-8?B?alZoaHdpb3ZNdjdSTTQwV1hTTGgzdUpQNkJsVnBGVUo0K2lubXBqUVBpdW9U?=
+ =?utf-8?B?L3krZWJQemdSZ3pCa21WQ0ZMMDBlOXFDZEtQRGRmTDRLendpbzFiYmtNcFZN?=
+ =?utf-8?B?dFZHa0dxalU3TWw1U1Zkcmp3clpEZmFEc3FTZmJhMlVpTGxGU2lvcjBuaE5O?=
+ =?utf-8?B?SjZJb08yNUlnaTFFZExrLzlrVUhQZVdwODh0cmZSUy9ZMWhVOUorQ1F5MHNY?=
+ =?utf-8?B?V29yWFpwNXp5bEZKMGhNdUF5SzNDWDMybDhzOGNOK3YzVVZ1Z2lyS0J5aDcr?=
+ =?utf-8?B?NG50SE9OcWNLbEhsM25ldjdXV0tPdm9Rc2pJMks0TTlpTFJwNlpRUzc1MWIz?=
+ =?utf-8?B?VlZRN3ZLdFZMZlpKNlR1eG5iejdXM044c0ZyM3NlcmpUQ0VWUjJYRkpab0JD?=
+ =?utf-8?B?dTc2WDhHdlYwZThHaXpnOUZhWjJiUzFLaHBMQjAxdSswWEt6MURyZndSRjcz?=
+ =?utf-8?B?K3JMbzdiSWdsU0JLamNkSytVZmlnbkk2VGJjQ0M1QnJiWUtxNEZwSktrYTl0?=
+ =?utf-8?B?K0xBb0N6cnZGRVRudmVTYnN5b1hYK2VpZC9IRUdYZWlNUFFKTHNVblk3aDdX?=
+ =?utf-8?B?MjJjMWNORTRDQ05tNnRmSmxSZHpyVEp1SlZLQXRtVmhGYzR5M1M5MlNySHdC?=
+ =?utf-8?B?b213ODlodGJDKzQ2QjRGR3NwUnBZT0loNXk1bjd2SC9HSy94d1V1L3ZWOTc2?=
+ =?utf-8?B?Z0pyNVBlUnlWZmc1a0tVQTB3Q2hrZ1ZvSnFxaWVPc01MV3lJK1hiUUl3Ty81?=
+ =?utf-8?B?RUs0OHZrTExFSUo5QUNaczI0dEFHVkl6SzExMUdHSGhPeHRBbVJ4Z0FqY08y?=
+ =?utf-8?B?c1BlNUVkd3lDc2wrTTM5c0MyRDBFdElBakZBSXdmOEZFYkV3M2RiUGdRM3la?=
+ =?utf-8?B?WXc1c2RURktialdxdXpvblhLQVc0NWFyeWd5dlZ4cWJuR3BYSHVJc1o0YXlB?=
+ =?utf-8?B?MVk2UlhrTDVaT3YrR1ZwUW44ZzBoUU9qNm51Vjk1TTd1bGRzUDJyL3drSjlN?=
+ =?utf-8?B?bVdBWjFWaHJRaURjRVZ6M1BGWlMzV0ZMUFp0VWpXWCtlREVFSzVTMFVpUThO?=
+ =?utf-8?B?ODBSWCtQTjR4UDVzbWhaN2tUeWlTaCs5Y2piV1VMTmEzYmlZRDhVRGVnMVpt?=
+ =?utf-8?B?Y3VkWkdJWndEZWVqdmxCUkxkUWFmbUdFYWdJUGVvYUU1SWtRbmhMNHFxS29r?=
+ =?utf-8?B?bkVpOXhvM2lRQzltMFdQeWpiMmY5c2dLMTVyR2N5QlM0T0tSZ3BLRVJGbmh5?=
+ =?utf-8?B?Vk5oRytVY1B5WDhpYm1LSGVja2JDakZaRGJTUUdrek8wWGlzYnNLZHlUWkNX?=
+ =?utf-8?B?NXgzVWh5TmlkZ0oyblBXMFhrTVcwT2taSHhpdjhVQ2hxc3Y5ZThwMDlTMWpZ?=
+ =?utf-8?B?cW9WWEE1SFRYcjkxaUkzZEh6MWlCZWtSM1RSNzc1VmFsemxmQS9YZlB6bFRs?=
+ =?utf-8?B?SUF1QTlBWGlka1BydmkrYk8zcS9WSk5INlJPMU5DeHg0NTBhaitHQVdaTlE5?=
+ =?utf-8?B?UmFydTRtVVBsTHF2czZrdFBTdk10OW5QVFBrTDI0Nng1elArMk9jMko4Z09I?=
+ =?utf-8?B?M1d0N1YwekdoeklkalBTZUpNRGJIaWZBQ1RVNGRuVnVES0llZjhUQzg5b3Zw?=
+ =?utf-8?B?emhjWmZYQ0oxTWRvM2lJL2R4alJTa091cms1cFV0bEZaSmczeldpUWxpbE9w?=
+ =?utf-8?B?eUZqUmlsMXQxQ2FnT3d0WEhnbWlqSHBCSjFmOWN3U21LbTFtWkdGN1JIaGli?=
+ =?utf-8?B?ZzNmZ1J5dS9zTUxsazlXNGptOTExNVVKTU5PdUpxa0Nld0kyVHpRcFBPVkZn?=
+ =?utf-8?Q?uRIU1DIduy0pxReUBoGEoZVTL?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-OriginatorOrg: wiwynn.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PS2PR04MB3592.apcprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3224ae80-7068-4358-b62b-08db874e96c0
+X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Jul 2023 05:19:40.9237
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: da6e0628-fc83-4caf-9dd2-73061cbab167
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Ve910NsuOtujws9mgn1sh99bGYmQDc4eFWK99NVzJFlxwVpO0MT2L67fZi5qjAFSTkb8PHZ4YZNNiZj4aH0n9Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: KL1PR04MB7134
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
         URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -87,136 +142,68 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 6/28/2023 3:53 PM, Souradeep Chowdhury wrote:
-> DCC(Data Capture and Compare) is a DMA engine designed for debugging purposes.
-> In case of a system crash or manual software triggers by the user the DCC hardware
-> stores the value at the register addresses which can be used for debugging purposes.
-> The DCC driver provides the user with debugfs interface to configure the register
-> addresses. The options that the DCC hardware provides include reading from registers,
-> writing to registers, first reading and then writing to registers and looping
-> through the values of the same register.
-> 
-> In certain cases a register write needs to be executed for accessing the rest of the
-> registers, also the user might want to record the changing values of a register with
-> time for which he has the option to use the loop feature.
-> 
-> The options mentioned above are exposed to the user by debugfs files once the driver
-> is probed. The details and usage of this debugfs files are documented in
-> Documentation/ABI/testing/debugfs-driver-dcc.
-> 
-> As an example let us consider a couple of debug scenarios where DCC has been proved to be
-> effective for debugging purposes:-
-> 
-> i)TimeStamp Related Issue
-> 
-> On SC7180, there was a coresight timestamp issue where it would occasionally be all 0
-> instead of proper timestamp values.
-> 
-> Proper timestamp:
-> Idx:3373; ID:10; I_TIMESTAMP : Timestamp.; Updated val = 0x13004d8f5b7aa; CC=0x9e
-> 
-> Zero timestamp:
-> Idx:3387; ID:10; I_TIMESTAMP : Timestamp.; Updated val = 0x0; CC=0xa2
-> 
-> Now this is a non-fatal issue and doesn't need a system reset, but still needs
-> to be rootcaused and fixed for those who do care about coresight etm traces.
-> Since this is a timestamp issue, we would be looking for any timestamp related
-> clocks and such.
-> 
-> We get all the clk register details from IP documentation and configure it
-> via DCC config_read debugfs node. Before that we set the current linked list.
-> 
-> /* Program the linked list with the addresses */
-> echo R 0x10c004 > /sys/kernel/debug/qcom-dcc/../3/config
-> echo R 0x10c008 > /sys/kernel/debug/qcom-dcc/../3/config
-> echo R 0x10c00c > /sys/kernel/debug/qcom-dcc/../3/config
-> echo R 0x10c010 > /sys/kernel/debug/qcom-dcc/../3/config
-> ..... and so on for other timestamp related clk registers
-> 
-> /* Other way of specifying is in "addr len" pair, in below case it
-> specifies to capture 4 words starting 0x10C004 */
-> 
-> echo R 0x10C004 4 > /sys/kernel/debug/qcom-dcc/../3/config_read
-> 
-> /* Enable DCC */
-> echo 1 > /sys/kernel/debug/qcom-dcc/../3/enable
-> 
-> /* Run the timestamp test for working case */
-> 
-> /* Send SW trigger */
-> echo 1 > /sys/kernel/debug/qcom-dcc/../trigger
-> 
-> /* Read SRAM */
-> cat /dev/dcc_sram > dcc_sram1.bin
-> 
-> /* Run the timestamp test for non-working case */
-> 
-> /* Send SW trigger */
-> echo 1 > /sys/kernel/debug/qcom-dcc/../trigger
-> 
-> /* Read SRAM */
-> cat /dev/dcc_sram > dcc_sram2.bin
-> 
-> Get the parser from [1] and checkout the latest branch.
-> 
-> /* Parse the SRAM bin */
-> python dcc_parser.py -s dcc_sram1.bin --v2 -o output/
-> python dcc_parser.py -s dcc_sram2.bin --v2 -o output/
-> 
-> Sample parsed output of dcc_sram1.bin:
-> 
-> <hwioDump version="1">
->           <timestamp>03/14/21</timestamp>
->               <generator>Linux DCC Parser</generator>
->                   <chip name="None" version="None">
->                   <register address="0x0010c004" value="0x80000000" />
->                   <register address="0x0010c008" value="0x00000008" />
->                   <register address="0x0010c00c" value="0x80004220" />
->                   <register address="0x0010c010" value="0x80000000" />
->               </chip>
->       <next_ll_offset>next_ll_offset : 0x1c </next_ll_offset>
-> </hwioDump>
-> 
-> ii)NOC register errors
-> 
-> A particular class of registers called NOC which are functional registers was reporting
-> errors while logging the values.To trace these errors the DCC has been used effectively.
-> The steps followed were similar to the ones mentioned above.
-> In addition to NOC registers a few other dependent registers were configured in DCC to
-> monitor it's values during a crash. A look at the dependent register values revealed that
-> the crash was happening due to a secured access to one of these dependent registers.
-> All these debugging activity and finding the root cause was achieved using DCC.
-> 
-> DCC parser is available at the following open source location
-> 
-> https://git.codelinaro.org/clo/le/platform/vendor/qcom-opensource/tools/-/tree/opensource-tools.lnx.1.0.r176-rel/dcc_parser
-> 
-> Changes in v25
-> 
-> * Updated the documentation of the structure dcc_config_entry as per the comments in V23
-> * Updated the documentation of the dcc Kconfig definition as per comment in V24
-> * Used u64 where applicable
-> * Removed the mutex locks where it is not needed
-> * Removed the use of unlikely keyword
-> * Renamed "nr_link_list" to "max_link_list"
-> 
-> Souradeep Chowdhury (3):
->    dt-bindings: misc: qcom,dcc: Add the dtschema
->    misc: dcc: Add driver support for Data Capture and Compare unit(DCC)
->    MAINTAINERS: Add the entry for DCC(Data Capture and Compare) driver
->      support
-> 
->   Documentation/ABI/testing/debugfs-driver-dcc  |   10 +-
->   .../devicetree/bindings/misc/qcom,dcc.yaml    |   44 +
->   MAINTAINERS                                   |    8 +
->   drivers/misc/Kconfig                          |    8 +
->   drivers/misc/Makefile                         |    1 +
->   drivers/misc/qcom-dcc.c                       | 1312 +++++++++++++++++
->   6 files changed, 1378 insertions(+), 5 deletions(-)
->   create mode 100644 Documentation/devicetree/bindings/misc/qcom,dcc.yaml
->   create mode 100644 drivers/misc/qcom-dcc.c
-> 
-
-Gentle ping
+DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogS3J6eXN6dG9mIEtvemxv
+d3NraSA8a3J6eXN6dG9mLmtvemxvd3NraUBsaW5hcm8ub3JnPg0KPiBTZW50OiBGcmlkYXksIEp1
+bHkgMTQsIDIwMjMgMTI6MTMgUE0NCj4gVG86IERlbHBoaW5lX0NDX0NoaXUvV1lIUS9XaXd5bm4g
+PERlbHBoaW5lX0NDX0NoaXVAd2l3eW5uLmNvbT47DQo+IHBhdHJpY2tAc3R3Y3gueHl6OyBBcm5k
+IEJlcmdtYW5uIDxhcm5kQGFybmRiLmRlPjsgT2xvZiBKb2hhbnNzb24NCj4gPG9sb2ZAbGl4b20u
+bmV0Pjsgc29jQGtlcm5lbC5vcmc7IFJvYiBIZXJyaW5nIDxyb2JoK2R0QGtlcm5lbC5vcmc+Ow0K
+PiBLcnp5c3p0b2YgS296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpK2R0QGxpbmFyby5vcmc+
+OyBDb25vciBEb29sZXkNCj4gPGNvbm9yK2R0QGtlcm5lbC5vcmc+OyBKb2VsIFN0YW5sZXkgPGpv
+ZWxAam1zLmlkLmF1PjsgQW5kcmV3IEplZmZlcnkNCj4gPGFuZHJld0Bhai5pZC5hdT4NCj4gQ2M6
+IGRldmljZXRyZWVAdmdlci5rZXJuZWwub3JnOyBsaW51eC1hcm0ta2VybmVsQGxpc3RzLmluZnJh
+ZGVhZC5vcmc7DQo+IGxpbnV4LWFzcGVlZEBsaXN0cy5vemxhYnMub3JnOyBsaW51eC1rZXJuZWxA
+dmdlci5rZXJuZWwub3JnDQo+IFN1YmplY3Q6IFJlOiBbUEFUQ0ggdjIgMi8yXSBBUk06IGR0czog
+YXNwZWVkOiB5b3NlbWl0ZXY0OiBhZGQgRmFjZWJvb2sNCj4gWW9zZW1pdGUgVjQgQk1DDQo+IA0K
+PiAgIFNlY3VyaXR5IFJlbWluZGVyOiBQbGVhc2UgYmUgYXdhcmUgdGhhdCB0aGlzIGVtYWlsIGlz
+IHNlbnQgYnkgYW4gZXh0ZXJuYWwNCj4gc2VuZGVyLg0KPiANCj4gT24gMTQvMDcvMjAyMyAwNDoz
+NSwgRGVscGhpbmUgQ0MgQ2hpdSB3cm90ZToNCj4gPiBBZGQgbGludXggZGV2aWNlIHRyZWUgZW50
+cnkgcmVsYXRlZCB0byBZb3NlbWl0ZSBWNCBzcGVjaWZpYyBkZXZpY2VzDQo+ID4gY29ubmVjdGVk
+IHRvIEJNQyBTb0MuDQo+ID4NCj4gPiBTaWduZWQtb2ZmLWJ5OiBEZWxwaGluZSBDQyBDaGl1IDxE
+ZWxwaGluZV9DQ19DaGl1QHdpd3lubi5jb20+DQo+ID4gLS0tDQo+ID4gIGFyY2gvYXJtL2Jvb3Qv
+ZHRzL01ha2VmaWxlICAgICAgICAgICAgICAgICAgICB8ICAgMSArDQo+ID4gIC4uLi9kdHMvYXNw
+ZWVkLWJtYy1mYWNlYm9vay15b3NlbWl0ZXY0LmR0cyAgICB8IDU3Nw0KPiArKysrKysrKysrKysr
+KysrKysNCj4gPiAgMiBmaWxlcyBjaGFuZ2VkLCA1NzggaW5zZXJ0aW9ucygrKQ0KPiA+ICBjcmVh
+dGUgbW9kZSAxMDA2NDQNCj4gPiBhcmNoL2FybS9ib290L2R0cy9hc3BlZWQtYm1jLWZhY2Vib29r
+LXlvc2VtaXRldjQuZHRzDQo+ID4NCj4gPiBkaWZmIC0tZ2l0IGEvYXJjaC9hcm0vYm9vdC9kdHMv
+TWFrZWZpbGUgYi9hcmNoL2FybS9ib290L2R0cy9NYWtlZmlsZQ0KPiA+IGluZGV4IDU5ODI5ZmM5
+MDMxNS4uODcxZTZkMjcxMjYyIDEwMDY0NA0KPiA+IC0tLSBhL2FyY2gvYXJtL2Jvb3QvZHRzL01h
+a2VmaWxlDQo+ID4gKysrIGIvYXJjaC9hcm0vYm9vdC9kdHMvTWFrZWZpbGUNCj4gPiBAQCAtMTYz
+MSw2ICsxNjMxLDcgQEAgZHRiLSQoQ09ORklHX0FSQ0hfQVNQRUVEKSArPSBcDQo+ID4gICAgICAg
+YXNwZWVkLWJtYy1mYWNlYm9vay1nYWxheHkxMDAuZHRiIFwNCj4gPiAgICAgICBhc3BlZWQtYm1j
+LWZhY2Vib29rLWdyZWF0bGFrZXMuZHRiIFwNCj4gPiAgICAgICBhc3BlZWQtYm1jLWZhY2Vib29r
+LW1pbmlwYWNrLmR0YiBcDQo+ID4gKyAgICAgYXNwZWVkLWJtYy1mYWNlYm9vay15b3NlbWl0ZXY0
+LmR0YiBcDQo+ID4gICAgICAgYXNwZWVkLWJtYy1mYWNlYm9vay10aW9nYXBhc3MuZHRiIFwNCj4g
+PiAgICAgICBhc3BlZWQtYm1jLWZhY2Vib29rLXdlZGdlNDAuZHRiIFwNCj4gPiAgICAgICBhc3Bl
+ZWQtYm1jLWZhY2Vib29rLXdlZGdlMTAwLmR0YiBcIGRpZmYgLS1naXQNCj4gPiBhL2FyY2gvYXJt
+L2Jvb3QvZHRzL2FzcGVlZC1ibWMtZmFjZWJvb2steW9zZW1pdGV2NC5kdHMNCj4gPiBiL2FyY2gv
+YXJtL2Jvb3QvZHRzL2FzcGVlZC1ibWMtZmFjZWJvb2steW9zZW1pdGV2NC5kdHMNCj4gPiBuZXcg
+ZmlsZSBtb2RlIDEwMDY0NA0KPiA+IGluZGV4IDAwMDAwMDAwMDAwMC4uY2ZlNDgzOGZhZTVhDQo+
+ID4gLS0tIC9kZXYvbnVsbA0KPiA+ICsrKyBiL2FyY2gvYXJtL2Jvb3QvZHRzL2FzcGVlZC1ibWMt
+ZmFjZWJvb2steW9zZW1pdGV2NC5kdHMNCj4gPiBAQCAtMCwwICsxLDU3NyBAQA0KPiA+ICsvLyBT
+UERYLUxpY2Vuc2UtSWRlbnRpZmllcjogR1BMLTIuMC1vci1sYXRlciAvLyBDb3B5cmlnaHQgMjAy
+Mg0KPiA+ICtGYWNlYm9vayBJbmMuDQo+ID4gKw0KPiA+ICsvZHRzLXYxLzsNCj4gPiArI2luY2x1
+ZGUgImFzcGVlZC1nNi5kdHNpIg0KPiA+ICsjaW5jbHVkZSA8ZHQtYmluZGluZ3MvZ3Bpby9hc3Bl
+ZWQtZ3Bpby5oPiAjaW5jbHVkZQ0KPiA+ICs8ZHQtYmluZGluZ3MvbGVkcy9sZWRzLXBjYTk1NXgu
+aD4NCj4gPiArI2luY2x1ZGUgPGR0LWJpbmRpbmdzL2kyYy9pMmMuaD4NCj4gPiArDQo+ID4gKy8g
+ew0KPiA+ICsgICAgIG1vZGVsID0gIkZhY2Vib29rIFlvc2VtaXRlIFY0IEJNQyI7DQo+ID4gKyAg
+ICAgY29tcGF0aWJsZSA9ICJmYWNlYm9vayx5b3NlbWl0ZXY0LWJtYyIsICJhc3BlZWQsYXN0MjYw
+MCI7DQo+ID4gKw0KPiA+ICsgICAgIGFsaWFzZXMgew0KPiA+ICsgICAgICAgICAgICAgc2VyaWFs
+NCA9ICZ1YXJ0NTsNCj4gPiArICAgICAgICAgICAgIHNlcmlhbDUgPSAmdWFydDY7DQo+ID4gKyAg
+ICAgICAgICAgICBzZXJpYWw2ID0gJnVhcnQ3Ow0KPiA+ICsgICAgICAgICAgICAgc2VyaWFsNyA9
+ICZ1YXJ0ODsNCj4gPiArICAgICAgICAgICAgIHNlcmlhbDggPSAmdWFydDk7DQo+ID4gKyAgICAg
+fTsNCj4gPiArDQo+ID4gKyAgICAgY2hvc2VuIHsNCj4gPiArICAgICAgICAgICAgIGJvb3Rhcmdz
+ID0gImNvbnNvbGU9dHR5UzQsNTc2MDBuOCI7DQo+IA0KPiBOb3RoaW5nIGltcHJvdmVkLCBzbyB5
+b3UganVzdCBpZ25vcmVkIGVudGlyZSBmZWVkYmFjayBhbmQgcmVzZW50IHRoZSBzYW1lLg0KSSBs
+b3N0IHN0ZG91dC1wYXRoIGZlZWRiYWNrLCBzbyBJJ2xsIHJldmlzZSB0byBmb2xsb3dpbmcgZm9y
+bWF0IGluIG5leHQgdmVyc2lvbiBjb250cmlidXRlOg0KY2hvc2VuIHsNCiAgICAgICAgICAgICAg
+IHN0ZG91dC1wYXRoID0gInNlcmlhbDQ6NTc2MDBuOCI7DQogICAgICB9Ow0KDQpBcyBmb3JtZXIg
+ZmVlZGJhY2sgbWVudGlvbmVkLCBJIGFsc28gcmV2aXNlIHRoZSBpMmMgZGV2aWNlIG5vZGUgbmFt
+ZXMgYnkgcmVmZXJlbmNpbmcgRFQgc3BlY2lmaWNhdGlvbi4NClRoZSBvbmx5IG5vZGUgbmFtZSBJ
+IHVzZWQgdGhhdCBub3Qgb24gdGhlIGxpc3QgaXMgInBvd2VyLXNlbnNvciIsDQp3aGljaCBpcyBm
+b2xsb3dpbmcgdGhlIGV4YW1wbGUgdW5kZXIgRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRp
+bmdzLg0KDQpNb3N0IG9mIHRoZSBvdGhlciBwYXJ0aXRpb24gaW4gRFRTIGlzIHNhbWUgYXMgdGhl
+IHJlY2VudC1jb250cmlidXRlZCBwcm9qZWN0Lg0KV291bGQgeW91IHBsZWFzZSB0byB0ZWxsIGlm
+IHRoZXJlJ3Mgc3RpbGwgc29tZSBvbWlzc2lvbnMgSSBtYWRlLg0KVGhhbmsgeW91IGZvciByZXZp
+ZXdpbmcuDQo+IA0KPiBTb3JyeSwgdGhhdCdzIG5vdCBob3cgcmVzcG9uZGluZyB0byBmZWVkYmFj
+ayB3b3Jrcy4NCj4gDQo+IE5BSw0KPiANCj4gQmVzdCByZWdhcmRzLA0KPiBLcnp5c3p0b2YNCg0K
