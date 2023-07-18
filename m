@@ -2,61 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C396C7581F1
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 18:20:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7845C75823F
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 18:37:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231164AbjGRQUb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jul 2023 12:20:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38504 "EHLO
+        id S232172AbjGRQh1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jul 2023 12:37:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48560 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229524AbjGRQUb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 12:20:31 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8FB73E0;
-        Tue, 18 Jul 2023 09:20:29 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 2CAFB615E4;
-        Tue, 18 Jul 2023 16:20:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A43C6C433C8;
-        Tue, 18 Jul 2023 16:20:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689697228;
-        bh=c2kq9yglTyBKkN+7oETy1EDzjSuSLPZJWdny+o8VQ/o=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=XOPUAa+eM/tTEsH8tdvIg98C482Th52LWsYb76BnmMIgZuSXapxbuprHsiEa/rryS
-         AhwTyreo6R6Xk556bDH47DjRdm8aj1UQ0D+hbnC+klT5lbWSIbXnUADzWuFKpf57LE
-         xvd1P1URcwAHdRt6A58V4LgmREB0wM98hjoGwpayBqihkWyjMtxjEPW70DypGJ1tmZ
-         qAGDkbOl1kbTx5hqWp0y1a26P09uBi5b4o8VdqYb5jb8JTz0tjeXrXbFsC7lyzYRQC
-         7C9LubKovEEw5jM96iJrP9Jg+IW0su5Uoj4vhppFVhdYJyoBe2mTEwOTYCAj5NB6am
-         0Z+rN207FLhvQ==
-Date:   Tue, 18 Jul 2023 09:23:52 -0700
-From:   Bjorn Andersson <andersson@kernel.org>
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     Johan Hovold <johan@kernel.org>, Andy Gross <agross@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S231786AbjGRQh1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 12:37:27 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24E3210C;
+        Tue, 18 Jul 2023 09:37:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1689698245; x=1721234245;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=4NUpTJzBo4VjuMeFqhZjHQR0CDQrSitP9tTknt3O5eA=;
+  b=AKuRbBQ7ennWt3mKQEaPOKDeqrzyJV2wQPYcYODRO7Jav9QXOYu0nYpr
+   XaDJMOQ0YoNAPYVTIKnZNnbkRTQhHt3lXYnJ06RLhAwOabcr5weVILPhr
+   G5+AZek+t0146K9tybBgcsSOa0h0uXIJYCEOboMGC7N84zUdvbrcT1hL4
+   F8g3VQbgHLNYGh8bzWnTw1d4iFq+myZxvHAsSCJvbb7992Sr7nKA8OZXY
+   Y5rLLCK8nvY69SRunn2nG8ZblgfM63L+0IHtWTDHiF8A+m3lTzCBlsF2i
+   Bm8MgL+DsPCW/K7umfqaoxGmgJBdtahNoxD50guDWRy5wotsOjwMIcrWn
+   w==;
+X-IronPort-AV: E=Sophos;i="6.01,214,1684825200"; 
+   d="scan'208";a="236269369"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 18 Jul 2023 09:37:25 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Tue, 18 Jul 2023 09:37:25 -0700
+Received: from [10.159.245.205] (10.10.115.15) by chn-vm-ex03.mchp-main.com
+ (10.10.85.151) with Microsoft SMTP Server id 15.1.2507.21 via Frontend
+ Transport; Tue, 18 Jul 2023 09:37:23 -0700
+Message-ID: <31e4da6a-44ab-5c0a-ae32-c0fcf09d7cb8@microchip.com>
+Date:   Tue, 18 Jul 2023 18:37:22 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH] ARM: dts: at91-vinco: Fix "status" values
+Content-Language: en-US, fr-FR
+To:     Rob Herring <robh@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 03/15] clk: qcom: gcc-sm6375: Unregister critical clocks
-Message-ID: <ybugl2m7o5cnzj4lv5ksit2rip6yvths5ieo3xlw6cycto2zax@2jimga475z2t>
-References: <20230717-topic-branch_aon_cleanup-v1-0-27784d27a4f4@linaro.org>
- <20230717-topic-branch_aon_cleanup-v1-3-27784d27a4f4@linaro.org>
- <ZLaRtrH85v4kpSvb@hovoldconsulting.com>
- <33a26241-026a-9466-5dd6-e3202b29f57c@linaro.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <33a26241-026a-9466-5dd6-e3202b29f57c@linaro.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Claudiu Beznea <claudiu.beznea@tuxon.dev>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20230626221010.3946263-1-robh@kernel.org>
+From:   Nicolas Ferre <nicolas.ferre@microchip.com>
+Organization: microchip
+In-Reply-To: <20230626221010.3946263-1-robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -64,47 +71,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 18, 2023 at 03:26:51PM +0200, Konrad Dybcio wrote:
-> On 18.07.2023 15:20, Johan Hovold wrote:
-> > On Mon, Jul 17, 2023 at 05:19:10PM +0200, Konrad Dybcio wrote:
-> >> Some clocks need to be always-on, but we don't really do anything
-> >> with them, other than calling enable() once and telling Linux they're
-> >> enabled.
-> >>
-> >> Unregister them to save a couple of bytes and, perhaps more
-> >> importantly, allow for runtime suspend of the clock controller device,
-> >> as CLK_IS_CRITICAL prevents the latter.
-> > 
-> > But this doesn't sound right. How can you disable a controller which
-> > still has clocks enabled?
-> > 
-> > Shouldn't instead these clocks be modelled properly so that they are
-> > only enabled when actually needed?
-> Hm.. We do have clk_branch2_aon_ops, but something still needs to
-> toggle these clocks.
+On 27/06/2023 at 00:10, Rob Herring wrote:
+> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+> 
+> The defined value for "status" is "disabled", not "disable".
+> 
+> Signed-off-by: Rob Herring <robh@kernel.org>
+
+Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
+We'll queue the patch in our tree (and linux-next) soon (tm).
+Best regards,
+   Nicolas
+
+> ---
+>   arch/arm/boot/dts/microchip/at91-vinco.dts | 4 ++--
+>   1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/microchip/at91-vinco.dts b/arch/arm/boot/dts/microchip/at91-vinco.dts
+> index ebeaa6ab500e..ecbdacf48708 100644
+> --- a/arch/arm/boot/dts/microchip/at91-vinco.dts
+> +++ b/arch/arm/boot/dts/microchip/at91-vinco.dts
+> @@ -159,7 +159,7 @@ usb0: gadget@400000 {
+>                          atmel,vbus-gpio = <&pioE 31 GPIO_ACTIVE_HIGH>;
+>                          pinctrl-names = "default";
+>                          pinctrl-0 = <&pinctrl_usba_vbus>;
+> -                       status = "disable";
+> +                       status = "disabled";
+>                  };
+> 
+>                  usb1: ohci@500000 {
+> @@ -168,7 +168,7 @@ usb1: ohci@500000 {
+>                                             &pioE 11 GPIO_ACTIVE_LOW
+>                                             &pioE 12 GPIO_ACTIVE_LOW
+>                                            >;
+> -                       status = "disable";
+> +                       status = "disabled";
+>                  };
+> 
+>                  usb2: ehci@600000 {
+> --
+> 2.40.1
 > 
 
-Before we started replacing these clocks with static votes, I handled
-exactly this problem in the turingcc-qcs404 driver by registering the
-ahb clock with a pm_clk_add(). The clock framework will then
-automagically keep the clock enabled around operations, but it will also
-keep the runtime state active as long as the clock is prepared.
-
-As mentioned in an earlier reply today, there's no similarity to this in
-the reset or gdsc code, so we'd need to add that in order to rely on
-such mechanism.
-
-> I *think* we could leave a permanent vote in probe() without breaking
-> runtime pm! I'll give it a spin bit later..
-> 
-
-Modelling the AHB clock in DT and putting a devm_clk_get_enabled() would
-properly connect the two, and thereby handle probe order between the two
-clock controllers.
-
-But it would prevent the power-domain of the parent provider to ever
-suspending. Using pm_clk_add() this would at least depend on client
-votes.
-
-Regards,
-Bjorn
