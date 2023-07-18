@@ -2,86 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 85B55757837
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 11:40:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6291A75783C
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 11:40:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230006AbjGRJkX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jul 2023 05:40:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41892 "EHLO
+        id S232324AbjGRJkp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jul 2023 05:40:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42278 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229539AbjGRJkX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 05:40:23 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E28CCF;
-        Tue, 18 Jul 2023 02:40:22 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id C7D3C614E7;
-        Tue, 18 Jul 2023 09:40:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 20170C433C7;
-        Tue, 18 Jul 2023 09:40:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689673221;
-        bh=x05fxWji0pGy8d80G1xA5AXaI6ePVQmTbAx17r27qCk=;
-        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-        b=COeDB4+RzjXFjkSkV124rZEEyKBXhQloqdxJppljtAVFtL7skppLesz2tOT775d1L
-         IU+/jdLnB0Pf5vmnRsLzm3G9oxNYsYE84SIazt/Ol5wnIhJzK5Y5z3H8QOeGpZ6ydd
-         p6V/w6anFK5m2ZNt95lQenyFPhtJDysKIZRgdzGn0MS+shRXuJOCTz4UrjNaueqdz3
-         mKzlP31E5DOZKJ8wofAVXOmxgS+zl/y3jZ7me+LXe8Rr7ZyYQqi4hrS7DdX4mdgd2f
-         jTCcjQuuXzf5EwEtAmeayqjHTi1NHC6+WtFwKcY3JR89yzpeB0eJTt9HV2SKQ0NlAM
-         IQ/DvD6lb6qyA==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 08297C64458;
-        Tue, 18 Jul 2023 09:40:21 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S231992AbjGRJkn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 05:40:43 -0400
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D5F1E5F
+        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 02:40:40 -0700 (PDT)
+Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-99454855de1so481927266b.2
+        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 02:40:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1689673239; x=1692265239;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=M0N8btKrBEl8US0muPWkTHrV3A+jfker/XqFXbKhuNM=;
+        b=LiktnGMdMBgcrwGwBd55VnfmVE4V3+RMVccoWw1Whzak1pjDcIQtAermeh3RUAk7ol
+         Mu4FMjXKSp7ZY70SbVCPFwoKmFS51bLCwiZL1UqkrCaHMY2yunR5qSwKmcir9D0s5zCP
+         /kpXFTlhK4chBS5+jG7gYGiY6LeRuTWFVzM1f5z2t62jRSkpif4FTaXl73IlhLkHa30C
+         SdGowawyPq9EwUkJVdOXfNqk33FWSdBJK2vEL/gWDFm45BDv+kp9w8zTWqNLg3Ok6MwI
+         C/Z9p05zUD7wl5fpCZa8ay0ZmDhkjI/wXQs0nH58pjvJ/lSznudtW6WVAHx+C6J8d1mW
+         iw8Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689673239; x=1692265239;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=M0N8btKrBEl8US0muPWkTHrV3A+jfker/XqFXbKhuNM=;
+        b=W1+m2T6XtD1fNVFj4pr6HetsVrQzhg+YEnZO1DNxVFrJzb+5kfnQC4Xb9BgLCcM+Rx
+         tY8VdI9iNViMNj3bWOc7qTP9C4EqwmTcZSc2zppr2E//ejxBqxHoD5kJxavNyGegqvuJ
+         ZJuAswUXsecJoPQEfWX+2DL1cLgr3iZFo2Otb38GCB16bxRSwllyeJFYpnwviPKEdxAO
+         Onigz2a5fPWlvs+iPUDclJLJF1JThEs53ww0+ltPwPbAHBRy2bOAYZ6p4K8vk1dsOh3Q
+         Fo/iTYdkwmQo3gB2gOAyhqHLqjYAC952HrcSCFEKWkcxVif86kckSfhOuZbYOscsseJm
+         taCA==
+X-Gm-Message-State: ABy/qLa+Ak2r/C8FHADq9/0a/JzTisQRTIA1NRsHRRrWseTl8kWxd1tD
+        DI8yqRbyhYpF25CGzDEv2s+e3g==
+X-Google-Smtp-Source: APBJJlE29PdR8LOpeQCVpY3BGmHmGV2bndVirQX9jqE36YcbNr53bhsq+2ZlKH7NGxw1s1x3ODVrMg==
+X-Received: by 2002:a17:906:739e:b0:993:e752:1a71 with SMTP id f30-20020a170906739e00b00993e7521a71mr14389092ejl.9.1689673238920;
+        Tue, 18 Jul 2023 02:40:38 -0700 (PDT)
+Received: from [192.168.1.194] ([5.133.47.210])
+        by smtp.googlemail.com with ESMTPSA id l22-20020a170906231600b00992e4d8cc89sm800293eja.57.2023.07.18.02.40.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 18 Jul 2023 02:40:38 -0700 (PDT)
+Message-ID: <76c99543-4f77-38c2-5940-517f2715060d@linaro.org>
+Date:   Tue, 18 Jul 2023 10:40:37 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH] ptp: Explicitly include correct DT includes
-From:   patchwork-bot+netdevbpf@kernel.org
-Message-Id: <168967322103.6242.11585020932076868614.git-patchwork-notify@kernel.org>
-Date:   Tue, 18 Jul 2023 09:40:21 +0000
-References: <20230714174922.4063153-1-robh@kernel.org>
-In-Reply-To: <20230714174922.4063153-1-robh@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     richardcochran@gmail.com, yangbo.lu@nxp.com,
-        devicetree@vger.kernel.org, netdev@vger.kernel.org,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH] arm64: dts: qcom: sm8450-hdk: add other analogue
+ microphones
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20230717143824.203352-1-krzysztof.kozlowski@linaro.org>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+In-Reply-To: <20230717143824.203352-1-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello:
 
-This patch was applied to netdev/net-next.git (main)
-by Paolo Abeni <pabeni@redhat.com>:
 
-On Fri, 14 Jul 2023 11:49:22 -0600 you wrote:
-> The DT of_device.h and of_platform.h date back to the separate
-> of_platform_bus_type before it as merged into the regular platform bus.
-> As part of that merge prepping Arm DT support 13 years ago, they
-> "temporarily" include each other. They also include platform_device.h
-> and of.h. As a result, there's a pretty much random mix of those include
-> files used throughout the tree. In order to detangle these headers and
-> replace the implicit includes with struct declarations, users need to
-> explicitly include the correct includes.
+On 17/07/2023 15:38, Krzysztof Kozlowski wrote:
+> Add proper audio routes for onboard analogue microphones: AMIC[1345].
+> Use also new DAPM input widget (TX SWR_INPUTn) for them, not the
+> deprecated ADC one.  Change is not compatible with older kernels not
+> having the new SWR_INPUTn input widget.
 > 
-> [...]
+> Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> ---
+> 
+> Depends on ASoC driver changes:
+> https://lore.kernel.org/alsa-devel/20230717140138.201745-1-krzysztof.kozlowski@linaro.org/T/#t
+> This patch should wait till respective ASoC changes got merged.
+> ---
+>   arch/arm64/boot/dts/qcom/sm8450-hdk.dts | 23 ++++++++++++++++-------
+>   1 file changed, 16 insertions(+), 7 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm8450-hdk.dts b/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
+> index bd5e8181f2aa..9bd1ef401ca3 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
+> +++ b/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
+> @@ -915,14 +915,23 @@ &sound {
+>   			"SpkrRight IN", "WSA_SPK2 OUT",
+>   			"IN1_HPHL", "HPHL_OUT",
+>   			"IN2_HPHR", "HPHR_OUT",
+> +			"AMIC1", "MIC BIAS1",
+>   			"AMIC2", "MIC BIAS2",
+> -			"VA DMIC0", "MIC BIAS1",
+> -			"VA DMIC1", "MIC BIAS1",
+> -			"VA DMIC2", "MIC BIAS3",
+> -			"TX DMIC0", "MIC BIAS1",
+> -			"TX DMIC1", "MIC BIAS2",
+> -			"TX DMIC2", "MIC BIAS3",
+> -			"TX SWR_ADC1", "ADC2_OUTPUT";
+> +			"AMIC3", "MIC BIAS3",
+> +			"AMIC4", "MIC BIAS3",
+> +			"AMIC5", "MIC BIAS4",
+These should reflect the board-level wiring of MIC BIAS, are you sure 
+that this is how the hdk is wired up?
 
-Here is the summary with links:
-  - ptp: Explicitly include correct DT includes
-    https://git.kernel.org/netdev/net-next/c/9ffc4de5c695
+> +			"VA DMIC0", "MIC BIAS3",
+> +			"VA DMIC1", "MIC BIAS3",
+> +			"VA DMIC2", "MIC BIAS1",
+> +			"VA DMIC3", "MIC BIAS1",
+> +			"TX DMIC0", "MIC BIAS3",
+> +			"TX DMIC1", "MIC BIAS3",
+> +			"TX DMIC2", "MIC BIAS1",
+> +			"TX DMIC3", "MIC BIAS1",
+Same here.
 
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
-
+--srini
+> +			"TX SWR_INPUT0", "ADC1_OUTPUT",
+> +			"TX SWR_INPUT1", "ADC2_OUTPUT",
+> +			"TX SWR_INPUT2", "ADC3_OUTPUT",
+> +			"TX SWR_INPUT3", "ADC4_OUTPUT";
+>   
+>   	wcd-playback-dai-link {
+>   		link-name = "WCD Playback";
