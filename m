@@ -2,90 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E5257577FD
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 11:28:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EE8E075780F
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 11:31:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232242AbjGRJ2J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jul 2023 05:28:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35488 "EHLO
+        id S231935AbjGRJbQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jul 2023 05:31:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37522 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232316AbjGRJ2G (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 05:28:06 -0400
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20984186
-        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 02:27:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1689672438;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=z0vyMeOfw7fSC/qxKnZBBj+xlz8lL8pZMksMNnnuzCg=;
-        b=K7TqF0DNUlcG9za22J4Zz7DRxNCZQ3nix1UAh2gErwSgekXMLIhPvNGwNCQqqTFyNMdwhy
-        etWVYGfmGf6QJaOGaHpOHCzwxkezWulucN8FEtJUtDoprmEn3RA4SZglG0Xt8+fe/Ddwi5
-        FG/j3EbMWqoPAJ0KlAKvKiRo6VXdn0A=
-Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com
- [209.85.219.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-7-QyIh9JVXNGi5WP5aPK7zig-1; Tue, 18 Jul 2023 05:27:16 -0400
-X-MC-Unique: QyIh9JVXNGi5WP5aPK7zig-1
-Received: by mail-qv1-f70.google.com with SMTP id 6a1803df08f44-63c9463c116so5251366d6.0
-        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 02:27:16 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689672436; x=1690277236;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=z0vyMeOfw7fSC/qxKnZBBj+xlz8lL8pZMksMNnnuzCg=;
-        b=D2YhhyBiCpZZlZx9BDYac27PqbE7682MbBCkxKWqZiJoQDUvczRQnYb6xC6z+D5uH7
-         NqtZtRnDPu6TK8L8187j3q6veARoKgU8fp0mj4IsT7WH6J97RokAy3B8ZphvHzu6U/2f
-         0xIQIarVDiqzc5JwUnjpgC0/67dHDt/YyzKmJpP4DsMW9xMczaR8Bh6RsgqBbV4Nq67N
-         ciyYU2nQ8XKsiuXrrrbuNWWzHxiNT/Q8ThFX4WKnc3Dp1IovnDeo9GOL8k1Xbj2tpidR
-         HkB+oQPsAznkHwOUBxHtZnX/7XLSFazgz9RrW0iy59CqMcciGQ1ZId3HniFShm+zHcH6
-         8e2g==
-X-Gm-Message-State: ABy/qLaWgo2Oh71pLykohXmnSkhTr6P+PjiiscgeayOe1U/eu1l6bJqZ
-        bhfGp4vJoKxPXxIqndcUzMB87Pd3ucCgreoQw424pr3b+XluHe62fDWpuo52bCYbrK9vCIRomHV
-        fr1FnY1/Z0W/durS6Q05/VA==
-X-Received: by 2002:a05:6214:509d:b0:63c:7427:e7e9 with SMTP id kk29-20020a056214509d00b0063c7427e7e9mr12261346qvb.6.1689672436181;
-        Tue, 18 Jul 2023 02:27:16 -0700 (PDT)
-X-Google-Smtp-Source: APBJJlFYFNw7x3jThmvZICEe6iXFu0qG+zQql7vEpRKMvc0qVPxJUK7o8zW+ji84Z85dUEkIw+qD2g==
-X-Received: by 2002:a05:6214:509d:b0:63c:7427:e7e9 with SMTP id kk29-20020a056214509d00b0063c7427e7e9mr12261327qvb.6.1689672435965;
-        Tue, 18 Jul 2023 02:27:15 -0700 (PDT)
-Received: from gerbillo.redhat.com (146-241-226-170.dyn.eolo.it. [146.241.226.170])
-        by smtp.gmail.com with ESMTPSA id h10-20020a0cf20a000000b00635fc10afd6sm592785qvk.70.2023.07.18.02.27.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 Jul 2023 02:27:15 -0700 (PDT)
-Message-ID: <ee31215ededd386eba19fb62b0de8d0bad78d687.camel@redhat.com>
-Subject: Re: [PATCH] net: Explicitly include correct DT includes
-From:   Paolo Abeni <pabeni@redhat.com>
-To:     Alex Elder <elder@ieee.org>, Rob Herring <robh@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>, Alex Elder <elder@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-can@vger.kernel.org,
-        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-mediatek@lists.infradead.org, linuxppc-dev@lists.ozlabs.org,
-        linux-renesas-soc@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-amlogic@lists.infradead.org, linux-oxnas@groups.io,
-        linux-tegra@vger.kernel.org, linux-omap@vger.kernel.org,
-        linux-wpan@vger.kernel.org, ath10k@lists.infradead.org,
-        linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
-        wcn36xx@lists.infradead.org
-Date:   Tue, 18 Jul 2023 11:27:10 +0200
-In-Reply-To: <1c6175fc-496a-843c-c8c5-2173e065eaa8@ieee.org>
-References: <20230714174809.4060885-1-robh@kernel.org>
-         <1c6175fc-496a-843c-c8c5-2173e065eaa8@ieee.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4 (3.46.4-1.fc37) 
+        with ESMTP id S232326AbjGRJbI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 05:31:08 -0400
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0438CE60
+        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 02:31:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1689672665; x=1721208665;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=57+ullO1ijISCv2nmZbVaR8CKu2emO90qj71uBLQ9hU=;
+  b=niguQ2bkCWDWvE9eOgimRyedhd4L/qPU+gDJpolwAwkAB/zmxQAT2TCD
+   KYAdUJyhwHW8k7NCx+WKdrBN5LcnMbZIlwfU2PbKR8TfQfZ+19+8NBoh0
+   f2i7A+bA4oEDD50WvFUyipbRkrnvfhfPYFVUi84dd7IHn4KNvSLF/18Bb
+   EQFeCT+sKND+lKUoQWczysBTRUSjS3MXm0UOXJCybBTw2U0l92eUi10N7
+   Gx2crWihdoxnRchW047Sz3uhO5X9t6nLn1STYI0mVa0lWJy+Yh6ONKVMq
+   PlG0Ax+yoTnFbZoBGKxS1OvLQdOFlqR6o1+GhJP+eaaMYvZxBXXNDauQr
+   A==;
+X-IronPort-AV: E=Sophos;i="6.01,213,1684792800"; 
+   d="scan'208";a="31982646"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 18 Jul 2023 11:31:02 +0200
+Received: from steina-w.localnet (unknown [10.123.53.21])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 1428F280078;
+        Tue, 18 Jul 2023 11:31:02 +0200 (CEST)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Ying Liu <victor.liu@nxp.com>
+Cc:     "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "rfoss@kernel.org" <rfoss@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "jonas@kwiboo.se" <jonas@kwiboo.se>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "jernej.skrabec@gmail.com" <jernej.skrabec@gmail.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "Laurent.pinchart@ideasonboard.com" 
+        <Laurent.pinchart@ideasonboard.com>,
+        "andrzej.hajda@intel.com" <andrzej.hajda@intel.com>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        dl-linux-imx <linux-imx@nxp.com>
+Subject: Re: [PATCH 9/9] drm/bridge: imx: Add i.MX93 MIPI DSI support
+Date:   Tue, 18 Jul 2023 11:31:01 +0200
+Message-ID: <8287028.NyiUUSuA9g@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <DB8PR04MB7051324184846E6206E495BF9838A@DB8PR04MB7051.eurprd04.prod.outlook.com>
+References: <20230717061831.1826878-1-victor.liu@nxp.com> <3174425.5fSG56mABF@steina-w> <DB8PR04MB7051324184846E6206E495BF9838A@DB8PR04MB7051.eurprd04.prod.outlook.com>
 MIME-Version: 1.0
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -94,33 +78,274 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hi,
 
-On Sat, 2023-07-15 at 10:11 -0500, Alex Elder wrote:
-> On 7/14/23 12:48 PM, Rob Herring wrote:
-> > The DT of_device.h and of_platform.h date back to the separate
-> > of_platform_bus_type before it as merged into the regular platform bus.
-> > As part of that merge prepping Arm DT support 13 years ago, they
-> > "temporarily" include each other. They also include platform_device.h
-> > and of.h. As a result, there's a pretty much random mix of those includ=
-e
-> > files used throughout the tree. In order to detangle these headers and
-> > replace the implicit includes with struct declarations, users need to
-> > explicitly include the correct includes.
+Am Dienstag, 18. Juli 2023, 11:00:25 CEST schrieb Ying Liu:
+> On Tuesday, July 18, 2023 3:49 PM Alexander Stein <alexander.stein@ew.tq-
+group.com> wrote:
+> > Hi,
+>=20
+> Hi,
+>=20
+> > thanks for the patch.
+>=20
+> Thanks for your review.
+>=20
+> > Am Montag, 17. Juli 2023, 08:18:31 CEST schrieb Liu Ying:
+> > > Freescale i.MX93 SoC embeds a Synopsys Designware MIPI DSI host
+> > > controller and a Synopsys Designware MIPI DPHY.  Some configurations
+> > > and extensions to them are controlled by i.MX93 media blk-ctrl.
+> > >=20
+> > > Add a DRM bridge for i.MX93 MIPI DSI by using existing DW MIPI DSI
+> > > bridge helpers and implementing i.MX93 MIPI DSI specific extensions.
+> > >=20
+> > > Signed-off-by: Liu Ying <victor.liu@nxp.com>
+> > > ---
+> > >=20
+> > >  drivers/gpu/drm/bridge/imx/Kconfig          |  10 +
+> > >  drivers/gpu/drm/bridge/imx/Makefile         |   1 +
+> > >  drivers/gpu/drm/bridge/imx/imx93-mipi-dsi.c | 934
 > >=20
-> > Signed-off-by: Rob Herring <robh@kernel.org>
+> > ++++++++++++++++++++
+> >=20
+> > >  3 files changed, 945 insertions(+)
+> > >  create mode 100644 drivers/gpu/drm/bridge/imx/imx93-mipi-dsi.c
+> > >=20
+> > > diff --git a/drivers/gpu/drm/bridge/imx/Kconfig
+> > > b/drivers/gpu/drm/bridge/imx/Kconfig index
+> >=20
+> > 9fae28db6aa7..5182298c7182
+> >=20
+> > > 100644
+> > > --- a/drivers/gpu/drm/bridge/imx/Kconfig
+> > > +++ b/drivers/gpu/drm/bridge/imx/Kconfig
+> > > @@ -49,4 +49,14 @@ config DRM_IMX8QXP_PIXEL_LINK_TO_DPI
+> > >=20
+> > >       Choose this to enable pixel link to display pixel
+> >=20
+> > interface(PXL2DPI)
+> >=20
+> > >       found in Freescale i.MX8qxp processor.
+> > >=20
+> > > +config DRM_IMX93_MIPI_DSI
+> > > +   tristate "Freescale i.MX93 specific extensions for Synopsys DW MI=
+PI
+> >=20
+> > DSI"
+> >=20
+> > > +   depends on OF
+> > > +   depends on COMMON_CLK
+> > > +   select DRM_DW_MIPI_DSI
+> > > +   select GENERIC_PHY_MIPI_DPHY
+> > > +   help
+> > > +     Choose this to enable MIPI DSI controller found in Freescale
+> >=20
+> > i.MX93
+> >=20
+> > > +     processor.
+> > > +
+> > >=20
+> > >  endif # ARCH_MXC || COMPILE_TEST
+> > >=20
+> > > diff --git a/drivers/gpu/drm/bridge/imx/Makefile
+> > > b/drivers/gpu/drm/bridge/imx/Makefile index
+> >=20
+> > 8e2ebf3399a1..2b0c2e44aa1b
+> >=20
+> > > 100644
+> > > --- a/drivers/gpu/drm/bridge/imx/Makefile
+> > > +++ b/drivers/gpu/drm/bridge/imx/Makefile
+> > > @@ -4,3 +4,4 @@ obj-$(CONFIG_DRM_IMX8QXP_LDB) +=3D imx8qxp-ldb.o
+> > >=20
+> > >  obj-$(CONFIG_DRM_IMX8QXP_PIXEL_COMBINER) +=3D imx8qxp-pixel-
+> >=20
+> > combiner.o
+> >=20
+> > >  obj-$(CONFIG_DRM_IMX8QXP_PIXEL_LINK) +=3D imx8qxp-pixel-link.o
+> > >  obj-$(CONFIG_DRM_IMX8QXP_PIXEL_LINK_TO_DPI) +=3D imx8qxp-pxl2dpi.o
+> > >=20
+> > > +obj-$(CONFIG_DRM_IMX93_MIPI_DSI) +=3D imx93-mipi-dsi.o
+> > > diff --git a/drivers/gpu/drm/bridge/imx/imx93-mipi-dsi.c
+> > > b/drivers/gpu/drm/bridge/imx/imx93-mipi-dsi.c new file mode 100644
+> > > index 000000000000..77f59e3407a0
+> > > --- /dev/null
+> > > +++ b/drivers/gpu/drm/bridge/imx/imx93-mipi-dsi.c
+> > >=20
+> > > [snip]
+> > >=20
+> > > +static int imx93_dsi_probe(struct platform_device *pdev)
+> > > +{
+> > > +   struct device *dev =3D &pdev->dev;
+> > > +   struct device_node *np =3D dev->of_node;
+> > > +   struct imx93_dsi *dsi;
+> > > +   int ret;
+> > > +
+> > > +   dsi =3D devm_kzalloc(dev, sizeof(*dsi), GFP_KERNEL);
+> > > +   if (!dsi)
+> > > +           return -ENOMEM;
+> > > +
+> > > +   dsi->regmap =3D syscon_regmap_lookup_by_phandle(np, "fsl,media-
+> >=20
+> > blk-
+> > ctrl");
+> >=20
+> > > +   if (IS_ERR(dsi->regmap)) {
+> > > +           ret =3D PTR_ERR(dsi->regmap);
+> >=20
+> > > +           DRM_DEV_ERROR(dev, "failed to get block ctrl regmap:
+> > %d\n", ret);
+> >=20
+> > Could you use dev_err_probe here instead?
 >=20
-> (I significantly reduced the addressee list to permit the message
-> to be sent.)
+> Maybe, it's better to keep using DRM_DEV_ERROR to achieve consistent
+> error log format across the driver which is implemented in drm_dev_printk=
+().
+> I see other DRM drivers do the same.
+
+I see your point. On the other hand the benefit of dev_err_probe() is that =
+the=20
+message of deferred probe can be seen in /sys/kernel/debug/devices_deferred.
+Your check against EPROBE_DEFER will hide the message if something is not=20
+correct.
+
+Maybe a to be introduced DRM_DEV_ERROR_PROBE might be useful.
+
+Best regards,
+Alexander
+
+> > > +           return ret;
+> > > +   }
+> > > +
+> > > +   dsi->clk_pixel =3D devm_clk_get(dev, "pix");
+> > > +   if (IS_ERR(dsi->clk_pixel)) {
+> > > +           ret =3D PTR_ERR(dsi->clk_pixel);
+> > > +           if (ret !=3D -EPROBE_DEFER)
+> >=20
+> > > +                   DRM_DEV_ERROR(dev, "failed to get pixel clock:
+> > %d\n", ret);
+> >=20
+> > Could you use dev_err_probe here instead?
 >=20
-> For "drivers/net/ipa/ipa_main.c":
+> Ditto.
 >=20
-> Acked-by: Alex Elder <elder@linaro.org>
+> > > +           return ret;
+> > > +   }
+> > > +
+> > > +   dsi->clk_cfg =3D devm_clk_get(dev, "phy_cfg");
+> > > +   if (IS_ERR(dsi->clk_cfg)) {
+> > > +           ret =3D PTR_ERR(dsi->clk_cfg);
+> > > +           if (ret !=3D -EPROBE_DEFER)
+> >=20
+> > > +                   DRM_DEV_ERROR(dev, "failed to get phy cfg clock:
+> > %d\n", ret);
+> >=20
+> > > +           return ret;
+> > > +   }
+> > > +
+> > > +   dsi->clk_ref =3D devm_clk_get(dev, "phy_ref");
+> > > +   if (IS_ERR(dsi->clk_ref)) {
+> > > +           ret =3D PTR_ERR(dsi->clk_ref);
+> > > +           if (ret !=3D -EPROBE_DEFER)
+> >=20
+> > > +                   DRM_DEV_ERROR(dev, "failed to get phy ref clock:
+> > %d\n", ret);
+> >=20
+> > Could you use dev_err_probe here instead?
+>=20
+> Ditto.
+>=20
+> > > +           return ret;
+> > > +   }
+> > > +
+> > > +   dsi->ref_clk_rate =3D clk_get_rate(dsi->clk_ref);
+> > > +   if (dsi->ref_clk_rate < REF_CLK_RATE_MIN ||
+> > > +       dsi->ref_clk_rate > REF_CLK_RATE_MAX) {
+> > > +           DRM_DEV_ERROR(dev, "invalid phy ref clock rate %lu\n",
+> > > +                         dsi->ref_clk_rate);
+> > > +           return -EINVAL;
+> > > +   }
+> > > +   DRM_DEV_DEBUG_DRIVER(dev, "phy ref clock rate: %lu\n", dsi-
+> > >
+> > >ref_clk_rate);
+> > >
+> > > +
+> > > +   dsi->dev =3D dev;
+> > > +   dsi->pdata.max_data_lanes =3D 4;
+> > > +   dsi->pdata.mode_valid =3D imx93_dsi_mode_valid;
+> > > +   dsi->pdata.mode_fixup =3D imx93_dsi_mode_fixup;
+> > > +   dsi->pdata.get_input_bus_fmts =3D imx93_dsi_get_input_bus_fmts;
+> > > +   dsi->pdata.phy_ops =3D &imx93_dsi_phy_ops;
+> > > +   dsi->pdata.host_ops =3D &imx93_dsi_host_ops;
+> > > +   dsi->pdata.priv_data =3D dsi;
+> > > +   platform_set_drvdata(pdev, dsi);
+> > > +
+> > > +   dsi->dmd =3D dw_mipi_dsi_probe(pdev, &dsi->pdata);
+> > > +   if (IS_ERR(dsi->dmd)) {
+> > > +           ret =3D PTR_ERR(dsi->dmd);
+> > > +           if (ret !=3D -EPROBE_DEFER)
+> >=20
+> > > +                   DRM_DEV_ERROR(dev, "failed to probe dw_mipi_dsi:
+> > %d\n", ret);
+> >=20
+> > Could you use dev_err_probe here instead?
+>=20
+> Ditto.
+>=20
+> Regards,
+> Liu Ying
+>=20
+> > Best regards,
+> > Alexander
+> >=20
+> > > +           return ret;
+> > > +   }
+> > > +
+> > > +   return 0;
+> > > +}
+> > > +
+> > > +static void imx93_dsi_remove(struct platform_device *pdev)
+> > > +{
+> > > +   struct imx93_dsi *dsi =3D platform_get_drvdata(pdev);
+> > > +
+> > > +   dw_mipi_dsi_remove(dsi->dmd);
+> > > +}
+> > > +
+> > > +static const struct of_device_id imx93_dsi_dt_ids[] =3D {
+> > > +   { .compatible =3D "fsl,imx93-mipi-dsi", },
+> > > +   { /* sentinel */ }
+> > > +};
+> > > +MODULE_DEVICE_TABLE(of, imx93_dsi_dt_ids);
+> > > +
+> > > +static struct platform_driver imx93_dsi_driver =3D {
+> > > +   .probe  =3D imx93_dsi_probe,
+> > > +   .remove_new =3D imx93_dsi_remove,
+> > > +   .driver =3D {
+> > > +           .of_match_table =3D imx93_dsi_dt_ids,
+> > > +           .name =3D "imx93_mipi_dsi",
+> > > +   },
+> > > +};
+> > > +module_platform_driver(imx93_dsi_driver);
+> > > +
+> > > +MODULE_DESCRIPTION("Freescale i.MX93 MIPI DSI driver");
+> > > +MODULE_AUTHOR("Liu Ying <victor.liu@nxp.com>");
+> > > +MODULE_LICENSE("GPL");
+> >=20
+> > --
+> > TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+> > Amtsgericht M=FCnchen, HRB 105018
+> > Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+> > http://www.t/
+> > q-
+> > group.com%2F&data=3D05%7C01%7Cvictor.liu%40nxp.com%7Cc42417f9a9484
+> > 3ead2b808db876380d3%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C0
+> > %7C638252633665634690%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLj
+> > AwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%
+> > 7C%7C&sdata=3DGUWOZgHFFp0nKImw2aIAsaqMv9KtgI6%2BD%2BaOdDhJ%2B
+> > tU%3D&reserved=3D0
 
-The patch does not apply cleanly to net-next. Rob, could you please re-
-spin it? While at that, have you considered splitting it in a few
-smaller patches (e.g. can, dsa, freescale, ibm, marvel, mediatek,
-stmmicro,  sun, ti, xilinx, wireless, remaining)?
 
-Thanks!
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
 
-Paolo
 
