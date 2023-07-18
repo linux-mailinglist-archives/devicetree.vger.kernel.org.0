@@ -2,586 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3843E7571EA
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 04:46:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5124A757209
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 04:58:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229984AbjGRCqb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jul 2023 22:46:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51524 "EHLO
+        id S229646AbjGRC6Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jul 2023 22:58:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56704 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229450AbjGRCqa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 22:46:30 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC5EF13E;
-        Mon, 17 Jul 2023 19:46:28 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 71E20612DD;
-        Tue, 18 Jul 2023 02:46:28 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 99297C433C7;
-        Tue, 18 Jul 2023 02:46:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689648387;
-        bh=lggjEHep7StjAMTZq167MMTvO4N2S5ciNf5V/rgto60=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=fMIZ7njx03k6jFyj6FQt9NHvBIo2/WFQt8l+06IxdzIi8rqNJ8GeYHZLgpA3bwo9/
-         slBoeTdhPkFofEYJlNAUmB9lQXuxFHt15gc+uU0t7Tg+snHQsJGmsai+JVpHHPByL9
-         QKNOaDNu50ouWIilxZmMFI18nxqGs/Hw0Omr1p6v4bpT1uXvTGWsFmGymdrjPH3jNs
-         IGrY1X9sByc+ipnCKRIy2eeZG6REBe7aOQyWy9LuUazmMn12yE5BhX7ekCbhV/rYBg
-         EXmUOw/SpPRKEcR3ZiQvGzYHJWBJz7wPvUspS3ew71/xq+EEGdSbdhBbbEH1x+Lb89
-         GP1sX0ro7U0Kw==
-Date:   Tue, 18 Jul 2023 10:46:07 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Josua Mayer <josua@solid-run.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Li Yang <leoyang.li@nxp.com>
-Subject: Re: [PATCH v3 4/4] arm64: dts: freescale: Add support for LX2162 SoM
- & Clearfog Board
-Message-ID: <20230718024607.GY9559@dragon>
-References: <20230619090026.22713-1-josua@solid-run.com>
- <20230619090026.22713-5-josua@solid-run.com>
+        with ESMTP id S229579AbjGRC6P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 22:58:15 -0400
+Received: from EUR04-HE1-obe.outbound.protection.outlook.com (mail-he1eur04on2072.outbound.protection.outlook.com [40.107.7.72])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 840071B3
+        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 19:58:14 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=YaiWvSFZW67Cn3ZQ/8wHmg2BWteqBNUjAwkMeR4FhHq6u4f3RGT3JR7znQoqCiFUBbLhp6KND/aHftbUWUKI6F03wWFAaa8S1i4lM3sUzbHNrmt660lyqsJaoQgraHoGhiLLZY117RKmtLXEbM7y4rdQ1zZJGLWe9i4LHal5u90e0I/TESpcKono0NYkrdZuVUw07S1J4YwWn/ZrL+UK7UTB//UJ/yRElItOohGMLscWjvMmlaDcLMGMCTazA0DKOqdnofv6w1Er6cdP4YhBnAAgjFR/UvPgpZvL75aM6WqAVOa2K9Wt8Io4d1ZyStBBLzv8xB+1Lor8B0FlWLuMNA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=SfTmxRHymJ7hrAvWNYYfvJ9KAdCdlwWlRPIEWQWR8lM=;
+ b=Awa+kTuuXWYh72rU8M3sTwIrGV+u5MOQIC+kEKsXbTgOy2ZKGImG4LYdUgg+C1ydpZOZ22S4S+aaqxVDj+MMLEFqp1s9K6QNeCXDN+k/O0t0Z07CjRBBMxbJIno18UIPfgaD+xGQ8Vluvv16R0/9jcRhKcUe8Fw5irRr9ngLT+nAJAo574BX7EeURPu3ri7WXjx1NCp4CGuNjhONlYnPjg8zak0h0U3vIG6FCChaj7Aq9Yc5UulaEFYfts4QzjO9UnvxSRuoMMzUXbzHlO3HpP/7Y+OeugXttZ2xqtm3WenAcHAjUOS5vwBmOE3BZKJmEbFtVy2kwXeDfEva/8NbDQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=SfTmxRHymJ7hrAvWNYYfvJ9KAdCdlwWlRPIEWQWR8lM=;
+ b=oxDSuZ1+tbhTD0ca09XolM4zrsDBqp5fdGZU2DytDuUeC/SDC7x54BLgfbqNInqHEdL5bhLA1zwNULei8UelLyJKK7uARtz5bQ1m8AIoPRByWJhILy53DcEtJwL55wd6ccEvaU31W8kv+SnENUfEXCHcTZcf9pfcZkBeHoYQJPs=
+Received: from AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
+ by AS8PR04MB8883.eurprd04.prod.outlook.com (2603:10a6:20b:42e::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6588.31; Tue, 18 Jul
+ 2023 02:58:11 +0000
+Received: from AM7PR04MB7046.eurprd04.prod.outlook.com
+ ([fe80::7af:d8d5:d0ce:f68e]) by AM7PR04MB7046.eurprd04.prod.outlook.com
+ ([fe80::7af:d8d5:d0ce:f68e%2]) with mapi id 15.20.6588.027; Tue, 18 Jul 2023
+ 02:58:11 +0000
+From:   Ying Liu <victor.liu@nxp.com>
+To:     Jagan Teki <jagan@amarulasolutions.com>
+CC:     "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "rfoss@kernel.org" <rfoss@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "jonas@kwiboo.se" <jonas@kwiboo.se>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "jernej.skrabec@gmail.com" <jernej.skrabec@gmail.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "Laurent.pinchart@ideasonboard.com" 
+        <Laurent.pinchart@ideasonboard.com>,
+        "andrzej.hajda@intel.com" <andrzej.hajda@intel.com>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        dl-linux-imx <linux-imx@nxp.com>
+Subject: RE: [PATCH 9/9] drm/bridge: imx: Add i.MX93 MIPI DSI support
+Thread-Topic: [PATCH 9/9] drm/bridge: imx: Add i.MX93 MIPI DSI support
+Thread-Index: AQHZuHX2kU9tVwb+/k68aHvm3zH4HK+9gzeAgAFOwzA=
+Date:   Tue, 18 Jul 2023 02:58:11 +0000
+Message-ID: <AM7PR04MB7046BF03266ED1CE21CFC3A99838A@AM7PR04MB7046.eurprd04.prod.outlook.com>
+References: <20230717061831.1826878-1-victor.liu@nxp.com>
+ <20230717061831.1826878-10-victor.liu@nxp.com>
+ <CAMty3ZAdzASJCz+j4iOTJ+wCXWP2Z48jFL687kxDmJLPU7T6gA@mail.gmail.com>
+In-Reply-To: <CAMty3ZAdzASJCz+j4iOTJ+wCXWP2Z48jFL687kxDmJLPU7T6gA@mail.gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: AM7PR04MB7046:EE_|AS8PR04MB8883:EE_
+x-ms-office365-filtering-correlation-id: f9c43a70-d1aa-4329-8e5a-08db873ad283
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: dLEI5jIRuWlkLywXp+X4O3x3O71lH4+spHtZQzS3SZX7Y/aAh9DXvUT4HKZCx4C6Wg3ad/HIjfImR8Ex+aWYDjjetJaqvQCShiEKvW7/oQzm++JJbYl3VplarKhfzCSTiiKduzGqOLHx2RX1n7avMqZxRecrGWYdA3iaAR8ZkrZ0GBuQuXbagFrvf10b5NrQn5ZrEvwIrF2NO7ft+2eMRevdqGmD3DfsnJ4XUBMa4VokQDCAoE9/JaJF6jtbaIJkuBxu3zx+gQGdw/lZFKZAHTi9Igi1IU0Uy1qxUE8kSC8vMa2a/QJ8t3y6ZUu6EDqRkbS17MdQI3a63hHY3wUDiS14lA3mKkXumKJZdwODXq2YFVj4cCIPxR2IHDNKyGDhipTR9G7tttYzjT2IBWvxD2LqVcruLZTqHqoQqingiCdojynebmYt63iTJBk5dMZn5HLjyjR+7L0LflQpz42s7zIZsatczFKx3GkiDPpIx58TdkzMciMzAM9eECy6FVPtOOwwRe8AP+PFC015RoPiu0F5ttm4Z5te2JRPE3dX170FFSW3cic52V2g4PggBOIqlQ5JsM91SNnFbyrVJjwDOOJxnMtbDuDFfIEhR5njeYJTVSbm5JSIk2S1al7dGHt6
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR04MB7046.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(396003)(376002)(346002)(39860400002)(366004)(136003)(451199021)(71200400001)(33656002)(6506007)(38100700002)(186003)(26005)(55016003)(478600001)(38070700005)(53546011)(54906003)(66476007)(7416002)(8676002)(41300700001)(7696005)(66946007)(66446008)(2906002)(8936002)(66556008)(6916009)(316002)(4326008)(52536014)(5660300002)(9686003)(64756008)(86362001)(122000001)(76116006);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?cFZnWEZUaUVSSGw4ZG5VT09iSGlKNHhuNS9xQVRHSkJVamtyMzFnR2pabUgy?=
+ =?utf-8?B?MEJkK0NvTExDRkVmemlteS9jUGl3QmtweDVYdHJqbHFQVlArdDd1dDRmNlZ0?=
+ =?utf-8?B?a1pVd0J1TUc1R09zQk0zd0hsL1lPTG9ldVY2ZmhvQWcwRDB4eUhvZGJXZFRo?=
+ =?utf-8?B?aHdSdXhtK0RCTlM1MTFtRjJGdVJ6c1lBYWN2YzZnRUdKRlRlTEJiMW45blNp?=
+ =?utf-8?B?UVJaRXppNW9qLzJxK3NwQmhrMVZFQmx0dFhVNzdyMkpLV0JKQ251N1JRUHdj?=
+ =?utf-8?B?MGZRdkNFZGN6YTJReDNPOTN0bjFSZXBjU2pOWDZ4V0JxUTNWd0t5NllUbVlZ?=
+ =?utf-8?B?cytoRzJnak9IL083S3dENVV3alFPSXhxYXlLZDA0SHV0TDhvKzc0bitxQ05W?=
+ =?utf-8?B?S3NDYk0yaitQL2hneW9qaGlzYW1RdDE3ajB2VVFwNzFNU29qTG56ai9FS0h4?=
+ =?utf-8?B?Nld4blNBajdlVWhVZGpJN2hWK1pTT0krdmc4RFB0MWpGaFYrZmt5Q2hIbUJM?=
+ =?utf-8?B?L1RvK1ppampxWGtQZXdvdGVWMHY0R2xBOXN2TTFpRHpmZ0dUaTZqMUNjNEsy?=
+ =?utf-8?B?WjdVOFVmNjJzSmgrV3V3bzRSU1BwbHRMUXlGbzFtbTlVNVdQYXFWenlGSE5X?=
+ =?utf-8?B?SDNCRlNNN2dMNm9VY1p2MWJCd2E4VDJ6UUlnSDBRZWZMNFBsTUpDZ3BRZ3ly?=
+ =?utf-8?B?ZTdWZTk1RFFkQ2NCMWJkVkhSbDhLNEUyWGJkbjJVRmIxdHd3Q2dWZVBtUFpE?=
+ =?utf-8?B?THU5QnB0Rm5nS1R5bTBkYnJucGtzTkdnaVpTZENaTmphc3I4WUtFWU10aHlJ?=
+ =?utf-8?B?MVo3SFBsNGJ0YkVNdmU5V0JmVXVGUjR4Q3JPTEk1MjdZQVR3TUpPZi9YZTFi?=
+ =?utf-8?B?ckZYVFR1dncvUWlqQ1NDbHFKVEhBY3lITzE5MHdqVW1GcHkzK25DM2FxUFZJ?=
+ =?utf-8?B?eXFjOGFHa0p3V0xnWnZaZXNjV1JhZFBuU3QvOXoxQkt4Q1VQSzlTZ2R3Ym1r?=
+ =?utf-8?B?YkwxYW9RRjFocTBBTG1zWGpvRElxME14K29vQ3kyNC8vbWRKMTVoa2o5cjFB?=
+ =?utf-8?B?WGk1UVp1S1UwWUVQZHVDQ1JRbzgyWGFBUUZ4cjl5VFlESGdsTi9jYU82VHJo?=
+ =?utf-8?B?RWkwcTY1bTUzeVlENkJZbkhSNDREWm44ZDA0UDI3VmNLallrSVRQdzR4a3NI?=
+ =?utf-8?B?K2NDM3Vmb3hGYzVPZkNIYVFSZWJ4Z0k0ZWRMZURPanNjVndxcTZXK0pyNTlk?=
+ =?utf-8?B?MXNrYlEyR205UXlQZjJxUFBZSk9QSGtCY1IzWTU1ZEVZZGVuWFdFV0xuWjVC?=
+ =?utf-8?B?VU1jMUIxb3pkb2pJUUY1QnN0blFvQmdDSnN6SlVKL1VsRTB2YTM2NzR1eFRj?=
+ =?utf-8?B?Umw2ZSt0WmhHcWVqR3JDa2sxSTVtVVJTMWh5OEFIelBmaExaSURFdEcrNmVt?=
+ =?utf-8?B?Z2MvOUU4Z3hVWTY2RVpDMm01SnNLM1pnTFBNUEo4QUFTdXJjOThqRmJ0R1JL?=
+ =?utf-8?B?L0FIWWdwYXYvb1ZMTXl6c2dTeGphYnpOVE1mdktQU09CcTIrdHk3SUhSTGtt?=
+ =?utf-8?B?THBiSHdLWFpwZXpZMHRXdWVRM3JhaXdSRFVrbWsvdE9paUtITkhZZitBSnRT?=
+ =?utf-8?B?UEtjWCs4bzFjMjNYdW91a0szV3RacEhnU1pYT3VZMU5wQmVGQTJLUit0TllH?=
+ =?utf-8?B?aUtBWkNCVTd6eVYxbG9DQ09hTE1rVVNuc2lpS1l2cHZMOEYrRThTcVhTckp2?=
+ =?utf-8?B?a2p4NGpIOENiRCswbE5YWXMybUpRMGs0SGRBUk1OcVprV0hYZnA5R3VNdTdn?=
+ =?utf-8?B?YVpQMXorZEpHbU9mV3NlOHUwTTJrbE1xY1lHUHJoYXVvbTVqdWMzdUNKbTdC?=
+ =?utf-8?B?ZXZYSHBidmlEUGcxOVdQY3VLR0VqeElzYmQ4WVpSM2RTNjZwaEVtYXEyK0sv?=
+ =?utf-8?B?M085TXNNZmorMXpFRlMzaHgxL1E2K1Z5d0pLOVBFS0VXOXZLcG9WdDVhQlMr?=
+ =?utf-8?B?UjViS1B4bWdvNS9ISGduOU81ZmUxanAzWXptZy80bzBzR1daWHg0OGtqQWlJ?=
+ =?utf-8?B?WEVFZHB4STlJbXAxejU5Y2dMVmh1WnRPSGMvRFVrNFZOb1M4MEdIbjJza0RK?=
+ =?utf-8?Q?Bh/g=3D?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230619090026.22713-5-josua@solid-run.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AM7PR04MB7046.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f9c43a70-d1aa-4329-8e5a-08db873ad283
+X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Jul 2023 02:58:11.2479
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: ++XvpqHYh8cd84qHnu2PwwfcaFen0Ephj6UpoBf31+DAj7/k/3LB8nZk3kAHUScHdTZlHlQZ4uUOFQEDTpHISA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8883
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 19, 2023 at 12:00:26PM +0300, Josua Mayer wrote:
-> Add support for the SolidRun LX2162A System on Module (SoM), and the
-> Clearfog evaluation board.
-> 
-> The SoM has few software-controllable features:
-> - AR8035 Ethernet PHY
-> - eMMC
-> - SPI Flash
-> - fan controller
-> - various eeproms
-> 
-> The Clearfog evaluation board provides:
-> - microSD connector
-> - USB-A
-> - 2x 10Gbps SFP+
-> - 2x 25Gbps SFP+ with a retimer
-> - 8x 2.5Gbps RJ45
-> - 2x mPCI (assembly option / disables 2xRJ45)
-> 
-> The 8x RJ45 ports are connected with an 8-port PHY: Marvell 88E2580
-> supporting up to 5Gbps, while SoC and magnetics are limited to 2.5Gbps.
-> 
-> However 2500 speed is untested due to documentation and drivier
-> limitations. To avoid confusion the phy nodes have been explicitly
-> limited to 1000 for now.
-> 
-> The PCI nodes are disabled, but explicitly added to mark that this board
-> can have pci.
-> It is expected that the bootloader will patch the status property
-> "okay" and disable 2x RJ45 ports, according to active serdes configuration.
-> 
-> Signed-off-by: Josua Mayer <josua@solid-run.com>
-> ---
-> V1 -> V2: reordered "compatible" and "reg" properties
-> V1 -> V2: replaced chip-specific DT node names with generic ones
-> V1 -> V2: removed dead code from fspi node
-> V2 -> V3: dropped deprecated address-cells, address-size props from flash node
-> 
->  arch/arm64/boot/dts/freescale/Makefile        |   1 +
->  .../dts/freescale/fsl-lx2162a-clearfog.dts    | 371 ++++++++++++++++++
->  .../dts/freescale/fsl-lx2162a-sr-som.dtsi     |  73 ++++
->  3 files changed, 445 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/freescale/fsl-lx2162a-clearfog.dts
->  create mode 100644 arch/arm64/boot/dts/freescale/fsl-lx2162a-sr-som.dtsi
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-> index ef7d17aef58f..b4fb5044d1c7 100644
-> --- a/arch/arm64/boot/dts/freescale/Makefile
-> +++ b/arch/arm64/boot/dts/freescale/Makefile
-> @@ -34,6 +34,7 @@ dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-lx2160a-honeycomb.dtb
->  dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-lx2160a-qds.dtb
->  dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-lx2160a-rdb.dtb
->  dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-lx2162a-qds.dtb
-> +dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-lx2162a-clearfog.dtb
->  
->  fsl-ls1028a-qds-13bb-dtbs := fsl-ls1028a-qds.dtb fsl-ls1028a-qds-13bb.dtbo
->  fsl-ls1028a-qds-65bb-dtbs := fsl-ls1028a-qds.dtb fsl-ls1028a-qds-65bb.dtbo
-> diff --git a/arch/arm64/boot/dts/freescale/fsl-lx2162a-clearfog.dts b/arch/arm64/boot/dts/freescale/fsl-lx2162a-clearfog.dts
-> new file mode 100644
-> index 000000000000..57d8c93bfc57
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/freescale/fsl-lx2162a-clearfog.dts
-> @@ -0,0 +1,371 @@
-> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> +//
-> +// Device Tree file for LX2162A Clearfog
-> +//
-> +// Copyright 2023 Josua Mayer <josua@solid-run.com>
-> +
-> +/dts-v1/;
-> +
-> +#include "fsl-lx2160a.dtsi"
-> +#include "fsl-lx2162a-sr-som.dtsi"
-> +
-> +/ {
-> +	model = "SolidRun LX2162A Clearfog";
-> +	compatible = "solidrun,lx2162a-clearfog", "solidrun,lx2162a-som", "fsl,lx2160a";
-> +
-> +	aliases {
-> +		crypto = &crypto;
-> +		i2c0 = &i2c0;
-> +		i2c1 = &i2c2;
-> +		i2c2 = &i2c4;
-> +		i2c3 = &sfp_i2c0;
-> +		i2c4 = &sfp_i2c1;
-> +		i2c5 = &sfp_i2c2;
-> +		i2c6 = &sfp_i2c3;
-> +		i2c7 = &mpcie1_i2c;
-> +		i2c8 = &mpcie0_i2c;
-> +		i2c9 = &pcieclk_i2c;
-> +		mmc0 = &esdhc0;
-> +		mmc1 = &esdhc1;
-> +		serial0 = &uart0;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial0:115200n8";
-> +	};
-> +
-> +	leds {
-> +		compatible = "gpio-leds";
-> +
-> +		led_sfp_at: led-sfp-at {
-> +			gpios = <&gpio2 5 GPIO_ACTIVE_HIGH>; /* PROC_IRQ5 */
-> +			default-state = "off";
-> +		};
-> +		led_sfp_ab: led-sfp-ab {
-> +			gpios = <&gpio2 11 GPIO_ACTIVE_HIGH>; /* PROC_IRQ11 */
-> +			default-state = "off";
-> +		};
-> +		led_sfp_bt: led-sfp-bt {
-> +			gpios = <&gpio2 13 GPIO_ACTIVE_HIGH>; /* EVT1_B */
-> +			default-state = "off";
-> +		};
-> +		led_sfp_bb: led-sfp-bb {
-> +			gpios = <&gpio2 14 GPIO_ACTIVE_HIGH>; /* EVT2_B */
-> +			default-state = "off";
-> +		};
-> +	};
-> +
-> +	sfp_at: sfp-at {
-> +		compatible = "sff,sfp";
-> +		i2c-bus = <&sfp_i2c0>;
-> +		mod-def0-gpios = <&gpio2 16 GPIO_ACTIVE_LOW>; /* EVT4_B */
-> +		maximum-power-milliwatt = <2000>;
-> +	};
-> +
-> +	sfp_ab: sfp-ab {
-> +		compatible = "sff,sfp";
-> +		i2c-bus = <&sfp_i2c1>;
-> +		mod-def0-gpios = <&gpio2 1 GPIO_ACTIVE_LOW>; /* PROC_IRQ1 */
-> +		maximum-power-milliwatt = <2000>;
-> +	};
-> +
-> +	sfp_bt: sfp-bt {
-> +		compatible = "sff,sfp";
-> +		i2c-bus = <&sfp_i2c2>;
-> +		mod-def0-gpios = <&gpio2 10 GPIO_ACTIVE_LOW>; /* PROC_IRQ10 */
-> +		maximum-power-milliwatt = <2000>;
-> +	};
-> +
-> +	sfp_bb: sfp-bb {
-> +		compatible = "sff,sfp";
-> +		i2c-bus = <&sfp_i2c3>;
-> +		mod-def0-gpios = <&gpio2 15 GPIO_ACTIVE_LOW>; /* EVT3_B */
-> +		maximum-power-milliwatt = <2000>;
-> +	};
-> +};
-> +
-> +&i2c2 {
-> +	status = "okay";
-> +
-> +	/* retimer@18 */
-> +
-> +	i2c-mux@70 {
-> +		compatible = "nxp,pca9546";
-> +		reg = <0x70>;
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +		i2c-mux-idle-disconnect;
-> +
-> +		sfp_i2c0: i2c@0 {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			reg = <0>;
-> +		};
-> +
-> +		sfp_i2c1: i2c@1 {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			reg = <1>;
-> +		};
-> +
-> +		sfp_i2c2: i2c@2 {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			reg = <2>;
-> +		};
-> +
-> +		sfp_i2c3: i2c@3 {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			reg = <3>;
-> +		};
-> +	};
-> +
-> +	i2c-mux@71 {
-> +		compatible = "nxp,pca9546";
-> +		reg = <0x71>;
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +		i2c-mux-idle-disconnect;
-> +
-> +		mpcie1_i2c: i2c@0 {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			reg = <0>;
-> +		};
-> +
-> +		mpcie0_i2c: i2c@1 {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			reg = <1>;
-> +		};
-> +
-> +		pcieclk_i2c: i2c@2 {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			reg = <2>;
-> +
-> +			/* clock-controller@6b */
-> +		};
-> +	};
-> +};
-> +
-> +&dpmac3 {
-> +	sfp = <&sfp_at>;
-> +	managed = "in-band-status";
-> +	phys = <&serdes_1 7>;
-> +};
-> +
-> +&dpmac4 {
-> +	sfp = <&sfp_ab>;
-> +	managed = "in-band-status";
-> +	phys = <&serdes_1 6>;
-> +};
-> +
-> +&dpmac5 {
-> +	sfp = <&sfp_bt>;
-> +	managed = "in-band-status";
-> +	phys = <&serdes_1 5>;
-> +};
-> +
-> +&dpmac6 {
-> +	sfp = <&sfp_bb>;
-> +	managed = "in-band-status";
-> +	phys = <&serdes_1 4>;
-> +};
-> +
-> +&dpmac11 {
-> +	status = "okay";
-
-We generally end property list with 'status'.
-
-Shawn
-
-> +	phys = <&serdes_2 0>;
-> +	phy-handle = <&ethernet_phy2>;
-> +	phy-connection-type = "sgmii";
-> +};
-> +
-> +&dpmac12 {
-> +	status = "okay";
-> +	phys = <&serdes_2 1>;
-> +	phy-handle = <&ethernet_phy0>;
-> +	phy-connection-type = "sgmii";
-> +};
-> +
-> +&dpmac13 {
-> +	status = "okay";
-> +	phys = <&serdes_2 6>;
-> +	phy-handle = <&ethernet_phy5>;
-> +	phy-connection-type = "sgmii";
-> +};
-> +
-> +&dpmac14 {
-> +	status = "okay";
-> +	phys = <&serdes_2 7>;
-> +	phy-handle = <&ethernet_phy7>;
-> +	phy-connection-type = "sgmii";
-> +};
-> +
-> +&dpmac15 {
-> +	status = "okay";
-> +	phys = <&serdes_2 4>;
-> +	phy-handle = <&ethernet_phy3>;
-> +	phy-connection-type = "sgmii";
-> +};
-> +
-> +&dpmac16 {
-> +	status = "okay";
-> +	phys = <&serdes_2 5>;
-> +	phy-handle = <&ethernet_phy1>;
-> +	phy-connection-type = "sgmii";
-> +};
-> +
-> +&dpmac17 {
-> +	/* override connection to on-SoM phy */
-> +	/delete-property/ phy-handle;
-> +	/delete-property/ phy-connection-type;
-> +
-> +	status = "okay";
-> +	phys = <&serdes_2 2>;
-> +	phy-handle = <&ethernet_phy4>;
-> +	phy-connection-type = "sgmii";
-> +};
-> +
-> +&dpmac18 {
-> +	status = "okay";
-> +	phys = <&serdes_2 3>;
-> +	phy-handle = <&ethernet_phy6>;
-> +	phy-connection-type = "sgmii";
-> +};
-> +
-> +&emdio1 {
-> +	/*
-> +	 * SoM has a phy at address 1 connected to SoC Ethernet Controller 1.
-> +	 * It competes for WRIOP MAC17, and no connector has been wired.
-> +	 */
-> +	/delete-node/ ethernet-phy@1;
-> +
-> +	ethernet_phy0: ethernet-phy@8 {
-> +		compatible = "ethernet-phy-ieee802.3-c45";
-> +		reg = <8>;
-> +		max-speed = <1000>;
-> +	};
-> +
-> +	ethernet_phy1: ethernet-phy@9 {
-> +		compatible = "ethernet-phy-ieee802.3-c45";
-> +		reg = <9>;
-> +		max-speed = <1000>;
-> +	};
-> +
-> +	ethernet_phy2: ethernet-phy@10 {
-> +		compatible = "ethernet-phy-ieee802.3-c45";
-> +		reg = <10>;
-> +		max-speed = <1000>;
-> +	};
-> +
-> +	ethernet_phy3: ethernet-phy@11 {
-> +		compatible = "ethernet-phy-ieee802.3-c45";
-> +		reg = <11>;
-> +		max-speed = <1000>;
-> +	};
-> +
-> +	ethernet_phy4: ethernet-phy@12 {
-> +		compatible = "ethernet-phy-ieee802.3-c45";
-> +		reg = <12>;
-> +		max-speed = <1000>;
-> +	};
-> +
-> +	ethernet_phy5: ethernet-phy@13 {
-> +		compatible = "ethernet-phy-ieee802.3-c45";
-> +		reg = <13>;
-> +		max-speed = <1000>;
-> +	};
-> +
-> +	ethernet_phy6: ethernet-phy@14 {
-> +		compatible = "ethernet-phy-ieee802.3-c45";
-> +		reg = <14>;
-> +		max-speed = <1000>;
-> +	};
-> +
-> +	ethernet_phy7: ethernet-phy@15 {
-> +		compatible = "ethernet-phy-ieee802.3-c45";
-> +		reg = <15>;
-> +		max-speed = <1000>;
-> +	};
-> +};
-> +
-> +&esdhc0 {
-> +	status = "okay";
-> +	sd-uhs-sdr104;
-> +	sd-uhs-sdr50;
-> +	sd-uhs-sdr25;
-> +	sd-uhs-sdr12;
-> +};
-> +
-> +&pcie3 {
-> +	status = "disabled";
-> +};
-> +
-> +&pcie4 {
-> +	status = "disabled";
-> +};
-> +
-> +&pcs_mdio3 {
-> +	status = "okay";
-> +};
-> +
-> +&pcs_mdio4 {
-> +	status = "okay";
-> +};
-> +
-> +&pcs_mdio5 {
-> +	status = "okay";
-> +};
-> +
-> +&pcs_mdio6 {
-> +	status = "okay";
-> +};
-> +
-> +&pcs_mdio11 {
-> +	status = "okay";
-> +};
-> +
-> +&pcs_mdio12 {
-> +	status = "okay";
-> +};
-> +
-> +&pcs_mdio13 {
-> +	status = "okay";
-> +};
-> +
-> +&pcs_mdio14 {
-> +	status = "okay";
-> +};
-> +
-> +&pcs_mdio15 {
-> +	status = "okay";
-> +};
-> +
-> +&pcs_mdio16 {
-> +	status = "okay";
-> +};
-> +
-> +&pcs_mdio17 {
-> +	status = "okay";
-> +};
-> +
-> +&pcs_mdio18 {
-> +	status = "okay";
-> +};
-> +
-> +&serdes_1 {
-> +	status = "okay";
-> +};
-> +
-> +&serdes_2 {
-> +	status = "okay";
-> +};
-> +
-> +&uart0 {
-> +	status = "okay";
-> +};
-> +
-> +&usb0 {
-> +	status = "okay";
-> +};
-> diff --git a/arch/arm64/boot/dts/freescale/fsl-lx2162a-sr-som.dtsi b/arch/arm64/boot/dts/freescale/fsl-lx2162a-sr-som.dtsi
-> new file mode 100644
-> index 000000000000..ac3f9bc60265
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/freescale/fsl-lx2162a-sr-som.dtsi
-> @@ -0,0 +1,73 @@
-> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> +//
-> +// Device Tree file for LX2162A-SOM
-> +//
-> +// Copyright 2021 Rabeeh Khoury <rabeeh@solid-run.com>
-> +// Copyright 2023 Josua Mayer <josua@solid-run.com>
-> +
-> +&crypto {
-> +	status = "okay";
-> +};
-> +
-> +&dpmac17 {
-> +	phy-handle = <&ethernet_phy0>;
-> +	phy-connection-type = "rgmii-id";
-> +};
-> +
-> +&emdio1 {
-> +	status = "okay";
-> +
-> +	ethernet_phy0: ethernet-phy@1 {
-> +		reg = <1>;
-> +	};
-> +};
-> +
-> +&esdhc1 {
-> +	status = "okay";
-> +	bus-width = <8>;
-> +	mmc-hs200-1_8v;
-> +	mmc-hs400-1_8v;
-> +};
-> +
-> +&fspi {
-> +	status = "okay";
-> +
-> +	flash@0 {
-> +		compatible = "jedec,spi-nor";
-> +		reg = <0>;
-> +		m25p,fast-read;
-> +		spi-max-frequency = <50000000>;
-> +		/* The following setting enables 1-1-8 (CMD-ADDR-DATA) mode */
-> +		spi-rx-bus-width = <8>;
-> +		spi-tx-bus-width = <1>;
-> +	};
-> +};
-> +
-> +&i2c0 {
-> +	status = "okay";
-> +
-> +	fan-controller@18 {
-> +		compatible = "ti,amc6821";
-> +		reg = <0x18>;
-> +	};
-> +
-> +	ddr_spd: eeprom@51 {
-> +		compatible = "st,24c02", "atmel,24c02";
-> +		reg = <0x51>;
-> +		read-only;
-> +	};
-> +
-> +	config_eeprom: eeprom@57 {
-> +		compatible = "st,24c02", "atmel,24c02";
-> +		reg = <0x57>;
-> +	};
-> +};
-> +
-> +&i2c4 {
-> +	status = "okay";
-> +
-> +	variable_eeprom: eeprom@54 {
-> +		compatible = "st,24c2048", "atmel,24c2048";
-> +		reg = <0x54>;
-> +	};
-> +};
-> -- 
-> 2.35.3
-> 
+SGkgSmFnYW4sDQoNCk9uIE1vbmRheSwgSnVseSAxNywgMjAyMyAyOjQ0IFBNIEphZ2FuIFRla2kg
+PGphZ2FuQGFtYXJ1bGFzb2x1dGlvbnMuY29tPiB3cm90ZToNCj4gT24gTW9uLCBKdWwgMTcsIDIw
+MjMgYXQgMTE6NDTigK9BTSBMaXUgWWluZyA8dmljdG9yLmxpdUBueHAuY29tPiB3cm90ZToNCj4g
+Pg0KPiA+IEZyZWVzY2FsZSBpLk1YOTMgU29DIGVtYmVkcyBhIFN5bm9wc3lzIERlc2lnbndhcmUg
+TUlQSSBEU0kgaG9zdA0KPiA+IGNvbnRyb2xsZXIgYW5kIGEgU3lub3BzeXMgRGVzaWdud2FyZSBN
+SVBJIERQSFkuICBTb21lIGNvbmZpZ3VyYXRpb25zDQo+ID4gYW5kIGV4dGVuc2lvbnMgdG8gdGhl
+bSBhcmUgY29udHJvbGxlZCBieSBpLk1YOTMgbWVkaWEgYmxrLWN0cmwuDQo+ID4NCj4gPiBBZGQg
+YSBEUk0gYnJpZGdlIGZvciBpLk1YOTMgTUlQSSBEU0kgYnkgdXNpbmcgZXhpc3RpbmcgRFcgTUlQ
+SSBEU0kNCj4gPiBicmlkZ2UgaGVscGVycyBhbmQgaW1wbGVtZW50aW5nIGkuTVg5MyBNSVBJIERT
+SSBzcGVjaWZpYyBleHRlbnNpb25zLg0KPiANCj4gSSB0aGluayB0aGUgYmV0dGVyIHdheSB3b3Vs
+ZCBhZGQgY29tcGF0aWJpbGl0eSB0byBiZSBwYXJ0IG9mIGV4aXN0aW5nDQo+IGR3LW1pcGktZHNp
+LmMgd2l0aCBzcGVjaWZpYyBkcml2ZXIgZGF0YS4gVGhpcyB3YXkgaXQgYXZvaWRzIGFsbCB0aGUN
+Cj4gcGxhdGZvcm0tcmVsYXRlZCBoZWxwZXJzKGV4dGVuc2lvbnMpIGFuZCBtYWtlcyB0aGUgZHJp
+dmVyIGdlbmVyaWMgdG8NCj4gYWxsIFNvQ3Mgd2hpY2ggdXNlIERXIERTSSBJUC4gSXQgd291bGQg
+YmUgYSBzdHJhaWdodGZvcndhcmQgY2hhbmdlIGFzDQo+IHRoZSBpbXg5MyBkcm0gcGlwZWxpbmUg
+YWxyZWFkeSBzdXBwb3J0cyBicmlkZ2UgdG9wb2xvZ3kuDQoNClRoZSBwbGF0Zm9ybS1yZWxhdGVk
+IHN0dWZmIGlzIGhhbmRlZCBvdmVyIHRvIGR3LW1pcGktZHNpLmMgdmlhIHN0cnVjdA0KZHdfbWlw
+aV9kc2lfcGxhdF9kYXRhIGFzIGFuIGFyZ3VtZW50IG9mIGR3X21pcGlfZHNpX3Byb2JlKCkuICBJ
+dCBsb29rcw0Kb2sgZm9yIHZlbmRvciBkcml2ZXJzIHRvIGNhbGwgZHdfbWlwaV9kc2lfcHJvYmUo
+KSB0byBzZXQgdGhlIHBsYXRmb3JtLXJlbGF0ZWQNCmluZm9ybWF0aW9uKHJvY2tjaGlwLCBtZXNv
+biBhbmQgc3RtIGRvIHRoYXQpLCBsaWtlIHBkYXRhLnBoeV9vcHMgYW5kDQpwZGF0YS5ob3N0X29w
+cy4NCg0KZHctbWlwaS1kc2kuYyBpcyBnZW5lcmljIHcvd28gdGhpcyBwYXRjaCBzZXJpZXMuDQoN
+CkNhbiB5b3UgZWxhYm9yYXRlIG1vcmUgYWJvdXQgYWRkaW5nIGNvbXBhdGliaWxpdHkgdG8gYmUg
+cGFydCBvZiBleGlzdGluZw0KZHctbWlwaS1kc2kuYyB3aXRoIHNwZWNpZmljIGRyaXZlciBkYXRh
+PyAgSSBkb24ndCBzZWUgY2xlYXIgYXBwcm9hY2ggdG8gZG8NCnRoYXQuDQoNClJlZ2FyZHMsDQpM
+aXUgWWluZw0KDQo+IA0KPiBUaGFua3MsDQo+IEphZ2FuLg0K
