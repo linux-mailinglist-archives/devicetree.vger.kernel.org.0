@@ -2,162 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AB7DF75762E
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 10:04:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B6A16757627
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 10:03:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231806AbjGRIEw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jul 2023 04:04:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37364 "EHLO
+        id S230192AbjGRIDm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jul 2023 04:03:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60718 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231828AbjGRIEj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 04:04:39 -0400
-Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E72E172C;
-        Tue, 18 Jul 2023 01:04:17 -0700 (PDT)
-Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-4fdbfda94c4so2964755e87.0;
-        Tue, 18 Jul 2023 01:04:17 -0700 (PDT)
+        with ESMTP id S232001AbjGRICy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 04:02:54 -0400
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 852791984
+        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 01:02:11 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-5216f713f8bso5256438a12.2
+        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 01:02:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1689667152; x=1692259152;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=LfZeVJQddYVik65NhkUKDVIYNEDqe9J+8qwZMY+1f8g=;
-        b=iVLKx8koGZA4vpdYezulLaynnPeFQBLaMwMIW912r3w3m1Y0KiPEY8pr7KqCL1cfiM
-         bp1NmvwTtNeHjI2SYzMUpRRU+tsTYhnk1+C+6DixYOzKjf0zdJH5+mVZi7zsyQ75dcEE
-         mVekorrUukCH2dZgHFoT45jabDdVzsvRHQ5fsD6Z0owKXOXj+lohpB0yCxWT9nIQ7chN
-         RYxzvb+sLcit6FJSpreNohN33mF1/cghGO9MC0rTs8hBXI51J4UbCVswih4eWnJp4Whq
-         Ymd/cK3ooBh77EudcG0Mxvgmxyoi9VYgFZp62z7+HyOwL55H+yWYv0KAbLAQfO1rQvQe
-         44VA==
+        d=linaro.org; s=google; t=1689667323; x=1692259323;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=QsIxNK0J5zdm7hoTGkqELX9EdWQda/w8CE55dNKdQBI=;
+        b=KdKmYaQBSFl0lVylZviXy1L8wRpdutlz6y72k+fhKifuidOimyIzONwkAlJbbhNg2t
+         c309jLRA4Gz0xvuIe5hAvQ5u3av8x+NIxbiDYlcj15j33wCU8fmcDvTVoP+G7sn6dFRe
+         OrZsPE6+5bCs5lTumVNLsZ2fhSyz7ea2Zdx2nf9YyQaPcK/f6rBEWvraSSJfbQrMmfbd
+         RAOPRMzYs3epeWJIUYd96XrCUsPPOhYlx7eRprG7Vf0f+JmMoCtMDPNGWTnM6F6qScL7
+         0pMeFnnOv8lEmoaMNA93mHM6GCZKDsvDxvjbOysnhP5nGgHUKz95LCy1K6n7iEKTSseW
+         VOEg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689667152; x=1692259152;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=LfZeVJQddYVik65NhkUKDVIYNEDqe9J+8qwZMY+1f8g=;
-        b=T2GoDF6FGqHfA3845FL2+DBUbET8YGUQaJ5lPFUShhX3tNJXiSCLBhoDYBTq21/juy
-         IfmnuSno+sINizvSAa7X97J+xac5lHdMUxbfY6mu1PAAU9xAUYqegAuNza4j2koZ4nbb
-         sZKxBeOce7qm7uwkHJ5qwIqimT3M+9LuZNz9ZeGJslQlm/nqkWFXve69TGmbIm1GZ0uT
-         /8c+D1yMknhAJrGjYdK1KRB4GOEIqcmrmkjI5lrvGuBciUd9GvsgBbOvcciJfBl6cSl0
-         AND+E4ugbCy4KBDt+UOhvXr8+RFt1sJsW/1DXj31FpNVyw0EvmVUwbuUi7Ew6ai/lG0K
-         hGSA==
-X-Gm-Message-State: ABy/qLa82AtAVGajZk/7v47FFcLmpqxaxxz+f05W4mPBJtaBkzMTm7dt
-        fUG9QQW7gj4phauDuA+SGxA=
-X-Google-Smtp-Source: APBJJlGxxGaZNSPC9s9WgzTHpkoiBd/uxkadKRTOF/dW1H0yLQyWxuMq4i1Ju8TvnvlXW2MHk2EBNQ==
-X-Received: by 2002:a05:6512:3b90:b0:4fb:8fe3:9266 with SMTP id g16-20020a0565123b9000b004fb8fe39266mr16063531lfv.0.1689667151982;
-        Tue, 18 Jul 2023 00:59:11 -0700 (PDT)
-Received: from orome (p200300e41f4b7100f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f4b:7100:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id k21-20020aa7d8d5000000b00521ab0cda8fsm342703eds.27.2023.07.18.00.59.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 Jul 2023 00:59:11 -0700 (PDT)
-Date:   Tue, 18 Jul 2023 09:59:10 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        jonathanh@nvidia.com, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org
-Subject: Re: [PATCH] arm64: tegra: Fix HSUART for Smaug
-Message-ID: <ZLZGTmWyJHclFnGs@orome>
-References: <20230714101018.10617-1-diogo.ivo@tecnico.ulisboa.pt>
- <b3755c4b-fee0-85e3-4066-fb20c1ad99a3@linaro.org>
+        d=1e100.net; s=20221208; t=1689667323; x=1692259323;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=QsIxNK0J5zdm7hoTGkqELX9EdWQda/w8CE55dNKdQBI=;
+        b=YE5OFHvE0Mc/9M5JrmDBXNDKrpvLv4uwHXbUnf4GrgH1e60F/hzw/7pQCs0iauZzDH
+         aBLqgM2gyp14WfcE+dLp7algKAYznn82zkN7Cqog816mR4G+M4FHTAL8TkXGkhj3lBjB
+         zZPDQ6wSCfMKbKkfUIcukUxOsUmml/kClg4mcFouyiQ8YGRJpZlBRc4S0ad7q4ap8iq2
+         syk4yamgpwBEooSuNgxtrlwTqOoTQ1GbfPpytSWf8O7j0o7/j8KUaD0fwxuF+IuMoe3F
+         h+ssBJM0Vu4j/iAR2CbgXPBYW4fLvrMWauZcY7yZ0QU9kMdCkNLBCh28LhYkqCPR+65k
+         ojYw==
+X-Gm-Message-State: ABy/qLYbW6tVWjfml4kdWO/3wJtaaI/d63O1a+F5+N9QMC61H73YUNiq
+        CCHQM+o8LFlANTDObX6setfCxQ==
+X-Google-Smtp-Source: APBJJlFW9DT9BZsr+XSPA2vB4OYCmyLRfrxqABO39xqF1LRjNNFkSnkQk8GPqJZQvi8LFGtx8O/ekQ==
+X-Received: by 2002:a05:6402:68b:b0:521:94f0:9987 with SMTP id f11-20020a056402068b00b0052194f09987mr4209464edy.37.1689667323562;
+        Tue, 18 Jul 2023 01:02:03 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id u25-20020aa7d899000000b0051e19bf66a4sm804060edq.83.2023.07.18.01.02.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 18 Jul 2023 01:02:03 -0700 (PDT)
+Message-ID: <dd5864ee-7df2-eb64-c7f2-0fb234900d6a@linaro.org>
+Date:   Tue, 18 Jul 2023 10:02:00 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="Rq3h6hwtw2gfWWtd"
-Content-Disposition: inline
-In-Reply-To: <b3755c4b-fee0-85e3-4066-fb20c1ad99a3@linaro.org>
-User-Agent: Mutt/2.2.10 (2023-03-25)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v2 1/2] dt-bindings: input: qcom,pm8xxx-vib: add more PMIC
+ support
+Content-Language: en-US
+To:     Fenglin Wu <quic_fenglinw@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     quic_collinsd@quicinc.com, quic_subbaram@quicinc.com,
+        quic_kamalw@quicinc.com, jestar@qti.qualcomm.com,
+        quic_huliu@quicinc.com
+References: <20230718062639.2339589-1-quic_fenglinw@quicinc.com>
+ <20230718062639.2339589-2-quic_fenglinw@quicinc.com>
+ <cb534cdb-508e-b03e-4e39-50cd6654377a@linaro.org>
+ <4cb9f443-bdea-695a-f1b7-3963747e9a17@quicinc.com>
+ <5b7e624b-5d06-826d-92d1-2a721b7c83b7@quicinc.com>
+ <fec38f3a-f103-ff0f-138c-cffa3a808001@linaro.org>
+ <4210b137-2d5d-a467-ea8c-d047701fdcc2@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <4210b137-2d5d-a467-ea8c-d047701fdcc2@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 18/07/2023 09:59, Fenglin Wu wrote:
 
---Rq3h6hwtw2gfWWtd
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+>>> Just FYI,the change log was updated in the cover letter here:
+>>> https://lore.kernel.org/linux-arm-msm/20230718062639.2339589-1-quic_fenglinw@quicinc.com/T/#m3819b50503ef19e0933a10bf797351a4af35537f
+>>>
+>>> Also the commit text and the driver change were also updated accordingly
+>>> to address your review comment by removing 'pm7550ba-vib' compatible string.
+>>
+>> Removing compatible was never my feedback. Did you read:
+>> https://elixir.bootlin.com/linux/v6.1-rc1/source/Documentation/devicetree/bindings/writing-bindings.rst#L42
+>> ?
+>>
+> Okay, so do you want me to add 'pm7550ba-vib' as a fallback compatible 
+> like this?
+> 
+>   properties:
+>     compatible:
+> -    enum:
+> -      - qcom,pm8058-vib
+> -      - qcom,pm8916-vib
+> -      - qcom,pm8921-vib
+> -      - qcom,pmi632-vib
+> -      - qcom,pm7250b-vib
+> -      - qcom,pm7325b-vib
+> +    oneOf:
+> +      - enum:
+> +          - qcom,pm8058-vib
+> +          - qcom,pm8916-vib
+> +          - qcom,pm8921-vib
+> +          - qcom,pmi632-vib
+> +          - qcom,pm7250b-vib
+> +          - qcom,pm7325b-vib
+> +      - items:
+> +          - enum:
+> +              - qcom,pm7550ba-vib
+> +          - const: qcom,pm7325b-vib
+> 
 
-On Mon, Jul 17, 2023 at 10:03:19AM +0200, Krzysztof Kozlowski wrote:
-> On 14/07/2023 12:10, Diogo Ivo wrote:
-> > After commit 71de0a054d0e ("arm64: tegra: Drop serial clock-names and
-> > reset-names") was applied, the HSUART failed to probe and the following
-> > error is seen:
-> >=20
-> >  serial-tegra 70006300.serial: Couldn't get the reset
-> >  serial-tegra: probe of 70006300.serial failed with error -2
-> >=20
-> > Commit 71de0a054d0e ("arm64: tegra: Drop serial clock-names and
-> > reset-names") is correct because the "reset-names" property is not
-> > needed for 8250 UARTs. However, the "reset-names" is required for the
-> > HSUART and should have been populated as part of commit a63c0cd83720c
-> > ("arm64: dts: tegra: smaug: Add Bluetooth node") that enabled the HSUART
-> > for the Pixel C. Fix this by populating the "reset-names" property for
-> > the HSUART on the Pixel C.
-> >=20
-> > Fixes: a63c0cd83720 ("arm64: dts: tegra: smaug: Add Bluetooth node")
-> > Signed-off-by: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
-> > ---
-> >  arch/arm64/boot/dts/nvidia/tegra210-smaug.dts | 1 +
-> >  1 file changed, 1 insertion(+)
-> >=20
-> > diff --git a/arch/arm64/boot/dts/nvidia/tegra210-smaug.dts b/arch/arm64=
-/boot/dts/nvidia/tegra210-smaug.dts
-> > index 2c608d645642..bcb533cc002c 100644
-> > --- a/arch/arm64/boot/dts/nvidia/tegra210-smaug.dts
-> > +++ b/arch/arm64/boot/dts/nvidia/tegra210-smaug.dts
-> > @@ -1364,6 +1364,7 @@ serial@70006000 {
-> > =20
-> >  	uartd: serial@70006300 {
-> >  		compatible =3D "nvidia,tegra30-hsuart";
-> > +		reset-names =3D "serial";
->=20
-> Why reset-names is board specific? This makes little sense. If you need
-> reset-names, then it is part of SoC.
+Yes
 
-As the commit message explains, this is because we have two
-"conflicting" device tree bindings for these devices. One is a standard
-UART, typically used when the device is a debug serial console and a
-more specialized high-speed UART which then requires additional
-properties.
+Best regards,
+Krzysztof
 
-Effectively this means that whenever we override the standard UART with
-the high-speed UART we need to extend the device tree with those
-additional properties. We actually have similar issues with dmas and
-dma-names, which are only valid for the HS UART and I have a couple of
-patches[0][1] to clean that all up. It's a bit weird because we
-basically have a patch that removes reset-names (for standard UART) and
-then we have another patch that adds the reset-names (for HS UART), but
-I don't see a way around it given the bindings that we have.
-
-Thierry
-
-[0]: http://patchwork.ozlabs.org/project/linux-tegra/list/?series=3D364269
-[1]: http://patchwork.ozlabs.org/project/linux-tegra/list/?series=3D364270
-
---Rq3h6hwtw2gfWWtd
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmS2Rk0ACgkQ3SOs138+
-s6E9PxAAi3lK6Tz97ooPeTx+YVMTX2+PTyigu92qpxZ39Pu0Z+gCmmF1LMiJiqRj
-z7tSzZevRANW1aV45POXukLKoGvtV1rN4meZFai+wP4M3sYlXiFEnFjMJ5mdUT9c
-BDtWQ8BQpVslUxhei52WiUlBm28FP8YkzQIvkLqDXGbZrqpBHF5rvkWuUuFq4v9k
-sqiyi+uMuEdThMgWJxHXp25QFOleYSysLXVieFtfd0EgqF+L/Cf0XAEb/ztqpY9k
-8CV0ENNzq59Gal3SpNe2LPCHsx/r6s1eB1VsmumxZmzn45YSfqhDgrNFx033iq/D
-CunbsaWJ/aC7DJvR83kPYSLTjdavp2TDjAfWRIuaH1KlgARTBhmnLNkGhJVxxvtC
-fqdn//QaaPdJqh7pof5yKBIKVzebHb0uQ4rGwWqfVOYnSC2ImoTurP3MWS2lCnyR
-/fFDwubrORptxjNWlDxoemFmGQb/g8NXjUUJtbfw97CmMAqUAR4bEkXhO3YeXoSg
-0IhKucxIQeQwjT92eKWALte4j17ELYyrQoi7kUpDRBfKV6r/8AYe4Wm2h+UoP+mP
-TtfaCzT05SEhnYZ3yitGFa1MROHH7d8s+vYtvvOSRFZr9lgILc2arf8v5fR8x3ej
-IzwoG5b0YDK5iLV29vsf8dqgYQ33HQzTwpKT0gXko4xFRkQjUdQ=
-=KFUl
------END PGP SIGNATURE-----
-
---Rq3h6hwtw2gfWWtd--
