@@ -2,59 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D87B7573E0
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 08:14:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 951A67573E6
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 08:16:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231484AbjGRGOp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jul 2023 02:14:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53760 "EHLO
+        id S230426AbjGRGQx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jul 2023 02:16:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54324 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231448AbjGRGOX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 02:14:23 -0400
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 078CB2139;
-        Mon, 17 Jul 2023 23:13:24 -0700 (PDT)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id E33CF24E22F;
-        Tue, 18 Jul 2023 14:12:41 +0800 (CST)
-Received: from EXMBX068.cuchost.com (172.16.6.68) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 18 Jul
- 2023 14:12:41 +0800
-Received: from [192.168.120.57] (171.223.208.138) by EXMBX068.cuchost.com
- (172.16.6.68) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 18 Jul
- 2023 14:12:41 +0800
-Message-ID: <018b8bd3-ede0-d6ad-d50e-b4c959ac1660@starfivetech.com>
-Date:   Tue, 18 Jul 2023 14:12:40 +0800
+        with ESMTP id S231350AbjGRGQe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 02:16:34 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83ED51986;
+        Mon, 17 Jul 2023 23:15:49 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 5B1956146F;
+        Tue, 18 Jul 2023 06:15:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2AD86C433C7;
+        Tue, 18 Jul 2023 06:15:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1689660936;
+        bh=pIDYFv2ZkJ4bRQ7wTGYVbgGEKPWGKq3xt9sih1qj7QM=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=NpTtlamI7m1trWo+6u3KW79p3V9twD1Crf6/L9cvZGFm8JCRz6UUUZ/4v61wmGyBS
+         cw0nCmLkRjZyea4e7+AZ70d+3LZ5g4VPS2NF/r31EFnCWCV1DekXqlTqYbIsivsPb8
+         aoT5IDQavozjtDXfjXkdUlejoa1m81Kov+fLwCK0SmKalgacoczQp+XXWJcsLRb1TE
+         26cFnTi4LiIP2lAIOi8q021LXKDC5mrN3SzH/rKwObP1KCGQg0vFXlrN/2LMBaUwg7
+         Egerw7XB0SQLmyb//29uRlV4Z9FfewBYDrQvTREIK7MnqjS92cyMFo0hBFEJ86a3at
+         gx0c5zrpULfuw==
+From:   Vinod Koul <vkoul@kernel.org>
+To:     agross@kernel.org, andersson@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        konrad.dybcio@linaro.org, mani@kernel.org,
+        Mrinmay Sarkar <quic_msarkar@quicinc.com>
+Cc:     quic_shazhuss@quicinc.com, quic_nitegupt@quicinc.com,
+        quic_ramkri@quicinc.com, quic_nayiluri@quicinc.com,
+        dmitry.baryshkov@linaro.org, Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
+        Rob Herring <robh@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-phy@lists.infradead.org
+In-Reply-To: <1689311319-22054-1-git-send-email-quic_msarkar@quicinc.com>
+References: <1689311319-22054-1-git-send-email-quic_msarkar@quicinc.com>
+Subject: Re: (subset) [PATCH v2 0/6] arm64: qcom: sa8775p: add support for
+ PCIe
+Message-Id: <168966092968.340315.2461852657981161685.b4-ty@kernel.org>
+Date:   Tue, 18 Jul 2023 11:45:29 +0530
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v4 3/3] riscv: dts: starfive: Add QSPI controller node for
- StarFive JH7110 SoC
-Content-Language: en-US
-To:     <devicetree@vger.kernel.org>, <linux-spi@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "Emil Renner Berthing" <kernel@esmil.dk>,
-        Ziv Xu <ziv.xu@starfivetech.com>
-References: <20230704090453.83980-1-william.qiu@starfivetech.com>
- <20230704090453.83980-4-william.qiu@starfivetech.com>
- <ZLV2vqycWIA5TanD@aurel32.net>
-From:   William Qiu <william.qiu@starfivetech.com>
-In-Reply-To: <ZLV2vqycWIA5TanD@aurel32.net>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [171.223.208.138]
-X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX068.cuchost.com
- (172.16.6.68)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+X-Mailer: b4 0.12.2
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -62,69 +68,33 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+On Fri, 14 Jul 2023 10:38:32 +0530, Mrinmay Sarkar wrote:
+> Update the relavent DT bindings for PCIe, add new config to the phy
+> driver add pcie and phy nodes to the .dtsi file and enable then in
+> board .dts file for the sa8775p-ride platform.
+> 
+> v1 -> v2:
+> - correct indentationand sort compatible in qcom,pcie binding
+> - correct clock name entry and sort compatible in pcie-phy binding
+> - sort compatible and change commit message in qcom pcie driver
+> - change offset name, added tx2 and rx2 offsets and sort compatible
+>   in qmp pcie phy driver
+> - correct ranges property, added MSI, dma-coherent, cpu-pcie property
+>   removed iommus property moved pinctrl and gpio property to board dts
+>   and correct the allignment in pcie dtsi nodes
+> - added pinctrl and gpio property in board dts
+> 
+> [...]
 
-On 2023/7/18 1:13, Aurelien Jarno wrote:
-> Hi,
-> 
-> On 2023-07-04 17:04, William Qiu wrote:
->> Add the quad spi controller node for the StarFive JH7110 SoC.
->> 
->> Co-developed-by: Ziv Xu <ziv.xu@starfivetech.com>
->> Signed-off-by: Ziv Xu <ziv.xu@starfivetech.com>
->> Signed-off-by: William Qiu <william.qiu@starfivetech.com>
->> Reviewed-by: Hal Feng <hal.feng@starfivetech.com>
->> ---
->>  .../jh7110-starfive-visionfive-2.dtsi         | 32 +++++++++++++++++++
->>  arch/riscv/boot/dts/starfive/jh7110.dtsi      | 18 +++++++++++
->>  2 files changed, 50 insertions(+)
->> 
->> diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
->> index 2a6d81609284..983b683e2f27 100644
->> --- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
->> +++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
->> @@ -126,6 +126,38 @@ &i2c6 {
->>  	status = "okay";
->>  };
->>  
->> +&qspi {
->> +	#address-cells = <1>;
->> +	#size-cells = <0>;
->> +
->> +	nor_flash: flash@0 {
->> +		compatible = "jedec,spi-nor";
->> +		reg = <0>;
->> +		cdns,read-delay = <5>;
->> +		spi-max-frequency = <12000000>;
->> +		cdns,tshsl-ns = <1>;
->> +		cdns,tsd2d-ns = <1>;
->> +		cdns,tchsh-ns = <1>;
->> +		cdns,tslch-ns = <1>;
->> +
->> +		partitions {
->> +			compatible = "fixed-partitions";
->> +			#address-cells = <1>;
->> +			#size-cells = <1>;
->> +
->> +			spl@0 {
->> +				reg = <0x0 0x20000>;
->> +			};
->> +			uboot@100000 {
->> +				reg = <0x100000 0x300000>;
->> +			};
->> +			data@f00000 {
->> +				reg = <0xf00000 0x100000>;
->> +			};
-> 
-> It appears that this uses the old layout for the SPI flash. The new
-> layout is described there:
-> 
-> https://doc-en.rvspace.org/VisionFive2/Boot_UG/JH7110_SDK/boot_address_allocation.html
-> 
-> Regards
-> Aurelien
-> 
-I'll take a look, and use it then.
-Thanks for your comments.
+Applied, thanks!
+
+[2/6] dt-bindings: phy: qcom,qmp: Add sa8775p QMP PCIe PHY
+      commit: fd2d4e4c19864fdd400d961de899163323ab7fa9
+[4/6] phy: qcom-qmp-pcie: add support for sa8775p
+      commit: a05b6d5135ec3e65520ae0eaa1b24d4c6549424e
 
 Best regards,
-William
+-- 
+~Vinod
+
+
