@@ -2,113 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 390FB757D2C
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 15:20:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ECE07757D34
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 15:20:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230150AbjGRNUO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jul 2023 09:20:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55326 "EHLO
+        id S231730AbjGRNUc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jul 2023 09:20:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55584 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230336AbjGRNUN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 09:20:13 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96185CA;
-        Tue, 18 Jul 2023 06:20:12 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 2B8E661574;
-        Tue, 18 Jul 2023 13:20:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 863E9C433C7;
-        Tue, 18 Jul 2023 13:20:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689686411;
-        bh=xqjXQazVO9SEePrXuz6lqpOOkF2BEvOd7Hgdp6WTGYM=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=iidl0MyWqHeGsGL5GbpqOlqRyZquKu2lzCzZetWmYnob9h4u+YXmfNiB+cn3GrpIq
-         kb8n/GeIaWvMM6KlniYZqARLa6QtCzif35qspy5RWproVTBngDkZtAx7yhvYmeZWKp
-         4l6OP/GSV6Maf8rfnynPpaRGjssD6rI4AxdpW++geCbqu3AHly9wAwY86CpfQenzF8
-         xShbtzHOkPUzhi0GvMmAYwtQmn5QrxT2VATbmCoMTOFePEYBIdw9818q1TV4uAAoGK
-         62lwvsy+1LEFGQ2Ik0C2tlz2scrMi1Ksv59pEbgfT4ZG3znyDPzc5IJaujEC+Gpu3Z
-         Wg9DHFWZC92gg==
-Received: (nullmailer pid 915865 invoked by uid 1000);
-        Tue, 18 Jul 2023 13:20:09 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+        with ESMTP id S230435AbjGRNUb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 09:20:31 -0400
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23C35FA
+        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 06:20:28 -0700 (PDT)
+Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-51d95aed33aso7746661a12.3
+        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 06:20:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1689686426; x=1692278426;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=cWOtIA2FOFVa8PRRZ9oT4YgXxX5Q0c4ZWH1V2fHFko8=;
+        b=tuCv5nNpIgNZNOk9InN3JuvIrDKEMvTFVXBhXyPskz8m/khI6AYxDlmAvvbwlMYeRO
+         ZQq0+SnvDnXAIxwUeskNXgZB2AEMQf/Ge2t10snnrlfjD530P+xx3ZRqNeS9XzMEeedz
+         T+AEKGFrwYJQQT4pgUzKmKXVw/pPXKurgcdhDpZ4ZJw/o1BRb5diEiGFgeBmTPia0D8c
+         UMEHbm19zUUF5FNb192xqmCkGSGjTeAm8oQ353MQoVXSzx8kOO2EbwO5GBAtBlfGEZoS
+         kSQ+X9qxyWYGn0itaFOuy2fsSXqlbDPoa6Bj/X/V7VpdHlobyxnZaaHxF8F/eHqMMbIo
+         eFTg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689686426; x=1692278426;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=cWOtIA2FOFVa8PRRZ9oT4YgXxX5Q0c4ZWH1V2fHFko8=;
+        b=FOa8j7sF5OlUZlk3ndt+xSMPIl9oPFRqGsiY4XnEb/yg+YO+RqToF5NDcYT7pvhFO0
+         dRpp3E9OpajaVg7SI56LZr7vTP0lVnSuTfm1DebYmpmcSZSozYw8HWHH/PnLSG3KsaqT
+         Vmd/yOs09fJDhYBsOTGaDAI6EcUb9+fBGlc+LOgyRuekfZ91fgoWqT+r8fE3EusZqhUn
+         xTWE2K3lqvyEN573rBMVDxFuGIVudhYpEsSzqyX2j4vUgjb5FcSznKZKf5LwQenSynLq
+         0UIgHQ6Sc+Wso4NBB7WfLyV57Cbue/NWpu1kl5i7Q9NpDIikMKRXaa1BDbsknOM7+z2b
+         cMLA==
+X-Gm-Message-State: ABy/qLbIfFvwGK9hEjLASviEfqwN/+L2dpN//yeqCzJN+sVHkRt0RK/G
+        gnoTWCh9qumzUUEpShnZcwUzBQ==
+X-Google-Smtp-Source: APBJJlGmSDTqKT1bqClQ7VNG9peQWayYbYAKzZ52ByeEncXh9CsvydwFEyqgGiZGFAQdygdkc8BpqA==
+X-Received: by 2002:aa7:da51:0:b0:51e:22dd:5e90 with SMTP id w17-20020aa7da51000000b0051e22dd5e90mr11657748eds.4.1689686426505;
+        Tue, 18 Jul 2023 06:20:26 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id c18-20020aa7c752000000b00514a5f7a145sm1232174eds.37.2023.07.18.06.20.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 18 Jul 2023 06:20:25 -0700 (PDT)
+Message-ID: <22e7dc73-2411-5cb1-6cef-daa5f2af8297@linaro.org>
+Date:   Tue, 18 Jul 2023 15:20:24 +0200
 MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-kernel@vger.kernel.org,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Marc Zyngier <maz@kernel.org>,
-        Shawn Guo <shawn.guo@linaro.org>, devicetree@vger.kernel.org
-In-Reply-To: <20230328-topic-msgram_mpm-v4-1-bae382dc0f92@linaro.org>
-References: <20230328-topic-msgram_mpm-v4-0-bae382dc0f92@linaro.org>
- <20230328-topic-msgram_mpm-v4-1-bae382dc0f92@linaro.org>
-Message-Id: <168968640959.915849.5129879096888517309.robh@kernel.org>
-Subject: Re: [PATCH v4 1/2] dt-bindings: interrupt-controller: mpm: Pass
- MSG RAM slice through phandle
-Date:   Tue, 18 Jul 2023 07:20:09 -0600
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH 1/2] dt-bindings: reset: Updated binding for Versal-NET
+ reset driver
+To:     Michal Simek <michal.simek@amd.com>,
+        Conor Dooley <conor@kernel.org>,
+        Piyush Mehta <piyush.mehta@amd.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, p.zabel@pengutronix.de,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        git@amd.com
+References: <20230717112348.1381367-1-piyush.mehta@amd.com>
+ <20230717112348.1381367-2-piyush.mehta@amd.com>
+ <20230717-explode-caucus-82c12e340e39@spud>
+ <ee81e955-32be-66ea-377b-263ee60a2632@linaro.org>
+ <e8f48a30-9aff-bc2f-d03f-793840a192c9@amd.com>
+ <694a1314-0b25-ff5e-b19f-5a0efe07bf64@linaro.org>
+ <cae162d0-843d-ca1f-80d3-5a0dfe1e3d0f@amd.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <cae162d0-843d-ca1f-80d3-5a0dfe1e3d0f@amd.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On Tue, 18 Jul 2023 14:19:10 +0200, Konrad Dybcio wrote:
-> Due to the wild nature of the Qualcomm RPM Message RAM, we can't really
-> use 'reg' to point to the MPM's slice of Message RAM without cutting into
-> an already-defined RPM MSG RAM node used for GLINK and SMEM.
+On 18/07/2023 15:11, Michal Simek wrote:
+>>>
+>>> That numbers in DT are virtual no matter if you use ID from 0 to max or random
+>>> values it is up to code to handle them. Checking nr_pins against ID is done in
+>>> core but it is up to drivers.
+>>
+>> No, you confuse "virtual" and "ID". IDs are not virtual. IDs are real
+>> and have representation in Linux driver. You do not need to define
+>> anything virtual in the bindings.
 > 
-> Document passing the register space as a slice of SRAM through the
-> qcom,rpm-msg-ram property. This also makes 'reg' deprecated.
+> Not sure how you define ID itself. But HW doesn't know ID. HW knows only 
+> register which you can use to perform the reset. It is not really 128bit 
+> register where every bit targets to different IP.
 > 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
->  .../bindings/interrupt-controller/qcom,mpm.yaml    | 52 +++++++++++++++-------
->  1 file changed, 35 insertions(+), 17 deletions(-)
+> And this is SW-firmware interface like SCMI reset driver.
 > 
+> Firmware is saying that ID 0 is QSPI, ID 1 is MMC.
+> Their Linux driver is asking for nr_reset via firmware call which can be 
+> different for different SOC and that's fine and I have no problem with it.
+> But only SCMI server is dictating that ID 0 is QSPI and ID 1 is MMC. Different 
+> SCMI server implementation can map it differently.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Sure, and all this points to: no need for bindings.
 
-yamllint warnings/errors:
+> 
+> 
+>>> In our case that IDs are coming from firmware and driver itself is just matching
+>>> them.
+>>
+>> So they are the same as if coming from hardware - no need for IDs.
+> 
+> It is hard to say what hardware here exactly is. From my perspective and I am 
+> not advocating not using IDs from 0 to max, it is just a number.
+> 
+> If my firmware knows that QSPI reset is 0xc10402dU then I will just pass it to 
+> reach my goal which is reset QSPI IP.
+> 
+> If you think that we should use IDs from 0 to max NR I am happy to pass this 
+> message to PM team and we should extend any SW to do translation between.
 
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/interrupt-controller/qcom,mpm.example.dtb: /example-0/remoteproc-rpm: failed to match any schema with compatible: ['qcom,msm8998-rpm-proc', 'qcom,rpm-proc']
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/interrupt-controller/qcom,mpm.example.dtb: glink-edge: 'label' is a required property
-	from schema $id: http://devicetree.org/schemas/remoteproc/qcom,glink-edge.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/interrupt-controller/qcom,mpm.example.dtb: glink-edge: 'qcom,remote-pid' is a required property
-	from schema $id: http://devicetree.org/schemas/remoteproc/qcom,glink-edge.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/interrupt-controller/qcom,mpm.example.dtb: glink-edge: 'compatible', 'qcom,rpm-msg-ram' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/remoteproc/qcom,glink-edge.yaml#
+When we talk about IDs and bindings, we mean IDs meaningful to Linux.
+Whatever is ignored by Linux and passed to anyone else - hardware or
+firmware - is not a ID anymore from bindings point of view. It's just
+some value.
 
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230328-topic-msgram_mpm-v4-1-bae382dc0f92@linaro.org
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+Best regards,
+Krzysztof
 
