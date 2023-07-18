@@ -2,58 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 76B21758567
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 21:16:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 75870758583
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 21:26:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229480AbjGRTQd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jul 2023 15:16:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50514 "EHLO
+        id S229521AbjGRT0n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jul 2023 15:26:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53660 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229437AbjGRTQd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 15:16:33 -0400
+        with ESMTP id S229525AbjGRT0m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 15:26:42 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3791FF0
-        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 12:16:32 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFC201992;
+        Tue, 18 Jul 2023 12:26:41 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id C850A616CF
-        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 19:16:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 34506C433C9
-        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 19:16:31 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 6CF78616E1;
+        Tue, 18 Jul 2023 19:26:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E63CAC433C7;
+        Tue, 18 Jul 2023 19:26:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689707791;
-        bh=tvdiNmY7Wo5jPx6GVCtg6XE0HlZN1odUk3totm62pJE=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=r5HMn3JAmOvu9TqqEx5DaAsWDLHBdRvE1hJBlRo4CURyCAytCx1Hi4gOP9Dt42G5s
-         SX47l4ObXbIpshHhUa6JhRhOPIyKekIAMa+lujZtlptYu0KYiRRKaQWz36sLEs41GX
-         K8FGcC80Oae2Uj5+fLHMQDNc4EsQJAQ8l68OeglXcAlB+6RPzDzZm+Yhq+CMVTCIaH
-         j0Cy505pwcTczDsEs74mX/goCjq3OCzQbsGxn+sxkQced5MIw9Ytlt/Nny0lDBxrdR
-         1Lf9XdY30ELxnchN7mh7TqNXABa5FrjwiIsA7BqiTZmRqbl2gcfCoTNXfgIet/gLmQ
-         HF/pgI6vOuzAQ==
-Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-4fba86f069bso9896811e87.3
-        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 12:16:31 -0700 (PDT)
-X-Gm-Message-State: ABy/qLZYMf9aXEe+QiyQys7XRp9kwdP16YmkGkGg2ra5GcYmwmbSHV7S
-        r7xGcgTJTyhFsp3cdyEIL9weazhkwfGcEqmprQ==
-X-Google-Smtp-Source: APBJJlHETf96Bki/UYRbGLoJimhSw8y2gNHvBQm7fYIvSvIcqQfcTQhBhqDjR2eMzCGndzzkTocIswv62D+mJmvQI8Y=
-X-Received: by 2002:a05:6512:2208:b0:4f9:710f:f3a9 with SMTP id
- h8-20020a056512220800b004f9710ff3a9mr317809lfu.58.1689707789225; Tue, 18 Jul
- 2023 12:16:29 -0700 (PDT)
+        s=k20201202; t=1689708400;
+        bh=4L+ddEAbeJgqxtXEa7jtsoqEIjOZNcXsmm10kARcsx8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=KvxSW1oaaZkNnjh5vGJ6g/g5O048ARht2f2qjXlBvH3g3D/LIGXFmb/a3/Tv9GeBA
+         dryIkVAp/fybjL79uvuN5shCyiTPLhT2sMf2g0SV/2jeL31BfD2NQDW0J5oKKYX2Ef
+         bPofI77x55YjH3ZvdoiyHSwX0SOpvnms98wGyq4Kp+LvXmp3Yk+TkZkO6pa+XdzGIT
+         FRgVxdQ6y4brcg1jsyxbAQ8vygpKFyCBfX4StdTBjOwHb4dvVW+IXhEwQmThzt7038
+         i8M+qGpwH7xOFqdiNB8QgUeB1J7g3GgxrNozvXsscXy4UMlE6AZmmEL2BpyTTthDBJ
+         BE8CrlFpWTT/w==
+Date:   Tue, 18 Jul 2023 12:30:04 -0700
+From:   Bjorn Andersson <andersson@kernel.org>
+To:     Nikunj Kela <quic_nkela@quicinc.com>
+Cc:     sudeep.holla@arm.com, cristian.marussi@arm.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        agross@kernel.org, konrad.dybcio@linaro.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH 2/2] firmware: arm_scmi: Add qcom hvc/shmem transport
+Message-ID: <rum7gnnouoz2irn57taxn4j2aajkxf6em6ft6u4w3rxwsym2su@acgczsnl2huz>
+References: <20230718160833.36397-1-quic_nkela@quicinc.com>
+ <20230718160833.36397-3-quic_nkela@quicinc.com>
+ <xkw36iwjb47q7spf6qle5x3kcmx6fv7or6cwhlpkuvihn3xmt2@qhrhtug4htp2>
+ <5c76250b-4415-950e-6aab-7ccbdc6ca83a@quicinc.com>
+ <6uelwa7fpzbw757rbb2j3u4ogagypdzyqj5mykyhlkkkvrnfin@ttonjpfn7nxc>
+ <d2d01794-ef13-07f9-7695-b56b58cc01ac@quicinc.com>
 MIME-Version: 1.0
-References: <4D2BD944-7A50-4FB9-9156-A02C77E6338E@hpe.com>
-In-Reply-To: <4D2BD944-7A50-4FB9-9156-A02C77E6338E@hpe.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 18 Jul 2023 13:16:17 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+FhtGj4qyiQNA8+ykv+2DMxQHuT_joS1jVB17kDby_ig@mail.gmail.com>
-Message-ID: <CAL_Jsq+FhtGj4qyiQNA8+ykv+2DMxQHuT_joS1jVB17kDby_ig@mail.gmail.com>
-Subject: Re: Query about Implementing Device tree for Networking on HPE BMC
-To:     "Hawkins, Nick" <nick.hawkins@hpe.com>
-Cc:     "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <d2d01794-ef13-07f9-7695-b56b58cc01ac@quicinc.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
@@ -64,85 +62,50 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 10, 2023 at 2:33=E2=80=AFPM Hawkins, Nick <nick.hawkins@hpe.com=
-> wrote:
->
-> Greetings Rob and Krzysztof,
->
-> I am attempting to describe the HPE GXP BMCs networking interfaces for
-> the device tree.
->
-> Here are the details: The GXP contains two Ethernet MACs that can be
-> connected externally to several physical devices. From an external
-> interface perspective the BMC provides two SERDES interface connections
-> capable of either SGMII or 1000Base-X operation. The BMC also provides
-> a RMII interface for sideband connections to external Ethernet controller=
-s.
->
-> The primary MAC (umac0) can be mapped to either SGMII/1000-BaseX
-> SERDES interface.  The secondary MAC (umac1) can be mapped to only
-> the second SGMII/1000-Base X Serdes interface or it can be mapped for
-> RMII sideband.
->
-> The MDIO(mdio0) interface from the primary MAC (umac0) is used for
-> external PHY status and configuration. The MDIO(mdio1) interface from
-> the secondary MAC (umac1) is routed to the SGMII/100Base-X IP blocks
-> on the two SERDES interface connections.
->
-> I cannot find any examples of something currently like this in linux and
-> I am looking for suggestions.
+On Tue, Jul 18, 2023 at 12:10:16PM -0700, Nikunj Kela wrote:
+> 
+> On 7/18/2023 12:07 PM, Bjorn Andersson wrote:
+> > On Tue, Jul 18, 2023 at 11:53:24AM -0700, Nikunj Kela wrote:
+> > > On 7/18/2023 11:29 AM, Bjorn Andersson wrote:
+> > > > On Tue, Jul 18, 2023 at 09:08:33AM -0700, Nikunj Kela wrote:
+> > > > > diff --git a/drivers/firmware/arm_scmi/qcom_hvc.c b/drivers/firmware/arm_scmi/qcom_hvc.c
+> > [..]
+[..]
+> > > > > +#ifdef CONFIG_ARM64
+> > > > > +	cap_id = readq((void *)(scmi_info->shmem) + size +
+> > > > > +		       sizeof(unsigned long));
+> > > > > +#else
+> > > > > +	cap_id = readl((void *)(scmi_info->shmem) + size +
+> > > > > +		       sizeof(unsigned long));
+> > > > > +#endif
+> > > > Please don't make the in-memory representation depend on architecture
+> > > > specific data types. Quite likely you didn't compile test one of these
+> > > > variants?
+> > > > 
+> > > > Just define the in-memory representation as u32 + u64.
+> > > I tested this for ARM64, I didn't test it for 32bit since Hypervisor doesn't
+> > > support it currently. In future, it may add 32 bit support too.
+> > I'd not be surprised if the capability id is 64 bit on a 32-bit machine
+> > as well, it's not really a property of the architecture.
+> 
+> on 32bit machine, you will have to use SMC32 convention. lt will mean that
+> the parameters can only be 32 bit long. If you keep cap-id 64 bit in 32bit
+> machines, then it has to be passed in two parameters. Are you suggesting, I
+> make this driver dependent on ARM64 and only care about 64 bit for now?
+> 
 
-What is your question? Do I know of hardware like this? No. Maybe ask
-networking folks.
+I'm suggesting that the calling convention is one thing and the
+in-memory format for passing the information to the driver is a
+different thing.
 
-> Below is this previous attempt that was used to describe this architectur=
-e:
->
-> mdio0: mdio@4080 {
->         compatible =3D "hpe,gxp-umac-mdio";
->         reg =3D <0x4080 0x10>;
->         #address-cells =3D <1>;
->         #size-cells =3D <0>;
->         ext_phy0: ethernt-phy@0 {
->                 compatible =3D "marvell,88e1415","ethernet-phy-ieee802.3-=
-c22";
->                 phy-mode =3D "sgmii";
->                 reg =3D <0>;
->         };
-> };
->
-> mdio1: mdio@5080 {
->         compatible =3D "hpe,gxp-umac-mdio";
->         reg =3D <0x5080 0x10>;
->         #address-cells =3D <1>;
->         #size-cells =3D <0>;
->         int_phy0: ethernt-phy@0 {
->                 compatible =3D "ethernet-phy-ieee802.3-c22";
->                 phy-mode =3D "gmii";
->                              reg =3D <0>;
->         };
->
->         int_phy1: ethernt-phy@1 {
->                 compatible =3D "ethernet-phy-ieee802.3-c22";
->                 phy-mode =3D "gmii";
->                 reg =3D <1>;
->         };
-> };
->
-> umac0: umac@4000 {
->         compatible =3D "hpe, gxp-umac";
->         reg =3D <0x4000 0x80>;
->         interrupts =3D <10>;
->         interrupt-parent =3D <&vic0>;
->         mac-address =3D [94 18 82 16 04 d8];
->         phy-handle =3D <&ext_phy0>;
->         int-phy-handle =3D <&int_phy0>;
+Keep the arguments passed in memory architecture-independent (i.e. make
+it u64).
 
-This is the only thing that stands out to me.
+If you're saying that the calling convention would be different on a
+32-bit system, then you are also saying that your driver _is_ 64-bit
+specific. Please confirm what the size of your capability id would be in
+such a system and make sure the Kconfig and/or the code, reflects
+reality.
 
-Are both phys usable on a given system? If not, then you shouldn't
-need to describe both. Otherwise, we could allow 'phy-handle' to take
-more than 1 entry if we don't already. Then you can define which entry
-is which interface.
-
-Rob
+Thanks,
+Bjorn
