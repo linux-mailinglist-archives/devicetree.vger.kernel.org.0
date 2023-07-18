@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 988C3757AEF
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 13:52:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EC5DA757AF5
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 13:54:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231404AbjGRLwt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jul 2023 07:52:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57174 "EHLO
+        id S231253AbjGRLyL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jul 2023 07:54:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57932 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230435AbjGRLws (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 07:52:48 -0400
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD38818E
-        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 04:52:46 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-51e29ede885so8009804a12.3
-        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 04:52:46 -0700 (PDT)
+        with ESMTP id S230253AbjGRLyK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 07:54:10 -0400
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D3D01AC
+        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 04:54:09 -0700 (PDT)
+Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-51e2a6a3768so8012824a12.0
+        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 04:54:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689681165; x=1692273165;
+        d=linaro.org; s=google; t=1689681248; x=1692273248;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=sG7ozDX9NM/o92dg3TXw0CQG4MCfF4i8UsLjn3lS5G0=;
-        b=Z1thpY3baZq+vNWRDe7n6I78lo0iEWey746H4WIdm7n2G/qpKhAiP1OiNvTElXJBwg
-         RcJ1rRNpB2Gd3buIlDETcE+iOXZ0tSFkob7doB6jT8ujswTv2d0inpsFtPfO8SjqawvD
-         el6Hyp09AKo61UqGmNmM5QvD8cH3BwGkVggJ2eL5vE+KCh8AKp9qD8R+11DvJXby817E
-         xDDgUI5F04r9m2fFL05HxJN+/xcLnhW6KlyuSR5bh5N5LZ3ReKNuzBxcxFVjU5Ha2auC
-         /O0r+o8/4FLw4yG7Q8KbUe9Wc8E4H0vOp/0lzXZwLJhBH+4p4wt09tbhO+DtqtC7DG2t
-         wOpw==
+        bh=ZDvfCq2rYjVFo4n3JaAZGwBu1O0j5CMRvxTlhF+phBE=;
+        b=leb66+CLlHF97LLt85yV4SxY9TCEqgEUzNiJkcQh+ihcyBQvwr6uX7ola/6Va4rWOS
+         8x19UvwnxZS53+PVzqyopBZ+2h+GmV15aX5TZ3fAJfUgukyZFWlxcEKowxtAWMHGLNdZ
+         Pl7lwbkHzCOHYnZdKuYEFQG5jwABP23ZlGaj3kJVuHPorvxvfOacGUhNtjVIAkhdBBFA
+         sM+yAbQ00jBvR2OevMUW5XvG7asOhIjplWejK3gQS+dZM430ilhxncncBU5wmeMazpT3
+         vSfyrM1hB5bAOZJ8KXr2KFU2+Fd2dlMLafQKSYG6HisYENb41zP31Tk/sTVJNB9j7PXn
+         VX/A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689681165; x=1692273165;
+        d=1e100.net; s=20221208; t=1689681248; x=1692273248;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=sG7ozDX9NM/o92dg3TXw0CQG4MCfF4i8UsLjn3lS5G0=;
-        b=gGvDqarmhCgppUdKP4EWtCoHACjtkltIE4zLDlrnItrI5OgpBKq+keLY8TBr9wWtXP
-         sh9Pu8YkO4mb0GAo77IX2fELKRWYf2ouH3kx98l/KQ1G6rygjldav6/BJwN5LMxyjF+r
-         H00blBvzhC9L9rGPy3pXGuhU2kjOqIGguGAoDhGizG+7goJMdq+lHiXN/wixiH88H7qp
-         WYZdIbhMnPBUjpaXxJyVwNtQ5ySZ31K6Tnl8tWx8VY97mvFdLNTo6fzukuedcahTHw06
-         o82bx+bwJLrnqyS6eJGMR1lQhW9AyscoXg5LJ5TESE5qEHbnMTWetMLO/L6riK53I5d+
-         TGMA==
-X-Gm-Message-State: ABy/qLaJYIUNfatqSbVnR0x12KB4iRGGAiLfdMQmpc7y52VSiYujEzFz
-        GwFAnrxIFDOB+BliYAXQzyfzpA==
-X-Google-Smtp-Source: APBJJlGRh5VMYFGKAv394CF4+UWzckjHWOKPQTtNJ6e5mbbsz7l5/4gYEjZGwnwOScJexCjtAxsLaA==
-X-Received: by 2002:aa7:cb4d:0:b0:51d:8f9b:b6ce with SMTP id w13-20020aa7cb4d000000b0051d8f9bb6cemr13414755edt.1.1689681165230;
-        Tue, 18 Jul 2023 04:52:45 -0700 (PDT)
+        bh=ZDvfCq2rYjVFo4n3JaAZGwBu1O0j5CMRvxTlhF+phBE=;
+        b=X1NuziYMVlhoSikqYGMUzEoVlz2GtALdZJ5B3tbspVvPRv4LiuSKGhJpBz3Tv99/ip
+         8Qq24t8/kQewsr+xKEawBu5VTcUlJO+3m+A8WD3KNcmEryOQZ5b340DQfNre0q1sQOAj
+         LNXa5kWcTIluLvolmyp1uyVos0O8fjaetd8+HWDRTdr8i2f7cnhPT20X2fAafiLtJ8ho
+         CnrSR6FwbelmNHiyGrWKNAE88EobfSInMel2xJ65WE5BeHY2WKYxEVB0ycGtOpGN+ZV4
+         w+39MSJYYbNuIZ0N1Q/UrXuZbwznawvHfOSpljIcXVlQXoEJND4HSu97/OK0dV+aak9+
+         /bBw==
+X-Gm-Message-State: ABy/qLarrZFX8P8/e7toiBrqp8J5LX7HnUnVZcbI6XhgyhBp/zLdJe0z
+        BJZLaqRfyx8gUPwjRcdz4U2hjg==
+X-Google-Smtp-Source: APBJJlGo95nQJFKL792SHJPaSiWKgXJBaPhwi4GdonpOb/yE6DAQNPoWUsd1OUyOwDJJoiXFMUddtg==
+X-Received: by 2002:a05:6402:2048:b0:51e:234:cc51 with SMTP id bc8-20020a056402204800b0051e0234cc51mr13412054edb.17.1689681248020;
+        Tue, 18 Jul 2023 04:54:08 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id w5-20020aa7dcc5000000b005217a24addbsm1122638edu.20.2023.07.18.04.52.43
+        by smtp.gmail.com with ESMTPSA id w5-20020aa7dcc5000000b005217a24addbsm1124462edu.20.2023.07.18.04.54.06
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 18 Jul 2023 04:52:44 -0700 (PDT)
-Message-ID: <74b666ec-092e-28ea-498b-0efa103d7988@linaro.org>
-Date:   Tue, 18 Jul 2023 13:52:42 +0200
+        Tue, 18 Jul 2023 04:54:07 -0700 (PDT)
+Message-ID: <c674cc0f-087d-3333-65cd-00394aa62d32@linaro.org>
+Date:   Tue, 18 Jul 2023 13:54:05 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
@@ -58,36 +58,29 @@ Subject: Re: [PATCH v4 02/17] dt-bindings: gpu: Add Imagination Technologies
  PowerVR GPU
 Content-Language: en-US
 To:     Frank Binns <Frank.Binns@imgtec.com>,
-        "conor@kernel.org" <conor@kernel.org>,
+        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
         Sarah Walker <Sarah.Walker@imgtec.com>
 Cc:     "luben.tuikov@amd.com" <luben.tuikov@amd.com>,
         "christian.koenig@amd.com" <christian.koenig@amd.com>,
         "krzysztof.kozlowski+dt@linaro.org" 
         <krzysztof.kozlowski+dt@linaro.org>,
         "tzimmermann@suse.de" <tzimmermann@suse.de>,
-        "mripard@kernel.org" <mripard@kernel.org>,
-        "hns@goldelico.com" <hns@goldelico.com>, "afd@ti.com" <afd@ti.com>,
-        "daniel@ffwll.ch" <daniel@ffwll.ch>,
-        "maarten.lankhorst@linux.intel.com" 
-        <maarten.lankhorst@linux.intel.com>,
-        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-        "boris.brezillon@collabora.com" <boris.brezillon@collabora.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
         "dakr@redhat.com" <dakr@redhat.com>,
         "matthew.brost@intel.com" <matthew.brost@intel.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "airlied@gmail.com" <airlied@gmail.com>,
+        "afd@ti.com" <afd@ti.com>, "hns@goldelico.com" <hns@goldelico.com>,
         "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "boris.brezillon@collabora.com" <boris.brezillon@collabora.com>,
+        "mripard@kernel.org" <mripard@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
         Donald Robson <Donald.Robson@imgtec.com>,
         "faith.ekstrand@collabora.com" <faith.ekstrand@collabora.com>
 References: <20230714142526.111569-1-sarah.walker@imgtec.com>
- <20230715-paramount-straining-6a486f8af20d@spud>
- <a86f6359706485cf595889a07e513e2b9fd6d71b.camel@imgtec.com>
- <4131759e-9474-48f6-cc05-67b6d4b6559b@linaro.org>
- <1cb4f6b57f0826377f0aef85a8abcf0b5f51c07c.camel@imgtec.com>
+ <01f0cf88-4e85-0c92-9723-eb9198782d0d@linaro.org>
+ <b6a83ff4ba6ac92af2ab573e200cbf0b5b2847f9.camel@imgtec.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1cb4f6b57f0826377f0aef85a8abcf0b5f51c07c.camel@imgtec.com>
+In-Reply-To: <b6a83ff4ba6ac92af2ab573e200cbf0b5b2847f9.camel@imgtec.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -100,39 +93,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/07/2023 13:36, Frank Binns wrote:
+On 18/07/2023 13:47, Frank Binns wrote:
 > Hi Krzysztof,
 > 
-> On Tue, 2023-07-18 at 13:10 +0200, Krzysztof Kozlowski wrote:
->> On 18/07/2023 13:08, Frank Binns wrote:
->>>> And this
->>>> items:
->>>>   - const: gpu
->>>> can just be
->>>> const: gpu
->>>>
->>>> Although, if there is only one interrupt this is probably not
->>>> particularly helpful. Are there other implementations of this IP that
->>>> have more interrupts?
+> On Tue, 2023-07-18 at 08:20 +0200, Krzysztof Kozlowski wrote:
+>> On 14/07/2023 16:25, Sarah Walker wrote:
+>>> Add the device tree binding documentation for the Series AXE GPU used in
+>>> TI AM62 SoCs.
 >>>
->>> No, all our current GPUs just have a single interrupt. I assume it's more future
->>> proof to keep the name in case that ever changes? 
 >>
->> Why do you need name in the first place? If there is single entry, the
->> name is pointless, especially if it repeats the name of the IP block.
+>> ...
 >>
->>> As in, by having the name now
->>> we can make it a required property, which I guess we won't be able to do at some
->>> later point.
+>>> +
+>>> +additionalProperties: false
+>>> +
+>>> +examples:
+>>> +  - |
+>>> +    #include <dt-bindings/interrupt-controller/irq.h>
+>>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+>>> +
+>>> +    gpu: gpu@fd00000 {
+>>> +        compatible = "ti,am62-gpu", "img,powervr-seriesaxe";
+>>> +        reg = <0x0fd00000 0x20000>;
+>>> +        power-domains = <&some_pds 187>;
+>>> +        clocks = <&k3_clks 187 0>;
+>>> +        clock-names = "core";
+>>> +        interrupts = <GIC_SPI 86 IRQ_TYPE_LEVEL_HIGH>;
+>>> +        interrupt-names = "gpu";
 >>
->> Why even making it required?
+>> Why does it differ from your DTS?
 > 
-> It seems nicer to look up a resource in the driver based on a name rather than
-> an index. 
+> This is just an oversight on our part. We'll make sure they both match in the
+> next version.
+> 
 
-Not really... Slower and confuses people, because then they think order
-is flexible.
-
+Just test your DTS before sending. You would see errors and there is no
+need to involve manual reviewing. It is always better to use tools than
+reviewers time. Otherwise, please kindly donate your time by helping to
+review other patches.
 
 Best regards,
 Krzysztof
