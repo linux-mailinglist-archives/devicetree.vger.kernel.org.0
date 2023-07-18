@@ -2,106 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 911B4757A88
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 13:37:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A264C757AAA
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 13:41:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230259AbjGRLhB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jul 2023 07:37:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46136 "EHLO
+        id S231304AbjGRLln (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jul 2023 07:41:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48560 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229740AbjGRLhB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 07:37:01 -0400
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A93871AC
-        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 04:36:59 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-99454855de1so495303566b.2
-        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 04:36:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689680218; x=1692272218;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=jO6ua4X85rMtlHrlvOM6ZeaIO7a3UQyMeLyISBdalqs=;
-        b=oTYrcQsJJlBwD++7RreKiH6HawYxf7leUPok+WCk+33/y20iHM9fw/mPZzfDxIqJey
-         GeRNpq8xBoIAjvJs1JTAEL0VhEb+a/H1Zx5zutNH5kZwqS4dY0KXgoa9sjYDe96vstek
-         lVNKkoUi4vHJpf2UEl1AkxNgFgaBoQS+T52hklsmX6Moc+v9eJXSChNQNnCIWs4xhyaG
-         NM9TKfnsoYmkT/wJnDrquwyLAxO3OdiJCocHuD/DgcWoZ7hfJWuj9d4H8IWmTGBhWdW5
-         x6k1TUKv5KY7zHHASpvhi1T5hrnO23g2kWgSv8usUWJGi+oymQfRCS/6501R8VHagKQB
-         7xsg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689680218; x=1692272218;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jO6ua4X85rMtlHrlvOM6ZeaIO7a3UQyMeLyISBdalqs=;
-        b=CyxuBOivJrMFNVHns2bFq8affzrs4tUxc232d759BLCycTHSM2qpvEL7LVz2reJlLX
-         hceh88lutERn5Y51DfP8RKyTrb0yJLLkfHhZ1ZiJQbNbyDHtXcc3+N4RMCTw/OkP2dCq
-         8iA2kezbWseLdbW8IvzxfwMFFSlZL5pHDV9OoZWY0LHyqJAE5bsWRC0zmi7kSY4or6/7
-         +GzpLElR1Z6K8vjmDsQ/ddcyk5Xue9se8j7mzmZcOqci/N6lS6zCssajmo2oRSSln252
-         yogWZXrYh6GF8xsnwVnE9qdBJytNTDrr9H4i50uUCDfORVpt0Mhh8S8I+Ksiem6STMCA
-         ZKGA==
-X-Gm-Message-State: ABy/qLaRULDrdvFLBad/peAgskHmt0b0iKElKwaw0bEmVfRiukNaYrQD
-        2pXT8+1/4TqdpuoWclL7ETXZmQ==
-X-Google-Smtp-Source: APBJJlFRd9RW4wntElyN0a/crvWTBHVAFZQOzsVP9TrDjczxK2gO/Q3rrQiKZgwATBugMDmHS3+VDg==
-X-Received: by 2002:a17:907:9143:b0:992:47d7:35d7 with SMTP id l3-20020a170907914300b0099247d735d7mr11386417ejs.14.1689680218174;
-        Tue, 18 Jul 2023 04:36:58 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id dx14-20020a170906a84e00b0098884f86e41sm893296ejb.123.2023.07.18.04.36.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 18 Jul 2023 04:36:57 -0700 (PDT)
-Message-ID: <ba7af1a4-155f-cab0-4fd6-1f998ceb4936@linaro.org>
-Date:   Tue, 18 Jul 2023 13:36:55 +0200
+        with ESMTP id S229852AbjGRLl2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 07:41:28 -0400
+Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [81.169.146.167])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC5CA1BCB;
+        Tue, 18 Jul 2023 04:41:06 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1689680437; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=XrUxc4tN3AEMjQ8WNc7/u/QDkgIlwO7XY/SN9uzZz0GcZi4Ql/hjzW4U1pbzq1j6UC
+    ISggJq1ohkzxEbbB9nR4KC8drFsA+9AZP31gka0cEqUg8Ad+i5UCSlXBFoPGFfScgkJj
+    6zOItKTyyjoO0EAVPDP4TaPV9h2/lwcc3kId4RvVBNBhm15nOILdeQ1vprvWCz51YdTv
+    FP60ewdVvkYYKpAkF5f7e0xMFlIKF8dOaiYRrcf+LpX7ftw12o+valewEXVUwhwwpwsF
+    VZN/yHbdh1cCO+pVoi+uE76ObAudf+iEGxsBF7ljkXK8adQVzMy2p7WLB9RKDdGN2Gkw
+    0q2g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1689680437;
+    s=strato-dkim-0002; d=strato.com;
+    h=Cc:To:Message-Id:Date:Subject:From:Cc:Date:From:Subject:Sender;
+    bh=sK/bMIayWR/eIaIWMCJ3yB3H0xpavoQPeZ0tqsYM7t4=;
+    b=kiSsWTcl+xSOZA3gHS6/9lLk1PCHycnJjSR6Mf1Zx9aGqI7vTKSY9dgFo0RXiis0aB
+    aABIwMn46OQlw+6rUlQsNAY2szCryBkrIv1hGsvIB/oaM3PgZSnB5salYFj6PT+c6A4k
+    GrNdWd3RDnVdsWmHrKWu1SGCSN+qDP/XKWiVCeJovy2XUbBspjmKdsOlxi65y9hZcF1F
+    RBJLlw2ESkN5EJFUhOKaA7J096pEBXBJuFsoVkXd5d4/zRAfbsaaiPkGVS/yMhiOAiiM
+    xevOH+J/smxHKk7edk3cyWRbLKmzTLomXOmwaNoke9zwiJd8FRiVWhhARRcAyZEbEsll
+    kzBw==
+ARC-Authentication-Results: i=1; strato.com;
+    arc=none;
+    dkim=none
+X-RZG-CLASS-ID: mo01
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1689680437;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=Cc:To:Message-Id:Date:Subject:From:Cc:Date:From:Subject:Sender;
+    bh=sK/bMIayWR/eIaIWMCJ3yB3H0xpavoQPeZ0tqsYM7t4=;
+    b=iUGNDL5jC3ufjlCgm5k5SHWfzXysbyyr5344sKE0RbCvB5QLMhAAKn8iXBPVxc+u+j
+    R/fc+Afn7liuJlq9Raq/03KuJN4Q0jjwwZqECVFzsOvMY28oa+xqvL1lkUBqaY+NZ4Qo
+    79Glng8RqCrixPZV9JNkSr6ZFJE21Mi5YwWGno2bocWmmHxcbyCn/JczmhrO29KiAXNK
+    dF4sKptnY5fbt5xmnnx7hU2PcW9qZnSwMPeGWFhIZAsOTgAMuIuCLNAYHbOI7suF3W3j
+    ANEQKm63VKr1ZodQvuS52drqmSg4OhYFvQoQ47996h5IHFrToJzhA3sKi9/sRPSgPcRF
+    2oRA==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1689680437;
+    s=strato-dkim-0003; d=gerhold.net;
+    h=Cc:To:Message-Id:Date:Subject:From:Cc:Date:From:Subject:Sender;
+    bh=sK/bMIayWR/eIaIWMCJ3yB3H0xpavoQPeZ0tqsYM7t4=;
+    b=ayBkrkMEbt7KJWw2wvCkQci6INdWNF50gF/nefwYHc5cUFTI1EMPGiSEqBRnr910Kg
+    nMO61MF8uzgMv7oWxHCg==
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQjVd4CteZ/7jYgS+mLFY+H0JAn8u45/mw=="
+Received: from [192.168.244.3]
+    by smtp.strato.de (RZmta 49.6.0 DYNA|AUTH)
+    with ESMTPSA id D0d0a8z6IBeabpI
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+    Tue, 18 Jul 2023 13:40:36 +0200 (CEST)
+From:   Stephan Gerhold <stephan@gerhold.net>
+Subject: [PATCH 0/6] ASoC: codecs: msm8916-wcd-analog: Cleanup DT bindings
+Date:   Tue, 18 Jul 2023 13:40:12 +0200
+Message-Id: <20230718-pm8916-mclk-v1-0-4b4a58b4240a@gerhold.net>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v3 1/2] dt-bindings: hwmon: Add description for new hwmon
- driver hs3001
-Content-Language: en-US
-To:     Andre Werner <werneazc@gmail.com>, jdelvare@suse.com,
-        linux@roeck-us.net, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, robh+dt@kernel.org
-Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Andre Werner <andre.werner@systec-electronic.com>
-References: <20230718112810.21322-1-andre.werner@systec-electronic.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230718112810.21322-1-andre.werner@systec-electronic.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+X-B4-Tracking: v=1; b=H4sIABx6tmQC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI2MDc0Mj3YJcC0tDM93c5Jxs3ZSkZENzQzPLZFNLCyWgjoKi1LTMCrBp0bG
+ 1tQAFvBI4XQAAAA==
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Banajit Goswami <bgoswami@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        =?utf-8?q?Otto_Pfl=C3=BCger?= <otto.pflueger@abscue.de>,
+        Stephan Gerhold <stephan@gerhold.net>
+X-Mailer: b4 0.12.3
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/07/2023 13:28, Andre Werner wrote:
-> This is the initial description.
-> 
-> Signed-off-by: Andre Werner <andre.werner@systec-electronic.com>
-> 
+Drop the redundant reg-names and mclk from the PM8916 analog codec. 
+Having the mclk on the analog codec is incorrect because only the 
+digital codec consumes it directly.
 
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-
+Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
 ---
+Stephan Gerhold (6):
+      ASoC: dt-bindings: pm8916-analog-codec: Fix misleading example
+      ASoC: dt-bindings: pm8916-analog-codec: Drop pointless reg-names
+      ASoC: dt-bindings: pm8916-analog-codec: Drop invalid mclk
+      ASoC: codecs: msm8916-wcd-analog: Drop invalid mclk
+      ASoC: codecs: msm8916-wcd-analog: Properly handle probe errors
+      arm64: dts: qcom: pm8916: Drop codec reg-names and mclk
 
-This is an automated instruction, just in case, because many review tags
-are being ignored. If you do not know the process, here is a short
-explanation:
-
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-versions, under or above your Signed-off-by tag. Tools like b4 can help
-here. However, there's no need to repost patches *only* to add the tags.
-The upstream maintainer will do that for acks received on the version
-they apply.
-
-https://elixir.bootlin.com/linux/v5.17/source/Documentation/process/submitting-patches.rst#L540
+ .../sound/qcom,pm8916-wcd-analog-codec.yaml        | 101 ++++++++++-----------
+ arch/arm64/boot/dts/qcom/apq8016-sbc.dts           |   2 -
+ arch/arm64/boot/dts/qcom/pm8916.dtsi               |   3 -
+ sound/soc/codecs/msm8916-wcd-analog.c              |  56 +++---------
+ 4 files changed, 62 insertions(+), 100 deletions(-)
+---
+base-commit: 78b31c16983bb9e540d5a14540417275e6f3f4a5
+change-id: 20230712-pm8916-mclk-dbc17169c598
 
 Best regards,
-Krzysztof
+-- 
+Stephan Gerhold <stephan@gerhold.net>
 
