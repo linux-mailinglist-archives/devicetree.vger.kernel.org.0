@@ -2,88 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 863A975758B
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 09:42:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 700DC75758F
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 09:42:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231792AbjGRHmA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jul 2023 03:42:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50402 "EHLO
+        id S230288AbjGRHmT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jul 2023 03:42:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50544 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231796AbjGRHl4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 03:41:56 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A6321700
-        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 00:41:45 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-99364ae9596so761232166b.1
-        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 00:41:45 -0700 (PDT)
+        with ESMTP id S231179AbjGRHmP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 03:42:15 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4666D10F9
+        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 00:42:11 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-992e22c09edso646252566b.2
+        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 00:42:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689666104; x=1692258104;
+        d=linaro.org; s=google; t=1689666129; x=1692258129;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=QL+lGx6841G8gfl/bjowZRwIdw7qo/vrHQjFMqcY+e0=;
-        b=VUZ1dCMlD+XiY9Vc/ofh3RfnE54QF9J84WOyWPkTQMOJQW19u5GAfwKfLwVo8hoJLq
-         CwRmxnCQPrukLePatF69KQUbRm47xZWqoDdiETHE09Sj8FtZHreSYbfIGg2Kr7KjLNjL
-         BG3MNw1RX8iEuVLzKtnpOFyfBvAGQ5g8REK/OdQ8gjirCjvueX73HUCBwWMbfpfGZcsx
-         3bRuKHgg/BnaDDsQljM9822YzXN398eOBMlVdeT4l34mIQcDJhLRyTIYZO6AmFzpcLm0
-         WedJyJMDohrHAGqvL22focw21ESkD0J3iJJz7Uge55VuPiowim1+Q/SYi1xTB8ZQQNoz
-         rlHA==
+        bh=7EfXYzBbWQLvdtmmRr8ox/bAyyNFbovDsvAMHwPJrv4=;
+        b=ywnIrxHLMiM7RmQshK3fsGE0pr9ZFaew5hvy9vCMhV+ouNhka6618kA7iHpx0pbWpY
+         Tkj45pde3OGS2csJvdVAO2518KPu1s5miTpB7HKxF5pdjDpgj0qyVoob0n/e0O7x3/BN
+         XOkA+e7gJA/4WJ/vbUqyQR4+/bpOmCMaaSnp6TbU/q8RTPTo0obPSu2sH5GGPRPD98dD
+         KeYsx/KboZ1DXkCXuTN3IQQ/s7t0PzZTHqy0+vvxKRHG0zOrjgs/Aa9bLS4bUfhIFJgj
+         U94nAEYk8WeSgfv75Chq9qsEhb5xp39kIanVAz8IipAv3fMWporUmVBCCUtLrkKTzw8v
+         VB4Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689666104; x=1692258104;
+        d=1e100.net; s=20221208; t=1689666129; x=1692258129;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=QL+lGx6841G8gfl/bjowZRwIdw7qo/vrHQjFMqcY+e0=;
-        b=B9IZvJJNEQNLDwPUStWAvdmXC51HPMOezJZI4F8TLFgzciR4qQEgMInKaW9OMV4gJu
-         z2S+DVvYnrbgr9ZjCMLCeyUVer/UbHS8sy52fP7yir6H+i5cZrWqwlwXCTeE8dfeOBIS
-         u96L/5sV/nHquVW5kN8uO4Cxq2UJGia+0sFgN0SRREtsMMshqZfbYoLE8lwnlYgdclUZ
-         z+EvzvOn0dGp4sJbZCoIEeakm22cyAJzAlOa7ecCVSejbkOzZMim0O2RAQRrh6gRL1gq
-         zuv4lWIa/ZRj+HFy0er5MovlLUPgnc/eIaaV0Y324xXMEcjmiQSrNKvwyRE4st+eYfDN
-         BLMw==
-X-Gm-Message-State: ABy/qLY3ID+JhedUydhm+5omKlO7ncVrTtsUfaWxshLE2rCX70qO/rOI
-        3C+n7fM8+RFXwSo1OPYQwJKKqA==
-X-Google-Smtp-Source: APBJJlFLSWTia11KHMNO05afcHQNkDKS0eaGs6mD+/2wIgRR2oI6rJIHTPuEIuK9JTlDDMYic6RRJQ==
-X-Received: by 2002:a17:906:7a5d:b0:993:f996:52d3 with SMTP id i29-20020a1709067a5d00b00993f99652d3mr13643450ejo.25.1689666103744;
-        Tue, 18 Jul 2023 00:41:43 -0700 (PDT)
+        bh=7EfXYzBbWQLvdtmmRr8ox/bAyyNFbovDsvAMHwPJrv4=;
+        b=Bw8bOI6Ch0e/AsZfMRnoh0WLrBFqiBepNWC6Tahp6OnwDo4Isx4Q+s9QW8tjkOEWfj
+         i1Bet21vCnRzGS15bVp+1vejxNnzl/9IlMs/cZWX7abkZN0o53WmSTHXoQWOXLCkbjkF
+         5E40DQS1ZXRPrDenL+SKYHm+e528u/jrHp6s7CeNfJlWSyf0G2ZBRCDCJWdXxYqwaCSh
+         9hambwqs5UCjl9sBqnjdI6yOnywmLOKA9yFEoQ/yN9qaryzTsQjc+kmWQc0b+fjrEmt7
+         uZJWdjifiJoRo9lf4mev3a6q3Y+1EHJVix1hqZRU7BKx9tO/x3lZ6RSsN0SkdBitDxoi
+         ZTcA==
+X-Gm-Message-State: ABy/qLb1w3OEQ2QZTG1fbeDEWnKoS6yLQ6hu0mmjV7XubLZlfejAGJJn
+        nBqRe8JV22KVNeut5u/GEZKysQ==
+X-Google-Smtp-Source: APBJJlGxWf0Aai2aU5w4/wHeuQWwUZnDbVIRAKbLboMM2v70hEH0td/HsDHgowQHt5VDqvdhrgMikA==
+X-Received: by 2002:a17:906:60d:b0:993:f9b2:93c1 with SMTP id s13-20020a170906060d00b00993f9b293c1mr12755636ejb.9.1689666129729;
+        Tue, 18 Jul 2023 00:42:09 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id i18-20020a1709064ed200b0099364d9f0e2sm671308ejv.98.2023.07.18.00.41.41
+        by smtp.gmail.com with ESMTPSA id c1-20020a170906170100b009882e53a42csm657587eje.81.2023.07.18.00.42.08
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 18 Jul 2023 00:41:43 -0700 (PDT)
-Message-ID: <42e4d678-d114-332d-f1c5-61575cbc0e3b@linaro.org>
-Date:   Tue, 18 Jul 2023 09:41:41 +0200
+        Tue, 18 Jul 2023 00:42:09 -0700 (PDT)
+Message-ID: <f5fa0ae9-2a72-9c82-99f6-e9249cceda02@linaro.org>
+Date:   Tue, 18 Jul 2023 09:42:07 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
-Subject: Re: [PATCH v3 4/4] arm64: dts: Add MediaTek MT8188 dts and evaluation
- board and Makefile
+Subject: Re: [PATCH v5 1/2] dt-bindings: pwm: samsung: add exynosautov9
+ compatible
 Content-Language: en-US
-To:     =?UTF-8?B?SmFzb24tY2ggQ2hlbiAo6Zmz5bu66LGqKQ==?= 
-        <Jason-ch.Chen@mediatek.com>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "angelogioacchino.delregno@collabora.com" 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "wenst@chromium.org" <wenst@chromium.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "nfraprado@collabora.com" <nfraprado@collabora.com>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-References: <20230717120300.21388-1-jason-ch.chen@mediatek.com>
- <20230717120300.21388-5-jason-ch.chen@mediatek.com>
- <43ecf0b0-4b55-ab11-3b80-b9243b971c2c@linaro.org>
- <f0055b0f42388ff0da395bd9de7b86ce40bf77c1.camel@mediatek.com>
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Jaewon Kim <jaewon02.kim@samsung.com>,
+        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org
+References: <20230718034201.136800-1-jaewon02.kim@samsung.com>
+ <CGME20230718034723epcas2p3913ad208c70659965b4ec204570aa0a1@epcas2p3.samsung.com>
+ <20230718034201.136800-2-jaewon02.kim@samsung.com>
+ <4e546dbf-8f10-a27e-dd8b-052151ebf00a@linaro.org> <ZLZB0om1y9qLXDdF@orome>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <f0055b0f42388ff0da395bd9de7b86ce40bf77c1.camel@mediatek.com>
+In-Reply-To: <ZLZB0om1y9qLXDdF@orome>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
@@ -94,98 +85,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/07/2023 08:36, Jason-ch Chen (陳建豪) wrote:
-> Hi Krzysztof,
-> 
-> On Mon, 2023-07-17 at 21:58 +0200, Krzysztof Kozlowski wrote:
->>  	 
->> External email : Please do not click links or open attachments until
->> you have verified the sender or the content.
->>  On 17/07/2023 14:03, Jason-ch Chen wrote:
->>> From: jason-ch chen <Jason-ch.Chen@mediatek.com>
+On 18/07/2023 09:40, Thierry Reding wrote:
+> On Tue, Jul 18, 2023 at 08:04:51AM +0200, Krzysztof Kozlowski wrote:
+>> On 18/07/2023 05:42, Jaewon Kim wrote:
+>>> Add samsung,exynosautov9-pwm compatible string to binding document.
 >>>
->>> MT8188 is a SoC based on 64bit ARMv8 architecture. It contains 6
->> CA55
->>> and 2 CA78 cores. MT8188 share many HW IP with MT65xx series.
->>>
->>> We add basic chip support for MediaTek MT8188 on evaluation board.
->>>
->>> Signed-off-by: jason-ch chen <Jason-ch.Chen@mediatek.com>
->>> Reviewed-by: AngeloGioacchino Del Regno <
->> angelogioacchino.delregno@collabora.com>
+>>> Signed-off-by: Jaewon Kim <jaewon02.kim@samsung.com>
 >>> ---
->>>  arch/arm64/boot/dts/mediatek/Makefile       |   1 +
->>>  arch/arm64/boot/dts/mediatek/mt8188-evb.dts | 401 +++++++++
->>>  arch/arm64/boot/dts/mediatek/mt8188.dtsi    | 951
->> ++++++++++++++++++++
->>>  3 files changed, 1353 insertions(+)
->>>  create mode 100644 arch/arm64/boot/dts/mediatek/mt8188-evb.dts
->>>  create mode 100644 arch/arm64/boot/dts/mediatek/mt8188.dtsi
->>>
->>> diff --git a/arch/arm64/boot/dts/mediatek/Makefile
->> b/arch/arm64/boot/dts/mediatek/Makefile
->>> index c99c3372a4b5..9bd2324259a3 100644
->>> --- a/arch/arm64/boot/dts/mediatek/Makefile
->>> +++ b/arch/arm64/boot/dts/mediatek/Makefile
->>> @@ -44,6 +44,7 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-
->> krane-sku0.dtb
->>>  dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-krane-sku176.dtb
->>>  dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-pumpkin.dtb
->>>  dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-evb.dtb
->>> +dtb-$(CONFIG_ARCH_MEDIATEK) += mt8188-evb.dtb
->>>  dtb-$(CONFIG_ARCH_MEDIATEK) += mt8192-asurada-hayato-r1.dtb
->>>  dtb-$(CONFIG_ARCH_MEDIATEK) += mt8192-asurada-spherion-r0.dtb
->>>  dtb-$(CONFIG_ARCH_MEDIATEK) += mt8192-evb.dtb
->>> diff --git a/arch/arm64/boot/dts/mediatek/mt8188-evb.dts
->> b/arch/arm64/boot/dts/mediatek/mt8188-evb.dts
->>> new file mode 100644
->>> index 000000000000..d8906172390e
->>> --- /dev/null
->>> +++ b/arch/arm64/boot/dts/mediatek/mt8188-evb.dts
->>> @@ -0,0 +1,401 @@
->>> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
->>> +/*
->>> + * Copyright (C) 2023 MediaTek Inc.
->>> + */
->>> +/dts-v1/;
->>> +#include "mt8188.dtsi"
->>> +#include "mt6359.dtsi"
->>> +
->>> +/ {
->>> +model = "MediaTek MT8188 evaluation board";
->>> +compatible = "mediatek,mt8188-evb", "mediatek,mt8188";
->>> +
->>> +aliases {
->>> +serial0 = &uart0;
->>> +i2c0 = &i2c0;
->>> +i2c1 = &i2c1;
->>> +i2c2 = &i2c2;
->>> +i2c3 = &i2c3;
->>> +i2c4 = &i2c4;
->>> +i2c5 = &i2c5;
->>> +i2c6 = &i2c6;
->>> +mmc0 = &mmc0;
->>> +};
->>> +
->>> +chosen: chosen {
->>> +stdout-path = "serial0:115200n8";
->>> +kaslr-seed = <0 0>;
 >>
->> It does not look like you tested the DTS against bindings. Please run
->> `make dtbs_check` (see
->> Documentation/devicetree/bindings/writing-schema.rst or
->>
-> https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
->> for instructions).
->>
+>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > 
-> Thank you for your review.
-> I actually ran dtbs_check, but it didn't display any problems here. I
-> will remove it in the next version.
+> Do you prefer to take this through the Samsung tree for DT validation
+> and whatnot, or should I pick this up via the PWM tree?
+> 
+> In case of the former:
+> 
+> Acked-by: Thierry Reding <thierry.reding@gmail.com>
 
-Ah, right, it is coming from dtschema, so the property could stay. I
-don't understand though why adding 0 as seed. Shouldn't your firmware
-set it?
+
+Since there is no driver change, I can grab it via Samsung Soc. Thanks.
 
 Best regards,
 Krzysztof
