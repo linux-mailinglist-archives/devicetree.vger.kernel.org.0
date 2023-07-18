@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E650757536
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 09:22:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4623175753D
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 09:23:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231276AbjGRHWA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jul 2023 03:22:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40288 "EHLO
+        id S231174AbjGRHXj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jul 2023 03:23:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41454 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230447AbjGRHV6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 03:21:58 -0400
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 925FB11C
-        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 00:21:54 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-9922d6f003cso744168066b.0
-        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 00:21:54 -0700 (PDT)
+        with ESMTP id S231461AbjGRHXi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 03:23:38 -0400
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EE6E10E0
+        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 00:23:36 -0700 (PDT)
+Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-51e28b299adso7523225a12.2
+        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 00:23:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689664913; x=1692256913;
+        d=linaro.org; s=google; t=1689665015; x=1692257015;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=4n4qqgB+2hjrsOUL30ez1Ai+t/nxxoWxeb0EXPeYD3U=;
-        b=es1bxeLfaO0xY+BuGQ4kbRDr+cUVqBg0CW/7pnqWC5hYPhAuLqZ9tvVecxsqADBy/f
-         OtRsfX+WHQVbkcqdQzYmznL/LliMQFYqThwOlYsj0eeO+sGktPsawONakijDItPqHBdE
-         JRin/J42CfUzbHg4OQzKvvmsRdDZ+ai3U7u4Lu48pUcadEsgjlJsLu3mZjRqllItIaJO
-         n3fhwoXIf7Bzt6u0cE2zpyXUwS78Efty+mYquLY7nASpnKPwGwfQhN/KfhYjlwpvvnME
-         pwcqz3Wx7QIZfGGoOrNW6lgB3R02af3IUEGfwuQJPbmph/pHYIBSxD9WjptKLDuR6BEA
-         4n6Q==
+        bh=iSCltwnxHWzRk7Y0cpNIDArzz5ZlpHqXZ9iMuTI+OfI=;
+        b=J3Au4Ibv4sJBTBwp5hff3IG5hjiz2HQ7R60pq1w96sXSgKgHSZpCbiEmYh6VYt5D//
+         v26B4j5tRf+TzLdiXvmJDEN3otxqD4+DAiNx/xPqmiFQL5YSo6+brxkxz2Dck6rHgJQr
+         Ds7UajxieXovAmZ3F8+tXxuIVvSJmCJwmOyuWsB9hllCx5+FnwCAw/V160TW6/jxow10
+         NLu3hFA076fFgR9o4HOQHjlMmOVkCpmnYLsU6QYLGwiFiMWvxB5Hj7CVIkri3TsR8Kbq
+         Es8YHHxXEG9wVEnlKvyrYNLXSxMVsytHlGceVn//iPMy5GMgu6U4hqhSxY6S5ikrI45H
+         0yEw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689664913; x=1692256913;
+        d=1e100.net; s=20221208; t=1689665015; x=1692257015;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4n4qqgB+2hjrsOUL30ez1Ai+t/nxxoWxeb0EXPeYD3U=;
-        b=TJSAvtDjHaMwFZ1aeBcRr6y0Ru8sy/mPrw9hJ6uG9X67Qlnbyrzvpv+k1mCOxHhXOk
-         +nh06OAs/oolhvqxJTdx7p7481VUYQm/yfUlKdBO1+xZt94XVNsk+8ziupNdI/fp+ASV
-         dXKFj0zP8Ya0+n4nNmrWMFJREHCn05XvYSVgZ3h3X3JHdrcodztqgIRUcsE1rDlw4csq
-         64gw4imQ17sCIPRwmrH6G3xuZaKiS3NJyOOYuxiiveBYv5pqGI4qepjpCyQcyrFJufHe
-         etnrTLBlZT0YhGkEV0p7vpdtobZwpmZ/8sP0/E1tXJpA+TZcXX2xH4pwoxGG7bA5jZTF
-         Z1Dw==
-X-Gm-Message-State: ABy/qLbZY5+A31X+7Lc3OjhhJKBV493T8egPKgsU1CedodYqKIBASpTN
-        voS7WAo8L5KxkypSyOEigskE6S0ojsXiAU54y7Gk2Q==
-X-Google-Smtp-Source: APBJJlEPoEma6epYYKdKLymUlkCZUVI81YFqxVkZojmkdpGMGOEf3L+HYHZiUca0m/klUjEdyT2CrA==
-X-Received: by 2002:a17:906:2308:b0:98d:e7e3:5ab7 with SMTP id l8-20020a170906230800b0098de7e35ab7mr11265940eja.11.1689664913098;
-        Tue, 18 Jul 2023 00:21:53 -0700 (PDT)
+        bh=iSCltwnxHWzRk7Y0cpNIDArzz5ZlpHqXZ9iMuTI+OfI=;
+        b=H20oC4W9/ys+cVkkN1MAw6oUWHTG2HtchdPmbkEZeU8D6G+rLwvWspDadkxOuHFWUF
+         6cqUyS/m+bR7ySTD4c1z7fnuparfzMdQ/6Eq2QFIO4O1zbC5GyUxGx6JUo8LbsZxvuIy
+         Di8qNQZa4NnA6UCYC9GD1KdRR2aAh26qSGAc0Gmfot6G705fTDnQNwRP5ONG0GjmyHuD
+         BvXFBDB8Nyzq2dwRFeWyvZw8W8f5AUa8sXj+g2p4R4wgVg+10rsZKAlN1yUXmTf0e8nW
+         dsBzSZQvedyV5KBzOajMP7ZWYirkDmWWX1qCc3XXcd5Az0qTTjh+e9ZNBGNpChyVPTj8
+         43PA==
+X-Gm-Message-State: ABy/qLYuG2Y5+FQ0I8PAtCgIYBG9bx3bYsXYI04QIS9ryeKCqKojYh8w
+        Oow1NPPfgu/wpgF54gkxX+C23w==
+X-Google-Smtp-Source: APBJJlEJWK3IpPoAF1MaJSbNIxYudv8k8QIAIToUGUIbAOix+a6dif5mC+LwN0ZJE9o3qJu2NgnD3w==
+X-Received: by 2002:aa7:cd52:0:b0:51e:3558:5eb6 with SMTP id v18-20020aa7cd52000000b0051e35585eb6mr12997197edw.3.1689665015019;
+        Tue, 18 Jul 2023 00:23:35 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id f18-20020a1709062c5200b0098d2f703408sm631266ejh.118.2023.07.18.00.21.51
+        by smtp.gmail.com with ESMTPSA id n3-20020aa7c683000000b005219864c7cfsm776223edq.39.2023.07.18.00.23.33
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 18 Jul 2023 00:21:52 -0700 (PDT)
-Message-ID: <ef46f22a-4556-34b8-101a-ff913b42bb45@linaro.org>
-Date:   Tue, 18 Jul 2023 09:21:50 +0200
+        Tue, 18 Jul 2023 00:23:34 -0700 (PDT)
+Message-ID: <91725f89-f3fe-7879-1346-e4cd2eb8d2e9@linaro.org>
+Date:   Tue, 18 Jul 2023 09:23:32 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
@@ -71,7 +71,7 @@ Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -88,27 +88,8 @@ On 18/07/2023 09:01, Andre Werner wrote:
 > trivial-devices.yaml because the driver has no special properties
 > to describe.
 
-Changelog goes after ---. Even if you intended to keep it in commit msg,
-definitely not after SoB. Does this even pass checkpatch?
-
-> ---
->  Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
-> index ba2bfb547909..a4f4701337cf 100644
-> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
-> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-> @@ -315,6 +315,8 @@ properties:
->            - plx,pex8648
->              # Pulsedlight LIDAR range-finding sensor
->            - pulsedlight,lidar-lite-v2
-> +            # Renesas HS300[1,2,3,4] Temperature and Relative Humidity Sensors
-> +          - renesas,hs3001
-
-What about the rest of the devices - hs300[234]? Usually we ask for
-specific compatibles, that's why separate binding made some sense.
-
+BTW, you already sent v2, so this is v3. Please version your patches
+correctly.
 
 Best regards,
 Krzysztof
