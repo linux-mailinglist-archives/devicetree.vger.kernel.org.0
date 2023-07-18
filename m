@@ -2,116 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 729A775739F
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 08:06:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF2707573A5
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 08:09:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231146AbjGRGGh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jul 2023 02:06:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51862 "EHLO
+        id S231181AbjGRGJ3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jul 2023 02:09:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52702 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231139AbjGRGGf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 02:06:35 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F8D4FB
-        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 23:06:33 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-9922d6f003cso736721766b.0
-        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 23:06:33 -0700 (PDT)
+        with ESMTP id S231163AbjGRGJ0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 02:09:26 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CAA4103
+        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 23:09:25 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id 2adb3069b0e04-4fb7dc16ff0so8435843e87.2
+        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 23:09:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689660392; x=1692252392;
+        d=linaro.org; s=google; t=1689660563; x=1690265363;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=r3E/REAd1PY+Cafajtk4h0rH83WVGTGX7hhI9F7Vli0=;
-        b=AnEBkeGg+icA/9lTeVQ2Mt6YiwQ+FOnIiw143u9tuDa0YDZpQ49rej8OzOkYUBhPKK
-         vbrJv+4LowZWShkbAyMF6rQQyRxA8zNryp/wRpFlSIi0249ank4AsA6vP4jIhqDWxs0a
-         k4U+atFg6x/coIIuZDk/LKXzoz8cYvMGcNweMqvP2wR5fHwIHvRNEGDDmJrJVTTFnObE
-         FIGSPOqzQi3AXxcvkfXyPMSeGIXm4FYq39/ATckEeXI/S50jb3+4AUC6iNZmzKvQbS5L
-         lnMz949+C4W0NX7+Z2KTu7N5njLnc1JyoWgLhBrvi4nuQPzniXG1+GmGc2Conr6Rdq32
-         40+g==
+        bh=86IjmM7p82pa8pS02wHCCMR8Mx3WqXRMqAhbbiD/ZKw=;
+        b=jeWgMqzSlbZh6d2AUuYz7bI9PWQP5+iPZQ8T3yYMOKHmVNE6gtlJfeVAi921OgLY8I
+         W5NxLvBpW7b0ast+6hb3RR2XFhUb5OJOPEI+Mmv8YFyI0syo3N30gi9xPagATuqmNscr
+         StAFF83t38X9IpnspbxDp6FN11jvMFLAOqhW0ofqFAR6Rl5Rh42eNiZOZ6Oy0WcF+pkO
+         knLT6VTWxVmP+faLb7/Zafzn89QdNQMZCI8EaLWlJHdQFXykaqSV8J33P4h2R1qXH/Q0
+         MUwNsqK0Mvrqm3jiTLxdbkbYrC0klQoGTJ1y8s1HAJuHy5kbKmuL/IIQIQBP8Jbw9BMw
+         FEng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689660392; x=1692252392;
+        d=1e100.net; s=20221208; t=1689660563; x=1690265363;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=r3E/REAd1PY+Cafajtk4h0rH83WVGTGX7hhI9F7Vli0=;
-        b=GO+ZuV0Khj4WsfHLhgV99LsPSF4+ixyL75zm9ANr0R12F3o1XwNY2BwE7e16VGLSSw
-         bFYxWRAVrDJQaeGgs0qZnT8AbumJcqRAQSIzTpwdN/mjh5eFAtgS0Pzj204qJ+3NR7K1
-         umJLrIT2q+FhtZ+7lWkBhiqoRURWDT7ziMwQQQ1nRAzrwJqFMRshYq/I1WZ4Su8pmrcJ
-         8+vBXREDEtnVmsaZpNlkwX3vJ6YsqY65xE4OhAVJfmCQNONM7XXNTX+GTUDhqPbb4QD7
-         7hT6ubrlcqaW1yUUR7Iww7Xt8UnKSQp17ugN68wrFJAc5qd1Xk/gxnQC7Bu2TTgW9eQA
-         Terg==
-X-Gm-Message-State: ABy/qLZk8iK8IquDXtENZ2mmHCWLGYFLT9UrpTj1qBGigf3M1dvmt8VV
-        XcDzX6V5DWs4lZWgWLmN//metQ==
-X-Google-Smtp-Source: APBJJlFYm/q1jH0wn2AtcjBZ6ivjdesS6NxsnwNVQYeWFkZoY71A9o2TCsdZjM9mActq7FJOXHme/w==
-X-Received: by 2002:a17:907:20d2:b0:997:bb66:3d1 with SMTP id qq18-20020a17090720d200b00997bb6603d1mr5520876ejb.25.1689660392158;
-        Mon, 17 Jul 2023 23:06:32 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id e9-20020a170906374900b009893650453fsm554206ejc.173.2023.07.17.23.06.30
+        bh=86IjmM7p82pa8pS02wHCCMR8Mx3WqXRMqAhbbiD/ZKw=;
+        b=iWyHhjqLGMZQuSDSBaavWi2vkxqHzaPyd19JFQfZWKcNbw8p0IPjdvAcaqquT5hdSm
+         QY7PC+i64o2QCRY/wOyVyFzr/ub98ADxj+iv2X3tbFANv6U2e6XkAynbziCNd3cr1e43
+         /Aqr6gw8y3OU3shCwN2bgzHlMNtNSCFr2/1sZv6SqlUXhpPRg6HkftFtXTSB4BQaFiQI
+         EZ5V2fw6RXgjEUY/33E9m25l4Tt61fTWqXfJ2F2PYVW+2vRQfGvK+dOtZPvJZpa8Anhc
+         cjomyYD2srzbMlvcfFgP20b2QVQWWMsV4aA9lg9VUNJ6gZIsp7mZ3emgvs/Ck8b4H3t3
+         +hCw==
+X-Gm-Message-State: ABy/qLZQjnWKYoj+KPpM4MS+fMV/sRp9elT9E9Vz1CIxdD8dkDfrSK/p
+        2mQkmf2fkRJSu+1TuFGYVyLwIg==
+X-Google-Smtp-Source: APBJJlHT2Ay/ACQOrcVssQRBdrI8/dXrSUgLpM8js1Xu1/vXEBQyMHDJzgMOKvpnFQaxTJCiIJKeLA==
+X-Received: by 2002:a05:6512:247:b0:4f8:7960:f72 with SMTP id b7-20020a056512024700b004f879600f72mr7914110lfo.44.1689660563436;
+        Mon, 17 Jul 2023 23:09:23 -0700 (PDT)
+Received: from ?IPV6:2001:14ba:a0db:1f00::8a5? (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
+        by smtp.gmail.com with ESMTPSA id f4-20020ac251a4000000b004fcdea129basm277655lfk.94.2023.07.17.23.09.22
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 17 Jul 2023 23:06:31 -0700 (PDT)
-Message-ID: <a62141a9-a2c0-6568-cb05-5ef59250e10f@linaro.org>
-Date:   Tue, 18 Jul 2023 08:06:29 +0200
+        Mon, 17 Jul 2023 23:09:22 -0700 (PDT)
+Message-ID: <3102d8a1-b89a-440e-7986-fc407d707676@linaro.org>
+Date:   Tue, 18 Jul 2023 09:09:22 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
-Subject: Re: [PATCH v5 2/2] arm64: dts: exynos: add pwm node for
- exynosautov9-sadk
-Content-Language: en-US
-To:     Jaewon Kim <jaewon02.kim@samsung.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>
-Cc:     linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org
-References: <20230718034201.136800-1-jaewon02.kim@samsung.com>
- <CGME20230718034723epcas2p354fc5502d4ed212c7f748d2849e6b60a@epcas2p3.samsung.com>
- <20230718034201.136800-3-jaewon02.kim@samsung.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230718034201.136800-3-jaewon02.kim@samsung.com>
-Content-Type: text/plain; charset=UTF-8
+Subject: Re: [PATCH v8 04/11] dt-bindings: phy: qcom,sc7180-qmp-usb3-dp-phy:
+ Add input and output ports
+Content-Language: en-GB
+To:     Bjorn Andersson <andersson@kernel.org>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc:     linux@roeck-us.net, heikki.krogerus@linux.intel.com,
+        gregkh@linuxfoundation.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, luca.weiss@fairphone.com,
+        lujianhua000@gmail.com, linux-usb@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        konrad.dybcio@linaro.org, caleb.connolly@linaro.org,
+        subbaram@quicinc.com, jackp@quicinc.com, robertom@qti.qualcomm.com,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+References: <20230515133643.3621656-1-bryan.odonoghue@linaro.org>
+ <20230515133643.3621656-5-bryan.odonoghue@linaro.org>
+ <20230515195949.yemdw4n2pquive2r@ripper>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <20230515195949.yemdw4n2pquive2r@ripper>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/07/2023 05:42, Jaewon Kim wrote:
-> Add pwm node to support fan on exynosautov9-sadk board.
-> PWM channel 3 of ExynosAutov9 is connected to fan for SoC cooling
-> in SADK board.
+On 15/05/2023 22:59, Bjorn Andersson wrote:
+> On Mon, May 15, 2023 at 02:36:36PM +0100, Bryan O'Donoghue wrote:
+>> Add a ports declaration which is optional containing two port@
+>> declarations.
+>>
+>> port@0 to receive an orientation-switch message from the Type-C port or
+>> redriver
+>>
+>> port@1 to subsequently transmit the orientation-switch on once the PHY has
+>> finished doing its orientation turn-around.
+>>
+>> If ports is declared the input port port@0 is mandatory but the output
+>> port@1 is optional.
+>>
+>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+>> ---
+>>   .../phy/qcom,sc7180-qmp-usb3-dp-phy.yaml      | 38 +++++++++++++++++++
+>>   1 file changed, 38 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/phy/qcom,sc7180-qmp-usb3-dp-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,sc7180-qmp-usb3-dp-phy.yaml
+>> index d307343388888..c370b9cd58c2e 100644
+>> --- a/Documentation/devicetree/bindings/phy/qcom,sc7180-qmp-usb3-dp-phy.yaml
+>> +++ b/Documentation/devicetree/bindings/phy/qcom,sc7180-qmp-usb3-dp-phy.yaml
+>> @@ -65,6 +65,25 @@ properties:
+>>       description: Flag the port as possible handler of orientation switching
+>>       type: boolean
+>>   
+>> +  ports:
+>> +    $ref: /schemas/graph.yaml#/properties/ports
+>> +    description: OF graph bindings that model incoming orientation-switch and
+>> +      outgoing orientation-switch messages. An example of an incoming
+>> +      orientation-switch message might come form a Type-C connector or a USB
+>> +      redriver. An example of an output would be a DisplayPort controller.
 > 
-> Signed-off-by: Jaewon Kim <jaewon02.kim@samsung.com>
-> ---
->  arch/arm64/boot/dts/exynos/exynosautov9-sadk.dts |  6 ++++++
->  arch/arm64/boot/dts/exynos/exynosautov9.dtsi     | 10 ++++++++++
->  2 files changed, 16 insertions(+)
+> Orientation switching is just one of the uses of this graph, and each
+> port is both input and output of different signals (orientation switch,
+> altmode switch, hot plug signals, signal path).
 > 
-> diff --git a/arch/arm64/boot/dts/exynos/exynosautov9-sadk.dts b/arch/arm64/boot/dts/exynos/exynosautov9-sadk.dts
-> index 101f51bf565a..bc1815f6ada2 100644
-> --- a/arch/arm64/boot/dts/exynos/exynosautov9-sadk.dts
-> +++ b/arch/arm64/boot/dts/exynos/exynosautov9-sadk.dts
-> @@ -49,6 +49,12 @@
->  	};
->  };
->  
-> +&pwm {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pwm_tout3>;
-> +	status = "okay";
+> 
+> How about aligning this version of the QMP binding with the proposed
+> binding for 8280xp here:
+> https://lore.kernel.org/linux-arm-msm/20230515032743.400170-2-quic_bjorande@quicinc.com/
+> 
+> Perhaps we could put some of this in a separate yaml and include that?
 
-I think you miss disabling it.
+We are slowly moving towards removal of sc7180-qmp-usb3-dp-phy.yaml. 
+Once that is done, this extra include file becomes included from a 
+single source. So I'd suggest putting necessary properties into the main 
+schema even if that looks like duplication.
 
-> +};
-
-Best regards,
-Krzysztof
+-- 
+With best wishes
+Dmitry
 
