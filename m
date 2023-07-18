@@ -2,134 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 06F21757BB7
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 14:25:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 90964757BE8
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 14:32:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229511AbjGRMZM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jul 2023 08:25:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47604 "EHLO
+        id S231688AbjGRMcc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jul 2023 08:32:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51542 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229496AbjGRMZM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 08:25:12 -0400
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7529B10C2;
-        Tue, 18 Jul 2023 05:25:09 -0700 (PDT)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id E9902FF810;
-        Tue, 18 Jul 2023 12:25:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1689683108;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=L4Rr8+epwqNuJFPu2SACGV9w10aPsDPcHxXMePCOL88=;
-        b=lEN3rjIS+6LEnVAAxqiebzncG6Ze0Kr2g3l6Jvjfq8deS4FFsNsnfyUB9N1d2zfvxggwsr
-        DJzn6ShRi56lqKZXlxnD2yDE/3Ag9qAf/N3CTYY425/87kSrRffUWuzSwvAdVqgt5VbK/+
-        iaMKW3dgvuhbdeInCWoUvjVdEGm9UM3PP572udluQvH+/Etsm2H+bKY9myuCrPcPUQgYVV
-        cG4ykhi8Ht9YxB1tVfyozFiLWQYqLCN1MwHzmu7AVAu0+jWNPSjSLmI6GYQN87ZdPs605b
-        zKQVKnl9TrFY5Rsh0R03yE4b9zCATn6xvtHFqhitsgRdwtWqFUgHE7UjTcUMKA==
-Date:   Tue, 18 Jul 2023 14:25:04 +0200
-From:   Luca Ceresoli <luca.ceresoli@bootlin.com>
-To:     Xu Yang <xu.yang_2@nxp.com>
-Cc:     Francesco Dolcini <francesco@dolcini.it>, Jun Li <jun.li@nxp.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Francesco Dolcini <francesco.dolcini@toradex.com>
-Subject: Re: [EXT] Re: [PATCH v2 2/3] usb: chipidea: imx: support disabling
- runtime-pm
-Message-ID: <20230718142504.075d0186@booty>
-In-Reply-To: <DB7PR04MB450573F8EA936E049F053A258C38A@DB7PR04MB4505.eurprd04.prod.outlook.com>
-References: <20230504162312.1506763-1-luca.ceresoli@bootlin.com>
-        <ZFPiRvoF5l8uGzzZ@francesco-nb.int.toradex.com>
-        <PA4PR04MB96403377F5E37C12AD8C25B389729@PA4PR04MB9640.eurprd04.prod.outlook.com>
-        <20230505120618.2f4cf22c@booty>
-        <ZFThyn/D/dDK9nk3@francesco-nb.int.toradex.com>
-        <PA4PR04MB96405EE2468555EA900B340189739@PA4PR04MB9640.eurprd04.prod.outlook.com>
-        <ZFjaNzY32x8o2XG7@francesco-nb.int.toradex.com>
-        <20230508151756.785ec07e@booty>
-        <20230529121825.71e9b6d6@booty>
-        <PA4PR04MB96405138465D215C34285F02894B9@PA4PR04MB9640.eurprd04.prod.outlook.com>
-        <ZKaWL3+ClI7iNr/4@francesco-nb.int.toradex.com>
-        <20230717184537.6d6ed607@booty>
-        <DB7PR04MB450573F8EA936E049F053A258C38A@DB7PR04MB4505.eurprd04.prod.outlook.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+        with ESMTP id S231693AbjGRMc0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 08:32:26 -0400
+Received: from smtp1.axis.com (smtp1.axis.com [195.60.68.17])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A45F010EB;
+        Tue, 18 Jul 2023 05:32:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=axis.com; q=dns/txt; s=axis-central1; t=1689683544;
+  x=1721219544;
+  h=from:to:cc:subject:date:message-id:mime-version;
+  bh=Waw7ZxMMy2yoyoo75Qco+TZX/WtJXKx8nZC30Q6G+2g=;
+  b=jsPfg/lNzic1m4HBkspcNWSIqjt/cEw3+9LoEZGEo1WVkEC0LoCJa3JE
+   x4cLzJfAOcJ7H3u1aD6F5gUfowf0FN2yVj8lQXXVb7ma6QR5rTuVuPapI
+   4QRbSb1FMXQksqIaA9D83CYnws4q1K4WBkIrYoHZgDXtItaOUZ+P79K6l
+   AS5nQHGIpcDHY/1vAdj3HEihFCe6LsSHhJ7L4UeDOqGC7+RRggRQ9n0yw
+   g7kXZ8EOtd5Xl4ld4gzbkEcfcyJAiFk5+lRl8OaKfQLYy6ApEEXaIW20V
+   w1V7+d2txCNHAfSRu83kYN3uzRhHUueefp6Jxcz5uHY+8tNEgZEVj4pBe
+   A==;
+User-agent: a.out
+From:   Waqar Hameed <waqar.hameed@axis.com>
+To:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC:     <kernel@axis.com>, <linux-kernel@vger.kernel.org>,
+        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>
+Subject: [PATCH v3 0/3] Add driver for Murata IRS-D200
+Date:   Tue, 18 Jul 2023 14:30:11 +0200
+Message-ID: <cover.1689683411.git.waqar.hameed@axis.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-GND-Sasl: luca.ceresoli@bootlin.com
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.0.5.60]
+X-ClientProxiedBy: se-mail02w.axis.com (10.20.40.8) To se-mail01w.axis.com
+ (10.20.40.7)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Xu,
+Murata IRS-D200 is a PIR sensor for human detection. In this series we
+add devicetree bindings and an IIO driver with support for triggered
+buffer and events. Link to the datasheet should be added to the
+devicetree bindings, when that is available.
 
-On Tue, 18 Jul 2023 08:31:48 +0000
-Xu Yang <xu.yang_2@nxp.com> wrote:
+Changes in v3:
 
-> > -----Original Message-----
-> > 
-> > Ciao Francesco,
-> > 
-> > On Thu, 6 Jul 2023 12:23:43 +0200
-> > Francesco Dolcini <francesco@dolcini.it> wrote:
-> >   
-> > > Hello Luca,
-> > >
-> > > On Tue, May 30, 2023 at 11:22:51AM +0000, Jun Li wrote:  
-> > > > Yes, your understanding is correct, talked with Xu(in CC), he will take this
-> > > > soon.  
-> > >
-> > > A series was posted
-> > >
-> > > I had no time to try or look at it yet.  
-> > 
-> > Thanks for keeping me up to date on this topic, which is still totally
-> > relevant to me.
-> > 
-> > I looked at the series, but it does not seem to be addressing the
-> > problem with USB host not detecting new devices when VBUS is not
-> > directly connected, e.g. in the Colibri imx6ull SoM.
-> > 
-> > Xu, do you confirm the series at the link is _not_ solving the problem
-> > being discussed here?  
-> 
-> Have you tried this patchset? The upstream driver couldn't get correct
-> USB role from HW_USBPHY_CTRL register when the ID pin is float. This is
-> what this patchset is trying to fix. With this patch, condition 
-> "(!vbus_is_on && !mxs_phy_is_otg_host(mxs_phy)" will always be false when
-> controller acts as host role, then __mxs_phy_disconnect_line(phy, true)
-> will never be called. So I think it doesn't matter whether VBUS is connected
-> or not when act as host mode. If you still have issue after apply this patchset,
-> please let me know.
+[dt-bindings]
+* Add "Reviewed-by" footer in commit message.
 
-I tested this patchset on top of v6.5-rc2 and I confirm USB detection
-is still broken on the Colibri iMX6ULL. With or without the patches
-the behavior is the same: USB devices are detected only during boot,
-and anything connected after boot are never detected.
+[iio]
+* Use `__le16` for buffers in `regmap_bulk_read/write()`.
+* Use `8` instead of `BIT(3)` in `irsd200_write_nr_count()`.
+* Rename `val` to `tmp` in `irsd200_write_event_config()`.
+* Return `0` on success in `irsd200_write_event_config()`.
+* Return `IRQ_HANDLED` instead of `IRQ_NONE` in error paths.
+* Return `IRQ_NONE` when not clearing anything in
+  `irsd200_irq_thread()`.
+* Use `devm_regulator_get_enable()` in probe.
 
-For the archives, I'm replying also to the patch series.
+Link to v2: https://lore.kernel.org/lkml/cover.1689174736.git.waqar.hameed@axis.com/
 
-Luca
+Changes in v2:
 
+[dt-bindings]
+* Remove "bindings for" in commit subject.
+* Remove superfluous yaml block style indicator ('|') for
+  `description:`.
+* Change node name in example from `pir` to `proximity`.
+* Add required `vdd-supply` property.
+
+[iio]
+* Add event enums for running period and count.
+* Use `set_trigger_state` callback instead of `iio_buffer_setup_ops`'s
+  `predisable` and `postenable`.
+* Use `regmap_bulk_read()` in `irsd200_read_data()` and
+  `irsd200_read_timer()`.
+* Use `regmap_bulk_write()` in `irsd200_write_timer()`.
+* Remove comment for macro `IRS_UPPER_COUNT()`.
+* Move `IIO_EV_INFO_LOW/HIGH_PASS_FILTER_3DB` from `iio_event_spec` to
+  `iio_chan_spec`.
+* Ignore timer (`IRS_INTR_TIMER`) interrupts.
+* Clarify comment on `ssleep(3)` in `irsd200_write_data_rate()`.
+* Only check for non-zero return values from `regmap` functions (as
+  opposed to `ret < 0`).
+* Add macro defines for operation states.
+* Remove fix size in static const array declarations.
+* Remove unnecessary `ret` variable in `irsd200_write_raw()`.
+* Remove comments in `irsd200_event_spec[]`.
+* Remove unnecessary call to `i2c_set_clientdata()` in probe.
+* Use `dev_err_probe()` everywhere in probe.
+* Remove unnecessary braces around if statement in probe.
+* Get and enable regulator in probe.
+
+Link to v1: https://lore.kernel.org/lkml/cover.1686926857.git.waqarh@axis.com/
+
+Waqar Hameed (3):
+  dt-bindings: iio: proximity: Add Murata IRS-D200
+  iio: Add event enums for running period and count
+  iio: Add driver for Murata IRS-D200
+
+ Documentation/ABI/testing/sysfs-bus-iio       |  16 +
+ .../iio/proximity/murata,irsd200.yaml         |  60 ++
+ drivers/iio/industrialio-event.c              |   2 +
+ drivers/iio/proximity/Kconfig                 |  12 +
+ drivers/iio/proximity/Makefile                |   1 +
+ drivers/iio/proximity/irsd200.c               | 962 ++++++++++++++++++
+ include/linux/iio/types.h                     |   2 +
+ 7 files changed, 1055 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/proximity/murata,irsd200.yaml
+ create mode 100644 drivers/iio/proximity/irsd200.c
+
+
+base-commit: 3f01e9fed8454dcd89727016c3e5b2fbb8f8e50c
 -- 
-Luca Ceresoli, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+2.30.2
+
