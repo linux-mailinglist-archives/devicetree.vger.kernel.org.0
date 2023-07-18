@@ -2,96 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3352275761C
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 10:02:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AB7DF75762E
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 10:04:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231537AbjGRICT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jul 2023 04:02:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60670 "EHLO
+        id S231806AbjGRIEw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jul 2023 04:04:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37364 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231588AbjGRIBv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 04:01:51 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1956210C2
-        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 01:01:12 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id 2adb3069b0e04-4fba1288bbdso8662620e87.1
-        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 01:01:12 -0700 (PDT)
+        with ESMTP id S231828AbjGRIEj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 04:04:39 -0400
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E72E172C;
+        Tue, 18 Jul 2023 01:04:17 -0700 (PDT)
+Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-4fdbfda94c4so2964755e87.0;
+        Tue, 18 Jul 2023 01:04:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689667216; x=1692259216;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=0TMF8KkLHgIjjvuu9yRbShpISudcqJyFHmRqyTxc6O4=;
-        b=jWuqqDtk3x6ktCQ+Glsyd2kL95uhDESKBMrQtRQ58ong17rYZworF6J3gSwDGvrOaQ
-         09qHQCiL3V2B2BS/Oz8xm35SNQ8TMdBUSlk87J8GduCn9Wfu02wJGuKxFO+9plxPhHXu
-         3TgtvZFt0v/WvpIURdO8NY3dgcerNOX1LIG6KSM0SkW4PRs/aSEswYlWBOn/OrKzTUhU
-         Q/HFw+2oRp3N6TcWPL07pBqki4dfTuKCjbKXFdTMfc969Sviha2bpkEEhw/7p5GqTNEP
-         CryarmLHTFBJSpXFfvz2q7455VMybZIJl9joGPMX1JBSj2xq1x/fEHXKicz3z7rO4+uH
-         HRKw==
+        d=gmail.com; s=20221208; t=1689667152; x=1692259152;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=LfZeVJQddYVik65NhkUKDVIYNEDqe9J+8qwZMY+1f8g=;
+        b=iVLKx8koGZA4vpdYezulLaynnPeFQBLaMwMIW912r3w3m1Y0KiPEY8pr7KqCL1cfiM
+         bp1NmvwTtNeHjI2SYzMUpRRU+tsTYhnk1+C+6DixYOzKjf0zdJH5+mVZi7zsyQ75dcEE
+         mVekorrUukCH2dZgHFoT45jabDdVzsvRHQ5fsD6Z0owKXOXj+lohpB0yCxWT9nIQ7chN
+         RYxzvb+sLcit6FJSpreNohN33mF1/cghGO9MC0rTs8hBXI51J4UbCVswih4eWnJp4Whq
+         Ymd/cK3ooBh77EudcG0Mxvgmxyoi9VYgFZp62z7+HyOwL55H+yWYv0KAbLAQfO1rQvQe
+         44VA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689667216; x=1692259216;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0TMF8KkLHgIjjvuu9yRbShpISudcqJyFHmRqyTxc6O4=;
-        b=KDJHp5DbJcG6l9F38k7fpJJGB7d5wDXsIzP7xhhqxI/W72uHpR0PxsOcsnyYVj1ml4
-         vtJhDdkO0S4t9JsxgmaZeAeORAn1FxXI04i3zSINT5Ns8mg1UnFO92drkJYHrTTHKN13
-         trmTWrR2vA5sL7IGf+7xaV+hKosY0JTBGhu0yOFARCa3f+8COvGAFhyD0heTx5hitmo4
-         ko0g7i8r1H0HNO40jkn2wbEg1VUkGoqkhCrl30CKcuXqwq0IMv1N6xxDMxyC24MX6CeS
-         FC0mAsuMuHxEvjULmkVM0Do7TLfdyXmB5XBv0t2EsRwPwhJhYWKylkrftNKWDPZIhXAL
-         Jg3w==
-X-Gm-Message-State: ABy/qLZsGkYD76pagIYfIT2pK9FZwFK2dJ/pGy+AH4loh6jq8D7p8s1v
-        k3KO8V0IbMED/KoN7UW9htjp1A==
-X-Google-Smtp-Source: APBJJlHk3u4MdO8axVsUFrnEBFxv5a8PaAepGuSbyIx6Wu0c1NWLR2Yv9yDhcPOpldRKz2pvU9g3mA==
-X-Received: by 2002:a05:6512:3d03:b0:4fb:8f79:631 with SMTP id d3-20020a0565123d0300b004fb8f790631mr18681248lfv.46.1689667216606;
-        Tue, 18 Jul 2023 01:00:16 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id k23-20020aa7c397000000b0051d9dbf5edfsm825879edq.55.2023.07.18.01.00.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 18 Jul 2023 01:00:16 -0700 (PDT)
-Message-ID: <9ac33c64-337d-d9b6-275c-94942797e5a4@linaro.org>
-Date:   Tue, 18 Jul 2023 10:00:14 +0200
+        d=1e100.net; s=20221208; t=1689667152; x=1692259152;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=LfZeVJQddYVik65NhkUKDVIYNEDqe9J+8qwZMY+1f8g=;
+        b=T2GoDF6FGqHfA3845FL2+DBUbET8YGUQaJ5lPFUShhX3tNJXiSCLBhoDYBTq21/juy
+         IfmnuSno+sINizvSAa7X97J+xac5lHdMUxbfY6mu1PAAU9xAUYqegAuNza4j2koZ4nbb
+         sZKxBeOce7qm7uwkHJ5qwIqimT3M+9LuZNz9ZeGJslQlm/nqkWFXve69TGmbIm1GZ0uT
+         /8c+D1yMknhAJrGjYdK1KRB4GOEIqcmrmkjI5lrvGuBciUd9GvsgBbOvcciJfBl6cSl0
+         AND+E4ugbCy4KBDt+UOhvXr8+RFt1sJsW/1DXj31FpNVyw0EvmVUwbuUi7Ew6ai/lG0K
+         hGSA==
+X-Gm-Message-State: ABy/qLa82AtAVGajZk/7v47FFcLmpqxaxxz+f05W4mPBJtaBkzMTm7dt
+        fUG9QQW7gj4phauDuA+SGxA=
+X-Google-Smtp-Source: APBJJlGxxGaZNSPC9s9WgzTHpkoiBd/uxkadKRTOF/dW1H0yLQyWxuMq4i1Ju8TvnvlXW2MHk2EBNQ==
+X-Received: by 2002:a05:6512:3b90:b0:4fb:8fe3:9266 with SMTP id g16-20020a0565123b9000b004fb8fe39266mr16063531lfv.0.1689667151982;
+        Tue, 18 Jul 2023 00:59:11 -0700 (PDT)
+Received: from orome (p200300e41f4b7100f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f4b:7100:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id k21-20020aa7d8d5000000b00521ab0cda8fsm342703eds.27.2023.07.18.00.59.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 18 Jul 2023 00:59:11 -0700 (PDT)
+Date:   Tue, 18 Jul 2023 09:59:10 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        jonathanh@nvidia.com, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org
+Subject: Re: [PATCH] arm64: tegra: Fix HSUART for Smaug
+Message-ID: <ZLZGTmWyJHclFnGs@orome>
+References: <20230714101018.10617-1-diogo.ivo@tecnico.ulisboa.pt>
+ <b3755c4b-fee0-85e3-4066-fb20c1ad99a3@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH net-next 1/2] dt-bindings: net: snps,dwmac: add phy-supply
- support
-Content-Language: en-US
-To:     Marco Felsch <m.felsch@pengutronix.de>, davem@davemloft.net,
-        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, peppe.cavallaro@st.com,
-        alexandre.torgue@foss.st.com, joabreu@synopsys.com,
-        mcoquelin.stm32@gmail.com
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, kernel@pengutronix.de
-References: <20230717164307.2868264-1-m.felsch@pengutronix.de>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230717164307.2868264-1-m.felsch@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="Rq3h6hwtw2gfWWtd"
+Content-Disposition: inline
+In-Reply-To: <b3755c4b-fee0-85e3-4066-fb20c1ad99a3@linaro.org>
+User-Agent: Mutt/2.2.10 (2023-03-25)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/07/2023 18:43, Marco Felsch wrote:
-> Document the common phy-supply property to be able to specify a phy
-> regulator.
-> 
-> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
-> ---
 
+--Rq3h6hwtw2gfWWtd
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+On Mon, Jul 17, 2023 at 10:03:19AM +0200, Krzysztof Kozlowski wrote:
+> On 14/07/2023 12:10, Diogo Ivo wrote:
+> > After commit 71de0a054d0e ("arm64: tegra: Drop serial clock-names and
+> > reset-names") was applied, the HSUART failed to probe and the following
+> > error is seen:
+> >=20
+> >  serial-tegra 70006300.serial: Couldn't get the reset
+> >  serial-tegra: probe of 70006300.serial failed with error -2
+> >=20
+> > Commit 71de0a054d0e ("arm64: tegra: Drop serial clock-names and
+> > reset-names") is correct because the "reset-names" property is not
+> > needed for 8250 UARTs. However, the "reset-names" is required for the
+> > HSUART and should have been populated as part of commit a63c0cd83720c
+> > ("arm64: dts: tegra: smaug: Add Bluetooth node") that enabled the HSUART
+> > for the Pixel C. Fix this by populating the "reset-names" property for
+> > the HSUART on the Pixel C.
+> >=20
+> > Fixes: a63c0cd83720 ("arm64: dts: tegra: smaug: Add Bluetooth node")
+> > Signed-off-by: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
+> > ---
+> >  arch/arm64/boot/dts/nvidia/tegra210-smaug.dts | 1 +
+> >  1 file changed, 1 insertion(+)
+> >=20
+> > diff --git a/arch/arm64/boot/dts/nvidia/tegra210-smaug.dts b/arch/arm64=
+/boot/dts/nvidia/tegra210-smaug.dts
+> > index 2c608d645642..bcb533cc002c 100644
+> > --- a/arch/arm64/boot/dts/nvidia/tegra210-smaug.dts
+> > +++ b/arch/arm64/boot/dts/nvidia/tegra210-smaug.dts
+> > @@ -1364,6 +1364,7 @@ serial@70006000 {
+> > =20
+> >  	uartd: serial@70006300 {
+> >  		compatible =3D "nvidia,tegra30-hsuart";
+> > +		reset-names =3D "serial";
+>=20
+> Why reset-names is board specific? This makes little sense. If you need
+> reset-names, then it is part of SoC.
 
-Best regards,
-Krzysztof
+As the commit message explains, this is because we have two
+"conflicting" device tree bindings for these devices. One is a standard
+UART, typically used when the device is a debug serial console and a
+more specialized high-speed UART which then requires additional
+properties.
 
+Effectively this means that whenever we override the standard UART with
+the high-speed UART we need to extend the device tree with those
+additional properties. We actually have similar issues with dmas and
+dma-names, which are only valid for the HS UART and I have a couple of
+patches[0][1] to clean that all up. It's a bit weird because we
+basically have a patch that removes reset-names (for standard UART) and
+then we have another patch that adds the reset-names (for HS UART), but
+I don't see a way around it given the bindings that we have.
+
+Thierry
+
+[0]: http://patchwork.ozlabs.org/project/linux-tegra/list/?series=3D364269
+[1]: http://patchwork.ozlabs.org/project/linux-tegra/list/?series=3D364270
+
+--Rq3h6hwtw2gfWWtd
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmS2Rk0ACgkQ3SOs138+
+s6E9PxAAi3lK6Tz97ooPeTx+YVMTX2+PTyigu92qpxZ39Pu0Z+gCmmF1LMiJiqRj
+z7tSzZevRANW1aV45POXukLKoGvtV1rN4meZFai+wP4M3sYlXiFEnFjMJ5mdUT9c
+BDtWQ8BQpVslUxhei52WiUlBm28FP8YkzQIvkLqDXGbZrqpBHF5rvkWuUuFq4v9k
+sqiyi+uMuEdThMgWJxHXp25QFOleYSysLXVieFtfd0EgqF+L/Cf0XAEb/ztqpY9k
+8CV0ENNzq59Gal3SpNe2LPCHsx/r6s1eB1VsmumxZmzn45YSfqhDgrNFx033iq/D
+CunbsaWJ/aC7DJvR83kPYSLTjdavp2TDjAfWRIuaH1KlgARTBhmnLNkGhJVxxvtC
+fqdn//QaaPdJqh7pof5yKBIKVzebHb0uQ4rGwWqfVOYnSC2ImoTurP3MWS2lCnyR
+/fFDwubrORptxjNWlDxoemFmGQb/g8NXjUUJtbfw97CmMAqUAR4bEkXhO3YeXoSg
+0IhKucxIQeQwjT92eKWALte4j17ELYyrQoi7kUpDRBfKV6r/8AYe4Wm2h+UoP+mP
+TtfaCzT05SEhnYZ3yitGFa1MROHH7d8s+vYtvvOSRFZr9lgILc2arf8v5fR8x3ej
+IzwoG5b0YDK5iLV29vsf8dqgYQ33HQzTwpKT0gXko4xFRkQjUdQ=
+=KFUl
+-----END PGP SIGNATURE-----
+
+--Rq3h6hwtw2gfWWtd--
