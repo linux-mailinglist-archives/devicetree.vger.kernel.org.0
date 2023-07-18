@@ -2,81 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DAA7175715E
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 03:28:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 33220757169
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 03:38:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229780AbjGRB2E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jul 2023 21:28:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59022 "EHLO
+        id S229609AbjGRBiS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jul 2023 21:38:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60662 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229562AbjGRB2D (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 21:28:03 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92521198;
-        Mon, 17 Jul 2023 18:28:02 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 0C96761373;
-        Tue, 18 Jul 2023 01:28:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D901CC433C7;
-        Tue, 18 Jul 2023 01:27:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689643681;
-        bh=sqYh4R2WoE7adMQ6NJsRwlB3E3Ss+oe+ToA8Xn/pUTo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=DWxE6mVsOS5gH3dE/pAmpV+bgA5TrKa8E3A+7eKoA/UiNp6T8UKrcnkpKaluADuxu
-         R3lL1YtpZY9n75N/v+kKuOyT4X0M+YKey0M2qgIxQYI5BFRilHgh+OqopVppxHbIwj
-         UoFik41eGOFrKtpGZsnbSnjCaWeQYlqnFSS9+zB2H+BrTGle5varDdId/Iar9FZujE
-         DkAzuZ+2lqM8z24371EWL69g7Re9L43RYO9/z3OtThJMz2bhD2vSGyazUoboih9Bcj
-         UOYY5d4VNGQG56bhT3z33itpzEQXosRPtSncpF1H9ZtRVhjqwLMerq9ewMa5NUQy81
-         F9wOyG83cX9vw==
-Date:   Tue, 18 Jul 2023 09:27:49 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Adam Ford <aford173@gmail.com>
-Cc:     linux-arm-kernel@lists.infradead.org, aford@beaconembedded.com,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH V3 0/3] arm64: dts: imx8mn/imx8mm-beacon:  Add HDMI
-Message-ID: <20230718012749.GR9559@dragon>
-References: <20230615215314.5402-1-aford173@gmail.com>
+        with ESMTP id S229562AbjGRBiR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 21:38:17 -0400
+Received: from mail.208.org (unknown [183.242.55.162])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54DEC1A2
+        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 18:38:15 -0700 (PDT)
+Received: from mail.208.org (email.208.org [127.0.0.1])
+        by mail.208.org (Postfix) with ESMTP id 4R4hRR0f5rzBL0tJ
+        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 09:38:11 +0800 (CST)
+Authentication-Results: mail.208.org (amavisd-new); dkim=pass
+        reason="pass (just generated, assumed good)" header.d=208.org
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=208.org; h=
+        content-transfer-encoding:content-type:message-id:user-agent
+        :references:in-reply-to:subject:to:from:date:mime-version; s=
+        dkim; t=1689644290; x=1692236291; bh=YNzkMpFygonZQdD3j0VkRH+C5+f
+        s9pYcu0u06jOhQho=; b=WPtR+NB7cWKQU3w/mzX1dgCd+zW5BnOsf4y0jha4Lbi
+        pHvyQrQonlrL6B5pap3EoP1Iu4nOvqE2EvD52XPAnviXaJzkZhnHlv0VR1JH5y7w
+        qao9VpjaxxCLVd+cNtigFYj+mTFOPnE4eZulQvnTQPEEuS1IVthMPZDyjbYFTYZc
+        d12MOXPFHnFaBeOKDhWmsTTsPr4AGVgTrG5n9o1jGJWBf8my1jEBCXjHnlzBxa7X
+        4R326jt3WQYGbRAC4buINTEtV7wSoYu/QPpl4YIzxSQ+aEep9GXWI4KCsXiANK2h
+        ZLh4nbmuVmyi71gEPO0j/Lmzv3G8LXSiJqXICIFgbhQ==
+X-Virus-Scanned: amavisd-new at mail.208.org
+Received: from mail.208.org ([127.0.0.1])
+        by mail.208.org (mail.208.org [127.0.0.1]) (amavisd-new, port 10026)
+        with ESMTP id cMEiNmQkGSba for <devicetree@vger.kernel.org>;
+        Tue, 18 Jul 2023 09:38:10 +0800 (CST)
+Received: from localhost (email.208.org [127.0.0.1])
+        by mail.208.org (Postfix) with ESMTPSA id 4R4hRQ5nhTzBJqBP;
+        Tue, 18 Jul 2023 09:38:10 +0800 (CST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230615215314.5402-1-aford173@gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Date:   Tue, 18 Jul 2023 09:38:10 +0800
+From:   shijie001@208suo.com
+To:     robh+dt@kernel.org, frowand.list@gmail.com
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] scripts/dtc: Fix errors in yamltree.c
+In-Reply-To: <tencent_C2E29E92E4A5FCCF6F6BB14E2ED98DC6C309@qq.com>
+References: <tencent_C2E29E92E4A5FCCF6F6BB14E2ED98DC6C309@qq.com>
+User-Agent: Roundcube Webmail
+Message-ID: <40586276d1294a4d8c81db3cd5dcd4ac@208suo.com>
+X-Sender: shijie001@208suo.com
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,DKIM_INVALID,
+        DKIM_SIGNED,RCVD_IN_DNSWL_BLOCKED,RDNS_NONE,SPF_HELO_FAIL,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 15, 2023 at 04:53:10PM -0500, Adam Ford wrote:
-> The DSI updates are in the DRM tree and Linux next with some updates
-> that now allow the DSI to connect to an HDMI bridge and successfully
-> sync displays at various resolutions and refresh rates.
-> 
-> 
-> V3:  Alphabetize regulator names.
->      Add register names for EDID and Packet
->      Add I2C address change for the camera since it
->      conflicted with the I2C address of the HDMI bridge.
-> 
-> V2:  Make 'compatible' the first thing in the new nodes.
-> 
-> Adam Ford (3):
->   arm64: dts: imx8mn-beacon: Add HDMI video with sound
->   arm64: dts: imx8mm-beacon: Change camera I2C address
->   arm64: dts: imx8mm-beacon: Add HDMI video with sound
+The following checkpatch errors are removed:
+ERROR: "(foo*)" should be "(foo *)"
 
-Applied all, thanks!
+Signed-off-by: Jie Shi <shijie001@208suo.com>
+---
+  scripts/dtc/yamltree.c | 12 ++++++------
+  1 file changed, 6 insertions(+), 6 deletions(-)
+
+diff --git a/scripts/dtc/yamltree.c b/scripts/dtc/yamltree.c
+index 55908c829c98..dd22858d1bb1 100644
+--- a/scripts/dtc/yamltree.c
++++ b/scripts/dtc/yamltree.c
+@@ -57,7 +57,7 @@ static void yaml_propval_int(yaml_emitter_t *emitter, 
+struct marker *markers,
+
+          switch(width) {
+          case 1:
+-            sprintf(buf, "0x%"PRIx8, *(uint8_t*)(data + off));
++            sprintf(buf, "0x%"PRIx8, *(uint8_t *)(data + off));
+              break;
+          case 2:
+              sprintf(buf, "0x%"PRIx16, dtb_ld16(data + off));
+@@ -80,11 +80,11 @@ static void yaml_propval_int(yaml_emitter_t 
+*emitter, struct marker *markers,
+
+          if (is_phandle)
+              yaml_scalar_event_initialize(&event, NULL,
+-                (yaml_char_t*)"!phandle", (yaml_char_t *)buf,
++                (yaml_char_t *)"!phandle", (yaml_char_t *)buf,
+                  strlen(buf), 0, 0, YAML_PLAIN_SCALAR_STYLE);
+          else
+              yaml_scalar_event_initialize(&event, NULL,
+-                (yaml_char_t*)YAML_INT_TAG, (yaml_char_t *)buf,
++                (yaml_char_t *)YAML_INT_TAG, (yaml_char_t *)buf,
+                  strlen(buf), 1, 1, YAML_PLAIN_SCALAR_STYLE);
+          yaml_emitter_emit_or_die(emitter, &event);
+      }
+@@ -119,7 +119,7 @@ static void yaml_propval(yaml_emitter_t *emitter, 
+struct property *prop)
+
+      /* Emit the property name */
+      yaml_scalar_event_initialize(&event, NULL,
+-        (yaml_char_t *)YAML_STR_TAG, (yaml_char_t*)prop->name,
++        (yaml_char_t *)YAML_STR_TAG, (yaml_char_t *)prop->name,
+          strlen(prop->name), 1, 1, YAML_PLAIN_SCALAR_STYLE);
+      yaml_emitter_emit_or_die(emitter, &event);
+
+@@ -127,7 +127,7 @@ static void yaml_propval(yaml_emitter_t *emitter, 
+struct property *prop)
+      if (len == 0) {
+          yaml_scalar_event_initialize(&event, NULL,
+              (yaml_char_t *)YAML_BOOL_TAG,
+-            (yaml_char_t*)"true",
++            (yaml_char_t *)"true",
+              strlen("true"), 1, 0, YAML_PLAIN_SCALAR_STYLE);
+          yaml_emitter_emit_or_die(emitter, &event);
+          return;
+@@ -194,7 +194,7 @@ static void yaml_tree(struct node *tree, 
+yaml_emitter_t *emitter)
+      /* Loop over all the children, emitting them into the map */
+      for_each_child(tree, child) {
+          yaml_scalar_event_initialize(&event, NULL,
+-            (yaml_char_t *)YAML_STR_TAG, (yaml_char_t*)child->name,
++            (yaml_char_t *)YAML_STR_TAG, (yaml_char_t *)child->name,
+              strlen(child->name), 1, 0, YAML_PLAIN_SCALAR_STYLE);
+          yaml_emitter_emit_or_die(emitter, &event);
+          yaml_tree(child, emitter);
