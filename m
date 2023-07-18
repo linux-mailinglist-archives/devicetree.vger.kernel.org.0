@@ -2,110 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A8880757F4A
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 16:20:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A8A3757F64
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 16:25:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231387AbjGROUW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jul 2023 10:20:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44408 "EHLO
+        id S230206AbjGROZ2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jul 2023 10:25:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47190 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231360AbjGROUW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 10:20:22 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 486F619F;
-        Tue, 18 Jul 2023 07:20:21 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id D2157615D9;
-        Tue, 18 Jul 2023 14:20:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2C6F7C433C8;
-        Tue, 18 Jul 2023 14:20:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689690020;
-        bh=69f9Ow7G9SsiOy4AHNxB2+xh70U/bWAt+jbQXiCN9EE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=NZb1tcBRDBygRjVyPhSRssQyYE2oHpTYsXiTT1l9pKF1STlu13Iixoi8hJImAoXpO
-         94EpbPYgEi6As3I8DrJtm1WZA0zP8nwvrD7bI+n7IothYlhMAzp55oWNr7XfVBvzFu
-         gG93yC7kuqBdBylkdd+sLY1HzySR82keSAG5daB7knFz9yVH8K8tvDM28FyGjUrQNf
-         AjY82wvZz7CcR96qMnGeM3gn3iYw5eedZfGFyTIAiZSydfHh0A8l+++FgTacwGUbeo
-         TKRn7r3gyn/sn3ENLQKLOq92cw78vQTdmPC027pIcAx4x46BE2Lv0xalXTHo2YIidC
-         R2IcV6i2TNu0g==
-Date:   Tue, 18 Jul 2023 15:20:15 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Hal Feng <hal.feng@starfivetech.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 3/3] MAINTAINERS: Add Hal as a maintainer of SFCTEMP
- HWMON DRIVER
-Message-ID: <20230718-progeny-edge-70b1a395f2aa@spud>
-References: <20230718034937.92999-1-hal.feng@starfivetech.com>
- <20230718034937.92999-4-hal.feng@starfivetech.com>
+        with ESMTP id S229724AbjGROZ2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 10:25:28 -0400
+Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com [IPv6:2607:f8b0:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B512199;
+        Tue, 18 Jul 2023 07:25:27 -0700 (PDT)
+Received: by mail-pl1-x62f.google.com with SMTP id d9443c01a7336-1b8baa836a5so45179815ad.1;
+        Tue, 18 Jul 2023 07:25:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1689690327; x=1692282327;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=RecCA8vAFQXqohj5TOPR9rOC0edp+q0SVjbjIuPLS2c=;
+        b=Gw2kPAo65Kv8O7eN2R3imSArpp3sl+zwXomh/gx/glI7B/aOOkZRdJYBo9niQUcWUs
+         cxiLx/U1ALQC33BgIDYK5UpG9UV4Tcv1X/R5w5EFtphYvzbXh8QfuimjDQp5y1k5sx+x
+         zJGn3juBl49+O+GoqubCevXG3mUHDriuufo3xQDGHvtelOtA4Kuf/rhnI2HmvpV/S8Lo
+         BZ9RaiGs37K4zzLSc1dGFAHFXDIr21RKayxi5q68ielyUMVpcNXPNz5NUI5I2X2p8n/A
+         Vb9eyqxtFG/0qO4N8sqKhlPGD+OciG51JX4xiUu/6OrWkPXr0Pej73u3HkfbBGRqBsm1
+         N49w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689690327; x=1692282327;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=RecCA8vAFQXqohj5TOPR9rOC0edp+q0SVjbjIuPLS2c=;
+        b=Gjd7FukDEbKsH7g7C8j571t7/pqNJXgCG39LkSX1mdjwORYkeiECc3ptydlzXkUScp
+         1Su8sFWz2NXJLe1qA5oUNTEkAgGlOVezBPJIVipZ6doB3jNZXFrNAuala54GyDC9ROOb
+         q1SDDH+trLC/ygvDp/tAZAsVvCtKQ3q9H143OMm5+iFjGTgBZikB+aL4gPb3AgpvzBpx
+         2wjYw2bGKB4roaMX32UWdMfg3s+QCGmQMiXOQ2GX26qBjlwDUuGH4v4KNnuD9f76qHXx
+         RDg7Fpy5eMYF4x2YenNknURZka25rzdquDaNRvxYTWxA4R08zdZQlF9NZchBmWlro34W
+         xZeQ==
+X-Gm-Message-State: ABy/qLZWcQlPM2/8qGmQTcHr8NtRNoN8OAcUCGq/wMst6C61feGlQovZ
+        1MLXdHfXww5U5PqF7YUpLvI=
+X-Google-Smtp-Source: APBJJlGTNBTi10xRnLxTNvbAGliZrTe+7oB/h3WGBUx3s26ABAxe3uDi+qg37LchChzL4lbfZStnfg==
+X-Received: by 2002:a17:902:ce81:b0:1b9:e23a:f761 with SMTP id f1-20020a170902ce8100b001b9e23af761mr18256106plg.63.1689690327104;
+        Tue, 18 Jul 2023 07:25:27 -0700 (PDT)
+Received: from ?IPV6:2601:1c2:980:9ec0::2764? ([2601:1c2:980:9ec0::2764])
+        by smtp.gmail.com with ESMTPSA id k10-20020a170902ba8a00b001b50cbc0b4fsm1952851pls.111.2023.07.18.07.25.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 18 Jul 2023 07:25:26 -0700 (PDT)
+Message-ID: <f52eb3fe-e141-5fc7-047f-185ff6e74735@gmail.com>
+Date:   Tue, 18 Jul 2023 07:25:20 -0700
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="+SYy1csup/eV3m/s"
-Content-Disposition: inline
-In-Reply-To: <20230718034937.92999-4-hal.feng@starfivetech.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH] TinyDRM display driver for Philips PCD8544 display
+ controller
+Content-Language: en-US
+To:     Viktar Simanenka <viteosen@gmail.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230718080727.323426-1-viteosen@gmail.com>
+From:   Randy Dunlap <rd.dunlab@gmail.com>
+In-Reply-To: <20230718080727.323426-1-viteosen@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---+SYy1csup/eV3m/s
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Tue, Jul 18, 2023 at 11:49:37AM +0800, Hal Feng wrote:
-> As he is the submitter of this driver, add his mail so he can
-> maintain the driver and easily reply in the mailing list.
->=20
-> Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
+On 7/18/23 01:07, Viktar Simanenka wrote:
+> Support for common monochrome LCD displays based on PCD8544 (such as Nokia 5110/3310 LCD) SPI controlled displays.
+> 
+> Signed-off-by: Viktar Simanenka <viteosen@gmail.com>
 > ---
->  MAINTAINERS | 1 +
->  1 file changed, 1 insertion(+)
->=20
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index aee340630eca..5056079ade77 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -19256,6 +19256,7 @@ F:	drivers/net/ethernet/sfc/
-> =20
->  SFCTEMP HWMON DRIVER
->  M:	Emil Renner Berthing <kernel@esmil.dk>
-> +M:	Hal Feng <hal.feng@starfivetech.com>
->  L:	linux-hwmon@vger.kernel.org
->  S:	Maintained
->  F:	Documentation/devicetree/bindings/hwmon/starfive,jh71x0-temp.yaml
+>  .../bindings/display/philips,pcd8544.yaml     |  92 ++++
+>  drivers/gpu/drm/tiny/Kconfig                  |  11 +
+>  drivers/gpu/drm/tiny/pcd8544.c                | 506 ++++++++++++++++++
+>  3 files changed, 609 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/philips,pcd8544.yaml
+>  create mode 100644 drivers/gpu/drm/tiny/pcd8544.c
 
-Whatever about the other patches in this series, this one certainly
-needs an Ack from Emil.
 
-Thanks,
-Conor.
+Why is there no change to the Makefile?
 
---+SYy1csup/eV3m/s
-Content-Type: application/pgp-signature; name="signature.asc"
+-- 
+~Randy
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZLafjQAKCRB4tDGHoIJi
-0ieXAPoDb+w2V0FDl4JxOKH09CNgAq/8yBxnBA358gfjau/P9QD/Rw3p/VAyVXD5
-S6E/DUnzFkGfMmqp4BxxVrghLiJKjgk=
-=T5XJ
------END PGP SIGNATURE-----
-
---+SYy1csup/eV3m/s--
