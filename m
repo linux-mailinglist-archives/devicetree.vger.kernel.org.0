@@ -2,121 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D743757690
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 10:32:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0230C7576AB
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 10:35:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231228AbjGRIcF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jul 2023 04:32:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50518 "EHLO
+        id S231754AbjGRIfg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jul 2023 04:35:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53476 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231262AbjGRIcE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 04:32:04 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6EE68E7F;
-        Tue, 18 Jul 2023 01:32:01 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id E971A614BF;
-        Tue, 18 Jul 2023 08:32:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1B76AC433C8;
-        Tue, 18 Jul 2023 08:31:57 +0000 (UTC)
-Message-ID: <53bb24a3-6aa4-4ece-e837-2cd523e0c1e7@xs4all.nl>
-Date:   Tue, 18 Jul 2023 10:31:56 +0200
+        with ESMTP id S231825AbjGRIfd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 04:35:33 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D44A5E60
+        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 01:35:24 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1qLgAn-00036C-J1; Tue, 18 Jul 2023 10:35:09 +0200
+Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1qLgAi-0004Wq-Q5; Tue, 18 Jul 2023 10:35:04 +0200
+Date:   Tue, 18 Jul 2023 10:35:04 +0200
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        peppe.cavallaro@st.com, alexandre.torgue@foss.st.com,
+        joabreu@synopsys.com, mcoquelin.stm32@gmail.com,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, kernel@pengutronix.de
+Subject: Re: [PATCH net-next 2/2] net: stmmac: platform: add support for
+ phy-supply
+Message-ID: <20230718083504.r3znx6iixtq7vkjt@pengutronix.de>
+References: <20230717164307.2868264-1-m.felsch@pengutronix.de>
+ <20230717164307.2868264-2-m.felsch@pengutronix.de>
+ <accc8d89-7565-460e-a874-a491b755bbb8@lunn.ch>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH v3 00/14] media: rkisp1: Add support for i.MX8MP
-Content-Language: en-US
-To:     Paul Elder <paul.elder@ideasonboard.com>,
-        linux-media@vger.kernel.org
-Cc:     Dafna Hirschfeld <dafna@fastmail.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Helen Koike <helen.koike@collabora.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20221118093931.1284465-1-paul.elder@ideasonboard.com>
-From:   Hans Verkuil <hverkuil@xs4all.nl>
-In-Reply-To: <20221118093931.1284465-1-paul.elder@ideasonboard.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,
-        HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <accc8d89-7565-460e-a874-a491b755bbb8@lunn.ch>
+User-Agent: NeoMutt/20180716
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Paul,
+On 23-07-18, Andrew Lunn wrote:
+> On Mon, Jul 17, 2023 at 06:43:07PM +0200, Marco Felsch wrote:
+> > Add generic phy-supply handling support to control the phy regulator.
+> > Use the common stmmac_platform code path so all drivers using
+> > stmmac_probe_config_dt() and stmmac_pltfr_pm_ops can use it.
+> > 
+> > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> > ---
+> >  .../ethernet/stmicro/stmmac/stmmac_platform.c | 51 +++++++++++++++++++
+> >  include/linux/stmmac.h                        |  1 +
+> >  2 files changed, 52 insertions(+)
+> > 
+> > diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
+> > index eb0b2898daa3d..6193d42b53fb7 100644
+> > --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
+> > +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
+> > @@ -10,6 +10,7 @@
+> >  
+> >  #include <linux/platform_device.h>
+> >  #include <linux/pm_runtime.h>
+> > +#include <linux/regulator/consumer.h>
+> >  #include <linux/module.h>
+> >  #include <linux/io.h>
+> >  #include <linux/of.h>
+> > @@ -423,6 +424,15 @@ stmmac_probe_config_dt(struct platform_device *pdev, u8 *mac)
+> >  	if (plat->interface < 0)
+> >  		plat->interface = plat->phy_interface;
+> >  
+> > +	/* Optional regulator for PHY */
+> > +	plat->phy_regulator = devm_regulator_get_optional(&pdev->dev, "phy");
+> > +	if (IS_ERR(plat->phy_regulator)) {
+> > +		if (PTR_ERR(plat->phy_regulator) == -EPROBE_DEFER)
+> > +			return ERR_CAST(plat->phy_regulator);
+> > +		dev_info(&pdev->dev, "No regulator found\n");
+> > +		plat->phy_regulator = NULL;
+> > +	}
+> > +
+> 
+> So this gets the regulator. When do you actually turn it on?
 
-On 18/11/2022 10:39, Paul Elder wrote:
-> This series depends on v3 of "dt-bindings: media: Add macros for video
-> interface bus types" [1].
-> 
-> This series extends the rkisp1 driver to support the ISP found in the
-> NXP i.MX8MP SoC.
-> 
-> The ISP IP cores in the Rockchip RK3399 (known as the "Rockchip ISP1")
-> and in the NXP i.MX8MP have the same origin, and have slightly diverged
-> over time as they are now independently developed (afaik) by Rockchip
-> and VeriSilicon. The latter is marketed under the name "ISP8000Nano",
-> and is close enough to the RK3399 ISP that it can easily be supported by
-> the same driver.
-> 
-> The last two patches add support for UYVY output format, which can be
-> implemented on the ISP version in the i.MX8MP but not in the one in the
-> RK3399.
-> 
-> This version of the series specifically has been tested on a Polyhex
-> Debix model A with an imx219 (Raspberry Pi cam v2).
-
-There were comments for the first few patches, but I haven't seen a v4.
-
-I'm marking this series as 'Changes Requested' in patchwork, just so you
-know.
+During the suspend/resume logic like the rockchip, sun8i platform
+integrations did.
 
 Regards,
+  Marco
 
-	Hans
-
 > 
-> [1] https://lore.kernel.org/linux-media/20220615221410.27459-2-laurent.pinchart@ideasonboard.com/
+>      Andrew
 > 
-> Laurent Pinchart (3):
->   dt-bindings: media: rkisp1: Add i.MX8MP ISP example
->   media: rkisp1: Add and use rkisp1_has_feature() macro
->   media: rkisp1: Configure gasket on i.MX8MP
-> 
-> Paul Elder (11):
->   dt-bindings: media: rkisp1: Add i.MX8MP ISP to compatible
->   media: rkisp1: Add match data for i.MX8MP ISP
->   media: rkisp1: Add and set registers for crop for i.MX8MP
->   media: rkisp1: Add and set registers for output size config on i.MX8MP
->   media: rkisp1: Add i.MX8MP-specific registers for MI and resizer
->   media: rkisp1: Shift DMA buffer addresses on i.MX8MP
->   media: rkisp1: Add register definitions for the test pattern generator
->   media: rkisp1: Fix RSZ_CTRL bits for i.MX8MP
->   media: rkisp1: Support devices without self path
->   media: rkisp1: Add YC swap capability
->   media: rkisp1: Add UYVY as an output format
-> 
->  .../bindings/media/rockchip-isp1.yaml         |  79 ++++++++++-
->  .../platform/rockchip/rkisp1/rkisp1-capture.c | 102 +++++++++++---
->  .../platform/rockchip/rkisp1/rkisp1-common.h  |  32 +++++
->  .../platform/rockchip/rkisp1/rkisp1-debug.c   |  14 +-
->  .../platform/rockchip/rkisp1/rkisp1-dev.c     |  67 +++++++--
->  .../platform/rockchip/rkisp1/rkisp1-isp.c     | 128 +++++++++++++++++-
->  .../platform/rockchip/rkisp1/rkisp1-regs.h    |  90 ++++++++++++
->  .../platform/rockchip/rkisp1/rkisp1-resizer.c |  35 ++++-
->  include/uapi/linux/rkisp1-config.h            |   2 +
->  9 files changed, 509 insertions(+), 40 deletions(-)
-> 
-
