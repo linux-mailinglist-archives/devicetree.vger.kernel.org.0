@@ -2,280 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 48FC07580CC
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 17:23:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B81CB7580EC
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 17:32:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233571AbjGRPXY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jul 2023 11:23:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55614 "EHLO
+        id S233646AbjGRPb7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jul 2023 11:31:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60264 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233546AbjGRPXW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 11:23:22 -0400
-Received: from mail.croughan.sh (mail.croughan.sh [IPv6:2a01:4f9:c011:cb0::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A84F10FC;
-        Tue, 18 Jul 2023 08:23:12 -0700 (PDT)
-From:   Matthew Croughan <matthew.croughan@nix.how>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nix.how; s=mail;
-        t=1689693788; bh=kQ0zZJmWuTH6LfvyNouDwXGvkH45qS30ZnRRxJ3YoH8=;
-        h=From:To:Cc:Subject:Date;
-        b=fZHVpsFfS0VFKCmHvJCKu5qPsqiWvLfl4VMMikW5tzarafVW0U9nP25HZgRUGLHcO
-         I8mHcJMQLHcIHaHFF4MKvGVdZOv2iTXsBZfuflGOQISBNfnTR1TG1R5UI43DY+pJm7
-         Ap6+eZexbEstVgdUfBswR6ihUcpL/Byv/7SA90vw=
+        with ESMTP id S233397AbjGRPb6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 11:31:58 -0400
+Received: from EUR03-AM7-obe.outbound.protection.outlook.com (mail-am7eur03on2077.outbound.protection.outlook.com [40.107.105.77])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1305E7E;
+        Tue, 18 Jul 2023 08:31:55 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=FKe0iTk5RqoRV141Z38D//mHIb0rLZhwB4ge5P8h+/iJuo5QUirR0HQOG5w+Kg7v/qEIYbmXTo+5F1jvRRR4Nbg6pan1P+2few/M0U3QtX5dxRrcll0zX2lN6MNkNstVTb1C+uZR1QvLE0NjJ4HOVNQeZ3zZeoHV7kZpTwwnEJVIBKJfrhZB/U/w6KOnkHmPw/kFhewlxGBcUz5JpXWcIZV2G7Qdv21dXeT75J4HsE//HFdoy+3IhJLSIGvfHpFAAyLJD5bBClvOXwnkreSb19E2GVIJcQ2IiwbuP7kAw0MhwYbYFmRxMayEk0/rXjNa7kTxk/z3kHdRbCCoHsXwhA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=oJOoUkNN9dbWXOvToesYddaSvwsyXPBez2x5/uRJ4cc=;
+ b=MCIrgfFvJdr/AlPJ99AkansB5G9h66eK/h69hHrWpFVXqoibGzi7a/aix0Bk0BC1qDHGv9wP4tK9IZLj0axVbXeWpIeSVXnVMe04B2QTcmIUU1ovWZ8163yO0YAdP/vmd+Gw/ejH5M6btHNaAS3G0HZ+/k7V61KY1FapdMJzWCrBrgj8N0lPsfsKbkamQbE1AdYHo39UbBTiOXaFLgxkpKdfsNioKHEFtrI8v1uw1ySOEyogupS+Jh3ggctHW4rRpkae/ycMPPtxVRpj9QaMXIWPXAMb/tUu+fdEGoha/4rwQ9VpQQcpq70YQfPaKNvJtCuX3rFxLvVLUePHpub+KA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=wolfvision.net; dmarc=pass action=none
+ header.from=wolfvision.net; dkim=pass header.d=wolfvision.net; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wolfvision.net;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=oJOoUkNN9dbWXOvToesYddaSvwsyXPBez2x5/uRJ4cc=;
+ b=cDRr1N41KJqNLtG1b5K9x91ouVqJ0KpoxGJa/YZAJflqZQILeBHCFVGcbVNKZ+ULS6tHU4PxgJPyGSNKKKI/pFCCyOrHt3J8GZ/qjhdmkVJait5oi8XUC3SOiCVZeKsxcvAFyYm0LtYqdaIgJJTp40rK2F4SUyVByirkC1dOto0=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=wolfvision.net;
+Received: from DU0PR08MB9155.eurprd08.prod.outlook.com (2603:10a6:10:416::5)
+ by DU2PR08MB10201.eurprd08.prod.outlook.com (2603:10a6:10:496::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6588.31; Tue, 18 Jul
+ 2023 15:31:53 +0000
+Received: from DU0PR08MB9155.eurprd08.prod.outlook.com
+ ([fe80::4fd7:91a9:a92b:295a]) by DU0PR08MB9155.eurprd08.prod.outlook.com
+ ([fe80::4fd7:91a9:a92b:295a%4]) with mapi id 15.20.6588.031; Tue, 18 Jul 2023
+ 15:31:53 +0000
+From:   Michael Riesch <michael.riesch@wolfvision.net>
+Subject: [PATCH 0/4] drm/panel: sitronix-st7789v: add support for partial
+ mode
+Date:   Tue, 18 Jul 2023 17:31:49 +0200
+Message-Id: <20230718-feature-lcd-panel-v1-0-e9a85d5374fd@wolfvision.net>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAGawtmQC/x2N0QqDMAwAf0XyvECtMHW/MvYQ23QGSibpHAPx3
+ xf2eAfHHdDYhBvcugOMP9LkpQ79pYO0kj4ZJTtDDHEIYz9hYXrvxlhTxo2UK8ZrnkucaZyGAN4
+ t1BgXI02rl7rX6nIzLvL9j+6P8/wB8QvhQ3gAAAA=
 To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Maxime Ripard <mripard@kernel.org>
-Cc:     Matthew Croughan <matthew.croughan@nix.how>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: [PATCH v3] arm64: dts: allwinner: h616: Add Mango Pi MQ-Quad DTS
-Date:   Tue, 18 Jul 2023 16:22:03 +0100
-Message-ID: <20230718152206.1430313-1-matthew.croughan@nix.how>
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Maxime Ripard <mripard@kernel.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        Gerald Loacker <gerald.loacker@wolfvision.net>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org,
+        Michael Riesch <michael.riesch@wolfvision.net>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1689694312; l=1147;
+ i=michael.riesch@wolfvision.net; s=20230406; h=from:subject:message-id;
+ bh=z3Es1zds/gkLLCAHQEUq+mtyoGvhWNC9iKuqqOVOt5Y=;
+ b=YW9baPnrPWfS0DlmJEIftqwCWwoCXXcNt9rf6LqdAqOfqfLde6plnaQPzT3QN0czmoQKwPA0b
+ WGTd6HujKKoBhdkc7gFm/wRBEqIyyxhlM1n0FYPkhjAowMmQUq11S2x
+X-Developer-Key: i=michael.riesch@wolfvision.net; a=ed25519;
+ pk=G03kuYHL670EcdsWaNfVA7KnHWmkSpj98XziQm/hjbk=
+X-ClientProxiedBy: VI1PR0102CA0027.eurprd01.prod.exchangelabs.com
+ (2603:10a6:802::40) To DU0PR08MB9155.eurprd08.prod.outlook.com
+ (2603:10a6:10:416::5)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU0PR08MB9155:EE_|DU2PR08MB10201:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7111a4a1-7cc7-4069-9e53-08db87a41cb9
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: rXXTSiq4+HewZmpYv3omtOyJYjXAnGrtT0NrLy64Q58K8ICVDeUegttSgHWgiwUg9hKzG0mW7TdMDzzcReHjcB9IuRaUQZEfPrVZcmXwLdwIE9/97FWeWPf+FfhaDT6c2OYbq9pQkzpemhLO2AfvXjQ3ApW0o1mGLN6FKHKMtN2TL1rKvW9uPkJxMNSngWeZxlnKGtgCw8e5zXkKGaR+sNwIym7PN+nCePkSsRHiZSPKhjuafO8A+n0su1vYLdxmCWFMk7gxcqvJV5bUW4MsXDAvC0BWrglIxo/mnNbZc/rwrpRcNaxpFFDrweSIFsLLrh5Yev/vaJjOvAcFbcD3/m/Qfs9uP71MSpJsgyP59yowrdcGAcCLX5fTqke5RqPLwLgN0qujZwyN53Kele7fE1AIy8ULgClCGpfubHSj9A5qaUYOvv8soJCTz30N5a8BHnT4VDvIuDFxVmxW9QZ6wheBrIn50x6U24UpbJ2pKx8/qfT3pT9QE4SRAqSICX18kdZrcNkBeRTPdW5axbe09KopEWVpq51xvw6dyTpHjf0R/kYKPByy2fsKIiwuNqizA8qPORaISuPe0BkiOnk0Eh7vMa+hiKEfzr/kq9y6XABLRzJgVoLU7AriSTNWpAf0
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR08MB9155.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(396003)(376002)(136003)(366004)(39840400004)(346002)(451199021)(6486002)(107886003)(52116002)(26005)(6506007)(6512007)(966005)(38350700002)(2616005)(83380400001)(86362001)(38100700002)(921005)(186003)(36756003)(8676002)(8936002)(2906002)(41300700001)(478600001)(7416002)(5660300002)(4326008)(6636002)(316002)(66556008)(66946007)(66476007)(44832011)(110136005)(6666004);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?U3QrVjJRNE93anBQbkhPNjN3YTYvOGlXOStJcGMraFJTdWZUdUEvUUozaGZq?=
+ =?utf-8?B?QnN4S1JoemtGdHptSFZQVGlRak1mTWEyVEd6d1pNRUhSV1lBcks1V2tCbkNQ?=
+ =?utf-8?B?TTFWRFBzdEVKdHkyalR6Q0s3WnliaTU5UG11UDBkQzV3dkxRMGJvQVI3WEo0?=
+ =?utf-8?B?VHpZS0RwRHl5SnpYckZMVDI4b2lOMUM3RXBTYTIrTDdiM0RSWUNjRHcrOFlh?=
+ =?utf-8?B?b0d1RDJxMW9VdGVuRTBhNVRuRjFCbEhFN2U3KzE1dXNIbWJ4UUJHT2lhUC9K?=
+ =?utf-8?B?WWpDWFkza1QxbVdFTFlGV1V1U0YvVUNDK3BzN242SHV6Mk5LVjc0bjFKVGx2?=
+ =?utf-8?B?L0YzQW5QSjBKSWpzdlN2Tzd2NWdnZVdZbm5TWnJCbEFJbzVsZkpSS3krOGY1?=
+ =?utf-8?B?eGFGM0FYVGVaa2N5cjE3d2lZN2ROMkNrWW1YdGhRWmFCNlFGRWIyZHcyQjFr?=
+ =?utf-8?B?S25lTHFtQTkzQmw4WUk0eTdsR21IZE5GSndCV2dIZW44eko4ZDV0SkI0TVVU?=
+ =?utf-8?B?ZzQ1RjMxVEpOeDlRemFiVEZrL0g5UFlQcjBPV2JiVWQvRDJKc2lXb2F4OENp?=
+ =?utf-8?B?RURmR1FhNmZaSklVY0tSWGtVZEZCLzZ4RUlMYk1ZcnF1aWNycytIc2IvMlFT?=
+ =?utf-8?B?bnhPREJKWGF5VWJHa05tTGU4RWU4Nk1aZE52ODJKbC9iNll2Sk1sZitYL3Qy?=
+ =?utf-8?B?aGk0Y1NyeXpaOFJCWnZSb09hNWJEbW56SUdFellVc0JlUENHUFZpdlpSWnhm?=
+ =?utf-8?B?RmUzMlU5SXdOTHJLSVFOanhQVUZGZjkyLytNMjhyenVRU3JBVzZKNmF5ZmVn?=
+ =?utf-8?B?Ti81Mm1SRyticTZMcS9hRW43ck8vWjhxQ3pWc3dTZnZCcGtrVlJweE14c1Jn?=
+ =?utf-8?B?RkkrRklWUTlEYmw1ZGhSS1d0L1NMTlFrWnpTYVd3SVFIYmFwQ2lWc0xESy8w?=
+ =?utf-8?B?RlRQV21PNW9RU3Y1YkUyaW9obThrNEt0aTJWOUJGSGV3Uy9iQklqWnlTZzNC?=
+ =?utf-8?B?aXZNU1pqRHpmT1UxUGt2NE13L002cmxOMnhLanhQbHQ0cEhYa0ZLUUhvMGJF?=
+ =?utf-8?B?WCsvb1NVMEpKdHVFaG44WjRHeERTZTNORkx0eE1weG1XdmVsTnU4VmUzdFRU?=
+ =?utf-8?B?SlgvbnVPSzhKeVg5NlJsM2xQWXh6ekt6QzFMbHdMRnZmVmtMaVlKd3JOL0hS?=
+ =?utf-8?B?eFVYeTVPU0Q0bHowZDA4czF4T0JzeExiYURmU1RYcExaSjFKaVpGMkQ5dnMx?=
+ =?utf-8?B?OHJScTViQnZzMklYcVdmRXNLL2J4bHdhVUlNKzNYTXhnU0hsOWVBR3hHS2Rs?=
+ =?utf-8?B?azZaMW0xM1BKS2JnYWF5c2RXQm9hajdVTWZQQ2RJcWhSSGhrQzVBcXNVck1n?=
+ =?utf-8?B?aWlVTVNKeVBodk1USkZXWjNvWHdSb0diWmVoUmxFdCsvNWJmdjIrYWs4eXFG?=
+ =?utf-8?B?cVk1TEs2MStDOG1QYm1RWWRqWGpWRHlneDJXZkZ4aUFWNElKcy9Nc09CM3Jt?=
+ =?utf-8?B?U0J5dHVBcU9FbmVIWTUyMUxmRFg3QmNMS0J6cTVhMkRpbTBMTUhmN2JpMXhz?=
+ =?utf-8?B?Z2hxdlNJQmc2UzdITUQ2eXBzaDBUZDFTUlRtNmdPYkV3aUlMRGdncWZFZ25Q?=
+ =?utf-8?B?RVVRaklCSm9kcmJMb1BHNllOOGdkekhSN1JpaC9rSjk1OUdoSmZXTlJjWlJs?=
+ =?utf-8?B?SmpNeUZZZ29zMTdGdGI2YS9iQkxiYXM0cGRXNDMrcUoyb09RWCtHQjlmL0ox?=
+ =?utf-8?B?Yi95RWN1bzd2K2RQWVpqM0ZLYkluQnJKRWZFZ3QzZHZQMksxNVZHbUR0Q2tq?=
+ =?utf-8?B?WmFHOTZLUDBEN3FpdHUwRUtmRFdkY1VxeHlLOWV2V0cyelZFd0NLL0Z5aUxP?=
+ =?utf-8?B?d1ZCMnF2SG1XS2srVnl4ZTlOWUJXSXRYbUxUejB4ajc3TzBxQW1xcld0cktO?=
+ =?utf-8?B?bys2Y2ZTdnRINE9XSVhldXBwd01mY0xadnVMSEUzcGY4Rk8yU0xrL05PNUdB?=
+ =?utf-8?B?TGVyYStCK3hrSW5zQ3FSTXAyeGtxU0kwcTNmMjltdXl2R1VmTzRPYlV4a3ox?=
+ =?utf-8?B?WFBZNVhCQUJwWFZwcEtSYnBNNW9qQm0vZ244a2pjUDlodnhhcHJVTXlGVFpD?=
+ =?utf-8?B?NjFxSThpSXhneVpSUUMrTGQvWDlVSkFzTnJ1UktkZzdoRVZNNDNPKzRSOHFi?=
+ =?utf-8?B?bUE9PQ==?=
+X-OriginatorOrg: wolfvision.net
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7111a4a1-7cc7-4069-9e53-08db87a41cb9
+X-MS-Exchange-CrossTenant-AuthSource: DU0PR08MB9155.eurprd08.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jul 2023 15:31:53.0113
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: e94ec9da-9183-471e-83b3-51baa8eb804f
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: M5BMNPixd9UzQcD3piujmNNZLIjN2562ifh5Z56Wr0zVEUatH3hS52q+7URqUI+8Ksh4A065g+46ozVdrQ5QbdgFEibiD2MrYTRrHvcDdMk=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR08MB10201
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Mango Pi MQ Quad is a H616 based SBC, add basic support for the board
-and its peripherals
+Hi all,
 
-Signed-off-by: Matthew Croughan <matthew.croughan@nix.how>
+This series adds support for the partial display mode to the Sitronix
+ST7789V panel driver. This is useful for panels that are partially
+occluded by design, such as the Jasonic JT240MHQS-HWT-EK-E3. Support
+for this particular panel is added as well.
+
+Note: This series is already based on
+https://lore.kernel.org/lkml/20230714013756.1546769-1-sre@kernel.org/
+
+Looking forward to your comments!
+
 ---
-V1 -> V2: Alphabetical ordering, added "widora,mangopi-mq-quad" compatible
-V2 -> V3: Added Signed-off-by, add to device-tree compatible/bindings documentation
+Michael Riesch (4):
+      dt-bindings: vendor-prefixes: add jasonic
+      dt-bindings: display: st7789v: add jasonic jt240mhqs-hwt-ek-e3 display
+      drm/panel: sitronix-st7789v: add support for partial mode
+      drm/panel: sitronix-st7789v: add jasonic jt240mhqs-hwt-ek-e3 support
 
- .../devicetree/bindings/arm/sunxi.yaml        |   5 +
- arch/arm64/boot/dts/allwinner/Makefile        |   1 +
- .../allwinner/sun50i-h616-mangopi-mq-quad.dts | 183 ++++++++++++++++++
- 3 files changed, 189 insertions(+)
- create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h616-mangopi-mq-quad.dts
+ .../bindings/display/panel/sitronix,st7789v.yaml   |  1 +
+ .../devicetree/bindings/vendor-prefixes.yaml       |  2 +
+ drivers/gpu/drm/panel/panel-sitronix-st7789v.c     | 67 +++++++++++++++++++++-
+ 3 files changed, 68 insertions(+), 2 deletions(-)
+---
+base-commit: b43dae411767f34288aa347f26b5ed2dade39469
+change-id: 20230718-feature-lcd-panel-26d9f29a7830
 
-diff --git a/Documentation/devicetree/bindings/arm/sunxi.yaml b/Documentation/devicetree/bindings/arm/sunxi.yaml
-index ee8fdd2da869..2dee815fd45e 100644
---- a/Documentation/devicetree/bindings/arm/sunxi.yaml
-+++ b/Documentation/devicetree/bindings/arm/sunxi.yaml
-@@ -862,6 +862,11 @@ properties:
-           - const: wexler,tab7200
-           - const: allwinner,sun7i-a20
- 
-+      - description: MangoPi MQ-Quad
-+        items:
-+          - const: widora,mangopi-mq-quad
-+          - const: allwinner,sun50i-h616
-+
-       - description: MangoPi MQ-R board
-         items:
-           - const: widora,mangopi-mq-r-t113
-diff --git a/arch/arm64/boot/dts/allwinner/Makefile b/arch/arm64/boot/dts/allwinner/Makefile
-index 6a96494a2e0a..06c5b97dbfc3 100644
---- a/arch/arm64/boot/dts/allwinner/Makefile
-+++ b/arch/arm64/boot/dts/allwinner/Makefile
-@@ -38,5 +38,6 @@ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-pine-h64.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-pine-h64-model-b.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-tanix-tx6.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-tanix-tx6-mini.dtb
-+dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-mangopi-mq-quad.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-orangepi-zero2.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-x96-mate.dtb
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616-mangopi-mq-quad.dts b/arch/arm64/boot/dts/allwinner/sun50i-h616-mangopi-mq-quad.dts
-new file mode 100644
-index 000000000000..47fd49af2886
---- /dev/null
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h616-mangopi-mq-quad.dts
-@@ -0,0 +1,183 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+// Copyright (C) 2020 Arm Ltd.
-+/*
-+ * Copyright (C) 2023 Matthew Croughan <matthew.croughan@nix.how>
-+ */
-+
-+/dts-v1/;
-+
-+#include "sun50i-h616.dtsi"
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/interrupt-controller/arm-gic.h>
-+#include <dt-bindings/leds/common.h>
-+
-+/ {
-+	model = "MangoPi MQ-Quad";
-+	compatible = "widora,mangopi-mq-quad", "allwinner,sun50i-h616";
-+
-+	aliases {
-+		serial0 = &uart0;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		led-0 {
-+			function = LED_FUNCTION_STATUS;
-+			color = <LED_COLOR_ID_GREEN>;
-+			gpios = <&pio 2 13 GPIO_ACTIVE_HIGH>; /* PC13 */
-+		};
-+	};
-+
-+	reg_vcc5v: vcc5v {
-+		/* board wide 5V supply directly from the USB-C socket */
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc-5v";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		regulator-always-on;
-+	};
-+
-+	reg_vcc3v3: vcc3v3 {
-+		/* board wide 3V3 supply directly from SY8008 regulator */
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc-3v3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-always-on;
-+	};
-+
-+	wifi_pwrseq: wifi-pwrseq {
-+		compatible = "mmc-pwrseq-simple";
-+		reset-gpios = <&pio 6 18 GPIO_ACTIVE_LOW>; /* PG18 */
-+	};
-+};
-+
-+&ehci1 {
-+	status = "okay";
-+};
-+
-+/* USB 2 & 3 are on headers only. */
-+
-+&mmc0 {
-+	vmmc-supply = <&reg_vcc3v3>;
-+	cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>;	/* PF6 */
-+	bus-width = <4>;
-+	status = "okay";
-+};
-+
-+&mmc1 {
-+	bus-width = <4>;
-+	mmc-pwrseq = <&wifi_pwrseq>;
-+	non-removable;
-+	vmmc-supply = <&reg_vcc3v3>;
-+	vqmmc-supply = <&reg_vcc3v3>;
-+	pinctrl-0 = <&mmc1_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+
-+	rtl8723ds: wifi@1 {
-+		reg = <1>;
-+		interrupt-parent = <&pio>;
-+		interrupts = <6 15 IRQ_TYPE_LEVEL_LOW>; /* PG15 */
-+		interrupt-names = "host-wake";
-+	};
-+};
-+
-+
-+&uart1 {
-+	uart-has-rtscts;
-+	pinctrl-0 = <&uart1_pins>, <&uart1_rts_cts_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+
-+	bluetooth {
-+		compatible = "realtek,rtl8723ds-bt";
-+		device-wake-gpios = <&pio 6 17 GPIO_ACTIVE_HIGH>; /* PG17 */
-+		enable-gpios = <&pio 6 19 GPIO_ACTIVE_HIGH>; /* PG19 */
-+		host-wake-gpios = <&pio 6 16 GPIO_ACTIVE_HIGH>; /* PG16 */
-+	};
-+};
-+
-+&ohci1 {
-+	status = "okay";
-+};
-+
-+&r_i2c {
-+	status = "okay";
-+
-+	axp313a: pmic@36 {
-+		compatible = "x-powers,axp313a";
-+		reg = <0x36>;
-+		x-powers,self-working-mode;
-+		regulators {
-+			reg_aldo1: aldo1 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-name = "vcc-1v8";
-+			};
-+
-+			reg_dldo1: dldo1 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-name = "vcc-3v3-pmic";
-+			};
-+
-+			reg_dcdc1: dcdc1 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <810000>;
-+				regulator-max-microvolt = <990000>;
-+				regulator-name = "vdd-gpu-sys";
-+			};
-+
-+			reg_dcdc2: dcdc2 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <810000>;
-+				regulator-max-microvolt = <1100000>;
-+				regulator-name = "vdd-cpu";
-+			};
-+
-+			reg_dcdc3: dcdc3 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <1500000>;
-+				regulator-max-microvolt = <1500000>;
-+				regulator-name = "vdd-dram";
-+			};
-+
-+		};
-+	};
-+};
-+
-+&uart0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart0_ph_pins>;
-+	status = "okay";
-+};
-+
-+&usbotg {
-+	/*
-+	 * PHY0 pins are connected to a USB-C socket, but a role switch
-+	 * is not implemented: both CC pins are pulled to GND.
-+	 * The VBUS pins power the device, so a fixed peripheral mode
-+	 * is the best choice.
-+	 * The board can be powered via GPIOs, in this case port0 *can*
-+	 * act as a host (with a cable/adapter ignoring CC), as VBUS is
-+	 * then provided by the GPIOs. Any user of this setup would
-+	 * need to adjust the DT accordingly: dr_mode set to "host",
-+	 * enabling OHCI0 and EHCI0.
-+	 */
-+	dr_mode = "peripheral";
-+	status = "okay";
-+};
-+
-+&usbphy {
-+	usb1_vbus-supply = <&reg_vcc5v>;
-+	status = "okay";
-+};
+Best regards,
 -- 
-2.41.0
+Michael Riesch <michael.riesch@wolfvision.net>
 
