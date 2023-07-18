@@ -2,81 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C598F757489
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 08:43:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8BEEC757493
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 08:45:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231447AbjGRGny (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jul 2023 02:43:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47192 "EHLO
+        id S231309AbjGRGpn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jul 2023 02:45:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48680 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231448AbjGRGnx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 02:43:53 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F08EE70;
-        Mon, 17 Jul 2023 23:43:49 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id A26926147F;
-        Tue, 18 Jul 2023 06:43:48 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 27C8CC433C9;
-        Tue, 18 Jul 2023 06:43:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689662628;
-        bh=9K1oNze9pt6AtdqjgxNnclXiPcumaT+jibKxRxXWzoI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=bJhUh32gvfcTMRXBulIgQBSF0mljPh5MMR8mNAba2IpM3/E3qX2CIKUEe0AO2TRwa
-         wj84j2vC+CGk/8oUJ4XmpteVVRfrdrRaNr9MvJCSrCQQLoeSclfGw3zOupqiNetBiM
-         0CaoJ96dMzgXqynFuher99MB/Kecbp4aDPjPhlFtHuBPwVuSRXMd1RigIQXvk2au9R
-         H0DBiKP6gQr9Fj29q7bqRikcTCQKFSyCWgGy7G5L1o4iEV0ZsDlU9afYHNOhYzWRVS
-         sHd8CqLcPIdI3/QwBUoKT39PW4cxULysomSHEDnlgKBX95vRdDYjPJ128VJk9NwxSM
-         /i8krr3J1JWTg==
-Date:   Tue, 18 Jul 2023 14:43:32 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Frank Li <Frank.Li@nxp.com>
-Cc:     suzuki.poulose@arm.com, coresight@lists.linaro.org,
-        imx@lists.linux.dev, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Marek Vasut <marex@denx.de>, Peng Fan <peng.fan@nxp.com>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Adam Ford <aford173@gmail.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 1/1] arm64: dts: imx8mp: remove arm,primecell-periphid at
- etm nodes
-Message-ID: <20230718064332.GM9559@dragon>
-References: <20230705205954.4159781-1-Frank.Li@nxp.com>
+        with ESMTP id S230253AbjGRGpm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 02:45:42 -0400
+Received: from mail-yw1-x1129.google.com (mail-yw1-x1129.google.com [IPv6:2607:f8b0:4864:20::1129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4306B134;
+        Mon, 17 Jul 2023 23:45:41 -0700 (PDT)
+Received: by mail-yw1-x1129.google.com with SMTP id 00721157ae682-579efc32377so48925517b3.1;
+        Mon, 17 Jul 2023 23:45:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1689662740; x=1692254740;
+        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
+         :content-language:user-agent:mime-version:date:message-id:sender
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=RYEnSjRbogv2a232Wt5RDLOlCRVr+Svj4aNxG7iOabY=;
+        b=IwDTdBvUotAJ6wdv/OTm3JQdIY4yNNG35zChngIg4ZCkWq3ozLCPEKIqlFaTDkZbr1
+         edULVY3jQJBOdNogAVNd42ziCBu2FBs7guV7ybZCBRmNAZnCJNWGyj9wLn8iGpjb6jGd
+         jSoskA24vJCXlOcQaLKeEnfFcRJA4kOEJOU9phJ76DbVHq05wPszB6XpT7Bsc8HfB7yf
+         LMl3bFu8B2PrqGL/AX1Fcm9Se39pv4pGqcGqAeEYzMeXtz2dbf6Ac/TF0BouVw7qF/YA
+         T8h6XcZLy5OYYoj4Xwd3xTxtnxFFdwzS7f4TPFl+ibSxfkM68iFl+O9/SdsfBLG8a+F/
+         Womg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689662740; x=1692254740;
+        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
+         :content-language:user-agent:mime-version:date:message-id:sender
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=RYEnSjRbogv2a232Wt5RDLOlCRVr+Svj4aNxG7iOabY=;
+        b=CubGpVfD6tsD7ZpNna7GX1O1cXH4TAZbr+8y6KazAAUWBnHOSZb8EBy2pAjJCON298
+         /d28PX0zLyUiPuZLq2rbT8+3M+I6DINCgKe/+m8/QjoZNMV4PEOm155kj/2chM92cpEb
+         R33kgGY2girWdPJlNgOQ5owalAK2f1nt65g46XlMVfql8dnSQCGFSnBwrticN+sxCQcf
+         2HPjdMdivZr8KHVarEVZRLd+M/s3X4sZ/VGYZoHwPGj7xT2BCyizyRMPEQfPntyURpr5
+         XLA1K0bpcrNR39eY4EjhXwjHBAQjTIu/G4TVvTZwPun4Joj6+qntlUAbuvl3cVytMdEV
+         zGug==
+X-Gm-Message-State: ABy/qLYjBs3dkbDrncfNm+296r7LM70HbapWQf9ST6gq9tqMxavEwKD7
+        bKpBnwwaa/JJNELjHrLDHms=
+X-Google-Smtp-Source: APBJJlEVFHpC4q1Ty43rQaP0AAaXKieldjAQFSqMe0k3ca6qKhRfDgD7Hdc09UiTORQI8lPRk4A5gg==
+X-Received: by 2002:a81:8343:0:b0:573:9e0a:b8bf with SMTP id t64-20020a818343000000b005739e0ab8bfmr12214681ywf.9.1689662740452;
+        Mon, 17 Jul 2023 23:45:40 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id u187-20020a8184c4000000b00577357201e2sm306905ywf.14.2023.07.17.23.45.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 17 Jul 2023 23:45:39 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <28de46d5-bf6a-da0c-ad24-5404ad416b3a@roeck-us.net>
+Date:   Mon, 17 Jul 2023 23:45:36 -0700
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230705205954.4159781-1-Frank.Li@nxp.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        =?UTF-8?B?6JSh5om/6YGU?= <billyking19920205@gmail.com>
+Cc:     "jdelvare@suse.com" <jdelvare@suse.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "joel@jms.id.au" <joel@jms.id.au>,
+        "andrew@aj.id.au" <andrew@aj.id.au>,
+        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
+        "u.kleine-koenig@pengutronix.de" <u.kleine-koenig@pengutronix.de>,
+        "corbet@lwn.net" <corbet@lwn.net>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
+        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
+        "patrick@stwcx.xyz" <patrick@stwcx.xyz>,
+        Billy Tsai <billy_tsai@aspeedtech.com>
+References: <CAGUgbhCqOJaEPjS96o2au21uW4NhqFScm4Ayd8PzOQvqxQ94SQ@mail.gmail.com>
+ <0b9dd5cf-f4ca-2e6b-624d-0b451bbc2f30@linaro.org>
+ <0ba3767c-d481-6e2c-2d32-b79af0e1efd8@roeck-us.net>
+ <CAGUgbhC34-pUp4ECULc0ScaN7hUF1L-z69h+ji-TiVrv4gKd3Q@mail.gmail.com>
+ <7b198d57-ddec-3074-314a-3e5e5b8f48f9@roeck-us.net>
+ <CAGUgbhDbFedVe-pc+muD_NtDpjHpGqMDdrS3A73C-QbxeHn4oQ@mail.gmail.com>
+ <cf91edc9-1093-495b-48eb-6b05198c2541@linaro.org>
+ <7a69bda1-5f4c-5b1f-8eb6-6fd58917a9b1@roeck-us.net>
+ <CAGUgbhCTDPGt_vpbfaEreX+iuLJ3WUBqt4kppxyaFZQus9Zf0Q@mail.gmail.com>
+ <b22b2ccc-6760-0db6-067b-109c3864d2e8@linaro.org>
+ <CAGUgbhDmXnyxYCL9h9C0P4ByDSTstWnGqW=uFoDVVHeK3BerHA@mail.gmail.com>
+ <3756dffd-1407-d656-485a-9cf1eefd9ae1@linaro.org>
+From:   Guenter Roeck <linux@roeck-us.net>
+Subject: Re: [v6 2/4] dt-bindings: hwmon: Add ASPEED TACH Control
+ documentation
+In-Reply-To: <3756dffd-1407-d656-485a-9cf1eefd9ae1@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 05, 2023 at 04:59:53PM -0400, Frank Li wrote:
-> The reg size of etm nodes is incorrectly set to 64k instead of 4k. This
-> leads to a crash when calling amba_read_periphid().  After corrected reg
-> size, amba_read_periphid() retrieve the correct periphid.
-> arm,primecell-periphid were removed from the etm nodes.
-> 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+On 7/17/23 23:04, Krzysztof Kozlowski wrote:
 
-Applied, thanks!
+[ ... ]
+
+>> The first method involves passing the memory region from an MFD
+>> driver, which was the
+> 
+> I have no clue how can you pass memory region
+> (Documentation/devicetree/bindings/reserved-memory/) from MFD and why
+> does it make sense here.
+> 
+
+It is quite common for mfd drivers to pass regmap information to
+child drivers. Child drivers typically call dev_get_regmap() with
+the parent device as parameter. Granted, that is typically used
+for spi or i2c devices, but I don't see why it would not work
+here as well.
+
+Then there s syscon, but I don't know if that works with overlapping
+memory regions.
+
+Guenter
+
