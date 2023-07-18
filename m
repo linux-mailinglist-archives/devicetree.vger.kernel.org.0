@@ -2,484 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F3F5E7574DA
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 09:01:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B49767574F4
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 09:06:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231571AbjGRHB3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jul 2023 03:01:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58024 "EHLO
+        id S231573AbjGRHGq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jul 2023 03:06:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60664 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231580AbjGRHBX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 03:01:23 -0400
-Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com [IPv6:2a00:1450:4864:20::343])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 684B310FE;
-        Tue, 18 Jul 2023 00:01:20 -0700 (PDT)
-Received: by mail-wm1-x343.google.com with SMTP id 5b1f17b1804b1-3fc04692e20so54175415e9.0;
-        Tue, 18 Jul 2023 00:01:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1689663679; x=1692255679;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4mGREkRGGX3/PGkZymv9TCRwA5h7pqCSO/jC7BVfcT4=;
-        b=SZUBEvLU+zjO2cAtqYojoJxktR3lqH55+rYNMZz37QijDQnhSm/d3/UOhuB1sfl8vR
-         whNmXKtOpKzZc4bPq3VO28xUIqk47IROfJLH+tDEPAJCY0mm9PCBxGu+FbOMELS4nl2T
-         n2k4hwY/savn75bLrfLYghl+0x+kStgOijjEr0U+zn2NaS8YNblNX9KPNKJGuQUChUPu
-         A/wYsfuuTK2WV8WKlPfohcaL4ak1SyzTUY7PM8rZdrUc7jhP19Yy1nGMioQnN2E+yFhX
-         9FghCUQrgUn5WCtZx+GsscKDuut9X8jzFkQbQDDiqHKxiFhA+RwFgcmkXWCjZLHB1phr
-         h55A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689663679; x=1692255679;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=4mGREkRGGX3/PGkZymv9TCRwA5h7pqCSO/jC7BVfcT4=;
-        b=NyblV3jqnCP4LNWzmTmdujxkjT/jTyXd9jceXASVagEQwkr9AZ1S8S8SkPoLtTNMFV
-         CLWkzqqBcHYketpR1bVqAMtpQNl6+0y2g9UyOvQkQzLJaF5+29QDnLJP9mRRol8x818d
-         Wd457uvelijzhqKvhMPPtADInw/g4g1QT9amYype/yLYW4DdPkF59S2nyLfJ7ilcXRHk
-         U4S3gTSjh5YXYbwIBRcNTU/mAMNlIWgq7RwXO+S6PeZ1O+BCr4O55xvdNPMbv8ZTARA1
-         jxxMELKbiIeei6HmfCz8dwdnIqlYitS1+wWtQM9OMUqxTBxHsaf8ZHFAkgPR2T8md1uH
-         MvlQ==
-X-Gm-Message-State: ABy/qLbqvX0N3vYQ9vB3jP3QQquAcMLaMhEfBgFi8l0SATgnewWgBdEk
-        +dFpiMiEP1wFUmYt22HXbAA=
-X-Google-Smtp-Source: APBJJlHh6YN0r1js5hlWdZGeRKi6ESEmbpEKFwqI+jIehGmzQUaprCoXPkeySyl/ANFHgWsGgd6zRw==
-X-Received: by 2002:a7b:c4d7:0:b0:3f9:c04:e76c with SMTP id g23-20020a7bc4d7000000b003f90c04e76cmr1057977wmk.28.1689663678611;
-        Tue, 18 Jul 2023 00:01:18 -0700 (PDT)
-Received: from ws-565760.systec.local ([212.185.67.148])
-        by smtp.gmail.com with ESMTPSA id f8-20020a7bc8c8000000b003fc3b03caa5sm9106574wml.1.2023.07.18.00.01.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 Jul 2023 00:01:18 -0700 (PDT)
-From:   Andre Werner <werneazc@gmail.com>
-X-Google-Original-From: Andre Werner <andre.werner@systec-electronic.com>
-To:     jdelvare@suse.com, linux@roeck-us.net,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        robh+dt@kernel.org
-Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Andre Werner <andre.werner@systec-electronic.com>
-Subject: [PATCH v2 2/2] hwmon: (hs3001) Add driver for Renesas HS3001
-Date:   Tue, 18 Jul 2023 09:01:14 +0200
-Message-ID: <20230718070114.3871-2-andre.werner@systec-electronic.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20230718070114.3871-1-andre.werner@systec-electronic.com>
-References: <20230718070114.3871-1-andre.werner@systec-electronic.com>
+        with ESMTP id S229714AbjGRHGp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 03:06:45 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA2081A8;
+        Tue, 18 Jul 2023 00:06:44 -0700 (PDT)
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36I3u01W018974;
+        Tue, 18 Jul 2023 07:06:40 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : from : to : cc : references : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=ojfwCYGTetwQwquRm+YxTfNINgoxmz2nWaG7WFx//TE=;
+ b=iQQ1nwYwjRBkLzISXZD2lpAHW5xDNgG6yZC5ksAykmSN8llz8tjVqrI/S2XhLsuFYCyS
+ PHjZVcSySmVVmpN5UplKg+cb0F+2yswOSs6vGE9sZVx/ECKTaHBGbRdTPs9LrdH5smeG
+ 5Bh7ySnP5mBlXoY+nc8o6m4msx49rDQ+clsW/wMHPCb0myY2fbbv7lXK14Li8MDDM26j
+ QaTGrn9WjpsBSlXh69azgjUUjVYQVtLi3v6bUH+nvwp/r3kgl4lHYA84SWTebh2glD5F
+ T3TlZMD6haltqiRzS2BrgtAq+vPkQA8orNJ2GumrHpxKaiIAEkvvZI+3Rsnt+QRh9End 4A== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3rw7eesruw-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 18 Jul 2023 07:06:40 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 36I76d3w030358
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 18 Jul 2023 07:06:39 GMT
+Received: from [10.239.154.73] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Tue, 18 Jul
+ 2023 00:06:35 -0700
+Message-ID: <5b7e624b-5d06-826d-92d1-2a721b7c83b7@quicinc.com>
+Date:   Tue, 18 Jul 2023 15:06:32 +0800
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+Subject: Re: [PATCH v2 1/2] dt-bindings: input: qcom,pm8xxx-vib: add more PMIC
+ support
+Content-Language: en-US
+From:   Fenglin Wu <quic_fenglinw@quicinc.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-input@vger.kernel.org>, <devicetree@vger.kernel.org>
+CC:     <quic_collinsd@quicinc.com>, <quic_subbaram@quicinc.com>,
+        <quic_kamalw@quicinc.com>, <jestar@qti.qualcomm.com>,
+        <quic_huliu@quicinc.com>
+References: <20230718062639.2339589-1-quic_fenglinw@quicinc.com>
+ <20230718062639.2339589-2-quic_fenglinw@quicinc.com>
+ <cb534cdb-508e-b03e-4e39-50cd6654377a@linaro.org>
+ <4cb9f443-bdea-695a-f1b7-3963747e9a17@quicinc.com>
+In-Reply-To: <4cb9f443-bdea-695a-f1b7-3963747e9a17@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: D9Eih4Ti_YLThL6srC6o8AEbmIsaRKwZ
+X-Proofpoint-GUID: D9Eih4Ti_YLThL6srC6o8AEbmIsaRKwZ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-07-17_15,2023-07-13_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501 mlxscore=0
+ malwarescore=0 spamscore=0 lowpriorityscore=0 clxscore=1015
+ mlxlogscore=999 adultscore=0 bulkscore=0 phishscore=0 impostorscore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2306200000 definitions=main-2307180063
+X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add base support for Renesas HS3001 temperature
-and humidity sensors and its compatibles HS3002,
-HS3003 and HS3004.
 
-The sensor has a fix I2C address 0x44. The resolution
-is fixed to 14bit (ref. Missing feature).
 
-Missing feature:
-- Accessing non-volatile memory: Custom board has no
-  possibility to control voltage supply of sensor. Thus,
-  we cannot send the necessary control commands within
-  the first 10ms after power-on.
+On 7/18/2023 2:38 PM, Fenglin Wu wrote:
+> 
+> 
+> On 7/18/2023 2:33 PM, Krzysztof Kozlowski wrote:
+>> On 18/07/2023 08:26, Fenglin Wu wrote:
+>>> Add support for vibrator module inside Qualcomm PMI632, PM7250B, PM7325B
+>>> PMICs.
+>>>
+>>> Signed-off-by: Fenglin Wu <quic_fenglinw@quicinc.com>
+>>> ---
+>>
+>> I don't see changelog. No changes then?
+>>
+> Sorry, I updated the change log in the cover letter which didn't seems 
+> to be sent to a wider audience, I will resend it by adding more 
+> receivers in the to list
+> 
+> Fenglin
 
-Signed-off-by: Andre Werner <andre.werner@systec-electronic.com>
+Just FYI,the change log was updated in the cover letter here: 
+https://lore.kernel.org/linux-arm-msm/20230718062639.2339589-1-quic_fenglinw@quicinc.com/T/#m3819b50503ef19e0933a10bf797351a4af35537f
 
-Changelog:
-v1: Initial version
-v2: Extensive refactoring following recommendations of reviewers:
- - Delete unused defines and device properties. These are added in
-   the initial version because the device supports a programming mode,
-   but I was not able to implement it, because the custom board was
-   not able to control the power supply of the device and so I cannot
-   enter the programming mode of the device.
- - Correct missunderstanding comments for defines.
- - Delete mutexes for data and I2C bus accesses.
- - Replace attributes with recommented chip-info structure. In the
-   initial version I followed the sth3x.c implementation that uses
-   files and attributes in sysfs. The show functions are replaced by
-   is_visible and read callbacks from the HWMON ABI. I also  delete pointless
-   function argument checks.
- - Correct Yoda programming.
- - Refactor probe function and delete sleep and measurement of humidity
-   and temperature in probe function. I kept an initial I2C
-   communication to ensure that the device is accessible during probe.
- - Reduce the number of atteributes to humidity and temperature input.
----
- Documentation/hwmon/hs3001.rst |  37 +++++
- MAINTAINERS                    |   6 +
- drivers/hwmon/Kconfig          |  10 ++
- drivers/hwmon/Makefile         |   1 +
- drivers/hwmon/hs3001.c         | 261 +++++++++++++++++++++++++++++++++
- 5 files changed, 315 insertions(+)
- create mode 100644 Documentation/hwmon/hs3001.rst
- create mode 100644 drivers/hwmon/hs3001.c
+Also the commit text and the driver change were also updated accordingly 
+to address your review comment by removing 'pm7550ba-vib' compatible string.
 
-diff --git a/Documentation/hwmon/hs3001.rst b/Documentation/hwmon/hs3001.rst
-new file mode 100644
-index 000000000000..703fb9c45313
---- /dev/null
-+++ b/Documentation/hwmon/hs3001.rst
-@@ -0,0 +1,37 @@
-+.. SPDX-License-Identifier: GPL-2.0-or-later
-+
-+Kernel driver HS3001
-+===================
-+
-+Supported chips:
-+
-+  * Renesas HS3001, HS3002, HS3003, HS3004
-+
-+    Prefix: 'hs3001'
-+
-+    Addresses scanned: -
-+
-+    Datasheet: https://www.renesas.com/us/en/document/dst/hs300x-datasheet?r=417401
-+
-+Author:
-+
-+  - Andre Werner <andre.werner@systec-electronic.com>
-+
-+Description
-+-----------
-+
-+This driver implements support for the Renesas HS3001 chips, a humidity
-+and temperature family. Temperature is measured in degrees celsius, relative
-+humidity is expressed as a percentage. In the sysfs interface, all values are
-+scaled by 1000, i.e. the value for 31.5 degrees celsius is 31500.
-+
-+The device communicates with the I2C protocol. Sensors have the I2C
-+address 0x44 by default.
-+
-+sysfs-Interface
-+---------------
-+
-+===============================================================================
-+temp1_input:        temperature input
-+humidity1_input:    humidity input
-+===============================================================================
-diff --git a/MAINTAINERS b/MAINTAINERS
-index aee340630eca..25d5282b43aa 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -9494,6 +9494,12 @@ S:	Maintained
- W:	http://artax.karlin.mff.cuni.cz/~mikulas/vyplody/hpfs/index-e.cgi
- F:	fs/hpfs/
- 
-+HS3001 Hardware Temperature and Humidity Sensor
-+M:	Andre Werner <andre.werner@systec-electronic.com>
-+L:	linux-hwmon@vger.kernel.org
-+S:	Maintained
-+F:	drivers/hwmon/hs3001.c
-+
- HSI SUBSYSTEM
- M:	Sebastian Reichel <sre@kernel.org>
- S:	Maintained
-diff --git a/drivers/hwmon/Kconfig b/drivers/hwmon/Kconfig
-index 307477b8a371..ca6be5a23271 100644
---- a/drivers/hwmon/Kconfig
-+++ b/drivers/hwmon/Kconfig
-@@ -734,6 +734,16 @@ config SENSORS_HIH6130
- 	  This driver can also be built as a module. If so, the module
- 	  will be called hih6130.
- 
-+config SENSORS_HS3001
-+	tristate "Renesas HS3001 humidity and temperature sensors"
-+	depends on I2C
-+	help
-+	  If you say yes here you get support for the Renesas HS3001,
-+	  to HS3004 humidity and temperature sensors.
-+
-+	  This driver can also be built as a module. If so, the module
-+	  will be called hs3001.
-+
- config SENSORS_IBMAEM
- 	tristate "IBM Active Energy Manager temperature/power sensors and control"
- 	select IPMI_SI
-diff --git a/drivers/hwmon/Makefile b/drivers/hwmon/Makefile
-index 3f4b0fda0998..cdae4e1fc919 100644
---- a/drivers/hwmon/Makefile
-+++ b/drivers/hwmon/Makefile
-@@ -86,6 +86,7 @@ obj-$(CONFIG_SENSORS_GSC)	+= gsc-hwmon.o
- obj-$(CONFIG_SENSORS_GPIO_FAN)	+= gpio-fan.o
- obj-$(CONFIG_SENSORS_GXP_FAN_CTRL) += gxp-fan-ctrl.o
- obj-$(CONFIG_SENSORS_HIH6130)	+= hih6130.o
-+obj-$(CONFIG_SENSORS_HS3001)	+= hs3001.o
- obj-$(CONFIG_SENSORS_ULTRA45)	+= ultra45_env.o
- obj-$(CONFIG_SENSORS_I5500)	+= i5500_temp.o
- obj-$(CONFIG_SENSORS_I5K_AMB)	+= i5k_amb.o
-diff --git a/drivers/hwmon/hs3001.c b/drivers/hwmon/hs3001.c
-new file mode 100644
-index 000000000000..5fe42fd3831f
---- /dev/null
-+++ b/drivers/hwmon/hs3001.c
-@@ -0,0 +1,261 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ * This is a non-complete driver implementation for the
-+ * HS3001 humidity and temperature sensor and compatibles. It does not include
-+ * the configuration possibilities, where it needs to be set to 'programming mode'
-+ * during power-up.
-+ *
-+ *
-+ * Copyright (C) 2023 SYS TEC electronic AG
-+ * Author: Andre Werner <andre.werner@systec-electronic.com>
-+ */
-+
-+#include <linux/delay.h>
-+#include <linux/err.h>
-+#include <linux/hwmon.h>
-+#include <linux/i2c.h>
-+#include <linux/init.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/of_device.h>
-+#include <linux/slab.h>
-+#include <linux/types.h>
-+
-+/* Measurement times */
-+#define HS3001_WAKEUP_TIME		100		/* us */
-+#define HS3001_8BIT_RESOLUTION	550		/* us */
-+#define HS3001_10BIT_RESOLUTION	1310	/* us */
-+#define HS3001_12BIT_RESOLUTION	4500	/* us */
-+#define HS3001_14BIT_RESOLUTION	16900	/* us */
-+
-+#define HS3001_RESPONSE_LENGTH	4
-+
-+#define HS3001_FIXPOINT_ARITH	1000
-+#define HS3001_MIN_TEMPERATURE	(-40 * HS3001_FIXPOINT_ARITH)	/* milli degree */
-+#define HS3001_MAX_TEMPERATURE	(125 * HS3001_FIXPOINT_ARITH)	/* milli degree */
-+#define HS3001_MIN_HUMIDITY		(0 * HS3001_FIXPOINT_ARITH)	/* milli percent */
-+#define HS3001_MAX_HUMIDITY		(100 * HS3001_FIXPOINT_ARITH)	/* milli percent */
-+
-+#define HS3001_MASK_HUMIDITY_0X3FFF		0x3FFF
-+#define HS3001_MASK_TEMPERATURE_0XFFFC	0xFFFC
-+#define HS3001_MASK_STATUS_0XC0			0xC0
-+#define HS3001_STATUS_SHIFT				6
-+
-+/* Definitions for Status Bits of A/D Data */
-+#define HS3001_DATA_VALID	0x00	/* Valid Data */
-+#define HS3001_DATA_STALE	0x01	/* Stale Data */
-+
-+#define LIMIT_MAX	0
-+#define LIMIT_MIN	1
-+
-+enum hs3001_chips {
-+	hs3001,
-+};
-+
-+struct hs3001_data {
-+	struct i2c_client *client;
-+	enum hs3001_chips type;
-+	u32 wait_time;		/* in us */
-+	int temperature;	/* in milli degree */
-+	u32 humidity;		/* in milli % */
-+};
-+
-+static int hs3001_extract_temperature(u16 raw)
-+{
-+	/* fixpoint arithmetic 1 digit */
-+	int temp = ((raw & HS3001_MASK_TEMPERATURE_0XFFFC) >> 2) *
-+	    HS3001_FIXPOINT_ARITH;
-+
-+	temp /= (1 << 14) - 1;
-+
-+	return temp * 165 - 40 * HS3001_FIXPOINT_ARITH;
-+}
-+
-+static u32 hs3001_extract_humidity(u16 raw)
-+{
-+	int hum = (raw & HS3001_MASK_HUMIDITY_0X3FFF) * HS3001_FIXPOINT_ARITH;
-+
-+	hum /= (1 << 14) - 1;
-+
-+	return hum * 100;
-+}
-+
-+static int hs3001_data_fetch_command(struct i2c_client *client,
-+				     struct hs3001_data *data)
-+{
-+	int ret;
-+	u8 buf[HS3001_RESPONSE_LENGTH];
-+	u8 hs3001_status;
-+
-+	ret = i2c_master_recv(client, buf, HS3001_RESPONSE_LENGTH);
-+
-+	if (ret != HS3001_RESPONSE_LENGTH) {
-+		ret = ret < 0 ? ret : -EIO;
-+		dev_dbg(&client->dev,
-+			"Error in i2c communication. Error code: %d.\n", ret);
-+		return ret;
-+	}
-+
-+	hs3001_status = (buf[0] & HS3001_MASK_STATUS_0XC0) >>
-+	    HS3001_STATUS_SHIFT;
-+	if (hs3001_status == HS3001_DATA_STALE) {
-+		dev_dbg(&client->dev, "Sensor busy.\n");
-+		return -EBUSY;
-+	} else if (hs3001_status != HS3001_DATA_VALID) {
-+		dev_dbg(&client->dev, "Data invalid.\n");
-+		return -EIO;
-+	}
-+
-+	data->humidity =
-+	    hs3001_extract_humidity(be16_to_cpup((__be16 *)&buf[0]));
-+	data->temperature =
-+	    hs3001_extract_temperature(be16_to_cpup((__be16 *)&buf[2]));
-+
-+	return 0;
-+}
-+
-+umode_t hs3001_is_visible(const void *data, enum hwmon_sensor_types type,
-+			  u32 attr, int channel)
-+{
-+	/* Both, humidity and temperature can only be read. */
-+	return 0444;
-+}
-+
-+int hs3001_read(struct device *dev, enum hwmon_sensor_types type,
-+		u32 attr, int channel, long *val)
-+{
-+	struct hs3001_data *data = dev_get_drvdata(dev);
-+	struct i2c_client *client = data->client;
-+	int ret;
-+
-+	ret = i2c_master_send(client, NULL, 0);
-+	if (ret < 0)
-+		return ret;
-+
-+	/*
-+	 * Sensor needs some time to process measurement depending on
-+	 * resolution
-+	 */
-+	fsleep(data->wait_time);
-+
-+	ret = hs3001_data_fetch_command(client, data);
-+	if (ret < 0)
-+		return ret;
-+
-+	switch (type) {
-+	case hwmon_temp:
-+		switch (attr) {
-+		case hwmon_temp_input:
-+			*val = data->temperature;
-+			break;
-+		default:
-+			return -EINVAL;
-+		}
-+		break;
-+	case hwmon_humidity:
-+		switch (attr) {
-+		case hwmon_humidity_input:
-+			*val = data->humidity;
-+			break;
-+		default:
-+			return -EINVAL;
-+		}
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	return 0;
-+}
-+
-+static const struct hwmon_channel_info *hs3001_info[] = {
-+	HWMON_CHANNEL_INFO(temp, HWMON_T_INPUT),
-+	HWMON_CHANNEL_INFO(humidity, HWMON_H_INPUT),
-+	NULL
-+};
-+
-+static const struct hwmon_ops hs3001_hwmon_ops = {
-+	.is_visible = hs3001_is_visible,
-+	.read = hs3001_read,
-+};
-+
-+static const struct hwmon_chip_info hs3001_chip_info = {
-+	.ops = &hs3001_hwmon_ops,
-+	.info = hs3001_info,
-+};
-+
-+/* device ID table */
-+static const struct i2c_device_id hs3001_ids[] = {
-+	{ "hs3001", hs3001 },
-+	{ },
-+};
-+
-+MODULE_DEVICE_TABLE(i2c, hs3001_ids);
-+
-+static const struct of_device_id hs3001_of_match[] = {
-+	{.compatible = "renesas,hs3001",
-+	 .data = (void *)hs3001
-+	},
-+	{ },
-+};
-+
-+MODULE_DEVICE_TABLE(of, hs3001_of_match);
-+
-+static int hs3001_probe(struct i2c_client *client)
-+{
-+	struct hs3001_data *data;
-+	struct device *hwmon_dev;
-+	struct device *dev = &client->dev;
-+	int ret;
-+
-+	if (!i2c_check_functionality(client->adapter, I2C_FUNC_I2C))
-+		return -EOPNOTSUPP;
-+
-+	data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
-+	if (!data)
-+		return -ENOMEM;
-+
-+	data->client = client;
-+
-+	if (client->dev.of_node)
-+		data->type = (enum hs3001_chips)of_device_get_match_data(&client->dev);
-+	else
-+		data->type = i2c_match_id(hs3001_ids, client)->driver_data;
-+
-+	/*
-+	 * Measurement time = wake-up time + measurement time temperature
-+	 * + measurment time humidity. This is currently static, because
-+	 * enabling programming mode is not supported, yet.
-+	 */
-+	data->wait_time = (HS3001_WAKEUP_TIME + HS3001_14BIT_RESOLUTION +
-+			   HS3001_14BIT_RESOLUTION);
-+
-+	/* Test access to device */
-+	ret = i2c_master_send(client, NULL, 0);
-+	if (ret)
-+		return ret;
-+
-+	hwmon_dev = devm_hwmon_device_register_with_info(dev,
-+				client->name, data, &hs3001_chip_info, NULL);
-+
-+	if (IS_ERR(hwmon_dev))
-+		return dev_err_probe(dev, PTR_ERR(hwmon_dev),
-+				     "Unable to register hwmon device.\n");
-+
-+	return 0;
-+}
-+
-+static struct i2c_driver hs3001_i2c_driver = {
-+	.driver = {
-+		   .name = "hs3001",
-+		   .of_match_table = hs3001_of_match,
-+	},
-+	.probe_new = hs3001_probe,
-+	.id_table = hs3001_ids,
-+};
-+
-+module_i2c_driver(hs3001_i2c_driver);
-+
-+MODULE_AUTHOR("Andre Werner <andre.werner@systec-electronic.com>");
-+MODULE_DESCRIPTION("HS3001 humidity and temperature sensor base  driver");
-+MODULE_LICENSE("GPL");
--- 
-2.41.0
+Since the changes are receiving review comments, I will not resend it. I 
+will add a larger to-list when pushing the next patchset.
 
+>>>   Documentation/devicetree/bindings/input/qcom,pm8xxx-vib.yaml | 3 +++
+>>>   1 file changed, 3 insertions(+)
+>>>
+>>> diff --git 
+>>> a/Documentation/devicetree/bindings/input/qcom,pm8xxx-vib.yaml 
+>>> b/Documentation/devicetree/bindings/input/qcom,pm8xxx-vib.yaml
+>>> index c8832cd0d7da..481163105d24 100644
+>>> --- a/Documentation/devicetree/bindings/input/qcom,pm8xxx-vib.yaml
+>>> +++ b/Documentation/devicetree/bindings/input/qcom,pm8xxx-vib.yaml
+>>> @@ -15,6 +15,9 @@ properties:
+>>>         - qcom,pm8058-vib
+>>>         - qcom,pm8916-vib
+>>>         - qcom,pm8921-vib
+>>> +      - qcom,pmi632-vib
+>>> +      - qcom,pm7250b-vib
+>>> +      - qcom,pm7325b-vib
+>>
+>> Not much improved. With missing changelog, it seems you ignored the
+>> feedback.
+>>
+>>
+>> Best regards,
+>> Krzysztof
+>>
