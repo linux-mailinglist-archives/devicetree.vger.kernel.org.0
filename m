@@ -2,105 +2,211 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C611275736A
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 07:51:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 99A48757391
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 08:04:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229481AbjGRFvl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jul 2023 01:51:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45796 "EHLO
+        id S231134AbjGRGEf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jul 2023 02:04:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50590 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229458AbjGRFvk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 01:51:40 -0400
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89341E55;
-        Mon, 17 Jul 2023 22:51:37 -0700 (PDT)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id F3C1324E280;
-        Tue, 18 Jul 2023 13:51:26 +0800 (CST)
-Received: from EXMBX061.cuchost.com (172.16.6.61) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 18 Jul
- 2023 13:51:27 +0800
-Received: from [192.168.125.128] (113.72.147.86) by EXMBX061.cuchost.com
- (172.16.6.61) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 18 Jul
- 2023 13:51:25 +0800
-Message-ID: <4e4dea7f-639b-71aa-5a47-95ce14d7f1ed@starfivetech.com>
-Date:   Tue, 18 Jul 2023 13:48:09 +0800
+        with ESMTP id S230384AbjGRGEd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 02:04:33 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A80FF1
+        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 23:04:28 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-99454855de1so457543966b.2
+        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 23:04:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1689660267; x=1692252267;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=g5f7NuoL+/s8bYQq96dyzOfuTIeGEJ1Q95iMxVbPcgI=;
+        b=MHy1+SYOHT+v734z3zl3xn74SFQLQkv9kc8FKVktNOw56L3SKY61lRQ78NIIT3vUvo
+         ulEO0QRsuhEpb++gPsLvHzmZR9h1DhUbLG+tnxxmWjOQNTgFAM/zzIPRJN5S564tH9aG
+         LKIoq5w8p7yTYcR2U+mEg4zzpFSaGpI7TSg03jHUaydmbWxAr6QYzKjJxs4VunuwN9Y5
+         erITxs2iEJt++4glBFj7M9wvY+9uDAsrKqiQfwy++246qnXAKWZ/LswXgt+Zlm093oxp
+         LflpWgjGKXAiljfK4QfjQrV0dyBSIuLuX3rZEV8tjv21Lw/kBNmk6WPdQKFb3W6UYtuw
+         9iMA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689660267; x=1692252267;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=g5f7NuoL+/s8bYQq96dyzOfuTIeGEJ1Q95iMxVbPcgI=;
+        b=Km5goE1oWmCEj4QGM5y/UIvQS4bzW02LPdcAHZZD4+BjFKbvQfkuMZthc5OAtyFdC4
+         CpD9Uno0mXSJvf8pHAztdxfWz24Xbku7Zfa5BK+7t4YmvMpJ/ZCazEtmjw97jrEYQ+cG
+         lkgxMq+pqa1mYRTmawtRsxiAa/1QlrYQoc+hCS8s7ZrFeM9k+YaXW4gtwS7qsMla64k1
+         M68QGQTZRLo+lyEMmv/dXDrmU9niSKYTd8hNw9lAi1L1yCJ9LMnL0x6lDKeWnIf4KF2W
+         vzAPdrSZbUeGlqCrqJJWh3WEbb1us5WL5nFxGFojGat9RaMDSFQaGmxKaCqPdyum1iIf
+         gTTQ==
+X-Gm-Message-State: ABy/qLbEDpS4jE9vByIWKgmPpq3f8i49q9M5png2Q++XWz7J86hYDeLx
+        SRUgSPGWeFGHglGR6DhbN0Hic4wP4X2CwFSeXtNh5Q==
+X-Google-Smtp-Source: APBJJlFZbIMU5j4Cb+CtvRvuwgexr97UBWi37cXm30GLf2vtnoY8xEMV54HgvT+rU0dOhPyaqKQscQ==
+X-Received: by 2002:a17:906:e17:b0:993:ffcb:ad4e with SMTP id l23-20020a1709060e1700b00993ffcbad4emr10760990eji.13.1689660267020;
+        Mon, 17 Jul 2023 23:04:27 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id l22-20020a170906231600b00992e4d8cc89sm571966eja.57.2023.07.17.23.04.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 17 Jul 2023 23:04:26 -0700 (PDT)
+Message-ID: <3756dffd-1407-d656-485a-9cf1eefd9ae1@linaro.org>
+Date:   Tue, 18 Jul 2023 08:04:24 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH v7 0/7] Add PLL clocks driver and syscon for StarFive
- JH7110 SoC
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [v6 2/4] dt-bindings: hwmon: Add ASPEED TACH Control
+ documentation
+To:     =?UTF-8?B?6JSh5om/6YGU?= <billyking19920205@gmail.com>
+Cc:     Guenter Roeck <linux@roeck-us.net>,
+        "jdelvare@suse.com" <jdelvare@suse.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "joel@jms.id.au" <joel@jms.id.au>,
+        "andrew@aj.id.au" <andrew@aj.id.au>,
+        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
+        "u.kleine-koenig@pengutronix.de" <u.kleine-koenig@pengutronix.de>,
+        "corbet@lwn.net" <corbet@lwn.net>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
+        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
+        "patrick@stwcx.xyz" <patrick@stwcx.xyz>,
+        Billy Tsai <billy_tsai@aspeedtech.com>
+References: <CAGUgbhCqOJaEPjS96o2au21uW4NhqFScm4Ayd8PzOQvqxQ94SQ@mail.gmail.com>
+ <0b9dd5cf-f4ca-2e6b-624d-0b451bbc2f30@linaro.org>
+ <0ba3767c-d481-6e2c-2d32-b79af0e1efd8@roeck-us.net>
+ <CAGUgbhC34-pUp4ECULc0ScaN7hUF1L-z69h+ji-TiVrv4gKd3Q@mail.gmail.com>
+ <7b198d57-ddec-3074-314a-3e5e5b8f48f9@roeck-us.net>
+ <CAGUgbhDbFedVe-pc+muD_NtDpjHpGqMDdrS3A73C-QbxeHn4oQ@mail.gmail.com>
+ <cf91edc9-1093-495b-48eb-6b05198c2541@linaro.org>
+ <7a69bda1-5f4c-5b1f-8eb6-6fd58917a9b1@roeck-us.net>
+ <CAGUgbhCTDPGt_vpbfaEreX+iuLJ3WUBqt4kppxyaFZQus9Zf0Q@mail.gmail.com>
+ <b22b2ccc-6760-0db6-067b-109c3864d2e8@linaro.org>
+ <CAGUgbhDmXnyxYCL9h9C0P4ByDSTstWnGqW=uFoDVVHeK3BerHA@mail.gmail.com>
 Content-Language: en-US
-To:     Conor Dooley <conor@kernel.org>
-CC:     <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        "Michael Turquette" <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Hal Feng <hal.feng@starfivetech.com>,
-        William Qiu <william.qiu@starfivetech.com>,
-        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>
-References: <20230717023040.78860-1-xingyu.wu@starfivetech.com>
- <20230717-easel-pessimist-5b7c4e5bed0a@spud>
-From:   Xingyu Wu <xingyu.wu@starfivetech.com>
-In-Reply-To: <20230717-easel-pessimist-5b7c4e5bed0a@spud>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [113.72.147.86]
-X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX061.cuchost.com
- (172.16.6.61)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAGUgbhDmXnyxYCL9h9C0P4ByDSTstWnGqW=uFoDVVHeK3BerHA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2023/7/18 2:14, Conor Dooley wrote:
-> Hey Xingyu,
+On 18/07/2023 06:01, 蔡承達 wrote:
+>>
+>> On 17/07/2023 11:01, 蔡承達 wrote:
+>>> Guenter Roeck <linux@roeck-us.net> 於 2023年7月17日 週一 上午1:00寫道：
+>>>>
+>>>> On 7/16/23 09:08, Krzysztof Kozlowski wrote:
+>>>>
+>>>> [ ... ]
+>>>>
+>>>>>>
+>>>>>> This patch serial doesn't use to binding the fan control h/w. It is
+>>>>>> used to binding the two independent h/w blocks.
+>>>>>> One is used to provide pwm output and another is used to monitor the
+>>>>>> speed of the input.
+>>>>>> My patch is used to point out that the pwm and the tach is the
+>>>>>> different function and don't need to
+>>>>>> bind together. You can not only combine them as the fan usage but also
+>>>>>> treat them as the individual module for
+>>>>>> use. For example: the pwm can use to be the beeper (pwm-beeper.c), the
+>>>>>> tach can be used to monitor the heart beat signal.
+>>>>>
+>>>>> Isn't this exactly the same as in every other SoC? PWMs can be used in
+>>>>> different ways?
+>>>>>
+>>>>
+>>>> ... and in every fan controller. Not that it really makes sense because
+>>>> normally the pwm controller part of such chips is tied to the fan input,
+>>>> to enable automatic fan control, but it is technically possible.
+>>>> In many cases this is also the case in SoCs, for example, in ast2500.
+>>>> Apparently this was redesigned in ast2600 where they two blocks are
+>>>> only lightly coupled (there are two pwm status bits in the fan status
+>>>> register, but I have no idea what those mean). If the blocks are tightly
+>>>> coupled, separate drivers don't really make sense.
+>>>>
+>>>> There are multiple ways to separate the pwm controller part from the
+>>>> fan inputs if that is really necessary. One would be to provide a
+>>>> sequence of address mappings, the other would be to pass the memory
+>>>> region from an mfd driver. It is not necessary to have N instances
+>>>> of the fan controller, even if the address space is not continuous.
+>>>>
+>>>
+>>> Hi Guenter,
+>>>
+>>> May I ask about the meaning of the sequence of address mappings? It appears
+>>> to consist of multiple tuples within the 'reg' property, indicating
+>>> the usage of PWM/Tach
+>>> registers within a single instance. After that I can use the dts like following:
+>>>
+>>> pwm: pwm@1e610000 {
+>>> ...
+>>> reg = <0x1e610000 0x8
+>>> 0x1e610010 0x8
+>>> 0x1e610020 0x8
+>>> 0x1e610030 0x8
+>>> 0x1e610040 0x8
+>>> 0x1e610050 0x8
+>>> 0x1e610060 0x8
+>>> 0x1e610070 0x8
+>>> 0x1e610080 0x8
+>>> 0x1e610090 0x8
+>>> 0x1e6100A0 0x8
+>>> 0x1e6100B0 0x8
+>>> 0x1e6100C0 0x8
+>>> 0x1e6100D0 0x8
+>>> 0x1e6100E0 0x8
+>>> 0x1e6100F0 0x8>;
+>>
+>>
+>> Uh, no... I mean, why? We keep pointing out that this should not be done
+>> differently than any other SoC. Open any other SoC PWM controller and
+>> tell me why this is different? Why this cannot be one address space?
 > 
-> On Mon, Jul 17, 2023 at 10:30:33AM +0800, Xingyu Wu wrote:
->> This patch serises are to add PLL clocks driver and providers by writing
->> and reading syscon registers for the StarFive JH7110 RISC-V SoC. And add 
->> documentation and nodes to describe StarFive System Controller(syscon)
->> Registers. This patch serises are based on Linux 6.4.
->> 
->> PLLs are high speed, low jitter frequency synthesizers in JH7110.
->> Each PLL clock works in integer mode or fraction mode by some dividers,
->> and the dividers are set in several syscon registers.
->> The formula for calculating frequency is: 
->> Fvco = Fref * (NI + NF) / M / Q1
->> 
->> The first patch adds docunmentation to describe PLL clock bindings,
->> and the second patch adds documentation to decribe syscon registers.
->> The patch 3 modifies the SYSCRG bindings and adds PLL clock inputs.
->> The patch 4 adds driver to support PLL clocks for JH7110.
->> The patch 5 modifies the system clock driver and can select the PLL clock
->> source from PLL clocks driver. And the patch 6 adds the 
->> stg/sys/aon syscon nodes for JH7110 SoC. The last patch modifies the 
->> syscrg node in JH7110 dts file.
+> Hi Krzysztof,
 > 
-> Just FYI, I have picked up the binding & clock portions of this series
-> and your other one adding the stg syscon. I've pushed them out here for
-> the test robots to have a look:
-> https://git.kernel.org/pub/scm/linux/kernel/git/conor/linux.git/log/?h=clk-starfive
-> 
-> If that passes, my plan is to send Stephen a PR for the lot, later this
-> week.
-> 
+> This is because the register layout for PWM and Tach is not continuous.
+> Each PWM/Tach instance has its own set of controller registers, and they
+> are independent of each other.
 
-Great. Thank you for everything.
+Register layout is not continuous in many other devices, so again - why
+this must be different?
+
+> 
+> For example:
+> PWM0 uses registers 0x0 and 0x4, while Tach0 uses registers 0x8 and 0xc.
+> PWM1 uses registers 0x10 and 0x14, while Tach1 uses registers 0x18 and 0x1c.
+> ...
+> 
+> To separate the PWM controller part from the fan inputs, Guenter has
+> provided two methods.
+> The first method involves passing the memory region from an MFD
+> driver, which was the
+
+I have no clue how can you pass memory region
+(Documentation/devicetree/bindings/reserved-memory/) from MFD and why
+does it make sense here.
+
+> initial method I intended to use. However, it seems that this method
+> does not make sense to you.
+> 
+> Therefore, I would like to explore the second method suggested by
+> Guenter, which involves providing
+> a sequence of address mappings.
 
 Best regards,
-Xingyu Wu
+Krzysztof
 
