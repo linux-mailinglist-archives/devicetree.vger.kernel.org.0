@@ -2,54 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1FA0A7580A3
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 17:18:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5BEAD75807F
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 17:13:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231965AbjGRPSf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jul 2023 11:18:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52212 "EHLO
+        id S231895AbjGRPND (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jul 2023 11:13:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48262 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231901AbjGRPSe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 11:18:34 -0400
-X-Greylist: delayed 516 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 18 Jul 2023 08:18:31 PDT
-Received: from smtp.dudau.co.uk (dliviu.plus.com [80.229.23.120])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id A3C68C0;
-        Tue, 18 Jul 2023 08:18:31 -0700 (PDT)
-Received: from mail.dudau.co.uk (bart.dudau.co.uk [192.168.14.2])
-        by smtp.dudau.co.uk (Postfix) with SMTP id 5774F41A7003;
-        Tue, 18 Jul 2023 16:09:53 +0100 (BST)
-Received: by mail.dudau.co.uk (sSMTP sendmail emulation); Tue, 18 Jul 2023 16:09:53 +0100
-Date:   Tue, 18 Jul 2023 16:09:53 +0100
-From:   Liviu Dudau <liviu@dudau.co.uk>
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc:     linux-phy@lists.infradead.org, linux-rockchip@lists.infradead.org,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Rob Herring <robh@kernel.org>,
-        Serge Semin <fancer.lancer@gmail.com>,
+        with ESMTP id S233479AbjGRPNA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 11:13:00 -0400
+Received: from EUR01-DB5-obe.outbound.protection.outlook.com (mail-db5eur01on2043.outbound.protection.outlook.com [40.107.15.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DE21C0;
+        Tue, 18 Jul 2023 08:12:58 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=oWAVGkf6ANQOLCGGlJdak+GqsbboNrIT3B9t8qyQa21KkR43kYXpV54erL30k7+gEEtp1n0DX6Yx44iQimy4uluY+qWMcR532gxebSqyZQm5+2HUPXrDtapfH1PshAUU85PCNZGpEzgkP4CW72fnAviX1DJTCdVZ786TMDB5sbl6TnhTmdW/jh7GG0lCP7w6klmwMXigjaZNE3X40PIZB+90Dm7QxpRlylRVRw7gfmAZ8QwicaR6MZo6wkmEG0wRiK6z1bRQ3CGFd80kTUmN1Fo8IvbO5WLNERJowzaBO2ECYbf71JgM4l4mHEiDC5s7lKFdumFDltxNHyOAzjgwKg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ak9MXHVidtAsYAFVlfhJHUv7MoGB+lZyh8bnNiOLUNY=;
+ b=JsVOHJqy0iSCx2sX5gwIfdkIf6t3AgbJsR3XxzBLcduyqGVAieYBUNQDWEnJeXTUDK987gxqZs+5rZH6tys7j2xaUEFJTlPvMGuTSU/ktS6PvXEVrk5llabbfUqBkNSA6TQzNjIKEfu2Zvfe9nTXEtJxLc+a+AP7N4a2Orr3RfDhF+ebjrHdpXupmmtSV7vljn3zYzHcgbTmQsJNl8hgqPr0VeNAv5Tof2NfsIDxOhBk3qJXCPpLcsOTQy89Z+BywBOYDSvwiTmNwF7VQXwoiJFKGANJhl/I43zhPaDq4Ch9vq5SGk3kyM+4KGhsmZtB/gsnv8bJ3wr51mjvIdntfA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=wolfvision.net; dmarc=pass action=none
+ header.from=wolfvision.net; dkim=pass header.d=wolfvision.net; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wolfvision.net;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ak9MXHVidtAsYAFVlfhJHUv7MoGB+lZyh8bnNiOLUNY=;
+ b=YyIi+PbycbAsYkuhU33AsO1jJHLM20PX8I6RFD46XZHgs28tCQS41q60SbnhhvaInU+JPbc3lE29eOTPVA1V1TK1R/HYqhV3sDR4ZgNkAzYgqlBnZihYnBwiFmc5dV0v5+QhYT3OF4pJxI9VlRmjKAOBkzPEbnm2Amm03GXItLE=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=wolfvision.net;
+Received: from DU0PR08MB9155.eurprd08.prod.outlook.com (2603:10a6:10:416::5)
+ by DB8PR08MB5482.eurprd08.prod.outlook.com (2603:10a6:10:116::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6588.31; Tue, 18 Jul
+ 2023 15:12:56 +0000
+Received: from DU0PR08MB9155.eurprd08.prod.outlook.com
+ ([fe80::4fd7:91a9:a92b:295a]) by DU0PR08MB9155.eurprd08.prod.outlook.com
+ ([fe80::4fd7:91a9:a92b:295a%4]) with mapi id 15.20.6588.031; Tue, 18 Jul 2023
+ 15:12:56 +0000
+From:   Michael Riesch <michael.riesch@wolfvision.net>
+Subject: [PATCH 0/2] drm/panel: sitronix-st7789v: add panel orientation
+ support
+Date:   Tue, 18 Jul 2023 17:12:44 +0200
+Message-Id: <20230718-feature-st7789v-v1-0-76d6ca9b31d8@wolfvision.net>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAOyrtmQC/x2NQQqDQAwAvyI5N7BG6Wq/UnpY11gDsi2JSkH8u
+ 6HHGRjmAGMVNnhUByjvYvIpDvWtgjyn8maU0RkoUBNi3eHEad2U0dYYu37HdgyZ8p2ppR68GpI
+ xDppKnr0r27K4/CpP8vtvnq/zvADU3gLmdgAAAA==
+To:     Neil Armstrong <neil.armstrong@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Shawn Lin <shawn.lin@rock-chips.com>,
-        Simon Xue <xxm@rock-chips.com>, John Clark <inindev@gmail.com>,
-        Qu Wenruo <wqu@suse.com>, devicetree@vger.kernel.org,
-        linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, kernel@collabora.com
-Subject: Re: [PATCH v2 2/2] arm64: dts: rockchip: rk3588: add PCIe3 support
-Message-ID: <ZLarQUvUK3v3m6Cg@bart.dudau.co.uk>
-References: <20230717173512.65169-1-sebastian.reichel@collabora.com>
- <20230717173512.65169-3-sebastian.reichel@collabora.com>
+        Maxime Ripard <mripard@kernel.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        Gerald Loacker <gerald.loacker@wolfvision.net>
+Cc:     dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Michael Riesch <michael.riesch@wolfvision.net>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1689693175; l=1043;
+ i=michael.riesch@wolfvision.net; s=20230406; h=from:subject:message-id;
+ bh=GNOScjzXERVDwwTTAU2ZNKkyZGQj3Ff3agEWGXZII8Q=;
+ b=zL36ITx/qbgpx33tj11csWBuEZff9pWQqvRpbfZoMfRzxq6HMzaoWvy4kTEhn8gzty9dYR9wR
+ 9xFFfRctjIzBSbutJfJPPOM5/61pP6r5fUyIal/1/JiNa7ZGvvVuPQj
+X-Developer-Key: i=michael.riesch@wolfvision.net; a=ed25519;
+ pk=G03kuYHL670EcdsWaNfVA7KnHWmkSpj98XziQm/hjbk=
+X-ClientProxiedBy: VI1PR08CA0247.eurprd08.prod.outlook.com
+ (2603:10a6:803:dc::20) To DU0PR08MB9155.eurprd08.prod.outlook.com
+ (2603:10a6:10:416::5)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20230717173512.65169-3-sebastian.reichel@collabora.com>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU0PR08MB9155:EE_|DB8PR08MB5482:EE_
+X-MS-Office365-Filtering-Correlation-Id: df4ef3b1-eef3-422d-846c-08db87a17725
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: JbWYt3gMr4JFmItf6WTAyD5XC3xWtkfSGNsURsIi5XChzEznIT1UryHHFQ/UtbxeyRswTJKaoa/wa06V12SkWJ3O/BIRWP4eX6MJWUKvP54dKjR/DwB6/OViA0U2M3raXaoJHz4wdPWUHasUIBMppI8xpijOFVOS4FDZKTA7fOsOzSg7qey+LVbf8KHc9j7656f1xMfkd/M6AbjquSPjlsVMHEAVhAKGaYMNUsvD89SXzUrnl4aEt1VS60eiwhWV+oEl+wcCbwDAGJCr8GcqAJ6IHHq+QQdmsbMY1rPuvFybQDaQ++i64HjmvDfR1ab6QixtQzjpsq9oTTBVbwZxECHwgC3mv7v1Blfd7DhZguUEY25DC4921WnakAi4eySlg9kjD1kN5me9h2LB/p3A9rjvP+jkm/KvYjmxWnJ6WCYZGQLNUTQmVK9WTZFuaEkQNzanr91xcBhsTdKpUEmJ9oZ2eOJkcsPfQd1xxVwx9va12JKb9SWBwdXeJtJcOjDaHRM1/WIrbqBHUGZdvRol/WSNpeQB1vdfo/nnyHzdtJeqkh+QPi+03hdWV9quo4EcaYy9gf1OAdusalY6g9BE/WDpFbO44prEoJQxLrPPZYgDTNw3yb6H3+Wgkj2iE4y7
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR08MB9155.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(39850400004)(136003)(376002)(346002)(366004)(396003)(451199021)(186003)(110136005)(478600001)(6506007)(26005)(107886003)(6666004)(6486002)(6512007)(966005)(83380400001)(2906002)(66476007)(2616005)(52116002)(6636002)(41300700001)(38350700002)(86362001)(5660300002)(4326008)(38100700002)(66946007)(316002)(66556008)(36756003)(8936002)(7416002)(8676002)(44832011)(4744005)(921005);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NjdneHRSTTJYbFJ6TXViRUducENSRjB2OSt6OUROMldGeHZ1bVNxMkoyWEZm?=
+ =?utf-8?B?TGMyaE5LT21ESTFRdkQ3WUd5WWFzemVvVEFQMjVadkdvQk1namo1cXBzMjN3?=
+ =?utf-8?B?Z0xKaFQxQVhZMytzRURNK21OQ1ZEVFdLN1RGUXFlMEJyUHlybFFySk9IdWZM?=
+ =?utf-8?B?L3RxNjloV2ZGSzdNRzhiU296OHZ5ZkRSd2Rmd3JyTjBOWXlhSThYcnREWlAz?=
+ =?utf-8?B?VjZ1ejdOQzU0NXkwQkxrS3FIdi9LUFd4bkFqWmw0ZmUyOVBqSElaVjdpUVFT?=
+ =?utf-8?B?Q1VuRmd5eXpNY25VOUxsaHJwVmhaZlE5eEw1NW5yUlFFeW1VSkEyMWNMRWRD?=
+ =?utf-8?B?WUJMaHRmMnFIcHBPVlRudCs0TDJaYzFIWm5BSVZWMGYySFBhcHB2SXpiMjlu?=
+ =?utf-8?B?WVM5OHJlWnludjZtR2RIT1BselE3RXhZbWJtMFpYd015WElkRlZyM2tyV0pW?=
+ =?utf-8?B?SzRpWktQSEQrWExaOUpSYnNDZm10a1lBbnFqYTd1dTBhb1BUVFBrQ0Nqdnl3?=
+ =?utf-8?B?YkwyZHdRMzc4aUtTVFY2SCsvS3pvWjdZZGJUaVQybzEwcnhvaGlQZTgweFJy?=
+ =?utf-8?B?M0hvWFZlc3RiYmFGRWZzZzlSbTB3a0VXMDJvWTFRK0VZTjJjUWRZVCtYTWE0?=
+ =?utf-8?B?VWNGT0l6QWNPUFdTL01CM3dRNTFtYTl1bEJJWXVMQjNqS2svdFlVMGgzYlo5?=
+ =?utf-8?B?MTg4YTl1Q2Q5Wkw5anhmWWJvaE4wU054RitYUkphYnVvU3EvQ2FLTUpNMG0y?=
+ =?utf-8?B?ZFp6YWVFNWZJdVdWYU4vR3lyRE1IRk5YRkxQdHRYNW5JMUZwK2V2czR2bVBF?=
+ =?utf-8?B?S2krMXA3R1dJcUZ3N2F4UGI4enNNVE1zSE1YRTVjcTVIS3NhVU5MVTBsaUox?=
+ =?utf-8?B?TElDMWlhOWZwNU0xbUF5RVRrOEgvdXFrc2Zud1ppWW1jMmgwZkM1b0xScWRq?=
+ =?utf-8?B?OVMwRDRRRTJ2QTJxaFZldktiODh0SHA0YUxMVThZSnBaK1ppanN2L1JkT3E2?=
+ =?utf-8?B?aWdEc2NwRlIyeUoyN3FPdHJLZHBWbVNJOSswcnpHblJnVEZGOVpsMHBraDJm?=
+ =?utf-8?B?Yk1UcC9SZGJRNW1nY0N2V2h0WFhGZFpWOVBlVkd6Z2YrYXFnM2JTbTZDaUhJ?=
+ =?utf-8?B?OUdOd2wyaUJkK0p6VTE4UGl1WDk1U3VjTnNSY1A1UGwwbGI4TjB0RGNGdkVR?=
+ =?utf-8?B?TVVjWFIvdTc4eUFMaktxWDdjdEtSQ3h2RjRGTTAxUTNnN1NQSXcxVXVhNWZJ?=
+ =?utf-8?B?Nkh3ZmVUL1FKdGpWL3hMbVVzRWo1K0RBSFJTT29CcHRaQVRabXhFYlFyT3Uy?=
+ =?utf-8?B?TjZLcTFDKzg0VWFkRW1FWWY4T2sxa2Q3Y0VyaGhjVkdXa0VNdm9WY0o0cDhZ?=
+ =?utf-8?B?SUZHWW5qc2FaMk8wa0I1OFNOUGJ1WmVVTWtSNWVsUW5iaG82b1d4VnU3SXFx?=
+ =?utf-8?B?czNTWE14TGdhUTQ2Y2pEc0wzRlNuSUtWQ2g1Z3VvdGtKSGw3Y253c0FpcnFB?=
+ =?utf-8?B?QStsYjloUEwvaDg1TXNkKzZ0WkhIN3RoSW9Cb3V6QUZnSlVQUmdsS2RFL0J0?=
+ =?utf-8?B?ZXJvdmhENlZwSWtESGVobkpWRFNBL080Mm85dkhlaXdjZG1aenpWcGJIdDBr?=
+ =?utf-8?B?MENVYTNId0hhSEpNM0NuUnBVaWhFVlZvVUhXSkJlWVdTd28veU0yb2p0dDV4?=
+ =?utf-8?B?dUNYdDdaVS90VTVZZnRsai9pQ0QyQThFdnQydWpJUzhyQWoyWU1hWmhxQkZj?=
+ =?utf-8?B?bUF5Q2M1RU1aclBQZ2dpNER2Zmx6a3hFN3JDcDJEMk9tckxPUVFTU3dVSjhv?=
+ =?utf-8?B?elBDWThVN1FHUmZDMGRYcVVqZ09RSjNJZUVkQ3g2aUxCWVFnYWx5M01ldjRR?=
+ =?utf-8?B?TEpMRDdxU25QRFVNbUxFNUVoTVhXK2lHL3E2Z3QvUUhlVk9yM1pRcnQySUc2?=
+ =?utf-8?B?ZmlTZ0poc29LeGFFTTVUenFmMFZWUUU2aUdzbUtXeTZUa2trQWo1TW5pMjF1?=
+ =?utf-8?B?UUorN0ZLVlM4ejJEZ1crdWJtajFWaUlvbmZpcHZlaDNrc2RuQ2l0S3JRRmU1?=
+ =?utf-8?B?eEh5cldiQWlLVU1FSmhkL3FnV2loY3JraHdyd2doOVZOdmJVMUdOOStIaHhv?=
+ =?utf-8?B?QzgwazMvdzZtQkh6Q0pLTE0rSGRhVzVTdkVSREtQaVlHSlFPSmhrTWQ4alp3?=
+ =?utf-8?B?Vmc9PQ==?=
+X-OriginatorOrg: wolfvision.net
+X-MS-Exchange-CrossTenant-Network-Message-Id: df4ef3b1-eef3-422d-846c-08db87a17725
+X-MS-Exchange-CrossTenant-AuthSource: DU0PR08MB9155.eurprd08.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jul 2023 15:12:56.2696
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: e94ec9da-9183-471e-83b3-51baa8eb804f
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 7gfuRtZElNUgJIzPxwzZHRGtZIXIe6r9baBifLViq8+Qse5shwwtGvY/YKCskUYrj/lcep7XRvplIwlhasrxhMZFnoBOr+Ef90HYxqRcf6w=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR08MB5482
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
         URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -57,177 +143,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 17, 2023 at 07:35:12PM +0200, Sebastian Reichel wrote:
-> Add both PCIe3 controllers together with the shared PHY.
-> 
-> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-> ---
->  arch/arm64/boot/dts/rockchip/rk3588.dtsi | 120 +++++++++++++++++++++++
->  1 file changed, 120 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3588.dtsi b/arch/arm64/boot/dts/rockchip/rk3588.dtsi
-> index 88d702575db2..8f210f002fac 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3588.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3588.dtsi
-> @@ -7,6 +7,11 @@
->  #include "rk3588-pinctrl.dtsi"
->  
->  / {
-> +	pcie30_phy_grf: syscon@fd5b8000 {
-> +		compatible = "rockchip,rk3588-pcie3-phy-grf", "syscon";
-> +		reg = <0x0 0xfd5b8000 0x0 0x10000>;
-> +	};
-> +
->  	pipe_phy1_grf: syscon@fd5c0000 {
->  		compatible = "rockchip,rk3588-pipe-phy-grf", "syscon";
->  		reg = <0x0 0xfd5c0000 0x0 0x100>;
+Hi all,
 
-Hi Sebastian,
+This series adds support for orientation specification in the device
+tree to the Sitronix ST7789V panel driver. 
 
-What tree is based this on? Even after applying your PCIe2 series I don't have the above
-node so the patch doesn't apply to mainline.
+This is can be seen as reduced version of [0] (some things of [0] have
+been implemented in more general fashion in the scope of [1], other
+things have been rejected).
+
+Looking forward to your comments!
+
+[0] https://lore.kernel.org/lkml/20230314115644.3775169-1-gerald.loacker@wolfvision.net/
+[1] https://lore.kernel.org/lkml/20230714013756.1546769-1-sre@kernel.org/
+
+---
+Michael Riesch (2):
+      drm/panel: sitronix-st7789v: add panel orientation support
+      dt-bindings: display: add rotation property to sitronix,st7789v
+
+ .../bindings/display/panel/sitronix,st7789v.yaml   |  2 ++
+ drivers/gpu/drm/panel/panel-sitronix-st7789v.c     | 28 ++++++++++++++++++----
+ 2 files changed, 25 insertions(+), 5 deletions(-)
+---
+base-commit: 06c2afb862f9da8dc5efa4b6076a0e48c3fbaaa5
+change-id: 20230718-feature-st7789v-4d0c2c6e2429
 
 Best regards,
-Liviu
-
-
-> @@ -80,6 +85,108 @@ i2s10_8ch: i2s@fde00000 {
->  		status = "disabled";
->  	};
->  
-> +	pcie3x4: pcie@fe150000 {
-> +		compatible = "rockchip,rk3588-pcie", "rockchip,rk3568-pcie";
-> +		#address-cells = <3>;
-> +		#size-cells = <2>;
-> +		bus-range = <0x00 0x0f>;
-> +		clocks = <&cru ACLK_PCIE_4L_MSTR>, <&cru ACLK_PCIE_4L_SLV>,
-> +			 <&cru ACLK_PCIE_4L_DBI>, <&cru PCLK_PCIE_4L>,
-> +			 <&cru CLK_PCIE_AUX0>, <&cru CLK_PCIE4L_PIPE>;
-> +		clock-names = "aclk_mst", "aclk_slv",
-> +			      "aclk_dbi", "pclk",
-> +			      "aux", "pipe";
-> +		device_type = "pci";
-> +		interrupts = <GIC_SPI 263 IRQ_TYPE_LEVEL_HIGH 0>,
-> +			     <GIC_SPI 262 IRQ_TYPE_LEVEL_HIGH 0>,
-> +			     <GIC_SPI 261 IRQ_TYPE_LEVEL_HIGH 0>,
-> +			     <GIC_SPI 260 IRQ_TYPE_LEVEL_HIGH 0>,
-> +			     <GIC_SPI 259 IRQ_TYPE_LEVEL_HIGH 0>;
-> +		interrupt-names = "sys", "pmc", "msg", "legacy", "err";
-> +		#interrupt-cells = <1>;
-> +		interrupt-map-mask = <0 0 0 7>;
-> +		interrupt-map = <0 0 0 1 &pcie3x4_intc 0>,
-> +				<0 0 0 2 &pcie3x4_intc 1>,
-> +				<0 0 0 3 &pcie3x4_intc 2>,
-> +				<0 0 0 4 &pcie3x4_intc 3>;
-> +		linux,pci-domain = <0>;
-> +		max-link-speed = <3>;
-> +		msi-map = <0x0000 &its1 0x0000 0x1000>;
-> +		num-lanes = <4>;
-> +		phys = <&pcie30phy>;
-> +		phy-names = "pcie-phy";
-> +		power-domains = <&power RK3588_PD_PCIE>;
-> +		ranges = <0x01000000 0x0 0xf0100000 0x0 0xf0100000 0x0 0x00100000>,
-> +			 <0x02000000 0x0 0xf0200000 0x0 0xf0200000 0x0 0x00e00000>,
-> +			 <0x03000000 0x0 0x40000000 0x9 0x00000000 0x0 0x40000000>;
-> +		reg = <0xa 0x40000000 0x0 0x00400000>,
-> +		      <0x0 0xfe150000 0x0 0x00010000>,
-> +		      <0x0 0xf0000000 0x0 0x00100000>;
-> +		reg-names = "dbi", "apb", "config";
-> +		resets = <&cru SRST_PCIE0_POWER_UP>, <&cru SRST_P_PCIE0>;
-> +		reset-names = "pwr", "pipe";
-> +		status = "disabled";
-> +
-> +		pcie3x4_intc: legacy-interrupt-controller {
-> +			interrupt-controller;
-> +			#address-cells = <0>;
-> +			#interrupt-cells = <1>;
-> +			interrupt-parent = <&gic>;
-> +			interrupts = <GIC_SPI 260 IRQ_TYPE_EDGE_RISING 0>;
-> +		};
-> +	};
-> +
-> +	pcie3x2: pcie@fe160000 {
-> +		compatible = "rockchip,rk3588-pcie", "rockchip,rk3568-pcie";
-> +		#address-cells = <3>;
-> +		#size-cells = <2>;
-> +		bus-range = <0x10 0x1f>;
-> +		clocks = <&cru ACLK_PCIE_2L_MSTR>, <&cru ACLK_PCIE_2L_SLV>,
-> +			 <&cru ACLK_PCIE_2L_DBI>, <&cru PCLK_PCIE_2L>,
-> +			 <&cru CLK_PCIE_AUX1>, <&cru CLK_PCIE2L_PIPE>;
-> +		clock-names = "aclk_mst", "aclk_slv",
-> +			      "aclk_dbi", "pclk",
-> +			      "aux", "pipe";
-> +		device_type = "pci";
-> +		interrupts = <GIC_SPI 258 IRQ_TYPE_LEVEL_HIGH 0>,
-> +			     <GIC_SPI 257 IRQ_TYPE_LEVEL_HIGH 0>,
-> +			     <GIC_SPI 256 IRQ_TYPE_LEVEL_HIGH 0>,
-> +			     <GIC_SPI 255 IRQ_TYPE_LEVEL_HIGH 0>,
-> +			     <GIC_SPI 254 IRQ_TYPE_LEVEL_HIGH 0>;
-> +		interrupt-names = "sys", "pmc", "msg", "legacy", "err";
-> +		#interrupt-cells = <1>;
-> +		interrupt-map-mask = <0 0 0 7>;
-> +		interrupt-map = <0 0 0 1 &pcie3x2_intc 0>,
-> +				<0 0 0 2 &pcie3x2_intc 1>,
-> +				<0 0 0 3 &pcie3x2_intc 2>,
-> +				<0 0 0 4 &pcie3x2_intc 3>;
-> +		linux,pci-domain = <1>;
-> +		max-link-speed = <3>;
-> +		msi-map = <0x1000 &its1 0x1000 0x1000>;
-> +		num-lanes = <2>;
-> +		phys = <&pcie30phy>;
-> +		phy-names = "pcie-phy";
-> +		power-domains = <&power RK3588_PD_PCIE>;
-> +		ranges = <0x01000000 0x0 0xf1100000 0x0 0xf1100000 0x0 0x00100000>,
-> +			 <0x02000000 0x0 0xf1200000 0x0 0xf1200000 0x0 0x00e00000>,
-> +			 <0x03000000 0x0 0x40000000 0x9 0x40000000 0x0 0x40000000>;
-> +		reg = <0xa 0x40400000 0x0 0x00400000>,
-> +		      <0x0 0xfe160000 0x0 0x00010000>,
-> +		      <0x0 0xf1000000 0x0 0x00100000>;
-> +		reg-names = "dbi", "apb", "config";
-> +		resets = <&cru SRST_PCIE1_POWER_UP>, <&cru SRST_P_PCIE1>;
-> +		reset-names = "pwr", "pipe";
-> +		status = "disabled";
-> +
-> +		pcie3x2_intc: legacy-interrupt-controller {
-> +			interrupt-controller;
-> +			#address-cells = <0>;
-> +			#interrupt-cells = <1>;
-> +			interrupt-parent = <&gic>;
-> +			interrupts = <GIC_SPI 255 IRQ_TYPE_EDGE_RISING 0>;
-> +		};
-> +	};
-> +
->  	pcie2x1l0: pcie@fe170000 {
->  		compatible = "rockchip,rk3588-pcie", "rockchip,rk3568-pcie";
->  		#address-cells = <3>;
-> @@ -218,4 +325,17 @@ combphy1_ps: phy@fee10000 {
->  		rockchip,pipe-phy-grf = <&pipe_phy1_grf>;
->  		status = "disabled";
->  	};
-> +
-> +	pcie30phy: phy@fee80000 {
-> +		compatible = "rockchip,rk3588-pcie3-phy";
-> +		reg = <0x0 0xfee80000 0x0 0x20000>;
-> +		#phy-cells = <0>;
-> +		clocks = <&cru PCLK_PCIE_COMBO_PIPE_PHY>;
-> +		clock-names = "pclk";
-> +		resets = <&cru SRST_PCIE30_PHY>;
-> +		reset-names = "phy";
-> +		rockchip,pipe-grf = <&php_grf>;
-> +		rockchip,phy-grf = <&pcie30_phy_grf>;
-> +		status = "disabled";
-> +	};
->  };
-> -- 
-> 2.40.1
-> 
-> 
-> _______________________________________________
-> Linux-rockchip mailing list
-> Linux-rockchip@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-rockchip
-
 -- 
-Everyone who uses computers frequently has had, from time to time,
-a mad desire to attack the precocious abacus with an axe.
-       	   	      	     	  -- John D. Clark, Ignition!
+Michael Riesch <michael.riesch@wolfvision.net>
+
