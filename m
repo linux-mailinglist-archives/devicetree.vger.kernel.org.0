@@ -2,62 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 931147575AB
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 09:49:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A03DE7575B6
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 09:52:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231145AbjGRHtY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jul 2023 03:49:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54910 "EHLO
+        id S230437AbjGRHwS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jul 2023 03:52:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56670 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230389AbjGRHtX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 03:49:23 -0400
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0927CC2
-        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 00:49:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1689666562; x=1721202562;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=35izBTlsDrsZg236Zf6prZGetXUm/PRQN5Sro/Cl3Dk=;
-  b=lpJiyQDPbA3fSUmUssIHxT4SqnXdA/X7IFuWGg2S33R/sEMwAiSgPjtc
-   rJ3M1wzHuTKZPVmCuAfH9lZOOIXsdxcLuRkc7qm4X0UouGy2l1+K82L5K
-   vU6Y3Jop2O4nYxoYlAMZWu9N2zrCG5+S5VC4Bt6DE9DhrFqlMfHy3gBsH
-   oLDYLBsbyrzOa/IUN/YRO+mFAhA6xq1xLYnfbeWzmOZw2CA/3oFw3OheZ
-   clrPDi7mAtN2gY0d5IlsQ9ENdsvhYVRxVdONleeRWXQc6euoE3Jox5ozD
-   yW0n79+Y4TG7wfVZHVHEjKMZauMu2Dy9W/pM6aqtfBOhorbDVWzZ1tbTM
-   w==;
-X-IronPort-AV: E=Sophos;i="6.01,213,1684792800"; 
-   d="scan'208";a="31978873"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 18 Jul 2023 09:49:20 +0200
-Received: from steina-w.localnet (unknown [10.123.53.21])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id B9BF7280078;
-        Tue, 18 Jul 2023 09:49:19 +0200 (CEST)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Cc:     neil.armstrong@linaro.org, conor+dt@kernel.org, rfoss@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, jonas@kwiboo.se,
-        shawnguo@kernel.org, s.hauer@pengutronix.de,
-        jernej.skrabec@gmail.com, robh+dt@kernel.org,
-        Laurent.pinchart@ideasonboard.com, andrzej.hajda@intel.com,
-        kernel@pengutronix.de, linux-imx@nxp.com,
-        Liu Ying <victor.liu@nxp.com>
-Subject: Re: [PATCH 9/9] drm/bridge: imx: Add i.MX93 MIPI DSI support
-Date:   Tue, 18 Jul 2023 09:49:19 +0200
-Message-ID: <3174425.5fSG56mABF@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20230717061831.1826878-10-victor.liu@nxp.com>
-References: <20230717061831.1826878-1-victor.liu@nxp.com> <20230717061831.1826878-10-victor.liu@nxp.com>
+        with ESMTP id S229521AbjGRHwR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 03:52:17 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D436C2;
+        Tue, 18 Jul 2023 00:52:16 -0700 (PDT)
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36I7hGVe013888;
+        Tue, 18 Jul 2023 07:52:09 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=oQ6BOhiyyrFevBw4ynJ7O3649893Zgi0w2EtY3I9Inw=;
+ b=Sm8rK76Ri+mF7jHMxjUWqGiAcGSmstOlWa3rsmQETH/18bbftcRhDgVqkTb4Lv6iyZUk
+ p05PV8z6gtvQseMZkqeH3zszFNymJ6VE7VbPYm3xNKKpQyxU8+vpiiVXgLGDXfn5qvJ6
+ HN2+0ELNX6m8vdaiymsGq6x2600ejGVLRUAPeB4mwJWM0gD6d+J1jSVoCO9YIa3X3WPk
+ vF1VwJCEdvM99J4Yhd5oCQ6Cwwev5BJ0QmsDHHCbocRLfJDHWqQe8LSGmabD/od76KNO
+ qhtYRAitqt4hiLoiSZdidlObdSh32OQ9mDdsf/gf8oonmuUmHmENVnKU6KRFCtIuq3KA ww== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3rwfj78ud8-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 18 Jul 2023 07:52:09 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 36I7q7MP030165
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 18 Jul 2023 07:52:07 GMT
+Received: from [10.50.3.220] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Tue, 18 Jul
+ 2023 00:52:03 -0700
+Message-ID: <2adb5ee2-7876-cdf1-d0c6-437615b4f52c@quicinc.com>
+Date:   Tue, 18 Jul 2023 13:21:59 +0530
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH v9 4/7] usb: misc: eud: Add driver support for SM6115 /
+ SM4250
+Content-Language: en-US
+To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>
+CC:     <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <linux-kernel@vger.kernel.org>,
+        <bhupesh.linux@gmail.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        <krzysztof.kozlowski@linaro.org>, <gregkh@linuxfoundation.org>,
+        <stephan@gerhold.net>, <linux-usb@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>
+References: <20230718061052.1332993-1-bhupesh.sharma@linaro.org>
+ <20230718061052.1332993-5-bhupesh.sharma@linaro.org>
+From:   Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+In-Reply-To: <20230718061052.1332993-5-bhupesh.sharma@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: w6giwMxFqSCAA8ImGtdm2dVVwcy_YUgB
+X-Proofpoint-ORIG-GUID: w6giwMxFqSCAA8ImGtdm2dVVwcy_YUgB
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-07-17_15,2023-07-13_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 adultscore=0
+ mlxlogscore=999 impostorscore=0 clxscore=1011 phishscore=0 spamscore=0
+ lowpriorityscore=0 priorityscore=1501 mlxscore=0 bulkscore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2306200000 definitions=main-2307180070
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
         URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -65,193 +85,185 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi Bhupesh,
 
-thanks for the patch.
-
-Am Montag, 17. Juli 2023, 08:18:31 CEST schrieb Liu Ying:
-> Freescale i.MX93 SoC embeds a Synopsys Designware MIPI DSI host
-> controller and a Synopsys Designware MIPI DPHY.  Some configurations
-> and extensions to them are controlled by i.MX93 media blk-ctrl.
->=20
-> Add a DRM bridge for i.MX93 MIPI DSI by using existing DW MIPI DSI
-> bridge helpers and implementing i.MX93 MIPI DSI specific extensions.
->=20
-> Signed-off-by: Liu Ying <victor.liu@nxp.com>
+On 7/18/2023 11:40 AM, Bhupesh Sharma wrote:
+> Add SM6115 / SM4250 SoC EUD support in qcom_eud driver.
+> 
+> On some SoCs (like the SM6115 / SM4250 SoC), the mode manager
+> needs to be accessed only via the secure world (through 'scm'
+> calls).
+> 
+> Also, the enable bit inside 'tcsr_check_reg' needs to be set
+> first to set the eud in 'enable' mode on these SoCs.
+> 
+> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
 > ---
->  drivers/gpu/drm/bridge/imx/Kconfig          |  10 +
->  drivers/gpu/drm/bridge/imx/Makefile         |   1 +
->  drivers/gpu/drm/bridge/imx/imx93-mipi-dsi.c | 934 ++++++++++++++++++++
->  3 files changed, 945 insertions(+)
->  create mode 100644 drivers/gpu/drm/bridge/imx/imx93-mipi-dsi.c
->=20
-> diff --git a/drivers/gpu/drm/bridge/imx/Kconfig
-> b/drivers/gpu/drm/bridge/imx/Kconfig index 9fae28db6aa7..5182298c7182
-> 100644
-> --- a/drivers/gpu/drm/bridge/imx/Kconfig
-> +++ b/drivers/gpu/drm/bridge/imx/Kconfig
-> @@ -49,4 +49,14 @@ config DRM_IMX8QXP_PIXEL_LINK_TO_DPI
->  	  Choose this to enable pixel link to display pixel=20
-interface(PXL2DPI)
->  	  found in Freescale i.MX8qxp processor.
->=20
-> +config DRM_IMX93_MIPI_DSI
-> +	tristate "Freescale i.MX93 specific extensions for Synopsys DW MIPI=20
-DSI"
-> +	depends on OF
-> +	depends on COMMON_CLK
-> +	select DRM_DW_MIPI_DSI
-> +	select GENERIC_PHY_MIPI_DPHY
-> +	help
-> +	  Choose this to enable MIPI DSI controller found in Freescale=20
-i.MX93
-> +	  processor.
+>   drivers/usb/misc/Kconfig    |  2 +-
+>   drivers/usb/misc/qcom_eud.c | 76 ++++++++++++++++++++++++++++++++++---
+>   2 files changed, 72 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/usb/misc/Kconfig b/drivers/usb/misc/Kconfig
+> index 99b15b77dfd57..51eb5140caa14 100644
+> --- a/drivers/usb/misc/Kconfig
+> +++ b/drivers/usb/misc/Kconfig
+> @@ -146,7 +146,7 @@ config USB_APPLEDISPLAY
+>   
+>   config USB_QCOM_EUD
+>   	tristate "QCOM Embedded USB Debugger(EUD) Driver"
+> -	depends on ARCH_QCOM || COMPILE_TEST
+> +	depends on (ARCH_QCOM && QCOM_SCM) || COMPILE_TEST
+>   	select USB_ROLE_SWITCH
+>   	help
+>   	  This module enables support for Qualcomm Technologies, Inc.
+> diff --git a/drivers/usb/misc/qcom_eud.c b/drivers/usb/misc/qcom_eud.c
+> index 7f371ea1248c3..a5b28fc24116a 100644
+> --- a/drivers/usb/misc/qcom_eud.c
+> +++ b/drivers/usb/misc/qcom_eud.c
+> @@ -11,9 +11,12 @@
+>   #include <linux/kernel.h>
+>   #include <linux/module.h>
+>   #include <linux/of.h>
+> +#include <linux/of_address.h>
+> +#include <linux/of_device.h>
+>   #include <linux/platform_device.h>
+>   #include <linux/slab.h>
+>   #include <linux/sysfs.h>
+> +#include <linux/firmware/qcom/qcom_scm.h>
+>   #include <linux/usb/role.h>
+>   
+>   #define EUD_REG_INT1_EN_MASK	0x0024
+> @@ -30,6 +33,10 @@
+>   #define EUD_INT_SAFE_MODE	BIT(4)
+>   #define EUD_INT_ALL		(EUD_INT_VBUS | EUD_INT_SAFE_MODE)
+>   
+> +#define EUD_EN2_EN		BIT(0)
+> +#define EUD_EN2_DISABLE		(0)
+> +#define TCSR_CHECK_EN		BIT(0)
 > +
->  endif # ARCH_MXC || COMPILE_TEST
-> diff --git a/drivers/gpu/drm/bridge/imx/Makefile
-> b/drivers/gpu/drm/bridge/imx/Makefile index 8e2ebf3399a1..2b0c2e44aa1b
-> 100644
-> --- a/drivers/gpu/drm/bridge/imx/Makefile
-> +++ b/drivers/gpu/drm/bridge/imx/Makefile
-> @@ -4,3 +4,4 @@ obj-$(CONFIG_DRM_IMX8QXP_LDB) +=3D imx8qxp-ldb.o
->  obj-$(CONFIG_DRM_IMX8QXP_PIXEL_COMBINER) +=3D imx8qxp-pixel-combiner.o
->  obj-$(CONFIG_DRM_IMX8QXP_PIXEL_LINK) +=3D imx8qxp-pixel-link.o
->  obj-$(CONFIG_DRM_IMX8QXP_PIXEL_LINK_TO_DPI) +=3D imx8qxp-pxl2dpi.o
-> +obj-$(CONFIG_DRM_IMX93_MIPI_DSI) +=3D imx93-mipi-dsi.o
-> diff --git a/drivers/gpu/drm/bridge/imx/imx93-mipi-dsi.c
-> b/drivers/gpu/drm/bridge/imx/imx93-mipi-dsi.c new file mode 100644
-> index 000000000000..77f59e3407a0
-> --- /dev/null
-> +++ b/drivers/gpu/drm/bridge/imx/imx93-mipi-dsi.c
-
-> [snip]
-
-> +static int imx93_dsi_probe(struct platform_device *pdev)
+>   struct eud_chip {
+>   	struct device			*dev;
+>   	struct usb_role_switch		*role_sw;
+> @@ -39,6 +46,7 @@ struct eud_chip {
+>   	int				irq;
+>   	bool				enabled;
+>   	bool				usb_attached;
+> +	phys_addr_t			secure_mode_mgr;
+>   };
+>   
+>   static int enable_eud(struct eud_chip *priv)
+> @@ -46,7 +54,11 @@ static int enable_eud(struct eud_chip *priv)
+>   	writel(EUD_ENABLE, priv->base + EUD_REG_CSR_EUD_EN);
+>   	writel(EUD_INT_VBUS | EUD_INT_SAFE_MODE,
+>   			priv->base + EUD_REG_INT1_EN_MASK);
+> -	writel(1, priv->mode_mgr + EUD_REG_EUD_EN2);
+> +
+> +	if (priv->secure_mode_mgr)
+> +		qcom_scm_io_writel(priv->secure_mode_mgr + EUD_REG_EUD_EN2, EUD_EN2_EN);
+> +	else
+> +		writel(EUD_EN2_EN, priv->mode_mgr + EUD_REG_EUD_EN2);
+>   
+>   	return usb_role_switch_set_role(priv->role_sw, USB_ROLE_DEVICE);
+>   }
+> @@ -54,7 +66,11 @@ static int enable_eud(struct eud_chip *priv)
+>   static void disable_eud(struct eud_chip *priv)
+>   {
+>   	writel(0, priv->base + EUD_REG_CSR_EUD_EN);
+> -	writel(0, priv->mode_mgr + EUD_REG_EUD_EN2);
+> +
+> +	if (priv->secure_mode_mgr)
+> +		qcom_scm_io_writel(priv->secure_mode_mgr + EUD_REG_EUD_EN2, EUD_EN2_DISABLE);
+> +	else
+> +		writel(EUD_EN2_DISABLE, priv->mode_mgr + EUD_REG_EUD_EN2);
+>   }
+>   
+>   static ssize_t enable_show(struct device *dev,
+> @@ -175,9 +191,37 @@ static void eud_role_switch_release(void *data)
+>   	usb_role_switch_put(chip->role_sw);
+>   }
+>   
+> +static int eud_find_secure_reg_addr(struct device *dev, u64 *addr)
 > +{
-> +	struct device *dev =3D &pdev->dev;
-> +	struct device_node *np =3D dev->of_node;
-> +	struct imx93_dsi *dsi;
+> +	struct device_node *tcsr;
+> +	struct device_node *np = dev->of_node;
+> +	struct resource res;
+> +	u32 offset;
 > +	int ret;
 > +
-> +	dsi =3D devm_kzalloc(dev, sizeof(*dsi), GFP_KERNEL);
-> +	if (!dsi)
-> +		return -ENOMEM;
+> +	tcsr = of_parse_phandle(np, "qcom,secure-eud-reg", 0);
+> +	if (!tcsr)
+> +		return 0;
 > +
-> +	dsi->regmap =3D syscon_regmap_lookup_by_phandle(np, "fsl,media-blk-
-ctrl");
-> +	if (IS_ERR(dsi->regmap)) {
-> +		ret =3D PTR_ERR(dsi->regmap);
-> +		DRM_DEV_ERROR(dev, "failed to get block ctrl regmap:=20
-%d\n", ret);
-
-Could you use dev_err_probe here instead?
-
+> +	ret = of_address_to_resource(tcsr, 0, &res);
+> +	of_node_put(tcsr);
+> +	if (ret)
 > +		return ret;
-> +	}
 > +
-> +	dsi->clk_pixel =3D devm_clk_get(dev, "pix");
-> +	if (IS_ERR(dsi->clk_pixel)) {
-> +		ret =3D PTR_ERR(dsi->clk_pixel);
-> +		if (ret !=3D -EPROBE_DEFER)
-> +			DRM_DEV_ERROR(dev, "failed to get pixel clock:=20
-%d\n", ret);
-
-Could you use dev_err_probe here instead?
-
+> +	ret = of_property_read_u32_index(np, "qcom,secure-eud-reg", 1, &offset);
+> +	if (ret < 0)
 > +		return ret;
-> +	}
 > +
-> +	dsi->clk_cfg =3D devm_clk_get(dev, "phy_cfg");
-> +	if (IS_ERR(dsi->clk_cfg)) {
-> +		ret =3D PTR_ERR(dsi->clk_cfg);
-> +		if (ret !=3D -EPROBE_DEFER)
-> +			DRM_DEV_ERROR(dev, "failed to get phy cfg clock:=20
-%d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	dsi->clk_ref =3D devm_clk_get(dev, "phy_ref");
-> +	if (IS_ERR(dsi->clk_ref)) {
-> +		ret =3D PTR_ERR(dsi->clk_ref);
-> +		if (ret !=3D -EPROBE_DEFER)
-> +			DRM_DEV_ERROR(dev, "failed to get phy ref clock:=20
-%d\n", ret);
-
-Could you use dev_err_probe here instead?
-
-> +		return ret;
-> +	}
-> +
-> +	dsi->ref_clk_rate =3D clk_get_rate(dsi->clk_ref);
-> +	if (dsi->ref_clk_rate < REF_CLK_RATE_MIN ||
-> +	    dsi->ref_clk_rate > REF_CLK_RATE_MAX) {
-> +		DRM_DEV_ERROR(dev, "invalid phy ref clock rate %lu\n",
-> +			      dsi->ref_clk_rate);
-> +		return -EINVAL;
-> +	}
-> +	DRM_DEV_DEBUG_DRIVER(dev, "phy ref clock rate: %lu\n", dsi-
->ref_clk_rate);
-> +
-> +	dsi->dev =3D dev;
-> +	dsi->pdata.max_data_lanes =3D 4;
-> +	dsi->pdata.mode_valid =3D imx93_dsi_mode_valid;
-> +	dsi->pdata.mode_fixup =3D imx93_dsi_mode_fixup;
-> +	dsi->pdata.get_input_bus_fmts =3D imx93_dsi_get_input_bus_fmts;
-> +	dsi->pdata.phy_ops =3D &imx93_dsi_phy_ops;
-> +	dsi->pdata.host_ops =3D &imx93_dsi_host_ops;
-> +	dsi->pdata.priv_data =3D dsi;
-> +	platform_set_drvdata(pdev, dsi);
-> +
-> +	dsi->dmd =3D dw_mipi_dsi_probe(pdev, &dsi->pdata);
-> +	if (IS_ERR(dsi->dmd)) {
-> +		ret =3D PTR_ERR(dsi->dmd);
-> +		if (ret !=3D -EPROBE_DEFER)
-> +			DRM_DEV_ERROR(dev, "failed to probe dw_mipi_dsi:=20
-%d\n", ret);
-
-Could you use dev_err_probe here instead?
-
-Best regards,
-Alexander
-
-> +		return ret;
-> +	}
+> +	*addr = res.start + offset;
 > +
 > +	return 0;
 > +}
 > +
-> +static void imx93_dsi_remove(struct platform_device *pdev)
-> +{
-> +	struct imx93_dsi *dsi =3D platform_get_drvdata(pdev);
+>   static int eud_probe(struct platform_device *pdev)
+>   {
+>   	struct eud_chip *chip;
+> +	struct resource *res;
+> +	phys_addr_t tcsr_check = 0;
+>   	int ret;
+>   
+>   	chip = devm_kzalloc(&pdev->dev, sizeof(*chip), GFP_KERNEL);
+> @@ -200,9 +244,30 @@ static int eud_probe(struct platform_device *pdev)
+>   	if (IS_ERR(chip->base))
+>   		return PTR_ERR(chip->base);
+>   
+> -	chip->mode_mgr = devm_platform_ioremap_resource(pdev, 1);
+> -	if (IS_ERR(chip->mode_mgr))
+> -		return PTR_ERR(chip->mode_mgr);
+> +	/*
+> +	 * EUD block on a few Qualcomm SoCs needs secure register access.
+> +	 * Check for the same via vendor-specific dt property.
+> +	 */
+> +	ret = eud_find_secure_reg_addr(&pdev->dev, &tcsr_check);
+> +	if (ret < 0)
+> +		return ret;
 > +
-> +	dw_mipi_dsi_remove(dsi->dmd);
-> +}
+> +	if (tcsr_check) {
+> +		res = platform_get_resource(pdev, IORESOURCE_MEM, 1);
+> +		if (!res)
+> +			return dev_err_probe(chip->dev, -ENODEV,
+> +					     "failed to get secure_mode_mgr reg base\n");
 > +
-> +static const struct of_device_id imx93_dsi_dt_ids[] =3D {
-> +	{ .compatible =3D "fsl,imx93-mipi-dsi", },
-> +	{ /* sentinel */ }
-> +};
-> +MODULE_DEVICE_TABLE(of, imx93_dsi_dt_ids);
+> +		chip->secure_mode_mgr = res->start;
+
+There are multiple instances where the addresses are being mapped from 
+the dt property without using the devm version. Either we should switch 
+to the later or ensure that these addresses are unmapped in the removal
+path of the driver.
+
+Thanks,
+Souradeep
+
 > +
-> +static struct platform_driver imx93_dsi_driver =3D {
-> +	.probe	=3D imx93_dsi_probe,
-> +	.remove_new =3D imx93_dsi_remove,
-> +	.driver	=3D {
-> +		.of_match_table =3D imx93_dsi_dt_ids,
-> +		.name =3D "imx93_mipi_dsi",
-> +	},
-> +};
-> +module_platform_driver(imx93_dsi_driver);
-> +
-> +MODULE_DESCRIPTION("Freescale i.MX93 MIPI DSI driver");
-> +MODULE_AUTHOR("Liu Ying <victor.liu@nxp.com>");
-> +MODULE_LICENSE("GPL");
-
-
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
-
-
+> +		ret = qcom_scm_io_writel(tcsr_check, TCSR_CHECK_EN);
+> +		if (ret)
+> +			return dev_err_probe(chip->dev, ret, "failed to write tcsr check reg\n");
+> +	} else {
+> +		chip->mode_mgr = devm_platform_ioremap_resource(pdev, 1);
+> +		if (IS_ERR(chip->mode_mgr))
+> +			return PTR_ERR(chip->mode_mgr);
+> +	}
+>   
+>   	chip->irq = platform_get_irq(pdev, 0);
+>   	ret = devm_request_threaded_irq(&pdev->dev, chip->irq, handle_eud_irq,
+> @@ -230,6 +295,7 @@ static void eud_remove(struct platform_device *pdev)
+>   
+>   static const struct of_device_id eud_dt_match[] = {
+>   	{ .compatible = "qcom,sc7280-eud" },
+> +	{ .compatible = "qcom,sm6115-eud" },
+>   	{ }
+>   };
+>   MODULE_DEVICE_TABLE(of, eud_dt_match);
