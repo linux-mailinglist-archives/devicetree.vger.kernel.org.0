@@ -2,111 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5AA05758525
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 20:54:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F02C758553
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 21:06:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230362AbjGRSy3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jul 2023 14:54:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42666 "EHLO
+        id S229541AbjGRTGl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jul 2023 15:06:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48132 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229874AbjGRSy3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 14:54:29 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D7C1F0
-        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 11:54:16 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id 2adb3069b0e04-4fb7769f15aso9952283e87.0
-        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 11:54:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689706454; x=1692298454;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=NvHXXC5n1uZ0AxYD49mZD4I5ePIf6P0IGN301whWC4Y=;
-        b=YCw2FxaQe0fS746f3Zg6kyy0mPHJFPcxQCuz3iBYO6KWAVJR8biEfK+xTD235L54HY
-         y5UnQ8yOUM13/lODRTtZGLicYIbcAnbgvQJA6rWXGC5Af/eIhkuTMF1C2uOe2wBKktDh
-         L4FiJm8+ZJPPFgRaqOP06mdrXOqnezk06nq3DpdjCfdFO9kKkuNB1FNg6GuPwil7+Ft4
-         emC3DdI9a1DWGEmVYUR7XNE4IJMTpdd9q11l0uTDp/t5kQaglbLVgV3K/2s4ayH1BP/1
-         UfymOZncKXJJp79doaeRDjUEKhK/ayHBPYK2GqLwY82fU3Mtxh5mU3DTxmc8wVmFLdoN
-         Qj+Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689706454; x=1692298454;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=NvHXXC5n1uZ0AxYD49mZD4I5ePIf6P0IGN301whWC4Y=;
-        b=LmlEBdsUfnZB26D6T204Bl7DRQ9KFrl+I8N94aipT2+rR243eY7hkCusqmqf53ysYT
-         yBaWoVG8ITR4gnNhrGzaKLrYSkcAEq1F2L4qdYcl3qATDFwcUVVOHIOhd7iY467Zd2Lm
-         1Zzxxi6cwA4zk//Ak9YcDJ5Y1loGsi7t3PFDWG84GclVC5ydEF2D+PXMLjTJKPuBYnMj
-         0HnQfkPdrT/niFd0BK650/1wY21Td+4hOVtXYc8cZXUGMseVq3ty5Wy9e3p1XC9/ZH7A
-         sPKswh2pxjeSXXCv9MWhndxcSPFsiCFQ66PG+S6V/lv39SEBy5Vm4NlcawAwErV0AMms
-         bN/Q==
-X-Gm-Message-State: ABy/qLa1+jyINgr/+L2dBLku2jKAe/iESyJO5nQKQYrTcXcaoGPgw/cW
-        MpUheyeU/k4EkipPYAUYJcztQA==
-X-Google-Smtp-Source: APBJJlEmJtRDRmErj1dWjqW5H0FvmW0qCWd77Rraj/v2e0/CrlF8S9Qa+VC3Pmb+EFFauDws5ZkCFA==
-X-Received: by 2002:a05:6512:1320:b0:4f8:7803:64e6 with SMTP id x32-20020a056512132000b004f8780364e6mr10007681lfu.41.1689706454522;
-        Tue, 18 Jul 2023 11:54:14 -0700 (PDT)
-Received: from krzk-bin.. ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id z11-20020aa7cf8b000000b0051df13f1d8fsm1608611edx.71.2023.07.18.11.54.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 Jul 2023 11:54:14 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Markus Mayer <mmayer@broadcom.com>,
-        Broadcom internal kernel review list 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        Florian Fainelli <florian.fainelli@broadcom.com>,
-        Paul Cercueil <paul@crapouillou.net>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Michal Simek <michal.simek@amd.com>,
-        Lukasz Luba <lukasz.luba@arm.com>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Rob Herring <robh@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-tegra@vger.kernel.org
-Subject: Re: [PATCH] memory: Explicitly include correct DT includes
-Date:   Tue, 18 Jul 2023 20:53:55 +0200
-Message-Id: <168970643388.118933.13930948330074254710.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230714174717.4059518-1-robh@kernel.org>
-References: <20230714174717.4059518-1-robh@kernel.org>
+        with ESMTP id S229504AbjGRTGl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 15:06:41 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C1B8F4;
+        Tue, 18 Jul 2023 12:06:40 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id DDD00616C7;
+        Tue, 18 Jul 2023 19:06:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4576AC433C8;
+        Tue, 18 Jul 2023 19:06:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1689707199;
+        bh=6AXogDUObuussgbwgLBOjpBMuZcG50s+2gM5QKLJIqg=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=iaLVsbZAR/GfygYGkBHWzIMBF7N1x8Nr8LGivpj1n+JZWnZ+nGsTPk67WqJIjihQK
+         OE7DGc6RD80/KIKre86+t4lqPxliDquvH/5QHfClJ9ab0c7O8U8PgGMMhsjA0jhwsm
+         K0mF1ux8h13VYVw4LcCGKKi1psKXfCwFmIzReE1e0EydCrdroXovIV4kkPYSmWvQiF
+         LIGp2ScDbmqglOoT5ao83vh0Q17Ln7oAEyUP9/QT+pNN09ieItiumdSqwoYlji8nrb
+         P3PDgeAwFLJ20zbG5JyE8wIV38OS9aWwMq+XQwTEHbhb+Dg0HvK0nZs5iABOiH6K9X
+         qHML4IOBzvnyg==
+Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-4fb5bcb9a28so9752400e87.3;
+        Tue, 18 Jul 2023 12:06:39 -0700 (PDT)
+X-Gm-Message-State: ABy/qLZv+TSeF5nE28BlnfiWwmNQ4FE8Rubkp62f8uNNxTV/PPSa+93e
+        0E/f/KA55CROql7TfoXM1fQGNKzAZHuwr6UDOA==
+X-Google-Smtp-Source: APBJJlGB0bgDqyP6XJYTdEPy8Mz0doXTrM6SRrUuM5btq//xema+oxLHuID3ymZr1d5lAuSQSbfnZ8Wrr107kQc+0p8=
+X-Received: by 2002:ac2:4c2c:0:b0:4f8:71cc:2b6e with SMTP id
+ u12-20020ac24c2c000000b004f871cc2b6emr10819539lfq.33.1689707197305; Tue, 18
+ Jul 2023 12:06:37 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+References: <20230718143211.1066810-1-robh@kernel.org> <6e037c2051816deaa0e4361c4fb517ba7d33dc0b.camel@physik.fu-berlin.de>
+In-Reply-To: <6e037c2051816deaa0e4361c4fb517ba7d33dc0b.camel@physik.fu-berlin.de>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 18 Jul 2023 13:06:25 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+vrAhG0FqqH-_rBtL2nEbJ+v=c3QfmjzOC=1A+Qi3KdQ@mail.gmail.com>
+Message-ID: <CAL_Jsq+vrAhG0FqqH-_rBtL2nEbJ+v=c3QfmjzOC=1A+Qi3KdQ@mail.gmail.com>
+Subject: Re: [PATCH v2] sparc: Explicitly include correct DT includes
+To:     John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>
+Cc:     Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org, Sam Ravnborg <sam@ravnborg.org>,
+        linux-crypto@vger.kernel.org, sparclinux@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Jul 18, 2023 at 8:56=E2=80=AFAM John Paul Adrian Glaubitz
+<glaubitz@physik.fu-berlin.de> wrote:
+>
+> Hi Rob!
+>
+> On Tue, 2023-07-18 at 08:32 -0600, Rob Herring wrote:
+> > The DT of_device.h and of_platform.h date back to the separate
+> > of_platform_bus_type before it as merged into the regular platform bus.
+> > As part of that merge prepping Arm DT support 13 years ago, they
+> > "temporarily" include each other. They also include platform_device.h
+> > and of.h. As a result, there's a pretty much random mix of those includ=
+e
+> > files used throughout the tree. In order to detangle these headers and
+> > replace the implicit includes with struct declarations, users need to
+> > explicitly include the correct includes.
+>
+> I would suggest rephrasing the subject to
+>
+>         sparc: Explicitly include correct DT headers
+>
+> as " ... include ... includes" sounds a bit awkward ;-).
 
-On Fri, 14 Jul 2023 11:47:16 -0600, Rob Herring wrote:
-> The DT of_device.h and of_platform.h date back to the separate
-> of_platform_bus_type before it as merged into the regular platform bus.
-> As part of that merge prepping Arm DT support 13 years ago, they
-> "temporarily" include each other. They also include platform_device.h
-> and of.h. As a result, there's a pretty much random mix of those include
-> files used throughout the tree. In order to detangle these headers and
-> replace the implicit includes with struct declarations, users need to
-> explicitly include the correct includes.
-> 
-> [...]
+Probably would have been better, but there's ~100 other patches with
+the same subject. Some of those have been applied already.
 
-Applied, thanks!
-
-[1/1] memory: Explicitly include correct DT includes
-      https://git.kernel.org/krzk/linux-mem-ctrl/c/0b7fd1fa7a048b444b56f9d217c5917aa255d5a5
-
-Best regards,
--- 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Rob
