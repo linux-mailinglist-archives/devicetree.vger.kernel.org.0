@@ -2,375 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BC5527578CA
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 12:04:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C44CF757964
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 12:41:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232056AbjGRKE3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jul 2023 06:04:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56982 "EHLO
+        id S229780AbjGRKlC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jul 2023 06:41:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44748 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230041AbjGRKE2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 06:04:28 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22083B9;
-        Tue, 18 Jul 2023 03:04:27 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id ABBE4614FD;
-        Tue, 18 Jul 2023 10:04:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49198C433C8;
-        Tue, 18 Jul 2023 10:04:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689674666;
-        bh=9HH4kTQ98mOmfmk0yY7rNImccRI+W5P4UqFEPSZVV+E=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=VUNa+MHEP8kN+Jbkz9qEImYZfvvRiItufnkud87Y7kCZczsdQfodaFaPh+Dukm72h
-         DxhBsnqDzgX8e99gPyeSARMyfoV/PyJ1W5hkisd11jSmeyKWMHjopJstVT7lTrIVAV
-         l7ioLo0zO6E1uHDZCo8OFR4q2b/VSQrbUQ6WvnurW6TmsjZGWHijxg9zOnq9LUB5b1
-         tvx6y8hTzzeTu2xh89bhDeSSbgq2S99eOBuCZf842dgD075G5YlS6KdcjjJNVfhoJF
-         gO4ftTWuSdCHogV+aAqGWROKE8Czd9lvQ1HERt3u4OP97qZkgTodR65KrPM1g+9gra
-         MfpcymC03zTDQ==
-Date:   Tue, 18 Jul 2023 15:34:00 +0530
-From:   Manivannan Sadhasivam <mani@kernel.org>
-To:     Frank Li <Frank.li@nxp.com>
-Cc:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        helgaas@kernel.org, imx@lists.linux.dev, bhelgaas@google.com,
-        devicetree@vger.kernel.org, gustavo.pimentel@synopsys.com,
-        kw@linux.com, leoyang.li@nxp.com,
-        linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
-        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-        lorenzo.pieralisi@arm.com, minghuan.lian@nxp.com,
-        mingkai.hu@nxp.com, robh+dt@kernel.org, roy.zang@nxp.com,
-        shawnguo@kernel.org, zhiqiang.hou@nxp.com
-Subject: Re: [PATCH v3 1/2] PCI: dwc: Implement general suspend/resume
- functionality for L2/L3 transitions
-Message-ID: <20230718100400.GB4771@thinkpad>
-References: <20230419164118.596300-1-Frank.Li@nxp.com>
- <20230717164526.GC35455@thinkpad>
- <ZLWKI1lRqxejfUgK@lizhi-Precision-Tower-5810>
+        with ESMTP id S229861AbjGRKlB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 06:41:01 -0400
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51FC1E56
+        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 03:41:00 -0700 (PDT)
+Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-51e2a6a3768so7910303a12.0
+        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 03:41:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1689676859; x=1692268859;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ySxdaKxinHnxtok4kPt2QKJLKgvXBmWckhE525HMK+o=;
+        b=vfGx/0V2Zf4RLi7t0d8MpAZCz1qK+SGlszU0rPsdz+vUGmouHLHXSIAJzh44d26DdB
+         t7eUT4IbSlC8Z1FSubfIWQyWvj8U2RTueelqtPKZ8JxwhtFdLS1MgMa/FuvLP1DU3HeK
+         i44LniUrG8Lugmar3VNozZ7/U1sJ0IjLYnYHgYbf1mIjZVRrOKSCpoAlHNJhxC9cJyZ+
+         2jf/hPsW60P4YFVBNGCIOFNwGsHus81ZuGj14R3dk/88UmrYtrUtcCKOhM85OoMb1wN6
+         FGtgtDMFftfQK4/A5rtCq0o1AQju6cUBubPPNn8YLsHvO7bzr94rtHi2XEJmZc4Vrdkv
+         h1sg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689676859; x=1692268859;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ySxdaKxinHnxtok4kPt2QKJLKgvXBmWckhE525HMK+o=;
+        b=QX/N8/I/gp8s0FuOzoXdy0eAPESPrJMkbSp6A8GVi85Cg8VbdqQqhw8GxLcSxLYPXw
+         bDAshrbUJYnJskQcpmpdlrXfKGWBTvbUMhbpf34sFZTxiKVOazr9OsWAHWG8D4R4uV8G
+         V5Z09kUy66kZyUXIxuFuUoLu/IoxZQsxd6FQPn2zuEN3yN9iE/zXTHByRWNHlB4bSDpx
+         bKSznm8MiCuufQ7X/+/xQPEV4eo+Eyg4hjwHTkKoczcZVsLgwHOZMu26gAgXAYmwcPPF
+         lS5Pf3U2wU0ajPC6D1w413jyqGGxlU0IZmzmmlaoyDHLfu6j+BChXWAa5bGlGGLJOhR+
+         bEPA==
+X-Gm-Message-State: ABy/qLYdfU8lndIZbppAf+DIjpZLYUjS521UP6zvxAft3uC3JDhnmRAE
+        dutlOoLErz88kZS9Xav/T7yMu+C0mItNRNXgBZgJPw==
+X-Google-Smtp-Source: APBJJlEvYdzJVIwj+oR7D5wPofb9jasp8U17KbQHSV3MLL5ISPlscbIoJIxpEjW+Yg/3OvEUG3JiyA==
+X-Received: by 2002:aa7:d8d4:0:b0:51d:8ab1:5df4 with SMTP id k20-20020aa7d8d4000000b0051d8ab15df4mr13464444eds.21.1689676858881;
+        Tue, 18 Jul 2023 03:40:58 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id n17-20020aa7c791000000b005215eb17bb7sm1009515eds.88.2023.07.18.03.40.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 18 Jul 2023 03:40:58 -0700 (PDT)
+Message-ID: <8e368283-b921-2e92-0aa6-204c0f17c8d7@linaro.org>
+Date:   Tue, 18 Jul 2023 12:40:56 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ZLWKI1lRqxejfUgK@lizhi-Precision-Tower-5810>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH 1/1] dt-bindings: display: bridge: tc358867: Add interrupt
+ property
+Content-Language: en-US
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <rfoss@kernel.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
+References: <20230718084411.1189831-1-alexander.stein@ew.tq-group.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230718084411.1189831-1-alexander.stein@ew.tq-group.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 17, 2023 at 02:36:19PM -0400, Frank Li wrote:
-> On Mon, Jul 17, 2023 at 10:15:26PM +0530, Manivannan Sadhasivam wrote:
-> > On Wed, Apr 19, 2023 at 12:41:17PM -0400, Frank Li wrote:
-> > > Introduced helper function dw_pcie_get_ltssm to retrieve SMLH_LTSS_STATE.
-> > > Added API pme_turn_off and exit_from_l2 for managing L2/L3 state transitions.
-> > > 
-> > > Typical L2 entry workflow:
-> > > 
-> > > 1. Transmit PME turn off signal to PCI devices.
-> > > 2. Await link entering L2_IDLE state.
-> > 
-> > AFAIK, typical workflow is to wait for PME_To_Ack.
+On 18/07/2023 10:44, Alexander Stein wrote:
+> This bridge has an interrupt line for event signaling. Add the
+> corresponding property.
 > 
-> 1 Already wait for PME_to_ACK,  2, just wait for link actual enter L2.
-> I think PCI RC needs some time to set link enter L2 after get ACK from
-> PME.
-> 
-> > 
-> > > 3. Transition Root complex to D3 state.
-> > > 
-> > > Typical L2 exit workflow:
-> > > 
-> > > 1. Transition Root complex to D0 state.
-> > > 2. Issue exit from L2 command.
-> > > 3. Reinitialize PCI host.
-> > > 4. Wait for link to become active.
-> > > 
-> > > Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> > > ---
-> > > Change from v2 to v3: 
-> > > - Basic rewrite whole patch according rob herry suggestion. 
-> > >   put common function into dwc, so more soc can share the same logic.
-> > >   
-> > >  .../pci/controller/dwc/pcie-designware-host.c | 80 +++++++++++++++++++
-> > >  drivers/pci/controller/dwc/pcie-designware.h  | 28 +++++++
-> > >  2 files changed, 108 insertions(+)
-> > > 
-> > > diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
-> > > index 9952057c8819..ef6869488bde 100644
-> > > --- a/drivers/pci/controller/dwc/pcie-designware-host.c
-> > > +++ b/drivers/pci/controller/dwc/pcie-designware-host.c
-> > > @@ -8,6 +8,7 @@
-> > >   * Author: Jingoo Han <jg1.han@samsung.com>
-> > >   */
-> > >  
-> > > +#include <linux/iopoll.h>
-> > >  #include <linux/irqchip/chained_irq.h>
-> > >  #include <linux/irqdomain.h>
-> > >  #include <linux/msi.h>
-> > > @@ -807,3 +808,82 @@ int dw_pcie_setup_rc(struct dw_pcie_rp *pp)
-> > >  	return 0;
-> > >  }
-> > >  EXPORT_SYMBOL_GPL(dw_pcie_setup_rc);
-> > > +
-> > > +/*
-> > > + * There are for configuring host controllers, which are bridges *to* PCI devices
-> > > + * but are not PCI devices themselves.
-> > 
-> > None of the functions applicable to the devices. So there is no need for this
-> > comment.
-> 
-> I copy comments in drivers/pci/controller/dwc/pcie-designware.c.
-> 
-> /*
->  * These interfaces resemble the pci_find_*capability() interfaces, but these
->  * are for configuring host controllers, which are bridges *to* PCI devices but
->  * are not PCI devices themselves.
->  */
-> static u8 __dw_pcie_find_next_cap(struct dw_pcie *pci, u8 cap_ptr,
->                                   u8 cap)
-> 
-> 
-> I think it is reasonalble because it is too similar with standard API
-> pci_set_power_state();
-> 
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com
 
-Ok, then please add this API similarity in the comment as like
-__dw_pcie_find_next_cap(). Also change "There" to "These".
 
-> > 
-> > > + */
-> > > +static void dw_pcie_set_dstate(struct dw_pcie *pci, u32 dstate)
-> > 
-> > Please use pci_power_t defines for dstates.
-> 
-> Although dwc use the same define, it is difference things. 
-> 
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Sorry, what difference? Could you please clarify?
+Best regards,
+Krzysztof
 
-> > 
-> > > +{
-> > > +	u8 offset = dw_pcie_find_capability(pci, PCI_CAP_ID_PM);
-> > > +	u32 val;
-> > > +
-> > > +	val = dw_pcie_readw_dbi(pci, offset + PCI_PM_CTRL);
-> > 
-> > Please use PCI accessors for accessing spec compliant registers.
-> 
-> According to comments in pcie-designware.c, it is difference concept
-> even though register define is the same as PCI spec. It was used to
-> control root bridges.
-> 
-
-Ah, I got slightly confused. This is fine.
-
-> > 
-> > > +	val &= ~PCI_PM_CTRL_STATE_MASK;
-> > > +	val |= dstate;
-> > > +	dw_pcie_writew_dbi(pci, offset + PCI_PM_CTRL, val);
-> > > +}
-> > > +
-> > > +int dw_pcie_suspend_noirq(struct dw_pcie *pci)
-> > > +{
-> > > +	u32 val;
-> > > +	int ret;
-> > > +
-> > > +	if (dw_pcie_get_ltssm(pci) <= DW_PCIE_LTSSM_DETECT_ACT)
-> > > +		return 0;
-> > > +
-> > > +	pci->pp.ops->pme_turn_off(&pci->pp);
-> > 
-> > You should first check for the existence of the callback before invoking. This
-> > applies to all callbacks in this patch.
-> 
-> Yes, I will update.
-> 
-> > 
-> > > +
-> > > +	/*
-> > > +	 * PCI Express Base Specification Rev 4.0
-> > > +	 * 5.3.3.2.1 PME Synchronization
-> > > +	 * Recommand 1ms to 10ms timeout to check L2 ready
-> > > +	 */
-> > > +	ret = read_poll_timeout(dw_pcie_get_ltssm, val, val == DW_PCIE_LTSSM_L2_IDLE,
-> > > +				100, 10000, false, pci);
-> > 
-> > Is there no way to wait for PME_To_Ack TLP?
-> 
-> 
-> Suppose PME_turn_off should wait for ACK before return. 
-
-Ok. I didn't see this behavior in the spec, hence curious.
-
-> Here, just make sure Link enter L2 status. Hardware need some time to put
-> link to L2 after get ACK from bus, even it is very short generally.
-> 
-
-Fine then. But can we check for PM_LINKST_IN_L2 SII System Information Interface
-(SII) instead of LTSSM state?
-
-> > 
-> > > +	if (ret) {
-> > > +		dev_err(pci->dev, "PCIe link enter L2 timeout! ltssm = 0x%x\n", val);
-> > > +		return ret;
-> > > +	}
-> > > +
-> > > +	dw_pcie_set_dstate(pci, 0x3);
-> > > +
-> > > +	pci->suspended = true;
-> > > +
-> > > +	return ret;
-> > > +}
-> > > +EXPORT_SYMBOL_GPL(dw_pcie_suspend_noirq);
-> > > +
-> > > +int dw_pcie_resume_noirq(struct dw_pcie *pci)
-> > > +{
-> > > +	int ret;
-> > > +
-> > > +	if (!pci->suspended)
-> > > +		return 0;
-> > > +
-> > > +	pci->suspended = false;
-> > > +
-> > > +	dw_pcie_set_dstate(pci, 0x0);
-> > > +
-> > > +	pci->pp.ops->exit_from_l2(&pci->pp);
-> > > +
-> > > +	/* delay 10 ms to access EP */
-> > 
-> > Is this delay as part of the DWC spec? If so, please quote the section.
-> > 
-> > > +	mdelay(10);
-> > > +
-> > > +	ret = pci->pp.ops->host_init(&pci->pp);
-> > > +	if (ret) {
-> > > +		dev_err(pci->dev, "ls_pcie_host_init failed! ret = 0x%x\n", ret);
-> > 
-> > s/ls_pcie_host_init/Host init
-> > 
-> > > +		return ret;
-> > > +	}
-> > > +
-> > > +	dw_pcie_setup_rc(&pci->pp);
-> > > +
-> > 
-> > Don't you need to configure iATU?
-> > 
-> > > +	ret = dw_pcie_wait_for_link(pci);
-> > 
-> > Don't you need to start the link beforehand?
-> 
-> Suppose need start link, it works at layerscape platform just because dwc
-> have not full power off. some state still kept.
-> 
-
-It may work for your platform but not for all if the power gets removed. So
-please start the link manually.
-
-- Mani
-
-> > 
-> > > +	if (ret) {
-> > > +		dev_err(pci->dev, "wait link up timeout! ret = 0x%x\n", ret);
-> > 
-> > dw_pcie_wait_for_link() itself prints error message on failure. So no need to do
-> > the same here.
-> 
-> Okay
-> 
-> > 
-> > - Mani
-> > 
-> > > +		return ret;
-> > > +	}
-> > > +
-> > > +	return ret;
-> > > +}
-> > > +EXPORT_SYMBOL_GPL(dw_pcie_resume_noirq);
-> > > diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci/controller/dwc/pcie-designware.h
-> > > index 79713ce075cc..effb07a506e4 100644
-> > > --- a/drivers/pci/controller/dwc/pcie-designware.h
-> > > +++ b/drivers/pci/controller/dwc/pcie-designware.h
-> > > @@ -288,10 +288,21 @@ enum dw_pcie_core_rst {
-> > >  	DW_PCIE_NUM_CORE_RSTS
-> > >  };
-> > >  
-> > > +enum dw_pcie_ltssm {
-> > > +	DW_PCIE_LTSSM_UNKNOWN = 0xFFFFFFFF,
-> > > +	/* Need align PCIE_PORT_DEBUG0 bit0:5 */
-> > > +	DW_PCIE_LTSSM_DETECT_QUIET = 0x0,
-> > > +	DW_PCIE_LTSSM_DETECT_ACT = 0x1,
-> > > +	DW_PCIE_LTSSM_L0 = 0x11,
-> > > +	DW_PCIE_LTSSM_L2_IDLE = 0x15,
-> > > +};
-> > > +
-> > >  struct dw_pcie_host_ops {
-> > >  	int (*host_init)(struct dw_pcie_rp *pp);
-> > >  	void (*host_deinit)(struct dw_pcie_rp *pp);
-> > >  	int (*msi_host_init)(struct dw_pcie_rp *pp);
-> > > +	void (*pme_turn_off)(struct dw_pcie_rp *pp);
-> > > +	void (*exit_from_l2)(struct dw_pcie_rp *pp);
-> > >  };
-> > >  
-> > >  struct dw_pcie_rp {
-> > > @@ -364,6 +375,7 @@ struct dw_pcie_ops {
-> > >  	void    (*write_dbi2)(struct dw_pcie *pcie, void __iomem *base, u32 reg,
-> > >  			      size_t size, u32 val);
-> > >  	int	(*link_up)(struct dw_pcie *pcie);
-> > > +	enum dw_pcie_ltssm (*get_ltssm)(struct dw_pcie *pcie);
-> > >  	int	(*start_link)(struct dw_pcie *pcie);
-> > >  	void	(*stop_link)(struct dw_pcie *pcie);
-> > >  };
-> > > @@ -393,6 +405,7 @@ struct dw_pcie {
-> > >  	struct reset_control_bulk_data	app_rsts[DW_PCIE_NUM_APP_RSTS];
-> > >  	struct reset_control_bulk_data	core_rsts[DW_PCIE_NUM_CORE_RSTS];
-> > >  	struct gpio_desc		*pe_rst;
-> > > +	bool			suspended;
-> > >  };
-> > >  
-> > >  #define to_dw_pcie_from_pp(port) container_of((port), struct dw_pcie, pp)
-> > > @@ -430,6 +443,9 @@ void dw_pcie_iatu_detect(struct dw_pcie *pci);
-> > >  int dw_pcie_edma_detect(struct dw_pcie *pci);
-> > >  void dw_pcie_edma_remove(struct dw_pcie *pci);
-> > >  
-> > > +int dw_pcie_suspend_noirq(struct dw_pcie *pci);
-> > > +int dw_pcie_resume_noirq(struct dw_pcie *pci);
-> > > +
-> > >  static inline void dw_pcie_writel_dbi(struct dw_pcie *pci, u32 reg, u32 val)
-> > >  {
-> > >  	dw_pcie_write_dbi(pci, reg, 0x4, val);
-> > > @@ -501,6 +517,18 @@ static inline void dw_pcie_stop_link(struct dw_pcie *pci)
-> > >  		pci->ops->stop_link(pci);
-> > >  }
-> > >  
-> > > +static inline enum dw_pcie_ltssm dw_pcie_get_ltssm(struct dw_pcie *pci)
-> > > +{
-> > > +	u32 val;
-> > > +
-> > > +	if (pci->ops && pci->ops->get_ltssm)
-> > > +		return pci->ops->get_ltssm(pci);
-> > > +
-> > > +	val = dw_pcie_readl_dbi(pci, PCIE_PORT_DEBUG0);
-> > > +
-> > > +	return (enum dw_pcie_ltssm)FIELD_GET(PORT_LOGIC_LTSSM_STATE_MASK, val);
-> > > +}
-> > > +
-> > >  #ifdef CONFIG_PCIE_DW_HOST
-> > >  irqreturn_t dw_handle_msi_irq(struct dw_pcie_rp *pp);
-> > >  int dw_pcie_setup_rc(struct dw_pcie_rp *pp);
-> > > -- 
-> > > 2.34.1
-> > > 
-> > 
-> > -- 
-> > மணிவண்ணன் சதாசிவம்
-
--- 
-மணிவண்ணன் சதாசிவம்
