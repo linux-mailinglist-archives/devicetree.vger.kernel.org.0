@@ -2,80 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E6DA375752E
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 09:20:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E650757536
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 09:22:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231680AbjGRHUO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jul 2023 03:20:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39270 "EHLO
+        id S231276AbjGRHWA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jul 2023 03:22:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40288 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231656AbjGRHUN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 03:20:13 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE7E1CA
-        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 00:20:11 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-997c4107d62so225317366b.0
-        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 00:20:11 -0700 (PDT)
+        with ESMTP id S230447AbjGRHV6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 03:21:58 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 925FB11C
+        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 00:21:54 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-9922d6f003cso744168066b.0
+        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 00:21:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689664810; x=1692256810;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1689664913; x=1692256913;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=w9lU547pQxoXPTCiKCeGs33MoErEECshjjhbexSYDSI=;
-        b=fUtFEe8pr2uAkgpj5yltLux0H1Y1EGtwKZsU5EQ+lBRmIYPa0Klnfi6G3zKHyO2GmQ
-         Q+bvPYf0eGE9Yh9Pu7Fp+Aygwom6zg6kEVbUoYXyhJynOUc+phBCZOZvJkqcFv16H67J
-         AW8fqMyRl7J1cHF72cSTuNZwOlTQRCGuITp5RkWF7poLeczB3k9UjvogexYzpwcFeGhg
-         +Zaiwfzj2HRIFEgNvwxRygR4wpYxntCf5WLyMzJTcXUryMc8ZDqoCO2v223tuSqMxvQG
-         8lGLLEmodgs5cBRJhOVEx21Zo+l9dW9r0xhidZA2cGMcCmmo5G7JFVHjtLzQhOkWfxdW
-         xsVA==
+        bh=4n4qqgB+2hjrsOUL30ez1Ai+t/nxxoWxeb0EXPeYD3U=;
+        b=es1bxeLfaO0xY+BuGQ4kbRDr+cUVqBg0CW/7pnqWC5hYPhAuLqZ9tvVecxsqADBy/f
+         OtRsfX+WHQVbkcqdQzYmznL/LliMQFYqThwOlYsj0eeO+sGktPsawONakijDItPqHBdE
+         JRin/J42CfUzbHg4OQzKvvmsRdDZ+ai3U7u4Lu48pUcadEsgjlJsLu3mZjRqllItIaJO
+         n3fhwoXIf7Bzt6u0cE2zpyXUwS78Efty+mYquLY7nASpnKPwGwfQhN/KfhYjlwpvvnME
+         pwcqz3Wx7QIZfGGoOrNW6lgB3R02af3IUEGfwuQJPbmph/pHYIBSxD9WjptKLDuR6BEA
+         4n6Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689664810; x=1692256810;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1689664913; x=1692256913;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=w9lU547pQxoXPTCiKCeGs33MoErEECshjjhbexSYDSI=;
-        b=cMgGytrucCpR2/mkqRckbu4olOjKOH7fzsbUKP3CWuApVy4cwqDbURqbhw+U0f9UNE
-         M+P+u4xXW2orTlafgPu+saAvGQAp1hIgnmZ5vfLsaTDqrRcAuc8gyHLS6rSpRJ7hyaZ9
-         koc2w87/YefCrVdhiZhkifAhRrdHR58hqNcJRcJ09XtBz22/nJpsA3FOEVy6si1Yp7v8
-         LYTKIbR0caJRIZPIFW9mQC9EeqWWWqfPMhQ5/HAANEojGE5t7ahdkVbcc5XzX88l5Prb
-         pAOrLIUjogqepn9CsmgwUdG54gkSjE2gxtY3gKcD3CcCeu0dUtd+AwXvQWCgbgtlUDvt
-         pKcQ==
-X-Gm-Message-State: ABy/qLb4FOsb/mToxOtph/YKDH/KEFSlc0FKelPiSBdno+OBEl/ogfVI
-        TW2R6UD81Q0rMo7g72EYAZ1IzQ==
-X-Google-Smtp-Source: APBJJlHozXmVdS49WlvakDj4YokD/ymIOY7jP3ESI0KcELq/33VrcfhD9G6domk0ypAzc9GCGgVBOw==
-X-Received: by 2002:a17:907:7656:b0:977:4b64:f5e8 with SMTP id kj22-20020a170907765600b009774b64f5e8mr13375774ejc.57.1689664810412;
-        Tue, 18 Jul 2023 00:20:10 -0700 (PDT)
+        bh=4n4qqgB+2hjrsOUL30ez1Ai+t/nxxoWxeb0EXPeYD3U=;
+        b=TJSAvtDjHaMwFZ1aeBcRr6y0Ru8sy/mPrw9hJ6uG9X67Qlnbyrzvpv+k1mCOxHhXOk
+         +nh06OAs/oolhvqxJTdx7p7481VUYQm/yfUlKdBO1+xZt94XVNsk+8ziupNdI/fp+ASV
+         dXKFj0zP8Ya0+n4nNmrWMFJREHCn05XvYSVgZ3h3X3JHdrcodztqgIRUcsE1rDlw4csq
+         64gw4imQ17sCIPRwmrH6G3xuZaKiS3NJyOOYuxiiveBYv5pqGI4qepjpCyQcyrFJufHe
+         etnrTLBlZT0YhGkEV0p7vpdtobZwpmZ/8sP0/E1tXJpA+TZcXX2xH4pwoxGG7bA5jZTF
+         Z1Dw==
+X-Gm-Message-State: ABy/qLbZY5+A31X+7Lc3OjhhJKBV493T8egPKgsU1CedodYqKIBASpTN
+        voS7WAo8L5KxkypSyOEigskE6S0ojsXiAU54y7Gk2Q==
+X-Google-Smtp-Source: APBJJlEPoEma6epYYKdKLymUlkCZUVI81YFqxVkZojmkdpGMGOEf3L+HYHZiUca0m/klUjEdyT2CrA==
+X-Received: by 2002:a17:906:2308:b0:98d:e7e3:5ab7 with SMTP id l8-20020a170906230800b0098de7e35ab7mr11265940eja.11.1689664913098;
+        Tue, 18 Jul 2023 00:21:53 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id z12-20020a170906240c00b00977eec7b7e8sm652041eja.68.2023.07.18.00.20.08
+        by smtp.gmail.com with ESMTPSA id f18-20020a1709062c5200b0098d2f703408sm631266ejh.118.2023.07.18.00.21.51
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 18 Jul 2023 00:20:09 -0700 (PDT)
-Message-ID: <fec38f3a-f103-ff0f-138c-cffa3a808001@linaro.org>
-Date:   Tue, 18 Jul 2023 09:20:07 +0200
+        Tue, 18 Jul 2023 00:21:52 -0700 (PDT)
+Message-ID: <ef46f22a-4556-34b8-101a-ff913b42bb45@linaro.org>
+Date:   Tue, 18 Jul 2023 09:21:50 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
-Subject: Re: [PATCH v2 1/2] dt-bindings: input: qcom,pm8xxx-vib: add more PMIC
- support
-To:     Fenglin Wu <quic_fenglinw@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     quic_collinsd@quicinc.com, quic_subbaram@quicinc.com,
-        quic_kamalw@quicinc.com, jestar@qti.qualcomm.com,
-        quic_huliu@quicinc.com
-References: <20230718062639.2339589-1-quic_fenglinw@quicinc.com>
- <20230718062639.2339589-2-quic_fenglinw@quicinc.com>
- <cb534cdb-508e-b03e-4e39-50cd6654377a@linaro.org>
- <4cb9f443-bdea-695a-f1b7-3963747e9a17@quicinc.com>
- <5b7e624b-5d06-826d-92d1-2a721b7c83b7@quicinc.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: hwmon: Add description for new hwmon
+ driver hs3001
 Content-Language: en-US
+To:     Andre Werner <werneazc@gmail.com>, jdelvare@suse.com,
+        linux@roeck-us.net, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, robh+dt@kernel.org
+Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Andre Werner <andre.werner@systec-electronic.com>
+References: <20230718070114.3871-1-andre.werner@systec-electronic.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <5b7e624b-5d06-826d-92d1-2a721b7c83b7@quicinc.com>
+In-Reply-To: <20230718070114.3871-1-andre.werner@systec-electronic.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -88,37 +78,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/07/2023 09:06, Fenglin Wu wrote:
+On 18/07/2023 09:01, Andre Werner wrote:
+> This is the initial description.
 > 
+> Signed-off-by: Andre Werner <andre.werner@systec-electronic.com>
 > 
-> On 7/18/2023 2:38 PM, Fenglin Wu wrote:
->>
->>
->> On 7/18/2023 2:33 PM, Krzysztof Kozlowski wrote:
->>> On 18/07/2023 08:26, Fenglin Wu wrote:
->>>> Add support for vibrator module inside Qualcomm PMI632, PM7250B, PM7325B
->>>> PMICs.
->>>>
->>>> Signed-off-by: Fenglin Wu <quic_fenglinw@quicinc.com>
->>>> ---
->>>
->>> I don't see changelog. No changes then?
->>>
->> Sorry, I updated the change log in the cover letter which didn't seems 
->> to be sent to a wider audience, I will resend it by adding more 
->> receivers in the to list
->>
->> Fenglin
-> 
-> Just FYI,the change log was updated in the cover letter here: 
-> https://lore.kernel.org/linux-arm-msm/20230718062639.2339589-1-quic_fenglinw@quicinc.com/T/#m3819b50503ef19e0933a10bf797351a4af35537f
-> 
-> Also the commit text and the driver change were also updated accordingly 
-> to address your review comment by removing 'pm7550ba-vib' compatible string.
+> v1: Using separate dt-binding hs300x.yaml
+> v2: Reviewer recommends documentation of driver dt-binding in
+> trivial-devices.yaml because the driver has no special properties
+> to describe.
 
-Removing compatible was never my feedback. Did you read:
-https://elixir.bootlin.com/linux/v6.1-rc1/source/Documentation/devicetree/bindings/writing-bindings.rst#L42
-?
+Changelog goes after ---. Even if you intended to keep it in commit msg,
+definitely not after SoB. Does this even pass checkpatch?
+
+> ---
+>  Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
+> index ba2bfb547909..a4f4701337cf 100644
+> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
+> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+> @@ -315,6 +315,8 @@ properties:
+>            - plx,pex8648
+>              # Pulsedlight LIDAR range-finding sensor
+>            - pulsedlight,lidar-lite-v2
+> +            # Renesas HS300[1,2,3,4] Temperature and Relative Humidity Sensors
+> +          - renesas,hs3001
+
+What about the rest of the devices - hs300[234]? Usually we ask for
+specific compatibles, that's why separate binding made some sense.
+
 
 Best regards,
 Krzysztof
