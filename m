@@ -2,149 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A70C47571A7
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 04:12:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A1F27571D8
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 04:37:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229731AbjGRCM1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jul 2023 22:12:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41512 "EHLO
+        id S229887AbjGRChe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jul 2023 22:37:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49364 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230313AbjGRCMZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 22:12:25 -0400
-Received: from mta-65-226.siemens.flowmailer.net (mta-65-226.siemens.flowmailer.net [185.136.65.226])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E6771701
-        for <devicetree@vger.kernel.org>; Mon, 17 Jul 2023 19:12:21 -0700 (PDT)
-Received: by mta-65-226.siemens.flowmailer.net with ESMTPSA id 202307180212197e52c4f8388b439a81
-        for <devicetree@vger.kernel.org>;
-        Tue, 18 Jul 2023 04:12:19 +0200
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; s=fm1;
- d=siemens.com; i=huaqian.li@siemens.com;
- h=Date:From:Subject:To:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:Cc:References:In-Reply-To;
- bh=P+e4mgQf7YcgATPvUbBvEm5Pd72/FjOAYEsp6bDRqIE=;
- b=nm92q4mscd4W1AyCnXiVJxwBNnOnefvJdnm4dUNuN6aE2WOJfFs/Q1YaFxQi1LYNe+Pehe
- C5p3DPvwNrd++0fn0+jdZj7EktIhuvqG5GIPmS+XCfJ/o5ebvrMYqzvTeJwDMUVQuFIc6H26
- kD6vPVYTfqeJ6Orkj4A+8yHBeMX4Y=;
-From:   huaqian.li@siemens.com
-To:     wim@linux-watchdog.org, linux@roeck-us.net, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
-Cc:     huaqianlee@gmail.com, nm@ti.com, vigneshr@ti.com,
-        kristo@kernel.org, linux-watchdog@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, jan.kiszka@siemens.com,
-        baocheng.su@siemens.com, Li Hua Qian <huaqian.li@siemens.com>
-Subject: [PATCH v6 3/3] watchdog:rit_wdt: Add support for WDIOF_CARDRESET
-Date:   Tue, 18 Jul 2023 10:10:07 +0800
-Message-Id: <20230718021007.1338761-4-huaqian.li@siemens.com>
-In-Reply-To: <20230718021007.1338761-1-huaqian.li@siemens.com>
-References: <20230718021007.1338761-1-huaqian.li@siemens.com>
+        with ESMTP id S229541AbjGRChd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jul 2023 22:37:33 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9922910C7;
+        Mon, 17 Jul 2023 19:37:31 -0700 (PDT)
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36I2W6tp012078;
+        Tue, 18 Jul 2023 02:37:27 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=T9CKhz+EHs+ldtZocIgatXObTDYOJIeNM4t29hyF+rg=;
+ b=iHlhCcUUruoovGl4bom+HjuQQpWkCYrJhAAZWAG/azsa9M/RTtB3ju/BtBiUDZl9ak33
+ Yn9bICAoIL9bokhuxIwq11lx/AkrugZpifa7w6hiaGxAJh0AMX8ZaxvDvF1RrBRpZJNy
+ NscJr2lhwwomlOa5ifp+4ahxFHC+d09xBaaCiey2KypuLr2Bv9moC49k7PPbyA7V4+3y
+ eWJPMpoKUcoXtFxKyJQ7bu2IsitcZLMrhXE8gcUTOJkbUFhZ3MN/knH3qurysx/fLGer
+ rkITIgHPTHO8tObye+aCUjPFbjuuNrtfJuKvvbereplFOlE73OTUAW6uK+j+FCnpetxS uw== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3run1jcxfw-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 18 Jul 2023 02:37:27 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 36I2bPpb032471
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 18 Jul 2023 02:37:25 GMT
+Received: from [10.239.154.73] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Mon, 17 Jul
+ 2023 19:37:22 -0700
+Message-ID: <2b1301e6-fac3-7a06-6716-a65ffd0be7c2@quicinc.com>
+Date:   Tue, 18 Jul 2023 10:37:19 +0800
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Flowmailer-Platform: Siemens
-Feedback-ID: 519:519-959203:519-21489:flowmailer
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H5,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+Subject: Re: [PATCH v1 1/2] dt-bindings: input: qcom,pm8xxx-vib: add more PMIC
+ support
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-input@vger.kernel.org>, <devicetree@vger.kernel.org>
+CC:     <quic_collinsd@quicinc.com>, <quic_subbaram@quicinc.com>,
+        <quic_kamalw@quicinc.com>, <jestar@qti.qualcomm.com>
+References: <20230717062547.2086869-1-quic_fenglinw@quicinc.com>
+ <20230717062547.2086869-2-quic_fenglinw@quicinc.com>
+ <6338cc75-e3fe-ba19-3df7-727b63fec245@linaro.org>
+Content-Language: en-US
+From:   Fenglin Wu <quic_fenglinw@quicinc.com>
+In-Reply-To: <6338cc75-e3fe-ba19-3df7-727b63fec245@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: DfzgLbA65DS-cEQR5qDEIk7iq-SCeqeq
+X-Proofpoint-ORIG-GUID: DfzgLbA65DS-cEQR5qDEIk7iq-SCeqeq
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-07-17_15,2023-07-13_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 mlxscore=0
+ clxscore=1011 malwarescore=0 adultscore=0 phishscore=0 mlxlogscore=988
+ bulkscore=0 spamscore=0 impostorscore=0 lowpriorityscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2306200000 definitions=main-2307180022
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Li Hua Qian <huaqian.li@siemens.com>
 
-This patch adds the WDIOF_CARDRESET support for the platform watchdog
-whose hardware does not support this feature, to know if the board
-reboot is due to a watchdog reset.
 
-This is done via reserved memory(RAM), which indicates if specific
-info saved, triggering the watchdog reset in last boot.
+On 7/18/2023 3:59 AM, Krzysztof Kozlowski wrote:
+> On 17/07/2023 08:25, Fenglin Wu wrote:
+>> Add support for vibrator module inside Qualcomm PMI632, PM7250B, PM7325B
+>> and PM7550BA PMICs.
+>>
+>> Signed-off-by: Fenglin Wu <quic_fenglinw@quicinc.com>
+>> ---
+>>   Documentation/devicetree/bindings/input/qcom,pm8xxx-vib.yaml | 4 ++++
+>>   1 file changed, 4 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/input/qcom,pm8xxx-vib.yaml b/Documentation/devicetree/bindings/input/qcom,pm8xxx-vib.yaml
+>> index c8832cd0d7da..642408e2b35f 100644
+>> --- a/Documentation/devicetree/bindings/input/qcom,pm8xxx-vib.yaml
+>> +++ b/Documentation/devicetree/bindings/input/qcom,pm8xxx-vib.yaml
+>> @@ -15,6 +15,10 @@ properties:
+>>         - qcom,pm8058-vib
+>>         - qcom,pm8916-vib
+>>         - qcom,pm8921-vib
+>> +      - qcom,pmi632-vib
+>> +      - qcom,pm7250b-vib
+>> +      - qcom,pm7325b-vib
+>> +      - qcom,pm7550ba-vib
+> 
+> Aren't the last two compatible?
 
-Signed-off-by: Li Hua Qian <huaqian.li@siemens.com>
----
- drivers/watchdog/rti_wdt.c | 48 ++++++++++++++++++++++++++++++++++++++
- 1 file changed, 48 insertions(+)
+There are still every different PMICs even though the vibrator module in 
+PM7325B and PM7550BA are the same and they share the same register base 
+address as well.
 
-diff --git a/drivers/watchdog/rti_wdt.c b/drivers/watchdog/rti_wdt.c
-index ce8f18e93aa9..901109d979f0 100644
---- a/drivers/watchdog/rti_wdt.c
-+++ b/drivers/watchdog/rti_wdt.c
-@@ -14,6 +14,8 @@
- #include <linux/mod_devicetable.h>
- #include <linux/module.h>
- #include <linux/moduleparam.h>
-+#include <linux/of.h>
-+#include <linux/of_address.h>
- #include <linux/platform_device.h>
- #include <linux/pm_runtime.h>
- #include <linux/types.h>
-@@ -52,6 +54,11 @@
- 
- #define DWDST			BIT(1)
- 
-+#define PON_REASON_SOF_NUM	0xBBBBCCCC
-+#define PON_REASON_MAGIC_NUM	0xDDDDDDDD
-+#define PON_REASON_EOF_NUM	0xCCCCBBBB
-+#define RESERVED_MEM_MIN_SIZE	12
-+
- static int heartbeat = DEFAULT_HEARTBEAT;
- 
- /*
-@@ -198,6 +205,11 @@ static int rti_wdt_probe(struct platform_device *pdev)
- 	struct rti_wdt_device *wdt;
- 	struct clk *clk;
- 	u32 last_ping = 0;
-+	struct device_node *node;
-+	u32 reserved_mem_size;
-+	struct resource res;
-+	u32 *vaddr;
-+	u64 paddr;
- 
- 	wdt = devm_kzalloc(dev, sizeof(*wdt), GFP_KERNEL);
- 	if (!wdt)
-@@ -284,6 +296,42 @@ static int rti_wdt_probe(struct platform_device *pdev)
- 		}
- 	}
- 
-+	node = of_parse_phandle(pdev->dev.of_node, "memory-region", 0);
-+	if (node) {
-+		ret = of_address_to_resource(node, 0, &res);
-+		if (ret) {
-+			dev_err(dev, "No memory address assigned to the region.\n");
-+			goto err_iomap;
-+		}
-+
-+		/*
-+		 * If reserved memory is defined for watchdog reset cause.
-+		 * Readout the Power-on(PON) reason and pass to bootstatus.
-+		 */
-+		paddr = res.start;
-+		reserved_mem_size = resource_size(&res);
-+		if (reserved_mem_size < RESERVED_MEM_MIN_SIZE) {
-+			dev_err(dev, "The size of reserved memory is too small.\n");
-+			ret = -EINVAL;
-+			goto err_iomap;
-+		}
-+
-+		vaddr = memremap(paddr, reserved_mem_size, MEMREMAP_WB);
-+		if (vaddr == NULL) {
-+			dev_err(dev, "Failed to map memory-region.\n");
-+			ret = -ENOMEM;
-+			goto err_iomap;
-+		}
-+
-+		if (vaddr[0] == PON_REASON_SOF_NUM &&
-+		    vaddr[1] == PON_REASON_MAGIC_NUM &&
-+		    vaddr[2] == PON_REASON_EOF_NUM) {
-+			wdd->bootstatus |= WDIOF_CARDRESET;
-+		}
-+		memset(vaddr, 0, reserved_mem_size);
-+		memunmap(vaddr);
-+	}
-+
- 	watchdog_init_timeout(wdd, heartbeat, dev);
- 
- 	ret = watchdog_register_device(wdd);
--- 
-2.34.1
-
+> 
+> Best regards,
+> Krzysztof
+> 
