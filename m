@@ -2,225 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5098D7576D2
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 10:40:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 565A57576EE
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 10:44:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231959AbjGRIko (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jul 2023 04:40:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58288 "EHLO
+        id S230297AbjGRIoT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jul 2023 04:44:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60814 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229995AbjGRIkn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 04:40:43 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E8E31716
-        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 01:40:34 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-99364ae9596so768576266b.1
-        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 01:40:34 -0700 (PDT)
+        with ESMTP id S230252AbjGRIoS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 04:44:18 -0400
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0496FF
+        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 01:44:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689669633; x=1692261633;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=CWZTBAgn0sS+qEaFaptfqAKbYTBQ+DgmJZTWl6nef1U=;
-        b=QqWpVaddIE2t/8XVvP/3VyDPBoo7sCh27hFVqsmka9a0CENOreiYjqjZCZNzPpfvnj
-         0NNNTHQhoKUp9jKGf27C40p4Ghh8X7VIGh3E/Q08cf4x6K+eKZf+l2NtQByWx9FL3uCW
-         0WsAAj2DfzrXGe+05VsD+njMxyaiVuu9cOrLjdRqdyD6k+DndbTUrqn8alMk8LKJ866Y
-         1G+hqsJrukJB7GYbafnMMS7qSnYXHXPD+yGdrjLpl/xjqIeuQW1WkDUcDLFx8f2TQBti
-         DObTe3wiffKTw2x/I8NG/rERN0faQEBCXoA/L4iFyAZHoWRaLepOhThwcrcF3r8nTOoG
-         fnog==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689669633; x=1692261633;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=CWZTBAgn0sS+qEaFaptfqAKbYTBQ+DgmJZTWl6nef1U=;
-        b=ZxEhy5sZCu6z0hTkSsGPc6tFgSIXOAuxZt/HEE3hEtEVZ2XsghcSDFK7HHeUQLHrmc
-         AiU2qlXkdFdgN8OuCmHoVNYq5oxes0+yeYcwi+5vpjV9xlxWw4etsE4Ra9S/sEzlIMXF
-         8FGTJPk2AAHp4JqkmDmInYOO9MBmixV5jmQZXY1Fovv4J+ofjGlTAoJFT+bu/vaZEvku
-         xx6caD5dfNMVM3Xpgx0iDCDawR8BCacjod9sXIjhrwaHWJmdunnvL5Gl40OjiQDyDnzE
-         H7p76y+iPomuSrKFU1tzmslDtSBqE9djDM23S8XfX5weZH/btbLjRR1DumpmKQN44sYh
-         fW0Q==
-X-Gm-Message-State: ABy/qLajcVJ96QLXuqnstJ+Mrt1Cq0F2pe7CKsNeIJ/8yjjfIUyXRczE
-        y4N39MS4dT4FhhT51DE2YpEzfA==
-X-Google-Smtp-Source: APBJJlGXvZzY/4ZnkMYEMZVjqUOmFmubBz1PHzs4Mn4Z4u51BwEhq7i+2TcH00XbtVWsX2YKrYCOfg==
-X-Received: by 2002:a17:906:6b97:b0:98e:26ae:9b01 with SMTP id l23-20020a1709066b9700b0098e26ae9b01mr12759543ejr.65.1689669633012;
-        Tue, 18 Jul 2023 01:40:33 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id lc11-20020a170906dfeb00b00992ae4cf3c1sm697275ejc.186.2023.07.18.01.40.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 18 Jul 2023 01:40:32 -0700 (PDT)
-Message-ID: <28bfbafb-88c3-7284-6933-052caf734681@linaro.org>
-Date:   Tue, 18 Jul 2023 10:40:30 +0200
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1689669857; x=1721205857;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=HgPdbUmEfsLF8pyFhzs6jd6wcfwbV7JK9KcdUCKPGNA=;
+  b=bl8tmXIqtU1thmbvK4rDS5TX9I8+B3YWRGGbwKN4qmH+vaZkNgXe5YIC
+   96uCt2pZMNnMUAYV6oQEnsPQ+6mBAuwv2nYs4x98StUyO5C2BVE9ujMey
+   uJkhQPPXVqPtF9Wj/2OtMlM6mz1Ek4baVp4ZONQTBQwETdnCXFdqCRahs
+   YkeNJiomaRPXg0FGlKf1zkyQ/C/TSl0XVBOueRUQc069WnSOSkmNICw0z
+   Yv3QbN0+ou5Yici+kq0jfBsFx3DOWjaie5pTIlIWgE8wrb2bOqFr9C0hC
+   af9BKPNADXIUGBjV7WvnFL8wS6i9w0kzIllRS872U+wAsPZgOUzHWBKtE
+   g==;
+X-IronPort-AV: E=Sophos;i="6.01,213,1684792800"; 
+   d="scan'208";a="31980959"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 18 Jul 2023 10:44:15 +0200
+Received: from steina-w.tq-net.de (unknown [10.123.53.21])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id AA7FA280078;
+        Tue, 18 Jul 2023 10:44:14 +0200 (CEST)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <rfoss@kernel.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
+Subject: [PATCH 1/1] dt-bindings: display: bridge: tc358867: Add interrupt property
+Date:   Tue, 18 Jul 2023 10:44:11 +0200
+Message-Id: <20230718084411.1189831-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH] dt-bindings: clock: versal: Convert the
- xlnx,zynqmp-clk.txt to yaml
-Content-Language: en-US
-To:     Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>,
-        devicetree@vger.kernel.org
-Cc:     git@amd.com, linux-clk@vger.kernel.org, michal.simek@amd.com,
-        conor+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        robh+dt@kernel.org, sboyd@kernel.org, mturquette@baylibre.com
-References: <20230718061035.9341-1-shubhrajyoti.datta@amd.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230718061035.9341-1-shubhrajyoti.datta@amd.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/07/2023 08:10, Shubhrajyoti Datta wrote:
-> Convert the xlnx,zynqmp-clk.txt to yaml.
-> versal-clk.yaml already exists that's why zynqmp is converted and
-> merged.
-> 
-> Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
-> ---
-> Please let me know if the mergeing of the versal and zynqmp is fine 
-> or if a seperate yaml is preferred.
-> 
-> Rebased on [1] to avoid merge conflict.
-> 
-> [1] https://lore.kernel.org/all/20230620110137.5701-1-shubhrajyoti.datta@amd.com/
-> 
->  .../bindings/clock/xlnx,versal-clk.yaml       | 73 +++++++++++++++++--
->  .../bindings/clock/xlnx,zynqmp-clk.txt        | 63 ----------------
->  2 files changed, 65 insertions(+), 71 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/clock/xlnx,zynqmp-clk.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/xlnx,versal-clk.yaml b/Documentation/devicetree/bindings/clock/xlnx,versal-clk.yaml
-> index e9cf747bf89b..1b69e2590478 100644
-> --- a/Documentation/devicetree/bindings/clock/xlnx,versal-clk.yaml
-> +++ b/Documentation/devicetree/bindings/clock/xlnx,versal-clk.yaml
-> @@ -20,6 +20,7 @@ properties:
->    compatible:
->      oneOf:
->        - const: xlnx,versal-clk
-> +      - const: xlnx,zynqmp-clk
+This bridge has an interrupt line for event signaling. Add the
+corresponding property.
 
-These two are enum.
+Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+---
+This fixes warnings like:
+imx93-tqma9352-mba93xxla.dtb: dp-bridge@f: 'interrupt-parent', 'interrupts'
+do not match any of the regexes: 'pinctrl-[0-9]+'
+  from schema $id: http://devicetree.org/schemas/display/bridge/toshiba,tc358767.yaml#
 
->        - items:
->            - enum:
->                - xlnx,versal-net-clk
-> @@ -31,16 +32,9 @@ properties:
->    clocks:
->      description: List of clock specifiers which are external input
->        clocks to the given clock controller.
-> -    items:
-> -      - description: reference clock
-> -      - description: alternate reference clock
-> -      - description: alternate reference clock for programmable logic
+ .../devicetree/bindings/display/bridge/toshiba,tc358767.yaml   | 3 +++
+ 1 file changed, 3 insertions(+)
 
-Missing constraints.
-
->  
->    clock-names:
-> -    items:
-> -      - const: ref
-> -      - const: alt_ref
-> -      - const: pl_alt_ref
-> +    minItems: 3
-
-This cannot be min. You wanted maxItems.
-
->  
->  required:
->    - compatible
-> @@ -50,6 +44,60 @@ required:
->  
->  additionalProperties: false
->  
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - xlnx,versal-clk
-> +
-> +    then:
-> +      properties:
-> +        clocks:
-> +          items:
-> +            - description: reference clock
-> +            - description: alternate reference clock
-> +            - description: alternate reference clock for programmable logic
-> +
-> +        clock-names:
-> +          items:
-> +            - const: ref
-> +            - const: alt_ref
-> +            - const: pl_alt_ref
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - xlnx,zynqmp-clk
-> +
-> +    then:
-> +      properties:
-> +        clocks:
-> +          minItems: 5
-> +          items:
-> +            - description: PS reference clock
-> +            - description: reference clock for video system
-> +            - description: alternative PS reference clock
-> +            - description: auxiliary reference clock
-> +            - description: transceiver reference clock
-> +            - description: (E)MIO clock source  (Optional clock)
-
-So you have 5-6 items.
-
-> +
-> +        clock-names:
-> +          minItems: 5
-> +          items:
-> +            - const: pss_ref_clk
-> +            - const: video_clk
-> +            - const: pss_alt_ref_clk
-> +            - const: aux_ref_clk
-> +            - const: gt_crx_ref_clk
-> +            - const: mio_clk_50_or_51
-> +            - pattern: "^mio_clk[00-77]+.*$"
-> +            - pattern: "gem[0-3]+_emio_clk.*$"
-> +            - pattern: "swdt[0-1]+_ext_clk.*$"
-
-But here more. It's a mess.
-
-> +
->  examples:
->    - |
->      firmware {
-> @@ -64,4 +112,13 @@ examples:
->          };
->        };
->      };
-> +
-> +    clock-controller1{
-
-clock-controller
-
-
-> +        #clock-cells = <1>;
-> +        compatible = "xlnx,zynqmp-clk";
-> +        clocks = <&pss_ref_clk>, <&video_clk>, <&pss_alt_ref_clk>,
-> +                 <&aux_ref_clk>, <&gt_crx_ref_clk>;
-> +        clock-names = "pss_ref_clk", "video_clk", "pss_alt_ref_clk",
-> +                      "aux_ref_clk", "gt_crx_ref_clk";
-> +    };
-
-
-Best regards,
-Krzysztof
+diff --git a/Documentation/devicetree/bindings/display/bridge/toshiba,tc358767.yaml b/Documentation/devicetree/bindings/display/bridge/toshiba,tc358767.yaml
+index 0521261b04a9..ae894d996d21 100644
+--- a/Documentation/devicetree/bindings/display/bridge/toshiba,tc358767.yaml
++++ b/Documentation/devicetree/bindings/display/bridge/toshiba,tc358767.yaml
+@@ -49,6 +49,9 @@ properties:
+     description: |
+         OF device-tree gpio specification for RSTX pin(active low system reset)
+ 
++  interrupts:
++    maxItems: 1
++
+   toshiba,hpd-pin:
+     $ref: /schemas/types.yaml#/definitions/uint32
+     enum:
+-- 
+2.34.1
 
