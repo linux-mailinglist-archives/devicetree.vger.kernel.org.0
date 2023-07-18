@@ -2,114 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7845C75823F
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 18:37:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 20184758244
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jul 2023 18:39:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232172AbjGRQh1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jul 2023 12:37:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48560 "EHLO
+        id S233237AbjGRQju (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jul 2023 12:39:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49824 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231786AbjGRQh1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 12:37:27 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24E3210C;
-        Tue, 18 Jul 2023 09:37:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1689698245; x=1721234245;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=4NUpTJzBo4VjuMeFqhZjHQR0CDQrSitP9tTknt3O5eA=;
-  b=AKuRbBQ7ennWt3mKQEaPOKDeqrzyJV2wQPYcYODRO7Jav9QXOYu0nYpr
-   XaDJMOQ0YoNAPYVTIKnZNnbkRTQhHt3lXYnJ06RLhAwOabcr5weVILPhr
-   G5+AZek+t0146K9tybBgcsSOa0h0uXIJYCEOboMGC7N84zUdvbrcT1hL4
-   F8g3VQbgHLNYGh8bzWnTw1d4iFq+myZxvHAsSCJvbb7992Sr7nKA8OZXY
-   Y5rLLCK8nvY69SRunn2nG8ZblgfM63L+0IHtWTDHiF8A+m3lTzCBlsF2i
-   Bm8MgL+DsPCW/K7umfqaoxGmgJBdtahNoxD50guDWRy5wotsOjwMIcrWn
-   w==;
-X-IronPort-AV: E=Sophos;i="6.01,214,1684825200"; 
-   d="scan'208";a="236269369"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 18 Jul 2023 09:37:25 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Tue, 18 Jul 2023 09:37:25 -0700
-Received: from [10.159.245.205] (10.10.115.15) by chn-vm-ex03.mchp-main.com
- (10.10.85.151) with Microsoft SMTP Server id 15.1.2507.21 via Frontend
- Transport; Tue, 18 Jul 2023 09:37:23 -0700
-Message-ID: <31e4da6a-44ab-5c0a-ae32-c0fcf09d7cb8@microchip.com>
-Date:   Tue, 18 Jul 2023 18:37:22 +0200
+        with ESMTP id S232196AbjGRQju (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 12:39:50 -0400
+Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com [IPv6:2607:f8b0:4864:20::102a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4367E1B3;
+        Tue, 18 Jul 2023 09:39:49 -0700 (PDT)
+Received: by mail-pj1-x102a.google.com with SMTP id 98e67ed59e1d1-262e839647eso4115238a91.2;
+        Tue, 18 Jul 2023 09:39:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1689698389; x=1692290389;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=dJfm9Xu6mLNf+bMAmuP6AEX0CyJ95XqwOktwztwQYHc=;
+        b=WuaFFFb8P26DlxbEI98Sj9R8DetzfD5pLUWStEYhjaTGtJH+OUC3umtYjNgHw53X8H
+         qRQz9GWTsXAIw8VqpXYoRn4nH1Ah7isvmtXvHS4QWlaW2HQQOrhO1i4lP+Se/EmSLKsH
+         p9SLbEWHHS3M2CbGlPep/pdKYflAHMnT2458jc02O1Q8Wgu4rgmk6B2G1IraMMBbbeuX
+         iRWXAYcYtwu3AgJCLEV4JOftBkNXpHIoV1AI9NB1sHxKTNczwCKtrJYzab4fajTWXn6L
+         tgxfZQaBAXvS4rVJERQ1GahNghgEHZOuIOyq3D7dUCM8Ar9OdimqlIeaDOgMcpYwW9ha
+         yWag==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689698389; x=1692290389;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=dJfm9Xu6mLNf+bMAmuP6AEX0CyJ95XqwOktwztwQYHc=;
+        b=JP6xpmZ7vimSjPwIUorUuSRb7yRyB9BCSX1kCiD8C6tKQ+Rt2o7YBhUZ/7FQl1X59t
+         WoSa02BMhjtrxzuBdwX1SygetCAoEiLSOUHmlz3QWJCq7dR9gmlg7MI05w/2Rx+lTdY6
+         eVN7hK0+XQ/ee9eRKKo5HNjk/0SX4sO1saBQx3EdmLK64KbPGx6Tx2JLYvezSucsFAYy
+         9SrS8M92kxNHIGSpyUT/1DgRrj0UQE4/xHyB1C7ppy98M60ekFjrGOlWqcxEFJ93A1D6
+         QdvSN/gXDjrlqODiLxj75qfdyI+uUOvsiDy1irzI214T33GLieERJYYLTb1kkgwT7dCs
+         4U1w==
+X-Gm-Message-State: ABy/qLbpP2g+zphXFSwz+QI5qtzOMi8wgnCd7vWrpeF/w+DX4PTXruTb
+        O4588xJ6OMWodIJIqsJRZf8LIA22+xg=
+X-Google-Smtp-Source: APBJJlHZTPpp1pKtH1Oi100fve+RA7DjBKu+d4ef5KaEWCIBBYdCe08KvkmNsDfXxRTogVs8bDcwIQ==
+X-Received: by 2002:a17:902:7894:b0:1b7:ffb9:ea85 with SMTP id q20-20020a170902789400b001b7ffb9ea85mr15154411pll.29.1689698388615;
+        Tue, 18 Jul 2023 09:39:48 -0700 (PDT)
+Received: from zephyrusG14 ([103.251.210.195])
+        by smtp.gmail.com with ESMTPSA id g21-20020a170902869500b001b80d399730sm2077207plo.242.2023.07.18.09.39.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 18 Jul 2023 09:39:48 -0700 (PDT)
+Date:   Tue, 18 Jul 2023 22:09:41 +0530
+From:   Yogesh Hegde <yogi.kernel@gmail.com>
+To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, heiko@sntech.de, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     linux-kernel-mentees@lists.linuxfoundation.org,
+        skhan@linuxfoundation.org, ivan.orlov0322@gmail.com
+Subject: [PATCH v2] arm64: dts: rockchip: Fix Wifi/Bluetooth on ROCK Pi 4
+ boards
+Message-ID: <ZLbATQRjOl09aLAp@zephyrusG14>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH] ARM: dts: at91-vinco: Fix "status" values
-Content-Language: en-US, fr-FR
-To:     Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Claudiu Beznea <claudiu.beznea@tuxon.dev>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20230626221010.3946263-1-robh@kernel.org>
-From:   Nicolas Ferre <nicolas.ferre@microchip.com>
-Organization: microchip
-In-Reply-To: <20230626221010.3946263-1-robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/06/2023 at 00:10, Rob Herring wrote:
-> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
-> 
-> The defined value for "status" is "disabled", not "disable".
-> 
-> Signed-off-by: Rob Herring <robh@kernel.org>
+This patch fixes an issue affecting the Wifi/Bluetooth connectivity on
+ROCK Pi 4 boards. Commit f471b1b2db08 ("arm64: dts: rockchip: Fix Bluetooth
+on ROCK Pi 4 boards") introduced a problem with the clock configuration.
+Specifically, the clock-names property of the sdio-pwrseq node was not
+updated to 'lpo', causing the driver to wait indefinitely for the wrong clock
+signal 'ext_clock' instead of the expected one 'lpo'. This prevented the proper
+initialization of Wifi/Bluetooth chip on ROCK Pi 4 boards.
 
-Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
-We'll queue the patch in our tree (and linux-next) soon (tm).
-Best regards,
-   Nicolas
+To address this, this patch updates the clock-names property of the
+sdio-pwrseq node to "lpo" to align with the changes made to the bluetooth node.
 
-> ---
->   arch/arm/boot/dts/microchip/at91-vinco.dts | 4 ++--
->   1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm/boot/dts/microchip/at91-vinco.dts b/arch/arm/boot/dts/microchip/at91-vinco.dts
-> index ebeaa6ab500e..ecbdacf48708 100644
-> --- a/arch/arm/boot/dts/microchip/at91-vinco.dts
-> +++ b/arch/arm/boot/dts/microchip/at91-vinco.dts
-> @@ -159,7 +159,7 @@ usb0: gadget@400000 {
->                          atmel,vbus-gpio = <&pioE 31 GPIO_ACTIVE_HIGH>;
->                          pinctrl-names = "default";
->                          pinctrl-0 = <&pinctrl_usba_vbus>;
-> -                       status = "disable";
-> +                       status = "disabled";
->                  };
-> 
->                  usb1: ohci@500000 {
-> @@ -168,7 +168,7 @@ usb1: ohci@500000 {
->                                             &pioE 11 GPIO_ACTIVE_LOW
->                                             &pioE 12 GPIO_ACTIVE_LOW
->                                            >;
-> -                       status = "disable";
-> +                       status = "disabled";
->                  };
-> 
->                  usb2: ehci@600000 {
-> --
-> 2.40.1
-> 
+This patch has been tested on ROCK Pi 4B.
+
+Fixes: f471b1b2db08 ("arm64: dts: rockchip: Fix Bluetooth on ROCK Pi 4 boards")
+Signed-off-by: Yogesh Hegde <yogi.kernel@gmail.com>
+
+---
+Changes in v2: Added the Fixes tag as per feedback from Vincent Legoll
+	       <vincent.legoll@gmail.com>
+---
+ arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi
+index 907071d4fe80..795a70948d9a 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi
+@@ -45,7 +45,7 @@ led-0 {
+ 	sdio_pwrseq: sdio-pwrseq {
+ 		compatible = "mmc-pwrseq-simple";
+ 		clocks = <&rk808 1>;
+-		clock-names = "ext_clock";
++		clock-names = "lpo";
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&wifi_enable_h>;
+ 		reset-gpios = <&gpio0 RK_PB2 GPIO_ACTIVE_LOW>;
+-- 
+2.34.1
 
