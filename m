@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 98C5E759380
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 12:55:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 00714759386
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 12:56:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229666AbjGSKza (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jul 2023 06:55:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36324 "EHLO
+        id S229714AbjGSK4o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jul 2023 06:56:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37138 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229480AbjGSKz3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 06:55:29 -0400
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3263219A
-        for <devicetree@vger.kernel.org>; Wed, 19 Jul 2023 03:55:27 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-4fba8f2197bso11444990e87.3
-        for <devicetree@vger.kernel.org>; Wed, 19 Jul 2023 03:55:27 -0700 (PDT)
+        with ESMTP id S229456AbjGSK4m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 06:56:42 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D66311D
+        for <devicetree@vger.kernel.org>; Wed, 19 Jul 2023 03:56:40 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-51cff235226so1474178a12.0
+        for <devicetree@vger.kernel.org>; Wed, 19 Jul 2023 03:56:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689764125; x=1692356125;
+        d=linaro.org; s=google; t=1689764199; x=1692356199;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=yVxXZfOtxak8iBVRDb2c9fmyjvpQOuKAzeNKIUJfojo=;
-        b=HeVH4aqAbGSTlrakuKCfBsU+kcA3+5vAw/2F2XZ2oKt4WdOKQWlwy96CAB1sZy2WU4
-         8qvnhQiLGswTExx5lvoyoLk9HoK5mtEiqeLYGnDidaOStp2zs9rhLdZEtYr1RYBuNInE
-         czVr7Mq22nDyuHb/uyyj9p5JJQtEUj9MUChLeLMvmGt68Pf5kpvesh/6Cytqoi8powab
-         pju96pfebtbnLVIn6qNYf6YbWElvAJNANr+F4laUWMyJ2D0pQvwrs2s9tX2d/JsKn6b+
-         8J+YOtt68Xg3TitlkpEoYxJkP9wP5Vs94/8nAP5jnZX1Fkk5Q70FIz9afn0/kMP7jTcj
-         ixPA==
+        bh=0cb3uJKvOt8I5jmhbZsvlqVNSIoteu3SKnCcD96px/Q=;
+        b=RRfaLI7MLZQZSoqDtZvBm0x8SmP9gMXxNavOUPcBWUSCXzw/PEIJdLgWjxGAB29uYK
+         0oJEtpZog0gAnag+9XxZvXjJB2mZTl6uZMXBkOwscERdcquWRhPom4plOqskCWGBi1f7
+         Nb+RXexS29zn7rr2zJSUuHpEJVWL/CIUPryAdMc6pBelMNlB10wC5fYbt6WyoUMl8uXF
+         gclttPhgn+GE84qw6LOcv4fA0aDGFt/7KK5zv0DgjRLEyvJdQ63vp5DkKwhmlvSOBjoQ
+         H+j62SVP9u5+ho7R/xtr+qTDmD9A3SG41iZTzt6EPpmHgw/bMtB3aGvi1dqLRD6xMly2
+         sohw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689764125; x=1692356125;
+        d=1e100.net; s=20221208; t=1689764199; x=1692356199;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=yVxXZfOtxak8iBVRDb2c9fmyjvpQOuKAzeNKIUJfojo=;
-        b=LluUSO5KyivaGmbJwM74TDUH8QQNtyA+AeYzawC5QDmDjyNe7+/kbvouOaYlOZ2HN6
-         K+PzDpDc43Lh5d8DAL41eL37Pz6f2CJoUCkMuHwCF5nkB8+xjGeHw+rqbUABb+3askay
-         DsBWqA5hP72jsav3Go1r+XEvY84JDw3eh4zHOv99Bxf8+wVJfV5w759DHjis7SgmpwKo
-         2HvHxdErWvL79fMP8G1uJfhzs4cvSjsJ9E4HrWrdqVo52RlSGhHyHRO9RbHX5iN4suDl
-         nfLO9HrE60ZmUublhJ6me7oaGXfLHZeZxZ/7Q2lH8VQ0NqlfkU8xEqqOT1i/gxuWsdC5
-         fR7Q==
-X-Gm-Message-State: ABy/qLYf7rHbjzy7AczIIx+V8i2YYYLfKsH+KRLK5Y89hanPN4hCQFVz
-        fjRoFbDna49KTlN7lORE6uPS8w==
-X-Google-Smtp-Source: APBJJlH1QRK+S6KRTvEUqv/cdRVknog7MADGQ8rYn1gGhl1iDVu/AuB3WpeY+yiLkKU5yEqoT9rncw==
-X-Received: by 2002:a05:6512:3d89:b0:4f9:6528:fb15 with SMTP id k9-20020a0565123d8900b004f96528fb15mr13939510lfv.12.1689764125474;
-        Wed, 19 Jul 2023 03:55:25 -0700 (PDT)
+        bh=0cb3uJKvOt8I5jmhbZsvlqVNSIoteu3SKnCcD96px/Q=;
+        b=ldKK/qpP8UyFKfAu51UIgQGBvw37ciaOoNVgLq3gGNwsnxvdqk0t2IeajmJPiPtbeK
+         yVc3qoilN2Zeik+gHbKI8FBL50nhaDba1l6pO6R4Mur+NDY7VihJ2XAhADVg06J/6wwV
+         7wVD3aELGP0gjffPKSN3burHaE8ovTiOBnUlfy8lqWr7Ibn8jGGrvCX7fan7FjKafQit
+         rSFxEuSn4NqXfYv7qSZfKKhCs99RzshJapbobmKc1QOcmx1EWqA9arxFkP5SuT8tJ9C5
+         623fiJZYXAzd6hWg/MQ6KgssGCCor5GWT72j1ZlVTwd6KIVQFNwiXe5tWG91pgfZXsG/
+         U0Pg==
+X-Gm-Message-State: ABy/qLZMgAVvF1sJXEK1vp59h0SAap784MxUjKugLSXFOWnUhna8OaYh
+        +zbhBaiegd0BLfMJs74hU2TfZA==
+X-Google-Smtp-Source: APBJJlGQ3ePNgBtFehdx88Nyu/l+QC7MVDygtSlJZdbG1gOoT3v8ggTbM5uC2DFHqNgNaZbRUyNFUg==
+X-Received: by 2002:a05:6402:654:b0:521:ad49:8493 with SMTP id u20-20020a056402065400b00521ad498493mr2196390edx.6.1689764198806;
+        Wed, 19 Jul 2023 03:56:38 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id be1-20020a0564021a2100b0051e2549c4f9sm2526983edb.47.2023.07.19.03.55.23
+        by smtp.gmail.com with ESMTPSA id d15-20020a50fe8f000000b0051df6c2bb7asm2520009edt.38.2023.07.19.03.56.35
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 19 Jul 2023 03:55:25 -0700 (PDT)
-Message-ID: <6b452a82-4fc1-bb0e-2475-755d699db1ee@linaro.org>
-Date:   Wed, 19 Jul 2023 12:55:22 +0200
+        Wed, 19 Jul 2023 03:56:38 -0700 (PDT)
+Message-ID: <d08ff946-5b9c-8887-0445-e49a0c76618b@linaro.org>
+Date:   Wed, 19 Jul 2023 12:56:35 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
-Subject: Re: [PATCH v1 5/9] dt-bindings: PLDA: Add PLDA XpressRICH PCIe host
+Subject: Re: [PATCH v1 7/9] dt-bindings: PCI: Add StarFive JH7110 PCIe
  controller
 Content-Language: en-US
 To:     Minda Chen <minda.chen@starfivetech.com>,
@@ -76,15 +76,15 @@ Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         Leyfoon Tan <leyfoon.tan@starfivetech.com>,
         Kevin Xie <kevin.xie@starfivetech.com>
 References: <20230719102057.22329-1-minda.chen@starfivetech.com>
- <20230719102057.22329-6-minda.chen@starfivetech.com>
+ <20230719102057.22329-8-minda.chen@starfivetech.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230719102057.22329-6-minda.chen@starfivetech.com>
+In-Reply-To: <20230719102057.22329-8-minda.chen@starfivetech.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -92,43 +92,16 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 19/07/2023 12:20, Minda Chen wrote:
-> Add PLDA XpressRICH host controller dt-bindings. Both Microchip
-> PolarFire SoC and StarFive JH7110 SoC are using PLDA XpressRICH
-> PCIe host controller IP.
+> Add StarFive JH7110 SoC PCIe controller dt-bindings.
+> JH7110 using PLDA XpressRICH PCIe host controller IP.
 > 
 > Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
 > Reviewed-by: Hal Feng <hal.feng@starfivetech.com>
 > ---
->  .../pci/plda,xpressrich-pcie-host.yaml        | 66 +++++++++++++++++++
->  1 file changed, 66 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pci/plda,xpressrich-pcie-host.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/plda,xpressrich-pcie-host.yaml b/Documentation/devicetree/bindings/pci/plda,xpressrich-pcie-host.yaml
-> new file mode 100644
-> index 000000000000..10a10862a078
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pci/plda,xpressrich-pcie-host.yaml
-> @@ -0,0 +1,66 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pci/plda,xpressrich-pcie-host.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: PLDA XpressRICH PCIe host controller
-> +
-> +maintainers:
-> +  - Daire McNamara <daire.mcnamara@microchip.com>
-> +  - Minda Chen <minda.chen@starfivetech.com>
-> +
-> +allOf:
-> +  - $ref: /schemas/pci/pci-bus.yaml#
-> +  - $ref: plda,xpressrich-pcie-common.yaml#
-> +  - $ref: /schemas/interrupt-controller/msi-controller.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: plda,xpressrich-pcie-host
+
+
+...
+
 > +
 > +required:
 > +  - compatible
@@ -138,24 +111,13 @@ On 19/07/2023 12:20, Minda Chen wrote:
 > +  - interrupts
 > +  - interrupt-map-mask
 > +  - interrupt-map
+> +  - clocks
+> +  - resets
+> +  - starfive,stg-syscon
 > +  - msi-controller
+> +  - reset-gpios
 
-Your common schema should require properties which it defines. Here you
-should require only difference or new properties.
-
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    soc {
-> +            #address-cells = <2>;
-
-Use 4 spaces for example indentation.
-
-> +            #size-cells = <2>;
-> +            pcie0: pcie@12000000 {
-
+Same concern as previous binding patch.
 
 Best regards,
 Krzysztof
