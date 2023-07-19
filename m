@@ -2,355 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2AD3A759AA6
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 18:20:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 02703759AF5
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 18:37:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229660AbjGSQUc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jul 2023 12:20:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44044 "EHLO
+        id S229536AbjGSQg5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jul 2023 12:36:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53374 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229566AbjGSQUb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 12:20:31 -0400
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0604C1734
-        for <devicetree@vger.kernel.org>; Wed, 19 Jul 2023 09:20:29 -0700 (PDT)
-Received: by mail-lj1-x234.google.com with SMTP id 38308e7fff4ca-2b701e1c80fso104923231fa.2
-        for <devicetree@vger.kernel.org>; Wed, 19 Jul 2023 09:20:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gateworks-com.20221208.gappssmtp.com; s=20221208; t=1689783627; x=1692375627;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=vE6Is2eLQJVnSm6mxat9UkFt1cQr6vv9ra4Rn8lKBE0=;
-        b=qksWaB2bygJNidQYthcrJNS02xpeqYLu6aMgPGpSq9KEGxS7jz/OuskaD9jEg7Yg+i
-         Z35DUqXlyewAdQwD7GoWPpq+LALDzyDpnuLM/Xc66xRO7BrtTjMbKw9/6GBAd5P0hhn7
-         9hwLzjr0yprTOqdmkb8zUa7NliYfyoMfSznzCqZx0bANQoB9xyyH1BnZhkFfNZvd1htc
-         W6Kez4kR3Qa7oLc/XT4vWbej9BvrgznaE2F9PWt2vFCwNWjOu/ny8Ecc1BgiKXWjEywk
-         niOTVi36B4h9pBTuI4zNgRRj+H48V3VkWyFPdoilYmYbsQLFsGTY3kQFMT0N0VCZKzAM
-         CIlw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689783627; x=1692375627;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=vE6Is2eLQJVnSm6mxat9UkFt1cQr6vv9ra4Rn8lKBE0=;
-        b=IaRiFis/aoyWADKwo05l5h1ZAGZK4R/s87OHxehK3eHBATOobANuWjrM3JE8t0puFz
-         Pa1ju+d10+871zaKMSelTo0F2S1poI3+CoKM2CWt7PLEHAHZ8gJ/4/RGYiwoIdHq4MqU
-         koksTqPGwKJPISfsndyql4jWfhN81RU31kBPiF2WtOEGbWoZAkreqlBaJP4QkdcPum5C
-         J9C7C/EUTB+NxmwB1LyQvnCBavPZVR6ZzafLLi4iuqr4m0Fk07zuNP9arPVbd6PpUwjd
-         37ToRyBIe4c7MJury+6HLQW2NHMM7liHSLBSHBrNT/H4Uw99JD3LcIrsWWNRU9W2S8rF
-         Yr8w==
-X-Gm-Message-State: ABy/qLa6uzta6/pmVVqijjayzaLyZfMYrGUVwZ4NPl0MH07nwEPlAw3Q
-        qcP7Ob/jD55Tq3gm5R72ekxgqeN35A542wPkRrxG2vuNFf1fbffI
-X-Google-Smtp-Source: APBJJlGpIthV9lGnDiiKD699N3tMkUVJfhAy5s4ewEBqQgEX3nuLSqZSPZfPWPx7d4ks1PRUi9leawzaFUPrpxAaw/8=
-X-Received: by 2002:a2e:3018:0:b0:2b5:7f93:b3b0 with SMTP id
- w24-20020a2e3018000000b002b57f93b3b0mr302705ljw.17.1689783627154; Wed, 19 Jul
- 2023 09:20:27 -0700 (PDT)
+        with ESMTP id S230127AbjGSQg4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 12:36:56 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51C6F2717;
+        Wed, 19 Jul 2023 09:36:32 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id AE14C61789;
+        Wed, 19 Jul 2023 16:36:27 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7F60C433C8;
+        Wed, 19 Jul 2023 16:36:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1689784586;
+        bh=T67KVuMsXJyOHPpyRG/bF4u+lVYth3Zf4FyYGoex53A=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Y3ZdEYbupgVsJzit/TJjMBMI1pQ8pnMPk2eY2TJHizVHcRhCCIs2G6wSKmru9CuYg
+         ruEp67kxjdVKQIPZVkMwSI6CdpryX0NZpAYAhYUDUruC6T9xnyuEMf2dXWHR4kmH3k
+         ewV2JPjapcDFamJ7uVoBOsUQ5oUAjoqYdB8sIQD9OXmyPECcbB7PxQXvDBxym+NuMm
+         J5WscmACVaQfmSU4drA+8IVI/cCN8A5AHBdzlsBrYvP5My+3Cg3Ej9st3hAK9Jtp6S
+         uvKnK/Cg/MX8z/aNRtrEtQAbBROe2du8KC3a2UsYabJm5jWi4G3npRk+0opcqGD520
+         SgmaXBE+V5bjg==
+Date:   Wed, 19 Jul 2023 17:36:21 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Pranavi Somisetty <pranavi.somisetty@amd.com>
+Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, michal.simek@amd.com, harini.katakam@amd.com,
+        git@amd.com, radhey.shyam.pandey@amd.com, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2] dt-bindings: net: xilinx_gmii2rgmii: Convert to json
+ schema
+Message-ID: <20230719-sizzling-heaving-bc802f2ed2ae@spud>
+References: <20230719061808.30967-1-pranavi.somisetty@amd.com>
 MIME-Version: 1.0
-References: <20230607170724.2016988-1-tharvey@gateworks.com>
- <20230607170724.2016988-2-tharvey@gateworks.com> <20230717002717.GI9559@dragon>
- <CAJ+vNU2Wn0jf8QyZsGiw3f=XThZEfXajhGJTmZz2mnJXgprAhQ@mail.gmail.com> <20230719015750.GR9559@dragon>
-In-Reply-To: <20230719015750.GR9559@dragon>
-From:   Tim Harvey <tharvey@gateworks.com>
-Date:   Wed, 19 Jul 2023 09:20:14 -0700
-Message-ID: <CAJ+vNU0fvi5hD40PPEa_hQjZoDb0yzxJf=5+B=R2GZoRcs2GeA@mail.gmail.com>
-Subject: Re: [PATCH 2/2] arm64: dts: freescale: Add imx8mp-venice-gw71xx-2x
-To:     Shawn Guo <shawnguo@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="ZZlRDUsAAGIHGb0l"
+Content-Disposition: inline
+In-Reply-To: <20230719061808.30967-1-pranavi.somisetty@amd.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 18, 2023 at 6:58=E2=80=AFPM Shawn Guo <shawnguo@kernel.org> wro=
-te:
->
-> On Tue, Jul 18, 2023 at 02:16:22PM -0700, Tim Harvey wrote:
-> > On Sun, Jul 16, 2023 at 5:27=E2=80=AFPM Shawn Guo <shawnguo@kernel.org>=
- wrote:
-> > >
-> > > On Wed, Jun 07, 2023 at 10:07:24AM -0700, Tim Harvey wrote:
-> > > > The Gateworks imx8mp-venice-gw71xx-2x consists of a SOM + baseboard=
-.
-> > > >
-> > > > The GW702x SOM contains the following:
-> > > >  - i.MX8M Plus SoC
-> > > >  - LPDDR4 memory
-> > > >  - eMMC Boot device
-> > > >  - Gateworks System Controller (GSC) with integrated EEPROM, button
-> > > >    controller, and ADC's
-> > > >  - PMIC
-> > > >  - SOM connector providing:
-> > > >   - eQoS GbE MII
-> > > >   - 1x SPI
-> > > >   - 2x I2C
-> > > >   - 4x UART
-> > > >   - 2x USB 3.0
-> > > >   - 1x PCI
-> > > >   - 1x SDIO (4-bit 3.3V)
-> > > >   - 1x SDIO (4-bit 3.3V/1.8V)
-> > > >   - GPIO
-> > > >
-> > > > The GW71xx Baseboard contains the following:
-> > > >  - GPS
-> > > >  - RJ45 GbE (eQoS)
-> > > >  - off-board I/O connector with UART, I2C, SPI, GPIO
-> > > >  - EERPOM
-> > > >  - PCIe clock generator
-> > > >  - full-length miniPCIe socket with PCI/USB3 (via mux) and USB2.0
-> > > >  - USB Type-C with USB 2.0 host and peripheral support
-> > > >  - Wide range DC input supply
-> > > >
-> > > > Signed-off-by: Tim Harvey <tharvey@gateworks.com>
-> > > > ---
-> > > >  arch/arm64/boot/dts/freescale/Makefile        |   1 +
-> > > >  .../dts/freescale/imx8mp-venice-gw71xx-2x.dts |  19 ++
-> > > >  .../dts/freescale/imx8mp-venice-gw71xx.dtsi   | 236 ++++++++++++++=
-++++
-> > > >  3 files changed, 256 insertions(+)
-> > > >  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-venice-gw7=
-1xx-2x.dts
-> > > >  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-venice-gw7=
-1xx.dtsi
-> > > >
-> > > > diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/bo=
-ot/dts/freescale/Makefile
-> > > > index 62f22b77b38b..b3bb823d0168 100644
-> > > > --- a/arch/arm64/boot/dts/freescale/Makefile
-> > > > +++ b/arch/arm64/boot/dts/freescale/Makefile
-> > > > @@ -101,6 +101,7 @@ dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-icore-mx8mp-=
-edimm2.2.dtb
-> > > >  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-msc-sm2s-ep1.dtb
-> > > >  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-phyboard-pollux-rdk.dtb
-> > > >  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-tqma8mpql-mba8mpxl.dtb
-> > > > +dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-venice-gw71xx-2x.dtb
-> > > >  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-venice-gw74xx.dtb
-> > > >  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-venice-gw7905-2x.dtb
-> > > >  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-verdin-nonwifi-dahlia.dtb
-> > > > diff --git a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw71xx-2x.=
-dts b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw71xx-2x.dts
-> > > > new file mode 100644
-> > > > index 000000000000..53120fc9cd7f
-> > > > --- /dev/null
-> > > > +++ b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw71xx-2x.dts
-> > > > @@ -0,0 +1,19 @@
-> > > > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> > > > +/*
-> > > > + * Copyright 2023 Gateworks Corporation
-> > > > + */
-> > > > +
-> > > > +/dts-v1/;
-> > > > +
-> > > > +#include "imx8mp.dtsi"
-> > > > +#include "imx8mp-venice-gw702x.dtsi"
-> > > > +#include "imx8mp-venice-gw71xx.dtsi"
-> > > > +
-> > > > +/ {
-> > > > +     model =3D "Gateworks Venice GW71xx-2x i.MX8MP Development Kit=
-";
-> > > > +     compatible =3D "gateworks,imx8mp-gw71xx-2x", "fsl,imx8mp";
-> > > > +
-> > > > +     chosen {
-> > > > +             stdout-path =3D &uart2;
-> > > > +     };
-> > > > +};
-> > > > diff --git a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw71xx.dts=
-i b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw71xx.dtsi
-> > > > new file mode 100644
-> > > > index 000000000000..86999f52d4b2
-> > > > --- /dev/null
-> > > > +++ b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw71xx.dtsi
-> > > > @@ -0,0 +1,236 @@
-> > > > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> > > > +/*
-> > > > + * Copyright 2023 Gateworks Corporation
-> > > > + */
-> > > > +
-> > > > +#include <dt-bindings/gpio/gpio.h>
-> > > > +#include <dt-bindings/leds/common.h>
-> > > > +#include <dt-bindings/phy/phy-imx8-pcie.h>
-> > > > +
-> > > > +/ {
-> > > > +     led-controller {
-> > > > +             compatible =3D "gpio-leds";
-> > > > +             pinctrl-names =3D "default";
-> > > > +             pinctrl-0 =3D <&pinctrl_gpio_leds>;
-> > > > +
-> > > > +             led-0 {
-> > > > +                     function =3D LED_FUNCTION_STATUS;
-> > > > +                     color =3D <LED_COLOR_ID_GREEN>;
-> > > > +                     gpios =3D <&gpio4 1 GPIO_ACTIVE_HIGH>;
-> > > > +                     default-state =3D "on";
-> > > > +                     linux,default-trigger =3D "heartbeat";
-> > > > +             };
-> > > > +
-> > > > +             led-1 {
-> > > > +                     function =3D LED_FUNCTION_STATUS;
-> > > > +                     color =3D <LED_COLOR_ID_RED>;
-> > > > +                     gpios =3D <&gpio4 5 GPIO_ACTIVE_HIGH>;
-> > > > +                     default-state =3D "off";
-> > > > +             };
-> > > > +     };
-> > > > +
-> > > > +     pcie0_refclk: pcie0-refclk {
-> > >
-> > > Can we name the node clock-xxx?
-> > >
-> > > > +             compatible =3D "fixed-clock";
-> > > > +             #clock-cells =3D <0>;
-> > > > +             clock-frequency =3D <100000000>;
-> > > > +     };
-> > > > +
-> > > > +     pps {
-> > > > +             compatible =3D "pps-gpio";
-> > > > +             pinctrl-names =3D "default";
-> > > > +             pinctrl-0 =3D <&pinctrl_pps>;
-> > > > +             gpios =3D <&gpio4 3 GPIO_ACTIVE_HIGH>;
-> > > > +             status =3D "okay";
-> > > > +     };
-> > > > +};
-> > > > +
-> > > > +/* off-board header */
-> > > > +&ecspi2 {
-> > > > +     pinctrl-names =3D "default";
-> > > > +     pinctrl-0 =3D <&pinctrl_spi2>;
-> > > > +     cs-gpios =3D <&gpio5 13 GPIO_ACTIVE_LOW>;
-> > > > +     status =3D "okay";
-> > > > +};
-> > > > +
-> > > > +&gpio4 {
-> > > > +     gpio-line-names =3D
-> > > > +             "", "", "", "",
-> > > > +             "", "", "", "",
-> > > > +             "dio1", "", "", "dio0",
-> > > > +             "", "", "pci_usb_sel", "",
-> > > > +             "", "", "", "",
-> > > > +             "", "", "", "",
-> > > > +             "dio3", "", "dio2", "",
-> > > > +             "pci_wdis#", "", "", "";
-> > > > +};
-> > > > +
-> > > > +&i2c2 {
-> > > > +     clock-frequency =3D <400000>;
-> > > > +     pinctrl-names =3D "default";
-> > > > +     pinctrl-0 =3D <&pinctrl_i2c2>;
-> > > > +     status =3D "okay";
-> > > > +
-> > > > +     accelerometer@19 {
-> > > > +             pinctrl-names =3D "default";
-> > > > +             pinctrl-0 =3D <&pinctrl_accel>;
-> > > > +             compatible =3D "st,lis2de12";
-> > > > +             reg =3D <0x19>;
-> > >
-> > > Can we start the property list from these two?
-> > >
-> > > > +             st,drdy-int-pin =3D <1>;
-> > > > +             interrupt-parent =3D <&gpio4>;
-> > > > +             interrupts =3D <21 IRQ_TYPE_LEVEL_LOW>;
-> > > > +             interrupt-names =3D "INT1";
-> > > > +     };
-> > > > +};
-> > > > +
-> > > > +&pcie_phy {
-> > > > +     fsl,refclk-pad-mode =3D <IMX8_PCIE_REFCLK_PAD_INPUT>;
-> > > > +     fsl,clkreq-unsupported;
-> > > > +     clocks =3D <&pcie0_refclk>;
-> > > > +     clock-names =3D "ref";
-> > > > +     status =3D "okay";
-> > > > +};
-> > > > +
-> > > > +&pcie {
-> > > > +     pinctrl-names =3D "default";
-> > > > +     pinctrl-0 =3D <&pinctrl_pcie0>;
-> > > > +     reset-gpio =3D <&gpio4 29 GPIO_ACTIVE_LOW>;
-> > > > +     status =3D "okay";
-> > > > +};
-> > > > +
-> > > > +/* GPS */
-> > > > +&uart1 {
-> > > > +     pinctrl-names =3D "default";
-> > > > +     pinctrl-0 =3D <&pinctrl_uart1>;
-> > > > +     status =3D "okay";
-> > > > +};
-> > > > +
-> > > > +/* off-board header */
-> > > > +&uart3 {
-> > > > +     pinctrl-names =3D "default";
-> > > > +     pinctrl-0 =3D <&pinctrl_uart3>;
-> > > > +     status =3D "okay";
-> > > > +};
-> > > > +
-> > > > +/* USB1 Type-C front panel */
-> > > > +&usb3_0 {
-> > > > +     pinctrl-names =3D "default";
-> > > > +     pinctrl-0 =3D <&pinctrl_usb1>;
-> > > > +     fsl,over-current-active-low;
-> > > > +     status =3D "okay";
-> > > > +};
-> > > > +
-> > > > +&usb3_phy0 {
-> > > > +     status =3D "okay";
-> > > > +};
-> > > > +
-> > > > +&usb_dwc3_0 {
-> > > > +     /* dual role is implemented but not a full featured OTG */
-> > > > +     adp-disable;
-> > > > +     hnp-disable;
-> > > > +     srp-disable;
-> > > > +     dr_mode =3D "otg";
-> > > > +     usb-role-switch;
-> > > > +     role-switch-default-mode =3D "peripheral";
-> > > > +     status =3D "okay";
-> > > > +
-> > > > +     connector {
-> > > > +             pinctrl-names =3D "default";
-> > > > +             pinctrl-0 =3D <&pinctrl_usbcon1>;
-> > > > +             compatible =3D "gpio-usb-b-connector", "usb-b-connect=
-or";
-> > >
-> > > Start the properties from 'compatible'?
-> > >
-> > > Shawn
-> > >
-> >
-> > Hi Shawn,
-> >
-> > My notes say that pinctrl should come first (if needed) followed by
-> > compatible, reg, other props, and finally status (if needed). Assuming
-> > I'm wrong about that where in the list should pinctrl be and is this
-> > documented anywhere for future reference?
->
-> It's more a recommended idiom than documented/hard rule.
->
-> - compatible
-> - reg
-> - general properties
-> - vendor specific properties
-> - status
->
 
-ok, thank you for the clarification.
+--ZZlRDUsAAGIHGb0l
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-I will submit a new version of:
-arm64: dts: freescale: Add imx8mp-venice-gw73xx-2x
-arm64: dts: freescale: Add imx8mp-venice-gw72xx-2x
-arm64: dts: freescale: Add imx8mp-venice-gw71xx-2x
-arm64: dts: freescale: Add imx8mm-venice-gw7905-0x
+On Wed, Jul 19, 2023 at 12:18:08AM -0600, Pranavi Somisetty wrote:
+> Convert the Xilinx GMII to RGMII Converter device tree binding
+> documentation to json schema.
+> This converter is usually used as gem <---> gmii2rgmii <---> external phy
+> and, it's phy-handle should point to the phandle of the external phy.
+>=20
+> Signed-off-by: Pranavi Somisetty <pranavi.somisetty@amd.com>
+> ---
+> Changes v2:
+> 1. Changed description for the property "reg".
+> 2. Added a reference to the description of "phy-handle" property.
 
-best regards,
+Seems fine to me, one /minor/ nit that I don't expect to be addressed.
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
-Tim
+Thanks,
+Conor.
+
+> diff --git a/Documentation/devicetree/bindings/net/xlnx,gmii-to-rgmii.yam=
+l b/Documentation/devicetree/bindings/net/xlnx,gmii-to-rgmii.yaml
+> new file mode 100644
+> index 000000000000..9d22382a64ba
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/xlnx,gmii-to-rgmii.yaml
+
+> +examples:
+> +  - |
+> +    mdio {
+> +        #address-cells =3D <1>;
+> +        #size-cells =3D <0>;
+> +        phy: ethernet-phy@0 {
+> +            reg =3D <0>;
+> +        };
+> +        gmiitorgmii@8 {
+> +            compatible =3D "xlnx,gmii-to-rgmii-1.0";
+> +            reg =3D <8>;
+> +            phy-handle =3D <&phy>;
+> +        };
+
+Ideally, add a blank line before child nodes.
+
+> +    };
+> --=20
+> 2.36.1
+>=20
+
+--ZZlRDUsAAGIHGb0l
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZLgRBQAKCRB4tDGHoIJi
+0pFDAQCmtiE2GnotCBnhox3kae5HrWkNtj3/Tv6uGBwnTLajtAEAiiBsXMRS3sfZ
+PMfmBowd0X1+f9ihnG6IfCkO/fQ2pgg=
+=Asfq
+-----END PGP SIGNATURE-----
+
+--ZZlRDUsAAGIHGb0l--
