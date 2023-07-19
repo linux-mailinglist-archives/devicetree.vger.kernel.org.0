@@ -2,53 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C2E587591D0
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 11:42:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D8C07591C9
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 11:41:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229604AbjGSJmh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jul 2023 05:42:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47394 "EHLO
+        id S229530AbjGSJlW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jul 2023 05:41:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46616 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230379AbjGSJm1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 05:42:27 -0400
-Received: from proxmox1.postmarketos.org (proxmox1.postmarketos.org [IPv6:2a01:4f8:a0:821d::2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 882C110D4;
-        Wed, 19 Jul 2023 02:42:26 -0700 (PDT)
-Received: from lexxgentoo.devos.club (unknown [77.239.252.99])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by proxmox1.postmarketos.org (Postfix) with ESMTPSA id C0D09140121;
-        Wed, 19 Jul 2023 09:42:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
-        s=donut; t=1689759745;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=meT+EQqITVdz8Y3mT8iZaYriOiIgKIZ/SrythyqBZfM=;
-        b=g3fQ6MVH+lALdS5cvw4i4MMYv63vT6jEulktXl0irVwxNfF2piaumqExGRhLaGR2v8XLHP
-        G9i04ioGvtwSplIICaNIUFncOeSXLnIcRLQ5oznIk+GnQ9qZnW1L5vHvSY5Mdb6snMyLXG
-        plmxYKjxXmB5kKFV3GnaqiY84L8KsgQ=
-From:   Alexey Minnekhanov <alexeymin@postmarketos.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229639AbjGSJlW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 05:41:22 -0400
+Received: from smtp.dudau.co.uk (dliviu.plus.com [80.229.23.120])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id B1814EC;
+        Wed, 19 Jul 2023 02:41:20 -0700 (PDT)
+Received: from mail.dudau.co.uk (bart.dudau.co.uk [192.168.14.2])
+        by smtp.dudau.co.uk (Postfix) with SMTP id A2F6E41A7003;
+        Wed, 19 Jul 2023 10:41:18 +0100 (BST)
+Received: by mail.dudau.co.uk (sSMTP sendmail emulation); Wed, 19 Jul 2023 10:41:18 +0100
+Date:   Wed, 19 Jul 2023 10:41:18 +0100
+From:   Liviu Dudau <liviu@dudau.co.uk>
+To:     Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc:     linux-phy@lists.infradead.org, linux-rockchip@lists.infradead.org,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+        Rob Herring <robh@kernel.org>,
+        Serge Semin <fancer.lancer@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Alexey Minnekhanov <alexeymin@postmarketos.org>
-Subject: [PATCH v3] arm64: dts: qcom: sdm630: Add support for modem remoteproc
-Date:   Wed, 19 Jul 2023 12:34:58 +0300
-Message-ID: <20230719093458.2668842-1-alexeymin@postmarketos.org>
-X-Mailer: git-send-email 2.41.0
+        Heiko Stuebner <heiko@sntech.de>,
+        Shawn Lin <shawn.lin@rock-chips.com>,
+        Simon Xue <xxm@rock-chips.com>, John Clark <inindev@gmail.com>,
+        Qu Wenruo <wqu@suse.com>, devicetree@vger.kernel.org,
+        linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, kernel@collabora.com
+Subject: Re: [PATCH v2 2/2] arm64: dts: rockchip: rk3588: add PCIe3 support
+Message-ID: <ZLevvl+VKBxe1kQu@bart.dudau.co.uk>
+References: <20230717173512.65169-1-sebastian.reichel@collabora.com>
+ <20230717173512.65169-3-sebastian.reichel@collabora.com>
+ <ZLarQUvUK3v3m6Cg@bart.dudau.co.uk>
+ <20230718160137.sfitnkl6gmyi75jx@mercury.elektranox.org>
+ <ZLbqPB5yP7Kn6FT6@bart.dudau.co.uk>
+ <20230718210601.6hrmnl5lbtl6vinp@mercury.elektranox.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20230718210601.6hrmnl5lbtl6vinp@mercury.elektranox.org>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -56,90 +60,53 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Modem subsystem in SDM630/660 is similar to MSM8998 and
-device tree node for it is based on the one from msm8998.dtsi.
+Hi Sebastian,
 
-Signed-off-by: Alexey Minnekhanov <alexeymin@postmarketos.org>
----
+On Tue, Jul 18, 2023 at 11:06:01PM +0200, Sebastian Reichel wrote:
+> Hi,
+> 
+> On Tue, Jul 18, 2023 at 08:38:36PM +0100, Liviu Dudau wrote:
+> > On Tue, Jul 18, 2023 at 06:01:37PM +0200, Sebastian Reichel wrote:
+> > > On Tue, Jul 18, 2023 at 04:09:53PM +0100, Liviu Dudau wrote:
+> > > > On Mon, Jul 17, 2023 at 07:35:12PM +0200, Sebastian Reichel wrote:
+> > > > >  	pipe_phy1_grf: syscon@fd5c0000 {
+> > > > >  		compatible = "rockchip,rk3588-pipe-phy-grf", "syscon";
+> > > > >  		reg = <0x0 0xfd5c0000 0x0 0x100>;
+> > > > 
+> > > > What tree is based this on? Even after applying your PCIe2 series I don't have the above
+> > > > node so the patch doesn't apply to mainline.
+> > > 
+> > > You are missing naneng-combphy support:
+> > > 
+> > > https://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.git/commit/?h=v6.6-armsoc/dts64&id=6ebd55b3bba383e0523b0c014f17c97f3ce80708
+> > 
+> > Thanks! It looks like the PCIe2 commit that adds support to rk3588(s).dtsi
+> > files is also missing an #include <dt-bindings/phy/phy.h> for the PHY_TYPE_PCIE
+> > use, otherwise the DTS fail to compile.
+> 
+> Yes, that's also already in linux-next:
+> 
+> https://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.git/commit/?h=v6.6-armsoc/dts64&id=34d6c15d8e86256ef2456c604b1c8d8242720871
 
-V3: Use memory-region property to specify memory regions, instead
-    of using "mba" and "mpss" subnodes.
+I'm reading that as: "relevant patch that this series depends on has already
+been added to the tree that's going to pull this PCIe2 series so all will be
+good". Otherwise I think there should be some mention in the cover letter
+about dependencies, so that people like me don't report issues just because
+they are not using the linux-rockchip tree by default.
 
-V2 link: https://lore.kernel.org/lkml/20230621175046.61521-3-alexeymin@postmarketos.org/
+Many thanks for the quick answers and the links to fix my tree.
 
- arch/arm64/boot/dts/qcom/sdm630.dtsi | 59 ++++++++++++++++++++++++++++
- 1 file changed, 59 insertions(+)
+Best regards,
+Liviu
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm630.dtsi b/arch/arm64/boot/dts/qcom/sdm630.dtsi
-index 2136ded22f7e..797625cf78ac 100644
---- a/arch/arm64/boot/dts/qcom/sdm630.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm630.dtsi
-@@ -1032,6 +1032,65 @@ data-pins {
- 			};
- 		};
- 
-+		remoteproc_mss: remoteproc@4080000 {
-+			compatible = "qcom,sdm660-mss-pil";
-+			reg = <0x04080000 0x100>, <0x04180000 0x40>;
-+			reg-names = "qdsp6", "rmb";
-+
-+			interrupts-extended = <&intc GIC_SPI 448 IRQ_TYPE_EDGE_RISING>,
-+					      <&modem_smp2p_in 0 IRQ_TYPE_EDGE_RISING>,
-+					      <&modem_smp2p_in 1 IRQ_TYPE_EDGE_RISING>,
-+					      <&modem_smp2p_in 2 IRQ_TYPE_EDGE_RISING>,
-+					      <&modem_smp2p_in 3 IRQ_TYPE_EDGE_RISING>,
-+					      <&modem_smp2p_in 7 IRQ_TYPE_EDGE_RISING>;
-+			interrupt-names = "wdog",
-+					  "fatal",
-+					  "ready",
-+					  "handover",
-+					  "stop-ack",
-+					  "shutdown-ack";
-+
-+			clocks = <&gcc GCC_MSS_CFG_AHB_CLK>,
-+				 <&gcc GCC_BIMC_MSS_Q6_AXI_CLK>,
-+				 <&gcc GCC_BOOT_ROM_AHB_CLK>,
-+				 <&gcc GPLL0_OUT_MSSCC>,
-+				 <&gcc GCC_MSS_SNOC_AXI_CLK>,
-+				 <&gcc GCC_MSS_MNOC_BIMC_AXI_CLK>,
-+				 <&rpmcc RPM_SMD_QDSS_CLK>,
-+				 <&rpmcc RPM_SMD_XO_CLK_SRC>;
-+			clock-names = "iface",
-+				      "bus",
-+				      "mem",
-+				      "gpll0_mss",
-+				      "snoc_axi",
-+				      "mnoc_axi",
-+				      "qdss",
-+				      "xo";
-+
-+			qcom,smem-states = <&modem_smp2p_out 0>;
-+			qcom,smem-state-names = "stop";
-+
-+			resets = <&gcc GCC_MSS_RESTART>;
-+			reset-names = "mss_restart";
-+
-+			qcom,halt-regs = <&tcsr_regs_1 0x3000 0x5000 0x4000>;
-+
-+			power-domains = <&rpmpd SDM660_VDDCX>,
-+					<&rpmpd SDM660_VDDMX>;
-+			power-domain-names = "cx", "mx";
-+
-+			memory-region = <&mba_region>, <&mpss_region>;
-+
-+			status = "disabled";
-+
-+			glink-edge {
-+				interrupts = <GIC_SPI 452 IRQ_TYPE_EDGE_RISING>;
-+				label = "modem";
-+				qcom,remote-pid = <1>;
-+				mboxes = <&apcs_glb 15>;
-+			};
-+		};
-+
- 		adreno_gpu: gpu@5000000 {
- 			compatible = "qcom,adreno-508.0", "qcom,adreno";
- 
+> 
+> Greetings,
+> 
+> -- Sebastian
+
+
+
 -- 
-2.41.0
-
+Everyone who uses computers frequently has had, from time to time,
+a mad desire to attack the precocious abacus with an axe.
+       	   	      	     	  -- John D. Clark, Ignition!
