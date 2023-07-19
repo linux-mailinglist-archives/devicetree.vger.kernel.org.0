@@ -2,155 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D42A8759298
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 12:18:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EC1427592A7
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 12:21:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229780AbjGSKSy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jul 2023 06:18:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40860 "EHLO
+        id S230100AbjGSKVF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jul 2023 06:21:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42938 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230261AbjGSKSc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 06:18:32 -0400
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5648926A2
-        for <devicetree@vger.kernel.org>; Wed, 19 Jul 2023 03:18:22 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-992ca792065so918524166b.2
-        for <devicetree@vger.kernel.org>; Wed, 19 Jul 2023 03:18:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689761901; x=1692353901;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=mKO0TJLvmVWRaDSVCf4u46x2zB0AJ6CPfOrU5hIDQ3Y=;
-        b=BR1hVXRSuD4ShJ+2shzyRVpPzUwQ2bQibyB4BYSlcbFc52vBeYKKg/3XruHheKP6DJ
-         d7j0HvFPJ4HoSsD5G/+Tom6obrMBXJJRqvU0ZmzLFp/gai2NUuPxfgFMuwgM+AyxSAR8
-         O6lEtq9tLcB8jy0kdcQU2+o4ky/YuaiOXtA1HRXi4HsmlsswiZykZ5Vuw3MI6psmBvc3
-         qe2h68ytlnA4cPfEzFxzFTzXmazg4zch4j/NFM2KYuYTyOuCAczz7tC/0UyHyNrXS1Ab
-         B6pNSW42fFtO5q/fNJEAjAa6LLCjhdt7iAHIiUpfuxmC384aMNgpY+AAJDTvo5Rebm8j
-         M8nQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689761901; x=1692353901;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=mKO0TJLvmVWRaDSVCf4u46x2zB0AJ6CPfOrU5hIDQ3Y=;
-        b=kW3BNck8QtDewb+ihhu1T4nTjyVw9eQXNKiBuOrrHfvX7em0RQa8pfH2Xl2lBMfg4J
-         uKyXTzXzhf6C8dloN7sDQ8X9N+tGUp9D3M9R0Vyoc+MKRo0+ZPRfY+LpK0H8o/OkXgr5
-         11DGoXAKpFDHv6mHn+KEbFqDjUYju355uNt0BRgoR3dj1jbn5d9QpG2wfuZzbw91LSZJ
-         0ij0skao2pRoptHZ5sGJqCxNWI5kv5lOb4czgqmoismA+M6AvlFL/b4l1D9Yh2HYP0Tx
-         COGPqfFCeCDgj1Vxwb2NNrmYvUrX3TsBto+cDojm3/5vcYqkGFlxVVUmK86GblSo6a9T
-         HzwQ==
-X-Gm-Message-State: ABy/qLY79Uk/ve5h6m/5rZHXsDAoHkAaxj0XwcUjFHSyWgISqKzVAVu4
-        Jt2xKiy5CBmF8As1Wuk90bLoOg==
-X-Google-Smtp-Source: APBJJlGGiRnE6u8Sqrg1Q0TQNzDkrm36pjdp1JMjTh3lj/teWT2U5GviPaKCCOUI2izgODHqGrDgbw==
-X-Received: by 2002:a17:907:3f28:b0:991:d9cb:247d with SMTP id hq40-20020a1709073f2800b00991d9cb247dmr2154650ejc.57.1689761900793;
-        Wed, 19 Jul 2023 03:18:20 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id jt1-20020a170906dfc100b00992b66e54e9sm2111063ejc.214.2023.07.19.03.18.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 19 Jul 2023 03:18:20 -0700 (PDT)
-Message-ID: <ebc27dd7-93fe-4d8e-8b8c-4fc1d52cc275@linaro.org>
-Date:   Wed, 19 Jul 2023 12:18:17 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v3] arm64: dts: qcom: sdm630: Add support for modem
- remoteproc
-Content-Language: en-US
-To:     Alexey Minnekhanov <alexeymin@postmarketos.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        with ESMTP id S229891AbjGSKVE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 06:21:04 -0400
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF64C1FC1;
+        Wed, 19 Jul 2023 03:21:01 -0700 (PDT)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id 3AC1724DBBD;
+        Wed, 19 Jul 2023 18:21:00 +0800 (CST)
+Received: from EXMBX171.cuchost.com (172.16.6.91) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 19 Jul
+ 2023 18:21:00 +0800
+Received: from ubuntu.localdomain (113.72.147.86) by EXMBX171.cuchost.com
+ (172.16.6.91) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 19 Jul
+ 2023 18:20:59 +0800
+From:   Minda Chen <minda.chen@starfivetech.com>
+To:     Daire McNamara <daire.mcnamara@microchip.com>,
+        Conor Dooley <conor@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
-References: <20230719093458.2668842-1-alexeymin@postmarketos.org>
- <2c1c69bf-3cd5-4d68-43db-696ce0f15197@linaro.org>
- <1f8cbc00-9602-486d-b3c9-9c82f3b6c8df@postmarketos.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1f8cbc00-9602-486d-b3c9-9c82f3b6c8df@postmarketos.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>
+CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-riscv@lists.infradead.org>, <linux-pci@vger.kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Mason Huo <mason.huo@starfivetech.com>,
+        Leyfoon Tan <leyfoon.tan@starfivetech.com>,
+        Kevin Xie <kevin.xie@starfivetech.com>,
+        Minda Chen <minda.chen@starfivetech.com>
+Subject: [PATCH v1 0/9] Refactoring Microchip PolarFire PCIe driver
+Date:   Wed, 19 Jul 2023 18:20:48 +0800
+Message-ID: <20230719102057.22329-1-minda.chen@starfivetech.com>
+X-Mailer: git-send-email 2.17.1
+MIME-Version: 1.0
+Content-Type: text/plain
+X-Originating-IP: [113.72.147.86]
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX171.cuchost.com
+ (172.16.6.91)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/07/2023 12:10, Alexey Minnekhanov wrote:
-> On 19.07.2023 12:45, Krzysztof Kozlowski wrote:
->> On 19/07/2023 11:34, Alexey Minnekhanov wrote:
->>> Modem subsystem in SDM630/660 is similar to MSM8998 and
->>> device tree node for it is based on the one from msm8998.dtsi.
->>>
->>> Signed-off-by: Alexey Minnekhanov <alexeymin@postmarketos.org>
->>> ---
->>>
->>> V3: Use memory-region property to specify memory regions, instead
->>>      of using "mba" and "mpss" subnodes.
->>>
->>> V2 link: https://lore.kernel.org/lkml/20230621175046.61521-3-alexeymin@postmarketos.org/
->>>
->>>   arch/arm64/boot/dts/qcom/sdm630.dtsi | 59 ++++++++++++++++++++++++++++
->>>   1 file changed, 59 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/qcom/sdm630.dtsi b/arch/arm64/boot/dts/qcom/sdm630.dtsi
->>> index 2136ded22f7e..797625cf78ac 100644
->>> --- a/arch/arm64/boot/dts/qcom/sdm630.dtsi
->>> +++ b/arch/arm64/boot/dts/qcom/sdm630.dtsi
->>> @@ -1032,6 +1032,65 @@ data-pins {
->>>   			};
->>>   		};
->>>   
->>> +		remoteproc_mss: remoteproc@4080000 {
->>> +			compatible = "qcom,sdm660-mss-pil";
->>
->> Missing bindings so standard comment:
->>
->> It does not look like you tested the DTS against bindings. Please run
->> `make dtbs_check` (see
->> Documentation/devicetree/bindings/writing-schema.rst or
->> https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
->> for instructions).
->>
->> Best regards,
->> Krzysztof
->>
-> 
-> Bindings are already in linux-next/master since 
-> https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=ed50ac266f67829d4732c8ca61ef1953c2cc63d0 
+This patchset final purpose is add PCIe driver for StarFive JH7110 SoC.
+JH7110 using PLDA XpressRICH PCIe IP. Microchip PolarFire Using the
+same IP and have commit their codes, which are mixed with PLDA
+controller codes and Microchip platform codes.
 
-Hm, I checked a two days older next. Provide explanations or links if
-you resend DTS in such case.
+For re-use the PLDA controller codes, I request refactoring microchip
+codes, move PLDA common codes to PLDA files.
+Desigware and Cadence is good example for refactoring codes.
 
-> .
-> 
-> And I did check DTS against bindings, it spat 2 warnings about new 
-> remoteproc node, which do not make much sense to me:
-> 
->    DTC_CHK arch/arm64/boot/dts/qcom/sdm660-xiaomi-lavender.dtb
->    .../arch/arm64/boot/dts/qcom/sdm660-xiaomi-lavender.dtb: 
-> remoteproc@4080000: qcom,halt-regs:0: [43] is too short
+So first step is extract the PLDA common codes from microchip, and
+refactoring the microchip codes.(patch1 - 4)
+Then add the PLDA platform codes. (patch5, 6)
+At last, add Starfive codes. (patch7 - 9)
 
-That's ok.
+This patchset is base on v6.5-rc1
 
->          From schema: 
-> .../Documentation/devicetree/bindings/remoteproc/qcom,msm8996-mss-pil.yaml
->    .../arch/arm64/boot/dts/qcom/sdm660-xiaomi-lavender.dtb: 
-> remoteproc@4080000: memory-region: [[45], [46]] is too short
->          From schema: 
-> .../Documentation/devicetree/bindings/remoteproc/qcom,msm8996-mss-pil.yaml
+patch1 is add PLDA XpressRICH PCIe host common properties dt-binding
+       docs, most are extracted from microchip,pcie-host.yaml
+patch2 is add plda,xpressrich-pcie-common.yaml(patch1 file) reference
+       and remove the PLDA common properties.
+patch3 is extracting the PLDA common codes from microchip Polarfire PCIe
+       codes. The change list in the commit message.
+patch4 is move microchip driver to PLDA directory and remove the PLDA
+       common codes.
+patch5 is add PLDA Xpressrich platform driver dt-binding doc.
+patch6 is PLDA Xpressrich platform driver.
+patch7 is add StarFive JH7110 PCIe dt-binding doc.
+patch8 is add StarFive JH7110 Soc PCIe platform codes.
+patch9 is StarFive JH7110 device tree configuration.
 
-This needs fixes. The binding lists expected memory regions and you do
-not have three of them.
+I have noticed that Daire have changed microchip's codes.
+https://patchwork.kernel.org/project/linux-pci/cover/20230630154859.2049521-1-daire.mcnamara@microchip.com/
+I have changed patch3 and patch4 base on their commits. StarFive
+PCIe driver still can work. But their codes is under reviewed and 
+maybe changing. Do not base on their changes first.
+I will base on their commit to change patch3 and patch4 as soon as
+their commits are accepted.
 
-Best regards,
-Krzysztof
+List below is old patchset and is dropped, which is non-refractored version.
+https://patchwork.kernel.org/project/linux-pci/cover/20230406111142.74410-1-minda.chen@starfivetech.com/
+
+Minda Chen (9):
+  dt-bindings: PCI: Add PLDA XpressRICH PCIe host common properties
+  dt-bindings: PCI: microchip: Remove the PLDA common properties
+  PCI: PLDA: Get PLDA common codes from Microchip PolarFire host
+  PCI: microchip: Move PCIe driver to PLDA directory
+  dt-bindings: PLDA: Add PLDA XpressRICH PCIe host controller
+  PCI: PLDA: Add host conroller platform driver
+  dt-bindings: PCI: Add StarFive JH7110 PCIe controller
+  PCI: PLDA: starfive: Add JH7110 PCIe controller
+  riscv: dts: starfive: add PCIe dts configuration for JH7110
+
+ .../bindings/pci/microchip,pcie-host.yaml     |  45 +-
+ .../pci/plda,xpressrich-pcie-common.yaml      |  72 ++
+ .../pci/plda,xpressrich-pcie-host.yaml        |  66 ++
+ .../bindings/pci/starfive,jh7110-pcie.yaml    | 138 ++++
+ MAINTAINERS                                   |  19 +-
+ .../jh7110-starfive-visionfive-2.dtsi         |  44 ++
+ arch/riscv/boot/dts/starfive/jh7110.dtsi      |  88 +++
+ drivers/pci/controller/Kconfig                |   9 +-
+ drivers/pci/controller/Makefile               |   2 +-
+ drivers/pci/controller/plda/Kconfig           |  35 +
+ drivers/pci/controller/plda/Makefile          |   5 +
+ .../{ => plda}/pcie-microchip-host.c          | 594 ++--------------
+ drivers/pci/controller/plda/pcie-plda-host.c  | 665 ++++++++++++++++++
+ drivers/pci/controller/plda/pcie-plda-plat.c  |  64 ++
+ drivers/pci/controller/plda/pcie-plda.h       | 230 ++++++
+ drivers/pci/controller/plda/pcie-starfive.c   | 415 +++++++++++
+ 16 files changed, 1885 insertions(+), 606 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pci/plda,xpressrich-pcie-common.yaml
+ create mode 100644 Documentation/devicetree/bindings/pci/plda,xpressrich-pcie-host.yaml
+ create mode 100644 Documentation/devicetree/bindings/pci/starfive,jh7110-pcie.yaml
+ create mode 100644 drivers/pci/controller/plda/Kconfig
+ create mode 100644 drivers/pci/controller/plda/Makefile
+ rename drivers/pci/controller/{ => plda}/pcie-microchip-host.c (50%)
+ create mode 100644 drivers/pci/controller/plda/pcie-plda-host.c
+ create mode 100644 drivers/pci/controller/plda/pcie-plda-plat.c
+ create mode 100644 drivers/pci/controller/plda/pcie-plda.h
+ create mode 100644 drivers/pci/controller/plda/pcie-starfive.c
+
+
+base-commit: 06c2afb862f9da8dc5efa4b6076a0e48c3fbaaa5
+-- 
+2.17.1
 
