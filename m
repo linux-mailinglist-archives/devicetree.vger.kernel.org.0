@@ -2,94 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F0FC87590C5
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 11:00:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 01C35759119
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 11:05:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229928AbjGSJAp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jul 2023 05:00:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48458 "EHLO
+        id S231202AbjGSJFE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jul 2023 05:05:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50726 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229644AbjGSJAo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 05:00:44 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59D691724
-        for <devicetree@vger.kernel.org>; Wed, 19 Jul 2023 02:00:43 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-992e22c09edso802374266b.2
-        for <devicetree@vger.kernel.org>; Wed, 19 Jul 2023 02:00:43 -0700 (PDT)
+        with ESMTP id S231150AbjGSJEp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 05:04:45 -0400
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E6442100
+        for <devicetree@vger.kernel.org>; Wed, 19 Jul 2023 02:04:04 -0700 (PDT)
+Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-51e6113437cso9046719a12.2
+        for <devicetree@vger.kernel.org>; Wed, 19 Jul 2023 02:04:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689757242; x=1692349242;
+        d=linaro.org; s=google; t=1689757409; x=1692349409;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=hGLn3zlUYGC3HAenVHI+FLwS/egG4QY8bCJe/wQjE9s=;
-        b=P8wBGEOV0EZ2cWsEJlOqmy4OCGrKLtNkdO9EdOIwL94XDD8WkJu7M7czAY4rSRQQKi
-         VgJxwdAwU6UdUuf1dB/+kKfzmKwQUugYSX/gUEmSzzZxNyOgACxjSv1iLSgqhprDRbsI
-         YrpRPfffhMeupZmYIU6j5f1fEacOZPPggkel4Wlb+PNHM4Nc169iMyhr2MqHqC3KTepK
-         mG2X7WFMc7uiVflNQr43Rw3sDUOWfZp7CP5SCpyrSnCKaQ3so5K1ao73FJD27Qo3//4b
-         wQqXdnCmbQ5XaLyOqKuImwwXUqAJV6kL/ejjon6tdXPneAAx/SDCjZdOjpvHhyHmmUfe
-         yDDA==
+        bh=F27XqzzW7q33Wp2g/zPa0ZjiAOOQFuYmftfd3XIZhAs=;
+        b=of+NxapxRHk7sPoO2GDjV8/dEpSvL+JPj+b3TQjro2J/OONXL5F24nML0veN2dbGd7
+         hbztLZJA27hKTQ7P1ZoRp3y1FqdLDV9zZ+YWjW5NcDZC9WurReshTLW/p5XO6Iww8uru
+         yu70gS37m0NWvGbqazmD63IYfgHLbXpZ6jFySLeCIXLotmNowGErMHMX7mrV3r9+at4t
+         ZZz2s+QZPuRK84YAMNb7/usoo727fiFhySVaTbmx6ofNWXjdfqSx3OFfY10Adcmsxe3L
+         IrautOd9Q/Dqa6u0z8iEffKk4dexRMYNG3Be43T9d/9SULY+6bW0U3YJhWlMaw9v6ODL
+         fOjg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689757242; x=1692349242;
+        d=1e100.net; s=20221208; t=1689757409; x=1692349409;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=hGLn3zlUYGC3HAenVHI+FLwS/egG4QY8bCJe/wQjE9s=;
-        b=WFZVNPSHan+/zGY5ARKvHFlY+Lah8s6CoRzGBqrlwhezRHzz4LiLY9yc7tE1v2Y55v
-         QkFS/0VxS01TziaFA+c7BsrLvd47HxvgyptbGJ/XprSvmOI4XiQpU9A6Bz0QszNZcQoh
-         ZKG/UMlMhApApQ6olUVF1VBUA3IT+FyprVZ2rxxGl0RAWz6xif3Ptl/ScBmOOaKYMk14
-         pppninQ9E28xUuY7iALQzYFtGlhWCsZUC54Ho7amGCKNDLduY4PfHLM+9gjgCmYDQ71U
-         DIVkO/gFvQMogH2tDvO9E3HqSXgaA5b9bzigGsnRnbeo7JsZzVveU9JOXdCocvTnsIU+
-         eXkA==
-X-Gm-Message-State: ABy/qLbLCiJU+lHeMbt59Cf2KN1UWsVejZlHSI4cwnehyaFsYyy5LtRQ
-        k/XJBEcSm5Fonel4L47qvaDldg==
-X-Google-Smtp-Source: APBJJlF/nPCcSflocMmfIEFExw1xC3CuTCgBsmD2ibTLiNnNJf5eee182e2+l9+9dXC9W+nO9fugcQ==
-X-Received: by 2002:a17:906:258:b0:991:d5ad:f1b1 with SMTP id 24-20020a170906025800b00991d5adf1b1mr2284833ejl.47.1689757241772;
-        Wed, 19 Jul 2023 02:00:41 -0700 (PDT)
+        bh=F27XqzzW7q33Wp2g/zPa0ZjiAOOQFuYmftfd3XIZhAs=;
+        b=DcmkbHRzP7azwXa+x8kySgInhd9cp+dzHA+lZzZGt+F2MJp7Z+5pT/AzbmWGw8Ieer
+         zqECfXNZfSC4xBxbZj5U4Yj92ETiHhUefps4Abat8vwPf4Nl7CuRDsd1GfcRxauqJ5ZG
+         STcUetJMlXmpqZVC6iRxqoTbKFsRPwxb45GOe+nhPCfyv0PijhovDniInexjBaQ28rNM
+         dCKqopaRf12ru2fImpMdMbx38glIzsY4wCVLNHWKuajvWWXs94+w2ayOyGiyh0eEH1dC
+         2HWwR4YnsocNmYN1cQx2mJo5Mbj6HoSZVoCrHho+8ngUq0Vjt1utI0q9LBDPgx8Rslc9
+         cwaA==
+X-Gm-Message-State: ABy/qLZSIadICE+6srbJ5JI0+szvqRDKNi7RlFhr5VZb5CPgE7tWUcqR
+        HpqGbSxOoqv6iaMhGa4JX6XjQQ==
+X-Google-Smtp-Source: APBJJlFrkRPClUnfh/JJzNMCAHo32TQNnRfm7MaFZDw62cPVBJ4liki4XCE9v26LoPpFN9NJk3rCAA==
+X-Received: by 2002:a17:906:1010:b0:993:d6e8:2386 with SMTP id 16-20020a170906101000b00993d6e82386mr1740257ejm.16.1689757408921;
+        Wed, 19 Jul 2023 02:03:28 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id l10-20020a170906414a00b0099304c10fd3sm2012920ejk.196.2023.07.19.02.00.40
+        by smtp.gmail.com with ESMTPSA id i18-20020a170906851200b009887c9b2812sm2074162ejx.8.2023.07.19.02.03.27
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 19 Jul 2023 02:00:41 -0700 (PDT)
-Message-ID: <b4b7c70f-799a-d27d-cba1-4c9d153183d2@linaro.org>
-Date:   Wed, 19 Jul 2023 11:00:39 +0200
+        Wed, 19 Jul 2023 02:03:28 -0700 (PDT)
+Message-ID: <8891e583-ac91-8650-7032-d18603bbbeb9@linaro.org>
+Date:   Wed, 19 Jul 2023 11:03:26 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
-Subject: Re: [PATCH 1/2] dt-bindings: power: qcom,rpmhpd: Add Generic RPMh PD
- indexes
+Subject: Re: [PATCH 0/7] Add various peripheral support for K3G
 Content-Language: en-US
-To:     Rohit Agarwal <quic_rohiagar@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
-Cc:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <1689744162-9421-1-git-send-email-quic_rohiagar@quicinc.com>
- <1689744162-9421-2-git-send-email-quic_rohiagar@quicinc.com>
+To:     Markuss Broks <markuss.broks@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230716220644.22158-1-markuss.broks@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1689744162-9421-2-git-send-email-quic_rohiagar@quicinc.com>
+In-Reply-To: <20230716220644.22158-1-markuss.broks@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/07/2023 07:22, Rohit Agarwal wrote:
-> Add Generic RPMh Power Domain indexes that can be used
-> for all the Qualcomm SoC henceforth.
-> The power domain indexes of these bindings are based on compatibility
-> with current targets like SM8[2345]50 targets.
+On 17/07/2023 00:05, Markuss Broks wrote:
+> This series adds support for some peripherals installed on
+> Samsung Galaxy S5 (SM-G900H). This includes the WiFi card,
+> GPIO keys, fuel gauge, touchkeys, notification LED and display.
+> Also documents the peripherals for which we currently lack drivers.
 > 
-> Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
-> Suggested-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
+> Markuss Broks (7):
+>   ARM: dts: exynos: k3g: Add WiFi card support
+>   ARM: dts: exynos: Add GPIO keys support for k3g
+>   ARM: dts: exynos: k3g: Add fuel gauge support
+>   ARM: dts: exynos: k3g: Add touchkeys support
+>   ARM: dts: exynos: k3g: Add notification LED support
+>   ARM: dts: exynos: k3g: Document the devices which are not supported
+>   ARM: dts: exynos: k3g: Add display support
+> 
+>  arch/arm/boot/dts/exynos5422-samsung-k3g.dts | 256 +++++++++++++++++++
 
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+I don't think you based your tree on anything recent. Looks like
+something 1 month old or even older. Please always, always base your
+patches on maintainer's tree or recent linux-next.
 
 Best regards,
 Krzysztof
