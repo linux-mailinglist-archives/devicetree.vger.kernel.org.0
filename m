@@ -2,148 +2,225 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0644B759182
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 11:26:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 169F47591A7
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 11:30:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230284AbjGSJ0M convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 19 Jul 2023 05:26:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37626 "EHLO
+        id S230041AbjGSJaP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jul 2023 05:30:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41574 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231337AbjGSJ0I (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 05:26:08 -0400
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49C7A1BFD;
-        Wed, 19 Jul 2023 02:25:55 -0700 (PDT)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id C567D80DF;
-        Wed, 19 Jul 2023 17:25:48 +0800 (CST)
-Received: from EXMBX068.cuchost.com (172.16.6.68) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 19 Jul
- 2023 17:25:48 +0800
-Received: from williamqiu-virtual-machine.starfivetech.com (171.223.208.138)
- by EXMBX068.cuchost.com (172.16.6.68) with Microsoft SMTP Server (TLS) id
- 15.0.1497.42; Wed, 19 Jul 2023 17:25:47 +0800
-From:   William Qiu <william.qiu@starfivetech.com>
-To:     <devicetree@vger.kernel.org>, <linux-spi@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>
-CC:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229803AbjGSJaJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 05:30:09 -0400
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E99782103;
+        Wed, 19 Jul 2023 02:29:47 -0700 (PDT)
+Received: by mail-lj1-x234.google.com with SMTP id 38308e7fff4ca-2b95eac836eso2657841fa.3;
+        Wed, 19 Jul 2023 02:29:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1689758986; x=1692350986;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=764uNe8yZm7sz/GcTw/EAZzTA3A1l6XubAU4wlTqzgY=;
+        b=WtyGSSSayNMA5EwsKLHMT7gcUldcLUXSqpGw+KdYui0lh+FIB1vY2k4PXLSduF0GWD
+         chr2tTiTNRGg8xrmwtd8oKk+K15fQ1j2X1wn1XtmCkLUU8vqd1vGLvsrXnI8TogNgwIv
+         T+gXc+22pY1SLFKH5NuPzFXTTB4aXO3sRUoi9U2u7U9utnnYeVNMQ0fZsDXJ9phvwBqn
+         F+cgzCL+lMcQXkil1Sp5LBtrgKHcG+QGv3n6NySnXGp9/0OHfUpo6KGBYDtyiMQ6wgIM
+         ObAyKv/iSXGScTTevNB8PvkrylihvPnitmBlj4kdAkXOb0ABy9vbw/Z3JAqgpgVQZ2YA
+         DfEw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689758986; x=1692350986;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=764uNe8yZm7sz/GcTw/EAZzTA3A1l6XubAU4wlTqzgY=;
+        b=R8wHN2W7qbo1thX71sQXTFxl25Gx33I3T1zqjHzdnlKQNiBWUSdPyRqFo48ByK9tTT
+         u9D3BdLdQb8S+BS0/dr4NleyNRt+Q3VJrsc5NpvHTiwtw0PFuBm+SPb1e8C4QASfkEiH
+         Za2Viyjnk1afRh0EHX46jB+sffdbH2e9qvrQo0E5JKPgq5MkdSCAhXjG7KUueeXqLsC8
+         YVIAT28TSb0rLNwQArQNSUv0Sro05NPpzV+5OOMSoKsr/2QhDPgiiHKZTsSeN0IEPWoz
+         w5XXeyXtblXNuM3B7n8ua5GnIyhrC22QSoEmhYJO14oSCEtfHJY2PUFGJ8R9Lc6JRUeE
+         hvgg==
+X-Gm-Message-State: ABy/qLbH2YO+2CmX+FzvmwRP8/N7Uxo9jzveZiCnHXNQ9Cfhipx95lbt
+        vemH3OeZD8vCPoT8k4zPLrn1CoGBym0=
+X-Google-Smtp-Source: APBJJlGKKMPrJ5vyhWPYN8A3dKaeAGyaNlSutPhGE3NWvOJfGAshqvIKHYQZekqG5NfAdBumoN63YA==
+X-Received: by 2002:a2e:9947:0:b0:2b5:8bb9:4dd6 with SMTP id r7-20020a2e9947000000b002b58bb94dd6mr1469742ljj.12.1689758985835;
+        Wed, 19 Jul 2023 02:29:45 -0700 (PDT)
+Received: from localhost.localdomain ([86.57.157.184])
+        by smtp.gmail.com with ESMTPSA id k12-20020a2ea28c000000b002b839578e56sm966154lja.11.2023.07.19.02.29.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 19 Jul 2023 02:29:45 -0700 (PDT)
+From:   Viktar Simanenka <viteosen@gmail.com>
+To:     David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Ziv Xu <ziv.xu@starfivetech.com>,
-        William Qiu <william.qiu@starfivetech.com>
-Subject: [PATCH v5 3/3] riscv: dts: starfive: Add QSPI controller node for StarFive JH7110 SoC
-Date:   Wed, 19 Jul 2023 17:25:45 +0800
-Message-ID: <20230719092545.1961401-4-william.qiu@starfivetech.com>
+        Viktar Simanenka <viteosen@gmail.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 1/2] dt-bindings: add vendor-prefixes and bindings for pcd8544 displays
+Date:   Wed, 19 Jul 2023 12:29:02 +0300
+Message-Id: <20230719092903.316452-1-viteosen@gmail.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230719092545.1961401-1-william.qiu@starfivetech.com>
-References: <20230719092545.1961401-1-william.qiu@starfivetech.com>
+In-Reply-To: <02704840-ce8b-4f41-f8bf-3f200ca95a10@linaro.org>
+References: <02704840-ce8b-4f41-f8bf-3f200ca95a10@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [171.223.208.138]
-X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX068.cuchost.com
- (172.16.6.68)
-X-YovoleRuleAgent: yovoleflag
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the quad spi controller node for the StarFive JH7110 SoC.
+On 2023-07-18 08:35, Krzysztof Kozlowski wrote:
+> Bindings are always separate patches.
+> Please run scripts/checkpatch.pl and fix reported warnings.
 
-Co-developed-by: Ziv Xu <ziv.xu@starfivetech.com>
-Signed-off-by: Ziv Xu <ziv.xu@starfivetech.com>
-Signed-off-by: William Qiu <william.qiu@starfivetech.com>
-Reviewed-by: Hal Feng <hal.feng@starfivetech.com>
+Added vendor-prefix to fix warning.
+
+> > + inverted:
+> > +    maxItems: 1
+> > +    description: Invert display colors
+> You described the desired Linux feature or behavior, not the actual
+> hardware. The bindings are about the latter, so instead you need to
+> rephrase the property and its description to match actual hardware
+> capabilities/features/configuration etc.
+
+revised the descriptions and added suitable types according to the
+documentation
+
+> Please run `make dt_binding_check` (see
+> Documentation/devicetree/bindings/writing-schema.rst for instructions).
+> Maybe you need to update your dtschema and yamllint.
+
+cleaned up unneccessary fields (leftovers) from tested binding
+
+On 2023-07-18 9:19, Rob Herring wrote:
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> date
+> Please check and re-submit after running the above command yourself.
+
+upgraded dtschema and found all the warnings. thanks. seems to be fixed
+
+Signed-off-by: Viktar Simanenka <viteosen@gmail.com>
 ---
- .../jh7110-starfive-visionfive-2.dtsi         | 36 +++++++++++++++++++
- arch/riscv/boot/dts/starfive/jh7110.dtsi      | 19 ++++++++++
- 2 files changed, 55 insertions(+)
+ .../bindings/display/philips,pcd8544.yaml     | 89 +++++++++++++++++++
+ .../devicetree/bindings/vendor-prefixes.yaml  |  2 +
+ 2 files changed, 91 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/philips,pcd8544.yaml
 
-diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-index fa0061eb33a7..7f2d41ccc52d 100644
---- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-@@ -143,6 +143,42 @@ &i2c6 {
- 	status = "okay";
- };
- 
-+&qspi {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	status = "okay";
+diff --git a/Documentation/devicetree/bindings/display/philips,pcd8544.yaml b/Documentation/devicetree/bindings/display/philips,pcd8544.yaml
+new file mode 100644
+index 000000000000..ac880d9d8cc1
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/philips,pcd8544.yaml
+@@ -0,0 +1,89 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/philips,pcd8544.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+	nor_flash: flash@0 {
-+		compatible = "jedec,spi-nor";
-+		reg = <0>;
-+		cdns,read-delay = <5>;
-+		spi-max-frequency = <12000000>;
-+		cdns,tshsl-ns = <1>;
-+		cdns,tsd2d-ns = <1>;
-+		cdns,tchsh-ns = <1>;
-+		cdns,tslch-ns = <1>;
++title: Philips PCD8544 LCD Display Controller
 +
-+		partitions {
-+			compatible = "fixed-partitions";
-+			#address-cells = <1>;
-+			#size-cells = <1>;
++maintainers:
++  - Viktar Simanenka <viteosen@gmail.com>
 +
-+			spl@0 {
-+				reg = <0x0 0x80000>;
-+			};
-+			uboot-env@f0000 {
-+				reg = <0xf0000 0x10000>;
-+			};
-+			uboot@100000 {
-+				reg = <0x100000 0x400000>;
-+			};
-+			reserved-data@600000 {
-+				reg = <0x600000 0x1000000>;
-+			};
-+		};
-+	};
-+};
++description: |
++  Philips PCD8544 LCD Display Controller with SPI control bus.
++  Monochrome 84x48 LCD displays, such as Nokia 5110/3310 LCDs.
++  May contain backlight LED.
 +
- &sysgpio {
- 	i2c0_pins: i2c0-0 {
- 		i2c-pins {
-diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-index ec2e70011a73..9740adc9df4e 100644
---- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-@@ -473,6 +473,25 @@ i2c6: i2c@12060000 {
- 			status = "disabled";
- 		};
- 
-+		qspi: spi@13010000 {
-+			compatible = "starfive,jh7110-qspi", "cdns,qspi-nor";
-+			reg = <0x0 0x13010000 0x0 0x10000>,
-+			      <0x0 0x21000000 0x0 0x400000>;
-+			interrupts = <25>;
-+			clocks = <&syscrg JH7110_SYSCLK_QSPI_REF>,
-+				 <&syscrg JH7110_SYSCLK_QSPI_AHB>,
-+				 <&syscrg JH7110_SYSCLK_QSPI_APB>;
-+			clock-names = "ref", "ahb", "apb";
-+			resets = <&syscrg JH7110_SYSRST_QSPI_APB>,
-+				 <&syscrg JH7110_SYSRST_QSPI_AHB>,
-+				 <&syscrg JH7110_SYSRST_QSPI_REF>;
-+			reset-names = "qspi", "qspi-ocp", "rstc_ref";
-+			cdns,fifo-depth = <256>;
-+			cdns,fifo-width = <4>;
-+			cdns,trigger-address = <0x0>;
-+			status = "disabled";
-+		};
++allOf:
++  - $ref: panel/panel-common.yaml#
++  - $ref: /schemas/spi/spi-peripheral-props.yaml#
 +
- 		syscrg: clock-controller@13020000 {
- 			compatible = "starfive,jh7110-syscrg";
- 			reg = <0x0 0x13020000 0x0 0x10000>;
++properties:
++  compatible:
++    oneOf:
++      - enum:
++          - philips,pcd8544
++
++  dc-gpios:
++    maxItems: 1
++    description: Data/Command selection pin (D/CX)
++
++  reset-gpios:
++    maxItems: 1
++    description: Display Reset pin (RST)
++
++  philips,inverted:
++    type: boolean
++    description: Display color inversion
++
++  philips,voltage-op:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    minimum: 0
++    maximum: 127
++    description: Display liquid crystal operation voltage
++
++  philips,bias:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    minimum: 0
++    maximum: 7
++    description: Display bias voltage system value
++
++  philips,temperature-coeff:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    minimum: 0
++    maximum: 3
++    description: Display temperature compensation coefficient
++
++required:
++  - compatible
++  - reg
++  - dc-gpios
++  - reset-gpios
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++
++    spi {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        display@0 {
++            compatible = "philips,pcd8544";
++            spi-max-frequency = <8000000>;
++            reg = <0>;
++
++            dc-gpios = <&pio 0 3 GPIO_ACTIVE_HIGH>; /* DC=PA3 */
++            reset-gpios = <&pio 0 1 GPIO_ACTIVE_HIGH>; /* RESET=PA1 */
++            backlight = <&backlight>;
++
++            philips,inverted;
++            philips,voltage-op = <0>;
++            philips,bias = <4>;
++            philips,temperature-coeff = <0>;
++        };
++    };
++
++...
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index af60bf1a6664..0c3844af6776 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -1037,6 +1037,8 @@ patternProperties:
+     description: Pervasive Displays, Inc.
+   "^phicomm,.*":
+     description: PHICOMM Co., Ltd.
++  "^philips,.*":
++    description: Koninklijke Philips N.V.
+   "^phytec,.*":
+     description: PHYTEC Messtechnik GmbH
+   "^picochip,.*":
 -- 
 2.34.1
 
