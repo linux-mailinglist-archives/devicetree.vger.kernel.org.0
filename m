@@ -2,103 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E660758B50
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 04:29:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D27B758B5E
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 04:32:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229709AbjGSC3q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jul 2023 22:29:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51932 "EHLO
+        id S229892AbjGSCcq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jul 2023 22:32:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53372 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229458AbjGSC3p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 22:29:45 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7AD71BC3;
-        Tue, 18 Jul 2023 19:29:44 -0700 (PDT)
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36J2TIxH007959;
-        Wed, 19 Jul 2023 02:29:18 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=+oBvnbE4xroSbYblQPs/8HL2djhB8Xgtq8WYGp/sZlM=;
- b=gqeFM/rhDgWUd2209z2WRBT19d41SxrQNrXet2O9odcevW+J9p4WwN8aUK5aaTbuqJ5A
- TKARAu5EURfu3HE0BOqD6DNmuwA8t9NOeIAl+PK9ss+729369gvylZK9apd8zzl7iZZ9
- 7NoVWKd1iV7Yww5fwpdwzFLC3dKmfINMPau8cQnNhB/VFdfQTk+yUqnizhWaSSlYG+bB
- Ojq8CJnG1C7GSN+gfTsh0oK/mlWfJuLLQIcoZmJ0cc/sULmkcF2kJEqR/vNTteUIr0zg
- 62NXmi46g6kEjQp05u7a8EpAqhdmm5xyDEQCqi9r5rgtV9wHrZUY656hRY8LamHSIxwj Hg== 
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3rx728r02k-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 19 Jul 2023 02:29:17 +0000
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-        by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 36J2SpRI022113
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 19 Jul 2023 02:28:51 GMT
-Received: from [10.110.33.212] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Tue, 18 Jul
- 2023 19:28:49 -0700
-Message-ID: <5ef4a5f7-27a0-f46c-fcbd-c3b8c93e0366@quicinc.com>
-Date:   Tue, 18 Jul 2023 19:28:49 -0700
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v13 10/24] gunyah: vm_mgr: Add/remove user memory regions
-To:     Will Deacon <will@kernel.org>
-CC:     Alex Elder <elder@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
-        Murali Nalajala <quic_mnalajal@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
-        Carl van Schaik <quic_cvanscha@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        "Arnd Bergmann" <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        "Bagas Sanjaya" <bagasdotme@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        "Catalin Marinas" <catalin.marinas@arm.com>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <qperret@google.com>
-References: <20230509204801.2824351-1-quic_eberman@quicinc.com>
- <20230509204801.2824351-11-quic_eberman@quicinc.com>
- <20230519115948.GB2637@willie-the-truck>
- <e22c31bd-10ed-f242-3e72-debf40e01e3c@quicinc.com>
- <20230605141839.GD21212@willie-the-truck>
- <3bd86221-ee2e-d157-009b-11f6ada98537@quicinc.com>
- <eae302ab-b508-cdc6-847f-dff6a6b82798@quicinc.com>
- <04605642-cad8-1701-ff41-63f2f00ba5f6@quicinc.com>
- <20230714121321.GB5597@willie-the-truck>
+        with ESMTP id S229452AbjGSCco (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 22:32:44 -0400
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2077.outbound.protection.outlook.com [40.107.21.77])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 274201BC3;
+        Tue, 18 Jul 2023 19:32:43 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=SyH2jrn64GwRKhxPw9502s/5vC0koI+Kx7plrxrtiiejRgqVOUXha73zzsLALITk+nHF1WHdNQ8V0T0kzfV3c03fEwno+yRJ08M/9/mKwFbh4/TG2mcc5PyRq9EEwNxEbXx20boMM4/TBm9wydCsuabdNojtYnuEvzh6UBx1leCGTea3QGj2pxiXsmZZ6hdhpqb8UhjlvXiNUItq8s4cQ0I+9CqFxNJ+ELVa+Nn+5miqQJtSvkdLsjf2o6PIaSmgxfeX8UByX4rpZhJ7GL+jLLZq3MqjQi1Cxgxr2nt6m+Xgspe9i4ca6ELJ1mlFXKwt0uF9+CvJu7rzcW3z3oNJBA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=8YC5TPtZzJl6vTkUQ2avJVMJehCoza8c/zJKFnCH5Gw=;
+ b=VXST8itexOkLczkQtWw2jTBtE1DOMquHUm8yDNegp5CpinxIU/QDYdSa+NBd63BMc3QKWPZUzlPYxaZXIvLEE06u+VhDyoQQuVARj4A54grtLNLYaVbh2xzNfH2bZ9MdUD8I+R9et/VZEmI+qO2d9JIaadN6KrUJVAOVEhCmQGWx++yBviizthZ50dnW5HfhPDqdhlfKn4Te5GqOBUZXMHIyldkDRXAlwRlBz/X2lUc0c76wXgPiON4hcHGEPkoTPsYdzCdbps5OzPOTcyGoM87xuXXVHqimSpq6K2/IerL1G/xgjtKlYXjFOUkggpDGD57BWro6ncaTJBq9TVvD0g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=8YC5TPtZzJl6vTkUQ2avJVMJehCoza8c/zJKFnCH5Gw=;
+ b=Y8mz5boEuzA7ejYhsXnVPWl94FXBOZ5aOnIinC67+2xsiLRDNqQpW0J2pz18xmfwXzS/cdTwRnnsN6YBkAZKJb1yXToBiRo85Su0y4jWb+7Moyy2uou5XV4LkQW9JkiOhwkfHvsOqlcwQgjo4dVWN6u8/s8KBQaaQZQDAnjLNUE=
+Received: from PAXPR04MB9448.eurprd04.prod.outlook.com (2603:10a6:102:2b1::21)
+ by DB9PR04MB9792.eurprd04.prod.outlook.com (2603:10a6:10:4c2::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6588.33; Wed, 19 Jul
+ 2023 02:32:40 +0000
+Received: from PAXPR04MB9448.eurprd04.prod.outlook.com
+ ([fe80::3505:c499:96d4:1429]) by PAXPR04MB9448.eurprd04.prod.outlook.com
+ ([fe80::3505:c499:96d4:1429%4]) with mapi id 15.20.6588.031; Wed, 19 Jul 2023
+ 02:32:39 +0000
+From:   Sandor Yu <sandor.yu@nxp.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     "andrzej.hajda@intel.com" <andrzej.hajda@intel.com>,
+        "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
+        "Laurent.pinchart@ideasonboard.com" 
+        <Laurent.pinchart@ideasonboard.com>,
+        "jonas@kwiboo.se" <jonas@kwiboo.se>,
+        "jernej.skrabec@gmail.com" <jernej.skrabec@gmail.com>,
+        "airlied@gmail.com" <airlied@gmail.com>,
+        "daniel@ffwll.ch" <daniel@ffwll.ch>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        "vkoul@kernel.org" <vkoul@kernel.org>,
+        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        Oliver Brown <oliver.brown@nxp.com>,
+        "alexander.stein@ew.tq-group.com" <alexander.stein@ew.tq-group.com>,
+        "sam@ravnborg.org" <sam@ravnborg.org>
+Subject: RE: [EXT] Re: [PATCH v7 3/7] dt-bindings: display: bridge: Add
+ Cadence MHDP850
+Thread-Topic: [EXT] Re: [PATCH v7 3/7] dt-bindings: display: bridge: Add
+ Cadence MHDP850
+Thread-Index: AQHZuIUePa/zOSPAXUe6/zQl/U27da/AHoWAgABCD1A=
+Date:   Wed, 19 Jul 2023 02:32:39 +0000
+Message-ID: <PAXPR04MB9448A6CD96FB6CE751E565A8F439A@PAXPR04MB9448.eurprd04.prod.outlook.com>
+References: <cover.1689580812.git.Sandor.yu@nxp.com>
+ <3646ea4d279838c78e00af1d746e3de34351b083.1689580812.git.Sandor.yu@nxp.com>
+ <20230718223249.GB2112396-robh@kernel.org>
+In-Reply-To: <20230718223249.GB2112396-robh@kernel.org>
+Accept-Language: en-US
 Content-Language: en-US
-From:   Elliot Berman <quic_eberman@quicinc.com>
-In-Reply-To: <20230714121321.GB5597@willie-the-truck>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: SNSk4sgb0_aYac39uGO505G7EPNebv42
-X-Proofpoint-ORIG-GUID: SNSk4sgb0_aYac39uGO505G7EPNebv42
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-07-18_19,2023-07-18_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 phishscore=0
- bulkscore=0 suspectscore=0 priorityscore=1501 lowpriorityscore=0
- mlxlogscore=965 impostorscore=0 spamscore=0 clxscore=1011 adultscore=0
- mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2306200000 definitions=main-2307190022
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: PAXPR04MB9448:EE_|DB9PR04MB9792:EE_
+x-ms-office365-filtering-correlation-id: 7b74a330-700b-4b67-c44e-08db88006be4
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 0HoxzhDGlHf4sfPg8TDfHhBDd6Jau9khnuDqpU8cIbp2aFhyv9oJz37p1aqk0aNL4bfKikyf+/WIr4b2NlDclpRftd5LW//CCbGVMv5OYruh0eprQitWiyGL1n3CfmcNcc5DyFYQhKkKLOVohUw8fz8voN8nam1ynMJ1SRpdKNolbD98grDFTMIRvgcD/rYnyqu908FWThHnB1l+UredTHPFjNbj5DN8BYVw3SOVqvwGEuhCTe/2jDSyHHfaKRMk1pcVrj5/C/Fj41vcf3ZA5Hbx9ToVPF9aOVmOSJvHX8difytA/UuFgBgkh5rK6m1cl/catZQQymbMF5lPFohq9jm/b0XxBC6r3j2do4LKLhFhGOvXIlrT9a46QLNKm/oDxkAyfLVFGpiMRfUfwBldQntah46N5O/ZgTj+DmkhUTp/7uZ3K+fxs0U3qJePhNta1OKqHrH58HJF6WkCTvcifnokvSr0nBDabbnTVuItleqJFpzogVIO3b4ZnLr6Bi3fcXB+Y4mcP30xvpEHftSSLcmQ4OouNRHycWnqyDSwUB/CSr/q8bSPrJ7gKdWYtpf3Ga+jhqyaUZhSx6zVmBTnmQplTOoNkVS/mA0+RY+O+s+wznFqhPgSLwbbiIZJoFzM
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9448.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(396003)(39860400002)(346002)(376002)(366004)(136003)(451199021)(86362001)(2906002)(7416002)(38070700005)(33656002)(44832011)(55016003)(83380400001)(186003)(26005)(9686003)(6506007)(7696005)(122000001)(54906003)(316002)(66446008)(64756008)(66476007)(8936002)(66946007)(6916009)(66556008)(38100700002)(4326008)(5660300002)(478600001)(41300700001)(71200400001)(45080400002)(76116006)(52536014)(8676002);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?+spA5o/GlrFyIjSLi/FnVNjhBhe7RSNTABTIaINREysR73hBLKMlhg40VTbE?=
+ =?us-ascii?Q?3tdnT6hrEXKROAaZqZ3Ba/tzdWVBiNoWqOchV7wmrEa+uu/m55GwO9Q7joef?=
+ =?us-ascii?Q?Xkyoxr7DWImdrkW1Wd1Jb8YA2MGM7LMWNioovOPu0mrbwjQx8buVXfjxhX4V?=
+ =?us-ascii?Q?QuBoOqxtcWiYe8rqNlfrn8m2eFO9qYSvRErKZLqLriGbGnZHGoa+hW8Jmhiu?=
+ =?us-ascii?Q?GTGN5McGHPyVca9j9zSoQi3YkQ1xAwp4czt8HcuMexBJWeSBbWP6C9lHcTbR?=
+ =?us-ascii?Q?7mzNiNPRxpo/9BxPRoZa4RtDj2/gynVB49BYAGydW4FjpograUQjyMF6z9SX?=
+ =?us-ascii?Q?Oelo3ck38DZByyIatoGBgOkFbn7gjvVnpYVFH/lsgSLREHRV3X6yWEFSmnOm?=
+ =?us-ascii?Q?/GLypEt7vrsDujC//dPBCHNYPB67Vrff/CKkiG3QF5axZ6YhhwjKkWbwifmM?=
+ =?us-ascii?Q?cTB8Ulgg+iPuEVHxmQR4sfn4XIC+y0UewVBV9B5ggUwj8U1Fq6ksetPCYm8L?=
+ =?us-ascii?Q?TeCres935VcJG8NqEau4r0Je1+Th4i5KGruZYGCiCfw7jzeU+RN8PR7v0h61?=
+ =?us-ascii?Q?6+7sOHwcDE/mKXNwUgfm0huj/yUYZQxl4h6Y/igGA+7w9KiLmzg1lJAm/Mzj?=
+ =?us-ascii?Q?ZkSTJFTPrH4eCceGX70WkuMhjaW80ttzRJh8ixXviPQgw1d0DLPzQXilwOeo?=
+ =?us-ascii?Q?B9A90ihuqmBbFrd3sSM3NuZfETgARQ+wvCNAu2JopXwO07AZRK6Di6tX7c0i?=
+ =?us-ascii?Q?0Mc81DKeTixAmtwImAUfYJR8MzSrD2EWBaWyIv+b662KsO6fZE8QfG7z4SZi?=
+ =?us-ascii?Q?YUiWcI7imb1RHToGoqolX3otG/a87hx0WysM3ijNAYGlTO0JVp9WOuCtEajb?=
+ =?us-ascii?Q?xfzVSdMf1yUKqU3dEPLfN4q4piTeUM3TKqyjfBYH90T4J4OFhI8kFPhZQ7V1?=
+ =?us-ascii?Q?DJSQ2TIGL9zlhYPIKbDo62a8goIiodjlFGwbgk/rT3XxIpHFtZJolnp0DJZl?=
+ =?us-ascii?Q?73LwwVFvWAXgsZQ1nLh8MoVfyaHdvSesr99LW16GQpB667mopvfuxwWD2IjI?=
+ =?us-ascii?Q?m1xz6HZSgLFdHgPhZue8/nklVBd6/wd2jfD3oxor5HAMTbDshmRS2X8bYi3W?=
+ =?us-ascii?Q?f7KaEJI+53CVTNlTVyTSGVm2nATW8KNb/N7QuSDG3rD+VWIEAGvVxhvX2mjb?=
+ =?us-ascii?Q?f5WS/vtmoUeMvYgh44Bphccw7C9fi2GBAw2yWsgeAMOa7hAH3CwErSP5cwTY?=
+ =?us-ascii?Q?leffvokhf+3k5VWA512bWV+L5PaXuFrP4P6Jte+EY0CE5VGRITEnMqY7YapI?=
+ =?us-ascii?Q?OOHh98K1YYl8qK9gSqirJTQ4qbuZgFCFeG6l2ZRtJC8Hv0Wu4yFRQz12xTH9?=
+ =?us-ascii?Q?P/e94an7iLYxG30PEnNr7FVPtUMxyqBbaE9zMXHf7sw6JP8btCSB7HAP6Q6U?=
+ =?us-ascii?Q?TyKOQVskNQEakyQhY36I/9jQVngYf0sie2wywrRfwMTtYsaRxj3JcBbfWpoj?=
+ =?us-ascii?Q?vPdMjhuDO/xM88xdN4fwPcASbqGAkoXYLE/OhguvXzcaL4ul0rKMOUd8KE86?=
+ =?us-ascii?Q?8yhTRl4/S8gdItw/YLI=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9448.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7b74a330-700b-4b67-c44e-08db88006be4
+X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Jul 2023 02:32:39.4015
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: E3vKok/J+lfJzCSYGXRkDiKIzHm3cGLtYN6/kCc5CWpYPAi/7xQoIU1ItU8BQAgPoikmhgukoodRsp6Cc6mbIA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB9792
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
         URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -106,88 +141,176 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Will,
+Hi Rob,=20
 
-On 7/14/2023 5:13 AM, Will Deacon wrote:
-> On Thu, Jul 13, 2023 at 01:28:34PM -0700, Elliot Berman wrote:
->> On 6/22/2023 4:56 PM, Elliot Berman wrote:
->>> On 6/7/2023 8:54 AM, Elliot Berman wrote:
->>>> On 6/5/2023 7:18 AM, Will Deacon wrote:
->>>>> On Fri, May 19, 2023 at 10:02:29AM -0700, Elliot Berman wrote:
->>>>>> The user interface design for *shared* memory aligns with
->>>>>> KVM_SET_USER_MEMORY_REGION.
->>>>>
->>>>> I don't think it does. For example, file mappings don't work (as above),
->>>>> you're placing additional rlimit requirements on the caller, read-only
->>>>> memslots are not functional, the memory cannot be swapped or migrated,
->>>>> dirty logging doesn't work etc. pKVM is in the same boat, but that's why
->>>>> we're not upstreaming this part in its current form.
->>>>>
->>>>
->>>> I thought pKVM was only holding off on upstreaming changes related
->>>> to guest-private memory?
->>>>
->>>>>> I understood we want to use restricted memfd for giving
->>>>>> guest-private memory
->>>>>> (Gunyah calls this "lending memory"). When I went through
->>>>>> the changes, I
->>>>>> gathered KVM is using restricted memfd only for
->>>>>> guest-private memory and not
->>>>>> for shared memory. Thus, I dropped support for lending
->>>>>> memory to the guest
->>>>>> VM and only retained the shared memory support in this
->>>>>> series. I'd like to
->>>>>> merge what we can today and introduce the guest-private
->>>>>> memory support in
->>>>>> tandem with the restricted memfd; I don't see much reason to delay the
->>>>>> series.
->>>>>
->>>>> Right, protected guests will use the new restricted memfd ("guest mem"
->>>>> now, I think?), but non-protected guests should implement the existing
->>>>> interface *without* the need for the GUP pin on guest memory pages. Yes,
->>>>> that means full support for MMU notifiers so that these pages can be
->>>>> managed properly by the host kernel. We're working on that for pKVM, but
->>>>> it requires a more flexible form of memory sharing over what we
->>>>> currently
->>>>> have so that e.g. the zero page can be shared between multiple entities.
->>>>
->>>> Gunyah doesn't support swapping pages out while the guest is running
->>>> and the design of Gunyah isn't made to give host kernel full control
->>>> over the S2 page table for its guests. As best I can tell from
->>>> reading the respective drivers, ACRN and Nitro Enclaves both GUP pin
->>>> guest memory pages prior to giving them to the guest, so I don't
->>>> think this requirement from Gunyah is particularly unusual.
->>>>
->>>
->>> I read/dug into mmu notifiers more and I don't think it matches with
->>> Gunyah's features today. We don't allow the host to freely manage VM's
->>> pages because it requires the guest VM to have a level of trust on the
->>> host. Once a page is given to the guest, it's done for the lifetime of
->>> the VM. Allowing the host to replace pages in the guest memory map isn't
->>> part of any VM's security model that we run in Gunyah. With that
->>> requirement, longterm pinning looks like the correct approach to me.
->>
->> Is my approach of longterm pinning correct given that Gunyah doesn't allow
->> host to freely swap pages?
-> 
-> No, I really don't think a longterm GUP pin is the right approach for this.
-> GUP pins in general are horrible for the mm layer, but required for cases
-> such as DMA where I/O faults are unrecoverable. Gunyah is not a good
-> justification for such a hack, and I don't think you get to choose which
-> parts of the Linux mm you want and which bits you don't.
-> 
-> In other words, either carve out your memory and pin it that way, or
-> implement the proper hooks for the mm to do its job.
+Thanks for your comments,
 
-I talked to the team about whether we can extend the Gunyah support for 
-this. We have plans to support sharing/lending individual pages when the 
-guest faults on them. The support also allows (unprotected) pages to be 
-removed from the VM. We'll need to temporarily pin the pages of the VM 
-configuration device tree blob while the VM is being created and those 
-pages can be unpinned once the VM starts. I'll work on this.
-
-Thanks for the feedback!
-
-- Elliot
-
-
+> > Add bindings for Cadence MHDP8501 DisplayPort/HDMI bridge..
+> >
+> > Signed-off-by: Sandor Yu <Sandor.yu@nxp.com>
+> > ---
+> >  .../display/bridge/cdns,mhdp8501.yaml         | 105
+> ++++++++++++++++++
+> >  1 file changed, 105 insertions(+)
+> >  create mode 100644
+> > Documentation/devicetree/bindings/display/bridge/cdns,mhdp8501.yaml
+> >
+> > diff --git
+> > a/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8501.yaml
+> > b/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8501.yaml
+> > new file mode 100644
+> > index 000000000000..b983ee765f54
+> > --- /dev/null
+> > +++
+> b/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8501.y
+> > +++ aml
+> > @@ -0,0 +1,105 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause) %YAML 1.2
+> > +---
+> > +$id:
+> > +https://eur01.safelinks.protection.outlook.com/?url=3Dhttp%3A%2F%2Fdev=
+i
+> >
+> +cetree.org%2Fschemas%2Fdisplay%2Fbridge%2Fcdns%2Cmhdp8501.yaml%
+> 23&dat
+> >
+> +a=3D05%7C01%7CSandor.yu%40nxp.com%7C7c33f38de4804df82ed108db87d
+> eeeef%7C
+> >
+> +686ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C0%7C63825316378283684
+> 1%7CUnkno
+> >
+> +wn%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1
+> haWwi
+> >
+> +LCJXVCI6Mn0%3D%7C3000%7C%7C%7C&sdata=3DM0fImRvAyayYwQLSQsJVo
+> OQF59Y47KI5
+> > +XNnVzmuTHOc%3D&reserved=3D0
+> > +$schema:
+> > +https://eur01.safelinks.protection.outlook.com/?url=3Dhttp%3A%2F%2Fdev=
+i
+> >
+> +cetree.org%2Fmeta-schemas%2Fcore.yaml%23&data=3D05%7C01%7CSandor.
+> yu%40n
+> >
+> +xp.com%7C7c33f38de4804df82ed108db87deeeef%7C686ea1d3bc2b4c6fa9
+> 2cd99c5
+> >
+> +c301635%7C0%7C0%7C638253163782836841%7CUnknown%7CTWFpbGZs
+> b3d8eyJWIjoi
+> >
+> +MC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3
+> 000%7C%
+> >
+> +7C%7C&sdata=3DiCjpKSNsRnQYhRlXz7%2FR46uot%2B3aYbFz1ecfy63dYaw%3
+> D&reserv
+> > +ed=3D0
+> > +
+> > +title: Cadence MHDP8501 DP/HDMI bridge
+> > +
+> > +maintainers:
+> > +  - Sandor Yu <Sandor.yu@nxp.com>
+> > +
+> > +description:
+> > +  Cadence MHDP8501 DisplayPort/HDMI interface.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - cdns,mhdp8501
+>=20
+> Drop this.
+OK, " - cdns,mhdp8501" will be dropped.
+B.R
+Sandor
+>=20
+> > +      - fsl,imx8mq-mhdp8501
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  clocks:
+> > +    maxItems: 1
+> > +    description: MHDP8501 DP/HDMI APB clock.
+> > +
+> > +  phys:
+> > +    maxItems: 1
+> > +    description:
+> > +      phandle to the DisplayPort or HDMI PHY
+> > +
+> > +  interrupts:
+> > +    items:
+> > +      - description: Hotplug cable plugin.
+> > +      - description: Hotplug cable plugout.
+> > +
+> > +  interrupt-names:
+> > +    items:
+> > +      - const: plug_in
+> > +      - const: plug_out
+> > +
+> > +  ports:
+> > +    $ref: /schemas/graph.yaml#/properties/ports
+> > +
+> > +    properties:
+> > +      port@0:
+> > +        $ref: /schemas/graph.yaml#/properties/port
+> > +        description:
+> > +          Input port from display controller output.
+> > +      port@1:
+> > +        $ref: /schemas/graph.yaml#/properties/port
+> > +        description:
+> > +          Output port to DisplayPort or HDMI connector.
+> > +
+> > +    required:
+> > +      - port@0
+> > +      - port@1
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - clocks
+> > +  - interrupts
+> > +  - interrupt-names
+> > +  - phys
+> > +  - ports
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/clock/imx8mq-clock.h>
+> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > +
+> > +    mhdp_dp: dp-bridge@32c00000 {
+> > +        compatible =3D "fsl,imx8mq-mhdp8501";
+> > +        reg =3D <0x32c00000 0x100000>;
+> > +        interrupts =3D <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>;
+> > +        interrupt-names =3D "plug_in", "plug_out";
+> > +        clocks =3D <&clk IMX8MQ_CLK_DISP_APB_ROOT>;
+> > +        phys =3D <&dp_phy>;
+> > +
+> > +        ports {
+> > +            #address-cells =3D <1>;
+> > +            #size-cells =3D <0>;
+> > +
+> > +            port@0 {
+> > +                reg =3D <0>;
+> > +
+> > +                mhdp_in: endpoint {
+> > +                    remote-endpoint =3D <&dcss_out>;
+> > +                };
+> > +            };
+> > +
+> > +            port@1 {
+> > +                reg =3D <1>;
+> > +
+> > +                mhdp_out: endpoint {
+> > +                    remote-endpoint =3D <&dp_connector>;
+> > +                };
+> > +            };
+> > +        };
+> > +    };
+> > --
+> > 2.34.1
+> >
