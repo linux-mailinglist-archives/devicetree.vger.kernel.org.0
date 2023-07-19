@@ -2,135 +2,254 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C799759E52
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 21:17:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 49B44759E61
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 21:21:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229815AbjGSTRG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jul 2023 15:17:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47612 "EHLO
+        id S229960AbjGSTVH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jul 2023 15:21:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49222 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229450AbjGSTRF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 15:17:05 -0400
-Received: from EUR04-HE1-obe.outbound.protection.outlook.com (mail-he1eur04on2087.outbound.protection.outlook.com [40.107.7.87])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 112B3199A;
-        Wed, 19 Jul 2023 12:17:02 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=GFxtSYeb7btDv9B7DRNq85v0Jd37Z4sr0+BwRWjXBGnzJJw8HsfJm5Hk7RDdXJe5QssBBhn/1aj5h01g/TUIb2GR8mwJ9jVdRtzkAQ/fD76UCX8lgAB6o7NgJ46TmTnRtqg6AywghZssf+VnlJM7Yrg6mM0PdA2qGonF9a0T0q9D0NVJJxZRFkkDFcljgCvNLIV5mrrO/lttesBoFCZkPjoAU1wlhkZDQZY0LXvb23A9II18VsVOKjso4YjqrqhjDvKgQ7O8+Dsz7tKma2xQtR34kLjNEHFwuX7cTJFbdnxNX6jGy46dkmWnYuGKsnqmb/uo3bCZgm+hITHjxodO3w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=khHFdkzW9UTe3iHk0O8XwS9ncBw86ErI+26X8Wi9UKs=;
- b=Oe/IRQYE4lIvGZ5gwweqA8KkEKugPS43EP61YfdVhMscjr27O+NloybfMUJ6V9pAGexTOrMy6U4oPZyQiK059zCNUux5ZzdM4AQqPrm/oo+lWl5KVnHlxSh8FKyH1432yFNFJmdYYGff+KnZ6J6z+/2UIGbikUf4J1x5UM/iYvj7lfL4o4kBGASTl+WVm4oEveN6YHsHhSbZjh4V86hSG0TK2PSyCAdbFKrG3mWYGnwOhfJasfQzDwaBYgdvZva7ZdPcDgs4h9PzeRrJZkI4r1TNH083iJ1b6cusg89e1ks1lZxvY26JSDlc2kbC2FdnFJeUZ3w7at0L9CakkMJ9uQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=khHFdkzW9UTe3iHk0O8XwS9ncBw86ErI+26X8Wi9UKs=;
- b=rsLEGVmjtFcBIEFvUfZ+IGLEqLqiYQFA/x+SvzyG2tkVtIXG2Ul0QtGBKW2gqo0x89MkOvVr1192+Bk27LkyBC+od4I+ZZ5TmYWDG/ETGwAraM0bgo6kFjud0sisJLwdSZIT3M7oGlckA/WsttTRbyIaUW8pBYEapybWopnDCuE=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AM6PR04MB4838.eurprd04.prod.outlook.com (2603:10a6:20b:4::16)
- by DB8PR04MB6796.eurprd04.prod.outlook.com (2603:10a6:10:11e::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6609.24; Wed, 19 Jul
- 2023 19:16:59 +0000
-Received: from AM6PR04MB4838.eurprd04.prod.outlook.com
- ([fe80::d0d5:3604:98da:20b1]) by AM6PR04MB4838.eurprd04.prod.outlook.com
- ([fe80::d0d5:3604:98da:20b1%7]) with mapi id 15.20.6609.024; Wed, 19 Jul 2023
- 19:16:59 +0000
-Date:   Wed, 19 Jul 2023 15:16:48 -0400
-From:   Frank Li <Frank.li@nxp.com>
-To:     Manivannan Sadhasivam <mani@kernel.org>
-Cc:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        helgaas@kernel.org, imx@lists.linux.dev, bhelgaas@google.com,
-        devicetree@vger.kernel.org, gustavo.pimentel@synopsys.com,
-        kw@linux.com, leoyang.li@nxp.com,
-        linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
-        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-        lorenzo.pieralisi@arm.com, minghuan.lian@nxp.com,
-        mingkai.hu@nxp.com, robh+dt@kernel.org, roy.zang@nxp.com,
-        shawnguo@kernel.org, zhiqiang.hou@nxp.com
-Subject: Re: [PATCH v3 1/2] PCI: dwc: Implement general suspend/resume
- functionality for L2/L3 transitions
-Message-ID: <ZLg2oObBfmhSzTFg@lizhi-Precision-Tower-5810>
-References: <20230419164118.596300-1-Frank.Li@nxp.com>
- <20230717164526.GC35455@thinkpad>
- <ZLWKI1lRqxejfUgK@lizhi-Precision-Tower-5810>
- <20230718100400.GB4771@thinkpad>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230718100400.GB4771@thinkpad>
-X-ClientProxiedBy: BY5PR20CA0014.namprd20.prod.outlook.com
- (2603:10b6:a03:1f4::27) To AM6PR04MB4838.eurprd04.prod.outlook.com
- (2603:10a6:20b:4::16)
+        with ESMTP id S229626AbjGSTVG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 15:21:06 -0400
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8FC71BF7
+        for <devicetree@vger.kernel.org>; Wed, 19 Jul 2023 12:21:04 -0700 (PDT)
+Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-3fd0f000f22so8341505e9.3
+        for <devicetree@vger.kernel.org>; Wed, 19 Jul 2023 12:21:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1689794463; x=1692386463;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=61Vthzi+jTZc0OfRE0feJj3h8OeCFS14mJvBksaJnnI=;
+        b=pzNtRS1B2p/uIypnjPAvtXVS4EPtglILWxAokj5oph/6BExIaa+o41LOomTOziP2nx
+         7PgfS3bMXFrJ3mC2uCDTmPQ+wfUKZVJryCitgfd295rOinv3xtx+2ShzS/rVCgRbZWTR
+         lUlv9WTsLyL6Y4Pr/5kTfHlTO/5dUsX8bd+SdKsWje43p4ciOfEh1Gw9/5gU5tgkikUc
+         uz3hT0N+/4bxOW9zlKmF4jnL3k/IO/LmFG8ZjmQPLKizvkKVb5NwyN6JAoTL38EgruL9
+         uFYvlVIhsOjgHSgpEjMzKq1o/kYkDqTlXVtxmJfS6cRUh2L+aH3g3RK2/m3GVdRcEglf
+         IbxQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689794463; x=1692386463;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=61Vthzi+jTZc0OfRE0feJj3h8OeCFS14mJvBksaJnnI=;
+        b=izNnwH3HZK9obu3JPpxQ5ToXHVU7pKhDYJEaa+mh5EZ/16eUgad4AK1ILFnVTmbc/K
+         WA2Q2ognttlZtQVs7sK39CRhCaQ0KSh77mGaGMK7TCaXZN5SaUEl60vIIj3jfF58WDnN
+         2HXqNJvxK0Idz10nylXNRufMmyhpsihHq5vw4Ke5MlKGF0StCCrm+InwNO36pwC57+VV
+         jwD4H+uA8eKb1ia0NEOFs7CsSBCYlHFBwHInpKrrBqIYQKNyS0hqnnahDlLs7Li4kwml
+         XMqApB7VBVIDaxerN6p/DflVV0dxbD3J5QJxtEiRnVP7qTXTDnwNSHKPOG/3uE/vrZ5h
+         GTvg==
+X-Gm-Message-State: ABy/qLbZVRXb0M1hoYkmFDUU8HKSJjZ0j+a+qpGQJ3cehV3qElzP4cZz
+        3wVteY6amm9nuNVLAyJfXMZ1wA==
+X-Google-Smtp-Source: APBJJlFTo/F6vaMjqhpOxlJ7TqFQaLas56ehOzImE5APBRmfbUaci/1k29Wg5tu9Q96UE2KmSKH1hA==
+X-Received: by 2002:a1c:7501:0:b0:3fc:10:b25f with SMTP id o1-20020a1c7501000000b003fc0010b25fmr5620160wmc.15.1689794463153;
+        Wed, 19 Jul 2023 12:21:03 -0700 (PDT)
+Received: from krzk-bin.. ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id r17-20020adfe691000000b0031444673643sm5991086wrm.57.2023.07.19.12.21.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 19 Jul 2023 12:21:02 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH v3 1/3] dt-bindings: pinctrl: qcom,sm8350-lpass-lpi: add SM8350 LPASS TLMM
+Date:   Wed, 19 Jul 2023 21:20:56 +0200
+Message-Id: <20230719192058.433517-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM6PR04MB4838:EE_|DB8PR04MB6796:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2568a258-7247-4277-555b-08db888cb949
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: y0ByUz8cbJsjsM6cyuTmqWChqmQzOpmTuPpsJMzsWbXBDAPasuU4NFKxgkDOwqymNECN2MJ+hbIfjG9EZARMu1nXJpSFk+CyutWtMlPA5nnGatB6Z6vBwdGN8tfJ8XN9X9csdDBLmoXxzMG75kwzpWhWQujEI7SNoQS/m92hpcH8jzdwZyhFojZRR+RR8R3zBw7gHohHoqsypnzsnz7clxEg9dh6n1LvCV1gSoE8Rsx+twXO3cJDYsUZcYWeU5F9dPVO8nmwQk3CdubpaYvjNGvBlx8nfuBaUTw/3U9u9ONrXcEQ4wiq7eNijm8NQFyddIoaWh7G9NfB2QoCFNDft+QroZsX9nkaiO2fvqaPxmJIvi9AhnmFp1xFob1ekeRYizxMkcBzp770qz33IgniYYzyzoIBj14HFlPdEeQBV7BEP9aETDyEoqm7COYQLrQ34dsb5ESN+bnx/XTXZxOl28K/AqRwcB5aeVHIcshDpBBQjb47sdgmBDfchnAFpkyhiCKdPjcd6z93NX9VfaUcP+cIZ3uLN2r3bdwPavC5Dq+j5yeQVkJ+AbJc33msFnO6qHjF1rrXmNvWRFZ6fjNLvVcwmZ4wkd71vwkTDgz9n/OvUU48leuIVbYbjE0ttmfl
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB4838.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(7916004)(4636009)(376002)(366004)(39860400002)(396003)(136003)(346002)(451199021)(478600001)(6666004)(9686003)(6512007)(6486002)(52116002)(186003)(26005)(6506007)(86362001)(41300700001)(6916009)(4326008)(316002)(66946007)(66556008)(66476007)(8936002)(8676002)(7416002)(38100700002)(38350700002)(33716001)(5660300002)(2906002)(4744005);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?hSWfezw0jRyN3gjvONhBNuoYi2aEpWLrRJ1b78xzw8ojAEK//F0/6FLfLY9L?=
- =?us-ascii?Q?iyLtFh2GMvW/gy9O9AiXdYOnFUtTuifzAaiUqPxwlqUOlCrv/FBHaJ8KhWpS?=
- =?us-ascii?Q?ag/945i+Z2VTIcMCMA6bY3TuUn4WrOX2yQQ51rz68btiVUCffS2yxtPsAUR1?=
- =?us-ascii?Q?CFKmxvGn+W8lnJwtAlYFolZqLVxnavZIvZRnC1HuoGyqA7cm/IiaIhZKdsY3?=
- =?us-ascii?Q?nMdMrqePYDCi2y1xgOD1Aj/a5Y+BCAGy2BXWZr3o8y2/XzLN9KZiB26IqW0G?=
- =?us-ascii?Q?hUa2mgP9/fluyJ+fwaHblEcu95BAAhTAxPTkoE77M3YxRhSnwv+LRbNIazMs?=
- =?us-ascii?Q?qZtYUXbUNuIMGRa7zgAMRmNd0hlAvgrfmojHF1+uurwyrvkWBMlfhqMElZ2U?=
- =?us-ascii?Q?geLguYZlR3iGlYXmhK2LJ6vQigRt2at4I8TEbC13/baxjdyHyrw6DNhmVjjR?=
- =?us-ascii?Q?OGnjX9ZuZDF9mwaFMRGYYmqutUjt0WZKyt0L/6KTbNy8P0rcfD8Ig/ISrZMC?=
- =?us-ascii?Q?vmEu3jihmAoBX10zKipU891UC1/cb+llpIyTdi7xJ9bM6Z/g6mMctvS2KNZq?=
- =?us-ascii?Q?zbXZjqzcVrWHHtiwG0J+14R+6RIA1ChZaiCY4HXAqM+5vXMnPc+6iIUvox/a?=
- =?us-ascii?Q?7gW/GmrVazBuPkJAj/ycxJgm3c94vHnXpS+tgCzl4HSGcOEJpnSJxDVQacD4?=
- =?us-ascii?Q?iX8XyVbkS4g6svDtFoFd1ZTKXhbn9c8BWQhgQ+2UUwSw0vAjQh4ZPo0CKsPf?=
- =?us-ascii?Q?PAaS6fhENH1iJdmN2z7cwxLCFgISlFZLGA2SV1d1zyzDO3LHVnxJPgXckDIl?=
- =?us-ascii?Q?aGvjiPYus8zDdIWyCBZlwjzW390cQIBk050Y/RAjjBwOM2grDxcmSgy7H7fX?=
- =?us-ascii?Q?v+ddLKLvaGtAU5504NTdFGCAR2XD+zcDHgteDt3LmHmXSVp9vCePvdITISkJ?=
- =?us-ascii?Q?zI7fCbQ3V1H1+GumbkQag5UvNAYTDGdV7K5pia9nya2HYY7w5P5U53Owq0rA?=
- =?us-ascii?Q?ZWAhhKiRf7KcOmBG353Xt0iGn2ZK0OLPc9D1UyXwO2zy023HrBpZisAYRYZ6?=
- =?us-ascii?Q?HnmondclYLkt5uU1/3tCzUSErVp9otgxHDVIojy/YQocv/2unsXtis0RIzzF?=
- =?us-ascii?Q?lt9BYdlpdPq9niQDdKvczJVPgjT9FjEFkpvEnu3WeV2NmgAacF3zBPOAR/th?=
- =?us-ascii?Q?jQkd0zsvBTXvZPqbwyCEAL/KtHeAk/Nbkdkq0QaQK8nBQTiJQM4SVDQuBrVA?=
- =?us-ascii?Q?6WCMf9gqXAzB9Xd107F/f2FyWGOhR4xpbJOKHvPTppTE8sVCZrK4Q3Qr83K+?=
- =?us-ascii?Q?h1bXXBlWRwPAZwfhckWmDW4wLpBQPMPdyAHjKupeXqFbAuaW5e3BxXCEE2JS?=
- =?us-ascii?Q?W4uht3RupPNKlIkLMg8CBkFGKcBsBbhvqpFRgP8i+F9bnqxZc2wGAaV96CL0?=
- =?us-ascii?Q?p/aZGlCK6O5kSA5U/4jdixC2XvVevr8ciWEKwLv9E7bptW2SG0XyrU7lACFP?=
- =?us-ascii?Q?bKfSCHva464laAzj+osG+NepGuBFFZzEbyy5o09f3UJHpGJxmUEIFq+BebNO?=
- =?us-ascii?Q?OZyyd5kOio4EM/lYCEsl0FUGQ/4fpBxj6KQVVjZD?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2568a258-7247-4277-555b-08db888cb949
-X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB4838.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jul 2023 19:16:58.9562
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: leXtUWt9XFWtTDwjBwVVQsU193P1aiT+9EsjKHpa/Ayh5W01hxR9psFdfzenF7Jg6+GIdALQqXbl4cFIAWUxNA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR04MB6796
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 18, 2023 at 03:34:00PM +0530, Manivannan Sadhasivam wrote:
-> On Mon, Jul 17, 2023 at 02:36:19PM -0400, Frank Li wrote:
-> 
-> Fine then. But can we check for PM_LINKST_IN_L2 SII System Information Interface
-> (SII) instead of LTSSM state?
->
-where define PM_LINKST_IN_L2? I just find one at
+Add bindings for pin controller in SM8350 Low Power Audio SubSystem
+(LPASS).
 
-drivers/pci/controller/dwc/pcie-qcom.c:#define PARF_DEBUG_CNT_PM_LINKST_IN_L2           0xc04
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
 
-Frank
- 
+---
+
+Changes in v3:
+1. Correct subject typo biding->bindings.
+2. Add Rb tag.
+3. Not dropping the label as Rob asked for, because it is actually used
+   in the example.
+
+Changes in v2:
+1. None
+---
+ .../qcom,sm8350-lpass-lpi-pinctrl.yaml        | 143 ++++++++++++++++++
+ 1 file changed, 143 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,sm8350-lpass-lpi-pinctrl.yaml
+
+diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sm8350-lpass-lpi-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sm8350-lpass-lpi-pinctrl.yaml
+new file mode 100644
+index 000000000000..2e65ae08dd21
+--- /dev/null
++++ b/Documentation/devicetree/bindings/pinctrl/qcom,sm8350-lpass-lpi-pinctrl.yaml
+@@ -0,0 +1,143 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/pinctrl/qcom,sm8350-lpass-lpi-pinctrl.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Qualcomm SM8350 SoC LPASS LPI TLMM
++
++maintainers:
++  - Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
++  - Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
++
++description:
++  Top Level Mode Multiplexer pin controller in the Low Power Audio SubSystem
++  (LPASS) Low Power Island (LPI) of Qualcomm SM8350 SoC.
++
++properties:
++  compatible:
++    const: qcom,sm8350-lpass-lpi-pinctrl
++
++  reg:
++    items:
++      - description: LPASS LPI TLMM Control and Status registers
++      - description: LPASS LPI MCC registers
++
++  clocks:
++    items:
++      - description: LPASS Core voting clock
++      - description: LPASS Audio voting clock
++
++  clock-names:
++    items:
++      - const: core
++      - const: audio
++
++  gpio-controller: true
++
++  "#gpio-cells":
++    description: Specifying the pin number and flags, as defined in
++      include/dt-bindings/gpio/gpio.h
++    const: 2
++
++  gpio-ranges:
++    maxItems: 1
++
++patternProperties:
++  "-state$":
++    oneOf:
++      - $ref: "#/$defs/qcom-sm8350-lpass-state"
++      - patternProperties:
++          "-pins$":
++            $ref: "#/$defs/qcom-sm8350-lpass-state"
++        additionalProperties: false
++
++$defs:
++  qcom-sm8350-lpass-state:
++    type: object
++    description:
++      Pinctrl node's client devices use subnodes for desired pin configuration.
++      Client device subnodes use below standard properties.
++    $ref: /schemas/pinctrl/pincfg-node.yaml
++
++    properties:
++      pins:
++        description:
++          List of gpio pins affected by the properties specified in this
++          subnode.
++        items:
++          pattern: "^gpio([0-9]|1[0-9]|2[0-2])$"
++
++      function:
++        enum: [ dmic1_clk, dmic1_data, dmic2_clk, dmic2_data, dmic3_clk,
++                dmic3_data, dmic4_clk, dmic4_data, ext_mclk1_a, ext_mclk1_b,
++                ext_mclk1_c, ext_mclk1_d, ext_mclk1_e, gpio, i2s0_clk,
++                i2s0_data, i2s0_ws, i2s1_clk, i2s1_data, i2s1_ws, i2s2_clk,
++                i2s2_data, i2s2_ws, i2s3_clk, i2s3_data, i2s3_ws, i2s4_clk,
++                i2s4_data, i2s4_ws, slimbus_clk, slimbus_data, swr_rx_clk,
++                swr_rx_data, swr_tx_clk, swr_tx_data, wsa_swr_clk,
++                wsa_swr_data, wsa2_swr_clk, wsa2_swr_data ]
++        description:
++          Specify the alternative function to be configured for the specified
++          pins.
++
++      drive-strength:
++        enum: [2, 4, 6, 8, 10, 12, 14, 16]
++        default: 2
++        description:
++          Selects the drive strength for the specified pins, in mA.
++
++      slew-rate:
++        enum: [0, 1, 2, 3]
++        default: 0
++        description: |
++          0: No adjustments
++          1: Higher Slew rate (faster edges)
++          2: Lower Slew rate (slower edges)
++          3: Reserved (No adjustments)
++
++      bias-bus-hold: true
++      bias-pull-down: true
++      bias-pull-up: true
++      bias-disable: true
++      input-enable: true
++      output-high: true
++      output-low: true
++
++    required:
++      - pins
++      - function
++
++    additionalProperties: false
++
++allOf:
++  - $ref: pinctrl.yaml#
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - clock-names
++  - gpio-controller
++  - "#gpio-cells"
++  - gpio-ranges
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/sound/qcom,q6afe.h>
++
++    lpass_tlmm: pinctrl@33c0000 {
++        compatible = "qcom,sm8350-lpass-lpi-pinctrl";
++        reg = <0x033c0000 0x20000>,
++              <0x03550000 0x10000>;
++
++        clocks = <&q6afecc LPASS_HW_MACRO_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
++                 <&q6afecc LPASS_HW_DCODEC_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>;
++        clock-names = "core", "audio";
++
++        gpio-controller;
++        #gpio-cells = <2>;
++        gpio-ranges = <&lpass_tlmm 0 0 15>;
++    };
+-- 
+2.34.1
+
