@@ -2,95 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 73073758BB2
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 05:01:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E2C46758BB8
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 05:03:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229530AbjGSDBz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jul 2023 23:01:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37286 "EHLO
+        id S230214AbjGSDDJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jul 2023 23:03:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38178 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229475AbjGSDBy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 23:01:54 -0400
-Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35F38130;
-        Tue, 18 Jul 2023 20:01:53 -0700 (PDT)
-Received: by mail-pl1-x62b.google.com with SMTP id d9443c01a7336-1b89e10d356so40574225ad.3;
-        Tue, 18 Jul 2023 20:01:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1689735713; x=1692327713;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=thEXipIY2P8Bpgx7Y1frh4stUCxjS6n/WqeDaPQ8aHk=;
-        b=Iy+R6Qd0V4s4bT9RJ3FezOfc7WJQ+rb+9QXAkxeEjwybR5cizWC/UZEdrl8YM3hwg8
-         dW2DaSkYKOUIsDJ0u56J/xojUdPc6NxQFhRFYAqDCWAfBkDN3yMPMre3Az5pmIo6uXz8
-         UffuZpkXHn2l5N017tblb9mOtiwoEQQeJfCGfgG5/PCPYhD9LIni/eSbIMl2BeP3L1vf
-         3RqZkDFC+CbZfkzdS1gbb/0ZVcBKZAA+RP5NCoj7k7CEwDzoE2BI38XZMqSR8Mxdh05R
-         BzlQFcwjOjvctwIZpfvxIiF9nGJg0RbibV8NJ8IBitopl5N2xZhm5mqVqZpfJ50fQ1Tg
-         8cRg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689735713; x=1692327713;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=thEXipIY2P8Bpgx7Y1frh4stUCxjS6n/WqeDaPQ8aHk=;
-        b=J2mxAqTaOfzkexyYlBZv7i+ig0H2XDta0YnSK9E7f2giuh6JmcUB5XRm3BmR4X0qNq
-         cQ0KTGP39+Bl8gAMoMe5AowbpozNeS0UkTCDSWWodbvi5n7HXG7dQuTpF3eNkD0pfOdy
-         8EzYKjNEGrP/SDexdQ0bnmNzZlJj88iKw+rT7vkkMsmC8n5uLqqHsVJHv4dfU8VSUcJi
-         Y818+bdjjjczevn2Ich/z/un4sFM6neQdz/yGRsgiJiyJJnkXv2qC53DVhJRWHC86l7J
-         ESdaxD2fb0kucwwQOzYaL12WvYYC05xxKNuP2ft68uOzhJUf/77DO6TMNIdVHsORE7JB
-         7IZw==
-X-Gm-Message-State: ABy/qLavrrwURoouotr/JdxHzdUATgh7Wp5ZuEvz+lPSsZ6i/DdqcR0V
-        oiJnEq9IapeyklxqLPo2sRRJ55fcCKU=
-X-Google-Smtp-Source: APBJJlFjdttqoYssE/6qZLiIsLBdjGeqg7VNST6scNwR5mrv0qTImM0RWKAdc+W3gejnhWkBT2u6VA==
-X-Received: by 2002:a17:902:f693:b0:1ae:6cf0:94eb with SMTP id l19-20020a170902f69300b001ae6cf094ebmr4306055plg.5.1689735712656;
-        Tue, 18 Jul 2023 20:01:52 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id p12-20020a170902eacc00b001b89466a5f4sm2610007pld.105.2023.07.18.20.01.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 Jul 2023 20:01:52 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Tue, 18 Jul 2023 20:01:51 -0700
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Naresh Solanki <naresh.solanki@9elements.com>
-Cc:     devicetree@vger.kernel.org, Jean Delvare <jdelvare@suse.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
-        Patrick Rudolph <patrick.rudolph@9elements.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v2 2/8] dt-bindings: trivial-devices: Add MPS MP2971 and
- MP2973
-Message-ID: <a023d225-2a6c-4c98-9bbc-61fb6a6896b7@roeck-us.net>
-References: <20230714135124.2645339-1-Naresh.Solanki@9elements.com>
- <20230714135124.2645339-2-Naresh.Solanki@9elements.com>
+        with ESMTP id S229480AbjGSDDG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 23:03:06 -0400
+Received: from out28-221.mail.aliyun.com (out28-221.mail.aliyun.com [115.124.28.221])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17735130;
+        Tue, 18 Jul 2023 20:03:04 -0700 (PDT)
+X-Alimail-AntiSpam: AC=CONTINUE;BC=0.09700525|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_social|0.00813514-0.000320179-0.991545;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047206;MF=wangweidong.a@awinic.com;NM=1;PH=DS;RN=26;RT=26;SR=0;TI=SMTPD_---.Tx3STlc_1689735772;
+Received: from ubuntu-VirtualBox..(mailfrom:wangweidong.a@awinic.com fp:SMTPD_---.Tx3STlc_1689735772)
+          by smtp.aliyun-inc.com;
+          Wed, 19 Jul 2023 11:02:56 +0800
+From:   wangweidong.a@awinic.com
+To:     krzysztof.kozlowski@linaro.org
+Cc:     alsa-devel@alsa-project.org, broonie@kernel.org,
+        ckeepax@opensource.cirrus.com, colin.i.king@gmail.com,
+        conor+dt@kernel.org, devicetree@vger.kernel.org,
+        doug@schmorgal.com, fido_max@inbox.ru, flatmax@flatmax.com,
+        herve.codina@bootlin.com, kiseok.jo@irondevice.com,
+        krzysztof.kozlowski+dt@linaro.org, lgirdwood@gmail.com,
+        linux-kernel@vger.kernel.org, liweilei@awinic.com, perex@perex.cz,
+        pierre-louis.bossart@linux.intel.com, rf@opensource.cirrus.com,
+        robh+dt@kernel.org, shumingf@realtek.com, tiwai@suse.com,
+        trix@redhat.com, wangweidong.a@awinic.com, yijiangtao@awinic.com,
+        zhangjianming@awinic.com
+Subject: Re: [PATCH V1 5/5] ASoC: dt-bindings: Add schema for "awinic,aw88261"
+Date:   Wed, 19 Jul 2023 11:02:52 +0800
+Message-ID: <20230719030252.41396-1-wangweidong.a@awinic.com>
+X-Mailer: git-send-email 2.41.0
+In-Reply-To: <192fa604-5fe6-c5c2-7fca-10f3a271b640@linaro.org>
+References: <192fa604-5fe6-c5c2-7fca-10f3a271b640@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230714135124.2645339-2-Naresh.Solanki@9elements.com>
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 14, 2023 at 03:51:10PM +0200, Naresh Solanki wrote:
-> From: Patrick Rudolph <patrick.rudolph@9elements.com>
-> 
-> Add Monolithic Power Systems MP2971 & MP2973 to trivial devices.
-> 
-> Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
-> Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Hi, Krzysztof,
+Thank you very much for your advice.
 
-Applied.
+On 18/07/2023 16:24, krzysztof.kozlowski@linaro.org wrote:
+> On 17/07/2023 13:58, wangweidong.a@awinic.com wrote:
+>> From: Weidong Wang <wangweidong.a@awinic.com>
+>> 
+>> Add a DT schema for describing Awinic aw88261 audio amplifiers. They are
+>> controlled using I2C.
+>> 
+>> Signed-off-by: Weidong Wang <wangweidong.a@awinic.com>
 
-Thanks,
-Guenter
+...
+
+>> +  compatible:
+>> +    const: awinic,aw88261
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  '#sound-dai-cells':
+>> +    const: 0
+>> +
+>> +  reset-gpios:
+>> +    maxItems: 1
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - '#sound-dai-cells'
+>> +  - reset-gpios
+
+> I don't see any differences against AW88395. Add the compatible to that
+> schema.
+
+I will add "awinic,aw88261" to the awinic,aw88395.yaml
+
+Best regards,
+Weidong Wang
