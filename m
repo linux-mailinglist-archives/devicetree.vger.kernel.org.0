@@ -2,156 +2,563 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B980275926E
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 12:11:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B21D75927B
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 12:15:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230219AbjGSKLi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jul 2023 06:11:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36430 "EHLO
+        id S229639AbjGSKPI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jul 2023 06:15:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38120 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229458AbjGSKLh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 06:11:37 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 7B417E69;
-        Wed, 19 Jul 2023 03:11:36 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 6F8432F4;
-        Wed, 19 Jul 2023 03:12:19 -0700 (PDT)
-Received: from [10.57.33.122] (unknown [10.57.33.122])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 730643F67D;
-        Wed, 19 Jul 2023 03:11:33 -0700 (PDT)
-Message-ID: <ac77142d-964b-691d-ea15-105a523d9738@arm.com>
-Date:   Wed, 19 Jul 2023 11:11:31 +0100
+        with ESMTP id S230405AbjGSKO7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 06:14:59 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E975E1FDC
+        for <devicetree@vger.kernel.org>; Wed, 19 Jul 2023 03:14:53 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id 2adb3069b0e04-4fdd31bf179so1742775e87.2
+        for <devicetree@vger.kernel.org>; Wed, 19 Jul 2023 03:14:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1689761692; x=1690366492;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=gS7bHViFDzF/1y1TtNUTdaoGie9q5q1n+sh+m1326rI=;
+        b=F8Cddg9CJk59OzTyY1Sc7/9eOgDo8hSf2vo1Lv06kHKLcwF3yP1v9ByUO5AK8OWKRR
+         2Kn9gUrlmmte3WI53b/nNXzsgvpzXuRrOmAyQt+uDaKCkq4n7wEYTY1Y8z/zQDSUIUyN
+         4t1R/me2QUxNwKzBScxfk2bj16biqNOeQUgdZyRQw434RBh7vevcVzUr0EMYSL5o2Xx7
+         ygucrjfOtRr4Pjdr/RQ+117hGzQoZ6o/+xIl/yJ0KGrtsRgZdTxPCwfxtlE15X33eEy+
+         g//wgPmzIgwCi+DdZRDeAofViA/HAW33XU0NRBBMa5SoACI1/oDX8wE+3uJxhjA/9fsD
+         up6Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689761692; x=1690366492;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=gS7bHViFDzF/1y1TtNUTdaoGie9q5q1n+sh+m1326rI=;
+        b=EmosYRH2XORHAke3WDmtTtkzhq36JhLcXRfVDNOAkKXX+ZKEKsysuT3kjcHRU2jKPh
+         GedFGmao9pfWwGXsuPGflqhLUNIZAlHY0vMUjE/S3Qf9K5Nl/OuGME3JMR0AQvgnU2gl
+         2hY0zts6a4eihCuPMPfeRc03HLWbKYElvR07pNZHJI1+STZVx6uXpjH2MeG0OhA6/tS8
+         excQLN8NPZH5VqIMLH24EOL2U81hNOAluy//Pdw4yR+pZNXtFFx5Cyy2UMz2dbfzLETK
+         HXfExG8FvZstYN8BXEnyNOgsd255F7TuAWv+KYAOneEiSioL9l9+D/Xi247AuN2m3A0l
+         ekQw==
+X-Gm-Message-State: ABy/qLb2An3CfZ4qikYO22Na6+HIp3fMMiFkQ4REueYfyMaYSTrmKtBQ
+        sTO4Fcay3BKE/s0UqqP1hov9hw==
+X-Google-Smtp-Source: APBJJlGtMCG5W22C3p7BE7TaCuf2XLm3T9Jmhoz8nBJspkXHr3h2zXAJjhhDXavcUjUfHcwc3F/rJw==
+X-Received: by 2002:a19:3858:0:b0:4fb:c693:c73b with SMTP id d24-20020a193858000000b004fbc693c73bmr1321303lfj.64.1689761691997;
+        Wed, 19 Jul 2023 03:14:51 -0700 (PDT)
+Received: from ?IPV6:2001:14ba:a0db:1f00::8a5? (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
+        by smtp.gmail.com with ESMTPSA id l24-20020a19c218000000b004fb7359ab83sm876199lfc.80.2023.07.19.03.14.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 19 Jul 2023 03:14:51 -0700 (PDT)
+Message-ID: <7b9bdd6c-6c76-06a9-ccce-f120c80c5860@linaro.org>
+Date:   Wed, 19 Jul 2023 13:14:50 +0300
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.12.0
-Subject: Re: [PATCH V6 6/6] coresight: etm4x: Add ACPI support in platform
- driver
-From:   Suzuki K Poulose <suzuki.poulose@arm.com>
-To:     rafael@kernel.org, Len Brown <lenb@kernel.org>
-Cc:     Ganapatrao Kulkarni <gankulkarni@os.amperecomputing.com>,
-        Steve Clevenger <scclevenger@os.amperecomputing.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Mike Leach <mike.leach@linaro.org>,
-        Leo Yan <leo.yan@linaro.org>, devicetree@vger.kernel.org,
-        linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Anshuman Khandual <anshuman.khandual@arm.com>,
-        linux-arm-kernel@lists.infradead.org, coresight@lists.linaro.org,
-        gregkh@linuxfoundation.org
-References: <20230710062500.45147-1-anshuman.khandual@arm.com>
- <20230710062500.45147-7-anshuman.khandual@arm.com>
- <38f0c8f3-5fb3-a18a-456d-867da2998786@arm.com>
-In-Reply-To: <38f0c8f3-5fb3-a18a-456d-867da2998786@arm.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH 1/5] arm64: dts: qcom: Add base SM4450 DTSI
+Content-Language: en-GB
+To:     Tengfei Fan <quic_tengfan@quicinc.com>, andersson@kernel.org,
+        konrad.dybcio@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Cc:     quic_tsoni@quicinc.com, quic_shashim@quicinc.com,
+        quic_kaushalk@quicinc.com, quic_tdas@quicinc.com,
+        quic_tingweiz@quicinc.com, quic_aiquny@quicinc.com,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230719100135.21325-1-quic_tengfan@quicinc.com>
+ <20230719100135.21325-2-quic_tengfan@quicinc.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <20230719100135.21325-2-quic_tengfan@quicinc.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Rafael, Len
+On 19/07/2023 13:01, Tengfei Fan wrote:
+> This add based DTSI for SM4450 SoC and includes base description of
+> CPUs and interrupt-controller which helps to boot to shell with
+> console on boards with this SoC.
+> 
+> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
+> ---
+>   arch/arm64/boot/dts/qcom/sm4450.dtsi | 435 +++++++++++++++++++++++++++
+>   1 file changed, 435 insertions(+)
+>   create mode 100644 arch/arm64/boot/dts/qcom/sm4450.dtsi
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm4450.dtsi b/arch/arm64/boot/dts/qcom/sm4450.dtsi
+> new file mode 100644
+> index 000000000000..ab14aecbdcea
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/sm4450.dtsi
+> @@ -0,0 +1,435 @@
+> +// SPDX-License-Identifier: BSD-3-Clause
+> +/*
+> + * Copyright (c) 2023, Qualcomm Innovation Center, Inc. All rights reserved.
+> + */
+> +
+> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> +#include <dt-bindings/gpio/gpio.h>
+> +
+> +/ {
+> +	interrupt-parent = <&intc>;
+> +
+> +	#address-cells = <2>;
+> +	#size-cells = <2>;
+> +
+> +	chosen { };
+> +
+> +	clocks{
+> +		xo_board: xo_board {
 
-Ping (packets 6, lost 100%).
+no underscores in node names.
 
+> +			compatible = "fixed-clock";
+> +			clock-frequency = <76800000>;
+> +			#clock-cells = <0>;
+> +		};
+> +
+> +		sleep_clk: sleep_clk {
+> +			compatible = "fixed-clock";
+> +			clock-frequency = <32000>;
+> +			#clock-cells = <0>;
+> +		};
+> +	};
+> +
+> +	cpus {
+> +		#address-cells = <2>;
+> +		#size-cells = <0>;
+> +
+> +		CPU0: cpu@0 {
+> +			device_type = "cpu";
+> +			compatible = "qcom,kryo";
+> +			reg = <0x0 0x0>;
+> +			enable-method = "psci";
+> +			next-level-cache = <&L2_0>;
+> +			power-domains = <&CPU_PD0>;
+> +			power-domain-names = "psci";
+> +			#cooling-cells = <2>;
 
-On 10/07/2023 17:40, Suzuki K Poulose wrote:
-> Rafael, Len
-> 
-> On 10/07/2023 07:25, Anshuman Khandual wrote:
->> From: Suzuki K Poulose <suzuki.poulose@arm.com>
->>
->> Drop ETM4X ACPI ID from the AMBA ACPI device list, and instead just 
->> move it
->> inside the new ACPI devices list detected and used via platform driver.
->>
->> Cc: "Rafael J. Wysocki" <rafael@kernel.org>
->> Cc: Len Brown <lenb@kernel.org>
->> Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
->> Cc: Suzuki K Poulose <suzuki.poulose@arm.com>
->> Cc: Mike Leach <mike.leach@linaro.org>
->> Cc: Leo Yan <leo.yan@linaro.org>
->> Cc: Sudeep Holla <sudeep.holla@arm.com>
->> Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>
->> Cc: linux-acpi@vger.kernel.org
->> Cc: coresight@lists.linaro.org
->> Cc: linux-arm-kernel@lists.infradead.org
->> Cc: linux-kernel@vger.kernel.org
->> Reviewed-by: Sudeep Holla <sudeep.holla@arm.com> (for ACPI specific 
->> changes)
->> Signed-off-by: Suzuki K Poulose <suzuki.poulose@arm.com>
->> Signed-off-by: Anshuman Khandual <anshuman.khandual@arm.com>
-> 
-> We would like to queue this via coresight tree. The acpi_amba bits have
-> been reviewed by Sudeep. Please could you give us an Ack, if you are
-> happy with the proposal ?
-> 
+empty lines before child nodes, please (here and further in the patch).
 
-Kind regards
-Suzuki
+> +			L2_0: l2-cache {
+> +				compatible = "cache";
+> +				cache-level = <2>;
+> +				cache-unified;
+> +				next-level-cache = <&L3_0>;
+> +				L3_0: l3-cache {
+> +					compatible = "cache";
+> +					cache-level = <3>;
+> +					cache-unified;
+> +				};
+> +			};
+> +		};
+> +
+> +		CPU1: cpu@100 {
+> +			device_type = "cpu";
+> +			compatible = "qcom,kryo";
+> +			reg = <0x0 0x100>;
+> +			enable-method = "psci";
+> +			next-level-cache = <&L2_100>;
+> +			power-domains = <&CPU_PD0>;
+> +			power-domain-names = "psci";
+> +			#cooling-cells = <2>;
+> +			L2_100: l2-cache {
+> +				compatible = "cache";
+> +				cache-level = <2>;
+> +				cache-unified;
+> +				next-level-cache = <&L3_0>;
+> +			};
+> +		};
+> +
+> +		CPU2: cpu@200 {
+> +			device_type = "cpu";
+> +			compatible = "qcom,kryo";
+> +			reg = <0x0 0x200>;
+> +			enable-method = "psci";
+> +			next-level-cache = <&L2_200>;
+> +			power-domains = <&CPU_PD0>;
+> +			power-domain-names = "psci";
+> +			#cooling-cells = <2>;
+> +			L2_200: l2-cache {
+> +				compatible = "cache";
+> +				cache-level = <2>;
+> +				cache-unified;
+> +				next-level-cache = <&L3_0>;
+> +			};
+> +		};
+> +
+> +		CPU3: cpu@300 {
+> +			device_type = "cpu";
+> +			compatible = "qcom,kryo";
+> +			reg = <0x0 0x300>;
+> +			enable-method = "psci";
+> +			next-level-cache = <&L2_300>;
+> +			power-domains = <&CPU_PD0>;
+> +			power-domain-names = "psci";
+> +			#cooling-cells = <2>;
+> +			L2_300: l2-cache {
+> +				compatible = "cache";
+> +				cache-level = <2>;
+> +				cache-unified;
+> +				next-level-cache = <&L3_0>;
+> +			};
+> +		};
+> +
+> +		CPU4: cpu@400 {
+> +			device_type = "cpu";
+> +			compatible = "qcom,kryo";
+> +			reg = <0x0 0x400>;
+> +			enable-method = "psci";
+> +			next-level-cache = <&L2_400>;
+> +			power-domains = <&CPU_PD0>;
+> +			power-domain-names = "psci";
+> +			#cooling-cells = <2>;
+> +			L2_400: l2-cache {
+> +				compatible = "cache";
+> +				cache-level = <2>;
+> +				cache-unified;
+> +				next-level-cache = <&L3_0>;
+> +			};
+> +		};
+> +
+> +		CPU5: cpu@500 {
+> +			device_type = "cpu";
+> +			compatible = "qcom,kryo";
+> +			reg = <0x0 0x500>;
+> +			enable-method = "psci";
+> +			next-level-cache = <&L2_500>;
+> +			power-domains = <&CPU_PD0>;
+> +			power-domain-names = "psci";
+> +			#cooling-cells = <2>;
+> +			L2_500: l2-cache {
+> +				compatible = "cache";
+> +				cache-level = <2>;
+> +				cache-unified;
+> +				next-level-cache = <&L3_0>;
+> +			};
+> +		};
+> +
+> +		CPU6: cpu@600 {
+> +			device_type = "cpu";
+> +			compatible = "qcom,kryo";
+> +			reg = <0x0 0x600>;
+> +			enable-method = "psci";
+> +			next-level-cache = <&L2_600>;
+> +			power-domains = <&CPU_PD0>;
+> +			power-domain-names = "psci";
+> +			#cooling-cells = <2>;
+> +			L2_600: l2-cache {
+> +				compatible = "cache";
+> +				cache-level = <2>;
+> +				cache-unified;
+> +				next-level-cache = <&L3_0>;
+> +			};
+> +		};
+> +
+> +		CPU7: cpu@700 {
+> +			device_type = "cpu";
+> +			compatible = "qcom,kryo";
+> +			reg = <0x0 0x700>;
+> +			enable-method = "psci";
+> +			next-level-cache = <&L2_700>;
+> +			power-domains = <&CPU_PD0>;
+> +			power-domain-names = "psci";
+> +			#cooling-cells = <2>;
+> +			L2_700: l2-cache {
+> +				compatible = "cache";
+> +				cache-level = <2>;
+> +				cache-unified;
+> +				next-level-cache = <&L3_0>;
+> +			};
+> +		};
+> +
+> +		cpu-map {
+> +			cluster0 {
+> +				core0 {
+> +					cpu = <&CPU0>;
+> +				};
+> +
+> +				core1 {
+> +					cpu = <&CPU1>;
+> +				};
+> +
+> +				core2 {
+> +					cpu = <&CPU2>;
+> +				};
+> +
+> +				core3 {
+> +					cpu = <&CPU3>;
+> +				};
+> +
+> +				core4 {
+> +					cpu = <&CPU4>;
+> +				};
+> +
+> +				core5 {
+> +					cpu = <&CPU5>;
+> +				};
+> +			};
+> +
+> +			cluster1 {
 
-> Kind regards
-> Suzuki
-> 
-> 
->> ---
->>   drivers/acpi/acpi_amba.c                           |  1 -
->>   drivers/hwtracing/coresight/coresight-etm4x-core.c | 10 ++++++++++
->>   2 files changed, 10 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/acpi/acpi_amba.c b/drivers/acpi/acpi_amba.c
->> index f5b443ab01c2..099966cbac5a 100644
->> --- a/drivers/acpi/acpi_amba.c
->> +++ b/drivers/acpi/acpi_amba.c
->> @@ -22,7 +22,6 @@
->>   static const struct acpi_device_id amba_id_list[] = {
->>       {"ARMH0061", 0}, /* PL061 GPIO Device */
->>       {"ARMH0330", 0}, /* ARM DMA Controller DMA-330 */
->> -    {"ARMHC500", 0}, /* ARM CoreSight ETM4x */
->>       {"ARMHC501", 0}, /* ARM CoreSight ETR */
->>       {"ARMHC502", 0}, /* ARM CoreSight STM */
->>       {"ARMHC503", 0}, /* ARM CoreSight Debug */
->> diff --git a/drivers/hwtracing/coresight/coresight-etm4x-core.c 
->> b/drivers/hwtracing/coresight/coresight-etm4x-core.c
->> index 43f583987250..703b6fcbb6a5 100644
->> --- a/drivers/hwtracing/coresight/coresight-etm4x-core.c
->> +++ b/drivers/hwtracing/coresight/coresight-etm4x-core.c
->> @@ -3,6 +3,7 @@
->>    * Copyright (c) 2014, The Linux Foundation. All rights reserved.
->>    */
->> +#include <linux/acpi.h>
->>   #include <linux/bitops.h>
->>   #include <linux/kernel.h>
->>   #include <linux/moduleparam.h>
->> @@ -2347,12 +2348,21 @@ static const struct of_device_id 
->> etm4_sysreg_match[] = {
->>       {}
->>   };
->> +#ifdef CONFIG_ACPI
->> +static const struct acpi_device_id etm4x_acpi_ids[] = {
->> +    {"ARMHC500", 0}, /* ARM CoreSight ETM4x */
->> +    {}
->> +};
->> +MODULE_DEVICE_TABLE(acpi, etm4x_acpi_ids);
->> +#endif
->> +
->>   static struct platform_driver etm4_platform_driver = {
->>       .probe        = etm4_probe_platform_dev,
->>       .remove        = etm4_remove_platform_dev,
->>       .driver            = {
->>           .name            = "coresight-etm4x",
->>           .of_match_table        = etm4_sysreg_match,
->> +        .acpi_match_table    = ACPI_PTR(etm4x_acpi_ids),
->>           .suppress_bind_attrs    = true,
->>           .pm            = &etm4_dev_pm_ops,
->>       },
-> 
+If this SoC implements Dynamiq architecture, you don't need separate 
+clusters.
+
+> +				core6 {
+> +					cpu = <&CPU6>;
+> +				};
+> +
+> +				core7 {
+> +					cpu = <&CPU7>;
+> +				};
+> +			};
+> +		};
+> +
+> +		idle-states {
+> +			entry-method = "psci";
+> +
+> +			LITTLE_CPU_SLEEP_0: cpu-sleep-0-0 {
+> +				compatible = "arm,idle-state";
+> +				idle-state-name = "silver-rail-power-collapse";
+> +				arm,psci-suspend-param = <0x40000004>;
+> +				entry-latency-us = <800>;
+> +				exit-latency-us = <750>;
+> +				min-residency-us = <4090>;
+> +				local-timer-stop;
+> +			};
+> +
+> +			BIG_CPU_SLEEP_0: cpu-sleep-1-0 {
+> +				compatible = "arm,idle-state";
+> +				idle-state-name = "gold-rail-power-collapse";
+> +				arm,psci-suspend-param = <0x40000004>;
+> +				entry-latency-us = <600>;
+> +				exit-latency-us = <1550>;
+> +				min-residency-us = <4791>;
+> +				local-timer-stop;
+> +			};
+> +		};
+> +
+> +		domain-idle-states {
+> +			CLUSTER_SLEEP_0: cluster-sleep-0 {
+> +				compatible = "domain-idle-state";
+> +				arm,psci-suspend-param = <0x41000044>;
+> +				entry-latency-us = <1050>;
+> +				exit-latency-us = <2500>;
+> +				min-residency-us = <5309>;
+> +			};
+> +
+> +			CLUSTER_SLEEP_1: cluster-sleep-1 {
+> +				compatible = "domain-idle-state";
+> +				idle-state-name = "cluster-power-collapse";
+> +				arm,psci-suspend-param = <0x41003344>;
+> +				entry-latency-us = <1561>;
+> +				exit-latency-us = <2801>;
+> +				min-residency-us = <8550>;
+> +			};
+> +		};
+> +	};
+> +
+> +	firmware {
+> +		scm: scm {
+> +			compatible = "qcom,scm-sm4450", "qcom,scm";
+> +			#reset-cells = <1>;
+
+Does the SCM need the core clock?
+
+> +		};
+> +	};
+> +
+> +	memory@a0000000 {
+> +		device_type = "memory";
+> +		/* We expect the bootloader to fill in the size */
+> +		reg = <0x0 0xa0000000 0x0 0x0>;
+> +	};
+> +
+> +	pmu {
+> +		compatible = "arm,armv8-pmuv3";
+> +		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_HIGH>;
+> +	};
+> +
+> +	psci {
+> +		compatible = "arm,psci-1.0";
+> +		method = "smc";
+> +
+> +		CPU_PD0: power-domain-cpu0 {
+> +			#power-domain-cells = <0>;
+> +			power-domains = <&CLUSTER_PD>;
+> +			domain-idle-states = <&LITTLE_CPU_SLEEP_0>;
+> +		};
+> +
+> +		CPU_PD1: power-domain-cpu1 {
+> +			#power-domain-cells = <0>;
+> +			power-domains = <&CLUSTER_PD>;
+> +			domain-idle-states = <&LITTLE_CPU_SLEEP_0>;
+> +		};
+> +
+> +		CPU_PD2: power-domain-cpu2 {
+> +			#power-domain-cells = <0>;
+> +			power-domains = <&CLUSTER_PD>;
+> +			domain-idle-states = <&LITTLE_CPU_SLEEP_0>;
+> +		};
+> +
+> +		CPU_PD3: power-domain-cpu3 {
+> +			#power-domain-cells = <0>;
+> +			power-domains = <&CLUSTER_PD>;
+> +			domain-idle-states = <&LITTLE_CPU_SLEEP_0>;
+> +		};
+> +
+> +		CPU_PD4: power-domain-cpu4 {
+> +			#power-domain-cells = <0>;
+> +			power-domains = <&CLUSTER_PD>;
+> +			domain-idle-states = <&BIG_CPU_SLEEP_0>;
+> +		};
+> +
+> +		CPU_PD5: power-domain-cpu5 {
+> +			#power-domain-cells = <0>;
+> +			power-domains = <&CLUSTER_PD>;
+> +			domain-idle-states = <&BIG_CPU_SLEEP_0>;
+> +		};
+> +
+> +		CPU_PD6: power-domain-cpu6 {
+> +			#power-domain-cells = <0>;
+> +			power-domains = <&CLUSTER_PD>;
+> +			domain-idle-states = <&BIG_CPU_SLEEP_0>;
+> +		};
+> +
+> +		CPU_PD7: power-domain-cpu7 {
+> +			#power-domain-cells = <0>;
+> +			power-domains = <&CLUSTER_PD>;
+> +			domain-idle-states = <&BIG_CPU_SLEEP_0>;
+> +		};
+> +
+> +		CLUSTER_PD: power-domain-cpu-cluster0 {
+> +			#power-domain-cells = <0>;
+> +			domain-idle-states = <&CLUSTER_SLEEP_0>, <&CLUSTER_SLEEP_1>;
+> +		};
+> +	};
+> +
+> +	soc: soc@0 {
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges = <0 0 0 0 0x10 0>;
+> +		dma-ranges = <0 0 0 0 0x10 0>;
+> +		compatible = "simple-bus";
+> +
+> +		tcsr_mutex: hwlock@1f40000 {
+> +			compatible = "qcom,tcsr-mutex";
+> +			reg = <0x0 0x01f40000 0x0 0x40000>;
+> +			#hwlock-cells = <1>;
+> +		};
+> +
+> +		pdc: interrupt-controller@b220000 {
+> +			compatible = "qcom,sm4450-pdc", "qcom,pdc";
+
+Missing binding update
+
+> +			reg = <0 0x0b220000 0 0x30000>, <0 0x174000f0 0 0x64>;
+> +			qcom,pdc-ranges = <0 480 94>, <94 494 31>, <125 63 1>;
+> +			#interrupt-cells = <2>;
+> +			interrupt-parent = <&intc>;
+> +			interrupt-controller;
+> +		};
+> +
+> +		intc: interrupt-controller@17200000 {
+> +			compatible = "arm,gic-v3";
+> +			#interrupt-cells = <3>;
+> +			interrupt-controller;
+> +			#redistributor-regions = <1>;
+> +			redistributor-stride = <0x0 0x20000>;
+> +			reg = <0x0 0x17200000 0x0 0x10000>,     /* GICD */
+> +				<0x0 0x17260000 0x0 0x100000>;    /* GICR * 8 */
+
+Please align vertically.
+
+> +			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_LOW>;
+> +		};
+> +
+> +		timer@17420000 {
+> +			compatible = "arm,armv7-timer-mem";
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +			ranges = <0 0 0 0x20000000>;
+> +			reg = <0x0 0x17420000 0x0 0x1000>;
+> +			clock-frequency = <19200000>;
+> +
+> +			frame@17421000 {
+> +				frame-number = <0>;
+> +				interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
+> +						<GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>;
+
+Please align vertically.
+
+> +				reg = <0x17421000 0x1000>,
+> +					<0x17422000 0x1000>;
+> +			};
+> +
+> +			frame@17423000 {
+> +				frame-number = <1>;
+> +				interrupts = <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>;
+> +				reg = <0x17423000 0x1000>;
+> +				status = "disabled";
+> +			};
+> +
+> +			frame@17425000 {
+> +				frame-number = <2>;
+> +				interrupts = <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>;
+> +				reg = <0x17425000 0x1000>;
+> +				status = "disabled";
+> +			};
+> +
+> +			frame@17427000 {
+> +				frame-number = <3>;
+> +				interrupts = <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>;
+> +				reg = <0x17427000 0x1000>;
+> +				status = "disabled";
+> +			};
+> +
+> +			frame@17429000 {
+> +				frame-number = <4>;
+> +				interrupts = <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>;
+> +				reg = <0x17429000 0x1000>;
+> +				status = "disabled";
+> +			};
+> +
+> +			frame@1742b000 {
+> +				frame-number = <5>;
+> +				interrupts = <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>;
+> +				reg = <0x1742b000 0x1000>;
+> +				status = "disabled";
+> +			};
+> +
+> +			frame@1742d000 {
+> +				frame-number = <6>;
+> +				interrupts = <GIC_SPI 14 IRQ_TYPE_LEVEL_HIGH>;
+> +				reg = <0x1742d000 0x1000>;
+> +				status = "disabled";
+> +			};
+> +		};
+> +	};
+> +
+> +	timer {
+> +		compatible = "arm,armv8-timer";
+> +		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
+> +				<GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
+
+Please align vertically.
+
+> +				<GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
+> +				<GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>;
+> +		clock-frequency = <19200000>;
+> +	};
+> +};
+
+-- 
+With best wishes
+Dmitry
 
