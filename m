@@ -2,100 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B15A759CB2
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 19:47:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 59AD2759CE3
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 19:56:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229844AbjGSRrP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jul 2023 13:47:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36256 "EHLO
+        id S229761AbjGSR4U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jul 2023 13:56:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40838 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229941AbjGSRrO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 13:47:14 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A46671FCB;
-        Wed, 19 Jul 2023 10:47:12 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 30AAB617C7;
-        Wed, 19 Jul 2023 17:47:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A4EBC433C7;
-        Wed, 19 Jul 2023 17:47:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689788831;
-        bh=7kL4h42G7ZH1MZ9Zs075t+pMGhnJufVDO5ELr+Wq6PM=;
-        h=From:To:In-Reply-To:References:Subject:Date:From;
-        b=YXpV3WP66mJ6HviOlag1r7RRPg2KscCMlnHplMUaELPPR0sD2FkWFG1hV8UDPBQuK
-         c2w2WcpoX+HlLTUYjS12beVuvFzqjY1q9GGyOLtI1u2aTwpcsgA1hQhNzNv6m9A6pk
-         oauGJUPtRe78dzLYyPXmdsZAsCB+i3ea1NcKRPbwogB8sCfOwGkbafe1+PxZVSP3rL
-         8Fg3ShLO0vnQ+06SU8Q8SLtj8RFrkrsWOvR0M9m9OuyfC1N8Vz3uiXCPbnPXR7n1r3
-         WI77LuCLWCBuQvj8i/Eecx74wRCbAPa05C+jjLtCxM47APARYNilhI+5/mxmupfe7c
-         Nw9FJwW6mP4ow==
-From:   Mark Brown <broonie@kernel.org>
-To:     bcousson@baylibre.com, tony@atomide.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        lgirdwood@gmail.com, perex@perex.cz, tiwai@suse.com,
-        peter.ujfalusi@gmail.com, jarkko.nikula@bitmer.com,
-        dmitry.torokhov@gmail.com, linux-omap@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        alsa-devel@alsa-project.org, Andreas Kemnade <andreas@kemnade.info>
-In-Reply-To: <20230705190324.355282-1-andreas@kemnade.info>
-References: <20230705190324.355282-1-andreas@kemnade.info>
-Subject: Re: (subset) [PATCH 0/3] ARM: omap4: embt2ws: Add audio support
-Message-Id: <168978882827.125745.5619053137283320178.b4-ty@kernel.org>
-Date:   Wed, 19 Jul 2023 18:47:08 +0100
+        with ESMTP id S230037AbjGSR4J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 13:56:09 -0400
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C41A01FD6
+        for <devicetree@vger.kernel.org>; Wed, 19 Jul 2023 10:56:02 -0700 (PDT)
+Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-3fc03aa6e04so67034205e9.2
+        for <devicetree@vger.kernel.org>; Wed, 19 Jul 2023 10:56:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1689789360; x=1692381360;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=q+5oaw2J5+G3GYFPR3to60Ow5YDUAwCVY4MtrYxrWzo=;
+        b=O5tdpOzllo11N68hbvqat1rL/4izSOZ0mS/2NFq3W6QpoHAAtnacEgIE/ney42oTv2
+         baG9U7DhaLclF5umoDw473TrB85LBTE4niFhYh71kp24dX/IN8IpfpLtVSNPiSNmk0Dx
+         ELKwjMmadFYml++d7mnvFvKSqrYKNyNROBtMVaoH+dgbYgQRa4NtT2p8yv3hAfaKipVP
+         yy6b/5ssaNPZeA+Fct6luOsGclO3j1r2EQSsUwxf7NvfgxrmXZZxznrl1KpZMg4/Iu9x
+         bA8Z4+a5tUdsu+6ZBbRGVBvC749z6UrX7ZbxxkgUHeCO5P4QVhijnULOlpui+1R/d/3A
+         MUeg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689789360; x=1692381360;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=q+5oaw2J5+G3GYFPR3to60Ow5YDUAwCVY4MtrYxrWzo=;
+        b=DO/UpsxcoVLvwAeslF1fnf0NcSvv5D7qreLz80y2wr9uOUhEJoSoZNJSBTRO4w6rqQ
+         lFmvRV7fIKyN4UA3EK7B4Q2GeEtxG6xUvCaqeZMQB/WUBzQIB+0JGvSQMJJhDQCDdTU7
+         rAFCice8IADIj2LC5GcJmhzTm156W5A2GrjySGUfiMMh3ZpHQ4U7wAp6PTQN0zpPwrMl
+         JtOhB5/eeccS89UkvylZK5GO9SkZ8bzIAvJwPgT36lmbgtaY9rFbVQoaYsqlTqV7TAct
+         w6jVatYdmRnRh3IB5gCJtevS50U0Ebygs7gfyVclaViSABpiQRoV+nUqOAk//M506PCI
+         HF2A==
+X-Gm-Message-State: ABy/qLY8i4RhMU/fXQzmUUu3lvLWEZXzBHz7D6+vbKKS7THA85nsB12t
+        hj+nJxH69s8QD235rPv4ms19/Q==
+X-Google-Smtp-Source: APBJJlGJWPVncsHecZCDgmX0fdTLwFLC8Wokgg9i2konxqVAbiNqQMmWxybL1xsSOpnBwDHWUMyY6A==
+X-Received: by 2002:a05:600c:20f:b0:3fb:ab76:164b with SMTP id 15-20020a05600c020f00b003fbab76164bmr2552075wmi.13.1689789360496;
+        Wed, 19 Jul 2023 10:56:00 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id y9-20020a7bcd89000000b003fbb1a9586esm2232470wmj.15.2023.07.19.10.55.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 19 Jul 2023 10:56:00 -0700 (PDT)
+Message-ID: <71f2c286-c205-13b8-885a-240eae4131e3@linaro.org>
+Date:   Wed, 19 Jul 2023 19:55:57 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.13-dev-099c9
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v2 2/3] Documentation/process: maintainer-soc: add clean
+ platforms profile
+Content-Language: en-US
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        soc@kernel.org, workflows@vger.kernel.org,
+        linux-doc@vger.kernel.org, arm@kernel.org,
+        Conor Dooley <conor.dooley@microchip.com>
+References: <20230719143309.204766-1-krzysztof.kozlowski@linaro.org>
+ <20230719143309.204766-2-krzysztof.kozlowski@linaro.org>
+ <CAL_JsqLXanpk+cMG0b8Ze9WAfmRqcu6-5EsdKVKG3TKCOwnm7A@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAL_JsqLXanpk+cMG0b8Ze9WAfmRqcu6-5EsdKVKG3TKCOwnm7A@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 05 Jul 2023 21:03:21 +0200, Andreas Kemnade wrote:
-> Add audio support for Epson Moverio BT-200.
-> In the vendor kernel, the MCBSP side is used as master,
-> so do it here also that way.
+On 19/07/2023 19:40, Rob Herring wrote:
+> On Wed, Jul 19, 2023 at 8:33 AM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>>
+>> Some SoC platforms require that commits must not bring any new
+>> dtbs_check warnings.  Maintainers of such platforms usually have some
+>> automation set, so any new warning will be spotted sooner or later.
+>> Worst case: they run the tests themselves.  Document requirements for
+>> such platforms, so contributors can expect their patches being dropped
+>> or ignored, if they bring new warnings for existing boards.
+>>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+>>
+>> ---
+>>
+>> Changes in v2:
+>> 1. Add Rb tag.
+>> 2. Implement Conor's feedback: change doc title, follow->should follow,
+>>    minor style changes.
+>> ---
+>>  .../process/maintainer-handbooks.rst          |  1 +
+>>  .../process/maintainer-soc-clean-dts.rst      | 23 +++++++++++++++++++
+>>  MAINTAINERS                                   |  2 +-
+>>  3 files changed, 25 insertions(+), 1 deletion(-)
+>>  create mode 100644 Documentation/process/maintainer-soc-clean-dts.rst
+>>
+>> diff --git a/Documentation/process/maintainer-handbooks.rst b/Documentation/process/maintainer-handbooks.rst
+>> index 9992bfd7eaa3..976391cec528 100644
+>> --- a/Documentation/process/maintainer-handbooks.rst
+>> +++ b/Documentation/process/maintainer-handbooks.rst
+>> @@ -17,5 +17,6 @@ Contents:
+>>
+>>     maintainer-netdev
+>>     maintainer-soc
+>> +   maintainer-soc-clean-dts
+>>     maintainer-tip
+>>     maintainer-kvm-x86
+>> diff --git a/Documentation/process/maintainer-soc-clean-dts.rst b/Documentation/process/maintainer-soc-clean-dts.rst
+>> new file mode 100644
+>> index 000000000000..c460923f39be
+>> --- /dev/null
+>> +++ b/Documentation/process/maintainer-soc-clean-dts.rst
+>> @@ -0,0 +1,23 @@
+>> +.. SPDX-License-Identifier: GPL-2.0
+>> +
+>> +==============================================
+>> +SoC Platforms with DTS Compliance Requirements
+>> +==============================================
+>> +
+>> +Overview
+>> +--------
+>> +
+>> +SoC platforms or subarchitectures should follow all the rules from
+>> +Documentation/process/maintainer-soc.rst.  However platforms referencing
+>> +this document impose additional requirements listed below.
 > 
-> Andreas Kemnade (3):
->   ASoC: ti: omap-mcbsp: Ignore errors for getting fck_src
->   ASoC: tlv320aic3x: use BCLK instead of MCLK if not in master mode
->   ARM: dts: omap4: embt2ws: Add audio support
+> I would make it clear how platforms reference this doc:
+> this document in MAINTAINERS impose...
+
+Sure.
+
 > 
-> [...]
+>> +
+>> +Strict DTS DT Schema Compliance
+> 
+> Schema and dtc
+Ack
 
-Applied to
+> 
+> 
+>> +-------------------------------
+>> +
+>> +No changes to the SoC platform Devicetree sources (DTS files) should introduce
+>> +new ``make dtbs_check W=1`` warnings.  The platform maintainers have automation
+>> +in place which should point out any new warnings.
+> 
+> If a soc.dtsi file has warnings a new board.dts will duplicate all
+> those warnings. I imagine those are okay? 
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+This. I would assume that these were existing warnings, so new board
+does not add anything new. Different question if new board comes with
+the same warning for compatible in TXT (not DT schema).
 
-Thanks!
+> Or are we assuming soc.dtsi
+> is warning free? Or do we need to distinguish both cases?
 
-[1/3] ASoC: ti: omap-mcbsp: Ignore errors for getting fck_src
-      commit: 82e7c8b93a0614b1725e0ea11d0a77b04e058716
+Warning free, or at least not many warnings, should be implied,
+otherwise I don't think it is possible to spot new warnings.
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+> 
+> I would like to see a build target for the warning free platforms, so
+> we can easily run it and check for no warnings. Just hasn't been
+> enough platforms yet to do that.
+> 
+Best regards,
+Krzysztof
 
