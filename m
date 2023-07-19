@@ -2,141 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2DE0A7594A6
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 13:52:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 945147594FC
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 14:19:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230386AbjGSLwZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jul 2023 07:52:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36580 "EHLO
+        id S230239AbjGSMTd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jul 2023 08:19:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44394 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229900AbjGSLwV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 07:52:21 -0400
-Received: from mx1.sberdevices.ru (mx2.sberdevices.ru [45.89.224.132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40940125;
-        Wed, 19 Jul 2023 04:52:16 -0700 (PDT)
-Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
-        by mx1.sberdevices.ru (Postfix) with ESMTP id 740FF120079;
-        Wed, 19 Jul 2023 14:52:14 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 740FF120079
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-        s=mail; t=1689767534;
-        bh=WJO0gCSUgzyDr4FE61tuSNaiy1oIObuvV4l3JlcF+yQ=;
-        h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type:From;
-        b=X2RiZPowV4ZPs8CRhZRqiRpZOCYhM0ctmJ2qQuAyyKKkkxXHH/b4YZ6sJzxBD05sh
-         EK60eeHvaSm8YS/k1UCZaAJIlN/XbiVpo3ECLwTGyecvDaZS+PReHO9Yro+AU1eyHY
-         quSJzTHlFu0b8mb8ryz+0qXXg8NvBgcBddLvu6SJGPgoJbwrZLUyMEW782UE/zsv2N
-         wABmFSH+NgznWdb1gKIQOKl/PAS7NdKQw3As8w1V9+aizNjm5M3lmliGbPaEiMqK1s
-         bGnbjeF0I7d91eFVsOKB/6UQAlOn2sFErkiOYWS2PO4KUUaoh+lWAYtY7+LfWiEQf3
-         LcmHLIgJHAf1A==
-Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mx1.sberdevices.ru (Postfix) with ESMTPS;
-        Wed, 19 Jul 2023 14:52:14 +0300 (MSK)
-Received: from localhost (100.64.160.123) by p-i-exch-sc-m01.sberdevices.ru
- (172.16.192.107) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Wed, 19 Jul
- 2023 14:52:14 +0300
-Date:   Wed, 19 Jul 2023 14:52:13 +0300
-From:   Dmitry Rokosov <ddrokosov@sberdevices.ru>
-To:     zelong dong <zelong.dong@amlogic.com>
-CC:     Neil Armstrong <neil.armstrong@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Kevin Hilman <khilman@baylibre.com>,
+        with ESMTP id S230219AbjGSMTa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 08:19:30 -0400
+Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48D7710D4;
+        Wed, 19 Jul 2023 05:19:27 -0700 (PDT)
+Received: from francesco-nb.pivistrello.it (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
+        by mail11.truemail.it (Postfix) with ESMTPA id 6AD99209A8;
+        Wed, 19 Jul 2023 14:19:23 +0200 (CEST)
+From:   Francesco Dolcini <francesco@dolcini.it>
+To:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Francesco Dolcini <francesco.dolcini@toradex.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-amlogic@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        <devicetree@vger.kernel.org>, <kelvin.zhang@amlogic.com>
-Subject: Re: [PATCH v3 3/3] arm64: dts: amlogic: add reset controller for
- Amlogic C3 SoC
-Message-ID: <20230719115213.ixza2aguogv3tyhw@CAB-WSD-L081021>
-References: <20230719060954.14864-1-zelong.dong@amlogic.com>
- <20230719060954.14864-4-zelong.dong@amlogic.com>
+        Conor Dooley <conor+dt@kernel.org>,
+        patches@opensource.cirrus.com
+Subject: [PATCH v1] ASoC: dt-bindings: wm8904: Convert to dtschema
+Date:   Wed, 19 Jul 2023 14:19:18 +0200
+Message-Id: <20230719121918.247397-1-francesco@dolcini.it>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20230719060954.14864-4-zelong.dong@amlogic.com>
-User-Agent: NeoMutt/20220415
-X-Originating-IP: [100.64.160.123]
-X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
- p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 178721 [Jul 19 2023]
-X-KSMG-AntiSpam-Version: 5.9.59.0
-X-KSMG-AntiSpam-Envelope-From: DDRokosov@sberdevices.ru
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 524 524 9753033d6953787301affc41bead8ed49c47b39d, {Tracking_uf_ne_domains}, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2;p-i-exch-sc-m01.sberdevices.ru:5.0.1,7.1.1;lists.infradead.org:7.1.1;100.64.160.123:7.1.2;sberdevices.ru:5.0.1,7.1.1, FromAlignment: s, {Tracking_white_helo}, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean, bases: 2023/07/19 06:59:00
-X-KSMG-LinksScanning: Clean, bases: 2023/07/19 07:00:00
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/07/19 06:48:00 #21640303
-X-KSMG-AntiVirus-Status: Clean, skipped
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 19, 2023 at 02:09:54PM +0800, zelong dong wrote:
-> From: Zelong Dong <zelong.dong@amlogic.com>
-> 
-> Add the reset controller device of Amlogic C3 SoC family
-> 
-> Signed-off-by: Zelong Dong <zelong.dong@amlogic.com>
+From: Francesco Dolcini <francesco.dolcini@toradex.com>
 
-Reviewed-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+Convert the WM8904 audio CODEC bindings to DT schema.
 
-> ---
->  arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi | 7 +++++++
->  1 file changed, 7 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
-> index 60ad4f3eef9d..28698c42e11e 100644
-> --- a/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
-> @@ -6,6 +6,7 @@
->  #include <dt-bindings/interrupt-controller/irq.h>
->  #include <dt-bindings/interrupt-controller/arm-gic.h>
->  #include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/reset/amlogic,c3-reset.h>
->  
->  / {
->  	cpus {
-> @@ -72,6 +73,12 @@ apb4: bus@fe000000 {
->  			#size-cells = <2>;
->  			ranges = <0x0 0x0 0x0 0xfe000000 0x0 0x480000>;
->  
-> +			reset: reset-controller@2000 {
-> +				compatible = "amlogic,c3-reset";
-> +				reg = <0x0 0x2000 0x0 0x98>;
-> +				#reset-cells = <1>;
-> +			};
-> +
->  			uart_b: serial@7a000 {
->  				compatible = "amlogic,meson-s4-uart",
->  					   "amlogic,meson-ao-uart";
-> -- 
-> 2.35.1
-> 
-> 
-> _______________________________________________
-> linux-amlogic mailing list
-> linux-amlogic@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-amlogic
+Compared to the original binding #sound-dai-cells and the missing power
+supplies are added. The latter are all required as described in the
+datasheet.
 
+Datasheet: https://statics.cirrus.com/pubs/proDatasheet/WM8904_Rev4.1.pdf
+Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
+---
+ .../devicetree/bindings/sound/wlf,wm8904.yaml | 74 +++++++++++++++++++
+ .../devicetree/bindings/sound/wm8904.txt      | 33 ---------
+ 2 files changed, 74 insertions(+), 33 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/sound/wlf,wm8904.yaml
+ delete mode 100644 Documentation/devicetree/bindings/sound/wm8904.txt
+
+diff --git a/Documentation/devicetree/bindings/sound/wlf,wm8904.yaml b/Documentation/devicetree/bindings/sound/wlf,wm8904.yaml
+new file mode 100644
+index 000000000000..329260cf0fa0
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/wlf,wm8904.yaml
+@@ -0,0 +1,74 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/wlf,wm8904.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Wolfson WM8904/WM8912 audio codecs
++
++maintainers:
++  - patches@opensource.cirrus.com
++
++description: |
++  Pins on the device (for linking into audio routes):
++  IN1L, IN1R, IN2L, IN2R, IN3L, IN3R, HPOUTL, HPOUTR, LINEOUTL, LINEOUTR,
++  MICBIAS
++
++properties:
++  compatible:
++    enum:
++      - wlf,wm8904
++      - wlf,wm8912
++
++  reg:
++    maxItems: 1
++
++  "#sound-dai-cells":
++    const: 0
++
++  clocks:
++    maxItems: 1
++
++  clock-names:
++    const: mclk
++
++  AVDD-supply: true
++  CPVDD-supply: true
++  DBVDD-supply: true
++  DCVDD-supply: true
++  MICVDD-supply: true
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - clock-names
++  - AVDD-supply
++  - CPVDD-supply
++  - DBVDD-supply
++  - DCVDD-supply
++  - MICVDD-supply
++
++allOf:
++  - $ref: dai-common.yaml#
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        codec@1a {
++            compatible = "wlf,wm8904";
++            reg = <0x1a>;
++            clocks = <&pck0>;
++            clock-names = "mclk";
++            AVDD-supply = <&reg_1p8v>;
++            CPVDD-supply = <&reg_1p8v>;
++            DBVDD-supply = <&reg_1p8v>;
++            DCVDD-supply = <&reg_1p8v>;
++            MICVDD-supply = <&reg_1p8v>;
++        };
++    };
+diff --git a/Documentation/devicetree/bindings/sound/wm8904.txt b/Documentation/devicetree/bindings/sound/wm8904.txt
+deleted file mode 100644
+index 66bf261423b9..000000000000
+--- a/Documentation/devicetree/bindings/sound/wm8904.txt
++++ /dev/null
+@@ -1,33 +0,0 @@
+-WM8904 audio CODEC
+-
+-This device supports I2C only.
+-
+-Required properties:
+-  - compatible: "wlf,wm8904" or "wlf,wm8912"
+-  - reg: the I2C address of the device.
+-  - clock-names: "mclk"
+-  - clocks: reference to
+-    <Documentation/devicetree/bindings/clock/clock-bindings.txt>
+-
+-Pins on the device (for linking into audio routes):
+-
+-  * IN1L
+-  * IN1R
+-  * IN2L
+-  * IN2R
+-  * IN3L
+-  * IN3R
+-  * HPOUTL
+-  * HPOUTR
+-  * LINEOUTL
+-  * LINEOUTR
+-  * MICBIAS
+-
+-Examples:
+-
+-codec: wm8904@1a {
+-	compatible = "wlf,wm8904";
+-	reg = <0x1a>;
+-	clocks = <&pck0>;
+-	clock-names = "mclk";
+-};
 -- 
-Thank you,
-Dmitry
+2.25.1
+
