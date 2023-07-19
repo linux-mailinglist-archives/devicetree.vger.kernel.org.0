@@ -2,93 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D90AC758F24
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 09:36:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CA5E5758F36
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 09:39:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229875AbjGSHgc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jul 2023 03:36:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34240 "EHLO
+        id S229562AbjGSHjU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jul 2023 03:39:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36448 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230144AbjGSHgX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 03:36:23 -0400
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF2A61FF2
-        for <devicetree@vger.kernel.org>; Wed, 19 Jul 2023 00:36:20 -0700 (PDT)
-Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-51e5d9e20ecso9314383a12.1
-        for <devicetree@vger.kernel.org>; Wed, 19 Jul 2023 00:36:20 -0700 (PDT)
+        with ESMTP id S229463AbjGSHjP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 03:39:15 -0400
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAAF31997
+        for <devicetree@vger.kernel.org>; Wed, 19 Jul 2023 00:39:13 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-9939fbb7191so110521266b.0
+        for <devicetree@vger.kernel.org>; Wed, 19 Jul 2023 00:39:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689752179; x=1692344179;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ASco8vj7+XaPQen56URwDE1RtWpxUMyxaWBEjOtEJHo=;
-        b=Cnz1csnoz89sYWUFjF5+rCspweC7RZvwPEU4Cg5MAF7UKpXzochmOa/qauV3CKgkjv
-         fAJRVMXPFDrQNYOPUKdgZ7EU7ck3LB0bn8XcyOtCVRNMpYOcRn5TYaARwdkfvI0h4Vyd
-         N6SGOv0GYyy/lVRTQFQF11PtuSiZi4ZBakUZUOGM/IEt7aPqg2Il7ZUODmJExn5d/QHq
-         uYoqJS3rLdn9zbPr87U1Djc03IfPrAvt/2/XB/dzfMVqRMXfoq6t5q+f2DvhwH05s6Xo
-         I8HdO07cSAQ1BJp6rwLZvx+SFNFdw1/iwSqYgVw+BPHGQMPlCDAW+CAwVbvhe2rKd0px
-         kXKg==
+        d=linaro.org; s=google; t=1689752352; x=1692344352;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=66DW8LCflFn2Wi0RjI0bBr8dmu2ZyOhIYX9UKbHY2/o=;
+        b=SQF9Gs0cOrOlV3FiuNVhG4/lkVp3mHe6KNsCW53/nxQ+z2PJ8pZ+1LVan7ATcz51Vy
+         ZatYmS11LNzZLB1xYUMC2PIjsfk80Ry1iUgPjeQAF/RkFH6mZOzGzEliX8TmJDdfBgjs
+         24RJvq4jMgI6DExKuyY7SPudx6GcCVFYJMdWu+vUlvLac11vf8NwtNPGb00gD0X2KF9n
+         WfHR0eqZs9eBcxDP8PoWLfhTHsiJ4rktSJIUXaAZpZzSGuUKF7IvpBMxRFDmEsWUN6CJ
+         LDCHwki4f3mDCPyYyh3b4933uFMFXpQt8mZ3VYENYDtemstx8eE4d8cPzWxpQzB/y0Wo
+         sZsQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689752179; x=1692344179;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ASco8vj7+XaPQen56URwDE1RtWpxUMyxaWBEjOtEJHo=;
-        b=Xtz+yoq7QEOAn1kbl9Ebpmke5zQD+5mLpvwT+ZhUyAtz/D7/57tOuvkTkhNzpmEilv
-         5UB5FEeyXbrqty0XhHjSXDYhWjxd75hQGIbzFf3bcwAm6cn+2aCIJ4td4eoeZjuMI11j
-         0Jmrx6eoc3B0Cd91NloETP1AlmHPcwx2ca9UuUDldXFbJ8HaSCW+gDPI+UDXGs/u1aO1
-         FeNsQeO1ENaDwgf8SJZszatQm9I53Ae07L2Rlp6yP2L7db/6vkrU0KgXUu6UxrRHxNEs
-         Z45L7s16NNyZnRqOemqwzUiNsVIpPNWujAhrDLDwuyF4R4BHOaHY9M/N5v8I9CZ5Ud6U
-         u+vg==
-X-Gm-Message-State: ABy/qLaSLSCM1YJU9R2RwF7R7dZFrt8AAPFGBzmAF2uhccan+gfZUvpe
-        OU0Fz+DY2ufQ2COvC4BAf07hMA==
-X-Google-Smtp-Source: APBJJlEKMYKstWVoOwy2osy2Orx7A7obEkkxdyX2eTBoa5l4pHTs29W1yKNfhK6tTJHPkKTVCn1cOA==
-X-Received: by 2002:aa7:c74d:0:b0:51d:ad03:95f with SMTP id c13-20020aa7c74d000000b0051dad03095fmr1780896eds.7.1689752179304;
-        Wed, 19 Jul 2023 00:36:19 -0700 (PDT)
-Received: from krzk-bin.. ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id v5-20020aa7cd45000000b0051e069ebee3sm2310594edw.14.2023.07.19.00.36.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 Jul 2023 00:36:18 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Alim Akhtar <alim.akhtar@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH 1/2] ARM: dts: samsung: s3c6410-mini6410: correct ethernet reg addresses (split)
-Date:   Wed, 19 Jul 2023 09:36:11 +0200
-Message-Id: <168975215984.14599.16321800531414229232.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230713152926.82884-1-krzysztof.kozlowski@linaro.org>
-References: <20230713152926.82884-1-krzysztof.kozlowski@linaro.org>
+        d=1e100.net; s=20221208; t=1689752352; x=1692344352;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=66DW8LCflFn2Wi0RjI0bBr8dmu2ZyOhIYX9UKbHY2/o=;
+        b=arKdqDulmnyopUoXrT7rRPBAGJLWyrYGUyKCCp5vBXFo45VYc4K+6wSa7FUjelNQNJ
+         XaBDLT7nDvTL+VDznBVKWTHgBBgm32W2JdS3jWbE7hazjoxy7wbBIZ1lrntcOqNPfXpR
+         XdRvyUfmKB2DKfcLNLQPAU2j8gcXgIljUzciHso3TlavNpAuOSe2dAem+Fuj0ODgP3A/
+         S4EPPPEsyVhRP1rlH3+h1l529+36QBNEg30BjgOUTDJiMTp4bc54uE/ZVH8HqCqQ+3Ei
+         z70oe00st8EKkNAeu9hCzmpvQriDr61WZf5QLBexFPuRNpYIoLIx4FoyyUw3W9yKwdEZ
+         457Q==
+X-Gm-Message-State: ABy/qLY2/xqfU0JbfXJQGGTiY9SPXTDSwNFsDGnjYDAyyi1C5+kFfIkZ
+        Lso5O0SJCvCfokvC27d08+VBCw==
+X-Google-Smtp-Source: APBJJlEr6NCzCOKisjOedVChiNya0k5zFijtDepBYyoBAyhTJkcmXFQ8FTPvA0H/hQQbxTXvq05Zmg==
+X-Received: by 2002:a17:906:3f56:b0:99b:4210:cc76 with SMTP id f22-20020a1709063f5600b0099b4210cc76mr678766ejj.28.1689752352214;
+        Wed, 19 Jul 2023 00:39:12 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id bq5-20020a170906d0c500b0098748422178sm1981554ejb.56.2023.07.19.00.39.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 19 Jul 2023 00:39:11 -0700 (PDT)
+Message-ID: <9e38d2f5-6da4-089e-1c70-a89069708909@linaro.org>
+Date:   Wed, 19 Jul 2023 09:39:09 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH] arm64: dts: qcom: sdm630: remove refs to nonexistent
+ clocks
+Content-Language: en-US
+To:     Alexey Minnekhanov <alexeymin@postmarketos.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
+References: <20230719073520.2644966-1-alexeymin@postmarketos.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230719073520.2644966-1-alexeymin@postmarketos.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 19/07/2023 09:35, Alexey Minnekhanov wrote:
+> Since commit d6edc31f3a68 ("clk: qcom: smd-rpm: Separate out
+> interconnect bus clocks") rpmcc-sdm660 no longer provides
+> RPM_SMD_AGGR2_NOC_CLK and RPM_SMD_AGGR2_NOC_A_CLK clocks.
+> Remove them to fix various probe failures and get devices
+> booting again.
 
-On Thu, 13 Jul 2023 17:29:25 +0200, Krzysztof Kozlowski wrote:
-> The davicom,dm9000 Ethernet Controller accepts two reg addresses.
+So that commit broke DTS?
+
 > 
+> Signed-off-by: Alexey Minnekhanov <alexeymin@postmarketos.org>
+> ---
+>  arch/arm64/boot/dts/qcom/sdm630.dtsi | 24 ++++++------------------
+>  1 file changed, 6 insertions(+), 18 deletions(-)
 > 
+> diff --git a/arch/arm64/boot/dts/qcom/sdm630.dtsi b/arch/arm64/boot/dts/qcom/sdm630.dtsi
+> index 038ec7a41412..8bea611b246b 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm630.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sdm630.dtsi
+> @@ -638,10 +638,6 @@ anoc2_smmu: iommu@16c0000 {
+>  			compatible = "qcom,sdm630-smmu-v2", "qcom,smmu-v2";
+>  			reg = <0x016c0000 0x40000>;
+>  
+> -			assigned-clocks = <&rpmcc RPM_SMD_AGGR2_NOC_CLK>;
+> -			assigned-clock-rates = <1000>;
+> -			clocks = <&rpmcc RPM_SMD_AGGR2_NOC_CLK>;
+> -			clock-names = "bus";
 
-Applied, thanks!
-
-[1/2] ARM: dts: samsung: s3c6410-mini6410: correct ethernet reg addresses (split)
-      https://git.kernel.org/krzk/linux/c/cf0cb2af6a18f28b84f9f1416bff50ca60d6e98a
-[2/2] ARM: dts: samsung: s5pv210-smdkv210: correct ethernet reg addresses (split)
-      https://git.kernel.org/krzk/linux/c/982655cb0e7f18934d7532c32366e574ad61dbd7
+It does not look like you tested the DTS against bindings. Please run
+`make dtbs_check` (see
+Documentation/devicetree/bindings/writing-schema.rst or
+https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
+for instructions).
 
 Best regards,
--- 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Krzysztof
+
