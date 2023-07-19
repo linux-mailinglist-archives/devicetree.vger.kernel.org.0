@@ -2,171 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 25F7175906E
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 10:37:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 45D01759080
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 10:43:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230500AbjGSIhZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jul 2023 04:37:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37728 "EHLO
+        id S229938AbjGSIn2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jul 2023 04:43:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40324 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229685AbjGSIhS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 04:37:18 -0400
-Received: from EUR03-DBA-obe.outbound.protection.outlook.com (mail-dbaeur03on2073.outbound.protection.outlook.com [40.107.104.73])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7C311FD7
-        for <devicetree@vger.kernel.org>; Wed, 19 Jul 2023 01:37:08 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=jza8ggHqAxc8JeP3CxZJq+FndxTD/f7dzo4ETv5Tqmhnrol0BMt+KDrW/BikEfpdQvIIWVyMydXe85SIDBZj4wXJ0buk3duRWzV4lTHuRNNarCG0q6dYjsL1LlbyTLl6Exi2ZydCP9sNW3Y29bUyehus3nNLS7Z5bNUmlvacWBLCIWb7T/l3EQmqzeuTeVHOpv60YapSFpI8JQ8+YOJRQNquyduAuGxoum6Z+C2j6DxkDFVgcJOmfeKVuX+rFMV2xlD2zWQinjZAMweS0Bg736RZfW1+kDcHlyuiwv1Hee6qZA6Gj4r2IybUCmj07ZMiY0CD6e+nFvXo1YB7sxjoVQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=EUZjIYFDrvGA5z4i6IK9VlyyRs1HQN4NpY4saa+mmi8=;
- b=O/do9fLSjc26AIp92Nb0QF++acqVBZJZKNo7CVDMFiv577MHC9fJKv20CMQbBWRKtB/SQCImC2LcXj0QZXtFsCkNaikQszEB8kEgYQWtFmeWaHOW4Y9XB0Y3PHqtLXHHg5Kd/j4FcCcpu9bXPAJIO/KWSCyMlNdGP2BPmVKtQ/cmNdTynGoBTzOg4QyroBbzxc9fJL/s6Wju0LLk+6nvqZtj41PIHBHYQKEBjt8LmQ+waeXxQ2K4SMicYXuoz8knyZbNdNxD/okAU0ZlAj0I4NpFHCAnUj+/EGDg+CcYTEu2nBlqHb+i5X5WlSHPmaEzhTpEAOiHm6diInCSAISuRg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=EUZjIYFDrvGA5z4i6IK9VlyyRs1HQN4NpY4saa+mmi8=;
- b=C4Xj39SmuULJIoO2Ik/hvn4WEY+MZn8zJ6u+Q+5xclJrAXLSX84vELfTj77JFybVrwsOD0sRIes671icVzO4h+3dqOe9VW50G4UfYN5mDoevTcA22iUoBBQzQsm/MRE/FXpIqDRJjmNQYc8EK71+8bUeaWxsUuFZngvzSmc+AzM=
-Received: from AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
- by VE1PR04MB7421.eurprd04.prod.outlook.com (2603:10a6:800:1b3::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6609.23; Wed, 19 Jul
- 2023 08:37:06 +0000
-Received: from AM7PR04MB7046.eurprd04.prod.outlook.com
- ([fe80::9018:e395:332c:e24b]) by AM7PR04MB7046.eurprd04.prod.outlook.com
- ([fe80::9018:e395:332c:e24b%4]) with mapi id 15.20.6609.022; Wed, 19 Jul 2023
- 08:37:06 +0000
-From:   Ying Liu <victor.liu@nxp.com>
-To:     Sam Ravnborg <sam@ravnborg.org>
-CC:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "rfoss@kernel.org" <rfoss@kernel.org>,
-        "andrzej.hajda@intel.com" <andrzej.hajda@intel.com>,
-        "jonas@kwiboo.se" <jonas@kwiboo.se>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "jernej.skrabec@gmail.com" <jernej.skrabec@gmail.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "Laurent.pinchart@ideasonboard.com" 
-        <Laurent.pinchart@ideasonboard.com>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        dl-linux-imx <linux-imx@nxp.com>
-Subject: RE: [PATCH 9/9] drm/bridge: imx: Add i.MX93 MIPI DSI support
-Thread-Topic: [PATCH 9/9] drm/bridge: imx: Add i.MX93 MIPI DSI support
-Thread-Index: AQHZuHX2kU9tVwb+/k68aHvm3zH4HK+/J8uAgAAR5CCAAHN/AIABGckA
-Date:   Wed, 19 Jul 2023 08:37:05 +0000
-Message-ID: <AM7PR04MB7046888A4136A7DE9EEED7C69839A@AM7PR04MB7046.eurprd04.prod.outlook.com>
-References: <20230717061831.1826878-1-victor.liu@nxp.com>
- <20230717061831.1826878-10-victor.liu@nxp.com> <3174425.5fSG56mABF@steina-w>
- <DB8PR04MB7051324184846E6206E495BF9838A@DB8PR04MB7051.eurprd04.prod.outlook.com>
- <20230718154644.GD688726@ravnborg.org>
-In-Reply-To: <20230718154644.GD688726@ravnborg.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: AM7PR04MB7046:EE_|VE1PR04MB7421:EE_
-x-ms-office365-filtering-correlation-id: c733ce57-e325-4cc9-16a4-08db8833555e
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: FP0ACEgaBoQyEejc0MBlID8ECdI/cqx4bg8fff13fFtI9QH3Tqrg2P+Z0a6vTMXf3nThv9UFdbDErwMSu7S1H7k3qnzrU0/GHOieSNcFpgVzxVZ1sHHl12+VudG03rl7wIfFw4xQNYAx0oLYMQqFAPOQoUnWOPnKdWdENQGmWh8UFX6vE2eRxIggr0VCep17N5Fzhp1d5rajsLDpl2Zcu0IVvckYl3b9yj6Mpt12P9TzVu66u5QZkq0gSjnzThm3upx6rzsvv/Fw0QW3dKC6jz1s4Ye4koueBl1OY6owiZAFxbdYFzqXiJFX/OZ/vaXF/zufh9+HjuYWe7rTk68RLOAw460z17wlqPfB6rt3p2Nf/R29J59ckNMV1cz5NQ2ebqVWqxNs43FMEbkHjMwlFy7fNtVCfURWRHDDlBiWRbJagwZNjo4jxgV71reWX3zxSNYQEOg7ihOwFBvc02efOhBawbLzxST8d9kw+iwEgihxnB3llrv6/HC0+eJgVUxYvFeNEGDr05CIqIxJ802GPPcvfqwNQC0B3arRnwSlwqBIRnHHkiaLCfw//W2A5NCaGO5+krh9HrIm7/mbIKhJjKFWdb90zSs9mVVuTKxz20r9zVn/zedLZywy5KfcHaUX
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR04MB7046.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(376002)(396003)(346002)(136003)(39860400002)(366004)(451199021)(478600001)(71200400001)(186003)(83380400001)(55016003)(6506007)(26005)(53546011)(9686003)(66946007)(33656002)(64756008)(66446008)(66476007)(66556008)(8936002)(8676002)(4744005)(5660300002)(2906002)(86362001)(4326008)(41300700001)(6916009)(316002)(7696005)(38100700002)(54906003)(38070700005)(76116006)(7416002)(52536014)(122000001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?E6UudQN9ocQSYN0z1zVTvgkcXJxWuQgRMm6L7CO8rhhYHks+lmFCoNoYHAvc?=
- =?us-ascii?Q?L7ozbyQvSIaljCu1hhDplVbr80EFFSyDcgj2vidKm9t+KGlWw+lF9j4L+5zj?=
- =?us-ascii?Q?2fnAwPsqbaZzR5RqSabu2JOpsoJjLUU8MKfCOtSWrq4+zF1ue6GbTM4h5LZD?=
- =?us-ascii?Q?4lXYmH1CWi6+Fgfd5aYEl1riKai2Dj0wj5J/N0dHNssCpBGhKWQJemDAYT9T?=
- =?us-ascii?Q?amHXspLNVF1LJT4gl96JwceBRAXNgaujVzKxSKf6HyrtkDdF0tTJbHyTOFA5?=
- =?us-ascii?Q?NylDVKHhFNwrGcXnsJga2Ii0GufgqPyfLWCEzrWsRR8ipfNa2yZ9ydudSnk6?=
- =?us-ascii?Q?FzMqekpq+Fft+Y+/sViLCb1ZuU0JbhPI7Q4C8o/XhFR5S2V5pNcjYjDnk/3h?=
- =?us-ascii?Q?xczfO2M1gOFvP5qiII7+7ipg6rVEGgCgnDI2rLPZZ1Ff7I86/lMsQZIDHUbL?=
- =?us-ascii?Q?wSm4cUXmhaJwUwqLDvi+O2ok1F7a+jVQoNSYf4QdxgOQAYtH6Jisc0VpQSiN?=
- =?us-ascii?Q?/KpZyPgB5IPrQOuzf2kuNl2I7qiDOC/wJmTvajVGfN0yT/6D6m/DzMjiR/cw?=
- =?us-ascii?Q?2tWzwkWeLn/kRZfLAdTqbkewrSujud5y+oMRVzR4RJVBUDQm9nbsheI0iP7a?=
- =?us-ascii?Q?TmS2Yb+qjZJN/sZCih2LONkkiERWjI+s9uXybPhPeH2J/sT9mbOZy8eFVWmx?=
- =?us-ascii?Q?Nk12Bgq+gJ1vOdMsDysswh/8Rx1GvGB0L3rcrKEvgoJu3x9Ons4NNosIsvdb?=
- =?us-ascii?Q?RBTHEv0aWisMpAjDx9jy8dENplYuNLiSHObU+1Bq3j1aXKiwoQTW+mybmM3B?=
- =?us-ascii?Q?1BwjYgE3kzmTZF1vC3rfGBP2PwAOeRVL6JAo6A8LKGVpZ9UbEZA0mdOVIh9V?=
- =?us-ascii?Q?9UW6nllWe2XJOevt+uWr0Ypty4zt8IYsFYr5pa5MGj3AzVh5fm5IjYsdVWG5?=
- =?us-ascii?Q?Jn3FiJBybb1Dhffru/XJ+AoA27r7ejsi/q3jUNC7xkrtvKXqTzOo8VtnZTAI?=
- =?us-ascii?Q?mbwJy9VWna8f0nSatdj14D6abXB+D7SQFo5C14zBUMApyXz/0NejE9sDbZfu?=
- =?us-ascii?Q?mDK3mTebRbgIK3CZi7RChU6lqSUoGI1nmBusKRZFyVJut3JM0vQ1X/ACbOI8?=
- =?us-ascii?Q?7qz2pj+4iPE8sHmVbj5vnZU4jla2isRCB4wI2OjJuIJiJfbmGDfuZteAGkcX?=
- =?us-ascii?Q?5GcgxK4MWDJXgCCiJLxM38Bi9CBTH5qc2oH/+O8t6tTFHVD81m/4KDBXB2Ex?=
- =?us-ascii?Q?RWHNHoo6YWuJWGTodA5t8txgE0Pb35cLgmCorAlLrIKVenDaSC67qFYbe/X6?=
- =?us-ascii?Q?5QHfze3KYfNn9r/QQvdpSXdJ4LwCss2z0frIX2DxJ4lULhBEn+9KIy/j6AKT?=
- =?us-ascii?Q?C0xuxSz5FmX57BQc00WQNpvrxEdhfkiVRl4gyt9hj0G6ICOqDFyUJ1GggURD?=
- =?us-ascii?Q?uHb0S9DcPwrbVtaqyHZ8kmEy1cQrs7CYX8WCyP168ugaDPDgYy5ctQaeReH6?=
- =?us-ascii?Q?hSPNxSTyedM5/D0ILnFqKoXl5B7VYPxJJ4o4LynIVa7fX31F0fDdduNd+/dN?=
- =?us-ascii?Q?aioe6AAGLCNEWMaFjbE=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        with ESMTP id S230117AbjGSIn1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 04:43:27 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3643419F;
+        Wed, 19 Jul 2023 01:43:24 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id B84316130D;
+        Wed, 19 Jul 2023 08:43:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F0E45C433C7;
+        Wed, 19 Jul 2023 08:43:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1689756203;
+        bh=BlGThz6noR1JWehEW08NX7EICRzWrLxkKOFSlD5SvVI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=H8fDI4LDMObASKfrxz4XlsfXVSKNkMBEGNJ65hizZvbIslddKnOVAo3wbyLAZgXhq
+         a7MUOM5Gcy+a+fdkvHG4IshEAk3sHdceXy2D2Po1JzNnjoJ6nxcrkO7QS1oZq/CsRg
+         BGcapRq5J6CffnEQFmtCgiAAJ0tsqkUWitES4n5OP5ICMN33mbznaBb4pLhe2OhGKb
+         vJLXs8VM+nltisaUxKE0c5+BX6bjOPhKq9CuNNCVM8DlfvYlepesVVjBw5qOkQW/EE
+         wq/3d/u0Sh6D62BcNYMWGDzhsy8irpP3O0Q/+O67s1MUMW61CbWj6iA85e06DMUMuh
+         fbHy873N0kLwA==
+Received: from johan by xi.lan with local (Exim 4.96)
+        (envelope-from <johan@kernel.org>)
+        id 1qM2mR-0002yG-1A;
+        Wed, 19 Jul 2023 10:43:32 +0200
+Date:   Wed, 19 Jul 2023 10:43:31 +0200
+From:   Johan Hovold <johan@kernel.org>
+To:     Bjorn Andersson <andersson@kernel.org>
+Cc:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 03/15] clk: qcom: gcc-sm6375: Unregister critical clocks
+Message-ID: <ZLeiM6l6tu6XDzrr@hovoldconsulting.com>
+References: <20230717-topic-branch_aon_cleanup-v1-0-27784d27a4f4@linaro.org>
+ <20230717-topic-branch_aon_cleanup-v1-3-27784d27a4f4@linaro.org>
+ <ZLaRtrH85v4kpSvb@hovoldconsulting.com>
+ <33a26241-026a-9466-5dd6-e3202b29f57c@linaro.org>
+ <ybugl2m7o5cnzj4lv5ksit2rip6yvths5ieo3xlw6cycto2zax@2jimga475z2t>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AM7PR04MB7046.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c733ce57-e325-4cc9-16a4-08db8833555e
-X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Jul 2023 08:37:05.9502
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: IQEHb9qQAZSMwLPgj+qr03K8CWR0dPLBlr5aS64FA5zlJfnHK+FbmoOIsp/KWBLE2z+1xbmZyc2uj2zKQhb10A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1PR04MB7421
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ybugl2m7o5cnzj4lv5ksit2rip6yvths5ieo3xlw6cycto2zax@2jimga475z2t>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tuesday, July 18, 2023 11:47 PM  Sam Ravnborg <sam@ravnborg.org> wrote:
->=20
-> Hi Ying Liu,
+On Tue, Jul 18, 2023 at 09:23:52AM -0700, Bjorn Andersson wrote:
+> On Tue, Jul 18, 2023 at 03:26:51PM +0200, Konrad Dybcio wrote:
+> > On 18.07.2023 15:20, Johan Hovold wrote:
+> > > On Mon, Jul 17, 2023 at 05:19:10PM +0200, Konrad Dybcio wrote:
+> > >> Some clocks need to be always-on, but we don't really do anything
+> > >> with them, other than calling enable() once and telling Linux they're
+> > >> enabled.
+> > >>
+> > >> Unregister them to save a couple of bytes and, perhaps more
+> > >> importantly, allow for runtime suspend of the clock controller device,
+> > >> as CLK_IS_CRITICAL prevents the latter.
+> > > 
+> > > But this doesn't sound right. How can you disable a controller which
+> > > still has clocks enabled?
+> > > 
+> > > Shouldn't instead these clocks be modelled properly so that they are
+> > > only enabled when actually needed?
+> > Hm.. We do have clk_branch2_aon_ops, but something still needs to
+> > toggle these clocks.
+> > 
+> 
+> Before we started replacing these clocks with static votes, I handled
+> exactly this problem in the turingcc-qcs404 driver by registering the
+> ahb clock with a pm_clk_add(). The clock framework will then
+> automagically keep the clock enabled around operations, but it will also
+> keep the runtime state active as long as the clock is prepared.
+> 
+> As mentioned in an earlier reply today, there's no similarity to this in
+> the reset or gdsc code, so we'd need to add that in order to rely on
+> such mechanism.
 
-Hi Sam,
+This reminds me of:
 
->=20
-> On Tue, Jul 18, 2023 at 09:00:25AM +0000, Ying Liu wrote:
-> > > > +   if (IS_ERR(dsi->regmap)) {
-> > > > +           ret =3D PTR_ERR(dsi->regmap);
-> > > > +           DRM_DEV_ERROR(dev, "failed to get block ctrl regmap:
-> > > %d\n", ret);
-> > >
-> > > Could you use dev_err_probe here instead?
-> >
-> > Maybe, it's better to keep using DRM_DEV_ERROR to achieve consistent
-> > error log format across the driver which is implemented in
-> drm_dev_printk().
-> > I see other DRM drivers do the same.
->=20
-> All the DRM_* macros are deprecated.
-> New code shall use drm_*, dev_* or pr_ as appropriate.
+	4cc47e8add63 ("clk: qcom: gdsc: Remove direct runtime PM calls")
 
-Ok, will use dev_* in v2.
+which recently removed a broken attempt to implement this for gdscs.
 
->=20
-> The appropriate variant here is dev_err_probe().
+Just stumbled over GENPD_FLAG_PM_CLK which may provide a way forward at
+least for genpd (but see below).
 
-Ok, will use dev_err_probe() here in v2.
+> > I *think* we could leave a permanent vote in probe() without breaking
+> > runtime pm! I'll give it a spin bit later..
+> > 
+> 
+> Modelling the AHB clock in DT and putting a devm_clk_get_enabled() would
+> properly connect the two, and thereby handle probe order between the two
+> clock controllers.
 
-Regards,
-Liu Ying
+Yeah, this dependency really should be described eventually.
 
->=20
-> 	Sam
+> But it would prevent the power-domain of the parent provider to ever
+> suspending. Using pm_clk_add() this would at least depend on client
+> votes.
+
+IIUC using pm_clk_add() would also prevent the parent from suspending
+due to that resume call in clk_prepare().
+
+And this mechanism is also used for GENPD_FLAG_PM_CLK...
+
+Johan
