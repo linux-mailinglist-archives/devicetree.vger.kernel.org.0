@@ -2,128 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 167BC759261
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 12:10:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B980275926E
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 12:11:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229872AbjGSKKW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jul 2023 06:10:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35430 "EHLO
+        id S230219AbjGSKLi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jul 2023 06:11:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36430 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229847AbjGSKKV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 06:10:21 -0400
-Received: from proxmox1.postmarketos.org (proxmox1.postmarketos.org [213.239.216.189])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id C4BCD1723;
-        Wed, 19 Jul 2023 03:10:20 -0700 (PDT)
-Received: from [192.168.20.2] (unknown [77.239.252.99])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by proxmox1.postmarketos.org (Postfix) with ESMTPSA id D83DB140782;
-        Wed, 19 Jul 2023 10:10:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
-        s=donut; t=1689761419;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=7z7jIvUFcXoNmOObOfrGS4onALLyXZz1+AOjei4YhGg=;
-        b=S9MhZpvNJXHPmB+GsAv7qt+b3U7JgcV2uiPS45toZBoEt43rgtdy6Pcr3ExZqVaNiLoZbM
-        8Cs6DeRMfwCKYcglUGAWHnniTDXZ8cs2MCmoJMhpEiOq8E7UejqtBgLh6AWLnAXM25Kds5
-        FW9N4KBqmNJYNdNG3BspqYqPPzWzugM=
-Message-ID: <1f8cbc00-9602-486d-b3c9-9c82f3b6c8df@postmarketos.org>
-Date:   Wed, 19 Jul 2023 13:10:17 +0300
+        with ESMTP id S229458AbjGSKLh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 06:11:37 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 7B417E69;
+        Wed, 19 Jul 2023 03:11:36 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 6F8432F4;
+        Wed, 19 Jul 2023 03:12:19 -0700 (PDT)
+Received: from [10.57.33.122] (unknown [10.57.33.122])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 730643F67D;
+        Wed, 19 Jul 2023 03:11:33 -0700 (PDT)
+Message-ID: <ac77142d-964b-691d-ea15-105a523d9738@arm.com>
+Date:   Wed, 19 Jul 2023 11:11:31 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH v3] arm64: dts: qcom: sdm630: Add support for modem
- remoteproc
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
+ Gecko/20100101 Thunderbird/102.12.0
+Subject: Re: [PATCH V6 6/6] coresight: etm4x: Add ACPI support in platform
+ driver
+From:   Suzuki K Poulose <suzuki.poulose@arm.com>
+To:     rafael@kernel.org, Len Brown <lenb@kernel.org>
+Cc:     Ganapatrao Kulkarni <gankulkarni@os.amperecomputing.com>,
+        Steve Clevenger <scclevenger@os.amperecomputing.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
-References: <20230719093458.2668842-1-alexeymin@postmarketos.org>
- <2c1c69bf-3cd5-4d68-43db-696ce0f15197@linaro.org>
-From:   Alexey Minnekhanov <alexeymin@postmarketos.org>
-In-Reply-To: <2c1c69bf-3cd5-4d68-43db-696ce0f15197@linaro.org>
+        Frank Rowand <frowand.list@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Mike Leach <mike.leach@linaro.org>,
+        Leo Yan <leo.yan@linaro.org>, devicetree@vger.kernel.org,
+        linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Anshuman Khandual <anshuman.khandual@arm.com>,
+        linux-arm-kernel@lists.infradead.org, coresight@lists.linaro.org,
+        gregkh@linuxfoundation.org
+References: <20230710062500.45147-1-anshuman.khandual@arm.com>
+ <20230710062500.45147-7-anshuman.khandual@arm.com>
+ <38f0c8f3-5fb3-a18a-456d-867da2998786@arm.com>
+In-Reply-To: <38f0c8f3-5fb3-a18a-456d-867da2998786@arm.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19.07.2023 12:45, Krzysztof Kozlowski wrote:
-> On 19/07/2023 11:34, Alexey Minnekhanov wrote:
->> Modem subsystem in SDM630/660 is similar to MSM8998 and
->> device tree node for it is based on the one from msm8998.dtsi.
+Rafael, Len
+
+Ping (packets 6, lost 100%).
+
+
+On 10/07/2023 17:40, Suzuki K Poulose wrote:
+> Rafael, Len
+> 
+> On 10/07/2023 07:25, Anshuman Khandual wrote:
+>> From: Suzuki K Poulose <suzuki.poulose@arm.com>
 >>
->> Signed-off-by: Alexey Minnekhanov <alexeymin@postmarketos.org>
+>> Drop ETM4X ACPI ID from the AMBA ACPI device list, and instead just 
+>> move it
+>> inside the new ACPI devices list detected and used via platform driver.
+>>
+>> Cc: "Rafael J. Wysocki" <rafael@kernel.org>
+>> Cc: Len Brown <lenb@kernel.org>
+>> Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
+>> Cc: Suzuki K Poulose <suzuki.poulose@arm.com>
+>> Cc: Mike Leach <mike.leach@linaro.org>
+>> Cc: Leo Yan <leo.yan@linaro.org>
+>> Cc: Sudeep Holla <sudeep.holla@arm.com>
+>> Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>
+>> Cc: linux-acpi@vger.kernel.org
+>> Cc: coresight@lists.linaro.org
+>> Cc: linux-arm-kernel@lists.infradead.org
+>> Cc: linux-kernel@vger.kernel.org
+>> Reviewed-by: Sudeep Holla <sudeep.holla@arm.com> (for ACPI specific 
+>> changes)
+>> Signed-off-by: Suzuki K Poulose <suzuki.poulose@arm.com>
+>> Signed-off-by: Anshuman Khandual <anshuman.khandual@arm.com>
+> 
+> We would like to queue this via coresight tree. The acpi_amba bits have
+> been reviewed by Sudeep. Please could you give us an Ack, if you are
+> happy with the proposal ?
+> 
+
+Kind regards
+Suzuki
+
+> Kind regards
+> Suzuki
+> 
+> 
 >> ---
+>>   drivers/acpi/acpi_amba.c                           |  1 -
+>>   drivers/hwtracing/coresight/coresight-etm4x-core.c | 10 ++++++++++
+>>   2 files changed, 10 insertions(+), 1 deletion(-)
 >>
->> V3: Use memory-region property to specify memory regions, instead
->>      of using "mba" and "mpss" subnodes.
->>
->> V2 link: https://lore.kernel.org/lkml/20230621175046.61521-3-alexeymin@postmarketos.org/
->>
->>   arch/arm64/boot/dts/qcom/sdm630.dtsi | 59 ++++++++++++++++++++++++++++
->>   1 file changed, 59 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sdm630.dtsi b/arch/arm64/boot/dts/qcom/sdm630.dtsi
->> index 2136ded22f7e..797625cf78ac 100644
->> --- a/arch/arm64/boot/dts/qcom/sdm630.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sdm630.dtsi
->> @@ -1032,6 +1032,65 @@ data-pins {
->>   			};
->>   		};
->>   
->> +		remoteproc_mss: remoteproc@4080000 {
->> +			compatible = "qcom,sdm660-mss-pil";
+>> diff --git a/drivers/acpi/acpi_amba.c b/drivers/acpi/acpi_amba.c
+>> index f5b443ab01c2..099966cbac5a 100644
+>> --- a/drivers/acpi/acpi_amba.c
+>> +++ b/drivers/acpi/acpi_amba.c
+>> @@ -22,7 +22,6 @@
+>>   static const struct acpi_device_id amba_id_list[] = {
+>>       {"ARMH0061", 0}, /* PL061 GPIO Device */
+>>       {"ARMH0330", 0}, /* ARM DMA Controller DMA-330 */
+>> -    {"ARMHC500", 0}, /* ARM CoreSight ETM4x */
+>>       {"ARMHC501", 0}, /* ARM CoreSight ETR */
+>>       {"ARMHC502", 0}, /* ARM CoreSight STM */
+>>       {"ARMHC503", 0}, /* ARM CoreSight Debug */
+>> diff --git a/drivers/hwtracing/coresight/coresight-etm4x-core.c 
+>> b/drivers/hwtracing/coresight/coresight-etm4x-core.c
+>> index 43f583987250..703b6fcbb6a5 100644
+>> --- a/drivers/hwtracing/coresight/coresight-etm4x-core.c
+>> +++ b/drivers/hwtracing/coresight/coresight-etm4x-core.c
+>> @@ -3,6 +3,7 @@
+>>    * Copyright (c) 2014, The Linux Foundation. All rights reserved.
+>>    */
+>> +#include <linux/acpi.h>
+>>   #include <linux/bitops.h>
+>>   #include <linux/kernel.h>
+>>   #include <linux/moduleparam.h>
+>> @@ -2347,12 +2348,21 @@ static const struct of_device_id 
+>> etm4_sysreg_match[] = {
+>>       {}
+>>   };
+>> +#ifdef CONFIG_ACPI
+>> +static const struct acpi_device_id etm4x_acpi_ids[] = {
+>> +    {"ARMHC500", 0}, /* ARM CoreSight ETM4x */
+>> +    {}
+>> +};
+>> +MODULE_DEVICE_TABLE(acpi, etm4x_acpi_ids);
+>> +#endif
+>> +
+>>   static struct platform_driver etm4_platform_driver = {
+>>       .probe        = etm4_probe_platform_dev,
+>>       .remove        = etm4_remove_platform_dev,
+>>       .driver            = {
+>>           .name            = "coresight-etm4x",
+>>           .of_match_table        = etm4_sysreg_match,
+>> +        .acpi_match_table    = ACPI_PTR(etm4x_acpi_ids),
+>>           .suppress_bind_attrs    = true,
+>>           .pm            = &etm4_dev_pm_ops,
+>>       },
 > 
-> Missing bindings so standard comment:
-> 
-> It does not look like you tested the DTS against bindings. Please run
-> `make dtbs_check` (see
-> Documentation/devicetree/bindings/writing-schema.rst or
-> https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
-> for instructions).
-> 
-> Best regards,
-> Krzysztof
-> 
 
-Bindings are already in linux-next/master since 
-https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=ed50ac266f67829d4732c8ca61ef1953c2cc63d0 
-.
-
-And I did check DTS against bindings, it spat 2 warnings about new 
-remoteproc node, which do not make much sense to me:
-
-   DTC_CHK arch/arm64/boot/dts/qcom/sdm660-xiaomi-lavender.dtb
-   .../arch/arm64/boot/dts/qcom/sdm660-xiaomi-lavender.dtb: 
-remoteproc@4080000: qcom,halt-regs:0: [43] is too short
-         From schema: 
-.../Documentation/devicetree/bindings/remoteproc/qcom,msm8996-mss-pil.yaml
-   .../arch/arm64/boot/dts/qcom/sdm660-xiaomi-lavender.dtb: 
-remoteproc@4080000: memory-region: [[45], [46]] is too short
-         From schema: 
-.../Documentation/devicetree/bindings/remoteproc/qcom,msm8996-mss-pil.yaml
-
-because I do not understand where the limitation to number of items for 
-"qcom,halt-regs" or "memory-regions" come from.
-
--- 
-Regards,
-Alexey Minnekhanov
-postmarketOS developer
