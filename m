@@ -2,88 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6411D75973B
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 15:41:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F84E759768
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 15:53:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229744AbjGSNl4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jul 2023 09:41:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59912 "EHLO
+        id S229478AbjGSNxA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jul 2023 09:53:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35852 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230118AbjGSNl4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 09:41:56 -0400
-Received: from mail-pf1-x430.google.com (mail-pf1-x430.google.com [IPv6:2607:f8b0:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1962E5;
-        Wed, 19 Jul 2023 06:41:54 -0700 (PDT)
-Received: by mail-pf1-x430.google.com with SMTP id d2e1a72fcca58-6687466137bso4591267b3a.0;
-        Wed, 19 Jul 2023 06:41:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1689774114; x=1692366114;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=XwgHr8CTLPsVJE9zJh+kMK112+A4IUVakHWwbTwXwA0=;
-        b=nrI8gcr7ZJ1NjDNN9lFT6PfdNehcetqW2SpNed6vSYtHbNU34e0V2A6kSFmvzczRRF
-         HYw7i+ZdqNmqIfoVx1F2b3pmrscZf56Rlaf0GmpdbCIYpCNJYseZWlqPeg1OaoW0FGg7
-         uMW70xgI0BX7ARW0P1pRJWBR2PsFxv9p905LjKWv4r6i8TcOwGLW0jLyRwwV8BrnX2ts
-         AQNFIDNKc9g/94i9JTYGS4CgS6TB4YBCivfMz0iaq4p6m+DGkqkj5hhfBvw2ho6nrGwo
-         3OiPQsRHdAa9rkv5de6Ra1GkU9qvCVxB3AQU5ICNCl6FyYcaRr5qC9J5Eaoy0YeuDWvu
-         LIGQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689774114; x=1692366114;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=XwgHr8CTLPsVJE9zJh+kMK112+A4IUVakHWwbTwXwA0=;
-        b=DSMVshYRRmYzXC6YgREZkdZi5aF4VZ+jm3uDGJtAa63vqI41crh+wx5/nomYzn/XH+
-         K6bJ/6dN+3kGZyA9rkgKGERvrGrtDzIyPJ6CubBJDQWiONPWyNAl/kBxbk/gsQ21hNAh
-         4ArVywDu7tAno6IySa63lkbMRPmRcsvEMWHGYAOzjRhwja4gAOOiY2wb4eh8npS+lZDf
-         6Xh0/Gc4WDOQRDT33I9PmSXjUcAnkGbMIgyERxbpOEzlI3fDYht1qTgsqkuCMCK7QxTt
-         OViaz8fEKzrowuwzFAudvOOO2Zs5AfnnfKZ9fwUn+HQHKGttW+vIB0lIZh33Ho9UtQwD
-         1RBQ==
-X-Gm-Message-State: ABy/qLZ/nVsPy5Hhc39Q5iTOXdM52xljAzdn7awEw+PDuLwrsc3zQWpY
-        B8ztN1+aSYIbCXXBig9+VXs=
-X-Google-Smtp-Source: APBJJlGsAfXvyG4VXl4wd0iW+cciqCxLCZi2xTvSe2aHbnCjyxhMK3VjQibmii6oOgB1/Qq+I4jRxw==
-X-Received: by 2002:a05:6a20:4c9:b0:134:198b:84e9 with SMTP id 9-20020a056a2004c900b00134198b84e9mr2087814pzd.61.1689774114122;
-        Wed, 19 Jul 2023 06:41:54 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id s1-20020a63af41000000b00528db73ed70sm3558061pgo.3.2023.07.19.06.41.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 Jul 2023 06:41:53 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Wed, 19 Jul 2023 06:41:52 -0700
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     JuenKit Yip <JuenKit_Yip@hotmail.com>
-Cc:     jdelvare@suse.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        with ESMTP id S229673AbjGSNxA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 09:53:00 -0400
+Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBAB212C;
+        Wed, 19 Jul 2023 06:52:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
+        ; s=x; h=Subject:Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Cc:To
+        :From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date
+        :Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+        References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+        List-Owner:List-Archive; bh=0twBvll8BbpMn27wcaLT/e5BA6uXX2lFysVkum50hag=; b=D
+        XLdQY+7WOtLBKPbPUq2vb7JeHNex8Je8BWXYXzJz/YifO4f4tSZxNK75HhZ3KOCr3hia36vSLrgry
+        Jsg0EOJ8LlG48VhnZJQU7eWFhhekV+EkbcRzk86UxYnGZ8unk9l6IAKIFcjNMqc6QDjTkK89dLQrB
+        pkVI88XuK4du6Lbo=;
+Received: from modemcable061.19-161-184.mc.videotron.ca ([184.161.19.61]:60540 helo=localhost.localdomain)
+        by mail.hugovil.com with esmtpa (Exim 4.92)
+        (envelope-from <hugo@hugovil.com>)
+        id 1qM7bc-0003ut-LY; Wed, 19 Jul 2023 09:52:41 -0400
+From:   Hugo Villeneuve <hugo@hugovil.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>
+Cc:     hugo@hugovil.com, Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/3] hwmon: (sht3x) convert some of sysfs interface to
- hwmon
-Message-ID: <30afc318-c7d8-4349-a3c4-2916ac9b8c47@roeck-us.net>
-References: <DB4PR10MB626157BC697F2CD6100431359229A@DB4PR10MB6261.EURPRD10.PROD.OUTLOOK.COM>
+Date:   Wed, 19 Jul 2023 09:52:37 -0400
+Message-Id: <20230719135237.2986984-1-hugo@hugovil.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <DB4PR10MB626157BC697F2CD6100431359229A@DB4PR10MB6261.EURPRD10.PROD.OUTLOOK.COM>
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 184.161.19.61
+X-SA-Exim-Mail-From: hugo@hugovil.com
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
+Subject: [PATCH v3] arm64: dts: imx8mn-var-som-symphony: update USB OTG for new board versions
+X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
+X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 03, 2023 at 10:08:16PM +0800, JuenKit Yip wrote:
-> update_interval, temperature/humidity max/min and hyst
-> were moved to new hwmon interface, and only heater and
-> repeatability were reserved as non-stardard sysfs interface.
-> 
-> Signed-off-by: JuenKit Yip <JuenKit_Yip@hotmail.com>
+From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
 
-Applied.
+USB OTG is currently not working for new versions of the Variscite
+Symphony EVK and imx8mn nano SOM (versions >= 1.4a).
 
-Thanks,
-Guenter
+The PTN5150 circuitry on newer versions of the Symphony EVK board has
+a non-standard configuration in which the PTN5150 IRQ pin is left
+unconnected, and the PTN5150 ID pin is connected to GPIO1_IO11. This
+requires changes to the ptn5150 driver to support this new mode.
+Variscite have indicated their intention to submit those changes
+upstream.
+
+In the meantime, import device tree changes from linux-5.15 branch of
+varigit repos to at least make the USB OTG port operate correctly in
+host mode.
+
+Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+---
+ .../dts/freescale/imx8mn-var-som-symphony.dts | 32 +++++++++++++++++--
+ 1 file changed, 30 insertions(+), 2 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8mn-var-som-symphony.dts b/arch/arm64/boot/dts/freescale/imx8mn-var-som-symphony.dts
+index 406a711486da..a7a57442cb81 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mn-var-som-symphony.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mn-var-som-symphony.dts
+@@ -1,11 +1,14 @@
+ // SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+ /*
++ * Supports Symphony evaluation board versions >= 1.4a.
++ *
+  * Copyright 2019-2020 Variscite Ltd.
+  * Copyright (C) 2020 Krzysztof Kozlowski <krzk@kernel.org>
+  */
+ 
+ /dts-v1/;
+ 
++#include <dt-bindings/usb/pd.h>
+ #include "imx8mn-var-som.dtsi"
+ 
+ / {
+@@ -100,14 +103,26 @@ enet-sel-hog {
+ 		};
+ 	};
+ 
++	/*
++	 * For Symphony board version <= 1.4, the PTN5150 IRQ pin is connected
++	 * to GPIO1_IO11 on the SoM (R106 present, R132 absent). From Symphony
++	 * board version >= 1.4a, the PTN5150 ID pin is connected to GPIO1_IO11
++	 * on the SoM (R106 absent, R132 present).
++	 */
+ 	extcon_usbotg1: typec@3d {
+ 		compatible = "nxp,ptn5150";
+ 		reg = <0x3d>;
+ 		interrupt-parent = <&gpio1>;
+-		interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
++		interrupts = <11 IRQ_TYPE_EDGE_FALLING>;
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&pinctrl_ptn5150>;
+ 		status = "okay";
++
++		port {
++			typec1_dr_sw: endpoint {
++				remote-endpoint = <&usb1_drd_sw>;
++			};
++		};
+ 	};
+ };
+ 
+@@ -148,8 +163,21 @@ &uart3 {
+ };
+ 
+ &usbotg1 {
++	dr_mode = "otg";
++	hnp-disable;
++	srp-disable;
++	adp-disable;
++	usb-role-switch;
+ 	disable-over-current;
+-	extcon = <&extcon_usbotg1>, <&extcon_usbotg1>;
++	samsung,picophy-pre-emp-curr-control = <3>;
++	samsung,picophy-dc-vol-level-adjust = <7>;
++	status = "okay";
++
++	port {
++		usb1_drd_sw: endpoint {
++			remote-endpoint = <&typec1_dr_sw>;
++		};
++	};
+ };
+ 
+ &iomuxc {
+
+base-commit: fdf0eaf11452d72945af31804e2a1048ee1b574c
+prerequisite-patch-id: 45559b1f2aca74c1c733cc2d61db7b48b1b9594a
+-- 
+2.30.2
+
