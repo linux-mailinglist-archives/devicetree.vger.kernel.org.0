@@ -2,303 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8067675A14F
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 00:04:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 43B0475A161
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 00:08:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229822AbjGSWEy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jul 2023 18:04:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44698 "EHLO
+        id S229847AbjGSWIV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jul 2023 18:08:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48178 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230229AbjGSWEx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 18:04:53 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07AB11FDC;
-        Wed, 19 Jul 2023 15:04:46 -0700 (PDT)
+        with ESMTP id S229822AbjGSWIU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 18:08:20 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC7FD1998;
+        Wed, 19 Jul 2023 15:08:19 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 682666184B;
-        Wed, 19 Jul 2023 22:04:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EDB19C433C8;
-        Wed, 19 Jul 2023 22:04:43 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 5B6166185D;
+        Wed, 19 Jul 2023 22:08:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9EF74C433C7;
+        Wed, 19 Jul 2023 22:08:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689804284;
-        bh=LxOZUcCoPlz4lTzVpOYBntP8TLpXJKJ8Pl+iUGHVfFM=;
+        s=k20201202; t=1689804498;
+        bh=YKo1s2RcmQT9GEQkdwQRplIb4/3XIYip45dG1+IBkZo=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Pmm1W96sEvo+HqQaHeU5H/echSiacOHIZHyQDgkhzZOktupW2XWtwjZ8uvu/ZGuO4
-         0QntzVGHMCQxBc1Fjj3ldeC5u1GSJXkOGG773jtvFX4oCsciu+nXOjGmENOGrm2mkE
-         cgG+GRs+a+CMSGLI8HmkP3UeHZVv5xnndcuSEHANPj4GQMG7V6iFLhI2LntOrSs42n
-         Zjl1RW2d/3crQDN3xuX8IXiLIELmek82JxLtVoKrkWzooQcwGsz3LmrFopuns45g5G
-         ifL4zvz9aC4TUS+lWfuMBtN5jjKM0z2IG1jUvGgKT8Hhd5lV5I9g78/KAWsu2ml7Gl
-         U/Ac/4UwbyLSA==
-Received: (nullmailer pid 861466 invoked by uid 1000);
-        Wed, 19 Jul 2023 22:04:42 -0000
-Date:   Wed, 19 Jul 2023 16:04:42 -0600
+        b=UbVZZLPw4SW1i1Sf21v+wZagWRQykxFFTpNDvhLxKR86PKVY2daXzt5lpVGxR9aBa
+         M7fpchvJ6GOXkep/h4hlLsMmmMu40KC5op6dI3KoaNX95exTW9OA/9W11AoPpdAw5R
+         CsdbqoXDdOjzkSX/LY8N9gsitK38nYbJW5a/u9Fyda0pb9DMz/iE3siLhCd8Vm7Kug
+         bxlabdPzn8e3iEuu96TS+amu4kF9OThW5bBKN9FVFS/GnALbYmjMKJwK1KdlTA+XyH
+         BRuv+vkXvWEMCcrUUGIrRUrflzVhENpz0Mf8Gza7OE/PpEImE57ZcKxmhYPPagwjg6
+         jcZBGI96TppKA==
+Received: (nullmailer pid 865386 invoked by uid 1000);
+        Wed, 19 Jul 2023 22:08:16 -0000
+Date:   Wed, 19 Jul 2023 16:08:16 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Matthew Croughan <matthew.croughan@nix.how>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3] arm64: dts: allwinner: h616: Add Mango Pi MQ-Quad DTS
-Message-ID: <20230719220442.GA859690-robh@kernel.org>
-References: <20230718152206.1430313-1-matthew.croughan@nix.how>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        dri-devel@lists.freedesktop.org, David Airlie <airlied@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        linux-kernel@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH v2 02/41] dt-bindings: display: Add Renesas SH-Mobile
+ LCDC bindings
+Message-ID: <168980449598.865332.8440260745722540866.robh@kernel.org>
+References: <cover.1689698048.git.geert+renesas@glider.be>
+ <3333e8e50572480dd57d7f0388ca7f06d76155d9.1689698048.git.geert+renesas@glider.be>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230718152206.1430313-1-matthew.croughan@nix.how>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <3333e8e50572480dd57d7f0388ca7f06d76155d9.1689698048.git.geert+renesas@glider.be>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 18, 2023 at 04:22:03PM +0100, Matthew Croughan wrote:
-> Mango Pi MQ Quad is a H616 based SBC, add basic support for the board
-> and its peripherals
+
+On Tue, 18 Jul 2023 18:54:07 +0200, Geert Uytterhoeven wrote:
+> Add device tree bindings for the LCD Controller (LCDC) found in Renesas
+> SuperH SH-Mobile and ARM SH/R-Mobile SOCs.
 > 
-> Signed-off-by: Matthew Croughan <matthew.croughan@nix.how>
+> Based on a plain text prototype by Laurent Pinchart.
+> 
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 > ---
-> V1 -> V2: Alphabetical ordering, added "widora,mangopi-mq-quad" compatible
-> V2 -> V3: Added Signed-off-by, add to device-tree compatible/bindings documentation
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Cc: Conor Dooley <conor+dt@kernel.org>
+> Cc: devicetree@vger.kernel.org
 > 
->  .../devicetree/bindings/arm/sunxi.yaml        |   5 +
-
-Bindings should be a separate patch.
-
->  arch/arm64/boot/dts/allwinner/Makefile        |   1 +
->  .../allwinner/sun50i-h616-mangopi-mq-quad.dts | 183 ++++++++++++++++++
->  3 files changed, 189 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h616-mangopi-mq-quad.dts
+> v2:
+>   - Add myself as co-maintainer,
+>   - Make fck clock required,
+>   - Drop ports description referring to obsolete graph.txt,
+>   - Condition ports to compatible strings,
+>   - Drop label and status from example.
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/sunxi.yaml b/Documentation/devicetree/bindings/arm/sunxi.yaml
-> index ee8fdd2da869..2dee815fd45e 100644
-> --- a/Documentation/devicetree/bindings/arm/sunxi.yaml
-> +++ b/Documentation/devicetree/bindings/arm/sunxi.yaml
-> @@ -862,6 +862,11 @@ properties:
->            - const: wexler,tab7200
->            - const: allwinner,sun7i-a20
->  
-> +      - description: MangoPi MQ-Quad
-> +        items:
-> +          - const: widora,mangopi-mq-quad
-> +          - const: allwinner,sun50i-h616
-> +
->        - description: MangoPi MQ-R board
->          items:
->            - const: widora,mangopi-mq-r-t113
-> diff --git a/arch/arm64/boot/dts/allwinner/Makefile b/arch/arm64/boot/dts/allwinner/Makefile
-> index 6a96494a2e0a..06c5b97dbfc3 100644
-> --- a/arch/arm64/boot/dts/allwinner/Makefile
-> +++ b/arch/arm64/boot/dts/allwinner/Makefile
-> @@ -38,5 +38,6 @@ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-pine-h64.dtb
->  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-pine-h64-model-b.dtb
->  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-tanix-tx6.dtb
->  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-tanix-tx6-mini.dtb
-> +dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-mangopi-mq-quad.dtb
->  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-orangepi-zero2.dtb
->  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-x96-mate.dtb
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616-mangopi-mq-quad.dts b/arch/arm64/boot/dts/allwinner/sun50i-h616-mangopi-mq-quad.dts
-> new file mode 100644
-> index 000000000000..47fd49af2886
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h616-mangopi-mq-quad.dts
-> @@ -0,0 +1,183 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +// Copyright (C) 2020 Arm Ltd.
-> +/*
-> + * Copyright (C) 2023 Matthew Croughan <matthew.croughan@nix.how>
-> + */
-
-Why 2 comment styles for copyrights?
-
-> +
-> +/dts-v1/;
-> +
-> +#include "sun50i-h616.dtsi"
-> +
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> +#include <dt-bindings/leds/common.h>
-> +
-> +/ {
-> +	model = "MangoPi MQ-Quad";
-> +	compatible = "widora,mangopi-mq-quad", "allwinner,sun50i-h616";
-> +
-> +	aliases {
-> +		serial0 = &uart0;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial0:115200n8";
-> +	};
-> +
-> +	leds {
-> +		compatible = "gpio-leds";
-> +
-> +		led-0 {
-> +			function = LED_FUNCTION_STATUS;
-> +			color = <LED_COLOR_ID_GREEN>;
-> +			gpios = <&pio 2 13 GPIO_ACTIVE_HIGH>; /* PC13 */
-> +		};
-> +	};
-> +
-> +	reg_vcc5v: vcc5v {
-> +		/* board wide 5V supply directly from the USB-C socket */
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vcc-5v";
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +		regulator-always-on;
-> +	};
-> +
-> +	reg_vcc3v3: vcc3v3 {
-> +		/* board wide 3V3 supply directly from SY8008 regulator */
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vcc-3v3";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		regulator-always-on;
-> +	};
-> +
-> +	wifi_pwrseq: wifi-pwrseq {
-> +		compatible = "mmc-pwrseq-simple";
-> +		reset-gpios = <&pio 6 18 GPIO_ACTIVE_LOW>; /* PG18 */
-> +	};
-> +};
-> +
-> +&ehci1 {
-> +	status = "okay";
-> +};
-> +
-> +/* USB 2 & 3 are on headers only. */
-> +
-> +&mmc0 {
-> +	vmmc-supply = <&reg_vcc3v3>;
-> +	cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>;	/* PF6 */
-> +	bus-width = <4>;
-> +	status = "okay";
-> +};
-> +
-> +&mmc1 {
-> +	bus-width = <4>;
-> +	mmc-pwrseq = <&wifi_pwrseq>;
-> +	non-removable;
-> +	vmmc-supply = <&reg_vcc3v3>;
-> +	vqmmc-supply = <&reg_vcc3v3>;
-> +	pinctrl-0 = <&mmc1_pins>;
-> +	pinctrl-names = "default";
-> +	status = "okay";
-> +
-> +	rtl8723ds: wifi@1 {
-> +		reg = <1>;
-> +		interrupt-parent = <&pio>;
-> +		interrupts = <6 15 IRQ_TYPE_LEVEL_LOW>; /* PG15 */
-> +		interrupt-names = "host-wake";
-> +	};
-> +};
-> +
-> +
-> +&uart1 {
-> +	uart-has-rtscts;
-> +	pinctrl-0 = <&uart1_pins>, <&uart1_rts_cts_pins>;
-> +	pinctrl-names = "default";
-> +	status = "okay";
-> +
-> +	bluetooth {
-> +		compatible = "realtek,rtl8723ds-bt";
-> +		device-wake-gpios = <&pio 6 17 GPIO_ACTIVE_HIGH>; /* PG17 */
-> +		enable-gpios = <&pio 6 19 GPIO_ACTIVE_HIGH>; /* PG19 */
-> +		host-wake-gpios = <&pio 6 16 GPIO_ACTIVE_HIGH>; /* PG16 */
-> +	};
-> +};
-> +
-> +&ohci1 {
-> +	status = "okay";
-> +};
-> +
-> +&r_i2c {
-> +	status = "okay";
-> +
-> +	axp313a: pmic@36 {
-> +		compatible = "x-powers,axp313a";
-> +		reg = <0x36>;
-> +		x-powers,self-working-mode;
-> +		regulators {
-> +			reg_aldo1: aldo1 {
-> +				regulator-always-on;
-> +				regulator-min-microvolt = <1800000>;
-> +				regulator-max-microvolt = <1800000>;
-> +				regulator-name = "vcc-1v8";
-> +			};
-> +
-> +			reg_dldo1: dldo1 {
-> +				regulator-always-on;
-> +				regulator-min-microvolt = <3300000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-name = "vcc-3v3-pmic";
-> +			};
-> +
-> +			reg_dcdc1: dcdc1 {
-> +				regulator-always-on;
-> +				regulator-min-microvolt = <810000>;
-> +				regulator-max-microvolt = <990000>;
-> +				regulator-name = "vdd-gpu-sys";
-> +			};
-> +
-> +			reg_dcdc2: dcdc2 {
-> +				regulator-always-on;
-> +				regulator-min-microvolt = <810000>;
-> +				regulator-max-microvolt = <1100000>;
-> +				regulator-name = "vdd-cpu";
-> +			};
-> +
-> +			reg_dcdc3: dcdc3 {
-> +				regulator-always-on;
-> +				regulator-min-microvolt = <1500000>;
-> +				regulator-max-microvolt = <1500000>;
-> +				regulator-name = "vdd-dram";
-> +			};
-> +
-> +		};
-> +	};
-> +};
-> +
-> +&uart0 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&uart0_ph_pins>;
-> +	status = "okay";
-> +};
-> +
-> +&usbotg {
-> +	/*
-> +	 * PHY0 pins are connected to a USB-C socket, but a role switch
-> +	 * is not implemented: both CC pins are pulled to GND.
-> +	 * The VBUS pins power the device, so a fixed peripheral mode
-> +	 * is the best choice.
-> +	 * The board can be powered via GPIOs, in this case port0 *can*
-> +	 * act as a host (with a cable/adapter ignoring CC), as VBUS is
-> +	 * then provided by the GPIOs. Any user of this setup would
-> +	 * need to adjust the DT accordingly: dr_mode set to "host",
-> +	 * enabling OHCI0 and EHCI0.
-> +	 */
-> +	dr_mode = "peripheral";
-> +	status = "okay";
-> +};
-> +
-> +&usbphy {
-> +	usb1_vbus-supply = <&reg_vcc5v>;
-> +	status = "okay";
-> +};
-> -- 
-> 2.41.0
+> Changes compared to Laurent's original:
+>   - Convert to json-schema,
+>   - Rename compatible values from "renesas,lcdc-<SoC>" to
+>     "renesas,<SoC>-lcdc",
+>   - Add power-domains property,
+>   - Add MIPI-DSI port on SH-Mobile AG5,
+>   - Update example to reflect reality,
+>   - Add to MAINTAINERS.
+> ---
+>  .../display/renesas,shmobile-lcdc.yaml        | 130 ++++++++++++++++++
+>  MAINTAINERS                                   |   1 +
+>  2 files changed, 131 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/renesas,shmobile-lcdc.yaml
 > 
+
+Reviewed-by: Rob Herring <robh@kernel.org>
+
