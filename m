@@ -2,63 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CC5D2759B3C
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 18:45:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B439A759B57
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 18:48:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230281AbjGSQpD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jul 2023 12:45:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60586 "EHLO
+        id S230345AbjGSQsz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jul 2023 12:48:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36356 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230268AbjGSQpB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 12:45:01 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F6AD172E;
-        Wed, 19 Jul 2023 09:44:52 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 73A1A61788;
-        Wed, 19 Jul 2023 16:44:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1D8C2C433C7;
-        Wed, 19 Jul 2023 16:44:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689785090;
-        bh=GNiOTf7Wsj6iBBrxZOzip07dR5NF7eYzPjywtBjLGr8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=sU8B0REPY0tu6NeUyQwgtq91tYheBGPdQyqo+fVrEUUfca0pupMNGDi2cMrI4CoRr
-         S7s/6+03LrWqT3qCTWoHcHkGfJtNoAGAaB4ck4DyYZ4U3/YS9CFauQbzP+vc1Np3h3
-         6fhpSl9ur2yQ35RsPkf8p/WX70qTlc7fgeXEqsBrGVETaIEvQ43hL6cdJ7vw3qr+a/
-         8xKFtzj6suiTHryJorIomxa1BUEdfgzh8aG4OsOuNZlLTBG0DXJF1KTTRV2KtmpHPP
-         zrgLtTwauqTeLm9YZ/j084WrAeZ4xmVx1e4TFIB5BzU9RsBXQY0J0rSxt3W1hJP/ET
-         hfFWq+OcuNsTA==
-Date:   Wed, 19 Jul 2023 17:44:45 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Luca Ceresoli <luca.ceresoli@bootlin.com>
-Cc:     Neil Armstrong <neil.armstrong@linaro.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-Subject: Re: [PATCH 2/3] dt-bindings: display: panel: Add panels based on
- ILITEK ILI9806E
-Message-ID: <20230719-sizing-ribbon-9e62a4afb5f6@spud>
-References: <20230719152147.355486-1-luca.ceresoli@bootlin.com>
- <20230719152147.355486-2-luca.ceresoli@bootlin.com>
+        with ESMTP id S230370AbjGSQsx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 12:48:53 -0400
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 882B21BF2;
+        Wed, 19 Jul 2023 09:48:39 -0700 (PDT)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 63728FF802;
+        Wed, 19 Jul 2023 16:48:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1689785317;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=JKDmPUsTotuvgM8MSiKrmp7WDzMVYFV4Cjd7anLXrXo=;
+        b=Ik2teUmfo0wnP/ByQx4yLDuXDr9fSqxD0pDRf5TZXTjBH6M/k8OCT6oMi30+bfGiw0ALkP
+        t0abRvexgfIdDy5GvQMBQ1cg92YaF+MyvZZCHxtKJ0qQPphxGn8uBpWUYDutRKL7U6btFW
+        CY3ovATDDERETU8GW1kB5p8XdUVkjUPtjHBVuCYp9LJg/+EF2NDX7FMfn6IVQYFoFlXDNs
+        cvSC8LKXUaV4Zg4tdGmNEByU68+XO59W8+exdE0NTOTvm1mI/dCs0I18xrHk26v3A5l2LX
+        UrucgJTXqVZabnVYEqrhamESPEUGJXjzlgTKPeHFH3cee3MxE4i5tmJLcV/p9g==
+Date:   Wed, 19 Jul 2023 18:48:31 +0200
+From:   Luca Ceresoli <luca.ceresoli@bootlin.com>
+To:     Xu Yang <xu.yang_2@nxp.com>
+Cc:     Francesco Dolcini <francesco@dolcini.it>, Jun Li <jun.li@nxp.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Francesco Dolcini <francesco.dolcini@toradex.com>
+Subject: Re: [EXT] Re: [PATCH v2 2/3] usb: chipidea: imx: support disabling
+ runtime-pm
+Message-ID: <20230719184831.75ae8658@booty>
+In-Reply-To: <DB7PR04MB4505560E7DCBC2523FD7A0FE8C39A@DB7PR04MB4505.eurprd04.prod.outlook.com>
+References: <20230504162312.1506763-1-luca.ceresoli@bootlin.com>
+        <ZFPiRvoF5l8uGzzZ@francesco-nb.int.toradex.com>
+        <PA4PR04MB96403377F5E37C12AD8C25B389729@PA4PR04MB9640.eurprd04.prod.outlook.com>
+        <20230505120618.2f4cf22c@booty>
+        <ZFThyn/D/dDK9nk3@francesco-nb.int.toradex.com>
+        <PA4PR04MB96405EE2468555EA900B340189739@PA4PR04MB9640.eurprd04.prod.outlook.com>
+        <ZFjaNzY32x8o2XG7@francesco-nb.int.toradex.com>
+        <20230508151756.785ec07e@booty>
+        <20230529121825.71e9b6d6@booty>
+        <PA4PR04MB96405138465D215C34285F02894B9@PA4PR04MB9640.eurprd04.prod.outlook.com>
+        <ZKaWL3+ClI7iNr/4@francesco-nb.int.toradex.com>
+        <20230717184537.6d6ed607@booty>
+        <DB7PR04MB450573F8EA936E049F053A258C38A@DB7PR04MB4505.eurprd04.prod.outlook.com>
+        <20230718142504.075d0186@booty>
+        <DB7PR04MB4505560E7DCBC2523FD7A0FE8C39A@DB7PR04MB4505.eurprd04.prod.outlook.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="j+RSuWfJSboaYJOP"
-Content-Disposition: inline
-In-Reply-To: <20230719152147.355486-2-luca.ceresoli@bootlin.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-GND-Sasl: luca.ceresoli@bootlin.com
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -66,150 +81,122 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hello Xu,
 
---j+RSuWfJSboaYJOP
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+thanks for the follow up.
 
-Hey Luca,
+On Wed, 19 Jul 2023 11:23:26 +0000
+Xu Yang <xu.yang_2@nxp.com> wrote:
 
-On Wed, Jul 19, 2023 at 05:21:46PM +0200, Luca Ceresoli wrote:
-> Add bindings for LCD panels based on the ILITEK ILI9806E RGB controller
-> connected over SPI and the "ShenZhen New Display Co NDS040480800-V3"
-> 480x800 panel based on it.
->=20
-> Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
-> ---
->  .../display/panel/ilitek,ili9806e.yaml        | 69 +++++++++++++++++++
->  MAINTAINERS                                   |  6 ++
->  2 files changed, 75 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/panel/ilite=
-k,ili9806e.yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/display/panel/ilitek,ili98=
-06e.yaml b/Documentation/devicetree/bindings/display/panel/ilitek,ili9806e.=
-yaml
-> new file mode 100644
-> index 000000000000..42abc6923065
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/panel/ilitek,ili9806e.yaml
-> @@ -0,0 +1,69 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/panel/ilitek,ili9806e.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Ilitek ILI9806E display panels
-> +
-> +maintainers:
-> +  - Luca Ceresoli <luca.ceresoli@bootlin.com>
-> +
-> +description:
-> +  This binding is for display panels using an Ilitek ILI9806E controller=
- in
-> +  SPI mode.
+> Hi Luca,
+> 
+> > -----Original Message-----
+> > 
+> > Hello Xu,
+> > 
+> > On Tue, 18 Jul 2023 08:31:48 +0000
+> > Xu Yang <xu.yang_2@nxp.com> wrote:
+> >   
+> > > > -----Original Message-----
+> > > >
+> > > > Ciao Francesco,
+> > > >
+> > > > On Thu, 6 Jul 2023 12:23:43 +0200
+> > > > Francesco Dolcini <francesco@dolcini.it> wrote:
+> > > >  
+> > > > > Hello Luca,
+> > > > >
+> > > > > On Tue, May 30, 2023 at 11:22:51AM +0000, Jun Li wrote:  
+> > > > > > Yes, your understanding is correct, talked with Xu(in CC), he will take this
+> > > > > > soon.  
+> > > > >
+> > > > > A series was posted
+> > > > >
+> > > > > I had no time to try or look at it yet.  
+> > > >
+> > > > Thanks for keeping me up to date on this topic, which is still totally
+> > > > relevant to me.
+> > > >
+> > > > I looked at the series, but it does not seem to be addressing the
+> > > > problem with USB host not detecting new devices when VBUS is not
+> > > > directly connected, e.g. in the Colibri imx6ull SoM.
+> > > >
+> > > > Xu, do you confirm the series at the link is _not_ solving the problem
+> > > > being discussed here?  
+> > >
+> > > Have you tried this patchset? The upstream driver couldn't get correct
+> > > USB role from HW_USBPHY_CTRL register when the ID pin is float. This is
+> > > what this patchset is trying to fix. With this patch, condition
+> > > "(!vbus_is_on && !mxs_phy_is_otg_host(mxs_phy)" will always be false when
+> > > controller acts as host role, then __mxs_phy_disconnect_line(phy, true)
+> > > will never be called. So I think it doesn't matter whether VBUS is connected
+> > > or not when act as host mode. If you still have issue after apply this patchset,
+> > > please let me know.  
+> > 
+> > I tested this patchset on top of v6.5-rc2 and I confirm USB detection
+> > is still broken on the Colibri iMX6ULL. With or without the patches
+> > the behavior is the same: USB devices are detected only during boot,
+> > and anything connected after boot are never detected.  
+> 
+> Thanks for your feedback. As you said this issue will disappear with below change, right?
+> 
+> 	diff --git a/drivers/usb/phy/phy-mxs-usb.c b/drivers/usb/phy/phy-mxs-usb.c
+> 	index e1a2b2ea098b..ec5ee790455e 100644
+> 	--- a/drivers/usb/phy/phy-mxs-usb.c
+> 	+++ b/drivers/usb/phy/phy-mxs-usb.c
+> 	@@ -178,7 +178,6 @@ static const struct mxs_phy_data imx6sx_phy_data = {
+> 	 };
+> 
+> 	 static const struct mxs_phy_data imx6ul_phy_data = {
+> 	-       .flags = MXS_PHY_DISCONNECT_LINE_WITHOUT_VBUS,
+> 	 };
+> 
+> 	 static const struct mxs_phy_data imx7ulp_phy_data = {
 
-I figure you explicitly mention SPI mode here because it also supports
-D{P,S}I?
+Exactly.
 
-> +
-> +allOf:
-> +  - $ref: panel-common.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          # ShenZhen New Display Co 3.97" 480x800 RGB a-SI TFT LCD
-> +          - newdisplay,nds040480800-v3
-> +      - const: ilitek,ili9806e
-> +
-> +  reg: true
-> +  spi-max-frequency: true
-> +  reset-gpios: true
-> +  backlight: true
-> +  port: true
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - port
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    backlight: backlight {
-> +        compatible =3D "gpio-backlight";
-> +        gpios =3D <&gpio 22 GPIO_ACTIVE_HIGH>;
-> +    };
-> +    spi {
+> So I guess something in __mxs_phy_disconnect_line(mxs_phy, true) is causing this behavior.
+> Could you please help to find which line to comment to make this issue disappear?
 
-Just a nit, a blank line between properties please. Clearly no
-respinning needed for that...
+I did some tests and detection works by doing _any_ of the following
+two changes (or both of them).
 
-Otherwise,
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+Change 1:
 
-Thanks,
-Conor.
+--- a/drivers/usb/phy/phy-mxs-usb.c
++++ b/drivers/usb/phy/phy-mxs-usb.c
+@@ -359,10 +359,6 @@ static void __mxs_phy_disconnect_line(struct mxs_phy *mxs_phy, bool disconnect)
+        void __iomem *base = mxs_phy->phy.io_priv;
+        u32 reg;
+ 
+-       if (disconnect)
+-               writel_relaxed(BM_USBPHY_DEBUG_CLKGATE,
+-                       base + HW_USBPHY_DEBUG_CLR);
+-
+        if (mxs_phy->port_id == 0) {
+                reg = disconnect ? ANADIG_USB1_LOOPBACK_SET
+                        : ANADIG_USB1_LOOPBACK_CLR;
 
-> +        #address-cells =3D <1>;
-> +        #size-cells =3D <0>;
-> +
-> +        display@0 {
-> +            compatible =3D "newdisplay,nds040480800-v3", "ilitek,ili9806=
-e";
-> +            reg =3D <0>;
-> +            spi-max-frequency =3D <1000000>;
-> +            pinctrl-names =3D "default";
-> +            pinctrl-0 =3D <&pinctrl_lcdgpios>;
-> +            reset-gpios =3D <&gpio 26 GPIO_ACTIVE_LOW>;
-> +            backlight =3D <&backlight>;
-> +
-> +            port {
-> +                ili9806e_in: endpoint {
-> +                    remote-endpoint =3D <&lcdif_out>;
-> +                };
-> +            };
-> +        };
-> +    };
-> +
-> +...
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index aee340630eca..3c38699ee821 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -6515,6 +6515,12 @@ T:	git git://anongit.freedesktop.org/drm/drm-misc
->  F:	Documentation/devicetree/bindings/display/ilitek,ili9486.yaml
->  F:	drivers/gpu/drm/tiny/ili9486.c
-> =20
-> +DRM DRIVER FOR ILITEK ILI9806E PANELS
-> +M:	Luca Ceresoli <luca.ceresoli@bootlin.com>
-> +S:	Maintained
-> +T:	git git://anongit.freedesktop.org/drm/drm-misc
-> +F:	Documentation/devicetree/bindings/display/panel/ilitek,ili9806e.yaml
-> +
->  DRM DRIVER FOR JADARD JD9365DA-H3 MIPI-DSI LCD PANELS
->  M:	Jagan Teki <jagan@edgeble.ai>
->  S:	Maintained
-> --=20
-> 2.34.1
->=20
+Change 2:
 
---j+RSuWfJSboaYJOP
-Content-Type: application/pgp-signature; name="signature.asc"
+--- a/drivers/usb/phy/phy-mxs-usb.c
++++ b/drivers/usb/phy/phy-mxs-usb.c
+@@ -372,9 +372,6 @@ static void __mxs_phy_disconnect_line(struct mxs_phy *mxs_phy, bool disconnect)
+        } else if (mxs_phy->port_id == 1) {
+                reg = disconnect ? ANADIG_USB2_LOOPBACK_SET
+                        : ANADIG_USB2_LOOPBACK_CLR;
+-               regmap_write(mxs_phy->regmap_anatop, reg,
+-                       BM_ANADIG_USB2_LOOPBACK_UTMI_DIG_TST1 |
+-                       BM_ANADIG_USB2_LOOPBACK_TSTI_TX_EN);
+        }
+ 
+        if (!disconnect)
 
------BEGIN PGP SIGNATURE-----
+I hope this clarifies something to you.
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZLgS/QAKCRB4tDGHoIJi
-0vyvAP46mdHMTAFPovlWwCuGPOePISXPxxu9rgJZZO3CYwVWPQEA+J1Ty9WwUfvI
-2Xj6I0WHld8jnPue1q38PYahl9hXTA0=
-=7pn7
------END PGP SIGNATURE-----
+Luca
 
---j+RSuWfJSboaYJOP--
+-- 
+Luca Ceresoli, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
