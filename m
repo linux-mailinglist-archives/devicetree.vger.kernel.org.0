@@ -2,97 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C5A01759C08
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 19:08:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E4FB5759C0C
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 19:10:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229757AbjGSRIv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jul 2023 13:08:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45644 "EHLO
+        id S229603AbjGSRKr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jul 2023 13:10:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46856 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230516AbjGSRIs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 13:08:48 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B1F21731;
-        Wed, 19 Jul 2023 10:08:24 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id AD6A0617B3;
-        Wed, 19 Jul 2023 17:08:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 42BBDC433C8;
-        Wed, 19 Jul 2023 17:08:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689786502;
-        bh=H0TI3lv5V5snhOaaPWfEdfeN5mLjsrEblaKGu2VK/oA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=u5i7JcDwupZbnC5qurstWHiIR/vvSk5pJ8QDfopYh6GlbeZHzToQKiY54yBdHGY7M
-         GT5AkgQd/nWkcjwg9Hw2jxM6LiHCHfw2j/qLvTRja0pMhbTQrJRUDNsKJHKdNkZC0P
-         26jOgPoUhDHb5Z/Cbr2O3By3PHyVM4IO9iZDyTxDV2OR8wB70aC6Xn7EFxcc5nPNLW
-         9DQJ98XUjlgfdXe5dN1yd18An6+nQwYA6xY1G8w9ZxYDBBp6ke3AKC/mm7po6V1FeD
-         3U2KYZ8bKSMGQ6KYZFsOAPj/LOZMzraF58d3HZuOor1wcVfAZYk9xxIna+ND0+b6QK
-         eLa3IC4sYXKZA==
-Date:   Wed, 19 Jul 2023 18:08:18 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     alina_yu@richtek.com
-Cc:     lgirdwood@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 2/2] regulator: rtq2208: Add Richtek RTQ2208 SubPMIC
- driver
-Message-ID: <9eb5d3a3-ba26-4e68-9324-9f1ce24418b9@sirena.org.uk>
-References: <1689758686-14409-1-git-send-email-alina_yu@richtek.com>
- <1689758686-14409-3-git-send-email-alina_yu@richtek.com>
+        with ESMTP id S229542AbjGSRKq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 13:10:46 -0400
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C1B2B7
+        for <devicetree@vger.kernel.org>; Wed, 19 Jul 2023 10:10:45 -0700 (PDT)
+Received: by mail-lj1-x22f.google.com with SMTP id 38308e7fff4ca-2b962c226ceso254011fa.3
+        for <devicetree@vger.kernel.org>; Wed, 19 Jul 2023 10:10:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1689786643; x=1692378643;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=s9fgt2KGcRUVdeDNFEB9QhU3B6RPAni2b92fxJRERKI=;
+        b=m0odFjE/t7Carm6qsKat9e6zZDr8tYvaRgRy2/qHKfwYwKm1AvHRlknqHd/u7GwZxI
+         3ey46dEGwU4FY9K2iy0cklzhtq5bTwH14i7a3qjPzE47bWff0v38f/AfPPy5dhin1hBg
+         eSARqihMXjiC1EBgosuzxmOqrDHTAAuXBiR7O4m3JRucAHuz5cE/MQshpQeeXgNr5uY2
+         D6iU+8ejr5Cr31sIwCyuKwpHQC6lExfEMcVshRHYkSNrPVdXjs2K/5Z9slMw+YUxqgIc
+         Ha1meyFn1RsT43yAMeh8KgQw5KmFQ8jK14vS02YMPw2AVvvL4l3exGwuVVs/622OLNO2
+         XJcg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689786643; x=1692378643;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=s9fgt2KGcRUVdeDNFEB9QhU3B6RPAni2b92fxJRERKI=;
+        b=RMWJ9fo7SEmQGySTRb80N2pe3ExZ/PS/LohqItg0sk2lbKilofRtNuvXTjkcpEJQvf
+         UYhjF6WCzLEoFInDOFVY9AzKOTQC9SGu/BScuvvtYTqiqzH8EsUXYQrypzKZcFmP1tBM
+         XlPdc+pNOnZtbC6jAEHBcyXQlhB/HYVG+AFzN49vI8B02L3EjNkuvUMwD4fyalIWk6la
+         mdMh7kcb1gh46EDlhdo5bwIWP6kb/SzPfDDm/XPmOlaOR1ua0ojzwLi8GgZqkXuF6STo
+         kOPfa2hYLJKd9igfMSmPpfTpRrE0Z1DNnKGuaOOP8byGR2Wj5WElhA5Q/0jvmVSgiVrV
+         M2UQ==
+X-Gm-Message-State: ABy/qLbN8kESnOONXR8WrlqdQqCP3ooC4xWkHixFA7e7/q/lhggzM5Oc
+        Rc2S/+GOYHcPd8qrLsj7AQD1RQ==
+X-Google-Smtp-Source: APBJJlHT3RjczWqeN0o1AVJznQrcW55dSevRN/ebSN67gRx9wtPP9BGZUIn6GNvldWh6cg1TX2YZWA==
+X-Received: by 2002:a2e:984d:0:b0:2b7:2f2:231d with SMTP id e13-20020a2e984d000000b002b702f2231dmr410408ljj.27.1689786643328;
+        Wed, 19 Jul 2023 10:10:43 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id o1-20020a05600c378100b003fbd9e390e1sm2083821wmr.47.2023.07.19.10.10.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 19 Jul 2023 10:10:42 -0700 (PDT)
+Message-ID: <53e7df75-afdd-9bb0-aa45-f39d0756b139@linaro.org>
+Date:   Wed, 19 Jul 2023 19:10:40 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="s7Tf4Ty8R9yCnV/7"
-Content-Disposition: inline
-In-Reply-To: <1689758686-14409-3-git-send-email-alina_yu@richtek.com>
-X-Cookie: They just buzzed and buzzed...buzzed.
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v2 1/2] dt-bindings: add bindings for pcd8544 displays
+To:     Viktar Simanenka <viteosen@gmail.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230719154450.620410-1-viteosen@gmail.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230719154450.620410-1-viteosen@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 19/07/2023 17:44, Viktar Simanenka wrote:
+> Signed-off-by: Viktar Simanenka <viteosen@gmail.com>
 
---s7Tf4Ty8R9yCnV/7
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+You still miss commit msg.
 
-On Wed, Jul 19, 2023 at 05:24:46PM +0800, alina_yu@richtek.com wrote:
-> From: alinayu <alina_yu@richtek.com>
->=20
+> 
+> V2: deleted oneOf property from compatible
+> changed prefix from 'philips' to existing vendor prefix 'nxp'
+> placed `reg = <0>` right after `compatible`
 
-It'd be better to format this like you do in your e-mail and signoff so
-that git doesn't generate the extra line and the logs look a bit neater
-(there might also be some warnings about signoffs due to the mismatch).
-'git commit --amend --author=3D' should help.
+That's not where the changelog is put. Please read again the patch, I
+gave you link to.
 
-> Add support for the RTQ2208 SubPMIC
-> This ic integrates with configurable, synchrnous buck converters and two =
-ldos.
+> 
+> About parameters exposed for controller:
+> inverted - I had an unbranded display that after reset had all pixels black,
+> while register was in 'normal operation'. The display I have now is opposite:
+> all white after reset in normal mode. This parameter should help user keep
+> same settings in KMS(?) for diverse displays;
 
-The driver looks good, just needs the bindings sorting.
+OK, it was enough to respond to my comment.
 
---s7Tf4Ty8R9yCnV/7
-Content-Type: application/pgp-signature; name="signature.asc"
+> voltage-op & temperature-coeff - adjusts contrast for display. voltage-op
+> cannot be expressed in real units, because resulting equation looks like
+> V = a + Vop * b, where a and b varies with ambient temperature. Vop is a
+> coefficient. same story for temperature-coeff - it shifts resulting voltage
+> curve depending on display usage invironment;
+> bias - relates to waveforms for LCD segments. default is 4 and should be
+> changed only if you use external oscillator for display.
 
------BEGIN PGP SIGNATURE-----
+Most of this could be in property description, not here.
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmS4GIEACgkQJNaLcl1U
-h9DQVAf9H6OOnhoJVDIuI/nPwr5uD0s4hrJyHYT1gd/JIhhSGk6UQa16fgLqnDWr
-YVjprM4X6yJ1TfFIN1DlJuyny2Vc1dO9b1qOfjS2iYPLIU9ZVYjPOwkIHIayR274
-TBziDe+hNDP37YXdQ9oy1qFa6PSuH7lbXmHUBJ7G6bvZgiSuhVDBKJUdMwZTkF/B
-XqvFPkJ9wERfNaje1XWTvh4RWLLf31gtducYqJO+Q8xLnRdKPmTUb3oRDvTQ1QYg
-LVh//TNSQxYmtdlDNbr4vcUAJHxDTuGpRBcLbJkWud8fsMoj9a0XD+zYpaleNmas
-fxHRyrRkO0JvspmiJPbOaICeyR04gQ==
-=u7Uu
------END PGP SIGNATURE-----
+Best regards,
+Krzysztof
 
---s7Tf4Ty8R9yCnV/7--
