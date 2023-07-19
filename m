@@ -2,159 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A6935758E36
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 08:58:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E78F2758E4C
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 09:01:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231276AbjGSG6V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jul 2023 02:58:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41096 "EHLO
+        id S230233AbjGSHBc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jul 2023 03:01:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42760 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231272AbjGSG6V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 02:58:21 -0400
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9555B189
-        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 23:58:18 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-991da766865so895342066b.0
-        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 23:58:18 -0700 (PDT)
+        with ESMTP id S231308AbjGSHB1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 03:01:27 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4C851FEC
+        for <devicetree@vger.kernel.org>; Wed, 19 Jul 2023 00:01:24 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-992b66e5affso892202366b.3
+        for <devicetree@vger.kernel.org>; Wed, 19 Jul 2023 00:01:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689749897; x=1692341897;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        d=linaro.org; s=google; t=1689750083; x=1692342083;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=HiQ1ya2Vx/jvZEdWpDejEV/ueqVWa0CUVCzYMuLpt3A=;
-        b=ih2pfbdbHahkCjOs6AGDGXaKH2QHQeoM4569JR82H8ay75NwvkFSKO9x0g/lW87nVN
-         Zw3o2JHEeBXn5eKaFj7J3wKwfefJBXWIQ9WS1GD8CjF69diQkyx8UbMvSGzI4XHbAJT6
-         oJuZxxyxlCivu7gJ66knmDOeZ5blHGfX4mZA+r0I506ypPh4XzqqKDaygLwuoADFaGzo
-         mJKWNB3xNxVgISqvzYONh+l0JMSj7zlY2pSPdNIxPZebTcy/KWq7m1Inl1P+SeWvDzV9
-         cZmTvSWbq+T+5I6TsybJd3rCrUhe6JQnGLfv/iW5FspFfpypr5HMxYhxv/c4aSJNckve
-         v9QA==
+        bh=WSZrt9jeszEZGu/mKauiyWiY1HTeSRHVXWkl0PsyR+c=;
+        b=BgrP9HbHLulKJqAh3a90fRdgO4sjNLYjWboQJenzmWIzqTETCKSTkJHOpYBFwF4qQB
+         bel2zi8jpzzRW3dQgrJfvkauUOmb7SUrbmqW3vJ0B4pe+mFKjD4bWIwstIzNydVSsstR
+         2bbQc4sz1ggaszirvJ+zXsbpAtLnWPtKgofL/oAasUQ6VgRM7Y/DU3hSsY496X8gxd1d
+         nQUJxAu6Xddw1Zj4tYagBOu8vipwkKoPD3231wfqwdAIQmNU169JPK/+nopUP6nZDy5y
+         RVlbSYICm/mVexr+x6rJuJSbqnhoi9LG5r9/ScVUEKSxjBublwhXyPzh59a/z1XGj0wH
+         Em5Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689749897; x=1692341897;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        d=1e100.net; s=20221208; t=1689750083; x=1692342083;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=HiQ1ya2Vx/jvZEdWpDejEV/ueqVWa0CUVCzYMuLpt3A=;
-        b=PTeKhEXF6BTQ2sAOgOMXlp1rZ5nVUqqbQVji6eDy2C22Uzkpbfduw7s10rrBjZ8xHv
-         w+h9NU/xU+gmxi7KbGFYH3ws80ammRBo3nJOGpFgVx0qmatZQAKANTF/oTvM9rQP+gCs
-         36acFGk4QYfUSNPjY7fYxBBHDKuIco9Dsq+JW4LhVDNgqGzQEhsZubDwN8fjn5A66l5+
-         sq5hF9vVJD9i0esv/0kt0SLUL3dz2iXmFrj1o+hZBzGQa+7Tje4LTzm6Ra1jJcjAA+6N
-         xE4Z4965mWoZKcV4cIVY2jQ/HdPlmSC3LrAGEE5ZqHBCFu5gYMK9Q9w9CP545p8iyMbt
-         UTKQ==
-X-Gm-Message-State: ABy/qLah/FgCkVN9nLnD1uP4vAUpLx9cKR2cSAfUN8DXCCaxt4jCHElK
-        wO7uSLT6CEn256vO1Z4vtmjmCw==
-X-Google-Smtp-Source: APBJJlE5ZgBavnvlZCV3/u4bBdrjFGWaL2d7i/P3Md+EUmM54ETrgEpbPWbD7g1htS6tzyI3vE71KA==
-X-Received: by 2002:a17:906:739b:b0:993:ffcb:ad55 with SMTP id f27-20020a170906739b00b00993ffcbad55mr1645449ejl.9.1689749896922;
-        Tue, 18 Jul 2023 23:58:16 -0700 (PDT)
+        bh=WSZrt9jeszEZGu/mKauiyWiY1HTeSRHVXWkl0PsyR+c=;
+        b=dIw6aDZXiC1HPqIJXNb/4nEhIVTCWD6GU+AeEFlraPpLx/Dmif+1Pe8VhAkkfuHKEG
+         oVBDV7HgNBcylGDYH55CnR/ZcoTnAiDRCHBjimBk0RW9YYVtHamvMgZEDeGPPduW98bT
+         pwJBW8YGBNg3mOj1Bj5kews0CzxSG6V0ztIwRZ6o/lBBOrErFVAznS/oy+GMAaPgJVH0
+         e1owZAbNomU+stiaHdkmCI4pLAGwLa9+p7pcHVMHjRqjWtD6omNNevjgs/U4b1ZuEvBE
+         95PjsFaU8bi2uYxrkw8BZt9keSWGL7XfYz67RBREAHlX/RZC1MCqbaWJBVBuC/PGHSjd
+         17yQ==
+X-Gm-Message-State: ABy/qLacDCOxGNXFec8+OcXELiNCFmiinfAFFJj9NJ/IRYOAdQJfAh/K
+        IvKCtlHk1Yb7gbJW0d98NGFaaA==
+X-Google-Smtp-Source: APBJJlGX7cx1vVoHNi6pwROqc+qSgYNgqVavnXFuzLoHzyAPHaI3G/MLulDPjwxxVA6/dpRfkZ/Ugw==
+X-Received: by 2002:a17:906:95:b0:978:928:3b99 with SMTP id 21-20020a170906009500b0097809283b99mr1479059ejc.46.1689750083436;
+        Wed, 19 Jul 2023 00:01:23 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id bn14-20020a170906c0ce00b009925cbafeaasm1909898ejb.100.2023.07.18.23.58.15
+        by smtp.gmail.com with ESMTPSA id qn24-20020a170907211800b00993470682e5sm1920268ejb.32.2023.07.19.00.01.21
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 18 Jul 2023 23:58:16 -0700 (PDT)
-Message-ID: <2a4bca2f-15e5-1705-b6d2-8c250bf470ea@linaro.org>
-Date:   Wed, 19 Jul 2023 08:58:14 +0200
+        Wed, 19 Jul 2023 00:01:22 -0700 (PDT)
+Message-ID: <bf6c7433-7773-9b4d-1141-b5ceccae77ee@linaro.org>
+Date:   Wed, 19 Jul 2023 09:01:21 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
-Subject: Re: [PATCH net-next v3 2/9] dt-bindings: net: mediatek,net: add
- mt7988-eth binding
+Subject: Re: [V3,00/11] Add multipd remoteproc support
 Content-Language: en-US
-To:     Daniel Golle <daniel@makrotopia.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Felix Fietkau <nbd@nbd.name>, John Crispin <john@phrozen.org>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Mark Lee <Mark-MC.Lee@mediatek.com>,
-        Lorenzo Bianconi <lorenzo@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Greg Ungerer <gerg@kernel.org>,
-        =?UTF-8?Q?Bj=c3=b8rn_Mork?= <bjorn@mork.no>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-References: <cover.1689714290.git.daniel@makrotopia.org>
- <584b459ebb0a74a2ce6ca661f1148f59b9014667.1689714291.git.daniel@makrotopia.org>
+To:     Manikanta Mylavarapu <quic_mmanikan@quicinc.com>,
+        agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        mathieu.poirier@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        mturquette@baylibre.com, sboyd@kernel.org,
+        quic_eberman@quicinc.com, kvalo@kernel.org,
+        loic.poulain@linaro.org, linux-arm-msm@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+Cc:     quic_srichara@quicinc.com, quic_sjaganat@quicinc.com,
+        quic_kathirav@quicinc.com, quic_anusha@quicinc.com
+References: <20230718120501.3205661-1-quic_mmanikan@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <584b459ebb0a74a2ce6ca661f1148f59b9014667.1689714291.git.daniel@makrotopia.org>
+In-Reply-To: <20230718120501.3205661-1-quic_mmanikan@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/07/2023 23:30, Daniel Golle wrote:
-> Introduce DT bindings for the MT7988 SoC to mediatek,net.yaml.
-> The MT7988 SoC got 3 Ethernet MACs operating at a maximum of
-> 10 Gigabit/sec supported by 2 packet processor engines for
-> offloading tasks.
-> The first MAC is hard-wired to a built-in switch which exposes
-> four 1000Base-T PHYs as user ports.
-> It also comes with built-in 2500Base-T PHY which can be used
-> with the 2nd GMAC.
-> The 2nd and 3rd GMAC can be connected to external PHYs or provide
-> SFP(+) cages attached via SGMII, 1000Base-X, 2500Base-X, USXGMII,
-> 5GBase-KR or 10GBase-KR.
+On 18/07/2023 14:04, Manikanta Mylavarapu wrote:
+> APSS brings Q6 out of reset and then Q6 brings
+> WCSS block (wifi radio's) out of reset.
 > 
-> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
-> ---
->  .../devicetree/bindings/net/mediatek,net.yaml | 74 +++++++++++++++++--
->  1 file changed, 69 insertions(+), 5 deletions(-)
+> 				   ---------------
+> 			      -->  |WiFi 2G radio|
+> 			      |	   --------------
+> 			      |
+> --------	-------	      |
+> | APSS | --->   |QDSP6|  -----|
+> ---------	-------       |
+>                               |
+>       			      |
+> 			      |   --------------
+> 			      --> |WiFi 5G radio|
+> 				  --------------
 > 
-> diff --git a/Documentation/devicetree/bindings/net/mediatek,net.yaml b/Documentation/devicetree/bindings/net/mediatek,net.yaml
-> index 38aa3d97ee234..ae2062f3c1833 100644
-> --- a/Documentation/devicetree/bindings/net/mediatek,net.yaml
-> +++ b/Documentation/devicetree/bindings/net/mediatek,net.yaml
-> @@ -24,6 +24,7 @@ properties:
->        - mediatek,mt7629-eth
->        - mediatek,mt7981-eth
->        - mediatek,mt7986-eth
-> +      - mediatek,mt7988-eth
->        - ralink,rt5350-eth
->  
->    reg:
-> @@ -61,6 +62,12 @@ properties:
->        Phandle to the mediatek hifsys controller used to provide various clocks
->        and reset to the system.
->  
-> +  mediatek,infracfg:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description:
-> +      Phandle to the syscon node that handles the path from GMAC to
-> +      PHY variants.
-> +
->    mediatek,sgmiisys:
->      $ref: /schemas/types.yaml#/definitions/phandle-array
->      minItems: 1
-> @@ -229,11 +236,7 @@ allOf:
->              - const: sgmii_ck
->              - const: eth2pll
->  
-> -        mediatek,infracfg:
-> -          $ref: /schemas/types.yaml#/definitions/phandle
-> -          description:
-> -            Phandle to the syscon node that handles the path from GMAC to
-> -            PHY variants.
-> +        mediatek,infracfg: true
+> Problem here is if any radio crashes, subsequently other
+> radio also should crash because Q6 crashed. Let's say
+> 2G radio crashed, Q6 should pass this info to APSS. Only
+> Q6 processor interrupts registered with APSS. Obviously
+> Q6 should crash and raise fatal interrupt to APSS. Due
+> to this 5G radio also crashed. But no issue in 5G radio,
+> because of 2G radio crash 5G radio also impacted.
 
-Did it mean that it was defined only here? Then this "true" is not
-really needed.
+Your patches and cover letter is unnecessarily more difficult to parse
+and filter:
+1. Please use standard email subjects, so with the PATCH keyword in the
+title. `git format-patch` helps here to create proper versioned patches.
+Another useful tool is b4. Skipping the PATCH keyword makes filtering of
+emails more difficult thus making the review process less convenient.
 
-You should however disallow it ("false") in other variants).
-
-
+2. Please wrap message according to Linux coding style / submission
+process (neither too early nor over the limit):
+https://elixir.bootlin.com/linux/v6.4-rc1/source/Documentation/process/submitting-patches.rst#L597
+This is wrapped way too early.
+> 
 
 Best regards,
 Krzysztof
