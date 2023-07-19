@@ -2,87 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C86C758D72
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 08:10:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A2B09758D8E
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 08:15:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230242AbjGSGKR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jul 2023 02:10:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43298 "EHLO
+        id S230481AbjGSGPd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jul 2023 02:15:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47468 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230324AbjGSGKP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 02:10:15 -0400
-Received: from mail-sh.amlogic.com (mail-sh.amlogic.com [58.32.228.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E2F31FF2;
-        Tue, 18 Jul 2023 23:10:09 -0700 (PDT)
-Received: from droid10-sz.amlogic.com (10.28.11.69) by mail-sh.amlogic.com
- (10.18.11.5) with Microsoft SMTP Server id 15.1.2507.13; Wed, 19 Jul 2023
- 14:09:54 +0800
-From:   zelong dong <zelong.dong@amlogic.com>
-To:     Neil Armstrong <neil.armstrong@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Jerome Brunet <jbrunet@baylibre.com>
-CC:     <linux-kernel@vger.kernel.org>,
-        <linux-amlogic@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        <devicetree@vger.kernel.org>, <kelvin.zhang@amlogic.com>,
-        Zelong Dong <zelong.dong@amlogic.com>
-Subject: [PATCH v3 3/3] arm64: dts: amlogic: add reset controller for Amlogic C3 SoC
-Date:   Wed, 19 Jul 2023 14:09:54 +0800
-Message-ID: <20230719060954.14864-4-zelong.dong@amlogic.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20230719060954.14864-1-zelong.dong@amlogic.com>
-References: <20230719060954.14864-1-zelong.dong@amlogic.com>
+        with ESMTP id S231128AbjGSGPY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 02:15:24 -0400
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09B072116
+        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 23:15:06 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-99342a599e9so907585966b.3
+        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 23:15:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1689747302; x=1692339302;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=QMvfRl+bFLnpDnr5W6RMYDLuRVuKpZRmCG+6llzz95M=;
+        b=VLTH+DOnshchuB2xlx/FFJgRWxt/YD2QgTnB0I1yKYULYkkhwdFJDLCIxORtuad49n
+         k9BU7OTaFXzCOlBQlCzUi4pkjcMk/TiLheks4ICpbHTyzEPC1HDAeChcn1Ua3aWJ4HzW
+         MjrqEg6y0cfbFoYhseMFk5lFfkK8ckfXaSLHOIA/p63zGbIMQX3wcVvE10fYWpwnFI+M
+         NCLnIGlMZr40VAHZf3B1ma+wC3NGRQNpkWScRUXpqF9jtxv9Zl3+CaA68q8I42Y8XLcG
+         A8EkQmM1lMfQ+P2OHodMKG1TKW4H1VZJTIJpZih1B6Z4rA0yXbKD1ssk1VEvDcwCY6KK
+         IBOw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689747302; x=1692339302;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=QMvfRl+bFLnpDnr5W6RMYDLuRVuKpZRmCG+6llzz95M=;
+        b=Zb882wGQBysQ5aNaT5ZdQz1El4+swwBb0Nb6M8VtAbIYD0A3VCNMFijSLEoZFStv7g
+         iFQ9tXWKil27cCH16N7QdHhPlFPcb5u+0ToF+KWECtHvIkypJkuyEW2F1lz+LBQ05YwU
+         UcP4qBNTUp8T6psJuYb5cc7UfPzkEJnrqhrA8qLqMkojWVGsbysRRcFeEtA8aHEZZlK7
+         WyMppnkU7BRAd0dVlYug3pFqKVWfT6Ec3W7gUL5orzWGDW/hj14xK9wFV5hKKK7VucJc
+         /2KcQjmmkluAsUk1X9ZaSmYCJ1YdrtPzABxKvuJTpUl7vcFNMpEK6INutRMlsax8c7CE
+         xwyg==
+X-Gm-Message-State: ABy/qLavseU/HnCuQp/6sf5xF6gTiExzgOLwN5JS7kpqbTdNZ3hQGjQR
+        rOgGHD0/rXTKW0JliuxdqY9DYQ==
+X-Google-Smtp-Source: APBJJlGRZZZmnc820slF8HKlmYeUENYJ9xkHTkllvLchrlFNSUlR/DU+Ey8nLunz22xs2vX6ELok7g==
+X-Received: by 2002:a17:906:5303:b0:992:6064:f32b with SMTP id h3-20020a170906530300b009926064f32bmr1240291ejo.46.1689747302125;
+        Tue, 18 Jul 2023 23:15:02 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id b10-20020a1709065e4a00b00992d122af63sm1858050eju.89.2023.07.18.23.15.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 18 Jul 2023 23:15:01 -0700 (PDT)
+Message-ID: <6faf3d1d-f05f-4d28-82d9-32c8e22fd29b@linaro.org>
+Date:   Wed, 19 Jul 2023 08:15:00 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [10.28.11.69]
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH 2/2] firmware: arm_scmi: Add qcom hvc/shmem transport
+To:     Nikunj Kela <quic_nkela@quicinc.com>, sudeep.holla@arm.com
+Cc:     cristian.marussi@arm.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+References: <20230718160833.36397-1-quic_nkela@quicinc.com>
+ <20230718160833.36397-3-quic_nkela@quicinc.com>
+ <d9d5ffd5-6f85-f091-5d69-12cdd8d04c99@linaro.org>
+ <3ae2d618-490a-06da-b4b6-b5a24b0a9747@quicinc.com>
+ <ec3d7769-8a5f-d938-7f77-351ddfe6fb45@linaro.org>
+ <e8399fcf-e0d8-cc31-d9a7-b0f4f7cc3e71@quicinc.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <e8399fcf-e0d8-cc31-d9a7-b0f4f7cc3e71@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Zelong Dong <zelong.dong@amlogic.com>
+On 18/07/2023 23:16, Nikunj Kela wrote:
+> 
+> On 7/18/2023 11:42 AM, Krzysztof Kozlowski wrote:
+>> On 18/07/2023 20:25, Nikunj Kela wrote:
+>>>>> +
+>>>>> +	scmi_info = devm_kzalloc(dev, sizeof(*scmi_info), GFP_KERNEL);
+>>>>> +	if (!scmi_info)
+>>>>> +		return -ENOMEM;
+>>>>> +
+>>>>> +	np = of_parse_phandle(cdev->of_node, "shmem", 0);
+>>>>> +	if (!of_device_is_compatible(np, "arm,scmi-shmem"))
+>>>> You leak here reference.
+>>> Wouldn't the devm_* API take care of that implicitly? It is same in
+>>> smc.c as well.
+>> Thanks for bringing my attention to this. I sent a fix for smc.c. Fix
+>> your patch as well, please.
+> Thanks, I thought you were referring to kzalloc cleanup. Will include 
+> this fix. BTW, you may need to fix mailbox.c as well.
 
-Add the reset controller device of Amlogic C3 SoC family
+Indeed, thanks.
 
-Signed-off-by: Zelong Dong <zelong.dong@amlogic.com>
----
- arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi | 7 +++++++
- 1 file changed, 7 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
-index 60ad4f3eef9d..28698c42e11e 100644
---- a/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
-@@ -6,6 +6,7 @@
- #include <dt-bindings/interrupt-controller/irq.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/reset/amlogic,c3-reset.h>
- 
- / {
- 	cpus {
-@@ -72,6 +73,12 @@ apb4: bus@fe000000 {
- 			#size-cells = <2>;
- 			ranges = <0x0 0x0 0x0 0xfe000000 0x0 0x480000>;
- 
-+			reset: reset-controller@2000 {
-+				compatible = "amlogic,c3-reset";
-+				reg = <0x0 0x2000 0x0 0x98>;
-+				#reset-cells = <1>;
-+			};
-+
- 			uart_b: serial@7a000 {
- 				compatible = "amlogic,meson-s4-uart",
- 					   "amlogic,meson-ao-uart";
--- 
-2.35.1
+Best regards,
+Krzysztof
 
