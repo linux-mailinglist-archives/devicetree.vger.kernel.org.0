@@ -2,125 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 00A3E7594A0
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 13:50:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2DE0A7594A6
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 13:52:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229636AbjGSLug (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jul 2023 07:50:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35092 "EHLO
+        id S230386AbjGSLwZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jul 2023 07:52:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36580 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230397AbjGSLud (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 07:50:33 -0400
-Received: from mickerik.phytec.de (mickerik.phytec.de [91.26.50.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DC801985
-        for <devicetree@vger.kernel.org>; Wed, 19 Jul 2023 04:50:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
-        q=dns/txt; i=@phytec.de; t=1689767424; x=1692359424;
-        h=From:Sender:Reply-To:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=6TayMIbwLtGf8ga1EeYBcxxX3br5/uQwKHx9GHCERww=;
-        b=LLth0KR7oao8FfDiqt6nSdYTEq5oBwBiZALdo/M4fjhXzTHm1jGCOIoEHLsEPwxx
-        /cQrM7uk6oq4c90VE5YM5AKXgYgGlBSAWJqjc2zkacT1A7G+fPORhij5tdJnd6MN
-        bdSDyg5Ss9ZqHfUtmjJ+yohaYYzG0i0OTxQibVQ8apc=;
-X-AuditID: ac14000a-917fe70000007ecb-45-64b7ce0017d7
-Received: from berlix.phytec.de (Unknown_Domain [172.25.0.12])
-        (using TLS with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (Client did not present a certificate)
-        by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id 8F.D8.32459.00EC7B46; Wed, 19 Jul 2023 13:50:24 +0200 (CEST)
-Received: from Berlix.phytec.de (172.25.0.12) by Berlix.phytec.de
- (172.25.0.12) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Wed, 19 Jul
- 2023 13:50:42 +0200
-Received: from Berlix.phytec.de ([fe80::61cc:ebf0:7375:8768]) by
- berlix.phytec.de ([fe80::197e:d26b:2ca:c7b4%4]) with mapi id 15.01.2375.018;
- Wed, 19 Jul 2023 13:50:42 +0200
-From:   =?utf-8?B?U3RlZmFuIFJpZWRtw7xsbGVy?= <S.Riedmueller@phytec.de>
-To:     "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "linux-imx@nxp.com" <linux-imx@nxp.com>,
-        "andrej.picej@norik.com" <andrej.picej@norik.com>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>
-CC:     "linux-arm-kernel@lists.infradead.org" 
+        with ESMTP id S229900AbjGSLwV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 07:52:21 -0400
+Received: from mx1.sberdevices.ru (mx2.sberdevices.ru [45.89.224.132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40940125;
+        Wed, 19 Jul 2023 04:52:16 -0700 (PDT)
+Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
+        by mx1.sberdevices.ru (Postfix) with ESMTP id 740FF120079;
+        Wed, 19 Jul 2023 14:52:14 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 740FF120079
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+        s=mail; t=1689767534;
+        bh=WJO0gCSUgzyDr4FE61tuSNaiy1oIObuvV4l3JlcF+yQ=;
+        h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type:From;
+        b=X2RiZPowV4ZPs8CRhZRqiRpZOCYhM0ctmJ2qQuAyyKKkkxXHH/b4YZ6sJzxBD05sh
+         EK60eeHvaSm8YS/k1UCZaAJIlN/XbiVpo3ECLwTGyecvDaZS+PReHO9Yro+AU1eyHY
+         quSJzTHlFu0b8mb8ryz+0qXXg8NvBgcBddLvu6SJGPgoJbwrZLUyMEW782UE/zsv2N
+         wABmFSH+NgznWdb1gKIQOKl/PAS7NdKQw3As8w1V9+aizNjm5M3lmliGbPaEiMqK1s
+         bGnbjeF0I7d91eFVsOKB/6UQAlOn2sFErkiOYWS2PO4KUUaoh+lWAYtY7+LfWiEQf3
+         LcmHLIgJHAf1A==
+Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mx1.sberdevices.ru (Postfix) with ESMTPS;
+        Wed, 19 Jul 2023 14:52:14 +0300 (MSK)
+Received: from localhost (100.64.160.123) by p-i-exch-sc-m01.sberdevices.ru
+ (172.16.192.107) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Wed, 19 Jul
+ 2023 14:52:14 +0300
+Date:   Wed, 19 Jul 2023 14:52:13 +0300
+From:   Dmitry Rokosov <ddrokosov@sberdevices.ru>
+To:     zelong dong <zelong.dong@amlogic.com>
+CC:     Neil Armstrong <neil.armstrong@linaro.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-amlogic@lists.infradead.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        =?utf-8?B?U3RlZmFuIE3DvGxsZXItS2xpZXNlcg==?= 
-        <S.Mueller-Klieser@phytec.de>,
-        "upstream@phytec.de" <upstream@phytec.de>
-Subject: Re: [PATCH v2 3/3] ARM: dts: imx6: phycore: Rely on PMIC reboot/reset
- handler
-Thread-Topic: [PATCH v2 3/3] ARM: dts: imx6: phycore: Rely on PMIC
- reboot/reset handler
-Thread-Index: AQHZujZYvRuJhhLzmEmfWExqJgVZ8K/A2HEA
-Date:   Wed, 19 Jul 2023 11:50:42 +0000
-Message-ID: <d00c1404bea50dab7db9063acef1f0b8f2ae74a9.camel@phytec.de>
-References: <20230719114328.2239818-1-andrej.picej@norik.com>
-         <20230719114328.2239818-3-andrej.picej@norik.com>
-In-Reply-To: <20230719114328.2239818-3-andrej.picej@norik.com>
-Accept-Language: en-US, de-DE
-Content-Language: de-DE
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.25.0.11]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <A64C0F8DA98A984391E1CF8E774FB578@phytec.de>
-Content-Transfer-Encoding: base64
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        <devicetree@vger.kernel.org>, <kelvin.zhang@amlogic.com>
+Subject: Re: [PATCH v3 3/3] arm64: dts: amlogic: add reset controller for
+ Amlogic C3 SoC
+Message-ID: <20230719115213.ixza2aguogv3tyhw@CAB-WSD-L081021>
+References: <20230719060954.14864-1-zelong.dong@amlogic.com>
+ <20230719060954.14864-4-zelong.dong@amlogic.com>
 MIME-Version: 1.0
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrBIsWRmVeSWpSXmKPExsWyRpKBR5fh3PYUg6fnRSym7mW0WLP3HJPF
-        /CPnWC0eXvW3WDV1J4tF34uHzBabHl9jtej6tZLZ4vKuOWwWrXuPsFv83b6JxeLFFnEHHo+d
-        s+6ye2xa1cnmcefaHjaPzUvqPb5/3cDqsfHdDiaP/r8GHp83yQVwRHHZpKTmZJalFunbJXBl
-        fJvWzlLwRKCifcpxlgbGNQJdjBwcEgImEsdbHbsYuTiEBJYwSczrnswE4TxglHiz5CU7hLOR
-        UWLFrA+MXYycHGwCLhKf276xgSREBI4zS6z9MoUFxGEWOMUkceb1A2aQKmGBCImN276wg+wQ
-        EYiUeDc7F8I0knh3PwWkgkVAVeLQ9yYmEJtXwE3ied82dhBbSKBIYsKPGWC7OAXsJG6v7mAB
-        sRkFZCU6G96B1TMLiEtsevadFcSWEBCQWLLnPDOELSrx8vE/qLi8xIlb05hA1jILaEqs36UP
-        0Woh8fzhR2YIW1FiSvdDdogTBCVOznzCMoFRfBaSDbMQumch6Z6FpHsWku4FjKyrGIVyM5Oz
-        U4sys/UKMipLUpP1UlI3MYJiX4SBawdj3xyPQ4xMHIyHGCU4mJVEeB9d3pYixJuSWFmVWpQf
-        X1Sak1p8iFGag0VJnPd+D1OikEB6YklqdmpqQWoRTJaJg1OqgZHnRJDQjusBPx+vdDW0sEvm
-        //p3C4vNRsms87cWKT7ameHrOeO99aa/liqT357998dRYtJi0bBliZuSNj9bkDLrknL+zus7
-        dz3e/vqE67qFVnIr9hUd0tov+Kr6WtO5nOkbFskft/hw5laMrV7Ku5OpxstvPBDYeyCdvbai
-        1+nkp0x1s7cq9+KmKLEUZyQaajEXFScCAB45VCDrAgAA
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20230719060954.14864-4-zelong.dong@amlogic.com>
+User-Agent: NeoMutt/20220415
+X-Originating-IP: [100.64.160.123]
+X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 178721 [Jul 19 2023]
+X-KSMG-AntiSpam-Version: 5.9.59.0
+X-KSMG-AntiSpam-Envelope-From: DDRokosov@sberdevices.ru
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 524 524 9753033d6953787301affc41bead8ed49c47b39d, {Tracking_uf_ne_domains}, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2;p-i-exch-sc-m01.sberdevices.ru:5.0.1,7.1.1;lists.infradead.org:7.1.1;100.64.160.123:7.1.2;sberdevices.ru:5.0.1,7.1.1, FromAlignment: s, {Tracking_white_helo}, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean, bases: 2023/07/19 06:59:00
+X-KSMG-LinksScanning: Clean, bases: 2023/07/19 07:00:00
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/07/19 06:48:00 #21640303
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgQW5kcmVqLA0KDQpPbiBXZWQsIDIwMjMtMDctMTkgYXQgMTM6NDMgKzAyMDAsIEFuZHJlaiBQ
-aWNlaiB3cm90ZToNCj4gRHVlIHRvIHRoZSBtaXNzaW5nIHNpZ25hbCBjb25uZWN0aW9uIGJldHdl
-ZW4gaS5NWDYgV0RPR19CIHBpbiBhbmQgdGhlDQo+IFBNSUNzIGV4dGVybmFsIHJlc2V0LCB0aGUg
-aW50ZXJuYWwgaS5NWDYgd2F0Y2hkb2cgaXMgbm90IGFibGUgdG8gcmVzZXQNCj4gdGhlIHBoeUNP
-UkUgaS5NWDYgU29NIHByb3Blcmx5LiBUaHVzIGRpc2FibGUgdGhlIGludGVybmFsIGkuTVg2IHdh
-dGNoZG9nDQo+IHRvIHByZXZlbnQgdW5leHBlY3RlZCBQTUlDIHNldHRpbmdzIGFmdGVyIHJlc2V0
-Lg0KPiANCj4gTk9URTogVGhpcyBwYXRjaCBzaG91bGQgbm90IGJlIGJhY2twb3J0ZWQgYXMgaXQg
-bWlnaHQgYnJlYWsgZXhpc3RpbmcNCj4gdXNlcyBhbmQgZml4ZXMgaW4gYm9vdGxvYWRlcnMuDQo+
-IA0KPiBTaWduZWQtb2ZmLWJ5OiBBbmRyZWogUGljZWogPGFuZHJlai5waWNlakBub3Jpay5jb20+
-DQoNClJldmlld2VkLWJ5OiBTdGVmYW4gUmllZG3DvGxsZXIgPHMucmllZG11ZWxsZXJAcGh5dGVj
-LmRlPg0KDQo+IC0tLQ0KPiBDaGFuZ2VzIGluIHYyOg0KPiDCoC0gbmV3IHBhdGNoDQo+IMKgLSBp
-Lk1YNiBwaHlDT1JFcyBoYXZlIHRoZSBzYW1lIHByb2JsZW0gYXMgcGh5RkxFWCBkZXZpY2VzLg0K
-PiAtLS0NCj4gwqBhcmNoL2FybS9ib290L2R0cy9ueHAvaW14L2lteDZxZGwtcGh5dGVjLXBoeWNv
-cmUtc29tLmR0c2kgfCA4ICsrKysrKysrDQo+IMKgMSBmaWxlIGNoYW5nZWQsIDggaW5zZXJ0aW9u
-cygrKQ0KPiANCj4gZGlmZiAtLWdpdCBhL2FyY2gvYXJtL2Jvb3QvZHRzL254cC9pbXgvaW14NnFk
-bC1waHl0ZWMtcGh5Y29yZS1zb20uZHRzaQ0KPiBiL2FyY2gvYXJtL2Jvb3QvZHRzL254cC9pbXgv
-aW14NnFkbC1waHl0ZWMtcGh5Y29yZS1zb20uZHRzaQ0KPiBpbmRleCAyOGE4MDUzODQ2NjguLjg2
-YjQyNjllMGUwMSAxMDA2NDQNCj4gLS0tIGEvYXJjaC9hcm0vYm9vdC9kdHMvbnhwL2lteC9pbXg2
-cWRsLXBoeXRlYy1waHljb3JlLXNvbS5kdHNpDQo+ICsrKyBiL2FyY2gvYXJtL2Jvb3QvZHRzL254
-cC9pbXgvaW14NnFkbC1waHl0ZWMtcGh5Y29yZS1zb20uZHRzaQ0KPiBAQCAtMzA5LDMgKzMwOSwx
-MSBAQCBNWDZRRExfUEFEX1NENF9EQVQ3X19TRDRfREFUQTfCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoDB4MTcwNTkNCj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqA+Ow0KPiDCoMKg
-wqDCoMKgwqDCoMKgfTsNCj4gwqB9Ow0KPiArDQo+ICsmd2RvZzEgew0KPiArwqDCoMKgwqDCoMKg
-wqAvKg0KPiArwqDCoMKgwqDCoMKgwqAgKiBSZWx5IG9uIFBNSUMgcmVib290IGhhbmRsZXIuIElu
-dGVybmFsIGkuTVg2IHdhdGNoZG9nLCB0aGF0IGlzDQo+IGFsc28NCj4gK8KgwqDCoMKgwqDCoMKg
-ICogdXNlZCBmb3IgcmVib290LCBkb2VzIG5vdCByZXNldCBhbGwgZXh0ZXJuYWwgUE1JQyB2b2x0
-YWdlcyBvbg0KPiByZXNldC4NCj4gK8KgwqDCoMKgwqDCoMKgICovDQo+ICvCoMKgwqDCoMKgwqDC
-oHN0YXR1cyA9ICJkaXNhYmxlZCI7DQo+ICt9Ow0K
+On Wed, Jul 19, 2023 at 02:09:54PM +0800, zelong dong wrote:
+> From: Zelong Dong <zelong.dong@amlogic.com>
+> 
+> Add the reset controller device of Amlogic C3 SoC family
+> 
+> Signed-off-by: Zelong Dong <zelong.dong@amlogic.com>
+
+Reviewed-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+
+> ---
+>  arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi | 7 +++++++
+>  1 file changed, 7 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
+> index 60ad4f3eef9d..28698c42e11e 100644
+> --- a/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
+> @@ -6,6 +6,7 @@
+>  #include <dt-bindings/interrupt-controller/irq.h>
+>  #include <dt-bindings/interrupt-controller/arm-gic.h>
+>  #include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/reset/amlogic,c3-reset.h>
+>  
+>  / {
+>  	cpus {
+> @@ -72,6 +73,12 @@ apb4: bus@fe000000 {
+>  			#size-cells = <2>;
+>  			ranges = <0x0 0x0 0x0 0xfe000000 0x0 0x480000>;
+>  
+> +			reset: reset-controller@2000 {
+> +				compatible = "amlogic,c3-reset";
+> +				reg = <0x0 0x2000 0x0 0x98>;
+> +				#reset-cells = <1>;
+> +			};
+> +
+>  			uart_b: serial@7a000 {
+>  				compatible = "amlogic,meson-s4-uart",
+>  					   "amlogic,meson-ao-uart";
+> -- 
+> 2.35.1
+> 
+> 
+> _______________________________________________
+> linux-amlogic mailing list
+> linux-amlogic@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+-- 
+Thank you,
+Dmitry
