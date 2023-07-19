@@ -2,879 +2,216 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3FC35758FF9
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 10:16:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5016B759038
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 10:28:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229908AbjGSIQc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jul 2023 04:16:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55908 "EHLO
+        id S229688AbjGSI2d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jul 2023 04:28:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33836 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229475AbjGSIQb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 04:16:31 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD2CF1B6;
-        Wed, 19 Jul 2023 01:16:29 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 246A3612FF;
-        Wed, 19 Jul 2023 08:16:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 40460C433C8;
-        Wed, 19 Jul 2023 08:16:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689754588;
-        bh=YMBp0HO8nzFeSqBF/8icuiJ2um/D06p4FbGhg4kkZL8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=pULz3vI326BkVc0SnHqKuWI0VOAxbTkEyNWJwJBvi4ehjp79jjwpQilkwGn/9ylyi
-         viTctSx2Wwdxa9cU0A6S4oQOVuZYB6BePUDY1/qeS9x2Iu9JCo13Anll9yImQxAX5X
-         EgosNaDPz4Ikgl8J707kxarzYLDbnUtTbzMQTh08Dn5M5Vzde88Qbl6BfSTvjvPzQ1
-         QEaRoUX25CUw1gWCjsg2kCgCKwIycavBvzoBDoNG2gDfBWfo3PlGPnIpkdkdi81unL
-         hiunAaKBr5M4h7CikizFPX1ai0Tiutl49zy4qQvb2gqwPxqs+7zfmKhe2GqpOAKJrA
-         MNUchggerhM/w==
-Date:   Wed, 19 Jul 2023 16:16:15 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Marco Felsch <m.felsch@pengutronix.de>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, laurent.pinchart@ideasonboard.com,
-        dan.scally@ideasonboard.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 4/4] arm64: dts: freescale: Add DEBIX SOM A and SOM A
- I/O Board support
-Message-ID: <20230719081615.GQ151430@dragon>
-References: <20230717165127.2882535-1-m.felsch@pengutronix.de>
- <20230717165127.2882535-4-m.felsch@pengutronix.de>
+        with ESMTP id S229539AbjGSI2c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 04:28:32 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A45B1724;
+        Wed, 19 Jul 2023 01:28:29 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 36J8S3YA059156;
+        Wed, 19 Jul 2023 03:28:03 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1689755283;
+        bh=rh4jR5p7dRiOXl51jelf9sjH/P1zNbiAlocST962Fk0=;
+        h=From:To:CC:Subject:Date;
+        b=qNyYgWvVvs4g0n2HvJSEI698koIL0NRy/jvJwYXTzjVvlxfA4ZW95SQIybB3CfDwl
+         0XNrC4gpP5qBE0Uamg8GHdrqrh2QB27ia9bzpQa6kR2rN00eqMB16L6vmO+UcD3MHV
+         AowEBeduL2wwMqWQW1c/n1Ey6CCR/IDIfKiEkqm8=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 36J8S3Ad007129
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 19 Jul 2023 03:28:03 -0500
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 19
+ Jul 2023 03:28:03 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 19 Jul 2023 03:28:03 -0500
+Received: from fllv0122.itg.ti.com (fllv0122.itg.ti.com [10.247.120.72])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 36J8S3cY094772;
+        Wed, 19 Jul 2023 03:28:03 -0500
+Received: from localhost (uda0501179.dhcp.ti.com [172.24.227.217])
+        by fllv0122.itg.ti.com (8.14.7/8.14.7) with ESMTP id 36J8S2N4017679;
+        Wed, 19 Jul 2023 03:28:02 -0500
+From:   MD Danish Anwar <danishanwar@ti.com>
+To:     Randy Dunlap <rdunlap@infradead.org>,
+        Roger Quadros <rogerq@kernel.org>,
+        Simon Horman <simon.horman@corigine.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Eric Dumazet <edumazet@google.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        MD Danish Anwar <danishanwar@ti.com>
+CC:     <nm@ti.com>, <srk@ti.com>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <netdev@vger.kernel.org>,
+        <linux-omap@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: [PATCH v10 0/2] Introduce ICSSG based ethernet Driver
+Date:   Wed, 19 Jul 2023 13:57:53 +0530
+Message-ID: <20230719082755.3399424-1-danishanwar@ti.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230717165127.2882535-4-m.felsch@pengutronix.de>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 17, 2023 at 06:51:27PM +0200, Marco Felsch wrote:
-> Add support for the Debix SOM A + SOM A I/O board. The commit enables
-> only the basic features like:
->  - 2x UART
->  - 2x Network
->  - eMMC/µSD
->  - CAN
->  - QSPI
->  - USB Host / Device
-> 
-> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
-> ---
-> Required patchsets:
-> 
-> - usb: https://lore.kernel.org/all/20230623142228.4069084-1-m.felsch@pengutronix.de/
-> - net: https://lore.kernel.org/all/20230717164307.2868264-1-m.felsch@pengutronix.de/
-> 
-> Changelog:
-> 
-> v2:
-> - drop to generic polyhex,imx8mp-debix binding
-> - net/phy: replace deprecated snps,reset-* and phy-reset-* bindings with
->   new phy-node based ones
-> - net/phy: fix phy properties and reset timings
-> - net/phy: add fec phy-supply handling
-> - net/phy: add eqos phy-supply handling
-> - net/phy: fix baseboard-vdd3v3 timings to fulfill net-phy-timings
-> - Fix spelling
-> - Drop superfluous blank lines
-> - pmic: make use of IRQ_TYPE_LEVEL_LOW
-> - pmic: add whitespace between buck node name and '{'
-> 
->  arch/arm64/boot/dts/freescale/Makefile        |   1 +
->  .../freescale/imx8mp-debix-som-a-bmb-08.dts   | 470 ++++++++++++++++++
->  .../dts/freescale/imx8mp-debix-som-a.dtsi     | 266 ++++++++++
->  3 files changed, 737 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-debix-som-a-bmb-08.dts
->  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-debix-som-a.dtsi
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-> index ef7d17aef58f0..ca7c9595e6ffa 100644
-> --- a/arch/arm64/boot/dts/freescale/Makefile
-> +++ b/arch/arm64/boot/dts/freescale/Makefile
-> @@ -91,6 +91,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mn-venice-gw7902.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mp-beacon-kit.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mp-data-modul-edm-sbc.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mp-debix-model-a.dtb
-> +dtb-$(CONFIG_ARCH_MXC) += imx8mp-debix-som-a-bmb-08.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mp-dhcom-pdk2.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mp-dhcom-pdk3.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mp-evk.dtb
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-debix-som-a-bmb-08.dts b/arch/arm64/boot/dts/freescale/imx8mp-debix-som-a-bmb-08.dts
-> new file mode 100644
-> index 0000000000000..17028ab169717
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp-debix-som-a-bmb-08.dts
-> @@ -0,0 +1,470 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright 2019 NXP
-> + * Copyright (C) 2023 Pengutronix, Marco Felsch <kernel@pengutronix.de>
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "imx8mp-debix-som-a.dtsi"
-> +
-> +/ {
-> +	model = "Polyhex i.MX8MPlus Debix SOM A on BMB-08";
-> +	compatible = "polyhex,imx8mp-debix-som-a-bmb-08", "polyhex,imx8mp-debix-som-a",
-> +		     "fsl,imx8mp";
-> +
-> +	chosen {
-> +		stdout-path = &uart2;
-> +	};
-> +
-> +	reg_baseboard_vdd3v3: regulator-baseboard-vdd3v3 {
-> +		compatible = "regulator-fixed";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		regulator-name = "BB_VDD3V3";
-> +		gpio = <&expander0 10 GPIO_ACTIVE_HIGH>;
-> +		/* Required timings for ethernet phy's */
-> +		startup-delay-us = <50000>;
-> +		off-on-delay-us = <110000>;
-> +		enable-active-high;
+The Programmable Real-time Unit and Industrial Communication Subsystem
+Gigabit (PRU_ICSSG) is a low-latency microcontroller subsystem in the TI
+SoCs. This subsystem is provided for the use cases like the implementation
+of custom peripheral interfaces, offloading of tasks from the other
+processor cores of the SoC, etc.
 
-Can we place this right after the line below?
+The subsystem includes many accelerators for data processing like
+multiplier and multiplier-accumulator. It also has peripherals like
+UART, MII/RGMII, MDIO, etc. Every ICSSG core includes two 32-bit
+load/store RISC CPU cores called PRUs.
 
-  gpio = <&expander0 10 GPIO_ACTIVE_HIGH>;
+The above features allow it to be used for implementing custom firmware
+based peripherals like ethernet.
 
-> +		regulator-always-on;
-> +	};
-> +
-> +	reg_baseboard_vdd5v0: regulator-baseboard-vdd5v0 {
-> +		compatible = "regulator-fixed";
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +		regulator-name = "BB_VDD5V";
-> +		gpio = <&expander0 9 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +	};
-> +
-> +	regulator-som-vdd1v8 {
-> +		compatible = "regulator-fixed";
-> +		regulator-min-microvolt = <1800000>;
-> +		regulator-max-microvolt = <1800000>;
-> +		regulator-name = "SOM_VDD1V8_SW";
-> +		gpio = <&expander0 12 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +		regulator-always-on;
-> +	};
-> +
-> +	regulator-som-vdd3v3 {
-> +		compatible = "regulator-fixed";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		regulator-name = "SOM_VDD3V3_SW";
-> +		gpio = <&expander0 11 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +		regulator-always-on;
-> +	};
-> +
-> +	reg_usdhc2_vmmc: regulator-usdhc2 {
-> +		compatible = "regulator-fixed";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_reg_usdhc2_vmmc>;
-> +		regulator-name = "VSD_3V3";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		gpio = <&gpio2 19 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +	};
-> +
-> +	regulator-vbus-usb20 {
-> +		compatible = "regulator-fixed";
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +		regulator-name = "USB20_5V";
-> +		gpio = <&expander1 14 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +		regulator-always-on;
-> +		vin-supply = <&reg_baseboard_vdd5v0>;
-> +	};
-> +
-> +	regulator-vbus-usb30 {
-> +		compatible = "regulator-fixed";
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +		regulator-name = "USB30_5V";
-> +		gpio = <&expander1 12 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +		regulator-always-on;
-> +		vin-supply = <&reg_baseboard_vdd5v0>;
-> +	};
-> +
-> +	reg_vdd5v0: regulator-vdd5v0 {
-> +		compatible = "regulator-fixed";
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +		regulator-name = "VDD_5V";
-> +		gpio = <&expander0 8 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +	};
-> +};
-> +
-> +&eqos {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_eqos>;
-> +	phy-supply = <&reg_baseboard_vdd3v3>;
-> +	phy-handle = <&ethphy0>;
-> +	phy-mode = "rgmii-id";
-> +	status = "okay";
-> +
-> +	mdio {
-> +		compatible = "snps,dwmac-mdio";
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		ethphy0: ethernet-phy@0 {
-> +			compatible = "ethernet-phy-ieee802.3-c22";
-> +			reg = <0>;
-> +			reset-gpios = <&gpio4 18 GPIO_ACTIVE_LOW>;
-> +			reset-assert-us = <20000>;
-> +			reset-deassert-us = <150000>;
-> +			eee-broken-1000t;
-> +			realtek,clkout-disable;
-> +		};
-> +	};
-> +};
-> +
-> +&fec {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_fec>;
-> +	phy-supply = <&reg_baseboard_vdd3v3>;
-> +	phy-handle = <&ethphy1>;
-> +	phy-mode = "rgmii-id";
-> +	fsl,magic-packet;
-> +	status = "okay";
-> +
-> +	mdio {
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		ethphy1: ethernet-phy@0 {
-> +			compatible = "ethernet-phy-ieee802.3-c22";
-> +			reg = <0>;
-> +			reset-gpios = <&gpio4 19 GPIO_ACTIVE_LOW>;
-> +			reset-assert-us = <20000>;
-> +			reset-deassert-us = <150000>;
-> +			eee-broken-1000t;
-> +			realtek,clkout-disable;
-> +		};
-> +	};
-> +};
-> +
-> +&flexcan1 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_flexcan1>;
-> +	xceiver-supply = <&reg_vdd5v0>;
-> +	status = "okay";
-> +};
-> +
-> +&flexcan2 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_flexcan2>;
-> +	xceiver-supply = <&reg_vdd5v0>;
-> +	status = "okay";
-> +};
-> +
-> +&flexspi {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_flexspi0>;
-> +	status = "okay";
-> +
-> +	flash: flash@0 {
-> +		compatible = "jedec,spi-nor";
-> +		reg = <0>;
-> +		spi-max-frequency = <80000000>;
-> +		spi-tx-bus-width = <1>;
-> +		spi-rx-bus-width = <4>;
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +	};
-> +};
-> +
-> +&i2c4 {
-> +	expander0: gpio@20 {
-> +		compatible = "nxp,pca9535";
-> +		reg = <0x20>;
-> +		gpio-controller;
-> +		#gpio-cells = <0x02>;
-> +	};
-> +
-> +	expander1: gpio@23 {
-> +		compatible = "nxp,pca9535";
-> +		reg = <0x23>;
-> +		gpio-controller;
-> +		#gpio-cells = <0x02>;
-> +
-> +		/*
-> +		 * Since USB1 is bound to peripheral mode we need to ensure
-> +		 * that VBUS is turned off.
-> +		 */
-> +		usb30-otg-hog {
-> +			gpio-hog;
-> +			gpios = <13 GPIO_ACTIVE_HIGH>;
-> +			output-low;
-> +			line-name = "USB30_OTG_EN";
-> +		};
-> +	};
-> +
-> +	eeprom@52 {
-> +		compatible = "atmel,24c02";
-> +		reg = <0x52>;
-> +		pagesize = <16>;
-> +	};
-> +
-> +	rtc@51 {
+This series adds the YAML documentation and the driver with basic EMAC
+support for TI AM654 Silicon Rev 2 SoC with the PRU_ICSSG Sub-system.
+running dual-EMAC firmware.
+This currently supports basic EMAC with 1Gbps and 100Mbps link. 10M and
+half-duplex modes are not yet supported because they require the support
+of an IEP, which will be added later.
+Advanced features like switch-dev and timestamping will be added later. 
 
-Sort them in order of unit-address.
+This is the v10 of the patch series [v1]. This version of the patchset 
+addresses comments made on v9.
 
-> +		compatible = "haoyu,hym8563";
-> +		reg = <0x51>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_rtc>;
-> +		interrupt-parent = <&gpio4>;
-> +		interrupts = <3 IRQ_TYPE_EDGE_FALLING>;
-> +		#clock-cells = <0>;
-> +	};
-> +};
-> +
-> +&snvs_pwrkey {
-> +	status = "okay";
-> +};
-> +
-> +/* Debug */
-> +&uart2 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_uart2>;
-> +	status = "okay";
-> +};
-> +
-> +&uart3 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_uart3>;
-> +	status = "okay";
-> +};
-> +
-> +&uart4 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_uart4>;
-> +	status = "okay";
-> +};
-> +
-> +&usb3_0 {
-> +	status = "okay";
-> +};
-> +
-> +&usb3_1 {
-> +	status = "okay";
-> +};
-> +
-> +&usb_dwc3_0 {
-> +	dr_mode = "peripheral";
-> +	status = "okay";
-> +};
-> +
-> +&usb_dwc3_1 {
-> +	dr_mode = "host";
-> +	#address-cells = <1>;
-> +	#size-cells = <0>;
-> +	status = "okay";
-> +
-> +	/* 2.x hub on port 1 */
-> +	usb_hub_2_x: hub@1 {
-> +		compatible = "usb5e3,610";
-> +		reg = <1>;
-> +		reset-gpios = <&expander1 9 GPIO_ACTIVE_LOW>;
-> +		vdd-supply = <&reg_vdd5v0>;
-> +		peer-hub = <&usb_hub_3_x>;
-> +	};
-> +
-> +	/* 3.x hub on port 2 */
-> +	usb_hub_3_x: hub@2 {
-> +		compatible = "usb5e3,620";
-> +		reg = <2>;
-> +		reset-gpios = <&expander1 9 GPIO_ACTIVE_LOW>;
-> +		vdd-supply = <&reg_vdd5v0>;
-> +		peer-hub = <&usb_hub_2_x>;
-> +	};
-> +};
-> +
-> +&usb3_phy0 {
-> +	status = "okay";
-> +};
-> +
-> +&usb3_phy1 {
-> +	status = "okay";
-> +};
-> +
-> +/* µSD Card */
-> +&usdhc2 {
-> +	pinctrl-names = "default", "state_100mhz", "state_200mhz";
-> +	pinctrl-0 = <&pinctrl_usdhc2>;
-> +	pinctrl-1 = <&pinctrl_usdhc2_100mhz>;
-> +	pinctrl-2 = <&pinctrl_usdhc2_200mhz>;
-> +	assigned-clocks = <&clk IMX8MP_CLK_USDHC2>;
-> +	assigned-clock-rates = <400000000>;
-> +	vmmc-supply = <&reg_usdhc2_vmmc>;
-> +	bus-width = <4>;
-> +	disable-wp;
-> +	no-sdio;
-> +	no-mmc;
-> +	status = "okay";
-> +};
-> +
-> +&iomuxc {
-> +	pinctrl_eqos: eqosgrp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_ENET_MDC__ENET_QOS_MDC				0x3
-> +			MX8MP_IOMUXC_ENET_MDIO__ENET_QOS_MDIO				0x3
-> +			MX8MP_IOMUXC_ENET_RD0__ENET_QOS_RGMII_RD0			0x91
-> +			MX8MP_IOMUXC_ENET_RD1__ENET_QOS_RGMII_RD1			0x91
-> +			MX8MP_IOMUXC_ENET_RD2__ENET_QOS_RGMII_RD2			0x91
-> +			MX8MP_IOMUXC_ENET_RD3__ENET_QOS_RGMII_RD3			0x91
-> +			MX8MP_IOMUXC_ENET_RXC__CCM_ENET_QOS_CLOCK_GENERATE_RX_CLK	0x91
-> +			MX8MP_IOMUXC_ENET_RX_CTL__ENET_QOS_RGMII_RX_CTL			0x91
-> +			MX8MP_IOMUXC_ENET_TD0__ENET_QOS_RGMII_TD0			0x1f
-> +			MX8MP_IOMUXC_ENET_TD1__ENET_QOS_RGMII_TD1			0x1f
-> +			MX8MP_IOMUXC_ENET_TD2__ENET_QOS_RGMII_TD2			0x1f
-> +			MX8MP_IOMUXC_ENET_TD3__ENET_QOS_RGMII_TD3			0x1f
-> +			MX8MP_IOMUXC_ENET_TX_CTL__ENET_QOS_RGMII_TX_CTL			0x1f
-> +			MX8MP_IOMUXC_ENET_TXC__CCM_ENET_QOS_CLOCK_GENERATE_TX_CLK	0x1f
-> +
-> +			MX8MP_IOMUXC_SAI1_RXFS__ENET1_1588_EVENT0_IN			0x1f
-> +			MX8MP_IOMUXC_SAI1_TXD6__GPIO4_IO18				0x19
-> +		>;
-> +	};
-> +
-> +	pinctrl_fec: fecgrp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_SAI1_RXD2__ENET1_MDC		0x3
-> +			MX8MP_IOMUXC_SAI1_RXD3__ENET1_MDIO		0x3
-> +			MX8MP_IOMUXC_SAI1_RXD4__ENET1_RGMII_RD0		0x91
-> +			MX8MP_IOMUXC_SAI1_RXD5__ENET1_RGMII_RD1		0x91
-> +			MX8MP_IOMUXC_SAI1_RXD6__ENET1_RGMII_RD2		0x91
-> +			MX8MP_IOMUXC_SAI1_RXD7__ENET1_RGMII_RD3		0x91
-> +			MX8MP_IOMUXC_SAI1_TXC__ENET1_RGMII_RXC		0x91
-> +			MX8MP_IOMUXC_SAI1_TXFS__ENET1_RGMII_RX_CTL	0x91
-> +			MX8MP_IOMUXC_SAI1_TXD0__ENET1_RGMII_TD0		0x1f
-> +			MX8MP_IOMUXC_SAI1_TXD1__ENET1_RGMII_TD1		0x1f
-> +			MX8MP_IOMUXC_SAI1_TXD2__ENET1_RGMII_TD2		0x1f
-> +			MX8MP_IOMUXC_SAI1_TXD3__ENET1_RGMII_TD3		0x1f
-> +			MX8MP_IOMUXC_SAI1_TXD4__ENET1_RGMII_TX_CTL	0x1f
-> +			MX8MP_IOMUXC_SAI1_TXD5__ENET1_RGMII_TXC		0x1f
-> +			MX8MP_IOMUXC_SAI1_RXD0__ENET1_1588_EVENT1_IN    0x1f
-> +			MX8MP_IOMUXC_SAI1_TXD7__GPIO4_IO19		0x19
-> +		>;
-> +	};
-> +
-> +	pinctrl_flexcan1: flexcan1grp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_SAI5_RXD2__CAN1_RX			0x154
-> +			MX8MP_IOMUXC_SAI5_RXD1__CAN1_TX			0x154
-> +		>;
-> +	};
-> +
-> +	pinctrl_flexcan2: flexcan2grp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_SAI5_MCLK__CAN2_RX			0x154
-> +			MX8MP_IOMUXC_SAI5_RXD3__CAN2_TX			0x154
-> +		>;
-> +	};
-> +
-> +	pinctrl_flexspi0: flexspi0grp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_NAND_ALE__FLEXSPI_A_SCLK           0x1c2
-> +			MX8MP_IOMUXC_NAND_CE0_B__FLEXSPI_A_SS0_B        0x82
-> +			MX8MP_IOMUXC_NAND_DATA00__FLEXSPI_A_DATA00      0x82
-> +			MX8MP_IOMUXC_NAND_DATA01__FLEXSPI_A_DATA01      0x82
-> +			MX8MP_IOMUXC_NAND_DATA02__FLEXSPI_A_DATA02      0x82
-> +			MX8MP_IOMUXC_NAND_DATA03__FLEXSPI_A_DATA03      0x82
-> +		>;
-> +	};
-> +
-> +	pinctrl_i2c1: i2c1grp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_I2C1_SCL__I2C1_SCL			0x400001c2
-> +			MX8MP_IOMUXC_I2C1_SDA__I2C1_SDA			0x400001c2
-> +		>;
-> +	};
-> +
-> +	pinctrl_i2c4: i2c4grp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_I2C4_SCL__I2C4_SCL			0x400001c3
-> +			MX8MP_IOMUXC_I2C4_SDA__I2C4_SDA			0x400001c3
-> +		>;
-> +	};
-> +
-> +	pinctrl_rtc: rtcgrp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_SAI1_RXD1__GPIO4_IO03		0x140
-> +		>;
-> +	};
-> +
-> +	pinctrl_pmic: pmicgrp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_GPIO1_IO03__GPIO1_IO03		0x41
-> +		>;
-> +	};
-> +
-> +	pinctrl_reg_usdhc2_vmmc: regusdhc2vmmcgrp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_SD2_RESET_B__GPIO2_IO19		0x41
-> +		>;
-> +	};
-> +
-> +	pinctrl_uart2: uart2grp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_UART2_RXD__UART2_DCE_RX		0x14f
-> +			MX8MP_IOMUXC_UART2_TXD__UART2_DCE_TX		0x14f
-> +		>;
-> +	};
-> +
-> +	pinctrl_uart3: uart3grp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_UART3_RXD__UART3_DCE_RX		0x49
-> +			MX8MP_IOMUXC_UART3_TXD__UART3_DCE_TX		0x49
-> +		>;
-> +	};
-> +
-> +	pinctrl_uart4: uart4grp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_UART4_RXD__UART4_DCE_RX		0x49
-> +			MX8MP_IOMUXC_UART4_TXD__UART4_DCE_TX		0x49
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc2: usdhc2grp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_SD2_CLK__USDHC2_CLK		0x190
-> +			MX8MP_IOMUXC_SD2_CMD__USDHC2_CMD		0x1d0
-> +			MX8MP_IOMUXC_SD2_DATA0__USDHC2_DATA0		0x1d0
-> +			MX8MP_IOMUXC_SD2_DATA1__USDHC2_DATA1		0x1d0
-> +			MX8MP_IOMUXC_SD2_DATA2__USDHC2_DATA2		0x1d0
-> +			MX8MP_IOMUXC_SD2_DATA3__USDHC2_DATA3		0x1d0
-> +			MX8MP_IOMUXC_GPIO1_IO04__USDHC2_VSELECT		0xc1
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc2_100mhz: usdhc2-100mhzgrp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_SD2_CLK__USDHC2_CLK		0x194
-> +			MX8MP_IOMUXC_SD2_CMD__USDHC2_CMD		0x1d4
-> +			MX8MP_IOMUXC_SD2_DATA0__USDHC2_DATA0		0x1d4
-> +			MX8MP_IOMUXC_SD2_DATA1__USDHC2_DATA1		0x1d4
-> +			MX8MP_IOMUXC_SD2_DATA2__USDHC2_DATA2		0x1d4
-> +			MX8MP_IOMUXC_SD2_DATA3__USDHC2_DATA3		0x1d4
-> +			MX8MP_IOMUXC_GPIO1_IO04__USDHC2_VSELECT		0xc1
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc2_200mhz: usdhc2-200mhzgrp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_SD2_CLK__USDHC2_CLK		0x196
-> +			MX8MP_IOMUXC_SD2_CMD__USDHC2_CMD		0x1d6
-> +			MX8MP_IOMUXC_SD2_DATA0__USDHC2_DATA0		0x1d6
-> +			MX8MP_IOMUXC_SD2_DATA1__USDHC2_DATA1		0x1d6
-> +			MX8MP_IOMUXC_SD2_DATA2__USDHC2_DATA2		0x1d6
-> +			MX8MP_IOMUXC_SD2_DATA3__USDHC2_DATA3		0x1d6
-> +			MX8MP_IOMUXC_GPIO1_IO04__USDHC2_VSELECT		0xc1
-> +		>;
-> +	};
-> +};
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-debix-som-a.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-debix-som-a.dtsi
-> new file mode 100644
-> index 0000000000000..a089cadacc105
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp-debix-som-a.dtsi
-> @@ -0,0 +1,266 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright 2019 NXP
-> + * Copyright (C) 2023 Pengutronix, Marco Felsch <kernel@pengutronix.de>
-> + */
-> +
-> +#include "imx8mp.dtsi"
-> +
-> +/ {
-> +	model = "Polyhex i.MX8MPlus Debix SOM A";
-> +	compatible = "polyhex,imx8mp-debix-som-a", "fsl,imx8mp";
-> +};
-> +
-> +&A53_0 {
-> +	cpu-supply = <&buck2>;
-> +};
-> +
-> +&A53_1 {
-> +	cpu-supply = <&buck2>;
-> +};
-> +
-> +&A53_2 {
-> +	cpu-supply = <&buck2>;
-> +};
-> +
-> +&A53_3 {
-> +	cpu-supply = <&buck2>;
-> +};
-> +
-> +&i2c1 {
-> +	clock-frequency = <400000>;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_i2c1>;
-> +	status = "okay";
-> +
-> +	pmic@25 {
-> +		compatible = "nxp,pca9450c";
-> +		reg = <0x25>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_pmic>;
-> +		interrupt-parent = <&gpio1>;
-> +		interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
-> +
-> +		regulators {
-> +			buck1: BUCK1 {
-> +				regulator-name = "BUCK1";
-> +				regulator-min-microvolt = <600000>;
-> +				regulator-max-microvolt = <2187500>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +				regulator-ramp-delay = <3125>;
-> +			};
-> +
-> +			buck2: BUCK2 {
-> +				regulator-name = "BUCK2";
-> +				regulator-min-microvolt = <600000>;
-> +				regulator-max-microvolt = <2187500>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +				regulator-ramp-delay = <3125>;
-> +				nxp,dvs-run-voltage = <950000>;
-> +				nxp,dvs-standby-voltage = <850000>;
-> +			};
-> +
-> +			buck4: BUCK4 {
-> +				regulator-name = "BUCK4";
-> +				regulator-min-microvolt = <600000>;
-> +				regulator-max-microvolt = <3400000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			buck5: BUCK5 {
-> +				regulator-name = "BUCK5";
-> +				regulator-min-microvolt = <600000>;
-> +				regulator-max-microvolt = <3400000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			buck6: BUCK6 {
-> +				regulator-name = "BUCK6";
-> +				regulator-min-microvolt = <600000>;
-> +				regulator-max-microvolt = <3400000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			ldo1: LDO1 {
-> +				regulator-name = "LDO1";
-> +				regulator-min-microvolt = <1600000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			ldo2: LDO2 {
-> +				regulator-name = "LDO2";
-> +				regulator-min-microvolt = <800000>;
-> +				regulator-max-microvolt = <1150000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			ldo3: LDO3 {
-> +				regulator-name = "LDO3";
-> +				regulator-min-microvolt = <800000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			ldo4: LDO4 {
-> +				regulator-name = "LDO4";
-> +				regulator-min-microvolt = <800000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			ldo5: LDO5 {
-> +				regulator-name = "LDO5";
-> +				regulator-min-microvolt = <1800000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&i2c4 {
-> +	clock-frequency = <400000>;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_i2c4>;
-> +	status = "okay";
-> +
-> +	adc@48 {
-> +		 compatible = "ti,ads1115";
-> +		 reg = <0x48>;
-> +
+There series doesn't have any dependency.
 
-Unnecessary newline.
+Changes from v9 to v10 :
+*) Rebased the series on latest net-next.
+*) Moved 'ndev prueth->emac[mac] == emac' assignment to the end of function
+   prueth_netdev_init().
+*) In unsupported phy_mode switch case instead of returning -EINVAL, store
+   the error code in ret and 'goto free'
 
-> +		 #address-cells = <1>;
-> +		 #size-cells = <0>;
-> +
-> +		 channel@4 {
-> +			 reg = <4>;
-> +			 ti,gain = <1>;
-> +			 ti,datarate = <7>;
-> +		 };
+Changes from v8 to v9 :
+*) Rebased the series on latest net-next.
+*) Fixed smatch and sparse warnings as pointed by Simon.
+*) Fixed leaky ndev in prueth_netdev_init() as asked by Simon.
 
-Have a newline between nodes.
+Changes from v7 to v8 :
+*) Rebased the series on 6.5-rc1.
+*) Fixed few formattings. 
 
-Shawn
+Changes from v6 to v7 :
+*) Added RB tag of Rob in patch 1 of this series.
+*) Addressed Simon's comment on patch 2 of the series.
+*) Rebased patchset on next-20230428 linux-next.
 
-> +		 channel@5 {
-> +			 reg = <5>;
-> +			 ti,gain = <1>;
-> +			 ti,datarate = <7>;
-> +		 };
-> +		 channel@6 {
-> +			 reg = <6>;
-> +			 ti,gain = <1>;
-> +			 ti,datarate = <7>;
-> +		 };
-> +		 channel@7 {
-> +			 reg = <7>;
-> +			 ti,gain = <1>;
-> +			 ti,datarate = <7>;
-> +		 };
-> +	 };
-> +};
-> +
-> +&snvs_pwrkey {
-> +	status = "okay";
-> +};
-> +
-> +/* eMMC */
-> +&usdhc3 {
-> +	pinctrl-names = "default", "state_100mhz", "state_200mhz";
-> +	pinctrl-0 = <&pinctrl_usdhc3>;
-> +	pinctrl-1 = <&pinctrl_usdhc3_100mhz>;
-> +	pinctrl-2 = <&pinctrl_usdhc3_200mhz>;
-> +	assigned-clocks = <&clk IMX8MP_CLK_USDHC3>;
-> +	assigned-clock-rates = <400000000>;
-> +	bus-width = <8>;
-> +	non-removable;
-> +	status = "okay";
-> +};
-> +
-> +&wdog1 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_wdog>;
-> +	fsl,ext-reset-output;
-> +	status = "okay";
-> +};
-> +
-> +&iomuxc {
-> +	pinctrl_i2c1: i2c1grp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_I2C1_SCL__I2C1_SCL			0x400001c2
-> +			MX8MP_IOMUXC_I2C1_SDA__I2C1_SDA			0x400001c2
-> +		>;
-> +	};
-> +
-> +	pinctrl_i2c4: i2c4grp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_I2C4_SCL__I2C4_SCL			0x400001c3
-> +			MX8MP_IOMUXC_I2C4_SDA__I2C4_SDA			0x400001c3
-> +		>;
-> +	};
-> +
-> +	pinctrl_pmic: pmicgrp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_GPIO1_IO03__GPIO1_IO03		0x41
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc3: usdhc3grp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_NAND_WE_B__USDHC3_CLK		0x190
-> +			MX8MP_IOMUXC_NAND_WP_B__USDHC3_CMD		0x1d0
-> +			MX8MP_IOMUXC_NAND_DATA04__USDHC3_DATA0		0x1d0
-> +			MX8MP_IOMUXC_NAND_DATA05__USDHC3_DATA1		0x1d0
-> +			MX8MP_IOMUXC_NAND_DATA06__USDHC3_DATA2		0x1d0
-> +			MX8MP_IOMUXC_NAND_DATA07__USDHC3_DATA3		0x1d0
-> +			MX8MP_IOMUXC_NAND_RE_B__USDHC3_DATA4		0x1d0
-> +			MX8MP_IOMUXC_NAND_CE2_B__USDHC3_DATA5		0x1d0
-> +			MX8MP_IOMUXC_NAND_CE3_B__USDHC3_DATA6		0x1d0
-> +			MX8MP_IOMUXC_NAND_CLE__USDHC3_DATA7		0x1d0
-> +			MX8MP_IOMUXC_NAND_CE1_B__USDHC3_STROBE		0x190
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc3_100mhz: usdhc3-100mhzgrp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_NAND_WE_B__USDHC3_CLK		0x194
-> +			MX8MP_IOMUXC_NAND_WP_B__USDHC3_CMD		0x1d4
-> +			MX8MP_IOMUXC_NAND_DATA04__USDHC3_DATA0		0x1d4
-> +			MX8MP_IOMUXC_NAND_DATA05__USDHC3_DATA1		0x1d4
-> +			MX8MP_IOMUXC_NAND_DATA06__USDHC3_DATA2		0x1d4
-> +			MX8MP_IOMUXC_NAND_DATA07__USDHC3_DATA3		0x1d4
-> +			MX8MP_IOMUXC_NAND_RE_B__USDHC3_DATA4		0x1d4
-> +			MX8MP_IOMUXC_NAND_CE2_B__USDHC3_DATA5		0x1d4
-> +			MX8MP_IOMUXC_NAND_CE3_B__USDHC3_DATA6		0x1d4
-> +			MX8MP_IOMUXC_NAND_CLE__USDHC3_DATA7		0x1d4
-> +			MX8MP_IOMUXC_NAND_CE1_B__USDHC3_STROBE		0x194
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc3_200mhz: usdhc3-200mhzgrp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_NAND_WE_B__USDHC3_CLK		0x196
-> +			MX8MP_IOMUXC_NAND_WP_B__USDHC3_CMD		0x1d6
-> +			MX8MP_IOMUXC_NAND_DATA04__USDHC3_DATA0		0x1d6
-> +			MX8MP_IOMUXC_NAND_DATA05__USDHC3_DATA1		0x1d6
-> +			MX8MP_IOMUXC_NAND_DATA06__USDHC3_DATA2		0x1d6
-> +			MX8MP_IOMUXC_NAND_DATA07__USDHC3_DATA3		0x1d6
-> +			MX8MP_IOMUXC_NAND_RE_B__USDHC3_DATA4		0x1d6
-> +			MX8MP_IOMUXC_NAND_CE2_B__USDHC3_DATA5		0x1d6
-> +			MX8MP_IOMUXC_NAND_CE3_B__USDHC3_DATA6		0x1d6
-> +			MX8MP_IOMUXC_NAND_CLE__USDHC3_DATA7		0x1d6
-> +			MX8MP_IOMUXC_NAND_CE1_B__USDHC3_STROBE		0x196
-> +		>;
-> +	};
-> +
-> +	pinctrl_wdog: wdoggrp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_GPIO1_IO02__WDOG1_WDOG_B		0xc6
-> +		>;
-> +	};
-> +};
-> -- 
-> 2.39.2
-> 
+Changes from v5 to v6 :
+*) Added RB tag of Andrew Lunn in patch 2 of this series.
+*) Addressed Rob's comment on patch 1 of the series.
+*) Rebased patchset on next-20230421 linux-next.
+
+Changes from v4 to v5 :
+*) Re-arranged properties section in ti,icssg-prueth.yaml file.
+*) Added requirement for minimum one ethernet port.
+*) Fixed some minor formatting errors as asked by Krzysztof.
+*) Dropped SGMII mode from enum mii_mode as SGMII mode is not currently
+   supported by the driver.
+*) Added switch-case block to handle different phy modes by ICSSG driver.
+
+Changes from v3 to v4 :
+*) Addressed Krzysztof's comments and fixed dt_binding_check errors in 
+   patch 1/2.
+*) Added interrupt-extended property in ethernet-ports properties section.
+*) Fixed comments in file icssg_switch_map.h according to the Linux coding
+   style in patch 2/2. Added Documentation of structures in patch 2/2.
+
+Changes from v2 to v3 :
+*) Addressed Rob and Krzysztof's comments on patch 1 of this series.
+   Fixed indentation. Removed description and pinctrl section from 
+   ti,icssg-prueth.yaml file.
+*) Addressed Krzysztof, Paolo, Randy, Andrew and Christophe's comments on 
+   patch 2 of this seires.
+*) Fixed blanklines in Kconfig and Makefile. Changed structures to const 
+   as suggested by Krzysztof.
+*) Fixed while loop logic in emac_tx_complete_packets() API as suggested 
+   by Paolo. Previously in the loop's last iteration 'budget' was 0 and 
+   napi_consume_skb would wrongly assume the caller is not in NAPI context
+   Now, budget won't be zero in last iteration of loop. 
+*) Removed inline functions addr_to_da1() and addr_to_da0() as asked by 
+   Andrew.
+*) Added dev_err_probe() instead of dev_err() as suggested by Christophe.
+*) In ti,icssg-prueth.yaml file, in the patternProperties section of 
+   ethernet-ports, kept the port name as "port" instead of "ethernet-port" 
+   as all other drivers were using "port". Will change it if is compulsory 
+   to use "ethernet-port".
+
+[v1] https://lore.kernel.org/all/20220506052433.28087-1-p-mohan@ti.com/
+[v2] https://lore.kernel.org/all/20220531095108.21757-1-p-mohan@ti.com/
+[v3] https://lore.kernel.org/all/20221223110930.1337536-1-danishanwar@ti.com/
+[v4] https://lore.kernel.org/all/20230206060708.3574472-1-danishanwar@ti.com/
+[v5] https://lore.kernel.org/all/20230210114957.2667963-1-danishanwar@ti.com/
+[v6] https://lore.kernel.org/all/20230424053233.2338782-1-danishanwar@ti.com/
+[v7] https://lore.kernel.org/all/20230502061650.2716736-1-danishanwar@ti.com/
+[v8] https://lore.kernel.org/all/20230710053550.89160-1-danishanwar@ti.com/
+[v9] https://lore.kernel.org/all/20230714094432.1834489-1-danishanwar@ti.com/
+
+Thanks and Regards,
+Md Danish Anwar
+
+MD Danish Anwar (1):
+  dt-bindings: net: Add ICSSG Ethernet
+
+Roger Quadros (1):
+  net: ti: icssg-prueth: Add ICSSG ethernet driver
+
+ .../bindings/net/ti,icssg-prueth.yaml         |  184 ++
+ drivers/net/ethernet/ti/Kconfig               |   13 +
+ drivers/net/ethernet/ti/Makefile              |    2 +
+ drivers/net/ethernet/ti/icssg_classifier.c    |  367 ++++
+ drivers/net/ethernet/ti/icssg_config.c        |  450 ++++
+ drivers/net/ethernet/ti/icssg_config.h        |  200 ++
+ drivers/net/ethernet/ti/icssg_ethtool.c       |  326 +++
+ drivers/net/ethernet/ti/icssg_mii_cfg.c       |  120 ++
+ drivers/net/ethernet/ti/icssg_mii_rt.h        |  151 ++
+ drivers/net/ethernet/ti/icssg_prueth.c        | 1890 +++++++++++++++++
+ drivers/net/ethernet/ti/icssg_prueth.h        |  252 +++
+ drivers/net/ethernet/ti/icssg_queues.c        |   38 +
+ drivers/net/ethernet/ti/icssg_switch_map.h    |  234 ++
+ 13 files changed, 4227 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml
+ create mode 100644 drivers/net/ethernet/ti/icssg_classifier.c
+ create mode 100644 drivers/net/ethernet/ti/icssg_config.c
+ create mode 100644 drivers/net/ethernet/ti/icssg_config.h
+ create mode 100644 drivers/net/ethernet/ti/icssg_ethtool.c
+ create mode 100644 drivers/net/ethernet/ti/icssg_mii_cfg.c
+ create mode 100644 drivers/net/ethernet/ti/icssg_mii_rt.h
+ create mode 100644 drivers/net/ethernet/ti/icssg_prueth.c
+ create mode 100644 drivers/net/ethernet/ti/icssg_prueth.h
+ create mode 100644 drivers/net/ethernet/ti/icssg_queues.c
+ create mode 100644 drivers/net/ethernet/ti/icssg_switch_map.h
+
+-- 
+2.34.1
+
