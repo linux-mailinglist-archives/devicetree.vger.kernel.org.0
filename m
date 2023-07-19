@@ -2,50 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2AEE9759AFC
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 18:38:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CC5D2759B3C
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 18:45:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230191AbjGSQiC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jul 2023 12:38:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54882 "EHLO
+        id S230281AbjGSQpD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jul 2023 12:45:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60586 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229646AbjGSQiA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 12:38:00 -0400
+        with ESMTP id S230268AbjGSQpB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 12:45:01 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D0D4211F
-        for <devicetree@vger.kernel.org>; Wed, 19 Jul 2023 09:37:45 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F6AD172E;
+        Wed, 19 Jul 2023 09:44:52 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 212EF61766
-        for <devicetree@vger.kernel.org>; Wed, 19 Jul 2023 16:37:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 42C57C433C8;
-        Wed, 19 Jul 2023 16:37:41 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 73A1A61788;
+        Wed, 19 Jul 2023 16:44:51 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1D8C2C433C7;
+        Wed, 19 Jul 2023 16:44:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689784662;
-        bh=7PipBWFg555K33ftgdGqEwMRRe75/RqoUj6M2IyGZTw=;
+        s=k20201202; t=1689785090;
+        bh=GNiOTf7Wsj6iBBrxZOzip07dR5NF7eYzPjywtBjLGr8=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=J3cCrxgYAM6F6st1TC3HgQ9d61gWFPxO+c1ZDr1/XBQpC4ucKQmoYgtm8DGvrMr89
-         EzZz0OrAIfpKyVXR7OusF9G9OUgK55X/EZ41qeIiLTghVGFsXyNGefDdHBJoy2Ho8F
-         GojmjDyG/vFYKL0VbyM8y+W6P1dDl4X14m0itPwIo7Wa0hr6XwJgRgBBnw26NSAlkw
-         N9jwU7inZpQV1umHISw+0172EKJvuqOPb6y2MbZ3y9qnvUXqffm489KFdx8gd4mlN4
-         sxkRqSYa3oQnJz7HQhWLpLQpkxgwjvq65lN3Yis7rrMJ4va1Xj4tadWJdh/RWYmJN0
-         GLfqfDxCZnlPQ==
-Date:   Wed, 19 Jul 2023 17:37:38 +0100
+        b=sU8B0REPY0tu6NeUyQwgtq91tYheBGPdQyqo+fVrEUUfca0pupMNGDi2cMrI4CoRr
+         S7s/6+03LrWqT3qCTWoHcHkGfJtNoAGAaB4ck4DyYZ4U3/YS9CFauQbzP+vc1Np3h3
+         6fhpSl9ur2yQ35RsPkf8p/WX70qTlc7fgeXEqsBrGVETaIEvQ43hL6cdJ7vw3qr+a/
+         8xKFtzj6suiTHryJorIomxa1BUEdfgzh8aG4OsOuNZlLTBG0DXJF1KTTRV2KtmpHPP
+         zrgLtTwauqTeLm9YZ/j084WrAeZ4xmVx1e4TFIB5BzU9RsBXQY0J0rSxt3W1hJP/ET
+         hfFWq+OcuNsTA==
+Date:   Wed, 19 Jul 2023 17:44:45 +0100
 From:   Conor Dooley <conor@kernel.org>
-To:     Dinh Nguyen <dinguyen@kernel.org>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowskii+dt@linaro.org,
-        conor+dt@kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCHv2] dt-bindings: reset: altr,modrst-offset is not required
- for arm64 SoCFPGA
-Message-ID: <20230719-tigress-cleat-4be1de615601@spud>
-References: <20230719132749.661914-1-dinguyen@kernel.org>
+To:     Luca Ceresoli <luca.ceresoli@bootlin.com>
+Cc:     Neil Armstrong <neil.armstrong@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+Subject: Re: [PATCH 2/3] dt-bindings: display: panel: Add panels based on
+ ILITEK ILI9806E
+Message-ID: <20230719-sizing-ribbon-9e62a4afb5f6@spud>
+References: <20230719152147.355486-1-luca.ceresoli@bootlin.com>
+ <20230719152147.355486-2-luca.ceresoli@bootlin.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="hDfPqlp0mUrFYCz4"
+        protocol="application/pgp-signature"; boundary="j+RSuWfJSboaYJOP"
 Content-Disposition: inline
-In-Reply-To: <20230719132749.661914-1-dinguyen@kernel.org>
+In-Reply-To: <20230719152147.355486-2-luca.ceresoli@bootlin.com>
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
@@ -57,77 +67,149 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---hDfPqlp0mUrFYCz4
+--j+RSuWfJSboaYJOP
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jul 19, 2023 at 08:27:49AM -0500, Dinh Nguyen wrote:
-> The property "altr,modrst-offset" is only applicable to arm32 SoCFPGA
-> platforms, thus it not required for all platforms.
->=20
-> While at it, update my email address.
->=20
-> Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
+Hey Luca,
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+On Wed, Jul 19, 2023 at 05:21:46PM +0200, Luca Ceresoli wrote:
+> Add bindings for LCD panels based on the ILITEK ILI9806E RGB controller
+> connected over SPI and the "ShenZhen New Display Co NDS040480800-V3"
+> 480x800 panel based on it.
+>=20
+> Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+> ---
+>  .../display/panel/ilitek,ili9806e.yaml        | 69 +++++++++++++++++++
+>  MAINTAINERS                                   |  6 ++
+>  2 files changed, 75 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/panel/ilite=
+k,ili9806e.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/display/panel/ilitek,ili98=
+06e.yaml b/Documentation/devicetree/bindings/display/panel/ilitek,ili9806e.=
+yaml
+> new file mode 100644
+> index 000000000000..42abc6923065
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/panel/ilitek,ili9806e.yaml
+> @@ -0,0 +1,69 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/panel/ilitek,ili9806e.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Ilitek ILI9806E display panels
+> +
+> +maintainers:
+> +  - Luca Ceresoli <luca.ceresoli@bootlin.com>
+> +
+> +description:
+> +  This binding is for display panels using an Ilitek ILI9806E controller=
+ in
+> +  SPI mode.
+
+I figure you explicitly mention SPI mode here because it also supports
+D{P,S}I?
+
+> +
+> +allOf:
+> +  - $ref: panel-common.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          # ShenZhen New Display Co 3.97" 480x800 RGB a-SI TFT LCD
+> +          - newdisplay,nds040480800-v3
+> +      - const: ilitek,ili9806e
+> +
+> +  reg: true
+> +  spi-max-frequency: true
+> +  reset-gpios: true
+> +  backlight: true
+> +  port: true
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - port
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    backlight: backlight {
+> +        compatible =3D "gpio-backlight";
+> +        gpios =3D <&gpio 22 GPIO_ACTIVE_HIGH>;
+> +    };
+> +    spi {
+
+Just a nit, a blank line between properties please. Clearly no
+respinning needed for that...
+
+Otherwise,
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
 Thanks,
 Conor.
 
-> ---
-> v2: remove the need for else statement since "altr,modrst-offset" is
->     already allowed
-> ---
->  .../devicetree/bindings/reset/altr,rst-mgr.yaml      | 12 ++++++++++--
->  1 file changed, 10 insertions(+), 2 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/reset/altr,rst-mgr.yaml b/=
-Documentation/devicetree/bindings/reset/altr,rst-mgr.yaml
-> index 4379cec6b35a..761c70cf9ddf 100644
-> --- a/Documentation/devicetree/bindings/reset/altr,rst-mgr.yaml
-> +++ b/Documentation/devicetree/bindings/reset/altr,rst-mgr.yaml
-> @@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
->  title: Altera SOCFPGA Reset Manager
-> =20
->  maintainers:
-> -  - Dinh Nguyen <dinguyen@altera.com>
-> +  - Dinh Nguyen <dinguyen@kernel.org>
-> =20
->  properties:
->    compatible:
-> @@ -32,9 +32,17 @@ properties:
->  required:
->    - compatible
->    - reg
-> -  - altr,modrst-offset
->    - '#reset-cells'
-> =20
-> +if:
-> +  properties:
-> +    compatible:
-> +      contains:
-> +        const: altr,stratix10-rst-mgr
-> +then:
-> +  properties:
-> +    altr,modrst-offset: false
+> +        #address-cells =3D <1>;
+> +        #size-cells =3D <0>;
 > +
->  additionalProperties: false
+> +        display@0 {
+> +            compatible =3D "newdisplay,nds040480800-v3", "ilitek,ili9806=
+e";
+> +            reg =3D <0>;
+> +            spi-max-frequency =3D <1000000>;
+> +            pinctrl-names =3D "default";
+> +            pinctrl-0 =3D <&pinctrl_lcdgpios>;
+> +            reset-gpios =3D <&gpio 26 GPIO_ACTIVE_LOW>;
+> +            backlight =3D <&backlight>;
+> +
+> +            port {
+> +                ili9806e_in: endpoint {
+> +                    remote-endpoint =3D <&lcdif_out>;
+> +                };
+> +            };
+> +        };
+> +    };
+> +
+> +...
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index aee340630eca..3c38699ee821 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -6515,6 +6515,12 @@ T:	git git://anongit.freedesktop.org/drm/drm-misc
+>  F:	Documentation/devicetree/bindings/display/ilitek,ili9486.yaml
+>  F:	drivers/gpu/drm/tiny/ili9486.c
 > =20
->  examples:
+> +DRM DRIVER FOR ILITEK ILI9806E PANELS
+> +M:	Luca Ceresoli <luca.ceresoli@bootlin.com>
+> +S:	Maintained
+> +T:	git git://anongit.freedesktop.org/drm/drm-misc
+> +F:	Documentation/devicetree/bindings/display/panel/ilitek,ili9806e.yaml
+> +
+>  DRM DRIVER FOR JADARD JD9365DA-H3 MIPI-DSI LCD PANELS
+>  M:	Jagan Teki <jagan@edgeble.ai>
+>  S:	Maintained
 > --=20
-> 2.25.1
+> 2.34.1
 >=20
 
---hDfPqlp0mUrFYCz4
+--j+RSuWfJSboaYJOP
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZLgRUgAKCRB4tDGHoIJi
-0iwjAQDk+90wZGTEwXopUHX03xmUhulXvfa3+aCr1f7zR2fQZgD+Pj9B/DIUuEVQ
-nuvYdwM1xZs2sKV8L84ndO06HiVRlwU=
-=zMc7
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZLgS/QAKCRB4tDGHoIJi
+0vyvAP46mdHMTAFPovlWwCuGPOePISXPxxu9rgJZZO3CYwVWPQEA+J1Ty9WwUfvI
+2Xj6I0WHld8jnPue1q38PYahl9hXTA0=
+=7pn7
 -----END PGP SIGNATURE-----
 
---hDfPqlp0mUrFYCz4--
+--j+RSuWfJSboaYJOP--
