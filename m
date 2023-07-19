@@ -2,156 +2,365 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E68D575A298
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 01:03:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8546F75A29B
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 01:04:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229685AbjGSXDA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jul 2023 19:03:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56290 "EHLO
+        id S229868AbjGSXE4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jul 2023 19:04:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56968 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229640AbjGSXDA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 19:03:00 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3381E123;
-        Wed, 19 Jul 2023 16:02:59 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id AAD8E61856;
-        Wed, 19 Jul 2023 23:02:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9206FC433C8;
-        Wed, 19 Jul 2023 23:02:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689807778;
-        bh=5N+HmeES9+X/u/2oQjY6EpDHuhIaYcHk+7LLaOxJuDc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=OiMjv4Kpx8xTvH193KF1+gm8WVore5Of49Dop7h75FaLnaW/s5X03VkhCE06FDUTz
-         P1Qlytn7l4++7n/+FGi9bgb7fCfQ8amzFXhXGv5By+K623V9pS5X6UCS7CqU+WurNQ
-         RKno/kLydQUXWqPD2dIdYk3ZzkJQ4DeJ5CSIDddVoKYJ7jyZc9cpS7vGkZRtVmy2Wj
-         CwhGkhxrXSn15iRzQ+EJSvdsnsBUKNqxGMob6gxpTesTu65hLw2MsIJqNAu4jT1SEZ
-         f4Lbwt99bnzKAXsXKLx0Y7UMEAaaAPSlI9W4k0FaQeZb4N+w0F6vZD/A4dj7VbtfIE
-         IWcWj201L8JGA==
-Received: (nullmailer pid 925996 invoked by uid 1000);
-        Wed, 19 Jul 2023 23:02:56 -0000
-Date:   Wed, 19 Jul 2023 17:02:56 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
-        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH 01/13] of: dynamic: Do not use "%pOF" while holding
- devtree_lock
-Message-ID: <20230719230256.GA900970-robh@kernel.org>
-References: <cover.1689776064.git.geert+renesas@glider.be>
- <416d1ea056bb2d7ec6f21d8919b96a3d48099344.1689776064.git.geert+renesas@glider.be>
+        with ESMTP id S229551AbjGSXEz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 19:04:55 -0400
+Received: from mail-pf1-x429.google.com (mail-pf1-x429.google.com [IPv6:2607:f8b0:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D19D91FD2
+        for <devicetree@vger.kernel.org>; Wed, 19 Jul 2023 16:04:52 -0700 (PDT)
+Received: by mail-pf1-x429.google.com with SMTP id d2e1a72fcca58-66f3fc56ef4so938832b3a.0
+        for <devicetree@vger.kernel.org>; Wed, 19 Jul 2023 16:04:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rivosinc-com.20221208.gappssmtp.com; s=20221208; t=1689807892; x=1690412692;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=5wFr2A7e5EWp+82eThYDiZpPT27i18/NTWE7QU00Iwo=;
+        b=slUMxadFiLxH+NNFI2NDyiI0rQr8f9NpvfLLOhGsjG3O87r0bcZpvKpTPwrunBBgix
+         s/cmHJkDCRHbplL0GzIVCbuqXlBFs039EcAQnx/flZ5Gi3JAt3TD2pmwnkRjudretQiH
+         rf8DuUSwKLwPAf7m42dHVlr5ByBa/4G2j8KhQXtOVRYJi4VOuqhwjMJmXrdnuY/vUCg6
+         IJvX1PACNIQsf2fy+lpfsr/+zhR0OBdjb7pFzsHns2AkYah12SDiIGpNSUaoZRF/ZfF7
+         y7f7lA8GAqyp8kfSzHTLXKliOVE+L8A6yKVC/BCLClsl7shxYfGKJKgP1iCRG5ps0bPw
+         qp0Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689807892; x=1690412692;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=5wFr2A7e5EWp+82eThYDiZpPT27i18/NTWE7QU00Iwo=;
+        b=My+7td2/7YMd5cHSlcROnfnpXRSeUVGZd2M+0aTxMCOoXq7GCtpkyjZwOBL7SzQAVi
+         /pKU4p8NxE7+/2MGBCtbRcIRWvUw91RNXDW357W+baRb9/PrNlajWGEzWt+NBe1hVH73
+         Vibbum41bBv9idcZqQuwfQGaS7WGGanpMCNrBrGRpC/XF2uNpw127TCz0x9TPTTBuBNg
+         Jb2wG1YZ4VUcuGkMVxf6WH1FzJnohsueN02uomM2zhd+yXkiF+NN1fAGXqm6JUu4Bf9L
+         DAXOTudPnuyz5zziZgTWSUbpiKvhcHrf8CkkeKE30Xpp/OFCY8xZp2oMM57430MuaZ9l
+         B/tA==
+X-Gm-Message-State: ABy/qLa3uaXy2CqDiDsjqrNciNKIiWZubi/ZxIv+MDtK2aQF9fCe2mwZ
+        8eheJHvUcQI824tn7OPCUCxzLxcVKKglRp/p8uqhVw==
+X-Google-Smtp-Source: APBJJlGO9EDGVzmVIbzDbaW4q/7xWmaTWhlijEvEV5ktsCXxLMGAAqX7MC+JIcF9coSbnKNUULA6G0T3b0h/46L1VCU=
+X-Received: by 2002:a17:90a:72c8:b0:261:326d:99e8 with SMTP id
+ l8-20020a17090a72c800b00261326d99e8mr4688870pjk.2.1689807892181; Wed, 19 Jul
+ 2023 16:04:52 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <416d1ea056bb2d7ec6f21d8919b96a3d48099344.1689776064.git.geert+renesas@glider.be>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <cover.1689792825.git.tjeznach@rivosinc.com> <d62ceb33620cab766d809e6bbf30eaf5b46bc955.1689792825.git.tjeznach@rivosinc.com>
+ <20230719-unnoticed-scion-744fdf509151@spud> <CAL_JsqLsb801Z4H7+ViboBSGwd+XidcpYcJMHgw+6fofsXB=9Q@mail.gmail.com>
+In-Reply-To: <CAL_JsqLsb801Z4H7+ViboBSGwd+XidcpYcJMHgw+6fofsXB=9Q@mail.gmail.com>
+From:   Tomasz Jeznach <tjeznach@rivosinc.com>
+Date:   Wed, 19 Jul 2023 16:04:41 -0700
+Message-ID: <CAH2o1u5VdOx+MgQFyjEr1__DZmsxLGGqf8v1pDvTHoPJ4OGfGA@mail.gmail.com>
+Subject: Re: [PATCH 03/11] dt-bindings: Add RISC-V IOMMU bindings
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Conor Dooley <conor@kernel.org>, Joerg Roedel <joro@8bytes.org>,
+        Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Anup Patel <apatel@ventanamicro.com>,
+        Albert Ou <aou@eecs.berkeley.edu>, linux@rivosinc.com,
+        linux-kernel@vger.kernel.org, Sebastien Boeuf <seb@rivosinc.com>,
+        iommu@lists.linux.dev, Palmer Dabbelt <palmer@dabbelt.com>,
+        Nick Kossifidis <mick@ics.forth.gr>,
+        linux-riscv@lists.infradead.org, krzysztof.kozlowski+dt@linaro.org,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 19, 2023 at 05:00:01PM +0200, Geert Uytterhoeven wrote:
-> Formatting strings using "%pOF" while holding devtree_lock causes a
-> deadlock.  Lockdep reports:
-> 
->     of_get_parent from of_fwnode_get_parent+0x18/0x24
->     ^^^^^^^^^^^^^
+On Wed, Jul 19, 2023 at 2:37=E2=80=AFPM Rob Herring <robh+dt@kernel.org> wr=
+ote:
+>
+> On Wed, Jul 19, 2023 at 2:19=E2=80=AFPM Conor Dooley <conor@kernel.org> w=
+rote:
+> >
+> > Hey Tomasz,
+> >
+> > On Wed, Jul 19, 2023 at 12:33:47PM -0700, Tomasz Jeznach wrote:
+> > > From: Anup Patel <apatel@ventanamicro.com>
+> > >
+> > > We add DT bindings document for RISC-V IOMMU platform and PCI devices
+> > > defined by the RISC-V IOMMU specification.
+> > >
+> > > Signed-off-by: Anup Patel <apatel@ventanamicro.com>
+> >
+> > Your signoff is missing from here.
+> >
+> > Secondly, as get_maintainer.pl would have told you, dt-bindings patches
+> > need to be sent to the dt-binding maintainers and list.
+> > +CC maintainers & list.
+> >
+> > Thirdly, dt-binding patches should come before their users.
+> >
+> > > ---
+> > >  .../bindings/iommu/riscv,iommu.yaml           | 146 ++++++++++++++++=
+++
+> > >  1 file changed, 146 insertions(+)
+> > >  create mode 100644 Documentation/devicetree/bindings/iommu/riscv,iom=
+mu.yaml
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/iommu/riscv,iommu.yaml=
+ b/Documentation/devicetree/bindings/iommu/riscv,iommu.yaml
+> > > new file mode 100644
+> > > index 000000000000..8a9aedb61768
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/iommu/riscv,iommu.yaml
+> > > @@ -0,0 +1,146 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/iommu/riscv,iommu.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: RISC-V IOMMU Implementation
+> > > +
+> > > +maintainers:
+> > > +  - Tomasz Jeznach <tjeznach@rivosinc.com>
+> >
+> > What about Anup, who seems to have written this?
+> > Or your co-authors of the drivers?
+> >
+> > > +
+> > > +description:
+> > > +  The RISC-V IOMMU specificaiton defines an IOMMU for RISC-V platfor=
+ms
+>
+> typo
+>
 
-I'm wondering if we really need the lock in there. We never unset or 
-change the parent. It gets detached, but we're not checking for that. 
-The node could get freed, but the lock is not for that, refcounts are.
+ack
 
->     of_fwnode_get_parent from fwnode_count_parents+0xc/0x28
+> > > +  which can be a regular platform device or a PCI device connected t=
+o
+> > > +  the host root port.
+> > > +
+> > > +  The RISC-V IOMMU provides two stage translation, device directory =
+table,
+> > > +  command queue and fault reporting as wired interrupt or MSIx event=
+ for
+> > > +  both PCI and platform devices.
+>
+> TBC, you want a PCI device that's an IOMMU and the IOMMU serves
+> (provides translation for) PCI devices?
+>
 
-count parents? Huh? Isn't it always 1? 
+Yes, IOMMU as a PCIe device providing address translation services for
+connect PCIe root complex.
 
->     fwnode_count_parents from fwnode_full_name_string+0x18/0xac
->     fwnode_full_name_string from device_node_string+0x1a0/0x404
->     device_node_string from pointer+0x3c0/0x534
->     pointer from vsnprintf+0x248/0x36c
->     vsnprintf from vprintk_store+0x130/0x3b4
-> 
-> Fix this by making the locking cover only the parts that really need it.
-> 
-> Fixes: 0d638a07d3a1e98a ("of: Convert to using %pOF instead of full_name")
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> ---
->  drivers/of/dynamic.c | 12 ++++++++++--
->  1 file changed, 10 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/of/dynamic.c b/drivers/of/dynamic.c
-> index e311d406b1705306..eae45a1c673ee05f 100644
-> --- a/drivers/of/dynamic.c
-> +++ b/drivers/of/dynamic.c
-> @@ -601,13 +601,16 @@ static int __of_changeset_entry_apply(struct of_changeset_entry *ce)
->  
->  	__of_changeset_entry_dump(ce);
->  
-> -	raw_spin_lock_irqsave(&devtree_lock, flags);
->  	switch (ce->action) {
->  	case OF_RECONFIG_ATTACH_NODE:
-> +		raw_spin_lock_irqsave(&devtree_lock, flags);
->  		__of_attach_node(ce->np);
-> +		raw_spin_unlock_irqrestore(&devtree_lock, flags);
+> > > +
+> > > +  Visit https://github.com/riscv-non-isa/riscv-iommu for more detail=
+s.
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    oneOf:
+> > > +      - description: RISC-V IOMMU as a platform device
+>
+> "platform device" is a Linux term. Don't use Linux terms in bindings.
+>
 
-I think you could just move the spinlock into __of_attach_node(). The 
-only other caller looks like this.
+ack.
 
->  		break;
->  	case OF_RECONFIG_DETACH_NODE:
-> +		raw_spin_lock_irqsave(&devtree_lock, flags);
->  		__of_detach_node(ce->np);
-> +		raw_spin_unlock_irqrestore(&devtree_lock, flags);
->  		break;
->  	case OF_RECONFIG_ADD_PROPERTY:
->  		/* If the property is in deadprops then it must be removed */
-> @@ -619,7 +622,9 @@ static int __of_changeset_entry_apply(struct of_changeset_entry *ce)
->  			}
->  		}
->  
-> +		raw_spin_lock_irqsave(&devtree_lock, flags);
->  		ret = __of_add_property(ce->np, ce->prop);
-> +		raw_spin_unlock_irqrestore(&devtree_lock, flags);
->  		if (ret) {
->  			pr_err("changeset: add_property failed @%pOF/%s\n",
->  				ce->np,
-> @@ -628,7 +633,9 @@ static int __of_changeset_entry_apply(struct of_changeset_entry *ce)
->  		}
->  		break;
->  	case OF_RECONFIG_REMOVE_PROPERTY:
-> +		raw_spin_lock_irqsave(&devtree_lock, flags);
->  		ret = __of_remove_property(ce->np, ce->prop);
-> +		raw_spin_unlock_irqrestore(&devtree_lock, flags);
->  		if (ret) {
->  			pr_err("changeset: remove_property failed @%pOF/%s\n",
->  				ce->np,
-> @@ -647,7 +654,9 @@ static int __of_changeset_entry_apply(struct of_changeset_entry *ce)
->  			}
->  		}
->  
-> +		raw_spin_lock_irqsave(&devtree_lock, flags);
->  		ret = __of_update_property(ce->np, ce->prop, &old_prop);
-> +		raw_spin_unlock_irqrestore(&devtree_lock, flags);
->  		if (ret) {
->  			pr_err("changeset: update_property failed @%pOF/%s\n",
->  				ce->np,
-> @@ -658,7 +667,6 @@ static int __of_changeset_entry_apply(struct of_changeset_entry *ce)
->  	default:
->  		ret = -EINVAL;
->  	}
-> -	raw_spin_unlock_irqrestore(&devtree_lock, flags);
->  
->  	if (ret)
->  		return ret;
-> -- 
-> 2.34.1
-> 
+
+> > > +        items:
+> > > +          - enum:
+> > > +              - vendor,chip-iommu
+> >
+> > These dummy compatibles are not valid, as was pointed out to Anup on
+> > the AIA series. Please go look at what was done there instead:
+> > https://lore.kernel.org/all/20230719113542.2293295-7-apatel@ventanamicr=
+o.com/
+> >
+> > > +          - const: riscv,iommu
+> > > +
+> > > +      - description: RISC-V IOMMU as a PCI device connected to root =
+port
+> > > +        items:
+> > > +          - enum:
+> > > +              - vendor,chip-pci-iommu
+> > > +          - const: riscv,pci-iommu
+> >
+> > I'm not really au fait with the arm smmu stuff, but do any of its
+> > versions support being connected to a root port?
+>
+> PCI devices have a defined format for the compatible string based on
+> VID/PID. For PCI, also usually don't need to be described in DT
+> because they are discoverable. The exception is when there's parts
+> which aren't. Which parts aren't?
+>
+
+We've put 'riscv,pci-iommu' node here to describe relationship between PCIe
+devices and IOMMU(s), needed for the pcie root complex description (iommu-m=
+ap).
+If there is a better way to reference PCI-IOMMU without adding
+pci-iommu definition
+that would solve the problem. Every other property of pci-iommu should
+be discoverable.
+
+> > > +  reg:
+> > > +    maxItems: 1
+> > > +    description:
+> > > +      For RISC-V IOMMU as a platform device, this represents the MMI=
+O base
+> > > +      address of registers.
+> > > +
+> > > +      For RISC-V IOMMU as a PCI device, this represents the PCI-PCI =
+bridge
+>
+> Your IOMMU is also a PCI-PCI bridge? Is that a normal PCI thing?
+>
+
+It's allowed to be integrated with root complex / IO bridge, but it is
+as a separate PCIe device.
+I'll clarify the description.
+
+>
+> > > +      details as described in Documentation/devicetree/bindings/pci/=
+pci.txt
+>
+> Don't refer to pci.txt. It is going to be removed.
+>
+
+ack.
+
+> > > +
+> > > +  '#iommu-cells':
+> > > +    const: 2
+> > > +    description: |
+> >
+> > |s are only needed where formatting needs to be preserved.
+> >
+> > > +      Each IOMMU specifier represents the base device ID and number =
+of
+> > > +      device IDs.
+>
+> Doesn't that assume device IDs are contiguous? Generally not a safe assum=
+ption.
+>
+
+ack.
+
+> > > +
+> > > +  interrupts:
+> > > +    minItems: 1
+> > > +    maxItems: 16
+> >
+> > What are any of these interrupts?
+> >
+> > > +    description:
+> > > +      The presence of this property implies that given RISC-V IOMMU =
+uses
+> > > +      wired interrupts to notify the RISC-V HARTS (or CPUs).
+> > > +
+> > > +  msi-parent:
+> > > +    description:
+> > > +      The presence of this property implies that given RISC-V IOMMU =
+uses
+> > > +      MSIx to notify the RISC-V HARTs (or CPUs). This property shoul=
+d be
+> > > +      considered only when the interrupts property is absent.
+>
+> This doesn't make sense for a PCI device. PCI defines its own way to
+> describe MSI support.
+>
+
+Agree, this is for IOMMU as a non-PCI device, capable of sending MSI.
+Follows 'MSI clients' notes from
+devicetree/bindings/interrupt-controller/msi.txt
+Is this a proper way to describe this relationship?
+
+> > > +
+> > > +  dma-coherent:
+> >
+> > RISC-V is dma-coherent by default, should this not be dma-noncoherent
+> > instead?
+> >
+> > > +    description:
+> > > +      Present if page table walks and DMA accessed made by the RISC-=
+V IOMMU
+> > > +      are cache coherent with the CPU.
+> > > +
+> > > +  power-domains:
+> > > +    maxItems: 1
+> > > +
+> > > +required:
+> > > +  - compatible
+> > > +  - reg
+> > > +  - '#iommu-cells'
+> > > +
+> > > +additionalProperties: false
+> > > +
+> > > +examples:
+> > > +  - |
+> > > +    /* Example 1 (IOMMU platform device with wired interrupts) */
+> > > +    immu1: iommu@1bccd000 {
+> >
+> > Why is this "immu"? typo or intentional?
+> >
+> > > +        compatible =3D "vendor,chip-iommu", "riscv,iommu";
+> > > +        reg =3D <0x1bccd000 0x1000>;
+> > > +        interrupt-parent =3D <&aplic_smode>;
+> > > +        interrupts =3D <32 4>, <33 4>, <34 4>, <35 4>;
+> > > +        #iommu-cells =3D <2>;
+> > > +    };
+> > > +
+> > > +    /* Device with two IOMMU device IDs, 0 and 7 */
+> > > +    master1 {
+> > > +        iommus =3D <&immu1 0 1>, <&immu1 7 1>;
+> > > +    };
+> > > +
+> > > +  - |
+> > > +    /* Example 2 (IOMMU platform device with MSIs) */
+> > > +    immu2: iommu@1bcdd000 {
+> > > +        compatible =3D "vendor,chip-iommu", "riscv,iommu";
+> > > +        reg =3D <0x1bccd000 0x1000>;
+> > > +        msi-parent =3D <&imsics_smode>;
+> > > +        #iommu-cells =3D <2>;
+> > > +    };
+> > > +
+> > > +    bus {
+> > > +        #address-cells =3D <2>;
+> > > +        #size-cells =3D <2>;
+> > > +
+> > > +        /* Device with IOMMU device IDs ranging from 32 to 64 */
+> > > +        master1 {
+> > > +                iommus =3D <&immu2 32 32>;
+> > > +        };
+> > > +
+> > > +        pcie@40000000 {
+> > > +            compatible =3D "pci-host-cam-generic";
+> > > +            device_type =3D "pci";
+> > > +            #address-cells =3D <3>;
+> > > +            #size-cells =3D <2>;
+> > > +            bus-range =3D <0x0 0x1>;
+> > > +
+> > > +            /* CPU_PHYSICAL(2)  SIZE(2) */
+>
+> I'm guessing there was more after this, but I don't have it...
+
+Complete patch 3 is at:
+https://lore.kernel.org/linux-iommu/cover.1689792825.git.tjeznach@rivosinc.=
+com/T/#mbf8dc4098fb09b87b2618c5c545ae882f11b114b
+
+>
+> Guessing, immu2 is a PCI device, but it translates for master1 which
+> is not a PCI device? Weird. Why would anyone build such a thing?
+>
+
+In this example immu2 is a non-PCI device. Agree, otherwise would be weird.
+
+>
+> Rob
+
+Thank you,
+- Tomasz
