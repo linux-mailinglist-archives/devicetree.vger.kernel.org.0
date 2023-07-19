@@ -2,140 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E9FE759A65
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 18:03:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 46EEF759A7E
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 18:12:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230457AbjGSQCr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jul 2023 12:02:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33390 "EHLO
+        id S229579AbjGSQMa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jul 2023 12:12:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38250 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229626AbjGSQCr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 12:02:47 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A65519A6;
-        Wed, 19 Jul 2023 09:02:37 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id DD11D61759;
-        Wed, 19 Jul 2023 16:02:36 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 93D6AC433C8;
-        Wed, 19 Jul 2023 16:02:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689782556;
-        bh=sDuKV/AjKrQtJ8swPHqAanif92az3Y09omQ2JTBSqmg=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=LWGRcfjkEO9TzC9+HtugvE4mSwxDUi90BrhwxBg18GfJmY2VVDlGEcGV1dXDXMnmB
-         zYERw9tsRqEEGC9XNcg9KEprvggdb8jtuN8DfDU4cCr7cj3xAtC17tCvje6a/uuEOy
-         3iUXcDFBMEHzsvULB2ssJGDcMCpeWFzOk5a4NREs/FA8QCo8dR+r//t/VD7odIgfM6
-         cuYPLi/QWgki7Qcw14a3R9v3JSraSzsNjRn5HMfs9d9lMXr7Dn37rx87EQN482Tv1z
-         n0AA1YEJ1XBf/usNidv0Z2IMF3NCwq6RG83Nt19e9djSEeJ2wMYVNp7PD/Q2dn1XsI
-         TR8B5RaFE0VZw==
-Date:   Wed, 19 Jul 2023 17:02:30 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     "Potthuri, Sai Krishna" <sai.krishna.potthuri@amd.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        "Simek, Michal" <michal.simek@amd.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229456AbjGSQM3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 12:12:29 -0400
+Received: from finn.localdomain (finn.gateworks.com [108.161.129.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FCDB10E;
+        Wed, 19 Jul 2023 09:12:28 -0700 (PDT)
+Received: from 068-189-091-139.biz.spectrum.com ([68.189.91.139] helo=tharvey.pdc.gateworks.com)
+        by finn.localdomain with esmtp (Exim 4.93)
+        (envelope-from <tharvey@gateworks.com>)
+        id 1qM9mq-007FfI-5y; Wed, 19 Jul 2023 16:12:24 +0000
+From:   Tim Harvey <tharvey@gateworks.com>
+To:     Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        "Shah, Tanmay" <tanmay.shah@amd.com>,
-        "Levinsky, Ben" <ben.levinsky@amd.com>,
-        Marek Vasut <marex@denx.de>,
-        Roman Gushchin <roman.gushchin@linux.dev>,
-        Arnd Bergmann <arnd@arndb.de>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "saikrishna12468@gmail.com" <saikrishna12468@gmail.com>,
-        "git (AMD-Xilinx)" <git@amd.com>
-Subject: Re: [PATCH 3/4] dt-bindings: pinctrl-zynqmp: Add output-enable
- configuration
-Message-ID: <20230719-brunette-prelaw-1c154002de1e@spud>
-References: <20230717093347.3869167-1-sai.krishna.potthuri@amd.com>
- <20230717093347.3869167-4-sai.krishna.potthuri@amd.com>
- <20230718-jitters-excretion-fe18c820c102@spud>
- <BY5PR12MB4258543534215430BC2F8FA3DB39A@BY5PR12MB4258.namprd12.prod.outlook.com>
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Tim Harvey <tharvey@gateworks.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v3 1/2] dt-bindings: arm: Add Gateworks i.MX8M Mini GW7905-0x board
+Date:   Wed, 19 Jul 2023 09:12:20 -0700
+Message-Id: <20230719161221.7005-1-tharvey@gateworks.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="BDFCLUw9LmXsQDa4"
-Content-Disposition: inline
-In-Reply-To: <BY5PR12MB4258543534215430BC2F8FA3DB39A@BY5PR12MB4258.namprd12.prod.outlook.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add DT compatible string for a Gateworks GW7905-0x board based on
+the i.MX8M Mini from NXP.
 
---BDFCLUw9LmXsQDa4
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Tim Harvey <tharvey@gateworks.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+v3:
+ - add Krzysztof's tag
 
-On Wed, Jul 19, 2023 at 06:49:43AM +0000, Potthuri, Sai Krishna wrote:
-> Hi Conor,
->=20
-> > -----Original Message-----
-> > From: Conor Dooley <conor@kernel.org>
-> > Sent: Tuesday, July 18, 2023 9:20 PM
-> > To: Potthuri, Sai Krishna <sai.krishna.potthuri@amd.com>
-> > Cc: Linus Walleij <linus.walleij@linaro.org>; Simek, Michal
-> > <michal.simek@amd.com>; Rob Herring <robh+dt@kernel.org>; Krzysztof
-> > Kozlowski <krzysztof.kozlowski+dt@linaro.org>; Conor Dooley
-> > <conor+dt@kernel.org>; Mathieu Poirier <mathieu.poirier@linaro.org>; Sh=
-ah,
-> > Tanmay <tanmay.shah@amd.com>; Levinsky, Ben <ben.levinsky@amd.com>;
-> > Marek Vasut <marex@denx.de>; Roman Gushchin <roman.gushchin@linux.dev>;
-> > Arnd Bergmann <arnd@arndb.de>; linux-arm-kernel@lists.infradead.org; li=
-nux-
-> > kernel@vger.kernel.org; linux-gpio@vger.kernel.org; devicetree@vger.ker=
-nel.org;
-> > saikrishna12468@gmail.com; git (AMD-Xilinx) <git@amd.com>
-> > Subject: Re: [PATCH 3/4] dt-bindings: pinctrl-zynqmp: Add output-enable
-> > configuration
-> >=20
-> > On Mon, Jul 17, 2023 at 03:03:46PM +0530, Sai Krishna Potthuri wrote:
-> > > Add 'output-enable' configuration parameter to the properties list.
-> > >
-> > > Using these pinctrl properties observed hang issues with older Xilinx
-> > > ZynqMP Platform Management Firmware, hence reverted the patch previou=
-sly.
-> > > Commit ff8356060e3a5e126abb ("Revert "dt-bindings: pinctrl-zynqmp: Add
-> > > output-enable configuration"").
-> >=20
-> > And what has changed since then that makes it okay to add?
-> > Is the old firmware not still in the wild?
-> This time when Linux firmware driver get the request for TRISTATE configu=
-ration
-> from pinctrl driver, it checks if that configuration is supported by the =
-Xilinx ZynqMP
-> Platform Management firmware. If yes, then calls will be made otherwise i=
-t returns error.
+v2:
+ - sort alphabetically
+---
+ Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-Please put that information in your commit message. With that done,
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index 2510eaa8906d..b445ce28e843 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -909,6 +909,7 @@ properties:
+               - fsl,imx8mm-evk            # i.MX8MM EVK Board
+               - fsl,imx8mm-evkb           # i.MX8MM EVKB Board
+               - gateworks,imx8mm-gw7904
++              - gateworks,imx8mm-gw7905-0x # i.MX8MM Gateworks Board
+               - gw,imx8mm-gw71xx-0x       # i.MX8MM Gateworks Development Kit
+               - gw,imx8mm-gw72xx-0x       # i.MX8MM Gateworks Development Kit
+               - gw,imx8mm-gw73xx-0x       # i.MX8MM Gateworks Development Kit
+-- 
+2.25.1
 
-Thanks,
-Conor.
-
---BDFCLUw9LmXsQDa4
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZLgJFgAKCRB4tDGHoIJi
-0h0YAQDslSWYW+0mKcsLpxUx7oCTtaRONNKJV3ZkEyPKShepTwD+JfE/Cea4UZEU
-xg6tso+P6vUo1jtUS50W65hbKzJ3vA8=
-=kKBy
------END PGP SIGNATURE-----
-
---BDFCLUw9LmXsQDa4--
