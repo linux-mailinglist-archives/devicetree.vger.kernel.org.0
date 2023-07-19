@@ -2,112 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 046E3759C5D
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 19:28:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 290EB759C93
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 19:40:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229630AbjGSR2b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jul 2023 13:28:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56930 "EHLO
+        id S230147AbjGSRkJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jul 2023 13:40:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32900 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230253AbjGSR2a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 13:28:30 -0400
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D0181735
-        for <devicetree@vger.kernel.org>; Wed, 19 Jul 2023 10:28:28 -0700 (PDT)
-Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-3fc03aa6e04so66783655e9.2
-        for <devicetree@vger.kernel.org>; Wed, 19 Jul 2023 10:28:28 -0700 (PDT)
+        with ESMTP id S229451AbjGSRkG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 13:40:06 -0400
+Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com [IPv6:2607:f8b0:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AAEB618D;
+        Wed, 19 Jul 2023 10:40:04 -0700 (PDT)
+Received: by mail-pl1-x629.google.com with SMTP id d9443c01a7336-1bb1baf55f5so44164355ad.0;
+        Wed, 19 Jul 2023 10:40:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689787707; x=1692379707;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=gmail.com; s=20221208; t=1689788404; x=1692380404;
+        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
+         :content-language:user-agent:mime-version:date:message-id:sender
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=8/5+Fuy5VkiTYMoOECLM7hAipJr0qI60CxfgtI6AAuc=;
-        b=yp1os99ShMB+le9v5DtBkGmxSFRbBfkllJ7vQUZlPwIh4QZfTVQEGu524krM1tcwfJ
-         bY88m6u5xNUhXNEFBKX6Hj8tC2JiVGi0GUaKOkkFcVyHi/6he7roUifo1Oskha5LUnLp
-         ZB3ZGF8sHENGYv5lHyjyLrSeligmStZ2Cv0pcuZ+XoI/KJBtEQ40K2Gx4Km2Flmy2cSB
-         faNX4uC7wzfJG7+YdJQz9CoazFMdKIhQJH1GkAtFWL9wtzhaPu4fZ6dzztTz/XZVtFmf
-         zDXnGc1JOyPm1xNHlphnewyWS5hYT8RluUtlWVkHbQT70e4K2KbkpUtUSw2wn+hRXUV2
-         Iw4A==
+        bh=4zcvJfBQoZ3LsY68xNz61DEwSh2nWYBOthwrmgBDGLE=;
+        b=Nqt/y7dZhDZukuh/FcMihVDpyhDYZU5/5m+eW2aiDDqEikKUWWq7xrtorFOtZvpDqH
+         I4Og8fTe4ohDg9cipITyxcltnLH5k7BlCVwLE9aprWW1wstJWBA0u2YaYyzlZ6TTY4wd
+         KC+BCEfBeTAO0gZDkTiivXZewky9yHuRnQmGgUKBe+8RkCu1QW6liRdHvwVyb/SJAOb2
+         hzhH2ap0c7pxE5ja+K+tPm1PMfINZuZCZQJroMc64+k+HAARI1Pi3lj8jrioQZfqXFOB
+         kkQJ448EYxfYb2JD8ELocrvWpavPmZPyzcAk2N9LoKlCvhxepZXDSuhgaDN53AZ9uypK
+         YhvQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689787707; x=1692379707;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1689788404; x=1692380404;
+        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
+         :content-language:user-agent:mime-version:date:message-id:sender
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8/5+Fuy5VkiTYMoOECLM7hAipJr0qI60CxfgtI6AAuc=;
-        b=CH1EZPSuE98fM5Klgu/1Er0g3LKq/g0YU1HZ1lp99nuqBZk0smtFC4rUm4tvofC13R
-         y8V+7kFtuALiRafktCA/eIiY8GDXJN1fGGqNEl1bOkbDY8lwT/rfZRUehfaFfWSm8+oY
-         /PLdGx8OrvE1IWHgm2ejdf8uAGz7z1n4KsLCKfWFTOk/WNoat3Mjun9Kf7Dc50o5MNRv
-         e1rws9c2QEY+t8CFaWdIUDYmCdRfqgQBUu9t4C1TMa/M5cuKuXGFiRdvqUwr/tFRm0VW
-         STiCaykTM8f3Yel2IEcqs0nInHh9uyPnvn7HX+NkjNqc05l8DRiiuQRt8Avwi1ND+LFK
-         NRNg==
-X-Gm-Message-State: ABy/qLZWUSSdFM3nzSJcwwkhcYmnBJ30rMz5SXAigjrODABHcqgl3vBJ
-        JwfrhfvetMHC5/RWBvo/ew6zcA==
-X-Google-Smtp-Source: APBJJlEO2bDu4shZhayU/BpDN5r5YMeRzn0LLyi87Q4mcBpczeBLmsrJOo2xzh+hh8qu8pnsEzBZdg==
-X-Received: by 2002:a5d:4f90:0:b0:311:3fdc:109d with SMTP id d16-20020a5d4f90000000b003113fdc109dmr392088wru.1.1689787706840;
-        Wed, 19 Jul 2023 10:28:26 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id r15-20020a5d4e4f000000b003143c6e09ccsm5866159wrt.16.2023.07.19.10.28.25
+        bh=4zcvJfBQoZ3LsY68xNz61DEwSh2nWYBOthwrmgBDGLE=;
+        b=hlFKe8uj7GkUhm9xn9r1Z6hzdFvFnv4FzFWuR8bsFd/yIAsgAV3chEXMgS936Mvxck
+         +enLT/zncjnG/a7TJCQR83QkgXpanaXl26me9mQhDwoOuPn4sPOpDZYF/L8IiFROMHGk
+         z/7SOpvY32pknU3JtKZVmZcIgMxSk2963cNLjqio4ZN1w0ucKRTIfejV1QXbouC8Po4j
+         viGX0szYKeFEqJHn4+nIfVKuKlBzyUwUuSMtwu+D1soKfNR3PWtKqLSIN8XLNpj34vaw
+         TW9DmGzFdCE+Px63LEZuFryeYsy7N2KYNDRoRDvaeterGVeVxEh0+Kwy8y45/2wa8hHF
+         OPRg==
+X-Gm-Message-State: ABy/qLaXvBzVyhe8qv0MmGmEoqkZVgfaVQFyYVjRSdLZM6Ky/CTMEygM
+        wB2pT7iG68+QhAP9o6AiPk0=
+X-Google-Smtp-Source: APBJJlFFiTE+0z9U4aWP809XsVIBymKGnyIWz7Qcdg5w7V0e+H49/b8WytaFUjY40hXdQRDStFVf1w==
+X-Received: by 2002:a17:902:6a8c:b0:1b8:90bd:d157 with SMTP id n12-20020a1709026a8c00b001b890bdd157mr19228012plk.26.1689788382901;
+        Wed, 19 Jul 2023 10:39:42 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id x21-20020a170902ea9500b001b9c5e07bc3sm4247550plb.238.2023.07.19.10.39.40
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 19 Jul 2023 10:28:26 -0700 (PDT)
-Message-ID: <da024b3e-017c-097e-c9c8-55560a7f76c3@linaro.org>
-Date:   Wed, 19 Jul 2023 19:28:24 +0200
+        Wed, 19 Jul 2023 10:39:41 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <3a912cab-001f-a70b-394d-71370fc482e5@roeck-us.net>
+Date:   Wed, 19 Jul 2023 10:39:39 -0700
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
-Subject: Re: [PATCH v4 2/2] dt-bindings: arm: sunxi: add Mango Pi MQ-Quad
- binding
 Content-Language: en-US
-To:     Matthew Croughan <matthew.croughan@nix.how>,
+To:     Naresh Solanki <naresh.solanki@9elements.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Jean Delvare <jdelvare@suse.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Maxime Ripard <mripard@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-References: <20230719172551.3248166-1-matthew.croughan@nix.how>
- <20230719172551.3248166-3-matthew.croughan@nix.how>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230719172551.3248166-3-matthew.croughan@nix.how>
-Content-Type: text/plain; charset=UTF-8
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Marcello Sylvester Bauer <sylv@sylv.io>,
+        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230420111759.2687001-1-Naresh.Solanki@9elements.com>
+ <76e57634-75dd-01e8-9c56-36ed7de17812@linaro.org>
+ <c8d1b5db-318e-3401-0834-b89769831eca@9elements.com>
+ <be129c4f-3ad7-c54b-936e-08b142608ebc@linaro.org>
+ <88f9a008-2861-284c-76c4-7d416c107fbb@9elements.com>
+ <bd45ea5d-e6e4-403a-e855-376e0f647f91@9elements.com>
+ <20eb1d0e-0aa2-9d41-7ba5-2feb148748d0@linaro.org>
+ <9d989c4c-7c9e-9e95-133f-03741d07198b@9elements.com>
+ <80b60de0-dcb5-303f-8d13-f4b1cf7d8521@linaro.org>
+ <45236017-22d2-f9f8-0069-77195e49221d@9elements.com>
+From:   Guenter Roeck <linux@roeck-us.net>
+Subject: Re: [PATCH v2 1/2] dt-bindings: hwmon: Add max6639
+In-Reply-To: <45236017-22d2-f9f8-0069-77195e49221d@9elements.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/07/2023 19:25, Matthew Croughan wrote:
-> Document board compatible names for Mango Pi MQ-Quad
+On 5/4/23 04:36, Naresh Solanki wrote:
+> Hi Krzysztof,
 > 
-> Signed-off-by: Matthew Croughan <matthew.croughan@nix.how>
-> ---
+[ ... ]
+>>
+>> No, we cannot, because we asked you to fix things there. Your entire
+>> explanation about compatible and driver is not related to the comment
+>> you received: bindings should be complete. You argue that bindings do
+>> not have to be complete, because of something with driver. This is not
+>> related. Bindings are not for driver.
+> 
+> I understand that complete bindings are important, but as the driver is already merged and functional, my immediate goal is to enable its use on my machine. I will work on a separate patch to include the interrupts in both binding & driver.
+> 
 
+As a follow-up, since it came up in a separate context:
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Bindings and driver are independent of each other. _Bindings_
+are supposed to be complete. However, the existence of a property
+in the bindings description does not have to be reflected in
+the driver.
 
+FWIW, you _could_ have added the device to the list of trivial
+devices. The only really mandatory property is vdd, and every
+chip has that. All other properties are really about configuration
+and/or fan properties, and I don't even know how to describe fan
+properties (such as pulses per revolution, pwm parameters,
+fan speed limits, the relationship between pwm outputs
+and fan inputs, the relationship between fan speed input
+and pwm output, or fan spin-up requirements) in devicetree.
 
----
-
-This is an automated instruction, just in case, because many review tags
-are being ignored. If you do not know the process, here is a short
-explanation:
-
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-versions, under or above your Signed-off-by tag. Tag is "received", when
-provided in a message replied to you on the mailing list. Tools like b4
-can help here. However, there's no need to repost patches *only* to add
-the tags. The upstream maintainer will do that for acks received on the
-version they apply.
-
-https://elixir.bootlin.com/linux/v5.17/source/Documentation/process/submitting-patches.rst#L540
-
-Best regards,
-Krzysztof
+Guenter
 
