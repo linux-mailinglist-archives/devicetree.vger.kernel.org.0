@@ -2,131 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EC5D27597CA
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 16:11:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7FC067597D4
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 16:12:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231491AbjGSOLX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jul 2023 10:11:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45192 "EHLO
+        id S231508AbjGSOMx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jul 2023 10:12:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46022 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230194AbjGSOLW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 10:11:22 -0400
-Received: from mx1.sberdevices.ru (mx2.sberdevices.ru [45.89.224.132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4399E42;
-        Wed, 19 Jul 2023 07:11:19 -0700 (PDT)
-Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
-        by mx1.sberdevices.ru (Postfix) with ESMTP id 6595F12007A;
-        Wed, 19 Jul 2023 17:11:17 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 6595F12007A
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-        s=mail; t=1689775877;
-        bh=bLDHWlqd+9J/3Q27qKAYWbhXTkIrXZ9utoTJw3eZAd8=;
-        h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type:From;
-        b=PwSykd0PZrBLwQYuZ8SUlmv7SUWrN/+vEAAwid/jh8Je1gRYVfsD4dvac9sJE6ckR
-         ew0OH1vo3tIPQSFlTp5NfiRSKD65Xc5/wM47N0O8hEfJeEErg9hVQGyHPsiyRlQJWp
-         pYtawhiM5aPl5IPg6yHL7vSq7ArrBmsMclz3t7Vp6z/NuVTwvKOj/eEC3JlPdGKr6i
-         bb3z8fFV0Z7cZbQRE95u/5ajlO5Ku4IP4nobm2GAfr9EQPPJl/0dizSxvnbWMXOxzY
-         awIiI4XTbG4U5neNphUHPopIMBzTwtGgJGO0tUvCjMXNmfLkFAIqmzI6E1/HDPhTE8
-         00U2IEp3ZXsng==
-Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mx1.sberdevices.ru (Postfix) with ESMTPS;
-        Wed, 19 Jul 2023 17:11:17 +0300 (MSK)
-Received: from localhost (100.64.160.123) by p-i-exch-sc-m01.sberdevices.ru
- (172.16.192.107) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Wed, 19 Jul
- 2023 17:11:17 +0300
-Date:   Wed, 19 Jul 2023 17:11:11 +0300
-From:   Dmitry Rokosov <ddrokosov@sberdevices.ru>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC:     zelong dong <zelong.dong@amlogic.com>, <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-amlogic@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <kelvin.zhang@amlogic.com>
-Subject: Re: [PATCH v3 1/3] dt-bindings: reset: Add compatible and DT
- bindings for Amlogic C3 Reset Controller
-Message-ID: <20230719141111.ykg2pfv4dmyvutqm@CAB-WSD-L081021>
-References: <20230719060954.14864-1-zelong.dong@amlogic.com>
- <20230719060954.14864-2-zelong.dong@amlogic.com>
- <20230719115014.2har4sool7d5edcn@CAB-WSD-L081021>
- <c6fd4df2-97ab-a830-f466-2d09f5b38dfc@linaro.org>
+        with ESMTP id S231271AbjGSOMw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 10:12:52 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0910E12C
+        for <devicetree@vger.kernel.org>; Wed, 19 Jul 2023 07:12:52 -0700 (PDT)
+Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <j.zink@pengutronix.de>)
+        id 1qM7v0-0003wX-PC; Wed, 19 Jul 2023 16:12:42 +0200
+Message-ID: <6ecf92b7-32a2-efdf-74f2-a737a44cb05c@pengutronix.de>
+Date:   Wed, 19 Jul 2023 16:12:29 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <c6fd4df2-97ab-a830-f466-2d09f5b38dfc@linaro.org>
-User-Agent: NeoMutt/20220415
-X-Originating-IP: [100.64.160.123]
-X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
- p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 178725 [Jul 19 2023]
-X-KSMG-AntiSpam-Version: 5.9.59.0
-X-KSMG-AntiSpam-Envelope-From: DDRokosov@sberdevices.ru
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 524 524 9753033d6953787301affc41bead8ed49c47b39d, {Tracking_uf_ne_domains}, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, 100.64.160.123:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;sberdevices.ru:5.0.1,7.1.1;p-i-exch-sc-m01.sberdevices.ru:5.0.1,7.1.1;www.kernel.org:7.1.1;127.0.0.199:7.1.2, FromAlignment: s, {Tracking_white_helo}, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean, bases: 2023/07/19 13:07:00
-X-KSMG-LinksScanning: Clean, bases: 2023/07/19 13:07:00
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/07/19 10:42:00 #21641119
-X-KSMG-AntiVirus-Status: Clean, skipped
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH] arm64: dts: imx8mp: use correct clock for eqos
+ timestamping counter
+Content-Language: en-US, de-DE
+To:     Fabio Estevam <festevam@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        patchwork-jzi@pengutronix.de, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20230719-imx8mp_enet_qos_use_125mhz_clock-v1-1-782c9ac6e121@pengutronix.de>
+ <CAOMZO5AP1zDQPGnctq+UbPSiv+7Rg=DGABb7-mZV__HZ4qpMBQ@mail.gmail.com>
+From:   Johannes Zink <j.zink@pengutronix.de>
+In-Reply-To: <CAOMZO5AP1zDQPGnctq+UbPSiv+7Rg=DGABb7-mZV__HZ4qpMBQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
+X-SA-Exim-Mail-From: j.zink@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 19, 2023 at 02:33:03PM +0200, Krzysztof Kozlowski wrote:
-> On 19/07/2023 13:50, Dmitry Rokosov wrote:
-> > On Wed, Jul 19, 2023 at 02:09:52PM +0800, zelong dong wrote:
-> >> From: Zelong Dong <zelong.dong@amlogic.com>
-> >>
-> >> Add new compatible and DT bindings for Amlogic C3 Reset Controller
-> >>
-> >> Signed-off-by: Zelong Dong <zelong.dong@amlogic.com>
-> >> ---
-> >>  .../bindings/reset/amlogic,meson-reset.yaml   |   1 +
-> >>  include/dt-bindings/reset/amlogic,c3-reset.h  | 119 ++++++++++++++++++
-> >>  2 files changed, 120 insertions(+)
-> > 
-> > As I understand it, updates to DT bindings documentation, as well as any
-> > DT bindings includes, should be submitted in separate patches, per the
-> > guidelines outlined in the following link:
-> > https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters.
-> > 
-> > Krzysztof, Rob, and Conor, please correct me if I am mistaken.
+Hi Fabio,
+
+On 7/19/23 16:03, Fabio Estevam wrote:
+> Hi Johannes,
 > 
-> And they are. What's wrong here?
+> On Wed, Jul 19, 2023 at 10:59 AM Johannes Zink <j.zink@pengutronix.de> wrote:
+>>
+>> The i.MX8MP Reference Manual rev 1 06/2021, section 11.7.2.5 "Timestamp
+>> Support" indicates the PTP timestamp clock expects a typical frequency
+>> of 125MHz.
+>>
+>> As this also improves the precision of the measured timestamps: assign
+>> appropriate 125MHz Clock parent. As no one except the timestamping
+>> counter uses this clock, there are no side-effects of this change in
+>> other peripherals.
+>>
+>> Signed-off-by: Johannes Zink <j.zink@pengutronix.de>
+>> ---
+>>   arch/arm64/boot/dts/freescale/imx8mp.dtsi | 2 +-
+>>   1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+>> index 6f2f50e1639c..7f80dff914c2 100644
+>> --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+>> +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+>> @@ -1334,7 +1334,7 @@ eqos: ethernet@30bf0000 {
+>>                                                    <&clk IMX8MP_CLK_ENET_QOS_TIMER>,
+>>                                                    <&clk IMX8MP_CLK_ENET_QOS>;
+>>                                  assigned-clock-parents = <&clk IMX8MP_SYS_PLL1_266M>,
+>> -                                                        <&clk IMX8MP_SYS_PLL2_100M>,
+>> +                                                        <&clk IMX8MP_SYS_PLL2_125M>,
+>>                                                           <&clk IMX8MP_SYS_PLL2_125M>;
+>>                                  assigned-clock-rates = <0>, <100000000>, <125000000>;
+> 
+> Shouldn't this also be changed to:
+> 
+> assigned-clock-rates = <0>, <125000000>, <125000000>;
+> 
 
-Please accept my apologies for any confusion caused. Initially, I
-misunderstood that YAML documentation and device tree bindings includes
-should be kept separate.
+good catch, thanks! Gonna fix it in v2.
 
-As such, this patch includes modifications to both areas, namely
-bindings documentation and include/dt-bindings, but all of them are
-separate from driver part.
-
-In this case,
-
-Reviewed-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+Best regards
+Johannes
 
 -- 
-Thank you,
-Dmitry
+Pengutronix e.K.                | Johannes Zink                  |
+Steuerwalder Str. 21            | https://www.pengutronix.de/    |
+31137 Hildesheim, Germany       | Phone: +49-5121-206917-0       |
+Amtsgericht Hildesheim, HRA 2686| Fax:   +49-5121-206917-5555    |
+
