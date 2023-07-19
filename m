@@ -2,70 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3820A758E75
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 09:12:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 840B7758E79
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 09:13:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229587AbjGSHMn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jul 2023 03:12:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47482 "EHLO
+        id S229732AbjGSHNd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jul 2023 03:13:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47866 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229512AbjGSHMm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 03:12:42 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD183A4;
-        Wed, 19 Jul 2023 00:12:40 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id DDE326606F57;
-        Wed, 19 Jul 2023 08:12:38 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1689750759;
-        bh=pCkN1UkEdv6NF5dWttuNQLaQBHvZEw82zMhYbxwSkEw=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=B/Dm65X43oK5moYNPPU+JxFIGZNxNYErdCvat397MQuVekFNfF5kYx3+aOTM4cV0F
-         1nXnYzKvvlEiwKgUB/n5VFBoO4msXKIY+FDkMR1yzoDZ5Tx4nwkXomkXJpD4Fwi5KC
-         9IQ98/3YigkXk7fMI83YaJdb1n14c0acLyRPislcYF0BjMDfwDK4nxnrITR+yZEalv
-         qxKsUJIYr7/iZLWcfrMm78e7v/lOuIGvChyXpwpW9lkFZiog5aCLJEMKHcv+YBDyF9
-         r1Xq8t0aIeMWqu0T3gKvuEtze0j102tD4KqZD2KeAgiKZxOJzlYnYe+yMsqGazImZ8
-         Rvj0kEWPajpUA==
-Message-ID: <72865f80-05bf-0fc1-5941-a12c3d8f8478@collabora.com>
-Date:   Wed, 19 Jul 2023 09:12:36 +0200
+        with ESMTP id S229518AbjGSHNa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 03:13:30 -0400
+Received: from fallback16.i.mail.ru (fallback16.i.mail.ru [79.137.243.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A32C21FE6
+        for <devicetree@vger.kernel.org>; Wed, 19 Jul 2023 00:13:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=inbox.ru; s=mail4;
+        h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:From:Subject:Content-Type:Content-Transfer-Encoding:To:Cc; bh=fH++TWJtjIxjGX5EhbifPIIL4W8rrEuOP0ikLJnLDss=;
+        t=1689750808;x=1689840808; 
+        b=rkeDC3VmCeqgWdpXefr4p1AdTMMXocCuXUZTrzI43OmVshveI8eAFEhKKT6leIrEonDpbojwaEjVPeuLaARwpKKbG2g6yXe2nmnPaHhTTWanHoV5MkcV1OLAzuRuZ83DsY0jCusH6WSDWTl66wy9oCzY8yyurr+oB6pXDEbtfuZ3LjYa1VLml7Llgo2BGbD9Q8SXzNjaoUFEwYMK5AQOS6BvFI8815xfUEDWzbl30TPc+BgdPf6V/knrcaxIlCzp5FZ4sJD7ntIC/wC08rkNvefjy047oYD6icOpP8/wqaaTlNqH3qUw3rmL3LIe6ZjSwr++vlHPbNKuUe2T4PkXjQ==;
+Received: from [10.161.100.15] (port=37700 helo=smtpng3.i.mail.ru)
+        by fallback16.i.mail.ru with esmtp (envelope-from <fido_max@inbox.ru>)
+        id 1qM1NG-00At0O-H3
+        for devicetree@vger.kernel.org; Wed, 19 Jul 2023 10:13:26 +0300
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=inbox.ru; s=mail4;
+        h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:From:Subject:Content-Type:Content-Transfer-Encoding:To:Cc; bh=fH++TWJtjIxjGX5EhbifPIIL4W8rrEuOP0ikLJnLDss=;
+        t=1689750806;x=1689840806; 
+        b=P1ecmpKEhtL0PSlN9o8nyO3dw5jkyMXvOIfxyOMtEZLuTIpXAzezeNOFrEDqm2VFHVwYJVBq8nQE1Ctsyt6f5h/blgFIqgrGoOEXVVHS8WvHb5/K66T+aryCN64zpXqiEv5DOnFndYMTLFSDsYzEhm1XdXFVRu+W3/pdmo1sUs63hycupNcaKtQv8XOr9c/+PDU/tDBWcZc9j/PBWQoaBCyAnH+j8+GLeZXI7r8qGRYFirCOxfj2dlUnWGwGp4vDsROenB1RGbn40rpGHx/Zeh1b2b/FonPLM2Ptf1iLmkapi4b3eXZCsZXJDQteX4iYfGeLlDiEILhPF1FNlYicuQ==;
+Received: by smtpng3.m.smailru.net with esmtpa (envelope-from <fido_max@inbox.ru>)
+        id 1qM1Mz-0006vr-AQ; Wed, 19 Jul 2023 10:13:10 +0300
+Message-ID: <78fdef90-6841-b7c6-198b-5902cdc06298@inbox.ru>
+Date:   Wed, 19 Jul 2023 10:13:07 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH] arm64: dts: mediatek: Fix "status" values
-To:     Rob Herring <robh@kernel.org>,
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v2] ASoC: dt-bindings: simple-card: add triggers
+ properties
+To:     Rob Herring <robh@kernel.org>
+Cc:     alsa-devel@alsa-project.org, Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-References: <20230626221005.3946136-1-robh@kernel.org>
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        Sameer Pujar <spujar@nvidia.com>,
+        Astrid Rost <astrid.rost@axis.com>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Herve Codina <herve.codina@bootlin.com>,
+        Aidan MacDonald <aidanmacdonald.0x0@gmail.com>,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230715083046.108674-1-fido_max@inbox.ru>
+ <20230715083046.108674-3-fido_max@inbox.ru>
+ <20230718220843.GA1944897-robh@kernel.org>
 Content-Language: en-US
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20230626221005.3946136-1-robh@kernel.org>
+From:   Maxim Kochetkov <fido_max@inbox.ru>
+In-Reply-To: <20230718220843.GA1944897-robh@kernel.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
+X-Mailru-Src: smtp
+X-7564579A: EEAE043A70213CC8
+X-77F55803: 4F1203BC0FB41BD9260BFC270D398E26256A1388358BCC2ABA9A4E6A75BB68CE182A05F5380850404C228DA9ACA6FE2760339751B026D2C514D29B42FC712A19F66A526C91EEE5FEF0631C29E6E4FBBB
+X-7FA49CB5: FF5795518A3D127A4AD6D5ED66289B5278DA827A17800CE7D950999244A4B2E6EA1F7E6F0F101C67BD4B6F7A4D31EC0BCC500DACC3FED6E28638F802B75D45FF8AA50765F7900637976142D429C486548638F802B75D45FF36EB9D2243A4F8B5A6FCA7DBDB1FC311F39EFFDF887939037866D6147AF826D82BD5945AB679A852F55F44EC11A897846F9789CCF6C18C3F8528715B7D10C86878DA827A17800CE74A95F4E53E8DCE969FA2833FD35BB23D9E625A9149C048EE33AC447995A7AD182CC0D3CB04F14752D2E47CDBA5A96583BD4B6F7A4D31EC0BC014FD901B82EE079FA2833FD35BB23D27C277FBC8AE2E8BA2C6A0109559C168A471835C12D1D977C4224003CC8364762BB6847A3DEAEFB0F43C7A68FF6260569E8FC8737B5C2249EC8D19AE6D49635B68655334FD4449CB9ECD01F8117BC8BEAAAE862A0553A39223F8577A6DFFEA7C468D16C903838CAB43847C11F186F3C59DAA53EE0834AAEE
+X-87b9d050: 1
+X-C1DE0DAB: 0D63561A33F958A5CE618E196A538662FA342655A6BBEC0F492C14056082EDCBF87CCE6106E1FC07E67D4AC08A07B9B0B355ED1E20F5346ACB5012B2E24CD356
+X-C8649E89: 1C3962B70DF3F0ADE00A9FD3E00BEEDF77DD89D51EBB7742D3581295AF09D3DF87807E0823442EA2ED31085941D9CD0AF7F820E7B07EA4CF8B78B62552CEFB988F7579A3A6137389BB8945F48FC4F62BB28AC2747C34186B182FB9261F6240E87A512D943FCE53BFB310A82119D837DB70531D70938160D56A5887467130CEBC4C41F94D744909CEE921556F0E976A29E6EC0772259F8F8F8815B87D7EC76CB9
+X-D57D3AED: 3ZO7eAau8CL7WIMRKs4sN3D3tLDjz0dLbV79QFUyzQ2Ujvy7cMT6pYYqY16iZVKkSc3dCLJ7zSJH7+u4VD18S7Vl4ZUrpaVfd2+vE6kuoey4m4VkSEu530nj6fImhcD4MUrOEAnl0W826KZ9Q+tr5ycPtXkTV4k65bRjmOUUP8cvGozZ33TWg5HZplvhhXbhDGzqmQDTd6OAevLeAnq3Ra9uf7zvY2zzsIhlcp/Y7m53TZgf2aB4JOg4gkr2biojg78zLelqjbYh46SMB2AQ2A==
+X-Mailru-Sender: 689FA8AB762F73930F533AC2B33E986B0E58DE3008AEF620C23C1C26EEFFDDBF98CC072019C18A892CA7F8C7C9492E1F2F5E575105D0B01ADBE2EF17B331888EEAB4BC95F72C04283CDA0F3B3F5B9367
+X-Mras: Ok
+X-7564579A: 646B95376F6C166E
+X-77F55803: 6242723A09DB00B4C299D5088EBD47D40426EC7804F46194F3504DF11501C6E6049FFFDB7839CE9E907C428F2B798400293F28A5ADED1535F81EEA80159E419ED1F37D4B56B5165A
+X-7FA49CB5: 0D63561A33F958A578FAEDA9084E587E849E579038F9BF5D2CC504229656796FCACD7DF95DA8FC8BD5E8D9A59859A8B6A096F61ED9298604
+X-D57D3AED: 3ZO7eAau8CL7WIMRKs4sN3D3tLDjz0dLbV79QFUyzQ2Ujvy7cMT6pYYqY16iZVKkSc3dCLJ7zSJH7+u4VD18S7Vl4ZUrpaVfd2+vE6kuoey4m4VkSEu530nj6fImhcD4MUrOEAnl0W826KZ9Q+tr5xhPKz0ZEsZ5k6NOOPWz5QAiZSCXKGQRq3/7KxbCLSB2ESzQkaOXqCBFZPLWFrEGlV1shfWe2EVcxl5toh0c/aCGOghz/frdRhzMe95NxDFdojJHpMQNyvsMF9UZxMjsjw==
+X-Mailru-MI: C000000000000800
+X-Mras: Ok
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 27/06/23 00:10, Rob Herring ha scritto:
-> The defined value for "status" is "disabled", not "disable".
+
+
+On 19.07.2023 01:08, Rob Herring wrote:
+> On Sat, Jul 15, 2023 at 11:30:43AM +0300, Maxim Kochetkov wrote:
+>> The trigger-start/stop properties allows to specify DAI link
+>> trigger ordering method.
 > 
-> Signed-off-by: Rob Herring <robh@kernel.org>
+> Obviously. Why do you need these? What problem does it solve?
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+It allows using simple card for some DMA-based CPU component which 
+requires different start/stop sequence (stop DMA before CPU component, 
+start DMA after CPU component).
+There are a lot of boards which have no audio codec on board. It has 
+only I2S/TDM/etc... and you can attach any external codec on its pins. 
+It looks like simple audio card is enough for this cases. It is much 
+better than to copy-paste simple audio card code to the new custom 
+driver with new combination of CPU/codec.
 
+> 
+> I don't think these belong in simple-card. What's next? What if you need
+> delays between each step? This is the problem with 'simple' or 'generic'
+> bindings. It's a never ending addition of properties which are not well
+> thought out.
+
+Can you please suggest the better way to specify start/stop trigger 
+order via DT?
+
+>> +  trigger-start:
+>> +    description: |-
+>> +      Start trigger ordering method:
+>> +      default: Link->Component->DAI
+>> +      ldc: Link->DAI->Component
+>> +    $ref: /schemas/types.yaml#/definitions/string
+>> +    items:
+>> +      enum:
+>> +        - default
+> 
+> Why do you need a value of 'default'? What's the default when the
+> property is not present?
+It comes from
+enum snd_soc_trigger_order {
+	SND_SOC_TRIGGER_ORDER_DEFAULT	= 0,	
+	SND_SOC_TRIGGER_ORDER_LDC,		
+	SND_SOC_TRIGGER_ORDER_MAX,
+};
+default value is 0 (SND_SOC_TRIGGER_ORDER_DEFAULT)
+
+>>     format:
+>>       description: audio format.
+>>       items:
+>> @@ -210,6 +232,10 @@ properties:
+>>       maxItems: 1
+>>     simple-audio-card,mic-det-gpio:
+>>       maxItems: 1
+>> +  simple-audio-card,trigger-start:
+>> +    $ref: "#/definitions/trigger-start"
+>> +  simple-audio-card,trigger-stop:
+>> +    $ref: "#/definitions/trigger-stop"
+> 
+> Don't continue this 'simple-audio-card,' prefix pattern. With it, no
+> other binding can use these properties.
+
+Ok.
+
+> 
+>>   
+>>   patternProperties:
+>>     "^simple-audio-card,cpu(@[0-9a-f]+)?$":
+>> @@ -259,6 +285,11 @@ patternProperties:
+>>           maxItems: 1
+>>         mic-det-gpio:
+>>           maxItems: 1
+>> +      trigger-start:
+>> +        $ref: "#/definitions/trigger-start"
+>> +      trigger-stop:
+>> +        $ref: "#/definitions/trigger-stop"
+>> +
+
+Should I keep only this section?
 
