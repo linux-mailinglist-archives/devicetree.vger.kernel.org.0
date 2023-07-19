@@ -2,130 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3951B758F1C
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 09:36:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7AE4A758F1E
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 09:36:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229712AbjGSHf7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jul 2023 03:35:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34036 "EHLO
+        id S230006AbjGSHg3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jul 2023 03:36:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34102 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229610AbjGSHf6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 03:35:58 -0400
-Received: from proxmox1.postmarketos.org (proxmox1.postmarketos.org [213.239.216.189])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 372BDE43;
-        Wed, 19 Jul 2023 00:35:56 -0700 (PDT)
-Received: from lexxgentoo.devos.club (unknown [77.239.252.99])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by proxmox1.postmarketos.org (Postfix) with ESMTPSA id 4FE7D1408B4;
-        Wed, 19 Jul 2023 07:35:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
-        s=donut; t=1689752153;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=TXAZUdyfaHpmcHakUejI+ug2h18/N7wsLTL0rMLkYr4=;
-        b=R5ahRwICn17hNaiiH7LHfM1pv3cTmn1Tu1JB6cSVrGMHlkwuQFiOkfZRycTnH+Imj38FTY
-        hUBgpMFSH+zIG1nbDSkPFKFpKgaUxwovVEvdUnP7pMjc/1x5+wyyObE9XtkIqxIidlsVoL
-        T2eZ2207mMBOPiqKn71X0nJI9XQEnbE=
-From:   Alexey Minnekhanov <alexeymin@postmarketos.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        with ESMTP id S230129AbjGSHgU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 03:36:20 -0400
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E92E91BF2
+        for <devicetree@vger.kernel.org>; Wed, 19 Jul 2023 00:36:16 -0700 (PDT)
+Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-51e590a8ab5so8970088a12.2
+        for <devicetree@vger.kernel.org>; Wed, 19 Jul 2023 00:36:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1689752175; x=1692344175;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Q/eA8pKJcHiUXAdf7PMzIQmFbGywWXqPi31I+AY3YSI=;
+        b=zcw/4+UMUKRHWSV7ZaaICpSL1K1a5aGEZVjOWGjjENfPt5MZHpNNbx42sUroUBI11f
+         bnNAb2iUqJDbigI/T2qj390igCk0o4WiQ/VhvlZWDxZFBAyjz9JrFIe623zRUffi1mWP
+         1pPyYKT7xKnJPhIugP57JpDNgHDgirDZyGbf39+xK4mgyE0F4+nAbLVntqK1eJwPqLvN
+         aModvdvWKl9GTgcJ5p89N7dkQuaZR62Qf7AHHO4GZR7Xd/6Kd5uutZfnFdMAjIBDE2Vb
+         aKEYPQXR0XYDhZvnul1rSIzysI5hcLUBc07CdEH0J3NAAjYNiXusUxpC+Y4o8Ohftl2y
+         LJqA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689752175; x=1692344175;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Q/eA8pKJcHiUXAdf7PMzIQmFbGywWXqPi31I+AY3YSI=;
+        b=FNtJRq6Ow6a6oJjZTLvlaYCBAY4WFzlv1QW6A/OCucxiJ0GhgpBJhUVDD9tFgzMNg7
+         UZ+knlyUq02fKh2oqdIKawbkzzUGhyhtR5+Ck5TctnugFBZdRsDGs195ItYwFpDkgj07
+         Ylp0Onmqt/n5GWNtPAOjN7TWhLU/f0QYhyNVPOqfk6TPX1yLnMZuaI2sPI1FhvWMCl4J
+         HuzMHWEPWKUsCjt8bCPBJFgwL17T9APZWaGqNY+9Ep48FzasdeMxIJrcP5q5QhTIggMQ
+         iy3ymfgfcq6SFdugc1d8lxPeTg76/MrPz3uLomSzX4iMcI7hNkWJHYT076/Pg+2OGDER
+         W4fA==
+X-Gm-Message-State: ABy/qLYK4v6uBuhiawuDpuqhgV8Ga4yVTR7RuD2Xit+zk3m84yXpkJni
+        OwpdzlWFbAUAcHEZIqGgdpImCLSgFxXiTupqr3EJcQ==
+X-Google-Smtp-Source: APBJJlGOf4hGTqkGyxwxOYlRSiFB90/uKqYCcXvS/KlM16eAlPWxbD8qeAUOU7RY51/m+vT3NlEWyQ==
+X-Received: by 2002:aa7:d708:0:b0:51a:265a:8fca with SMTP id t8-20020aa7d708000000b0051a265a8fcamr1995135edq.27.1689752175402;
+        Wed, 19 Jul 2023 00:36:15 -0700 (PDT)
+Received: from krzk-bin.. ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id v5-20020aa7cd45000000b0051e069ebee3sm2310594edw.14.2023.07.19.00.36.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 19 Jul 2023 00:36:14 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Artur Weber <aweber.kernel@gmail.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Alexey Minnekhanov <alexeymin@postmarketos.org>
-Subject: [PATCH] arm64: dts: qcom: sdm630: remove refs to nonexistent clocks
-Date:   Wed, 19 Jul 2023 10:35:20 +0300
-Message-ID: <20230719073520.2644966-1-alexeymin@postmarketos.org>
-X-Mailer: git-send-email 2.41.0
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH v6] ARM: dts: exynos: Add Samsung Galaxy Tab 3 8.0 boards
+Date:   Wed, 19 Jul 2023 09:36:09 +0200
+Message-Id: <168975215984.14599.9189608478970320917.b4-ty@linaro.org>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230714101229.30641-1-aweber.kernel@gmail.com>
+References: <20230714101229.30641-1-aweber.kernel@gmail.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Since commit d6edc31f3a68 ("clk: qcom: smd-rpm: Separate out
-interconnect bus clocks") rpmcc-sdm660 no longer provides
-RPM_SMD_AGGR2_NOC_CLK and RPM_SMD_AGGR2_NOC_A_CLK clocks.
-Remove them to fix various probe failures and get devices
-booting again.
 
-Signed-off-by: Alexey Minnekhanov <alexeymin@postmarketos.org>
----
- arch/arm64/boot/dts/qcom/sdm630.dtsi | 24 ++++++------------------
- 1 file changed, 6 insertions(+), 18 deletions(-)
+On Fri, 14 Jul 2023 12:12:29 +0200, Artur Weber wrote:
+> Introduce support for the Galaxy Tab 3 8.0 series of boards:
+> 
+>  - Samsung Galaxy Tab 3 8.0 WiFi (SM-T310/lt01wifi)
+>  - Samsung Galaxy Tab 3 8.0 3G (SM-T311/lt013g)
+>  - Samsung Galaxy Tab 3 8.0 LTE (SM-T315/lt01lte)
+> 
+> What works:
+> 
+> [...]
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm630.dtsi b/arch/arm64/boot/dts/qcom/sdm630.dtsi
-index 038ec7a41412..8bea611b246b 100644
---- a/arch/arm64/boot/dts/qcom/sdm630.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm630.dtsi
-@@ -638,10 +638,6 @@ anoc2_smmu: iommu@16c0000 {
- 			compatible = "qcom,sdm630-smmu-v2", "qcom,smmu-v2";
- 			reg = <0x016c0000 0x40000>;
- 
--			assigned-clocks = <&rpmcc RPM_SMD_AGGR2_NOC_CLK>;
--			assigned-clock-rates = <1000>;
--			clocks = <&rpmcc RPM_SMD_AGGR2_NOC_CLK>;
--			clock-names = "bus";
- 			#global-interrupts = <2>;
- 			#iommu-cells = <1>;
- 			qcom,bypass-cbndx = /bits/ 8 <6>;
-@@ -689,16 +685,12 @@ a2noc: interconnect@1704000 {
- 			compatible = "qcom,sdm660-a2noc";
- 			reg = <0x01704000 0xc100>;
- 			#interconnect-cells = <1>;
--			clock-names = "bus",
--				      "bus_a",
--				      "ipa",
-+			clock-names = "ipa",
- 				      "ufs_axi",
- 				      "aggre2_ufs_axi",
- 				      "aggre2_usb3_axi",
- 				      "cfg_noc_usb2_axi";
--			clocks = <&rpmcc RPM_SMD_AGGR2_NOC_CLK>,
--				 <&rpmcc RPM_SMD_AGGR2_NOC_A_CLK>,
--				 <&rpmcc RPM_SMD_IPA_CLK>,
-+			clocks = <&rpmcc RPM_SMD_IPA_CLK>,
- 				 <&gcc GCC_UFS_AXI_CLK>,
- 				 <&gcc GCC_AGGRE2_UFS_AXI_CLK>,
- 				 <&gcc GCC_AGGRE2_USB3_AXI_CLK>,
-@@ -1309,20 +1301,16 @@ usb3: usb@a8f8800 {
- 				 <&gcc GCC_USB30_MASTER_CLK>,
- 				 <&gcc GCC_AGGRE2_USB3_AXI_CLK>,
- 				 <&gcc GCC_USB30_SLEEP_CLK>,
--				 <&gcc GCC_USB30_MOCK_UTMI_CLK>,
--				 <&rpmcc RPM_SMD_AGGR2_NOC_CLK>;
-+				 <&gcc GCC_USB30_MOCK_UTMI_CLK>;
- 			clock-names = "cfg_noc",
- 				      "core",
- 				      "iface",
- 				      "sleep",
--				      "mock_utmi",
--				      "bus";
-+				      "mock_utmi";
- 
- 			assigned-clocks = <&gcc GCC_USB30_MOCK_UTMI_CLK>,
--					  <&gcc GCC_USB30_MASTER_CLK>,
--					  <&rpmcc RPM_SMD_AGGR2_NOC_CLK>;
--			assigned-clock-rates = <19200000>, <120000000>,
--					       <19200000>;
-+					  <&gcc GCC_USB30_MASTER_CLK>;
-+			assigned-clock-rates = <19200000>, <120000000>;
- 
- 			interrupts = <GIC_SPI 347 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 243 IRQ_TYPE_LEVEL_HIGH>;
+Applied, thanks!
+
+[1/1] ARM: dts: exynos: Add Samsung Galaxy Tab 3 8.0 boards
+      https://git.kernel.org/krzk/linux/c/ee37a457af1d166f090ec68de26f94447d899c8a
+
+Best regards,
 -- 
-2.41.0
-
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
