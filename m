@@ -2,142 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4DF2E7593C0
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 13:05:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 29C11759406
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 13:17:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230111AbjGSLFj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jul 2023 07:05:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41102 "EHLO
+        id S230404AbjGSLRq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jul 2023 07:17:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46672 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230129AbjGSLFh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 07:05:37 -0400
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 305F319A;
-        Wed, 19 Jul 2023 04:05:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1689764736; x=1721300736;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=lqPMmv8M10HlNolBgp653qSVYTh89TergptkrLWqzYo=;
-  b=S5NtVeRoGxWEjiy4hfYUAS6bs0vfE83cCaG/koNG3riMlWxEYMmxngH7
-   wd/UooOkJRRRf8oXEF1DJgiCM1fLoahHlHIoA1yA/8oYaOyrqLhMVs4Or
-   RUQm4+dbmqmr2n3HXCWsHzIO1QU8BY8NpqVJfIaKra3CIRmGTkE55oEYE
-   h/JUbwQI2rh7uzoF7NTpBdEQh+d/Nl+lfW+dJLoe4CIyIWKAjALjNVU5N
-   wBZV+ZjH1CcQsGEOPCEa+62lNArQO+022rBZYuDQQMNdczTFJNkIC54z2
-   PRwJxBle5D6naYj8wNIDeOjEdrIkxWMZ0jM53U4o2qAFBujmBb/bPR48k
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10775"; a="346023055"
-X-IronPort-AV: E=Sophos;i="6.01,216,1684825200"; 
-   d="scan'208";a="346023055"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Jul 2023 04:05:35 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.01,202,1684825200"; 
-   d="scan'208";a="867422501"
-Received: from lkp-server02.sh.intel.com (HELO 36946fcf73d7) ([10.239.97.151])
-  by fmsmga001.fm.intel.com with ESMTP; 19 Jul 2023 04:05:15 -0700
-Received: from kbuild by 36946fcf73d7 with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1qM4zX-0004hf-2P;
-        Wed, 19 Jul 2023 11:05:12 +0000
-Date:   Wed, 19 Jul 2023 19:04:39 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Manikanta Mylavarapu <quic_mmanikan@quicinc.com>,
-        agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        mathieu.poirier@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        mturquette@baylibre.com, sboyd@kernel.org,
-        quic_eberman@quicinc.com, kvalo@kernel.org,
-        loic.poulain@linaro.org, linux-arm-msm@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
-Cc:     oe-kbuild-all@lists.linux.dev, quic_srichara@quicinc.com,
-        quic_sjaganat@quicinc.com, quic_kathirav@quicinc.com,
-        quic_anusha@quicinc.com
-Subject: Re: [V3,09/11] remoteproc: qcom: Add Hexagon based multipd rproc
- driver
-Message-ID: <202307191844.WyywUs6s-lkp@intel.com>
-References: <20230718120501.3205661-10-quic_mmanikan@quicinc.com>
+        with ESMTP id S230303AbjGSLRp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 07:17:45 -0400
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A10819A
+        for <devicetree@vger.kernel.org>; Wed, 19 Jul 2023 04:17:43 -0700 (PDT)
+Received: by mail-lf1-x129.google.com with SMTP id 2adb3069b0e04-4fb7589b187so11123328e87.1
+        for <devicetree@vger.kernel.org>; Wed, 19 Jul 2023 04:17:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1689765462; x=1692357462;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=dA4XBjNreRbs/RKP90hsuoW35QaS3sIYpUWqA3D9MVo=;
+        b=eib+6ZdSavk8Cc7sMu9UiLLoRzeurRV7U17SqJAdIFseBdo83QH88dnHOpILFO0Cln
+         0IsGbyvcRl9w1gqFMOXu6ygsn+ZNxcwzWfrTXb+x6bQwtDHOXXRdkQtSBFhgMsJ5YGLv
+         m6bv7v664SZsFyXtW9kOLlL2QlyBrdsLjGHQmCoEvj4vKzL3HnMDW3G0SVkadJlWUF1t
+         EoJBekxklR+oaT/Tayym1DlLl93ebF2f1gs0w3nVaL3QzdoKjUiG5ooM38p36cBDrDJ1
+         bgdBpngvJemNnogm2kWA1g2JyfP+Ni+xP1LyxHVRNFhGNoJeDS6JKqhyJmBAkHEy/gi4
+         gGzw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689765462; x=1692357462;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=dA4XBjNreRbs/RKP90hsuoW35QaS3sIYpUWqA3D9MVo=;
+        b=QphbGJo87l8PA6pvROUwayn6x7Lgf0+i8ERZEokDPzhv5fXL9NRLj/rsG01J9ReWAO
+         ZRDsffvQKcs2Hvwk2N/p3FVFh6w3R9fdEqC7uQeGHuJFWNV7v+7FQCRNDARUoDWRyiMm
+         FrrN1WnoT50wnRX1wbp302By4vJFPbkc3JdmF3mk3RpTJ3PsFMtzwX7ulb1NH7/Y0bSW
+         FswXJIOEVmrrnGYfwuYkx9y6A3fXzK9twZrC+VZgi4Jhwm1Fwb1kE27I33m3D50PjZvD
+         YXv/RgfrSAW1uEITxz7W2Ct34UOWNUMwY/dd8g89Wc/tiOeRwZKPcs6dr+diyjo91bEZ
+         72zQ==
+X-Gm-Message-State: ABy/qLYa99cpPSJKWxRjJ2joY3mvqwrH5bnDfsYmiOrrOi/xY/yomrId
+        2Ssym9auefKqKMs1wLWTZfBEMw==
+X-Google-Smtp-Source: APBJJlEfuMb3x/pT172dL5k+uZlxwymyIEwasIcdDQtVo1m66C7A/ws6DIO7Zn/FYWiF+K/45DMeag==
+X-Received: by 2002:a05:6512:2394:b0:4f6:2b51:2f74 with SMTP id c20-20020a056512239400b004f62b512f74mr2003719lfv.52.1689765461798;
+        Wed, 19 Jul 2023 04:17:41 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id r21-20020aa7cb95000000b0051e28d315a2sm2570977edt.78.2023.07.19.04.17.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 19 Jul 2023 04:17:41 -0700 (PDT)
+Message-ID: <7c60b8b5-ce8b-c911-043f-f916430bacc9@linaro.org>
+Date:   Wed, 19 Jul 2023 13:17:40 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230718120501.3205661-10-quic_mmanikan@quicinc.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH] dt-bindings: pinctrl: qcom,sa8775p-tlmm: add gpio
+ function constant
+Content-Language: en-US
+To:     Shazad Hussain <quic_shazhuss@quicinc.com>, agross@kernel.org,
+        andersson@kernel.org, konrad.dybcio@linaro.org,
+        linus.walleij@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Cc:     bartosz.golaszewski@linaro.org, linux-arm-msm@vger.kernel.org,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230719110344.19983-1-quic_shazhuss@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230719110344.19983-1-quic_shazhuss@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Manikanta,
+On 19/07/2023 13:03, Shazad Hussain wrote:
+> Alternative function 'gpio' is not listed in the constants for pin
+> configuration, so adding this constant to the list.
+> 
+> Fixes: 9a2aaee23c79 ("dt-bindings: pinctrl: describe sa8775p-tlmm")
 
-kernel test robot noticed the following build warnings:
-
-[auto build test WARNING on next-20230718]
-[also build test WARNING on v6.5-rc2]
-[cannot apply to remoteproc/rproc-next clk/clk-next robh/for-next linus/master v6.5-rc2 v6.5-rc1 v6.4]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Manikanta-Mylavarapu/dt-bindings-remoteproc-qcom-Add-support-for-multipd-model/20230718-202747
-base:   next-20230718
-patch link:    https://lore.kernel.org/r/20230718120501.3205661-10-quic_mmanikan%40quicinc.com
-patch subject: [V3,09/11] remoteproc: qcom: Add Hexagon based multipd rproc driver
-config: arm-allmodconfig (https://download.01.org/0day-ci/archive/20230719/202307191844.WyywUs6s-lkp@intel.com/config)
-compiler: arm-linux-gnueabi-gcc (GCC) 12.3.0
-reproduce: (https://download.01.org/0day-ci/archive/20230719/202307191844.WyywUs6s-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202307191844.WyywUs6s-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> drivers/remoteproc/qcom_q6v5_mpd.c:112:4: warning: no previous prototype for 'qcom_get_pd_asid' [-Wmissing-prototypes]
-     112 | u8 qcom_get_pd_asid(struct rproc *rproc)
-         |    ^~~~~~~~~~~~~~~~
-
-Kconfig warnings: (for reference only)
-   WARNING: unmet direct dependencies detected for SM_GCC_8350
-   Depends on [n]: COMMON_CLK [=y] && COMMON_CLK_QCOM [=m] && (ARM64 || COMPILE_TEST [=n])
-   Selected by [m]:
-   - SM_VIDEOCC_8350 [=m] && COMMON_CLK [=y] && COMMON_CLK_QCOM [=m]
-   WARNING: unmet direct dependencies detected for SM_GCC_8450
-   Depends on [n]: COMMON_CLK [=y] && COMMON_CLK_QCOM [=m] && (ARM64 || COMPILE_TEST [=n])
-   Selected by [m]:
-   - SM_GPUCC_8450 [=m] && COMMON_CLK [=y] && COMMON_CLK_QCOM [=m]
-   - SM_VIDEOCC_8450 [=m] && COMMON_CLK [=y] && COMMON_CLK_QCOM [=m]
-   WARNING: unmet direct dependencies detected for SM_GCC_8550
-   Depends on [n]: COMMON_CLK [=y] && COMMON_CLK_QCOM [=m] && (ARM64 || COMPILE_TEST [=n])
-   Selected by [m]:
-   - SM_GPUCC_8550 [=m] && COMMON_CLK [=y] && COMMON_CLK_QCOM [=m]
-   - SM_VIDEOCC_8550 [=m] && COMMON_CLK [=y] && COMMON_CLK_QCOM [=m]
+Cc: <stable@vger.kernel.org>
 
 
-vim +/qcom_get_pd_asid +112 drivers/remoteproc/qcom_q6v5_mpd.c
+> Signed-off-by: Shazad Hussain <quic_shazhuss@quicinc.com>
 
-   105	
-   106	/**
-   107	 * qcom_get_pd_asid() - get the pd asid number from PD spawn bit
-   108	 * @rproc:	rproc handle
-   109	 *
-   110	 * Returns asid on success
-   111	 */
- > 112	u8 qcom_get_pd_asid(struct rproc *rproc)
-   113	{
-   114		struct q6_wcss *wcss = rproc->priv;
-   115		u8 bit = wcss->q6.spawn_bit;
-   116	
-   117		return bit / 8;
-   118	}
-   119	
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
+
