@@ -2,111 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D8C07591C9
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 11:41:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 40B967591D5
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 11:43:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229530AbjGSJlW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jul 2023 05:41:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46616 "EHLO
+        id S231178AbjGSJnJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jul 2023 05:43:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47456 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229639AbjGSJlW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 05:41:22 -0400
-Received: from smtp.dudau.co.uk (dliviu.plus.com [80.229.23.120])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id B1814EC;
-        Wed, 19 Jul 2023 02:41:20 -0700 (PDT)
-Received: from mail.dudau.co.uk (bart.dudau.co.uk [192.168.14.2])
-        by smtp.dudau.co.uk (Postfix) with SMTP id A2F6E41A7003;
-        Wed, 19 Jul 2023 10:41:18 +0100 (BST)
-Received: by mail.dudau.co.uk (sSMTP sendmail emulation); Wed, 19 Jul 2023 10:41:18 +0100
-Date:   Wed, 19 Jul 2023 10:41:18 +0100
-From:   Liviu Dudau <liviu@dudau.co.uk>
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc:     linux-phy@lists.infradead.org, linux-rockchip@lists.infradead.org,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Rob Herring <robh@kernel.org>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Shawn Lin <shawn.lin@rock-chips.com>,
-        Simon Xue <xxm@rock-chips.com>, John Clark <inindev@gmail.com>,
-        Qu Wenruo <wqu@suse.com>, devicetree@vger.kernel.org,
-        linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, kernel@collabora.com
-Subject: Re: [PATCH v2 2/2] arm64: dts: rockchip: rk3588: add PCIe3 support
-Message-ID: <ZLevvl+VKBxe1kQu@bart.dudau.co.uk>
-References: <20230717173512.65169-1-sebastian.reichel@collabora.com>
- <20230717173512.65169-3-sebastian.reichel@collabora.com>
- <ZLarQUvUK3v3m6Cg@bart.dudau.co.uk>
- <20230718160137.sfitnkl6gmyi75jx@mercury.elektranox.org>
- <ZLbqPB5yP7Kn6FT6@bart.dudau.co.uk>
- <20230718210601.6hrmnl5lbtl6vinp@mercury.elektranox.org>
+        with ESMTP id S230215AbjGSJml (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 05:42:41 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6164D10D4;
+        Wed, 19 Jul 2023 02:42:39 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 36J9gTHx076518;
+        Wed, 19 Jul 2023 04:42:29 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1689759749;
+        bh=s3JqLfrdGx1x8y1Vva++v2wD+YNm6mj7IFwgXaDdy/0=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=F/zcQ59V/vYP/7vJSl4/K+2ewiNhSUhaZAAOp5Sptry9+dTj+yzeJaM1hjaWwmZo9
+         7uHuPQZ5lk00XW+xlwhTFxMYrINRFwEA6KYw9btBNtCKRzPYd9iY+xiekjArNmB5WU
+         Yv5691lqT9/yxN5YW4Xhs/E8uzWY56sY7g/gt/DQ=
+Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 36J9gTV8017464
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 19 Jul 2023 04:42:29 -0500
+Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 19
+ Jul 2023 04:42:28 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 19 Jul 2023 04:42:28 -0500
+Received: from [172.24.227.83] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 36J9gOlJ038474;
+        Wed, 19 Jul 2023 04:42:25 -0500
+Message-ID: <cc1c4212-df44-61ca-2e34-2c3cd3a565cf@ti.com>
+Date:   Wed, 19 Jul 2023 15:12:24 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20230718210601.6hrmnl5lbtl6vinp@mercury.elektranox.org>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v2 1/2] arm64: dts: ti: k3-j721s2-main: Add main CPSW2G
+ devicetree node
+Content-Language: en-US
+To:     Siddharth Vadapalli <s-vadapalli@ti.com>, <nm@ti.com>,
+        <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <afd@ti.com>
+CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>,
+        Ravi Gunasekaran <r-gunasekaran@ti.com>
+References: <20230710094328.1359377-1-s-vadapalli@ti.com>
+ <20230710094328.1359377-2-s-vadapalli@ti.com>
+From:   Ravi Gunasekaran <r-gunasekaran@ti.com>
+In-Reply-To: <20230710094328.1359377-2-s-vadapalli@ti.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sebastian,
 
-On Tue, Jul 18, 2023 at 11:06:01PM +0200, Sebastian Reichel wrote:
-> Hi,
+
+On 7/10/23 3:13 PM, Siddharth Vadapalli wrote:
+> From: Kishon Vijay Abraham I <kishon@ti.com>
 > 
-> On Tue, Jul 18, 2023 at 08:38:36PM +0100, Liviu Dudau wrote:
-> > On Tue, Jul 18, 2023 at 06:01:37PM +0200, Sebastian Reichel wrote:
-> > > On Tue, Jul 18, 2023 at 04:09:53PM +0100, Liviu Dudau wrote:
-> > > > On Mon, Jul 17, 2023 at 07:35:12PM +0200, Sebastian Reichel wrote:
-> > > > >  	pipe_phy1_grf: syscon@fd5c0000 {
-> > > > >  		compatible = "rockchip,rk3588-pipe-phy-grf", "syscon";
-> > > > >  		reg = <0x0 0xfd5c0000 0x0 0x100>;
-> > > > 
-> > > > What tree is based this on? Even after applying your PCIe2 series I don't have the above
-> > > > node so the patch doesn't apply to mainline.
-> > > 
-> > > You are missing naneng-combphy support:
-> > > 
-> > > https://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.git/commit/?h=v6.6-armsoc/dts64&id=6ebd55b3bba383e0523b0c014f17c97f3ce80708
-> > 
-> > Thanks! It looks like the PCIe2 commit that adds support to rk3588(s).dtsi
-> > files is also missing an #include <dt-bindings/phy/phy.h> for the PHY_TYPE_PCIE
-> > use, otherwise the DTS fail to compile.
+> TI's J721S2 SoC has a MAIN CPSW2G instance of the CPSW Ethernet Switch.
+> Add devicetree node for it.
 > 
-> Yes, that's also already in linux-next:
+> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
+> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+> ---
+>  arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi | 69 ++++++++++++++++++++++
+>  1 file changed, 69 insertions(+)
 > 
-> https://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.git/commit/?h=v6.6-armsoc/dts64&id=34d6c15d8e86256ef2456c604b1c8d8242720871
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
+> index ed79ab3a3271..4d0d27e7ca1b 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
+> @@ -51,6 +51,12 @@ usb_serdes_mux: mux-controller@0 {
+>                         mux-reg-masks = <0x0 0x8000000>; /* USB0 to SERDES0 lane 1/3 mux */
+>                 };
+>  
+> +               phy_gmii_sel_cpsw: phy@34 {
+> +                       compatible = "ti,am654-phy-gmii-sel";
+> +                       reg = <0x34 0x4>;
+> +                       #phy-cells = <1>;
+> +               };
+> +
+>                 serdes_ln_ctrl: mux-controller@80 {
+>                         compatible = "mmio-mux";
+>                         reg = <0x80 0x10>;
+> @@ -1039,6 +1045,69 @@ cpts@310d0000 {
+>                 };
+>         };
+>  
+> +       main_cpsw: ethernet@c200000 {
+> +               compatible = "ti,j721e-cpsw-nuss";
+> +               reg = <0x00 0xc200000 0x00 0x200000>;
+> +               reg-names = "cpsw_nuss";
+> +               ranges = <0x0 0x0 0x0 0xc200000 0x0 0x200000>;
+> +               #address-cells = <2>;
+> +               #size-cells = <2>;
+> +               dma-coherent;
+> +               clocks = <&k3_clks 28 28>;
+> +               clock-names = "fck";
+> +               power-domains = <&k3_pds 28 TI_SCI_PD_EXCLUSIVE>;
+> +
+> +               dmas = <&main_udmap 0xc640>,
+> +                      <&main_udmap 0xc641>,
+> +                      <&main_udmap 0xc642>,
+> +                      <&main_udmap 0xc643>,
+> +                      <&main_udmap 0xc644>,
+> +                      <&main_udmap 0xc645>,
+> +                      <&main_udmap 0xc646>,
+> +                      <&main_udmap 0xc647>,
+> +                      <&main_udmap 0x4640>;
+> +               dma-names = "tx0", "tx1", "tx2", "tx3",
+> +                           "tx4", "tx5", "tx6", "tx7",
+> +                           "rx";
+> +
+> +               status = "disabled";
+> +
+> +               ethernet-ports {
+> +                       #address-cells = <1>;
+> +                       #size-cells = <0>;
+> +
+> +                       main_cpsw_port1: port@1 {
+> +                               reg = <1>;
+> +                               ti,mac-only;
+> +                               label = "port1";
+> +                               phys = <&phy_gmii_sel_cpsw 1>;
+> +                               status = "disabled";
+> +                       };
+> +               };
+> +
+> +               main_cpsw_mdio: mdio@f00 {
+> +                       compatible = "ti,cpsw-mdio","ti,davinci_mdio";
+> +                       reg = <0x00 0xf00 0x00 0x100>;
+> +                       #address-cells = <1>;
+> +                       #size-cells = <0>;
+> +                       clocks = <&k3_clks 28 28>;
+> +                       clock-names = "fck";
+> +                       bus_freq = <1000000>;
+> +                       status = "disabled";
+> +               };
+> +
+> +               cpts@3d000 {
+> +                       compatible = "ti,am65-cpts";
+> +                       reg = <0x00 0x3d000 0x00 0x400>;
+> +                       clocks = <&k3_clks 28 3>;
+> +                       clock-names = "cpts";
+> +                       interrupts-extended = <&gic500 GIC_SPI 21 IRQ_TYPE_LEVEL_HIGH>;
+> +                       interrupt-names = "cpts";
+> +                       ti,cpts-ext-ts-inputs = <4>;
+> +                       ti,cpts-periodic-outputs = <2>;
+> +               };
+> +       };
+> +
+>         usbss0: cdns-usb@4104000 {
+>                 compatible = "ti,j721e-usb";
+>                 reg = <0x00 0x04104000 0x00 0x100>;
 
-I'm reading that as: "relevant patch that this series depends on has already
-been added to the tree that's going to pull this PCIe2 series so all will be
-good". Otherwise I think there should be some mention in the cover letter
-about dependencies, so that people like me don't report issues just because
-they are not using the linux-rockchip tree by default.
 
-Many thanks for the quick answers and the links to fix my tree.
-
-Best regards,
-Liviu
-
-> 
-> Greetings,
-> 
-> -- Sebastian
-
-
+Reviewed-by: Ravi Gunasekaran <r-gunasekaran@ti.com>
 
 -- 
-Everyone who uses computers frequently has had, from time to time,
-a mad desire to attack the precocious abacus with an axe.
-       	   	      	     	  -- John D. Clark, Ignition!
+Regards,
+Ravi
