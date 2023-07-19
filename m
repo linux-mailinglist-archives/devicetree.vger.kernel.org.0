@@ -2,36 +2,38 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E64477595DD
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 14:48:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 09FDE7595F8
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 14:54:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229646AbjGSMsP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jul 2023 08:48:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58898 "EHLO
+        id S229660AbjGSMyi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jul 2023 08:54:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34048 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230311AbjGSMsC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 08:48:02 -0400
-Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7CBEF7;
-        Wed, 19 Jul 2023 05:47:59 -0700 (PDT)
+        with ESMTP id S229535AbjGSMyh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 08:54:37 -0400
+Received: from mail11.truemail.it (mail11.truemail.it [IPv6:2001:4b7e:0:8::81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2C7310B;
+        Wed, 19 Jul 2023 05:54:36 -0700 (PDT)
 Received: from francesco-nb.pivistrello.it (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
-        by mail11.truemail.it (Postfix) with ESMTPA id A7484209AC;
-        Wed, 19 Jul 2023 14:47:57 +0200 (CEST)
+        by mail11.truemail.it (Postfix) with ESMTPA id CCC8D20623;
+        Wed, 19 Jul 2023 14:54:34 +0200 (CEST)
 From:   Francesco Dolcini <francesco@dolcini.it>
-To:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+To:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-kernel@vger.kernel.org
 Cc:     Francesco Dolcini <francesco.dolcini@toradex.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, CTLIN0@nuvoton.com
-Subject: [PATCH v1 2/2] ASoC: dt-bindings: nau8822: Add MCLK clock
-Date:   Wed, 19 Jul 2023 14:47:52 +0200
-Message-Id: <20230719124752.248898-3-francesco@dolcini.it>
+        Conor Dooley <conor+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Mark Brown <broonie@kernel.org>
+Subject: [PATCH v1 0/2] arm64: dts: freescale: verdin-imx8mp: add sound card
+Date:   Wed, 19 Jul 2023 14:54:28 +0200
+Message-Id: <20230719125430.249644-1-francesco@dolcini.it>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230719124752.248898-1-francesco@dolcini.it>
-References: <20230719124752.248898-1-francesco@dolcini.it>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
@@ -45,30 +47,16 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Francesco Dolcini <francesco.dolcini@toradex.com>
 
-Add nau8822 master clock input.
+Add audio support to both Dahlia and Development carrier boards
 
-Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
----
- .../devicetree/bindings/sound/nuvoton,nau8822.yaml          | 6 ++++++
- 1 file changed, 6 insertions(+)
+Francesco Dolcini (2):
+  arm64: dts: freescale: verdin-imx8mp: dahlia: add sound card
+  arm64: dts: freescale: verdin-imx8mp: dev: add sound card
 
-diff --git a/Documentation/devicetree/bindings/sound/nuvoton,nau8822.yaml b/Documentation/devicetree/bindings/sound/nuvoton,nau8822.yaml
-index edc8cc756980..cb8182bbc491 100644
---- a/Documentation/devicetree/bindings/sound/nuvoton,nau8822.yaml
-+++ b/Documentation/devicetree/bindings/sound/nuvoton,nau8822.yaml
-@@ -24,6 +24,12 @@ properties:
-   "#sound-dai-cells":
-     const: 0
- 
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    const: mclk
-+
-   nuvoton,spk-btl:
-     description:
-       If set, configure the two loudspeaker outputs as a Bridge Tied Load output
+ .../dts/freescale/imx8mp-verdin-dahlia.dtsi   | 56 ++++++++++++++++++-
+ .../boot/dts/freescale/imx8mp-verdin-dev.dtsi | 55 ++++++++++++++++--
+ 2 files changed, 104 insertions(+), 7 deletions(-)
+
 -- 
 2.25.1
 
