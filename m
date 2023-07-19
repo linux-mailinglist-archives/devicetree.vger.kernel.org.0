@@ -2,91 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BC8B9759142
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 11:11:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ADA5575914C
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 11:13:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230406AbjGSJLh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jul 2023 05:11:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58474 "EHLO
+        id S231202AbjGSJN2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jul 2023 05:13:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59662 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230291AbjGSJLg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 05:11:36 -0400
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5531019B1;
-        Wed, 19 Jul 2023 02:11:28 -0700 (PDT)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id CB0A0FF818;
-        Wed, 19 Jul 2023 09:11:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1689757886;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=f84nkPfrwMn/3eLaRQd5GjJzAg3jngCL9dYTvmRIvUM=;
-        b=SU0jjGdxGPP52Yam69nVPKd4b+CELuc8c4p3sBoKg8RwSfP/glbAzBoHYe6/mTdIXBnt1B
-        4VJ1m0r0N9jbxhj8yaLA9jD20i/VuimYyWfnCMjWC/zihQRDf30ZduDGPGqo2+vDvb1C4V
-        Yzj9URJhovfQN70377Ozg2DK/P5v2v3vLKoPbnNFn0tM0bP50qoBt8r+gRlMbhYCvMVTbW
-        WFW++2LtntTbpl1hX01ux2j/Rr/0MgF4YknQqOt33IAuAJfWbjzk+I5gXTHUFImtDzvsMi
-        7jYXmLAJ+qLOb9V+h4uX2HPVZu7krJSDT+PZ9nQ6Ou1qO2J8YVOggWJgc1B9Ew==
-Date:   Wed, 19 Jul 2023 11:11:24 +0200
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Jakub Kicinski <kuba@kernel.org>
-Cc:     Matt Johnston <matt@codeconstruct.com.au>,
-        linux-i3c@lists.infradead.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, Jeremy Kerr <jk@codeconstruct.com.au>,
-        "David S. Miller" <davem@davemloft.net>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH net-next v2 2/3] i3c: Add support for bus enumeration &
- notification
-Message-ID: <2023071909112418ec7fdc@mail.local>
-References: <20230717040638.1292536-1-matt@codeconstruct.com.au>
- <20230717040638.1292536-3-matt@codeconstruct.com.au>
- <20230718185757.54ae1e2e@kernel.org>
+        with ESMTP id S231232AbjGSJN1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 05:13:27 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFD02173B;
+        Wed, 19 Jul 2023 02:13:26 -0700 (PDT)
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36J4gSwX008449;
+        Wed, 19 Jul 2023 09:13:23 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=Gj2yJp4znK+CIfSIZHigRVEHv6hEKNrVzDu1MeYrYWQ=;
+ b=CuT8cBdTbmrwqnDifEHUr3fz9efcCSKpGn03+sYl5qWghQV5ICeiJsvuajABxVjG5S/3
+ hQUdb6s2HFpSXfdAIFUT58D089d3/6bCZpL6e5W6N+j697xS6zE5QvgDmnC02XSi8iue
+ +X+y7XzTLZdcEyp0T7cRDn2gIx9dKNbx1ls9nPm5sFxDM0Oc12awsEHXWNPc5A3y0beV
+ 6Sso9LlObNP4PeY9PGOmGknq4J5BMZSVpczOE5jW3u0fwISc2TRwXaliYFE+kMt31ftD
+ WXFT4GVJnaEmYwANZwXapnOD9k5snDcCB5/760pyM38buR8IxT+rDxRh3me0rdaD42JH DA== 
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3rwnrrjx4n-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 19 Jul 2023 09:13:23 +0000
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+        by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 36J9DMfZ020133
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 19 Jul 2023 09:13:22 GMT
+Received: from [10.216.47.173] (10.80.80.8) by nasanex01c.na.qualcomm.com
+ (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Wed, 19 Jul
+ 2023 02:13:18 -0700
+Message-ID: <37ab515a-a4b1-09fa-6ec4-e2dae17fb58c@quicinc.com>
+Date:   Wed, 19 Jul 2023 14:43:15 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230718185757.54ae1e2e@kernel.org>
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH 1/2] dt-bindings: power: qcom,rpmhpd: Add Generic RPMh PD
+ indexes
+Content-Language: en-US
+To:     Rohit Agarwal <quic_rohiagar@quicinc.com>, <agross@kernel.org>,
+        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>
+CC:     <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+References: <1689744162-9421-1-git-send-email-quic_rohiagar@quicinc.com>
+ <1689744162-9421-2-git-send-email-quic_rohiagar@quicinc.com>
+From:   Mukesh Ojha <quic_mojha@quicinc.com>
+In-Reply-To: <1689744162-9421-2-git-send-email-quic_rohiagar@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: pV2YhOuCdK5Fn9cLY1UA0f4Kyi1_8HUZ
+X-Proofpoint-ORIG-GUID: pV2YhOuCdK5Fn9cLY1UA0f4Kyi1_8HUZ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-07-19_05,2023-07-18_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 phishscore=0
+ malwarescore=0 suspectscore=0 adultscore=0 spamscore=0 lowpriorityscore=0
+ mlxlogscore=838 priorityscore=1501 impostorscore=0 mlxscore=0 bulkscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2306200000
+ definitions=main-2307190083
+X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/07/2023 18:57:57-0700, Jakub Kicinski wrote:
-> On Mon, 17 Jul 2023 12:06:37 +0800 Matt Johnston wrote:
-> > From: Jeremy Kerr <jk@codeconstruct.com.au>
-> > 
-> > This allows other drivers to be notified when new i3c busses are
-> > attached, referring to a whole i3c bus as opposed to individual
-> > devices.
-> > 
-> > Signed-off-by: Jeremy Kerr <jk@codeconstruct.com.au>
-> > Signed-off-by: Matt Johnston <matt@codeconstruct.com.au>
+
+
+On 7/19/2023 10:52 AM, Rohit Agarwal wrote:
+> Add Generic RPMh Power Domain indexes that can be used
+> for all the Qualcomm SoC henceforth.
+> The power domain indexes of these bindings are based on compatibility
+> with current targets like SM8[2345]50 targets.
 > 
-> We need one of:
->  - sign-off from Alexandre that he's okay with this code going via
->    netdev; or
->  - stable branch from Alexandre based on an upstream -rc tag which 
->    we can pull into net-next; or
->  - wait until 6.6 merge window for the change to propagate.
-> Until then we can't do much on our end, so I'll mark the patches as
-> deferred from netdev perspective.
+> Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
+> Suggested-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-I'm fine with the series going through netdev. Matt, please carry my ack
-on the next versions.
+Signed-off-by should be followed by Suggested-by ?
 
-> -- 
-> pw-bot: defer
+-Mukesh
 
--- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+> ---
+>   include/dt-bindings/power/qcom,rpmhpd.h | 30 ++++++++++++++++++++++++++++++
+>   1 file changed, 30 insertions(+)
+>   create mode 100644 include/dt-bindings/power/qcom,rpmhpd.h
+> 
+> diff --git a/include/dt-bindings/power/qcom,rpmhpd.h b/include/dt-bindings/power/qcom,rpmhpd.h
+> new file mode 100644
+> index 0000000..7c201a6
+> --- /dev/null
+> +++ b/include/dt-bindings/power/qcom,rpmhpd.h
+> @@ -0,0 +1,30 @@
+> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
+> +/*
+> + * Copyright (c) 2023, Qualcomm Innovation Center, Inc. All rights reserved.
+> + */
+> +
+> +#ifndef _DT_BINDINGS_POWER_QCOM_RPMHPD_H
+> +#define _DT_BINDINGS_POWER_QCOM_RPMHPD_H
+> +
+> +/* Generic RPMH Power Domain Indexes */
+> +#define RPMHPD_CX               0
+> +#define RPMHPD_CX_AO		1
+> +#define RPMHPD_EBI		2
+> +#define RPMHPD_GFX		3
+> +#define RPMHPD_LCX		4
+> +#define RPMHPD_LMX		5
+> +#define RPMHPD_MMCX		6
+> +#define RPMHPD_MMCX_AO		7
+> +#define RPMHPD_MX		8
+> +#define RPMHPD_MX_AO		9
+> +#define RPMHPD_MXC		10
+> +#define RPMHPD_MXC_AO		11
+> +#define RPMHPD_MSS              12
+> +#define RPMHPD_NSP		13
+> +#define RPMHPD_NSP0             14
+> +#define RPMHPD_NSP1             15
+> +#define RPMHPD_QPHY             16
+> +#define RPMHPD_DDR              17
+> +#define RPMHPD_XO               18
+> +
+> +#endif
