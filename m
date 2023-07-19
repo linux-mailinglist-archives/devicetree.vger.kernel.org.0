@@ -2,68 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 40B967591D5
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 11:43:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 741197591E0
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 11:45:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231178AbjGSJnJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jul 2023 05:43:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47456 "EHLO
+        id S229591AbjGSJpT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jul 2023 05:45:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48962 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230215AbjGSJml (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 05:42:41 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6164D10D4;
-        Wed, 19 Jul 2023 02:42:39 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 36J9gTHx076518;
-        Wed, 19 Jul 2023 04:42:29 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1689759749;
-        bh=s3JqLfrdGx1x8y1Vva++v2wD+YNm6mj7IFwgXaDdy/0=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=F/zcQ59V/vYP/7vJSl4/K+2ewiNhSUhaZAAOp5Sptry9+dTj+yzeJaM1hjaWwmZo9
-         7uHuPQZ5lk00XW+xlwhTFxMYrINRFwEA6KYw9btBNtCKRzPYd9iY+xiekjArNmB5WU
-         Yv5691lqT9/yxN5YW4Xhs/E8uzWY56sY7g/gt/DQ=
-Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 36J9gTV8017464
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 19 Jul 2023 04:42:29 -0500
-Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 19
- Jul 2023 04:42:28 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 19 Jul 2023 04:42:28 -0500
-Received: from [172.24.227.83] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 36J9gOlJ038474;
-        Wed, 19 Jul 2023 04:42:25 -0500
-Message-ID: <cc1c4212-df44-61ca-2e34-2c3cd3a565cf@ti.com>
-Date:   Wed, 19 Jul 2023 15:12:24 +0530
+        with ESMTP id S230313AbjGSJov (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 05:44:51 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A055B1BC1
+        for <devicetree@vger.kernel.org>; Wed, 19 Jul 2023 02:44:49 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-992b66e5affso913885666b.3
+        for <devicetree@vger.kernel.org>; Wed, 19 Jul 2023 02:44:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1689759888; x=1692351888;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=t+zwscRtF1C8UdZp1lsJTJMlqaQ1kF6S6ZnoWJPQIe4=;
+        b=cNMuWBL02/Kw4sbmmk+eAL7eFvL3AsJH5l87SbDvYTaR3lZ8GbTuwlSOu06w+Dtp+N
+         IOqvNXq7ed/rqgX7FFJxI7h2XGwcvCsXIEOHKGmJeQJz2gZwEsJ5D33hPPHKGjyhAK5J
+         qa59/mjBKlgPrekvHk0uVzsezazoOGQRkf7WHPR19xFoEUXLuIWeat25kmEEG6NxedOh
+         l/mlyRFoq1/8fdkZwotNn6olkLPlDZNafFczCPBFUWszngER2lR3rA8wAhiolVLcD3EW
+         9gRUNGhgZ1cHamfa260S0Jf6UuZ8YSYMp+Cwu3xbvRioUc7s+Xy7MV8ry07IvMIX55I2
+         6Mfg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689759888; x=1692351888;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=t+zwscRtF1C8UdZp1lsJTJMlqaQ1kF6S6ZnoWJPQIe4=;
+        b=io2vPwMEbmGFCmZkXWkcCtzfS6Z0Gyk67p/7VIn0YAXFr8x/1brwuCcV9u6taeXU7l
+         cZcBI42b4cXBOXRokULCsnCfmU0yGcwynqo5bB0FLbTl9f3d7pzhH0ATjjnHrLvEu7+4
+         DxkzouSFOadNbeYrJ02JIPlGrU9831Fncj1dkhERUpBRFit3rmQk+Bro6maexUry47mo
+         DH+KLH3iCYhp2PIPZEzY9199dzrpOnXgFYrzLh7LhwPChB86KYM6RZM5n/zhQSe/tvaH
+         XLirU38g23l58uQZGsqQ2R8olqIoJT9TVzAJIEPlzEQ3wsMvjUxB+QuP5jf4xHRhi9Ak
+         8IXA==
+X-Gm-Message-State: ABy/qLZKegfKOUAhj9y9/CIAwkADbYDXIe9rM2nk4kd1NeUy8Bm7fxhY
+        EPo0ZK10Ewvx1und1fTKaGFP4g==
+X-Google-Smtp-Source: APBJJlEjZzNTxV645CJDPpCzpL6VTHIQnUiqJPrgZ8dUBC4SHxyVpiE0cRArjVL0tNUODm1v7HCtCQ==
+X-Received: by 2002:a17:906:151:b0:999:26f6:1579 with SMTP id 17-20020a170906015100b0099926f61579mr1411617ejh.35.1689759887827;
+        Wed, 19 Jul 2023 02:44:47 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id c8-20020a170906694800b0098d2261d189sm2140121ejs.19.2023.07.19.02.44.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 19 Jul 2023 02:44:47 -0700 (PDT)
+Message-ID: <44b50616-a6ee-76e4-21b8-3e39b1a2ccd1@linaro.org>
+Date:   Wed, 19 Jul 2023 11:44:45 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v2 1/2] arm64: dts: ti: k3-j721s2-main: Add main CPSW2G
- devicetree node
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v4 1/2] regulator: dt-bindings: rtq2208: Add Richtek
+ RTQ2208 SubPMIC
 Content-Language: en-US
-To:     Siddharth Vadapalli <s-vadapalli@ti.com>, <nm@ti.com>,
-        <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <afd@ti.com>
-CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>,
-        Ravi Gunasekaran <r-gunasekaran@ti.com>
-References: <20230710094328.1359377-1-s-vadapalli@ti.com>
- <20230710094328.1359377-2-s-vadapalli@ti.com>
-From:   Ravi Gunasekaran <r-gunasekaran@ti.com>
-In-Reply-To: <20230710094328.1359377-2-s-vadapalli@ti.com>
-Content-Type: text/plain; charset="UTF-8"
+To:     alina_yu@richtek.com, lgirdwood@gmail.com, broonie@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <1689758686-14409-1-git-send-email-alina_yu@richtek.com>
+ <1689758686-14409-2-git-send-email-alina_yu@richtek.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <1689758686-14409-2-git-send-email-alina_yu@richtek.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
         URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,111 +77,193 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 7/10/23 3:13 PM, Siddharth Vadapalli wrote:
-> From: Kishon Vijay Abraham I <kishon@ti.com>
+On 19/07/2023 11:24, alina_yu@richtek.com wrote:
+> From: alinayu <alina_yu@richtek.com>
 > 
-> TI's J721S2 SoC has a MAIN CPSW2G instance of the CPSW Ethernet Switch.
-> Add devicetree node for it.
+> Add bindings for Richtek RTQ2208 IC controlled SubPMIC
 > 
-> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
-> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+> Signed-off-by: Alina Yu <alina_yu@richtek.com>
 > ---
->  arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi | 69 ++++++++++++++++++++++
->  1 file changed, 69 insertions(+)
+> v4
+> - Modify filename to "richtek,rtq2208"
+> - Add more desciptions for "regulator-allowed-modes"
+> ---
+>  .../bindings/regulator/richtek,rtq2208.yaml        | 208 +++++++++++++++++++++
+>  1 file changed, 208 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/regulator/richtek,rtq2208.yaml
 > 
-> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
-> index ed79ab3a3271..4d0d27e7ca1b 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
-> @@ -51,6 +51,12 @@ usb_serdes_mux: mux-controller@0 {
->                         mux-reg-masks = <0x0 0x8000000>; /* USB0 to SERDES0 lane 1/3 mux */
->                 };
->  
-> +               phy_gmii_sel_cpsw: phy@34 {
-> +                       compatible = "ti,am654-phy-gmii-sel";
-> +                       reg = <0x34 0x4>;
-> +                       #phy-cells = <1>;
-> +               };
-> +
->                 serdes_ln_ctrl: mux-controller@80 {
->                         compatible = "mmio-mux";
->                         reg = <0x80 0x10>;
-> @@ -1039,6 +1045,69 @@ cpts@310d0000 {
->                 };
->         };
->  
-> +       main_cpsw: ethernet@c200000 {
-> +               compatible = "ti,j721e-cpsw-nuss";
-> +               reg = <0x00 0xc200000 0x00 0x200000>;
-> +               reg-names = "cpsw_nuss";
-> +               ranges = <0x0 0x0 0x0 0xc200000 0x0 0x200000>;
-> +               #address-cells = <2>;
-> +               #size-cells = <2>;
-> +               dma-coherent;
-> +               clocks = <&k3_clks 28 28>;
-> +               clock-names = "fck";
-> +               power-domains = <&k3_pds 28 TI_SCI_PD_EXCLUSIVE>;
-> +
-> +               dmas = <&main_udmap 0xc640>,
-> +                      <&main_udmap 0xc641>,
-> +                      <&main_udmap 0xc642>,
-> +                      <&main_udmap 0xc643>,
-> +                      <&main_udmap 0xc644>,
-> +                      <&main_udmap 0xc645>,
-> +                      <&main_udmap 0xc646>,
-> +                      <&main_udmap 0xc647>,
-> +                      <&main_udmap 0x4640>;
-> +               dma-names = "tx0", "tx1", "tx2", "tx3",
-> +                           "tx4", "tx5", "tx6", "tx7",
-> +                           "rx";
-> +
-> +               status = "disabled";
-> +
-> +               ethernet-ports {
-> +                       #address-cells = <1>;
-> +                       #size-cells = <0>;
-> +
-> +                       main_cpsw_port1: port@1 {
-> +                               reg = <1>;
-> +                               ti,mac-only;
-> +                               label = "port1";
-> +                               phys = <&phy_gmii_sel_cpsw 1>;
-> +                               status = "disabled";
-> +                       };
-> +               };
-> +
-> +               main_cpsw_mdio: mdio@f00 {
-> +                       compatible = "ti,cpsw-mdio","ti,davinci_mdio";
-> +                       reg = <0x00 0xf00 0x00 0x100>;
-> +                       #address-cells = <1>;
-> +                       #size-cells = <0>;
-> +                       clocks = <&k3_clks 28 28>;
-> +                       clock-names = "fck";
-> +                       bus_freq = <1000000>;
-> +                       status = "disabled";
-> +               };
-> +
-> +               cpts@3d000 {
-> +                       compatible = "ti,am65-cpts";
-> +                       reg = <0x00 0x3d000 0x00 0x400>;
-> +                       clocks = <&k3_clks 28 3>;
-> +                       clock-names = "cpts";
-> +                       interrupts-extended = <&gic500 GIC_SPI 21 IRQ_TYPE_LEVEL_HIGH>;
-> +                       interrupt-names = "cpts";
-> +                       ti,cpts-ext-ts-inputs = <4>;
-> +                       ti,cpts-periodic-outputs = <2>;
-> +               };
-> +       };
-> +
->         usbss0: cdns-usb@4104000 {
->                 compatible = "ti,j721e-usb";
->                 reg = <0x00 0x04104000 0x00 0x100>;
+> diff --git a/Documentation/devicetree/bindings/regulator/richtek,rtq2208.yaml b/Documentation/devicetree/bindings/regulator/richtek,rtq2208.yaml
+> new file mode 100644
+> index 0000000..6cc441f
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/regulator/richtek,rtq2208.yaml
+> @@ -0,0 +1,208 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/regulator/richtek,rtq2208-regulator.yaml#
+
+Please test the patch before sending.
+
+It does not look like you tested the bindings, at least after quick
+look. Please run `make dt_binding_check` (see
+Documentation/devicetree/bindings/writing-schema.rst for instructions).
+
+Also, one patchset version per day... give people time to review.
 
 
-Reviewed-by: Ravi Gunasekaran <r-gunasekaran@ti.com>
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Richtek RTQ2208 SubPMIC Regulator
+> +
+> +maintainers:
+> +  - Alina Yu <alina_yu@richtek.com>
+> +
+> +description: |
+> +  RTQ2208 is a highly integrated power converter that offers functional safety dual
+> +  multi-configurable synchronous buck converters and two LDOs.
+> +
+> +  Bucks support "regulator-allowed-modes" and "regulator-mode". The former defines the permitted
+> +  switching operation in normal mode; the latter defines the operation in suspend to RAM mode.
+> +
+> +  No matter the RTQ2208 is configured to normal or suspend to RAM mode, there are two switching
+> +  operation modes for all buck rails, automatic power saving mode (Auto mode) and forced continuous
+> +  conduction mode (FCCM).
+> +
+> +  The definition of modes is in the datasheet which is available in below link
+> +  and their meaning is::
+> +    0 - Auto mode for power saving, which reducing the switching frequency at light load condition
+> +    to maintain high frequency.
+> +    1 - FCCM to meet the strict voltage regulation accuracy, which keeping constant switching frequency.
+> +
+> +  Datasheet will be available soon at
+> +  https://www.richtek.com/assets/Products
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - richtek,rtq2208
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +    
+> +  richtek,mtp-sel:
+> +    type: boolean
+> +    description:
+> +      vout register selection based on this boolean value.
+> +      false - Using DVS0 register setting to adjust vout
+> +      true - Using DVS1 register setting to adjust vout
+> +
+> +  regulators:
+> +    type: object
+> +
+> +    patternProperties:
+> +      "^buck-[a-h]$":
+> +        type: object
+> +        $ref: regulator.yaml#
+> +        unevaluatedProperties: false
+> +        description:
+> +          description for buck-[a-h] regulator.
+> +
+> +        properties:
+> +          regulator-allowed-modes:
+> +            description:
+> +              two buck modes in different switching accuracy.
+> +              0 - Auto mode
+> +              1 - FCCM
+> +            items:
+> +              enum: [0, 1]
+> +
+> +          regulator-mode:
+> +            enum: [0, 1]
+> +            description:
+> +              describe buck initial operating mode in suspend state.
 
--- 
-Regards,
-Ravi
+There is no such property on this level. Aren't you mixing initial one?
+
+> +
+> +      "^ldo[1-2]$":
+> +        type: object
+> +        $ref: regulator.yaml#
+
+Missing unevaluatedProperties: false.
+
+> +        description:
+> +          regulator description for ldo[1-2].
+> +
+> +        properties:
+> +          regulator-compatible:
+> +            pattern: "^LDO[1-2]$"
+> +
+> +          richtek,fixed-uV:
+> +            $ref: "/schemas/types.yaml#/definitions/uint32"
+
+This is pointed out by schema, so standard text:
+It does not look like you tested the bindings, at least after quick
+look. Please run `make dt_binding_check` (see
+Documentation/devicetree/bindings/writing-schema.rst for instructions).
+Maybe you need to update your dtschema and yamllint.
+
+> +            enum: [ 900000, 1200000, 1800000, 3300000 ]
+> +            description:
+> +              the fixed voltage in micro volt which is decided at the factory.
+
+I don't understand this property. Why this is different from min/max
+microvolt? Plus, you use incorrect unit suffix.
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - regulators
+> +
+> +unevaluatedProperties: false
+
+Instead: additionalProperties: false
+
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    i2c {
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +
+> +      pmic@10 {
+> +        compatible = "richtek,rtq2208";
+> +        reg = <0x10>;
+> +        interrupts-extended = <&gpio26 0 IRQ_TYPE_LEVEL_LOW>;
+> +        richtek,mtp-sel;
+> +
+> +        regulators {
+> +         buck-a {
+
+Wrong indentation. If you use 2 spaces, use it consistently.
+
+> +            regulator-min-microvolt = <400000>;
+> +            regulator-max-microvolt = <2050000>;
+> +            regulator-allowed-modes = <0 1>;
+
+...
+
+> +          };
+> +         ldo2 {
+> +            regulator-always-on;
+
+And three spaces here?
+
+> +            richtek,fixed-uV = <3300000>;
+> +            regulator-state-mem {
+> +              regulator-on-in-suspend;
+> +            };
+> +          };
+> +        };
+> +      };
+> +    };
+
+Best regards,
+Krzysztof
+
