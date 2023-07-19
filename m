@@ -2,133 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5250F758DD5
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 08:33:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 45141758DDE
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 08:34:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229935AbjGSGdg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jul 2023 02:33:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56040 "EHLO
+        id S229774AbjGSGel (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jul 2023 02:34:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57206 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230086AbjGSGde (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 02:33:34 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF88E1FC0;
-        Tue, 18 Jul 2023 23:33:30 -0700 (PDT)
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36J6JvJV015401;
-        Wed, 19 Jul 2023 06:33:21 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=ID2LjzaUM2mPD4gOzhPYXzqyBlwYA/lCIfvD10k4Sxo=;
- b=X/koodaJIcPByRLwKyIPNYOa3TIRVKQHlpaKcq5zYE2LJco1aF7VUjGeoElhC+bxCDeQ
- Hn6eVVn/6kN9ECe2nxROVLF2qPCMawmrhLAKFvpnRYeT+YmjOzT9jZVkopIWwNpY7Eu5
- UIeVIkKsqG7dn3NoFGglXwLk/W1eceCWEKRCM5FQhpEs+Zb8q5rrZZIHEl/YVMr0SQy6
- QJLa47/dkIJDjbslhqJmjTgrfHZpNZN0P0OJ8quUW5l2SUkAvzOpl69quBWUmngp+aFc
- Y5XBOOpo0fRx0r7Uy3qYHk0t0PY7c3yi3GQC8Sp4yvfjYABgRWwHkc4xojEEhhyYy80X Ng== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3rwnrrjmwe-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 19 Jul 2023 06:33:20 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 36J6XJ00024904
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 19 Jul 2023 06:33:19 GMT
-Received: from [10.217.219.216] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Tue, 18 Jul
- 2023 23:33:14 -0700
-Message-ID: <a3bb6e88-9b0f-c504-df35-96892395f188@quicinc.com>
-Date:   Wed, 19 Jul 2023 12:03:11 +0530
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.1
-Subject: Re: [PATCH v9 3/4] arm: dts: qcom: sdx55: Add CPU PCIe interconnect
- path
-Content-Language: en-US
-To:     Manivannan Sadhasivam <mani@kernel.org>
-CC:     <manivannan.sadhasivam@linaro.org>, <helgaas@kernel.org>,
-        <linux-pci@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <quic_vbadigan@quicinc.com>,
-        <quic_nitegupt@quicinc.com>, <quic_skananth@quicinc.com>,
-        <quic_ramkri@quicinc.com>, <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        with ESMTP id S229610AbjGSGel (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 02:34:41 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66A2A1FC0;
+        Tue, 18 Jul 2023 23:34:40 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id E7D93611FC;
+        Wed, 19 Jul 2023 06:34:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E8C1C433CA;
+        Wed, 19 Jul 2023 06:34:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1689748479;
+        bh=DC++SzU0ArlXkyCLBy3GqoRal30WHgBs6Gr4teUpvQg=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=GOave3yKZ/oNcWg1QFZNWsCTTNRjXlkVdqycAOo7sWfK4ZnwlxBLXyIgLo+ZPhJII
+         oPCLH1KPFqTkqOFyzAm2WFVh8/IFza1J4TnPbvP0HCQiOZJYnW40VwJFdUOCaN3emc
+         yzujYaXnso6Pu0c5um9QpUNb3Ot0nCcDdqw1kPMpxl1NEE06FzNxcIZzyPDQaYUrn0
+         vd9RoivHOUinEAxB+wH7Xf1zBJf0E06xKA2blm8oksurfOrmAdPvei4Q/8+Sm5uz9T
+         vlvyD23nkVcARGxOYkAiYwSnMdFotTrZJk/I9XY1YIgI6qDAaLZYOt+JZS9Y+dZ+QR
+         +VHLeRWElJBew==
+Date:   Wed, 19 Jul 2023 14:34:25 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Frank Li <Frank.Li@nxp.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Peng Fan <peng.fan@nxp.com>, Chester Lin <clin@suse.com>,
+        Li Yang <leoyang.li@nxp.com>, Zhou Peng <eagle.zhou@nxp.com>,
+        Pierre Gondois <pierre.gondois@arm.com>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-References: <1689693645-28254-1-git-send-email-quic_krichai@quicinc.com>
- <1689693645-28254-4-git-send-email-quic_krichai@quicinc.com>
- <20230719044118.GC5990@thinkpad>
-From:   Krishna Chaitanya Chundru <quic_krichai@quicinc.com>
-In-Reply-To: <20230719044118.GC5990@thinkpad>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: iNjrWpmRU89S4gNbLW-v7o77PXcsuYBX
-X-Proofpoint-ORIG-GUID: iNjrWpmRU89S4gNbLW-v7o77PXcsuYBX
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-07-19_03,2023-07-18_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 phishscore=0
- malwarescore=0 suspectscore=0 adultscore=0 spamscore=0 lowpriorityscore=0
- mlxlogscore=949 priorityscore=1501 impostorscore=0 mlxscore=0 bulkscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2306200000
- definitions=main-2307190060
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
+Subject: Re: [PATCH v2 1/3] arm64: dts: imx8qm: add cpu frequency table
+Message-ID: <20230719063425.GE151430@dragon>
+References: <20230713204932.1591255-1-Frank.Li@nxp.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230713204932.1591255-1-Frank.Li@nxp.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Jul 13, 2023 at 04:49:29PM -0400, Frank Li wrote:
+> Add A53 and A72 opp_table.
+> 
+> Reviewed-by: Peng Fan <peng.fan@nxp.com>
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 
-On 7/19/2023 10:11 AM, Manivannan Sadhasivam wrote:
-> On Tue, Jul 18, 2023 at 08:50:44PM +0530, Krishna chaitanya chundru wrote:
->> Add cpu-pcie interconnect path to sdx65 platform.
-> sdx55 and please mention "PCIe RC". Perhaps you should also add "missing"?
->
-> - Mani
-
-I will reactify it.
-
-for "PCIe RC" you mean "PCIe EP" as this endpoint node
-
--KC
-
-
->
->> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
->> ---
->>   arch/arm/boot/dts/qcom/qcom-sdx55.dtsi | 5 +++--
->>   1 file changed, 3 insertions(+), 2 deletions(-)
->>
->> diff --git a/arch/arm/boot/dts/qcom/qcom-sdx55.dtsi b/arch/arm/boot/dts/qcom/qcom-sdx55.dtsi
->> index df3cd9c..a7c0c26 100644
->> --- a/arch/arm/boot/dts/qcom/qcom-sdx55.dtsi
->> +++ b/arch/arm/boot/dts/qcom/qcom-sdx55.dtsi
->> @@ -422,8 +422,9 @@
->>   			interrupt-names = "global",
->>   					  "doorbell";
->>   
->> -			interconnects = <&system_noc MASTER_PCIE &mc_virt SLAVE_EBI_CH0>;
->> -			interconnect-names = "pcie-mem";
->> +			interconnects = <&system_noc MASTER_PCIE &mc_virt SLAVE_EBI_CH0>,
->> +					<&mem_noc MASTER_AMPSS_M0 &system_noc SLAVE_PCIE_0>;
->> +			interconnect-names = "pcie-mem", "cpu-pcie";
->>   
->>   			resets = <&gcc GCC_PCIE_BCR>;
->>   			reset-names = "core";
->> -- 
->> 2.7.4
->>
+Applied all, thanks!
