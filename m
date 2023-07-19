@@ -2,153 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D1D1759166
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 11:19:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B789875916C
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 11:20:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231310AbjGSJTk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jul 2023 05:19:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35092 "EHLO
+        id S231332AbjGSJUv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jul 2023 05:20:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35652 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230297AbjGSJTj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 05:19:39 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A4A2188
-        for <devicetree@vger.kernel.org>; Wed, 19 Jul 2023 02:19:38 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-992f15c36fcso913972366b.3
-        for <devicetree@vger.kernel.org>; Wed, 19 Jul 2023 02:19:37 -0700 (PDT)
+        with ESMTP id S230352AbjGSJUu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 05:20:50 -0400
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F90F188
+        for <devicetree@vger.kernel.org>; Wed, 19 Jul 2023 02:20:48 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-51f90f713b2so10007787a12.1
+        for <devicetree@vger.kernel.org>; Wed, 19 Jul 2023 02:20:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689758376; x=1692350376;
+        d=linaro.org; s=google; t=1689758446; x=1692350446;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=UCTb0CeiLFm4PY3y7pzoV9K1yjymvqhL/I91kkBD0gk=;
-        b=GWSvjEvsOf2B2KiLJDpvNGT6CecvzOd5fdjr0x22h4rhHISTdqQ3Uv83iIh7woXUDN
-         gEMh+Dulw6y8+6B1g0wGto1ed2p8BQ2o69pXeYaUD0maQ52Ch6KBvqK7zqQnzv7oT89w
-         F9Tg4S9+16YeOFiKDtO1JCwHl1oO/x8+kCX7hsNRJQbtYeSZdxL0gNz4crRXG/NslkK+
-         TZ7uOrnmTRr1KJ7qgzOuNnm8bBSVWrZHX3romchdnlsCE3v4c2s+GPPTHJ/7t1Glpocu
-         UuZO89iOHm5l2O9PLhaFNLlym5rIEgee0SrYhzk7qiTFDTZemLJ8t5SzzWeNGmDy9ADJ
-         l0Tg==
+        bh=hjy/zInodwF90mdzVXilFr3NozHNXzuS79ZDMdnFQX8=;
+        b=i60Aoe6sKlbaJHj69t8McRqXSs3vrTLBic75AAkoxvunUJCfshvocoWFEHsGRbokJq
+         mU1gBlWkbkqVWHO8s74rpAEvgvPLdCmJP1AKQKNlRG+qP/wo/HJCl4coS8BvfUcbRBBo
+         9Z07l1/JUXltef/DT4FqWg07hsiJa7UhQvbmfLrMgUPMrmXtPrOnYByV+S3Zr3IOR1lZ
+         vWOkQ4aDmEvD06DnFbaRHglU4D7TD8PhQ16ahw2GX6JcQWHbbqPMgIqB7IIbD7c4mnEb
+         Tn5RP1JL7u42IUn7YuYi+MIt/luZFQsA7T1YYsdTRZcBG989WMjSLa38N5esko7O+dp2
+         pVMg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689758376; x=1692350376;
+        d=1e100.net; s=20221208; t=1689758446; x=1692350446;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=UCTb0CeiLFm4PY3y7pzoV9K1yjymvqhL/I91kkBD0gk=;
-        b=d8lNjM9u9TPw6OxXgLfVMv5UY0MdR5IoU1L5+uzwlyecT3+k5pPH9Ot38fuUTPBxyI
-         /cYyzdpewmV/x5tc60MfZeEq7TD5raCe8tJ2bXoW5X5NWjZjSBMwjGsiEXJNW7WEPwMf
-         wvjY5mF6CyEHMR4x32WXdfxLuAIHwiOmsvr+UUl00K1uHcoz4PTwJj83DJFdHSTx7pzt
-         TUQyZXu1+JEqXBM65KpG07qaCt4iafiCKustNt//qe9PVEweIspJDVYRiYf6ptbtmbgo
-         kWzuhhhgPKanMzzp8aMBxTIZsQfqaUVQ7G5Ky7yuskuvSF5GR3sOoYX6JYtuVpFU/NkY
-         4KFw==
-X-Gm-Message-State: ABy/qLaS58vzHKqPwS+gXMprjpB4T4m+nI2WywT+3YWDJBLnwqvarObH
-        xz4EOgtCyOobDs1RYGiTsF0Mqw==
-X-Google-Smtp-Source: APBJJlEuanYoSn4+AGZxQuKVURtBEky1XwbGnKUFmzYTrx1uRuShWIo9iE/YUUZPDtMFtY0Lvpj90A==
-X-Received: by 2002:a17:906:db:b0:994:1eb4:6898 with SMTP id 27-20020a17090600db00b009941eb46898mr2154381eji.9.1689758376500;
-        Wed, 19 Jul 2023 02:19:36 -0700 (PDT)
+        bh=hjy/zInodwF90mdzVXilFr3NozHNXzuS79ZDMdnFQX8=;
+        b=b/D9uKYIALcwNeTg5URfKdkmPOJDwYlPlk43yhxoNl2rPD4V7R7uSo7a/XdXFrCGTD
+         qYobXplfG61JPFVy2IFYXkT3tY9fuK3muEl5je7YaR99fB/H6VpeyoejS4TgA2TdfdQz
+         sqjpMyW3a6QUZd53R++6Pp+iq9AuGemI4iIm90OnTzYy3RsnC4ldcMVcyh1sO9BPHBt7
+         wcRgN7tSHHD1BdKmVUTpjzFRf59ywBkFNv0MNOj2p/DgyXXXRJcPdZzjQjQSvzqqzMvh
+         AwvYkiRlinUQ/1gCvaCHK50/clsTvSISaTTEgGJtLurR7ujT6t2NrewecvHZ3pqoblMN
+         Y7cQ==
+X-Gm-Message-State: ABy/qLbmbHS7fakouuK5i1ZzOF+QKtYKjhQd9r4EmFtQK7ooy5aYfnoT
+        Clf07mP4LTFijeTG6SEiZfVtvg==
+X-Google-Smtp-Source: APBJJlE02NNgXcHWDwx2eOLlrlNdSXvDfll7mulXd4JytQ4YuPnk966r5PDOBQ03j0vWixrMvkCcOw==
+X-Received: by 2002:aa7:c148:0:b0:51d:d3d4:d02f with SMTP id r8-20020aa7c148000000b0051dd3d4d02fmr2273113edp.8.1689758446473;
+        Wed, 19 Jul 2023 02:20:46 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id ks20-20020a170906f85400b009929c09abdfsm2108209ejb.70.2023.07.19.02.19.34
+        by smtp.gmail.com with ESMTPSA id d1-20020a056402516100b00521a3d8474csm2431520ede.57.2023.07.19.02.20.44
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 19 Jul 2023 02:19:36 -0700 (PDT)
-Message-ID: <b03be798-6fd6-71ea-7546-9f1dab9b65cb@linaro.org>
-Date:   Wed, 19 Jul 2023 11:19:34 +0200
+        Wed, 19 Jul 2023 02:20:46 -0700 (PDT)
+Message-ID: <56ef499c-d47a-19a1-2542-5e8a7c86d510@linaro.org>
+Date:   Wed, 19 Jul 2023 11:20:42 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
-Subject: Re: [PATCH 7/7] ARM: dts: exynos: k3g: Add display support
+Subject: Re: [PATCH 1/3] usb: dwc2: Add platform specific data for Intel
+ Stratix10 platform
 Content-Language: en-US
-To:     Markuss Broks <markuss.broks@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230716220644.22158-1-markuss.broks@gmail.com>
- <20230716220644.22158-9-markuss.broks@gmail.com>
+To:     "Li, Meng" <Meng.Li@windriver.com>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "dinguyen@kernel.org" <dinguyen@kernel.org>,
+        "hminas@synopsys.com" <hminas@synopsys.com>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20230719025509.3007986-1-Meng.Li@windriver.com>
+ <20230719025509.3007986-2-Meng.Li@windriver.com>
+ <ec93a939-883d-5778-2f32-69eb370c9768@linaro.org>
+ <PH0PR11MB519152C26157460397FA73E2F139A@PH0PR11MB5191.namprd11.prod.outlook.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230716220644.22158-9-markuss.broks@gmail.com>
+In-Reply-To: <PH0PR11MB519152C26157460397FA73E2F139A@PH0PR11MB5191.namprd11.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/07/2023 00:05, Markuss Broks wrote:
-> This device has Samsung S6E3FA2 DSI display installed,
-
-Full stop.
-
-> this adds the device-tree bindings for it but two things
-
-Please do not use "This commit/patch", but imperative mood. See longer
-explanation here:
-https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
-
-> prevent it from being fully usable: one is a bug in Exynos5
-> DSI subsystem, which I believe is not tested properly;
-
-Full stop.
-
-> the bug occurs randomly regardless of any variables, but it
-> seems to occur less if the Exynos DRM kernel module is loaded
-> later in the kernel boot process (the bug concludes in display
-> filling with static) ; another issue is that efforts
-
-Full stop.
-
-> to support the S6E3FA2 panel are still going on, and the driver
-> for the panel is not in the kernel tree yet.
+On 19/07/2023 11:10, Li, Meng wrote:
 > 
-> Signed-off-by: Markuss Broks <markuss.broks@gmail.com>
-> ---
->  arch/arm/boot/dts/exynos5422-samsung-k3g.dts | 41 ++++++++++++++++++++
->  1 file changed, 41 insertions(+)
 > 
-> diff --git a/arch/arm/boot/dts/exynos5422-samsung-k3g.dts b/arch/arm/boot/dts/exynos5422-samsung-k3g.dts
-> index e019b630db94..954de392afbf 100644
-> --- a/arch/arm/boot/dts/exynos5422-samsung-k3g.dts
-> +++ b/arch/arm/boot/dts/exynos5422-samsung-k3g.dts
-> @@ -203,6 +203,42 @@ &cpu4 {
->  	cpu-supply = <&buck6_reg>;
->  };
->  
-> +&mixer {
-> +	status = "okay";
-> +};
-> +
-> +&fimd {
+>> -----Original Message-----
+>> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> Sent: Wednesday, July 19, 2023 2:40 PM
+>> To: Li, Meng <Meng.Li@windriver.com>; gregkh@linuxfoundation.org;
+>> robh+dt@kernel.org; krzysztof.kozlowski+dt@linaro.org; conor+dt@kernel.org;
+>> dinguyen@kernel.org; hminas@synopsys.com; linux-usb@vger.kernel.org;
+>> devicetree@vger.kernel.org
+>> Cc: linux-kernel@vger.kernel.org
+>> Subject: Re: [PATCH 1/3] usb: dwc2: Add platform specific data for Intel Stratix10
+>> platform
+>>
+>> CAUTION: This email comes from a non Wind River email account!
+>> Do not click links or open attachments unless you recognize the sender and
+>> know the content is safe.
+>>
+>> On 19/07/2023 04:55, Meng Li wrote:
+>>> Intel Stratix10 is very the same with Agilex platform, the DWC2 IP on
+>>> the Stratix platform also does not support clock-gating. So, refer to
+>>> commit 3d8d3504d233("usb: dwc2: Add platform specific data for Intel's
+>>> Agilex"), add platform specific data for Intel Stratix10 platform.
+>>>
+>>> Signed-off-by: Meng Li <Meng.Li@windriver.com>
+>>> ---
+>>>  drivers/usb/dwc2/params.c | 2 ++
+>>>  1 file changed, 2 insertions(+)
+>>>
+>>> diff --git a/drivers/usb/dwc2/params.c b/drivers/usb/dwc2/params.c
+>>> index 8eab5f38b110..3d085ae1ecd8 100644
+>>> --- a/drivers/usb/dwc2/params.c
+>>> +++ b/drivers/usb/dwc2/params.c
+>>> @@ -267,6 +267,8 @@ const struct of_device_id dwc2_of_match_table[] = {
+>>>         .data = dwc2_set_stm32mp15_hsotg_params },
+>>>       { .compatible = "intel,socfpga-agilex-hsotg",
+>>>         .data = dwc2_set_socfpga_agilex_params },
+>>> +     { .compatible = "intel,socfpga-stratix10-hsotg",
+>>> +       .data = dwc2_set_socfpga_agilex_params },
+>>
+>> NAK. I already wrote why.
+> 
+> If I don't add the SoC specific compatible entry, how I use to the specific data on Stratix10 platform.
 
-Mixed order.
+You do not have match data specific to Stratix10. I explained already
+that I expect them to be compatible. I gave you example how it is done.
+What is unclear in that example?
 
-> +	status = "okay";
-> +	samsung,invert-vclk;
-> +};
-> +
-> +&dsi {
-> +	status = "okay";
-> +
-> +	samsung,pll-clock-frequency = <24000000>;
-> +	samsung,burst-clock-frequency = <500000000>;
-> +	samsung,esc-clock-frequency = <16000000>;
-> +
-> +	vddcore-supply = <&ldo8_reg>;
-> +	vddio-supply = <&ldo10_reg>;
-> +
-> +	#address-cells = <1>;
-> +	#size-cells = <0>;
-> +
-> +	panel@0 {
-> +		reg = <0>;
-> +		compatible = "samsung,s6e3fa2";
-
-Compatible is always the first property. Second is reg.
-
+> If you think the new SoC specific compatible entry is not necessary, the patch2 also has issue.
 
 
 Best regards,
