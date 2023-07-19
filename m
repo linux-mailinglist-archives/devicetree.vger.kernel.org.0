@@ -2,147 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 24C457595FC
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 14:54:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 128AA759605
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 14:57:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229997AbjGSMyj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jul 2023 08:54:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34062 "EHLO
+        id S229732AbjGSM5b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jul 2023 08:57:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35846 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229535AbjGSMyj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 08:54:39 -0400
-Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 306C010B;
-        Wed, 19 Jul 2023 05:54:38 -0700 (PDT)
-Received: from francesco-nb.pivistrello.it (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
-        by mail11.truemail.it (Postfix) with ESMTPA id 109AB209AC;
-        Wed, 19 Jul 2023 14:54:36 +0200 (CEST)
-From:   Francesco Dolcini <francesco@dolcini.it>
-To:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Cc:     Francesco Dolcini <francesco.dolcini@toradex.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
+        with ESMTP id S229480AbjGSM5a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 08:57:30 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FD6211C
+        for <devicetree@vger.kernel.org>; Wed, 19 Jul 2023 05:57:29 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1qM6k8-0001Bb-Kg; Wed, 19 Jul 2023 14:57:24 +0200
+Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1qM6k7-0001Kp-NP; Wed, 19 Jul 2023 14:57:23 +0200
+Date:   Wed, 19 Jul 2023 14:57:23 +0200
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Francesco Dolcini <francesco@dolcini.it>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
         Fabio Estevam <festevam@gmail.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
         NXP Linux Team <linux-imx@nxp.com>,
-        Mark Brown <broonie@kernel.org>
-Subject: [PATCH v1 2/2] arm64: dts: freescale: verdin-imx8mp: dev: add sound card
-Date:   Wed, 19 Jul 2023 14:54:30 +0200
-Message-Id: <20230719125430.249644-3-francesco@dolcini.it>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230719125430.249644-1-francesco@dolcini.it>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Francesco Dolcini <francesco.dolcini@toradex.com>,
+        Shawn Guo <shawnguo@kernel.org>
+Subject: Re: [PATCH v1 1/2] arm64: dts: freescale: verdin-imx8mp: dahlia: add
+ sound card
+Message-ID: <20230719125723.34e5zrq2oyibqbeo@pengutronix.de>
 References: <20230719125430.249644-1-francesco@dolcini.it>
+ <20230719125430.249644-2-francesco@dolcini.it>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230719125430.249644-2-francesco@dolcini.it>
+User-Agent: NeoMutt/20180716
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Francesco Dolcini <francesco.dolcini@toradex.com>
+On 23-07-19, Francesco Dolcini wrote:
+> From: Francesco Dolcini <francesco.dolcini@toradex.com>
+> 
+> Add WM8904 based analog sound card to Dahlia carrier board.
+> 
+> Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
+> ---
+>  .../dts/freescale/imx8mp-verdin-dahlia.dtsi   | 56 ++++++++++++++++++-
+>  1 file changed, 53 insertions(+), 3 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-verdin-dahlia.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-verdin-dahlia.dtsi
+> index 56b0e4b865c9..7e9e4b13b5c5 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mp-verdin-dahlia.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mp-verdin-dahlia.dtsi
+> @@ -3,7 +3,36 @@
+>   * Copyright 2022 Toradex
+>   */
+>  
+> -/* TODO: Audio Codec */
+> +/ {
+> +	sound {
+> +		compatible = "simple-audio-card";
+> +		simple-audio-card,bitclock-master = <&codec_dai>;
+> +		simple-audio-card,format = "i2s";
+> +		simple-audio-card,frame-master = <&codec_dai>;
+> +		simple-audio-card,mclk-fs = <256>;
+> +		simple-audio-card,name = "imx8mp-wm8904";
+> +		simple-audio-card,routing =
+> +			"Headphone Jack", "HPOUTL",
+> +			"Headphone Jack", "HPOUTR",
+> +			"IN2L", "Line In Jack",
+> +			"IN2R", "Line In Jack",
+> +			"Headphone Jack", "MICBIAS",
+> +			"IN1L", "Headphone Jack";
+> +		simple-audio-card,widgets =
+> +			"Microphone", "Headphone Jack",
+> +			"Headphone", "Headphone Jack",
+> +			"Line", "Line In Jack";
+> +
+> +		codec_dai: simple-audio-card,codec {
+> +			clocks = <&audio_blk_ctrl IMX8MP_CLK_AUDIOMIX_SAI1_MCLK1>;
 
-Add NAU8822 based analog sound card to Development carrier board.
+Nit: since the audio-codec node is using the same clock you can drop it
+here.
 
-Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
----
- .../boot/dts/freescale/imx8mp-verdin-dev.dtsi | 55 +++++++++++++++++--
- 1 file changed, 51 insertions(+), 4 deletions(-)
+Regards,
+  Marco
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-verdin-dev.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-verdin-dev.dtsi
-index bdfdd4c782f1..a509b2b7fa85 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-verdin-dev.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-verdin-dev.dtsi
-@@ -4,8 +4,6 @@
-  */
- 
- / {
--	/* TODO: Audio Codec */
--
- 	reg_eth2phy: regulator-eth2phy {
- 		compatible = "regulator-fixed";
- 		enable-active-high;
-@@ -17,6 +15,41 @@ reg_eth2phy: regulator-eth2phy {
- 		startup-delay-us = <200000>;
- 		vin-supply = <&reg_3p3v>;
- 	};
-+
-+	sound {
-+		compatible = "simple-audio-card";
-+		simple-audio-card,bitclock-master = <&codec_dai>;
-+		simple-audio-card,format = "i2s";
-+		simple-audio-card,frame-master = <&codec_dai>;
-+		simple-audio-card,mclk-fs = <256>;
-+		simple-audio-card,name = "imx8mp-nau8822";
-+		simple-audio-card,routing =
-+			"Headphones", "LHP",
-+			"Headphones", "RHP",
-+			"Speaker", "LSPK",
-+			"Speaker", "RSPK",
-+			"Line Out", "AUXOUT1",
-+			"Line Out", "AUXOUT2",
-+			"LAUX", "Line In",
-+			"RAUX", "Line In",
-+			"LMICP", "Mic In",
-+			"RMICP", "Mic In";
-+		simple-audio-card,widgets =
-+			"Headphones", "Headphones",
-+			"Line Out", "Line Out",
-+			"Speaker", "Speaker",
-+			"Microphone", "Mic In",
-+			"Line", "Line In";
-+
-+		codec_dai: simple-audio-card,codec {
-+			clocks = <&audio_blk_ctrl IMX8MP_CLK_AUDIOMIX_SAI1_MCLK1>;
-+			sound-dai = <&nau8822_1a>;
-+		};
-+
-+		simple-audio-card,cpu {
-+			sound-dai = <&sai1>;
-+		};
-+	};
- };
- 
- &backlight {
-@@ -88,7 +121,14 @@ &i2c3 {
- &i2c4 {
- 	status = "okay";
- 
--	/* TODO: Audio Codec */
-+	/* Audio Codec */
-+	nau8822_1a: audio-codec@1a {
-+		compatible = "nuvoton,nau8822";
-+		reg = <0x1a>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_sai1>;
-+		#sound-dai-cells = <0>;
-+	};
- };
- 
- /* Verdin PCIE_1 */
-@@ -119,7 +159,14 @@ &reg_usdhc2_vmmc {
- 	vin-supply = <&reg_3p3v>;
- };
- 
--/* TODO: Verdin I2C_1 with Audio Codec */
-+/* Verdin I2S_1 */
-+&sai1 {
-+	assigned-clocks = <&clk IMX8MP_CLK_SAI1>;
-+	assigned-clock-parents = <&clk IMX8MP_AUDIO_PLL1_OUT>;
-+	assigned-clock-rates = <24576000>;
-+	fsl,sai-mclk-direction-output;
-+	status = "okay";
-+};
- 
- /* Verdin UART_1, connector X50 through RS485 transceiver */
- &uart1 {
--- 
-2.25.1
-
+> +			sound-dai = <&wm8904_1a>;
+> +		};
+> +
+> +		simple-audio-card,cpu {
+> +			sound-dai = <&sai1>;
+> +		};
+> +	};
+> +};
+>  
+>  &backlight {
+>  	power-supply = <&reg_3p3v>;
+> @@ -64,7 +93,21 @@ &i2c3 {
+>  &i2c4 {
+>  	status = "okay";
+>  
+> -	/* TODO: Audio Codec */
+> +	/* Audio Codec */
+> +	wm8904_1a: audio-codec@1a {
+> +		compatible = "wlf,wm8904";
+> +		reg = <0x1a>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_sai1>;
+> +		#sound-dai-cells = <0>;
+> +		clocks = <&audio_blk_ctrl IMX8MP_CLK_AUDIOMIX_SAI1_MCLK1>;
+> +		clock-names = "mclk";
+> +		AVDD-supply = <&reg_1p8v>;
+> +		CPVDD-supply = <&reg_1p8v>;
+> +		DBVDD-supply = <&reg_1p8v>;
+> +		DCVDD-supply = <&reg_1p8v>;
+> +		MICVDD-supply = <&reg_1p8v>;
+> +	};
+>  };
+>  
+>  /* Verdin PCIE_1 */
+> @@ -95,7 +138,14 @@ &reg_usdhc2_vmmc {
+>  	vin-supply = <&reg_3p3v>;
+>  };
+>  
+> -/* TODO: Verdin I2S_1 */
+> +/* Verdin I2S_1 */
+> +&sai1 {
+> +	assigned-clocks = <&clk IMX8MP_CLK_SAI1>;
+> +	assigned-clock-parents = <&clk IMX8MP_AUDIO_PLL1_OUT>;
+> +	assigned-clock-rates = <24576000>;
+> +	fsl,sai-mclk-direction-output;
+> +	status = "okay";
+> +};
+>  
+>  /* Verdin UART_1 */
+>  &uart1 {
+> -- 
+> 2.25.1
+> 
+> 
+> 
