@@ -2,75 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 45141758DDE
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 08:34:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0FDAD758DEF
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 08:37:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229774AbjGSGel (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jul 2023 02:34:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57206 "EHLO
+        id S230502AbjGSGhB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jul 2023 02:37:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59332 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229610AbjGSGel (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 02:34:41 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66A2A1FC0;
-        Tue, 18 Jul 2023 23:34:40 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id E7D93611FC;
-        Wed, 19 Jul 2023 06:34:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E8C1C433CA;
-        Wed, 19 Jul 2023 06:34:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689748479;
-        bh=DC++SzU0ArlXkyCLBy3GqoRal30WHgBs6Gr4teUpvQg=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=GOave3yKZ/oNcWg1QFZNWsCTTNRjXlkVdqycAOo7sWfK4ZnwlxBLXyIgLo+ZPhJII
-         oPCLH1KPFqTkqOFyzAm2WFVh8/IFza1J4TnPbvP0HCQiOZJYnW40VwJFdUOCaN3emc
-         yzujYaXnso6Pu0c5um9QpUNb3Ot0nCcDdqw1kPMpxl1NEE06FzNxcIZzyPDQaYUrn0
-         vd9RoivHOUinEAxB+wH7Xf1zBJf0E06xKA2blm8oksurfOrmAdPvei4Q/8+Sm5uz9T
-         vlvyD23nkVcARGxOYkAiYwSnMdFotTrZJk/I9XY1YIgI6qDAaLZYOt+JZS9Y+dZ+QR
-         +VHLeRWElJBew==
-Date:   Wed, 19 Jul 2023 14:34:25 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Frank Li <Frank.Li@nxp.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Peng Fan <peng.fan@nxp.com>, Chester Lin <clin@suse.com>,
-        Li Yang <leoyang.li@nxp.com>, Zhou Peng <eagle.zhou@nxp.com>,
-        Pierre Gondois <pierre.gondois@arm.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
-Subject: Re: [PATCH v2 1/3] arm64: dts: imx8qm: add cpu frequency table
-Message-ID: <20230719063425.GE151430@dragon>
-References: <20230713204932.1591255-1-Frank.Li@nxp.com>
+        with ESMTP id S230102AbjGSGg7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 02:36:59 -0400
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09F621FFD
+        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 23:36:49 -0700 (PDT)
+Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-51e99584a82so8892855a12.1
+        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 23:36:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1689748607; x=1692340607;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=v11wysb3P45axVNtMG0xHppUAmtgp/rKBxmWNbBV8AY=;
+        b=kTSmOtYjORgEOXTl1p7nhh95TdIYgJCXQNQeaEkDsNTAwNcHMkZIKcvaNrnHcXSWRv
+         GwI4w7Hg6bVzEOMv0T6RxEh6ae44FYbKz194vmRN4v8FR9gI4lFNB3WTwUt9U2fOQQzU
+         NtA1ldkMkoywwrVSJo5kLHRbi5IeBesbGiRMMzQSAmnGxiis+INeUp410wy0t7F8mA1g
+         NX9j1aZ35aJ6wFdP/OW+AdyAfZqkghIA73mrvZY8w0q1p9eBiEUGmAz8O0i5CD56KBmK
+         om4F6l6/LZ38GuHtFd+M1+PydJ6XFyFqhaxmlO1HnMklMYjSzFnASUbpzEVASGRnGHp8
+         aKOQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689748607; x=1692340607;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=v11wysb3P45axVNtMG0xHppUAmtgp/rKBxmWNbBV8AY=;
+        b=QWhLGJsqPwTeLM6ECmPPGsKlem2VeQrOWe0VJSGxRKSx+D843X3q9+jjVSXKBLt1Gf
+         dI5SANftDzU9Ua6gu5Z/X8rtXxxIRkEn9OclYiYmCyD2W/WBCcnpY7WzVEqei3cPz/mZ
+         SU+lJg5UML8ZAs27DwQjyepo/MHN2si95jCOcSJb5SpB19KGCHgNk9Iaof56MSQzgiV0
+         V7S9zSuppAALRDvGrKxtafjZ+X/O1RCl6ktF4y7xljVQ909UmGvqiPhn9yD9jpaEeeQe
+         f4htsy/kIevTUjs13KyMO4Z3VjfQJCKWHivzvRaAPVBAjEvE5kXaR1eTgfMs1JcbEOin
+         gKeQ==
+X-Gm-Message-State: ABy/qLbuaUCgowNo/tTR37k2toPIvpEDz4ydRuGUVQEoeYYHGI9xNnR+
+        lJlp14mro8eOJGyAnEOgG9oDFQ==
+X-Google-Smtp-Source: APBJJlFNijc5whQNi4UO9OZTJAlLHQRUDn6Y4O7gSXBMNaW0f6la/NFqlDxi2uPvNlz+tAg0qrwZ8A==
+X-Received: by 2002:a05:6402:184a:b0:51d:f74c:1d44 with SMTP id v10-20020a056402184a00b0051df74c1d44mr1803282edy.31.1689748607036;
+        Tue, 18 Jul 2023 23:36:47 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id b17-20020a05640202d100b005217412e18dsm2252780edx.48.2023.07.18.23.36.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 18 Jul 2023 23:36:46 -0700 (PDT)
+Message-ID: <5353872c-56a3-98f9-7f22-ec1f6c2ccdc8@linaro.org>
+Date:   Wed, 19 Jul 2023 08:36:45 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230713204932.1591255-1-Frank.Li@nxp.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH 1/2] dt-bindings: reset: Updated binding for Versal-NET
+ reset driver
+Content-Language: en-US
+To:     Michal Simek <michal.simek@amd.com>,
+        Conor Dooley <conor@kernel.org>,
+        Piyush Mehta <piyush.mehta@amd.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, p.zabel@pengutronix.de,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        git@amd.com
+References: <20230717112348.1381367-1-piyush.mehta@amd.com>
+ <20230717112348.1381367-2-piyush.mehta@amd.com>
+ <20230717-explode-caucus-82c12e340e39@spud>
+ <ee81e955-32be-66ea-377b-263ee60a2632@linaro.org>
+ <e8f48a30-9aff-bc2f-d03f-793840a192c9@amd.com>
+ <694a1314-0b25-ff5e-b19f-5a0efe07bf64@linaro.org>
+ <cae162d0-843d-ca1f-80d3-5a0dfe1e3d0f@amd.com>
+ <22e7dc73-2411-5cb1-6cef-daa5f2af8297@linaro.org>
+ <5df3e976-9fc2-19af-e6b4-e2bea0d64623@amd.com>
+ <4c932cbf-19db-2c88-2558-aa42c5338598@linaro.org>
+ <ab0fb666-e370-cb07-367b-f3b88e18fba9@amd.com>
+ <a12286d2-f929-ed6d-c0f2-4dad5ce6b388@linaro.org>
+ <3f76ff03-963d-fff8-b512-abce447da7d0@amd.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <3f76ff03-963d-fff8-b512-abce447da7d0@amd.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 13, 2023 at 04:49:29PM -0400, Frank Li wrote:
-> Add A53 and A72 opp_table.
+On 19/07/2023 08:23, Michal Simek wrote:
+>> Yes. If you want to store some constants (register values, firmware
+>> magic numbers) and use in DTS, this is the way to go. Most (or all) of
+>> examples above are for register values.
 > 
-> Reviewed-by: Peng Fan <peng.fan@nxp.com>
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> I did small grepping over Linux (reset only) and I found that all of these files 
+> are not used by any driver/code. They are included in binding document or dt files.
+> Based on your description above they all are candidates for removing from 
+> include/dt-bindings/reset/.
+> On the other hand that files could be used in different projects out of Linux 
+> where that values could be used by a driver/code.
 
-Applied all, thanks!
+Yes, therefore this should be case-by-case decision.
+
+> 
+> What to do with it? Should we remove it, deprecate it or just keep it and not to 
+> add new one? I just want to know how to properly handle it.
+
+They cannot be removed. They could be copied to DTS and deprecated in
+the bindings. But it is not that important that we clean it up... or it
+is rather to the platform maintainer. I did it some time ago for Samsung
+and recently TI is doing for serdes mux bindings.
+
+Best regards,
+Krzysztof
+
