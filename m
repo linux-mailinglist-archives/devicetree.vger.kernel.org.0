@@ -2,153 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DC4575A167
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 00:09:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 07A9875A182
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 00:13:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230360AbjGSWJu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jul 2023 18:09:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48988 "EHLO
+        id S229563AbjGSWN2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jul 2023 18:13:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51748 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230198AbjGSWJt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 18:09:49 -0400
-Received: from relay03.th.seeweb.it (relay03.th.seeweb.it [5.144.164.164])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 166741FE1;
-        Wed, 19 Jul 2023 15:09:48 -0700 (PDT)
-Received: from SoMainline.org (94-211-6-86.cable.dynamic.v4.ziggo.nl [94.211.6.86])
+        with ESMTP id S230128AbjGSWNZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 18:13:25 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99A4F1FED;
+        Wed, 19 Jul 2023 15:13:24 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 4A3FB202EA;
-        Thu, 20 Jul 2023 00:09:45 +0200 (CEST)
-Date:   Thu, 20 Jul 2023 00:09:43 +0200
-From:   Marijn Suijten <marijn.suijten@somainline.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 34E6661840;
+        Wed, 19 Jul 2023 22:13:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C9479C433C8;
+        Wed, 19 Jul 2023 22:13:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1689804803;
+        bh=9mhog5cEC4jCgLXESNkH8Vrr7nDt6CeB9bPN18iRiNI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=LRwSja7i1CQgKB9XQYh+QyWUoWstQ49qNtCB9iXIuGgoS3XxJhCxpva2LrPrMRiU5
+         uBqo2Phhs6Ly5amnSUfJv2cjMtIntJKUQVB9WCPpiGsDq1hdt15j2rXjEM/di8STuB
+         4AtPTy/KV5sl0MQum3efWRfASssJaHvMhpgvJPeHtrz5qkcd8apV+QBzR836rgBlSC
+         u6L2ldh9KuUaKN0vMQm3Xxg8AI+m783g74RRZaTid3wPQ2wZC6gXnK67Z6i55Yxd0J
+         jeMFWnTh8SW7K4bS1UNuiiVnvn3u9+2OZnpUTpTGaxrc8fNIR8IRySaNR5iDGGu0QC
+         N64XRlwBI/mGg==
+Received: (nullmailer pid 870826 invoked by uid 1000);
+        Wed, 19 Jul 2023 22:13:20 -0000
+Date:   Wed, 19 Jul 2023 16:13:20 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Daniel Golle <daniel@makrotopia.org>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Krishna Manikandan <quic_mkrishn@quicinc.com>,
-        Loic Poulain <loic.poulain@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        ~postmarketos/upstreaming@lists.sr.ht,
+        Felix Fietkau <nbd@nbd.name>, John Crispin <john@phrozen.org>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Mark Lee <Mark-MC.Lee@mediatek.com>,
+        Lorenzo Bianconi <lorenzo@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
         AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        linux-clk@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, Lux Aliaga <they@mint.lgbt>,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v3 06/15] dt-bindings: display/msm: sc7180-dpu: Describe
- SM6125
-Message-ID: <tpkiplw7l2mzdwekynkrg6dwm7svktwm2zooodb3c42btyvo3e@yjrpqem26wtx>
-References: <20230718-sm6125-dpu-v3-0-6c5a56e99820@somainline.org>
- <20230718-sm6125-dpu-v3-6-6c5a56e99820@somainline.org>
- <3ce19d8f-97d8-15b6-5148-78e200b112e9@linaro.org>
+        Russell King <linux@armlinux.org.uk>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Greg Ungerer <gerg@kernel.org>,
+        =?iso-8859-1?Q?Bj=F8rn?= Mork <bjorn@mork.no>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH net-next v3 2/9] dt-bindings: net: mediatek,net: add
+ mt7988-eth binding
+Message-ID: <20230719221320.GA865753-robh@kernel.org>
+References: <cover.1689714290.git.daniel@makrotopia.org>
+ <584b459ebb0a74a2ce6ca661f1148f59b9014667.1689714291.git.daniel@makrotopia.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <3ce19d8f-97d8-15b6-5148-78e200b112e9@linaro.org>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <584b459ebb0a74a2ce6ca661f1148f59b9014667.1689714291.git.daniel@makrotopia.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2023-07-19 01:06:03, Dmitry Baryshkov wrote:
-> On 19/07/2023 00:24, Marijn Suijten wrote:
-> > SM6125 is identical to SM6375 except that while downstream also defines
-> > a throttle clock, its presence results in timeouts whereas SM6375
-> > requires it to not observe any timeouts.  This is represented by
-> > reducing the clock array length to 6 so that it cannot be passed.  Note
-> > that any SoC other than SM6375 (currently SC7180 and SM6350) are
-> > unconstrained and could either pass or leave out this "throttle" clock.
+On Tue, Jul 18, 2023 at 10:30:33PM +0100, Daniel Golle wrote:
+> Introduce DT bindings for the MT7988 SoC to mediatek,net.yaml.
+> The MT7988 SoC got 3 Ethernet MACs operating at a maximum of
+> 10 Gigabit/sec supported by 2 packet processor engines for
+> offloading tasks.
+> The first MAC is hard-wired to a built-in switch which exposes
+> four 1000Base-T PHYs as user ports.
+> It also comes with built-in 2500Base-T PHY which can be used
+> with the 2nd GMAC.
+> The 2nd and 3rd GMAC can be connected to external PHYs or provide
+> SFP(+) cages attached via SGMII, 1000Base-X, 2500Base-X, USXGMII,
+> 5GBase-KR or 10GBase-KR.
 > 
-> Could you please describe, what kind of timeouts do you observe? Is this 
-> the DSI underruns issue?
-
-Ping-pong timeouts and low(er) framerate.  However, they were previosuly
-not happening on a random boot out of tens... and now I can no longer
-reproduce the timeout on 4 consecutive boots after adding the throttle
-clock.  Could it perhaps be the power domains and opps that we added in
-v2 and v3?
-
-We previously discussed in DMs that the rate was bouncing between 25MHz
-and 403MHz without the clock specified, and with it it it got set at 385
-or 403MHz.  Now, a month or so later, repeatedly running this command
-shows 25MHz when the panel is not being refreshed, and between 337 and
-403MHz on modetest -r -v:
-
-    sony-pdx201 ~ $ sudo ./debugcc -p sm6125 gcc_disp_throttle_core_clk
-                gcc_disp_throttle_core_clk: 337.848277MHz (337848277Hz)
-
-Either all these boots are flukes, or it is really fixed and this patch
-should be revised...
-
-> If so, it might be fixed by the MDSS 
-> interconnect fix ([1]).
+> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
+> ---
+>  .../devicetree/bindings/net/mediatek,net.yaml | 74 +++++++++++++++++--
+>  1 file changed, 69 insertions(+), 5 deletions(-)
 > 
-> [1] https://patchwork.freedesktop.org/series/116576/
+> diff --git a/Documentation/devicetree/bindings/net/mediatek,net.yaml b/Documentation/devicetree/bindings/net/mediatek,net.yaml
+> index 38aa3d97ee234..ae2062f3c1833 100644
+> --- a/Documentation/devicetree/bindings/net/mediatek,net.yaml
+> +++ b/Documentation/devicetree/bindings/net/mediatek,net.yaml
+> @@ -24,6 +24,7 @@ properties:
+>        - mediatek,mt7629-eth
+>        - mediatek,mt7981-eth
+>        - mediatek,mt7986-eth
+> +      - mediatek,mt7988-eth
+>        - ralink,rt5350-eth
+>  
+>    reg:
+> @@ -61,6 +62,12 @@ properties:
+>        Phandle to the mediatek hifsys controller used to provide various clocks
+>        and reset to the system.
+>  
+> +  mediatek,infracfg:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description:
+> +      Phandle to the syscon node that handles the path from GMAC to
+> +      PHY variants.
+> +
+>    mediatek,sgmiisys:
+>      $ref: /schemas/types.yaml#/definitions/phandle-array
+>      minItems: 1
+> @@ -229,11 +236,7 @@ allOf:
+>              - const: sgmii_ck
+>              - const: eth2pll
+>  
+> -        mediatek,infracfg:
+> -          $ref: /schemas/types.yaml#/definitions/phandle
+> -          description:
+> -            Phandle to the syscon node that handles the path from GMAC to
+> -            PHY variants.
+> +        mediatek,infracfg: true
 
-Might have an effect but I don't have any interconnects defined in this
-SoC DT yet.
+You don't need this. What you need is 'mediatek,infracfg: false' in the 
+if/then schemas for the cases it should not be present.
 
-- Marijn
-
-> > Reviewed-by: Rob Herring <robh@kernel.org>
-> > Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
-> > ---
-> >   .../devicetree/bindings/display/msm/qcom,sc7180-dpu.yaml   | 14 ++++++++++++++
-> >   1 file changed, 14 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sc7180-dpu.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sc7180-dpu.yaml
-> > index 630b11480496..37f66940c5e3 100644
-> > --- a/Documentation/devicetree/bindings/display/msm/qcom,sc7180-dpu.yaml
-> > +++ b/Documentation/devicetree/bindings/display/msm/qcom,sc7180-dpu.yaml
-> > @@ -15,6 +15,7 @@ properties:
-> >     compatible:
-> >       enum:
-> >         - qcom,sc7180-dpu
-> > +      - qcom,sm6125-dpu
-> >         - qcom,sm6350-dpu
-> >         - qcom,sm6375-dpu
-> >   
-> > @@ -73,6 +74,19 @@ allOf:
-> >           clock-names:
-> >             minItems: 7
-> >   
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          const: qcom,sm6125-dpu
-> > +
-> > +    then:
-> > +      properties:
-> > +        clocks:
-> > +          maxItems: 6
-> > +
-> > +        clock-names:
-> > +          maxItems: 6
-> > +
-> >   examples:
-> >     - |
-> >       #include <dt-bindings/clock/qcom,dispcc-sc7180.h>
-> > 
-> 
-> -- 
-> With best wishes
-> Dmitry
-> 
+Rob
