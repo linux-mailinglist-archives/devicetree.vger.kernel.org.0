@@ -2,62 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7AFDA759E1C
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 21:03:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3BE02759E2C
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 21:05:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230297AbjGSTDB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jul 2023 15:03:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42870 "EHLO
+        id S230179AbjGSTF1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jul 2023 15:05:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44236 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229492AbjGSTDA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 15:03:00 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B623F1BFC;
-        Wed, 19 Jul 2023 12:02:57 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 4B7DF617C7;
-        Wed, 19 Jul 2023 19:02:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ADB9BC433C8;
-        Wed, 19 Jul 2023 19:02:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689793376;
-        bh=u9hjwJitkzPQZ4YGpEFJThuMQKEBsoFdZK3Z8XQdi7w=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=UfVv4zXoX/HoGwQFixyFKcBw1epZ6EU9rga+LvEFoVoQT+rA85w6wzkTQBKwcSGqk
-         quaVfJHjbgopC3TNKpOwL0+mN9Xya+ZEFnn78gF7zbhbdWcBOB7Ad7Jbcb1WqGFu91
-         LJxc2t+aX2IcIiujW1q9MX0cONET1JV34eoaGduMbVhwISNBKiBltHaNmbPXAXgU5/
-         qtE5qqT/B8b0nNhG7Kum7xrbPH4S7wpxC23q8zpsfdcLijX84dKuXLQjheSPJgCYT4
-         ZPQFe2BIkckANWq9ZjgzaAALCvpUxxSZwfy+n8hA8aUCcV8JFjkgRQ+u0jm8Ps/17w
-         5qXUc1WE/fD6w==
-Received: (nullmailer pid 589925 invoked by uid 1000);
-        Wed, 19 Jul 2023 19:02:54 -0000
-Date:   Wed, 19 Jul 2023 13:02:54 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Luca Ceresoli <luca.ceresoli@bootlin.com>
-Cc:     Neil Armstrong <neil.armstrong@linaro.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        with ESMTP id S229540AbjGSTF1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 15:05:27 -0400
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 680DB1BF3
+        for <devicetree@vger.kernel.org>; Wed, 19 Jul 2023 12:05:25 -0700 (PDT)
+Received: by mail-lj1-x236.google.com with SMTP id 38308e7fff4ca-2b700e85950so107508211fa.3
+        for <devicetree@vger.kernel.org>; Wed, 19 Jul 2023 12:05:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1689793523; x=1692385523;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=Uxzu4bTwNO5BdcIxJkw1/nWB+CP9FwcUhHLLgewCkgw=;
+        b=bhII2Uj+TkgnIjMm9sToEM5IW39MSLgMv2SVJAXa7OF8jwzzINNd/XuigFxHQKUOGi
+         PcMsH5te8ILc8UFlgsgn1LPxw76s/7v+Kwz6nRfJmqRLmByrpsBR4DXLXPfaQ9goWtGq
+         8qATDajVQY90BOwRwW0UGOLFm8OwZ/2KVRBYZv2hDKojVbQtxFvKaidB9AOORwelCPJ1
+         VkYNVU0PqX7lysKjjmRT71I/8Fux5AERdcvGlnVZKELBP89KbrGah/2JgTAZwrlmo6ed
+         Cmmdrl7XM0KOvdPco4h+qiz0C8/Wj7WoKGEiuK0Zve4LUntVjUJGnZWwtlO2cQjqtxav
+         nXsw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689793523; x=1692385523;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Uxzu4bTwNO5BdcIxJkw1/nWB+CP9FwcUhHLLgewCkgw=;
+        b=B8hqQqjwSsuc3AgmoPuaNsWxL7y+LlyfM11CItWUSovf3clAgmXXZdDTjsbuzwn+dN
+         WQiw4MtVB/H5Vy7K+FZT9QuynkAGGzTeZlzRHj3kr8INPf1u6CnBsL9suJQuRlldlB2K
+         mUDfje+daAHArd2eCsgXhOzvfXJulJgLpM1p9tJdssBwbEEz6mQlTS/9cWrYNonTWPZB
+         QczvrTQIpTFJY0G008jmlReAMRHcbwzu2YdZDugK2Y1xsdBlDUNwAoLDzK1JU7oazKWe
+         eWZf2CvtSyx5dl8lI/UbR9YD3XQPel9G0wf916oFude4dv/0oQstd+4tq6abEGxL0rXk
+         66hA==
+X-Gm-Message-State: ABy/qLbkBK7yvIklLxDn43+pF8pdG+HkJjXWvUKeyCBchOg1ztnIxGBT
+        JeYdG7HI3urVatmP3MIRdJxcsg==
+X-Google-Smtp-Source: APBJJlHfDiWa6z/RIaWmCgcjPLMVIlHwrtDTsbKJH/hNfg/cg6myuLG7psXda3yupTjsCaobBA3dfw==
+X-Received: by 2002:a2e:99cd:0:b0:2b7:14d4:ce6d with SMTP id l13-20020a2e99cd000000b002b714d4ce6dmr613499ljj.48.1689793523679;
+        Wed, 19 Jul 2023 12:05:23 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id gx3-20020a170906f1c300b00993cc1242d4sm2692809ejb.151.2023.07.19.12.05.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 19 Jul 2023 12:05:23 -0700 (PDT)
+Message-ID: <74f81a77-6cba-37eb-54ed-e7570db47632@linaro.org>
+Date:   Wed, 19 Jul 2023 21:05:20 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v2 2/3] pinctrl: qcom: sm8350-lpass-lpi: add SM8350 LPASS
+ TLMM
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-Subject: Re: [PATCH 2/3] dt-bindings: display: panel: Add panels based on
- ILITEK ILI9806E
-Message-ID: <20230719190254.GA578754-robh@kernel.org>
-References: <20230719152147.355486-1-luca.ceresoli@bootlin.com>
- <20230719152147.355486-2-luca.ceresoli@bootlin.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230719152147.355486-2-luca.ceresoli@bootlin.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20230619092735.20323-1-krzysztof.kozlowski@linaro.org>
+ <20230619092735.20323-2-krzysztof.kozlowski@linaro.org>
+ <851790f2-f673-f754-08b8-d07cc2c809fb@linaro.org>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <851790f2-f673-f754-08b8-d07cc2c809fb@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
         URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -66,106 +87,50 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 19, 2023 at 05:21:46PM +0200, Luca Ceresoli wrote:
-> Add bindings for LCD panels based on the ILITEK ILI9806E RGB controller
-> connected over SPI and the "ShenZhen New Display Co NDS040480800-V3"
-> 480x800 panel based on it.
-> 
-> Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+On 24/06/2023 14:12, Konrad Dybcio wrote:
+> On 19.06.2023 11:27, Krzysztof Kozlowski wrote:
+>> Add driver for pin controller in Low Power Audio SubSystem (LPASS).  The
+>> driver is similar to SM8250 LPASS pin controller, with difference in one
+>> new pin (gpio14).
+>>
+
+
+
+> <       LPI_MUX_swr_tx_data2,
+> 54d52
+> < static int gpio14_pins[] = { 14 };
+> 71d68
+> <       PINCTRL_PIN(14, "gpio14"),
+> 75c72
+> < static const char * const swr_tx_data_groups[] = { "gpio1", "gpio2", "gpio5", "gpio14" };
 > ---
->  .../display/panel/ilitek,ili9806e.yaml        | 69 +++++++++++++++++++
->  MAINTAINERS                                   |  6 ++
->  2 files changed, 75 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/panel/ilitek,ili9806e.yaml
+>> static const char * const swr_tx_data_groups[] = { "gpio1", "gpio2", "gpio5" };
+> 111d107
+> <       LPI_PINGROUP(14, 6, swr_rx_data, _, _, _),
 > 
-> diff --git a/Documentation/devicetree/bindings/display/panel/ilitek,ili9806e.yaml b/Documentation/devicetree/bindings/display/panel/ilitek,ili9806e.yaml
-> new file mode 100644
-> index 000000000000..42abc6923065
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/panel/ilitek,ili9806e.yaml
-> @@ -0,0 +1,69 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/panel/ilitek,ili9806e.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Ilitek ILI9806E display panels
-> +
-> +maintainers:
-> +  - Luca Ceresoli <luca.ceresoli@bootlin.com>
-> +
-> +description:
-> +  This binding is for display panels using an Ilitek ILI9806E controller in
-> +  SPI mode.
-> +
-> +allOf:
-> +  - $ref: panel-common.yaml#
+> 
+> 
+> I really think adding just these pin14 entries to the 8250 driver would
+> be a good idea..
+> 
 
-A SPI device should reference spi-peripheral-props.yaml as well.
 
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          # ShenZhen New Display Co 3.97" 480x800 RGB a-SI TFT LCD
-> +          - newdisplay,nds040480800-v3
-> +      - const: ilitek,ili9806e
-> +
-> +  reg: true
+I could extend arrays with gpio14 and pass array size -1 to sm8250
+variant and full size to sm8350. However the difference will be in:
 
-maxItems: 1
+-static const char * const swr_tx_data_groups[] = { "gpio1", "gpio2", "gpio5" };
++static const char * const swr_tx_data_groups[] = { "gpio1", "gpio2", "gpio5", "gpio14" };
 
-> +  spi-max-frequency: true
-> +  reset-gpios: true
-> +  backlight: true
-> +  port: true
+I cannot create here variant "swr_tx_data_groups_sm8350" because the
+name is used in macros. Using bigger (with gpio14) group for sm8250
+should work, because there is no gpio14, but produces difference in the
+controller:
 
-Drop all these and ...
+-/sys/kernel/debug/pinctrl/33c0000.pinctrl/pinmux-functions:function 18: swr_tx_data, groups = [ gpio1 gpio2 gpio5 ]
++/sys/kernel/debug/pinctrl/33c0000.pinctrl/pinmux-functions:function 18: swr_tx_data, groups = [ gpio1 gpio2 gpio5 gpio14 ]
 
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - port
-> +
-> +additionalProperties: false
+Therefore I will go with separate drivers.
 
-... use "unevaluatedProperties" instead.
+Best regards,
+Krzysztof
 
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    backlight: backlight {
-> +        compatible = "gpio-backlight";
-> +        gpios = <&gpio 22 GPIO_ACTIVE_HIGH>;
-> +    };
-
-The exact backlight is outside the scope of this binding and should be 
-dropped from the example.
-
-> +    spi {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        display@0 {
-> +            compatible = "newdisplay,nds040480800-v3", "ilitek,ili9806e";
-> +            reg = <0>;
-> +            spi-max-frequency = <1000000>;
-> +            pinctrl-names = "default";
-> +            pinctrl-0 = <&pinctrl_lcdgpios>;
-> +            reset-gpios = <&gpio 26 GPIO_ACTIVE_LOW>;
-> +            backlight = <&backlight>;
-> +
-> +            port {
-> +                ili9806e_in: endpoint {
-> +                    remote-endpoint = <&lcdif_out>;
-> +                };
-> +            };
-> +        };
-> +    };
-> +
-> +...
