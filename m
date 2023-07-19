@@ -2,106 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7FC067597D4
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 16:12:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E044475983D
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 16:26:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231508AbjGSOMx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jul 2023 10:12:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46022 "EHLO
+        id S231535AbjGSO0P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jul 2023 10:26:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56706 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231271AbjGSOMw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 10:12:52 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0910E12C
-        for <devicetree@vger.kernel.org>; Wed, 19 Jul 2023 07:12:52 -0700 (PDT)
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <j.zink@pengutronix.de>)
-        id 1qM7v0-0003wX-PC; Wed, 19 Jul 2023 16:12:42 +0200
-Message-ID: <6ecf92b7-32a2-efdf-74f2-a737a44cb05c@pengutronix.de>
-Date:   Wed, 19 Jul 2023 16:12:29 +0200
+        with ESMTP id S231580AbjGSO0L (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 10:26:11 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E81DC171D
+        for <devicetree@vger.kernel.org>; Wed, 19 Jul 2023 07:26:09 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id 2adb3069b0e04-4f95bf5c493so11444671e87.3
+        for <devicetree@vger.kernel.org>; Wed, 19 Jul 2023 07:26:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1689776768; x=1692368768;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=QYVunoFchPUC0OBXPo1j3FS+mazfA++aFluGXeilBDk=;
+        b=ex9mlEDgIOJBoi8ZE5Gy9YUPQeUCRyk2JVGKFSKdodeYs/N/NtWwXC/vlNh6FO8dg5
+         bT3XYgM30DXywlczVpCpuAXqh9u50yEYN81xkpDJSOW1dN4WyP4QVNlfZbqa5FJy6Ic5
+         oaDAu4pTTv96rjmWvUDMCi2lwTXB7s+iciRxaCcQWQAOYr+FGa+2MxvtZh6qQz2CGuEL
+         mDtJXY8o3skprV1mr7EbaM9fWdRyhSrhDExbBw6OKs1PoKBNZHdh0QXQMoyz2859AWZA
+         Z2eDNNUeVJF4j5j98YSMGCm8kcMqiXqbDRZ61NbqWm4+JOIxpJPgNXCvf/GtdZoS2gM4
+         uVaw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689776768; x=1692368768;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=QYVunoFchPUC0OBXPo1j3FS+mazfA++aFluGXeilBDk=;
+        b=hPAtow2K1j8cq3KK0Im0XuJTT6MHMvyWstKihon52BJwRWtmS8sv8i9Q7WO3IJrYSc
+         PD/XIvW1UsSgR5wiOrLrq1gBHPiEx1JprJfyqupKDD0J8UskImBLCuKfrNQbp88WfsrA
+         gsIFzKPO2nyQteKfFnCjzqxU9ltXVMvOJNLrrrccpFcuTqAllvmgJdqv82chRGUPVXpH
+         wVp/XApvLJxiex63Py2iVzQN+QZxOlE8t4pYGPMdK/WCS52D/Qw0KXkLkHP3jLNSFBJ7
+         BbyQC7F4yL1bGu7gfs3PvXS0pDBx/pxvH+X5hBtfCJWHTSs+A8m9Tw9XAJNgfwOjYF8l
+         NDhw==
+X-Gm-Message-State: ABy/qLaerOwcoj8BjdVHcZmUgQSjNjZf41lP7oaQsLwP5ZESaS6a5Q/h
+        yKTjUzYbwzvDp4TBm23ffZMchA==
+X-Google-Smtp-Source: APBJJlGi3BabRvugk7R6rQS2y8EhvImMu4QFhIo/YCnkmRrehmGmgHtJngmJ6AEMC2RjxVfWsQOH5g==
+X-Received: by 2002:a19:914a:0:b0:4fb:89e2:fc27 with SMTP id y10-20020a19914a000000b004fb89e2fc27mr5864lfj.54.1689776768042;
+        Wed, 19 Jul 2023 07:26:08 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id c15-20020aa7df0f000000b005219de74217sm2741339edy.43.2023.07.19.07.26.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 19 Jul 2023 07:26:07 -0700 (PDT)
+Message-ID: <6c5b594f-96af-8b7a-558c-0ce244634057@linaro.org>
+Date:   Wed, 19 Jul 2023 16:26:04 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
-Subject: Re: [PATCH] arm64: dts: imx8mp: use correct clock for eqos
- timestamping counter
-Content-Language: en-US, de-DE
-To:     Fabio Estevam <festevam@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+Subject: Re: [PATCH 2/3] Documentation/process: maintainer-soc: add clean
+ platforms profile
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     dsterba@suse.cz
+Cc:     Conor Dooley <conor@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        patchwork-jzi@pengutronix.de, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20230719-imx8mp_enet_qos_use_125mhz_clock-v1-1-782c9ac6e121@pengutronix.de>
- <CAOMZO5AP1zDQPGnctq+UbPSiv+7Rg=DGABb7-mZV__HZ4qpMBQ@mail.gmail.com>
-From:   Johannes Zink <j.zink@pengutronix.de>
-In-Reply-To: <CAOMZO5AP1zDQPGnctq+UbPSiv+7Rg=DGABb7-mZV__HZ4qpMBQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: j.zink@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Nishanth Menon <nm@ti.com>, linux-riscv@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        Jonathan Corbet <corbet@lwn.net>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        soc@kernel.org, workflows@vger.kernel.org,
+        linux-doc@vger.kernel.org
+References: <20230714084725.27847-1-krzysztof.kozlowski@linaro.org>
+ <20230714084725.27847-2-krzysztof.kozlowski@linaro.org>
+ <20230714135914.GI20457@twin.jikos.cz>
+ <4963b85c-c0ff-92a1-e5d6-ca76f1882f93@linaro.org>
+Content-Language: en-US
+In-Reply-To: <4963b85c-c0ff-92a1-e5d6-ca76f1882f93@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Fabio,
-
-On 7/19/23 16:03, Fabio Estevam wrote:
-> Hi Johannes,
-> 
-> On Wed, Jul 19, 2023 at 10:59 AM Johannes Zink <j.zink@pengutronix.de> wrote:
+On 17/07/2023 09:51, Krzysztof Kozlowski wrote:
+> On 14/07/2023 15:59, David Sterba wrote:
+>> On Fri, Jul 14, 2023 at 10:47:24AM +0200, Krzysztof Kozlowski wrote:
+>>> +Overview
+>>> +--------
+>>> +
+>>> +SoC platforms or subarchitectures follow all the rules from
+>>> +Documentation/process/maintainer-soc.rst.  However platforms referencing this
 >>
->> The i.MX8MP Reference Manual rev 1 06/2021, section 11.7.2.5 "Timestamp
->> Support" indicates the PTP timestamp clock expects a typical frequency
->> of 125MHz.
->>
->> As this also improves the precision of the measured timestamps: assign
->> appropriate 125MHz Clock parent. As no one except the timestamping
->> counter uses this clock, there are no side-effects of this change in
->> other peripherals.
->>
->> Signed-off-by: Johannes Zink <j.zink@pengutronix.de>
->> ---
->>   arch/arm64/boot/dts/freescale/imx8mp.dtsi | 2 +-
->>   1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
->> index 6f2f50e1639c..7f80dff914c2 100644
->> --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
->> +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
->> @@ -1334,7 +1334,7 @@ eqos: ethernet@30bf0000 {
->>                                                    <&clk IMX8MP_CLK_ENET_QOS_TIMER>,
->>                                                    <&clk IMX8MP_CLK_ENET_QOS>;
->>                                  assigned-clock-parents = <&clk IMX8MP_SYS_PLL1_266M>,
->> -                                                        <&clk IMX8MP_SYS_PLL2_100M>,
->> +                                                        <&clk IMX8MP_SYS_PLL2_125M>,
->>                                                           <&clk IMX8MP_SYS_PLL2_125M>;
->>                                  assigned-clock-rates = <0>, <100000000>, <125000000>;
+>> Just a drive by comment, references to highly relevant documents should
+>> be clickable, so :doc:`Documentation/process/maintainer-soc` , with
+>> exceptions like if the document has been referenced already.
 > 
-> Shouldn't this also be changed to:
-> 
-> assigned-clock-rates = <0>, <125000000>, <125000000>;
-> 
+> Is it needed though? The link is anyway detected by sphinx.
 
-good catch, thanks! Gonna fix it in v2.
+And it does not work:
 
-Best regards
-Johannes
+maintainer-soc-clean-dts.rst:10: WARNING: unknown document:
+Documentation/process/maintainer-soc
 
--- 
-Pengutronix e.K.                | Johannes Zink                  |
-Steuerwalder Str. 21            | https://www.pengutronix.de/    |
-31137 Hildesheim, Germany       | Phone: +49-5121-206917-0       |
-Amtsgericht Hildesheim, HRA 2686| Fax:   +49-5121-206917-5555    |
+I also tried:
+maintainer-soc-clean-dts.rst:10: WARNING: unknown document:
+Documentation/process/maintainer-soc.rst
+
+
+Best regards,
+Krzysztof
 
