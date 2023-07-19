@@ -2,107 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B40C6758E91
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 09:15:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F27F758E96
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 09:16:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229761AbjGSHPk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jul 2023 03:15:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49254 "EHLO
+        id S229790AbjGSHQM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jul 2023 03:16:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49354 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229795AbjGSHPi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 03:15:38 -0400
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B6C31FF3
-        for <devicetree@vger.kernel.org>; Wed, 19 Jul 2023 00:15:30 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-986d8332f50so845052366b.0
-        for <devicetree@vger.kernel.org>; Wed, 19 Jul 2023 00:15:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689750928; x=1692342928;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=1gggJ+ho+4kj2kjwWGJKnU62Dt5ugjbXcyEz5Qkidj0=;
-        b=YebysdanKJANlFyUHs9plVBEgFmwKf11bG4SHPl8XzI9EnEbrXcq/O+QpEcoKq9nKI
-         sakHKu75o603EjesPtcgQqaAXGfIj4pQczscyFQyfKNLPrt7WgPMVo8Lw+Z/UTE9jmfR
-         16qv8texVJsqyyGm6Ns5nF80FdvjgRrZr3Je69hUDuaGeyIoTL05q2Xh6NOG/SMZfkZw
-         uzizrSQCyzvv6Mz44mS/69zNTeXfiMMdU42bcLSvttlOd0zoXppAOuYHeKZK7eI3OD5b
-         PNbG8pS79fcWtQFzOGr7qbQ5b5r+4eAbZc/HvWoqwXDmcLNfYX5SiciCrJX4mRQdi3aS
-         78SA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689750928; x=1692342928;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=1gggJ+ho+4kj2kjwWGJKnU62Dt5ugjbXcyEz5Qkidj0=;
-        b=IKCJJJ8hSzhMIIyxDpQ9nnbGBuOVrwdLucqdRAtG/EyATBMbgRRpdcXvjMyRiTipxr
-         EHk07r1n88SEzb9L8KCZEJoHNvULQR9cGXPMYehDM+9kQbl4uSvTgihKW+rXowJljTLY
-         LnZrWExnoL4hxdjH9fZFolJzN1No/v8dFjtrhrXIMlxAAmO0LBrH8ggwWiBULwjJZUlr
-         9fID87T/4+mxE4n1MP38IiKmft0XCyJWiZrYnd7OBj09KAxUfXR+IEBjOwTZRUiqi8Ex
-         l59u90stXvZOoK9ZOI3eoF4Tf7QTdoRsod6IpswVLH10q8Z9v/NGZxm9/JMz0qgl6EjG
-         PWPQ==
-X-Gm-Message-State: ABy/qLYzSUs95cev+GJAHRxBBNWqMkLVN9EVZ2TXlsVScSt/cXftfRCo
-        jl3M5VMoOfqr2DKxgc4iu63nFA==
-X-Google-Smtp-Source: APBJJlHLkdms+lG9OGE3bzJfekgpJex4DoVYe3quR18JfSewiMXO/5zW65XnL1HZbhgzDCFzhrfDJQ==
-X-Received: by 2002:a17:906:c1cd:b0:991:cf4e:a361 with SMTP id bw13-20020a170906c1cd00b00991cf4ea361mr1521535ejb.26.1689750928736;
-        Wed, 19 Jul 2023 00:15:28 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id m14-20020a170906580e00b009930308425csm1933490ejq.31.2023.07.19.00.15.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 19 Jul 2023 00:15:28 -0700 (PDT)
-Message-ID: <9c540e3b-d8d1-0807-a21e-d01a301c1972@linaro.org>
-Date:   Wed, 19 Jul 2023 09:15:26 +0200
+        with ESMTP id S229798AbjGSHQJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 03:16:09 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DDD01FF1;
+        Wed, 19 Jul 2023 00:15:56 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id C08E56606F57;
+        Wed, 19 Jul 2023 08:15:53 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1689750954;
+        bh=iewCcJUfElKKyjKf+NtkxBXYK+aTi5ddhmCEGbtXwRo=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=CM02QOPvcLxFcvDvKyuF+x7VBYLxDtdnZm3Em+Bksi1sPDcNkt/XxQZ4hiJR7jRqy
+         TkKx+HXvjGq/V1CIeYfoyQbKbAe57STrM6IeCXHpu45xzhJRic4prMgktjJewSYRTa
+         LKMOS2vo8jeQby3ka1XLMt/D004KpXLXiBrFEmnvr9gBiv8KlM0U9e48FmLJlTHAOL
+         DrcgsmaS7mbINDeUziq/ecF1pL0HkU2u5VS+76uzig/1Pf007F4ndac0eajmEj9M1i
+         3pV66jrFxzVUYxUxoYrCCQYMz723TP8lVwRF8s+/wnm3RpVlo0Oush32HclBZ+iFSr
+         L6tkPq7uOnayw==
+Message-ID: <ae40d54a-1599-a954-b18f-263196766a2d@collabora.com>
+Date:   Wed, 19 Jul 2023 09:15:51 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [V3,02/11] dt-bindings: clock: qcom: gcc-ipq9574: remove q6 bring
- up clock macros
+ Thunderbird/102.12.0
+Subject: Re: [PATCH v4 3/4] dt-bindings: soc: mediatek: pwrap: Modify
+ compatible for MT8188
 Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Manikanta Mylavarapu <quic_mmanikan@quicinc.com>,
-        agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        mathieu.poirier@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        mturquette@baylibre.com, sboyd@kernel.org,
-        quic_eberman@quicinc.com, kvalo@kernel.org,
-        loic.poulain@linaro.org, linux-arm-msm@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
-Cc:     quic_srichara@quicinc.com, quic_sjaganat@quicinc.com,
-        quic_kathirav@quicinc.com, quic_anusha@quicinc.com
-References: <20230718120501.3205661-1-quic_mmanikan@quicinc.com>
- <20230718120501.3205661-3-quic_mmanikan@quicinc.com>
- <9d473f0b-bd6b-f426-3bd2-2890e8a79431@linaro.org>
-In-Reply-To: <9d473f0b-bd6b-f426-3bd2-2890e8a79431@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+To:     Jason-ch Chen <jason-ch.chen@mediatek.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     =?UTF-8?Q?N=c3=adcolas_F_=2e_R_=2e_A_=2e_Prado?= 
+        <nfraprado@collabora.com>, Chen-Yu Tsai <wenst@chromium.org>,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
+References: <20230718110947.13426-1-jason-ch.chen@mediatek.com>
+ <20230718110947.13426-4-jason-ch.chen@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20230718110947.13426-4-jason-ch.chen@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/07/2023 09:14, Krzysztof Kozlowski wrote:
-> On 18/07/2023 14:04, Manikanta Mylavarapu wrote:
->> In multipd model Q6 firmware takes care of bringup clocks,
->> so remove them.
->>
->> Signed-off-by: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
->> ---
->> Changes in V3:
->> 	- Rebased on TOT
+Il 18/07/23 13:09, Jason-ch Chen ha scritto:
+> From: jason-ch chen <Jason-ch.Chen@mediatek.com>
 > 
-> No clue what is TOT. We have TIP, but you should not use it as a base.
-> Other used names are mainline and linux-next.
+> The reason for changing the patch was that while MT8188 uses the same
+> pwrap as MT8195, the original code was only applicable to 'compatible =
+> "mediatek,mt8188-pwrap"'. To resolve the DTBS check warning that
+> '['mediatek,mt8188-pwrap', 'mediatek,mt8195-pwrap', 'syscon'] is too
+> long', it is necessary to modify the code.
 > 
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: jason-ch chen <Jason-ch.Chen@mediatek.com>
 
-Un-acked. I said last time that this does not compile and I do not see
-any improvements here.
+The original binding allowed only "mediatek,mt8188-pwrap", while we need
+to specify
 
-Best regards,
-Krzysztof
+compatible = "mediatek,mt8188-pwrap", "mediatek,mt8195-pwrap", "syscon";
+
+for this node, as MT8188's PWRAP is fully compatible with MT8195 as it is
+the very same IP, hence:
+
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+
+Regards,
+Angelo
+
+> ---
+>   .../devicetree/bindings/soc/mediatek/mediatek,pwrap.yaml    | 6 +++++-
+>   1 file changed, 5 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/soc/mediatek/mediatek,pwrap.yaml b/Documentation/devicetree/bindings/soc/mediatek/mediatek,pwrap.yaml
+> index a06ac2177444..4737e5f45d54 100644
+> --- a/Documentation/devicetree/bindings/soc/mediatek/mediatek,pwrap.yaml
+> +++ b/Documentation/devicetree/bindings/soc/mediatek/mediatek,pwrap.yaml
+> @@ -41,7 +41,6 @@ properties:
+>                 - mediatek,mt8173-pwrap
+>                 - mediatek,mt8183-pwrap
+>                 - mediatek,mt8186-pwrap
+> -              - mediatek,mt8188-pwrap
+>                 - mediatek,mt8195-pwrap
+>                 - mediatek,mt8365-pwrap
+>                 - mediatek,mt8516-pwrap
+> @@ -50,6 +49,11 @@ properties:
+>                 - mediatek,mt8186-pwrap
+>                 - mediatek,mt8195-pwrap
+>             - const: syscon
+> +      - items:
+> +          - enum:
+> +              - mediatek,mt8188-pwrap
+> +          - const: mediatek,mt8195-pwrap
+> +          - const: syscon
+>   
+>     reg:
+>       minItems: 1
+
 
