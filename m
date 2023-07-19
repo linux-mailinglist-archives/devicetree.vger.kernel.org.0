@@ -2,209 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B905759E8F
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 21:28:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8766D759E9C
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 21:32:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231202AbjGST2V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jul 2023 15:28:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54142 "EHLO
+        id S229610AbjGSTcf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jul 2023 15:32:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55720 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229655AbjGST2T (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 15:28:19 -0400
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3795D1FD3
-        for <devicetree@vger.kernel.org>; Wed, 19 Jul 2023 12:28:18 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-98dfb3f9af6so10098766b.2
-        for <devicetree@vger.kernel.org>; Wed, 19 Jul 2023 12:28:18 -0700 (PDT)
+        with ESMTP id S229476AbjGSTce (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 15:32:34 -0400
+Received: from mail-pg1-x533.google.com (mail-pg1-x533.google.com [IPv6:2607:f8b0:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CB2E199A;
+        Wed, 19 Jul 2023 12:32:33 -0700 (PDT)
+Received: by mail-pg1-x533.google.com with SMTP id 41be03b00d2f7-55b78bf0423so410514a12.0;
+        Wed, 19 Jul 2023 12:32:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689794896; x=1692386896;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=gmail.com; s=20221208; t=1689795153; x=1692387153;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=TcNmIsuW97qQDEgueal6oZwyfTvcbga5wSv8p96tsDE=;
-        b=AeiVpxzYqw1J8CS8ahzshvssmNLZoPlbRPOo3TE+s8oOGabZx7kYQEzFJTJxvFm6NN
-         2eJOZRGqri+1pGvHfmmqo0VWoduIACmzb7LIHYfavPRma3b49mzs+G0WmXUNjbmg1F4r
-         AT9KwRb+mSAfjHETLFzacqSPXjpuby7p9V10CmYNx/I3V998/6YnTN00nAsfwPgm1G3d
-         UDFjeUynmwYCD+DE8rOmBg/FfmU63ZsYt7F0SeWkGCg8OJla7FHncHhl7AoYjyffobfz
-         qzmDc5rz/tsA8feYW6Wukpw0FLEEscGL5Lm9si/qztMPRUTaALAXFfwxb7dhKnd8T+BT
-         ia5g==
+        bh=JgIpzoU0VyQgL0NkVcRHfS3NqAECcKE/nlvXM/xlG+M=;
+        b=h/Rc6xYRpJRL80HYp/Qg/Vf5WIp3rIkulUvx5EI0vtSzDl5SuUL5lXqyJTmlvq/Drg
+         nGmkeNdHbOnfPBs0pHIoGxMpMm++ePmxrF0txPoCrIvQoj8g+1ZkkT860MrA6Mex/a9z
+         Rez08BJTdM0buF9FOhAdvyTkIb31qJ/x9R357vJz2yUkYRmksEuwrg64aOsHMhb+1S5F
+         oOFU3NexOR4rdOCmxJ7yHjhCdLTaTmnkAGATqTd0C5v0C/ot3DXmMujQYq2n1DUyW/vZ
+         LVlaC5GroqcdfmbIZotE9X6NqlunqYQ4wPeQkeydIJCPMNYAm49Z+ajt2vnGL34F8lWI
+         Ejaw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689794896; x=1692386896;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20221208; t=1689795153; x=1692387153;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=TcNmIsuW97qQDEgueal6oZwyfTvcbga5wSv8p96tsDE=;
-        b=ELq8z5TfaoedHhmWBhMHJvXmss7pm8qyvh3LDZ22FCDMoniXp6CukfvgiVNsDiy8Ka
-         RhOsZ6MOgu6oc5UghwKKt8xHmFOggi9U8MTafk1sRj4/Z1I90oORS7DkwU3HYEtqQr5k
-         GVQq2CEAytYcR21P7OSOk4ub0hyxA96Bhl5ee2fHaLOdHLaUvh92HEzHV+eRR106+xnp
-         ns0MsTG3dIvDZoXnXWMAdUvUM5BPn4ndYx4HaCA9uDb3GUfJiTLBERSQOOO9Smj9WVTC
-         LbJA1NFpvFU0ufQ8HBdfX24z1m0jzrU8OGGkhv/1cciupTpjds8LzssTXcHrUdGDTZpG
-         bBww==
-X-Gm-Message-State: ABy/qLYxEhUgZyc5wPjmOG15O5Agb1/jImpJa8syTHaptl2G90HA4HM4
-        kvBGZtZGbdmPbrPq12ZbQ1MVWzo66VpFOPbvF/A=
-X-Google-Smtp-Source: APBJJlEhpxysmSlsUa5KsviCsOAPYZaY2KzsGJpRjCmWaqkRbLK3f4l4BX361s9nVHpem2OwAYRbtg==
-X-Received: by 2002:a17:906:151:b0:992:ef60:aae0 with SMTP id 17-20020a170906015100b00992ef60aae0mr3392724ejh.54.1689794896644;
-        Wed, 19 Jul 2023 12:28:16 -0700 (PDT)
-Received: from krzk-bin.. ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id n26-20020a170906119a00b00991e2b5a27dsm2720966eja.37.2023.07.19.12.28.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 Jul 2023 12:28:16 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        bh=JgIpzoU0VyQgL0NkVcRHfS3NqAECcKE/nlvXM/xlG+M=;
+        b=R9wIQ/eixT3bQL3Cz1sf7uRWtRo1af1usFQsdbf16mx2RIoM5aC0RtNzgBmXJXiAbi
+         q6XmnMt1MZVorburG69P7ZrMOkmxmPp2K7eR+xh68Kw2sorbt+wCjn7BLa8WP0S/GYOg
+         LIGQI4+N+H7Zun72/sVJ+4vNR2d6jayYjmt/90o3CnfnqAqPYRAenrNvJ4RwpI1AUSt9
+         aUeAzUsdJkBEaokBieGIdkCiTj06jGsFDZQZy+V+l1K49wK965O1E1KJIqcmNEX6GA8x
+         tqrZVh2E3auiyYlZy415mWOU0cq4IKvxGvddtcHUmv6KrlYytDZFCNzAqPhzhS0Arisa
+         1o3g==
+X-Gm-Message-State: ABy/qLbzswQ5xBo7AVhgdZ0gpyEb8btmGjVmnsEKCcaAnLh1mu/yv9oo
+        jc3aTKW1otJJBb+vuXv/oa7wth0i8ErX5kifyx4TnUoMuZxchA==
+X-Google-Smtp-Source: APBJJlFQl3zbsRGAKqJGd4h0afkfwXib7FZqWkCfiL9xu+3C9/loC7Gq+fzEIDjgESruY8JcSm6o30/KrThsBUyIdYA=
+X-Received: by 2002:a17:90a:3e05:b0:25b:88bc:bb6b with SMTP id
+ j5-20020a17090a3e0500b0025b88bcbb6bmr193123pjc.2.1689795153073; Wed, 19 Jul
+ 2023 12:32:33 -0700 (PDT)
+MIME-Version: 1.0
+References: <20230719160048.2737423-1-james.hilliard1@gmail.com> <20230719160048.2737423-2-james.hilliard1@gmail.com>
+In-Reply-To: <20230719160048.2737423-2-james.hilliard1@gmail.com>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Wed, 19 Jul 2023 16:32:21 -0300
+Message-ID: <CAOMZO5C_BFm+P=9uizL0buSJ9a33PM6hNgG5OcZ3B4YxD=h_6w@mail.gmail.com>
+Subject: Re: [PATCH 2/2] ARM: dts: imx6q: Add Variscite MX6 Custom board support
+To:     James Hilliard <james.hilliard1@gmail.com>
+Cc:     devicetree@vger.kernel.org,
+        Gregory CLEMENT <gregory.clement@bootlin.com>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        soc@kernel.org, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v2 3/3] arm64: dts: qcom: sm8350: add APR and LPASS TLMM
-Date:   Wed, 19 Jul 2023 21:28:09 +0200
-Message-Id: <20230719192809.434709-3-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230719192809.434709-1-krzysztof.kozlowski@linaro.org>
-References: <20230719192809.434709-1-krzysztof.kozlowski@linaro.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add audio-related nodes: the APR in the ADSP (same as on SM8250) and
-LPASS TLMM pin controller.
+Hi James,
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+On Wed, Jul 19, 2023 at 1:01=E2=80=AFPM James Hilliard
+<james.hilliard1@gmail.com> wrote:
+>
+> This patch adds support for the Variscite MX6 SoM Carrier Board.
+>
+> This Carrier-Board has the following :
+> - LVDS interface for the VLCD-CAP-GLD-LVDS 7" LCD 800 x 480 touch display
+> - HDMI Connector
+> - USB Host + USB OTG Connector
+> - 10/100/1000 Mbps Ethernet
+> - miniPCI-Express slot
+> - SD Card connector
+> - Audio Headphone/Line In jack connectors
+> - S-ATA
+> - On-board DMIC
+> - RS485 Header
+> - CAN bus header
+> - SPI header
+> - Camera Interfaces header
+> - OnBoard RTC with Coin Backup battery socket
+> - RS232 Debug Header (IDC10)
+> - RS232 DTE
 
----
+Good, but what exactly has been tested?
 
-Bindings for SM8350:
-https://lore.kernel.org/linux-arm-msm/20230616185742.2250452-1-krzysztof.kozlowski@linaro.org/T/#t
+> Product Page : https://www.variscite.com/product/single-board-computers/v=
+ar-mx6customboard
+>
+> The dts file based on the ones provided by Variscite on their own
+> kernel, but adapted for mainline.
+>
+> Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
+> Signed-off-by: James Hilliard <james.hilliard1@gmail.com>
 
-Changes in v2:
-1. Use "0" as size in "reg" (Konrad).
-2. Add missing blank lines between child nodes (Konrad).
----
- arch/arm64/boot/dts/qcom/sm8350.dtsi | 85 ++++++++++++++++++++++++++++
- 1 file changed, 85 insertions(+)
+Is this patch from you or Gregory? If Gregory is the author, then his
+name should appear in the From: line.
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-index 557a3d8e889b..84044d0610fc 100644
---- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-@@ -15,7 +15,9 @@
- #include <dt-bindings/mailbox/qcom-ipcc.h>
- #include <dt-bindings/phy/phy-qcom-qmp.h>
- #include <dt-bindings/power/qcom-rpmpd.h>
-+#include <dt-bindings/soc/qcom,apr.h>
- #include <dt-bindings/soc/qcom,rpmh-rsc.h>
-+#include <dt-bindings/sound/qcom,q6afe.h>
- #include <dt-bindings/thermal/thermal.h>
- #include <dt-bindings/interconnect/qcom,sm8350.h>
- 
-@@ -1814,6 +1816,20 @@ tcsr_mutex: hwlock@1f40000 {
- 			#hwlock-cells = <1>;
- 		};
- 
-+		lpass_tlmm: pinctrl@33c0000 {
-+			compatible = "qcom,sm8350-lpass-lpi-pinctrl";
-+			reg = <0 0x033c0000 0 0x20000>,
-+			      <0 0x03550000 0 0x10000>;
-+
-+			clocks = <&q6afecc LPASS_HW_MACRO_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
-+				 <&q6afecc LPASS_HW_DCODEC_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>;
-+			clock-names = "core", "audio";
-+
-+			gpio-controller;
-+			#gpio-cells = <2>;
-+			gpio-ranges = <&lpass_tlmm 0 0 15>;
-+		};
-+
- 		gpu: gpu@3d00000 {
- 			compatible = "qcom,adreno-660.1", "qcom,adreno";
- 
-@@ -3223,6 +3239,75 @@ IPCC_MPROC_SIGNAL_GLINK_QMP
- 				label = "lpass";
- 				qcom,remote-pid = <2>;
- 
-+				apr {
-+					compatible = "qcom,apr-v2";
-+					qcom,glink-channels = "apr_audio_svc";
-+					qcom,domain = <APR_DOMAIN_ADSP>;
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+
-+					service@3 {
-+						reg = <APR_SVC_ADSP_CORE>;
-+						compatible = "qcom,q6core";
-+						qcom,protection-domain = "avs/audio", "msm/adsp/audio_pd";
-+					};
-+
-+					q6afe: service@4 {
-+						compatible = "qcom,q6afe";
-+						reg = <APR_SVC_AFE>;
-+						qcom,protection-domain = "avs/audio", "msm/adsp/audio_pd";
-+
-+						q6afedai: dais {
-+							compatible = "qcom,q6afe-dais";
-+							#address-cells = <1>;
-+							#size-cells = <0>;
-+							#sound-dai-cells = <1>;
-+						};
-+
-+						q6afecc: clock-controller {
-+							compatible = "qcom,q6afe-clocks";
-+							#clock-cells = <2>;
-+						};
-+					};
-+
-+					q6asm: service@7 {
-+						compatible = "qcom,q6asm";
-+						reg = <APR_SVC_ASM>;
-+						qcom,protection-domain = "avs/audio", "msm/adsp/audio_pd";
-+
-+						q6asmdai: dais {
-+							compatible = "qcom,q6asm-dais";
-+							#address-cells = <1>;
-+							#size-cells = <0>;
-+							#sound-dai-cells = <1>;
-+							iommus = <&apps_smmu 0x1801 0x0>;
-+
-+							dai@0 {
-+								reg = <0>;
-+							};
-+
-+							dai@1 {
-+								reg = <1>;
-+							};
-+
-+							dai@2 {
-+								reg = <2>;
-+							};
-+						};
-+					};
-+
-+					q6adm: service@8 {
-+						compatible = "qcom,q6adm";
-+						reg = <APR_SVC_ADM>;
-+						qcom,protection-domain = "avs/audio", "msm/adsp/audio_pd";
-+
-+						q6routing: routing {
-+							compatible = "qcom,q6adm-routing";
-+							#sound-dai-cells = <0>;
-+						};
-+					};
-+				};
-+
- 				fastrpc {
- 					compatible = "qcom,fastrpc";
- 					qcom,glink-channels = "fastrpcglink-apps-dsp";
--- 
-2.34.1
+> +&iomuxc {
+> +       imx6qdl-var-som-mx6 {
 
+This ' imx6qdl-var-som-mx6' should be dropped.
+
+> +
+> +               pinctrl_ipu1: ipu1grp {
+> +                       fsl,pins =3D <
+> +                               MX6QDL_PAD_DI0_DISP_CLK__IPU1_DI0_DISP_CL=
+K      0x10
+> +                               MX6QDL_PAD_DI0_PIN15__IPU1_DI0_PIN15     =
+       0x10
+> +                               MX6QDL_PAD_DI0_PIN2__IPU1_DI0_PIN02      =
+       0x10
+> +                               MX6QDL_PAD_DI0_PIN3__IPU1_DI0_PIN03      =
+       0x10
+> +                               MX6QDL_PAD_DI0_PIN4__IPU1_DI0_PIN04      =
+       0x80000000
+
+No 0x80000000 please. Use the real pad ctl value instead.
+This applies globally.
+
+&mipi_csi {
+> +       status =3D "okay";
+> +       ipu_id =3D <0>;
+> +       csi_id =3D <1>;
+> +       v_channel =3D <0>;
+> +       lanes =3D <2>;
+
+These are all NXP vendor devicetree properties. They do not exist upstream.
+
+> +       lvds-channel@0 {
+> +               fsl,data-mapping =3D "spwg";
+> +               fsl,data-width =3D <24>;
+> +               status =3D "okay";
+> +               primary;
+
+This property does not exist upstream.
+
+> +       lvds-channel@1 {
+> +               fsl,data-mapping =3D "spwg";
+> +               fsl,data-width =3D <24>;
+> +               status =3D "okay";
+> +               primary;
+
+Ditto.
+
+> +&usbphy1 {
+> +       tx-d-cal =3D <0x5>;
+
+In upstream it is called fsl,tx-d-cal.
+
+> +};
+> +
+> +&usbphy2 {
+> +       tx-d-cal =3D <0x5>;
+
+Ditto.
