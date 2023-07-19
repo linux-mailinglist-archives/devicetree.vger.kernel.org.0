@@ -2,104 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 75642758F54
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 09:42:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 04B56758F5B
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 09:43:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230313AbjGSHmj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jul 2023 03:42:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37042 "EHLO
+        id S230293AbjGSHnY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jul 2023 03:43:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37418 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230183AbjGSHmI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 03:42:08 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 573AB2685;
-        Wed, 19 Jul 2023 00:41:13 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id D831D612FD;
-        Wed, 19 Jul 2023 07:41:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6AD33C433C8;
-        Wed, 19 Jul 2023 07:41:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689752472;
-        bh=b8GEqB/2sTmMlL5y18FKSNhfxtcA7qKBejTmK0tI0EI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=O+YN10JPskc9ztReEFlJnjB72I1SIq5vKeTpSeV2hXjlFdrIp1fDy/b/q6uNV/WWD
-         QV1ujwc4umRfGoa6ZtU0Vp0Fbg9J2WvAi+WmdBIjYNufejEqOb7rEbLNBvw555cSqu
-         y+xjx4VrK7j8AZSkyro8k7IHin5y6ZreGREDgqvE8kp9v2Y9/Pdf+P21R4Qqm8tNtt
-         JhF/1YksfB4xnxrlx3VHVCDfcF8xNYd7pwHkSzC+PJCIZpytBhS2gQzefvdmjhMSKs
-         VZwsGVFwYFbJMoYpNtLMf3hXoB6knBJgLTdu34QSeJWv2I+y1ThAuZBQFWBYK+nbWr
-         zBvNXXyteGLrg==
-Date:   Wed, 19 Jul 2023 13:10:55 +0530
-From:   Manivannan Sadhasivam <mani@kernel.org>
-To:     Krishna chaitanya chundru <quic_krichai@quicinc.com>
-Cc:     manivannan.sadhasivam@linaro.org, helgaas@kernel.org,
-        linux-pci@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, quic_vbadigan@quicinc.com,
-        quic_nitegupt@quicinc.com, quic_skananth@quicinc.com,
-        quic_ramkri@quicinc.com, krzysztof.kozlowski@linaro.org,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v10 3/4] arm: dts: qcom: sdx55: Add CPU PCIe EP
- interconnect path
-Message-ID: <20230719074055.GB9312@thinkpad>
-References: <1689751218-24492-1-git-send-email-quic_krichai@quicinc.com>
- <1689751218-24492-4-git-send-email-quic_krichai@quicinc.com>
+        with ESMTP id S230352AbjGSHmw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 03:42:52 -0400
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 894912716
+        for <devicetree@vger.kernel.org>; Wed, 19 Jul 2023 00:41:41 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-51e590a8ab5so8976801a12.2
+        for <devicetree@vger.kernel.org>; Wed, 19 Jul 2023 00:41:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1689752500; x=1692344500;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=TLrUGW85rpv90KzHtLXkb3CjWAhIiWzODGEwCQgbYyw=;
+        b=VLWkzTZTiw6QWblM20qIpPImHMsRxPnT5eefbx2Z8hO9YWoGsJh2wCoeoqlany0JrL
+         7i4PpRYVfg/1CiMwh9OQmj8mj/QevqS4YDOMlzfYlUZOKGO1wysSMoSMxsplsoM/GAGC
+         Au6s0krl6/EBG4aH2Uqy8rhVRIZ3odOwj8SKaqP36JBdPr2I+oT6mCbujaAqPntnWTQL
+         4r/ggcd/K4C8ONpqXGbfeJ2Pn3B8aqTrOLxANLH5JNWx04Ws9uGGOlPitTXQRVAT/ZQ1
+         EsFvAbKLY8IlUukbGidDAFv/d4czgCJZDx8z63WeN71jV0+ujKfTtne3Wu0NxnDI58ys
+         2EcA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689752500; x=1692344500;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=TLrUGW85rpv90KzHtLXkb3CjWAhIiWzODGEwCQgbYyw=;
+        b=W/lXfttk3slIscoWQ87HtDiA4fS5fsF9j6hd7IXuuJpcUcd9gpjBLIi07sSRBYrOCR
+         H5wi9oEPcHAyWw/6truDOGKf2RYg9kUiAqp1+0w1QGZv1NgErYeIiNUmjyPJPUphMc12
+         3MfSNanoZagc3qKF5JnVOWUhgSnqGuYJBvG6z5pTGVgWu1P9fOlkCpeaaR9Q4hgnCiEK
+         5+KcBAQ0/SH3W64lMJ27i4olrzsGpuct8lrpB+/NZg9ZaJxj1lID/dXhRYZVSppT43L1
+         aemVXiiHl0+1T94jBVtNYcGyEu7F1IGD3xMS5CPr/1C4xQPqFV5H+GEAytkkbIf9mQTc
+         Xp7Q==
+X-Gm-Message-State: ABy/qLa9suewIfWkmMx2pJJK/lsnSVtZr5YnkxryNfW6gYDdHr2oWD6c
+        WfxNlkThhOljP21eqcjWZuYtaQ==
+X-Google-Smtp-Source: APBJJlFD3Lq9Qk5gW+xseTg2pSlh8AFtuKQYxkcDUNt6C47LWETman+o6eD+TmJz8h6zmpCB3YsxwA==
+X-Received: by 2002:a17:906:319b:b0:965:d18b:f03a with SMTP id 27-20020a170906319b00b00965d18bf03amr1775787ejy.58.1689752500075;
+        Wed, 19 Jul 2023 00:41:40 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id gj19-20020a170906e11300b00992ea405a79sm1935164ejb.166.2023.07.19.00.41.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 19 Jul 2023 00:41:39 -0700 (PDT)
+Message-ID: <8dec9f94-9a84-68f2-4cc7-18fde97119c5@linaro.org>
+Date:   Wed, 19 Jul 2023 09:41:37 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <1689751218-24492-4-git-send-email-quic_krichai@quicinc.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v3 1/3] dt-bindings: reset: Add compatible and DT bindings
+ for Amlogic C3 Reset Controller
+Content-Language: en-US
+To:     zelong dong <zelong.dong@amlogic.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Jerome Brunet <jbrunet@baylibre.com>
+Cc:     linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, kelvin.zhang@amlogic.com
+References: <20230719060954.14864-1-zelong.dong@amlogic.com>
+ <20230719060954.14864-2-zelong.dong@amlogic.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230719060954.14864-2-zelong.dong@amlogic.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 19, 2023 at 12:50:17PM +0530, Krishna chaitanya chundru wrote:
-> Add cpu-pcie interconnect path for PCIe EP to sdx55 platform.
+On 19/07/2023 08:09, zelong dong wrote:
+> From: Zelong Dong <zelong.dong@amlogic.com>
 > 
-> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
-
-Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-
-- Mani
-
-> ---
->  arch/arm/boot/dts/qcom/qcom-sdx55.dtsi | 5 +++--
->  1 file changed, 3 insertions(+), 2 deletions(-)
+> Add new compatible and DT bindings for Amlogic C3 Reset Controller
 > 
-> diff --git a/arch/arm/boot/dts/qcom/qcom-sdx55.dtsi b/arch/arm/boot/dts/qcom/qcom-sdx55.dtsi
-> index df3cd9c..a7c0c26 100644
-> --- a/arch/arm/boot/dts/qcom/qcom-sdx55.dtsi
-> +++ b/arch/arm/boot/dts/qcom/qcom-sdx55.dtsi
-> @@ -422,8 +422,9 @@
->  			interrupt-names = "global",
->  					  "doorbell";
->  
-> -			interconnects = <&system_noc MASTER_PCIE &mc_virt SLAVE_EBI_CH0>;
-> -			interconnect-names = "pcie-mem";
-> +			interconnects = <&system_noc MASTER_PCIE &mc_virt SLAVE_EBI_CH0>,
-> +					<&mem_noc MASTER_AMPSS_M0 &system_noc SLAVE_PCIE_0>;
-> +			interconnect-names = "pcie-mem", "cpu-pcie";
->  
->  			resets = <&gcc GCC_PCIE_BCR>;
->  			reset-names = "core";
-> -- 
-> 2.7.4
-> 
+> Signed-off-by: Zelong Dong <zelong.dong@amlogic.com>
 
--- 
-மணிவண்ணன் சதாசிவம்
+
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
+
