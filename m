@@ -2,78 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B439A759B57
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 18:48:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 563CF759B5D
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 18:49:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230345AbjGSQsz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jul 2023 12:48:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36356 "EHLO
+        id S230407AbjGSQtF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jul 2023 12:49:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36572 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230370AbjGSQsx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 12:48:53 -0400
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 882B21BF2;
-        Wed, 19 Jul 2023 09:48:39 -0700 (PDT)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 63728FF802;
-        Wed, 19 Jul 2023 16:48:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1689785317;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=JKDmPUsTotuvgM8MSiKrmp7WDzMVYFV4Cjd7anLXrXo=;
-        b=Ik2teUmfo0wnP/ByQx4yLDuXDr9fSqxD0pDRf5TZXTjBH6M/k8OCT6oMi30+bfGiw0ALkP
-        t0abRvexgfIdDy5GvQMBQ1cg92YaF+MyvZZCHxtKJ0qQPphxGn8uBpWUYDutRKL7U6btFW
-        CY3ovATDDERETU8GW1kB5p8XdUVkjUPtjHBVuCYp9LJg/+EF2NDX7FMfn6IVQYFoFlXDNs
-        cvSC8LKXUaV4Zg4tdGmNEByU68+XO59W8+exdE0NTOTvm1mI/dCs0I18xrHk26v3A5l2LX
-        UrucgJTXqVZabnVYEqrhamESPEUGJXjzlgTKPeHFH3cee3MxE4i5tmJLcV/p9g==
-Date:   Wed, 19 Jul 2023 18:48:31 +0200
-From:   Luca Ceresoli <luca.ceresoli@bootlin.com>
-To:     Xu Yang <xu.yang_2@nxp.com>
-Cc:     Francesco Dolcini <francesco@dolcini.it>, Jun Li <jun.li@nxp.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Francesco Dolcini <francesco.dolcini@toradex.com>
-Subject: Re: [EXT] Re: [PATCH v2 2/3] usb: chipidea: imx: support disabling
- runtime-pm
-Message-ID: <20230719184831.75ae8658@booty>
-In-Reply-To: <DB7PR04MB4505560E7DCBC2523FD7A0FE8C39A@DB7PR04MB4505.eurprd04.prod.outlook.com>
-References: <20230504162312.1506763-1-luca.ceresoli@bootlin.com>
-        <ZFPiRvoF5l8uGzzZ@francesco-nb.int.toradex.com>
-        <PA4PR04MB96403377F5E37C12AD8C25B389729@PA4PR04MB9640.eurprd04.prod.outlook.com>
-        <20230505120618.2f4cf22c@booty>
-        <ZFThyn/D/dDK9nk3@francesco-nb.int.toradex.com>
-        <PA4PR04MB96405EE2468555EA900B340189739@PA4PR04MB9640.eurprd04.prod.outlook.com>
-        <ZFjaNzY32x8o2XG7@francesco-nb.int.toradex.com>
-        <20230508151756.785ec07e@booty>
-        <20230529121825.71e9b6d6@booty>
-        <PA4PR04MB96405138465D215C34285F02894B9@PA4PR04MB9640.eurprd04.prod.outlook.com>
-        <ZKaWL3+ClI7iNr/4@francesco-nb.int.toradex.com>
-        <20230717184537.6d6ed607@booty>
-        <DB7PR04MB450573F8EA936E049F053A258C38A@DB7PR04MB4505.eurprd04.prod.outlook.com>
-        <20230718142504.075d0186@booty>
-        <DB7PR04MB4505560E7DCBC2523FD7A0FE8C39A@DB7PR04MB4505.eurprd04.prod.outlook.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+        with ESMTP id S230426AbjGSQtB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 12:49:01 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9501110CB;
+        Wed, 19 Jul 2023 09:48:55 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 15A756178E;
+        Wed, 19 Jul 2023 16:48:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B94CAC433C7;
+        Wed, 19 Jul 2023 16:48:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1689785334;
+        bh=1HBKVki0O0wNw4bhjdzJwsp6wEBaBoJaQE76IJ1szgA=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:From;
+        b=X7N2d/2yj1WdtbiS2soZExEPhMcqvLSQZB7JPhkGBwOS0KQAbfIVhRHHVOtWqE1W4
+         bqnZ5DmTLWWAcgya0/zqzoRPSuSBUYb1PPQF713srTHra/T2B0s4ao2xvIyXKYLbG8
+         1ogSJKWzjC0cPH91ZlqUuoTH7sifnzDyRqqY4lkbYtMnEDg/uRNZjra7JPNJa5xn5H
+         I/qkeXMNDlog4n3EmwXpZZ7/3WXAF4kjh/VD16ugzOUPOYSmBH0VjSyQAmJ/k+r6zX
+         kgeOcEHp7paSGLoPh9D7OmG1DZSiDwz9b2axobKpjT5hh+5px6AknnKCSIf5rQKixF
+         GEatizIpbiXeA==
+Date:   Wed, 19 Jul 2023 11:48:51 -0500
+From:   Bjorn Helgaas <helgaas@kernel.org>
+To:     Minda Chen <minda.chen@starfivetech.com>
+Cc:     Daire McNamara <daire.mcnamara@microchip.com>,
+        Conor Dooley <conor@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-pci@vger.kernel.org,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Mason Huo <mason.huo@starfivetech.com>,
+        Leyfoon Tan <leyfoon.tan@starfivetech.com>,
+        Kevin Xie <kevin.xie@starfivetech.com>
+Subject: Re: [PATCH v1 8/9] PCI: PLDA: starfive: Add JH7110 PCIe controller
+Message-ID: <20230719164851.GA505840@bhelgaas>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-GND-Sasl: luca.ceresoli@bootlin.com
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230719102057.22329-9-minda.chen@starfivetech.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,122 +68,132 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Xu,
+On Wed, Jul 19, 2023 at 06:20:56PM +0800, Minda Chen wrote:
+> Add StarFive JH7110 SoC PCIe controller platform
+> driver codes.
 
-thanks for the follow up.
+Rewrap all the commit logs to fill 75 columns or so.
 
-On Wed, 19 Jul 2023 11:23:26 +0000
-Xu Yang <xu.yang_2@nxp.com> wrote:
+>  #define PCIE_PCI_IDS_DW1		0x9c
+> -
+> +#define  IDS_CLASS_CODE_SHIFT		16
+> +#define PCI_MISC			0xB4
 
-> Hi Luca,
-> 
-> > -----Original Message-----
-> > 
-> > Hello Xu,
-> > 
-> > On Tue, 18 Jul 2023 08:31:48 +0000
-> > Xu Yang <xu.yang_2@nxp.com> wrote:
-> >   
-> > > > -----Original Message-----
-> > > >
-> > > > Ciao Francesco,
-> > > >
-> > > > On Thu, 6 Jul 2023 12:23:43 +0200
-> > > > Francesco Dolcini <francesco@dolcini.it> wrote:
-> > > >  
-> > > > > Hello Luca,
-> > > > >
-> > > > > On Tue, May 30, 2023 at 11:22:51AM +0000, Jun Li wrote:  
-> > > > > > Yes, your understanding is correct, talked with Xu(in CC), he will take this
-> > > > > > soon.  
-> > > > >
-> > > > > A series was posted
-> > > > >
-> > > > > I had no time to try or look at it yet.  
-> > > >
-> > > > Thanks for keeping me up to date on this topic, which is still totally
-> > > > relevant to me.
-> > > >
-> > > > I looked at the series, but it does not seem to be addressing the
-> > > > problem with USB host not detecting new devices when VBUS is not
-> > > > directly connected, e.g. in the Colibri imx6ull SoM.
-> > > >
-> > > > Xu, do you confirm the series at the link is _not_ solving the problem
-> > > > being discussed here?  
-> > >
-> > > Have you tried this patchset? The upstream driver couldn't get correct
-> > > USB role from HW_USBPHY_CTRL register when the ID pin is float. This is
-> > > what this patchset is trying to fix. With this patch, condition
-> > > "(!vbus_is_on && !mxs_phy_is_otg_host(mxs_phy)" will always be false when
-> > > controller acts as host role, then __mxs_phy_disconnect_line(phy, true)
-> > > will never be called. So I think it doesn't matter whether VBUS is connected
-> > > or not when act as host mode. If you still have issue after apply this patchset,
-> > > please let me know.  
-> > 
-> > I tested this patchset on top of v6.5-rc2 and I confirm USB detection
-> > is still broken on the Colibri iMX6ULL. With or without the patches
-> > the behavior is the same: USB devices are detected only during boot,
-> > and anything connected after boot are never detected.  
-> 
-> Thanks for your feedback. As you said this issue will disappear with below change, right?
-> 
-> 	diff --git a/drivers/usb/phy/phy-mxs-usb.c b/drivers/usb/phy/phy-mxs-usb.c
-> 	index e1a2b2ea098b..ec5ee790455e 100644
-> 	--- a/drivers/usb/phy/phy-mxs-usb.c
-> 	+++ b/drivers/usb/phy/phy-mxs-usb.c
-> 	@@ -178,7 +178,6 @@ static const struct mxs_phy_data imx6sx_phy_data = {
-> 	 };
-> 
-> 	 static const struct mxs_phy_data imx6ul_phy_data = {
-> 	-       .flags = MXS_PHY_DISCONNECT_LINE_WITHOUT_VBUS,
-> 	 };
-> 
-> 	 static const struct mxs_phy_data imx7ulp_phy_data = {
+Surrounding code uses lower-case hex.  Make it all match.
 
-Exactly.
+> +#define STG_SYSCON_AXI4_SLVL_ARFUNC_MASK	GENMASK(22, 8)
+> +#define STG_SYSCON_AXI4_SLVL_ARFUNC_SHIFT	8
 
-> So I guess something in __mxs_phy_disconnect_line(mxs_phy, true) is causing this behavior.
-> Could you please help to find which line to comment to make this issue disappear?
+When practical, use FIELD_GET() and FIELD_PREP() to avoid the need for
+*_SHIFT macros.
 
-I did some tests and detection works by doing _any_ of the following
-two changes (or both of them).
+> +struct starfive_jh7110_pcie {
+> +	struct plda_pcie	plda;
+> +	struct reset_control *resets;
+> +	struct clk_bulk_data *clks;
+> +	struct regmap *reg_syscon;
+> +	struct gpio_desc *power_gpio;
+> +	struct gpio_desc *reset_gpio;
+> +
+> +	u32 stg_arfun;
+> +	u32 stg_awfun;
+> +	u32 stg_rp_nep;
+> +	u32 stg_lnksta;
+> +
+> +	int num_clks;
 
-Change 1:
+If you indent one member with tabs, e.g., "struct plda_pcie        plda",
+they should all be indented to match.
 
---- a/drivers/usb/phy/phy-mxs-usb.c
-+++ b/drivers/usb/phy/phy-mxs-usb.c
-@@ -359,10 +359,6 @@ static void __mxs_phy_disconnect_line(struct mxs_phy *mxs_phy, bool disconnect)
-        void __iomem *base = mxs_phy->phy.io_priv;
-        u32 reg;
- 
--       if (disconnect)
--               writel_relaxed(BM_USBPHY_DEBUG_CLKGATE,
--                       base + HW_USBPHY_DEBUG_CLR);
--
-        if (mxs_phy->port_id == 0) {
-                reg = disconnect ? ANADIG_USB1_LOOPBACK_SET
-                        : ANADIG_USB1_LOOPBACK_CLR;
+> + * The BAR0/1 of bridge should be hidden during enumeration to
+> + * avoid the sizing and resource allocation by PCIe core.
+> + */
+> +static bool starfive_pcie_hide_rc_bar(struct pci_bus *bus, unsigned int  devfn,
+> +				      int offset)
+> +{
+> +	if (pci_is_root_bus(bus) && !devfn &&
+> +	    (offset == PCI_BASE_ADDRESS_0 || offset == PCI_BASE_ADDRESS_1))
+> +		return true;
+> +
+> +	return false;
+> +}
+> +
+> +int starfive_pcie_config_write(struct pci_bus *bus, unsigned int devfn,
+> +			       int where, int size, u32 value)
+> +{
+> +	if (starfive_pcie_hide_rc_bar(bus, devfn, where))
+> +		return PCIBIOS_BAD_REGISTER_NUMBER;
 
-Change 2:
+I think you are trying present BARs 0 & 1 as unimplemented.  Such BARs
+are hardwired to zero, so you should make them behave that way (both
+read and write).  Many callers of config accessors don't check the
+return value, so I don't think it's reliable to just return
+PCIBIOS_BAD_REGISTER_NUMBER.
 
---- a/drivers/usb/phy/phy-mxs-usb.c
-+++ b/drivers/usb/phy/phy-mxs-usb.c
-@@ -372,9 +372,6 @@ static void __mxs_phy_disconnect_line(struct mxs_phy *mxs_phy, bool disconnect)
-        } else if (mxs_phy->port_id == 1) {
-                reg = disconnect ? ANADIG_USB2_LOOPBACK_SET
-                        : ANADIG_USB2_LOOPBACK_CLR;
--               regmap_write(mxs_phy->regmap_anatop, reg,
--                       BM_ANADIG_USB2_LOOPBACK_UTMI_DIG_TST1 |
--                       BM_ANADIG_USB2_LOOPBACK_TSTI_TX_EN);
-        }
- 
-        if (!disconnect)
+> +static int starfive_pcie_is_link_up(struct starfive_jh7110_pcie *pcie)
+> +{
+> +	struct device *dev = pcie->plda.dev;
+> +	int ret;
+> +	u32 stg_reg_val;
+> +
+> +	/* 100ms timeout value should be enough for Gen1/2 training */
+> +	ret = regmap_read_poll_timeout(pcie->reg_syscon,
+> +				       pcie->stg_lnksta,
+> +				       stg_reg_val,
+> +				       stg_reg_val & DATA_LINK_ACTIVE,
+> +				       10 * 1000, 100 * 1000);
+> +
+> +	/* If the link is down (no device in slot), then exit. */
+> +	if (ret == -ETIMEDOUT) {
+> +		dev_info(dev, "Port link down, exit.\n");
+> +		return 0;
+> +	} else if (ret == 0) {
+> +		dev_info(dev, "Port link up.\n");
+> +		return 1;
+> +	}
 
-I hope this clarifies something to you.
+Please copy the naming and style of the "*_pcie_link_up()" functions
+in other drivers.  These are boolean functions with no side effects,
+including no timeouts.
 
-Luca
+Some drivers have "*wait_for_link()" functions if polling is needed.
 
--- 
-Luca Ceresoli, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+> +		return dev_err_probe(dev, ret,
+> +			"failed to initialize pcie phy\n");
+
+Driver messages should match (all capitalized or none capitalized).
+
+> +	/* Enable root port */
+
+Superfluous comment, since the function name says the same.
+
+> +	plda_pcie_enable_root_port(plda);
+
+> +	/* Ensure that PERST has been asserted for at least 100 ms */
+> +	msleep(300);
+> +	gpiod_set_value_cansleep(pcie->reset_gpio, 0);
+
+At least 100 ms, but you sleep *300* ms?  This is probably related to
+https://lore.kernel.org/r/20230718155515.GA483233@bhelgaas
+
+Please include a comment with the source of the delay value.  I assume
+it's T_PVPERL and T_PERST-CLK from the PCIe CEM spec.  This way we can
+someday share those #defines across drivers.
+
+> +#ifdef CONFIG_PM_SLEEP
+> +static int __maybe_unused starfive_pcie_suspend_noirq(struct device *dev)
+
+I think you can dispense with some of these #ifdefs and the
+__maybe_unused as in
+https://lore.kernel.org/all/20220720224829.GA1667002@bhelgaas/
+
+> +{
+> +	struct starfive_jh7110_pcie *pcie = dev_get_drvdata(dev);
+> +
+> +	if (!pcie)
+> +		return 0;
+
+How can this happen?  If we're only detecting memory corruption, it's
+not worth it.
+
+Bjorn
