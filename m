@@ -2,140 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ADA5575914C
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 11:13:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 78FAE75915D
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 11:17:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231202AbjGSJN2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jul 2023 05:13:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59662 "EHLO
+        id S231232AbjGSJRc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jul 2023 05:17:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33704 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231232AbjGSJN1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 05:13:27 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFD02173B;
-        Wed, 19 Jul 2023 02:13:26 -0700 (PDT)
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36J4gSwX008449;
-        Wed, 19 Jul 2023 09:13:23 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=Gj2yJp4znK+CIfSIZHigRVEHv6hEKNrVzDu1MeYrYWQ=;
- b=CuT8cBdTbmrwqnDifEHUr3fz9efcCSKpGn03+sYl5qWghQV5ICeiJsvuajABxVjG5S/3
- hQUdb6s2HFpSXfdAIFUT58D089d3/6bCZpL6e5W6N+j697xS6zE5QvgDmnC02XSi8iue
- +X+y7XzTLZdcEyp0T7cRDn2gIx9dKNbx1ls9nPm5sFxDM0Oc12awsEHXWNPc5A3y0beV
- 6Sso9LlObNP4PeY9PGOmGknq4J5BMZSVpczOE5jW3u0fwISc2TRwXaliYFE+kMt31ftD
- WXFT4GVJnaEmYwANZwXapnOD9k5snDcCB5/760pyM38buR8IxT+rDxRh3me0rdaD42JH DA== 
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3rwnrrjx4n-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 19 Jul 2023 09:13:23 +0000
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-        by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 36J9DMfZ020133
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 19 Jul 2023 09:13:22 GMT
-Received: from [10.216.47.173] (10.80.80.8) by nasanex01c.na.qualcomm.com
- (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Wed, 19 Jul
- 2023 02:13:18 -0700
-Message-ID: <37ab515a-a4b1-09fa-6ec4-e2dae17fb58c@quicinc.com>
-Date:   Wed, 19 Jul 2023 14:43:15 +0530
+        with ESMTP id S230291AbjGSJRb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 05:17:31 -0400
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1AF6FA4
+        for <devicetree@vger.kernel.org>; Wed, 19 Jul 2023 02:17:30 -0700 (PDT)
+Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-51e48e1f6d1so9071324a12.1
+        for <devicetree@vger.kernel.org>; Wed, 19 Jul 2023 02:17:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1689758248; x=1692350248;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=vbFAUTqn4J/1uXGDz1Y+p40GpYX5buZBByhfIvb+XTw=;
+        b=pWC6FgUMIYeP779sWAqgtzO3nU1XJ6nhP75SPD12kn5z7GaOdQUHJSr1oj+fpvsMzu
+         1olNjVI5wRWrn45bUPuYJyc5Bco8Iwi76p6mGXk8gdDHJ8p+VfH0Y9Ob/M/hmJowz1Gc
+         J+pNlH0r5n+VARIHACKHBpFtJ+fkdhK77/Ra2Fb2lW0F96NuMi3yPmIb8SIxEbJT+vJ4
+         NbT2hiKo+epWuNBHDFljYudEOU8wGGY0fV8Na+/YoGH0+S92GxieXHMoNGOhVnIdlO7o
+         mBmS3hhhglibp+4T6hBrbrEi0hI9yP9Rr6ZhyVA0T7CkDbC5e5ZxaRjLFEr2TUPH/EFx
+         M6bw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689758248; x=1692350248;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=vbFAUTqn4J/1uXGDz1Y+p40GpYX5buZBByhfIvb+XTw=;
+        b=WjQ8ir91KKjGAW9MayIHn3/baxe4SpiE9kht/+GUsk7j9AavnEbMgw8oVY70J6Rz/F
+         /yczL5vdURZDkOeGFGyE8VSSoVYMIv1A1T3ZSLjgW6LqW/YARbOE5ggmIGrEGQYv67EB
+         Q11J+zdEGZROsX8Y2I6RTnOKvxyGBYh8Gmq7y/8ctm7Y7PeXKyhXalm+oMg2regepf4F
+         Ov4xiPTO7t3dxOp/4dPixV/P4kBlvbgLsURg6GQXQF5bGhIktAS8ddREvTm7Em11WP8l
+         ppfuPkqPwnT084eG6por00KXFgGzjuGxN1ffHNpW7RL+eEVbXMktzsVvmFZzsJfkwHf1
+         53Yg==
+X-Gm-Message-State: ABy/qLbuiPyXh97nsvR/GRt56IDqtG+rrwfl5YsEciKKLdtPHhX/VAfh
+        56kXEeQqurpJh0YSACEy18yfCQ==
+X-Google-Smtp-Source: APBJJlEa4+3uhs2sYS9ftR+O+4gIJ5VpENZ++c6LZlxKhiuUtFmEJV/gmWJNZ1CJFLaGAPqoWDTMng==
+X-Received: by 2002:aa7:d384:0:b0:51b:ec86:b49a with SMTP id x4-20020aa7d384000000b0051bec86b49amr2063330edq.7.1689758248587;
+        Wed, 19 Jul 2023 02:17:28 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id k26-20020a056402049a00b0051e186a6fb0sm2422099edv.33.2023.07.19.02.17.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 19 Jul 2023 02:17:28 -0700 (PDT)
+Message-ID: <3c291f6a-7e9a-b863-9c34-c486647edbf7@linaro.org>
+Date:   Wed, 19 Jul 2023 11:17:26 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
-Subject: Re: [PATCH 1/2] dt-bindings: power: qcom,rpmhpd: Add Generic RPMh PD
- indexes
+Subject: Re: [PATCH 5/7] ARM: dts: exynos: k3g: Add notification LED support
 Content-Language: en-US
-To:     Rohit Agarwal <quic_rohiagar@quicinc.com>, <agross@kernel.org>,
-        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>
-CC:     <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-References: <1689744162-9421-1-git-send-email-quic_rohiagar@quicinc.com>
- <1689744162-9421-2-git-send-email-quic_rohiagar@quicinc.com>
-From:   Mukesh Ojha <quic_mojha@quicinc.com>
-In-Reply-To: <1689744162-9421-2-git-send-email-quic_rohiagar@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To:     Markuss Broks <markuss.broks@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230716220644.22158-1-markuss.broks@gmail.com>
+ <20230716220644.22158-7-markuss.broks@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230716220644.22158-7-markuss.broks@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: pV2YhOuCdK5Fn9cLY1UA0f4Kyi1_8HUZ
-X-Proofpoint-ORIG-GUID: pV2YhOuCdK5Fn9cLY1UA0f4Kyi1_8HUZ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-07-19_05,2023-07-18_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 phishscore=0
- malwarescore=0 suspectscore=0 adultscore=0 spamscore=0 lowpriorityscore=0
- mlxlogscore=838 priorityscore=1501 impostorscore=0 mlxscore=0 bulkscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2306200000
- definitions=main-2307190083
-X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 7/19/2023 10:52 AM, Rohit Agarwal wrote:
-> Add Generic RPMh Power Domain indexes that can be used
-> for all the Qualcomm SoC henceforth.
-> The power domain indexes of these bindings are based on compatibility
-> with current targets like SM8[2345]50 targets.
+On 17/07/2023 00:05, Markuss Broks wrote:
+> This device has a Texas Instruments LP5562 LED controller
+> which controls the LEDs which are used as notification lights.
+> It has three colors which can be combined, supports pulse mode
+> and other various features.
 > 
-> Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
-> Suggested-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-
-Signed-off-by should be followed by Suggested-by ?
-
--Mukesh
-
+> Signed-off-by: Markuss Broks <markuss.broks@gmail.com>
 > ---
->   include/dt-bindings/power/qcom,rpmhpd.h | 30 ++++++++++++++++++++++++++++++
->   1 file changed, 30 insertions(+)
->   create mode 100644 include/dt-bindings/power/qcom,rpmhpd.h
+>  arch/arm/boot/dts/exynos5422-samsung-k3g.dts | 47 ++++++++++++++++++++
+>  1 file changed, 47 insertions(+)
 > 
-> diff --git a/include/dt-bindings/power/qcom,rpmhpd.h b/include/dt-bindings/power/qcom,rpmhpd.h
-> new file mode 100644
-> index 0000000..7c201a6
-> --- /dev/null
-> +++ b/include/dt-bindings/power/qcom,rpmhpd.h
-> @@ -0,0 +1,30 @@
-> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-> +/*
-> + * Copyright (c) 2023, Qualcomm Innovation Center, Inc. All rights reserved.
-> + */
+> diff --git a/arch/arm/boot/dts/exynos5422-samsung-k3g.dts b/arch/arm/boot/dts/exynos5422-samsung-k3g.dts
+> index b3576a745054..813dbf0438de 100644
+> --- a/arch/arm/boot/dts/exynos5422-samsung-k3g.dts
+> +++ b/arch/arm/boot/dts/exynos5422-samsung-k3g.dts
+> @@ -10,6 +10,7 @@
+>  #include <dt-bindings/gpio/gpio.h>
+>  #include <dt-bindings/input/input.h>
+>  #include <dt-bindings/interrupt-controller/irq.h>
+> +#include <dt-bindings/leds/common.h>
+>  #include "exynos5800.dtsi"
+>  #include "exynos5422-cpus.dtsi"
+>  
+> @@ -131,6 +132,52 @@ touchkey@20 {
+>  		};
+>  	};
+>  
+> +	i2c-led {
+> +		compatible = "i2c-gpio";
 > +
-> +#ifndef _DT_BINDINGS_POWER_QCOM_RPMHPD_H
-> +#define _DT_BINDINGS_POWER_QCOM_RPMHPD_H
+> +		sda-gpios = <&gpy3 6 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+> +		scl-gpios = <&gpy3 7 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+> +		i2c-gpio,delay-us = <2>;
 > +
-> +/* Generic RPMH Power Domain Indexes */
-> +#define RPMHPD_CX               0
-> +#define RPMHPD_CX_AO		1
-> +#define RPMHPD_EBI		2
-> +#define RPMHPD_GFX		3
-> +#define RPMHPD_LCX		4
-> +#define RPMHPD_LMX		5
-> +#define RPMHPD_MMCX		6
-> +#define RPMHPD_MMCX_AO		7
-> +#define RPMHPD_MX		8
-> +#define RPMHPD_MX_AO		9
-> +#define RPMHPD_MXC		10
-> +#define RPMHPD_MXC_AO		11
-> +#define RPMHPD_MSS              12
-> +#define RPMHPD_NSP		13
-> +#define RPMHPD_NSP0             14
-> +#define RPMHPD_NSP1             15
-> +#define RPMHPD_QPHY             16
-> +#define RPMHPD_DDR              17
-> +#define RPMHPD_XO               18
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
 > +
-> +#endif
+> +		lp5562@30 {
+
+Node names should be generic. See also an explanation and list of
+examples (not exhaustive) in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+Most likely this is led-controller
+
+
+
+Best regards,
+Krzysztof
+
