@@ -2,64 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3874D759F66
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 22:16:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 65379759F73
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 22:17:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229576AbjGSUQO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jul 2023 16:16:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52172 "EHLO
+        id S230031AbjGSURH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jul 2023 16:17:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53232 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229512AbjGSUQN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 16:16:13 -0400
+        with ESMTP id S229552AbjGSURH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 16:17:07 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8C9BF0;
-        Wed, 19 Jul 2023 13:16:08 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DEE31FD3;
+        Wed, 19 Jul 2023 13:17:05 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 694B06181D;
-        Wed, 19 Jul 2023 20:16:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3B680C433C8;
-        Wed, 19 Jul 2023 20:16:06 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 1596261812;
+        Wed, 19 Jul 2023 20:17:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6F3BAC433C8;
+        Wed, 19 Jul 2023 20:17:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689797767;
-        bh=j6e92Ndx74FH6PByjJZ4j4e9GQ6FFdbXxvBk/vDjsh4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=BcblMrxaFpGR37DZykDQc/fmqAEvgdawVysnDghn2k8i9jjcCpOiLmL47RZv72yaZ
-         0eOsZtIGNaXz5ljaEGbwjuV+M8O+17gnMjF8eBsQ6Mw2OF12P5AJTJEyAWkXqyF3tk
-         n/BSZYWo5B30L06xg9QjeWT6gbtgR0lkeYutFpwdPKndi1XhHQ5wu0fkpL88dG9Pnw
-         5T88lbG4jw8lU11jaxaeEjLesIoWPELSSSbql406vsJ33q+q/qitMbs4UhaFrce3+3
-         wa3vl9Ia5TAjZg+QkRt+WbubnnGmxHQtX/Cf264feEJPKr6OJlEEXA4VP9BQyheZGj
-         CyB3mgp7OQ4Hw==
-Received: (nullmailer pid 740813 invoked by uid 1000);
-        Wed, 19 Jul 2023 20:16:05 -0000
-Date:   Wed, 19 Jul 2023 14:16:05 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc:     linux-pci@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Shawn Lin <shawn.lin@rock-chips.com>,
-        Simon Xue <xxm@rock-chips.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        kernel@collabora.com
-Subject: Re: [PATCH v3 2/5] dt-bindings: PCI: dwc: rockchip: Fix
- interrupt-names issue
-Message-ID: <20230719201605.GA706263-robh@kernel.org>
-References: <20230717172651.64324-1-sebastian.reichel@collabora.com>
- <20230717172651.64324-3-sebastian.reichel@collabora.com>
+        s=k20201202; t=1689797824;
+        bh=tS+UmFUsvHSzVCSb9zAeHafd9w8bzqEMC9uy2zf9JiQ=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=ZzYWSuDqIwk6YbW06R/flnSKN+TWm2q9J33OU8w3X7oBDb2QjD+beNMWwXVkfvdMM
+         2KJFhet/wrNeiVEDyBJbhNQdgnLO1Au0Btj0PqKf+al9p5pwhIt7j+c97hsr3C4aMq
+         i5gSDBXUU7X4efNldT6mrps3m3sgEYH32ExoRlTYkuFma1ZayTNUIgvrYv4HY3q2Qb
+         SGupLOg+BYoNUQU+kzWV1AY1besq/AJ2CV2aqLtVnoQZx2oWo80qUVeQ12mtiKdedw
+         LFClbchy3H9qBD52eW5diTUa7PTGhS2DD59Le/261VuNZz4OtXS/yl89iSLiJI7ytd
+         Cw+u9NnxyY2RQ==
+Message-ID: <ad757ed215d8f098472be370e3bbd961.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230717172651.64324-3-sebastian.reichel@collabora.com>
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <1689322259-13504-4-git-send-email-shengjiu.wang@nxp.com>
+References: <1689322259-13504-1-git-send-email-shengjiu.wang@nxp.com> <1689322259-13504-4-git-send-email-shengjiu.wang@nxp.com>
+Subject: Re: [PATCH v5 3/3] clk: imx: imx8: add audio clock mux driver
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+To:     Shengjiu Wang <shengjiu.wang@nxp.com>, abelvesa@kernel.org,
+        conor+dt@kernel.org, festevam@gmail.com, kernel@pengutronix.de,
+        krzysztof.kozlowski+dt@linaro.org, linux-imx@nxp.com,
+        mturquette@baylibre.com, peng.fan@nxp.com, robh+dt@kernel.org,
+        s.hauer@pengutronix.de, shawnguo@kernel.org,
+        shengjiu.wang@gmail.com
+Date:   Wed, 19 Jul 2023 13:17:02 -0700
+User-Agent: alot/0.10
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
@@ -70,72 +60,137 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 17, 2023 at 07:26:48PM +0200, Sebastian Reichel wrote:
-> The RK356x (and RK3588) have 5 ganged interrupts. For example the
-> "legacy" interrupt combines "inta/intb/intc/intd" with a register
-> providing the details.
-> 
-> Currently the binding is not specifying these interrupts resulting
-> in a bunch of errors for all rk356x boards using PCIe.
-> 
-> Fix this by specifying the interrupts and add them to the example
-> to prevent regressions.
-> 
-> This changes the reference from snps,dw-pcie.yaml to
-> snps,dw-pcie-common.yaml, since the interrupts are vendor
-> specific and should not be listed in the generic file. The
-> only other bit from the generic binding are the reg-names,
-> which are overwritten by this binding.
-> 
-> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-> ---
->  .../bindings/pci/rockchip-dw-pcie.yaml        | 43 ++++++++++++++++++-
->  1 file changed, 42 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
-> index a4f61ced5e88..7836b9a5547c 100644
-> --- a/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
-> +++ b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
-> @@ -17,7 +17,8 @@ description: |+
->    snps,dw-pcie.yaml.
->  
->  allOf:
-> -  - $ref: /schemas/pci/snps,dw-pcie.yaml#
-> +  - $ref: /schemas/pci/pci-bus.yaml#
-> +  - $ref: /schemas/pci/snps,dw-pcie-common.yaml#
->  
->  properties:
->    compatible:
-> @@ -60,6 +61,39 @@ properties:
->        - const: aux
->        - const: pipe
->  
-> +  interrupts:
-> +    items:
-> +      - description:
-> +          Combined system interrupt, which is used to signal the following
-> +          interrupts - phy_link_up, dll_link_up, link_req_rst_not, hp_pme,
-> +          hp, hp_msi, link_auto_bw, link_auto_bw_msi, bw_mgt, bw_mgt_msi,
-> +          edma_wr, edma_rd, dpa_sub_upd, rbar_update, link_eq_req, ep_elbi_app
-> +      - description:
-> +          Combined PM interrupt, which is used to signal the following
-> +          interrupts - linkst_in_l1sub, linkst_in_l1, linkst_in_l2,
-> +          linkst_in_l0s, linkst_out_l1sub, linkst_out_l1, linkst_out_l2,
-> +          linkst_out_l0s, pm_dstate_update
-> +      - description:
-> +          Combined message interrupt, which is used to signal the following
-> +          interrupts - ven_msg, unlock_msg, ltr_msg, cfg_pme, cfg_pme_msi,
-> +          pm_pme, pm_to_ack, pm_turnoff, obff_idle, obff_obff, obff_cpu_active
-> +      - description:
-> +          Combined legacy interrupt, which is used to signal the following
-> +          interrupts - inta, intb, intc, intd
-> +      - description:
-> +          Combined error interrupt, which is used to signal the following
-> +          interrupts - aer_rc_err, aer_rc_err_msi, rx_cpl_timeout,
-> +          tx_cpl_timeout, cor_err_sent, nf_err_sent, f_err_sent, cor_err_rx,
-> +          nf_err_rx, f_err_rx, radm_qoverflow
+Quoting Shengjiu Wang (2023-07-14 01:10:59)
+> diff --git a/drivers/clk/imx/clk-imx8-acm.c b/drivers/clk/imx/clk-imx8-ac=
+m.c
+> new file mode 100644
+> index 000000000000..445a0b38281c
+> --- /dev/null
+> +++ b/drivers/clk/imx/clk-imx8-acm.c
+> @@ -0,0 +1,477 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +//
+> +// Copyright 2023 NXP
+> +//
+> +
+> +#include <dt-bindings/clock/imx8-clock.h>
+> +#include <linux/clk-provider.h>
+> +#include <linux/device.h>
+> +#include <linux/err.h>
+> +#include <linux/io.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/of_device.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/pm_domain.h>
+> +#include <linux/pm_runtime.h>
+> +#include <linux/slab.h>
+> +
+> +#include "clk.h"
+> +
+> +/**
+> + * struct clk_imx_acm_pm_domains: structure for multi power domain
+> + * @pd_dev: power domain device
+> + * @pd_dev_link: power domain device link
+> + * @num_domains: power domain nummber
+> + */
+> +struct clk_imx_acm_pm_domains {
+> +       struct device **pd_dev;
+> +       struct device_link **pd_dev_link;
+> +       int    num_domains;
+> +};
+> +
+> +/**
+> + * struct clk_imx8_acm_sel: for clock mux
+> + * @name: clock name
+> + * @clkid: clock id
+> + * @parents: clock parents
+> + * @num_parents: clock parents number
+> + * @reg: register offset
+> + * @shift: bit shift in register
+> + * @width: bits width
+> + */
+> +struct clk_imx8_acm_sel {
+> +       const char                      *name;
+> +       int                             clkid;
+> +       const struct clk_parent_data    *parents;       /* For mux */
+> +       int                             num_parents;
+> +       u32                             reg;
+> +       u8                              shift;
+> +       u8                              width;
+> +};
+> +
+> +/**
+> + * struct imx8_acm_soc_data: soc specific data
+> + * @sels: pointer to struct clk_imx8_acm_sel
+> + * @num_sels: numbers of items
+> + */
+> +struct imx8_acm_soc_data {
+> +       struct clk_imx8_acm_sel *sels;
+> +       unsigned int num_sels;
+> +};
+> +
+> +/**
+> + * struct imx8_acm_priv: private structure
 
-I'm confused. It is really up to the integrator on how each of these 
-interrupts are combined? I thought it was a bit more fixed than that.
+Compile with W=3D1 and see that this isn't kerneldoc. Please fix.
 
-Rob
+> + * @dev_pm: multi power domain
+> + * @soc_data: pointer to soc data
+> + * @reg: base address of registers
+> + * @regs: save registers for suspend
+> + */
+> +struct imx8_acm_priv {
+> +       struct clk_imx_acm_pm_domains dev_pm;
+> +       const struct imx8_acm_soc_data *soc_data;
+> +       void __iomem *reg;
+> +       u32 regs[IMX_ADMA_ACM_CLK_END];
+> +};
+> +
+> +static const struct clk_parent_data imx8qm_aud_clk_sels[] =3D {
+> +       {.fw_name =3D "aud_rec_clk0_lpcg_clk", .name =3D "aud_rec_clk0_lp=
+cg_clk" },
+
+There should only be fw_name here, or use an index. Presumably this
+isn't migrating old code or bindings. Also, please add space after { and
+before }.
+
+> +       {.fw_name =3D "aud_rec_clk1_lpcg_clk", .name =3D "aud_rec_clk1_lp=
+cg_clk" },
+> +       {.fw_name =3D "mlb_clk", .name =3D "mlb_clk" },
+> +       {.fw_name =3D "hdmi_rx_mclk", .name =3D "hdmi_rx_mclk" },
+> +       {.fw_name =3D "ext_aud_mclk0", .name =3D "ext_aud_mclk0" },
+> +       {.fw_name =3D "ext_aud_mclk1", .name =3D "ext_aud_mclk1" },
+> +       {.fw_name =3D "esai0_rx_clk", .name =3D "esai0_rx_clk" },
+> +       {.fw_name =3D "esai0_rx_hf_clk", .name =3D "esai0_rx_hf_clk" },
+> +       {.fw_name =3D "esai0_tx_clk", .name =3D "esai0_tx_clk" },
+> +       {.fw_name =3D "esai0_tx_hf_clk", .name =3D "esai0_tx_hf_clk" },
+> +       {.fw_name =3D "esai1_rx_clk", .name =3D "esai1_rx_clk" },
+> +       {.fw_name =3D "esai1_rx_hf_clk", .name =3D "esai1_rx_hf_clk" },
+> +       {.fw_name =3D "esai1_tx_clk", .name =3D "esai1_tx_clk" },
+> +       {.fw_name =3D "esai1_tx_hf_clk", .name =3D "esai1_tx_hf_clk" },
+> +       {.fw_name =3D "spdif0_rx", .name =3D "spdif0_rx" },
+> +       {.fw_name =3D "spdif1_rx", .name =3D "spdif1_rx" },
+> +       {.fw_name =3D "sai0_rx_bclk", .name =3D "sai0_rx_bclk" },
+> +       {.fw_name =3D "sai0_tx_bclk", .name =3D "sai0_tx_bclk" },
+> +       {.fw_name =3D "sai1_rx_bclk", .name =3D "sai1_rx_bclk" },
+> +       {.fw_name =3D "sai1_tx_bclk", .name =3D "sai1_tx_bclk" },
+> +       {.fw_name =3D "sai2_rx_bclk", .name =3D "sai2_rx_bclk" },
+> +       {.fw_name =3D "sai3_rx_bclk", .name =3D "sai3_rx_bclk" },
+> +       {.fw_name =3D "sai4_rx_bclk", .name =3D "sai4_rx_bclk" },
+> +};
+[...]
+> +
+> +static const struct clk_parent_data imx8dxl_mclk_out_sels[] =3D {
+> +       {.fw_name =3D "aud_rec_clk0_lpcg_clk", .name =3D "aud_rec_clk0_lp=
+cg_clk" },
+> +       {.fw_name =3D "aud_rec_clk1_lpcg_clk", .name =3D "aud_rec_clk1_lp=
+cg_clk" },
+> +       {.name =3D "dummy" },
+> +       {.name =3D "dummy" },
+> +       {.fw_name =3D "spdif0_rx", .name =3D "spdif0_rx" },
+> +       {.name =3D "dummy" },
+> +       {.name =3D "dummy" },
+> +       {.name =3D "dummy" },
+
+Instead of dummy can you use -1 as the index?
