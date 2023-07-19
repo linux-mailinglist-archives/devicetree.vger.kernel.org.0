@@ -2,116 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8EE1D758BE1
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 05:12:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 42F5F758BF3
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 05:18:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230335AbjGSDMv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jul 2023 23:12:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44456 "EHLO
+        id S229695AbjGSDSb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jul 2023 23:18:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45850 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230330AbjGSDMu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 23:12:50 -0400
-Received: from out28-121.mail.aliyun.com (out28-121.mail.aliyun.com [115.124.28.121])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 234A1EC;
-        Tue, 18 Jul 2023 20:12:48 -0700 (PDT)
-X-Alimail-AntiSpam: AC=CONTINUE;BC=0.07720535|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_system_inform|0.00838821-0.000344401-0.991267;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047208;MF=wangweidong.a@awinic.com;NM=1;PH=DS;RN=26;RT=26;SR=0;TI=SMTPD_---.Tx4TxI5_1689736357;
-Received: from ubuntu-VirtualBox..(mailfrom:wangweidong.a@awinic.com fp:SMTPD_---.Tx4TxI5_1689736357)
-          by smtp.aliyun-inc.com;
-          Wed, 19 Jul 2023 11:12:40 +0800
-From:   wangweidong.a@awinic.com
-To:     krzysztof.kozlowski@linaro.org
-Cc:     alsa-devel@alsa-project.org, broonie@kernel.org,
-        ckeepax@opensource.cirrus.com, colin.i.king@gmail.com,
-        conor+dt@kernel.org, devicetree@vger.kernel.org,
-        doug@schmorgal.com, fido_max@inbox.ru, flatmax@flatmax.com,
-        herve.codina@bootlin.com, kiseok.jo@irondevice.com,
-        krzysztof.kozlowski+dt@linaro.org, lgirdwood@gmail.com,
-        linux-kernel@vger.kernel.org, liweilei@awinic.com, perex@perex.cz,
-        pierre-louis.bossart@linux.intel.com, rf@opensource.cirrus.com,
-        robh+dt@kernel.org, shumingf@realtek.com, tiwai@suse.com,
-        trix@redhat.com, wangweidong.a@awinic.com, yijiangtao@awinic.com,
-        zhangjianming@awinic.com
-Subject: Re: [PATCH V1 3/5] ASoC: codecs: ACF bin parsing and check library file for aw88261
-Date:   Wed, 19 Jul 2023 11:12:37 +0800
-Message-ID: <20230719031237.41530-1-wangweidong.a@awinic.com>
+        with ESMTP id S230356AbjGSDSa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 23:18:30 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9FE11BDB;
+        Tue, 18 Jul 2023 20:18:29 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 3BB3F61703;
+        Wed, 19 Jul 2023 03:18:29 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E8904C433CA;
+        Wed, 19 Jul 2023 03:18:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1689736708;
+        bh=TKU2PITle78zXgGpulShFx6AXQktvjO/QjNTWggpW9M=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=Cl4phdJxiNxLXiaB0Eutk1WkuyYmrKZ8DLosVAw1Q3TtsxwU9XiEueX9sFmMEU5jZ
+         vIamZLg3bQ2F4vtd1jnMuTBcMxPLYpQw0eMUgA07G+2SCM4y+8E3yCkgIfytPON135
+         0W4fuFzx1zgQmZa2Bt4cdtAuelvcniHQftyWbem8b4gdRzaMjQlQsgg6i6mfgay5lu
+         RRhLiNN89p6bRbqiDwhAaHq6JdLh0WG3nbsczSYmraKECau2axoj0lLkMr20oqVsJf
+         zZRfqSAUeu9uDsdfSoF325x6cUO7PsNs4r4JI6WPiS9oScsO5LETAL+qiD2FJUiBPf
+         hhV3uNd5evWHg==
+From:   Bjorn Andersson <andersson@kernel.org>
+To:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Sibi Sankar <quic_sibis@quicinc.com>,
+        Luca Weiss <luca.weiss@fairphone.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        AngeloGioacchino Del Regno <kholk11@gmail.com>,
+        Luca Weiss <luca@z3ntu.xyz>, Vinod Koul <vkoul@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@somainline.org>
+Subject: Re: (subset) [PATCH 0/7] random msm bindings fixes
+Date:   Tue, 18 Jul 2023 20:21:49 -0700
+Message-ID: <168973689572.3446802.6302697371902788749.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.41.0
-In-Reply-To: <98292541-8435-53cb-22d9-716ed6541485@linaro.org>
-References: <98292541-8435-53cb-22d9-716ed6541485@linaro.org>
+In-Reply-To: <20230626-topic-bindingsfixups-v1-0-254ae8642e69@linaro.org>
+References: <20230626-topic-bindingsfixups-v1-0-254ae8642e69@linaro.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Krzysztof,
-Thank you very much for your advice, 
- but I have a few questions I'd like to discuss with you
 
-On 18/07/2023 16:41, krzysztof.kozlowski@linaro.org wrote:
-> On 17/07/2023 13:58, wangweidong.a@awinic.com wrote:
->> From: Weidong Wang <wangweidong.a@awinic.com>
->> 
->> The AW88261 is an I2S/TDM input, high efficiency
->> digital Smart K audio amplifier with an integrated 10.25V
->> smart boost convert
+On Mon, 26 Jun 2023 22:00:22 +0200, Konrad Dybcio wrote:
+> 
 
-> So all your commits are doing the same?
 
-I will modify the commit information and differentiate the commit 
- information for each file
+Applied, thanks!
 
->> 
->> Signed-off-by: Weidong Wang <wangweidong.a@awinic.com>
->> ---
->>  sound/soc/codecs/aw88261/aw88261_lib.c | 997 +++++++++++++++++++++++++
->>  sound/soc/codecs/aw88261/aw88261_lib.h |  91 +++
->>  2 files changed, 1088 insertions(+)
->>  create mode 100644 sound/soc/codecs/aw88261/aw88261_lib.c
->>  create mode 100644 sound/soc/codecs/aw88261/aw88261_lib.h
->> 
->> diff --git a/sound/soc/codecs/aw88261/aw88261_lib.c b/sound/soc/codecs/aw88261/aw88261_lib.c
->> new file mode 100644
->> index 000000000000..b8f00708dacf
->> --- /dev/null
->> +++ b/sound/soc/codecs/aw88261/aw88261_lib.c
->> @@ -0,0 +1,997 @@
->> +// SPDX-License-Identifier: GPL-2.0-only
->> +//
->> +// aw88261_lib.c  -- ACF bin parsing and check library file for aw88261
->> +//
->> +// Copyright (c) 2023 awinic Technology CO., LTD
->> +//
->> +// Author: Jimmy Zhang <zhangjianming@awinic.com>
->> +// Author: Weidong Wang <wangweidong.a@awinic.com>
->> +//
->> +
->> +#include <linux/crc8.h>
->> +#include <linux/i2c.h>
->> +#include "aw88261_lib.h"
->> +#include "aw88261_device.h"
->> +
->> +#define AW88261_CRC8_POLYNOMIAL 0x8C
->> +DECLARE_CRC8_TABLE(aw_crc8_table);
->> +
->> +static char *profile_name[AW88261_PROFILE_MAX] = {
-
-> Cannot be const char *?
-
-I will modify it according to your suggestion
-
-...
-
->> +EXPORT_SYMBOL_GPL(aw88261_dev_load_acf_check);
-
-> Why?
-
-This function is also called in the aw88261.c file
+[2/7] dt-bindings: remoteproc: qcom,msm8996-mss-pil: Fix 8996 clocks
+      commit: 7784311cad42e67a1a51a9d1b961752c0f9b7200
 
 Best regards,
-Weidong Wang
+-- 
+Bjorn Andersson <andersson@kernel.org>
