@@ -2,104 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D1CA9759485
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 13:44:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 68D03759493
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 13:49:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230228AbjGSLoM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jul 2023 07:44:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60158 "EHLO
+        id S230234AbjGSLth (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jul 2023 07:49:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34118 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229824AbjGSLoK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 07:44:10 -0400
-Received: from cpanel.siel.si (cpanel.siel.si [46.19.9.99])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35FDFD3;
-        Wed, 19 Jul 2023 04:44:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
-        s=default; h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
-        Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=25qOFGwl4u5Fl3P3TnP8f7cSLj7dX/d3+BVvY9wImlA=; b=qzlp175sRYu6+KoahiLjhlbjNe
-        wVUM9JyTvLBZT4kgY5LOPCpYioW2Ah5gY6Gw4xgzHjKsDA/b8Ec77KC2DdMRY52EHnWda4OIvz5yR
-        mAMzNq55MkVEnamyttJOVukjFQuoUhCK2/+H+0B7Hhx2reqqHyUlKgxYCzDorM7h4+zaS5fJ0x3LK
-        oZJyNuuaBpJCleKSCIQ53t1Y8thhOYBTqOzxs22RSSOAoExXs4H20M80GQ3I6Boy6gKfMa04mJEaZ
-        IrP1D6zUuR2GwBMdTQzPwDRjNxadoYG6KkCwzAxRtQyONJ3Ujg+Kss6m/7Ims2v07hZY7uc+YWCW2
-        eZZBosTA==;
-Received: from 89-212-21-243.static.t-2.net ([89.212.21.243]:56038 helo=localhost.localdomain)
-        by cpanel.siel.si with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        (Exim 4.96)
-        (envelope-from <andrej.picej@norik.com>)
-        id 1qM5b1-00DcDD-29;
-        Wed, 19 Jul 2023 13:43:55 +0200
-From:   Andrej Picej <andrej.picej@norik.com>
-To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, S.Riedmueller@phytec.de,
-        S.Mueller-Klieser@phytec.de, upstream@phytec.de
-Subject: [PATCH v2 3/3] ARM: dts: imx6: phycore: Rely on PMIC reboot/reset handler
-Date:   Wed, 19 Jul 2023 13:43:28 +0200
-Message-Id: <20230719114328.2239818-3-andrej.picej@norik.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230719114328.2239818-1-andrej.picej@norik.com>
+        with ESMTP id S229990AbjGSLtg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 07:49:36 -0400
+Received: from mickerik.phytec.de (mickerik.phytec.de [91.26.50.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A49C0D3
+        for <devicetree@vger.kernel.org>; Wed, 19 Jul 2023 04:49:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
+        q=dns/txt; i=@phytec.de; t=1689767363; x=1692359363;
+        h=From:Sender:Reply-To:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=s3SfUHLDoHQ9D2o5HMY3KB6nOOANyL/Of0yxevezC2c=;
+        b=j6rr4A1UHc3ZowB1B0Q21FC8m6Ef01RklIbUDgzRPaJxrKmyv1AUBFm8ISw4qsSo
+        9hnVnBod0hXN/bt7V2nHlhZ9w7QwlU8EIQ7jA2EAJdWoCQD6jxvZ7dJMEmJLUeJc
+        5JmztXW58nh9LQoIaTcD2AZRVUKGT0nwCMl4nFNFGQI=;
+X-AuditID: ac14000a-923ff70000007ecb-10-64b7cdc20574
+Received: from florix.phytec.de (Unknown_Domain [172.25.0.13])
+        (using TLS with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (Client did not present a certificate)
+        by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id E5.D8.32459.2CDC7B46; Wed, 19 Jul 2023 13:49:22 +0200 (CEST)
+Received: from Berlix.phytec.de (172.25.0.12) by Florix.phytec.de
+ (172.25.0.13) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Wed, 19 Jul
+ 2023 13:49:22 +0200
+Received: from Berlix.phytec.de ([fe80::61cc:ebf0:7375:8768]) by
+ berlix.phytec.de ([fe80::197e:d26b:2ca:c7b4%4]) with mapi id 15.01.2375.018;
+ Wed, 19 Jul 2023 13:49:41 +0200
+From:   =?utf-8?B?U3RlZmFuIFJpZWRtw7xsbGVy?= <S.Riedmueller@phytec.de>
+To:     "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "linux-imx@nxp.com" <linux-imx@nxp.com>,
+        "andrej.picej@norik.com" <andrej.picej@norik.com>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>
+CC:     "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        =?utf-8?B?U3RlZmFuIE3DvGxsZXItS2xpZXNlcg==?= 
+        <S.Mueller-Klieser@phytec.de>,
+        "upstream@phytec.de" <upstream@phytec.de>
+Subject: Re: [PATCH v2 1/3] ARM: dts: imx6: phytec: fix RTC interrupt level
+Thread-Topic: [PATCH v2 1/3] ARM: dts: imx6: phytec: fix RTC interrupt level
+Thread-Index: AQHZujZYwhDq3JUyW0qf/O3X4BzlVK/A2CcA
+Date:   Wed, 19 Jul 2023 11:49:41 +0000
+Message-ID: <79bb474aaf49fca37ede6cefce241aec6eeade0d.camel@phytec.de>
 References: <20230719114328.2239818-1-andrej.picej@norik.com>
+In-Reply-To: <20230719114328.2239818-1-andrej.picej@norik.com>
+Accept-Language: en-US, de-DE
+Content-Language: de-DE
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.25.0.11]
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <66404B180153F7409EBCA3C558D1CFBB@phytec.de>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - cpanel.siel.si
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - norik.com
-X-Get-Message-Sender-Via: cpanel.siel.si: authenticated_id: andrej.picej@norik.com
-X-Authenticated-Sender: cpanel.siel.si: andrej.picej@norik.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrFIsWRmVeSWpSXmKPExsWyRpKBV/fQ2e0pBq3dVhZT9zJarNl7jsli
+        /pFzrBYPr/pbrJq6k8Wi78VDZotNj6+xWnT9WslscXnXHDaL1r1H2C3+bt/EYvFii7gDj8fO
+        WXfZPTat6mTzuHNtD5vH5iX1Ht+/bmD12PhuB5NH/18Dj8+b5AI4orhsUlJzMstSi/TtErgy
+        Oi4+Yi+YwlexZvlcxgbGJ7xdjJwcEgImEove3WXpYuTiEBJYwiSx89FVZgjnAaPEzoN/oJyN
+        jBK/Nn9jA2lhE3CR+NwGYnNxiAgcZ5ZY+2UKWD+zwCkmiTOvHzCDVAkLeEv82t3KCmKLCPhI
+        rFz+ih3CNpL4v/AfkM3BwSKgKrFgtjhImFfATeLsr98sILaQgK3E1hurmEBsTgE7iXNXFoPF
+        GQVkJTob3oHFmQXEJTY9+84K8YOAxJI955khbFGJl4//QcXlJU7cmsYEsopZQFNi/S59iFYL
+        iSPHlkGNUZSY0v2QHeIEQYmTM5+wTGAUn4VkwyyE7llIumch6Z6FpHsBI+sqRqHczOTs1KLM
+        bL2CjMqS1GS9lNRNjKD4F2Hg2sHYN8fjECMTB+MhRgkOZiUR3keXt6UI8aYkVlalFuXHF5Xm
+        pBYfYpTmYFES573fw5QoJJCeWJKanZpakFoEk2Xi4JRqYGQucTwR0PGsvXuGSqn8wzU5cY57
+        Pgnun6o1P1Kszvf8x322j7ZwaLw+f7/aWF5HslXymNunSmapxpenzWfc/CW/qJWhlr/c/MyP
+        D70HZ7ZlHyj7YDZTbGrtwRfaHT0SZXJ9sv8m813b9M8nfGHYBE/bPUwHL7/1z3LPnbxO9pbO
+        wqm3a5/2fFNiKc5INNRiLipOBADOqa5o7QIAAA==
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Due to the missing signal connection between i.MX6 WDOG_B pin and the
-PMICs external reset, the internal i.MX6 watchdog is not able to reset
-the phyCORE i.MX6 SoM properly. Thus disable the internal i.MX6 watchdog
-to prevent unexpected PMIC settings after reset.
-
-NOTE: This patch should not be backported as it might break existing
-uses and fixes in bootloaders.
-
-Signed-off-by: Andrej Picej <andrej.picej@norik.com>
----
-Changes in v2:
- - new patch
- - i.MX6 phyCOREs have the same problem as phyFLEX devices.
----
- arch/arm/boot/dts/nxp/imx/imx6qdl-phytec-phycore-som.dtsi | 8 ++++++++
- 1 file changed, 8 insertions(+)
-
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-phytec-phycore-som.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl-phytec-phycore-som.dtsi
-index 28a805384668..86b4269e0e01 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6qdl-phytec-phycore-som.dtsi
-+++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-phytec-phycore-som.dtsi
-@@ -309,3 +309,11 @@ MX6QDL_PAD_SD4_DAT7__SD4_DATA7		0x17059
- 		>;
- 	};
- };
-+
-+&wdog1 {
-+	/*
-+	 * Rely on PMIC reboot handler. Internal i.MX6 watchdog, that is also
-+	 * used for reboot, does not reset all external PMIC voltages on reset.
-+	 */
-+	status = "disabled";
-+};
--- 
-2.25.1
-
+SGkgQW5kcmVqLA0KDQpPbiBXZWQsIDIwMjMtMDctMTkgYXQgMTM6NDMgKzAyMDAsIEFuZHJlaiBQ
+aWNlaiB3cm90ZToNCj4gUlRDIGludGVycnVwdCBsZXZlbCBzaG91bGQgYmUgc2V0IHRvICJMT1ci
+LiBUaGlzIHdhcyByZXZlYWxlZCBieSB0aGUNCj4gaW50cm9kdWN0aW9uIG9mIGNvbW1pdDoNCj4g
+DQo+IMKgIGYxODE5ODdlZjQ3NyAoInJ0YzogbTQxdDgwOiB1c2UgSVJRIGZsYWdzIG9idGFpbmVk
+IGZyb20gZndub2RlIikNCj4gDQo+IHdoaWNoIGNoYW5nZWQgdGhlIHdheSBJUlEgdHlwZSBpcyBv
+YnRhaW5lZC4NCj4gDQo+IFNpZ25lZC1vZmYtYnk6IEFuZHJlaiBQaWNlaiA8YW5kcmVqLnBpY2Vq
+QG5vcmlrLmNvbT4NCg0KUmV2aWV3ZWQtYnk6IFN0ZWZhbiBSaWVkbcO8bGxlciA8cy5yaWVkbXVl
+bGxlckBwaHl0ZWMuZGU+DQoNCj4gLS0tDQo+IENoYW5nZXMgaW4gdjI6DQo+IMKgLSBubyBjaGFu
+Z2VzDQo+IC0tLQ0KPiDCoGFyY2gvYXJtL2Jvb3QvZHRzL254cC9pbXgvaW14NnFkbC1waHl0ZWMt
+bWlyYS5kdHNpIHwgMiArLQ0KPiDCoDEgZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlvbigrKSwgMSBk
+ZWxldGlvbigtKQ0KPiANCj4gZGlmZiAtLWdpdCBhL2FyY2gvYXJtL2Jvb3QvZHRzL254cC9pbXgv
+aW14NnFkbC1waHl0ZWMtbWlyYS5kdHNpDQo+IGIvYXJjaC9hcm0vYm9vdC9kdHMvbnhwL2lteC9p
+bXg2cWRsLXBoeXRlYy1taXJhLmR0c2kNCj4gaW5kZXggMWE1OTljMjk0YWI4Li4xY2E0ZDIxOTYw
+OWYgMTAwNjQ0DQo+IC0tLSBhL2FyY2gvYXJtL2Jvb3QvZHRzL254cC9pbXgvaW14NnFkbC1waHl0
+ZWMtbWlyYS5kdHNpDQo+ICsrKyBiL2FyY2gvYXJtL2Jvb3QvZHRzL254cC9pbXgvaW14NnFkbC1w
+aHl0ZWMtbWlyYS5kdHNpDQo+IEBAIC0xODIsNyArMTgyLDcgQEAgaTJjX3J0YzogcnRjQDY4IHsN
+Cj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBwaW5jdHJsLTAgPSA8JnBpbmN0cmxf
+cnRjX2ludD47DQo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgcmVnID0gPDB4Njg+
+Ow0KPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGludGVycnVwdC1wYXJlbnQgPSA8
+JmdwaW83PjsNCj4gLcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGludGVycnVwdHMgPSA8
+OCBJUlFfVFlQRV9MRVZFTF9ISUdIPjsNCj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oGludGVycnVwdHMgPSA8OCBJUlFfVFlQRV9MRVZFTF9MT1c+Ow0KPiDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoHN0YXR1cyA9ICJkaXNhYmxlZCI7DQo+IMKgwqDCoMKgwqDCoMKgwqB9
+Ow0KPiDCoH07DQo=
