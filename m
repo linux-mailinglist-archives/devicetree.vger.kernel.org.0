@@ -2,77 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 08127758AB1
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 03:11:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D0792758AAF
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 03:11:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229796AbjGSBLe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jul 2023 21:11:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60232 "EHLO
+        id S229825AbjGSBLL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jul 2023 21:11:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60142 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229517AbjGSBLd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 21:11:33 -0400
-Received: from mail-yb1-xb2a.google.com (mail-yb1-xb2a.google.com [IPv6:2607:f8b0:4864:20::b2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E0BF1722
-        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 18:11:32 -0700 (PDT)
-Received: by mail-yb1-xb2a.google.com with SMTP id 3f1490d57ef6-c5f98fc4237so4746783276.2
-        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 18:11:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1689729091; x=1692321091;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=8xk4472MbQ0aONiK6ZtIfH665Wri1/wSc0QB/UZUqhk=;
-        b=EHQ8krW39V/sbOi+DKhI1PMxM/sjS73lureK8IoE+d91eZY3vwuWy95pieu4fPe2Gs
-         qgDS6zMd/e10X/+m9kpWSFFdZucDScjJ0xNbnzd1HdU52AJMAlh/KjTM2zHE7mK/JCg/
-         uikl2pkgUY6wIKiHWr30hoqYwThHW9LJ4nT1I=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689729091; x=1692321091;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=8xk4472MbQ0aONiK6ZtIfH665Wri1/wSc0QB/UZUqhk=;
-        b=AdAHF6YIaZoDKxvdRLd9/x0g8J31jqBL+rHU7YisFV5tspfkQS1N4Aw5v+XHDqYrpH
-         MsSFWBvKL4A+TWjbVWI7VUOFQA/VYEODqi7mPfrn6VtfpIncB5wQdNi5z1Z46lP2jT/f
-         DQRWYH494RIZf13bF4xmFbKIZQ9wY5o2x3Fj5WWOr+0QGxJAGATcM3AJDamYIhPna4w1
-         WdJGNqlBoS26xh2VPBmMH765OcWWq5CSds54QQVK0Vdd7ymp+lFqO5W9uVCNJMbfrKXX
-         cqjDdICc0OP9NjknHxHpaOrQw1gtIcX2pg/PJsJ1QDuUdPlH/VEsHP1GWF7x7HpPFvts
-         jSgw==
-X-Gm-Message-State: ABy/qLYzdN7kcZN8XE7UlTG587uFOsCxfyJ7rRKVRpYftE2JwSsSdnqY
-        xw7mgdmc5uj5IV0XkDH/ww8fN/yuezf5lvWfLivGPA==
-X-Google-Smtp-Source: APBJJlFru+d/U81Pb9ePkPrJKq43uASadD6AsRc7NSkUAAz8pFffpSMk41RYr0j/v1SdEfDOedDhi391SuLe3Lq39G4=
-X-Received: by 2002:a25:9f0f:0:b0:bfe:e383:6297 with SMTP id
- n15-20020a259f0f000000b00bfee3836297mr1279983ybq.19.1689729091455; Tue, 18
- Jul 2023 18:11:31 -0700 (PDT)
+        with ESMTP id S229713AbjGSBLK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jul 2023 21:11:10 -0400
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D0431722
+        for <devicetree@vger.kernel.org>; Tue, 18 Jul 2023 18:11:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1689729069; x=1721265069;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=eM8QaRu5gKMrbg7e/7I6XvsZzNWOiK2I+vKAE+nGzsI=;
+  b=bY1Q821HMj3cig73najMxFVc+SypAx+qpjgpdOQcQe9UMHjn3cv7n+PX
+   r9Q3muZzhO8oZIS658nJ0dMc5IlrmWF93MkW0ErdayjU4aS3Fl8VGSRn9
+   qUeUmzWOWKshouf+iD8OLYec8ATuyFtiynLx+ht2H+pkMEUalOpOPVF/O
+   IrmUS+KJnoRJMvc71EaoJ7Oyf2/j7c9WRn+GDCZVKhl5G/jkK7A/SDu/5
+   NMoAQSWCEN9M58xRrx7beGn3HncGtv6nhKBJQhYtLm2XySBqilRJer/Z6
+   s315zJYqhijKyBvSfyHK2zhFBc6MCkH+4eB/d4XEooUF5Y6SLaCk5gIal
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10775"; a="368994220"
+X-IronPort-AV: E=Sophos;i="6.01,215,1684825200"; 
+   d="scan'208";a="368994220"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Jul 2023 18:11:03 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10775"; a="727144180"
+X-IronPort-AV: E=Sophos;i="6.01,215,1684825200"; 
+   d="scan'208";a="727144180"
+Received: from lkp-server02.sh.intel.com (HELO 36946fcf73d7) ([10.239.97.151])
+  by fmsmga007.fm.intel.com with ESMTP; 18 Jul 2023 18:10:59 -0700
+Received: from kbuild by 36946fcf73d7 with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1qLviM-00040j-0p;
+        Wed, 19 Jul 2023 01:10:53 +0000
+Date:   Wed, 19 Jul 2023 09:10:30 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Liu Ying <victor.liu@nxp.com>, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc:     oe-kbuild-all@lists.linux.dev, neil.armstrong@linaro.org,
+        conor+dt@kernel.org, rfoss@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, jonas@kwiboo.se,
+        shawnguo@kernel.org, s.hauer@pengutronix.de,
+        jernej.skrabec@gmail.com, robh+dt@kernel.org,
+        Laurent.pinchart@ideasonboard.com, andrzej.hajda@intel.com,
+        kernel@pengutronix.de, linux-imx@nxp.com
+Subject: Re: [PATCH 9/9] drm/bridge: imx: Add i.MX93 MIPI DSI support
+Message-ID: <202307190811.jOcroxF5-lkp@intel.com>
+References: <20230717061831.1826878-10-victor.liu@nxp.com>
 MIME-Version: 1.0
-References: <20230718143045.1065100-1-robh@kernel.org>
-In-Reply-To: <20230718143045.1065100-1-robh@kernel.org>
-From:   Simon Glass <sjg@chromium.org>
-Date:   Tue, 18 Jul 2023 19:08:01 -0600
-Message-ID: <CAPnjgZ0H077Hdq2HoOyrYxjAmXLigRrj+6H3sPLidtDa2w=Wcw@mail.gmail.com>
-Subject: Re: [PATCH v2] power: Explicitly include correct DT includes
-To:     Rob Herring <robh@kernel.org>
-Cc:     Sebastian Reichel <sre@kernel.org>,
-        Florian Fainelli <florian.fainelli@broadcom.com>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        Broadcom internal kernel review list 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Support Opensource <support.opensource@diasemi.com>,
-        David Lechner <david@lechnology.com>,
-        Iskren Chernev <me@iskren.info>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Matheus Castello <matheus@castello.eng.br>,
-        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-oxnas@groups.io
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-9.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED,USER_IN_DEF_SPF_WL autolearn=no autolearn_force=no
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230717061831.1826878-10-victor.liu@nxp.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,54 +71,101 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 18 Jul 2023 at 08:31, Rob Herring <robh@kernel.org> wrote:
->
-> The DT of_device.h and of_platform.h date back to the separate
-> of_platform_bus_type before it as merged into the regular platform bus.
-> As part of that merge prepping Arm DT support 13 years ago, they
-> "temporarily" include each other. They also include platform_device.h
-> and of.h. As a result, there's a pretty much random mix of those include
-> files used throughout the tree. In order to detangle these headers and
-> replace the implicit includes with struct declarations, users need to
-> explicitly include the correct includes.
->
-> Acked-by: David Lechner <david@lechnology.com>
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
-> v2:
-> - Fix double include of of.h
-> ---
->  drivers/power/reset/as3722-poweroff.c            | 1 -
->  drivers/power/reset/brcm-kona-reset.c            | 4 ++--
->  drivers/power/reset/gpio-poweroff.c              | 3 ++-
->  drivers/power/reset/gpio-restart.c               | 2 +-
->  drivers/power/reset/keystone-reset.c             | 3 ++-
->  drivers/power/reset/ocelot-reset.c               | 4 ++--
->  drivers/power/reset/odroid-go-ultra-poweroff.c   | 3 ++-
->  drivers/power/reset/oxnas-restart.c              | 2 --
->  drivers/power/reset/st-poweroff.c                | 2 +-
->  drivers/power/reset/syscon-poweroff.c            | 3 +--
->  drivers/power/reset/syscon-reboot.c              | 3 +--
->  drivers/power/reset/xgene-reboot.c               | 2 +-
->  drivers/power/supply/axp20x_ac_power.c           | 1 -
->  drivers/power/supply/axp20x_battery.c            | 1 -
->  drivers/power/supply/axp20x_usb_power.c          | 1 -
->  drivers/power/supply/cpcap-battery.c             | 2 +-
->  drivers/power/supply/da9150-charger.c            | 2 --
->  drivers/power/supply/da9150-fg.c                 | 1 -
->  drivers/power/supply/lego_ev3_battery.c          | 2 +-
->  drivers/power/supply/ltc2941-battery-gauge.c     | 2 +-
->  drivers/power/supply/ltc4162-l-charger.c         | 2 +-
->  drivers/power/supply/max14656_charger_detector.c | 2 +-
->  drivers/power/supply/max17040_battery.c          | 2 +-
->  drivers/power/supply/max8903_charger.c           | 1 -
->  drivers/power/supply/rn5t618_power.c             | 1 -
->  drivers/power/supply/rt5033_charger.c            | 2 +-
->  drivers/power/supply/rt9455_charger.c            | 3 +--
->  drivers/power/supply/sbs-battery.c               | 2 +-
->  drivers/power/supply/tps65090-charger.c          | 2 +-
->  drivers/power/supply/tps65217_charger.c          | 1 -
->  drivers/power/supply/twl4030_charger.c           | 1 +
->  31 files changed, 26 insertions(+), 37 deletions(-)
+Hi Liu,
 
-Reviewed-by: Simon Glass <sjg@chromium.org>
+kernel test robot noticed the following build errors:
+
+[auto build test ERROR on drm-exynos/exynos-drm-next]
+[also build test ERROR on drm-intel/for-linux-next drm-intel/for-linux-next-fixes drm-tip/drm-tip linus/master v6.5-rc2 next-20230718]
+[cannot apply to drm-misc/drm-misc-next drm/drm-next]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Liu-Ying/drm-bridge-synopsys-dw-mipi-dsi-Add-dw_mipi_dsi_get_bridge-helper/20230718-172247
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/daeinki/drm-exynos.git exynos-drm-next
+patch link:    https://lore.kernel.org/r/20230717061831.1826878-10-victor.liu%40nxp.com
+patch subject: [PATCH 9/9] drm/bridge: imx: Add i.MX93 MIPI DSI support
+config: arm-allmodconfig (https://download.01.org/0day-ci/archive/20230719/202307190811.jOcroxF5-lkp@intel.com/config)
+compiler: arm-linux-gnueabi-gcc (GCC) 12.3.0
+reproduce: (https://download.01.org/0day-ci/archive/20230719/202307190811.jOcroxF5-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202307190811.jOcroxF5-lkp@intel.com/
+
+All error/warnings (new ones prefixed by >>):
+
+   In file included from arch/arm/include/asm/div64.h:107,
+                    from include/linux/math.h:6,
+                    from include/linux/kernel.h:26,
+                    from include/linux/clk.h:13,
+                    from drivers/gpu/drm/bridge/imx/imx93-mipi-dsi.c:9:
+   drivers/gpu/drm/bridge/imx/imx93-mipi-dsi.c: In function 'dphy_pll_get_configure_from_opts':
+   include/asm-generic/div64.h:222:35: warning: comparison of distinct pointer types lacks a cast
+     222 |         (void)(((typeof((n)) *)0) == ((uint64_t *)0));  \
+         |                                   ^~
+   drivers/gpu/drm/bridge/imx/imx93-mipi-dsi.c:272:17: note: in expansion of macro 'do_div'
+     272 |                 do_div(tmp, n * fvco_div);
+         |                 ^~~~~~
+   In file included from include/linux/build_bug.h:5,
+                    from include/linux/bitfield.h:10,
+                    from drivers/gpu/drm/bridge/imx/imx93-mipi-dsi.c:7:
+>> include/asm-generic/div64.h:234:32: warning: right shift count >= width of type [-Wshift-count-overflow]
+     234 |         } else if (likely(((n) >> 32) == 0)) {          \
+         |                                ^~
+   include/linux/compiler.h:76:45: note: in definition of macro 'likely'
+      76 | # define likely(x)      __builtin_expect(!!(x), 1)
+         |                                             ^
+   drivers/gpu/drm/bridge/imx/imx93-mipi-dsi.c:272:17: note: in expansion of macro 'do_div'
+     272 |                 do_div(tmp, n * fvco_div);
+         |                 ^~~~~~
+>> include/asm-generic/div64.h:238:36: error: passing argument 1 of '__div64_32' from incompatible pointer type [-Werror=incompatible-pointer-types]
+     238 |                 __rem = __div64_32(&(n), __base);       \
+         |                                    ^~~~
+         |                                    |
+         |                                    long unsigned int *
+   drivers/gpu/drm/bridge/imx/imx93-mipi-dsi.c:272:17: note: in expansion of macro 'do_div'
+     272 |                 do_div(tmp, n * fvco_div);
+         |                 ^~~~~~
+   arch/arm/include/asm/div64.h:24:45: note: expected 'uint64_t *' {aka 'long long unsigned int *'} but argument is of type 'long unsigned int *'
+      24 | static inline uint32_t __div64_32(uint64_t *n, uint32_t base)
+         |                                   ~~~~~~~~~~^
+   cc1: some warnings being treated as errors
+
+
+vim +/__div64_32 +238 include/asm-generic/div64.h
+
+^1da177e4c3f41 Linus Torvalds     2005-04-16  215  
+^1da177e4c3f41 Linus Torvalds     2005-04-16  216  /* The unnecessary pointer compare is there
+^1da177e4c3f41 Linus Torvalds     2005-04-16  217   * to check for type safety (n must be 64bit)
+^1da177e4c3f41 Linus Torvalds     2005-04-16  218   */
+^1da177e4c3f41 Linus Torvalds     2005-04-16  219  # define do_div(n,base) ({				\
+^1da177e4c3f41 Linus Torvalds     2005-04-16  220  	uint32_t __base = (base);			\
+^1da177e4c3f41 Linus Torvalds     2005-04-16  221  	uint32_t __rem;					\
+^1da177e4c3f41 Linus Torvalds     2005-04-16  222  	(void)(((typeof((n)) *)0) == ((uint64_t *)0));	\
+911918aa7ef6f8 Nicolas Pitre      2015-11-02  223  	if (__builtin_constant_p(__base) &&		\
+911918aa7ef6f8 Nicolas Pitre      2015-11-02  224  	    is_power_of_2(__base)) {			\
+911918aa7ef6f8 Nicolas Pitre      2015-11-02  225  		__rem = (n) & (__base - 1);		\
+911918aa7ef6f8 Nicolas Pitre      2015-11-02  226  		(n) >>= ilog2(__base);			\
+c747ce4706190e Geert Uytterhoeven 2021-08-11  227  	} else if (__builtin_constant_p(__base) &&	\
+461a5e51060c93 Nicolas Pitre      2015-10-30  228  		   __base != 0) {			\
+461a5e51060c93 Nicolas Pitre      2015-10-30  229  		uint32_t __res_lo, __n_lo = (n);	\
+461a5e51060c93 Nicolas Pitre      2015-10-30  230  		(n) = __div64_const32(n, __base);	\
+461a5e51060c93 Nicolas Pitre      2015-10-30  231  		/* the remainder can be computed with 32-bit regs */ \
+461a5e51060c93 Nicolas Pitre      2015-10-30  232  		__res_lo = (n);				\
+461a5e51060c93 Nicolas Pitre      2015-10-30  233  		__rem = __n_lo - __res_lo * __base;	\
+911918aa7ef6f8 Nicolas Pitre      2015-11-02 @234  	} else if (likely(((n) >> 32) == 0)) {		\
+^1da177e4c3f41 Linus Torvalds     2005-04-16  235  		__rem = (uint32_t)(n) % __base;		\
+^1da177e4c3f41 Linus Torvalds     2005-04-16  236  		(n) = (uint32_t)(n) / __base;		\
+c747ce4706190e Geert Uytterhoeven 2021-08-11  237  	} else {					\
+^1da177e4c3f41 Linus Torvalds     2005-04-16 @238  		__rem = __div64_32(&(n), __base);	\
+c747ce4706190e Geert Uytterhoeven 2021-08-11  239  	}						\
+^1da177e4c3f41 Linus Torvalds     2005-04-16  240  	__rem;						\
+^1da177e4c3f41 Linus Torvalds     2005-04-16  241   })
+^1da177e4c3f41 Linus Torvalds     2005-04-16  242  
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
