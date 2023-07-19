@@ -2,63 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A60F1759BA7
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 18:58:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C5A01759C08
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jul 2023 19:08:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229733AbjGSQ6U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jul 2023 12:58:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41020 "EHLO
+        id S229757AbjGSRIv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jul 2023 13:08:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45644 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229449AbjGSQ6T (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 12:58:19 -0400
+        with ESMTP id S230516AbjGSRIs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 13:08:48 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC054B6;
-        Wed, 19 Jul 2023 09:58:18 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B1F21731;
+        Wed, 19 Jul 2023 10:08:24 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 0DFC3617A7;
-        Wed, 19 Jul 2023 16:58:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 905FDC433C7;
-        Wed, 19 Jul 2023 16:58:13 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id AD6A0617B3;
+        Wed, 19 Jul 2023 17:08:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 42BBDC433C8;
+        Wed, 19 Jul 2023 17:08:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689785897;
-        bh=xayvFZEqNUxkMixHih/sryn5ylVD/sjcMsn7un1bPYw=;
+        s=k20201202; t=1689786502;
+        bh=H0TI3lv5V5snhOaaPWfEdfeN5mLjsrEblaKGu2VK/oA=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=J3n9AoZ0SJlV8lgbjP2eg1EfnS7FHT1VfY3AEiWAgaDry/O2UXfoxJvKZ71IIO5QK
-         YfAe2oiJ4tLy+CjALsaOLZ49xbzWRDuvvOWIUWz9YDkb2wqqSuFcXzaiLkxssiAu2I
-         bFCv/eLHHk3j5eIkHt1rKTSamKndqwGiDZ2Ivgv6bZ1/Hu1VeStmSN56Gj2KDIglNS
-         lwt20OvsGEA8vjd7rpi5hSf+esT5XVBtIdLziDxDf0ZwZhLAkNWZ95/urD1Pmx9cM3
-         7ndjk4fnh/ZBpNO4o4+OajYlAexmPFOhKAWSR+yenbpGdv7tAF6aBgj/RUMeHe7eJc
-         6n1y7UBz5n3Eg==
-Date:   Wed, 19 Jul 2023 17:58:11 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Minda Chen <minda.chen@starfivetech.com>
-Cc:     Daire McNamara <daire.mcnamara@microchip.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-pci@vger.kernel.org,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Mason Huo <mason.huo@starfivetech.com>,
-        Leyfoon Tan <leyfoon.tan@starfivetech.com>,
-        Kevin Xie <kevin.xie@starfivetech.com>
-Subject: Re: [PATCH v1 0/9] Refactoring Microchip PolarFire PCIe driver
-Message-ID: <20230719-rockstar-gangway-467e64ada609@spud>
-References: <20230719102057.22329-1-minda.chen@starfivetech.com>
+        b=u5i7JcDwupZbnC5qurstWHiIR/vvSk5pJ8QDfopYh6GlbeZHzToQKiY54yBdHGY7M
+         GT5AkgQd/nWkcjwg9Hw2jxM6LiHCHfw2j/qLvTRja0pMhbTQrJRUDNsKJHKdNkZC0P
+         26jOgPoUhDHb5Z/Cbr2O3By3PHyVM4IO9iZDyTxDV2OR8wB70aC6Xn7EFxcc5nPNLW
+         9DQJ98XUjlgfdXe5dN1yd18An6+nQwYA6xY1G8w9ZxYDBBp6ke3AKC/mm7po6V1FeD
+         3U2KYZ8bKSMGQ6KYZFsOAPj/LOZMzraF58d3HZuOor1wcVfAZYk9xxIna+ND0+b6QK
+         eLa3IC4sYXKZA==
+Date:   Wed, 19 Jul 2023 18:08:18 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     alina_yu@richtek.com
+Cc:     lgirdwood@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 2/2] regulator: rtq2208: Add Richtek RTQ2208 SubPMIC
+ driver
+Message-ID: <9eb5d3a3-ba26-4e68-9324-9f1ce24418b9@sirena.org.uk>
+References: <1689758686-14409-1-git-send-email-alina_yu@richtek.com>
+ <1689758686-14409-3-git-send-email-alina_yu@richtek.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="ItaO0NWrNgH9c6FC"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="s7Tf4Ty8R9yCnV/7"
 Content-Disposition: inline
-In-Reply-To: <20230719102057.22329-1-minda.chen@starfivetech.com>
+In-Reply-To: <1689758686-14409-3-git-send-email-alina_yu@richtek.com>
+X-Cookie: They just buzzed and buzzed...buzzed.
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -70,66 +60,39 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---ItaO0NWrNgH9c6FC
+--s7Tf4Ty8R9yCnV/7
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Hey Minda,
-
-On Wed, Jul 19, 2023 at 06:20:48PM +0800, Minda Chen wrote:
-> This patchset final purpose is add PCIe driver for StarFive JH7110 SoC.
-> JH7110 using PLDA XpressRICH PCIe IP. Microchip PolarFire Using the
-> same IP and have commit their codes, which are mixed with PLDA
-> controller codes and Microchip platform codes.
+On Wed, Jul 19, 2023 at 05:24:46PM +0800, alina_yu@richtek.com wrote:
+> From: alinayu <alina_yu@richtek.com>
 >=20
-> For re-use the PLDA controller codes, I request refactoring microchip
-> codes, move PLDA common codes to PLDA files.
-> Desigware and Cadence is good example for refactoring codes.
->=20
-> So first step is extract the PLDA common codes from microchip, and
-> refactoring the microchip codes.(patch1 - 4)
-> Then add the PLDA platform codes. (patch5, 6)
-> At last, add Starfive codes. (patch7 - 9)
 
-Thanks for sending this, I'll try to have a look through it tomorrow, or
-if not, early next week. As pointed out off-list, the gist of what you
-have here looked good to myself and Daire.
+It'd be better to format this like you do in your e-mail and signoff so
+that git doesn't generate the extra line and the logs look a bit neater
+(there might also be some warnings about signoffs due to the mismatch).
+'git commit --amend --author=3D' should help.
 
-> This patchset is base on v6.5-rc1
->=20
-> patch1 is add PLDA XpressRICH PCIe host common properties dt-binding
->        docs, most are extracted from microchip,pcie-host.yaml
-> patch2 is add plda,xpressrich-pcie-common.yaml(patch1 file) reference
->        and remove the PLDA common properties.
-> patch3 is extracting the PLDA common codes from microchip Polarfire PCIe
->        codes. The change list in the commit message.
-> patch4 is move microchip driver to PLDA directory and remove the PLDA
->        common codes.
-> patch5 is add PLDA Xpressrich platform driver dt-binding doc.
-> patch6 is PLDA Xpressrich platform driver.
-> patch7 is add StarFive JH7110 PCIe dt-binding doc.
-> patch8 is add StarFive JH7110 Soc PCIe platform codes.
-> patch9 is StarFive JH7110 device tree configuration.
->=20
-> I have noticed that Daire have changed microchip's codes.
-> https://patchwork.kernel.org/project/linux-pci/cover/20230630154859.20495=
-21-1-daire.mcnamara@microchip.com/
+> Add support for the RTQ2208 SubPMIC
+> This ic integrates with configurable, synchrnous buck converters and two =
+ldos.
 
-I'll go and ping this, it's been a few weeks with no movement :)
+The driver looks good, just needs the bindings sorting.
 
-Thanks,
-Conor.
-
---ItaO0NWrNgH9c6FC
+--s7Tf4Ty8R9yCnV/7
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZLgWIwAKCRB4tDGHoIJi
-0tRJAQCQfXnUkEmh0PtotZgcZuTK2jJ5Pb7zCTWIdxVjSTdhfQD+LoI9+2N9Qein
-q+pkZ3wrnXopGLOVdsu5a4hvcELWqQ8=
-=fTL5
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmS4GIEACgkQJNaLcl1U
+h9DQVAf9H6OOnhoJVDIuI/nPwr5uD0s4hrJyHYT1gd/JIhhSGk6UQa16fgLqnDWr
+YVjprM4X6yJ1TfFIN1DlJuyny2Vc1dO9b1qOfjS2iYPLIU9ZVYjPOwkIHIayR274
+TBziDe+hNDP37YXdQ9oy1qFa6PSuH7lbXmHUBJ7G6bvZgiSuhVDBKJUdMwZTkF/B
+XqvFPkJ9wERfNaje1XWTvh4RWLLf31gtducYqJO+Q8xLnRdKPmTUb3oRDvTQ1QYg
+LVh//TNSQxYmtdlDNbr4vcUAJHxDTuGpRBcLbJkWud8fsMoj9a0XD+zYpaleNmas
+fxHRyrRkO0JvspmiJPbOaICeyR04gQ==
+=u7Uu
 -----END PGP SIGNATURE-----
 
---ItaO0NWrNgH9c6FC--
+--s7Tf4Ty8R9yCnV/7--
