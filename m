@@ -2,200 +2,207 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0544675AF14
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 15:03:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4598875AF33
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 15:09:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231508AbjGTNDh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jul 2023 09:03:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58566 "EHLO
+        id S231434AbjGTNJm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jul 2023 09:09:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34764 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231478AbjGTNDb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 09:03:31 -0400
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EE0D2D67;
-        Thu, 20 Jul 2023 06:03:10 -0700 (PDT)
-Received: by mail-lj1-x235.google.com with SMTP id 38308e7fff4ca-2b935316214so10568231fa.1;
-        Thu, 20 Jul 2023 06:03:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1689858188; x=1690462988;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=KtLR1t7Xy+lp2xGUnHnlsDF6j8PRmaFSawsn2vIvBWc=;
-        b=Ql9e0h/oYbX6KrhJ1ePRDKew/5d+3Q9oyOoSy1HFtZzh0rNcDBUoJuNGy59r5hmnpL
-         /ma2hKdbFnrTrz1oWlu0x+r9PWf1rJ5xQA/XXmC/dui7DC9z17dkyeB21AI6jUyH2LFo
-         np98/NeShzaKiK9EKh+C66iKrKZsg9Lo0ewj/wCKx8mTFb2j8vAUZwl8g/0sdPa9s/nY
-         zqNqWGZyxbcWWefW05nTSgXSpsOruLIua4m65k9Lm5NoUMTtOsUiL+fZ+K4eqFnp2/Tl
-         oPLtY5jh45qBg7VSj19rktqsZZ1Y9Lx7C8rju8Nv6yTRUy2HYzMzn5R4ZVxNIzvu5I59
-         oZMw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689858188; x=1690462988;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=KtLR1t7Xy+lp2xGUnHnlsDF6j8PRmaFSawsn2vIvBWc=;
-        b=Lx5hdMA9k7ZXF1bSzRa7ka07/D4WxcKeTeMHaK6KPvQUztR8fHxSNaRtDHOabdz1Kb
-         L4Ywn40JrNm1HElSbmliRhDjJ4UZsxMv9T1lOyyNowN5dKQHFFDwvtwMnMoY9bQQXdfF
-         5OmZbqKwVMIQ8wHim8X0MPnWhNbWc67NONSUhdd83Zg6I66OTzwlgAKPTrRA5OSi0jy3
-         0FVNsolj6jpfzKWmr0XPrQkUNLgPtrcffp4+v/I7fph8kVlqp8HiKxihRMYEB+5hXIHl
-         11CGHxqJHThXDw39ha5jf9Bs9/gHWQsi/9oW4g7ZRnfQcxA0wgF4uwSa/VYwiNOwd2Py
-         4qmw==
-X-Gm-Message-State: ABy/qLYPslY9XpgdIGMZGL/K2hy2rbETLUp1LXwUTBevB29kD+p6mbVJ
-        1pnF0JwYGcHN8sbffGztz9I=
-X-Google-Smtp-Source: APBJJlELNtA9t7Vl1ywF7Sx7SuXwzg/v92//dlg5e+KqGI92b1hBQbNtg8odOdwcSW3NiUezfoohMQ==
-X-Received: by 2002:a2e:9259:0:b0:2b9:601d:2c0 with SMTP id v25-20020a2e9259000000b002b9601d02c0mr956643ljg.25.1689858188099;
-        Thu, 20 Jul 2023 06:03:08 -0700 (PDT)
-Received: from mobilestation ([109.197.207.60])
-        by smtp.gmail.com with ESMTPSA id t25-20020a2e7819000000b002b70ac2f631sm266813ljc.76.2023.07.20.06.03.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 Jul 2023 06:03:07 -0700 (PDT)
-Date:   Thu, 20 Jul 2023 16:03:04 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Sebastian Reichel <sebastian.reichel@collabora.com>,
-        linux-pci@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Shawn Lin <shawn.lin@rock-chips.com>,
-        Simon Xue <xxm@rock-chips.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        kernel@collabora.com
-Subject: Re: [PATCH v3 2/5] dt-bindings: PCI: dwc: rockchip: Fix
- interrupt-names issue
-Message-ID: <epqbt5c4vxb65l47tupmogxfnskwbd54cg6vzq7xnelrt44omu@py7ntcft6dhf>
-References: <20230717172651.64324-1-sebastian.reichel@collabora.com>
- <20230717172651.64324-3-sebastian.reichel@collabora.com>
- <20230719201605.GA706263-robh@kernel.org>
+        with ESMTP id S229535AbjGTNJl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 09:09:41 -0400
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 209BA269D;
+        Thu, 20 Jul 2023 06:09:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1689858580; x=1721394580;
+  h=from:to:cc:subject:date:message-id:references:
+   in-reply-to:content-id:content-transfer-encoding:
+   mime-version;
+  bh=LVDd5U4eT6iWV1ntpQYDoD2WoE2Gg9qcCtbAywlf8Oo=;
+  b=bxGpCvchSkAfVssjfhLMXkyAKxBHBBAYfQn4QRlqZdXGGAvEBaxtwZV2
+   B0Qlm1INzCKfYBOiWHpB3x6SiJxwz1Jhl/S6v6yFJZxeg9l4mzW9+oEfY
+   4zs/ENEiMvGnOi8m+qilQZd4Ai+vx/REfiaYZ7Kss6Az80ntBYH2ZNuY7
+   MLD/evB7+gHJ1cuB0xmUscW/ZaTKfxRCj1jb5HtmjZtdDdNqimZTVMx9d
+   N1mu1UCbiFlZNxiZTqioPRob4nUfQ+Rw2TWQoj+vwzWZLTE3A4/g4y5y8
+   nG/mbBZSQ5Ao8uIXoIqfXhbVwj34ndMMHCGUHG0dpwAffwsLucec2Oe2d
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10777"; a="430494922"
+X-IronPort-AV: E=Sophos;i="6.01,218,1684825200"; 
+   d="scan'208";a="430494922"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Jul 2023 06:06:14 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10777"; a="794482327"
+X-IronPort-AV: E=Sophos;i="6.01,218,1684825200"; 
+   d="scan'208";a="794482327"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+  by fmsmga004.fm.intel.com with ESMTP; 20 Jul 2023 06:06:13 -0700
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.27; Thu, 20 Jul 2023 06:06:13 -0700
+Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
+ ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.27; Thu, 20 Jul 2023 06:06:12 -0700
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.27 via Frontend Transport; Thu, 20 Jul 2023 06:06:12 -0700
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.101)
+ by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.27; Thu, 20 Jul 2023 06:06:12 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=LJ/rXE1IeOblFu1mfPCad4hQ+zySw5FrZZ5t644IjMr3RmbE9tMHnZWWsmOvjgDh6NDyh0FIv5GqCMKh3KFLSL6eqaeXw5TLZ4A+WRqWNcyO5b5daH0Ys8q0tsynBd0+Qhme1CRD+m68d8k1bB8MJtTMpQuzPXgT8JOpc6o0RvK6RPNQaMUuwiLD5zpBREtY5GKIkGMeRZj6NYx4dOlSE1P3MbaQPV90OS6A+e0vIuHQ/LcW957Rs35QM4aJYOMxSjnYzZF27Zp/NlNY8z4nwzfsPcLQfJB2db6vxMcZvMfqT1WTvROhLXSRqG0kZEvbTatbYd3yIRd78JjWl1hozQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=LVDd5U4eT6iWV1ntpQYDoD2WoE2Gg9qcCtbAywlf8Oo=;
+ b=BkWjKOO9XzRGKdHALKPQsUD+BGrfkXWE7Q37se5dyh3ScWsIbHVTZt28LTa78RH4AruqgABlsQKXhO1URi9zuQFIb4mX2lw36W+3ilAUrRY4mgqemjs7NFH1BCjxfYsjnjscDniB45bR3j/RAj16lcosxDuBBcTv52S6chBog3141ZWE5sg27U+As6mkMYncplYTOrqGtvoKrZ73gOvVG6KyNAtQoJxVxrXLZ9irjjIQRCfaPQeJSvafFXTzgoDsq1o2cVdWmyePmywGJZ1NIUUacZjsTowY+E8PstvHz2z7FF7l8EdbEZJXv0eDf+wZnmpejDepUHn9LKt7Qnptxg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from MW4PR11MB5823.namprd11.prod.outlook.com (2603:10b6:303:186::12)
+ by CY5PR11MB6318.namprd11.prod.outlook.com (2603:10b6:930:3e::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6609.28; Thu, 20 Jul
+ 2023 13:06:09 +0000
+Received: from MW4PR11MB5823.namprd11.prod.outlook.com
+ ([fe80::2f24:2dc9:60b:a244]) by MW4PR11MB5823.namprd11.prod.outlook.com
+ ([fe80::2f24:2dc9:60b:a244%7]) with mapi id 15.20.6609.024; Thu, 20 Jul 2023
+ 13:06:09 +0000
+From:   "Winiarska, Iwona" <iwona.winiarska@intel.com>
+To:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
+        "krzysztof.kozlowski@linaro.org" <krzysztof.kozlowski@linaro.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+CC:     "avifishman70@gmail.com" <avifishman70@gmail.com>,
+        "Fair, Benjamin" <benjaminfair@google.com>,
+        "tmaimon77@gmail.com" <tmaimon77@gmail.com>,
+        "yuenn@google.com" <yuenn@google.com>,
+        "venture@google.com" <venture@google.com>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>
+Subject: Re: [PATCH 0/4] Add support for PECI Nuvoton
+Thread-Topic: [PATCH 0/4] Add support for PECI Nuvoton
+Thread-Index: AQHZuo24Hm9PV44gH0SjPkNEG1z6cq/CLrMAgAAcuQCAAAscAIAASkCA
+Date:   Thu, 20 Jul 2023 13:06:09 +0000
+Message-ID: <0435e63e367e8e3e612c8c66c87dea2ca6189bea.camel@intel.com>
+References: <20230719220853.1029316-1-iwona.winiarska@intel.com>
+         <b0993a11-6589-2fcd-3487-2e6eb68e18e4@linaro.org>
+         <9a400a1be13adb87002ae476839e235aea117060.camel@intel.com>
+         <ca665afc-24af-4a9a-4bb1-a5421b2d6912@linaro.org>
+In-Reply-To: <ca665afc-24af-4a9a-4bb1-a5421b2d6912@linaro.org>
+Accept-Language: en-US, pl-PL
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Evolution 3.46.4 (3.46.4-1.fc37) 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: MW4PR11MB5823:EE_|CY5PR11MB6318:EE_
+x-ms-office365-filtering-correlation-id: 0a918ff6-836b-4bb0-3f90-08db89221646
+x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: H+y5E3CEdQspzmEGTpA7SPJFX4GgPGEWOnnHKZDABepQhppnJNP6rEuBftu4ApJQ3x6B3WN17Hhac6hkZLqRp1T3KLkevEJs5hGDTlF5vziG6WLau0Kkv6kXudkVG42WkOyy2kJKru2J1j0Od0CDaCmQWkb3E8bYmtxEDUiLegl8ORMvWwzqvlc45LIKWyr6uj5BVt2yRZmt9KJmE3RU0YUpfwbV3KFYZUGjnxqKEsD6cqyuYuc5Ilw6ZgdLBU8apZiv7k1tstFhvLyKWjLilP2O5BDVuCKCwruyrELspS+Mfp2sWggH4MUhcNaJcEDFMoPoN0WEP8qEVYXPau2I/0omPuU5ffbGYjoSBd8BGx/6X9CbPDV7KS+lTe99XpWjEeVymJfCRqgr+H5REXEVSajsQkWcQXLdtnD/lxMqqop9vhy8CqouyVzBnzUIOZn0D8Qu46CABDCPL1S9liY/WcZ0SO2bY245wed6oHXI1Zis5CN1STLOPp8FYiH8VJLDtB+SL9dtdEXjvVhUazL8dwZsW/hhGN1rOTUqhIkW8eYkrNRW9vS8amrHUo6qR6dnWfQ5FOYuSvLas+JFZQxYe8ZRSe6zYwafmlwQ1dZ+Rdv2KHyaT2j4iNORDykl8mlEuQg6OEdUEJJcTEciOhgS1Q==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MW4PR11MB5823.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(39860400002)(366004)(136003)(346002)(376002)(396003)(451199021)(38070700005)(66446008)(82960400001)(38100700002)(86362001)(122000001)(36756003)(2906002)(66476007)(8936002)(478600001)(8676002)(7416002)(2616005)(71200400001)(5660300002)(966005)(6512007)(6486002)(53546011)(186003)(26005)(6506007)(54906003)(316002)(4326008)(110136005)(66946007)(76116006)(41300700001)(91956017)(66556008)(64756008);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?UElIeHVCTGkwZ3ZGdWFheWY3K3BMY0tMMk9zK0xwMGZmQ1FrNUMxekVEc1hq?=
+ =?utf-8?B?VkMrVEsySXN6bjE2N2Q4MEhqWWttb1hiQzM2TzlDRklwK201MUo0OWJDK3F4?=
+ =?utf-8?B?d1pkRlZXeGY0RDBBWWpqYitQM2F3VlVUb3Y3czRySXlFc0lRRFkrVkdQTFp5?=
+ =?utf-8?B?UHhVZ3FrdU40UEV2R09yaXZZdStGK0I4ZURNRWh2NnVkRG95cXU1TUxpMXNh?=
+ =?utf-8?B?djRDSXpYQ2JtOVZZdnlmU3ovMCtiOFAvUG5OSDJTYXVyM3YwSGV5S0hUaHA2?=
+ =?utf-8?B?cU9EUDJoNHhZV1FoYmhRbnU5WkVoVFZKSjcwNXdWYUN3YjBmaGw1Yjlpbyt4?=
+ =?utf-8?B?REdyS0J1bEpRUkFCZHJOaGpCdUFreWtYa08wcVZ3ZCsxcGhMb1ZvWkdDOHdG?=
+ =?utf-8?B?bGM3ZmlxWmYyUENERC9naDJaRnNGY3hGRXBoUVlZZm91K1pXekpSQ0diYnFy?=
+ =?utf-8?B?YmtpL2JTdHk5S2FIZ0JEaC9hQWNaZHJrall1Q0paY1RUK3RxeVV4bnZpYzJX?=
+ =?utf-8?B?ZjdzcjNYL1RldUdWUFRDNzI3RjJHQlZHdFRmS0xvVVZZMUZVeVNmTGJBUzUz?=
+ =?utf-8?B?Zi9FWnhPb2pWTkFQR3JPZnJibVoxanFLZU0razFweHl2TnUyWm5nSVFTdjg3?=
+ =?utf-8?B?UnpoaG9rdGdBakpJVkgvOXBUSzBhNW5DYWdiVEs5d0wvUUdiRFZVTCtSOTNi?=
+ =?utf-8?B?NE5na0NnN2Q0VnRORU9XWGVRWDlFQXExUnRmUDZmVUdhRjUvR1VsdUthYjFV?=
+ =?utf-8?B?VVRoRklWeW9RQ1BZQnpzSy9ZWVNBS1grUnNlV2dkaTVHZ2p1aVlhQlpPdFZP?=
+ =?utf-8?B?L29pVXNSMHdJdzNHazhTNVJ4cE5nL1lxcUg5RXhsL1BTR2pqbWZ4ZnRyaXh6?=
+ =?utf-8?B?RDg1K2hUY3Y5aXZpVGRMUUhYcmVOZzFVTGhnWDRxeFArQUFneVJOU01FaitB?=
+ =?utf-8?B?eStEMkU5YjZnaDdVd1R3alNuc2VIbzhHdE9XeXo4OFpoQk9hS3BvbFlHeHFI?=
+ =?utf-8?B?VmNQWGkveTRTZmpMMStobHdJL1htbkYrWnNZajhVM3RwYWpLQ3pGd1pwb3Bu?=
+ =?utf-8?B?M3VMenVRckRoTFg2bEZvSU5RRHp6OGxIN013TlNmSHFVa2wxN2pJNXNlWkM2?=
+ =?utf-8?B?WTlrd2VkK0pJbW5Yc0ZCdFl6ZjV4VVpDWDlmbXdMT1daTm9VSzZFdE9YN0ky?=
+ =?utf-8?B?aGFQWmhJYjVNR0Q2bzdLd3liNW5YL1YzOC85VkQvQlpLaTFzdWlJSkFoQmd2?=
+ =?utf-8?B?L1BKN1hoQ0MxdTEwckJ0eEtWOFpVaEd5SldjRVF6QUdodkY2a09SQnNyNUZD?=
+ =?utf-8?B?anZ4Sk1ZRXliLzhkeEpSNTJjd2tCNElOYXJOUWtWTm5PKzBJdGczb1pTVGc5?=
+ =?utf-8?B?am1kemp5RFZRUjBKZGFZV3orYTNzc1FIc0trSFE0dUsyZ1R2enhqRWpodDE4?=
+ =?utf-8?B?TTZ3KzVUb2o1WkdCam1GM2ZNNjRLeURKT1VqVGU5T2s4UmswR3ljOUZoQXJl?=
+ =?utf-8?B?NGlKcXlLeEJ4a25vQngzZFhhT3g0UHQrYzZneWtyZ2JRS0NyS0xZZWZzdTQy?=
+ =?utf-8?B?cVNzSDRwSHBVWEsrRmNOSXhQRGRrTExhNCtET04vbFdOWkM2Y1RJaS9aT1VL?=
+ =?utf-8?B?THVvSlVvNzFzd2xoL2pFb3BqWHI3eFpTTXh4QnFDaFVVZGxXcWg4akNwcUw3?=
+ =?utf-8?B?dmhULyt0TXZmQmRBVmNJMks4VWdPMldkUFU2U21GUE9MK0JFditUMTJRbmdm?=
+ =?utf-8?B?UUljZEVubVdIT2JwYVBDbUJTQU1obXdYb2NVajY1elU1czZRNjFiMXl1T1F0?=
+ =?utf-8?B?K0tQdWRvZ2lqZlhlUm56MXFQQUNnb21WelJyZTQ5MmtpeU5teG5IcHJoRGFx?=
+ =?utf-8?B?M3QyT2JQMnd3MnlIS3ZOcWxQUS9ST3JFaU1ncDB6M3dkYzJRV1BQb3lwWTMz?=
+ =?utf-8?B?MXJSSG5GNmFhaVpvd3NoekJKckxidVhmNTcya0EyQkRwdGo5Q0FYR21oSTIy?=
+ =?utf-8?B?eEU5aHI5dVFNMlU5bzN4Z3BqMWdnTnhRa1llYnZBbkdEcm5FanYvZnl1Q1BC?=
+ =?utf-8?B?T1V0RFYwR1RjTkVNcnl6ZUJoV0R5b2psSWxNd3pyMmZ5RzFEczh4VGRpOG9L?=
+ =?utf-8?B?MXNWeFp3ejI0cTVjNUpxRGZ6OFhudU5sN1A0SkRtNTE4cEliZFVmdU5ONTJO?=
+ =?utf-8?B?Nnc9PQ==?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <713A0D0A92EEC74CBDE66143C5FC759B@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230719201605.GA706263-robh@kernel.org>
-X-Spam-Status: No, score=1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
-X-Spam-Level: *
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: MW4PR11MB5823.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0a918ff6-836b-4bb0-3f90-08db89221646
+X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Jul 2023 13:06:09.8550
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: k0Lyq5Sv1ocNq2D32jzigdXcHYu4vz9KCvvLEbU8En98Wk6ODYc93tIN/BfRJdTY1TBmT0v/8i265s6+FzN3VIaXBAf9xgygS0sjHi4YPmo=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR11MB6318
+X-OriginatorOrg: intel.com
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 19, 2023 at 02:16:05PM -0600, Rob Herring wrote:
-> On Mon, Jul 17, 2023 at 07:26:48PM +0200, Sebastian Reichel wrote:
-> > The RK356x (and RK3588) have 5 ganged interrupts. For example the
-> > "legacy" interrupt combines "inta/intb/intc/intd" with a register
-> > providing the details.
-> > 
-> > Currently the binding is not specifying these interrupts resulting
-> > in a bunch of errors for all rk356x boards using PCIe.
-> > 
-> > Fix this by specifying the interrupts and add them to the example
-> > to prevent regressions.
-> > 
-> > This changes the reference from snps,dw-pcie.yaml to
-> > snps,dw-pcie-common.yaml, since the interrupts are vendor
-> > specific and should not be listed in the generic file. The
-> > only other bit from the generic binding are the reg-names,
-> > which are overwritten by this binding.
-> > 
-> > Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-> > ---
-> >  .../bindings/pci/rockchip-dw-pcie.yaml        | 43 ++++++++++++++++++-
-> >  1 file changed, 42 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
-> > index a4f61ced5e88..7836b9a5547c 100644
-> > --- a/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
-> > +++ b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
-> > @@ -17,7 +17,8 @@ description: |+
-> >    snps,dw-pcie.yaml.
-> >  
-> >  allOf:
-> > -  - $ref: /schemas/pci/snps,dw-pcie.yaml#
-> > +  - $ref: /schemas/pci/pci-bus.yaml#
-> > +  - $ref: /schemas/pci/snps,dw-pcie-common.yaml#
-> >  
-> >  properties:
-> >    compatible:
-> > @@ -60,6 +61,39 @@ properties:
-> >        - const: aux
-> >        - const: pipe
-> >  
-> > +  interrupts:
-> > +    items:
-> > +      - description:
-> > +          Combined system interrupt, which is used to signal the following
-> > +          interrupts - phy_link_up, dll_link_up, link_req_rst_not, hp_pme,
-> > +          hp, hp_msi, link_auto_bw, link_auto_bw_msi, bw_mgt, bw_mgt_msi,
-> > +          edma_wr, edma_rd, dpa_sub_upd, rbar_update, link_eq_req, ep_elbi_app
-> > +      - description:
-> > +          Combined PM interrupt, which is used to signal the following
-> > +          interrupts - linkst_in_l1sub, linkst_in_l1, linkst_in_l2,
-> > +          linkst_in_l0s, linkst_out_l1sub, linkst_out_l1, linkst_out_l2,
-> > +          linkst_out_l0s, pm_dstate_update
-> > +      - description:
-> > +          Combined message interrupt, which is used to signal the following
-> > +          interrupts - ven_msg, unlock_msg, ltr_msg, cfg_pme, cfg_pme_msi,
-> > +          pm_pme, pm_to_ack, pm_turnoff, obff_idle, obff_obff, obff_cpu_active
-> > +      - description:
-> > +          Combined legacy interrupt, which is used to signal the following
-> > +          interrupts - inta, intb, intc, intd
-> > +      - description:
-> > +          Combined error interrupt, which is used to signal the following
-> > +          interrupts - aer_rc_err, aer_rc_err_msi, rx_cpl_timeout,
-> > +          tx_cpl_timeout, cor_err_sent, nf_err_sent, f_err_sent, cor_err_rx,
-> > +          nf_err_rx, f_err_rx, radm_qoverflow
-> 
-
-> I'm confused. It is really up to the integrator on how each of these 
-> interrupts are combined? I thought it was a bit more fixed than that.
-
-As I explained it here [1] in details there are only several signals
-which are actually marked as IRQs:
-hp_pme,
-hp/hp_msi,
-link_auto_bw/link_auto_bw_msi,
-bw_mgt/bw_mgt_msi,
-edma_wr/edma_rd,
-cfg_pme/cfg_pme_msi,
-inta, intb, intc, intd,
-aer_rc_err/aer_rc_err_msi.
-(not listed above: cfg_int, cfg_safety_corr, cfg_safety_uncorr,
-cfg_vpd, msi_ctrl_int).
-All of the above (except msi_ctrl_int, which belongs to a none-SII
-group of signals) are a part of the so called "SII: Interrupt
-Signals". They are normally used to indicate IRQs in the most of the
-DW PCIe devices. That's why I listed them in the generic DW PCIe
-DT-bindings.
-
-The rest of the signals described by Sebastian are also a part of the
-System Information Interface (SII), but they _aren't_ marked as the
-IRQs. Although the signals explicitly stated as interrupts and some
-common SII Signals are marked as _outputs_ (from the DW PCIe
-controller point of view). So all of them can be used as the interrupt
-sources if they are somehow connected to a system interrupt
-controller. Though normally the none-IRQ outputs are just wired to the
-application-specific CSR space and if needed tracked by a separate
-IRQ signal (see the "app" signal in the generic DW PCIe DT-bindings)
-
-AFAIU RK rk356x HW designers just grouped some SII output signals and
-OR'ed them up before attaching to the system IRQ controller. So
-basically all the IRQs described by Sebastian can be categorized as
-application-specific IRQs. That's amongst various solutions I
-suggested to rename them to indicate that (see [1]). I don't know what
-the Rockchip HW-engineers were thinking providing such a mix of the
-IRQ sources instead just using the standardized by Synopsys interface,
-but here it is.
-
-[1] https://lore.kernel.org/linux-pci/3628628.VLH7GnMWUR@phil/T/#m3b3149c26b15e03686cfc2b76033c9949b0d565c
-
--Serge(y)
-
-> 
-> Rob
+T24gVGh1LCAyMDIzLTA3LTIwIGF0IDEwOjQwICswMjAwLCBLcnp5c3p0b2YgS296bG93c2tpIHdy
+b3RlOg0KPiBPbiAyMC8wNy8yMDIzIDEwOjAwLCBXaW5pYXJza2EsIEl3b25hIHdyb3RlOg0KPiA+
+IE9uIFRodSwgMjAyMy0wNy0yMCBhdCAwODoxNyArMDIwMCwgS3J6eXN6dG9mIEtvemxvd3NraSB3
+cm90ZToNCj4gPiA+IE9uIDIwLzA3LzIwMjMgMDA6MDgsIEl3b25hIFdpbmlhcnNrYSB3cm90ZToN
+Cj4gPiA+ID4gSGkhDQo+ID4gPiA+IA0KPiA+ID4gPiBUaGUgc2VyaWVzIGFkZHMgc3VwcG9ydCBm
+b3IgUEVDSSBvbiBOdXZvdG9uLWJhc2VkIEJNQyBib2FyZHMuDQo+ID4gPiA+IEl0IGlzIGJhc2Vk
+IG9uIHBhdGNoZXMgdGhhdCB3ZXJlIHNlbnQgYnkgVG9tZXIgTWFpbW9uIGZyb20NCj4gPiA+ID4g
+TnV2b3RvbiBbMV0uDQo+ID4gPiA+IFNpbWlsYXIgdG8gQXNwZWVkIGRyaXZlciwgdW51c2VkIChh
+cyBpbiwgZGVmYXVsdCB2YWx1ZXMgd2VyZSB1c2VkIGluDQo+ID4gPiA+IGFsbCBvZiB0aGUgYXZh
+aWxhYmxlIERUUyBmaWxlcykgdmVuZG9yLXNwZWNpZmljIHByb3BlcnRpZXMgd2VyZQ0KPiA+ID4g
+PiByZW1vdmVkLg0KPiA+ID4gPiBJZiB0aGVyZSBpcyBhIHVzZS1jYXNlIGZvciBzdWNoIHByb3Bl
+cnRpZXMsIHRoZXkgY2FuIGJlIGFkZGVkIGluDQo+ID4gPiA+IGEgc2VwYXJhdGUgc2VyaWVzLg0K
+PiA+ID4gPiANCj4gPiA+ID4gVGhhbmsgeW91IFRvbWVyIGZvciB0ZXN0aW5nIHRoaXMgc2VyaWVz
+IG9uIE51dm90b24gaGFyZHdhcmUuDQo+ID4gPiA+IA0KPiA+ID4gPiBUaGFua3MNCj4gPiA+ID4g
+LUl3b25hDQo+ID4gPiA+IA0KPiA+ID4gPiBbMV0NCj4gPiA+ID4gaHR0cHM6Ly9sb3JlLmtlcm5l
+bC5vcmcvb3BlbmJtYy9DQVA2WnExam5iUThrOVZFeWY5V2dWcTVEUnJFemY1VjZrYVlQMzBTN2c5
+QlY5akt0YVFAbWFpbC5nbWFpbC5jb20vDQo+ID4gPiA+IA0KPiA+ID4gDQo+ID4gPiBUaGlzIGlz
+IG5vdCB2MSBidXQgdjMgb3IgdjQuIFBsZWFzZSBwcm92aWRlIHByb3BlciBjaGFuZ2Vsb2cgYW5k
+DQo+ID4gPiB2ZXJzaW9uaW5nLg0KPiA+IA0KPiA+IFRoaXMgaXMgdGhlIGZpcnN0IHN1Ym1pc3Np
+b24gLSBhbHNvIGtub3duIGFzIHYxIDopDQo+ID4gQ291bGQgeW91IGVsYWJvcmF0ZSBvbiB3aHkg
+ZG8geW91IGJlbGlldmUgdGhhdCB0aGlzIGlzIHYzIG9yIHY0Pw0KPiANCj4gSSBoYWQgc3VjaCBp
+bXByZXNzaW9uIGJlY2F1c2UgSSBzYXcgaXQ6DQo+IGh0dHBzOi8vbG9yZS5rZXJuZWwub3JnL2Fs
+bC8yMDIzMDYxNjE5MzQ1MC40MTMzNjYtMi1pd29uYS53aW5pYXJza2FAaW50ZWwuY29tLw0KPiBo
+dHRwczovL2xvcmUua2VybmVsLm9yZy9hbGwvMjAyMzA2MjgwOTA0MDQuMjM0OTY1LTItdG1haW1v
+bjc3QGdtYWlsLmNvbS8NCg0KQ2hhbmdlbG9nIC8gdmVyc2lvbmluZyBpcyBtYWludGFpbmVkIGZv
+ciBjaGFuZ2VzIHRoYXQgYXJlIHN1Ym1pdHRlZCBmb3INCmluY2x1c2lvbiBpbiB1cHN0cmVhbSBM
+aW51eC4NClRoZSBzZXJpZXMgeW91J3JlIHJlZmVycmluZyB0byBhcmUgbm90IHVwc3RyZWFtIExp
+bnV4IHN1Ym1pc3Npb25zLg0KQWRkaXRpb25hbGx5IC0gdGhlcmUgd2VyZSBubyBjaGFuZ2VzIDop
+DQoNCi1Jd29uYQ0KDQo+IA0KPiBCZXN0IHJlZ2FyZHMsDQo+IEtyenlzenRvZg0KPiANCg0K
