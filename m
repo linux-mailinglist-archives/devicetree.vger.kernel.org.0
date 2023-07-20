@@ -2,106 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E259E75B21B
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 17:13:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F362075B243
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 17:17:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232452AbjGTPNA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jul 2023 11:13:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50670 "EHLO
+        id S229828AbjGTPRp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jul 2023 11:17:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54364 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232493AbjGTPM4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 11:12:56 -0400
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F294A2706
-        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 08:12:49 -0700 (PDT)
-Received: by mail-lj1-x22e.google.com with SMTP id 38308e7fff4ca-2b703cbfaf5so13488971fa.1
-        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 08:12:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20221208.gappssmtp.com; s=20221208; t=1689865968; x=1690470768;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=OR4CnZp6F7D4KAQ0BL845tbrVz9ugD0EX7S7dGF5yAU=;
-        b=pO+ADtc6up0M6npJq2D7M9CPM5XSRbEjmN5kw5Y4sDaVIw4SufxISznRG33rqAeTsh
-         ftacbyqghje6LEWXp/IKmIU5EhuTv/MbhZQw3VPCCGNJ2m/0ZQAoIGltOSrSgCQI6g27
-         0Wqb8CBXCVZplCfldJV3FFKjzhU8nTv4mtH+2H7aoytnEvu/51SwQqU9aOLWvHAgMAGc
-         HOEN7wicYJsN1vEIANEbT5zGlCt6Ps6tbvH9wTddAGSrC31GU/XjkCKDCfTORxnPRMa3
-         tYVsOkmdnpL+HYvFzx7IIbN5fBXbjpVVfLpV/PiplICvCcPuc0ErMi69HFGzT5QpHEt6
-         PpKA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689865968; x=1690470768;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=OR4CnZp6F7D4KAQ0BL845tbrVz9ugD0EX7S7dGF5yAU=;
-        b=IuYHL4Ozli9YTNHK+zyaJyk+bndxSKYLTHc4rwRztBwbQBl/QsQb7uC5Na4shbdIVi
-         PxiOsECJfvYpBwq3TM3dg/Bjr6sl62ECEQAikzsAHxQO22XApYj0z+2JrR+ghkUreTZA
-         I/Ajp9OVdm0ngm/0JktK5w8ddHZB2ldw5Z2oVJL1sbyL9GHn3WKyREqm6k0La1MvsIKn
-         Q1sciXpmoeI36sllEzdi1rAwtT8Xuq0snxwiy4H3w+Px9Pdf5JSm1IZQbDm0toj0dyuW
-         GciF8UhYXM+W0EIx8rJskblGvkr4gu8fZbPhnteHkg70+eM0kRJ8cJOubo93ylWdNAb4
-         H2pg==
-X-Gm-Message-State: ABy/qLafIraXNzAk5vGKzL2281uuBT5Iph3pVfiU4DCeJZhyKfWRBbe7
-        X9GIaigkkWDJVDFy7LcFc7Ow7VXVHNuGiWjfO3QNug==
-X-Google-Smtp-Source: APBJJlGGvCyKQ0is6wgjsQg1NXCvU3HK0pcsuXhP+KW9UwSvuyAY7ouvvwRHKVbH8WSa7H+UhgqxHSJYFfpzCfSMQNU=
-X-Received: by 2002:a2e:870d:0:b0:2b5:8bb9:4dd6 with SMTP id
- m13-20020a2e870d000000b002b58bb94dd6mr2539937lji.12.1689865968242; Thu, 20
- Jul 2023 08:12:48 -0700 (PDT)
+        with ESMTP id S232327AbjGTPRo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 11:17:44 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A1F013E;
+        Thu, 20 Jul 2023 08:17:44 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id ACE6161B46;
+        Thu, 20 Jul 2023 15:17:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 65510C433C9;
+        Thu, 20 Jul 2023 15:17:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1689866263;
+        bh=qYHzhCAUIzF07jkVYTmVpGY6QuZJidrqSGysBgEQ+mg=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=P16yasElhZTEVFOLsqDGNj4lriTO6FsUW8YABCZuFpIMFix1NMiwqPaxeOXOJGNOk
+         VfOItlUQjULagwjy03aN/moX4p0fVX1uyxELFFx7ST2p8Y2LanDjA80FYWJYqo902U
+         B1dPtPEPCXdcO2vuWr+smF+q+CudYO+XVVfGf4muamAjCqLdYs5ly7RxarL53ghMO1
+         c7z4tglFywO9GUJRvnBTv0bIV43yd7al05bkCq1t3oVmo4Q8veUrMy96QxeUPfZzHU
+         5XBwXPyYA9MApwhmFlvKbYMA+lkCuL/2H3vC+cqcQMFlqFT90CDLJVT0Z8BkAASI1o
+         Buaey1/Wipc4w==
+Date:   Thu, 20 Jul 2023 08:17:41 -0700
+From:   Jakub Kicinski <kuba@kernel.org>
+To:     Md Danish Anwar <a0501179@ti.com>
+Cc:     MD Danish Anwar <danishanwar@ti.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Roger Quadros <rogerq@kernel.org>,
+        Simon Horman <simon.horman@corigine.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Eric Dumazet <edumazet@google.com>,
+        "David S. Miller" <davem@davemloft.net>, <nm@ti.com>, <srk@ti.com>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <netdev@vger.kernel.org>, <linux-omap@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [EXTERNAL] Re: [PATCH v10 2/2] net: ti: icssg-prueth: Add ICSSG
+ ethernet driver
+Message-ID: <20230720081741.0c32d5e6@kernel.org>
+In-Reply-To: <17cd1e70-73bc-78d5-7e9d-7b133d6f464b@ti.com>
+References: <20230719082755.3399424-1-danishanwar@ti.com>
+        <20230719082755.3399424-3-danishanwar@ti.com>
+        <20230719213543.0380e13e@kernel.org>
+        <17cd1e70-73bc-78d5-7e9d-7b133d6f464b@ti.com>
 MIME-Version: 1.0
-References: <20230705194544.100370-1-nick.hawkins@hpe.com> <20230705194544.100370-3-nick.hawkins@hpe.com>
-In-Reply-To: <20230705194544.100370-3-nick.hawkins@hpe.com>
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-Date:   Thu, 20 Jul 2023 17:12:36 +0200
-Message-ID: <CAMRc=MfaEfaZ7yYrFtc+XChzPX1C1AV1xAZPRZyJKA+z7D6-vw@mail.gmail.com>
-Subject: Re: [PATCH v5 2/5] gpio: gxp: Add HPE GXP GPIO PL
-To:     nick.hawkins@hpe.com
-Cc:     verdun@hpe.com, linus.walleij@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, jdelvare@suse.com,
-        linux@roeck-us.net, andy.shevchenko@gmail.com,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 5, 2023 at 9:49=E2=80=AFPM <nick.hawkins@hpe.com> wrote:
->
-> From: Nick Hawkins <nick.hawkins@hpe.com>
->
-> The GXP SoC supports GPIO on multiple interfaces. The interfaces are
-> CPLD and Host. The gpio-gxp-pl driver covers the CPLD which takes
-> physical I/O from the board and shares it with GXP via a proprietary
-> interface that maps the I/O onto a specific register area of the GXP.
-> This driver supports interrupts from the CPLD.
->
-> Signed-off-by: Nick Hawkins <nick.hawkins@hpe.com>
->
+On Thu, 20 Jul 2023 17:12:50 +0530 Md Danish Anwar wrote:
+> Patch 1: Introduce Firmware mapping for the driver (icss_switch_map.h)
+> 
+> Patch 2: Introduce mii helper APIs. (icssg_mii_rt.h and icssg_mii_cfg.h). This
+> patch will also introduce basic prueth and emac structures in icssg_prueth.h as
+> these structures will be used by the helper APIs.
+> 
+> Patch 3: Introduce firmware configuration and classification APIs.
+> (icssg_classifier.c, icssg_config.h and icssg_config.c)
+> 
+> Patch 4: Introduce APIs for ICSSG Queues (icssg_queues.c)
+> 
+> Patch 5: Introduce ICSSG Ethernet driver. (icssg_prueth.c and icssg_prueth.h)
+> This patch will enable the driver and basic functionality can work after this
+> patch. This patch will be using all the APIs introduced earlier. This patch
+> will also include Kconfig and Makefile changes.
+> 
+> Patch 6: Enable standard statistics via ndo_get_stats64
+> 
+> Patch 7: Introduce ethtool ops for ICSSG
+> 
+> Patch 8: Introduce power management support (suspend / resume APIs)
+> 
+> However this structure of patches will introduce some APIs earlier (in patch
+> 2,3 and 4) which will be used later by patch 5. I hope it will be OK to
+> introduce APIs and macros earlier and use them later.
+> 
+> This restructuring will shorten all the individual patches. However patch 5
+> will still be a bit large as patch 5 introduces all the neccessary APIs as
+> driver probe / remove, ndo open / close, tx/rx etc.
+> 
+> Currnetly this single patch has close to 4000 insertion and is touching 12
+> files. After restructring patch 5 will have around 1800 insertions and will
+> touch only 4 files (icssg_prueth.c, icssg_prueth.h, Kconfig, Makefile). This is
+> still significant improvement.
+> 
+> Please let me know if this is OK.
 
-[snip]
+SGTM, thanks! One patch still being larger than others is a bit
+inevitable.
 
-> +
-> +/*
-> + * When an interrupt fires for a PSU config change
-> + * there is a need to know the previous PSU configuration
-> + * so that the appropriate gpio line is interrupted for
-> + * the correct PSU. In order to keep this variable up to
-> + * date it is global so that it can be set at init and
-> + * each time the interrupt fires.
-> + */
-> +u8 psu_presence;
+> Also this patch has Reviewed-By tag of Andrew. Can I carry forward his
+> Reviewed-By tag in all patches or do I need to drop it?
 
-I'm not buying it. There's no user of this variable outside of this
-compilation unit, is there? If there was - the name should have some
-prefix but even then, I don't see a need for this to be global. Why
-don't you put it in struct gxp_gpio_drvdata?
-
-Bart
-
-[snip]
+If the code is identical I reckon you can carry it.
