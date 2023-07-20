@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 56DA975A9D8
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 10:57:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 198CE75A9DF
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 10:57:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230290AbjGTI5W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jul 2023 04:57:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36726 "EHLO
+        id S229633AbjGTI50 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jul 2023 04:57:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36772 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229826AbjGTIic (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 04:38:32 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47B7F269E
-        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 01:38:30 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id 2adb3069b0e04-4fdd7d09576so806386e87.0
-        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 01:38:30 -0700 (PDT)
+        with ESMTP id S230100AbjGTIiw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 04:38:52 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED3FB26A6
+        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 01:38:50 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-4f4b2bc1565so753412e87.2
+        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 01:38:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689842308; x=1690447108;
+        d=linaro.org; s=google; t=1689842329; x=1690447129;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=YIsgoQLryW3CIqsgxGxKOqUpJ00VghrOuIzYj57GodM=;
-        b=YV0tUtW+HKdD1U40g4PhB67gb7DPNwFXJbBz+qknagXWrGrZLnaqFLVedBKNe9Pcvk
-         BADoA7lFS/dpyDH8KrEpIv1AGTZsYnswaoUqZfirLnUxVccYjXHwPuYUNlVsIfkVOwbB
-         YDII1udeDCb5DSOtVn2se0AwjbrGXv0QURiXQVhpv4j3P+d2ueVnZhtAGG07jWMvmEUZ
-         NvNWeV0xL6Bbepgc+86HQc0j05rdAUBFkzunJIOhYU1TKV4yRDErtqxqXx+my51xoa0a
-         VO1PnD/ukQNqMjNZZTIdjKfiMb3gh2QmTqHoKHKTV0AUEHPAZrN0Y454AXGY83Xdxg2y
-         bjMg==
+        bh=eVM18y+39lFosvdaYdIgO9ss377egsp/711hTC+KHKM=;
+        b=OC2rqh2/KW20vFwMQ8QkxQ1joh9qsdUk1wuP8bg3niTWrYZyQEj2YFqLFbO3osYtnT
+         AInHz0bOoWE3JU5cwwGQXKZBxaF0DFS+qzClpgRVn+AA7QplFjnJSrnUpjjYGjSQlfFj
+         XuFIWTn9KEwwQNzvgUOKIYvbzW7Jbx2c3ogNULVKteLn3hlxjirqNT2pROJqAuMRKEhX
+         w6NuGKjB+0OFs9p9i0d+sQw1P4O5a5kaWkfcUEoERBdGelx/yOAWsS4qmhDtUe/JmGCn
+         8Vm4G8coj7Y5bUtQtzW3Ml8ydX9hxbXmXhmy2RdAVO6svpMTI2df3qmaBfr+UQc26qII
+         67IA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689842308; x=1690447108;
+        d=1e100.net; s=20221208; t=1689842329; x=1690447129;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=YIsgoQLryW3CIqsgxGxKOqUpJ00VghrOuIzYj57GodM=;
-        b=JqboMnLQ0Q7VKzz6sM1wa/FWHc+mnBmWD48b3REgJ1fyrVYnyScjJBLKds1W00hvE0
-         +zrnrEIa/sNX3qLADBu1YxAcZihpX9TD9ZmY0zHCRqWtwDZzHEX2/FEUQxifJLijU+QK
-         Hljg/VmbCILCEED84IsFyGsSl0ZWBo0Nc7/E7CS7TffNiWmvtrFvyaQWlNtNA7FMSSfP
-         aDd7ktmlefUPdWPL9qipozjyLzNo9JREHRT19cSl4S2qxu+yO/JbMYfGcjZyfpzGfeJI
-         zTtJVloORLKw211mj7/hBv6uuZwQvX4WVUlB9vpU6kltcUw7e0MM0TucgInHvDfABrfw
-         p+rw==
-X-Gm-Message-State: ABy/qLb+EjJTeN00Wnkk7ZEtIVMDZsLUzCq0wsJyONHiEX1MnGRR5+wx
-        wrGJjwnUKvbXNFSdZ+uBn0eE5Q==
-X-Google-Smtp-Source: APBJJlHM3K33hiiMAHlwSnZxgeJJy1FzEvBCQ9PgHKHhf56IRGQxVq1k4pKno0XiVnipXDdb6R12Yw==
-X-Received: by 2002:a05:6512:ac4:b0:4fd:d4b4:faba with SMTP id n4-20020a0565120ac400b004fdd4b4fabamr1840284lfu.51.1689842308512;
-        Thu, 20 Jul 2023 01:38:28 -0700 (PDT)
+        bh=eVM18y+39lFosvdaYdIgO9ss377egsp/711hTC+KHKM=;
+        b=cYhRJPN+KDesrENElN3DEY3tJ7heSek9hZwDjYn+CN+zsAKRdfgGeCADJj5ie6vHXU
+         Sw4iFVIyw/7TQIbN67VHTFCDRAJKhB8P3i9+qnPCjzK69ON/gVG/ASXbUcwgF1JGd2Ol
+         CRt3WduPAVIeczRrgM01eC8YyzghQieeLDHDWJhsvDFWxE+OfuVCDuKyTRAYLlP7q66t
+         yCI6D6pbJ7avH5b5hXp2ZV93FxayKI+4SOQ331Rve5QLj9UFqqVaMAx6Ehmz17aWY+cR
+         bi/r+tG13aIRkN/HaUIcg1D6/zUrg6N4Xk1yP1feI1jZscXs7oYKBHpt0LVuYpONfcg6
+         /ZDw==
+X-Gm-Message-State: ABy/qLa1xP/fIBHRKQP0DfWJhSSD3LKjo3+zcM8oiBr56aGF2d3fe92L
+        wfp34KiIYpCJtXEsYp+60ny74A==
+X-Google-Smtp-Source: APBJJlGMhvGs0aCS+jIoKJ+MCRAgfO/gZIZOPr9mIlyK0ln5xdYeYInM1U4yeHyVi4w6zqEm2xuI4g==
+X-Received: by 2002:a05:6512:3085:b0:4f8:66a1:a31b with SMTP id z5-20020a056512308500b004f866a1a31bmr2497982lfd.30.1689842329272;
+        Thu, 20 Jul 2023 01:38:49 -0700 (PDT)
 Received: from [192.168.1.101] (abyj181.neoplus.adsl.tpnet.pl. [83.9.29.181])
-        by smtp.gmail.com with ESMTPSA id d28-20020ac24c9c000000b004f84b36a24fsm90641lfl.51.2023.07.20.01.38.27
+        by smtp.gmail.com with ESMTPSA id d28-20020ac24c9c000000b004f84b36a24fsm90641lfl.51.2023.07.20.01.38.48
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 20 Jul 2023 01:38:28 -0700 (PDT)
-Message-ID: <fb587e3f-5cca-1c56-594d-df89646a3ba8@linaro.org>
-Date:   Thu, 20 Jul 2023 10:38:27 +0200
+        Thu, 20 Jul 2023 01:38:48 -0700 (PDT)
+Message-ID: <3ad34a1d-0b53-0e33-f587-454ec5dfe32e@linaro.org>
+Date:   Thu, 20 Jul 2023 10:38:48 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] arm64: dts: qcom: sc8180x-pmics: align SPMI PMIC
- Power-on node name with dtschema
+Subject: Re: [PATCH 4/4] arm64: dts: qcom: sc8180x-pmics: align LPG node name
+ with dtschema
 Content-Language: en-US
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Andy Gross <agross@kernel.org>,
@@ -65,7 +65,7 @@ To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20230720083500.73554-1-krzysztof.kozlowski@linaro.org>
- <20230720083500.73554-3-krzysztof.kozlowski@linaro.org>
+ <20230720083500.73554-4-krzysztof.kozlowski@linaro.org>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -102,11 +102,11 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20230720083500.73554-3-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230720083500.73554-4-krzysztof.kozlowski@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -115,10 +115,10 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20.07.2023 10:34, Krzysztof Kozlowski wrote:
-> Bindings expect the Power-on node name to be "pon":
+On 20.07.2023 10:35, Krzysztof Kozlowski wrote:
+> Bindings expect the LPG node name to be "pwm":
 > 
->   sc8180x-lenovo-flex-5g.dtb: pmic@0: 'power-on@800' does not match any of the regexes:
+>   sc8180x-lenovo-flex-5g.dtb: pmic@5: 'lpg' does not match any of the regexes:
 > 
 > Fixes: d3302290f59e ("arm64: dts: qcom: sc8180x: Add pmics")
 > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
