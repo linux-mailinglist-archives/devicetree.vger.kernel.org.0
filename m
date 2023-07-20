@@ -2,121 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B3DC775AE01
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 14:13:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DCBA575AE16
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 14:16:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230228AbjGTMNi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jul 2023 08:13:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34346 "EHLO
+        id S230057AbjGTMQc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jul 2023 08:16:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36278 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229531AbjGTMNg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 08:13:36 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DDD672106;
-        Thu, 20 Jul 2023 05:13:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1689855215; x=1721391215;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=qkDXQ93pEI6ao4XArtWOlAwCt1REKU2ZVqOJKv7aZYo=;
-  b=zinBMc6V5YtnDgIE0wBeXhmnG7wNd6vIlNWlLbQZfaZZutW9bclsNRkb
-   Zi95dwo7aBXBsypoyo+ylS3ku9aHQu4eg6UptjTAndKm422TgwnlEQrHm
-   aR0diUKKM+bCmqNzWQS1kDUChbhKIvr0LvhzsazWYWPk7UPQhV7bPjoSh
-   xrKveVqjDpg7jg2RfbT/gO5522WumwrxPSdeDaJDVPvyDaHCI6vhOw4As
-   g3cnGy/wZggIBdAH9L7ZvftpSxt4kjqXLP5yx9cu7smeTtcKP/uZKtGEH
-   Vdm+YGHlkbj+BRUFkiKNc18KGsYXHNMwAm9ayW+6HY6Xopet8hSqGjyOK
-   Q==;
-X-IronPort-AV: E=Sophos;i="6.01,218,1684825200"; 
-   d="asc'?scan'208";a="221309888"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 20 Jul 2023 05:13:34 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Thu, 20 Jul 2023 05:13:23 -0700
-Received: from wendy (10.10.115.15) by chn-vm-ex04.mchp-main.com
- (10.10.85.152) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
- Transport; Thu, 20 Jul 2023 05:13:19 -0700
-Date:   Thu, 20 Jul 2023 13:12:46 +0100
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     Minda Chen <minda.chen@starfivetech.com>
-CC:     Bjorn Helgaas <helgaas@kernel.org>,
-        Daire McNamara <daire.mcnamara@microchip.com>,
-        Conor Dooley <conor@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-riscv@lists.infradead.org>, <linux-pci@vger.kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        "Palmer Dabbelt" <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        "Philipp Zabel" <p.zabel@pengutronix.de>,
-        Mason Huo <mason.huo@starfivetech.com>,
-        Leyfoon Tan <leyfoon.tan@starfivetech.com>,
-        Kevin Xie <kevin.xie@starfivetech.com>
-Subject: Re: [PATCH v1 0/9] Refactoring Microchip PolarFire PCIe driver
-Message-ID: <20230720-unkempt-bath-9d320d55577c@wendy>
-References: <20230719152626.GA502469@bhelgaas>
- <52ebc991-0e73-8df4-61b2-32989ab4e62c@starfivetech.com>
+        with ESMTP id S229628AbjGTMQc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 08:16:32 -0400
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B18F2115;
+        Thu, 20 Jul 2023 05:16:27 -0700 (PDT)
+Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-51e590a8ab5so986200a12.2;
+        Thu, 20 Jul 2023 05:16:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1689855386; x=1690460186;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:subject:from:user-agent:mime-version:date:message-id:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=1jBjQi0KhEajIiTYUBIV9zjJYw88SZt2ebRbzw25T54=;
+        b=Rx0IAvtvCgI478Tkv9nAG5r3qxTK+G/bHLDDC8u16yEs67xixXmUqwZS9nLOPKdM+W
+         ph77qh0JHo1ss4Lu8VDfmU3l6eTWWDcDnw6QEmEr0njduggDYjOHgK/tuLlfHKp1NY8G
+         Z/CV/k3C3x4OqXSsVfiZf+Q4iEPIADB4ELX8OSnOYuZWT2s5vZ464il1TJErf4wmwZ1o
+         HfUrAZLINzpFrQmdb8/WIhcC88nIMn7fFDT8fZgp9sqqIVm1FxJv5cb/w+1aDJcAmG4Y
+         zXlEvKnvjlZqc/D1vwr1GEjfUoJoIU3k1LgeemK8rSr7o4nBDaMVq+cnzouZvz5JyM1A
+         p5Eg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689855386; x=1690460186;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:subject:from:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=1jBjQi0KhEajIiTYUBIV9zjJYw88SZt2ebRbzw25T54=;
+        b=C0sO1MtI5AV9yHMBItUiVngaro0FEBPUYW0tnXaJBPa6DVeIa5x112Pne5BDY6EyUf
+         mHx3RLyFHTcAbCHalBqgh6sDUsFLAXXgwcarHy5uD8N3YtaSvzp5nmQ+AxnocbA8ht5T
+         5BYDDQcNLDJAGHfDoJwVZcYvT0nmSyM4LYPzoKEZbgJz3MIX926qp5ZP4XFjS+D76epR
+         +YEzV8gIbETMPFAsIpy5a1czr0bIa6yZkC0ICaDCQj+FZ5kzKfASmtvMvdIFPxCm6ptQ
+         kNBCXGvIviQ+4/xTaOk4T14aaM/SnE/WFE4DXbczytG2JpWB+YXmYnPh9zoyaRQnY756
+         bniA==
+X-Gm-Message-State: ABy/qLYN0sSL5cpgNGgeI7c70qHFqgF0FNzq9vrzPhYcPRw3uvty6hM5
+        K8mN9tSdsXseSC8OuvXDFBw=
+X-Google-Smtp-Source: APBJJlG7WK2iF0b+9kUZXbq11rWoRyzLjsln3AKLNuSgbBGU6mf9LZUG7nRD/QWLPX4YXC9MQvMLHg==
+X-Received: by 2002:a17:906:18:b0:993:e752:1a6f with SMTP id 24-20020a170906001800b00993e7521a6fmr4504228eja.6.1689855385738;
+        Thu, 20 Jul 2023 05:16:25 -0700 (PDT)
+Received: from [192.168.4.4] (host-95-237-109-246.retail.telecomitalia.it. [95.237.109.246])
+        by smtp.gmail.com with ESMTPSA id lf26-20020a170906ae5a00b0098e42bef736sm628637ejb.176.2023.07.20.05.16.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 20 Jul 2023 05:16:25 -0700 (PDT)
+Message-ID: <b82ee6d3-fa33-1e5a-be9d-7f13259dbcda@gmail.com>
+Date:   Thu, 20 Jul 2023 14:16:24 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="kw3EZ33X58KK0EKz"
-Content-Disposition: inline
-In-Reply-To: <52ebc991-0e73-8df4-61b2-32989ab4e62c@starfivetech.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+From:   Andrea Collamati <andrea.collamati@gmail.com>
+Subject: Re: [PATCH v2 2/2] iio: add mcp4728 I2C DAC driver
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        William Breathitt Gray <william.gray@linaro.org>,
+        Angelo Dureghello <angelo.dureghello@timesys.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Lukas Bulwahn <lukas.bulwahn@gmail.com>,
+        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <cover.1689541455.git.andrea.collamati@gmail.com>
+ <75145a12-a85e-e553-d32f-3212357c4a7e@gmail.com>
+ <bd3890e4-3880-b292-5b9f-e9443185681c@kernel.org>
+Content-Language: en-US
+In-Reply-To: <bd3890e4-3880-b292-5b9f-e9443185681c@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---kw3EZ33X58KK0EKz
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Thu, Jul 20, 2023 at 10:15:51AM +0800, Minda Chen wrote:
-> On 2023/7/19 23:26, Bjorn Helgaas wrote:
-> > On Wed, Jul 19, 2023 at 06:20:48PM +0800, Minda Chen wrote:
+On 7/17/23 08:38, Krzysztof Kozlowski wrote:
+> On 16/07/2023 23:26, Andrea Collamati wrote:
+>> mcp4728 is a 12-bit quad channel DAC with I2C interface.
+>>
+>> support for:
+>> * per-channel gain
+>> * per-channel power state
+>> * per-channel power down mode control
+>> * per-channel vref selection internal/vdd
+>> * store current state to on-chip EEPROM
+>>
+>> Signed-off-by: Andrea Collamati <andrea.collamati@gmail.com>
+>> ---
+> What changed? Are you saying you ignored entire review you got?
+I didn't ignored, but I didn't list the changes. I will look at other emails to understand how to write v2 v3 ... changes..Sorry.
+>> drivers/iio/dac/Kconfig | 12 +
+>> drivers/iio/dac/Makefile | 1 +
+>> drivers/iio/dac/mcp4728.c | 635 ++++++++++++++++++++++++++++++++++++++
+>> 3 files changed, 648 insertions(+)
+>> create mode 100644 drivers/iio/dac/mcp4728.c
+>>
+>> diff --git a/drivers/iio/dac/Kconfig b/drivers/iio/dac/Kconfig
+>> index 3acd9c3f388e..fa1516f6a285 100644
+>> --- a/drivers/iio/dac/Kconfig
+>> +++ b/drivers/iio/dac/Kconfig
+>> @@ -389,6 +389,18 @@ config MCP4725
+>> To compile this driver as a module, choose M here: the module
+>> will be called mcp4725.
+>> +config MCP4728
+>> + tristate "MCP4728 DAC driver"
+>> + depends on I2C
+>> + help
+>> + Say Y here if you want to build a driver for the Microchip
+>> + MCP4728 quad channel, 12-bit digital-to-analog converter (DAC)
+>> + with I2C interface.
+>> +
+>> + To compile this driver as a module, choose M here: the module
+>> + will be called mcp4728.
+>> +
+>> +
+> Why two blank lines?
+>
+>> config MCP4922
+>> tristate "MCP4902, MCP4912, MCP4922 DAC driver"
+>> depends on SPI
+>> diff --git a/drivers/iio/dac/Makefile b/drivers/iio/dac/Makefile
+>> index addd97a78838..5b2bac900d5a 100644
+> ...
+>
+>> +
+>> +static void mcp4728_remove(struct i2c_client *client)
+>> +{
+>> + struct iio_dev *indio_dev = i2c_get_clientdata(client);
+>> + struct mcp4728_data *data = iio_priv(indio_dev);
+>> +
+>> + iio_device_unregister(indio_dev);
+>> + regulator_disable(data->vdd_reg);
+>> +}
+>> +
+>> +static const struct i2c_device_id mcp4728_id[] = { { "mcp4728", MCP4728 }, {} };
+>> +MODULE_DEVICE_TABLE(i2c, mcp4728_id);
 
-> >> This patchset is base on v6.5-rc1
-> >=20
-> > Doesn't quite apply cleanly for me:
-> >=20
-> I am sorry, The driver need stg clk and syscon driver, which are have't b=
-e merge to main line.
-> mainly dts is(patch9) rejected, Must apply this series patch first. (I fo=
-rget add this link in cover letter)
-> https://patchwork.kernel.org/project/linux-riscv/cover/20230712092007.310=
-13-1-xingyu.wu@starfivetech.com/
-> and this syscon patch=20
-> https://patchwork.kernel.org/project/linux-riscv/patch/20230717023040.788=
-60-7-xingyu.wu@starfivetech.com/
+Sorry.. I fixed but then I code formatter replace the old one. I will pay more attention..
 
-You could detach the dts patch from the series & send it independently once
-everything it depends on is in place. I'm going to pick up both of the
-patches you've linked for v6.6 in the next day or two.
+besides clang-format and checkpatch are there any other tools to avoid these formatting errors?
 
---kw3EZ33X58KK0EKz
-Content-Type: application/pgp-signature; name="signature.asc"
+Thank you
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZLkkvgAKCRB4tDGHoIJi
-0tHHAQCC0e6XIbYkG6LkrgL69/4niNdKZfvj9lofo9snvGUNxAD+L93odnBwIMIi
-9NNg/AiwINvTb2x+ys70gaGFwrSk5wM=
-=x0aD
------END PGP SIGNATURE-----
-
---kw3EZ33X58KK0EKz--
+> Yeah, my feedback was ignored.
+>
+> That's not how it works. Anyway, I doubt that it should be a new driver.
+>
+> If Jonathan agrees to have new/duplicated drivers, then fine with me,
+> but then don't ignore the comments. Instead:
+>
+> It seems my previous comments were not fully addressed. Maybe my
+> feedback got lost between the quotes, maybe you just forgot to apply it.
+> Please go back to the previous discussion and either implement all
+> requested changes or keep discussing them.
+Ok.
+> Best regards,
+> Krzysztof
+>
