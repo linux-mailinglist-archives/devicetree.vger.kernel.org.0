@@ -2,64 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1043A75ADC0
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 14:05:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 27CD075ADCC
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 14:07:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229960AbjGTMF3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jul 2023 08:05:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59054 "EHLO
+        id S231633AbjGTMHM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jul 2023 08:07:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59742 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230244AbjGTMF2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 08:05:28 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 087BD10FC;
-        Thu, 20 Jul 2023 05:05:24 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id DBDD16607083;
-        Thu, 20 Jul 2023 13:05:21 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1689854722;
-        bh=4zdlMTy2Q9xaiOXHklHe2EJ+an362L+tbbNoTvs277Q=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=PHtnqlc7wNEtf+0+9asTEBLPgo5wze4be0hStobRTy0R6rwA22zNO9NTVSd9r8rKx
-         FsPD10bOkxbdjvSH3z2HjVy7ztDBTVIFCXA2vqM0y20mbdfYMdAA8xOgp6UkHKPZnE
-         yiSQ+uiIySkDWLCvRWVt9J0Kk0zn+r/hMmm/e0ipaDxBoYMhnGrKZFPGKFPAvgxCtp
-         m4v31whL4HjmrG+VOJfAwwyYiuINYXe77MWs0qyrTViuXb5K6tjla+hQ7OQQlESjKL
-         VHVqO4rq0ri1s8iilG/b65BdyjvhVD5xQI4L2LVikN6flY2YLaVXo7waj2GZl4wPRP
-         lBFFvT60bwfoQ==
-Message-ID: <ac583fec-d991-713b-8329-96b3626465ef@collabora.com>
-Date:   Thu, 20 Jul 2023 14:05:19 +0200
+        with ESMTP id S231613AbjGTMHL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 08:07:11 -0400
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 419E01705
+        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 05:07:08 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-992b27e1c55so124011466b.2
+        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 05:07:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1689854826; x=1690459626;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=C/pQYZXvCL/vH+InQO678qhur3p7zMNQkrPa73LIehA=;
+        b=b4SbQwmdb5WswWDI1wo6eR85VROuxSBN7cQHGY1PrNXLz5oDMzsxtTm/0rcFWqcEcO
+         Cxp12ZA7Vf3zn5cqDYG/mBnHrBO4v9cNudmeH7WSSSkdnuG2Cj0gNUERs5mFlu+tAO9y
+         GtfFSxxndfir5ZdDQ+LhaFHRfjMDYBA5VzkE0uTjX+qtIxmm6kZw0nVimMq014FZ+tBk
+         rrLgP/6XC+RfCErFUiwVOldbncNbecud1Gh1Fy6y7lPkSkij50g4EcMYjlXpIn6EKESu
+         BP+43KWiGPLFNIOrWa7t4KNjnfVeQfjHzBm+UbaJMfzEzRudh3lfcFuraVrctmPnq54f
+         pBqQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689854826; x=1690459626;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=C/pQYZXvCL/vH+InQO678qhur3p7zMNQkrPa73LIehA=;
+        b=ZTIKqjqYWmOw45XS2yxmZPNtEKmGEA5La9w+oF5AbYpBWqR/6noA+AwU9TZoISiekX
+         hUX1fbrgLPIWJpokBmr8LEzVFdfOj7y+J6SAhg8l/1yNdPjos25hPsCZeIWiIkN7W8Sq
+         RvW8L4R2skj3Tb3bpgAqJiDlyJ6+7Xd2ItDc2eRjbmaKWVVEQQZxIhhvK027zfxWLTGZ
+         kE0T1H8u1rETP8DX+inzbSsg10fQA4RICzLBDSGgqsibqOOgNxBqPg08TW2ij+yEFA0H
+         lKrR9VX8WdfQTVgvUC3MJ8mPglvU73bdTdy3Jk7bAe7UUnmLbheU/gLss1hEqlQTmSbJ
+         alEg==
+X-Gm-Message-State: ABy/qLZ1wscl9LPs87iEKvLUNw5p94dxJOcUv+4PdXG9BhOMAVqoq4TT
+        CMPNUKI6QGyAr4BUe45d8RQBwg==
+X-Google-Smtp-Source: APBJJlE0xBhrIqBKnTaU36gyXlOT5nf8DniN0oGDkPcqlA18Hu2PRw42dkrUVAQsFiZM2IUUdeqFGg==
+X-Received: by 2002:a17:906:7791:b0:992:764b:90d5 with SMTP id s17-20020a170906779100b00992764b90d5mr1991567ejm.71.1689854826324;
+        Thu, 20 Jul 2023 05:07:06 -0700 (PDT)
+Received: from [10.1.3.131] (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id c11-20020a170906924b00b0098e34446464sm615265ejx.25.2023.07.20.05.07.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 20 Jul 2023 05:07:05 -0700 (PDT)
+Message-ID: <6c3422e8-4e2e-ba3a-4f30-d24308ef7c2a@baylibre.com>
+Date:   Thu, 20 Jul 2023 14:07:04 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH 1/3] arm64: dts: mediatek: mt6795: Add support for display
- blocks and DPI/DSI
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v3,3/3] drm/mediatek: dp: Add the audio divider to
+ mtk_dp_data struct
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Alexandre Mergnat <amergnat@baylibre.com>,
-        matthias.bgg@gmail.com
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, devicetree@vger.kernel.org,
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Shuijing Li <shuijing.li@mediatek.com>,
+        chunkuang.hu@kernel.org, p.zabel@pengutronix.de, airlied@gmail.com,
+        daniel@ffwll.ch, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        matthias.bgg@gmail.com, jitao.shi@mediatek.com
+Cc:     dri-devel@lists.freedesktop.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, phone-devel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, kernel@collabora.com
-References: <20230720091559.86406-1-angelogioacchino.delregno@collabora.com>
- <20230720091559.86406-2-angelogioacchino.delregno@collabora.com>
- <0809ac02-b8bf-ed63-9e2e-e77cd7e93464@baylibre.com>
- <d892a76c-165b-dbeb-79aa-70f3ebd7f07c@collabora.com>
- <ab463c69-59e0-99b5-1526-7c344fcc593f@linaro.org>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <ab463c69-59e0-99b5-1526-7c344fcc593f@linaro.org>
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20230720082604.18618-1-shuijing.li@mediatek.com>
+ <20230720082604.18618-4-shuijing.li@mediatek.com>
+ <44cc9cc5-7dce-f7a2-f077-b62d7851ee12@baylibre.com>
+ <65da6005-3c07-a7ea-6b63-db45c8915ae8@collabora.com>
+From:   Alexandre Mergnat <amergnat@baylibre.com>
+In-Reply-To: <65da6005-3c07-a7ea-6b63-db45c8915ae8@collabora.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -67,56 +86,68 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 20/07/23 14:01, Krzysztof Kozlowski ha scritto:
-> On 20/07/2023 13:52, AngeloGioacchino Del Regno wrote:
->> Il 20/07/23 13:35, Alexandre Mergnat ha scritto:
->>>
->>>
->>> On 20/07/2023 11:15, AngeloGioacchino Del Regno wrote:
->>>> Introduce all nodes for all of the display blocks in the MediaTek Helio
->>>> X10 MT6795 SoC, including the DSI PHY and DSI/DPI interfaces: those are
->>>> left disabled as usage is board specific.
->>>>
->>>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->>>> ---
->>>>    arch/arm64/boot/dts/mediatek/mt6795.dtsi | 252 +++++++++++++++++++++++
->>>>    1 file changed, 252 insertions(+)
->>>>
->>>> diff --git a/arch/arm64/boot/dts/mediatek/mt6795.dtsi
->>>> b/arch/arm64/boot/dts/mediatek/mt6795.dtsi
->>>> index 597bce2fed72..d805d7a63024 100644
->>>> --- a/arch/arm64/boot/dts/mediatek/mt6795.dtsi
->>>> +++ b/arch/arm64/boot/dts/mediatek/mt6795.dtsi
->>>> @@ -2,6 +2,9 @@
->>>>    /*
->>>>     * Copyright (c) 2015 MediaTek Inc.
->>>>     * Author: Mars.C <mars.cheng@mediatek.com>
->>>> + *
->>>> + * Copyright (C) 2023 Collabora Ltd.
->>>> + *                    AngeloGioacchino Del Regno
->>>> <angelogioacchino.delregno@collabora.com>
->>>
->>> Shouldn't be like this ?
->>>
->>>    * Copyright (c) 2015 MediaTek Inc.
->>>    * Copyright (C) 2023 Collabora Ltd.
->>>    * Authors: Mars.C <mars.cheng@mediatek.com>
->>>    *          AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->>>
->>>
+
+
+On 20/07/2023 13:54, AngeloGioacchino Del Regno wrote:
+> Il 20/07/23 12:14, Alexandre Mergnat ha scritto:
 >>
->> I don't think that there's any rule about this?
->> Also I don't really mind the strings order, but if anyone really does, I can change
->> it....
+>>
+>> On 20/07/2023 10:26, Shuijing Li wrote:
+>>> Due to the difference of HW, different dividers need to be set.
+>>>
+>>> Signed-off-by: Shuijing Li <shuijing.li@mediatek.com>
+>>> Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
+>>> ---
+>>> Changes in v3:
+>>> Separate these two things into two different patches.
+>>> per suggestion from the previous thread:
+>>> https://lore.kernel.org/lkml/e2ad22bcba31797f38a12a488d4246a01bf0cb2e.camel@mediatek.com/
+>>> Changes in v2:
+>>> - change the variables' name to be more descriptive
+>>> - add a comment that describes the function of 
+>>> mtk_dp_audio_sample_arrange
+>>> - reduce indentation by doing the inverse check
+>>> - add a definition of some bits
+>>> - add support for mediatek, mt8188-edp-tx
+>>> per suggestion from the previous thread:
+>>> https://lore.kernel.org/lkml/ac0fcec9-a2fe-06cc-c727-189ef7babe9c@collabora.com/
+>>> ---
+>>>   drivers/gpu/drm/mediatek/mtk_dp.c     | 7 ++++++-
+>>>   drivers/gpu/drm/mediatek/mtk_dp_reg.h | 1 +
+>>>   2 files changed, 7 insertions(+), 1 deletion(-)
+>>>
+...
+>>> b/drivers/gpu/drm/mediatek/mtk_dp_reg.h
+>>> index f38d6ff12afe..6d7f0405867e 100644
+>>> --- a/drivers/gpu/drm/mediatek/mtk_dp_reg.h
+>>> +++ b/drivers/gpu/drm/mediatek/mtk_dp_reg.h
+>>> @@ -162,6 +162,7 @@
+>>>   #define AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_MUL_2    (1 << 8)
+>>>   #define AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_MUL_4    (2 << 8)
+>>>   #define AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_MUL_8    (3 << 8)
+>>> +#define MT8188_AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_DIV_2    (4 << 8)
+>>
+>> IMO, it's a bit weird to have SoC specific define in the generic header.
+>> Are you sure this bit is only available for MT8188 ?
+>>
 > 
-> These have two entirely different meanings. Your patch suggests you hold
-> copyrights (which is usually not true if working for employer).
-
-Right. Thank you, I'll send a new version tomorrow :-)
-
-> 
-> Best regards,
-> Krzysztof
+> Eh, the P0_DIV2 bit is 5<<8 for MT8195, while for 8188 it's 4<<8, 
+> clearly :-)
 > 
 
+Ok then, to avoid this kind of issue for other SoCs in the future, is 
+that make sense for you to do a SoC specific header file beside the 
+generic one?
 
+>>>   #define AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_DIV_2    (5 << 8)
+>>>   #define AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_DIV_4    (6 << 8)
+>>>   #define AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_DIV_8    (7 << 8)
+>>
+>> Reviewed-by: Alexandre Mergnat <amergnat@baylibre.com>
+>>
+> 
+> 
+
+-- 
+Regards,
+Alexandre
