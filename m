@@ -2,125 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C3D475B834
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 21:42:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A2A1075B845
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 21:48:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231148AbjGTTm1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jul 2023 15:42:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46712 "EHLO
+        id S231196AbjGTTsG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jul 2023 15:48:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48334 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231136AbjGTTm0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 15:42:26 -0400
-Received: from mail-yb1-xb2f.google.com (mail-yb1-xb2f.google.com [IPv6:2607:f8b0:4864:20::b2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 114411BE2
-        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 12:42:24 -0700 (PDT)
-Received: by mail-yb1-xb2f.google.com with SMTP id 3f1490d57ef6-cefa8fe4cc2so1058533276.1
-        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 12:42:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689882143; x=1690486943;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=6uboV9zE5viSPMUN9jRcO0cjpaJKLGwKotI/bN04OyY=;
-        b=Is+h2NeaSzJfFfsZ98ro8BWc2npdTi8/mAPrWVvtpsxb716Whq2DsR1nkUJ5zX14Xz
-         79qaflwC3BG2VYXCeK0ijBZtmZDQ1AwFmwaxjZDd/vn/AKdit/VHpHHNt7ZvyrLIlMK1
-         rAvvaKIi1pdCGIE6T6PamxnnJ1xdepfGuegPYvjWZ/2v5uqSbyOmvOqKrH1HZMZxxQ9u
-         TipBUYHRAcaq7G2V/lDcSoviQy3dB4LjRa8c+TMTdx5eHkXHMxyv/6aRPA0MgnDthZDb
-         /qNXdFoMB9q33L3QYVfMXu7JSq0qiwBR5arRe8VeAjZhX1/RRVS46BZipMLM8QxKUS/8
-         /7lg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689882143; x=1690486943;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=6uboV9zE5viSPMUN9jRcO0cjpaJKLGwKotI/bN04OyY=;
-        b=Zmg1EE0heFZl2no5A4JLtOpUXVOdqBgY9PTV/0V2jSncMAd5m2VnOENVPqzFuEHL44
-         g7RPRNokrRpfw6BtcFvnMswVwpz/qpOzm+H4GinmEOtkHaReCEETA5aJWB2pLsD5Jy3I
-         xKbmCi1MCHc80jPJUOtVDlH7rArJcoPVds8cJMVLCmxJn/U/uUCEQTVZGuialjhE6I5w
-         oEGaX2jf/+IwCdGVZFX2bh/68TqF7c/rBLg+JivN/4RSJRQPkDEwr5QU3k760PhGkenT
-         Yq9/zAMuyVaWvVaZz9wvuzWK0vROfI166eqQl+feecD1LAoHqZKIwFPb9AUPlsttY0O5
-         i4Qg==
-X-Gm-Message-State: ABy/qLakY+LWHymLMyBjFshR9eJSCNREydW1vFtKQISUl5nidCRHeRPF
-        I0Q/sltPcyfAyhBelQ0+WWsVa1p5JsueneIemFHbpg==
-X-Google-Smtp-Source: APBJJlE7cBabIqsDgOVse9OOZ6aTjmPoq/DJCfwfg6nCOEVEXRqRJUSYnSIJLuoYJ0UvKAptp1crbwCoFVPdkqeY7hY=
-X-Received: by 2002:a25:c50b:0:b0:cdd:6635:a1f8 with SMTP id
- v11-20020a25c50b000000b00cdd6635a1f8mr5819173ybe.15.1689882143201; Thu, 20
- Jul 2023 12:42:23 -0700 (PDT)
+        with ESMTP id S231193AbjGTTsF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 15:48:05 -0400
+Received: from mx1.sberdevices.ru (mx2.sberdevices.ru [45.89.224.132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED7F72128;
+        Thu, 20 Jul 2023 12:48:01 -0700 (PDT)
+Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
+        by mx1.sberdevices.ru (Postfix) with ESMTP id 4F5CF120002;
+        Thu, 20 Jul 2023 22:48:00 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 4F5CF120002
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+        s=mail; t=1689882480;
+        bh=hwv5R9tYPXRms0RpX3wMPQwLn2Ci1haaAr1vtmjtPrw=;
+        h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type:From;
+        b=VVTO+xo2+9DJuiYvXC4CpOUhP+/FtLhq8CrYdDnrlUZTxLAqbQQrjwZ08RJ0HzN28
+         4cs8OnUjcCP8akbdXWL5zb4Vbz/0o+08obcKurnSGCZ9kjSbamEoKWATzJkxGV347b
+         7Al8tZhQlTKioU8pkM/UQKdfIzj/Dj7aBVRJdmXuAaMM/PmPtz8R2Sz20jclwNxTwI
+         MkckzcIyNBAhCc7mUySnoNEAV/Agq8zzUj/GwJS+mek0tBr2ykZobby1JWNrtqBDrx
+         ww+uBkjFJxeIX7UoCE4oluhLF4fob+u5Wo89rN9MCW4GDkK58CQHqU9OKDSAAeMwwd
+         7Nvl9E/VyK8XA==
+Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mx1.sberdevices.ru (Postfix) with ESMTPS;
+        Thu, 20 Jul 2023 22:47:59 +0300 (MSK)
+Received: from localhost (100.64.160.123) by p-i-exch-sc-m01.sberdevices.ru
+ (172.16.192.107) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Thu, 20 Jul
+ 2023 22:47:59 +0300
+Date:   Thu, 20 Jul 2023 22:47:59 +0300
+From:   Dmitry Rokosov <ddrokosov@sberdevices.ru>
+To:     Huqiang Qin <huqiang.qin@amlogic.com>
+CC:     <neil.armstrong@linaro.org>, <khilman@baylibre.com>,
+        <jbrunet@baylibre.com>, <martin.blumenstingl@googlemail.com>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-amlogic@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH V2] arm64: dts: Add gpio_intc node and pinctrl node for
+ Amlogic C3 SoCs
+Message-ID: <20230720194759.es53r5d5w657j6ce@CAB-WSD-L081021>
+References: <20230720114639.833436-1-huqiang.qin@amlogic.com>
 MIME-Version: 1.0
-References: <20230714174901.4062397-1-robh@kernel.org>
-In-Reply-To: <20230714174901.4062397-1-robh@kernel.org>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 20 Jul 2023 21:42:12 +0200
-Message-ID: <CACRpkdYe9b4ZpvYZqkcMq0Jjni_VD_75Zt5oKv4+v9f3pmJbVA@mail.gmail.com>
-Subject: Re: [PATCH] pinctrl: Explicitly include correct DT includes
-To:     Rob Herring <robh@kernel.org>
-Cc:     Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
-        Broadcom internal kernel review list 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        Dong Aisheng <aisheng.dong@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Shawn Guo <shawnguo@kernel.org>, Jacky Bai <ping.bai@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Sean Wang <sean.wang@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Chester Lin <clin@suse.com>, NXP S32 Linux Team <s32@nxp.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Damien Le Moal <dlemoal@kernel.org>,
-        Vladimir Zapolskiy <vz@mleia.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Tony Lindgren <tony@atomide.com>,
-        Haojian Zhuang <haojian.zhuang@linaro.org>,
-        Daniel Mack <daniel@zonque.org>,
-        Robert Jarzmik <robert.jarzmik@free.fr>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Tomasz Figa <tomasz.figa@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Shiraz Hashim <shiraz.linux.kernel@gmail.com>, soc@kernel.org,
-        Orson Zhai <orsonzhai@gmail.com>,
-        Baolin Wang <baolin.wang@linux.alibaba.com>,
-        Chunyan Zhang <zhang.lyra@gmail.com>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Jianlong Huang <jianlong.huang@starfivetech.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Dvorkin Dmitry <dvorkin@tibbo.com>,
-        Wells Lu <wellslutw@gmail.com>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-riscv@lists.infradead.org,
-        linux-oxnas@groups.io, linux-rockchip@lists.infradead.org,
-        linux-omap@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-sunxi@lists.linux.dev, linux-tegra@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20230720114639.833436-1-huqiang.qin@amlogic.com>
+User-Agent: NeoMutt/20220415
+X-Originating-IP: [100.64.160.123]
+X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 178762 [Jul 20 2023]
+X-KSMG-AntiSpam-Version: 5.9.59.0
+X-KSMG-AntiSpam-Envelope-From: DDRokosov@sberdevices.ru
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 525 525 723604743bfbdb7e16728748c3fa45e9eba05f7d, {Tracking_uf_ne_domains}, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, lists.infradead.org:7.1.1;p-i-exch-sc-m01.sberdevices.ru:7.1.1,5.0.1;sberdevices.ru:7.1.1,5.0.1;100.64.160.123:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2, FromAlignment: s, {Tracking_white_helo}, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean, bases: 2023/07/20 15:23:00
+X-KSMG-LinksScanning: Clean, bases: 2023/07/20 13:57:00
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/07/20 13:53:00 #21647430
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -128,23 +84,66 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 14, 2023 at 7:49=E2=80=AFPM Rob Herring <robh@kernel.org> wrote=
-:
+On Thu, Jul 20, 2023 at 07:46:39PM +0800, Huqiang Qin wrote:
+> Add gpio interrupt controller device and pinctrl device.
+> 
+> Signed-off-by: Huqiang Qin <huqiang.qin@amlogic.com>
 
-> The DT of_device.h and of_platform.h date back to the separate
-> of_platform_bus_type before it as merged into the regular platform bus.
-> As part of that merge prepping Arm DT support 13 years ago, they
-> "temporarily" include each other. They also include platform_device.h
-> and of.h. As a result, there's a pretty much random mix of those include
-> files used throughout the tree. In order to detangle these headers and
-> replace the implicit includes with struct declarations, users need to
-> explicitly include the correct includes.
->
-> Signed-off-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
 
-It still applied cleanly so I just applied it.
+> ---
+> 
+> V1 -> V2: Nodes are sorted by address offset.
+> 
+>  arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi | 26 +++++++++++++++++++++
+>  1 file changed, 26 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
+> index 60ad4f3eef9d..5a3725f6cf3d 100644
+> --- a/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
+> @@ -72,6 +72,32 @@ apb4: bus@fe000000 {
+>  			#size-cells = <2>;
+>  			ranges = <0x0 0x0 0x0 0xfe000000 0x0 0x480000>;
+>  
+> +			periphs_pinctrl: pinctrl@4000 {
+> +				compatible = "amlogic,c3-periphs-pinctrl";
+> +				#address-cells = <2>;
+> +				#size-cells = <2>;
+> +				ranges;
+> +
+> +				gpio: bank@4000 {
+> +					reg = <0x0 0x4000 0x0 0x004c>,
+> +					      <0x0 0x4100 0x0 0x01de>;
+> +					reg-names = "mux", "gpio";
+> +					gpio-controller;
+> +					#gpio-cells = <2>;
+> +					gpio-ranges = <&periphs_pinctrl 0 0 55>;
+> +				};
+> +			};
+> +
+> +			gpio_intc: interrupt-controller@4080 {
+> +				compatible = "amlogic,meson-gpio-intc",
+> +					     "amlogic,c3-gpio-intc";
+> +				reg = <0x0 0x4080 0x0 0x0020>;
+> +				interrupt-controller;
+> +				#interrupt-cells = <2>;
+> +				amlogic,channel-interrupts =
+> +					<10 11 12 13 14 15 16 17 18 19 20 21>;
+> +			};
+> +
+>  			uart_b: serial@7a000 {
+>  				compatible = "amlogic,meson-s4-uart",
+>  					   "amlogic,meson-ao-uart";
+> -- 
+> 2.37.1
+> 
+> 
+> _______________________________________________
+> linux-amlogic mailing list
+> linux-amlogic@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-amlogic
 
-Thanks for attention to detail.
-
-Yours,
-Linus Walleij
+-- 
+Thank you,
+Dmitry
