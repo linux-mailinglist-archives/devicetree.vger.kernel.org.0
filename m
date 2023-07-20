@@ -2,164 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DED8B75A929
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 10:26:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A37E875A9F7
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 10:57:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231634AbjGTI0G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jul 2023 04:26:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60614 "EHLO
+        id S229861AbjGTI5g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jul 2023 04:57:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36090 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231617AbjGTI0F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 04:26:05 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D93132686;
-        Thu, 20 Jul 2023 01:26:03 -0700 (PDT)
-X-UUID: 0e4addd626d711ee9cb5633481061a41-20230720
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=x3Ef2HXAMqtZCcHsQB0m7y6VJp+SmT8fZ8z5MnEgAEo=;
-        b=myAoEOP6zzVpJrsuN0V6Rj6/JaKVz7fURFpK9Ifj58uLnwbfPZ4rgOgfKbiH4Q9g8KfRzhRC3z3oVaqn2Vs6OhZpxBowGzfFpsxjbGvkQy3C21P+FqUjs4ksQzvuo3mqHoKVdsmYH/tOcHV/tvVcYZbddE91WZbbNWDFUhzfJMs=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.28,REQID:0fcc76b0-74bd-46a0-9c94-9952dd5c21c8,IP:0,U
-        RL:0,TC:0,Content:-25,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
-        N:release,TS:-25
-X-CID-META: VersionHash:176cd25,CLOUDID:f039d0dc-dc79-4898-9235-1134b97257a8,B
-        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:11|1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:
-        NO,DKR:0,DKP:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_ULN,TF_CID_SPAM_SNR
-X-UUID: 0e4addd626d711ee9cb5633481061a41-20230720
-Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw01.mediatek.com
-        (envelope-from <shuijing.li@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 9689820; Thu, 20 Jul 2023 16:25:59 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
- mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Thu, 20 Jul 2023 16:25:58 +0800
-Received: from mszsdhlt06.gcn.mediatek.inc (10.16.6.206) by
- mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Thu, 20 Jul 2023 16:25:57 +0800
-From:   Shuijing Li <shuijing.li@mediatek.com>
-To:     <chunkuang.hu@kernel.org>, <p.zabel@pengutronix.de>,
-        <airlied@gmail.com>, <daniel@ffwll.ch>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <matthias.bgg@gmail.com>,
-        <angelogioacchino.delregno@collabora.com>, <jitao.shi@mediatek.com>
-CC:     <dri-devel@lists.freedesktop.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Shuijing Li <shuijing.li@mediatek.com>
-Subject: [PATCH v3,3/3] drm/mediatek: dp: Add the audio divider to mtk_dp_data struct
-Date:   Thu, 20 Jul 2023 16:26:04 +0800
-Message-ID: <20230720082604.18618-4-shuijing.li@mediatek.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230720082604.18618-1-shuijing.li@mediatek.com>
-References: <20230720082604.18618-1-shuijing.li@mediatek.com>
+        with ESMTP id S232068AbjGTIfJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 04:35:09 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 210342686
+        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 01:35:06 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id 2adb3069b0e04-4faaaa476a9so782500e87.2
+        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 01:35:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1689842104; x=1692434104;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=T3n6tUCMHPsrIoxippvznzODCkM1vMvU1KRQj8ysbNg=;
+        b=GKJHHrT5+R257JzbKIpQUcwZSM3nnhOwg/kXx7H7csINJWCZsNc16aU6QZDZjtXKCk
+         ZnKUHs2CGk2mJChvzktGaVDcDG9MpIh7f/hVoPuERcetNO7giDywEtegCHhsDhWiihFl
+         2ho1IaB99jAa32y6DTUoFjTL/QeGDX1GFddwEehVT0j5KbI1+MlDOxuVzUSgSc5JGZM3
+         /gew1ITfHyczYJnyCSSqpKUhxmf/B9JYIHgnfxPR9N+EA81pZC7tojJ8v8TGz6j8K2a3
+         Qnzi0Bq72iNSnOTFICfHfF2BhFJ8eq3jmfpcoh52T0tRwPS9i/x+LiIZT1vtrwn7hSq7
+         C2cA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689842104; x=1692434104;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=T3n6tUCMHPsrIoxippvznzODCkM1vMvU1KRQj8ysbNg=;
+        b=EcwmqsynSi+CTPcc4reI4974h2YiYePj5tIxarDOauN5XclolIxBDs1d2dU/7UUHqJ
+         peNiUFAScYS0/5DPFuo2RHIuItMTOOMKnp407stCmMKmedt01ys0vGVKaVvEb5Kr4ObH
+         2N0gkYMmCaNIn9RZ4IP+Yyvbers2Wlj+x/zxE5HINvYYRItKyrfvmNeviO/jMySD4uQM
+         B38jC0cEXxq++pDQ3SqoZ0MVTKIkDTyyYGk0GTTGOoa4jJl4Mp5/L7PPozsM8FDY+a3h
+         5QhrXMD27DB3SynHOg7+fj0YJkq8JZsCGCK9/2WAl6/xgMbEoUJaDN1gdgRRRCj4DXNx
+         3uug==
+X-Gm-Message-State: ABy/qLaDKxKrBcyljJ+gkxmwbmLZueWpU+hVVz76QSasX0xLTKMYYLxd
+        Ffr4q5qxHOIcv+VHEtHG0+eD4Q==
+X-Google-Smtp-Source: APBJJlH4ETSf/WdCbzMV/QgVh1git1HFd/W9lxWIIA4/y7UgWctNqsB6v3hsRfi9c0m8s5BFpxHMMQ==
+X-Received: by 2002:a2e:9901:0:b0:2b6:df6b:84c0 with SMTP id v1-20020a2e9901000000b002b6df6b84c0mr1278557lji.25.1689842104412;
+        Thu, 20 Jul 2023 01:35:04 -0700 (PDT)
+Received: from krzk-bin.. ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id h3-20020a5d4fc3000000b00314329f7d8asm627060wrw.29.2023.07.20.01.35.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 20 Jul 2023 01:35:03 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 1/4] arm64: dts: qcom: sc8180x-pmics: add missing qcom,spmi-gpio fallbacks
+Date:   Thu, 20 Jul 2023 10:34:57 +0200
+Message-Id: <20230720083500.73554-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-MTK:  N
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY
-        autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Due to the difference of HW, different dividers need to be set.
+The GPIO children of PMICs should use qcom,spmi-gpio fallback:
 
-Signed-off-by: Shuijing Li <shuijing.li@mediatek.com>
-Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
----
-Changes in v3:
-Separate these two things into two different patches.
-per suggestion from the previous thread:
-https://lore.kernel.org/lkml/e2ad22bcba31797f38a12a488d4246a01bf0cb2e.camel@mediatek.com/
-Changes in v2:
-- change the variables' name to be more descriptive
-- add a comment that describes the function of mtk_dp_audio_sample_arrange
-- reduce indentation by doing the inverse check
-- add a definition of some bits
-- add support for mediatek, mt8188-edp-tx
-per suggestion from the previous thread:
-https://lore.kernel.org/lkml/ac0fcec9-a2fe-06cc-c727-189ef7babe9c@collabora.com/
----
- drivers/gpu/drm/mediatek/mtk_dp.c     | 7 ++++++-
- drivers/gpu/drm/mediatek/mtk_dp_reg.h | 1 +
- 2 files changed, 7 insertions(+), 1 deletion(-)
+  sc8180x-primus.dtb: pmic@0: gpio@c000:compatible: ['qcom,pmc8180-gpio'] is too short
 
-diff --git a/drivers/gpu/drm/mediatek/mtk_dp.c b/drivers/gpu/drm/mediatek/mtk_dp.c
-index d8cda83d6fef..8e1a13ab2ba2 100644
---- a/drivers/gpu/drm/mediatek/mtk_dp.c
-+++ b/drivers/gpu/drm/mediatek/mtk_dp.c
-@@ -140,6 +140,7 @@ struct mtk_dp_data {
- 	const struct mtk_dp_efuse_fmt *efuse_fmt;
- 	bool audio_supported;
- 	bool audio_pkt_in_hblank_area;
-+	u16 audio_m_div2_bit;
- };
+Fixes: d3302290f59e ("arm64: dts: qcom: sc8180x: Add pmics")
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sc8180x-pmics.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/sc8180x-pmics.dtsi b/arch/arm64/boot/dts/qcom/sc8180x-pmics.dtsi
+index 4556af6cd103..ef2f8b732833 100644
+--- a/arch/arm64/boot/dts/qcom/sc8180x-pmics.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc8180x-pmics.dtsi
+@@ -142,7 +142,7 @@ rtc@6000 {
+ 		};
  
- static const struct mtk_dp_efuse_fmt mt8195_edp_efuse_fmt[MTK_DP_CAL_MAX] = {
-@@ -648,7 +649,7 @@ static void mtk_dp_audio_sdp_asp_set_channels(struct mtk_dp *mtk_dp,
- static void mtk_dp_audio_set_divider(struct mtk_dp *mtk_dp)
- {
- 	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_30BC,
--			   AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_DIV_2,
-+			   mtk_dp->data->audio_m_div2_bit,
- 			   AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_MASK);
- }
+ 		pmc8180_gpios: gpio@c000 {
+-			compatible = "qcom,pmc8180-gpio";
++			compatible = "qcom,pmc8180-gpio", "qcom,spmi-gpio";
+ 			reg = <0xc000>;
+ 			gpio-controller;
+ 			#gpio-cells = <2>;
+@@ -300,7 +300,7 @@ pmc8180c_adc_tm: adc-tm@3500 {
+ 		};
  
-@@ -2636,6 +2637,7 @@ static const struct mtk_dp_data mt8188_edp_data = {
- 	.efuse_fmt = mt8195_edp_efuse_fmt,
- 	.audio_supported = false,
- 	.audio_pkt_in_hblank_area = false,
-+	.audio_m_div2_bit = MT8188_AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_DIV_2,
- };
- 
- static const struct mtk_dp_data mt8188_dp_data = {
-@@ -2644,6 +2646,7 @@ static const struct mtk_dp_data mt8188_dp_data = {
- 	.efuse_fmt = mt8195_dp_efuse_fmt,
- 	.audio_supported = true,
- 	.audio_pkt_in_hblank_area = true,
-+	.audio_m_div2_bit = MT8188_AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_DIV_2,
- };
- 
- static const struct mtk_dp_data mt8195_edp_data = {
-@@ -2652,6 +2655,7 @@ static const struct mtk_dp_data mt8195_edp_data = {
- 	.efuse_fmt = mt8195_edp_efuse_fmt,
- 	.audio_supported = false,
- 	.audio_pkt_in_hblank_area = false,
-+	.audio_m_div2_bit = AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_DIV_2,
- };
- 
- static const struct mtk_dp_data mt8195_dp_data = {
-@@ -2660,6 +2664,7 @@ static const struct mtk_dp_data mt8195_dp_data = {
- 	.efuse_fmt = mt8195_dp_efuse_fmt,
- 	.audio_supported = true,
- 	.audio_pkt_in_hblank_area = false,
-+	.audio_m_div2_bit = AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_DIV_2,
- };
- 
- static const struct of_device_id mtk_dp_of_match[] = {
-diff --git a/drivers/gpu/drm/mediatek/mtk_dp_reg.h b/drivers/gpu/drm/mediatek/mtk_dp_reg.h
-index f38d6ff12afe..6d7f0405867e 100644
---- a/drivers/gpu/drm/mediatek/mtk_dp_reg.h
-+++ b/drivers/gpu/drm/mediatek/mtk_dp_reg.h
-@@ -162,6 +162,7 @@
- #define AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_MUL_2	(1 << 8)
- #define AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_MUL_4	(2 << 8)
- #define AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_MUL_8	(3 << 8)
-+#define MT8188_AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_DIV_2	(4 << 8)
- #define AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_DIV_2	(5 << 8)
- #define AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_DIV_4	(6 << 8)
- #define AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_DIV_8	(7 << 8)
+ 		pmc8180c_gpios: gpio@c000 {
+-			compatible = "qcom,pmc8180c-gpio";
++			compatible = "qcom,pmc8180c-gpio", "qcom,spmi-gpio";
+ 			reg = <0xc000>;
+ 			gpio-controller;
+ 			#gpio-cells = <2>;
 -- 
-2.40.1
+2.34.1
 
