@@ -2,135 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D9C9A75ADDA
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 14:08:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B3DC775AE01
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 14:13:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229730AbjGTMIz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jul 2023 08:08:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60910 "EHLO
+        id S230228AbjGTMNi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jul 2023 08:13:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34346 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229774AbjGTMIy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 08:08:54 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21C22268F;
-        Thu, 20 Jul 2023 05:08:51 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 9D0836607085;
-        Thu, 20 Jul 2023 13:08:48 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1689854929;
-        bh=SgDyjdxIshyausnLbV7eqEbnWRDjrZQeUuWRlVZS+wc=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=J0PwYIF8/wDumfdHdqTHrUB+mYUH6hZvjs99V5ljNR0EypKgTLtTpcAUKQicgRamj
-         I+A2m+5+EOymq6XVYOjjhjNPatTq+kwWQCxbjhgQOYCyoy7X+2pR3EqFgash6CSXv8
-         fO0xB3wNtkMqADUs9847hBs3tSwgCKR0LZ5IJeorqLXgxKaxtOgopJTodFBvMJ0Trf
-         8tsVocYpmZ55WYwUpsD5MRGabhKNT+QHqKq8tCEOHN7t2STXzHUxGl2/56yT+B8pZV
-         y/PbbcmSl/mTrgEHcltZTZIQITJhpMNE96HNpMFGtcI9dM02D+nTDgqmSeYEsj5IQJ
-         Zpu15BHWe6uOQ==
-Message-ID: <a48e9f99-2b93-9eb6-daef-be95a956c3d8@collabora.com>
-Date:   Thu, 20 Jul 2023 14:08:46 +0200
+        with ESMTP id S229531AbjGTMNg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 08:13:36 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DDD672106;
+        Thu, 20 Jul 2023 05:13:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1689855215; x=1721391215;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=qkDXQ93pEI6ao4XArtWOlAwCt1REKU2ZVqOJKv7aZYo=;
+  b=zinBMc6V5YtnDgIE0wBeXhmnG7wNd6vIlNWlLbQZfaZZutW9bclsNRkb
+   Zi95dwo7aBXBsypoyo+ylS3ku9aHQu4eg6UptjTAndKm422TgwnlEQrHm
+   aR0diUKKM+bCmqNzWQS1kDUChbhKIvr0LvhzsazWYWPk7UPQhV7bPjoSh
+   xrKveVqjDpg7jg2RfbT/gO5522WumwrxPSdeDaJDVPvyDaHCI6vhOw4As
+   g3cnGy/wZggIBdAH9L7ZvftpSxt4kjqXLP5yx9cu7smeTtcKP/uZKtGEH
+   Vdm+YGHlkbj+BRUFkiKNc18KGsYXHNMwAm9ayW+6HY6Xopet8hSqGjyOK
+   Q==;
+X-IronPort-AV: E=Sophos;i="6.01,218,1684825200"; 
+   d="asc'?scan'208";a="221309888"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 20 Jul 2023 05:13:34 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Thu, 20 Jul 2023 05:13:23 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex04.mchp-main.com
+ (10.10.85.152) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
+ Transport; Thu, 20 Jul 2023 05:13:19 -0700
+Date:   Thu, 20 Jul 2023 13:12:46 +0100
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Minda Chen <minda.chen@starfivetech.com>
+CC:     Bjorn Helgaas <helgaas@kernel.org>,
+        Daire McNamara <daire.mcnamara@microchip.com>,
+        Conor Dooley <conor@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-riscv@lists.infradead.org>, <linux-pci@vger.kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        "Palmer Dabbelt" <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        "Philipp Zabel" <p.zabel@pengutronix.de>,
+        Mason Huo <mason.huo@starfivetech.com>,
+        Leyfoon Tan <leyfoon.tan@starfivetech.com>,
+        Kevin Xie <kevin.xie@starfivetech.com>
+Subject: Re: [PATCH v1 0/9] Refactoring Microchip PolarFire PCIe driver
+Message-ID: <20230720-unkempt-bath-9d320d55577c@wendy>
+References: <20230719152626.GA502469@bhelgaas>
+ <52ebc991-0e73-8df4-61b2-32989ab4e62c@starfivetech.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH v3,3/3] drm/mediatek: dp: Add the audio divider to
- mtk_dp_data struct
-Content-Language: en-US
-To:     Alexandre Mergnat <amergnat@baylibre.com>,
-        Shuijing Li <shuijing.li@mediatek.com>,
-        chunkuang.hu@kernel.org, p.zabel@pengutronix.de, airlied@gmail.com,
-        daniel@ffwll.ch, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        matthias.bgg@gmail.com, jitao.shi@mediatek.com
-Cc:     dri-devel@lists.freedesktop.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20230720082604.18618-1-shuijing.li@mediatek.com>
- <20230720082604.18618-4-shuijing.li@mediatek.com>
- <44cc9cc5-7dce-f7a2-f077-b62d7851ee12@baylibre.com>
- <65da6005-3c07-a7ea-6b63-db45c8915ae8@collabora.com>
- <6c3422e8-4e2e-ba3a-4f30-d24308ef7c2a@baylibre.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <6c3422e8-4e2e-ba3a-4f30-d24308ef7c2a@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="kw3EZ33X58KK0EKz"
+Content-Disposition: inline
+In-Reply-To: <52ebc991-0e73-8df4-61b2-32989ab4e62c@starfivetech.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 20/07/23 14:07, Alexandre Mergnat ha scritto:
-> 
-> 
-> On 20/07/2023 13:54, AngeloGioacchino Del Regno wrote:
->> Il 20/07/23 12:14, Alexandre Mergnat ha scritto:
->>>
->>>
->>> On 20/07/2023 10:26, Shuijing Li wrote:
->>>> Due to the difference of HW, different dividers need to be set.
->>>>
->>>> Signed-off-by: Shuijing Li <shuijing.li@mediatek.com>
->>>> Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
->>>> ---
->>>> Changes in v3:
->>>> Separate these two things into two different patches.
->>>> per suggestion from the previous thread:
->>>> https://lore.kernel.org/lkml/e2ad22bcba31797f38a12a488d4246a01bf0cb2e.camel@mediatek.com/
->>>> Changes in v2:
->>>> - change the variables' name to be more descriptive
->>>> - add a comment that describes the function of mtk_dp_audio_sample_arrange
->>>> - reduce indentation by doing the inverse check
->>>> - add a definition of some bits
->>>> - add support for mediatek, mt8188-edp-tx
->>>> per suggestion from the previous thread:
->>>> https://lore.kernel.org/lkml/ac0fcec9-a2fe-06cc-c727-189ef7babe9c@collabora.com/
->>>> ---
->>>>   drivers/gpu/drm/mediatek/mtk_dp.c     | 7 ++++++-
->>>>   drivers/gpu/drm/mediatek/mtk_dp_reg.h | 1 +
->>>>   2 files changed, 7 insertions(+), 1 deletion(-)
->>>>
-> ...
->>>> b/drivers/gpu/drm/mediatek/mtk_dp_reg.h
->>>> index f38d6ff12afe..6d7f0405867e 100644
->>>> --- a/drivers/gpu/drm/mediatek/mtk_dp_reg.h
->>>> +++ b/drivers/gpu/drm/mediatek/mtk_dp_reg.h
->>>> @@ -162,6 +162,7 @@
->>>>   #define AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_MUL_2    (1 << 8)
->>>>   #define AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_MUL_4    (2 << 8)
->>>>   #define AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_MUL_8    (3 << 8)
->>>> +#define MT8188_AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_DIV_2    (4 << 8)
->>>
->>> IMO, it's a bit weird to have SoC specific define in the generic header.
->>> Are you sure this bit is only available for MT8188 ?
->>>
->>
->> Eh, the P0_DIV2 bit is 5<<8 for MT8195, while for 8188 it's 4<<8, clearly :-)
->>
-> 
-> Ok then, to avoid this kind of issue for other SoCs in the future, is that make 
-> sense for you to do a SoC specific header file beside the generic one?
-> 
+--kw3EZ33X58KK0EKz
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-For just one definition? That's a bit overkill :-)
+On Thu, Jul 20, 2023 at 10:15:51AM +0800, Minda Chen wrote:
+> On 2023/7/19 23:26, Bjorn Helgaas wrote:
+> > On Wed, Jul 19, 2023 at 06:20:48PM +0800, Minda Chen wrote:
 
->>>>   #define AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_DIV_2    (5 << 8)
->>>>   #define AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_DIV_4    (6 << 8)
->>>>   #define AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_DIV_8    (7 << 8)
->>>
->>> Reviewed-by: Alexandre Mergnat <amergnat@baylibre.com>
->>>
->>
->>
-> 
+> >> This patchset is base on v6.5-rc1
+> >=20
+> > Doesn't quite apply cleanly for me:
+> >=20
+> I am sorry, The driver need stg clk and syscon driver, which are have't b=
+e merge to main line.
+> mainly dts is(patch9) rejected, Must apply this series patch first. (I fo=
+rget add this link in cover letter)
+> https://patchwork.kernel.org/project/linux-riscv/cover/20230712092007.310=
+13-1-xingyu.wu@starfivetech.com/
+> and this syscon patch=20
+> https://patchwork.kernel.org/project/linux-riscv/patch/20230717023040.788=
+60-7-xingyu.wu@starfivetech.com/
 
+You could detach the dts patch from the series & send it independently once
+everything it depends on is in place. I'm going to pick up both of the
+patches you've linked for v6.6 in the next day or two.
 
+--kw3EZ33X58KK0EKz
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZLkkvgAKCRB4tDGHoIJi
+0tHHAQCC0e6XIbYkG6LkrgL69/4niNdKZfvj9lofo9snvGUNxAD+L93odnBwIMIi
+9NNg/AiwINvTb2x+ys70gaGFwrSk5wM=
+=x0aD
+-----END PGP SIGNATURE-----
+
+--kw3EZ33X58KK0EKz--
