@@ -2,255 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E128F75B535
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 19:07:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B901075B53E
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 19:11:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229818AbjGTRHq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jul 2023 13:07:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49218 "EHLO
+        id S229790AbjGTRK7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jul 2023 13:10:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50890 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229691AbjGTRHp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 13:07:45 -0400
-Received: from mail-pg1-x529.google.com (mail-pg1-x529.google.com [IPv6:2607:f8b0:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 495AF193
-        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 10:07:44 -0700 (PDT)
-Received: by mail-pg1-x529.google.com with SMTP id 41be03b00d2f7-55c993e26ffso452894a12.0
-        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 10:07:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689872864; x=1690477664;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=3gQbgDrG+e3Hu7SQ1w0l1g3BL557ddifDpg7rbmsdAg=;
-        b=TpyW1pxzIvR3hrNLjOVY1YSuvyeRVOo1esnAq5v6N/2AnFzEHVw76iyvzS76/bSdf4
-         N9ho6WaoM9qGp07f1trYjuxtLNR+dot/6Jw2EDFUnINE50QLfYl4qIcgr3zI6yRj1zId
-         z/Ox1Kk66EtV7NQqd57FhZM9GTfChTBgbPW3M4emuL+P1Tcl/fbwpzp8kp1z412J/veA
-         iaePlXfuow+onqc1CPIHDvGfIA+0bBM1hGMQmjt08TPNjcYkXA8NI3sSmM20IMBz77HW
-         AWgy1G4cJ3BIRjZjnDV4DoU/tZQ0lMekwT9vZGuLZYzRKgfmzvnxJ07ENyjIJUKPuSSB
-         qLQA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689872864; x=1690477664;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=3gQbgDrG+e3Hu7SQ1w0l1g3BL557ddifDpg7rbmsdAg=;
-        b=ZBEsppYO3VeHQAsbq30Rvg66gXuaN69jN0VtarmS9+yBGfHGwiUm3OOWIi1S3fmjj6
-         xnZ9Yf6YgPQWkMq2E6mqlnSoqtmL4G+jmlplEfEo6BrXMF4+kxVUplk6M092ORSwrs5H
-         yPQAX8RvKxp7R/SunPNTON71qDbkS+aezqWw0vz14VSZP95y3juqiqnw5omKcu0w7Yko
-         iJBKVxoShN6LzWjGwVGSeJ5F2f4qcqEenkcaEilVWBTxRRs+me7sIyAbD7g75HndUNUr
-         G60UNDbHGrdHixVq2NeSuDsJK1VKwSsmly40sj5JTRrAe721lMNndspawv5kZ6EoHvNA
-         nGmA==
-X-Gm-Message-State: ABy/qLaaLpSzoou5eBnJ2aG6CJytkumI5u3HrQ/X7uyi50WCkOXNt0GG
-        xq9yufO/C+Y6/w1DOz3tC4AEvg==
-X-Google-Smtp-Source: APBJJlEiQVV2IHjouWpGwbgKwsjYtrLIL3UxRwgSfH/BCd16vzBsGvF7fK39e7fnzw5MzrRDk3YPww==
-X-Received: by 2002:a17:90a:d598:b0:264:97a:2ba6 with SMTP id v24-20020a17090ad59800b00264097a2ba6mr121329pju.7.1689872863688;
-        Thu, 20 Jul 2023 10:07:43 -0700 (PDT)
-Received: from p14s ([2604:3d09:148c:c800:ef2d:6ce9:20ef:3d8b])
-        by smtp.gmail.com with ESMTPSA id t10-20020a17090a448a00b00263f8915aa3sm2852204pjg.31.2023.07.20.10.07.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 Jul 2023 10:07:43 -0700 (PDT)
-Date:   Thu, 20 Jul 2023 11:07:40 -0600
-From:   Mathieu Poirier <mathieu.poirier@linaro.org>
-To:     Marek Vasut <marex@denx.de>
-Cc:     linux-remoteproc@vger.kernel.org,
-        Bjorn Andersson <andersson@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Peng Fan <peng.fan@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 2/2] remoteproc: imx_rproc: Switch iMX8MN/MP from
- SMCCC to MMIO
-Message-ID: <ZLlp3Iy0xRP/UL29@p14s>
-References: <20230720125549.72929-1-marex@denx.de>
- <20230720125549.72929-2-marex@denx.de>
+        with ESMTP id S229746AbjGTRK6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 13:10:58 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EAA77AA;
+        Thu, 20 Jul 2023 10:10:57 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 8786F61B8E;
+        Thu, 20 Jul 2023 17:10:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A1115C433C7;
+        Thu, 20 Jul 2023 17:10:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1689873056;
+        bh=+axwopYxss32R/v91aEDYuikl4wHxlkypTqI8kD6aso=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=sCqSFh7cyVmHDASsdStKBK/jH7esg7iLSu6bLcPd91ldXFqCSEsYMXMx0aC9kwDWp
+         sITE99JryYqoKSZYx++BRhsOwJ5wezc4UPhubd1g+sil3QUmCfCPlJH/yuA38WHeQ2
+         lczEfsclUrTRRGS7+IKJyza/pVPRM3yC7SKnSR5soJ1T5Sq0PpmVrq7mhrHIBErTAI
+         asmw06YlY9p1uAAH17JIKZnsJ+iNgqilbvYbWAgfpt42Bfe3fHCl4JBZ1w2BI+CaUW
+         WfhGAhm6/iUJPCrOM+O1wZQTv9cNTtvG+WBEGhK5HgYpFgnumgNq3rFWp/NuR+quqD
+         vNL2WCOxpDkUQ==
+Date:   Thu, 20 Jul 2023 18:10:51 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Eric Lin <eric.lin@sifive.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, palmer@dabbelt.com, paul.walmsley@sifive.com,
+        will@kernel.org, mark.rutland@arm.com, tglx@linutronix.de,
+        peterz@infradead.org, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        zong.li@sifive.com, greentime.hu@sifive.com,
+        vincent.chen@sifive.com, Nick Hu <nick.hu@sifive.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: riscv: sifive: Add SiFive Private L2
+ cache controller
+Message-ID: <20230720-slept-guru-216e2803061e@spud>
+References: <20230720135125.21240-1-eric.lin@sifive.com>
+ <20230720135125.21240-2-eric.lin@sifive.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="DXW+N7LgbdadIzwt"
 Content-Disposition: inline
-In-Reply-To: <20230720125549.72929-2-marex@denx.de>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230720135125.21240-2-eric.lin@sifive.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marek,
 
-On Thu, Jul 20, 2023 at 02:55:49PM +0200, Marek Vasut wrote:
-> The MX8M CM7 boot via SMC call is problematic, since not all versions
-> of ATF support this interface. Extend the MMIO support so it can boot
-> the CM7 on MX8MN/MP instead and discern the two alternatives using DT
-> compatible strings.
-> 
-> Signed-off-by: Marek Vasut <marex@denx.de>
-> ---
-> Cc: Bjorn Andersson <andersson@kernel.org>
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: Fabio Estevam <festevam@gmail.com>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
-> Cc: NXP Linux Team <linux-imx@nxp.com>
-> Cc: Peng Fan <peng.fan@nxp.com>
-> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Sascha Hauer <s.hauer@pengutronix.de>
-> Cc: Shawn Guo <shawnguo@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Cc: linux-arm-kernel@lists.infradead.org
-> Cc: linux-remoteproc@vger.kernel.org
-> ---
-> V2: Rename 'gpr' to 'fsl,iomuxc-gpr'
-> ---
->  drivers/remoteproc/imx_rproc.c | 58 ++++++++++++++++++++++++++++++++--
->  drivers/remoteproc/imx_rproc.h |  2 ++
->  2 files changed, 58 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/remoteproc/imx_rproc.c b/drivers/remoteproc/imx_rproc.c
-> index 4ee2646ce62ad..8bb293b9f327c 100644
-> --- a/drivers/remoteproc/imx_rproc.c
-> +++ b/drivers/remoteproc/imx_rproc.c
-> @@ -40,6 +40,12 @@
->  #define IMX7D_M4_STOP			(IMX7D_ENABLE_M4 | IMX7D_SW_M4C_RST | \
->  					 IMX7D_SW_M4C_NON_SCLR_RST)
->  
-> +#define IMX8M_M7_STOP			(IMX7D_ENABLE_M4 | IMX7D_SW_M4C_RST)
-> +#define IMX8M_M7_POLL			IMX7D_ENABLE_M4
-> +
-> +#define IMX8M_GPR22			0x58
-> +#define IMX8M_GPR22_CM7_CPUWAIT		BIT(0)
-> +
->  /* Address: 0x020D8000 */
->  #define IMX6SX_SRC_SCR			0x00
->  #define IMX6SX_ENABLE_M4		BIT(22)
-> @@ -91,6 +97,7 @@ static int imx_rproc_detach_pd(struct rproc *rproc);
->  struct imx_rproc {
->  	struct device			*dev;
->  	struct regmap			*regmap;
-> +	struct regmap			*gpr;
->  	struct rproc			*rproc;
->  	const struct imx_rproc_dcfg	*dcfg;
->  	struct imx_rproc_mem		mem[IMX_RPROC_MEM_MAX];
-> @@ -285,6 +292,18 @@ static const struct imx_rproc_att imx_rproc_att_imx6sx[] = {
->  	{ 0x80000000, 0x80000000, 0x60000000, 0 },
->  };
->  
-> +static const struct imx_rproc_dcfg imx_rproc_cfg_imx8mn_mmio = {
-> +	.src_reg	= IMX7D_SRC_SCR,
-> +	.src_mask	= IMX7D_M4_RST_MASK,
-> +	.src_start	= IMX7D_M4_START,
-> +	.src_stop	= IMX8M_M7_STOP,
-> +	.gpr_reg	= IMX8M_GPR22,
-> +	.gpr_wait	= IMX8M_GPR22_CM7_CPUWAIT,
-> +	.att		= imx_rproc_att_imx8mn,
-> +	.att_size	= ARRAY_SIZE(imx_rproc_att_imx8mn),
-> +	.method		= IMX_RPROC_MMIO,
-> +};
-> +
->  static const struct imx_rproc_dcfg imx_rproc_cfg_imx8mn = {
->  	.att		= imx_rproc_att_imx8mn,
->  	.att_size	= ARRAY_SIZE(imx_rproc_att_imx8mn),
-> @@ -365,8 +384,14 @@ static int imx_rproc_start(struct rproc *rproc)
->  
->  	switch (dcfg->method) {
->  	case IMX_RPROC_MMIO:
-> -		ret = regmap_update_bits(priv->regmap, dcfg->src_reg, dcfg->src_mask,
-> -					 dcfg->src_start);
-> +		if (priv->gpr) {
-> +			ret = regmap_clear_bits(priv->gpr, dcfg->gpr_reg,
-> +						dcfg->gpr_wait);
-> +		} else {
-> +			ret = regmap_update_bits(priv->regmap, dcfg->src_reg,
-> +						 dcfg->src_mask,
-> +						 dcfg->src_start);
-> +		}
->  		break;
->  	case IMX_RPROC_SMC:
->  		arm_smccc_smc(IMX_SIP_RPROC, IMX_SIP_RPROC_START, 0, 0, 0, 0, 0, 0, &res);
-> @@ -395,6 +420,16 @@ static int imx_rproc_stop(struct rproc *rproc)
->  
->  	switch (dcfg->method) {
->  	case IMX_RPROC_MMIO:
-> +		if (priv->gpr) {
-> +			ret = regmap_set_bits(priv->gpr, dcfg->gpr_reg,
-> +					      dcfg->gpr_wait);
-> +			if (ret) {
-> +				dev_err(priv->dev,
-> +					"Failed to quiescence M4 platform!\n");
-> +				return ret;
-> +			}
-> +		}
-> +
->  		ret = regmap_update_bits(priv->regmap, dcfg->src_reg, dcfg->src_mask,
->  					 dcfg->src_stop);
->  		break;
-> @@ -992,6 +1027,10 @@ static int imx_rproc_detect_mode(struct imx_rproc *priv)
->  		break;
->  	}
->  
-> +	priv->gpr = syscon_regmap_lookup_by_phandle(dev->of_node, "fsl,iomuxc-gpr");
-> +	if (IS_ERR(priv->gpr))
-> +		priv->gpr = NULL;
-> +
->  	regmap = syscon_regmap_lookup_by_phandle(dev->of_node, "syscon");
->  	if (IS_ERR(regmap)) {
->  		dev_err(dev, "failed to find syscon\n");
-> @@ -1001,6 +1040,19 @@ static int imx_rproc_detect_mode(struct imx_rproc *priv)
->  	priv->regmap = regmap;
->  	regmap_attach_dev(dev, regmap, &config);
->  
-> +	if (priv->gpr) {
-> +		ret = regmap_read(priv->gpr, dcfg->gpr_reg, &val);
-> +		if (val & dcfg->gpr_wait) {
-> +			/*
-> +			 * After cold boot, the CM indicates its in wait
-> +			 * state, but not fully powered off. Power it off
-> +			 * fully so firmware can be loaded into it.
-> +			 */
-> +			imx_rproc_stop(priv->rproc);
-> +			return 0;
-> +		}
-> +	}
+--DXW+N7LgbdadIzwt
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Thanks for the clarification.  I will apply this patch when the DT people have
-had the time to review the first patch of this series.
+Hey Eric,
+
+On Thu, Jul 20, 2023 at 09:51:19PM +0800, Eric Lin wrote:
+> This add YAML DT binding documentation for SiFive Private L2
+> cache controller
+>=20
+> Signed-off-by: Eric Lin <eric.lin@sifive.com>
+> Reviewed-by: Zong Li <zong.li@sifive.com>
+> Reviewed-by: Nick Hu <nick.hu@sifive.com>
+> ---
+>  .../bindings/cache/sifive,pl2cache.yaml       | 62 +++++++++++++++++++
+
+btw, your $subject should be "dt-bindings: cache: ...." rather than
+"riscv: sifive".
+
+>  1 file changed, 62 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/cache/sifive,pl2cac=
+he.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/cache/sifive,pl2cache.yaml=
+ b/Documentation/devicetree/bindings/cache/sifive,pl2cache.yaml
+> new file mode 100644
+> index 000000000000..ee8356c5eeee
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/cache/sifive,pl2cache.yaml
+> @@ -0,0 +1,62 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +# Copyright (C) 2023 SiFive, Inc.
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/cache/sifive,pl2cache.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: SiFive Private L2 Cache Controller
+> +
+> +maintainers:
+> +  - Greentime Hu  <greentime.hu@sifive.com>
+> +  - Eric Lin  <eric.lin@sifive.com>
+
+There's extra spaces in these lines for some reason.
+
+> +
+> +description:
+> +  The SiFive Private L2 Cache Controller is per core and
+> +  communicates with both the upstream L1 caches and
+> +  downstream L3 cache or memory, enabling a high-performance
+> +  cache subsystem.
+> +
+> +allOf:
+> +  - $ref: /schemas/cache-controller.yaml#
+> +
+
+I'm pretty sure that I pointed out last time around that you need to add
+something like in the ccache driver:
+
+select:
+  properties:
+    compatible:
+      contains:
+        enum:
+          - sifive,ccache0
+          - sifive,fu540-c000-ccache
+          - sifive,fu740-c000-ccache
+
+otherwise this binding will be used for anything containing "cache" in
+the dt-binding.
+For this binding, I think that the following is sufficient:
+
+select:
+  properties:
+    compatible:
+      contains:
+          const: sifive,pl2cache1
+
+> +properties:
+> +  compatible:
+> +    items:
+> +      - const: sifive,pl2cache1
+> +      - const: cache
+
+You omitted the pl2cache0 from here, that needs to come back! You'll end
+up with 2 items entries.
+Either way, I can't take this binding without a soc-specific compatible,
+per sifive-blocks-ip-versioning.txt..
 
 Thanks,
-Mathieu
+Conor.
 
+--DXW+N7LgbdadIzwt
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> +
->  	ret = regmap_read(regmap, dcfg->src_reg, &val);
->  	if (ret) {
->  		dev_err(dev, "Failed to read src\n");
-> @@ -1142,6 +1194,8 @@ static const struct of_device_id imx_rproc_of_match[] = {
->  	{ .compatible = "fsl,imx8mm-cm4", .data = &imx_rproc_cfg_imx8mq },
->  	{ .compatible = "fsl,imx8mn-cm7", .data = &imx_rproc_cfg_imx8mn },
->  	{ .compatible = "fsl,imx8mp-cm7", .data = &imx_rproc_cfg_imx8mn },
-> +	{ .compatible = "fsl,imx8mn-cm7-mmio", .data = &imx_rproc_cfg_imx8mn_mmio },
-> +	{ .compatible = "fsl,imx8mp-cm7-mmio", .data = &imx_rproc_cfg_imx8mn_mmio },
->  	{ .compatible = "fsl,imx8qxp-cm4", .data = &imx_rproc_cfg_imx8qxp },
->  	{ .compatible = "fsl,imx8qm-cm4", .data = &imx_rproc_cfg_imx8qm },
->  	{ .compatible = "fsl,imx8ulp-cm33", .data = &imx_rproc_cfg_imx8ulp },
-> diff --git a/drivers/remoteproc/imx_rproc.h b/drivers/remoteproc/imx_rproc.h
-> index 1c7e2127c7584..79a1b8956d142 100644
-> --- a/drivers/remoteproc/imx_rproc.h
-> +++ b/drivers/remoteproc/imx_rproc.h
-> @@ -31,6 +31,8 @@ struct imx_rproc_dcfg {
->  	u32				src_mask;
->  	u32				src_start;
->  	u32				src_stop;
-> +	u32				gpr_reg;
-> +	u32				gpr_wait;
->  	const struct imx_rproc_att	*att;
->  	size_t				att_size;
->  	enum imx_rproc_method		method;
-> -- 
-> 2.40.1
-> 
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZLlqmwAKCRB4tDGHoIJi
+0tcuAP92m51JnHz7NPdeF4+NU14NEqDIZzYAshCe+QYlXCRcRQD+NRNK1FrLyftL
+6Ff62D6y4p7pPTuYG+5nJ0phZ28ntwA=
+=QjrL
+-----END PGP SIGNATURE-----
+
+--DXW+N7LgbdadIzwt--
