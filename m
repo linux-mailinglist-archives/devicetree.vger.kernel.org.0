@@ -2,63 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ADF2975A777
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 09:13:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E43D75A7AB
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 09:20:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229618AbjGTHNd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jul 2023 03:13:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46620 "EHLO
+        id S231316AbjGTHU5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jul 2023 03:20:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50644 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231702AbjGTHNb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 03:13:31 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2EF681719;
-        Thu, 20 Jul 2023 00:13:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1689837210; x=1721373210;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=JqmIbHV6INwiceEQ+zwOlcaktt1kdVZIs4BjTMq3ya8=;
-  b=A+IrXBVYVpxpEcYqeJVfNvsWAd+1yAdc4kz5Do42+fVsATYNpxcRBZGi
-   6q+nYzlwv8dpTw3SWZlEWMtsW5ASrG/8xtGYy29Jxl8ibULRKj5rr+HUc
-   UytqL1JjKUSIL97cNFX/oJaZmbtnkvg3PJORRCojlhyJQrUnfTxZgm0wJ
-   zhhPYRmII3Snh3efi8OlZpjTwhK4bFNKg3K++8l3F9793jpsCu4spZB49
-   vaSlnX8r2az3Jesg2/jPNuS5fkRCMFJBkK9GsiG4mQ3Fg/P6Gea+Bi63M
-   eZFzbREQaIrOu+gzbSzFayI0JAXDhGdtTq0X1G6TUKDi8CCQDbqEuUukL
-   w==;
-X-IronPort-AV: E=Sophos;i="6.01,218,1684825200"; 
-   d="asc'?scan'208";a="236654397"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 20 Jul 2023 00:13:29 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Thu, 20 Jul 2023 00:13:28 -0700
-Received: from wendy (10.10.115.15) by chn-vm-ex04.mchp-main.com
- (10.10.85.152) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
- Transport; Thu, 20 Jul 2023 00:13:27 -0700
-Date:   Thu, 20 Jul 2023 08:12:54 +0100
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     Walker Chen <walker.chen@starfivetech.com>
-CC:     Rob Herring <robh@kernel.org>, Conor Dooley <conor@kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] soc: starfive: Explicitly include correct DT includes
-Message-ID: <20230720-captive-wife-8bdd341fa8f5@wendy>
-References: <20230714175149.4068174-1-robh@kernel.org>
- <6d503477-82eb-c201-129a-009bcde485d0@starfivetech.com>
+        with ESMTP id S229829AbjGTHU4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 03:20:56 -0400
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E89A19A7
+        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 00:20:54 -0700 (PDT)
+Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-3fbc59de009so3268895e9.3
+        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 00:20:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1689837652; x=1692429652;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=2fbCfe+Jexyxfwxcv5jmJWYFscoFzXBWfr2MIt+Bdx0=;
+        b=PRW8dbua98J5/F75JrNUCJ+pUMEcV/dyaNVQwx+0rJuN4Vvwpp6nodcpUChTlV/ezo
+         dFZ9RCQEQQX46AAfsQgSbt5VBVgEB9YFc4YFd4k0KQHlESbbo9FcBKv8sLxw/G4mpPh6
+         q6yC5mK7cBO9sNu34Gqm+SpZiDmNF21Y5fYSiacwpNrPoDeJJxQl4FtdGuUb55AFplKG
+         At/ttEohUBDkLaSZuMS/sH2v8xxJ77wynntf40GPdKwNcn95C7KqbRxPgzAZOCp/h5Va
+         6F4Gjg0SVkbnAnwlYIzUIneuRsS//2pPiJDA5roXTVgWl6R+a0r03HcQYmkrKoxrlz/U
+         ALuQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689837652; x=1692429652;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=2fbCfe+Jexyxfwxcv5jmJWYFscoFzXBWfr2MIt+Bdx0=;
+        b=VvUkzoyAWZ7Ujdw34rKmkSW7xnQf3uSKjKcMdbYpuPa2cHwjxwyWV9zqN+Z7Uz+i74
+         WDonRjMOQ7/qH2Ce1QrtWbE8/M43Tka+a+ngFtxgrlCuG6LklgeCW/PKg/eGGIXh8pUg
+         70B/SQoZlRdUoQRM1c7+33M8wBeHVEeZa8porISEufmEDabE267nLtZtixZMPdCr6I8z
+         +uZdT4rpOoMF9JZ4pHd64485rgWGNJgjPn18YhMie+CmeBR8YD1rqHcbRW/gmQIfQD9L
+         PMg2T5rwlUI/F3N6EMJJW+qLjuHwft57Wcf0Vf758z6xNasvkTzaaIBlKx3caAfMg3n0
+         RLgQ==
+X-Gm-Message-State: ABy/qLZz9vpF52JWs+g1wmMWxLu6tdhVcOXf2YDN20byygk8I41w/iyL
+        5ukqwvB5S1MakgBts6sxTuzBHA==
+X-Google-Smtp-Source: APBJJlEKt/pVw48GgiNZDrcBVhhom8ZjwJ/RpQ4cRWBf6FTiaULsbPWBd5IeXXmMuch+RQsWF5iYrQ==
+X-Received: by 2002:adf:f248:0:b0:316:e249:c285 with SMTP id b8-20020adff248000000b00316e249c285mr1299138wrp.71.1689837652478;
+        Thu, 20 Jul 2023 00:20:52 -0700 (PDT)
+Received: from krzk-bin.. ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id v1-20020a5d6781000000b0031434c08bb7sm399767wru.105.2023.07.20.00.20.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 20 Jul 2023 00:20:52 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [RESEND PATCH 1/2] arm64: dts: qcom: msm8994: fix duplicated @6c00000 reserved memory
+Date:   Thu, 20 Jul 2023 09:20:47 +0200
+Message-Id: <20230720072048.10093-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="Q61HPjpCze90uyKW"
-Content-Disposition: inline
-In-Reply-To: <6d503477-82eb-c201-129a-009bcde485d0@starfivetech.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,
-        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -66,54 +74,55 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---Q61HPjpCze90uyKW
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Reserved memory @6c00000 is defined in MSM8994 DTSI and few boards:
 
-On Thu, Jul 20, 2023 at 02:12:51PM +0800, Walker Chen wrote:
-> On 2023/7/15 1:51, Rob Herring wrote:
-> > The DT of_device.h and of_platform.h date back to the separate
-> > of_platform_bus_type before it as merged into the regular platform bus.
-> > As part of that merge prepping Arm DT support 13 years ago, they
-> > "temporarily" include each other. They also include platform_device.h
-> > and of.h. As a result, there's a pretty much random mix of those include
-> > files used throughout the tree. In order to detangle these headers and
-> > replace the implicit includes with struct declarations, users need to
-> > explicitly include the correct includes.
-> >=20
-> > Signed-off-by: Rob Herring <robh@kernel.org>
-> > ---
-> >  drivers/soc/starfive/jh71xx_pmu.c | 1 -
-> >  1 file changed, 1 deletion(-)
-> >=20
-> > diff --git a/drivers/soc/starfive/jh71xx_pmu.c b/drivers/soc/starfive/j=
-h71xx_pmu.c
-> > index 7d5f50d71c0d..d3b78a619d40 100644
-> > --- a/drivers/soc/starfive/jh71xx_pmu.c
-> > +++ b/drivers/soc/starfive/jh71xx_pmu.c
-> > @@ -10,7 +10,6 @@
-> >  #include <linux/iopoll.h>
-> >  #include <linux/module.h>
-> >  #include <linux/of.h>
-> > -#include <linux/of_device.h>
-> >  #include <linux/platform_device.h>
-> >  #include <linux/pm_domain.h>
-> >  #include <dt-bindings/power/starfive,jh7110-pmu.h>
->=20
-> Nice! Thank you for your careful discovery, this helps simplify the code.
+  Warning (unique_unit_address_if_enabled): /reserved-memory/reserved@6c00000: duplicate unit-address (also used in node /reserved-memory/hole2@6c00000)
+  Warning (unique_unit_address_if_enabled): /reserved-memory/reserved@6c00000: duplicate unit-address (also used in node /reserved-memory/memory@6c00000)
 
-Huh, seems I missed this patch. Now applied, thanks!
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/msm8992-xiaomi-libra.dts        | 1 +
+ arch/arm64/boot/dts/qcom/msm8994-msft-lumia-octagon.dtsi | 1 +
+ arch/arm64/boot/dts/qcom/msm8994.dtsi                    | 2 +-
+ 3 files changed, 3 insertions(+), 1 deletion(-)
 
---Q61HPjpCze90uyKW
-Content-Type: application/pgp-signature; name="signature.asc"
+diff --git a/arch/arm64/boot/dts/qcom/msm8992-xiaomi-libra.dts b/arch/arm64/boot/dts/qcom/msm8992-xiaomi-libra.dts
+index fcca1ba94da6..501e05efbef4 100644
+--- a/arch/arm64/boot/dts/qcom/msm8992-xiaomi-libra.dts
++++ b/arch/arm64/boot/dts/qcom/msm8992-xiaomi-libra.dts
+@@ -15,6 +15,7 @@
+ /delete-node/ &audio_mem;
+ /delete-node/ &mpss_mem;
+ /delete-node/ &peripheral_region;
++/delete-node/ &res_hyp_mem;
+ /delete-node/ &rmtfs_mem;
+ 
+ / {
+diff --git a/arch/arm64/boot/dts/qcom/msm8994-msft-lumia-octagon.dtsi b/arch/arm64/boot/dts/qcom/msm8994-msft-lumia-octagon.dtsi
+index 2861bcdf87b7..cbc84459a5ae 100644
+--- a/arch/arm64/boot/dts/qcom/msm8994-msft-lumia-octagon.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8994-msft-lumia-octagon.dtsi
+@@ -23,6 +23,7 @@
+ /delete-node/ &mba_mem;
+ /delete-node/ &mpss_mem;
+ /delete-node/ &peripheral_region;
++/delete-node/ &res_hyp_mem;
+ /delete-node/ &rmtfs_mem;
+ /delete-node/ &smem_mem;
+ 
+diff --git a/arch/arm64/boot/dts/qcom/msm8994.dtsi b/arch/arm64/boot/dts/qcom/msm8994.dtsi
+index c374fba5d8f9..4324bd2bfe76 100644
+--- a/arch/arm64/boot/dts/qcom/msm8994.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8994.dtsi
+@@ -281,7 +281,7 @@ adsp_mem: memory@c9400000 {
+ 			no-map;
+ 		};
+ 
+-		reserved@6c00000 {
++		res_hyp_mem: reserved@6c00000 {
+ 			reg = <0 0x06c00000 0 0x400000>;
+ 			no-map;
+ 		};
+-- 
+2.34.1
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZLjedgAKCRB4tDGHoIJi
-0vsDAQCuzaEOC//rMky0CIQbHRukRzUFHVoUi5eh/3WIk3BZPwD/f6kXwQ4NNyIS
-ZLj28G8IuwKFCpSF6f4Ac2+nAj8e4Qk=
-=LdIm
------END PGP SIGNATURE-----
-
---Q61HPjpCze90uyKW--
