@@ -2,149 +2,192 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E696075AFC7
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 15:27:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1300575AFD7
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 15:29:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231272AbjGTN1u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jul 2023 09:27:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46726 "EHLO
+        id S231921AbjGTN3P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jul 2023 09:29:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48016 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229616AbjGTN1u (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 09:27:50 -0400
-Received: from mail-pl1-x62e.google.com (mail-pl1-x62e.google.com [IPv6:2607:f8b0:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A2492D5E;
-        Thu, 20 Jul 2023 06:27:25 -0700 (PDT)
-Received: by mail-pl1-x62e.google.com with SMTP id d9443c01a7336-1b9d9cbcc70so1075225ad.0;
-        Thu, 20 Jul 2023 06:27:25 -0700 (PDT)
+        with ESMTP id S229517AbjGTN3B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 09:29:01 -0400
+Received: from mail-pl1-x62d.google.com (mail-pl1-x62d.google.com [IPv6:2607:f8b0:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CC502D77;
+        Thu, 20 Jul 2023 06:28:36 -0700 (PDT)
+Received: by mail-pl1-x62d.google.com with SMTP id d9443c01a7336-1b852785a65so6073965ad.0;
+        Thu, 20 Jul 2023 06:28:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1689859633; x=1690464433;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=GlAwLGhvuTr8ROLaXnMqr4ZXOd2hH6vJbKxn4BmvVKs=;
-        b=huDDrITdBQpnjKy+gDaMGWTj8DruZyx+0VmbxI7pvAzYWUumkCsWPk5KSoHQUhGIUH
-         kcHhw5Aegb2cJR+OCtvopNOa4kFPcmdPVw6pyOGi9s1yZZXUapjMMHcc8gk6so/WzTVE
-         cEc8m05nr2de6/RdYAd6slrngsMhespqEptzgsuT1doWySDXJyjc0ul5UqwOo81m1jaP
-         1Z+2A2WjGvz4hxFUnvyAXuCq1MWmpc25fKCOeF291lCorrWKegL36wLtYaULSBT76RWM
-         gzzcOmXHnmwu0eWk7BlfS/G87Hb7la79NNUk0wbuMTLzcoLqG1HprfVsqDry4/1NAUPr
-         Bp4w==
+        d=gmail.com; s=20221208; t=1689859715; x=1690464515;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=3o5zfhOrGvbkMhIZNHbLcgV0VOFO8KOUPcq8qPlAWh4=;
+        b=II3kNkpXwPdcCl5YHO4c2SdZlaof4sRkgoc/bpxKmFONK+AnVHwT1l7cn4fep4l2pZ
+         RKQPLK4YtMeQSGR5iqY/qohmxFaLzZ1ClUnoBaAnXkyj8ZtgLGPZrxlSRrbXTRR6JuFE
+         1/XRgM2FIIeAEdO8c6Bnsmo11XN81iFNABpU1uWMfxl2AT70aV2t6lD+Lvsz3z0sVruD
+         Uow4lWraZWjlX9pw2usWm2WakkdaoKw1c6bRllOiAPjWueKo+tDHsJogOPb38guW70UF
+         VU2sVcwD6/G14KhffAcn6pAqokkebSFot2kkwvOG6VTqnh2LdN7nEmxQT8ylWbgSo4Lq
+         gfBw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689859633; x=1690464433;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=GlAwLGhvuTr8ROLaXnMqr4ZXOd2hH6vJbKxn4BmvVKs=;
-        b=YBA62jlinsx0YnYVNYoy+FdLIt+gB4YDD1BEYaCNz+KSg5FWft0K8UucNzxoVE9qKx
-         ijCTUtCfnWN95FnvBYCE4ZcXsEGvOT+0KOXDxUzp7Ii6Dzqp70E3fB3VzgkL+/cFLOXf
-         B5GN0kZWDRg4x/TJGaacegLdzSvQBZxdW+LRY7Kmke/+bfsX4uanaXJ/Z0flbkIkLJr/
-         FLy0brAU1jlZVKxp+KKH/pYbTV7GjSJHc5iBInLieRNHAYxjqLpGTUHrao+KzgG54XFT
-         z/0C9hEpCS+uuWfdSsfouzgo4iqh+/7oqcMH3LGh6DRRsJyBstMFWNYYk7jXghj0eNgt
-         4M8w==
-X-Gm-Message-State: ABy/qLaeX1asY65yQQMUY1WiFitIpd7XwiKD1IzuERLh/oxufa/g7NJk
-        XlELHbkbpNgDDDsTDgIO1iaS2W2uckA3MqxqP38=
-X-Google-Smtp-Source: APBJJlHpIpx+6q4xexQorUGUZRl3XBmaiEghmv4HN9QAPhLEnB8YKY6NgvI1sBgEFzkyO/gUyYDYrDwAttqI4bmlW/M=
-X-Received: by 2002:a17:902:da85:b0:1b8:9fc4:2733 with SMTP id
- j5-20020a170902da8500b001b89fc42733mr19322083plx.3.1689859632641; Thu, 20 Jul
- 2023 06:27:12 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1689859715; x=1690464515;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3o5zfhOrGvbkMhIZNHbLcgV0VOFO8KOUPcq8qPlAWh4=;
+        b=TqjV+s1zQkdYN47mIkCCe5FpwDkxLvduj45yNSd8nQHNO10uVHPp22/1+VUUS4j+GJ
+         q5gcshwfruENAO9bhjtVzn4D1smLqXzhBbyXQLxMi+pIYdzCy7WaEX6vhhyKdo4qBFU/
+         Qu75T3Ld1VMW4ma8UuB6+JVd33fjDdA/K7xXqnc4LPTZy/mHIBRZjBRQVKJeJr2spnAX
+         eAnQW0/FHZQvM6m+YPlRgXXgKBWLr9jmLi0FM6iXr2MBb90i7Ps3yjkckLeBVCvaNqxI
+         hCjzMYpAJbdXq1CLRG3cgombPJUcMr8xviCQtUroKCGt4DEWhlVcPwWiOK7KVW9/o1RS
+         8wHA==
+X-Gm-Message-State: ABy/qLaFVp/M30aIwkZq8a7ntKoFRzom3T4uRveoyR5IFgXi/lVfVBq2
+        amuhaoni2DIzQvmb1BQ7Dgk=
+X-Google-Smtp-Source: APBJJlHUPUivfHOgoXJP79qDNd5D4J3nF3SUABKNXv3IzHnbDE0pcAqJjXDoFhMrl2kqZtr0UmSiBg==
+X-Received: by 2002:a17:902:c94c:b0:1b7:ca9c:4f5c with SMTP id i12-20020a170902c94c00b001b7ca9c4f5cmr6694496pla.28.1689859715396;
+        Thu, 20 Jul 2023 06:28:35 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id jc15-20020a17090325cf00b001b5247cac3dsm1346340plb.110.2023.07.20.06.28.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 20 Jul 2023 06:28:34 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <def5b29c-3318-2db1-a7fa-612ed1e81be6@roeck-us.net>
+Date:   Thu, 20 Jul 2023 06:28:31 -0700
 MIME-Version: 1.0
-References: <20230720131028.3730704-1-james.hilliard1@gmail.com> <20230720131028.3730704-2-james.hilliard1@gmail.com>
-In-Reply-To: <20230720131028.3730704-2-james.hilliard1@gmail.com>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Thu, 20 Jul 2023 10:27:00 -0300
-Message-ID: <CAOMZO5BPadhvTux-YMRZtZS=QaQhk9z+h7COk7_5S4gaqeE2eQ@mail.gmail.com>
-Subject: Re: [PATCH v3 2/4] ARM: dts: imx6qdl: Add Variscite VAR-SOM-MX6 SoM support
-To:     James Hilliard <james.hilliard1@gmail.com>
-Cc:     devicetree@vger.kernel.org,
-        Gregory CLEMENT <gregory.clement@bootlin.com>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v3 12/42] dt-bindings: watchdog: Add Cirrus EP93x
+Content-Language: en-US
+To:     nikita.shubin@maquefel.me,
+        Hartley Sweeten <hsweeten@visionengravers.com>,
+        Lennert Buytenhek <kernel@wantstofly.org>,
+        Alexander Sverdlin <alexander.sverdlin@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Lukasz Majewski <lukma@denx.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Marek Vasut <marex@denx.de>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        Stefan Wahren <stefan.wahren@chargebyte.com>,
-        Tim Harvey <tharvey@gateworks.com>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        Christoph Niedermaier <cniedermaier@dh-electronics.com>,
-        Li Yang <leoyang.li@nxp.com>, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Sebastian Reichel <sre@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
+        Mark Brown <broonie@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, Vinod Koul <vkoul@kernel.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Damien Le Moal <dlemoal@kernel.org>,
+        Sergey Shtylyov <s.shtylyov@omp.ru>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        soc@kernel.org, Liam Girdwood <lgirdwood@gmail.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Andy Shevchenko <andy@kernel.org>,
+        Michael Peters <mpeters@embeddedTS.com>,
+        Kris Bahnsen <kris@embeddedTS.com>
+Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-rtc@vger.kernel.org,
+        linux-watchdog@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-pwm@vger.kernel.org, linux-spi@vger.kernel.org,
+        netdev@vger.kernel.org, dmaengine@vger.kernel.org,
+        linux-mtd@lists.infradead.org, linux-ide@vger.kernel.org,
+        linux-input@vger.kernel.org, alsa-devel@alsa-project.org
+References: <20230605-ep93xx-v3-0-3d63a5f1103e@maquefel.me>
+ <20230605-ep93xx-v3-12-3d63a5f1103e@maquefel.me>
+From:   Guenter Roeck <linux@roeck-us.net>
+In-Reply-To: <20230605-ep93xx-v3-12-3d63a5f1103e@maquefel.me>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 20, 2023 at 10:10=E2=80=AFAM James Hilliard
-<james.hilliard1@gmail.com> wrote:
-
-> +       reg_audio: regulator-audio {
-> +               compatible =3D "regulator-fixed";
-> +               regulator-name =3D "tlv320aic3x-supply";
-> +               enable-active-high;
-
-enable-active-high should only be used when there is a corresponding
-gpio property.
-
-> +&ecspi3 {
-> +       fsl,spi-num-chipselects =3D <1>;
-> +       pinctrl-names =3D "default";
-> +       pinctrl-0 =3D <&pinctrl_ecspi3>;
-> +       cs-gpios =3D <&gpio4 24 GPIO_ACTIVE_HIGH>;
-
-This should be ACTIVE_LOW instead.
-
-> +       status =3D "okay";
-> +};
+On 7/20/23 04:29, Nikita Shubin via B4 Relay wrote:
+> From: Nikita Shubin <nikita.shubin@maquefel.me>
+> 
+> This adds device tree bindings for the Cirrus Logic EP93xx
+> watchdog block used in these SoCs.
+> 
+> Signed-off-by: Nikita Shubin <nikita.shubin@maquefel.me>
+> ---
+>   .../bindings/watchdog/cirrus,ep9301-wdt.yaml       | 46 ++++++++++++++++++++++
+>   1 file changed, 46 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/watchdog/cirrus,ep9301-wdt.yaml b/Documentation/devicetree/bindings/watchdog/cirrus,ep9301-wdt.yaml
+> new file mode 100644
+> index 000000000000..d54595174a12
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/watchdog/cirrus,ep9301-wdt.yaml
+> @@ -0,0 +1,46 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/watchdog/cirrus,ep9301-wdt.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +&fec {
-> +       pinctrl-names =3D "default";
-> +       pinctrl-0 =3D <&pinctrl_enet>;
-> +       phy-mode =3D "rgmii";
-> +       phy-reset-gpios =3D <&gpio1 25 GPIO_ACTIVE_LOW>;
-
-This is a deprecated property.
-
-The recommendation is to add a mdio node with:
-
-reset-gpios =3D <&gpio1 25 GPIO_ACTIVE_LOW>;
-reset-assert-us =3D <10000>;
-
-Is this an Atheros AR8031 PHY. If so, please check imx6qdl-sabresd.dtsi.
-
-> +&ssi2 {
-> +       fsl,mode =3D "i2s-slave";
-
-This is unused, drop it.
-
-Please check commit ece1e4999 606 ("ASoC: fsl_ssi: Remove unneeded
-'i2s-slave' property")
-
-> +&usdhc3 {
-> +       pinctrl-names =3D "default", "state_100mhz", "state_200mhz";
-> +       pinctrl-0 =3D <&pinctrl_usdhc3>;
-> +       pinctrl-1 =3D <&pinctrl_usdhc3_100mhz>;
-> +       pinctrl-2 =3D <&pinctrl_usdhc3_200mhz>;
-> +       bus-width =3D <4>;
-> +       vmmc-supply =3D <&reg_wl18xx_vmmc>;
-> +       non-removable;
-> +       wakeup-source;
-> +       keep-power-in-suspend;
-> +       cap-power-off-card;
-> +       #address-cells =3D <1>;
-> +       #size-cells =3D <0>;
-> +       status =3D "okay";
+> +title: Cirrus Logic EP93xx Watchdog Timer
 > +
-> +       wifi: wifi@0 {
-> +               compatible =3D "ti,wl1835";
-> +               reg =3D <2>;
+> +maintainers:
+> +  - Nikita Shubin <nikita.shubin@maquefel.me>
+> +  - Alexander Sverdlin <alexander.sverdlin@gmail.com>
+> +
+> +description:
+> +  Cirrus Logic EP93xx SoC family has it's own watchdog implementation
+> +
 
-@0 and reg =3D <2> do not match.
+Odd description. Isn't that true for pretty much every devicetree
+bindings file, and pretty much every hardware driver ?
+
+> +allOf:
+> +  - $ref: watchdog.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - const: cirrus,ep9301-wdt
+> +      - items:
+> +          - enum:
+> +              - cirrus,ep9302-wdt
+> +              - cirrus,ep9307-wdt
+> +              - cirrus,ep9312-wdt
+> +              - cirrus,ep9315-wdt
+> +          - const: cirrus,ep9301-wdt
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    watchdog@80940000 {
+> +        compatible = "cirrus,ep9301-wdt";
+> +        reg = <0x80940000 0x08>;
+> +    };
+> +
+> 
+
