@@ -2,78 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8527E75A648
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 08:25:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D332075A694
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 08:36:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230133AbjGTGZv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jul 2023 02:25:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36798 "EHLO
+        id S231150AbjGTGgH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jul 2023 02:36:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43454 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230125AbjGTGZr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 02:25:47 -0400
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CBC32128
-        for <devicetree@vger.kernel.org>; Wed, 19 Jul 2023 23:25:44 -0700 (PDT)
-Received: by mail-wr1-x434.google.com with SMTP id ffacd0b85a97d-314417861b9so297069f8f.0
-        for <devicetree@vger.kernel.org>; Wed, 19 Jul 2023 23:25:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689834342; x=1692426342;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=xQMHOjJYZ76TGhG8B0nlx/g+YkMmgmasZcqaKFcuJjM=;
-        b=zeE415wH8jka8fvaJ69vhsN2OPoAzBmHBD40wozzyCzY7WwBPtXOddqoB5lhZtt6o/
-         xoQvfNxWFWisjOHDEy5OKB4m1Tc+q4O+yGIC81p268YuN5K0iEYLhnfjicD7y0P6gDFU
-         ddBqrW6e8lX96qowmYGINym9Fchz5uR0uzhwfu41pzu7OkB+Iv/fgcILX6zq6ecg209N
-         CB1yHwqLs9itz57agB4yfWwLL02ry8X7HVB1tncj+hM36MDM1jtwvZ2l+tDqkDRZkiqz
-         EufSS/E1P6g0z6LU69/wD3j0BeGxdtRf++iSFue8ZHuRpyO+prFNJNtZ/itJcxMtb9X5
-         HLeQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689834342; x=1692426342;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xQMHOjJYZ76TGhG8B0nlx/g+YkMmgmasZcqaKFcuJjM=;
-        b=jOb8rhsKAapFTz6qlT4hnXIdbRpLCqYj6Yj6Z5N6yAgdBlMegVMIaPo7wfRYfAa5vl
-         9eQ8kYGPE1RY6EO5l5peg0NECMmFj7054EUoQNTJo89N+8tOuFQt5ne2OrCASWvwKrHQ
-         DgEqfBh9enbj/a1Llf1bmyppXc/xHd3jG3FZYi8aFhMHNu0LsXpaopLIwg4WPT4H7i//
-         cm+4A5v/Dw61n3xmQdkhuRI3U19SNfrfFZ4nI/OJCFY/lT8NkfcLUkgoXeFwS2Z1v/pP
-         RpAM8CgmGfWqqB0FbiAxTbTKkvKbI4NSKKA0HzRd72nS6eRyfHS/1AvJOz3U8D5Gxu7k
-         o+Vw==
-X-Gm-Message-State: ABy/qLbOhMa6i3KrYUHHO/akG2CynCOadkIKXiZXUL+6cDn9jStmTOxS
-        MXFehHCLor58dS81uzrZ9CWQtg==
-X-Google-Smtp-Source: APBJJlErniNxjsytxmWnSd3zFi4m0T93POcwGlPJw9URpkAQIVH3uYPfGB2oNqXPySV7wPgw0iuZhQ==
-X-Received: by 2002:a5d:54c6:0:b0:316:f25c:d0c0 with SMTP id x6-20020a5d54c6000000b00316f25cd0c0mr1489597wrv.16.1689834342327;
-        Wed, 19 Jul 2023 23:25:42 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id o20-20020a5d58d4000000b0031433443265sm284501wrf.53.2023.07.19.23.25.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 19 Jul 2023 23:25:41 -0700 (PDT)
-Message-ID: <4027f2f8-4d60-3907-ec36-4c9b0ca52214@linaro.org>
-Date:   Thu, 20 Jul 2023 08:25:39 +0200
+        with ESMTP id S231163AbjGTGfv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 02:35:51 -0400
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D468126B5
+        for <devicetree@vger.kernel.org>; Wed, 19 Jul 2023 23:34:44 -0700 (PDT)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id 3252324E36A;
+        Thu, 20 Jul 2023 14:34:04 +0800 (CST)
+Received: from EXMBX068.cuchost.com (172.16.6.68) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 20 Jul
+ 2023 14:34:04 +0800
+Received: from [192.168.125.113] (113.72.147.86) by EXMBX068.cuchost.com
+ (172.16.6.68) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 20 Jul
+ 2023 14:34:03 +0800
+Message-ID: <d397c3ba-4ac9-bf21-5ae4-79db6c2ad16e@starfivetech.com>
+Date:   Thu, 20 Jul 2023 14:34:03 +0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
-Subject: Re: [PATCH v1 1/2] dt-bindings: usb: rockchip,dwc3: Add RK3588
- binding
+Subject: Re: [PATCH 1/1] riscv: dts: Enable device-tree overlay support for
+ starfive devices
 Content-Language: en-US
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-rockchip@lists.infradead.org, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, kernel@collabora.com
-References: <20230719174015.68153-1-sebastian.reichel@collabora.com>
- <20230719174015.68153-2-sebastian.reichel@collabora.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230719174015.68153-2-sebastian.reichel@collabora.com>
-Content-Type: text/plain; charset=UTF-8
+To:     Conor Dooley <conor@kernel.org>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>
+CC:     Felix Moessbauer <felix.moessbauer@siemens.com>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Rob Herring <robh+dt@kernel.org>,
+        Daniel Bovensiepen <daniel.bovensiepen@siemens.com>,
+        Jan Kiszka <jan.kiszka@siemens.com>,
+        <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>
+References: <20230627080620.329873-1-felix.moessbauer@siemens.com>
+ <20230710-villain-dainty-d1a90ce57a27@spud>
+ <CAJM55Z_0X+UT1s9s4kqKuyg4hF2JooTMXe4RYTAzoEgY=+8A1Q@mail.gmail.com>
+ <20230712-single-crestless-93bf57c09773@spud>
+From:   Walker Chen <walker.chen@starfivetech.com>
+In-Reply-To: <20230712-single-crestless-93bf57c09773@spud>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+X-Originating-IP: [113.72.147.86]
+X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX068.cuchost.com
+ (172.16.6.68)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -82,176 +62,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/07/2023 19:40, Sebastian Reichel wrote:
-> RK3588 contains three DWC3 cores. Two of them are connected to
-> dedicated USBDP PHY and can be used in dual-role. The third is
-> connected to one of the shared combo PHYs used for PCIe/SATA/USB3
-> and can only be used in host mode. Since the binding is all about
-> the PHY glueing and involved clocks, separate compatible values
-> have been created for these two types.
 
-The cores are the same. To which phy they are connected to, does not
-justify difference in compatibles. It's still the same devoce.
 
+On 2023/7/13 0:23, Conor Dooley wrote:
+> On Wed, Jul 12, 2023 at 06:17:19PM +0200, Emil Renner Berthing wrote:
+>> On Mon, 10 Jul 2023 at 20:29, Conor Dooley <conor@kernel.org> wrote:
+>> >
+>> >
+>> > Emil, Walker,
+>> >
+>> > On Tue, Jun 27, 2023 at 04:06:20PM +0800, Felix Moessbauer wrote:
+>> > > Add the '-@' DTC option for the starfive devices. This option
+>> > > populates the '__symbols__' node that contains all the necessary symbols
+>> > > for supporting device-tree overlays (for instance from the firmware or
+>> > > the bootloader) on these devices.
+>> > >
+>> > > The starfive devices allow various modules to be connected and this
+>> > > enables users to create out-of-tree device-tree overlays for these modules.
+>> > >
+>> > > Please note that this change does increase the size of the resulting DTB
+>> > > by ~20%. For example, with v6.4 increase in size is as follows:
+>> >
+>> > Whatcha think?
+>> 
+>> I'm fine with it. I just wonder why it's only the Nvidia Tegra boards
+>> and the VisionFive's that need this. Surely other boards have pins for
+>> expansion cards.
 > 
-> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-> ---
->  .../bindings/usb/rockchip,rk3399-dwc3.yaml    | 107 ++++++++++++++----
->  1 file changed, 85 insertions(+), 22 deletions(-)
+> It's totally not just these two - there's been a flurry of similar
+> patches recently. The RPi stuff got it - I think I Acked that one from
+> the DT side while Rob and Krzysztof were out of office, partially on the
+> basis that the Nvidia stuff had it (and IIRC Renesas).
+> Since then there's been a couple other ones that got the same treatment,
+> including 32-bit ARM Microchip stuff. I've been avoiding doing it for the
+> RISC-V Microchip to see if Rob decides that what I Acked was a problem.
 > 
-> diff --git a/Documentation/devicetree/bindings/usb/rockchip,rk3399-dwc3.yaml b/Documentation/devicetree/bindings/usb/rockchip,rk3399-dwc3.yaml
-> index 3159f9a6a0f7..0db4dc86e506 100644
-> --- a/Documentation/devicetree/bindings/usb/rockchip,rk3399-dwc3.yaml
-> +++ b/Documentation/devicetree/bindings/usb/rockchip,rk3399-dwc3.yaml
-> @@ -11,7 +11,13 @@ maintainers:
->  
->  properties:
->    compatible:
-> -    const: rockchip,rk3399-dwc3
-> +    oneOf:
-> +      - items:
-> +          - enum:
-> +              - rockchip,rk3588-dwc3-otg
-> +              - rockchip,rk3588-dwc3-host
-> +          - const: rockchip,rk3399-dwc3
-> +      - const: rockchip,rk3399-dwc3
->  
->    '#address-cells':
->      const: 2
-> @@ -22,35 +28,37 @@ properties:
->    ranges: true
->  
->    clocks:
-> -    items:
-> -      - description:
-> -          Controller reference clock, must to be 24 MHz
-> -      - description:
-> -          Controller suspend clock, must to be 24 MHz or 32 KHz
-> -      - description:
-> -          Master/Core clock, must to be >= 62.5 MHz for SS
-> -          operation and >= 30MHz for HS operation
-> -      - description:
-> -          USB3 aclk peri
-> -      - description:
-> -          USB3 aclk
-> -      - description:
-> -          Controller grf clock
-> +    minItems: 3
-> +    maxItems: 6
->  
->    clock-names:
->      items:
-> -      - const: ref_clk
-> -      - const: suspend_clk
-> -      - const: bus_clk
-> -      - const: aclk_usb3_rksoc_axi_perf
-> -      - const: aclk_usb3
-> -      - const: grf_clk
-> +      oneOf:
-> +        - enum:
-> +            - ref
-> +            - ref_clk
+> It seems generally helpful, so I've been a little suspicious as to why
+> it was not done already...
 
-This is not oneOf. You cannot have here one clock. There is also no
-point in making all these changes here,.
-
-> +        - enum:
-> +            - suspend
-> +            - suspend_clk
-> +        - enum:
-> +            - bus
-> +            - bus_clk
-> +        - const: aclk_usb3_rksoc_axi_perf
-> +        - const: aclk_usb3
-> +        - const: grf_clk
-> +        - const: utmi
-> +        - const: php
-> +        - const: pipe
-> +    minItems: 3
-> +    maxItems: 6
->  
->    resets:
->      maxItems: 1
->  
->    reset-names:
-> -    const: usb3-otg
-> +    enum:
-> +      - usb3-host
-> +      - usb3-otg
-
-I don't see a point in changing this.
-
->  
->  patternProperties:
->    '^usb@':
-> @@ -68,6 +76,61 @@ required:
->    - resets
->    - reset-names
->  
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          const: rockchip,rk3399-dwc3
-> +    then:
-> +      properties:
-> +        clocks:
-> +          minItems: 6
-> +        clock-names:
-> +          items:
-> +            - const: ref_clk
-> +            - const: suspend_clk
-> +            - const: bus_clk
-> +            - const: aclk_usb3_rksoc_axi_perf
-> +            - const: aclk_usb3
-> +            - const: grf_clk
-> +        reset-names:
-> +          const: usb3-otg
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: rockchip,rk3588-dwc3-otg
-> +    then:
-> +      properties:
-> +        clocks:
-> +          maxItems: 3
-> +        clock-names:
-> +          items:
-> +            - const: ref
-> +            - const: suspend
-> +            - const: bus
-
-Use the same clock names.
-
-> +        reset-names:
-> +          const: usb3-otg
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: rockchip,rk3588-dwc3-host
-> +    then:
-> +      properties:
-> +        clocks:
-> +          minItems: 6
-> +        clock-names:
-> +          items:
-> +            - const: ref
-> +            - const: suspend
-> +            - const: bus
-> +            - const: utmi
-> +            - const: php
-> +            - const: pipe
-
-Same clock names
-
-> +        reset-names:
-> +          const: usb3-host
-
-Same reset name.
-
+I agree to use DT overlay though this will increase a little bit size for DTB.
+For users who want to use expansion card like audio daughter board, it provides a convenient way.
 
 Best regards,
-Krzysztof
-
+Walker
