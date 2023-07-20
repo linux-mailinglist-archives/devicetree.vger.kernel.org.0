@@ -2,60 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0AC2175AA6D
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 11:14:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 475F075AAA5
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 11:27:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229994AbjGTJO3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jul 2023 05:14:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46174 "EHLO
+        id S229801AbjGTJ14 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jul 2023 05:27:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58860 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230394AbjGTJGu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 05:06:50 -0400
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 931F344B6
-        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 01:57:45 -0700 (PDT)
-Received: by mail-lj1-x233.google.com with SMTP id 38308e7fff4ca-2b9540031acso7180421fa.3
-        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 01:57:45 -0700 (PDT)
+        with ESMTP id S229831AbjGTJ1k (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 05:27:40 -0400
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A83AF49E3
+        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 02:12:37 -0700 (PDT)
+Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-3fd190065a8so4615645e9.3
+        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 02:12:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689843419; x=1692435419;
+        d=linaro.org; s=google; t=1689844356; x=1692436356;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=HuBtnBic7enS4cLJ/qv3iEzDo3EKyWHxfta/cthROig=;
-        b=O1xSm+jWlv79kxy7XJWRWxGA/a0JrBbFOIigfcQnue0j3dBrF9jCxC05ekbDXDY5u7
-         1qstxE2gzeqTZdnc5U4BMGltOzul/qQdfOL2apdmEKuQVulrjoAyBVBfwurrC8GHeFPx
-         wSu3TIrBZFhgLdwmONT1rOL+wE4uDDha2LCybiHjvo3ifc7z99Qr8QNvgjZTqxnpYNr9
-         0jo5lMejdXZ6UMF0MeurfBH/O9PIwhUpsXO+wIIAdOQ0ZLefAayn54B/BzDVOq9v7n9e
-         0f3nqUkO8z4oXGCVs6AhDOyiiN/Kyere4cPhpBQ8vQgvmuMdMRBOPxhaQ9w3EPGCSKUh
-         wGwQ==
+        bh=mLBhqc2CfVFX3pSGzYlz5mlevC+IfeuDoZjqLxaF6sM=;
+        b=UzCc/zW8GNlEXZiHHfJSceU86ejjcMBFJUAY/0cWpYgnbmiOioVTNJotqPjH4MivRE
+         Kw5QerlIAvE1Ha+xrOtbGtsxce+lqodfEljrd4WolPE02ABNeQT2DP4TdszRk6Pba5FF
+         3CO6yYVjRor7mgGl0pQuvV1UBRaGzc6q/Gspqvf2dzYBxTheH0weFUYaZn0Qn6O3RTxL
+         M2RfZx1mfR/lJ6vowGemCrJxBnFnmCjzpxB5cVxRQxOZjF797UhPfKicunYsboRFVJQx
+         8wTxeOHHzmncfYjJTMirh8FIRF/qi3rFEcazQS5qwHdQsPEl/klrkoj1CmXGuc5NBHum
+         5CUg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689843419; x=1692435419;
+        d=1e100.net; s=20221208; t=1689844356; x=1692436356;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=HuBtnBic7enS4cLJ/qv3iEzDo3EKyWHxfta/cthROig=;
-        b=PBFj435iUoUAg3g7QTo4DwndEmai/9sUJAGAUJUdKH/dqYhJs0gLc5KwekDY3H3mHt
-         txhx61o+gZalNOJejF4Tl6YEaWUlDLeRq8z6pRHLezDwLGv9kSYOSm3LWFnJjl32Ti0T
-         T7JiJvW1XXa3C9eAsKfU8bndG8bHxV2cDVdjNiJz8R8eyax/4y+I7f9suPhf1G/l/GH+
-         b80cBJZ9yQNCcW2NBGZht3br8u88ivUnH1HFUE6zYw97d1kLWc+sd7uZfUxwjv9CtGWX
-         fz1RAMEoXC2sXbPMTIkEIBuTlOm+pb4LIIveXj2kNhxnoEihGPRxfJDJWkkKRCu/V1nN
-         AcBQ==
-X-Gm-Message-State: ABy/qLbjcRjVroz4eqNDYOES1s12n+gYI+ljvqRmHp6A725nqFnQm70w
-        dtbvgKCRMIODkjWVDG72xl2qDw==
-X-Google-Smtp-Source: APBJJlGXW5kVbKoCJ8kQrakz+RYqHiDbkxdql8z6yYJGcvbpP1eL1k2a5ki+JQQgjhbyf+aVm6oF2A==
-X-Received: by 2002:a2e:9316:0:b0:2b9:55c9:c228 with SMTP id e22-20020a2e9316000000b002b955c9c228mr1325317ljh.27.1689843418974;
-        Thu, 20 Jul 2023 01:56:58 -0700 (PDT)
+        bh=mLBhqc2CfVFX3pSGzYlz5mlevC+IfeuDoZjqLxaF6sM=;
+        b=Jpy9ZxDQNRlRY2OE8gdOXf6Rt2CJoXfW7mrRXmTFGlKOcG4C8aiweMjxXS7Gv/SBTQ
+         /LjoXDln8COObBw6fvU3+Ulgv92Hi7K4q4Cpnxfb+QXIKZ0m9UgeSDipjueCRzmS0s1w
+         cGsoe/Jf2kTQuXYBlW3XAugNTEkIig2k+K2mLb2HMv4RKhCkuIzd8nZvSyc7ycWxCkK8
+         ND6T22t3sQeg8HbOu4NfCU87omGuLQjhprnBTSXJah79FviB2eisHSPo+VyYpnTo76Ji
+         Kwee0oVlE4Xdq9I9hxdsPYnY+HGqCLzF4jLiSdcaoGfOWy+kEUkwaWRef6Gg08dylPP5
+         X+xA==
+X-Gm-Message-State: ABy/qLZFtpjQUiyIuV4aPPn/pYwWqLm8KQXGFhipl/V0G4z8RR39z2gj
+        AdDJZBQcE3EBcxOcuYJx80BzRzJGqjeDWg/U0gw=
+X-Google-Smtp-Source: APBJJlFyqabXcBinhEE6qmbAkQmoFxuTmiSDb/e+O0iJKWJOq7quud5femdWEEDE1R6DbBh2mNZlTQ==
+X-Received: by 2002:a05:6512:20c3:b0:4fb:92df:a27c with SMTP id u3-20020a05651220c300b004fb92dfa27cmr1553589lfr.25.1689843512334;
+        Thu, 20 Jul 2023 01:58:32 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id n15-20020a1c720f000000b003fc0505be19sm638037wmc.37.2023.07.20.01.56.57
+        by smtp.gmail.com with ESMTPSA id 12-20020a05600c020c00b003fc16ee2864sm633408wmi.48.2023.07.20.01.58.30
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 20 Jul 2023 01:56:58 -0700 (PDT)
-Message-ID: <af890343-824c-7b68-ba27-dbaa4fa5b863@linaro.org>
-Date:   Thu, 20 Jul 2023 10:56:56 +0200
+        Thu, 20 Jul 2023 01:58:31 -0700 (PDT)
+Message-ID: <5fdfe7b2-0afb-f7a1-c29a-4a7884ff8f1c@linaro.org>
+Date:   Thu, 20 Jul 2023 10:58:29 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: ipq5018: add support for the RDP415
- variant
+Subject: Re: [PATCH 0/2] Add initial support for RDP404 of IPQ5018 family
 Content-Language: en-US
 To:     Hariharan K <quic_harihk@quicinc.com>, agross@kernel.org,
         andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
@@ -65,68 +64,32 @@ To:     Hariharan K <quic_harihk@quicinc.com>, agross@kernel.org,
 Cc:     quic_srichara@quicinc.com, quic_sjaganat@quicinc.com,
         quic_kathirav@quicinc.com, quic_arajkuma@quicinc.com,
         quic_anusha@quicinc.com
-References: <20230720074846.20350-1-quic_harihk@quicinc.com>
- <20230720074846.20350-3-quic_harihk@quicinc.com>
+References: <20230720074302.13585-1-quic_harihk@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230720074846.20350-3-quic_harihk@quicinc.com>
+In-Reply-To: <20230720074302.13585-1-quic_harihk@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/07/2023 09:48, Hariharan K wrote:
+On 20/07/2023 09:43, Hariharan K wrote:
 > Add the initial device tree support for the Reference Design
-> Platform(RDP) 415 based on IPQ5018 family of SoC. This patch
+> Platform(RDP) 404 based on IPQ5018 family of SoC. This patch
 > carries the support for Console UART and eMMC.
 > 
-> Signed-off-by: Hariharan K <quic_harihk@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/Makefile           |  1 +
->  arch/arm64/boot/dts/qcom/ipq5018-rdp415.dts | 49 +++++++++++++++++++++
->  2 files changed, 50 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/ipq5018-rdp415.dts
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index 6334e552b7c1..53df7f24488a 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -4,6 +4,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= apq8039-t2.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= apq8094-sony-xperia-kitakami-karin_windy.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= apq8096-db820c.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= apq8096-ifc6640.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= ipq5018-rdp415.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= ipq5018-rdp432-c2.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= ipq5332-rdp441.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= ipq5332-rdp442.dtb
-> diff --git a/arch/arm64/boot/dts/qcom/ipq5018-rdp415.dts b/arch/arm64/boot/dts/qcom/ipq5018-rdp415.dts
-> new file mode 100644
-> index 000000000000..5c4b43f76a48
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/ipq5018-rdp415.dts
-> @@ -0,0 +1,49 @@
-> +// SPDX-License-Identifier: GPL-2.0+ OR BSD-3-Clause
-> +/*
-> + * IPQ5018 MP03.3-C2 board device tree source
-> + * Copyright (c) 2023, The Linux Foundation. All rights reserved.
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "ipq5018-rdp-common.dtsi"
+> This series is based on the below series,
+> https://lore.kernel.org/lkml/20230720072938.315
+> 46-1-quic_harihk@quicinc.com/
 
-I don't understand this. You just added in in the same moment in
-different patchset, so why creating this fake dependency?
-
-It makes review difficult, applying even more.
-
-Please organize your patches in some logical work.
+Nope. You make it very difficult for us to review and follow your
+submissions. Especially considering issues in the old ipq5018 submission.
 
 Best regards,
 Krzysztof
