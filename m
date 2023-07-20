@@ -2,158 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AED9375AAC8
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 11:29:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 66F7675AAEE
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 11:34:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230281AbjGTJ3w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jul 2023 05:29:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59624 "EHLO
+        id S230223AbjGTJeW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jul 2023 05:34:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34180 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229933AbjGTJ3d (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 05:29:33 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51EF93961F;
-        Thu, 20 Jul 2023 02:16:08 -0700 (PDT)
-Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+        with ESMTP id S230245AbjGTJeJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 05:34:09 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A794D4C23;
+        Thu, 20 Jul 2023 02:29:03 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
          key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
         (No client certificate requested)
         (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 7E3686607083;
-        Thu, 20 Jul 2023 10:16:06 +0100 (BST)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 7EAC566003AE;
+        Thu, 20 Jul 2023 10:28:34 +0100 (BST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1689844567;
-        bh=RS3D7qGMh5ZjtLMh7J5GSgr8hhXOOvN9RiKn2MLxZCM=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=JJPIhuBqC+hCROartfkj7tc548eLIs207EAB6dKzvEUNySYWuBdiSZ68gmqmlBMX5
-         RhO9HB63iA8MShcPKAA1brEW2ECkavTaEbfzTxvwmvkmGDqrrwu79wDzPvkIrwWVcB
-         DfXhGtW3MwQN9sz50J9dQ8lwR6VuIFQ+aeozAAOiIRzAczFXp+a1Txz382YJwrzBCH
-         7yDdz1/uFD0RtzCbvb52XpBIhj8fMRBK/0Ub4VqqPAmt0ahaDpQcO90aQ7K/NeY0w2
-         yUNbkveIdhJU4t25gJkKChDxBxRahvMrQBUfUZ2T62Q1s//iU+NmUOatPafBJVt577
-         zw5gUV7wAobjg==
+        s=mail; t=1689845315;
+        bh=/fmhkfXqLxYUE88SAwWdEzOCDwmhfmSVE7H3+k13wsQ=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=CAIkKnCCw++xNSk6DMeMVGTtR6LMHQ4LluzEJvw2CK00Wzo1+JkP2H0FhwccOgDc5
+         ZdbPuhbjQmlI++UJRcoD9LJYHOUsYizTGB14Xe9N8MMoktRVBbTc0TDrdKmgB16WH/
+         fzY23holXcJydzD+tq2bbCuYwVJDGsq3CgTP6T7KbjMaePjpip0Gnjryqb+BvqYuOb
+         2+flXGYL34ONytFH75GxR6+mqGzOMPX4V49hqv++uCWR5ilkyR7Us+61Qm+8+JQVzu
+         ajjOohlVC3rxZPVgYM5kw527tiWR5nBrmTBpohwfUWMbevC9oVEvzY4sl2uV/sCvwb
+         eH/v5iUL1G/TQ==
+Message-ID: <faf44774-624c-b29c-8661-60dc1f1a0457@collabora.com>
+Date:   Thu, 20 Jul 2023 11:28:32 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH v3,2/3] drm/mediatek: dp: Add the audio packet flag to
+ mtk_dp_data struct
+Content-Language: en-US
+To:     Shuijing Li <shuijing.li@mediatek.com>, chunkuang.hu@kernel.org,
+        p.zabel@pengutronix.de, airlied@gmail.com, daniel@ffwll.ch,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, matthias.bgg@gmail.com, jitao.shi@mediatek.com
+Cc:     dri-devel@lists.freedesktop.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20230720082604.18618-1-shuijing.li@mediatek.com>
+ <20230720082604.18618-3-shuijing.li@mediatek.com>
 From:   AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>
-To:     matthias.bgg@gmail.com
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, phone-devel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, kernel@collabora.com,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Subject: [PATCH 3/3] arm64: dts: mediatek: mt6795-xperia-m5: Add DSI Display and its vregs
-Date:   Thu, 20 Jul 2023 11:15:59 +0200
-Message-Id: <20230720091559.86406-4-angelogioacchino.delregno@collabora.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230720091559.86406-1-angelogioacchino.delregno@collabora.com>
-References: <20230720091559.86406-1-angelogioacchino.delregno@collabora.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230720082604.18618-3-shuijing.li@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for the DSI display found on the Sony Xperia M5, including
-the necessary regulators configuration for it.
+Il 20/07/23 10:26, Shuijing Li ha scritto:
+> The audio packet arrangement function is to only arrange audio.
+> packets into the Hblanking area. In order to align with the HW
+> default setting of mt8195, this function needs to be turned off.
+> 
+> Signed-off-by: Shuijing Li <shuijing.li@mediatek.com>
+> Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
 
-Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
- .../dts/mediatek/mt6795-sony-xperia-m5.dts    | 69 +++++++++++++++++++
- 1 file changed, 69 insertions(+)
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt6795-sony-xperia-m5.dts b/arch/arm64/boot/dts/mediatek/mt6795-sony-xperia-m5.dts
-index ecdf00707a44..7364c7278276 100644
---- a/arch/arm64/boot/dts/mediatek/mt6795-sony-xperia-m5.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt6795-sony-xperia-m5.dts
-@@ -66,6 +66,65 @@ bootloader-region@46000000 {
- 			no-map;
- 		};
- 	};
-+
-+	vreg_disp_avdd: regulator-disp-avdd {
-+		compatible = "regulator-fixed";
-+		regulator-name = "disp_avdd";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		gpio = <&pio 138 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+	};
-+
-+	vreg_disp_avee: regulator-disp-avee {
-+		compatible = "regulator-fixed";
-+		regulator-name = "disp_avee";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		gpio = <&pio 139 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+	};
-+
-+	vreg_disp_vddh: regulator-disp-vddh {
-+		compatible = "regulator-fixed";
-+		regulator-name = "disp_vddh";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+};
-+
-+&dsi0 {
-+	status = "okay";
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	panel: panel@0 {
-+		compatible = "sharp,ls060t1sx01";
-+		reg = <0>;
-+		avdd-supply = <&vreg_disp_avdd>;
-+		avee-supply = <&vreg_disp_avee>;
-+		vddi-supply = <&mt6331_vgp3_reg>;
-+		vddh-supply = <&vreg_disp_vddh>;
-+		reset-gpios = <&pio 106 GPIO_ACTIVE_LOW>;
-+		backlight = <&backlight_lcd0>;
-+
-+		pinctrl-0 = <&disp_rst_pins>;
-+		pinctrl-names = "default";
-+
-+		port {
-+			panel_in: endpoint {
-+				remote-endpoint = <&dsi0_out>;
-+			};
-+		};
-+	};
-+
-+	port {
-+		dsi0_out: endpoint {
-+			remote-endpoint = <&panel_in>;
-+		};
-+	};
- };
- 
- &fhctl {
-@@ -180,7 +239,17 @@ &mmc2 {
- 	status = "okay";
- };
- 
-+&mt6331_vgp3_reg {
-+	regulator-min-microvolt = <1800000>;
-+};
-+
- &pio {
-+	disp_rst_pins: lcm-pins {
-+		pins-rst {
-+			pinmux = <PINMUX_GPIO106__FUNC_GPIO106>;
-+		};
-+	};
-+
- 	mmc0_pins_default: emmc-sdr-pins {
- 		pins-cmd-dat {
- 			pinmux = <PINMUX_GPIO154__FUNC_MSDC0_DAT0>,
--- 
-2.40.1
 
