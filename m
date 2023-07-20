@@ -2,106 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F185675A6E3
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 08:49:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B4F8075A713
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 08:59:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231150AbjGTGtL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jul 2023 02:49:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59002 "EHLO
+        id S231303AbjGTG7f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jul 2023 02:59:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37016 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230071AbjGTGtK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 02:49:10 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A477110A;
-        Wed, 19 Jul 2023 23:49:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1689835748; x=1721371748;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=GvA2a+7n8IaNZUhAWJDCYoLOe+H+gng2myj8Io9r+08=;
-  b=FwOl49Jto24tTo9R5q851F8dBZNEYFzefjRQ0/0nYJj+KMvx8S3U1/mA
-   m599QUGkoiXT40jifbb3+AylS/yjGcf53KANOLQcznDB4zgwo5xvgi9s/
-   6L3CsFfWGBXefPIOpHPbp9sieGgelCZVg1570qxnvYyy8AOQ1ox/7TbYz
-   ELR1xGPLt1LTL3dV9qC5lYK9FwUi3RJ6oAlTFEnGV7h4TSpItwLN9uTIG
-   nSBDabVFSGRyQ0suEqVrsjAZ1vDQ2zDxWE3LBl93+vQMM5wbUOQI5yrfy
-   EDmuLG/fBuD2A3BhMttWnPF7YTBhBDZZcbVBiDq3f0ios1IG/R9NBeqvB
-   Q==;
-X-IronPort-AV: E=Sophos;i="6.01,218,1684825200"; 
-   d="asc'?scan'208";a="221271702"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 19 Jul 2023 23:49:07 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Wed, 19 Jul 2023 23:49:01 -0700
-Received: from wendy (10.10.115.15) by chn-vm-ex01.mchp-main.com
- (10.10.85.143) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
- Transport; Wed, 19 Jul 2023 23:48:59 -0700
-Date:   Thu, 20 Jul 2023 07:48:26 +0100
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     Changhuang Liang <changhuang.liang@starfivetech.com>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor@kernel.org>,
-        Walker Chen <walker.chen@starfivetech.com>,
-        Hal Feng <hal.feng@starfivetech.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v4 0/4] Add JH7110 AON PMU support
-Message-ID: <20230720-egging-preheated-02752a588f59@wendy>
-References: <20230519060202.15296-1-changhuang.liang@starfivetech.com>
- <7fe9bc9a-2bb1-6c5c-2ed5-1eee85b8f299@starfivetech.com>
+        with ESMTP id S231266AbjGTG7d (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 02:59:33 -0400
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1575DCC;
+        Wed, 19 Jul 2023 23:59:29 -0700 (PDT)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id 21FB424E3BF;
+        Thu, 20 Jul 2023 14:59:27 +0800 (CST)
+Received: from EXMBX171.cuchost.com (172.16.6.91) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 20 Jul
+ 2023 14:59:27 +0800
+Received: from [192.168.125.127] (113.72.147.86) by EXMBX171.cuchost.com
+ (172.16.6.91) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 20 Jul
+ 2023 14:59:23 +0800
+Message-ID: <5e4d5920-f346-a6ae-8548-f70d9fa911fe@starfivetech.com>
+Date:   Thu, 20 Jul 2023 14:59:21 +0800
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="ndB0Wq94O4LSYrXb"
-Content-Disposition: inline
-In-Reply-To: <7fe9bc9a-2bb1-6c5c-2ed5-1eee85b8f299@starfivetech.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,
-        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v1 1/9] dt-bindings: PCI: Add PLDA XpressRICH PCIe host
+ common properties
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Daire McNamara <daire.mcnamara@microchip.com>,
+        Conor Dooley <conor@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>
+CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-riscv@lists.infradead.org>, <linux-pci@vger.kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Mason Huo <mason.huo@starfivetech.com>,
+        Leyfoon Tan <leyfoon.tan@starfivetech.com>,
+        Kevin Xie <kevin.xie@starfivetech.com>
+References: <20230719102057.22329-1-minda.chen@starfivetech.com>
+ <20230719102057.22329-2-minda.chen@starfivetech.com>
+ <c1dea7c8-2bc4-a113-0d40-098228fe3860@linaro.org>
+From:   Minda Chen <minda.chen@starfivetech.com>
+In-Reply-To: <c1dea7c8-2bc4-a113-0d40-098228fe3860@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [113.72.147.86]
+X-ClientProxiedBy: EXCAS063.cuchost.com (172.16.6.23) To EXMBX171.cuchost.com
+ (172.16.6.91)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---ndB0Wq94O4LSYrXb
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Thu, Jul 20, 2023 at 11:46:27AM +0800, Changhuang Liang wrote:
-> On 2023/5/19 14:01, Changhuang Liang wrote:
-> > This patchset adds aon power domain driver for the StarFive JH7110 SoC.
-> > It is used to turn on/off dphy rx/tx power switch. It also can use sysc=
-on
-> > operation. The series has been tested on the VisionFive 2 board.
-> >=20
-> > This patchset should be applied after the patchset [1]:
-> > [1] https://lore.kernel.org/all/20230512022036.97987-1-xingyu.wu@starfi=
-vetech.com/
-=20
-> Pll series is accepted, should I need to send a new version about this se=
-ries?
-
-I don't think so, there were no changes requested here. Let me check.
 
 
-
---ndB0Wq94O4LSYrXb
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZLjYugAKCRB4tDGHoIJi
-0u2zAPwIPO8ScgeJoGf2C5V8jehHZbn7PWAwnUgwzUy6EtGXpwEAlbSanXyr45PU
-iF7FqiENoOWD67I/oCtJ0J0d1JvZAAY=
-=8iAf
------END PGP SIGNATURE-----
-
---ndB0Wq94O4LSYrXb--
+On 2023/7/19 18:52, Krzysztof Kozlowski wrote:
+> On 19/07/2023 12:20, Minda Chen wrote:
+>> Add PLDA XpressRICH PCIe host common properties dt-binding doc.
+>> Microchip PolarFire PCIe host using PLDA IP.
+>> Extract properties from Microchip PolarFire PCIe host.
+>> 
+>> Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
+>> Reviewed-by: Hal Feng <hal.feng@starfivetech.com>
+>> ---
+>>  .../pci/plda,xpressrich-pcie-common.yaml      | 72 +++++++++++++++++++
+>>  1 file changed, 72 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/pci/plda,xpressrich-pcie-common.yaml
+> 
+> How is it related with existing plda,xpressrich3-axi?
+> 
+ yes, I just found plda,xpressrich3-axi. It is same IP in ARM juno soc. But it is firmware-initialized while microchip and starfive not.
+maybe I can rename this file to plda,xpressrich3-axi-common.yaml
+>> 
+>> diff --git a/Documentation/devicetree/bindings/pci/plda,xpressrich-pcie-common.yaml b/Documentation/devicetree/bindings/pci/plda,xpressrich-pcie-common.yaml
+>> new file mode 100644
+>> index 000000000000..3627a846c5d1
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/pci/plda,xpressrich-pcie-common.yaml
+>> @@ -0,0 +1,72 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/pci/plda,xpressrich-pcie-common.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: PLDA XpressRICH PCIe host common properties
+>> +
+>> +maintainers:
+>> +  - Daire McNamara <daire.mcnamara@microchip.com>
+>> +  - Minda Chen <minda.chen@starfivetech.com>
+>> +
+>> +description:
+>> +  Generic PLDA XpressRICH PCIe host common properties.
+>> +
+>> +select: false
+> 
+> This should not be needed.
+> 
+ok
+>> +
+>> +properties:
+>> +  reg:
+>> +    description:
+>> +      At least host IP register set and configuration space are
+> 
+> "At least" does not fit here since you do not allow anything else.
+> 
+I will delete "At least"
+>> +      required for normal controller work.
+>> +    maxItems: 2
+>> +
+>> +  reg-names:
+>> +    oneOf:
+>> +      - items:
+>> +          - const: cfg
+>> +          - const: apb
+>> +      - items:
+>> +          - const: host
+>> +          - const: cfg
+> 
+> Maybe keep similar order, so cfg followed by host?
+> 
+I will follow cfg, apb
+> Best regards,
+> Krzysztof
+> 
