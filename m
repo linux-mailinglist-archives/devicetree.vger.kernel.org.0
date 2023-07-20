@@ -2,178 +2,256 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 84ABD75A634
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 08:20:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8527E75A648
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 08:25:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229751AbjGTGU4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jul 2023 02:20:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34746 "EHLO
+        id S230133AbjGTGZv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jul 2023 02:25:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36798 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229591AbjGTGU4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 02:20:56 -0400
-Received: from mx3.molgen.mpg.de (mx3.molgen.mpg.de [141.14.17.11])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0158B210C;
-        Wed, 19 Jul 2023 23:20:53 -0700 (PDT)
-Received: from [192.168.0.2] (ip5f5aee77.dynamic.kabel-deutschland.de [95.90.238.119])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: pmenzel)
-        by mx.molgen.mpg.de (Postfix) with ESMTPSA id AD75261E5FE04;
-        Thu, 20 Jul 2023 08:20:05 +0200 (CEST)
-Message-ID: <dfda43af-e9b4-85bf-e165-02127e02fbf0@molgen.mpg.de>
-Date:   Thu, 20 Jul 2023 08:20:05 +0200
+        with ESMTP id S230125AbjGTGZr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 02:25:47 -0400
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CBC32128
+        for <devicetree@vger.kernel.org>; Wed, 19 Jul 2023 23:25:44 -0700 (PDT)
+Received: by mail-wr1-x434.google.com with SMTP id ffacd0b85a97d-314417861b9so297069f8f.0
+        for <devicetree@vger.kernel.org>; Wed, 19 Jul 2023 23:25:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1689834342; x=1692426342;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=xQMHOjJYZ76TGhG8B0nlx/g+YkMmgmasZcqaKFcuJjM=;
+        b=zeE415wH8jka8fvaJ69vhsN2OPoAzBmHBD40wozzyCzY7WwBPtXOddqoB5lhZtt6o/
+         xoQvfNxWFWisjOHDEy5OKB4m1Tc+q4O+yGIC81p268YuN5K0iEYLhnfjicD7y0P6gDFU
+         ddBqrW6e8lX96qowmYGINym9Fchz5uR0uzhwfu41pzu7OkB+Iv/fgcILX6zq6ecg209N
+         CB1yHwqLs9itz57agB4yfWwLL02ry8X7HVB1tncj+hM36MDM1jtwvZ2l+tDqkDRZkiqz
+         EufSS/E1P6g0z6LU69/wD3j0BeGxdtRf++iSFue8ZHuRpyO+prFNJNtZ/itJcxMtb9X5
+         HLeQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689834342; x=1692426342;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=xQMHOjJYZ76TGhG8B0nlx/g+YkMmgmasZcqaKFcuJjM=;
+        b=jOb8rhsKAapFTz6qlT4hnXIdbRpLCqYj6Yj6Z5N6yAgdBlMegVMIaPo7wfRYfAa5vl
+         9eQ8kYGPE1RY6EO5l5peg0NECMmFj7054EUoQNTJo89N+8tOuFQt5ne2OrCASWvwKrHQ
+         DgEqfBh9enbj/a1Llf1bmyppXc/xHd3jG3FZYi8aFhMHNu0LsXpaopLIwg4WPT4H7i//
+         cm+4A5v/Dw61n3xmQdkhuRI3U19SNfrfFZ4nI/OJCFY/lT8NkfcLUkgoXeFwS2Z1v/pP
+         RpAM8CgmGfWqqB0FbiAxTbTKkvKbI4NSKKA0HzRd72nS6eRyfHS/1AvJOz3U8D5Gxu7k
+         o+Vw==
+X-Gm-Message-State: ABy/qLbOhMa6i3KrYUHHO/akG2CynCOadkIKXiZXUL+6cDn9jStmTOxS
+        MXFehHCLor58dS81uzrZ9CWQtg==
+X-Google-Smtp-Source: APBJJlErniNxjsytxmWnSd3zFi4m0T93POcwGlPJw9URpkAQIVH3uYPfGB2oNqXPySV7wPgw0iuZhQ==
+X-Received: by 2002:a5d:54c6:0:b0:316:f25c:d0c0 with SMTP id x6-20020a5d54c6000000b00316f25cd0c0mr1489597wrv.16.1689834342327;
+        Wed, 19 Jul 2023 23:25:42 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id o20-20020a5d58d4000000b0031433443265sm284501wrf.53.2023.07.19.23.25.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 19 Jul 2023 23:25:41 -0700 (PDT)
+Message-ID: <4027f2f8-4d60-3907-ec36-4c9b0ca52214@linaro.org>
+Date:   Thu, 20 Jul 2023 08:25:39 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
-Subject: Re: [PATCH 2/4] peci: Add peci-npcm controller driver
+Subject: Re: [PATCH v1 1/2] dt-bindings: usb: rockchip,dwc3: Add RK3588
+ binding
 Content-Language: en-US
-To:     Iwona Winiarska <iwona.winiarska@intel.com>
-Cc:     openbmc@lists.ozlabs.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-        Tyrone Ting <warp5tw@gmail.com>,
-        Benjamin Fair <benjaminfair@google.com>,
-        Avi Fishman <avifishman70@gmail.com>,
-        Patrick Venture <venture@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Sebastian Reichel <sebastian.reichel@collabora.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Tomer Maimon <tmaimon77@gmail.com>
-References: <20230719220853.1029316-1-iwona.winiarska@intel.com>
- <20230719220853.1029316-3-iwona.winiarska@intel.com>
-From:   Paul Menzel <pmenzel@molgen.mpg.de>
-In-Reply-To: <20230719220853.1029316-3-iwona.winiarska@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-rockchip@lists.infradead.org, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, kernel@collabora.com
+References: <20230719174015.68153-1-sebastian.reichel@collabora.com>
+ <20230719174015.68153-2-sebastian.reichel@collabora.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230719174015.68153-2-sebastian.reichel@collabora.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dear Iwona,
+On 19/07/2023 19:40, Sebastian Reichel wrote:
+> RK3588 contains three DWC3 cores. Two of them are connected to
+> dedicated USBDP PHY and can be used in dual-role. The third is
+> connected to one of the shared combo PHYs used for PCIe/SATA/USB3
+> and can only be used in host mode. Since the binding is all about
+> the PHY glueing and involved clocks, separate compatible values
+> have been created for these two types.
 
+The cores are the same. To which phy they are connected to, does not
+justify difference in compatibles. It's still the same devoce.
 
-Am 20.07.23 um 00:08 schrieb Iwona Winiarska:
-> From: Tomer Maimon <tmaimon77@gmail.com>
 > 
-> Add support for Nuvoton NPCM BMC hardware to the Platform Environment
-> Control Interface (PECI) subsystem.
-
-Please elaborate on the implementation, and document the used datasheets.
-
-Additionally, please document how you tested this.
-
-> Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
-> Signed-off-by: Tyrone Ting <warp5tw@gmail.com>
-> Co-developed-by: Iwona Winiarska <iwona.winiarska@intel.com>
-> Signed-off-by: Iwona Winiarska <iwona.winiarska@intel.com>
+> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
 > ---
->   drivers/peci/controller/Kconfig     |  16 ++
->   drivers/peci/controller/Makefile    |   1 +
->   drivers/peci/controller/peci-npcm.c | 298 ++++++++++++++++++++++++++++
->   3 files changed, 315 insertions(+)
->   create mode 100644 drivers/peci/controller/peci-npcm.c
+>  .../bindings/usb/rockchip,rk3399-dwc3.yaml    | 107 ++++++++++++++----
+>  1 file changed, 85 insertions(+), 22 deletions(-)
 > 
-> diff --git a/drivers/peci/controller/Kconfig b/drivers/peci/controller/Kconfig
-> index 2fc5e2abb74a..4f9c245ad042 100644
-> --- a/drivers/peci/controller/Kconfig
-> +++ b/drivers/peci/controller/Kconfig
-> @@ -16,3 +16,19 @@ config PECI_ASPEED
->   
->   	  This driver can also be built as a module. If so, the module will
->   	  be called peci-aspeed.
-> +
-> +config PECI_NPCM
-> +	tristate "Nuvoton NPCM PECI support"
-> +	depends on ARCH_NPCM || COMPILE_TEST
-> +	depends on OF
-> +	select REGMAP_MMIO
-> +	help
-> +	  This option enables PECI controller driver for Nuvoton NPCM7XX
-> +	  and NPCM8XX SoCs. It allows BMC to discover devices connected
-> +	  to it and communicate with them using PECI protocol.
-> +
-> +	  Say Y here if you want support for the Platform Environment Control
-> +	  Interface (PECI) bus adapter driver on the Nuvoton NPCM SoCs.
-> +
-> +	  This support is also available as a module. If so, the module
-> +	  will be called peci-npcm.
-> diff --git a/drivers/peci/controller/Makefile b/drivers/peci/controller/Makefile
-> index 022c28ef1bf0..e247449bb423 100644
-> --- a/drivers/peci/controller/Makefile
-> +++ b/drivers/peci/controller/Makefile
-> @@ -1,3 +1,4 @@
->   # SPDX-License-Identifier: GPL-2.0-only
->   
->   obj-$(CONFIG_PECI_ASPEED)	+= peci-aspeed.o
-> +obj-$(CONFIG_PECI_NPCM)		+= peci-npcm.o
-> diff --git a/drivers/peci/controller/peci-npcm.c b/drivers/peci/controller/peci-npcm.c
-> new file mode 100644
-> index 000000000000..3647e3628a17
-> --- /dev/null
-> +++ b/drivers/peci/controller/peci-npcm.c
-> @@ -0,0 +1,298 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +// Copyright (c) 2019 Nuvoton Technology corporation.
+> diff --git a/Documentation/devicetree/bindings/usb/rockchip,rk3399-dwc3.yaml b/Documentation/devicetree/bindings/usb/rockchip,rk3399-dwc3.yaml
+> index 3159f9a6a0f7..0db4dc86e506 100644
+> --- a/Documentation/devicetree/bindings/usb/rockchip,rk3399-dwc3.yaml
+> +++ b/Documentation/devicetree/bindings/usb/rockchip,rk3399-dwc3.yaml
+> @@ -11,7 +11,13 @@ maintainers:
+>  
+>  properties:
+>    compatible:
+> -    const: rockchip,rk3399-dwc3
+> +    oneOf:
+> +      - items:
+> +          - enum:
+> +              - rockchip,rk3588-dwc3-otg
+> +              - rockchip,rk3588-dwc3-host
+> +          - const: rockchip,rk3399-dwc3
+> +      - const: rockchip,rk3399-dwc3
+>  
+>    '#address-cells':
+>      const: 2
+> @@ -22,35 +28,37 @@ properties:
+>    ranges: true
+>  
+>    clocks:
+> -    items:
+> -      - description:
+> -          Controller reference clock, must to be 24 MHz
+> -      - description:
+> -          Controller suspend clock, must to be 24 MHz or 32 KHz
+> -      - description:
+> -          Master/Core clock, must to be >= 62.5 MHz for SS
+> -          operation and >= 30MHz for HS operation
+> -      - description:
+> -          USB3 aclk peri
+> -      - description:
+> -          USB3 aclk
+> -      - description:
+> -          Controller grf clock
+> +    minItems: 3
+> +    maxItems: 6
+>  
+>    clock-names:
+>      items:
+> -      - const: ref_clk
+> -      - const: suspend_clk
+> -      - const: bus_clk
+> -      - const: aclk_usb3_rksoc_axi_perf
+> -      - const: aclk_usb3
+> -      - const: grf_clk
+> +      oneOf:
+> +        - enum:
+> +            - ref
+> +            - ref_clk
 
-No dot/period at the end.
+This is not oneOf. You cannot have here one clock. There is also no
+point in making all these changes here,.
 
-[…]
+> +        - enum:
+> +            - suspend
+> +            - suspend_clk
+> +        - enum:
+> +            - bus
+> +            - bus_clk
+> +        - const: aclk_usb3_rksoc_axi_perf
+> +        - const: aclk_usb3
+> +        - const: grf_clk
+> +        - const: utmi
+> +        - const: php
+> +        - const: pipe
+> +    minItems: 3
+> +    maxItems: 6
+>  
+>    resets:
+>      maxItems: 1
+>  
+>    reset-names:
+> -    const: usb3-otg
+> +    enum:
+> +      - usb3-host
+> +      - usb3-otg
 
-> +static int npcm_peci_xfer(struct peci_controller *controller, u8 addr, struct peci_request *req)
-> +{
-> +	struct npcm_peci *priv = dev_get_drvdata(controller->dev.parent);
-> +	unsigned long timeout = msecs_to_jiffies(priv->cmd_timeout_ms);
-> +	unsigned int msg_rd;
-> +	u32 cmd_sts;
-> +	int i, ret;
-> +
-> +	/* Check command sts and bus idle state */
-> +	ret = regmap_read_poll_timeout(priv->regmap, NPCM_PECI_CTL_STS, cmd_sts,
-> +				       !(cmd_sts & NPCM_PECI_CTRL_START_BUSY),
-> +				       NPCM_PECI_IDLE_CHECK_INTERVAL_USEC,
-> +				       NPCM_PECI_IDLE_CHECK_TIMEOUT_USEC);
-> +	if (ret)
-> +		return ret; /* -ETIMEDOUT */
-> +
-> +	spin_lock_irq(&priv->lock);
-> +	reinit_completion(&priv->xfer_complete);
-> +
-> +	regmap_write(priv->regmap, NPCM_PECI_ADDR, addr);
-> +	regmap_write(priv->regmap, NPCM_PECI_RD_LENGTH, NPCM_PECI_WR_LEN_MASK & req->rx.len);
-> +	regmap_write(priv->regmap, NPCM_PECI_WR_LENGTH, NPCM_PECI_WR_LEN_MASK & req->tx.len);
-> +
-> +	if (req->tx.len) {
-> +		regmap_write(priv->regmap, NPCM_PECI_CMD, req->tx.buf[0]);
-> +
-> +		for (i = 0; i < (req->tx.len - 1); i++)
-> +			regmap_write(priv->regmap, NPCM_PECI_DAT_INOUT(i), req->tx.buf[i + 1]);
-> +	}
-> +
-> +#if IS_ENABLED(CONFIG_DYNAMIC_DEBUG)
-> +	dev_dbg(priv->dev, "addr : %#02x, tx.len : %#02x, rx.len : %#02x\n",
-> +		addr, req->tx.len, req->rx.len);
-> +	print_hex_dump_bytes("TX : ", DUMP_PREFIX_NONE, req->tx.buf, req->tx.len);
-> +#endif
+I don't see a point in changing this.
 
-The preprocessor guards are not needed, as it’s taken care of in 
-`include/linux/printk.h`. Also in other parts of the patch.
+>  
+>  patternProperties:
+>    '^usb@':
+> @@ -68,6 +76,61 @@ required:
+>    - resets
+>    - reset-names
+>  
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          const: rockchip,rk3399-dwc3
+> +    then:
+> +      properties:
+> +        clocks:
+> +          minItems: 6
+> +        clock-names:
+> +          items:
+> +            - const: ref_clk
+> +            - const: suspend_clk
+> +            - const: bus_clk
+> +            - const: aclk_usb3_rksoc_axi_perf
+> +            - const: aclk_usb3
+> +            - const: grf_clk
+> +        reset-names:
+> +          const: usb3-otg
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: rockchip,rk3588-dwc3-otg
+> +    then:
+> +      properties:
+> +        clocks:
+> +          maxItems: 3
+> +        clock-names:
+> +          items:
+> +            - const: ref
+> +            - const: suspend
+> +            - const: bus
 
-[…]
+Use the same clock names.
 
-> +module_platform_driver(npcm_peci_driver);
-> +
-> +MODULE_AUTHOR("Tomer Maimon <tomer.maimon@nuvoton.com>");
-> +MODULE_DESCRIPTION("NPCM PECI driver");
-> +MODULE_LICENSE("GPL");
-> +MODULE_IMPORT_NS(PECI);
+> +        reset-names:
+> +          const: usb3-otg
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: rockchip,rk3588-dwc3-host
+> +    then:
+> +      properties:
+> +        clocks:
+> +          minItems: 6
+> +        clock-names:
+> +          items:
+> +            - const: ref
+> +            - const: suspend
+> +            - const: bus
+> +            - const: utmi
+> +            - const: php
+> +            - const: pipe
 
-Also add an entry to `MAINTAINERS`, if Tomer is going to be the maintainer?
+Same clock names
+
+> +        reset-names:
+> +          const: usb3-host
+
+Same reset name.
 
 
-Kind regards,
+Best regards,
+Krzysztof
 
-Paul
