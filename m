@@ -2,117 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 693F075A9DA
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 10:57:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 273AB75A9D6
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 10:57:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230168AbjGTI5X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jul 2023 04:57:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38142 "EHLO
+        id S229674AbjGTI5U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jul 2023 04:57:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38294 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231271AbjGTIv2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 04:51:28 -0400
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15999268E
-        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 01:51:27 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-4fb77f21c63so790943e87.2
-        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 01:51:26 -0700 (PDT)
+        with ESMTP id S231319AbjGTIyW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 04:54:22 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1EEBA268E
+        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 01:54:20 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id 2adb3069b0e04-4f4b2bc1565so777062e87.2
+        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 01:54:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689843085; x=1692435085;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        d=linaro.org; s=google; t=1689843258; x=1692435258;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Iryqe6IYk7QOmw7lzVtrSDC7qmopTTAsU/vS6TXh6QU=;
-        b=Jsfh0/YDtGYIzUKXINukMBKQWdQZIx66DB90J9CobzX2UiqGMnA5YQsHWwGgPmZXQd
-         QwYRTbBW+ngXamjPPZJe2sMxdFRs2k9YMNfeIVW77e1WYy3roABklF10qFzlONIaTFZH
-         ejcNlGrgeRtFZ48UVGllE6VQs0WkY9iYSem5DavhxbOJC0+xLV7u28P0qYIqNHDMZRFw
-         D1VFbStlmCNYbwaRPTTsYap9ZGXtq+0VTYlvRXYsOq5EG6DRokKYk6d/ymHsSuQBSUqL
-         MHCmT1KIi9AT1t1C5GhfIXVsy4gitnZtFqldxTcDbuJCHSYRLzwCPG/eO3CH0XIfOdHD
-         xV0g==
+        bh=hr3GYuI4RGrQA8MLYXyJLt2ld5PTqpatMnFPkHbCrNI=;
+        b=Shpu1expb9UmeNTzkrqLpZgKTTgNTFnWaaLHFYEs8X9t52qsEc2qqYzhSS1wKDUyy1
+         n4EpvR8sgcpL9FLYrJpRYmBpPkbJYzeu10lN6wdKe7Ba3JMVPmK04th61cyw1jW0vioh
+         2k3CoD0TVIieY7nwHyzHbt5z0gDLKPnvLw6UMDKlMyXki3gNfYPvuUq+SrKIZ7RFQuBd
+         Px9Xf/3N008B/kEnqXS6fqGuDaol6sbJt4f/XDWyLT7f7F4gTOg0Y1UdNeEYpRgxFEy7
+         DaXKvwDjYnKA9he3hNDcHOhrri5jmEMFtNNli0s0ezLRD1kzQDFHIjgsiSo66GqPF4gC
+         ZR0w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689843085; x=1692435085;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        d=1e100.net; s=20221208; t=1689843258; x=1692435258;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Iryqe6IYk7QOmw7lzVtrSDC7qmopTTAsU/vS6TXh6QU=;
-        b=HYggBgqNEHvkoQVLgqVUo97vQtakc7DPaR64B2RAzcklbBLUVsap+xN1sAKUxCKfJB
-         2C8ELNoYO74P0ZdpgxmbQTkdIKYlI65rxETIx5v4nLp79h4N6brjzuWwPR2qIhcamZAE
-         VRXAW8moFjJTbyBaDVTFkfldPYpLSntuChTAuvAbXc5EX1u5Vu4Xg+ZGjjE7IPKeyh7B
-         566wsrF3fVH5cIl2CqxfRC+AEu7hKXxVnXWyd4RmY7cFi6SYHdJ4Bvl8kuKXXBHetJbx
-         b8TlCrqtc2wZXluag1ogUtTlrcDui9+SgykDkr0m5WZ8eCBZY/225lU0oj8RUKTEm4Gs
-         0RuA==
-X-Gm-Message-State: ABy/qLYrBtp7ljZyzU0KbCkOBzCXxvb4+Wy7SmjOJYrIB2UC0VPVFy3B
-        EY0QMTLy03exKeANtXYNVyDWyA==
-X-Google-Smtp-Source: APBJJlGjO0AMcdieLBGIAuZpbyq7vpGm3I0E4v7tVp46870Ky9X2NCiMjnaXJqfDV5ubNTUzxM75jw==
-X-Received: by 2002:a19:9117:0:b0:4fd:d044:cb5b with SMTP id t23-20020a199117000000b004fdd044cb5bmr1508964lfd.55.1689843085093;
-        Thu, 20 Jul 2023 01:51:25 -0700 (PDT)
+        bh=hr3GYuI4RGrQA8MLYXyJLt2ld5PTqpatMnFPkHbCrNI=;
+        b=iX6goazkZbc2pZ1DBNvtoOMmD0AeIpLEpwF3wQiRJMcN9XlxqmoBzjsD1xcS8NLPX+
+         jtJurvUzJTcyg2qSvE/UZJCccahMPhahCGBvTWxIP7bVZAd4kE7kk1j+bSN5FnViDgfK
+         UcjVY2gYWvRAJ3jL9V5hIxxYv9IlxH8tWCSfup6fU/liwDPQBVVOUhA/fSWDLQSOpeJP
+         4iIPELmfqYthYBWR97vK5jW3N972GchQ7D4DobF6pnGs5c1vtTLrtle4+AGwXo/dJT4L
+         2XC/JzIuuLBR/EIzqk9oVqvjGaAlT8btufZ8Ai6mW6kl5WuiMvutTf4wM1HoYG0GLoaS
+         9Nnw==
+X-Gm-Message-State: ABy/qLan2b6glZY46OIyYT/6AEef2vO/AscO8Z9I7XybVHwnnzdYy0oo
+        CyNTJoP3lgqpRYbmpkEX05rS5A==
+X-Google-Smtp-Source: APBJJlEh3NvNHBbbxheUFFyvpgKd2C0hcz7XJqCW4yZ6/zAz5ujRsINO2b569mPpxzPaezD6Arr+tg==
+X-Received: by 2002:a19:ca4a:0:b0:4fb:8dcc:59e5 with SMTP id h10-20020a19ca4a000000b004fb8dcc59e5mr1681346lfj.39.1689843258307;
+        Thu, 20 Jul 2023 01:54:18 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id g1-20020aa7c841000000b0051e576dbb57sm433814edt.61.2023.07.20.01.51.23
+        by smtp.gmail.com with ESMTPSA id a12-20020a5d53cc000000b00313f9a0c521sm657889wrw.107.2023.07.20.01.54.13
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 20 Jul 2023 01:51:24 -0700 (PDT)
-Message-ID: <fb07d227-f786-c7a2-5295-2254495e4a5a@linaro.org>
-Date:   Thu, 20 Jul 2023 10:51:22 +0200
+        Thu, 20 Jul 2023 01:54:17 -0700 (PDT)
+Message-ID: <a6006558-5eca-a8a0-ed61-dfa746f223ae@linaro.org>
+Date:   Thu, 20 Jul 2023 10:54:12 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: ipq9574: add support for various
- RDPs
+Subject: Re: [PATCH v3 00/42] ep93xx device tree conversion
 Content-Language: en-US
-To:     Sridharan S N <quic_sridsn@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230720084534.6461-1-quic_sridsn@quicinc.com>
- <20230720084534.6461-3-quic_sridsn@quicinc.com>
+To:     nikita.shubin@maquefel.me,
+        Hartley Sweeten <hsweeten@visionengravers.com>,
+        Lennert Buytenhek <kernel@wantstofly.org>,
+        Alexander Sverdlin <alexander.sverdlin@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Lukasz Majewski <lukma@denx.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Sebastian Reichel <sre@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
+        Mark Brown <broonie@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, Vinod Koul <vkoul@kernel.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Damien Le Moal <dlemoal@kernel.org>,
+        Sergey Shtylyov <s.shtylyov@omp.ru>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        soc@kernel.org, Liam Girdwood <lgirdwood@gmail.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Andy Shevchenko <andy@kernel.org>,
+        Michael Peters <mpeters@embeddedTS.com>,
+        Kris Bahnsen <kris@embeddedTS.com>
+Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-rtc@vger.kernel.org,
+        linux-watchdog@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-pwm@vger.kernel.org, linux-spi@vger.kernel.org,
+        netdev@vger.kernel.org, dmaengine@vger.kernel.org,
+        linux-mtd@lists.infradead.org, linux-ide@vger.kernel.org,
+        linux-input@vger.kernel.org, alsa-devel@alsa-project.org,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>
+References: <20230605-ep93xx-v3-0-3d63a5f1103e@maquefel.me>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230720084534.6461-3-quic_sridsn@quicinc.com>
+In-Reply-To: <20230605-ep93xx-v3-0-3d63a5f1103e@maquefel.me>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/07/2023 10:45, Sridharan S N wrote:
-> Add the initial device tree support for the Reference Design
-> Platform(RDPs) 433-mht-phy,433-mht-switch,437,455,456,457,458,459
-> 461,467,469 based on IPQ9574 family of SoC.
+On 20/07/2023 13:29, Nikita Shubin via B4 Relay wrote:
+> This series aims to convert ep93xx from platform to full device tree support.
 > 
-> Signed-off-by: Sridharan S N <quic_sridsn@quicinc.com>
-> ---
+> The main goal is to receive ACK's to take it via Arnd's arm-soc branch.
+> 
+> I've moved to b4, tricking it to consider v0 as v1, so it consider's
+> this version to be v3, this exactly the third version.
 
-...
-
-> diff --git a/arch/arm64/boot/dts/qcom/ipq9574-rdp456.dts b/arch/arm64/boot/dts/qcom/ipq9574-rdp456.dts
-> new file mode 100644
-> index 000000000000..22d69ec8912f
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/ipq9574-rdp456.dts
-> @@ -0,0 +1,16 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause)
-> +/*
-> + * IPQ9574 RDP456 board device tree source
-> + *
-> + * Copyright (c) 2020-2021 The Linux Foundation. All rights reserved.
-> + * Copyright (c) 2022-2023 Qualcomm Innovation Center, Inc. All rights reserved.
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "ipq9574-rdp-common.dtsi"
-> +
-> +/ {
-> +	model = "Qualcomm Technologies, Inc. IPQ9574/AP-AL02-C16";
-> +	compatible = "qcom,ipq9574-ap-al02-c16", "qcom,ipq9574";
-
-I am sorry folks, but what are you doing here? Why are you adding all
-these DTSes? What is the point? They are all the same. Where is the
-product datasheet or description so we can validate it?
+Fix your clock/timezone, so your patches are not sent in the future.
+Unfortunately this will stay at top of my queue, which is unfair, so I
+will just ignore for now.
 
 Best regards,
 Krzysztof
