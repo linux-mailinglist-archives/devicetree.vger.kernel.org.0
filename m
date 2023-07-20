@@ -2,115 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 280E975AE53
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 14:27:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BDD1175AE68
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 14:30:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230386AbjGTM1o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jul 2023 08:27:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39716 "EHLO
+        id S231659AbjGTMac (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jul 2023 08:30:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42218 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231171AbjGTM1m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 08:27:42 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60F202681;
-        Thu, 20 Jul 2023 05:27:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1689856056; x=1721392056;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=2ZGiXBA7knMeVbYBzBnYdJHrkPeF9rSCMSWxNZrS0q0=;
-  b=RuuxtmR7clv93YDpjqpFEQW0pvzrkQUQpIMq5LgpIEdiKI1jXH1HiRCi
-   cSRjBdtGl2k3aO2nRo4sRz32RkU1LtaieQDa2RRW4UY3HVOa3fCX6z1h0
-   XtIKKiaGLsmEWw4K5N9GHWmK1INqq0CMVIGoUSdMtD8CRisoZfDWYeyxh
-   pBIrhfRaUTemhaaWqZYWS+AEpwmXD1D1eU4mh5nZ5NWK/YpF4Wlrrj1Jk
-   tPRJBmHuBQ1bMGN2ux4NOENjFVM5hm329VblTPMquq0+iivzlIYuitOmJ
-   F754/PHqcrAXEzJ+nK81AkSVtSytg70/xRcdIrDxcLlMAWFuF0Z7mwE9r
-   g==;
-X-IronPort-AV: E=Sophos;i="6.01,218,1684825200"; 
-   d="asc'?scan'208";a="224927705"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 20 Jul 2023 05:27:33 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Thu, 20 Jul 2023 05:27:31 -0700
-Received: from wendy (10.10.115.15) by chn-vm-ex01.mchp-main.com
- (10.10.85.143) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
- Transport; Thu, 20 Jul 2023 05:27:27 -0700
-Date:   Thu, 20 Jul 2023 13:26:54 +0100
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     Minda Chen <minda.chen@starfivetech.com>
-CC:     Daire McNamara <daire.mcnamara@microchip.com>,
-        Conor Dooley <conor@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-riscv@lists.infradead.org>, <linux-pci@vger.kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        "Palmer Dabbelt" <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        "Philipp Zabel" <p.zabel@pengutronix.de>,
-        Mason Huo <mason.huo@starfivetech.com>,
-        Leyfoon Tan <leyfoon.tan@starfivetech.com>,
-        Kevin Xie <kevin.xie@starfivetech.com>
-Subject: Re: [PATCH v1 4/9] PCI: microchip: Move PCIe driver to PLDA directory
-Message-ID: <20230720-exception-spectator-b48ecb9d4c39@wendy>
-References: <20230719102057.22329-1-minda.chen@starfivetech.com>
- <20230719102057.22329-5-minda.chen@starfivetech.com>
+        with ESMTP id S231679AbjGTMaR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 08:30:17 -0400
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5050630C7
+        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 05:29:57 -0700 (PDT)
+Received: by mail-wr1-x429.google.com with SMTP id ffacd0b85a97d-307d20548adso596832f8f.0
+        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 05:29:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1689856189; x=1690460989;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=KkhL4uI0B/Lhmv/qxg6Gs+UQ4b+kwmWF1fiPyrwPCd8=;
+        b=XlcBPi0luKar65pugUWZx5x76U0b3XAWX0S3KC0cPjqVI669s5QyFytRy0X+jN8CTq
+         sDVQCCY99s5o+klAldXMilhf4WHNqPKVCzv2pNVJLaYb2hfoBrP0/MUw0cXLqHZ/uPTI
+         rENCW5i5UDWZ7wB0xTHWALNWmGXtyPQOsyET/B0Z7gxJls3kjj2r/GSfnhwPwqkXdjfD
+         egWY7X8oCcisSn9QdMrGy4o3cwNnQ4Q9drtmeKtA2iM/tMHgt8FAL11qFpqJbhSbNGqF
+         /D0Hpj2+Vmx+4ozhjAlApiOU9Js0nS3s/KVQ6wpMf99mBYjTuI65hO57ijDxar4ZeYoL
+         gfmw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689856189; x=1690460989;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=KkhL4uI0B/Lhmv/qxg6Gs+UQ4b+kwmWF1fiPyrwPCd8=;
+        b=kny5soyx9G6j89yVekxRCSDWdfGM1XIq3PYXJpHwOKNCU9NqfNyTg8HTDZ1LRXaOTx
+         sODCnVV6AKVAuoG4aN8epnm1Io+Oxcmc1cnxZGbyGcbjzKjpLGv35xi/aZbnhTK3ygaY
+         JwcHUZTgkkRNowtJ8ppFIwTIZyzGK4JrwpquUt3iZoR+iO7jYDxIBwqX7iziSKpRQNM9
+         u/uK+aU4qXXkNZgqB7vH00ssnLRjv2omqebyzlbb8Kyq4x0Ngy1cYLcj4yyxKoPEo+sC
+         YZoHfp/0nT7IftZvFnDBR92WpgLjxT06s6cOesmkvJj+oIBxj9CwFr8BPafY1E/el1kz
+         K/Lg==
+X-Gm-Message-State: ABy/qLbBIQqdSX7IAsV8C2hTJKud9WVHfZ8lqIAULPDRf7Ct29O3AwzU
+        oiYEJucPfc4XigQowstwAU3eCw==
+X-Google-Smtp-Source: APBJJlE64chd/1tEB2ElppjUwBGavjD5dJTrzpri48CI5z/Qf7oQEoD8ZUvvWzAetnjz75c7W3VIyg==
+X-Received: by 2002:a5d:5190:0:b0:316:f1f6:96d with SMTP id k16-20020a5d5190000000b00316f1f6096dmr2046396wrv.13.1689856189211;
+        Thu, 20 Jul 2023 05:29:49 -0700 (PDT)
+Received: from [10.1.3.131] (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id r1-20020adfce81000000b0031128382ed0sm1222069wrn.83.2023.07.20.05.29.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 20 Jul 2023 05:29:48 -0700 (PDT)
+Message-ID: <16d2f0d7-f150-823b-b568-18f3bb6b2f77@baylibre.com>
+Date:   Thu, 20 Jul 2023 14:29:47 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="Lilo/J5IxQgX/2YQ"
-Content-Disposition: inline
-In-Reply-To: <20230719102057.22329-5-minda.chen@starfivetech.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,
-        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v3,3/3] drm/mediatek: dp: Add the audio divider to
+ mtk_dp_data struct
+Content-Language: en-US
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Shuijing Li <shuijing.li@mediatek.com>,
+        chunkuang.hu@kernel.org, p.zabel@pengutronix.de, airlied@gmail.com,
+        daniel@ffwll.ch, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        matthias.bgg@gmail.com, jitao.shi@mediatek.com
+Cc:     dri-devel@lists.freedesktop.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20230720082604.18618-1-shuijing.li@mediatek.com>
+ <20230720082604.18618-4-shuijing.li@mediatek.com>
+ <44cc9cc5-7dce-f7a2-f077-b62d7851ee12@baylibre.com>
+ <65da6005-3c07-a7ea-6b63-db45c8915ae8@collabora.com>
+ <6c3422e8-4e2e-ba3a-4f30-d24308ef7c2a@baylibre.com>
+ <a48e9f99-2b93-9eb6-daef-be95a956c3d8@collabora.com>
+From:   Alexandre Mergnat <amergnat@baylibre.com>
+In-Reply-To: <a48e9f99-2b93-9eb6-daef-be95a956c3d8@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---Lilo/J5IxQgX/2YQ
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-Hey Minda,
 
-On Wed, Jul 19, 2023 at 06:20:52PM +0800, Minda Chen wrote:
-> Move Microchip specific platform codes to PLDA directory.
-> Including clock init, interrupt event handle and platform
-> init codes.
->=20
-> Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
+On 20/07/2023 14:08, AngeloGioacchino Del Regno wrote:
+> Il 20/07/23 14:07, Alexandre Mergnat ha scritto:
+>>
+>>
+>> On 20/07/2023 13:54, AngeloGioacchino Del Regno wrote:
+>>> Il 20/07/23 12:14, Alexandre Mergnat ha scritto:
+>>>>
+>>>>
+>>>> On 20/07/2023 10:26, Shuijing Li wrote:
+>>>>> Due to the difference of HW, different dividers need to be set.
+>>>>>
+>>>>> Signed-off-by: Shuijing Li <shuijing.li@mediatek.com>
+>>>>> Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
+>>>>> ---
+>>>>> Changes in v3:
+>>>>> Separate these two things into two different patches.
+>>>>> per suggestion from the previous thread:
+>>>>> https://lore.kernel.org/lkml/e2ad22bcba31797f38a12a488d4246a01bf0cb2e.camel@mediatek.com/
+>>>>> Changes in v2:
+>>>>> - change the variables' name to be more descriptive
+>>>>> - add a comment that describes the function of 
+>>>>> mtk_dp_audio_sample_arrange
+>>>>> - reduce indentation by doing the inverse check
+>>>>> - add a definition of some bits
+>>>>> - add support for mediatek, mt8188-edp-tx
+>>>>> per suggestion from the previous thread:
+>>>>> https://lore.kernel.org/lkml/ac0fcec9-a2fe-06cc-c727-189ef7babe9c@collabora.com/
+>>>>> ---
+>>>>>   drivers/gpu/drm/mediatek/mtk_dp.c     | 7 ++++++-
+>>>>>   drivers/gpu/drm/mediatek/mtk_dp_reg.h | 1 +
+>>>>>   2 files changed, 7 insertions(+), 1 deletion(-)
+>>>>>
+>> ...
+>>>>> b/drivers/gpu/drm/mediatek/mtk_dp_reg.h
+>>>>> index f38d6ff12afe..6d7f0405867e 100644
+>>>>> --- a/drivers/gpu/drm/mediatek/mtk_dp_reg.h
+>>>>> +++ b/drivers/gpu/drm/mediatek/mtk_dp_reg.h
+>>>>> @@ -162,6 +162,7 @@
+>>>>>   #define AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_MUL_2    (1 << 8)
+>>>>>   #define AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_MUL_4    (2 << 8)
+>>>>>   #define AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_MUL_8    (3 << 8)
+>>>>> +#define MT8188_AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_DIV_2    (4 << 8)
+>>>>
+>>>> IMO, it's a bit weird to have SoC specific define in the generic 
+>>>> header.
+>>>> Are you sure this bit is only available for MT8188 ?
+>>>>
+>>>
+>>> Eh, the P0_DIV2 bit is 5<<8 for MT8195, while for 8188 it's 4<<8, 
+>>> clearly :-)
+>>>
+>>
+>> Ok then, to avoid this kind of issue for other SoCs in the future, is 
+>> that make sense for you to do a SoC specific header file beside the 
+>> generic one?
+>>
+> 
+> For just one definition? That's a bit overkill :-)
+> 
 
-Something else that I noticed, looking at what is not in the diff here,
-but is everything under the "/* PCIe Controller Phy Regs */" comment
-that remains in the microchip driver not also common to the plda IP?
+You're right, but we must start somewhere ^^, and show the proper way 
+for future patches. Actually, I gave my Reviewed-by because it's only 
+one definition. This will be fixed later (I hope).
 
-Thanks,
-Conor.
+>>>>>   #define AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_DIV_2    (5 << 8)
+>>>>>   #define AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_DIV_4    (6 << 8)
+>>>>>   #define AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_DIV_8    (7 << 8)
+>>>>
+>>>> Reviewed-by: Alexandre Mergnat <amergnat@baylibre.com>
+>>>>
+>>>
+>>>
+>>
+> 
+> 
 
---Lilo/J5IxQgX/2YQ
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZLkoDgAKCRB4tDGHoIJi
-0vX+AQCNRNQvcPAT0vcVJXASNscuAioQvT52F/KhEUDLy/SoSAEA6U+2742WoaFO
-H9PBHMPTzScdWPvpyEsWaGVXPs7Z+gc=
-=rUDs
------END PGP SIGNATURE-----
-
---Lilo/J5IxQgX/2YQ--
+-- 
+Regards,
+Alexandre
