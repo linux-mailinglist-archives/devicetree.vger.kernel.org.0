@@ -2,147 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7617F75AB73
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 11:51:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A4E0E75AB96
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 12:00:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231167AbjGTJvV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jul 2023 05:51:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47868 "EHLO
+        id S231231AbjGTKAZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jul 2023 06:00:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56248 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231196AbjGTJvG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 05:51:06 -0400
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A472444AC
-        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 02:49:35 -0700 (PDT)
-Received: by mail-lj1-x231.google.com with SMTP id 38308e7fff4ca-2b708e49059so8244501fa.3
-        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 02:49:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1689846569; x=1690451369;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=LdPjULmUPa6VP/P9oFjDeDKjVlgwghUFnuvoEEW98lk=;
-        b=HHofg5goD3MCmhVbpsCJpFHRqzFOOdspVHBHc2MmFRD4bmqkIYAxGzBuDtetpWZPfH
-         0OJthp6Qkx/3jOFMvTzKiR0fyy7UKyy0cUctbhp3dZ2VKuc70D7P/iv8pu70g+fg4YkI
-         6RLLYKp57LctOmyKyTv0pimuRRljO1xwIiG1mWGlVUrZwWPZbnjwmZJp+vbwoCBfgTFZ
-         TTwyMSqWWCtioNyhmH+rq3zt1frT7WCEB7CRtzCOB+sCSOXwUFi9h+K14ZuikqRVksfI
-         /KX7rJS+ULnu9yD9vnOJu2FDyx9T8JsnwE2uabQVA7SqQw1q4TihZ7xiF9R6WNJHgh6Y
-         mQbw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689846569; x=1690451369;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=LdPjULmUPa6VP/P9oFjDeDKjVlgwghUFnuvoEEW98lk=;
-        b=i5KcDX4My1GzyFj0lFnOKcNHdCSrHglGfrpLs47jrKSjxcFwds3e2CngLjp/hwFLNp
-         yKFROwXH/dBSESDUk3VlXoDjKhLdEODjAADz6U/UFfdabipSrwppSctHnBC9CqwwntTT
-         qjcKrW6glJ22yFZN06709R3394TUczB/j9vaaZgyKhk0pxmkb7TlwCLWldC1IihT/ZhH
-         s+tJ5gFQoRRSSqbc8M17OaD4cjFQdXyAL3u+E/tepSg/oNCP0f0PlLweEZgwAeQdIl+U
-         MqmgCbL0PnYyt+B9VKQDEZoGCdKiYpdyM5Cqhopyh3c+aJh52S+lq+K+ZL6K6291yMQJ
-         gyLw==
-X-Gm-Message-State: ABy/qLZeCw7HV5IvxztSYGVH+dR1EZ3Fg78iF5m5RHaoUC01z5iLHaPQ
-        vkJ4uvrukEuuA12U7RIUWVmmk8Xf3OzePgH2n9IFeA==
-X-Google-Smtp-Source: APBJJlHcYyplb13P09E5HKiNPAyWuhkGEPGYuJW5CEjmOyn+qs4zkcM4vBw7USD+ttdRYJCm7IwZvsQDTv4pBHBNPdU=
-X-Received: by 2002:a2e:8654:0:b0:2b6:e2cd:20f5 with SMTP id
- i20-20020a2e8654000000b002b6e2cd20f5mr2276664ljj.9.1689846568698; Thu, 20 Jul
- 2023 02:49:28 -0700 (PDT)
+        with ESMTP id S231245AbjGTKAY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 06:00:24 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2433B4;
+        Thu, 20 Jul 2023 03:00:22 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 67104619F2;
+        Thu, 20 Jul 2023 10:00:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 98A0AC433C9;
+        Thu, 20 Jul 2023 10:00:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1689847221;
+        bh=kI7QNuEAZe5hsZGSYU4LFc9o4hX+RTJ60091wATYuFA=;
+        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+        b=Tk96alwFbFBBiABRLOVJcRUqKDIGrN3/mtZdO33gPxf1vwP+KWN9eJ2kptc4SqKoU
+         ZqHi8o81ckNwKjupf+InMTXwKAjzGa6gIIMjT2/7DkGkvNYa3LIQ/qGHpR2CrZwcWN
+         kqE9om5xE02iXhBdH406l84gyPusSd2kgQhOak0yKL0IOJXMgGf+ayL66WJImT1ibN
+         0vtC+3wbQrYAjp3aQ/Y7obWxG5eOFD9pER5letRkXSEBcLfcseLx+y1QwVuBDMQrgw
+         UZycPO19BW3kGLqf/opcnEXMaLlVceXwFdIn3PA+sIznjGvJ1lGfZv0Xuar0e4PbtJ
+         I5v5tGzFMHeiQ==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 7581AE21EF5;
+        Thu, 20 Jul 2023 10:00:21 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-References: <20230616063210.19063-1-eric.lin@sifive.com> <20230616063210.19063-4-eric.lin@sifive.com>
- <2437bda9-bbdb-ad80-7201-1e16e1388890@linaro.org> <CAPqJEFoTsmVZ4kvsSB0RkQZaQGyXC96KV6RvdpeC5XxURCOZ0w@mail.gmail.com>
- <8c9ed2d4-83ab-ecc0-a300-e6bc8e2047b6@linaro.org> <CAPqJEFqhmxksvEgvC61cJcRGR0DrSWDZxJC3J7tdgcG8UY+sFw@mail.gmail.com>
- <f5275617-d68c-c76b-d799-106f67cc2071@linaro.org> <20230712110908.GA23216@hsinchu16>
- <0865b422-d587-c1c7-9463-510832ddddf4@linaro.org>
-In-Reply-To: <0865b422-d587-c1c7-9463-510832ddddf4@linaro.org>
-From:   Eric Lin <eric.lin@sifive.com>
-Date:   Thu, 20 Jul 2023 17:49:17 +0800
-Message-ID: <CAPqJEFp_YgsXOymQPH1Pr4cORtv=8oS0OWnACWqNe69ARMRwvA@mail.gmail.com>
-Subject: Re: [PATCH 3/3] dt-bindings: riscv: sifive: Add SiFive Private L2
- cache controller
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     conor@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dslin1010@gmail.com,
-        Zong Li <zong.li@sifive.com>, vincent.chen@sifive.com,
-        Greentime Hu <greentime.hu@sifive.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH net-next] dt-bindings: net: dsa: Fix JSON pointer references
+From:   patchwork-bot+netdevbpf@kernel.org
+Message-Id: <168984722147.11486.18313899802299137410.git-patchwork-notify@kernel.org>
+Date:   Thu, 20 Jul 2023 10:00:21 +0000
+References: <20230718203202.1761304-1-robh@kernel.org>
+In-Reply-To: <20230718203202.1761304-1-robh@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     andrew@lunn.ch, f.fainelli@gmail.com, olteanv@gmail.com,
+        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+Hello:
 
-On Wed, Jul 12, 2023 at 8:30=E2=80=AFPM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 12/07/2023 13:09, Eric Lin wrote:
-> > On Sat, Jul 01, 2023 at 10:22:25AM +0200, Krzysztof Kozlowski wrote:
-> >> On 28/06/2023 18:31, Eric Lin wrote:
-> >>
-> >>>>>>
-> >>>>>>> +      - enum:
-> >>>>>>> +          - sifive,pL2Cache0
-> >>>>>>> +          - sifive,pL2Cache1
-> >>>>>>
-> >>>>>> What is "0" and "1" here? What do these compatibles represent? Why=
- they
-> >>>>>> do not have any SoC related part?
-> >>>>>
-> >>>>> The pL2Cache1 has minor changes in hardware, but it can use the sam=
-e
-> >>>>> pl2 cache driver.
-> >>>>
-> >>>> Then why aren't they compatible?
-> >>>>
-> >>>
-> >>> The pL2Cache1 has removed some unused bits in the register compared t=
-o
-> >>> pl2Cache0.
-> >>> From the hardware perspective, they are not compatible but they can
-> >>> share the same pl2 cache driver in software.
-> >>
-> >> So they are compatible... If they were not compatible, you wouldn't be
-> >> able to use the same match in the driver.
-> >>
-> >>> Thus, we would like to keep both. It would be great if you can provid=
-e
-> >>> some suggestions. Thanks.
-> >>
-> >> I propose to make them compatible, like every other piece of SoC. I
-> >> don't see any benefit of having them separate.
-> >>
-> >
-> > Hi Krzysztof,
-> >
-> > Sorry for the late reply.
-> > The pl2 cache is our internal platform IP and is not part of any SoC.
-> >
-> > The reason why this driver is compatible with the hardware "pl2cache0" =
-and hardware "pl2cache1"
-> > is that it doesn't program the different parts of the config register
-> > However, our internal software (e.g., bare-metal software) will program=
- these different parts,
-> > so it needs to rely on the different compatible string to identify the =
-hardware.
-> >
-> > Additionally, we would like the compatible strings to reflect which har=
-dware is being used Thanks.
->
-> I don't understand how does it contradicts anything I said. So you do
-> agree with me? Or what?
->
+This patch was applied to netdev/net-next.git (main)
+by Paolo Abeni <pabeni@redhat.com>:
 
-Thanks for your suggestions. OK, I'll fix it in v2.
+On Tue, 18 Jul 2023 14:32:03 -0600 you wrote:
+> A JSON pointer reference to the entire document must not have a trailing
+> "/" and should be just a "#". The existing jsonschema package allows
+> these, but changes in 4.18 make allowed "$ref" URIs stricter and throw
+> errors on these references.
+> 
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> 
+> [...]
 
-Best regards,
-Eric Lin
+Here is the summary with links:
+  - [net-next] dt-bindings: net: dsa: Fix JSON pointer references
+    https://git.kernel.org/netdev/net-next/c/cf3e913bf41d
 
-> Best regards,
-> Krzysztof
->
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
+
