@@ -2,92 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E1D975B548
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 19:13:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 253D675B54B
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 19:14:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229569AbjGTRNN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jul 2023 13:13:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52370 "EHLO
+        id S231396AbjGTRO3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jul 2023 13:14:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53186 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229838AbjGTRNL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 13:13:11 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE4751715;
-        Thu, 20 Jul 2023 10:13:10 -0700 (PDT)
+        with ESMTP id S230290AbjGTRO3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 13:14:29 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6A8411D;
+        Thu, 20 Jul 2023 10:14:27 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 45E2161B8F;
-        Thu, 20 Jul 2023 17:13:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C0799C433C8;
-        Thu, 20 Jul 2023 17:13:07 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 4597B61B96;
+        Thu, 20 Jul 2023 17:14:27 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0891BC433C8;
+        Thu, 20 Jul 2023 17:14:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689873189;
-        bh=YAD5j5uWVee1yIDJ++UcTVLGboz0Oz2sQv9+weUQ+gA=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=Hqe/4Wf5GM3AXz2lHYuShpvW5wAN11zVlctn67kdVOZqfvSNk+RQvZA/C0PMb0Dsv
-         3GUpMCHaGaJgDpfXBZPPoXjb2KqPTwpR6k+czcvoWkuDb9q43BcgwAWS05sjUIjLbr
-         3x2jFtlUAMKyPYvHIiETgObsWBvoWcMF1HI8WO2TL6YC/QSNY4aG+1iW59KcGe9Ht3
-         TB9LA3hXnEhZAdRr6Yao0UToLFPWs7nY8oomeXCPL2aA45Ov5TB5RbE0Usikl8rIWN
-         /ejT5Rj0kGTyXhhhcSZEfrmcXNd+LooKUI3ngL5+yFCJVZ6XjTRK4bp28Q/Xfb0KDO
-         9Tf/75Gz0dYwg==
+        s=k20201202; t=1689873266;
+        bh=/sCTDKu7Y/9YwOel3/H9ilGvBUrz9mL9LhZ3Oi3p9kg=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=uqd5sWm9GA6elmeRDpvOTG2iRqR0li5scbTMwn/+eIH8oNPYAm59qtWDx5nc/qa1w
+         kM5zQ2LHosrqb+0qJYsBNrIyfmpjToRP/j/7Cch4kfkBqr8r33MV6F8nl1KQsWUfRF
+         GMlnAXtYNaIvylNRx+FypmaLiKpta5hojlIxnOXhpLWlf+YnLq9YbxPsTvq8Vt4VFV
+         nYaPm4MO7ygGHSxDGb/+YV0CkcTVbspT3x70pq0gQdAT9DlM6WtVeXvqSNCGPsoyQ+
+         sdwiNpGm07nTdtEhwfJGOnYPTMqH47ZGrUBg+Uu2Tw0UsTh7anLvz20TZ0V6GyUTJn
+         XMx+4eCC60GNA==
+Date:   Thu, 20 Jul 2023 18:14:20 +0100
 From:   Conor Dooley <conor@kernel.org>
-To:     Rob Herring <robh+dt@kernel.org>,
+To:     Oleksij Rempel <o.rempel@pengutronix.de>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Eric Dumazet <edumazet@google.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        Woojung Huh <woojung.huh@microchip.com>,
+        Arun Ramadoss <arun.ramadoss@microchip.com>,
+        Conor Dooley <conor+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor@kernel.org>,
-        Changhuang Liang <changhuang.liang@starfivetech.com>
-Cc:     Conor Dooley <conor.dooley@microchip.com>,
-        Walker Chen <walker.chen@starfivetech.com>,
-        Hal Feng <hal.feng@starfivetech.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 0/4] Add JH7110 AON PMU support
-Date:   Thu, 20 Jul 2023 18:12:17 +0100
-Message-Id: <20230720-magnifier-goldfish-7d5a84e99c4d@spud>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230519060202.15296-1-changhuang.liang@starfivetech.com>
-References: <20230519060202.15296-1-changhuang.liang@starfivetech.com>
+        Rob Herring <robh+dt@kernel.org>, kernel@pengutronix.de,
+        linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+        UNGLinuxDriver@microchip.com,
+        "Russell King (Oracle)" <linux@armlinux.org.uk>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next v1 0/6] net: dsa: microchip: provide Wake on LAN
+ support
+Message-ID: <20230720-unmapped-frostbite-17534e2a0c70@spud>
+References: <20230720132556.57562-1-o.rempel@pengutronix.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-X-Developer-Signature: v=1; a=openpgp-sha256; l=943; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=ANuhIpiKMyYCW2Cf4joIjuKAf5hgTppu/jZEMHKz0Jo=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDCk7s9692/g3r+Bp1h3FidL73YsuO/JPVvyY7nr+odLR5 he15pJJHaUsDGIcDLJiiiyJt/tapNb/cdnh3PMWZg4rE8gQBi5OAZhIsigjw8cHy/8s14y94LrV SEP+m4b3zsICb3UL02f62juzq3pUbBgZ+muZnz0wvfI3zXT26uuvRDM+KM7cuZX1csFmkzOnr1y y5QMA
-X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="0C2AQsgm4evWVLHo"
+Content-Disposition: inline
+In-Reply-To: <20230720132556.57562-1-o.rempel@pengutronix.de>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Conor Dooley <conor.dooley@microchip.com>
 
-On Thu, 18 May 2023 23:01:58 -0700, Changhuang Liang wrote:
-> This patchset adds aon power domain driver for the StarFive JH7110 SoC.
-> It is used to turn on/off dphy rx/tx power switch. It also can use syscon
-> operation. The series has been tested on the VisionFive 2 board.
-> 
-> This patchset should be applied after the patchset [1]:
-> [1] https://lore.kernel.org/all/20230512022036.97987-1-xingyu.wu@starfivetech.com/
-> 
-> [...]
+--0C2AQsgm4evWVLHo
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Applied to riscv-soc-for-next, thanks!
+On Thu, Jul 20, 2023 at 03:25:50PM +0200, Oleksij Rempel wrote:
 
-[1/4] dt-bindings: power: Add power-domain header for JH7110
-      https://git.kernel.org/conor/c/2b8f8c6e797c
-[2/4] soc: starfive: Replace SOC_STARFIVE with ARCH_STARFIVE
-      https://git.kernel.org/conor/c/36393facfabf
-[3/4] soc: starfive: Extract JH7110 pmu private operations
-      https://git.kernel.org/conor/c/bd0c0d3dae34
-[4/4] soc: starfive: Add JH7110 AON PMU support
-      https://git.kernel.org/conor/c/30fb4784483b
+>   dt-bindings: net: dsa: microchip: add wakeup-source property
+>   dt-bindings: net: dsa: microchip: add local-mac-address property
+>     support
 
-I expect I'll get an email tomorrow from SFR pointing out some conflicts
-with the new genpd stuff. I think the plan is for Arnd to sort those
-things out prior to the next merge window.
+For these two,
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
 Thanks,
 Conor.
+
+
+--0C2AQsgm4evWVLHo
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZLlrbAAKCRB4tDGHoIJi
+0s88AQDK7+qrIHL1o7b28ssKUMhMLAGTdOzYQI0YxgptNtbk9AD8DDbx7UZo+K7M
+FdYBjRr2VwN3BVPdOSAnGcB0hUomFgM=
+=Kf5+
+-----END PGP SIGNATURE-----
+
+--0C2AQsgm4evWVLHo--
