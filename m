@@ -2,238 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BFAB775B194
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 16:49:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0847175B19C
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 16:50:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232323AbjGTOtB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jul 2023 10:49:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38104 "EHLO
+        id S231992AbjGTOuL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jul 2023 10:50:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38802 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232340AbjGTOs7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 10:48:59 -0400
-Received: from mx3.molgen.mpg.de (mx3.molgen.mpg.de [141.14.17.11])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EEC9926B8;
-        Thu, 20 Jul 2023 07:48:54 -0700 (PDT)
-Received: from [141.14.220.45] (g45.guest.molgen.mpg.de [141.14.220.45])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: pmenzel)
-        by mx.molgen.mpg.de (Postfix) with ESMTPSA id 631C661E5FE01;
-        Thu, 20 Jul 2023 16:47:49 +0200 (CEST)
-Message-ID: <2f9858b0-88e2-736a-f16a-f4fbe549e389@molgen.mpg.de>
-Date:   Thu, 20 Jul 2023 16:47:49 +0200
+        with ESMTP id S231834AbjGTOuK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 10:50:10 -0400
+Received: from mail-vk1-xa2c.google.com (mail-vk1-xa2c.google.com [IPv6:2607:f8b0:4864:20::a2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 493FD26BA
+        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 07:50:08 -0700 (PDT)
+Received: by mail-vk1-xa2c.google.com with SMTP id 71dfb90a1353d-48137f8b118so1384790e0c.0
+        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 07:50:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20221208.gappssmtp.com; s=20221208; t=1689864607; x=1690469407;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=44I4QTXSdpRlGQNX01aNu7Q8jYmgKrsVdvaz0FbrT9w=;
+        b=VHsv4k0q2otI210G2fx8UlqZVBouT1yhHPQeX4/iYKRduLbBfujemaFd84GC3ZVtWX
+         jIbCktQqByAp5iqMc/vfuiwpcDzR/b7VidjqvAa00eAxbSRDadKzFL7ftVkL0wpM8mY4
+         3nANvQf6LnRvO72e3X3PIZq6dwVKEuHJlUuToqWh59bGJFqRqqo0SosmrUxvzzRd1bBC
+         FBz8bvcUB7PznBNwhuRezNy3z5i/4TW+ggCxtW15DP+i0Lj50o4B9jSN9WUDe5Vyw8rc
+         EUeWyncBdaKXPsUBWXs360RXDU8t4kC/iicYJ16kjPZL2O0Kgs5iYg9GIm/a1AZfdPvo
+         1iNw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689864607; x=1690469407;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=44I4QTXSdpRlGQNX01aNu7Q8jYmgKrsVdvaz0FbrT9w=;
+        b=As5sz5+Db/ZhyEFqUMjorQ2508xHXxyjH69z4XnEw6lP1YX8OfW0njMLPxwS+EHIsw
+         69bj10ofCC37XcPJ6nGpOY3YfCYbP7zFI+q0rxEN5M7QoOsGAgR9qxI8UrZcXncLo1B3
+         Q2+ZcrMwii1fdg7SBwDl+8GlQTOZf1ojmA3GmtmDk2hrgWbP753Y0St+935DsuCmLPj/
+         x3hSWFor54IUo6ikpBmC8mXf4r3yN9kucYCTSu9pwkWs7B/+oqLRR/O4kHhuwnfcp1z2
+         2Ik4kn2OgiC92d1Vw5W/F77EMm0Cv548TPVOTscyu2Sy1fCcgCSyicw1AAYg6ZswOHZ9
+         U0fQ==
+X-Gm-Message-State: ABy/qLbgnYFomdPZx1+i6MWhLthHuFD5oAoI3ZSTgKiI1Vmw5xQNs+Jc
+        sJAyTFANqtNfJtbq/zGpKkaDU1MTnb75VJ24YwaE4g==
+X-Google-Smtp-Source: APBJJlHcVbVjnQaUrT7V7jD6HpKLdUNhc+KcBHJVAgkGL82QQnDc268rPznkIAv5GUoMxsi+qdzT6lIi9u/QnbbIPgk=
+X-Received: by 2002:a05:6122:929:b0:481:5132:48c7 with SMTP id
+ j41-20020a056122092900b00481513248c7mr2136264vka.1.1689864607273; Thu, 20 Jul
+ 2023 07:50:07 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH 2/4] peci: Add peci-npcm controller driver
-Content-Language: en-US
-To:     Iwona Winiarska <iwona.winiarska@intel.com>
-Cc:     avifishman70@gmail.com, Benjamin Fair <benjaminfair@google.com>,
-        tmaimon77@gmail.com, devicetree@vger.kernel.org,
-        LKML <linux-kernel@vger.kernel.org>, venture@google.com,
-        warp5tw@gmail.com, conor+dt@kernel.org, openbmc@lists.ozlabs.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-References: <20230719220853.1029316-1-iwona.winiarska@intel.com>
- <20230719220853.1029316-3-iwona.winiarska@intel.com>
- <dfda43af-e9b4-85bf-e165-02127e02fbf0@molgen.mpg.de>
- <9a6eb22ef6b7a6a686250ed83894e8d37de30baa.camel@intel.com>
-From:   Paul Menzel <pmenzel@molgen.mpg.de>
-In-Reply-To: <9a6eb22ef6b7a6a686250ed83894e8d37de30baa.camel@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+References: <20230605-ep93xx-v3-0-3d63a5f1103e@maquefel.me> <20230605-ep93xx-v3-33-3d63a5f1103e@maquefel.me>
+In-Reply-To: <20230605-ep93xx-v3-33-3d63a5f1103e@maquefel.me>
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+Date:   Thu, 20 Jul 2023 16:49:56 +0200
+Message-ID: <CAMRc=McbD1w47GsfvY6p==jDiTQrwg96jFvVKO-9bPhNOBmapw@mail.gmail.com>
+Subject: Re: [PATCH v3 33/42] gpio: ep93xx: add DT support for gpio-ep93xx
+To:     nikita.shubin@maquefel.me
+Cc:     Hartley Sweeten <hsweeten@visionengravers.com>,
+        Lennert Buytenhek <kernel@wantstofly.org>,
+        Alexander Sverdlin <alexander.sverdlin@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Lukasz Majewski <lukma@denx.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Sebastian Reichel <sre@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Mark Brown <broonie@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, Vinod Koul <vkoul@kernel.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Damien Le Moal <dlemoal@kernel.org>,
+        Sergey Shtylyov <s.shtylyov@omp.ru>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        soc@kernel.org, Liam Girdwood <lgirdwood@gmail.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Andy Shevchenko <andy@kernel.org>,
+        Michael Peters <mpeters@embeddedts.com>,
+        Kris Bahnsen <kris@embeddedts.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-rtc@vger.kernel.org,
+        linux-watchdog@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-pwm@vger.kernel.org, linux-spi@vger.kernel.org,
+        netdev@vger.kernel.org, dmaengine@vger.kernel.org,
+        linux-mtd@lists.infradead.org, linux-ide@vger.kernel.org,
+        linux-input@vger.kernel.org, alsa-devel@alsa-project.org,
+        Andy Shevchenko <andy.shevchenko@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dear Iwona,
+On Thu, Jul 20, 2023 at 10:30=E2=80=AFAM Nikita Shubin via B4 Relay
+<devnull+nikita.shubin.maquefel.me@kernel.org> wrote:
+>
+> From: Nikita Shubin <nikita.shubin@maquefel.me>
+>
+> Add OF ID match table.
+>
+> Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
+> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+> Signed-off-by: Nikita Shubin <nikita.shubin@maquefel.me>
+> ---
+>  drivers/gpio/gpio-ep93xx.c | 6 ++++++
+>  1 file changed, 6 insertions(+)
+>
+> diff --git a/drivers/gpio/gpio-ep93xx.c b/drivers/gpio/gpio-ep93xx.c
+> index 9a25bb0caf17..c4e272a8773d 100644
+> --- a/drivers/gpio/gpio-ep93xx.c
+> +++ b/drivers/gpio/gpio-ep93xx.c
+> @@ -360,9 +360,15 @@ static int ep93xx_gpio_probe(struct platform_device =
+*pdev)
+>         return devm_gpiochip_add_data(&pdev->dev, gc, egc);
+>  }
+>
+> +static const struct of_device_id ep93xx_gpio_match[] =3D {
+> +       { .compatible =3D "cirrus,ep9301-gpio" },
+> +       { /* sentinel */ }
+> +};
+> +
+>  static struct platform_driver ep93xx_gpio_driver =3D {
+>         .driver         =3D {
+>                 .name   =3D "gpio-ep93xx",
+> +               .of_match_table =3D ep93xx_gpio_match,
+>         },
+>         .probe          =3D ep93xx_gpio_probe,
+>  };
+>
+> --
+> 2.39.2
+>
 
-
-Thank you for the quick reply.
-
-Am 20.07.23 um 10:38 schrieb Winiarska, Iwona:
-> On Thu, 2023-07-20 at 08:20 +0200, Paul Menzel wrote:
-
->> Am 20.07.23 um 00:08 schrieb Iwona Winiarska:
->>> From: Tomer Maimon <tmaimon77@gmail.com>
->>>
->>> Add support for Nuvoton NPCM BMC hardware to the Platform Environment
->>> Control Interface (PECI) subsystem.
->>
->> Please elaborate on the implementation, and document the used datasheets.
-> 
-> As far as I know, there is no publicly available documentation.
-
-Too bad. Documenting the datasheet name and version is still important, 
-so developers could request it, and it can be mapped, once they are made 
-public.
-
->> Additionally, please document how you tested this.
-> 
-> Are you asking to include this information in the commit message?
-
-Yes.
-
-> That would be unusual.
-> But in general - it's a controller driver, it allows PECI subsystem to detect
-> devices behind it and for PECI drivers to bind to those devices.
-
-Having a test line in the commit message is not unusual at. So people 
-with systems where it doesn’t work, could replicate the test setup to at 
-least verify that it works in that configuration.
-
->>> Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
->>> Signed-off-by: Tyrone Ting <warp5tw@gmail.com>
->>> Co-developed-by: Iwona Winiarska <iwona.winiarska@intel.com>
->>> Signed-off-by: Iwona Winiarska <iwona.winiarska@intel.com>
->>> ---
->>>    drivers/peci/controller/Kconfig     |  16 ++
->>>    drivers/peci/controller/Makefile    |   1 +
->>>    drivers/peci/controller/peci-npcm.c | 298 ++++++++++++++++++++++++++++
->>>    3 files changed, 315 insertions(+)
->>>    create mode 100644 drivers/peci/controller/peci-npcm.c
->>>
->>> diff --git a/drivers/peci/controller/Kconfig
->>> b/drivers/peci/controller/Kconfig
->>> index 2fc5e2abb74a..4f9c245ad042 100644
->>> --- a/drivers/peci/controller/Kconfig
->>> +++ b/drivers/peci/controller/Kconfig
->>> @@ -16,3 +16,19 @@ config PECI_ASPEED
->>>    
->>>            This driver can also be built as a module. If so, the module will
->>>            be called peci-aspeed.
->>> +
->>> +config PECI_NPCM
->>> +       tristate "Nuvoton NPCM PECI support"
->>> +       depends on ARCH_NPCM || COMPILE_TEST
->>> +       depends on OF
->>> +       select REGMAP_MMIO
->>> +       help
->>> +         This option enables PECI controller driver for Nuvoton NPCM7XX
->>> +         and NPCM8XX SoCs. It allows BMC to discover devices connected
->>> +         to it and communicate with them using PECI protocol.
->>> +
->>> +         Say Y here if you want support for the Platform Environment
->>> Control
->>> +         Interface (PECI) bus adapter driver on the Nuvoton NPCM SoCs.
->>> +
->>> +         This support is also available as a module. If so, the module
->>> +         will be called peci-npcm.
->>> diff --git a/drivers/peci/controller/Makefile
->>> b/drivers/peci/controller/Makefile
->>> index 022c28ef1bf0..e247449bb423 100644
->>> --- a/drivers/peci/controller/Makefile
->>> +++ b/drivers/peci/controller/Makefile
->>> @@ -1,3 +1,4 @@
->>>    # SPDX-License-Identifier: GPL-2.0-only
->>>    
->>>    obj-$(CONFIG_PECI_ASPEED)     += peci-aspeed.o
->>> +obj-$(CONFIG_PECI_NPCM)                += peci-npcm.o
->>> diff --git a/drivers/peci/controller/peci-npcm.c
->>> b/drivers/peci/controller/peci-npcm.c
->>> new file mode 100644
->>> index 000000000000..3647e3628a17
->>> --- /dev/null
->>> +++ b/drivers/peci/controller/peci-npcm.c
->>> @@ -0,0 +1,298 @@
->>> +// SPDX-License-Identifier: GPL-2.0
->>> +// Copyright (c) 2019 Nuvoton Technology corporation.
->>
->> No dot/period at the end.
->>
->> […]
->>
->>> +static int npcm_peci_xfer(struct peci_controller *controller, u8 addr, struct peci_request *req)
->>> +{
->>> +       struct npcm_peci *priv = dev_get_drvdata(controller->dev.parent);
->>> +       unsigned long timeout = msecs_to_jiffies(priv->cmd_timeout_ms);
->>> +       unsigned int msg_rd;
->>> +       u32 cmd_sts;
->>> +       int i, ret;
->>> +
->>> +       /* Check command sts and bus idle state */
->>> +       ret = regmap_read_poll_timeout(priv->regmap, NPCM_PECI_CTL_STS, cmd_sts,
->>> +                                      !(cmd_sts & NPCM_PECI_CTRL_START_BUSY),
->>> +                                      NPCM_PECI_IDLE_CHECK_INTERVAL_USEC,
->>> +                                      NPCM_PECI_IDLE_CHECK_TIMEOUT_USEC);
->>> +       if (ret)
->>> +               return ret; /* -ETIMEDOUT */
->>> +
->>> +       spin_lock_irq(&priv->lock);
->>> +       reinit_completion(&priv->xfer_complete);
->>> +
->>> +       regmap_write(priv->regmap, NPCM_PECI_ADDR, addr);
->>> +       regmap_write(priv->regmap, NPCM_PECI_RD_LENGTH, NPCM_PECI_WR_LEN_MASK & req->rx.len);
->>> +       regmap_write(priv->regmap, NPCM_PECI_WR_LENGTH, NPCM_PECI_WR_LEN_MASK & req->tx.len);
->>> +
->>> +       if (req->tx.len) {
->>> +               regmap_write(priv->regmap, NPCM_PECI_CMD, req->tx.buf[0]);
->>> +
->>> +               for (i = 0; i < (req->tx.len - 1); i++)
->>> +                       regmap_write(priv->regmap, NPCM_PECI_DAT_INOUT(i), req->tx.buf[i + 1]);
->>> +       }
->>> +
->>> +#if IS_ENABLED(CONFIG_DYNAMIC_DEBUG)
->>> +       dev_dbg(priv->dev, "addr : %#02x, tx.len : %#02x, rx.len : %#02x\n",
->>> +               addr, req->tx.len, req->rx.len);
->>> +       print_hex_dump_bytes("TX : ", DUMP_PREFIX_NONE, req->tx.buf, req-tx.len);
->>> +#endif
->>
->> The preprocessor guards are not needed, as it’s taken care of in
->> `include/linux/printk.h`. Also in other parts of the patch.
-> 
-> Since this is dumping the raw contents of PECI messages, it's going to be quite
-> verbose. The idea behind preprocessor guard is that we don't ever want this to
-> be converted to regular printk. If there's no dynamic debug available - this
-> won't be printed unconditionally (even with -DDEBUG).
-
-How will it be converted to a regular printk?
-
-     #if defined(CONFIG_DYNAMIC_DEBUG) || \
-         (defined(CONFIG_DYNAMIC_DEBUG_CORE) && 
-defined(DYNAMIC_DEBUG_MODULE))
-     #define print_hex_dump_debug(prefix_str, prefix_type, rowsize,      \
-                              groupsize, buf, len, ascii)        \
-         dynamic_hex_dump(prefix_str, prefix_type, rowsize,      \
-                          groupsize, buf, len, ascii)
-     #elif defined(DEBUG)
-     #define print_hex_dump_debug(prefix_str, prefix_type, rowsize, 
-         \
-                              groupsize, buf, len, ascii)                \
-         print_hex_dump(KERN_DEBUG, prefix_str, prefix_type, rowsize,    \
-                        groupsize, buf, len, ascii)
-     #else
-     static inline void print_hex_dump_debug(const char *prefix_str, int 
-prefix_type,
-                                         int rowsize, int groupsize,
-                                         const void *buf, size_t len, 
-bool ascii)
-     {
-     }
-     #endif
-
->> […]
->>
->>> +module_platform_driver(npcm_peci_driver);
->>> +
->>> +MODULE_AUTHOR("Tomer Maimon <tomer.maimon@nuvoton.com>");
->>> +MODULE_DESCRIPTION("NPCM PECI driver");
->>> +MODULE_LICENSE("GPL");
->>> +MODULE_IMPORT_NS(PECI);
->>
->> Also add an entry to `MAINTAINERS`, if Tomer is going to be the maintainer?
-> 
-> All of the newly added files should already be covered by either ARM/NUVOTON
-> NPCM ARCHITECTURE or PECI SUBSYSTEM.
-
-Good to know. Thank you.
-
-
-Kind regards,
-
-Paul
+Acked-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
