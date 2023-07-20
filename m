@@ -2,86 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C2AA875A4EF
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 06:00:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AC68375A4FC
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 06:12:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229457AbjGTEAZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jul 2023 00:00:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51768 "EHLO
+        id S229476AbjGTEMl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jul 2023 00:12:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54066 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229445AbjGTEAX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 00:00:23 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18FAA1FED;
-        Wed, 19 Jul 2023 21:00:23 -0700 (PDT)
+        with ESMTP id S229843AbjGTEMk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 00:12:40 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB7082118;
+        Wed, 19 Jul 2023 21:12:38 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id A5E9D615B3;
-        Thu, 20 Jul 2023 04:00:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 0EB8BC433CA;
-        Thu, 20 Jul 2023 04:00:22 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 56C8E615B2;
+        Thu, 20 Jul 2023 04:12:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E72A6C433C7;
+        Thu, 20 Jul 2023 04:12:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689825622;
-        bh=Asw33ccJGt+82XG4DwTLLFE/7jX9zPKbdust7yp+7zo=;
-        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-        b=T82iKtVh2/i6QbhxfzzhypcrFBwq6I4+pUDf3qD4BugGzMEhLOFAkh4XuryqIaHKO
-         5PtMH/12pLabp95FXlLv6ixoT4Wx2Cp50Yx+cONhno+Jv1CrpuEKbiznlhKFYrnTmM
-         6pBIhUbrzNTVF/Te3c5vQy0X1IXp6XQ4o6HoYAG2WLWU6jZpfqAPzEbVSK2LDBbQhl
-         ChnIIS7mPDVdGdhB+1/fN5SDnsTzmcQlBfVtHS0fTbVH5K/CCTDb7SpnVgRvQkYWZ2
-         kpNrr6hF3zHDc5lMfM6NNb1bAMEer1Bvqwze3pLlCKaxuifl1sYf138y9DpNc+e1wN
-         UEZgA+dPKQ1sA==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id EDB11E21EFE;
-        Thu, 20 Jul 2023 04:00:21 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+        s=k20201202; t=1689826357;
+        bh=3AHdDFL2C0BAHYVyKANj1zL7AGecfNpV115jPkuHkwA=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=HCpndoyA8eGRaZwEAIZ5eAIvWa1UeWuwHoS8+lWLp7Or7/SKZsbhFOBSgobJo0rJL
+         MAhkyCABXiwnAJGHJIxevi8/sd+j+nNXbDZBW1ReYpK3kVjNe9aNcWMtgFWxgs15Ld
+         PiTvWapDgxWT1hKwb65i8shckyB9ULl8Y7lRAajvc31XUrxRnhJnB35XYnRv793Ti6
+         gqwZpyFe+A9XhecDDAbpOsKcrRhXSC+b5etDY8PhHsVu71Cu2cKcX0lnLQ2abD0uOO
+         1/CmuVYMV0aehFssABrVcqyaWJ0C5zCDqz7XX3ebEopddshNbgzn9ST18Oo+vHdpzb
+         eRJlJ2uFD+b0g==
+Date:   Wed, 19 Jul 2023 21:12:35 -0700
+From:   Jakub Kicinski <kuba@kernel.org>
+To:     Marco Felsch <m.felsch@pengutronix.de>
+Cc:     davem@davemloft.net, edumazet@google.com, pabeni@redhat.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, peppe.cavallaro@st.com,
+        alexandre.torgue@foss.st.com, joabreu@synopsys.com,
+        mcoquelin.stm32@gmail.com, devicetree@vger.kernel.org,
+        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+        kernel@pengutronix.de, linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH net-next v2 2/2] net: stmmac: add support for phy-supply
+Message-ID: <20230719211235.1758bbc0@kernel.org>
+In-Reply-To: <20230718132049.3028341-2-m.felsch@pengutronix.de>
+References: <20230718132049.3028341-1-m.felsch@pengutronix.de>
+        <20230718132049.3028341-2-m.felsch@pengutronix.de>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH] dt-bindings: net: rockchip-dwmac: add default 'input' for
- clock_in_out
-From:   patchwork-bot+netdevbpf@kernel.org
-Message-Id: <168982562196.4243.14007279822210402667.git-patchwork-notify@kernel.org>
-Date:   Thu, 20 Jul 2023 04:00:21 +0000
-References: <20230718090914.282293-1-eugen.hristev@collabora.com>
-In-Reply-To: <20230718090914.282293-1-eugen.hristev@collabora.com>
-To:     Eugen Hristev <eugen.hristev@collabora.com>
-Cc:     linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        netdev@vger.kernel.org, david.wu@rock-chips.com, heiko@sntech.de,
-        krzysztof.kozlowski+dt@linaro.org, kernel@collabora.com
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello:
-
-This patch was applied to netdev/net-next.git (main)
-by Jakub Kicinski <kuba@kernel.org>:
-
-On Tue, 18 Jul 2023 12:09:14 +0300 you wrote:
-> 'clock_in_out' property is optional, and it can be one of two enums.
-> The binding does not specify what is the behavior when the property is
-> missing altogether.
-> Hence, add a default value that the driver can use.
+On Tue, 18 Jul 2023 15:20:49 +0200 Marco Felsch wrote:
+> Add generic phy-supply handling support to control the phy regulator to
+> avoid handling it within the glue code. Use the generic stmmac_platform
+> code to register a possible phy-supply and the stmmac_main code to
+> handle the power on/off.
 > 
-> Signed-off-by: Eugen Hristev <eugen.hristev@collabora.com>
+> Changelog
+> ---
 > 
-> [...]
+> v2:
+> - adapt stmmac_phy_power
+> - move power-on/off into stmmac_main to handle WOL
+> - adapt commit message
+> 
+> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> ---
 
-Here is the summary with links:
-  - dt-bindings: net: rockchip-dwmac: add default 'input' for clock_in_out
-    https://git.kernel.org/netdev/net-next/c/51318bf44395
+Format should be:
 
-You are awesome, thank you!
+Bla bla bla
+
+Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+---
+Changelog
+
+v2:
+ bla bla bla
+
+
+Please fix and rebase because the current version does not apply to
+net-next/main.
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
-
+pw-bot: cr
