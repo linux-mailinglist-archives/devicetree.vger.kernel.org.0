@@ -2,74 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BE50475A9E5
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 10:57:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 785DD75A9C5
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 10:57:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230486AbjGTI52 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jul 2023 04:57:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36108 "EHLO
+        id S230101AbjGTI5K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jul 2023 04:57:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36092 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232096AbjGTIfe (ORCPT
+        with ESMTP id S232114AbjGTIfe (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 04:35:34 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C12A2690
-        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 01:35:11 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id 2adb3069b0e04-4fb761efa7aso830286e87.0
-        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 01:35:11 -0700 (PDT)
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC9E4269F
+        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 01:35:30 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-4fba8f2197bso783125e87.3
+        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 01:35:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689842109; x=1692434109;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4h0CcbUp+LfvYNPhD0SmWcMr+zwTgZPbTDhBQrWPEPA=;
-        b=leQCoxqtE0B0JiPz3V6ahupqZ3fhkk8ExYDq8HzMR6oS3aG0E6f4Qaf11nuJrWyVcz
-         krcxROAzMnjespmJVzCP5btQ08pAV4t3IK0leLHXN88cy/yFtN0epF7/mVoY8xxShfXB
-         murraMKn9zS5zB94KZtuB8gPeDkhCqVpsgDdzChsRcXwxxZlQ4fbiXR/TyFzI8KchbWW
-         3C+3RT+XExPo2FXG44TL5FuProeW6PLZgOmHDSGECQpfk8KQ433MUkr2D1RWwhh5o59v
-         /R/ncP67Pf4yX2G9BNnk6BEZULsLd+7rOHiCB3nyiAEvH7SQos4kPsZA+g65xaERfsGr
-         HDCg==
+        d=linaro.org; s=google; t=1689842129; x=1692434129;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=1sRMeYBiTFf66+qgNaHYdfUCWajfWqb0DHM4fZ8M2NM=;
+        b=ZQ9Cl4LDiRtqhKVtiRqFN3MChytDZUkiVAtZFtcTGqyybC8SsEgw3W1+lhrjynZBz0
+         yea0Lu6Ruvbf8pEbqmNrBCF0ulFPB1bbKcEMQdALE4u8c15XJeSJpn1IuPp4fA2tK62B
+         FyzYs44T+faoxCafa6IBoEam+78wUwzp/wZhGRCpRWNjxXxYPoVGpVwflgELTpPGrG2T
+         WDKZgs1NM8Y9Y7Zh25FH5vzQGlXhlFdv6IZvo+n0Odu83FNgia5algKJpP5UYX6sGmC+
+         xGEbLY1qfCs1rpcWy7WD0VfG4u48pbhiZmxLb9ctm20vetCZDanxfryaI7AXdfM9QZSc
+         q7QA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689842109; x=1692434109;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=4h0CcbUp+LfvYNPhD0SmWcMr+zwTgZPbTDhBQrWPEPA=;
-        b=KQIoBwPI+JdJth4KcEExg/ndTDvd9NFA8G1r/C/SaZFp2an7xX2JYCN24tTdaUnFCi
-         G1AGFqNp+28Q73+TXFU+/7+khBqAwlmO/nW4+ElJnSgYq+XhqfPQcMbtOjYNc30K3eOC
-         H6+/hSRt96ZIoCm3JW1bUcWfsT2RMq6I4LN0jH1GEnBWvlE2VvUlUpDnC9x1TAIuHYV3
-         8jRhevQGq2zsxbJWaWFZiChr2TDM4I5aoNOkfca3E93T+XmBkU++EMjLWO6sfzsRVPSd
-         vN90HMRogv5yTg3zr0Y9CcNmHud0pbJohrt9bO5pgDBXsL+LU47n/bRgxLTDouwNFD73
-         ocRg==
-X-Gm-Message-State: ABy/qLafVFDM8n+/JzgwP0tqtqfdtmF4bXNY6UdN2+PWtqBD6B9F00WY
-        +2xREeXaQOfyELd10bz7l4yPBA==
-X-Google-Smtp-Source: APBJJlFPqLzGg6ZNlaIONASIGKlTTonTN71PQH57EX8rVGU5P0ClmQs9qBk5cXgf8ZajZTiCz8kLqg==
-X-Received: by 2002:a05:6512:3c81:b0:4fb:8de9:ac13 with SMTP id h1-20020a0565123c8100b004fb8de9ac13mr2170016lfv.23.1689842109560;
-        Thu, 20 Jul 2023 01:35:09 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1689842129; x=1692434129;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=1sRMeYBiTFf66+qgNaHYdfUCWajfWqb0DHM4fZ8M2NM=;
+        b=KxwuZxOMdNcSgFph+ntGYU34VQGnSGQMVgO9PMNvKiTcg2fJk7XAxyXiSrgjoqGNeD
+         kySex39S5OGZ8v1eJW/6PAVxTkZ5iZtBxuMFObSJsi+vp+eM9gZtl5PYo5phPSu4XDju
+         9dSppGi/918J0U9rW5QUwZUQ0b/bJC/ghvOj92G3A49s+bhPgObVQMoKWOdhnGVvt2Jo
+         lYHg8GG4WPCl+EOO/oUMy8e4mqY+eIbwwF3CoU6yNx/vsTM0jffTzlfAWg9sRiTZQqcO
+         E7oNhcW4yZgY40XOuhkL0uhqnIM7/EimJmlht+KW3jLL6fUQZpb7/weNiTfN91IZJ0Uv
+         U2/w==
+X-Gm-Message-State: ABy/qLaqISHUBY6aEi9lkgEXTzEKOzSQHXUAdCHmvHEk/g8o2ftq1/gV
+        haO57Zif7LdChFaRku5FwUQdEA==
+X-Google-Smtp-Source: APBJJlGA6g6PPVisG5hJskzzxgHicwcVPFmlhZy1/UZWPPpF085TgKrS3VU8sIXZpab5AS/zRhFf0w==
+X-Received: by 2002:a05:6512:2248:b0:4fb:96f3:2f4 with SMTP id i8-20020a056512224800b004fb96f302f4mr1165800lfu.51.1689842129242;
+        Thu, 20 Jul 2023 01:35:29 -0700 (PDT)
 Received: from krzk-bin.. ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id h3-20020a5d4fc3000000b00314329f7d8asm627060wrw.29.2023.07.20.01.35.08
+        by smtp.gmail.com with ESMTPSA id n5-20020a5d67c5000000b0031416362e23sm638430wrw.3.2023.07.20.01.35.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 Jul 2023 01:35:09 -0700 (PDT)
+        Thu, 20 Jul 2023 01:35:28 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
+        Stephen Boyd <sboyd@kernel.org>, linux-arm-msm@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 4/4] arm64: dts: qcom: sc8180x-pmics: align LPG node name with dtschema
-Date:   Thu, 20 Jul 2023 10:35:00 +0200
-Message-Id: <20230720083500.73554-4-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] dt-bindings: mfd: qcom,spmi-pmic: document PMC8180 and PMC8180C
+Date:   Thu, 20 Jul 2023 10:35:25 +0200
+Message-Id: <20230720083525.73622-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230720083500.73554-1-krzysztof.kozlowski@linaro.org>
-References: <20230720083500.73554-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,29 +74,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Bindings expect the LPG node name to be "pwm":
+Document qcom,pmc8180 and qcom,pmc8180c compatibles already used in DTS:
 
-  sc8180x-lenovo-flex-5g.dtb: pmic@5: 'lpg' does not match any of the regexes:
+  sc8180x-primus.dtb: pmic@1: compatible:0: 'qcom,pmc8180' is not one of ...
 
-Fixes: d3302290f59e ("arm64: dts: qcom: sc8180x: Add pmics")
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sc8180x-pmics.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sc8180x-pmics.dtsi b/arch/arm64/boot/dts/qcom/sc8180x-pmics.dtsi
-index bc17d22dbefc..ddc84282f142 100644
---- a/arch/arm64/boot/dts/qcom/sc8180x-pmics.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc8180x-pmics.dtsi
-@@ -315,7 +315,7 @@ pmic@5 {
- 		compatible = "qcom,pmc8180c", "qcom,spmi-pmic";
- 		reg = <0x5 SPMI_USID>;
- 
--		pmc8180c_lpg: lpg {
-+		pmc8180c_lpg: pwm {
- 			compatible = "qcom,pmc8180c-lpg";
- 
- 			#address-cells = <1>;
+diff --git a/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml b/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
+index 7a9ab2b7decd..debed393fa8c 100644
+--- a/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
++++ b/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
+@@ -72,6 +72,8 @@ properties:
+           - qcom,pm8994
+           - qcom,pm8998
+           - qcom,pma8084
++          - qcom,pmc8180
++          - qcom,pmc8180c
+           - qcom,pmd9635
+           - qcom,pmi632
+           - qcom,pmi8950
 -- 
 2.34.1
 
