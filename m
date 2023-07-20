@@ -2,130 +2,213 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 49DC775AE85
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 14:36:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A3B175AE94
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 14:40:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230303AbjGTMgx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jul 2023 08:36:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46700 "EHLO
+        id S229834AbjGTMkJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jul 2023 08:40:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47356 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230287AbjGTMgo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 08:36:44 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7CFA2128
-        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 05:36:42 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-52176fdad9dso1089643a12.0
-        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 05:36:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689856601; x=1690461401;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=TeWGw2gUiLPO/RS6979ifpmA5NC37xcO8V3RqV0p6sM=;
-        b=UEICAlJLJDp+3I3EqRBjOrINwFRMYbI9+BKYwQcOQA7bCQVNhmAeCQR8nzfGdmgVkb
-         Hx49390V+EBXAlE4CO0Tx0WpBbjHvqYICtv5F4KHyDxjwWgVHamv2WYNI+vzMmSC66gj
-         Q0DjCb/yuDugLZunCw2fnqGwi+FCEQTYKQZt/561zhfw04rMEElFCJabPBLk4paFKakQ
-         FHFcvWU8zENYfxWw1NcHl9FE8yaxLJBX6k88CifCRFoLYCDm/HzghVB9OsWg6DTkOA6x
-         YmLvjmCI68JoaV1JDlHPh0YRCN+6oQbOU49Cj00sCaaY8DZwx8DB82CK0C03uU6k8op3
-         QzsQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689856601; x=1690461401;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=TeWGw2gUiLPO/RS6979ifpmA5NC37xcO8V3RqV0p6sM=;
-        b=WiAnKoe//HSsfO6+3BUPAjDaiAjKL8o+OIgAojV1VjekBj6jZohN4usNnEg3z7A0A6
-         Nn2qIxCCyRiGqRnTwaUP/OqKHdWCIEJ+l9LVw9NnzHkD2a/r0LThVdIuCkbZ/qT79nae
-         dH9FF7PMnPWhemAKstUZYW8se4gI+EIXnoPunZMfMDyuvRJ+OoBtE3LFh1wgbhWFHdB1
-         UOZu6v1NbjY/KCViutK0veZbf7JlLtQmU5/905iChtu+z8WGlmXg4s9RP4hZB5c6oeQu
-         dtEe82Hk1D7qDXJjPHtKM9daPmwxtRlLPtY0JrRtCbxIhKhPxWYThu2yX79+4KAqiZaJ
-         xsJg==
-X-Gm-Message-State: ABy/qLYAyPjiFyQ1jD7kMU/0CDXCNfzgCdLC62x4DjBLe8m5mTSypsFM
-        csHrJS9WexTNDRz8x9QsyG2KAQ==
-X-Google-Smtp-Source: APBJJlFyWuz4RP3lpWwhWBFPBxHH+evG1aHzuSnSD11+X1U38hrobyh2hgqG/WfGnjR28zjpg4Omaw==
-X-Received: by 2002:a17:906:7a07:b0:99b:4668:865f with SMTP id d7-20020a1709067a0700b0099b4668865fmr3407023ejo.10.1689856601393;
-        Thu, 20 Jul 2023 05:36:41 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id n10-20020a170906164a00b00977cad140a8sm636723ejd.218.2023.07.20.05.36.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 20 Jul 2023 05:36:40 -0700 (PDT)
-Message-ID: <f67d710c-bacc-8480-a918-db84b82885e1@linaro.org>
-Date:   Thu, 20 Jul 2023 14:36:38 +0200
+        with ESMTP id S229628AbjGTMkI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 08:40:08 -0400
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BD2B2135;
+        Thu, 20 Jul 2023 05:40:04 -0700 (PDT)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 731A3867B0;
+        Thu, 20 Jul 2023 14:39:55 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1689856796;
+        bh=f8XyhbjfLqhWIVCe1Qt4oK/cpkZbc5yMtEPx8ztTzZE=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=gvTkaGK7PaN7RI9bX6CgMhCFNU908mJeGF+RO0K6/VFdjWCS1v4fCNcZSYrdWfqSS
+         QFtLbkdjxRsblxR98CJcULD0H+4H0rnQyRobnXV7Y9P02IdaYRxk7DrqL4LCSSDRq8
+         IJUj9FHAnUOtKNYBN2EvjnpxAx0CrMfpEMjLGev+YCKL7GKNxUxEwkY9rkYK4Hm0QA
+         Imc7NYxDTJm1qll2vczBN6DUnPS9Z1903aMcS/JKPipGnhvmWl0f8YVpLaXibi1H9m
+         u3J/tHkk8MX8qwJd+xz65GKLw93Q17g+WTRDH7RHsY27dntdHdOq9EBucMoEUxhkCm
+         CLmwwRkdPoyDw==
+Message-ID: <253d05ad-c04a-2221-b8fb-616fcf1174f8@denx.de>
+Date:   Thu, 20 Jul 2023 14:39:54 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
-Subject: Re: [PATCH v2 2/2] ARM: dts: imx6q: Add Variscite MX6 Custom board
- support
-Content-Language: en-US
-To:     James Hilliard <james.hilliard1@gmail.com>
-Cc:     devicetree@vger.kernel.org,
-        Gregory CLEMENT <gregory.clement@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+Subject: Re: [PATCH 1/2] dt-bindings: remoteproc: imx_rproc: Document
+ fsl,startup-delay-ms
+To:     Mathieu Poirier <mathieu.poirier@linaro.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-remoteproc@vger.kernel.org,
+        Bjorn Andersson <andersson@kernel.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        soc@kernel.org, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
         Fabio Estevam <festevam@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         NXP Linux Team <linux-imx@nxp.com>,
-        Marek Vasut <marex@denx.de>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        Stefan Wahren <stefan.wahren@chargebyte.com>,
-        Andreas Kemnade <andreas@kemnade.info>,
-        =?UTF-8?B?TWljaGFsIFZva8OhxI0=?= <michal.vokac@ysoft.com>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        Jesse Taube <mr.bossman075@gmail.com>,
-        Li Yang <leoyang.li@nxp.com>, linux-kernel@vger.kernel.org,
+        Peng Fan <peng.fan@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org
-References: <20230719224141.3716815-1-james.hilliard1@gmail.com>
- <20230719224141.3716815-2-james.hilliard1@gmail.com>
- <0ad5a223-d70f-deaa-6261-a2bd2b2af40d@linaro.org>
- <CADvTj4qvXvuV=ASg5h4hPr8QG-NR48j6G36AZC5xHDdhLyjT7w@mail.gmail.com>
- <c70e397e-dee8-2155-9f0b-538e95bda2eb@linaro.org>
- <CADvTj4p72nh5umeSRw2OhjA5NyyZY_BkMhzJBn4Y2AHZHA3+dw@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CADvTj4p72nh5umeSRw2OhjA5NyyZY_BkMhzJBn4Y2AHZHA3+dw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
+References: <20230707232444.374431-1-marex@denx.de>
+ <8f40484e-1721-a2bc-2344-f9e59e51a935@linaro.org>
+ <d3180b8f-96d6-380b-4518-17334a90799d@denx.de>
+ <c02d0271-9896-3990-33b0-c83fa54f5623@linaro.org>
+ <7a1d7a67-0a0c-8527-d430-30a1cb40de48@denx.de>
+ <51a1c2e9-1165-c7ff-809d-b09e09d776e2@linaro.org>
+ <6e2e16be-1f83-70d2-4c5d-c2e89a7d017f@denx.de>
+ <CANLsYkyWCaSwiL=nOSG1efw069GKEeK2nYkYeMVT7bx0329Bgw@mail.gmail.com>
+ <38b62bf0-018a-03b9-3107-23f91fe3fa35@denx.de> <ZK2BmlSSQOLpqXFj@p14s>
+Content-Language: en-US
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <ZK2BmlSSQOLpqXFj@p14s>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE,
+        T_SPF_TEMPERROR autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/07/2023 14:22, James Hilliard wrote:
->> Take a look at IMX8 Variscite SoMs.
+On 7/11/23 18:21, Mathieu Poirier wrote:
+> On Tue, Jul 11, 2023 at 12:23:02AM +0200, Marek Vasut wrote:
+>> On 7/11/23 00:01, Mathieu Poirier wrote:
+>>> On Mon, 10 Jul 2023 at 15:53, Marek Vasut <marex@denx.de> wrote:
+>>>>
+>>>> On 7/10/23 22:00, Krzysztof Kozlowski wrote:
+>>>>> On 10/07/2023 15:46, Marek Vasut wrote:
+>>>>>> On 7/10/23 14:52, Krzysztof Kozlowski wrote:
+>>>>>>> On 10/07/2023 11:18, Marek Vasut wrote:
+>>>>>>>> On 7/10/23 10:12, Krzysztof Kozlowski wrote:
+>>>>>>>>> On 08/07/2023 01:24, Marek Vasut wrote:
+>>>>>>>>>> Document fsl,startup-delay-ms property which indicates how long
+>>>>>>>>>> the system software should wait until attempting to communicate
+>>>>>>>>>> with the CM firmware. This gives the CM firmware a bit of time
+>>>>>>>>>> to boot and get ready for communication.
+>>>>>>>>>>
+>>>>>>>>>> Signed-off-by: Marek Vasut <marex@denx.de>
+>>>>>>>>>> ---
+>>>>>>>>>> Cc: Bjorn Andersson <andersson@kernel.org>
+>>>>>>>>>> Cc: Conor Dooley <conor+dt@kernel.org>
+>>>>>>>>>> Cc: Fabio Estevam <festevam@gmail.com>
+>>>>>>>>>> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+>>>>>>>>>> Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
+>>>>>>>>>> Cc: NXP Linux Team <linux-imx@nxp.com>
+>>>>>>>>>> Cc: Peng Fan <peng.fan@nxp.com>
+>>>>>>>>>> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+>>>>>>>>>> Cc: Rob Herring <robh+dt@kernel.org>
+>>>>>>>>>> Cc: Sascha Hauer <s.hauer@pengutronix.de>
+>>>>>>>>>> Cc: Shawn Guo <shawnguo@kernel.org>
+>>>>>>>>>> Cc: devicetree@vger.kernel.org
+>>>>>>>>>> Cc: linux-arm-kernel@lists.infradead.org
+>>>>>>>>>> Cc: linux-remoteproc@vger.kernel.org
+>>>>>>>>>> ---
+>>>>>>>>>>       .../devicetree/bindings/remoteproc/fsl,imx-rproc.yaml        | 5 +++++
+>>>>>>>>>>       1 file changed, 5 insertions(+)
+>>>>>>>>>>
+>>>>>>>>>> diff --git a/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
+>>>>>>>>>> index 0c3910f152d1d..c940199ce89df 100644
+>>>>>>>>>> --- a/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
+>>>>>>>>>> +++ b/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
+>>>>>>>>>> @@ -76,6 +76,11 @@ properties:
+>>>>>>>>>>             This property is to specify the resource id of the remote processor in SoC
+>>>>>>>>>>             which supports SCFW
+>>>>>>>>>>
+>>>>>>>>>> +  fsl,startup-delay-ms:
+>>>>>>>>>> +    default: 0
+>>>>>>>>>> +    description:
+>>>>>>>>>> +      CM firmware start up delay.
+>>>>>>>>>
+>>>>>>>>> I don't see particular improvements from v2 and no responses addressing
+>>>>>>>>> my comment:
+>>>>>>>>> https://lore.kernel.org/all/20221102112451.128110-2-peng.fan@oss.nxp.com/
+>>>>>>>>
+>>>>>>>> I wasn't aware of this being submitted before, esp. since I wrote the
+>>>>>>>> binding document from scratch. Which comment is not addressed, the type
+>>>>>>>> ref is not present and the sentence starts with caps, so what is missing ?
+>>>>>>>
+>>>>>>>
+>>>>>>> That the property looks like a hacky solution to some SW problem. Why
+>>>>>>> this delay should be different on different boards?
+>>>>>>
+>>>>>> It probably depends more on the CM4 firmware that is being launched. The
+>>>>>> ones I tested were fine with 50..500ms delay, but the delay was always
+>>>>>> needed.
+>>>>>
+>>>>> If this is for some official remoteproc FW running on M4
+>>>>
+>>>> It is not, it is some SDK which can be downloaded from NXP website,
+>>>> which can then be used to compile the firmware blob. The license is
+>>>> BSD-3 however, so it is conductive to producing binaries without
+>>>> matching sources ...
+>>>>
+>>>
+>>> Why can't the SDK be upgraded to provide some kind of hand-shake
+>>> mechanism, as suggested when I first reviewed this patchset?
+>>
+>> I'd argue because of legacy firmware that is already deployed.
+>> New firmware builds can, old ones probably cannot be fixed.
+>>
+>> Do you have a suggestion how such a mechanism should look like?
+>> As far as I can tell, the MX8M SDK stuff looks very similar to the STM32
+>> Cube stuff, so maybe the mechanism is already there ?
 > 
-> Oh, I see what you mean now, so it looks like this is missing for the dart-mx6
-> device tree.
-> 
-> imx8mm-var-som.dtsi:    compatible = "variscite,var-som-mx8mm", "fsl,imx8mm";
-> imx8mm-var-som-symphony.dts:    compatible =
-> "variscite,var-som-mx8mm-symphony", "variscite,var-som-mx8mm",
-> "fsl,imx8mm";
-> 
-> imx6q-var-dt6customboard.dts:    compatible =
-> "variscite,dt6customboard", "fsl,imx6q";
-> 
-> So the DART-MX6 is missing a compatible along the lines of
-> "variscite,dart-imx6q"
-> for the dart SoM I guess?
+> Either with a flag in the config space of the resource table or implicit
+> synchronization using the mailbox.  I suggest to have a look at struct
+> mbox_client where tx_block, knows_txdone and tx_done should be useful.  I'd use
+> those with a completion in rproc::ops::prepare() or rproc_ops::start().
 
-It's different topic whether it is worth to fix DART-MX6. In general it
-misses its compatible, but it might be not worth to fix.
+I added the following to the CM7 BSP from NXP, which removes the need 
+for the extra delay. I believe that is also the proper fix. Whether NXP 
+will pick it up in some form, is up to NXP.
 
-> 
-> And for VAR-SOM-MX6 I guess I should use something like
-> "variscite,var-som-imx6q"
-> for the SoM right?
+This whole startup-delay patch is now unnecessary for me, i.e. I stop here.
 
-Yes.
+"
+Run RPMSG init with IRQs globally disabled
 
-Best regards,
-Krzysztof
+The rpmsg_lite_remote_init() function runs in parallel with Linux side
+rpmsg_probe()->virtqueue_notify()->rproc_virtio_notify() which raises an
+IRQ on CM7 side. Unless IRQs are disabled during rpmsg_lite_remote_init()
+time, it is possible the kick from CA53 side would be received and end up
+in MU_M7_IRQHandler()->env_isr()->virtqueue_notification() for virtqueue
+which is not yet fully initialized. Such IRQ would then be discarded or
+mishandled, and rpmsg_lite_wait_for_link_up() would never complete. The
+firmware would then fail to communicate with CA53 side.
 
+Fix this by running the RPMSG initialization with global IRQs off, which
+delays the reception of IRQ from CA53 side until after the virtqueues are
+fully and properly initialized, and the IRQ can be properly handled.
+
+diff --git 
+a/boards/evkmimx8mn/multicore_examples/rpmsg_lite_str_echo_rtos/main_remote.c 
+b/boards/evkmimx8mn/multicore_examples/rpmsg_lite_str_echo_rtos/main_remote.c
+index 655287c..936822e 100644
+--- 
+a/boards/evkmimx8mn/multicore_examples/rpmsg_lite_str_echo_rtos/main_remote.c
++++ 
+b/boards/evkmimx8mn/multicore_examples/rpmsg_lite_str_echo_rtos/main_remote.c
+@@ -87,6 +87,7 @@ void app_task(void *param)
+      /* Print the initial banner */
+      PRINTF("\r\nRPMSG String Echo FreeRTOS RTOS API Demo...\r\n");
+
++    __disable_irq();
+  #ifdef MCMGR_USED
+      uint32_t startupData;
+
+@@ -100,6 +101,7 @@ void app_task(void *param)
+  #else
+      my_rpmsg = rpmsg_lite_remote_init((void *)RPMSG_LITE_SHMEM_BASE, 
+RPMSG_LITE_LINK_ID, RL_NO_FLAGS);
+  #endif /* MCMGR_USED */
++    __enable_irq();
+
+      rpmsg_lite_wait_for_link_up(my_rpmsg, RL_BLOCK);
+"
