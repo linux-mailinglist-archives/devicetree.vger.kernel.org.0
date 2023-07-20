@@ -2,138 +2,259 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AA74E75AC2D
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 12:39:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE8B675AC5A
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 12:49:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230078AbjGTKj5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jul 2023 06:39:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43650 "EHLO
+        id S230395AbjGTKtb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jul 2023 06:49:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47832 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229704AbjGTKj4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 06:39:56 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA37E10FC;
-        Thu, 20 Jul 2023 03:39:55 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 76ED9619D6;
-        Thu, 20 Jul 2023 10:39:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 628BEC433C8;
-        Thu, 20 Jul 2023 10:39:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689849594;
-        bh=Ar/Gi1NpfeGPQHX9IvNG60t0nluiTW51x6QacXx+2Fo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=itESVfl4kwoeHpazFODI25Ze0/Mpw2JE1wwRTKeEpY6l2/WuEIglQJEqaZBBDgn9G
-         81ZjDN1xNM6U6lOU5IKpsoInvikT3lNMYPlf2Mc4fbJklfhGG7ZcbZe6A3fxkBtDnq
-         CLge5Hw424qwiu1mL+NxMUzR4+xHVahM3J/cxYe/iJpsCf0yzo2FM4d4R+jZyrDM5h
-         1l93xBHmhfkfp2igQPCjy3TW3h0uWjhOImxdePy2KnFv0i/P5a5EmsX5MIWawoytEZ
-         OFbqU1U4a+vkd+dex7ykkUUD5hnFA7JFDZWuwsLfRomtCCgHVX36A4MjmX2km/T+de
-         05/h+1VZXHCdQ==
-Date:   Thu, 20 Jul 2023 11:39:47 +0100
-From:   Will Deacon <will@kernel.org>
-To:     Elliot Berman <quic_eberman@quicinc.com>
-Cc:     Alex Elder <elder@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
-        Murali Nalajala <quic_mnalajal@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
-        Carl van Schaik <quic_cvanscha@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        with ESMTP id S230471AbjGTKta (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 06:49:30 -0400
+Received: from mail-oa1-x32.google.com (mail-oa1-x32.google.com [IPv6:2001:4860:4864:20::32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07DCE1726;
+        Thu, 20 Jul 2023 03:49:29 -0700 (PDT)
+Received: by mail-oa1-x32.google.com with SMTP id 586e51a60fabf-1b060bce5b0so466136fac.3;
+        Thu, 20 Jul 2023 03:49:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1689850168; x=1690454968;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=KhN4Tm1KYjpSKgaucoal2D/MO/xFEnf9iPBeqXIBYto=;
+        b=FDo+wK+fKrykg6fJwnakhqvmm4mPM1TMlHWu1GoH63RwqAWoa2JD7NYmo5l9ZdYEuq
+         jQtJQhNbrPhfouvWviJN1E9k0+af4RzleYh5NcK5f4EJPRRefttiKiGCz/4xqvfE81F6
+         QEmqY7eZeSXfDidft8HiaFd7gJ42px7R9vD/LC0IkrQ0jUf9+R4kmOrallrW4+Aga6Ix
+         22AgopCBBQz0pfFxrx9SqBi3CBxSoluwsvjax0bm1rKcJvQg7K8ZYycsUP095hzo7ocJ
+         CxjISIpfXJYsZEyICffKT7FA3x7osjs70By5zmOzBpB4TnwOVesLKrTto3jpakZkSTJn
+         KNkA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689850168; x=1690454968;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=KhN4Tm1KYjpSKgaucoal2D/MO/xFEnf9iPBeqXIBYto=;
+        b=BG/hzceKfSNPosGqRUVX+MabYHzcROIrvalSMoeWBb6/1SsMJXF/mUYkyyUEWs9MgO
+         bQUy9R9GDhcBuj8bXSYsBSx1RhffbD4RaV0IQu2k6BeRPsrvFbCglPIUZ7YXVJba9Iqu
+         dpy6Bwgqo+CTD1IhE5hHYq7k8XYP3ApYlitaTGuMmCE52HzFBoI8eN4C0+xbd650yeBh
+         TDCLyZZtJH5fumft6dwXtdohRcycaQAS0jNrKfTjVVmaq7ULRL81DNe3PGgATTLuquFz
+         TO5AoCBz9fxEITrq/3uCMVcpuECW4gf240/ruP8SRw/EYcAU6YmQZa6JbWsgMKA2vgxN
+         3xZA==
+X-Gm-Message-State: ABy/qLZ4i8aJKugFvG4GW9EGf3zEoitRKkV0lHCkbH2EFjQhdOFz8wyJ
+        mXUFR4LXZmaTxJJLC3U8okAIvtAMadOG3qHSK10=
+X-Google-Smtp-Source: APBJJlEYhm2GNZGLGs7i8Dehn485BA5XN3NYGwh3lga6V7iEfyixTgdgTHIlaGVN2weD/L70gCaMVlbuofupbUdTmu8=
+X-Received: by 2002:a05:6870:330f:b0:1b0:80d0:b895 with SMTP id
+ x15-20020a056870330f00b001b080d0b895mr1483608oae.12.1689850168047; Thu, 20
+ Jul 2023 03:49:28 -0700 (PDT)
+MIME-Version: 1.0
+References: <20230719224141.3716815-1-james.hilliard1@gmail.com>
+ <20230719224141.3716815-2-james.hilliard1@gmail.com> <0ad5a223-d70f-deaa-6261-a2bd2b2af40d@linaro.org>
+In-Reply-To: <0ad5a223-d70f-deaa-6261-a2bd2b2af40d@linaro.org>
+From:   James Hilliard <james.hilliard1@gmail.com>
+Date:   Thu, 20 Jul 2023 04:49:15 -0600
+Message-ID: <CADvTj4qvXvuV=ASg5h4hPr8QG-NR48j6G36AZC5xHDdhLyjT7w@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] ARM: dts: imx6q: Add Variscite MX6 Custom board support
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     devicetree@vger.kernel.org,
+        Gregory CLEMENT <gregory.clement@bootlin.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Bagas Sanjaya <bagasdotme@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, qperret@google.com
-Subject: Re: [PATCH v13 10/24] gunyah: vm_mgr: Add/remove user memory regions
-Message-ID: <20230720103946.GC11034@willie-the-truck>
-References: <20230509204801.2824351-1-quic_eberman@quicinc.com>
- <20230509204801.2824351-11-quic_eberman@quicinc.com>
- <20230519115948.GB2637@willie-the-truck>
- <e22c31bd-10ed-f242-3e72-debf40e01e3c@quicinc.com>
- <20230605141839.GD21212@willie-the-truck>
- <3bd86221-ee2e-d157-009b-11f6ada98537@quicinc.com>
- <eae302ab-b508-cdc6-847f-dff6a6b82798@quicinc.com>
- <04605642-cad8-1701-ff41-63f2f00ba5f6@quicinc.com>
- <20230714121321.GB5597@willie-the-truck>
- <5ef4a5f7-27a0-f46c-fcbd-c3b8c93e0366@quicinc.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <5ef4a5f7-27a0-f46c-fcbd-c3b8c93e0366@quicinc.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        soc@kernel.org, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Marek Vasut <marex@denx.de>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        Stefan Wahren <stefan.wahren@chargebyte.com>,
+        Andreas Kemnade <andreas@kemnade.info>,
+        =?UTF-8?B?TWljaGFsIFZva8OhxI0=?= <michal.vokac@ysoft.com>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Jesse Taube <mr.bossman075@gmail.com>,
+        Li Yang <leoyang.li@nxp.com>, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 18, 2023 at 07:28:49PM -0700, Elliot Berman wrote:
-> On 7/14/2023 5:13 AM, Will Deacon wrote:
-> > On Thu, Jul 13, 2023 at 01:28:34PM -0700, Elliot Berman wrote:
-> > > On 6/22/2023 4:56 PM, Elliot Berman wrote:
-> > > > On 6/7/2023 8:54 AM, Elliot Berman wrote:
-> > > > > On 6/5/2023 7:18 AM, Will Deacon wrote:
-> > > > > > Right, protected guests will use the new restricted memfd ("guest mem"
-> > > > > > now, I think?), but non-protected guests should implement the existing
-> > > > > > interface *without* the need for the GUP pin on guest memory pages. Yes,
-> > > > > > that means full support for MMU notifiers so that these pages can be
-> > > > > > managed properly by the host kernel. We're working on that for pKVM, but
-> > > > > > it requires a more flexible form of memory sharing over what we
-> > > > > > currently
-> > > > > > have so that e.g. the zero page can be shared between multiple entities.
-> > > > > 
-> > > > > Gunyah doesn't support swapping pages out while the guest is running
-> > > > > and the design of Gunyah isn't made to give host kernel full control
-> > > > > over the S2 page table for its guests. As best I can tell from
-> > > > > reading the respective drivers, ACRN and Nitro Enclaves both GUP pin
-> > > > > guest memory pages prior to giving them to the guest, so I don't
-> > > > > think this requirement from Gunyah is particularly unusual.
-> > > > > 
-> > > > 
-> > > > I read/dug into mmu notifiers more and I don't think it matches with
-> > > > Gunyah's features today. We don't allow the host to freely manage VM's
-> > > > pages because it requires the guest VM to have a level of trust on the
-> > > > host. Once a page is given to the guest, it's done for the lifetime of
-> > > > the VM. Allowing the host to replace pages in the guest memory map isn't
-> > > > part of any VM's security model that we run in Gunyah. With that
-> > > > requirement, longterm pinning looks like the correct approach to me.
-> > > 
-> > > Is my approach of longterm pinning correct given that Gunyah doesn't allow
-> > > host to freely swap pages?
-> > 
-> > No, I really don't think a longterm GUP pin is the right approach for this.
-> > GUP pins in general are horrible for the mm layer, but required for cases
-> > such as DMA where I/O faults are unrecoverable. Gunyah is not a good
-> > justification for such a hack, and I don't think you get to choose which
-> > parts of the Linux mm you want and which bits you don't.
-> > 
-> > In other words, either carve out your memory and pin it that way, or
-> > implement the proper hooks for the mm to do its job.
-> 
-> I talked to the team about whether we can extend the Gunyah support for
-> this. We have plans to support sharing/lending individual pages when the
-> guest faults on them. The support also allows (unprotected) pages to be
-> removed from the VM. We'll need to temporarily pin the pages of the VM
-> configuration device tree blob while the VM is being created and those pages
-> can be unpinned once the VM starts. I'll work on this.
+On Thu, Jul 20, 2023 at 12:15=E2=80=AFAM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 20/07/2023 00:41, James Hilliard wrote:
+> > This patch adds support for the Variscite MX6 SoM Carrier Board.
+> >
+> > This Carrier-Board has the following :
+> > - LVDS interface for the VLCD-CAP-GLD-LVDS 7" LCD 800 x 480 touch displ=
+ay
+> > - HDMI Connector
+> > - USB Host + USB OTG Connector
+> > - 10/100/1000 Mbps Ethernet
+> > - miniPCI-Express slot
+> > - SD Card connector
+> > - Audio Headphone/Line In jack connectors
+> > - S-ATA
+> > - On-board DMIC
+> > - RS485 Header
+> > - CAN bus header
+> > - SPI header
+> > - Camera Interfaces header
+> > - OnBoard RTC with Coin Backup battery socket
+> > - RS232 Debug Header (IDC10)
+> > - RS232 DTE
+> >
+> > Product Page : https://www.variscite.com/product/single-board-computers=
+/var-mx6customboard
+> >
+> > The dts file based on the ones provided by Variscite on their own
+> > kernel, but adapted for mainline.
+> >
+> > Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
+> > Signed-off-by: James Hilliard <james.hilliard1@gmail.com>
+> > ---
+> >  .../devicetree/bindings/arm/fsl.yaml          |   1 +
+>
+> Please run scripts/checkpatch.pl and fix reported warnings. Some
+> warnings can be ignored, but the code here looks like it needs a fix.
+> Feel free to get in touch if the warning is not clear.
+>
+> >  arch/arm/boot/dts/Makefile                    |   1 +
+> >  .../arm/boot/dts/imx6q-var-mx6customboard.dts | 279 ++++++++++++++++++
+> >  3 files changed, 281 insertions(+)
+> >  create mode 100644 arch/arm/boot/dts/imx6q-var-mx6customboard.dts
+> >
+> > diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documenta=
+tion/devicetree/bindings/arm/fsl.yaml
+> > index 15d411084065..0f583852de8a 100644
+> > --- a/Documentation/devicetree/bindings/arm/fsl.yaml
+> > +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+> > @@ -298,6 +298,7 @@ properties:
+> >                - udoo,imx6q-udoo           # Udoo i.MX6 Quad Board
+> >                - uniwest,imx6q-evi         # Uniwest Evi
+> >                - variscite,dt6customboard
+> > +              - variscite,mx6customboard
+> >                - wand,imx6q-wandboard      # Wandboard i.MX6 Quad Board
+> >                - ysoft,imx6q-yapp4-crux    # i.MX6 Quad Y Soft IOTA Cru=
+x board
+> >                - ysoft,imx6q-yapp4-pegasus # i.MX6 Quad Y Soft IOTA Peg=
+asus board
+> > diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+> > index 59829fc90315..9cfc3d3e91ea 100644
+> > --- a/arch/arm/boot/dts/Makefile
+> > +++ b/arch/arm/boot/dts/Makefile
+> > @@ -665,6 +665,7 @@ dtb-$(CONFIG_SOC_IMX6Q) +=3D \
+> >       imx6q-udoo.dtb \
+> >       imx6q-utilite-pro.dtb \
+> >       imx6q-var-dt6customboard.dtb \
+> > +     imx6q-var-mx6customboard.dtb \
+> >       imx6q-vicut1.dtb \
+> >       imx6q-wandboard.dtb \
+> >       imx6q-wandboard-revb1.dtb \
+> > diff --git a/arch/arm/boot/dts/imx6q-var-mx6customboard.dts b/arch/arm/=
+boot/dts/imx6q-var-mx6customboard.dts
+> > new file mode 100644
+> > index 000000000000..66047dff11ec
+> > --- /dev/null
+> > +++ b/arch/arm/boot/dts/imx6q-var-mx6customboard.dts
+> > @@ -0,0 +1,279 @@
+> > +// SPDX-License-Identifier: GPL-2.0+
+> > +/*
+> > + * Support for Variscite MX6 Carrier-board
+> > + *
+> > + * Copyright 2016 Variscite, Ltd. All Rights Reserved
+> > + * Copyright 2022 Bootlin
+> > + */
+> > +
+> > +/dts-v1/;
+> > +
+> > +#include "imx6qdl-var-som.dtsi"
+> > +#include <dt-bindings/pwm/pwm.h>
+> > +
+> > +/ {
+> > +     model =3D "Variscite i.MX6 QUAD/DUAL VAR-SOM-MX6 Custom Board";
+> > +     compatible =3D "variscite,mx6customboard", "fsl,imx6q";
+>
+> Where is the SoM compatible?
 
-That's pleasantly unexpected, thanks for pursuing this!
+I mostly just copied this from the DART-MX6 device tree which is
+another variscite
+imx6q based modular SoM custom board combination:
+https://github.com/torvalds/linux/blob/v6.5-rc2/arch/arm/boot/dts/nxp/imx/i=
+mx6q-var-dt6customboard.dts#L17
 
-Will
+The terminology is a bit confusing in general here, variscite has 2
+families of pin2pin
+modules, the "VAR-SOM" and the "DART" family.
+https://www.variscite.com/variscite-pin2pin-system-on-module-families/
+
+Within each connector family there are then multiple SoM boards that
+can be used with the same carrier boards(ie the Custom Board carrier board
+like the evaluation kit) although they are often bundled together with spec=
+ific
+boards in practice.
+
+So the existing DART-MX6 I think uses the same SoC but is in a different
+family and as such has a different carrier board. However as the relation
+between the SoM and the carrier board is effectively the same, I just copie=
+d
+the way compatibile is being set there for the VAR-SOM-MX6 from the
+existing DART-MX6 custom board device tree.
+
+I think this roughly represents the SoM board device tree associations as I=
+'m
+understanding them:
+
+pin2pin Family: DART
+SoM: https://www.variscite.com/product/system-on-module-som/cortex-a9/dart-=
+mx6-cpu-freescale-imx6/
+SoM part: DART-MX6
+SoM device tree: imx6qdl-var-dart.dtsi
+SoM SoC: imx6q
+Board: https://www.variscite.com/product/single-board-computers/dt6custombo=
+ard/
+Board device tree: imx6q-var-dt6customboard.dts
+Board compatible: compatible =3D "variscite,dt6customboard", "fsl,imx6q";
+
+pin2pin Family: VAR-SOM
+SoM: https://www.variscite.com/product/system-on-module-som/cortex-a9/var-s=
+om-mx6-cpu-freescale-imx6/
+SoM part: VAR-SOM-MX6
+SoM device tree: imx6qdl-var-som.dtsi
+SoM SoC: imx6q
+Board: mx6customboard
+https://www.variscite.com/product/single-board-computers/var-mx6customboard=
+/
+Board device tree: imx6q-var-mx6customboard.dts
+Board compatible: compatible =3D "variscite,mx6customboard", "fsl,imx6q";
+
+What's confusing here is that the DART-MX6 is also described as a SoM:
+"DART-MX6 from Variscite is the smallest System on Module (SoM) / Computer
+on Module (CoM) supporting NXP/Freescale=E2=80=99s i.MX6 Quad and Dual-core
+Cortex-A9=E2=84=A2 processor"
+
+So we have a "DART-MX6" SoM part which corresponds to the "VAR-SOM-MX6"
+SoM part, with both being SoM's but only one("VAR-SOM-MX6") having SoM in
+the actual part name.
+
+Does the compatible section for imx6qdl-var-dart.dtsi look correct?
+
+I'm not sure what exactly a "SoM compatible" should look like here as SoM i=
+s
+both a generic term(used to describe by both the "DART-MX6" and
+"VAR-SOM-MX6" parts) as well as term used within a part(used in the
+part for "VAR-SOM-MX6" as well as other SoM's in the "VAR-SOM" family
+but not the "DART-MX6" part or other SoM's in the "DART" family).
+
+>
+> Best regards,
+> Krzysztof
+>
