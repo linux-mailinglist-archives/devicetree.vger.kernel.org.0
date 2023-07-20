@@ -2,194 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 331A275AB4D
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 11:48:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2215C75AB6E
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 11:50:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229476AbjGTJs2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jul 2023 05:48:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46610 "EHLO
+        id S231273AbjGTJuB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jul 2023 05:50:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46592 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231273AbjGTJsC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 05:48:02 -0400
-Received: from mx01.omp.ru (mx01.omp.ru [90.154.21.10])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A1252122;
-        Thu, 20 Jul 2023 02:46:06 -0700 (PDT)
-Received: from [192.168.1.103] (178.176.74.113) by msexch01.omp.ru
- (10.188.4.12) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.986.14; Thu, 20 Jul
- 2023 12:45:57 +0300
-Subject: Re: [PATCH v3 26/42] ata: pata_ep93xx: add device tree support
-To:     <nikita.shubin@maquefel.me>,
-        Hartley Sweeten <hsweeten@visionengravers.com>,
-        Lennert Buytenhek <kernel@wantstofly.org>,
-        Alexander Sverdlin <alexander.sverdlin@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Lukasz Majewski <lukma@denx.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Sebastian Reichel <sre@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
-        Mark Brown <broonie@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, Vinod Koul <vkoul@kernel.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Damien Le Moal <dlemoal@kernel.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        <soc@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Andy Shevchenko <andy@kernel.org>,
-        Michael Peters <mpeters@embeddedTS.com>,
-        Kris Bahnsen <kris@embeddedTS.com>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <linux-rtc@vger.kernel.org>, <linux-watchdog@vger.kernel.org>,
-        <linux-pm@vger.kernel.org>, <linux-pwm@vger.kernel.org>,
-        <linux-spi@vger.kernel.org>, <netdev@vger.kernel.org>,
-        <dmaengine@vger.kernel.org>, <linux-mtd@lists.infradead.org>,
-        <linux-ide@vger.kernel.org>, <linux-input@vger.kernel.org>,
-        <alsa-devel@alsa-project.org>
-References: <20230605-ep93xx-v3-0-3d63a5f1103e@maquefel.me>
- <20230605-ep93xx-v3-26-3d63a5f1103e@maquefel.me>
-From:   Sergey Shtylyov <s.shtylyov@omp.ru>
-Organization: Open Mobile Platform
-Message-ID: <e7350d62-8dc2-8bae-e514-3b99c3abaf74@omp.ru>
-Date:   Thu, 20 Jul 2023 12:45:54 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.1
+        with ESMTP id S230459AbjGTJtm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 05:49:42 -0400
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B23EE68
+        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 02:48:06 -0700 (PDT)
+Received: by mail-lf1-x129.google.com with SMTP id 2adb3069b0e04-4fb863edcb6so890901e87.0
+        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 02:48:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1689846484; x=1690451284;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=m66C/vpUoNhXNL/USqnmEN/SERtYzszLXqFxfokE9/I=;
+        b=AWPzHzVbimx7mJ3OJTXHoi7CjWuZXJgAH526sIkk+eZqFQ2+MP313fRQuFSZ9Oqt18
+         TlhzEWo+V7nRwsKKpBwgEYrbvO+xl8I8WxlUETa3bCwUueNEajSMtpNFZMRrrkkFktFV
+         2UE7qWA8txGyKBrXbvC5Lp/FsPVl3QhQjjDWmMfdPQnzu02ikXlbh2gDyTKtVHp0cnAk
+         LnIwSQ9k4DngRiyjJyQqpfiLXlfnHpMdfo+62th1/gtfc15FoOljNN8fyIIMKCzO4Rfe
+         O9TZotuM+hZVB+hU31kCBmL7EKZ29DXgDMqixlBkwgWbqApz7m/bSjzprqYd0e2kOIsO
+         fW/Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689846484; x=1690451284;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=m66C/vpUoNhXNL/USqnmEN/SERtYzszLXqFxfokE9/I=;
+        b=BBGYp9J4mEeaYG0tG71ZB5XI+ECPjpiQ8WWuuDyBETzUvzuyHKfKPO4kCV7YpQW7nR
+         3lLPXPTZmtnqj0yOQRL/ZVgc89OMIJACr1xPo3c9K6WmvjV+nwQC3TD8ZbuCYzAWA3TQ
+         lQ44Uwbk38XLU8AnJoMz4CC6NHfjNG7IUnhyxMmFtDVf0bHdTSOA8xx9Xbu+qvCYFnSJ
+         wcZmIkemPjN5mSb5UdzGxtS+/XFz6EJTQbEhcfDrgzSt/qInr15Ln48QLdQI5KC6bUtC
+         3QckKKnjssQGMrmGJu4J0w9+ivc6utgfdITR/AiruEYGhykJwmhtAGkyou+/SBQQVDTG
+         WbVA==
+X-Gm-Message-State: ABy/qLZFnjwZcoNY5ZuwBJNrYklMR3ZslAYzWNuNpjhhLUdz0c7UMCwa
+        l4NP/H9wdnb0p9Syo0UFBzuha1kKbGr0+UYIpxoc8g==
+X-Google-Smtp-Source: APBJJlFqoMhnweK+l5F3+WSGWFBzdrxM8oVIsbig1fVnXEChSXlao+MmrcENPeeMbW8GhoJJ+cvDnA==
+X-Received: by 2002:a05:6512:46d:b0:4f6:1779:b1c1 with SMTP id x13-20020a056512046d00b004f61779b1c1mr1902595lfd.48.1689846484327;
+        Thu, 20 Jul 2023 02:48:04 -0700 (PDT)
+Received: from [192.168.1.101] (abyj181.neoplus.adsl.tpnet.pl. [83.9.29.181])
+        by smtp.gmail.com with ESMTPSA id g12-20020a19ee0c000000b004fb8c31c8dfsm116388lfb.267.2023.07.20.02.48.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 20 Jul 2023 02:48:03 -0700 (PDT)
+Message-ID: <9e401641-1334-c0bc-c49a-481a8a9af2de@linaro.org>
+Date:   Thu, 20 Jul 2023 11:48:02 +0200
 MIME-Version: 1.0
-In-Reply-To: <20230605-ep93xx-v3-26-3d63a5f1103e@maquefel.me>
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: arm: qcom: document AL02-Cx and AL03-C2
+ boards based on IPQ9574 family
 Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Sridharan S N <quic_sridsn@quicinc.com>, agross@kernel.org,
+        andersson@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230720084534.6461-1-quic_sridsn@quicinc.com>
+ <20230720084534.6461-2-quic_sridsn@quicinc.com>
+ <87c3a3db-d172-bc98-cf83-89b874c9fee7@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <87c3a3db-d172-bc98-cf83-89b874c9fee7@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [178.176.74.113]
-X-ClientProxiedBy: msexch01.omp.ru (10.188.4.12) To msexch01.omp.ru
- (10.188.4.12)
-X-KSE-ServerInfo: msexch01.omp.ru, 9
-X-KSE-AntiSpam-Interceptor-Info: scan successful
-X-KSE-AntiSpam-Version: 5.9.59, Database issued on: 07/20/2023 09:27:01
-X-KSE-AntiSpam-Status: KAS_STATUS_NOT_DETECTED
-X-KSE-AntiSpam-Method: none
-X-KSE-AntiSpam-Rate: 59
-X-KSE-AntiSpam-Info: Lua profiles 178742 [Jul 20 2023]
-X-KSE-AntiSpam-Info: Version: 5.9.59.0
-X-KSE-AntiSpam-Info: Envelope from: s.shtylyov@omp.ru
-X-KSE-AntiSpam-Info: LuaCore: 524 524 9753033d6953787301affc41bead8ed49c47b39d
-X-KSE-AntiSpam-Info: {rep_avail}
-X-KSE-AntiSpam-Info: {Tracking_from_domain_doesnt_match_to}
-X-KSE-AntiSpam-Info: {relay has no DNS name}
-X-KSE-AntiSpam-Info: {SMTP from is not routable}
-X-KSE-AntiSpam-Info: {Found in DNSBL: 178.176.74.113 in (user)
- b.barracudacentral.org}
-X-KSE-AntiSpam-Info: d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2;omp.ru:7.1.1;178.176.74.113:7.7.3,7.4.1,7.1.2
-X-KSE-AntiSpam-Info: {iprep_blacklist}
-X-KSE-AntiSpam-Info: ApMailHostAddress: 178.176.74.113
-X-KSE-AntiSpam-Info: {DNS response errors}
-X-KSE-AntiSpam-Info: Rate: 59
-X-KSE-AntiSpam-Info: Status: not_detected
-X-KSE-AntiSpam-Info: Method: none
-X-KSE-AntiSpam-Info: Auth:dmarc=temperror header.from=omp.ru;spf=temperror
- smtp.mailfrom=omp.ru;dkim=none
-X-KSE-Antiphishing-Info: Clean
-X-KSE-Antiphishing-ScanningType: Heuristic
-X-KSE-Antiphishing-Method: None
-X-KSE-Antiphishing-Bases: 07/20/2023 09:32:00
-X-KSE-Antivirus-Interceptor-Info: scan successful
-X-KSE-Antivirus-Info: Clean, bases: 7/20/2023 4:32:00 AM
-X-KSE-Attachment-Filter-Triggered-Rules: Clean
-X-KSE-Attachment-Filter-Triggered-Filters: Clean
-X-KSE-BulkMessagesFiltering-Scan-Result: InTheLimit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 7/20/23 2:29 PM, Nikita Shubin via B4 Relay wrote:
-
-> From: Nikita Shubin <nikita.shubin@maquefel.me>
+On 20.07.2023 10:49, Krzysztof Kozlowski wrote:
+> On 20/07/2023 10:45, Sridharan S N wrote:
+>> Document the below listed (Reference Design Platform) RDP boards based on IPQ9574
+>> family of SoCs.
+>>
+>> AL02-C3  - rdp437
+>> AL02-C7  - rdp433-mht-phy
+>> AL02-C10 - rdp433-mht-switch
+>> AL02-C11 - rdp467
+>> AL02-C12 - rdp455
+>> AL02-C13 - rdp459
+>> AL02-C15 - rdp457
+>> AL02-C16 - rdp456
+>> AL02-C17 - rdp469
+>> AL02-C19 - rdp461
+>> AL03-C2  - rdp458
+>>
+>> Signed-off-by: Sridharan S N <quic_sridsn@quicinc.com>
+>> ---
+>>  .../devicetree/bindings/arm/qcom.yaml         | 20 +++++++++++++++++++
+>>  1 file changed, 20 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+>> index dd66fd872c31..d992261da691 100644
+>> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
+>> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+>> @@ -89,10 +89,20 @@ description: |
+>>          adp
+>>          ap-al01-c1
+>>          ap-al02-c2
+>> +        ap-al02-c3
+>>          ap-al02-c6
+>>          ap-al02-c7
+>>          ap-al02-c8
+>>          ap-al02-c9
+>> +        ap-al02-c10
+>> +        ap-al02-c11
+>> +        ap-al02-c12
+>> +        ap-al02-c13
+>> +        ap-al02-c15
+>> +        ap-al02-c16
+>> +        ap-al02-c17
+>> +        ap-al02-c19
 > 
-> - Add OF ID match table
-> - Drop ep93xx_chip_revision and use soc_device_match instead
+> Why? I asked once, but there was no feedback from Qualcomm.
 > 
-> Signed-off-by: Nikita Shubin <nikita.shubin@maquefel.me>
-> ---
->  drivers/ata/pata_ep93xx.c | 26 ++++++++++++++++++++------
->  1 file changed, 20 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/ata/pata_ep93xx.c b/drivers/ata/pata_ep93xx.c
-> index c6e043e05d43..a88824dfc5fa 100644
-> --- a/drivers/ata/pata_ep93xx.c
-> +++ b/drivers/ata/pata_ep93xx.c
-[...]
-> @@ -910,6 +912,12 @@ static struct ata_port_operations ep93xx_pata_port_ops = {
->  	.port_start		= ep93xx_pata_port_start,
->  };
->  
-> +static const struct soc_device_attribute ep93xx_soc_table[] = {
-> +	{ .revision = "E1", .data = (void *)ATA_UDMA3 },
-> +	{ .revision = "E2", .data = (void *)ATA_UDMA4 },
-> +	{ /* sentinel */ }
-> +};
-> +
->  static int ep93xx_pata_probe(struct platform_device *pdev)
->  {
->  	struct ep93xx_pata_data *drv_data;
-> @@ -939,7 +947,7 @@ static int ep93xx_pata_probe(struct platform_device *pdev)
->  
->  	drv_data = devm_kzalloc(&pdev->dev, sizeof(*drv_data), GFP_KERNEL);
->  	if (!drv_data) {
-> -		err = -ENXIO;
-> +		err = -ENOMEM;
->  		goto err_rel_gpio;
->  	}
->  
+> Why do we need to do this? What's the point?
+Another question would be, whether these boards are just one-off test
+prototypes of which there exist like 5-10 units, or are they actually
+going to be supported and useful.
 
-   Hm, deserves its own patch. And even for this one, you should've documented it
-in the patch secription...
+If it's the former, I don't think it makes sense to keep the device
+trees upstream.
 
-> @@ -976,12 +984,11 @@ static int ep93xx_pata_probe(struct platform_device *pdev)
->  	 * so this driver supports only UDMA modes.
->  	 */
->  	if (drv_data->dma_rx_channel && drv_data->dma_tx_channel) {
-> -		int chip_rev = ep93xx_chip_revision();
-> +		const struct soc_device_attribute *match;
->  
-> -		if (chip_rev == EP93XX_CHIP_REV_E1)
-> -			ap->udma_mask = ATA_UDMA3;
-> -		else if (chip_rev == EP93XX_CHIP_REV_E2)
-> -			ap->udma_mask = ATA_UDMA4;
-> +		match = soc_device_match(ep93xx_soc_table);
-> +		if (match)
-> +			ap->udma_mask = (unsigned int) match->data;
->  		else
->  			ap->udma_mask = ATA_UDMA2;
->  	}
-
-   This one also looks as it could have been done separately -- before the DT
-conversion?
-
-[...]
-
-MBR, Sergey
+Konrad
