@@ -2,81 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F40D75ABE7
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 12:27:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8355475ABF8
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 12:30:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230111AbjGTK1U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jul 2023 06:27:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35334 "EHLO
+        id S229529AbjGTKa5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jul 2023 06:30:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37354 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229570AbjGTK1T (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 06:27:19 -0400
-Received: from mx1.sberdevices.ru (mx2.sberdevices.ru [45.89.224.132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B77010D2;
-        Thu, 20 Jul 2023 03:27:16 -0700 (PDT)
-Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
-        by mx1.sberdevices.ru (Postfix) with ESMTP id 52067120077;
-        Thu, 20 Jul 2023 13:27:13 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 52067120077
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-        s=mail; t=1689848833;
-        bh=k1AxALUOUAa6dGA6SXUccWu1sfcnyFNB59uw2qoEQLo=;
-        h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type:From;
-        b=fLGEqU8omiYKy0q7fpxdwxOhy8foodW/nUolQKNwZqIV+V7r7siAvRDKKaBspWk9Y
-         SWRWL6Biz3NK0O5j+G9AJJ3PFUKyTcKYvtes8znuAetkL/fWXWzAXwA5hpmM15C67m
-         D53/rGKc/1+y4AYCEmEc/LgfN7T7gNhmduy4cPNwqOb2SjIxpD5e2sK4R7dewPFSzG
-         myBUNk+3FVQ5SoYoO4hMDTZpFsqeGklPdgWer2yYqvsttrJSZPBTGLYuF1MyCKoUUM
-         eukiwI7r1+SHgeHK3Iv32N9XSjekjLLcwMQ6OnekWp+SwNtIBWL79VYvQlicJ1hToF
-         hSJsc1y7xg9tg==
-Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mx1.sberdevices.ru (Postfix) with ESMTPS;
-        Thu, 20 Jul 2023 13:27:13 +0300 (MSK)
-Received: from localhost (100.64.160.123) by p-i-exch-sc-m01.sberdevices.ru
- (172.16.192.107) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Thu, 20 Jul
- 2023 13:27:12 +0300
-Date:   Thu, 20 Jul 2023 13:27:12 +0300
-From:   Dmitry Rokosov <ddrokosov@sberdevices.ru>
-To:     Huqiang Qin <huqiang.qin@amlogic.com>
-CC:     <neil.armstrong@linaro.org>, <khilman@baylibre.com>,
-        <jbrunet@baylibre.com>, <martin.blumenstingl@googlemail.com>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-amlogic@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] arm64: dts: Add gpio_intc node and pinctrl node for
- Amlogic C3 SoCs
-Message-ID: <20230720102712.qrepf7nhj7wk474s@CAB-WSD-L081021>
-References: <20230720052054.3909902-1-huqiang.qin@amlogic.com>
+        with ESMTP id S229941AbjGTKa4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 06:30:56 -0400
+Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com [IPv6:2607:f8b0:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A8FD1701
+        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 03:30:54 -0700 (PDT)
+Received: by mail-pf1-x435.google.com with SMTP id d2e1a72fcca58-666e6ecb52dso360842b3a.2
+        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 03:30:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1689849054; x=1690453854;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=pX/Ty9NAcT9bYpPnRuDBO1Tp6SxCU3ljG9XRMY4bllE=;
+        b=YEjHygSXionVn78E3LIw9gY7VVbzoifbq/0xL4Hy8vefi+FIpQ/OrhbweiqbVZGW2t
+         a/Mk5zS1jQUvlYWJQNzdQVBXR2kp29aBK5Cv0JMhaSDLSoRkZcMiEyUixP9M3bo7RTdT
+         rVW633peGDgCzxJM7AGqjl6c13L5dRfNlenfMfRkoBeaKK/v59do4NNecBanveHVl0x2
+         WesSQ715grtexLTfZQe4aGPs/PWbPzqnv177lvc9ENtemsZkWkTUBgE/iB+806lMu8NI
+         Ad6FCd1eCaAgrUHr6GjtDkXJvxdbAXd4jyeV13pPEjL7cNtD3eI6lJprClc7LTszVzhp
+         iPiw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689849054; x=1690453854;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=pX/Ty9NAcT9bYpPnRuDBO1Tp6SxCU3ljG9XRMY4bllE=;
+        b=Y6HRKEyNClqNrzLyGxMpANYmCy8pBHGB92tBImNRSamM/alPDWCyOXnMxBPNhS7PLa
+         0ga8MbhE7nil2FB+p0Okq9EONuZU0YbheCBdbD8kFI8ENeK0Ih7QLs5O+FhBavDogYqR
+         ywRACPZ+CVlqLH0SRWlZO3WpsiXor7AXSC5VTZJJE7SgD4gCr/oZXa7LukkqbXM4LdHO
+         +IglSPExjw84w++Lz9AI4xa97E0CQaLj/28QfVFEEwt/1dlQ+l5sk+IQ5Swz2lasX00U
+         T52bnrn/b38EQr/kkseVcliyHGJnKk380srw4gBFskmy6OHKgrCUmAOarULNCCwdtZhL
+         tSVA==
+X-Gm-Message-State: ABy/qLaRMK6W70oMtyF3H2vmAdTTIIhz92rb0k/vEjR+wgSFq/l1S3yz
+        8cfsYi+cmbWfFiJG52I77I/BOQ==
+X-Google-Smtp-Source: APBJJlHQ3TBhJch4+9s7IdsXDe4mP52ispONeRhDFv3IHs7DNJoO/6dUpqV823L+edq5WpNkcQKRmA==
+X-Received: by 2002:a05:6a20:54a4:b0:12c:e3c8:8c7 with SMTP id i36-20020a056a2054a400b0012ce3c808c7mr19779825pzk.41.1689849053763;
+        Thu, 20 Jul 2023 03:30:53 -0700 (PDT)
+Received: from localhost ([122.172.87.195])
+        by smtp.gmail.com with ESMTPSA id m12-20020a170902768c00b001b8062c1db3sm977831pll.82.2023.07.20.03.30.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 20 Jul 2023 03:30:52 -0700 (PDT)
+Date:   Thu, 20 Jul 2023 16:00:50 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Ilia Lin <ilia.lin@kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Cristian Marussi <cristian.marussi@arm.com>,
+        Patrice Chotard <patrice.chotard@foss.st.com>,
+        Liviu Dudau <liviu.dudau@arm.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH] cpufreq: Explicitly include correct DT includes
+Message-ID: <20230720103050.325y6n2zqiv5k5ku@vireshk-i7>
+References: <20230714174414.4054011-1-robh@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230720052054.3909902-1-huqiang.qin@amlogic.com>
-User-Agent: NeoMutt/20220415
-X-Originating-IP: [100.64.160.123]
-X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
- p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 178744 [Jul 20 2023]
-X-KSMG-AntiSpam-Version: 5.9.59.0
-X-KSMG-AntiSpam-Envelope-From: DDRokosov@sberdevices.ru
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 524 524 9753033d6953787301affc41bead8ed49c47b39d, {Tracking_uf_ne_domains}, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, lists.infradead.org:7.1.1;p-i-exch-sc-m01.sberdevices.ru:7.1.1,5.0.1;127.0.0.199:7.1.2;100.64.160.123:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;sberdevices.ru:7.1.1,5.0.1, FromAlignment: s, {Tracking_white_helo}, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean, bases: 2023/07/20 09:21:00
-X-KSMG-LinksScanning: Clean, bases: 2023/07/20 08:06:00
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/07/20 06:46:00 #21646672
-X-KSMG-AntiVirus-Status: Clean, skipped
+In-Reply-To: <20230714174414.4054011-1-robh@kernel.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -84,66 +87,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Huqiang!
-
-Thank you for the patchset!
-
-On Thu, Jul 20, 2023 at 01:20:54PM +0800, Huqiang Qin wrote:
-> Add gpio interrupt controller device and pinctrl device.
+On 14-07-23, 11:44, Rob Herring wrote:
+> The DT of_device.h and of_platform.h date back to the separate
+> of_platform_bus_type before it as merged into the regular platform bus.
+> As part of that merge prepping Arm DT support 13 years ago, they
+> "temporarily" include each other. They also include platform_device.h
+> and of.h. As a result, there's a pretty much random mix of those include
+> files used throughout the tree. In order to detangle these headers and
+> replace the implicit includes with struct declarations, users need to
+> explicitly include the correct includes.
 > 
-> Signed-off-by: Huqiang Qin <huqiang.qin@amlogic.com>
+> Signed-off-by: Rob Herring <robh@kernel.org>
 > ---
->  arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi | 25 +++++++++++++++++++++
->  1 file changed, 25 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
-> index 60ad4f3eef9d..4ad9c042f85c 100644
-> --- a/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
-> @@ -82,6 +82,31 @@ uart_b: serial@7a000 {
->  				clock-names = "xtal", "pclk", "baud";
->  			};
->  
-> +			gpio_intc: interrupt-controller@4080 {
-> +				compatible = "amlogic,meson-gpio-intc",
-> +					     "amlogic,c3-gpio-intc";
-> +				reg = <0x0 0x4080 0x0 0x0020>;
-> +				interrupt-controller;
-> +				#interrupt-cells = <2>;
-> +				amlogic,channel-interrupts =
-> +					<10 11 12 13 14 15 16 17 18 19 20 21>;
-> +			};
-> +
-> +			periphs_pinctrl: pinctrl@4000 {
+>  drivers/cpufreq/armada-37xx-cpufreq.c  | 4 +---
+>  drivers/cpufreq/mediatek-cpufreq-hw.c  | 3 ++-
+>  drivers/cpufreq/ppc_cbe_cpufreq.c      | 2 +-
+>  drivers/cpufreq/ppc_cbe_cpufreq_pmi.c  | 1 -
+>  drivers/cpufreq/qcom-cpufreq-nvmem.c   | 1 -
+>  drivers/cpufreq/scpi-cpufreq.c         | 2 +-
+>  drivers/cpufreq/sti-cpufreq.c          | 2 +-
+>  drivers/cpufreq/ti-cpufreq.c           | 2 +-
+>  drivers/cpufreq/vexpress-spc-cpufreq.c | 1 -
+>  9 files changed, 7 insertions(+), 11 deletions(-)
 
-Please sort dts nodes by reg offset in the one bus declaration.
-
-> +				compatible = "amlogic,c3-periphs-pinctrl";
-> +				#address-cells = <2>;
-> +				#size-cells = <2>;
-> +				ranges;
-> +
-> +				gpio: bank@4000 {
-> +					reg = <0x0 0x4000 0x0 0x004c>,
-> +					      <0x0 0x4100 0x0 0x01de>;
-> +					reg-names = "mux", "gpio";
-> +					gpio-controller;
-> +					#gpio-cells = <2>;
-> +					gpio-ranges = <&periphs_pinctrl 0 0 55>;
-> +				};
-> +			};
->  		};
->  	};
->  };
-> -- 
-> 2.37.1
-> 
-> 
-> _______________________________________________
-> linux-amlogic mailing list
-> linux-amlogic@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-amlogic
+Applied. Thanks.
 
 -- 
-Thank you,
-Dmitry
+viresh
