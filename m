@@ -2,128 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 61AB075B3D1
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 18:08:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 74F9975B3D3
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 18:08:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229576AbjGTQID (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jul 2023 12:08:03 -0400
+        id S231224AbjGTQIE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jul 2023 12:08:04 -0400
 Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40210 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231861AbjGTQHz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 12:07:55 -0400
-Received: from mail-pf1-x430.google.com (mail-pf1-x430.google.com [IPv6:2607:f8b0:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 874921BEF;
-        Thu, 20 Jul 2023 09:07:43 -0700 (PDT)
-Received: by mail-pf1-x430.google.com with SMTP id d2e1a72fcca58-668704a5b5bso841790b3a.0;
-        Thu, 20 Jul 2023 09:07:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1689869262; x=1690474062;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=FDlR75jCTWnutj2GqCkt5kjAmLZ3uaWEFiEojxMDrOA=;
-        b=GXaEZu3t4pzn71mFp69Of/QYBFraIdZR0yIlR4e3y+CSg61eWb/C+JUWIXDIW/WQQi
-         w1YGEi/ir6nGvTDCNLj7//wk2OXaUurXP3D8Ysiu55KxtOWlj3L4J6WN9S3GjBjCfzua
-         IXBLb7Q1ekV7FrKpMtRwxFQosIaReUr+x9bjvv1s5EJGi5Hy6QxqUlupVdk/qhnxh4L9
-         D2Y7HH/JdF7yX5GYscgv9IpSoGszQe7i5O2tD5wleYgLJzXgxukdDbTotFB1CCxoh9lD
-         TfjJjfEPuuDlcCjasdJBmtcMNgVbl7WlS8vxM3MfT0vuJ5F4w+ILpNlwDEj72ab/y47g
-         ulPg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689869262; x=1690474062;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=FDlR75jCTWnutj2GqCkt5kjAmLZ3uaWEFiEojxMDrOA=;
-        b=SK1IAHhKSrHddn4nTQQRt5Nn8zSTMCsGbQ9ddA3wP+pqrx1ERpHyP321vY65BYPk+A
-         h1o1oRrPb4PpQR8bxhWpcYQ74nRwFQ3W4SGMRbqLl1/zembLhvqwvZWDcu1eWLElyRNH
-         HJ2PwK4mRTsWwAUk4SieANgCLsXXWk6qETop359VOOBqduNvjxg4DwIvQTtSNZopQPHb
-         zkGGfBed8B4XyYsrOXfDxx0zO8+eScCCADyLFdb2HNtaNEvgVisOE3K8fFIOHQN9ctUJ
-         LVhIbEh6UWwrnmP40LApxEHYYC9XqW1jwtCJEcZOZoyOixrilCQehUuHSwAOEY++pVPe
-         lzhA==
-X-Gm-Message-State: ABy/qLYlKyRntCzgtFpWfH8VCg5pdiVVvfHKpeLwpRTc2MjFQRzAvvTu
-        Nk4x4jcdZoiLXmhlZS1tR4g=
-X-Google-Smtp-Source: APBJJlGsiSzauWOSKd4n1ByDIDYS8P/EIAsQheqzHj4aeeJVZn12STbjIByZE7ft/dmtqsa6x71MsA==
-X-Received: by 2002:a05:6a20:9383:b0:134:76f6:e9e2 with SMTP id x3-20020a056a20938300b0013476f6e9e2mr17240293pzh.58.1689869262478;
-        Thu, 20 Jul 2023 09:07:42 -0700 (PDT)
-Received: from linux.. (static.111.40.78.5.clients.your-server.de. [5.78.40.111])
-        by smtp.gmail.com with ESMTPSA id c21-20020aa781d5000000b006687b4f2044sm1348010pfn.164.2023.07.20.09.07.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 Jul 2023 09:07:42 -0700 (PDT)
-From:   Binglei Wang <l3b2w1@gmail.com>
-X-Google-Original-From: Binglei Wang
-To:     robh+dt@kernel.org
-Cc:     frowand.list@gmail.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, iommu@lists.linux.dev,
-        l3b2w1@gmail.com
-Subject: [PATCH] cma: check for memory region overlapping
-Date:   Fri, 21 Jul 2023 00:07:29 +0800
-Message-Id: <20230720160729.39324-1-l3b2w1@gmail.com>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S233069AbjGTQID (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 12:08:03 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DAA3ECE;
+        Thu, 20 Jul 2023 09:07:56 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 60EFB612CA;
+        Thu, 20 Jul 2023 16:07:56 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 07552C433C8;
+        Thu, 20 Jul 2023 16:07:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1689869275;
+        bh=Ou2Mh5nraWXlzNwKruRqfrLeoeDKp8beV04BRuHhYwo=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=QDPRzplSB7rDPnYbyMPv7JcU43dmdgPKHwR+inxmoJlN/LC+4kmsPvpf8Knct6shU
+         sCOH6u11Hx9i/jQ2yC4biJjDAzRXm5N8sqvIwdD4VEWrj/C4+YWp7EsyQpdfxpT6ET
+         tzeaLBWvvINiKVnxRMtgpdevhG222aUIR+jswm5aaKFNKFPVn0GiCjEoHjmol1oReF
+         I+gfEBo9fvPHIYRqyQdoo26D7Hm05LZYqdQctEY8AmxDINlc1Ndus9EtZSsuf2xrcd
+         zWHtOCKOf76wMwe+Fm2eio8zTnhLH4lMCKp6zTr3VlFwhJ88+I6HjXJjBmaL7m6z5x
+         ddQTciqQJmiKg==
+Date:   Thu, 20 Jul 2023 21:37:38 +0530
+From:   Manivannan Sadhasivam <mani@kernel.org>
+To:     Frank Li <Frank.li@nxp.com>
+Cc:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        helgaas@kernel.org, imx@lists.linux.dev, bhelgaas@google.com,
+        devicetree@vger.kernel.org, gustavo.pimentel@synopsys.com,
+        kw@linux.com, leoyang.li@nxp.com,
+        linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
+        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+        lorenzo.pieralisi@arm.com, minghuan.lian@nxp.com,
+        mingkai.hu@nxp.com, robh+dt@kernel.org, roy.zang@nxp.com,
+        shawnguo@kernel.org, zhiqiang.hou@nxp.com
+Subject: Re: [PATCH v3 1/2] PCI: dwc: Implement general suspend/resume
+ functionality for L2/L3 transitions
+Message-ID: <20230720160738.GC48270@thinkpad>
+References: <20230419164118.596300-1-Frank.Li@nxp.com>
+ <20230717164526.GC35455@thinkpad>
+ <ZLWKI1lRqxejfUgK@lizhi-Precision-Tower-5810>
+ <20230718100400.GB4771@thinkpad>
+ <20230720142509.GB48270@thinkpad>
+ <ZLlGsM/D/b+udmAD@lizhi-Precision-Tower-5810>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+In-Reply-To: <ZLlGsM/D/b+udmAD@lizhi-Precision-Tower-5810>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Binglei Wang <l3b2w1@gmail.com>
+On Thu, Jul 20, 2023 at 10:37:36AM -0400, Frank Li wrote:
+> On Thu, Jul 20, 2023 at 07:55:09PM +0530, Manivannan Sadhasivam wrote:
+> > On Tue, Jul 18, 2023 at 03:34:26PM +0530, Manivannan Sadhasivam wrote:
+> > > On Mon, Jul 17, 2023 at 02:36:19PM -0400, Frank Li wrote:
+> > > > On Mon, Jul 17, 2023 at 10:15:26PM +0530, Manivannan Sadhasivam wrote:
+> > > > > On Wed, Apr 19, 2023 at 12:41:17PM -0400, Frank Li wrote:
+> > > > > > Introduced helper function dw_pcie_get_ltssm to retrieve SMLH_LTSS_STATE.
+> > > > > > Added API pme_turn_off and exit_from_l2 for managing L2/L3 state transitions.
+> > > > > > 
+> > > > > > Typical L2 entry workflow:
+> > > > > > 
+> > > > > > 1. Transmit PME turn off signal to PCI devices.
+> > > > > > 2. Await link entering L2_IDLE state.
+> > > > > 
+> > > > > AFAIK, typical workflow is to wait for PME_To_Ack.
+> > > > 
+> > > > 1 Already wait for PME_to_ACK,  2, just wait for link actual enter L2.
+> > > > I think PCI RC needs some time to set link enter L2 after get ACK from
+> > > > PME.
+> > > > 
+> > 
+> > One more comment. If you transition the device to L2/L3, then it can loose power
+> > if Vaux was not provided. In that case, can all the devices work after resume?
+> > Most notably NVMe?
+> 
+> I have not hardware to do such test, NVMe driver will reinit everything after
+> resume if no L1.1\L1.2 support. If there are L1.1\L1.2, NVME expect it leave
+> at L1.2 at suspend to get better resume latency.
+> 
 
-Cma memory region editted carelessly in dts may overlap
-with kernel code/data memory region which is reserved by memblock
-during the early phase of system memory initialization.
+To be precise, NVMe driver will shutdown the device if there is no ASPM support
+and keep it in low power mode otherwise (there are other cases as well but we do
+not need to worry).
 
-Without checking overlap and cma area setup done,
-this region will be released to buddy system later.
+But here you are not checking for ASPM state in the suspend path, and just
+forcing the link to be in L2/L3 (thereby D3Cold) even though NVMe driver may
+expect it to be in low power state like ASPM/APST.
 
-When memory usage under pressure, memory allocated from
-this region will collide with kernel code which is read-only.
-And the following writing to this region will trigger the panic
-of writing to read-only memory.
+So you should only put the link to L2/L3 if there is no ASPM support. Otherwise,
+you'll ending up with bug reports when users connect NVMe to it.
 
-So when rmem_cma_setup returns EBUSY, do not phys-free this region
-to memblock or else we end up with free the kernel code memory
-to buddy system.
+- Mani
 
-Signed-off-by: Binglei Wang <l3b2w1@gmail.com>
----
- drivers/of/of_reserved_mem.c | 3 ---
- kernel/dma/contiguous.c      | 5 +++++
- 2 files changed, 5 insertions(+), 3 deletions(-)
+> This API help remove duplicate codes and it can be improved gradually.
+> 
+> 
+> > 
+> > - Mani
+> > 
+> > 
+> > -- 
+> > மணிவண்ணன் சதாசிவம்
 
-diff --git a/drivers/of/of_reserved_mem.c b/drivers/of/of_reserved_mem.c
-index 7ec94cfcb..d62cc76ef 100644
---- a/drivers/of/of_reserved_mem.c
-+++ b/drivers/of/of_reserved_mem.c
-@@ -338,9 +338,6 @@ void __init fdt_init_reserved_mem(void)
- 					rmem->name);
- 				if (nomap)
- 					memblock_clear_nomap(rmem->base, rmem->size);
--				else
--					memblock_phys_free(rmem->base,
--							   rmem->size);
- 			} else {
- 				phys_addr_t end = rmem->base + rmem->size - 1;
- 				bool reusable =
-diff --git a/kernel/dma/contiguous.c b/kernel/dma/contiguous.c
-index 6ea80ae42..a349f3e97 100644
---- a/kernel/dma/contiguous.c
-+++ b/kernel/dma/contiguous.c
-@@ -410,6 +410,11 @@ static int __init rmem_cma_setup(struct reserved_mem *rmem)
- 		return -EBUSY;
- 	}
- 
-+	if (memblock_is_region_reserved(rmem->base, rmem->size)) {
-+		pr_info("Reserved memory: overlap with exsiting one\n");
-+		return -EBUSY;
-+	}
-+
- 	if (!of_get_flat_dt_prop(node, "reusable", NULL) ||
- 	    of_get_flat_dt_prop(node, "no-map", NULL))
- 		return -EINVAL;
 -- 
-2.34.1
-
+மணிவண்ணன் சதாசிவம்
