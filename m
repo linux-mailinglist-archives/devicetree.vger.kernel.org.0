@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C47AB75AD76
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 13:53:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3900E75AD79
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 13:54:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231180AbjGTLxs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jul 2023 07:53:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49962 "EHLO
+        id S230376AbjGTLx6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jul 2023 07:53:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50080 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230442AbjGTLxq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 07:53:46 -0400
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE8B8E75
-        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 04:53:44 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-98e39784a85so398816666b.1
-        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 04:53:44 -0700 (PDT)
+        with ESMTP id S231255AbjGTLxv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 07:53:51 -0400
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5401A10FE
+        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 04:53:47 -0700 (PDT)
+Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-992f6d7c7fbso125741866b.3
+        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 04:53:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689854023; x=1690458823;
+        d=linaro.org; s=google; t=1689854026; x=1690458826;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=dh9x5OzIZBZz686RZwBsvwLGYaOWlknFf5Xss4Llsg0=;
-        b=HKL9QrvXI3WhMX+TffdOkBSqCNh472H0p8CjEDyI20h2zV6qH8SUnAONL/rKkvwG+H
-         W7vEAgD4LQj5L5QQiwWpeJo8WTelPaotjoFsZiUVqfyWvENFberml9LzN1lckzxOjPW/
-         xlUPRhfVbRAJIVmkjjkORTjHv9T73UzSySZrpX5yn6nd5vMRgOT7L7rHksetpuYJmG/Q
-         PqAJPVzI+tsZJn9nJfWtV44kAMgtcirWHcsMtE9UKTzU/Nbfdj1IVghAV7I0LxPtAobU
-         +6bwjFqEB+PAYPMGI97jgjt56jPAnpLlj1YZ2C+9LEoJqNfOeGIF39SlFs+sKPob9S9W
-         O7jg==
+        bh=wXcLrziLtHnshw8zPX9D7poqnSp9AC67qEwkCzePKg0=;
+        b=lj73ec5un007ci0JHVc2b+xWy+5lg+OvxXo0RRqtDMC3NqqLlRDgTcnQDuBEzBy+PZ
+         7Yw631KLza7flHb5YI06lD9rEXLXwvaOzYqCQNFmTaaJ0jlfBRFNzLrz+wabOE9lBLbl
+         QuYB8i3nit84+UPQL+Qac1QRJvlRs7WzSswovRoD59sSvGlSQ7tPHW3HpTy4ibCGZ0+J
+         wwfhm9UMhqVVXKGBWpufol9R45thHdpTKIYsZVW2vNftlqVuPhP8txX3/YAi3Vh3JpP5
+         UCWrtcaf4nN5TLUEsTEIUb1qt08YCvki1mKNwHQVvwbxE2kR1i7p80EAhxuLBrZRP6sX
+         pMOw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689854023; x=1690458823;
+        d=1e100.net; s=20221208; t=1689854026; x=1690458826;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=dh9x5OzIZBZz686RZwBsvwLGYaOWlknFf5Xss4Llsg0=;
-        b=JT6I+Tag1V39moiPTo4i26MOddO6pl5dd5kL/xTgT4EVKjLapbyT7QwsEprwJzVio1
-         vIiFG1cxckKvhejGWuTgwuYIx11RUETUd0dcnB3OHEodTufZnYRXovzCApKskqjGU5Ta
-         D4Pe2olthkuiV3snRYRAZSQwTBj4aVg718cYQx8Rwmq1xtyClrC6DpxrdPyNgMzR9nm/
-         O+XR1txwTK5PFzQu3+6PajzA6Lw0QMifwMLwaFUoqkmix3fRtNmVGa3gTH1Pa3RMSnrD
-         GTHhuA+1wNGodBlEfsOp+1MlabLtdBkNXADehdFbMioTzIGjgClIEwN02cn28eGiwpu2
-         LXyA==
-X-Gm-Message-State: ABy/qLbpIdJn+w9u6x2IZqGCSkSmzH1rIiM3YXXfPdrvduXkXSurinCh
-        lhp97wLM3L2u3GM0hEKxLkWX2Q==
-X-Google-Smtp-Source: APBJJlHrqj57D7I81VDvLjIU4hqA4Jy4Wa7pWzqrDT3psrhnfIqDBOLRjLfgiIk+Cdq3fR9xyYyqzA==
-X-Received: by 2002:a17:907:7d94:b0:98e:1729:aeee with SMTP id oz20-20020a1709077d9400b0098e1729aeeemr5471669ejc.2.1689854023530;
-        Thu, 20 Jul 2023 04:53:43 -0700 (PDT)
+        bh=wXcLrziLtHnshw8zPX9D7poqnSp9AC67qEwkCzePKg0=;
+        b=CX5NY1+dOujOYota905qxCh39VCiED5Jh+2/fe/ZaPV37dKRZUg0XuPTQBmZjNw9cW
+         2Y90vFgfRuTABmijXAn9D+a5yIP5zm9pfuCnj7J0+XfZEjJnwucv+AsgdMjYB8Uy16DT
+         I5uK0U2MNa92ErUGDff/YHaoxHwSXqoqMkvGksVQBydnsV52oyI5XVpJgqKbc0g/Hz5D
+         pU37Rc0uHsbknyPG3F2A34PM9KVQgzj9Kg6gD8mhwlzrDgVKbbriACjUKvCA7cmLUQ1F
+         k5xAlPgLVl/NCr31orULx0yDEU/Sre5AkmZ0BrI/Fe9Js7/MZ/CcP/UiwuBRaG31urXV
+         tTcw==
+X-Gm-Message-State: ABy/qLY3Jg9HfhNOGO/W+5elchruR1P/hZHsRbYNgUQCZjERJ0jBRmgJ
+        pVHCCXEuRB9TabtERCTtm4jgSU2FIUXTzQHxah8=
+X-Google-Smtp-Source: APBJJlF0vrPscthV/oeuC4Zsd5wylTCllvaTJodEEnsC+uGGcCLg3lw1wva6igh6GaO0aySnxGV7WQ==
+X-Received: by 2002:a17:906:7e5a:b0:974:55a2:cb0b with SMTP id z26-20020a1709067e5a00b0097455a2cb0bmr4187059ejr.55.1689854025775;
+        Thu, 20 Jul 2023 04:53:45 -0700 (PDT)
 Received: from krzk-bin.. ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id qp7-20020a170907206700b00992b66e54e9sm587758ejb.214.2023.07.20.04.53.41
+        by smtp.gmail.com with ESMTPSA id qp7-20020a170907206700b00992b66e54e9sm587758ejb.214.2023.07.20.04.53.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 Jul 2023 04:53:43 -0700 (PDT)
+        Thu, 20 Jul 2023 04:53:45 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -62,17 +62,18 @@ To:     Andy Gross <agross@kernel.org>,
         Raffaele Tranquillini <raffaele.tranquillini@gmail.com>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 3/6] arm64: dts: qcom: msm8996-sagit: drop unsupported syna,codes
-Date:   Thu, 20 Jul 2023 13:53:32 +0200
-Message-Id: <20230720115335.137354-3-krzysztof.kozlowski@linaro.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        stable@vger.kernel.org
+Subject: [PATCH 4/6] ARM: dts: qcom: msm8974pro-castor: correct inverted X of touchscreen
+Date:   Thu, 20 Jul 2023 13:53:33 +0200
+Message-Id: <20230720115335.137354-4-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230720115335.137354-1-krzysztof.kozlowski@linaro.org>
 References: <20230720115335.137354-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -81,23 +82,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Synaptics RMI4 Touchscreen bindings never defined syna,codes property
-for function 1a.  No usage in Linux drivers.
+There is no syna,f11-flip-x property, so assume intention was to use
+touchscreen-inverted-x.
 
+Fixes: ab80661883de ("ARM: dts: qcom: msm8974: Add Sony Xperia Z2 Tablet")
+Cc: <stable@vger.kernel.org>
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/msm8998-xiaomi-sagit.dts | 1 -
- 1 file changed, 1 deletion(-)
+ .../dts/qcom/qcom-msm8974pro-sony-xperia-shinano-castor.dts     | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8998-xiaomi-sagit.dts b/arch/arm64/boot/dts/qcom/msm8998-xiaomi-sagit.dts
-index 2444b87fddf7..437b30cc8bdc 100644
---- a/arch/arm64/boot/dts/qcom/msm8998-xiaomi-sagit.dts
-+++ b/arch/arm64/boot/dts/qcom/msm8998-xiaomi-sagit.dts
-@@ -213,7 +213,6 @@ rmi4-f12@12 {
+diff --git a/arch/arm/boot/dts/qcom/qcom-msm8974pro-sony-xperia-shinano-castor.dts b/arch/arm/boot/dts/qcom/qcom-msm8974pro-sony-xperia-shinano-castor.dts
+index 154639d56f35..c41e25367bc9 100644
+--- a/arch/arm/boot/dts/qcom/qcom-msm8974pro-sony-xperia-shinano-castor.dts
++++ b/arch/arm/boot/dts/qcom/qcom-msm8974pro-sony-xperia-shinano-castor.dts
+@@ -132,8 +132,8 @@ rmi-f01@1 {
  
- 		rmi4-f1a@1a {
- 			reg = <0x1a>;
--			syna,codes = <KEY_BACK KEY_APPSELECT>;
+ 		rmi-f11@11 {
+ 			reg = <0x11>;
+-			syna,f11-flip-x = <1>;
+ 			syna,sensor-type = <1>;
++			touchscreen-inverted-x;
  		};
  	};
  };
