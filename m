@@ -2,73 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 682EE75B770
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 21:07:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C4F2C75B790
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 21:10:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230120AbjGTTHv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jul 2023 15:07:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55126 "EHLO
+        id S230100AbjGTTKz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jul 2023 15:10:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56932 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230117AbjGTTHs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 15:07:48 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 214632123
-        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 12:07:43 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id 2adb3069b0e04-4fb7589b187so1774091e87.1
-        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 12:07:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1689880061; x=1690484861;
-        h=cc:to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=YAm3I2W6xmEBSuO17GToW44o1MBPeOESCU3v3yuJkbM=;
-        b=JzhpgZ1+/jGFhh6NxqVeG1rDjXHbOX9YWKTOVMAoMBZLOrJlC/gNXqv9raArt3IlcT
-         mnLQl1zHdB9KANTUO46sYP7uCQR5uXOZ2Qznki1BBdNMyBCDkDQaj8IeuGcM09YPedbX
-         GP/HysflatDkMu40Duf20b9eN7QK7oitZKLrM=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689880061; x=1690484861;
-        h=cc:to:subject:message-id:date:from:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=YAm3I2W6xmEBSuO17GToW44o1MBPeOESCU3v3yuJkbM=;
-        b=QCD/DmoO2Ql/A+eaiLbNa/Z7bpPsuJEOIdu0UJ1CR8dT4OLrzLTPjQX/KBKtmzhLTn
-         VXA6CEj9WMew0HJA985DGjN28LK76CRVa8hlYrC8EuI+TOSlUX3uOjAA39FyKthXDb0p
-         2f7NO132Acf3S5/zrvmLn0QS5URbliehum6QRx3ae+LkXcCVALqz2lwOPZ5vkOiaInWc
-         lzyOLoUXBYWbCfRy76hk0WEug3BJRlgbX6Mv1Uw8xkKEMg9FCNeJFo8W+ewUX4nspnMA
-         2z//VBXPUqzacWeD+uFu5IKNuSQp+G+Xj+2FBudndZVJwdhBu4Eishifnub8cQpjIV50
-         /Afw==
-X-Gm-Message-State: ABy/qLZrVTiLKQIZZrvgTfiom3lP6lYApQNo1hwd64biYuXYgYeSMDvq
-        qcQzxOfBtFYHgwV+4StBkARQy6pDkkTu5ktwz3Z7KTlA1o2Bhs1PpfjXYw==
-X-Google-Smtp-Source: APBJJlEcaU9lce/qPo5+3WDqEbxgmhaifCJTBzC/fTwkI04sB/UhmX08LUDY2HaxATXFvezPde4kr6qjlxeC3zZ2pkA=
-X-Received: by 2002:ac2:4d9c:0:b0:4f9:54f0:b6db with SMTP id
- g28-20020ac24d9c000000b004f954f0b6dbmr2536045lfe.13.1689880060449; Thu, 20
- Jul 2023 12:07:40 -0700 (PDT)
+        with ESMTP id S229790AbjGTTKy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 15:10:54 -0400
+Received: from relay01.th.seeweb.it (relay01.th.seeweb.it [IPv6:2001:4b7a:2000:18::162])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9548E75
+        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 12:10:53 -0700 (PDT)
+Received: from SoMainline.org (94-211-6-86.cable.dynamic.v4.ziggo.nl [94.211.6.86])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id D3A55202E0;
+        Thu, 20 Jul 2023 21:10:50 +0200 (CEST)
+Date:   Thu, 20 Jul 2023 21:10:49 +0200
+From:   Marijn Suijten <marijn.suijten@somainline.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Krishna Manikandan <quic_mkrishn@quicinc.com>,
+        Loic Poulain <loic.poulain@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        linux-clk@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, Lux Aliaga <they@mint.lgbt>,
+        Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v3 06/15] dt-bindings: display/msm: sc7180-dpu: Describe
+ SM6125
+Message-ID: <m425lafv5gvrnyhoarasqgkoumntgsxiqdpmsudcxrwspvf6ed@al5sr3t2mwec>
+References: <20230718-sm6125-dpu-v3-0-6c5a56e99820@somainline.org>
+ <20230718-sm6125-dpu-v3-6-6c5a56e99820@somainline.org>
+ <3ce19d8f-97d8-15b6-5148-78e200b112e9@linaro.org>
+ <tpkiplw7l2mzdwekynkrg6dwm7svktwm2zooodb3c42btyvo3e@yjrpqem26wtx>
+ <CAA8EJprHEes5T1z4-sxg_Xk+VjuyoTH0Ra-VyMnrWjTv7qG9EA@mail.gmail.com>
 MIME-Version: 1.0
-From:   Simon Glass <sjg@chromium.org>
-Date:   Thu, 20 Jul 2023 13:07:29 -0600
-Message-ID: <CAPnjgZ0=ABfzGTZ-qczMgY=q1ksG+crN2ko-0mGGjTQ8i8-qBg@mail.gmail.com>
-Subject: duplicate '$id' value
-To:     Devicetree Discuss <devicetree@vger.kernel.org>
-Cc:     Rob Herring <robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-9.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        USER_IN_DEF_SPF_WL autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAA8EJprHEes5T1z4-sxg_Xk+VjuyoTH0Ra-VyMnrWjTv7qG9EA@mail.gmail.com>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+On 2023-07-20 01:24:27, Dmitry Baryshkov wrote:
+> On Thu, 20 Jul 2023 at 01:09, Marijn Suijten
+> <marijn.suijten@somainline.org> wrote:
+> >
+> > On 2023-07-19 01:06:03, Dmitry Baryshkov wrote:
+> > > On 19/07/2023 00:24, Marijn Suijten wrote:
+> > > > SM6125 is identical to SM6375 except that while downstream also defines
+> > > > a throttle clock, its presence results in timeouts whereas SM6375
+> > > > requires it to not observe any timeouts.  This is represented by
+> > > > reducing the clock array length to 6 so that it cannot be passed.  Note
+> > > > that any SoC other than SM6375 (currently SC7180 and SM6350) are
+> > > > unconstrained and could either pass or leave out this "throttle" clock.
+> > >
+> > > Could you please describe, what kind of timeouts do you observe? Is this
+> > > the DSI underruns issue?
+> >
+> > Ping-pong timeouts and low(er) framerate.  However, they were previosuly
+> > not happening on a random boot out of tens... and now I can no longer
+> > reproduce the timeout on 4 consecutive boots after adding the throttle
+> > clock.  Could it perhaps be the power domains and opps that we added in
+> > v2 and v3?
+> 
+> Quite unlikely, but who knows. My main question is whether we should
+> continue skipping the throttle clocks or if it should be enabled now.
 
-With 35e8aba I am seeing lots of these warnings:
+And that "main question" could ... drum roll please ... only be answered
+by knowing if this got "accidentally" fixed by providing the right PMs
+or some other change entirely while I changed base branch and defconfig.
+Or if this is just a fluke that persisted multiple boots but will fall
+apart in some time and/or when someone else runs this on their device?
 
-$ PYTHONPATH=. tools/dt-mk-schema -j dtschema/schemas >processed-schema.json
-/usr/local/google/home/sjg/cosarm/dt-schema/dtschema/schemas/chosen.yaml:
-duplicate '$id' value 'http://devicetree.org/schemas/chosen.yaml#'
-...
+- Marijn
 
-Am I doing something wrong?
-
-Thanks,
-Simon
+<snip>
