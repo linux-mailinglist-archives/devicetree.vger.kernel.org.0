@@ -2,52 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 73F1575AD70
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 13:53:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3033075AD72
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 13:53:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229614AbjGTLxn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jul 2023 07:53:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49918 "EHLO
+        id S229711AbjGTLxp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jul 2023 07:53:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49934 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229684AbjGTLxn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 07:53:43 -0400
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C69C610CB
-        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 04:53:40 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-51e2a6a3768so923615a12.0
-        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 04:53:40 -0700 (PDT)
+        with ESMTP id S229941AbjGTLxo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 07:53:44 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBE25E4C
+        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 04:53:42 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-51e99584a82so960875a12.1
+        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 04:53:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689854019; x=1690458819;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=osOeIRkPl5bwotwbn2o0ova+vF1/doKY3VxZgsCroY4=;
-        b=CrJcEsBiDv/lK0Cxe4k5PSDjDRlH3jgQHQwnFDsOnJbhgJkeXgecYtU+hvmhEw8SHM
-         SaAtfGvI3DdvJrn+PTdMqksLGzCxf4jWhzS2bvK3u/F+V4MN/gihxXxIm4gukHLN0dJh
-         523UhuCKkSDmfmMzS7fmXEKhGxyZ4EOVAR7fozV/+XA+APgfDeIdbPriL7+rvfJSxz7v
-         GstBL+2AOiL8bwWBFtaWQ0Vx8oRWdYojDxIDyE8PT9TN37262nqlwiLC82T3yPbnRMD4
-         f78Vz+uRKGd1mqOG1XSEKuI2XPX4laRVODgZYS1jZasFYeJD96inz5R21wuHom4VKFZA
-         j5eQ==
+        d=linaro.org; s=google; t=1689854021; x=1690458821;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=9zv3NEyTv/sIWt+P+tyiutXqEyfEP11M8lzbpoLr9S4=;
+        b=b5UjOwNWH8q6XNidDQUOK+VFlwFgx8SSSB002a660nFo1vm0X8Ane0+FkIsCc0Y9qr
+         5OFaqc9M25jWBn2W5Y6kma6nK/Y8y/nTph++jPtOEPfmWDohwER2/CWEZJRGxVtNVtjo
+         ErmUoODA4cDRHK4ZR9VNunLGe0oLd9vzfxqN/Z39pHWrDkC/Q6WYSoBmV1So/QlK0N2c
+         wbpAaqi7aZP/VkrSsTpQ3PlDRr4IRFwfJQL+sl//v5fVIczXIu74BCuTX/NlL9WRuQhW
+         grMiUpawC7RSr/o8qjjqUZuMga7RBdr59wooHaldQ+fdz9LNP+Sg6S0rOi624Qo91s8l
+         dl7A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689854019; x=1690458819;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=osOeIRkPl5bwotwbn2o0ova+vF1/doKY3VxZgsCroY4=;
-        b=N9qBO/uLK7HrnKqCyqj8wh8W5Ac8kBI0hYGnQkfa3+VBSl2mjY48lzuoGqw7YEzWtS
-         5md8wARY8cUO9WvL8OEXvoFOREViVr2R7u8v1iQj8oSh5CGiykyDu9hnZ82Hl20SXLCI
-         KQaZvSzZUBAl5NHccW7dxM8GpLm1pPbKdZ/R7ybEsE4QfV9KkEhZEGei+wlIm3zyXFCC
-         dG6EkSXhgLo0i59olrbKkhuqsuKpK74/NXhnmqFoPHHdtlrL1OnC3IK2JL9H3pFjlSxM
-         BGh89OXxn58mz0q/S+V73hH1EjCRDOAwaZmLJn5Amiypm4xuiM7jcKReaD/JPnz/Zw6z
-         jxcQ==
-X-Gm-Message-State: ABy/qLYZXi51ILNzS1RLEFcxIZuSDnuDinAVhKk5Dmo8D+lekaLQvxCc
-        Qat334GHK5TDu5bstoFTZH+3yw==
-X-Google-Smtp-Source: APBJJlEjR9X1dO5vInrjyggUEFbzzVciWKz2wL5d0cDJB5Ywon2Yy3KLBgJiaRMgHMNBP/nMW5R81g==
-X-Received: by 2002:a17:906:530c:b0:992:91ce:4509 with SMTP id h12-20020a170906530c00b0099291ce4509mr4083546ejo.57.1689854019285;
-        Thu, 20 Jul 2023 04:53:39 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1689854021; x=1690458821;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=9zv3NEyTv/sIWt+P+tyiutXqEyfEP11M8lzbpoLr9S4=;
+        b=T9RejmCibeFL3tUJeH6S2AxrQJWJmukBEz/ClBasWOcWRra0r1gBLP4PiIoJeHsMmc
+         faZhk47r4xhYpqUh7xRzj5kkyvKGPgd2pb9hqVwsY9bKKCnzA+tFgDPi9XCK6TkCTKsg
+         MXbtULqNAQR0/e7TENYSyT1bcpWT8gGXhXQ/x8Ykjkx0XNUjx5VLcdGKIRZbXZtt03l4
+         4f/quwtysUUnla4pOKVVRjFwNy+f5kYlZc+ZRq+LgUHU0L/aNnAnyl2G1GE/LpSlY2Jm
+         1zdYF1tTuuFj+3btLsNgCMtmiJz+sb6X4YbVWHTvRpQyiKovHeQFNhCJn0Ww1qp+d0LH
+         587Q==
+X-Gm-Message-State: ABy/qLZDiUjuPolJvYUeCaIYtfvgisg6K4mMQ3GPBpUq4tmUmrffDnSr
+        JzG8VQtLb25dRssKUKMEry3YoQ==
+X-Google-Smtp-Source: APBJJlFo4zbY3+oFzEcpRo4j+d47AIaUmL6H0iWkXBwKqraWjeo+4qRbXWA6/+osF0Cs6/mnXjOktw==
+X-Received: by 2002:a17:907:728f:b0:994:17e3:2753 with SMTP id dt15-20020a170907728f00b0099417e32753mr6179665ejc.26.1689854021367;
+        Thu, 20 Jul 2023 04:53:41 -0700 (PDT)
 Received: from krzk-bin.. ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id qp7-20020a170907206700b00992b66e54e9sm587758ejb.214.2023.07.20.04.53.37
+        by smtp.gmail.com with ESMTPSA id qp7-20020a170907206700b00992b66e54e9sm587758ejb.214.2023.07.20.04.53.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 Jul 2023 04:53:38 -0700 (PDT)
+        Thu, 20 Jul 2023 04:53:40 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -61,12 +62,13 @@ To:     Andy Gross <agross@kernel.org>,
         Raffaele Tranquillini <raffaele.tranquillini@gmail.com>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        stable@vger.kernel.org
-Subject: [PATCH 1/6] arm64: dts: qcom: msm8953-vince: drop duplicated touschreen parent interrupt
-Date:   Thu, 20 Jul 2023 13:53:30 +0200
-Message-Id: <20230720115335.137354-1-krzysztof.kozlowski@linaro.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 2/6] arm64: dts: qcom: msm8996-gemini: fix touchscreen VIO supply
+Date:   Thu, 20 Jul 2023 13:53:31 +0200
+Message-Id: <20230720115335.137354-2-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230720115335.137354-1-krzysztof.kozlowski@linaro.org>
+References: <20230720115335.137354-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -79,29 +81,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Interrupts extended already define a parent interrupt controller:
+According to bindings and Linux driver, there is no VDDA but VIO supply.
 
-  msm8953-xiaomi-vince.dtb: touchscreen@20: Unevaluated properties are not allowed ('interrupts-parent' was unexpected)
-
-Fixes: aa17e707e04a ("arm64: dts: qcom: msm8953: Add device tree for Xiaomi Redmi 5 Plus")
-Cc: <stable@vger.kernel.org>
+Fixes: 4ac46b3682c5 ("arm64: dts: qcom: msm8996: xiaomi-gemini: Add support for Xiaomi Mi 5")
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/msm8953-xiaomi-vince.dts | 1 -
- 1 file changed, 1 deletion(-)
+ arch/arm64/boot/dts/qcom/msm8996-xiaomi-gemini.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8953-xiaomi-vince.dts b/arch/arm64/boot/dts/qcom/msm8953-xiaomi-vince.dts
-index 0956c866d6cb..1a1d3f92a511 100644
---- a/arch/arm64/boot/dts/qcom/msm8953-xiaomi-vince.dts
-+++ b/arch/arm64/boot/dts/qcom/msm8953-xiaomi-vince.dts
-@@ -132,7 +132,6 @@ &i2c_3 {
- 	touchscreen@20 {
- 		reg = <0x20>;
- 		compatible = "syna,rmi4-i2c";
--		interrupts-parent = <&tlmm>;
- 		interrupts-extended = <&tlmm 65 IRQ_TYPE_EDGE_FALLING>;
+diff --git a/arch/arm64/boot/dts/qcom/msm8996-xiaomi-gemini.dts b/arch/arm64/boot/dts/qcom/msm8996-xiaomi-gemini.dts
+index bdedcf9dff03..d1066edaea47 100644
+--- a/arch/arm64/boot/dts/qcom/msm8996-xiaomi-gemini.dts
++++ b/arch/arm64/boot/dts/qcom/msm8996-xiaomi-gemini.dts
+@@ -82,7 +82,7 @@ synaptics@20 {
+ 		#size-cells = <0>;
+ 		interrupt-parent = <&tlmm>;
+ 		interrupts = <125 IRQ_TYPE_LEVEL_LOW>;
+-		vdda-supply = <&vreg_l6a_1p8>;
++		vio-supply = <&vreg_l6a_1p8>;
+ 		vdd-supply = <&vdd_3v2_tp>;
+ 		reset-gpios = <&tlmm 89 GPIO_ACTIVE_LOW>;
  
- 		#address-cells = <1>;
 -- 
 2.34.1
 
