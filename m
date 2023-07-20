@@ -2,93 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EB17775AD2D
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 13:39:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4264375AD39
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 13:43:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229685AbjGTLjj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jul 2023 07:39:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41704 "EHLO
+        id S229551AbjGTLni (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jul 2023 07:43:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42922 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229656AbjGTLjj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 07:39:39 -0400
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4CA9F113
-        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 04:39:37 -0700 (PDT)
-Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-5216f713f8bso876416a12.2
-        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 04:39:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689853176; x=1690457976;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=DpDIiAHaPUZVf5LebjEBr8OH0I3cBK4Zu9lxXtRN+j8=;
-        b=yVqkZqcvP1/+Xhmydsg4zm2sTYnSjVetXHtNE0auHaDTtZwn8I1ns+rxjYXCd5OiEX
-         p2bThGpbj3BfVYsXW2tApUdi+pi9ImbMnt+yyL/4CteviSlUlZhqAfuX3t+KPeGuFP4d
-         vaRCBwExruSm0uzrQBFfy03kZiBpJfmzQq6cLlp86WJ5a+X2Oz/KUyVyXgBGfUWfKoR6
-         5Z9FnkaDelLmlwyn6YzpBnukfaw9XybkIYevo6UW93mHv6kWLLSiXuwM4gKjLiI66+dY
-         ODfIX2repgCD1Jh4ATCuiRm53/lluDGhFYR0AYtIihFdpI+ntP2KMQB/t2gIY13JhWIv
-         6BGg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689853176; x=1690457976;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=DpDIiAHaPUZVf5LebjEBr8OH0I3cBK4Zu9lxXtRN+j8=;
-        b=bt7EWdLYFz8szsjSZPH9zO8LQUMVAZDleRx1RE/4Hq+SRBAchO9zRAWO9DxLMnnlfk
-         SDnrWNpH3niqQ4COv48zcizxa9yEz/glcrkz4acRhINSnTYddfttsVqcBDAXVS7SW0iZ
-         MmvlIpwWcJ5RQ5H4/HWQZ21Pb0JgqBjfiZ9/dd7ggv+ZxCSfSj0vVPadsO1aMGkJhoQM
-         tLqeu6s7PwXbuJ6fcDS/hmcyiyKW5kfxKQtSuMPm/uQUL9t16fyuM+d5yOZt8DtcUDhi
-         +EGVw6Jawxb9CHm7lDh7c8COkd8y643WEvRov9iMdXxxW08pLk1v7a5E7qiPTAPTDCAq
-         KlKg==
-X-Gm-Message-State: ABy/qLYuQKqMb470nhZDSC08ITGtQAUdEBksQTmRYdYfPI8UPiEE/fHc
-        C7W6bxUWudVuCvdep7mXMP7qYg==
-X-Google-Smtp-Source: APBJJlHukb8lIEJ+Bf8COr7m61XARCKx+7qoKXiobz6DCgQy8cBqj8R4tJQqWqqjOINxssXSF+LADA==
-X-Received: by 2002:aa7:d888:0:b0:51e:1858:693a with SMTP id u8-20020aa7d888000000b0051e1858693amr4261855edq.31.1689853175786;
-        Thu, 20 Jul 2023 04:39:35 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id k6-20020a056402048600b0051bfc85afaasm631304edv.86.2023.07.20.04.39.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 20 Jul 2023 04:39:35 -0700 (PDT)
-Message-ID: <c70e397e-dee8-2155-9f0b-538e95bda2eb@linaro.org>
-Date:   Thu, 20 Jul 2023 13:39:31 +0200
+        with ESMTP id S229503AbjGTLnh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 07:43:37 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46535EC;
+        Thu, 20 Jul 2023 04:43:35 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 36KBguBC035143;
+        Thu, 20 Jul 2023 06:42:56 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1689853376;
+        bh=69LsZo5nd48wahesMf3LFPMsfine13qGJ/Rh3QFyNkY=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=gWsXGcgpn6KmI0FIna0fPGaC5kyji5lbtSE+wdUwaNl8WNogpvzhkA04GGyEbpYbx
+         nQuEPCb6LAlKnJPAjUBgpUqRMqH7xmZfT+GfkXAKfr51W8VTaNX9GM1jAmFEnoCdwy
+         lYGvZU7azbb3Jn5SGv1FRB8vG7gcFuuxR6EbpUv4=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 36KBguFf049083
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 20 Jul 2023 06:42:56 -0500
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 20
+ Jul 2023 06:42:56 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 20 Jul 2023 06:42:56 -0500
+Received: from [172.24.227.217] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 36KBgo7G030876;
+        Thu, 20 Jul 2023 06:42:51 -0500
+Message-ID: <17cd1e70-73bc-78d5-7e9d-7b133d6f464b@ti.com>
+Date:   Thu, 20 Jul 2023 17:12:50 +0530
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v2 2/2] ARM: dts: imx6q: Add Variscite MX6 Custom board
- support
+ Thunderbird/102.11.0
+Subject: Re: [EXTERNAL] Re: [PATCH v10 2/2] net: ti: icssg-prueth: Add ICSSG
+ ethernet driver
 Content-Language: en-US
-To:     James Hilliard <james.hilliard1@gmail.com>
-Cc:     devicetree@vger.kernel.org,
-        Gregory CLEMENT <gregory.clement@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+To:     Jakub Kicinski <kuba@kernel.org>,
+        MD Danish Anwar <danishanwar@ti.com>
+CC:     Randy Dunlap <rdunlap@infradead.org>,
+        Roger Quadros <rogerq@kernel.org>,
+        Simon Horman <simon.horman@corigine.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Richard Cochran <richardcochran@gmail.com>,
         Conor Dooley <conor+dt@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        soc@kernel.org, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Marek Vasut <marex@denx.de>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        Stefan Wahren <stefan.wahren@chargebyte.com>,
-        Andreas Kemnade <andreas@kemnade.info>,
-        =?UTF-8?B?TWljaGFsIFZva8OhxI0=?= <michal.vokac@ysoft.com>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        Jesse Taube <mr.bossman075@gmail.com>,
-        Li Yang <leoyang.li@nxp.com>, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20230719224141.3716815-1-james.hilliard1@gmail.com>
- <20230719224141.3716815-2-james.hilliard1@gmail.com>
- <0ad5a223-d70f-deaa-6261-a2bd2b2af40d@linaro.org>
- <CADvTj4qvXvuV=ASg5h4hPr8QG-NR48j6G36AZC5xHDdhLyjT7w@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CADvTj4qvXvuV=ASg5h4hPr8QG-NR48j6G36AZC5xHDdhLyjT7w@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Eric Dumazet <edumazet@google.com>,
+        "David S. Miller" <davem@davemloft.net>, <nm@ti.com>, <srk@ti.com>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <netdev@vger.kernel.org>, <linux-omap@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20230719082755.3399424-1-danishanwar@ti.com>
+ <20230719082755.3399424-3-danishanwar@ti.com>
+ <20230719213543.0380e13e@kernel.org>
+From:   Md Danish Anwar <a0501179@ti.com>
+Organization: Texas Instruments
+In-Reply-To: <20230719213543.0380e13e@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -96,178 +83,122 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/07/2023 12:49, James Hilliard wrote:
-> On Thu, Jul 20, 2023 at 12:15 AM Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> On 20/07/2023 00:41, James Hilliard wrote:
->>> This patch adds support for the Variscite MX6 SoM Carrier Board.
->>>
->>> This Carrier-Board has the following :
->>> - LVDS interface for the VLCD-CAP-GLD-LVDS 7" LCD 800 x 480 touch display
->>> - HDMI Connector
->>> - USB Host + USB OTG Connector
->>> - 10/100/1000 Mbps Ethernet
->>> - miniPCI-Express slot
->>> - SD Card connector
->>> - Audio Headphone/Line In jack connectors
->>> - S-ATA
->>> - On-board DMIC
->>> - RS485 Header
->>> - CAN bus header
->>> - SPI header
->>> - Camera Interfaces header
->>> - OnBoard RTC with Coin Backup battery socket
->>> - RS232 Debug Header (IDC10)
->>> - RS232 DTE
->>>
->>> Product Page : https://www.variscite.com/product/single-board-computers/var-mx6customboard
->>>
->>> The dts file based on the ones provided by Variscite on their own
->>> kernel, but adapted for mainline.
->>>
->>> Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
->>> Signed-off-by: James Hilliard <james.hilliard1@gmail.com>
->>> ---
->>>  .../devicetree/bindings/arm/fsl.yaml          |   1 +
->>
->> Please run scripts/checkpatch.pl and fix reported warnings. Some
->> warnings can be ignored, but the code here looks like it needs a fix.
->> Feel free to get in touch if the warning is not clear.
->>
->>>  arch/arm/boot/dts/Makefile                    |   1 +
->>>  .../arm/boot/dts/imx6q-var-mx6customboard.dts | 279 ++++++++++++++++++
->>>  3 files changed, 281 insertions(+)
->>>  create mode 100644 arch/arm/boot/dts/imx6q-var-mx6customboard.dts
->>>
->>> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
->>> index 15d411084065..0f583852de8a 100644
->>> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
->>> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
->>> @@ -298,6 +298,7 @@ properties:
->>>                - udoo,imx6q-udoo           # Udoo i.MX6 Quad Board
->>>                - uniwest,imx6q-evi         # Uniwest Evi
->>>                - variscite,dt6customboard
->>> +              - variscite,mx6customboard
->>>                - wand,imx6q-wandboard      # Wandboard i.MX6 Quad Board
->>>                - ysoft,imx6q-yapp4-crux    # i.MX6 Quad Y Soft IOTA Crux board
->>>                - ysoft,imx6q-yapp4-pegasus # i.MX6 Quad Y Soft IOTA Pegasus board
->>> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
->>> index 59829fc90315..9cfc3d3e91ea 100644
->>> --- a/arch/arm/boot/dts/Makefile
->>> +++ b/arch/arm/boot/dts/Makefile
->>> @@ -665,6 +665,7 @@ dtb-$(CONFIG_SOC_IMX6Q) += \
->>>       imx6q-udoo.dtb \
->>>       imx6q-utilite-pro.dtb \
->>>       imx6q-var-dt6customboard.dtb \
->>> +     imx6q-var-mx6customboard.dtb \
->>>       imx6q-vicut1.dtb \
->>>       imx6q-wandboard.dtb \
->>>       imx6q-wandboard-revb1.dtb \
->>> diff --git a/arch/arm/boot/dts/imx6q-var-mx6customboard.dts b/arch/arm/boot/dts/imx6q-var-mx6customboard.dts
->>> new file mode 100644
->>> index 000000000000..66047dff11ec
->>> --- /dev/null
->>> +++ b/arch/arm/boot/dts/imx6q-var-mx6customboard.dts
->>> @@ -0,0 +1,279 @@
->>> +// SPDX-License-Identifier: GPL-2.0+
->>> +/*
->>> + * Support for Variscite MX6 Carrier-board
->>> + *
->>> + * Copyright 2016 Variscite, Ltd. All Rights Reserved
->>> + * Copyright 2022 Bootlin
->>> + */
->>> +
->>> +/dts-v1/;
->>> +
->>> +#include "imx6qdl-var-som.dtsi"
->>> +#include <dt-bindings/pwm/pwm.h>
->>> +
->>> +/ {
->>> +     model = "Variscite i.MX6 QUAD/DUAL VAR-SOM-MX6 Custom Board";
->>> +     compatible = "variscite,mx6customboard", "fsl,imx6q";
->>
->> Where is the SoM compatible?
+Hi Jakub,
+
+On 20/07/23 10:05 am, Jakub Kicinski wrote:
+> The patch is too big to review.
 > 
-> I mostly just copied this from the DART-MX6 device tree which is
-> another variscite
-> imx6q based modular SoM custom board combination:
-> https://github.com/torvalds/linux/blob/v6.5-rc2/arch/arm/boot/dts/nxp/imx/imx6q-var-dt6customboard.dts#L17
+> Please break it apart separating into individual features, targeting
+> around 10 patches in the series. That will make it easier for reviewers
+> to take a look at the features in which they have expertise.
 > 
-> The terminology is a bit confusing in general here, variscite has 2
-> families of pin2pin
-> modules, the "VAR-SOM" and the "DART" family.
-> https://www.variscite.com/variscite-pin2pin-system-on-module-families/
 
-I know, I am familiar with them.
+Sure Jakub. I will try to break this patch in multiple patches as below.
 
+Patch 1: Introduce Firmware mapping for the driver (icss_switch_map.h)
 
+Patch 2: Introduce mii helper APIs. (icssg_mii_rt.h and icssg_mii_cfg.h). This
+patch will also introduce basic prueth and emac structures in icssg_prueth.h as
+these structures will be used by the helper APIs.
+
+Patch 3: Introduce firmware configuration and classification APIs.
+(icssg_classifier.c, icssg_config.h and icssg_config.c)
+
+Patch 4: Introduce APIs for ICSSG Queues (icssg_queues.c)
+
+Patch 5: Introduce ICSSG Ethernet driver. (icssg_prueth.c and icssg_prueth.h)
+This patch will enable the driver and basic functionality can work after this
+patch. This patch will be using all the APIs introduced earlier. This patch
+will also include Kconfig and Makefile changes.
+
+Patch 6: Enable standard statistics via ndo_get_stats64
+
+Patch 7: Introduce ethtool ops for ICSSG
+
+Patch 8: Introduce power management support (suspend / resume APIs)
+
+However this structure of patches will introduce some APIs earlier (in patch
+2,3 and 4) which will be used later by patch 5. I hope it will be OK to
+introduce APIs and macros earlier and use them later.
+
+This restructuring will shorten all the individual patches. However patch 5
+will still be a bit large as patch 5 introduces all the neccessary APIs as
+driver probe / remove, ndo open / close, tx/rx etc.
+
+Currnetly this single patch has close to 4000 insertion and is touching 12
+files. After restructring patch 5 will have around 1800 insertions and will
+touch only 4 files (icssg_prueth.c, icssg_prueth.h, Kconfig, Makefile). This is
+still significant improvement.
+
+Please let me know if this is OK.
+
+Also this patch has Reviewed-By tag of Andrew. Can I carry forward his
+Reviewed-By tag in all patches or do I need to drop it?
+
+> See two things which jumped out at me immediately below:
 > 
-> Within each connector family there are then multiple SoM boards that
-> can be used with the same carrier boards(ie the Custom Board carrier board
-> like the evaluation kit) although they are often bundled together with specific
-> boards in practice.
-
-No, they are being shipped to the customers which then use them in their
-products. Having common compatible can be useful, although it depends
-what's in the common part. For example for IMX8 it was quite a lot, thus
-it made sense.
-
+> On Wed, 19 Jul 2023 13:57:55 +0530 MD Danish Anwar wrote:
+>> +	ICSSG_STATS(rx_crc_error_frames),
 > 
-> So the existing DART-MX6 I think uses the same SoC but is in a different
-> family and as such has a different carrier board. However as the relation
-> between the SoM and the carrier board is effectively the same, I just copied
-> the way compatibile is being set there for the VAR-SOM-MX6 from the
-> existing DART-MX6 custom board device tree.
+>> +	ICSSG_STATS(rx_max_size_error_frames),
+>> +	ICSSG_STATS(rx_frame_min_size),
+>> +	ICSSG_STATS(rx_min_size_error_frames),
+>> +	ICSSG_STATS(rx_overrun_frames),
 > 
-> I think this roughly represents the SoM board device tree associations as I'm
-> understanding them:
+>> +	ICSSG_STATS(rx_64B_frames),
+>> +	ICSSG_STATS(rx_bucket1_frames),
+>> +	ICSSG_STATS(rx_bucket2_frames),
+>> +	ICSSG_STATS(rx_bucket3_frames),
+>> +	ICSSG_STATS(rx_bucket4_frames),
+>> +	ICSSG_STATS(rx_bucket5_frames),
+>> +	ICSSG_STATS(rx_total_bytes),
+>> +	ICSSG_STATS(rx_tx_total_bytes),
+>> +	/* Tx */
+>> +	ICSSG_STATS(tx_good_frames),
+>> +	ICSSG_STATS(tx_broadcast_frames),
+>> +	ICSSG_STATS(tx_multicast_frames),
+>> +	ICSSG_STATS(tx_odd_nibble_frames),
+>> +	ICSSG_STATS(tx_underflow_errors),
+>> +	ICSSG_STATS(tx_frame_max_size),
+>> +	ICSSG_STATS(tx_max_size_error_frames),
+>> +	ICSSG_STATS(tx_frame_min_size),
+>> +	ICSSG_STATS(tx_min_size_error_frames),
+>> +	ICSSG_STATS(tx_bucket1_size),
+>> +	ICSSG_STATS(tx_bucket2_size),
+>> +	ICSSG_STATS(tx_bucket3_size),
+>> +	ICSSG_STATS(tx_bucket4_size),
+>> +	ICSSG_STATS(tx_64B_frames),
+>> +	ICSSG_STATS(tx_bucket1_frames),
+>> +	ICSSG_STATS(tx_bucket2_frames),
+>> +	ICSSG_STATS(tx_bucket3_frames),
+>> +	ICSSG_STATS(tx_bucket4_frames),
+>> +	ICSSG_STATS(tx_bucket5_frames),
+>> +	ICSSG_STATS(tx_total_bytes),
 > 
-> pin2pin Family: DART
-> SoM: https://www.variscite.com/product/system-on-module-som/cortex-a9/dart-mx6-cpu-freescale-imx6/
-> SoM part: DART-MX6
-> SoM device tree: imx6qdl-var-dart.dtsi
-> SoM SoC: imx6q
-> Board: https://www.variscite.com/product/single-board-computers/dt6customboard/
-> Board device tree: imx6q-var-dt6customboard.dts
-> Board compatible: compatible = "variscite,dt6customboard", "fsl,imx6q";
+> Please use standard stats:
+> https://docs.kernel.org/next/networking/statistics.html
 > 
-> pin2pin Family: VAR-SOM
-> SoM: https://www.variscite.com/product/system-on-module-som/cortex-a9/var-som-mx6-cpu-freescale-imx6/
-> SoM part: VAR-SOM-MX6
-> SoM device tree: imx6qdl-var-som.dtsi
-> SoM SoC: imx6q
-> Board: mx6customboard
-> https://www.variscite.com/product/single-board-computers/var-mx6customboard/
-> Board device tree: imx6q-var-mx6customboard.dts
-> Board compatible: compatible = "variscite,mx6customboard", "fsl,imx6q";
+
+Sure. I will use standard stats in patch 6.
+
+> And do not duplicate those stats in the ethool -S output.
 > 
-> What's confusing here is that the DART-MX6 is also described as a SoM:
-> "DART-MX6 from Variscite is the smallest System on Module (SoM) / Computer
-> on Module (CoM) supporting NXP/Freescale’s i.MX6 Quad and Dual-core
-> Cortex-A9™ processor"
 
-It is not confusing. It is a SoM.
+Sure I will make sure to not duplicate standard stats in driver specific stats
+of ethtool -S output.
 
+>> +static const char emac_ethtool_priv_flags[][ETH_GSTRING_LEN] = {
+>> +	"iet-frame-preemption",
+>> +	"iet-mac-verify",
+>> +};
 > 
-> So we have a "DART-MX6" SoM part which corresponds to the "VAR-SOM-MX6"
-> SoM part, with both being SoM's but only one("VAR-SOM-MX6") having SoM in
-> the actual part name.
+> What are these? We have a proper ethtool API for frame preemption.
 
-Vendor naming is one thing, but true meaning is second. These are
-System-on-Modules.
+I will drop this.
 
-> 
-> Does the compatible section for imx6qdl-var-dart.dtsi look correct?
-> 
-> I'm not sure what exactly a "SoM compatible" should look like here as SoM is
-> both a generic term(used to describe by both the "DART-MX6" and
-> "VAR-SOM-MX6" parts) as well as term used within a part(used in the
-> part for "VAR-SOM-MX6" as well as other SoM's in the "VAR-SOM" family
-> but not the "DART-MX6" part or other SoM's in the "DART" family).
+Please let me know if this approach looks ok. I will go ahead and start working
+on it. I Will send next revision at the earliest.
 
-Take a look at IMX8 Variscite SoMs.
-
-Best regards,
-Krzysztof
-
+-- 
+Thanks and Regards,
+Danish.
