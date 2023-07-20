@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 25DDB75A9ED
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 10:57:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 03F3E75A9DC
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 10:57:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230111AbjGTI5b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jul 2023 04:57:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37332 "EHLO
+        id S230031AbjGTI5Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jul 2023 04:57:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37842 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230337AbjGTIoK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 04:44:10 -0400
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5977C26A0
-        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 01:44:08 -0700 (PDT)
-Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-51de9c2bc77so672310a12.3
-        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 01:44:08 -0700 (PDT)
+        with ESMTP id S230422AbjGTIp2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 04:45:28 -0400
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A43226AC
+        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 01:45:27 -0700 (PDT)
+Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-99364ae9596so99172766b.1
+        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 01:45:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689842647; x=1692434647;
+        d=linaro.org; s=google; t=1689842725; x=1692434725;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=bXmQdUSwiEfCeL+TuIOj45mHUtMHTIiqenNRIQ+67SA=;
-        b=qFVkXUqOOwTKp2x5hPUx9qm517YCGDqbSztEMSIDzBEAnSmAtIURzG3MZkyK/UNgio
-         fSVSgfYdZYKa5t49AcwqEAQJN2PL9RMivXWdoWLrqSmB8AbMwDNjhwa7/pRXv3+L8LMR
-         WTvWO7MplpSLjeX4kazfTYjPWufJkz5WXMbFwP8oz8ztOgvzcxFSqAWXA09eVZwNMW22
-         +jSgVFvMCTa96XWNdnWTLXj68vbEbEuYLwsc81CTDCr7QCDTB+MlR9PU7B4HFpMmKDrS
-         4P/jocRhTkcGjGdokjOI95C7B4mTxyCLo6UfZKyXXG0OiD/fC7oPnjphFZpVaOD4q0z3
-         E0MA==
+        bh=tSoVxWSE1cyumuS4GrQ83guaORjhmkGXCHW2lWl3ILk=;
+        b=nbv30qoPhEh2h9MZjLI6Dnw8e3nzuRNXK/oGEM4BNKmw/+pnzTuEyrf3JhtyZ0bilF
+         aDpKMcgP1LIp8uAvX6C+W7fTvUU0i6Sx7cimzXj1Q32LVvZzXGTXNVxKNx4fD5dI2RL+
+         47tFslQTfjNS66oAaoefLUCzJXNmkNY1aDgtClMa2QRnudc1CWYz/irz7podoQV8u5ro
+         ZLsVpwP0hgdo6bxkICHiAAxmMF8/rnM0/CU6A4aqP4YY2S4mIvDkgWn4ROozwSnX52Yq
+         T3ssXP/9yMo8pOaMwAxBefmw7dmlBaoTUOF9yCiTFc7a45vr5PPj7YKRjFXIEJUe4URt
+         47jQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689842647; x=1692434647;
+        d=1e100.net; s=20221208; t=1689842725; x=1692434725;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=bXmQdUSwiEfCeL+TuIOj45mHUtMHTIiqenNRIQ+67SA=;
-        b=ESDC6zDL8dOhfELdX9+PJvSFhElom9+s+e4loQ+zq3q5Svl350nul4YmANtGSQ++qk
-         stUalPz0nJ9mhDgppi6FQC7npOnuy8F+4o6LBd6c/pQXMag/i42gylsRO2ayZuoOv7xD
-         w6lpB3r5ygZJghGk0nI4YDXMF/JyZFtYXSBHpK6IFm9hh6srV7GTwTHEioMHEYf/Tu3Z
-         zEzFbPCSQpGI6v33UrrFPsidbn2tznDitIy3OKlfhy1d8LDEyYsEA0fEyTBhT3+7F2A4
-         BQ90fblwM6sQdDMlc4nQw6lKyfPTWCuiP7NTmgEk13otib60RIOzU6k7oUDbeCqFegKA
-         /ZQw==
-X-Gm-Message-State: ABy/qLaU2mYeSfjrAYAHg1BQZd11n/2PgKJ+RS9BprUltWFqy3XLMTfx
-        pomSDkPtkXZGgigxzuH7saSNCg==
-X-Google-Smtp-Source: APBJJlGCXyIDr7nOu/YXOOqrS/2UxOod41KmJxihYP99aWkTW7XDf85MKrLzKtCoVvpT2DMA9KwTTg==
-X-Received: by 2002:a17:906:10d2:b0:98e:16b7:e038 with SMTP id v18-20020a17090610d200b0098e16b7e038mr4431998ejv.23.1689842646835;
-        Thu, 20 Jul 2023 01:44:06 -0700 (PDT)
+        bh=tSoVxWSE1cyumuS4GrQ83guaORjhmkGXCHW2lWl3ILk=;
+        b=H+PVwWWUYQpU2YQ1giMl7tzrFx4hSwb/7t2OjzDt4P3U9NZ2iev/+BcLf/TK4nJAm/
+         KtIDMdK2fjl/oGBTmPhUpMwtaj2TQxBVA5yxMAYnr4q3pkbhfoz3/810qU0gNS8oO44v
+         0j9EzLlGXc+l6wOgk2ihvgBgpzWcGDhHh77XXjmTC//seAtpINXz88fWRs5Qs/WDxTgr
+         jJOXnYMnHZl/mg2SpeQbgQKosuFMEJnHMSfndZ8IZ1V0dLPGUOUXLoxwRt6TObb188BT
+         2Er6xRAvq6wiANArUwfFkz1lZe7Oly4xffGEVkytWVyT0i7WTNLB9fVIRI0KfX66geUD
+         Odkw==
+X-Gm-Message-State: ABy/qLYWlhdsY2P7XNS9Y7e6eePhKoyxiJM7ddP9Dcfhl6c2GZeYXjEv
+        Z8q6gVfFHRBeeaz1WrClbOFMjA==
+X-Google-Smtp-Source: APBJJlF1GBIlxZpXyWvbwbFsR4lNV73jiLrstNTcD/bQex9Wl20n1MUIMq54n3qCMqEs87+A1Awr5A==
+X-Received: by 2002:a17:906:106:b0:997:aee1:74ee with SMTP id 6-20020a170906010600b00997aee174eemr4345447eje.14.1689842725596;
+        Thu, 20 Jul 2023 01:45:25 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id rv7-20020a17090710c700b00993a9a951fasm376950ejb.11.2023.07.20.01.44.04
+        by smtp.gmail.com with ESMTPSA id lo19-20020a170906fa1300b00992665694f7sm363528ejb.107.2023.07.20.01.45.23
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 20 Jul 2023 01:44:06 -0700 (PDT)
-Message-ID: <53721566-2a85-76cb-a4cf-2819f08dfc85@linaro.org>
-Date:   Thu, 20 Jul 2023 10:44:03 +0200
+        Thu, 20 Jul 2023 01:45:25 -0700 (PDT)
+Message-ID: <419d4a09-84aa-7029-cd0f-556945ba0046@linaro.org>
+Date:   Thu, 20 Jul 2023 10:45:22 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
-Subject: Re: [v11 5/6] arm64: dts: Add ipq5018 SoC and rdp432-c2 board support
+Subject: Re: [v11 1/6] dt-bindings: arm64: Add IPQ5018 clock and reset
 Content-Language: en-US
 To:     Sricharan Ramabadhran <quic_srichara@quicinc.com>,
         agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
@@ -67,9 +67,9 @@ To:     Sricharan Ramabadhran <quic_srichara@quicinc.com>,
         linux-arm-kernel@lists.infradead.org, robimarko@gmail.com,
         andy.shevchenko@gmail.com
 References: <20230616101749.2083974-1-quic_srichara@quicinc.com>
- <20230616101749.2083974-6-quic_srichara@quicinc.com>
+ <20230616101749.2083974-2-quic_srichara@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230616101749.2083974-6-quic_srichara@quicinc.com>
+In-Reply-To: <20230616101749.2083974-2-quic_srichara@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -83,31 +83,17 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 16/06/2023 12:17, Sricharan Ramabadhran wrote:
-> Add initial device tree support for the Qualcomm IPQ5018 SoC and
-> rdp432-c2 board.
-> 
-> Few things like 'reboot' does not work because, couple of more 'SCM'
-> APIS are needed to clear some TrustZone settings. Those will be
-> posted separately.
+> This patch adds support for the global clock controller found on
+> the IPQ5018 based devices.
 > 
 > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > Co-developed-by: Varadarajan Narayanan <quic_varada@quicinc.com>
 > Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
-> Co-developed-by: Gokul Sriram Palanisamy <quic_gokulsri@quicinc.com>
-> Signed-off-by: Gokul Sriram Palanisamy <quic_gokulsri@quicinc.com>
 > Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/Makefile             |   1 +
->  .../arm64/boot/dts/qcom/ipq5018-rdp432-c2.dts |  72 +++++
->  arch/arm64/boot/dts/qcom/ipq5018.dtsi         | 250 ++++++++++++++++++
->  3 files changed, 323 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/ipq5018-rdp432-c2.dts
->  create mode 100644 arch/arm64/boot/dts/qcom/ipq5018.dtsi
-> 
 
-NAK, please do not merge.
-
-It turns out there are some problems here (pointed out by Hariharan K).
+Please use subject prefixes matching the subsystem. You can get them for
+example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+your patch is touching.
 
 Best regards,
 Krzysztof
