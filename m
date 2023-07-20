@@ -2,74 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A9C9975ABC5
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 12:16:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F40D75ABE7
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 12:27:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230441AbjGTKQf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jul 2023 06:16:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32992 "EHLO
+        id S230111AbjGTK1U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jul 2023 06:27:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35334 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229975AbjGTKQe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 06:16:34 -0400
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27E6B13E
-        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 03:16:32 -0700 (PDT)
-Received: by mail-lj1-x22e.google.com with SMTP id 38308e7fff4ca-2b73564e98dso8105971fa.3
-        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 03:16:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1689848190; x=1690452990;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=CYiLa4u+MTqh8C9SMSMYqQrfYRu7ZFEq+xyyji42VYE=;
-        b=bVvtsauMFB62DU8vBl8gUAS627fFY4ZdSGJG5xymmmih6oMshAWewuWrZjdBCutbm3
-         wb+ja+DjM15k/djMMv/iHzuHwqAS/UQZgyWCCFI+IJcz3WT4ng+Go3ztOAXxB7CuswaR
-         HD7E8lwZRShYjkwfoRH0V26Bxub/+iW3Arw+DR6tkYpvaPkLTG7Jn5SoZPlYXHvh0qhA
-         CKVnLGWLItVMQFHrqCP+oDvaAab4zkha4yWMUgnG5mMoL7ZgfzgrELwM+F13ozNgsWSC
-         39IO1alqPQiWmi5DnyAWSHsl4m+fHX6msdjDTFNJuNs+LJmB+hSOAyMT5yuDJvEvWzAa
-         NOXA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689848190; x=1690452990;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=CYiLa4u+MTqh8C9SMSMYqQrfYRu7ZFEq+xyyji42VYE=;
-        b=ajyp+p7y5sW1pZK+170o/rx6JcfBsZMVQe5H2Z42Akr9hbGfBTk3AnUslupRilIu0p
-         SHTva3FP8QoKCKPtNnXjvCIdWGGQm7ymH+rrq4tayRGmDpsaGYsuBsVvAGoLfaMAcQsI
-         Mxg7E7dlv+503wkhcBif3wmN1LAAYRrzwWV/YUFIgWtOgj/jwvSnHHLIl1M2GVLN431Q
-         CttxiLwEv/CRbMVJeQXGHGvK73bPCyvmkISuiTN8i+aSeMcNaCSwXZ3v4uovG8Ex1ivj
-         VG65EpBhX6Y19vpDkuYBvR7hvdNujk6WrOAfiikg8KEIcqVp5hzlS91eZQPkPxf/q5pb
-         qpog==
-X-Gm-Message-State: ABy/qLYHJMP4baS2dLho078q4gRq3QUXetRESI+qRxrXLc2FG0JpleV8
-        EBXXjTBHunNbeFtO8Y36lvPwvtnaHDQ84dyYeOwXkw==
-X-Google-Smtp-Source: APBJJlGPAo7nfpmFNyXqdwGSXn8kws4LlB9dGHdGK27p2J81w/bW6cXdRPeo3wUpjTWtsubxehiwboVRMZq2QRffFPs=
-X-Received: by 2002:a2e:9604:0:b0:2b6:e128:e7a3 with SMTP id
- v4-20020a2e9604000000b002b6e128e7a3mr1863330ljh.33.1689848190396; Thu, 20 Jul
- 2023 03:16:30 -0700 (PDT)
+        with ESMTP id S229570AbjGTK1T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 06:27:19 -0400
+Received: from mx1.sberdevices.ru (mx2.sberdevices.ru [45.89.224.132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B77010D2;
+        Thu, 20 Jul 2023 03:27:16 -0700 (PDT)
+Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
+        by mx1.sberdevices.ru (Postfix) with ESMTP id 52067120077;
+        Thu, 20 Jul 2023 13:27:13 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 52067120077
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+        s=mail; t=1689848833;
+        bh=k1AxALUOUAa6dGA6SXUccWu1sfcnyFNB59uw2qoEQLo=;
+        h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type:From;
+        b=fLGEqU8omiYKy0q7fpxdwxOhy8foodW/nUolQKNwZqIV+V7r7siAvRDKKaBspWk9Y
+         SWRWL6Biz3NK0O5j+G9AJJ3PFUKyTcKYvtes8znuAetkL/fWXWzAXwA5hpmM15C67m
+         D53/rGKc/1+y4AYCEmEc/LgfN7T7gNhmduy4cPNwqOb2SjIxpD5e2sK4R7dewPFSzG
+         myBUNk+3FVQ5SoYoO4hMDTZpFsqeGklPdgWer2yYqvsttrJSZPBTGLYuF1MyCKoUUM
+         eukiwI7r1+SHgeHK3Iv32N9XSjekjLLcwMQ6OnekWp+SwNtIBWL79VYvQlicJ1hToF
+         hSJsc1y7xg9tg==
+Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mx1.sberdevices.ru (Postfix) with ESMTPS;
+        Thu, 20 Jul 2023 13:27:13 +0300 (MSK)
+Received: from localhost (100.64.160.123) by p-i-exch-sc-m01.sberdevices.ru
+ (172.16.192.107) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Thu, 20 Jul
+ 2023 13:27:12 +0300
+Date:   Thu, 20 Jul 2023 13:27:12 +0300
+From:   Dmitry Rokosov <ddrokosov@sberdevices.ru>
+To:     Huqiang Qin <huqiang.qin@amlogic.com>
+CC:     <neil.armstrong@linaro.org>, <khilman@baylibre.com>,
+        <jbrunet@baylibre.com>, <martin.blumenstingl@googlemail.com>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-amlogic@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] arm64: dts: Add gpio_intc node and pinctrl node for
+ Amlogic C3 SoCs
+Message-ID: <20230720102712.qrepf7nhj7wk474s@CAB-WSD-L081021>
+References: <20230720052054.3909902-1-huqiang.qin@amlogic.com>
 MIME-Version: 1.0
-References: <20230616063210.19063-1-eric.lin@sifive.com> <20230616063210.19063-4-eric.lin@sifive.com>
- <2437bda9-bbdb-ad80-7201-1e16e1388890@linaro.org> <CAPqJEFoTsmVZ4kvsSB0RkQZaQGyXC96KV6RvdpeC5XxURCOZ0w@mail.gmail.com>
- <8c9ed2d4-83ab-ecc0-a300-e6bc8e2047b6@linaro.org> <CAPqJEFqhmxksvEgvC61cJcRGR0DrSWDZxJC3J7tdgcG8UY+sFw@mail.gmail.com>
- <f5275617-d68c-c76b-d799-106f67cc2071@linaro.org> <20230712110908.GA23216@hsinchu16>
- <0865b422-d587-c1c7-9463-510832ddddf4@linaro.org> <20230712-parking-acting-e91f24204467@wendy>
-In-Reply-To: <20230712-parking-acting-e91f24204467@wendy>
-From:   Eric Lin <eric.lin@sifive.com>
-Date:   Thu, 20 Jul 2023 18:16:19 +0800
-Message-ID: <CAPqJEFqN-13MyDaCPV31RJjrgmXkx=pTVmgZ6KhabY3xTP6kxg@mail.gmail.com>
-Subject: Re: [PATCH 3/3] dt-bindings: riscv: sifive: Add SiFive Private L2
- cache controller
-To:     Conor Dooley <conor.dooley@microchip.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        conor@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dslin1010@gmail.com,
-        Zong Li <zong.li@sifive.com>, vincent.chen@sifive.com,
-        Greentime Hu <greentime.hu@sifive.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20230720052054.3909902-1-huqiang.qin@amlogic.com>
+User-Agent: NeoMutt/20220415
+X-Originating-IP: [100.64.160.123]
+X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 178744 [Jul 20 2023]
+X-KSMG-AntiSpam-Version: 5.9.59.0
+X-KSMG-AntiSpam-Envelope-From: DDRokosov@sberdevices.ru
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 524 524 9753033d6953787301affc41bead8ed49c47b39d, {Tracking_uf_ne_domains}, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, lists.infradead.org:7.1.1;p-i-exch-sc-m01.sberdevices.ru:7.1.1,5.0.1;127.0.0.199:7.1.2;100.64.160.123:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;sberdevices.ru:7.1.1,5.0.1, FromAlignment: s, {Tracking_white_helo}, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean, bases: 2023/07/20 09:21:00
+X-KSMG-LinksScanning: Clean, bases: 2023/07/20 08:06:00
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/07/20 06:46:00 #21646672
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,110 +84,66 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Conor,
+Hello Huqiang!
 
-On Wed, Jul 12, 2023 at 8:49=E2=80=AFPM Conor Dooley <conor.dooley@microchi=
-p.com> wrote:
->
-> On Wed, Jul 12, 2023 at 02:30:06PM +0200, Krzysztof Kozlowski wrote:
-> > On 12/07/2023 13:09, Eric Lin wrote:
-> > > On Sat, Jul 01, 2023 at 10:22:25AM +0200, Krzysztof Kozlowski wrote:
-> > >> On 28/06/2023 18:31, Eric Lin wrote:
-> > >>
-> > >>>>>>
-> > >>>>>>> +      - enum:
-> > >>>>>>> +          - sifive,pL2Cache0
-> > >>>>>>> +          - sifive,pL2Cache1
-> > >>>>>>
-> > >>>>>> What is "0" and "1" here? What do these compatibles represent? W=
-hy they
-> > >>>>>> do not have any SoC related part?
-> > >>>>>
-> > >>>>> The pL2Cache1 has minor changes in hardware, but it can use the s=
-ame
-> > >>>>> pl2 cache driver.
-> > >>>>
-> > >>>> Then why aren't they compatible?
-> > >>>>
-> > >>>
-> > >>> The pL2Cache1 has removed some unused bits in the register compared=
- to
-> > >>> pl2Cache0.
-> > >>> From the hardware perspective, they are not compatible but they can
-> > >>> share the same pl2 cache driver in software.
-> > >>
-> > >> So they are compatible... If they were not compatible, you wouldn't =
-be
-> > >> able to use the same match in the driver.
-> > >>
-> > >>> Thus, we would like to keep both. It would be great if you can prov=
-ide
-> > >>> some suggestions. Thanks.
-> > >>
-> > >> I propose to make them compatible, like every other piece of SoC. I
-> > >> don't see any benefit of having them separate.
-> > >>
-> > > Sorry for the late reply.
-> > > The pl2 cache is our internal platform IP and is not part of any SoC.
-> > >
-> > > The reason why this driver is compatible with the hardware "pl2cache0=
-" and hardware "pl2cache1"
-> > > is that it doesn't program the different parts of the config register
-> > > However, our internal software (e.g., bare-metal software) will progr=
-am these different parts,
-> > > so it needs to rely on the different compatible string to identify th=
-e hardware.
-> > >
-> > > Additionally, we would like the compatible strings to reflect which h=
-ardware is being used Thanks.
-> >
-> > I don't understand how does it contradicts anything I said. So you do
-> > agree with me? Or what?
->
-> I probably should've been keeping a closer eye here, sorry.
->
-> I assume what Krzysztof means is why do you permit both
-> "sifive,pL2Cache0" and "sifive,pL2Cache1" appearing in isolation. IOW,
-> both of
-> compatible =3D "sifive,pl2cache0";
-> and
-> compatible =3D "sifive,pl2cache1";
-> are valid in your binding.
->
-> The hardware for both might be different, and their full featuresets may
-> be incompatible, but they implement a compatible subset of features. I
-> would expect that the following would be the permitted compatible setups:
-> compatible =3D "sifive,pl2cache0";
-> and
-> compatible =3D "sifive,pl2cache1", "sifive,pl2cache0";
->
-> A consumer of the DT that does care for the differences should be
-> looking for the specific compatible, and OS code that does not care can
-> always bind to the "0" version.
->
+Thank you for the patchset!
 
-Yes, but I think the proper compatible string for hw pl2cache0 and hw
-pl2cache1 should be as follows:
-hw pl2cache0 -> compatible =3D "sifive,pl2cache0","sifive,pl2cache1";
-hw pl2cache1 -> compatible =3D "sifive,pl2cache1";
+On Thu, Jul 20, 2023 at 01:20:54PM +0800, Huqiang Qin wrote:
+> Add gpio interrupt controller device and pinctrl device.
+> 
+> Signed-off-by: Huqiang Qin <huqiang.qin@amlogic.com>
+> ---
+>  arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi | 25 +++++++++++++++++++++
+>  1 file changed, 25 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
+> index 60ad4f3eef9d..4ad9c042f85c 100644
+> --- a/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
+> @@ -82,6 +82,31 @@ uart_b: serial@7a000 {
+>  				clock-names = "xtal", "pclk", "baud";
+>  			};
+>  
+> +			gpio_intc: interrupt-controller@4080 {
+> +				compatible = "amlogic,meson-gpio-intc",
+> +					     "amlogic,c3-gpio-intc";
+> +				reg = <0x0 0x4080 0x0 0x0020>;
+> +				interrupt-controller;
+> +				#interrupt-cells = <2>;
+> +				amlogic,channel-interrupts =
+> +					<10 11 12 13 14 15 16 17 18 19 20 21>;
+> +			};
+> +
+> +			periphs_pinctrl: pinctrl@4000 {
 
-Since the hw pl2cache0 implements more features than hw pl2cache1, it
-can be compatible with the pl2cache1 driver.
-However, hw pl2cache1 only implements a sub-feature of hw pl2cache0,
-so it cannot be compatible with the pl2cache0 driver.
-Thus, I'll keep only the compatible =3D "sifive,pl2cache1". in the
-driver and dt-binding.  Thanks for the suggestions.
+Please sort dts nodes by reg offset in the one bus declaration.
 
-> Do the "0" & "1" here refer to the IP version, as in
-> sifive-blocks-ip-versioning.txt? I didn't think the compatibles
-> containing those IP versions were supposed to appear in isolation,
-> without a soc-specific one?
->
-Yes, I think they refer to IP versions. OK, I'll fix it in v2.
-Thanks for the review.
+> +				compatible = "amlogic,c3-periphs-pinctrl";
+> +				#address-cells = <2>;
+> +				#size-cells = <2>;
+> +				ranges;
+> +
+> +				gpio: bank@4000 {
+> +					reg = <0x0 0x4000 0x0 0x004c>,
+> +					      <0x0 0x4100 0x0 0x01de>;
+> +					reg-names = "mux", "gpio";
+> +					gpio-controller;
+> +					#gpio-cells = <2>;
+> +					gpio-ranges = <&periphs_pinctrl 0 0 55>;
+> +				};
+> +			};
+>  		};
+>  	};
+>  };
+> -- 
+> 2.37.1
+> 
+> 
+> _______________________________________________
+> linux-amlogic mailing list
+> linux-amlogic@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-amlogic
 
-Best regards,
-Eric Lin
-
-> Thanks,
-> Conor.
+-- 
+Thank you,
+Dmitry
