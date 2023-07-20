@@ -2,399 +2,272 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9508D75AD10
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 13:35:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EB17775AD2D
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 13:39:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230440AbjGTLfS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jul 2023 07:35:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39932 "EHLO
+        id S229685AbjGTLjj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jul 2023 07:39:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41704 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231199AbjGTLfP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 07:35:15 -0400
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F0AF2690
-        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 04:35:13 -0700 (PDT)
-Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-3fd190065a8so5773385e9.3
-        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 04:35:13 -0700 (PDT)
+        with ESMTP id S229656AbjGTLjj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 07:39:39 -0400
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4CA9F113
+        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 04:39:37 -0700 (PDT)
+Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-5216f713f8bso876416a12.2
+        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 04:39:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1689852912; x=1690457712;
+        d=linaro.org; s=google; t=1689853176; x=1690457976;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=hZX2qQaPDTKSbIhZ2peO1OSAFFzclWID1kilVn5rcUw=;
-        b=iHp48fDnRCi/fteE1S/gsi8Wj8utM6G5r5ZDgJgKbAXQ/539Tg2v61yYe6aiI6zdVy
-         1omBI8UG+lV/kYqAj1yD7sEycRD6zrDxCe6BOLGxa1ILQ55CYo+yFVR4vj/dE9gwVtBc
-         h3joQ0P8tvzBpCtSASSGKlIoqii7sRlv8YXOvl/UyAFAqPTYjjMDrKh+FxzYvy5H8AHm
-         IsaQZfOfpfV/XNLXFUqgoqM6kSBAktmhUePAA1SLnGZKcXD4eIv4+1y44Bgh0liFmQwu
-         YFLZkZGNVhAMIBr3rMbdcIK7E3p1Pl26k5mNdOx/E4scyT+fFUeRGa7r/C8aGziyW5vM
-         rsAQ==
+        bh=DpDIiAHaPUZVf5LebjEBr8OH0I3cBK4Zu9lxXtRN+j8=;
+        b=yVqkZqcvP1/+Xhmydsg4zm2sTYnSjVetXHtNE0auHaDTtZwn8I1ns+rxjYXCd5OiEX
+         p2bThGpbj3BfVYsXW2tApUdi+pi9ImbMnt+yyL/4CteviSlUlZhqAfuX3t+KPeGuFP4d
+         vaRCBwExruSm0uzrQBFfy03kZiBpJfmzQq6cLlp86WJ5a+X2Oz/KUyVyXgBGfUWfKoR6
+         5Z9FnkaDelLmlwyn6YzpBnukfaw9XybkIYevo6UW93mHv6kWLLSiXuwM4gKjLiI66+dY
+         ODfIX2repgCD1Jh4ATCuiRm53/lluDGhFYR0AYtIihFdpI+ntP2KMQB/t2gIY13JhWIv
+         6BGg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689852912; x=1690457712;
+        d=1e100.net; s=20221208; t=1689853176; x=1690457976;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=hZX2qQaPDTKSbIhZ2peO1OSAFFzclWID1kilVn5rcUw=;
-        b=WJ6DndHqFQT3jfmwO+2GKIzmYF/h3YnpNw4Oua/E8bYUjEaeVPhlUZjnBNC4PQIgyU
-         t1OelgthMvHXzWiilopi7W2fEd1VWfa+k1U3agtPr+urh78ohGx2gPOFN4C0l1FIRh3l
-         hSmcmPXXp4u7p3eU86/229ssuNKgW13gJdQkOcFP8PHX0hHutZZ+AX2OlYy5cWCBtPCe
-         xEMTMVW0VkJ/9T36zDxzpzaqj85nLH2iXSJjuaXDrQ2SuTszvv0CIfFUHmShhUJO1eXa
-         7oc/RocbBVb+Yv6rGlyvjqvET33ixy4BpIkpTwCIx09C1SrOffDQBYzPUZIz9wWJJsBT
-         G3dw==
-X-Gm-Message-State: ABy/qLZ86IrSF6Bq0QtfDR6bMVGYR3vzmr8syxn4uiL7IxALn1sdlj7K
-        kPio+3dQZlEQ4CVzXmTug1UKRw==
-X-Google-Smtp-Source: APBJJlHfu8Z0Ppf6BL4dpWBbsbKT9JtD7Ngr+queCn3d/VwuRMm2MU64nU5uhw+7TEjtQfhCXXNg4g==
-X-Received: by 2002:a1c:7206:0:b0:3fb:feb0:6f40 with SMTP id n6-20020a1c7206000000b003fbfeb06f40mr7201833wmc.11.1689852911359;
-        Thu, 20 Jul 2023 04:35:11 -0700 (PDT)
-Received: from [10.1.3.131] (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id q3-20020a05600c46c300b003fc3b03caa5sm3996574wmo.1.2023.07.20.04.35.10
+        bh=DpDIiAHaPUZVf5LebjEBr8OH0I3cBK4Zu9lxXtRN+j8=;
+        b=bt7EWdLYFz8szsjSZPH9zO8LQUMVAZDleRx1RE/4Hq+SRBAchO9zRAWO9DxLMnnlfk
+         SDnrWNpH3niqQ4COv48zcizxa9yEz/glcrkz4acRhINSnTYddfttsVqcBDAXVS7SW0iZ
+         MmvlIpwWcJ5RQ5H4/HWQZ21Pb0JgqBjfiZ9/dd7ggv+ZxCSfSj0vVPadsO1aMGkJhoQM
+         tLqeu6s7PwXbuJ6fcDS/hmcyiyKW5kfxKQtSuMPm/uQUL9t16fyuM+d5yOZt8DtcUDhi
+         +EGVw6Jawxb9CHm7lDh7c8COkd8y643WEvRov9iMdXxxW08pLk1v7a5E7qiPTAPTDCAq
+         KlKg==
+X-Gm-Message-State: ABy/qLYuQKqMb470nhZDSC08ITGtQAUdEBksQTmRYdYfPI8UPiEE/fHc
+        C7W6bxUWudVuCvdep7mXMP7qYg==
+X-Google-Smtp-Source: APBJJlHukb8lIEJ+Bf8COr7m61XARCKx+7qoKXiobz6DCgQy8cBqj8R4tJQqWqqjOINxssXSF+LADA==
+X-Received: by 2002:aa7:d888:0:b0:51e:1858:693a with SMTP id u8-20020aa7d888000000b0051e1858693amr4261855edq.31.1689853175786;
+        Thu, 20 Jul 2023 04:39:35 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id k6-20020a056402048600b0051bfc85afaasm631304edv.86.2023.07.20.04.39.32
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 20 Jul 2023 04:35:10 -0700 (PDT)
-Message-ID: <0809ac02-b8bf-ed63-9e2e-e77cd7e93464@baylibre.com>
-Date:   Thu, 20 Jul 2023 13:35:09 +0200
+        Thu, 20 Jul 2023 04:39:35 -0700 (PDT)
+Message-ID: <c70e397e-dee8-2155-9f0b-538e95bda2eb@linaro.org>
+Date:   Thu, 20 Jul 2023 13:39:31 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
-Subject: Re: [PATCH 1/3] arm64: dts: mediatek: mt6795: Add support for display
- blocks and DPI/DSI
+Subject: Re: [PATCH v2 2/2] ARM: dts: imx6q: Add Variscite MX6 Custom board
+ support
 Content-Language: en-US
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, matthias.bgg@gmail.com
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, phone-devel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, kernel@collabora.com
-References: <20230720091559.86406-1-angelogioacchino.delregno@collabora.com>
- <20230720091559.86406-2-angelogioacchino.delregno@collabora.com>
-From:   Alexandre Mergnat <amergnat@baylibre.com>
-In-Reply-To: <20230720091559.86406-2-angelogioacchino.delregno@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+To:     James Hilliard <james.hilliard1@gmail.com>
+Cc:     devicetree@vger.kernel.org,
+        Gregory CLEMENT <gregory.clement@bootlin.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        soc@kernel.org, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Marek Vasut <marex@denx.de>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        Stefan Wahren <stefan.wahren@chargebyte.com>,
+        Andreas Kemnade <andreas@kemnade.info>,
+        =?UTF-8?B?TWljaGFsIFZva8OhxI0=?= <michal.vokac@ysoft.com>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Jesse Taube <mr.bossman075@gmail.com>,
+        Li Yang <leoyang.li@nxp.com>, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20230719224141.3716815-1-james.hilliard1@gmail.com>
+ <20230719224141.3716815-2-james.hilliard1@gmail.com>
+ <0ad5a223-d70f-deaa-6261-a2bd2b2af40d@linaro.org>
+ <CADvTj4qvXvuV=ASg5h4hPr8QG-NR48j6G36AZC5xHDdhLyjT7w@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CADvTj4qvXvuV=ASg5h4hPr8QG-NR48j6G36AZC5xHDdhLyjT7w@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 20/07/2023 11:15, AngeloGioacchino Del Regno wrote:
-> Introduce all nodes for all of the display blocks in the MediaTek Helio
-> X10 MT6795 SoC, including the DSI PHY and DSI/DPI interfaces: those are
-> left disabled as usage is board specific.
+On 20/07/2023 12:49, James Hilliard wrote:
+> On Thu, Jul 20, 2023 at 12:15 AM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>>
+>> On 20/07/2023 00:41, James Hilliard wrote:
+>>> This patch adds support for the Variscite MX6 SoM Carrier Board.
+>>>
+>>> This Carrier-Board has the following :
+>>> - LVDS interface for the VLCD-CAP-GLD-LVDS 7" LCD 800 x 480 touch display
+>>> - HDMI Connector
+>>> - USB Host + USB OTG Connector
+>>> - 10/100/1000 Mbps Ethernet
+>>> - miniPCI-Express slot
+>>> - SD Card connector
+>>> - Audio Headphone/Line In jack connectors
+>>> - S-ATA
+>>> - On-board DMIC
+>>> - RS485 Header
+>>> - CAN bus header
+>>> - SPI header
+>>> - Camera Interfaces header
+>>> - OnBoard RTC with Coin Backup battery socket
+>>> - RS232 Debug Header (IDC10)
+>>> - RS232 DTE
+>>>
+>>> Product Page : https://www.variscite.com/product/single-board-computers/var-mx6customboard
+>>>
+>>> The dts file based on the ones provided by Variscite on their own
+>>> kernel, but adapted for mainline.
+>>>
+>>> Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
+>>> Signed-off-by: James Hilliard <james.hilliard1@gmail.com>
+>>> ---
+>>>  .../devicetree/bindings/arm/fsl.yaml          |   1 +
+>>
+>> Please run scripts/checkpatch.pl and fix reported warnings. Some
+>> warnings can be ignored, but the code here looks like it needs a fix.
+>> Feel free to get in touch if the warning is not clear.
+>>
+>>>  arch/arm/boot/dts/Makefile                    |   1 +
+>>>  .../arm/boot/dts/imx6q-var-mx6customboard.dts | 279 ++++++++++++++++++
+>>>  3 files changed, 281 insertions(+)
+>>>  create mode 100644 arch/arm/boot/dts/imx6q-var-mx6customboard.dts
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+>>> index 15d411084065..0f583852de8a 100644
+>>> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
+>>> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+>>> @@ -298,6 +298,7 @@ properties:
+>>>                - udoo,imx6q-udoo           # Udoo i.MX6 Quad Board
+>>>                - uniwest,imx6q-evi         # Uniwest Evi
+>>>                - variscite,dt6customboard
+>>> +              - variscite,mx6customboard
+>>>                - wand,imx6q-wandboard      # Wandboard i.MX6 Quad Board
+>>>                - ysoft,imx6q-yapp4-crux    # i.MX6 Quad Y Soft IOTA Crux board
+>>>                - ysoft,imx6q-yapp4-pegasus # i.MX6 Quad Y Soft IOTA Pegasus board
+>>> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+>>> index 59829fc90315..9cfc3d3e91ea 100644
+>>> --- a/arch/arm/boot/dts/Makefile
+>>> +++ b/arch/arm/boot/dts/Makefile
+>>> @@ -665,6 +665,7 @@ dtb-$(CONFIG_SOC_IMX6Q) += \
+>>>       imx6q-udoo.dtb \
+>>>       imx6q-utilite-pro.dtb \
+>>>       imx6q-var-dt6customboard.dtb \
+>>> +     imx6q-var-mx6customboard.dtb \
+>>>       imx6q-vicut1.dtb \
+>>>       imx6q-wandboard.dtb \
+>>>       imx6q-wandboard-revb1.dtb \
+>>> diff --git a/arch/arm/boot/dts/imx6q-var-mx6customboard.dts b/arch/arm/boot/dts/imx6q-var-mx6customboard.dts
+>>> new file mode 100644
+>>> index 000000000000..66047dff11ec
+>>> --- /dev/null
+>>> +++ b/arch/arm/boot/dts/imx6q-var-mx6customboard.dts
+>>> @@ -0,0 +1,279 @@
+>>> +// SPDX-License-Identifier: GPL-2.0+
+>>> +/*
+>>> + * Support for Variscite MX6 Carrier-board
+>>> + *
+>>> + * Copyright 2016 Variscite, Ltd. All Rights Reserved
+>>> + * Copyright 2022 Bootlin
+>>> + */
+>>> +
+>>> +/dts-v1/;
+>>> +
+>>> +#include "imx6qdl-var-som.dtsi"
+>>> +#include <dt-bindings/pwm/pwm.h>
+>>> +
+>>> +/ {
+>>> +     model = "Variscite i.MX6 QUAD/DUAL VAR-SOM-MX6 Custom Board";
+>>> +     compatible = "variscite,mx6customboard", "fsl,imx6q";
+>>
+>> Where is the SoM compatible?
 > 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> ---
->   arch/arm64/boot/dts/mediatek/mt6795.dtsi | 252 +++++++++++++++++++++++
->   1 file changed, 252 insertions(+)
+> I mostly just copied this from the DART-MX6 device tree which is
+> another variscite
+> imx6q based modular SoM custom board combination:
+> https://github.com/torvalds/linux/blob/v6.5-rc2/arch/arm/boot/dts/nxp/imx/imx6q-var-dt6customboard.dts#L17
 > 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt6795.dtsi b/arch/arm64/boot/dts/mediatek/mt6795.dtsi
-> index 597bce2fed72..d805d7a63024 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt6795.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt6795.dtsi
-> @@ -2,6 +2,9 @@
->   /*
->    * Copyright (c) 2015 MediaTek Inc.
->    * Author: Mars.C <mars.cheng@mediatek.com>
-> + *
-> + * Copyright (C) 2023 Collabora Ltd.
-> + *                    AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> The terminology is a bit confusing in general here, variscite has 2
+> families of pin2pin
+> modules, the "VAR-SOM" and the "DART" family.
+> https://www.variscite.com/variscite-pin2pin-system-on-module-families/
 
-Shouldn't be like this ?
-
-  * Copyright (c) 2015 MediaTek Inc.
-  * Copyright (C) 2023 Collabora Ltd.
-  * Authors: Mars.C <mars.cheng@mediatek.com>
-  *          AngeloGioacchino Del Regno 
-<angelogioacchino.delregno@collabora.com>
+I know, I am familiar with them.
 
 
->    */
->   
->   #include <dt-bindings/interrupt-controller/irq.h>
-> @@ -19,6 +22,23 @@ / {
->   	#address-cells = <2>;
->   	#size-cells = <2>;
->   
-> +	aliases {
-> +		ovl0 = &ovl0;
-> +		ovl1 = &ovl1;
-> +		rdma0 = &rdma0;
-> +		rdma1 = &rdma1;
-> +		rdma2 = &rdma2;
-> +		wdma0 = &wdma0;
-> +		wdma1 = &wdma1;
-> +		color0 = &color0;
-> +		color1 = &color1;
-> +		split0 = &split0;
-> +		split1 = &split1;
-> +		dpi0 = &dpi0;
-> +		dsi0 = &dsi0;
-> +		dsi1 = &dsi1;
-> +	};
-> +
->   	psci {
->   		compatible = "arm,psci-0.2";
->   		method = "smc";
-> @@ -434,6 +454,26 @@ gce: mailbox@10212000 {
->   			#mbox-cells = <2>;
->   		};
->   
-> +		mipi_tx0: dsi-phy@10215000 {
-> +			compatible = "mediatek,mt8173-mipi-tx";
-> +			reg = <0 0x10215000 0 0x1000>;
-> +			clocks = <&clk26m>;
-> +			clock-output-names = "mipi_tx0_pll";
-> +			#clock-cells = <0>;
-> +			#phy-cells = <0>;
-> +			status = "disabled";
-> +		};
-> +
-> +		mipi_tx1: dsi-phy@10216000 {
-> +			compatible = "mediatek,mt8173-mipi-tx";
-> +			reg = <0 0x10216000 0 0x1000>;
-> +			clocks = <&clk26m>;
-> +			clock-output-names = "mipi_tx1_pll";
-> +			#clock-cells = <0>;
-> +			#phy-cells = <0>;
-> +			status = "disabled";
-> +		};
-> +
->   		gic: interrupt-controller@10221000 {
->   			compatible = "arm,gic-400";
->   			#interrupt-cells = <3>;
-> @@ -690,6 +730,211 @@ mmsys: syscon@14000000 {
->   			mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0 0x1000>;
->   		};
->   
-> +		ovl0: ovl@1400c000 {
-> +			compatible = "mediatek,mt6795-disp-ovl", "mediatek,mt8173-disp-ovl";
-> +			reg = <0 0x1400c000 0 0x1000>;
-> +			interrupts = <GIC_SPI 188 IRQ_TYPE_LEVEL_LOW>;
-> +			power-domains = <&spm MT6795_POWER_DOMAIN_MM>;
-> +			clocks = <&mmsys CLK_MM_DISP_OVL0>;
-> +			iommus = <&iommu M4U_PORT_DISP_OVL0>;
-> +			mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0xc000 0x1000>;
-> +		};
-> +
-> +		ovl1: ovl@1400d000 {
-> +			compatible = "mediatek,mt6795-disp-ovl", "mediatek,mt8173-disp-ovl";
-> +			reg = <0 0x1400d000 0 0x1000>;
-> +			interrupts = <GIC_SPI 189 IRQ_TYPE_LEVEL_LOW>;
-> +			power-domains = <&spm MT6795_POWER_DOMAIN_MM>;
-> +			clocks = <&mmsys CLK_MM_DISP_OVL1>;
-> +			iommus = <&iommu M4U_PORT_DISP_OVL1>;
-> +			mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0xd000 0x1000>;
-> +		};
-> +
-> +		rdma0: rdma@1400e000 {
-> +			compatible = "mediatek,mt6795-disp-rdma", "mediatek,mt8173-disp-rdma";
-> +			reg = <0 0x1400e000 0 0x1000>;
-> +			interrupts = <GIC_SPI 190 IRQ_TYPE_LEVEL_LOW>;
-> +			power-domains = <&spm MT6795_POWER_DOMAIN_MM>;
-> +			clocks = <&mmsys CLK_MM_DISP_RDMA0>;
-> +			iommus = <&iommu M4U_PORT_DISP_RDMA0>;
-> +			mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0xe000 0x1000>;
-> +		};
-> +
-> +		rdma1: rdma@1400f000 {
-> +			compatible = "mediatek,mt6795-disp-rdma", "mediatek,mt8173-disp-rdma";
-> +			reg = <0 0x1400f000 0 0x1000>;
-> +			interrupts = <GIC_SPI 191 IRQ_TYPE_LEVEL_LOW>;
-> +			power-domains = <&spm MT6795_POWER_DOMAIN_MM>;
-> +			clocks = <&mmsys CLK_MM_DISP_RDMA1>;
-> +			iommus = <&iommu M4U_PORT_DISP_RDMA1>;
-> +			mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0xf000 0x1000>;
-> +		};
-> +
-> +		rdma2: rdma@14010000 {
-> +			compatible = "mediatek,mt6795-disp-rdma", "mediatek,mt8173-disp-rdma";
-> +			reg = <0 0x14010000 0 0x1000>;
-> +			interrupts = <GIC_SPI 192 IRQ_TYPE_LEVEL_LOW>;
-> +			power-domains = <&spm MT6795_POWER_DOMAIN_MM>;
-> +			clocks = <&mmsys CLK_MM_DISP_RDMA2>;
-> +			iommus = <&iommu M4U_PORT_DISP_RDMA2>;
-> +			mediatek,gce-client-reg = <&gce SUBSYS_1401XXXX 0 0x1000>;
-> +		};
-> +
-> +		wdma0: wdma@14011000 {
-> +			compatible = "mediatek,mt6795-disp-wdma", "mediatek,mt8173-disp-wdma";
-> +			reg = <0 0x14011000 0 0x1000>;
-> +			interrupts = <GIC_SPI 193 IRQ_TYPE_LEVEL_LOW>;
-> +			power-domains = <&spm MT6795_POWER_DOMAIN_MM>;
-> +			clocks = <&mmsys CLK_MM_DISP_WDMA0>;
-> +			iommus = <&iommu M4U_PORT_DISP_WDMA0>;
-> +			mediatek,gce-client-reg = <&gce SUBSYS_1401XXXX 0x1000 0x1000>;
-> +		};
-> +
-> +		wdma1: wdma@14012000 {
-> +			compatible = "mediatek,mt6795-disp-wdma", "mediatek,mt8173-disp-wdma";
-> +			reg = <0 0x14012000 0 0x1000>;
-> +			interrupts = <GIC_SPI 194 IRQ_TYPE_LEVEL_LOW>;
-> +			power-domains = <&spm MT6795_POWER_DOMAIN_MM>;
-> +			clocks = <&mmsys CLK_MM_DISP_WDMA1>;
-> +			iommus = <&iommu M4U_PORT_DISP_WDMA1>;
-> +			mediatek,gce-client-reg = <&gce SUBSYS_1401XXXX 0x2000 0x1000>;
-> +		};
-> +
-> +		color0: color@14013000 {
-> +			compatible = "mediatek,mt6795-disp-color", "mediatek,mt8173-disp-color";
-> +			reg = <0 0x14013000 0 0x1000>;
-> +			interrupts = <GIC_SPI 195 IRQ_TYPE_LEVEL_LOW>;
-> +			power-domains = <&spm MT6795_POWER_DOMAIN_MM>;
-> +			clocks = <&mmsys CLK_MM_DISP_COLOR0>;
-> +			mediatek,gce-client-reg = <&gce SUBSYS_1401XXXX 0x3000 0x1000>;
-> +		};
-> +
-> +		color1: color@14014000 {
-> +			compatible = "mediatek,mt6795-disp-color", "mediatek,mt8173-disp-color";
-> +			reg = <0 0x14014000 0 0x1000>;
-> +			interrupts = <GIC_SPI 196 IRQ_TYPE_LEVEL_LOW>;
-> +			power-domains = <&spm MT6795_POWER_DOMAIN_MM>;
-> +			clocks = <&mmsys CLK_MM_DISP_COLOR1>;
-> +			mediatek,gce-client-reg = <&gce SUBSYS_1401XXXX 0x4000 0x1000>;
-> +		};
-> +
-> +		aal@14015000 {
-> +			compatible = "mediatek,mt6795-disp-aal", "mediatek,mt8173-disp-aal";
-> +			reg = <0 0x14015000 0 0x1000>;
-> +			interrupts = <GIC_SPI 197 IRQ_TYPE_LEVEL_LOW>;
-> +			power-domains = <&spm MT6795_POWER_DOMAIN_MM>;
-> +			clocks = <&mmsys CLK_MM_DISP_AAL>;
-> +			mediatek,gce-client-reg = <&gce SUBSYS_1401XXXX 0x5000 0x1000>;
-> +		};
-> +
-> +		gamma@14016000 {
-> +			compatible = "mediatek,mt6795-disp-gamma", "mediatek,mt8173-disp-gamma";
-> +			reg = <0 0x14016000 0 0x1000>;
-> +			interrupts = <GIC_SPI 198 IRQ_TYPE_LEVEL_LOW>;
-> +			power-domains = <&spm MT6795_POWER_DOMAIN_MM>;
-> +			clocks = <&mmsys CLK_MM_DISP_GAMMA>;
-> +			mediatek,gce-client-reg = <&gce SUBSYS_1401XXXX 0x6000 0x1000>;
-> +		};
-> +
-> +		merge@14017000 {
-> +			compatible = "mediatek,mt6795-disp-merge", "mediatek,mt8173-disp-merge";
-> +			reg = <0 0x14017000 0 0x1000>;
-> +			power-domains = <&spm MT6795_POWER_DOMAIN_MM>;
-> +			clocks = <&mmsys CLK_MM_DISP_MERGE>;
-> +		};
-> +
-> +		split0: split@14018000 {
-> +			compatible = "mediatek,mt6795-disp-split", "mediatek,mt8173-disp-split";
-> +			reg = <0 0x14018000 0 0x1000>;
-> +			power-domains = <&spm MT6795_POWER_DOMAIN_MM>;
-> +			clocks = <&mmsys CLK_MM_DISP_SPLIT0>;
-> +		};
-> +
-> +		split1: split@14019000 {
-> +			compatible = "mediatek,mt6795-disp-split", "mediatek,mt8173-disp-split";
-> +			reg = <0 0x14019000 0 0x1000>;
-> +			power-domains = <&spm MT6795_POWER_DOMAIN_MM>;
-> +			clocks = <&mmsys CLK_MM_DISP_SPLIT1>;
-> +		};
-> +
-> +		ufoe@1401a000 {
-> +			compatible = "mediatek,mt6795-disp-ufoe", "mediatek,mt8173-disp-ufoe";
-> +			reg = <0 0x1401a000 0 0x1000>;
-> +			interrupts = <GIC_SPI 199 IRQ_TYPE_LEVEL_LOW>;
-> +			power-domains = <&spm MT6795_POWER_DOMAIN_MM>;
-> +			clocks = <&mmsys CLK_MM_DISP_UFOE>;
-> +			mediatek,gce-client-reg = <&gce SUBSYS_1401XXXX 0xa000 0x1000>;
-> +		};
-> +
-> +		dsi0: dsi@1401b000 {
-> +			compatible = "mediatek,mt6795-dsi", "mediatek,mt8173-dsi";
-> +			reg = <0 0x1401b000 0 0x1000>;
-> +			interrupts = <GIC_SPI 200 IRQ_TYPE_LEVEL_LOW>;
-> +			power-domains = <&spm MT6795_POWER_DOMAIN_MM>;
-> +			clocks = <&mmsys CLK_MM_DSI0_ENGINE>,
-> +				 <&mmsys CLK_MM_DSI0_DIGITAL>,
-> +				 <&mipi_tx0>;
-> +			clock-names = "engine", "digital", "hs";
-> +			phys = <&mipi_tx0>;
-> +			phy-names = "dphy";
-> +			status = "disabled";
-> +		};
-> +
-> +		dsi1: dsi@1401c000 {
-> +			compatible = "mediatek,mt6795-dsi", "mediatek,mt8173-dsi";
-> +			reg = <0 0x1401c000 0 0x1000>;
-> +			interrupts = <GIC_SPI 201 IRQ_TYPE_LEVEL_LOW>;
-> +			power-domains = <&spm MT6795_POWER_DOMAIN_MM>;
-> +			clocks = <&mmsys CLK_MM_DSI1_ENGINE>,
-> +				 <&mmsys CLK_MM_DSI1_DIGITAL>,
-> +				 <&mipi_tx1>;
-> +			clock-names = "engine", "digital", "hs";
-> +			phys = <&mipi_tx1>;
-> +			phy-names = "dphy";
-> +			status = "disabled";
-> +		};
-> +
-> +		dpi0: dpi@1401d000 {
-> +			compatible = "mediatek,mt6795-dpi", "mediatek,mt8183-dpi";
-> +			reg = <0 0x1401d000 0 0x1000>;
-> +			interrupts = <GIC_SPI 202 IRQ_TYPE_LEVEL_LOW>;
-> +			power-domains = <&spm MT6795_POWER_DOMAIN_MM>;
-> +			clocks = <&mmsys CLK_MM_DPI_PIXEL>,
-> +				 <&mmsys CLK_MM_DPI_ENGINE>,
-> +				 <&apmixedsys CLK_APMIXED_TVDPLL>;
-> +			clock-names = "pixel", "engine", "pll";
-> +			status = "disabled";
-> +		};
-> +
-> +		pwm0: pwm@1401e000 {
-> +			compatible = "mediatek,mt6795-disp-pwm", "mediatek,mt8173-disp-pwm";
-> +			reg = <0 0x1401e000 0 0x1000>;
-> +			#pwm-cells = <2>;
-> +			clocks = <&mmsys CLK_MM_DISP_PWM026M>, <&mmsys CLK_MM_DISP_PWM0MM>;
-> +			clock-names = "main", "mm";
-> +			status = "disabled";
-> +		};
-> +
-> +		pwm1: pwm@1401f000 {
-> +			compatible = "mediatek,mt6795-disp-pwm", "mediatek,mt8173-disp-pwm";
-> +			reg = <0 0x1401f000 0 0x1000>;
-> +			#pwm-cells = <2>;
-> +			clocks = <&mmsys CLK_MM_DISP_PWM126M>, <&mmsys CLK_MM_DISP_PWM1MM>;
-> +			clock-names = "main", "mm";
-> +			status = "disabled";
-> +		};
-> +
-> +		mutex: mutex@14020000 {
-> +			compatible = "mediatek,mt8173-disp-mutex";
-> +			reg = <0 0x14020000 0 0x1000>;
-> +			interrupts = <GIC_SPI 177 IRQ_TYPE_LEVEL_LOW>;
-> +			power-domains = <&spm MT6795_POWER_DOMAIN_MM>;
-> +			clocks = <&mmsys CLK_MM_MUTEX_32K>;
-> +			mediatek,gce-events = <CMDQ_EVENT_MUTEX0_STREAM_EOF>,
-> +					      <CMDQ_EVENT_MUTEX1_STREAM_EOF>;
-> +			mediatek,gce-client-reg = <&gce SUBSYS_1402XXXX 0 0x1000>;
-> +		};
-> +
->   		larb0: larb@14021000 {
->   			compatible = "mediatek,mt6795-smi-larb";
->   			reg = <0 0x14021000 0 0x1000>;
-> @@ -708,6 +953,13 @@ smi_common: smi@14022000 {
->   			clock-names = "apb", "smi";
->   		};
->   
-> +		od@14023000 {
-> +			compatible = "mediatek,mt6795-disp-od", "mediatek,mt8173-disp-od";
-> +			reg = <0 0x14023000 0 0x1000>;
-> +			clocks = <&mmsys CLK_MM_DISP_OD>;
-> +			mediatek,gce-client-reg = <&gce SUBSYS_1402XXXX 0x3000 0x1000>;
-> +		};
-> +
->   		larb2: larb@15001000 {
->   			compatible = "mediatek,mt6795-smi-larb";
->   			reg = <0 0x15001000 0 0x1000>;
+> 
+> Within each connector family there are then multiple SoM boards that
+> can be used with the same carrier boards(ie the Custom Board carrier board
+> like the evaluation kit) although they are often bundled together with specific
+> boards in practice.
 
-Reviewed-by: Alexandre Mergnat <amergnat@baylibre.com>
+No, they are being shipped to the customers which then use them in their
+products. Having common compatible can be useful, although it depends
+what's in the common part. For example for IMX8 it was quite a lot, thus
+it made sense.
 
--- 
-Regards,
-Alexandre
+> 
+> So the existing DART-MX6 I think uses the same SoC but is in a different
+> family and as such has a different carrier board. However as the relation
+> between the SoM and the carrier board is effectively the same, I just copied
+> the way compatibile is being set there for the VAR-SOM-MX6 from the
+> existing DART-MX6 custom board device tree.
+> 
+> I think this roughly represents the SoM board device tree associations as I'm
+> understanding them:
+> 
+> pin2pin Family: DART
+> SoM: https://www.variscite.com/product/system-on-module-som/cortex-a9/dart-mx6-cpu-freescale-imx6/
+> SoM part: DART-MX6
+> SoM device tree: imx6qdl-var-dart.dtsi
+> SoM SoC: imx6q
+> Board: https://www.variscite.com/product/single-board-computers/dt6customboard/
+> Board device tree: imx6q-var-dt6customboard.dts
+> Board compatible: compatible = "variscite,dt6customboard", "fsl,imx6q";
+> 
+> pin2pin Family: VAR-SOM
+> SoM: https://www.variscite.com/product/system-on-module-som/cortex-a9/var-som-mx6-cpu-freescale-imx6/
+> SoM part: VAR-SOM-MX6
+> SoM device tree: imx6qdl-var-som.dtsi
+> SoM SoC: imx6q
+> Board: mx6customboard
+> https://www.variscite.com/product/single-board-computers/var-mx6customboard/
+> Board device tree: imx6q-var-mx6customboard.dts
+> Board compatible: compatible = "variscite,mx6customboard", "fsl,imx6q";
+> 
+> What's confusing here is that the DART-MX6 is also described as a SoM:
+> "DART-MX6 from Variscite is the smallest System on Module (SoM) / Computer
+> on Module (CoM) supporting NXP/Freescale’s i.MX6 Quad and Dual-core
+> Cortex-A9™ processor"
+
+It is not confusing. It is a SoM.
+
+> 
+> So we have a "DART-MX6" SoM part which corresponds to the "VAR-SOM-MX6"
+> SoM part, with both being SoM's but only one("VAR-SOM-MX6") having SoM in
+> the actual part name.
+
+Vendor naming is one thing, but true meaning is second. These are
+System-on-Modules.
+
+> 
+> Does the compatible section for imx6qdl-var-dart.dtsi look correct?
+> 
+> I'm not sure what exactly a "SoM compatible" should look like here as SoM is
+> both a generic term(used to describe by both the "DART-MX6" and
+> "VAR-SOM-MX6" parts) as well as term used within a part(used in the
+> part for "VAR-SOM-MX6" as well as other SoM's in the "VAR-SOM" family
+> but not the "DART-MX6" part or other SoM's in the "DART" family).
+
+Take a look at IMX8 Variscite SoMs.
+
+Best regards,
+Krzysztof
+
