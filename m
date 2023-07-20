@@ -2,72 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 43BD375B4B6
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 18:40:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 622DB75B4BF
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 18:43:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230136AbjGTQkq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jul 2023 12:40:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34890 "EHLO
+        id S229674AbjGTQnk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jul 2023 12:43:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39462 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230344AbjGTQkb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 12:40:31 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 430582D7B;
-        Thu, 20 Jul 2023 09:40:07 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-9924ac01f98so171831166b.1;
-        Thu, 20 Jul 2023 09:40:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1689871205; x=1690476005;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=iKmIFijaEmUWC1R9DDCzFee/X/7A/Y1/d/lZq/EmF1g=;
-        b=enB5DmORrPSRZeikuhIGbNddAmNhSn7NNkmZg2PW+9VB0rRQiu/QVioD6Z0WMgXm49
-         NQ+HyZJ8nU+VckliV2dmfCal+TP1E9Wt/+kVZ8nk2j9d+aJwBbPHUNfaimN0rjqN7xuP
-         KW8XHrkO6JuXXQ6psbcPMw0CCpsoyg3DVN7z78zAMRDODvf6kh22XBv1O4ShIgmkRu7s
-         619h50cU636rWLwoRAc3YKHKrLiCsqaLLrrSwVpIscNTVRdTiWvCFLLsnQi/Y+cw6YNu
-         z+/thf1jBKi2u4vvaeU+M5bc0wOvRoP5qMF6tFQfBgh3pUFOlXhIdvOfVaxMn8+DM51Q
-         jH6w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689871205; x=1690476005;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=iKmIFijaEmUWC1R9DDCzFee/X/7A/Y1/d/lZq/EmF1g=;
-        b=Bubm6tx3No+jSMg/q+MaXM0IaUrPeP7bM3VvFblRUbdxI389l9b2mlLqDLApIre7Z9
-         0M+5J5TjT0Fg9ChbWn5/LOKDFJPVMsS5pA87vPxp69/HjIgN5t2jJtyH9rpua0qOeWHD
-         NL9CmH+XfC2SaqYiHCUA6YSv54Gh5I6eAuWJJFq3uXDq3YDar4gEBt000nvA42wtCjQI
-         fT807ctRm1JGoWBzefAdvZA5Wrg5+5YiK4RqhTYXZmc828epV2Ccmu0ldcIE7gcDYTGl
-         fxo7+K1ixu7wL0inKZrnhlry8UYffJRLaGiabffxGJpCs38gLPrZlWwIw1Dr03Y+xnDZ
-         it6w==
-X-Gm-Message-State: ABy/qLZayNSiO5qRW2BU3p6bphGU3lXMcGgf69v0TSdlGAjE083/La98
-        ak61fead0LJwBRoIt/IncBk=
-X-Google-Smtp-Source: APBJJlG5r35HcKt3DTeAiZ1ufcKGjxglt9PjACpRLBOg3fWCmldlwbAKHKLI+TyEw7EYesj3Kqp0TQ==
-X-Received: by 2002:a17:906:10cd:b0:993:d97f:ae06 with SMTP id v13-20020a17090610cd00b00993d97fae06mr5363264ejv.13.1689871204569;
-        Thu, 20 Jul 2023 09:40:04 -0700 (PDT)
-Received: from orome (p200300e41f1bd600f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f1b:d600:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id kd7-20020a17090798c700b00992a8a54f32sm904704ejc.139.2023.07.20.09.40.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 Jul 2023 09:40:04 -0700 (PDT)
-Date:   Thu, 20 Jul 2023 18:40:02 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Mohan Kumar <mkumard@nvidia.com>
-Cc:     treding@nvidia.com, jonathanh@nvidia.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-kernel@vger.kernel.org, spujar@nvidia.com
-Subject: Re: [PATCH] arm64: tegra: Add audio support for IGX Orin
-Message-ID: <ZLljYqE_gDzh_WgT@orome>
-References: <20230620155847.14598-1-mkumard@nvidia.com>
- <ZLljRBBHl_3jsKGg@orome>
+        with ESMTP id S232283AbjGTQng (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 12:43:36 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA224123;
+        Thu, 20 Jul 2023 09:43:35 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 8699661B7D;
+        Thu, 20 Jul 2023 16:43:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E8EFAC433C8;
+        Thu, 20 Jul 2023 16:43:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1689871414;
+        bh=OwyRAgPQy2DIEoiNl5+rnP5XfOp6/5Ovx1Ve+Ex+3ko=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=pwA8WBwYSlW+g9aCDEQ4p8aH2boK1co0b/oh8YOnofOh9pCisrBQH5ZfwqodASCZt
+         YZS4TnjZ62ZIkV20RJxhF02ZdOHyUk11ledYBHLt3PG/2Uja3TGi0zVsPOD5uDcoPt
+         Q/q27B0RdxnotMfU6knFumTqqTkk1967rg1ZCJPj5yG+gFDFfWaIbrgndKfQHaiAr1
+         XUblCMHCELNktO5bY9SR1ktcoBalIXOKbsr6pDp1OMTRNUGudR5WPgoEg/LvslSV/p
+         9JSoW5z6bcTkkALbe/Et+VKI9Z/re1IbSFWxYB09FN4kylbYTZ6CvOXcY95nGlH+H+
+         5t/WXTYGFd+1Q==
+Date:   Thu, 20 Jul 2023 22:13:18 +0530
+From:   Manivannan Sadhasivam <mani@kernel.org>
+To:     Frank Li <Frank.li@nxp.com>
+Cc:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        helgaas@kernel.org, imx@lists.linux.dev, bhelgaas@google.com,
+        devicetree@vger.kernel.org, gustavo.pimentel@synopsys.com,
+        kw@linux.com, leoyang.li@nxp.com,
+        linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
+        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+        lorenzo.pieralisi@arm.com, minghuan.lian@nxp.com,
+        mingkai.hu@nxp.com, robh+dt@kernel.org, roy.zang@nxp.com,
+        shawnguo@kernel.org, zhiqiang.hou@nxp.com
+Subject: Re: [PATCH v3 1/2] PCI: dwc: Implement general suspend/resume
+ functionality for L2/L3 transitions
+Message-ID: <20230720164318.GE48270@thinkpad>
+References: <20230419164118.596300-1-Frank.Li@nxp.com>
+ <20230717164526.GC35455@thinkpad>
+ <ZLWKI1lRqxejfUgK@lizhi-Precision-Tower-5810>
+ <20230718100400.GB4771@thinkpad>
+ <20230720142509.GB48270@thinkpad>
+ <ZLlGsM/D/b+udmAD@lizhi-Precision-Tower-5810>
+ <20230720160738.GC48270@thinkpad>
+ <ZLlgPprvtuDbGFVu@lizhi-Precision-Tower-5810>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="23DfovU3nZbHCktE"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <ZLljRBBHl_3jsKGg@orome>
-User-Agent: Mutt/2.2.10 (2023-03-25)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <ZLlgPprvtuDbGFVu@lizhi-Precision-Tower-5810>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -76,75 +70,101 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Jul 20, 2023 at 12:26:38PM -0400, Frank Li wrote:
+> On Thu, Jul 20, 2023 at 09:37:38PM +0530, Manivannan Sadhasivam wrote:
+> > On Thu, Jul 20, 2023 at 10:37:36AM -0400, Frank Li wrote:
+> > > On Thu, Jul 20, 2023 at 07:55:09PM +0530, Manivannan Sadhasivam wrote:
+> > > > On Tue, Jul 18, 2023 at 03:34:26PM +0530, Manivannan Sadhasivam wrote:
+> > > > > On Mon, Jul 17, 2023 at 02:36:19PM -0400, Frank Li wrote:
+> > > > > > On Mon, Jul 17, 2023 at 10:15:26PM +0530, Manivannan Sadhasivam wrote:
+> > > > > > > On Wed, Apr 19, 2023 at 12:41:17PM -0400, Frank Li wrote:
+> > > > > > > > Introduced helper function dw_pcie_get_ltssm to retrieve SMLH_LTSS_STATE.
+> > > > > > > > Added API pme_turn_off and exit_from_l2 for managing L2/L3 state transitions.
+> > > > > > > > 
+> > > > > > > > Typical L2 entry workflow:
+> > > > > > > > 
+> > > > > > > > 1. Transmit PME turn off signal to PCI devices.
+> > > > > > > > 2. Await link entering L2_IDLE state.
+> > > > > > > 
+> > > > > > > AFAIK, typical workflow is to wait for PME_To_Ack.
+> > > > > > 
+> > > > > > 1 Already wait for PME_to_ACK,  2, just wait for link actual enter L2.
+> > > > > > I think PCI RC needs some time to set link enter L2 after get ACK from
+> > > > > > PME.
+> > > > > > 
+> > > > 
+> > > > One more comment. If you transition the device to L2/L3, then it can loose power
+> > > > if Vaux was not provided. In that case, can all the devices work after resume?
+> > > > Most notably NVMe?
+> > > 
+> > > I have not hardware to do such test, NVMe driver will reinit everything after
+> > > resume if no L1.1\L1.2 support. If there are L1.1\L1.2, NVME expect it leave
+> > > at L1.2 at suspend to get better resume latency.
+> > > 
+> > 
+> > To be precise, NVMe driver will shutdown the device if there is no ASPM support
+> > and keep it in low power mode otherwise (there are other cases as well but we do
+> > not need to worry).
+> 
+> I supposed this should work. but I have not hardware to test it now. NMVE already
+> sent shut down command to SSD, which can safely turn off. after resume, that most
+> likely a cold reset.
+> 
 
---23DfovU3nZbHCktE
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+NO, it won't work and that's the reason the Qcom platforms are not transitioning
+the link to L2/L3 state during suspend. This applies to other platforms
+including layerscape as well.
 
-On Thu, Jul 20, 2023 at 06:39:32PM +0200, Thierry Reding wrote:
-> On Tue, Jun 20, 2023 at 09:28:47PM +0530, Mohan Kumar wrote:
-> > Add audio support for the NVIDIA IGX Orin development kit having P3701
-> > module with P3740 carrier board.
-> >=20
-> > Move the common device-tree nodes to a new file tegra234-p3701.dtsi and
-> > use this for Jetson AGX Orin and NVIDIA IGX Orin platforms
-> >=20
-> > Signed-off-by: Mohan Kumar <mkumard@nvidia.com>
-> > ---
-> >  .../boot/dts/nvidia/tegra234-p3701-0000.dtsi  |    1 +
-> >  .../boot/dts/nvidia/tegra234-p3701-0008.dtsi  |    1 +
-> >  .../arm64/boot/dts/nvidia/tegra234-p3701.dtsi | 1991 ++++++++++++++++
-> >  .../nvidia/tegra234-p3737-0000+p3701-0000.dts | 2009 -----------------
-> >  .../boot/dts/nvidia/tegra234-p3737-0000.dtsi  |   41 +
-> >  .../nvidia/tegra234-p3740-0002+p3701-0008.dts |   91 +-
-> >  .../boot/dts/nvidia/tegra234-p3740-0002.dtsi  |   56 +
-> >  7 files changed, 2176 insertions(+), 2014 deletions(-)
-> >  create mode 100644 arch/arm64/boot/dts/nvidia/tegra234-p3701.dtsi
-> [...]
-> > diff --git a/arch/arm64/boot/dts/nvidia/tegra234-p3740-0002+p3701-0008.=
-dts b/arch/arm64/boot/dts/nvidia/tegra234-p3740-0002+p3701-0008.dts
-> > index 43d797e5544f..2b7856b303b4 100644
-> > --- a/arch/arm64/boot/dts/nvidia/tegra234-p3740-0002+p3701-0008.dts
-> > +++ b/arch/arm64/boot/dts/nvidia/tegra234-p3740-0002+p3701-0008.dts
-> [...]
-> > @@ -103,7 +99,7 @@
-> >  		};
-> > =20
-> >  		hda@3510000 {
-> > -			nvidia,model =3D "NVIDIA IGX HDA";
-> > +			nvidia,model =3D "NVIDIA Jetson IGX Orin HDA";
-> [...]
-> > @@ -151,4 +147,89 @@
-> [...]
-> > +		label =3D "NVIDIA Jetson IGX Orin APE";
-> [...]
->=20
-> The platform is called "NVIDIA IGX Orin Development Kit", so shouldn't
-> these be "NVIDIA IGX Orin HDA" and "NVIDIA IGX Orin APE", respectively?
+> > 
+> > But here you are not checking for ASPM state in the suspend path, and just
+> > forcing the link to be in L2/L3 (thereby D3Cold) even though NVMe driver may
+> > expect it to be in low power state like ASPM/APST.
+> 
+> This function is not called defaultly and need platform driver to call it as need.
+> Actually, I think PCI framework should handle L1.2 and L2 case, some devices
+> or user case want to L1.2 to get better resume latency, some devices want to
+> L2 to get better power saving, which out of scope of this patches.
+> 
 
-Oh, and no need to resend, I can fix this up when I apply.
+I'm referring to the platform where these helper functions are being used which
+is layerscape. It doesn't matter whether you test this series with NVMe or not,
+it will not work unless you disable ASPM.
 
-Thierry
+> This patch just handle L2 case, I remember L1.2 don't expect send PME at all.
+> 
+> > 
+> > So you should only put the link to L2/L3 if there is no ASPM support. Otherwise,
+> > you'll ending up with bug reports when users connect NVMe to it.
+> 
+> Platform should choose call or no call this function according to their
+> user case. So far, I have not found a good mathod to let ASPM to affect
+> suspend/resume. 
+> 
 
---23DfovU3nZbHCktE
-Content-Type: application/pgp-signature; name="signature.asc"
+You are missing my point here. If any platform decides to use these helper
+functions, they will face problems with NVMe. So please add a check for ASPM
+state before doing any L2/L3 handling.
 
------BEGIN PGP SIGNATURE-----
+I agree that it may not be optimal w.r.t power savings, but the PCIe controller
+driver should work for all devices.
 
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmS5Y2IACgkQ3SOs138+
-s6ESVhAAsTZP40c5ASBe4C7mUMahAduFRPg/8KOdje4Zxwq/DvhgDcsR7Sv/IRYB
-lS5IIuF6idOgCxKzrthBAUaKexkNhFZzLO7Try0PiaCHkq6MrqoYpdDFL00O0sFJ
-HwYguX0kFQ/+IbI/tTbjcU9LY6R7tYb3Q39vLy5D7XEB/fpbBwlP5U9w8yhJqe/t
-9/e1QYe1CVAP+SQVmmiOkt+vM80KRiGXjXVBdjh1UOR/Ted46r2jfWSA6BFRpyyj
-vdztzCEY8bxGZDTHrmWkrAUmcWQpVJdMoKtscI6r8tlFol9ZWZ7gZ7w2wXBnUxHG
-LWA7xr8LrRZVoemNqCKBIr6RbLQ01PMzxv/5/EeXLuEiX/+LYxw0/E27SKhtdMz7
-TI6FZgEDheiozzWHNakYkEOM+0evcfze08mGCZ8euJdUxrh/wAnMS/JVsVJZlfKt
-h5rV8wnhkwX5Sz8tY8Uf2Ij8/UMnCfwD2rcJycYXgls0STw7hfAVy4S1IxH85RqP
-J6A2sPrfbfUhcQQDgTOlG9zDfHfuBkx4w542kigrVH49TxtqOCcri22k7+uoGqQT
-vzr6dKZPN4IBNIkYkrT1NrFeXENYZAunVtlnOu2P/o41fjT1jvNhGLZEDUBNt/YT
-VyIU41CqVAetdm5hSPrUuHTWKDzK1+j31MKVdDLdS/bCX95YrN0=
-=UCk9
------END PGP SIGNATURE-----
+- Mani
 
---23DfovU3nZbHCktE--
+> > 
+> > - Mani
+> > 
+> > > This API help remove duplicate codes and it can be improved gradually.
+> > > 
+> > > 
+> > > > 
+> > > > - Mani
+> > > > 
+> > > > 
+> > > > -- 
+> > > > மணிவண்ணன் சதாசிவம்
+> > 
+> > -- 
+> > மணிவண்ணன் சதாசிவம்
+
+-- 
+மணிவண்ணன் சதாசிவம்
