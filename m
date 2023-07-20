@@ -2,71 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 785DD75A9C5
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 10:57:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A3B0875A9F1
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 10:57:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230101AbjGTI5K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jul 2023 04:57:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36092 "EHLO
+        id S230198AbjGTI5d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jul 2023 04:57:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36316 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232114AbjGTIfe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 04:35:34 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC9E4269F
-        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 01:35:30 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-4fba8f2197bso783125e87.3
-        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 01:35:30 -0700 (PDT)
+        with ESMTP id S232131AbjGTIfs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 04:35:48 -0400
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 885F12686
+        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 01:35:46 -0700 (PDT)
+Received: by mail-wr1-x42c.google.com with SMTP id ffacd0b85a97d-3142970df44so410084f8f.3
+        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 01:35:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689842129; x=1692434129;
+        d=linaro.org; s=google; t=1689842145; x=1692434145;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=1sRMeYBiTFf66+qgNaHYdfUCWajfWqb0DHM4fZ8M2NM=;
-        b=ZQ9Cl4LDiRtqhKVtiRqFN3MChytDZUkiVAtZFtcTGqyybC8SsEgw3W1+lhrjynZBz0
-         yea0Lu6Ruvbf8pEbqmNrBCF0ulFPB1bbKcEMQdALE4u8c15XJeSJpn1IuPp4fA2tK62B
-         FyzYs44T+faoxCafa6IBoEam+78wUwzp/wZhGRCpRWNjxXxYPoVGpVwflgELTpPGrG2T
-         WDKZgs1NM8Y9Y7Zh25FH5vzQGlXhlFdv6IZvo+n0Odu83FNgia5algKJpP5UYX6sGmC+
-         xGEbLY1qfCs1rpcWy7WD0VfG4u48pbhiZmxLb9ctm20vetCZDanxfryaI7AXdfM9QZSc
-         q7QA==
+        bh=J6wuvyxSk60K8F2hV0c6qQoMoIZ53/ofOSWmjRVPRV0=;
+        b=r+hH/4xSutSv988DIYFRN99d/alj0PAlqtItVTAB/xOby9IilhJGWCYA6vMDTpis17
+         h3EYyJhBGeEyOM4MRpbIN7CGKNscKmjWn6laozkicJOACKZr6YXQAYCN2p18rbI+XzBX
+         oPjEITP6XSxs4W37hBNCo9P1wvqqAY+LnT+vwFBt7ZzQDXliSo65ymGkzfghXEL4/15f
+         wlWh/zUfR/SMKY5vuIcB/j2OjpVjDyhoyQKjxgsrCA/XrT2KxkroLs4PICYO2pws5lOX
+         U6/6bkAJi2q/E775UxiE/0cf5G7WGp8ATgNBNAXFVWymrDgmahDEBkK9VvFILJ2jn5Cv
+         V7Vg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689842129; x=1692434129;
+        d=1e100.net; s=20221208; t=1689842145; x=1692434145;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=1sRMeYBiTFf66+qgNaHYdfUCWajfWqb0DHM4fZ8M2NM=;
-        b=KxwuZxOMdNcSgFph+ntGYU34VQGnSGQMVgO9PMNvKiTcg2fJk7XAxyXiSrgjoqGNeD
-         kySex39S5OGZ8v1eJW/6PAVxTkZ5iZtBxuMFObSJsi+vp+eM9gZtl5PYo5phPSu4XDju
-         9dSppGi/918J0U9rW5QUwZUQ0b/bJC/ghvOj92G3A49s+bhPgObVQMoKWOdhnGVvt2Jo
-         lYHg8GG4WPCl+EOO/oUMy8e4mqY+eIbwwF3CoU6yNx/vsTM0jffTzlfAWg9sRiTZQqcO
-         E7oNhcW4yZgY40XOuhkL0uhqnIM7/EimJmlht+KW3jLL6fUQZpb7/weNiTfN91IZJ0Uv
-         U2/w==
-X-Gm-Message-State: ABy/qLaqISHUBY6aEi9lkgEXTzEKOzSQHXUAdCHmvHEk/g8o2ftq1/gV
-        haO57Zif7LdChFaRku5FwUQdEA==
-X-Google-Smtp-Source: APBJJlGA6g6PPVisG5hJskzzxgHicwcVPFmlhZy1/UZWPPpF085TgKrS3VU8sIXZpab5AS/zRhFf0w==
-X-Received: by 2002:a05:6512:2248:b0:4fb:96f3:2f4 with SMTP id i8-20020a056512224800b004fb96f302f4mr1165800lfu.51.1689842129242;
-        Thu, 20 Jul 2023 01:35:29 -0700 (PDT)
+        bh=J6wuvyxSk60K8F2hV0c6qQoMoIZ53/ofOSWmjRVPRV0=;
+        b=AwRKK52AwA6dVy/jjDOUEKSw3z+QVjGvFJyOMXN41XsbK1nDMY8zZatz/Cd6Vs2Bc2
+         Ed8Or0+4ZbV4U/RP9nMLV6KFqcZXLWnFeTNUlFj+vtu1bzwnw5tbu2YKMK5fLQZ/cTwF
+         6qdg//DEpCwm6pSmRIw3Necd0SId+yvTy9tTyCVyych8QqP5/cC5evD+MpWbn7azJgkM
+         hBi8S2BGRa+xC0AhmsxUIpNpGkSy3vaaqRaaPN/yf+2WyLJ8u3ArIWDOHNd7l+Onw0XU
+         gg+3vDIi+q234tl4Or/yQmf9wbCQGNBgm6Zzpw+9IfJ4bksDYUQ/WMUBUTCsjPd0PPNt
+         uqlQ==
+X-Gm-Message-State: ABy/qLbToPrQqoGK7o/1fXzCPvc6W0GnCMToDLkPdJ1Vu9V5DKM4y0xH
+        EUTlJUYtBtSbtL8yWLjP/yA/3Q==
+X-Google-Smtp-Source: APBJJlF/SdVIcWksWVGHT0dpGIqgo/k1Sr3/oisHos1dUerTU0/YGuDdIL5xpFVXYS/l3JvF5hbj3Q==
+X-Received: by 2002:a5d:5148:0:b0:313:f86f:2858 with SMTP id u8-20020a5d5148000000b00313f86f2858mr1334486wrt.2.1689842145022;
+        Thu, 20 Jul 2023 01:35:45 -0700 (PDT)
 Received: from krzk-bin.. ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id n5-20020a5d67c5000000b0031416362e23sm638430wrw.3.2023.07.20.01.35.27
+        by smtp.gmail.com with ESMTPSA id h3-20020a056000000300b00316f9abf073sm612482wrx.82.2023.07.20.01.35.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 Jul 2023 01:35:28 -0700 (PDT)
+        Thu, 20 Jul 2023 01:35:44 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] dt-bindings: mfd: qcom,spmi-pmic: document PMC8180 and PMC8180C
-Date:   Thu, 20 Jul 2023 10:35:25 +0200
-Message-Id: <20230720083525.73622-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] dt-bindings: pinctrl: qcom,pmic-gpio: document PMC8180 and PMC8180C
+Date:   Thu, 20 Jul 2023 10:35:39 +0200
+Message-Id: <20230720083539.73675-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,28 +75,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document qcom,pmc8180 and qcom,pmc8180c compatibles already used in DTS:
+Document qcom,pmc8180-gpio and qcom,pmc8180c-gpio compatibles already
+used in DTS and in the same binding in allOf:if:then section for
+narrowing available GPIOs:
 
-  sc8180x-primus.dtb: pmic@1: compatible:0: 'qcom,pmc8180' is not one of ...
+  sc8180x-primus.dtb: pmic@4: gpio@c000:compatible:0: 'qcom,pmc8180c-gpio' is not one of ...
 
+Fixes: 04bed6407ee6 ("dt-bindings: pinctrl: qcom,pmic-gpio: describe gpio-line-names")
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml | 2 ++
+ Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml | 2 ++
  1 file changed, 2 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml b/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
-index 7a9ab2b7decd..debed393fa8c 100644
---- a/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
-+++ b/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
-@@ -72,6 +72,8 @@ properties:
-           - qcom,pm8994
-           - qcom,pm8998
-           - qcom,pma8084
-+          - qcom,pmc8180
-+          - qcom,pmc8180c
-           - qcom,pmd9635
-           - qcom,pmi632
-           - qcom,pmi8950
+diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml
+index 52b3d78645b3..3f8ad07c7cfd 100644
+--- a/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml
++++ b/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml
+@@ -54,6 +54,8 @@ properties:
+           - qcom,pm8994-gpio
+           - qcom,pm8998-gpio
+           - qcom,pma8084-gpio
++          - qcom,pmc8180-gpio
++          - qcom,pmc8180c-gpio
+           - qcom,pmi632-gpio
+           - qcom,pmi8950-gpio
+           - qcom,pmi8994-gpio
 -- 
 2.34.1
 
