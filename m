@@ -2,55 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2AB9F75B318
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 17:39:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6EEA575B321
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 17:40:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232898AbjGTPjd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jul 2023 11:39:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41538 "EHLO
+        id S232695AbjGTPkV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jul 2023 11:40:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45988 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232813AbjGTPjU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 11:39:20 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7E3726B8
-        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 08:39:09 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1qMVjn-0000me-3S; Thu, 20 Jul 2023 17:38:43 +0200
-Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1qMVjj-0001sD-IF; Thu, 20 Jul 2023 17:38:39 +0200
-Date:   Thu, 20 Jul 2023 17:38:39 +0200
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     Jakub Kicinski <kuba@kernel.org>
-Cc:     davem@davemloft.net, edumazet@google.com, pabeni@redhat.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, peppe.cavallaro@st.com,
-        alexandre.torgue@foss.st.com, joabreu@synopsys.com,
-        mcoquelin.stm32@gmail.com, devicetree@vger.kernel.org,
-        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        kernel@pengutronix.de, linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH net-next v2 2/2] net: stmmac: add support for phy-supply
-Message-ID: <20230720153839.klrukzea3o2dxif7@pengutronix.de>
-References: <20230718132049.3028341-1-m.felsch@pengutronix.de>
- <20230718132049.3028341-2-m.felsch@pengutronix.de>
- <20230719211235.1758bbc0@kernel.org>
- <20230720064636.5l45ad64kwwgd2iw@pengutronix.de>
- <20230720081945.5cf783f0@kernel.org>
+        with ESMTP id S231651AbjGTPkU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 11:40:20 -0400
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C92B3CE;
+        Thu, 20 Jul 2023 08:40:19 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-51f90f713b2so1344412a12.1;
+        Thu, 20 Jul 2023 08:40:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1689867618; x=1690472418;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=6JI0piZU5sNjEYOXtdBH6ZjBT6nk63W7wJyW7LaZcAw=;
+        b=d220ek6DDrJpviwj2v3MvP4MDu1DRqLVXv7KbJKRsH9ksrVGRfjy8BteOLK2WGAEXU
+         gGJdaqAA+DfiKQjgmX7o/GpiiA1jjlsxxwUgKtL4/Wz+ToTaJRdcIimvBWc8kkJtAGQH
+         qlk0OWRRZMYIYVvP0wpgpGmGG43TuvpVVZT/+UgzoBTrbKV6yg1L7LCoakvBpg1LSOgP
+         98JMbdwhQ0VDFjpG5CKnIa2RUQizLtMkVIWZD8IhT6uEaIFJ+MawXN4/V1M67YelZGeV
+         ts0bCZt5hUr3Yr3TLBQqUuvzFGYTJQf53AHHJvjR6yr2OmD9OR049O44JFiDIVHFB2Wi
+         FIIA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689867618; x=1690472418;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=6JI0piZU5sNjEYOXtdBH6ZjBT6nk63W7wJyW7LaZcAw=;
+        b=S1ZNi8gmwIolJ0H0x1tesUR7JcnVURD2yd6l5iu40uzxkx49OOsI/WLTrpXzTCEus7
+         K018eKOQFoYndpgsYyevaNgow0YDORYhlQDVrSzLGOJVXmdQSX744oNcuZ032OEV3OJn
+         FBW5Ap7MU20ZD1fygQO3yIj7ICr/pCwGeL6iEVEi6dRRpVfnP7WEFlMZDaVq7z74+XQp
+         sJ9qxuIvU4AexgZoCHH0gnxc9u5BEEvT5PLla+OvvjJOx9ozTKQ3K6SAYxgEBRJWh3uj
+         Dl8GMLV89XHJA9HjgK4eATnLXn/zselH2v7O4tK7duPH6u8qBd0QIAUcd7XtpR+Covbt
+         CtQQ==
+X-Gm-Message-State: ABy/qLYdB3sw6Zj5106gUJ9+c2pO2OgmMKTEQi5c6oibcrBoCP6on9y2
+        2mLLEX7PUB9hP6Kmm62rlgmShR35E680kA==
+X-Google-Smtp-Source: APBJJlE5f16VHOvYjpCJqnm4n99jMhq4cr3qZiNnRezHz9n5zHWVOF2ucs2oReoDIUaIDB77reDuhA==
+X-Received: by 2002:a17:906:113:b0:991:d5ad:f1a7 with SMTP id 19-20020a170906011300b00991d5adf1a7mr5646390eje.51.1689867618106;
+        Thu, 20 Jul 2023 08:40:18 -0700 (PDT)
+Received: from colla-nuc.fritz.box (host-95-237-109-246.retail.telecomitalia.it. [95.237.109.246])
+        by smtp.gmail.com with ESMTPSA id qx4-20020a170906fcc400b00987e2f84768sm869484ejb.0.2023.07.20.08.40.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 20 Jul 2023 08:40:17 -0700 (PDT)
+Received: from colla-nuc.fritz.box (localhost [127.0.0.1])
+        by colla-nuc.fritz.box (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP id 36KFeGIJ119642;
+        Thu, 20 Jul 2023 17:40:16 +0200
+Received: (from colla@localhost)
+        by colla-nuc.fritz.box (8.15.2/8.15.2/Submit) id 36KFeGPf119641;
+        Thu, 20 Jul 2023 17:40:16 +0200
+From:   Andrea Collamati <andrea.collamati@gmail.com>
+To:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Andrea Collamati <andrea.collamati@gmail.com>
+Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: =?UTF-8?q?=5BPATCH=20v3=200/2=5D=20add=20MCP4728=20I2C=20DAC=20driver=E2=80=8B?=
+Date:   Thu, 20 Jul 2023 17:40:01 +0200
+Message-Id: <cover.1689857295.git.andrea.collamati@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230720081945.5cf783f0@kernel.org>
-User-Agent: NeoMutt/20180716
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -58,29 +80,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23-07-20, Jakub Kicinski wrote:
-> On Thu, 20 Jul 2023 08:46:36 +0200 Marco Felsch wrote:
-> > > Please fix and rebase because the current version does not apply to
-> > > net-next/main.  
-> > 
-> > Sure, I thought the changelog should be part of the commit message in
-> > net-dev therefore I included it.
-> 
-> Old rules, I think. Since started adding lore links to all patches you
-> can put the changelog in the cut-off section.
+Changes v2->v3:
+- fix wrong i2c_device_id array indentation
+- removed double blank line in Kconfig
+- added description in dt-bindings
+- use uppercase letters for device name
 
-Make sense.
+Changes v1->v2:
+- fix mcp4728_remove prototype
+- improve indentation
+- various fixes suggested by checkscript.pl
+- removed unused of_device_id.data field
+- removed unuseful mcp4728_data.id field
+- various fixes suggested by dt_binding_check
 
-> Adding a link to the previous revision there is highly encouraged,
-> too!
+Andrea Collamati (2):
+  dt-bindings: iio: dac: add mcp4728.yaml
+  iio: add MCP4728 I2C DAC driver
 
-Sure, I will check my tooling to use b4 for sending, so the links are
-provided autom.
+ .../bindings/iio/dac/microchip,mcp4728.yaml   |  48 ++
+ drivers/iio/dac/Kconfig                       |  11 +
+ drivers/iio/dac/Makefile                      |   1 +
+ drivers/iio/dac/mcp4728.c                     | 638 ++++++++++++++++++
+ 4 files changed, 698 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/dac/microchip,mcp4728.yaml
+ create mode 100644 drivers/iio/dac/mcp4728.c
 
-> There's a sample of the preferred format at:
-> https://www.kernel.org/doc/html/next/process/maintainer-netdev.html#changes-requested
+-- 
+2.34.1
 
-I will keep that in mind.
-
-Regards,
-  Marco
