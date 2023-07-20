@@ -2,72 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C16975A9D0
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 10:57:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 25DDB75A9ED
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 10:57:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230237AbjGTI5S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jul 2023 04:57:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37340 "EHLO
+        id S230111AbjGTI5b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jul 2023 04:57:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37332 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230170AbjGTImK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 04:42:10 -0400
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E906126B1
-        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 01:42:08 -0700 (PDT)
-Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-3fbc63c2e84so4272605e9.3
-        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 01:42:08 -0700 (PDT)
+        with ESMTP id S230337AbjGTIoK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 04:44:10 -0400
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5977C26A0
+        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 01:44:08 -0700 (PDT)
+Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-51de9c2bc77so672310a12.3
+        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 01:44:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689842527; x=1692434527;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        d=linaro.org; s=google; t=1689842647; x=1692434647;
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=w56BQhQzaxN/XG0zRLCl075YiyglW8KCGAxGsOzOjgA=;
-        b=FKWXp6cVBbmz288iMI8xZcbCfRorrdpoz5aVp/zkxK4DbZQdAMGzYPesBiu8shNVy3
-         Pcz1kYaszFaB+Ye/0BpCeh6pKnToCZmARKwLS92Umtxu7UEcDjSk3Dwy5gsK/ySMaz8/
-         vtnWCiwDvqTkH9z3goBIuDPzsAgIJOjZk7HDJj0dpAQav6x+x170YGQQ1BwUV34VXbtk
-         HI7Lqv3TwOjnBdutuv62LJ2iEVrakAtQkhtIab+IL6QU6RyJ4lQsMfQb8vqVEMUZHyWn
-         JnfB5Bn4B+CgAha1FphXOQgHx+SQxrSZESLsC8EtW/G99B8dRsC5uveHjrQ5j13JXd8V
-         CByg==
+        bh=bXmQdUSwiEfCeL+TuIOj45mHUtMHTIiqenNRIQ+67SA=;
+        b=qFVkXUqOOwTKp2x5hPUx9qm517YCGDqbSztEMSIDzBEAnSmAtIURzG3MZkyK/UNgio
+         fSVSgfYdZYKa5t49AcwqEAQJN2PL9RMivXWdoWLrqSmB8AbMwDNjhwa7/pRXv3+L8LMR
+         WTvWO7MplpSLjeX4kazfTYjPWufJkz5WXMbFwP8oz8ztOgvzcxFSqAWXA09eVZwNMW22
+         +jSgVFvMCTa96XWNdnWTLXj68vbEbEuYLwsc81CTDCr7QCDTB+MlR9PU7B4HFpMmKDrS
+         4P/jocRhTkcGjGdokjOI95C7B4mTxyCLo6UfZKyXXG0OiD/fC7oPnjphFZpVaOD4q0z3
+         E0MA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689842527; x=1692434527;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        d=1e100.net; s=20221208; t=1689842647; x=1692434647;
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=w56BQhQzaxN/XG0zRLCl075YiyglW8KCGAxGsOzOjgA=;
-        b=aZIMlZLWFm5BlkTc2fwOErgo4lPfWFyzWtKwziBUZ16nGtSMof9smpE7CxjorgPkIf
-         6flihjb5/WEPHJ1Dn/Oj5nO5IShMgZaFcOfP67JgTF+MWBn+73LniuD0oQLrWjydndHw
-         p7OPNlrGmZ8wPf4CIP8evrpSMBkmlqZQiFxamycB4CQKFkUwWRLi+qFZZhJcE8feGqeZ
-         JZ9AkpFzyw5X2cZIybGstYVuMeZ76UsxJvRv1ADXFGYvbddOclpMiaJHNZy3xAHSncjW
-         8GtPKyqbr3gEN0n6dnmGBvcuwofncdhxmk0wAXjScnjhuDtZV0I3iP9oWtPTVM0AQX3v
-         2xrw==
-X-Gm-Message-State: ABy/qLZ2bYq33LiK33OKYDJOim0bJCEapYM+8ZH5pyM9QNGEZYthqjz0
-        fu2lQKv9iSZCqAsy+6xPeBcvSA==
-X-Google-Smtp-Source: APBJJlGuj9pgHZ2yL0ZGHChEmRrT6bndJFW+PapMNzJAvFPU8kjclpH44Qm1ZlYwCZFOYKKPmqnc/Q==
-X-Received: by 2002:a05:600c:2150:b0:3fa:8fb1:50fe with SMTP id v16-20020a05600c215000b003fa8fb150femr4046139wml.15.1689842527374;
-        Thu, 20 Jul 2023 01:42:07 -0700 (PDT)
+        bh=bXmQdUSwiEfCeL+TuIOj45mHUtMHTIiqenNRIQ+67SA=;
+        b=ESDC6zDL8dOhfELdX9+PJvSFhElom9+s+e4loQ+zq3q5Svl350nul4YmANtGSQ++qk
+         stUalPz0nJ9mhDgppi6FQC7npOnuy8F+4o6LBd6c/pQXMag/i42gylsRO2ayZuoOv7xD
+         w6lpB3r5ygZJghGk0nI4YDXMF/JyZFtYXSBHpK6IFm9hh6srV7GTwTHEioMHEYf/Tu3Z
+         zEzFbPCSQpGI6v33UrrFPsidbn2tznDitIy3OKlfhy1d8LDEyYsEA0fEyTBhT3+7F2A4
+         BQ90fblwM6sQdDMlc4nQw6lKyfPTWCuiP7NTmgEk13otib60RIOzU6k7oUDbeCqFegKA
+         /ZQw==
+X-Gm-Message-State: ABy/qLaU2mYeSfjrAYAHg1BQZd11n/2PgKJ+RS9BprUltWFqy3XLMTfx
+        pomSDkPtkXZGgigxzuH7saSNCg==
+X-Google-Smtp-Source: APBJJlGCXyIDr7nOu/YXOOqrS/2UxOod41KmJxihYP99aWkTW7XDf85MKrLzKtCoVvpT2DMA9KwTTg==
+X-Received: by 2002:a17:906:10d2:b0:98e:16b7:e038 with SMTP id v18-20020a17090610d200b0098e16b7e038mr4431998ejv.23.1689842646835;
+        Thu, 20 Jul 2023 01:44:06 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id f18-20020a7bc8d2000000b003fc01189b0dsm613621wml.42.2023.07.20.01.42.05
+        by smtp.gmail.com with ESMTPSA id rv7-20020a17090710c700b00993a9a951fasm376950ejb.11.2023.07.20.01.44.04
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 20 Jul 2023 01:42:06 -0700 (PDT)
-Message-ID: <9283b320-5d77-350c-5312-90d56dfb922f@linaro.org>
-Date:   Thu, 20 Jul 2023 10:42:05 +0200
+        Thu, 20 Jul 2023 01:44:06 -0700 (PDT)
+Message-ID: <53721566-2a85-76cb-a4cf-2819f08dfc85@linaro.org>
+Date:   Thu, 20 Jul 2023 10:44:03 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
-Subject: Re: [PATCH 1/2] dt-bindings: arm: qcom: Update the compatible
+Subject: Re: [v11 5/6] arm64: dts: Add ipq5018 SoC and rdp432-c2 board support
 Content-Language: en-US
-To:     Hariharan K <quic_harihk@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     quic_srichara@quicinc.com, quic_sjaganat@quicinc.com,
-        quic_kathirav@quicinc.com, quic_arajkuma@quicinc.com,
-        quic_anusha@quicinc.com
-References: <20230720072938.31546-1-quic_harihk@quicinc.com>
- <20230720072938.31546-2-quic_harihk@quicinc.com>
+To:     Sricharan Ramabadhran <quic_srichara@quicinc.com>,
+        agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        mturquette@baylibre.com, sboyd@kernel.org, ulf.hansson@linaro.org,
+        linus.walleij@linaro.org, catalin.marinas@arm.com, will@kernel.org,
+        p.zabel@pengutronix.de, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-mmc@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, robimarko@gmail.com,
+        andy.shevchenko@gmail.com
+References: <20230616101749.2083974-1-quic_srichara@quicinc.com>
+ <20230616101749.2083974-6-quic_srichara@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230720072938.31546-2-quic_harihk@quicinc.com>
+In-Reply-To: <20230616101749.2083974-6-quic_srichara@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -80,47 +82,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/07/2023 09:29, Hariharan K wrote:
-> Update the compatible in device tree binding to
-> use model names instead of rdp numbers for IPQ5018
-> platform.
+On 16/06/2023 12:17, Sricharan Ramabadhran wrote:
+> Add initial device tree support for the Qualcomm IPQ5018 SoC and
+> rdp432-c2 board.
 > 
-> Signed-off-by: Hariharan K <quic_harihk@quicinc.com>
+> Few things like 'reboot' does not work because, couple of more 'SCM'
+> APIS are needed to clear some TrustZone settings. Those will be
+> posted separately.
+> 
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Co-developed-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+> Co-developed-by: Gokul Sriram Palanisamy <quic_gokulsri@quicinc.com>
+> Signed-off-by: Gokul Sriram Palanisamy <quic_gokulsri@quicinc.com>
+> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
 > ---
->  Documentation/devicetree/bindings/arm/qcom.yaml | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+>  arch/arm64/boot/dts/qcom/Makefile             |   1 +
+>  .../arm64/boot/dts/qcom/ipq5018-rdp432-c2.dts |  72 +++++
+>  arch/arm64/boot/dts/qcom/ipq5018.dtsi         | 250 ++++++++++++++++++
+>  3 files changed, 323 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/qcom/ipq5018-rdp432-c2.dts
+>  create mode 100644 arch/arm64/boot/dts/qcom/ipq5018.dtsi
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
-> index e94ce1e26fbf..922feb912594 100644
-> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
-> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
-> @@ -97,6 +97,7 @@ description: |
->          ap-mi01.3
->          ap-mi01.6
->          ap-mi01.9
-> +        ap-mp03.5-c2
->          cdp
->          cp01-c1
->          dragonboard
-> @@ -105,7 +106,6 @@ description: |
->          hk10-c2
->          idp
->          liquid
-> -        rdp432-c2
->          mtp
->          qrd
->          rb2
-> @@ -343,7 +343,7 @@ properties:
->  
->        - items:
->            - enum:
-> -              - qcom,ipq5018-rdp432-c2
 
+NAK, please do not merge.
 
-There is no such compatible. Don't send patches with wrong names and
-before they got merged send a follow up.
-
-Fix the original submission.
+It turns out there are some problems here (pointed out by Hariharan K).
 
 Best regards,
 Krzysztof
