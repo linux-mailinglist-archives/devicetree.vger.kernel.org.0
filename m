@@ -2,79 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EA8AA75A2E5
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 01:40:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A6F475A3E9
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 03:28:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229663AbjGSXkh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jul 2023 19:40:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41440 "EHLO
+        id S229813AbjGTB25 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jul 2023 21:28:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41346 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229536AbjGSXkg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 19:40:36 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D23D11B9;
-        Wed, 19 Jul 2023 16:40:35 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 67B5261861;
-        Wed, 19 Jul 2023 23:40:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BBD21C433C9;
-        Wed, 19 Jul 2023 23:40:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689810034;
-        bh=X+Q7vZNz0gi3IW1qK4+Ti/lKXsq3agFLU+cGPV2jtS8=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=nPe+KNXDlAFunkxSn+bV5niiotBgVvaCkuqEOPDbpRBxgO5z7Paq8qayYlN5AXSAG
-         sL+0Gvaoxf+K86yd9viJ3q2ZFq7WIe032WmuURjCucD7qmtaQ+ebzULMLCa0uS6sk8
-         1xkhPoux47GJW7qQHeBLxm6IgoxS69YXAgvZsbM2IQw3q9zaWwVx0yxXBO36zDV/cr
-         kia5C/1An/+1SkF5WPa/KtWEXvsnSm8s90i2IymkO+S3GuGcXp6dD+6gT94qLRGtS0
-         vjslx/WnV45dO3uLZpk4k1xqOgYofqfb87STlQVkcENNtcDcGUaG/nP6HagWzYNeK/
-         m9eDXn90PuW8Q==
-Message-ID: <f291f0e018aecf2aef1f1960eca18fcd.sboyd@kernel.org>
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S229820AbjGTB24 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 21:28:56 -0400
+Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B52372690;
+        Wed, 19 Jul 2023 18:28:33 -0700 (PDT)
+Received: by mail-pl1-x632.google.com with SMTP id d9443c01a7336-1b8ad9eede0so1919835ad.1;
+        Wed, 19 Jul 2023 18:28:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1689816513; x=1690421313;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=RLL2tr+LIqX1NO/Pc6Wrphl4U7IYBQOy7XNovYEZclQ=;
+        b=GPSmmtDPWNsIkTZDwpeml90XUUsdUDNJLkiIu7LZuUkn/gywuhX58ThYa/svu0oz+z
+         sdV3nprLThqbBBFc/9TgUzZY45eDde3YlmYZCVhugTuH54XKHfTtB25pwNW/UK+p1YVa
+         vUsPO4qXqk+AjR/dy1+4roSJ26nLT587NiVZmEIBwTKVdDR8Ok27yR/vL4rjIZ1XhOH9
+         VICMuvFIiBRzoCT1XxLDTHogttTNCCQijGbXY3MHAcICmlVI5co1xBLJbbQTKdvOX9Ns
+         xox8heOEOr86J0ZD8mgwKXRyygJvK8gOZONSOxB8hi5qExMcwOLCngYs82t6BdYcEFxv
+         z3HA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689816513; x=1690421313;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=RLL2tr+LIqX1NO/Pc6Wrphl4U7IYBQOy7XNovYEZclQ=;
+        b=eBp3nk9+WDYq73FLCHZz7EEdYNHHZGKoaVKpGDly4htA0JpOuMtEUsuQt/mlq5sqQ/
+         C8AtDXy7vkRq0RW/jxEHJW7+xoARGqfH2aEwjiK9QxF6U4qgsmTNWHv5o1lcQoSTWh5N
+         I3wSdZBfUeuk/YQTKpa7OFt43elDm7hoWkGPtA8AHh+Rztn+YMzYXsTmnGiGOGSZyo+N
+         OynVWDrVwW0AK1Sn6r3tVE74Hua5mP+LzLZZ1MDUqALZ8HW7ki7ubN5oMub8kOs4ejYJ
+         aF9DO5mIbPMz1nYAiGoMUvYVj2/E+bwvemcXkl1WAC3mWDSX/UKvY1otcY3ksW+jfJ4u
+         U+Jg==
+X-Gm-Message-State: ABy/qLb07EZqgzv4nZvdNY1I3Qp5bZsKgtSn2AD+27cHZDglJWsuKju9
+        B1Alx5lXr4Il4uXPDwF01GA=
+X-Google-Smtp-Source: APBJJlH7o+eExptczkCECKURCD9Em0bpUiO2dPHusBQmDrgRDRdwQxGXlsePstVPgqTqvEZNkiOSfg==
+X-Received: by 2002:a17:902:cecd:b0:1b2:1a79:147d with SMTP id d13-20020a170902cecd00b001b21a79147dmr2551275plg.2.1689816513179;
+        Wed, 19 Jul 2023 18:28:33 -0700 (PDT)
+Received: from a28aa0606c51.. (60-250-192-107.hinet-ip.hinet.net. [60.250.192.107])
+        by smtp.gmail.com with ESMTPSA id jc18-20020a17090325d200b001b1a2c14a4asm4673998plb.38.2023.07.19.18.28.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 19 Jul 2023 18:28:32 -0700 (PDT)
+From:   Jacky Huang <ychuang570808@gmail.com>
+To:     a.zummo@towertech.it, alexandre.belloni@bootlin.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org
+Cc:     linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        soc@kernel.org, mjchen@nuvoton.com, schung@nuvoton.com,
+        Jacky Huang <ychuang3@nuvoton.com>
+Subject: [PATCH 0/3] Add support for nuvoton ma35d1 rtc controller
+Date:   Thu, 20 Jul 2023 01:28:23 +0000
+Message-Id: <20230720012826.430026-1-ychuang570808@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20230705171000.85786-2-biju.das.jz@bp.renesas.com>
-References: <20230705171000.85786-1-biju.das.jz@bp.renesas.com> <20230705171000.85786-2-biju.das.jz@bp.renesas.com>
-Subject: Re: [PATCH v6 1/2] dt-bindings: clock: Add Renesas versa3 clock generator bindings
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>
-Date:   Wed, 19 Jul 2023 16:40:32 -0700
-User-Agent: alot/0.10
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Biju Das (2023-07-05 10:09:59)
-> Document Renesas versa3 clock generator(5P35023) bindings.
->=20
-> The 5P35023 is a VersaClock programmable clock generator and
-> is designed for low-power, consumer, and high-performance PCI
-> Express applications. The 5P35023 device is a three PLL
-> architecture design, and each PLL is individually programmable
-> and allowing for up to 6 unique frequency outputs.
->=20
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
+From: Jacky Huang <ychuang3@nuvoton.com>
 
-Applied to clk-next
+This patch series adds the rtc driver for the nuvoton ma35d1 ARMv8 SoC.
+It includes DT binding documentation, the ma35d1 rtc driver, and device
+tree updates.
+
+The ma35d1 rtc controller provides real-time and calendar messaging
+capabilities. It supports programmable time tick and alarm match
+interrupts. The time and calendar messages are expressed in BCD format.
+
+This rtc driver has been tested on the ma35d1 som board with Linux 6.5-rc2.
+
+Jacky Huang (3):
+  dt-bindings: rtc: Document nuvoton ma35d1 rtc driver
+  arm64: dts: nuvoton: Add rtc for ma35d1
+  rtc: Add driver for nuvoton ma35d1 rtc controller
+
+ .../bindings/rtc/nuvoton,ma35d1-rtc.yaml      |  45 +++
+ .../boot/dts/nuvoton/ma35d1-iot-512m.dts      |   4 +
+ .../boot/dts/nuvoton/ma35d1-som-256m.dts      |   4 +
+ arch/arm64/boot/dts/nuvoton/ma35d1.dtsi       |   8 +
+ drivers/rtc/Kconfig                           |  11 +
+ drivers/rtc/Makefile                          |   1 +
+ drivers/rtc/rtc-ma35d1.c                      | 371 ++++++++++++++++++
+ 7 files changed, 444 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/rtc/nuvoton,ma35d1-rtc.yaml
+ create mode 100644 drivers/rtc/rtc-ma35d1.c
+
+-- 
+2.34.1
+
