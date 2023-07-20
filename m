@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B2F575A59F
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 07:42:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3AAE675A5A3
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 07:43:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229689AbjGTFma (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jul 2023 01:42:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44282 "EHLO
+        id S229813AbjGTFnT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jul 2023 01:43:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45306 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229703AbjGTFm1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 01:42:27 -0400
-Received: from mail-pg1-x531.google.com (mail-pg1-x531.google.com [IPv6:2607:f8b0:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0A1F272A
-        for <devicetree@vger.kernel.org>; Wed, 19 Jul 2023 22:42:00 -0700 (PDT)
-Received: by mail-pg1-x531.google.com with SMTP id 41be03b00d2f7-553ad54d3c6so185031a12.1
-        for <devicetree@vger.kernel.org>; Wed, 19 Jul 2023 22:42:00 -0700 (PDT)
+        with ESMTP id S229797AbjGTFnD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 01:43:03 -0400
+Received: from mail-pg1-x535.google.com (mail-pg1-x535.google.com [IPv6:2607:f8b0:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8903A2720
+        for <devicetree@vger.kernel.org>; Wed, 19 Jul 2023 22:42:32 -0700 (PDT)
+Received: by mail-pg1-x535.google.com with SMTP id 41be03b00d2f7-55ae51a45deso190038a12.3
+        for <devicetree@vger.kernel.org>; Wed, 19 Jul 2023 22:42:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689831720; x=1690436520;
+        d=linaro.org; s=google; t=1689831727; x=1690436527;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=PtXPc8izSWzg3ugRLXmOcd7egouahP59rkY9I+qN6II=;
-        b=wh51zWFTLjgMKbmNKi29uVTt4kvmghX1ebKHutYJfeIUfsv0B727qj4HCKxGwiSq+M
-         2OMdsmhDnKRqwaQPXyI243+j4zExBPYQl2ye6ygw0OU8ip0UiNKKhNVb6u9JKo3FxVlF
-         Y6Z0PxbAXi1SHXLDsXKujOxJufKxduWOOW8dck7FQ7G28Qnb6bLdtz30JUrgo5Ya404X
-         94KF/yVRVJJLPGQqSq+x3YRT+z63uXSPME6gnhKFRPftfRYHCUYQ1QKj2ANjuSeHCyON
-         jsnVJGYQyAil031a5dtQrFjQW6zYnK1hZldkKJ0sOTYai5Cy+AX2+9zJPXVcwAetbjTD
-         mO/Q==
+        bh=WUaVdZJ28qH1inEDT0bdOsxGBg7b/AdUYV5SKgyveWU=;
+        b=mh1H/anh338JtwO3z10DsiXxyHqIkGBPUCQH1SlsfJOR5z1W73B+9IYQ5Gdt588Bbk
+         MhtTYC9SLaLZ7oChxbHvWWtTZdsYeyTSfItYfPgkj+fg+ORnnvGl2oQTsSFBFh7E2dYE
+         Yxr8jDaJPBxxsTy9Uollrp3BoTGPgj74Ro5rTJUVQgltAF2OWG8upOtKqx8mVt+j0KQo
+         ElIM3TeMiZLyQWhBYRHX/ctsMI1sY21GW17Ktbc9Hgh+22q+RdlviNnZCm/DTaxlnw/r
+         pyQVDszDxXuwXDEGh8YTdkjLqDfr4o8Ggk2XpVQ8w6iM3KvVOlwFBvNGE0zuRC6fVoWg
+         X8XA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689831720; x=1690436520;
+        d=1e100.net; s=20221208; t=1689831727; x=1690436527;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=PtXPc8izSWzg3ugRLXmOcd7egouahP59rkY9I+qN6II=;
-        b=cvkclNgi9iBT6PjvnJKeoRw93EiePk7hc4mixcTpS9239zTCTsAEELZBuKN5AuGvrO
-         3I04pLqxA7vicQJcEGjRJOktu301g/qW3EGtb0W1BPZdBPkET8Pc3gyVBhH83aA7iBBE
-         IHWBysAK3FBtbuZBdwt0DK7R0kG4TG9kx8453MY0x/vIyXFjAkHIMGc5ahsZI31uMiJb
-         pRdMhZvCKcCczVlB2ZxMhuqmW0TSLLXaqqxA7YBClvFdAODu/Y56aKlZUKpEOJkD3bjK
-         RS3uFk/W84836wJCYyEq8hODDV7pWufILJRgWhhZl4yn1JIg8SHA+GU89lTWGRLRYhvI
-         R4XA==
-X-Gm-Message-State: ABy/qLaE2iQ/a6uv+kpYM1+PXoxvur8boelP8Hgk7Mg3NSEd0B6iqV/8
-        IWNENom3lQuOfCfCgZs0KF3J
-X-Google-Smtp-Source: APBJJlEfDxgxCoUYkZtFIN4LQq8BF4LpNXytQnCCbmSuj7RGZRkbe/g5C0H3IPMWTV5pjz0ZJdEd6g==
-X-Received: by 2002:a05:6a20:3d87:b0:12f:c61e:7cac with SMTP id s7-20020a056a203d8700b0012fc61e7cacmr4263115pzi.31.1689831719918;
-        Wed, 19 Jul 2023 22:41:59 -0700 (PDT)
+        bh=WUaVdZJ28qH1inEDT0bdOsxGBg7b/AdUYV5SKgyveWU=;
+        b=aaidgihq+a5icQFs3szAu9DGLUh3WU35nxMtns2iOjGJnsAuGMZMKl3FkarWY/p7sp
+         AqR40itBTYczGVUL9Ae7KoaL8gcaatkefuQQtBJDd9xUnrO1jaNFkBQ7aOZoNKqqJFpO
+         mHjh1W+T1qC4qNhVIN7BKbRmi/LgSlAHZweeqZ6h8o6RGjYzZgLRmsck17gzVg/tIbFj
+         nokeV3ATNEd1Q0Sufs0T6fKcZOCjafU0jOdFssgAlvIvkHaGWCJ1aP3gqHO3Z6lCDTnX
+         /N4Vbvy35u3Ocs5UUHvMr73scXVP8dotK2Gu6XxeC3fw9aN0MqacmeoR0a0+RnNBSFgX
+         M3Cw==
+X-Gm-Message-State: ABy/qLa+GnD88mkhQFrf3gCTrlv3w8jiAvaUpvQ8CKz9gKyK0rAv9mPd
+        dZ32D4E9rtS6TvkRZ1WfBy2A
+X-Google-Smtp-Source: APBJJlHdJJHT8pomhZmx6MwnSWLmuvtkXIUZ6UJieDMEcrxmojfWRmgSamoma61dciQ8UZExOidTNQ==
+X-Received: by 2002:a05:6a20:4c9:b0:134:d823:e3aa with SMTP id 9-20020a056a2004c900b00134d823e3aamr3785080pzd.36.1689831727584;
+        Wed, 19 Jul 2023 22:42:07 -0700 (PDT)
 Received: from localhost.localdomain ([117.206.119.70])
-        by smtp.gmail.com with ESMTPSA id r2-20020a170902be0200b001b85bb5fd77sm263367pls.119.2023.07.19.22.41.52
+        by smtp.gmail.com with ESMTPSA id r2-20020a170902be0200b001b85bb5fd77sm263367pls.119.2023.07.19.22.42.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 Jul 2023 22:41:59 -0700 (PDT)
+        Wed, 19 Jul 2023 22:42:07 -0700 (PDT)
 From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 To:     vireshk@kernel.org, nm@ti.com, sboyd@kernel.org,
         myungjoo.ham@samsung.com, kyungmin.park@samsung.com,
@@ -66,9 +66,9 @@ Cc:     alim.akhtar@samsung.com, avri.altman@wdc.com, bvanassche@acm.org,
         bmasney@redhat.com, krzysztof.kozlowski@linaro.org,
         linux-kernel@vger.kernel.org,
         Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: [PATCH v2 04/15] arm64: dts: qcom: sdm845: Fix the min frequency of "ice_core_clk"
-Date:   Thu, 20 Jul 2023 11:10:49 +0530
-Message-Id: <20230720054100.9940-5-manivannan.sadhasivam@linaro.org>
+Subject: [PATCH v2 05/15] arm64: dts: qcom: sdm845: Add OPP table support to UFSHC
+Date:   Thu, 20 Jul 2023 11:10:50 +0530
+Message-Id: <20230720054100.9940-6-manivannan.sadhasivam@linaro.org>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20230720054100.9940-1-manivannan.sadhasivam@linaro.org>
 References: <20230720054100.9940-1-manivannan.sadhasivam@linaro.org>
@@ -84,30 +84,75 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Minimum frequency of the "ice_core_clk" should be 75MHz as specified in the
-downstream vendor devicetree. So fix it!
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-https://git.codelinaro.org/clo/la/kernel/msm-4.9/-/blob/LA.UM.7.3.r1-09300-sdm845.0/arch/arm64/boot/dts/qcom/sdm845.dtsi
+UFS host controller, when scaling gears, should choose appropriate
+performance state of RPMh power domain controller along with clock
+frequency. So let's add the OPP table support to specify both clock
+frequency and RPMh performance states replacing the old "freq-table-hz"
+property.
 
-Fixes: 433f9a57298f ("arm64: dts: sdm845: add Inline Crypto Engine registers and clock")
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+[mani: Splitted pd change and used rpmhpd_opp_low_svs]
 Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sdm845.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm64/boot/dts/qcom/sdm845.dtsi | 41 +++++++++++++++++++++-------
+ 1 file changed, 31 insertions(+), 10 deletions(-)
 
 diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-index 9ed74bf72d05..89520a9fe1e3 100644
+index 89520a9fe1e3..e04a3cbb1017 100644
 --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
 +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-@@ -2614,7 +2614,7 @@ ufs_mem_hc: ufshc@1d84000 {
- 				<0 0>,
- 				<0 0>,
- 				<0 0>,
--				<0 300000000>;
-+				<75000000 300000000>;
+@@ -2605,18 +2605,39 @@ ufs_mem_hc: ufshc@1d84000 {
+ 				<&gcc GCC_UFS_PHY_RX_SYMBOL_0_CLK>,
+ 				<&gcc GCC_UFS_PHY_RX_SYMBOL_1_CLK>,
+ 				<&gcc GCC_UFS_PHY_ICE_CORE_CLK>;
+-			freq-table-hz =
+-				<50000000 200000000>,
+-				<0 0>,
+-				<0 0>,
+-				<37500000 150000000>,
+-				<0 0>,
+-				<0 0>,
+-				<0 0>,
+-				<0 0>,
+-				<75000000 300000000>;
  
++			operating-points-v2 = <&ufs_opp_table>;
  			status = "disabled";
++
++			ufs_opp_table: opp-table {
++				compatible = "operating-points-v2";
++
++				opp-50000000 {
++					opp-hz = /bits/ 64 <50000000>,
++						 /bits/ 64 <0>,
++						 /bits/ 64 <0>,
++						 /bits/ 64 <37500000>,
++						 /bits/ 64 <0>,
++						 /bits/ 64 <0>,
++						 /bits/ 64 <0>,
++						 /bits/ 64 <0>,
++						 /bits/ 64 <75000000>;
++					required-opps = <&rpmhpd_opp_low_svs>;
++				};
++
++				opp-200000000 {
++					opp-hz = /bits/ 64 <200000000>,
++						 /bits/ 64 <0>,
++						 /bits/ 64 <0>,
++						 /bits/ 64 <150000000>,
++						 /bits/ 64 <0>,
++						 /bits/ 64 <0>,
++						 /bits/ 64 <0>,
++						 /bits/ 64 <0>,
++						 /bits/ 64 <300000000>;
++					required-opps = <&rpmhpd_opp_nom>;
++				};
++			};
  		};
+ 
+ 		ufs_mem_phy: phy@1d87000 {
 -- 
 2.25.1
 
