@@ -2,127 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 198CE75A9DF
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 10:57:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3926A75A9D2
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 10:57:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229633AbjGTI50 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jul 2023 04:57:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36772 "EHLO
+        id S229942AbjGTI5T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jul 2023 04:57:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37026 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230100AbjGTIiw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 04:38:52 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED3FB26A6
-        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 01:38:50 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-4f4b2bc1565so753412e87.2
-        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 01:38:50 -0700 (PDT)
+        with ESMTP id S229674AbjGTIk2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 04:40:28 -0400
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACF262686
+        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 01:40:26 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-4fdddf92b05so375569e87.3
+        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 01:40:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689842329; x=1690447129;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+        d=linaro.org; s=google; t=1689842425; x=1692434425;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=eVM18y+39lFosvdaYdIgO9ss377egsp/711hTC+KHKM=;
-        b=OC2rqh2/KW20vFwMQ8QkxQ1joh9qsdUk1wuP8bg3niTWrYZyQEj2YFqLFbO3osYtnT
-         AInHz0bOoWE3JU5cwwGQXKZBxaF0DFS+qzClpgRVn+AA7QplFjnJSrnUpjjYGjSQlfFj
-         XuFIWTn9KEwwQNzvgUOKIYvbzW7Jbx2c3ogNULVKteLn3hlxjirqNT2pROJqAuMRKEhX
-         w6NuGKjB+0OFs9p9i0d+sQw1P4O5a5kaWkfcUEoERBdGelx/yOAWsS4qmhDtUe/JmGCn
-         8Vm4G8coj7Y5bUtQtzW3Ml8ydX9hxbXmXhmy2RdAVO6svpMTI2df3qmaBfr+UQc26qII
-         67IA==
+        bh=Ny1C6PeLQpN5ZLbijkdZaNqiK2k79yucQLdYgkrn53U=;
+        b=aFBG0SYMD/IRe3XLlCKozpprl92+XqJcF2MAka/KfMjKDReuzkcmJ2uf/ECoz8UlWn
+         4GK+/CelbnGjXhzyDqEYftoxP3JMTFm+GgKtfzA9uMq0mnkrzOLHjSSlCQ9V0pldYE2C
+         s4wANbiQ/hPAcT3bPHPmjAnviob6L3a11ysiSWojTbcX+DdXNInwqSAcTLO4psSrej9c
+         LkgtWKbcByQBqhcvLv8onn8g7DmEuSludNW870ExIa80eXkmDB7rOqNP0NobZkyz7OGB
+         WO1zzncZxcXb8HIYdAI+OOqfGtgmejvOnwzghYrBQJPDSWEGhgbMoCfs0SXTLI5O5QB9
+         Bjpw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689842329; x=1690447129;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+        d=1e100.net; s=20221208; t=1689842425; x=1692434425;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=eVM18y+39lFosvdaYdIgO9ss377egsp/711hTC+KHKM=;
-        b=cYhRJPN+KDesrENElN3DEY3tJ7heSek9hZwDjYn+CN+zsAKRdfgGeCADJj5ie6vHXU
-         Sw4iFVIyw/7TQIbN67VHTFCDRAJKhB8P3i9+qnPCjzK69ON/gVG/ASXbUcwgF1JGd2Ol
-         CRt3WduPAVIeczRrgM01eC8YyzghQieeLDHDWJhsvDFWxE+OfuVCDuKyTRAYLlP7q66t
-         yCI6D6pbJ7avH5b5hXp2ZV93FxayKI+4SOQ331Rve5QLj9UFqqVaMAx6Ehmz17aWY+cR
-         bi/r+tG13aIRkN/HaUIcg1D6/zUrg6N4Xk1yP1feI1jZscXs7oYKBHpt0LVuYpONfcg6
-         /ZDw==
-X-Gm-Message-State: ABy/qLa1xP/fIBHRKQP0DfWJhSSD3LKjo3+zcM8oiBr56aGF2d3fe92L
-        wfp34KiIYpCJtXEsYp+60ny74A==
-X-Google-Smtp-Source: APBJJlGMhvGs0aCS+jIoKJ+MCRAgfO/gZIZOPr9mIlyK0ln5xdYeYInM1U4yeHyVi4w6zqEm2xuI4g==
-X-Received: by 2002:a05:6512:3085:b0:4f8:66a1:a31b with SMTP id z5-20020a056512308500b004f866a1a31bmr2497982lfd.30.1689842329272;
-        Thu, 20 Jul 2023 01:38:49 -0700 (PDT)
-Received: from [192.168.1.101] (abyj181.neoplus.adsl.tpnet.pl. [83.9.29.181])
-        by smtp.gmail.com with ESMTPSA id d28-20020ac24c9c000000b004f84b36a24fsm90641lfl.51.2023.07.20.01.38.48
+        bh=Ny1C6PeLQpN5ZLbijkdZaNqiK2k79yucQLdYgkrn53U=;
+        b=F8uTkhBIwkXDWz1L0M3+bHo+hstdtxgIkfN8GRZsdv5CLqaDTRfbABAxblu7e2PgBg
+         F6Rde9qhEV5B35ze8HKGV0QUOI3ObygWHMcNOciVcaco52PxGQenQO7VzAlqwaxQ9zhW
+         rB1T26MQ/sU2vQ72gANoR5dKqLODawbHivLC4WUuEUzM7vIxKmzYcMMCvVa08APiIeo9
+         V2Mvu/esY27bgGiZv+oHpwSmHoM4KhdF82cbBqrpKdSbQlE2wO/oThfK8GIYScj+uaH0
+         ryCZEYJOeMn6jewyvHHpVCaDUNg+8duUwuG9dCLLwgH57VHcWU3q/a9PExMPYc2DJLfl
+         /ciw==
+X-Gm-Message-State: ABy/qLbvHXzAk3EqTlC/6lUjyrVOtwSXuqgHYMqlXKfVRbeI5VJc7Vot
+        JIRYqSCM+9NY1oOFIJ5qovWwQA==
+X-Google-Smtp-Source: APBJJlHQ0Qhh09L6OiUWIqkMakxji1+KahYOK1XPSil7Jw6cbkGwy8gUKJ1qyNUV+O8YbLMJpY1rXA==
+X-Received: by 2002:ac2:530e:0:b0:4fd:8976:5fc9 with SMTP id c14-20020ac2530e000000b004fd89765fc9mr1632271lfh.23.1689842424987;
+        Thu, 20 Jul 2023 01:40:24 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id f14-20020a7bcd0e000000b003fc01f7b415sm3370111wmj.39.2023.07.20.01.40.22
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 20 Jul 2023 01:38:48 -0700 (PDT)
-Message-ID: <3ad34a1d-0b53-0e33-f587-454ec5dfe32e@linaro.org>
-Date:   Thu, 20 Jul 2023 10:38:48 +0200
+        Thu, 20 Jul 2023 01:40:24 -0700 (PDT)
+Message-ID: <ca665afc-24af-4a9a-4bb1-a5421b2d6912@linaro.org>
+Date:   Thu, 20 Jul 2023 10:40:22 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/4] arm64: dts: qcom: sc8180x-pmics: align LPG node name
- with dtschema
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH 0/4] Add support for PECI Nuvoton
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230720083500.73554-1-krzysztof.kozlowski@linaro.org>
- <20230720083500.73554-4-krzysztof.kozlowski@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <20230720083500.73554-4-krzysztof.kozlowski@linaro.org>
+To:     "Winiarska, Iwona" <iwona.winiarska@intel.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Cc:     "avifishman70@gmail.com" <avifishman70@gmail.com>,
+        "Fair, Benjamin" <benjaminfair@google.com>,
+        "tmaimon77@gmail.com" <tmaimon77@gmail.com>,
+        "yuenn@google.com" <yuenn@google.com>,
+        "venture@google.com" <venture@google.com>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>
+References: <20230719220853.1029316-1-iwona.winiarska@intel.com>
+ <b0993a11-6589-2fcd-3487-2e6eb68e18e4@linaro.org>
+ <9a400a1be13adb87002ae476839e235aea117060.camel@intel.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <9a400a1be13adb87002ae476839e235aea117060.camel@intel.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20.07.2023 10:35, Krzysztof Kozlowski wrote:
-> Bindings expect the LPG node name to be "pwm":
+On 20/07/2023 10:00, Winiarska, Iwona wrote:
+> On Thu, 2023-07-20 at 08:17 +0200, Krzysztof Kozlowski wrote:
+>> On 20/07/2023 00:08, Iwona Winiarska wrote:
+>>> Hi!
+>>>
+>>> The series adds support for PECI on Nuvoton-based BMC boards.
+>>> It is based on patches that were sent by Tomer Maimon from
+>>> Nuvoton [1].
+>>> Similar to Aspeed driver, unused (as in, default values were used in
+>>> all of the available DTS files) vendor-specific properties were
+>>> removed.
+>>> If there is a use-case for such properties, they can be added in
+>>> a separate series.
+>>>
+>>> Thank you Tomer for testing this series on Nuvoton hardware.
+>>>
+>>> Thanks
+>>> -Iwona
+>>>
+>>> [1]
+>>> https://lore.kernel.org/openbmc/CAP6Zq1jnbQ8k9VEyf9WgVq5DRrEzf5V6kaYP30S7g9BV9jKtaQ@mail.gmail.com/
+>>>
+>>
+>> This is not v1 but v3 or v4. Please provide proper changelog and versioning.
 > 
->   sc8180x-lenovo-flex-5g.dtb: pmic@5: 'lpg' does not match any of the regexes:
-> 
-> Fixes: d3302290f59e ("arm64: dts: qcom: sc8180x: Add pmics")
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> This is the first submission - also known as v1 :)
+> Could you elaborate on why do you believe that this is v3 or v4?
 
-Konrad
+I had such impression because I saw it:
+https://lore.kernel.org/all/20230616193450.413366-2-iwona.winiarska@intel.com/
+https://lore.kernel.org/all/20230628090404.234965-2-tmaimon77@gmail.com/
+
+Best regards,
+Krzysztof
+
