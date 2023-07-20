@@ -2,72 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A3B0875A9F1
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 10:57:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A8E1375A9E1
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 10:57:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230198AbjGTI5d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jul 2023 04:57:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36316 "EHLO
+        id S230136AbjGTI50 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jul 2023 04:57:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36404 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232131AbjGTIfs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 04:35:48 -0400
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 885F12686
-        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 01:35:46 -0700 (PDT)
-Received: by mail-wr1-x42c.google.com with SMTP id ffacd0b85a97d-3142970df44so410084f8f.3
-        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 01:35:46 -0700 (PDT)
+        with ESMTP id S231960AbjGTIgg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 04:36:36 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8BB026A0
+        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 01:36:34 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id 2adb3069b0e04-4fb7769f15aso799347e87.0
+        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 01:36:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689842145; x=1692434145;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=J6wuvyxSk60K8F2hV0c6qQoMoIZ53/ofOSWmjRVPRV0=;
-        b=r+hH/4xSutSv988DIYFRN99d/alj0PAlqtItVTAB/xOby9IilhJGWCYA6vMDTpis17
-         h3EYyJhBGeEyOM4MRpbIN7CGKNscKmjWn6laozkicJOACKZr6YXQAYCN2p18rbI+XzBX
-         oPjEITP6XSxs4W37hBNCo9P1wvqqAY+LnT+vwFBt7ZzQDXliSo65ymGkzfghXEL4/15f
-         wlWh/zUfR/SMKY5vuIcB/j2OjpVjDyhoyQKjxgsrCA/XrT2KxkroLs4PICYO2pws5lOX
-         U6/6bkAJi2q/E775UxiE/0cf5G7WGp8ATgNBNAXFVWymrDgmahDEBkK9VvFILJ2jn5Cv
-         V7Vg==
+        d=linaro.org; s=google; t=1689842193; x=1690446993;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=l3r4dsxUdhv8pXWLvEo63h01H1zbvk+XHRZMKTX+V6A=;
+        b=NDnI3b2E3rtjcXlrTYthE5ly7M1CUR2AV7S/pTZnjkTPnUQxO3Kx0yWeS0cQ9xXeCS
+         YieE9Xp1ahp/UjfqtF9sCZn222zmRwcouZfoHiz7QiOseCuZ4isJHZxatSYSNnKJrosl
+         t0QeTOY9IQ+BOG6V0EX1jW/2aEB2EySoqo/382gfG6Sm4fbj48muRbEMFNDWWVjECdfK
+         gsl5ari4EbiRMb75Mxpm+ZvYpirAZOXLBw2Wvj5F+KYPQHmPtb0itRVOg/MJG2OAuGCn
+         M9PYXYRaRJ1f5YsLDtlKpMF/4R9hdO5Gb5zz0/jVkNt/mAr1Z8y7p/8s/YId2hafTWB1
+         fJgA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689842145; x=1692434145;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=J6wuvyxSk60K8F2hV0c6qQoMoIZ53/ofOSWmjRVPRV0=;
-        b=AwRKK52AwA6dVy/jjDOUEKSw3z+QVjGvFJyOMXN41XsbK1nDMY8zZatz/Cd6Vs2Bc2
-         Ed8Or0+4ZbV4U/RP9nMLV6KFqcZXLWnFeTNUlFj+vtu1bzwnw5tbu2YKMK5fLQZ/cTwF
-         6qdg//DEpCwm6pSmRIw3Necd0SId+yvTy9tTyCVyych8QqP5/cC5evD+MpWbn7azJgkM
-         hBi8S2BGRa+xC0AhmsxUIpNpGkSy3vaaqRaaPN/yf+2WyLJ8u3ArIWDOHNd7l+Onw0XU
-         gg+3vDIi+q234tl4Or/yQmf9wbCQGNBgm6Zzpw+9IfJ4bksDYUQ/WMUBUTCsjPd0PPNt
-         uqlQ==
-X-Gm-Message-State: ABy/qLbToPrQqoGK7o/1fXzCPvc6W0GnCMToDLkPdJ1Vu9V5DKM4y0xH
-        EUTlJUYtBtSbtL8yWLjP/yA/3Q==
-X-Google-Smtp-Source: APBJJlF/SdVIcWksWVGHT0dpGIqgo/k1Sr3/oisHos1dUerTU0/YGuDdIL5xpFVXYS/l3JvF5hbj3Q==
-X-Received: by 2002:a5d:5148:0:b0:313:f86f:2858 with SMTP id u8-20020a5d5148000000b00313f86f2858mr1334486wrt.2.1689842145022;
-        Thu, 20 Jul 2023 01:35:45 -0700 (PDT)
-Received: from krzk-bin.. ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id h3-20020a056000000300b00316f9abf073sm612482wrx.82.2023.07.20.01.35.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 Jul 2023 01:35:44 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
+        d=1e100.net; s=20221208; t=1689842193; x=1690446993;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=l3r4dsxUdhv8pXWLvEo63h01H1zbvk+XHRZMKTX+V6A=;
+        b=Xfb7NFNiDdnDNeOdYoiZHsYQOS9sibm9nGU3xbClqNVtoy2BF0SLBdt9KU7J80Z9IY
+         NYIcrEMZgpi4kzxrHirkAnVXz3Ymvsy9pNZKaghUXxUCs+/f/vwwqBzLtpt359/1LHtM
+         feQfrJbFoUmS5yCXkRy9KngzTIz7ueqXuZkaI6h4tLc9Cfj/VSX2ES9N5NZ86F3vPAh5
+         42uwPLSJvKrS9bGLFUrAu3jJ5zOB1U5/jAOdGtIt4F2sLedsh0b7Q2iLhXHHqdzSJzbI
+         E0r8M+hXNjN+3VuThyiEGuVuK9/Qd+VGWX1kLkGZouDFk0NOI/YMQ4ILR/hvLzjwKiCU
+         7KnQ==
+X-Gm-Message-State: ABy/qLYwqGuUJeTuPw19bISKYaR7yGYWSfZc6HrlGlY6bmpuhA4GIIEf
+        dfzDSr7NQDOx+sUPZXm4DvPYoQ==
+X-Google-Smtp-Source: APBJJlGmk+Ibm6K6jS+UXFT5Qul/HI3FIWUhaJvpWcRBUIf6DMQVI3Wv6DSFgHcd6EKmeXgtl0Oj5A==
+X-Received: by 2002:a19:6544:0:b0:4f8:6dfd:faa0 with SMTP id c4-20020a196544000000b004f86dfdfaa0mr1150024lfj.2.1689842193108;
+        Thu, 20 Jul 2023 01:36:33 -0700 (PDT)
+Received: from [192.168.1.101] (abyj181.neoplus.adsl.tpnet.pl. [83.9.29.181])
+        by smtp.gmail.com with ESMTPSA id d28-20020ac24c9c000000b004f84b36a24fsm90641lfl.51.2023.07.20.01.36.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 20 Jul 2023 01:36:32 -0700 (PDT)
+Message-ID: <b7791d8a-0061-400f-aafc-10767e2b076f@linaro.org>
+Date:   Thu, 20 Jul 2023 10:36:31 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/4] arm64: dts: qcom: sc8180x-pmics: add missing
+ qcom,spmi-gpio fallbacks
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] dt-bindings: pinctrl: qcom,pmic-gpio: document PMC8180 and PMC8180C
-Date:   Thu, 20 Jul 2023 10:35:39 +0200
-Message-Id: <20230720083539.73675-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20230720083500.73554-1-krzysztof.kozlowski@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <20230720083500.73554-1-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -75,31 +114,14 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document qcom,pmc8180-gpio and qcom,pmc8180c-gpio compatibles already
-used in DTS and in the same binding in allOf:if:then section for
-narrowing available GPIOs:
+On 20.07.2023 10:34, Krzysztof Kozlowski wrote:
+> The GPIO children of PMICs should use qcom,spmi-gpio fallback:
+> 
+>   sc8180x-primus.dtb: pmic@0: gpio@c000:compatible: ['qcom,pmc8180-gpio'] is too short
+> 
+> Fixes: d3302290f59e ("arm64: dts: qcom: sc8180x: Add pmics")
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-  sc8180x-primus.dtb: pmic@4: gpio@c000:compatible:0: 'qcom,pmc8180c-gpio' is not one of ...
-
-Fixes: 04bed6407ee6 ("dt-bindings: pinctrl: qcom,pmic-gpio: describe gpio-line-names")
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml
-index 52b3d78645b3..3f8ad07c7cfd 100644
---- a/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml
-@@ -54,6 +54,8 @@ properties:
-           - qcom,pm8994-gpio
-           - qcom,pm8998-gpio
-           - qcom,pma8084-gpio
-+          - qcom,pmc8180-gpio
-+          - qcom,pmc8180c-gpio
-           - qcom,pmi632-gpio
-           - qcom,pmi8950-gpio
-           - qcom,pmi8994-gpio
--- 
-2.34.1
-
+Konrad
