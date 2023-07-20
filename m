@@ -2,207 +2,220 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AF35975AEA0
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 14:41:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CB9D475AEBA
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 14:49:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230517AbjGTMlp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jul 2023 08:41:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48312 "EHLO
+        id S230061AbjGTMt3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jul 2023 08:49:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52208 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229628AbjGTMlo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 08:41:44 -0400
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 087FA2135;
-        Thu, 20 Jul 2023 05:41:43 -0700 (PDT)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 91534847C0;
-        Thu, 20 Jul 2023 14:41:40 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1689856901;
-        bh=INDhtqyiSykAY67oAokr+tb9ev5bgGsqatnAm+/oJBQ=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=dl7koUIgmsKt9yMfWl8eghCr0lCEoe/7ROgXGaIqCSuooDNhho+qsT6CQItNBf17l
-         QAPfE6wp4Cp0wikeNSArSucsIpp2UI6ItD2Agk0FPkEOeU9ns+iJyXbBeTlRcdoaJf
-         /mX0Mzc3c+P+Ribm+N8AILT4X/1KVuxdKRrXdd3rKPSenkeAYTWEU3ZKB4kq1kKmUu
-         8jBgXEUfK6Byzws0yphzjFtekzNvwxjp0qU8wSOBCWQ9ww9kgpcPFaW4vb18hwyiMs
-         UtbEPjcbJe2Vj02QvekyV5iatDyJIeYg3deHgDuqvho1Lbb0f111pnPOt28KVG0HR7
-         GO1EaIhInDDew==
-Message-ID: <9ccca5c8-73c5-e90c-52a4-df5ce4d02169@denx.de>
-Date:   Thu, 20 Jul 2023 14:41:40 +0200
+        with ESMTP id S229477AbjGTMt2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 08:49:28 -0400
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::221])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8401E2137;
+        Thu, 20 Jul 2023 05:49:26 -0700 (PDT)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id A276E240014;
+        Thu, 20 Jul 2023 12:49:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1689857364;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=KM2SNsZ/HAYwDzPK1l8Fn0Kjjd/fx0+8gmsPG5KrJWc=;
+        b=FEh8dN41ecWrK2JCCbjB9zBgE9WkGGualnGygAJrZVYFkXIxDGxSUpQykjxr0AzozyZ7cU
+        qz7K48c92QfNUdV05PdDAbooql7esT72PoDftVnhRhv0z5LSafebmRZPVg8GdxNM112wpI
+        6rKWJorJxONEzQO1uNbQY3PgEoNRkEhXnJP8HczlydnmBqvFkFTRxKw7j6eMNsY38tQFT5
+        Pye+lsCX9jqxH9R3wowxWVVUc5ua1IG70OeATVmszNu+hYev8lenMrAwDsL2sITr3/7InS
+        4cjaEtZT8ky9/jYANrNEnwpxxFsV98nKM86XXin2SI9R+EYsD4SexDjroj9E8A==
+Date:   Thu, 20 Jul 2023 14:49:16 +0200
+From:   Luca Ceresoli <luca.ceresoli@bootlin.com>
+To:     Xu Yang <xu.yang_2@nxp.com>
+Cc:     Francesco Dolcini <francesco@dolcini.it>, Jun Li <jun.li@nxp.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Francesco Dolcini <francesco.dolcini@toradex.com>
+Subject: Re: [EXT] Re: [PATCH v2 2/3] usb: chipidea: imx: support disabling
+ runtime-pm
+Message-ID: <20230720144916.01d49adb@booty>
+In-Reply-To: <DB7PR04MB45050B15EDA7A2A3940840308C3EA@DB7PR04MB4505.eurprd04.prod.outlook.com>
+References: <20230504162312.1506763-1-luca.ceresoli@bootlin.com>
+        <ZFPiRvoF5l8uGzzZ@francesco-nb.int.toradex.com>
+        <PA4PR04MB96403377F5E37C12AD8C25B389729@PA4PR04MB9640.eurprd04.prod.outlook.com>
+        <20230505120618.2f4cf22c@booty>
+        <ZFThyn/D/dDK9nk3@francesco-nb.int.toradex.com>
+        <PA4PR04MB96405EE2468555EA900B340189739@PA4PR04MB9640.eurprd04.prod.outlook.com>
+        <ZFjaNzY32x8o2XG7@francesco-nb.int.toradex.com>
+        <20230508151756.785ec07e@booty>
+        <20230529121825.71e9b6d6@booty>
+        <PA4PR04MB96405138465D215C34285F02894B9@PA4PR04MB9640.eurprd04.prod.outlook.com>
+        <ZKaWL3+ClI7iNr/4@francesco-nb.int.toradex.com>
+        <20230717184537.6d6ed607@booty>
+        <DB7PR04MB450573F8EA936E049F053A258C38A@DB7PR04MB4505.eurprd04.prod.outlook.com>
+        <20230718142504.075d0186@booty>
+        <DB7PR04MB4505560E7DCBC2523FD7A0FE8C39A@DB7PR04MB4505.eurprd04.prod.outlook.com>
+        <20230719184831.75ae8658@booty>
+        <DB7PR04MB45050B15EDA7A2A3940840308C3EA@DB7PR04MB4505.eurprd04.prod.outlook.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH 2/2] remoteproc: imx_rproc: Switch iMX8MN/MP from SMCCC to
- MMIO
-Content-Language: en-US
-To:     Mathieu Poirier <mathieu.poirier@linaro.org>
-Cc:     linux-remoteproc@vger.kernel.org,
-        Bjorn Andersson <andersson@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Peng Fan <peng.fan@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20230707232626.374475-1-marex@denx.de>
- <20230707232626.374475-2-marex@denx.de> <ZLV16sCOX9gRJS+S@p14s>
-From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <ZLV16sCOX9gRJS+S@p14s>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-GND-Sasl: luca.ceresoli@bootlin.com
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 7/17/23 19:10, Mathieu Poirier wrote:
-> Good morning,
-> 
-> On Sat, Jul 08, 2023 at 01:26:26AM +0200, Marek Vasut wrote:
->> The MX8M CM7 boot via SMC call is problematic, since not all versions
->> of ATF support this interface. Extend the MMIO support so it can boot
->> the CM7 on MX8MN/MP instead and discern the two alternatives using DT
->> compatible strings.
->>
->> Signed-off-by: Marek Vasut <marex@denx.de>
->> ---
->> Cc: Bjorn Andersson <andersson@kernel.org>
->> Cc: Conor Dooley <conor+dt@kernel.org>
->> Cc: Fabio Estevam <festevam@gmail.com>
->> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
->> Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
->> Cc: NXP Linux Team <linux-imx@nxp.com>
->> Cc: Peng Fan <peng.fan@nxp.com>
->> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
->> Cc: Rob Herring <robh+dt@kernel.org>
->> Cc: Sascha Hauer <s.hauer@pengutronix.de>
->> Cc: Shawn Guo <shawnguo@kernel.org>
->> Cc: devicetree@vger.kernel.org
->> Cc: linux-arm-kernel@lists.infradead.org
->> Cc: linux-remoteproc@vger.kernel.org
->> ---
->>   drivers/remoteproc/imx_rproc.c | 53 ++++++++++++++++++++++++++++++++--
->>   drivers/remoteproc/imx_rproc.h |  2 ++
->>   2 files changed, 53 insertions(+), 2 deletions(-)
->>
->> diff --git a/drivers/remoteproc/imx_rproc.c b/drivers/remoteproc/imx_rproc.c
->> index d0eb96d6a4fe1..09589f664a2be 100644
->> --- a/drivers/remoteproc/imx_rproc.c
->> +++ b/drivers/remoteproc/imx_rproc.c
->> @@ -41,6 +41,12 @@
->>   #define IMX7D_M4_STOP			(IMX7D_ENABLE_M4 | IMX7D_SW_M4C_RST | \
->>   					 IMX7D_SW_M4C_NON_SCLR_RST)
->>   
->> +#define IMX8M_M7_STOP			(IMX7D_ENABLE_M4 | IMX7D_SW_M4C_RST)
->> +#define IMX8M_M7_POLL			IMX7D_ENABLE_M4
->> +
->> +#define IMX8M_GPR22			0x58
->> +#define IMX8M_GPR22_CM7_CPUWAIT		BIT(0)
->> +
->>   /* Address: 0x020D8000 */
->>   #define IMX6SX_SRC_SCR			0x00
->>   #define IMX6SX_ENABLE_M4		BIT(22)
->> @@ -92,6 +98,7 @@ static int imx_rproc_detach_pd(struct rproc *rproc);
->>   struct imx_rproc {
->>   	struct device			*dev;
->>   	struct regmap			*regmap;
->> +	struct regmap			*gpr;
->>   	struct rproc			*rproc;
->>   	const struct imx_rproc_dcfg	*dcfg;
->>   	struct imx_rproc_mem		mem[IMX_RPROC_MEM_MAX];
->> @@ -287,6 +294,18 @@ static const struct imx_rproc_att imx_rproc_att_imx6sx[] = {
->>   	{ 0x80000000, 0x80000000, 0x60000000, 0 },
->>   };
->>   
->> +static const struct imx_rproc_dcfg imx_rproc_cfg_imx8mn_mmio = {
->> +	.src_reg	= IMX7D_SRC_SCR,
->> +	.src_mask	= IMX7D_M4_RST_MASK,
->> +	.src_start	= IMX7D_M4_START,
->> +	.src_stop	= IMX8M_M7_STOP,
->> +	.gpr_reg	= IMX8M_GPR22,
->> +	.gpr_wait	= IMX8M_GPR22_CM7_CPUWAIT,
->> +	.att		= imx_rproc_att_imx8mn,
->> +	.att_size	= ARRAY_SIZE(imx_rproc_att_imx8mn),
->> +	.method		= IMX_RPROC_MMIO,
->> +};
->> +
->>   static const struct imx_rproc_dcfg imx_rproc_cfg_imx8mn = {
->>   	.att		= imx_rproc_att_imx8mn,
->>   	.att_size	= ARRAY_SIZE(imx_rproc_att_imx8mn),
->> @@ -367,8 +386,14 @@ static int imx_rproc_start(struct rproc *rproc)
->>   
->>   	switch (dcfg->method) {
->>   	case IMX_RPROC_MMIO:
->> -		ret = regmap_update_bits(priv->regmap, dcfg->src_reg, dcfg->src_mask,
->> -					 dcfg->src_start);
->> +		if (priv->gpr) {
->> +			ret = regmap_clear_bits(priv->gpr, dcfg->gpr_reg,
->> +						dcfg->gpr_wait);
->> +		} else {
->> +			ret = regmap_update_bits(priv->regmap, dcfg->src_reg,
->> +						 dcfg->src_mask,
->> +						 dcfg->src_start);
->> +		}
->>   		break;
->>   	case IMX_RPROC_SMC:
->>   		arm_smccc_smc(IMX_SIP_RPROC, IMX_SIP_RPROC_START, 0, 0, 0, 0, 0, 0, &res);
->> @@ -400,6 +425,16 @@ static int imx_rproc_stop(struct rproc *rproc)
->>   
->>   	switch (dcfg->method) {
->>   	case IMX_RPROC_MMIO:
->> +		if (priv->gpr) {
->> +			ret = regmap_set_bits(priv->gpr, dcfg->gpr_reg,
->> +					      dcfg->gpr_wait);
->> +			if (ret) {
->> +				dev_err(priv->dev,
->> +					"Failed to quiescence M4 platform!\n");
->> +				return ret;
->> +			}
->> +		}
->> +
->>   		ret = regmap_update_bits(priv->regmap, dcfg->src_reg, dcfg->src_mask,
->>   					 dcfg->src_stop);
->>   		break;
->> @@ -988,6 +1023,10 @@ static int imx_rproc_detect_mode(struct imx_rproc *priv)
->>   		break;
->>   	}
->>   
->> +	priv->gpr = syscon_regmap_lookup_by_phandle(dev->of_node, "gpr");
->> +	if (IS_ERR(priv->gpr))
->> +		priv->gpr = NULL;
->> +
->>   	regmap = syscon_regmap_lookup_by_phandle(dev->of_node, "syscon");
->>   	if (IS_ERR(regmap)) {
->>   		dev_err(dev, "failed to find syscon\n");
->> @@ -997,6 +1036,14 @@ static int imx_rproc_detect_mode(struct imx_rproc *priv)
->>   	priv->regmap = regmap;
->>   	regmap_attach_dev(dev, regmap, &config);
->>   
->> +	if (priv->gpr) {
->> +		ret = regmap_read(priv->gpr, dcfg->gpr_reg, &val);
->> +		if (val & dcfg->gpr_wait) {
->> +			imx_rproc_stop(priv->rproc);
->> +			return 0;
->> +		}
->> +	}
-> 
-> Can you provide a comment to explain what is happening above?  In what kind of
-> scenario would a GPR be set with the wait bit on startup?
+Hi Xu,
 
-This happens right after power-on reset, the core indicates its in wait 
-state in the GPR, but its not fully stopped, so we stop it and then the 
-firmware can be loaded into it.
+On Thu, 20 Jul 2023 10:13:57 +0000
+Xu Yang <xu.yang_2@nxp.com> wrote:
+
+> Hi Luca,
+> 
+> > > > -----Original Message-----
+> > > >
+> > > > Hello Xu,
+> > > >
+> > > > On Tue, 18 Jul 2023 08:31:48 +0000
+> > > > Xu Yang <xu.yang_2@nxp.com> wrote:
+> > > >  
+> > > > > > -----Original Message-----
+> > > > > >
+> > > > > > Ciao Francesco,
+> > > > > >
+> > > > > > On Thu, 6 Jul 2023 12:23:43 +0200
+> > > > > > Francesco Dolcini <francesco@dolcini.it> wrote:
+> > > > > >  
+> > > > > > > Hello Luca,
+> > > > > > >
+> > > > > > > On Tue, May 30, 2023 at 11:22:51AM +0000, Jun Li wrote:  
+> > > > > > > > Yes, your understanding is correct, talked with Xu(in CC), he will take this
+> > > > > > > > soon.  
+> > > > > > >
+> > > > > > > A series was posted
+> > > > > > >
+> > > > > > > I had no time to try or look at it yet.  
+> > > > > >
+> > > > > > Thanks for keeping me up to date on this topic, which is still totally
+> > > > > > relevant to me.
+> > > > > >
+> > > > > > I looked at the series, but it does not seem to be addressing the
+> > > > > > problem with USB host not detecting new devices when VBUS is not
+> > > > > > directly connected, e.g. in the Colibri imx6ull SoM.
+> > > > > >
+> > > > > > Xu, do you confirm the series at the link is _not_ solving the problem
+> > > > > > being discussed here?  
+> > > > >
+> > > > > Have you tried this patchset? The upstream driver couldn't get correct
+> > > > > USB role from HW_USBPHY_CTRL register when the ID pin is float. This is
+> > > > > what this patchset is trying to fix. With this patch, condition
+> > > > > "(!vbus_is_on && !mxs_phy_is_otg_host(mxs_phy)" will always be false when
+> > > > > controller acts as host role, then __mxs_phy_disconnect_line(phy, true)
+> > > > > will never be called. So I think it doesn't matter whether VBUS is connected
+> > > > > or not when act as host mode. If you still have issue after apply this patchset,
+> > > > > please let me know.  
+> > > >
+> > > > I tested this patchset on top of v6.5-rc2 and I confirm USB detection
+> > > > is still broken on the Colibri iMX6ULL. With or without the patches
+> > > > the behavior is the same: USB devices are detected only during boot,
+> > > > and anything connected after boot are never detected.  
+> > >
+> > > Thanks for your feedback. As you said this issue will disappear with below change, right?
+> > >
+> > >       diff --git a/drivers/usb/phy/phy-mxs-usb.c b/drivers/usb/phy/phy-mxs-usb.c
+> > >       index e1a2b2ea098b..ec5ee790455e 100644
+> > >       --- a/drivers/usb/phy/phy-mxs-usb.c
+> > >       +++ b/drivers/usb/phy/phy-mxs-usb.c
+> > >       @@ -178,7 +178,6 @@ static const struct mxs_phy_data imx6sx_phy_data = {
+> > >        };
+> > >
+> > >        static const struct mxs_phy_data imx6ul_phy_data = {
+> > >       -       .flags = MXS_PHY_DISCONNECT_LINE_WITHOUT_VBUS,
+> > >        };
+> > >
+> > >        static const struct mxs_phy_data imx7ulp_phy_data = {  
+> > 
+> > Exactly.
+> >   
+> > > So I guess something in __mxs_phy_disconnect_line(mxs_phy, true) is causing this behavior.
+> > > Could you please help to find which line to comment to make this issue disappear?  
+> 
+> To correct what I said:  __mxs_phy_disconnect_line(mxs_phy, false) should
+> be called.
+> 
+> I think the enable wakeup sequence should be follow for host-only port:
+> mxs_phy_set_wakeup(mxs_phy, true)
+>     mxs_phy_disconnect_line(mxs_phy, true);
+>         __mxs_phy_disconnect_line(mxs_phy, false);
+> 
+> And disable wakeup sequence:
+> mxs_phy_set_wakeup(mxs_phy, false)
+>     mxs_phy_disconnect_line(mxs_phy, false);
+>         __mxs_phy_disconnect_line(mxs_phy, false);
+> 
+> So "bool variable disconnect is false" all the time.
+> 
+> > 
+> > I did some tests and detection works by doing _any_ of the following
+> > two changes (or both of them).
+> > 
+> > Change 1:
+> > 
+> > --- a/drivers/usb/phy/phy-mxs-usb.c
+> > +++ b/drivers/usb/phy/phy-mxs-usb.c
+> > @@ -359,10 +359,6 @@ static void __mxs_phy_disconnect_line(struct mxs_phy *mxs_phy, bool disconnect)
+> >         void __iomem *base = mxs_phy->phy.io_priv;
+> >         u32 reg;
+> > 
+> > -       if (disconnect)
+> > -               writel_relaxed(BM_USBPHY_DEBUG_CLKGATE,
+> > -                       base + HW_USBPHY_DEBUG_CLR);
+> > -  
+> 
+> Since disconnect = false, this code didn't get executed all the time.
+> Remove this will have no impact. But your test results didn't align
+> to this. Could you please help check the sequence? Is disconnect
+> true or false when __mxs_phy_disconnect_line is called?
+
+What I observe is that __mxs_phy_disconnect_line(..., true) is called.
+This happens during boot and after unplugging a device in case one was
+detected during boot.
+
+This is because in mxs_phy_disconnect_line() [0]:
+ - on = 1
+ - !vbus_is_on = 1
+ - !mxs_phy_is_otg_host(mxs_phy) = 1
+
+Which one(s) of those three would you expect to be 0?
+
+Some additional info about the !mxs_phy_is_otg_host(mxs_phy) value:
+with or without CONFIG_USB_OTG, it always has the same value because
+phyctrl always has the BM_USBPHY_CTRL_OTG_ID_VALUE bit set.
+
+[0]
+https://elixir.bootlin.com/linux/v6.5-rc2/source/drivers/usb/phy/phy-mxs-usb.c#L415
+
+Luca
+
+-- 
+Luca Ceresoli, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
