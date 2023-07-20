@@ -2,95 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AC68375A4FC
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 06:12:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D189775A521
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 06:35:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229476AbjGTEMl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jul 2023 00:12:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54066 "EHLO
+        id S229668AbjGTEfr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jul 2023 00:35:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59204 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229843AbjGTEMk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 00:12:40 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB7082118;
-        Wed, 19 Jul 2023 21:12:38 -0700 (PDT)
+        with ESMTP id S229477AbjGTEfr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 00:35:47 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 649CF1FD5;
+        Wed, 19 Jul 2023 21:35:46 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 56C8E615B2;
-        Thu, 20 Jul 2023 04:12:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E72A6C433C7;
-        Thu, 20 Jul 2023 04:12:36 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 01C5A61711;
+        Thu, 20 Jul 2023 04:35:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6DA84C433C7;
+        Thu, 20 Jul 2023 04:35:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689826357;
-        bh=3AHdDFL2C0BAHYVyKANj1zL7AGecfNpV115jPkuHkwA=;
+        s=k20201202; t=1689827745;
+        bh=d9AKXeTNlZzlG6Phg9AfyhYmnmjPYT0tp1CULN8PnW0=;
         h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=HCpndoyA8eGRaZwEAIZ5eAIvWa1UeWuwHoS8+lWLp7Or7/SKZsbhFOBSgobJo0rJL
-         MAhkyCABXiwnAJGHJIxevi8/sd+j+nNXbDZBW1ReYpK3kVjNe9aNcWMtgFWxgs15Ld
-         PiTvWapDgxWT1hKwb65i8shckyB9ULl8Y7lRAajvc31XUrxRnhJnB35XYnRv793Ti6
-         gqwZpyFe+A9XhecDDAbpOsKcrRhXSC+b5etDY8PhHsVu71Cu2cKcX0lnLQ2abD0uOO
-         1/CmuVYMV0aehFssABrVcqyaWJ0C5zCDqz7XX3ebEopddshNbgzn9ST18Oo+vHdpzb
-         eRJlJ2uFD+b0g==
-Date:   Wed, 19 Jul 2023 21:12:35 -0700
+        b=tdUV0RbGmzIwaSAjaKh1P8L51/7NeYy5KHuzTpZOA8DKcu95ZMO98l2AIdF8ssFLk
+         +hVY7sxUBU/CPgVDRlj7bhcDWQYwSu/XTdzZsWv/KpW+U6zSZeTsp/odnEpgJdJy3m
+         Flr51URsP0sXic6+U+vwqDFj66/q5UwK5ABjyJJw+97lIBIT7cDvifPW8b0mqXUltF
+         c6+YbvPcUBNLp2j1AlRGARLJwSBrUC/2pL4IMfUbkkhqCnAsdNT41rT0DKRb5DHCYM
+         4OEypzDEWCnyRuqkLiy550qt/hqle4rqyVOq8AM9GP3IL+LLyMw0u81HBR3bQCkcaF
+         5oQssBwS6uE2A==
+Date:   Wed, 19 Jul 2023 21:35:43 -0700
 From:   Jakub Kicinski <kuba@kernel.org>
-To:     Marco Felsch <m.felsch@pengutronix.de>
-Cc:     davem@davemloft.net, edumazet@google.com, pabeni@redhat.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, peppe.cavallaro@st.com,
-        alexandre.torgue@foss.st.com, joabreu@synopsys.com,
-        mcoquelin.stm32@gmail.com, devicetree@vger.kernel.org,
-        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        kernel@pengutronix.de, linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH net-next v2 2/2] net: stmmac: add support for phy-supply
-Message-ID: <20230719211235.1758bbc0@kernel.org>
-In-Reply-To: <20230718132049.3028341-2-m.felsch@pengutronix.de>
-References: <20230718132049.3028341-1-m.felsch@pengutronix.de>
-        <20230718132049.3028341-2-m.felsch@pengutronix.de>
+To:     MD Danish Anwar <danishanwar@ti.com>
+Cc:     Randy Dunlap <rdunlap@infradead.org>,
+        Roger Quadros <rogerq@kernel.org>,
+        Simon Horman <simon.horman@corigine.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Eric Dumazet <edumazet@google.com>,
+        "David S. Miller" <davem@davemloft.net>, <nm@ti.com>, <srk@ti.com>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <netdev@vger.kernel.org>, <linux-omap@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v10 2/2] net: ti: icssg-prueth: Add ICSSG ethernet
+ driver
+Message-ID: <20230719213543.0380e13e@kernel.org>
+In-Reply-To: <20230719082755.3399424-3-danishanwar@ti.com>
+References: <20230719082755.3399424-1-danishanwar@ti.com>
+        <20230719082755.3399424-3-danishanwar@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 18 Jul 2023 15:20:49 +0200 Marco Felsch wrote:
-> Add generic phy-supply handling support to control the phy regulator to
-> avoid handling it within the glue code. Use the generic stmmac_platform
-> code to register a possible phy-supply and the stmmac_main code to
-> handle the power on/off.
-> 
-> Changelog
-> ---
-> 
-> v2:
-> - adapt stmmac_phy_power
-> - move power-on/off into stmmac_main to handle WOL
-> - adapt commit message
-> 
-> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
-> ---
+The patch is too big to review.
 
-Format should be:
+Please break it apart separating into individual features, targeting
+around 10 patches in the series. That will make it easier for reviewers
+to take a look at the features in which they have expertise.
 
-Bla bla bla
+See two things which jumped out at me immediately below:
 
-Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
----
-Changelog
+On Wed, 19 Jul 2023 13:57:55 +0530 MD Danish Anwar wrote:
+> +	ICSSG_STATS(rx_crc_error_frames),
 
-v2:
- bla bla bla
+> +	ICSSG_STATS(rx_max_size_error_frames),
+> +	ICSSG_STATS(rx_frame_min_size),
+> +	ICSSG_STATS(rx_min_size_error_frames),
+> +	ICSSG_STATS(rx_overrun_frames),
 
+> +	ICSSG_STATS(rx_64B_frames),
+> +	ICSSG_STATS(rx_bucket1_frames),
+> +	ICSSG_STATS(rx_bucket2_frames),
+> +	ICSSG_STATS(rx_bucket3_frames),
+> +	ICSSG_STATS(rx_bucket4_frames),
+> +	ICSSG_STATS(rx_bucket5_frames),
+> +	ICSSG_STATS(rx_total_bytes),
+> +	ICSSG_STATS(rx_tx_total_bytes),
+> +	/* Tx */
+> +	ICSSG_STATS(tx_good_frames),
+> +	ICSSG_STATS(tx_broadcast_frames),
+> +	ICSSG_STATS(tx_multicast_frames),
+> +	ICSSG_STATS(tx_odd_nibble_frames),
+> +	ICSSG_STATS(tx_underflow_errors),
+> +	ICSSG_STATS(tx_frame_max_size),
+> +	ICSSG_STATS(tx_max_size_error_frames),
+> +	ICSSG_STATS(tx_frame_min_size),
+> +	ICSSG_STATS(tx_min_size_error_frames),
+> +	ICSSG_STATS(tx_bucket1_size),
+> +	ICSSG_STATS(tx_bucket2_size),
+> +	ICSSG_STATS(tx_bucket3_size),
+> +	ICSSG_STATS(tx_bucket4_size),
+> +	ICSSG_STATS(tx_64B_frames),
+> +	ICSSG_STATS(tx_bucket1_frames),
+> +	ICSSG_STATS(tx_bucket2_frames),
+> +	ICSSG_STATS(tx_bucket3_frames),
+> +	ICSSG_STATS(tx_bucket4_frames),
+> +	ICSSG_STATS(tx_bucket5_frames),
+> +	ICSSG_STATS(tx_total_bytes),
 
-Please fix and rebase because the current version does not apply to
-net-next/main.
+Please use standard stats:
+https://docs.kernel.org/next/networking/statistics.html
+
+And do not duplicate those stats in the ethool -S output.
+
+> +static const char emac_ethtool_priv_flags[][ETH_GSTRING_LEN] = {
+> +	"iet-frame-preemption",
+> +	"iet-mac-verify",
+> +};
+
+What are these? We have a proper ethtool API for frame preemption.
 -- 
 pw-bot: cr
