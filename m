@@ -2,103 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C0FC75A3F5
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 03:30:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DFCEC75A44A
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 04:16:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229524AbjGTBaN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jul 2023 21:30:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42736 "EHLO
+        id S229635AbjGTCQF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jul 2023 22:16:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56604 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229476AbjGTBaM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 21:30:12 -0400
-Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D9B32103;
-        Wed, 19 Jul 2023 18:29:40 -0700 (PDT)
-Received: by mail-pj1-x1030.google.com with SMTP id 98e67ed59e1d1-267711d2b43so32691a91.0;
-        Wed, 19 Jul 2023 18:29:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1689816579; x=1692408579;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=AQW65J+CLOk0J4Yl6UCvOr98eBkR2w5hxC1HptI7xbE=;
-        b=qmGJPJ2hg3UjaBb2W5TUZiFm/1W8FIFAWWRL4+vZWUNaQPe5by1PuvGsitfJCarMpQ
-         k6/eoWphUTqt8uMPfkWrXFjRGC/HCV7cQYWTKfZ+lvU3Vt+4DItUnN1GdPwjlLp6UHTY
-         7yykYedyCHO1CwXJ1zJJR7FCDDZfKu7njtu6sByv1C8CNVFZNwnWuWyUpBKf13brOIVY
-         tSN8eCYh2djTB/KS4hlWkRVw9gZa2lnKFpwYPVj0UZwF6TBYjUxyl+67Ua0DMrsluyxW
-         W76GGIY9SVpUy8xHEd1jpplkpSXkYQtsg67UnDQJtD2yO+R5BXlM3UTxb2/OJ9krH5FM
-         C0MA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689816579; x=1692408579;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=AQW65J+CLOk0J4Yl6UCvOr98eBkR2w5hxC1HptI7xbE=;
-        b=NYKOQQFW9Pr2sNXiSKLHyaQVGlghYYmDjmK5Cf56l5D587kMXRO1MswYdaljSQyw+/
-         8MaJAyAU7+2SlvjhxN5A/AOFJZdaj792KrBiUM12NE8jo1gkQfPtZvHuHRQnJ1eXIM7I
-         Mbc46cD25Mav80sRBPEmSxUEoqoxXT0ehcOtO2kYG1iCXiI9f0p3K0XakNuEe4df8cel
-         nUTv/JTiBx1aqGOlMWrTu62VSkDH34wPVMWjJUT6geEKLnwCwqc1A0xMpeE2myufPStj
-         7RWPvuRqFG9Eu1YYqR+wOjGnp6mDwNmBE1WjKNJcjiiqUhIwsnxV77YaPBbQirMF4py9
-         geKg==
-X-Gm-Message-State: ABy/qLaxGLD0fAIvqULeW97uRN6gR7kMv9fdpdKGtrmp8DH9DGdCEAoK
-        euDLltqLWzl5wo5VpGX8wNfIbLgx6P9ikICTWqFJOyO8elV8ZQ==
-X-Google-Smtp-Source: APBJJlFv+Ur9HDVOEiYblOT9dwPa78OLAxG6dkjvRsIT7V81TNrbXhTP0WL6G7O/mCSDJQoOrQhBPasm0pmw7GlPTV4=
-X-Received: by 2002:a17:90a:c9:b0:263:5c30:2cf8 with SMTP id
- v9-20020a17090a00c900b002635c302cf8mr927708pjd.0.1689816579453; Wed, 19 Jul
- 2023 18:29:39 -0700 (PDT)
+        with ESMTP id S229452AbjGTCQF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jul 2023 22:16:05 -0400
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A1A21FFE;
+        Wed, 19 Jul 2023 19:16:02 -0700 (PDT)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 3FCC580C5;
+        Thu, 20 Jul 2023 10:15:54 +0800 (CST)
+Received: from EXMBX171.cuchost.com (172.16.6.91) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 20 Jul
+ 2023 10:15:54 +0800
+Received: from [192.168.125.127] (113.72.147.86) by EXMBX171.cuchost.com
+ (172.16.6.91) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 20 Jul
+ 2023 10:15:53 +0800
+Message-ID: <52ebc991-0e73-8df4-61b2-32989ab4e62c@starfivetech.com>
+Date:   Thu, 20 Jul 2023 10:15:51 +0800
 MIME-Version: 1.0
-References: <20230719160048.2737423-1-james.hilliard1@gmail.com>
- <20230719160048.2737423-2-james.hilliard1@gmail.com> <CAOMZO5C_BFm+P=9uizL0buSJ9a33PM6hNgG5OcZ3B4YxD=h_6w@mail.gmail.com>
- <CADvTj4piksWhua5W6CMr3ZpkRJcFvR=545hsQhW16KL4gQb4pw@mail.gmail.com>
-In-Reply-To: <CADvTj4piksWhua5W6CMr3ZpkRJcFvR=545hsQhW16KL4gQb4pw@mail.gmail.com>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Wed, 19 Jul 2023 22:29:27 -0300
-Message-ID: <CAOMZO5Cpf1ejTZTzBWhnchMQOJU6hcLot2Ca+78c2h6LWJNTDg@mail.gmail.com>
-Subject: Re: [PATCH 2/2] ARM: dts: imx6q: Add Variscite MX6 Custom board support
-To:     James Hilliard <james.hilliard1@gmail.com>
-Cc:     devicetree@vger.kernel.org,
-        Gregory CLEMENT <gregory.clement@bootlin.com>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        soc@kernel.org, Rob Herring <robh+dt@kernel.org>,
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v1 0/9] Refactoring Microchip PolarFire PCIe driver
+Content-Language: en-US
+To:     Bjorn Helgaas <helgaas@kernel.org>
+CC:     Daire McNamara <daire.mcnamara@microchip.com>,
+        Conor Dooley <conor@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-riscv@lists.infradead.org>, <linux-pci@vger.kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        "Palmer Dabbelt" <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        "Philipp Zabel" <p.zabel@pengutronix.de>,
+        Mason Huo <mason.huo@starfivetech.com>,
+        Leyfoon Tan <leyfoon.tan@starfivetech.com>,
+        Kevin Xie <kevin.xie@starfivetech.com>
+References: <20230719152626.GA502469@bhelgaas>
+From:   Minda Chen <minda.chen@starfivetech.com>
+In-Reply-To: <20230719152626.GA502469@bhelgaas>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [113.72.147.86]
+X-ClientProxiedBy: EXCAS065.cuchost.com (172.16.6.25) To EXMBX171.cuchost.com
+ (172.16.6.91)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 19, 2023 at 7:43=E2=80=AFPM James Hilliard
-<james.hilliard1@gmail.com> wrote:
 
-> How would I determine what the value of these should be?
->
-> The vendor device trees are using 0x80000000 for these values from
-> what I can tell.
 
-0x80000000 means "do not touch the pinctrl, use the value from the bootload=
-er".
-
-It's preferable not to rely on the value that comes from the
-bootloader and explicitly describe the value in the DT.
-
-For the MX6QDL_PAD_DI0_PIN4__IPU1_DI0_PIN04 pin: look at its
-IOMUXC_SW_PAD_CTL register in the i.MX6Q Reference Manual.
-
-It is called IOMUXC_SW_PAD_CTL_PAD_DI0_PIN04 and its reset value is 0x1b0b0=
-.
-
-So this entry would become:
-
-MX6QDL_PAD_DI0_PIN4__IPU1_DI0_PIN04             0x1b0b0
+On 2023/7/19 23:26, Bjorn Helgaas wrote:
+> On Wed, Jul 19, 2023 at 06:20:48PM +0800, Minda Chen wrote:
+>> This patchset final purpose is add PCIe driver for StarFive JH7110 SoC.
+>>   dt-bindings: PCI: Add PLDA XpressRICH PCIe host common properties
+>> JH7110 using PLDA XpressRICH PCIe IP. Microchip PolarFire Using the
+>> same IP and have commit their codes, which are mixed with PLDA
+>> controller codes and Microchip platform codes.
+> 
+> I guess this actually adds TWO drivers: PCIE_PLDA_PLAT_HOST (claims
+> "plda,xpressrich-pcie-host" devices) and PCIE_STARFIVE_HOST (claims
+> "starfive,jh7110-pcie" devices), right?
+> 
+Yes, plda,xpressrich-pcie-host is IP controller driver. Do it like designware/cadence/mobiveil, (pcie-(ip)-plat.c)
+But I can't test it. I don't whether need it. If it not required, I will delete it.
+>> For re-use the PLDA controller codes, I request refactoring microchip
+>> codes, move PLDA common codes to PLDA files.
+>> Desigware and Cadence is good example for refactoring codes.
+>> 
+>> So first step is extract the PLDA common codes from microchip, and
+>> refactoring the microchip codes.(patch1 - 4)
+>> Then add the PLDA platform codes. (patch5, 6)
+>> At last, add Starfive codes. (patch7 - 9)
+>> 
+>> This patchset is base on v6.5-rc1
+> 
+> Doesn't quite apply cleanly for me:
+> 
+I am sorry, The driver need stg clk and syscon driver, which are have't be merge to main line.
+mainly dts is(patch9) rejected, Must apply this series patch first. (I forget add this link in cover letter)
+https://patchwork.kernel.org/project/linux-riscv/cover/20230712092007.31013-1-xingyu.wu@starfivetech.com/
+and this syscon patch 
+https://patchwork.kernel.org/project/linux-riscv/patch/20230717023040.78860-7-xingyu.wu@starfivetech.com/
+>   10:10:15 ~/linux (main)$ git checkout -b wip/minda-starfive-v1 v6.5-rc1
+>   Switched to a new branch 'wip/minda-starfive-v1'
+>   10:10:33 ~/linux (wip/minda-starfive-v1)$ git am m/20230719_minda_chen_refactoring_microchip_polarfire_pcie_driver.mbx
+>   Applying: dt-bindings: PCI: Add PLDA XpressRICH PCIe host common properties
+>   Applying: dt-bindings: PCI: microchip: Remove the PLDA common properties
+>   Applying: PCI: PLDA: Get PLDA common codes from Microchip PolarFire host
+>   Applying: PCI: microchip: Move PCIe driver to PLDA directory
+>   Applying: dt-bindings: PLDA: Add PLDA XpressRICH PCIe host controller
+>   Applying: PCI: PLDA: Add host conroller platform driver
+>   Applying: dt-bindings: PCI: Add StarFive JH7110 PCIe controller
+>   Applying: PCI: PLDA: starfive: Add JH7110 PCIe controller
+>   Applying: riscv: dts: starfive: add PCIe dts configuration for JH7110
+>   error: patch failed: arch/riscv/boot/dts/starfive/jh7110.dtsi:629
+>   error: arch/riscv/boot/dts/starfive/jh7110.dtsi: patch does not apply
+>   Patch failed at 0009 riscv: dts: starfive: add PCIe dts configuration for JH7110
+> 
+>>   dt-bindings: PCI: Add PLDA XpressRICH PCIe host common properties
+>>   dt-bindings: PCI: microchip: Remove the PLDA common properties
+>>   PCI: PLDA: Get PLDA common codes from Microchip PolarFire host
+>>   PCI: microchip: Move PCIe driver to PLDA directory
+>>   dt-bindings: PLDA: Add PLDA XpressRICH PCIe host controller
+>>   PCI: PLDA: Add host conroller platform driver
+> 
+> "controller"
+>ok
+>>   dt-bindings: PCI: Add StarFive JH7110 PCIe controller
+>>   PCI: PLDA: starfive: Add JH7110 PCIe controller
+>>   riscv: dts: starfive: add PCIe dts configuration for JH7110
+> 
+> Use "PCI: plda: " prefix for PLDA things that are shared across
+> multiple drivers.
+> 
+> Use "PCI: starfive: " prefix for starfive-specific things.
+> 
+> This is the same as how drivers/pci/controller/dwc/* looks.
+> 
+ok, thanks.
+> Bjorn
