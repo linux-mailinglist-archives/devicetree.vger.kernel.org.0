@@ -2,219 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E24FF75A7B8
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 09:23:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A54175A7CB
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 09:30:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231330AbjGTHX5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jul 2023 03:23:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52140 "EHLO
+        id S231177AbjGTHaI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jul 2023 03:30:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55078 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231519AbjGTHX4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 03:23:56 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB80D19A7
-        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 00:23:54 -0700 (PDT)
-Received: from dude02.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::28])
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <m.felsch@pengutronix.de>)
-        id 1qMO0I-00086j-7R; Thu, 20 Jul 2023 09:23:14 +0200
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        peppe.cavallaro@st.com, alexandre.torgue@foss.st.com,
-        joabreu@synopsys.com, mcoquelin.stm32@gmail.com
-Cc:     devicetree@vger.kernel.org, netdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org, kernel@pengutronix.de,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH net-next v3 2/2] net: stmmac: add support for phy-supply
-Date:   Thu, 20 Jul 2023 09:23:04 +0200
-Message-Id: <20230720072304.3358701-2-m.felsch@pengutronix.de>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230720072304.3358701-1-m.felsch@pengutronix.de>
-References: <20230720072304.3358701-1-m.felsch@pengutronix.de>
+        with ESMTP id S231423AbjGTHaG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 03:30:06 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21A332690;
+        Thu, 20 Jul 2023 00:30:04 -0700 (PDT)
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36K4s4IK013732;
+        Thu, 20 Jul 2023 07:30:00 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=KEaE+4/eOq7glk/KsqipPr77qc4pl5hUgEF1k2vKie4=;
+ b=ZxdxKer+mkoo0Tht08K561+QmYACYMzugQNk1lI+2JDaVcdb2ZmG8tJ61ssQyROHHMfO
+ Y9Ai7xAyS4doaMJcs57KtanYaZMm1CIFf6Zr7Hg1Mugm5QFkDY8UPJ4dD3b7Qrr0bEGl
+ 0YeF5jjpe60j+skgUHVozlbyHTALluQmB1rSYnbY/iet3HHnyrnh9NYGccdQUdxKF6Vr
+ SxTzt+OEYvldDgG/5j70iyywB9IYJmfX8N8bWGcQ9tQCn+6nz+EocEvDzUSfpijG2Yf8
+ NisCjcQv5Dpqyul7fhAIzcMjc9wVh1I5Aoujm96OOdA0cVABEOmrWYiQ93+EeqRSt2P7 RQ== 
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3rx728u408-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 20 Jul 2023 07:30:00 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 36K7Txjf002822
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 20 Jul 2023 07:30:00 GMT
+Received: from harihk-linux.qualcomm.com (10.80.80.8) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.30; Thu, 20 Jul 2023 00:29:55 -0700
+From:   Hariharan K <quic_harihk@quicinc.com>
+To:     <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC:     <quic_srichara@quicinc.com>, <quic_sjaganat@quicinc.com>,
+        <quic_kathirav@quicinc.com>, <quic_arajkuma@quicinc.com>,
+        <quic_anusha@quicinc.com>
+Subject: [PATCH 0/2] Add common RDP dtsi file for ipq5018
+Date:   Thu, 20 Jul 2023 12:59:36 +0530
+Message-ID: <20230720072938.31546-1-quic_harihk@quicinc.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:1101:1d::28
-X-SA-Exim-Mail-From: m.felsch@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: uNrE66v2I9xcFd2uWXqVx3HqnZj-BMtm
+X-Proofpoint-ORIG-GUID: uNrE66v2I9xcFd2uWXqVx3HqnZj-BMtm
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-07-20_02,2023-07-19_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 phishscore=0
+ bulkscore=0 suspectscore=0 priorityscore=1501 lowpriorityscore=0
+ mlxlogscore=420 impostorscore=0 spamscore=0 clxscore=1011 adultscore=0
+ mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2306200000 definitions=main-2307200062
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add generic phy-supply handling support to control the phy regulator to
-avoid handling it within the glue code. Use the generic stmmac_platform
-code to register a possible phy-supply and the stmmac_main code to
-handle the power on/off.
+Some interfaces are common across RDPs. Move the common
+nodes to ipq5018-rdp-common.dtsi.
+Also update the compatible in device tree binding
+to use model names instead of rdp numbers.
 
-Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
----
-Changelog
-v3:
-- rebased onto net-next/main
-- fixed changelog style
+This series is based on the below series,
+https://lore.kernel.org/lkml/20230616101749.2083
+974-1-quic_srichara@quicinc.com/
 
-v2:
-- adapt stmmac_phy_power
-- move power-on/off into stmmac_main to handle WOL
-- adapt commit message
+Hariharan K (2):
+  dt-bindings: arm: qcom: Update the compatible
+  arm64: dts: qcom: ipq5018: Add common RDP dtsi file
 
- .../net/ethernet/stmicro/stmmac/stmmac_main.c | 58 ++++++++++++++++++-
- .../ethernet/stmicro/stmmac/stmmac_platform.c | 10 ++++
- include/linux/stmmac.h                        |  1 +
- 3 files changed, 68 insertions(+), 1 deletion(-)
+ .../devicetree/bindings/arm/qcom.yaml         |  4 +--
+ .../boot/dts/qcom/ipq5018-rdp-common.dtsi     | 35 +++++++++++++++++++
+ .../arm64/boot/dts/qcom/ipq5018-rdp432-c2.dts | 30 +++-------------
+ 3 files changed, 41 insertions(+), 28 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/qcom/ipq5018-rdp-common.dtsi
 
-diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-index e7ca52f0d2f2d..6ffb03abddfd9 100644
---- a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-@@ -31,6 +31,7 @@
- #include <linux/pm_runtime.h>
- #include <linux/prefetch.h>
- #include <linux/pinctrl/consumer.h>
-+#include <linux/regulator/consumer.h>
- #ifdef CONFIG_DEBUG_FS
- #include <linux/debugfs.h>
- #include <linux/seq_file.h>
-@@ -1128,6 +1129,55 @@ static void stmmac_check_pcs_mode(struct stmmac_priv *priv)
- 	}
- }
- 
-+/**
-+ * stmmac_phy_power - PHY regulator on/off
-+ * @priv: driver private structure
-+ * @enable: turn on the regulator if true else turn it off
-+ * Enable or disable the regulator powering the PHY.
-+ */
-+static int stmmac_phy_power(struct stmmac_priv *priv, bool enable)
-+{
-+	struct regulator *regulator = priv->plat->phy_regulator;
-+	struct device *dev = priv->device;
-+
-+	if (!regulator)
-+		return 0;
-+
-+	if (enable) {
-+		int ret;
-+
-+		ret = regulator_enable(regulator);
-+		if (ret)
-+			dev_err(dev, "Fail to enable regulator\n");
-+
-+		return ret;
-+	}
-+
-+	regulator_disable(regulator);
-+
-+	return 0;
-+}
-+
-+/**
-+ * stmmac_phy_power_on - PHY regulator on
-+ * @priv: driver private structure
-+ * Enable the PHY regulator
-+ */
-+static int stmmac_phy_power_on(struct stmmac_priv *priv)
-+{
-+	return stmmac_phy_power(priv, true);
-+}
-+
-+/**
-+ * stmmac_phy_power_off - PHY regulator off
-+ * @priv: driver private structure
-+ * Disable the PHY regulator
-+ */
-+static void stmmac_phy_power_off(struct stmmac_priv *priv)
-+{
-+	stmmac_phy_power(priv, false);
-+}
-+
- /**
-  * stmmac_init_phy - PHY initialization
-  * @dev: net device structure
-@@ -1253,7 +1303,8 @@ static int stmmac_phy_setup(struct stmmac_priv *priv)
- 		return PTR_ERR(phylink);
- 
- 	priv->phylink = phylink;
--	return 0;
-+
-+	return stmmac_phy_power_on(priv);
- }
- 
- static void stmmac_display_rx_rings(struct stmmac_priv *priv,
-@@ -7588,6 +7639,7 @@ void stmmac_dvr_remove(struct device *dev)
- 	if (priv->hw->pcs != STMMAC_PCS_TBI &&
- 	    priv->hw->pcs != STMMAC_PCS_RTBI)
- 		stmmac_mdio_unregister(ndev);
-+	stmmac_phy_power_off(priv);
- 	destroy_workqueue(priv->wq);
- 	mutex_destroy(&priv->lock);
- 	bitmap_free(priv->af_xdp_zc_qps);
-@@ -7651,6 +7703,8 @@ int stmmac_suspend(struct device *dev)
- 		if (device_may_wakeup(priv->device))
- 			phylink_speed_down(priv->phylink, false);
- 		phylink_suspend(priv->phylink, false);
-+		if (!priv->plat->use_phy_wol)
-+			stmmac_phy_power_off(priv);
- 	}
- 	rtnl_unlock();
- 
-@@ -7733,6 +7787,8 @@ int stmmac_resume(struct device *dev)
- 		priv->irq_wake = 0;
- 	} else {
- 		pinctrl_pm_select_default_state(priv->device);
-+		if (!priv->plat->use_phy_wol)
-+			stmmac_phy_power_on(priv);
- 		/* reset the phy so that it's ready */
- 		if (priv->mii)
- 			stmmac_mdio_reset(priv->mii);
-diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
-index 23d53ea04b24d..18988da4614cd 100644
---- a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
-@@ -11,6 +11,7 @@
- #include <linux/device.h>
- #include <linux/platform_device.h>
- #include <linux/pm_runtime.h>
-+#include <linux/regulator/consumer.h>
- #include <linux/module.h>
- #include <linux/io.h>
- #include <linux/of.h>
-@@ -424,6 +425,15 @@ stmmac_probe_config_dt(struct platform_device *pdev, u8 *mac)
- 	if (plat->interface < 0)
- 		plat->interface = plat->phy_interface;
- 
-+	/* Optional regulator for PHY */
-+	plat->phy_regulator = devm_regulator_get_optional(&pdev->dev, "phy");
-+	if (IS_ERR(plat->phy_regulator)) {
-+		if (PTR_ERR(plat->phy_regulator) == -EPROBE_DEFER)
-+			return ERR_CAST(plat->phy_regulator);
-+		dev_info(&pdev->dev, "No regulator found\n");
-+		plat->phy_regulator = NULL;
-+	}
-+
- 	/* Some wrapper drivers still rely on phy_node. Let's save it while
- 	 * they are not converted to phylink. */
- 	plat->phy_node = of_parse_phandle(np, "phy-handle", 0);
-diff --git a/include/linux/stmmac.h b/include/linux/stmmac.h
-index ef67dba775d04..b5d2d75de2759 100644
---- a/include/linux/stmmac.h
-+++ b/include/linux/stmmac.h
-@@ -222,6 +222,7 @@ struct plat_stmmacenet_data {
- 	int phy_addr;
- 	int interface;
- 	phy_interface_t phy_interface;
-+	struct regulator *phy_regulator;
- 	struct stmmac_mdio_bus_data *mdio_bus_data;
- 	struct device_node *phy_node;
- 	struct device_node *phylink_node;
 -- 
-2.39.2
+2.17.1
 
