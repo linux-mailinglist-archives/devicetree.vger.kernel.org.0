@@ -2,167 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 15C1A75AD8C
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 13:55:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2042675AD91
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 13:55:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230006AbjGTLzB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jul 2023 07:55:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51374 "EHLO
+        id S231295AbjGTLzk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jul 2023 07:55:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52428 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229682AbjGTLy6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 07:54:58 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFCBA2D7D;
-        Thu, 20 Jul 2023 04:54:37 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id C54DA6607083;
-        Thu, 20 Jul 2023 12:54:30 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1689854071;
-        bh=xXEl0bZXMT2n/uen0YxtWvqWsJD2b4bMTkkm5cQcOic=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=jLSsMFqqYoBSQC564mB2hCYCi1hnD3bT31BL/kAaZhUmJ0FgmNIdhGxYyKmrPL0Ba
-         tJMMXoPkw3y5ZcpH1BmGQ8CoPXUUnQvGzwWY4f4WV8uXm9pzgf9E3CTVKi/lIYOOEF
-         JC9N7SaM2Ir5T+/RpZWjD1DyKIqoMa5es1vhDatBSaOO5VqOTWb5hUVLHKz5c8hw2c
-         fJ7PPkNtU0IKAlRXqcKsYM1gQOwYq4Pq7rLAZ+zOpuCCseCrOgLdZiU6hWQ76/0YoL
-         4Uye+n5XxetaD1Bbaj2zWHcm7WhfqbO0RbIWOkhL5Fr1JWllj6TdLyn0ah+EaLeQXb
-         YVf6ogHqsNJbg==
-Message-ID: <65da6005-3c07-a7ea-6b63-db45c8915ae8@collabora.com>
-Date:   Thu, 20 Jul 2023 13:54:28 +0200
+        with ESMTP id S231514AbjGTLzh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 07:55:37 -0400
+Received: from mail-il1-x12b.google.com (mail-il1-x12b.google.com [IPv6:2607:f8b0:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C6D826AC
+        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 04:55:20 -0700 (PDT)
+Received: by mail-il1-x12b.google.com with SMTP id e9e14a558f8ab-345a76c3a2eso3585225ab.2
+        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 04:55:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ventanamicro.com; s=google; t=1689854116; x=1690458916;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=y2nsfpAZOzKSfsD7kBlpnXhljpFm6V4jZ1IFt269Dzc=;
+        b=kLVhvzoRiwP4KdAf8uilvLNrZhhEeWA+9WEjhqTvEMRibj4INzYHEavZysqKaNPicF
+         SRMFcUJoBwewq2wnONrv2bD8dtVPw6mv3yqCGuTdxszlxFa1cAmYoK4kHsUnWBotR6f/
+         tXXdXgyVHtZl9unXI+dXIvRftUHiw81I/9Cfisf8/8uHLlvuQ5hXUJP5DtQpoh1S0MPD
+         02rC1yelAvNVT7tlf5NxxrEd8iHkgnomBB+3Z7geb+7UIXUoLT8NtWmfmIislmBhn3DF
+         goXM0jaLYk+7GfEvTrX/dP1Nwh2HHdmXPFFstDbRsmtiLwgCALkcA86hj2J0dDZsf48v
+         Onow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689854116; x=1690458916;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=y2nsfpAZOzKSfsD7kBlpnXhljpFm6V4jZ1IFt269Dzc=;
+        b=ISeycU+YZdeo5/tJ2xesmNG8b8k9jlqcCVnfXeDoOCQuZCIaJKaGmGPKbbGA2ST9dz
+         WPv4AyC8YpwFd5R2znt7nHSWv7kF1s5H/Qrpc48cg7fvmpFrQd37yo/TkeqF7gOwvIas
+         H9hM3PNNPhdAWxLKbY/ntuC3EY/2Tf4/Qd74oUcY4nXR+CeRIHwGMzem3bSUo41pB7W1
+         6bRyQC/1tPvsDn7g8Vt5hDr5Bo0oG/Ib9Zx1Aqtc4qqUOx9TYQdXJooK6CuJ3QdfvVhT
+         Ju7rtXZf2kU+M/fDdQTZ/dCRkrxB34AXF/tF327uF6kDyBkDRIFf+tnWmvdw3uRfugr2
+         SLow==
+X-Gm-Message-State: ABy/qLYFRuBbRTcT48V62dOeC3lqz1x57RpOU7OK0H4gnV43BbXvldNR
+        hnlIOrl8VKWa2UsERY/56QrBTwTenDudp9YRVQA82zhAONHi9k6V
+X-Google-Smtp-Source: APBJJlGuhvDEwX4zHCaoLq/vlPx/v2JTXQRrMKCcSuSSpMPMike0ZYN5c7gHKmoZ7va9hMESrNSbxdOsjufjpaBkyv4=
+X-Received: by 2002:a92:d3c6:0:b0:348:90eb:883b with SMTP id
+ c6-20020a92d3c6000000b0034890eb883bmr1604226ilh.13.1689854115872; Thu, 20 Jul
+ 2023 04:55:15 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH v3,3/3] drm/mediatek: dp: Add the audio divider to
- mtk_dp_data struct
-Content-Language: en-US
-To:     Alexandre Mergnat <amergnat@baylibre.com>,
-        Shuijing Li <shuijing.li@mediatek.com>,
-        chunkuang.hu@kernel.org, p.zabel@pengutronix.de, airlied@gmail.com,
-        daniel@ffwll.ch, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        matthias.bgg@gmail.com, jitao.shi@mediatek.com
-Cc:     dri-devel@lists.freedesktop.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20230720082604.18618-1-shuijing.li@mediatek.com>
- <20230720082604.18618-4-shuijing.li@mediatek.com>
- <44cc9cc5-7dce-f7a2-f077-b62d7851ee12@baylibre.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <44cc9cc5-7dce-f7a2-f077-b62d7851ee12@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+References: <20230719113542.2293295-1-apatel@ventanamicro.com>
+ <20230719113542.2293295-3-apatel@ventanamicro.com> <20230719223758.GA892809-robh@kernel.org>
+In-Reply-To: <20230719223758.GA892809-robh@kernel.org>
+From:   Anup Patel <apatel@ventanamicro.com>
+Date:   Thu, 20 Jul 2023 17:25:03 +0530
+Message-ID: <CAK9=C2Ui3H8jOXZbSd_CCmtxVLWR=-JrTDK8kDbrLhJ4uUi+9g@mail.gmail.com>
+Subject: Re: [PATCH v6 02/14] of: property: Add fw_devlink support for msi-parent
+To:     Rob Herring <robh@kernel.org>
+Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Atish Patra <atishp@atishpatra.org>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        Sunil V L <sunilvl@ventanamicro.com>,
+        Saravana Kannan <saravanak@google.com>,
+        Anup Patel <anup@brainfault.org>,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 20/07/23 12:14, Alexandre Mergnat ha scritto:
-> 
-> 
-> On 20/07/2023 10:26, Shuijing Li wrote:
->> Due to the difference of HW, different dividers need to be set.
->>
->> Signed-off-by: Shuijing Li <shuijing.li@mediatek.com>
->> Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
->> ---
->> Changes in v3:
->> Separate these two things into two different patches.
->> per suggestion from the previous thread:
->> https://lore.kernel.org/lkml/e2ad22bcba31797f38a12a488d4246a01bf0cb2e.camel@mediatek.com/
->> Changes in v2:
->> - change the variables' name to be more descriptive
->> - add a comment that describes the function of mtk_dp_audio_sample_arrange
->> - reduce indentation by doing the inverse check
->> - add a definition of some bits
->> - add support for mediatek, mt8188-edp-tx
->> per suggestion from the previous thread:
->> https://lore.kernel.org/lkml/ac0fcec9-a2fe-06cc-c727-189ef7babe9c@collabora.com/
->> ---
->>   drivers/gpu/drm/mediatek/mtk_dp.c     | 7 ++++++-
->>   drivers/gpu/drm/mediatek/mtk_dp_reg.h | 1 +
->>   2 files changed, 7 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/gpu/drm/mediatek/mtk_dp.c b/drivers/gpu/drm/mediatek/mtk_dp.c
->> index d8cda83d6fef..8e1a13ab2ba2 100644
->> --- a/drivers/gpu/drm/mediatek/mtk_dp.c
->> +++ b/drivers/gpu/drm/mediatek/mtk_dp.c
->> @@ -140,6 +140,7 @@ struct mtk_dp_data {
->>       const struct mtk_dp_efuse_fmt *efuse_fmt;
->>       bool audio_supported;
->>       bool audio_pkt_in_hblank_area;
->> +    u16 audio_m_div2_bit;
->>   };
->>   static const struct mtk_dp_efuse_fmt mt8195_edp_efuse_fmt[MTK_DP_CAL_MAX] = {
->> @@ -648,7 +649,7 @@ static void mtk_dp_audio_sdp_asp_set_channels(struct mtk_dp 
->> *mtk_dp,
->>   static void mtk_dp_audio_set_divider(struct mtk_dp *mtk_dp)
->>   {
->>       mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_30BC,
->> -               AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_DIV_2,
->> +               mtk_dp->data->audio_m_div2_bit,
->>                  AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_MASK);
->>   }
->> @@ -2636,6 +2637,7 @@ static const struct mtk_dp_data mt8188_edp_data = {
->>       .efuse_fmt = mt8195_edp_efuse_fmt,
->>       .audio_supported = false,
->>       .audio_pkt_in_hblank_area = false,
->> +    .audio_m_div2_bit = MT8188_AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_DIV_2,
->>   };
->>   static const struct mtk_dp_data mt8188_dp_data = {
->> @@ -2644,6 +2646,7 @@ static const struct mtk_dp_data mt8188_dp_data = {
->>       .efuse_fmt = mt8195_dp_efuse_fmt,
->>       .audio_supported = true,
->>       .audio_pkt_in_hblank_area = true,
->> +    .audio_m_div2_bit = MT8188_AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_DIV_2,
->>   };
->>   static const struct mtk_dp_data mt8195_edp_data = {
->> @@ -2652,6 +2655,7 @@ static const struct mtk_dp_data mt8195_edp_data = {
->>       .efuse_fmt = mt8195_edp_efuse_fmt,
->>       .audio_supported = false,
->>       .audio_pkt_in_hblank_area = false,
->> +    .audio_m_div2_bit = AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_DIV_2,
->>   };
->>   static const struct mtk_dp_data mt8195_dp_data = {
->> @@ -2660,6 +2664,7 @@ static const struct mtk_dp_data mt8195_dp_data = {
->>       .efuse_fmt = mt8195_dp_efuse_fmt,
->>       .audio_supported = true,
->>       .audio_pkt_in_hblank_area = false,
->> +    .audio_m_div2_bit = AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_DIV_2,
->>   };
->>   static const struct of_device_id mtk_dp_of_match[] = {
->> diff --git a/drivers/gpu/drm/mediatek/mtk_dp_reg.h 
->> b/drivers/gpu/drm/mediatek/mtk_dp_reg.h
->> index f38d6ff12afe..6d7f0405867e 100644
->> --- a/drivers/gpu/drm/mediatek/mtk_dp_reg.h
->> +++ b/drivers/gpu/drm/mediatek/mtk_dp_reg.h
->> @@ -162,6 +162,7 @@
->>   #define AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_MUL_2    (1 << 8)
->>   #define AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_MUL_4    (2 << 8)
->>   #define AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_MUL_8    (3 << 8)
->> +#define MT8188_AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_DIV_2    (4 << 8)
-> 
-> IMO, it's a bit weird to have SoC specific define in the generic header.
-> Are you sure this bit is only available for MT8188 ?
-> 
+On Thu, Jul 20, 2023 at 4:08=E2=80=AFAM Rob Herring <robh@kernel.org> wrote=
+:
+>
+> On Wed, Jul 19, 2023 at 05:05:30PM +0530, Anup Patel wrote:
+> > This allows fw_devlink to create device links between consumers of
+> > a MSI and the supplier of the MSI.
+> >
+> > Signed-off-by: Anup Patel <apatel@ventanamicro.com>
+> > ---
+> >  drivers/of/property.c | 32 ++++++++++++++++++++++++++++++++
+> >  1 file changed, 32 insertions(+)
+> >
+> > diff --git a/drivers/of/property.c b/drivers/of/property.c
+> > index ddc75cd50825..e4096b79a872 100644
+> > --- a/drivers/of/property.c
+> > +++ b/drivers/of/property.c
+> > @@ -1325,6 +1325,37 @@ static struct device_node *parse_interrupts(stru=
+ct device_node *np,
+> >       return of_irq_parse_one(np, index, &sup_args) ? NULL : sup_args.n=
+p;
+> >  }
+> >
+> > +static struct device_node *parse_msi_parent(struct device_node *np,
+> > +                                         const char *prop_name, int in=
+dex)
+> > +{
+> > +     struct of_phandle_args sup_args;
+> > +     struct device_node *msi_np;
+> > +
+> > +     if (!IS_ENABLED(CONFIG_OF_IRQ))
+> > +             return NULL;
+>
+> Why do we need this? Sparc is not going to have MSI properties to begin
+> with. I guess it saves a little bit of code. Though Sparc doesn't need
+> any of this file. Or maybe there's a better kconfig symbol to use here
+> if MSIs are not supported?
 
-Eh, the P0_DIV2 bit is 5<<8 for MT8195, while for 8188 it's 4<<8, clearly :-)
+I can't think of a better kconfig symbol over here but since Sparc does
+not have MSI properties, I think following is better:
 
->>   #define AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_DIV_2    (5 << 8)
->>   #define AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_DIV_4    (6 << 8)
->>   #define AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_DIV_8    (7 << 8)
-> 
-> Reviewed-by: Alexandre Mergnat <amergnat@baylibre.com>
-> 
+if (IS_ENABLED(CONFIG_SPARC))
+    return NULL;
 
+Any other suggestions ?
 
+Regards,
+Anup
+
+>
+> > +
+> > +     if (strcmp(prop_name, "msi-parent"))
+> > +             return NULL;
+> > +
+> > +     msi_np =3D of_parse_phandle(np, prop_name, 0);
+> > +     if (msi_np) {
+> > +             if (!of_property_read_bool(msi_np, "#msi-cells")) {
+> > +                     if (index) {
+> > +                             of_node_put(msi_np);
+> > +                             return NULL;
+> > +                     }
+> > +                     return msi_np;
+> > +             }
+> > +             of_node_put(msi_np);
+> > +     }
+> > +
+> > +     if (of_parse_phandle_with_args(np, prop_name, "#msi-cells", index=
+,
+> > +                                    &sup_args))
+> > +             return NULL;
+> > +
+> > +     return sup_args.np;
+> > +}
+> > +
+> >  static const struct supplier_bindings of_supplier_bindings[] =3D {
+> >       { .parse_prop =3D parse_clocks, },
+> >       { .parse_prop =3D parse_interconnects, },
+> > @@ -1359,6 +1390,7 @@ static const struct supplier_bindings of_supplier=
+_bindings[] =3D {
+> >       { .parse_prop =3D parse_regulators, },
+> >       { .parse_prop =3D parse_gpio, },
+> >       { .parse_prop =3D parse_gpios, },
+> > +     { .parse_prop =3D parse_msi_parent, },
+> >       {}
+> >  };
+> >
+> > --
+> > 2.34.1
+> >
