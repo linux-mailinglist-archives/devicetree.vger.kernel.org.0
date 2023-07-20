@@ -2,193 +2,330 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E6AF575B8B8
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 22:27:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 569AC75B959
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 23:09:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229808AbjGTU1W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jul 2023 16:27:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33320 "EHLO
+        id S230044AbjGTVJo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jul 2023 17:09:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47926 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229451AbjGTU1V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 16:27:21 -0400
-Received: from mx0b-002e3701.pphosted.com (mx0b-002e3701.pphosted.com [148.163.143.35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 869199E;
-        Thu, 20 Jul 2023 13:27:19 -0700 (PDT)
-Received: from pps.filterd (m0150245.ppops.net [127.0.0.1])
-        by mx0b-002e3701.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36KI1wAW009088;
-        Thu, 20 Jul 2023 20:26:54 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hpe.com; h=from : to : cc : subject
- : date : message-id : references : in-reply-to : content-type : content-id
- : content-transfer-encoding : mime-version; s=pps0720;
- bh=WeSb93xc7ng0y5N8IU/zFiuSO2hMFiO1EMivOrysgMw=;
- b=jv+9VPLeb8Nv7PrUjoMaHlisKZ56kp9IcrNT/3v1Ae26LcxaEcESRZh778cB1qqg3Njt
- FSjEb1AUBJgVV+Vb7z7fMQ04bBhMus8GR+/XQbJkwfNlqni91QlLmjko5taXsovVmb2G
- O9mtm7JUup+XjNhxF4NgQ8rLBcF4nbSiWw47N9RHj4NqohRxF4+lcsBbH2KspKWetHoq
- ZaGUnMMysrDraKHGtrMin/ysfZOBL082QzyUXGYDDmHj20WQq6FdyIoYHF+/enUTOU03
- cNzDgKl0BgzYcU2d17BfNzfCwa24o4nnX5jO/EpuHXsqpkVre9/MCCBD7qx3ObVI9h26 yw== 
-Received: from p1lg14878.it.hpe.com (p1lg14878.it.hpe.com [16.230.97.204])
-        by mx0b-002e3701.pphosted.com (PPS) with ESMTPS id 3ry8dt1xfp-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 20 Jul 2023 20:26:53 +0000
-Received: from p1wg14925.americas.hpqcorp.net (unknown [10.119.18.114])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by p1lg14878.it.hpe.com (Postfix) with ESMTPS id 4F3CCD2C8;
-        Thu, 20 Jul 2023 20:26:53 +0000 (UTC)
-Received: from p1wg14925.americas.hpqcorp.net (10.119.18.114) by
- p1wg14925.americas.hpqcorp.net (10.119.18.114) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.42; Thu, 20 Jul 2023 08:26:53 -1200
-Received: from p1wg14921.americas.hpqcorp.net (16.230.19.124) by
- p1wg14925.americas.hpqcorp.net (10.119.18.114) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42
- via Frontend Transport; Thu, 20 Jul 2023 08:26:53 -1200
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (192.58.206.35)
- by edge.it.hpe.com (16.230.19.124) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.42; Thu, 20 Jul 2023 08:26:52 -1200
+        with ESMTP id S229484AbjGTVJn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 17:09:43 -0400
+Received: from EUR01-HE1-obe.outbound.protection.outlook.com (mail-he1eur01on2085.outbound.protection.outlook.com [40.107.13.85])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 393991705;
+        Thu, 20 Jul 2023 14:09:42 -0700 (PDT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=SFzquXnlxs1jRMYZihCKBaof6pSM9Bkto6jMcLEKk+8ZcqPjYaHRwrkp0i+LHaZIhEbGDnIrKEKe5Erow+9veE1/KZ5p6PAnCp6eOV8lT6mEd37rcE5t8eLR2zREXjb9L6HbA5DaUJ5bGSGQmgPzhstNLhvYSMAU2YC0EdAykUHT2o16IW9zsnO23rYixw3LTuR2bZ7Rts9VNHad4Tuad0fwyJpyXjFeEbRLrO3Ln4mnL+Qwx7GEtOAyRbAiTN0hsiBEj7HA9+aM1mj7MMyTar+4Tk9QuUErqyLOgbxXdMi7NCR4RavF9m3EgFbRDcBsD+k1oLbd1+kBBeLpDpeiTA==
+ b=c3K5+0GEiE0+Yz8qNKn6emOx3IseoDO4ksilOvavRXR8pZeBZlTbofVQ6rEaFyy3Dz9j4RIAyxPp7yFOSy0PUJuva/R8tBatvmF2vjo9KeoxgJgzgLWWmfyjQYVyeL1ZtOi/RMR1SYL7TATscS4zqoOZoA90xEHgJvmyRPfUx/SCBAFDMaFbN7ZsGq4gxfTOvu6fKqqcgAUslgRy9/WMGbQ1/lNiKRuuLlp+uuOZhTfGA1y2Qf0pRbk7ntfjyst97QSQsX39h3yimvK2AEApE5Wp7uqmwhCKeRoo3+YMvNLEf7wn+u1gYKtNI6509iON2y2ZL9uXC3Ff/Vx6f27HGQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=WeSb93xc7ng0y5N8IU/zFiuSO2hMFiO1EMivOrysgMw=;
- b=U2ekmn80D2DBYYW7TO4/fcZsol+HMwxsseNNknyyKmYU1ubXAao53Tls8uePjElA3PakTveq1cGxVBZ73fVmn/QE9lZ/eS1I1B+tUNPRZCfmCMDEDt1jewIT+xWKCLJy/vOLFMgRmiB1IgzuJTrAHih03EUZMuYkwhCV0+Qi6bRHAJCNLr95RDf86MByulKZObn+yEX5cQB2uqrWnY9V8JXXH6vJo24hNhHLQ5DgNoCGpeox89eS2Hey5rlGrqQdEf5CVRyNgyuLQuHn0akDIn72IGshrCdfKMUTRzHF4vccriRVDLuXfKyM+WFmalU7PsQMi4G+BmK2Yz+v6F2v0A==
+ bh=/CBxiKMPKjZRwetl/4LDJoYRYcKzNN3zgEQPID7AZDQ=;
+ b=btEVNoPNTOjC8De4riX6yw7/MLBa1KgDx4570prHroTP5gsPRwm+m0Jei3YkWIKWgkdA2Jk+ktZlK4D1dQDFAy5r8R4ZZgHQAJ8xBHhtIQ8wFbRzMeQolHrHrfH6jJtYwe92pQ1DWnH84OTQobWcGBu/Ip3kFyUa2RvntlGY3cHBaE+1LWoortTSKQSFFleI7EWqTcQyhClINdWu2ezGzXj5pb5aO4zz70sIWzf34myBBmKxlanNZIfHESLa99ynEbEoPzRnet4+0Nd4+M/6jCGLtsZpeZGKzEBEGKn/kkvwejPjQKSHRK6UThL1+qYHRHeB483wXJBgEpnE2/esOg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=hpe.com; dmarc=pass action=none header.from=hpe.com; dkim=pass
- header.d=hpe.com; arc=none
-Received: from DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM (2603:10b6:8:4e::10) by
- MW4PR84MB1705.NAMPRD84.PROD.OUTLOOK.COM (2603:10b6:303:1a4::22) with
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=/CBxiKMPKjZRwetl/4LDJoYRYcKzNN3zgEQPID7AZDQ=;
+ b=CO1SuthB1AfdfBtiQGV0w6BezMV556VpRvCOBWjA6vKusONncemBtjJ3lj5Aed44iHQhDMNvpAjzX6+FAKWiXKEBtU3HDtaakJjLZMV6889I3pHfm8mfKBZBMW7kz4D/xOCuWz35L3ebw/dJxoW2f0VaQjGzkE9XGu+VeLAhRfE=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM6PR04MB4838.eurprd04.prod.outlook.com (2603:10a6:20b:4::16)
+ by VE1PR04MB7392.eurprd04.prod.outlook.com (2603:10a6:800:1b2::8) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6609.28; Thu, 20 Jul
- 2023 20:26:51 +0000
-Received: from DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM
- ([fe80::20b7:769e:3974:f17e]) by DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM
- ([fe80::20b7:769e:3974:f17e%4]) with mapi id 15.20.6588.031; Thu, 20 Jul 2023
- 20:26:51 +0000
-From:   "Hawkins, Nick" <nick.hawkins@hpe.com>
-To:     Bartosz Golaszewski <brgl@bgdev.pl>
-CC:     "Verdun, Jean-Marie" <verdun@hpe.com>,
-        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "jdelvare@suse.com" <jdelvare@suse.com>,
-        "linux@roeck-us.net" <linux@roeck-us.net>,
-        "andy.shevchenko@gmail.com" <andy.shevchenko@gmail.com>,
-        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>
-Subject: Re: [PATCH v5 2/5] gpio: gxp: Add HPE GXP GPIO PL
-Thread-Topic: [PATCH v5 2/5] gpio: gxp: Add HPE GXP GPIO PL
-Thread-Index: AQHZr3nkvwU+fup1gkuuDGe/x7XoX6/C2kcAgAAD+gA=
-Date:   Thu, 20 Jul 2023 20:26:51 +0000
-Message-ID: <9EABEF68-9261-416F-87FA-6DFDF7A5376A@hpe.com>
-References: <20230705194544.100370-1-nick.hawkins@hpe.com>
- <20230705194544.100370-3-nick.hawkins@hpe.com>
- <CAMRc=MfaEfaZ7yYrFtc+XChzPX1C1AV1xAZPRZyJKA+z7D6-vw@mail.gmail.com>
-In-Reply-To: <CAMRc=MfaEfaZ7yYrFtc+XChzPX1C1AV1xAZPRZyJKA+z7D6-vw@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Microsoft-MacOutlook/16.75.23071400
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM4PR84MB1927:EE_|MW4PR84MB1705:EE_
-x-ms-office365-filtering-correlation-id: 518d8e5e-5c19-468d-3cd8-08db895fa69f
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: JIkfPpxFRdBRFCCxNtKlYvCafi89H7Yj1zW7cWv3Ua3vXmdKKYXzcEiAlX9uh4zh2WvQ1UBm5qOT0IG035tR9ciDc6RAUOD+nukXmdYq61khcz8c2imU0KGjEPe8q7GeYpP6Ru0lUqr5HAoAwMcYA+bLFE/jf70zp+1Q+9Uv6rLFEjuFmuWw2/9UkvzBFHyGvR+Q71xkTdPlex6QHsHrHhJb0LhmVCwT/3UPxyymwKmgsAfXXfJFDjt0ZtB4t8XH2xbr9PjsvI6GXnso5tNDLZFCNDmH0a/9UL0uvX3H+8Od4sweqBl923G1IxMJZY0VwCdMpOau9UR+jUv3+RRI/uXIyoJPo359zST+KHWRd7eCN1nOoL8VKPc7HsYeI/OvPcAuq585WxfrxUnITV026j9R1WuEZ2667OJh7WGd2afZqhSZpLI0AhwZTxZcIabKjT1QOo/Bd+0VwCS9f8b7DGcrqWqMRNb+g2tWdZA3jCDJuyxyhZtlDfd65WBH84c9vZT7W9QIXN2HX0iOtNRJtHXrhAf3YHwLPBH4ZhYS/HJ1UuHP77BqUCJ1KYJ7OySvkGoKFkY7Uf3nrBYNsl7KbiEKIHOTduaaEdL6E8f5izRxno26rBTu7NeL7nT5caLIl00GP+VROgc393ZqwOPJ/w==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230028)(376002)(136003)(396003)(346002)(366004)(39860400002)(451199021)(82960400001)(478600001)(122000001)(83380400001)(186003)(2616005)(6506007)(71200400001)(6486002)(6916009)(91956017)(76116006)(4326008)(64756008)(38100700002)(54906003)(6512007)(66556008)(66476007)(66446008)(66946007)(4744005)(7416002)(5660300002)(33656002)(41300700001)(38070700005)(8936002)(2906002)(316002)(8676002)(86362001)(36756003)(45980500001);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?aTJoV2g3NjRhMXNhQ1dJY1QyTGZKODBqVzZuQlBOSGlwOXpmeFhTcDltd3FU?=
- =?utf-8?B?Sy92cEt2ZUhJaytHbWxOb3ZtQnErWjdEbkt4OFMxVFNDcVdXaHU3a1NZZHJl?=
- =?utf-8?B?cGhxTGswLytJMmsvdmdJRVYyRXpLVmlNTy9tQ2JPMDRnT2JIVlQ1elpxUkhM?=
- =?utf-8?B?WWVqTUdhOFBJYjQ3Nm03MGNqZnkvRFZ6NVJXL3VwakV5YURtd3I3Z3pFd1dB?=
- =?utf-8?B?N21ROWphRzFkMlNsc3NSVGVWNjN6WkhrQllBTEIwTHpVMlhFK0tnRFEyM2Ir?=
- =?utf-8?B?WGJmbGZ0U0VmR1Jhakp0VVIxMGJhdEd4bkFwUHF2aExMWWprTXdQdFllblpD?=
- =?utf-8?B?SytwWE1qdENmSThEWFlXdTVwem02QVVqdkFldmYxRWZQRDIvVS8xNFpZMGlz?=
- =?utf-8?B?SkNQR0dIUytEWXZCeEF5QTZHdWU4bUp6WkM1UjdGVjhMbXphdE5ZaVB2S0VJ?=
- =?utf-8?B?blNNZDFxajJMWWZpK3Q3QUhLaU5waWFyejF6ZzBsRGhxVktYdlNPaTg4eDNx?=
- =?utf-8?B?S0xmZ1U5RTJEQ01rNWRkVzFBTkx6ME5ITXNpNVZCTkxoalB3YkVLeDVOemNM?=
- =?utf-8?B?cFRjYWZuckdlRUh0cjViRFNqMjBpZzhNZk5IenEzamRxVEJJc2V6TGxWR3RU?=
- =?utf-8?B?SU82WlBiM1RWTHBWK0tiTnIvTll2SjliUG0zN1FzeUdaNUJRRkU2Y1pIZkJ6?=
- =?utf-8?B?QzAwa3FPMHJ5MDBoZm9aVVVjcTQzRENtQW16OVJ5Zjd5Wjl6TFJ3OGVOdU5x?=
- =?utf-8?B?NDhoUmQ4RUJRVFZ0WjF4UVhuR1hkRnpFaEd4QWtob0NvQTZhdHhWU1BrN3Vs?=
- =?utf-8?B?b1VUMVNxQVRnUE0rZDcyQm9sWU1lamk0K01WWVB3RWRCK2hmUFQ1cGtwcUtr?=
- =?utf-8?B?VUJZQlZ2UjlNNkZ5QVNFcW9MWE5NL3Q3MmJhT25rNnlZRkhWVkY2Q3JkejdL?=
- =?utf-8?B?UWpGcGtlOTQ3Y3cweC9ZODhZemNnUVAyeks1dDN1UnhJZWRmWVc5aldJbnBD?=
- =?utf-8?B?Uk1FWEV0TGxPQ1djdHh1UWg3TGFENExTcnc0dGc3OUZMMXU1QzlYT2pJTVJN?=
- =?utf-8?B?UTlZb1JRdDljMGg2aXJDTFFNTzg1QXExUUFOVndlOXowUnpFekVSaFNaS0cv?=
- =?utf-8?B?QWVIWmR5UTZZSTVmZ0o4R3dNMEdxM1ZqTXBua0laOGV2TjMyM0kzS2U1QU5H?=
- =?utf-8?B?K0lTZ3F6WWdhcTlFekdvSjkyNmRCaldwNjBGWEZLaGZLMlpHSEZqd0paS1p1?=
- =?utf-8?B?Q09id24xbS9SODJ0S3ZlZjFiMEZWRkxsN0Z5aE1yVG5obTZyUjVNR0tGV2hN?=
- =?utf-8?B?VlZzNVpMbGhrb0RSUFRobEVHVzJaeHRPZnRBOHNZSHdIQ3FPQkdyOUpFbG9K?=
- =?utf-8?B?Sy9vcnphOGFacnRnT3lvY08xVkN2TFFNVDFRQVhrWG1HQ2hIblVWbE1ia0Uy?=
- =?utf-8?B?S3dITlk5NFVUZk9wbE1DYXExK1ErWVNrZ2hDSU1Ub2l5ejI0MXFzMWdSZHow?=
- =?utf-8?B?MzE2bmdUaXl0ZWpIVjF3OUtHZmN0UjF2ZkpSckNmVCtLL3hiQVdmd2FRZmZN?=
- =?utf-8?B?VFF3QXkvN1ZDQmVpZGxhaUx5eEJ5ZVJ0R1lQOElCRy9QNkVybjBtenFTM0lh?=
- =?utf-8?B?aDFaMW9TVTk2UmU3MWh1L2lnWXdGQVVtY2tYZmlXUldjb3l2NXpXUlNwUkNG?=
- =?utf-8?B?a2p6RlNYd2xmaFdPTyt1eTZiM0xXTDdtME1KcEgyYWtXaEwvOGxwKzg3QVRQ?=
- =?utf-8?B?M0l6eHNFOVpBZEp2YndNUnRVTk9JQnNzNThCTTdHdVRuZlpBbFVLd1NaVTAv?=
- =?utf-8?B?dm0zRjF4eVNVd21YdHFBRmtFRWlmcE05K3VtUWdjMDJicnVTS2dDcUVmb0Ru?=
- =?utf-8?B?ZWV6MzYyZkxrTEJaK3RTbEZUUEUwSmV0RkEraFFBVjEyZnFVNS9TQ0d6M1d6?=
- =?utf-8?B?bERJMXJnWFdWL0ZmVTE0Q00zTkQ3bjNTdEtpSnlrdmU4QWN1MEg2LzgzaTJq?=
- =?utf-8?B?Q3Y0TUdhay9ncTk5bHpPZ21TYXVRdFBDbldGV1VkWkthR3VEYzVKL1hGdEJy?=
- =?utf-8?B?dzIyMTk5ZmdWSWtlQjFJa29TYmJyOFUvZWV2QWVkbjFESEN0QXlKM2loSTh5?=
- =?utf-8?B?NkpXWkJ2R1lEdWFNNVplRVZ4MFoxL2ErbnJ1VkZLRFkvbEhUM0gvOFp3cTdM?=
- =?utf-8?B?dlE9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <91C052A11B740D4A897EAB1C87D5F34E@NAMPRD84.PROD.OUTLOOK.COM>
-Content-Transfer-Encoding: base64
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6609.25; Thu, 20 Jul
+ 2023 21:09:39 +0000
+Received: from AM6PR04MB4838.eurprd04.prod.outlook.com
+ ([fe80::d0d5:3604:98da:20b1]) by AM6PR04MB4838.eurprd04.prod.outlook.com
+ ([fe80::d0d5:3604:98da:20b1%7]) with mapi id 15.20.6609.024; Thu, 20 Jul 2023
+ 21:09:38 +0000
+From:   Frank Li <Frank.Li@nxp.com>
+To:     mani@kernel.org
+Cc:     Frank.li@nxp.com, bhelgaas@google.com, devicetree@vger.kernel.org,
+        gustavo.pimentel@synopsys.com, helgaas@kernel.org,
+        imx@lists.linux.dev, kw@linux.com, leoyang.li@nxp.com,
+        linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
+        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+        lorenzo.pieralisi@arm.com, manivannan.sadhasivam@linaro.org,
+        minghuan.lian@nxp.com, mingkai.hu@nxp.com, robh+dt@kernel.org,
+        roy.zang@nxp.com, shawnguo@kernel.org, zhiqiang.hou@nxp.com
+Subject: [PATCH v4 1/2] PCI: dwc: Implement general suspend/resume functionality for L2/L3 transitions
+Date:   Thu, 20 Jul 2023 17:09:13 -0400
+Message-Id: <20230720210914.2030897-1-Frank.Li@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: BY3PR04CA0021.namprd04.prod.outlook.com
+ (2603:10b6:a03:217::26) To AM6PR04MB4838.eurprd04.prod.outlook.com
+ (2603:10a6:20b:4::16)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM6PR04MB4838:EE_|VE1PR04MB7392:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8101ac5c-aa0d-42dc-76e2-08db8965a0b6
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: o/aTvjpR6mNZuycRGEZ3Xl3rbKm42J4fW6dctaDXi2tVzEnQXJ54jh/nWo7u2S/UX/pQUT1dv9xDZRDawWsydWCnSn7YkUeTPdAySJVvfRTbwgJ64CMCxE5UnFZM1eew61f8Cqr50bsyXhlTYzkTmET17117dFgR4twtLtiiGzbx/VoUYyBXuh1zQj2wPoMUgsEDKCaYTZffbKx0/LQilgCJ/3Z0wuPbGHQRONgtyZd8FVnVdAbsffPMl83BjV3bO/i2dNk81O5T9HDjGocxqSvzHJZF2V4kec58WlGwcaeyhsNGj/d1oQSoId69qE+XqEOHXAdIRksqlU3R52WYAOAESteOSj6dRPYygkm5s+ArGR+tkOgcu8aneqj7B4XxNcXiIHYmG3zr5B+l4L6uetqe+iaGd3KV52wcwqIjTgucu52c6o1Z/UGv7wS3YfE+0KX9gcBPa6YDX5ktuQIZ7uLIaPwYBsO55GR3jM060VdaGclwgNiSgJuD4mP01+WD6iIEl7jj2LA6V9LyLTVPKOHGaoeinxb4sqYGhkIX7j6wXjiiya1U7b6RqgGPgaymPdusu9FEBNyPr5CpXuq+nSTRSznfrIT7dnqM4qTzI3UG1pM+xiuJ5na3nBITzkf+
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB4838.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(39860400002)(376002)(346002)(136003)(396003)(366004)(451199021)(86362001)(36756003)(6486002)(66946007)(6666004)(478600001)(66556008)(4326008)(6506007)(52116002)(6916009)(1076003)(66476007)(26005)(2906002)(6512007)(15650500001)(316002)(41300700001)(8936002)(8676002)(5660300002)(7416002)(38350700002)(38100700002)(83380400001)(2616005)(186003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Cmo5xQy2KkIRbxIumN3ZK4tpfq0t8zs/uK0PMjdWIRvh29R4gIpM899o9/dv?=
+ =?us-ascii?Q?8T3FNfKpaH75J1pI6I+XhBlP8fbM/4II3y5e39oR3V88An+zLJJf4ripeK8q?=
+ =?us-ascii?Q?6HD7WybzldXbokUwzYzo23rNpLLW0OsV2Eta5QQsYEcsPkltMTh4cnpHeGJx?=
+ =?us-ascii?Q?Lyy3H6tVw5Tlwy/fOmVXU9fxbF5NBCHXq5pUz4Ssr+b8dzGelWW4ZdtH4fhV?=
+ =?us-ascii?Q?aOZHO+CW/6NM1D5tT1t9EcoNn7rAo2y2T2G9qZxqDljUFsaOlgF3JkpkJv8k?=
+ =?us-ascii?Q?iC8pLtE/3ICIBORjBT1ZWJt0nZzm5QPJVi1OHkMtGwQURVHCvrxTzIvdz8mQ?=
+ =?us-ascii?Q?9J0IeYeWSsYrptsL5IXpYoIJrBQChuFWlTzxgTf5Q0WiJ/yfV2D9I0NUaqJp?=
+ =?us-ascii?Q?/25LPrmcHSwBSTnOZE9qVprCoc3g089+SAjIQCLRf83ODRXPxz/hq1nqplkH?=
+ =?us-ascii?Q?lNEmsr9KZ7KE34ntgBnEHW3o1qx4dMNLMl8ur+78TMFYyrQQHK1iwD3hJVlZ?=
+ =?us-ascii?Q?Uo5IC4BuW1y48T8dQFTTnuSk1kBT73DsG4Cu5gqAmA8zdfVJK10KIoAy3WlM?=
+ =?us-ascii?Q?bSeNBMd15FwO9FLSeY80Af5MQkbJF17Kb7NQIZS1/XcIW4BJ+/w5AHIApDfs?=
+ =?us-ascii?Q?knH322wS8H/zccj1yN2TpZnlKEouhAB6hOPHc8mp/uSj1+1gOpygZCEfmvgv?=
+ =?us-ascii?Q?eOBp1ccnVvo6Gd2g3fSertGLG3OneBijzW9mNMEVe9DXx+lhwVE4tUMRvO0N?=
+ =?us-ascii?Q?YY5znTmO6ku0BWGYwV07SlkXNJh3A3KFSJth5q7hTpf0UtPxj0TCHYX3Jhwr?=
+ =?us-ascii?Q?Gf3TiyCGy3udUAEaggJ+mdq85N/jyhNEcBgWNuip9tp50Yl8KleuL1WnwG73?=
+ =?us-ascii?Q?mzZW3i/xJKaRgNyo/qzdy/lVSoh0KjbG1G28SOR8ZOXvE1T6cFhAFogbhRed?=
+ =?us-ascii?Q?LBX6r0GxWGbKKuz+CN3kO8vjR+K766hX6R1gUkk+ZPbZEs23DOAOUE3eWVPp?=
+ =?us-ascii?Q?jGDqm8FEV3vQ8d4hdmWFweDBqKjhiKl71/ZobY1y+Wn/m1XVkTPFv5Bt81G1?=
+ =?us-ascii?Q?wRY/fj3mHhR2DMBYVBldQHKrN6jlxQksUhS8cW/n0NDpRA33lO98HVzczRBi?=
+ =?us-ascii?Q?bwXMNaAxcvKDhhz1/QxjXy/2ez6Qe+ZmaPcmON6sIUbyaXWa6RFY91/UD0cl?=
+ =?us-ascii?Q?THJVxrj0oXMdI4zVvYhBvALqqB+qMosgAHILn/wwL5eiytljt+VZxg7aYU3t?=
+ =?us-ascii?Q?90KVBNJxRPX54VpCuajrel/LGViWDo39I68Yqg1F6om24Ua+SU1rKHA/qzT2?=
+ =?us-ascii?Q?l3l6s1aWEctXQfmiquV4XmSAHWM9OQmUGRGhr8zEgUUFdiI0y7JrlJROWgb2?=
+ =?us-ascii?Q?E2vIImGwZNUIWvqDqFcFGqo6XQ7+MkP/K+vxsUQj13S+ChnZrOHnFIuoSBFn?=
+ =?us-ascii?Q?RzPexwKtW7L92y2R5K7OQWpaguvHjseqRPyoKNlKYtWfPtQcwrrZgnC5i8WC?=
+ =?us-ascii?Q?acOroaU5+dDQbQ54loRDRHhbT6yYd2aj8JqdJDfro03tPhQIkG1q3oeHuMSV?=
+ =?us-ascii?Q?+PCwv3eagzEKulgKL4Q3fbMZdHh9c2ws2GXAZ87t?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8101ac5c-aa0d-42dc-76e2-08db8965a0b6
+X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB4838.eurprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: 518d8e5e-5c19-468d-3cd8-08db895fa69f
-X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Jul 2023 20:26:51.3185
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Jul 2023 21:09:38.5751
  (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 105b2061-b669-4b31-92ac-24d304d195dc
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: OGA6dpUvw7P/xF1LlV2taQvXbsL1eEAiTW459SaFxstqOI0wSZq/kUdv6v+Ti9u2ZPLJT56E+ec2gC7JQjT2Ag==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR84MB1705
-X-OriginatorOrg: hpe.com
-X-Proofpoint-ORIG-GUID: zTF2PCVqcmcjwKBnMk8SYkO5SWa_ySai
-X-Proofpoint-GUID: zTF2PCVqcmcjwKBnMk8SYkO5SWa_ySai
-X-HPE-SCL: -1
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-07-20_10,2023-07-20_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- phishscore=0 mlxlogscore=594 clxscore=1011 mlxscore=0 spamscore=0
- suspectscore=0 bulkscore=0 lowpriorityscore=0 impostorscore=0
- malwarescore=0 adultscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2306200000 definitions=main-2307200174
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: jwQXi1YQTd658uOoGbkmmIqwTRt7PP9MR54XVQuz/KNHB3/M6hayfKa7whHaCUbWmnyCFePyOFFk43o9PgTB2Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1PR04MB7392
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DQo+ID4gKw0KPiA+ICsvKg0KPiA+ICsgKiBXaGVuIGFuIGludGVycnVwdCBmaXJlcyBmb3IgYSBQ
-U1UgY29uZmlnIGNoYW5nZQ0KPiA+ICsgKiB0aGVyZSBpcyBhIG5lZWQgdG8ga25vdyB0aGUgcHJl
-dmlvdXMgUFNVIGNvbmZpZ3VyYXRpb24NCj4gPiArICogc28gdGhhdCB0aGUgYXBwcm9wcmlhdGUg
-Z3BpbyBsaW5lIGlzIGludGVycnVwdGVkIGZvcg0KPiA+ICsgKiB0aGUgY29ycmVjdCBQU1UuIElu
-IG9yZGVyIHRvIGtlZXAgdGhpcyB2YXJpYWJsZSB1cCB0bw0KPiA+ICsgKiBkYXRlIGl0IGlzIGds
-b2JhbCBzbyB0aGF0IGl0IGNhbiBiZSBzZXQgYXQgaW5pdCBhbmQNCj4gPiArICogZWFjaCB0aW1l
-IHRoZSBpbnRlcnJ1cHQgZmlyZXMuDQo+ID4gKyAqLw0KPiA+ICt1OCBwc3VfcHJlc2VuY2U7DQoN
-Cj4gSSdtIG5vdCBidXlpbmcgaXQuIFRoZXJlJ3Mgbm8gdXNlciBvZiB0aGlzIHZhcmlhYmxlIG91
-dHNpZGUgb2YgdGhpcw0KPiBjb21waWxhdGlvbiB1bml0LCBpcyB0aGVyZT8gSWYgdGhlcmUgd2Fz
-IC0gdGhlIG5hbWUgc2hvdWxkIGhhdmUgc29tZQ0KPiBwcmVmaXggYnV0IGV2ZW4gdGhlbiwgSSBk
-b24ndCBzZWUgYSBuZWVkIGZvciB0aGlzIHRvIGJlIGdsb2JhbC4gV2h5DQo+IGRvbid0IHlvdSBw
-dXQgaXQgaW4gc3RydWN0IGd4cF9ncGlvX2RydmRhdGE/DQoNCkhpIEJhcnQsDQoNCllvdSBhcmUg
-Y29ycmVjdCB0aGlzIHNob3VsZCBub3QgYmUgZ2xvYmFsLiBJdCB3aWxsIGJlIHBsYWNlZCBpbiAN
-Cmd4cF9ncGlvX2RydmRhdGEuDQoNClRoYW5rIHlvdSBmb3IgY2F0Y2hpbmcgdGhpcyBhbmQgdGhl
-IGFzc2lzdGFuY2UsDQoNCi1OaWNrIEhhd2tpbnMNCg0K
+Introduced helper function dw_pcie_get_ltssm to retrieve SMLH_LTSS_STATE.
+Added API pme_turn_off and exit_from_l2 for managing L2/L3 state transitions.
+
+Typical L2 entry workflow:
+
+1. Transmit PME turn off signal to PCI devices and wait for PME_To_Ack.
+2. Await link entering L2_IDLE state.
+3. Transition Root complex to D3 state.
+
+Typical L2 exit workflow:
+
+1. Transition Root complex to D0 state.
+2. Issue exit from L2 command.
+3. Reinitialize PCI host.
+4. Wait for link to become active.
+
+Signed-off-by: Frank Li <Frank.Li@nxp.com>
+---
+Change from v3 to v4:
+- change according to Manivannan's comments.
+  I hope I have not missed anything. quite long discuss thread
+Change from v2 to v3:
+- Basic rewrite whole patch according rob herry suggestion.
+  put common function into dwc, so more soc can share the same logic.
+
+ .../pci/controller/dwc/pcie-designware-host.c | 95 +++++++++++++++++++
+ drivers/pci/controller/dwc/pcie-designware.h  | 28 ++++++
+ 2 files changed, 123 insertions(+)
+
+diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
+index 9952057c8819..a8d8495e4974 100644
+--- a/drivers/pci/controller/dwc/pcie-designware-host.c
++++ b/drivers/pci/controller/dwc/pcie-designware-host.c
+@@ -8,6 +8,7 @@
+  * Author: Jingoo Han <jg1.han@samsung.com>
+  */
+ 
++#include <linux/iopoll.h>
+ #include <linux/irqchip/chained_irq.h>
+ #include <linux/irqdomain.h>
+ #include <linux/msi.h>
+@@ -807,3 +808,97 @@ int dw_pcie_setup_rc(struct dw_pcie_rp *pp)
+ 	return 0;
+ }
+ EXPORT_SYMBOL_GPL(dw_pcie_setup_rc);
++
++/*
++ * This resemble the pci_set_power_state() interfaces, but these are for
++ * configuring host controllers, which are bridges *to* PCI devices but
++ * are not PCI devices themselves.
++ */
++static void dw_pcie_set_dstate(struct dw_pcie *pci, pci_power_t dstate)
++{
++	u8 offset = dw_pcie_find_capability(pci, PCI_CAP_ID_PM);
++	u32 val;
++
++	val = dw_pcie_readw_dbi(pci, offset + PCI_PM_CTRL);
++	val &= ~PCI_PM_CTRL_STATE_MASK;
++	val |= dstate;
++	dw_pcie_writew_dbi(pci, offset + PCI_PM_CTRL, val);
++}
++
++int dw_pcie_suspend_noirq(struct dw_pcie *pci)
++{
++	u8 offset;
++	u32 val;
++	int ret;
++
++	offset = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
++	/*
++	 * If L1.1\L1.2 enable, devices (such as NVME) want short
++	 * resume latency, controller will not enter L2
++	 */
++	if (dw_pcie_readw_dbi(pci, offset + PCI_EXP_LNKCTL) & PCI_EXP_LNKCTL_ASPM_L1)
++		return 0;
++
++	if (dw_pcie_get_ltssm(pci) <= DW_PCIE_LTSSM_DETECT_ACT)
++		return 0;
++
++	if (!pci->pp.ops->pme_turn_off)
++		return -EINVAL;
++
++	pci->pp.ops->pme_turn_off(&pci->pp);
++
++	/*
++	 * PCI Express Base Specification Rev 4.0
++	 * 5.3.3.2.1 PME Synchronization
++	 * Recommand 1ms to 10ms timeout to check L2 ready
++	 */
++	ret = read_poll_timeout(dw_pcie_get_ltssm, val, val == DW_PCIE_LTSSM_L2_IDLE,
++				100, 10000, false, pci);
++	if (ret) {
++		dev_err(pci->dev, "PCIe link enter L2 timeout! ltssm = 0x%x\n", val);
++		return ret;
++	}
++
++	dw_pcie_set_dstate(pci, PCI_D3hot);
++
++	pci->suspended = true;
++
++	return ret;
++}
++EXPORT_SYMBOL_GPL(dw_pcie_suspend_noirq);
++
++int dw_pcie_resume_noirq(struct dw_pcie *pci)
++{
++	int ret;
++
++	if (!pci->suspended)
++		return 0;
++
++	pci->suspended = false;
++
++	dw_pcie_set_dstate(pci, PCI_D0);
++
++	if (!pci->pp.ops->exit_from_l2)
++		return -EINVAL;
++
++	pci->pp.ops->exit_from_l2(&pci->pp);
++
++	ret = pci->pp.ops->host_init(&pci->pp);
++	if (ret) {
++		dev_err(pci->dev, "Host init failed! ret = 0x%x\n", ret);
++		return ret;
++	}
++
++	dw_pcie_setup_rc(&pci->pp);
++
++	ret = dw_pcie_start_link(pci);
++	if (ret)
++		return ret;
++
++	ret = dw_pcie_wait_for_link(pci);
++	if (ret)
++		return ret;
++
++	return ret;
++}
++EXPORT_SYMBOL_GPL(dw_pcie_resume_noirq);
+diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci/controller/dwc/pcie-designware.h
+index 79713ce075cc..effb07a506e4 100644
+--- a/drivers/pci/controller/dwc/pcie-designware.h
++++ b/drivers/pci/controller/dwc/pcie-designware.h
+@@ -288,10 +288,21 @@ enum dw_pcie_core_rst {
+ 	DW_PCIE_NUM_CORE_RSTS
+ };
+ 
++enum dw_pcie_ltssm {
++	DW_PCIE_LTSSM_UNKNOWN = 0xFFFFFFFF,
++	/* Need align PCIE_PORT_DEBUG0 bit0:5 */
++	DW_PCIE_LTSSM_DETECT_QUIET = 0x0,
++	DW_PCIE_LTSSM_DETECT_ACT = 0x1,
++	DW_PCIE_LTSSM_L0 = 0x11,
++	DW_PCIE_LTSSM_L2_IDLE = 0x15,
++};
++
+ struct dw_pcie_host_ops {
+ 	int (*host_init)(struct dw_pcie_rp *pp);
+ 	void (*host_deinit)(struct dw_pcie_rp *pp);
+ 	int (*msi_host_init)(struct dw_pcie_rp *pp);
++	void (*pme_turn_off)(struct dw_pcie_rp *pp);
++	void (*exit_from_l2)(struct dw_pcie_rp *pp);
+ };
+ 
+ struct dw_pcie_rp {
+@@ -364,6 +375,7 @@ struct dw_pcie_ops {
+ 	void    (*write_dbi2)(struct dw_pcie *pcie, void __iomem *base, u32 reg,
+ 			      size_t size, u32 val);
+ 	int	(*link_up)(struct dw_pcie *pcie);
++	enum dw_pcie_ltssm (*get_ltssm)(struct dw_pcie *pcie);
+ 	int	(*start_link)(struct dw_pcie *pcie);
+ 	void	(*stop_link)(struct dw_pcie *pcie);
+ };
+@@ -393,6 +405,7 @@ struct dw_pcie {
+ 	struct reset_control_bulk_data	app_rsts[DW_PCIE_NUM_APP_RSTS];
+ 	struct reset_control_bulk_data	core_rsts[DW_PCIE_NUM_CORE_RSTS];
+ 	struct gpio_desc		*pe_rst;
++	bool			suspended;
+ };
+ 
+ #define to_dw_pcie_from_pp(port) container_of((port), struct dw_pcie, pp)
+@@ -430,6 +443,9 @@ void dw_pcie_iatu_detect(struct dw_pcie *pci);
+ int dw_pcie_edma_detect(struct dw_pcie *pci);
+ void dw_pcie_edma_remove(struct dw_pcie *pci);
+ 
++int dw_pcie_suspend_noirq(struct dw_pcie *pci);
++int dw_pcie_resume_noirq(struct dw_pcie *pci);
++
+ static inline void dw_pcie_writel_dbi(struct dw_pcie *pci, u32 reg, u32 val)
+ {
+ 	dw_pcie_write_dbi(pci, reg, 0x4, val);
+@@ -501,6 +517,18 @@ static inline void dw_pcie_stop_link(struct dw_pcie *pci)
+ 		pci->ops->stop_link(pci);
+ }
+ 
++static inline enum dw_pcie_ltssm dw_pcie_get_ltssm(struct dw_pcie *pci)
++{
++	u32 val;
++
++	if (pci->ops && pci->ops->get_ltssm)
++		return pci->ops->get_ltssm(pci);
++
++	val = dw_pcie_readl_dbi(pci, PCIE_PORT_DEBUG0);
++
++	return (enum dw_pcie_ltssm)FIELD_GET(PORT_LOGIC_LTSSM_STATE_MASK, val);
++}
++
+ #ifdef CONFIG_PCIE_DW_HOST
+ irqreturn_t dw_handle_msi_irq(struct dw_pcie_rp *pp);
+ int dw_pcie_setup_rc(struct dw_pcie_rp *pp);
+-- 
+2.34.1
+
