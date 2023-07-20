@@ -2,165 +2,255 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 11F8375B522
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 19:01:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E128F75B535
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 19:07:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230105AbjGTRBd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jul 2023 13:01:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47558 "EHLO
+        id S229818AbjGTRHq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jul 2023 13:07:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49218 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229531AbjGTRBc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 13:01:32 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D57B92;
-        Thu, 20 Jul 2023 10:01:31 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id B6E8E61B84;
-        Thu, 20 Jul 2023 17:01:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 41662C433C7;
-        Thu, 20 Jul 2023 17:01:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689872490;
-        bh=cZQR2myM7YTdFJpkoJ87DSXcNMNJafyrVAbvtYAp0ig=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ogAvEi2rEnReACizdmeZZkWhy2M0O6fmvzJ+tBgDtjUD3Pe3M8PzV/l5pFBjA37BR
-         dHUofSQEVjG0ZrxCAZzVNc1wp7WQbCLduh64mHD729Rwpvam0Cu8uLoU3mIqOKqcre
-         3y8XsvLbAP3FV5PzwC79hwCiBx616HXsYuMLi3W6ISpM13O/32cIvPh71MH5JHQmOH
-         /BOCaThvjntxFMShIvADSR2kgM+tvMYP1YMtJMRplWoDf9YQgt5gD3xXXrUodDGMmq
-         W5TSpF5sdqNNUIuCLbbp2USHATXhQ1cys10KBkXMj4Q9NY+XwePOaZgpSm2BtjKLkV
-         tE18uoD509l4g==
-Date:   Thu, 20 Jul 2023 18:01:25 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Andrea Collamati <andrea.collamati@gmail.com>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229691AbjGTRHp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 13:07:45 -0400
+Received: from mail-pg1-x529.google.com (mail-pg1-x529.google.com [IPv6:2607:f8b0:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 495AF193
+        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 10:07:44 -0700 (PDT)
+Received: by mail-pg1-x529.google.com with SMTP id 41be03b00d2f7-55c993e26ffso452894a12.0
+        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 10:07:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1689872864; x=1690477664;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=3gQbgDrG+e3Hu7SQ1w0l1g3BL557ddifDpg7rbmsdAg=;
+        b=TpyW1pxzIvR3hrNLjOVY1YSuvyeRVOo1esnAq5v6N/2AnFzEHVw76iyvzS76/bSdf4
+         N9ho6WaoM9qGp07f1trYjuxtLNR+dot/6Jw2EDFUnINE50QLfYl4qIcgr3zI6yRj1zId
+         z/Ox1Kk66EtV7NQqd57FhZM9GTfChTBgbPW3M4emuL+P1Tcl/fbwpzp8kp1z412J/veA
+         iaePlXfuow+onqc1CPIHDvGfIA+0bBM1hGMQmjt08TPNjcYkXA8NI3sSmM20IMBz77HW
+         AWgy1G4cJ3BIRjZjnDV4DoU/tZQ0lMekwT9vZGuLZYzRKgfmzvnxJ07ENyjIJUKPuSSB
+         qLQA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689872864; x=1690477664;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=3gQbgDrG+e3Hu7SQ1w0l1g3BL557ddifDpg7rbmsdAg=;
+        b=ZBEsppYO3VeHQAsbq30Rvg66gXuaN69jN0VtarmS9+yBGfHGwiUm3OOWIi1S3fmjj6
+         xnZ9Yf6YgPQWkMq2E6mqlnSoqtmL4G+jmlplEfEo6BrXMF4+kxVUplk6M092ORSwrs5H
+         yPQAX8RvKxp7R/SunPNTON71qDbkS+aezqWw0vz14VSZP95y3juqiqnw5omKcu0w7Yko
+         iJBKVxoShN6LzWjGwVGSeJ5F2f4qcqEenkcaEilVWBTxRRs+me7sIyAbD7g75HndUNUr
+         G60UNDbHGrdHixVq2NeSuDsJK1VKwSsmly40sj5JTRrAe721lMNndspawv5kZ6EoHvNA
+         nGmA==
+X-Gm-Message-State: ABy/qLaaLpSzoou5eBnJ2aG6CJytkumI5u3HrQ/X7uyi50WCkOXNt0GG
+        xq9yufO/C+Y6/w1DOz3tC4AEvg==
+X-Google-Smtp-Source: APBJJlEiQVV2IHjouWpGwbgKwsjYtrLIL3UxRwgSfH/BCd16vzBsGvF7fK39e7fnzw5MzrRDk3YPww==
+X-Received: by 2002:a17:90a:d598:b0:264:97a:2ba6 with SMTP id v24-20020a17090ad59800b00264097a2ba6mr121329pju.7.1689872863688;
+        Thu, 20 Jul 2023 10:07:43 -0700 (PDT)
+Received: from p14s ([2604:3d09:148c:c800:ef2d:6ce9:20ef:3d8b])
+        by smtp.gmail.com with ESMTPSA id t10-20020a17090a448a00b00263f8915aa3sm2852204pjg.31.2023.07.20.10.07.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 20 Jul 2023 10:07:43 -0700 (PDT)
+Date:   Thu, 20 Jul 2023 11:07:40 -0600
+From:   Mathieu Poirier <mathieu.poirier@linaro.org>
+To:     Marek Vasut <marex@denx.de>
+Cc:     linux-remoteproc@vger.kernel.org,
+        Bjorn Andersson <andersson@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: iio: dac: add mcp4728.yaml
-Message-ID: <20230720-nastily-professor-3a5cae27893d@spud>
-References: <cover.1689857295.git.andrea.collamati@gmail.com>
- <9816cd272d19802ec6eeff0c7c29e85d4a0ade88.1689857295.git.andrea.collamati@gmail.com>
+        NXP Linux Team <linux-imx@nxp.com>,
+        Peng Fan <peng.fan@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 2/2] remoteproc: imx_rproc: Switch iMX8MN/MP from
+ SMCCC to MMIO
+Message-ID: <ZLlp3Iy0xRP/UL29@p14s>
+References: <20230720125549.72929-1-marex@denx.de>
+ <20230720125549.72929-2-marex@denx.de>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="SnjEIDgVQ/JrEUk8"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <9816cd272d19802ec6eeff0c7c29e85d4a0ade88.1689857295.git.andrea.collamati@gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230720125549.72929-2-marex@denx.de>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Marek,
 
---SnjEIDgVQ/JrEUk8
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hey Andrea,
-
-On Thu, Jul 20, 2023 at 05:40:02PM +0200, Andrea Collamati wrote:
-> Add documentation for MCP4728
->=20
-> Signed-off-by: Andrea Collamati <andrea.collamati@gmail.com>
+On Thu, Jul 20, 2023 at 02:55:49PM +0200, Marek Vasut wrote:
+> The MX8M CM7 boot via SMC call is problematic, since not all versions
+> of ATF support this interface. Extend the MMIO support so it can boot
+> the CM7 on MX8MN/MP instead and discern the two alternatives using DT
+> compatible strings.
+> 
+> Signed-off-by: Marek Vasut <marex@denx.de>
 > ---
->  .../bindings/iio/dac/microchip,mcp4728.yaml   | 48 +++++++++++++++++++
->  1 file changed, 48 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/dac/microchip,m=
-cp4728.yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/iio/dac/microchip,mcp4728.=
-yaml b/Documentation/devicetree/bindings/iio/dac/microchip,mcp4728.yaml
-> new file mode 100644
-> index 000000000000..6fd9be076245
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/dac/microchip,mcp4728.yaml
-> @@ -0,0 +1,48 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/dac/microchip,mcp4728.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> Cc: Bjorn Andersson <andersson@kernel.org>
+> Cc: Conor Dooley <conor+dt@kernel.org>
+> Cc: Fabio Estevam <festevam@gmail.com>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
+> Cc: NXP Linux Team <linux-imx@nxp.com>
+> Cc: Peng Fan <peng.fan@nxp.com>
+> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Sascha Hauer <s.hauer@pengutronix.de>
+> Cc: Shawn Guo <shawnguo@kernel.org>
+> Cc: devicetree@vger.kernel.org
+> Cc: linux-arm-kernel@lists.infradead.org
+> Cc: linux-remoteproc@vger.kernel.org
+> ---
+> V2: Rename 'gpr' to 'fsl,iomuxc-gpr'
+> ---
+>  drivers/remoteproc/imx_rproc.c | 58 ++++++++++++++++++++++++++++++++--
+>  drivers/remoteproc/imx_rproc.h |  2 ++
+>  2 files changed, 58 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/remoteproc/imx_rproc.c b/drivers/remoteproc/imx_rproc.c
+> index 4ee2646ce62ad..8bb293b9f327c 100644
+> --- a/drivers/remoteproc/imx_rproc.c
+> +++ b/drivers/remoteproc/imx_rproc.c
+> @@ -40,6 +40,12 @@
+>  #define IMX7D_M4_STOP			(IMX7D_ENABLE_M4 | IMX7D_SW_M4C_RST | \
+>  					 IMX7D_SW_M4C_NON_SCLR_RST)
+>  
+> +#define IMX8M_M7_STOP			(IMX7D_ENABLE_M4 | IMX7D_SW_M4C_RST)
+> +#define IMX8M_M7_POLL			IMX7D_ENABLE_M4
 > +
-> +title: Microchip MCP4728 DAC
+> +#define IMX8M_GPR22			0x58
+> +#define IMX8M_GPR22_CM7_CPUWAIT		BIT(0)
 > +
-> +description:
-> +  MCP4728 is a quad channel, 12-bit voltage output
-> +  Digital-to-Analog Converter with non-volatile
-> +  memory and I2C compatible Serial Interface.
-> +  https://www.microchip.com/en-us/product/mcp4728
+>  /* Address: 0x020D8000 */
+>  #define IMX6SX_SRC_SCR			0x00
+>  #define IMX6SX_ENABLE_M4		BIT(22)
+> @@ -91,6 +97,7 @@ static int imx_rproc_detach_pd(struct rproc *rproc);
+>  struct imx_rproc {
+>  	struct device			*dev;
+>  	struct regmap			*regmap;
+> +	struct regmap			*gpr;
+>  	struct rproc			*rproc;
+>  	const struct imx_rproc_dcfg	*dcfg;
+>  	struct imx_rproc_mem		mem[IMX_RPROC_MEM_MAX];
+> @@ -285,6 +292,18 @@ static const struct imx_rproc_att imx_rproc_att_imx6sx[] = {
+>  	{ 0x80000000, 0x80000000, 0x60000000, 0 },
+>  };
+>  
+> +static const struct imx_rproc_dcfg imx_rproc_cfg_imx8mn_mmio = {
+> +	.src_reg	= IMX7D_SRC_SCR,
+> +	.src_mask	= IMX7D_M4_RST_MASK,
+> +	.src_start	= IMX7D_M4_START,
+> +	.src_stop	= IMX8M_M7_STOP,
+> +	.gpr_reg	= IMX8M_GPR22,
+> +	.gpr_wait	= IMX8M_GPR22_CM7_CPUWAIT,
+> +	.att		= imx_rproc_att_imx8mn,
+> +	.att_size	= ARRAY_SIZE(imx_rproc_att_imx8mn),
+> +	.method		= IMX_RPROC_MMIO,
+> +};
 > +
-> +maintainers:
-> +  - Andrea Collamati <andrea.collamati@gmail.com>
+>  static const struct imx_rproc_dcfg imx_rproc_cfg_imx8mn = {
+>  	.att		= imx_rproc_att_imx8mn,
+>  	.att_size	= ARRAY_SIZE(imx_rproc_att_imx8mn),
+> @@ -365,8 +384,14 @@ static int imx_rproc_start(struct rproc *rproc)
+>  
+>  	switch (dcfg->method) {
+>  	case IMX_RPROC_MMIO:
+> -		ret = regmap_update_bits(priv->regmap, dcfg->src_reg, dcfg->src_mask,
+> -					 dcfg->src_start);
+> +		if (priv->gpr) {
+> +			ret = regmap_clear_bits(priv->gpr, dcfg->gpr_reg,
+> +						dcfg->gpr_wait);
+> +		} else {
+> +			ret = regmap_update_bits(priv->regmap, dcfg->src_reg,
+> +						 dcfg->src_mask,
+> +						 dcfg->src_start);
+> +		}
+>  		break;
+>  	case IMX_RPROC_SMC:
+>  		arm_smccc_smc(IMX_SIP_RPROC, IMX_SIP_RPROC_START, 0, 0, 0, 0, 0, 0, &res);
+> @@ -395,6 +420,16 @@ static int imx_rproc_stop(struct rproc *rproc)
+>  
+>  	switch (dcfg->method) {
+>  	case IMX_RPROC_MMIO:
+> +		if (priv->gpr) {
+> +			ret = regmap_set_bits(priv->gpr, dcfg->gpr_reg,
+> +					      dcfg->gpr_wait);
+> +			if (ret) {
+> +				dev_err(priv->dev,
+> +					"Failed to quiescence M4 platform!\n");
+> +				return ret;
+> +			}
+> +		}
 > +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - microchip,mcp4728
+>  		ret = regmap_update_bits(priv->regmap, dcfg->src_reg, dcfg->src_mask,
+>  					 dcfg->src_stop);
+>  		break;
+> @@ -992,6 +1027,10 @@ static int imx_rproc_detect_mode(struct imx_rproc *priv)
+>  		break;
+>  	}
+>  
+> +	priv->gpr = syscon_regmap_lookup_by_phandle(dev->of_node, "fsl,iomuxc-gpr");
+> +	if (IS_ERR(priv->gpr))
+> +		priv->gpr = NULL;
+> +
+>  	regmap = syscon_regmap_lookup_by_phandle(dev->of_node, "syscon");
+>  	if (IS_ERR(regmap)) {
+>  		dev_err(dev, "failed to find syscon\n");
+> @@ -1001,6 +1040,19 @@ static int imx_rproc_detect_mode(struct imx_rproc *priv)
+>  	priv->regmap = regmap;
+>  	regmap_attach_dev(dev, regmap, &config);
+>  
+> +	if (priv->gpr) {
+> +		ret = regmap_read(priv->gpr, dcfg->gpr_reg, &val);
+> +		if (val & dcfg->gpr_wait) {
+> +			/*
+> +			 * After cold boot, the CM indicates its in wait
+> +			 * state, but not fully powered off. Power it off
+> +			 * fully so firmware can be loaded into it.
+> +			 */
+> +			imx_rproc_stop(priv->rproc);
+> +			return 0;
+> +		}
+> +	}
 
-This can just be
-compatible:
-  const: microchip,mcp47288
-since you only have a single item in your enum.
-
-Otherwise, this looks good to me.
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-
-Despite the email address, I have no knowledge of the hardware in
-question, I'm just reviewing the binding.
+Thanks for the clarification.  I will apply this patch when the DT people have
+had the time to review the first patch of this series.
 
 Thanks,
-Conor.
+Mathieu
 
-> +  reg:
-> +    maxItems: 1
-> +
-> +  vdd-supply:
-> +    description: |
-> +      Provides both power and acts as the reference supply on the MCP4728
-> +      when Internal Vref is not selected.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - vdd-supply
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +        #address-cells =3D <1>;
-> +        #size-cells =3D <0>;
-> +
-> +        mcp4728@60 {
-> +            compatible =3D "microchip,mcp4728";
-> +            reg =3D <0x60>;
-> +            vdd-supply =3D <&vdac_vdd>;
-> +        };
-> +    };
-> --=20
-> 2.34.1
->=20
 
---SnjEIDgVQ/JrEUk8
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZLloZQAKCRB4tDGHoIJi
-0lxZAQD+bDnHwUCxG5//NQNbaoEW5V5MPun8lyz+5x99bvMxwgEA4LnpU9iZD/28
-7V/LMJhpxX2UgUsA3cIzIIo97WPbaAA=
-=XRkd
------END PGP SIGNATURE-----
-
---SnjEIDgVQ/JrEUk8--
+> +
+>  	ret = regmap_read(regmap, dcfg->src_reg, &val);
+>  	if (ret) {
+>  		dev_err(dev, "Failed to read src\n");
+> @@ -1142,6 +1194,8 @@ static const struct of_device_id imx_rproc_of_match[] = {
+>  	{ .compatible = "fsl,imx8mm-cm4", .data = &imx_rproc_cfg_imx8mq },
+>  	{ .compatible = "fsl,imx8mn-cm7", .data = &imx_rproc_cfg_imx8mn },
+>  	{ .compatible = "fsl,imx8mp-cm7", .data = &imx_rproc_cfg_imx8mn },
+> +	{ .compatible = "fsl,imx8mn-cm7-mmio", .data = &imx_rproc_cfg_imx8mn_mmio },
+> +	{ .compatible = "fsl,imx8mp-cm7-mmio", .data = &imx_rproc_cfg_imx8mn_mmio },
+>  	{ .compatible = "fsl,imx8qxp-cm4", .data = &imx_rproc_cfg_imx8qxp },
+>  	{ .compatible = "fsl,imx8qm-cm4", .data = &imx_rproc_cfg_imx8qm },
+>  	{ .compatible = "fsl,imx8ulp-cm33", .data = &imx_rproc_cfg_imx8ulp },
+> diff --git a/drivers/remoteproc/imx_rproc.h b/drivers/remoteproc/imx_rproc.h
+> index 1c7e2127c7584..79a1b8956d142 100644
+> --- a/drivers/remoteproc/imx_rproc.h
+> +++ b/drivers/remoteproc/imx_rproc.h
+> @@ -31,6 +31,8 @@ struct imx_rproc_dcfg {
+>  	u32				src_mask;
+>  	u32				src_start;
+>  	u32				src_stop;
+> +	u32				gpr_reg;
+> +	u32				gpr_wait;
+>  	const struct imx_rproc_att	*att;
+>  	size_t				att_size;
+>  	enum imx_rproc_method		method;
+> -- 
+> 2.40.1
+> 
