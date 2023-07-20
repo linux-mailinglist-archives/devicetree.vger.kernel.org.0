@@ -2,228 +2,200 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A096775AEDF
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 14:56:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0544675AF14
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 15:03:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230289AbjGTM4f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jul 2023 08:56:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55478 "EHLO
+        id S231508AbjGTNDh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jul 2023 09:03:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58566 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229915AbjGTM4c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 08:56:32 -0400
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E8C12719;
-        Thu, 20 Jul 2023 05:56:06 -0700 (PDT)
-Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 14BB3847C0;
-        Thu, 20 Jul 2023 14:56:04 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1689857764;
-        bh=Dy3nxWdNI1j9nIqovfHwlzO+6mWNzr6qPT7Pvev89Bo=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=tIDj6kA3prN1jZqK4mxOsin0Vy1+eAHdYAqTWW7hpEr5LGg4vvZ58jcSuK8fM7Pp8
-         rlDEIi79EP5NgATP77cV1lcB0CJhz0jitRH7c0GEf2tSTBqv3qqusOCHnvWHnmxd1l
-         dTCRN/Sn8w5E0QIw7i7pPH/THR7vb3xVbgwCN28GFT0YKgz2YH6cWFNOpBkGT8yUa+
-         fugQIQ7r9FQsgJJBO7nz+Rwty4HkEXx4fw8N86VQ31xoRfJiZcwcrrFr4RlVWMjBiz
-         r6pFxtR5kHh53m3Qs9mlmWBebrH/hMcJCBv3NF/jGydzXVUW8hO2qvgmLqeEVL6/Mh
-         wBf0UXoAk/Zbw==
-From:   Marek Vasut <marex@denx.de>
-To:     linux-remoteproc@vger.kernel.org
-Cc:     Marek Vasut <marex@denx.de>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
+        with ESMTP id S231478AbjGTNDb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 09:03:31 -0400
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EE0D2D67;
+        Thu, 20 Jul 2023 06:03:10 -0700 (PDT)
+Received: by mail-lj1-x235.google.com with SMTP id 38308e7fff4ca-2b935316214so10568231fa.1;
+        Thu, 20 Jul 2023 06:03:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1689858188; x=1690462988;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=KtLR1t7Xy+lp2xGUnHnlsDF6j8PRmaFSawsn2vIvBWc=;
+        b=Ql9e0h/oYbX6KrhJ1ePRDKew/5d+3Q9oyOoSy1HFtZzh0rNcDBUoJuNGy59r5hmnpL
+         /ma2hKdbFnrTrz1oWlu0x+r9PWf1rJ5xQA/XXmC/dui7DC9z17dkyeB21AI6jUyH2LFo
+         np98/NeShzaKiK9EKh+C66iKrKZsg9Lo0ewj/wCKx8mTFb2j8vAUZwl8g/0sdPa9s/nY
+         zqNqWGZyxbcWWefW05nTSgXSpsOruLIua4m65k9Lm5NoUMTtOsUiL+fZ+K4eqFnp2/Tl
+         oPLtY5jh45qBg7VSj19rktqsZZ1Y9Lx7C8rju8Nv6yTRUy2HYzMzn5R4ZVxNIzvu5I59
+         oZMw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689858188; x=1690462988;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=KtLR1t7Xy+lp2xGUnHnlsDF6j8PRmaFSawsn2vIvBWc=;
+        b=Lx5hdMA9k7ZXF1bSzRa7ka07/D4WxcKeTeMHaK6KPvQUztR8fHxSNaRtDHOabdz1Kb
+         L4Ywn40JrNm1HElSbmliRhDjJ4UZsxMv9T1lOyyNowN5dKQHFFDwvtwMnMoY9bQQXdfF
+         5OmZbqKwVMIQ8wHim8X0MPnWhNbWc67NONSUhdd83Zg6I66OTzwlgAKPTrRA5OSi0jy3
+         0FVNsolj6jpfzKWmr0XPrQkUNLgPtrcffp4+v/I7fph8kVlqp8HiKxihRMYEB+5hXIHl
+         11CGHxqJHThXDw39ha5jf9Bs9/gHWQsi/9oW4g7ZRnfQcxA0wgF4uwSa/VYwiNOwd2Py
+         4qmw==
+X-Gm-Message-State: ABy/qLYPslY9XpgdIGMZGL/K2hy2rbETLUp1LXwUTBevB29kD+p6mbVJ
+        1pnF0JwYGcHN8sbffGztz9I=
+X-Google-Smtp-Source: APBJJlELNtA9t7Vl1ywF7Sx7SuXwzg/v92//dlg5e+KqGI92b1hBQbNtg8odOdwcSW3NiUezfoohMQ==
+X-Received: by 2002:a2e:9259:0:b0:2b9:601d:2c0 with SMTP id v25-20020a2e9259000000b002b9601d02c0mr956643ljg.25.1689858188099;
+        Thu, 20 Jul 2023 06:03:08 -0700 (PDT)
+Received: from mobilestation ([109.197.207.60])
+        by smtp.gmail.com with ESMTPSA id t25-20020a2e7819000000b002b70ac2f631sm266813ljc.76.2023.07.20.06.03.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 20 Jul 2023 06:03:07 -0700 (PDT)
+Date:   Thu, 20 Jul 2023 16:03:04 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Sebastian Reichel <sebastian.reichel@collabora.com>,
+        linux-pci@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Peng Fan <peng.fan@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v2 2/2] remoteproc: imx_rproc: Switch iMX8MN/MP from SMCCC to MMIO
-Date:   Thu, 20 Jul 2023 14:55:49 +0200
-Message-Id: <20230720125549.72929-2-marex@denx.de>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230720125549.72929-1-marex@denx.de>
-References: <20230720125549.72929-1-marex@denx.de>
+        Conor Dooley <conor+dt@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Shawn Lin <shawn.lin@rock-chips.com>,
+        Simon Xue <xxm@rock-chips.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        kernel@collabora.com
+Subject: Re: [PATCH v3 2/5] dt-bindings: PCI: dwc: rockchip: Fix
+ interrupt-names issue
+Message-ID: <epqbt5c4vxb65l47tupmogxfnskwbd54cg6vzq7xnelrt44omu@py7ntcft6dhf>
+References: <20230717172651.64324-1-sebastian.reichel@collabora.com>
+ <20230717172651.64324-3-sebastian.reichel@collabora.com>
+ <20230719201605.GA706263-robh@kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230719201605.GA706263-robh@kernel.org>
+X-Spam-Status: No, score=1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The MX8M CM7 boot via SMC call is problematic, since not all versions
-of ATF support this interface. Extend the MMIO support so it can boot
-the CM7 on MX8MN/MP instead and discern the two alternatives using DT
-compatible strings.
+On Wed, Jul 19, 2023 at 02:16:05PM -0600, Rob Herring wrote:
+> On Mon, Jul 17, 2023 at 07:26:48PM +0200, Sebastian Reichel wrote:
+> > The RK356x (and RK3588) have 5 ganged interrupts. For example the
+> > "legacy" interrupt combines "inta/intb/intc/intd" with a register
+> > providing the details.
+> > 
+> > Currently the binding is not specifying these interrupts resulting
+> > in a bunch of errors for all rk356x boards using PCIe.
+> > 
+> > Fix this by specifying the interrupts and add them to the example
+> > to prevent regressions.
+> > 
+> > This changes the reference from snps,dw-pcie.yaml to
+> > snps,dw-pcie-common.yaml, since the interrupts are vendor
+> > specific and should not be listed in the generic file. The
+> > only other bit from the generic binding are the reg-names,
+> > which are overwritten by this binding.
+> > 
+> > Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> > ---
+> >  .../bindings/pci/rockchip-dw-pcie.yaml        | 43 ++++++++++++++++++-
+> >  1 file changed, 42 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
+> > index a4f61ced5e88..7836b9a5547c 100644
+> > --- a/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
+> > +++ b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
+> > @@ -17,7 +17,8 @@ description: |+
+> >    snps,dw-pcie.yaml.
+> >  
+> >  allOf:
+> > -  - $ref: /schemas/pci/snps,dw-pcie.yaml#
+> > +  - $ref: /schemas/pci/pci-bus.yaml#
+> > +  - $ref: /schemas/pci/snps,dw-pcie-common.yaml#
+> >  
+> >  properties:
+> >    compatible:
+> > @@ -60,6 +61,39 @@ properties:
+> >        - const: aux
+> >        - const: pipe
+> >  
+> > +  interrupts:
+> > +    items:
+> > +      - description:
+> > +          Combined system interrupt, which is used to signal the following
+> > +          interrupts - phy_link_up, dll_link_up, link_req_rst_not, hp_pme,
+> > +          hp, hp_msi, link_auto_bw, link_auto_bw_msi, bw_mgt, bw_mgt_msi,
+> > +          edma_wr, edma_rd, dpa_sub_upd, rbar_update, link_eq_req, ep_elbi_app
+> > +      - description:
+> > +          Combined PM interrupt, which is used to signal the following
+> > +          interrupts - linkst_in_l1sub, linkst_in_l1, linkst_in_l2,
+> > +          linkst_in_l0s, linkst_out_l1sub, linkst_out_l1, linkst_out_l2,
+> > +          linkst_out_l0s, pm_dstate_update
+> > +      - description:
+> > +          Combined message interrupt, which is used to signal the following
+> > +          interrupts - ven_msg, unlock_msg, ltr_msg, cfg_pme, cfg_pme_msi,
+> > +          pm_pme, pm_to_ack, pm_turnoff, obff_idle, obff_obff, obff_cpu_active
+> > +      - description:
+> > +          Combined legacy interrupt, which is used to signal the following
+> > +          interrupts - inta, intb, intc, intd
+> > +      - description:
+> > +          Combined error interrupt, which is used to signal the following
+> > +          interrupts - aer_rc_err, aer_rc_err_msi, rx_cpl_timeout,
+> > +          tx_cpl_timeout, cor_err_sent, nf_err_sent, f_err_sent, cor_err_rx,
+> > +          nf_err_rx, f_err_rx, radm_qoverflow
+> 
 
-Signed-off-by: Marek Vasut <marex@denx.de>
----
-Cc: Bjorn Andersson <andersson@kernel.org>
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: Fabio Estevam <festevam@gmail.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
-Cc: NXP Linux Team <linux-imx@nxp.com>
-Cc: Peng Fan <peng.fan@nxp.com>
-Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Sascha Hauer <s.hauer@pengutronix.de>
-Cc: Shawn Guo <shawnguo@kernel.org>
-Cc: devicetree@vger.kernel.org
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: linux-remoteproc@vger.kernel.org
----
-V2: Rename 'gpr' to 'fsl,iomuxc-gpr'
----
- drivers/remoteproc/imx_rproc.c | 58 ++++++++++++++++++++++++++++++++--
- drivers/remoteproc/imx_rproc.h |  2 ++
- 2 files changed, 58 insertions(+), 2 deletions(-)
+> I'm confused. It is really up to the integrator on how each of these 
+> interrupts are combined? I thought it was a bit more fixed than that.
 
-diff --git a/drivers/remoteproc/imx_rproc.c b/drivers/remoteproc/imx_rproc.c
-index 4ee2646ce62ad..8bb293b9f327c 100644
---- a/drivers/remoteproc/imx_rproc.c
-+++ b/drivers/remoteproc/imx_rproc.c
-@@ -40,6 +40,12 @@
- #define IMX7D_M4_STOP			(IMX7D_ENABLE_M4 | IMX7D_SW_M4C_RST | \
- 					 IMX7D_SW_M4C_NON_SCLR_RST)
- 
-+#define IMX8M_M7_STOP			(IMX7D_ENABLE_M4 | IMX7D_SW_M4C_RST)
-+#define IMX8M_M7_POLL			IMX7D_ENABLE_M4
-+
-+#define IMX8M_GPR22			0x58
-+#define IMX8M_GPR22_CM7_CPUWAIT		BIT(0)
-+
- /* Address: 0x020D8000 */
- #define IMX6SX_SRC_SCR			0x00
- #define IMX6SX_ENABLE_M4		BIT(22)
-@@ -91,6 +97,7 @@ static int imx_rproc_detach_pd(struct rproc *rproc);
- struct imx_rproc {
- 	struct device			*dev;
- 	struct regmap			*regmap;
-+	struct regmap			*gpr;
- 	struct rproc			*rproc;
- 	const struct imx_rproc_dcfg	*dcfg;
- 	struct imx_rproc_mem		mem[IMX_RPROC_MEM_MAX];
-@@ -285,6 +292,18 @@ static const struct imx_rproc_att imx_rproc_att_imx6sx[] = {
- 	{ 0x80000000, 0x80000000, 0x60000000, 0 },
- };
- 
-+static const struct imx_rproc_dcfg imx_rproc_cfg_imx8mn_mmio = {
-+	.src_reg	= IMX7D_SRC_SCR,
-+	.src_mask	= IMX7D_M4_RST_MASK,
-+	.src_start	= IMX7D_M4_START,
-+	.src_stop	= IMX8M_M7_STOP,
-+	.gpr_reg	= IMX8M_GPR22,
-+	.gpr_wait	= IMX8M_GPR22_CM7_CPUWAIT,
-+	.att		= imx_rproc_att_imx8mn,
-+	.att_size	= ARRAY_SIZE(imx_rproc_att_imx8mn),
-+	.method		= IMX_RPROC_MMIO,
-+};
-+
- static const struct imx_rproc_dcfg imx_rproc_cfg_imx8mn = {
- 	.att		= imx_rproc_att_imx8mn,
- 	.att_size	= ARRAY_SIZE(imx_rproc_att_imx8mn),
-@@ -365,8 +384,14 @@ static int imx_rproc_start(struct rproc *rproc)
- 
- 	switch (dcfg->method) {
- 	case IMX_RPROC_MMIO:
--		ret = regmap_update_bits(priv->regmap, dcfg->src_reg, dcfg->src_mask,
--					 dcfg->src_start);
-+		if (priv->gpr) {
-+			ret = regmap_clear_bits(priv->gpr, dcfg->gpr_reg,
-+						dcfg->gpr_wait);
-+		} else {
-+			ret = regmap_update_bits(priv->regmap, dcfg->src_reg,
-+						 dcfg->src_mask,
-+						 dcfg->src_start);
-+		}
- 		break;
- 	case IMX_RPROC_SMC:
- 		arm_smccc_smc(IMX_SIP_RPROC, IMX_SIP_RPROC_START, 0, 0, 0, 0, 0, 0, &res);
-@@ -395,6 +420,16 @@ static int imx_rproc_stop(struct rproc *rproc)
- 
- 	switch (dcfg->method) {
- 	case IMX_RPROC_MMIO:
-+		if (priv->gpr) {
-+			ret = regmap_set_bits(priv->gpr, dcfg->gpr_reg,
-+					      dcfg->gpr_wait);
-+			if (ret) {
-+				dev_err(priv->dev,
-+					"Failed to quiescence M4 platform!\n");
-+				return ret;
-+			}
-+		}
-+
- 		ret = regmap_update_bits(priv->regmap, dcfg->src_reg, dcfg->src_mask,
- 					 dcfg->src_stop);
- 		break;
-@@ -992,6 +1027,10 @@ static int imx_rproc_detect_mode(struct imx_rproc *priv)
- 		break;
- 	}
- 
-+	priv->gpr = syscon_regmap_lookup_by_phandle(dev->of_node, "fsl,iomuxc-gpr");
-+	if (IS_ERR(priv->gpr))
-+		priv->gpr = NULL;
-+
- 	regmap = syscon_regmap_lookup_by_phandle(dev->of_node, "syscon");
- 	if (IS_ERR(regmap)) {
- 		dev_err(dev, "failed to find syscon\n");
-@@ -1001,6 +1040,19 @@ static int imx_rproc_detect_mode(struct imx_rproc *priv)
- 	priv->regmap = regmap;
- 	regmap_attach_dev(dev, regmap, &config);
- 
-+	if (priv->gpr) {
-+		ret = regmap_read(priv->gpr, dcfg->gpr_reg, &val);
-+		if (val & dcfg->gpr_wait) {
-+			/*
-+			 * After cold boot, the CM indicates its in wait
-+			 * state, but not fully powered off. Power it off
-+			 * fully so firmware can be loaded into it.
-+			 */
-+			imx_rproc_stop(priv->rproc);
-+			return 0;
-+		}
-+	}
-+
- 	ret = regmap_read(regmap, dcfg->src_reg, &val);
- 	if (ret) {
- 		dev_err(dev, "Failed to read src\n");
-@@ -1142,6 +1194,8 @@ static const struct of_device_id imx_rproc_of_match[] = {
- 	{ .compatible = "fsl,imx8mm-cm4", .data = &imx_rproc_cfg_imx8mq },
- 	{ .compatible = "fsl,imx8mn-cm7", .data = &imx_rproc_cfg_imx8mn },
- 	{ .compatible = "fsl,imx8mp-cm7", .data = &imx_rproc_cfg_imx8mn },
-+	{ .compatible = "fsl,imx8mn-cm7-mmio", .data = &imx_rproc_cfg_imx8mn_mmio },
-+	{ .compatible = "fsl,imx8mp-cm7-mmio", .data = &imx_rproc_cfg_imx8mn_mmio },
- 	{ .compatible = "fsl,imx8qxp-cm4", .data = &imx_rproc_cfg_imx8qxp },
- 	{ .compatible = "fsl,imx8qm-cm4", .data = &imx_rproc_cfg_imx8qm },
- 	{ .compatible = "fsl,imx8ulp-cm33", .data = &imx_rproc_cfg_imx8ulp },
-diff --git a/drivers/remoteproc/imx_rproc.h b/drivers/remoteproc/imx_rproc.h
-index 1c7e2127c7584..79a1b8956d142 100644
---- a/drivers/remoteproc/imx_rproc.h
-+++ b/drivers/remoteproc/imx_rproc.h
-@@ -31,6 +31,8 @@ struct imx_rproc_dcfg {
- 	u32				src_mask;
- 	u32				src_start;
- 	u32				src_stop;
-+	u32				gpr_reg;
-+	u32				gpr_wait;
- 	const struct imx_rproc_att	*att;
- 	size_t				att_size;
- 	enum imx_rproc_method		method;
--- 
-2.40.1
+As I explained it here [1] in details there are only several signals
+which are actually marked as IRQs:
+hp_pme,
+hp/hp_msi,
+link_auto_bw/link_auto_bw_msi,
+bw_mgt/bw_mgt_msi,
+edma_wr/edma_rd,
+cfg_pme/cfg_pme_msi,
+inta, intb, intc, intd,
+aer_rc_err/aer_rc_err_msi.
+(not listed above: cfg_int, cfg_safety_corr, cfg_safety_uncorr,
+cfg_vpd, msi_ctrl_int).
+All of the above (except msi_ctrl_int, which belongs to a none-SII
+group of signals) are a part of the so called "SII: Interrupt
+Signals". They are normally used to indicate IRQs in the most of the
+DW PCIe devices. That's why I listed them in the generic DW PCIe
+DT-bindings.
 
+The rest of the signals described by Sebastian are also a part of the
+System Information Interface (SII), but they _aren't_ marked as the
+IRQs. Although the signals explicitly stated as interrupts and some
+common SII Signals are marked as _outputs_ (from the DW PCIe
+controller point of view). So all of them can be used as the interrupt
+sources if they are somehow connected to a system interrupt
+controller. Though normally the none-IRQ outputs are just wired to the
+application-specific CSR space and if needed tracked by a separate
+IRQ signal (see the "app" signal in the generic DW PCIe DT-bindings)
+
+AFAIU RK rk356x HW designers just grouped some SII output signals and
+OR'ed them up before attaching to the system IRQ controller. So
+basically all the IRQs described by Sebastian can be categorized as
+application-specific IRQs. That's amongst various solutions I
+suggested to rename them to indicate that (see [1]). I don't know what
+the Rockchip HW-engineers were thinking providing such a mix of the
+IRQ sources instead just using the standardized by Synopsys interface,
+but here it is.
+
+[1] https://lore.kernel.org/linux-pci/3628628.VLH7GnMWUR@phil/T/#m3b3149c26b15e03686cfc2b76033c9949b0d565c
+
+-Serge(y)
+
+> 
+> Rob
