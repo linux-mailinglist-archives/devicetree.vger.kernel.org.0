@@ -2,78 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DC0D675ADB3
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 14:01:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BA63675ADB9
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 14:02:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231593AbjGTMBz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jul 2023 08:01:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57552 "EHLO
+        id S231228AbjGTMCp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jul 2023 08:02:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57988 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231592AbjGTMBy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 08:01:54 -0400
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01C331731
-        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 05:01:46 -0700 (PDT)
-Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-3fbc5d5742bso5917825e9.2
-        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 05:01:46 -0700 (PDT)
+        with ESMTP id S229453AbjGTMCo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 08:02:44 -0400
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA681E75
+        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 05:02:43 -0700 (PDT)
+Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-3fbfa811667so11738955e9.1
+        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 05:02:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689854505; x=1690459305;
+        d=linaro.org; s=google; t=1689854562; x=1690459362;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=1mSDaVl3JU+HvwGjSR+QaJjRAnEFc4saHjf//VvH5Yk=;
-        b=m33sstRpwA3obptMsfRSnHmYzIdeCUSdQQk48Er2O/KW30oRJP2HU9hyWf4hOQ7IQI
-         FfYbeKiwKphLtlWkVoAdfS0DQ7gUDlQrNpJCB+yZt1WtvRJ/bpe71HRbai/16dLy6d6u
-         I+W39l1BkIU/pYyFhuRbTl+JFXKXTGeIAVBJo0D7iocZOkAnFZEH06la3cdXPVp5ub0K
-         JL+h84c8ktYXXr7J2LGZAKbu1IJG2et6l7CxdL9mIC4K31TfeMwtCQAYE4A+bo6auden
-         gnzkPA9HaurxSrefEI/9MP7BxjIFcgag+6P5sKsXjm6LzBDYOH9cfGIDJmEzk2tzcJYt
-         tJDA==
+        bh=4mVNLMpsr1KtXrPPiYyd6fMKyNfmqypKKGtmUwwbo1s=;
+        b=Ru776Nvt3yRM/Id4yJqBSMOIMMRox1ohJl228qwtuRlY7Z9Ds7hcbx++Eg/mZjULXg
+         Vlbo7Dj/QyrE0PKRKzeuGhFLqR0u0A8EoEKAd0VknDWIgk0dit+0/1KtPmxC24TROnEv
+         tIUiBEAQgDBTls6DjHiUaIuxj9sckC6VGVoYz7GlGO0UlXA6m9Bo1CkVTQFOVo6cviWb
+         wRagJAakNX8D54z2sgC0IiD8qxQBEg7iu9iDxdkqwzCZp1FASPAqFGq6mj0TCEZBL2wM
+         89ixhK3hHIptelHiMKP/rnC3AyTYgokdlou9nuoKkvrK6cGj1H8bHp7S4ZgJoNMfHCa9
+         7aCg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689854505; x=1690459305;
+        d=1e100.net; s=20221208; t=1689854562; x=1690459362;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=1mSDaVl3JU+HvwGjSR+QaJjRAnEFc4saHjf//VvH5Yk=;
-        b=kfUKUaiEnzddWCj1+diqpykjGjApMCIhn5Cl2PS1cZh2Ha4+EMK5yi0StEvJ4E2RML
-         r143YGdAXKVY9r1hdm4CkIED+um+tMqE4O/bY6UgWw1K4vVTxixTLs1k4rhMwmozw2Lz
-         sDeAE7BXyiRxGY7z9ef/0ktlnQ58+Hl49Y672/zQO4VoCofVxTjysNr+y8vfli1ui5jM
-         vO0yw0k9kSu9r59z9vs7vxE0oHHcjVl+JE2FGXO+Phkr6AuVfXvFha9s9bpq5ddCtk0c
-         ATvliFlIus5L3ORMy241yHfP/pg1r0Glw1w3bYkyHPJXCSwpN/tzbidBOfRojiozCtqC
-         gXUw==
-X-Gm-Message-State: ABy/qLYzjK8yG8qBg1BOpyPA33QgQGoqorl81g7KS2FBpUf/8aeshNb2
-        kkKRLIWu+LBT+aGXDulHzU/5Tg==
-X-Google-Smtp-Source: APBJJlHHRMzgk8SNYyVrru2kh5gNrEKZKOx7onWKVBzJKdh/06yDLV+HjsmKCc94OfbxF5WR7s5O9A==
-X-Received: by 2002:a7b:cd0d:0:b0:3fb:e643:1225 with SMTP id f13-20020a7bcd0d000000b003fbe6431225mr4439955wmj.13.1689854505423;
-        Thu, 20 Jul 2023 05:01:45 -0700 (PDT)
+        bh=4mVNLMpsr1KtXrPPiYyd6fMKyNfmqypKKGtmUwwbo1s=;
+        b=kbWdWRgRWyMPgZTMN/cPMitRCyuaF0Yxex2qHnsgOMDN+6CuLnZ9dGZPfX+IvLkI/G
+         e9p/1sd2OE9gR2EV9fcuaCIrKPiYfHDq+arSlx3czFyA/+NS82B1r0kzh7Q2PpqY01Tp
+         yiGjhvbmvvZDeJvOsvAHhm56p1IG1e0uWBBsbtzZBr2vWBcMjup0ylxqV7/zQTCwN663
+         A+dnmNahn4H2vjPnCFvSmU6nvdGh5ZuxDZLRJk2Xndzf0h86cNb2ZUj/I1o+nkSTWpED
+         j2hwqTbToDPkr+8SLATF9FeSZLb37tFfo8o0452MzLiEAmISk4/qI82MRvlzkGX3G7i3
+         4FPA==
+X-Gm-Message-State: ABy/qLYtSRiNNUZIb3HIEIzEI8SHr2IEmT3hpnfsRFRY5FLkGKk8n0QH
+        pq2M3zSXpcnrTTmmGZ/jvxTlFw==
+X-Google-Smtp-Source: APBJJlE5/EGARCmArGxUZUpUjd94gNv62IZomso69Wj7PlLRXdVNWS6mN9JA2NEzdednqnnEnvDfbQ==
+X-Received: by 2002:adf:f88d:0:b0:316:fc03:3c66 with SMTP id u13-20020adff88d000000b00316fc033c66mr2168789wrp.3.1689854562194;
+        Thu, 20 Jul 2023 05:02:42 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id k5-20020a5d6285000000b0031455482d1fsm1150836wru.47.2023.07.20.05.01.43
+        by smtp.gmail.com with ESMTPSA id t13-20020a05600001cd00b00316eb7770b8sm1164458wrx.5.2023.07.20.05.02.40
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 20 Jul 2023 05:01:44 -0700 (PDT)
-Message-ID: <ab463c69-59e0-99b5-1526-7c344fcc593f@linaro.org>
-Date:   Thu, 20 Jul 2023 14:01:42 +0200
+        Thu, 20 Jul 2023 05:02:41 -0700 (PDT)
+Message-ID: <85d14351-9b5a-a488-c1c9-ac2f1e28eeef@linaro.org>
+Date:   Thu, 20 Jul 2023 14:02:40 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
-Subject: Re: [PATCH 1/3] arm64: dts: mediatek: mt6795: Add support for display
- blocks and DPI/DSI
+Subject: Re: [PATCH] dt-bindings: input: convert syna,rmi4 to DT schema
 Content-Language: en-US
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Alexandre Mergnat <amergnat@baylibre.com>,
-        matthias.bgg@gmail.com
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, phone-devel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, kernel@collabora.com
-References: <20230720091559.86406-1-angelogioacchino.delregno@collabora.com>
- <20230720091559.86406-2-angelogioacchino.delregno@collabora.com>
- <0809ac02-b8bf-ed63-9e2e-e77cd7e93464@baylibre.com>
- <d892a76c-165b-dbeb-79aa-70f3ebd7f07c@collabora.com>
+To:     "Jason A. Donenfeld" <Jason@zx2c4.com>
+Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
+        Vincent Huang <vincent.huang@tw.synaptics.com>,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230720110008.133359-1-krzysztof.kozlowski@linaro.org>
+ <ZLkYWL4wMhYLRTuL@zx2c4.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <d892a76c-165b-dbeb-79aa-70f3ebd7f07c@collabora.com>
+In-Reply-To: <ZLkYWL4wMhYLRTuL@zx2c4.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -84,49 +81,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/07/2023 13:52, AngeloGioacchino Del Regno wrote:
-> Il 20/07/23 13:35, Alexandre Mergnat ha scritto:
+On 20/07/2023 13:19, Jason A. Donenfeld wrote:
+> On Thu, Jul 20, 2023 at 01:00:08PM +0200, Krzysztof Kozlowski wrote:
+>> Convert the bindings for Synaptics RMI4 bus and devices to DT schema.
+>> Changes during conversion:
+>> 1. Add reset-gpios already used in DTS and mentioned by RMI4
+>>    specification.
+>> 2. Do not require address/size cells, because without functions
+>>    (children) they aren't really needed.
 >>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 >>
->> On 20/07/2023 11:15, AngeloGioacchino Del Regno wrote:
->>> Introduce all nodes for all of the display blocks in the MediaTek Helio
->>> X10 MT6795 SoC, including the DSI PHY and DSI/DPI interfaces: those are
->>> left disabled as usage is board specific.
->>>
->>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->>> ---
->>>   arch/arm64/boot/dts/mediatek/mt6795.dtsi | 252 +++++++++++++++++++++++
->>>   1 file changed, 252 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/mediatek/mt6795.dtsi 
->>> b/arch/arm64/boot/dts/mediatek/mt6795.dtsi
->>> index 597bce2fed72..d805d7a63024 100644
->>> --- a/arch/arm64/boot/dts/mediatek/mt6795.dtsi
->>> +++ b/arch/arm64/boot/dts/mediatek/mt6795.dtsi
->>> @@ -2,6 +2,9 @@
->>>   /*
->>>    * Copyright (c) 2015 MediaTek Inc.
->>>    * Author: Mars.C <mars.cheng@mediatek.com>
->>> + *
->>> + * Copyright (C) 2023 Collabora Ltd.
->>> + *                    AngeloGioacchino Del Regno 
->>> <angelogioacchino.delregno@collabora.com>
+>> ---
 >>
->> Shouldn't be like this ?
->>
->>   * Copyright (c) 2015 MediaTek Inc.
->>   * Copyright (C) 2023 Collabora Ltd.
->>   * Authors: Mars.C <mars.cheng@mediatek.com>
->>   *          AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->>
->>
-> 
-> I don't think that there's any rule about this?
-> Also I don't really mind the strings order, but if anyone really does, I can change
-> it....
+>> Jason, Matthias, Vincent,
+>> I put your names as maintainers, because moderately recently you were
+>> changing the driver. Let me know if this is okay or you prefer not to
+>> maintain the hardware.
+>  
+> I'm more of the occasional "why doesn't my new Thinkpad work?" sort of
+> drive-by RMI4-er, rather than an actual maintainer. I don't know a lot
+> about the protocol beyond what it takes to drag a laptop into behaving
+> right. So maybe best to leave me off the list.
 
-These have two entirely different meanings. Your patch suggests you hold
-copyrights (which is usually not true if working for employer).
+If you have hardware with it and you are interested in this device
+working, then it is good enough.  This is maintainership only of the
+bindings, not entire driver.
 
 Best regards,
 Krzysztof
