@@ -2,116 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DFE9375B10B
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 16:19:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5ABC275B115
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 16:20:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231836AbjGTOTP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jul 2023 10:19:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50594 "EHLO
+        id S232132AbjGTOUy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jul 2023 10:20:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52082 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231775AbjGTOTO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 10:19:14 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDD64212C
-        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 07:19:12 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-992ca792065so145553766b.2
-        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 07:19:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689862751; x=1690467551;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=4VuudQmBIXj4G0El46CDTssIhACcrhRIJLPm+Fr5SvU=;
-        b=YUoIJB6FDGB8GH6BIYgP+Xi7qygbtlqRaQMXpJ8nIt5EfJ4IG0kcGSVG4mlUxNGjuR
-         RGJKmG3FrqEwGeEAGnQDGgBZh2YVjfXwg2IMB7x4FBAmay2AD1xf9anc+HWpid9xoKIM
-         9ENuARx2QLT4Y9COjylUEwuQ2HzwhSHCqOWNxoXcLoA3s37p3EaANaE1IGkf1CrkJXXR
-         zIj4vBQIzWYlLOzZw1YI0zDqXtXPSOxHCdYMhzoQrqinFEBJQAOYkdQ1MpQsTaN0vIGV
-         Ng0dWG8Ah9Zh7Kgws3UWA40f4oc6bI9z3JleFA0bXrHriGW+IeVaTOxhztBnwnA8DCzm
-         iXQg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689862751; x=1690467551;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4VuudQmBIXj4G0El46CDTssIhACcrhRIJLPm+Fr5SvU=;
-        b=SREMthy3fTzum2tImB8ME4oOi3zCzulf47YerLjcSCQwlUn/YV/RIHKZYjrNA15AqJ
-         eQzCA/lhrmCgdaf/8xZUkrJqW48Kvgnr7dl5QNbPmjSPEi3AAlxnav42VdndT50YzK8u
-         nUYKGcQONFrBMsZ7hUuUaf3QxTCEwAUeBB7lrYZRbJ4S7KyjqSayqKD6RGETXqpaY1y9
-         3V/sCAsr1ETxpv+giDjxVq98m/kyBVuy/Gld0JV86G2KNUzndm86yail2BLpZNC/s/RV
-         F33nuZRrMbc2oE3Me0eGsHdPXngFIeYu3jJm5dtR99aiDuk6o/tmwHr3aCVN48tvTCPj
-         ymnA==
-X-Gm-Message-State: ABy/qLbag4syDWgB4zLfOtnhZRYf7bVcarGASXjX+8aVOn2DJmWTaiKF
-        Z3dbFUVmaLnu6ESqHZKHIau1rQ==
-X-Google-Smtp-Source: APBJJlGyP/7Ze5TkvrXGj9vY7+AQiDo9OUwh/zphiMxDAR0ol/ibJovtW4iJbyYqEu1ISpX4rU7FNQ==
-X-Received: by 2002:a17:906:3055:b0:94a:9f9a:b3c4 with SMTP id d21-20020a170906305500b0094a9f9ab3c4mr5162736ejd.49.1689862751345;
-        Thu, 20 Jul 2023 07:19:11 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id rk15-20020a170907214f00b009927a49ba94sm765690ejb.169.2023.07.20.07.19.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 20 Jul 2023 07:19:10 -0700 (PDT)
-Message-ID: <4b6faf13-e611-ac9a-0365-5eb9661dd309@linaro.org>
-Date:   Thu, 20 Jul 2023 16:19:08 +0200
+        with ESMTP id S230226AbjGTOUx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 10:20:53 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1CA01B6;
+        Thu, 20 Jul 2023 07:20:52 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 45E7561B11;
+        Thu, 20 Jul 2023 14:20:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4977CC433C7;
+        Thu, 20 Jul 2023 14:20:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1689862851;
+        bh=8czobt6b2nGsykSx6kshr/iFGD0uIXglebqw3BxMl0U=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=haWaSmUPYpKqdiouAbxDguEGIvEqUHnC7vPIYIcwQKsBSwxUFcGAF9sMZEiY/ojZb
+         ibHhJv/G2EP7b5dMf4Xc8dpD0Zd6sewpWtA3/2FlqHFbZN0FucgSIRtbBqqhPHha3R
+         BEj33Xqr0v+q1bkMoJhKaHtXWnGONgMWpydDPGGMs5cyQ2T0dAFMScwWKEK/PjDCeJ
+         m2kgl8BBopE0SZQF0BCMAW6ho9gCmcfPK5LwrB6U34xZDvrudvzk8uPrPLQiiILxfp
+         8Npe/NoYCP8yC4By7mKrIZqN5LTADOn7+vfPsT1o5OvcrA62bpbNbSZIZLEDlH6Qpr
+         Ft+7xwlWglzzw==
+Date:   Thu, 20 Jul 2023 19:50:34 +0530
+From:   Manivannan Sadhasivam <mani@kernel.org>
+To:     Frank Li <Frank.li@nxp.com>
+Cc:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        helgaas@kernel.org, imx@lists.linux.dev, bhelgaas@google.com,
+        devicetree@vger.kernel.org, gustavo.pimentel@synopsys.com,
+        kw@linux.com, leoyang.li@nxp.com,
+        linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
+        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+        lorenzo.pieralisi@arm.com, minghuan.lian@nxp.com,
+        mingkai.hu@nxp.com, robh+dt@kernel.org, roy.zang@nxp.com,
+        shawnguo@kernel.org, zhiqiang.hou@nxp.com
+Subject: Re: [PATCH v3 1/2] PCI: dwc: Implement general suspend/resume
+ functionality for L2/L3 transitions
+Message-ID: <20230720142034.GA48270@thinkpad>
+References: <20230419164118.596300-1-Frank.Li@nxp.com>
+ <20230717164526.GC35455@thinkpad>
+ <ZLWKI1lRqxejfUgK@lizhi-Precision-Tower-5810>
+ <20230718100400.GB4771@thinkpad>
+ <ZLg2oObBfmhSzTFg@lizhi-Precision-Tower-5810>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v2 3/3] arm64: dts: Replace deprecated extcon-usb-gpio
- id-gpio/vbus-gpio properties
-Content-Language: en-US
-To:     Bjorn Andersson <andersson@kernel.org>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc:     MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        =?UTF-8?Q?Beno=c3=aet_Cousson?= <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-omap@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-        linux-rockchip@lists.infradead.org
-References: <20230615145838.1526919-1-alexander.stein@ew.tq-group.com>
- <20230615145838.1526919-3-alexander.stein@ew.tq-group.com>
- <qezb3o5wsluf5tgbqoe37ibhanhgm3fsflgqpbqiw2t6fycdeb@2xbxbkpybz74>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <qezb3o5wsluf5tgbqoe37ibhanhgm3fsflgqpbqiw2t6fycdeb@2xbxbkpybz74>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <ZLg2oObBfmhSzTFg@lizhi-Precision-Tower-5810>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/07/2023 06:02, Bjorn Andersson wrote:
-> On Thu, Jun 15, 2023 at 04:58:38PM +0200, Alexander Stein wrote:
->> Use id-gpios and vbus-gpios instead.
->>
->> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
->> Acked-by: Heiko Stuebner <heiko@sntech.de> #rockchip
->> Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com> #mediatek
+On Wed, Jul 19, 2023 at 03:16:48PM -0400, Frank Li wrote:
+> On Tue, Jul 18, 2023 at 03:34:00PM +0530, Manivannan Sadhasivam wrote:
+> > On Mon, Jul 17, 2023 at 02:36:19PM -0400, Frank Li wrote:
+> > 
+> > Fine then. But can we check for PM_LINKST_IN_L2 SII System Information Interface
+> > (SII) instead of LTSSM state?
+> >
+> where define PM_LINKST_IN_L2? I just find one at
 > 
-> Any objections to me taking this through the qcom tree?
+> drivers/pci/controller/dwc/pcie-qcom.c:#define PARF_DEBUG_CNT_PM_LINKST_IN_L2           0xc04
+> 
 
-None from me:
+Yes, this register is not exposed by the DWC core itself but the vendors may
+expose such as Qcom as you pointed out. If it is not available on all platforms,
+then feel free to ignore my advice.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+- Mani
 
-Best regards,
-Krzysztof
+> Frank
+>  
 
+-- 
+மணிவண்ணன் சதாசிவம்
