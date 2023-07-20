@@ -2,93 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 87C4B75A8A6
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 10:07:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5256575A8AA
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 10:07:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230344AbjGTIHL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jul 2023 04:07:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48876 "EHLO
+        id S229679AbjGTIHp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jul 2023 04:07:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49344 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230246AbjGTIHK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 04:07:10 -0400
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E999268C
-        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 01:07:09 -0700 (PDT)
-Received: by mail-lj1-x22f.google.com with SMTP id 38308e7fff4ca-2b701dee4bfso7071571fa.0
-        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 01:07:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689840427; x=1692432427;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=uHV3SorPPRx5smjTKgidKSpB/zG9RGZsFPGQGoh8zP8=;
-        b=eo/aPm7QmBLtn05NMv5zgB6q00je7hyfwr3G+KlaQcIfVVo0nhp/BtkUFXWWNsfxzE
-         YjHlqcOAcqUPzuLvQBBFi9QFWhxy3eLFajG+d2qcpDf4r3RN7Shsxb3P46y8xYKIOb+x
-         cOE3LQEQqHJ7Ookvz6lXNKy87oQQ3XA0tXMb11/tD8c1Y4xlzdNlTV8XkrNkDrkWTNvR
-         wQx4D49nSSuVaRPRiZPt1lULxjIlu4ornYVXwh++JCGMIi0XQ6SIAlnnj/QK+kLh73fk
-         s9csjK5oq6Gvn7yxpA7S+nXVdyngfWBPC37F+D5hZ3tMObEQ2Wkaa1lTcELx4Y+KRLfU
-         tqOw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689840427; x=1692432427;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=uHV3SorPPRx5smjTKgidKSpB/zG9RGZsFPGQGoh8zP8=;
-        b=gxrQxKaD3ITwrEa7Y+sfGuAYmnvoKGNkqhMd8GT1ShdN6hpAgNc/BFGBh6r+59iwq3
-         U8wHiLP2is3kuU2v1y/1a70RIbXFd9heCB6Dpa1HMLyx8+hiwYXX4KoAD26QPdA9GOXr
-         gVdqfv4sekhJ/9CWfEL0KKi65f6NzkQKrfwblQRIX0eQgyFfoEboZwXpthznQzVGuOnD
-         u4XDgoOyWxeeFlRjbmcIA/hu3hJNI0+Tmiwf/ojGZ8vDeXyuAUVEf3dr6KYxSFJTJ/hy
-         ewU4j9sgDCP5p8m1sfjrlSX7RmHlNx1De+Vn+uMk47BWKZoUbZctDOgwDQUNx6q0maxc
-         CLDw==
-X-Gm-Message-State: ABy/qLasabyp93RjWpmwhfL9pHxvY7m4fnXg+kpbsRN4QK+pCnNSQOhF
-        wHqrWgp7xCBzMpzpTTT+xkTIUQ==
-X-Google-Smtp-Source: APBJJlF5k6R9A67PfYpJchDVd7Ed7BYUOP9gf1HDCKJdQrDY3scfui+zBnHSn9KXAkF+LCqCCHgZ5A==
-X-Received: by 2002:a2e:9d52:0:b0:2b9:4aa1:71e1 with SMTP id y18-20020a2e9d52000000b002b94aa171e1mr1456444ljj.50.1689840427634;
-        Thu, 20 Jul 2023 01:07:07 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id q13-20020adff94d000000b003143c9beeaesm542198wrr.44.2023.07.20.01.07.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 20 Jul 2023 01:07:07 -0700 (PDT)
-Message-ID: <8374cb80-749a-401d-2d88-48001ad614c2@linaro.org>
-Date:   Thu, 20 Jul 2023 10:07:04 +0200
+        with ESMTP id S229610AbjGTIHo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 04:07:44 -0400
+Received: from mg.richtek.com (mg.richtek.com [220.130.44.152])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 1A5C6213C;
+        Thu, 20 Jul 2023 01:07:39 -0700 (PDT)
+X-MailGates: (SIP:2,PASS,NONE)(compute_score:DELIVER,40,3)
+Received: from 192.168.10.46
+        by mg.richtek.com with MailGates ESMTPS Server V6.0(2903814:0:AUTH_RELAY)
+        (envelope-from <alina_yu@richtek.com>)
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256/256); Thu, 20 Jul 2023 16:07:29 +0800 (CST)
+Received: from ex3.rt.l (192.168.10.46) by ex3.rt.l (192.168.10.46) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.25; Thu, 20 Jul
+ 2023 16:07:28 +0800
+Received: from linuxcarl2.richtek.com (192.168.10.154) by ex3.rt.l
+ (192.168.10.45) with Microsoft SMTP Server id 15.2.1118.25 via Frontend
+ Transport; Thu, 20 Jul 2023 16:07:28 +0800
+Date:   Thu, 20 Jul 2023 16:07:28 +0800
+From:   Alina Yu <alina_yu@richtek.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+CC:     <lgirdwood@gmail.com>, <broonie@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <alina_yu@richtek.com>
+Subject: Re: [PATCH v4 1/2] regulator: dt-bindings: rtq2208: Add Richtek
+ RTQ2208 SubPMIC
+Message-ID: <20230720080728.GA10433@linuxcarl2.richtek.com>
+References: <1689758686-14409-1-git-send-email-alina_yu@richtek.com>
+ <1689758686-14409-2-git-send-email-alina_yu@richtek.com>
+ <44b50616-a6ee-76e4-21b8-3e39b1a2ccd1@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v2 3/3] arm64: dts: Replace deprecated extcon-usb-gpio
- id-gpio/vbus-gpio properties
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        =?UTF-8?Q?Beno=c3=aet_Cousson?= <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>
-Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-omap@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-        linux-rockchip@lists.infradead.org
-References: <20230615145838.1526919-1-alexander.stein@ew.tq-group.com>
- <20230615145838.1526919-3-alexander.stein@ew.tq-group.com>
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230615145838.1526919-3-alexander.stein@ew.tq-group.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <44b50616-a6ee-76e4-21b8-3e39b1a2ccd1@linaro.org>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -97,21 +53,64 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/06/2023 16:58, Alexander Stein wrote:
-> Use id-gpios and vbus-gpios instead.
-> 
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> Acked-by: Heiko Stuebner <heiko@sntech.de> #rockchip
-> Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com> #mediatek
-> ---
-> Changes in v2:
-> * Added Heiko's A-b for rockchip
-> * Added Matthias' R-b for mediatek
+Hi,
+Krzysztof:
 
-Please split patches per subsystem, so this could be applied. Or send it
-through soc tree, but you chosen the middle way - neither per subsystem
-nor via soc tree - so it went nowhere :(
+On Wed, Jul 19, 2023 at 11:44:45AM +0200, Krzysztof Kozlowski wrote:
+> On 19/07/2023 11:24, alina_yu@richtek.com wrote:
+> > From: alinayu <alina_yu@richtek.com>
+> > 
+> > Add bindings for Richtek RTQ2208 IC controlled SubPMIC
+> > 
+> > Signed-off-by: Alina Yu <alina_yu@richtek.com>
+> > ---
+> > v4
+> > - Modify filename to "richtek,rtq2208"
+> > - Add more desciptions for "regulator-allowed-modes"
+
+...
+
+> > +
+> > +          regulator-mode:
+> > +            enum: [0, 1]
+> > +            description:
+> > +              describe buck initial operating mode in suspend state.
+> 
+> There is no such property on this level. Aren't you mixing initial one?
+
+It's the initial mode in suspend-mem state, should I modify that like this ?
+        patternProperties:
+          "^regulator-state-(standby|mem|disk)$":
+	    type: object
+	    $ref: regulator.yaml#
+	    properties:
+	      regulator-mode:
+	        enum: [0, 1]
+		description:
+                  describe byck initial operating mode in suspend state.
+...
+
+> 
+> > +            enum: [ 900000, 1200000, 1800000, 3300000 ]
+> > +            description:
+> > +              the fixed voltage in micro volt which is decided at the factory.
+> 
+> I don't understand this property. Why this is different from min/max
+
+
+Because ldo has fixed voltage, so I thinks I could use a property to
+represent the fixed voltage directly. Do you suggest me modifying that like this:
+
+regulator-min-microvolt = <900000>;
+regulator-max-microvolt = <900000>;
+
+Using min voltage equals to max voltage to represent fixed voltage, instead of self-defined property ?
+
+
+> microvolt? Plus, you use incorrect unit suffix.
+
+if I change "richtek,fixed-uV" to "richtek, fixed-microvolt",
+will it be a correct unit suffix ?
 
 Best regards,
-Krzysztof
-
+Alina
