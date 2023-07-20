@@ -2,169 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BDD1175AE68
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 14:30:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 49DC775AE85
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 14:36:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231659AbjGTMac (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jul 2023 08:30:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42218 "EHLO
+        id S230303AbjGTMgx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jul 2023 08:36:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46700 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231679AbjGTMaR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 08:30:17 -0400
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5050630C7
-        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 05:29:57 -0700 (PDT)
-Received: by mail-wr1-x429.google.com with SMTP id ffacd0b85a97d-307d20548adso596832f8f.0
-        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 05:29:57 -0700 (PDT)
+        with ESMTP id S230287AbjGTMgo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 08:36:44 -0400
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7CFA2128
+        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 05:36:42 -0700 (PDT)
+Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-52176fdad9dso1089643a12.0
+        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 05:36:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1689856189; x=1690460989;
+        d=linaro.org; s=google; t=1689856601; x=1690461401;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=KkhL4uI0B/Lhmv/qxg6Gs+UQ4b+kwmWF1fiPyrwPCd8=;
-        b=XlcBPi0luKar65pugUWZx5x76U0b3XAWX0S3KC0cPjqVI669s5QyFytRy0X+jN8CTq
-         sDVQCCY99s5o+klAldXMilhf4WHNqPKVCzv2pNVJLaYb2hfoBrP0/MUw0cXLqHZ/uPTI
-         rENCW5i5UDWZ7wB0xTHWALNWmGXtyPQOsyET/B0Z7gxJls3kjj2r/GSfnhwPwqkXdjfD
-         egWY7X8oCcisSn9QdMrGy4o3cwNnQ4Q9drtmeKtA2iM/tMHgt8FAL11qFpqJbhSbNGqF
-         /D0Hpj2+Vmx+4ozhjAlApiOU9Js0nS3s/KVQ6wpMf99mBYjTuI65hO57ijDxar4ZeYoL
-         gfmw==
+        bh=TeWGw2gUiLPO/RS6979ifpmA5NC37xcO8V3RqV0p6sM=;
+        b=UEICAlJLJDp+3I3EqRBjOrINwFRMYbI9+BKYwQcOQA7bCQVNhmAeCQR8nzfGdmgVkb
+         Hx49390V+EBXAlE4CO0Tx0WpBbjHvqYICtv5F4KHyDxjwWgVHamv2WYNI+vzMmSC66gj
+         Q0DjCb/yuDugLZunCw2fnqGwi+FCEQTYKQZt/561zhfw04rMEElFCJabPBLk4paFKakQ
+         FHFcvWU8zENYfxWw1NcHl9FE8yaxLJBX6k88CifCRFoLYCDm/HzghVB9OsWg6DTkOA6x
+         YmLvjmCI68JoaV1JDlHPh0YRCN+6oQbOU49Cj00sCaaY8DZwx8DB82CK0C03uU6k8op3
+         QzsQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689856189; x=1690460989;
+        d=1e100.net; s=20221208; t=1689856601; x=1690461401;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=KkhL4uI0B/Lhmv/qxg6Gs+UQ4b+kwmWF1fiPyrwPCd8=;
-        b=kny5soyx9G6j89yVekxRCSDWdfGM1XIq3PYXJpHwOKNCU9NqfNyTg8HTDZ1LRXaOTx
-         sODCnVV6AKVAuoG4aN8epnm1Io+Oxcmc1cnxZGbyGcbjzKjpLGv35xi/aZbnhTK3ygaY
-         JwcHUZTgkkRNowtJ8ppFIwTIZyzGK4JrwpquUt3iZoR+iO7jYDxIBwqX7iziSKpRQNM9
-         u/uK+aU4qXXkNZgqB7vH00ssnLRjv2omqebyzlbb8Kyq4x0Ngy1cYLcj4yyxKoPEo+sC
-         YZoHfp/0nT7IftZvFnDBR92WpgLjxT06s6cOesmkvJj+oIBxj9CwFr8BPafY1E/el1kz
-         K/Lg==
-X-Gm-Message-State: ABy/qLbBIQqdSX7IAsV8C2hTJKud9WVHfZ8lqIAULPDRf7Ct29O3AwzU
-        oiYEJucPfc4XigQowstwAU3eCw==
-X-Google-Smtp-Source: APBJJlE64chd/1tEB2ElppjUwBGavjD5dJTrzpri48CI5z/Qf7oQEoD8ZUvvWzAetnjz75c7W3VIyg==
-X-Received: by 2002:a5d:5190:0:b0:316:f1f6:96d with SMTP id k16-20020a5d5190000000b00316f1f6096dmr2046396wrv.13.1689856189211;
-        Thu, 20 Jul 2023 05:29:49 -0700 (PDT)
-Received: from [10.1.3.131] (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id r1-20020adfce81000000b0031128382ed0sm1222069wrn.83.2023.07.20.05.29.48
+        bh=TeWGw2gUiLPO/RS6979ifpmA5NC37xcO8V3RqV0p6sM=;
+        b=WiAnKoe//HSsfO6+3BUPAjDaiAjKL8o+OIgAojV1VjekBj6jZohN4usNnEg3z7A0A6
+         Nn2qIxCCyRiGqRnTwaUP/OqKHdWCIEJ+l9LVw9NnzHkD2a/r0LThVdIuCkbZ/qT79nae
+         dH9FF7PMnPWhemAKstUZYW8se4gI+EIXnoPunZMfMDyuvRJ+OoBtE3LFh1wgbhWFHdB1
+         UOZu6v1NbjY/KCViutK0veZbf7JlLtQmU5/905iChtu+z8WGlmXg4s9RP4hZB5c6oeQu
+         dtEe82Hk1D7qDXJjPHtKM9daPmwxtRlLPtY0JrRtCbxIhKhPxWYThu2yX79+4KAqiZaJ
+         xsJg==
+X-Gm-Message-State: ABy/qLYAyPjiFyQ1jD7kMU/0CDXCNfzgCdLC62x4DjBLe8m5mTSypsFM
+        csHrJS9WexTNDRz8x9QsyG2KAQ==
+X-Google-Smtp-Source: APBJJlFyWuz4RP3lpWwhWBFPBxHH+evG1aHzuSnSD11+X1U38hrobyh2hgqG/WfGnjR28zjpg4Omaw==
+X-Received: by 2002:a17:906:7a07:b0:99b:4668:865f with SMTP id d7-20020a1709067a0700b0099b4668865fmr3407023ejo.10.1689856601393;
+        Thu, 20 Jul 2023 05:36:41 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id n10-20020a170906164a00b00977cad140a8sm636723ejd.218.2023.07.20.05.36.39
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 20 Jul 2023 05:29:48 -0700 (PDT)
-Message-ID: <16d2f0d7-f150-823b-b568-18f3bb6b2f77@baylibre.com>
-Date:   Thu, 20 Jul 2023 14:29:47 +0200
+        Thu, 20 Jul 2023 05:36:40 -0700 (PDT)
+Message-ID: <f67d710c-bacc-8480-a918-db84b82885e1@linaro.org>
+Date:   Thu, 20 Jul 2023 14:36:38 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
-Subject: Re: [PATCH v3,3/3] drm/mediatek: dp: Add the audio divider to
- mtk_dp_data struct
+Subject: Re: [PATCH v2 2/2] ARM: dts: imx6q: Add Variscite MX6 Custom board
+ support
 Content-Language: en-US
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Shuijing Li <shuijing.li@mediatek.com>,
-        chunkuang.hu@kernel.org, p.zabel@pengutronix.de, airlied@gmail.com,
-        daniel@ffwll.ch, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        matthias.bgg@gmail.com, jitao.shi@mediatek.com
-Cc:     dri-devel@lists.freedesktop.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20230720082604.18618-1-shuijing.li@mediatek.com>
- <20230720082604.18618-4-shuijing.li@mediatek.com>
- <44cc9cc5-7dce-f7a2-f077-b62d7851ee12@baylibre.com>
- <65da6005-3c07-a7ea-6b63-db45c8915ae8@collabora.com>
- <6c3422e8-4e2e-ba3a-4f30-d24308ef7c2a@baylibre.com>
- <a48e9f99-2b93-9eb6-daef-be95a956c3d8@collabora.com>
-From:   Alexandre Mergnat <amergnat@baylibre.com>
-In-Reply-To: <a48e9f99-2b93-9eb6-daef-be95a956c3d8@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+To:     James Hilliard <james.hilliard1@gmail.com>
+Cc:     devicetree@vger.kernel.org,
+        Gregory CLEMENT <gregory.clement@bootlin.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        soc@kernel.org, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Marek Vasut <marex@denx.de>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        Stefan Wahren <stefan.wahren@chargebyte.com>,
+        Andreas Kemnade <andreas@kemnade.info>,
+        =?UTF-8?B?TWljaGFsIFZva8OhxI0=?= <michal.vokac@ysoft.com>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Jesse Taube <mr.bossman075@gmail.com>,
+        Li Yang <leoyang.li@nxp.com>, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20230719224141.3716815-1-james.hilliard1@gmail.com>
+ <20230719224141.3716815-2-james.hilliard1@gmail.com>
+ <0ad5a223-d70f-deaa-6261-a2bd2b2af40d@linaro.org>
+ <CADvTj4qvXvuV=ASg5h4hPr8QG-NR48j6G36AZC5xHDdhLyjT7w@mail.gmail.com>
+ <c70e397e-dee8-2155-9f0b-538e95bda2eb@linaro.org>
+ <CADvTj4p72nh5umeSRw2OhjA5NyyZY_BkMhzJBn4Y2AHZHA3+dw@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CADvTj4p72nh5umeSRw2OhjA5NyyZY_BkMhzJBn4Y2AHZHA3+dw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 20/07/2023 14:08, AngeloGioacchino Del Regno wrote:
-> Il 20/07/23 14:07, Alexandre Mergnat ha scritto:
->>
->>
->> On 20/07/2023 13:54, AngeloGioacchino Del Regno wrote:
->>> Il 20/07/23 12:14, Alexandre Mergnat ha scritto:
->>>>
->>>>
->>>> On 20/07/2023 10:26, Shuijing Li wrote:
->>>>> Due to the difference of HW, different dividers need to be set.
->>>>>
->>>>> Signed-off-by: Shuijing Li <shuijing.li@mediatek.com>
->>>>> Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
->>>>> ---
->>>>> Changes in v3:
->>>>> Separate these two things into two different patches.
->>>>> per suggestion from the previous thread:
->>>>> https://lore.kernel.org/lkml/e2ad22bcba31797f38a12a488d4246a01bf0cb2e.camel@mediatek.com/
->>>>> Changes in v2:
->>>>> - change the variables' name to be more descriptive
->>>>> - add a comment that describes the function of 
->>>>> mtk_dp_audio_sample_arrange
->>>>> - reduce indentation by doing the inverse check
->>>>> - add a definition of some bits
->>>>> - add support for mediatek, mt8188-edp-tx
->>>>> per suggestion from the previous thread:
->>>>> https://lore.kernel.org/lkml/ac0fcec9-a2fe-06cc-c727-189ef7babe9c@collabora.com/
->>>>> ---
->>>>>   drivers/gpu/drm/mediatek/mtk_dp.c     | 7 ++++++-
->>>>>   drivers/gpu/drm/mediatek/mtk_dp_reg.h | 1 +
->>>>>   2 files changed, 7 insertions(+), 1 deletion(-)
->>>>>
->> ...
->>>>> b/drivers/gpu/drm/mediatek/mtk_dp_reg.h
->>>>> index f38d6ff12afe..6d7f0405867e 100644
->>>>> --- a/drivers/gpu/drm/mediatek/mtk_dp_reg.h
->>>>> +++ b/drivers/gpu/drm/mediatek/mtk_dp_reg.h
->>>>> @@ -162,6 +162,7 @@
->>>>>   #define AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_MUL_2    (1 << 8)
->>>>>   #define AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_MUL_4    (2 << 8)
->>>>>   #define AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_MUL_8    (3 << 8)
->>>>> +#define MT8188_AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_DIV_2    (4 << 8)
->>>>
->>>> IMO, it's a bit weird to have SoC specific define in the generic 
->>>> header.
->>>> Are you sure this bit is only available for MT8188 ?
->>>>
->>>
->>> Eh, the P0_DIV2 bit is 5<<8 for MT8195, while for 8188 it's 4<<8, 
->>> clearly :-)
->>>
->>
->> Ok then, to avoid this kind of issue for other SoCs in the future, is 
->> that make sense for you to do a SoC specific header file beside the 
->> generic one?
->>
+On 20/07/2023 14:22, James Hilliard wrote:
+>> Take a look at IMX8 Variscite SoMs.
 > 
-> For just one definition? That's a bit overkill :-)
+> Oh, I see what you mean now, so it looks like this is missing for the dart-mx6
+> device tree.
 > 
-
-You're right, but we must start somewhere ^^, and show the proper way 
-for future patches. Actually, I gave my Reviewed-by because it's only 
-one definition. This will be fixed later (I hope).
-
->>>>>   #define AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_DIV_2    (5 << 8)
->>>>>   #define AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_DIV_4    (6 << 8)
->>>>>   #define AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_DIV_8    (7 << 8)
->>>>
->>>> Reviewed-by: Alexandre Mergnat <amergnat@baylibre.com>
->>>>
->>>
->>>
->>
+> imx8mm-var-som.dtsi:    compatible = "variscite,var-som-mx8mm", "fsl,imx8mm";
+> imx8mm-var-som-symphony.dts:    compatible =
+> "variscite,var-som-mx8mm-symphony", "variscite,var-som-mx8mm",
+> "fsl,imx8mm";
 > 
+> imx6q-var-dt6customboard.dts:    compatible =
+> "variscite,dt6customboard", "fsl,imx6q";
 > 
+> So the DART-MX6 is missing a compatible along the lines of
+> "variscite,dart-imx6q"
+> for the dart SoM I guess?
 
--- 
-Regards,
-Alexandre
+It's different topic whether it is worth to fix DART-MX6. In general it
+misses its compatible, but it might be not worth to fix.
+
+> 
+> And for VAR-SOM-MX6 I guess I should use something like
+> "variscite,var-som-imx6q"
+> for the SoM right?
+
+Yes.
+
+Best regards,
+Krzysztof
+
