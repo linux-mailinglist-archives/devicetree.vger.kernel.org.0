@@ -2,75 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2042675AD91
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 13:55:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B87375AD93
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 13:55:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231295AbjGTLzk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jul 2023 07:55:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52428 "EHLO
+        id S231336AbjGTLzv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jul 2023 07:55:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52416 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231514AbjGTLzh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 07:55:37 -0400
-Received: from mail-il1-x12b.google.com (mail-il1-x12b.google.com [IPv6:2607:f8b0:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C6D826AC
-        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 04:55:20 -0700 (PDT)
-Received: by mail-il1-x12b.google.com with SMTP id e9e14a558f8ab-345a76c3a2eso3585225ab.2
-        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 04:55:20 -0700 (PDT)
+        with ESMTP id S229820AbjGTLzs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 07:55:48 -0400
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C622D2D4E
+        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 04:55:30 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-51e99584a82so963177a12.1
+        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 04:55:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1689854116; x=1690458916;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=y2nsfpAZOzKSfsD7kBlpnXhljpFm6V4jZ1IFt269Dzc=;
-        b=kLVhvzoRiwP4KdAf8uilvLNrZhhEeWA+9WEjhqTvEMRibj4INzYHEavZysqKaNPicF
-         SRMFcUJoBwewq2wnONrv2bD8dtVPw6mv3yqCGuTdxszlxFa1cAmYoK4kHsUnWBotR6f/
-         tXXdXgyVHtZl9unXI+dXIvRftUHiw81I/9Cfisf8/8uHLlvuQ5hXUJP5DtQpoh1S0MPD
-         02rC1yelAvNVT7tlf5NxxrEd8iHkgnomBB+3Z7geb+7UIXUoLT8NtWmfmIislmBhn3DF
-         goXM0jaLYk+7GfEvTrX/dP1Nwh2HHdmXPFFstDbRsmtiLwgCALkcA86hj2J0dDZsf48v
-         Onow==
+        d=linaro.org; s=google; t=1689854128; x=1690458928;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=FaKi4ZdZUtJEcRH2VQUasUpLlz0S4gllAJGWJZONK9I=;
+        b=t+9L9sVzgxjgqpGtaFiq0a0uj9RPCA3dq5J5FRPErV/DrKSTuGItnIFDoWjx7lElE1
+         qFKO/8DzD9qf7pNMZ9TfBuE/esIuIDVJWwEAWtxvcsCbR89tEg+S5v8b2+Sl4tNRBfyG
+         +UUeyR/RLn+nT/wvj8510jdb51pchXVltGqHV/1uphdNGviYn+x/PLDgZpk5zVIHIwzS
+         EpPsjkQoSyZa5UGshO+gmigg8lEdQBtEjXam+Bcg90prLT7cj/F3FmmSlJ/gEQYhLNUd
+         YIiffvMueNEkp85/IsjKsU6rvlEowTc8+M9N5B748g+H1iFpXONLu/wX5jo3Iib/+NXs
+         URCQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689854116; x=1690458916;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=y2nsfpAZOzKSfsD7kBlpnXhljpFm6V4jZ1IFt269Dzc=;
-        b=ISeycU+YZdeo5/tJ2xesmNG8b8k9jlqcCVnfXeDoOCQuZCIaJKaGmGPKbbGA2ST9dz
-         WPv4AyC8YpwFd5R2znt7nHSWv7kF1s5H/Qrpc48cg7fvmpFrQd37yo/TkeqF7gOwvIas
-         H9hM3PNNPhdAWxLKbY/ntuC3EY/2Tf4/Qd74oUcY4nXR+CeRIHwGMzem3bSUo41pB7W1
-         6bRyQC/1tPvsDn7g8Vt5hDr5Bo0oG/Ib9Zx1Aqtc4qqUOx9TYQdXJooK6CuJ3QdfvVhT
-         Ju7rtXZf2kU+M/fDdQTZ/dCRkrxB34AXF/tF327uF6kDyBkDRIFf+tnWmvdw3uRfugr2
-         SLow==
-X-Gm-Message-State: ABy/qLYFRuBbRTcT48V62dOeC3lqz1x57RpOU7OK0H4gnV43BbXvldNR
-        hnlIOrl8VKWa2UsERY/56QrBTwTenDudp9YRVQA82zhAONHi9k6V
-X-Google-Smtp-Source: APBJJlGuhvDEwX4zHCaoLq/vlPx/v2JTXQRrMKCcSuSSpMPMike0ZYN5c7gHKmoZ7va9hMESrNSbxdOsjufjpaBkyv4=
-X-Received: by 2002:a92:d3c6:0:b0:348:90eb:883b with SMTP id
- c6-20020a92d3c6000000b0034890eb883bmr1604226ilh.13.1689854115872; Thu, 20 Jul
- 2023 04:55:15 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230719113542.2293295-1-apatel@ventanamicro.com>
- <20230719113542.2293295-3-apatel@ventanamicro.com> <20230719223758.GA892809-robh@kernel.org>
-In-Reply-To: <20230719223758.GA892809-robh@kernel.org>
-From:   Anup Patel <apatel@ventanamicro.com>
-Date:   Thu, 20 Jul 2023 17:25:03 +0530
-Message-ID: <CAK9=C2Ui3H8jOXZbSd_CCmtxVLWR=-JrTDK8kDbrLhJ4uUi+9g@mail.gmail.com>
-Subject: Re: [PATCH v6 02/14] of: property: Add fw_devlink support for msi-parent
-To:     Rob Herring <robh@kernel.org>
-Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
+        d=1e100.net; s=20221208; t=1689854128; x=1690458928;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=FaKi4ZdZUtJEcRH2VQUasUpLlz0S4gllAJGWJZONK9I=;
+        b=HHo02Twv5KeATnxWWkp+Hpg2CQ+g3ZKdF/dL2vuBJV2EyFXYiXKvHA8alLr9PNu0AV
+         eG7yIQwGi7BlDkhW+mWs3+exUIHcK3fhHEcYNk3wfQaYE5ByFrDl/1ksE/De+nJtw5rM
+         OxBiudsabwbxy3A93GC3mIkPIVtZnCx1kYUYoNeOYO8kCZiLZ8VOCRIH/tcBsXhf3+Y2
+         CNiPNKh0rrzKCv36aEgeXmpdR2fTUMOOlvZxBW54sXBUvrSfld3izbk2/xp9+dDaWfw8
+         a11WsawCzHIk55gkE33+/ek41GWcZM8mcgXa/GVmtQb7BZkYip6+QpW8uEGZOeAKgUpy
+         QUug==
+X-Gm-Message-State: ABy/qLaWgpcNC2A5lJByI7T4qzyZ+f3JMGBc3b2NZFYLM77MqbXVje5k
+        r5dZD50kdyo0PcQr9PO9KlnBfn1vcMNiMHNIvh4=
+X-Google-Smtp-Source: APBJJlHgW/jlER570n5CY2OMt4hniDBz0t7obp+rYjMjBZz5OkSfncicMpmdklddr82WYg9BuQOOoA==
+X-Received: by 2002:a17:907:6da0:b0:98e:1c4b:10bb with SMTP id sb32-20020a1709076da000b0098e1c4b10bbmr6439192ejc.35.1689854127814;
+        Thu, 20 Jul 2023 04:55:27 -0700 (PDT)
+Received: from krzk-bin.. ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id qt10-20020a170906ecea00b00988e953a586sm606466ejb.61.2023.07.20.04.55.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 20 Jul 2023 04:55:27 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Frank Rowand <frowand.list@gmail.com>,
         Conor Dooley <conor+dt@kernel.org>,
-        Atish Patra <atishp@atishpatra.org>,
-        Andrew Jones <ajones@ventanamicro.com>,
-        Sunil V L <sunilvl@ventanamicro.com>,
-        Saravana Kannan <saravanak@google.com>,
-        Anup Patel <anup@brainfault.org>,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 1/2] ARM: dts: st: href-tvk1281618: fix touchscreen VIO supply
+Date:   Thu, 20 Jul 2023 13:55:23 +0200
+Message-Id: <20230720115524.137944-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -81,91 +72,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 20, 2023 at 4:08=E2=80=AFAM Rob Herring <robh@kernel.org> wrote=
-:
->
-> On Wed, Jul 19, 2023 at 05:05:30PM +0530, Anup Patel wrote:
-> > This allows fw_devlink to create device links between consumers of
-> > a MSI and the supplier of the MSI.
-> >
-> > Signed-off-by: Anup Patel <apatel@ventanamicro.com>
-> > ---
-> >  drivers/of/property.c | 32 ++++++++++++++++++++++++++++++++
-> >  1 file changed, 32 insertions(+)
-> >
-> > diff --git a/drivers/of/property.c b/drivers/of/property.c
-> > index ddc75cd50825..e4096b79a872 100644
-> > --- a/drivers/of/property.c
-> > +++ b/drivers/of/property.c
-> > @@ -1325,6 +1325,37 @@ static struct device_node *parse_interrupts(stru=
-ct device_node *np,
-> >       return of_irq_parse_one(np, index, &sup_args) ? NULL : sup_args.n=
-p;
-> >  }
-> >
-> > +static struct device_node *parse_msi_parent(struct device_node *np,
-> > +                                         const char *prop_name, int in=
-dex)
-> > +{
-> > +     struct of_phandle_args sup_args;
-> > +     struct device_node *msi_np;
-> > +
-> > +     if (!IS_ENABLED(CONFIG_OF_IRQ))
-> > +             return NULL;
->
-> Why do we need this? Sparc is not going to have MSI properties to begin
-> with. I guess it saves a little bit of code. Though Sparc doesn't need
-> any of this file. Or maybe there's a better kconfig symbol to use here
-> if MSIs are not supported?
+According to bindings and Linux driver, there is no VDDIO but VIO
+supply:
 
-I can't think of a better kconfig symbol over here but since Sparc does
-not have MSI properties, I think following is better:
+  ste-hrefprev60-tvk.dtb: synaptics@4b: Unevaluated properties are not allowed ('vddio-supply' was unexpected)
 
-if (IS_ENABLED(CONFIG_SPARC))
-    return NULL;
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ arch/arm/boot/dts/st/ste-href-tvk1281618-r2.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Any other suggestions ?
+diff --git a/arch/arm/boot/dts/st/ste-href-tvk1281618-r2.dtsi b/arch/arm/boot/dts/st/ste-href-tvk1281618-r2.dtsi
+index 37e59403c01f..469e61c9a349 100644
+--- a/arch/arm/boot/dts/st/ste-href-tvk1281618-r2.dtsi
++++ b/arch/arm/boot/dts/st/ste-href-tvk1281618-r2.dtsi
+@@ -192,7 +192,7 @@ synaptics@4b {
+ 				#size-cells = <0>;
+ 				reg = <0x4b>;
+ 				vdd-supply = <&ab8500_ldo_aux1_reg>;
+-				vddio-supply = <&db8500_vsmps2_reg>;
++				vio-supply = <&db8500_vsmps2_reg>;
+ 				pinctrl-names = "default";
+ 				pinctrl-0 = <&synaptics_tvk_mode>;
+ 				interrupt-parent = <&gpio2>;
+-- 
+2.34.1
 
-Regards,
-Anup
-
->
-> > +
-> > +     if (strcmp(prop_name, "msi-parent"))
-> > +             return NULL;
-> > +
-> > +     msi_np =3D of_parse_phandle(np, prop_name, 0);
-> > +     if (msi_np) {
-> > +             if (!of_property_read_bool(msi_np, "#msi-cells")) {
-> > +                     if (index) {
-> > +                             of_node_put(msi_np);
-> > +                             return NULL;
-> > +                     }
-> > +                     return msi_np;
-> > +             }
-> > +             of_node_put(msi_np);
-> > +     }
-> > +
-> > +     if (of_parse_phandle_with_args(np, prop_name, "#msi-cells", index=
-,
-> > +                                    &sup_args))
-> > +             return NULL;
-> > +
-> > +     return sup_args.np;
-> > +}
-> > +
-> >  static const struct supplier_bindings of_supplier_bindings[] =3D {
-> >       { .parse_prop =3D parse_clocks, },
-> >       { .parse_prop =3D parse_interconnects, },
-> > @@ -1359,6 +1390,7 @@ static const struct supplier_bindings of_supplier=
-_bindings[] =3D {
-> >       { .parse_prop =3D parse_regulators, },
-> >       { .parse_prop =3D parse_gpio, },
-> >       { .parse_prop =3D parse_gpios, },
-> > +     { .parse_prop =3D parse_msi_parent, },
-> >       {}
-> >  };
-> >
-> > --
-> > 2.34.1
-> >
