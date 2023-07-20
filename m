@@ -2,58 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 905C875B98F
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 23:30:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B3F7175B997
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 23:33:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229983AbjGTVag (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jul 2023 17:30:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55082 "EHLO
+        id S229610AbjGTVdi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jul 2023 17:33:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55806 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229876AbjGTVaf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 17:30:35 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 926D52713;
-        Thu, 20 Jul 2023 14:30:34 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 30E7861C67;
-        Thu, 20 Jul 2023 21:30:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0BA6BC433C7;
-        Thu, 20 Jul 2023 21:30:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689888633;
-        bh=U7WEf1K3Q/Sc+LGXXBrAr25HeboapnbL8Dk9PdUU71w=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=WptnBbX8sjHLz2Jwwn29Y8dEtwhoXmGcubQftNd/gnjB11d3gmgBBRW9rDHzR38MY
-         /qmCkbwj5v3yGPXXplryYeNkhEM4ffgqv/agz7SUpP5nE2yEnX+AuApsWUhuYQywfO
-         JSxdds4HaKvttNbESGomtC6Cxnq32qm59Xfn1oWZAaOlBT71huBRux5bqtWEzmZGGW
-         MQ3XGDfRQ6vgjvksd9kN8wqoI2RdNVC77HqQu6/SlYWqs2dcfl871hgKk7S/NESpP3
-         tLlBU1TDjIWYIwBKv6EoFgklUrCOIX1XVdo4ttzNHIXv9xtq71cM8Tokxv3GCKdeiv
-         vuQOpzj6QnVXw==
-Received: (nullmailer pid 3267625 invoked by uid 1000);
-        Thu, 20 Jul 2023 21:30:31 -0000
-Date:   Thu, 20 Jul 2023 15:30:31 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
-        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH 01/13] of: dynamic: Do not use "%pOF" while holding
- devtree_lock
-Message-ID: <20230720213031.GC2939849-robh@kernel.org>
-References: <cover.1689776064.git.geert+renesas@glider.be>
- <416d1ea056bb2d7ec6f21d8919b96a3d48099344.1689776064.git.geert+renesas@glider.be>
- <20230719230256.GA900970-robh@kernel.org>
+        with ESMTP id S229561AbjGTVdh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 17:33:37 -0400
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 816A1270B;
+        Thu, 20 Jul 2023 14:33:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1689888814; x=1721424814;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=+UWzKVAC1zquvxCUG1oQtwOfoXSrLCsU75HqouL3Cpw=;
+  b=RNNVfMuhyelrNsBrn8fBYJlHZkjVpZQZY1nIAjctGiEWcN4puP4jz4Pg
+   zpQUeyVvqTfY1HPUNA0PxoJinhkeZX4z+dlhC4LYadNdQg6mDvjTEb0jm
+   d8pC6l3mtuXugVkFd1AfPWmjesoA7WmHdrYPRGptHM7x5g5GaY+kAYIfD
+   SOLIExCu2sP4yj7pyowt2s0bsFHYzkx3QGKvzJBfNRguyOgIOj7GUJrGT
+   PEqTLnI+oYt+9MPXMw6cnHmX5P4lHCTqI/LXGPzBbH2WfjXfdV6KNRRIh
+   icycenCaUrHf8ubiKoYoGtntSE3eNjtRYK4kOV/a6eBnJAIMUlYSi6rN6
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10777"; a="433090671"
+X-IronPort-AV: E=Sophos;i="6.01,219,1684825200"; 
+   d="scan'208";a="433090671"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Jul 2023 14:33:21 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10777"; a="759719710"
+X-IronPort-AV: E=Sophos;i="6.01,219,1684825200"; 
+   d="scan'208";a="759719710"
+Received: from lkp-server02.sh.intel.com (HELO 36946fcf73d7) ([10.239.97.151])
+  by orsmga001.jf.intel.com with ESMTP; 20 Jul 2023 14:33:15 -0700
+Received: from kbuild by 36946fcf73d7 with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1qMbGs-0006XT-1F;
+        Thu, 20 Jul 2023 21:33:14 +0000
+Date:   Fri, 21 Jul 2023 05:32:44 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        vireshk@kernel.org, nm@ti.com, sboyd@kernel.org,
+        myungjoo.ham@samsung.com, kyungmin.park@samsung.com,
+        cw00.choi@samsung.com, andersson@kernel.org,
+        konrad.dybcio@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        jejb@linux.ibm.com, martin.petersen@oracle.com
+Cc:     oe-kbuild-all@lists.linux.dev, alim.akhtar@samsung.com,
+        avri.altman@wdc.com, bvanassche@acm.org,
+        linux-scsi@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        quic_asutoshd@quicinc.com, quic_cang@quicinc.com,
+        quic_nitirawa@quicinc.com, quic_narepall@quicinc.com,
+        quic_bhaskarv@quicinc.com, quic_richardp@quicinc.com,
+        quic_nguyenb@quicinc.com, quic_ziqichen@quicinc.com,
+        bmasney@redhat.com, krzysztof.kozlowski@linaro.org
+Subject: Re: [PATCH v2 11/15] scsi: ufs: host: Add support for parsing OPP
+Message-ID: <202307210542.KoLHRbU6-lkp@intel.com>
+References: <20230720054100.9940-12-manivannan.sadhasivam@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230719230256.GA900970-robh@kernel.org>
+In-Reply-To: <20230720054100.9940-12-manivannan.sadhasivam@linaro.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -61,53 +77,134 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-+Sakari
+Hi Manivannan,
 
-On Wed, Jul 19, 2023 at 05:02:56PM -0600, Rob Herring wrote:
-> On Wed, Jul 19, 2023 at 05:00:01PM +0200, Geert Uytterhoeven wrote:
-> > Formatting strings using "%pOF" while holding devtree_lock causes a
-> > deadlock.  Lockdep reports:
-> > 
-> >     of_get_parent from of_fwnode_get_parent+0x18/0x24
-> >     ^^^^^^^^^^^^^
-> 
-> I'm wondering if we really need the lock in there. We never unset or 
-> change the parent. It gets detached, but we're not checking for that. 
-> The node could get freed, but the lock is not for that, refcounts are.
+kernel test robot noticed the following build errors:
 
-The lock existed since 2.6.12 for powerpc. It's not clear to me whether 
-it was really ever needed. There's lots of places we just access 
-'parent' without a lock. Not to say that's right.
+[auto build test ERROR on robh/for-next]
+[also build test ERROR on mkp-scsi/for-next jejb-scsi/for-next linus/master v6.5-rc2 next-20230720]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-The lock doesn't even help in this case because we release the lock on 
-each count and between counting and getting the names. If the tree 
-changes, the lock isn't going to help.
+url:    https://github.com/intel-lab-lkp/linux/commits/Manivannan-Sadhasivam/dt-bindings-ufs-common-add-OPP-table/20230720-134720
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20230720054100.9940-12-manivannan.sadhasivam%40linaro.org
+patch subject: [PATCH v2 11/15] scsi: ufs: host: Add support for parsing OPP
+config: i386-randconfig-m021-20230720 (https://download.01.org/0day-ci/archive/20230721/202307210542.KoLHRbU6-lkp@intel.com/config)
+compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
+reproduce: (https://download.01.org/0day-ci/archive/20230721/202307210542.KoLHRbU6-lkp@intel.com/reproduce)
 
-> >     of_fwnode_get_parent from fwnode_count_parents+0xc/0x28
-> 
-> count parents? Huh? Isn't it always 1? 
-> 
-> >     fwnode_count_parents from fwnode_full_name_string+0x18/0xac
-> >     fwnode_full_name_string from device_node_string+0x1a0/0x404
-> >     device_node_string from pointer+0x3c0/0x534
-> >     pointer from vsnprintf+0x248/0x36c
-> >     vsnprintf from vprintk_store+0x130/0x3b4
-> > 
-> > Fix this by making the locking cover only the parts that really need it.
-> > 
-> > Fixes: 0d638a07d3a1e98a ("of: Convert to using %pOF instead of full_name")
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202307210542.KoLHRbU6-lkp@intel.com/
 
-That's the wrong commit. My implementation in vsprintf.c worked with 
-this. It's commit a92eb7621b9f ("lib/vsprintf: Make use of fwnode API to 
-obtain node names and separators") which broke it. It came 2 years 
-later.
+All errors (new ones prefixed by >>, old ones prefixed by <<):
 
-The fwnode based implementation looks like the wrong level of 
-abstraction to me. Why not just push 'give me the full name' down to the 
-fwnode backends? The functions defined are *only* used by vsprintf.c.
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/media/rc/keymaps/rc-msi-tvanywhere-plus.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/media/rc/keymaps/rc-nebula.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/media/rc/keymaps/rc-nec-terratec-cinergy-xs.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/media/rc/keymaps/rc-norwood.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/media/rc/keymaps/rc-npgtech.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/media/rc/keymaps/rc-odroid.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/media/rc/keymaps/rc-pctv-sedna.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/media/rc/keymaps/rc-pine64.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/media/rc/keymaps/rc-pinnacle-color.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/media/rc/keymaps/rc-pinnacle-grey.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/media/rc/keymaps/rc-pinnacle-pctv-hd.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/media/rc/keymaps/rc-pixelview-002t.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/media/rc/keymaps/rc-pixelview-mk12.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/media/rc/keymaps/rc-pixelview-new.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/media/rc/keymaps/rc-pixelview.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/media/rc/keymaps/rc-powercolor-real-angel.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/media/rc/keymaps/rc-proteus-2309.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/media/rc/keymaps/rc-purpletv.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/media/rc/keymaps/rc-pv951.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/media/rc/keymaps/rc-rc6-mce.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/media/rc/keymaps/rc-real-audio-220-32-keys.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/media/rc/keymaps/rc-reddo.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/media/rc/keymaps/rc-snapstream-firefly.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/media/rc/keymaps/rc-streamzap.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/media/rc/keymaps/rc-su3000.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/media/rc/keymaps/rc-tanix-tx3mini.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/media/rc/keymaps/rc-tanix-tx5max.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/media/rc/keymaps/rc-tbs-nec.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/media/rc/keymaps/rc-technisat-ts35.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/media/rc/keymaps/rc-technisat-usb2.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/media/rc/keymaps/rc-terratec-cinergy-c-pci.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/media/rc/keymaps/rc-terratec-cinergy-s2-hd.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/media/rc/keymaps/rc-terratec-cinergy-xs.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/media/rc/keymaps/rc-terratec-slim-2.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/media/rc/keymaps/rc-terratec-slim.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/media/rc/keymaps/rc-tevii-nec.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/media/rc/keymaps/rc-tivo.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/media/rc/keymaps/rc-total-media-in-hand-02.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/media/rc/keymaps/rc-total-media-in-hand.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/media/rc/keymaps/rc-trekstor.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/media/rc/keymaps/rc-tt-1500.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/media/rc/keymaps/rc-twinhan1027.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/media/rc/keymaps/rc-twinhan-dtv-cab-ci.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/media/rc/keymaps/rc-vega-s9x.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/media/rc/keymaps/rc-videomate-m1f.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/media/rc/keymaps/rc-videomate-s350.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/media/rc/keymaps/rc-videomate-tv-pvr.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/media/rc/keymaps/rc-videostrong-kii-pro.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/media/rc/keymaps/rc-wetek-hub.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/media/rc/keymaps/rc-wetek-play2.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/media/rc/keymaps/rc-winfast.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/media/rc/keymaps/rc-winfast-usbii-deluxe.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/media/rc/keymaps/rc-x96max.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/media/rc/keymaps/rc-xbox-360.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/media/rc/keymaps/rc-xbox-dvd.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/media/rc/keymaps/rc-zx-irdec.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/media/rc/rc-core.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/isdn/hardware/mISDN/hfcpci.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/isdn/hardware/mISDN/hfcmulti.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/isdn/hardware/mISDN/speedfax.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/isdn/hardware/mISDN/mISDNinfineon.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/isdn/hardware/mISDN/w6692.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/isdn/hardware/mISDN/netjet.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/isdn/hardware/mISDN/mISDNipac.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/isdn/hardware/mISDN/mISDNisar.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/isdn/mISDN/mISDN_core.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/isdn/mISDN/mISDN_dsp.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/isdn/mISDN/l1oip.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/staging/greybus/gb-bootrom.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/staging/greybus/gb-spilib.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/staging/greybus/gb-light.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/staging/greybus/gb-loopback.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/staging/greybus/gb-vibrator.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/rpmsg/rpmsg_char.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/devfreq/governor_simpleondemand.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/perf/cxl_pmu.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/hwtracing/intel_th/intel_th_msu_sink.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/pcmcia/pcmcia_rsrc.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/pcmcia/yenta_socket.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/pcmcia/i82365.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/pcmcia/i82092.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/hwmon/asus_atk0110.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/greybus/greybus.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/iio/buffer/kfifo_buf.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/siox/siox-bus-gpio.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in samples/configfs/configfs_sample.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in samples/kfifo/bytestream-example.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in samples/kfifo/dma-example.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in samples/kfifo/inttype-example.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in samples/kfifo/record-example.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in samples/kobject/kobject-example.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in samples/kobject/kset-example.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in samples/kprobes/kprobe_example.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in samples/kprobes/kretprobe_example.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in samples/kmemleak/kmemleak-test.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/802/fddi.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/nfc/nci/nci.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/nfc/nci/nci_spi.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/atm/atm.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/hsr/hsr.o
+>> ERROR: modpost: "__tracepoint_ufshcd_clk_scaling" [drivers/ufs/host/ufshcd-pltfrm.ko] undefined!
+>> ERROR: modpost: "__SCT__tp_func_ufshcd_clk_scaling" [drivers/ufs/host/ufshcd-pltfrm.ko] undefined!
 
-I don't really understand the "let's change everything to use fwnode" 
-even for things which will never be anything but DT. %pOF is DT 
-only. </rant>
-
-Rob
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
