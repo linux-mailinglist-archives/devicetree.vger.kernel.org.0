@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A8E1375A9E1
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 10:57:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5199775A9CA
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 10:57:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230136AbjGTI50 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jul 2023 04:57:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36404 "EHLO
+        id S230180AbjGTI5N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jul 2023 04:57:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36518 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231960AbjGTIgg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 04:36:36 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8BB026A0
-        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 01:36:34 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id 2adb3069b0e04-4fb7769f15aso799347e87.0
-        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 01:36:34 -0700 (PDT)
+        with ESMTP id S232067AbjGTIhg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 04:37:36 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D25FD26AD
+        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 01:37:33 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id 2adb3069b0e04-4fba8f2197bso786009e87.3
+        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 01:37:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689842193; x=1690446993;
+        d=linaro.org; s=google; t=1689842252; x=1690447052;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=l3r4dsxUdhv8pXWLvEo63h01H1zbvk+XHRZMKTX+V6A=;
-        b=NDnI3b2E3rtjcXlrTYthE5ly7M1CUR2AV7S/pTZnjkTPnUQxO3Kx0yWeS0cQ9xXeCS
-         YieE9Xp1ahp/UjfqtF9sCZn222zmRwcouZfoHiz7QiOseCuZ4isJHZxatSYSNnKJrosl
-         t0QeTOY9IQ+BOG6V0EX1jW/2aEB2EySoqo/382gfG6Sm4fbj48muRbEMFNDWWVjECdfK
-         gsl5ari4EbiRMb75Mxpm+ZvYpirAZOXLBw2Wvj5F+KYPQHmPtb0itRVOg/MJG2OAuGCn
-         M9PYXYRaRJ1f5YsLDtlKpMF/4R9hdO5Gb5zz0/jVkNt/mAr1Z8y7p/8s/YId2hafTWB1
-         fJgA==
+        bh=XVKduqukJFThqCn9rHc2sAUiDf9CW199iwTtawN81UA=;
+        b=tprFHS+ZF+AGhSiC+hrsruGTZ6G+G4DozQ2K2jcsG8w7QT+DgZOMCsIj7z0p7iNBo1
+         s8yrkXcsAjj1pMMH+cx38ct35dVqsAAOex6MWdeTuCHpwGv7AlVe2KrSO6OqamwADcVs
+         DxHg1o7tJspxtlSawCquqrNmBEBkL0yRv/kfbc2JBYmvre10ZRGLATo76MNR/LQdkWV9
+         spl1qZNfZbtOEH1iHDEy0uE2OrxLKfp8uIkhiBcQ4ItVFYurPHi//k8uq+4s3Gj8vvZN
+         bY0kPXJ57fvcz3hOkZhKNL7D0w7V5KOtRpbwyTucaLPhHE4pQHqf+9H+vpsrlwZCFeIn
+         tEPA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689842193; x=1690446993;
+        d=1e100.net; s=20221208; t=1689842252; x=1690447052;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=l3r4dsxUdhv8pXWLvEo63h01H1zbvk+XHRZMKTX+V6A=;
-        b=Xfb7NFNiDdnDNeOdYoiZHsYQOS9sibm9nGU3xbClqNVtoy2BF0SLBdt9KU7J80Z9IY
-         NYIcrEMZgpi4kzxrHirkAnVXz3Ymvsy9pNZKaghUXxUCs+/f/vwwqBzLtpt359/1LHtM
-         feQfrJbFoUmS5yCXkRy9KngzTIz7ueqXuZkaI6h4tLc9Cfj/VSX2ES9N5NZ86F3vPAh5
-         42uwPLSJvKrS9bGLFUrAu3jJ5zOB1U5/jAOdGtIt4F2sLedsh0b7Q2iLhXHHqdzSJzbI
-         E0r8M+hXNjN+3VuThyiEGuVuK9/Qd+VGWX1kLkGZouDFk0NOI/YMQ4ILR/hvLzjwKiCU
-         7KnQ==
-X-Gm-Message-State: ABy/qLYwqGuUJeTuPw19bISKYaR7yGYWSfZc6HrlGlY6bmpuhA4GIIEf
-        dfzDSr7NQDOx+sUPZXm4DvPYoQ==
-X-Google-Smtp-Source: APBJJlGmk+Ibm6K6jS+UXFT5Qul/HI3FIWUhaJvpWcRBUIf6DMQVI3Wv6DSFgHcd6EKmeXgtl0Oj5A==
-X-Received: by 2002:a19:6544:0:b0:4f8:6dfd:faa0 with SMTP id c4-20020a196544000000b004f86dfdfaa0mr1150024lfj.2.1689842193108;
-        Thu, 20 Jul 2023 01:36:33 -0700 (PDT)
+        bh=XVKduqukJFThqCn9rHc2sAUiDf9CW199iwTtawN81UA=;
+        b=cZWM5Z+yfc9kikrvSQGi6xZles6WG3gjFNVGVU5b3lTSjt65p7ldr5eDyksK9+Dzne
+         rcOoTdcvLkvVkyKEKBdsQ11ZeLoPMvCvp+ku9DUhqiiITrZTjCdjwlTSEA+VRmC6NP0f
+         EDc5cw0qi2lCfv4JwscOJhLzWSdPeP/JG6AyyHkjKINWC4nAMiV23ZIRwwM60sHYK3C8
+         eC4RU/FXe3RaGw+ZKontS0ZvN5yu3gtoZU/kkpWIcEw8wuHCVuZX7gs8I7+yAwgYT1Pp
+         KrEf+L42vrD0XvQXw4FSuNE9llgiXShS3KXHTrIU73UKrbTFGVOcWtmZVN0ZtqHKqeoC
+         dXww==
+X-Gm-Message-State: ABy/qLZmSohpc0nReqU/GDKDhHAl6X0KB37znff4RviSND2M9p0vCXI5
+        a7ykvNQyET50AsdVlT42qW5tyQ==
+X-Google-Smtp-Source: APBJJlH/ufdc/q3LpjVae7ZYy4aVsT2e2dJ5BTn8gJQhId4XB/KWc7UJFd7weIr1k3JDGEhaNT/W9A==
+X-Received: by 2002:ac2:4851:0:b0:4f7:55e4:4665 with SMTP id 17-20020ac24851000000b004f755e44665mr652131lfy.56.1689842252219;
+        Thu, 20 Jul 2023 01:37:32 -0700 (PDT)
 Received: from [192.168.1.101] (abyj181.neoplus.adsl.tpnet.pl. [83.9.29.181])
-        by smtp.gmail.com with ESMTPSA id d28-20020ac24c9c000000b004f84b36a24fsm90641lfl.51.2023.07.20.01.36.32
+        by smtp.gmail.com with ESMTPSA id d28-20020ac24c9c000000b004f84b36a24fsm90641lfl.51.2023.07.20.01.37.31
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 20 Jul 2023 01:36:32 -0700 (PDT)
-Message-ID: <b7791d8a-0061-400f-aafc-10767e2b076f@linaro.org>
-Date:   Thu, 20 Jul 2023 10:36:31 +0200
+        Thu, 20 Jul 2023 01:37:31 -0700 (PDT)
+Message-ID: <21480323-34a0-1e42-19eb-59f742b47ae1@linaro.org>
+Date:   Thu, 20 Jul 2023 10:37:31 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/4] arm64: dts: qcom: sc8180x-pmics: add missing
- qcom,spmi-gpio fallbacks
+Subject: Re: [PATCH 2/4] arm64: dts: qcom: sc8180x-pmics: add missing
+ gpio-ranges
 Content-Language: en-US
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Andy Gross <agross@kernel.org>,
@@ -65,6 +65,7 @@ To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20230720083500.73554-1-krzysztof.kozlowski@linaro.org>
+ <20230720083500.73554-2-krzysztof.kozlowski@linaro.org>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -101,12 +102,12 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20230720083500.73554-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230720083500.73554-2-krzysztof.kozlowski@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -115,9 +116,9 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 20.07.2023 10:34, Krzysztof Kozlowski wrote:
-> The GPIO children of PMICs should use qcom,spmi-gpio fallback:
+> The GPIO children of PMICs should use gpio-ranges:
 > 
->   sc8180x-primus.dtb: pmic@0: gpio@c000:compatible: ['qcom,pmc8180-gpio'] is too short
+>   sc8180x-primus.dtb: pmic@0: gpio@c000: 'gpio-ranges' is a required property
 > 
 > Fixes: d3302290f59e ("arm64: dts: qcom: sc8180x: Add pmics")
 > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
