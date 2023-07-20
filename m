@@ -2,169 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B901075B53E
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 19:11:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E1D975B548
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 19:13:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229790AbjGTRK7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jul 2023 13:10:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50890 "EHLO
+        id S229569AbjGTRNN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jul 2023 13:13:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52370 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229746AbjGTRK6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 13:10:58 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EAA77AA;
-        Thu, 20 Jul 2023 10:10:57 -0700 (PDT)
+        with ESMTP id S229838AbjGTRNL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 13:13:11 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE4751715;
+        Thu, 20 Jul 2023 10:13:10 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 8786F61B8E;
-        Thu, 20 Jul 2023 17:10:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A1115C433C7;
-        Thu, 20 Jul 2023 17:10:53 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 45E2161B8F;
+        Thu, 20 Jul 2023 17:13:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C0799C433C8;
+        Thu, 20 Jul 2023 17:13:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689873056;
-        bh=+axwopYxss32R/v91aEDYuikl4wHxlkypTqI8kD6aso=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=sCqSFh7cyVmHDASsdStKBK/jH7esg7iLSu6bLcPd91ldXFqCSEsYMXMx0aC9kwDWp
-         sITE99JryYqoKSZYx++BRhsOwJ5wezc4UPhubd1g+sil3QUmCfCPlJH/yuA38WHeQ2
-         lczEfsclUrTRRGS7+IKJyza/pVPRM3yC7SKnSR5soJ1T5Sq0PpmVrq7mhrHIBErTAI
-         asmw06YlY9p1uAAH17JIKZnsJ+iNgqilbvYbWAgfpt42Bfe3fHCl4JBZ1w2BI+CaUW
-         WfhGAhm6/iUJPCrOM+O1wZQTv9cNTtvG+WBEGhK5HgYpFgnumgNq3rFWp/NuR+quqD
-         vNL2WCOxpDkUQ==
-Date:   Thu, 20 Jul 2023 18:10:51 +0100
+        s=k20201202; t=1689873189;
+        bh=YAD5j5uWVee1yIDJ++UcTVLGboz0Oz2sQv9+weUQ+gA=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=Hqe/4Wf5GM3AXz2lHYuShpvW5wAN11zVlctn67kdVOZqfvSNk+RQvZA/C0PMb0Dsv
+         3GUpMCHaGaJgDpfXBZPPoXjb2KqPTwpR6k+czcvoWkuDb9q43BcgwAWS05sjUIjLbr
+         3x2jFtlUAMKyPYvHIiETgObsWBvoWcMF1HI8WO2TL6YC/QSNY4aG+1iW59KcGe9Ht3
+         TB9LA3hXnEhZAdRr6Yao0UToLFPWs7nY8oomeXCPL2aA45Ov5TB5RbE0Usikl8rIWN
+         /ejT5Rj0kGTyXhhhcSZEfrmcXNd+LooKUI3ngL5+yFCJVZ6XjTRK4bp28Q/Xfb0KDO
+         9Tf/75Gz0dYwg==
 From:   Conor Dooley <conor@kernel.org>
-To:     Eric Lin <eric.lin@sifive.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, palmer@dabbelt.com, paul.walmsley@sifive.com,
-        will@kernel.org, mark.rutland@arm.com, tglx@linutronix.de,
-        peterz@infradead.org, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-        zong.li@sifive.com, greentime.hu@sifive.com,
-        vincent.chen@sifive.com, Nick Hu <nick.hu@sifive.com>
-Subject: Re: [PATCH v2 1/3] dt-bindings: riscv: sifive: Add SiFive Private L2
- cache controller
-Message-ID: <20230720-slept-guru-216e2803061e@spud>
-References: <20230720135125.21240-1-eric.lin@sifive.com>
- <20230720135125.21240-2-eric.lin@sifive.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor@kernel.org>,
+        Changhuang Liang <changhuang.liang@starfivetech.com>
+Cc:     Conor Dooley <conor.dooley@microchip.com>,
+        Walker Chen <walker.chen@starfivetech.com>,
+        Hal Feng <hal.feng@starfivetech.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 0/4] Add JH7110 AON PMU support
+Date:   Thu, 20 Jul 2023 18:12:17 +0100
+Message-Id: <20230720-magnifier-goldfish-7d5a84e99c4d@spud>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20230519060202.15296-1-changhuang.liang@starfivetech.com>
+References: <20230519060202.15296-1-changhuang.liang@starfivetech.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="DXW+N7LgbdadIzwt"
-Content-Disposition: inline
-In-Reply-To: <20230720135125.21240-2-eric.lin@sifive.com>
+Content-Type: text/plain; charset="utf-8"
+X-Developer-Signature: v=1; a=openpgp-sha256; l=943; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=ANuhIpiKMyYCW2Cf4joIjuKAf5hgTppu/jZEMHKz0Jo=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDCk7s9692/g3r+Bp1h3FidL73YsuO/JPVvyY7nr+odLR5 he15pJJHaUsDGIcDLJiiiyJt/tapNb/cdnh3PMWZg4rE8gQBi5OAZhIsigjw8cHy/8s14y94LrV SEP+m4b3zsICb3UL02f62juzq3pUbBgZ+muZnz0wvfI3zXT26uuvRDM+KM7cuZX1csFmkzOnr1y y5QMA
+X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Conor Dooley <conor.dooley@microchip.com>
 
---DXW+N7LgbdadIzwt
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Thu, 18 May 2023 23:01:58 -0700, Changhuang Liang wrote:
+> This patchset adds aon power domain driver for the StarFive JH7110 SoC.
+> It is used to turn on/off dphy rx/tx power switch. It also can use syscon
+> operation. The series has been tested on the VisionFive 2 board.
+> 
+> This patchset should be applied after the patchset [1]:
+> [1] https://lore.kernel.org/all/20230512022036.97987-1-xingyu.wu@starfivetech.com/
+> 
+> [...]
 
-Hey Eric,
+Applied to riscv-soc-for-next, thanks!
 
-On Thu, Jul 20, 2023 at 09:51:19PM +0800, Eric Lin wrote:
-> This add YAML DT binding documentation for SiFive Private L2
-> cache controller
->=20
-> Signed-off-by: Eric Lin <eric.lin@sifive.com>
-> Reviewed-by: Zong Li <zong.li@sifive.com>
-> Reviewed-by: Nick Hu <nick.hu@sifive.com>
-> ---
->  .../bindings/cache/sifive,pl2cache.yaml       | 62 +++++++++++++++++++
+[1/4] dt-bindings: power: Add power-domain header for JH7110
+      https://git.kernel.org/conor/c/2b8f8c6e797c
+[2/4] soc: starfive: Replace SOC_STARFIVE with ARCH_STARFIVE
+      https://git.kernel.org/conor/c/36393facfabf
+[3/4] soc: starfive: Extract JH7110 pmu private operations
+      https://git.kernel.org/conor/c/bd0c0d3dae34
+[4/4] soc: starfive: Add JH7110 AON PMU support
+      https://git.kernel.org/conor/c/30fb4784483b
 
-btw, your $subject should be "dt-bindings: cache: ...." rather than
-"riscv: sifive".
-
->  1 file changed, 62 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/cache/sifive,pl2cac=
-he.yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/cache/sifive,pl2cache.yaml=
- b/Documentation/devicetree/bindings/cache/sifive,pl2cache.yaml
-> new file mode 100644
-> index 000000000000..ee8356c5eeee
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/cache/sifive,pl2cache.yaml
-> @@ -0,0 +1,62 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +# Copyright (C) 2023 SiFive, Inc.
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/cache/sifive,pl2cache.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: SiFive Private L2 Cache Controller
-> +
-> +maintainers:
-> +  - Greentime Hu  <greentime.hu@sifive.com>
-> +  - Eric Lin  <eric.lin@sifive.com>
-
-There's extra spaces in these lines for some reason.
-
-> +
-> +description:
-> +  The SiFive Private L2 Cache Controller is per core and
-> +  communicates with both the upstream L1 caches and
-> +  downstream L3 cache or memory, enabling a high-performance
-> +  cache subsystem.
-> +
-> +allOf:
-> +  - $ref: /schemas/cache-controller.yaml#
-> +
-
-I'm pretty sure that I pointed out last time around that you need to add
-something like in the ccache driver:
-
-select:
-  properties:
-    compatible:
-      contains:
-        enum:
-          - sifive,ccache0
-          - sifive,fu540-c000-ccache
-          - sifive,fu740-c000-ccache
-
-otherwise this binding will be used for anything containing "cache" in
-the dt-binding.
-For this binding, I think that the following is sufficient:
-
-select:
-  properties:
-    compatible:
-      contains:
-          const: sifive,pl2cache1
-
-> +properties:
-> +  compatible:
-> +    items:
-> +      - const: sifive,pl2cache1
-> +      - const: cache
-
-You omitted the pl2cache0 from here, that needs to come back! You'll end
-up with 2 items entries.
-Either way, I can't take this binding without a soc-specific compatible,
-per sifive-blocks-ip-versioning.txt..
+I expect I'll get an email tomorrow from SFR pointing out some conflicts
+with the new genpd stuff. I think the plan is for Arnd to sort those
+things out prior to the next merge window.
 
 Thanks,
 Conor.
-
---DXW+N7LgbdadIzwt
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZLlqmwAKCRB4tDGHoIJi
-0tcuAP92m51JnHz7NPdeF4+NU14NEqDIZzYAshCe+QYlXCRcRQD+NRNK1FrLyftL
-6Ff62D6y4p7pPTuYG+5nJ0phZ28ntwA=
-=QjrL
------END PGP SIGNATURE-----
-
---DXW+N7LgbdadIzwt--
