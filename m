@@ -2,94 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D8CC75B74C
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 21:00:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 682EE75B770
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 21:07:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229957AbjGTTAX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jul 2023 15:00:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50118 "EHLO
+        id S230120AbjGTTHv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jul 2023 15:07:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55126 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229633AbjGTTAV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 15:00:21 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6FEA51734
-        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 12:00:20 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id 2adb3069b0e04-4fb960b7c9dso1843195e87.0
-        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 12:00:20 -0700 (PDT)
+        with ESMTP id S230117AbjGTTHs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 15:07:48 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 214632123
+        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 12:07:43 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id 2adb3069b0e04-4fb7589b187so1774091e87.1
+        for <devicetree@vger.kernel.org>; Thu, 20 Jul 2023 12:07:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689879619; x=1690484419;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=1ujTh5UmKEDSKTenMtxBAdE9mDjrAQ930PzSC8IqC6Q=;
-        b=xghr8q17c18wW7dXqb9NO2Qr2e+RjU6Uk5qefPuNxmbKkgEhryRnuVs3B05XuukZ/p
-         XredteMRHtxGIBczNrlW3mplnMeidO17FnyicvSXFRUrsckF/NkDRGb4MhTkf0aRP9Ov
-         tKQ/YBJYpffXwLmqGou35EkB52zmtkLIBkNLRmW1BGCnJvm5SN+bgEDa8oOXIbvWrYkF
-         pqlgh+5Ust1O677xT4CIv/qjFpYXvZJXDbSuLXw7wp1k6CrfsXop5jv81fdgO6Il6j8z
-         43yymq99GwPYKxIMGfW9glaOh3EyZDjJMCcDtY5gwEWFhO/fu1BjXkfzo4D95FHqY2sg
-         TC8A==
+        d=chromium.org; s=google; t=1689880061; x=1690484861;
+        h=cc:to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=YAm3I2W6xmEBSuO17GToW44o1MBPeOESCU3v3yuJkbM=;
+        b=JzhpgZ1+/jGFhh6NxqVeG1rDjXHbOX9YWKTOVMAoMBZLOrJlC/gNXqv9raArt3IlcT
+         mnLQl1zHdB9KANTUO46sYP7uCQR5uXOZ2Qznki1BBdNMyBCDkDQaj8IeuGcM09YPedbX
+         GP/HysflatDkMu40Duf20b9eN7QK7oitZKLrM=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689879619; x=1690484419;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=1ujTh5UmKEDSKTenMtxBAdE9mDjrAQ930PzSC8IqC6Q=;
-        b=WDCZ+tX0EXNyuuUkgHq5VvpU8p98rJyZf5d7tMJCFXMqAjyKggibv8a2NEW96uyUDS
-         1P/hYtU2jslfmNppQ2wtHHcaTXmb3tVc0evJbASJRh5RQjieyacipGvCBMyahXxgiecf
-         u1JRokKsVAgfnXe5gwC/f5hA4xe/as+fK8Ye4Zkv6jzQQoVy2AnQr2qzkNhHlh+YsoTP
-         O5wFM8Aq9TK8tpyIALmFdiIwGn3khiIVPzUdyBsFV1XXEXefK+gLiLqLjp6ya90s0r0X
-         p6fiKmydAbAHRxntC4bo07piSEhUnRv1JiDZhj5kJxdaE+n8za5PYAEv89k/RX7vx71W
-         CqFQ==
-X-Gm-Message-State: ABy/qLYfzSquKEyOscDN1TPpCoB/9QiPpcOI9+Bq3zdkYBk6X3VeWl3p
-        h8yS4MeJcutnOtOuVy1NHan9Ig==
-X-Google-Smtp-Source: APBJJlGT7g82L+Hkwe8xj95tuxpUpxZWcf2IaXzPx9bPpdXMBveogBFlZKgmneiMXJunYel+lZG4Rg==
-X-Received: by 2002:a05:6512:2015:b0:4fd:c923:db5e with SMTP id a21-20020a056512201500b004fdc923db5emr2682237lfb.21.1689879618531;
-        Thu, 20 Jul 2023 12:00:18 -0700 (PDT)
-Received: from krzk-bin.. ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id s22-20020aa7d796000000b0051e2a5d9290sm1104842edq.77.2023.07.20.12.00.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 Jul 2023 12:00:18 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Alim Akhtar <alim.akhtar@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Artur Weber <aweber.kernel@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Linux Kernel Functional Testing <lkft@linaro.org>,
-        Naresh Kamboju <naresh.kamboju@linaro.org>
-Subject: Re: [PATCH] ARM: dts: samsung: fix Exynos4212 Tab3 makefile entries
-Date:   Thu, 20 Jul 2023 21:00:14 +0200
-Message-Id: <168987960900.215967.4720344822144706929.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230720141537.188869-1-krzysztof.kozlowski@linaro.org>
-References: <20230720141537.188869-1-krzysztof.kozlowski@linaro.org>
+        d=1e100.net; s=20221208; t=1689880061; x=1690484861;
+        h=cc:to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=YAm3I2W6xmEBSuO17GToW44o1MBPeOESCU3v3yuJkbM=;
+        b=QCD/DmoO2Ql/A+eaiLbNa/Z7bpPsuJEOIdu0UJ1CR8dT4OLrzLTPjQX/KBKtmzhLTn
+         VXA6CEj9WMew0HJA985DGjN28LK76CRVa8hlYrC8EuI+TOSlUX3uOjAA39FyKthXDb0p
+         2f7NO132Acf3S5/zrvmLn0QS5URbliehum6QRx3ae+LkXcCVALqz2lwOPZ5vkOiaInWc
+         lzyOLoUXBYWbCfRy76hk0WEug3BJRlgbX6Mv1Uw8xkKEMg9FCNeJFo8W+ewUX4nspnMA
+         2z//VBXPUqzacWeD+uFu5IKNuSQp+G+Xj+2FBudndZVJwdhBu4Eishifnub8cQpjIV50
+         /Afw==
+X-Gm-Message-State: ABy/qLZrVTiLKQIZZrvgTfiom3lP6lYApQNo1hwd64biYuXYgYeSMDvq
+        qcQzxOfBtFYHgwV+4StBkARQy6pDkkTu5ktwz3Z7KTlA1o2Bhs1PpfjXYw==
+X-Google-Smtp-Source: APBJJlEcaU9lce/qPo5+3WDqEbxgmhaifCJTBzC/fTwkI04sB/UhmX08LUDY2HaxATXFvezPde4kr6qjlxeC3zZ2pkA=
+X-Received: by 2002:ac2:4d9c:0:b0:4f9:54f0:b6db with SMTP id
+ g28-20020ac24d9c000000b004f954f0b6dbmr2536045lfe.13.1689880060449; Thu, 20
+ Jul 2023 12:07:40 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+From:   Simon Glass <sjg@chromium.org>
+Date:   Thu, 20 Jul 2023 13:07:29 -0600
+Message-ID: <CAPnjgZ0=ABfzGTZ-qczMgY=q1ksG+crN2ko-0mGGjTQ8i8-qBg@mail.gmail.com>
+Subject: duplicate '$id' value
+To:     Devicetree Discuss <devicetree@vger.kernel.org>
+Cc:     Rob Herring <robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-9.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        USER_IN_DEF_SPF_WL autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Rob,
 
-On Thu, 20 Jul 2023 16:15:37 +0200, Krzysztof Kozlowski wrote:
-> Makefile targets are DTB, not DTS.
-> 
-> 
+With 35e8aba I am seeing lots of these warnings:
 
-Applied, thanks!
+$ PYTHONPATH=. tools/dt-mk-schema -j dtschema/schemas >processed-schema.json
+/usr/local/google/home/sjg/cosarm/dt-schema/dtschema/schemas/chosen.yaml:
+duplicate '$id' value 'http://devicetree.org/schemas/chosen.yaml#'
+...
 
-[1/1] ARM: dts: samsung: fix Exynos4212 Tab3 makefile entries
-      https://git.kernel.org/krzk/linux/c/838cf5a4377b9af926731cc68876e9c081873ea6
+Am I doing something wrong?
 
-Best regards,
--- 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Thanks,
+Simon
