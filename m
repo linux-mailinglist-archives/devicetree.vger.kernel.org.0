@@ -2,112 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B1E175B561
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 19:17:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A204375B571
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jul 2023 19:19:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230230AbjGTRRS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jul 2023 13:17:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55142 "EHLO
+        id S229618AbjGTRTM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jul 2023 13:19:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56114 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229526AbjGTRRR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 13:17:17 -0400
-Received: from mail-pf1-x42e.google.com (mail-pf1-x42e.google.com [IPv6:2607:f8b0:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C82CB3;
-        Thu, 20 Jul 2023 10:17:16 -0700 (PDT)
-Received: by mail-pf1-x42e.google.com with SMTP id d2e1a72fcca58-666edfc50deso756139b3a.0;
-        Thu, 20 Jul 2023 10:17:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1689873435; x=1690478235;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=J0uAt1FpVvgdk69DWGVo/B/WilumnjHo3ckls2wQj2c=;
-        b=MK+qmNNORXwB0I5M1ECJrML+kKdViRer5kBwEH13jqFqWPrvH9qpVwD+NCq/1d018c
-         dmHLfc1tu6kO/ikoIBoIR1krTQBsGZ3+q9u5v3XSZyYbOkyC67YXvHVlcxgsQWsqZgtm
-         4SH2TD93EzA0VP1rFamx/Cxpixhc1xvinZAjcekhOe3ngbMxphygvDdsOviDfTtnsbmZ
-         umZ7UPenNo+uzSz1TkMIjeWQt9QLKY1ACnKSlpgNnzP7MRX/LNX+PoEOdVdbQQ+Lidiy
-         cOGFq119CJN/FS7RftR/9pmwUsBDbw0jIdcDb2SJf2KjVezldwj7jUFTSW8pAI6VW6KZ
-         ONLQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689873435; x=1690478235;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=J0uAt1FpVvgdk69DWGVo/B/WilumnjHo3ckls2wQj2c=;
-        b=SLm+b5tlr6idsm/Yh1OQVSEsFtlc4bsB3oIrbg7a6piuUQm/ZuPan8n2n9DoPkTLMu
-         wOouxBPgOKjtdycelh+Owyg+FDTD0XDr5FkceD9DjC2JO9ZGhEkYrn2RgXAIzMDXsPGf
-         1LYkpSfQ4zZ4qa5xSLiLDYP0dRKJZfvektyxQHUzLoAw9Qbkcx88gONRfKUEjNfWOov5
-         zF/IbP/LYpNHxyPMk3dvhisJ13icMpMyjE1vecx4ABbVH0H+VJGPWgs4YzcvcofaYH4U
-         OQMa9/VHWCtt1o/JRYPVylphSmNgbiBQ3tnl3FjdrUeiu+1sF1cbQbhq+/T36KjnLrHn
-         jaYg==
-X-Gm-Message-State: ABy/qLar+Z0aibssi6q/TIvf/KkwNyztO8QdBYkuDZzdKZQurFJJ8eFs
-        6fxfpq4tfyo3GsfUyGmvies=
-X-Google-Smtp-Source: APBJJlEkTI4A4ZrOCc+WXlC2nBipWy2JSRmd1c5HMwU8MruA6yjpC2qz2tfZemAEl4HUzSYjKYO5qQ==
-X-Received: by 2002:a05:6a00:24d1:b0:668:8ad5:778f with SMTP id d17-20020a056a0024d100b006688ad5778fmr10559001pfv.17.1689873434754;
-        Thu, 20 Jul 2023 10:17:14 -0700 (PDT)
-Received: from google.com ([2620:15c:9d:2:e754:74d1:c368:67a2])
-        by smtp.gmail.com with ESMTPSA id h18-20020a62b412000000b00682a75a50e3sm1502944pfn.17.2023.07.20.10.17.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 Jul 2023 10:17:14 -0700 (PDT)
-Date:   Thu, 20 Jul 2023 10:17:09 -0700
-From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To:     nikita.shubin@maquefel.me
-Cc:     Hartley Sweeten <hsweeten@visionengravers.com>,
-        Lennert Buytenhek <kernel@wantstofly.org>,
-        Alexander Sverdlin <alexander.sverdlin@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Lukasz Majewski <lukma@denx.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229555AbjGTRTL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jul 2023 13:19:11 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50E51132;
+        Thu, 20 Jul 2023 10:19:10 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id DAC9961B9D;
+        Thu, 20 Jul 2023 17:19:09 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 571B2C433C8;
+        Thu, 20 Jul 2023 17:19:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1689873549;
+        bh=PCeBJb2it4GDnzii3g1inFDY9PKx76314UTnyFWdLTU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=A/7ceHjrWq8IBFEMpU8XgEb9ndiYaRqmjtIgpy4WzuqsudOYhuYDVs3KrC7fFcBsk
+         DqwMNVphMj0bjO7hAR72UYGPBg0DmfKHYdnMbs2AGi75HUCpTiUrIL1pw6QWlUCxvR
+         Y7jNZe2lAQVfOMt3h8M9c/B/FVrRNItXEAHDWVOYg3eCNlQM4QXrLpqBwXgH3SjUXb
+         3LDy3kgLYi9w3k/RKPy7YQxQWjRf5ujl0d9au0APamVGyJ4racmwjle8X7Fcaq8URj
+         QiJYGtxqcqrv/95PYR91govMdJcmQ0j9fnxoPVQVfSUA8d25AApKi63/UKnRBlEN3T
+         NPP/c2ILds4cQ==
+Date:   Thu, 20 Jul 2023 18:19:04 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
         Daniel Lezcano <daniel.lezcano@linaro.org>,
         Thomas Gleixner <tglx@linutronix.de>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Sebastian Reichel <sre@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Mark Brown <broonie@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, Vinod Koul <vkoul@kernel.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Damien Le Moal <dlemoal@kernel.org>,
-        Sergey Shtylyov <s.shtylyov@omp.ru>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        soc@kernel.org, Liam Girdwood <lgirdwood@gmail.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Andy Shevchenko <andy@kernel.org>,
-        Michael Peters <mpeters@embeddedts.com>,
-        Kris Bahnsen <kris@embeddedts.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-rtc@vger.kernel.org,
-        linux-watchdog@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-pwm@vger.kernel.org, linux-spi@vger.kernel.org,
-        netdev@vger.kernel.org, dmaengine@vger.kernel.org,
-        linux-mtd@lists.infradead.org, linux-ide@vger.kernel.org,
-        linux-input@vger.kernel.org, alsa-devel@alsa-project.org
-Subject: Re: [PATCH v3 28/42] input: keypad: ep93xx: add DT support for
- Cirrus EP93xx
-Message-ID: <ZLlsFTe2nvFw698l@google.com>
-References: <20230605-ep93xx-v3-0-3d63a5f1103e@maquefel.me>
- <20230605-ep93xx-v3-28-3d63a5f1103e@maquefel.me>
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Lee Jones <lee@kernel.org>, linux-iio@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        stable@kernel.org
+Subject: Re: [PATCH 2/6] dt-bindings: timer: renesas,rz-mtu3: Fix
+ overflow/underflow interrupt names
+Message-ID: <20230720-clash-borax-b458480d1579@spud>
+References: <20230720131016.331793-1-biju.das.jz@bp.renesas.com>
+ <20230720131016.331793-3-biju.das.jz@bp.renesas.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="MW2bXVyLy+hXKyIU"
 Content-Disposition: inline
-In-Reply-To: <20230605-ep93xx-v3-28-3d63a5f1103e@maquefel.me>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,FSL_HELO_FAKE,
+In-Reply-To: <20230720131016.331793-3-biju.das.jz@bp.renesas.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -116,35 +67,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 20, 2023 at 02:29:28PM +0300, Nikita Shubin via B4 Relay wrote:
-> From: Nikita Shubin <nikita.shubin@maquefel.me>
-> 
-> - drop flags, they were not used anyway
-> - add OF ID match table
-> - process "autorepeat", "debounce-delay-ms", prescale from device tree
-> - drop platform data usage and it's header
-> - keymap goes from device tree now on
-> 
-> Signed-off-by: Nikita Shubin <nikita.shubin@maquefel.me>
 
-This is awesome, thank you!
+--MW2bXVyLy+hXKyIU
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
->  
->  #include <linux/bits.h>
->  #include <linux/module.h>
-> +#include <linux/of.h>
+On Thu, Jul 20, 2023 at 02:10:12PM +0100, Biju Das wrote:
+> As per R01UH0914EJ0130 Rev.1.30 HW manual the MTU3 overflow/underflow
+> interrupt names starts with 'tci' instead of 'tgi'.
+>=20
+> Fix this documentation issue by replacing below overflow/underflow
+> interrupt names:
+>  - tgiv0->tciv0
+>  - tgiv1->tciv1
+>  - tgiu1->tciu1
+>  - tgiv2->tciv2
+>  - tgiu2->tciu2
+>  - tgiv3->tciv3
+>  - tgiv4->tciv4
+>  - tgiv6->tciv6
+>  - tgiv7->tciv7
+>  - tgiv8->tciv8
+>  - tgiu8->tciu8
+>=20
+> Fixes: 0a9d6b54297e ("dt-bindings: timer: Document RZ/G2L MTU3a bindings")
+> Cc: stable@kernel.org
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 
-Are you sure you need this? I think the only OF-specific structure that
-is being used is of_device_id, which comes from mod_devicetable.h that
-you include below.
+I assume this means that nothing is actually using these interrupt
+names?
 
-Otherwise:
+--MW2bXVyLy+hXKyIU
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Acked-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+-----BEGIN PGP SIGNATURE-----
 
-Please feel free to merge with the rest of the series.
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZLlshwAKCRB4tDGHoIJi
+0t55AQDz0NSQJfxvl+nR9Y5hWRTccTVr1L6oNorO/EggbADklgD9ES3zktzX4fEu
+l92TRktDZDFa4dKcrtFiGN/0/htCiQg=
+=aIp8
+-----END PGP SIGNATURE-----
 
-Thanks.
-
--- 
-Dmitry
+--MW2bXVyLy+hXKyIU--
