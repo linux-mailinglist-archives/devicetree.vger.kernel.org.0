@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D8F7B75C17B
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 10:24:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AF38175C180
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 10:26:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230052AbjGUIY2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jul 2023 04:24:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37004 "EHLO
+        id S230045AbjGUI0j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jul 2023 04:26:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38464 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231534AbjGUIYX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 04:24:23 -0400
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 225F7270F;
-        Fri, 21 Jul 2023 01:24:21 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 36L8O49p006303;
-        Fri, 21 Jul 2023 03:24:04 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1689927844;
-        bh=DM7YonzYOrWfC4RvmJONFc7fErZeSa4OYCbSVf6MFxo=;
-        h=From:To:CC:Subject:Date;
-        b=dAg6uCZ/HcJrpE4I4m7lm+fei90ugIfLlyHEv7j8gTxqLy6XBn0EG6PmpG+X+vATx
-         jNoNTW8mhh7BQBIY8r1bKS7fvv+H+1Ss+XV3IsYzjVHtej7W/Kv4T3iOTjTMLcHRD7
-         KYDOZ/e/wJYkGAGV3ZCJ5elAWplYGgoseXPxX+t4=
-Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 36L8O46K117958
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 21 Jul 2023 03:24:04 -0500
-Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 21
- Jul 2023 03:24:03 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 21 Jul 2023 03:24:03 -0500
-Received: from udit-HP-Z2-Tower-G9-Workstation-Desktop-PC.dhcp.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 36L8O0SH114984;
-        Fri, 21 Jul 2023 03:24:01 -0500
-From:   Udit Kumar <u-kumar1@ti.com>
-To:     <vigneshr@ti.com>, <nm@ti.com>, <kristo@kernel.org>,
-        <robh+dt@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC:     Udit Kumar <u-kumar1@ti.com>
-Subject: [PATCH] arm64: dts: ti: k3-j721e-som-p0: Remove Duplicated wkup_i2c0 node
-Date:   Fri, 21 Jul 2023 13:53:44 +0530
-Message-ID: <20230721082344.1534094-1-u-kumar1@ti.com>
+        with ESMTP id S230062AbjGUI0i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 04:26:38 -0400
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B38E0271F
+        for <devicetree@vger.kernel.org>; Fri, 21 Jul 2023 01:26:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1689927994; x=1721463994;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=Zv611XO42o1Iss5FSM6u+W5iDfRKCUhQI3WHrUVyewM=;
+  b=DkeQIPMJTSbkQh9medgN6wWlaHvQOXlq6Ja//MJl+speeb0zkW+9pmJU
+   EvI2GAkM9/9hBPb4U8SpQ/A506DzZUmYkNA79av3kGtvJ01qZze4NyYOv
+   R1zy9xRhsUh9wrkoyr5WKvNgidgK6FJKn7P+RjvykFzu7CzgoFo9uNXBV
+   I609+EOse77I2BRz1w+zumqNGHqHa+kG91aIPEUDKdFXq5FhcxAt4UcFJ
+   SGm9NxOZo6CTYYfIn7B7Aj2Cy8HhhbEzDwO93m9KDMpikO5+1FAdk3F16
+   vT4CT5sog/PMRHw5mcv6PF54aTfLIF6rDXCOc9+8r/52IbYqeiFMRe2Md
+   A==;
+X-IronPort-AV: E=Sophos;i="6.01,220,1684792800"; 
+   d="scan'208";a="32048453"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 21 Jul 2023 10:26:33 +0200
+Received: from steina-w.tq-net.de (unknown [10.123.53.21])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id CA972280078;
+        Fri, 21 Jul 2023 10:26:32 +0200 (CEST)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>
+Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH 1/1] ARM: dts: imx6qdl-tqma6x: Add missing vs-supply for lm75
+Date:   Fri, 21 Jul 2023 10:26:28 +0200
+Message-Id: <20230721082628.1189087-1-alexander.stein@ew.tq-group.com>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
         URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -63,41 +63,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-wkup_i2c0 and associated eeprom device node were duplicated,
-This patch fixes the node duplication.
+Fixes the warning:
+lm75 0-0048: supply vs not found, using dummy regulator
 
-Signed-off-by: Udit Kumar <u-kumar1@ti.com>
+Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 ---
-Looks same patch is applied twice one with
-sha id b04b18ccb3d5c and second time with sha id 4af0332876f94
+ arch/arm/boot/dts/nxp/imx/imx6qdl-tqma6a.dtsi | 1 +
+ arch/arm/boot/dts/nxp/imx/imx6qdl-tqma6b.dtsi | 1 +
+ 2 files changed, 2 insertions(+)
 
- arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi | 13 -------------
- 1 file changed, 13 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi
-index 38ae13cc3aa3..e90e43202546 100644
---- a/arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi
-@@ -201,19 +201,6 @@ eeprom@50 {
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-tqma6a.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl-tqma6a.dtsi
+index aff46f3040c1..68525f0205d3 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6qdl-tqma6a.dtsi
++++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-tqma6a.dtsi
+@@ -30,6 +30,7 @@ pmic: pmic@8 {
+ 	sensor@48 {
+ 		compatible = "national,lm75";
+ 		reg = <0x48>;
++		vs-supply = <&reg_3p3v>;
  	};
- };
  
--&wkup_i2c0 {
--	status = "okay";
--	pinctrl-names = "default";
--	pinctrl-0 = <&wkup_i2c0_pins_default>;
--	clock-frequency = <400000>;
--
--	eeprom@50 {
--		/* CAV24C256WE-GT3 */
--		compatible = "atmel,24c256";
--		reg = <0x50>;
--	};
--};
--
- &ospi0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&mcu_fss0_ospi0_pins_default>;
+ 	eeprom@50 {
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-tqma6b.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl-tqma6b.dtsi
+index a3f6543c3aaa..aeba0a273600 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6qdl-tqma6b.dtsi
++++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-tqma6b.dtsi
+@@ -23,6 +23,7 @@ pmic: pmic@8 {
+ 	sensor@48 {
+ 		compatible = "national,lm75";
+ 		reg = <0x48>;
++		vs-supply = <&reg_3p3v>;
+ 	};
+ 
+ 	eeprom@50 {
 -- 
 2.34.1
 
