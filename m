@@ -2,190 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D76B875D095
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 19:25:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C5C4B75D10D
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 20:06:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231256AbjGURZD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jul 2023 13:25:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37340 "EHLO
+        id S230105AbjGUSGY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jul 2023 14:06:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56140 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231179AbjGURY7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 13:24:59 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 945412699;
-        Fri, 21 Jul 2023 10:24:58 -0700 (PDT)
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36LDSV4t011700;
-        Fri, 21 Jul 2023 17:24:53 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references; s=qcppdkim1;
- bh=MskCSFNl+rmVIkfxmIb4pmSgIy4cHH7XAmsFuhx3yZw=;
- b=JP1oRmq2C+kSFKhf4JVjRWnr9hNb4BndoAEGdpcR8p8dP/WTHm6VEih5eUWjlf2baFcB
- nxnfgqyiAGLAevwHZ5nobDbwboqefWNCIxmxad3o/9iEXNucC3AYet69LlinaH2pSALU
- NNwfJlTF1dzlV3sYvRERoBr19ZjFzHBVwA7A2OPQx3Cd2NLM13wVoxYQNoCTmfIB0uNY
- +9a/K+jUHVBtkCpyc68dks+lgIYxUK/+YjGnx/JigpHar0Tvhjceal7crf8tTTrTnpfV
- uSfSfbkUQGNfG5oy0czwKAP3wnlYOkei0vmMahourJgYQdwpgR7xmHG50SpvzvFhBKH8 gw== 
-Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3rykseshh2-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 21 Jul 2023 17:24:52 +0000
-Received: from pps.filterd (APBLRPPMTA02.qualcomm.com [127.0.0.1])
-        by APBLRPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 36LHOniK023804;
-        Fri, 21 Jul 2023 17:24:49 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-        by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 3rumhknepx-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
-        Fri, 21 Jul 2023 17:24:49 +0000
-Received: from APBLRPPMTA02.qualcomm.com (APBLRPPMTA02.qualcomm.com [127.0.0.1])
-        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 36LHOlEF023783;
-        Fri, 21 Jul 2023 17:24:49 GMT
-Received: from hu-sgudaval-hyd.qualcomm.com (hu-msarkar-hyd.qualcomm.com [10.213.111.194])
-        by APBLRPPMTA02.qualcomm.com (PPS) with ESMTP id 36LHOmRs023795;
-        Fri, 21 Jul 2023 17:24:48 +0000
-Received: by hu-sgudaval-hyd.qualcomm.com (Postfix, from userid 3891782)
-        id 0B3A132C9; Fri, 21 Jul 2023 22:54:48 +0530 (+0530)
-From:   Mrinmay Sarkar <quic_msarkar@quicinc.com>
-To:     agross@kernel.org, andersson@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        konrad.dybcio@linaro.org, mani@kernel.org
-Cc:     quic_shazhuss@quicinc.com, quic_nitegupt@quicinc.com,
-        quic_ramkri@quicinc.com, quic_nayiluri@quicinc.com,
-        dmitry.baryshkov@linaro.org,
-        Mrinmay Sarkar <quic_msarkar@quicinc.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
-        Rob Herring <robh@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+        with ESMTP id S229689AbjGUSGX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 14:06:23 -0400
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00F0B273A
+        for <devicetree@vger.kernel.org>; Fri, 21 Jul 2023 11:06:21 -0700 (PDT)
+Received: by mail-lj1-x22f.google.com with SMTP id 38308e7fff4ca-2b701dee4bfso33992781fa.0
+        for <devicetree@vger.kernel.org>; Fri, 21 Jul 2023 11:06:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1689962779; x=1690567579;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=oiohpvIM88q923ApY+TFuUJapPlTrtIkZpRLVAxwyJE=;
+        b=hIMOorrUg3HxNRUPkeCV9OgRZ3TNjDneByV1BwppZoGKhMPuYwWrjw9FPC23vgjhnO
+         BAhuKN3t7XLRzqirPDdhQub3+Jg1ozWFZ9LGOD3QSPE5jSC5AT3SJX2IIgKhK/UDyTZg
+         2XHg8RnuOQDnzQ1Tuvpf4TfTKF/P7t9xt0Bsg=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689962779; x=1690567579;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=oiohpvIM88q923ApY+TFuUJapPlTrtIkZpRLVAxwyJE=;
+        b=HqPmrFnXOfckOOX0pIerC5r3HuuXqrWz4ic3xnnx9etmvdJPUaucI7ab1ITQnJlc2o
+         3/Rp/Nusf2+Qj4Z20vXyQi9d83ra8SNxut3YdeulAKgY4X1fG1VvoJR/vCDc3bmPgKOn
+         Eikv1huGoL7fYwgEEdMNjl4BlgQ0cZxgXLpkJc4tsuMJUdn7it9I0RcRJq54JBxC5una
+         fguYcRwdVVfPFHDNrYUOhbP+o7fpn9jPhGjvMzUlGdpafscq1Bsq1iVzQRNPL2sookRb
+         n9FZgCEh28VEU7usMBaqLP+ZFhFywYWMMW5Z8tw1SosvzlUfqKUTtOo4ue6qtZLgVCBA
+         /Glg==
+X-Gm-Message-State: ABy/qLZFv53LRdRWuuJzoN5dpkJxOV4GZnxJUwBX9UtayK4uhT5j3Yrr
+        OKkx015oDq3dV85+bRUEjYkon0xElzkRS5AP6ZdOww==
+X-Google-Smtp-Source: APBJJlG8A/8WZ6J1qYOKD6U5YGBIHkaU6tEW4HOVel7s4jTAL6+ubzrtNoaJp2xaYKUlvm8OdW9g+g==
+X-Received: by 2002:a2e:9d8d:0:b0:2b6:d576:a25b with SMTP id c13-20020a2e9d8d000000b002b6d576a25bmr2000775ljj.28.1689962778710;
+        Fri, 21 Jul 2023 11:06:18 -0700 (PDT)
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com. [209.85.208.54])
+        by smtp.gmail.com with ESMTPSA id gz24-20020a170906f2d800b0099364d9f0e6sm2463366ejb.117.2023.07.21.11.06.17
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 21 Jul 2023 11:06:17 -0700 (PDT)
+Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-521e046f6c7so1218a12.1
+        for <devicetree@vger.kernel.org>; Fri, 21 Jul 2023 11:06:17 -0700 (PDT)
+X-Received: by 2002:a50:d717:0:b0:51d:ebed:93a6 with SMTP id
+ t23-20020a50d717000000b0051debed93a6mr14771edi.5.1689962777300; Fri, 21 Jul
+ 2023 11:06:17 -0700 (PDT)
+MIME-Version: 1.0
+References: <20230721133035.15222-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230721133035.15222-1-krzysztof.kozlowski@linaro.org>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Fri, 21 Jul 2023 11:06:04 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=U1humE-MrCgWmDqSjGZPnzP04-ScGcY7yBETuW-viyHQ@mail.gmail.com>
+Message-ID: <CAD=FV=U1humE-MrCgWmDqSjGZPnzP04-ScGcY7yBETuW-viyHQ@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: i2c: arb-gpio-challange: convert to DT schema
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Peter Rosin <peda@axentia.se>, Andi Shyti <andi.shyti@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-i2c@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v3 4/4] arm64: dts: qcom: sa8775p-ride: enable pcie nodes
-Date:   Fri, 21 Jul 2023 22:54:35 +0530
-Message-Id: <1689960276-29266-5-git-send-email-quic_msarkar@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1689960276-29266-1-git-send-email-quic_msarkar@quicinc.com>
-References: <1689960276-29266-1-git-send-email-quic_msarkar@quicinc.com>
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: brEAcvx3wGwZ2EfJv4qfdTElkpH9gVN0
-X-Proofpoint-ORIG-GUID: brEAcvx3wGwZ2EfJv4qfdTElkpH9gVN0
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-07-21_10,2023-07-20_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 impostorscore=0
- lowpriorityscore=0 suspectscore=0 malwarescore=0 phishscore=0
- mlxlogscore=765 mlxscore=0 spamscore=0 adultscore=0 bulkscore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2306200000 definitions=main-2307210153
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable pcie0, pcie1 nodes and their respective phy's.
+Hi,
 
-Signed-off-by: Mrinmay Sarkar <quic_msarkar@quicinc.com>
----
- arch/arm64/boot/dts/qcom/sa8775p-ride.dts | 80 +++++++++++++++++++++++++++++++
- 1 file changed, 80 insertions(+)
+On Fri, Jul 21, 2023 at 6:30=E2=80=AFAM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> diff --git a/Documentation/devicetree/bindings/i2c/i2c-arb-gpio-challenge=
+.yaml b/Documentation/devicetree/bindings/i2c/i2c-arb-gpio-challenge.yaml
+> new file mode 100644
+> index 000000000000..17f15490f073
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/i2c/i2c-arb-gpio-challenge.yaml
+> @@ -0,0 +1,138 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/i2c/i2c-arb-gpio-challenge.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: GPIO-based I2C Arbitration Using a Challenge & Response Mechanism
+> +
+> +maintainers:
+> +  - Doug Anderson <dianders@chromium.org>
+> +  - Peter Rosin <peda@axentia.se>
 
-diff --git a/arch/arm64/boot/dts/qcom/sa8775p-ride.dts b/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
-index 8c2890b..ed76680 100644
---- a/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
-+++ b/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
-@@ -552,6 +552,86 @@
- 			bias-pull-down;
- 		};
- 	};
-+
-+	pcie0_default_state: pcie0-default-state {
-+		perst-pins {
-+			pins = "gpio2";
-+			function = "gpio";
-+			drive-strength = <2>;
-+			bias-pull-down;
-+		};
-+
-+		clkreq-pins {
-+			pins = "gpio1";
-+			function = "pcie0_clkreq";
-+			drive-strength = <2>;
-+			bias-pull-up;
-+		};
-+
-+		wake-pins {
-+			pins = "gpio0";
-+			function = "gpio";
-+			drive-strength = <2>;
-+			bias-pull-up;
-+		};
-+	};
-+
-+	pcie1_default_state: pcie1-default-state {
-+		perst-pins {
-+			pins = "gpio4";
-+			function = "gpio";
-+			drive-strength = <2>;
-+			bias-pull-down;
-+		};
-+
-+		clkreq-pins {
-+			pins = "gpio3";
-+			function = "pcie1_clkreq";
-+			drive-strength = <2>;
-+			bias-pull-up;
-+		};
-+
-+		wake-pins {
-+			pins = "gpio5";
-+			function = "gpio";
-+			drive-strength = <2>;
-+			bias-pull-up;
-+		};
-+	};
-+};
-+
-+&pcie0 {
-+	perst-gpios = <&tlmm 2 GPIO_ACTIVE_LOW>;
-+	wake-gpios = <&tlmm 0 GPIO_ACTIVE_HIGH>;
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pcie0_default_state>;
-+
-+	status = "okay";
-+};
-+
-+&pcie1 {
-+	perst-gpios = <&tlmm 4 GPIO_ACTIVE_LOW>;
-+	wake-gpios = <&tlmm 5 GPIO_ACTIVE_HIGH>;
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pcie1_default_state>;
-+
-+	status = "okay";
-+};
-+
-+&pcie0_phy {
-+	vdda-phy-supply = <&vreg_l5a>;
-+	vdda-pll-supply = <&vreg_l1c>;
-+
-+	status = "okay";
-+};
-+
-+&pcie1_phy {
-+	vdda-phy-supply = <&vreg_l5a>;
-+	vdda-pll-supply = <&vreg_l1c>;
-+
-+	status = "okay";
- };
- 
- &uart10 {
--- 
-2.7.4
+While I don't object to Peter Rosin being listed here if he wants it,
+I suspect that you added him because he was the author of
+"i2c-arb.txt". I guess that file was really only added to try to keep
+things common between this GPIO arbitrator and the one that he cares
+about: "nxp,pca9541.txt". Probably he doesn't want to be added here.
 
+Speaking of "nxp,pca9541.txt", it seems like you need to convert that
+before removing "i2c-arb.txt". It still refers to that file even after
+your patch, doesn't it?
+
+In any case, other than that, this looks fine. Thanks for doing the convers=
+ion!
+
+Acked-by: Douglas Anderson <dianders@chromium.org>
+
+-Doug
