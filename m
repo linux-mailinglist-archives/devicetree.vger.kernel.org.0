@@ -2,137 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CB30875BD86
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 06:53:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CE9FB75BDBA
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 07:23:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229644AbjGUExd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jul 2023 00:53:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51408 "EHLO
+        id S229601AbjGUFXG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jul 2023 01:23:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57446 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229553AbjGUExc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 00:53:32 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C50B272C;
-        Thu, 20 Jul 2023 21:53:24 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 36L4qwGr081690;
-        Thu, 20 Jul 2023 23:52:58 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1689915178;
-        bh=TJB0W8uMKkqeSiZJdeJ9vBNC463NlZcRNM7y5mRiSUA=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=UB9G2KGJR4bewLFkwJPxog4MvcNVgTiY5aS8SCtv/xGgc5HbRJut9yKXtA9hM5Zy7
-         0r1dUSs2xTEN0XiLEGu+DwfVqoMK/NWBMAeOSG91xcvf/InbH68Id85/looHpprFmy
-         47nkEnk7kpEoPRYoNw7Xfv3trNxZtvZ/C4ROqk8Y=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 36L4qwQv106168
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 20 Jul 2023 23:52:58 -0500
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 20
- Jul 2023 23:52:58 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 20 Jul 2023 23:52:58 -0500
-Received: from [172.24.227.217] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 36L4qqfd066510;
-        Thu, 20 Jul 2023 23:52:52 -0500
-Message-ID: <4f793128-815c-dadd-f5d6-cb2603d2bee9@ti.com>
-Date:   Fri, 21 Jul 2023 10:22:51 +0530
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [EXTERNAL] Re: [EXTERNAL] Re: [PATCH v10 2/2] net: ti:
- icssg-prueth: Add ICSSG ethernet driver
-Content-Language: en-US
-To:     Roger Quadros <rogerq@kernel.org>,
-        Jakub Kicinski <kuba@kernel.org>,
-        MD Danish Anwar <danishanwar@ti.com>
-CC:     Randy Dunlap <rdunlap@infradead.org>,
-        Simon Horman <simon.horman@corigine.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        with ESMTP id S229534AbjGUFXG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 01:23:06 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC7EBB4;
+        Thu, 20 Jul 2023 22:23:04 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 835D160C8E;
+        Fri, 21 Jul 2023 05:23:04 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2856BC433C8;
+        Fri, 21 Jul 2023 05:23:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1689916983;
+        bh=7TI6tqB7E156y5x5qr+a0YCtqayJkxGxgLppwFI6wGc=;
+        h=Date:From:To:CC:Subject:In-Reply-To:References:From;
+        b=hoZvho3/t8C4yvC1181/KnR0Dorlwx89i8XjOkchiHrzslAp2gnwdBvWw5KzTPyyS
+         b4cTGyVVh9IYcDCvejanjDZ6xN23qDa5edotrxNxzEtj1wtsy3CrDEze0GcW6H82WA
+         bxi+vw+qk/GCycXczgkIi5MybagHwDZ+XB8YNefxME0aKuwW0qqMpc6X6LfOEn15v4
+         1+cfCP/mbD9CiaVHcyVvy2C8vGVGdOkkhNnZ9DStZ9ssX+nAdd7XdwQMeWX3sHQg65
+         oQYd73/ZbSKCALoWMHC81ovpKLvLhXrc5x6T5/0yhpbLdue79zsqI0OdHsSOeWsYiP
+         veGSpA7y22tyg==
+Date:   Fri, 21 Jul 2023 06:23:00 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Guo Samin <samin.guo@starfivetech.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Hal Feng <hal.feng@starfivetech.com>,
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+        devicetree@vger.kernel.org, netdev@vger.kernel.org
+CC:     Conor Dooley <conor.dooley@microchip.com>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Richard Cochran <richardcochran@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
         Eric Dumazet <edumazet@google.com>,
-        "David S. Miller" <davem@davemloft.net>, <nm@ti.com>, <srk@ti.com>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <netdev@vger.kernel.org>, <linux-omap@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20230719082755.3399424-1-danishanwar@ti.com>
- <20230719082755.3399424-3-danishanwar@ti.com>
- <20230719213543.0380e13e@kernel.org>
- <17cd1e70-73bc-78d5-7e9d-7b133d6f464b@ti.com>
- <2c9f7a88-1a99-73ce-e924-0effef399719@kernel.org>
-From:   Md Danish Anwar <a0501179@ti.com>
-Organization: Texas Instruments
-In-Reply-To: <2c9f7a88-1a99-73ce-e924-0effef399719@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Yanhong Wang <yanhong.wang@starfivetech.com>,
+        Tommaso Merciai <tomm.merciai@gmail.com>
+Subject: Re: [PATCH v1 0/2] Add ethernet nodes for StarFive JH7110 SoC
+User-Agent: K-9 Mail for Android
+In-Reply-To: <42beaf41-947e-f585-5ec1-f1710830e556@starfivetech.com>
+References: <20230714104521.18751-1-samin.guo@starfivetech.com> <20230720-cardstock-annoying-27b3b19e980a@spud> <42beaf41-947e-f585-5ec1-f1710830e556@starfivetech.com>
+Message-ID: <A0012BE7-8947-49C8-8697-1F879EE7B0B7@kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/07/23 1:11 am, Roger Quadros wrote:
-> Hi Danish,
-> 
-> On 20/07/2023 14:42, Md Danish Anwar wrote:
->> Hi Jakub,
->>
->> On 20/07/23 10:05 am, Jakub Kicinski wrote:
->>> The patch is too big to review.
+
+
+On 21 July 2023 03:09:19 IST, Guo Samin <samin=2Eguo@starfivetech=2Ecom> w=
+rote:
+>
+>
+>-------- =E5=8E=9F=E5=A7=8B=E4=BF=A1=E6=81=AF --------
+>=E4=B8=BB=E9=A2=98: Re: [PATCH v1 0/2] Add ethernet nodes for StarFive JH=
+7110 SoC
+>From: Conor Dooley <conor@kernel=2Eorg>
+>=E6=94=B6=E4=BB=B6=E4=BA=BA: Conor Dooley <conor@kernel=2Eorg>, Rob Herri=
+ng <robh+dt@kernel=2Eorg>, Krzysztof Kozlowski <krzysztof=2Ekozlowski+dt@li=
+naro=2Eorg>, Paul Walmsley <paul=2Ewalmsley@sifive=2Ecom>, Palmer Dabbelt <=
+palmer@dabbelt=2Ecom>, Albert Ou <aou@eecs=2Eberkeley=2Eedu>, Hal Feng <hal=
+=2Efeng@starfivetech=2Ecom>, linux-kernel@vger=2Ekernel=2Eorg, linux-riscv@=
+lists=2Einfradead=2Eorg, devicetree@vger=2Ekernel=2Eorg, netdev@vger=2Ekern=
+el=2Eorg, Samin Guo <samin=2Eguo@starfivetech=2Ecom>
+>=E6=97=A5=E6=9C=9F: 2023/7/21
+>
+>> From: Conor Dooley <conor=2Edooley@microchip=2Ecom>
+>>=20
+>> On Fri, 14 Jul 2023 18:45:19 +0800, Samin Guo wrote:
+>>> This series adds ethernet nodes for StarFive JH7110 RISC-V SoC,
+>>> and has been tested on StarFive VisionFive-2 v1=2E2A and v1=2E3B SBC b=
+oards=2E
 >>>
->>> Please break it apart separating into individual features, targeting
->>> around 10 patches in the series. That will make it easier for reviewers
->>> to take a look at the features in which they have expertise.
+>>> The first patch adds ethernet nodes for jh7110 SoC, the second patch
+>>> adds ethernet nodes for visionfive 2 SBCs=2E
 >>>
->>
->> Sure Jakub. I will try to break this patch in multiple patches as below.
->>
->> Patch 1: Introduce Firmware mapping for the driver (icss_switch_map.h)
->>
->> Patch 2: Introduce mii helper APIs. (icssg_mii_rt.h and icssg_mii_cfg.h). This
->> patch will also introduce basic prueth and emac structures in icssg_prueth.h as
->> these structures will be used by the helper APIs.
->>
->> Patch 3: Introduce firmware configuration and classification APIs.
->> (icssg_classifier.c, icssg_config.h and icssg_config.c)
->>
->> Patch 4: Introduce APIs for ICSSG Queues (icssg_queues.c)
->>
->> Patch 5: Introduce ICSSG Ethernet driver. (icssg_prueth.c and icssg_prueth.h)
->> This patch will enable the driver and basic functionality can work after this
->> patch. This patch will be using all the APIs introduced earlier. This patch
->> will also include Kconfig and Makefile changes.
-> 
-> DT binding documentation patch can come here.
-> 
+>>> This series relies on xingyu's syscon patch[1]=2E
+>>> For more information and support, you can visit RVspace wiki[2]=2E
+>>>
+>>> [=2E=2E=2E]
+>>=20
+>> Applied to riscv-dt-for-next, thanks!
+>>=20
+>> [1/2] riscv: dts: starfive: jh7110: Add ethernet device nodes
+>>       https://git=2Ekernel=2Eorg/conor/c/1ff166c97972
+>> [2/2] riscv: dts: starfive: visionfive 2: Add configuration of gmac and=
+ phy
+>>       https://git=2Ekernel=2Eorg/conor/c/b15a73c358d1
+>>=20
+>> Thanks,
+>> Conor=2E
+>
+>
+>Hi Conor=EF=BC=8C
+>
+>Thank you so much=EF=BC=81=20
+>
+>There is a question about the configuration of phy that I would like to c=
+onsult you=2E
+>
+>Latest on motorcomm PHY V5[1]: Follow Rob Herring's advice
+>motorcomm,rx-xxx-driver-strength Changed to motorcomm,rx-xxx-drv-microamp=
+ =2E
+>V5 has already received a reviewed-by from Andrew Lunn, and it should not=
+ change again=2E
+>
+>Should I submit another pacthes based on riscv-dt-for-next?=20
 
-Sure, Roger. I will add DT binding documentation patch here.
+Huh, dtbs_check passed for these patches,
+I didn't realise changes to the motorcomm stuff
+were a dep=2E for this=2E I'll take a look later=2E
 
->>
->> Patch 6: Enable standard statistics via ndo_get_stats64
->>
->> Patch 7: Introduce ethtool ops for ICSSG
->>
->> Patch 8: Introduce power management support (suspend / resume APIs)
->>
-> 
-> <snip>
-> 
-
--- 
-Thanks and Regards,
-Danish.
+>
+>[1] https://patchwork=2Ekernel=2Eorg/project/netdevbpf/cover/202307201115=
+09=2E21843-1-samin=2Eguo@starfivetech=2Ecom
+>
+>=20
+>Best regards,
+>Samin
