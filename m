@@ -2,156 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DEE2575C0E7
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 10:10:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E012D75C10E
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 10:15:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231228AbjGUIKd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jul 2023 04:10:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56378 "EHLO
+        id S231442AbjGUIPD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jul 2023 04:15:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58166 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230100AbjGUIKd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 04:10:33 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B11B2706;
-        Fri, 21 Jul 2023 01:10:32 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 7142661713;
-        Fri, 21 Jul 2023 08:10:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 44D74C43395;
-        Fri, 21 Jul 2023 08:10:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689927030;
-        bh=JltdfULPxWz8Dlw+w3aZFp6VjNTiHDJDfEr7o9YRNs4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=niUdYILFYdemwUU0w/emWHL8ztgfvInBdEat9aHRd7SwlIqHTIeGzYpF174Vi6V5L
-         n9CCNBAXoQ2aO/p0ys56jYcNJBD6A0PPXHRHEu6Na3ezoZgAEn+/JeHdqTZSyanaBC
-         dUuf/2m/ZbvUz1gulF37zc0XJIA9CtYOguQU0AqGBuXXOvoqXVDiWRio59rmzkGcAI
-         zD/SFytbZB0b9twHz38q/BkleTqEiW9Vfh0c0hb4pN5iqXVl62t7tY6CIX4odkkvzZ
-         laeC+dmsdiHQsF1Av48sXPL1cOfNCMnjzGcdDWli/IK9oQ1dD+A8AIRqZDqAmR8ie1
-         pkvdh3FvzASwA==
-Received: from johan by xi.lan with local (Exim 4.96)
-        (envelope-from <johan@kernel.org>)
-        id 1qMlDi-0003M5-2u;
-        Fri, 21 Jul 2023 10:10:38 +0200
-Date:   Fri, 21 Jul 2023 10:10:38 +0200
-From:   Johan Hovold <johan@kernel.org>
-To:     Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        Wesley Cheng <quic_wcheng@quicinc.com>,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        quic_pkondeti@quicinc.com, quic_ppratap@quicinc.com,
-        quic_jackp@quicinc.com, quic_harshq@quicinc.com,
-        ahalaney@redhat.com, quic_shazhuss@quicinc.com
-Subject: Re: [PATCH v9 01/10] dt-bindings: usb: qcom,dwc3: Add bindings for
- SC8280 Multiport
-Message-ID: <ZLo9flzTCha5iU-K@hovoldconsulting.com>
-References: <20230621043628.21485-1-quic_kriskura@quicinc.com>
- <20230621043628.21485-2-quic_kriskura@quicinc.com>
- <ZJrGG6FXWLacRLbg@hovoldconsulting.com>
- <ZJsCf3nYrikF7nZc@hovoldconsulting.com>
- <548e35a7-984d-a62f-ea4b-a5aeace8009a@quicinc.com>
+        with ESMTP id S231434AbjGUIPB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 04:15:01 -0400
+Received: from mail-vs1-xe2a.google.com (mail-vs1-xe2a.google.com [IPv6:2607:f8b0:4864:20::e2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 137C3272E
+        for <devicetree@vger.kernel.org>; Fri, 21 Jul 2023 01:15:00 -0700 (PDT)
+Received: by mail-vs1-xe2a.google.com with SMTP id ada2fe7eead31-4468a772490so673311137.3
+        for <devicetree@vger.kernel.org>; Fri, 21 Jul 2023 01:15:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1689927299; x=1690532099;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=2PU0a9VuD0AqZ7LLCF0XhwtJkP2bxDSGXNRofV50mGY=;
+        b=TTXUft0VE9EI+2NHbHh36+FLkJiAXUGzc5JeTg1MRU2/+hAY8Tp+Rde0Xz44B/cVzp
+         BdQL3i8ZzqSy5SvzLqCqDEigrbpKpDFcJqH5qVXXQdPnSSuum3aDX48yhAgLbuhooPDr
+         NYRKFgdBJEswNg9iKQ0Lw0nCexdyVbBzefEAs=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689927299; x=1690532099;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=2PU0a9VuD0AqZ7LLCF0XhwtJkP2bxDSGXNRofV50mGY=;
+        b=S3Ma/CFA+Tk8kw1SmQ1E+OXD2e3Nd7ndTO84UJTW2lJju/S/7D3cDB8rKHrv8ByzdS
+         Tb65ZJdB1ZqVP1aWsoFTHEStfkxKKP19h20X844HrNbcAFSavQ2ls6uI0Ob3NT29QkAE
+         joWoor+3k6PzULb72gaOCRfSB7hofD9VL2ebdlZvvctNjE2rw9Uu58w7JhufB0o9SWrA
+         mbYBHYHV7oBMicYr/WNjG7FQZ0XV1UsR+Q7+Ie4+dqbnprBUvQBuyXNQRLkg+Auti94Y
+         xU25Y4uKYpqEODLOf9pdl3zeTEC8svjfqoOEj4RIvd3bcsYo8rpDaZTRIGPF2hJ/a2f9
+         O2/g==
+X-Gm-Message-State: ABy/qLa8mNlvhoxSFKWK6TSajSeume2Pz1nuQIJ5OINeDsydbyRwiE2n
+        1M8XeKmHABhQblOWFOvv+3zOXX5eyv0l4FOEmVTMxXNQ4amkBSXM
+X-Google-Smtp-Source: APBJJlECUvJBjbKPxeyxhugDWCa/+ZcACmwgOgioxcqGIfgnTdRb8nXyKKwshtlfcwhbKhOt4HSOz3rq6GuBw1C9KU8=
+X-Received: by 2002:a67:fa4d:0:b0:445:bd3:5b3a with SMTP id
+ j13-20020a67fa4d000000b004450bd35b3amr417073vsq.4.1689927299149; Fri, 21 Jul
+ 2023 01:14:59 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <548e35a7-984d-a62f-ea4b-a5aeace8009a@quicinc.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20230721080751.2012318-1-wenst@chromium.org>
+In-Reply-To: <20230721080751.2012318-1-wenst@chromium.org>
+From:   Chen-Yu Tsai <wenst@chromium.org>
+Date:   Fri, 21 Jul 2023 16:14:48 +0800
+Message-ID: <CAGXv+5HndYc3eXVBwy=hvsZpTQb-cSgMmDds-Cnjhn0Z461i1g@mail.gmail.com>
+Subject: Re: [PATCH v2 0/7] regulator: mt6358: Remove bogus regulators and improvements
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 03, 2023 at 12:41:59AM +0530, Krishna Kurapati PSSNV wrote:
-> On 6/27/2023 9:08 PM, Johan Hovold wrote:
-> > On Tue, Jun 27, 2023 at 01:20:59PM +0200, Johan Hovold wrote:
-> >> On Wed, Jun 21, 2023 at 10:06:19AM +0530, Krishna Kurapati wrote:
-> > 
-> >>> +          items:
-> >>> +            - const: dp1_hs_phy_irq
-> >>> +            - const: dm1_hs_phy_irq
-> >>> +            - const: dp2_hs_phy_irq
-> >>> +            - const: dm2_hs_phy_irq
-> >>> +            - const: dp3_hs_phy_irq
-> >>> +            - const: dm4_hs_phy_irq
-> >>> +            - const: dp4_hs_phy_irq
-> >>> +            - const: dm4_hs_phy_irq
-> >>> +            - const: ss1_phy_irq
-> >>> +            - const: ss2_phy_irq
-> >>> +            - const: pwr_event_1
-> >>> +            - const: pwr_event_2
-> >>> +            - const: pwr_event_3
-> >>> +            - const: pwr_event_4
-> >>
-> >> The naming here is inconsistent and interrupts should not have "_irq"
-> >> suffixes (even if some of the current ones do for historical reasons).
-> >>
-> >> I believe these should be named
-> >>
-> >> 	pwr_event_1
-> >> 	dp_hs_phy_1
-> >> 	dm_hs_phy_1
-> >> 	ss_phy_1
-> >>
-> >> 	pwr_event_2
-> >> 	dp_hs_phy_2
-> >> 	dm_hs_phy_2
-> >> 	ss_phy_2
-> >>
-> >> 	pwr_event_3
-> >> 	dp_hs_phy_3
-> >> 	dm_hs_phy_3
-> >>
-> >> 	pwr_event_4
-> >> 	dp_hs_phy_4
-> >> 	dm_hs_phy_4
-> >>
-> >> or similar and be grouped by port while using the the
-> >> qcom,sc8280xp-dwc ordering for the individual lines.
-> > 
-> > Perhaps the ordering you suggested is fine too, but I'd probably move
-> > the pwr_event ones first to match qcom,sc8280xp-dwc then, that is:
-> > 
-> >   	pwr_event_1
-> >   	pwr_event_2
-> >   	pwr_event_3
-> >   	pwr_event_4
-> >   	dp_hs_phy_1
-> >   	dm_hs_phy_1
-> >   	dp_hs_phy_2
-> >   	dm_hs_phy_2
-> >   	dp_hs_phy_3
-> >   	dm_hs_phy_3
-> >   	dp_hs_phy_4
-> >   	dm_hs_phy_4
-> >   	ss_phy_1
-> >   	ss_phy_2
-> > 
-> > so we have them grouped as pwr_event followed by HS and with SS last.
-> > 
-> >> Side note: Please note how the above interrupt properties can also be
-> >> used to infer the number of HS and SS ports.
+On Fri, Jul 21, 2023 at 4:08=E2=80=AFPM Chen-Yu Tsai <wenst@chromium.org> w=
+rote:
+>
+> Hi,
+>
+> This is v2 of the remainder of the MT6358 regulator driver cleanup
+> and improvement series. v1 can be found here [1].
+>
+> Changes since v1:
+> - Merged patches dropped
+> - Added patch to move VCN33 regulator status sync after ID check
+> - Added patch to fix VCN33 sync fail error message
+> - Added patch to add missing register definitions
+>
+> Various discrepancies were found while preparing to upstream MT8186
+> device trees, which utilize the MT6366 PMIC, that is also covered by
+> this driver.
+>
+> Patch 1 should either go through the mfd tree and an immutable branch
+> created for the regulator tree to consume, or given an Ack, merged
+> directly through the regulator tree.
 
-> Can't we just cleanup all at once later ? Might not be a good idea for 
-> some properties in the file to have _irq and for some to not have it. I 
-> will modify the order though.
+Please ignore this thread. I forgot to add Lee to the recipients.
+I will resend later.
 
-No, DT bindings generally need to be as correct as possible from the
-start as they form an ABI. So please drop the _irq suffix from all of
-the new indexed names.
 
-Johan
+ChenYu
