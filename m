@@ -2,198 +2,369 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F67775C7CA
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 15:27:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F003B75C7D3
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 15:30:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230518AbjGUN1Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jul 2023 09:27:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37124 "EHLO
+        id S230414AbjGUNan (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jul 2023 09:30:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39350 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231187AbjGUN1P (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 09:27:15 -0400
-Received: from NAM02-BN1-obe.outbound.protection.outlook.com (mail-bn1nam02on2056.outbound.protection.outlook.com [40.107.212.56])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 447E81FE1;
-        Fri, 21 Jul 2023 06:26:53 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=eGprJ3mmcgN3UQ3zhlD1oy8zJ4t4FFpsfqN/OFq1x5MONBj7b3YPtZZ4XeHycQjf+uYI/yf4oSHzrvMsVBv74VTfmQiW5CTpfN0SH6EslCMA9890W4pOBKh0vMGSJI3ezyKxrAcCezCBFxlZBLKtBrG4rimXH5L5qP50u8xYIB/WEqJqalncfnl95VuZ6u1LTJW/k7+pMEXIjhAG25pnDeOlRD413ZDbdTRRu8v1v7g/mNNhnaUIEwBvytAZkkrkUs2w0xX2ruOIsjeBkGFSI5+C2ijebQInUjDU1ZnZl53FfJVOCY8m7s9l+n1FNEhKq1wNdKdghskvNYRs7/omyA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=fpZA3yVH0ETeoSfWWLuyca4oxClMJdwK41cQNF0ZY+w=;
- b=JmFV5CvfIDogqDiMuDJ9nDj/Hh7okcKkNpd1OX2m7OeA0HBGraroGugwqh1PbWxM9xIg8PnrJx1REnbF5/OnKMwZy6FZjDzUwwOUYk/iNYT4BUQ2vOdhJ0Ewbl0bHgYqvLmRCMx8Qahxn7b3i2YBn3nesYRBwFLaAUIeypT91FAKFWu2TSdGiAjveSaqWgnLhmYup0X3jAlERBnuJzhtkQ/yS0CxjI6mOhbMD8sjye83FnaD9ljrEs9EtgR0Yy6N1mSgLTg3Cijn6zd22wEfr7uSW4yYzq+CXLmQ/6unUEK3AZV+dr3CWbh1ADNAEev+n20aHn5dc8WycQIAD0WafQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=fpZA3yVH0ETeoSfWWLuyca4oxClMJdwK41cQNF0ZY+w=;
- b=PYys914GjbsTeRIPbrgWlK5n+460F9dNJTuFO8RqosWkCZzXmkdTJXDdAh5gxSMh0EQH6HO9fQgA6yJF1dthOQO78Ve8C07IcFCpjEg11behFbUdqspIq8Z4Xi4IhVb+HrNg1YZietSz/VUb1Cf95pE/qgDCKM/Cwluj5u7mSnm5BvlD+5yaQGjMtucoDYSEec6P39sLXE8oIY41K8xoufyXDT+/B3d2fC8VEDWreBsGL7GKkIGFMuqE295rGpv6L80I+fwrM3hKi4L8lN/MQnzZzn1fI0zEMLJPOe3Cb2MSefbfdtIeW8ddp9fERYE9U/jGGft0jwioEyT13BofMg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from CO6PR12MB5444.namprd12.prod.outlook.com (2603:10b6:5:35e::8) by
- CH3PR12MB7570.namprd12.prod.outlook.com (2603:10b6:610:149::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6588.31; Fri, 21 Jul
- 2023 13:26:29 +0000
-Received: from CO6PR12MB5444.namprd12.prod.outlook.com
- ([fe80::ab4c:b09f:b445:be6e]) by CO6PR12MB5444.namprd12.prod.outlook.com
- ([fe80::ab4c:b09f:b445:be6e%6]) with mapi id 15.20.6609.026; Fri, 21 Jul 2023
- 13:26:29 +0000
-Message-ID: <28041fb7-c49c-dab6-b62d-83778f7b7f5f@nvidia.com>
-Date:   Fri, 21 Jul 2023 14:26:23 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH] arm64: tegra: Add PCIe and DP 3.3V supplies
-Content-Language: en-US
-To:     Shubhi Garg <shgarg@nvidia.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, thierry.reding@gmail.com,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
-References: <20230531085052.3082394-1-shgarg@nvidia.com>
-From:   Jon Hunter <jonathanh@nvidia.com>
-In-Reply-To: <20230531085052.3082394-1-shgarg@nvidia.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: LO4P123CA0106.GBRP123.PROD.OUTLOOK.COM
- (2603:10a6:600:191::21) To CO6PR12MB5444.namprd12.prod.outlook.com
- (2603:10b6:5:35e::8)
+        with ESMTP id S229790AbjGUNam (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 09:30:42 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F8B810CE
+        for <devicetree@vger.kernel.org>; Fri, 21 Jul 2023 06:30:40 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-98e011f45ffso283512366b.3
+        for <devicetree@vger.kernel.org>; Fri, 21 Jul 2023 06:30:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1689946239; x=1690551039;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=UGZjUzXkhodtPAOjWj+izYsOcYDHfTngMte3JWUo0gw=;
+        b=XvhCltyA0zTqvnHab5GJe/mTCHha/1lP51qZHOH9+wR1282PSN8X7usX6PYuPcbUz7
+         rE2jmx0sdCcwztwIMqs6khPQPma0i3HL2Bmy9Q85JJdAQCfiRfdl86y/kjL4i+9xnoYi
+         qwEX6wHZGpm2JhRxiyvZE/jBPDDgceOvzqzVozVbNdztzaao21VW4fgIGbpgkaUzW4yl
+         dz3PWjjnNm6ekIwECTeKcDzSdr65GdTgPDzJB0D2EMFHd/b+uhv9UKsvaAM8AyM+ZsdY
+         w77lKnilfWbhcRGrQKPJPix/XkhMW364iYFuC3baPoEAYz73YEFH5AxZAnHwOozQeb/8
+         bfzQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689946239; x=1690551039;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=UGZjUzXkhodtPAOjWj+izYsOcYDHfTngMte3JWUo0gw=;
+        b=JY4W1DITTxAhapaDLOWtFUWOcD4h1Pc3ri8HA3ur4R9+WlJV85KhByodIPWEK7zU9t
+         BbrQBq1Kc4YbHXbZVme/wnTibLt1xQ3C1ersYw4tHXGp7TtECf1ImLSSsyzMrfGvKtzE
+         DqfN3RgJiVix4MGiTfgmUG7LsTrCSBxomGaCOdsdEF+O9fwotYeVirYuz4HhoS8G9xor
+         dGnSWpRUgzFzGKyIMHtumIVGT9CbrLmndFhA3x728WJvd96OO/3tAYlNesxde6xHPN6O
+         9HBvrzFlkJ0GFFgkzI8O1qvIeIdl/bqoe6pAQbM70ot7tTixlldA+kWyqYu0U6tj41SS
+         kyug==
+X-Gm-Message-State: ABy/qLb6F6F+bG08bEsAQFByla/S0oQy21Pfry8zbtZLwGtVXzk1dWf6
+        CQWOT2omUho9VD9kdcAaqcg49g==
+X-Google-Smtp-Source: APBJJlHTPu4fg0EuM+ETYyBOVUCt0b7Q0jVidTZT85di2tBhqfMzaPoCYYo5t64Aeatoo7tPHcb9yA==
+X-Received: by 2002:a17:906:10db:b0:970:71c:df58 with SMTP id v27-20020a17090610db00b00970071cdf58mr1663812ejv.42.1689946238795;
+        Fri, 21 Jul 2023 06:30:38 -0700 (PDT)
+Received: from krzk-bin.. ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id p26-20020a170906a01a00b00992f81122e1sm2183753ejy.21.2023.07.21.06.30.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 21 Jul 2023 06:30:38 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Peter Rosin <peda@axentia.se>, Andi Shyti <andi.shyti@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Doug Anderson <dianders@chromium.org>,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] dt-bindings: i2c: arb-gpio-challange: convert to DT schema
+Date:   Fri, 21 Jul 2023 15:30:35 +0200
+Message-Id: <20230721133035.15222-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO6PR12MB5444:EE_|CH3PR12MB7570:EE_
-X-MS-Office365-Filtering-Correlation-Id: f1d97db2-8e65-41a9-29ce-08db89ee179c
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: io/LQZftnhDhtfYtkfqb9eKr6T+dGO3h0gZoJjGchV8YcIESTe16q7UKIYF1dMMSDNkAB7yjP7lafuJD1Gd0+oPW7cctP6xMvv/5Nz04EfriQNM7w3U6an/nEeLnEOTdd099NI4wZxm9fnn6U5BLgpAt+EQ/KigC1jeoZvhWzH+mgwGvr8KVwEYBNz4yZIDdFoIB/IlWkfbBNN2kQLjaJ59C3A1WSq3gJtwEmeZVAfb+QgQtwSbKb5jyDozWfk359YHxJi2mLs2CERvQVrcAKsfDvTzNVxCsSs2hWw0o3Zi1vRCEy9ElOw7YYtNz9zLSqOPn3I+2oCiFplDvK/8FGhLzZbeOh47S6isnDhUYtIepH96hhjtEQds5MZWNgV4Q65qaKQmQud4tpvIocwANUoZWctY6MI5qgOF7Hq/dufsbBRKq21OzvmiQv2xyWMkNCUcdPKqVrYmbADp06t0G7CcwTfdr8p7lzfihtj5SsTkXPtKHdLVY0PO4qd/tMlquUwnsoFlWdq3mY6e4hvkmODL8dkIE7GWkYGbNbObqFX793KKTAYoAGkR/3MxkDjxZiGJgZKGm6KacJWOYQBk3X8h8YabNIVGjauhoBigVUduwXTvu1CzykeMJvXjsh78GKZGurkRpzENwboGvapOYGA==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO6PR12MB5444.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(366004)(376002)(39860400002)(136003)(346002)(396003)(451199021)(8936002)(31686004)(31696002)(36756003)(86362001)(2906002)(6512007)(186003)(53546011)(6506007)(6666004)(6486002)(38100700002)(66946007)(66556008)(2616005)(8676002)(316002)(478600001)(41300700001)(5660300002)(66476007)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WXViSXJYaW1adXpwU1V2TlJ6ZmF2MXlxTXZtU20yT2VJWFFiQUZ5T3krNXpw?=
- =?utf-8?B?MkZaUndTYUNVSHNReFdSZktWOUh3dzlLd3o5cysxazdHTjNXUldqdGRaMzVr?=
- =?utf-8?B?ZXlkREdGSjloNVVSeGFIVkxCYW1DaXZON1E0K3p4R3V6cFpQQ1BGTTVVUmg4?=
- =?utf-8?B?cVVlVXc5WkNPVUZCWFRtZGxlSTZhU1Y0c2Q2K280aXlnMkVuOTU1ei9RVXZ5?=
- =?utf-8?B?YmFlb1B5UDd5dzkyb2YzY0ZkZlU0T29hSXRJRUNTNnVySEVXZkpZZisvRWEy?=
- =?utf-8?B?cnNRYmJRN3NBck10a3hBU1Q5QzZrNDhPb1FacEtJaSt0ajdQQ2JGTGN1MXZt?=
- =?utf-8?B?NDVZS3lCTXdlaTZ0aHRXZk94MCs2K0V2SzR5dTJ3ZnpPRGNUek1TNDFWRXNa?=
- =?utf-8?B?VUlEYkVMeGtwVElSTitVYXFuUCtZcEJHbk9iTnFyZ09GdmkzVnR6TlZ2aGs3?=
- =?utf-8?B?ZlMrcUEvempMa0xtaFVwMS9iMFRYMnJDV1hDWjcxaGYwdkgzSUJVM1FJQlVV?=
- =?utf-8?B?aDlLbmRwS3NzM1BtRktWQkJnSDFFenJsMmJyY1JWUXZzaTlyQTU2ZVBETmxY?=
- =?utf-8?B?Uzd4OWpZeWxYenRLbXJ1U1crSGcrOTQ2dVFSZENHdWgrVUFKcHZLWXBFYlJm?=
- =?utf-8?B?R1RTVkZramRYNEQyWFBvd2hkRUlkSmY3NGhpcUloTWNnaXErUVVCVko2Mm1v?=
- =?utf-8?B?akRlYkw5VGRLQURjODlaeVIyNXFyWDk5M0N5V1pqR1ZBWitFdkNUbEFQNXF3?=
- =?utf-8?B?OFM2Wm0vT3hHRGVnUXY4bGtkOXRRUzhiTk9pNjVFYmN4T3VQdjJCQmQrd0sz?=
- =?utf-8?B?b1Nkc1h1RjVOYTNneWc1L2x6Zk9JTjVFM2ZYSGE3aUlaa1pEcUJla2lrMVdp?=
- =?utf-8?B?cVRBVWMyOHQvTzRITkE5ZmdXM0VZNEhDZ2w0Zjd4RkY5eGVZQXVTL3ZhdTdI?=
- =?utf-8?B?Q0JXUnZQQUovZ01mU2FyOFh0SkdmV3JYSWdJK2QrMFRwQ2l3aWV0S0Q3QXNp?=
- =?utf-8?B?YjBEMFNRRUk1RjRqcWI0U0FWOFNVNlc3emFvL3hwSmFqWmgvb2gxS0JoLy9V?=
- =?utf-8?B?MUpoWmtIZnBsVE1Cb0RlOWZQbXBkRkJiUWRmblFFckI2S2REdCtlT3duU242?=
- =?utf-8?B?RjJMaWVYbS9wczNCNjNVODhGd1EyMWU0eTdVWmd4UFZsU1FicnhUeG9iRlVx?=
- =?utf-8?B?VVcyb1diT1RpK2RodEsxTEhVM2NRR1ZlRERKbDc2aXlLbk9Lem1rTWFBSVdK?=
- =?utf-8?B?eDBXWEZtR2RKdlhRYnVqUWJ6eUt6V3RrVUg3N2Y2MC9RMld4ZUVvcVNLRFRq?=
- =?utf-8?B?R2ZtYmt6YnpNNHFsOFJKT0pQa2FxQWdnTUY4bTlzcldwOVp3WnZGdk9CU2lR?=
- =?utf-8?B?UUhicFJ2OVRCQzlGeURBUXRhVU9TTEgwMXl6M0ZEb2ErN21EOWJUUEhOT1lT?=
- =?utf-8?B?VlY3U1V0UTdIR2FQbFplRmVRc1JnUSszZ0RlT1MrYlcvYkxKczdocXpsTDRi?=
- =?utf-8?B?ay91em1PVUxkUzBVeEFOODJPbGc3ZllBc2FqcGFydG5nUnM1bS9nbmdEb2NG?=
- =?utf-8?B?T3ZIYVcwM21SQkwxNkRNa1JEbU52dGRNY3NhcExNUG5WWFRwZjRXQzZ2NUtq?=
- =?utf-8?B?Z1NyVzNzYVI4RGNUYlRCRFdzYXQvRjNkRkdybXYxRXRYRmRESVM4NWxtbEJ0?=
- =?utf-8?B?RjFPbnBtU01iY3h2ak1pcUhBM3V5YTBDU1QybjFlYUlZNTBYZUJpcW5GTFVY?=
- =?utf-8?B?K3paZFBnaEovMnFmaWw0MFVMM3MycE5yVlNUUDFESW52bDNmQlh2dUllQ3JI?=
- =?utf-8?B?STdocWlOdEJpRWJnVUhUdHlNZE13Uldqc3dlblJLN0wvZ3RyL20yYzRuRVRR?=
- =?utf-8?B?N1hWdkptOXQ3NVNhL3BhMks4WXVWd3JtTVdWOUZRTkFZSXZjUzZWL2RDQUJU?=
- =?utf-8?B?WGZXa0JnNC9KRTFKUE95UzROWkZRNC9FWEMvRlJoQTNlUFp2bnBNMG5pUzhG?=
- =?utf-8?B?NlhRbHZsdjJoY1VCeE4xaVZwalN3d2lKZFhFYzlvQlpURWxkc1ZFYWdDU3VD?=
- =?utf-8?B?b0VEM1BBbXF2bEZrU25zY2U2UWJkc1NycTVkVjRjWXM5L2wrWmtUb2xUT3ds?=
- =?utf-8?B?QWoxT1I4Q2VNM0doL2ZHdUFPcTR6TFhHN3pRUDZ1V1ZVd3ZKWnBPbjlNa0Jk?=
- =?utf-8?B?OWZDMndndHhURFpPa1g3Wndzdk9BdmZLTUN0MGw5WGxoQmNJTWsrU1Z3ZzIw?=
- =?utf-8?B?aHcwVi9ZZFZldER4WklTc0REMTl3PT0=?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f1d97db2-8e65-41a9-29ce-08db89ee179c
-X-MS-Exchange-CrossTenant-AuthSource: CO6PR12MB5444.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Jul 2023 13:26:29.6939
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ++LPz2O7tCIX19NjR5ioUMJzAEJinp0H7EHc3dU/qdcs0K+pnrkEWQ0Tmb9uRgw8hUviV+Xxmqiz1oPKl9HP9A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB7570
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Convert the bindings for GPIO-based I2C Arbitration Using a Challenge &
+Response Mechanism to DT schema.
 
-On 31/05/2023 09:50, Shubhi Garg wrote:
-> Add the 3.3V supplies for PCIe C1 controller and Display Port controller
-> for the NVIDIA IGX Orin platform.
-> 
-> Signed-off-by: Shubhi Garg <shgarg@nvidia.com>
-> ---
->   .../nvidia/tegra234-p3740-0002+p3701-0008.dts |  1 +
->   .../boot/dts/nvidia/tegra234-p3740-0002.dtsi  | 28 +++++++++++++++++++
->   2 files changed, 29 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/nvidia/tegra234-p3740-0002+p3701-0008.dts b/arch/arm64/boot/dts/nvidia/tegra234-p3740-0002+p3701-0008.dts
-> index 43d797e5544f..c0ba69c16382 100644
-> --- a/arch/arm64/boot/dts/nvidia/tegra234-p3740-0002+p3701-0008.dts
-> +++ b/arch/arm64/boot/dts/nvidia/tegra234-p3740-0002+p3701-0008.dts
-> @@ -35,6 +35,7 @@
->   		pcie@14100000 {
->   			status = "okay";
->   			vddio-pex-ctl-supply = <&vdd_1v8_ao>;
-> +			vpcie3v3-supply = <&vdd_3v3_wifi>;
->   			phys = <&p2u_hsio_3>;
->   			phy-names = "p2u-0";
->   		};
-> diff --git a/arch/arm64/boot/dts/nvidia/tegra234-p3740-0002.dtsi b/arch/arm64/boot/dts/nvidia/tegra234-p3740-0002.dtsi
-> index c95063b19321..7f6c34b79491 100644
-> --- a/arch/arm64/boot/dts/nvidia/tegra234-p3740-0002.dtsi
-> +++ b/arch/arm64/boot/dts/nvidia/tegra234-p3740-0002.dtsi
-> @@ -134,4 +134,32 @@
->   				"usb3-0", "usb3-1", "usb3-2";
->   		};
->   	};
-> +
-> +	vdd_3v3_dp: regulator-vdd-3v3-dp {
-> +				compatible = "regulator-fixed";
-> +				regulator-name = "vdd-3v3-dp";
-> +				regulator-min-microvolt = <3300000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				vin-supply = <&vdd_3v3_sys>;
-> +				gpio = <&gpio TEGRA234_MAIN_GPIO(H, 6) 0>;
-> +				enable-active-high;
-> +				regulator-always-on;
-> +	};
-> +
-> +	vdd_3v3_sys: regulator-vdd-3v3-sys {
-> +				compatible = "regulator-fixed";
-> +				regulator-name = "vdd-3v3-sys";
-> +				regulator-min-microvolt = <3300000>;
-> +				regulator-max-microvolt = <3300000>;
-> +	};
-> +
-> +	vdd_3v3_wifi: regulator-vdd-3v3-wifi {
-> +				compatible = "regulator-fixed";
-> +				regulator-name = "vdd-3v3-wifi";
-> +				regulator-min-microvolt = <3300000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				gpio = <&gpio TEGRA234_MAIN_GPIO(G, 3) GPIO_ACTIVE_HIGH>;
-> +				regulator-boot-on;
-> +				enable-active-high;
-> +	};
->   };
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
+---
 
-Reviewed-by: Jon Hunter <jonathanh@nvidia.com>
+The text of original bindings was written by Doug, so please kindly ack
+if you agree to relicense it from GPL-2 to (GPL-2.0-only OR
+BSD-2-Clause).
+---
+ .../bindings/i2c/i2c-arb-gpio-challenge.txt   |  82 -----------
+ .../bindings/i2c/i2c-arb-gpio-challenge.yaml  | 138 ++++++++++++++++++
+ .../devicetree/bindings/i2c/i2c-arb.txt       |  35 -----
+ 3 files changed, 138 insertions(+), 117 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/i2c/i2c-arb-gpio-challenge.txt
+ create mode 100644 Documentation/devicetree/bindings/i2c/i2c-arb-gpio-challenge.yaml
+ delete mode 100644 Documentation/devicetree/bindings/i2c/i2c-arb.txt
 
-Thierry, OK to pick this up?
-
-Jon
-
+diff --git a/Documentation/devicetree/bindings/i2c/i2c-arb-gpio-challenge.txt b/Documentation/devicetree/bindings/i2c/i2c-arb-gpio-challenge.txt
+deleted file mode 100644
+index 548a73cde796..000000000000
+--- a/Documentation/devicetree/bindings/i2c/i2c-arb-gpio-challenge.txt
++++ /dev/null
+@@ -1,82 +0,0 @@
+-GPIO-based I2C Arbitration Using a Challenge & Response Mechanism
+-=================================================================
+-This uses GPIO lines and a challenge & response mechanism to arbitrate who is
+-the master of an I2C bus in a multimaster situation.
+-
+-In many cases using GPIOs to arbitrate is not needed and a design can use
+-the standard I2C multi-master rules.  Using GPIOs is generally useful in
+-the case where there is a device on the bus that has errata and/or bugs
+-that makes standard multimaster mode not feasible.
+-
+-Note that this scheme works well enough but has some downsides:
+-* It is nonstandard (not using standard I2C multimaster)
+-* Having two masters on a bus in general makes it relatively hard to debug
+-  problems (hard to tell if i2c issues were caused by one master, another, or
+-  some device on the bus).
+-
+-
+-Algorithm:
+-
+-All masters on the bus have a 'bus claim' line which is an output that the
+-others can see. These are all active low with pull-ups enabled.  We'll
+-describe these lines as:
+-
+-- OUR_CLAIM: output from us signaling to other hosts that we want the bus
+-- THEIR_CLAIMS: output from others signaling that they want the bus
+-
+-The basic algorithm is to assert your line when you want the bus, then make
+-sure that the other side doesn't want it also.  A detailed explanation is best
+-done with an example.
+-
+-Let's say we want to claim the bus.  We:
+-1. Assert OUR_CLAIM.
+-2. Waits a little bit for the other sides to notice (slew time, say 10
+-   microseconds).
+-3. Check THEIR_CLAIMS.  If none are asserted then the we have the bus and we are
+-   done.
+-4. Otherwise, wait for a few milliseconds and see if THEIR_CLAIMS are released.
+-5. If not, back off, release the claim and wait for a few more milliseconds.
+-6. Go back to 1 (until retry time has expired).
+-
+-
+-Required properties:
+-- compatible: i2c-arb-gpio-challenge
+-- our-claim-gpio: The GPIO that we use to claim the bus.
+-- their-claim-gpios: The GPIOs that the other sides use to claim the bus.
+-  Note that some implementations may only support a single other master.
+-- I2C arbitration bus node. See i2c-arb.txt in this directory.
+-
+-Optional properties:
+-- slew-delay-us: microseconds to wait for a GPIO to go high. Default is 10 us.
+-- wait-retry-us: we'll attempt another claim after this many microseconds.
+-    Default is 3000 us.
+-- wait-free-us: we'll give up after this many microseconds. Default is 50000 us.
+-
+-
+-Example:
+-	i2c@12ca0000 {
+-		compatible = "acme,some-i2c-device";
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+-	};
+-
+-	i2c-arbitrator {
+-		compatible = "i2c-arb-gpio-challenge";
+-
+-		i2c-parent = <&{/i2c@12CA0000}>;
+-
+-		our-claim-gpio = <&gpf0 3 1>;
+-		their-claim-gpios = <&gpe0 4 1>;
+-		slew-delay-us = <10>;
+-		wait-retry-us = <3000>;
+-		wait-free-us = <50000>;
+-
+-		i2c-arb {
+-			#address-cells = <1>;
+-			#size-cells = <0>;
+-
+-			i2c@52 {
+-				// Normal I2C device
+-			};
+-		};
+-	};
+diff --git a/Documentation/devicetree/bindings/i2c/i2c-arb-gpio-challenge.yaml b/Documentation/devicetree/bindings/i2c/i2c-arb-gpio-challenge.yaml
+new file mode 100644
+index 000000000000..17f15490f073
+--- /dev/null
++++ b/Documentation/devicetree/bindings/i2c/i2c-arb-gpio-challenge.yaml
+@@ -0,0 +1,138 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/i2c/i2c-arb-gpio-challenge.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: GPIO-based I2C Arbitration Using a Challenge & Response Mechanism
++
++maintainers:
++  - Doug Anderson <dianders@chromium.org>
++  - Peter Rosin <peda@axentia.se>
++
++description: |
++  This uses GPIO lines and a challenge & response mechanism to arbitrate who is
++  the master of an I2C bus in a multimaster situation.
++
++  In many cases using GPIOs to arbitrate is not needed and a design can use the
++  standard I2C multi-master rules.  Using GPIOs is generally useful in the case
++  where there is a device on the bus that has errata and/or bugs that makes
++  standard multimaster mode not feasible.
++
++  Note that this scheme works well enough but has some downsides:
++   * It is nonstandard (not using standard I2C multimaster)
++   * Having two masters on a bus in general makes it relatively hard to debug
++     problems (hard to tell if i2c issues were caused by one master, another,
++     or some device on the bus).
++
++  Algorithm:
++  All masters on the bus have a 'bus claim' line which is an output that the
++  others can see. These are all active low with pull-ups enabled.  We'll
++  describe these lines as:
++   * OUR_CLAIM: output from us signaling to other hosts that we want the bus
++   * THEIR_CLAIMS: output from others signaling that they want the bus
++
++  The basic algorithm is to assert your line when you want the bus, then make
++  sure that the other side doesn't want it also.  A detailed explanation is
++  best done with an example.
++
++  Let's say we want to claim the bus.  We:
++  1. Assert OUR_CLAIM.
++  2. Waits a little bit for the other sides to notice (slew time, say 10
++     microseconds).
++  3. Check THEIR_CLAIMS.  If none are asserted then the we have the bus and we
++     are done.
++  4. Otherwise, wait for a few milliseconds and see if THEIR_CLAIMS are released.
++  5. If not, back off, release the claim and wait for a few more milliseconds.
++  6. Go back to 1 (until retry time has expired).
++
++allOf:
++  - $ref: /schemas/i2c/i2c-controller.yaml#
++
++properties:
++  compatible:
++    const: i2c-arb-gpio-challenge
++
++  i2c-parent:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description:
++      The I2C bus that this multiplexer's master-side port is connected to.
++
++  our-claim-gpios:
++    maxItems: 1
++    description:
++      The GPIO that we use to claim the bus.
++
++  slew-delay-us:
++    default: 10
++    description:
++      Time to wait for a GPIO to go high.
++
++  their-claim-gpios:
++    minItems: 1
++    maxItems: 2
++    description:
++      The GPIOs that the other sides use to claim the bus.  Note that some
++      implementations may only support a single other master.
++
++  wait-free-us:
++    default: 50000
++    description:
++      We'll give up after this many microseconds.
++
++  wait-retry-us:
++    default: 3000
++    description:
++      We'll attempt another claim after this many microseconds.
++
++  i2c-arb:
++    type: object
++    $ref: /schemas/i2c/i2c-controller.yaml
++    unevaluatedProperties: false
++    description:
++      I2C arbitration bus node.
++
++required:
++  - compatible
++  - i2c-arb
++  - our-claim-gpios
++  - their-claim-gpios
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    i2c-arbitrator {
++        compatible = "i2c-arb-gpio-challenge";
++        i2c-parent = <&i2c_4>;
++
++        our-claim-gpios = <&gpf0 3 GPIO_ACTIVE_LOW>;
++        their-claim-gpios = <&gpe0 4 GPIO_ACTIVE_LOW>;
++        slew-delay-us = <10>;
++        wait-retry-us = <3000>;
++        wait-free-us = <50000>;
++
++        i2c-arb {
++            #address-cells = <1>;
++            #size-cells = <0>;
++
++            sbs-battery@b {
++                compatible = "sbs,sbs-battery";
++                reg = <0xb>;
++                sbs,poll-retry-count = <1>;
++            };
++
++            embedded-controller@1e {
++                compatible = "google,cros-ec-i2c";
++                reg = <0x1e>;
++                interrupts = <6 IRQ_TYPE_LEVEL_HIGH>;
++                interrupt-parent = <&gpx1>;
++                pinctrl-names = "default";
++                pinctrl-0 = <&ec_irq>;
++                wakeup-source;
++            };
++        };
++    };
+diff --git a/Documentation/devicetree/bindings/i2c/i2c-arb.txt b/Documentation/devicetree/bindings/i2c/i2c-arb.txt
+deleted file mode 100644
+index 59abf9277bdc..000000000000
+--- a/Documentation/devicetree/bindings/i2c/i2c-arb.txt
++++ /dev/null
+@@ -1,35 +0,0 @@
+-Common i2c arbitration bus properties.
+-
+-- i2c-arb child node
+-
+-Required properties for the i2c-arb child node:
+-- #address-cells = <1>;
+-- #size-cells = <0>;
+-
+-Optional properties for i2c-arb child node:
+-- Child nodes conforming to i2c bus binding
+-
+-
+-Example :
+-
+-	/*
+-	   An NXP pca9541 I2C bus master selector at address 0x74
+-	   with a NXP pca8574 GPIO expander attached.
+-	 */
+-
+-	arb@74 {
+-		compatible = "nxp,pca9541";
+-		reg = <0x74>;
+-
+-		i2c-arb {
+-			#address-cells = <1>;
+-			#size-cells = <0>;
+-
+-			gpio@38 {
+-				compatible = "nxp,pca8574";
+-				reg = <0x38>;
+-				#gpio-cells = <2>;
+-				gpio-controller;
+-			};
+-		};
+-	};
 -- 
-nvpublic
+2.34.1
+
