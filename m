@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E60A875CBEA
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 17:36:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 37E2A75CBF0
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 17:36:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232078AbjGUPg0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jul 2023 11:36:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38118 "EHLO
+        id S232091AbjGUPgc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jul 2023 11:36:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38142 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232065AbjGUPgY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 11:36:24 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBE3730E7
-        for <devicetree@vger.kernel.org>; Fri, 21 Jul 2023 08:36:14 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id 2adb3069b0e04-4fb96e2b573so3323788e87.3
-        for <devicetree@vger.kernel.org>; Fri, 21 Jul 2023 08:36:14 -0700 (PDT)
+        with ESMTP id S232068AbjGUPg2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 11:36:28 -0400
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A5733A8F
+        for <devicetree@vger.kernel.org>; Fri, 21 Jul 2023 08:36:17 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-4fba86f069bso3265408e87.3
+        for <devicetree@vger.kernel.org>; Fri, 21 Jul 2023 08:36:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689953773; x=1690558573;
+        d=linaro.org; s=google; t=1689953774; x=1690558574;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=G3NPnuiSNZUn11LWRbZ2MODGSya3GaAu8O7pEYeyDVM=;
-        b=DE/ZPdRase7WTfWSEA9TOdQZa3d38SY0IUuQ+PtXCunHKthoPsnE5NACVmx5gVyR4y
-         ga8k6/EXKLnQPtfmffSXaQ9ZlvcA0rRW6ld99S41Ua29vvqNwEOEcqPM4PU/m8zBG/mk
-         qWwMrWVggOhmWe5Ae4sezHC2bb81SQ3LBkb7N7WQTjj9SODdH7HGR3hznVdoSlNYBNFz
-         z73MF+myvNYlaRdgveXAyU97ofvtOpsNOXldKY9cRQQMk3AnkQzQjVXk3loM1SX6mGI8
-         Urng17AibZyc2HgwW1+JF4JwlHbHclRLje24JQtTtWQuoErwoDbm13eu2ziY4E8Xbxp5
-         j6+Q==
+        bh=b23eYzPRJKfj2P2RQ046hOn1VBXib0tuiz6T1ABTWjw=;
+        b=m/ZLkxH48+U9U5MMEJdxzIG2BI5fvCGMs4be8OrtxsS3A6KfNx7MfsTxM8vTccfZg0
+         BK9EfqH7EnU9UO0o62YN1dfCd9SOC4lVA1zlE/BY8g2JfMPtmfyr9OJz/BFtTyMp9JGF
+         yTUYSL5EU95d0LAImaT9nt/IgMGmxcyWyE3cQkC/yu6FiHn1bN/lyw7q6XIsDqjW9nMb
+         obOqRoFyUlWRB6GOdcZj65qMkjAQkW6EE0wNxfKjjpdnt6/Xnlz8KNeUHwDDVirSd2iY
+         qS1wiXNMKP+mRklwjfEK/Z0vm5wTIqG+iSdWb+Qfn8nqhW723YaO8it2UB/4g/UiIe8K
+         GNnw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689953773; x=1690558573;
+        d=1e100.net; s=20221208; t=1689953774; x=1690558574;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=G3NPnuiSNZUn11LWRbZ2MODGSya3GaAu8O7pEYeyDVM=;
-        b=FBIqtoqk1Sq60lqhpGxxRydQJvpAIkWpUHPsj+yJ+3YvfAR3o4mgwyjaC9OMHDlcJs
-         kCxnDOtKX6g5v22ydy3HGP/QGY8U59aSuyl5DJxhfSSxzN4enYowtHZpsBltHcIYiHqH
-         nEIoc4Jb1nXAJt4NNSB+hFw04eYNYUwKanHLo4L+qN9ELhmPKUSQ1dJkvyZHytiyN59j
-         GeO2xHwvZ/sv8d1114Bt2DmrJIDgbWuyd6kZVHbCMNE3BA3ZTyL/VNOKq/ueOWs7KQXq
-         +1txK74QNSYrqKDC2klsyBeHNxJ1JqazAjdqv0SAVsJ/Q1PXeM6rmx8S7TwIxG0VMmra
-         s3tA==
-X-Gm-Message-State: ABy/qLbQqIoGrwLe/86kmh4LzjxbyOF39mrsKvptqV2fR+fHKaGX29Ls
-        MWedQUBNPFPXP/ujVZ/BixWJoQ==
-X-Google-Smtp-Source: APBJJlGO3EGsyLQ9CvV4g1OEE1jzrhCMzMfFuyk9Jk42JYsj0c1+IiV1WiuOFP8bRH755EcAnIKkyA==
-X-Received: by 2002:a05:6512:b97:b0:4fb:97e8:bc1c with SMTP id b23-20020a0565120b9700b004fb97e8bc1cmr2051339lfv.54.1689953772699;
-        Fri, 21 Jul 2023 08:36:12 -0700 (PDT)
+        bh=b23eYzPRJKfj2P2RQ046hOn1VBXib0tuiz6T1ABTWjw=;
+        b=P4kSfJP1l/svacbADXpCryeKGScmid7T4EKo2dhNx2m30jfuki8IxM5eobDQCC+96F
+         0TW/NdlqOn/WPClZX6IHTIP+4ZQkxXqKU5LAHIcaY42vKZ3+6r6dykUpn0ZVOOxfLgY5
+         c3JnvP3qftHiX+MDRW7qPPxvbeuXCsVVvVn78FleFhs86+UAiuTI9bHx7X6uxW/EiBkh
+         Dp2Xrn5bGsrbBlNv6CzpQylA0TdR/oO87qU5DILQQn39pUq0iqnOzoRm9It1Zzp6IAWl
+         lFyNwbZZxnktkOTAUdDXjcx5KBbV4O4rQnmqpBfQYUPax2oozm0Ty6eHMroaG9rSIfrv
+         ptWg==
+X-Gm-Message-State: ABy/qLZncxWdQ2Z0/dti+Dsfyxr1wcgihW3jye0nWAeSn6q4A8P3H/Sp
+        eMoNDONEu+e2qvwUUjjShxtE4Q==
+X-Google-Smtp-Source: APBJJlF9N4lgPuc/4ZoYANm5Fp2hPFTEh41Rqlap64Fs/qgLacZ1wW5/laxW8bOcxDMkXQAVEekXvA==
+X-Received: by 2002:a05:6512:3132:b0:4f8:666b:9de4 with SMTP id p18-20020a056512313200b004f8666b9de4mr1484270lfd.20.1689953774519;
+        Fri, 21 Jul 2023 08:36:14 -0700 (PDT)
 Received: from [192.168.1.101] (abyj181.neoplus.adsl.tpnet.pl. [83.9.29.181])
-        by smtp.gmail.com with ESMTPSA id t9-20020a19ad09000000b004fba1278e6dsm782535lfc.107.2023.07.21.08.36.11
+        by smtp.gmail.com with ESMTPSA id t9-20020a19ad09000000b004fba1278e6dsm782535lfc.107.2023.07.21.08.36.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Jul 2023 08:36:12 -0700 (PDT)
+        Fri, 21 Jul 2023 08:36:14 -0700 (PDT)
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Date:   Fri, 21 Jul 2023 17:36:05 +0200
-Subject: [PATCH 02/11] arm64: dts: qcom: msm8996: Drop RPM bus clocks
+Date:   Fri, 21 Jul 2023 17:36:06 +0200
+Subject: [PATCH 03/11] arm64: dts: qcom: qcs404: Drop RPM bus clocks
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230721-topic-rpm_clk_cleanup-v1-2-cf6cd5c621d5@linaro.org>
+Message-Id: <20230721-topic-rpm_clk_cleanup-v1-3-cf6cd5c621d5@linaro.org>
 References: <20230721-topic-rpm_clk_cleanup-v1-0-cf6cd5c621d5@linaro.org>
 In-Reply-To: <20230721-topic-rpm_clk_cleanup-v1-0-cf6cd5c621d5@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
@@ -71,15 +71,15 @@ Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         Konrad Dybcio <konrad.dybcio@linaro.org>
 X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1689953767; l=2848;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1689953767; l=1392;
  i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=jEC2qszgf6wzq6do5/+vqhfRa/a+2pz+WPIQyhPAgwA=;
- b=ZEFbgKrCPxnNy+DNrWd/Cxs9ehtwTfhte9Rt3QZRVcfa8eIiUIO8Vy6IKS7MmwtY3rGFqSWZu
- UmMd6EO2I0yD/mp+TkCVgMYGO8pAayTPawhiV9pfW6HhAzZBxUXCVg8
+ bh=elZw7s7ezQcQPS08Afo835usJgWljovasVimyqG1X8E=;
+ b=E0x/lqoRdgU6x9IiGi7wJmdN9MbG1T7aO90Yhahxt2aQ8J98bbw6d68Gi8wzE2p2u6YBOGyjK
+ SH9hSUtq64gAdhLtrdGiAedsdebBYvjGb21swEvXT6fF2gcWQN3S8HI
 X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
  pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -93,86 +93,42 @@ no longer registered from within the CCF. Remove them.
 
 Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/msm8996.dtsi | 27 ++++-----------------------
- 1 file changed, 4 insertions(+), 23 deletions(-)
+ arch/arm64/boot/dts/qcom/qcs404.dtsi | 9 ---------
+ 1 file changed, 9 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-index 440557c8eca4..0e1cdb5335eb 100644
---- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-@@ -798,9 +798,6 @@ bimc: interconnect@408000 {
- 			compatible = "qcom,msm8996-bimc";
- 			reg = <0x00408000 0x5a000>;
+diff --git a/arch/arm64/boot/dts/qcom/qcs404.dtsi b/arch/arm64/boot/dts/qcom/qcs404.dtsi
+index 2721f32dfb71..317a0df30b83 100644
+--- a/arch/arm64/boot/dts/qcom/qcs404.dtsi
++++ b/arch/arm64/boot/dts/qcom/qcs404.dtsi
+@@ -558,9 +558,6 @@ bimc: interconnect@400000 {
+ 			reg = <0x00400000 0x80000>;
+ 			compatible = "qcom,qcs404-bimc";
  			#interconnect-cells = <1>;
 -			clock-names = "bus", "bus_a";
 -			clocks = <&rpmcc RPM_SMD_BIMC_CLK>,
--				 <&rpmcc RPM_SMD_BIMC_A_CLK>;
+-				<&rpmcc RPM_SMD_BIMC_A_CLK>;
  		};
  
- 		tsens0: thermal-sensor@4a9000 {
-@@ -851,18 +848,12 @@ cnoc: interconnect@500000 {
- 			compatible = "qcom,msm8996-cnoc";
- 			reg = <0x00500000 0x1000>;
+ 		tsens: thermal-sensor@4a9000 {
+@@ -601,18 +598,12 @@ pcnoc: interconnect@500000 {
+ 			reg = <0x00500000 0x15080>;
+ 			compatible = "qcom,qcs404-pcnoc";
  			#interconnect-cells = <1>;
 -			clock-names = "bus", "bus_a";
--			clocks = <&rpmcc RPM_SMD_CNOC_CLK>,
--				 <&rpmcc RPM_SMD_CNOC_A_CLK>;
+-			clocks = <&rpmcc RPM_SMD_PNOC_CLK>,
+-				<&rpmcc RPM_SMD_PNOC_A_CLK>;
  		};
  
- 		snoc: interconnect@524000 {
- 			compatible = "qcom,msm8996-snoc";
- 			reg = <0x00524000 0x1c000>;
+ 		snoc: interconnect@580000 {
+ 			reg = <0x00580000 0x23080>;
+ 			compatible = "qcom,qcs404-snoc";
  			#interconnect-cells = <1>;
 -			clock-names = "bus", "bus_a";
 -			clocks = <&rpmcc RPM_SMD_SNOC_CLK>,
--				 <&rpmcc RPM_SMD_SNOC_A_CLK>;
+-				<&rpmcc RPM_SMD_SNOC_A_CLK>;
  		};
  
- 		a0noc: interconnect@543000 {
-@@ -882,19 +873,14 @@ a1noc: interconnect@562000 {
- 			compatible = "qcom,msm8996-a1noc";
- 			reg = <0x00562000 0x5000>;
- 			#interconnect-cells = <1>;
--			clock-names = "bus", "bus_a";
--			clocks = <&rpmcc RPM_SMD_AGGR1_NOC_CLK>,
--				 <&rpmcc RPM_SMD_AGGR1_NOC_A_CLK>;
- 		};
- 
- 		a2noc: interconnect@583000 {
- 			compatible = "qcom,msm8996-a2noc";
- 			reg = <0x00583000 0x7000>;
- 			#interconnect-cells = <1>;
--			clock-names = "bus", "bus_a", "aggre2_ufs_axi", "ufs_axi";
--			clocks = <&rpmcc RPM_SMD_AGGR2_NOC_CLK>,
--				 <&rpmcc RPM_SMD_AGGR2_NOC_A_CLK>,
--				 <&gcc GCC_AGGRE2_UFS_AXI_CLK>,
-+			clock-names = "aggre2_ufs_axi", "ufs_axi";
-+			clocks = <&gcc GCC_AGGRE2_UFS_AXI_CLK>,
- 				 <&gcc GCC_UFS_AXI_CLK>;
- 		};
- 
-@@ -902,19 +888,14 @@ mnoc: interconnect@5a4000 {
- 			compatible = "qcom,msm8996-mnoc";
- 			reg = <0x005a4000 0x1c000>;
- 			#interconnect-cells = <1>;
--			clock-names = "bus", "bus_a", "iface";
--			clocks = <&rpmcc RPM_SMD_MMAXI_CLK>,
--				 <&rpmcc RPM_SMD_MMAXI_A_CLK>,
--				 <&mmcc AHB_CLK_SRC>;
-+			clock-names = "iface";
-+			clocks = <&mmcc AHB_CLK_SRC>;
- 		};
- 
- 		pnoc: interconnect@5c0000 {
- 			compatible = "qcom,msm8996-pnoc";
- 			reg = <0x005c0000 0x3000>;
- 			#interconnect-cells = <1>;
--			clock-names = "bus", "bus_a";
--			clocks = <&rpmcc RPM_SMD_PCNOC_CLK>,
--				 <&rpmcc RPM_SMD_PCNOC_A_CLK>;
- 		};
- 
- 		tcsr_mutex: hwlock@740000 {
+ 		remoteproc_cdsp: remoteproc@b00000 {
 
 -- 
 2.41.0
