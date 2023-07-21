@@ -2,297 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 32A9675CD0B
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 18:04:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D1CB175CD20
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 18:07:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232395AbjGUQEY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jul 2023 12:04:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35308 "EHLO
+        id S231286AbjGUQG7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jul 2023 12:06:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36122 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232377AbjGUQEX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 12:04:23 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65138E42;
-        Fri, 21 Jul 2023 09:04:21 -0700 (PDT)
-Received: from nicolas-tpx395.localdomain (unknown [IPv6:2606:6d00:10:580::7a9])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: nicolas)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id ABA7966070EA;
-        Fri, 21 Jul 2023 17:04:18 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1689955460;
-        bh=c01vZiD+s3W+nqFmbR8PlsxyEjz1vFOD3CqBg2e3KSM=;
-        h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-        b=Iu/5pyHDzFypwkiyfcAffp/kCp5yJhIRvWQ2bwCVSJ3ZLwyzQCmCEPfOFJN2H3mX8
-         4PU/ia8jaiAOmZ32Jb9coQHBS817e0Xswn8k5wDvd5gbON2ezUReW2kKkEkRYD8Zu9
-         u6XTEd+suZC5wYmCe9Ko6Use3ZvKTJTRfRxFv5uodw8qAYKSLzlrCIt0p9LYHMSt1V
-         H9smoeI9/92evwx5A7Df0u+40kFs92eVJVwh9imRDsJlloVfUxbiOTrAi32sNu/xXL
-         0iLV9Uy9EV+qKO8UOUh2sOGgbiB9/RtqEYW5366v3SI3Yp1LkWiZf0xVjL781usJ7R
-         UKtIBdvxp1pOw==
-Message-ID: <2dfb9b711c5840a4da24b06973c03d6e2b60cb9c.camel@collabora.com>
-Subject: Re: [PATCH 1/2] media: mediatek: vcodec: checking decoder ack
- message parameter
-From:   Nicolas Dufresne <nicolas.dufresne@collabora.com>
-To:     Yunfei Dong =?UTF-8?Q?=28=E8=91=A3=E4=BA=91=E9=A3=9E=29?= 
-        <Yunfei.Dong@mediatek.com>,
-        "nhebert@chromium.org" <nhebert@chromium.org>,
-        "benjamin.gaignard@collabora.com" <benjamin.gaignard@collabora.com>,
-        "nfraprado@collabora.com" <nfraprado@collabora.com>,
-        "angelogioacchino.delregno@collabora.com" 
-        <angelogioacchino.delregno@collabora.com>,
-        "hverkuil-cisco@xs4all.nl" <hverkuil-cisco@xs4all.nl>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "frkoenig@chromium.org" <frkoenig@chromium.org>,
-        "stevecho@chromium.org" <stevecho@chromium.org>,
-        "wenst@chromium.org" <wenst@chromium.org>,
-        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "daniel@ffwll.ch" <daniel@ffwll.ch>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        "hsinyi@chromium.org" <hsinyi@chromium.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Date:   Fri, 21 Jul 2023 12:04:10 -0400
-In-Reply-To: <9c4fc4ec11988b7068ed0f8ae4bf5e969383979d.camel@mediatek.com>
-References: <20230717081319.12542-1-yunfei.dong@mediatek.com>
-         <02e3f58e3dc009eadd1f37ac3d7d65a95706c9a6.camel@collabora.com>
-         <9c4fc4ec11988b7068ed0f8ae4bf5e969383979d.camel@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.48.4 (3.48.4-1.fc38) 
+        with ESMTP id S229877AbjGUQG5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 12:06:57 -0400
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12on2054.outbound.protection.outlook.com [40.107.244.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 857D72D51;
+        Fri, 21 Jul 2023 09:06:53 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=FuYzcPRvGrX5bBQtZOyTcYHUEyuvGIpvX39L5nhy6/kcJw0oMbHbDUVmJsq3fdDWocZEkgMcg7dLoILPpthH0oZYF7U3MIqG47YDGcugwhGDhk5g21ceyOC5LyaSX8ne1FhDOUTKp+SBf3sSGj9a+HnYInUgNcc7jWdKzqRM5keMbkbDgKCkIECpyCVmwQ2Wtx7IDtpc4itKrPLoMBgHNpdVeN8XaPQc7eh5MHL7U6G4QnXzFX8NionW4/WDIzIBXcvBciGguPdXCpghgTt0F5I8hzercq9i8BeuW3B6fp5NXKdpJ46eiZ9vHvak5KzHRD4VzqQCP72Y9EzpBgRp4Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=UOZXh1c9q4U3cHbzoe0C1LrSagNHUud4zYazmCTMuU8=;
+ b=UbdiLUbwQFFKVTd41s2DhQMVhaqNsBf0nu1nFJKuPUrfBaoAB0X0kz7Jiy3kufTAM4DhyYV58vj2plc+w+8ie8TfOuXEKlG/OcklyCZ9gwZ8qvfY5nCH5FiBmiJyQ4RbS/tHW/CR/QIC0UxKTncZcDnsmwdPNTzHTAf2m749tPCnbJT7IbG2YRP4uUDMrPMUDEjPQSoOFIZTeJFS8/COAchzqrD+mCh544Idg1SZYTaZ/itEsCyC5C7aJDYYS5GQixryILI+CscDExFZlWg/0lNC6ybNClJSPvNEzQKpr6agFy4pIZuxARJ5e1NkE9vsZ5O6H1sSCzDH/O9XtpvyXQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.118.232) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=UOZXh1c9q4U3cHbzoe0C1LrSagNHUud4zYazmCTMuU8=;
+ b=mkCYONqqyCFHjGKrEcdlThUZHhJ3PnCd9xmW1zC7aZLHwgN67hWp17AWUlO282JA+d/5So6re2UA5aR79fWmQZfe4EyZ37HCTM81cE4NP1Fe0gl52FWJcuVL4GC8YVtniibAmE0YqFVua6emZhE7LrYSe2yziaHspN8xZmxLm7F0RaYCr9Tvt2IRdxwO+jsKd8j4Pzio8vyHpwsohvQeSu3AK/eJycUqTD/4AMcbXloYpOp5M4hW1FYlS7GPtVsXv6Yt/8MPmLDRCaEhQRTFdfrDEHWjI8pDp5hQVHEY3NsYCPWDLQKAiteZ7sf5IAzXAhyYRmRBuRX9ngrIacanYQ==
+Received: from DS7PR05CA0057.namprd05.prod.outlook.com (2603:10b6:8:2f::21) by
+ SN7PR12MB6958.namprd12.prod.outlook.com (2603:10b6:806:262::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6588.28; Fri, 21 Jul
+ 2023 16:06:51 +0000
+Received: from DM6NAM11FT068.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:8:2f:cafe::7d) by DS7PR05CA0057.outlook.office365.com
+ (2603:10b6:8:2f::21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6631.16 via Frontend
+ Transport; Fri, 21 Jul 2023 16:06:51 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.118.232)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.118.232 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.118.232; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.118.232) by
+ DM6NAM11FT068.mail.protection.outlook.com (10.13.173.67) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6609.28 via Frontend Transport; Fri, 21 Jul 2023 16:06:51 +0000
+Received: from drhqmail203.nvidia.com (10.126.190.182) by mail.nvidia.com
+ (10.127.129.5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.5; Fri, 21 Jul 2023
+ 09:06:42 -0700
+Received: from drhqmail202.nvidia.com (10.126.190.181) by
+ drhqmail203.nvidia.com (10.126.190.182) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.37; Fri, 21 Jul 2023 09:06:41 -0700
+Received: from build-gauthams-20230504T093912783.nvidia.com (10.127.8.14) by
+ mail.nvidia.com (10.126.190.181) with Microsoft SMTP Server id 15.2.986.37
+ via Frontend Transport; Fri, 21 Jul 2023 09:06:41 -0700
+From:   Gautham Srinivasan <gauthams@nvidia.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Thierry Reding <treding@nvidia.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>
+CC:     Gautham Srinivasan <gauthams@nvidia.com>
+Subject: [PATCH 1/2] arm64: tegra: Add UARTE node for Tegra234
+Date:   Fri, 21 Jul 2023 16:06:36 +0000
+Message-ID: <20230721160637.3479801-1-gauthams@nvidia.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-NV-OnPremToCloud: ExternallySecured
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM6NAM11FT068:EE_|SN7PR12MB6958:EE_
+X-MS-Office365-Filtering-Correlation-Id: 796b8b7f-d56a-4665-42e9-08db8a047e9f
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 0h60sKLIdcCrLuf64GukZv+D1O4eBev6mBuPmc1VpyDzRTce4DEUBnR0SLdzUDgCSe0rIbKzFpPPwTkXL0gFw2ucHfcem+dT+gU0RJP6r8SkpmttHZkekGY3cSIwH5DLIK8cakXKUEqL/M8vOiM6KD+gvs2H+M71OWAPfoJAbzxBnAqugfrx0GznQ5oe9coyfuiP6/1EbeXF1uqTm2+/5nlE60JiXu0tW4s5fQyDub1QOM7I3xTCh/sM4Oe9UsvJV/pE/SLfTFVdQ8rP0a3xV9XXDKA0rUuCujEDIG8tcdIuBibY/NEkbPGeVbixsm/rvC4Z0kNH/7Q/1WkEYATgCBmRINb28/XZI5+SZJpPrYkr53jB7UdSvyIRT4oceqJ2SGMBG96hgxQ+OOcVwmTEc1hnF9yrr/YYh+zg637j2nAUAug8/uoPC7CZyFZ5g45L7IgWZkU4wy5LJOqDIfINsZO8+xu2XTBYgsCCIHEFPUkQx/SlaD4JDFwWh0NByMJVxRiptMNGIhCdR5TsFX/StkHtXrPcCd2A7EFA7tk+vkX0dNDNmy62NGyNqqgGsJapJPrl3n1YBYLmRPuFhytgihC5Lbj8AqhRrHYPrOqdC2oSQMKseLQ371tbjkZeILu1pLBfwZdeL/XwPmC0PSRok+kChdv516ns44XRmADnyP7UYz6ltVxD7BLUoR/3QmaQNvphhBm4EmIXrMkBMuJsg674aoQOCTAk+/cG+aUghSKpzbNeKjZBHvyvAF/x32Yi
+X-Forefront-Antispam-Report: CIP:216.228.118.232;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc7edge1.nvidia.com;CAT:NONE;SFS:(13230028)(4636009)(376002)(346002)(39860400002)(396003)(136003)(451199021)(82310400008)(40470700004)(36840700001)(46966006)(336012)(7696005)(36860700001)(40480700001)(36756003)(86362001)(7636003)(82740400003)(356005)(40460700003)(4744005)(2906002)(107886003)(1076003)(5660300002)(478600001)(8676002)(6666004)(8936002)(26005)(70586007)(41300700001)(70206006)(4326008)(83380400001)(2616005)(316002)(426003)(110136005)(186003)(47076005);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Jul 2023 16:06:51.0519
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 796b8b7f-d56a-4665-42e9-08db8a047e9f
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.118.232];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT068.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB6958
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le vendredi 21 juillet 2023 =C3=A0 01:58 +0000, Yunfei Dong (=E8=91=A3=E4=
-=BA=91=E9=A3=9E) a =C3=A9crit=C2=A0:
-> Hi Nicolas,
->=20
-> Thanks for your review.
->=20
-> On Thu, 2023-07-20 at 16:22 -0400, Nicolas Dufresne wrote:
-> > Hi,
-> >=20
-> > Le lundi 17 juillet 2023 =C3=A0 16:13 +0800, Yunfei Dong a =C3=A9crit :
-> > > Need to checking all parameters of msg data are valid or not,
-> > > in case of access null pointer or unreasonable value leading
-> > > to kernel reboot.
-> > >=20
-> > > Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
-> > > ---
-> > >  .../vcodec/decoder/mtk_vcodec_dec_drv.h       |  2 +
-> > >  .../mediatek/vcodec/decoder/vdec_vpu_if.c     | 77 ++++++++++++---
-> > > ----
-> > >  2 files changed, 52 insertions(+), 27 deletions(-)
-> > >=20
-> > > diff --git
-> > > a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv
-> > > .h
-> > > b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv
-> > > .h
-> > > index c8b4374c5e6c..1ea5dbb475dd 100644
-> > > ---
-> > > a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv
-> > > .h
-> > > +++
-> > > b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv
-> > > .h
-> > > @@ -160,6 +160,7 @@ struct mtk_vcodec_dec_pdata {
-> > >   * @hw_id: hardware index used to identify different hardware.
-> > >   *
-> > >   * @msg_queue: msg queue used to store lat buffer information.
-> > > + * @vpu_inst: vpu instance pointer.
-> > >   */
-> > >  struct mtk_vcodec_dec_ctx {
-> > >  	enum mtk_instance_type type;
-> > > @@ -202,6 +203,7 @@ struct mtk_vcodec_dec_ctx {
-> > >  	int hw_id;
-> > > =20
-> > >  	struct vdec_msg_queue msg_queue;
-> > > +	void *vpu_inst;
-> > >  };
-> > > =20
-> > >  /**
-> > > diff --git
-> > > a/drivers/media/platform/mediatek/vcodec/decoder/vdec_vpu_if.c
-> > > b/drivers/media/platform/mediatek/vcodec/decoder/vdec_vpu_if.c
-> > > index 82c3dc8c4127..23cfe5c6c90b 100644
-> > > --- a/drivers/media/platform/mediatek/vcodec/decoder/vdec_vpu_if.c
-> > > +++ b/drivers/media/platform/mediatek/vcodec/decoder/vdec_vpu_if.c
-> > > @@ -72,6 +72,21 @@ static void handle_get_param_msg_ack(const
-> > > struct vdec_vpu_ipi_get_param_ack *ms
-> > >  	}
-> > >  }
-> > > =20
-> > > +static bool vpu_dec_check_ap_inst(struct mtk_vcodec_dec_dev
-> > > *dec_dev, struct vdec_vpu_inst *vpu)
-> > > +{
-> > > +	struct mtk_vcodec_dec_ctx *ctx;
-> > > +	int ret =3D false;
-> > > +
-> > > +	list_for_each_entry(ctx, &dec_dev->ctx_list, list) {
-> >=20
-> > I'm not quite fully aware of the threading model in place, but this
-> > ctx_list is
-> > normally protected by dev->dev_mutex, and is not being protected
-> > here. I also
-> > don't know which type of interrupt handler we are in here.
-> >=20
-> If the device is opened, one ctx will be inserted to ctx_list, then the
-> handler interface will be called.=20
->=20
-> 1: This function just used to check whether the context is reasonable,
-> no need to add mutex to protect because the context already in ctx_list
-> in oped period. This function won't be called after deinit ctx from
-> ctx_list.
->=20
-> 2: This handler will be called when ap send message to scp.
+This commit adds UARTE device node for Tegra234 SoC.
 
-Ack.
+Signed-off-by: Gautham Srinivasan <gauthams@nvidia.com>
+---
+ arch/arm64/boot/dts/nvidia/tegra234.dtsi | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-Reviewed-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-
->=20
-> Best Regards,
-> Yunfei Dong
-> > > +		if (!IS_ERR_OR_NULL(ctx) && ctx->vpu_inst =3D=3D vpu) {
-> > > +			ret =3D true;
-> > > +			break;
-> > > +		}
-> > > +	}
-> > > +
-> > > +	return ret;
-> > > +}
-> > > +
-> > >  /*
-> > >   * vpu_dec_ipi_handler - Handler for VPU ipi message.
-> > >   *
-> > > @@ -84,44 +99,51 @@ static void handle_get_param_msg_ack(const
-> > > struct vdec_vpu_ipi_get_param_ack *ms
-> > >   */
-> > >  static void vpu_dec_ipi_handler(void *data, unsigned int len, void
-> > > *priv)
-> > >  {
-> > > +	struct mtk_vcodec_dec_dev *dec_dev;
-> > >  	const struct vdec_vpu_ipi_ack *msg =3D data;
-> > > -	struct vdec_vpu_inst *vpu =3D (struct vdec_vpu_inst *)
-> > > -					(unsigned long)msg-
-> > > > ap_inst_addr;
-> > > +	struct vdec_vpu_inst *vpu;
-> > > =20
-> > > -	if (!vpu) {
-> > > +	dec_dev =3D (struct mtk_vcodec_dec_dev *)priv;
-> > > +	vpu =3D (struct vdec_vpu_inst *)(unsigned long)msg->ap_inst_addr;
-> > > +	if (!priv || !vpu) {
-> > >  		mtk_v4l2_vdec_err(vpu->ctx, "ap_inst_addr is NULL, did
-> > > the SCP hang or crash?");
-> > >  		return;
-> > >  	}
-> > > =20
-> > > -	mtk_vdec_debug(vpu->ctx, "+ id=3D%X", msg->msg_id);
-> > > +	if (!vpu_dec_check_ap_inst(dec_dev, vpu) || msg->msg_id <
-> > > VPU_IPIMSG_DEC_INIT_ACK ||
-> > > +	    msg->msg_id > VPU_IPIMSG_DEC_GET_PARAM_ACK) {
-> > > +		mtk_v4l2_vdec_err(vpu->ctx, "vdec msg id not correctly
-> > > =3D> 0x%x", msg->msg_id);
-> > > +		vpu->failure =3D -EINVAL;
-> > > +		goto error;
-> > > +	}
-> > > =20
-> > >  	vpu->failure =3D msg->status;
-> > > -	vpu->signaled =3D 1;
-> > > +	if (msg->status !=3D 0)
-> > > +		goto error;
-> > > =20
-> > > -	if (msg->status =3D=3D 0) {
-> > > -		switch (msg->msg_id) {
-> > > -		case VPU_IPIMSG_DEC_INIT_ACK:
-> > > -			handle_init_ack_msg(data);
-> > > -			break;
-> > > +	switch (msg->msg_id) {
-> > > +	case VPU_IPIMSG_DEC_INIT_ACK:
-> > > +		handle_init_ack_msg(data);
-> > > +		break;
-> > > =20
-> > > -		case VPU_IPIMSG_DEC_START_ACK:
-> > > -		case VPU_IPIMSG_DEC_END_ACK:
-> > > -		case VPU_IPIMSG_DEC_DEINIT_ACK:
-> > > -		case VPU_IPIMSG_DEC_RESET_ACK:
-> > > -		case VPU_IPIMSG_DEC_CORE_ACK:
-> > > -		case VPU_IPIMSG_DEC_CORE_END_ACK:
-> > > -			break;
-> > > +	case VPU_IPIMSG_DEC_START_ACK:
-> > > +	case VPU_IPIMSG_DEC_END_ACK:
-> > > +	case VPU_IPIMSG_DEC_DEINIT_ACK:
-> > > +	case VPU_IPIMSG_DEC_RESET_ACK:
-> > > +	case VPU_IPIMSG_DEC_CORE_ACK:
-> > > +	case VPU_IPIMSG_DEC_CORE_END_ACK:
-> > > +		break;
-> > > =20
-> > > -		case VPU_IPIMSG_DEC_GET_PARAM_ACK:
-> > > -			handle_get_param_msg_ack(data);
-> > > -			break;
-> > > -		default:
-> > > -			mtk_vdec_err(vpu->ctx, "invalid msg=3D%X", msg-
-> > > > msg_id);
-> > > -			break;
-> > > -		}
-> > > +	case VPU_IPIMSG_DEC_GET_PARAM_ACK:
-> > > +		handle_get_param_msg_ack(data);
-> > > +		break;
-> > > +	default:
-> > > +		mtk_vdec_err(vpu->ctx, "invalid msg=3D%X", msg->msg_id);
-> > > +		break;
-> > >  	}
-> > > =20
-> > > -	mtk_vdec_debug(vpu->ctx, "- id=3D%X", msg->msg_id);
-> > > +error:
-> > > +	vpu->signaled =3D 1;
-> > >  }
-> > > =20
-> > >  static int vcodec_vpu_send_msg(struct vdec_vpu_inst *vpu, void
-> > > *msg, int len)
-> > > @@ -182,9 +204,10 @@ int vpu_dec_init(struct vdec_vpu_inst *vpu)
-> > > =20
-> > >  	init_waitqueue_head(&vpu->wq);
-> > >  	vpu->handler =3D vpu_dec_ipi_handler;
-> > > +	vpu->ctx->vpu_inst =3D vpu;
-> > > =20
-> > >  	err =3D mtk_vcodec_fw_ipi_register(vpu->ctx->dev->fw_handler,
-> > > vpu->id,
-> > > -					 vpu->handler, "vdec", NULL);
-> > > +					 vpu->handler, "vdec", vpu-
-> > > > ctx->dev);
-> > >  	if (err) {
-> > >  		mtk_vdec_err(vpu->ctx, "vpu_ipi_register fail
-> > > status=3D%d", err);
-> > >  		return err;
-> > > @@ -193,7 +216,7 @@ int vpu_dec_init(struct vdec_vpu_inst *vpu)
-> > >  	if (vpu->ctx->dev->vdec_pdata->hw_arch =3D=3D
-> > > MTK_VDEC_LAT_SINGLE_CORE) {
-> > >  		err =3D mtk_vcodec_fw_ipi_register(vpu->ctx->dev-
-> > > > fw_handler,
-> > >  						 vpu->core_id, vpu-
-> > > > handler,
-> > > -						 "vdec", NULL);
-> > > +						 "vdec", vpu->ctx-
-> > > > dev);
-> > >  		if (err) {
-> > >  			mtk_vdec_err(vpu->ctx, "vpu_ipi_register core
-> > > fail status=3D%d", err);
-> > >  			return err;
-> >=20
-> >=20
+diff --git a/arch/arm64/boot/dts/nvidia/tegra234.dtsi b/arch/arm64/boot/dts/nvidia/tegra234.dtsi
+index 64a9d0d0b5a4..f067326739c6 100644
+--- a/arch/arm64/boot/dts/nvidia/tegra234.dtsi
++++ b/arch/arm64/boot/dts/nvidia/tegra234.dtsi
+@@ -688,6 +688,15 @@
+ 			status = "disabled";
+ 		};
+ 
++		uarte: serial@3140000 {
++			compatible = "nvidia,tegra234-uart", "nvidia,tegra20-uart";
++			reg = <0x0 0x03140000 0x0 0x10000>;
++			interrupts = <GIC_SPI 116 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&bpmp TEGRA234_CLK_UARTE>;
++			resets = <&bpmp TEGRA234_RESET_UARTE>;
++			status = "disabled";
++		};
++
+ 		gen1_i2c: i2c@3160000 {
+ 			compatible = "nvidia,tegra194-i2c";
+ 			reg = <0x0 0x3160000 0x0 0x100>;
+-- 
+2.17.1
 
