@@ -2,128 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A1EBE75CCA3
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 17:52:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A11E975CCAF
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 17:54:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232343AbjGUPwN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jul 2023 11:52:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50142 "EHLO
+        id S231522AbjGUPx6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jul 2023 11:53:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54070 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232307AbjGUPvy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 11:51:54 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D83E4204;
-        Fri, 21 Jul 2023 08:51:30 -0700 (PDT)
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36LEUFWS027381;
-        Fri, 21 Jul 2023 15:50:41 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=wgnGZHbIoJ+Tel2Emd5h8/25wCwNLdaLGk5yznKHd3w=;
- b=NzBwJRVanLMvvClAzMWoLAf6bfOTURdpO1caceiPvWqyt/q20wHf64fWcqvJTM5Zlx62
- 6BBmcZj5gpRLaE1IdIVFKzt/Tm/1sno4qzxUXNewl2x17Og0vs+VoiI2NdeTEgznDKMr
- ueWHGxt7qLuL4jzg60A/+bc1o6tU4Cu4U5e0QphDXGDiXFFtyr1/caPYYzXX+bdptoeO
- BGCfVfRzLyA8Uzq7X32+knCOV9BEutpaeUlQRj+W1AT855ij4zcGmJ3AEK+vIk37gpb+
- pt+j4/Dc7KQt0FqOH10anRT8HI/1nKrrQuetCfNiseYJdObkVLIK0ytUnvpqWgaLtYa+ LQ== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ryksesawg-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 21 Jul 2023 15:50:41 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 36LFoemt002019
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 21 Jul 2023 15:50:40 GMT
-Received: from [10.226.59.182] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Fri, 21 Jul
- 2023 08:50:39 -0700
-Message-ID: <43afe706-5765-a8e7-2bbe-d9b21ec7a06e@quicinc.com>
-Date:   Fri, 21 Jul 2023 09:50:32 -0600
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.0
-Subject: Re: [PATCH 09/11] arm64: dts: qcom: msm8998: Remove AGGRE2 clock from
- SLPI
-Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Sibi Sankar <quic_sibis@quicinc.com>
-CC:     Marijn Suijten <marijn.suijten@somainline.org>,
-        <linux-arm-msm@vger.kernel.org>,
-        <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20230721-topic-rpm_clk_cleanup-v1-0-cf6cd5c621d5@linaro.org>
- <20230721-topic-rpm_clk_cleanup-v1-9-cf6cd5c621d5@linaro.org>
-From:   Jeffrey Hugo <quic_jhugo@quicinc.com>
-In-Reply-To: <20230721-topic-rpm_clk_cleanup-v1-9-cf6cd5c621d5@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: eSgD9s2AiCToG3pVyk6vRnuqxeuYDYTR
-X-Proofpoint-ORIG-GUID: eSgD9s2AiCToG3pVyk6vRnuqxeuYDYTR
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-07-21_10,2023-07-20_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 impostorscore=0
- lowpriorityscore=0 suspectscore=0 malwarescore=0 phishscore=0
- mlxlogscore=947 mlxscore=0 spamscore=0 adultscore=0 bulkscore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2306200000 definitions=main-2307210141
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S230416AbjGUPx4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 11:53:56 -0400
+Received: from wout2-smtp.messagingengine.com (wout2-smtp.messagingengine.com [64.147.123.25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADA80269F;
+        Fri, 21 Jul 2023 08:53:29 -0700 (PDT)
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
+        by mailout.west.internal (Postfix) with ESMTP id 23F203200990;
+        Fri, 21 Jul 2023 11:53:05 -0400 (EDT)
+Received: from imap51 ([10.202.2.101])
+  by compute6.internal (MEProxy); Fri, 21 Jul 2023 11:53:07 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+        :cc:content-type:content-type:date:date:from:from:in-reply-to
+        :in-reply-to:message-id:mime-version:references:reply-to:sender
+        :subject:subject:to:to; s=fm2; t=1689954784; x=1690041184; bh=9h
+        Pn0vqDK5F4Kupt89UUmDtLQIxvFCQKDf5jwCD/rVE=; b=YMTYZo67fySHWULO6E
+        Ynw7vXR6QCHo3+LO1PXJmKQY3h3qEKR13mS1vI4jsW4yMLYZeLbQGOLXvavWpj/v
+        BT44AHcfYxke0EeNWldO3HHGdVnU+FiBq6YnIpLKpr6B/IFxafXKtmX7mqKrnfy5
+        bFa2jcPjAltL8ugcQlMCAf1XVcvKMDdQedMdgSlfG1uqwKMUmLt1UA0WSLTKGn/i
+        nRji/7rpZ7SPplPbtPjPGP8tAmFVHRN2c3oFX/f1V8865xnXUa1sBzgBd8+7dlzU
+        vlp29bqlKC5FVTUeowk3uR73JjVmMMXPnckfJCcTujtx2QXFJE07p+oPjFoah1lb
+        86vQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:content-type:date:date
+        :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm3; t=1689954784; x=1690041184; bh=9hPn0vqDK5F4K
+        upt89UUmDtLQIxvFCQKDf5jwCD/rVE=; b=oneOUSr63ErkU897PPGwDKKr7BkXX
+        U02UoooSEW86a8ho9bKWMp8x6aej4JeA9IbiSCk6KdZgU+z8bsfyF83yONYxJOmQ
+        LDb6nNOuP5COmmiXDi89AQgmBgq8WJqgWKslJmPyuZ9hgq3/IFnRoIuNbObRMrqK
+        8/CFDzrO+OiiLbO3mYCzWIt7/ZeIWUck7Vc7ePH50vfPo4hkXqTiLQlLyJJXZXj4
+        hFC09ws2BTQZGDSbIGjLfcD882P6wEQca1KeLh/+GDA8dOzIOt736oqPYoylu/tk
+        e0FEQ1oS76OUIHYBg1FwZBBgCc5MYCEK2XsOi3EWX8W2srf+9JkcvFYgw==
+X-ME-Sender: <xms:4Km6ZHXs-n0p5vtx3LYYV46v2wziywExcvKQMer1UX-4aJzrdVOm8w>
+    <xme:4Km6ZPnnGc5OE6ifbURb-Qjgg1K2a6-lSE7_yqNDPe-MddenFJ5yQTTfKaj2_SI4E
+    d0y_03nC4uVjGdWqEs>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedviedrhedvgdeklecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomhepfdetrhhn
+    ugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrghtth
+    gvrhhnpeffheeugeetiefhgeethfejgfdtuefggeejleehjeeutefhfeeggefhkedtkeet
+    ffenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrrh
+    hnugesrghrnhgusgdruggv
+X-ME-Proxy: <xmx:4Km6ZDbTXcZcyk3HkWJ0bnGNfl3rLTPRyTxhQyjGi2XLg9YpODiRRA>
+    <xmx:4Km6ZCXeYJDe8OiWHBPe6RLLtqBuMCUITy5DqjszswbzYqzAvEPF4Q>
+    <xmx:4Km6ZBmYM51PEEVjm4ygjGiKxPyx41FAJCswgaGzmYINtCMyZmyH4w>
+    <xmx:4Km6ZBFFQvac8VbqUFDUjWPGzGrvw84n-K5lEArQY0-7E8WV4eFKKg>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id 440A2B6008D; Fri, 21 Jul 2023 11:53:04 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.9.0-alpha0-531-gfdfa13a06d-fm-20230703.001-gfdfa13a0
+Mime-Version: 1.0
+Message-Id: <4f8ce95e-99ac-40e0-9827-292ef0f67906@app.fastmail.com>
+In-Reply-To: <ZLqg5g5cmx8gX9E1@orome>
+References: <20230714174438.4054854-1-robh@kernel.org>
+ <ZLqg5g5cmx8gX9E1@orome>
+Date:   Fri, 21 Jul 2023 17:52:44 +0200
+From:   "Arnd Bergmann" <arnd@arndb.de>
+To:     "Thierry Reding" <thierry.reding@gmail.com>,
+        "Rob Herring" <robh@kernel.org>, "Olof Johansson" <olof@lixom.net>
+Cc:     "Sudeep Holla" <sudeep.holla@arm.com>,
+        "Cristian Marussi" <cristian.marussi@arm.com>,
+        "Shawn Guo" <shawnguo@kernel.org>,
+        "Sascha Hauer" <s.hauer@pengutronix.de>,
+        "Pengutronix Kernel Team" <kernel@pengutronix.de>,
+        "Fabio Estevam" <festevam@gmail.com>,
+        "NXP Linux Team" <linux-imx@nxp.com>,
+        "Matthias Brugger" <matthias.bgg@gmail.com>,
+        "AngeloGioacchino Del Regno" 
+        <angelogioacchino.delregno@collabora.com>,
+        "Florian Fainelli" <florian.fainelli@broadcom.com>,
+        "Broadcom internal kernel review list" 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        "Dinh Nguyen" <dinguyen@kernel.org>,
+        "Jon Hunter" <jonathanh@nvidia.com>,
+        "Michal Simek" <michal.simek@amd.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org,
+        linux-rpi-kernel@lists.infradead.org, linux-tegra@vger.kernel.org
+Subject: Re: [PATCH] firmware: Explicitly include correct DT includes
+Content-Type: text/plain
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 7/21/2023 9:36 AM, Konrad Dybcio wrote:
-> The AGGRE2 clock is a clock for the entire AGGRE2 bus, managed from
-> within the interconnect driver. Attaching it to SLPI was a total hack.
-> Get rid of it.
+On Fri, Jul 21, 2023, at 17:14, Thierry Reding wrote:
+> On Fri, Jul 14, 2023 at 11:44:37AM -0600, Rob Herring wrote:
+>> The DT of_device.h and of_platform.h date back to the separate
+>> of_platform_bus_type before it as merged into the regular platform bus.
+>> As part of that merge prepping Arm DT support 13 years ago, they
+>> "temporarily" include each other. They also include platform_device.h
+>> and of.h. As a result, there's a pretty much random mix of those include
+>> files used throughout the tree. In order to detangle these headers and
+>> replace the implicit includes with struct declarations, users need to
+>> explicitly include the correct includes.
+>> 
+>> Signed-off-by: Rob Herring <robh@kernel.org>
+>> ---
+>>  drivers/firmware/arm_scmi/driver.c | 4 ++--
+>>  drivers/firmware/imx/imx-dsp.c     | 1 -
+>>  drivers/firmware/imx/imx-scu-irq.c | 1 +
+>>  drivers/firmware/imx/imx-scu.c     | 1 +
+>>  drivers/firmware/mtk-adsp-ipc.c    | 1 -
+>>  drivers/firmware/raspberrypi.c     | 1 +
+>>  drivers/firmware/scpi_pm_domain.c  | 3 ++-
+>>  drivers/firmware/stratix10-rsu.c   | 1 -
+>>  drivers/firmware/tegra/bpmp.c      | 3 +--
+>>  drivers/firmware/xilinx/zynqmp.c   | 1 +
+>>  10 files changed, 9 insertions(+), 8 deletions(-)
+>
+> Not sure about the other maintainers, but I usually pick up
+> firmware/tegra patches up through the Tegra tree and then they
+> ultimately go through ARM SoC.
+>
+> Arnd, Olof, does it make sense for you guys to pick this up directly?
 
-Nit - why do we care what driver manages the clock?  DT describes 
-hardware...
+Sure, I was going to suggest the same thing.
 
-The entire SLPI block hangs off the AGGRE2 bus, so that bus needs to be 
-on for the SLPI.  I agree that AGGRE2 is really an interconnect device 
-and SLPI should be a consumer of that, but we don't have 8998 
-interconnects defined yet.  Seems like this hack is still needed.
+Rob, can you send the patch to soc@kernel.org assuming nobody
+has objections? Feel free to send this together with the bits
+for drivers/soc, drivers/bus, arch/arm/mach-*/ and anything else
+that usually gets merged this way.
 
-> 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
->   arch/arm64/boot/dts/qcom/msm8998.dtsi | 5 ++---
->   1 file changed, 2 insertions(+), 3 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/msm8998.dtsi b/arch/arm64/boot/dts/qcom/msm8998.dtsi
-> index 360fe3edcc08..547c3f9654a6 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8998.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/msm8998.dtsi
-> @@ -1599,9 +1599,8 @@ remoteproc_slpi: remoteproc@5800000 {
->   
->   			px-supply = <&vreg_lvs2a_1p8>;
->   
-> -			clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>,
-> -				 <&rpmcc RPM_SMD_AGGR2_NOC_CLK>;
-> -			clock-names = "xo", "aggre2";
-> +			clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>;
-> +			clock-names = "xo";
->   
->   			memory-region = <&slpi_mem>;
->   
-> 
-
+     Arnd
