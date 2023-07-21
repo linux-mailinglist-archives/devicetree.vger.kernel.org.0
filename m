@@ -2,131 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 54B6675C491
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 12:24:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 36ECD75C4B2
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 12:34:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229493AbjGUKX6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jul 2023 06:23:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57152 "EHLO
+        id S230223AbjGUKd7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jul 2023 06:33:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36698 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232120AbjGUKXC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 06:23:02 -0400
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0247F269F;
-        Fri, 21 Jul 2023 03:22:48 -0700 (PDT)
-Received: by mail-wr1-x42b.google.com with SMTP id ffacd0b85a97d-307d20548adso1395691f8f.0;
-        Fri, 21 Jul 2023 03:22:48 -0700 (PDT)
+        with ESMTP id S230020AbjGUKd6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 06:33:58 -0400
+Received: from mail-io1-xd2c.google.com (mail-io1-xd2c.google.com [IPv6:2607:f8b0:4864:20::d2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BBBDE44;
+        Fri, 21 Jul 2023 03:33:54 -0700 (PDT)
+Received: by mail-io1-xd2c.google.com with SMTP id ca18e2360f4ac-78372b895d6so70984339f.2;
+        Fri, 21 Jul 2023 03:33:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1689934967; x=1690539767;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=LQV2smbNrzQFDcHhhFzTBfVgq4bxasw/BYlbRhCNkjA=;
-        b=n15e6E22gYiBhLREK+/4tG+5gtdUZMDiek584MyoxR5DvC4k6sAH/0bHnDyml4AUML
-         u8NI4q4LJYkeU4p4WyKgqIind6DeYj2ZpPIhhXxdH+AV/IMLe0NSxuZrLv3DgfzUfr5E
-         D/xiASI1ye+wzhHWgTLPbjxt9WA2BYyB4yqXpgu39rb12XwirQlxjx8jVSNfDSSsqlcK
-         BGeV5xCxdopm0+x35MesVyGeORCID23Kx30Rlu3fa4HnkBsnIK6XhGclYd8g/+CKB50H
-         rgvaAElOzUO4Ye/9HZ0+f8YFJYLoKF/W5ajcU3wsgK2S8a1XK6d/6hDGmrRrrP3AMUy5
-         QK+g==
+        d=gmail.com; s=20221208; t=1689935633; x=1690540433;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=OfH7afwcHOtCInezfkJN0cTT30By3Tnv9pETfaaJ2XY=;
+        b=iVdNUJjv6KssT/1nGCGiUeBtXCPARUwd9yUHJZ48H48/wBqnh4RQsQ/xE0vzdxEpx3
+         WfkkENCONit+ronl+uPaS1fzVhAn0j+nYAK2/8WGg3rDqr1O7lHOQgu6I2DY9dQBgB9G
+         moXTZ0lz6Uh00+rGAIYFoyV23gK1qFAsfFa/9SN6s23qndXnO+zKhODnPusW8FodHlgW
+         MqzlcOZV1LtFLYECOG/MPD8Vof2TUS+hrw+PIRIeidRT9fDC4Ah0k7CfxHRSTJpfq75b
+         wLqay1I+9Fjx2oQEDfaB7tDV0rxC9GvDNFmdnyYoKz1dNhoRyQ0CeXJicFzNOTwSr7PL
+         VD6A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689934967; x=1690539767;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=LQV2smbNrzQFDcHhhFzTBfVgq4bxasw/BYlbRhCNkjA=;
-        b=ENR3gx0ICdJtQTlxSyavj5LSlNs8vnTAWiBaobK0APGIs03gTPKQpB+WeXdA7mnbtd
-         1vRM+sy4SMg839YsvsUo3YTFJXNP3NLcfFjMDtevP7Sg+/XTO+yMszJMy/E4YXzOPsgs
-         EpoX6MEoB/QKSVEUppZRdWvZxH1v7JnUzYz1Ks9b/xx9fXT93ErJv6hhr2Vwr3TjkIXu
-         rKOJMjbmVm3uhVqnkrngeGkhhK1Jezx5Z33IGcn0LWT+0mi8sW2o2kLwhagxvhrK5ArH
-         vwEdAyxLDjKXkATmvfhY676HbXZtn5RFRMOPUvmlykuZ3Cc0wmt4hIBDx6td6JyViFoG
-         LhfQ==
-X-Gm-Message-State: ABy/qLaE4UAJQYg7D7lcd/DISqiQXWDlv+Hd/HwA5owDGySbKbbpMSmi
-        9uH1/179Nob+Y14oiwqvpfs=
-X-Google-Smtp-Source: APBJJlFyryxa1uHJkw5w7d2VXGVUUkM+Cfx5daiFmZUYIQp/lPX+LKfbX2kzzHLBeIfXORIYUJSQuA==
-X-Received: by 2002:adf:e7ca:0:b0:314:1494:fe28 with SMTP id e10-20020adfe7ca000000b003141494fe28mr1033893wrn.53.1689934967139;
-        Fri, 21 Jul 2023 03:22:47 -0700 (PDT)
-Received: from orome (p200300e41f1bd600f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f1b:d600:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id r6-20020adff106000000b0031424950a99sm3793324wro.81.2023.07.21.03.22.46
+        d=1e100.net; s=20221208; t=1689935633; x=1690540433;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=OfH7afwcHOtCInezfkJN0cTT30By3Tnv9pETfaaJ2XY=;
+        b=eVkalRB7hoNwh7g8m/zNyoQYkb2ruGf4Gm4h+3buh3pSCcbBp5taepg6d/kcLeH2rI
+         0bZ5oV/dY3UfEFKg7LP7XRoC3P6G5lNb6QN2gL8jjo0hsw21nnIcNIiZlZc1YRHIhg3E
+         OUDGm2BX8McXGvl1dyDL74Byl8nvZoI+vOhjQxL6yaetBw99EkW7c0gwjUZknL01iGDC
+         u+jz/LKahO0U3Ww3XGi4VrNDFgwcWCKW1SqDjOnNQ/H1d9zFIhCQeRg1OrdnM4ikxUOl
+         ddrc2BJBrsdS61PMYXY6I8KJDvA8meHU85rF5XDqEA1c9YHsExXwvkg9aOsA6vhqED71
+         vpXA==
+X-Gm-Message-State: ABy/qLay/8A036CgCcFFcYfXaHzjPq78gGg0+gOqqY/4BCbcuW8eqGq5
+        bdKFhQBAfjW10cK8xCQuvH6aQWJ0wViypw==
+X-Google-Smtp-Source: APBJJlGHeT7JXLN9ycIdZv//f1eH5DuLjIu9lA6BGCLd2eHkTZ8oY/jck/uWviN9Jn+ShcJ5umd42A==
+X-Received: by 2002:a5d:9c95:0:b0:786:463b:2ceb with SMTP id p21-20020a5d9c95000000b00786463b2cebmr1464851iop.11.1689935633453;
+        Fri, 21 Jul 2023 03:33:53 -0700 (PDT)
+Received: from james-x399.localdomain (71-218-225-212.hlrn.qwest.net. [71.218.225.212])
+        by smtp.gmail.com with ESMTPSA id j14-20020a02cb0e000000b0042b03d40279sm963225jap.80.2023.07.21.03.33.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Jul 2023 03:22:46 -0700 (PDT)
-Date:   Fri, 21 Jul 2023 12:22:45 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel@lists.freedesktop.org,
-        Mikko Perttunen <mperttunen@nvidia.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-tegra@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v3 2/2] gpu: host1x: Stop open-coding of_device_uevent()
-Message-ID: <ZLpcdYYMgJjycvLE@orome>
-References: <20230622213214.3586530-1-miquel.raynal@bootlin.com>
- <20230622213214.3586530-3-miquel.raynal@bootlin.com>
+        Fri, 21 Jul 2023 03:33:53 -0700 (PDT)
+From:   James Hilliard <james.hilliard1@gmail.com>
+To:     devicetree@vger.kernel.org
+Cc:     James Hilliard <james.hilliard1@gmail.com>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Marek Vasut <marex@denx.de>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        Stefan Wahren <stefan.wahren@chargebyte.com>,
+        Christoph Niedermaier <cniedermaier@dh-electronics.com>,
+        Andreas Kemnade <andreas@kemnade.info>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Li Yang <leoyang.li@nxp.com>, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v6 1/3] dt-bindings: arm: fsl: Add VAR-SOM-MX6 SoM with Custom Board
+Date:   Fri, 21 Jul 2023 04:33:45 -0600
+Message-Id: <20230721103350.3684483-1-james.hilliard1@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="dtWf7IRVx8KpQMZQ"
-Content-Disposition: inline
-In-Reply-To: <20230622213214.3586530-3-miquel.raynal@bootlin.com>
-User-Agent: Mutt/2.2.10 (2023-03-25)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add support for Variscite i.MX6Q VAR-SOM-MX6 SoM with Custom Board.
 
---dtWf7IRVx8KpQMZQ
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Signed-off-by: James Hilliard <james.hilliard1@gmail.com>
+---
+ Documentation/devicetree/bindings/arm/fsl.yaml | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-On Thu, Jun 22, 2023 at 11:32:14PM +0200, Miquel Raynal wrote:
-> There is apparently no reasons to open-code of_device_uevent() besides:
-> - The helper receives a struct device while we want to use the of_node
->   member of the struct device *parent*.
-> - of_device_uevent() could not be called by modules because of a missing
->   EXPORT_SYMBOL*().
->=20
-> In practice, the former point is not very constraining, just calling
-> of_device_uevent(dev->parent, ...) would have made the trick.
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index 2510eaa8906d..76bb098605e7 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -385,6 +385,12 @@ properties:
+           - const: toradex,apalis_imx6q
+           - const: fsl,imx6q
+ 
++      - description: i.MX6Q Variscite VAR-SOM-MX6 Boards
++        items:
++          - const: variscite,mx6customboard
++          - const: variscite,var-som-imx6q
++          - const: fsl,imx6q
++
+       - description: TQ-Systems TQMa6Q SoM (variant A) on MBa6x
+         items:
+           - const: tq,imx6q-mba6x-a
+-- 
+2.34.1
 
-Yeah, looks like that's correct. I guess I always thought this
-information would get added to the sysfs node of the struct device *
-that was passed in, while it actually gets passed to the environment
-created for the struct device passed into the caller. In other words
-what we pass to of_device_uevent() here is only ever used as a source of
-information, so passing dev->parent works.
-
-I've also verified this on Tegra30 Beaver just to make sure and it looks
-like the generated uevent file is identical before and after this patch.
-
-Applied to drm-misc, thanks.
-
-Thierry
-
---dtWf7IRVx8KpQMZQ
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmS6XHQACgkQ3SOs138+
-s6HoYQ//QZI4hsS1hsIAv5neWAT2cYurT0oKAB/0lYWOfY4uWBC9+3yVBkatirlf
-k8iRuDMTqb7WagBicylKoGr79MvJmbqzxU9gKqIMuqFGplHmmRTFVCg6DZdEtt5j
-HO/pXAaSBJWLu1u08C1Aa34uOiLcQs/qE22ufuyLJgTVW0Ol4vRIiy9bWf+VvmIr
-OqwFfRPV3Wu7B5a8cMIyAIruU4NjaEjDELt8Ltlelc2q8UEkd0Wl2OSSsejuHbDX
-8Cg2ZwRdBe54h+rBZEznQdup61MyT9uxyER9RWE5rn0NqlTkEPoAq4G16Q1TigYA
-Lt/vabmiBkcfKXtCHD9lVaVpHlMtP9NGrjztJwN7Vn++o1/SWGX/rCqS7U4Lu8W5
-De1aRUUcd5N+WSFsFIFKbQ8Op6d0LeZGgkh/sPxvBl01cwBd9cozVkNJInxNJoX7
-dV1KPVBugRRRsQyQgyjP0dsh8ypFui0PrT50AFlUD4XFcw/zJ9p60hdZFyuuq65v
-Fkq8bg7vJRjEfGAlLn35GLfmOtMK0KDO+35vv8tVqAngjDscu3ADXGYE2o0DcIi7
-cIrcbi0S7BraIn7ta2MwVDfYMi0701GOol1WstmXlfbk23ym+VySTsLlpuZmeVzV
-dxAHVPyfEAW/aiVQWpFLvhrfgiOx2T/SEexcsP5Rft+pNH3ZuaM=
-=eWzi
------END PGP SIGNATURE-----
-
---dtWf7IRVx8KpQMZQ--
