@@ -2,119 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C5C4B75D10D
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 20:06:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9FC4275D174
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 20:38:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230105AbjGUSGY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jul 2023 14:06:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56140 "EHLO
+        id S230112AbjGUSiu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jul 2023 14:38:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41042 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229689AbjGUSGX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 14:06:23 -0400
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00F0B273A
-        for <devicetree@vger.kernel.org>; Fri, 21 Jul 2023 11:06:21 -0700 (PDT)
-Received: by mail-lj1-x22f.google.com with SMTP id 38308e7fff4ca-2b701dee4bfso33992781fa.0
-        for <devicetree@vger.kernel.org>; Fri, 21 Jul 2023 11:06:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1689962779; x=1690567579;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=oiohpvIM88q923ApY+TFuUJapPlTrtIkZpRLVAxwyJE=;
-        b=hIMOorrUg3HxNRUPkeCV9OgRZ3TNjDneByV1BwppZoGKhMPuYwWrjw9FPC23vgjhnO
-         BAhuKN3t7XLRzqirPDdhQub3+Jg1ozWFZ9LGOD3QSPE5jSC5AT3SJX2IIgKhK/UDyTZg
-         2XHg8RnuOQDnzQ1Tuvpf4TfTKF/P7t9xt0Bsg=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689962779; x=1690567579;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=oiohpvIM88q923ApY+TFuUJapPlTrtIkZpRLVAxwyJE=;
-        b=HqPmrFnXOfckOOX0pIerC5r3HuuXqrWz4ic3xnnx9etmvdJPUaucI7ab1ITQnJlc2o
-         3/Rp/Nusf2+Qj4Z20vXyQi9d83ra8SNxut3YdeulAKgY4X1fG1VvoJR/vCDc3bmPgKOn
-         Eikv1huGoL7fYwgEEdMNjl4BlgQ0cZxgXLpkJc4tsuMJUdn7it9I0RcRJq54JBxC5una
-         fguYcRwdVVfPFHDNrYUOhbP+o7fpn9jPhGjvMzUlGdpafscq1Bsq1iVzQRNPL2sookRb
-         n9FZgCEh28VEU7usMBaqLP+ZFhFywYWMMW5Z8tw1SosvzlUfqKUTtOo4ue6qtZLgVCBA
-         /Glg==
-X-Gm-Message-State: ABy/qLZFv53LRdRWuuJzoN5dpkJxOV4GZnxJUwBX9UtayK4uhT5j3Yrr
-        OKkx015oDq3dV85+bRUEjYkon0xElzkRS5AP6ZdOww==
-X-Google-Smtp-Source: APBJJlG8A/8WZ6J1qYOKD6U5YGBIHkaU6tEW4HOVel7s4jTAL6+ubzrtNoaJp2xaYKUlvm8OdW9g+g==
-X-Received: by 2002:a2e:9d8d:0:b0:2b6:d576:a25b with SMTP id c13-20020a2e9d8d000000b002b6d576a25bmr2000775ljj.28.1689962778710;
-        Fri, 21 Jul 2023 11:06:18 -0700 (PDT)
-Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com. [209.85.208.54])
-        by smtp.gmail.com with ESMTPSA id gz24-20020a170906f2d800b0099364d9f0e6sm2463366ejb.117.2023.07.21.11.06.17
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 21 Jul 2023 11:06:17 -0700 (PDT)
-Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-521e046f6c7so1218a12.1
-        for <devicetree@vger.kernel.org>; Fri, 21 Jul 2023 11:06:17 -0700 (PDT)
-X-Received: by 2002:a50:d717:0:b0:51d:ebed:93a6 with SMTP id
- t23-20020a50d717000000b0051debed93a6mr14771edi.5.1689962777300; Fri, 21 Jul
- 2023 11:06:17 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230721133035.15222-1-krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230721133035.15222-1-krzysztof.kozlowski@linaro.org>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Fri, 21 Jul 2023 11:06:04 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=U1humE-MrCgWmDqSjGZPnzP04-ScGcY7yBETuW-viyHQ@mail.gmail.com>
-Message-ID: <CAD=FV=U1humE-MrCgWmDqSjGZPnzP04-ScGcY7yBETuW-viyHQ@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: i2c: arb-gpio-challange: convert to DT schema
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Peter Rosin <peda@axentia.se>, Andi Shyti <andi.shyti@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229451AbjGUSiu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 14:38:50 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id A32FF30CA;
+        Fri, 21 Jul 2023 11:38:48 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id A7C5D150C;
+        Fri, 21 Jul 2023 11:39:31 -0700 (PDT)
+Received: from bogus (unknown [10.57.96.100])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C458D3F738;
+        Fri, 21 Jul 2023 11:38:44 -0700 (PDT)
+Date:   Fri, 21 Jul 2023 19:38:17 +0100
+From:   Sudeep Holla <sudeep.holla@arm.com>
+To:     Rob Herring <robh@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>
+Cc:     Cristian Marussi <cristian.marussi@arm.com>,
+        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Nikunj Kela <nkela@quicinc.com>,
+        Prasad Sodagudi <psodagud@quicinc.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 08/11] dt-bindings: firmware: arm,scmi: Extend
+ bindings for protocol@13
+Message-ID: <20230721183817.34lgb42nlnsvqx4s@bogus>
+References: <20230713141738.23970-1-ulf.hansson@linaro.org>
+ <20230713141738.23970-9-ulf.hansson@linaro.org>
+ <20230719151716.qhobfnclrjf4yqkg@bogus>
+ <CAPDyKFpjMWOAbV+b2DcxDWqvRDQCbSC6Ti+KGGPWJoC4Ghp7=w@mail.gmail.com>
+ <20230721115535.mx46dg56pxjnzbuv@bogus>
+ <20230721143304.GA1092306-robh@kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230721143304.GA1092306-robh@kernel.org>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Fri, Jul 21, 2023 at 08:33:04AM -0600, Rob Herring wrote:
+> On Fri, Jul 21, 2023 at 12:55:35PM +0100, Sudeep Holla wrote:
+> > On Fri, Jul 21, 2023 at 01:42:43PM +0200, Ulf Hansson wrote:
+> > > On Wed, 19 Jul 2023 at 17:17, Sudeep Holla <sudeep.holla@arm.com> wrote:
+> > > >
+> > > > On Thu, Jul 13, 2023 at 04:17:35PM +0200, Ulf Hansson wrote:
+> > > > > The protocol@13 node is describing the performance scaling option for the
+> > > > > ARM SCMI interface, as a clock provider. This is unnecessary limiting, as
+> > > > > performance scaling is in many cases not limited to switching a clock's
+> > > > > frequency.
+> > > > >
+> > > > > Therefore, let's extend the binding so the interface can be modelled as a
+> > > > > generic performance domaintoo. The common way to describe this, is to use
+> > > > > the "power-domain" DT bindings, so let's use that.
+> > > > >
+> > > >
+> > > > One thing I forgot to ask earlier is how we can manage different domain IDs
+> > > > for perf and power domains which is the case with current SCMI platforms as
+> > > > the spec never mandated or can ever mandate the perf and power domains IDs
+> > > > to match. They need not be same anyways.
+> > > 
+> > > Based upon what you describe above, I have modelled the perf-domain
+> > > and the power-domain as two separate power-domain providers.
+> > > 
+> > > A consumer device being hooked up to both domains, would specify the
+> > > domain IDs in the second power-domain-cell, along the lines of the
+> > > below. Then we would use power-domain-names to specify what each
+> > > power-domain represents.
+> > > 
+> > > power-domains = <&scmi_pd 2>, <&scmi_dvfs 4>;
+> > > power-domain-names = "power", "perf";
+> > >
+> > > I hope this makes it clearer!?
+> > 
+> > Yes it make is clear definitely, but it does change the definition of the
+> > generic binding of the "power-domains" property now. I am interesting in
+> > the feedback from the binding maintainers with respect to that. Or is it
+> > already present ? IIUC, the ones supported already are generally both
+> > power and performance providers. May be it doesn't matter much, just
+> > wanted to explicit ask and confirm those details.
+> 
+> I commented on v1.
+> 
+> Looks like abuse of "power-domains" to me, but nothing new really. 
+> Please define when to use a power domain vs. a perf domain and don't 
+> leave it up to the whims of the platform. Maybe perf domains was a 
+> mistake and they should be deprecated?
+> 
 
-On Fri, Jul 21, 2023 at 6:30=E2=80=AFAM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> diff --git a/Documentation/devicetree/bindings/i2c/i2c-arb-gpio-challenge=
-.yaml b/Documentation/devicetree/bindings/i2c/i2c-arb-gpio-challenge.yaml
-> new file mode 100644
-> index 000000000000..17f15490f073
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/i2c/i2c-arb-gpio-challenge.yaml
-> @@ -0,0 +1,138 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/i2c/i2c-arb-gpio-challenge.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: GPIO-based I2C Arbitration Using a Challenge & Response Mechanism
-> +
-> +maintainers:
-> +  - Doug Anderson <dianders@chromium.org>
-> +  - Peter Rosin <peda@axentia.se>
+Just a thought here, instead of deprecating it I was thinking if possible
+to keep the power-domains and performance-domains separate and just extend
+the genpd to handle the latter. There by we are not mixing up and creating
+confusions that need more specific definitions in the binding(which is not
+a big deal) but platforms getting it wrong inspite of that is a big problem.
+Keep it separate makes it more aligned to the hardware and doesn't dilute
+the definitions and probably avoids any possible mistakes due to that.
 
-While I don't object to Peter Rosin being listed here if he wants it,
-I suspect that you added him because he was the author of
-"i2c-arb.txt". I guess that file was really only added to try to keep
-things common between this GPIO arbitrator and the one that he cares
-about: "nxp,pca9541.txt". Probably he doesn't want to be added here.
+Sorry Ulf I am just not yet convinced to mix them up yet 😉 and wish you
+don't convince me to. Let me know why the above suggestion won't work.
 
-Speaking of "nxp,pca9541.txt", it seems like you need to convert that
-before removing "i2c-arb.txt". It still refers to that file even after
-your patch, doesn't it?
-
-In any case, other than that, this looks fine. Thanks for doing the convers=
-ion!
-
-Acked-by: Douglas Anderson <dianders@chromium.org>
-
--Doug
+-- 
+Regards,
+Sudeep
