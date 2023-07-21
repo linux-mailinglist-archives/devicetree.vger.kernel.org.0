@@ -2,68 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7BEE375D02C
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 18:58:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B63A75D057
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 19:06:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229897AbjGUQ6H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jul 2023 12:58:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52838 "EHLO
+        id S230008AbjGURGc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jul 2023 13:06:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57938 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229813AbjGUQ6G (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 12:58:06 -0400
-Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40B3710CB
-        for <devicetree@vger.kernel.org>; Fri, 21 Jul 2023 09:58:06 -0700 (PDT)
-Received: by mail-pl1-x632.google.com with SMTP id d9443c01a7336-1b9e9765f2cso13702065ad.3
-        for <devicetree@vger.kernel.org>; Fri, 21 Jul 2023 09:58:06 -0700 (PDT)
+        with ESMTP id S229771AbjGURGb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 13:06:31 -0400
+Received: from mail-qk1-x732.google.com (mail-qk1-x732.google.com [IPv6:2607:f8b0:4864:20::732])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42EFF2D58
+        for <devicetree@vger.kernel.org>; Fri, 21 Jul 2023 10:06:26 -0700 (PDT)
+Received: by mail-qk1-x732.google.com with SMTP id af79cd13be357-7654e1d83e8so194227885a.1
+        for <devicetree@vger.kernel.org>; Fri, 21 Jul 2023 10:06:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1689958686; x=1690563486;
-        h=mime-version:references:in-reply-to:message-id:date:subject:cc:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=IZKAUo/9Twe6OH2ETTDbiRd3TUf1L7ozy69wkKI+AKg=;
-        b=A9Jo6LIGOTE2ZqSnc7GBJnaBUbb/nNVZoFvJZ1Kd4Bf6B2MDhI1s9OKFtzFfkGxMMA
-         Nfjp0IPRdzWgv3B3qnziLUhRGzFx2NTm/s7G+pL5IMp6+4JguuqAfiOUpwalOSpjS2n8
-         A+tvdsmaXbyMJyyWEv+O6FD8S2V/zVVROqW/k=
+        d=broadcom.com; s=google; t=1689959185; x=1690563985;
+        h=in-reply-to:from:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=icROFovRglDI44y6jSLU8JqPhtFJWjJhJSOKnQskpSk=;
+        b=LH1MZ6IiDvh9DBVL9ybreOq/YCwfJd5CDqNjNeQeeqJNa+Omg35faQXlzwnOB3S2Cd
+         5ebcpXkOSb3rdXZMXFvA/ghMu01bo1Dp9t03aLHiE9AWz0xUqeiCw7Ts3LBnn5NOye4K
+         g9u2/pAGdczG+TBRty7fnXkI4H7kkECAkjT8o=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689958686; x=1690563486;
-        h=mime-version:references:in-reply-to:message-id:date:subject:cc:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=IZKAUo/9Twe6OH2ETTDbiRd3TUf1L7ozy69wkKI+AKg=;
-        b=GdoSpr9n2zIlQTyCxTefpnp+rAzBdjZR0AnczYy3hvwFZI1bjbkVNkByoMYjrTd5ih
-         Ldo1N9AiioRXZZ9ygCsLl7EJELd0EAaff9ix2lxlX1vFLpCUpPD3ln6tytXGeo24FbF0
-         8JfR7NSH8rp/hziQlC3e2kjvriUsRkU1m0psyaeWqUBKkvfKuw2i5CQum7+VLjLaRBBx
-         j4TiZSPrgfTXAMNg1wmc0UBKBDdAqQI0/1Ka/W8SxXTyeayJ3PvhGzuREzy/ShvqhS6Y
-         vGKuAIR9CfUjjYfQF0Ljj7ne2+OFk8MC8XjaY8yXdteUJAKCt6VhVNDNtC6Di/SVDZrR
-         8nSw==
-X-Gm-Message-State: ABy/qLbAd1ZorI1h5ZN1+FUVKxhR0RHfbFjJ6QoW4sVQMfFS509RZtfv
-        HsemkxOn69yey74i5AUVz4bpzw==
-X-Google-Smtp-Source: APBJJlHy56jfGhHH7Gp0SmnEAwazTZu8PExzvzz57cFJolL/PzHhzXZgiU6pGdOls5b4P8guIOp4KQ==
-X-Received: by 2002:a17:902:8547:b0:1bb:7b6c:9837 with SMTP id d7-20020a170902854700b001bb7b6c9837mr187124plo.49.1689958685659;
-        Fri, 21 Jul 2023 09:58:05 -0700 (PDT)
-Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id x8-20020a170902b40800b001b9e59d6ddesm3734624plr.124.2023.07.21.09.58.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Jul 2023 09:58:05 -0700 (PDT)
-From:   Florian Fainelli <florian.fainelli@broadcom.com>
-To:     bcm-kernel-feedback-list@broadcom.com,
-        =?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <zajec5@gmail.com>
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        d=1e100.net; s=20221208; t=1689959185; x=1690563985;
+        h=in-reply-to:from:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=icROFovRglDI44y6jSLU8JqPhtFJWjJhJSOKnQskpSk=;
+        b=eXztNAyHzrNP1rYMOIDnRHmvVqCziSECbneLCLoqB5+dcO1KbONiMTJCO+V3mcYOn/
+         1SHwuBU4ihtPGcYqLUtDkRZZf9DE/3AeBkDE5+nMhAER6c9aOsosAEHkPgZY0aa2kf4U
+         AM9HJWVohjjDZ13RZtatdVxWh6MGWNi1pT3gX/fDOWiUFkyzvGS8nczA8PK0Fjx6LSS4
+         WKsTxer9QNQ6Z66Vyg9vKlzCBnLDuiyVJZJJOqIEZGaGZMhIVFFD8mkEuQoAT4M/T/JG
+         0uyZP0CwJIVYiHCbNwIU7i/1Q6r4w+FXVxjFDoEB8GADK046i8BARvOl7kJK9VFVlrnT
+         zKSA==
+X-Gm-Message-State: ABy/qLbZVejXECddg182vpRgE7+u894mzUxtLBJqWnwdZBPgJbHB5J15
+        LifHkfiW0SRCkSbJPhKv2s8r/A==
+X-Google-Smtp-Source: APBJJlExiTsVEUbwKnSfLwyHPeTQymEiz1VnGfw48Nfabk5TG/zK/FFxqxcx7xzQVVSEa6k/2rJajw==
+X-Received: by 2002:a05:620a:576:b0:767:62f7:99cc with SMTP id p22-20020a05620a057600b0076762f799ccmr557630qkp.4.1689959185335;
+        Fri, 21 Jul 2023 10:06:25 -0700 (PDT)
+Received: from [192.168.1.3] (ip72-194-116-95.oc.oc.cox.net. [72.194.116.95])
+        by smtp.gmail.com with ESMTPSA id q29-20020a05620a039d00b00767177a5bebsm1219231qkm.56.2023.07.21.10.06.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 21 Jul 2023 10:06:24 -0700 (PDT)
+Message-ID: <7faba019-9f47-8c0a-e5e2-ca8768f0b733@broadcom.com>
+Date:   Fri, 21 Jul 2023 10:06:16 -0700
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH v4 2/2] ARM: dts: bcm5301x: Add SEAMA compatibles
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        =?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <rafal@milecki.pl>
-Subject: Re: [PATCH] ARM: dts: BCM53573: Fix Ethernet info for Luxul devices
-Date:   Fri, 21 Jul 2023 09:58:03 -0700
-Message-Id: <20230721165803.71801-1-florian.fainelli@broadcom.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230713111145.14864-1-zajec5@gmail.com>
-References: <20230713111145.14864-1-zajec5@gmail.com>
-MIME-Version: 1.0
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Hauke Mehrtens <hauke@hauke-m.de>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Broadcom internal kernel review list 
+        <bcm-kernel-feedback-list@broadcom.com>
+Cc:     linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20230713-seama-partitions-v4-0-69e577453d40@linaro.org>
+ <20230713-seama-partitions-v4-2-69e577453d40@linaro.org>
+From:   Florian Fainelli <florian.fainelli@broadcom.com>
+In-Reply-To: <20230713-seama-partitions-v4-2-69e577453d40@linaro.org>
 Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-        boundary="0000000000002a338a0601022b4a"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        boundary="000000000000f1b37d060102481b"
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,
         URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -72,44 +80,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---0000000000002a338a0601022b4a
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+--000000000000f1b37d060102481b
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-From: Florian Fainelli <f.fainelli@gmail.com>
 
-On Thu, 13 Jul 2023 13:11:45 +0200, Rafał Miłecki <zajec5@gmail.com> wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
-> 
-> Both Luxul's XAP devices (XAP-810 and XAP-1440) are access points that
-> use a non-default design. They don't include switch but have a single
-> Ethernet port and BCM54210E PHY connected to the Ethernet controller's
-> MDIO bus.
-> 
-> Support for those devices regressed due to two changes:
-> 
-> 1. Describing MDIO bus with switch
-> After commit 9fb90ae6cae7 ("ARM: dts: BCM53573: Describe on-SoC BCM53125
-> rev 4 switch") Linux stopped probing for MDIO devices.
-> 
-> 2. Dropping hardcoded BCM54210E delays
-> In commit fea7fda7f50a ("net: phy: broadcom: Fix RGMII delays
-> configuration for BCM54210E") support for other PHY modes was added but
-> that requires a proper "phy-mode" value in DT.
-> 
-> Both above changes are correct (they don't need to be reverted or
-> anything) but they need this fix for DT data to be correct and for Linux
-> to work properly.
-> 
-> Fixes: 9fb90ae6cae7 ("ARM: dts: BCM53573: Describe on-SoC BCM53125 rev 4 switch")
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
-> ---
 
-Applied to https://github.com/Broadcom/stblinux/commits/devicetree/next, thanks!
---
+On 7/12/2023 3:16 PM, Linus Walleij wrote:
+> This adds SEAMA compatibles to the firmware partition of these
+> two D-Link devices.
+> 
+> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+
+Applied by adjusting the patch after 6.5-rc1 moved the various DTS files 
+to vendor directories. Thanks Linus!
+-- 
 Florian
 
---0000000000002a338a0601022b4a
+--000000000000f1b37d060102481b
 Content-Type: application/pkcs7-signature; name="smime.p7s"
 Content-Transfer-Encoding: base64
 Content-Disposition: attachment; filename="smime.p7s"
@@ -180,14 +169,14 @@ kNGap1mHJ+JngGzZCz+dDiHRQKGpXLxkHX0BvEDZLW6LGOJ83ImrW38YMOo3ZYnCYNHA9qDOakiw
 NxADYvcRBA0ySL6sZpj8BIIhWiXiuusuBmt2Mak2eEv0xDbovE6Z6hYyl/ZnRadbgK/ClgbY3w+O
 AfUXEZ0xggJtMIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52
 LXNhMTEwLwYDVQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwT
-/D/YSkVckoN0L+QwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIEhXmhMlg7yc7W46
-sQ4Vyy6CWD76si+CYQEFPU9iT0OIMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcN
-AQkFMQ8XDTIzMDcyMTE2NTgwNlowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZI
+/D/YSkVckoN0L+QwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIHS2t8N7oQ3evO5h
+TM73wIosr3LVqXKp6S0WnZBQLQomMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcN
+AQkFMQ8XDTIzMDcyMTE3MDYyNVowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZI
 AWUDBAEWMAsGCWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEH
-MAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQCkUrmSyjSpUjlMes0l2X7du6DWs6sKY79k
-+UXRn62yYttr01bmg4nOzKgKmsLPqd3aQVmdSyYbyEH1iRlf/aU/KY0mfIOs+bO5j/EgSY7/8KpG
-QbfNUjbIMNcu1k7bU/mvWgeH5GRphY+aKSwQ8EEJoiiIaPV49A3HYLLiMPHLsUpUpqBd+ICaTYCU
-56SYoExzV3kHDU1yPYZ3agYvNUFTvq9GOJp2J7w0O1ls4u5Nd7p1rvIdpGnZH3xHQqGBfhCx8Ga8
-PcUdVQOXI1w/cc4BpcpuzmwH1oKg/s6g0sxQTt7FgbkLLgf8R8GdMhsiN+iGdbcqQVSKRb91Gp1C
-Fl6g
---0000000000002a338a0601022b4a--
+MAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQA1DowQEzJIKObTmPPTNC80zOVmztDtX1Nr
+WU89jB4+S/iMnkTplo3DPJYGAe5gKWuQTboYQI6pVTHvM8CIQ4hQ1pbpNU+TQ2Wy4V8Nxc8uorbJ
+iYj9sCTC7clb6N+H2zi9U+0eEimhD4MgE7gQe7SPpAt9b8lBEoLfk8gCFvEVuPKVainSmPI2pGAP
+Hg8WuL3Le16ML35RJnIl9gs7DFe/RJrvpQG2k1+mt3sRR0vL5UOZVZf8aIsB3fcEludQb0PoJGCx
++GS4ks1MpAOXcalU4t+GP3sUnYI4rbvN2YBHAPWWsMYkctAYKyvDHarkp+zxEpbC3Oq+Fp64pFR/
+SotS
+--000000000000f1b37d060102481b--
