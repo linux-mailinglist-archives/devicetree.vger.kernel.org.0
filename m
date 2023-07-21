@@ -2,48 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 09D8575BE57
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 08:09:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A881475BEC3
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 08:22:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230090AbjGUGJB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jul 2023 02:09:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46220 "EHLO
+        id S230514AbjGUGWj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jul 2023 02:22:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55398 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230064AbjGUGI7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 02:08:59 -0400
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 6DA711BF7;
-        Thu, 20 Jul 2023 23:08:57 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="6.01,220,1684767600"; 
-   d="scan'208";a="170333992"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie5.idc.renesas.com with ESMTP; 21 Jul 2023 15:08:56 +0900
-Received: from localhost.localdomain (unknown [10.226.92.55])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 14AA840134E7;
-        Fri, 21 Jul 2023 15:08:52 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229786AbjGUGWO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 02:22:14 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85D0530C0;
+        Thu, 20 Jul 2023 23:21:47 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-9936b3d0286so253688666b.0;
+        Thu, 20 Jul 2023 23:21:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1689920506; x=1690525306;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=G/41dQ3c/Hx+YYfhvABXVnfSE5c1C3EeGcDjRGR6LcU=;
+        b=TBKZ8kJYY8zbOME4XyLOOZat7TUECE52lPSxv1W8+V0Fx+BLL5OJml3Ct+eZyUGIgu
+         bUVjFx4bi9l2OFvQVFXWno5WOLK7uMl0j5Wde0hoORKXlcjztXPfglm8Gh8OwX1dMYLQ
+         NDVWf4lqD0U9tTDVwjUDFJqPFj2EswN/aECtFlREcUZOT+lgLx07Pk9WOIltUdgL/mH5
+         Bh8/XaWLhZihH0ISzXsNov/wB+zgsTnMjss6ObeC7mufaYEpoFxqUAN3KsmPU/7o5kgT
+         pq35Ari+lXPBSXb03keIPnmrzUvCi6/S29tFj8EfnS4XeN0ViE0Y32+meneo+Eyavu7/
+         jtTA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689920506; x=1690525306;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=G/41dQ3c/Hx+YYfhvABXVnfSE5c1C3EeGcDjRGR6LcU=;
+        b=IH6QyYtN5LCCu5eBsGeX8vqFcWYtwo2zX8KM0PxlAmCrLGcRYDJXG7KoXYeBbDDa1M
+         BK/aI+S5Ntkr2LrAURgwj5nZm3gTtMZag56iMMtwdUrDncnMGi/LkoVbg672Ek1P3fVi
+         UqKyp9GzYUzlWzPQGA7BF25rZTojCTk8WVVY4yQvfXUuxrWHYEBvNAD+o0kCq0H9GPP0
+         xC7qZ6po+/tkSDSXwiE9rsbQnyrUg7zIcywz0kTr/GqaC/J4wMd/WdczjSdIk6Kda47g
+         KBu5Fp8FWWtPbIbAeLRJfmdmQdgNL4Sthj+BuHf24LDrE7rxWNTbecNzi5mcA5mxdgwj
+         YnRg==
+X-Gm-Message-State: ABy/qLa02rdM4UZHSOtrP5aIJpUYJrmlkGqcpapAF8dVZlBikOVl+qsD
+        cGKMEEDPBlVRk212e3FKGB0=
+X-Google-Smtp-Source: APBJJlEGxWm0ii6ImSsWnu6tI2qzk9YhtYkizLb7RvEs3vljuD4rrfYDwgkTF5RriCdLcU+OZNq5Kg==
+X-Received: by 2002:a17:907:75f7:b0:982:89b3:8650 with SMTP id jz23-20020a17090775f700b0098289b38650mr960139ejc.64.1689920505732;
+        Thu, 20 Jul 2023 23:21:45 -0700 (PDT)
+Received: from orome (p200300e41f1bd600f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f1b:d600:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id cb14-20020a170906a44e00b00992eabc0ad8sm1677859ejb.42.2023.07.20.23.21.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 20 Jul 2023 23:21:45 -0700 (PDT)
+Date:   Fri, 21 Jul 2023 08:21:44 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Brad Griffis <bgriffis@nvidia.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>, linux-pwm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v15 2/4] dt-bindings: pwm: rzg2l-gpt: Document renesas,poegs property
-Date:   Fri, 21 Jul 2023 07:08:38 +0100
-Message-Id: <20230721060840.8546-3-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230721060840.8546-1-biju.das.jz@bp.renesas.com>
-References: <20230721060840.8546-1-biju.das.jz@bp.renesas.com>
+        Conor Dooley <conor+dt@kernel.org>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
+Subject: Re: [PATCH 1/2] arm64: tegra: fix p3767 card detect polarity
+Message-ID: <ZLoj-JgLqL619m70@orome>
+References: <20230626180920.318774-1-bgriffis@nvidia.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="CrT3QqnvATO8hR6T"
+Content-Disposition: inline
+In-Reply-To: <20230626180920.318774-1-bgriffis@nvidia.com>
+User-Agent: Mutt/2.2.10 (2023-03-25)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -51,70 +76,67 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-RZ/G2L GPT IP supports output pin disable function by dead time
-error and detecting short-circuits between output pins.
 
-Add documentation for the optional property renesas,poegs to
-link a pair of GPT IOs with POEG.
+--CrT3QqnvATO8hR6T
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
-v14->v15:
- * No change.
-v3->v14:
- * Add Rb tag from Rob.
- * Moved the patch from series[1] to here.
- [1] https://lore.kernel.org/linux-renesas-soc/20221215205843.4074504-1-biju.das.jz@bp.renesas.com/T/#t
-v2->v3:
- * Moved minItems/MaxItems one level up.
-v1->v2:
- * removed quotes from ref
- * Added maxItems and minItems for renesas,poegs property
- * Added enums for gpt index
----
- .../bindings/pwm/renesas,rzg2l-gpt.yaml       | 23 +++++++++++++++++++
- 1 file changed, 23 insertions(+)
+On Mon, Jun 26, 2023 at 06:09:19PM +0000, Brad Griffis wrote:
+> The card detect pin on Orin Nano SKU5 (p3767-0005) is active-low.
+>=20
+> Fixes: 13b0aca303e9 ("arm64: tegra: Support Jetson Orin NX")
+> Signed-off-by: Brad Griffis <bgriffis@nvidia.com>
+> ---
+>  arch/arm64/boot/dts/nvidia/tegra234-p3767.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/pwm/renesas,rzg2l-gpt.yaml b/Documentation/devicetree/bindings/pwm/renesas,rzg2l-gpt.yaml
-index 620d5ae4ae30..60170e0de3c6 100644
---- a/Documentation/devicetree/bindings/pwm/renesas,rzg2l-gpt.yaml
-+++ b/Documentation/devicetree/bindings/pwm/renesas,rzg2l-gpt.yaml
-@@ -245,6 +245,28 @@ properties:
-   resets:
-     maxItems: 1
- 
-+  renesas,poegs:
-+    minItems: 1
-+    maxItems: 8
-+    $ref: /schemas/types.yaml#/definitions/phandle-array
-+    items:
-+      items:
-+        - description: phandle to POEG instance that serves the output disable
-+        - enum: [ 0, 1, 2, 3, 4, 5, 6, 7 ]
-+          description: |
-+            An index identifying pair of GPT channels.
-+              <0> : GPT channels 0 and 1
-+              <1> : GPT channels 2 and 3
-+              <2> : GPT channels 4 and 5
-+              <3> : GPT channels 6 and 7
-+              <4> : GPT channels 8 and 9
-+              <5> : GPT channels 10 and 11
-+              <6> : GPT channels 12 and 13
-+              <7> : GPT channels 14 and 15
-+    description:
-+      A list of phandle and channel index pair tuples to the POEGs that handle the
-+      output disable for the GPT channels.
-+
- required:
-   - compatible
-   - reg
-@@ -375,4 +397,5 @@ examples:
-         power-domains = <&cpg>;
-         resets = <&cpg R9A07G044_GPT_RST_C>;
-         #pwm-cells = <2>;
-+        renesas,poegs = <&poeggd 4>;
-     };
--- 
-2.25.1
+This DTS include is also used by Jetson Orin NX, but I assume that the
+same polarity applies to that as well?
 
+Actually, looking at the Orin NX, I don't see an SD card slot and
+judging by the documentation that I was able to find it's not documented
+for Orin Nano either. Or is it only certain variants that were equipped
+with the SD slot?
+
+Thierry
+
+> diff --git a/arch/arm64/boot/dts/nvidia/tegra234-p3767.dtsi b/arch/arm64/=
+boot/dts/nvidia/tegra234-p3767.dtsi
+> index bd60478fa75e..831a553ec387 100644
+> --- a/arch/arm64/boot/dts/nvidia/tegra234-p3767.dtsi
+> +++ b/arch/arm64/boot/dts/nvidia/tegra234-p3767.dtsi
+> @@ -42,7 +42,7 @@ flash@0 {
+>  		mmc@3400000 {
+>  			status =3D "okay";
+>  			bus-width =3D <4>;
+> -			cd-gpios =3D <&gpio TEGRA234_MAIN_GPIO(G, 7) GPIO_ACTIVE_HIGH>;
+> +			cd-gpios =3D <&gpio TEGRA234_MAIN_GPIO(G, 7) GPIO_ACTIVE_LOW>;
+>  			disable-wp;
+>  		};
+> =20
+> --=20
+> 2.25.1
+>=20
+
+--CrT3QqnvATO8hR6T
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmS6I/UACgkQ3SOs138+
+s6Hveg/8DZbfqL2oqL9OnjVIqsIpwupmXZO3lB2HQhDi1lX86Kd5vPJz18PTq77O
+9deOfQQksh9N5U93A6UQ2Kgi/H3wctAUCA/c3/CHPV9SITSYlI/HV2TfCpThVpZH
+E2PCtDFKRsbJ3hKg4IZxC9sar2X4NdKS4TERH+LLBW3BU6ofUYRLeUC2yoEDZVCl
+5qLrdHoIgOmahyMS9Udpt5rLQUJxECt+MOdF1tmGDBRDD2G5q5kQNF/83NwTqbYI
+FAd1QNR2wZLrQbA0yW4OAiihfPqiIpYf8duOQ4R8PcxHekz0ZAmX3QnwYo3Yxsqk
+tgARqGtQ7onITVtg13c8jOXg/7i4sHeQvD1QuqoGdlbsnf5Rbp7qCugvMDxFflxp
+Xz8xQh7vjishOiVkBJM54cTnLIDl5MyxhU7G/gWUr+5Y3LaDm/2JCKpLyDCiSmIr
+aQko/iMRcQg5Uaaq0THnGt3xKGatR4taFz5IURhNwA+L9qZwiHYwjoLB3mIpxlsI
+rWDD0rNxOXBWiIvsCnK7mhq11K2C/XK+C1U4ZaqxebVSvf5/C+u3+pAmxhafs6wL
+vqDiQYDt16N8pAJ9ntedOXS/mZFuPXTlF8G9IjCmmy/0SX6lXFPE5J3UD7N0LMBx
+OOWCuq9agaT07R3LNjCG0E1qpyx0K3CMxLQtWTyBq9eapktG7QE=
+=ERAi
+-----END PGP SIGNATURE-----
+
+--CrT3QqnvATO8hR6T--
