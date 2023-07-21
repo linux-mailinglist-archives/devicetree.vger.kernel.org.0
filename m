@@ -2,167 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 208B975CBA5
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 17:25:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B7F5D75CBB1
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 17:28:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231734AbjGUPZn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jul 2023 11:25:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60558 "EHLO
+        id S230427AbjGUP2U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jul 2023 11:28:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34068 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231549AbjGUPZl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 11:25:41 -0400
-Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B65AF3599;
-        Fri, 21 Jul 2023 08:25:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
-        ; s=x; h=Subject:Content-Transfer-Encoding:Content-Type:Mime-Version:
-        References:In-Reply-To:Message-Id:Cc:To:From:Date:Sender:Reply-To:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=oXfy01pAFvoIyGHeuZzy5+Yl52G6bm9FeN2XpUUZ5O0=; b=leT7Sj6Auzl/lnVXWJj20rSp3H
-        ihZHugGiPx2N+iXkFfhJdWNOGro6u0fPoC5/Hf0GGQgCCyEY0InBIXwqYOG88Bxf1avof2gYC8Ebb
-        olAfctVBFLY80yMdtxjxFeKYICLKp3wJ0ZZ/CvXO5qupe0FZYhUMSmtXp5MQiz4ZvBeo=;
-Received: from modemcable061.19-161-184.mc.videotron.ca ([184.161.19.61]:33064 helo=pettiford)
-        by mail.hugovil.com with esmtpa (Exim 4.92)
-        (envelope-from <hugo@hugovil.com>)
-        id 1qMs0N-0002TV-Bx; Fri, 21 Jul 2023 11:25:20 -0400
-Date:   Fri, 21 Jul 2023 11:25:17 -0400
-From:   Hugo Villeneuve <hugo@hugovil.com>
-To:     Greg KH <gregkh@linuxfoundation.org>
-Cc:     Andy Shevchenko <andy.shevchenko@gmail.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        jirislaby@kernel.org, jringle@gridpoint.com,
-        tomasz.mon@camlingroup.com, l.perczak@camlintechnologies.com,
-        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-        stable@vger.kernel.org
-Message-Id: <20230721112517.38ab9a40cdf6a0eddf074615@hugovil.com>
-In-Reply-To: <2023072040-clock-waltz-a5f2@gregkh>
-References: <CAHp75VeWFPBmsD8zsSAaQGNNXtfgLtQuM9AMGfLPk-6p0VW=Pg@mail.gmail.com>
-        <20230620100846.d58436efc061fb91074fa7e5@hugovil.com>
-        <CAHp75VcWSVgA8LFLo0-b5TfKWdHb2GfLpXV-V3PZvthTv1Xc4A@mail.gmail.com>
-        <20230620113312.882d8f0c7d5603b1c93f33fb@hugovil.com>
-        <CAHp75VfGm6=ULW6kMjsg2OgB1z1T0YdmzvCTa3DFXXX-q_RnfA@mail.gmail.com>
-        <20230620114209.fb5272ad8cf5c5e2895d68b1@hugovil.com>
-        <CAHp75VcieuYqxWrO7rknx2ROYz=rnWnKV6s9eXZ5Zd1BKc6YMg@mail.gmail.com>
-        <20230620121645.512b31a872306b43a276bbac@hugovil.com>
-        <20230719144048.4f340b8aa0a29ab65a274273@hugovil.com>
-        <2023071922-rigor-collage-804e@gregkh>
-        <2023072040-clock-waltz-a5f2@gregkh>
-X-Mailer: Sylpheed 3.7.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
-Mime-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 184.161.19.61
-X-SA-Exim-Mail-From: hugo@hugovil.com
+        with ESMTP id S232127AbjGUP2P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 11:28:15 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 231E42D47;
+        Fri, 21 Jul 2023 08:28:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1689953294; x=1721489294;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=4f6+Vzh66/SZb4sK5BzeuecVvdpYV9VeScnvgZ2AiH4=;
+  b=Nrz7dXM0a1/FOOAHxbWw3lh7X/Bl4sKF5t1s2I9tBL4wGPfVfBvSjeRN
+   r5RxYa7C+KOeQfTt/CNfDh6LaJW0J1XmE8FzJk/hnKPoyLaRp6dkfneTB
+   rrz/yCp0QWz1soMT+0LK8rtr7K/D9LNJvOXE0UC+OM0slBovhgleMx4W2
+   1bYuRlM6Zi4nz7HMLdsQCjIDml63KHhEhlw4xOBiQa2SkInIMeEAJRrIt
+   uo3Nooh0tN4BWuPlh6ekDAyFnAX3rI9fRzGLrHyGKtYoQZBNRkWXAOsBG
+   m9GIn+JdBQl68m1ndviN0YazcA9hiFx0ibXVI9i09CmgZWrzqmF0EMxZ0
+   A==;
+X-IronPort-AV: E=Sophos;i="6.01,222,1684825200"; 
+   d="scan'208";a="221536705"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 21 Jul 2023 08:28:13 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Fri, 21 Jul 2023 08:27:48 -0700
+Received: from [10.159.245.205] (10.10.115.15) by chn-vm-ex02.mchp-main.com
+ (10.10.85.144) with Microsoft SMTP Server id 15.1.2507.21 via Frontend
+ Transport; Fri, 21 Jul 2023 08:27:46 -0700
+Message-ID: <b00da337-e183-5af0-b240-ec2d62e433f0@microchip.com>
+Date:   Fri, 21 Jul 2023 17:27:45 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH] ARM: dts: at91: remove duplicated entries
+Content-Language: en-US, fr-FR
+To:     Claudiu Beznea <claudiu.beznea@tuxon.dev>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <alexandre.belloni@bootlin.com>, <cristian.birsan@microchip.com>
+CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20230721053918.33944-1-claudiu.beznea@tuxon.dev>
+From:   Nicolas Ferre <nicolas.ferre@microchip.com>
+Organization: microchip
+In-Reply-To: <20230721053918.33944-1-claudiu.beznea@tuxon.dev>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,
+        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
-Subject: Re: [PATCH v7 5/9] serial: sc16is7xx: fix regression with GPIO
- configuration
-X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
-X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 20 Jul 2023 21:38:21 +0200
-Greg KH <gregkh@linuxfoundation.org> wrote:
-
-> On Wed, Jul 19, 2023 at 09:14:23PM +0200, Greg KH wrote:
-> > On Wed, Jul 19, 2023 at 02:40:48PM -0400, Hugo Villeneuve wrote:
-> > > On Tue, 20 Jun 2023 12:16:45 -0400
-> > > Hugo Villeneuve <hugo@hugovil.com> wrote:
-> > > 
-> > > > On Tue, 20 Jun 2023 18:45:51 +0300
-> > > > Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
-> > > > 
-> > > > > On Tue, Jun 20, 2023 at 6:42 PM Hugo Villeneuve <hugo@hugovil.com> wrote:
-> > > > > > On Tue, 20 Jun 2023 18:35:48 +0300
-> > > > > > Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
-> > > > > > > On Tue, Jun 20, 2023 at 6:33 PM Hugo Villeneuve <hugo@hugovil.com> wrote:
-> > > > > > > > On Tue, 20 Jun 2023 18:18:12 +0300
-> > > > > > > > Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
-> > > > > > > > > On Tue, Jun 20, 2023 at 5:08 PM Hugo Villeneuve <hugo@hugovil.com> wrote:
-> > > > > > > > > > On Sun, 4 Jun 2023 22:31:04 +0300
-> > > > > > > > > > Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
-> > > > > 
-> > > > > ...
-> > > > > 
-> > > > > > > > > > did you have a chance to look at V8 (sent two weks ago) which fixed all
-> > > > > > > > > > of what we discussed?
-> > > > > > > > >
-> > > > > > > > > The patch 6 already has my tag, anything specific you want me to do?
-> > > > > > > >
-> > > > > > > > Hi Andy,
-> > > > > > > > I forgot to remove your "Reviewed-by: Andy..." tag before sending V8
-> > > > > > > > since there were some changes involved in patch 6 and I wanted you to
-> > > > > > > > review them. Can you confirm if the changes are correct?
-> > > > > > > >
-> > > > > > > > I also added a new patch "remove obsolete out_thread label". It has no
-> > > > > > > > real impact on the code generation itself, but maybe you can review and
-> > > > > > > > confirm if tags are ok or not, based on commit message and also
-> > > > > > > > additional commit message.
-> > > > > > >
-> > > > > > > Both are fine to me.
-> > > > > >
-> > > > > > Hi,
-> > > > > > Ok, thank you for reviewing this.
-> > > > > >
-> > > > > > I guess now we are good to go with this series if the stable tags and
-> > > > > > patches order are good after Greg's review?
-> > > > > 
-> > > > > Taking into account that we are at rc7, and even with Fixes tags in
-> > > > > your series I think Greg might take this after v6.5-0rc1 is out. It's
-> > > > > up to him how to proceed with that. Note, he usually has thousands of
-> > > > > patches in backlog, you might need to respin it after the above
-> > > > > mentioned rc1.
-> > > > 
-> > > > Ok, understood.
-> > > > 
-> > > > Let's wait then.
-> > > 
-> > > Hi Andy/Greg,
-> > > we are now at v6.5-rc2 and I still do not see any of our patches in
-> > > linus or gregkh_tty repos.
-> > > 
-> > > Is there something missing from my part (or someone else) to go forward
-> > > with integrating these patches (v8) for v6.5?
-> > 
-> > My queue is huge right now, please be patient, I want to have them all
-> > handled by the end of next week...
-> > 
-> > You can always help out by reviewing other patches on the mailing list
-> > to reduce my review load.
+On 21/07/2023 at 07:39, Claudiu Beznea wrote:
+> [You don't often get email from claudiu.beznea@tuxon.dev. Learn why this is important at https://aka.ms/LearnAboutSenderIdentification ]
 > 
-> Wait, no, this series was superseeded by v8, and in there you said you
-> were going to send a new series.  So please, fix it up and send the
-> updated version of the series, this one isn't going to be applied for
-> obvious reasons.
+> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+> 
+> Remove duplicated DTC_FLAGS_<board> := -@ entries which intends to enable
+> the building of device tree overlays.
+> Commit 724ba6751532 ("ARM: dts: Move .dts files to vendor sub-directories")
+> added those entries at the beginning of file w/o removing the already
+> available entries spread though file.
+> 
+> Signed-off-by: Claudiu Beznea <claudiu.beznea@tuxon.dev>
 
-Hi Greg,
-I never said that I would resend another update for this current
-serie (unless of course if it was to address a new comment). Re-reading
-that email made me realise that it was maybe not perfectly clear the
-way I wrote it.
+Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
 
-What I said was that, once V8 was finally applied and
-incorporated in the kernel, then I would send a completely new and
-different serie to address issues/concerns/improvements/suggestions
-noted during the review of this serie (example: conversion of bindings
-to YAML and improve DTS node names, etc). We already agreed with some
-maintainers (ex: Conor Dooley) that it was reasonnable to do so.
+Thanks Claudiu for this finding, best regards,
+    Nicolas
 
-That is why I asked Andy if we were good to go with V8 and he
-confirmed that, and that it was now up to you to integrate it if your
-review was satisfactory.
+> ---
+>   arch/arm/boot/dts/microchip/Makefile | 15 +--------------
+>   1 file changed, 1 insertion(+), 14 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/microchip/Makefile b/arch/arm/boot/dts/microchip/Makefile
+> index 0f5193d05a31..31e03747cdf4 100644
+> --- a/arch/arm/boot/dts/microchip/Makefile
+> +++ b/arch/arm/boot/dts/microchip/Makefile
+> @@ -1,4 +1,5 @@
+>   # SPDX-License-Identifier: GPL-2.0
+> +# Enables support for device-tree overlays
+>   DTC_FLAGS_at91-sam9x60_curiosity := -@
+>   DTC_FLAGS_at91-sam9x60ek := -@
+>   DTC_FLAGS_at91-sama5d27_som1_ek := -@
+> @@ -54,21 +55,9 @@ dtb-$(CONFIG_SOC_AT91SAM9) += \
+>          at91sam9g35ek.dtb \
+>          at91sam9x25ek.dtb \
+>          at91sam9x35ek.dtb
+> -# Enables support for device-tree overlays
+> -DTC_FLAGS_at91-sam9x60_curiosity := -@
+> -DTC_FLAGS_at91-sam9x60ek := -@
+>   dtb-$(CONFIG_SOC_SAM9X60) += \
+>          at91-sam9x60_curiosity.dtb \
+>          at91-sam9x60ek.dtb
+> -# Enables support for device-tree overlays
+> -DTC_FLAGS_at91-sama5d27_som1_ek := -@
+> -DTC_FLAGS_at91-sama5d27_wlsom1_ek := -@
+> -DTC_FLAGS_at91-sama5d2_icp := -@
+> -DTC_FLAGS_at91-sama5d2_ptc_ek := -@
+> -DTC_FLAGS_at91-sama5d2_xplained := -@
+> -DTC_FLAGS_at91-sama5d3_eds := -@
+> -DTC_FLAGS_at91-sama5d3_xplained := -@
+> -DTC_FLAGS_at91-sama5d4_xplained := -@
+>   dtb-$(CONFIG_SOC_SAM_V7) += \
+>          at91-kizbox2-2.dtb \
+>          at91-kizbox3-hs.dtb \
+> @@ -95,8 +84,6 @@ dtb-$(CONFIG_SOC_SAM_V7) += \
+>          at91-sama5d4_xplained.dtb \
+>          at91-sama5d4ek.dtb \
+>          at91-vinco.dtb
+> -# Enables support for device-tree overlays
+> -DTC_FLAGS_at91-sama7g5ek := -@
+>   dtb-$(CONFIG_SOC_SAMA7G5) += \
+>          at91-sama7g5ek.dtb
+> 
+> --
+> 2.39.2
+> 
 
-Hope this clears things and we can integrate it soon.
-
-Thank you, Hugo.
