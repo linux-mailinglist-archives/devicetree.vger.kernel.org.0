@@ -2,90 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D009975C3EC
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 12:01:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AC50975C400
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 12:06:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231529AbjGUKBP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jul 2023 06:01:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43352 "EHLO
+        id S229703AbjGUKGB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jul 2023 06:06:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45678 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230453AbjGUKBK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 06:01:10 -0400
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5656E75
-        for <devicetree@vger.kernel.org>; Fri, 21 Jul 2023 03:01:08 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-51e344efd75so3732028a12.1
-        for <devicetree@vger.kernel.org>; Fri, 21 Jul 2023 03:01:08 -0700 (PDT)
+        with ESMTP id S229681AbjGUKGA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 06:06:00 -0400
+Received: from mail-io1-xd44.google.com (mail-io1-xd44.google.com [IPv6:2607:f8b0:4864:20::d44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32A9BCE;
+        Fri, 21 Jul 2023 03:05:57 -0700 (PDT)
+Received: by mail-io1-xd44.google.com with SMTP id ca18e2360f4ac-786f25bcb40so76107139f.3;
+        Fri, 21 Jul 2023 03:05:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689933667; x=1690538467;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=qYP+SCMIfwatBAscaRxTLvzZrfuI7oZZEpmIKaCinoE=;
-        b=YmZCXLeFrNJAAd6nx5xDMsncZ9XWsL/JOkO/94wS6iTAuVTXtpMC509HGNJiWh8Vmj
-         O/ykb4iNw2W7tQBxetghumvnLyNUVrZ68/20vdz2jJxOPQGke2oUcFoaJriXR2xsFJFC
-         c/ILWc5UMhG+JLZQzkXCLJveo5P95TpwakKajN/NuhPtL2xT/cY4zqF0N9O9/UYhg2rM
-         nhc7VijqnIkpf1+8Ws1HrAMmC9yphsmZVVxenQfracwQ7wXEVQY47kUsUEk++UdDfZIl
-         sqoLlEoRrYS1oUnc/lB2zOEtN9XZDxU7v0ixhwyKzkxdiBAFnTpnKpF3r77qQQrmV+Tp
-         01vQ==
+        d=gmail.com; s=20221208; t=1689933956; x=1690538756;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=BEW196PpnTlK0N66UFK6IxuhCDHvVfXtZq2tyJ9L5OM=;
+        b=EcWpYGO/mxolyz42jGQdvGwDRvMLkaPenFTrf4xtyA8wde+O26qR0KvviFl5ydAfv7
+         W8xJLXD5yV9S8SGb59nMg8HYfnghQOllH78HNjjupu/TFeoPH28O4HHtH6N9+P6dxjTd
+         TFElFtvplZLbBr57h22nsKmclzhudv0S2Sv8sBjFHcU+OWz8thz1PTV4VH+GJ9+bJ5Jm
+         /M8+7W43oiEktgOfLegB4lNAaAZ9HCAXCqrHwm8HnEmnQlvJyQbyul3mK4b+nOJjmI/I
+         jPrW4Mh0szCxBGE/ZkV7C516sSJyFdokhPHnOUcxJ8Mt3WeKOfTe9BbE/O/0WYNA5cDu
+         t0zQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689933667; x=1690538467;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=qYP+SCMIfwatBAscaRxTLvzZrfuI7oZZEpmIKaCinoE=;
-        b=eS0eo3j9q4DPPU/iGWeMop0Tl+IG8H8UE54RoupESaADJB3louAiw7jF9WG5vtpFhL
-         ALTnNhd9QFYA1amoawXXlFaYA1FbmDKThAmCzO7ahBOfd4X2DltBDntgMIIDNmisv4Lu
-         vF5Ts83geymOm2eaXrwzd6DkRNbUMGWI3VnSLsYwf+e03PHgyVC+ubDXT+Z+CI7aYEN3
-         wvciPlw8AdYufzT+VnCoin+MXos2uhFNKiYpNfKhyyuBpjJ4idDyMzhUZJB7AKGqw9WN
-         2AFf9jivRdOb/AOcJKFvG1OFCwOLsbLYy7hp38VlrTrQMbTM2ReWti58N25K22pyHk1A
-         2qsQ==
-X-Gm-Message-State: ABy/qLY63yhCocM3UIJe9KHx9hO/dKAjUsdpNl5AI8ym8rjVkpaGfxkh
-        Z4wK7SKYdHQPoBWI8t2M0ExlaA==
-X-Google-Smtp-Source: APBJJlFTxdZ38ZNMzA/9cEl2jOIMV45BxKWymfdM5KYfEe5aWsomElgqtBPbiCyo8fQ2jlrH7CX6TQ==
-X-Received: by 2002:a05:6402:35c5:b0:521:ef0f:8ef9 with SMTP id z5-20020a05640235c500b00521ef0f8ef9mr688960edc.19.1689933667207;
-        Fri, 21 Jul 2023 03:01:07 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id w25-20020aa7dcd9000000b0051e2a6cef4fsm1893129edu.36.2023.07.21.03.01.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 21 Jul 2023 03:01:06 -0700 (PDT)
-Message-ID: <11bcace7-1d9f-c62c-fad4-950a6c79f0a7@linaro.org>
-Date:   Fri, 21 Jul 2023 12:01:02 +0200
+        d=1e100.net; s=20221208; t=1689933956; x=1690538756;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=BEW196PpnTlK0N66UFK6IxuhCDHvVfXtZq2tyJ9L5OM=;
+        b=Kno1pckUyA+2KIPPaorCtXRtZKXbfwC5pYv2rr4kbK8vDcAueIA+sOjxf/t8Evfv63
+         IpaDmBrTpN75hopffTu0t81CJ+r9zWVKT8aEPThDf4j4PcNOLSiiMKusm0KJHpe9mkVK
+         NeplXNq2P6MAO3CjIfqWPT8HXKD5/iMnKQluxlZrXDj9x6BKM4DG3RSw+ziejpPcSkPD
+         BHDndjqTjMTx8F1J7dF7KpOBNNEuyQzwg/V7jNQ83bYDHBkxfj1KOCYPAbTlULp4EjP/
+         WbLsdVj9Ay8zwMfutx1uk9iigJp6ojdRcQe+wxZhvVmzB1bBIJGqNyqGoHKMaG2pk2gn
+         xHLg==
+X-Gm-Message-State: ABy/qLZ3gmMyGifPOJT/mQWPCLGGN+4Mo9HoA+5oRci2Q0MMAMR0cEm7
+        dv+Qyf+cTCj2UGWqyyHvU1I=
+X-Google-Smtp-Source: APBJJlFXhCnSkY2B1xkToWHVhsBoFZwt0rpyvOTpPu/jluHxRmY0nf7jtfulxeVS/ZOZ0MhxU7NowQ==
+X-Received: by 2002:a5e:834c:0:b0:787:1d53:e6cc with SMTP id y12-20020a5e834c000000b007871d53e6ccmr1277010iom.21.1689933956458;
+        Fri, 21 Jul 2023 03:05:56 -0700 (PDT)
+Received: from ws-565760.systec.local ([212.185.67.148])
+        by smtp.gmail.com with ESMTPSA id u2-20020a02cb82000000b0042bb3e62108sm957187jap.4.2023.07.21.03.05.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 21 Jul 2023 03:05:55 -0700 (PDT)
+From:   werneazc@gmail.com
+X-Google-Original-From: andre.werner@systec-electronic.com
+To:     jdelvare@suse.com, linux@roeck-us.net,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        robh+dt@kernel.org
+Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Andre Werner <andre.werner@systec-electronic.com>
+Subject: [PATCH v4 2/2] hwmon: (hs3001) Add driver for Renesas HS3001
+Date:   Fri, 21 Jul 2023 12:05:19 +0200
+Message-ID: <20230721100519.597-2-andre.werner@systec-electronic.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v5 2/4] ARM: dts: imx6qdl: Add Variscite VAR-SOM-MX6 SoM
- support
-Content-Language: en-US
-To:     James Hilliard <james.hilliard1@gmail.com>,
-        devicetree@vger.kernel.org
-Cc:     Gregory CLEMENT <gregory.clement@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Marek Vasut <marex@denx.de>,
-        Stefan Wahren <stefan.wahren@chargebyte.com>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        Philippe Schenker <philippe.schenker@toradex.com>,
-        Tim Harvey <tharvey@gateworks.com>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        Christoph Niedermaier <cniedermaier@dh-electronics.com>,
-        Li Yang <leoyang.li@nxp.com>, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20230721095003.3681484-1-james.hilliard1@gmail.com>
- <20230721095003.3681484-2-james.hilliard1@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230721095003.3681484-2-james.hilliard1@gmail.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
         URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -93,484 +72,410 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/07/2023 11:49, James Hilliard wrote:
-> This patch adds support for the Variscite VAR_SOM-MX6 SoM with :
-> - i.MX6 Quad or Dual Lite SoC
-> - 256 – 4096 MB DDR3
-> - 4-64 GB eMMC
-> - 128 – 1024 MB SLC NAND
-> - Camera Interface
-> - HDMI+CEC interface
-> - LVDS / DSI / Parallel RGB interfaces
-> - Ethernet RGMII interface
-> - On-SoM Wi-Fi/Bluetooth with WiLink wl183x SDIO Module
-> - SD/MMC/SDIO interface
-> - USB Host + USB OTG interface
-> - I2C interfaces
-> - SPI interfaces
-> - PCI-Express 2.0 interface
-> - on-SoM Audio Codec with HP/Line-In interfaces + DMIC interface
-> - Digital Audio interface
-> - S/PDIF interface
-> 
-> Product website : https://www.variscite.com/product/system-on-module-som/cortex-a9/var-som-mx6-cpu-freescale-imx6/
-> 
-> Support is handled with a SoM-centric dtsi exporting the default interfaces
-> along the default pinmuxing to be enabled by the board dts file.
-> 
-> This file is based on the one provided by Variscite on their own
-> kernel, but adapted for mainline.
-> 
-> Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
-> Signed-off-by: James Hilliard <james.hilliard1@gmail.com>
-> ---
->  .../arm/boot/dts/nxp/imx/imx6qdl-var-som.dtsi | 550 ++++++++++++++++++
->  1 file changed, 550 insertions(+)
->  create mode 100644 arch/arm/boot/dts/nxp/imx/imx6qdl-var-som.dtsi
-> 
-> diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-var-som.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl-var-som.dtsi
-> new file mode 100644
-> index 000000000000..aa1f37e17f62
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-var-som.dtsi
-> @@ -0,0 +1,550 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/*
-> + * Support for Variscite VAR-SOM-MX6 Module
-> + *
-> + * Copyright 2011 Linaro Ltd.
-> + * Copyright 2012 Freescale Semiconductor, Inc.
-> + * Copyright (C) 2014-2016 Variscite, Ltd.
-> + * Author: Donio Ron <ron.d@variscite.com>
-> + * Copyright 2022 Bootlin
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "imx6q.dtsi"
-> +#include <dt-bindings/clock/imx6qdl-clock.h>
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/sound/fsl-imx-audmux.h>
-> +
-> +/ {
-> +	model = "Variscite VAR-SOM-MX6 module";
-> +	compatible = "variscite,var-som-imx6q", "fsl,imx6q";
-> +
-> +	chosen {
-> +		stdout-path = &uart1;
-> +	};
-> +
-> +	memory@10000000 {
-> +		device_type = "memory";
-> +		reg = <0x10000000 0x40000000>;
-> +	};
-> +
-> +	reg_audio: regulator-audio {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "tlv320aic3x-supply";
+From: Andre Werner <andre.werner@systec-electronic.com>
 
-This node looks fake. There is nothing fixed here.
+Add base support for Renesas HS3001 temperature
+and humidity sensors and its compatibles HS3002,
+HS3003 and HS3004.
 
-> +	};
-> +
-> +	reg_3p3v: regulator-3p3v {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "3P3V";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		regulator-always-on;
-> +	};
-> +
-> +	touch_3v3_regulator: touch_3v3_regulator {
+The sensor has a fix I2C address 0x44. The resolution
+is fixed to 14bit (ref. Missing feature).
 
-No underscores in node names. You did receive such comment before, right?
+Missing feature:
+- Accessing non-volatile memory: Custom board has no
+  possibility to control voltage supply of sensor. Thus,
+  we cannot send the necessary control commands within
+  the first 10ms after power-on.
 
-Also, you mix prefix/suffix. Keep one style.
+Signed-off-by: Andre Werner <andre.werner@systec-electronic.com>
 
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "touch_3v3_supply";
-> +		regulator-always-on;
-> +		status = "okay";
+---
+Changelog:
+v1: Initial version
+v2: Extensive refactoring following recommendations of reviewers:
+ - Delete unused defines and device properties. These are added in
+   the initial version because the device supports a programming mode,
+   but I was not able to implement it, because the custom board was
+   not able to control the power supply of the device and so I cannot
+   enter the programming mode of the device.
+ - Correct misunderstanding comments for defines.
+ - Delete mutexes for data and I2C bus accesses.
+ - Replace attributes with recommended chip-info structure. In the
+   initial version I followed the sth3x.c implementation that uses
+   files and attributes in sysfs. The show functions are replaced by
+   is_visible and read callbacks from the HWMON ABI. I also  delete pointless
+   function argument checks.
+ - Correct Yoda programming.
+ - Refactor probe function and delete sleep and measurement of humidity
+   and temperature in probe function. I kept an initial I2C
+   communication to ensure that the device is accessible during probe.
+ - Reduce the number of attributes to humidity and temperature input.
+ v3: Delete chip data because it is unused.
+ v4: Refactor driver as follows:
+ - Delete further unused defines
+ - Replace masks and operations with GENMASK and FIELD_GET macros
+ - Add mutex to protect chip wakeup and data transfer operations on bus
+ - Reformat driver as requested
+ - Make hs3001_is_visible and hs3001_read function static
+---
+ Documentation/hwmon/hs3001.rst |  37 +++++
+ MAINTAINERS                    |   6 +
+ drivers/hwmon/Kconfig          |  10 ++
+ drivers/hwmon/Makefile         |   1 +
+ drivers/hwmon/hs3001.c         | 250 +++++++++++++++++++++++++++++++++
+ 5 files changed, 304 insertions(+)
+ create mode 100644 Documentation/hwmon/hs3001.rst
+ create mode 100644 drivers/hwmon/hs3001.c
 
-Why?
-
-> +	};
-> +
-> +	reg_wl18xx_vmmc: regulator-wl18xx {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vwl1807";
-> +		regulator-min-microvolt = <1800000>;
-> +		regulator-max-microvolt = <1800000>;
-> +		gpio = <&gpio7 8 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +		startup-delay-us = <70000>;
-> +	};
-> +
-> +	sound: sound {
-> +		compatible = "simple-audio-card";
-> +		simple-audio-card,name = "var-som-audio";
-> +		simple-audio-card,format = "i2s";
-> +		simple-audio-card,bitclock-master = <&sound_codec>;
-> +		simple-audio-card,frame-master = <&sound_codec>;
-> +		simple-audio-card,widgets = "Headphone", "Headphone Jack",
-> +					    "Line", "Line In", "Microphone", "Mic Jack";
-> +		simple-audio-card,routing = "Headphone Jack", "HPLOUT",
-> +					    "Headphone Jack", "HPROUT",
-> +					    "LINE1L", "Line In",
-> +					    "LINE1R", "Line In";
-> +
-> +		sound_cpu: simple-audio-card,cpu {
-> +			sound-dai = <&ssi2>;
-> +		};
-> +
-> +		sound_codec: simple-audio-card,codec {
-> +			sound-dai = <&tlv320aic3106>;
-> +			clocks = <&clks IMX6QDL_CLK_CKO>;
-> +		};
-> +	};
-> +
-> +	rfkill {
-> +		compatible = "rfkill-gpio";
-> +		name = "rfkill";
-> +		radio-type = "bluetooth";
-> +		shutdown-gpios = <&gpio6 18 GPIO_ACTIVE_HIGH>;
-> +	};
-> +};
-> +
-> +&cpu0 {
-> +	operating-points = <
-> +		/* kHz    uV */
-> +		1200000 1350000
-> +		996000  1250000
-> +		852000  1250000
-> +		792000  1175000
-> +		396000  1175000
-> +	>;
-> +
-> +	fsl,soc-operating-points = <
-> +		/* ARM kHz  SOC-PU uV */
-> +		1200000 1275000
-> +		996000	1250000
-> +		852000	1250000
-> +		792000	1250000
-> +		396000	1250000
-> +	>;
-> +};
-> +
-> +&audmux {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_audmux>;
-> +	status = "okay";
-> +
-> +	mux-ssi2 {
-> +		fsl,audmux-port = <1>;
-> +		fsl,port-config = <
-> +			(IMX_AUDMUX_V2_PTCR_SYN |
-> +			IMX_AUDMUX_V2_PTCR_TFSDIR |
-> +			IMX_AUDMUX_V2_PTCR_TFSEL(2) |
-> +			IMX_AUDMUX_V2_PTCR_TCLKDIR |
-> +			IMX_AUDMUX_V2_PTCR_TCSEL(2))
-> +			IMX_AUDMUX_V2_PDCR_RXDSEL(2)
-> +		>;
-> +	};
-> +
-> +	mux-aud3 {
-> +		fsl,audmux-port = <2>;
-> +		fsl,port-config = <
-> +			IMX_AUDMUX_V2_PTCR_SYN
-> +			IMX_AUDMUX_V2_PDCR_RXDSEL(1)
-> +		>;
-> +	};
-> +};
-> +
-> +&ecspi3 {
-> +	fsl,spi-num-chipselects = <1>;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_ecspi3>;
-> +	cs-gpios = <&gpio4 24 GPIO_ACTIVE_LOW>;
-> +	status = "okay";
-> +};
-> +
-> +&fec {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_enet>;
-> +	phy-mode = "rgmii";
-> +	phy-handle = <&rgmii_phy>;
-> +	status = "okay";
-> +
-> +	mdio {
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		rgmii_phy: ethernet-phy@7 {
-> +			reg = <7>;
-> +			reset-gpios = <&gpio1 25 GPIO_ACTIVE_LOW>;
-> +			reset-assert-us = <10000>;
-> +		};
-> +	};
-> +};
-> +
-> +&i2c2 {
-> +	clock-frequency = <100000>;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_i2c2>;
-> +	status = "okay";
-> +
-> +	pmic@8 {
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_pmic>;
-> +		compatible = "fsl,pfuze100";
-> +		reg = <0x08>;
-> +
-> +		regulators {
-> +			sw1a_reg: sw1ab {
-> +				regulator-min-microvolt = <300000>;
-> +				regulator-max-microvolt = <1875000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +				regulator-ramp-delay = <6250>;
-> +			};
-> +
-> +			sw1c_reg: sw1c {
-> +				regulator-min-microvolt = <300000>;
-> +				regulator-max-microvolt = <1875000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +				regulator-ramp-delay = <6250>;
-> +			};
-> +
-> +			sw2_reg: sw2 {
-> +				regulator-min-microvolt = <800000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			sw3a_reg: sw3a {
-> +				regulator-min-microvolt = <800000>;
-> +				regulator-max-microvolt = <3950000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			sw3b_reg: sw3b {
-> +				regulator-min-microvolt = <800000>;
-> +				regulator-max-microvolt = <3950000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			sw4_reg: sw4 {
-> +				regulator-min-microvolt = <800000>;
-> +				regulator-max-microvolt = <3950000>;
-> +			};
-> +
-> +			snvs_reg: vsnvs {
-> +				regulator-min-microvolt = <1200000>;
-> +				regulator-max-microvolt = <3000000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			vref_reg: vrefddr {
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			vgen1_reg: vgen1 {
-> +				regulator-min-microvolt = <800000>;
-> +				regulator-max-microvolt = <1550000>;
-> +			};
-> +
-> +			vgen2_reg: vgen2 {
-> +				regulator-min-microvolt = <800000>;
-> +				regulator-max-microvolt = <1550000>;
-> +			};
-> +
-> +			vgen3_reg: vgen3 {
-> +				regulator-min-microvolt = <1800000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +			};
-> +
-> +			vgen4_reg: vgen4 {
-> +				regulator-min-microvolt = <1800000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +			};
-> +
-> +			vgen5_reg: vgen5 {
-> +				regulator-min-microvolt = <1800000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +			};
-> +
-> +			vgen6_reg: vgen6 {
-> +				regulator-min-microvolt = <2800000>;
-> +				regulator-max-microvolt = <2800000>;
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +			};
-> +		};
-> +	};
-> +
-> +	tlv320aic3106: codec@1b {
-> +		compatible = "ti,tlv320aic3106";
-> +		reg = <0x1b>;
-> +		#sound-dai-cells = <0>;
-> +		DRVDD-supply = <&reg_3p3v>;
-> +		AVDD-supply = <&reg_3p3v>;
-> +		IOVDD-supply = <&reg_3p3v>;
-> +		DVDD-supply = <&reg_3p3v>;
-> +		ai3x-ocmv = <0>;
-> +		reset-gpios = <&gpio4 5 GPIO_ACTIVE_LOW>;
-> +		ai3x-gpio-func = <
-> +			0 /* AIC3X_GPIO1_FUNC_DISABLED */
-> +			5 /* AIC3X_GPIO2_FUNC_DIGITAL_MIC_INPUT */
-> +		>;
-> +	};
-> +};
-> +
-> +&iomuxc {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_hog>;
-> +
-> +	pinctrl_hog: hoggrp {
-> +		fsl,pins = <
-> +			/* CTW6120 IRQ */
-> +			MX6QDL_PAD_EIM_DA7__GPIO3_IO07		0xb0b1
-> +			/* SDMMC2 CD/WP */
-> +			MX6QDL_PAD_KEY_COL4__GPIO4_IO14		0x1b0b0
-> +			MX6QDL_PAD_KEY_ROW4__GPIO4_IO15		0x1b0b0
-> +		>;
-> +	};
-> +
-> +	pinctrl_audmux: audmux {
-> +		fsl,pins = <
-> +			MX6QDL_PAD_CSI0_DAT7__AUD3_RXD		0x130b0
-> +			MX6QDL_PAD_CSI0_DAT4__AUD3_TXC		0x130b0
-> +			MX6QDL_PAD_CSI0_DAT5__AUD3_TXD		0x110b0
-> +			MX6QDL_PAD_CSI0_DAT6__AUD3_TXFS		0x130b0
-> +			/* Audio Clock */
-> +			MX6QDL_PAD_GPIO_0__CCM_CLKO1		0x130b0
-> +		>;
-> +	};
-> +
-> +	pinctrl_bt: bt {
-> +		fsl,pins = <
-> +			/* Bluetooth/wifi enable */
-> +			MX6QDL_PAD_SD3_DAT6__GPIO6_IO18		0x1b0b1
-> +			/* Wifi Slow Clock */
-> +			MX6QDL_PAD_ENET_RXD0__OSC32K_32K_OUT	0x000b0
-> +		>;
-> +	};
-> +
-> +	pinctrl_ecspi3: ecspi3grp {
-> +		fsl,pins = <
-> +			MX6QDL_PAD_DISP0_DAT2__ECSPI3_MISO	0x100b1
-> +			MX6QDL_PAD_DISP0_DAT1__ECSPI3_MOSI	0x100b1
-> +			MX6QDL_PAD_DISP0_DAT0__ECSPI3_SCLK	0x100b1
-> +		>;
-> +	};
-> +
-> +	pinctrl_enet: enetgrp {
-> +		fsl,pins = <
-> +			MX6QDL_PAD_ENET_MDIO__ENET_MDIO		0x1b0b0
-> +			MX6QDL_PAD_ENET_MDC__ENET_MDC		0x1b0b0
-> +			MX6QDL_PAD_RGMII_TXC__RGMII_TXC		0x1b0b0
-> +			MX6QDL_PAD_RGMII_TD0__RGMII_TD0		0x1b0b0
-> +			MX6QDL_PAD_RGMII_TD1__RGMII_TD1		0x1b0b0
-> +			MX6QDL_PAD_RGMII_TD2__RGMII_TD2		0x1b0b0
-> +			MX6QDL_PAD_RGMII_TD3__RGMII_TD3		0x1b0b0
-> +			MX6QDL_PAD_RGMII_TX_CTL__RGMII_TX_CTL	0x1b0b0
-> +			MX6QDL_PAD_ENET_REF_CLK__ENET_TX_CLK	0x1b0b0
-> +			MX6QDL_PAD_RGMII_RXC__RGMII_RXC		0x1b0b0
-> +			MX6QDL_PAD_RGMII_RD0__RGMII_RD0		0x1b0b0
-> +			MX6QDL_PAD_RGMII_RD1__RGMII_RD1		0x1b0b0
-> +			MX6QDL_PAD_RGMII_RD2__RGMII_RD2		0x1b0b0
-> +			MX6QDL_PAD_RGMII_RD3__RGMII_RD3		0x1b0b0
-> +			MX6QDL_PAD_RGMII_RX_CTL__RGMII_RX_CTL	0x1b0b0
-> +		>;
-> +	};
-> +
-> +	pinctrl_enet_irq: enetirqgrp {
-> +		fsl,pins = <
-> +			MX6QDL_PAD_GPIO_6__ENET_IRQ	0x000b1
-> +		>;
-> +	};
-> +
-> +	pinctrl_i2c1: i2c1grp {
-> +		fsl,pins = <
-> +			MX6QDL_PAD_CSI0_DAT8__I2C1_SDA	0x4001b8b1
-> +			MX6QDL_PAD_CSI0_DAT9__I2C1_SCL	0x4001b8b1
-> +		>;
-> +	};
-> +
-> +	pinctrl_i2c2: i2c2grp {
-> +		fsl,pins = <
-> +			MX6QDL_PAD_KEY_COL3__I2C2_SCL	0x4001b8b1
-> +			MX6QDL_PAD_KEY_ROW3__I2C2_SDA	0x4001b8b1
-> +		>;
-> +	};
-> +
-> +	pinctrl_i2c3: i2c3grp {
-> +		fsl,pins = <
-> +			MX6QDL_PAD_GPIO_5__I2C3_SCL	0x4001b8b1
-> +			MX6QDL_PAD_GPIO_16__I2C3_SDA	0x4001b8b1
-> +		>;
-> +	};
-> +
-> +	pinctrl_pmic: pmicgrp {
-> +		fsl,pins = <
-> +			/* PMIC INT */
-> +			MX6QDL_PAD_GPIO_17__GPIO7_IO12	0x1b0b0
-> +		>;
-> +	};
-> +
-> +	pinctrl_pwm2: pwm2grp {
-> +		fsl,pins = <
-> +			MX6QDL_PAD_DISP0_DAT9__PWM2_OUT	0x1b0b1
-> +		>;
-> +	};
-> +
-> +	pinctrl_uart1: uart1grp {
-> +		fsl,pins = <
-> +			MX6QDL_PAD_CSI0_DAT10__UART1_TX_DATA 0x1b0b1
-> +			MX6QDL_PAD_CSI0_DAT11__UART1_RX_DATA 0x1b0b1
-> +		>;
-> +	};
-> +
-> +	pinctrl_uart2: uart2grp {
-> +		fsl,pins = <
-> +			MX6QDL_PAD_SD3_DAT4__UART2_RX_DATA	0x1b0b1
-> +			MX6QDL_PAD_SD3_DAT5__UART2_TX_DATA	0x1b0b1
-> +			MX6QDL_PAD_EIM_D28__UART2_CTS_B		0x1b0b1
-> +			MX6QDL_PAD_EIM_D29__UART2_RTS_B		0x1b0b1
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc3: usdhc3grp {
-> +		fsl,pins = <
-> +			MX6QDL_PAD_SD3_CMD__SD3_CMD	0x17069
-> +			MX6QDL_PAD_SD3_CLK__SD3_CLK	0x10069
-> +			MX6QDL_PAD_SD3_DAT0__SD3_DATA0	0x17069
-> +			MX6QDL_PAD_SD3_DAT1__SD3_DATA1	0x17069
-> +			MX6QDL_PAD_SD3_DAT2__SD3_DATA2	0x17069
-> +			MX6QDL_PAD_SD3_DAT3__SD3_DATA3	0x17069
-> +			/* WL_EN */
-> +			MX6QDL_PAD_SD3_DAT7__GPIO6_IO17 0x13059
-> +			/* WL_IRQ */
-> +			MX6QDL_PAD_SD3_RST__GPIO7_IO08  0x13059
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc3_100mhz: usdhc3grp100mhz {
-
-Still wrong name. They should end with grp.
-
-Best regards,
-Krzysztof
+diff --git a/Documentation/hwmon/hs3001.rst b/Documentation/hwmon/hs3001.rst
+new file mode 100644
+index 000000000000..703fb9c45313
+--- /dev/null
++++ b/Documentation/hwmon/hs3001.rst
+@@ -0,0 +1,37 @@
++.. SPDX-License-Identifier: GPL-2.0-or-later
++
++Kernel driver HS3001
++===================
++
++Supported chips:
++
++  * Renesas HS3001, HS3002, HS3003, HS3004
++
++    Prefix: 'hs3001'
++
++    Addresses scanned: -
++
++    Datasheet: https://www.renesas.com/us/en/document/dst/hs300x-datasheet?r=417401
++
++Author:
++
++  - Andre Werner <andre.werner@systec-electronic.com>
++
++Description
++-----------
++
++This driver implements support for the Renesas HS3001 chips, a humidity
++and temperature family. Temperature is measured in degrees celsius, relative
++humidity is expressed as a percentage. In the sysfs interface, all values are
++scaled by 1000, i.e. the value for 31.5 degrees celsius is 31500.
++
++The device communicates with the I2C protocol. Sensors have the I2C
++address 0x44 by default.
++
++sysfs-Interface
++---------------
++
++===============================================================================
++temp1_input:        temperature input
++humidity1_input:    humidity input
++===============================================================================
+diff --git a/MAINTAINERS b/MAINTAINERS
+index aee340630eca..25d5282b43aa 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -9494,6 +9494,12 @@ S:	Maintained
+ W:	http://artax.karlin.mff.cuni.cz/~mikulas/vyplody/hpfs/index-e.cgi
+ F:	fs/hpfs/
+ 
++HS3001 Hardware Temperature and Humidity Sensor
++M:	Andre Werner <andre.werner@systec-electronic.com>
++L:	linux-hwmon@vger.kernel.org
++S:	Maintained
++F:	drivers/hwmon/hs3001.c
++
+ HSI SUBSYSTEM
+ M:	Sebastian Reichel <sre@kernel.org>
+ S:	Maintained
+diff --git a/drivers/hwmon/Kconfig b/drivers/hwmon/Kconfig
+index 307477b8a371..ca6be5a23271 100644
+--- a/drivers/hwmon/Kconfig
++++ b/drivers/hwmon/Kconfig
+@@ -734,6 +734,16 @@ config SENSORS_HIH6130
+ 	  This driver can also be built as a module. If so, the module
+ 	  will be called hih6130.
+ 
++config SENSORS_HS3001
++	tristate "Renesas HS3001 humidity and temperature sensors"
++	depends on I2C
++	help
++	  If you say yes here you get support for the Renesas HS3001,
++	  to HS3004 humidity and temperature sensors.
++
++	  This driver can also be built as a module. If so, the module
++	  will be called hs3001.
++
+ config SENSORS_IBMAEM
+ 	tristate "IBM Active Energy Manager temperature/power sensors and control"
+ 	select IPMI_SI
+diff --git a/drivers/hwmon/Makefile b/drivers/hwmon/Makefile
+index 3f4b0fda0998..cdae4e1fc919 100644
+--- a/drivers/hwmon/Makefile
++++ b/drivers/hwmon/Makefile
+@@ -86,6 +86,7 @@ obj-$(CONFIG_SENSORS_GSC)	+= gsc-hwmon.o
+ obj-$(CONFIG_SENSORS_GPIO_FAN)	+= gpio-fan.o
+ obj-$(CONFIG_SENSORS_GXP_FAN_CTRL) += gxp-fan-ctrl.o
+ obj-$(CONFIG_SENSORS_HIH6130)	+= hih6130.o
++obj-$(CONFIG_SENSORS_HS3001)	+= hs3001.o
+ obj-$(CONFIG_SENSORS_ULTRA45)	+= ultra45_env.o
+ obj-$(CONFIG_SENSORS_I5500)	+= i5500_temp.o
+ obj-$(CONFIG_SENSORS_I5K_AMB)	+= i5k_amb.o
+diff --git a/drivers/hwmon/hs3001.c b/drivers/hwmon/hs3001.c
+new file mode 100644
+index 000000000000..483b47c81b83
+--- /dev/null
++++ b/drivers/hwmon/hs3001.c
+@@ -0,0 +1,250 @@
++// SPDX-License-Identifier: GPL-2.0-or-later
++/*
++ * This is a non-complete driver implementation for the
++ * HS3001 humidity and temperature sensor and compatibles. It does not include
++ * the configuration possibilities, where it needs to be set to 'programming mode'
++ * during power-up.
++ *
++ *
++ * Copyright (C) 2023 SYS TEC electronic AG
++ * Author: Andre Werner <andre.werner@systec-electronic.com>
++ */
++
++#include <linux/bitfield.h>
++#include <linux/delay.h>
++#include <linux/err.h>
++#include <linux/hwmon.h>
++#include <linux/i2c.h>
++#include <linux/init.h>
++#include <linux/kernel.h>
++#include <linux/module.h>
++#include <linux/of_device.h>
++#include <linux/slab.h>
++#include <linux/types.h>
++
++/* Measurement times */
++#define HS3001_WAKEUP_TIME	100	/* us */
++#define HS3001_8BIT_RESOLUTION	550	/* us */
++#define HS3001_10BIT_RESOLUTION	1310	/* us */
++#define HS3001_12BIT_RESOLUTION	4500	/* us */
++#define HS3001_14BIT_RESOLUTION	16900	/* us */
++
++#define HS3001_RESPONSE_LENGTH	4
++
++#define HS3001_FIXPOINT_ARITH	1000U
++
++#define HS3001_MASK_HUMIDITY_0X3FFF	GENMASK(13, 0)
++#define HS3001_MASK_STATUS_0XC0	GENMASK(7, 6)
++
++/* Definitions for Status Bits of A/D Data */
++#define HS3001_DATA_VALID	0x00	/* Valid Data */
++#define HS3001_DATA_STALE	0x01	/* Stale Data */
++
++struct hs3001_data {
++	struct i2c_client *client;
++	struct mutex i2c_lock; /* lock for sending i2c commands */
++	u32 wait_time;		/* in us */
++	int temperature;	/* in milli degree */
++	u32 humidity;		/* in milli % */
++};
++
++static int hs3001_extract_temperature(u16 raw)
++{
++	/* fixpoint arithmetic 1 digit */
++	int temp = (raw >> 2) * HS3001_FIXPOINT_ARITH;
++
++	temp /= (1 << 14) - 1;
++
++	return temp * 165 - 40 * HS3001_FIXPOINT_ARITH;
++}
++
++static u32 hs3001_extract_humidity(u16 raw)
++{
++	u32 hum = (raw & HS3001_MASK_HUMIDITY_0X3FFF) * HS3001_FIXPOINT_ARITH;
++
++	hum /= (1 << 14) - 1;
++
++	return hum * 100;
++}
++
++static int hs3001_data_fetch_command(struct i2c_client *client,
++				     struct hs3001_data *data)
++{
++	int ret;
++	u8 buf[HS3001_RESPONSE_LENGTH];
++	u8 hs3001_status;
++
++	ret = i2c_master_recv(client, buf, HS3001_RESPONSE_LENGTH);
++	if (ret != HS3001_RESPONSE_LENGTH) {
++		ret = ret < 0 ? ret : -EIO;
++		dev_dbg(&client->dev,
++			"Error in i2c communication. Error code: %d.\n", ret);
++		return ret;
++	}
++
++	hs3001_status = FIELD_GET(HS3001_MASK_STATUS_0XC0, buf[0]);
++	if (hs3001_status == HS3001_DATA_STALE) {
++		dev_dbg(&client->dev, "Sensor busy.\n");
++		return -EBUSY;
++	}
++	if (hs3001_status != HS3001_DATA_VALID) {
++		dev_dbg(&client->dev, "Data invalid.\n");
++		return -EIO;
++	}
++
++	data->humidity =
++		hs3001_extract_humidity(be16_to_cpup((__be16 *)&buf[0]));
++	data->temperature =
++		hs3001_extract_temperature(be16_to_cpup((__be16 *)&buf[2]));
++
++	return 0;
++}
++
++static umode_t hs3001_is_visible(const void *data, enum hwmon_sensor_types type,
++				 u32 attr, int channel)
++{
++	/* Both, humidity and temperature can only be read. */
++	return 0444;
++}
++
++static int hs3001_read(struct device *dev, enum hwmon_sensor_types type,
++		       u32 attr, int channel, long *val)
++{
++	struct hs3001_data *data = dev_get_drvdata(dev);
++	struct i2c_client *client = data->client;
++	int ret;
++
++	/* Protected section beginn */
++	mutex_lock(&data->i2c_lock);
++	ret = i2c_master_send(client, NULL, 0);
++	if (ret < 0)
++		return ret;
++
++	/*
++	 * Sensor needs some time to process measurement depending on
++	 * resolution (ref. datasheet)
++	 */
++	fsleep(data->wait_time);
++
++	ret = hs3001_data_fetch_command(client, data);
++	mutex_unlock(&data->i2c_lock);
++	/* Protected section end */
++
++	if (ret < 0)
++		return ret;
++
++	switch (type) {
++	case hwmon_temp:
++		switch (attr) {
++		case hwmon_temp_input:
++			*val = data->temperature;
++			break;
++		default:
++			return -EINVAL;
++		}
++		break;
++	case hwmon_humidity:
++		switch (attr) {
++		case hwmon_humidity_input:
++			*val = data->humidity;
++			break;
++		default:
++			return -EINVAL;
++		}
++		break;
++	default:
++		return -EINVAL;
++	}
++
++	return 0;
++}
++
++static const struct hwmon_channel_info *hs3001_info[] = {
++	HWMON_CHANNEL_INFO(temp, HWMON_T_INPUT),
++	HWMON_CHANNEL_INFO(humidity, HWMON_H_INPUT),
++	NULL
++};
++
++static const struct hwmon_ops hs3001_hwmon_ops = {
++	.is_visible = hs3001_is_visible,
++	.read = hs3001_read,
++};
++
++static const struct hwmon_chip_info hs3001_chip_info = {
++	.ops = &hs3001_hwmon_ops,
++	.info = hs3001_info,
++};
++
++/* device ID table */
++static const struct i2c_device_id hs3001_ids[] = {
++	{ "hs3001", 0 },
++	{ },
++};
++
++MODULE_DEVICE_TABLE(i2c, hs3001_ids);
++
++static const struct of_device_id hs3001_of_match[] = {
++	{.compatible = "renesas,hs3001"},
++	{ },
++};
++
++MODULE_DEVICE_TABLE(of, hs3001_of_match);
++
++static int hs3001_probe(struct i2c_client *client)
++{
++	struct hs3001_data *data;
++	struct device *hwmon_dev;
++	struct device *dev = &client->dev;
++	int ret;
++
++	if (!i2c_check_functionality(client->adapter, I2C_FUNC_I2C))
++		return -EOPNOTSUPP;
++
++	data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
++	if (!data)
++		return -ENOMEM;
++
++	data->client = client;
++
++	/*
++	 * Measurement time = wake-up time + measurement time temperature
++	 * + measurment time humidity. This is currently static, because
++	 * enabling programming mode is not supported, yet.
++	 */
++	data->wait_time = (HS3001_WAKEUP_TIME + HS3001_14BIT_RESOLUTION +
++			   HS3001_14BIT_RESOLUTION);
++
++	mutex_init(&data->i2c_lock);
++
++	/* Test access to device */
++	ret = i2c_master_send(client, NULL, 0);
++	if (ret)
++		return ret;
++
++	hwmon_dev = devm_hwmon_device_register_with_info(dev,
++							 client->name,
++							 data,
++							 &hs3001_chip_info,
++							 NULL);
++
++	if (IS_ERR(hwmon_dev))
++		return dev_err_probe(dev, PTR_ERR(hwmon_dev),
++				     "Unable to register hwmon device.\n");
++
++	return 0;
++}
++
++static struct i2c_driver hs3001_i2c_driver = {
++	.driver = {
++		   .name = "hs3001",
++		   .of_match_table = hs3001_of_match,
++	},
++	.probe_new = hs3001_probe,
++	.id_table = hs3001_ids,
++};
++
++module_i2c_driver(hs3001_i2c_driver);
++
++MODULE_AUTHOR("Andre Werner <andre.werner@systec-electronic.com>");
++MODULE_DESCRIPTION("HS3001 humidity and temperature sensor base driver");
++MODULE_LICENSE("GPL");
+-- 
+2.41.0
 
