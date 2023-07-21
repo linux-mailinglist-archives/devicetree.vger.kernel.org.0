@@ -2,134 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E60A75C634
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 13:57:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 38B5F75C63A
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 13:58:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230451AbjGUL5p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jul 2023 07:57:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50678 "EHLO
+        id S229599AbjGUL6o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jul 2023 07:58:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51326 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229926AbjGUL5o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 07:57:44 -0400
-Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com [IPv6:2607:f8b0:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67A9F171B
-        for <devicetree@vger.kernel.org>; Fri, 21 Jul 2023 04:57:43 -0700 (PDT)
-Received: by mail-pf1-x435.google.com with SMTP id d2e1a72fcca58-666e5f0d60bso1246107b3a.3
-        for <devicetree@vger.kernel.org>; Fri, 21 Jul 2023 04:57:43 -0700 (PDT)
+        with ESMTP id S229462AbjGUL6n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 07:58:43 -0400
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFBAB171B;
+        Fri, 21 Jul 2023 04:58:41 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-51e526e0fe4so2651439a12.3;
+        Fri, 21 Jul 2023 04:58:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689940663; x=1690545463;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=gZeVRbN8i3RBrNfW3X1oiz7Rg1AaV6+VX/SLakSfZZA=;
-        b=iKCl353NEddqXRkMvTc4WhEeB5hqbKgT/AUtGB7CfQ3YsTpdC12YZHueB2HFGxILa4
-         2pNgMS7KN3+B/t+ZVNJ6rAciQHePdD+PGsiRPXItha92UsFbSShlGk5dC5uVq+/P85u+
-         qeEpAkebRFfP395V1y6H+WCmtXlJtlMBhyzgnjXPDV7BIZu40cDh5nZcPzfX3lxoZJxn
-         eMq8MPrY+6v0LcHnCapxqWDswAjp9tMbhbbeeT0Z60Cx8+hHLUvWQKwXzHn7Of/a1S6b
-         yEWlmQQAfuncH9J1eYTu2cQLGjm6hMskc8C65A7yzBtJN/85tWwwZvbzERH6Fk2BbCnH
-         feUg==
+        d=gmail.com; s=20221208; t=1689940720; x=1690545520;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=sDGY2dKBI3VGrl6XhclLBCqJ3huDvzOWV6pk1LNtTuE=;
+        b=RWYbKR3VvE0mCGc6sIvzKfjWX7/7RprT+HP325MNfy0rSEkqBBmBwyZHw0ghxmuRr3
+         SSxg6iVGfnSuTJdF/ICTJfjzrZ5qFYVw45mgU6dUMJvkdcztnW879MQcgg31rXJMrOEh
+         4MVkP8jWPaf6smUt8GNB24sw2DWvjq/f3zPwLoWC0EPScHgrM7WfeaZAfP/cQBYWWhwZ
+         SAyTE5u1O3sCli1bczYlofnQ1c0GyGN5ihjeTnZ79cDye1sNHyyLpDzzP9heZhVoA3q2
+         v0BnUVUJSzA5CFuBEEv6I5/Yszsv2svGNCIiXkdYnCcX9Hwqjy9D0XApcodj/vmsR8Xy
+         lv7A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689940663; x=1690545463;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
+        d=1e100.net; s=20221208; t=1689940720; x=1690545520;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=gZeVRbN8i3RBrNfW3X1oiz7Rg1AaV6+VX/SLakSfZZA=;
-        b=EcNvQfhTfEajEUvToIY56EaiMl7BxMdYU1XXqEhZsgifyKmxZUo0aakccADfHfDtnV
-         XgWk8ry8OK/1SJdONE2m8ySSiPivQntnThngQShNhVXn6NIUN+Ma9drEA+grt53FY5Lg
-         mrXp8XdffhG3gs8fPICcEdY6TCuTLr1LbXNGsbsopq8PEJ6k7oAe4X/YMb+m6JGRkZ9Q
-         HywUBy/6+8HevKscfxL3WJSoE3QtOKFK65TxmpdwvLeeluQo8Xmm5wPweRAAGGeVHJLq
-         yn3ca0EIT+iIR2GYq9YMxVol9Ha4bxc5ij4KZOhDWSx0NEouFUy5Si7QXaD3MOjaZ+Wn
-         5Uqg==
-X-Gm-Message-State: ABy/qLbpJyQwoZOZdDy/RAO2LOCKgdgne6GrVZyLBKcVffXlYbSaxB4r
-        oSB/7FI79sPRY2MiMgvZ6bmq
-X-Google-Smtp-Source: APBJJlEvmEp/uWX9S9crTApKWRrgbE4M1ih0yNWyhpPGUZogOYzA/q6Zy/eF3S72X0sFN2yoWHinGA==
-X-Received: by 2002:a05:6a00:2404:b0:681:3ed2:b493 with SMTP id z4-20020a056a00240400b006813ed2b493mr1319785pfh.26.1689940662836;
-        Fri, 21 Jul 2023 04:57:42 -0700 (PDT)
-Received: from thinkpad ([117.206.118.181])
-        by smtp.gmail.com with ESMTPSA id ff17-20020a056a002f5100b006675c242548sm2803366pfb.182.2023.07.21.04.57.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Jul 2023 04:57:42 -0700 (PDT)
-Date:   Fri, 21 Jul 2023 17:27:31 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     vireshk@kernel.org, nm@ti.com, sboyd@kernel.org,
-        myungjoo.ham@samsung.com, kyungmin.park@samsung.com,
-        cw00.choi@samsung.com, andersson@kernel.org,
-        konrad.dybcio@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        jejb@linux.ibm.com, martin.petersen@oracle.com,
-        alim.akhtar@samsung.com, avri.altman@wdc.com, bvanassche@acm.org,
-        linux-scsi@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        quic_asutoshd@quicinc.com, quic_cang@quicinc.com,
-        quic_nitirawa@quicinc.com, quic_narepall@quicinc.com,
-        quic_bhaskarv@quicinc.com, quic_richardp@quicinc.com,
-        quic_nguyenb@quicinc.com, quic_ziqichen@quicinc.com,
-        bmasney@redhat.com, krzysztof.kozlowski@linaro.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 04/15] arm64: dts: qcom: sdm845: Fix the min frequency
- of "ice_core_clk"
-Message-ID: <20230721115731.GB2536@thinkpad>
-References: <20230720054100.9940-1-manivannan.sadhasivam@linaro.org>
- <20230720054100.9940-5-manivannan.sadhasivam@linaro.org>
- <20230721071801.e6ngfnkwg2ujsklg@vireshk-i7>
+        bh=sDGY2dKBI3VGrl6XhclLBCqJ3huDvzOWV6pk1LNtTuE=;
+        b=i0m16NQOsd1HKlbHb52t/eIzepFHI1q/JqObMFZDbMbF+1XSsMmH8XwdtDFM+Nt6N5
+         RpCE5u8cjfRflvqPjcACooTSdqGf4Jfk4MB6o2E/XJQEnR2G59UYJwhoOXCu8+EOmR3E
+         9x3gzEAqxmoYAiDzdxMsyruK0JPRTlfXi5tx/uRmEhAeZeyxoyb42EstIkVGu6co3lhh
+         obyzVhJRMEddPr0DvXe/klWGC4ssVEQMVqcCBV4uDKx2NGmqMT/EnNkSWGTJKAqac2Qe
+         XJwRqZdd/eRjcRMeyTnuo+XFP5oiYEAX1HZmbExrztB0fK3PgBcyK9SkdSkQ6TrSJYCK
+         3lBQ==
+X-Gm-Message-State: ABy/qLZMgY8E7cklvT20tavmYEnSHXKdnZnONaZajmBHrrjoH2iZk0bE
+        FDkY6QYtHKcygdQKnmYaS0A=
+X-Google-Smtp-Source: APBJJlFRqUTzN43FwZOKf+KyUVPewz0HKM3tjjBjMXMW0kB23MQMPOY8Vn2Nt3YJCyKJQnH5RQQ85g==
+X-Received: by 2002:aa7:d052:0:b0:51d:a73b:0 with SMTP id n18-20020aa7d052000000b0051da73b0000mr1510426edo.10.1689940720104;
+        Fri, 21 Jul 2023 04:58:40 -0700 (PDT)
+Received: from [192.168.4.4] (host-95-237-109-246.retail.telecomitalia.it. [95.237.109.246])
+        by smtp.gmail.com with ESMTPSA id u13-20020aa7d98d000000b0051e0f100c48sm2033792eds.22.2023.07.21.04.58.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 21 Jul 2023 04:58:39 -0700 (PDT)
+Message-ID: <d010f085-ea0e-5086-260e-c5a9be94ebfb@gmail.com>
+Date:   Fri, 21 Jul 2023 13:58:38 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230721071801.e6ngfnkwg2ujsklg@vireshk-i7>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v3 1/2] dt-bindings: iio: dac: add mcp4728.yaml
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <cover.1689857295.git.andrea.collamati@gmail.com>
+ <9816cd272d19802ec6eeff0c7c29e85d4a0ade88.1689857295.git.andrea.collamati@gmail.com>
+ <4898bc33-5245-8fb2-e5e6-8ea1a8f32e1e@linaro.org>
+From:   Andrea Collamati <andrea.collamati@gmail.com>
+In-Reply-To: <4898bc33-5245-8fb2-e5e6-8ea1a8f32e1e@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 21, 2023 at 12:48:01PM +0530, Viresh Kumar wrote:
-> On 20-07-23, 11:10, Manivannan Sadhasivam wrote:
-> > Minimum frequency of the "ice_core_clk" should be 75MHz as specified in the
-> > downstream vendor devicetree. So fix it!
-> > 
-> > https://git.codelinaro.org/clo/la/kernel/msm-4.9/-/blob/LA.UM.7.3.r1-09300-sdm845.0/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> > 
-> > Fixes: 433f9a57298f ("arm64: dts: sdm845: add Inline Crypto Engine registers and clock")
-> > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> > ---
-> >  arch/arm64/boot/dts/qcom/sdm845.dtsi | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > 
-> > diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> > index 9ed74bf72d05..89520a9fe1e3 100644
-> > --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> > @@ -2614,7 +2614,7 @@ ufs_mem_hc: ufshc@1d84000 {
-> >  				<0 0>,
-> >  				<0 0>,
-> >  				<0 0>,
-> > -				<0 300000000>;
-> > +				<75000000 300000000>;
-> >  
-> >  			status = "disabled";
-> >  		};
-> 
-> Please keep new feature and fixes like this in separate series. This
-> could be merged directly in the currently ongoing kernel rc and
-> doesn't need to wait for this series.
-> 
-> Or at least keep the commit at the top, so another maintainer can
-> simply pick it.
-> 
+Hi Krzysztof,
 
-That's what I did. This patch and previous patch are the fixes patches, so they
-are posted on top of other dts patches to be merged separately if required.
+On 7/21/23 10:21, Krzysztof Kozlowski wrote:
+>> Add documentation for MCP4728
+>>
+>> Signed-off-by: Andrea Collamati <andrea.collamati@gmail.com>
+>> ---
+>>  .../bindings/iio/dac/microchip,mcp4728.yaml   | 48 +++++++++++++++++++
+>>  1 file changed, 48 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/iio/dac/microchip,mcp4728.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/iio/dac/microchip,mcp4728.yaml b/Documentation/devicetree/bindings/iio/dac/microchip,mcp4728.yaml
+>> new file mode 100644
+>> index 000000000000..6fd9be076245
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/iio/dac/microchip,mcp4728.yaml
+>> @@ -0,0 +1,48 @@
+>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/iio/dac/microchip,mcp4728.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Microchip MCP4728 DAC
+>> +
+>> +description:
+>> +  MCP4728 is a quad channel, 12-bit voltage output
+>> +  Digital-to-Analog Converter with non-volatile
+>> +  memory and I2C compatible Serial Interface.
+>> +  https://www.microchip.com/en-us/product/mcp4728
+>> +
+>> +maintainers:
+>> +  - Andrea Collamati <andrea.collamati@gmail.com>
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - microchip,mcp4728
+> This is a friendly reminder during the review process.
 
-- Mani
+Sorry but I didn't understand all your requests:
 
-> -- 
-> viresh
+- I changed in the title mcp4728 with MCP4728
 
--- 
-மணிவண்ணன் சதாசிவம்
+- I added description
+
+but I don't know which blank line or whitespaces should be removed.
+
+Can you tell me please?
+
