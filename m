@@ -2,107 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B31BC75C16F
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 10:23:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D8F7B75C17B
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 10:24:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230160AbjGUIXS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jul 2023 04:23:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35890 "EHLO
+        id S230052AbjGUIY2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jul 2023 04:24:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37004 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231602AbjGUIXF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 04:23:05 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A84AC30E1
-        for <devicetree@vger.kernel.org>; Fri, 21 Jul 2023 01:22:58 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-9891c73e0fbso355845866b.1
-        for <devicetree@vger.kernel.org>; Fri, 21 Jul 2023 01:22:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689927777; x=1690532577;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=U3gWVnV/hO3FNFQifJeUbwGm90QsBerXmMKobezGqYQ=;
-        b=UIrgACagw3hOXCLO3SdYeeTu7nDqhPXekm2ufTSOYQrYEhjyRFSA+MF8i1tqmEH1YD
-         W2FrjLKzqONx/0WR3wCWAZRfZ9AFq9VtEmG/bCZmcgDqS7xJV3bWV0lnaKiAxjktj+dK
-         fo5Q6r//dOfl/kQsS013lXbl3PQImpMlg9Xn9357AKVUfwyVPcjsjqkbbo04tXfcPvOg
-         Bz1CQUwsJfDdOCtHkcuJFsTIEGmE1GkkQ39Gvg2vCs9DC1EoSTXCY/86jDtsHWxDYPp1
-         jL1vd+hCarPB6bfTnuAb5FRIdQgLa96yY5Iagpin1AGjs8G6oCVFIByIsWPVuMz95GiU
-         Jjbg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689927777; x=1690532577;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=U3gWVnV/hO3FNFQifJeUbwGm90QsBerXmMKobezGqYQ=;
-        b=HTcECplySXMxcFUsR7rD9kyBZH+8oetNlwL9b+Q0nSSRp8OhzBT27i7Eudn+62vFAj
-         hRzjDfM6oXpsNxF8ALPlaOsT2bT6U7HxkA5Edfw6YTENsing0ewMHkfctZzgflUt6hj+
-         VcIZeZ+uF07WWFq/LM+fCfZq9npFtH0K9UIpHaPdGiX9rvU3lYXrllXafGIb7lnEoJ5w
-         6SO9KLzUJqLjmRVtTT7euqcRe59aPifWKS7KiuL0iv8IUS/x6fLgFNiuf8H7zz63II/o
-         1qg2mc9xCXFX9P9DfCD7EIqL/69QHGDo1q0wrN/Lr6SdeBUpewXaCCXk66v8fBeKyH7E
-         kaKQ==
-X-Gm-Message-State: ABy/qLbNp+CNvKcLyuo5nVYXb9TM9GqTNq411NEdLCDXba8JRq10HTkw
-        I+Xrhi/6jtLHDamsm4J5NxmQMg==
-X-Google-Smtp-Source: APBJJlE0QSteAu+Es7qkLrRxrkP7EA7T87AT0f9kkdWVCrdxgcLjomp9RlAZfiFhLG3ELxlltpFs9A==
-X-Received: by 2002:a17:906:7381:b0:994:13c3:2f89 with SMTP id f1-20020a170906738100b0099413c32f89mr1333198ejl.27.1689927776949;
-        Fri, 21 Jul 2023 01:22:56 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id a6-20020a1709062b0600b0099297782aa9sm1803681ejg.49.2023.07.21.01.22.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 21 Jul 2023 01:22:56 -0700 (PDT)
-Message-ID: <fe062725-e9b5-bcc6-d515-8e2d4989301a@linaro.org>
-Date:   Fri, 21 Jul 2023 10:22:54 +0200
+        with ESMTP id S231534AbjGUIYX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 04:24:23 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 225F7270F;
+        Fri, 21 Jul 2023 01:24:21 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 36L8O49p006303;
+        Fri, 21 Jul 2023 03:24:04 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1689927844;
+        bh=DM7YonzYOrWfC4RvmJONFc7fErZeSa4OYCbSVf6MFxo=;
+        h=From:To:CC:Subject:Date;
+        b=dAg6uCZ/HcJrpE4I4m7lm+fei90ugIfLlyHEv7j8gTxqLy6XBn0EG6PmpG+X+vATx
+         jNoNTW8mhh7BQBIY8r1bKS7fvv+H+1Ss+XV3IsYzjVHtej7W/Kv4T3iOTjTMLcHRD7
+         KYDOZ/e/wJYkGAGV3ZCJ5elAWplYGgoseXPxX+t4=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 36L8O46K117958
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 21 Jul 2023 03:24:04 -0500
+Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 21
+ Jul 2023 03:24:03 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 21 Jul 2023 03:24:03 -0500
+Received: from udit-HP-Z2-Tower-G9-Workstation-Desktop-PC.dhcp.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 36L8O0SH114984;
+        Fri, 21 Jul 2023 03:24:01 -0500
+From:   Udit Kumar <u-kumar1@ti.com>
+To:     <vigneshr@ti.com>, <nm@ti.com>, <kristo@kernel.org>,
+        <robh+dt@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC:     Udit Kumar <u-kumar1@ti.com>
+Subject: [PATCH] arm64: dts: ti: k3-j721e-som-p0: Remove Duplicated wkup_i2c0 node
+Date:   Fri, 21 Jul 2023 13:53:44 +0530
+Message-ID: <20230721082344.1534094-1-u-kumar1@ti.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v3 1/2] dt-bindings: iio: dac: add mcp4728.yaml
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andrea Collamati <andrea.collamati@gmail.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <cover.1689857295.git.andrea.collamati@gmail.com>
- <9816cd272d19802ec6eeff0c7c29e85d4a0ade88.1689857295.git.andrea.collamati@gmail.com>
- <4898bc33-5245-8fb2-e5e6-8ea1a8f32e1e@linaro.org>
-In-Reply-To: <4898bc33-5245-8fb2-e5e6-8ea1a8f32e1e@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/07/2023 10:21, Krzysztof Kozlowski wrote:
->> +  - |
->> +    i2c {
->> +        #address-cells = <1>;
->> +        #size-cells = <0>;
->> +
->> +        mcp4728@60 {
-> 
-> The same... Probably more comments were ignored, so:
-> 
-> This is a friendly reminder during the review process.
-> 
-> It seems my previous comments were not fully addressed. Maybe my
-> feedback got lost between the quotes, maybe you just forgot to apply it.
-> Please go back to the previous discussion and either implement all
-> requested changes or keep discussing them.
+wkup_i2c0 and associated eeprom device node were duplicated,
+This patch fixes the node duplication.
 
-Damn, this is my third comment about the same. Here was second:
-https://lore.kernel.org/all/5e5d1a1e-f106-9dd6-c19e-f933e8e70dd4@kernel.org/
+Signed-off-by: Udit Kumar <u-kumar1@ti.com>
+---
+Looks same patch is applied twice one with
+sha id b04b18ccb3d5c and second time with sha id 4af0332876f94
 
-so you nicely ignore feedback. NAK.
+ arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi | 13 -------------
+ 1 file changed, 13 deletions(-)
 
-Best regards,
-Krzysztof
+diff --git a/arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi
+index 38ae13cc3aa3..e90e43202546 100644
+--- a/arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi
+@@ -201,19 +201,6 @@ eeprom@50 {
+ 	};
+ };
+ 
+-&wkup_i2c0 {
+-	status = "okay";
+-	pinctrl-names = "default";
+-	pinctrl-0 = <&wkup_i2c0_pins_default>;
+-	clock-frequency = <400000>;
+-
+-	eeprom@50 {
+-		/* CAV24C256WE-GT3 */
+-		compatible = "atmel,24c256";
+-		reg = <0x50>;
+-	};
+-};
+-
+ &ospi0 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&mcu_fss0_ospi0_pins_default>;
+-- 
+2.34.1
 
