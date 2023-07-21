@@ -2,211 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 227D075BEE5
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 08:32:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D147375BEEA
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 08:33:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230253AbjGUGcH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jul 2023 02:32:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60958 "EHLO
+        id S229801AbjGUGdh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jul 2023 02:33:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33188 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230468AbjGUGcC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 02:32:02 -0400
-Received: from mx3.molgen.mpg.de (mx3.molgen.mpg.de [141.14.17.11])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 400FB2719;
-        Thu, 20 Jul 2023 23:31:59 -0700 (PDT)
-Received: from [192.168.0.185] (ip5f5aeeaf.dynamic.kabel-deutschland.de [95.90.238.175])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        (Authenticated sender: pmenzel)
-        by mx.molgen.mpg.de (Postfix) with ESMTPSA id 2F75861E5FE03;
-        Fri, 21 Jul 2023 08:30:52 +0200 (CEST)
-Message-ID: <54fc5f74-d293-e467-709f-5077c03be80c@molgen.mpg.de>
-Date:   Fri, 21 Jul 2023 08:30:51 +0200
+        with ESMTP id S229453AbjGUGdf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 02:33:35 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78CE9113;
+        Thu, 20 Jul 2023 23:33:34 -0700 (PDT)
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36L5CcY2007317;
+        Fri, 21 Jul 2023 06:33:29 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=DC9f/AkivRyWRdBHdTX5l53MGYWeEg55d7aFIfliLU4=;
+ b=CzW6FL7kunTgHMIr/YgwnYTacjh+loh3/jLihsPvwrtFeaEzq2AV36durAbNtzL2A005
+ RVUxLy3xtwmWLMnJQqR1UeA3OmGUWJsE+lJvDll6NH5Ah3qjrvRxhVKaV69l8hcizEhm
+ B9pGDG4L5FeCV09WkjBLSqyEcviEQLHjyqNd/HZTaEnvimGaCaNePhJbARvcCw9Uh35m
+ 5IUU2MnyBmcsaK0oyCuTIb38Zr2VTMV0E7EZ0HSNJ9HSRK94X7U2vEWj5IogbW7QMcbc
+ gErC0rC6LVMnf8FuV2NEVsWL0nF3Xd9IsoZY2P5jlChTn0ZYrbLG7+IQXjVXq95edxWJ EA== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ry6pv1w57-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 21 Jul 2023 06:33:28 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 36L6XRVV004827
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 21 Jul 2023 06:33:27 GMT
+Received: from [10.216.60.229] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Thu, 20 Jul
+ 2023 23:33:20 -0700
+Message-ID: <4af1abfb-9889-af13-7460-903eb94833bf@quicinc.com>
+Date:   Fri, 21 Jul 2023 12:03:17 +0530
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH 2/4] peci: Add peci-npcm controller driver
-To:     Iwona Winiarska <iwona.winiarska@intel.com>
-Cc:     tmaimon77@gmail.com, avifishman70@gmail.com,
-        Benjamin Fair <benjaminfair@google.com>,
-        devicetree@vger.kernel.org, venture@google.com,
-        linux-kernel@vger.kernel.org, warp5tw@gmail.com,
-        conor+dt@kernel.org, openbmc@lists.ozlabs.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-References: <20230719220853.1029316-1-iwona.winiarska@intel.com>
- <20230719220853.1029316-3-iwona.winiarska@intel.com>
- <dfda43af-e9b4-85bf-e165-02127e02fbf0@molgen.mpg.de>
- <9a6eb22ef6b7a6a686250ed83894e8d37de30baa.camel@intel.com>
- <2f9858b0-88e2-736a-f16a-f4fbe549e389@molgen.mpg.de>
- <d6de8b0e5b54ca12d9f9930f01a85467b145b134.camel@intel.com>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.2
+Subject: Re: [V3,09/11] remoteproc: qcom: Add Hexagon based multipd rproc
+ driver
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <mathieu.poirier@linaro.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <mturquette@baylibre.com>,
+        <sboyd@kernel.org>, <quic_eberman@quicinc.com>, <kvalo@kernel.org>,
+        <loic.poulain@linaro.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>
+CC:     <quic_srichara@quicinc.com>, <quic_sjaganat@quicinc.com>,
+        <quic_kathirav@quicinc.com>, <quic_anusha@quicinc.com>
+References: <20230718120501.3205661-1-quic_mmanikan@quicinc.com>
+ <20230718120501.3205661-10-quic_mmanikan@quicinc.com>
+ <c53c8fc5-a898-df1d-4626-696ffd990796@linaro.org>
 Content-Language: en-US
-From:   Paul Menzel <pmenzel@molgen.mpg.de>
-In-Reply-To: <d6de8b0e5b54ca12d9f9930f01a85467b145b134.camel@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+From:   Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
+In-Reply-To: <c53c8fc5-a898-df1d-4626-696ffd990796@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: YufzpMDROCJY4mesvDq7i8qydn3kb4O9
+X-Proofpoint-ORIG-GUID: YufzpMDROCJY4mesvDq7i8qydn3kb4O9
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-07-21_03,2023-07-20_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ phishscore=0 spamscore=0 malwarescore=0 adultscore=0 mlxlogscore=727
+ impostorscore=0 clxscore=1015 priorityscore=1501 mlxscore=0 bulkscore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2306200000 definitions=main-2307210058
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dear Iwona,
 
 
-Am 20.07.23 um 22:20 schrieb Winiarska, Iwona:
-> On Thu, 2023-07-20 at 16:47 +0200, Paul Menzel wrote:
-
->> Am 20.07.23 um 10:38 schrieb Winiarska, Iwona:
->>> On Thu, 2023-07-20 at 08:20 +0200, Paul Menzel wrote:
->>
->>>> Am 20.07.23 um 00:08 schrieb Iwona Winiarska:
->>>>> From: Tomer Maimon <tmaimon77@gmail.com>
->>>>>
->>>>> Add support for Nuvoton NPCM BMC hardware to the Platform Environment
->>>>> Control Interface (PECI) subsystem.
->>>>
->>>> Please elaborate on the implementation, and document the used datasheets.
->>>
->>> As far as I know, there is no publicly available documentation.
->>
->> Too bad. Documenting the datasheet name and version is still important,
->> so developers could request it, and it can be mapped, once they are made
->> public.
+On 7/20/2023 6:43 PM, Krzysztof Kozlowski wrote:
+> On 18/07/2023 14:04, Manikanta Mylavarapu wrote:
+>> It adds support to bring up remoteproc's on multipd model.
+>> Pd means protection domain. It's similar to process in Linux.
+>> Here QDSP6 processor runs each wifi radio functionality on a
+>> separate process. One process can't access other process
+>> resources, so this is termed as PD i.e protection domain.
 > 
-> Sorry, unfortunately I can't help with that, I don't have access to any Nuvoton
-> docs. Perhaps Tomer can provide more information?
-
-Hopefully. But I wonder, how can you develop and review the patch then?
-
->>>> Additionally, please document how you tested this.
->>>
->>> Are you asking to include this information in the commit message?
->>
->> Yes.
->>
->>> That would be unusual.
->>> But in general - it's a controller driver, it allows PECI subsystem to detect
->>> devices behind it and for PECI drivers to bind to those devices.
->>
->> Having a test line in the commit message is not unusual at. So people
->> with systems where it doesn’t work, could replicate the test setup to at
->> least verify that it works in that configuration.
+> ...
 > 
-> It's unusual as almost none of the commits in Linux kernel contain "how to test
-> it" description.
-
-I saw some commits document on what hardware it was tested.
-
-> The explanation body in the commit message should explain *why* the patch was
-> created, not how to test it.
-
-I disagree. It should of course the why, but sometimes also the how 
-(implementation), the used datasheets, and all other details making it 
-easy to review and give reviewers without the hardware confidence, that 
-the patch is good.
-
-> And when taken as a series - it's self documenting. There's a Kconfig which
-> allows to enable/disable the driver, and there are bindings which show what
-> platform contains the hardware that is compatible with it.
-
-I just meant: Tested on server X with BMC Y using Nuvoton Z. Driver 
-registered correctly, and devices A were discovered.
-
->>>>> Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
->>>>> Signed-off-by: Tyrone Ting <warp5tw@gmail.com>
->>>>> Co-developed-by: Iwona Winiarska <iwona.winiarska@intel.com>
->>>>> Signed-off-by: Iwona Winiarska <iwona.winiarska@intel.com>
->>>>> ---
->>>>>     drivers/peci/controller/Kconfig     |  16 ++
->>>>>     drivers/peci/controller/Makefile    |   1 +
->>>>>     drivers/peci/controller/peci-npcm.c | 298 ++++++++++++++++++++++++++++
->>>>>     3 files changed, 315 insertions(+)
->>>>>     create mode 100644 drivers/peci/controller/peci-npcm.c
->>>>>
->>>>> diff --git a/drivers/peci/controller/Kconfig
->>>>> b/drivers/peci/controller/Kconfig
->>>>> index 2fc5e2abb74a..4f9c245ad042 100644
->>>>> --- a/drivers/peci/controller/Kconfig
->>>>> +++ b/drivers/peci/controller/Kconfig
-
-[…]
-
->>>>> +#if IS_ENABLED(CONFIG_DYNAMIC_DEBUG)
->>>>> +       dev_dbg(priv->dev, "addr : %#02x, tx.len : %#02x, rx.len : %#02x\n",
->>>>> +               addr, req->tx.len, req->rx.len);
->>>>> +       print_hex_dump_bytes("TX : ", DUMP_PREFIX_NONE, req->tx.buf, req-tx.len);
->>>>> +#endif
->>>>
->>>> The preprocessor guards are not needed, as it’s taken care of in
->>>> `include/linux/printk.h`. Also in other parts of the patch.
->>>
->>> Since this is dumping the raw contents of PECI messages, it's going to be quite
->>> verbose. The idea behind preprocessor guard is that we don't ever want this to
->>> be converted to regular printk. If there's no dynamic debug available - this
->>> won't be printed unconditionally (even with -DDEBUG).
->>
->> How will it be converted to a regular printk?
->>
->>       #if defined(CONFIG_DYNAMIC_DEBUG) || \
->>           (defined(CONFIG_DYNAMIC_DEBUG_CORE) && defined(DYNAMIC_DEBUG_MODULE))
->>       #define print_hex_dump_debug(prefix_str, prefix_type, rowsize,      \
->>                                groupsize, buf, len, ascii)        \
->>           dynamic_hex_dump(prefix_str, prefix_type, rowsize,      \
->>                            groupsize, buf, len, ascii)
->>       #elif defined(DEBUG)
->>       #define print_hex_dump_debug(prefix_str, prefix_type, rowsize,      \
->>                                groupsize, buf, len, ascii)                \
->>           print_hex_dump(KERN_DEBUG, prefix_str, prefix_type, rowsize,    \
->>                          groupsize, buf, len, ascii)
->>       #else
->>       static inline void print_hex_dump_debug(const char *prefix_str, int prefix_type,
->>                                           int rowsize, int groupsize,
->>                                           const void *buf, size_t len, bool ascii)
->>       {
->>       }
->>       #endif
+>> + * User pd boot-info format mentioned below
+>> + * <Version> <No of elements passing over smem> <Header type> <Header Length>
+>> + * <Process Id> <Load address> <firmware mem Size>
+>> + *
+>> + * Returns 0 on success else negative value on failure.
+>> + */
+>> +static int share_upd_bootinfo_to_q6(struct rproc *rproc)
+>> +{
+>> +	int ret;
+>> +	size_t size;
+>> +	u16 cnt = 0, version;
+>> +	void *ptr;
+>> +	struct q6_wcss *wcss = rproc->priv, *upd_wcss;
+>> +	struct device_node *upd_np;
+>> +	struct platform_device *upd_pdev;
+>> +	struct rproc *upd_rproc;
+>> +	struct userpd_boot_info upd_bootinfo = {0};
+>> +	const struct firmware *fw;
+>> +
+>> +	ret = qcom_smem_alloc(REMOTE_PID, UPD_BOOT_INFO_SMEM_ID,
+>> +			      UPD_BOOT_INFO_SMEM_SIZE);
+>> +	if (ret && ret != -EEXIST) {
+>> +		dev_err(wcss->dev,
+>> +			"failed to allocate q6 bootinfo smem segment\n");
+>> +		return ret;
+>> +	}
+>> +
+>> +	ptr = qcom_smem_get(REMOTE_PID, UPD_BOOT_INFO_SMEM_ID, &size);
+>> +	if (IS_ERR(ptr) || size != UPD_BOOT_INFO_SMEM_SIZE) {
+>> +		dev_err(wcss->dev,
+>> +			"Unable to acquire smp2p item(%d) ret:%ld\n",
+>> +			UPD_BOOT_INFO_SMEM_ID, PTR_ERR(ptr));
+>> +		return PTR_ERR(ptr);
+>> +	}
+>> +
+>> +	/* print physical address */
+>> +	dev_info(wcss->dev,
+>> +		 "smem phyiscal address:0x%lX\n",
+>> +		 (uintptr_t)qcom_smem_virt_to_phys(ptr));
 > 
-> Let's consider 3 scenarios
-> 1) Dynamic debug is available
-> 2) Dynamic debug is not available, but we're built with -DDEBUG
-> 3) Dynamic debug is not available, we're built without -DDEBUG
+> One more thought. Why do you need it? Even if this is not a kernel or
+> user-space address, why would like to disclose the memory layout? I
+> think this is contradictory to the kptr_restrict concept.
 > 
-> For 1), print_hex_dump_debug is dynamic - it can be controlled
-> (enabled/disabled) using dynamic debug knobs (debugfs / dyndbg kernel arg).
-> For 2), print_hex_dump_debug is using print_hex_dump, which is just using printk
-> with KERN_DEBUG level under the hood.
-> For 3), it's compiled out.
+
+Sure, I will remove.
+
+Thanks & Regards,
+Manikanta.
+
+>> +
+>> +	/*Version*/
 > 
-> And it's scenario 2) that we would like to avoid, as hex-dumping all PECI
-> communication into dmesg is likely going to make dmesg output unusable (can
-> overflow, printing that to terminal is going to be slow, etc).
 > 
-> The dump can be useful, it's just that in order to be useful it needs the
-> dynamic debug facilities :)
-
-Thank you for the explanation. Currently, this is only used in the PECI 
-subsystem:
-
-     $ git grep 'if IS_ENABLED(CONFIG_DYNAMIC_DEBUG)'
-     drivers/mtd/nand/raw/nand_base.c:#if 
-IS_ENABLED(CONFIG_DYNAMIC_DEBUG) || defined(DEBUG)
-     drivers/peci/controller/peci-aspeed.c:#if 
-IS_ENABLED(CONFIG_DYNAMIC_DEBUG)
-     drivers/peci/controller/peci-aspeed.c:#if 
-IS_ENABLED(CONFIG_DYNAMIC_DEBUG)
-     include/linux/mtd/rawnand.h:#if IS_ENABLED(CONFIG_DYNAMIC_DEBUG) || 
-defined(DEBUG)
-
-I think, it will only cause confusing for users, wondering why it does 
-not show up with `-DDEBUG`. I assume the Linux kernel offers other ways 
-to do what you are trying to achieve. Maybe using a dump_traffic knob or 
-so in `/sys`.
-
-
-Kind regards,
-
-Paul
+> 
+> Best regards,
+> Krzysztof
+> 
