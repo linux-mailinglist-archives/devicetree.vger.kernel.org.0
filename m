@@ -2,68 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E787B75D4C1
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 21:24:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 42C4275D525
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 21:38:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232227AbjGUTYg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jul 2023 15:24:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45632 "EHLO
+        id S230105AbjGUTiU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jul 2023 15:38:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55528 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232221AbjGUTYg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 15:24:36 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 199EF189;
-        Fri, 21 Jul 2023 12:24:35 -0700 (PDT)
+        with ESMTP id S229666AbjGUTiT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 15:38:19 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E5972686;
+        Fri, 21 Jul 2023 12:38:18 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id A974361D7F;
-        Fri, 21 Jul 2023 19:24:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1DF55C433CD;
-        Fri, 21 Jul 2023 19:24:34 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id A7C9961D91;
+        Fri, 21 Jul 2023 19:38:17 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 58870C433C8;
+        Fri, 21 Jul 2023 19:38:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689967474;
-        bh=ZMDz7Ao/mXqDoOt9YqdyFYlyKXkJ8dwXgYd8bgtxMgY=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=dIfxhb+OVuk0F9idwdU1Nqp2ZJSc3V7WLb+EHXnU6XQPkYG9q40hu0yDpXbB2TsuU
-         bdAuA9f2LNjpYwymZvN1pi/xM0mGLO2l5qF7FzHBiKEoMDfz+64mgsjFj4fsE3RFxK
-         bSj+so11TE5+uDa40Yva/x1RPFStJ/BmxZ1Kzsz3dB9bLjk2pdPL4vI0TbKCaORAdF
-         5a30QkKOfedXkVA/oKRqnWcH9JNt+z7HNVVjIqvXNyAfphZ9VyW5zn5wzb0K7Fw823
-         vvgJj2UW829OlZxlD0DxCyuSDioG2kgNQRryeccV/INrjA5QkKEQgskCeGevIZ7XZ2
-         2fGurbgnWu8+g==
-Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-2b6f943383eso33941701fa.2;
-        Fri, 21 Jul 2023 12:24:34 -0700 (PDT)
-X-Gm-Message-State: ABy/qLYtvXbsYWWSxH4hny9KFMyDYXp9+lJwinVvzmaWvq79AWZqbeRO
-        CdlnfmajUAEhZ15HD1is5iX3E77nPewMz8byuQ==
-X-Google-Smtp-Source: APBJJlHWu7RNKa6G4OWcajuKR+v/9mO3Q4f3e14g7ypnqu1POSVv0p6PFkMlKa+yzKC3DRRdjku8L6M8Rt1M6Sw9RSQ=
-X-Received: by 2002:a2e:b70e:0:b0:2b4:45bc:7bd with SMTP id
- j14-20020a2eb70e000000b002b445bc07bdmr2350137ljo.4.1689967472029; Fri, 21 Jul
- 2023 12:24:32 -0700 (PDT)
+        s=k20201202; t=1689968297;
+        bh=vrWeO6d/WVUoBFUVjBSttPcQkFgnIMkGsqD8edgeIAU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=ZFDfk2oO14n3vGim7CN/Gix1y7oG04/CHCNAWSm6LbpwTZm6wPPxJjSb+vcNM85kz
+         SxvzBXVYmAJiVs2zRhPW9P7sE1YGpyr2FWim0PBBVjXxtDXzpEYQ+aSEB5z226Kxqr
+         6kz9U5OLBf5qGGrctna79TamcT9zCgGj3pmyUn7/+GxpEB5OObybUILS2RGZaG5to0
+         5vljAZBJDqgkLhTM4RPjYcwuAps13MP3pJI+S5EvqwA7BERhaQyxyosjxeQpvnGbzT
+         IsAiIbIYZsJs9cNpBxdETCKW4uUc+GncVMuZebxuJelWiCdYqZbn4ub3z89IPXHVOB
+         YTR7BEuCLvzYg==
+Received: (nullmailer pid 1688695 invoked by uid 1000);
+        Fri, 21 Jul 2023 19:38:15 -0000
+Date:   Fri, 21 Jul 2023 13:38:15 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Rik van Riel <riel@surriel.com>
+Cc:     linux-kernel@vger.kernel.org, kernel-team@meta.com,
+        Mike Rapoport <rppt@kernel.org>, devicetree@vger.kernel.org,
+        x86@kernel.org, Juergen Gross <jgross@suse.com>,
+        Dave Hansen <dave.hansen@linux.intel.com>
+Subject: Re: [PATCH] mm,ima,kexec: use memblock_free_late from
+ ima_free_kexec_buffer
+Message-ID: <20230721193815.GA1679711-robh@kernel.org>
+References: <20230720101431.71640c8a@imladris.surriel.com>
 MIME-Version: 1.0
-References: <20230721161840.1393996-1-hugo@hugovil.com> <20230721161840.1393996-7-hugo@hugovil.com>
-In-Reply-To: <20230721161840.1393996-7-hugo@hugovil.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Fri, 21 Jul 2023 13:24:19 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJpdhtnZ8FcM7kGWnM+iuDs1fWiCVgf413evbw-o8TZGQ@mail.gmail.com>
-Message-ID: <CAL_JsqJpdhtnZ8FcM7kGWnM+iuDs1fWiCVgf413evbw-o8TZGQ@mail.gmail.com>
-Subject: Re: [RESEND PATCH v8 06/10] serial: sc16is7xx: fix regression with
- GPIO configuration
-To:     Hugo Villeneuve <hugo@hugovil.com>
-Cc:     gregkh@linuxfoundation.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, jirislaby@kernel.org, jringle@gridpoint.com,
-        isaac.true@canonical.com, jesse.sung@canonical.com,
-        tomasz.mon@camlingroup.com, l.perczak@camlintechnologies.com,
-        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-        stable@vger.kernel.org,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Lech Perczak <lech.perczak@camlingroup.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230720101431.71640c8a@imladris.surriel.com>
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_BLOCKED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -72,50 +59,69 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 21, 2023 at 10:19=E2=80=AFAM Hugo Villeneuve <hugo@hugovil.com>=
- wrote:
->
-> From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
->
-> Commit 679875d1d880 ("sc16is7xx: Separate GPIOs from modem control lines"=
-)
-> and commit 21144bab4f11 ("sc16is7xx: Handle modem status lines")
-> changed the function of the GPIOs pins to act as modem control
-> lines without any possibility of selecting GPIO function.
+On Thu, Jul 20, 2023 at 10:14:31AM -0400, Rik van Riel wrote:
+> The code calling ima_free_kexec_buffer runs long after the memblock
+> allocator has already been torn down, potentially resulting in a use
+> after free in memblock_isolate_range.
+> 
+> With KASAN or KFENCE, this use after free will result in a BUG
+> from the idle task, and a subsequent kernel panic.
+> 
+> Switch ima_free_kexec_buffer over to memblock_free_late to avoid
+> that issue.
+> 
+> Fixes: fee3ff99bc67 ("powerpc: Move arch independent ima kexec functions to drivers/of/kexec.c")
 
-Requiring a new DT property is not fixing a kernel regression. You
-should be returning the kernel to original behavior and then have a
-new DT property for new behavior.
+Fixes: b69a2afd5afc ("x86/kexec: Carry forward IMA measurement log on kexec")
 
-> As a consequence, applications that depends on GPIO lines configured
-> by default as GPIO pins no longer work as expected.
->
-> Also, the change to select modem control lines function was done only
-> for channel A of dual UART variants (752/762). This was not documented
-> in the log message.
->
-> Allow to specify GPIO or modem control line function in the device
-> tree, and for each of the ports (A or B).
->
-> Do so by using the new device-tree property named
-> "modem-control-line-ports" (property added in separate patch).
+Acked-by: Rob Herring <robh@kernel.org>
 
-That's not the name in the patch.
+(I'm assuming someone else is taking this)
 
-> When registering GPIO chip controller, mask-out GPIO pins declared as
-> modem control lines according to this new "modem-control-line-ports"
-> DT property.
->
-> Boards that need to have GPIOS configured as modem control lines
-> should add that property to their device tree. Here is a list of
-> boards using the sc16is7xx driver in their device tree and that may
-> need to be modified:
->     arm64/boot/dts/freescale/fsl-ls1012a-frdm.dts
->     mips/boot/dts/ingenic/cu1830-neo.dts
->     mips/boot/dts/ingenic/cu1000-neo.dts
-
-Then again, if no one cares about those boards needing a change then
-it can be okay.
-
-
-Rob
+> Cc: stable@kernel.org
+> Signed-off-by: Rik van Riel <riel@surriel.com>
+> Suggested-by: Mike Rappoport <rppt@kernel.org>
+> ---
+>  arch/x86/kernel/setup.c | 8 ++------
+>  drivers/of/kexec.c      | 3 ++-
+>  2 files changed, 4 insertions(+), 7 deletions(-)
+> 
+> diff --git a/arch/x86/kernel/setup.c b/arch/x86/kernel/setup.c
+> index fd975a4a5200..aa0df37c1fe7 100644
+> --- a/arch/x86/kernel/setup.c
+> +++ b/arch/x86/kernel/setup.c
+> @@ -359,15 +359,11 @@ static void __init add_early_ima_buffer(u64 phys_addr)
+>  #if defined(CONFIG_HAVE_IMA_KEXEC) && !defined(CONFIG_OF_FLATTREE)
+>  int __init ima_free_kexec_buffer(void)
+>  {
+> -	int rc;
+> -
+>  	if (!ima_kexec_buffer_size)
+>  		return -ENOENT;
+>  
+> -	rc = memblock_phys_free(ima_kexec_buffer_phys,
+> -				ima_kexec_buffer_size);
+> -	if (rc)
+> -		return rc;
+> +	memblock_free_late(ima_kexec_buffer_phys,
+> +			   ima_kexec_buffer_size);
+>  
+>  	ima_kexec_buffer_phys = 0;
+>  	ima_kexec_buffer_size = 0;
+> diff --git a/drivers/of/kexec.c b/drivers/of/kexec.c
+> index f26d2ba8a371..68278340cecf 100644
+> --- a/drivers/of/kexec.c
+> +++ b/drivers/of/kexec.c
+> @@ -184,7 +184,8 @@ int __init ima_free_kexec_buffer(void)
+>  	if (ret)
+>  		return ret;
+>  
+> -	return memblock_phys_free(addr, size);
+> +	memblock_free_late(addr, size);
+> +	return 0;
+>  }
+>  #endif
+>  
+> -- 
+> 2.41.0
+> 
