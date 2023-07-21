@@ -2,264 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 340B075C072
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 09:53:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 651B375C077
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 09:54:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229557AbjGUHx0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jul 2023 03:53:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43196 "EHLO
+        id S229579AbjGUHyB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jul 2023 03:54:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43908 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230395AbjGUHxZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 03:53:25 -0400
-Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com [IPv6:2607:f8b0:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1C032D7E;
-        Fri, 21 Jul 2023 00:53:16 -0700 (PDT)
-Received: by mail-pf1-x434.google.com with SMTP id d2e1a72fcca58-6686a05bc66so1171658b3a.1;
-        Fri, 21 Jul 2023 00:53:16 -0700 (PDT)
+        with ESMTP id S229924AbjGUHyA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 03:54:00 -0400
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4F792D77
+        for <devicetree@vger.kernel.org>; Fri, 21 Jul 2023 00:53:50 -0700 (PDT)
+Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-51e28b299adso2294984a12.2
+        for <devicetree@vger.kernel.org>; Fri, 21 Jul 2023 00:53:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1689925996; x=1690530796;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1689926029; x=1690530829;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=SAHw9trszqEiKZzJ1aTuoJgaGILFPg2XoHAM0vKmy8M=;
-        b=kBmwfFbnH66UKbd5uzguS4CJrw1s1qK1AjktCMo9CUthTXJuI7Vr/OhE4TreITotzx
-         LLbysaxtPM9L5eJBoUdocdFNVLv2l4jyYA88nEKeuAicAyA6AHRLKiWo3hA8eygL8bKk
-         mdbiFHQJaVt3owmyAmYyBvbhX2AiKRLiPist7/fya9f7+1uOnXVS1QDbqxPaw9UBc4P9
-         MGHlAVMho38UKpmdowS965ODBf5Ak0L4jugH81R6j/7A1rdCXhlsufbQEZCx/92OkyJP
-         1XcQ0yQRFpPHzZAEXwS8MoV9tLErPX1XeMAk1ViE9sb/G7/Bj4Oyy9D3ZNjurroFoHfU
-         vmfA==
+        bh=tEygh4c+HqxN74BgXq8Y1kfIxuqyz4efWO8eqzPzYks=;
+        b=fBac3ap+iIZ5MwFfu4qTR52LVb+3L+GbxZS0jhoKvit/O6n/nYU3TPOvCqdwNED9Wz
+         gdAkwg2LmQnSVQ/QZpThBvWEUcXJIXRvino9kzIMnKUTiueyURedoc1fOHY3BO0w9IAe
+         IpaMr5bpoAU7PHMsaotH6zob4ogrhipQ4eyWqSLFDzIZK4EIBor0eXOxyo6D+fjzu8s1
+         PWdZhL2EVedkIxK/NXUc2JxvU4nGs09tjp8ZpJMeYdjGhgzq2ZyutKqp75UUIkm/lj0z
+         yZo63VySV5QE0UyZXQCDcyshPMTMJOgSqesclet8ZKgwi2AhYAuPeEDo/ecwCEhjP83Q
+         y9EA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689925996; x=1690530796;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1689926029; x=1690530829;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=SAHw9trszqEiKZzJ1aTuoJgaGILFPg2XoHAM0vKmy8M=;
-        b=EstBYGjE2VeMkUm/tfmnK/gBfxKeM4xp2ylDrOQ8ASpVIsnf7gcgAMnMJorLpkOUY2
-         iRov4jxCc9Z9az/2FrXlfS0FicXiVSvkGpD20DWWETuBpmUa6l0fw2vyz1ZBokTa55YR
-         7W5a+46vMRy8tQKZQNTnExxsCBGhLHzybnbkzS/bZZJhsKXND8QyN7i3Smlp1Pk/0Nyc
-         wenZWqFSM05bzBOlsWuHn1M6QgMkdFnP6IbtPkWr2PF6mcDJNhizH02ujEd3Tk2ui1pP
-         Z90L+6+Exwfi6JBIyR5tUMUpOvzEpw9qdb7Tw5s664OSyhvedgW/d0OZzCDke2wg4VPl
-         N+kQ==
-X-Gm-Message-State: ABy/qLZVkqf5/Ohdla2rqCf2rO+qqiWWclAZBZyMqRWf8Y1XiCpL1ss3
-        N/+LsKJeNv+NFPYIYj/3IVo=
-X-Google-Smtp-Source: APBJJlEfR/yFfIFQP661HvXXfBIUUMAFvNviO7j1Uy75HhVCSGVVQArUTtUmi1UkY2Pr+Ei41bBizg==
-X-Received: by 2002:a05:6a20:96c4:b0:136:fdee:11c7 with SMTP id hq4-20020a056a2096c400b00136fdee11c7mr878681pzc.15.1689925995672;
-        Fri, 21 Jul 2023 00:53:15 -0700 (PDT)
-Received: from [172.19.1.47] (60-250-192-107.hinet-ip.hinet.net. [60.250.192.107])
-        by smtp.gmail.com with ESMTPSA id je7-20020a170903264700b001b8b0ac2258sm2755788plb.174.2023.07.21.00.53.12
+        bh=tEygh4c+HqxN74BgXq8Y1kfIxuqyz4efWO8eqzPzYks=;
+        b=ZZFKjhxE5yny1kT2KXB29MjR34S51AVMYMvC8EkTZQufhn1/77h7sZejxgOU2Tl1G0
+         hyjw+XM/Tf4hEEUDH22T6/9vbE23Za85/36Uk5YO6MgARb1rnEx3KF7wQB73cfUA8uDK
+         hnBGCr3WQLWK69LZniSAeOBnPXotTG3oXl0r8LM5nIb+C8UQxYQ0269hyq8a5+XMlFkk
+         o780pwnHo8ZSRFS4SFZX/DLFKgp8pkwURXjftBKUqZra0E8w3P6IVqISRC+tBwCUmvt7
+         j9TABV5zvh9vOsB3fCLYI3rGOe1y26W9PypcnYTeeqysG+5jnlcc/jAaZ0DtXVLuxVsh
+         dlbQ==
+X-Gm-Message-State: ABy/qLbfz8Ki183G0Sk73GUeuXxVpIk69pWTbcoy1iUfWURr6/05delr
+        ciuQ/3WVVUvi0XAcOWg6Qk2fMg==
+X-Google-Smtp-Source: APBJJlG70ubi7PfFJ83R0SjvKKHGbb3LLJDfj8I88GeD6ZT48ozVs6lSrCK3Pq8XKEvVEn6OlGguEA==
+X-Received: by 2002:a05:6402:549:b0:51e:ebd:9f5b with SMTP id i9-20020a056402054900b0051e0ebd9f5bmr1000093edx.36.1689926028989;
+        Fri, 21 Jul 2023 00:53:48 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id s11-20020aa7cb0b000000b0051def9be785sm1741132edt.85.2023.07.21.00.53.46
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 21 Jul 2023 00:53:15 -0700 (PDT)
-Message-ID: <eeea4f10-16d7-d218-da55-c15ce6525b43@gmail.com>
-Date:   Fri, 21 Jul 2023 15:53:10 +0800
+        Fri, 21 Jul 2023 00:53:48 -0700 (PDT)
+Message-ID: <3b4eaf27-5e6e-f3d0-24fa-01d5c059c2f5@linaro.org>
+Date:   Fri, 21 Jul 2023 09:53:46 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
-Subject: Re: [PATCH 3/3] rtc: Add driver for nuvoton ma35d1 rtc controller
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        a.zummo@towertech.it, alexandre.belloni@bootlin.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org
-Cc:     linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        soc@kernel.org, mjchen@nuvoton.com, schung@nuvoton.com,
-        Jacky Huang <ychuang3@nuvoton.com>
-References: <20230720012826.430026-1-ychuang570808@gmail.com>
- <20230720012826.430026-4-ychuang570808@gmail.com>
- <5f867f68-4ad6-11c7-5c1f-f568889b0ddf@linaro.org>
+Subject: Re: [PATCH v4 4/4] ARM: dts: imx6q: Add Variscite MX6 Custom board
+ support
 Content-Language: en-US
-From:   Jacky Huang <ychuang570808@gmail.com>
-In-Reply-To: <5f867f68-4ad6-11c7-5c1f-f568889b0ddf@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+To:     James Hilliard <james.hilliard1@gmail.com>,
+        devicetree@vger.kernel.org
+Cc:     Gregory CLEMENT <gregory.clement@bootlin.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Marek Vasut <marex@denx.de>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        Stefan Wahren <stefan.wahren@chargebyte.com>,
+        Philippe Schenker <philippe.schenker@toradex.com>,
+        =?UTF-8?B?TWljaGFsIFZva8OhxI0=?= <michal.vokac@ysoft.com>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Christoph Niedermaier <cniedermaier@dh-electronics.com>,
+        Li Yang <leoyang.li@nxp.com>, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20230721073626.3673429-1-james.hilliard1@gmail.com>
+ <20230721073626.3673429-4-james.hilliard1@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230721073626.3673429-4-james.hilliard1@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dear Krzysztof,
+On 21/07/2023 09:36, James Hilliard wrote:
+> This patch adds support for the Variscite MX6 SoM Carrier Board.
+> 
+> This Carrier-Board has the following :
+> - LVDS interface for the VLCD-CAP-GLD-LVDS 7" LCD 800 x 480 touch display
+> - HDMI Connector
+> - USB Host + USB OTG Connector
+> - 10/100/1000 Mbps Ethernet
+> - miniPCI-Express slot
+> - SD Card connector
+> - Audio Headphone/Line In jack connectors
+> - S-ATA
+> - On-board DMIC
+> - RS485 Header
+> - CAN bus header
+> - SPI header
+> - Camera Interfaces header
+> - OnBoard RTC with Coin Backup battery socket
+> - RS232 Debug Header (IDC10)
+> - RS232 DTE
+> 
+> Product Page : https://www.variscite.com/product/single-board-computers/var-mx6customboard
+> 
+> The dts file based on the ones provided by Variscite on their own
+> kernel, but adapted for mainline.
+> 
+> Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
+> Signed-off-by: James Hilliard <james.hilliard1@gmail.com>
+> ---
+>  arch/arm/boot/dts/nxp/imx/Makefile            |   1 +
+>  .../dts/nxp/imx/imx6q-var-mx6customboard.dts  | 280 ++++++++++++++++++
+>  2 files changed, 281 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/nxp/imx/imx6q-var-mx6customboard.dts
+> 
+> diff --git a/arch/arm/boot/dts/nxp/imx/Makefile b/arch/arm/boot/dts/nxp/imx/Makefile
+> index 3629e343d322..258ec0e5b712 100644
+> --- a/arch/arm/boot/dts/nxp/imx/Makefile
+> +++ b/arch/arm/boot/dts/nxp/imx/Makefile
+> @@ -244,6 +244,7 @@ dtb-$(CONFIG_SOC_IMX6Q) += \
+>  	imx6q-udoo.dtb \
+>  	imx6q-utilite-pro.dtb \
+>  	imx6q-var-dt6customboard.dtb \
+> +	imx6q-var-mx6customboard.dtb \
+>  	imx6q-vicut1.dtb \
+>  	imx6q-wandboard.dtb \
+>  	imx6q-wandboard-revb1.dtb \
+> diff --git a/arch/arm/boot/dts/nxp/imx/imx6q-var-mx6customboard.dts b/arch/arm/boot/dts/nxp/imx/imx6q-var-mx6customboard.dts
+> new file mode 100644
+> index 000000000000..3ca3662fd0d3
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/nxp/imx/imx6q-var-mx6customboard.dts
+> @@ -0,0 +1,280 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +/*
+> + * Support for Variscite MX6 Carrier-board
+> + *
+> + * Copyright 2016 Variscite, Ltd. All Rights Reserved
+> + * Copyright 2022 Bootlin
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "imx6qdl-var-som.dtsi"
+> +#include <dt-bindings/pwm/pwm.h>
+> +
+> +/ {
+> +	model = "Variscite i.MX6 QUAD/DUAL VAR-SOM-MX6 Custom Board";
+> +	compatible = "variscite,mx6customboard", "variscite,var-som-imx6q", "fsl,imx6q";
 
+This is not what you said in the bindings. And you did not test it.
 
-On 2023/7/20 下午 02:14, Krzysztof Kozlowski wrote:
-> On 20/07/2023 03:28, Jacky Huang wrote:
->> From: Jacky Huang <ychuang3@nuvoton.com>
->>
->> The ma35d1 rtc controller provides real-time and calendar messaging
->> capabilities. It supports programmable time tick and alarm match
->> interrupts. The time and calendar messages are expressed in BCD format.
->> This driver supports the built-in rtc controller of the ma35d1. It
->> enables setting and reading the rtc time and configuring and reading
->> the rtc alarm.
->>
-> ...
->
->> +static int ma35d1_rtc_probe(struct platform_device *pdev)
->> +{
->> +	struct ma35_rtc *ma35_rtc;
->> +	struct clk *clk;
->> +	u32 regval;
->> +	int err;
->> +
->> +	ma35_rtc = devm_kzalloc(&pdev->dev, sizeof(struct ma35_rtc),
-> sizeof(*)
+It does not look like you tested the DTS against bindings. Please run
+`make dtbs_check` (see
+Documentation/devicetree/bindings/writing-schema.rst or
+https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
+for instructions).
 
-I will modify this as
-ma35_rtc = devm_kzalloc(&pdev->dev, sizeof(*ma35_rtc),
-
->> +								GFP_KERNEL);
->> +	if (!ma35_rtc)
->> +		return -ENOMEM;
->> +
->> +	ma35_rtc->rtc_reg = devm_platform_ioremap_resource(pdev, 0);
->> +	if (IS_ERR(ma35_rtc->rtc_reg))
->> +		return PTR_ERR(ma35_rtc->rtc_reg);
->> +
->> +	clk = of_clk_get(pdev->dev.of_node, 0);
->> +	if (IS_ERR(clk)) {
->> +		err = PTR_ERR(clk);
->> +		dev_err(&pdev->dev, "failed to get core clk: %d\n", err);
->> +		return -ENOENT;
-> return dev_err_probe
-
-I will replace these with
-
-return dev_err_probe(&pdev->dev, PTR_ERR(clk), "failed to find rtc 
-clock\n");
-
->
->> +	}
->> +	err = clk_prepare_enable(clk);
->> +	if (err)
->> +		return -ENOENT;
->> +
->> +	platform_set_drvdata(pdev, ma35_rtc);
->> +
->> +	ma35_rtc->rtcdev = devm_rtc_device_register(&pdev->dev, pdev->name,
->> +						    &ma35d1_rtc_ops, THIS_MODULE);
->> +	if (IS_ERR(ma35_rtc->rtcdev)) {
->> +		dev_err(&pdev->dev, "rtc device register failed\n");
->> +		return PTR_ERR(ma35_rtc->rtcdev);
->> +	}
->> +
->> +	err = ma35d1_rtc_init(ma35_rtc, RTC_INIT_TIMEOUT);
->> +	if (err)
->> +		return err;
->> +
->> +	regval = rtc_reg_read(ma35_rtc, MA35_REG_RTC_CLKFMT);
->> +	regval |= RTC_CLKFMT_24HEN;
->> +	rtc_reg_write(ma35_rtc, MA35_REG_RTC_CLKFMT, regval);
->> +
->> +	ma35_rtc->irq_num = platform_get_irq(pdev, 0);
->> +
->> +	if (devm_request_irq(&pdev->dev, ma35_rtc->irq_num, ma35d1_rtc_interrupt,
->> +			     IRQF_NO_SUSPEND, "ma35d1rtc", ma35_rtc)) {
->> +		dev_err(&pdev->dev, "ma35d1 RTC request irq failed\n");
->> +		return -EBUSY;
-> return dev_err_probe
->
->> +	}
->> +
->> +	regval = rtc_reg_read(ma35_rtc, MA35_REG_RTC_INTEN);
->> +	regval |= RTC_INTEN_TICKIEN;
->> +	rtc_reg_write(ma35_rtc, MA35_REG_RTC_INTEN, regval);
->> +
->> +	device_init_wakeup(&pdev->dev, true);
->> +
->> +	return 0;
->> +}
->> +
->> +static int __exit ma35d1_rtc_remove(struct platform_device *pdev)
-> It's not an exit.
->
->> +{
->> +	device_init_wakeup(&pdev->dev, false);
->> +
->> +	platform_set_drvdata(pdev, NULL);
-> Just drop remove. You don't do anything useful here.
-
-I will drop 'ma35d1_rtc_remove'.
->
->
->> +
->> +	return 0;
->> +}
->> +
->> +static int ma35d1_rtc_suspend(struct platform_device *pdev, pm_message_t state)
->> +{
->> +	struct ma35_rtc *ma35_rtc = platform_get_drvdata(pdev);
->> +	u32 regval;
->> +
->> +	if (device_may_wakeup(&pdev->dev))
->> +		enable_irq_wake(ma35_rtc->irq_num);
->> +
->> +	regval = rtc_reg_read(ma35_rtc, MA35_REG_RTC_INTEN);
->> +	regval &= ~RTC_INTEN_TICKIEN;
->> +	rtc_reg_write(ma35_rtc, MA35_REG_RTC_INTEN, regval);
->> +
->> +	return 0;
->> +}
->> +
->> +static int ma35d1_rtc_resume(struct platform_device *pdev)
->> +{
->> +	struct ma35_rtc *ma35_rtc = platform_get_drvdata(pdev);
->> +	u32 regval;
->> +
->> +	if (device_may_wakeup(&pdev->dev))
->> +		disable_irq_wake(ma35_rtc->irq_num);
->> +
->> +	regval = rtc_reg_read(ma35_rtc, MA35_REG_RTC_INTEN);
->> +	regval |= RTC_INTEN_TICKIEN;
->> +	rtc_reg_write(ma35_rtc, MA35_REG_RTC_INTEN, regval);
->> +
->> +	return 0;
->> +}
->> +
->> +static const struct of_device_id ma35d1_rtc_of_match[] = {
->> +	{ .compatible = "nuvoton,ma35d1-rtc", },
->> +	{},
->> +};
->> +MODULE_DEVICE_TABLE(of, ma35d1_rtc_of_match);
->> +
->> +static struct platform_driver ma35d1_rtc_driver = {
->> +	.remove     = __exit_p(ma35d1_rtc_remove),
->> +	.suspend    = ma35d1_rtc_suspend,
->> +	.resume     = ma35d1_rtc_resume,
->> +	.probe      = ma35d1_rtc_probe,
->> +	.driver		= {
->> +		.name	= "rtc-ma35d1",
->> +		.owner	= THIS_MODULE,
-> ??? No.
-
-I will drop this line.
-
->> +		.of_match_table = of_match_ptr(ma35d1_rtc_of_match),
-
-I will modify it as
-
-.of_match_table = ma35d1_rtc_of_match,
-
-
-
-> Drop of_match_ptr. Didn't you get such comment before? Your other
-> submission also had the same bug...
->
-> Actually, most of these comments you already received for your other
-> drivers, so it would be great if we did not have to repeat it for every
-> new driver from you.
->
-> Best regards,
-> Krzysztof
->
-
-I will be more careful in reviewing code to avoid making the
-same mistakes again. Thank you for your guidance.,
-
-
-Best Regards,
-Jacky Huang
+Best regards,
+Krzysztof
 
