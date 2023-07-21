@@ -2,111 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 45C4975C7DC
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 15:33:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 31F3B75C821
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 15:46:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231207AbjGUNdA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jul 2023 09:33:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40254 "EHLO
+        id S230104AbjGUNqu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jul 2023 09:46:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45462 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231344AbjGUNc4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 09:32:56 -0400
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D240B30DA
-        for <devicetree@vger.kernel.org>; Fri, 21 Jul 2023 06:32:52 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-992b2249d82so309137166b.1
-        for <devicetree@vger.kernel.org>; Fri, 21 Jul 2023 06:32:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689946371; x=1690551171;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=QOWJLBf1ty8KzVG8dUmwJsE8IPV8x0Srq0/dtmrSM/A=;
-        b=DKpboIZu/eBEk5A5aNIiG3K5eAreQDmJcU5De/RJrEqY9O1e5mKOwm9T8J9cnRQkzh
-         U7PPLMILwW0BvjmPNyyWa8QEbDoKvG5knagJSBEDHMlzAbJv/2+CDBERJnUco3eceosO
-         +7Um1qhc5eF/+y6NHGUhKjyk9Kz/kIoKWxCi/htydouQ2V8Yfdn86Q39Zrm033kulpUT
-         d565tjHsEjr6vlg+XsxaK+GEsPYRLBD+17Ma4zsKTjC3vP/XcQ+EzDKWrss5drD5ozTi
-         e78B6CcADLctsjUmEkupmTx+pyOETeuht5hJXXaaN562QxUF3DafFK9Q538tPWBbbn2J
-         dpig==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689946371; x=1690551171;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=QOWJLBf1ty8KzVG8dUmwJsE8IPV8x0Srq0/dtmrSM/A=;
-        b=NjE/Qrd+HOGf6yK4SThddJgHujUjjpI5FNu8bO0MxTUGF5jg3c9Zsq2+bWRj/0VIGI
-         +pCssPLkeefsaTj6O4WQBDliLPNh1Itx7uso8VYEs/SKqlDaW6PdTVhMWHxhIyPLIIKo
-         wCHcF0UPgbbBZoEJXD85laJQc4gVp9T+ySwnPjRmhKy3t7XAENIiUxwYFDwq554GLC0r
-         0h9yfMGpp56RgQ5U4GsCbQFAF3d1zcwBezPU0wAiKJjiH49jgvPkeSD08hUwHlkHkAB8
-         q26PuUlNcBaAKtpl+Wfga86hgz55k/VSR7H0j+IUHOfAeaajfF0BCpdoUrLmZ17LYAsu
-         bp9g==
-X-Gm-Message-State: ABy/qLblrMnzwlftwCq0RNFloNTRX8x2EzCjpMMde1NWNgUl+yt+YkAM
-        yDe6PZ/6cbZBvp4zz0fb94I+Sg==
-X-Google-Smtp-Source: APBJJlGFk/rv9nGVhk02KNVz6CUfXg+yS5TJPVyYDu6CF7DM/SZEyPteTU7J8/zhCBqx5Hy5DstoHA==
-X-Received: by 2002:a17:906:9bcc:b0:991:f7cb:cc3d with SMTP id de12-20020a1709069bcc00b00991f7cbcc3dmr1713361ejc.65.1689946371156;
-        Fri, 21 Jul 2023 06:32:51 -0700 (PDT)
-Received: from krzk-bin.. ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id z3-20020a170906270300b00993017b64a8sm2170613ejc.224.2023.07.21.06.32.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Jul 2023 06:32:50 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        with ESMTP id S229642AbjGUNqu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 09:46:50 -0400
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CCBD41986;
+        Fri, 21 Jul 2023 06:46:48 -0700 (PDT)
+X-IronPort-AV: E=McAfee;i="6600,9927,10778"; a="433255150"
+X-IronPort-AV: E=Sophos;i="6.01,220,1684825200"; 
+   d="scan'208";a="433255150"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Jul 2023 06:46:47 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10778"; a="728103153"
+X-IronPort-AV: E=Sophos;i="6.01,220,1684825200"; 
+   d="scan'208";a="728103153"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmsmga007.fm.intel.com with ESMTP; 21 Jul 2023 06:46:34 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+        (envelope-from <andy@kernel.org>)
+        id 1qMqSj-006s0v-2p;
+        Fri, 21 Jul 2023 16:46:29 +0300
+Date:   Fri, 21 Jul 2023 16:46:29 +0300
+From:   Andy Shevchenko <andy@kernel.org>
+To:     Stephen Boyd <sboyd@kernel.org>
+Cc:     Alessandro Zummo <a.zummo@towertech.it>,
+        Alexander Sverdlin <alexander.sverdlin@gmail.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
         Conor Dooley <conor+dt@kernel.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 2/2] ARM: dts: samsung: exynos5250-snow: switch i2c-arb to new child variant
-Date:   Fri, 21 Jul 2023 15:32:46 +0200
-Message-Id: <20230721133246.15752-2-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230721133246.15752-1-krzysztof.kozlowski@linaro.org>
-References: <20230721133246.15752-1-krzysztof.kozlowski@linaro.org>
+        Damien Le Moal <dlemoal@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Eric Dumazet <edumazet@google.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Hartley Sweeten <hsweeten@visionengravers.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Kris Bahnsen <kris@embeddedts.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Lennert Buytenhek <kernel@wantstofly.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Lukasz Majewski <lukma@denx.de>,
+        Mark Brown <broonie@kernel.org>,
+        Michael Peters <mpeters@embeddedts.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Nikita Shubin <nikita.shubin@maquefel.me>,
+        Nikita Shubin via B4 Relay 
+        <devnull+nikita.shubin.maquefel.me@kernel.org>,
+        Olof Johansson <olof@lixom.net>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Richard Weinberger <richard@nod.at>,
+        Rob Herring <robh+dt@kernel.org>,
+        Russell King <linux@armlinux.org.uk>,
+        Sebastian Reichel <sre@kernel.org>,
+        Sergey Shtylyov <s.shtylyov@omp.ru>,
+        Takashi Iwai <tiwai@suse.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>, soc@kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-rtc@vger.kernel.org,
+        linux-watchdog@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-pwm@vger.kernel.org, linux-spi@vger.kernel.org,
+        netdev@vger.kernel.org, dmaengine@vger.kernel.org,
+        linux-mtd@lists.infradead.org, linux-ide@vger.kernel.org,
+        linux-input@vger.kernel.org, alsa-devel@alsa-project.org
+Subject: Re: [PATCH v3 03/42] clk: ep93xx: add DT support for Cirrus EP93xx
+Message-ID: <ZLqMNU6XtTEO2a1R@smile.fi.intel.com>
+References: <20230605-ep93xx-v3-0-3d63a5f1103e@maquefel.me>
+ <20230605-ep93xx-v3-3-3d63a5f1103e@maquefel.me>
+ <3fcb760c101c5f7081235290362f5c02.sboyd@kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <3fcb760c101c5f7081235290362f5c02.sboyd@kernel.org>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_SOFTFAIL,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Since commit e8813c15be0a ("dt-bindings: i2c: add support for 'i2c-arb'
-subnode") the i2c-arbitrator subnode should not have unit address.
+On Thu, Jul 20, 2023 at 04:27:45PM -0700, Stephen Boyd wrote:
+> Quoting Nikita Shubin via B4 Relay (2023-07-20 04:29:03)
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- arch/arm/boot/dts/samsung/exynos5250-snow-common.dtsi | 6 +-----
- 1 file changed, 1 insertion(+), 5 deletions(-)
+...
 
-diff --git a/arch/arm/boot/dts/samsung/exynos5250-snow-common.dtsi b/arch/arm/boot/dts/samsung/exynos5250-snow-common.dtsi
-index 64f00c5fd322..65b000df176e 100644
---- a/arch/arm/boot/dts/samsung/exynos5250-snow-common.dtsi
-+++ b/arch/arm/boot/dts/samsung/exynos5250-snow-common.dtsi
-@@ -60,9 +60,6 @@ vbat: vbat-fixed-regulator {
- 
- 	i2c-arbitrator {
- 		compatible = "i2c-arb-gpio-challenge";
--		#address-cells = <1>;
--		#size-cells = <0>;
--
- 		i2c-parent = <&i2c_4>;
- 
- 		our-claim-gpios = <&gpf0 3 GPIO_ACTIVE_LOW>;
-@@ -75,8 +72,7 @@ i2c-arbitrator {
- 		pinctrl-0 = <&arb_our_claim &arb_their_claim>;
- 
- 		/* Use ID 104 as a hint that we're on physical bus 4 */
--		i2c_104: i2c@0 {
--			reg = <0>;
-+		i2c_104: i2c-arb {
- 			#address-cells = <1>;
- 			#size-cells = <0>;
- 
+> > +static bool is_best(unsigned long rate, unsigned long now,
+> > +                    unsigned long best)
+> > +{
+> > +       return abs(rate - now) < abs(rate - best);
+> 
+> Another case where we need abs_diff() so that it doesn't get confused
+> when trying to do signed comparison.
+
+Here you are: Message-Id: <20230721134235.15517-1-andriy.shevchenko@linux.intel.com>
+
 -- 
-2.34.1
+With Best Regards,
+Andy Shevchenko
+
 
