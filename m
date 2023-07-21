@@ -2,30 +2,30 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A00475C89F
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 15:57:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F45675C897
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 15:56:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231426AbjGUN5L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jul 2023 09:57:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52586 "EHLO
+        id S231673AbjGUN4s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jul 2023 09:56:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52308 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230508AbjGUN47 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 09:56:59 -0400
+        with ESMTP id S231661AbjGUN4X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 09:56:23 -0400
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 746FF3A91
-        for <devicetree@vger.kernel.org>; Fri, 21 Jul 2023 06:56:37 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0286830D0
+        for <devicetree@vger.kernel.org>; Fri, 21 Jul 2023 06:55:57 -0700 (PDT)
 Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
         by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <ore@pengutronix.de>)
-        id 1qMqb3-0005Ru-Vy; Fri, 21 Jul 2023 15:55:06 +0200
+        id 1qMqb3-0005Rs-W1; Fri, 21 Jul 2023 15:55:06 +0200
 Received: from [2a0a:edc0:0:1101:1d::ac] (helo=dude04.red.stw.pengutronix.de)
         by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
         (envelope-from <ore@pengutronix.de>)
-        id 1qMqb1-00150f-IU; Fri, 21 Jul 2023 15:55:03 +0200
+        id 1qMqb1-00150Z-Bh; Fri, 21 Jul 2023 15:55:03 +0200
 Received: from ore by dude04.red.stw.pengutronix.de with local (Exim 4.96)
         (envelope-from <ore@pengutronix.de>)
-        id 1qMqb0-0068yu-1n;
+        id 1qMqb0-0068z4-1s;
         Fri, 21 Jul 2023 15:55:02 +0200
 From:   Oleksij Rempel <o.rempel@pengutronix.de>
 To:     "David S. Miller" <davem@davemloft.net>,
@@ -46,9 +46,9 @@ Cc:     Oleksij Rempel <o.rempel@pengutronix.de>,
         netdev@vger.kernel.org, UNGLinuxDriver@microchip.com,
         "Russell King (Oracle)" <linux@armlinux.org.uk>,
         devicetree@vger.kernel.org
-Subject: [PATCH net-next v2 1/6] dt-bindings: net: dsa: microchip: add wakeup-source property
-Date:   Fri, 21 Jul 2023 15:54:56 +0200
-Message-Id: <20230721135501.1464455-2-o.rempel@pengutronix.de>
+Subject: [PATCH net-next v2 2/6] dt-bindings: net: dsa: microchip: add local-mac-address property support
+Date:   Fri, 21 Jul 2023 15:54:57 +0200
+Message-Id: <20230721135501.1464455-3-o.rempel@pengutronix.de>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230721135501.1464455-1-o.rempel@pengutronix.de>
 References: <20230721135501.1464455-1-o.rempel@pengutronix.de>
@@ -67,31 +67,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add wakeup-source property to enable Wake on Lan functionality in the
-switch.
-
-Since PME wake pin is not always attached to the SoC, use wakeup-source
-instead of wakeup-gpios
+All KSZ switches have configurable MAC address support which is used for
+sending pause frames and for Wake on Magic Packet. So, allow local-mac-address
+property in the root of the switch node.
 
 Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
 Acked-by: Conor Dooley <conor.dooley@microchip.com>
 ---
- Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+ Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
 diff --git a/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml b/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
-index e51be1ac03623..26385ba624245 100644
+index 26385ba624245..fd9a10d0ba28c 100644
 --- a/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
 +++ b/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
-@@ -49,6 +49,8 @@ properties:
-       Set if the output SYNCLKO clock should be disabled. Do not mix with
+@@ -50,6 +50,7 @@ properties:
        microchip,synclko-125.
  
-+  wakeup-source: true
-+
+   wakeup-source: true
++  local-mac-address: true
+ 
  required:
    - compatible
-   - reg
 -- 
 2.39.2
 
