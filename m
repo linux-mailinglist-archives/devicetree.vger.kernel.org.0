@@ -2,189 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7BE5175C4E7
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 12:43:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C17A275C50F
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 12:54:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229808AbjGUKn1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jul 2023 06:43:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41756 "EHLO
+        id S229841AbjGUKyp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jul 2023 06:54:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47524 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231738AbjGUKnO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 06:43:14 -0400
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E420B171B
-        for <devicetree@vger.kernel.org>; Fri, 21 Jul 2023 03:43:12 -0700 (PDT)
-Received: by mail-wr1-x42b.google.com with SMTP id ffacd0b85a97d-3110ab7110aso1506144f8f.3
-        for <devicetree@vger.kernel.org>; Fri, 21 Jul 2023 03:43:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689936191; x=1690540991;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=10U4fK1s3xSb0xE9SC0kNza6kl90rPnqzrVj/rW25sA=;
-        b=ylegs2eQ1FV4JkZAMkdbyfVbgKsFznHRW3MP7u/ObABBMG1slmHz5LpzO78kVwHd9L
-         wz2d1lIYpN082F74Q8YPFHg2fx9ArEKmSDGtp21GAr2QxymgetMUc+9yJT9Ejf0rPoJD
-         Tr5YtbxYjEFoTqqhVwn9+SgorgrUlxAeeNx1PsT0eSDKNMi0mWj0B+NA6qEryk4DYep+
-         Z/WKDzY+KRipQ3tpZ4g2X+3jTxW4CD2TiiOIpW3fekolkSg6vU6RYuZaUxjy5sfAOBKF
-         3CGMZsChEQ971aHhLt1woOScZsSuXsyl9iVZhbNsxdEa4PmqgCXBMyti4midHNQty3uB
-         ++VA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689936191; x=1690540991;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=10U4fK1s3xSb0xE9SC0kNza6kl90rPnqzrVj/rW25sA=;
-        b=OD2VzUpY5SoWaxixY2vdl77hOVoC1POZbTtwltIHFh4eh6Oz2rdzHZ6bPqRtDFsV15
-         /SPk5CemQWnjqclQjtY8woJorE10zmpHpvLmti+xTv68oo++oL9dmbhNdipN9C/EaOor
-         0QUu7rna4aVBViwiXC11Y7OThH8VoLfa4xCIG5CQ0RL7JUSM45TGKs7o4JXqO/bMYc/r
-         6VBYksKYyh96MfJrXpSfZp3WcgRrTfeiC7aLcbUArsIzCiGmOOd62FOsrjq3buuioPSC
-         EINwC70v2PGyYzbJOknp/W3RYeR2/xPELyv7ohWE5aGJW4K5NaBair/l/UhJd+Bksk3W
-         rDlw==
-X-Gm-Message-State: ABy/qLYb+89DzL6Nnuatft2iMJ/BHWPFB7RqJ3r+/FScxhnKiv5+fVdc
-        FTsSU7ftoMBsHmoC6XeQTCvoGA==
-X-Google-Smtp-Source: APBJJlHtzj78AEfrCX5x9slxz9FuK7svnQZ70Nm2fRzgMaNUv6jWNt3kQ7ifiimBxePqGKVOpod34g==
-X-Received: by 2002:a5d:6086:0:b0:314:39d0:26f6 with SMTP id w6-20020a5d6086000000b0031439d026f6mr1289165wrt.18.1689936191292;
-        Fri, 21 Jul 2023 03:43:11 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id x13-20020a5d60cd000000b0030ada01ca78sm3843492wrt.10.2023.07.21.03.43.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 21 Jul 2023 03:43:10 -0700 (PDT)
-Message-ID: <3492152a-d668-54ba-7cb4-4db8bfec6f03@linaro.org>
-Date:   Fri, 21 Jul 2023 12:43:07 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v6 2/3] ARM: dts: imx6qdl: Add Variscite VAR-SOM-MX6 SoM
- support
-Content-Language: en-US
-To:     James Hilliard <james.hilliard1@gmail.com>,
-        devicetree@vger.kernel.org
-Cc:     Gregory CLEMENT <gregory.clement@bootlin.com>,
+        with ESMTP id S229476AbjGUKyo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 06:54:44 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64F78171A;
+        Fri, 21 Jul 2023 03:54:43 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id DFD22619BA;
+        Fri, 21 Jul 2023 10:54:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1711AC433C8;
+        Fri, 21 Jul 2023 10:54:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1689936882;
+        bh=P93rQLt+HbT+haMc2bru+0/BFEl6sR0r4+uZfisc2mU=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=js9LRL8BYtSeSsiAGLiLTDDfDPpCKPqL1KLUgbQX/A1WRYTEqa8mTGuxe4UOm86Cl
+         HD4NWCgGvwbVqsCLU5V0/znaqqcmboX9J9ubnV8C274sbysgmw0Lktq/pvAPfBhjt9
+         lgeI2QP/vFmYexeHAHw8QwWPPIk6PFlgWPGYGFTf9bEzhDiikRx5+5NnK2aU3Hgb8W
+         zxHa4JbMyEnak1R6F93bwxM+9R89l/L6Xlk/KrwGnw8zlDsBEF+7QR6uW6HqHDpY3E
+         VLHt0Eb38FqriAOKSv/naBEUSwAwFMwuAlnQPae93WwsFhUPkRq5i9/D/JooU1kf4i
+         EhmbiGw53T67w==
+From:   Mark Brown <broonie@kernel.org>
+To:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Francesco Dolcini <francesco@dolcini.it>
+Cc:     Francesco Dolcini <francesco.dolcini@toradex.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Marek Vasut <marex@denx.de>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        Stefan Wahren <stefan.wahren@chargebyte.com>,
-        Philippe Schenker <philippe.schenker@toradex.com>,
-        Andreas Kemnade <andreas@kemnade.info>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        Christoph Niedermaier <cniedermaier@dh-electronics.com>,
-        Li Yang <leoyang.li@nxp.com>, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20230721103350.3684483-1-james.hilliard1@gmail.com>
- <20230721103350.3684483-2-james.hilliard1@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230721103350.3684483-2-james.hilliard1@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>, CTLIN0@nuvoton.com
+In-Reply-To: <20230719124752.248898-1-francesco@dolcini.it>
+References: <20230719124752.248898-1-francesco@dolcini.it>
+Subject: Re: [PATCH v1 0/2] ASoC: dt-bindings: nau8822: minor updates
+Message-Id: <168993687980.20527.4752913856777924592.b4-ty@kernel.org>
+Date:   Fri, 21 Jul 2023 11:54:39 +0100
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.13-dev-099c9
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/07/2023 12:33, James Hilliard wrote:
-> This patch adds support for the Variscite VAR_SOM-MX6 SoM with :
-> - i.MX6 Quad or Dual Lite SoC
-> - 256 – 4096 MB DDR3
-> - 4-64 GB eMMC
-> - 128 – 1024 MB SLC NAND
-> - Camera Interface
-> - HDMI+CEC interface
-> - LVDS / DSI / Parallel RGB interfaces
-> - Ethernet RGMII interface
-> - On-SoM Wi-Fi/Bluetooth with WiLink wl183x SDIO Module
-> - SD/MMC/SDIO interface
-> - USB Host + USB OTG interface
-> - I2C interfaces
-> - SPI interfaces
-> - PCI-Express 2.0 interface
-> - on-SoM Audio Codec with HP/Line-In interfaces + DMIC interface
-> - Digital Audio interface
-> - S/PDIF interface
+On Wed, 19 Jul 2023 14:47:50 +0200, Francesco Dolcini wrote:
+> Minor updates to NAU8822 DT bindings:
+>  - Add #sound-dai-cells
+>  - Add MCLK
 > 
-> Product website : https://www.variscite.com/product/system-on-module-som/cortex-a9/var-som-mx6-cpu-freescale-imx6/
+> Francesco Dolcini (2):
+>   ASoC: dt-bindings: nau8822: Add #sound-dai-cells
+>   ASoC: dt-bindings: nau8822: Add MCLK clock
 > 
-> Support is handled with a SoM-centric dtsi exporting the default interfaces
-> along the default pinmuxing to be enabled by the board dts file.
-> 
-> This file is based on the one provided by Variscite on their own
-> kernel, but adapted for mainline.
-> 
-> Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
-> Signed-off-by: James Hilliard <james.hilliard1@gmail.com>
-> ---
->  .../arm/boot/dts/nxp/imx/imx6qdl-var-som.dtsi | 544 ++++++++++++++++++
->  1 file changed, 544 insertions(+)
->  create mode 100644 arch/arm/boot/dts/nxp/imx/imx6qdl-var-som.dtsi
-> 
-> diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-var-som.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl-var-som.dtsi
-> new file mode 100644
-> index 000000000000..a7d2aecd83fe
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-var-som.dtsi
-> @@ -0,0 +1,544 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/*
-> + * Support for Variscite VAR-SOM-MX6 Module
-> + *
-> + * Copyright 2011 Linaro Ltd.
-> + * Copyright 2012 Freescale Semiconductor, Inc.
-> + * Copyright (C) 2014-2016 Variscite, Ltd.
-> + * Author: Donio Ron <ron.d@variscite.com>
-> + * Copyright 2022 Bootlin
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "imx6q.dtsi"
-> +#include <dt-bindings/clock/imx6qdl-clock.h>
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/sound/fsl-imx-audmux.h>
-> +
-> +/ {
-> +	model = "Variscite VAR-SOM-MX6 module";
-> +	compatible = "variscite,var-som-imx6q", "fsl,imx6q";
-> +
-> +	chosen {
-> +		stdout-path = &uart1;
-> +	};
-> +
-> +	memory@10000000 {
-> +		device_type = "memory";
-> +		reg = <0x10000000 0x40000000>;
-> +	};
-> +
-> +	reg_3p3v: regulator-3p3v {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "3P3V";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		regulator-always-on;
-> +	};
-> +
-> +	reg_3v3_touch: reg-3v3-touch {
+> [...]
 
-The prefix is still different than all others. You used "regulator" in
-other places, but here it is "reg". Keep your code consistent.
+Applied to
 
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "touch_3v3_supply";
-> +		regulator-always-on;
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-Also, missing constraints.
+Thanks!
 
+[1/2] ASoC: dt-bindings: nau8822: Add #sound-dai-cells
+      commit: e8c213ca026d3cadbc306885ad1b37efab02c218
+[2/2] ASoC: dt-bindings: nau8822: Add MCLK clock
+      commit: c214131f492083025e33354430d5b420add88b5e
 
-Best regards,
-Krzysztof
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
 
