@@ -2,100 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E012D75C10E
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 10:15:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F071275C10B
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 10:14:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231442AbjGUIPD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jul 2023 04:15:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58166 "EHLO
+        id S230323AbjGUIOz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jul 2023 04:14:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58082 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231434AbjGUIPB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 04:15:01 -0400
-Received: from mail-vs1-xe2a.google.com (mail-vs1-xe2a.google.com [IPv6:2607:f8b0:4864:20::e2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 137C3272E
-        for <devicetree@vger.kernel.org>; Fri, 21 Jul 2023 01:15:00 -0700 (PDT)
-Received: by mail-vs1-xe2a.google.com with SMTP id ada2fe7eead31-4468a772490so673311137.3
-        for <devicetree@vger.kernel.org>; Fri, 21 Jul 2023 01:15:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1689927299; x=1690532099;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2PU0a9VuD0AqZ7LLCF0XhwtJkP2bxDSGXNRofV50mGY=;
-        b=TTXUft0VE9EI+2NHbHh36+FLkJiAXUGzc5JeTg1MRU2/+hAY8Tp+Rde0Xz44B/cVzp
-         BdQL3i8ZzqSy5SvzLqCqDEigrbpKpDFcJqH5qVXXQdPnSSuum3aDX48yhAgLbuhooPDr
-         NYRKFgdBJEswNg9iKQ0Lw0nCexdyVbBzefEAs=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689927299; x=1690532099;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=2PU0a9VuD0AqZ7LLCF0XhwtJkP2bxDSGXNRofV50mGY=;
-        b=S3Ma/CFA+Tk8kw1SmQ1E+OXD2e3Nd7ndTO84UJTW2lJju/S/7D3cDB8rKHrv8ByzdS
-         Tb65ZJdB1ZqVP1aWsoFTHEStfkxKKP19h20X844HrNbcAFSavQ2ls6uI0Ob3NT29QkAE
-         joWoor+3k6PzULb72gaOCRfSB7hofD9VL2ebdlZvvctNjE2rw9Uu58w7JhufB0o9SWrA
-         mbYBHYHV7oBMicYr/WNjG7FQZ0XV1UsR+Q7+Ie4+dqbnprBUvQBuyXNQRLkg+Auti94Y
-         xU25Y4uKYpqEODLOf9pdl3zeTEC8svjfqoOEj4RIvd3bcsYo8rpDaZTRIGPF2hJ/a2f9
-         O2/g==
-X-Gm-Message-State: ABy/qLa8mNlvhoxSFKWK6TSajSeume2Pz1nuQIJ5OINeDsydbyRwiE2n
-        1M8XeKmHABhQblOWFOvv+3zOXX5eyv0l4FOEmVTMxXNQ4amkBSXM
-X-Google-Smtp-Source: APBJJlECUvJBjbKPxeyxhugDWCa/+ZcACmwgOgioxcqGIfgnTdRb8nXyKKwshtlfcwhbKhOt4HSOz3rq6GuBw1C9KU8=
-X-Received: by 2002:a67:fa4d:0:b0:445:bd3:5b3a with SMTP id
- j13-20020a67fa4d000000b004450bd35b3amr417073vsq.4.1689927299149; Fri, 21 Jul
- 2023 01:14:59 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230721080751.2012318-1-wenst@chromium.org>
-In-Reply-To: <20230721080751.2012318-1-wenst@chromium.org>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Fri, 21 Jul 2023 16:14:48 +0800
-Message-ID: <CAGXv+5HndYc3eXVBwy=hvsZpTQb-cSgMmDds-Cnjhn0Z461i1g@mail.gmail.com>
-Subject: Re: [PATCH v2 0/7] regulator: mt6358: Remove bogus regulators and improvements
-To:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S230497AbjGUIOy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 04:14:54 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AFFA2727;
+        Fri, 21 Jul 2023 01:14:46 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id AB71261705;
+        Fri, 21 Jul 2023 08:14:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D3075C433C8;
+        Fri, 21 Jul 2023 08:14:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1689927284;
+        bh=sFlXHCb5ZvFuWm824StAJi7e5LrCinNBnp51yxoySZ8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=kGu8eB//nerrPvPDj1hCcc/PlC1GnAMZ+XCd5Pt9DcL5FtLuhrKtJSAxpqJKlapFL
+         XlmzIX/SPU7ndFE1/f2YLm3lC9WhO+BXfUej+oQEo8h9s5IIMJ4DUNSCjdiQhos59Y
+         SkOUNHcsP2HLqangqDzBuUgSvZQbMA3Vql8hRWo6wkZjGraxbkvcyA9AYZu+anE9+p
+         qltWp6GBEWZF3wXVJQf5bPWM3OZ471Js05ABe4vKTiqXPqJkR6yfexQrsOQi/lNUDC
+         zLervuL4tXGVwCd6MNDJYB8Vriyg8wS3dfaUAb0g6Yi0GniYPjUIFoJGN5v1WKh3iV
+         0EOqvnwbKwIuw==
+Received: from johan by xi.lan with local (Exim 4.96)
+        (envelope-from <johan@kernel.org>)
+        id 1qMlHp-0003Ms-1Q;
+        Fri, 21 Jul 2023 10:14:53 +0200
+Date:   Fri, 21 Jul 2023 10:14:53 +0200
+From:   Johan Hovold <johan@kernel.org>
+To:     Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
+Cc:     Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        Felipe Balbi <balbi@kernel.org>,
+        Wesley Cheng <quic_wcheng@quicinc.com>,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        quic_pkondeti@quicinc.com, quic_ppratap@quicinc.com,
+        quic_jackp@quicinc.com, quic_harshq@quicinc.com,
+        ahalaney@redhat.com, quic_shazhuss@quicinc.com
+Subject: Re: [PATCH v9 06/10] usb: dwc3: qcom: Add support to read IRQ's
+ related to multiport
+Message-ID: <ZLo-feuIr2FzCoxa@hovoldconsulting.com>
+References: <20230621043628.21485-1-quic_kriskura@quicinc.com>
+ <20230621043628.21485-7-quic_kriskura@quicinc.com>
+ <ZJryrhuUrL5APh4o@hovoldconsulting.com>
+ <7e32cf95-1565-5736-cc3e-c70e8d8f3ca7@quicinc.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7e32cf95-1565-5736-cc3e-c70e8d8f3ca7@quicinc.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 21, 2023 at 4:08=E2=80=AFPM Chen-Yu Tsai <wenst@chromium.org> w=
-rote:
->
-> Hi,
->
-> This is v2 of the remainder of the MT6358 regulator driver cleanup
-> and improvement series. v1 can be found here [1].
->
-> Changes since v1:
-> - Merged patches dropped
-> - Added patch to move VCN33 regulator status sync after ID check
-> - Added patch to fix VCN33 sync fail error message
-> - Added patch to add missing register definitions
->
-> Various discrepancies were found while preparing to upstream MT8186
-> device trees, which utilize the MT6366 PMIC, that is also covered by
-> this driver.
->
-> Patch 1 should either go through the mfd tree and an immutable branch
-> created for the regulator tree to consume, or given an Ack, merged
-> directly through the regulator tree.
+On Mon, Jul 03, 2023 at 12:29:41AM +0530, Krishna Kurapati PSSNV wrote:
+> On 6/27/2023 8:01 PM, Johan Hovold wrote:
+> > On Wed, Jun 21, 2023 at 10:06:24AM +0530, Krishna Kurapati wrote:
+  
+> >> +static int dwc3_qcom_setup_mp_irq(struct platform_device *pdev)
+> >> +{
+> >> +	struct dwc3_qcom *qcom = platform_get_drvdata(pdev);
+> >> +	char irq_name[15];
+> >> +	int irq;
+> >> +	int ret;
+> >> +	int i;
+> >> +
+> >> +	for (i = 0; i < 4; i++) {
+> > 
+> > DWC3_MAX_PORTS here too and similar below.
+> > 
+> >> +		if (qcom->dp_hs_phy_irq[i])
+> >> +			continue;
+> > 
+> > This is not very nice. You should try to integrate the current lookup
+> > code as I told you to do with the PHY lookups. That is, use a single
+> > loop for all HS/SS IRQs, and pick the legacy name if the number of ports
+> > is 1.
+> > 
+> > Of course, you added the xhci capability parsing to the core driver so
+> > that information is not yet available, but you need it in the glue
+> > driver also...
+> > 
+> > As I mentioned earlier, you can infer the number of ports from the
+> > interrupt names. Alternatively, you can infer it from the compatible
+> > string. In any case, you should not need to ways to determine the same
+> > information in the glue driver, then in the core part, and then yet
+> > again in the xhci driver...
 
-Please ignore this thread. I forgot to add Lee to the recipients.
-I will resend later.
+>   The reason why I didn't integrate this with the original function was 
+> the ACPI stuff. The MP devices have no ACPI variant. And I think for 
+> clarity sake its best to keep these two functions separated.
 
+No. The ACPI stuff may make this a little harder to implement, but
+that's not a sufficient reason to not try to refactor things properly.
 
-ChenYu
+> >> +
+> >> +		sprintf(irq_name, "dp%d_hs_phy_irq", i+1);
+> > 
+> > Spaces around binary operators. Does not checkpatch warn about that?
+> > 
+> >> +		irq = dwc3_qcom_get_irq(pdev, irq_name, -1);
+> >> +		if (irq > 0) {
+> >> +			irq_set_status_flags(irq, IRQ_NOAUTOEN);
+> >> +			ret = devm_request_threaded_irq(qcom->dev, irq, NULL,
+> >> +					qcom_dwc3_resume_irq,
+> >> +					IRQF_TRIGGER_HIGH | IRQF_ONESHOT,
+> >> +					irq_name, qcom);
+> >> +			if (ret) {
+> >> +				dev_err(qcom->dev, "%s failed: %d\n", irq_name, ret);
+> >> +				return ret;
+> >> +			}
+> >> +		}
+> >> +
+> >> +		qcom->dp_hs_phy_irq[i] = irq;
+> >> +	}
+> >> +
+> >> +	for (i = 0; i < 4; i++) {
+> >> +		if (qcom->dm_hs_phy_irq[i])
+> >> +			continue;
+> >> +
+> >> +		sprintf(irq_name, "dm%d_hs_phy_irq", i+1);
+> >> +		irq = dwc3_qcom_get_irq(pdev, irq_name, -1);
+> >> +		if (irq > 0) {
+> >> +			irq_set_status_flags(irq, IRQ_NOAUTOEN);
+> >> +			ret = devm_request_threaded_irq(qcom->dev, irq, NULL,
+> >> +					qcom_dwc3_resume_irq,
+> >> +					IRQF_TRIGGER_HIGH | IRQF_ONESHOT,
+> >> +					irq_name, qcom);
+> >> +			if (ret) {
+> >> +				dev_err(qcom->dev, "%s failed: %d\n", irq_name, ret);
+> >> +				return ret;
+> >> +			}
+> >> +		}
+> >> +
+> >> +		qcom->dm_hs_phy_irq[i] = irq;
+> >> +	}
+> >> +
+> >> +	for (i = 0; i < 2; i++) {
+> >> +		if (qcom->ss_phy_irq[i])
+> >> +			continue;
+> >> +
+> >> +		sprintf(irq_name, "ss%d_phy_irq", i+1);
+> >> +		irq = dwc3_qcom_get_irq(pdev, irq_name, -1);
+> >> +		if (irq > 0) {
+> >> +			irq_set_status_flags(irq, IRQ_NOAUTOEN);
+> >> +			ret = devm_request_threaded_irq(qcom->dev, irq, NULL,
+> >> +					qcom_dwc3_resume_irq,
+> >> +					IRQF_TRIGGER_HIGH | IRQF_ONESHOT,
+> >> +					irq_name, qcom);
+> >> +			if (ret) {
+> >> +				dev_err(qcom->dev, "%s failed: %d\n", irq_name, ret);
+> >> +				return ret;
+> >> +			}
+> >> +		}
+> >> +
+> >> +		qcom->ss_phy_irq[i] = irq;
+> >> +	}
+> > 
+> > So the above should all be merged in either a single helper looking up
+> > all the interrupts for a port and resused for the non-MP case.
+> > 
+> I agree, Will merge all under some common helper function.
+
+Good.
+
+Johan
