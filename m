@@ -2,74 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5EE9175C0BE
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 10:05:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 975E075C0D6
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 10:08:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231304AbjGUIE7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jul 2023 04:04:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52044 "EHLO
+        id S231382AbjGUIIJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jul 2023 04:08:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54226 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231273AbjGUIE5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 04:04:57 -0400
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5FF8530F3
-        for <devicetree@vger.kernel.org>; Fri, 21 Jul 2023 01:04:42 -0700 (PDT)
-Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-3fbc54cab6fso13458875e9.0
-        for <devicetree@vger.kernel.org>; Fri, 21 Jul 2023 01:04:42 -0700 (PDT)
+        with ESMTP id S231361AbjGUIII (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 04:08:08 -0400
+Received: from mail-pl1-x62e.google.com (mail-pl1-x62e.google.com [IPv6:2607:f8b0:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4DA7270A
+        for <devicetree@vger.kernel.org>; Fri, 21 Jul 2023 01:08:05 -0700 (PDT)
+Received: by mail-pl1-x62e.google.com with SMTP id d9443c01a7336-1b8b4749013so12518175ad.2
+        for <devicetree@vger.kernel.org>; Fri, 21 Jul 2023 01:08:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689926680; x=1690531480;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=3RkqSVR+7llkTa6YTD6wpemPL/KILFkcOg74xryiQSs=;
-        b=yYp/ymTIoCgiOMSqQcTSUbLhKN+3wJRprAt/9Ydam8fY5N4+oa1X8r3ZDnkAde/yvn
-         UBblbGOR7tMPoLgSXr7hZOlL5n14nMx/0PGl3nbe8FA1XKRZXsR5ymMbm2FTQ7hobsnZ
-         wUWhFOIZLI3+vGDNsNMLKNBRIvN/1KjgiC4vVi0VuM2VV7IrNKMX4Y6MAOPhHKiP7Dhb
-         SxtaarmGxvILK7R+Gsj0QbHse9G65cLRH715B3DZ3ZPcayjclT02BjT2Goytot2kgWiw
-         vU7HGvR/3Dx+J9QhYZYXCADowI5ZI9NT3hyJ1w0P4PQUjN+pc7UgerTG3lsxv9g3uaB3
-         /R+w==
+        d=chromium.org; s=google; t=1689926885; x=1690531685;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=gANVBGVeS5MlGx8TPeBiBkdc2Y9+xr4fJVm3EzJWyww=;
+        b=RVPAoXsPVmL4Vaqkq73MwUfnz+QtYfW/n1CFqxFmm48Qlk+2O2xtNhGZEXSZ7QqcIx
+         6xXgKb2wgOiiSdtN2o+guY0PKD0Kq0oKWmgO/izgFTQ1ydKkGXfTL8XbjzMAsG307GOE
+         m+wWLbtDmieNJ780rhZfFPwtDB6Zu6ZtjsFdE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689926680; x=1690531480;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3RkqSVR+7llkTa6YTD6wpemPL/KILFkcOg74xryiQSs=;
-        b=kFi/hZvxVs3VU1YBrx5QcLyYMyezKzz8NvnPnq0R28XhKvZ6DLpcVX3PRbvFvcMvim
-         NdBo4kFyko8ifJ7TwRXjOt5QoRDXoJP3nWNVUFjAYkm9QpB8Y9xDpy3kk8YbemEuvh/f
-         IPGyjYZyOMuRg41yzpgAuMDIoAHTv+aCQCLs682wU91TjDzywrBxTpdsMv335hkUCOmm
-         /8E1ARQ1SqzW1gMV5VSQ8p4sDQZ85TZ7rjtqVw2p+4jCpmNZyAohicX+6qAoe248ueqy
-         uGlYz0xlLpK20a6PrhHBwNWcFSwEpZd7ff+y6Np5XBlUnzMqZpSPUwWpBvUcfm2CalP2
-         BLfA==
-X-Gm-Message-State: ABy/qLZCewDm2fsugawV/TNUUUbSfIhaVbZbFRGRC2z9o//22CEd5uIf
-        +T66XvnwKMZNFFstPtgST9Vd5A==
-X-Google-Smtp-Source: APBJJlHDywLFcftzP3Pndyl8kQpYfNXrg4jp0JQi1bGgj6LuGck4OlNyhvFUKpMKKLUfqem+Mt7dbA==
-X-Received: by 2002:a05:600c:2214:b0:3fa:8db4:91ec with SMTP id z20-20020a05600c221400b003fa8db491ecmr757702wml.10.1689926680301;
-        Fri, 21 Jul 2023 01:04:40 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id i7-20020a05600c290700b003fbb06af219sm2823674wmd.32.2023.07.21.01.04.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 21 Jul 2023 01:04:39 -0700 (PDT)
-Message-ID: <1cb6d3f9-7cab-b304-c3b7-49d6f1cd71ee@linaro.org>
-Date:   Fri, 21 Jul 2023 10:04:37 +0200
+        d=1e100.net; s=20221208; t=1689926885; x=1690531685;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=gANVBGVeS5MlGx8TPeBiBkdc2Y9+xr4fJVm3EzJWyww=;
+        b=Ptw5cnPPjoUiR1fBpVNMcK3QoIg2xz87mmu8c74OB7AowlV/7japZHUpE+KnDKHq2U
+         6P4JipGJs9ulhO52cbS7/FPpYsw35fYcRrs9W5TJvMj7BCjEybZ4VyX9MYUaGGuM4H1Z
+         dYc87hD3u3D/U/ArZka6mKhTfnPCOHXrs6gLpE0zOHAXWfQGNFqyqX76NY+gETv4XsNQ
+         qeLYsdvwEeqo1lpdhfM4itV04s8na88X4XdMwE8mV9nWvENaKHXmqOjzapUbFbfsU/Jc
+         ZFccG2oEowpSEy/bfgjM73sJFmV5hSZ5D8pRIU2rEvPdhjOBTUH0n0p1Q+2Lhl1swiQS
+         YfRA==
+X-Gm-Message-State: ABy/qLaKviAvvH++ZWtn6U1h7D99SODxvi5V0RcGOrYCHLq5XOuOC/lP
+        mWs6ABc++8ZPkTMSXjuRkACECQ==
+X-Google-Smtp-Source: APBJJlHM9fyRUAQV7azReyM4HeiWFwiXZKUnthfAeikOCX3eyzp/KHFna0Ty3wlhzS1RY9iW2fsdig==
+X-Received: by 2002:a17:903:2341:b0:1b9:d335:2216 with SMTP id c1-20020a170903234100b001b9d3352216mr1709996plh.20.1689926885282;
+        Fri, 21 Jul 2023 01:08:05 -0700 (PDT)
+Received: from wenstp920.tpe.corp.google.com ([2401:fa00:1:10:6d86:d21:714:abab])
+        by smtp.gmail.com with ESMTPSA id o10-20020a170902bcca00b001b850c9af71sm2740294pls.285.2023.07.21.01.08.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 21 Jul 2023 01:08:05 -0700 (PDT)
+From:   Chen-Yu Tsai <wenst@chromium.org>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     Chen-Yu Tsai <wenst@chromium.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/7] regulator: mt6358: Remove bogus regulators and improvements
+Date:   Fri, 21 Jul 2023 16:07:41 +0800
+Message-ID: <20230721080751.2012318-1-wenst@chromium.org>
+X-Mailer: git-send-email 2.41.0.487.g6d72f3e995-goog
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH V2 1/2] dt-bindings: reset: Updated binding for Versal-NET
- reset driver
-Content-Language: en-US
-To:     Piyush Mehta <piyush.mehta@amd.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        p.zabel@pengutronix.de, michal.simek@amd.com
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        git@amd.com
-References: <20230721041119.4058430-1-piyush.mehta@amd.com>
- <20230721041119.4058430-2-piyush.mehta@amd.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230721041119.4058430-2-piyush.mehta@amd.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
         URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -78,22 +73,98 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/07/2023 06:11, Piyush Mehta wrote:
-> Added dt-binding documentation for Versal NET platforms.
-> 
-> Versal Net is a new AMD/Xilinx  SoC.
-> 
-> The SoC and its architecture is based on the Versal ACAP device.
-> The Versal Net  device includes more security features in the
-> platform management controller (PMC) and increases the number
-> of CPUs in the application processing unit (APU) and the
-> real-time processing unit (RPU).
-> 
-> Signed-off-by: Piyush Mehta <piyush.mehta@amd.com>
-> ---
+Hi,
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+This is v2 of the remainder of the MT6358 regulator driver cleanup
+and improvement series. v1 can be found here [1].
 
-Best regards,
-Krzysztof
+Changes since v1:
+- Merged patches dropped
+- Added patch to move VCN33 regulator status sync after ID check
+- Added patch to fix VCN33 sync fail error message
+- Added patch to add missing register definitions
+
+Various discrepancies were found while preparing to upstream MT8186
+device trees, which utilize the MT6366 PMIC, that is also covered by
+this driver.
+
+Patch 1 should either go through the mfd tree and an immutable branch
+created for the regulator tree to consume, or given an Ack, merged
+directly through the regulator tree.
+
+Spoiler: a follow-up series dealing with the MT6366 PMIC, which is
+covered by the same driver, also has an mfd header patch that would
+need the same treatment.
+
+Patches 2~6 should go through the regulator tree, and patch 7 through
+the soc tree. Patches 2 and 3 should be merged as fixes for v6.5, as
+the commit they fix was just introduced in -rc1.
+
+Patches 5 and 6 depends on "[v3] regulator: Use bitfield values for
+range selectors" [2] I sent out earlier.
+
+This v2 series can be seen as three parts. v1 also had three parts, but
+one part was fully merged, and then v2 gained another cleanup.
+
+
+Part 1 - Fixing bogus regulators (patches 2, 3, and 7)
+
+There are some regulators listed in the bindings and driver that have no
+corresponding pin on the actual hardware. MediaTek says these are a
+hardware construct for shared control of the same regulator in the
+VCN33 case and an alternative control scheme for low power suspend.
+
+In the VCN33 case, there's only one actual regulator, so we merge the
+two and rename them to match the hardware pin. No existing devices use
+these AFAICT, so this should be safe to change.
+
+The driver changes for this part have been merged, but two review
+comments were not accounted for. They are addressed here with two new
+patches
+
+Part 2 - Robust chip ID checking (patch 4)
+
+Angelo suggested making the driver fail to probe if an unexpected chip
+ID was found. Patch 4 implements this.
+
+Part 3 - Output voltage fine tuning support (patches 1, 5, and 6)
+
+Many of the LDOs on these PMIC support an extra level of output voltage
+fine tuning. Most default to no offset, but a couple have a non-zero
+offset by default. Previously this was unaccounted for in the driver and
+device tree constraints. On the outputs with non-zero offset, this ends
+up becoming a discrepancy between the device tree and actual hardware.
+These two patches adds support for this second level of tuning, modeled
+as bunch of linear ranges. While it's unlikely we need this level of
+control, it's nice to be able to read back the accurate hardware
+settings.
+
+Please have a look. After this series is done I'll send out patches for
+the MT6366 PMIC, which is what started this. That will also include
+updated YAML bindings for MT6366. I think we can merge MT6358 bindings
+into them afterwards.
+
+Thanks
+ChenYu
+
+[1] https://lore.kernel.org/linux-arm-kernel/20230609083009.2822259-1-wenst@chromium.org/
+[2] https://lore.kernel.org/linux-arm-kernel/20230714081408.274567-1-wenst@chromium.org/
+
+
+Chen-Yu Tsai (7):
+  mfd: mt6358: Add missing registers for LDO voltage calibration
+  regulator: mt6358: Sync VCN33_* enable status after checking ID
+  regulator: mt6358: Fix incorrect VCN33 sync error message
+  regulator: mt6358: Fail probe on unknown chip ID
+  regulator: mt6358: Add output voltage fine tuning to fixed regulators
+  regulator: mt6358: Add output voltage fine tuning to variable LDOs
+  arm64: dts: mediatek: mt6358: Merge ldo_vcn33_* regulators
+
+ arch/arm64/boot/dts/mediatek/mt6358.dtsi |  11 +-
+ drivers/regulator/mt6358-regulator.c     | 314 +++++++++++------------
+ include/linux/mfd/mt6358/registers.h     |   6 +
+ 3 files changed, 151 insertions(+), 180 deletions(-)
+
+-- 
+2.41.0.487.g6d72f3e995-goog
 
