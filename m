@@ -2,119 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3340575CA12
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 16:33:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2BC5375CA72
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 16:45:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230214AbjGUOdM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jul 2023 10:33:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51532 "EHLO
+        id S231382AbjGUOpM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jul 2023 10:45:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57392 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231788AbjGUOdI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 10:33:08 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1EEAE68;
-        Fri, 21 Jul 2023 07:33:07 -0700 (PDT)
+        with ESMTP id S231431AbjGUOpD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 10:45:03 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE2BF30D1;
+        Fri, 21 Jul 2023 07:45:00 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 55BB061C5B;
-        Fri, 21 Jul 2023 14:33:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A077DC433C9;
-        Fri, 21 Jul 2023 14:33:05 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 57FDF61CE0;
+        Fri, 21 Jul 2023 14:45:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9572CC433C9;
+        Fri, 21 Jul 2023 14:44:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689949986;
-        bh=9YgoooZ1+5ex0bT6wHIjCPICCL0FV+SDivmd0dBm1Yg=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=bymN+Iy39Hk04ez4RfAMumeKdmq9Wbus0j/aDF2biw6x+HBfPs7RncrNXgo92dbB1
-         irqAjHtE44GXEowvyDSgO9oM/chPKotX9XrizhZbejy8RHIl/TXuigoHoDUyOyusVF
-         zRgHzAJOgvnV7jtxHfp7wjYQjEaQW1cP90UUEccm++gpymgsewlyo4JTJACYHKwUZL
-         8UDOm4ic94yqxJS5+qtvuSYsCCCnV5qIMEiJouh1BiikrAmIDr3cllyX1VqqGe4DUd
-         8qQmu7xOKVRfXJvLfYdTJe2NgYtLgGYsmSxE7m810re6mzoV1RUuaRwQHtVYX4v3Xg
-         EINKEe8TrapNg==
-Received: (nullmailer pid 1099660 invoked by uid 1000);
-        Fri, 21 Jul 2023 14:33:04 -0000
-Date:   Fri, 21 Jul 2023 08:33:04 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Sudeep Holla <sudeep.holla@arm.com>
-Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Cristian Marussi <cristian.marussi@arm.com>,
-        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Nikunj Kela <nkela@quicinc.com>,
-        Prasad Sodagudi <psodagud@quicinc.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 08/11] dt-bindings: firmware: arm,scmi: Extend
- bindings for protocol@13
-Message-ID: <20230721143304.GA1092306-robh@kernel.org>
-References: <20230713141738.23970-1-ulf.hansson@linaro.org>
- <20230713141738.23970-9-ulf.hansson@linaro.org>
- <20230719151716.qhobfnclrjf4yqkg@bogus>
- <CAPDyKFpjMWOAbV+b2DcxDWqvRDQCbSC6Ti+KGGPWJoC4Ghp7=w@mail.gmail.com>
- <20230721115535.mx46dg56pxjnzbuv@bogus>
+        s=k20201202; t=1689950699;
+        bh=wljKIvIhCAvwUWXLNlEVuBqrMB/ZTYdEiw5PLP21L/U=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=aoVRPxTv2cZdKFwy8pruBkqJdAxrkZS1Enz4YEjXKY2vGWRrdTaOkpVi7I6deANqJ
+         IB6ihinirsNLh8KjTuk/0TQG90sEXwucqCYn6deFj1qwWaCc/vt4rrnDvBdT2zHbXw
+         VBWvut6LgIlcAkwzlgMaUslgCTCUl2Iu5Zd9uCPOz8kwfpR1iSYtOFnjBM7wWISBuh
+         WrYlMxLLKTAj+OCKEJ5cZOwm+o6CVYpzib9Sh5B67MHP0NcyqAi1uGNi3ZHvyR4z4u
+         cEn1+Gd+TyLPTqJYBXJ//jayUPoOuk9gmiag4Am9wWzpuEd9Q3bjmX8E7g5kOAvf6C
+         LJBglMnfLjYrQ==
+From:   Mark Brown <broonie@kernel.org>
+To:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        lgirdwood@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        Rohit Agarwal <quic_rohiagar@quicinc.com>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+In-Reply-To: <1689062414-3654-1-git-send-email-quic_rohiagar@quicinc.com>
+References: <1689062414-3654-1-git-send-email-quic_rohiagar@quicinc.com>
+Subject: Re: [PATCH v3 0/3] Add regulators support for PMX75
+Message-Id: <168995069730.110341.11733110436595300118.b4-ty@kernel.org>
+Date:   Fri, 21 Jul 2023 15:44:57 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230721115535.mx46dg56pxjnzbuv@bogus>
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.13-dev-099c9
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 21, 2023 at 12:55:35PM +0100, Sudeep Holla wrote:
-> On Fri, Jul 21, 2023 at 01:42:43PM +0200, Ulf Hansson wrote:
-> > On Wed, 19 Jul 2023 at 17:17, Sudeep Holla <sudeep.holla@arm.com> wrote:
-> > >
-> > > On Thu, Jul 13, 2023 at 04:17:35PM +0200, Ulf Hansson wrote:
-> > > > The protocol@13 node is describing the performance scaling option for the
-> > > > ARM SCMI interface, as a clock provider. This is unnecessary limiting, as
-> > > > performance scaling is in many cases not limited to switching a clock's
-> > > > frequency.
-> > > >
-> > > > Therefore, let's extend the binding so the interface can be modelled as a
-> > > > generic performance domaintoo. The common way to describe this, is to use
-> > > > the "power-domain" DT bindings, so let's use that.
-> > > >
-> > >
-> > > One thing I forgot to ask earlier is how we can manage different domain IDs
-> > > for perf and power domains which is the case with current SCMI platforms as
-> > > the spec never mandated or can ever mandate the perf and power domains IDs
-> > > to match. They need not be same anyways.
-> > 
-> > Based upon what you describe above, I have modelled the perf-domain
-> > and the power-domain as two separate power-domain providers.
-> > 
-> > A consumer device being hooked up to both domains, would specify the
-> > domain IDs in the second power-domain-cell, along the lines of the
-> > below. Then we would use power-domain-names to specify what each
-> > power-domain represents.
-> > 
-> > power-domains = <&scmi_pd 2>, <&scmi_dvfs 4>;
-> > power-domain-names = "power", "perf";
-> >
-> > I hope this makes it clearer!?
+On Tue, 11 Jul 2023 13:30:11 +0530, Rohit Agarwal wrote:
+> Changes in v3:
+>  - Created a separate patch for updating the entry in pmx65 bindings.
+>  - Changed the subject of patches [1/3] and [2/3] according to the convention.
 > 
-> Yes it make is clear definitely, but it does change the definition of the
-> generic binding of the "power-domains" property now. I am interesting in
-> the feedback from the binding maintainers with respect to that. Or is it
-> already present ? IIUC, the ones supported already are generally both
-> power and performance providers. May be it doesn't matter much, just
-> wanted to explicit ask and confirm those details.
+> Changes in v2:
+>  - Addressed Krzysztof to update the if:then: in bindings patch.
+>  - Breaking the original series [1] into smaller series.
+> 
+> [...]
 
-I commented on v1.
+Applied to
 
-Looks like abuse of "power-domains" to me, but nothing new really. 
-Please define when to use a power domain vs. a perf domain and don't 
-leave it up to the whims of the platform. Maybe perf domains was a 
-mistake and they should be deprecated?
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
 
-Rob
+Thanks!
+
+[1/3] regulator: dt-bindings: qcom,rpmh: Update PMX65 entry
+      commit: 4fdef8553df58953f572f1cb46d357c735c683a9
+[2/3] regulator: dt-bindings: qcom,rpmh: Add PMX75 compatible
+      commit: 0ef3d931632e3fce51ed5510935238937d644c97
+[3/3] regulator: qcom-rpmh: Add regulators support for PMX75
+      commit: 0b294ed669ead34a348d17d06b6d4d58712b14e2
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
