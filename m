@@ -2,155 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E218575C2F5
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 11:23:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 00DFD75C2FA
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 11:23:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231821AbjGUJXX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jul 2023 05:23:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45384 "EHLO
+        id S231779AbjGUJXq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jul 2023 05:23:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45652 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229737AbjGUJXT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 05:23:19 -0400
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67DC530D1
-        for <devicetree@vger.kernel.org>; Fri, 21 Jul 2023 02:23:03 -0700 (PDT)
-Received: by mail-wr1-x430.google.com with SMTP id ffacd0b85a97d-31454996e06so1358180f8f.2
-        for <devicetree@vger.kernel.org>; Fri, 21 Jul 2023 02:23:03 -0700 (PDT)
+        with ESMTP id S231811AbjGUJXe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 05:23:34 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E87143A87;
+        Fri, 21 Jul 2023 02:23:15 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id 2adb3069b0e04-4fb863edcb6so2742714e87.0;
+        Fri, 21 Jul 2023 02:23:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689931382; x=1690536182;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=88mpJoGLk3K0AQWL88TAAFTQ19gJNfzpATcUNHu1Koc=;
-        b=A+o5T3bCIR9n12ySKKl6prib5i7UzIIG06/C1FKIJTMqBJxOPxO3yVgXl/x2c2n5bq
-         cQVjaP57pYdANYqdzzpY8B6mFa+r7icw169QzeSbSsp7iuAunaaE+SIzIaV0MgBS/g/h
-         kvgJ+9tiy+oLY6Kw7nOgmRu28xMtJeb/1w1gelhnbdj+gF7SJm5pMk8O07on5KTNfwat
-         qJKTNTC4z99ObGq4RMrMx42ykQcom4W3E0isA9Sg+WScNJfa79Qd015ltEEXX4et02n7
-         E0+yIT8k7xK8P/VtnQJXi3b1n/0aQLJ3fY4uPEKpV3pQrt65E8gXYLqeK1pxDlI0AkUK
-         gJFA==
+        d=gmail.com; s=20221208; t=1689931393; x=1690536193;
+        h=content-transfer-encoding:content-language:in-reply-to:mime-version
+         :user-agent:date:message-id:from:references:cc:to:subject:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=M0C4zDryat48OeUNijAsubnvNOIhi4gDTfxngqXQKzY=;
+        b=no3r2jgsdvpIbDr/9DhIblU96Yteh/5I+AQyymUhUwu4LoQUKx9J7v2Ol1O8pvcp0w
+         TS+sK4E+T7pZ8w8OxeNOo3ic6kbrWRMs6kPBx3Axozl1y61vOLm/nS+kheYhFJJYoSOA
+         Jq2/KSw0HhG/DHZdZcqMOKQFAy0kW6n7q6iJpLtVlEGnsM7gSr6aPNG1cj9MNTZamabB
+         FCK2/zWC0MyjKR9M45mmzWJO5/uoAJrToXFvEZcAlLXDDTmdJ5KZjravFNSBgxlzpWzB
+         V3amk6+lVsN0FNKp3ra7QWyslQNTIoC9nsRU9cQJGfGX0opfoESKKr4UaAYpwWS+ASl0
+         4TyQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689931382; x=1690536182;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1689931393; x=1690536193;
+        h=content-transfer-encoding:content-language:in-reply-to:mime-version
+         :user-agent:date:message-id:from:references:cc:to:subject
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=88mpJoGLk3K0AQWL88TAAFTQ19gJNfzpATcUNHu1Koc=;
-        b=YmgDchSeQCSt5b9J1nXE4COeltz7zS3uyCjYAkjTZlRH+ZSZF66hU1tvmIiJA6JPim
-         K255fRTEF6jBNcQEskRDGPpud094ruC1DmMagU6bZ/+NrbZ1K/K0oeGzswg9NBG5frRE
-         QfL3qOVkAWBbDTz6ipo5PNCy0HJHMSVmz1fQvptTRL1Hy0aD5SjCa68hast/h0KImYlT
-         a7ZE8D1MHQPbwrKNKKQL+xq3z7KtzNugobR1LVMihAyT+0fuKrnLVYfvYha8LjnnFnVW
-         t84eF0SckoVRCSBmmnytrs3BMqVk7Z3PJ87l7+LdXDedwYPSoTan6yKFPYg7VtJC3r2R
-         Uc5g==
-X-Gm-Message-State: ABy/qLbmh52pnXZogRIKtKTIsGt8uW0zkDlh5IOtGgohJ0CR4I5aCMNl
-        5GnDj5bmPi9A4bvK/7y06+mcvUFW8yftPgUKggayGA==
-X-Google-Smtp-Source: APBJJlGPiAHr1rhA6JqTZrNomxprYe2CukiWc5LIrT8c34tXmSQ3b6yHlXfBSW9vj5UxkGnNFcDL2g==
-X-Received: by 2002:adf:df01:0:b0:313:ef24:6fe6 with SMTP id y1-20020adfdf01000000b00313ef246fe6mr1087215wrl.1.1689931381764;
-        Fri, 21 Jul 2023 02:23:01 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id j6-20020adfff86000000b0031274a184d5sm3623920wrr.109.2023.07.21.02.23.00
+        bh=M0C4zDryat48OeUNijAsubnvNOIhi4gDTfxngqXQKzY=;
+        b=gKaJ2SeigBLzW6Qwbl2NVsut2QylE7b2uZ1rRsCb0Y8KOWg9h9aPbcf8OlgC2gDVWR
+         mfrJqgtUBNQ6AiWwWEtjuTBFwfuOcwPHluHjNhzPc1UL8sxgfga02kX6dSxwxaR+JJF/
+         dLSHxmUqC2FmqYY9CFUhauO3aDtTOUepB4AoiTE2INX3ORMvRs5HVRsPLRDsxmOJilJn
+         MltSxVTw59bsXzmCPq0oPPD1mq+smDBadGwWhZ/eWEMojef80j+8BsFpvpKmbA/+OYTJ
+         3FsUa6BAI04kBmX+84gl2UHtPqjsplM5mPv/JcX1fnHKayagIwoUsBN8WrqYG/x9JtH+
+         INwA==
+X-Gm-Message-State: ABy/qLb8V4BTOGMoHRadhsNIxZMeqNySPIswR4A9ebMCjID6X0mBCBeI
+        Nkyq6mmt4ygzj/QDS8vtSW7WR/q1LDugVA==
+X-Google-Smtp-Source: APBJJlGlPTLa2gquXOOWAKAZZ3vkxcBhOsdvlyEajvy4zxY9iZQkDUUaGESJm1qebBWtVsnzrKrWtA==
+X-Received: by 2002:a05:6512:3297:b0:4f8:5d2f:902a with SMTP id p23-20020a056512329700b004f85d2f902amr885121lfe.60.1689931393364;
+        Fri, 21 Jul 2023 02:23:13 -0700 (PDT)
+Received: from [192.168.1.103] ([31.173.87.226])
+        by smtp.gmail.com with ESMTPSA id eo14-20020a056512480e00b004fbdeca7b79sm636328lfb.247.2023.07.21.02.23.11
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 21 Jul 2023 02:23:01 -0700 (PDT)
-Message-ID: <846fad90-04b1-53e7-0f9d-1c243bbc6e92@linaro.org>
-Date:   Fri, 21 Jul 2023 11:22:59 +0200
+        Fri, 21 Jul 2023 02:23:12 -0700 (PDT)
+Subject: Re: [PATCH v18 13/20] PCI: dwc: Introduce .ep_pre_init() and
+ .ep_deinit()
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        jingoohan1@gmail.com, gustavo.pimentel@synopsys.com,
+        lpieralisi@kernel.org, robh+dt@kernel.org, kw@linux.com,
+        manivannan.sadhasivam@linaro.org, bhelgaas@google.com,
+        kishon@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org
+Cc:     marek.vasut+renesas@gmail.com, fancer.lancer@gmail.com,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org
+References: <20230721074452.65545-1-yoshihiro.shimoda.uh@renesas.com>
+ <20230721074452.65545-14-yoshihiro.shimoda.uh@renesas.com>
+From:   Sergei Shtylyov <sergei.shtylyov@gmail.com>
+Message-ID: <103865a6-1b8a-e165-dc83-4723b2b0089e@gmail.com>
+Date:   Fri, 21 Jul 2023 12:23:10 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [v2 PATCH] arm64: dts: stratix10: add new compatible for Intel
- SoCFPGA Stratix10 platform
+In-Reply-To: <20230721074452.65545-14-yoshihiro.shimoda.uh@renesas.com>
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-To:     "Li, Meng" <Meng.Li@windriver.com>,
-        "dinguyen@kernel.org" <dinguyen@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20230721083821.1820881-1-Meng.Li@windriver.com>
- <b8333812-df9d-368a-939b-3495878a2e5e@linaro.org>
- <884ed5d5-8863-ac76-5f00-4ed58480e9ab@linaro.org>
- <PH0PR11MB5191F52F01EF337A5965F848F13FA@PH0PR11MB5191.namprd11.prod.outlook.com>
- <2dac9cb5-2582-2e5d-689d-49ced2dbde5b@linaro.org>
- <PH0PR11MB51918208B7FE0413548F2DE5F13FA@PH0PR11MB5191.namprd11.prod.outlook.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <PH0PR11MB51918208B7FE0413548F2DE5F13FA@PH0PR11MB5191.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/07/2023 11:21, Li, Meng wrote:
-> 
-> 
->> -----Original Message-----
->> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> Sent: Friday, July 21, 2023 5:19 PM
->> To: Li, Meng <Meng.Li@windriver.com>; dinguyen@kernel.org;
->> robh+dt@kernel.org; krzysztof.kozlowski+dt@linaro.org; conor+dt@kernel.org;
->> devicetree@vger.kernel.org
->> Cc: linux-kernel@vger.kernel.org
->> Subject: Re: [v2 PATCH] arm64: dts: stratix10: add new compatible for Intel
->> SoCFPGA Stratix10 platform
->>
->> CAUTION: This email comes from a non Wind River email account!
->> Do not click links or open attachments unless you recognize the sender and
->> know the content is safe.
->>
->> On 21/07/2023 11:05, Li, Meng wrote:
->>>
->>>
->>>> -----Original Message-----
->>>> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>>> Sent: Friday, July 21, 2023 4:54 PM
->>>> To: Li, Meng <Meng.Li@windriver.com>; dinguyen@kernel.org;
->>>> robh+dt@kernel.org; krzysztof.kozlowski+dt@linaro.org;
->>>> robh+conor+dt@kernel.org;
->>>> devicetree@vger.kernel.org
->>>> Cc: linux-kernel@vger.kernel.org
->>>> Subject: Re: [v2 PATCH] arm64: dts: stratix10: add new compatible for
->>>> Intel SoCFPGA Stratix10 platform
->>>>
->>>> CAUTION: This email comes from a non Wind River email account!
->>>> Do not click links or open attachments unless you recognize the
->>>> sender and know the content is safe.
->>>>
->>>> On 21/07/2023 10:51, Krzysztof Kozlowski wrote:
->>>>> On 21/07/2023 10:38, Meng Li wrote:
->>>>>> Intel Stratix10 is very the same with Agilex platform, the DWC2 IP
->>>>>> on the Stratix platform also does not support clock-gating. The
->>>>>> commit
->>>>>> 3d8d3504d233("usb: dwc2: Add platform specific data for Intel's
->>>>>> Agilex") had fixed this issue. So, add the essential compatible to
->>>>>> also use the specific data on Stratix10 platform.
->>>>>>
->>>>>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>>>>
->>>>> From where did you get it?
->>>>>
->>>>> Did you just fake a tag to pass the review?
->>>>
->>>> I just double checked my replies and this for sure never happened.
->>>>
->>>> NAK, don't fake reviews. This very impolite and destroys entire trust.
->>>> The model of upstream collaboration depends on the trust, which is
->>>> now gone for Windriver.
->>>>
->>>
->>> No! I don't fake a tag.
->>
->> Really? Then I ask second time - from where did you get it? Provide a link.
->>
-> 
-> https://lore.kernel.org/lkml/20230718030851.2014306-1-Meng.Li@windriver.com/T/
+On 7/21/23 10:44 AM, Yoshihiro Shimoda wrote:
 
-So where is it? You pointed to your email. Where is the tag?
+> Renesas R-Car Gen4 PCIe controllers require vender-specific
 
-Best regards,
-Krzysztof
+   It's "vendor". :-)
 
+> initialization before .ep_init(). To use dw->dbi and dw->num-lanes
+> in the initialization code, introduce .ep_pre_init() into struct
+> dw_pcie_ep_ops. Also introduce .ep_deinit() to disable the controller
+> by using vender-specific de-initialization.
+> 
+> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+[...]
+
+MBR, Sergey
