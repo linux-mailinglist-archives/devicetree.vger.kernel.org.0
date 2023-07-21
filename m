@@ -2,129 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DA8E175C5B9
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 13:16:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0828D75C5C9
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 13:22:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229552AbjGULQR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jul 2023 07:16:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34502 "EHLO
+        id S229813AbjGULWC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jul 2023 07:22:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36464 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229450AbjGULQQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 07:16:16 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8FE17B3;
-        Fri, 21 Jul 2023 04:16:15 -0700 (PDT)
+        with ESMTP id S229569AbjGULWB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 07:22:01 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC6941715;
+        Fri, 21 Jul 2023 04:22:00 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 1D489619FD;
-        Fri, 21 Jul 2023 11:16:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49392C433C7;
-        Fri, 21 Jul 2023 11:16:14 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 780786108F;
+        Fri, 21 Jul 2023 11:22:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 06755C433C8;
+        Fri, 21 Jul 2023 11:21:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689938174;
-        bh=NWyqzz5a+wAq6c2twKmdidEBQwn5x/NSXAUIdsFwufU=;
+        s=k20201202; t=1689938519;
+        bh=wljoYeyKibgYGj9r1tqZl8Ksf/AxWV7TNPzMjmz57Jg=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Pt3dweDjmU4JyP0PLAYVWb3i2Jj/iUiWaKYGf253+T5ThrPpgVry/wVc6r6xrJqhM
-         mbxOK1gYUQf2cM5czIJQKKiCBSp+NtB76R1+qhCDbbTc5sRD1rrFNvPgOzNd2/uCCt
-         nWFJaYiAlFTLAJ37wFJR/kmUoB7DiUVM29/xm0XinxE7rNmJDrMQvHBGcbQvbf6Ffj
-         MAEiZx3dz1/LcxoIWi+1SjDSRcmgsyJ7noZ7gcVMh8qkwzVHO3AcyP0JEaesjfoyjp
-         43acpy0pWdb4zZkiXMmZ3Mw8M/dyC6alpEIvhnysnfI1u/26oA4TleouxuQ1702IRY
-         Xv4vTUeXFkZRA==
-Received: from johan by xi.lan with local (Exim 4.96)
-        (envelope-from <johan@kernel.org>)
-        id 1qMo7T-0003q6-1C;
-        Fri, 21 Jul 2023 13:16:23 +0200
-Date:   Fri, 21 Jul 2023 13:16:23 +0200
-From:   Johan Hovold <johan@kernel.org>
-To:     Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
-Cc:     Wesley Cheng <quic_wcheng@quicinc.com>,
-        Jack Pham <quic_jackp@quicinc.com>,
-        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        b=RD2nUhSEGGWCIw42NtrqExPXPm9WZ29HOGfaEqbWl/RFL4DamIyoFIDTnfOTu1AZS
+         gxQzlF77kkrx2H/EusZ5LjoKoZb3/Il6o3zwwFgFUuKsBqQTdS111PDmrnh183crIE
+         IgGrTn87y/zAsn235czvDVyPHlnLRZL39Bv5H9hz0xDxLW4xjRMR0ZaX5GLytPeO2q
+         +zcvISxHRr3/VBuljnlY/W2YH49r+gL5k8KY7G4WG2HWkajCxBPJhRBDORKZiPpn9Q
+         /0f4BRXnKrd3pM6oQANj9zG55H7YiFNzzXeVZsGs6Fm1Qfy5JjlZgSGUTgtYSohoxZ
+         rZW7ttdFMc7HA==
+Date:   Fri, 21 Jul 2023 12:21:53 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Ming Qian <ming.qian@nxp.com>,
+        Shijie Qin <shijie.qin@nxp.com>,
+        Zhou Peng <eagle.zhou@nxp.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Felipe Balbi <balbi@kernel.org>, linux-usb@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, quic_pkondeti@quicinc.com,
-        quic_ppratap@quicinc.com, ahalaney@redhat.com
-Subject: Re: [PATCH v8 6/9] usb: dwc3: qcom: Add multiport controller support
- for qcom wrapper
-Message-ID: <ZLppB67LyWk1kD8w@hovoldconsulting.com>
-References: <20230514054917.21318-1-quic_kriskura@quicinc.com>
- <20230514054917.21318-7-quic_kriskura@quicinc.com>
- <ZIB1JEmLCw41v_4e@hovoldconsulting.com>
- <ZJsDpqttBYtbQ0yg@hovoldconsulting.com>
- <26ae15d1-4e13-3ab7-6844-3a7d3ed03af4@quicinc.com>
- <ZLEOk-9VImJNHYHa@hovoldconsulting.com>
- <f02104c0-d177-0e4e-dcb0-ffca589c8b00@quicinc.com>
+        Conor Dooley <conor+dt@kernel.org>,
+        Mirela Rabulea <mirela.rabulea@nxp.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Anson Huang <Anson.Huang@nxp.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-spi@vger.kernel.org
+Subject: Re: [PATCH 2/3] dt-bindings: lpspi: Add power-domains
+Message-ID: <93514451-f2db-412b-a9a5-274e8f528460@sirena.org.uk>
+References: <20230721111020.1234278-1-alexander.stein@ew.tq-group.com>
+ <20230721111020.1234278-2-alexander.stein@ew.tq-group.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="p0iXJ+2BMhWm/gN4"
 Content-Disposition: inline
-In-Reply-To: <f02104c0-d177-0e4e-dcb0-ffca589c8b00@quicinc.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230721111020.1234278-2-alexander.stein@ew.tq-group.com>
+X-Cookie: Do, or do not
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 14, 2023 at 04:08:45PM +0530, Krishna Kurapati PSSNV wrote:
-> On 7/14/2023 2:30 PM, Johan Hovold wrote:
-> > On Mon, Jul 03, 2023 at 12:35:48AM +0530, Krishna Kurapati PSSNV wrote:
-> >> On 6/27/2023 9:13 PM, Johan Hovold wrote:
-> >>> On Wed, Jun 07, 2023 at 02:16:37PM +0200, Johan Hovold wrote:
-> >>>> On Sun, May 14, 2023 at 11:19:14AM +0530, Krishna Kurapati wrote:
-> > 
-> >>>>> -	val = readl(qcom->qscratch_base + PWR_EVNT_IRQ_STAT_REG);
-> >>>>> -	if (!(val & PWR_EVNT_LPM_IN_L2_MASK))
-> >>>>> -		dev_err(qcom->dev, "HS-PHY not in L2\n");
-> >>>>> +	for (i = 0; i < dwc->num_usb2_ports; i++) {
-> >>>>> +		val = readl(qcom->qscratch_base + pwr_evnt_irq_stat_reg_offset[i]);
-> >>>>> +		if (!(val & PWR_EVNT_LPM_IN_L2_MASK))
-> >>>>> +			dev_err(qcom->dev, "HS-PHY%d not in L2\n", i);
-> >>>>> +	}
-> >>>
-> >>>> When testing this on the X13s I get:
-> >>>>
-> >>>> 	dwc3-qcom a4f8800.usb: HS-PHY2 not in L2
-> >>>>
-> >>>> for the third port, whose status registers always seems to return zero
-> >>>> (e.g. as if we're checking the wrong register?):
-> >>>>
-> >>>> dwc3-qcom a4f8800.usb: dwc3_qcom_suspend - phy 0, pwr_event_stat = 38103c
-> >>>> dwc3-qcom a4f8800.usb: dwc3_qcom_suspend - phy 1, pwr_event_stat = 38103c
-> >>>> dwc3-qcom a4f8800.usb: dwc3_qcom_suspend - phy 2, pwr_event_stat = 00
-> >>>> dwc3-qcom a4f8800.usb: dwc3_qcom_suspend - phy 3, pwr_event_stat = 140030
-> >>>>
-> >>>> I verified that everything appears to work as expected on sa8295p-adp.
-> >>>>
-> >>>> Do you have any idea of what may be causing this?
-> >>>
-> >>> You never replied to this; do you have any idea why the status register
-> >>> for the second port seemingly always read back as 0 on the X13s?
-> > 
-> >>    Missed this mail. This never popped up on my system. So no idea what
-> >> is different in Lenovo X13s. Might need to check with team internally.
-> > 
-> > Did you hear anything back regarding the above?
-> > 
-> > Could it even be that the register offset it not correct for sc8280xp?
 
-> No. I rechecked the register offsets and they are proper. (same as what 
-> we are using in downstream).
-> 
-> Adding Jack and Wesley to help with any suggestions here.
+--p0iXJ+2BMhWm/gN4
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Still no idea as to why this appears to be broken on sc8280xp and
-triggers an error on every suspend?
+On Fri, Jul 21, 2023 at 01:10:19PM +0200, Alexander Stein wrote:
+> i.MX8(X) based SoC use a power domain. Allow supplying this domain in
+> bindings.
 
-Johan
+Please submit patches using subject lines reflecting the style for the
+subsystem, this makes it easier for people to identify relevant patches.
+Look at what existing commits in the area you're changing are doing and
+make sure your subject lines visually resemble what they're doing.
+There's no need to resubmit to fix this alone.
+
+--p0iXJ+2BMhWm/gN4
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEyBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmS6alAACgkQJNaLcl1U
+h9DSmQf4wKmB3Sn1fz13nzciTc0MXKDIsImUHpdIe8K8H2FEeDeSOaRVKC0wMwmT
+MinwC1uoQ1sGA5+RZR2iodYlH7p5GeuzW9ftB3XV/wdmwzllTw8RNWqjkH03X/hN
+G+25E7kf/USZjY8i2nz2ONAH1ElSrOwoio8910gNwVEzSeOuEeg6bKBSWYZgL31p
+pauUaeCJMErleZVf/2fp1VObcdOVSfOkTb+rJqrmGm+tm+d6hHD1Uo/xZTn0Omti
+LTpaEMzEz4QhgIYMgFcVhWGgAVXVtQXpkCgwyBfQIgCuxWyp+Zdfxdu5OhAfWz7U
+LCFYO/WlAdxD27P/OJ9TTZJWPuhv
+=B+5l
+-----END PGP SIGNATURE-----
+
+--p0iXJ+2BMhWm/gN4--
