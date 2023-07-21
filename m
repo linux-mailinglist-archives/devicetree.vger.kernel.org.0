@@ -2,63 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CF25E75C79E
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 15:21:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 22BEB75C7C8
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 15:27:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231279AbjGUNVr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jul 2023 09:21:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60168 "EHLO
+        id S230005AbjGUN1N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jul 2023 09:27:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37108 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230517AbjGUNVn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 09:21:43 -0400
+        with ESMTP id S230518AbjGUN1L (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 09:27:11 -0400
 Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78A023A99;
-        Fri, 21 Jul 2023 06:21:12 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 36LDKcoe067589;
-        Fri, 21 Jul 2023 08:20:38 -0500
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B64526A3;
+        Fri, 21 Jul 2023 06:26:45 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 36LDQEhQ068767;
+        Fri, 21 Jul 2023 08:26:14 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1689945638;
-        bh=pZDURQKtcBx1w8wrYyx1ZyTb+OFUyAyb4ftIUwDqyfI=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=VLF+RYGECuxa5pbiZMrOpjqp3a1dMA7SpZLDFlpSJdKlTPERPhBoq2L6iQVnZqysW
-         sVfErvfqHXgZ2HOGTjlGHawuBxcxy7KZfvEiEIvrf085EYGUvxo9aZV+ew2Zj3oLyl
-         AgkJDkV6NG5U+Yh4s0zl5wi5DN+TauH/FhFRGx/o=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 36LDKcDr022862
+        s=ti-com-17Q1; t=1689945974;
+        bh=CE0bOLWvWbP95V4YC8ATu1t6fLv4W1N/pWcklQAfuJs=;
+        h=Date:Subject:From:To:CC:References:In-Reply-To;
+        b=HzkQr74PDLcu1lZVn0WmvFnAJB7LKz7gD94Bgc+OKekfVtnM0/cyEEUnX92V6xBTq
+         sDbTjD5fADgmMNy8Rwaiu/9gSmuFxjrKlsDtrBqqB/XFIC3rpuX+Jttruj02JYyLnb
+         AjTI8nH+OLuNZ0o1PjGw5+ngQTj6vewC1a45zpno=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 36LDQE4X035390
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 21 Jul 2023 08:20:38 -0500
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+        Fri, 21 Jul 2023 08:26:14 -0500
+Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 21
- Jul 2023 08:20:38 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ Jul 2023 08:26:14 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 21 Jul 2023 08:20:38 -0500
-Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 36LDKb56024714;
-        Fri, 21 Jul 2023 08:20:37 -0500
-From:   Jayesh Choudhary <j-choudhary@ti.com>
-To:     <nm@ti.com>, <vigneshr@ti.com>, <afd@ti.com>,
-        <krzysztof.kozlowski+dt@linaro.org>
-CC:     <kristo@kernel.org>, <robh+dt@kernel.org>, <conor+dt@kernel.org>,
-        <rogerq@kernel.org>, <s-vadapalli@ti.com>, <a-bhatia1@ti.com>,
-        <r-ravikumar@ti.com>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <j-choudhary@ti.com>
-Subject: [PATCH v6 5/5] arm64: dts: ti: k3-j784s4-evm: Enable DisplayPort-0
-Date:   Fri, 21 Jul 2023 18:50:29 +0530
-Message-ID: <20230721132029.123881-6-j-choudhary@ti.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230721132029.123881-1-j-choudhary@ti.com>
-References: <20230721132029.123881-1-j-choudhary@ti.com>
+ Frontend Transport; Fri, 21 Jul 2023 08:26:14 -0500
+Received: from [172.24.227.112] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 36LDQB7w111784;
+        Fri, 21 Jul 2023 08:26:11 -0500
+Message-ID: <c340ef39-0fbc-22d1-c05a-8e6a7d29325d@ti.com>
+Date:   Fri, 21 Jul 2023 18:56:10 +0530
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v5 3/5] arm64: dts: ti: k3-j784s4: Add WIZ and SERDES PHY
+ nodes
+From:   Jayesh Choudhary <j-choudhary@ti.com>
+To:     Nishanth Menon <nm@ti.com>, Andrew Davis <afd@ti.com>
+CC:     <vigneshr@ti.com>, <krzysztof.kozlowski+dt@linaro.org>,
+        <s-vadapalli@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20230710101705.154119-1-j-choudhary@ti.com>
+ <20230710101705.154119-4-j-choudhary@ti.com>
+ <20230712141828.lnpo4mhd5dv34rlz@census>
+ <18310450-05f3-172c-e4bc-fda114f333a4@ti.com>
+ <20230713182107.ashuygyg4x4j77s5@backboard>
+ <af071a46-2e8e-a107-b0d8-d0bb2f845486@ti.com>
+ <20230713185835.ek5jskqyengvba56@ascertain>
+ <9f5d52fc-f9da-1429-1f97-bdec16d80a43@ti.com>
+Content-Language: en-US
+In-Reply-To: <9f5d52fc-f9da-1429-1f97-bdec16d80a43@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
         URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -67,166 +75,76 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rahul T R <r-ravikumar@ti.com>
 
-Enable display for J784S4 EVM.
 
-Add assigned clocks for DSS, DT node for DisplayPort PHY and pinmux for
-DP HPD. Add the clock frequency for serdes_refclk.
+On 20/07/23 15:06, Jayesh Choudhary wrote:
+> 
+> 
+> On 14/07/23 00:28, Nishanth Menon wrote:
+>> On 13:31-20230713, Andrew Davis wrote:
+>>> On 7/13/23 1:21 PM, Nishanth Menon wrote:
+>>>> On 21:01-20230713, Jayesh Choudhary wrote:
+>>>>>
+>>>>>
+>>>>> On 12/07/23 19:48, Nishanth Menon wrote:
+>>>>>> On 15:47-20230710, Jayesh Choudhary wrote:
+>>>>>>> From: Siddharth Vadapalli <s-vadapalli@ti.com>
+>>>>>>>
+>>>>>>> J784S4 SoC has 4 Serdes instances along with their respective WIZ
+>>>>>>> instances. Add device-tree nodes for them and disable them by 
+>>>>>>> default.
+>>>>>>>
+>>>>>>> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+>>>>>>> [j-choudhary@ti.com: fix serdes_wiz clock order]
+>>>>>>> Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
+>>>>>>> ---
+>>>>>> NAK. This patch introduces the following dtbs_check warning.
+>>>>>> arch/arm64/boot/dts/ti/k3-am69-sk.dtb: serdes-refclk: 
+>>>>>> 'clock-frequency' is a required property
+>>>>>>
+>>>>>
+>>>>> Sorry for this. This property was added in the final board file.
+>>>>> I will fix it in the next revision.
+>>>>> I will add '0' as clock-property in the main file similar to j721e[1]
+>>>>> which will be overridden in the board file with required value to get
+>>>>> rid of this warning.
+>>>>
+>>>> That would follow what renesas (r8a774a1.dtsi) and imx
+>>>> (imx8dxl-ss-conn.dtsi) seem to be doing as well. Just make sure to add
+>>>> documentation to the property to indicate expectation. Unless someone
+>>>> has objections to this approach.
+>>>>
+>>>
+>>> Would it work better to disable these nodes, only enabling them in the
+>>> board files when a real clock-frequency can be provided?
+>>>
+>>> My initial reaction would be to move the whole external reference clock
+>>> node to the board file since that is where it is provided, but seems
+>>> that would cause more churn in serdes_wiz* nodes than we would want..
+>>
+>> I would prefer that as well, but I have'nt gone around looking for
+>> similar examples on other SoCs (Jayesh, can you check?). One other
+>> approach (alipine and few other places) has been for the bootloader to
+>> update the property set in dtb as 0, which is not needed in this case
+>> to the best of what I see.. just hoping we use a technique that most
+>> board folks are familiar with across SoCs.
+>>
+> 
+> 
+> I can see the clock nodes in board files for some vendors. But like
+> Andrew said, that would cause issues with serdes_wiz node in the
+> main.dtsi.
+> 
+> So I think it would be better to keep the external clock node in main
+> dtsi itself. I will add comments to the property to indicate that this
+> value will be over-written in board dts.
+> Posting v6 to address these comments and others on the series.
+> 
 
-Add the endpoint nodes to describe connection from:
-DSS => MHDP => DisplayPort connector.
+FYI..
+I posted v6: 
+https://lore.kernel.org/all/20230721132029.123881-1-j-choudhary@ti.com/
+And I am using status property instead to address the dtbs_warning here.
 
-Also add the GPIO expander-4 node and pinmux for main_i2c4 which is
-required for controlling DP power. Set status for all required nodes
-for DP-0 as "okay".
-
-Signed-off-by: Rahul T R <r-ravikumar@ti.com>
-[j-choudhary@ti.com: move all the changes together to enable DP-0 in EVM]
-Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
----
- arch/arm64/boot/dts/ti/k3-j784s4-evm.dts | 117 +++++++++++++++++++++++
- 1 file changed, 117 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
-index 1e2a26ac9c65..12d032b41bf0 100644
---- a/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
-@@ -249,6 +249,28 @@ vdd_sd_dv: regulator-TLV71033 {
- 		states = <1800000 0x0>,
- 			 <3300000 0x1>;
- 	};
-+
-+	dp0_pwr_3v3: regulator-dp0-prw {
-+		compatible = "regulator-fixed";
-+		regulator-name = "dp0-pwr";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		gpio = <&exp4 0 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+	};
-+
-+	dp0: dp0-connector {
-+		compatible = "dp-connector";
-+		label = "DP0";
-+		type = "full-size";
-+		dp-pwr-supply = <&dp0_pwr_3v3>;
-+
-+		port {
-+			dp0_connector_in: endpoint {
-+				remote-endpoint = <&dp0_out>;
-+			};
-+		};
-+	};
- };
- 
- &main_pmx0 {
-@@ -310,6 +332,19 @@ vdd_sd_dv_pins_default: vdd-sd-dv-default-pins {
- 			J784S4_IOPAD(0x020, PIN_INPUT, 7) /* (AJ35) MCAN15_RX.GPIO0_8 */
- 		>;
- 	};
-+
-+	dp0_pins_default: dp0-pins-default {
-+		pinctrl-single,pins = <
-+			J784S4_IOPAD(0x0cc, PIN_INPUT, 12) /* (AM37) SPI0_CS0.DP0_HPD */
-+		>;
-+	};
-+
-+	main_i2c4_pins_default: main-i2c4-pins-default {
-+		pinctrl-single,pins = <
-+			J784S4_IOPAD(0x014, PIN_INPUT_PULLUP, 8) /* (AG33) MCAN14_TX.I2C4_SCL */
-+			J784S4_IOPAD(0x010, PIN_INPUT_PULLUP, 8) /* (AH33) MCAN13_RX.I2C4_SDA */
-+		>;
-+	};
- };
- 
- &wkup_pmx2 {
-@@ -875,3 +910,85 @@ &main_cpsw1_port1 {
- 	phy-mode = "rgmii-rxid";
- 	phy-handle = <&main_phy0>;
- };
-+
-+&serdes_refclk {
-+	status = "okay";
-+	clock-frequency = <100000000>;
-+};
-+
-+&dss {
-+	status = "okay";
-+	assigned-clocks = <&k3_clks 218 2>,
-+			  <&k3_clks 218 5>,
-+			  <&k3_clks 218 14>,
-+			  <&k3_clks 218 18>;
-+	assigned-clock-parents = <&k3_clks 218 3>,
-+				 <&k3_clks 218 7>,
-+				 <&k3_clks 218 16>,
-+				 <&k3_clks 218 22>;
-+};
-+
-+&serdes_wiz4 {
-+	status = "okay";
-+};
-+
-+&serdes4 {
-+	status = "okay";
-+	serdes4_dp_link: phy@0 {
-+		reg = <0>;
-+		cdns,num-lanes = <4>;
-+		#phy-cells = <0>;
-+		cdns,phy-type = <PHY_TYPE_DP>;
-+		resets = <&serdes_wiz4 1>, <&serdes_wiz4 2>,
-+			 <&serdes_wiz4 3>, <&serdes_wiz4 4>;
-+	};
-+};
-+
-+&mhdp {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&dp0_pins_default>;
-+	phys = <&serdes4_dp_link>;
-+	phy-names = "dpphy";
-+};
-+
-+&dss_ports {
-+	port {
-+		dpi0_out: endpoint {
-+			remote-endpoint = <&dp0_in>;
-+		};
-+	};
-+};
-+
-+&main_i2c4 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_i2c4_pins_default>;
-+	clock-frequency = <400000>;
-+
-+	exp4: gpio@20 {
-+		compatible = "ti,tca6408";
-+		reg = <0x20>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+	};
-+};
-+
-+&dp0_ports {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	port@0 {
-+		reg = <0>;
-+		dp0_in: endpoint {
-+			remote-endpoint = <&dpi0_out>;
-+		};
-+	};
-+
-+	port@4 {
-+		reg = <4>;
-+		dp0_out: endpoint {
-+			remote-endpoint = <&dp0_connector_in>;
-+		};
-+	};
-+};
--- 
-2.25.1
-
+Warm Regards,
+Jayesh
