@@ -2,161 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 071A075C84A
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 15:50:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 232AC75C867
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 15:54:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231516AbjGUNuk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jul 2023 09:50:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46616 "EHLO
+        id S229644AbjGUNyW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jul 2023 09:54:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50606 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231560AbjGUNu2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 09:50:28 -0400
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EAC3A30EC
-        for <devicetree@vger.kernel.org>; Fri, 21 Jul 2023 06:50:21 -0700 (PDT)
-Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-3fbc244d307so17287705e9.1
-        for <devicetree@vger.kernel.org>; Fri, 21 Jul 2023 06:50:21 -0700 (PDT)
+        with ESMTP id S229887AbjGUNyV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 09:54:21 -0400
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CABBB2736
+        for <devicetree@vger.kernel.org>; Fri, 21 Jul 2023 06:54:19 -0700 (PDT)
+Received: by mail-lj1-x22d.google.com with SMTP id 38308e7fff4ca-2b6f943383eso28771831fa.2
+        for <devicetree@vger.kernel.org>; Fri, 21 Jul 2023 06:54:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1689947419; x=1690552219;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=dRBYGxiJV+fUO8L5x5OkCA3grJdrnxlxanjlGq4MKP4=;
-        b=X/b4lfScvLyO50oKagC+JEFYqdE8/h/2h/kB633hueE2yocwWU1uR7k887yaktJC0P
-         N/diOKoYfnh1vTgtHytcXoF9fRLm1Ug8stz8oznWSd/Ho8d0E97HtQzZIAGe44lP1h8m
-         TYktfCtqjSidnkGcASViXJnDGwKUFJIyP1fGyt7xHIKkGMoFjY8Yw2OrS8XDQwMDFPUJ
-         YSHCN0hUU9JZ11XvrY0GhQe2wp1RiPlg4ONWI50U1hxbGTPEyqtFE+AwHQxn+5zV+K1Z
-         QozEK7YynhD8V0RLAkXxBueGLC9fAp+Zsv2dwO0dd/cHoMJZLI9z/QUq/v2ulF79xeXY
-         gMpA==
+        d=linaro.org; s=google; t=1689947658; x=1690552458;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=BKID3iVQH5n9h8RKBsuwUVNGEeysVbMR50pc5l3Ilu0=;
+        b=HoH/uzLs5rN/KQTy/ozW4NalUSymBB9CYBNtvTJf1o7NbdtZu3VmE9rp0OERiPsiU1
+         cu4o1FqMMzkJSc4i3FpbQR8WXfA8fOqQb/+e2DENLH+tFTCpiFcnqHs9r/e7zG9+6Q0e
+         AD6GP8vw/wzCmOzJHs2vLwHv2BA8djOtcQhhojc6bvtf8rIhvabosp5A2K+Vd3ZMWnX5
+         YBCTiKXn4g0QTewgm7ehiH4jpkqJe+7/JthbdWrcdAnyfy/v07ngEtni9+Zjl19a1hX4
+         ufD8KPu70R9tETjEPpW6XWo8wCiuD+taRZQX9BKW7cRrtl1WX/+J8YGI5LnSColsZSzh
+         +j+Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689947419; x=1690552219;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=dRBYGxiJV+fUO8L5x5OkCA3grJdrnxlxanjlGq4MKP4=;
-        b=l0YEHJmKmE9M4bfs8EyMmyWl4HUUe4qQFIxy9i0cBITfsY7DWAu1pe+0hvMYwtkGgv
-         xXAhbXn6x5SqFKbYql0hBJDrnfu0Adwa9Fv1ohEBtafh6+mDt8WJvMRDVVlPzfQMwdX8
-         9DPBGoXVTAtZNI80Z/Pa4YffLQtTXsRqj2UrR7cLPBUxueIdDJXKUP9ERMqcilu/96iG
-         YaV+9VCmowqMG13n7Vc+a5DDtD4CI09vZmyDpA/CzVEgnwrUhGNSWwSdW2Y1TlXFsa5g
-         FT754XbCQdLK1Dj1NKN1pdDWY7XmGVKlmb1eBQyahdTklQH5tAS3+2tDlVtBNmSJbgkY
-         +9Bg==
-X-Gm-Message-State: ABy/qLZTTpzLpnyzkZLIpmei3h1v2L5jPw4tRuix7snk4IWyFs9aS+ai
-        L1O3+rzq0+tdoM2rHKh/yFkcnQ==
-X-Google-Smtp-Source: APBJJlFgG2WeFkm/yf/wlFlPZiCNsdoffBh//BtztWnERSfUFPNj2OMuWQPhdMMl7iGF3Y9DuEJvtA==
-X-Received: by 2002:a05:600c:20c4:b0:3f4:d18f:b2fb with SMTP id y4-20020a05600c20c400b003f4d18fb2fbmr1623924wmm.8.1689947419766;
-        Fri, 21 Jul 2023 06:50:19 -0700 (PDT)
-Received: from blmsp.fritz.box ([2001:4091:a247:82fa:b762:4f68:e1ed:5041])
-        by smtp.gmail.com with ESMTPSA id c14-20020adfed8e000000b00313e4d02be8sm4233980wro.55.2023.07.21.06.50.18
+        d=1e100.net; s=20221208; t=1689947658; x=1690552458;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=BKID3iVQH5n9h8RKBsuwUVNGEeysVbMR50pc5l3Ilu0=;
+        b=RuHg7FzbNzS5VEo0IMXKKmMmiKlGzN/GOt+6SS7WVdXz2BdjyFNlRbPq49NFeUe8A9
+         DX+SoKjjcfZ6HQmY6C0huh0ZFaXj4CFvcqz+I7aW1H+YlxcMGfEuty+5VTvlgyNJ+Gdz
+         OK9XZCOp+VvIxKdRlMbu7YXPxuAH8K0B7VApa7i2XHLksdiF+ctVVsquJHbrPxGf99Wv
+         3B7/sqcufCMfjRArSDxAMosTYqXa96KkEHtNseeEUgMF3Qt705wMbmtyP8GHoNxWnc+e
+         ux0XEsSG4YAQwsJT3+gTlBkr60j/rV191XYSCcwo6AYfZqDk8Of+CIbTU9caKZ3FkJNA
+         SYsw==
+X-Gm-Message-State: ABy/qLZG1vldbO06hhLzBb+Mx16wswQ1D4kRdhl0PUebp75DeBsb+9Ih
+        JmawUy+f93hwjYf4z3IaO7d/lg==
+X-Google-Smtp-Source: APBJJlEwRYvgUcZ2vs7ZV9h8nJeMgbF7zh+vWPUMZuhuyCxCAxZDIIdomJFZhF2xUTkzFsvuPIDNKg==
+X-Received: by 2002:a2e:7205:0:b0:2b9:383b:89fc with SMTP id n5-20020a2e7205000000b002b9383b89fcmr1599079ljc.0.1689947657987;
+        Fri, 21 Jul 2023 06:54:17 -0700 (PDT)
+Received: from [192.168.1.101] (abyj181.neoplus.adsl.tpnet.pl. [83.9.29.181])
+        by smtp.gmail.com with ESMTPSA id k21-20020a2e92d5000000b002b6ad323248sm953838ljh.10.2023.07.21.06.54.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Jul 2023 06:50:19 -0700 (PDT)
-From:   Markus Schneider-Pargmann <msp@baylibre.com>
-To:     Wolfgang Grandegger <wg@grandegger.com>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
-        Michal Kubiak <michal.kubiak@intel.com>,
-        Vivek Yadav <vivek.2311@samsung.com>,
-        linux-can@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Simon Horman <simon.horman@corigine.com>,
-        Markus Schneider-Pargmann <msp@baylibre.com>
-Subject: [PATCH v3 6/6] can: tcan4x5x: Add error messages in probe
-Date:   Fri, 21 Jul 2023 15:50:09 +0200
-Message-Id: <20230721135009.1120562-7-msp@baylibre.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230721135009.1120562-1-msp@baylibre.com>
-References: <20230721135009.1120562-1-msp@baylibre.com>
+        Fri, 21 Jul 2023 06:54:17 -0700 (PDT)
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Subject: [PATCH 0/7] Update RPM ICC bindings
+Date:   Fri, 21 Jul 2023 15:54:10 +0200
+Message-Id: <20230721-topic-icc_bindings-v1-0-93e2bc728fb7@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAKOumQC/x2N0QqDMAwAf0XyvEDb4Yr7lTFGW6MGJErjRBD/f
+ WGPd3DcCUqVSeHZnFBpZ+VFDPytgTIlGQm5N4bgwt3F4HFbVi7IpXwyS88yKsbQ+ej8Y2i7Fiz
+ MSQlzTVImS+U7zybXSgMf/9PrfV0/2uIg63kAAAA=
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Georgi Djakov <djakov@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Shawn Guo <shawn.guo@linaro.org>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1689947656; l=1988;
+ i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
+ bh=xqMYpd9F/kb53hSBYg/8pwD7vM3ZQ2FNDVHQCyN099Q=;
+ b=kg392TliDi3WroYKThrRrZneSn9sSCIXlf/aQDHNb1GFqhp3vBMsPcjn57Ewxd4QmDdNyQGuh
+ VmJBN3eykaqDehKBDDXT1QIiuVa+lgc54ysoMm+9oHIRgvKR4v91WNP
+X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
+ pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-To be able to understand issues during probe easier, add error messages
-if something fails.
+The recent necessary overhaul [1] of how we represent SMD ICC and RPM
+bus clocks changed the way they're connected. The bindings however were
+not updated to reflect that. This series tries to address that, while
+also making the relevant bindings less convoluted.
 
-Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+Now, instead of referencing RPM SMD bus clocks via clocks=<>, they're
+handled internally within the interconnect framework (via direct RPM
+calls from there). We still need to allow some "interface" clocks,
+which are necessary to access some registers and not managed for us.
+
+[1] https://lore.kernel.org/linux-arm-msm/20230526-topic-smd_icc-v7-0-09c78c175546@linaro.org/
+
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
- drivers/net/can/m_can/tcan4x5x-core.c | 26 ++++++++++++++++++++------
- 1 file changed, 20 insertions(+), 6 deletions(-)
+Konrad Dybcio (7):
+      dt-bindings: interconnect: qcom: Introduce qcom,rpm-common
+      dt-bindings: interconnect: qcom: qcm2290: Remove RPM bus clocks
+      dt-bindings: interconnect: qcom: Fix and separate out MSM8916
+      dt-bindings: interconnect: qcom: Fix and separate out QCS404
+      dt-bindings: interconnect: qcom: Fix and separate out SDM660
+      dt-bindings: interconnect: qcom: Fix and separate out MSM8996
+      dt-bindings: interconnect: qcom: Fix and separate out MSM8939
 
-diff --git a/drivers/net/can/m_can/tcan4x5x-core.c b/drivers/net/can/m_can/tcan4x5x-core.c
-index 2d329b4e4f52..60380b50e553 100644
---- a/drivers/net/can/m_can/tcan4x5x-core.c
-+++ b/drivers/net/can/m_can/tcan4x5x-core.c
-@@ -402,6 +402,8 @@ static int tcan4x5x_can_probe(struct spi_device *spi)
- 
- 	/* Sanity check */
- 	if (freq < 20000000 || freq > TCAN4X5X_EXT_CLK_DEF) {
-+		dev_err(&spi->dev, "Clock frequency is out of supported range %d\n",
-+			freq);
- 		ret = -ERANGE;
- 		goto out_m_can_class_free_dev;
- 	}
-@@ -420,16 +422,22 @@ static int tcan4x5x_can_probe(struct spi_device *spi)
- 	/* Configure the SPI bus */
- 	spi->bits_per_word = 8;
- 	ret = spi_setup(spi);
--	if (ret)
-+	if (ret) {
-+		dev_err(&spi->dev, "SPI setup failed %d\n", ret);
- 		goto out_m_can_class_free_dev;
-+	}
- 
- 	ret = tcan4x5x_regmap_init(priv);
--	if (ret)
-+	if (ret) {
-+		dev_err(&spi->dev, "regmap init failed %d\n", ret);
- 		goto out_m_can_class_free_dev;
-+	}
- 
- 	ret = tcan4x5x_power_enable(priv->power, 1);
--	if (ret)
-+	if (ret) {
-+		dev_err(&spi->dev, "Enabling regulator failed %d\n", ret);
- 		goto out_m_can_class_free_dev;
-+	}
- 
- 	version_info = tcan4x5x_find_version(priv);
- 	if (IS_ERR(version_info)) {
-@@ -438,16 +446,22 @@ static int tcan4x5x_can_probe(struct spi_device *spi)
- 	}
- 
- 	ret = tcan4x5x_get_gpios(mcan_class, version_info);
--	if (ret)
-+	if (ret) {
-+		dev_err(&spi->dev, "Getting gpios failed %d\n", ret);
- 		goto out_power;
-+	}
- 
- 	ret = tcan4x5x_init(mcan_class);
--	if (ret)
-+	if (ret) {
-+		dev_err(&spi->dev, "tcan initialization failed %d\n", ret);
- 		goto out_power;
-+	}
- 
- 	ret = m_can_class_register(mcan_class);
--	if (ret)
-+	if (ret) {
-+		dev_err(&spi->dev, "Failed registering m_can device %d\n", ret);
- 		goto out_power;
-+	}
- 
- 	netdev_info(mcan_class->net, "TCAN4X5X successfully initialized.\n");
- 	return 0;
+ .../bindings/interconnect/qcom,msm8916.yaml        |  52 ++++
+ .../bindings/interconnect/qcom,msm8939.yaml        |  74 ++++++
+ .../bindings/interconnect/qcom,msm8996.yaml        | 165 ++++++++++++
+ .../bindings/interconnect/qcom,qcm2290.yaml        |  54 +---
+ .../bindings/interconnect/qcom,qcs404.yaml         |  52 ++++
+ .../bindings/interconnect/qcom,rpm-common.yaml     |  31 +++
+ .../devicetree/bindings/interconnect/qcom,rpm.yaml | 281 ---------------------
+ .../bindings/interconnect/qcom,sdm660.yaml         | 131 ++++++++++
+ 8 files changed, 509 insertions(+), 331 deletions(-)
+---
+base-commit: ae867bc97b713121b2a7f5fcac68378a0774739b
+change-id: 20230721-topic-icc_bindings-72917016f595
+
+Best regards,
 -- 
-2.40.1
+Konrad Dybcio <konrad.dybcio@linaro.org>
 
