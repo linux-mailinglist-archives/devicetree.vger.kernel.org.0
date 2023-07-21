@@ -2,69 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9EF2075D676
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 23:24:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2193575D687
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 23:30:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230170AbjGUVYo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jul 2023 17:24:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42564 "EHLO
+        id S229569AbjGUVa4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jul 2023 17:30:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45518 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229644AbjGUVYn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 17:24:43 -0400
-Received: from mx0b-002e3701.pphosted.com (mx0b-002e3701.pphosted.com [148.163.143.35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07B6130D0;
-        Fri, 21 Jul 2023 14:24:42 -0700 (PDT)
-Received: from pps.filterd (m0134425.ppops.net [127.0.0.1])
-        by mx0b-002e3701.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36LJ1s2Y031028;
-        Fri, 21 Jul 2023 21:24:30 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hpe.com; h=from : to : subject :
- date : message-id : in-reply-to : references; s=pps0720;
- bh=3qFbs7ny735Se8n+zekA1xfETEDp1cFK+SaOIyzWAhg=;
- b=Bkb1a2zCHDwf/8Exym+IiFrKI87IrgZAEuW7hE4+2qRcwQOrj2wG6YMBxaTW7hrqihLr
- 2ZB6wcWkdqhMfDDrE758r8lKXq0ZhdlLKX9xhwg0bYBlv6cXcQkRxOh4+MfyuCQWCpFN
- WLGkS3e4DuyHnqh3nnoY5zjoQr6iO6/JefPzWBLyv7lj4xao2XcchcOecBQwmG2D2RKJ
- YSsC/5DUyKBuu3oF5+oaZZbxSm4Cv8qNudxH4aKAHNL+DI+c08KUizSnFjeFnvxYxecD
- YGMGIIGhYh1W9ocorfQuxHrTu3AsooZ1H+RhQqLpdq3qGVeOF84YZvCty6Z3CChuTyRC GQ== 
-Received: from p1lg14878.it.hpe.com (p1lg14878.it.hpe.com [16.230.97.204])
-        by mx0b-002e3701.pphosted.com (PPS) with ESMTPS id 3ryacpbwwt-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 21 Jul 2023 21:24:30 +0000
-Received: from p1lg14885.dc01.its.hpecorp.net (unknown [10.119.18.236])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by p1lg14878.it.hpe.com (Postfix) with ESMTPS id E604AD2D2;
-        Fri, 21 Jul 2023 21:24:29 +0000 (UTC)
-Received: from hpe.com (unknown [16.231.227.36])
-        by p1lg14885.dc01.its.hpecorp.net (Postfix) with ESMTP id 41FEA809FDC;
-        Fri, 21 Jul 2023 21:24:29 +0000 (UTC)
-From:   nick.hawkins@hpe.com
-To:     verdun@hpe.com, nick.hawkins@hpe.com, davem@davemloft.net,
-        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v1 5/5] MAINTAINERS: HPE: Add GXP UMAC Networking Files
-Date:   Fri, 21 Jul 2023 16:20:44 -0500
-Message-Id: <20230721212044.59666-6-nick.hawkins@hpe.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230721212044.59666-1-nick.hawkins@hpe.com>
-References: <20230721212044.59666-1-nick.hawkins@hpe.com>
-X-Proofpoint-ORIG-GUID: OcWqRi7nCqDrzVPQvsG7gQUKHY1vudSp
-X-Proofpoint-GUID: OcWqRi7nCqDrzVPQvsG7gQUKHY1vudSp
-X-HPE-SCL: -1
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-07-21_12,2023-07-20_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 priorityscore=1501
- spamscore=0 malwarescore=0 adultscore=0 phishscore=0 mlxlogscore=932
- impostorscore=0 suspectscore=0 clxscore=1015 lowpriorityscore=0
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2306200000 definitions=main-2307210189
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        with ESMTP id S229452AbjGUVaz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 17:30:55 -0400
+Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F33D30D4;
+        Fri, 21 Jul 2023 14:30:54 -0700 (PDT)
+Received: from local
+        by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+         (Exim 4.96)
+        (envelope-from <daniel@makrotopia.org>)
+        id 1qMxhq-0004YE-2E;
+        Fri, 21 Jul 2023 21:30:34 +0000
+Date:   Fri, 21 Jul 2023 22:30:26 +0100
+From:   Daniel Golle <daniel@makrotopia.org>
+To:     "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Felix Fietkau <nbd@nbd.name>, John Crispin <john@phrozen.org>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Mark Lee <Mark-MC.Lee@mediatek.com>,
+        Lorenzo Bianconi <lorenzo@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Russell King <linux@armlinux.org.uk>,
+        =?iso-8859-1?Q?Bj=F8rn?= Mork <bjorn@mork.no>,
+        Greg Ungerer <gerg@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+Subject: [PATCH net-next v4 0/9] net: ethernet: mtk_eth_soc: add basic
+ support for MT7988 SoC
+Message-ID: <cover.1689974536.git.daniel@makrotopia.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,36 +58,66 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Nick Hawkins <nick.hawkins@hpe.com>
+The MediaTek MT7988 SoC introduces a new version (3) of the NETSYS
+block and comes with three instead of two MACs.
 
-List the files added for supporting the UMAC networking on GXP.
+The first MAC can be internally connected to a built-in Gigabit
+Ethernet switch with four 1000M/100M/10M twisted pair user ports.
 
-Signed-off-by: Nick Hawkins <nick.hawkins@hpe.com>
----
- MAINTAINERS | 3 +++
- 1 file changed, 3 insertions(+)
+The second MAC can be internally connected to a built-in 2500Base-T
+Ethernet PHY.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 27ef11624748..4f1c3fa27f7f 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -2243,6 +2243,8 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/arm/hpe,gxp.yaml
- F:	Documentation/devicetree/bindings/hwmon/hpe,gxp-fan-ctrl.yaml
- F:	Documentation/devicetree/bindings/i2c/hpe,gxp-i2c.yaml
-+F:	Documentation/devicetree/bindings/net/hpe,gxp-umac-mdio.yaml
-+F:	Documentation/devicetree/bindings/net/hpe,gxp-umac.yaml
- F:	Documentation/devicetree/bindings/spi/hpe,gxp-spifi.yaml
- F:	Documentation/devicetree/bindings/timer/hpe,gxp-timer.yaml
- F:	Documentation/hwmon/gxp-fan-ctrl.rst
-@@ -2252,6 +2254,7 @@ F:	arch/arm/mach-hpe/
- F:	drivers/clocksource/timer-gxp.c
- F:	drivers/hwmon/gxp-fan-ctrl.c
- F:	drivers/i2c/busses/i2c-gxp.c
-+F:	drivers/net/ethernet/hpe/
- F:	drivers/spi/spi-gxp.c
- F:	drivers/watchdog/gxp-wdt.c
- 
+There are two SerDes units which can be operated in USXGMII, 10GBase-(K)R,
+5GBase-R, 2500Base-X, 1000Base-X or SGMII interface mode.
+
+This series adds initial support for NETSYS v3 and the first MAC of the
+MT7988 SoC connecting the built-in DSA switch.
+
+The switch is supported since commit 110c18bfed414 ("net: dsa: mt7530:
+introduce driver for MT7988 built-in switch").
+
+Basic support for the 1000M/100M/10M built-in PHYs connected to the
+switch ports is present since commit ("98c485eaf509b net: phy: add
+driver for MediaTek SoC built-in GE PHYs").
+
+Changes since v3:
+  * Set 'mediatek,infracfg = false;' in dt-bindings for those chips
+    which do not require infracfg phandle.
+
+Changes since v2:
+  * Use version number instead of feature bits for NETSYS version
+  * Remove unneeded check for NULL when calling mtk_pcs_lynxi_destroy
+  * Reduce dt-bindings to what is actually needed at this point for
+    the driver to work.
+
+Changes since v1:
+  * Set MTK_MAX_DEVS to 3 instead of converting to dynamic number of
+    Ethernet MACs.
+  * use mtk_m32 when ever possible
+  * more small improvements and minor comments addressed
+
+Daniel Golle (3):
+  dt-bindings: net: mediatek,net: add missing mediatek,mt7621-eth
+  dt-bindings: net: mediatek,net: add mt7988-eth binding
+  net: ethernet: mtk_eth_soc: convert clock bitmap to u64
+
+Lorenzo Bianconi (6):
+  net: ethernet: mtk_eth_soc: add version in mtk_soc_data
+  net: ethernet: mtk_eth_soc: increase MAX_DEVS to 3
+  net: ethernet: mtk_eth_soc: rely on MTK_MAX_DEVS and remove
+    MTK_MAC_COUNT
+  net: ethernet: mtk_eth_soc: add NETSYS_V3 version support
+  net: ethernet: mtk_eth_soc: convert caps in mtk_soc_data struct to u64
+  net: ethernet: mtk_eth_soc: add basic support for MT7988 SoC
+
+ .../devicetree/bindings/net/mediatek,net.yaml | 109 ++++-
+ drivers/net/ethernet/mediatek/mtk_eth_path.c  |  36 +-
+ drivers/net/ethernet/mediatek/mtk_eth_soc.c   | 398 ++++++++++++++----
+ drivers/net/ethernet/mediatek/mtk_eth_soc.h   | 327 +++++++++-----
+ drivers/net/ethernet/mediatek/mtk_ppe.c       |  18 +-
+ .../net/ethernet/mediatek/mtk_ppe_offload.c   |   2 +-
+ drivers/net/ethernet/mediatek/mtk_wed.c       |   4 +-
+ 7 files changed, 668 insertions(+), 226 deletions(-)
+
 -- 
-2.17.1
-
+2.41.0
