@@ -2,184 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B61175C1EB
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 10:46:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5497275C205
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 10:51:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230020AbjGUIqZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jul 2023 04:46:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50146 "EHLO
+        id S229804AbjGUIvR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jul 2023 04:51:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52482 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229591AbjGUIqW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 04:46:22 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7F1F273A;
-        Fri, 21 Jul 2023 01:46:17 -0700 (PDT)
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36L5mecZ023815;
-        Fri, 21 Jul 2023 08:46:04 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=Z6eykhfMHJ23fTKK19IkyeQ4FDdUwvWRSd0mnAQWKrA=;
- b=Jc4Hj81qkRylABTzG38pPgISQY8eTGWUdJqHtUijh7bpSgSOS9k9o/hSIil2XIT5rYze
- 3sT2fe9e3FyVI4fMuJaltdhSBRJGd7EQRAwID4QWUNVD1BGdSRQKSjhiBIWB1kGBgem/
- GfaCraFSlyWExF6NCKywbXStiPwzvqM7wx8A1FsMtteUvvUfWsuZqD9XDZXU5NVeSZpK
- hxeEaIpkI105w0CTZ9IB605ClhIgZRPE0nI0g+AU10NVfTH052uhpjDIaTkPclWHAZMb
- gRpeoNni1rL/PKf1vBWFid24yx2ZLGv5ctJp9dM9mAnaWyaW1jUhIjxvoRqr4INWLioe wA== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ryhdy8kbm-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 21 Jul 2023 08:46:04 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 36L8k3aA026333
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 21 Jul 2023 08:46:03 GMT
-Received: from [10.216.63.95] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Fri, 21 Jul
- 2023 01:45:57 -0700
-Message-ID: <f0857b4d-c1a8-7f82-1890-521afb225e1c@quicinc.com>
-Date:   Fri, 21 Jul 2023 14:15:54 +0530
+        with ESMTP id S229531AbjGUIvQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 04:51:16 -0400
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF0472D6D
+        for <devicetree@vger.kernel.org>; Fri, 21 Jul 2023 01:51:14 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-52166c7f77cso2397724a12.2
+        for <devicetree@vger.kernel.org>; Fri, 21 Jul 2023 01:51:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1689929473; x=1690534273;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=WWspx2IYQWgel8o0dr3Ih3S9QDcbeM1ekG1DrVxBsU4=;
+        b=Vg6eBxux0utGwzneIrFLIK4t/wuJYPMT0ytwc9fzYmdnostqUIlGsGDvFCPunsBsr5
+         jE5oFQcUC6H1Ehy25EoW0uy9QLN22MUxRpqrHuCJqyrgopfjbb0kxYy8UtuQ34C64xbz
+         Y4H22xYNuCMhFUi8BfsNccpJzs47xYiQodPmq35WimjejBgOpPYUwWlGLZGPJmDzXbK4
+         XM5464YmaBa6Dk+V5VxAYv5n8n3hzMNnVZOZuVlqYyUr+jIlBXuXMUNDWbqISTpHvx40
+         1lKWoEOvxyQvanb/wpUC7fqqeca2FwzvtLr5xNHgwsuFGLnmK9lcvFX4YjJ6AgbsU//S
+         xPKA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689929473; x=1690534273;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=WWspx2IYQWgel8o0dr3Ih3S9QDcbeM1ekG1DrVxBsU4=;
+        b=KHCV5Ae85ftMy8hNxMYQQgKQtY/04hvxqHty2prYIEggSlkkHC5lwW1nzark0Zdm32
+         CwfD5QmMGT1HpUB4huu+8KNUK5Z0Lq7FL4eIZKFbucwawDd5vgPUaczP7qtb+jihJWTP
+         xn3CFqwqNkJtwhWUD4bRZIUnez621CafB4cFSTi/Lz6UkeVyDuGyWL0jU4P7eToTMMiZ
+         2gSX0qeSnvIyg1vDy3Wt+TRWj9gELAebfwQH440HKiLaVd71A3H3iaB8tkfk+WM3ydtL
+         50lR07F9KpBFlGqNO1VpFGdup9tlb+urD4wmL3wq26qqDO3G2MJ1kWBBvnHNZOrl5ssC
+         l02Q==
+X-Gm-Message-State: ABy/qLaJ2CpQbwVGdgRe9vUMg/lMophYVAiHLkXAvPLrWzkNhQi0rckx
+        EPoEbD0pmR1t27UXcu2jMOD9Yw==
+X-Google-Smtp-Source: APBJJlHswUAMaPYYUmOZTR/uuQsB7Y5HxnKKZjqPQBWqyHi8m8f2bgArHr5TZiAllx20tovk024Fqw==
+X-Received: by 2002:a17:907:2bcb:b0:994:5659:1fa with SMTP id gv11-20020a1709072bcb00b00994565901famr1350353ejc.18.1689929473268;
+        Fri, 21 Jul 2023 01:51:13 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id p24-20020a170906a01800b00992f2befcbcsm1853547ejy.180.2023.07.21.01.51.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 21 Jul 2023 01:51:12 -0700 (PDT)
+Message-ID: <b8333812-df9d-368a-939b-3495878a2e5e@linaro.org>
+Date:   Fri, 21 Jul 2023 10:51:11 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.1
-Subject: Re: [PATCH v9 06/10] usb: dwc3: qcom: Add support to read IRQ's
- related to multiport
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [v2 PATCH] arm64: dts: stratix10: add new compatible for Intel
+ SoCFPGA Stratix10 platform
 Content-Language: en-US
-To:     Johan Hovold <johan@kernel.org>
-CC:     Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        <quic_jackp@quicinc.com>, Wesley Cheng <quic_wcheng@quicinc.com>,
-        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Felipe Balbi <balbi@kernel.org>, <linux-usb@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <quic_pkondeti@quicinc.com>,
-        <quic_ppratap@quicinc.com>, <ahalaney@redhat.com>,
-        <quic_shazhuss@quicinc.com>
-References: <20230621043628.21485-1-quic_kriskura@quicinc.com>
- <20230621043628.21485-7-quic_kriskura@quicinc.com>
- <ZK6YrLMn9r39zEeB@hovoldconsulting.com>
- <ef29e520-7b9c-f581-e70a-250df80d3821@quicinc.com>
- <ZLEP6Ekh3unSTiCL@hovoldconsulting.com>
- <7c04ebd9-4def-87d6-0640-35fd0ccd20f5@quicinc.com>
- <9a304650-0360-5509-4922-0818e8e306f5@quicinc.com>
- <ZLpDQ0R1BjG8fJk8@hovoldconsulting.com>
-From:   Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
-In-Reply-To: <ZLpDQ0R1BjG8fJk8@hovoldconsulting.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: uMAMYzMEYpeA7DRHvXBDOYN5JsmWIV0C
-X-Proofpoint-ORIG-GUID: uMAMYzMEYpeA7DRHvXBDOYN5JsmWIV0C
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-07-21_05,2023-07-20_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 bulkscore=0
- spamscore=0 malwarescore=0 clxscore=1015 priorityscore=1501 adultscore=0
- mlxlogscore=719 impostorscore=0 phishscore=0 lowpriorityscore=0 mlxscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2306200000
- definitions=main-2307210078
-X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+To:     Meng Li <Meng.Li@windriver.com>, dinguyen@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, devicetree@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org
+References: <20230721083821.1820881-1-Meng.Li@windriver.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230721083821.1820881-1-Meng.Li@windriver.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 21/07/2023 10:38, Meng Li wrote:
+> Intel Stratix10 is very the same with Agilex platform, the DWC2 IP on
+> the Stratix platform also does not support clock-gating. The commit
+> 3d8d3504d233("usb: dwc2: Add platform specific data for Intel's Agilex")
+> had fixed this issue. So, add the essential compatible to also use the
+> specific data on Stratix10 platform.
+> 
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+From where did you get it?
+
+Did you just fake a tag to pass the review?
+
+> Signed-off-by: Meng Li <Meng.Li@windriver.com>
+> ---
+> 
+> v2:
+>  - Add SoC specific compatible as per Krzysztof comment
+> 
+> ---
+>  arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi b/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
+> index 41c9eb51d0ee..46691e72f46b 100644
+> --- a/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
+> +++ b/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
+> @@ -491,7 +491,7 @@ usbphy0: usbphy@0 {
+>  		};
+>  
+>  		usb0: usb@ffb00000 {
+> -			compatible = "snps,dwc2";
+> +			compatible = "intel,socfpga-stratix10-hsotg", "intel,socfpga-agilex-hsotg", "snps,dwc2";
+
+It does not look like you tested the DTS against bindings. Please run
+`make dtbs_check` (see
+Documentation/devicetree/bindings/writing-schema.rst or
+https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
+for instructions).
 
 
-On 7/21/2023 2:05 PM, Johan Hovold wrote:
-> On Sun, Jul 16, 2023 at 12:31:05AM +0530, Krishna Kurapati PSSNV wrote:
->> On 7/14/2023 4:10 PM, Krishna Kurapati PSSNV wrote:
->>> On 7/14/2023 2:35 PM, Johan Hovold wrote:
-> 
->>>> I haven't had time to look at your latest replies yet, but as I already
->>>> said when reviewing v9, it seems you should be using a common helper for
->>>> non-mp and mp.
-> 
->>>    The gist of my mail was to see if I can defer qcom probe when dwc3
->>> probe fails/or doesn't happen on of_plat_pop (which is logical) so that
->>> we can move setup_irq to after dwc3_register_core so that we know
->>> whether we are MP capable or not. This would help us move all IRQ
->>> reading into one function.
-> 
->>    I see it is difficult to write a common helper. To do so, we need to
->> know whether the device is MP capable or not in advance. And since it is
->> not possible to know it before of_plat_pop is done, I see only few ways
->> to do it:
->>
->> 1. Based on qcom node compatible string, I can read whether the device
->> is MP capable or not and get IRQ's accordingly.
-> 
-> See, it's not impossible. You can also determine whether you have a
-> multiport controller from looking at the interrupt names which are
-> indexed and distinct for MP.
-> 
->> 2. Read the port_info in advance but it needs me to go through some DT
->> props and try getting this info. Or read xhci regs like we are doing in
->> core (which is not good). Also since some Dt props can be missing, is it
->> difficult to get the MP capability info before of_plat_pop is done.
-> 
-> That seem unnecessary currently, but long term we probably need to fix
-> the design of this driver and defer some setup using callbacks that are
-> called when the core driver probes. Perhaps now is the time to add such
-> functionality.
-> 
->> 3. Remove IRQ handling completely. Just because the device has IRQ's
->> present, I don't see a point in adding them to bindings, and because we
->> added them to bindings, we are making a patch to read them (and since
->> this is a little challenging, the whole of multiport series is blocked
->> although I don't need wakeup support on these interrupts right away).
-> 
-> Again, no. The devicetree binding should describe the hardware
-> capabilities and that has nothing to do with whether you need this for
-> you current project or not.
-> 
->> Can't we let the rest of the patches go through and let interrupt
->> handling for 2nd, 3rd and 4rth ports be taken care later ? I am asking
->> this because I want the rest of the patches which are in good shape now
->> (after fixing the nits mentioned) to get merged atleast. I will make
->> sure to add interrupt handling later in a different series once this is
->> merged once I send v10.
-> 
-> As I've explained in earlier mails, I don't think that is acceptable as
-> you'd be dumping your technical debt on the community which will be left
-> to clean up your mess.
-> 
->> Or if there is a simpler way to do it, I would be happy to take any
->> suggestions and complete this missing part in this series itself.
-> 
 
-Hi Johan,
-
-  Thanks for these comments.
-
-> Using the 'compatible' or 'interrupt-names' properties seems like the
-> easiest way to determine whether you have an MP controller or not.
-> 
-
-Yes, I can make a common helper to get IRQ's based on compatible. I also 
-provided another implementation (which is more unambiguous and better I 
-feel) on [1]. I will take one path forward based on your review of that 
-patch as well.
-
-Thanks a lot again for the reviews !
-
-[1]: 
-https://lore.kernel.org/all/f6f2456d-0067-6cd6-3282-8cae7c47a2d3@quicinc.com/
-
-Regards,
-Krishna,
+Best regards,
+Krzysztof
 
