@@ -2,53 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B78A275C19D
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 10:28:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CDD1675C19C
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 10:28:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229782AbjGUI2d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jul 2023 04:28:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39484 "EHLO
+        id S229908AbjGUI2Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jul 2023 04:28:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39428 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229752AbjGUI2c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 04:28:32 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B6BD121;
-        Fri, 21 Jul 2023 01:28:31 -0700 (PDT)
-Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 59DD96606FD8;
-        Fri, 21 Jul 2023 09:28:29 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1689928110;
-        bh=S2daYs/q6aqCT0TpIyUa+05O3Rn3ykyFm+Hh/ppB/7o=;
-        h=From:To:Cc:Subject:Date:From;
-        b=DlxTsX6WPi0EA46bobSmiVfjhwZ8LHFFBtVF+XfvRpKH7CXzKB+/qw9JTWxh8pD0g
-         1AqdhIk5T5PrVyyT68YHM2rMLggw9WKJwbJzjVKLEjAYTM5/MkZAX7jze3h/En88gD
-         m+PXLAS0PCZdOlSEenpzqo3PKTGbnmoCk873F8Gnn9o8we9UNwUM1Gv7FeDNAakpDa
-         EHCfpc3VGhljELNiKnvGqWnOh31jcIWx5xC8vl8fDc00ynpCyKkcIYPVPFzDTYJGU9
-         5YDTM5/D7BQxxf6TAPt6jbfeKugn1JFg50sClKB8PxxmOmnwyTjMX25d5zBcAe8usb
-         tXOz1C6M9aFjw==
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-To:     matthias.bgg@gmail.com
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, phone-devel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, kernel@collabora.com,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Subject: [PATCH v2 0/3] MT6795 Helio X10 and Xperia M5: Display support
+        with ESMTP id S229782AbjGUI2Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 04:28:24 -0400
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F570272E
+        for <devicetree@vger.kernel.org>; Fri, 21 Jul 2023 01:28:23 -0700 (PDT)
+Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-992ca792065so260239466b.2
+        for <devicetree@vger.kernel.org>; Fri, 21 Jul 2023 01:28:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1689928101; x=1690532901;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Dsq6lq46bmqojlD1viyuK+4fMsUmUDsNHjUOX0R90yo=;
+        b=UQJvkxYK5Bxuy5cxfNgH7GymctjAjpOdfNZzmiGhVU3mR8wufYDTT5hcugzHMocqHQ
+         hE9g2B66HdXjXY+TsmRAOdgPTY9Yuz3O7epIy2hoTD9uzcacjxoiMQkp2jyi0btALKYq
+         OpscFAK7122dRJOnYN/kgy2NYxPr0hcALiieEm9y0Pv3PIC3nJSy5dSYya8T2mT46Y2j
+         zYd0DxteaYHfkiw3K5+B/+G06Hr9LxcOZzUsIG/E+7RdI3eCrjj1yNm970qtvWmOPmYP
+         W5W+UvTkzNnrdGjaaaqyD+6yWzyk2y2rQhnSzkgPbgz8Z3ZmHHz43kBXxe9BRc2iAkkx
+         aUgg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689928101; x=1690532901;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Dsq6lq46bmqojlD1viyuK+4fMsUmUDsNHjUOX0R90yo=;
+        b=WmT4uvyZOHcIqLXDx/rz9aSNMIzlVrB+9anF9YPLH0se7Wv8GDQ+1yRg+V4ZQ//LIo
+         qFzSUIE+T74aeWvUOK8dJNW56QrKaIDckBO+9rIg6NH8SZBEAT4naNAz2dyVLsmeVzuV
+         YT61kUbllaNX0wIVAW8MGZTZUtDmCoWqRvk7m44aCMIo5dNA1A3+tW6R/I6q4lMSkZe4
+         y1dOOSRKJ4VXtcSpEDgldJaduDRHfaHJvG5xiDpNuC0Ia/I+ctG1zbsnkzQ8GGjtYXwk
+         KQbiKRwFnmPcCJtINJrzQPs2YbhZ6mbw8fUCqkYBhff2VPYCTIsfXptGp0RgTbsTRYkV
+         /Tfw==
+X-Gm-Message-State: ABy/qLaK7qfp0ER/HvS8vNVKkEsiLWf5en5lsJpLlVC7yQ5l6Qa/pglC
+        jmVRotosF90nAsqLVbIn1Vp1eA==
+X-Google-Smtp-Source: APBJJlFbeZX45zp0XdOXmUFlZXuNJ6sCLFRjiKekTNif3yCbc7LaSJc7oV4YzxyygJvwOayb93+JkA==
+X-Received: by 2002:a17:906:7394:b0:994:4095:3abf with SMTP id f20-20020a170906739400b0099440953abfmr1190916ejl.14.1689928101569;
+        Fri, 21 Jul 2023 01:28:21 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id qx4-20020a170906fcc400b00987e2f84768sm1821201ejb.0.2023.07.21.01.28.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 21 Jul 2023 01:28:21 -0700 (PDT)
+Message-ID: <745fccb0-e49d-7da7-9556-eb28aee4a32b@linaro.org>
 Date:   Fri, 21 Jul 2023 10:28:19 +0200
-Message-ID: <20230721082822.680010-1-angelogioacchino.delregno@collabora.com>
-X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v2] dt-bindings: clock: versal: Convert the
+ xlnx,zynqmp-clk.txt to yaml
+Content-Language: en-US
+To:     Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>,
+        devicetree@vger.kernel.org
+Cc:     git@amd.com, linux-clk@vger.kernel.org, michal.simek@amd.com,
+        conor+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        robh+dt@kernel.org, sboyd@kernel.org, mturquette@baylibre.com
+References: <20230720113110.25047-1-shubhrajyoti.datta@amd.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230720113110.25047-1-shubhrajyoti.datta@amd.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -57,23 +77,147 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Changes in v2:
- - Changed/clarified copyright addition in patch [1/3]
+On 20/07/2023 13:31, Shubhrajyoti Datta wrote:
+> Convert the xlnx,zynqmp-clk.txt to yaml.
+> versal-clk.yaml already exists that's why ZynqMP is converted and
+> merged.
+> 
+> Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
+> 
+> ---
+> 
+> Changes in v2:
+> add enum in compatible
+> fix the description
+> add constraints for clocks
 
-This series adds DSI display support for the MediaTek Helio X10 MT6795
-and also adds support for the specific DSI display and its backlight,
-found on the Sony Xperia M5 smartphone.
+No, you didn't.
 
-AngeloGioacchino Del Regno (3):
-  arm64: dts: mediatek: mt6795: Add support for display blocks and
-    DPI/DSI
-  arm64: dts: mediatek: mt6795-xperia-m5: Add display backlight support
-  arm64: dts: mediatek: mt6795-xperia-m5: Add DSI Display and its vregs
+> name the clock-controller1 to clock-controller
+> 
+>  .../bindings/clock/xlnx,versal-clk.yaml       | 80 ++++++++++++++++---
+>  .../bindings/clock/xlnx,zynqmp-clk.txt        | 63 ---------------
+>  2 files changed, 70 insertions(+), 73 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/clock/xlnx,zynqmp-clk.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/xlnx,versal-clk.yaml b/Documentation/devicetree/bindings/clock/xlnx,versal-clk.yaml
+> index e9cf747bf89b..cfe3aa676504 100644
+> --- a/Documentation/devicetree/bindings/clock/xlnx,versal-clk.yaml
+> +++ b/Documentation/devicetree/bindings/clock/xlnx,versal-clk.yaml
+> @@ -19,7 +19,9 @@ select: false
+>  properties:
+>    compatible:
+>      oneOf:
+> -      - const: xlnx,versal-clk
+> +      - enum:
+> +          - xlnx,versal-clk
+> +          - xlnx,zynqmp-clk
+>        - items:
+>            - enum:
+>                - xlnx,versal-net-clk
+> @@ -31,16 +33,8 @@ properties:
+>    clocks:
+>      description: List of clock specifiers which are external input
+>        clocks to the given clock controller.
+> -    items:
+> -      - description: reference clock
+> -      - description: alternate reference clock
+> -      - description: alternate reference clock for programmable logic
+>  
+> -  clock-names:
+> -    items:
+> -      - const: ref
+> -      - const: alt_ref
+> -      - const: pl_alt_ref
+> +  clock-names: true
 
- .../dts/mediatek/mt6795-sony-xperia-m5.dts    | 101 +++++++
- arch/arm64/boot/dts/mediatek/mt6795.dtsi      | 251 ++++++++++++++++++
- 2 files changed, 352 insertions(+)
+Nothing improved. Still constraints missing. You need min and maxItems
+for clocks and clock-names. HERE.
+>  
+>  required:
+>    - compatible
+> @@ -50,6 +44,63 @@ required:
+>  
+>  additionalProperties: false
+>  
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - xlnx,versal-clk
+> +
+> +    then:
+> +      properties:
+> +        clocks:
+> +          minItems: 3
 
--- 
-2.41.0
+What happened here? Why? Drop.
+
+> +          items:
+> +            - description: reference clock
+> +            - description: alternate reference clock
+> +            - description: alternate reference clock for programmable logic
+> +
+> +        clock-names:
+> +          minItems: 3
+
+Drop
+
+> +          items:
+> +            - const: ref
+> +            - const: alt_ref
+> +            - const: pl_alt_ref
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - xlnx,zynqmp-clk
+> +
+> +    then:
+> +      properties:
+> +        clocks:
+> +          minItems: 5
+> +          items:
+> +            - description: PS reference clock
+> +            - description: reference clock for video system
+> +            - description: alternative PS reference clock
+> +            - description: auxiliary reference clock
+> +            - description: transceiver reference clock
+> +            - description: (E)MIO clock source  (Optional clock)
+> +            - description: GEM emio clock  (Optional clock)
+> +            - description: Watchdog external clock (Optional clock)
+> +
+> +        clock-names:
+> +          minItems: 5
+> +          items:
+> +            - const: pss_ref_clk
+> +            - const: video_clk
+> +            - const: pss_alt_ref_clk
+> +            - const: aux_ref_clk
+> +            - const: gt_crx_ref_clk
+> +            - pattern: "^mio_clk[00-77]+.*$"
+> +            - pattern: "gem[0-3]+_emio_clk.*$"
+> +            - pattern: "swdt[0-1]+_ext_clk.*$"
+> +
+>  examples:
+>    - |
+>      firmware {
+> @@ -64,4 +115,13 @@ examples:
+>          };
+>        };
+>      };
+> +
+> +    clock-controller {
+> +        #clock-cells = <1>;
+> +        compatible = "xlnx,zynqmp-clk";
+
+compatible is always the first property.
+
+
+Best regards,
+Krzysztof
 
