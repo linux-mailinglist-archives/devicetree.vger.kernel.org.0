@@ -2,72 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2619375C273
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 11:06:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 49E4A75C2C2
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 11:16:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231302AbjGUJGq convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 21 Jul 2023 05:06:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60788 "EHLO
+        id S231180AbjGUJQv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jul 2023 05:16:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40726 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231305AbjGUJGp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 05:06:45 -0400
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1528D2D7D;
-        Fri, 21 Jul 2023 02:06:41 -0700 (PDT)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 829F424DED7;
-        Fri, 21 Jul 2023 17:06:33 +0800 (CST)
-Received: from EXMBX061.cuchost.com (172.16.6.61) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 21 Jul
- 2023 17:06:33 +0800
-Received: from [192.168.60.102] (180.164.60.184) by EXMBX061.cuchost.com
- (172.16.6.61) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 21 Jul
- 2023 17:06:32 +0800
-Message-ID: <af5422e8-c14b-c47c-e699-884ec65bf87f@starfivetech.com>
-Date:   Fri, 21 Jul 2023 17:06:32 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH 5/9] drm/verisilicon: Add mode config funcs
-Content-Language: en-US
-To:     Thomas Zimmermann <tzimmermann@suse.de>,
-        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
-        <linux-media@vger.kernel.org>, <linaro-mm-sig@lists.linaro.org>
-CC:     David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-        "Rob Herring" <robh+dt@kernel.org>,
+        with ESMTP id S229924AbjGUJQu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 05:16:50 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB55E2D7E;
+        Fri, 21 Jul 2023 02:16:49 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 83E056188A;
+        Fri, 21 Jul 2023 09:16:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 112C9C433C9;
+        Fri, 21 Jul 2023 09:16:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1689931008;
+        bh=7Nr2A3s+7x1dmfoTrYBQ8x3KxtQ72YCiKrx22ldOFGU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=sFHdka10pBwiuXAvP+N2q3HaSlqy5pN61gGLufjyM0xxLslEgcNBdiuZEpnntHmRv
+         r/GJuGteKUpWiltxbrt1Tilc83yguiN198hkM3992vCWmZY8wbRVItBWn+ls3moF5g
+         hTDqsEoZIU81elyflfK9zmItNgyWfse9s0c69zUk+HcpSngGAFOhYGtRST79pLj9DN
+         yJe5/EHzfrxA3ziLf6f5QVC02gc3eBXSmyoqr9hurp0DfLePKV20MuJyZf7QBAQdRh
+         ePuC3JJKTbigOA/xzLZ3pHeqATi/uj2fYH4ygVKaSiRLG0I9tYpYpBIm69R3ohWdmv
+         wldvuiAufGPKg==
+Date:   Fri, 21 Jul 2023 10:16:41 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Guo Samin <samin.guo@starfivetech.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "Emil Renner Berthing" <kernel@esmil.dk>,
         Paul Walmsley <paul.walmsley@sifive.com>,
         Palmer Dabbelt <palmer@dabbelt.com>,
         Albert Ou <aou@eecs.berkeley.edu>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        <christian.koenig@amd.com>, Bjorn Andersson <andersson@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Shawn Guo <shawnguo@kernel.org>, Jagan Teki <jagan@edgeble.ai>,
-        Chris Morgan <macromorgan@hotmail.com>,
-        Jack Zhu <jack.zhu@starfivetech.com>,
-        "Shengyang Chen" <shengyang.chen@starfivetech.com>,
-        Changhuang Liang <changhuang.liang@starfivetech.com>
-References: <20230602074043.33872-1-keith.zhao@starfivetech.com>
- <20230602074043.33872-6-keith.zhao@starfivetech.com>
- <30008535-8606-fc6d-9c07-23d46f59c957@suse.de>
-From:   Keith Zhao <keith.zhao@starfivetech.com>
-In-Reply-To: <30008535-8606-fc6d-9c07-23d46f59c957@suse.de>
-Content-Type: text/plain; charset="UTF-8"
-X-Originating-IP: [180.164.60.184]
-X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX061.cuchost.com
- (172.16.6.61)
-X-YovoleRuleAgent: yovoleflag
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        Hal Feng <hal.feng@starfivetech.com>,
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+        devicetree@vger.kernel.org, netdev@vger.kernel.org,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Richard Cochran <richardcochran@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Yanhong Wang <yanhong.wang@starfivetech.com>,
+        Tommaso Merciai <tomm.merciai@gmail.com>
+Subject: Re: [PATCH v1 0/2] Add ethernet nodes for StarFive JH7110 SoC
+Message-ID: <20230721-passive-smoked-d02c88721754@spud>
+References: <20230714104521.18751-1-samin.guo@starfivetech.com>
+ <20230720-cardstock-annoying-27b3b19e980a@spud>
+ <42beaf41-947e-f585-5ec1-f1710830e556@starfivetech.com>
+ <A0012BE7-8947-49C8-8697-1F879EE7B0B7@kernel.org>
+ <ce3e0ffb-abcd-2392-8767-db460bce4b4b@starfivetech.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="nLLwIQv8s4nvN5n3"
+Content-Disposition: inline
+In-Reply-To: <ce3e0ffb-abcd-2392-8767-db460bce4b4b@starfivetech.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,295 +80,71 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+--nLLwIQv8s4nvN5n3
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 2023/6/21 19:04, Thomas Zimmermann wrote:
-> Hi Keith
-> 
-> Am 02.06.23 um 09:40 schrieb Keith Zhao:
->> Add mode setting functions for JH7110 SoC.
->>
->> Signed-off-by: Keith Zhao <keith.zhao@starfivetech.com>
->> ---
->>   drivers/gpu/drm/verisilicon/Makefile |   1 +
->>   drivers/gpu/drm/verisilicon/vs_drv.c |   3 +
-> 
->>   drivers/gpu/drm/verisilicon/vs_fb.c  | 181 +++++++++++++++++++++++++++
->>   drivers/gpu/drm/verisilicon/vs_fb.h  |  15 +++
-> 
-> I'd call these files vs_modeset.{c,h} to be consistent with the rest of the drivers.
-> 
->>   4 files changed, 200 insertions(+)
->>   create mode 100644 drivers/gpu/drm/verisilicon/vs_fb.c
->>   create mode 100644 drivers/gpu/drm/verisilicon/vs_fb.h
->>
->> diff --git a/drivers/gpu/drm/verisilicon/Makefile b/drivers/gpu/drm/verisilicon/Makefile
->> index 30360e370e47..38254dc5d98d 100644
->> --- a/drivers/gpu/drm/verisilicon/Makefile
->> +++ b/drivers/gpu/drm/verisilicon/Makefile
->> @@ -1,6 +1,7 @@
->>   # SPDX-License-Identifier: GPL-2.0
->>     vs_drm-objs := vs_drv.o \
->> +        vs_fb.o \
->>           vs_gem.o
->>     obj-$(CONFIG_DRM_VERISILICON) += vs_drm.o
->> diff --git a/drivers/gpu/drm/verisilicon/vs_drv.c b/drivers/gpu/drm/verisilicon/vs_drv.c
->> index e0a2fc43b55f..d84aacd751bc 100644
->> --- a/drivers/gpu/drm/verisilicon/vs_drv.c
->> +++ b/drivers/gpu/drm/verisilicon/vs_drv.c
->> @@ -30,6 +30,7 @@
->>   #include <drm/drm_vblank.h>
->>     #include "vs_drv.h"
->> +#include "vs_fb.h"
->>   #include "vs_gem.h"
->>     #define DRV_NAME    "starfive"
->> @@ -118,6 +119,8 @@ static int vs_drm_bind(struct device *dev)
->>       if (ret)
->>           goto err_mode;
->>   +    vs_mode_config_init(drm_dev);
->> +
->>       ret = drm_vblank_init(drm_dev, drm_dev->mode_config.num_crtc);
->>       if (ret)
->>           goto err_bind;
->> diff --git a/drivers/gpu/drm/verisilicon/vs_fb.c b/drivers/gpu/drm/verisilicon/vs_fb.c
->> new file mode 100644
->> index 000000000000..3e85f7365084
->> --- /dev/null
->> +++ b/drivers/gpu/drm/verisilicon/vs_fb.c
->> @@ -0,0 +1,181 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +/*
->> + * Copyright (C) 2023 VeriSilicon Holdings Co., Ltd.
->> + */
->> +
->> +#include <linux/module.h>
->> +#include <linux/version.h>
->> +
->> +#include <drm/drm_damage_helper.h>
->> +#include <drm/drm_fb_helper.h>
->> +#include <drm/drm_crtc.h>
->> +#include <drm/drm_crtc_helper.h>
->> +#include <drm/drm_fourcc.h>
->> +#include <drm/drm_framebuffer.h>
->> +#include <drm/drm_gem.h>
->> +#include <drm/drm_gem_framebuffer_helper.h>
->> +
->> +#include "vs_fb.h"
->> +#include "vs_gem.h"
->> +
->> +#define fourcc_mod_vs_get_type(val) \
->> +    (((val) & DRM_FORMAT_MOD_VS_TYPE_MASK) >> 54)
->> +
->> +static struct drm_framebuffer_funcs vs_fb_funcs = {
->> +    .create_handle    = drm_gem_fb_create_handle,
->> +    .destroy    = drm_gem_fb_destroy,
->> +    .dirty        = drm_atomic_helper_dirtyfb,
->> +};
->> +
->> +static struct drm_framebuffer *
->> +vs_fb_alloc(struct drm_device *dev, const struct drm_mode_fb_cmd2 *mode_cmd,
->> +        struct vs_gem_object **obj, unsigned int num_planes)
->> +{
->> +    struct drm_framebuffer *fb;
->> +    int ret, i;
->> +
->> +    fb = kzalloc(sizeof(*fb), GFP_KERNEL);
->> +    if (!fb)
->> +        return ERR_PTR(-ENOMEM);
->> +
->> +    drm_helper_mode_fill_fb_struct(dev, fb, mode_cmd);
->> +
->> +    for (i = 0; i < num_planes; i++)
->> +        fb->obj[i] = &obj[i]->base;
->> +
->> +    ret = drm_framebuffer_init(dev, fb, &vs_fb_funcs);
->> +    if (ret) {
->> +        dev_err(dev->dev, "Failed to initialize framebuffer: %d\n",
->> +            ret);
->> +        kfree(fb);
->> +        return ERR_PTR(ret);
->> +    }
->> +
->> +    return fb;
->> +}
->> +
->> +static struct drm_framebuffer *vs_fb_create(struct drm_device *dev,
->> +                        struct drm_file *file_priv,
->> +                        const struct drm_mode_fb_cmd2 *mode_cmd)
->> +{
->> +    struct drm_framebuffer *fb;
->> +    const struct drm_format_info *info;
->> +    struct vs_gem_object *objs[MAX_NUM_PLANES];
->> +    struct drm_gem_object *obj;
->> +    unsigned int height, size;
->> +    unsigned char i, num_planes;
->> +    int ret = 0;
->> +
->> +    info = drm_get_format_info(dev, mode_cmd);
->> +    if (!info)
->> +        return ERR_PTR(-EINVAL);
->> +
->> +    num_planes = info->num_planes;
->> +    if (num_planes > MAX_NUM_PLANES)
->> +        return ERR_PTR(-EINVAL);
->> +
->> +    for (i = 0; i < num_planes; i++) {
->> +        obj = drm_gem_object_lookup(file_priv, mode_cmd->handles[i]);
->> +        if (!obj) {
->> +            dev_err(dev->dev, "Failed to lookup GEM object.\n");
->> +            ret = -ENXIO;
->> +            goto err;
->> +        }
->> +
->> +        height = drm_format_info_plane_height(info,
->> +                              mode_cmd->height, i);
->> +
->> +        size = height * mode_cmd->pitches[i] + mode_cmd->offsets[i];
->> +
->> +        if (obj->size < size) {
->> +            drm_gem_object_put(obj);
->> +
->> +            ret = -EINVAL;
->> +            goto err;
->> +        }
->> +
->> +        objs[i] = to_vs_gem_object(obj);
->> +    }
->> +
->> +    fb = vs_fb_alloc(dev, mode_cmd, objs, i);
->> +    if (IS_ERR(fb)) {
->> +        ret = PTR_ERR(fb);
->> +        goto err;
->> +    }
->> +
->> +    return fb;
->> +
->> +err:
->> +    for (; i > 0; i--)
->> +        drm_gem_object_put(&objs[i - 1]->base);
->> +
->> +    return ERR_PTR(ret);
->> +}
->> +
->> +struct vs_gem_object *vs_fb_get_gem_obj(struct drm_framebuffer *fb,
->> +                    unsigned char plane)
->> +{
->> +    if (plane > MAX_NUM_PLANES)
->> +        return NULL;
->> +
->> +    return to_vs_gem_object(fb->obj[plane]);
->> +}
->> +
->> +static const struct drm_format_info vs_formats[] = {
->> +    {.format = DRM_FORMAT_NV12, .depth = 0, .num_planes = 2, .char_per_block = { 20, 40, 0 },
->> +     .block_w = { 4, 4, 0 }, .block_h = { 4, 4, 0 }, .hsub = 2, .vsub = 2, .is_yuv = true},
->> +    {.format = DRM_FORMAT_YUV444, .depth = 0, .num_planes = 3, .char_per_block = { 20, 20, 20 },
->> +     .block_w = { 4, 4, 4 }, .block_h = { 4, 4, 4 }, .hsub = 1, .vsub = 1, .is_yuv = true},
->> +};
->> +
->> +static const struct drm_format_info *
->> +vs_lookup_format_info(const struct drm_format_info formats[],
->> +              int num_formats, u32 format)
->> +{
->> +    int i;
->> +
->> +    for (i = 0; i < num_formats; i++) {
->> +        if (formats[i].format == format)
->> +            return &formats[i];
->> +    }
->> +
->> +    return NULL;
->> +}
->> +
->> +static const struct drm_format_info *
->> +vs_get_format_info(const struct drm_mode_fb_cmd2 *cmd)
->> +{
->> +    if (fourcc_mod_vs_get_type(cmd->modifier[0]) ==
->> +        DRM_FORMAT_MOD_VS_TYPE_CUSTOM_10BIT)
->> +        return vs_lookup_format_info(vs_formats, ARRAY_SIZE(vs_formats),
->> +                                     cmd->pixel_format);
->> +    else
->> +        return NULL;
->> +}
->> +
->> +static const struct drm_mode_config_funcs vs_mode_config_funcs = {
->> +    .fb_create             = vs_fb_create,
-> 
-> Maybe I'm missing something here, but it looks like you can call
-> drm_gem_fb_create_with_funcs() to create the framebuffer.
-> 
-That's a brilliant suggestion!!! 
+On Fri, Jul 21, 2023 at 03:27:33PM +0800, Guo Samin wrote:
 
+> -------- =E5=8E=9F=E5=A7=8B=E4=BF=A1=E6=81=AF --------
+> =E4=B8=BB=E9=A2=98: Re: [PATCH v1 0/2] Add ethernet nodes for StarFive JH=
+7110 SoC
+> From: Conor Dooley <conor@kernel.org>
 
->> +    .get_format_info     = vs_get_format_info,
->> +    .output_poll_changed = drm_fb_helper_output_poll_changed,
->> +    .atomic_check         = drm_atomic_helper_check,
->> +    .atomic_commit         = drm_atomic_helper_commit,
->> +};
->> +
->> +static struct drm_mode_config_helper_funcs vs_mode_config_helpers = {
->> +    .atomic_commit_tail = drm_atomic_helper_commit_tail_rpm,
->> +};
->> +
->> +void vs_mode_config_init(struct drm_device *dev)
->> +{
-> 
-> If possible, move the call to drm_mode_config_init() into this function.
-> 
-move drm_mode_config_init() into vs_mode_config_init. 
-and vs_mode_config_init must be called ahead component_bind_all
+> =E6=94=B6=E4=BB=B6=E4=BA=BA: Guo Samin <samin.guo@starfivetech.com>, Rob =
+Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@l=
+inaro.org>, Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palme=
+r@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, Hal Feng <hal.feng@starf=
+ivetech.com>, linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org=
+, devicetree@vger.kernel.org, netdev@vger.kernel.org
+> =E6=97=A5=E6=9C=9F: 2023/7/21
 
-like this:
-static int vs_drm_bind(struct device *dev)
-{
-	......
+btw, please try and remove this stuff from your mails.
 
-	vs_mode_config_init(drm_dev);
+> > On 21 July 2023 03:09:19 IST, Guo Samin <samin.guo@starfivetech.com> wr=
+ote:
 
-	/* Now try and bind all our sub-components */
-	ret = component_bind_all(dev, drm_dev);
-	if (ret)
-		goto err_mode;
-	......
-}
+> >> There is a question about the configuration of phy that I would like t=
+o consult you.
+> >>
+> >> Latest on motorcomm PHY V5[1]: Follow Rob Herring's advice
+> >> motorcomm,rx-xxx-driver-strength Changed to motorcomm,rx-xxx-drv-micro=
+amp .
+> >> V5 has already received a reviewed-by from Andrew Lunn, and it should =
+not change again.
+> >>
+> >> Should I submit another pacthes based on riscv-dt-for-next?=20
+> >=20
+> > Huh, dtbs_check passed for these patches,
+> > I didn't realise changes to the motorcomm stuff
+> > were a dep. for this. I'll take a look later.
 
->> +    dev->mode_config.fb_modifiers_not_supported = false;
->> +
->> +    if (dev->mode_config.max_width == 0 ||
->> +        dev->mode_config.max_height == 0) {
->> +        dev->mode_config.min_width  = 0;
->> +        dev->mode_config.min_height = 0;
->> +        dev->mode_config.max_width  = 4096;
->> +        dev->mode_config.max_height = 4096;
->> +    }
->> +    dev->mode_config.funcs = &vs_mode_config_funcs;
->> +    dev->mode_config.helper_private = &vs_mode_config_helpers;
->> +}
->> diff --git a/drivers/gpu/drm/verisilicon/vs_fb.h b/drivers/gpu/drm/verisilicon/vs_fb.h
->> new file mode 100644
->> index 000000000000..78dda8e42894
->> --- /dev/null
->> +++ b/drivers/gpu/drm/verisilicon/vs_fb.h
->> @@ -0,0 +1,15 @@
->> +/* SPDX-License-Identifier: GPL-2.0 */
->> +/*
->> + * Copyright (C) 2023 VeriSilicon Holdings Co., Ltd.
->> + */
->> +
->> +#ifndef __VS_FB_H__
->> +#define __VS_FB_H__
->> +
->> +#define MAX_NUM_PLANES        3 /* colour format plane */
-> 
-> There's DRM_FORMAT_MAX_PLANES already. Please don't introduce a constant with the same purpose.
-> 
-ok good idea！ 
-> Best regards
-> Thomas
-> 
->> +
->> +struct vs_gem_object *vs_fb_get_gem_obj(struct drm_framebuffer *fb,
->> +                    unsigned char plane);
->> +
->> +void vs_mode_config_init(struct drm_device *dev);
->> +#endif /* __VS_FB_H__ */
-> 
+> After discussing with HAL, I have prepared the code and considered adding=
+ the following patch to=20
+> Motorcomm's patchsetes v6. (To fix some spelling errors in v5[1])
+> which will then send patches based on linux-next. What do you think? @And=
+rew @Conor
+
+I think you are better off just sending the dts patch to me, adding a
+dts patch that will not apply to net-next to your motorcomm driver series
+will only really cause problems for the netdev patchwork automation.
+
+> [1] https://patchwork.kernel.org/project/netdevbpf/cover/20230720111509.2=
+1843-1-samin.guo@starfivetech.com
+
+I meant to ack this yesterday, but it wasn't in my dt-binding review
+queue. I'll go do that now.
+
+--nLLwIQv8s4nvN5n3
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZLpM+QAKCRB4tDGHoIJi
+0sgZAQD0dSzvCgT6QBV4QteZEHj8xk6HSmskaiafKuzZBSHOCAEA91aMVNeLutXk
++GHuhA9YiiDTsg4DYMZ+HD318oah9Q0=
+=SUU7
+-----END PGP SIGNATURE-----
+
+--nLLwIQv8s4nvN5n3--
