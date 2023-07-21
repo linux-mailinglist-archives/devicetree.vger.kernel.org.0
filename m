@@ -2,117 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A6EA975C666
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 14:03:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3577175C681
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 14:05:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230062AbjGUMDc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jul 2023 08:03:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55712 "EHLO
+        id S231337AbjGUMFt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jul 2023 08:05:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56970 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229593AbjGUMDb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 08:03:31 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DC8130FE;
-        Fri, 21 Jul 2023 05:02:58 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-992ca792065so289145366b.2;
-        Fri, 21 Jul 2023 05:02:58 -0700 (PDT)
+        with ESMTP id S231302AbjGUMFk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 08:05:40 -0400
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D8664216
+        for <devicetree@vger.kernel.org>; Fri, 21 Jul 2023 05:05:13 -0700 (PDT)
+Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-3fc04692e20so16372605e9.0
+        for <devicetree@vger.kernel.org>; Fri, 21 Jul 2023 05:05:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1689940976; x=1690545776;
+        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1689941111; x=1690545911;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=CZbhI1GsoZTB2+aN1G2ZV5zP+f/AEA/3Rk3e5+ibM3M=;
-        b=WHLqxQ2tBj1HtoiIAGozmWDT3pqwSI9ZPscV/yqHqeBXBIGaISoHyLGFTKuSEpdiEd
-         xSPqEz34k2bXn/H7zIxNpbN/+VVVVEa6NFRNJ914Fojd7p5VpnlgQGAZXYsU6LCcB5RV
-         GhZf76mfDR7L9BP2SkEQ+BDHl6T/jGEuwRNLZku72obWaa33d1HUa4kFqzN7PNfTyOcx
-         Inqe9ENg5IcJNWExgvkDtOfcvquQHXMGR63VI+kDRkqkC/8xYY1G7ycyEiBObUfN1/Rg
-         KlRdH0W7v6Z/Q7VS+mt3lqQ8yHzQraCkf6dd6vUcsZcbrmY/kg3LqCpfJRWdWpbtKdrU
-         04Tg==
+        bh=zwkAITNstbKHyFH4YH4HGkeGusEuKBwo8M8zNrSZdhU=;
+        b=aF2eIZeXrg/zFUDfDqX2VRdg/iwpCjbdedLrdlDzh5onBXHGhO77YzC1SAkx0Z56WB
+         hNsn2wPWE2wl5ADCXQy7It6KqmaBdH4urXNG33ImeMzRsV+Y5fr4wwaVYGmHBLhsnDTG
+         xHyBattkMTeVIJfCTI4hDoRRnJDQNgedkwQrrztCT6ld9ey9NbmDs2/gZgi3yO/ZPCBx
+         DUiNZs1Jym5CieKIikuk60Do2qtAQaWAks+iGejZXbnCbxzzWZPHmK29LAj74NO9/ac6
+         iVJTrMmZZZK0soe66ePTj2Z9NMIokxJGWSLrYgeq1GHgoWGRH/EzO1fLYISQ27yfGkv3
+         cTAg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689940976; x=1690545776;
+        d=1e100.net; s=20221208; t=1689941111; x=1690545911;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=CZbhI1GsoZTB2+aN1G2ZV5zP+f/AEA/3Rk3e5+ibM3M=;
-        b=CkzoV5e3ZJAiQtaIXMRjhw0gL5zxNsn+eb7u/YzV01GFFXfOYQq4HVFd2SNHt1M5Q2
-         EBGajOXreLtxvJOlsfUDJdtEJjr/8RfDPtzcwTYkuHxVz83I90w4XiXejN4xPUumnisV
-         kAJKwwhQEp+elZzsiP0zHpovjipZEPYUPhYtAyPBOFBxOcxYMZOqhkZpVZTTiM47vCWU
-         gbk8bc7IflHW0hUzem2kkLwM+fuZ8zTLx9dHXs1kO5FaX2tnjsFHj7OoAzWmD492I3y1
-         p0K6bCdp1LPnpdgRW440WLbk3xGHNgjiyEXUPV95/PMtUGrj5MrFXckIKv0r89kxV6QB
-         +6Ew==
-X-Gm-Message-State: ABy/qLapZDGu2SjDBViyYfPgQC+AgMdONMH30ymb6NZhDkHN4uzimQj2
-        uXWN2De/m4LbqBDoFcX65YLy431VApgZSw==
-X-Google-Smtp-Source: APBJJlFny/ksTXS0O2BmWy/enOxjFw5piUqacW0n6DyYKDvgKP9UnsPG+vv+keFxVcLC62ObkajTKA==
-X-Received: by 2002:a17:906:304f:b0:98e:1156:1a35 with SMTP id d15-20020a170906304f00b0098e11561a35mr1501029ejd.74.1689940975947;
-        Fri, 21 Jul 2023 05:02:55 -0700 (PDT)
-Received: from [192.168.4.4] (host-95-237-109-246.retail.telecomitalia.it. [95.237.109.246])
-        by smtp.gmail.com with ESMTPSA id i25-20020a17090671d900b009937dbabbdasm2065864ejk.217.2023.07.21.05.02.55
+        bh=zwkAITNstbKHyFH4YH4HGkeGusEuKBwo8M8zNrSZdhU=;
+        b=Jg2FS5hkGZyaCSmsa58lDZpjU3Jv/nBN1xNbEQrKGD5gMrSZV3Uy+CuPe0aDEjhXSL
+         dGI48x6W7TMhzqfgPbNPJ0IgiBB5S8ly2jDjcd6MbPzEehf15WbVr0+8uj0bNV9bKGjj
+         y2s+6v2F5v/YZ7jOS2qBZ2/j16dgQRFttZC1NPB0u2GtUD6Tur7vD/zwB22Ui0RNSLXA
+         YknCmJBZfhHsuGrqnuU+x1jTxrlgSOqINUt742jCLq2Surm7MJVzU3tILjTRjPEGUPtI
+         QQtBd3Xg6J28x9FOc1yGJMVNxG463z79HkgNOVe3LFZMjgempkpJKbNnaK8zMt3UHbSr
+         DtsQ==
+X-Gm-Message-State: ABy/qLbWSfuDWHmf+FZEPxO4ZHPYcnHU1MfX/OV91pq5wEISw84M3vIB
+        91y+kQ8rEx/9O5S9sPo5+jLanQ==
+X-Google-Smtp-Source: APBJJlHRz8i4/yqZn1Tc3ne+fyyGgKuZDYiIqzx37lC9JZfJ4gGCcmSmEPniqHtoeiGz22OlooGr0w==
+X-Received: by 2002:a05:600c:450:b0:3f8:c70e:7ed1 with SMTP id s16-20020a05600c045000b003f8c70e7ed1mr1345123wmb.20.1689941110870;
+        Fri, 21 Jul 2023 05:05:10 -0700 (PDT)
+Received: from [192.168.1.172] ([93.5.22.158])
+        by smtp.gmail.com with ESMTPSA id 19-20020a05600c229300b003fb40f5f553sm6032566wmf.31.2023.07.21.05.05.09
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 21 Jul 2023 05:02:55 -0700 (PDT)
-Message-ID: <3a1bd6c6-7b4b-6528-ba93-d05fd0e0e906@gmail.com>
-Date:   Fri, 21 Jul 2023 14:02:54 +0200
+        Fri, 21 Jul 2023 05:05:10 -0700 (PDT)
+Message-ID: <a840ac78-dbb2-23b0-493f-a7e618502a01@baylibre.com>
+Date:   Fri, 21 Jul 2023 14:05:09 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
-Subject: Re: [PATCH v3 1/2] dt-bindings: iio: dac: add mcp4728.yaml
+Subject: Re: [PATCH v2 1/3] arm64: dts: mediatek: mt6795: Add support for
+ display blocks and DPI/DSI
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <cover.1689857295.git.andrea.collamati@gmail.com>
- <9816cd272d19802ec6eeff0c7c29e85d4a0ade88.1689857295.git.andrea.collamati@gmail.com>
- <4898bc33-5245-8fb2-e5e6-8ea1a8f32e1e@linaro.org>
- <fe062725-e9b5-bcc6-d515-8e2d4989301a@linaro.org>
-From:   Andrea Collamati <andrea.collamati@gmail.com>
-In-Reply-To: <fe062725-e9b5-bcc6-d515-8e2d4989301a@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, matthias.bgg@gmail.com
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, phone-devel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, kernel@collabora.com
+References: <20230721082822.680010-1-angelogioacchino.delregno@collabora.com>
+ <20230721082822.680010-2-angelogioacchino.delregno@collabora.com>
+From:   Alexandre Mergnat <amergnat@baylibre.com>
+In-Reply-To: <20230721082822.680010-2-angelogioacchino.delregno@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 7/21/23 10:22, Krzysztof Kozlowski wrote:
-> On 21/07/2023 10:21, Krzysztof Kozlowski wrote:
->>> +  - |
->>> +    i2c {
->>> +        #address-cells = <1>;
->>> +        #size-cells = <0>;
->>> +
->>> +        mcp4728@60 {
->> The same... Probably more comments were ignored, so:
->>
->> This is a friendly reminder during the review process.
->>
->> It seems my previous comments were not fully addressed. Maybe my
->> feedback got lost between the quotes, maybe you just forgot to apply it.
->> Please go back to the previous discussion and either implement all
->> requested changes or keep discussing them.
-
-Sorry, you are right. I missed to change the node name.
-
-{
-
-        #address-cells = <1>;
-        #size-cells = <0>;
-
-        dac@60 {
-
-could be ok?
 
 
-Thank you
+On 21/07/2023 10:28, AngeloGioacchino Del Regno wrote:
+> Introduce all nodes for all of the display blocks in the MediaTek Helio
+> X10 MT6795 SoC, including the DSI PHY and DSI/DPI interfaces: those are
+> left disabled as usage is board specific.
+> 
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Reviewed-by: Alexandre Mergnat <amergnat@baylibre.com>
+> ---
+>   arch/arm64/boot/dts/mediatek/mt6795.dtsi | 251 +++++++++++++++++++++++
+>   1 file changed, 251 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt6795.dtsi b/arch/arm64/boot/dts/mediatek/mt6795.dtsi
+> index 597bce2fed72..3485a2a9a19e 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt6795.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt6795.dtsi
+> @@ -1,7 +1,9 @@
+>   // SPDX-License-Identifier: GPL-2.0-only
+>   /*
+>    * Copyright (c) 2015 MediaTek Inc.
+> + * Copyright (C) 2023 Collabora Ltd.
+>    * Author: Mars.C <mars.cheng@mediatek.com>
 
-       Andrea
+typo: Author => Authors
 
 
+-- 
+Regards,
+Alexandre
