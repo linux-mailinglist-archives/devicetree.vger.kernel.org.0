@@ -2,189 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A59775C16B
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 10:22:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B31BC75C16F
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 10:23:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229820AbjGUIWp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jul 2023 04:22:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35576 "EHLO
+        id S230160AbjGUIXS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jul 2023 04:23:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35890 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230160AbjGUIWo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 04:22:44 -0400
-Received: from egress-ip33a.ess.de.barracuda.com (egress-ip33a.ess.de.barracuda.com [18.185.115.192])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D1C52D4D
-        for <devicetree@vger.kernel.org>; Fri, 21 Jul 2023 01:22:16 -0700 (PDT)
-Received: from mail-pf1-f199.google.com (mail-pf1-f199.google.com [209.85.210.199]) by mx-outbound15-196.eu-central-1a.ess.aws.cudaops.com (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO); Fri, 21 Jul 2023 08:22:03 +0000
-Received: by mail-pf1-f199.google.com with SMTP id d2e1a72fcca58-666e5f0d639so1036826b3a.3
-        for <devicetree@vger.kernel.org>; Fri, 21 Jul 2023 01:22:04 -0700 (PDT)
+        with ESMTP id S231602AbjGUIXF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 04:23:05 -0400
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A84AC30E1
+        for <devicetree@vger.kernel.org>; Fri, 21 Jul 2023 01:22:58 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-9891c73e0fbso355845866b.1
+        for <devicetree@vger.kernel.org>; Fri, 21 Jul 2023 01:22:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=mistralsolutions.com; s=google; t=1689927723; x=1690532523;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=XDM7nE/kDkBUUCIWdECWtqZB+MuR9RP67EhfBGiTieI=;
-        b=Eg1JBvCWIBmDC+6Pb13Gg84fx2zjiv2w+FtI9sCz+h7m8nzrs7oZOpvHsBDnQkIdoG
-         fiOWpeYtNa6hpX6hxtSFiAYOlmWm4HhVhhZ573B/hrjeFG4/2NRbUwiSZO0dl+VUSrEA
-         852ldklqI1jw8/FVFmd/vLp/Xfa+CAQ6ryBvc=
+        d=linaro.org; s=google; t=1689927777; x=1690532577;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=U3gWVnV/hO3FNFQifJeUbwGm90QsBerXmMKobezGqYQ=;
+        b=UIrgACagw3hOXCLO3SdYeeTu7nDqhPXekm2ufTSOYQrYEhjyRFSA+MF8i1tqmEH1YD
+         W2FrjLKzqONx/0WR3wCWAZRfZ9AFq9VtEmG/bCZmcgDqS7xJV3bWV0lnaKiAxjktj+dK
+         fo5Q6r//dOfl/kQsS013lXbl3PQImpMlg9Xn9357AKVUfwyVPcjsjqkbbo04tXfcPvOg
+         Bz1CQUwsJfDdOCtHkcuJFsTIEGmE1GkkQ39Gvg2vCs9DC1EoSTXCY/86jDtsHWxDYPp1
+         jL1vd+hCarPB6bfTnuAb5FRIdQgLa96yY5Iagpin1AGjs8G6oCVFIByIsWPVuMz95GiU
+         Jjbg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689927723; x=1690532523;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=XDM7nE/kDkBUUCIWdECWtqZB+MuR9RP67EhfBGiTieI=;
-        b=eSXdWoMrxRmc1plUgFPrEEKlUPULGl8uCTcm8dzqhBlaENQ4WNWSJ0vUjnn/UT9jpL
-         FX7VMO+V/q6mhyvVGioiIH+wdMH0exVN4jCpd+4eQIE+AjSRkpo6WnLn1uuu8itLvLe7
-         1KhW/gOIOEjeOHIW6afVmmiu/HYwteba49gLfy9xep9IMvYzGZiMV7jKLE0sEckJgKxE
-         sf1FkKNwXirwcZ9Wt/zTBGFQZHwTlWqT/prrH3bGQ0+ogqHCGQJwUyXWaTSGrgLghMmk
-         yv/ChUfigAu9JFaVuxHQjcf/r2q/hTGVfvBG51gR2AnyIXeUaRVSWKnJl3KIzASe4i5/
-         h7/w==
-X-Gm-Message-State: ABy/qLZrdyiDUWRcyAYGj8AEMVBTC4Of6aAkFo3DANsy0sCcNmU0hwpx
-        xTRtlv9ySSkOuiszU2yVLtNfvzA7FLW1m6zhyNy3V6rkBaxJh9ovoFppwcbdDYmHerbrcrS+tuK
-        JcBxqtrQ8xvd7ZkqvmVhajrhiO7wDSCqLKCtMolgbFt/QOVME5Yml8S1njw==
-X-Received: by 2002:a05:6a00:1815:b0:682:7d8a:f887 with SMTP id y21-20020a056a00181500b006827d8af887mr1374956pfa.30.1689927722751;
-        Fri, 21 Jul 2023 01:22:02 -0700 (PDT)
-X-Google-Smtp-Source: APBJJlH1Zxf6TXBn6XQFYUPJY1UwCRxTdKLh2FyF2lWdphifFelNW/n/A1CaxQ4JnWv62hoz97NZ9g==
-X-Received: by 2002:a05:6a00:1815:b0:682:7d8a:f887 with SMTP id y21-20020a056a00181500b006827d8af887mr1374934pfa.30.1689927722389;
-        Fri, 21 Jul 2023 01:22:02 -0700 (PDT)
-Received: from localhost.localdomain ([2401:4900:6308:2db:e8cc:7446:e541:858e])
-        by smtp.gmail.com with ESMTPSA id j1-20020aa78dc1000000b00674364577dasm2404155pfr.203.2023.07.21.01.21.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Jul 2023 01:22:01 -0700 (PDT)
-From:   Sinthu Raja <sinthu.raja@mistralsolutions.com>
-X-Google-Original-From: Sinthu Raja <sinthu.raja@ti.com>
-To:     Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Sinthu Raja <sinthu.raja@ti.com>
-Subject: [PATCH V2] arm64: dts: ti: k3-j721s2-main: Add dts nodes for EHRPWMs
-Date:   Fri, 21 Jul 2023 13:51:50 +0530
-Message-Id: <20230721082150.12599-1-sinthu.raja@ti.com>
-X-Mailer: git-send-email 2.36.1
+        d=1e100.net; s=20221208; t=1689927777; x=1690532577;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=U3gWVnV/hO3FNFQifJeUbwGm90QsBerXmMKobezGqYQ=;
+        b=HTcECplySXMxcFUsR7rD9kyBZH+8oetNlwL9b+Q0nSSRp8OhzBT27i7Eudn+62vFAj
+         hRzjDfM6oXpsNxF8ALPlaOsT2bT6U7HxkA5Edfw6YTENsing0ewMHkfctZzgflUt6hj+
+         VcIZeZ+uF07WWFq/LM+fCfZq9npFtH0K9UIpHaPdGiX9rvU3lYXrllXafGIb7lnEoJ5w
+         6SO9KLzUJqLjmRVtTT7euqcRe59aPifWKS7KiuL0iv8IUS/x6fLgFNiuf8H7zz63II/o
+         1qg2mc9xCXFX9P9DfCD7EIqL/69QHGDo1q0wrN/Lr6SdeBUpewXaCCXk66v8fBeKyH7E
+         kaKQ==
+X-Gm-Message-State: ABy/qLbNp+CNvKcLyuo5nVYXb9TM9GqTNq411NEdLCDXba8JRq10HTkw
+        I+Xrhi/6jtLHDamsm4J5NxmQMg==
+X-Google-Smtp-Source: APBJJlE0QSteAu+Es7qkLrRxrkP7EA7T87AT0f9kkdWVCrdxgcLjomp9RlAZfiFhLG3ELxlltpFs9A==
+X-Received: by 2002:a17:906:7381:b0:994:13c3:2f89 with SMTP id f1-20020a170906738100b0099413c32f89mr1333198ejl.27.1689927776949;
+        Fri, 21 Jul 2023 01:22:56 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id a6-20020a1709062b0600b0099297782aa9sm1803681ejg.49.2023.07.21.01.22.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 21 Jul 2023 01:22:56 -0700 (PDT)
+Message-ID: <fe062725-e9b5-bcc6-d515-8e2d4989301a@linaro.org>
+Date:   Fri, 21 Jul 2023 10:22:54 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-BESS-ID: 1689927723-304036-12341-4952-1
-X-BESS-VER: 2019.1_20230720.1826
-X-BESS-Apparent-Source-IP: 209.85.210.199
-X-BESS-Parts: H4sIAAAAAAACA4uuVkqtKFGyUirNy1bSUcovVrIyNjAxArIygIIWRkmJRhaJyW
-        kWRpbmxmZpBuYpJqaGJonJqeapqaYWSUq1sQB8vQO4QQAAAA==
-X-BESS-Outbound-Spam-Score: 0.40
-X-BESS-Outbound-Spam-Report: Code version 3.2, rules version 3.2.2.249629 [from 
-        cloudscan21-249.eu-central-1b.ess.aws.cudaops.com]
-        Rule breakdown below
-         pts rule name              description
-        ---- ---------------------- --------------------------------
-        0.00 BSF_SC0_MISMATCH_TO    META: Envelope rcpt doesn't match header 
-        0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
-        0.40 BSF_SC0_SA085b         META: Custom Rule SA085b 
-X-BESS-Outbound-Spam-Status: SCORE=0.40 using account:ESS91090 scores of KILL_LEVEL=7.0 tests=BSF_SC0_MISMATCH_TO, BSF_BESS_OUTBOUND, BSF_SC0_SA085b
-X-BESS-BRTS-Status: 1
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v3 1/2] dt-bindings: iio: dac: add mcp4728.yaml
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Andrea Collamati <andrea.collamati@gmail.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <cover.1689857295.git.andrea.collamati@gmail.com>
+ <9816cd272d19802ec6eeff0c7c29e85d4a0ade88.1689857295.git.andrea.collamati@gmail.com>
+ <4898bc33-5245-8fb2-e5e6-8ea1a8f32e1e@linaro.org>
+In-Reply-To: <4898bc33-5245-8fb2-e5e6-8ea1a8f32e1e@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Sinthu Raja <sinthu.raja@ti.com>
+On 21/07/2023 10:21, Krzysztof Kozlowski wrote:
+>> +  - |
+>> +    i2c {
+>> +        #address-cells = <1>;
+>> +        #size-cells = <0>;
+>> +
+>> +        mcp4728@60 {
+> 
+> The same... Probably more comments were ignored, so:
+> 
+> This is a friendly reminder during the review process.
+> 
+> It seems my previous comments were not fully addressed. Maybe my
+> feedback got lost between the quotes, maybe you just forgot to apply it.
+> Please go back to the previous discussion and either implement all
+> requested changes or keep discussing them.
 
-Add dts nodes for 6 EHRPWM instances on SoC. Disable EHRPWM nodes in the
-dtsi files and only enable the ones that are actually pinned out on a
-given board in the board dts file.
+Damn, this is my third comment about the same. Here was second:
+https://lore.kernel.org/all/5e5d1a1e-f106-9dd6-c19e-f933e8e70dd4@kernel.org/
 
-Signed-off-by: Sinthu Raja <sinthu.raja@ti.com>
----
+so you nicely ignore feedback. NAK.
 
-Changes in V2:
-Addressmreview comments:
-- Removed unneeded syscon compatible
-
-V1: https://lore.kernel.org/linux-arm-kernel/20230713114021.28450-1-sinthu.raja@ti.com/
-
- arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi | 66 ++++++++++++++++++++++
- 1 file changed, 66 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
-index ed79ab3a3271..2fb90b899560 100644
---- a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
-@@ -58,6 +58,72 @@ serdes_ln_ctrl: mux-controller@80 {
- 			mux-reg-masks = <0x80 0x3>, <0x84 0x3>, /* SERDES0 lane0/1 select */
- 					<0x88 0x3>, <0x8c 0x3>; /* SERDES0 lane2/3 select */
- 		};
-+
-+		ehrpwm_tbclk: clock-controller@140 {
-+			compatible = "ti,am654-ehrpwm-tbclk";
-+			reg = <0x140 0x18>;
-+			#clock-cells = <1>;
-+		};
-+	};
-+
-+	main_ehrpwm0: pwm@3000000 {
-+		compatible = "ti,am654-ehrpwm", "ti,am3352-ehrpwm";
-+		#pwm-cells = <3>;
-+		reg = <0x00 0x3000000 0x00 0x100>;
-+		power-domains = <&k3_pds 160 TI_SCI_PD_EXCLUSIVE>;
-+		clocks = <&ehrpwm_tbclk 0>, <&k3_clks 160 0>;
-+		clock-names = "tbclk", "fck";
-+		status = "disabled";
-+	};
-+
-+	main_ehrpwm1: pwm@3010000 {
-+		compatible = "ti,am654-ehrpwm", "ti,am3352-ehrpwm";
-+		#pwm-cells = <3>;
-+		reg = <0x00 0x3010000 0x00 0x100>;
-+		power-domains = <&k3_pds 161 TI_SCI_PD_EXCLUSIVE>;
-+		clocks = <&ehrpwm_tbclk 1>, <&k3_clks 161 0>;
-+		clock-names = "tbclk", "fck";
-+		status = "disabled";
-+	};
-+
-+	main_ehrpwm2: pwm@3020000 {
-+		compatible = "ti,am654-ehrpwm", "ti,am3352-ehrpwm";
-+		#pwm-cells = <3>;
-+		reg = <0x00 0x3020000 0x00 0x100>;
-+		power-domains = <&k3_pds 162 TI_SCI_PD_EXCLUSIVE>;
-+		clocks = <&ehrpwm_tbclk 2>, <&k3_clks 162 0>;
-+		clock-names = "tbclk", "fck";
-+		status = "disabled";
-+	};
-+
-+	main_ehrpwm3: pwm@3030000 {
-+		compatible = "ti,am654-ehrpwm", "ti,am3352-ehrpwm";
-+		#pwm-cells = <3>;
-+		reg = <0x00 0x3030000 0x00 0x100>;
-+		power-domains = <&k3_pds 163 TI_SCI_PD_EXCLUSIVE>;
-+		clocks = <&ehrpwm_tbclk 3>, <&k3_clks 163 0>;
-+		clock-names = "tbclk", "fck";
-+		status = "disabled";
-+	};
-+
-+	main_ehrpwm4: pwm@3040000 {
-+		compatible = "ti,am654-ehrpwm", "ti,am3352-ehrpwm";
-+		#pwm-cells = <3>;
-+		reg = <0x00 0x3040000 0x00 0x100>;
-+		power-domains = <&k3_pds 164 TI_SCI_PD_EXCLUSIVE>;
-+		clocks = <&ehrpwm_tbclk 4>, <&k3_clks 164 0>;
-+		clock-names = "tbclk", "fck";
-+		status = "disabled";
-+	};
-+
-+	main_ehrpwm5: pwm@3050000 {
-+		compatible = "ti,am654-ehrpwm", "ti,am3352-ehrpwm";
-+		#pwm-cells = <3>;
-+		reg = <0x00 0x3050000 0x00 0x100>;
-+		power-domains = <&k3_pds 165 TI_SCI_PD_EXCLUSIVE>;
-+		clocks = <&ehrpwm_tbclk 5>, <&k3_clks 165 0>;
-+		clock-names = "tbclk", "fck";
-+		status = "disabled";
- 	};
- 
- 	gic500: interrupt-controller@1800000 {
--- 
-2.36.1
+Best regards,
+Krzysztof
 
