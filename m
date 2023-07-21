@@ -2,108 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CC23975BFCB
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 09:34:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9233F75BFE1
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 09:37:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230166AbjGUHer (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jul 2023 03:34:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57724 "EHLO
+        id S229914AbjGUHhL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jul 2023 03:37:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58500 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230153AbjGUHeq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 03:34:46 -0400
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B359319AD
-        for <devicetree@vger.kernel.org>; Fri, 21 Jul 2023 00:34:43 -0700 (PDT)
-Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-3fbf1b82d9cso13514925e9.2
-        for <devicetree@vger.kernel.org>; Fri, 21 Jul 2023 00:34:43 -0700 (PDT)
+        with ESMTP id S230364AbjGUHgz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 03:36:55 -0400
+Received: from mail-io1-xd34.google.com (mail-io1-xd34.google.com [IPv6:2607:f8b0:4864:20::d34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AA2930E2;
+        Fri, 21 Jul 2023 00:36:33 -0700 (PDT)
+Received: by mail-io1-xd34.google.com with SMTP id ca18e2360f4ac-786f25bcb40so72503239f.3;
+        Fri, 21 Jul 2023 00:36:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689924882; x=1690529682;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Z2Eey66acd2jYSksTo6JIEFe6jkP5WZsbd4TIO3og64=;
-        b=z301tzIOXGX6F6eYrBWz4edbxOvAxRPikB9z4YdNFWi/mFKVEGMk+DWX4ruVw5fd1k
-         vlp1lIWQH1FMGTeIQpmtZEzOnUAfsdQODO09tsxbRqxy7Yd2Ng3MTzoHVvqXUPlD/7X3
-         LA7Q5O1EyhbqF/ZW0QqUaiymqYkfSjXwHX5t2X5YAX5K1kYec54v89Nk7llmtYuV6Qlh
-         wwoNYJF4Nt4Q3p1z059bJYGkJiMu7MnGRrY5gqedHUSjPUcH928kA3VmPhnwbcqsDIXv
-         nhc9S4xibdGxFQeUuyMRsvKfTAXvv8gd04Nobyk1uQ31WUpjZKu0R2SdUq7SeaCs5qnm
-         PLtQ==
+        d=gmail.com; s=20221208; t=1689924992; x=1690529792;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=rwVqooMhU6/qCyAsIXyrwVrxORybblqV7NPbOLjp6eQ=;
+        b=kiY9xGcFRMHRU+6vcgB1ZWXy601u2U13MnKnCeR+clwk07W46VlXKydgHm8RxFrh+P
+         wOwccvmh7fy/K/IfMuzGAmXHy9D8PIQR/Klql14waFXCSDbTXd4Kaiw2VXX7goeuqK2v
+         qxP6pJaYnn01j6gyeA+7uY43QdeLU3ou41MuRgWJkSac+lhPbQiaeN3jCV/uA5jkaJTe
+         rs0fs2bfhudulx4VL/yCYRQtVwgI1fiO2UA+XlXiaUbB8meSgSC54DO9oRwIn9LLPSZn
+         n8BLILA9NsrBHJNZTL4tPiRPWy1PMM161TMGgA+IT5U44YIL7PE4sZ8Ic+53G17PNGyI
+         6e9Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689924882; x=1690529682;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Z2Eey66acd2jYSksTo6JIEFe6jkP5WZsbd4TIO3og64=;
-        b=OLHrRhjCuvEakRx9wpIf8TNLa9HViOCkZfipHWy9mfNzv49kzUQ5bdE/8ER5C1KwuM
-         /mf8l6d76haHUzZHBThHq7eIPJ266WgGH1oZKNNr2dsOBrkESzWJlxBKmYP99s8asc86
-         NOdUAsuCOMm2Ty2t40aHP9M4BsekHFCWcryzGo0jDhBFEDNo+kdsRARqrEkV2osC5O2W
-         B4acU6Q7DPzX0dOdIyw5OJG795mR5zvSkuLHdYsAR0UYuIKBARAbYh7/uWBy4jgbTQB6
-         ksmmIMVEsmDXGhbfemDZmOpaeVH7SKU1/u78cOKKG/y2X/vRyvwNbzmUEmdKnmokGnj9
-         6mGQ==
-X-Gm-Message-State: ABy/qLY063QzYCJTDrX1XFxmIwi+P49WuWcCMzxCvxeWL+sTDqq6S+YE
-        lAg4sCFzL+1Pe+3Qiw2TLKgL3A==
-X-Google-Smtp-Source: APBJJlG+aEa1DNxanPsy99y0PcovGXg2DThCPtBsT59f4TOkChJND8YQpHArb7e+hWWwjwBbTA30Ew==
-X-Received: by 2002:a05:600c:11cd:b0:3fc:e7d:ca57 with SMTP id b13-20020a05600c11cd00b003fc0e7dca57mr668391wmi.2.1689924882242;
-        Fri, 21 Jul 2023 00:34:42 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id a5-20020a05600c224500b003fbc9b9699dsm2834895wmm.45.2023.07.21.00.34.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 21 Jul 2023 00:34:41 -0700 (PDT)
-Message-ID: <3a912702-45be-2b79-a4e4-01381ac1120d@linaro.org>
-Date:   Fri, 21 Jul 2023 09:34:39 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v6 1/2] dt-bindings: pwm: samsung: add exynosautov9
- compatible
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Jaewon Kim <jaewon02.kim@samsung.com>
-Cc:     =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
+        d=1e100.net; s=20221208; t=1689924992; x=1690529792;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=rwVqooMhU6/qCyAsIXyrwVrxORybblqV7NPbOLjp6eQ=;
+        b=G1C7ThI9bclRddtzamkA3rXoITUOnyoIHRM0NHg6ZJd0aTDI/NGXN2CfM8d8xDn4iF
+         RsllxVaDS6ETDE3U7dJ1Xae8p7mjg4fOO/k8/h8DTPmq+1TbjExDewtysJ9OxO8zZaGw
+         XVIdHIzmumON+c3tRmg38WHhL/6G8gXMZ8k6VppziF0gfaA4c24F4byc2c75aX2y52wl
+         oi9XFHdoZTWXnK2XSbRfQ9HENhDvDLijf8XkKkHIjy7CUVyze5jdRbk5Hj04qqXOIjOO
+         KbRLDdDosfihG2RD0JVX4D4UNrXUN5e1Q4bGEx5xLT6cqW2zot01txALJ3VLr1zjXZ8a
+         qJaQ==
+X-Gm-Message-State: ABy/qLaPiAn1vamIQvvKx8aOs5wHWXYs87juSZqPbOAiSbUOoN2JfnVZ
+        rTJ5mJTjBNgsExyeuc2LBtlOYwOLiuEdDw==
+X-Google-Smtp-Source: APBJJlEYUrmsmfELS+tWrSOJXjolEwY3UMjoLdTwnhyAr6shA04JfsLVam+QEPhKD/selRboy3OKrQ==
+X-Received: by 2002:a5e:a705:0:b0:780:c787:637b with SMTP id b5-20020a5ea705000000b00780c787637bmr1161420iod.0.1689924992151;
+        Fri, 21 Jul 2023 00:36:32 -0700 (PDT)
+Received: from james-x399.localdomain (71-218-225-212.hlrn.qwest.net. [71.218.225.212])
+        by smtp.gmail.com with ESMTPSA id k20-20020a02c654000000b0042b35e163besm883017jan.88.2023.07.21.00.36.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 21 Jul 2023 00:36:31 -0700 (PDT)
+From:   James Hilliard <james.hilliard1@gmail.com>
+To:     devicetree@vger.kernel.org
+Cc:     James Hilliard <james.hilliard1@gmail.com>,
+        Conor Dooley <conor.dooley@microchip.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org
-References: <20230718062200.79306-1-jaewon02.kim@samsung.com>
- <CGME20230718062724epcas2p4c5e986c62fba72f722a37973e721a452@epcas2p4.samsung.com>
- <20230718062200.79306-2-jaewon02.kim@samsung.com> <ZLlZZyR19tQUfsx-@orome>
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <ZLlZZyR19tQUfsx-@orome>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Marek Vasut <marex@denx.de>,
+        Stefan Wahren <stefan.wahren@chargebyte.com>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        Andreas Kemnade <andreas@kemnade.info>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Christoph Niedermaier <cniedermaier@dh-electronics.com>,
+        Li Yang <leoyang.li@nxp.com>, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v4 1/4] dt-bindings: arm: fsl: Add VAR-SOM-MX6 SoM
+Date:   Fri, 21 Jul 2023 01:36:19 -0600
+Message-Id: <20230721073626.3673429-1-james.hilliard1@gmail.com>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/07/2023 17:57, Thierry Reding wrote:
-> On Tue, Jul 18, 2023 at 03:21:59PM +0900, Jaewon Kim wrote:
->> Add samsung,exynosautov9-pwm compatible string to binding document.
->>
->> Signed-off-by: Jaewon Kim <jaewon02.kim@samsung.com>
->> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> ---
->>  .../devicetree/bindings/pwm/pwm-samsung.yaml    | 17 +++++++++++------
->>  1 file changed, 11 insertions(+), 6 deletions(-)
-> 
-> Kryzsztof,
-> 
-> do you want to pick this up along with the DT change? If so:
-> 
-> Acked-by: Thierry Reding <thierry.reding@gmail.com>
-> 
-> Let me know if you prefer for this to go through the PWM tree.
+Add support for Variscite i.MX6Q VAR-SOM-MX6 SoM.
 
-I already applied it and sent a confirmation of that.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Signed-off-by: James Hilliard <james.hilliard1@gmail.com>
+---
+ Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-Best regards,
-Krzysztof
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index 2510eaa8906d..a3ab78429799 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -298,6 +298,7 @@ properties:
+               - udoo,imx6q-udoo           # Udoo i.MX6 Quad Board
+               - uniwest,imx6q-evi         # Uniwest Evi
+               - variscite,dt6customboard
++              - variscite,var-som-imx6q   # i.MX6 Quad Variscite VAR-SOM-MX6 module
+               - wand,imx6q-wandboard      # Wandboard i.MX6 Quad Board
+               - ysoft,imx6q-yapp4-crux    # i.MX6 Quad Y Soft IOTA Crux board
+               - ysoft,imx6q-yapp4-pegasus # i.MX6 Quad Y Soft IOTA Pegasus board
+-- 
+2.34.1
 
