@@ -2,141 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 379FE75C68D
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 14:07:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4533475C690
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 14:08:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231375AbjGUMHz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jul 2023 08:07:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60544 "EHLO
+        id S229990AbjGUMIg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jul 2023 08:08:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33064 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231321AbjGUMHx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 08:07:53 -0400
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55FD51FFE
-        for <devicetree@vger.kernel.org>; Fri, 21 Jul 2023 05:07:48 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-992dcae74e0so295344666b.3
-        for <devicetree@vger.kernel.org>; Fri, 21 Jul 2023 05:07:48 -0700 (PDT)
+        with ESMTP id S230242AbjGUMIf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 08:08:35 -0400
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 258101BC1
+        for <devicetree@vger.kernel.org>; Fri, 21 Jul 2023 05:08:31 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-99454855de1so272356266b.2
+        for <devicetree@vger.kernel.org>; Fri, 21 Jul 2023 05:08:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689941267; x=1690546067;
+        d=linaro.org; s=google; t=1689941310; x=1690546110;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=WnaJZllXk7/bDz5bL7Xem7eehrCa/S2AFbCxOH9yeVg=;
-        b=fZwtbMpYsPkZGJMyF8pFbcP/a3bZ5iBU+4NnH04AkEvJEdDGWZUqiHZi9o+5RnxdAM
-         rmhJukHBwjAWirz3SkeCIT9KcxMMWYDuBpz0+vTtJOPbNVvBL+sFViYZFKmxZxx8EYvu
-         FQ73eipxktA9gUrmyJFIdrbpbnT2vNP+B3QApRYtwRhnqQvaCYpO0bglY6brYkHq+6/K
-         ah2jAupmBqh4bH2CWNsPmLLq9krwU2zqtcgPxkTU/bqsXJ4raUMhzIbWF5U4jc0LaQej
-         O2+6KJo+vd8Axe4BiTo0vDSHNQX2FJCo+OiJO/gLF8Qug9nGoCBAZ4wi+v6dzdpxHNbJ
-         zjGw==
+        bh=IcpGROhJEwtR61U14d6fyUJcgMnzf8ivmeJyLaTOSlI=;
+        b=JBiuNToQ61zUNMKd02YNI78L3y5Z/AnUE7wZj7fvtaK3+fT3o/6Xb2IbL2vYZUyYbK
+         SknIlxE6JsQ790MtAxnQv/vGci7pFPM9zDwoO+axtS5vDjLE14imYfADx49gn+u6VbAI
+         Cw7RNMW8ULVaHwyx5w23+p++3TEvrWIvB3XtxOhzvds+VYoNvXyHng0LSM/3BpAgWLyh
+         OZyb2HvynPZu9bzefqfk89VJp/vkwncx6cy29ESckeL1B0a9uFr6DRP9AdUVpq3fbQ3G
+         2VndJ9Mjim3Ce9QvA9L9mvAQ47DZGQy1DIzqQFvtbtYr2LgNfWkpDrWmXr8RR2zWoexe
+         LGjw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689941267; x=1690546067;
+        d=1e100.net; s=20221208; t=1689941310; x=1690546110;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=WnaJZllXk7/bDz5bL7Xem7eehrCa/S2AFbCxOH9yeVg=;
-        b=I6BSboNoHpy+cK34j6TzGjBPZTPCgWHWaBdZ4DyZ6Bs3zBN8YElBVctNDfJyozUw2Q
-         VnfGCxuwdLUm41tR3K0TZIS0yNlbDiX7HU27R/bgUFysIFFsyoj3dhLA0/b3WBODoxWh
-         1OcvpsRG3IpPAZPLYUyXL4tpYmJ4EXtp4i95fpsTOB6OC48SGcDmyfa9IOHhlVsrvkyI
-         je/VtGkpD0+ECvHXh5U+84T0ycqAvjibI7YTN8Qtc0sdHHv+rOd3TXBWglS9m3bQVHYd
-         QP+N1+yDwgwWTCP/bTppdw53kBOwaVEdy+6ghMH2K/n7yBYoXr4l6aUh4xb4kel12T9A
-         3mUQ==
-X-Gm-Message-State: ABy/qLbBz9sfSTJPtjzvu45nlSh3RmpTZ6uCu9XEfmRkAXF0nfJu6gdt
-        dLpFV7r2LlsINcuZYOWE1JoMtw==
-X-Google-Smtp-Source: APBJJlHluQWVEzu0sJ/PrWjshX/401eG7m9xwGfKfw97KqNLFANPd8vq1eMtLADPF4i+eyWPPSmktQ==
-X-Received: by 2002:a17:906:cc0e:b0:997:e79c:99dc with SMTP id ml14-20020a170906cc0e00b00997e79c99dcmr1364395ejb.74.1689941266697;
-        Fri, 21 Jul 2023 05:07:46 -0700 (PDT)
+        bh=IcpGROhJEwtR61U14d6fyUJcgMnzf8ivmeJyLaTOSlI=;
+        b=Tili369iTlku3hM6u4C3upoJHRjJEUTeQPY0Iq2EUJFCSexyZJLdAVg97ujN923zWP
+         hOFyhDhC8s+OBoWwplePNWzXu0BmY6QE7Vxizg/L2mZ/4EMbYVESJOfkfxPldQ3O9U8w
+         xvjz3bCurMPS/dORWF+e6CLc7Zdeo0VRp/MnsVR8NNSxcbFwEi/aiXHbJJOxzaDz+6vp
+         uaE8i5bzfODFuOvGUdDq2A/9VBYYifzoxiDvL1a01l1vBi6c3fLkLwb8CedTWvlq8172
+         8v+hN/eAbmjxKgkpnSU1KjVD1bUMB66Y0K7Ya2FGS4Uvc60WHI2ZKt+ish4as6cV4MDK
+         pflg==
+X-Gm-Message-State: ABy/qLZ4u4Cvr2aHUY3LZkbLqqpJv2S6FoekFkT6hqtca/Yz2k4Rbx1X
+        eBhKIMMzaHE18NDAd72ofUkIxg==
+X-Google-Smtp-Source: APBJJlF//sQzLQkI0+A0IydDa7QrWBHF7UziQd+Pe+WaYGcBo07fAYo8QdR6MHGfWF7KbWrSu4fU7A==
+X-Received: by 2002:a17:906:31d8:b0:994:2fa9:7446 with SMTP id f24-20020a17090631d800b009942fa97446mr1332912ejf.46.1689941310423;
+        Fri, 21 Jul 2023 05:08:30 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id o19-20020a17090608d300b0098d2f703408sm2089541eje.118.2023.07.21.05.07.44
+        by smtp.gmail.com with ESMTPSA id bn5-20020a170906c0c500b0098f33157e7dsm2089479ejb.82.2023.07.21.05.08.28
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 21 Jul 2023 05:07:46 -0700 (PDT)
-Message-ID: <25efdb2c-21e0-9a98-03d2-0d4cdeaaaf8f@linaro.org>
-Date:   Fri, 21 Jul 2023 14:07:44 +0200
+        Fri, 21 Jul 2023 05:08:29 -0700 (PDT)
+Message-ID: <b0318b33-a314-d744-6aad-7e22715de032@linaro.org>
+Date:   Fri, 21 Jul 2023 14:08:27 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
-Subject: Re: [PATCH v3 1/2] dt-bindings: iio: dac: add mcp4728.yaml
+Subject: Re: [PATCH v6 2/3] dt-bindings: clock: imx8-clock: Add audio clock
+ mux related clock
 Content-Language: en-US
-To:     Andrea Collamati <andrea.collamati@gmail.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <cover.1689857295.git.andrea.collamati@gmail.com>
- <9816cd272d19802ec6eeff0c7c29e85d4a0ade88.1689857295.git.andrea.collamati@gmail.com>
- <4898bc33-5245-8fb2-e5e6-8ea1a8f32e1e@linaro.org>
- <d010f085-ea0e-5086-260e-c5a9be94ebfb@gmail.com>
+To:     Shengjiu Wang <shengjiu.wang@nxp.com>, abelvesa@kernel.org,
+        peng.fan@nxp.com, mturquette@baylibre.com, sboyd@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        shengjiu.wang@gmail.com
+Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <1689934137-21430-1-git-send-email-shengjiu.wang@nxp.com>
+ <1689934137-21430-3-git-send-email-shengjiu.wang@nxp.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <d010f085-ea0e-5086-260e-c5a9be94ebfb@gmail.com>
+In-Reply-To: <1689934137-21430-3-git-send-email-shengjiu.wang@nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/07/2023 13:58, Andrea Collamati wrote:
-> Hi Krzysztof,
+On 21/07/2023 12:08, Shengjiu Wang wrote:
+> Audio Clock Mux is the IP for i.MX8QXP, i.MX8QM, and
+> i.MX8XL platform, Add the clockid for them.
 > 
-> On 7/21/23 10:21, Krzysztof Kozlowski wrote:
->>> Add documentation for MCP4728
->>>
->>> Signed-off-by: Andrea Collamati <andrea.collamati@gmail.com>
->>> ---
->>>  .../bindings/iio/dac/microchip,mcp4728.yaml   | 48 +++++++++++++++++++
->>>  1 file changed, 48 insertions(+)
->>>  create mode 100644 Documentation/devicetree/bindings/iio/dac/microchip,mcp4728.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/iio/dac/microchip,mcp4728.yaml b/Documentation/devicetree/bindings/iio/dac/microchip,mcp4728.yaml
->>> new file mode 100644
->>> index 000000000000..6fd9be076245
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/iio/dac/microchip,mcp4728.yaml
->>> @@ -0,0 +1,48 @@
->>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/iio/dac/microchip,mcp4728.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Microchip MCP4728 DAC
->>> +
->>> +description:
->>> +  MCP4728 is a quad channel, 12-bit voltage output
->>> +  Digital-to-Analog Converter with non-volatile
->>> +  memory and I2C compatible Serial Interface.
->>> +  https://www.microchip.com/en-us/product/mcp4728
->>> +
->>> +maintainers:
->>> +  - Andrea Collamati <andrea.collamati@gmail.com>
->>> +
->>> +properties:
->>> +  compatible:
->>> +    enum:
->>> +      - microchip,mcp4728
->> This is a friendly reminder during the review process.
-> 
-> Sorry but I didn't understand all your requests:
-> 
-> - I changed in the title mcp4728 with MCP4728
-> 
-> - I added description
-> 
-> but I don't know which blank line or whitespaces should be removed.
-> 
-> Can you tell me please?
+> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-You forgot to add blank line. Open example-schema and compare.
-
-Also, you had white-space errors. Editors should show it to you. Git
-maybe as well.
+No, headers are not separate patches. Squash it.
 
 Best regards,
 Krzysztof
