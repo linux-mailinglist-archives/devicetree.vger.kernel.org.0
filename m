@@ -2,72 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B33E575C71C
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 14:48:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5DC2375C726
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 14:50:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229992AbjGUMsN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jul 2023 08:48:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48220 "EHLO
+        id S231196AbjGUMuT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jul 2023 08:50:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49178 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231591AbjGUMsL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 08:48:11 -0400
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 954E730E4;
-        Fri, 21 Jul 2023 05:48:05 -0700 (PDT)
-Received: by mail-wr1-x431.google.com with SMTP id ffacd0b85a97d-317009c0f9aso1615824f8f.0;
-        Fri, 21 Jul 2023 05:48:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1689943684; x=1690548484;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ZWcqz9Mv4HI+eaPkkvqsQEiwNN0pLbZENRpAKS2EXZE=;
-        b=R7lfBloi9SfqaQgx2ZueNSd5JHSmV2O/sRGh1VITEs38EWO8qcC/8tp7q4DQ50bJD0
-         EGpqcHzV3fprIjGGH0A6yUUz2sAxNNQZFRHFwOAtwGVY10Vgrpyfm8uRGnfZ43TsrsQc
-         wVj6JnVDc5uEMinfC0wLCaFAKh+zUVqPqCUeooOpZ32Dh980w778teGVUP5OG7eblrtK
-         Xl232glVvdqAf8RAGedfSpkHecECc6UqPrTDet4XhmmITlxKVO6tcbIvFWaClXybWR0S
-         Bb6tJ4DX97BtX9lI142vNlCxOnUm3EZ0/pLCnqvlWlvdqr+VV9Clm7OK02FLiDeflWIB
-         N+Dg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689943684; x=1690548484;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ZWcqz9Mv4HI+eaPkkvqsQEiwNN0pLbZENRpAKS2EXZE=;
-        b=itkS/7iQ6zBgVnZGTANr7e0GTXtw9sDE/Tw7yN5vY/Wl2qPYosQxMkk3zZLeZYKbVj
-         zhgr+zETO0FrvxuAWekL3vMUwk78rBMNhpcbRESWbZpht68ou3Qf6F2UbIUfU2r6quFX
-         vqyMf/0HCB66q2zJcilr+G4apC/ZO9dWdKp9TJ6lS0/9otsAE3PL6RtiiXv2p5UgxO5Z
-         B/pP0UNzjl9N+HjxLrDeMqY9iB+WOcdpJ/Yj5qJdLAtIvE1XpEVdJmGQyUTCVE/CCOnU
-         7i6/N+ho3mzk2q53DV4k5mJsTpbhTHGf2/dgTC+llDvz3/Jpw/iixnAecaq8V2LCEkqr
-         v6+g==
-X-Gm-Message-State: ABy/qLYp98xECGnjmM3MwUO/BbgLnVwsqSu7Xqu2MV6yPqVHjLMAZZDX
-        u7KzlpHrHMigEGgXbk+WTeY=
-X-Google-Smtp-Source: APBJJlEKzdxuWLAJ7uMvQhrQRKj+a2acYf8JtH/ZDEbLCiiIp+FKYH7OT3KjEitMBFUXc6viT/fRQQ==
-X-Received: by 2002:a05:6000:1187:b0:315:8a86:cf7f with SMTP id g7-20020a056000118700b003158a86cf7fmr1168091wrx.70.1689943683795;
-        Fri, 21 Jul 2023 05:48:03 -0700 (PDT)
-Received: from localhost (p200300e41f1bd600f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f1b:d600:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id o5-20020adfcf05000000b003172510d19dsm4130464wrj.73.2023.07.21.05.48.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Jul 2023 05:48:01 -0700 (PDT)
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>
-Cc:     Jon Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org,
-        linux-serial@vger.kernel.org, linux-tegra@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: serial: tegra-hsuart: Convert to json-schema
-Date:   Fri, 21 Jul 2023 14:47:59 +0200
-Message-ID: <168994366590.2988875.8075788472023151344.b4-ty@nvidia.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20230705151802.2512186-1-thierry.reding@gmail.com>
-References: <20230705151802.2512186-1-thierry.reding@gmail.com>
-MIME-Version: 1.0
+        with ESMTP id S231151AbjGUMuS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 08:50:18 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B86510CB;
+        Fri, 21 Jul 2023 05:50:17 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id E9B9D61B1F;
+        Fri, 21 Jul 2023 12:50:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 60618C433C9;
+        Fri, 21 Jul 2023 12:50:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1689943816;
+        bh=O1jJbBEcaURn4zEGQ2aRZSKmYUb+p4lmuCCmyb9Qvp8=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=Bpu0BUiupIfVegnNJ+wLKfTgXQzT+x5YufL5i/oNwOh2vqofQ1+qvykE2sGLXeU3k
+         SwHVaXGHwMV54Sfo8803R2ogAfCwOJWMY3YpaxfPSolZDOLMd4uC3dFptoDzUFhNwm
+         8KPnr1ejSciq1YGHk4tNsZKIX7Jix4XVcXY87LrFEKi3hZNh27RlSS0k0HF+sJFIch
+         XM4/Rb9e4VMXqsLdMA0JI0kyGOhoopjAZ6WDkrcLwchl8LAUsW//x0HZ73GP7sSKUi
+         SnzU/ex/JbhZk3Te/9DVwB+ML3iJ2F/D9Zt2bMPEA5ZM+INp1bA/sPlLOPvwQDOttZ
+         MXEPn3+X7lTww==
+Received: (nullmailer pid 785149 invoked by uid 1000);
+        Fri, 21 Jul 2023 12:50:13 -0000
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+MIME-Version: 1.0
+From:   Rob Herring <robh@kernel.org>
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Mirela Rabulea <mirela.rabulea@nxp.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Mark Brown <broonie@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Ming Qian <ming.qian@nxp.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-media@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Anson Huang <Anson.Huang@nxp.com>, linux-spi@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shijie Qin <shijie.qin@nxp.com>, devicetree@vger.kernel.org,
+        Zhou Peng <eagle.zhou@nxp.com>
+In-Reply-To: <20230721111020.1234278-1-alexander.stein@ew.tq-group.com>
+References: <20230721111020.1234278-1-alexander.stein@ew.tq-group.com>
+Message-Id: <168994381338.785121.14262858445617202831.robh@kernel.org>
+Subject: Re: [PATCH 1/3] dt-bindings: media: amphion: Fix subnode pattern
+Date:   Fri, 21 Jul 2023 06:50:13 -0600
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -75,24 +70,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Thierry Reding <treding@nvidia.com>
 
-
-On Wed, 05 Jul 2023 17:18:02 +0200, Thierry Reding wrote:
-> Convert the Tegra High-Speed UART bindings from the free-form text
-> format to json-schema.
+On Fri, 21 Jul 2023 13:10:18 +0200, Alexander Stein wrote:
+> DT nodes use dashes instead of underscore. Adjust pattern to also fix
+> warnings regarding nodes in arch/arm64/boot/dts/freescale/imx8-ss-vpu.dtsi
 > 
-> While at it, also fix fix the example to reflect the correct compatible
-> string for Tegra30 chips.
+> Fixes: 38ad8b32f3af ("dt-bindings: media: amphion: add amphion video codec bindings")
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> ---
+>  Documentation/devicetree/bindings/media/amphion,vpu.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> 
-> [...]
 
-Applied, thanks!
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-[1/1] dt-bindings: serial: tegra-hsuart: Convert to json-schema
-      commit: 1e218a91103f725bcf1c8788d272a7c213bce96a
+yamllint warnings/errors:
 
-Best regards,
--- 
-Thierry Reding <treding@nvidia.com>
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/amphion,vpu.example.dtb: vpu@2c000000: 'vpu_core@2d080000', 'vpu_core@2d090000', 'vpu_core@2d0a0000' do not match any of the regexes: '^mailbox@[0-9a-f]+$', '^vpu-core@[0-9a-f]+$', 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/media/amphion,vpu.yaml#
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230721111020.1234278-1-alexander.stein@ew.tq-group.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
