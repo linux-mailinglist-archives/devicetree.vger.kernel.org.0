@@ -2,109 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6962675C00C
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 09:44:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EEC3175C013
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 09:45:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231143AbjGUHoT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jul 2023 03:44:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36746 "EHLO
+        id S230333AbjGUHpF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jul 2023 03:45:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37316 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230166AbjGUHoR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 03:44:17 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EEA2811D;
-        Fri, 21 Jul 2023 00:44:16 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 7A4F161545;
-        Fri, 21 Jul 2023 07:44:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AD808C433C8;
-        Fri, 21 Jul 2023 07:44:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689925455;
-        bh=Er/BapZb3ALRPOmrjE6iHWD/lgnVLLcsK/VqJs60yPo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=nCLyshxSscf0FcD2qfqnOU4ZCp5bAfqiOxoYbib7ddjVIWcaIanoCnij1MWrrDMrD
-         6fy38OH2di51feftiqQ1daVr0uVucWuCuZ8XFYmTRs76m8aoDWYRAd6QfAL5ip0PQV
-         jd7SeXp86PPDc2OOF9tuJlzCXJVTuFkwFZczU76Dsw1Hb4ATWXEIgDNCo8Ml2KhV3r
-         SBb6OX8PSipIvCC7RYiI5eST+PVw2plCZwGb/MYD3VQSVKX7vt1cTmQpy94Hu+MUnY
-         TsANyvpA+IAY2Ss63kIGn3Z9C3LzreOqLLGiqOF+OByOiCVENI+B8da2qGAwsD1oAW
-         uqDiAZS1yGwCQ==
-Received: from johan by xi.lan with local (Exim 4.96)
-        (envelope-from <johan@kernel.org>)
-        id 1qMkoJ-0003G1-1a;
-        Fri, 21 Jul 2023 09:44:24 +0200
-Date:   Fri, 21 Jul 2023 09:44:23 +0200
-From:   Johan Hovold <johan@kernel.org>
-To:     Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
-Cc:     Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        Wesley Cheng <quic_wcheng@quicinc.com>,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        quic_pkondeti@quicinc.com, quic_ppratap@quicinc.com,
-        quic_jackp@quicinc.com, ahalaney@redhat.com,
-        quic_shazhuss@quicinc.com
-Subject: Re: [PATCH v9 03/10] usb: dwc3: core: Access XHCI address space
- temporarily to read port info
-Message-ID: <ZLo3Vym_54IsO-zl@hovoldconsulting.com>
-References: <20230621043628.21485-1-quic_kriskura@quicinc.com>
- <20230621043628.21485-4-quic_kriskura@quicinc.com>
- <ZJrL5SXrSiYbvq2o@hovoldconsulting.com>
- <0af6aa13-d83c-8c26-2a60-00cb3bbe4f5e@quicinc.com>
+        with ESMTP id S229914AbjGUHpE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 03:45:04 -0400
+Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 50FD719AD;
+        Fri, 21 Jul 2023 00:45:02 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="6.01,220,1684767600"; 
+   d="scan'208";a="170346690"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie5.idc.renesas.com with ESMTP; 21 Jul 2023 16:45:01 +0900
+Received: from localhost.localdomain (unknown [10.166.15.32])
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 5BFB5418F5E1;
+        Fri, 21 Jul 2023 16:45:01 +0900 (JST)
+From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+To:     jingoohan1@gmail.com, gustavo.pimentel@synopsys.com,
+        lpieralisi@kernel.org, robh+dt@kernel.org, kw@linux.com,
+        manivannan.sadhasivam@linaro.org, bhelgaas@google.com,
+        kishon@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org
+Cc:     marek.vasut+renesas@gmail.com, fancer.lancer@gmail.com,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Subject: [PATCH v18 00/20] PCI: rcar-gen4: Add R-Car Gen4 PCIe support
+Date:   Fri, 21 Jul 2023 16:44:32 +0900
+Message-Id: <20230721074452.65545-1-yoshihiro.shimoda.uh@renesas.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <0af6aa13-d83c-8c26-2a60-00cb3bbe4f5e@quicinc.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=1.1 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krishna,
+Add R-Car S4-8 (R-Car Gen4) PCIe Host and Endpoint support.
+To support them, modify PCIe DesignWare common codes.
 
-Please remember to trim unnecessary context from your replies (e.g. as
-it makes it easier to read your reply and later the entire thread in the
-mailing list archives).
+Changes from v17:
+https://lore.kernel.org/linux-pci/20230705114206.3585188-1-yoshihiro.shimoda.uh@renesas.com/
+ - Based on the latest pci.git / next branch.
+ - Add comments in the commit log in the patch 01/20.
+ - Drop "Implicit" from "Message Routing" in the patch 01/20.
+ - Add Reviewed-by tag in the patch 0[14569]/20.
+ - Fix typo in the patch 07/20.
+ - Drop unnecessary description from the commit log in the patch 09/20.
+ - Add clk_bulk_disable_unprepare() calling in the patch 1[78]/20.
+ - Use .remove_new() in the patch 1[78]/20.
+ - Add rcar_gen4_pcie_basic_deinit() and .deinit() in the patch 17/20.
+ - Call rcar_gen4_pcie_basic_deinit() in .ep_deinit() in the patch 18/20.
+ - Minor updates for improved code readability in the patch 1[78]/20.
 
-On Mon, Jul 03, 2023 at 12:18:14AM +0530, Krishna Kurapati PSSNV wrote:
-> On 6/27/2023 5:15 PM, Johan Hovold wrote:
-> > On Wed, Jun 21, 2023 at 10:06:21AM +0530, Krishna Kurapati wrote:
-  
-> >> diff --git a/drivers/usb/dwc3/core.h b/drivers/usb/dwc3/core.h
-> >> index 8b1295e4dcdd..42fb17aa66fa 100644
-> >> --- a/drivers/usb/dwc3/core.h
-> >> +++ b/drivers/usb/dwc3/core.h
-> >> @@ -33,6 +33,10 @@
-> >>   
-> >>   #include <linux/power_supply.h>
-> >>   
-> >> +#define XHCI_EXT_PORT_MAJOR(x)	(((x) >> 24) & 0xff)
-> >> +#define XHCI_EXT_PORT_MINOR(x)	(((x) >> 16) & 0xff)
-> >> +#define XHCI_EXT_PORT_COUNT(x)	(((x) >> 8) & 0xff)
-> > 
-> > Again, don't copy defines from xhci.
-> > 
-> > Looks like these should be moved to the xhci-ext-caps.h header along
-> > with struct xhci_protocol_caps.
-> > 
-> Can't we just give them an exception ? Modifying xhci stuff doesn't 
-> sound good. Can I just rename them and keep them here ?
+Changes from v16:
+https://lore.kernel.org/linux-pci/20230510062234.201499-1-yoshihiro.shimoda.uh@renesas.com/
+ - Based on next-20230704.
+ - Drop a patch about PCI_EXP_LNKCAP_MLW.
+ - Drop a patch about PCI_HEADER_TYPE_MULTI_FUNC.
+ - Update comments in the patch [01/20].
+ - Drop CC-list from actual commit log in the patch [02/20].
+ - Update the commit log in the patch [04/20].
+ - Remove unnecessary bit setting in the patch [05/20].
+ - (New) Add .func_conf_select2() ops for multiple PFs support in the patch [07/20].
+ - Modify dw_pcie_link_set_max_link_width() refactoring in the patch [08/20].
+ - Use FIELD_PREP() to improve code readability in the patch [09/20].
+ - Add Reviewed-by in the patch [1[02]/20] (Thanks, Serge!).
+ - Minor fix of the commit log in the patch [11/20].
+ - Add clock-names property in the patch [1[56]/20].
+ - Add max-functions property in the patch [16/20].
+ - Drop unnecessary dw_pcie_dbi_ro_wr_en() in the patch [17/20].
+ - Modify .stark_link() handling in the patch [17/20].
+ - Change function name of rcar_gen4_pcie_set_device_type() in the patch [17/20].
+ - Modify reset/clock handling in the patch [17/20].
+ - Add enum dw_pcie_device_mode handling in the patch [17/20].
+ - Drop single-function setting in the patch [18/20].
+ - Add multi PFs support in the patch [18/20].
+ - Fix .reserved_bar value in the patch [18/20].
 
-Nope. This is mainline, not Qualcomm's vendor kernel.
+Yoshihiro Shimoda (20):
+  PCI: Add INTx Mechanism Messages macros
+  PCI: Rename PCI_EPC_IRQ_LEGACY to PCI_EPC_IRQ_INTX
+  PCI: dwc: Rename "legacy_irq" to "INTx_irq"
+  PCI: dwc: Change arguments of dw_pcie_prog_outbound_atu()
+  PCI: dwc: Add outbound MSG TLPs support
+  PCI: designware-ep: Add INTx IRQs support
+  PCI: dwc: endpoint: Add multiple PFs support for dbi2
+  PCI: dwc: Add dw_pcie_link_set_max_link_width()
+  PCI: dwc: Add PCI_EXP_LNKCAP_MLW handling
+  PCI: tegra194: Drop PCI_EXP_LNKSTA_NLW setting.
+  PCI: dwc: Add EDMA_UNROLL capability flag
+  PCI: dwc: Expose dw_pcie_ep_exit() to module
+  PCI: dwc: Introduce .ep_pre_init() and .ep_deinit()
+  dt-bindings: PCI: dwc: Update maxItems of reg and reg-names
+  dt-bindings: PCI: renesas: Add R-Car Gen4 PCIe Host
+  dt-bindings: PCI: renesas: Add R-Car Gen4 PCIe Endpoint
+  PCI: rcar-gen4: Add R-Car Gen4 PCIe Host support
+  PCI: rcar-gen4-ep: Add R-Car Gen4 PCIe Endpoint support
+  MAINTAINERS: Update PCI DRIVER FOR RENESAS R-CAR for R-Car Gen4
+  misc: pci_endpoint_test: Add Device ID for R-Car S4-8 PCIe controller
 
-Johan
+ .../bindings/pci/rcar-gen4-pci-ep.yaml        | 106 ++++++++++
+ .../bindings/pci/rcar-gen4-pci-host.yaml      | 123 +++++++++++
+ .../bindings/pci/snps,dw-pcie-ep.yaml         |   4 +-
+ .../devicetree/bindings/pci/snps,dw-pcie.yaml |   4 +-
+ MAINTAINERS                                   |   1 +
+ drivers/misc/pci_endpoint_test.c              |   4 +
+ .../pci/controller/cadence/pcie-cadence-ep.c  |   2 +-
+ drivers/pci/controller/dwc/Kconfig            |  18 ++
+ drivers/pci/controller/dwc/Makefile           |   4 +
+ drivers/pci/controller/dwc/pci-dra7xx.c       |   2 +-
+ drivers/pci/controller/dwc/pci-imx6.c         |   4 +-
+ drivers/pci/controller/dwc/pci-keystone.c     |   2 +-
+ .../pci/controller/dwc/pci-layerscape-ep.c    |   4 +-
+ drivers/pci/controller/dwc/pcie-artpec6.c     |   2 +-
+ .../pci/controller/dwc/pcie-designware-ep.c   | 133 ++++++++++--
+ .../pci/controller/dwc/pcie-designware-host.c |  52 +++--
+ .../pci/controller/dwc/pcie-designware-plat.c |   4 +-
+ drivers/pci/controller/dwc/pcie-designware.c  | 155 +++++++-------
+ drivers/pci/controller/dwc/pcie-designware.h  |  35 ++-
+ drivers/pci/controller/dwc/pcie-keembay.c     |   2 +-
+ drivers/pci/controller/dwc/pcie-qcom-ep.c     |   4 +-
+ .../pci/controller/dwc/pcie-rcar-gen4-ep.c    | 189 +++++++++++++++++
+ .../pci/controller/dwc/pcie-rcar-gen4-host.c  | 149 +++++++++++++
+ drivers/pci/controller/dwc/pcie-rcar-gen4.c   | 200 ++++++++++++++++++
+ drivers/pci/controller/dwc/pcie-rcar-gen4.h   |  44 ++++
+ drivers/pci/controller/dwc/pcie-tegra194.c    |   8 +-
+ drivers/pci/controller/dwc/pcie-uniphier-ep.c |   2 +-
+ drivers/pci/controller/pcie-rcar-ep.c         |   2 +-
+ drivers/pci/controller/pcie-rockchip-ep.c     |   2 +-
+ drivers/pci/endpoint/functions/pci-epf-test.c |  10 +-
+ drivers/pci/pci.h                             |  18 ++
+ include/linux/pci-epc.h                       |   4 +-
+ 32 files changed, 1134 insertions(+), 159 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pci/rcar-gen4-pci-ep.yaml
+ create mode 100644 Documentation/devicetree/bindings/pci/rcar-gen4-pci-host.yaml
+ create mode 100644 drivers/pci/controller/dwc/pcie-rcar-gen4-ep.c
+ create mode 100644 drivers/pci/controller/dwc/pcie-rcar-gen4-host.c
+ create mode 100644 drivers/pci/controller/dwc/pcie-rcar-gen4.c
+ create mode 100644 drivers/pci/controller/dwc/pcie-rcar-gen4.h
+
+-- 
+2.25.1
+
