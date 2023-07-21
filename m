@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D54675C83D
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 15:50:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 509C075C842
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 15:50:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231489AbjGUNuV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jul 2023 09:50:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46538 "EHLO
+        id S231569AbjGUNu3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jul 2023 09:50:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46534 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231494AbjGUNuU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 09:50:20 -0400
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 200082D4A
-        for <devicetree@vger.kernel.org>; Fri, 21 Jul 2023 06:50:18 -0700 (PDT)
-Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-3fbc59de0e2so16577655e9.3
+        with ESMTP id S231463AbjGUNuV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 09:50:21 -0400
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1AF2E2D4C
+        for <devicetree@vger.kernel.org>; Fri, 21 Jul 2023 06:50:19 -0700 (PDT)
+Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-3fbc5d5742bso17326895e9.2
         for <devicetree@vger.kernel.org>; Fri, 21 Jul 2023 06:50:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1689947416; x=1690552216;
+        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1689947417; x=1690552217;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=mzaljnOO1Gw4qS38ZHWvBAE06zq5Umr4CoJZWfxvzDg=;
-        b=mrlDKR0TvYN/dZTrWxIqkMI9FU4brRH4Vd71KsjUmafFWEE9Twd7y2B2aNWBz1o0Ib
-         IMfK+5XtbtEFobIfcVMXGSExJroOalKnMZHuHfz1ut2Wv1HeRuSrmTSO4fuJ6s6G9Ofu
-         NxoFGTRHn1zD7q8DhHZxDYN06LQTBti2XripCNHhi4sNCX24Qupr3mLoMy3e/AhG6VI7
-         FmLm6AzxqLHGrFR4KRyZanF+vay/3ALShsdrQEp9eKCg+F8ir63as67xpeQpEycZ9g7X
-         fgleWAr0fXFXePD+vtS8+cqIz3Ix69bta3utJzCu67JGKZU0VkHP1eQVDvLOmRo5EY2i
-         2H0Q==
+        bh=tK3XW9CvIKNotY0VMKRibuYSfqNfjSdewyrI1jRS2zM=;
+        b=0ctkDHsJLr567qj00My9u/DwovaTt7nVS0cVaepA86zfFneViqAlpM4chikj9YNjt3
+         KlTL4vYYcjlmlMHwc+SKh/+xXAkR3OhXaqYSFferh6wND2fdMOEDZ6aS5HB14zXPaVLu
+         01Ge809ipavv5JQ8PxQ/x6kPY60W2EuxY/4BPBpNQHl4y8M1q/iN9+73+T9K9czoeU9y
+         jwVXSRdJyVefdJ1xzvkssK9P4GpXffMhdBBW1WIExz05IpK+HM6yDYwpUFpHYZX2Qq3t
+         Pv1PgAcxoOTi2f1MUVrDdmu3LJ2nnadMjVj7wS7B3U4lLCwY0ES6m8/rf8nHVwZta9G9
+         cRKw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689947416; x=1690552216;
+        d=1e100.net; s=20221208; t=1689947417; x=1690552217;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=mzaljnOO1Gw4qS38ZHWvBAE06zq5Umr4CoJZWfxvzDg=;
-        b=SJKOOglw22FxAcpkAEmGtUKAlKZT4CyC8J94wxj15K45CcKQNWZuSPW61KaYIgHWlG
-         7U0JQHHgRuEhJYd9QipOnqhBy1eru6RXtEQ3WGxzODZE8scL7e6SRRORssWWdKB+yb2p
-         1lrEbsq6knCvP6UHLFsSQWImpLIUzEUsH2FIFqeq0yA79BuSalbiQzXT4E7qDeoIMqL+
-         tKIgA8zX6TXU9qIRf+Ng/9N1pz/Eq5AHTdVJiZJPHqiuZY4kJh0SE1sO28hXbP4fFFTx
-         9VAWqkMIEIGvssQCL3MzEXUPs8JwbBcUERV6DM1nA4TqUett1odE0mB1BlDH+/5wA3M1
-         XImA==
-X-Gm-Message-State: ABy/qLYNts3mz8wXwA8buG/7faC9mplyTSzKbbiON3qDS1fcf4WtdBee
-        GjAfMcv3H9e4lTu2+jsAJpxnOg==
-X-Google-Smtp-Source: APBJJlEn7ZgPtrHBxi2+sc7/MBuJ9AS9a+wSvdcjzGDi0MrlNsMDtsw7huomVmX53L3WygmEGOV5Ug==
-X-Received: by 2002:a05:600c:2259:b0:3fb:adc0:609b with SMTP id a25-20020a05600c225900b003fbadc0609bmr1534653wmm.13.1689947416232;
-        Fri, 21 Jul 2023 06:50:16 -0700 (PDT)
+        bh=tK3XW9CvIKNotY0VMKRibuYSfqNfjSdewyrI1jRS2zM=;
+        b=AJM1Blz6OIKnMTai7iS5CJjSd2T8JzorM+aqm3p2NKz23jStzy49n3lP5PXTLzkRtm
+         EypZ8Twi6r5YDWKJ1LsLAdO/Gx8pV59GBOHJEd/sTiqLPhvpRethP8PlMRzL+2stGpB1
+         zucNIW86omcsrVqjeer7Fby61JTj8l8OEQoe8c/SYVEQR5kVlgNGIeL4fLCblLtO5CBc
+         SkcrUimbCyC+gDZaqY0bijE5lLl4S8ko1YcY+llokFW+nf3WwGjKZ7WvPFt9gpUqIm7t
+         5BmHbGf7n3r5S9O7sTaqa8r9JuwetqRQ72rUcW+HsahT1Vy37WuLflH0OWK0tCfAjsFH
+         8NBA==
+X-Gm-Message-State: ABy/qLallFhWbkjLBeN/IBfZVBxS0u3tseNedPcq/L/GTL6n9Xsm6imd
+        qViLIfzvzoFMFU6MLKPY5YdnvA==
+X-Google-Smtp-Source: APBJJlEYGOJohpsvToAwNTHgc3LKCSn7YXvsUGwDkuU0VAHrmITjFOeoFfDz7sdQfHoDDp7yNk7Lbw==
+X-Received: by 2002:a1c:f206:0:b0:3fb:415a:d07 with SMTP id s6-20020a1cf206000000b003fb415a0d07mr1476441wmc.36.1689947417293;
+        Fri, 21 Jul 2023 06:50:17 -0700 (PDT)
 Received: from blmsp.fritz.box ([2001:4091:a247:82fa:b762:4f68:e1ed:5041])
-        by smtp.gmail.com with ESMTPSA id c14-20020adfed8e000000b00313e4d02be8sm4233980wro.55.2023.07.21.06.50.15
+        by smtp.gmail.com with ESMTPSA id c14-20020adfed8e000000b00313e4d02be8sm4233980wro.55.2023.07.21.06.50.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Jul 2023 06:50:15 -0700 (PDT)
+        Fri, 21 Jul 2023 06:50:16 -0700 (PDT)
 From:   Markus Schneider-Pargmann <msp@baylibre.com>
 To:     Wolfgang Grandegger <wg@grandegger.com>,
         Marc Kleine-Budde <mkl@pengutronix.de>,
@@ -66,9 +66,9 @@ Cc:     "David S . Miller" <davem@davemloft.net>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         Simon Horman <simon.horman@corigine.com>,
         Markus Schneider-Pargmann <msp@baylibre.com>
-Subject: [PATCH v3 3/6] can: tcan4x5x: Check size of mram configuration
-Date:   Fri, 21 Jul 2023 15:50:06 +0200
-Message-Id: <20230721135009.1120562-4-msp@baylibre.com>
+Subject: [PATCH v3 4/6] can: tcan4x5x: Rename ID registers to match datasheet
+Date:   Fri, 21 Jul 2023 15:50:07 +0200
+Message-Id: <20230721135009.1120562-5-msp@baylibre.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20230721135009.1120562-1-msp@baylibre.com>
 References: <20230721135009.1120562-1-msp@baylibre.com>
@@ -84,81 +84,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-To reduce debugging effort in case the mram is misconfigured, add this
-size check of the DT configuration. Currently if the mram configuration
-doesn't fit into the available MRAM it just overwrites other areas of
-the MRAM.
+The datasheet calls these registers ID1 and ID2. Rename these to avoid
+confusion.
 
 Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
 Reviewed-by: Michal Kubiak <michal.kubiak@intel.com>
 ---
- drivers/net/can/m_can/m_can.c         | 16 ++++++++++++++++
- drivers/net/can/m_can/m_can.h         |  1 +
- drivers/net/can/m_can/tcan4x5x-core.c |  5 +++++
- 3 files changed, 22 insertions(+)
+ drivers/net/can/m_can/tcan4x5x-core.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/net/can/m_can/m_can.c b/drivers/net/can/m_can/m_can.c
-index c5af92bcc9c9..9210cf0705a1 100644
---- a/drivers/net/can/m_can/m_can.c
-+++ b/drivers/net/can/m_can/m_can.c
-@@ -1887,6 +1887,22 @@ static int register_m_can_dev(struct net_device *dev)
- 	return register_candev(dev);
- }
- 
-+int m_can_check_mram_cfg(struct m_can_classdev *cdev, u32 mram_max_size)
-+{
-+	u32 total_size;
-+
-+	total_size = cdev->mcfg[MRAM_TXB].off - cdev->mcfg[MRAM_SIDF].off +
-+			cdev->mcfg[MRAM_TXB].num * TXB_ELEMENT_SIZE;
-+	if (total_size > mram_max_size) {
-+		dev_err(cdev->dev, "Total size of mram config(%u) exceeds mram(%u)\n",
-+			total_size, mram_max_size);
-+		return -EINVAL;
-+	}
-+
-+	return 0;
-+}
-+EXPORT_SYMBOL_GPL(m_can_check_mram_cfg);
-+
- static void m_can_of_parse_mram(struct m_can_classdev *cdev,
- 				const u32 *mram_config_vals)
- {
-diff --git a/drivers/net/can/m_can/m_can.h b/drivers/net/can/m_can/m_can.h
-index a839dc71dc9b..d8150d8128e7 100644
---- a/drivers/net/can/m_can/m_can.h
-+++ b/drivers/net/can/m_can/m_can.h
-@@ -101,6 +101,7 @@ int m_can_class_register(struct m_can_classdev *cdev);
- void m_can_class_unregister(struct m_can_classdev *cdev);
- int m_can_class_get_clocks(struct m_can_classdev *cdev);
- int m_can_init_ram(struct m_can_classdev *priv);
-+int m_can_check_mram_cfg(struct m_can_classdev *cdev, u32 mram_max_size);
- 
- int m_can_class_suspend(struct device *dev);
- int m_can_class_resume(struct device *dev);
 diff --git a/drivers/net/can/m_can/tcan4x5x-core.c b/drivers/net/can/m_can/tcan4x5x-core.c
-index 2342aa011647..e706518176e4 100644
+index e706518176e4..fb9375fa20ec 100644
 --- a/drivers/net/can/m_can/tcan4x5x-core.c
 +++ b/drivers/net/can/m_can/tcan4x5x-core.c
-@@ -80,6 +80,7 @@
- 	 TCAN4X5X_MCAN_IR_RF1F)
+@@ -6,8 +6,8 @@
  
- #define TCAN4X5X_MRAM_START 0x8000
-+#define TCAN4X5X_MRAM_SIZE 0x800
- #define TCAN4X5X_MCAN_OFFSET 0x1000
+ #define TCAN4X5X_EXT_CLK_DEF 40000000
  
- #define TCAN4X5X_CLEAR_ALL_INT 0xffffffff
-@@ -307,6 +308,10 @@ static int tcan4x5x_can_probe(struct spi_device *spi)
- 	if (!mcan_class)
- 		return -ENOMEM;
- 
-+	ret = m_can_check_mram_cfg(mcan_class, TCAN4X5X_MRAM_SIZE);
-+	if (ret)
-+		goto out_m_can_class_free_dev;
-+
- 	priv = cdev_to_priv(mcan_class);
- 
- 	priv->power = devm_regulator_get_optional(&spi->dev, "vsup");
+-#define TCAN4X5X_DEV_ID0 0x00
+-#define TCAN4X5X_DEV_ID1 0x04
++#define TCAN4X5X_DEV_ID1 0x00
++#define TCAN4X5X_DEV_ID2 0x04
+ #define TCAN4X5X_REV 0x08
+ #define TCAN4X5X_STATUS 0x0C
+ #define TCAN4X5X_ERROR_STATUS_MASK 0x10
 -- 
 2.40.1
 
