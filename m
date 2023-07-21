@@ -2,50 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2716075C0D8
+	by mail.lfdr.de (Postfix) with ESMTP id D376175C0D9
 	for <lists+devicetree@lfdr.de>; Fri, 21 Jul 2023 10:08:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231407AbjGUIIR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jul 2023 04:08:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54240 "EHLO
+        id S231418AbjGUIIT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jul 2023 04:08:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54322 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231373AbjGUIIJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 04:08:09 -0400
-Received: from mail-yw1-x1135.google.com (mail-yw1-x1135.google.com [IPv6:2607:f8b0:4864:20::1135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C1852737
-        for <devicetree@vger.kernel.org>; Fri, 21 Jul 2023 01:08:08 -0700 (PDT)
-Received: by mail-yw1-x1135.google.com with SMTP id 00721157ae682-57045429f76so17674777b3.0
-        for <devicetree@vger.kernel.org>; Fri, 21 Jul 2023 01:08:08 -0700 (PDT)
+        with ESMTP id S231386AbjGUIIM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jul 2023 04:08:12 -0400
+Received: from mail-vk1-xa31.google.com (mail-vk1-xa31.google.com [IPv6:2607:f8b0:4864:20::a31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EABF72D46
+        for <devicetree@vger.kernel.org>; Fri, 21 Jul 2023 01:08:10 -0700 (PDT)
+Received: by mail-vk1-xa31.google.com with SMTP id 71dfb90a1353d-4812fc6b41dso720818e0c.3
+        for <devicetree@vger.kernel.org>; Fri, 21 Jul 2023 01:08:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1689926888; x=1690531688;
+        d=chromium.org; s=google; t=1689926890; x=1690531690;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=NqcAnVxpvMo7IksBTYj7fHRMjHClyEVoFOPZWnp2zrc=;
-        b=FiaLlQpG+FX04kcW5hPzlM69UWqegsCa8SHht89DbgfZwxyZ2NPixF4HZ+bjd7wy80
-         w0A2C7YWmkD11MfX3bs7qVweeGnF99K6lmjgksE4chTNdK2n/UggSDKHtaI5ZUbxNNPO
-         0aCkJQsa5a3qlFG5A6KhT+53F03Rt19zOX/BM=
+        bh=VIWYt/VUR+LWe3Ym6ggQYemB73LQMpv4Ia87+08eNu8=;
+        b=mOqIIVg9BcpADuYEnhsJwNphrOGgsZ/jx0kH+3BSYoXkYKZWwTzoWjv28ReLmi9Hp5
+         fu1Wwau6EMEiARv3e8CYbk+7qFAmYEI57cpZWbaGQn+h1+V3JoGukF52RG5fy7ltxenJ
+         O1SF2oZuyLhxYpQ0yxCuGKxdEvMBZ1CGPiaN8=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689926888; x=1690531688;
+        d=1e100.net; s=20221208; t=1689926890; x=1690531690;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=NqcAnVxpvMo7IksBTYj7fHRMjHClyEVoFOPZWnp2zrc=;
-        b=EeDprZoxNO3v0Qc/Rcmn8nGRfSS5PXsf8FmePJ9HD0jMONmxckaLEq5GW9KDR7PTpP
-         FyBpOMjzYghXG9bU/WvmDjH3E5IT8NuuvUUIWSZgwd6c8Ufh6mI5+aF6dpIsO9aLQeBS
-         SQ6C3TBVCdiG/cGZLbz+sZU5b8MlDZyfRzUggWnvt0ThMLPB+wHFl19yZYPpj6YlLljp
-         9JcpjQv1ifISejjWzV+Ro3UV/ci9jG/lTcC30lFq46GJt5UuIJeWAC7kFn8FDs/Xdf50
-         jW1A0rHiD+xkmnDJYmhRvFFHJ8yENOlSKlVY0D2Lfik1hxa0cdgTrNTtp70QzBCIa4fE
-         a6kQ==
-X-Gm-Message-State: ABy/qLaes5GjAkKR7qGyLmejg4wpPq46MA72Z5EZpnKlwVoPZKbzhy+D
-        syTVn2g8mRqyPUISleS5VxgAA3TnWue36UIFH4k=
-X-Google-Smtp-Source: APBJJlF8D2kE/WLC7WdE8mYRIasoZYyBucxGnkw1pAE30KqjiBSmN0qvmA+xlqWibibNJkQ/CaUsYQ==
-X-Received: by 2002:a0d:d6cb:0:b0:561:e8d7:ac6b with SMTP id y194-20020a0dd6cb000000b00561e8d7ac6bmr1388896ywd.49.1689926887693;
-        Fri, 21 Jul 2023 01:08:07 -0700 (PDT)
+        bh=VIWYt/VUR+LWe3Ym6ggQYemB73LQMpv4Ia87+08eNu8=;
+        b=Yc5j+qr6jF1r8Mx6Dgo2bRi4NOL0Qv2cDiG7t5oHkh6PkN0uvJRik51KNjV9CWL7Ko
+         OT5aVMq5QPXCxbQGEEmu2hDY77F+QJ58zBnqFZjntDcF/ZJZVo7ju6Jzgj3FlpFhNbbe
+         1+ND9wvklNi+bhI1j5NUSt1uaIb195z2QihyMHsvpJ8qtiol5sDwNQvEz6rsOwQAWwM7
+         rsArRxsVv/2ko61O9aI8LU/HbUSb0sfGxdCLfCf59lwBQl/lft8/p5EhNQ5WEWdqsmKc
+         HvzkMjWX37/+m7ZdPpbe9/suRfFt+Z9uPD+60DhKhJA2TIeIqTnZxroMcUfSNQe90TrI
+         MIQA==
+X-Gm-Message-State: ABy/qLaicf9Ula43GbVWbdrY3UYGsIjamNBkLwzMA9gm96jpv8LRCI/j
+        ONvCPjE+p5YptC0d9tlBTdQWjw==
+X-Google-Smtp-Source: APBJJlEC5hPJcYbZ0l3QzrR9QVptQ1VIfzlcV+K0dtYmvtmyBtq4fo5SPB+MiPVbfac4ByQiUkzN+Q==
+X-Received: by 2002:a1f:3fc9:0:b0:471:cea:3d62 with SMTP id m192-20020a1f3fc9000000b004710cea3d62mr698570vka.2.1689926890023;
+        Fri, 21 Jul 2023 01:08:10 -0700 (PDT)
 Received: from wenstp920.tpe.corp.google.com ([2401:fa00:1:10:6d86:d21:714:abab])
-        by smtp.gmail.com with ESMTPSA id o10-20020a170902bcca00b001b850c9af71sm2740294pls.285.2023.07.21.01.08.05
+        by smtp.gmail.com with ESMTPSA id o10-20020a170902bcca00b001b850c9af71sm2740294pls.285.2023.07.21.01.08.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Jul 2023 01:08:07 -0700 (PDT)
+        Fri, 21 Jul 2023 01:08:09 -0700 (PDT)
 From:   Chen-Yu Tsai <wenst@chromium.org>
 To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -58,9 +58,9 @@ To:     Rob Herring <robh+dt@kernel.org>,
 Cc:     Chen-Yu Tsai <wenst@chromium.org>, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
         linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 1/7] mfd: mt6358: Add missing registers for LDO voltage calibration
-Date:   Fri, 21 Jul 2023 16:07:42 +0800
-Message-ID: <20230721080751.2012318-2-wenst@chromium.org>
+Subject: [PATCH v2 2/7] regulator: mt6358: Sync VCN33_* enable status after checking ID
+Date:   Fri, 21 Jul 2023 16:07:43 +0800
+Message-ID: <20230721080751.2012318-3-wenst@chromium.org>
 X-Mailer: git-send-email 2.41.0.487.g6d72f3e995-goog
 In-Reply-To: <20230721080751.2012318-1-wenst@chromium.org>
 References: <20230721080751.2012318-1-wenst@chromium.org>
@@ -76,35 +76,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Most of the LDOs, except the "VSRAM_*" ones, on the MT6358 and MT6366
-PMICs support a finer output voltage calibration within the range of
-+0 mV to +100 mV with 10 mV step. Some of the registers for this
-function are missing from the register table.
+Syncing VCN33_* enable status should be done after checking the PMIC's
+ID, to avoid setting random bits on other PMICs.
 
-Add the missing ones for MT6358.
-
+Suggested-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Fixes: 65bae54e08c1 ("regulator: mt6358: Merge VCN33_* regulators")
 Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
 ---
- include/linux/mfd/mt6358/registers.h | 6 ++++++
- 1 file changed, 6 insertions(+)
+ drivers/regulator/mt6358-regulator.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/include/linux/mfd/mt6358/registers.h b/include/linux/mfd/mt6358/registers.h
-index 3d33517f178c..5ea2590be710 100644
---- a/include/linux/mfd/mt6358/registers.h
-+++ b/include/linux/mfd/mt6358/registers.h
-@@ -262,6 +262,12 @@
- #define MT6358_LDO_VBIF28_CON3                0x1db0
- #define MT6358_VCAMA1_ANA_CON0                0x1e08
- #define MT6358_VCAMA2_ANA_CON0                0x1e0c
-+#define MT6358_VFE28_ANA_CON0                 0x1e10
-+#define MT6358_VCN28_ANA_CON0                 0x1e14
-+#define MT6358_VBIF28_ANA_CON0                0x1e18
-+#define MT6358_VAUD28_ANA_CON0                0x1e1c
-+#define MT6358_VAUX18_ANA_CON0                0x1e20
-+#define MT6358_VXO22_ANA_CON0                 0x1e24
- #define MT6358_VCN33_ANA_CON0                 0x1e28
- #define MT6358_VSIM1_ANA_CON0                 0x1e2c
- #define MT6358_VSIM2_ANA_CON0                 0x1e30
+diff --git a/drivers/regulator/mt6358-regulator.c b/drivers/regulator/mt6358-regulator.c
+index 31a16fb28ecd..da6b40f947c4 100644
+--- a/drivers/regulator/mt6358-regulator.c
++++ b/drivers/regulator/mt6358-regulator.c
+@@ -676,10 +676,6 @@ static int mt6358_regulator_probe(struct platform_device *pdev)
+ 	const struct mt6358_regulator_info *mt6358_info;
+ 	int i, max_regulator, ret;
+ 
+-	ret = mt6358_sync_vcn33_setting(&pdev->dev);
+-	if (ret)
+-		return ret;
+-
+ 	if (mt6397->chip_id == MT6366_CHIP_ID) {
+ 		max_regulator = MT6366_MAX_REGULATOR;
+ 		mt6358_info = mt6366_regulators;
+@@ -688,6 +684,10 @@ static int mt6358_regulator_probe(struct platform_device *pdev)
+ 		mt6358_info = mt6358_regulators;
+ 	}
+ 
++	ret = mt6358_sync_vcn33_setting(&pdev->dev);
++	if (ret)
++		return ret;
++
+ 	for (i = 0; i < max_regulator; i++) {
+ 		config.dev = &pdev->dev;
+ 		config.regmap = mt6397->regmap;
 -- 
 2.41.0.487.g6d72f3e995-goog
 
