@@ -2,146 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 98EF175DEA9
-	for <lists+devicetree@lfdr.de>; Sat, 22 Jul 2023 23:52:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C3F8E75DEBB
+	for <lists+devicetree@lfdr.de>; Sat, 22 Jul 2023 23:56:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229505AbjGVVws (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 22 Jul 2023 17:52:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45020 "EHLO
+        id S229699AbjGVV4V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 22 Jul 2023 17:56:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46558 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229493AbjGVVws (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Jul 2023 17:52:48 -0400
-Received: from mx.skole.hr (mx1.hosting.skole.hr [161.53.165.185])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C9F9E0;
-        Sat, 22 Jul 2023 14:52:45 -0700 (PDT)
-Received: from mx1.hosting.skole.hr (localhost.localdomain [127.0.0.1])
-        by mx.skole.hr (mx.skole.hr) with ESMTP id B4ABB84AAC;
-        Sat, 22 Jul 2023 23:52:37 +0200 (CEST)
-From:   Duje =?utf-8?B?TWloYW5vdmnEhw==?= <duje.mihanovic@skole.hr>
-To:     Andrew Lunn <andrew@lunn.ch>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        with ESMTP id S229775AbjGVV4R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Jul 2023 17:56:17 -0400
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D67D26BF;
+        Sat, 22 Jul 2023 14:56:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+ s=s31663417; t=1690062937; x=1690667737; i=j.neuschaefer@gmx.net;
+ bh=Flafcb8uH5w8NvUBOSyz16mfGfIVxU+ZdD7JX/OjYFA=;
+ h=X-UI-Sender-Class:Date:From:To:Cc:Subject:References:In-Reply-To;
+ b=ZtC8D2q2ztcVZja1bA3RfZjGlpLQpxAuPKLflUFlOXGnqPdKTui98gBNGcS9jV2/xJ51XHY
+ k+OyYUUK73BnyGnpHgn3Vlp9lSg19/A/Xy91LV4kSWKkCJnTMuR5GUuGjlH1Ea37nGt3rV+K4
+ oPqTeBpU0ajX6EFRXPkoXlbU4uJ9DXCwHn0Y37b5JlBOwGK2WQwtcYkLALeoXty4Fsz0cig9R
+ sb5CQwK3FN2R7K1TYB511ir60SSeo7ZqOL7Q1iL1xjOwCT08G4Vqtp2jFf54oaFUcjXVN/dum
+ yAGGthVQ4E3hmmnpOeyoJ5xfMwy+nU9epIq8YHUe05AN2m0cRvbQ==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from probook ([87.79.98.241]) by mail.gmx.net (mrgmx004
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1MYvY2-1qRg9B0iyu-00Usfe; Sat, 22
+ Jul 2023 23:55:37 +0200
+Date:   Sat, 22 Jul 2023 23:55:34 +0200
+From:   Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
+To:     Stephen Boyd <sboyd@kernel.org>
+Cc:     Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+        linux-clk@vger.kernel.org, openbmc@lists.ozlabs.org,
+        linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Michael Turquette <mturquette@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Lubomir Rintel <lkundrak@v3.sk>
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        afaerber@suse.com
-Subject: Re: [PATCH 09/10] dt-bindings: marvell: Document PXA1908 SoC
-Date:   Sat, 22 Jul 2023 23:52:00 +0200
-Message-ID: <3173649.5fSG56mABF@radijator>
-In-Reply-To: <5266764a-4551-4117-8aa4-bd435f63f450@linaro.org>
-References: <20230721210042.21535-1-duje.mihanovic@skole.hr>
- <20230721210042.21535-10-duje.mihanovic@skole.hr>
- <5266764a-4551-4117-8aa4-bd435f63f450@linaro.org>
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Avi Fishman <avifishman70@gmail.com>,
+        Tomer Maimon <tmaimon77@gmail.com>,
+        Tali Perry <tali.perry1@gmail.com>,
+        Patrick Venture <venture@google.com>,
+        Nancy Yuen <yuenn@google.com>,
+        Benjamin Fair <benjaminfair@google.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+        Joel Stanley <joel@jms.id.au>
+Subject: Re: [PATCH v8 2/2] clk: wpcm450: Add Nuvoton WPCM450 clock/reset
+ controller driver
+Message-ID: <ZLxQVoZgWenX3xeU@probook>
+References: <20230428190226.1304326-1-j.neuschaefer@gmx.net>
+ <20230428190226.1304326-3-j.neuschaefer@gmx.net>
+ <4e0a5db18ed7d37038e67be0f1ddcb08.sboyd@kernel.org>
 MIME-Version: 1.0
-Autocrypt: addr=duje.mihanovic@skole.hr;
- keydata=
- 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
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="nn9q3w52Gn17IEpS"
+Content-Disposition: inline
+In-Reply-To: <4e0a5db18ed7d37038e67be0f1ddcb08.sboyd@kernel.org>
+X-Provags-ID: V03:K1:LTXzvoyPUC6mK8qVMvjAurjLejlJrQlCMfKDZJWMdiuQoyuQP4d
+ P9XpJza2Qdhh7dPxdALFSmYkha8Nxx4N1m508v01kAdCQntFNZ9TP6AIvCHPgifPAaPiGW+
+ MsBUoeJ75yTa6XSwdCHKM2mTJy8h8Xj/n7t0RBFCGOiOfdGARqWNlZk15FMmZfPKD7akwF0
+ gl7R4FOhsrYWzxMohsdCA==
+UI-OutboundReport: notjunk:1;M01:P0:Ncz1xJtm9UE=;V/MAGSev4maedt6Lw3EwySMvkB+
+ ke8kLLN0LCV4LrLjIAn/Hk0Ir51jVT+9d6igx3T15c7xmNUzlShhmdq7QGNu5C9fi9NkGkZRQ
+ rrRGHBRyuky5xOf37iIPBzYZHrR2UDXDozorleLhH9ycaL9qzfzKIezgfDLjIqMrg7kKY7krr
+ D2e91YdH1BUAR1qt1AwgkqFy40YhQlS8W23vShgHzwSvvCi5opOIbRx0bs4Z/3VyAYLvxKUBI
+ 4mLbC00CrVtFEFTzHbcjicVY1TSbj+PoJFnLTAs2jeS4lwIlJilxdZva4hk/57zyE7ah84V2f
+ zZEwgQOEh6R19S03PCsnkbOa94zVHm1WlCopuzXWL3+hI2UICakQaEHqKua1xqPHSh0J3dChY
+ eknchwwAIDvAYXCJozUY4mOVbKdVVcdd1q61EaXnq9mMFyHUKd9mWXkKnTnrIvwXVsDWoYIZf
+ INVlqO3vZS5Fmc5Rarfr4KZNiAk+VYjSoeBxdZ3yiF0IohbSFBMWas5gkzGHSnLjOA+JREZa/
+ Vbmsv8DsqrYnbXvR5RLmUJwVMWXKOxeskjrmWsVLtvIV5Bwso8fJE4iywziAWA5Dhoi4QqAxt
+ vO0rFlhziTon2J6muk6vMYq7Zlo9MnG18GQp0gq6ZQHxQMjMIDodrNZm8ulGhQjv0oUGwgoSc
+ H+JrGdiKa6/4U8VYPdAjQzVWFMOojoXTGHcv+ZRE5nzI9adWAUUfacqvVXoCA8YA74aGqe43o
+ 0z8JpWDOF2Jx4CTgnQ/MCGebQ3bgjUPh/dsfYew6GCtm3yLWo/woqmeaVnrpWyVUqzc72N1xr
+ /4LzKqXsaiJV7dSsh0Prs0tZloq47uQUeuWFEgKyVvTH4vtfkqP/LNgL2g3ps3w+ohX1fqSqF
+ tU4z3EU/zB5o58oTIHDESPMVCo/SRuu8inz/CBCmmvBZnlANw0QnEl5SVnWbVWxg76dNzCJhK
+ NDa7pA==
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
 
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/arm/marvell/marvell,pxa1908.yaml
-> 
-> I suggest having one bindings file for all pxa platforms, not per one SoC.
+--nn9q3w52Gn17IEpS
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-I would need to coordinate this with Lubomir.
+On Thu, Jul 20, 2023 at 05:02:15PM -0700, Stephen Boyd wrote:
+> Quoting Jonathan Neusch=C3=A4fer (2023-04-28 12:02:26)
+[...]
+> > +CLK_OF_DECLARE(wpcm450_clk_init, "nuvoton,wpcm450-clk", wpcm450_clk_in=
+it);
+>=20
+> Is something preventing this from being a platform driver?
 
-> > +  pxa,rev-id:
-> Incorrect vendor prefix
-
-Unfortunately, the non-free bootloader used by the coreprimevelte expects the 
-rev-id property to be named exactly like that and will refuse to boot the 
-kernel image at all otherwise. This restriction can be bypassed by 
-chainloading U-Boot, which I wish to do eventually.
-
-Best regards,
-Duje
+Ok, when I tried this again, I ran into the issue that the clocks need
+to be ready before the timer-npcm7xx driver is initialized, which is
+done with TIMER_OF_DECLARE. So, AFAIUI, I need to use the old
+CLK_OF_DECLARE mechanism unless I also convert timer-npcm7xx to a
+platform driver.
 
 
+Jonathan
 
+--nn9q3w52Gn17IEpS
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEvHAHGBBjQPVy+qvDCDBEmo7zX9sFAmS8UC8ACgkQCDBEmo7z
+X9t6Pw//SuAXG73wXTGC1XDe0yM/+2QtZx40l1NGapEpmglBkkVYW5gmI7L1111E
+wlttlKwOcFDhGUC1AF2zv7DKmlDzKKusA0E0NxBl+uDMwVw+TlU+633sKnpdCLXK
+A2aZ5rwldIaTB40Eapl1Mqf1TiZmvRI7Ng4G+02R+ZRqIwb/4WdScHrE6HV1pzoj
+3nkT1QOuWHYUYdgzfS5MEepoGluNUwz0M1ZpbBCrodJWg1/BF3Sq+9l1VygYRgAr
+9pVuCz4NsAcXS/YG8vUnz3C4ubbYCq39vKLodIucLmsJ8YdtyfVlyG7zbyc/Yg81
+CQCzA8Iz6YW9MgrJ3xTU5GItPSFkTBHc0rrRK6YnHtzIn0o4Hyu8WLwI/RrWRrn5
+eIIamri1Ofc4iYz9b4Hr83Mmse9Q01hlWHKw8rHUQydmkTCtl+CtPEhNDRKcvRha
+5in3dJj4ZpCRG+9tfU1kyx7nEfCtL0+rej6MyCQyY315NkLQquvtClpPiduFlZRz
+E/9zhIbn9JxqhJiS5ESZcYIQDl41BGLIVjZY+j0ZAu6bCOT5lROB5IOvtZXxaaf5
+rIr6yx5kvsQ2JEHufSXmEW9R2K37oXs7C1xK5hOcAe1tDF6rXD8uWfrwq4hN9sBX
+L3hH6itJBUZVnAF0HS7HT1704iLu2OVAIxc/ryztjC7b+OVw19Y=
+=Vn/6
+-----END PGP SIGNATURE-----
+
+--nn9q3w52Gn17IEpS--
