@@ -2,66 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DD2ED75DBB2
-	for <lists+devicetree@lfdr.de>; Sat, 22 Jul 2023 12:23:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CE56F75DBB8
+	for <lists+devicetree@lfdr.de>; Sat, 22 Jul 2023 12:27:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229684AbjGVKXk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 22 Jul 2023 06:23:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38540 "EHLO
+        id S229804AbjGVK1q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 22 Jul 2023 06:27:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39278 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229487AbjGVKXi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Jul 2023 06:23:38 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D634526A2;
-        Sat, 22 Jul 2023 03:23:37 -0700 (PDT)
+        with ESMTP id S229699AbjGVK1p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Jul 2023 06:27:45 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6529526A2;
+        Sat, 22 Jul 2023 03:27:40 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 63EBB608CC;
-        Sat, 22 Jul 2023 10:23:37 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F37DDC433C7;
-        Sat, 22 Jul 2023 10:23:32 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 0296A608C3;
+        Sat, 22 Jul 2023 10:27:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 258BEC433C8;
+        Sat, 22 Jul 2023 10:27:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690021416;
-        bh=LVpry3JQcRfweSWVW+qHmCd7TVCS1vwarNOOKIiPAhM=;
+        s=k20201202; t=1690021659;
+        bh=iCrvGuQQggONZZnbk+kJyPGMugBTRIKZ/40i59fGJus=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=AIv4wCuKGYeEXAznxf8l8vffBm9GHK8UAZAOPq1rr83YBrsqs6UF6qHk/7JM31fXS
-         GlyLFnxPcbL7aZm2u7MlIpLPxlrzhkk5QyxSJ5iqyJfCuzN5ijeCUee3gA89rZN9/H
-         2fTtWuh6wzypd8PFHUKgRMy/BA7xc03kzcDhTZJ9NHMBJiBClmOCGbNWNrATcvcoBS
-         fp4IHgCNSRTbNQA83/c8q8NCcLh0cwfQzPcEOLs/f87asO3seS11mx6A3NeytmnHKU
-         aoM3vZCZvFEaYJpDAwC3/Mkhc0JGznk18VTWjF1UD1dxME8lGaZvt5Tf2gDaUzKuiK
-         YbOsyCf1TqdVw==
-Date:   Sat, 22 Jul 2023 11:23:30 +0100
+        b=Y5oAwCwMQfanuDo40P+fUYThuMWdJXhODRTvmKjmM2XU9rnp+yGYD4gG936lFXe51
+         MNSUSK+0PhftarUNEjHamLqMHfLUnfYh276RxRDRKG8wgpnbQlMnYE5wKr05Qzc75m
+         2VDDaoa+RDnulhIj7js2UXzeu9OMO+zvaCBgT2oZuOeXviN2q+uAWvpi3WWtn30k+U
+         +ukH/2Ez6MUZhqTo9TB411Ixok82tYd6eX40ADJVAVOBbN5ezyZrn+oXFDlRHMLqx2
+         8P6gimtuQtHMA2vptj296Yy99mgL3CfW1YIk93GKMa0Z7S+fu+off/dFYMKA+CFMw1
+         KJ8dpkPpVgw8g==
+Date:   Sat, 22 Jul 2023 11:27:34 +0100
 From:   Conor Dooley <conor@kernel.org>
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Ming Qian <ming.qian@nxp.com>,
-        Shijie Qin <shijie.qin@nxp.com>,
-        Zhou Peng <eagle.zhou@nxp.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+To:     Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Mirela Rabulea <mirela.rabulea@nxp.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Anson Huang <Anson.Huang@nxp.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-spi@vger.kernel.org
-Subject: Re: [PATCH 1/3] dt-bindings: media: amphion: Fix subnode pattern
-Message-ID: <20230722-freedom-finer-bb9ec5b4de3f@spud>
-References: <20230721111020.1234278-1-alexander.stein@ew.tq-group.com>
+        Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux@ew.tq-group.com
+Subject: Re: [PATCH 1/3] dt-bindings: arm: ti: Add compatible for AM642-based
+ TQMaX4XxL SOM family and carrier board
+Message-ID: <20230722-clanking-seventeen-4b7cbd53b792@spud>
+References: <6db614465a281f802771994399ebb1040acb67bc.1689936866.git.matthias.schiffer@ew.tq-group.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="5O67FFq6sP1I1WLQ"
+        protocol="application/pgp-signature"; boundary="XuiSL+gUS1N7m78I"
 Content-Disposition: inline
-In-Reply-To: <20230721111020.1234278-1-alexander.stein@ew.tq-group.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+In-Reply-To: <6db614465a281f802771994399ebb1040acb67bc.1689936866.git.matthias.schiffer@ew.tq-group.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,52 +62,58 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---5O67FFq6sP1I1WLQ
-Content-Type: text/plain; charset=us-ascii
+--XuiSL+gUS1N7m78I
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Jul 21, 2023 at 01:10:18PM +0200, Alexander Stein wrote:
-> DT nodes use dashes instead of underscore. Adjust pattern to also fix
-> warnings regarding nodes in arch/arm64/boot/dts/freescale/imx8-ss-vpu.dtsi
+On Fri, Jul 21, 2023 at 12:59:00PM +0200, Matthias Schiffer wrote:
+> For now only the MBaX4Xx carrier board is defined.
 >=20
-> Fixes: 38ad8b32f3af ("dt-bindings: media: amphion: add amphion video code=
-c bindings")
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> Signed-off-by: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
 > ---
->  Documentation/devicetree/bindings/media/amphion,vpu.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  Documentation/devicetree/bindings/arm/ti/k3.yaml | 7 +++++++
+>  1 file changed, 7 insertions(+)
 >=20
-> diff --git a/Documentation/devicetree/bindings/media/amphion,vpu.yaml b/D=
-ocumentation/devicetree/bindings/media/amphion,vpu.yaml
-> index a9d80eaeeeb6..90d273b9fdd7 100644
-> --- a/Documentation/devicetree/bindings/media/amphion,vpu.yaml
-> +++ b/Documentation/devicetree/bindings/media/amphion,vpu.yaml
-> @@ -47,7 +47,7 @@ patternProperties:
->      $ref: ../mailbox/fsl,mu.yaml#
+> diff --git a/Documentation/devicetree/bindings/arm/ti/k3.yaml b/Documenta=
+tion/devicetree/bindings/arm/ti/k3.yaml
+> index 577eee95c8932..ae56170bf2d25 100644
+> --- a/Documentation/devicetree/bindings/arm/ti/k3.yaml
+> +++ b/Documentation/devicetree/bindings/arm/ti/k3.yaml
+> @@ -72,6 +72,13 @@ properties:
+>            - const: phytec,am64-phycore-som
+>            - const: ti,am642
 > =20
-> =20
-> -  "^vpu_core@[0-9a-f]+$":
-> +  "^vpu-core@[0-9a-f]+$":
->      description:
->        Each core correspond a decoder or encoder, need to configure them
->        separately. NXP i.MX8QM SoC has one decoder and two encoder, i.MX8=
-QXP SoC
+> +      - description: K3 AM642 SoC on TQ-Systems TQMaX4XxL SoM
+> +        item:
 
-Per the bot, you have some examples you need to update as a result.
+s/item/items/, please test bindings no matter how simple they may
+appear.
 
-Thanks,
-Conor.
+> +          - enum:
+> +              - tq,am642-tqma6442l-mbax4xxl # MBaX4XxL base board
+> +          - const: tq,am642-tqma6442l
+> +          - const: ti,am642
+> +
+>        - description: K3 AM654 SoC
+>          items:
+>            - enum:
+> --=20
+> TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+> Amtsgericht M=FCnchen, HRB 105018
+> Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+> https://www.tq-group.com/
+>=20
 
---5O67FFq6sP1I1WLQ
+--XuiSL+gUS1N7m78I
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZLuuIgAKCRB4tDGHoIJi
-0taSAQCKo+Tet5Wt2GlgR1ixWbP/Ut4IFcz4lV/NxuNARBpqkAD/Y+sZPWaywqIi
-6gz4LZbtFx4c0/8rUZETje42Zmmh1wg=
-=27sY
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZLuvFgAKCRB4tDGHoIJi
+0nsXAP9csAdECJzAYfGtdRBEbr0GRCZ6qcinP5Ou4j+xJ1vvRQEAynOFTOefZ90a
+IaC7rXMgopuVKvmTo6wyX8+UTI9sYAk=
+=K4TT
 -----END PGP SIGNATURE-----
 
---5O67FFq6sP1I1WLQ--
+--XuiSL+gUS1N7m78I--
