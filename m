@@ -2,149 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E3EA75D9EE
-	for <lists+devicetree@lfdr.de>; Sat, 22 Jul 2023 07:07:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B32C075DA30
+	for <lists+devicetree@lfdr.de>; Sat, 22 Jul 2023 07:19:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229757AbjGVFHn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 22 Jul 2023 01:07:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57452 "EHLO
+        id S229844AbjGVFTO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 22 Jul 2023 01:19:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59468 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229457AbjGVFHm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Jul 2023 01:07:42 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B793EB;
-        Fri, 21 Jul 2023 22:07:41 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id C3E3460AF0;
-        Sat, 22 Jul 2023 05:07:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 64F81C433C8;
-        Sat, 22 Jul 2023 05:07:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690002460;
-        bh=ZSwAqBOUrBH+BHctzz0gDWSROt9O1H9rtT9Kib0tkKA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=fRNr4chWIau0nM6c7WDUGQlGk8sSRTBBssHYUAvDFdjLKFJEBwuUdzJIPxudDMBu2
-         sQQHLIXQCWfXh9mlGUmszF2UA4//K86xJRhqqA5N44mNxksEKI9MlJL/NUlE869h5F
-         vmgNcmUMc02AN2zgzs4MtdoeRbib0E1Nt16F9T9Nw1eF8fuloiSfCAAG4QE+4aUxjx
-         jCRyRdoonzDrDTVnkHGOmK7j9+rMMB69vQdnCOqyJpFIols3zftJMrlMM6pbb1PDDE
-         IEJ7raxZPncjPozCLmbR83sJExqLJzKb6Co8hGGyB971EhRl5MvgieEdfh/QugObkE
-         w9GnmnGGR3u+w==
-Date:   Fri, 21 Jul 2023 22:10:57 -0700
-From:   Bjorn Andersson <andersson@kernel.org>
-To:     Varadarajan Narayanan <quic_varada@quicinc.com>
-Cc:     agross@kernel.org, konrad.dybcio@linaro.org, vkoul@kernel.org,
-        kishon@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        gregkh@linuxfoundation.org, catalin.marinas@arm.com,
-        will@kernel.org, p.zabel@pengutronix.de, arnd@arndb.de,
-        geert+renesas@glider.be, neil.armstrong@linaro.org,
-        nfraprado@collabora.com, rafal@milecki.pl,
-        quic_srichara@quicinc.com, quic_wcheng@quicinc.com,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v5 2/6] dt-bindings: phy: qcom,m31: Document qcom,m31 USB
- phy
-Message-ID: <ymbcafqqhc6hgrfhpef4byehvfyjzovs5zeprmj343erdv5ti5@tj2iunu6whvi>
-References: <cover.1689913334.git.quic_varada@quicinc.com>
- <131eb1694229436919ac88bb9920fb54d6808388.1689913334.git.quic_varada@quicinc.com>
+        with ESMTP id S229610AbjGVFTA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Jul 2023 01:19:00 -0400
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B4AE46B7;
+        Fri, 21 Jul 2023 22:18:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1690003116; x=1721539116;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=B8t2gm7EDukEfOzodNthZCOkWrOCkHaglu+1T6jozLA=;
+  b=UipA4J1gQ9VlDH6yu24m+THbtgkOTfgfJD2y7mJoK/mxGfvJ0IGne1F7
+   n7t/Vq4D9ue5u/yJcSzDjX2Xj5WTGp41wWLfqAQbMyjHHvYQLgF5CqhCW
+   CAES+SE2+MIZjJaobZpoiQpHfz1tG/GJSxglFfVKEv/V9E6KmvGW59NNj
+   l8RBELIAQ9JsSi2+o3HUQS9JUdg64VIM+OmTKRwZDIE7xCu+nG21/riTy
+   W5nES5sqezI2NX7XrvyLSyVJK+VYrvM6aI9gEDYFknyp1pNVRJDkHLP1N
+   Gb5geTm+sAuZ+wSCiTF29ikw0XBBSOiIrNBC1QvjogJM3r58K7rzBVUKq
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10778"; a="352060112"
+X-IronPort-AV: E=Sophos;i="6.01,223,1684825200"; 
+   d="scan'208";a="352060112"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Jul 2023 22:16:41 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10778"; a="1055799089"
+X-IronPort-AV: E=Sophos;i="6.01,223,1684825200"; 
+   d="scan'208";a="1055799089"
+Received: from lkp-server02.sh.intel.com (HELO 36946fcf73d7) ([10.239.97.151])
+  by fmsmga005.fm.intel.com with ESMTP; 21 Jul 2023 22:16:38 -0700
+Received: from kbuild by 36946fcf73d7 with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1qN4yr-0007zh-3D;
+        Sat, 22 Jul 2023 05:16:38 +0000
+Date:   Sat, 22 Jul 2023 13:16:16 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     oe-kbuild-all@lists.linux.dev,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH 5/6] arm64: dts: renesas: r9a07g043: Add MTU3a node
+Message-ID: <202307221318.jz5pDcvU-lkp@intel.com>
+References: <20230720131016.331793-6-biju.das.jz@bp.renesas.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <131eb1694229436919ac88bb9920fb54d6808388.1689913334.git.quic_varada@quicinc.com>
+In-Reply-To: <20230720131016.331793-6-biju.das.jz@bp.renesas.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 21, 2023 at 10:05:27AM +0530, Varadarajan Narayanan wrote:
-> Document the M31 USB2 phy present in IPQ5332.
-> 
-> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
+Hi Biju,
 
-As Sricharan is the first one to certify the patch's origin, it seems
-likely that he's the author. Please add a Co-developed-by: Sricharan.
+kernel test robot noticed the following build errors:
 
-[..]
-> diff --git a/Documentation/devicetree/bindings/phy/qcom,ipq5332-usb-hsphy.yaml b/Documentation/devicetree/bindings/phy/qcom,ipq5332-usb-hsphy.yaml
-> new file mode 100644
-> index 0000000..e0b282b
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/phy/qcom,ipq5332-usb-hsphy.yaml
-> @@ -0,0 +1,51 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/phy/qcom,ipq5332-usb-hsphy.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: M31 USB PHY
-> +
-> +maintainers:
-> +  - Sricharan Ramabadhran <quic_srichara@quicinc.com>
-> +  - Varadarajan Narayanan <quic_varada@quicinc.com>
-> +
-> +description:
-> +  USB M31 PHY (https://www.m31tech.com) found in Qualcomm
-> +  IPQ5018, IPQ5332 SoCs.
-> +
-> +properties:
-> +  "#phy-cells":
-> +    const: 0
-> +
-> +  compatible:
-> +    enum:
+[auto build test ERROR on geert-renesas-devel/next]
+[also build test ERROR on robh/for-next linus/master v6.5-rc2 next-20230721]
+[cannot apply to tip/timers/core]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-const?
+url:    https://github.com/intel-lab-lkp/linux/commits/Biju-Das/dt-bindings-timer-renesas-rz-mtu3-Improve-documentation/20230720-213033
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-devel.git next
+patch link:    https://lore.kernel.org/r/20230720131016.331793-6-biju.das.jz%40bp.renesas.com
+patch subject: [PATCH 5/6] arm64: dts: renesas: r9a07g043: Add MTU3a node
+config: riscv-allmodconfig (https://download.01.org/0day-ci/archive/20230722/202307221318.jz5pDcvU-lkp@intel.com/config)
+compiler: riscv64-linux-gcc (GCC) 12.3.0
+reproduce: (https://download.01.org/0day-ci/archive/20230722/202307221318.jz5pDcvU-lkp@intel.com/reproduce)
 
-> +      - qcom,ipq5332-usb-hsphy
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    items:
-> +      - const: cfg_ahb
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/qcom,ipq5332-gcc.h>
-> +    usbphy0: usb-phy@7b000 {
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202307221318.jz5pDcvU-lkp@intel.com/
 
-usb@
+All errors (new ones prefixed by >>):
 
-And you don't need to give the node a label in the example.
+>> Error: scripts/dtc/include-prefixes/arm64/renesas/r9a07g043.dtsi:81.18-19 syntax error
+   FATAL ERROR: Unable to parse input tree
 
-> +        compatible = "qcom,ipq5332-usb-hsphy";
-> +        reg = <0x0007b000 0x12c>;
-> +
-> +        clocks = <&gcc GCC_USB0_PHY_CFG_AHB_CLK>;
-> +        clock-names = "cfg_ahb";
-> +
-
-No #phy-cells?
-
-Regards,
-Bjorn
-
-> +        resets = <&gcc GCC_QUSB2_0_PHY_BCR>;
-> +    };
-> -- 
-> 2.7.4
-> 
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
