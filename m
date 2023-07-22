@@ -2,115 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E54D75DCFA
-	for <lists+devicetree@lfdr.de>; Sat, 22 Jul 2023 16:45:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D0D2875DD00
+	for <lists+devicetree@lfdr.de>; Sat, 22 Jul 2023 16:47:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229656AbjGVOpp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 22 Jul 2023 10:45:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39114 "EHLO
+        id S229756AbjGVOrh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 22 Jul 2023 10:47:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39666 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229533AbjGVOpo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Jul 2023 10:45:44 -0400
-Received: from mail-qv1-xf29.google.com (mail-qv1-xf29.google.com [IPv6:2607:f8b0:4864:20::f29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77DDF9B;
-        Sat, 22 Jul 2023 07:45:43 -0700 (PDT)
-Received: by mail-qv1-xf29.google.com with SMTP id 6a1803df08f44-635ddf49421so15943186d6.2;
-        Sat, 22 Jul 2023 07:45:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1690037142; x=1690641942;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=mqIzWQIELt1M29KP7P5oujEwHJFaetYOs/+klZpSQx4=;
-        b=RK8jwytlqDCMYR7DAgQlFOPgz7ZSUk9yowDalHVAkF1SqVZHI7iZ+KGKQ1yO2EqoI4
-         40U+i132HQbzSa8u/YHuXXLlkiIt4BfL1vukBpQmnnY84XgUQhZ+qNGv3zc3tu5xiSfC
-         2VwJphHgH72PCCSR51oP4D0/J4UytCvaE/JWAzJpE8RAXddUNFiEIDk1DG/KtMjym0R3
-         RhoP5njuk5nhyTVS9wE4+zgcetJQJ0SDJwerT22cHB9WNSw8SfsIVHwVhr4m3lOSsmHU
-         i125jBVVk1aTEge62OA+pCkOw8jQQTKnF2q/eH3meyfBFDn3KrLIp/WDvSvMd7NglqP/
-         vF4Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690037142; x=1690641942;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=mqIzWQIELt1M29KP7P5oujEwHJFaetYOs/+klZpSQx4=;
-        b=EE3YDWwog1/s0XKrc+1MFdIJTwX4VbLKMgatwTy/9WwnQvnF2PYxW+oWVJLVDId+Vp
-         hpcvDFGHhDgmOKb2o1JSlaWl7xuWcGBjjGSsRegbCbNAiBGDnHvTgI7zTYrR45SmsCxN
-         lbFjtfNRDDczqKQzRVwDmMw0iIPmrhofbN/gqRrmUJ6KIXdDwpwOWhQERHFAQg028/vn
-         091PCkF8AOyRzJj0NMZ+u9KVDr10oliB9jVr/XxDJ8ch12VTE2LRmkYfZ+gotWLM8LJ7
-         KmUnoITeJ+E02+9mZTlEbyYoa3zdY5Iz+tEiOkT9qDAhbJrQ9NMXBj4d51W9FfhQNpgM
-         aZWg==
-X-Gm-Message-State: ABy/qLY96kxlBJP21/8JIqM6ql2s5ZcWD1x2lS6bp1lIL1JNIErnAzur
-        90uUegZijiR66614eLsASXg=
-X-Google-Smtp-Source: APBJJlErq+eRGzlcgBN48vqeyOo9IGrUh9BQBxnfTMGubwltp7kE48GP+Eoj0stwnEeM1xlAJThRkQ==
-X-Received: by 2002:a0c:8e07:0:b0:635:eff8:2b9d with SMTP id v7-20020a0c8e07000000b00635eff82b9dmr2401408qvb.27.1690037142515;
-        Sat, 22 Jul 2023 07:45:42 -0700 (PDT)
-Received: from [192.168.1.3] (ip72-194-116-95.oc.oc.cox.net. [72.194.116.95])
-        by smtp.gmail.com with ESMTPSA id k9-20020a0cf289000000b006263a9e7c63sm61438qvl.104.2023.07.22.07.45.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 22 Jul 2023 07:45:41 -0700 (PDT)
-Message-ID: <d40d5a96-e0af-388e-9fd5-c068b0d2896e@gmail.com>
-Date:   Sat, 22 Jul 2023 07:45:35 -0700
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH net-next v2 5/6] net: dsa: microchip: use wakeup-source DT
- property to enable PME output
-Content-Language: en-US
-To:     Oleksij Rempel <o.rempel@pengutronix.de>,
-        "David S. Miller" <davem@davemloft.net>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        Woojung Huh <woojung.huh@microchip.com>,
-        Arun Ramadoss <arun.ramadoss@microchip.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     kernel@pengutronix.de, linux-kernel@vger.kernel.org,
-        netdev@vger.kernel.org, UNGLinuxDriver@microchip.com,
-        "Russell King (Oracle)" <linux@armlinux.org.uk>,
-        devicetree@vger.kernel.org
-References: <20230721135501.1464455-1-o.rempel@pengutronix.de>
- <20230721135501.1464455-6-o.rempel@pengutronix.de>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-In-Reply-To: <20230721135501.1464455-6-o.rempel@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S229533AbjGVOrg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Jul 2023 10:47:36 -0400
+Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C7AA9B;
+        Sat, 22 Jul 2023 07:47:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
+        ; s=x; h=Subject:Content-Transfer-Encoding:Content-Type:Mime-Version:
+        References:In-Reply-To:Message-Id:Cc:To:From:Date:Sender:Reply-To:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=Rlks42DJIbvbP4GaY64MedUDc2SnRkg1IXYiOZGnH9o=; b=QTeVsrHgVvhLXJc8V/qMU2F3FN
+        BRlwx7QAQGCxjbpTDdN1e7/VA1IB5XvBejJPha5nZRHL9oyojSWteb2OYG+EWNJBTAPf+GHsqulKW
+        tVncSZ5DXZqbP7pOh0FilEo0JsCJghdmrhAP7b4M4P7YWuhahUl8A04t+asyqDEdJtUk=;
+Received: from modemcable061.19-161-184.mc.videotron.ca ([184.161.19.61]:57666 helo=debian-acer)
+        by mail.hugovil.com with esmtpa (Exim 4.92)
+        (envelope-from <hugo@hugovil.com>)
+        id 1qNDtF-000361-Jv; Sat, 22 Jul 2023 10:47:26 -0400
+Date:   Sat, 22 Jul 2023 10:47:24 -0400
+From:   Hugo Villeneuve <hugo@hugovil.com>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     gregkh@linuxfoundation.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, jirislaby@kernel.org, jringle@gridpoint.com,
+        isaac.true@canonical.com, jesse.sung@canonical.com,
+        tomasz.mon@camlingroup.com, l.perczak@camlintechnologies.com,
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+        stable@vger.kernel.org,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Lech Perczak <lech.perczak@camlingroup.com>
+Message-Id: <20230722104724.ef0c5896c239e721794b9fe9@hugovil.com>
+In-Reply-To: <CAL_JsqJpdhtnZ8FcM7kGWnM+iuDs1fWiCVgf413evbw-o8TZGQ@mail.gmail.com>
+References: <20230721161840.1393996-1-hugo@hugovil.com>
+        <20230721161840.1393996-7-hugo@hugovil.com>
+        <CAL_JsqJpdhtnZ8FcM7kGWnM+iuDs1fWiCVgf413evbw-o8TZGQ@mail.gmail.com>
+X-Mailer: Sylpheed 3.7.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 184.161.19.61
+X-SA-Exim-Mail-From: hugo@hugovil.com
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Subject: Re: [RESEND PATCH v8 06/10] serial: sc16is7xx: fix regression with
+ GPIO configuration
+X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
+X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, 21 Jul 2023 13:24:19 -0600
+Rob Herring <robh+dt@kernel.org> wrote:
+
+> On Fri, Jul 21, 2023 at 10:19 AM Hugo Villeneuve <hugo@hugovil.com> wrote:
+> >
+> > From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+> >
+> > Commit 679875d1d880 ("sc16is7xx: Separate GPIOs from modem control lines")
+> > and commit 21144bab4f11 ("sc16is7xx: Handle modem status lines")
+> > changed the function of the GPIOs pins to act as modem control
+> > lines without any possibility of selecting GPIO function.
+> 
+> Requiring a new DT property is not fixing a kernel regression. You
+> should be returning the kernel to original behavior and then have a
+> new DT property for new behavior.
+
+Hi Rob,
+please read the entire patch history starting from V1
+ and you will understand why this course of action was
+ not selected.
+
+ 
+> > As a consequence, applications that depends on GPIO lines configured
+> > by default as GPIO pins no longer work as expected.
+> >
+> > Also, the change to select modem control lines function was done only
+> > for channel A of dual UART variants (752/762). This was not documented
+> > in the log message.
+> >
+> > Allow to specify GPIO or modem control line function in the device
+> > tree, and for each of the ports (A or B).
+> >
+> > Do so by using the new device-tree property named
+> > "modem-control-line-ports" (property added in separate patch).
+> 
+> That's not the name in the patch.
+
+We added a "nxp," prefix at some point.
+
+Do you want me to send a V9 only with this change?
+
+Hugo.
 
 
-On 7/21/2023 6:55 AM, Oleksij Rempel wrote:
-> KSZ switches with WoL support signals wake event over PME pin. If this
-> pin is attached to some external PMIC or System Controller can't be
-> described as GPIO, the only way to describe it in the devicetree is to
-> use wakeup-source property.
+> > When registering GPIO chip controller, mask-out GPIO pins declared as
+> > modem control lines according to this new "modem-control-line-ports"
+> > DT property.
+> >
+> > Boards that need to have GPIOS configured as modem control lines
+> > should add that property to their device tree. Here is a list of
+> > boards using the sc16is7xx driver in their device tree and that may
+> > need to be modified:
+> >     arm64/boot/dts/freescale/fsl-ls1012a-frdm.dts
+> >     mips/boot/dts/ingenic/cu1830-neo.dts
+> >     mips/boot/dts/ingenic/cu1000-neo.dts
+> 
+> Then again, if no one cares about those boards needing a change then
+> it can be okay.
+> 
+> 
+> Rob
+> 
 
-There is a word missing in the above sentence between "System 
-Controller" and "can't be", and I believe the word is "that".
 
-> So, add support for this property and enable
-> PME switch output if this property is present.
-
-A property that "enables" something means that you are using Device Tree 
-as a way to encode some sort of policy, maybe this is  just the wording 
-here and what you would want to say is that describing the node with a 
-'wakeup-source' property indicates that the device is wake-up capable, 
-regardless of the presence/absence of an interrupt parent?
-
-With the commit message reworded:
-
-Reviewed-by: Florian Fainelli <florian.fainelli@broadcom.com>
 -- 
-Florian
+Hugo Villeneuve <hugo@hugovil.com>
