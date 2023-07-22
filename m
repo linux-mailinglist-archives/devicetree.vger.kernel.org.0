@@ -2,119 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D43C475DB45
-	for <lists+devicetree@lfdr.de>; Sat, 22 Jul 2023 11:20:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0EA0975DB47
+	for <lists+devicetree@lfdr.de>; Sat, 22 Jul 2023 11:22:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229902AbjGVJUU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 22 Jul 2023 05:20:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52500 "EHLO
+        id S229679AbjGVJWH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 22 Jul 2023 05:22:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52896 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229736AbjGVJUT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Jul 2023 05:20:19 -0400
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E30A82D46
-        for <devicetree@vger.kernel.org>; Sat, 22 Jul 2023 02:20:17 -0700 (PDT)
-Received: by mail-wr1-x430.google.com with SMTP id ffacd0b85a97d-3143b88faebso2364537f8f.3
-        for <devicetree@vger.kernel.org>; Sat, 22 Jul 2023 02:20:17 -0700 (PDT)
+        with ESMTP id S229476AbjGVJWG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Jul 2023 05:22:06 -0400
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF16D2704
+        for <devicetree@vger.kernel.org>; Sat, 22 Jul 2023 02:22:03 -0700 (PDT)
+Received: by mail-wr1-x432.google.com with SMTP id ffacd0b85a97d-3143b88faebso2365346f8f.3
+        for <devicetree@vger.kernel.org>; Sat, 22 Jul 2023 02:22:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690017616; x=1690622416;
+        d=linaro.org; s=google; t=1690017722; x=1690622522;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=RKA/fSK1OrrWeVKEuVTJol/wBIFA9VP5bSnux5wICog=;
-        b=YjZdWI+kciadukrVxFxWcFo2aGcqrVCODXUFim3vhrf3EKtCViolaPQXjj3bfTYg+G
-         yenm0FN952WoCevkNkj5surKcradV6NMXorPKO4JVkXqFQfr24at27NvQuqFt27X8gGy
-         Mqqaa8zRwS7NdwD3h/W9HPwuQEa7/KFzsT60Ldvzin1wmpo/chkg+pO46UPJBqACBf9T
-         DkGui4jpagBiLnYG9HQTouivzJcHxmybd3V9qnwJbGQs7W/Da84rF99eUoZC06OSV4Jr
-         cBrfne5M4kj7zrNDP3p8zSH9Qr5JGQvf6GnpdTytT2MuEvO1u5ZoGIZJspRa+HdXypEs
-         B+Lg==
+        bh=XlWUiLbsFW9gesDugN/U0p0RaEcbTcHTBcVbcBj+HXg=;
+        b=CI08LP4aadB+oNdXlPDEAPGTp8O5rg6MvDCNomF23KOitLAJCoMub6+oeJztpDtdKL
+         I7SU0lrp+h5M3oc2m+GnAcWm/R1x2Krj1/6wc6NQ1+dsb+W8fyfhatQv3C5tY705F7hz
+         wsobw6sBx58PWvDIwjUHi3Mqp5Bc/VUl9Npz5o+8o/w33QP3w9tqg4ig2PdgQpJdSKpn
+         rheQaBqFYuxgqDdyrK+AhY/JxMj/5Jto8UcbUmjr0nieuQ9qU7mO/hXZfxjDxEFn931v
+         AQUPNOpWVzhmdyd/eEKJeQqkKZOEbv7TUEI5d2A3iJKjYMjRniO3ab04FdUP1xN5O6+u
+         AqbQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690017616; x=1690622416;
+        d=1e100.net; s=20221208; t=1690017722; x=1690622522;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=RKA/fSK1OrrWeVKEuVTJol/wBIFA9VP5bSnux5wICog=;
-        b=RvKrTTOmYYBh0t12DVTgyZ0L1PvG9MZ76QGVEBekJFGJO20ONux24VvbDCRzMs+xTr
-         LqNxory29I3R4cdOfNCQuidm/RWmFGNfSsUngKGPmTzMCfd765NfY31V8feYPhZ5iT6f
-         yMS2v2jHYD4PWGqHaesqLKuF3AD1UIHXgd66vSxTlxeS9hiVYSp0IFyx/7t5ddJ8Rqv1
-         iS6SqKYlAqKvER0jNETlZwDRC+AAwhsvQXJHvK3b2l8vJWJFzI+AyETmh3fuLca/+1YZ
-         RUDCEdzWdq8q0zxo7siepvfU5nmmGYGb/DdqYlt4AG/OD7t4SJAAqQQsR2gLH6It+m4s
-         j90A==
-X-Gm-Message-State: ABy/qLbNpL6wKotEpwhYnC4iW/Lfebit33QXnlPTR3llZjXlTpirqdD9
-        OzVyG6vkMix3MvZfsBP4jG9lrw==
-X-Google-Smtp-Source: APBJJlGqGajANN85V+QyZ+Cb8nzGIbt9uqS2/bG27rvwKaRP64KNNFfMjaIp1YTbbwFeOP0JefmsCg==
-X-Received: by 2002:a5d:58da:0:b0:313:ef24:6feb with SMTP id o26-20020a5d58da000000b00313ef246febmr3872494wrf.3.1690017616419;
-        Sat, 22 Jul 2023 02:20:16 -0700 (PDT)
+        bh=XlWUiLbsFW9gesDugN/U0p0RaEcbTcHTBcVbcBj+HXg=;
+        b=Zvc6bRzPocWcBPQaf4xbh501uSjlQ2hrJlNwfWMyz8+tARt91Ef0nkUwAzq4cgfLYL
+         n4nHsIGff5LoPNxAZC7HABcbiM5sWUenbAAgoXM9BEFOYsc+BcQyN/ElSNgsA5P0eYWB
+         PVJBAW5O0uOjfUXNiZLaTWt3D0IoXBqVW/ztM2DofouwhrTvvmrs/suIhYO0dNVojdgp
+         CkH19hoDLhaKZMQNiYIQb0S593DY6JxTaZJyu4xwrKYLA7AYVHQIt4+MwdxCp7F04nL/
+         MqhPTu6RUE/S7x5vIfVYRp/CaAEnRJ7RwOFHdjWKxvGNMywg7+zuFKyMszrNvJKzcQ5z
+         YFKg==
+X-Gm-Message-State: ABy/qLbz5vwdEINZ6H5KSOv5zsbdwX6hY4tWnzctnmGRhndSBgQkgviT
+        4hf2jzO60pkwaqnlbaf1a69K7A==
+X-Google-Smtp-Source: APBJJlGciMsKReNcuLPKE1QAwsa1Oi7HAcIFG8DTm5d14xl/+70pIMi7zRqGA4Brp9CNWPPTo4v8kg==
+X-Received: by 2002:a5d:638b:0:b0:314:1e73:d15d with SMTP id p11-20020a5d638b000000b003141e73d15dmr3633892wru.11.1690017722488;
+        Sat, 22 Jul 2023 02:22:02 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id n8-20020adfe348000000b00315af025098sm6426333wrj.46.2023.07.22.02.20.14
+        by smtp.gmail.com with ESMTPSA id q14-20020a1cf30e000000b003fbe561f6a3sm7730446wmq.37.2023.07.22.02.22.00
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 22 Jul 2023 02:20:15 -0700 (PDT)
-Message-ID: <a4b789ad-0505-1991-2005-c1825a1f3b60@linaro.org>
-Date:   Sat, 22 Jul 2023 11:20:13 +0200
+        Sat, 22 Jul 2023 02:22:01 -0700 (PDT)
+Message-ID: <25689bef-2dc9-a1ac-1ba4-0321813d5793@linaro.org>
+Date:   Sat, 22 Jul 2023 11:21:59 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
-Subject: Re: [PATCH 3/3] arm64: defconfig: enable Qualcomm SM6115 LPASS
- pinctrl
+Subject: Re: [PATCH 05/10] dt-bindings: clock: Add Marvell PXA1908 clock
+ bindings
 Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
+To:     =?UTF-8?Q?Duje_Mihanovi=c4=87?= <duje.mihanovic@skole.hr>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20230722-topic-6115_lpasstlmm-v1-0-32d1643d8774@linaro.org>
- <20230722-topic-6115_lpasstlmm-v1-3-32d1643d8774@linaro.org>
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        afaerber@suse.com
+References: <20230721210042.21535-1-duje.mihanovic@skole.hr>
+ <20230721210042.21535-6-duje.mihanovic@skole.hr>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230722-topic-6115_lpasstlmm-v1-3-32d1643d8774@linaro.org>
+In-Reply-To: <20230721210042.21535-6-duje.mihanovic@skole.hr>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/07/2023 10:52, Konrad Dybcio wrote:
-> Enable the Qualcomm SM6115 LPASS TLMM pin controller driver for
-> providing GPIOs/pins for audio block on SM6115 based boards (e.g.
-> QTI RB2).
+On 21/07/2023 22:37, Duje Mihanović wrote:
+> Add the dt bindings for Marvell PXA1908 clock controller.
 > 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+
+Squash the patch with bindings change. It has little sense on its own,
+
+
+> Signed-off-by: Duje Mihanović <duje.mihanovic@skole.hr>
 > ---
->  arch/arm64/configs/defconfig | 1 +
->  1 file changed, 1 insertion(+)
+>  include/dt-bindings/clock/marvell,pxa1908.h | 93 +++++++++++++++++++++
+>  1 file changed, 93 insertions(+)
+>  create mode 100644 include/dt-bindings/clock/marvell,pxa1908.h
 > 
-> diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-> index 6cbf6eb59378..6911101db09e 100644
-> --- a/arch/arm64/configs/defconfig
-> +++ b/arch/arm64/configs/defconfig
-> @@ -587,6 +587,7 @@ CONFIG_PINCTRL_SDM660=y
->  CONFIG_PINCTRL_SDM670=y
->  CONFIG_PINCTRL_SDM845=y
->  CONFIG_PINCTRL_SM6115=y
-> +CONFIG_PINCTRL_SM6115_LPASS_LPI=m
+> diff --git a/include/dt-bindings/clock/marvell,pxa1908.h b/include/dt-bindings/clock/marvell,pxa1908.h
+> new file mode 100644
+> index 000000000000..da9c5d499ae4
+> --- /dev/null
+> +++ b/include/dt-bindings/clock/marvell,pxa1908.h
+> @@ -0,0 +1,93 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
 
-After recent re-shuffling in Kconfig, this will be placed differently
-with savedefconfig, so maybe better to find proper (new) placement for
-this now?
+Dual license. Didn't checkpatch complain?
 
-Anyway:
+> +#ifndef __DTS_MARVELL_PXA1908_CLOCK_H
+> +#define __DTS_MARVELL_PXA1908_CLOCK_H
+> +
+> +/* plls */
+> +#define PXA1908_CLK_CLK32		0x1
+> +#define PXA1908_CLK_VCTCXO		0x2
+> +#define PXA1908_CLK_PLL1_624		0x3
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+IDs are decimal numbers.
+
+> +#define PXA1908_CLK_PLL1_416		0x4
+> +#define PXA1908_CLK_PLL1_499		0x5
+> +#define PXA1908_CLK_PLL1_832		0x6
+> +#define PXA1908_CLK_PLL1_1248		0x7
+> +#define PXA1908_CLK_PLL1_D2		0x8
+
 
 Best regards,
 Krzysztof
