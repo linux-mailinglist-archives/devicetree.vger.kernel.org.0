@@ -2,159 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BEE6875DC74
-	for <lists+devicetree@lfdr.de>; Sat, 22 Jul 2023 14:17:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7DDBD75DC79
+	for <lists+devicetree@lfdr.de>; Sat, 22 Jul 2023 14:24:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230337AbjGVMRc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 22 Jul 2023 08:17:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42094 "EHLO
+        id S229891AbjGVMYH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 22 Jul 2023 08:24:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43632 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230347AbjGVMR2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Jul 2023 08:17:28 -0400
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C4A310CB
-        for <devicetree@vger.kernel.org>; Sat, 22 Jul 2023 05:17:27 -0700 (PDT)
-Received: by mail-wr1-x434.google.com with SMTP id ffacd0b85a97d-3143798f542so2418963f8f.2
-        for <devicetree@vger.kernel.org>; Sat, 22 Jul 2023 05:17:27 -0700 (PDT)
+        with ESMTP id S229476AbjGVMYH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Jul 2023 08:24:07 -0400
+Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C08210E;
+        Sat, 22 Jul 2023 05:24:06 -0700 (PDT)
+Received: by mail-pj1-x102e.google.com with SMTP id 98e67ed59e1d1-267f68fdccfso63390a91.1;
+        Sat, 22 Jul 2023 05:24:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690028245; x=1690633045;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=gmail.com; s=20221208; t=1690028646; x=1690633446;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=tYNA0eA6zTpIVrLQIQILDRIMWUDj6tQ3eTCKjVqejNg=;
-        b=lTGur3HjPh+24Q/GOoLXJK6GH1QbnIUwPqJ93LQdr9XSyYWSyqiUIuUbtUHFvkIAer
-         uF8oWzeUakeP//THm9J2kIR8ZRCY76uNjhIgUvsjY8VnfRkDFFLJ2YokaYz9JjcSqCM4
-         EUVsRTnQeIaIcRVSXb0B15DBr7VWGkGS0jG9TJ/Z/MOqQkQ4IEprYHbx6AnpinUXwfSN
-         zTSTjkN+9oSPFS4wGmg+F6wpeZyJP1RKlZMTUxKgltYi4HPFa6nbWdoi9iKDq6WkSHSy
-         jF0MUXuhRWPrexaUgLU70gyCilPjcRKQ8d0CFltTAnhkygDbG6DnxCEP5hxxCAVI+4aV
-         XsoQ==
+        bh=D+TXoV0EO/SD5DvE1XwqMaH8zsVLkDh0doqX0bYlwo0=;
+        b=U/roaTDh96JdS/pOt4zEyp+1o6i8DXW33jtfDcgjTgx8J5GxkqE4h2B5h3xZMtAhdY
+         HaRUmUgJkVMmgm69n5FSi0yavBPsUvuCf9lPT05fjby6i7es954FGGdz5tW0y+xKBvZt
+         +CI1y0rHwTn9aYRhJL6wXd7KWGe+r4gxXri4ay3xxF6F7wLyU4k9C01ltjMEhd4ugDC7
+         cnCMTQnCow0V8z743RQauORUrIreutY5eHr2dXh8OJt83GaEVGGVdrqWOvfaqSKmIDTA
+         ArH8YbMEv3H0tBsBxPqgUHqXBVEfIdZowARe5DHI6qwFEvb4/rjnbfxm47FiBxtdNhxM
+         ly/A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690028245; x=1690633045;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20221208; t=1690028646; x=1690633446;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=tYNA0eA6zTpIVrLQIQILDRIMWUDj6tQ3eTCKjVqejNg=;
-        b=SfWPRKwVRxuLmqUJb85vZcyuOHrvlKVyBDLiEnRnxo4mCP0fcjUxi77VwhPWBca6qp
-         jd85vLkZwTdtL7nTYhGEhSGwj/AsN6uuuE1ydBPxTsdql3nQ66jOUY4VEahN+fU2AxiD
-         g8C9m9vxbriM8cuxq+Ja2zHsBfqfVrOmOE6kR7zgPWU7MoxOnVaRy50a1h7PG/++i7I1
-         kh0tDkFJHKI1c+4MmM7xClbWozH6k/UV3RTdvXDDtiFAMiq7Jv3UPJhcc7NEb/86Zn1W
-         4QjRUxChokYxEJHkgitNnH8ziOSUbIELXOwDcgUg0u2t2me/ZNuo8CTxxvSN8TbHHqog
-         8BVw==
-X-Gm-Message-State: ABy/qLZg6Y1de45uALXhItZZmcRW2TrWVUY57VI7u6qvonD4odZw0aAP
-        Km41qQmpP8T4XjGOXg7KYKSC+ntz+O5KHLbHd2U=
-X-Google-Smtp-Source: APBJJlFa6HLdZkKgR0Jf0kClb3GPuraMh66N7bcNCziOtQEkeaNrl44e92mgZ7gk6h6dAhxLtU4MUQ==
-X-Received: by 2002:a5d:49c1:0:b0:315:9de4:92f0 with SMTP id t1-20020a5d49c1000000b003159de492f0mr4219589wrs.5.1690028245712;
-        Sat, 22 Jul 2023 05:17:25 -0700 (PDT)
-Received: from krzk-bin.. ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id h18-20020a5d5492000000b003142e438e8csm6779086wrv.26.2023.07.22.05.17.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 22 Jul 2023 05:17:25 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v2 3/3] ARM: dts: samsung: s5pv210: fix camera unit addresses/ranges
-Date:   Sat, 22 Jul 2023 14:17:19 +0200
-Message-Id: <20230722121719.150094-3-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230722121719.150094-1-krzysztof.kozlowski@linaro.org>
-References: <20230722121719.150094-1-krzysztof.kozlowski@linaro.org>
+        bh=D+TXoV0EO/SD5DvE1XwqMaH8zsVLkDh0doqX0bYlwo0=;
+        b=EFkpFn4T8g7OOaZOsH4weumFAhTMco1vOnzhryKqe6jk1RB/PZnDNilcpZ8S2lvmvX
+         stpoEid4V0eqXd6+knFYg9X+Xf8gsEwdm0bvPMcsuqocq/ZOYPi7PNGP6wLjXT5ZP1od
+         KW3GdMy2dz1ttq0drZNQMVm+mrjHmpQr8TYR0uexWZHaR6EjX43uHrG0Wu2C7YEkPtPf
+         m+1opWU+CF8gPIpXMg291lxOeje5Kb5vBmZdJ6t0EYsjIEHP2VIkrPB4vJEG2Uy1zPWY
+         dOShluM+NkmqzUQq0Z8owQHjFuTbeS1lbnp18Nylew149k/gxr7+5EWEqFjC4HnnWkre
+         JuQg==
+X-Gm-Message-State: ABy/qLaLj/w9Kx3TNp0R0d34fXaEBvdFcSy9pOn7o3SUrxAwDD6IUH9V
+        mp0CtkwUio/ezqnrEAke5aNeBxc8HSLIAXqDst1Y7j8Qi6g=
+X-Google-Smtp-Source: APBJJlGiTJiDC3PcJ30wWNQG2ghzCiHfafNOYMz3k1tWFhoA+8Dxtjd9bun3lqD52GHxFmU2zIGR9Wgf8hE2SsElBg8=
+X-Received: by 2002:a17:90a:304b:b0:262:c2a1:c01f with SMTP id
+ q11-20020a17090a304b00b00262c2a1c01fmr4103581pjl.3.1690028645911; Sat, 22 Jul
+ 2023 05:24:05 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20230721232123.2690960-1-xiaolei.wang@windriver.com>
+ <CAOMZO5AMDvERRaSUYtuf_zq4foSqUuo0kErhj+hEZUuZRPXv1g@mail.gmail.com> <13c51031-ed91-d641-6336-206298f1b60a@windriver.com>
+In-Reply-To: <13c51031-ed91-d641-6336-206298f1b60a@windriver.com>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Sat, 22 Jul 2023 09:23:54 -0300
+Message-ID: <CAOMZO5AEJP2T26REbr8Wc17jENpgJq1Ktyp137zo9M1zDFRASQ@mail.gmail.com>
+Subject: Re: [PATCH] ARM: dts: imx: Set default tuning step for imx7d usdhc0
+To:     wangxiaolei <xiaolei.wang@windriver.com>
+Cc:     Bough Chen <haibo.chen@nxp.com>, robh+dt@kernel.org,
+        conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, linux-imx@nxp.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The camera node has both unit address and children within the same bus
-mapping, thus needs proper ranges property to fix dtc W=1 warnings:
+On Sat, Jul 22, 2023 at 4:29=E2=80=AFAM wangxiaolei <xiaolei.wang@windriver=
+.com> wrote:
 
-  Warning (unit_address_vs_reg): /soc/camera@fa600000: node has a unit name, but no reg or ranges property
-  Warning (simple_bus_reg): /soc/camera@fa600000: missing or empty reg/ranges property
+> Oh, I didn't notice this patch on linux-imx, I refer to the settings in
+> https://github.com/nxp-imx/uboot-imx.git,
+>
+> but it should be the same, I think it is better to bring this patch in
 
-Subtract 0xfa600000 from all its children nodes.  No functional impact
-expected.
+Please send a patch that passes:
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+fsl,tuning-step =3D <2>;
+fsl,tuning-start-tap =3D <20>;
 
----
+to all usdhc instances in imx7s.dtsi.
 
-Changes in v2:
-1. New patch
----
- arch/arm/boot/dts/samsung/s5pv210.dtsi | 18 +++++++++---------
- 1 file changed, 9 insertions(+), 9 deletions(-)
+Other imx dtsi files do this, but imx7s.dtsi currently misses these propert=
+ies.
 
-diff --git a/arch/arm/boot/dts/samsung/s5pv210.dtsi b/arch/arm/boot/dts/samsung/s5pv210.dtsi
-index f7de5b5f2f38..ed560c9a3aa1 100644
---- a/arch/arm/boot/dts/samsung/s5pv210.dtsi
-+++ b/arch/arm/boot/dts/samsung/s5pv210.dtsi
-@@ -549,17 +549,17 @@ i2c1: i2c@fab00000 {
- 
- 		camera: camera@fa600000 {
- 			compatible = "samsung,fimc";
-+			ranges = <0x0 0xfa600000 0xe01000>;
- 			clocks = <&clocks SCLK_CAM0>, <&clocks SCLK_CAM1>;
- 			clock-names = "sclk_cam0", "sclk_cam1";
- 			#address-cells = <1>;
- 			#size-cells = <1>;
- 			#clock-cells = <1>;
- 			clock-output-names = "cam_a_clkout", "cam_b_clkout";
--			ranges;
- 
--			csis0: csis@fa600000 {
-+			csis0: csis@0 {
- 				compatible = "samsung,s5pv210-csis";
--				reg = <0xfa600000 0x4000>;
-+				reg = <0x00000000 0x4000>;
- 				interrupt-parent = <&vic2>;
- 				interrupts = <29>;
- 				clocks = <&clocks CLK_CSIS>,
-@@ -572,9 +572,9 @@ csis0: csis@fa600000 {
- 				#size-cells = <0>;
- 			};
- 
--			fimc0: fimc@fb200000 {
-+			fimc0: fimc@c00000 {
- 				compatible = "samsung,s5pv210-fimc";
--				reg = <0xfb200000 0x1000>;
-+				reg = <0x00c00000 0x1000>;
- 				interrupts = <5>;
- 				interrupt-parent = <&vic2>;
- 				clocks = <&clocks CLK_FIMC0>,
-@@ -586,9 +586,9 @@ fimc0: fimc@fb200000 {
- 				samsung,cam-if;
- 			};
- 
--			fimc1: fimc@fb300000 {
-+			fimc1: fimc@d00000 {
- 				compatible = "samsung,s5pv210-fimc";
--				reg = <0xfb300000 0x1000>;
-+				reg = <0x00d00000 0x1000>;
- 				interrupt-parent = <&vic2>;
- 				interrupts = <6>;
- 				clocks = <&clocks CLK_FIMC1>,
-@@ -602,9 +602,9 @@ fimc1: fimc@fb300000 {
- 				samsung,lcd-wb;
- 			};
- 
--			fimc2: fimc@fb400000 {
-+			fimc2: fimc@e00000 {
- 				compatible = "samsung,s5pv210-fimc";
--				reg = <0xfb400000 0x1000>;
-+				reg = <0x00e00000 0x1000>;
- 				interrupt-parent = <&vic2>;
- 				interrupts = <7>;
- 				clocks = <&clocks CLK_FIMC2>,
--- 
-2.34.1
-
+Thanks
