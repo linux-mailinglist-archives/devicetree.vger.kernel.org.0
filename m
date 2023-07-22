@@ -2,58 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A3CE975DC51
-	for <lists+devicetree@lfdr.de>; Sat, 22 Jul 2023 14:00:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6472975DC58
+	for <lists+devicetree@lfdr.de>; Sat, 22 Jul 2023 14:02:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230334AbjGVMAg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 22 Jul 2023 08:00:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37410 "EHLO
+        id S229841AbjGVMCp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 22 Jul 2023 08:02:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38406 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230332AbjGVMAf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Jul 2023 08:00:35 -0400
+        with ESMTP id S229769AbjGVMCo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Jul 2023 08:02:44 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06B861B2;
-        Sat, 22 Jul 2023 05:00:33 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1374D9B;
+        Sat, 22 Jul 2023 05:02:44 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 8EA0A60AC2;
-        Sat, 22 Jul 2023 12:00:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 855CFC433C7;
-        Sat, 22 Jul 2023 12:00:29 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 9C46460ADC;
+        Sat, 22 Jul 2023 12:02:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E722FC433C7;
+        Sat, 22 Jul 2023 12:02:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690027231;
-        bh=3aXluOeHEQMyItJ/v2l7mH04udA2/MJByvhDdbra3VM=;
+        s=k20201202; t=1690027363;
+        bh=2lhE3RdVIzj9FW8Uxhynzfr7wWR0wibk1JlqbdY1c28=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=UCGL5MIEnYK/Q+LxtrZ/qsyM4pz4Wujq37xIri7r+PnlkSwo2RRmNpY0T/SwzR4Ze
-         80+OoFGGBI2gtlFiFNWRrErleRBf0OTewqhYa7KPOlJMAyNRfjyD0Y2t8Z2pfYDjmZ
-         Q7WdD/Kut68WzRCdagPzYRPhv3RVkybPZVbu2ukktoe2ygCtyvCfvBqXD3TYraXivO
-         I6mIWAXVc5ucuJuEe5E6PAnCgkTtuDMerE69I7Lcs4AkV2xyn02EdHJmk4ZpqmXy5c
-         hfF4yAB4rQ+yQcoAYuYOjrvPHf4p+MRB+RMspyFYAem+3qFmw/DX0IT9K73CLQjBMI
-         QZsvVFXsg/pZg==
-Date:   Sat, 22 Jul 2023 13:00:27 +0100
+        b=qUSAZKPSjoAFmnw7V5FG+RMB/BPXFe6XkDTOzHu4AZfEX9x6/NnzAQDhopCsfAEam
+         Z8qhwqdoTLmXeYe0Qpv7XXBjrqQZcFrMUWkjVDyATimD/RUPbKpH75+Ra/+34LqfK9
+         DGgg4ru5+A5cC2vj+TrLIMH1H2FPfYB0Q/no5UweIOjb83W9I8NtGctg6bQBFOd8i9
+         xrH7uOaa1U1UwJzE+02EeKSOUmHfAxAYT3aQY9I7aVjxr15PsAUw/frlKFjiRw8fVu
+         m+L58mtmAXDi93YhlNxl+cDyw35UqQFEBjBcMMecEh25a4JdeueFboIyQ0FPMkVAWZ
+         zZAEQIJIQ77/A==
+Date:   Sat, 22 Jul 2023 13:02:38 +0100
 From:   Conor Dooley <conor@kernel.org>
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+Cc:     Peter Rosin <peda@axentia.se>, Andi Shyti <andi.shyti@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/3] media: dt-bindings: samsung,fimc: correct unit
- addresses in DTS example
-Message-ID: <20230722-upstroke-vastness-6d8221298a0b@spud>
-References: <20230722115441.139628-1-krzysztof.kozlowski@linaro.org>
- <20230722115441.139628-2-krzysztof.kozlowski@linaro.org>
+        Doug Anderson <dianders@chromium.org>,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: i2c: nxp,pca9541: convert to DT schema
+Message-ID: <20230722-silliness-qualify-5120b10539d3@spud>
+References: <20230722095710.17496-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="YJECmpCRkK1kwFD2"
+        protocol="application/pgp-signature"; boundary="jM3LRQyBiv5Pj4Mz"
 Content-Disposition: inline
-In-Reply-To: <20230722115441.139628-2-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230722095710.17496-1-krzysztof.kozlowski@linaro.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
@@ -65,31 +61,31 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---YJECmpCRkK1kwFD2
+--jM3LRQyBiv5Pj4Mz
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Sat, Jul 22, 2023 at 01:54:40PM +0200, Krzysztof Kozlowski wrote:
-> The camera node's ranges property and unit addresses of its children
-> were not correct.  If camera is @11800000, then its fimc child is @0.
+On Sat, Jul 22, 2023 at 11:57:09AM +0200, Krzysztof Kozlowski wrote:
+> Convert the bindings for NXP PCA9541 I2C bus master selector to DT
+> schema.
 >=20
 > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
-Cheers,
+Thanks,
 Conor.
 
---YJECmpCRkK1kwFD2
+--jM3LRQyBiv5Pj4Mz
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZLvE2wAKCRB4tDGHoIJi
-0uFZAQCgPYDHFVe+NeMLnFWbsOlNJQCQCDGD3o2KpaRWTacoIAEA7R5O3ItL9YS5
-l7yPCbSxhbknZSs0/vLabFRgazvVaAY=
-=GDU6
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZLvFXgAKCRB4tDGHoIJi
+0lPLAP9ZV1M4FMtdmU0BQNH3uQTpjAFvlGUloDpgKzEJ1WSHTAD9EhkgA4sMwgYI
+nUwPRQPVsP4oktbAtWgVCRr9SMxcCQI=
+=LWlQ
 -----END PGP SIGNATURE-----
 
---YJECmpCRkK1kwFD2--
+--jM3LRQyBiv5Pj4Mz--
