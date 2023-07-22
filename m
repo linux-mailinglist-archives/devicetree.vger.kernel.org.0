@@ -2,64 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 87AC475DE73
-	for <lists+devicetree@lfdr.de>; Sat, 22 Jul 2023 22:16:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 995E675DE7A
+	for <lists+devicetree@lfdr.de>; Sat, 22 Jul 2023 22:20:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229846AbjGVUQ3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 22 Jul 2023 16:16:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35748 "EHLO
+        id S229872AbjGVUUs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 22 Jul 2023 16:20:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37036 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229804AbjGVUQ2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Jul 2023 16:16:28 -0400
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 744BF1FDF
-        for <devicetree@vger.kernel.org>; Sat, 22 Jul 2023 13:16:25 -0700 (PDT)
-Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-997c4107d62so444803666b.0
-        for <devicetree@vger.kernel.org>; Sat, 22 Jul 2023 13:16:25 -0700 (PDT)
+        with ESMTP id S229769AbjGVUUr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Jul 2023 16:20:47 -0400
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5538F1FE1
+        for <devicetree@vger.kernel.org>; Sat, 22 Jul 2023 13:20:46 -0700 (PDT)
+Received: by mail-wr1-x42b.google.com with SMTP id ffacd0b85a97d-31716932093so2222590f8f.3
+        for <devicetree@vger.kernel.org>; Sat, 22 Jul 2023 13:20:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690056984; x=1690661784;
+        d=linaro.org; s=google; t=1690057244; x=1690662044;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=22S5ZsP6aUTYCVscJMLeCJZnNpGh+kjGFevs0ee9dAQ=;
-        b=GdcIopZT1Ubb31DIRUvWziH+QEzLqJ4k7y+f0FizH8694GYdyRgSIJwOEKvs4LRpfE
-         YfTqsXZ85xiH6OhczhfMyk5KsspNBGeVrYu8T7kZKgk4vO3TZRqqus8it86ge9kP9/ls
-         +xxT2tji7cwqDFc/GGXUTN1TCU6Zgj3KMTAhxp6vLSwN43cbbCXUWrN8/dC9jfgKxfut
-         ZPouIIvSVy34tHK6RI7gE9a3ZR5AamMT8unk5oDe9jgcMpYA6hBe2mm+yJhQ2vmDi+g0
-         HWyfoglWlXjRZHC4BCeFtShHyoJNuFgSNvIVD0YIRiPYC9yVOLDoDBr0tPt0WsJ56weo
-         VPNg==
+        bh=uqgsDoxp+a0ulkkTMnYutRgTki2aDg/PYW80rkVVPp8=;
+        b=kYZne3f9yGRgh6iPxanTdnhcjLJm2mlrZslm1lNk8kQmuV2BBbGujayti+IPSxQ8OX
+         JPWq6WIGuSfOlZS0iNpb1PWMJ/4sKGSHVt63UEfoN5633s0LU1FlFlCLlpPdE/GsjnIu
+         9EjVJY3hgmRiGMWNABQfG+dvUF/WpEI6/ugsG1mCFPiqjDo6eprxME1Y/ZFcW6U7VP2b
+         +rJYg3CXgGkJpzrGlJCGYBHVhgcvsbLFcIKtKlt1zHPIqb5aWn3IyT3xdJjQ3TygYN5A
+         X3FC7VQ3guZTZNYdZoJMrDJm/MtdyL/fIHpOyqNpzTB+K1hdxTiG3EC+QbNFtm7EmFbJ
+         p3Yg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690056984; x=1690661784;
+        d=1e100.net; s=20221208; t=1690057244; x=1690662044;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=22S5ZsP6aUTYCVscJMLeCJZnNpGh+kjGFevs0ee9dAQ=;
-        b=ZigZ+i1qgYIEckUWY7nQytifdCDfoxDfoEnLPZwfv6VuzGpoyFEGNj64my7XV/Psyi
-         +u7rAg6eolKelWykPXd77H0IvWTEpIpXW8IjLLwHGYqlgnw6f5wBhILSPvGyALaji7Af
-         iTEQt+1RMDZ5I6TgHaUXGuX1L/lRROmgEXRJX4B0E3kyG0HBo7IIYdvj3+JmYoE2h1ym
-         asx2lPMs/HjXyBx9mp6n+wlDM+t77sWsFaxxe9hfA+1jOoeISJ4p+PzEuPPf9nHU07yE
-         lFIgqtKDRIJMRmN/5PLcowKpWBLtFVTxiVHqEpoUm1S3wKLkHXw1QGY9chvEvnEahLRs
-         pcQQ==
-X-Gm-Message-State: ABy/qLbh0DighqssIb17ngx3RYQP6H5me6yZZyGYsk0Ii9v7PR9vYvdW
-        XzjI501NtlIUKR3NzvoscEoCdg==
-X-Google-Smtp-Source: APBJJlHjpnxaktmWMV8dpQg70mraF0bMrm6rPEWeHLNPmD8JLn1qYm8w2zLqN9IGXe2PwpZRYF+9og==
-X-Received: by 2002:a17:906:10cd:b0:982:cfe2:32fe with SMTP id v13-20020a17090610cd00b00982cfe232femr4903374ejv.63.1690056983603;
-        Sat, 22 Jul 2023 13:16:23 -0700 (PDT)
+        bh=uqgsDoxp+a0ulkkTMnYutRgTki2aDg/PYW80rkVVPp8=;
+        b=N48gWufD/8glcQlEC/w54kmDOkgJMyrjyCXMWyywyz2yIaAkMyIsbBiDs9mh+QRufB
+         feNULja6hDNgtJ0AIbBy3G6SsT+BehlcrN88hkSedqGwXvG+G5HmzNKa29GCNSrPdNkm
+         hRCCkOB8qeWP2gMDcI/0UBxMye1HB4CST8kmzU5A7bjRPVEO5HiOBHotTi+av1qrUrY9
+         eWyjk7y/pypqwpCaBJ1Jd8EzYjttZ75jAwQBBnVkBYAOGcuIp3rBr+qxC9pKYrgpkOiP
+         57d1OqH5FbLjxAPfhqJOy48oSN2Vj/EC0MDG6zBMCm3PrAuuoyDOwxDIo/u9tZamTUOD
+         0XFQ==
+X-Gm-Message-State: ABy/qLYEdXnek4exsa+epjQrlY7v9al8vbG0oswJkFcl6WvSJk3HlMiy
+        VmllJ221/l+oHdLGhTdwOqoUYjEtFsXOnJbxRPo=
+X-Google-Smtp-Source: APBJJlHtGR5LPmf1KqxQqGuubWj7q/2swHpo0BwtoPPXrcKJwOgxc6GbBBBkKHLogidNI3C5Z/BtHA==
+X-Received: by 2002:adf:f8d1:0:b0:316:ee7f:f9bb with SMTP id f17-20020adff8d1000000b00316ee7ff9bbmr3436488wrq.65.1690057243072;
+        Sat, 22 Jul 2023 13:20:43 -0700 (PDT)
 Received: from krzk-bin.. ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id p26-20020a170906a01a00b00992f81122e1sm3951920ejy.21.2023.07.22.13.16.22
+        by smtp.gmail.com with ESMTPSA id w10-20020adfd4ca000000b003140f47224csm7773076wrk.15.2023.07.22.13.20.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 22 Jul 2023 13:16:23 -0700 (PDT)
+        Sat, 22 Jul 2023 13:20:42 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] dt-bindings: usb: samsung-hsotg: remove bindings already part of dwc2
-Date:   Sat, 22 Jul 2023 22:16:20 +0200
-Message-Id: <20230722201620.35489-1-krzysztof.kozlowski@linaro.org>
+        Conor Dooley <conor+dt@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        replicant@osuosl.org, phone-devel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        =?UTF-8?q?Martin=20J=C3=BCcker?= <martin.juecker@gmail.com>,
+        Henrik Grimler <henrik@grimler.se>,
+        Artur Weber <aweber.kernel@gmail.com>
+Subject: [PATCH RFT] ARM: dts: samsung: exynos4412-midas: add USB connector and USB OTG
+Date:   Sat, 22 Jul 2023 22:20:39 +0200
+Message-Id: <20230722202039.35877-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
@@ -71,59 +79,102 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-samsung,s3c6400-hsotg compatible is already fully covered in dwc2.yaml
-bindings.
+Add full description of USB-MUIC and MUIC-MHL connections, along with
+proper USB connector and OTG mode for DWC2 USB controller.
 
+This fixes dtc W=1 warnings:
+
+  Warning (graph_child_address): /i2c-mhl/hdmi-bridge@39/ports: graph node has single child node 'port@0', #address-cells/#size-cells are not necessary
+
+Cc: Marek Szyprowski <m.szyprowski@samsung.com>
+Cc: replicant@osuosl.org
+Cc: phone-devel@vger.kernel.org
+Cc: ~postmarketos/upstreaming@lists.sr.ht
+Cc: Martin Jücker <martin.juecker@gmail.com>
+Cc: Henrik Grimler <henrik@grimler.se>
+Cc: Artur Weber <aweber.kernel@gmail.com>
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../devicetree/bindings/usb/samsung-hsotg.txt | 38 -------------------
- 1 file changed, 38 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/usb/samsung-hsotg.txt
 
-diff --git a/Documentation/devicetree/bindings/usb/samsung-hsotg.txt b/Documentation/devicetree/bindings/usb/samsung-hsotg.txt
-deleted file mode 100644
-index 0388634598ce..000000000000
---- a/Documentation/devicetree/bindings/usb/samsung-hsotg.txt
-+++ /dev/null
-@@ -1,38 +0,0 @@
--Samsung High Speed USB OTG controller
-------------------------------
--
--The Samsung HSOTG IP can be found on Samsung SoCs, from S3C6400 onwards.
--It gives functionality of OTG-compliant USB 2.0 host and device with
--support for USB 2.0 high-speed (480Mbps) and full-speed (12 Mbps)
--operation.
--
--Currently only device mode is supported.
--
--Binding details
-------
--
--Required properties:
--- compatible: "samsung,s3c6400-hsotg" should be used for all currently
--    supported SoC,
--- interrupts: specifier of interrupt signal of interrupt controller,
--    according to bindings of interrupt controller,
--- clocks: contains an array of clock specifiers:
--    - first entry: OTG clock
--- clock-names: contains array of clock names:
--    - first entry: must be "otg"
--- vusb_d-supply: phandle to voltage regulator of digital section,
--- vusb_a-supply: phandle to voltage regulator of analog section.
--
--Example
-------
--
--	hsotg@12480000 {
--		compatible = "samsung,s3c6400-hsotg";
--		reg = <0x12480000 0x20000>;
--		interrupts = <0 71 0>;
--		clocks = <&clock 305>;
--		clock-names = "otg";
--		vusb_d-supply = <&vusb_reg>;
--		vusb_a-supply = <&vusbdac_reg>;
--	};
--
+---
+
+Not tested on hardware. Please kindly check if peripheral mode is not
+broken. Or maybe OTG started to work?
+---
+ .../boot/dts/samsung/exynos4412-midas.dtsi    | 46 ++++++++++++++++++-
+ 1 file changed, 45 insertions(+), 1 deletion(-)
+
+diff --git a/arch/arm/boot/dts/samsung/exynos4412-midas.dtsi b/arch/arm/boot/dts/samsung/exynos4412-midas.dtsi
+index 57836d5554d0..6057f9d9811e 100644
+--- a/arch/arm/boot/dts/samsung/exynos4412-midas.dtsi
++++ b/arch/arm/boot/dts/samsung/exynos4412-midas.dtsi
+@@ -182,6 +182,34 @@ pmic@66 {
+ 			pinctrl-0 = <&max77693_irq>;
+ 			reg = <0x66>;
+ 
++			connector {
++				compatible = "samsung,usb-connector-11pin",
++					     "usb-b-connector";
++				label = "micro-USB";
++				type = "micro";
++
++				ports {
++					#address-cells = <1>;
++					#size-cells = <0>;
++
++					port@0 {
++						reg = <0>;
++
++						muic_to_usb: endpoint {
++							remote-endpoint = <&usb_to_muic>;
++						};
++					};
++
++					port@3 {
++						reg = <3>;
++
++						muic_to_mhl: endpoint {
++							remote-endpoint = <&mhl_to_muic>;
++						};
++					};
++				};
++			};
++
+ 			regulators {
+ 				esafeout1_reg: ESAFEOUT1 {
+ 					regulator-name = "ESAFEOUT1";
+@@ -287,6 +315,14 @@ mhl_to_hdmi: endpoint {
+ 						remote-endpoint = <&hdmi_to_mhl>;
+ 					};
+ 				};
++
++				port@1 {
++					reg = <1>;
++
++					mhl_to_muic: endpoint {
++						remote-endpoint = <&muic_to_mhl>;
++					};
++				};
+ 			};
+ 		};
+ 	};
+@@ -545,8 +581,16 @@ hdmi_to_mhl: endpoint {
+ &hsotg {
+ 	vusb_d-supply = <&ldo15_reg>;
+ 	vusb_a-supply = <&ldo12_reg>;
+-	dr_mode = "peripheral";
++	dr_mode = "otg";
++	role-switch-default-mode = "peripheral";
++	usb-role-switch;
+ 	status = "okay";
++
++	port {
++		usb_to_muic: endpoint {
++			remote-endpoint = <&muic_to_usb>;
++		};
++	};
+ };
+ 
+ &i2c_0 {
 -- 
 2.34.1
 
