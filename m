@@ -2,71 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9CE9A75E283
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jul 2023 16:16:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0339275E288
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jul 2023 16:19:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229723AbjGWOQH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 23 Jul 2023 10:16:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40472 "EHLO
+        id S229554AbjGWOTO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 23 Jul 2023 10:19:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42046 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229727AbjGWOQB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Jul 2023 10:16:01 -0400
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 286B110DF
-        for <devicetree@vger.kernel.org>; Sun, 23 Jul 2023 07:15:59 -0700 (PDT)
-Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-5221b90f763so1911910a12.0
-        for <devicetree@vger.kernel.org>; Sun, 23 Jul 2023 07:15:59 -0700 (PDT)
+        with ESMTP id S229491AbjGWOTN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Jul 2023 10:19:13 -0400
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE749B8
+        for <devicetree@vger.kernel.org>; Sun, 23 Jul 2023 07:19:10 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-992ace062f3so613312766b.2
+        for <devicetree@vger.kernel.org>; Sun, 23 Jul 2023 07:19:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690121757; x=1690726557;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=E/DSLBdhH7X1vmy5xHTXlVJgN8n1W999F5GQeMTfdzg=;
-        b=KArJUGnZtn3cujM7E/FdcVSqCgs3QHFWEqsrcwPmq81wOqDXSdNpXEAh5VC61S7F+8
-         /uSQJSkDqdbVQX+I2xPjfYAXouq3w8r3oLPbnxs2pNKry8MbubYsuQqlZ1v9B5PcCxBF
-         sWOK3mj+hqpT1alPLsvXbb1jEYfh7jwm5VVx4alzxeSzs0uITxA86WIDUhj0OR+pqsXY
-         9mpVKpHttv5r4JHBIaSbWULqQm1UsANQHCxAeWM8K3HU2VVpQIPi6hhpF9Mjudj5BI6G
-         hsImMWY1LhOsBzaTLZkk1ZJbz9Wkk38DrAOcxYlWUyqa6gdUHwwl5A3Lim5Wr89fKy6z
-         yi0Q==
+        d=linaro.org; s=google; t=1690121949; x=1690726749;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=B5FB5ZO/DLK/TJzYNBRV/vPk/ZU5q9dvWvxl0g1I8Eg=;
+        b=eMwZMbUGBJL5dYGR0ZzrWk1O6sCm8LVrA9X2i2caa0kkEBeH/WxUs8dUi0O5pFiOdL
+         D9EPFXw2zniUZID7lZU7YmDBrmphWcjb2U64ECPcti5Ez53bj3u1SbAt/Q2VvMcLS6i6
+         I+OqftSS8BKBE3QmqHgvj9m/ZFlRuBA60oTckSknHRslT75gHB4vXj9r+ugm8RPGdYVI
+         BfMY9IElIW49sgqkP262UNv1TbQ4ezx9OIg2uPtToUXHtvDC9x764A+kgB/v2kzvAo3y
+         cMwphj3p+V2GLg3fPPSsUbtTOpqA/fIHPfByTByL5rK4vP+f+xWbGSEnUN8nzX3uBX55
+         WDiQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690121757; x=1690726557;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=E/DSLBdhH7X1vmy5xHTXlVJgN8n1W999F5GQeMTfdzg=;
-        b=SRWqrwSAs5RUx04xA5E1EKhjxzO9Qz0ebHj58xfKNVJ36rZoD5zv5EldQob4ALwG6i
-         Dx3svJVpT9zYPbME1GF+3L99ulxzMkEN7DCzBMpURYmKUgDK2DOzFVfxtJGJVSxo3MU0
-         T1jvWNfUgttXfCdUE0wR+C8QCIu021w0nxc22aWRU6eDLti3QMk5hm7DvngOWSsINNS9
-         M9Ilf0NE+2Rrc34mezN6ifnAKAHHc/68UTbr7tcc/b0T0c9gkzPnK7ec/5t5hRbE5qZ8
-         e9hJgMUYwqGsGnJypdGtDL754woBSoX+axEnRdJLteaHVfjMLx9eJ3AqUxYmH5Y7gblr
-         WIIQ==
-X-Gm-Message-State: ABy/qLa41ILV+Ok2nKvnuRfynxaCtSOfdxoVzmLhCrCz/AhaPH2NCsYp
-        LjBIQzb0mzCPUa/nCqMjQyFpOA==
-X-Google-Smtp-Source: APBJJlEX4LpS3ZjHEDOOmi5Cx26BxCrgURM43YDUukHpadNoKXFV9WgIjp5o/vmtrybGGVuyGVJOYw==
-X-Received: by 2002:aa7:ce0f:0:b0:51d:9682:e30c with SMTP id d15-20020aa7ce0f000000b0051d9682e30cmr6814890edv.5.1690121757715;
-        Sun, 23 Jul 2023 07:15:57 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1690121949; x=1690726749;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=B5FB5ZO/DLK/TJzYNBRV/vPk/ZU5q9dvWvxl0g1I8Eg=;
+        b=BbUdmJ01BkAcrziDLTHBDczVY83r3YSevA8fgLc5CHhU+dHcaIlAryUXWYGoylJ15Z
+         2SfmaLn8qx6+ORpffGGkOZHLC8dO46epHY9brhbJ6CbiPTSBCsibtu1HyKM4aMaHuF3k
+         lbF1PfN9hrgG5p2pfXJYubtlgLxIuuHYGaJt1f07SvJ33+szMi2GOU5vhJQM8sFYMiUu
+         k7/CMqYxGGtnaY2HzKUCQCbm/MX9j+lbcW8fvqXFXrWkBY9gHou3PLqkF3SHrFs3HsgQ
+         RqUlRC1Fbl0ngcZS7ZeRV8oKFinihmdCdvBRJoOLMIeUfFKFLhG0IBPQKVIw9pHDGeLA
+         DEhg==
+X-Gm-Message-State: ABy/qLabxLQXzuXhyqKe7DQ9WzBvf6QA5QnwbozQ6SiJULEZmeD/DySC
+        /cpcJPpYxJDJFY4tyGAu3g442g==
+X-Google-Smtp-Source: APBJJlF1SsqMRL2/Wp7qV0zpZP1xcyF6wEFnHKCxgEUm4AlM4OIo2d9TFKNbUJwwuv2GLXRXJRXnww==
+X-Received: by 2002:a17:906:25d:b0:992:a80e:e5bd with SMTP id 29-20020a170906025d00b00992a80ee5bdmr7928460ejl.48.1690121949438;
+        Sun, 23 Jul 2023 07:19:09 -0700 (PDT)
 Received: from krzk-bin.. ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id g6-20020aa7c586000000b0051dd1c10c13sm4810592edq.29.2023.07.23.07.15.55
+        by smtp.gmail.com with ESMTPSA id cb14-20020a170906a44e00b00992eabc0ad8sm5172438ejb.42.2023.07.23.07.19.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 23 Jul 2023 07:15:57 -0700 (PDT)
+        Sun, 23 Jul 2023 07:19:07 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Wesley Cheng <quic_wcheng@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 2/2] dt-bindings: usb: qcom,dwc3: correct SDM660 clocks
-Date:   Sun, 23 Jul 2023 16:15:50 +0200
-Message-Id: <20230723141550.90223-2-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 1/2] arm64: dts: qcom: sc8180x: align USB DWC3 clocks with bindings
+Date:   Sun, 23 Jul 2023 16:18:48 +0200
+Message-Id: <20230723141849.93078-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230723141550.90223-1-krzysztof.kozlowski@linaro.org>
-References: <20230723141550.90223-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -79,54 +74,52 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SDM660 SoC has two instances of DWC3 USB controller: one supporting USB
-3.0 and one supporting only up to USB 2.0.  The latter one does not use
-iface clock, so allow such variant to fix dtbs_check warnings:
-
-  sda660-inforce-ifc6560.dtb: usb@c2f8800: clocks: [[37, 48], [37, 88], [37, 89], [37, 90]] is too short
-  sda660-inforce-ifc6560.dtb: usb@c2f8800: clock-names:2: 'iface' was expected
+Bindings require different order of clocks for USB DWC3 nodes (sleep
+before mock_utmi).
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- .../devicetree/bindings/usb/qcom,dwc3.yaml    | 24 ++++++++++++-------
- 1 file changed, 16 insertions(+), 8 deletions(-)
+ arch/arm64/boot/dts/qcom/sc8180x.dtsi | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
-index 7cedd751161d..b84b104f2975 100644
---- a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
-+++ b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
-@@ -284,15 +284,23 @@ allOf:
-     then:
-       properties:
-         clocks:
--          minItems: 6
-+          minItems: 5
-+          maxItems: 6
-         clock-names:
--          items:
--            - const: cfg_noc
--            - const: core
--            - const: iface
--            - const: sleep
--            - const: mock_utmi
--            - const: bus
-+          oneOf:
-+            - items:
-+                - const: cfg_noc
-+                - const: core
-+                - const: iface
-+                - const: sleep
-+                - const: mock_utmi
-+                - const: bus
-+            - items:
-+                - const: cfg_noc
-+                - const: core
-+                - const: sleep
-+                - const: mock_utmi
-+                - const: bus
- 
-   - if:
-       properties:
+diff --git a/arch/arm64/boot/dts/qcom/sc8180x.dtsi b/arch/arm64/boot/dts/qcom/sc8180x.dtsi
+index e39341435289..87c00450f068 100644
+--- a/arch/arm64/boot/dts/qcom/sc8180x.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc8180x.dtsi
+@@ -2572,14 +2572,14 @@ usb_prim: usb@a6f8800 {
+ 			clocks = <&gcc GCC_CFG_NOC_USB3_PRIM_AXI_CLK>,
+ 				 <&gcc GCC_USB30_PRIM_MASTER_CLK>,
+ 				 <&gcc GCC_AGGRE_USB3_PRIM_AXI_CLK>,
+-				 <&gcc GCC_USB30_PRIM_MOCK_UTMI_CLK>,
+ 				 <&gcc GCC_USB30_PRIM_SLEEP_CLK>,
++				 <&gcc GCC_USB30_PRIM_MOCK_UTMI_CLK>,
+ 				 <&gcc GCC_USB3_SEC_CLKREF_CLK>;
+ 			clock-names = "cfg_noc",
+ 				      "core",
+ 				      "iface",
+-				      "mock_utmi",
+ 				      "sleep",
++				      "mock_utmi",
+ 				      "xo";
+ 			resets = <&gcc GCC_USB30_PRIM_BCR>;
+ 			power-domains = <&gcc USB30_PRIM_GDSC>;
+@@ -2618,14 +2618,14 @@ usb_sec: usb@a8f8800 {
+ 			clocks = <&gcc GCC_CFG_NOC_USB3_SEC_AXI_CLK>,
+ 				 <&gcc GCC_USB30_SEC_MASTER_CLK>,
+ 				 <&gcc GCC_AGGRE_USB3_SEC_AXI_CLK>,
+-				 <&gcc GCC_USB30_SEC_MOCK_UTMI_CLK>,
+ 				 <&gcc GCC_USB30_SEC_SLEEP_CLK>,
++				 <&gcc GCC_USB30_SEC_MOCK_UTMI_CLK>,
+ 				 <&gcc GCC_USB3_SEC_CLKREF_CLK>;
+ 			clock-names = "cfg_noc",
+ 				      "core",
+ 				      "iface",
+-				      "mock_utmi",
+ 				      "sleep",
++				      "mock_utmi",
+ 				      "xo";
+ 			resets = <&gcc GCC_USB30_SEC_BCR>;
+ 			power-domains = <&gcc USB30_SEC_GDSC>;
 -- 
 2.34.1
 
