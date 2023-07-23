@@ -2,76 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EA36175E29A
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jul 2023 16:24:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 750E475E2A4
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jul 2023 16:28:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229685AbjGWOYZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 23 Jul 2023 10:24:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44500 "EHLO
+        id S229470AbjGWO2u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 23 Jul 2023 10:28:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46284 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229477AbjGWOYY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Jul 2023 10:24:24 -0400
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69DF2E55
-        for <devicetree@vger.kernel.org>; Sun, 23 Jul 2023 07:24:23 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-5221f193817so1519328a12.3
-        for <devicetree@vger.kernel.org>; Sun, 23 Jul 2023 07:24:23 -0700 (PDT)
+        with ESMTP id S229456AbjGWO2t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Jul 2023 10:28:49 -0400
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94008E73
+        for <devicetree@vger.kernel.org>; Sun, 23 Jul 2023 07:28:47 -0700 (PDT)
+Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-52227884855so878470a12.1
+        for <devicetree@vger.kernel.org>; Sun, 23 Jul 2023 07:28:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690122262; x=1690727062;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=P9EQDGu/G9aGY22djIAWwRsxznq61tp4HsoFojY4f8w=;
-        b=kjWa/KVPVN8zUsrW+X8aOxATizFoa2tUm1qJ53sjjd10bfzhNzOYr2pql1FAoJlM8C
-         r9FPXz5YtmpKwiSaCFx2lMPvthWgcyb+naJdckuKoMMnd4a1vH9A6G8wzOI+q4BN0Zfj
-         XzjAOyUEWhTh1jfH64l4gJFLMvyO6bYS/DYhg3C/AmtbwLIiBqfwIHFYmxv6PDAgOIwZ
-         F3ee3nsRz70dVKcQkdgX4Hr2YgkYBdvVm9KuoprcJa/49twWT5Jur1CxLqi04CcKduFP
-         1i0oc2WIupxLHY5n/IJKiWx+kde4mac5zvVKQRTf4ln4SiQlSATPndjuFvw/ko3ag81n
-         IknA==
+        d=linaro.org; s=google; t=1690122526; x=1690727326;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=CnglWu01tYHwRNOL8HHkMLLSEFA+kFYQg1Vd2bg+vtE=;
+        b=aZyOQUBhQS9KKId8c3bvqlgtAedmrTKIlVb/EH9qY+3z0bgiUmcf68YDmSpMcc4X12
+         ST23elE9DSDswNdPV+JFJYrZF37CLpEGL5sbMxZMLpdiCzr6coKIWe/42ZnK6Axmh4nl
+         wIVEDpfSsGvj+Gc/0HAqTH/E1fVHQbRUpWPEil+mkFfsHF1ZOxcz98g7mZ/eB4bGDc89
+         m2R03kuptIzHduRdEwp9x8dpyLyk+hU3L5OirGMl+tpb56MGFUfriqepvOdfk0UVUjQX
+         XOSNk0hlU1skQT+uR78DcMSImG0+8y6M5Fmb2qE/PvI2iqwMiapLCfZM/H9WnVNohuVu
+         ukHA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690122262; x=1690727062;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=P9EQDGu/G9aGY22djIAWwRsxznq61tp4HsoFojY4f8w=;
-        b=QMEPM+Vz7y00Rf9Kg3ft1ivTtIbLdMTQPDgkgVfiyyJQFqGpxQkjMjV1yXYCJKSZ5d
-         yUtIALT4GunfMJYid4ZZSBKl1LKEyJCTWh0aG1+kLGgCMDqV7DCBFCWDfqSNlj95raAs
-         WoElrq1emcepDLWoqYqW2wl7Y0mHMVCW9jenQwpsdZ+FjbLnYbiaZOvY6w6R+z4eaGgm
-         u/wF+qz25sgkk78y3kUwt6KY3xJl6AuTxfAPGuvan4mf4qMHC8jIwUaBG+vRGfY6f4dw
-         xzVVWzcD0pruz0DnGMxfjiao1q2qnPN0Vib64Duo+VPx1+rxDRgJmxiezZM+hW3SzqPG
-         jlrg==
-X-Gm-Message-State: ABy/qLatIPffgztVPQT43fGajwlz2vdgOtKJMxOsbQ7P8rcwX5qRYkR2
-        X4DhXPah95VgHxYR3ldZs0DI2pcYs3gXWPdfIZc=
-X-Google-Smtp-Source: APBJJlGijKTBsDB0qaMqp7C37ZN/ipYKV0HPqCKFVT23piyg/YJMaCpgwwnf5grhFlPRIlRNJRHDDg==
-X-Received: by 2002:aa7:cd63:0:b0:51d:8ab1:5df4 with SMTP id ca3-20020aa7cd63000000b0051d8ab15df4mr6658239edb.21.1690122261893;
-        Sun, 23 Jul 2023 07:24:21 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1690122526; x=1690727326;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=CnglWu01tYHwRNOL8HHkMLLSEFA+kFYQg1Vd2bg+vtE=;
+        b=XOxVROZrXfXEJMnn7GjagYi2cQfZ05sfPmMAqL1tmGp41kM07l+WLieYtef6iso9JR
+         Gn2fLZShVeI3Jf68F0gEpG0bPRa1DxTvO9sndC+twb475RLE5C/q51uomIaobVcinUh0
+         8WelhlgaWB6rzH/lUQPhCKO3TszTW55HNhLIQkIi2OPlCrgCPgqSY9ecld4WOA2AKPoh
+         lP+ViwXPazq1/G1Y5UkvS9p2UjSOca89Y8r8kR/9y7QUN65nINEhl4LkccVd8rBTu4+J
+         AyKe4VoqWt6F48beau7417GpubMyw5ruYotoBSTthxYm9RZXq8gvuFLd68gEd5CQYbTq
+         4Okg==
+X-Gm-Message-State: ABy/qLbGdKUw4INTaaoK6cqNvYCJUJVo7w6CGrExVFoJIUZX+ZVFwDyf
+        ozgG/okv8d4XWxKZxOvMNREpsg==
+X-Google-Smtp-Source: APBJJlGsft6GzVcOYUHlpDWS1vZO9h6TJLjor6mTF5Oc9u0bIh6YbPzh+jOOPYkhtRgpob9cGavFfw==
+X-Received: by 2002:a17:906:5a4e:b0:982:30e3:ddcb with SMTP id my14-20020a1709065a4e00b0098230e3ddcbmr7560414ejc.65.1690122526109;
+        Sun, 23 Jul 2023 07:28:46 -0700 (PDT)
 Received: from krzk-bin.. ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id c18-20020aa7c752000000b00521830574c1sm4938618eds.2.2023.07.23.07.24.19
+        by smtp.gmail.com with ESMTPSA id e27-20020a170906375b00b00988f168811bsm5260805ejc.135.2023.07.23.07.28.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 23 Jul 2023 07:24:21 -0700 (PDT)
+        Sun, 23 Jul 2023 07:28:45 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+To:     Chanwoo Choi <cw00.choi@samsung.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        replicant@osuosl.org, phone-devel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        =?UTF-8?q?Martin=20J=C3=BCcker?= <martin.juecker@gmail.com>,
-        Henrik Grimler <henrik@grimler.se>,
-        Artur Weber <aweber.kernel@gmail.com>
-Subject: [PATCH v2] ARM: dts: samsung: exynos4412-midas: add USB connector and USB OTG
-Date:   Sun, 23 Jul 2023 16:24:17 +0200
-Message-Id: <20230723142417.97734-1-krzysztof.kozlowski@linaro.org>
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH v2] dt-bindings: mfd: maxim,max77693: Add USB connector
+Date:   Sun, 23 Jul 2023 16:28:42 +0200
+Message-Id: <20230723142842.98204-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,110 +69,101 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add full description of USB-MUIC (MAX77693 MUIC) and MUIC-MHL
-connections, along with proper USB connector and OTG mode for DWC2 USB
-controller.
+Add micro-USB connector under "muic" node to properly represent the
+hardware.  Deprecate also the old "max77693-muic" in favor of generic
+"muic" (this is max77693, so there is no need to state it in its child
+nodes).  This "muic" node is used only to instantiate MUIC driver by
+compatible, thus actual Linux driver changes are needed.  Extend the
+example with this new code.
 
-This fixes dtc W=1 warnings:
-
-  Warning (graph_child_address): /i2c-mhl/hdmi-bridge@39/ports: graph node has single child node 'port@0', #address-cells/#size-cells are not necessary
-
-Cc: Marek Szyprowski <m.szyprowski@samsung.com>
-Cc: replicant@osuosl.org
-Cc: phone-devel@vger.kernel.org
-Cc: ~postmarketos/upstreaming@lists.sr.ht
-Cc: Martin Jücker <martin.juecker@gmail.com>
-Cc: Henrik Grimler <henrik@grimler.se>
-Cc: Artur Weber <aweber.kernel@gmail.com>
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 ---
 
 Changes in v2:
-1. Put connector node in the muic node (Henrik)
+1. Put connector node in the muic node (Henrik).
+2. Rename max77693-muic -> muic.
+3. Extend example.
 
-Not tested on hardware. Please kindly check if peripheral mode is not
-broken. Or maybe OTG started to work?
+DTS change using this:
+https://lore.kernel.org/linux-samsung-soc/20230723142417.97734-1-krzysztof.kozlowski@linaro.org/T/#u
 ---
- .../boot/dts/samsung/exynos4412-midas.dtsi    | 50 ++++++++++++++++++-
- 1 file changed, 49 insertions(+), 1 deletion(-)
+ .../bindings/mfd/maxim,max77693.yaml          | 48 +++++++++++++++++++
+ 1 file changed, 48 insertions(+)
 
-diff --git a/arch/arm/boot/dts/samsung/exynos4412-midas.dtsi b/arch/arm/boot/dts/samsung/exynos4412-midas.dtsi
-index 57836d5554d0..7daf25865551 100644
---- a/arch/arm/boot/dts/samsung/exynos4412-midas.dtsi
-+++ b/arch/arm/boot/dts/samsung/exynos4412-midas.dtsi
-@@ -182,6 +182,38 @@ pmic@66 {
- 			pinctrl-0 = <&max77693_irq>;
- 			reg = <0x66>;
+diff --git a/Documentation/devicetree/bindings/mfd/maxim,max77693.yaml b/Documentation/devicetree/bindings/mfd/maxim,max77693.yaml
+index 1b06a77ec798..6a6f222b868f 100644
+--- a/Documentation/devicetree/bindings/mfd/maxim,max77693.yaml
++++ b/Documentation/devicetree/bindings/mfd/maxim,max77693.yaml
+@@ -37,6 +37,7 @@ properties:
+   max77693-muic:
+     type: object
+     additionalProperties: false
++    deprecated: true
  
-+			muic {
-+				compatible = "maxim,max77693-muic";
-+
-+				connector {
-+					compatible = "samsung,usb-connector-11pin",
-+						     "usb-b-connector";
-+					label = "micro-USB";
-+					type = "micro";
-+
-+					ports {
-+						#address-cells = <1>;
-+						#size-cells = <0>;
-+
-+						port@0 {
-+							reg = <0>;
-+
-+							muic_to_usb: endpoint {
-+								remote-endpoint = <&usb_to_muic>;
-+							};
-+						};
-+
-+						port@3 {
-+							reg = <3>;
-+
-+							muic_to_mhl: endpoint {
-+								remote-endpoint = <&mhl_to_muic>;
-+							};
-+						};
-+					};
-+				};
-+			};
-+
- 			regulators {
- 				esafeout1_reg: ESAFEOUT1 {
- 					regulator-name = "ESAFEOUT1";
-@@ -287,6 +319,14 @@ mhl_to_hdmi: endpoint {
- 						remote-endpoint = <&hdmi_to_mhl>;
- 					};
- 				};
-+
-+				port@1 {
-+					reg = <1>;
-+
-+					mhl_to_muic: endpoint {
-+						remote-endpoint = <&muic_to_mhl>;
-+					};
-+				};
- 			};
- 		};
- 	};
-@@ -545,8 +585,16 @@ hdmi_to_mhl: endpoint {
- &hsotg {
- 	vusb_d-supply = <&ldo15_reg>;
- 	vusb_a-supply = <&ldo12_reg>;
--	dr_mode = "peripheral";
-+	dr_mode = "otg";
-+	role-switch-default-mode = "peripheral";
-+	usb-role-switch;
- 	status = "okay";
-+
-+	port {
-+		usb_to_muic: endpoint {
-+			remote-endpoint = <&muic_to_usb>;
-+		};
-+	};
- };
+     properties:
+       compatible:
+@@ -45,6 +46,21 @@ properties:
+     required:
+       - compatible
  
- &i2c_0 {
++  muic:
++    type: object
++    additionalProperties: false
++
++    properties:
++      compatible:
++        const: maxim,max77693-muic
++
++      connector:
++        $ref: /schemas/connector/usb-connector.yaml#
++        unevaluatedProperties: false
++
++    required:
++      - compatible
++
+   motor-driver:
+     type: object
+     additionalProperties: false
+@@ -107,6 +123,38 @@ examples:
+                 };
+             };
+ 
++            muic {
++                compatible = "maxim,max77693-muic";
++
++                connector {
++                    compatible = "samsung,usb-connector-11pin",
++                                 "usb-b-connector";
++                    label = "micro-USB";
++                    type = "micro";
++
++                    ports {
++                        #address-cells = <1>;
++                        #size-cells = <0>;
++
++                        port@0 {
++                            reg = <0>;
++
++                            muic_to_usb: endpoint {
++                                remote-endpoint = <&usb_to_muic>;
++                            };
++                        };
++
++                        port@3 {
++                            reg = <3>;
++
++                            muic_to_mhl: endpoint {
++                                remote-endpoint = <&mhl_to_muic>;
++                            };
++                        };
++                    };
++                };
++            };
++
+             motor-driver {
+                 compatible = "maxim,max77693-haptic";
+                 haptic-supply = <&ldo26_reg>;
 -- 
 2.34.1
 
