@@ -2,69 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4306775E4AF
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jul 2023 22:06:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4627A75E4C1
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jul 2023 22:14:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229640AbjGWUGL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 23 Jul 2023 16:06:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58654 "EHLO
+        id S229469AbjGWUOG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 23 Jul 2023 16:14:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33744 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229491AbjGWUGK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Jul 2023 16:06:10 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7741B1BE;
-        Sun, 23 Jul 2023 13:06:09 -0700 (PDT)
+        with ESMTP id S229493AbjGWUOF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Jul 2023 16:14:05 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 001B2124;
+        Sun, 23 Jul 2023 13:14:03 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 04FBA60E9A;
-        Sun, 23 Jul 2023 20:06:09 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AE29FC433C8;
-        Sun, 23 Jul 2023 20:06:01 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 882E060E99;
+        Sun, 23 Jul 2023 20:14:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AEDD3C433C8;
+        Sun, 23 Jul 2023 20:14:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690142768;
-        bh=MYDNII/nRbpdhoxLfX/zeWMDQLkBfuAoQG5un5EegG8=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=i04gOhYl/e9pCTC+Qjr0+IHT70ErCt815FZsNDMNWXOyWLAtfFsG5RRDgy/ifMEYi
-         ocuIRDmhrayU0SnG3tshMAydV1PAx5CqH6z636iru4IYvtGpvzPlkrKyAXwVcporwo
-         xN7gQ8SSCjeGdg5g3sHi+/+PXffTeKrzQbsJ7Ba1tyxmDeXLPCWXSP7nMhB7Zt21Kb
-         xzTthLBnKMf4WlOuXZE2aW4YkWJgrKhkOPlIBw48KjZHkV3U+OUUh7Jgh645JuBoRg
-         5pXX9f85FgT316SIJ0WqprfJYTbt/k3S85n2UugXt5ZXSgq3h6aOvObqny3LV/lRzA
-         VeVGP5CPUOpmw==
-Message-ID: <1703ab6e-8567-8574-f011-af19813f97e8@kernel.org>
-Date:   Mon, 24 Jul 2023 05:06:04 +0900
+        s=k20201202; t=1690143242;
+        bh=UlXFdMemZYFGRxh5aP7MeZpekq/5sNO9fXlQODriNWQ=;
+        h=Date:Subject:To:References:From:In-Reply-To:From;
+        b=INH+ttnsnqknWpdr1kf5CytbfJCbYTD11Phoctk/CTY+b0VI3tiedMhUA57aR9C3E
+         dXFkj9HgliJAv24uM2+OeWnU6qit9mXJCt1XVd/csfO/y1CophxoTkUPKphUM5emN0
+         unB+uvVEdujXp0kbcDS9FzY7PlULEE5L++fbMr54UiFmgXR2tWdm0b4J8pPNSKV95U
+         jnRmx6fWcqRnfBfSCRaFW3AhJmPG6sEQ2zh9GiXnYbLXQ8QSDQqYuKEwPiEArct7XM
+         pixyvrFNAqjGbGRaE4tuVLsqwn1gD+yr3nLXAmq4r1pNFd1gEjf1S5TZPjdmLc6vf3
+         qTnsnXQqtcKtw==
+Message-ID: <8df6c046-d40e-da1c-1232-8845cec58f14@kernel.org>
+Date:   Mon, 24 Jul 2023 05:13:59 +0900
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
-Subject: Re: [PATCH v2 09/15] PM / devfreq: Switch to
- dev_pm_opp_find_freq_{ceil/floor}_indexed() APIs
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        vireshk@kernel.org, nm@ti.com, sboyd@kernel.org,
-        myungjoo.ham@samsung.com, kyungmin.park@samsung.com,
-        cw00.choi@samsung.com, andersson@kernel.org,
-        konrad.dybcio@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        jejb@linux.ibm.com, martin.petersen@oracle.com
-Cc:     alim.akhtar@samsung.com, avri.altman@wdc.com, bvanassche@acm.org,
-        linux-scsi@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        quic_asutoshd@quicinc.com, quic_cang@quicinc.com,
-        quic_nitirawa@quicinc.com, quic_narepall@quicinc.com,
-        quic_bhaskarv@quicinc.com, quic_richardp@quicinc.com,
-        quic_nguyenb@quicinc.com, quic_ziqichen@quicinc.com,
-        bmasney@redhat.com, krzysztof.kozlowski@linaro.org,
-        linux-kernel@vger.kernel.org
-References: <20230720054100.9940-1-manivannan.sadhasivam@linaro.org>
- <20230720054100.9940-10-manivannan.sadhasivam@linaro.org>
-From:   Chanwoo Choi <chanwoo@kernel.org>
+Subject: Re: [PATCH v2] dt-bindings: mfd: maxim,max77693: Add USB connector
 Content-Language: en-US
-In-Reply-To: <20230720054100.9940-10-manivannan.sadhasivam@linaro.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20230723142842.98204-1-krzysztof.kozlowski@linaro.org>
+From:   Chanwoo Choi <chanwoo@kernel.org>
+In-Reply-To: <20230723142842.98204-1-krzysztof.kozlowski@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,84 +59,106 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On 23. 7. 20. 14:40, Manivannan Sadhasivam wrote:
-> Some devfreq consumers like UFS driver need to work with multiple clocks
-> through the OPP framework. For this reason, OPP framework exposes the
-> _indexed() APIs for finding the floor/ceil of the supplied frequency of
-> the indexed clock. So let's use them in the devfreq driver.
+On 23. 7. 23. 23:28, Krzysztof Kozlowski wrote:
+> Add micro-USB connector under "muic" node to properly represent the
+> hardware.  Deprecate also the old "max77693-muic" in favor of generic
+> "muic" (this is max77693, so there is no need to state it in its child
+> nodes).  This "muic" node is used only to instantiate MUIC driver by
+> compatible, thus actual Linux driver changes are needed.  Extend the
+> example with this new code.
 > 
-> Currently, the clock index of 0 is used which works fine for multiple as
-> well as single clock.
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > 
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 > ---
->  drivers/devfreq/devfreq.c | 14 +++++++-------
->  1 file changed, 7 insertions(+), 7 deletions(-)
 > 
-> diff --git a/drivers/devfreq/devfreq.c b/drivers/devfreq/devfreq.c
-> index e36cbb920ec8..7686993d639f 100644
-> --- a/drivers/devfreq/devfreq.c
-> +++ b/drivers/devfreq/devfreq.c
-> @@ -88,7 +88,7 @@ static unsigned long find_available_min_freq(struct devfreq *devfreq)
->  	struct dev_pm_opp *opp;
->  	unsigned long min_freq = 0;
+> Changes in v2:
+> 1. Put connector node in the muic node (Henrik).
+> 2. Rename max77693-muic -> muic.
+> 3. Extend example.
+> 
+> DTS change using this:
+> https://lore.kernel.org/linux-samsung-soc/20230723142417.97734-1-krzysztof.kozlowski@linaro.org/T/#u
+> ---
+>  .../bindings/mfd/maxim,max77693.yaml          | 48 +++++++++++++++++++
+>  1 file changed, 48 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/mfd/maxim,max77693.yaml b/Documentation/devicetree/bindings/mfd/maxim,max77693.yaml
+> index 1b06a77ec798..6a6f222b868f 100644
+> --- a/Documentation/devicetree/bindings/mfd/maxim,max77693.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/maxim,max77693.yaml
+> @@ -37,6 +37,7 @@ properties:
+>    max77693-muic:
+>      type: object
+>      additionalProperties: false
+> +    deprecated: true
 >  
-> -	opp = dev_pm_opp_find_freq_ceil(devfreq->dev.parent, &min_freq);
-> +	opp = dev_pm_opp_find_freq_ceil_indexed(devfreq->dev.parent, &min_freq, 0);
+>      properties:
+>        compatible:
+> @@ -45,6 +46,21 @@ properties:
+>      required:
+>        - compatible
+>  
+> +  muic:
+> +    type: object
+> +    additionalProperties: false
+> +
+> +    properties:
+> +      compatible:
+> +        const: maxim,max77693-muic
+> +
+> +      connector:
+> +        $ref: /schemas/connector/usb-connector.yaml#
+> +        unevaluatedProperties: false
+> +
+> +    required:
+> +      - compatible
+> +
+>    motor-driver:
+>      type: object
+>      additionalProperties: false
+> @@ -107,6 +123,38 @@ examples:
+>                  };
+>              };
+>  
+> +            muic {
+> +                compatible = "maxim,max77693-muic";
+> +
+> +                connector {
+> +                    compatible = "samsung,usb-connector-11pin",
+> +                                 "usb-b-connector";
+> +                    label = "micro-USB";
+> +                    type = "micro";
+> +
+> +                    ports {
+> +                        #address-cells = <1>;
+> +                        #size-cells = <0>;
+> +
+> +                        port@0 {
+> +                            reg = <0>;
+> +
+> +                            muic_to_usb: endpoint {
+> +                                remote-endpoint = <&usb_to_muic>;
+> +                            };
+> +                        };
+> +
+> +                        port@3 {
+> +                            reg = <3>;
+> +
+> +                            muic_to_mhl: endpoint {
+> +                                remote-endpoint = <&mhl_to_muic>;
+> +                            };
+> +                        };
+> +                    };
+> +                };
+> +            };
+> +
+>              motor-driver {
+>                  compatible = "maxim,max77693-haptic";
+>                  haptic-supply = <&ldo26_reg>;
 
-This patch changed the used function from dev_pm_opp_find_freq_ceil
-to dev_pm_opp_find_freq_ceil_indexed even if there are no supporting of the multiple clocks
-and then dev_pm_opp_find_freq_ceil is not removed from OPP.
+Reviewed-by: Chanwoo Choi <cw00.choi@samsung.com>
 
-I think that it is better to use dev_pm_opp_find_freq_ceil_indexed
-when need to support multiple clocks with real case.
-
->  	if (IS_ERR(opp))
->  		min_freq = 0;
->  	else
-> @@ -102,7 +102,7 @@ static unsigned long find_available_max_freq(struct devfreq *devfreq)
->  	struct dev_pm_opp *opp;
->  	unsigned long max_freq = ULONG_MAX;
->  
-> -	opp = dev_pm_opp_find_freq_floor(devfreq->dev.parent, &max_freq);
-> +	opp = dev_pm_opp_find_freq_floor_indexed(devfreq->dev.parent, &max_freq, 0);
->  	if (IS_ERR(opp))
->  		max_freq = 0;
->  	else
-> @@ -196,7 +196,7 @@ static int set_freq_table(struct devfreq *devfreq)
->  		return -ENOMEM;
->  
->  	for (i = 0, freq = 0; i < devfreq->max_state; i++, freq++) {
-> -		opp = dev_pm_opp_find_freq_ceil(devfreq->dev.parent, &freq);
-> +		opp = dev_pm_opp_find_freq_ceil_indexed(devfreq->dev.parent, &freq, 0);
->  		if (IS_ERR(opp)) {
->  			devm_kfree(devfreq->dev.parent, devfreq->freq_table);
->  			return PTR_ERR(opp);
-> @@ -2034,18 +2034,18 @@ struct dev_pm_opp *devfreq_recommended_opp(struct device *dev,
->  
->  	if (flags & DEVFREQ_FLAG_LEAST_UPPER_BOUND) {
->  		/* The freq is an upper bound. opp should be lower */
-> -		opp = dev_pm_opp_find_freq_floor(dev, freq);
-> +		opp = dev_pm_opp_find_freq_floor_indexed(dev, freq, 0);
->  
->  		/* If not available, use the closest opp */
->  		if (opp == ERR_PTR(-ERANGE))
-> -			opp = dev_pm_opp_find_freq_ceil(dev, freq);
-> +			opp = dev_pm_opp_find_freq_ceil_indexed(dev, freq, 0);
->  	} else {
->  		/* The freq is an lower bound. opp should be higher */
-> -		opp = dev_pm_opp_find_freq_ceil(dev, freq);
-> +		opp = dev_pm_opp_find_freq_ceil_indexed(dev, freq, 0);
->  
->  		/* If not available, use the closest opp */
->  		if (opp == ERR_PTR(-ERANGE))
-> -			opp = dev_pm_opp_find_freq_floor(dev, freq);
-> +			opp = dev_pm_opp_find_freq_floor_indexed(dev, freq, 0);
->  	}
->  
->  	return opp;
+Thanks.
 
 -- 
 Best Regards,
