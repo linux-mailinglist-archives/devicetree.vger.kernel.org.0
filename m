@@ -2,111 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C92F475E0EB
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jul 2023 11:29:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B61AA75E0F0
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jul 2023 11:34:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229541AbjGWJ3c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 23 Jul 2023 05:29:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38176 "EHLO
+        id S229708AbjGWJeC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 23 Jul 2023 05:34:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39222 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229493AbjGWJ3b (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Jul 2023 05:29:31 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCA98E5E;
-        Sun, 23 Jul 2023 02:29:30 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 7B74D60C80;
-        Sun, 23 Jul 2023 09:29:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3ABC8C433C8;
-        Sun, 23 Jul 2023 09:29:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690104569;
-        bh=jJ5OqocH6H6RTXRPwl1ijcDVdgQPxVAgCpfaIurlLgM=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=QXaDGg3z2iMyrx2I3JXd91PKwm46WlZY7lcRY/ighrIrBsyV0IOM+X2nHdWzxq22p
-         +20/6NIhr0WVVRSDp6NQ148MpfWWTwYbwfJpetH+Owc6e/EeqntR/Q77wXSETCA9lZ
-         mZB4JVKHyhQNDZxijzowuwEY+VlmdJibkZAy3edsym5+AiKfp8lT3Ua5foSSQDT6+L
-         1hUuz+9fFGxmaQ2Nw1iUm9lZZFYfGk4rbY6VknVshVGh/0U1Gr6zXFRYSH6u53FN8o
-         NPRlT2ADD34JXo0JEZAuSvql2NErUTZa8fN/kAadBcR4GklR76jUtZyVwh86ijmx2a
-         fSLVjmAryHUTg==
-Date:   Sun, 23 Jul 2023 10:29:25 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Martin Kepplinger <martink@posteo.de>
-Cc:     lorenzo@kernel.org, lars@metafoo.de, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        kernel@puri.sm, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: iio: imu: st,lsm6dsx: add mount-matrix
- property
-Message-ID: <20230723102925.3d5f1c40@jic23-huawei>
-In-Reply-To: <20230721103410.575555-1-martink@posteo.de>
-References: <20230721103410.575555-1-martink@posteo.de>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+        with ESMTP id S229493AbjGWJeB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Jul 2023 05:34:01 -0400
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27EDEE66
+        for <devicetree@vger.kernel.org>; Sun, 23 Jul 2023 02:34:00 -0700 (PDT)
+Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-3fbc244d307so30976525e9.1
+        for <devicetree@vger.kernel.org>; Sun, 23 Jul 2023 02:34:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1690104838; x=1690709638;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=OC0hL4ajjQBun5KqVFTzcpsSj0OMP1ItjYDfFgKDcog=;
+        b=kp6dRrQUevs9NleJDIlPEeph5mcu+PXMAQug5ZzzeW6rl+pj4grKrkWk4egllNaPqg
+         7ffRnavd40Fg4Q2eOFptOwQ0B0F50hw9pyeiYksz/SKYqFG5PYtp6W5BYLJweDRxNram
+         YadqiUP3b+NTPMMzg/VM4/eoe+Y8jlmEGBU/89rrn45bFJpv2122TQ2YFHmVH6x2hKzX
+         In6erAig/Oq5d8kxUycrrr377AjnvL0JViXl8gUEoKsiRWUEEXRqL0VHcPkXkAyPkdg9
+         zP6eFmHtILztNQtEoNPMmQC26L1fdLqalNw7siSnstdYIdDNejNGhWV8H4vhA531pyVU
+         g6Dw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690104838; x=1690709638;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=OC0hL4ajjQBun5KqVFTzcpsSj0OMP1ItjYDfFgKDcog=;
+        b=dEubSgV/Wxdut2qE6V/nYcGBa+BhNljZWiUUQS1NQ12j+nG7cM8VFhel7VTngAQR3a
+         qkAacQm6MS0f7u+fYtIM2H31pjQYv4TmPp709YfA3nAM+Wca0a8NX9sNznRK16b37Bza
+         D10I024UDl+GBQb23qBZPsZkEHa8VV04xebcsG6J5mCBIhxmU0BTeWkSiAm5lKRzKsFC
+         ADeI+9cHBlq/r0LuT5UO2dGQ/N4KB3QI705FMq8LD6vq2hAHDpnlvY32QDU1NDwtrQms
+         RK316ZysN05b6K9KrwoZeRocfqlNeVAQgiOyNKMK9bByN7QakPSkCgjZVI9F+hwzNAaE
+         iIHA==
+X-Gm-Message-State: ABy/qLaiKkiexvCVkiPGVlE1wXP7qT7YSQPt2lSvie39MGksbogyKbA2
+        LycX5HLSeeK5vtYQbsoJKaGajw==
+X-Google-Smtp-Source: APBJJlGQYnTIzlGqoT+dviUAIa3bhjXpw2+p9F3nFx1r9W62L0Gpb/iIAmd6BIQ4N1VtH/tpbeCfgQ==
+X-Received: by 2002:a7b:c30e:0:b0:3f9:871:c2da with SMTP id k14-20020a7bc30e000000b003f90871c2damr4859726wmj.40.1690104838588;
+        Sun, 23 Jul 2023 02:33:58 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id p1-20020a05600c204100b003fc17e8a1efsm9791468wmg.45.2023.07.23.02.33.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 23 Jul 2023 02:33:58 -0700 (PDT)
+Message-ID: <3c0f0a26-ea9a-faa6-9fe1-ffcf242b6200@linaro.org>
+Date:   Sun, 23 Jul 2023 11:33:55 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH 06/11] dt-bindings: remoteproc: qcom,adsp: Remove AGGRE2
+ clock
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Sibi Sankar <quic_sibis@quicinc.com>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230721-topic-rpm_clk_cleanup-v1-0-cf6cd5c621d5@linaro.org>
+ <20230721-topic-rpm_clk_cleanup-v1-6-cf6cd5c621d5@linaro.org>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230721-topic-rpm_clk_cleanup-v1-6-cf6cd5c621d5@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 21 Jul 2023 10:34:10 +0000
-Martin Kepplinger <martink@posteo.de> wrote:
-
-> Add the mount-matrix optional property to the binding since it's supported
-> and very useful when using the chip on a board.
+On 21/07/2023 17:36, Konrad Dybcio wrote:
+> The AGGRE2 clock is a clock for the entire AGGRE2 bus, managed from
+> within the interconnect driver. Attaching it to SLPI was a total hack.
+> Get rid of it.
 > 
-> Signed-off-by: Martin Kepplinger <martink@posteo.de>
-
-Hi Martin,
-
-A question on the example.
-
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 > ---
->  Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
+>  Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml | 2 --
+>  1 file changed, 2 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml b/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
-> index b39f5217d8ff..443dce326c5e 100644
-> --- a/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
-> +++ b/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
-> @@ -93,6 +93,9 @@ properties:
->    wakeup-source:
->      $ref: /schemas/types.yaml#/definitions/flag
->  
-> +  mount-matrix:
-> +    description: an optional 3x3 mounting rotation matrix
-> +
->  required:
->    - compatible
->    - reg
-> @@ -114,6 +117,9 @@ examples:
->              reg = <0x6b>;
->              interrupt-parent = <&gpio0>;
->              interrupts = <0 IRQ_TYPE_EDGE_RISING>;
-> +            mount-matrix =  "1",  "0",  "0",
-> +                            "0",  "1",  "0",
-> +                            "0",  "0", "-1";
+> diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml
+> index a2b0079de039..af78f76734db 100644
+> --- a/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml
+> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml
+> @@ -91,11 +91,9 @@ allOf:
+>          clocks:
+>            items:
+>              - description: XO clock
+> -            - description: AGGRE2 clock
 
-That's not a rotation matrix - so it's not a valid example...
-IIRC it's a rotoinversion (determinant -1 whereas should be 1 for
-a rotation matrix)
-If a device is doing this we have a disagreement wrt to whether
-it is using a left or right handed axis - which is a problem, though
-one that is tricky to fix without causing people all sorts of problems..
+I think this entry can be squashed now with previous if:then:.
 
-Jonathan
-
-
->          };
->      };
->  ...
+Best regards,
+Krzysztof
 
