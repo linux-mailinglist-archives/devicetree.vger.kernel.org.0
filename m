@@ -2,65 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 750E475E2A4
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jul 2023 16:28:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 14C7B75E2AC
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jul 2023 16:34:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229470AbjGWO2u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 23 Jul 2023 10:28:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46284 "EHLO
+        id S229768AbjGWOev (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 23 Jul 2023 10:34:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47836 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229456AbjGWO2t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Jul 2023 10:28:49 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94008E73
-        for <devicetree@vger.kernel.org>; Sun, 23 Jul 2023 07:28:47 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-52227884855so878470a12.1
-        for <devicetree@vger.kernel.org>; Sun, 23 Jul 2023 07:28:47 -0700 (PDT)
+        with ESMTP id S229677AbjGWOeu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Jul 2023 10:34:50 -0400
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BECAE7D
+        for <devicetree@vger.kernel.org>; Sun, 23 Jul 2023 07:34:48 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-51e28b299adso5618525a12.2
+        for <devicetree@vger.kernel.org>; Sun, 23 Jul 2023 07:34:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690122526; x=1690727326;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=CnglWu01tYHwRNOL8HHkMLLSEFA+kFYQg1Vd2bg+vtE=;
-        b=aZyOQUBhQS9KKId8c3bvqlgtAedmrTKIlVb/EH9qY+3z0bgiUmcf68YDmSpMcc4X12
-         ST23elE9DSDswNdPV+JFJYrZF37CLpEGL5sbMxZMLpdiCzr6coKIWe/42ZnK6Axmh4nl
-         wIVEDpfSsGvj+Gc/0HAqTH/E1fVHQbRUpWPEil+mkFfsHF1ZOxcz98g7mZ/eB4bGDc89
-         m2R03kuptIzHduRdEwp9x8dpyLyk+hU3L5OirGMl+tpb56MGFUfriqepvOdfk0UVUjQX
-         XOSNk0hlU1skQT+uR78DcMSImG0+8y6M5Fmb2qE/PvI2iqwMiapLCfZM/H9WnVNohuVu
-         ukHA==
+        d=linaro.org; s=google; t=1690122886; x=1690727686;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=uXv7e6KED+JSh8uirNIwgfBSKBLwxK9076I+S0/EqU0=;
+        b=mm41k8EhAvS/ZYYDKAa3KE57KEUc4iW/FAINgc/DJ8iU5A8gXvy6pSXKMj0FtGhfWl
+         AkrP6wdIPCpdgkzrThwLn7jl3IM1/bGMNhcMsf12Xnr+a7c9uCGBBv5cYgfw1fseGb9e
+         ESuvPWgJwbouE5VbeMCkUxrnHppkNzS+p+fevwEbFAtn+VlrrSJXnpSmlmLg2Ccw0PmW
+         o+5laetR6xw4bt8smMMdK/ysdy1FcNHh89I+G+H/4KaFv2NyfszQkriJn/7a5VgbAIov
+         7YZqDX69JYEf48RKAayVhKobTemURTm9x8muhmDjYuCN0EdcoQsASMi4QBiuzS6OEdEr
+         maVQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690122526; x=1690727326;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=CnglWu01tYHwRNOL8HHkMLLSEFA+kFYQg1Vd2bg+vtE=;
-        b=XOxVROZrXfXEJMnn7GjagYi2cQfZ05sfPmMAqL1tmGp41kM07l+WLieYtef6iso9JR
-         Gn2fLZShVeI3Jf68F0gEpG0bPRa1DxTvO9sndC+twb475RLE5C/q51uomIaobVcinUh0
-         8WelhlgaWB6rzH/lUQPhCKO3TszTW55HNhLIQkIi2OPlCrgCPgqSY9ecld4WOA2AKPoh
-         lP+ViwXPazq1/G1Y5UkvS9p2UjSOca89Y8r8kR/9y7QUN65nINEhl4LkccVd8rBTu4+J
-         AyKe4VoqWt6F48beau7417GpubMyw5ruYotoBSTthxYm9RZXq8gvuFLd68gEd5CQYbTq
-         4Okg==
-X-Gm-Message-State: ABy/qLbGdKUw4INTaaoK6cqNvYCJUJVo7w6CGrExVFoJIUZX+ZVFwDyf
-        ozgG/okv8d4XWxKZxOvMNREpsg==
-X-Google-Smtp-Source: APBJJlGsft6GzVcOYUHlpDWS1vZO9h6TJLjor6mTF5Oc9u0bIh6YbPzh+jOOPYkhtRgpob9cGavFfw==
-X-Received: by 2002:a17:906:5a4e:b0:982:30e3:ddcb with SMTP id my14-20020a1709065a4e00b0098230e3ddcbmr7560414ejc.65.1690122526109;
-        Sun, 23 Jul 2023 07:28:46 -0700 (PDT)
-Received: from krzk-bin.. ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id e27-20020a170906375b00b00988f168811bsm5260805ejc.135.2023.07.23.07.28.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 23 Jul 2023 07:28:45 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Chanwoo Choi <cw00.choi@samsung.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH v2] dt-bindings: mfd: maxim,max77693: Add USB connector
-Date:   Sun, 23 Jul 2023 16:28:42 +0200
-Message-Id: <20230723142842.98204-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
+        d=1e100.net; s=20221208; t=1690122886; x=1690727686;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=uXv7e6KED+JSh8uirNIwgfBSKBLwxK9076I+S0/EqU0=;
+        b=SNPPMxVDgTxeoSeWvvvkrLdD+yPJyfbxlBYNe1+tQ5cvlfMIPxKh7LxrsUydhxnW5H
+         rdzfcW9+Kq9wUWLIC2gBDTfwtruKmrGhLu2A4qj1561Gn1y6yzlV5O+uYv8IFIzE9NVf
+         Hhus54eG5xZc8bm0kwp+hUrItgWnAdJmTq/V0tbQ8aDOKN3XnrAmtae30jrGe5xOL+yc
+         5bW/24Tf8PM3Y3ktdFXMSuvMRigz2zWK7ZnTmx/OSZeiFV3CYG1kEesj5nOLSRy/oKsm
+         MxqZMc5HW4Reb0qlKX/yyMPMCxWDxnCw2jn4bAOylHEK9L0mubBO6TDWxOC/xIBGtJ2l
+         wDtA==
+X-Gm-Message-State: ABy/qLaT8Sv1w/NgzmNABcGWFR/Pduwurs8xSKM7IgjqIjvudWMpJWpZ
+        ewwjJbysCGVzqr3Ntg8+8yt0Nw==
+X-Google-Smtp-Source: APBJJlH3sMpku5LLO3f/un8EhhKdjrFQkRn5DLRrg76bjT7U2drDbnhYtpzs8cxuWROzaeMYtJNiOQ==
+X-Received: by 2002:aa7:d908:0:b0:522:1d23:a1f8 with SMTP id a8-20020aa7d908000000b005221d23a1f8mr3746546edr.26.1690122886749;
+        Sun, 23 Jul 2023 07:34:46 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id x5-20020aa7dac5000000b005221fd1103esm1590336eds.41.2023.07.23.07.34.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 23 Jul 2023 07:34:46 -0700 (PDT)
+Message-ID: <df680f80-875f-b414-911e-69ab4d9bb87b@linaro.org>
+Date:   Sun, 23 Jul 2023 16:34:43 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH 4/7] dt-bindings: clock: qcom,hfpll: Document MSM8976
+ compatibles
+Content-Language: en-US
+To:     Adam Skladowski <a39.skl@gmail.com>
+Cc:     phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230723140712.9438-1-a39.skl@gmail.com>
+ <20230723140712.9438-5-a39.skl@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230723140712.9438-5-a39.skl@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -69,101 +88,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add micro-USB connector under "muic" node to properly represent the
-hardware.  Deprecate also the old "max77693-muic" in favor of generic
-"muic" (this is max77693, so there is no need to state it in its child
-nodes).  This "muic" node is used only to instantiate MUIC driver by
-compatible, thus actual Linux driver changes are needed.  Extend the
-example with this new code.
+On 23/07/2023 16:06, Adam Skladowski wrote:
+> Document MSM8976 HFPLL compatibles.
+> 
+> Signed-off-by: Adam Skladowski <a39.skl@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/clock/qcom,hfpll.txt | 3 +++
+>  1 file changed, 3 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/qcom,hfpll.txt b/Documentation/devicetree/bindings/clock/qcom,hfpll.txt
+> index ec02a024424c..855344957350 100644
+> --- a/Documentation/devicetree/bindings/clock/qcom,hfpll.txt
+> +++ b/Documentation/devicetree/bindings/clock/qcom,hfpll.txt
+> @@ -11,6 +11,9 @@ PROPERTIES
+>                          "qcom,hfpll-ipq8064", "qcom,hfpll"
+>                          "qcom,hfpll-apq8064", "qcom,hfpll"
+>                          "qcom,hfpll-msm8974", "qcom,hfpll"
+> +                        "qcom,hfpll-msm8976-a53", "qcom,hfpll"
+> +                        "qcom,hfpll-msm8976-a72", "qcom,hfpll"
+> +                        "qcom,hfpll-msm8976-cci", "qcom,hfpll"
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Let's switch to proper format, because this is not getting mess, so:
+qcom,msm8976-hfpll-a53
 
----
-
-Changes in v2:
-1. Put connector node in the muic node (Henrik).
-2. Rename max77693-muic -> muic.
-3. Extend example.
-
-DTS change using this:
-https://lore.kernel.org/linux-samsung-soc/20230723142417.97734-1-krzysztof.kozlowski@linaro.org/T/#u
----
- .../bindings/mfd/maxim,max77693.yaml          | 48 +++++++++++++++++++
- 1 file changed, 48 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/mfd/maxim,max77693.yaml b/Documentation/devicetree/bindings/mfd/maxim,max77693.yaml
-index 1b06a77ec798..6a6f222b868f 100644
---- a/Documentation/devicetree/bindings/mfd/maxim,max77693.yaml
-+++ b/Documentation/devicetree/bindings/mfd/maxim,max77693.yaml
-@@ -37,6 +37,7 @@ properties:
-   max77693-muic:
-     type: object
-     additionalProperties: false
-+    deprecated: true
- 
-     properties:
-       compatible:
-@@ -45,6 +46,21 @@ properties:
-     required:
-       - compatible
- 
-+  muic:
-+    type: object
-+    additionalProperties: false
-+
-+    properties:
-+      compatible:
-+        const: maxim,max77693-muic
-+
-+      connector:
-+        $ref: /schemas/connector/usb-connector.yaml#
-+        unevaluatedProperties: false
-+
-+    required:
-+      - compatible
-+
-   motor-driver:
-     type: object
-     additionalProperties: false
-@@ -107,6 +123,38 @@ examples:
-                 };
-             };
- 
-+            muic {
-+                compatible = "maxim,max77693-muic";
-+
-+                connector {
-+                    compatible = "samsung,usb-connector-11pin",
-+                                 "usb-b-connector";
-+                    label = "micro-USB";
-+                    type = "micro";
-+
-+                    ports {
-+                        #address-cells = <1>;
-+                        #size-cells = <0>;
-+
-+                        port@0 {
-+                            reg = <0>;
-+
-+                            muic_to_usb: endpoint {
-+                                remote-endpoint = <&usb_to_muic>;
-+                            };
-+                        };
-+
-+                        port@3 {
-+                            reg = <3>;
-+
-+                            muic_to_mhl: endpoint {
-+                                remote-endpoint = <&mhl_to_muic>;
-+                            };
-+                        };
-+                    };
-+                };
-+            };
-+
-             motor-driver {
-                 compatible = "maxim,max77693-haptic";
-                 haptic-supply = <&ldo26_reg>;
--- 
-2.34.1
+Best regards,
+Krzysztof
 
