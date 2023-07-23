@@ -2,109 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 520C375E409
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jul 2023 19:30:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D207E75E448
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jul 2023 21:08:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230011AbjGWRaD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 23 Jul 2023 13:30:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60792 "EHLO
+        id S229832AbjGWTIH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 23 Jul 2023 15:08:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43932 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229618AbjGWRaC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Jul 2023 13:30:02 -0400
-Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A39CA1B3
-        for <devicetree@vger.kernel.org>; Sun, 23 Jul 2023 10:30:00 -0700 (PDT)
-Received: by mail-pf1-x433.google.com with SMTP id d2e1a72fcca58-6862842a028so1967835b3a.0
-        for <devicetree@vger.kernel.org>; Sun, 23 Jul 2023 10:30:00 -0700 (PDT)
+        with ESMTP id S229456AbjGWTIG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Jul 2023 15:08:06 -0400
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 326F41A7;
+        Sun, 23 Jul 2023 12:08:03 -0700 (PDT)
+Received: by mail-wr1-x42d.google.com with SMTP id ffacd0b85a97d-3143b72c5ffso3202272f8f.3;
+        Sun, 23 Jul 2023 12:08:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1690133400; x=1690738200;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=anD/aZSlr+vLjZWLNxtxT0F5flAWAxjs67Wwhw6u0QM=;
-        b=E+ArsCyWXwauL0di3emQhq+Fmc/7kBA6oessKwzGOTGr4kxRa5UnXYIUloBVNs+ZKr
-         vDWe5CeL4XVcghejAaiQh3imZha3QAH4TVK1+GJopZIWFYvcuRALPiYmvSNU0m21Sjw4
-         mVVULeIdyuDTF05PGfRAe1xMhSQ+PXcdmc93bY7QEF2YeBfnOnwQMjPJMLGeFLu6qVOp
-         rANcYkbU6ZNvd3ef9xGVGK+W/hs5zOaQkBpJdt3zkbqUAW489Q/sbs97BJXw3sWJjlGO
-         HOkVEtQK3sZJZXzeXPOzzeXVCAuv1E4zHLc1i25OFc1QloXYwnyV0ITpoM7Mib5K5eJG
-         m97A==
+        d=gmail.com; s=20221208; t=1690139281; x=1690744081;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=rshblnJhusW6XuI78vZ0f2OYejpIOjKqY/oNXeDBMRY=;
+        b=TZsY262vvy8JNVZkIbcCbVWa3+p98kfflNYUZ/voRXh+w8axmWCZrXd1K+umweDSiG
+         ffN2PFMqgbji1mtLZEft8mDODUz08oo9yacT2nWsAbuE5Jr7Lu95ahAR9xL6WcPMAwoC
+         xoLqP24RZVz2fbWujdiMXRQC/E8nVPqem2H7Dwil/TBz9pROk1opToj8chQHVg/tmHNm
+         JXLQqDmWWkK2xnu5dRnQiweEyQLZnb+2DisXMuTMncCuP2qWVVlhKKZePGpaD58wlbZg
+         kW8zozwb6l04s34CiaTRCQRL9a+mTjbbv5pUhiGqp6bBiRVvb+k0KGt20dhGIytbL9PJ
+         +OHA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690133400; x=1690738200;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=anD/aZSlr+vLjZWLNxtxT0F5flAWAxjs67Wwhw6u0QM=;
-        b=MgoIITMq0lXxGcY3a1R5OBj0wVFSR9BwK07VMV0VxQooAR/u2SA8JfI/R51pPbwBes
-         6CNF9oArRbSNj1utR5xWTRfyKmwYQZMqrz8fxjGmFs7rh67oSnYXNv947UcNt9hoRsT6
-         UH8OHHOI2vMMBBDlMVzNy34/ruC7C9/3vDGnmOZxcOd4vWT1/z07RcaT0ipDp71CsLxG
-         WKNfpyu5mq88WfRbITgx7JVa1mufHNsE+SviHzHpEBU8Y1tIYJCUOLbSk40rhIgU38bG
-         EZNZhKvX5erXelIy5SsiYXeWGblcrnHq6X2f+AcGIZvhOHVLE0QlDYCorLX4B9ls5Q8m
-         CIHw==
-X-Gm-Message-State: ABy/qLZoPFdPpqtfyl1qIaOKS0eJH843aO7aixbw6+3bc4Pbm3FqI7Zg
-        O41hHOMsYvTjU8YWFj5GNBaDyA==
-X-Google-Smtp-Source: APBJJlGzn18xvFg4hiXQsp73KgOF0fT+h4xDUJN4Wco5VrV/ebEtcvNWM2uHS2/B+5arR7FXdrOezA==
-X-Received: by 2002:a05:6a00:1307:b0:674:8fe0:1262 with SMTP id j7-20020a056a00130700b006748fe01262mr4911219pfu.18.1690133400075;
-        Sun, 23 Jul 2023 10:30:00 -0700 (PDT)
-Received: from x1 ([2601:1c2:1800:f680:2a8c:966f:392d:7230])
-        by smtp.gmail.com with ESMTPSA id s123-20020a637781000000b005635bf2f09bsm6806460pgc.42.2023.07.23.10.29.59
+        d=1e100.net; s=20221208; t=1690139281; x=1690744081;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=rshblnJhusW6XuI78vZ0f2OYejpIOjKqY/oNXeDBMRY=;
+        b=ENqxPlvkbit+qoMYN/iAYd1we+XVLvr0jvzT+g8bZNbtcELw5/yRatTZNY1wR3nzG4
+         5tQjZzv+P7aXP0yCpHlidOiCnWfgWVmh94Egg0WoU0y07mEgA4PYHXtHLvxiEsgzHFYL
+         VGQKZ7gBMr3MxDCh1qvvSz0MG6S+GEVGRsorAmQRa/cRvu0UxOV81ri84tplFI8hTVw4
+         JWNBqFdFWZ2x1EW3Uj6q8uBV1hQ4LDzVMNvt3YdBHIA/OPRhKqmC7XXwN/JMTo/UM9pM
+         YnbsFNw1fW0XklKEsOF4MXmXzzFOevSfXC1DLZ9rKNSlElq2PhSEwSUBHyCV0oSezjYP
+         rJ6A==
+X-Gm-Message-State: ABy/qLb1oj0LUl0GKdUHQKLjYTa6LYcatx16fraU1M8kEKPtipYDrWCW
+        scQFpb+GC8QgBsn09XSK+O4=
+X-Google-Smtp-Source: APBJJlFvl1tVqHXsmtMNT8nBEGsFjUiB25SaL4Qqr84lyPN17G20IgVJcf0dLGysGOqAOxO7Y1JErw==
+X-Received: by 2002:adf:f703:0:b0:314:50d:4540 with SMTP id r3-20020adff703000000b00314050d4540mr5868711wrp.18.1690139281454;
+        Sun, 23 Jul 2023 12:08:01 -0700 (PDT)
+Received: from david-ryuzu.fritz.box ([188.195.170.196])
+        by smtp.googlemail.com with ESMTPSA id h19-20020a1ccc13000000b003fbcdba1a63sm2843320wmb.12.2023.07.23.12.07.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 23 Jul 2023 10:29:59 -0700 (PDT)
-Date:   Sun, 23 Jul 2023 10:29:57 -0700
-From:   Drew Fustini <dfustini@baylibre.com>
-To:     Conor Dooley <conor@kernel.org>, Jisheng Zhang <jszhang@kernel.org>
-Cc:     Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
+        Sun, 23 Jul 2023 12:08:00 -0700 (PDT)
+From:   David Wronek <davidwronek@gmail.com>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Robert Nelson <robertcnelson@beagleboard.org>,
-        Jason Kridner <jkridner@beagleboard.org>
-Subject: Re: [PATCH 1/3] riscv: dts: thead: add BeagleV Ahead board device
- tree
-Message-ID: <ZL1jlacHj7sgNg8M@x1>
-References: <20230722-upstream-beaglev-ahead-dts-v1-0-ccda511357f4@baylibre.com>
- <20230722-upstream-beaglev-ahead-dts-v1-1-ccda511357f4@baylibre.com>
- <20230723-savor-trolling-e35ed4a7a751@spud>
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Taniya Das <quic_tdas@quicinc.com>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        cros-qcom-dts-watchers@chromium.org,
+        David Wronek <davidwronek@gmail.com>
+Subject: [PATCH v4 0/7] Add initial support for SM7125 and Xiaomi SM7125 platform
+Date:   Sun, 23 Jul 2023 21:05:01 +0200
+Message-ID: <20230723190725.1619193-1-davidwronek@gmail.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230723-savor-trolling-e35ed4a7a751@spud>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jul 23, 2023 at 11:32:17AM +0100, Conor Dooley wrote:
-> On Sat, Jul 22, 2023 at 02:55:39PM -0700, Drew Fustini wrote:
-> 
-> > +++ b/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts
-> > @@ -0,0 +1,61 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> 
-> Hmm, should this not be dual licensed?
-> I notice the other th1520 stuff isn't either..
+This series introduces support for the Qualcomm SM7125 SoC and the
+Xiaomi SM7125 platform.
 
-Good point, I'll resubmit with a dual license.
+Signed-off-by: David Wronek <davidwronek@gmail.com>
+---
+Changes in v2:
+- Allow qcom,board-id and qcom,msm-id properties
+- Use QCOM_SCM_VMID_MSS_MSA definition
+- Change initial regulator modes from LPM to HPM
+- Move status to the bottom of nodes
+- Fix up PM6150 interrupts
+- Move clk patch to beginning of series
+- Fix up copyright
+- Take ownership of all commits with permission
+- Link to v1: https://lore.kernel.org/all/20230704163848.169853-2-davidwronek@gmail.com/
 
-Jisheng: are you okay with the other arch/riscv/boot/dts/thead files
-changing to a dual license?
+Changes in v3:
+- Disable pm6150 rtc by default
+- Fix wrong pm8150l PMIC in joyeuse dts
+- Link to v2: https://lore.kernel.org/all/20230706124339.134272-1-davidwronek@gmail.com/
 
-> 
-> 
-> > +	memory@0 {
-> > +		device_type = "memory";
-> > +		reg = <0x0  0x00000000  0x1 0x00000000>;
-> 
-> There's some extra spaces in here for some reason.
+Changes in v4:
+- Fix key-vol-down node name
+- Link to v3: https://lore.kernel.org/all/20230715091932.161507-1-davidwronek@gmail.com/
 
-Thanks for spotting that. I'll fix when I resubmit with dual licnese.
+---
+David Wronek (7):
+  clk: qcom: gcc-sc7180: Fix up gcc_sdcc2_apps_clk_src
+  dt-bindings: arm: qcom,ids: Add SoC ID for SM7125
+  dt-bindings: arm: qcom: Document SM7125 and xiaomi,joyeuse board
+  soc: qcom: socinfo: Add SoC ID for SM7125
+  arm64: dts: qcom: pm6150: Add resin and rtc nodes
+  arm64: dts: qcom: Add SM7125 device tree
+  arm64: dts: qcom: Add support for the Xiaomi SM7125 platform
 
-Drew
+ .../devicetree/bindings/arm/qcom.yaml         |   7 +
+ arch/arm64/boot/dts/qcom/Makefile             |   1 +
+ arch/arm64/boot/dts/qcom/pm6150.dtsi          |  16 +
+ .../boot/dts/qcom/sm7125-xiaomi-joyeuse.dts   |  16 +
+ .../boot/dts/qcom/sm7125-xiaomi-miatoll.dtsi  | 423 ++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sm7125.dtsi          |  16 +
+ drivers/clk/qcom/gcc-sc7180.c                 |   1 +
+ drivers/soc/qcom/socinfo.c                    |   1 +
+ include/dt-bindings/arm/qcom,ids.h            |   1 +
+ 9 files changed, 482 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/sm7125-xiaomi-joyeuse.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/sm7125-xiaomi-miatoll.dtsi
+ create mode 100644 arch/arm64/boot/dts/qcom/sm7125.dtsi
+
+-- 
+2.41.0
+
