@@ -2,141 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C92C75E2D8
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jul 2023 17:20:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 094DC75E366
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jul 2023 18:10:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229618AbjGWPUo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 23 Jul 2023 11:20:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57056 "EHLO
+        id S230071AbjGWQKa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 23 Jul 2023 12:10:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34120 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229603AbjGWPUo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Jul 2023 11:20:44 -0400
-Received: from forward103c.mail.yandex.net (forward103c.mail.yandex.net [178.154.239.214])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 303C4183;
-        Sun, 23 Jul 2023 08:20:39 -0700 (PDT)
-Received: from mail-nwsmtp-smtp-production-main-10.sas.yp-c.yandex.net (mail-nwsmtp-smtp-production-main-10.sas.yp-c.yandex.net [IPv6:2a02:6b8:c14:2481:0:640:e0:0])
-        by forward103c.mail.yandex.net (Yandex) with ESMTP id CEA4F60049;
-        Sun, 23 Jul 2023 18:20:35 +0300 (MSK)
-Received: by mail-nwsmtp-smtp-production-main-10.sas.yp-c.yandex.net (smtp/Yandex) with ESMTPSA id XKKVCAKWwGk0-ryRAJRRp;
-        Sun, 23 Jul 2023 18:20:35 +0300
-X-Yandex-Fwd: 1
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=maquefel.me; s=mail; t=1690125635;
-        bh=QHMivvH+ml3LY6p99d8Wkoqg/EJjRAjBCx6TowpssQA=;
-        h=References:Date:In-Reply-To:Cc:To:From:Subject:Message-ID;
-        b=bpWTSuwOh3Pq1nNVTeYjZ0rxthaWyc737Iz04dhOC5EO8W6O+NK2iBitqy1D1UrZt
-         OigfEUbOrr/uaP9SpRo8/sazcILmkQQINJQahvE2B7Pqd08P4quXijIhzyQTblFFM0
-         wPwkU11B16Hhil9uKPQt6maplK4D9B+xDKsx+Vxo=
-Authentication-Results: mail-nwsmtp-smtp-production-main-10.sas.yp-c.yandex.net; dkim=pass header.i=@maquefel.me
-Message-ID: <7d304d3a14ad44f1dcb301961c0b7d777b243156.camel@maquefel.me>
-Subject: Re: [PATCH v3 02/42] dt-bindings: clock: Add Cirrus EP93xx
-From:   Nikita Shubin <nikita.shubin@maquefel.me>
-To:     Michael Turquette <mturquette@baylibre.com>,
+        with ESMTP id S229914AbjGWQKO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Jul 2023 12:10:14 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A835199D;
+        Sun, 23 Jul 2023 09:09:47 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-992ca792065so608324066b.2;
+        Sun, 23 Jul 2023 09:09:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1690128561; x=1690733361;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=exRmzh7fmIrCoQgVUjB3SY98XR+bPu/NDuT71ASYlFo=;
+        b=OrhI6cLh7Vs03GphtlK6DASOeoOMjk1uy08hjtgG+f+SJstHIlPy8GAUserVCFfM/b
+         cKMdgjKO6BcBNGIgYLsRkb5sjAxkMVz65OYZGRCwsoI1hg2ZUxazmVlTrxl5qlvmZxwQ
+         OAhkW/D4CHGxY7PO920lkccuMbAnbj1mfHU9hjPxqsRrdcKrEs8D76pN/McEg8PJq13H
+         cLEgTA1UCVOcb8VT0D570/qy7p6ikxDfUT24vWM+xPJu7djd2rrRfR7S9eG4Hw8IWOaY
+         34yK6Cti5Ok1hGGd155OIekehmMCO/Y4qu3JPQm1kH5S7mKJoniWorRIRuCErf9PjWmV
+         6ruw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690128561; x=1690733361;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=exRmzh7fmIrCoQgVUjB3SY98XR+bPu/NDuT71ASYlFo=;
+        b=X5HFz73ke0co27XBzl4EeDoBGwYSXCZ6SvL484AsLdF0UtSwmJzA1U2hKiJv3IkoQS
+         /D+wjVYDv7O7I8bqf+6Mf59TwL27I3aaS022WarwjVRxvgYDLJafFuM/h2vVFYDmY1WT
+         lD/I+g152rLhbOOhxrzs77+XVC/mJDdYbpBgwUG7uKRPLdZoEO1pHZjNhjP7SILrXosu
+         sAp+vu2L+1F9q1042jpJPOlSphWQPL8rjBm0fhlG+ZILZL8T+a1BTOCUGT4GiadZf6hB
+         p5yeZO2pM740iX4gPrqAYoKSQsPAOA9GOLJXKb2jfWWdJmKJS6B7Gv5Zz74ewI9o0DFi
+         Dcmw==
+X-Gm-Message-State: ABy/qLbXqfRvL42q949W27YdGwiLTcQrzpTFSkp5XYeepJCuprt+QjLW
+        FeXOP7HtnjoL7AI+KYwlzWVFT+8e8Yg=
+X-Google-Smtp-Source: APBJJlFkrbi6Fn8ThGpIcYGejDRuRxCSPM90pn7BgogQzFPOaoU8Df1MVeAQJJbzK7SIqijqvm+vdQ==
+X-Received: by 2002:a17:906:116:b0:978:928:3b99 with SMTP id 22-20020a170906011600b0097809283b99mr8176810eje.46.1690128560501;
+        Sun, 23 Jul 2023 09:09:20 -0700 (PDT)
+Received: from localhost.localdomain (ccx116.neoplus.adsl.tpnet.pl. [83.30.147.116])
+        by smtp.gmail.com with ESMTPSA id u16-20020a170906951000b0099b4d86fbccsm5425039ejx.141.2023.07.23.09.09.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 23 Jul 2023 09:09:20 -0700 (PDT)
+From:   Adam Skladowski <a39.skl@gmail.com>
+Cc:     phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        Adam Skladowski <a39.skl@gmail.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
         Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Nikita Shubin <nikita.shubin@maquefel.me>,
-        Alexander Sverdlin <alexander.sverdlin@gmail.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Linus Walleij <linus.walleij@linaro.org>
-Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Date:   Sun, 23 Jul 2023 21:20:33 +0300
-In-Reply-To: <11dbf88d12051497ba1e3b16c0d39066.sboyd@kernel.org>
-References: <20230605-ep93xx-v3-0-3d63a5f1103e@maquefel.me>
-         <20230605-ep93xx-v3-2-3d63a5f1103e@maquefel.me>
-         <11dbf88d12051497ba1e3b16c0d39066.sboyd@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.3 
+        AngeloGioacchino Del Regno <kholk11@gmail.com>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/7] MSM8976 PLL,RPMPD and DTS changes
+Date:   Sun, 23 Jul 2023 18:08:19 +0200
+Message-Id: <20230723160827.22660-1-a39.skl@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Stephen.
+This patch series fixes introduce support for msm8976 pll,
+also brings some adjustments and fixes domains setup and few dts nitpicks.
 
-On Thu, 2023-07-20 at 16:20 -0700, Stephen Boyd wrote:
-> Quoting Nikita Shubin via B4 Relay (2023-07-20 04:29:02)
-> > diff --git a/Documentation/devicetree/bindings/clock/cirrus,ep9301-
-> > clk.yaml b/Documentation/devicetree/bindings/clock/cirrus,ep9301-
-> > clk.yaml
-> > new file mode 100644
-> > index 000000000000..111e016601fb
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/clock/cirrus,ep9301-
-> > clk.yaml
-> > @@ -0,0 +1,46 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/clock/cirrus,ep9301-clk.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Cirrus Logic ep93xx SoC's clock controller
-> > +
-> > +maintainers:
-> > +=C2=A0 - Nikita Shubin <nikita.shubin@maquefel.me>
-> > +=C2=A0 - Alexander Sverdlin <alexander.sverdlin@gmail.com>
-> > +
-> > +properties:
-> > +=C2=A0 compatible:
-> > +=C2=A0=C2=A0=C2=A0 oneOf:
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: cirrus,ep9301-clk
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - items:
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - enum:
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 - cirrus,ep9302-clk
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 - cirrus,ep9307-clk
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 - cirrus,ep9312-clk
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 - cirrus,ep9315-clk
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: cirrus=
-,ep9301-clk
-> > +
-> > +=C2=A0 "#clock-cells":
-> > +=C2=A0=C2=A0=C2=A0 const: 1
-> > +
-> > +=C2=A0 clocks:
-> > +=C2=A0=C2=A0=C2=A0 items:
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - description: reference clock
-> > +
-> > +required:
-> > +=C2=A0 - compatible
-> > +=C2=A0 - "#clock-cells"
-> > +=C2=A0 - clocks
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +=C2=A0 - |
-> > +=C2=A0=C2=A0=C2=A0 clock-controller {
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compatible =3D "cirrus,ep9301-clk";
->=20
-> Is there a reg property? The driver grabs some syscon and then iomaps
-> it, so presumably there is a register range. Is it part of some other
-> hardware block? If so, can you make that device register sub-devices
-> with the auxiliary bus instead of using a syscon?
+Changes since v1
+================
+1. Fixed few styling issues
+2. Changed compatibles for plls
+3. Added fixes: tag to first patch
 
-Is reg property missing the only thing that doesn't fit ?=20
+Adam Skladowski (7):
+  drivers: soc: qcom: rpmpd: Fix MSM8976 power domains setup
+  clk: qcom: clk-hfpll: Configure l_val in init when required
+  clk: qcom: hfpll: Allow matching pdata
+  dt-bindings: clock: qcom,hfpll: Document MSM8976 compatibles
+  clk: qcom: hfpll: Add MSM8976 PLL data
+  arm64: dts: qcom: msm8976: Split lpass region
+  arm64: dts: qcom: msm8976: Fix smsm ipc bit shifts
 
-`devm_of_iomap` was done only for reusing `devm_clk_hw_register_gate`
-for DMA's and USB clock gates, i can give clk node it's own registers,
-like:
+ .../devicetree/bindings/clock/qcom,hfpll.txt  |  3 +
+ arch/arm64/boot/dts/qcom/msm8976.dtsi         | 11 +++-
+ drivers/clk/qcom/clk-hfpll.c                  |  4 ++
+ drivers/clk/qcom/clk-hfpll.h                  |  1 +
+ drivers/clk/qcom/hfpll.c                      | 59 ++++++++++++++++++-
+ drivers/soc/qcom/rpmpd.c                      | 27 ++++-----
+ 6 files changed, 83 insertions(+), 22 deletions(-)
 
-reg =3D <0x80930004 0x04>;
+-- 
+2.25.1
 
-Or drop devm_clk_hw_register_gate reusage entirely and just implement
-non swlocked version of clk enable/disable that will go through syscon
-regmap.
-
-The ep93xx really looks like an syscon device in docs it refers itself
-as a "Syscon block", also converting into "Auxiliary Bus" won't help
-with `ep93xx_syscon_swlocked_write` either.
