@@ -2,106 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CF52E75E3E0
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jul 2023 18:38:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 520C375E409
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jul 2023 19:30:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229547AbjGWQiW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 23 Jul 2023 12:38:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53322 "EHLO
+        id S230011AbjGWRaD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 23 Jul 2023 13:30:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60792 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229452AbjGWQiV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Jul 2023 12:38:21 -0400
-Received: from mail-pg1-x52b.google.com (mail-pg1-x52b.google.com [IPv6:2607:f8b0:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0CCCEA;
-        Sun, 23 Jul 2023 09:38:20 -0700 (PDT)
-Received: by mail-pg1-x52b.google.com with SMTP id 41be03b00d2f7-55badd6d6feso309145a12.1;
-        Sun, 23 Jul 2023 09:38:20 -0700 (PDT)
+        with ESMTP id S229618AbjGWRaC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Jul 2023 13:30:02 -0400
+Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A39CA1B3
+        for <devicetree@vger.kernel.org>; Sun, 23 Jul 2023 10:30:00 -0700 (PDT)
+Received: by mail-pf1-x433.google.com with SMTP id d2e1a72fcca58-6862842a028so1967835b3a.0
+        for <devicetree@vger.kernel.org>; Sun, 23 Jul 2023 10:30:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1690130300; x=1690735100;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=y1fILWGknGYtceXaaDdSa7GUTAbeDyflfRfQ1Pomhxo=;
-        b=eK6YqVkH7uIh0895sUArC7vginN7wUG6J03ge/MEP9zStHdCFSXdYqxX9EG0iYNPbG
-         MR9xzpX9PPwJD99kZDFK+a1ZHOyJKtAOxrrzGFx9ml2bXNe+o7tAFdw36kTLzsznui6+
-         VpbHywJGaWKPG4BVSeVjB5EbDajOI5iF9yU3Onnol24566GMUB0SHdkpz0VO0+R7CuaJ
-         4p1R+2lAIagL6fucTfDheM3kmrdR+1KqzcEKD150U/58d4IMDuSrdJD67+r019H0lAui
-         HfYLnfSKf2R+D+ctraMZeK6+MDDbtttcduC245brC4GtpvEtznp/J9UcQXAm2SgDqKDC
-         44zw==
+        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1690133400; x=1690738200;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=anD/aZSlr+vLjZWLNxtxT0F5flAWAxjs67Wwhw6u0QM=;
+        b=E+ArsCyWXwauL0di3emQhq+Fmc/7kBA6oessKwzGOTGr4kxRa5UnXYIUloBVNs+ZKr
+         vDWe5CeL4XVcghejAaiQh3imZha3QAH4TVK1+GJopZIWFYvcuRALPiYmvSNU0m21Sjw4
+         mVVULeIdyuDTF05PGfRAe1xMhSQ+PXcdmc93bY7QEF2YeBfnOnwQMjPJMLGeFLu6qVOp
+         rANcYkbU6ZNvd3ef9xGVGK+W/hs5zOaQkBpJdt3zkbqUAW489Q/sbs97BJXw3sWJjlGO
+         HOkVEtQK3sZJZXzeXPOzzeXVCAuv1E4zHLc1i25OFc1QloXYwnyV0ITpoM7Mib5K5eJG
+         m97A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690130300; x=1690735100;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=y1fILWGknGYtceXaaDdSa7GUTAbeDyflfRfQ1Pomhxo=;
-        b=Bw9Wgf7xd9hA0LKwZMMJP7tH+yzfxJp/o/DGGdquOUhwFc6DHZK4JLHFB38WUUnTR1
-         rtmwmUYZfl8w09zJJP5jGXs5WiXEIMOgYEJ+OaGG4rNrjfcO0AIYrVx+HHs6nCn8SU/j
-         n0IcFydNu/3ROrl3noh9n7dsTJgOaGXurPLIXHuJ+NNPtUv2m5jMcjLLQh6m1GSFMMQl
-         hU/Z4d1FHl8lXv48vOb45fhPCn5nAyYQYnWoJczEBp838U+Md+qFbzE9U1/xXFPKceMZ
-         mbpo5UOFXf7zNvLmAqEa2kXPhjxH5nyDafmYt+g3hvJQNiqelEFQDNS+7KeD+aNUSTHm
-         3VzA==
-X-Gm-Message-State: ABy/qLYaRu7cfK6ZJDJKxNm5kPwx4XHOjOHIf0zJRVvPKtpWj3cp3RVu
-        Dl4ESC3Ofof6CpLf3ZA/fd5NwzW1NCwwEilS+cA=
-X-Google-Smtp-Source: APBJJlHPbbccROQonvgfLGOZ5PG+aiSfMqZcjHQqHSDxj8DgUip6Mal7QVbr3EK5jzAI5n84hQ1y88ohAUFTnNVxNH0=
-X-Received: by 2002:a17:90a:f86:b0:268:40b:2e03 with SMTP id
- 6-20020a17090a0f8600b00268040b2e03mr2757956pjz.4.1690130300180; Sun, 23 Jul
- 2023 09:38:20 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1690133400; x=1690738200;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=anD/aZSlr+vLjZWLNxtxT0F5flAWAxjs67Wwhw6u0QM=;
+        b=MgoIITMq0lXxGcY3a1R5OBj0wVFSR9BwK07VMV0VxQooAR/u2SA8JfI/R51pPbwBes
+         6CNF9oArRbSNj1utR5xWTRfyKmwYQZMqrz8fxjGmFs7rh67oSnYXNv947UcNt9hoRsT6
+         UH8OHHOI2vMMBBDlMVzNy34/ruC7C9/3vDGnmOZxcOd4vWT1/z07RcaT0ipDp71CsLxG
+         WKNfpyu5mq88WfRbITgx7JVa1mufHNsE+SviHzHpEBU8Y1tIYJCUOLbSk40rhIgU38bG
+         EZNZhKvX5erXelIy5SsiYXeWGblcrnHq6X2f+AcGIZvhOHVLE0QlDYCorLX4B9ls5Q8m
+         CIHw==
+X-Gm-Message-State: ABy/qLZoPFdPpqtfyl1qIaOKS0eJH843aO7aixbw6+3bc4Pbm3FqI7Zg
+        O41hHOMsYvTjU8YWFj5GNBaDyA==
+X-Google-Smtp-Source: APBJJlGzn18xvFg4hiXQsp73KgOF0fT+h4xDUJN4Wco5VrV/ebEtcvNWM2uHS2/B+5arR7FXdrOezA==
+X-Received: by 2002:a05:6a00:1307:b0:674:8fe0:1262 with SMTP id j7-20020a056a00130700b006748fe01262mr4911219pfu.18.1690133400075;
+        Sun, 23 Jul 2023 10:30:00 -0700 (PDT)
+Received: from x1 ([2601:1c2:1800:f680:2a8c:966f:392d:7230])
+        by smtp.gmail.com with ESMTPSA id s123-20020a637781000000b005635bf2f09bsm6806460pgc.42.2023.07.23.10.29.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 23 Jul 2023 10:29:59 -0700 (PDT)
+Date:   Sun, 23 Jul 2023 10:29:57 -0700
+From:   Drew Fustini <dfustini@baylibre.com>
+To:     Conor Dooley <conor@kernel.org>, Jisheng Zhang <jszhang@kernel.org>
+Cc:     Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Robert Nelson <robertcnelson@beagleboard.org>,
+        Jason Kridner <jkridner@beagleboard.org>
+Subject: Re: [PATCH 1/3] riscv: dts: thead: add BeagleV Ahead board device
+ tree
+Message-ID: <ZL1jlacHj7sgNg8M@x1>
+References: <20230722-upstream-beaglev-ahead-dts-v1-0-ccda511357f4@baylibre.com>
+ <20230722-upstream-beaglev-ahead-dts-v1-1-ccda511357f4@baylibre.com>
+ <20230723-savor-trolling-e35ed4a7a751@spud>
 MIME-Version: 1.0
-References: <20230723022050.524050-1-xiaolei.wang@windriver.com>
-In-Reply-To: <20230723022050.524050-1-xiaolei.wang@windriver.com>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Sun, 23 Jul 2023 13:38:08 -0300
-Message-ID: <CAOMZO5BZXYH7CUduBfysgOgrcreEaYN-gzNZk3JGpSs_d37xzg@mail.gmail.com>
-Subject: Re: [PATCH v2] ARM: dts: imx: Set default tuning step for imx7d usdhc
-To:     Xiaolei Wang <xiaolei.wang@windriver.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        linux-imx@nxp.com, richardcochran@gmail.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230723-savor-trolling-e35ed4a7a751@spud>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Xiaolei,
+On Sun, Jul 23, 2023 at 11:32:17AM +0100, Conor Dooley wrote:
+> On Sat, Jul 22, 2023 at 02:55:39PM -0700, Drew Fustini wrote:
+> 
+> > +++ b/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts
+> > @@ -0,0 +1,61 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> 
+> Hmm, should this not be dual licensed?
+> I notice the other th1520 stuff isn't either..
 
-On Sat, Jul 22, 2023 at 11:21=E2=80=AFPM Xiaolei Wang
-<xiaolei.wang@windriver.com> wrote:
->
-> If the tuning step is not set, the tuning step is set to 1.
-> For some sd cards, the following Tuning timeout will occur,
+Good point, I'll resubmit with a dual license.
 
-You missed putting the timeout message here.
+Jisheng: are you okay with the other arch/riscv/boot/dts/thead files
+changing to a dual license?
 
-> so set the default tuning step. This refers to the NXP vendor's
-> commit below:
->
-> https://github.com/nxp-imx/linux-imx/blob/lf-6.1.y/
-> arch/arm/boot/dts/imx7s.dtsi#L1216-L1217
->
-> Fixes: 1e336aa0c025 ("mmc: sdhci-esdhc-imx: correct the tuning start tap =
-and step setting")
-> Signed-off-by: Xiaolei Wang <xiaolei.wang@windriver.com>
->
-> v2:
->   * Refer to https://github.com/nxp-imx/linux-imx/blob/lf-6.1.y/arch/arm/=
-boot/dts/imx7s.dtsi#L1216-L1217
->     and add the following attributes for all usdhc of imx7:
->       fsl,tuning-step =3D <2>;
->       fsl,tuning-start-tap =3D <20>;
+> 
+> 
+> > +	memory@0 {
+> > +		device_type = "memory";
+> > +		reg = <0x0  0x00000000  0x1 0x00000000>;
+> 
+> There's some extra spaces in here for some reason.
 
-This v2 changelog should be placed below the --- line.
+Thanks for spotting that. I'll fix when I resubmit with dual licnese.
 
-> ---
-
-Put it here.
-
-Reviewed-by: Fabio Estevam <festevam@gmail.com>
+Drew
