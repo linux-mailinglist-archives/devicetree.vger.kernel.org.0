@@ -2,106 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6AAC875E081
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jul 2023 10:28:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DCECB75E0A9
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jul 2023 11:19:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229477AbjGWI2p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 23 Jul 2023 04:28:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56290 "EHLO
+        id S229656AbjGWJTD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 23 Jul 2023 05:19:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35158 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229469AbjGWI2o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Jul 2023 04:28:44 -0400
-Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com [IPv6:2607:f8b0:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61D88E7B;
-        Sun, 23 Jul 2023 01:28:43 -0700 (PDT)
-Received: by mail-pl1-x631.google.com with SMTP id d9443c01a7336-1bb2468257fso17656705ad.0;
-        Sun, 23 Jul 2023 01:28:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1690100923; x=1690705723;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=f2RBK6a1rrlPMn5TOATq9/7yx1S/Tl+2zZSZzJBZNsM=;
-        b=aZpe29ckQMqcjD0CsG2rRtigKYI0ycSzcfnysKME5uEV0dbXxqtgQbq/bhqYWPtf+W
-         CSobQNGJyv5uNyH8uuFRqc+5O513SpfChXjITqC+MhD19F9pcuh321hq90epTf2hntZI
-         xNJWWUot6UblUHOmHbXg/+aohGhJxd/y12WJLiLVw7Vx4xrYQ+RkRLK3FWeQQFqVSwmi
-         9I9HtohJOBSMAaRi0gRLwLmBeMkiYmP6he6Yyl1LTMroJeD73kHNriFDxANu2tsSg2Wy
-         F/HCRsLhC2jDUyU/dZPzCQK7fbSeZV8UPDqP3L85G8sLY7tJZ8mUKPFj1Z5xZ9XOIHty
-         eGqw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690100923; x=1690705723;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=f2RBK6a1rrlPMn5TOATq9/7yx1S/Tl+2zZSZzJBZNsM=;
-        b=CggpZvVvuacZ8XkEOCP9CV3eh0DdAnq8xAUNrXTxvHYaFjREWxjQI26eoho2KRvrjM
-         TOX3dzf5EhKhgaOIGHB4A8WMXzpV/XZiq0kS+wdeyWfFWFLDrpf95iOEDLX80ml6yHmF
-         epP8wejuwYQp/bG4Y3weovbMuitw8poTiQT01Tu3FAODuSPhauLJ39H/ktDxfU3sdvNf
-         /JPzKy56yNK1Egd8lJ3eqGKRua0g0H4MfjEM+/rN//gluw/EiQVE9sqbBDzMRWvaPLvZ
-         zG7JsvJCI9QdMP5oiDVjrY/nHGL57E4Uvc6VJiaZYFfPjiyx43kzvC0sZSiZNsYb2KiM
-         QzQg==
-X-Gm-Message-State: ABy/qLbQOsiH57UE5tAWXFD4zUfj6ylrK6mzRc0NGV3vwVidK4KZ5MrE
-        9z6/Dnf965rEfVnmm0Judsk=
-X-Google-Smtp-Source: APBJJlEyAivqgS1z/Q7bcfIa339ze+9MNCa6mD2worMXLAUFaSPxd3TpcGx2eH8f/O2vbFPJ05rqIg==
-X-Received: by 2002:a17:902:d509:b0:1b9:de67:2870 with SMTP id b9-20020a170902d50900b001b9de672870mr6536878plg.40.1690100922731;
-        Sun, 23 Jul 2023 01:28:42 -0700 (PDT)
-Received: from zephyrusG14 ([103.251.210.195])
-        by smtp.gmail.com with ESMTPSA id s10-20020a170902ea0a00b001b53d3d8f3dsm6428406plg.299.2023.07.23.01.28.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 23 Jul 2023 01:28:42 -0700 (PDT)
-Date:   Sun, 23 Jul 2023 13:58:36 +0530
-From:   Yogesh Hegde <yogi.kernel@gmail.com>
-To:     Greg KH <gregkh@linuxfoundation.org>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, heiko@sntech.de, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-kernel-mentees@lists.linuxfoundation.org
-Subject: Re: [PATCH v2] arm64: dts: rockchip: Fix Wifi/Bluetooth on ROCK Pi 4
- boards
-Message-ID: <ZLzktMnJHTg13Pp/@zephyrusG14>
-References: <ZLbATQRjOl09aLAp@zephyrusG14>
- <2023071850-festival-illusion-6399@gregkh>
+        with ESMTP id S229468AbjGWJTD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Jul 2023 05:19:03 -0400
+Received: from out-40.mta1.migadu.com (out-40.mta1.migadu.com [IPv6:2001:41d0:203:375::28])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C4BF1A3
+        for <devicetree@vger.kernel.org>; Sun, 23 Jul 2023 02:19:00 -0700 (PDT)
+Date:   Sun, 23 Jul 2023 19:18:33 +1000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jookia.org; s=key1;
+        t=1690103938;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=IO21JPPuUrj/PlAXDeK+XBpU+sX32D1I5JxlNyZ8yxY=;
+        b=mcwgGlOY5K72c1mv4IEZ+ALhpmQdPQLC1UgX47qkA5/+JSNYwpY8Cbd4NhspuL3PWggka9
+        +Tp2jHAzGIGtZ+JuagzBwKyIzPP4siFbdcgs9wfpdyem9y9iriwEX2r/aqTGuhjvxzxVc8
+        ffa1A5ycZ+NBiAjPiudgTs4V6MapEdVyYxclJ00yN+6eNL1aELb4lfhWFJ1WSBK6Ym3pvX
+        iHirF0aGQHxKYK4bD6TTz55DuI0c8aHiu3JIsxqxZyBIlO4uLbCcLECpeLw+D+a9YodbAA
+        1kEm/i/2HNZZMAsB1qWQpVcPCfX4wgOS3u0c0vrGCvo+vo7rBRMASZjEesF1ow==
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From:   John Watts <contact@jookia.org>
+To:     linux-sunxi@lists.linux.dev
+Cc:     Wolfgang Grandegger <wg@grandegger.com>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>, linux-can@vger.kernel.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v2 2/4] riscv: dts: allwinner: d1: Add CAN controller
+ nodes
+Message-ID: <ZLzwaQlS-l_KKpUX@titan>
+References: <20230721221552.1973203-2-contact@jookia.org>
+ <20230721221552.1973203-4-contact@jookia.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <2023071850-festival-illusion-6399@gregkh>
+In-Reply-To: <20230721221552.1973203-4-contact@jookia.org>
+X-Migadu-Flow: FLOW_OUT
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 18, 2023 at 07:37:21PM +0200, Greg KH wrote:
-> On Tue, Jul 18, 2023 at 10:09:41PM +0530, Yogesh Hegde wrote:
-> > This patch fixes an issue affecting the Wifi/Bluetooth connectivity on
-> > ROCK Pi 4 boards. Commit f471b1b2db08 ("arm64: dts: rockchip: Fix Bluetooth
-> > on ROCK Pi 4 boards") introduced a problem with the clock configuration.
-> > Specifically, the clock-names property of the sdio-pwrseq node was not
-> > updated to 'lpo', causing the driver to wait indefinitely for the wrong clock
-> > signal 'ext_clock' instead of the expected one 'lpo'. This prevented the proper
-> > initialization of Wifi/Bluetooth chip on ROCK Pi 4 boards.
-> > 
-> > To address this, this patch updates the clock-names property of the
-> > sdio-pwrseq node to "lpo" to align with the changes made to the bluetooth node.
-> > 
-> > This patch has been tested on ROCK Pi 4B.
-> > 
-> > Fixes: f471b1b2db08 ("arm64: dts: rockchip: Fix Bluetooth on ROCK Pi 4 boards")
-> > Signed-off-by: Yogesh Hegde <yogi.kernel@gmail.com>
-> 
-> Why are you saying this fixes a specific old commit and not also
-> properly cc: the stable@vger.kernel.org alias?
-It is a mistake on my part. I apologize for the mistake. 
-> 
-> Please read:
->     https://www.kernel.org/doc/html/latest/process/stable-kernel-rules.html
-> for how to do this properly.
-Thanks for the link, I will read through it and resend a v3 of the patch 
-with fixes. 
+On Sat, Jul 22, 2023 at 08:15:51AM +1000, John Watts wrote:
+> ...
+> +			/omit-if-no-ref/
+> +			can0_pins: can0-pins {
+> +				pins = "PB2", "PB3";
+> +				function = "can0";
+> +			};
+> ...
+> +		can0: can@2504000 {
+> +			compatible = "allwinner,sun20i-d1-can";
+> +			reg = <0x02504000 0x400>;
+> +			interrupts = <SOC_PERIPHERAL_IRQ(21) IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&ccu CLK_BUS_CAN0>;
+> +			resets = <&ccu RST_BUS_CAN0>;
+> +			status = "disabled";
+> +		};
 
-Thanks and Regards 
--- Yogesh 
+Just a quick late night question to people with more knowledge than me:
+
+These chips only have one pinctrl configuration for can0 and can1. Should the
+can nodes have this pre-set instead of the board dts doing this?
+
+I see this happening in sun4i-a10.dtsi for instance, but it also seems like it
+could become a problem when it comes to re-using the dtsi for newer chip variants.
+
+John.
