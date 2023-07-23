@@ -2,64 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DCECB75E0A9
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jul 2023 11:19:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C92F475E0EB
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jul 2023 11:29:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229656AbjGWJTD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 23 Jul 2023 05:19:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35158 "EHLO
+        id S229541AbjGWJ3c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 23 Jul 2023 05:29:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38176 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229468AbjGWJTD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Jul 2023 05:19:03 -0400
-Received: from out-40.mta1.migadu.com (out-40.mta1.migadu.com [IPv6:2001:41d0:203:375::28])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C4BF1A3
-        for <devicetree@vger.kernel.org>; Sun, 23 Jul 2023 02:19:00 -0700 (PDT)
-Date:   Sun, 23 Jul 2023 19:18:33 +1000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jookia.org; s=key1;
-        t=1690103938;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=IO21JPPuUrj/PlAXDeK+XBpU+sX32D1I5JxlNyZ8yxY=;
-        b=mcwgGlOY5K72c1mv4IEZ+ALhpmQdPQLC1UgX47qkA5/+JSNYwpY8Cbd4NhspuL3PWggka9
-        +Tp2jHAzGIGtZ+JuagzBwKyIzPP4siFbdcgs9wfpdyem9y9iriwEX2r/aqTGuhjvxzxVc8
-        ffa1A5ycZ+NBiAjPiudgTs4V6MapEdVyYxclJ00yN+6eNL1aELb4lfhWFJ1WSBK6Ym3pvX
-        iHirF0aGQHxKYK4bD6TTz55DuI0c8aHiu3JIsxqxZyBIlO4uLbCcLECpeLw+D+a9YodbAA
-        1kEm/i/2HNZZMAsB1qWQpVcPCfX4wgOS3u0c0vrGCvo+vo7rBRMASZjEesF1ow==
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From:   John Watts <contact@jookia.org>
-To:     linux-sunxi@lists.linux.dev
-Cc:     Wolfgang Grandegger <wg@grandegger.com>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>, linux-can@vger.kernel.org,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v2 2/4] riscv: dts: allwinner: d1: Add CAN controller
- nodes
-Message-ID: <ZLzwaQlS-l_KKpUX@titan>
-References: <20230721221552.1973203-2-contact@jookia.org>
- <20230721221552.1973203-4-contact@jookia.org>
+        with ESMTP id S229493AbjGWJ3b (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Jul 2023 05:29:31 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCA98E5E;
+        Sun, 23 Jul 2023 02:29:30 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 7B74D60C80;
+        Sun, 23 Jul 2023 09:29:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3ABC8C433C8;
+        Sun, 23 Jul 2023 09:29:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1690104569;
+        bh=jJ5OqocH6H6RTXRPwl1ijcDVdgQPxVAgCpfaIurlLgM=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=QXaDGg3z2iMyrx2I3JXd91PKwm46WlZY7lcRY/ighrIrBsyV0IOM+X2nHdWzxq22p
+         +20/6NIhr0WVVRSDp6NQ148MpfWWTwYbwfJpetH+Owc6e/EeqntR/Q77wXSETCA9lZ
+         mZB4JVKHyhQNDZxijzowuwEY+VlmdJibkZAy3edsym5+AiKfp8lT3Ua5foSSQDT6+L
+         1hUuz+9fFGxmaQ2Nw1iUm9lZZFYfGk4rbY6VknVshVGh/0U1Gr6zXFRYSH6u53FN8o
+         NPRlT2ADD34JXo0JEZAuSvql2NErUTZa8fN/kAadBcR4GklR76jUtZyVwh86ijmx2a
+         fSLVjmAryHUTg==
+Date:   Sun, 23 Jul 2023 10:29:25 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Martin Kepplinger <martink@posteo.de>
+Cc:     lorenzo@kernel.org, lars@metafoo.de, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        kernel@puri.sm, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: iio: imu: st,lsm6dsx: add mount-matrix
+ property
+Message-ID: <20230723102925.3d5f1c40@jic23-huawei>
+In-Reply-To: <20230721103410.575555-1-martink@posteo.de>
+References: <20230721103410.575555-1-martink@posteo.de>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230721221552.1973203-4-contact@jookia.org>
-X-Migadu-Flow: FLOW_OUT
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -67,29 +58,55 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Jul 22, 2023 at 08:15:51AM +1000, John Watts wrote:
-> ...
-> +			/omit-if-no-ref/
-> +			can0_pins: can0-pins {
-> +				pins = "PB2", "PB3";
-> +				function = "can0";
-> +			};
-> ...
-> +		can0: can@2504000 {
-> +			compatible = "allwinner,sun20i-d1-can";
-> +			reg = <0x02504000 0x400>;
-> +			interrupts = <SOC_PERIPHERAL_IRQ(21) IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&ccu CLK_BUS_CAN0>;
-> +			resets = <&ccu RST_BUS_CAN0>;
-> +			status = "disabled";
-> +		};
+On Fri, 21 Jul 2023 10:34:10 +0000
+Martin Kepplinger <martink@posteo.de> wrote:
 
-Just a quick late night question to people with more knowledge than me:
+> Add the mount-matrix optional property to the binding since it's supported
+> and very useful when using the chip on a board.
+> 
+> Signed-off-by: Martin Kepplinger <martink@posteo.de>
 
-These chips only have one pinctrl configuration for can0 and can1. Should the
-can nodes have this pre-set instead of the board dts doing this?
+Hi Martin,
 
-I see this happening in sun4i-a10.dtsi for instance, but it also seems like it
-could become a problem when it comes to re-using the dtsi for newer chip variants.
+A question on the example.
 
-John.
+> ---
+>  Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml b/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
+> index b39f5217d8ff..443dce326c5e 100644
+> --- a/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
+> +++ b/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
+> @@ -93,6 +93,9 @@ properties:
+>    wakeup-source:
+>      $ref: /schemas/types.yaml#/definitions/flag
+>  
+> +  mount-matrix:
+> +    description: an optional 3x3 mounting rotation matrix
+> +
+>  required:
+>    - compatible
+>    - reg
+> @@ -114,6 +117,9 @@ examples:
+>              reg = <0x6b>;
+>              interrupt-parent = <&gpio0>;
+>              interrupts = <0 IRQ_TYPE_EDGE_RISING>;
+> +            mount-matrix =  "1",  "0",  "0",
+> +                            "0",  "1",  "0",
+> +                            "0",  "0", "-1";
+
+That's not a rotation matrix - so it's not a valid example...
+IIRC it's a rotoinversion (determinant -1 whereas should be 1 for
+a rotation matrix)
+If a device is doing this we have a disagreement wrt to whether
+it is using a left or right handed axis - which is a problem, though
+one that is tricky to fix without causing people all sorts of problems..
+
+Jonathan
+
+
+>          };
+>      };
+>  ...
+
