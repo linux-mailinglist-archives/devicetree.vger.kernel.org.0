@@ -2,360 +2,187 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B9C275E28D
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jul 2023 16:19:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EA36175E29A
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jul 2023 16:24:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229640AbjGWOTx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 23 Jul 2023 10:19:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42720 "EHLO
+        id S229685AbjGWOYZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 23 Jul 2023 10:24:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44500 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229487AbjGWOTs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Jul 2023 10:19:48 -0400
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C5BC171E;
-        Sun, 23 Jul 2023 07:19:34 -0700 (PDT)
-Received: by mail-lj1-x22c.google.com with SMTP id 38308e7fff4ca-2b6f943383eso49358701fa.2;
-        Sun, 23 Jul 2023 07:19:34 -0700 (PDT)
+        with ESMTP id S229477AbjGWOYY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Jul 2023 10:24:24 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69DF2E55
+        for <devicetree@vger.kernel.org>; Sun, 23 Jul 2023 07:24:23 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-5221f193817so1519328a12.3
+        for <devicetree@vger.kernel.org>; Sun, 23 Jul 2023 07:24:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1690121972; x=1690726772;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wgA+zkCjy71Eg5CRdSW3JqOjwvm9Z2xuvZSZN60Qn2w=;
-        b=IMlLJQTEXzbi2YuhciH59xbdET4tN7AGM/Tm1YyRYwl4NpQiG6ATxP7VFycgH4NKy4
-         16TPCK05klR0Eb/Xv1iqchrdi25WiGcloABR70Z7DZnbdmtxWeOl0lGZWc1fpwqXKNEO
-         nO8Tbkdq5qKDpx/KYOs1IIOxT5Sad9zp+s5VbdnaLWkOGaMuNv6AJsfH//h0UOIS+Iqs
-         AhG2Zxv+I4RMZ7xap0MSCaopxp2nmtTpPGy5vmxAyFS93KvoIwNgs0bd++IMX53DwTMN
-         65pOoWHBtNyO8T95d6JPzDh8osZ7LU54NyYxTULG3mtxH0lcYOBFyedet6WPAWXa0iDa
-         W4FQ==
+        d=linaro.org; s=google; t=1690122262; x=1690727062;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=P9EQDGu/G9aGY22djIAWwRsxznq61tp4HsoFojY4f8w=;
+        b=kjWa/KVPVN8zUsrW+X8aOxATizFoa2tUm1qJ53sjjd10bfzhNzOYr2pql1FAoJlM8C
+         r9FPXz5YtmpKwiSaCFx2lMPvthWgcyb+naJdckuKoMMnd4a1vH9A6G8wzOI+q4BN0Zfj
+         XzjAOyUEWhTh1jfH64l4gJFLMvyO6bYS/DYhg3C/AmtbwLIiBqfwIHFYmxv6PDAgOIwZ
+         F3ee3nsRz70dVKcQkdgX4Hr2YgkYBdvVm9KuoprcJa/49twWT5Jur1CxLqi04CcKduFP
+         1i0oc2WIupxLHY5n/IJKiWx+kde4mac5zvVKQRTf4ln4SiQlSATPndjuFvw/ko3ag81n
+         IknA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690121972; x=1690726772;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=wgA+zkCjy71Eg5CRdSW3JqOjwvm9Z2xuvZSZN60Qn2w=;
-        b=Jj+exCz6unG8IVWTNDxBmhGXopz85RwJajso1QGRLd0Cmzm3gzCZ5tyEU+UnVfLWuL
-         exlX18CLVxm5KAb8drD4iGRMeUjC6HBEK2CrS5n8gNNmUAqinCMzrE0JydHUmUOsqpCz
-         tFHsmQejKfu5WU/HHu8oHQEo3vxVsYVDnNcrf67gAVtFoED/9tJ2tebX8xLecw1itIzK
-         MMfAlbz3Y6mql4zvOVGPI1WaxfzFXjlLhncZOiYClhUW461ovp5xdIiZVV4VyKb3P1yR
-         L19Ci30PKnkSA16f2Cum1qVbtlwHHndZ0p/OhleJJ9/aVvN8N9Fb4etcgLo3Xw9j6ZBB
-         kMKQ==
-X-Gm-Message-State: ABy/qLar+aknhaWRsMbnFDd9XAVYQWbBjFULbjDY3od8+fx0Fom1mjNI
-        qjXpXMv32slR1E7DFjMzVeT3PiUPd4HqB8ANdWg=
-X-Google-Smtp-Source: APBJJlE3ot2hdOAN7OMT6yi2qc7yngmMSFfP01+snW1OZ0bovoCAE+STunXTJ2en1L3Nx13ZuFlmN98F4wMw8C3orfI=
-X-Received: by 2002:a05:651c:d0:b0:2b6:ee6d:b647 with SMTP id
- 16-20020a05651c00d000b002b6ee6db647mr4003544ljr.28.1690121972076; Sun, 23 Jul
- 2023 07:19:32 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1690122262; x=1690727062;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=P9EQDGu/G9aGY22djIAWwRsxznq61tp4HsoFojY4f8w=;
+        b=QMEPM+Vz7y00Rf9Kg3ft1ivTtIbLdMTQPDgkgVfiyyJQFqGpxQkjMjV1yXYCJKSZ5d
+         yUtIALT4GunfMJYid4ZZSBKl1LKEyJCTWh0aG1+kLGgCMDqV7DCBFCWDfqSNlj95raAs
+         WoElrq1emcepDLWoqYqW2wl7Y0mHMVCW9jenQwpsdZ+FjbLnYbiaZOvY6w6R+z4eaGgm
+         u/wF+qz25sgkk78y3kUwt6KY3xJl6AuTxfAPGuvan4mf4qMHC8jIwUaBG+vRGfY6f4dw
+         xzVVWzcD0pruz0DnGMxfjiao1q2qnPN0Vib64Duo+VPx1+rxDRgJmxiezZM+hW3SzqPG
+         jlrg==
+X-Gm-Message-State: ABy/qLatIPffgztVPQT43fGajwlz2vdgOtKJMxOsbQ7P8rcwX5qRYkR2
+        X4DhXPah95VgHxYR3ldZs0DI2pcYs3gXWPdfIZc=
+X-Google-Smtp-Source: APBJJlGijKTBsDB0qaMqp7C37ZN/ipYKV0HPqCKFVT23piyg/YJMaCpgwwnf5grhFlPRIlRNJRHDDg==
+X-Received: by 2002:aa7:cd63:0:b0:51d:8ab1:5df4 with SMTP id ca3-20020aa7cd63000000b0051d8ab15df4mr6658239edb.21.1690122261893;
+        Sun, 23 Jul 2023 07:24:21 -0700 (PDT)
+Received: from krzk-bin.. ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id c18-20020aa7c752000000b00521830574c1sm4938618eds.2.2023.07.23.07.24.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 23 Jul 2023 07:24:21 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        replicant@osuosl.org, phone-devel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        =?UTF-8?q?Martin=20J=C3=BCcker?= <martin.juecker@gmail.com>,
+        Henrik Grimler <henrik@grimler.se>,
+        Artur Weber <aweber.kernel@gmail.com>
+Subject: [PATCH v2] ARM: dts: samsung: exynos4412-midas: add USB connector and USB OTG
+Date:   Sun, 23 Jul 2023 16:24:17 +0200
+Message-Id: <20230723142417.97734-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-References: <20230719220853.1029316-1-iwona.winiarska@intel.com>
- <20230719220853.1029316-3-iwona.winiarska@intel.com> <dfda43af-e9b4-85bf-e165-02127e02fbf0@molgen.mpg.de>
- <9a6eb22ef6b7a6a686250ed83894e8d37de30baa.camel@intel.com>
- <2f9858b0-88e2-736a-f16a-f4fbe549e389@molgen.mpg.de> <d6de8b0e5b54ca12d9f9930f01a85467b145b134.camel@intel.com>
- <54fc5f74-d293-e467-709f-5077c03be80c@molgen.mpg.de> <88901141184a2fc5309dca1609e62e3e8c128fb0.camel@intel.com>
-In-Reply-To: <88901141184a2fc5309dca1609e62e3e8c128fb0.camel@intel.com>
-From:   Tomer Maimon <tmaimon77@gmail.com>
-Date:   Sun, 23 Jul 2023 17:19:20 +0300
-Message-ID: <CAP6Zq1hzckzFV+fdvrQk9FDVanefwenBnExZVkegMZh0h4W3Fg@mail.gmail.com>
-Subject: Re: [PATCH 2/4] peci: Add peci-npcm controller driver
-To:     "Winiarska, Iwona" <iwona.winiarska@intel.com>
-Cc:     "pmenzel@molgen.mpg.de" <pmenzel@molgen.mpg.de>,
-        "avifishman70@gmail.com" <avifishman70@gmail.com>,
-        "Fair, Benjamin" <benjaminfair@google.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "venture@google.com" <venture@google.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "warp5tw@gmail.com" <warp5tw@gmail.com>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Paul,
+Add full description of USB-MUIC (MAX77693 MUIC) and MUIC-MHL
+connections, along with proper USB connector and OTG mode for DWC2 USB
+controller.
 
-Thanks for your comments.
+This fixes dtc W=1 warnings:
 
-On Fri, 21 Jul 2023 at 12:22, Winiarska, Iwona
-<iwona.winiarska@intel.com> wrote:
->
-> On Fri, 2023-07-21 at 08:30 +0200, Paul Menzel wrote:
-> > Dear Iwona,
-> >
-> >
-> > Am 20.07.23 um 22:20 schrieb Winiarska, Iwona:
-> > > On Thu, 2023-07-20 at 16:47 +0200, Paul Menzel wrote:
-> >
-> > > > Am 20.07.23 um 10:38 schrieb Winiarska, Iwona:
-> > > > > On Thu, 2023-07-20 at 08:20 +0200, Paul Menzel wrote:
-> > > >
-> > > > > > Am 20.07.23 um 00:08 schrieb Iwona Winiarska:
-> > > > > > > From: Tomer Maimon <tmaimon77@gmail.com>
-> > > > > > >
-> > > > > > > Add support for Nuvoton NPCM BMC hardware to the Platform
-> > > > > > > Environment
-> > > > > > > Control Interface (PECI) subsystem.
-> > > > > >
-> > > > > > Please elaborate on the implementation, and document the used
-> > > > > > datasheets.
-> > > > >
-> > > > > As far as I know, there is no publicly available documentation.
-> > > >
-> > > > Too bad. Documenting the datasheet name and version is still import=
-ant,
-> > > > so developers could request it, and it can be mapped, once they are=
- made
-> > > > public.
-> > >
-> > > Sorry, unfortunately I can't help with that, I don't have access to a=
-ny
-> > > Nuvoton
-> > > docs. Perhaps Tomer can provide more information?
-> >
-> > Hopefully. But I wonder, how can you develop and review the patch then?
->
-> It is explained in the cover letter.
-> Also, the review is not only about verifying driver/hardware interactions=
-.
-> In fact - we often have to trust the author, because the docs are not ava=
-ilable.
-> Interactions between software (other kernel components), whether the driv=
-er is a
-> good fit within its subsystem, etc. are just as important, and it's somet=
-hing
-> that we can review without the docs.
-As Iwona mentions in the cover letter,
-The series adds support for PECI on Nuvoton-based BMC boards.
-It is based on patches that were sent by Nuvoton and we checking Iwona
-upstream NPCM PECI driver on NPCM systems.
-Iwona, in case you like to have the NPCM BMC datasheet, it can be
-provided under NDA to relevant companies.
->
-> >
-> > > > > > Additionally, please document how you tested this.
-> > > > >
-> > > > > Are you asking to include this information in the commit message?
-> > > >
-> > > > Yes.
-> > > >
-> > > > > That would be unusual.
-> > > > > But in general - it's a controller driver, it allows PECI subsyst=
-em to
-> > > > > detect
-> > > > > devices behind it and for PECI drivers to bind to those devices.
-> > > >
-> > > > Having a test line in the commit message is not unusual at. So peop=
-le
-> > > > with systems where it doesn=E2=80=99t work, could replicate the tes=
-t setup to at
-> > > > least verify that it works in that configuration.
-> > >
-> > > It's unusual as almost none of the commits in Linux kernel contain "h=
-ow to
-> > > test
-> > > it" description.
-> >
-> > I saw some commits document on what hardware it was tested.
-> >
-> > > The explanation body in the commit message should explain *why* the p=
-atch
-> > > was
-> > > created, not how to test it.
-> >
-> > I disagree. It should of course the why, but sometimes also the how
-> > (implementation), the used datasheets, and all other details making it
-> > easy to review and give reviewers without the hardware confidence, that
-> > the patch is good.
->
-> But it will be persisted for eternity in the git log.
-> And it is only about the review of the series as a whole, which means tha=
-t
-> ultimately, having this information in individual commits is just adding =
-noise.
->
-> >
-> > > And when taken as a series - it's self documenting. There's a Kconfig=
- which
-> > > allows to enable/disable the driver, and there are bindings which sho=
-w what
-> > > platform contains the hardware that is compatible with it.
-> >
-> > I just meant: Tested on server X with BMC Y using Nuvoton Z. Driver
-> > registered correctly, and devices A were discovered.
->
-> The series (after my modifications) was tested by Tomer from Nuvoton:
-> https://lore.kernel.org/openbmc/CAP6Zq1h1if4hyubyh6N8EOdGOu+zp0qVUimF-9L2=
-eXZ-QFAYjw@mail.gmail.com/
-> I can link this in the cover letter.
->
-> >
-> > > > > > > Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
-> > > > > > > Signed-off-by: Tyrone Ting <warp5tw@gmail.com>
-> > > > > > > Co-developed-by: Iwona Winiarska <iwona.winiarska@intel.com>
-> > > > > > > Signed-off-by: Iwona Winiarska <iwona.winiarska@intel.com>
-> > > > > > > ---
-> > > > > > >     drivers/peci/controller/Kconfig     |  16 ++
-> > > > > > >     drivers/peci/controller/Makefile    |   1 +
-> > > > > > >     drivers/peci/controller/peci-npcm.c | 298
-> > > > > > > ++++++++++++++++++++++++++++
-> > > > > > >     3 files changed, 315 insertions(+)
-> > > > > > >     create mode 100644 drivers/peci/controller/peci-npcm.c
-> > > > > > >
-> > > > > > > diff --git a/drivers/peci/controller/Kconfig
-> > > > > > > b/drivers/peci/controller/Kconfig
-> > > > > > > index 2fc5e2abb74a..4f9c245ad042 100644
-> > > > > > > --- a/drivers/peci/controller/Kconfig
-> > > > > > > +++ b/drivers/peci/controller/Kconfig
-> >
-> > [=E2=80=A6]
-> >
-> > > > > > > +#if IS_ENABLED(CONFIG_DYNAMIC_DEBUG)
-> > > > > > > +       dev_dbg(priv->dev, "addr : %#02x, tx.len : %#02x, rx.=
-len :
-> > > > > > > %#02x\n",
-> > > > > > > +               addr, req->tx.len, req->rx.len);
-> > > > > > > +       print_hex_dump_bytes("TX : ", DUMP_PREFIX_NONE, req->=
-tx.buf,
-> > > > > > > req-tx.len);
-> > > > > > > +#endif
-> > > > > >
-> > > > > > The preprocessor guards are not needed, as it=E2=80=99s taken c=
-are of in
-> > > > > > `include/linux/printk.h`. Also in other parts of the patch.
-> > > > >
-> > > > > Since this is dumping the raw contents of PECI messages, it's goi=
-ng to
-> > > > > be quite
-> > > > > verbose. The idea behind preprocessor guard is that we don't ever=
- want
-> > > > > this to
-> > > > > be converted to regular printk. If there's no dynamic debug avail=
-able -
-> > > > > this
-> > > > > won't be printed unconditionally (even with -DDEBUG).
-> > > >
-> > > > How will it be converted to a regular printk?
-> > > >
-> > > >       #if defined(CONFIG_DYNAMIC_DEBUG) || \
-> > > >           (defined(CONFIG_DYNAMIC_DEBUG_CORE) &&
-> > > > defined(DYNAMIC_DEBUG_MODULE))
-> > > >       #define print_hex_dump_debug(prefix_str, prefix_type, rowsize=
-,
-> > > > \
-> > > >                                groupsize, buf, len, ascii)        \
-> > > >           dynamic_hex_dump(prefix_str, prefix_type, rowsize,      \
-> > > >                            groupsize, buf, len, ascii)
-> > > >       #elif defined(DEBUG)
-> > > >       #define print_hex_dump_debug(prefix_str, prefix_type, rowsize=
-,
-> > > > \
-> > > >                                groupsize, buf, len, ascii)
-> > > > \
-> > > >           print_hex_dump(KERN_DEBUG, prefix_str, prefix_type, rowsi=
-ze,
-> > > > \
-> > > >                          groupsize, buf, len, ascii)
-> > > >       #else
-> > > >       static inline void print_hex_dump_debug(const char *prefix_st=
-r, int
-> > > > prefix_type,
-> > > >                                           int rowsize, int groupsiz=
-e,
-> > > >                                           const void *buf, size_t l=
-en,
-> > > > bool ascii)
-> > > >       {
-> > > >       }
-> > > >       #endif
-> > >
-> > > Let's consider 3 scenarios
-> > > 1) Dynamic debug is available
-> > > 2) Dynamic debug is not available, but we're built with -DDEBUG
-> > > 3) Dynamic debug is not available, we're built without -DDEBUG
-> > >
-> > > For 1), print_hex_dump_debug is dynamic - it can be controlled
-> > > (enabled/disabled) using dynamic debug knobs (debugfs / dyndbg kernel=
- arg).
-> > > For 2), print_hex_dump_debug is using print_hex_dump, which is just u=
-sing
-> > > printk
-> > > with KERN_DEBUG level under the hood.
-> > > For 3), it's compiled out.
-> > >
-> > > And it's scenario 2) that we would like to avoid, as hex-dumping all =
-PECI
-> > > communication into dmesg is likely going to make dmesg output unusabl=
-e (can
-> > > overflow, printing that to terminal is going to be slow, etc).
-> > >
-> > > The dump can be useful, it's just that in order to be useful it needs=
- the
-> > > dynamic debug facilities :)
-> >
-> > Thank you for the explanation. Currently, this is only used in the PECI
-> > subsystem:
->
-> That's simply not true.
-> The same approach is used in other subsystems as well, sometimes it cover=
-s
-> individual printk:
-> https://elixir.bootlin.com/linux/v6.4/source/drivers/rpmsg/rpmsg_ns.c#L40
-> In other cases it covers custom wrappers:
-> https://elixir.bootlin.com/linux/v6.4/source/drivers/usb/host/ehci-dbg.c#=
-L8
->
-> There are more examples in the tree, but the general idea is the same - i=
-f the
-> log is verbose and printed often (lies on a hotpath), and we can't rateli=
-mit,
-> hiding it behind dynamic debug availability is an option to consider.
->
-> >
-> >      $ git grep 'if IS_ENABLED(CONFIG_DYNAMIC_DEBUG)'
-> >      drivers/mtd/nand/raw/nand_base.c:#if
-> > IS_ENABLED(CONFIG_DYNAMIC_DEBUG) || defined(DEBUG)
-> >      drivers/peci/controller/peci-aspeed.c:#if
-> > IS_ENABLED(CONFIG_DYNAMIC_DEBUG)
-> >      drivers/peci/controller/peci-aspeed.c:#if
-> > IS_ENABLED(CONFIG_DYNAMIC_DEBUG)
-> >      include/linux/mtd/rawnand.h:#if IS_ENABLED(CONFIG_DYNAMIC_DEBUG) |=
-|
-> > defined(DEBUG)
-> >
-> > I think, it will only cause confusing for users, wondering why it does
-> > not show up with `-DDEBUG`. I assume the Linux kernel offers other ways
-> > to do what you are trying to achieve. Maybe using a dump_traffic knob o=
-r
-> > so in `/sys`.
->
-> Adding a new sysfs ABI for debug prints? No.
-> Alternative would be to use tracepoints, but that's semi-stable and until=
- now we
-> only had one controller driver, so, for now, I would prefer to postpone a=
-ny PECI
-> tracepoint conversions.
->
-> Thanks
-> -Iwona
->
-> >
-> >
-> > Kind regards,
-> >
-> > Paul
->
-Iwona, we highly appreciate that you upstream Nuvoton NPCM PECI driver :-)
+  Warning (graph_child_address): /i2c-mhl/hdmi-bridge@39/ports: graph node has single child node 'port@0', #address-cells/#size-cells are not necessary
 
-Thanks,
+Cc: Marek Szyprowski <m.szyprowski@samsung.com>
+Cc: replicant@osuosl.org
+Cc: phone-devel@vger.kernel.org
+Cc: ~postmarketos/upstreaming@lists.sr.ht
+Cc: Martin Jücker <martin.juecker@gmail.com>
+Cc: Henrik Grimler <henrik@grimler.se>
+Cc: Artur Weber <aweber.kernel@gmail.com>
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Tomer
+---
+
+Changes in v2:
+1. Put connector node in the muic node (Henrik)
+
+Not tested on hardware. Please kindly check if peripheral mode is not
+broken. Or maybe OTG started to work?
+---
+ .../boot/dts/samsung/exynos4412-midas.dtsi    | 50 ++++++++++++++++++-
+ 1 file changed, 49 insertions(+), 1 deletion(-)
+
+diff --git a/arch/arm/boot/dts/samsung/exynos4412-midas.dtsi b/arch/arm/boot/dts/samsung/exynos4412-midas.dtsi
+index 57836d5554d0..7daf25865551 100644
+--- a/arch/arm/boot/dts/samsung/exynos4412-midas.dtsi
++++ b/arch/arm/boot/dts/samsung/exynos4412-midas.dtsi
+@@ -182,6 +182,38 @@ pmic@66 {
+ 			pinctrl-0 = <&max77693_irq>;
+ 			reg = <0x66>;
+ 
++			muic {
++				compatible = "maxim,max77693-muic";
++
++				connector {
++					compatible = "samsung,usb-connector-11pin",
++						     "usb-b-connector";
++					label = "micro-USB";
++					type = "micro";
++
++					ports {
++						#address-cells = <1>;
++						#size-cells = <0>;
++
++						port@0 {
++							reg = <0>;
++
++							muic_to_usb: endpoint {
++								remote-endpoint = <&usb_to_muic>;
++							};
++						};
++
++						port@3 {
++							reg = <3>;
++
++							muic_to_mhl: endpoint {
++								remote-endpoint = <&mhl_to_muic>;
++							};
++						};
++					};
++				};
++			};
++
+ 			regulators {
+ 				esafeout1_reg: ESAFEOUT1 {
+ 					regulator-name = "ESAFEOUT1";
+@@ -287,6 +319,14 @@ mhl_to_hdmi: endpoint {
+ 						remote-endpoint = <&hdmi_to_mhl>;
+ 					};
+ 				};
++
++				port@1 {
++					reg = <1>;
++
++					mhl_to_muic: endpoint {
++						remote-endpoint = <&muic_to_mhl>;
++					};
++				};
+ 			};
+ 		};
+ 	};
+@@ -545,8 +585,16 @@ hdmi_to_mhl: endpoint {
+ &hsotg {
+ 	vusb_d-supply = <&ldo15_reg>;
+ 	vusb_a-supply = <&ldo12_reg>;
+-	dr_mode = "peripheral";
++	dr_mode = "otg";
++	role-switch-default-mode = "peripheral";
++	usb-role-switch;
+ 	status = "okay";
++
++	port {
++		usb_to_muic: endpoint {
++			remote-endpoint = <&muic_to_usb>;
++		};
++	};
+ };
+ 
+ &i2c_0 {
+-- 
+2.34.1
+
