@@ -2,66 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E933075E033
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jul 2023 09:07:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5AC4675E036
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jul 2023 09:11:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229692AbjGWHHW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 23 Jul 2023 03:07:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40286 "EHLO
+        id S229723AbjGWHLN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 23 Jul 2023 03:11:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40946 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229588AbjGWHHW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Jul 2023 03:07:22 -0400
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E39CC1BCE
-        for <devicetree@vger.kernel.org>; Sun, 23 Jul 2023 00:07:20 -0700 (PDT)
-Received: by mail-wr1-x42e.google.com with SMTP id ffacd0b85a97d-3142a9ff6d8so2860126f8f.3
-        for <devicetree@vger.kernel.org>; Sun, 23 Jul 2023 00:07:20 -0700 (PDT)
+        with ESMTP id S229640AbjGWHLM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Jul 2023 03:11:12 -0400
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EEE0FE47
+        for <devicetree@vger.kernel.org>; Sun, 23 Jul 2023 00:11:10 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-993d1f899d7so572019366b.2
+        for <devicetree@vger.kernel.org>; Sun, 23 Jul 2023 00:11:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690096039; x=1690700839;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Z1cZF8UIJrQQxPNeBfoi/RgUpd17bU7m/3eYVNGbu9A=;
-        b=RNkpnN35O+0EmLHV4um1fvy94dzBVUpUG0EEbY+El0Mqs9vYMTJE9fJZd+b56YIYEZ
-         QTDZuR2YqM7pf7eEYu4kJnza6TaZ42wc0WJ7FOGaj6pIHLF7X+Ht7PYpb+2fVnA/AZwf
-         Dn70DFxbioQEM0xMztMhpvMD2MGWtl4LcTFeLyZMool5O3BXq4MICYbzQGx8Z4Ox/gFu
-         qYfrbLave7sXw4dEuqwlAQCisS0fIS+DFOF9y0pEuQSGQDWNZe/1zjWQJB2Oi9JXgyp+
-         3zq04PPsIMBBOIEQnvCyyBSXS8IbIzykVhM8ZC6Lp6sRnEnRsH2/CBXWcOvJFs4cteqS
-         EFWg==
+        d=linaro.org; s=google; t=1690096269; x=1690701069;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=BSnPyqSVu2gHuo4+AEA/XPUph33hXuxTtyCncXN2YGE=;
+        b=CbuvaxRC2zvv3P0eIIxrewtQjuqAVLctBR2m/DK3a2/J9tofsuzchHLy2zAbS2aKV7
+         5ewjm2fM6XC+ugXghFd5KdRBK+QcERtuU12p3F4cxKYl4q0Sjd/+AB6Nx3p29fSil6uM
+         4YzFnlmhyPAyCsDfPlgmsD5bucxqnPBLPueRgRw2XPtUDkOnBCos6qbZWaglamY8Zzrv
+         rZflz8T5CgF+bXSWzwhjBjto/+c3QaV3hg/4HP5LnLqwJakWLEYdoBDt+e8v7U95yYwa
+         1+UazmkzHpIxjRWxSAzyqtOEPlwsyNiA9Z2at61Sg+KbY//dXxnizdvDE7ViiGpUbbci
+         OPQw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690096039; x=1690700839;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Z1cZF8UIJrQQxPNeBfoi/RgUpd17bU7m/3eYVNGbu9A=;
-        b=CveZDLhvtXo9u6NVAINlwtpFW01bXFVhGadsl/gvApVIixh0x4qVHh6HboZrn7a7cT
-         FWvGxyJ6mxh+BKuNclyahch/HLUjJxkxDlvUmTUvEujzaEOC5IJZI4WLd/ZloAl8LbN5
-         lQ8VUJ0uCsfpUBWLjAt8h2WgOQZNp9nJv5Iut+iE91o+/rkq4VLdPlCl9dIW8J3IffCL
-         kGj8Fc2vaHv05DzFpAbxzv+iDZW3eAd/Wx7xp5KXSsXA7mIkdnoqijEfFkAVCEXaPD4l
-         hGPSCBcG0LNJDT3z/XMVBDLrUISQb+lnbqiSwoZlzEBPlopkvQYE6yJP3eX4DELtpmB3
-         7APQ==
-X-Gm-Message-State: ABy/qLZ1u0qyioV1F6K1z1GpCnneJsK3Tw8cVEhXDNzdPVN2HwnVEznw
-        YjNTb0g4KcfX5tc9SqrMmbSwTA==
-X-Google-Smtp-Source: APBJJlH9+6uOnEjDKIYlwnVFfzebOP7WZ2/kfBPL8KbKVx589ugcVLP3kwdzYhVKRowEjgXCEJ7r+w==
-X-Received: by 2002:adf:f488:0:b0:315:9fb7:bd9 with SMTP id l8-20020adff488000000b003159fb70bd9mr4856638wro.69.1690096039304;
-        Sun, 23 Jul 2023 00:07:19 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1690096269; x=1690701069;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=BSnPyqSVu2gHuo4+AEA/XPUph33hXuxTtyCncXN2YGE=;
+        b=O8yDUOHXrxfaCHTDf80Va6XcZgxwV1iF4lVld5IPF+PW0leqlC2SZZzAFf71YZ5qJG
+         62nK1D5JmZZjfTc6TUhsmHPIIZiEh/FIcShfbk0HOx/co9d0SPeWcaCIRQ/wU6eA5Bcd
+         HQ0K12Y+ivrp2Eh+WYd10gKDBVWbAkD6hdkzd8mLhpI9kRn3huqgg4BzhPDp0gbNS9hq
+         lXWahFPcMbaC2CJ70IohHL4/F10eLge5QhzZB8VX6DCheW8x9695TLfw6Zt30uJJAxop
+         dMSgE5i2Bwfm/rKw3DkKtnnreDIGNhhWAfuKAhCA4VfuihDwoCeKiY7dSeTt2JJqsjz4
+         jyWQ==
+X-Gm-Message-State: ABy/qLat7bjUtFYII6PYSZvZYF9aPOMznFIVry51I/HasejKmLQlC3ZQ
+        qAB1QWvcsoOza5+t5Xj/HHLC8A==
+X-Google-Smtp-Source: APBJJlFdI6DsgDD9WdFYKSmdJf8XSslYUGbeWU0JC3fnxF/QaGLkeRSv/Bwh8LcGsfNdj8uVBWBNXw==
+X-Received: by 2002:a17:906:648a:b0:997:eab5:f1c6 with SMTP id e10-20020a170906648a00b00997eab5f1c6mr7319944ejm.30.1690096269496;
+        Sun, 23 Jul 2023 00:11:09 -0700 (PDT)
 Received: from krzk-bin.. ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id s11-20020a5d4ecb000000b003144b50034esm8851788wrv.110.2023.07.23.00.07.17
+        by smtp.gmail.com with ESMTPSA id x17-20020a170906299100b00989828a42e8sm4639518eje.154.2023.07.23.00.11.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 23 Jul 2023 00:07:18 -0700 (PDT)
+        Sun, 23 Jul 2023 00:11:09 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Chanwoo Choi <cw00.choi@samsung.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH] dt-bindings: mfd: maxim,max77693: add USB connector
-Date:   Sun, 23 Jul 2023 09:07:15 +0200
-Message-Id: <20230723070715.34650-1-krzysztof.kozlowski@linaro.org>
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Jagan Sridharan <badhri@google.com>,
+        ChiYuan Huang <cy_huang@richtek.com>,
+        Min Guo <min.guo@mediatek.com>,
+        Gene Chen <gene_chen@richtek.com>, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] dt-bindings: usb: add missing unevaluatedProperties on USB connector
+Date:   Sun, 23 Jul 2023 09:11:05 +0200
+Message-Id: <20230723071105.40157-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,32 +81,90 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add micro-USB connector to properly represent the hardware.
+The usb-connector.yaml schema allows any additional properties, thus its
+usage should finish with unevaluatedProperties: false.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
 ---
+ Documentation/devicetree/bindings/usb/maxim,max33359.yaml       | 1 +
+ Documentation/devicetree/bindings/usb/mediatek,mt6360-tcpc.yaml | 1 +
+ Documentation/devicetree/bindings/usb/mediatek,mtu3.yaml        | 1 +
+ Documentation/devicetree/bindings/usb/mediatek,musb.yaml        | 1 +
+ Documentation/devicetree/bindings/usb/richtek,rt1711h.yaml      | 1 +
+ Documentation/devicetree/bindings/usb/richtek,rt1719.yaml       | 1 +
+ 6 files changed, 6 insertions(+)
 
-DTS change using this:
-https://lore.kernel.org/linux-samsung-soc/20230722202039.35877-1-krzysztof.kozlowski@linaro.org/T/#u
----
- Documentation/devicetree/bindings/mfd/maxim,max77693.yaml | 4 ++++
- 1 file changed, 4 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/mfd/maxim,max77693.yaml b/Documentation/devicetree/bindings/mfd/maxim,max77693.yaml
-index 1b06a77ec798..8503fc2defad 100644
---- a/Documentation/devicetree/bindings/mfd/maxim,max77693.yaml
-+++ b/Documentation/devicetree/bindings/mfd/maxim,max77693.yaml
-@@ -31,6 +31,10 @@ properties:
-   charger:
-     $ref: /schemas/power/supply/maxim,max77693.yaml
- 
-+  connector:
-+    $ref: /schemas/connector/usb-connector.yaml#
+diff --git a/Documentation/devicetree/bindings/usb/maxim,max33359.yaml b/Documentation/devicetree/bindings/usb/maxim,max33359.yaml
+index 276bf7554215..45e093978b82 100644
+--- a/Documentation/devicetree/bindings/usb/maxim,max33359.yaml
++++ b/Documentation/devicetree/bindings/usb/maxim,max33359.yaml
+@@ -25,6 +25,7 @@ properties:
+   connector:
+     type: object
+     $ref: ../connector/usb-connector.yaml#
 +    unevaluatedProperties: false
-+
-   led:
-     $ref: /schemas/leds/maxim,max77693.yaml
+     description:
+       Properties for usb c connector.
+ 
+diff --git a/Documentation/devicetree/bindings/usb/mediatek,mt6360-tcpc.yaml b/Documentation/devicetree/bindings/usb/mediatek,mt6360-tcpc.yaml
+index 053264e60583..42b9d3a35c67 100644
+--- a/Documentation/devicetree/bindings/usb/mediatek,mt6360-tcpc.yaml
++++ b/Documentation/devicetree/bindings/usb/mediatek,mt6360-tcpc.yaml
+@@ -29,6 +29,7 @@ properties:
+   connector:
+     type: object
+     $ref: ../connector/usb-connector.yaml#
++    unevaluatedProperties: false
+     description:
+       Properties for usb c connector.
+ 
+diff --git a/Documentation/devicetree/bindings/usb/mediatek,mtu3.yaml b/Documentation/devicetree/bindings/usb/mediatek,mtu3.yaml
+index a59d91243ac8..7eb880e4a270 100644
+--- a/Documentation/devicetree/bindings/usb/mediatek,mtu3.yaml
++++ b/Documentation/devicetree/bindings/usb/mediatek,mtu3.yaml
+@@ -144,6 +144,7 @@ properties:
+ 
+   connector:
+     $ref: /schemas/connector/usb-connector.yaml#
++    unevaluatedProperties: false
+     description:
+       Connector for dual role switch, especially for "gpio-usb-b-connector"
+     type: object
+diff --git a/Documentation/devicetree/bindings/usb/mediatek,musb.yaml b/Documentation/devicetree/bindings/usb/mediatek,musb.yaml
+index a39d38db7714..924f74d45baa 100644
+--- a/Documentation/devicetree/bindings/usb/mediatek,musb.yaml
++++ b/Documentation/devicetree/bindings/usb/mediatek,musb.yaml
+@@ -66,6 +66,7 @@ properties:
+     $ref: /schemas/connector/usb-connector.yaml#
+     description: Connector for dual role switch
+     type: object
++    unevaluatedProperties: false
+ 
+ dependencies:
+   usb-role-switch: [ connector ]
+diff --git a/Documentation/devicetree/bindings/usb/richtek,rt1711h.yaml b/Documentation/devicetree/bindings/usb/richtek,rt1711h.yaml
+index 8da4d2ad1a91..980235e27a7f 100644
+--- a/Documentation/devicetree/bindings/usb/richtek,rt1711h.yaml
++++ b/Documentation/devicetree/bindings/usb/richtek,rt1711h.yaml
+@@ -36,6 +36,7 @@ properties:
+   connector:
+     type: object
+     $ref: /schemas/connector/usb-connector.yaml#
++    unevaluatedProperties: false
+     description:
+       Properties for usb c connector.
+ 
+diff --git a/Documentation/devicetree/bindings/usb/richtek,rt1719.yaml b/Documentation/devicetree/bindings/usb/richtek,rt1719.yaml
+index 4ced2f68e2a9..27978580b234 100644
+--- a/Documentation/devicetree/bindings/usb/richtek,rt1719.yaml
++++ b/Documentation/devicetree/bindings/usb/richtek,rt1719.yaml
+@@ -34,6 +34,7 @@ properties:
+   connector:
+     type: object
+     $ref: ../connector/usb-connector.yaml#
++    unevaluatedProperties: false
+     description:
+       Properties for usb c connector.
  
 -- 
 2.34.1
