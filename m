@@ -2,110 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2179E75E4A8
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jul 2023 21:54:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4306775E4AF
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jul 2023 22:06:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229723AbjGWTye (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 23 Jul 2023 15:54:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57996 "EHLO
+        id S229640AbjGWUGL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 23 Jul 2023 16:06:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58654 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229582AbjGWTyc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Jul 2023 15:54:32 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DDF2FE43
-        for <devicetree@vger.kernel.org>; Sun, 23 Jul 2023 12:54:29 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-99b9421aaebso32048866b.2
-        for <devicetree@vger.kernel.org>; Sun, 23 Jul 2023 12:54:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1690142068; x=1690746868;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=IWhei07P7VB1yLCXpbZ3QMUD5i2h0EjqqassXoDsvvg=;
-        b=ArOYD5mQ/NeiQurVYVgtEK36iNXjLbNaNg/bsEQ0vD6ji3X7kQAiWgOpYOmARDDqB8
-         X6ZCwhGSOsZLjgczNRO1LI40eUU7PY/QDU5UPdlTMB3pkDMsHriN7eyfdx5rDZMlJpj8
-         njt9+OLv3bpPqZ8OqyAHTS5GaNbqFwu8MwlzxAwj8C6jyBIcen4k4AOYstWgtC3MuN9R
-         Q6w2yQIjWm7rXkLUEC7erestm3H+GUH+cxlXFhuZ+l/K5HRLevywrfiqeXZViSquFgkb
-         HTqQOBJFuvpuZFnZtMtg3ddOOgZJZ99f5X138zGqi6nNwO/sUBBPBQUs5oXMgzLXolhy
-         Pf2w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690142068; x=1690746868;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=IWhei07P7VB1yLCXpbZ3QMUD5i2h0EjqqassXoDsvvg=;
-        b=bEmGRibuBM/AoFlT1+hei8le/v1CqHN6VZMHgzIAFlBLyvaaIqawtmY/sefycrh1Qq
-         aeJ52hTHR2AB4eAA0AUPJ/uD8qJCGuakmS4QeIHp5qKrHIaqeshiTA/Mp3vUWsrwOiZd
-         7ovN0miKeEBZeNQAg/27NdtrXlluTSe/fRTRC12SHs/m3dPbKYDTym6gYz4fsGoodqkX
-         qWDabP3LnzBDn9xkj+D9H6caWUCA/iUkiOukOILJPaMPsg6oIBsqbDEzoR1O9c6xrqBy
-         NdjmhT3wh8SP/X8F0WDGX9YrBnVyECrNwyt8MpFHd0WjUumJkXmRxhb9oxOqhW0Fu4uQ
-         ETkA==
-X-Gm-Message-State: ABy/qLZawDKBx5ytMWiyiWVM0V2JvaXNpKaZcR4qx8ACUx8AcQ3voJR5
-        Gl248YKpnYPIeDvOUBSIbNk=
-X-Google-Smtp-Source: APBJJlGhRvUGk5MRcDO/p1dMyLz/K48nQGKKk6itTvMF0KPzYSUfkZGsY4BVK7i42OW+3x/in4gKfw==
-X-Received: by 2002:a17:906:1098:b0:98c:e72c:6b83 with SMTP id u24-20020a170906109800b0098ce72c6b83mr7419500eju.45.1690142068116;
-        Sun, 23 Jul 2023 12:54:28 -0700 (PDT)
-Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
-        by smtp.gmail.com with ESMTPSA id pk4-20020a170906d7a400b00993004239a4sm5560046ejb.215.2023.07.23.12.54.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 23 Jul 2023 12:54:27 -0700 (PDT)
-From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To:     Florian Fainelli <f.fainelli@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH 3/3] ARM: dts: BCM53573: Add BCM53125 switch port 5
-Date:   Sun, 23 Jul 2023 21:54:16 +0200
-Message-Id: <20230723195416.7831-3-zajec5@gmail.com>
-X-Mailer: git-send-email 2.35.3
-In-Reply-To: <20230723195416.7831-1-zajec5@gmail.com>
-References: <20230723195416.7831-1-zajec5@gmail.com>
+        with ESMTP id S229491AbjGWUGK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Jul 2023 16:06:10 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7741B1BE;
+        Sun, 23 Jul 2023 13:06:09 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 04FBA60E9A;
+        Sun, 23 Jul 2023 20:06:09 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AE29FC433C8;
+        Sun, 23 Jul 2023 20:06:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1690142768;
+        bh=MYDNII/nRbpdhoxLfX/zeWMDQLkBfuAoQG5un5EegG8=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=i04gOhYl/e9pCTC+Qjr0+IHT70ErCt815FZsNDMNWXOyWLAtfFsG5RRDgy/ifMEYi
+         ocuIRDmhrayU0SnG3tshMAydV1PAx5CqH6z636iru4IYvtGpvzPlkrKyAXwVcporwo
+         xN7gQ8SSCjeGdg5g3sHi+/+PXffTeKrzQbsJ7Ba1tyxmDeXLPCWXSP7nMhB7Zt21Kb
+         xzTthLBnKMf4WlOuXZE2aW4YkWJgrKhkOPlIBw48KjZHkV3U+OUUh7Jgh645JuBoRg
+         5pXX9f85FgT316SIJ0WqprfJYTbt/k3S85n2UugXt5ZXSgq3h6aOvObqny3LV/lRzA
+         VeVGP5CPUOpmw==
+Message-ID: <1703ab6e-8567-8574-f011-af19813f97e8@kernel.org>
+Date:   Mon, 24 Jul 2023 05:06:04 +0900
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v2 09/15] PM / devfreq: Switch to
+ dev_pm_opp_find_freq_{ceil/floor}_indexed() APIs
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        vireshk@kernel.org, nm@ti.com, sboyd@kernel.org,
+        myungjoo.ham@samsung.com, kyungmin.park@samsung.com,
+        cw00.choi@samsung.com, andersson@kernel.org,
+        konrad.dybcio@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        jejb@linux.ibm.com, martin.petersen@oracle.com
+Cc:     alim.akhtar@samsung.com, avri.altman@wdc.com, bvanassche@acm.org,
+        linux-scsi@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        quic_asutoshd@quicinc.com, quic_cang@quicinc.com,
+        quic_nitirawa@quicinc.com, quic_narepall@quicinc.com,
+        quic_bhaskarv@quicinc.com, quic_richardp@quicinc.com,
+        quic_nguyenb@quicinc.com, quic_ziqichen@quicinc.com,
+        bmasney@redhat.com, krzysztof.kozlowski@linaro.org,
+        linux-kernel@vger.kernel.org
+References: <20230720054100.9940-1-manivannan.sadhasivam@linaro.org>
+ <20230720054100.9940-10-manivannan.sadhasivam@linaro.org>
+From:   Chanwoo Choi <chanwoo@kernel.org>
+Content-Language: en-US
+In-Reply-To: <20230720054100.9940-10-manivannan.sadhasivam@linaro.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rafał Miłecki <rafal@milecki.pl>
+Hi,
 
-It's connected to the extra Ethernet interface.
+On 23. 7. 20. 14:40, Manivannan Sadhasivam wrote:
+> Some devfreq consumers like UFS driver need to work with multiple clocks
+> through the OPP framework. For this reason, OPP framework exposes the
+> _indexed() APIs for finding the floor/ceil of the supplied frequency of
+> the indexed clock. So let's use them in the devfreq driver.
+> 
+> Currently, the clock index of 0 is used which works fine for multiple as
+> well as single clock.
+> 
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> ---
+>  drivers/devfreq/devfreq.c | 14 +++++++-------
+>  1 file changed, 7 insertions(+), 7 deletions(-)
+> 
+> diff --git a/drivers/devfreq/devfreq.c b/drivers/devfreq/devfreq.c
+> index e36cbb920ec8..7686993d639f 100644
+> --- a/drivers/devfreq/devfreq.c
+> +++ b/drivers/devfreq/devfreq.c
+> @@ -88,7 +88,7 @@ static unsigned long find_available_min_freq(struct devfreq *devfreq)
+>  	struct dev_pm_opp *opp;
+>  	unsigned long min_freq = 0;
+>  
+> -	opp = dev_pm_opp_find_freq_ceil(devfreq->dev.parent, &min_freq);
+> +	opp = dev_pm_opp_find_freq_ceil_indexed(devfreq->dev.parent, &min_freq, 0);
 
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
----
- arch/arm/boot/dts/broadcom/bcm53573.dtsi | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+This patch changed the used function from dev_pm_opp_find_freq_ceil
+to dev_pm_opp_find_freq_ceil_indexed even if there are no supporting of the multiple clocks
+and then dev_pm_opp_find_freq_ceil is not removed from OPP.
 
-diff --git a/arch/arm/boot/dts/broadcom/bcm53573.dtsi b/arch/arm/boot/dts/broadcom/bcm53573.dtsi
-index 083304736fb3..10d0fe76ee3c 100644
---- a/arch/arm/boot/dts/broadcom/bcm53573.dtsi
-+++ b/arch/arm/boot/dts/broadcom/bcm53573.dtsi
-@@ -216,6 +216,16 @@ port@4 {
- 							reg = <4>;
- 						};
- 
-+						port@5 {
-+							reg = <5>;
-+							ethernet = <&gmac1>;
-+
-+							fixed-link {
-+								speed = <1000>;
-+								full-duplex;
-+							};
-+						};
-+
- 						port@8 {
- 							reg = <8>;
- 							ethernet = <&gmac0>;
+I think that it is better to use dev_pm_opp_find_freq_ceil_indexed
+when need to support multiple clocks with real case.
+
+>  	if (IS_ERR(opp))
+>  		min_freq = 0;
+>  	else
+> @@ -102,7 +102,7 @@ static unsigned long find_available_max_freq(struct devfreq *devfreq)
+>  	struct dev_pm_opp *opp;
+>  	unsigned long max_freq = ULONG_MAX;
+>  
+> -	opp = dev_pm_opp_find_freq_floor(devfreq->dev.parent, &max_freq);
+> +	opp = dev_pm_opp_find_freq_floor_indexed(devfreq->dev.parent, &max_freq, 0);
+>  	if (IS_ERR(opp))
+>  		max_freq = 0;
+>  	else
+> @@ -196,7 +196,7 @@ static int set_freq_table(struct devfreq *devfreq)
+>  		return -ENOMEM;
+>  
+>  	for (i = 0, freq = 0; i < devfreq->max_state; i++, freq++) {
+> -		opp = dev_pm_opp_find_freq_ceil(devfreq->dev.parent, &freq);
+> +		opp = dev_pm_opp_find_freq_ceil_indexed(devfreq->dev.parent, &freq, 0);
+>  		if (IS_ERR(opp)) {
+>  			devm_kfree(devfreq->dev.parent, devfreq->freq_table);
+>  			return PTR_ERR(opp);
+> @@ -2034,18 +2034,18 @@ struct dev_pm_opp *devfreq_recommended_opp(struct device *dev,
+>  
+>  	if (flags & DEVFREQ_FLAG_LEAST_UPPER_BOUND) {
+>  		/* The freq is an upper bound. opp should be lower */
+> -		opp = dev_pm_opp_find_freq_floor(dev, freq);
+> +		opp = dev_pm_opp_find_freq_floor_indexed(dev, freq, 0);
+>  
+>  		/* If not available, use the closest opp */
+>  		if (opp == ERR_PTR(-ERANGE))
+> -			opp = dev_pm_opp_find_freq_ceil(dev, freq);
+> +			opp = dev_pm_opp_find_freq_ceil_indexed(dev, freq, 0);
+>  	} else {
+>  		/* The freq is an lower bound. opp should be higher */
+> -		opp = dev_pm_opp_find_freq_ceil(dev, freq);
+> +		opp = dev_pm_opp_find_freq_ceil_indexed(dev, freq, 0);
+>  
+>  		/* If not available, use the closest opp */
+>  		if (opp == ERR_PTR(-ERANGE))
+> -			opp = dev_pm_opp_find_freq_floor(dev, freq);
+> +			opp = dev_pm_opp_find_freq_floor_indexed(dev, freq, 0);
+>  	}
+>  
+>  	return opp;
+
 -- 
-2.35.3
+Best Regards,
+Samsung Electronics
+Chanwoo Choi
 
