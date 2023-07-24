@@ -2,63 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C9EC75E5E0
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 02:35:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 05E7E75E624
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 03:15:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229728AbjGXAfB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 23 Jul 2023 20:35:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39372 "EHLO
+        id S229877AbjGXBPi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 23 Jul 2023 21:15:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45742 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229468AbjGXAfA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Jul 2023 20:35:00 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E96B4AD;
-        Sun, 23 Jul 2023 17:34:59 -0700 (PDT)
+        with ESMTP id S229826AbjGXBPh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Jul 2023 21:15:37 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6D39E6A;
+        Sun, 23 Jul 2023 18:15:07 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 74BF760E17;
-        Mon, 24 Jul 2023 00:34:59 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AE299C433C7;
-        Mon, 24 Jul 2023 00:34:55 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 7DE0E60F13;
+        Mon, 24 Jul 2023 01:15:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AFD4CC433CA;
+        Mon, 24 Jul 2023 01:15:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690158898;
-        bh=gNbXnPpBgxiMLCQuNJ6rOoa/K4zGpmwvusnAIl/7MSU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ZYKx2OImxZFo4lkaeunx7/EG7kTr784+++JA/r9PeQx7HWhGJf8M/vPLIemqBjWZX
-         v8K9Q53GL4Id2bgkEv0xC6cOsr8iQd1eiCVXrTNgHqUbBNver/56/pJ1OkTVnU9rZr
-         RB/8y+NTv3qNxfl08rYb4G9E0s4I/fsFBo1rEJcUwJiIMCelfajiqtPR6fVX04p5xk
-         HGZ+DT7X37dessczfkDfgep2OlYR3zgM8EEYww8HF6VZ0IHAwCSVyeStmbydPaAGSs
-         TJIah1vVTZsIcol27zQniXRfkOfnuSRsxuhpSazcRjE73lvtrpNc+QRpaUwdv4qZMw
-         QBf36FXl7Krrg==
-Date:   Mon, 24 Jul 2023 08:23:22 +0800
-From:   Jisheng Zhang <jszhang@kernel.org>
-To:     Drew Fustini <dfustini@baylibre.com>
-Cc:     Conor Dooley <conor@kernel.org>, Guo Ren <guoren@kernel.org>,
-        Fu Wei <wefu@redhat.com>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Robert Nelson <robertcnelson@beagleboard.org>,
-        Jason Kridner <jkridner@beagleboard.org>
-Subject: Re: [PATCH 1/3] riscv: dts: thead: add BeagleV Ahead board device
- tree
-Message-ID: <ZL3Eenj4lGZDhZTM@xhacker>
-References: <20230722-upstream-beaglev-ahead-dts-v1-0-ccda511357f4@baylibre.com>
- <20230722-upstream-beaglev-ahead-dts-v1-1-ccda511357f4@baylibre.com>
- <20230723-savor-trolling-e35ed4a7a751@spud>
- <ZL1jlacHj7sgNg8M@x1>
+        s=k20201202; t=1690161301;
+        bh=ffiy/BuX+FpebDZznlAWahYjOgiu720u1XXkbgF04/4=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=EKJEcCnE8HxhxoTWRcA4UQaj1CGuYfVswG2Ye5HrWq7k2VYd9rNPkITv01GINPgvw
+         XMz3t58460XvXPF3E17aye1hv/k2KEf90jJZGiiFQTtIvIDzIFFweA135Xc2lKghkg
+         2uMGbEaROUv53pYfpSZMVVx8xmjUVDoqWWGB/9sJyHXQqgDO2Y8iKkS2eaUbR/xjFQ
+         X8b0WGmBjQq/F8RvcJnQtMR/ij9QzQyDEMHjJuGWvdX/3L2l4SnEu/KNK/BJwPEfyO
+         YWYt7s6iZxXV4qyRnNw6/F5MP2zfzb4hXcPn4X1rQ+JGLpy5zN3tywNwmYUV9z9xIq
+         bMm3N/bSjS0Fw==
+From:   Sasha Levin <sashal@kernel.org>
+To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Cc:     Kathiravan T <quic_kathirav@quicinc.com>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Sasha Levin <sashal@kernel.org>, agross@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 6.4 17/58] arm64: dts: qcom: ipq5332: add QFPROM node
+Date:   Sun, 23 Jul 2023 21:12:45 -0400
+Message-Id: <20230724011338.2298062-17-sashal@kernel.org>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20230724011338.2298062-1-sashal@kernel.org>
+References: <20230724011338.2298062-1-sashal@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <ZL1jlacHj7sgNg8M@x1>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+X-stable: review
+X-Patchwork-Hint: Ignore
+X-stable-base: Linux 6.4.5
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -67,44 +62,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jul 23, 2023 at 10:29:57AM -0700, Drew Fustini wrote:
-> On Sun, Jul 23, 2023 at 11:32:17AM +0100, Conor Dooley wrote:
-> > On Sat, Jul 22, 2023 at 02:55:39PM -0700, Drew Fustini wrote:
-> > 
-> > > +++ b/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts
-> > > @@ -0,0 +1,61 @@
-> > > +// SPDX-License-Identifier: GPL-2.0
-> > 
-> > Hmm, should this not be dual licensed?
-> > I notice the other th1520 stuff isn't either..
-> 
-> Good point, I'll resubmit with a dual license.
-> 
-> Jisheng: are you okay with the other arch/riscv/boot/dts/thead files
-> changing to a dual license?
+From: Kathiravan T <quic_kathirav@quicinc.com>
 
-When cooking the initial patch, I wrote the lpi4a dts files from
-scratch based on sipeed opened sch file, and currently only I made
-contributions to them, so it's easy to make the lpi4a dts files
-dual license.
+[ Upstream commit 2f34a2aa4c88f4882e3c5df8c9b78f8bbd3f564f ]
 
-However, when constructing the th1520.dtsi, I refered the T-HEAD's
-opensourced yocto repo(in fact, that's the only sourcecode/doc I have
-at that time), and the license there is GPL-2.0. That's
-also the reason why copyright of Alibaba Group Holding Limited is
-added to th1520.dtsi. I'm not sure how to make th1520.dtsi dual
-license. At least, this needs help from Guo Ren. Any suggestion is
-appreciated.
+IPQ5332 has efuse region to determine the various HW quirks. Lets
+add the initial support and the individual fuses will be added as they
+are required.
 
-> 
-> > 
-> > 
-> > > +	memory@0 {
-> > > +		device_type = "memory";
-> > > +		reg = <0x0  0x00000000  0x1 0x00000000>;
-> > 
-> > There's some extra spaces in here for some reason.
-> 
-> Thanks for spotting that. I'll fix when I resubmit with dual licnese.
-> 
-> Drew
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Signed-off-by: Kathiravan T <quic_kathirav@quicinc.com>
+Signed-off-by: Bjorn Andersson <andersson@kernel.org>
+Link: https://lore.kernel.org/r/20230526125305.19626-3-quic_kathirav@quicinc.com
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ arch/arm64/boot/dts/qcom/ipq5332.dtsi | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/ipq5332.dtsi b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
+index af4d97143bcf5..c2d6cc65a323a 100644
+--- a/arch/arm64/boot/dts/qcom/ipq5332.dtsi
++++ b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
+@@ -135,6 +135,13 @@ soc@0 {
+ 		#size-cells = <1>;
+ 		ranges = <0 0 0 0xffffffff>;
+ 
++		qfprom: efuse@a4000 {
++			compatible = "qcom,ipq5332-qfprom", "qcom,qfprom";
++			reg = <0x000a4000 0x721>;
++			#address-cells = <1>;
++			#size-cells = <1>;
++		};
++
+ 		rng: rng@e3000 {
+ 			compatible = "qcom,prng-ee";
+ 			reg = <0x000e3000 0x1000>;
+-- 
+2.39.2
+
