@@ -2,130 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0BAB775F382
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 12:38:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5ED1C75F388
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 12:39:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231715AbjGXKiY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jul 2023 06:38:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37564 "EHLO
+        id S231847AbjGXKj3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jul 2023 06:39:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38624 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231713AbjGXKiX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 06:38:23 -0400
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C626BE64
-        for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 03:37:45 -0700 (PDT)
-Received: by mail-lj1-x22f.google.com with SMTP id 38308e7fff4ca-2b701dee4bfso60299891fa.0
-        for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 03:37:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690195049; x=1690799849;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=5Mjx+AKhx73Ok5LyRGO+wvJwkfYR1YCJ1GmS45SCWjo=;
-        b=V2w1M5vsqmHXlIhqoP3CFjl90aC/dMsTDC2/gvSeHijf69xefY9gc3AAVQvLjVfsqU
-         hI9Jzo4anJKrHgV8NC4YfCDlxlqx7eshePH0dWaL97GiHjtIhZKSodTuC2UXa7fBgclW
-         LsehIB3KrhxZCHcq5lYlDCMOxGho7ajvWX33Z7ugPlzMhcGfSfq6FioA0kt7ohn2muwX
-         CU44WyV1b/M7e/5wiWDkKuNituxMIpZa721yzVSntztIehD1Q8THor650WYxAOMR1C5g
-         mBleh+bY+CFFGyHDFc8j8l92XBDSWl7KbOM5ikQDZ3COxb7lPktQwBtrWK8NV8XoawuD
-         rw+w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690195049; x=1690799849;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=5Mjx+AKhx73Ok5LyRGO+wvJwkfYR1YCJ1GmS45SCWjo=;
-        b=QQpVUudV8dHv5yFsv5EHEOf/4dZY9vh94xKwhxsAUdK9hoMH7mZ/m1aPD3jNBlylq6
-         mlT0/O/Zi8o2gVXoOupKYYb13y2ugcQmmz1pOFkaWUIfDME/BaelKaIxVIdwwEbn1KoA
-         OO9s3smhyZNe/HtqdQ7UGsvw4K5XdccRArjGZ7sAmm2KQbpo7kQ/lz801JtH7zASoHsb
-         zsLmEvGLIH4OIQ/n/cLj8AtSwwL1K2uJFq9MB3ZZcw9QwosGsdQDYLwUQSANsg4e4aCS
-         Xpqj5sHYfsOjrPsF6LWWELFKhhYa7tmI9LzHPEaIVGY1z6JJ6HbCoq+tZuhJkiYBP8NT
-         Llhg==
-X-Gm-Message-State: ABy/qLa54bbIkVp8agQGZcF7GiNow72dUTV+r8J75OT66/fnJAS9nNPa
-        87v4CXvfuA3Zq2wjq8tR1IJ6dA==
-X-Google-Smtp-Source: APBJJlE2SOID+4J+69lHO2dT9FFEgfRdy/8MiMsKBKvUOMEJjaWZeOTlclZwAxcq5jFYEx/efhXsDA==
-X-Received: by 2002:a2e:a1cb:0:b0:2b7:842:a64c with SMTP id c11-20020a2ea1cb000000b002b70842a64cmr5064283ljm.5.1690195048844;
-        Mon, 24 Jul 2023 03:37:28 -0700 (PDT)
-Received: from [192.168.1.101] (abyl203.neoplus.adsl.tpnet.pl. [83.9.31.203])
-        by smtp.gmail.com with ESMTPSA id y23-20020a2e9797000000b002b6a930b8b0sm2783314lji.73.2023.07.24.03.37.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 24 Jul 2023 03:37:28 -0700 (PDT)
-Message-ID: <b2bfe586-58b7-6b5a-c4fe-f7d1a17860a2@linaro.org>
-Date:   Mon, 24 Jul 2023 12:37:27 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: arm: msm: kpss-acc: Revert "dt-bindings:
- arm: msm: kpss-acc: Make the optional reg truly optional"
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S231848AbjGXKj2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 06:39:28 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DAFDFE55;
+        Mon, 24 Jul 2023 03:39:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1690195142; x=1721731142;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=eUPS2eKQuZV1PS+dulQY1U13BfYH8VlPDUoaYrp3SCU=;
+  b=BEOHmDG+ltIIRbGk66rzmHZGaM+NkfX59u6BkkBxUiSAHAIZN7D9YzVx
+   PA4GxGU6JV/tf1PZWKlH/Jg7KaTvMLH1y5fjYSVwN3Z1CS5zkOHZ9Gqnn
+   JBEqcUXm6DK+exuHcYmjolAZ3+lrJm4CyJNgFx02RmuvuIFx2alshZhvZ
+   cvroHNOOHBf9iCrmlrxbveTkLaQBe0JY69YzHxDz3HIU0JNjt0ekQmXVw
+   0/H1ejeV7jcYEuFhT9d8qKCadDgw1BdQ0A8Fgn79D1H2DxA+DESO/obzW
+   hxNVOqmcu/BRTYBAyguZAdae2ITPHCSxRKuiBAIbWPGtW2CwjoevFU/jq
+   g==;
+X-IronPort-AV: E=Sophos;i="6.01,228,1684825200"; 
+   d="asc'?scan'208";a="237301218"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 24 Jul 2023 03:38:33 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Mon, 24 Jul 2023 03:38:33 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex01.mchp-main.com
+ (10.10.85.143) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
+ Transport; Mon, 24 Jul 2023 03:38:30 -0700
+Date:   Mon, 24 Jul 2023 11:37:56 +0100
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Jisheng Zhang <jszhang@kernel.org>
+CC:     Drew Fustini <dfustini@baylibre.com>,
+        Conor Dooley <conor@kernel.org>, Guo Ren <guoren@kernel.org>,
+        Fu Wei <wefu@redhat.com>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Christian Marangi <ansuelsmth@gmail.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230724090109.19489-1-krzysztof.kozlowski@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <20230724090109.19489-1-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Robert Nelson <robertcnelson@beagleboard.org>,
+        Jason Kridner <jkridner@beagleboard.org>
+Subject: Re: [PATCH 1/3] riscv: dts: thead: add BeagleV Ahead board device
+ tree
+Message-ID: <20230724-census-party-0a50d1563075@wendy>
+References: <20230722-upstream-beaglev-ahead-dts-v1-0-ccda511357f4@baylibre.com>
+ <20230722-upstream-beaglev-ahead-dts-v1-1-ccda511357f4@baylibre.com>
+ <20230723-savor-trolling-e35ed4a7a751@spud>
+ <ZL1jlacHj7sgNg8M@x1>
+ <ZL3Eenj4lGZDhZTM@xhacker>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="IYmJ4PmQz3geta1F"
+Content-Disposition: inline
+In-Reply-To: <ZL3Eenj4lGZDhZTM@xhacker>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24.07.2023 11:01, Krzysztof Kozlowski wrote:
-> This reverts commit 981be238e1d28e156aa9da2a8722f86f02fd0453 because it
-> was totally bogus and duplicated existing minItems:
-> 
->   ruamel.yaml.constructor.DuplicateKeyError: while constructing a mapping
->   Documentation/devicetree/bindings/power/qcom,kpss-acc-v2.yaml: ignoring, error parsing file
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
-My bad.
+--IYmJ4PmQz3geta1F
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Acked-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+On Mon, Jul 24, 2023 at 08:23:22AM +0800, Jisheng Zhang wrote:
+> On Sun, Jul 23, 2023 at 10:29:57AM -0700, Drew Fustini wrote:
+> > On Sun, Jul 23, 2023 at 11:32:17AM +0100, Conor Dooley wrote:
+> > > On Sat, Jul 22, 2023 at 02:55:39PM -0700, Drew Fustini wrote:
+> > >=20
+> > > > +++ b/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts
+> > > > @@ -0,0 +1,61 @@
+> > > > +// SPDX-License-Identifier: GPL-2.0
+> > >=20
+> > > Hmm, should this not be dual licensed?
+> > > I notice the other th1520 stuff isn't either..
+> >=20
+> > Good point, I'll resubmit with a dual license.
+> >=20
+> > Jisheng: are you okay with the other arch/riscv/boot/dts/thead files
+> > changing to a dual license?
+>=20
+> When cooking the initial patch, I wrote the lpi4a dts files from
+> scratch based on sipeed opened sch file, and currently only I made
+> contributions to them, so it's easy to make the lpi4a dts files
+> dual license.
+>=20
+> However, when constructing the th1520.dtsi, I refered the T-HEAD's
+> opensourced yocto repo(in fact, that's the only sourcecode/doc I have
+> at that time), and the license there is GPL-2.0. That's
+> also the reason why copyright of Alibaba Group Holding Limited is
+> added to th1520.dtsi. I'm not sure how to make th1520.dtsi dual
+> license. At least, this needs help from Guo Ren. Any suggestion is
+> appreciated.
 
-Konrad
+I think Guo Ren Acking the change should be sufficient. It'd be good to
+have them dual licensed to make it easier for other projects to include
+the dts files from Linux. Almost all of what we have at the moment is
+dual licensed, other than the Canaan stuff & some board dts files I got
+=66rom customers that were only GPLed.
+
+--IYmJ4PmQz3geta1F
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZL5UhAAKCRB4tDGHoIJi
+0t3eAP0SIcy6zSf49cO2g9xepgYH48UogCXzOT92cUu2NKH05QEA5Fk0An0caUmn
+SbO0ODosTVbVLHdioxciWhf1orRGXQM=
+=Ii48
+-----END PGP SIGNATURE-----
+
+--IYmJ4PmQz3geta1F--
