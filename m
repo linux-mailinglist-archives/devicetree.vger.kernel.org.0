@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D75775E775
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 03:28:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8462F75E772
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 03:28:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231404AbjGXB22 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 23 Jul 2023 21:28:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58626 "EHLO
+        id S231197AbjGXB21 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 23 Jul 2023 21:28:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58798 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231634AbjGXB17 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Jul 2023 21:27:59 -0400
+        with ESMTP id S231696AbjGXB2H (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Jul 2023 21:28:07 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91958170D;
-        Sun, 23 Jul 2023 18:25:13 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1BD349D0;
+        Sun, 23 Jul 2023 18:25:20 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 08BA260F0A;
-        Mon, 24 Jul 2023 01:23:49 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8DD98C433CB;
-        Mon, 24 Jul 2023 01:23:47 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 4B6BD60F02;
+        Mon, 24 Jul 2023 01:24:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 94032C433C7;
+        Mon, 24 Jul 2023 01:24:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690161828;
+        s=k20201202; t=1690161869;
         bh=4R0+W1fgg+0tYuNuTNsVnNDYQV9lCk4hbYmh/NN+z4I=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=gwKzcnu5NM7c+GJ48LSkxC9R4XpPaQSvTE9hJZncWR5FjWGW5AfLgUl4SaR8QCZi1
-         ya7H+PR4mORL1pzeo6Z5SVUMV1IYa41MfPggLSgkc3Mnm7PqORMftKESHQRLTzPxx8
-         4+96YoqQroyVDXQiJyRP/CswS4KVyDqUB27TQ35B0Plm1iM0zYf0BoTxNuO4QcJerX
-         0YL5+Py/vRCgh/B/MY3o3QxSEnxlH+HJ5eWgwW1RxZpPrmSnPT9X6tn3AOjuDeNarV
-         4EkcK9z/ZIQX35fNvPuMHVG/2A9du0OIuIuDdAVL7YrWOI1eQynBLsHbrjQ0lIUvOn
-         r9sutzESgT0JQ==
+        b=Ju7n9ywQnq4KoyJsr5ckiwJ8ci3jRD4a4fdkjcJv+APlDYPXiA3WFusirBsfo/Xfc
+         C0zwOvEkZYbvcQiObGUqq2oelPioGcUEkoBd08TB42YhG/LUhMv7gkBU/5VSXsZ9Cv
+         nHzFdY14bDInXzeNkfaHR+JotB8fYFVItTOYChCa3mjaOhDdHc/075/SKZ3RgMVZLT
+         eDlKdyXs68p3kRoN8KJ8+mZvJklf2Ic5prc2vqVla4Q7CAMrnbTx+d1Cw2jcex3CNk
+         Ve4Zl2fqHawDbyN/MNKNs6PBH+8f3K2VEkl0puWfKx2T+gvG4ex/IvhQSpaIwK3/AK
+         7J6usvhwx/4HQ==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
 Cc:     Oleksij Rempel <o.rempel@pengutronix.de>,
         Shawn Guo <shawnguo@kernel.org>,
-        Sasha Levin <sashal@kernel.org>, robh+dt@kernel.org,
-        mark.rutland@arm.com, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.15 05/23] ARM: dts: imx6dl: prtrvt, prtvt7, prti6q, prtwd2: fix USB related warnings
-Date:   Sun, 23 Jul 2023 21:23:16 -0400
-Message-Id: <20230724012334.2317140-5-sashal@kernel.org>
+        Sasha Levin <sashal@kernel.org>, kernel@pengutronix.de,
+        robh+dt@kernel.org, mark.rutland@arm.com, linux@armlinux.org.uk,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 5.10 06/22] ARM: dts: imx6dl: prtrvt, prtvt7, prti6q, prtwd2: fix USB related warnings
+Date:   Sun, 23 Jul 2023 21:24:03 -0400
+Message-Id: <20230724012419.2317649-6-sashal@kernel.org>
 X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230724012334.2317140-1-sashal@kernel.org>
-References: <20230724012334.2317140-1-sashal@kernel.org>
+In-Reply-To: <20230724012419.2317649-1-sashal@kernel.org>
+References: <20230724012419.2317649-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
-X-stable-base: Linux 5.15.121
+X-stable-base: Linux 5.10.186
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
