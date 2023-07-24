@@ -2,73 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D16F75F839
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 15:27:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BC25275F8A8
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 15:42:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229947AbjGXN1K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jul 2023 09:27:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35154 "EHLO
+        id S230185AbjGXNiT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jul 2023 09:38:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36742 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230029AbjGXN1J (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 09:27:09 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54C241B8
-        for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 06:26:53 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-9936b3d0286so774846666b.0
-        for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 06:26:53 -0700 (PDT)
+        with ESMTP id S231720AbjGXNhp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 09:37:45 -0400
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0DDC210D
+        for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 06:36:22 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-99b78fda9a8so424362266b.1
+        for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 06:36:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690205212; x=1690810012;
+        d=linaro.org; s=google; t=1690205750; x=1690810550;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=j3RBb+0rdI0PV2BXiS1JbrEVU9RxO+lG8P/0tc+GO2k=;
-        b=BgBI17fdQ/GbfAC+tyBQqZDxHUVtXE2gyuA+iY6fgjJRj2mM7rPqhup90hSQ0GMKuD
-         7wQ2ysntk6ex6WlxX7SrnKsvpJs2XA6FdwaYllJ+DEfSaRXKA57bbjh0+H8WmO0PbduE
-         hrODJiSi61B02+5Ei0iTz2CxXlU0gPoTvKGb/qskxos6EM8nX6Z0Zr5RWs/4S1ce0q/N
-         ewa2Czwe1HfC8hwPsJJlRUA9Sga7nleuaCd3v6zKnmsf6dsxOFoGgEoNjtbEkbTeYVBV
-         hMOsEi72t6F9OD58sdW77RkqaZzv0XJTAqv4tHh1PLqpdLK/NXeUG7khR0cxshjIisfl
-         rRTw==
+        bh=Pyk4fD3in9SCwQr3Wn/ALPJfSHMbY/PKpFnttAdK8bU=;
+        b=n3qNJ0MQSJmvtZbNgB9/GWd502foogaALkyarW0REA2eP6zmn/6rHdFrRRwvC2b/w6
+         fjAuamGQ44MsKic3xauwZaovL5vc4P57/GX2M9lLuu2+N18CvuObku2xYaG6QYbqNvdh
+         9p3HpgWGkgGvqnz3omM2dF07B3X720H9sLYj0VDcwqKdf8fbfISNHa1/z0NcASYCETfl
+         RccxOvCeQUSNuJtMX9Qc9Ri6UxPwQt5xi+2OQJ8OR4Ivs4R+UH5FYu6I2oNw+rnnmQVp
+         t72XpNW+Fk22HFi5bzWQ8hPTrIpScGNRbIaT1B/LFhXoEqXs23EyeL21qsHYmBx6QvuW
+         nrjQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690205212; x=1690810012;
+        d=1e100.net; s=20221208; t=1690205750; x=1690810550;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=j3RBb+0rdI0PV2BXiS1JbrEVU9RxO+lG8P/0tc+GO2k=;
-        b=DELzMHH1XCGYDaKGAZ9D+grKYSYz611Jw5cl3dxwrEpiEAyxXUNDUOQLuWvXyPYtm8
-         mJDwf9RO4iPMVuhxFzSKJ5glohU/8OShsFHRnq4aTjwtCCPPJZdj5VluyZaX91/XJBIo
-         7fMw/5jmJECfSdtCL0WH3WQNNbEgvGAlaxA90nmtbE6JTXP0S5Ek9k58UJBx/LRqyKvD
-         Fi+CEyguFbS3c873ng2yeSgyFMnTT5Hw0/oHqtmP6Dial4ghFimv/heGWRcbC3ZGHWfa
-         wEguLvXnmzrRCWCNjHwHatg9OBrwgwVLxm0ZtTq2lxh5wYnilSmq7OuyjNg5dN43f/kO
-         KDbQ==
-X-Gm-Message-State: ABy/qLZXm0wqHv/4whwOa9bSsooFXuYCohuKxlM9E+dtw6kBQ4ZMmuYM
-        xcMyIxhE+KfgsGtoJsnqhoX0iZct/HNgKYRpZeLBlg==
-X-Google-Smtp-Source: APBJJlG+MYBK5sVdt/kiSQV3ZDPpauvV89+zavgwzbGMZNg+Lkas7YB/9OEJZ5Op6rZW781mBlqpIg==
-X-Received: by 2002:a17:907:2bea:b0:98d:f4a7:71cf with SMTP id gv42-20020a1709072bea00b0098df4a771cfmr9317640ejc.62.1690205211882;
-        Mon, 24 Jul 2023 06:26:51 -0700 (PDT)
+        bh=Pyk4fD3in9SCwQr3Wn/ALPJfSHMbY/PKpFnttAdK8bU=;
+        b=cXcFKYvhk62nsZTCZYhmDcJp3EAN8WxZ8GXfMJ9E/Y0Hjt7O3XdxGJHiwSoj2ql1U3
+         g9NMz4mBFjXsFLUOrWKeKb4i5BXMwHgiBv6IUWN7k5xVGWFAFkep5VhL/FKOnFbKmzFc
+         6ov+xAXgX2fjd4OEFUlumYLHtRqHbmMu7eQt20llBD71Fkr3r7vvgB2PCqKC7NGn6u3R
+         /Qv6PaK2QfB6pOLfpA8PQ3wwCsjFmG97NW9JnQ53EBNGinwh/YOsRAVlv832OjgjEwmw
+         l20XSVR+EPeI0Lc3z89Cnnk6Edpt5TGKmqT9TyrbiGYO4hhV9tLi6aD31qFaiEze9b8I
+         r4Eg==
+X-Gm-Message-State: ABy/qLbJCZNJP6dG5gPlxzA8RQkl1Vn0gwaF7lcD8uliiGC3E/3KsKmT
+        8xl4ZhVHXUbstFHt0Yk8eNWVIg==
+X-Google-Smtp-Source: APBJJlE2EuOvOzG5yoUMAQGXRsVo1OcR6VQ/NNvDt80p2QTN5TsNr21XD+vvL3eUuvYO9hJa0aUFJA==
+X-Received: by 2002:a17:906:9b:b0:98d:fc51:b3dd with SMTP id 27-20020a170906009b00b0098dfc51b3ddmr10293060ejc.41.1690205749881;
+        Mon, 24 Jul 2023 06:35:49 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id h19-20020a1709062dd300b0097073f1ed84sm6754521eji.4.2023.07.24.06.26.50
+        by smtp.gmail.com with ESMTPSA id dt15-20020a170906b78f00b00991bba473e1sm6774025ejb.3.2023.07.24.06.35.48
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 24 Jul 2023 06:26:51 -0700 (PDT)
-Message-ID: <aa2978d7-b0bb-e05c-6da1-3930e291643a@linaro.org>
-Date:   Mon, 24 Jul 2023 15:26:49 +0200
+        Mon, 24 Jul 2023 06:35:49 -0700 (PDT)
+Message-ID: <a19aa54a-9bbd-c67c-5ca3-cae82a4e85de@linaro.org>
+Date:   Mon, 24 Jul 2023 15:35:47 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
-Subject: Re: [PATCH v5 2/6] soc: qcom: llcc: Refactor llcc driver to support
- multiple configuration
+Subject: Re: [PATCH v2 1/2] dt-bindings: gpio: Add gpio-line-names to STMPE
+ GPIO
 Content-Language: en-US
-To:     Mukesh Ojha <quic_mojha@quicinc.com>,
-        Komal Bajaj <quic_kbajaj@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        srinivas.kandagatla@linaro.org
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230724084155.8682-1-quic_kbajaj@quicinc.com>
- <20230724084155.8682-3-quic_kbajaj@quicinc.com>
- <39b4bafd-410f-cae8-13ae-e18d751b51a2@quicinc.com>
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Andy Shevchenko <andy@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>
+Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-leds@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com
+References: <20230724063520.182888-1-alexander.stein@ew.tq-group.com>
+ <21957396.EfDdHjke4D@steina-w>
+ <29b62cc6-bc54-9a43-211b-b2d7579218b7@linaro.org>
+ <4285919.ejJDZkT8p0@steina-w>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <39b4bafd-410f-cae8-13ae-e18d751b51a2@quicinc.com>
+In-Reply-To: <4285919.ejJDZkT8p0@steina-w>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -81,28 +88,80 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/07/2023 14:28, Mukesh Ojha wrote:
-> On 7/24/2023 2:11 PM, Komal Bajaj wrote:
->> Refactor driver to support multiple configuration for llcc on a target.
->>
->> Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
->> ---
->>   drivers/soc/qcom/llcc-qcom.c | 264 +++++++++++++++++++++++------------
->>   1 file changed, 178 insertions(+), 86 deletions(-)
->>
->> diff --git a/drivers/soc/qcom/llcc-qcom.c b/drivers/soc/qcom/llcc-qcom.c
->> index 67c19ed2219a..321f8d2079f7 100644
->> --- a/drivers/soc/qcom/llcc-qcom.c
->> +++ b/drivers/soc/qcom/llcc-qcom.c
->> @@ -127,6 +127,12 @@ struct qcom_llcc_config {
->>   	bool no_edac;
->>   };
->>   
->> +struct qcom_sct_config
-> 
-> const ?
+On 24/07/2023 13:44, Alexander Stein wrote:
 
-What (and how) should be const above?
+>>>>>  Documentation/devicetree/bindings/gpio/st,stmpe-gpio.yaml | 4 ++++
+>>>>>  1 file changed, 4 insertions(+)
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/gpio/st,stmpe-gpio.yaml
+>>>>> b/Documentation/devicetree/bindings/gpio/st,stmpe-gpio.yaml index
+>>>>> 22c0cae73425..4555f1644a4d 100644
+>>>>> --- a/Documentation/devicetree/bindings/gpio/st,stmpe-gpio.yaml
+>>>>> +++ b/Documentation/devicetree/bindings/gpio/st,stmpe-gpio.yaml
+>>>>>
+>>>>> @@ -28,6 +28,10 @@ properties:
+>>>>>    gpio-controller: true
+>>>>>
+>>>>> +  gpio-line-names:
+>>>>> +    minItems: 1
+>>>>> +    maxItems: 24
+>>>>> +
+>>>>
+>>>> I am sure there is no variant with one GPIO.
+>>>
+>>> That's true. But if only one GPIO is actually connected there is no use
+>>> enforcing to add empty entries.
+>>> AFAIK it is also allowed to provide an incomplete array.
+>>
+>> Did you test it? Linux prints warning. Warning means "not allowed".
+> 
+> I did and I don't see any warnings.
+> I using the following (modified) GPIO subnode on an stmpe811 chip:
+> gpio {
+> 	compatible = "st,stmpe-gpio";
+> 	gpio-controller;
+> 	#gpio-cells = <2>;
+> 	interrupt-controller;
+> 	#interrupt-cells = <2>;
+> 	/* GPIO 5-7 used for touch */
+> 	st,norequest-mask = <0xf0>;
+> 	gpio-line-names = "GPIO_ADC_I2C1_1";
+> };
+> 
+> I only see the warning "stmpe-gpio stmpe-gpio: DMA mask not set", but that's a 
+> different matter.
+> Only GPIO 0-3 are connected. Original property is
+> gpio-line-names = "GPIO_ADC_I2C1_1",
+> 	        "GPIO_ADC_I2C1_2",
+> 	        "GPIO_ADC_I2C1_3",
+> 	        "GPIO_ADC_I2C1_4";
+> 
+> Also gpioinfo shows that the gpiochip has 8 pins while only the first one is 
+> named.
+> 
+> gpiochip7 - 8 lines:
+>         line   0: "GPIO_ADC_I2C1_1" unused input active-high 
+>         line   1:      unnamed       unused   input  active-high 
+>         line   2:      unnamed       unused   input  active-high 
+>         line   3:      unnamed       unused   input  active-high 
+>         line   4:      unnamed       unused   input  active-high 
+>         line   5:      unnamed       unused   input  active-high 
+>         line   6:      unnamed       unused   input  active-high 
+>         line   7:      unnamed       unused   input  active-high
+> 
+> 
+> If 4 GPIOs are named the output shows names for lines 1-3 accordingly, but no 
+> errors/warnings as well.
+> 
+>> The expectation is that the rest are named "NC".
+> 
+> Where does this expectation come from? Is there any pending change I am not 
+> aware of?
+> 
+
+Hm, indeed, I mistaken the case for multiple gpio chips in one device
+(so having an offset). Bindings are actually explicitly allowing array
+for only some GPIOs.
 
 Best regards,
 Krzysztof
