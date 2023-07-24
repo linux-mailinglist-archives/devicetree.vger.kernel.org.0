@@ -2,72 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 73C2C75F53D
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 13:36:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 06E5B75F541
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 13:40:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229441AbjGXLgw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jul 2023 07:36:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56746 "EHLO
+        id S229547AbjGXLkC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jul 2023 07:40:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57570 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229544AbjGXLgv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 07:36:51 -0400
-Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DC5F106
-        for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 04:36:50 -0700 (PDT)
-Received: by mail-pj1-x1032.google.com with SMTP id 98e67ed59e1d1-262cc036fa4so1678852a91.3
-        for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 04:36:50 -0700 (PDT)
+        with ESMTP id S229441AbjGXLkB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 07:40:01 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3764E47
+        for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 04:39:59 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-4fbb281eec6so6388671e87.1
+        for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 04:39:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690198609; x=1690803409;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=OTTO3SuefGHXFKOC7d9wUAk5B36x3nPdZybKoY8w/RA=;
-        b=I0yJQHOg9bG3JbzeT8b0UCspH7hw8DYNtxCCur48lOHUBpd3Yu2JwUykNq0bGSybsw
-         6g/eJrbyjNYJLHTXQtgSWg/1xO11TDHwBXUR/7i8Pb75+aHqKC9wkmkty15GvhmKHDwF
-         tO6JsW7FmoZbSy4w/pgHKf6KlwlYzNMSiRBlPlmVsNin5sDFguGNK9j2C48+kksXSmWK
-         IUuo0EXgHL4mr0Zw+jUgGPQCnFy3MCJVJUg+I+ZCxTH/ICdHuZa1eGdiyHQDIU0XbEQi
-         zw26xjz93NRkUWYrTKhN/Z1qQ+t9fCHCFLcwDAHyFBHwfWkn33+32vGVxqeKJJdg4pq2
-         rH7w==
+        d=linaro.org; s=google; t=1690198798; x=1690803598;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=vJ4yOgRXHtYK3jmLeq4Idrc0hB5BqvDloR4hEaxZCoc=;
+        b=hvX7wN6tws6Me+yfYdsoMhlkMC8EumtAdhgPwJHKAwY1pk5tJAWr0qHohpmNwmxCdC
+         sOVrZ8sbjPURvhVzk4kPqx3A+eXTTfmIftdiAexdrLUOECHTkt2jPEFQBxu/QhFbY9/V
+         Sg7c3ZO6Tfq2dWcVAref1q2lyyyOE8vYSY4b6PfdBwCck5GLX6cAO4cPVcoIKnug/RLK
+         EmIpchaDJCqyEWXw4h+XI1vuqGgmgxvmrjy2W921bybIqyuvVmaz4MI+4Nc/LRXiikXI
+         LU6WNyfoC1wTM+XZ5QbsmEgMpuAc42TX4isDXYALOERmM1B5235+02Cv6300gwiexWqw
+         viag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690198609; x=1690803409;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=OTTO3SuefGHXFKOC7d9wUAk5B36x3nPdZybKoY8w/RA=;
-        b=HpXMA6qFNJBbEcs4e5BrI5w2bdsq3Ygwg7suCsYCrdSOLavtA0uZcrkiusplWPDLPt
-         C0x/KnWz2c2PJXZ0c4885BkafJ/+wNlz8xYM5wr45C0JNQrLMGEqMnYhHPFE7tw5hvNr
-         J6qjCR/9l0G+VhpqufZlT7YRE/EHNCornDmhx5E2ZI5irJLQmRAXui1kI7N7cmCM5GTA
-         yIpwJHoIR7pV9HiELyg5fjd4ShNtfe84y7zhVfyUpaKg94RxnlVGXfNo1q459Db+7S5M
-         mZnSkx2FfHFtpQ2E8qyIHFIvWgIbV8iWUQ9i1sPW2yVzLDAwmMXYRha4rfXLtd5ujuO7
-         wUqA==
-X-Gm-Message-State: ABy/qLbVTjP0/6ktFxv72MOigSPkhTY2Y+qtIddegsasIW08mhS69isN
-        pcM//eK2/lPEMYemhnsUBT7f
-X-Google-Smtp-Source: APBJJlFt6vBWIk6eu6n72lQIAIYxA/NfGYO0MpQrgJEd+5NqR8NAaJ272WrHr5nKC7B4Jw7Ffak32A==
-X-Received: by 2002:a17:90a:fc85:b0:267:f329:947d with SMTP id ci5-20020a17090afc8500b00267f329947dmr3234191pjb.33.1690198609593;
-        Mon, 24 Jul 2023 04:36:49 -0700 (PDT)
-Received: from thinkpad ([117.206.118.29])
-        by smtp.gmail.com with ESMTPSA id mj8-20020a17090b368800b00268136571fasm1917619pjb.27.2023.07.24.04.36.45
+        d=1e100.net; s=20221208; t=1690198798; x=1690803598;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=vJ4yOgRXHtYK3jmLeq4Idrc0hB5BqvDloR4hEaxZCoc=;
+        b=MuUTb/OQ1ORsduZlsYV4QjAelMImqeOIutcJaSy8JBTxu4jLXXjoOwbwZw/RXwElAF
+         YY/xznEBNPOS9iIGvaBZBQYJirIJu5nZQH6zo2jjqHRAKMdcXkquLoDK27Ek4/0gU+0S
+         0bQi6b3B2SRI1tYKPMJ4ax7mi66lles5ZylPD/N68zmJz3oziwXqujlkte4bk6KPtbhm
+         tClas2vuJaiCdHkGNdBUA5nBCbaqL75u9q6HesWHBC5VUgdxbgXrGZBpdlhL7D1RGC9v
+         8U8lA3GBsH7ygoPLXFOWp2Mb9sBfWXOmGs3y6EdBcBMKrwQGfUpl5GUS+Wc44wIv/5wo
+         zWDw==
+X-Gm-Message-State: ABy/qLYae4cVDhEwp4i5hoPtNV3D0H5WTQaPoCxRQhlNkadJWhM974wO
+        RWbTDTH9v0L2YVlPFUVXKcG6pA==
+X-Google-Smtp-Source: APBJJlHJLqB0l9juZ3h2RvkRLq9XkLsByx7clUGMX82DIWl/8ZUJ550IJa8XWsOdhQcQ/aio7blv0A==
+X-Received: by 2002:a19:8c0b:0:b0:4f9:a232:f09c with SMTP id o11-20020a198c0b000000b004f9a232f09cmr4185431lfd.63.1690198797951;
+        Mon, 24 Jul 2023 04:39:57 -0700 (PDT)
+Received: from [192.168.1.101] (abyl203.neoplus.adsl.tpnet.pl. [83.9.31.203])
+        by smtp.gmail.com with ESMTPSA id u1-20020ac24c21000000b004fb881e5c23sm2168977lfq.47.2023.07.24.04.39.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 24 Jul 2023 04:36:49 -0700 (PDT)
-Date:   Mon, 24 Jul 2023 17:06:42 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     jingoohan1@gmail.com, gustavo.pimentel@synopsys.com,
-        lpieralisi@kernel.org, robh+dt@kernel.org, kw@linux.com,
-        bhelgaas@google.com, kishon@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        marek.vasut+renesas@gmail.com, fancer.lancer@gmail.com,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v18 12/20] PCI: dwc: Expose dw_pcie_ep_exit() to module
-Message-ID: <20230724113642.GK6291@thinkpad>
-References: <20230721074452.65545-1-yoshihiro.shimoda.uh@renesas.com>
- <20230721074452.65545-13-yoshihiro.shimoda.uh@renesas.com>
+        Mon, 24 Jul 2023 04:39:57 -0700 (PDT)
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Subject: [PATCH v2 0/3] SM6115 LPASS TLMM
+Date:   Mon, 24 Jul 2023 13:39:55 +0200
+Message-Id: <20230722-topic-6115_lpasstlmm-v2-0-d4883831a858@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230721074452.65545-13-yoshihiro.shimoda.uh@renesas.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAtjvmQC/4WNQQ7CIBAAv2I4iwGKpXryH6YxFNZ2EwrNUhtN0
+ 7+L/YDHmWQyK8tACJldDysjWDBjigXU8cDcYGMPHH1hpoSqhFGKz2lCx2spz48w2ZznMI4cnDb
+ 64htrhGMl7WwG3pGNbihxfIVQ5ETwxPf+ureFB8xzos++XuTP/rkskgteKS9rXfnGGH0LGC2lU
+ 6Ketdu2fQED0d9czgAAAA==
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1690198796; l=1248;
+ i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
+ bh=MyMuaMloZrXeqpFIhj35adNC4/W+TiZZpLrCk6Q8v6M=;
+ b=VJpyTZf36Wng6fHwXT9oyN1V2jIGCOjbx2gFVWOTgcjy41piGxCnvkF5HmIkd3W7tlJRysJjw
+ cW+OXunkPPIBCILEWrpHX27LDjPHVAWTUuRgX/y3Zdoh670qV+QO50+
+X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
+ pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
@@ -78,40 +93,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 21, 2023 at 04:44:44PM +0900, Yoshihiro Shimoda wrote:
-> Since no PCIe controller drivers call this, this change is not required
-> for now. But, Renesas R-Car Gen4 PCIe controller driver will call this
-> and if the controller driver is built as a kernel module, the following
-> build error happens. So, expose dw_pcie_ep_exit() for it.
-> 
-> ERROR: modpost: "dw_pcie_ep_exit" [drivers/pci/controller/dwc/pcie-rcar-gen4-ep-drv.ko] undefined!
-> 
-> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-> Reviewed-by: Serge Semin <fancer.lancer@gmail.com>
+This series introduces the bindings and driver for SM6115's LPI TLMM
+block and enables it as a module in the arm64 defconfig.
 
-Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+---
+Changes in v2:
+- Fix up gpio number regex pattern and gpio-ranges in bindings
+- pick up tags
+- do not change patch 3 as suggested, a bulk reorder seems more
+  appropriate
+- Link to v1: https://lore.kernel.org/r/20230722-topic-6115_lpasstlmm-v1-0-32d1643d8774@linaro.org
 
-- Mani
+---
+Konrad Dybcio (3):
+      dt-bindings: pinctrl: qcom,sm6115-lpass-lpi: add SM6115 LPASS TLMM
+      pinctrl: qcom: Introduce SM6115 LPI pinctrl driver
+      arm64: defconfig: enable Qualcomm SM6115 LPASS pinctrl
 
-> ---
->  drivers/pci/controller/dwc/pcie-designware-ep.c | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/drivers/pci/controller/dwc/pcie-designware-ep.c b/drivers/pci/controller/dwc/pcie-designware-ep.c
-> index bd57516d5313..14c641395c3b 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware-ep.c
-> +++ b/drivers/pci/controller/dwc/pcie-designware-ep.c
-> @@ -695,6 +695,7 @@ void dw_pcie_ep_exit(struct dw_pcie_ep *ep)
->  
->  	pci_epc_mem_exit(epc);
->  }
-> +EXPORT_SYMBOL_GPL(dw_pcie_ep_exit);
->  
->  static unsigned int dw_pcie_ep_find_ext_capability(struct dw_pcie *pci, int cap)
->  {
-> -- 
-> 2.25.1
-> 
+ .../pinctrl/qcom,sm6115-lpass-lpi-pinctrl.yaml     | 135 ++++++++++++++++
+ arch/arm64/configs/defconfig                       |   1 +
+ drivers/pinctrl/qcom/Kconfig                       |   9 ++
+ drivers/pinctrl/qcom/Makefile                      |   1 +
+ drivers/pinctrl/qcom/pinctrl-sm6115-lpass-lpi.c    | 175 +++++++++++++++++++++
+ 5 files changed, 321 insertions(+)
+---
+base-commit: ae867bc97b713121b2a7f5fcac68378a0774739b
+change-id: 20230722-topic-6115_lpasstlmm-ec4749d8a70c
 
+Best regards,
 -- 
-மணிவண்ணன் சதாசிவம்
+Konrad Dybcio <konrad.dybcio@linaro.org>
+
