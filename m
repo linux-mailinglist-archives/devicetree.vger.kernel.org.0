@@ -2,57 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C81EF75FE9D
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 19:58:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F45075FEA0
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 19:58:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230144AbjGXR6W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jul 2023 13:58:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56516 "EHLO
+        id S229770AbjGXR6h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jul 2023 13:58:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55424 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230214AbjGXR6H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 13:58:07 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A89783AA1;
-        Mon, 24 Jul 2023 10:56:29 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 2897361356;
-        Mon, 24 Jul 2023 17:56:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EDC6AC433C8;
-        Mon, 24 Jul 2023 17:56:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690221388;
-        bh=EoU2mL1gtuuaXdfBR+KnZtr/Rqd1NuPOSOhdR1Blljk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=CTnSuqCqUVG+82HZjo6wV812xv8w1NbG6WQHw95JxygLo14Qz+c4PgKXuG68X/Qx2
-         Pz0d+mPUDuA2NaE+PW/8ROfoT7jbSN3Dhqo1RpGV+ldyvy7BUge/9aw6WFT0BGFdQ1
-         6y91KAtvww1+n3lh/Z4sDEN6Zfeq4U0t5TK91W8b503xeIG+bCD8FvrBNjXYxZwoEc
-         +c4orP4G81N/KUPCuSg7UeRiduSRsBWdOcYEyPWx0RVo/jGsRVY1fJuabeMgOr/B1N
-         4nmlA3Pqzc+BQbM0WB7AUV2Pdk7/9iqZqPSNpetZzxk0y9PmY3nDeojno9Zf5M0eYa
-         6SmniY7KQXFzA==
-Date:   Mon, 24 Jul 2023 18:56:23 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Swapnil Jakhade <sjakhade@cadence.com>
-Cc:     vkoul@kernel.org, kishon@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        linux-phy@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, mparab@cadence.com, rogerq@kernel.org,
-        s-vadapalli@ti.com
-Subject: Re: [PATCH 4/5] dt-bindings: phy: cadence-torrent: Add a separate
- compatible for TI J7200
-Message-ID: <20230724-shampoo-junior-f9e0bb095668@spud>
-References: <20230724150002.5645-1-sjakhade@cadence.com>
- <20230724150002.5645-5-sjakhade@cadence.com>
+        with ESMTP id S229806AbjGXR6V (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 13:58:21 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D2DDCD;
+        Mon, 24 Jul 2023 10:57:04 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 36OHuu4q029585;
+        Mon, 24 Jul 2023 12:56:56 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1690221416;
+        bh=fFwxopmoMPYwD52ih0cZatFfApX8eCqHe2gTDXJkn1c=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=sA9yEzF6NaWZnRQLukddm4hdGcSZKlxqXdR0fmg6HpQsy5ziTuRolcWICAkf0xcn8
+         UuhnBU/IY0XnNTmTUU0wBuLhIL/PBsObRiirN7ef75FsbIbUXtClMJ3xotPLF3ni1g
+         e+0YC4NWsaapIz2uP/aG4A3FrGUl3JGBhALXpjMI=
+Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 36OHuuH7013198
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 24 Jul 2023 12:56:56 -0500
+Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 24
+ Jul 2023 12:56:55 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 24 Jul 2023 12:56:55 -0500
+Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 36OHut7j039809;
+        Mon, 24 Jul 2023 12:56:55 -0500
+Date:   Mon, 24 Jul 2023 12:56:55 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Siddharth Vadapalli <s-vadapalli@ti.com>
+CC:     <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <afd@ti.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>
+Subject: Re: [PATCH v2 2/2] arm64: dts: ti: k3-j721s2: Add overlay to enable
+ main CPSW2G with GESI
+Message-ID: <20230724175655.svvjykhkrifoyx3b@botanist>
+References: <20230710094328.1359377-1-s-vadapalli@ti.com>
+ <20230710094328.1359377-3-s-vadapalli@ti.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="bGIJ911Wz6RGVT1e"
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20230724150002.5645-5-sjakhade@cadence.com>
+In-Reply-To: <20230710094328.1359377-3-s-vadapalli@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -60,47 +67,13 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 15:13-20230710, Siddharth Vadapalli wrote:
+> +	rgmii1_pins_default: rgmii1-pins-default {
 
---bGIJ911Wz6RGVT1e
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Mon, Jul 24, 2023 at 05:00:01PM +0200, Swapnil Jakhade wrote:
-> TI J7200 uses Torrent SD0805 version which is a special version
-> derived from SD0801 that has an additional input reference clock.
-> Add a separate compatible for TI J7200 platforms.
->=20
-> Signed-off-by: Swapnil Jakhade <sjakhade@cadence.com>
-> ---
->  Documentation/devicetree/bindings/phy/phy-cadence-torrent.yaml | 1 +
->  1 file changed, 1 insertion(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/phy/phy-cadence-torrent.ya=
-ml b/Documentation/devicetree/bindings/phy/phy-cadence-torrent.yaml
-> index ddb86ee0cebf..e3a1efd61033 100644
-> --- a/Documentation/devicetree/bindings/phy/phy-cadence-torrent.yaml
-> +++ b/Documentation/devicetree/bindings/phy/phy-cadence-torrent.yaml
-> @@ -20,6 +20,7 @@ properties:
->    compatible:
->      enum:
->        - cdns,torrent-phy
-> +      - ti,j7200-serdes-10g
->        - ti,j721e-serdes-10g
-
-Should the number of clocks not be restricted dynamically based on the
-compatible, since only the 7200 requires the extra refclk?
-
-
---bGIJ911Wz6RGVT1e
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZL67RwAKCRB4tDGHoIJi
-0vcMAP4noEcvSdlF5E1v6dNB2dJ9iZHEzf31j10soPGA7MlG9wEA8lZWSCFG+Vcx
-cmh3GJkbkHg7ET7cZgc52F/k+9xMGAI=
-=nuHG
------END PGP SIGNATURE-----
-
---bGIJ911Wz6RGVT1e--
+Could you make sure that the node names matches up with the json-schema
+conversion:
+https://lore.kernel.org/all/169021456020.3622493.10284534202541859578.robh@kernel.org/
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
