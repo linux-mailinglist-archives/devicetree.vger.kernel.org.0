@@ -2,146 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BD22275F554
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 13:40:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1938D75F55C
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 13:44:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229829AbjGXLkY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jul 2023 07:40:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58038 "EHLO
+        id S229826AbjGXLoQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jul 2023 07:44:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59616 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229968AbjGXLkV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 07:40:21 -0400
-Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com [IPv6:2607:f8b0:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C1AE10E4
-        for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 04:40:13 -0700 (PDT)
-Received: by mail-pl1-x62f.google.com with SMTP id d9443c01a7336-1b89114266dso34304475ad.0
-        for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 04:40:13 -0700 (PDT)
+        with ESMTP id S229847AbjGXLoP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 07:44:15 -0400
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0154E5C;
+        Mon, 24 Jul 2023 04:44:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690198813; x=1690803613;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=pl6d3M0hehvgH0Yirik992Buoa0/dKM8PGZb9G+lsBo=;
-        b=qm0Iz3UXFzn+1zi2ybe8UoeKg+fCjjdBbH3ni2uC4J7HA4ooeIQ3bPfPl8irgzTwpW
-         j107/e563ckFy9gBEOO6+7DxOBmuDccjSU0VBgexZ0VG81hD9Gk4ve/kZZvNxNYYEWsf
-         rS/vVreG7MMLozHv3aD2bEJaYHzq8cAWFfsVSk4tK0rT8UVcVXHpkayOIuJhsO2g1dNI
-         z1EkeZtG0vdRSJTiJXKrFBIuMhdhqO0jrJLLOrpf9u+kSMnzZj6bAD4AKs4nfLILIXBC
-         F8+TpCbCFwwMql0lsEs8JW/h55RaHjB6Sc4lfogKGOCFwjOJHKtBob6iRZEeUC+cnkFx
-         yIyA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690198813; x=1690803613;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=pl6d3M0hehvgH0Yirik992Buoa0/dKM8PGZb9G+lsBo=;
-        b=Hq4zeELCA041+xEOQyula5FzIh0M41G3Zv4Xdcp1wKRHix5PJmBoWmye4Vx/4RJyBJ
-         2IrWwErQ+Yd+kbyfntzswwSD7ki+0F/CJKPISMz692Fdgvu5A7U97+4KRwuOwu3GhoC5
-         /XiERUO9rwBLubggPexmW8uUjWLLGK/nDcFSWv0jTvb29I+47EGWPI9dX023YAbZWFMK
-         M9TDe24VXXY411khA5yG+NCvMtQxQ94cSJshX4EGN+FF6OBh9u4hi5ljtt2G9I4I/+aB
-         2jreoab/Ae9lXk4vYgDvNFKi+Zae8QxAS69YL0nwYblG+Ek0zms/S88OHiYRJC2G5BL6
-         Z2pQ==
-X-Gm-Message-State: ABy/qLYFRiTm2VHn6tUnYv6kZUd65oplC0orRcACsoj9MI19UuFgRsIs
-        bLhCHSBURcsQWAepllFMwsCf
-X-Google-Smtp-Source: APBJJlGaeMZ0FedkkRHTpEo9sL6WwPNThZ1JW24R4hofjfKiyr+tOUoa0E3BfOpO8B4R4eI5HZA6Jw==
-X-Received: by 2002:a17:90a:6fa7:b0:267:f12e:3684 with SMTP id e36-20020a17090a6fa700b00267f12e3684mr7920677pjk.23.1690198813255;
-        Mon, 24 Jul 2023 04:40:13 -0700 (PDT)
-Received: from thinkpad ([117.206.118.29])
-        by smtp.gmail.com with ESMTPSA id o13-20020a17090ad24d00b00267f9bf21ebsm3060492pjw.0.2023.07.24.04.40.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 24 Jul 2023 04:40:12 -0700 (PDT)
-Date:   Mon, 24 Jul 2023 17:10:05 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     jingoohan1@gmail.com, gustavo.pimentel@synopsys.com,
-        lpieralisi@kernel.org, robh+dt@kernel.org, kw@linux.com,
-        bhelgaas@google.com, kishon@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        marek.vasut+renesas@gmail.com, fancer.lancer@gmail.com,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v18 13/20] PCI: dwc: Introduce .ep_pre_init() and
- .ep_deinit()
-Message-ID: <20230724114005.GL6291@thinkpad>
-References: <20230721074452.65545-1-yoshihiro.shimoda.uh@renesas.com>
- <20230721074452.65545-14-yoshihiro.shimoda.uh@renesas.com>
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1690199054; x=1721735054;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=AhAV6EXXTRBcrPub9eD6b5LPrOcw+eceIVL16f8Xp7s=;
+  b=ncx2rnNoUcZeDKs1NGBZnRvMyQd7Z5qWPZRF8t1QdnfQnEBTRd++j4Y3
+   LfBJ5ik34kVKelMXX5n22Kk2Floh+bKxU6iV483UU/xYLT9nbPPAvgDmb
+   NLFLqzU3isP2aX4FYBb0/Jmf1C8BgRJPxIsJujW03F8G7h5gNFmIOQ8so
+   BjZdt9b31iOpk9uSG3ZWr8uBW+cKGau2bQXUaGDxZn9FPrHlyuIyNLbr0
+   75LO4gn5+RF6JyJAj/AcgeCIt190irGKgkzECMVFwcFqC3Oj13yp065aa
+   hfYdx1Wm0+UMPlsMZyFd0Dox2rrpDPyVOcI3Qb92H2BkyyGwokI6BrbIv
+   g==;
+X-IronPort-AV: E=Sophos;i="6.01,228,1684792800"; 
+   d="scan'208";a="32080086"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 24 Jul 2023 13:44:11 +0200
+Received: from steina-w.localnet (unknown [10.123.53.21])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 6F9B2280078;
+        Mon, 24 Jul 2023 13:44:11 +0200 (CEST)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Andy Shevchenko <andy@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-leds@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com
+Subject: Re: [PATCH v2 1/2] dt-bindings: gpio: Add gpio-line-names to STMPE GPIO
+Date:   Mon, 24 Jul 2023 13:44:11 +0200
+Message-ID: <4285919.ejJDZkT8p0@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <29b62cc6-bc54-9a43-211b-b2d7579218b7@linaro.org>
+References: <20230724063520.182888-1-alexander.stein@ew.tq-group.com> <21957396.EfDdHjke4D@steina-w> <29b62cc6-bc54-9a43-211b-b2d7579218b7@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230721074452.65545-14-yoshihiro.shimoda.uh@renesas.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 21, 2023 at 04:44:45PM +0900, Yoshihiro Shimoda wrote:
-> Renesas R-Car Gen4 PCIe controllers require vender-specific
-> initialization before .ep_init(). To use dw->dbi and dw->num-lanes
-> in the initialization code, introduce .ep_pre_init() into struct
-> dw_pcie_ep_ops. Also introduce .ep_deinit() to disable the controller
-> by using vender-specific de-initialization.
-> 
-> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-> ---
->  drivers/pci/controller/dwc/pcie-designware-ep.c | 6 ++++++
->  drivers/pci/controller/dwc/pcie-designware.h    | 2 ++
->  2 files changed, 8 insertions(+)
-> 
-> diff --git a/drivers/pci/controller/dwc/pcie-designware-ep.c b/drivers/pci/controller/dwc/pcie-designware-ep.c
-> index 14c641395c3b..52b3e7f67513 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware-ep.c
-> +++ b/drivers/pci/controller/dwc/pcie-designware-ep.c
-> @@ -684,6 +684,9 @@ void dw_pcie_ep_exit(struct dw_pcie_ep *ep)
->  	struct dw_pcie *pci = to_dw_pcie_from_ep(ep);
->  	struct pci_epc *epc = ep->epc;
->  
-> +	if (ep->ops->ep_deinit)
-> +		ep->ops->ep_deinit(ep);
-> +
->  	dw_pcie_edma_remove(pci);
->  
->  	if (ep->intx_mem)
-> @@ -797,6 +800,9 @@ int dw_pcie_ep_init(struct dw_pcie_ep *ep)
->  	ep->phys_base = res->start;
->  	ep->addr_size = resource_size(res);
->  
-> +	if (ep->ops->ep_pre_init)
-> +		ep->ops->ep_pre_init(ep);
-> +
->  	dw_pcie_version_detect(pci);
->  
->  	dw_pcie_iatu_detect(pci);
-> diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci/controller/dwc/pcie-designware.h
-> index 6821446d7c66..c3aeafd0f4c9 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware.h
-> +++ b/drivers/pci/controller/dwc/pcie-designware.h
-> @@ -332,7 +332,9 @@ struct dw_pcie_rp {
->  };
->  
->  struct dw_pcie_ep_ops {
-> +	void	(*ep_pre_init)(struct dw_pcie_ep *ep);
->  	void	(*ep_init)(struct dw_pcie_ep *ep);
-> +	void	(*ep_deinit)(struct dw_pcie_ep *ep);
+Am Montag, 24. Juli 2023, 11:54:12 CEST schrieb Krzysztof Kozlowski:
+> On 24/07/2023 09:58, Alexander Stein wrote:
+> > Hi,
+> >=20
+> > Am Montag, 24. Juli 2023, 09:23:09 CEST schrieb Krzysztof Kozlowski:
+> >> On 24/07/2023 08:35, Alexander Stein wrote:
+> >>> This is a gpio-controller, so gpio-line-names should be allowed as we=
+ll.
+> >>> stmpe2403 supports up to 24 GPIOs.
+> >>>=20
+> >>> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> >>> ---
+> >>> Changes in v2:
+> >>> * Add min/maxItems
+> >>>=20
+> >>>  Documentation/devicetree/bindings/gpio/st,stmpe-gpio.yaml | 4 ++++
+> >>>  1 file changed, 4 insertions(+)
+> >>>=20
+> >>> diff --git a/Documentation/devicetree/bindings/gpio/st,stmpe-gpio.yaml
+> >>> b/Documentation/devicetree/bindings/gpio/st,stmpe-gpio.yaml index
+> >>> 22c0cae73425..4555f1644a4d 100644
+> >>> --- a/Documentation/devicetree/bindings/gpio/st,stmpe-gpio.yaml
+> >>> +++ b/Documentation/devicetree/bindings/gpio/st,stmpe-gpio.yaml
+> >>>=20
+> >>> @@ -28,6 +28,10 @@ properties:
+> >>>    gpio-controller: true
+> >>>=20
+> >>> +  gpio-line-names:
+> >>> +    minItems: 1
+> >>> +    maxItems: 24
+> >>> +
+> >>=20
+> >> I am sure there is no variant with one GPIO.
+> >=20
+> > That's true. But if only one GPIO is actually connected there is no use
+> > enforcing to add empty entries.
+> > AFAIK it is also allowed to provide an incomplete array.
+>=20
+> Did you test it? Linux prints warning. Warning means "not allowed".
 
-Since the struct name itself has "ep", there is no need to add the "ep" suffix
-to callbacks. You should fix the existing ep_init callback too in a separate
-patch.
+I did and I don't see any warnings.
+I using the following (modified) GPIO subnode on an stmpe811 chip:
+gpio {
+	compatible =3D "st,stmpe-gpio";
+	gpio-controller;
+	#gpio-cells =3D <2>;
+	interrupt-controller;
+	#interrupt-cells =3D <2>;
+	/* GPIO 5-7 used for touch */
+	st,norequest-mask =3D <0xf0>;
+	gpio-line-names =3D "GPIO_ADC_I2C1_1";
+};
 
-(this series is just GROWING!!!)
+I only see the warning "stmpe-gpio stmpe-gpio: DMA mask not set", but that'=
+s a=20
+different matter.
+Only GPIO 0-3 are connected. Original property is
+gpio-line-names =3D "GPIO_ADC_I2C1_1",
+	        "GPIO_ADC_I2C1_2",
+	        "GPIO_ADC_I2C1_3",
+	        "GPIO_ADC_I2C1_4";
 
-- Mani
+Also gpioinfo shows that the gpiochip has 8 pins while only the first one i=
+s=20
+named.
 
->  	int	(*raise_irq)(struct dw_pcie_ep *ep, u8 func_no,
->  			     enum pci_epc_irq_type type, u16 interrupt_num);
->  	const struct pci_epc_features* (*get_features)(struct dw_pcie_ep *ep);
-> -- 
-> 2.25.1
-> 
+gpiochip7 - 8 lines:
+        line   0: "GPIO_ADC_I2C1_1" unused input active-high=20
+        line   1:      unnamed       unused   input  active-high=20
+        line   2:      unnamed       unused   input  active-high=20
+        line   3:      unnamed       unused   input  active-high=20
+        line   4:      unnamed       unused   input  active-high=20
+        line   5:      unnamed       unused   input  active-high=20
+        line   6:      unnamed       unused   input  active-high=20
+        line   7:      unnamed       unused   input  active-high
 
--- 
-மணிவண்ணன் சதாசிவம்
+
+If 4 GPIOs are named the output shows names for lines 1-3 accordingly, but =
+no=20
+errors/warnings as well.
+
+> The expectation is that the rest are named "NC".
+
+Where does this expectation come from? Is there any pending change I am not=
+=20
+aware of?
+
+Best regards,
+Alexander
+
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
+
+
