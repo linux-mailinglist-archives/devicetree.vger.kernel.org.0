@@ -2,78 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 85EDE75F51A
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 13:32:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0AFDD75F539
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 13:36:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229675AbjGXLcG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jul 2023 07:32:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51768 "EHLO
+        id S229573AbjGXLgJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jul 2023 07:36:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56132 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230110AbjGXLbv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 07:31:51 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43DA9E7B;
-        Mon, 24 Jul 2023 04:31:24 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 36OBUpbg049976;
-        Mon, 24 Jul 2023 06:30:51 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1690198251;
-        bh=TUFI28QkqhwCli+ZAIc0ejOORJ5GwGvqBlmS1gbjbB4=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=WUhsKRtAL6vOdDTZPlr1I3GUkQrWsRkgkJZ617ydXQPD1ZtN+KfFjp3qvnecVOhyz
-         /cHLQNI5Ug5tCq+NnBOOtKcmvLXReyUtZiLfJ/PuHpDFoRcJrUi5W1m6IhwGZlpPgU
-         FIFvYw3RFErvLk5x87l/pyl7bCFjn5W70lEtnSO0=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 36OBUp9c065145
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 24 Jul 2023 06:30:51 -0500
-Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 24
- Jul 2023 06:30:50 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 24 Jul 2023 06:30:50 -0500
-Received: from lelv0854.itg.ti.com (lelv0854.itg.ti.com [10.181.64.140])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 36OBUot7076926;
-        Mon, 24 Jul 2023 06:30:50 -0500
-Received: from localhost (uda0501179.dhcp.ti.com [172.24.227.217])
-        by lelv0854.itg.ti.com (8.14.7/8.14.7) with ESMTP id 36OBUn38010863;
-        Mon, 24 Jul 2023 06:30:50 -0500
-From:   MD Danish Anwar <danishanwar@ti.com>
-To:     Randy Dunlap <rdunlap@infradead.org>,
-        Roger Quadros <rogerq@kernel.org>,
-        Simon Horman <simon.horman@corigine.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Eric Dumazet <edumazet@google.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        MD Danish Anwar <danishanwar@ti.com>
-CC:     <nm@ti.com>, <srk@ti.com>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <netdev@vger.kernel.org>,
-        <linux-omap@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-Subject: [PATCH v11 10/10] net: ti: icssg-prueth: Add Power management support
-Date:   Mon, 24 Jul 2023 16:59:34 +0530
-Message-ID: <20230724112934.2637802-11-danishanwar@ti.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230724112934.2637802-1-danishanwar@ti.com>
-References: <20230724112934.2637802-1-danishanwar@ti.com>
+        with ESMTP id S229578AbjGXLgI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 07:36:08 -0400
+Received: from mail-pf1-x436.google.com (mail-pf1-x436.google.com [IPv6:2607:f8b0:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E39E10E5
+        for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 04:35:42 -0700 (PDT)
+Received: by mail-pf1-x436.google.com with SMTP id d2e1a72fcca58-666e6ecb52dso2254151b3a.2
+        for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 04:35:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1690198529; x=1690803329;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=Nq+WD11NKB4CXcEv93Ud41HBi4eLx3VHmopZE3v/plY=;
+        b=okTJNX3NPbF3G51qRtyVNKm80OBvG3dKzI7rkFmxSlzP7OmN8SBEt0He0rbvd+Xtgo
+         YN3Dbhtl0gVz2j6iwSJqKapELXo6vXO/EIOR2hVulgnstfUGiPvWIq/e0uMuI29MWUAW
+         Z63Ns4Xq4nFfNhI28HDB3iSoynEGn45tB9U+aKR2/GDO9L7jnSuCcCqEprW07yvGd88x
+         x0JUivRn6QOJdXPaWfSJYvroU/jsKVopHdiJBSepYJ+xRraEesE5hTKHS6mK11hgvwOy
+         wxabIlMSJMnvxUTxLmOFnOCbLqePa+oq5KX3kmtAFz85ORGYoLPS+UwjPaBNPSAHTR0t
+         nh3w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690198529; x=1690803329;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Nq+WD11NKB4CXcEv93Ud41HBi4eLx3VHmopZE3v/plY=;
+        b=HafuuAmM4UYZZX/LhT9I/dcqEeguifYSV2qihGvEraWh7BWXjxwJeLv4aczgg9eyUW
+         ba6kdmx7wZPYoPpP/DXe8T1Ypj7NSvkFUBfcqCCpL2PTE047AFy35ts+u7slAFC0s8M8
+         dcfmPzYnXtze6jsX2XRwAjT9MKycl916PCXrIGmlkyll6h/ngu9Pe/dCepPgI6s6HMy8
+         CRebkDe122jhyKILj5muEUoXyTBfovfVqNBJ3BOvI8yM32jOB11yyeL58GuYfAUSfP6U
+         LMkWuabk50edyQMsU6GIOlh9ekI8upCrVMcsEG+k2VtDXFzB5aKcchTvM0sevZoOTSaI
+         m6ng==
+X-Gm-Message-State: ABy/qLY4xhKWyAyHe+GrmM/3kVMVEtejp35VOLW1ICSHlPj6R689fDxE
+        lzTi69EJ3eXe295rgiOHxRtJ
+X-Google-Smtp-Source: APBJJlGj/DRjzrBVCUXmiE8BzEgzvxUx4ah3hIYdCVLFv2yCQuRG9vnvJiRkhR1pRC/961sFgsf9XQ==
+X-Received: by 2002:a05:6a20:13da:b0:138:92ef:78f9 with SMTP id ho26-20020a056a2013da00b0013892ef78f9mr4638511pzc.6.1690198529261;
+        Mon, 24 Jul 2023 04:35:29 -0700 (PDT)
+Received: from thinkpad ([117.206.118.29])
+        by smtp.gmail.com with ESMTPSA id r2-20020a170902be0200b001b85bb5fd77sm8665833pls.119.2023.07.24.04.35.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 24 Jul 2023 04:35:28 -0700 (PDT)
+Date:   Mon, 24 Jul 2023 17:05:21 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc:     jingoohan1@gmail.com, gustavo.pimentel@synopsys.com,
+        lpieralisi@kernel.org, robh+dt@kernel.org, kw@linux.com,
+        bhelgaas@google.com, kishon@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        marek.vasut+renesas@gmail.com, fancer.lancer@gmail.com,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v18 11/20] PCI: dwc: Add EDMA_UNROLL capability flag
+Message-ID: <20230724113521.GJ6291@thinkpad>
+References: <20230721074452.65545-1-yoshihiro.shimoda.uh@renesas.com>
+ <20230721074452.65545-12-yoshihiro.shimoda.uh@renesas.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+In-Reply-To: <20230721074452.65545-12-yoshihiro.shimoda.uh@renesas.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,90 +78,66 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add suspend / resume APIs to support power management in ICSSG ethernet
-driver.
+On Fri, Jul 21, 2023 at 04:44:43PM +0900, Yoshihiro Shimoda wrote:
+> Renesas R-Car Gen4 PCIe controllers have an unexpected register value on
+> the dbi+0x97b register. So, add a new capability flag "EDMA_UNROLL"
 
-Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
----
- drivers/net/ethernet/ti/icssg_prueth.c | 57 ++++++++++++++++++++++++++
- 1 file changed, 57 insertions(+)
+s/in the dbi+0x97b/in the eDMA CTRL
 
-diff --git a/drivers/net/ethernet/ti/icssg_prueth.c b/drivers/net/ethernet/ti/icssg_prueth.c
-index a34e29ed3351..53d93a33c64d 100644
---- a/drivers/net/ethernet/ti/icssg_prueth.c
-+++ b/drivers/net/ethernet/ti/icssg_prueth.c
-@@ -1835,6 +1835,62 @@ static int prueth_remove(struct platform_device *pdev)
- 	return 0;
- }
- 
-+#ifdef CONFIG_PM_SLEEP
-+static int prueth_suspend(struct device *dev)
-+{
-+	struct prueth *prueth = dev_get_drvdata(dev);
-+	struct net_device *ndev;
-+	int i, ret;
-+
-+	for (i = 0; i < PRUETH_NUM_MACS; i++) {
-+		ndev = prueth->registered_netdevs[i];
-+
-+		if (!ndev)
-+			continue;
-+
-+		if (netif_running(ndev)) {
-+			netif_device_detach(ndev);
-+			ret = emac_ndo_stop(ndev);
-+			if (ret < 0) {
-+				netdev_err(ndev, "failed to stop: %d", ret);
-+				return ret;
-+			}
-+		}
-+	}
-+
-+	return 0;
-+}
-+
-+static int prueth_resume(struct device *dev)
-+{
-+	struct prueth *prueth = dev_get_drvdata(dev);
-+	struct net_device *ndev;
-+	int i, ret;
-+
-+	for (i = 0; i < PRUETH_NUM_MACS; i++) {
-+		ndev = prueth->registered_netdevs[i];
-+
-+		if (!ndev)
-+			continue;
-+
-+		if (netif_running(ndev)) {
-+			ret = emac_ndo_open(ndev);
-+			if (ret < 0) {
-+				netdev_err(ndev, "failed to start: %d", ret);
-+				return ret;
-+			}
-+			netif_device_attach(ndev);
-+		}
-+	}
-+
-+	return 0;
-+}
-+#endif /* CONFIG_PM_SLEEP */
-+
-+static const struct dev_pm_ops prueth_dev_pm_ops = {
-+	SET_SYSTEM_SLEEP_PM_OPS(prueth_suspend, prueth_resume)
-+};
-+
- static const struct prueth_pdata am654_icssg_pdata = {
- 	.fdqring_mode = K3_RINGACC_RING_MODE_MESSAGE,
- 	.quirk_10m_link_issue = 1,
-@@ -1852,6 +1908,7 @@ static struct platform_driver prueth_driver = {
- 	.driver = {
- 		.name = "icssg-prueth",
- 		.of_match_table = prueth_dt_match,
-+		.pm = &prueth_dev_pm_ops,
- 	},
- };
- module_platform_driver(prueth_driver);
+> which would force the unrolled eDMA mapping for the problematic device.
+> 
+> Suggested-by: Serge Semin <fancer.lancer@gmail.com>
+> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+
+Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+
+- Mani
+
+> Reviewed-by: Serge Semin <fancer.lancer@gmail.com>
+> ---
+>  drivers/pci/controller/dwc/pcie-designware.c | 8 +++++++-
+>  drivers/pci/controller/dwc/pcie-designware.h | 5 +++--
+>  2 files changed, 10 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/pci/controller/dwc/pcie-designware.c b/drivers/pci/controller/dwc/pcie-designware.c
+> index c4998194fe74..4812ce040f1e 100644
+> --- a/drivers/pci/controller/dwc/pcie-designware.c
+> +++ b/drivers/pci/controller/dwc/pcie-designware.c
+> @@ -883,8 +883,14 @@ static int dw_pcie_edma_find_chip(struct dw_pcie *pci)
+>  	 * Indirect eDMA CSRs access has been completely removed since v5.40a
+>  	 * thus no space is now reserved for the eDMA channels viewport and
+>  	 * former DMA CTRL register is no longer fixed to FFs.
+> +	 *
+> +	 * Note that Renesas R-Car S4-8's PCIe controllers for unknown reason
+> +	 * have zeros in the eDMA CTRL register even though the HW-manual
+> +	 * explicitly states there must FFs if the unrolled mapping is enabled.
+> +	 * For such cases the low-level drivers are supposed to manually
+> +	 * activate the unrolled mapping to bypass the auto-detection procedure.
+>  	 */
+> -	if (dw_pcie_ver_is_ge(pci, 540A))
+> +	if (dw_pcie_ver_is_ge(pci, 540A) || dw_pcie_cap_is(pci, EDMA_UNROLL))
+>  		val = 0xFFFFFFFF;
+>  	else
+>  		val = dw_pcie_readl_dbi(pci, PCIE_DMA_VIEWPORT_BASE + PCIE_DMA_CTRL);
+> diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci/controller/dwc/pcie-designware.h
+> index 94bc20f5f600..6821446d7c66 100644
+> --- a/drivers/pci/controller/dwc/pcie-designware.h
+> +++ b/drivers/pci/controller/dwc/pcie-designware.h
+> @@ -51,8 +51,9 @@
+>  
+>  /* DWC PCIe controller capabilities */
+>  #define DW_PCIE_CAP_REQ_RES		0
+> -#define DW_PCIE_CAP_IATU_UNROLL		1
+> -#define DW_PCIE_CAP_CDM_CHECK		2
+> +#define DW_PCIE_CAP_EDMA_UNROLL		1
+> +#define DW_PCIE_CAP_IATU_UNROLL		2
+> +#define DW_PCIE_CAP_CDM_CHECK		3
+>  
+>  #define dw_pcie_cap_is(_pci, _cap) \
+>  	test_bit(DW_PCIE_CAP_ ## _cap, &(_pci)->caps)
+> -- 
+> 2.25.1
+> 
+
 -- 
-2.34.1
-
+மணிவண்ணன் சதாசிவம்
