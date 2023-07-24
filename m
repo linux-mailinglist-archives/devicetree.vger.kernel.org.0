@@ -2,52 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F2A17602ED
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 01:03:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B3BE3760311
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 01:23:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229974AbjGXXD3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jul 2023 19:03:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36546 "EHLO
+        id S229590AbjGXXXd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jul 2023 19:23:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41010 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229625AbjGXXD3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 19:03:29 -0400
+        with ESMTP id S229459AbjGXXXd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 19:23:33 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6A85EA;
-        Mon, 24 Jul 2023 16:03:27 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28E69E78;
+        Mon, 24 Jul 2023 16:23:32 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 60C6D6145A;
-        Mon, 24 Jul 2023 23:03:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CAE69C433C7;
-        Mon, 24 Jul 2023 23:03:25 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 8E84961464;
+        Mon, 24 Jul 2023 23:23:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 73206C433C8;
+        Mon, 24 Jul 2023 23:23:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690239806;
-        bh=HdXCBkJC6y8xmaikj3v3JuRSAllSb+fugmrt05+9R+8=;
-        h=From:To:Cc:Subject:Date:From;
-        b=tP4SLIjxJM84HZM8PVsNB6zuSpHeExq9O/E/+5sE5BAPATPnujMXngLls2F16qiL/
-         +GXpgss+DgrCRuMCQj1kWxFy8kEe3YbgDVd2iTSjbvg6StfMzeZFG5VCt0rtJMV/p1
-         KFGDE3zJqKs5/EMbmH6TJeU0ZqelZ01e5YD0r83VnWfsJW9240mOJZT8bCJGpiYaXK
-         IV9w5CdCu1sNAZNmsvfndWz9n7C0D53TU7BbMjOKyGi/suyQtkZhKfHj4R8loDD3Wa
-         IMNkPkAO0+grfC4sKzKR1edV4IPe3VnxuwlVAgx1Qr5d4AovDK3CZYWe8pJmOdH4AG
-         Dr5R7vokMWIDg==
-Received: (nullmailer pid 1018011 invoked by uid 1000);
-        Mon, 24 Jul 2023 23:03:24 -0000
+        s=k20201202; t=1690241010;
+        bh=w+olyalJrA2gi25MoSVwqGzWtB2JIt1pQxhluX5W+Yw=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=nJc8ruOzyTk4j/2MU65pdXVSBNePXOjfJn1GAqDAjq5sbiE0IyPpKKA3joaKxm8xw
+         2QFh18yk2eZA+SFagsz/5dbmVRZ5AfxNblF+eoSnRn99ayhJXlMQ8AsP/TBySyIcHH
+         +iNTF+ypyENR1dXI2Zs1M206yEQx7xVapAbVznq5kMlLO+TGmjF2clTs9i5rcnCYn6
+         OLvNuo0hu/aJ5gz1BKme3Hfs48jBnDrPKgMrxAjdh0uVLgPDqIvuwUxZVWU0XFe+a/
+         diMktUHpPOPOs9ixdVT4QdRqHhqO+A8bHogIooFxoWDuOThVVPM5DzmJ90G+xpC7I+
+         AyjzLXxz7ikZA==
+Received: (nullmailer pid 1109815 invoked by uid 1000);
+        Mon, 24 Jul 2023 23:23:28 -0000
+Date:   Mon, 24 Jul 2023 17:23:28 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
+To:     Elliot Berman <quic_eberman@quicinc.com>
+Cc:     Mark Rutland <mark.rutland@arm.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Sebastian Reichel <sre@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Iskren Chernev <me@iskren.info>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v2] dt-bindings: leds: Convert Panasonic AN30259A to DT schema
-Date:   Mon, 24 Jul 2023 17:02:58 -0600
-Message-Id: <20230724230258.1017258-1-robh@kernel.org>
-X-Mailer: git-send-email 2.40.1
+        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, kernel@quicinc.com,
+        Satya Durga Srinivasu Prabhala <quic_satyap@quicinc.com>,
+        Melody Olvera <quic_molvera@quicinc.com>,
+        Prasad Sodagudi <quic_psodagud@quicinc.com>
+Subject: Re: [RFC PATCH 3/4] dt-bindings: power: reset: Document
+ arm,psci-vendor-reset
+Message-ID: <20230724232328.GA1101352-robh@kernel.org>
+References: <20230724223057.1208122-1-quic_eberman@quicinc.com>
+ <20230724223057.1208122-4-quic_eberman@quicinc.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230724223057.1208122-4-quic_eberman@quicinc.com>
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -58,172 +67,76 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the Panasonic AN30259A 3-channel LED controller binding to DT
-schema format.
+On Mon, Jul 24, 2023 at 03:30:53PM -0700, Elliot Berman wrote:
+> Add devicetree bindings for using PSCI SYSTEM_RESET2 with vendor reset  types.
+> 
+> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
+> ---
+>  .../power/reset/arm,psci-vendor-reset.yaml    | 35 +++++++++++++++++++
+>  MAINTAINERS                                   |  1 +
+>  2 files changed, 36 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/power/reset/arm,psci-vendor-reset.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/power/reset/arm,psci-vendor-reset.yaml b/Documentation/devicetree/bindings/power/reset/arm,psci-vendor-reset.yaml
+> new file mode 100644
+> index 000000000000..18b0b8c167a1
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/power/reset/arm,psci-vendor-reset.yaml
+> @@ -0,0 +1,35 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +# Copyright 2023 Qualcomm Innovation Center, Inc. All Rights Reserved.
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/power/reset/arm,psci-vendor-reset.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: PSCI SYSTEM_RESET2 Vendor Resets
+> +
+> +maintainers:
+> +  - Elliot Berman <quic_eberman@quicinc.com>
+> +
+> +description: |
+> +  PSCI SYSTEM_RESET2 supports vendor-defined reset types. This describes
+> +  the conversion of reboot modes to the reset types.
+> +
+> +properties:
+> +  compatible:
+> +    const: arm,psci-vendor-reset
+> +
+> +allOf:
+> +  - $ref: reboot-mode.yaml#
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    firmware {
+> +      psci-vendor-resets {
+> +        compatible = "arm,psci-vendor-reset";
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Rob Herring <robh@kernel.org>
----
-v2:
- - Update maintainer
+We already have a node for PSCI, we don't need a second one. You can 
+have a separate driver without a separate node. 
 
- .../bindings/leds/leds-an30259a.txt           | 55 ------------
- .../bindings/leds/panasonic,an30259a.yaml     | 84 +++++++++++++++++++
- 2 files changed, 84 insertions(+), 55 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/leds/leds-an30259a.txt
- create mode 100644 Documentation/devicetree/bindings/leds/panasonic,an30259a.yaml
+> +        reboot-normal = <0x100>;
 
-diff --git a/Documentation/devicetree/bindings/leds/leds-an30259a.txt b/Documentation/devicetree/bindings/leds/leds-an30259a.txt
-deleted file mode 100644
-index cbd833906b2b..000000000000
---- a/Documentation/devicetree/bindings/leds/leds-an30259a.txt
-+++ /dev/null
-@@ -1,55 +0,0 @@
--* Panasonic AN30259A 3-channel LED driver
--
--The AN30259A is a LED controller capable of driving three LEDs independently. It supports
--constant current output and sloping current output modes. The chip is connected over I2C.
--
--Required properties:
--	- compatible: Must be "panasonic,an30259a".
--	- reg: I2C slave address.
--	- #address-cells: Must be 1.
--	- #size-cells: Must be 0.
--
--Each LED is represented as a sub-node of the panasonic,an30259a node.
--
--Required sub-node properties:
--	- reg: Pin that the LED is connected to. Must be 1, 2, or 3.
--
--Optional sub-node properties:
--	- function :
--		see Documentation/devicetree/bindings/leds/common.txt
--	- color :
--		see Documentation/devicetree/bindings/leds/common.txt
--	- label :
--		see Documentation/devicetree/bindings/leds/common.txt (deprecated)
--	- linux,default-trigger :
--		see Documentation/devicetree/bindings/leds/common.txt
--
--Example:
--
--#include <dt-bindings/leds/common.h>
--
--led-controller@30 {
--	compatible = "panasonic,an30259a";
--	reg = <0x30>;
--	#address-cells = <1>;
--	#size-cells = <0>;
--
--	led@1 {
--		reg = <1>;
--		linux,default-trigger = "heartbeat";
--		function = LED_FUNCTION_INDICATOR;
--		color = <LED_COLOR_ID_RED>;
--	};
--
--	led@2 {
--		reg = <2>;
--		function = LED_FUNCTION_INDICATOR;
--		color = <LED_COLOR_ID_GREEN>;
--	};
--
--	led@3 {
--		reg = <3>;
--		function = LED_FUNCTION_INDICATOR;
--		color = <LED_COLOR_ID_BLUE>;
--	};
--};
-diff --git a/Documentation/devicetree/bindings/leds/panasonic,an30259a.yaml b/Documentation/devicetree/bindings/leds/panasonic,an30259a.yaml
-new file mode 100644
-index 000000000000..e918dceea082
---- /dev/null
-+++ b/Documentation/devicetree/bindings/leds/panasonic,an30259a.yaml
-@@ -0,0 +1,84 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/leds/panasonic,an30259a.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Panasonic AN30259A 3-channel LED controller
-+
-+maintainers:
-+  - Iskren Chernev <me@iskren.info>
-+
-+description:
-+  The AN30259A is a LED controller capable of driving three LEDs independently.
-+  It supports constant current output and sloping current output modes. The chip
-+  is connected over I2C.
-+
-+properties:
-+  compatible:
-+    const: panasonic,an30259a
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  "#address-cells":
-+    const: 1
-+
-+  "#size-cells":
-+    const: 0
-+
-+patternProperties:
-+  "^led@[1-3]$":
-+    $ref: common.yaml#
-+    unevaluatedProperties: false
-+
-+    properties:
-+      reg:
-+        enum: [ 1, 2, 3 ]
-+
-+required:
-+  - compatible
-+  - reg
-+  - "#address-cells"
-+  - "#size-cells"
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/leds/common.h>
-+
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        led-controller@30 {
-+            compatible = "panasonic,an30259a";
-+            reg = <0x30>;
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+
-+            led@1 {
-+                reg = <1>;
-+                linux,default-trigger = "heartbeat";
-+                function = LED_FUNCTION_INDICATOR;
-+                color = <LED_COLOR_ID_RED>;
-+            };
-+
-+            led@2 {
-+                reg = <2>;
-+                function = LED_FUNCTION_INDICATOR;
-+                color = <LED_COLOR_ID_GREEN>;
-+            };
-+
-+            led@3 {
-+                reg = <3>;
-+                function = LED_FUNCTION_INDICATOR;
-+                color = <LED_COLOR_ID_BLUE>;
-+            };
-+        };
-+    };
-+...
--- 
-2.40.1
+Wouldn't 'normal' be the normal PSCI reset?
 
+> +        reboot-bootloader = <0x101>;
+> +        reboot-fastboot = <0x102>;
+> +      };
+> +    };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index d516295978a4..2da4c5f1917b 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -16982,6 +16982,7 @@ M:	Mark Rutland <mark.rutland@arm.com>
+>  M:	Lorenzo Pieralisi <lpieralisi@kernel.org>
+>  L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
+>  S:	Maintained
+> +F:	Documentation/devicetree/bindings/power/reset/arm,psci-vendor-reset.yaml
+>  F:	drivers/firmware/psci/
+>  F:	include/linux/psci.h
+>  F:	include/uapi/linux/psci.h
+> -- 
+> 2.41.0
+> 
