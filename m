@@ -2,104 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F07175F5C2
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 14:14:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A8C3375F625
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 14:21:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230349AbjGXMO0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jul 2023 08:14:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44060 "EHLO
+        id S229499AbjGXMVU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jul 2023 08:21:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52022 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230307AbjGXMOU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 08:14:20 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0609A10D8;
-        Mon, 24 Jul 2023 05:14:09 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        with ESMTP id S229866AbjGXMVN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 08:21:13 -0400
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D0091728;
+        Mon, 24 Jul 2023 05:21:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1690201269; x=1721737269;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=/roN2fTZQ9B5pTFJzBg264zpu1jnGYtWWClK0AUlBRw=;
+  b=ZLiP5ZQi+cEy63W6Y72fNShUZRLOkMGXlQaPI9WO0io3abCI9ACfGBjz
+   IiN0RjYPAro1c+ipyXpDyXYoZGuV/kTXcsblBgDJ171NgoAGQVM2P/fXF
+   33oAzY3nRpOcNKR12uCGRjhzRc293h3SRP5A6xszILR7gmPuuvhG2+xw3
+   lDPR3l3TN2e5LV4jGVZOnNG+18jOC4dskMIeAOBtubULoQmnVYJ0XQKUZ
+   kk+tNv4l29PcdKhpamxzFO5kOQUvyUGhzo+0uiUnaBrzbtVtDsRNtUnko
+   lX5aJiwM8FhfHKWlq4sFsJXvdc7Sg51sq5zyIirkNRyKtCsO7l82tjcLw
+   Q==;
+X-IronPort-AV: E=Sophos;i="6.01,228,1684792800"; 
+   d="scan'208";a="32081028"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 24 Jul 2023 14:21:07 +0200
+Received: from steina-w.tq-net.de (unknown [10.123.53.21])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id EAEE66113A;
-        Mon, 24 Jul 2023 12:14:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 03528C433AD;
-        Mon, 24 Jul 2023 12:14:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690200848;
-        bh=bGBRTBKOATzDrEOLC9veX6A/VYAHXhkdefmlUImW9tU=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=o2scgzlSqub0MwzcjE1YF2PBthEw88BjAeDWf84QFg0ANrTZu0+TOaCqxd0tWSACW
-         JfIqaWP9UXLSbbSRGW1qnCFcf6vzvXIYXSXU2SZH6ZJxaUvi2Wt5Lpe3C36HktZZAq
-         Sd3O7EynHqvMKuoyGHjzjjvJdQlWzOnX9eURPJq0zSqABfjfJ7cqBz0R9JPBNDojmO
-         qpmo1wXfjD9pkmgthCGUSMKYJKg4ggnPykOgIPs0O+9zZnV+KLQ4BoNVG2iI5anqn/
-         XWhp5QKpbBR/MKkQg7N4uJ95xHNmT4qoayu0sGkoYFifHW7QX1sqNX8SAlmtIAhG8F
-         pcHzS8P0w/FlA==
-From:   Mark Brown <broonie@kernel.org>
-To:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id DC6AF280078;
+        Mon, 24 Jul 2023 14:21:06 +0200 (CEST)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Rob Herring <robh+dt@kernel.org>, Ming Qian <ming.qian@nxp.com>,
+        Shijie Qin <shijie.qin@nxp.com>,
+        Zhou Peng <eagle.zhou@nxp.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Chen-Yu Tsai <wenst@chromium.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20230721082903.2038975-1-wenst@chromium.org>
-References: <20230721082903.2038975-1-wenst@chromium.org>
-Subject: Re: (subset) [PATCH RESEND v2 0/7] regulator: mt6358: Remove bogus
- regulators and improvements
-Message-Id: <169020084572.59430.14695443221622565365.b4-ty@kernel.org>
-Date:   Mon, 24 Jul 2023 13:14:05 +0100
+        Mirela Rabulea <mirela.rabulea@nxp.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Anson Huang <Anson.Huang@nxp.com>
+Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-spi@vger.kernel.org
+Subject: [PATCH v2 1/3] dt-bindings: media: amphion: Fix subnode pattern
+Date:   Mon, 24 Jul 2023 14:20:58 +0200
+Message-Id: <20230724122101.2903318-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.13-dev-099c9
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 21 Jul 2023 16:28:52 +0800, Chen-Yu Tsai wrote:
-> (Resending with Lee added to recipients)
-> 
-> Hi,
-> 
-> This is v2 of the remainder of the MT6358 regulator driver cleanup
-> and improvement series. v1 can be found here [1].
-> 
-> [...]
+DT nodes use dashes instead of underscore. Adjust pattern to also fix
+warnings regarding nodes in arch/arm64/boot/dts/freescale/imx8-ss-vpu.dtsi
 
-Applied to
+Fixes: 38ad8b32f3af ("dt-bindings: media: amphion: add amphion video codec bindings")
+Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+---
+Changes in v2:
+* Fixed examples
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
+ Documentation/devicetree/bindings/media/amphion,vpu.yaml | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-Thanks!
-
-[2/7] regulator: mt6358: Sync VCN33_* enable status after checking ID
-      commit: 649fee5a17a7f96152fee2fb9111d9a4db535f35
-[3/7] regulator: mt6358: Fix incorrect VCN33 sync error message
-      commit: 67cb608838e0aac8efb48828b1165156f99c1af9
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+diff --git a/Documentation/devicetree/bindings/media/amphion,vpu.yaml b/Documentation/devicetree/bindings/media/amphion,vpu.yaml
+index a9d80eaeeeb6..c0d83d755239 100644
+--- a/Documentation/devicetree/bindings/media/amphion,vpu.yaml
++++ b/Documentation/devicetree/bindings/media/amphion,vpu.yaml
+@@ -47,7 +47,7 @@ patternProperties:
+     $ref: ../mailbox/fsl,mu.yaml#
+ 
+ 
+-  "^vpu_core@[0-9a-f]+$":
++  "^vpu-core@[0-9a-f]+$":
+     description:
+       Each core correspond a decoder or encoder, need to configure them
+       separately. NXP i.MX8QM SoC has one decoder and two encoder, i.MX8QXP SoC
+@@ -143,7 +143,7 @@ examples:
+         power-domains = <&pd IMX_SC_R_VPU_MU_2>;
+       };
+ 
+-      vpu_core0: vpu_core@2d080000 {
++      vpu_core0: vpu-core@2d080000 {
+         compatible = "nxp,imx8q-vpu-decoder";
+         reg = <0x2d080000 0x10000>;
+         power-domains = <&pd IMX_SC_R_VPU_DEC_0>;
+@@ -154,7 +154,7 @@ examples:
+         memory-region = <&decoder_boot>, <&decoder_rpc>;
+       };
+ 
+-      vpu_core1: vpu_core@2d090000 {
++      vpu_core1: vpu-core@2d090000 {
+         compatible = "nxp,imx8q-vpu-encoder";
+         reg = <0x2d090000 0x10000>;
+         power-domains = <&pd IMX_SC_R_VPU_ENC_0>;
+@@ -165,7 +165,7 @@ examples:
+         memory-region = <&encoder1_boot>, <&encoder1_rpc>;
+       };
+ 
+-      vpu_core2: vpu_core@2d0a0000 {
++      vpu_core2: vpu-core@2d0a0000 {
+         reg = <0x2d0a0000 0x10000>;
+         compatible = "nxp,imx8q-vpu-encoder";
+         power-domains = <&pd IMX_SC_R_VPU_ENC_1>;
+-- 
+2.34.1
 
