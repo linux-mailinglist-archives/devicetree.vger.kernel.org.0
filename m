@@ -2,79 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CC29875EE33
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 10:47:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C221975EE43
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 10:48:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231416AbjGXIrQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jul 2023 04:47:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45454 "EHLO
+        id S231863AbjGXIsm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jul 2023 04:48:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47016 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231800AbjGXIrP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 04:47:15 -0400
-Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id A60E7E4A;
-        Mon, 24 Jul 2023 01:47:12 -0700 (PDT)
-Authenticated-By: 
-X-SpamFilter-By: ArmorX SpamTrap 5.77 with qID 36O8k7dgD005803, This message is accepted by code: ctloc85258
-Received: from mail.realtek.com (rtexh36505.realtek.com.tw[172.21.6.25])
-        by rtits2.realtek.com.tw (8.15.2/2.81/5.90) with ESMTPS id 36O8k7dgD005803
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=FAIL);
-        Mon, 24 Jul 2023 16:46:07 +0800
-Received: from RTEXDAG01.realtek.com.tw (172.21.6.100) by
- RTEXH36505.realtek.com.tw (172.21.6.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.32; Mon, 24 Jul 2023 16:46:18 +0800
-Received: from RTEXMBS04.realtek.com.tw (172.21.6.97) by
- RTEXDAG01.realtek.com.tw (172.21.6.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.7; Mon, 24 Jul 2023 16:46:18 +0800
-Received: from RTEXMBS04.realtek.com.tw ([fe80::e138:e7f1:4709:ff4d]) by
- RTEXMBS04.realtek.com.tw ([fe80::e138:e7f1:4709:ff4d%5]) with mapi id
- 15.01.2375.007; Mon, 24 Jul 2023 16:46:18 +0800
-From:   =?utf-8?B?U3RhbmxleSBDaGFuZ1vmmIzogrLlvrdd?= 
-        <stanley_chang@realtek.com>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-CC:     Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
+        with ESMTP id S231861AbjGXIsh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 04:48:37 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A910E6;
+        Mon, 24 Jul 2023 01:48:35 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 68A326607029;
+        Mon, 24 Jul 2023 09:48:32 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1690188513;
+        bh=Zjy3Rsv9lo1VbeTw2uMo83jvJBhbL51/vCj6P5OZnjw=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=oZtI02nAH/g+z3t+cRxRIxH4roa4RJN5x+XIvLlNZGUSJG/ZD9WCg6KScBrDgzecI
+         V3AhzDnnVdo+M7mynMcm1TPlZg0JqhVqqw6pXC3aSFp+mHtOim2pjbzcSi08zH2g3J
+         dRXlFdcW3W6AzhLAVvzHpvsCTR06h2/P9u3uWwUj9B75Zu0SbKvAk10eJUm1+qAeDC
+         PGdqi/xPXd7lbXuAWX+qT3yJbxvDXDRSWuq6u0zXhockOWZ3ujEAn5JHEnIbDAKEMU
+         FArdoWuoz5XeNoGenBD96pmAWCXYbZSma/qGAuYc81qOmsH6RJeNdVaqac6lSNaEn5
+         FRpOOm6jQ/djA==
+Message-ID: <55e72667-dec5-dab0-9d1b-dc127fe4d065@collabora.com>
+Date:   Mon, 24 Jul 2023 10:48:30 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH 1/7] drivers: soc: qcom: rpmpd: Fix MSM8976 power domains
+ setup
+Content-Language: en-US
+To:     Adam Skladowski <a39.skl@gmail.com>
+Cc:     phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Roy Luo <royluo@google.com>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Flavio Suligoi <f.suligoi@asem.it>,
-        Ray Chi <raychi@google.com>,
-        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>
-Subject: RE: [PATCH v7 1/5] usb: phy: add usb phy notify port status API
-Thread-Topic: [PATCH v7 1/5] usb: phy: add usb phy notify port status API
-Thread-Index: AQHZsJ7kDWGiCOPLRk2HhU7h2LN0sq/H/g6AgACS9CD//4JIgIAAjEhQgAAVD/A=
-Date:   Mon, 24 Jul 2023 08:46:18 +0000
-Message-ID: <832fc6ec78074b49a719221ccefd2d90@realtek.com>
-References: <20230707064725.25291-1-stanley_chang@realtek.com>
- <2023072452-jasmine-palm-7b73@gregkh>
- <47131beec8a24572873aa31e87cfaab6@realtek.com>
- <2023072454-mosaic-ogle-9a27@gregkh> 
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.21.190.159]
-x-kse-serverinfo: RTEXDAG01.realtek.com.tw, 9
-x-kse-antispam-interceptor-info: fallback
-x-kse-antivirus-interceptor-info: fallback
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-MIME-Version: 1.0
-X-KSE-AntiSpam-Interceptor-Info: fallback
-X-KSE-ServerInfo: RTEXH36505.realtek.com.tw, 9
-X-KSE-AntiSpam-Interceptor-Info: fallback
-X-KSE-Antivirus-Interceptor-Info: fallback
-X-KSE-AntiSpam-Interceptor-Info: fallback
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230723140712.9438-1-a39.skl@gmail.com>
+ <20230723140712.9438-2-a39.skl@gmail.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20230723140712.9438-2-a39.skl@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
         SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -83,20 +69,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgR3JlZywNCg0KPiA+ID4gPiA+ICsNCj4gPiA+ID4gPiArICAgICBpZiAoIXJldCkgew0KPiA+
-ID4gPiA+ICsgICAgICAgICAgICAgc3RydWN0IHVzYl9kZXZpY2UgKmhkZXYgPSBodWItPmhkZXY7
-DQo+ID4gPiA+ID4gKw0KPiA+ID4gPiA+ICsgICAgICAgICAgICAgaWYgKGhkZXYgJiYgIWhkZXYt
-PnBhcmVudCkgew0KPiA+ID4gPg0KPiA+ID4gPiBXaHkgdGhlIGNoZWNrIGZvciBubyBwYXJlbnQ/
-ICBQbGVhc2UgZG9jdW1lbnQgdGhhdCBoZXJlIGluIGENCj4gY29tbWVudC4NCj4gPiA+DQo+ID4g
-PiBJIHdpbGwgYWRkIGEgY29tbWVudCA6DQo+ID4gPiAvKiBPbmx5IG5vdGlmeSByb290aHViLiBU
-aGF0IGlzLCB3aGVuIGhkZXYtPnBhcmVudCBpcyBlbXB0eS4gKi8NCj4gPg0KPiA+IEFsc28gZG9j
-dW1lbnQgdGhpcyB0aGF0IHRoaXMgd2lsbCBvbmx5IGhhcHBlbiBmb3Igcm9vdCBodWIgc3RhdHVz
-DQo+ID4gY2hhbmdlcywgdGhhdCdzIG5vdCBvYnZpb3VzIGluIHRoZSBjYWxsYmFjayBuYW1lIG9y
-IGRvY3VtZW50YXRpb24gb3INCj4gYW55d2hlcmUgZWxzZSBoZXJlLg0KPiANCj4gQWxsIHVzYiBw
-aHkgbm90aWZpY2F0aW9ucyAoY29ubmVjdGlvbiwgZGlzY29ubmVjdGlvbikgYXJlIG9ubHkgZm9y
-IHJvb3RodWIuDQo+IFNvIEkgZG9uJ3Qgc3BlY2lhbCB0byBkb2MgdGhpcy4NCg0KSSB3aWxsIGFk
-ZCB0aGUgY29tbWVudDoNCi8qDQogKiBBcHBsaWVzIHRvIHJvb3RodWIgb25seS4gVGhhdCBpcywg
-d2hlbiBoZGV2LT5wYXJlbnQgaXMNCiAqIGVtcHR5LiBPbmx5IHRoZSByb290aHViIHdpbGwgYmUg
-bm90aWZpZWQgb2YgcG9ydCBzdGF0ZQ0KICogY2hhbmdlcywgc2luY2UgdGhlIFVTQiBQSFkgb25s
-eSBjYXJlcyBhYm91dCBjaGFuZ2VzIGF0DQogKiB0aGUgbmV4dCBsZXZlbC4NCiAqLw0KDQoNClRo
-YW5rcywNClN0YW5sZXkNCg==
+Il 23/07/23 16:06, Adam Skladowski ha scritto:
+> Downstream kernel parses resource names based on pm8950-rpm-regulator.dtsi
+> in such file qcom,resource-name takes three values: smpa,ldoa and clk0.
+> First appearance of RWSC/RWSM point to msm-4.4 kernel
+
+Are we sure that RWSC/RWSM being present isn't firmware-related?
+What is the observed issue, why are you removing RWSC/RWSM and what did you
+solve with that?
+
+If it's just about dropping unused resources, that may be unused only on
+firmware versions older than "X".
+
+> which is way newer than what this platform was shipped with (msm-3.10).
+> For the max_state downstream code limit value to TURBO inside dts
+> with only one turbo_high being placed in msm-thermal bindings.
+> One of effects of requesting TURBO_HIGH vote is rebooting of device
+> which happens during voting inside WCNSS/IRIS,
+> this behavior was observed on LeEco S2 smartphone.
+> Fix regulator setup and drop unused resources.
+
+That's fine, but you're missing a Fixes tag, which is required, being this a fix.
+
+Regards,
+Angelo
+
