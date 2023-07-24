@@ -2,130 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B19D775FFBD
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 21:22:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EB69076000E
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 21:53:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229557AbjGXTWa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jul 2023 15:22:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37656 "EHLO
+        id S229677AbjGXTxV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jul 2023 15:53:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49012 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229470AbjGXTW3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 15:22:29 -0400
+        with ESMTP id S229485AbjGXTxU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 15:53:20 -0400
 Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00296122;
-        Mon, 24 Jul 2023 12:22:28 -0700 (PDT)
-Received: from mercury (unknown [185.254.75.45])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FA66A6;
+        Mon, 24 Jul 2023 12:53:19 -0700 (PDT)
+Received: from nicolas-tpx395.localdomain (unknown [IPv6:2606:6d00:10:580::7a9])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
         (No client certificate requested)
-        (Authenticated sender: sre)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id E03856607036;
-        Mon, 24 Jul 2023 20:22:26 +0100 (BST)
+        (Authenticated sender: nicolas)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id C71586603203;
+        Mon, 24 Jul 2023 20:53:15 +0100 (BST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1690226547;
-        bh=aLQXdltzJfxQ4uDLWVoF/awD22D2bQ3Zo59NB+NIdPY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=MM9tk0RTRZVJxNlAEHgfxstWMNLt++yB3cQGLsxEmKv4CXyO7KkPeu0V8/S36vl3U
-         e+9DH60i7YSH7bPS5mlaqXw/CLr4G/R02YwrRgaoU7FZa5+sqgIB65NnA2ziPlcWeS
-         7XNKXuaHtSHH248rdbZVU7atsRU5bLHx6602hJUeXJS4PPGZJUi7GPb1vWrYHrcNzh
-         QGwfAUgWbmXekx8MAKHctbUyFQEXSF6VYqxaKHrBaIZXeTl3LX7d8XavsmZ9RpzTbp
-         BD+1mphVt47FQMtajBt+/O2SgnBal13fnYCB2/s8o/DQ9Kd/vpRgjMsQFgeDx+wZGY
-         AByGuLJZQBSpg==
-Received: by mercury (Postfix, from userid 1000)
-        id 597F01067453; Mon, 24 Jul 2023 21:22:23 +0200 (CEST)
-Date:   Mon, 24 Jul 2023 21:22:23 +0200
-From:   Sebastian Reichel <sebastian.reichel@collabora.com>
-To:     Heiko Stuebner <heiko@sntech.de>
-Cc:     linux-phy@lists.infradead.org, linux-rockchip@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, Qu Wenruo <wqu@suse.com>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Simon Xue <xxm@rock-chips.com>, linux-kernel@vger.kernel.org,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        devicetree@vger.kernel.org, Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        linux-pci@vger.kernel.org, John Clark <inindev@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Serge Semin <fancer.lancer@gmail.com>, kernel@collabora.com,
-        Vinod Koul <vkoul@kernel.org>,
-        Shawn Lin <shawn.lin@rock-chips.com>,
-        Conor Dooley <conor+dt@kernel.org>
-Subject: Re: (subset) [PATCH v2 0/2] RK3588 PCIe3 support
-Message-ID: <20230724192223.5jnu5wgrzmmjz5z5@mercury.elektranox.org>
-References: <20230717173512.65169-1-sebastian.reichel@collabora.com>
- <169022594803.2911118.12432442062352790360.b4-ty@sntech.de>
+        s=mail; t=1690228398;
+        bh=PRkjd2dRnd+EsIcZtdobbsElZ0PbITrpELmxKRMqlKo=;
+        h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+        b=Mnt+n2sYU/YWGGZvargH1OGEje/HLjLt18r6XVEqBd4dZvWfIHmsbk18XE89NHhra
+         yPBslOaf3pCymMVRLJa2JEUjkitZXlmJJCzG4PhTmAFKxGuaSLVm4AF75mBl8nHBmf
+         Kl1ivsXDMwty7uprkXDqmrZG5uQE6f1LNsNjtG7/y9DR3OpcIAZQ2JTyVnj8nuqXGe
+         J/jexIdXHa1jiTSaNZYA1PKPO7EoDDt/ovo4H7wBEbGLi+wE5I+YX7I7613aOazlBk
+         pSswx//y+Ain44ezlEalmHDi0Tq6jN2ew9Z/TR61IY0sy6iKtIpT/kd8wW1qmfGpXs
+         sSHrJahrhYIAA==
+Message-ID: <0c8877c39ced8e664c2901ad20fd36fbb90d9d4f.camel@collabora.com>
+Subject: Re: [PATCH v2,0/3] media: mediatek: vcodec: Add driver to support
+ 10bit
+From:   Nicolas Dufresne <nicolas.dufresne@collabora.com>
+To:     Yunfei Dong <yunfei.dong@mediatek.com>,
+        =?ISO-8859-1?Q?N=EDcolas?= "F . R . A . Prado" 
+        <nfraprado@collabora.com>, Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Nathan Hebert <nhebert@chromium.org>
+Cc:     Chen-Yu Tsai <wenst@chromium.org>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Steve Cho <stevecho@chromium.org>,
+        Mingjia Zhang <mingjia.zhang@mediatek.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Date:   Mon, 24 Jul 2023 15:53:07 -0400
+In-Reply-To: <20230722074448.30671-1-yunfei.dong@mediatek.com>
+References: <20230722074448.30671-1-yunfei.dong@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.48.4 (3.48.4-1.fc38) 
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="nexk2ndejsfescch"
-Content-Disposition: inline
-In-Reply-To: <169022594803.2911118.12432442062352790360.b4-ty@sntech.de>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Yunfei.
 
---nexk2ndejsfescch
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hi Heiko,
-
-On Mon, Jul 24, 2023 at 09:12:35PM +0200, Heiko Stuebner wrote:
-> On Mon, 17 Jul 2023 19:35:10 +0200, Sebastian Reichel wrote:
-> > This adds PCIe v3 support for RK3588. The series depends on the PCIe
-> > v2 series [0], since the the same binding is used. It has been tested
-> > on Rockchip EVB1 and Radxa Rock 5B.
-> >=20
-> > Note, that the PCIe3 PHY driver is currently missing bifurcation
-> > support for RK3588. Thus after this series only PCIe3x4 is usable
-> > (in aggregated x4 mode) without adding support for the PHY's
-> > "rockchip,pcie30-phymode" DT property, which allows configuring
-> > how the lanes are distributed. Aggregated 3x4 mode seems to be the
-> > most common configuration. Both EVB1 and Rock 5B use it, so I
-> > cannot test anything else anyways.
-> >=20
-> > [...]
+Le samedi 22 juillet 2023 =C3=A0 15:44 +0800, Yunfei Dong a =C3=A9crit=C2=
+=A0:
+> From: Yunfei Dong <yunfei.dong@mediatek.corp-partner.google.com>
 >=20
-> Applied, thanks!
+> Define two capture formats V4L2_PIX_FMT_MT2110R and
+> V4L2_PIX_FMT_MT2110T to support 10bit in mt8195, mt8199 and more.
+> Getting the size of each plane again when user space set 10bit
+> syntax to driver.
 >=20
-> [2/2] arm64: dts: rockchip: rk3588: add PCIe3 support
->       commit: 0acf4fa7f187cd7e3dad93f1ee14e9509687621e
+> V4L2_PIX_FMT_MT2110R is used for H264, and V4L2_PIX_FMT_MT2110T
+> is used for AV1/VP9/HEVC.
+>=20
+> patch 1 Add driver to support 10bit
+> patch 2 Add capture format V4L2_PIX_FMT_MT2110T to support 10bit tile mod=
+e
+> patch 3 Add capture format V4L2_PIX_FMT_MT2110R to support 10bit raster m=
+ode
+> ---
+> - compared with v1:
+> - Fix set non sps return -EINVAL issue.
+> - Driver test pass in mt8195/mt8188 with tast and Youtube.
+> - Run v4l2 compliance in mt8195/mt8188 pass.
+> - fluster test as below:
+> - h264: (JVT-FR-EXT: 29/69  JVT-AVC_V1: 95/135)
+> - h265: (JCT-VC-HEVC_V1: 142/147)
+> - vp9 : (VP9-TEST-VECTORS: 1/6  VP9-TEST-VECTORS: 276/305)
+> - av1 : (CHROMIUM-10bit-AV1-TEST-VECTORS: 22/23   CHROMIUM-8bit-AV1-TEST-=
+VECTORS: 11/13
+> -        AV1-TEST-VECTORS: Ran 237/239)
 
-Applying this without the PCIe 2 series being applied introduces
-warnings for the RK3588 dtbs_check, as mentioned in the second
-setence of the text you quoted :)
+Thanks for the fluster reports, I cannot confirm this yet, since it does no=
+t
+apply. Note that you have forgot to provide V4L2 compliance report as reque=
+sted.
 
-(FWIW RK356x already has the same warnings, though)
+>=20
+> - send the first version v1:
+> - Run 10bit VP9/AV1 fluster test pass.
+> - Will return error when the 10bit parameter no correctly in function mtk=
+_vdec_s_ctrl.
+> ---
+>=20
+> Reference series:
+> [1]: this series depends on v6 which is send by Yunfei Dong.
+>      message-id: 20230704131349.8354-1-yunfei.dong@mediatek.com
+>=20
+> Mingjia Zhang (3):
+>   media: mediatek: vcodec: Add capture format to support 10bit tile mode
+>   media: mediatek: vcodec: Add capture format to support 10bit raster
+>     mode
+>   media: mediatek: vcodec: Add driver to support 10bit
+>=20
+>  .../media/v4l/pixfmt-reserved.rst             |  13 ++
+>  .../mediatek/vcodec/decoder/mtk_vcodec_dec.c  |  22 ++-
+>  .../vcodec/decoder/mtk_vcodec_dec_drv.h       |   5 +
+>  .../vcodec/decoder/mtk_vcodec_dec_stateless.c | 144 +++++++++++++++++-
 
--- Sebastian
+vcodec/decoder directory no longer exists. Can you rebase your work please =
+?
 
---nexk2ndejsfescch
-Content-Type: application/pgp-signature; name="signature.asc"
+Nicolas
 
------BEGIN PGP SIGNATURE-----
+>  drivers/media/v4l2-core/v4l2-common.c         |   4 +
+>  drivers/media/v4l2-core/v4l2-ioctl.c          |   2 +
+>  include/uapi/linux/videodev2.h                |   2 +
+>  7 files changed, 188 insertions(+), 4 deletions(-)
+>=20
 
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmS+z2MACgkQ2O7X88g7
-+pro9g//epEbLx9hS9MzsBCHWVh8CFoCTo1K5A7BQ7xhse1I8Lt5W+CHnuwMPbfK
-VukzVll6W+sDQqmiVvwCGz9tB3cFk+SC8whOSDCdE4RoQ/OYIoVeC4EansyAarKF
-t7m3Ol8N2qgQHhE49T21otdL72TPqP3fQuUuD5hYwGgGQpTgJat0L6+SdLTqSjE7
-StBWwGhsDyS5WhnsVXMTGU+FSHp3gL16+zgeARqMc+6GJFa6Hl7FZEV0AjoFZa2L
-VyRxxg0VIca6gvz8RvJWrGKWGeApFM/M5PWOZYQZ8eCggcSIL4zIpi6t4BVJhfBD
-ERv3l/P5h5/S5Tc1IIw5Y57MqbHtpbQzQBwc6P7DUzjRZE+lsAA4U2QqBBSLw2KY
-Xt3DPS6k134wIDd/e3WPJjh8zT3OU1OsZuaMtL0fQeMPvV1Bc9nuBtHOl84D9fm4
-57FZUGOewRbL9QGTqFPMb6wF/rT3KZmj5sIIAvhtBUoybhzcFDN438ZJ3vPzmE7K
-ocb8RW/2zhX5RgFO8s2sOsJq/D7ZCmLeVRs4CLAWvt05zDsgX2yE3bgZW+74xTWe
-mSzVWncL2+OPmQSy7Aw0nWEyyLlE7lCdCXN+I8dAce23LgbydLvHvhEt7qPDvCP0
-u9sw6VUb8F2tDu4GR9P+OtHG/nzFIUPETHv8sIDHftc4IEJUoLI=
-=47as
------END PGP SIGNATURE-----
-
---nexk2ndejsfescch--
