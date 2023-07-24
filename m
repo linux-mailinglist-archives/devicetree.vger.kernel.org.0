@@ -2,432 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A4DA87600C1
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 22:56:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C98B7600D2
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 23:02:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229532AbjGXU4R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jul 2023 16:56:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41254 "EHLO
+        id S230196AbjGXVCl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jul 2023 17:02:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44008 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229578AbjGXU4Q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 16:56:16 -0400
-Received: from smtprelay07.ispgateway.de (smtprelay07.ispgateway.de [134.119.228.97])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7BE11BC7;
-        Mon, 24 Jul 2023 13:55:37 -0700 (PDT)
-Received: from [77.64.243.219] (helo=note-book.lan)
-        by smtprelay07.ispgateway.de with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <git@apitzsch.eu>)
-        id 1qO2Yk-0001dY-6U; Mon, 24 Jul 2023 22:53:38 +0200
-From:   =?utf-8?q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>
-Date:   Mon, 24 Jul 2023 22:52:42 +0200
-Subject: [PATCH 2/2] arm64: dts: qcom: msm8939-longcheer-l9100: Add initial
- device tree
+        with ESMTP id S229485AbjGXVCk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 17:02:40 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62410E67;
+        Mon, 24 Jul 2023 14:02:39 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id E827D61411;
+        Mon, 24 Jul 2023 21:02:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A62EC433D9;
+        Mon, 24 Jul 2023 21:02:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1690232558;
+        bh=0+Srw7lXT1FA8YIDbGu44docy330MM50fqmGEpJ5PiY=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=eF880e10xh6n475OZjp5F/Po8sUNB+6EBgxnJbCsEXZK3RaXYlY+t3JoJzkMC5CUV
+         TjA2GwYkIaFbjR1iRd1y7TXm/mEDexVUie/0iU3huXUxbyhN26riJMpZt88FNvDvi9
+         Kcn4MX3KpjJRaA2BATIpZHbS0sqACpdYlP4WIwC5h6aN/paMxhVY/+7BrzUQA+21/g
+         gcyzj9jR3ZFeArfjNVuNqDSCaXTcvgFcl3deDvxjOawX9gsXagFytQPlAgnZPRDfeP
+         kYdOd5rTcMWpbV8TEl1op6AUBrzBkzavsxry0ellreSDbh0UxUKUUqvfeB8B1OIsUo
+         XRipzVZd0M7+Q==
+Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-2b7430bda8bso70538321fa.0;
+        Mon, 24 Jul 2023 14:02:38 -0700 (PDT)
+X-Gm-Message-State: ABy/qLZwkQSTkS3vn0blE4KPAI18RpQFkPumnouB2gfqExRwWL5NLaFP
+        BcDMSF+j57OATqZczONwoREfNyehKiNnwNu/BQ==
+X-Google-Smtp-Source: APBJJlG02/cT58K6TBy2dpTL5aTHIezcfXvz2TD3qAfXrj44uyTbqvpoDx2CALCp5CDzH8HFqOlm6YDCvEHlbpVDOSQ=
+X-Received: by 2002:a2e:924b:0:b0:2b6:e536:a2a3 with SMTP id
+ v11-20020a2e924b000000b002b6e536a2a3mr7171152ljg.19.1690232555975; Mon, 24
+ Jul 2023 14:02:35 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20230724-bq_m5-v1-2-17a0870a73be@apitzsch.eu>
-References: <20230724-bq_m5-v1-0-17a0870a73be@apitzsch.eu>
-In-Reply-To: <20230724-bq_m5-v1-0-17a0870a73be@apitzsch.eu>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+References: <20230723071105.40157-1-krzysztof.kozlowski@linaro.org>
+ <20230724162638.GA3784203-robh@kernel.org> <60e7e772-bf0a-264d-abac-4ed72766a2d0@linaro.org>
+In-Reply-To: <60e7e772-bf0a-264d-abac-4ed72766a2d0@linaro.org>
+From:   Rob Herring <robh@kernel.org>
+Date:   Mon, 24 Jul 2023 15:02:23 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLwZR_VQEAuhLLqN4BF8Yvh=3vkQe=tFHaKWzJzMMP+qw@mail.gmail.com>
+Message-ID: <CAL_JsqLwZR_VQEAuhLLqN4BF8Yvh=3vkQe=tFHaKWzJzMMP+qw@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: usb: add missing unevaluatedProperties on
+ USB connector
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        =?utf-8?q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>
-X-Mailer: b4 0.12.3
-X-Df-Sender: YW5kcmVAYXBpdHpzY2guZXU=
-X-Spam-Status: No, score=-0.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_VALIDITY_RPBL,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Jagan Sridharan <badhri@google.com>,
+        ChiYuan Huang <cy_huang@richtek.com>,
+        Min Guo <min.guo@mediatek.com>,
+        Gene Chen <gene_chen@richtek.com>, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This dts adds support for BQ Aquaris M5 (Longcheer L9100) released in
-2015.
+On Mon, Jul 24, 2023 at 11:05=E2=80=AFAM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 24/07/2023 18:26, Rob Herring wrote:
+> > On Sun, Jul 23, 2023 at 09:11:05AM +0200, Krzysztof Kozlowski wrote:
+> >> The usb-connector.yaml schema allows any additional properties, thus i=
+ts
+> >> usage should finish with unevaluatedProperties: false.
+> >
+> > Is it problematic if usb-connector.yaml is restricted?
+>
+> Yes, a bit.
+> 1. Missing reg/unit-address:
+> Documentation/devicetree/bindings/usb/cypress,cypd4226.yaml
+> I guess this could be easily solved.
+>
+> 2. phy-supply:
+> arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
+> (and more of armada)
+> This is a bit odd:
+>
+> phy@18300 {
+>   compatible =3D "marvell,comphy-a3700";
+>   comphy0: phy@0 {}
+>   comphy1: phy@1 {}
+>   comphy2: phy@2 {
+>     connector {
+>       compatible =3D "usb-a-connector";
+>       phy-supply =3D <&exp_usb3_vbus>;
+>    };
+> };
+>
+> I would assume that phy-supply should be a property of the phy.
 
-Add a device tree with initial support for:
+Indeed. We already have vbus-supply which this looks like it is. I'm
+pretty sure I've seen Vbus in phy bindings too which I've pushed back
+on as to whether Vbus really went to the phy or was there because the
+phy driver just wants to control Vbus.
 
-- GPIO keys
-- Hall sensor
-- SDHCI
-- WCNSS (BT/WIFI)
-- Accelerometer/Magnetometer
-- Vibrator
-- Touchscreen
-- Front flash
+The marvell platforms aren't in great shape schema wise, so maybe
+don't worry about it now.
 
-Signed-off-by: André Apitzsch <git@apitzsch.eu>
----
- arch/arm64/boot/dts/qcom/Makefile                  |   1 +
- .../boot/dts/qcom/msm8939-longcheer-l9100.dts      | 340 +++++++++++++++++++++
- 2 files changed, 341 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index 23fd31d4bf5a..3200bc92853f 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -39,6 +39,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-thwc-uf896.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-thwc-ufi001c.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-wingtech-wt88047.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-yiming-uz801v3.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= msm8939-longcheer-l9100.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8939-samsung-a7.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8939-sony-xperia-kanuti-tulip.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8953-motorola-potter.dtb
-diff --git a/arch/arm64/boot/dts/qcom/msm8939-longcheer-l9100.dts b/arch/arm64/boot/dts/qcom/msm8939-longcheer-l9100.dts
-new file mode 100644
-index 000000000000..74782e323a2c
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/msm8939-longcheer-l9100.dts
-@@ -0,0 +1,340 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+
-+/dts-v1/;
-+
-+#include "msm8939-pm8916.dtsi"
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/leds/common.h>
-+#include <dt-bindings/pinctrl/qcom,pmic-mpp.h>
-+
-+/ {
-+	model = "BQ Aquaris M5 (Longcheer L9100)";
-+	compatible = "longcheer,l9100", "qcom,msm8939";
-+	chassis-type = "handset";
-+
-+	aliases {
-+		mmc0 = &sdhc_1; /* eMMC */
-+		mmc1 = &sdhc_2; /* SD card */
-+		serial0 = &blsp_uart2;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0";
-+	};
-+
-+	gpio-hall-sensor {
-+		compatible = "gpio-keys";
-+
-+		pinctrl-0 = <&gpio_hall_sensor_default>;
-+		pinctrl-names = "default";
-+
-+		label = "GPIO Hall Effect Sensor";
-+
-+		event-hall-sensor {
-+			label = "Hall Effect Sensor";
-+			gpios = <&tlmm 20 GPIO_ACTIVE_LOW>;
-+			linux,input-type = <EV_SW>;
-+			linux,code = <SW_LID>;
-+			linux,can-disable;
-+		};
-+	};
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+
-+		pinctrl-0 = <&gpio_keys_default>;
-+		pinctrl-names = "default";
-+
-+		label = "GPIO Buttons";
-+
-+		button-volume-up {
-+			label = "Volume Up";
-+			gpios = <&tlmm 107 GPIO_ACTIVE_LOW>;
-+			linux,code = <KEY_VOLUMEUP>;
-+		};
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		led-0 {
-+			gpios = <&tlmm 17 GPIO_ACTIVE_HIGH>;
-+			color = <LED_COLOR_ID_WHITE>;
-+			default-state = "off";
-+			function = LED_FUNCTION_KBD_BACKLIGHT;
-+
-+			pinctrl-0 = <&button_backlight_default>;
-+			pinctrl-names = "default";
-+		};
-+	};
-+
-+	reg_ts_vdd: regulator-vdd-ts {
-+		compatible = "regulator-fixed";
-+		regulator-name = "regulator-vdd-ts";
-+		regulator-min-microvolt = <2850000>;
-+		regulator-max-microvolt = <2850000>;
-+
-+		gpio = <&tlmm 78 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+
-+		pinctrl-0 = <&ts_vdd_default>;
-+		pinctrl-names = "default";
-+	};
-+
-+	backlight {
-+		compatible = "pwm-backlight";
-+		pwms = <&pm8916_pwm 0 100000>;
-+		brightness-levels = <0 255>;
-+		num-interpolated-steps = <255>;
-+		default-brightness-level = <128>;
-+		enable-gpios = <&tlmm 98 GPIO_ACTIVE_HIGH>;
-+
-+		pinctrl-0 = <&lcd_bl_en_default>;
-+		pinctrl-names = "default";
-+	};
-+
-+	flash-led-controller {
-+		compatible = "ocs,ocp8110";
-+		flash-gpios = <&tlmm 8 GPIO_ACTIVE_HIGH>;
-+		enable-gpios = <&tlmm 49 GPIO_ACTIVE_HIGH>;
-+
-+		pinctrl-0 = <&camera_front_flash_default>;
-+		pinctrl-names = "default";
-+
-+		led {
-+			function = LED_FUNCTION_FLASH;
-+			color = <LED_COLOR_ID_WHITE>;
-+			flash-max-timeout-us = <250000>;
-+		};
-+	};
-+
-+	usb_id: usb-id {
-+		compatible = "linux,extcon-usb-gpio";
-+		id-gpio = <&tlmm 110 GPIO_ACTIVE_HIGH>;
-+		pinctrl-0 = <&usb_id_default &usb_id_switch_default>;
-+		pinctrl-names = "default";
-+	};
-+
-+};
-+
-+&blsp_i2c3 {
-+	status = "okay";
-+
-+	magnetometer@d {
-+		compatible = "asahi-kasei,ak09911";
-+		reg = <0x0d>;
-+
-+		vdd-supply = <&pm8916_l17>;
-+		vid-supply = <&pm8916_l6>;
-+
-+		reset-gpios = <&tlmm 68 GPIO_ACTIVE_HIGH>;
-+
-+		pinctrl-0 = <&mag_reset_default>;
-+		pinctrl-names = "default";
-+	};
-+
-+	light-sensor@23 {
-+		compatible = "liteon,ltr559";
-+		reg = <0x23>;
-+
-+		vdd-supply = <&pm8916_l17>;
-+		vddio-supply = <&pm8916_l5>;
-+
-+		interrupt-parent = <&tlmm>;
-+		interrupts = <113 IRQ_TYPE_EDGE_FALLING>;
-+
-+		pinctrl-0 = <&light_int_default>;
-+		pinctrl-names = "default";
-+	};
-+
-+	imu@68 {
-+		compatible = "bosch,bmi160";
-+		reg = <0x68>;
-+
-+		vdd-supply = <&pm8916_l17>;
-+		vddio-supply = <&pm8916_l6>;
-+	};
-+};
-+
-+&blsp_i2c5 {
-+	status = "okay";
-+
-+	touchscreen@4a {
-+		compatible = "atmel,maxtouch";
-+		reg = <0x4a>;
-+
-+		interrupt-parent = <&tlmm>;
-+		interrupts = <13 IRQ_TYPE_LEVEL_LOW>;
-+
-+		reset-gpios = <&tlmm 12 GPIO_ACTIVE_LOW>;
-+
-+		vdda-supply = <&pm8916_l6>;
-+		vdd-supply = <&reg_ts_vdd>;
-+
-+		pinctrl-0 = <&ts_int_reset_default>;
-+		pinctrl-names = "default";
-+
-+		/* Keys listed from right to left */
-+		linux,keycodes = <KEY_APPSELECT KEY_HOMEPAGE KEY_BACK>;
-+	};
-+};
-+
-+&blsp_uart2 {
-+	status = "okay";
-+};
-+
-+&mdss {
-+	status = "okay";
-+};
-+
-+&pm8916_pwm {
-+	pinctrl-0 = <&pwm_out>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
-+
-+&pm8916_resin {
-+	linux,code = <KEY_VOLUMEDOWN>;
-+	status = "okay";
-+};
-+
-+&pm8916_vib {
-+	status = "okay";
-+};
-+
-+&sdhc_1 {
-+	status = "okay";
-+};
-+
-+&sdhc_2 {
-+	pinctrl-0 = <&sdc2_default &sdc2_cd_default>;
-+	pinctrl-1 = <&sdc2_sleep &sdc2_cd_default>;
-+	pinctrl-names = "default", "sleep";
-+
-+	cd-gpios = <&tlmm 38 GPIO_ACTIVE_LOW>;
-+
-+	status = "okay";
-+};
-+
-+&usb {
-+	extcon = <&usb_id>, <&usb_id>;
-+	status = "okay";
-+};
-+
-+&usb_hs_phy {
-+	extcon = <&usb_id>;
-+};
-+
-+&wcnss {
-+	status = "okay";
-+};
-+
-+&wcnss_iris {
-+	compatible = "qcom,wcn3620";
-+};
-+
-+&pm8916_rpm_regulators {
-+	pm8916_l17: l17 {
-+		regulator-min-microvolt = <2850000>;
-+		regulator-max-microvolt = <2850000>;
-+	};
-+};
-+
-+&tlmm {
-+	button_backlight_default: button-backlight-default-state {
-+		pins = "gpio17";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	camera_front_flash_default: camera-front-flash-default-state {
-+		pins = "gpio8", "gpio49";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	gpio_hall_sensor_default: gpio-hall-sensor-default-state {
-+		pins = "gpio20";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	gpio_keys_default: gpio-keys-default-state {
-+		pins = "gpio107";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-pull-up;
-+	};
-+
-+	lcd_bl_en_default: lcd-bl-en-default-state {
-+		pins = "gpio98";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	light_int_default: light-int-default-state {
-+		pins = "gpio113";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	mag_reset_default: mag-reset-default-state {
-+		pins = "gpio68";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	sdc2_cd_default: sdc2-cd-default-state {
-+		pins = "gpio38";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	ts_int_reset_default: ts-int-reset-default-state {
-+		pins = "gpio12", "gpio13";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	ts_vdd_default: ts-vdd-default-state {
-+		pins = "gpio78";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	usb_id_default: usb-id-default-state {
-+		pins = "gpio110";
-+		function = "gpio";
-+		drive-strength = <8>;
-+		bias-pull-up;
-+	};
-+
-+	usb_id_switch_default: usb-id-switch-default-state {
-+		pins = "gpio121";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		output-high;
-+	};
-+};
-+
-+&pm8916_mpps {
-+	pwm_out: mpp4-state {
-+		pins = "mpp4";
-+		function = "digital";
-+		power-source = <PM8916_MPP_VPH>;
-+		output-low;
-+		qcom,dtest = <1>;
-+	};
-+};
-
--- 
-2.41.0
-
+Rob
