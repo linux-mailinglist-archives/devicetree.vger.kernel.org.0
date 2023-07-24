@@ -2,80 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8832475F9A1
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 16:18:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C5C175F9A9
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 16:21:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231955AbjGXOSx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jul 2023 10:18:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46918 "EHLO
+        id S230511AbjGXOUw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jul 2023 10:20:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48276 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230272AbjGXOSx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 10:18:53 -0400
-Received: from netrider.rowland.org (netrider.rowland.org [192.131.102.5])
-        by lindbergh.monkeyblade.net (Postfix) with SMTP id 8CA73E63
-        for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 07:18:51 -0700 (PDT)
-Received: (qmail 1848669 invoked by uid 1000); 24 Jul 2023 10:18:50 -0400
-Date:   Mon, 24 Jul 2023 10:18:50 -0400
-From:   Alan Stern <stern@rowland.harvard.edu>
-To:     Stanley Chang <stanley_chang@realtek.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S231150AbjGXOUv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 10:20:51 -0400
+Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com [IPv6:2607:f8b0:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A90810F7
+        for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 07:20:45 -0700 (PDT)
+Received: by mail-pl1-x634.google.com with SMTP id d9443c01a7336-1bba2318546so8301855ad.1
+        for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 07:20:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ventanamicro.com; s=google; t=1690208444; x=1690813244;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=r/NAzuvfxiEpEq6CMn2lCFVPQSrZGs+fqFSkZbzWeu4=;
+        b=l8MB2fLS10a4c8McBUbUrPLQj68WxDBmBHucCsLXqt18rJ//cfoPF273c6bif4bQJo
+         FjRt8iQ3f+GyHYdevb0xrgra3HKOo08fhfFhpudghR2jIb5S8Kt0wdQperaiJYwNbA79
+         hc2dFq1kHwUTurcukxTFIMgQ3pItNei2F0tZX8k/cfdZl5hEBF+nxLTBjBq4FCDb40vT
+         e0pdMqf1JaA36B1pupctPiO9Z4fo+fi7BCJ1vd8te1BqMO59KTKrtKDOMEIXhtdXsCqO
+         0983HV3peltiC2P70OSxoENfdYPwk3IkXnUu2l0A/y8j4dayrLu2wt6ku07uTPQf3Ah1
+         ZocQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690208444; x=1690813244;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=r/NAzuvfxiEpEq6CMn2lCFVPQSrZGs+fqFSkZbzWeu4=;
+        b=YL5B8xpv0sS4o2jwFkNeabeV/ilKb7pQxwsqnQxsc3YkYUrv3qoONfFRIH2t3RROsb
+         bwtwtotGDlyg9xonkO5Rx7pdTZERSORnPDmVZlNwvdbkoTbt9b4Dn7+C/ToZvzdgihqx
+         qCSsXTwRll4Nt0V0GFMHXYbeA6Zl/pSnN+bXCZiOvK8qzbcg20u7yZt6+/p4nu4UyOZZ
+         9KwHFo5fLDF6Rfyf1Td+UVpfvWuFYv7qc3eqfTExCSY4bbQxmskdL0rhSFGgPyPjfbdg
+         /XxkCxBlti9QDamGKT4hCzV7Z02NMvXU518w0RRGcZN020T91WJP0SUqyXQaMz87P8Zo
+         0Qog==
+X-Gm-Message-State: ABy/qLZ2XhG1Ud1bEABSkAW+4qcwfFRUmQf4dxeHP4vHyyV1RoezgGvh
+        cfWjMDCuhRmW6pQvj4kIVNTjxg==
+X-Google-Smtp-Source: APBJJlFqcRGV6PhYOQp/isaMOZE86UMn6cXlnsirdZYD5qcMh6jBsq/3Ca0basWId+/dR/h1hNihvg==
+X-Received: by 2002:a17:902:b18d:b0:1b8:b285:ec96 with SMTP id s13-20020a170902b18d00b001b8b285ec96mr11214680plr.23.1690208444428;
+        Mon, 24 Jul 2023 07:20:44 -0700 (PDT)
+Received: from mchitale-vm.. ([103.97.165.210])
+        by smtp.googlemail.com with ESMTPSA id s10-20020a170902a50a00b001b8307c81c8sm9009821plq.121.2023.07.24.07.20.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 24 Jul 2023 07:20:43 -0700 (PDT)
+From:   Mayuresh Chitale <mchitale@ventanamicro.com>
+To:     Palmer Dabbelt <palmer@dabbelt.com>,
+        Anup Patel <anup@brainfault.org>
+Cc:     Mayuresh Chitale <mchitale@ventanamicro.com>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        Atish Patra <atishp@atishpatra.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        linux-riscv@lists.infradead.org, kvm-riscv@lists.infradead.org,
+        Conor Dooley <conor@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Roy Luo <royluo@google.com>, Ray Chi <raychi@google.com>,
-        Flavio Suligoi <f.suligoi@asem.it>,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org
-Subject: Re: [PATCH v8 1/5] usb: phy: add usb phy notify port status API
-Message-ID: <802dd50c-7201-45d2-8855-6692aeb947db@rowland.harvard.edu>
-References: <20230724103600.14164-1-stanley_chang@realtek.com>
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH v3 0/7] Risc-V Kvm Smstateen
+Date:   Mon, 24 Jul 2023 19:50:26 +0530
+Message-Id: <20230724142033.306538-1-mchitale@ventanamicro.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230724103600.14164-1-stanley_chang@realtek.com>
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 24, 2023 at 06:34:48PM +0800, Stanley Chang wrote:
+This series adds support to detect the Smstateen extension for both, the
+host and the guest vcpu. It also adds senvcfg and sstateen0 to the ONE_REG
+interface and the vcpu context save/restore.
 
-> --- a/drivers/usb/core/hub.c
-> +++ b/drivers/usb/core/hub.c
-> @@ -614,6 +614,30 @@ static int hub_ext_port_status(struct usb_hub *hub, int port1, int type,
->  		ret = 0;
->  	}
->  	mutex_unlock(&hub->status_mutex);
-> +
-> +	/*
-> +	 * There is no need to lock status_mutex here, because status_mutex
-> +	 * protects hub->status, and the phy driver only checks the port
-> +	 * status without changing the status.
-> +	 */
-> +	if (!ret) {
-> +		struct usb_device *hdev = hub->hdev;
-> +
-> +		/*
-> +		 * Applies to roothub only. That is, when hdev->parent is
-> +		 * empty. Only roothub will be notified of port state
-> +		 * changes, since the USB PHY only cares about changes at
-> +		 * the next level.
-> +		 */
-> +		if (hdev && !hdev->parent) {
+Changes in v3:
+- Move DT bindings change to a separate patch
 
-hdev can never be NULL, so you don't need to test it.  Also, there 
-is an is_root_hub() routine you can call here -- it's an inline defined 
-in usb.h.  If you use that then you won't have to explain it in the 
-comment.
+Changes in v2:
+- Add smstaeen description in riscv/extensions.yaml
+- Avoid line wrap at 80 chars
 
-To be fair, there are plenty of other places in the driver that test 
-!hdev->parent (or !udev->parent) with no explanation.
+Mayuresh Chitale (7):
+  RISC-V: Detect Smstateen extension
+  dt-bindings: riscv: Add smstateen entry
+  RISC-V: KVM: Add kvm_vcpu_config
+  RISC-V: KVM: Enable Smstateen accesses
+  RISCV: KVM: Add senvcfg context save/restore
+  RISCV: KVM: Add sstateen0 context save/restore
+  RISCV: KVM: Add sstateen0 to ONE_REG
 
-Alan Stern
+ .../devicetree/bindings/riscv/extensions.yaml |   6 +
+ arch/riscv/include/asm/csr.h                  |  18 +++
+ arch/riscv/include/asm/hwcap.h                |   1 +
+ arch/riscv/include/asm/kvm_host.h             |  18 +++
+ arch/riscv/include/uapi/asm/kvm.h             |  11 ++
+ arch/riscv/kernel/cpu.c                       |   1 +
+ arch/riscv/kernel/cpufeature.c                |   1 +
+ arch/riscv/kvm/vcpu.c                         | 111 ++++++++++++++++--
+ 8 files changed, 154 insertions(+), 13 deletions(-)
+
+-- 
+2.34.1
+
