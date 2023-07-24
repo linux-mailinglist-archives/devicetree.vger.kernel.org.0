@@ -2,114 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 69E8075ECF4
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 09:59:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B53C75ED10
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 10:06:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230090AbjGXH7J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jul 2023 03:59:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40896 "EHLO
+        id S230369AbjGXIGT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jul 2023 04:06:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44988 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231311AbjGXH65 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 03:58:57 -0400
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC5DAF3;
-        Mon, 24 Jul 2023 00:58:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1690185535; x=1721721535;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=ltxnX2YkLxc1mlUpJTfiZUtpEKMS1HNVGtECbRDSkgE=;
-  b=RdC/Jh8YYTPsMxyC9IfmlTWmAg73abFx1jsl2VkdF6qy1EBoIMAzbF9c
-   hMeQA0l/2L6cawF051vAJOCUufdQtQRFdCdJP9A1lZVqx4Uw7i+PA9d19
-   BrE/W+Ms1hatEDI1WVZ1tY69c05NtLtoGPIs2cA/sPyrAXDj9pBv6A+Bj
-   aMfPc0eCQrujbDqVyWiqEWAb03bJ1xx74f8SSrRHTLkNjxzXRcBCoJ7Nx
-   74GYcHttY/RREwVVXj8CAsUwvB8Hw993mqYGe/dvkPq8dUHgDRmJv+gcC
-   87uaih2j61s28FlB409EUxM6sLrTMO59x5yLBIesJo76uqG7YBqCF7Kt+
-   g==;
-X-IronPort-AV: E=Sophos;i="6.01,228,1684792800"; 
-   d="scan'208";a="32073505"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 24 Jul 2023 09:58:52 +0200
-Received: from steina-w.localnet (unknown [10.123.53.21])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id B418A280078;
-        Mon, 24 Jul 2023 09:58:52 +0200 (CEST)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Andy Shevchenko <andy@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-leds@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com
-Subject: Re: [PATCH v2 1/2] dt-bindings: gpio: Add gpio-line-names to STMPE GPIO
-Date:   Mon, 24 Jul 2023 09:58:52 +0200
-Message-ID: <21957396.EfDdHjke4D@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <0f016242-2380-274e-c6a4-118a5872412e@linaro.org>
-References: <20230724063520.182888-1-alexander.stein@ew.tq-group.com> <0f016242-2380-274e-c6a4-118a5872412e@linaro.org>
+        with ESMTP id S229826AbjGXIGT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 04:06:19 -0400
+X-Greylist: delayed 481 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 24 Jul 2023 01:06:16 PDT
+Received: from mail.cassleycruden.pl (mail.cassleycruden.pl [217.61.97.118])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBCE8B3
+        for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 01:06:16 -0700 (PDT)
+Received: by mail.cassleycruden.pl (Postfix, from userid 1001)
+        id 0EE6B84022; Mon, 24 Jul 2023 08:56:50 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=cassleycruden.pl;
+        s=mail; t=1690185422;
+        bh=Bm7kvP9mjtgWMDTk0x3n9fvdJasu+xrGpL0E8vcP3ks=;
+        h=Date:From:To:Subject:From;
+        b=MCB0tPFNZDdqRP4TIYlHxvi4AToD5rMAVB3/IMdFUF9soD9ai26NNvQdyeAbMF1CT
+         +nUTwTH5gvYVj0WL4N1+AxgBd/vbEa1K4d8PvdDB57MpxMelvDRNJLrmCVXolspII/
+         obw3KQBO7JIpOI2As8b3waUEJXYrNJN3IQkBayt/LKYAuofnbzUjy+1zmVXD/KAJnr
+         fgqld9KR+kpWNpPR+53Ur6c4sn8jerv/tCD1ZCGeiRLke1p2uq2Lg8YjnP+GkJsQJB
+         OjZCrkyqqZ3dBCFz+vSUqLYpzRXe374zWrO6CnzbQqcDHJ7dSgTJCvGPvzkQw78Cfh
+         uzHMuAX13V1UA==
+Received: by mail.cassleycruden.pl for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 07:56:16 GMT
+Message-ID: <20230724074501-0.1.6d.d741.0.cgknhqffbh@cassleycruden.pl>
+Date:   Mon, 24 Jul 2023 07:56:16 GMT
+From:   "Adrian Giermata" <adrian.giermata@cassleycruden.pl>
+To:     <devicetree@vger.kernel.org>
+Subject: Nieaktywna strona www
+X-Mailer: mail.cassleycruden.pl
 MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Dzie=C5=84 dobry!
 
-Am Montag, 24. Juli 2023, 09:23:09 CEST schrieb Krzysztof Kozlowski:
-> On 24/07/2023 08:35, Alexander Stein wrote:
-> > This is a gpio-controller, so gpio-line-names should be allowed as well.
-> > stmpe2403 supports up to 24 GPIOs.
-> >=20
-> > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> > ---
-> > Changes in v2:
-> > * Add min/maxItems
-> >=20
-> >  Documentation/devicetree/bindings/gpio/st,stmpe-gpio.yaml | 4 ++++
-> >  1 file changed, 4 insertions(+)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/gpio/st,stmpe-gpio.yaml
-> > b/Documentation/devicetree/bindings/gpio/st,stmpe-gpio.yaml index
-> > 22c0cae73425..4555f1644a4d 100644
-> > --- a/Documentation/devicetree/bindings/gpio/st,stmpe-gpio.yaml
-> > +++ b/Documentation/devicetree/bindings/gpio/st,stmpe-gpio.yaml
-> >=20
-> > @@ -28,6 +28,10 @@ properties:
-> >    gpio-controller: true
-> >=20
-> > +  gpio-line-names:
-> > +    minItems: 1
-> > +    maxItems: 24
-> > +
->=20
-> I am sure there is no variant with one GPIO.
+w=C5=82a=C5=9Bnie zako=C5=84czy=C5=82em budow=C4=99 nowej strony internet=
+owej dla firmy dzia=C5=82aj=C4=85cej w Pa=C5=84stwa bran=C5=BCy.
 
-That's true. But if only one GPIO is actually connected there is no use=20
-enforcing to add empty entries.
-AFAIK it is also allowed to provide an incomplete array.
+Dzi=C4=99ki nowoczesnym funkcjonalno=C5=9Bciom i niestandardowej kreacji =
+umocni=C5=82em mark=C4=99 tej firmy dodaj=C4=85c jej warto=C5=9Bci i to=C5=
+=BCsamo=C5=9Bci, kt=C3=B3rej szukaj=C4=85 Klienci.
 
-Best regards,
-Alexander
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
+Z przyjemno=C5=9Bci=C4=85 mog=C4=99 odwiedzi=C4=87 siedzib=C4=99 Pa=C5=84=
+stwa firmy i przedstawi=C4=87 swoje portfolio lub mog=C4=99 zadzwoni=C4=87=
+ i pozna=C4=87 Pa=C5=84stwa oczekiwania, wtedy wsp=C3=B3lnie przeanalizuj=
+emy potencja=C5=82 wsp=C3=B3=C5=82pracy.=20
+
+Czy moja propozycja wydaje si=C4=99 atrakcyjna?
 
 
+Pozdrawiam
+Adrian Giermata
