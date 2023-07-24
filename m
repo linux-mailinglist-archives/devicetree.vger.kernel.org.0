@@ -2,164 +2,261 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EF4C375FA3C
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 16:54:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 18A6F75FA47
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 16:58:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229670AbjGXOyy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jul 2023 10:54:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34608 "EHLO
+        id S229468AbjGXO6h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jul 2023 10:58:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37132 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231787AbjGXOw5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 10:52:57 -0400
-Received: from s.wrqvtbkv.outbound-mail.sendgrid.net (s.wrqvtbkv.outbound-mail.sendgrid.net [149.72.123.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59E7F10D9
-        for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 07:52:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
-        h=from:subject:mime-version:to:cc:content-transfer-encoding:
-        content-type:cc:content-type:from:subject:to;
-        s=s1; bh=WcPMS8VJ8wZGKcidpFy/HqVz+nWN87bUiNsDE1gwuRs=;
-        b=jmjEZFV8G9PUpRXSheQcL4plISa3RZzSmTOYznoXHVGXvcMsEoC4Nop7o+OWT+M1NHHG
-        qz3Wp+H26cYeIadd/VX8l+mX2z2ABk7ZLqlmsu7fZlhlc/Mgx26C4piKBhgFYm5+Z5d/ds
-        3NLFVWffSas7TqKKdLDV5Q0IbYYpNXfwPMXHbqPGdkN7JLgPoW/6w5LZg0L1ptxRi8CAga
-        S8oNOhXMRdcBjGocoAQTDja6qLU3zXYsyisBt0Mhf0usuM879s6tu/aGRk+isP8frKObvj
-        obIDbfudqTnJGJPeCkW0mGL/FsjjH1xi+qfem5jLW6AMqjfDZOOk+DBwWV+ulonw==
-Received: by filterdrecv-8684c58db7-nfltn with SMTP id filterdrecv-8684c58db7-nfltn-1-64BE901F-40
-        2023-07-24 14:52:16.172047943 +0000 UTC m=+6448424.450220586
-Received: from bionic.localdomain (unknown)
-        by geopod-ismtpd-8 (SG)
-        with ESMTP
-        id MTXJzVVRT-imukorVRJulQ
-        Mon, 24 Jul 2023 14:52:15.522 +0000 (UTC)
-From:   Jonas Karlman <jonas@kwiboo.se>
-Subject: [PATCH] arm64: dts: rockchip: Fix regulators and enable SATA on Radxa
- E25
-Date:   Mon, 24 Jul 2023 14:52:16 +0000 (UTC)
-Message-ID: <20230724145213.3833099-1-jonas@kwiboo.se>
-X-Mailer: git-send-email 2.41.0
+        with ESMTP id S230034AbjGXO6g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 10:58:36 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2720310EB;
+        Mon, 24 Jul 2023 07:58:33 -0700 (PDT)
+Received: from nicolas-tpx395.localdomain (unknown [IPv6:2606:6d00:10:580::7a9])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: nicolas)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 2971A66070F7;
+        Mon, 24 Jul 2023 15:58:30 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1690210711;
+        bh=eh2oEF+J5oZffvXBl4TeLOtFgXuWus4Ht+BGvLmKiFs=;
+        h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+        b=nmbFmwfFglDldVWaISuEQOc2SM5Qz3Dg5xRAiTAA0X8fXt/RVdXav8RAxMAnZt9xE
+         FNi8aMnb9bBHCpyTIDVanWywJEsa+UNuxbUPoyCpfRnQmNcoIA9ExiSLGzY1zHrDq+
+         4pHLsw19pJQr2NyrFdOAgBhetbctNBA7+Upa5AYPCDcH/txc7KR//loFW8xWaAHse4
+         66zbJPjvnWht1DKqDB+I5SpeUwcvEmY7eYoI3neCmF+MzAYmoNMDTv0v2VLDhXb0YR
+         bHIZjjhV72xXqc6Y1T2dj5d3VjWb958b+TJjLn/s6ch0/0OrtI1FgRDo6EA0r8aetx
+         tJzuKf/KyEQ0w==
+Message-ID: <a01d1f15542917f0dbc8273bc5bcb41652338841.camel@collabora.com>
+Subject: Re: [PATCH v2,1/2] media: mediatek: vcodec: checking decoder ack
+ message parameter
+From:   Nicolas Dufresne <nicolas.dufresne@collabora.com>
+To:     Yunfei Dong <yunfei.dong@mediatek.com>,
+        =?ISO-8859-1?Q?N=EDcolas?= "F . R . A . Prado" 
+        <nfraprado@collabora.com>, Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Nathan Hebert <nhebert@chromium.org>
+Cc:     Chen-Yu Tsai <wenst@chromium.org>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Steve Cho <stevecho@chromium.org>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Date:   Mon, 24 Jul 2023 10:58:21 -0400
+In-Reply-To: <20230722074608.30766-1-yunfei.dong@mediatek.com>
+References: <20230722074608.30766-1-yunfei.dong@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.48.4 (3.48.4-1.fc38) 
 MIME-Version: 1.0
-X-SG-EID: =?us-ascii?Q?TdbjyGynYnRZWhH+7lKUQJL+ZxmxpowvO2O9SQF5CwCVrYgcwUXgU5DKUU3QxA?=
- =?us-ascii?Q?fZekEeQsTe+RrMu3cja6a0hxdxYYdTXqyX82wfI?=
- =?us-ascii?Q?Ra=2FGfuQUGNsOvlZGB3QHxCYxiOjHZP07t=2FuVIOp?=
- =?us-ascii?Q?Tg7CNYgQHfx=2FyVh5KOiYjmJ=2Fl+SMjKTYrHtAISo?=
- =?us-ascii?Q?QvqpeJHhR+R8NSsw1P3Y9y9+OqBzQhwtARsWV=2Ft?=
- =?us-ascii?Q?u5E+6diQv0m8TixXNgC01YZlOjhrEvCI+zi3jO?=
-To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Chukun Pan <amadeus@jmu.edu.cn>
-Cc:     FUKAUMI Naoki <naoki@radxa.com>, Jonas Karlman <jonas@kwiboo.se>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-X-Entity-ID: P7KYpSJvGCELWjBME/J5tg==
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset=us-ascii
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Despite its name, the regulator vcc3v3_pcie30x1 has nothing to do with
-pcie30x1. Instead, it supply power to VBAT1-5 on the M.2 KEY B port as
-seen on page 8 of the schematic [1].
+Hi Yunfei,
 
-pcie30x1 is used for the mini PCIe slot, and as seen on page 9 the
-vcc3v3_minipcie regulator is instead related to pcie30x1.
+Le samedi 22 juillet 2023 =C3=A0 15:46 +0800, Yunfei Dong a =C3=A9crit=C2=
+=A0:
+> Need to checking all parameters of msg data are valid or not,
+> in case of access null pointer or unreasonable value leading
+> to kernel reboot.
 
-The M.2 KEY B port can be used for WWAN USB2 modules or SATA drives.
+May I suggest an alternative commit message ? It would look like:
+  =20
+  =20
+   media: mediatek: vcodec: Fix possible invalid memory access
+  =20
+   Validate that the context pointer and the vpu instance within this
+   context is valid. <please add why it may occur here>
 
-Use correct regulator vcc3v3_minipcie for pcie30x1 and enable sata1 node
-to fix use of SATA drives on the M.2 slot.
 
-[1] https://dl.radxa.com/cm3p/e25/radxa-e25-v1.4-sch.pdf
+I cannot really provide a full message here, but my understanding is that i=
+t is
+normal behaviour for the IRQ handler to be called after the context or the =
+VPU
+instance has been released ? It is unlikely a great programming pattern tho=
+ugh,
+can't you remove the handler on time instead ?
 
-Fixes: 2bf2f4d9f673 ("arm64: dts: rockchip: Add Radxa CM3I E25")
-Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
----
- .../boot/dts/rockchip/rk3568-radxa-e25.dts    | 24 ++++++++++++-------
- 1 file changed, 16 insertions(+), 8 deletions(-)
+Nicolas
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3568-radxa-e25.dts b/arch/arm64/boot/dts/rockchip/rk3568-radxa-e25.dts
-index 63c4bd873188..72ad74c38a2b 100644
---- a/arch/arm64/boot/dts/rockchip/rk3568-radxa-e25.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3568-radxa-e25.dts
-@@ -47,6 +47,9 @@ vbus_typec: vbus-typec-regulator {
- 		vin-supply = <&vcc5v0_sys>;
- 	};
- 
-+	/* actually fed by vcc5v0_sys, dependent
-+	 * on pi6c clock generator
-+	 */
- 	vcc3v3_minipcie: vcc3v3-minipcie-regulator {
- 		compatible = "regulator-fixed";
- 		enable-active-high;
-@@ -54,9 +57,9 @@ vcc3v3_minipcie: vcc3v3-minipcie-regulator {
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&minipcie_enable_h>;
- 		regulator-name = "vcc3v3_minipcie";
--		regulator-min-microvolt = <5000000>;
--		regulator-max-microvolt = <5000000>;
--		vin-supply = <&vcc5v0_sys>;
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vcc3v3_pi6c_05>;
- 	};
- 
- 	vcc3v3_ngff: vcc3v3-ngff-regulator {
-@@ -71,9 +74,6 @@ vcc3v3_ngff: vcc3v3-ngff-regulator {
- 		vin-supply = <&vcc5v0_sys>;
- 	};
- 
--	/* actually fed by vcc5v0_sys, dependent
--	 * on pi6c clock generator
--	 */
- 	vcc3v3_pcie30x1: vcc3v3-pcie30x1-regulator {
- 		compatible = "regulator-fixed";
- 		enable-active-high;
-@@ -83,7 +83,7 @@ vcc3v3_pcie30x1: vcc3v3-pcie30x1-regulator {
- 		regulator-name = "vcc3v3_pcie30x1";
- 		regulator-min-microvolt = <3300000>;
- 		regulator-max-microvolt = <3300000>;
--		vin-supply = <&vcc3v3_pi6c_05>;
-+		vin-supply = <&vcc5v0_sys>;
- 	};
- 
- 	vcc3v3_pi6c_05: vcc3v3-pi6c-05-regulator {
-@@ -99,6 +99,10 @@ vcc3v3_pi6c_05: vcc3v3-pi6c-05-regulator {
- 	};
- };
- 
-+&combphy1 {
-+	phy-supply = <&vcc3v3_pcie30x1>;
-+};
-+
- &pcie2x1 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pcie20_reset_h>;
-@@ -117,7 +121,7 @@ &pcie3x1 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pcie30x1m0_pins>;
- 	reset-gpios = <&gpio0 RK_PC3 GPIO_ACTIVE_HIGH>;
--	vpcie3v3-supply = <&vcc3v3_pcie30x1>;
-+	vpcie3v3-supply = <&vcc3v3_minipcie>;
- 	status = "okay";
- };
- 
-@@ -178,6 +182,10 @@ &pwm12 {
- 	status = "okay";
- };
- 
-+&sata1 {
-+	status = "okay";
-+};
-+
- &sdmmc0 {
- 	bus-width = <4>;
- 	cap-sd-highspeed;
--- 
-2.41.0
+>=20
+> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
+> Reviewed-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+> ---
+>  .../vcodec/decoder/mtk_vcodec_dec_drv.h       |  2 +
+>  .../mediatek/vcodec/decoder/vdec_vpu_if.c     | 77 ++++++++++++-------
+>  2 files changed, 52 insertions(+), 27 deletions(-)
+>=20
+> diff --git a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_de=
+c_drv.h b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv=
+.h
+> index 6c318de25a55..7e36b2c69b7d 100644
+> --- a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.h
+> +++ b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.h
+> @@ -161,6 +161,7 @@ struct mtk_vcodec_dec_pdata {
+>   * @hw_id: hardware index used to identify different hardware.
+>   *
+>   * @msg_queue: msg queue used to store lat buffer information.
+> + * @vpu_inst: vpu instance pointer.
+>   *
+>   * @is_10bit_bitstream: set to true if it's 10bit bitstream
+>   */
+> @@ -205,6 +206,7 @@ struct mtk_vcodec_dec_ctx {
+>  	int hw_id;
+> =20
+>  	struct vdec_msg_queue msg_queue;
+> +	void *vpu_inst;
+> =20
+>  	bool is_10bit_bitstream;
+>  };
+> diff --git a/drivers/media/platform/mediatek/vcodec/decoder/vdec_vpu_if.c=
+ b/drivers/media/platform/mediatek/vcodec/decoder/vdec_vpu_if.c
+> index 82c3dc8c4127..23cfe5c6c90b 100644
+> --- a/drivers/media/platform/mediatek/vcodec/decoder/vdec_vpu_if.c
+> +++ b/drivers/media/platform/mediatek/vcodec/decoder/vdec_vpu_if.c
+> @@ -72,6 +72,21 @@ static void handle_get_param_msg_ack(const struct vdec=
+_vpu_ipi_get_param_ack *ms
+>  	}
+>  }
+> =20
+> +static bool vpu_dec_check_ap_inst(struct mtk_vcodec_dec_dev *dec_dev, st=
+ruct vdec_vpu_inst *vpu)
+> +{
+> +	struct mtk_vcodec_dec_ctx *ctx;
+> +	int ret =3D false;
+> +
+> +	list_for_each_entry(ctx, &dec_dev->ctx_list, list) {
+> +		if (!IS_ERR_OR_NULL(ctx) && ctx->vpu_inst =3D=3D vpu) {
+> +			ret =3D true;
+> +			break;
+> +		}
+> +	}
+> +
+> +	return ret;
+> +}
+> +
+>  /*
+>   * vpu_dec_ipi_handler - Handler for VPU ipi message.
+>   *
+> @@ -84,44 +99,51 @@ static void handle_get_param_msg_ack(const struct vde=
+c_vpu_ipi_get_param_ack *ms
+>   */
+>  static void vpu_dec_ipi_handler(void *data, unsigned int len, void *priv=
+)
+>  {
+> +	struct mtk_vcodec_dec_dev *dec_dev;
+>  	const struct vdec_vpu_ipi_ack *msg =3D data;
+> -	struct vdec_vpu_inst *vpu =3D (struct vdec_vpu_inst *)
+> -					(unsigned long)msg->ap_inst_addr;
+> +	struct vdec_vpu_inst *vpu;
+> =20
+> -	if (!vpu) {
+> +	dec_dev =3D (struct mtk_vcodec_dec_dev *)priv;
+> +	vpu =3D (struct vdec_vpu_inst *)(unsigned long)msg->ap_inst_addr;
+> +	if (!priv || !vpu) {
+>  		mtk_v4l2_vdec_err(vpu->ctx, "ap_inst_addr is NULL, did the SCP hang or=
+ crash?");
+>  		return;
+>  	}
+> =20
+> -	mtk_vdec_debug(vpu->ctx, "+ id=3D%X", msg->msg_id);
+> +	if (!vpu_dec_check_ap_inst(dec_dev, vpu) || msg->msg_id < VPU_IPIMSG_DE=
+C_INIT_ACK ||
+> +	    msg->msg_id > VPU_IPIMSG_DEC_GET_PARAM_ACK) {
+> +		mtk_v4l2_vdec_err(vpu->ctx, "vdec msg id not correctly =3D> 0x%x", msg=
+->msg_id);
+> +		vpu->failure =3D -EINVAL;
+> +		goto error;
+> +	}
+> =20
+>  	vpu->failure =3D msg->status;
+> -	vpu->signaled =3D 1;
+> +	if (msg->status !=3D 0)
+> +		goto error;
+> =20
+> -	if (msg->status =3D=3D 0) {
+> -		switch (msg->msg_id) {
+> -		case VPU_IPIMSG_DEC_INIT_ACK:
+> -			handle_init_ack_msg(data);
+> -			break;
+> +	switch (msg->msg_id) {
+> +	case VPU_IPIMSG_DEC_INIT_ACK:
+> +		handle_init_ack_msg(data);
+> +		break;
+> =20
+> -		case VPU_IPIMSG_DEC_START_ACK:
+> -		case VPU_IPIMSG_DEC_END_ACK:
+> -		case VPU_IPIMSG_DEC_DEINIT_ACK:
+> -		case VPU_IPIMSG_DEC_RESET_ACK:
+> -		case VPU_IPIMSG_DEC_CORE_ACK:
+> -		case VPU_IPIMSG_DEC_CORE_END_ACK:
+> -			break;
+> +	case VPU_IPIMSG_DEC_START_ACK:
+> +	case VPU_IPIMSG_DEC_END_ACK:
+> +	case VPU_IPIMSG_DEC_DEINIT_ACK:
+> +	case VPU_IPIMSG_DEC_RESET_ACK:
+> +	case VPU_IPIMSG_DEC_CORE_ACK:
+> +	case VPU_IPIMSG_DEC_CORE_END_ACK:
+> +		break;
+> =20
+> -		case VPU_IPIMSG_DEC_GET_PARAM_ACK:
+> -			handle_get_param_msg_ack(data);
+> -			break;
+> -		default:
+> -			mtk_vdec_err(vpu->ctx, "invalid msg=3D%X", msg->msg_id);
+> -			break;
+> -		}
+> +	case VPU_IPIMSG_DEC_GET_PARAM_ACK:
+> +		handle_get_param_msg_ack(data);
+> +		break;
+> +	default:
+> +		mtk_vdec_err(vpu->ctx, "invalid msg=3D%X", msg->msg_id);
+> +		break;
+>  	}
+> =20
+> -	mtk_vdec_debug(vpu->ctx, "- id=3D%X", msg->msg_id);
+> +error:
+> +	vpu->signaled =3D 1;
+>  }
+> =20
+>  static int vcodec_vpu_send_msg(struct vdec_vpu_inst *vpu, void *msg, int=
+ len)
+> @@ -182,9 +204,10 @@ int vpu_dec_init(struct vdec_vpu_inst *vpu)
+> =20
+>  	init_waitqueue_head(&vpu->wq);
+>  	vpu->handler =3D vpu_dec_ipi_handler;
+> +	vpu->ctx->vpu_inst =3D vpu;
+> =20
+>  	err =3D mtk_vcodec_fw_ipi_register(vpu->ctx->dev->fw_handler, vpu->id,
+> -					 vpu->handler, "vdec", NULL);
+> +					 vpu->handler, "vdec", vpu->ctx->dev);
+>  	if (err) {
+>  		mtk_vdec_err(vpu->ctx, "vpu_ipi_register fail status=3D%d", err);
+>  		return err;
+> @@ -193,7 +216,7 @@ int vpu_dec_init(struct vdec_vpu_inst *vpu)
+>  	if (vpu->ctx->dev->vdec_pdata->hw_arch =3D=3D MTK_VDEC_LAT_SINGLE_CORE)=
+ {
+>  		err =3D mtk_vcodec_fw_ipi_register(vpu->ctx->dev->fw_handler,
+>  						 vpu->core_id, vpu->handler,
+> -						 "vdec", NULL);
+> +						 "vdec", vpu->ctx->dev);
+>  		if (err) {
+>  			mtk_vdec_err(vpu->ctx, "vpu_ipi_register core fail status=3D%d", err)=
+;
+>  			return err;
 
