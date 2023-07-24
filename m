@@ -2,75 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EB78F75EC73
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 09:25:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AFD5D75EC76
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 09:25:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230354AbjGXHZr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jul 2023 03:25:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57302 "EHLO
+        id S231142AbjGXHZx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jul 2023 03:25:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57358 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230190AbjGXHZq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 03:25:46 -0400
-Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com [IPv6:2607:f8b0:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C26A9139
-        for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 00:25:45 -0700 (PDT)
-Received: by mail-pl1-x62a.google.com with SMTP id d9443c01a7336-1b9d80e33fbso21984065ad.0
-        for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 00:25:45 -0700 (PDT)
+        with ESMTP id S230190AbjGXHZw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 03:25:52 -0400
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7038185
+        for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 00:25:50 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-99364ae9596so713289466b.1
+        for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 00:25:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690183545; x=1690788345;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=yDyplQwPvRvqJUtSpz4KPB8cjuW/LyNB3S4Bpqy4gds=;
-        b=Ojh9SkoNDltjuRlRqlRHW/JrTLwhGK7LwenodcOYGD7BtacUUZReRyNNjPqPslMCGO
-         LT1tk1Ga4t4L5zB4JCt5EmQ4PJDxG0cfLNo0afwMNuEb/93Obprep2aLUgZdN1n5PME8
-         JfbXTmSukY7/45Jym3UC62Zi9a/wplzPZaN5kYHRyQaT8HRkJP1JupQwUhfuuahAn+ld
-         niUMYgw22mdXmI6AanTUoXVabFbOVi5KJzFtzqxHVORo4+NflXmMAWtgwXYOlDNgejNo
-         6rOmK3Sg+1KhH8Fl/qeWZR5XhFzA0U9DnzznQVDeFbP4HJ+y/9AUx75yZvaKchBi4n0g
-         ufrA==
+        d=linaro.org; s=google; t=1690183549; x=1690788349;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=W9l6Fr37LZFsRI9a0cNRKO3u2d4EkTsh5kDdAxFsIuI=;
+        b=t9vzLQ9R8JYoxSaw9dEkBOCBjCFmpSHYtUzBgPJ3pXOUgFiR4HbwH/weIkqYtWTnB/
+         ev8/SA2VV71ZCmED5AALV5FndUCgw1iqyxftbB5HJlQXoL+2WCQZ4ThWLdsCwvQ0fjpS
+         FYdxJh1TQPh/EEIz8LfAqJWjubGC0qTYBlzzR2W1t3ZbAZaQ/2ME2JZmA9P8+4PxbrX3
+         gINhauBulbi5+Tbf0M4T/8zSDM5G1J3donIDnbDT7rZEhx1c66nuTYwv2EDSBhaP+an4
+         My4BhRVpyZCbAD9l9iyDn9QvDx1mXt6xTENO7/T+5qhQGJHEenCO4NoIRR/UQJhjwrU2
+         m9nA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690183545; x=1690788345;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
+        d=1e100.net; s=20221208; t=1690183549; x=1690788349;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=yDyplQwPvRvqJUtSpz4KPB8cjuW/LyNB3S4Bpqy4gds=;
-        b=R0CAm6yrr1KPORA0ggvXo7rH2oSNgRDdSvqNUAEQQTsSxFwO2NxSOxOTpAImyTMpGq
-         hjOktwhgUhWGkW6QOGrDCA8ft33WDBiv+krsft1oefxwYYNM2rfg222f6I2eZFnRQK7R
-         XZOuH+SwKRTn4qDlo4mBMtHfnDZkjF+bK9FyjJH5yFD72b8Qb4uRqw1lL+z44KBZFt1V
-         KICHspkwUV59XX5bki91cO+VdBh72VbwUV1aXVewJY7w7e922PnEFcoKIxBbdxEXFf+P
-         dk3kZPEX3RzhvFgxX4t4OvTl/cCJ6UR7iVDgbsVzS13lFNC0vJlz7x9r48GmLyxqkRIE
-         nsmQ==
-X-Gm-Message-State: ABy/qLYtExBU7i86ulDnz8DFfYgWBq/xmPyOqRX/C+fCqL674asUNdE9
-        ZvfSjJkgSE6uy0ywGOH2Awc1
-X-Google-Smtp-Source: APBJJlGESAj9qUhYnHGWiRX2QHHYKTGVwUdjbvGxiSpl3hKM3uZyhdeI/RihV0XoQFeDzRxiYNHUIg==
-X-Received: by 2002:a17:902:e843:b0:1b8:a569:f980 with SMTP id t3-20020a170902e84300b001b8a569f980mr7309639plg.65.1690183545252;
-        Mon, 24 Jul 2023 00:25:45 -0700 (PDT)
-Received: from thinkpad ([117.206.118.29])
-        by smtp.gmail.com with ESMTPSA id h12-20020a170902f7cc00b001bb99e188fcsm2261052plw.194.2023.07.24.00.25.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 24 Jul 2023 00:25:44 -0700 (PDT)
-Date:   Mon, 24 Jul 2023 12:55:37 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     jingoohan1@gmail.com, gustavo.pimentel@synopsys.com,
-        lpieralisi@kernel.org, robh+dt@kernel.org, kw@linux.com,
-        bhelgaas@google.com, kishon@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        marek.vasut+renesas@gmail.com, fancer.lancer@gmail.com,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v18 01/20] PCI: Add INTx Mechanism Messages macros
-Message-ID: <20230724072537.GA6291@thinkpad>
-References: <20230721074452.65545-1-yoshihiro.shimoda.uh@renesas.com>
- <20230721074452.65545-2-yoshihiro.shimoda.uh@renesas.com>
+        bh=W9l6Fr37LZFsRI9a0cNRKO3u2d4EkTsh5kDdAxFsIuI=;
+        b=ABmBBlrtLsMx9/ss78YTesSH+YU9R7NDJhjrgnCU5EnPkWIxyDXmkvuuuRq/5iXMgL
+         EneM5TTGrdfibPBcF+MIWZypCgNFCdkiCkVdRPcU7CCBw9lUdVTL/LByoAHgks/U5Stt
+         SfEB6MdZVIw+adfBSfPLs3V/q6JprYpyEf9N2dnsn8S3+J8GUNuQ+wkEpbk79NjK57Nj
+         Kju0gNg7UnIWiKCPOLqnUm+6r5gc9E3zBDDMgsSFKqffNcGDigfeDgQYQskodZk0qJ3h
+         gXtG88hyWcckB3mpLKgVAKEpFdfeVvxU1IiOxuqBBp4zi8Lvlcnx5DF1Dgtf/GtOs/XN
+         sPiw==
+X-Gm-Message-State: ABy/qLaGYBFHrDEL9Jm4t9c/UiNxiPkcswV8+wUo4eJ7k4oaUexFR8E9
+        iLwVCdI57GppI8sOrAFsCX4orQ==
+X-Google-Smtp-Source: APBJJlF9IAG1RI4StyH32kjNgDCa1flUBleL5s+aVpEXrbFOAOpWmrTFckd4EbsDhL8JWoJKxTxFfg==
+X-Received: by 2002:a17:906:3185:b0:965:fb87:4215 with SMTP id 5-20020a170906318500b00965fb874215mr8662868ejy.15.1690183549124;
+        Mon, 24 Jul 2023 00:25:49 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id bt16-20020a170906b15000b00993159ce075sm6235250ejb.210.2023.07.24.00.25.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 24 Jul 2023 00:25:48 -0700 (PDT)
+Message-ID: <61409dfe-60b5-e124-a6ef-5437752f4d2e@linaro.org>
+Date:   Mon, 24 Jul 2023 09:25:46 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230721074452.65545-2-yoshihiro.shimoda.uh@renesas.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH V2 1/3] dt-bindings: interrupt-controller: Add header file
+ for Amlogic Meson-G12A SoCs
+Content-Language: en-US
+To:     Huqiang Qin <huqiang.qin@amlogic.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        neil.armstrong@linaro.org, khilman@baylibre.com,
+        jbrunet@baylibre.com, martin.blumenstingl@googlemail.com,
+        linus.walleij@linaro.org
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-gpio@vger.kernel.org
+References: <20230724060108.1403662-1-huqiang.qin@amlogic.com>
+ <20230724060108.1403662-2-huqiang.qin@amlogic.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230724060108.1403662-2-huqiang.qin@amlogic.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,57 +81,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 21, 2023 at 04:44:33PM +0900, Yoshihiro Shimoda wrote:
-> Add "Message Routing" and "INTx Mechanism Messages" macros to enable
-> a PCIe driver to send messages for INTx Interrupt Signaling.
+On 24/07/2023 08:01, Huqiang Qin wrote:
+> Add a new dt-binding header that details the interrupt number of the GPIO.
 > 
-> The "Message Routing" is from Table 2-17, and the "INTx Mechanism
-> Messages" is from Table 2-18 on the PCI Express Base Specification,
-> Rev. 4.0 Version 1.0.
-> 
-> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-
-Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-
-- Mani
-
-> Reviewed-by: Serge Semin <fancer.lancer@gmail.com>
+> Signed-off-by: Huqiang Qin <huqiang.qin@amlogic.com>
 > ---
->  drivers/pci/pci.h | 18 ++++++++++++++++++
->  1 file changed, 18 insertions(+)
 > 
-> diff --git a/drivers/pci/pci.h b/drivers/pci/pci.h
-> index a4c397434057..0b6df6c2c918 100644
-> --- a/drivers/pci/pci.h
-> +++ b/drivers/pci/pci.h
-> @@ -13,6 +13,24 @@
->  
->  #define PCIE_LINK_RETRAIN_TIMEOUT_MS	1000
->  
-> +/* Message Routing (r[2:0]) */
-> +#define PCI_MSG_TYPE_R_ROUTING_RC	0
-> +#define PCI_MSG_TYPE_R_ROUTING_ADDR	1
-> +#define PCI_MSG_TYPE_R_ROUTING_ID	2
-> +#define PCI_MSG_TYPE_R_ROUTING_BC	3
-> +#define PCI_MSG_TYPE_R_ROUTING_LOCAL	4
-> +#define PCI_MSG_TYPE_R_ROUTING_GATHER	5
-> +
-> +/* INTx Mechanism Messages */
-> +#define PCI_MSG_CODE_ASSERT_INTA	0x20
-> +#define PCI_MSG_CODE_ASSERT_INTB	0x21
-> +#define PCI_MSG_CODE_ASSERT_INTC	0x22
-> +#define PCI_MSG_CODE_ASSERT_INTD	0x23
-> +#define PCI_MSG_CODE_DEASSERT_INTA	0x24
-> +#define PCI_MSG_CODE_DEASSERT_INTB	0x25
-> +#define PCI_MSG_CODE_DEASSERT_INTC	0x26
-> +#define PCI_MSG_CODE_DEASSERT_INTD	0x27
-> +
->  extern const unsigned char pcie_link_speed[];
->  extern bool pci_early_dump;
->  
-> -- 
-> 2.25.1
-> 
+> V1 -> V2: Rename irq-meson-g12a-gpio.h to amlogic,meson-g12a-gpio-intc.h
 
--- 
-மணிவண்ணன் சதாசிவம்
+
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
+
