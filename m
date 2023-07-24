@@ -2,102 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 36F1175F29C
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 12:17:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C2CED75F2CE
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 12:20:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232098AbjGXKRN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jul 2023 06:17:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46320 "EHLO
+        id S230035AbjGXKTq convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 24 Jul 2023 06:19:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51260 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233129AbjGXKQt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 06:16:49 -0400
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8629583CB
-        for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 03:09:12 -0700 (PDT)
-Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-522382c4840so633188a12.2
-        for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 03:09:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690193346; x=1690798146;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=fc/OvRwUpGyNbpV42y42cs+Z7tLhRlmCIleilPEkd8I=;
-        b=ifYqtACpoq/OKaMWi9ibAvt31nTl2lvhzjRs0zCBz2aakJ+UF2ai0o8hGHSzWo72v3
-         bYB6gn7dlftGX1FtBsM7V/ZG+R0tLYyE09nw3xyUkjelZXp1qjaUGVWl4o4m+nOE30Es
-         ecYoz1TEoG/YNp6ToeYEYdsSEKMS836tK6MxeIsFqUMmShz2eSQ93sml9Srm0vLpxIu0
-         u8eBe3N5KokZsxdpjKVhAp59omTZub32YOz+tebiQ3lsQ+2gpukPFZcheVwhfqrjKwel
-         RvvRxpGRbPf0MJPGseQMkqW5+6AOpxfgPE1zD6EITft0rYwdOuLHdIl7HIneKjL2FTN/
-         39vA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690193346; x=1690798146;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fc/OvRwUpGyNbpV42y42cs+Z7tLhRlmCIleilPEkd8I=;
-        b=iNc6Er+gJ5BJHy9q/onHyTn+QEHTo7fi25MPhKqzRi9m1RA97WpgTSb16BfWNoUN0y
-         xAa5h+2bjGeNZZ21gsaqptFUNNYpYzNQsOAX3GMBTAQD6jEzJCdvKV7DRVO8PG5BXM51
-         xDhLdFpHaKLwzY0Vlkl//zX5/VEo+ez5J8cisDEPCQVcR+Vgm9dxG1BjIZ+lm1s8HQGF
-         be/oWcryvXiQ0JPQlNqua1EPmg/74kyn2LfCcm8nOCMVHuKHA/+eo21re9nfbUk7yyBH
-         CRSDcvivR5TxQV5Tea9f33Ein67EjVhqvIDbTiDFMqSK2FT8Wkh7jgM03cBKv+DlMCI9
-         sGaQ==
-X-Gm-Message-State: ABy/qLb7KFN5oxVAFPd+5i4lGEN4nRUrZbaJULcWdgbZd07TdmX16j49
-        J4uh2YE7Z0bckw9T5Slgf3KtvQ==
-X-Google-Smtp-Source: APBJJlEpRpgdbAJTL5ApmUGIBH+DtJus2Kc2vpSE4V3+aD6QuyH1UFLfNwIiCG3thpJjV2SDg0rShA==
-X-Received: by 2002:aa7:c982:0:b0:51e:404:1e6d with SMTP id c2-20020aa7c982000000b0051e04041e6dmr9407596edt.38.1690193346327;
-        Mon, 24 Jul 2023 03:09:06 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id q2-20020a056402032200b0051d9de03516sm6011209edw.52.2023.07.24.03.09.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 24 Jul 2023 03:09:05 -0700 (PDT)
-Message-ID: <1ce0d151-466c-3bf6-2cf2-8a98af81152a@linaro.org>
-Date:   Mon, 24 Jul 2023 12:09:04 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH 1/2] dt-bindings: hwmon: Add lltc ltc4286 driver bindings
-Content-Language: en-US
-To:     Delphine CC Chiu <Delphine_CC_Chiu@Wiwynn.com>, patrick@stwcx.xyz,
-        Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S233581AbjGXKSg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 06:18:36 -0400
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4624B5267;
+        Mon, 24 Jul 2023 03:10:57 -0700 (PDT)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id 3B65024E337;
+        Mon, 24 Jul 2023 18:10:56 +0800 (CST)
+Received: from EXMBX068.cuchost.com (172.16.6.68) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 24 Jul
+ 2023 18:10:56 +0800
+Received: from williamqiu-virtual-machine.starfivetech.com (171.223.208.138)
+ by EXMBX068.cuchost.com (172.16.6.68) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.42; Mon, 24 Jul 2023 18:10:55 +0800
+From:   William Qiu <william.qiu@starfivetech.com>
+To:     <devicetree@vger.kernel.org>, <linux-spi@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>
+CC:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     linux-i2c@vger.kernel.org, linux-hwmon@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230424101352.28117-1-Delphine_CC_Chiu@Wiwynn.com>
- <20230724100514.1028061-1-Delphine_CC_Chiu@Wiwynn.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230724100514.1028061-1-Delphine_CC_Chiu@Wiwynn.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        William Qiu <william.qiu@starfivetech.com>
+Subject: [PATCH v3 0/2] Add SPI module for StarFive JH7110 SoC
+Date:   Mon, 24 Jul 2023 18:10:52 +0800
+Message-ID: <20230724101054.25268-1-william.qiu@starfivetech.com>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Type: text/plain
+X-Originating-IP: [171.223.208.138]
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX068.cuchost.com
+ (172.16.6.68)
+X-YovoleRuleAgent: yovoleflag
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/07/2023 12:05, Delphine CC Chiu wrote:
-> Add a device tree bindings for ltc4286 driver.
-> 
-> Signed-off-by: Delphine CC Chiu <Delphine_CC_Chiu@Wiwynn.com>
-> ---
->  .../bindings/hwmon/lltc,ltc4286.yaml          | 49 +++++++++++++++++++
->  MAINTAINERS                                   |  9 ++++
->  2 files changed, 58 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/hwmon/lltc,ltc4286.yaml
-> 
+Hi,
 
-You already sent it, so why this duplicate? I also don't understand why
-this is attached to previous thread.
+This patchset adds initial rudimentary support for the StarFive
+SPI controller. And this driver will be used in StarFive's
+VisionFive 2 board. The first patch constrain minItems of clocks
+for JH7110 SPI and Patch 2 adds support for StarFive JH7110 SPI.
 
-Do not attach (thread) your patchsets to some other threads (unrelated
-or older versions). This buries them deep in the mailbox and might
-interfere with applying entire sets.
+Changes v2->v3:
+- Rebaed to v6.5rc3.
+- Registered one more clock.
+- Dropped commit that changed the number of clocks in YAML.
+- Rewrited the commit comment.
 
-Best regards,
-Krzysztof
+Changes v1->v2:
+- Rebaed to v6.5rc1.
+- Submitted reference file separately.
+- Dropped 'status' node as it was 'okay' by default.
+- Dropped Co-developed-by message.
+
+The patch series is based on v6.5rc3.
+
+William Qiu (2):
+  dt-bindings: spi: add reference file to YAML
+  riscv: dts: starfive: Add spi node and pins configuration
+
+ .../devicetree/bindings/spi/spi-pl022.yaml    |   1 +
+ .../jh7110-starfive-visionfive-2.dtsi         |  50 +++++++++
+ arch/riscv/boot/dts/starfive/jh7110.dtsi      | 105 ++++++++++++++++++
+ 3 files changed, 156 insertions(+)
+
+--
+2.34.1
 
