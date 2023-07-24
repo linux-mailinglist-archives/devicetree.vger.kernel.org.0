@@ -2,101 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C19B275FB31
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 17:51:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 28AD775FB41
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 17:54:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229697AbjGXPvz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jul 2023 11:51:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33004 "EHLO
+        id S229567AbjGXPys (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jul 2023 11:54:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34058 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229557AbjGXPvy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 11:51:54 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E0A1B0;
-        Mon, 24 Jul 2023 08:51:54 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 8D33C6121B;
-        Mon, 24 Jul 2023 15:51:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B1141C433C7;
-        Mon, 24 Jul 2023 15:51:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690213913;
-        bh=b5CSWJ2CN7mIvSTFkNHVm5+ARyCjUmz+Ym1Av0lBizM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=TXD5MB8XPeAVQ/uXBgeHPBx+SqOjCq6GTFGrB6hIgMgSUrUcZNh6Nz0OWy7hZ4VdQ
-         YhgrI9Z+5iMFqBWgw1L7wV8nDCErRGq92kM9BGX2fpg6p1JOUPrDNX4DvTeG6jUs7o
-         vd6/jrEII0DKAIKJWzaV5K1kLEmLnhMroDzXKS2qQEIXMdhhgOK7DJtxMcNCbNsW4y
-         e8LPpjAwMH+VSlelMlK/BJTWB0NRNZVG0Ora84ArsSitiyCPWAoU7qDspCs4q7KF46
-         Fx2Zr11O2Kt95eAeqWwDtMwPF9LkgOoUugm/tob1I3PrT79Sc/D6fs7dp1grmX/ukl
-         nHro6ZYCWUZ/g==
-Received: (nullmailer pid 3607201 invoked by uid 1000);
-        Mon, 24 Jul 2023 15:51:48 -0000
-Date:   Mon, 24 Jul 2023 09:51:48 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     conor+dt@kernel.org, quic_richardp@quicinc.com,
-        quic_nguyenb@quicinc.com, quic_nitirawa@quicinc.com,
-        linux-kernel@vger.kernel.org, quic_ziqichen@quicinc.com,
-        linux-pm@vger.kernel.org, nm@ti.com, quic_bhaskarv@quicinc.com,
-        martin.petersen@oracle.com, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, quic_asutoshd@quicinc.com,
-        alim.akhtar@samsung.com, vireshk@kernel.org,
-        kyungmin.park@samsung.com, jejb@linux.ibm.com, bvanassche@acm.org,
-        konrad.dybcio@linaro.org, krzysztof.kozlowski+dt@linaro.org,
-        quic_cang@quicinc.com, linux-arm-msm@vger.kernel.org,
-        myungjoo.ham@samsung.com, andersson@kernel.org, sboyd@kernel.org,
-        linux-scsi@vger.kernel.org, cw00.choi@samsung.com,
-        krzysztof.kozlowski@linaro.org, avri.altman@wdc.com,
-        bmasney@redhat.com, quic_narepall@quicinc.com
-Subject: Re: [PATCH v2 02/15] dt-bindings: opp: Increase maxItems for opp-hz
- property
-Message-ID: <169021390783.3607138.9583713600185509839.robh@kernel.org>
-References: <20230720054100.9940-1-manivannan.sadhasivam@linaro.org>
- <20230720054100.9940-3-manivannan.sadhasivam@linaro.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230720054100.9940-3-manivannan.sadhasivam@linaro.org>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S229506AbjGXPyr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 11:54:47 -0400
+Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD5608E;
+        Mon, 24 Jul 2023 08:54:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
+        ; s=x; h=Subject:Content-Transfer-Encoding:Content-Type:Mime-Version:
+        References:In-Reply-To:Message-Id:Cc:To:From:Date:Sender:Reply-To:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=/T4b5niEyR4mZCuDGPl+hY4So/AXh1+NSpM5MAWjNig=; b=gCon4PPrmEX9pjBv2vCF5E6wIx
+        G4VxmIoK7qcAD7irGRI09CzsImpbHHCYK3aB8orBat7+pD28XdP5MM6vlBva8Xvhgp2pLYkmerMGU
+        66Yt6tpqo/ZK0GPzslXbKxoXHLtlBUxvJzYXAdzZdgMty9wWXDPu6Jmei3CxF3X+t/Mk=;
+Received: from modemcable061.19-161-184.mc.videotron.ca ([184.161.19.61]:57608 helo=pettiford)
+        by mail.hugovil.com with esmtpa (Exim 4.92)
+        (envelope-from <hugo@hugovil.com>)
+        id 1qNxtG-0007Li-Ix; Mon, 24 Jul 2023 11:54:31 -0400
+Date:   Mon, 24 Jul 2023 11:54:28 -0400
+From:   Hugo Villeneuve <hugo@hugovil.com>
+To:     Greg KH <gregkh@linuxfoundation.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        jirislaby@kernel.org, jringle@gridpoint.com,
+        isaac.true@canonical.com, jesse.sung@canonical.com,
+        tomasz.mon@camlingroup.com, l.perczak@camlintechnologies.com,
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+        stable@vger.kernel.org,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Lech Perczak <lech.perczak@camlingroup.com>
+Message-Id: <20230724115428.d191186852c0bd0ee0d78398@hugovil.com>
+In-Reply-To: <2023072240-supremacy-shallot-a77f@gregkh>
+References: <20230721161840.1393996-1-hugo@hugovil.com>
+        <20230721161840.1393996-7-hugo@hugovil.com>
+        <CAL_JsqJpdhtnZ8FcM7kGWnM+iuDs1fWiCVgf413evbw-o8TZGQ@mail.gmail.com>
+        <20230722104724.ef0c5896c239e721794b9fe9@hugovil.com>
+        <2023072240-supremacy-shallot-a77f@gregkh>
+X-Mailer: Sylpheed 3.7.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 184.161.19.61
+X-SA-Exim-Mail-From: hugo@hugovil.com
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
+Subject: Re: [RESEND PATCH v8 06/10] serial: sc16is7xx: fix regression with
+ GPIO configuration
+X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
+X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Sat, 22 Jul 2023 17:15:26 +0200
+Greg KH <gregkh@linuxfoundation.org> wrote:
 
-On Thu, 20 Jul 2023 11:10:47 +0530, Manivannan Sadhasivam wrote:
-> Current limit of 16 will be exhausted by platforms specifying the frequency
-> for 9 clocks using opp-hz, like Qcom SDM845 SoC. For instance, specifying
-> the frequency for 9 clocks with 64bit specifier as below would consume
-> (9 * 2 = 18) items.
+> On Sat, Jul 22, 2023 at 10:47:24AM -0400, Hugo Villeneuve wrote:
+> > On Fri, 21 Jul 2023 13:24:19 -0600
+> > Rob Herring <robh+dt@kernel.org> wrote:
+> > 
+> > > On Fri, Jul 21, 2023 at 10:19 AM Hugo Villeneuve <hugo@hugovil.com> wrote:
+> > > >
+> > > > From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+> > > >
+> > > > Commit 679875d1d880 ("sc16is7xx: Separate GPIOs from modem control lines")
+> > > > and commit 21144bab4f11 ("sc16is7xx: Handle modem status lines")
+> > > > changed the function of the GPIOs pins to act as modem control
+> > > > lines without any possibility of selecting GPIO function.
+> > > 
+> > > Requiring a new DT property is not fixing a kernel regression. You
+> > > should be returning the kernel to original behavior and then have a
+> > > new DT property for new behavior.
+> > 
+> > Hi Rob,
+> > please read the entire patch history starting from V1
+> >  and you will understand why this course of action was
+> >  not selected.
 > 
-> 	opp-50000000 {
-> 		opp-hz = /bits/ 64 <50000000>,
-> 			 /bits/ 64 <0>,
-> 			 /bits/ 64 <0>,
-> 			 /bits/ 64 <37500000>,
-> 			 /bits/ 64 <0>,
-> 			 /bits/ 64 <0>,
-> 			 /bits/ 64 <0>,
-> 			 /bits/ 64 <0>,
-> 			 /bits/ 64 <75000000>;
-> 	};
-> 
-> So let's increase the limit to 32 which should be enough for most platforms
-> (hopefully).
-> 
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> ---
->  Documentation/devicetree/bindings/opp/opp-v2-base.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
+> That's not going to happen, sorry, you need to explain it here, in this
+> patch series, why a specific action is being taken over another one, as
+> no one has time to go dig through past history, sorry.
 
-Acked-by: Rob Herring <robh@kernel.org>
+Hi Rob,
+I initially submitted a patch to revert the kernel to original
+behavior, but it created more problems because the patch was
+unfortunately split in two separate patches, and mixed with other non
+closely-related changes. It was also noted to me that reverting to the
+old behavior would break things for some users.
 
+It was suggested to me by a more experienced kernel developer to
+"suggest a fix, instead of hurrying a revert":
+
+    https://lkml.org/lkml/2023/5/17/758
+
+That is what we decided to do in the end, and it worked quite well.
+
+Hugo.
