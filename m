@@ -2,96 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 24E8675EC34
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 09:09:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F05275EC3F
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 09:10:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230248AbjGXHJU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jul 2023 03:09:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51270 "EHLO
+        id S230157AbjGXHKv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jul 2023 03:10:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52052 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229468AbjGXHJT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 03:09:19 -0400
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::221])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B22C6138;
-        Mon, 24 Jul 2023 00:09:14 -0700 (PDT)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 6C2E524000E;
-        Mon, 24 Jul 2023 07:09:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1690182552;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=0OTdgWQ6Vo/4tl1ZM7En0YdjITPLKGIP2IIxkkPFJRM=;
-        b=iC5ZIY44VFrCSUNoeMIdYmOyqSrlrW7N4tyY+Hq53oXBVph3jCQ5ij8fsDynsYh6NybKfF
-        47iBUwR964ggu52YB13yaU1E18wok2aDQAXdbpXfZnCVzqeybMcvNBEm04M8MJv49vz912
-        60p20TKBhztddQMV6EZbSo0vTLzFb3Ok+FWErn92iDiDFjDyPmqRh1JKdYw5xT3hwpwVlV
-        u4k2GthKUnBFuRNrRP/XoPSerupU1HIaiVySzO/QpWk35FaiLI3dwdIhQ2brWGTyOPPUCM
-        8E3/Ier83smwYkYCv/LsZ20OWFpB5I2g8A5epoX659Pa/Omr3Rckh60nqnZ+5A==
-Date:   Mon, 24 Jul 2023 09:09:02 +0200
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Andy Shevchenko <andy@kernel.org>
-Cc:     nikita.shubin@maquefel.me,
-        Hartley Sweeten <hsweeten@visionengravers.com>,
-        Lennert Buytenhek <kernel@wantstofly.org>,
-        Alexander Sverdlin <alexander.sverdlin@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Lukasz Majewski <lukma@denx.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
+        with ESMTP id S229853AbjGXHKu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 03:10:50 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F032C137
+        for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 00:10:48 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-9923833737eso588885966b.3
+        for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 00:10:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1690182647; x=1690787447;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=QNUo0Kn9Aa2Dgdj2gFIhpNrROHE/bncbbpqnizXf6ac=;
+        b=XBUONx0XrgqCY9fZgz3fyLS7sx1wucVYmBIqDiE1WVjoXmXrD5hnDdky2dwBz5wqbl
+         wMg5GMkY+wnsGC2EsGFUHcD4mQn5Ioyc/Dvre6LvhEaIF7hvZAnisPUrEX4+wV28NPu5
+         WgiomtlgNaDO4CK03pmYWtD5bd9C7jhmZjiy3MMNbCJIdkA4ysFNKjrAWuaY/wJ0cOa1
+         aTQk5unjVkodxc555cQ+5rCu+GH8M31LFuEtiZHP9sMQ6YubOLkSgO25cTn+2dXxjqzE
+         moQ/3tvLkXOwz4yja8gWW0d+YP9SPOKyjeaCvZ28INSnuBkr2/WNLrh90TsIctezV5JY
+         u5ig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690182647; x=1690787447;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=QNUo0Kn9Aa2Dgdj2gFIhpNrROHE/bncbbpqnizXf6ac=;
+        b=BiTB2af7V1KWB6nrj2YD2ZIiPt5wMi8tDtAUswwUsxIp2VRYivKAZe3sRfbPoS1jJQ
+         xBX4Ss5UzWe8MZUSCp3jjAuzgv32VQD91oeZFuHVOIlkifQm/+ba1XrCpz9BNRvI2bPW
+         c+CSNdcb2entHMzJGWYl2EM6GF9o7gBMf9aDuvVnCriW//wMsfZ0nxLaXqdaTV+2eoHV
+         Ox1SGriz6kDuIazOIr6g7rnYnoPZRUwONSSRZl43v3+OkvuBD0RqmH21HtUKjbpO1/YF
+         6L9o2jgzM0Chcw40D4Rf/sQ26iKXQRoZNos3kTqnn825/BkZJImgmgRQXTb8+BmIwsYJ
+         5y0Q==
+X-Gm-Message-State: ABy/qLZZN2DSJj2A8fQeW8qwjEANgiwLlOWegKeNWciCiNLtIIXs9NSO
+        9zHxx6bkj8R0bxaDNbm6m6FveQ==
+X-Google-Smtp-Source: APBJJlGqjMKUoeRrImKQFupGiJ2uC2XkQKoD01CqdLe354F8gMvelSbPPWaIJVuA9pyFDHsmHhcJ7g==
+X-Received: by 2002:a17:907:75e5:b0:993:a379:6158 with SMTP id jz5-20020a17090775e500b00993a3796158mr8298544ejc.17.1690182647475;
+        Mon, 24 Jul 2023 00:10:47 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id kk7-20020a170907766700b0098df7d0e096sm6294662ejc.54.2023.07.24.00.10.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 24 Jul 2023 00:10:47 -0700 (PDT)
+Message-ID: <e0897453-54b0-2a2c-2bf0-1f771c0c6565@linaro.org>
+Date:   Mon, 24 Jul 2023 09:10:43 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v3 2/2] arm64: dts: Replace deprecated extcon-usb-gpio
+ id-gpio/vbus-gpio properties
+Content-Language: en-US
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Sebastian Reichel <sre@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Uwe =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?= 
-        <u.kleine-koenig@pengutronix.de>, Mark Brown <broonie@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, Vinod Koul <vkoul@kernel.org>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Damien Le Moal <dlemoal@kernel.org>,
-        Sergey Shtylyov <s.shtylyov@omp.ru>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        soc@kernel.org, Liam Girdwood <lgirdwood@gmail.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Michael Peters <mpeters@embeddedts.com>,
-        Kris Bahnsen <kris@embeddedts.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-rtc@vger.kernel.org,
-        linux-watchdog@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-pwm@vger.kernel.org, linux-spi@vger.kernel.org,
-        netdev@vger.kernel.org, dmaengine@vger.kernel.org,
-        linux-mtd@lists.infradead.org, linux-ide@vger.kernel.org,
-        linux-input@vger.kernel.org, alsa-devel@alsa-project.org
-Subject: Re: [PATCH v3 24/42] mtd: nand: add support for ts72xx
-Message-ID: <20230724090902.679ea56d@xps-13>
-In-Reply-To: <ZLqx+Osn3gcHjUph@smile.fi.intel.com>
-References: <20230605-ep93xx-v3-0-3d63a5f1103e@maquefel.me>
-        <20230605-ep93xx-v3-24-3d63a5f1103e@maquefel.me>
-        <ZLqx+Osn3gcHjUph@smile.fi.intel.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
-MIME-Version: 1.0
+        =?UTF-8?Q?Beno=c3=aet_Cousson?= <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>
+Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-omap@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+        linux-rockchip@lists.infradead.org
+References: <20230721081948.1185360-1-alexander.stein@ew.tq-group.com>
+ <20230721081948.1185360-2-alexander.stein@ew.tq-group.com>
+ <c3ea2edb-1b3e-2c39-ccf6-333e3c8b9020@linaro.org>
+ <3251040.44csPzL39Z@steina-w>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <3251040.44csPzL39Z@steina-w>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -99,53 +97,50 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andy,
+On 24/07/2023 08:05, Alexander Stein wrote:
+> Hi,
+> 
+> Am Freitag, 21. Juli 2023, 14:22:06 CEST schrieb Krzysztof Kozlowski:
+>> On 21/07/2023 10:19, Alexander Stein wrote:
+>>> Use id-gpios and vbus-gpios instead.
+>>>
+>>> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+>>> Acked-by: Heiko Stuebner <heiko@sntech.de> #rockchip
+>>> Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com> #mediatek
+>>> Reviewed-by: AngeloGioacchino Del Regno
+>>> <angelogioacchino.delregno@collabora.com> Acked-by: Shawn Guo
+>>> <shawnguo@kernel.org>
+>>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>> ---
+>>> Changes in v3:
+>>> * Rebased to next-20230721
+>>> * Split from bindings patch
+>>
+>> I think you wanted to split it per subsystem, right? That's why you
+>> resent/v3? But the split did not happen.
+> 
+> Yes, I split it into dt bindings and DT changes patches. Is this not correct?
 
-> > +static int ts72xx_nand_attach_chip(struct nand_chip *chip)
-> > +{
-> > +	switch (chip->ecc.engine_type) {
-> > +	case NAND_ECC_ENGINE_TYPE_SOFT:
-> > +		if (chip->ecc.algo =3D=3D NAND_ECC_ALGO_UNKNOWN)
-> > +			chip->ecc.algo =3D NAND_ECC_ALGO_HAMMING;
-> > +		break;
-> > +	case NAND_ECC_ENGINE_TYPE_ON_HOST:
-> > +		return -EINVAL;
-> > +	default: =20
->=20
-> > +		break; =20
->=20
-> Here it will return 0, is it a problem?
+We talked about DTS patch - this one. It was already split between
+bindings and DTS, so this would not have been a topic at all.
 
-Seems ok, there are two other situations: on-die ECC engine and no ECC
-engine, both do not require any specific handling on the controller
-side.
+> 
+>> If you decide not to split,
+>> then try to figure out: who should pick up this patchset?
+> 
+> Well, intention was one patch for DT bindings maintainers and these two 
+> patches for imx maintainer (Shawn AFAIK).
 
->=20
-> > +	}
-> > +
-> > +	return 0;
-> > +} =20
->=20
-> ...
->=20
-> > +static void ts72xx_nand_remove(struct platform_device *pdev)
-> > +{
-> > +	struct ts72xx_nand_data *data =3D platform_get_drvdata(pdev);
-> > +	struct nand_chip *chip =3D &data->chip;
-> > +	int ret;
-> > +
-> > +	ret =3D mtd_device_unregister(nand_to_mtd(chip)); =20
->=20
-> > +	WARN_ON(ret); =20
->=20
-> Why?!  Is it like this in other MTD drivers?
+You touch there much more than IMX, so if you intend that you need to be
+pretty clear. I see there around 5% of changes from IMX, so targeting
+IMX is a weird choice.
 
-Yes, we did not yet change the internal machinery to return void, and
-we don't want people to think getting errors there is normal.
 
-> > +	nand_cleanup(chip);
-> > +} =20
->=20
+> I've send patches separated by arch/
+> arm and arch/arm64 in one series, so I'm slightly confused now.
 
-Thanks,
-Miqu=C3=A8l
+So telling you second time - don't. Split per subsystem.
+
+Best regards,
+Krzysztof
+
