@@ -2,61 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C167D75F787
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 14:59:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DDF8F75F797
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 14:59:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230296AbjGXM7A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jul 2023 08:59:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48234 "EHLO
+        id S231613AbjGXM7X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jul 2023 08:59:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49124 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232000AbjGXM6d (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 08:58:33 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 392183A9E
-        for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 05:55:22 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id 2adb3069b0e04-4fbaef9871cso6300875e87.0
-        for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 05:55:22 -0700 (PDT)
+        with ESMTP id S232307AbjGXM65 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 08:58:57 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0633165AB
+        for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 05:55:54 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-4f954d7309fso5408254e87.1
+        for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 05:55:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690203273; x=1690808073;
+        d=linaro.org; s=google; t=1690203307; x=1690808107;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=hkqiONv+dk+F5KKc54xuMKLW6iRoacOe1L/tucR0jDY=;
-        b=j0yVug7k4gIGONgUGIrelgnSYdVRMRBfl+l6NJHjlX2D4P0r4NeeiUygYrhkeeZ/ZM
-         l4/ScQ+FAvmkBwRlwSrqX0qiW5bOYgKdnhVahpXVcKtsFczU0NkfdcpBCKIG5JOD2Lmn
-         sdXmY8Kv7xrUXKY4L8vthHtNty3uDsZkoTgJYwCY2CVxZHb9rWSlwIDOYLD/xhfRfe9F
-         PxjWb/zOa/iuJoYY6/QDSzyM8sxd/Bci/BF3jouAaLHxR1xM8pX7gD6NrjfpwPka4LJG
-         qZAZ3WD97QLjyAXegW1kN6PneIlSB29LHZBIDNgpUrIrPEkitZ9Q0h7cS8OaFC1K0DL1
-         C3pA==
+        bh=U+knMhAc9BN4MHY0osSYfy9WGScVxJZhfmgQ35b2tDs=;
+        b=vCTYXQPJBilz8G7K2UMcyYnfDBboigPw9q7bSoWBMDRyQ0sXpX0iRxoB1UDQxGmfs+
+         pHXYCFQYw8yr79DOeh4KlKuFR68Hl3gA7po8m23lJBkF1p1a8Hr21D3CdXMQyQ+/XOTY
+         LMQ4Uq2NPTD2Go8aNgnrmvnSKILbaFnNdkwM7SaKMo0UGFNmm5zzQECr97v4buX3NKKa
+         yWrLvv8IfHV8+E3bDGC/ycIG7h77GNTYm3kKNS9ZadumNzswr5of0n5jwaHlgQZ5kXh8
+         ayL7pYVJe2a7kILIEE18h50cM2c7LmOdXocK7Eza0rEhpSwts4476a4NCKAgRCh143LF
+         nUNg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690203273; x=1690808073;
+        d=1e100.net; s=20221208; t=1690203307; x=1690808107;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=hkqiONv+dk+F5KKc54xuMKLW6iRoacOe1L/tucR0jDY=;
-        b=fs5I36P4A+JLGpf+9bHoGThukmJLEWxTGgoF10EZgJWIjS3yOfEppDjdSZBYDfgnA1
-         cUbAsYlVmdq8rm9QkRbsmimjDk97FDqNGVWloCiCua1+Ovf2r7ArBlAeUpwPpTSCM757
-         bGTYiHtOkGNxG+qVDdJX+olAU7vGWfWF1Ua3/ZCvFu1W7UTdwvmQClEVFQ2FKzo/kLAm
-         VZ55WAlReneWFfft7DP98ifPYQgKLhp2bMOBIReJXcDOi4tkwal6ZDGxEjWeVLf4hgsY
-         WbtEdMt5RuiWTQ79Yvfs36ySN4pEZsNGMGSfl1Q5PBRCRxvfpvHVT2z2pSEbvhHxERqf
-         eFIA==
-X-Gm-Message-State: ABy/qLaf/zGIxfWEXaY03pknTwpUuI23t6KpGNrGvgUoeqZW1mvDThEi
-        ePfmCDpow9pc99+uxc7reXRi/Efn4wv1+t+mZNVr1Q==
-X-Google-Smtp-Source: APBJJlE+gv3hwkcqasHqwmELN1Xjvi6FO/fjPnfzTTDYAzdwGMm1yUl4KTbtsgL+3Bt7239Wzw5keQ==
-X-Received: by 2002:a19:6506:0:b0:4f8:752f:df48 with SMTP id z6-20020a196506000000b004f8752fdf48mr5035634lfb.29.1690203272852;
-        Mon, 24 Jul 2023 05:54:32 -0700 (PDT)
+        bh=U+knMhAc9BN4MHY0osSYfy9WGScVxJZhfmgQ35b2tDs=;
+        b=lpwaCS9okVDWZufNGJadXLZl4k2Z4a+qO93NVT62S1Zr0I6GdmVeYjvkvhdTz1SWKc
+         m3+om6btjyGc+gepvWiY/+0/T/gyVcnrRjJB/P94QJXyb9r91qMR/SJin3d4CLhAsh29
+         yK8j+jq78Qpn7pRD64e/57OxWpLIFKRyH1KpJEPq7IbL06WczZfviN8+ompaZhmrESAq
+         aOnK0K8SSyUMxih1hgjPRESwDT6RfPYWYgjzqjjddEct+DcblcJwObR2kENrx6Tgp0qk
+         cnGsbeKlNK61fJhaQxWMGBmaxF3GbS+u4Z+887ENZ0sj5fn8v/b/OB6P6IEh3/R8Gfzq
+         qNcw==
+X-Gm-Message-State: ABy/qLbHeDKIa7IbM3uzS5Qvp4EW8Grdy0/7am5ZVajSn25HBSF7UP3g
+        dTnKhMAViUwoFSuDyutZjaFuyg==
+X-Google-Smtp-Source: APBJJlFX52/xcCTtWufZx3j2QwekAQgxDVxUDRjf0gBkJT6hotHMf0it+V/ltnajYS4gpefd+k9j6Q==
+X-Received: by 2002:a19:640f:0:b0:4f3:b242:aa98 with SMTP id y15-20020a19640f000000b004f3b242aa98mr2765511lfb.30.1690203307268;
+        Mon, 24 Jul 2023 05:55:07 -0700 (PDT)
 Received: from [192.168.1.101] (abxj221.neoplus.adsl.tpnet.pl. [83.9.3.221])
-        by smtp.gmail.com with ESMTPSA id m8-20020a195208000000b004fb86662871sm2166604lfb.233.2023.07.24.05.54.31
+        by smtp.gmail.com with ESMTPSA id m8-20020a195208000000b004fb86662871sm2166604lfb.233.2023.07.24.05.55.06
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 24 Jul 2023 05:54:32 -0700 (PDT)
-Message-ID: <b8c611c3-3216-8405-3407-6f0e3bb520d4@linaro.org>
-Date:   Mon, 24 Jul 2023 14:54:31 +0200
+        Mon, 24 Jul 2023 05:55:06 -0700 (PDT)
+Message-ID: <2a68b891-b855-1998-3eaf-a21473da0851@linaro.org>
+Date:   Mon, 24 Jul 2023 14:55:06 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH v5 6/6] soc: qcom: llcc: Add QDU1000 and QRU1000 LLCC
  support
 Content-Language: en-US
-To:     Komal Bajaj <quic_kbajaj@quicinc.com>, agross@kernel.org,
+To:     Mukesh Ojha <quic_mojha@quicinc.com>,
+        Komal Bajaj <quic_kbajaj@quicinc.com>, agross@kernel.org,
         andersson@kernel.org, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
         srinivas.kandagatla@linaro.org
@@ -64,6 +65,7 @@ Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 References: <20230724084155.8682-1-quic_kbajaj@quicinc.com>
  <20230724084155.8682-7-quic_kbajaj@quicinc.com>
+ <34868b94-abe3-aa67-fb76-35d9a2481cfd@quicinc.com>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -100,9 +102,9 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20230724084155.8682-7-quic_kbajaj@quicinc.com>
+In-Reply-To: <34868b94-abe3-aa67-fb76-35d9a2481cfd@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -113,29 +115,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24.07.2023 10:41, Komal Bajaj wrote:
-> Add LLCC configuration data for QDU1000 and QRU1000 SoCs.
+On 24.07.2023 14:45, Mukesh Ojha wrote:
 > 
-> Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
-> ---
->  drivers/soc/qcom/llcc-qcom.c | 67 ++++++++++++++++++++++++++++++++++++
->  1 file changed, 67 insertions(+)
 > 
-> diff --git a/drivers/soc/qcom/llcc-qcom.c b/drivers/soc/qcom/llcc-qcom.c
-> index 228ffb4a8971..95766260b3b8 100644
-> --- a/drivers/soc/qcom/llcc-qcom.c
-> +++ b/drivers/soc/qcom/llcc-qcom.c
-> @@ -364,6 +364,36 @@ static const struct llcc_slice_config sm8550_data[] =  {
->  	{LLCC_VIDVSP,   28,  256, 4, 1, 0xFFFFFF, 0x0,   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
->  };
->  
-> +static const struct llcc_slice_config qdu1000_data_2ch[] = {
-> +	{ LLCC_MDMHPGRW, 7, 512, 1, 1, 0xfff, 0x0, 0, 0, 0, 1, 0, 0, 0 },
-> +	{ LLCC_MODHW,    9, 256, 1, 1, 0xfff, 0x0, 0, 0, 0, 1, 0, 0, 0 },
-> +	{ LLCC_MDMPNG,  21, 256, 0, 1, 0x3,   0x0, 0, 0, 0, 1, 0, 0, 0 },
-> +	{ LLCC_ECC,     26, 512, 3, 1, 0xffc, 0x0, 0, 0, 0, 0, 1, 0, 0 },
-> +	{ LLCC_MODPE,   29, 256, 1, 1, 0xfff, 0x0, 0, 0, 0, 1, 0, 0, 0 },
-> +	{ LLCC_APTCM,   30, 256, 3, 1, 0x0,   0xC, 1, 0, 0, 1, 0, 0, 0 },
-Please use lowercase hex.
+> On 7/24/2023 2:11 PM, Komal Bajaj wrote:
+>> Add LLCC configuration data for QDU1000 and QRU1000 SoCs.
+>>
+>> Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
+>> ---
+[...]
+
+>>   static const struct qcom_sct_config sc7180_cfgs = {
+>>       .llcc_config    = sc7180_cfg,
+>>       .num_cfgs    = 1,
+>> @@ -611,6 +672,11 @@ static const struct qcom_sct_config sm8550_cfgs = {
+>>       .num_cfgs    = 1,
+>>   };
+>>   +static const struct qcom_sct_config qdu1000_cfgs = {
+>> +    .llcc_config    = qdu1000_cfg,
+>> +    .num_cfgs    = 1,
+> 
+> 
+> Should not this be 4 ?
+Even better, use ARRAY_SIZE(name_of_arr)
 
 Konrad
