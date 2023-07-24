@@ -2,75 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D27BE75F9AF
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 16:21:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C73A675F9E9
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 16:32:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230382AbjGXOVY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jul 2023 10:21:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48720 "EHLO
+        id S231245AbjGXOb6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jul 2023 10:31:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54808 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231460AbjGXOVX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 10:21:23 -0400
-Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com [IPv6:2607:f8b0:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDB28E59
-        for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 07:21:22 -0700 (PDT)
-Received: by mail-pl1-x62c.google.com with SMTP id d9443c01a7336-1b8b4748fe4so24339885ad.1
-        for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 07:21:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1690208482; x=1690813282;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=rDnREYRMUsFKwotu4+OZbUuiYKT956lIR1m4uTAXghk=;
-        b=BpMmpgZLigGNyFchrxOPOLlJlgmjs0MiG9pCQaVC5n/bE9lBJToYkJY/T81TALk0ln
-         48mdZU0OiESH7WEdkYAV5JUYdP5OsKBtYJtvK0+YK0qrV4rjmtFNnp+JYhO4m8vgUH3e
-         Lrcll9X8RLTuVsd2Sw4w1cRoDy9hleJmzkJMdyOt5PxkzvSPSWmSrBi1dKP1ncuPtfJ8
-         meOsSZn3jdDqpPM/mV937BTSlbfHElrnLzF0zPxLvGyL/N7AjvDsGGZ08LM4xLf6EF56
-         GofdbaIR79gbpbSSY7iHLkCxB2uH3tcOTwJK9hHaHx/EZrM900sLMp+lD779OXM8kIjY
-         8HZg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690208482; x=1690813282;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=rDnREYRMUsFKwotu4+OZbUuiYKT956lIR1m4uTAXghk=;
-        b=KQebZxW6FDAc7j8C/krnVpuTqgNCppbevB5RD0dbhyA2giaqRV3rhn5cJf40iOcIkf
-         hx7OKjx+gBzqzR8u46PBl9HQ3pgh1A4n34oWSmawCZl7ip+dMVS/xiBSnlrSIMHErW2X
-         LBYQxUlmNh4Ovmcy0HczpRXbLMcmwhHieps96MCKNDLlBl/G9j3HA9+SKQVO2LW1SrjD
-         aCfKrggxCm0ghvZuiG/eYbJdtgUKwNTGKK75RO0A+Vj/i35BGOXmdC4C/Z2/XIpVzxSg
-         msKKNhH7AWJUiCflQtwQ5Tps8aWlgLnqJmCXxMulpMsl8D98JwlsLFZqdxtr24ob/qnP
-         dP/A==
-X-Gm-Message-State: ABy/qLYFcedXlnyQ5mLtRVZoSqWjxOehhK5/JFuWiU1SbQa0WhjAB7x1
-        8INF8ExrZhXKz8EiX91NSDNGaw==
-X-Google-Smtp-Source: APBJJlFVpOfpewEUKvNfOOSKkZ45Iflti55y5wOh08p3XPPqcFtt1L3xleW+okCDUdPZ11RRLSxMDQ==
-X-Received: by 2002:a17:902:d489:b0:1b8:8069:d432 with SMTP id c9-20020a170902d48900b001b88069d432mr9288355plg.16.1690208482323;
-        Mon, 24 Jul 2023 07:21:22 -0700 (PDT)
-Received: from mchitale-vm.. ([103.97.165.210])
-        by smtp.googlemail.com with ESMTPSA id s10-20020a170902a50a00b001b8307c81c8sm9009821plq.121.2023.07.24.07.21.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 24 Jul 2023 07:21:22 -0700 (PDT)
-From:   Mayuresh Chitale <mchitale@ventanamicro.com>
-To:     Palmer Dabbelt <palmer@dabbelt.com>,
-        Anup Patel <anup@brainfault.org>
-Cc:     Mayuresh Chitale <mchitale@ventanamicro.com>,
-        Andrew Jones <ajones@ventanamicro.com>,
-        Atish Patra <atishp@atishpatra.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        linux-riscv@lists.infradead.org, kvm-riscv@lists.infradead.org,
-        Conor Dooley <conor@kernel.org>,
+        with ESMTP id S230223AbjGXOb4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 10:31:56 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42CDDA4;
+        Mon, 24 Jul 2023 07:31:55 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id CBDE6611AB;
+        Mon, 24 Jul 2023 14:31:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E419C433C8;
+        Mon, 24 Jul 2023 14:31:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1690209114;
+        bh=dksxXLhwSPe4BRdGB7wqMekFr7I5vTyPJlU/kSDu0ZE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=BuB5PeayfbKDQdYIOdkQ+l8yPS/3V7cliz69ztIy4uV4GUk12s1+he55o+Mgv7pT3
+         OiRCD6Xuqz+tg7z9bS9F3z4v4a+2uX/oIgIu9W7GkumIWtHQLJM+bf2+f+FJuaymGA
+         anIUtwF7K+UVaA2vlV8QnYF4cdypZQx13x7fpxc1HBuZNuXPHkF8bP+kacyo/Sy5A2
+         Gl/4ceGLKE7PBQ1rORZ7ELXUj+FapLowpiV86RFZ+hvmQxudrMK5r99Dk98Pajx311
+         ivFYuuCqmxzJ+Z6kWT8bM7ES0pkT8HAXkpwnIP4n9BzXOqb/TLQO4gME6jonIVn9dY
+         xDQTtIc7f7UIQ==
+Received: (nullmailer pid 3432565 invoked by uid 1000);
+        Mon, 24 Jul 2023 14:31:52 -0000
+Date:   Mon, 24 Jul 2023 08:31:52 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Luca Ceresoli <luca.ceresoli@bootlin.com>
+Cc:     Neil Armstrong <neil.armstrong@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH v3 7/7] RISCV: KVM: Add sstateen0 to ONE_REG
-Date:   Mon, 24 Jul 2023 19:50:33 +0530
-Message-Id: <20230724142033.306538-8-mchitale@ventanamicro.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230724142033.306538-1-mchitale@ventanamicro.com>
-References: <20230724142033.306538-1-mchitale@ventanamicro.com>
+        Conor Dooley <conor+dt@kernel.org>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+Subject: Re: [PATCH 2/3] dt-bindings: display: panel: Add panels based on
+ ILITEK ILI9806E
+Message-ID: <20230724143152.GA3430423-robh@kernel.org>
+References: <20230719152147.355486-1-luca.ceresoli@bootlin.com>
+ <20230719152147.355486-2-luca.ceresoli@bootlin.com>
+ <20230719190254.GA578754-robh@kernel.org>
+ <20230720155238.6fb8ac8c@booty>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230720155238.6fb8ac8c@booty>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -79,112 +68,98 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for sstateen0 CSR to the ONE_REG interface to allow its
-access from user space.
+On Thu, Jul 20, 2023 at 03:52:38PM +0200, Luca Ceresoli wrote:
+> Hello Rob,
+> 
+> thanks for reviewing.
+> 
+> On Wed, 19 Jul 2023 13:02:54 -0600
+> Rob Herring <robh@kernel.org> wrote:
+> 
+> > On Wed, Jul 19, 2023 at 05:21:46PM +0200, Luca Ceresoli wrote:
+> > > Add bindings for LCD panels based on the ILITEK ILI9806E RGB controller
+> > > connected over SPI and the "ShenZhen New Display Co NDS040480800-V3"
+> > > 480x800 panel based on it.
+> > > 
+> > > Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+> > > ---
+> > >  .../display/panel/ilitek,ili9806e.yaml        | 69 +++++++++++++++++++
+> > >  MAINTAINERS                                   |  6 ++
+> > >  2 files changed, 75 insertions(+)
+> > >  create mode 100644 Documentation/devicetree/bindings/display/panel/ilitek,ili9806e.yaml
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/display/panel/ilitek,ili9806e.yaml b/Documentation/devicetree/bindings/display/panel/ilitek,ili9806e.yaml
+> > > new file mode 100644
+> > > index 000000000000..42abc6923065
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/display/panel/ilitek,ili9806e.yaml
+> > > @@ -0,0 +1,69 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/display/panel/ilitek,ili9806e.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Ilitek ILI9806E display panels
+> > > +
+> > > +maintainers:
+> > > +  - Luca Ceresoli <luca.ceresoli@bootlin.com>
+> > > +
+> > > +description:
+> > > +  This binding is for display panels using an Ilitek ILI9806E controller in
+> > > +  SPI mode.
+> > > +
+> > > +allOf:
+> > > +  - $ref: panel-common.yaml#  
+> > 
+> > A SPI device should reference spi-peripheral-props.yaml as well.
+> > 
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    items:
+> > > +      - enum:
+> > > +          # ShenZhen New Display Co 3.97" 480x800 RGB a-SI TFT LCD
+> > > +          - newdisplay,nds040480800-v3
+> > > +      - const: ilitek,ili9806e
+> > > +
+> > > +  reg: true  
+> > 
+> > maxItems: 1
+> > 
+> > > +  spi-max-frequency: true
+> > > +  reset-gpios: true
+> > > +  backlight: true
+> > > +  port: true  
+> > 
+> > Drop all these and ...
+> > 
+> > > +
+> > > +required:
+> > > +  - compatible
+> > > +  - reg
+> > > +  - port
+> > > +
+> > > +additionalProperties: false  
+> > 
+> > ... use "unevaluatedProperties" instead.
+> > 
+> > > +
+> > > +examples:
+> > > +  - |
+> > > +    #include <dt-bindings/gpio/gpio.h>
+> > > +
+> > > +    backlight: backlight {
+> > > +        compatible = "gpio-backlight";
+> > > +        gpios = <&gpio 22 GPIO_ACTIVE_HIGH>;
+> > > +    };  
+> > 
+> > The exact backlight is outside the scope of this binding and should be 
+> > dropped from the example.
+> 
+> As this comes from copy-pasting from the bindings yaml for another
+> panel, would it be useful if I send a patch to remove it?
 
-Signed-off-by: Mayuresh Chitale <mchitale@ventanamicro.com>
-Reviewed-by: Andrew Jones <ajones@ventanamicro.com>
----
- arch/riscv/include/uapi/asm/kvm.h |  9 +++++++
- arch/riscv/kvm/vcpu.c             | 40 +++++++++++++++++++++++++++++++
- 2 files changed, 49 insertions(+)
+Yes.
 
-diff --git a/arch/riscv/include/uapi/asm/kvm.h b/arch/riscv/include/uapi/asm/kvm.h
-index 74c7f42de29d..bdddfb20299a 100644
---- a/arch/riscv/include/uapi/asm/kvm.h
-+++ b/arch/riscv/include/uapi/asm/kvm.h
-@@ -93,6 +93,11 @@ struct kvm_riscv_aia_csr {
- 	unsigned long iprio2h;
- };
- 
-+/* Smstateen CSR for KVM_GET_ONE_REG and KVM_SET_ONE_REG */
-+struct kvm_riscv_smstateen_csr {
-+	unsigned long sstateen0;
-+};
-+
- /* TIMER registers for KVM_GET_ONE_REG and KVM_SET_ONE_REG */
- struct kvm_riscv_timer {
- 	__u64 frequency;
-@@ -173,10 +178,14 @@ enum KVM_RISCV_SBI_EXT_ID {
- #define KVM_REG_RISCV_CSR		(0x03 << KVM_REG_RISCV_TYPE_SHIFT)
- #define KVM_REG_RISCV_CSR_GENERAL	(0x0 << KVM_REG_RISCV_SUBTYPE_SHIFT)
- #define KVM_REG_RISCV_CSR_AIA		(0x1 << KVM_REG_RISCV_SUBTYPE_SHIFT)
-+#define KVM_REG_RISCV_CSR_SMSTATEEN	(0x2 << KVM_REG_RISCV_SUBTYPE_SHIFT)
-+
- #define KVM_REG_RISCV_CSR_REG(name)	\
- 		(offsetof(struct kvm_riscv_csr, name) / sizeof(unsigned long))
- #define KVM_REG_RISCV_CSR_AIA_REG(name)	\
- 	(offsetof(struct kvm_riscv_aia_csr, name) / sizeof(unsigned long))
-+#define KVM_REG_RISCV_CSR_SMSTATEEN_REG(name)	\
-+	(offsetof(struct kvm_riscv_smstateen_csr, name) / sizeof(unsigned long))
- 
- /* Timer registers are mapped as type 4 */
- #define KVM_REG_RISCV_TIMER		(0x04 << KVM_REG_RISCV_TYPE_SHIFT)
-diff --git a/arch/riscv/kvm/vcpu.c b/arch/riscv/kvm/vcpu.c
-index 1f8e8b5f659b..630669513bd7 100644
---- a/arch/riscv/kvm/vcpu.c
-+++ b/arch/riscv/kvm/vcpu.c
-@@ -507,6 +507,34 @@ static int kvm_riscv_vcpu_general_get_csr(struct kvm_vcpu *vcpu,
- 	return 0;
- }
- 
-+static inline int kvm_riscv_vcpu_smstateen_set_csr(struct kvm_vcpu *vcpu,
-+						   unsigned long reg_num,
-+						   unsigned long reg_val)
-+{
-+	struct kvm_vcpu_smstateen_csr *csr = &vcpu->arch.smstateen_csr;
-+
-+	if (reg_num >= sizeof(struct kvm_riscv_smstateen_csr) /
-+	    sizeof(unsigned long))
-+		return -EINVAL;
-+
-+	((unsigned long *)csr)[reg_num] = reg_val;
-+	return 0;
-+}
-+
-+static int kvm_riscv_vcpu_smstateen_get_csr(struct kvm_vcpu *vcpu,
-+					    unsigned long reg_num,
-+					    unsigned long *out_val)
-+{
-+	struct kvm_vcpu_smstateen_csr *csr = &vcpu->arch.smstateen_csr;
-+
-+	if (reg_num >= sizeof(struct kvm_riscv_smstateen_csr) /
-+	    sizeof(unsigned long))
-+		return -EINVAL;
-+
-+	*out_val = ((unsigned long *)csr)[reg_num];
-+	return 0;
-+}
-+
- static inline int kvm_riscv_vcpu_general_set_csr(struct kvm_vcpu *vcpu,
- 						 unsigned long reg_num,
- 						 unsigned long reg_val)
-@@ -552,6 +580,12 @@ static int kvm_riscv_vcpu_get_reg_csr(struct kvm_vcpu *vcpu,
- 	case KVM_REG_RISCV_CSR_AIA:
- 		rc = kvm_riscv_vcpu_aia_get_csr(vcpu, reg_num, &reg_val);
- 		break;
-+	case KVM_REG_RISCV_CSR_SMSTATEEN:
-+		rc = -EINVAL;
-+		if (riscv_has_extension_unlikely(RISCV_ISA_EXT_SMSTATEEN))
-+			rc = kvm_riscv_vcpu_smstateen_get_csr(vcpu, reg_num,
-+							      &reg_val);
-+		break;
- 	default:
- 		rc = -EINVAL;
- 		break;
-@@ -591,6 +625,12 @@ static int kvm_riscv_vcpu_set_reg_csr(struct kvm_vcpu *vcpu,
- 	case KVM_REG_RISCV_CSR_AIA:
- 		rc = kvm_riscv_vcpu_aia_set_csr(vcpu, reg_num, reg_val);
- 		break;
-+	case KVM_REG_RISCV_CSR_SMSTATEEN:
-+		rc = -EINVAL;
-+		if (riscv_has_extension_unlikely(RISCV_ISA_EXT_SMSTATEEN))
-+			rc = kvm_riscv_vcpu_smstateen_set_csr(vcpu, reg_num,
-+							      reg_val);
-+		break;
- 	default:
- 		rc = -EINVAL;
- 		break;
--- 
-2.34.1
-
+Rob
