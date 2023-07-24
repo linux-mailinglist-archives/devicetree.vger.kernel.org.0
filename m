@@ -2,69 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B34BE7602DF
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 01:00:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F2A17602ED
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 01:03:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229677AbjGXXA3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jul 2023 19:00:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35132 "EHLO
+        id S229974AbjGXXD3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jul 2023 19:03:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36546 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229596AbjGXXA2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 19:00:28 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2D6C115;
-        Mon, 24 Jul 2023 16:00:27 -0700 (PDT)
+        with ESMTP id S229625AbjGXXD3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 19:03:29 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6A85EA;
+        Mon, 24 Jul 2023 16:03:27 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 319E461465;
-        Mon, 24 Jul 2023 23:00:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A68B1C433C7;
-        Mon, 24 Jul 2023 23:00:25 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 60C6D6145A;
+        Mon, 24 Jul 2023 23:03:27 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CAE69C433C7;
+        Mon, 24 Jul 2023 23:03:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690239626;
-        bh=0gLqL+skDZyctyEo4XytA7Z78FygL1xuVREEMkFKdSI=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=V9ZMTQWTDr69DqPhmCHg0Q5D5JNpks3fKkPvZjBfR72bXRLolOpcqpds0YGO+c8uC
-         L94c8N1csZFQGlQs06lg18PenCAvfJo794gW/uD4cBTdOGztzI4sKdN3hDFdkKVHhE
-         4M73DHrhwMOQepwfymJNAgO2SwaRy3SzYfnXmpj9MJUcDJ1ojX9pymGwoO7ed3oKN1
-         gSxENlM/QD3BPsHlAdNnv/brc+GyrKiAFcEOC5Ga8ReThNgJ/ZTDo5r7WDT8crlEeO
-         R+Gp9QYD0VlPXaLn6ruSxCe7D/cSGophyzs8wCDKe+0RkGThw4VX74tXurmLJO7Cky
-         cxWe4qzjMlo0Q==
-Date:   Mon, 24 Jul 2023 16:00:24 -0700
-From:   Jakub Kicinski <kuba@kernel.org>
-To:     Daniel Golle <daniel@makrotopia.org>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        s=k20201202; t=1690239806;
+        bh=HdXCBkJC6y8xmaikj3v3JuRSAllSb+fugmrt05+9R+8=;
+        h=From:To:Cc:Subject:Date:From;
+        b=tP4SLIjxJM84HZM8PVsNB6zuSpHeExq9O/E/+5sE5BAPATPnujMXngLls2F16qiL/
+         +GXpgss+DgrCRuMCQj1kWxFy8kEe3YbgDVd2iTSjbvg6StfMzeZFG5VCt0rtJMV/p1
+         KFGDE3zJqKs5/EMbmH6TJeU0ZqelZ01e5YD0r83VnWfsJW9240mOJZT8bCJGpiYaXK
+         IV9w5CdCu1sNAZNmsvfndWz9n7C0D53TU7BbMjOKyGi/suyQtkZhKfHj4R8loDD3Wa
+         IMNkPkAO0+grfC4sKzKR1edV4IPe3VnxuwlVAgx1Qr5d4AovDK3CZYWe8pJmOdH4AG
+         Dr5R7vokMWIDg==
+Received: (nullmailer pid 1018011 invoked by uid 1000);
+        Mon, 24 Jul 2023 23:03:24 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Felix Fietkau <nbd@nbd.name>, John Crispin <john@phrozen.org>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Mark Lee <Mark-MC.Lee@mediatek.com>,
-        Lorenzo Bianconi <lorenzo@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Russell King <linux@armlinux.org.uk>,
-        =?UTF-8?B?QmrDuHJu?= Mork <bjorn@mork.no>,
-        Greg Ungerer <gerg@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH net-next v5 0/9] net: ethernet: mtk_eth_soc: add basic
- support for MT7988 SoC
-Message-ID: <20230724160024.427b2bef@kernel.org>
-In-Reply-To: <cover.1690148927.git.daniel@makrotopia.org>
-References: <cover.1690148927.git.daniel@makrotopia.org>
+        Iskren Chernev <me@iskren.info>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2] dt-bindings: leds: Convert Panasonic AN30259A to DT schema
+Date:   Mon, 24 Jul 2023 17:02:58 -0600
+Message-Id: <20230724230258.1017258-1-robh@kernel.org>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -73,29 +58,172 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 23 Jul 2023 22:57:08 +0100 Daniel Golle wrote:
-> The series should not conflict with Russell's recently submitted series
-> "Remove legacy phylink behaviour", hence the order of them being
-> picked into net-next doesn't matter.
+Convert the Panasonic AN30259A 3-channel LED controller binding to DT
+schema format.
 
-Not sure what the exact conflict is, but:
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+v2:
+ - Update maintainer
 
-Failed to apply patch:
-Applying: dt-bindings: net: mediatek,net: add missing mediatek,mt7621-eth
-Applying: dt-bindings: net: mediatek,net: add mt7988-eth binding
-Applying: net: ethernet: mtk_eth_soc: add version in mtk_soc_data
-Applying: net: ethernet: mtk_eth_soc: increase MAX_DEVS to 3
-Applying: net: ethernet: mtk_eth_soc: rely on MTK_MAX_DEVS and remove MTK_MAC_COUNT
-Applying: net: ethernet: mtk_eth_soc: add NETSYS_V3 version support
-Applying: net: ethernet: mtk_eth_soc: convert caps in mtk_soc_data struct to u64
-Applying: net: ethernet: mtk_eth_soc: convert clock bitmap to u64
-Applying: net: ethernet: mtk_eth_soc: add basic support for MT7988 SoC
-error: sha1 information is lacking or useless (drivers/net/ethernet/mediatek/mtk_eth_soc.c).
-error: could not build fake ancestor
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Patch failed at 0009 net: ethernet: mtk_eth_soc: add basic support for MT7988 SoC
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
+ .../bindings/leds/leds-an30259a.txt           | 55 ------------
+ .../bindings/leds/panasonic,an30259a.yaml     | 84 +++++++++++++++++++
+ 2 files changed, 84 insertions(+), 55 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/leds/leds-an30259a.txt
+ create mode 100644 Documentation/devicetree/bindings/leds/panasonic,an30259a.yaml
+
+diff --git a/Documentation/devicetree/bindings/leds/leds-an30259a.txt b/Documentation/devicetree/bindings/leds/leds-an30259a.txt
+deleted file mode 100644
+index cbd833906b2b..000000000000
+--- a/Documentation/devicetree/bindings/leds/leds-an30259a.txt
++++ /dev/null
+@@ -1,55 +0,0 @@
+-* Panasonic AN30259A 3-channel LED driver
+-
+-The AN30259A is a LED controller capable of driving three LEDs independently. It supports
+-constant current output and sloping current output modes. The chip is connected over I2C.
+-
+-Required properties:
+-	- compatible: Must be "panasonic,an30259a".
+-	- reg: I2C slave address.
+-	- #address-cells: Must be 1.
+-	- #size-cells: Must be 0.
+-
+-Each LED is represented as a sub-node of the panasonic,an30259a node.
+-
+-Required sub-node properties:
+-	- reg: Pin that the LED is connected to. Must be 1, 2, or 3.
+-
+-Optional sub-node properties:
+-	- function :
+-		see Documentation/devicetree/bindings/leds/common.txt
+-	- color :
+-		see Documentation/devicetree/bindings/leds/common.txt
+-	- label :
+-		see Documentation/devicetree/bindings/leds/common.txt (deprecated)
+-	- linux,default-trigger :
+-		see Documentation/devicetree/bindings/leds/common.txt
+-
+-Example:
+-
+-#include <dt-bindings/leds/common.h>
+-
+-led-controller@30 {
+-	compatible = "panasonic,an30259a";
+-	reg = <0x30>;
+-	#address-cells = <1>;
+-	#size-cells = <0>;
+-
+-	led@1 {
+-		reg = <1>;
+-		linux,default-trigger = "heartbeat";
+-		function = LED_FUNCTION_INDICATOR;
+-		color = <LED_COLOR_ID_RED>;
+-	};
+-
+-	led@2 {
+-		reg = <2>;
+-		function = LED_FUNCTION_INDICATOR;
+-		color = <LED_COLOR_ID_GREEN>;
+-	};
+-
+-	led@3 {
+-		reg = <3>;
+-		function = LED_FUNCTION_INDICATOR;
+-		color = <LED_COLOR_ID_BLUE>;
+-	};
+-};
+diff --git a/Documentation/devicetree/bindings/leds/panasonic,an30259a.yaml b/Documentation/devicetree/bindings/leds/panasonic,an30259a.yaml
+new file mode 100644
+index 000000000000..e918dceea082
+--- /dev/null
++++ b/Documentation/devicetree/bindings/leds/panasonic,an30259a.yaml
+@@ -0,0 +1,84 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/leds/panasonic,an30259a.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Panasonic AN30259A 3-channel LED controller
++
++maintainers:
++  - Iskren Chernev <me@iskren.info>
++
++description:
++  The AN30259A is a LED controller capable of driving three LEDs independently.
++  It supports constant current output and sloping current output modes. The chip
++  is connected over I2C.
++
++properties:
++  compatible:
++    const: panasonic,an30259a
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  "#address-cells":
++    const: 1
++
++  "#size-cells":
++    const: 0
++
++patternProperties:
++  "^led@[1-3]$":
++    $ref: common.yaml#
++    unevaluatedProperties: false
++
++    properties:
++      reg:
++        enum: [ 1, 2, 3 ]
++
++required:
++  - compatible
++  - reg
++  - "#address-cells"
++  - "#size-cells"
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/leds/common.h>
++
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        led-controller@30 {
++            compatible = "panasonic,an30259a";
++            reg = <0x30>;
++            #address-cells = <1>;
++            #size-cells = <0>;
++
++            led@1 {
++                reg = <1>;
++                linux,default-trigger = "heartbeat";
++                function = LED_FUNCTION_INDICATOR;
++                color = <LED_COLOR_ID_RED>;
++            };
++
++            led@2 {
++                reg = <2>;
++                function = LED_FUNCTION_INDICATOR;
++                color = <LED_COLOR_ID_GREEN>;
++            };
++
++            led@3 {
++                reg = <3>;
++                function = LED_FUNCTION_INDICATOR;
++                color = <LED_COLOR_ID_BLUE>;
++            };
++        };
++    };
++...
 -- 
-pw-bot: cr
+2.40.1
+
