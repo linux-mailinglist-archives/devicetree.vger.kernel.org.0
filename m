@@ -2,159 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D419E75F3A5
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 12:41:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B3A075F3B0
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 12:44:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232040AbjGXKlY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jul 2023 06:41:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40444 "EHLO
+        id S232220AbjGXKoW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jul 2023 06:44:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42146 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232064AbjGXKlU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 06:41:20 -0400
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2989107;
-        Mon, 24 Jul 2023 03:41:15 -0700 (PDT)
+        with ESMTP id S232171AbjGXKoV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 06:44:21 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA5B0DD
+        for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 03:44:18 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id 2adb3069b0e04-4fa48b5dc2eso6178186e87.1
+        for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 03:44:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1690195276; x=1721731276;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=OURxuQskE7K3r2Yh/wCDQ09pFOr0qamiXk2zVI9QFoQ=;
-  b=S8do5/17YTjmzMI5OMFw/wYcKh51F5lrBHwRUGDmvSYOI21Qj9sgPVkx
-   a5AyE1mROFG3+HGOelIal5OPG2h6LfNSjdr1Rud1McAhAYJLu58uSzE9y
-   RXh5glyy84SC8VsmTBUdHM0J3iNqg7Ht53JJQ038cui6k4fPdsUwXW2vR
-   7cow2AobvHHTUGq44kQitfIDE8D9IJL2QZFMK5XMMyjlb1+cID9ytR+VP
-   y+EbKZTpLjYq1dkbweN9FH1fXNVMMeb6zn0wdBGxRn3e/7+VZ0vEOqqPR
-   mniWIMLWViExyJnymy+230jUw0mdPJVMzy4K+vMGnAUlwAcrg5yrKzMPc
-   Q==;
-X-IronPort-AV: E=Sophos;i="6.01,228,1684792800"; 
-   d="scan'208";a="32078528"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 24 Jul 2023 12:41:09 +0200
-Received: from localhost.localdomain (SCHIFFERM-M2.tq-net.de [10.121.49.20])
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPA id E1D1328008A;
-        Mon, 24 Jul 2023 12:41:08 +0200 (CEST)
-From:   Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux@ew.tq-group.com,
-        Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
-Subject: [PATCH v2 3/3] arm64: dts: ti: k3-am64-tqma64xxl-mbax4xxl: add SD-card and WLAN overlays
-Date:   Mon, 24 Jul 2023 12:40:50 +0200
-Message-Id: <adacb622f5cf026775c988cdedb812d23152b3c8.1690195151.git.matthias.schiffer@ew.tq-group.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <867f55a4ac865b979fa58a8828e0d0cade619843.1690195151.git.matthias.schiffer@ew.tq-group.com>
-References: <867f55a4ac865b979fa58a8828e0d0cade619843.1690195151.git.matthias.schiffer@ew.tq-group.com>
+        d=linaro.org; s=google; t=1690195457; x=1690800257;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=BBI9kM5NnGdYn3nIC1ZBkTtviA4H3pLeU5dB7m6uf+g=;
+        b=JnPWYhSC4MPaMfPt85IQQAx/UOfIv4PMdpx1qNFUd6csIjn9rgeV0BX7HQhbyyLkT2
+         GWsIdxMw3EQwA570Mkclmm8rD9dzHMZZ87zT5UtLFr49J2XcI4okl4cYK9SFNkGahPsg
+         G0gLDzJBKlGaZu2lLEucdE3JUVG2DxLq2hu9v680oR5Hy2SUB5jHgxumvAZw7WROR89A
+         HpmE/QhE6wW0QHC3D9Km1l8/7Xv3lOvEYmuN8sN+qwUAc78f3iPIruzkcI57MOyB9X/O
+         WVQCwVOvu39vd6Lx5b6wtMJviasBmCVyroiEhjwfCXtsfimi0x0FiP+hmdg4ORYFA/oM
+         N6GQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690195457; x=1690800257;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=BBI9kM5NnGdYn3nIC1ZBkTtviA4H3pLeU5dB7m6uf+g=;
+        b=QljixmGyviuv8+qbafJhMjiZYvdQOuq6JVQv8qmusGvYX7UNI7+4Hw61frPRuVe6fb
+         lw8/rUBkLwEI+gF+hvEx2/O+Mg52/3rR31bC9aeLAmJtcPUu/G1BqJdxsspUU92wirIj
+         u5cWOInVjLoTY9iPQ/yUy0H5hzAMzwS2plNCndUt0CGtiHCfBjZV2yTmyPMt4Pjx9kNt
+         ulCwVc3yVM45LpFUKObsVDYW0ZQTz/mDeFXdYWq4i0O8CP+eBibz4uI+wsdhhh4OZ4dF
+         EE57T1FREswnEMrFd+gnt8z/+UTt36Rgk8p1OMnLW72oia6QdHHhcIXVS2N1vxe3SYOo
+         D+Mg==
+X-Gm-Message-State: ABy/qLbEj4MsExFvvn/0azgdJT+y11+tlyGxw152uXhUye+j+MnLBzKf
+        NJP7MO/BOIFTdRgEQsUKZ+GXSg==
+X-Google-Smtp-Source: APBJJlGH0BFLTMfOfJFp6DXr/KIrJISsrZB2/U65xfegxRJbSLfokCGQZDPk/t0kXSJZC9iYEG/n0A==
+X-Received: by 2002:a19:ca5a:0:b0:4fd:d862:72a6 with SMTP id h26-20020a19ca5a000000b004fdd86272a6mr4558720lfj.53.1690195457091;
+        Mon, 24 Jul 2023 03:44:17 -0700 (PDT)
+Received: from ?IPV6:2001:14ba:a0db:1f00::8a5? (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
+        by smtp.gmail.com with ESMTPSA id r8-20020a19ac48000000b004fdf4053786sm780255lfc.240.2023.07.24.03.44.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 24 Jul 2023 03:44:16 -0700 (PDT)
+Message-ID: <f3aaee16-edfd-6b2e-6c47-de48ec572609@linaro.org>
+Date:   Mon, 24 Jul 2023 13:44:15 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH 0/5] arm64: dts: qcom: qrb5165-rb5: enable DP support
+Content-Language: en-GB
+To:     Bjorn Andersson <andersson@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org
+References: <20230709041926.4052245-1-dmitry.baryshkov@linaro.org>
+ <yjr3i54z4ddifn7y6ls65h65su54xtuzx3gvibw6ld4x27fd7x@ganmrdp4vzx7>
+ <0075783f-9166-89aa-a9f9-068494e468e3@linaro.org>
+ <vo7boshin545hx27ov3rrkhbglkf42f7yl5r5geltqyqw3lmol@icdicnqvrvrx>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <vo7boshin545hx27ov3rrkhbglkf42f7yl5r5geltqyqw3lmol@icdicnqvrvrx>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-As the SD-card and WLAN are connected to the same SDHC interface (with a
-GPIO-controlled mux), they are mutually exclusive. Provide Device Tree
-overlays for both configurations.
+On 22/07/2023 05:49, Bjorn Andersson wrote:
+> On Tue, Jul 18, 2023 at 09:09:41AM +0300, Dmitry Baryshkov wrote:
+>> On 18/07/2023 07:37, Bjorn Andersson wrote:
+>>> On Sun, Jul 09, 2023 at 07:19:21AM +0300, Dmitry Baryshkov wrote:
+>>>> Implement DisplayPort support for the Qualcomm RB5 platform.
+>>>>
+>>>> Note: while testing this, I had link training issues with several
+>>>> dongles with DP connectors. Other DisplayPort-USB-C dongles (with HDMI
+>>>> or VGA connectors) work perfectly.
+>>>>
+>>>> Dependencies: [1]
+>>>> Soft-dependencies: [2], [3]
+>>>>
+>>>> [1] https://lore.kernel.org/linux-arm-msm/20230515133643.3621656-1-bryan.odonoghue@linaro.org/
+>>>
+>>> I'm not able to find a version of this series ready to be merged, can
+>>> you please help me find it?
+>>
+>> This = Bryan's? I have posted some (small) feedback regarding v8. You also
+>> had issues with orientation switching bindings, etc. So there should be v9.
+>>
+> 
+> Right, Bryan's series. You linked to v8 which has requests for changes,
+> and I can't find v9. Am I just bad at searching?
+> 
 
-Signed-off-by: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
----
+I think v9 has never been sent.
 
-v2: no changes
-
- arch/arm64/boot/dts/ti/Makefile               |  8 +++++++
- .../ti/k3-am64-tqma64xxl-mbax4xxl-sdcard.dtso | 22 +++++++++++++++++++
- .../ti/k3-am64-tqma64xxl-mbax4xxl-wlan.dtso   | 22 +++++++++++++++++++
- 3 files changed, 52 insertions(+)
- create mode 100644 arch/arm64/boot/dts/ti/k3-am64-tqma64xxl-mbax4xxl-sdcard.dtso
- create mode 100644 arch/arm64/boot/dts/ti/k3-am64-tqma64xxl-mbax4xxl-wlan.dtso
-
-diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-index 7dbd8a9c02225..24ea0e78dd3b9 100644
---- a/arch/arm64/boot/dts/ti/Makefile
-+++ b/arch/arm64/boot/dts/ti/Makefile
-@@ -29,6 +29,14 @@ dtb-$(CONFIG_ARCH_K3) += k3-am642-phyboard-electra-rdk.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am642-sk.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am642-tqma64xxl-mbax4xxl.dtb
- 
-+k3-am642-tqma64xxl-mbax4xxl-sdcard-dtbs := \
-+	k3-am642-tqma64xxl-mbax4xxl.dtb k3-am64-tqma64xxl-mbax4xxl-sdcard.dtbo
-+k3-am642-tqma64xxl-mbax4xxl-wlan-dtbs := \
-+	k3-am642-tqma64xxl-mbax4xxl.dtb k3-am64-tqma64xxl-mbax4xxl-wlan.dtbo
-+
-+dtb-$(CONFIG_ARCH_K3) += k3-am642-tqma64xxl-mbax4xxl-sdcard.dtb
-+dtb-$(CONFIG_ARCH_K3) += k3-am642-tqma64xxl-mbax4xxl-wlan.dtb
-+
- # Boards with AM65x SoC
- k3-am654-gp-evm-dtbs := k3-am654-base-board.dtb k3-am654-base-board-rocktech-rk101-panel.dtbo
- dtb-$(CONFIG_ARCH_K3) += k3-am6528-iot2050-basic.dtb
-diff --git a/arch/arm64/boot/dts/ti/k3-am64-tqma64xxl-mbax4xxl-sdcard.dtso b/arch/arm64/boot/dts/ti/k3-am64-tqma64xxl-mbax4xxl-sdcard.dtso
-new file mode 100644
-index 0000000000000..79ed19c6c0e90
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-am64-tqma64xxl-mbax4xxl-sdcard.dtso
-@@ -0,0 +1,22 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (c) 2022-2023 TQ-Systems GmbH <linux@ew.tq-group.com>, D-82229 Seefeld, Germany.
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+&sdhci1 {
-+	vmmc-supply = <&reg_sd>;
-+	no-sdio;
-+	status = "okay";
-+};
-+
-+&main_gpio0 {
-+	line43-hog {
-+		gpio-hog;
-+		gpios = <43 0>;
-+		line-name = "MMC1_CTRL";
-+		output-low;
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/ti/k3-am64-tqma64xxl-mbax4xxl-wlan.dtso b/arch/arm64/boot/dts/ti/k3-am64-tqma64xxl-mbax4xxl-wlan.dtso
-new file mode 100644
-index 0000000000000..32596a84b7ba1
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-am64-tqma64xxl-mbax4xxl-wlan.dtso
-@@ -0,0 +1,22 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (c) 2022-2023 TQ-Systems GmbH <linux@ew.tq-group.com>, D-82229 Seefeld, Germany.
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+&sdhci1 {
-+	mmc-pwrseq = <&wifi_pwrseq>;
-+	no-sd;
-+	status = "okay";
-+};
-+
-+&main_gpio0 {
-+	line43-hog {
-+		gpio-hog;
-+		gpios = <43 0>;
-+		line-name = "MMC1_CTRL";
-+		output-high;
-+	};
-+};
 -- 
-TQ-Systems GmbH | Mühlstraße 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht München, HRB 105018
-Geschäftsführer: Detlef Schneider, Rüdiger Stahl, Stefan Schneider
-https://www.tq-group.com/
+With best wishes
+Dmitry
 
