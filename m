@@ -2,53 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CBD5075FDCD
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 19:33:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 852BC75FDE2
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 19:36:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229756AbjGXRdt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jul 2023 13:33:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39654 "EHLO
+        id S230340AbjGXRgm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jul 2023 13:36:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41494 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229567AbjGXRds (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 13:33:48 -0400
+        with ESMTP id S230159AbjGXRgl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 13:36:41 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 843C9188;
-        Mon, 24 Jul 2023 10:33:47 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8630D98;
+        Mon, 24 Jul 2023 10:36:40 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 025C6612EE;
-        Mon, 24 Jul 2023 17:33:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EAB20C433C8;
-        Mon, 24 Jul 2023 17:33:43 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 1B4CA61290;
+        Mon, 24 Jul 2023 17:36:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6DD88C433C7;
+        Mon, 24 Jul 2023 17:36:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690220026;
-        bh=C1kIKtLvD2fSSuDBUdV4Cvt/EP+eROsYIbuJMlryYOI=;
+        s=k20201202; t=1690220199;
+        bh=wfpRK3iqU2vDNIEW0PQwmrw2Jp5S1c6RnHqkDJom1Ew=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=FG+W6428sBf3W01KAkqIHUbc3/Yd86j+flK1Wp5sBRGtLSvPu28CefvMEXFfQC9pX
-         TvAKx1TGhyecq/RNkiSEIdn5wPic4kTBQvaiRL6dGPfe4fHJT2mqm26gEbUX1IfqxB
-         4wRD0qCxmYN58aZhTvHAju6H0LpQgRMxZrwqMmgdlJQIsmzqJm0ow2AvZ77GCG5CFx
-         8n0gyBkWEKOmwgZ7Wsq1hX0+9eQo+RKw9aXBnCnhCcKUASoyt+SK6JmGR+7vg2FCOT
-         rciF2US5mfBIANhCxd8KvVfIBOLTEbn2vNEL5z8GmiZHGGw1/am7rDXPwbWj7b0LCR
-         Q6oAhmCig3nCQ==
-Date:   Mon, 24 Jul 2023 18:33:41 +0100
+        b=Z1rzgNwRtzvQW44fcg+df3m1ltuUiQQvjTUO2Fqx9mZLulXrshPjMPxCu7zcphCNL
+         x27RWih7M3Nt0aNaaKbEr+v1ZZallVuboUXYIf0jgalUtjpSKOFqzVBTjHAn4WEq54
+         PUL6qi/tXrU1G8e/Xij0rjcJ4bJGOHOERnuaQYIMeQ+yztnnRYr/CMxKrC7GobuMxw
+         waq+Or+2u/4EfivG4PcbutSzyiP2Am41nVKn9UOyYCO0dNrFl/9vx2j7M5JoQNTqWs
+         y/6as2wBdgK+bY5rIvG3mdgWY9ge2GgaJG5VysseSnUACkNJ0S4aCbmjd0pWC0YxIc
+         vXtHbQmPMlFQA==
+Date:   Mon, 24 Jul 2023 18:36:34 +0100
 From:   Conor Dooley <conor@kernel.org>
-To:     nick.hawkins@hpe.com
-Cc:     verdun@hpe.com, davem@davemloft.net, edumazet@google.com,
-        kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 1/5] dt-bindings: net: Add HPE GXP UMAC MDIO
-Message-ID: <20230724-tragedy-mute-3d165bf7fdf6@spud>
-References: <20230721212044.59666-1-nick.hawkins@hpe.com>
- <20230721212044.59666-2-nick.hawkins@hpe.com>
+To:     Drew Fustini <dfustini@baylibre.com>
+Cc:     Jisheng Zhang <jszhang@kernel.org>, Guo Ren <guoren@kernel.org>,
+        Fu Wei <wefu@redhat.com>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Robert Nelson <robertcnelson@beagleboard.org>,
+        Jason Kridner <jkridner@beagleboard.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v2 0/3] riscv: Add BeagleV Ahead board support
+Message-ID: <20230724-unwatched-left-f38189206b0d@spud>
+References: <20230722-upstream-beaglev-ahead-dts-v2-0-a470ab8fe806@baylibre.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="D31npTHFewmiLuNr"
+        protocol="application/pgp-signature"; boundary="D9uVPocj5ZxF/vpH"
 Content-Disposition: inline
-In-Reply-To: <20230721212044.59666-2-nick.hawkins@hpe.com>
+In-Reply-To: <20230722-upstream-beaglev-ahead-dts-v2-0-a470ab8fe806@baylibre.com>
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -60,110 +66,38 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---D31npTHFewmiLuNr
+--D9uVPocj5ZxF/vpH
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Jul 21, 2023 at 04:20:40PM -0500, nick.hawkins@hpe.com wrote:
-> From: Nick Hawkins <nick.hawkins@hpe.com>
+On Mon, Jul 24, 2023 at 10:20:37AM -0700, Drew Fustini wrote:
+> The BeagleV Ahead single board computer [1] features the T-Head TH1520
+> SoC. Similar to the Lichee Pi 4A series from Jisheng [2], this adds a
+> minimal device tree file to support booting to a basic shell [3].
 >=20
-> Provide access to the register regions and interrupt for Universal
-> MAC(UMAC). The driver under the hpe,gxp-umac-mdio will provide an
-> interface for managing both the internal and external PHYs.
->=20
-> Signed-off-by: Nick Hawkins <nick.hawkins@hpe.com>
-> ---
->  .../bindings/net/hpe,gxp-umac-mdio.yaml       | 51 +++++++++++++++++++
->  1 file changed, 51 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/hpe,gxp-umac-md=
-io.yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/net/hpe,gxp-umac-mdio.yaml=
- b/Documentation/devicetree/bindings/net/hpe,gxp-umac-mdio.yaml
-> new file mode 100644
-> index 000000000000..bb0db1bb67b1
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/hpe,gxp-umac-mdio.yaml
-> @@ -0,0 +1,51 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/net/hpe,gxp-umac-mdio.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: HPE GXP UMAC MDIO Controller
-> +
-> +maintainers:
-> +  - Nicholas Hawkins <nick.hawkins@hpe.com>
-> +
-> +description: |+
+> Changes since v1:
 
-You've got no formatting to preserve, so even | on its own would be
-wasted here.
+> - Add dual license to dts file as Conor noted this is typical
 
-> +  The HPE GXP Unversal MAC (UMAC) MDIO controller provides a configurati=
-on
-> +  path for both external PHY's and SERDES connected PHY's.
-> +
-> +allOf:
-> +  - $ref: mdio.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: hpe,gxp-umac-mdio
-> +
-> +  reg:
-> +    maxItems: 1
+I figure the dual licensing of the dtsi & sipeed board will be done
+separately?
 
-> +    description: The register range of the MDIO controller instance
-
-This is a statement of the obvious, no?
-
-Otherwise, looks okay to me.
+What's here is=20
 Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
 Thanks,
 Conor.
 
-> +  resets:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - "#address-cells"
-> +  - "#size-cells"
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    mdio0: mdio@4080 {
-> +      compatible =3D "hpe,gxp-umac-mdio";
-> +      reg =3D <0x4080 0x10>;
-> +      #address-cells =3D <1>;
-> +      #size-cells =3D <0>;
-> +
-> +      ethphy0: ethernet-phy@0 {
-> +        compatible =3D "ethernet-phy-ieee802.3-c22";
-> +        phy-mode =3D "sgmii";
-> +        reg =3D <0>;
-> +      };
-> +    };
-> --=20
-> 2.17.1
->=20
-
---D31npTHFewmiLuNr
+--D9uVPocj5ZxF/vpH
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZL619QAKCRB4tDGHoIJi
-0kGcAPwLhCiqKYUlAkeinOfunOtHjod1LqGxUusqBN+4m3xU3QEA0tG96pn7achg
-Hldzm760/YP66jfNd/ze33o5h9E4awE=
-=aG+M
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZL62ogAKCRB4tDGHoIJi
+0nJOAQD+jtDm9BjBEfTrhb0bd1bzMuFVIVMn22jD5gqDQhxVhgD9HONE83smPhGU
+5cINM7em1QnEtx+OWctkUf+pnj/FkAw=
+=rYTt
 -----END PGP SIGNATURE-----
 
---D31npTHFewmiLuNr--
+--D9uVPocj5ZxF/vpH--
