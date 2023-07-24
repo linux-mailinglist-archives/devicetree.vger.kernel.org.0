@@ -2,59 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B7E60760238
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 00:24:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A21CB76024D
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 00:31:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230070AbjGXWYe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jul 2023 18:24:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52184 "EHLO
+        id S229485AbjGXWb2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jul 2023 18:31:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53756 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229479AbjGXWYe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 18:24:34 -0400
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB15710CB;
-        Mon, 24 Jul 2023 15:24:32 -0700 (PDT)
-Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 6E83F8680B;
-        Tue, 25 Jul 2023 00:24:30 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1690237471;
-        bh=NjHjTUmq5vcknHwE6RJuA0VOFaQl8AWtuqdOfy4SpoQ=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=qJZ2TWOddZliK9Ima3ux01wk19LX8+W4gr6dqOTjE1YTad/rxAcRJ0G39npkCWHFq
-         K0k03RV4nZvECjjwt/EQiQDEE7d9RdBnkXE0IeDX3qW9r0HLYjLYbCehw2h7DfKP2v
-         B+XruLfCWWkcXSqk2NKIXTJ7JtyHClqA5PwCLSkrLryIlmJX9Fj71SAZ+gib0D6knV
-         BZ7gTmpUTKhVwOWOeM73G7BlKIGILHA8uoKrneY4z8royccRACsWxEzNDEy+K4pd3X
-         G38a7StikwpL1VssvsrWX+DwTMreluiYcpFuab0e7wV9KK9P5K26XscjlEkkx/j6eZ
-         td16mbdYYKlHA==
-From:   Marek Vasut <marex@denx.de>
-To:     linux-remoteproc@vger.kernel.org
-Cc:     Marek Vasut <marex@denx.de>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
+        with ESMTP id S230251AbjGXWb2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 18:31:28 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 335BD10E3;
+        Mon, 24 Jul 2023 15:31:26 -0700 (PDT)
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36OMIQEw029962;
+        Mon, 24 Jul 2023 22:31:16 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=qcppdkim1;
+ bh=tgztBj0/mJz03MJdJCZ9JHhqYfeG+XgYMvyAdd3/QYQ=;
+ b=Jolm/4Pto6H89NYXkiAY7sBP8McF6X5D9RAED5RaPWKCwo+tYb5IKqLr+XFMNtMTImxU
+ v3qJM0Wh54TbYkdZE8XdI0IFNy7zGmbi2xxz0Fkih90YqWfSTBD66xncYYTU/9W88nWU
+ 3EjL7oCmuaX9XvuP2ie1MBnWiKm75Z38e+jerYhu4f9+1COlGo6bVR9x+HpZheZVX8yb
+ Pp9ERQ2abZHJ99Vg6l3lXEt2k/tcekPjt//TXmDv/t72w1TcXj2pRGlT6V7O3tCMqDVG
+ IhMecU7/iAWvixQcBzOgqDMjom+vBHQXPtE7JAnQuaj1IrU+ZnUsJnfWTuyYS0yzgCaq mQ== 
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3s1v6u8w4c-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 24 Jul 2023 22:31:16 +0000
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+        by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 36OMVE3b005283
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 24 Jul 2023 22:31:14 GMT
+Received: from hu-eberman-lv.qualcomm.com (10.49.16.6) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.30; Mon, 24 Jul 2023 15:31:14 -0700
+From:   Elliot Berman <quic_eberman@quicinc.com>
+To:     Mark Rutland <mark.rutland@arm.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Sebastian Reichel <sre@kernel.org>
+CC:     Elliot Berman <quic_eberman@quicinc.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Peng Fan <peng.fan@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v3 2/2] remoteproc: imx_rproc: Switch iMX8MN/MP from SMCCC to MMIO
-Date:   Tue, 25 Jul 2023 00:24:18 +0200
-Message-Id: <20230724222418.163220-2-marex@denx.de>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230724222418.163220-1-marex@denx.de>
-References: <20230724222418.163220-1-marex@denx.de>
+        Conor Dooley <conor+dt@kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-pm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <kernel@quicinc.com>,
+        Satya Durga Srinivasu Prabhala <quic_satyap@quicinc.com>,
+        Melody Olvera <quic_molvera@quicinc.com>,
+        "Prasad Sodagudi" <quic_psodagud@quicinc.com>
+Subject: [RFC PATCH 0/4] Implement a PSCI SYSTEM_RESET2 reboot-mode driver
+Date:   Mon, 24 Jul 2023 15:30:50 -0700
+Message-ID: <20230724223057.1208122-1-quic_eberman@quicinc.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
+Content-Type: text/plain
+X-Originating-IP: [10.49.16.6]
+X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: AJZTyLSqDAycFmRx5BX6rUgsWlnPQb9X
+X-Proofpoint-GUID: AJZTyLSqDAycFmRx5BX6rUgsWlnPQb9X
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-07-24_16,2023-07-24_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 suspectscore=0
+ priorityscore=1501 mlxlogscore=844 lowpriorityscore=0 impostorscore=0
+ mlxscore=0 spamscore=0 adultscore=0 phishscore=0 malwarescore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2306200000 definitions=main-2307240196
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -65,166 +84,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The MX8M CM7 boot via SMC call is problematic, since not all versions
-of ATF support this interface. Extend the MMIO support so it can boot
-the CM7 on MX8MN/MP instead and discern the two alternatives using DT
-compatible strings.
+PSCI implements a restart notifier for architectural defined resets.
+The SYSTEM_RESET2 call allows vendor firmware to define additional reset
+types which could be mapped to the reboot reason.
 
-Signed-off-by: Marek Vasut <marex@denx.de>
----
-Cc: Bjorn Andersson <andersson@kernel.org>
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: Fabio Estevam <festevam@gmail.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
-Cc: NXP Linux Team <linux-imx@nxp.com>
-Cc: Peng Fan <peng.fan@nxp.com>
-Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Sascha Hauer <s.hauer@pengutronix.de>
-Cc: Shawn Guo <shawnguo@kernel.org>
-Cc: devicetree@vger.kernel.org
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: linux-remoteproc@vger.kernel.org
----
-V2: Rename 'gpr' to 'fsl,iomuxc-gpr'
-V3: No change
----
- drivers/remoteproc/imx_rproc.c | 58 ++++++++++++++++++++++++++++++++--
- drivers/remoteproc/imx_rproc.h |  2 ++
- 2 files changed, 58 insertions(+), 2 deletions(-)
+Implement a driver to wire the reboot-mode framework to make vendor
+SYSTEM_RESET2 calls on reboot.
 
-diff --git a/drivers/remoteproc/imx_rproc.c b/drivers/remoteproc/imx_rproc.c
-index 4ee2646ce62ad..8bb293b9f327c 100644
---- a/drivers/remoteproc/imx_rproc.c
-+++ b/drivers/remoteproc/imx_rproc.c
-@@ -40,6 +40,12 @@
- #define IMX7D_M4_STOP			(IMX7D_ENABLE_M4 | IMX7D_SW_M4C_RST | \
- 					 IMX7D_SW_M4C_NON_SCLR_RST)
- 
-+#define IMX8M_M7_STOP			(IMX7D_ENABLE_M4 | IMX7D_SW_M4C_RST)
-+#define IMX8M_M7_POLL			IMX7D_ENABLE_M4
-+
-+#define IMX8M_GPR22			0x58
-+#define IMX8M_GPR22_CM7_CPUWAIT		BIT(0)
-+
- /* Address: 0x020D8000 */
- #define IMX6SX_SRC_SCR			0x00
- #define IMX6SX_ENABLE_M4		BIT(22)
-@@ -91,6 +97,7 @@ static int imx_rproc_detach_pd(struct rproc *rproc);
- struct imx_rproc {
- 	struct device			*dev;
- 	struct regmap			*regmap;
-+	struct regmap			*gpr;
- 	struct rproc			*rproc;
- 	const struct imx_rproc_dcfg	*dcfg;
- 	struct imx_rproc_mem		mem[IMX_RPROC_MEM_MAX];
-@@ -285,6 +292,18 @@ static const struct imx_rproc_att imx_rproc_att_imx6sx[] = {
- 	{ 0x80000000, 0x80000000, 0x60000000, 0 },
- };
- 
-+static const struct imx_rproc_dcfg imx_rproc_cfg_imx8mn_mmio = {
-+	.src_reg	= IMX7D_SRC_SCR,
-+	.src_mask	= IMX7D_M4_RST_MASK,
-+	.src_start	= IMX7D_M4_START,
-+	.src_stop	= IMX8M_M7_STOP,
-+	.gpr_reg	= IMX8M_GPR22,
-+	.gpr_wait	= IMX8M_GPR22_CM7_CPUWAIT,
-+	.att		= imx_rproc_att_imx8mn,
-+	.att_size	= ARRAY_SIZE(imx_rproc_att_imx8mn),
-+	.method		= IMX_RPROC_MMIO,
-+};
-+
- static const struct imx_rproc_dcfg imx_rproc_cfg_imx8mn = {
- 	.att		= imx_rproc_att_imx8mn,
- 	.att_size	= ARRAY_SIZE(imx_rproc_att_imx8mn),
-@@ -365,8 +384,14 @@ static int imx_rproc_start(struct rproc *rproc)
- 
- 	switch (dcfg->method) {
- 	case IMX_RPROC_MMIO:
--		ret = regmap_update_bits(priv->regmap, dcfg->src_reg, dcfg->src_mask,
--					 dcfg->src_start);
-+		if (priv->gpr) {
-+			ret = regmap_clear_bits(priv->gpr, dcfg->gpr_reg,
-+						dcfg->gpr_wait);
-+		} else {
-+			ret = regmap_update_bits(priv->regmap, dcfg->src_reg,
-+						 dcfg->src_mask,
-+						 dcfg->src_start);
-+		}
- 		break;
- 	case IMX_RPROC_SMC:
- 		arm_smccc_smc(IMX_SIP_RPROC, IMX_SIP_RPROC_START, 0, 0, 0, 0, 0, 0, &res);
-@@ -395,6 +420,16 @@ static int imx_rproc_stop(struct rproc *rproc)
- 
- 	switch (dcfg->method) {
- 	case IMX_RPROC_MMIO:
-+		if (priv->gpr) {
-+			ret = regmap_set_bits(priv->gpr, dcfg->gpr_reg,
-+					      dcfg->gpr_wait);
-+			if (ret) {
-+				dev_err(priv->dev,
-+					"Failed to quiescence M4 platform!\n");
-+				return ret;
-+			}
-+		}
-+
- 		ret = regmap_update_bits(priv->regmap, dcfg->src_reg, dcfg->src_mask,
- 					 dcfg->src_stop);
- 		break;
-@@ -992,6 +1027,10 @@ static int imx_rproc_detect_mode(struct imx_rproc *priv)
- 		break;
- 	}
- 
-+	priv->gpr = syscon_regmap_lookup_by_phandle(dev->of_node, "fsl,iomuxc-gpr");
-+	if (IS_ERR(priv->gpr))
-+		priv->gpr = NULL;
-+
- 	regmap = syscon_regmap_lookup_by_phandle(dev->of_node, "syscon");
- 	if (IS_ERR(regmap)) {
- 		dev_err(dev, "failed to find syscon\n");
-@@ -1001,6 +1040,19 @@ static int imx_rproc_detect_mode(struct imx_rproc *priv)
- 	priv->regmap = regmap;
- 	regmap_attach_dev(dev, regmap, &config);
- 
-+	if (priv->gpr) {
-+		ret = regmap_read(priv->gpr, dcfg->gpr_reg, &val);
-+		if (val & dcfg->gpr_wait) {
-+			/*
-+			 * After cold boot, the CM indicates its in wait
-+			 * state, but not fully powered off. Power it off
-+			 * fully so firmware can be loaded into it.
-+			 */
-+			imx_rproc_stop(priv->rproc);
-+			return 0;
-+		}
-+	}
-+
- 	ret = regmap_read(regmap, dcfg->src_reg, &val);
- 	if (ret) {
- 		dev_err(dev, "Failed to read src\n");
-@@ -1142,6 +1194,8 @@ static const struct of_device_id imx_rproc_of_match[] = {
- 	{ .compatible = "fsl,imx8mm-cm4", .data = &imx_rproc_cfg_imx8mq },
- 	{ .compatible = "fsl,imx8mn-cm7", .data = &imx_rproc_cfg_imx8mn },
- 	{ .compatible = "fsl,imx8mp-cm7", .data = &imx_rproc_cfg_imx8mn },
-+	{ .compatible = "fsl,imx8mn-cm7-mmio", .data = &imx_rproc_cfg_imx8mn_mmio },
-+	{ .compatible = "fsl,imx8mp-cm7-mmio", .data = &imx_rproc_cfg_imx8mn_mmio },
- 	{ .compatible = "fsl,imx8qxp-cm4", .data = &imx_rproc_cfg_imx8qxp },
- 	{ .compatible = "fsl,imx8qm-cm4", .data = &imx_rproc_cfg_imx8qm },
- 	{ .compatible = "fsl,imx8ulp-cm33", .data = &imx_rproc_cfg_imx8ulp },
-diff --git a/drivers/remoteproc/imx_rproc.h b/drivers/remoteproc/imx_rproc.h
-index 1c7e2127c7584..79a1b8956d142 100644
---- a/drivers/remoteproc/imx_rproc.h
-+++ b/drivers/remoteproc/imx_rproc.h
-@@ -31,6 +31,8 @@ struct imx_rproc_dcfg {
- 	u32				src_mask;
- 	u32				src_start;
- 	u32				src_stop;
-+	u32				gpr_reg;
-+	u32				gpr_wait;
- 	const struct imx_rproc_att	*att;
- 	size_t				att_size;
- 	enum imx_rproc_method		method;
+This is a continuation from https://lore.kernel.org/all/4a679542-b48d-7e11-f33a-63535a5c68cb@quicinc.com/
+
+Elliot Berman (4):
+  power: reset: reboot-mode: Allow magic to be 0
+  power: reset: reboot-mode: Wire reboot_mode enum to magic
+  dt-bindings: power: reset: Document arm,psci-vendor-reset
+  power: reset: Implement a PSCI SYSTEM_RESET2 reboot-mode driver
+
+ .../power/reset/arm,psci-vendor-reset.yaml    | 35 +++++++++++++
+ MAINTAINERS                                   |  2 +
+ drivers/firmware/psci/psci.c                  |  9 ++++
+ drivers/power/reset/Kconfig                   |  9 ++++
+ drivers/power/reset/Makefile                  |  1 +
+ drivers/power/reset/psci-vendor-reset.c       | 49 +++++++++++++++++++
+ drivers/power/reset/reboot-mode.c             | 44 ++++++++++++-----
+ include/linux/psci.h                          |  2 +
+ 8 files changed, 139 insertions(+), 12 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/power/reset/arm,psci-vendor-reset.yaml
+ create mode 100644 drivers/power/reset/psci-vendor-reset.c
+
+
+base-commit: 6eaae198076080886b9e7d57f4ae06fa782f90ef
 -- 
-2.40.1
+2.41.0
 
