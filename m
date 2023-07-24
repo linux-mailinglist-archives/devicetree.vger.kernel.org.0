@@ -2,120 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A48E75EC97
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 09:34:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 68E5A75ECB3
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 09:46:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229870AbjGXHe3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jul 2023 03:34:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60724 "EHLO
+        id S229947AbjGXHqP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jul 2023 03:46:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35800 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229661AbjGXHe2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 03:34:28 -0400
-Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id D5FA2C6;
-        Mon, 24 Jul 2023 00:34:26 -0700 (PDT)
-Authenticated-By: 
-X-SpamFilter-By: ArmorX SpamTrap 5.77 with qID 36O7XSXZ0019428, This message is accepted by code: ctloc85258
-Received: from mail.realtek.com (rtexh36506.realtek.com.tw[172.21.6.27])
-        by rtits2.realtek.com.tw (8.15.2/2.81/5.90) with ESMTPS id 36O7XSXZ0019428
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=FAIL);
-        Mon, 24 Jul 2023 15:33:28 +0800
-Received: from RTEXMBS03.realtek.com.tw (172.21.6.96) by
- RTEXH36506.realtek.com.tw (172.21.6.27) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.17; Mon, 24 Jul 2023 15:33:39 +0800
-Received: from RTEXMBS04.realtek.com.tw (172.21.6.97) by
- RTEXMBS03.realtek.com.tw (172.21.6.96) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.7; Mon, 24 Jul 2023 15:33:39 +0800
-Received: from RTEXMBS04.realtek.com.tw ([fe80::e138:e7f1:4709:ff4d]) by
- RTEXMBS04.realtek.com.tw ([fe80::e138:e7f1:4709:ff4d%5]) with mapi id
- 15.01.2375.007; Mon, 24 Jul 2023 15:33:39 +0800
-From:   =?utf-8?B?U3RhbmxleSBDaGFuZ1vmmIzogrLlvrdd?= 
-        <stanley_chang@realtek.com>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-CC:     Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Roy Luo <royluo@google.com>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Flavio Suligoi <f.suligoi@asem.it>,
-        Ray Chi <raychi@google.com>,
-        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>
-Subject: RE: [PATCH v7 1/5] usb: phy: add usb phy notify port status API
-Thread-Topic: [PATCH v7 1/5] usb: phy: add usb phy notify port status API
-Thread-Index: AQHZsJ7kDWGiCOPLRk2HhU7h2LN0sq/H/g6AgACS9CD//4JIgIAAjEhQ
-Date:   Mon, 24 Jul 2023 07:33:39 +0000
-Message-ID: <8d6ee5765dc34d5fa042195b27aa7eec@realtek.com>
-References: <20230707064725.25291-1-stanley_chang@realtek.com>
- <2023072452-jasmine-palm-7b73@gregkh>
- <47131beec8a24572873aa31e87cfaab6@realtek.com>
- <2023072454-mosaic-ogle-9a27@gregkh>
-In-Reply-To: <2023072454-mosaic-ogle-9a27@gregkh>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.21.190.159]
-x-kse-serverinfo: RTEXMBS03.realtek.com.tw, 9
-x-kse-antispam-interceptor-info: fallback
-x-kse-antivirus-interceptor-info: fallback
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        with ESMTP id S229532AbjGXHqO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 03:46:14 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F051BC6;
+        Mon, 24 Jul 2023 00:46:13 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 865F260F60;
+        Mon, 24 Jul 2023 07:46:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 21A08C433C9;
+        Mon, 24 Jul 2023 07:46:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1690184772;
+        bh=UVmBO2gCf2/YLN+4F7RNv/SKFqCFy9z4h+108FFe/80=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=TEG5mta8qydZD6UKL85UqnWMBDjDtfjE7Uf2kAnQcmXufVNf2Rt19scAvw9b8528w
+         vMbvv4Z15rEZJd86ImS53tlu4dTtlFZXqyBjuQSQrP6zslbMyzP36PdWGFVgwkGeEO
+         bcE0YHq2PelIEhY5OnSKVZuLIp2pY4ucLHHQu74+86pOU8VoIp+pRZtMhIdK0psZUI
+         Gt7HlgpK7neCDKsEP4aUJozX2GJVxxrS+PaSNbhqMLI+2NF8iesfpv7rmipSDTp6DX
+         1/euAUkZGcSmGUDPakMqXutmWG0C+9vXQj+3lymtKdhjLbAlruYqZOyCn33AXXPTan
+         1cufo2Lv3q5gQ==
+Date:   Mon, 24 Jul 2023 13:15:56 +0530
+From:   Manivannan Sadhasivam <mani@kernel.org>
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc:     jingoohan1@gmail.com, gustavo.pimentel@synopsys.com,
+        lpieralisi@kernel.org, robh+dt@kernel.org, kw@linux.com,
+        manivannan.sadhasivam@linaro.org, bhelgaas@google.com,
+        kishon@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, marek.vasut+renesas@gmail.com,
+        fancer.lancer@gmail.com, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v18 04/20] PCI: dwc: Change arguments of
+ dw_pcie_prog_outbound_atu()
+Message-ID: <20230724074556.GC6291@thinkpad>
+References: <20230721074452.65545-1-yoshihiro.shimoda.uh@renesas.com>
+ <20230721074452.65545-5-yoshihiro.shimoda.uh@renesas.com>
 MIME-Version: 1.0
-X-KSE-AntiSpam-Interceptor-Info: fallback
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230721074452.65545-5-yoshihiro.shimoda.uh@renesas.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgR3JlZywNCg0KPiA+ID4NCj4gPiA+IEhvdyBkbyB5b3Uga25vdyB0aGF0IHRoZSBkaXNjb25u
-ZWN0IHdpbGwgbm90IGhhdmUgYWxyZWFkeSBiZWVuDQo+ID4gPiB0cmlnZ2VyZWQgYXQgdGhpcyBw
-b2ludCwgd2hlbiB0aGUgc3RhdHVzIGNoYW5nZXM/DQo+ID4NCj4gPiBUaGUgc3RhdHVzIGNoYW5n
-ZSBvZiBjb25uZWN0aW9uIGlzIGJlZm9yZSBwb3J0IHJlc2V0Lg0KPiA+IEluIHRoaXMgc3RhZ2Us
-IHRoZSBkZXZpY2UgaXMgbm90IHBvcnQgZW5hYmxlLCBhbmQgaXQgd2lsbCBub3QgdHJpZ2dlcg0K
-PiBkaXNjb25uZWN0aW9uLg0KPiANCj4gT2ssIHRoZW4gc2F5IHRoYXQgaGVyZSBwbGVhc2UgOikN
-Cg0KT2theS4gSSB3aWxsIGFkZCBpdC4NCg0KPiA+ID4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy91
-c2IvY29yZS9odWIuYyBiL2RyaXZlcnMvdXNiL2NvcmUvaHViLmMgaW5kZXgNCj4gPiA+ID4gYTcz
-OTQwM2E5ZTQ1Li44NDMzZmY4OWRlYTYgMTAwNjQ0DQo+ID4gPiA+IC0tLSBhL2RyaXZlcnMvdXNi
-L2NvcmUvaHViLmMNCj4gPiA+ID4gKysrIGIvZHJpdmVycy91c2IvY29yZS9odWIuYw0KPiA+ID4g
-PiBAQCAtNjE0LDYgKzYxNCwxOSBAQCBzdGF0aWMgaW50IGh1Yl9leHRfcG9ydF9zdGF0dXMoc3Ry
-dWN0IHVzYl9odWINCj4gPiA+ID4gKmh1YiwNCj4gPiA+IGludCBwb3J0MSwgaW50IHR5cGUsDQo+
-ID4gPiA+ICAgICAgICAgICAgICAgcmV0ID0gMDsNCj4gPiA+ID4gICAgICAgfQ0KPiA+ID4gPiAg
-ICAgICBtdXRleF91bmxvY2soJmh1Yi0+c3RhdHVzX211dGV4KTsNCj4gPiA+ID4gKw0KPiA+ID4g
-PiArICAgICBpZiAoIXJldCkgew0KPiA+ID4gPiArICAgICAgICAgICAgIHN0cnVjdCB1c2JfZGV2
-aWNlICpoZGV2ID0gaHViLT5oZGV2Ow0KPiA+ID4gPiArDQo+ID4gPiA+ICsgICAgICAgICAgICAg
-aWYgKGhkZXYgJiYgIWhkZXYtPnBhcmVudCkgew0KPiA+ID4NCj4gPiA+IFdoeSB0aGUgY2hlY2sg
-Zm9yIG5vIHBhcmVudD8gIFBsZWFzZSBkb2N1bWVudCB0aGF0IGhlcmUgaW4gYSBjb21tZW50Lg0K
-PiA+DQo+ID4gSSB3aWxsIGFkZCBhIGNvbW1lbnQgOg0KPiA+IC8qIE9ubHkgbm90aWZ5IHJvb3Ro
-dWIuIFRoYXQgaXMsIHdoZW4gaGRldi0+cGFyZW50IGlzIGVtcHR5LiAqLw0KPiANCj4gQWxzbyBk
-b2N1bWVudCB0aGlzIHRoYXQgdGhpcyB3aWxsIG9ubHkgaGFwcGVuIGZvciByb290IGh1YiBzdGF0
-dXMgY2hhbmdlcywgdGhhdCdzDQo+IG5vdCBvYnZpb3VzIGluIHRoZSBjYWxsYmFjayBuYW1lIG9y
-IGRvY3VtZW50YXRpb24gb3IgYW55d2hlcmUgZWxzZSBoZXJlLg0KDQpBbGwgdXNiIHBoeSBub3Rp
-ZmljYXRpb25zIChjb25uZWN0aW9uLCBkaXNjb25uZWN0aW9uKSBhcmUgb25seSBmb3Igcm9vdGh1
-Yi4NClNvIEkgZG9uJ3Qgc3BlY2lhbCB0byBkb2MgdGhpcy4NCg0KPiA+ID4gPiArICAgICAgICAg
-ICAgICAgICAgICAgc3RydWN0IHVzYl9oY2QgKmhjZCA9IGJ1c190b19oY2QoaGRldi0+YnVzKTsN
-Cj4gPiA+ID4gKw0KPiA+ID4gPiArICAgICAgICAgICAgICAgICAgICAgaWYgKGhjZC0+dXNiX3Bo
-eSkNCj4gPiA+ID4gKw0KPiA+ID4gdXNiX3BoeV9ub3RpZnlfcG9ydF9zdGF0dXMoaGNkLT51c2Jf
-cGh5LA0KPiA+ID4gPiArDQo+IHBvcnQxIC0NCj4gPiA+IDEsICpzdGF0dXMsICpjaGFuZ2UpOw0K
-PiA+ID4gPiArICAgICAgICAgICAgIH0NCj4gPiA+ID4gKyAgICAgfQ0KPiA+ID4gPiArDQo+ID4g
-Pg0KPiA+ID4gVGhpcyBpcyBzYWZlIHRvIG5vdGlmeSB3aXRoIHRoZSBodWIgbXV0ZXggdW5sb2Nr
-ZWQ/ICBBZ2FpbiwgYQ0KPiA+ID4gY29tbWVudCB3b3VsZCBiZSBoZWxwZnVsIHRvIGZ1dHVyZSBw
-ZW9wbGUgZXhwbGFpbmluZyB3aHkgdGhhdCBpcyBzby4NCj4gPiA+DQo+ID4NCj4gPiBJIHdpbGwg
-YWRkIGEgY29tbWVudDoNCj4gPiAvKg0KPiA+ICAqIFRoZXJlIGlzIG5vIG5lZWQgdG8gbG9jayBz
-dGF0dXNfbXV0ZXggaGVyZSwgYmVjYXVzZSBzdGF0dXNfbXV0ZXgNCj4gPiAgKiBwcm90ZWN0cyBo
-dWItPnN0YXR1cywgYW5kIHRoZSBwaHkgZHJpdmVyIG9ubHkgY2hlY2tzIHRoZSBwb3J0DQo+ID4g
-ICogc3RhdHVzIHdpdGhvdXQgY2hhbmdpbmcgdGhlIHN0YXR1cy4NCj4gPiAgKi8NCj4gDQo+IExv
-b2tzIGdvb2QsIGlmIHlvdSBkbyBpdCB3aXRob3V0IHRoZSB0cmFpbGluZyB3aGl0ZXNwYWNlIDop
-DQo+IA0KT2theQ0KDQoNClRoYW5rcywNClN0YW5sZXkNCg==
+On Fri, Jul 21, 2023 at 04:44:36PM +0900, Yoshihiro Shimoda wrote:
+> The __dw_pcie_prog_outbound_atu() currently has 6 arguments.
+> To support INTx IRQs in the future, it requires an additional 2
+> arguments. For improved code readability, introduce the struct
+> dw_pcie_ob_atu_cfg and update the arguments of
+> dw_pcie_prog_outbound_atu().
+> 
+> Consequently, remove __dw_pcie_prog_outbound_atu() and
+> dw_pcie_prog_ep_outbound_atu() because there is no longer
+> a need.
+> 
+> No behavior changes.
+> 
+> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+
+One nit below. With that,
+
+Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+
+> Reviewed-by: Serge Semin <fancer.lancer@gmail.com>
+> ---
+>  .../pci/controller/dwc/pcie-designware-ep.c   | 21 +++++---
+>  .../pci/controller/dwc/pcie-designware-host.c | 52 +++++++++++++------
+>  drivers/pci/controller/dwc/pcie-designware.c  | 49 ++++++-----------
+>  drivers/pci/controller/dwc/pcie-designware.h  | 15 ++++--
+>  4 files changed, 77 insertions(+), 60 deletions(-)
+> 
+
+[...]
+
+> diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci/controller/dwc/pcie-designware.h
+> index 3c06e025c905..85de0d8346fa 100644
+> --- a/drivers/pci/controller/dwc/pcie-designware.h
+> +++ b/drivers/pci/controller/dwc/pcie-designware.h
+> @@ -288,6 +288,15 @@ enum dw_pcie_core_rst {
+>  	DW_PCIE_NUM_CORE_RSTS
+>  };
+>  
+> +struct dw_pcie_ob_atu_cfg {
+> +	int index;
+> +	int type;
+> +	u8 func_no;
+> +	u64 cpu_addr;
+> +	u64 pci_addr;
+> +	u64 size;
+
+Reorder the members in below order to avoid holes:
+
+u64
+int
+u8
+
+- Mani
+
+> +};
+> +
+>  struct dw_pcie_host_ops {
+>  	int (*host_init)(struct dw_pcie_rp *pp);
+>  	void (*host_deinit)(struct dw_pcie_rp *pp);
+> @@ -416,10 +425,8 @@ void dw_pcie_write_dbi2(struct dw_pcie *pci, u32 reg, size_t size, u32 val);
+>  int dw_pcie_link_up(struct dw_pcie *pci);
+>  void dw_pcie_upconfig_setup(struct dw_pcie *pci);
+>  int dw_pcie_wait_for_link(struct dw_pcie *pci);
+> -int dw_pcie_prog_outbound_atu(struct dw_pcie *pci, int index, int type,
+> -			      u64 cpu_addr, u64 pci_addr, u64 size);
+> -int dw_pcie_prog_ep_outbound_atu(struct dw_pcie *pci, u8 func_no, int index,
+> -				 int type, u64 cpu_addr, u64 pci_addr, u64 size);
+> +int dw_pcie_prog_outbound_atu(struct dw_pcie *pci,
+> +			      const struct dw_pcie_ob_atu_cfg *atu);
+>  int dw_pcie_prog_inbound_atu(struct dw_pcie *pci, int index, int type,
+>  			     u64 cpu_addr, u64 pci_addr, u64 size);
+>  int dw_pcie_prog_ep_inbound_atu(struct dw_pcie *pci, u8 func_no, int index,
+> -- 
+> 2.25.1
+> 
+
+-- 
+மணிவண்ணன் சதாசிவம்
