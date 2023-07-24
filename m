@@ -2,199 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 111F675F69E
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 14:45:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 31D8E75F6FD
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 14:51:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229504AbjGXMpe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jul 2023 08:45:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36892 "EHLO
+        id S231349AbjGXMvG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jul 2023 08:51:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38154 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229558AbjGXMpd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 08:45:33 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62EBDEA;
-        Mon, 24 Jul 2023 05:45:32 -0700 (PDT)
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36OAgSwU007807;
-        Mon, 24 Jul 2023 12:45:28 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=bynsxXz7tuBMErFWDplRGUteOujchV6cvjwEwMmVcvg=;
- b=UzCyJaBs5fY5CLnpRAgZRiorozbOECswNRjwVCiiNT8RhUWgMbmoGMStmnHYV6oxdYfT
- UDUONX78anGrApQXcUI9wp4XK0rC9JGIEkGw6f0oOQ41vqtzKfnICypk5JKRbCSS702S
- f9ZUPOHsMk7E7smmKsHAxuBIqtJ1G5oM2J75QlBCWjl425MiI5B5FKgZ9Xzi+uQiSw1l
- wlWH7mKkYdBzJMiV8bleJcvea4asWZAIpAJ6WYsAdZrs2K17a2GCmmol1apT+mDkLj1h
- 85ymCv4To5TXNDelrVu9VkdpA+ERvqsg7r6A6tCMbtQ+Kke4sSOuEGL1l2A6fy0vMxBn 0w== 
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3s1qasr9eb-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 24 Jul 2023 12:45:28 +0000
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-        by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 36OCjRpm019808
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 24 Jul 2023 12:45:27 GMT
-Received: from [10.214.66.81] (10.80.80.8) by nasanex01c.na.qualcomm.com
- (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Mon, 24 Jul
- 2023 05:45:23 -0700
-Message-ID: <34868b94-abe3-aa67-fb76-35d9a2481cfd@quicinc.com>
-Date:   Mon, 24 Jul 2023 18:15:21 +0530
+        with ESMTP id S229752AbjGXMuY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 08:50:24 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 240073C0D
+        for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 05:48:54 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id 2adb3069b0e04-4fcd615d7d6so6403538e87.3
+        for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 05:48:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1690202931; x=1690807731;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=p5p01CBEk6N5LoiGI1thkandCTta/KHBrFssvPX1Gq0=;
+        b=WDxa0a/fst+1y6KdlyNMlQsclolO6LHpAjcIgEfDIMI2U5gTxt+0rWfYnVTxuHbhKg
+         KKcNje4YteovEtUVCRY/LTsLvmN8ZK1ptpbVO7PZ3J0k7gUJr6/kAUoxIx22IOmLq6Qo
+         zwuc8bZzQzurzyPJTr3H/25zVesjy2z32PO30BRVUqRIdWhyc83Imnqpc4GnzkYz08e5
+         CDQoW2CqvwvoncCNhwZKXT4eD6OO8D2CerNoZsj4yzQ57w9gIEzG8rcrPNyW6+Ekr9Hs
+         281cEZ2TVCxCYd61Gx3+H/P7EctmCYrtPOoXQSxNZq+9sl0T5Q/bvT6cw9Mw2zEfSvje
+         Fpew==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690202931; x=1690807731;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=p5p01CBEk6N5LoiGI1thkandCTta/KHBrFssvPX1Gq0=;
+        b=FNfEZSnP793tWfsTLY54OwQo4ID4tt5PqcPud6FBXsbAsx2DJTKpp3YDJXtvDyTpWv
+         GpUCRV+LmPnn29M2MwVUGr1uooTUj5meCYXqWZjEnHSILir0cdosAPmkm88AIAtu8A39
+         VDy/TrZf3qk6ta7u5sm4kaY/4JZ4Bc0J/9HiW+2AuG2CQXyidZ04ILmWsZQc87z6Jsnt
+         kntiaeOSwQMIlCprYfIrGa6IPtYk1V8w8H2j62kzIXSq22DFTOZG1l74X/O5DLVwXMb8
+         cCGIlmFZHBVVen//CyFr+zjDzXqkHbdx5qoMhUeCCuZnC2zvKMjvmtHC0GPGwhapMEgF
+         5/LA==
+X-Gm-Message-State: ABy/qLbMxJhH8mDCN79nonzxKXXHZRb0lFTyyMqevNChJJ8gfor6Uonz
+        45WyqFWBUPHhkdUo39Ls+gL1wA==
+X-Google-Smtp-Source: APBJJlFoJMa2q5/Q2cvqJyq/LmF9oRE6175R03JSV3Bgf8jJ+/jAnfQRbBmpDqKJFw0RvEIBtw60Cw==
+X-Received: by 2002:a05:6512:3087:b0:4f9:5781:8628 with SMTP id z7-20020a056512308700b004f957818628mr5937650lfd.24.1690202931166;
+        Mon, 24 Jul 2023 05:48:51 -0700 (PDT)
+Received: from [192.168.1.101] (abxj221.neoplus.adsl.tpnet.pl. [83.9.3.221])
+        by smtp.gmail.com with ESMTPSA id q19-20020ac246f3000000b004fb7cd9651bsm2192458lfo.98.2023.07.24.05.48.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 24 Jul 2023 05:48:50 -0700 (PDT)
+Message-ID: <dfddee27-9f7c-e5e5-8794-45f01c4b64af@linaro.org>
+Date:   Mon, 24 Jul 2023 14:48:49 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v5 6/6] soc: qcom: llcc: Add QDU1000 and QRU1000 LLCC
- support
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 5/6] soc: qcom: llcc: Updating the macro name
 Content-Language: en-US
-To:     Komal Bajaj <quic_kbajaj@quicinc.com>, <agross@kernel.org>,
-        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <srinivas.kandagatla@linaro.org>
-CC:     <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
+To:     Komal Bajaj <quic_kbajaj@quicinc.com>, agross@kernel.org,
+        andersson@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        srinivas.kandagatla@linaro.org
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
 References: <20230724084155.8682-1-quic_kbajaj@quicinc.com>
- <20230724084155.8682-7-quic_kbajaj@quicinc.com>
-From:   Mukesh Ojha <quic_mojha@quicinc.com>
-In-Reply-To: <20230724084155.8682-7-quic_kbajaj@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+ <20230724084155.8682-6-quic_kbajaj@quicinc.com>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <20230724084155.8682-6-quic_kbajaj@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: v717U7_dFZxc-rQuSUiTOXUZwNMYyaKc
-X-Proofpoint-GUID: v717U7_dFZxc-rQuSUiTOXUZwNMYyaKc
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-07-24_10,2023-07-24_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 phishscore=0
- impostorscore=0 mlxscore=0 mlxlogscore=999 adultscore=0 priorityscore=1501
- clxscore=1015 spamscore=0 suspectscore=0 bulkscore=0 lowpriorityscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2306200000
- definitions=main-2307240112
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 7/24/2023 2:11 PM, Komal Bajaj wrote:
-> Add LLCC configuration data for QDU1000 and QRU1000 SoCs.
+On 24.07.2023 10:41, Komal Bajaj wrote:
+> Updating macro name for LLCC_DRE to LLCC_ECC as per
+> the latest specification.
 > 
 > Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
 > ---
->   drivers/soc/qcom/llcc-qcom.c | 67 ++++++++++++++++++++++++++++++++++++
->   1 file changed, 67 insertions(+)
+Nit: "updating" -> "update", as the action is complete.
+
+On top of that, please wrap your commit messages at +/- 72 characters,
+not 50.
+
+Acked-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+
+Konrad
+>  drivers/soc/qcom/llcc-qcom.c       | 2 +-
+>  include/linux/soc/qcom/llcc-qcom.h | 2 +-
+>  2 files changed, 2 insertions(+), 2 deletions(-)
 > 
 > diff --git a/drivers/soc/qcom/llcc-qcom.c b/drivers/soc/qcom/llcc-qcom.c
-> index 228ffb4a8971..95766260b3b8 100644
+> index 1d2b08dfecea..228ffb4a8971 100644
 > --- a/drivers/soc/qcom/llcc-qcom.c
 > +++ b/drivers/soc/qcom/llcc-qcom.c
-> @@ -364,6 +364,36 @@ static const struct llcc_slice_config sm8550_data[] =  {
->   	{LLCC_VIDVSP,   28,  256, 4, 1, 0xFFFFFF, 0x0,   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
->   };
->   
-> +static const struct llcc_slice_config qdu1000_data_2ch[] = {
-> +	{ LLCC_MDMHPGRW, 7, 512, 1, 1, 0xfff, 0x0, 0, 0, 0, 1, 0, 0, 0 },
-> +	{ LLCC_MODHW,    9, 256, 1, 1, 0xfff, 0x0, 0, 0, 0, 1, 0, 0, 0 },
-> +	{ LLCC_MDMPNG,  21, 256, 0, 1, 0x3,   0x0, 0, 0, 0, 1, 0, 0, 0 },
-> +	{ LLCC_ECC,     26, 512, 3, 1, 0xffc, 0x0, 0, 0, 0, 0, 1, 0, 0 },
-> +	{ LLCC_MODPE,   29, 256, 1, 1, 0xfff, 0x0, 0, 0, 0, 1, 0, 0, 0 },
-> +	{ LLCC_APTCM,   30, 256, 3, 1, 0x0,   0xC, 1, 0, 0, 1, 0, 0, 0 },
-> +	{ LLCC_WRCACHE, 31, 128, 1, 1, 0x3,   0x0, 0, 0, 0, 0, 1, 0, 0 },
-> +};
-> +
-> +static const struct llcc_slice_config qdu1000_data_4ch[] = {
-> +	{ LLCC_MDMHPGRW, 7, 1024, 1, 1, 0xfff, 0x0, 0, 0, 0, 1, 0, 0, 0 },
-> +	{ LLCC_MODHW,    9, 512,  1, 1, 0xfff, 0x0, 0, 0, 0, 1, 0, 0, 0 },
-> +	{ LLCC_MDMPNG,  21, 512,  0, 1, 0x3,   0x0, 0, 0, 0, 1, 0, 0, 0 },
-> +	{ LLCC_ECC,     26, 1024, 3, 1, 0xffc, 0x0, 0, 0, 0, 0, 1, 0, 0 },
-> +	{ LLCC_MODPE,   29, 512,  1, 1, 0xfff, 0x0, 0, 0, 0, 1, 0, 0, 0 },
-> +	{ LLCC_APTCM,   30, 512,  3, 1, 0x0,   0xC, 1, 0, 0, 1, 0, 0, 0 },
-> +	{ LLCC_WRCACHE, 31, 256,  1, 1, 0x3,   0x0, 0, 0, 0, 0, 1, 0, 0 },
-> +};
-> +
-> +static const struct llcc_slice_config qdu1000_data_8ch[] = {
-> +	{ LLCC_MDMHPGRW, 7, 2048, 1, 1, 0xfff, 0x0, 0, 0, 0, 1, 0, 0, 0 },
-> +	{ LLCC_MODHW,    9, 1024, 1, 1, 0xfff, 0x0, 0, 0, 0, 1, 0, 0, 0 },
-> +	{ LLCC_MDMPNG,  21, 1024, 0, 1, 0x3,   0x0, 0, 0, 0, 1, 0, 0, 0 },
-> +	{ LLCC_ECC,     26, 2048, 3, 1, 0xffc, 0x0, 0, 0, 0, 0, 1, 0, 0 },
-> +	{ LLCC_MODPE,   29, 1024, 1, 1, 0xfff, 0x0, 0, 0, 0, 1, 0, 0, 0 },
-> +	{ LLCC_APTCM,   30, 1024, 3, 1, 0x0,   0xC, 1, 0, 0, 1, 0, 0, 0 },
-> +	{ LLCC_WRCACHE, 31, 512,  1, 1, 0x3,   0x0, 0, 0, 0, 0, 1, 0, 0 },
-> +};
-> +
->   static const struct llcc_edac_reg_offset llcc_v1_edac_reg_offset = {
->   	.trp_ecc_error_status0 = 0x20344,
->   	.trp_ecc_error_status1 = 0x20348,
-> @@ -551,6 +581,37 @@ static const struct qcom_llcc_config sm8550_cfg[] = {
->   	},
->   };
->   
-> +static const struct qcom_llcc_config qdu1000_cfg[] = {
-> +	{
-> +		.sct_data       = qdu1000_data_8ch,
-> +		.size		= ARRAY_SIZE(qdu1000_data_8ch),
-> +		.need_llcc_cfg	= true,
-> +		.reg_offset	= llcc_v2_1_reg_offset,
-> +		.edac_reg_offset = &llcc_v2_1_edac_reg_offset,
-> +	},
-> +	{
-> +		.sct_data       = qdu1000_data_4ch,
-> +		.size           = ARRAY_SIZE(qdu1000_data_4ch),
-> +		.need_llcc_cfg  = true,
-> +		.reg_offset     = llcc_v2_1_reg_offset,
-> +		.edac_reg_offset = &llcc_v2_1_edac_reg_offset,
-> +	},
-> +	{
-> +		.sct_data       = qdu1000_data_4ch,
-> +		.size           = ARRAY_SIZE(qdu1000_data_4ch),
-> +		.need_llcc_cfg  = true,
-> +		.reg_offset     = llcc_v2_1_reg_offset,
-> +		.edac_reg_offset = &llcc_v2_1_edac_reg_offset,
-> +	},
-> +	{
-> +		.sct_data       = qdu1000_data_2ch,
-> +		.size           = ARRAY_SIZE(qdu1000_data_2ch),
-> +		.need_llcc_cfg  = true,
-> +		.reg_offset     = llcc_v2_1_reg_offset,
-> +		.edac_reg_offset = &llcc_v2_1_edac_reg_offset,
-> +	},
-> +};
-> +
->   static const struct qcom_sct_config sc7180_cfgs = {
->   	.llcc_config	= sc7180_cfg,
->   	.num_cfgs	= 1,
-> @@ -611,6 +672,11 @@ static const struct qcom_sct_config sm8550_cfgs = {
->   	.num_cfgs	= 1,
->   };
->   
-> +static const struct qcom_sct_config qdu1000_cfgs = {
-> +	.llcc_config	= qdu1000_cfg,
-> +	.num_cfgs	= 1,
-
-
-Should not this be 4 ?
-
--Mukesh
-
-> +};
-> +
->   static struct llcc_drv_data *drv_data = (void *) -EPROBE_DEFER;
->   
->   /**
-> @@ -1167,6 +1233,7 @@ static int qcom_llcc_probe(struct platform_device *pdev)
->   }
->   
->   static const struct of_device_id qcom_llcc_of_match[] = {
-> +	{ .compatible = "qcom,qdu1000-llcc", .data = &qdu1000_cfgs},
->   	{ .compatible = "qcom,sc7180-llcc", .data = &sc7180_cfgs },
->   	{ .compatible = "qcom,sc7280-llcc", .data = &sc7280_cfgs },
->   	{ .compatible = "qcom,sc8180x-llcc", .data = &sc8180x_cfgs },
+> @@ -193,7 +193,7 @@ static const struct llcc_slice_config sc8280xp_data[] = {
+>  	{ LLCC_MMUHWT,   13, 1024, 1, 1, 0xfff, 0x0, 0, 0, 0, 0, 1, 0 },
+>  	{ LLCC_DISP,     16, 6144, 1, 1, 0xfff, 0x0, 0, 0, 0, 1, 0, 0 },
+>  	{ LLCC_AUDHW,    22, 2048, 1, 1, 0xfff, 0x0, 0, 0, 0, 1, 0, 0 },
+> -	{ LLCC_DRE,      26, 1024, 1, 1, 0xfff, 0x0, 0, 0, 0, 1, 0, 0 },
+> +	{ LLCC_ECC,      26, 1024, 1, 1, 0xfff, 0x0, 0, 0, 0, 1, 0, 0 },
+>  	{ LLCC_CVP,      28, 512,  3, 1, 0xfff, 0x0, 0, 0, 0, 1, 0, 0 },
+>  	{ LLCC_APTCM,    30, 1024, 3, 1, 0x0,   0x1, 1, 0, 0, 1, 0, 0 },
+>  	{ LLCC_WRCACHE,  31, 1024, 1, 1, 0xfff, 0x0, 0, 0, 0, 0, 1, 0 },
+> diff --git a/include/linux/soc/qcom/llcc-qcom.h b/include/linux/soc/qcom/llcc-qcom.h
+> index 93417ba1ead4..1a886666bbb6 100644
+> --- a/include/linux/soc/qcom/llcc-qcom.h
+> +++ b/include/linux/soc/qcom/llcc-qcom.h
+> @@ -30,7 +30,7 @@
+>  #define LLCC_NPU         23
+>  #define LLCC_WLHW        24
+>  #define LLCC_PIMEM       25
+> -#define LLCC_DRE         26
+> +#define LLCC_ECC         26
+>  #define LLCC_CVP         28
+>  #define LLCC_MODPE       29
+>  #define LLCC_APTCM       30
