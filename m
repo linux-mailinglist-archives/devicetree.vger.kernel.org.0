@@ -2,37 +2,37 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A014475FD77
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 19:23:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D696075FDAA
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 19:28:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229764AbjGXRXW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jul 2023 13:23:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59406 "EHLO
+        id S231654AbjGXR22 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jul 2023 13:28:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36176 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229870AbjGXRXU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 13:23:20 -0400
+        with ESMTP id S231653AbjGXR21 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 13:28:27 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1F46187;
-        Mon, 24 Jul 2023 10:23:19 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C44EE76;
+        Mon, 24 Jul 2023 10:28:26 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 6D465612BB;
-        Mon, 24 Jul 2023 17:23:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B44D8C433C8;
-        Mon, 24 Jul 2023 17:23:15 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id EEDF3612BB;
+        Mon, 24 Jul 2023 17:28:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 52345C433C8;
+        Mon, 24 Jul 2023 17:28:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690219398;
-        bh=OKnfsi7SbxV3y3/SPI75aMywZMXuayUur6Ej80BIsR0=;
+        s=k20201202; t=1690219705;
+        bh=twLkaxMgs6piq0ZeQkavdqOEjTHt1kteFtzNVLOvJ9Y=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=jydDktQIuXY6UVtiIoIHjnpRq93L2hxMOk8stRNn4hoZxqztsvMDa5PNnd+PM06fE
-         sIajf5jQ7Wsq2JzJvTEt6CDWeEw9Q9xWKgeLsKCReuSnGi0ELT4tV+wdsIZBguivXL
-         iT+NQ7voUzu19KcI47ZCNzhX4zBzCycOlQXTHnnwrBqbG8apiOug7kfMufB01V1uFM
-         LDmPImBTyvB96kCPYxxrZHj0RUhXqkzkFLujmLa7z8/oUV3Nsch/xDjGoOp9i79HZu
-         ccSMcNz0VOBkY6+BWqoMLe/TPdqr/PalMacLsL6B9KFpk2ipr98j0JCpmSMZaliGE8
-         OMVPlRhX4OsoA==
-Date:   Mon, 24 Jul 2023 18:23:13 +0100
+        b=AI2qiCY24Q0v7zAFtd+xpAyXL5i/UaDHKwIzIK3qeZoo8R/2X9J1RlT9KdArYfCzi
+         JTTq7RkzfWDF62FujThw6oJk+v54LH6rGVQCIKx9uPAapbra2cfBmjhs0jue/3hvbx
+         bHO+IBkp5pWV5fH1o2Rw16kakYO59StayV0tdEdxqu2dobSjFuiN5LanDgtRlLfzG0
+         uBKmBpYJ6cb7vKmSEIc+ezcSfGVUoUo8DtXiqKbNmexpCxv8VMxv1zbL1LRQhExPx7
+         ZaSL6WyFUgubnjy6G5X9Eufaukl712lrNotSMybmN9Q5tgykeyuSqF6nyWrfBsNuSU
+         /NXWOBotY6vtA==
+Date:   Mon, 24 Jul 2023 18:28:20 +0100
 From:   Conor Dooley <conor@kernel.org>
 To:     Jisheng Zhang <jszhang@kernel.org>
 Cc:     "David S . Miller" <davem@davemloft.net>,
@@ -48,16 +48,16 @@ Cc:     "David S . Miller" <davem@davemloft.net>,
         linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
         linux-stm32@st-md-mailman.stormreply.com,
         linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH net-next 07/10] dt-bindings: net: snps,dwmac: add safety
- irq support
-Message-ID: <20230724-cleat-tricolor-e455afa60b14@spud>
+Subject: Re: [PATCH net-next 09/10] dt-bindings: net: snps,dwmac: add per
+ channel irq support
+Message-ID: <20230724-slick-shush-5338b16a558c@spud>
 References: <20230723161029.1345-1-jszhang@kernel.org>
- <20230723161029.1345-8-jszhang@kernel.org>
+ <20230723161029.1345-10-jszhang@kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="fqqukai8rpLna7CS"
+        protocol="application/pgp-signature"; boundary="yzmqMJ1ISurXR8jS"
 Content-Disposition: inline
-In-Reply-To: <20230723161029.1345-8-jszhang@kernel.org>
+In-Reply-To: <20230723161029.1345-10-jszhang@kernel.org>
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -69,62 +69,92 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---fqqukai8rpLna7CS
+--yzmqMJ1ISurXR8jS
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Jul 24, 2023 at 12:10:26AM +0800, Jisheng Zhang wrote:
-> The snps dwmac IP support safety features, and those Safety Feature
-> Correctible Error and Uncorrectible Error irqs may be separate irqs.
+Hey Jisheng,
+
+On Mon, Jul 24, 2023 at 12:10:28AM +0800, Jisheng Zhang wrote:
+> The IP supports per channel interrupt, add support for this usage case.
 >=20
 > Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
+
+Silly question perhaps, but the commit message and description for this
+property imply that this is an optional feature that software may choose
+to make use of, but will function without. Is that the case?
+
 > ---
->  Documentation/devicetree/bindings/net/snps,dwmac.yaml | 4 ++++
->  1 file changed, 4 insertions(+)
+>  .../devicetree/bindings/net/snps,dwmac.yaml   | 23 +++++++++++++++++++
+>  1 file changed, 23 insertions(+)
 >=20
 > diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Docu=
 mentation/devicetree/bindings/net/snps,dwmac.yaml
-> index ddf9522a5dc2..bb80ca205d26 100644
+> index bb80ca205d26..525210c2c06c 100644
 > --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
 > +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> @@ -107,6 +107,8 @@ properties:
->        - description: Combined signal for various interrupt events
->        - description: The interrupt to manage the remote wake-up packet d=
-etection
+> @@ -101,6 +101,11 @@ properties:
+>      minItems: 1
+>      maxItems: 2
+> =20
+> +  snps,per-channel-interrupt:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description:
+> +      Indicates that Rx and Tx complete will generate a unique interrupt=
+ for each channel
+> +
+>    interrupts:
+>      minItems: 1
+>      items:
+> @@ -109,6 +114,8 @@ properties:
 >        - description: The interrupt that occurs when Rx exits the LPI sta=
 te
-> +      - description: The interrupt that occurs when Safety Feature Corre=
+>        - description: The interrupt that occurs when Safety Feature Corre=
 ctible Errors happen
-> +      - description: The interrupt that occurs when Safety Feature Uncor=
+>        - description: The interrupt that occurs when Safety Feature Uncor=
 rectible Errors happen
+> +      - description: All of the rx per-channel interrupts
+> +      - description: All of the tx per-channel interrupts
 > =20
 >    interrupt-names:
 >      minItems: 1
-> @@ -114,6 +116,8 @@ properties:
->        - const: macirq
->        - enum: [eth_wake_irq, eth_lpi]
+> @@ -118,6 +125,22 @@ properties:
 >        - const: eth_lpi
-> +      - const: sfty_ce_irq
-> +      - const: sfty_ue_irq
+>        - const: sfty_ce_irq
+>        - const: sfty_ue_irq
+> +      - const: rx0
+> +      - const: rx1
+> +      - const: rx2
+> +      - const: rx3
+> +      - const: rx4
+> +      - const: rx5
+> +      - const: rx6
+> +      - const: rx7
+> +      - const: tx0
+> +      - const: tx1
+> +      - const: tx2
+> +      - const: tx3
+> +      - const: tx4
+> +      - const: tx5
+> +      - const: tx6
+> +      - const: tx7
+> =20
+>    clocks:
+>      minItems: 1
+> --=20
+> 2.40.1
+>=20
 
-Putting _irq in an interrupt name seems rather redundant to me although,
-clearly not the first time for it here.
-
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-
-Thanks,
-Conor.
-
---fqqukai8rpLna7CS
+--yzmqMJ1ISurXR8jS
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZL6zgQAKCRB4tDGHoIJi
-0vkYAP9J8lPgD4xupXtsbQ1efG2n9/QVww6TtsOCmWLaKw64kQEAvrv88XWaAORI
-GW9S99iXG7nk2yZwWIPw+pGskFn0zAU=
-=3/uV
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZL60swAKCRB4tDGHoIJi
+0kp0AP9cl/Kkn46dTmz0i/arZps5F7oU5toWGL4Tz+RgllbJmAD/UV4ChCqmubDi
+srI+nEMnjcExH4WbPf9u5fMGWCZ75AM=
+=cJ/j
 -----END PGP SIGNATURE-----
 
---fqqukai8rpLna7CS--
+--yzmqMJ1ISurXR8jS--
