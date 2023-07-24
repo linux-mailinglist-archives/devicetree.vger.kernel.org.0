@@ -2,47 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E713375E5D4
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 02:21:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2489B75E5D5
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 02:22:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229688AbjGXAVp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 23 Jul 2023 20:21:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38546 "EHLO
+        id S229691AbjGXAWD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 23 Jul 2023 20:22:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38584 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229468AbjGXAVo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Jul 2023 20:21:44 -0400
-Received: from JPN01-OS0-obe.outbound.protection.outlook.com (mail-os0jpn01on2135.outbound.protection.outlook.com [40.107.113.135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CFD0129
-        for <devicetree@vger.kernel.org>; Sun, 23 Jul 2023 17:21:43 -0700 (PDT)
+        with ESMTP id S229468AbjGXAWC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Jul 2023 20:22:02 -0400
+Received: from JPN01-OS0-obe.outbound.protection.outlook.com (mail-os0jpn01on2105.outbound.protection.outlook.com [40.107.113.105])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66D5F129
+        for <devicetree@vger.kernel.org>; Sun, 23 Jul 2023 17:22:01 -0700 (PDT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=eLtXj9Xkoxw4upLB1fez+x1E7xXG910MJ7hGs4+gLMPK7akHluNdwTQhilabXFPQZ4/APV3DHAkmLFdQCb8Eed/NdqQlwosWnGFAdRV+U/9gyNKWC0rZZKy7LnMgGhRuTfCUxSBCeZNs06FOsU6N7Kplhu8HBm8xlb54be2qdNAED6R+LHTgx/mvv+FucpU+m2qShIe1QCP3YI0VYL6TWyBN5ONEiftQKBT6qQNjRc2ySCJ370e0QTboeehOFVxSYBFdPtdH1i57ggUMoJy/yQPPSg43Bpvn9mlx+AKLyCbVg6Q7L6T92CWdo5wnyd6fK7DDMsuL9YOzAAUKW5+F6Q==
+ b=lCTWq4pJJF9f8yBOFuYm4O2WCjDcRadRywi2mFvsNEdUjEquk5BHXrJwwFuBR8cvdHDCWTDNGdQJaZB7MSYFT+KMwlIBRxcxt/WlLATGBl1LqOje53HEohCnRCOJsvlE+PDLL3U72da+x3BzP/5KxGRXhZVv3MKWPjaLP3ilKOZh7DbPD+/4vN4DL9+CCdq1lBc0laRlNOLi3DgS6J0t1u7yrh/+4SEBE4zfarKqunnbA40W50/9vmqtO/We4T7Kog+bNdSj4G/mmWJm/QvJ55EwyBGeRomkL6Y3k7saUrrg7HKiW7bfL7N8P6g1mZxW7E3CarVV8cQJ/R5anNhLUQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=5XTRKCPjGgjyDxCAyPvubwyCywfxoXn/giWNhRXQ+/E=;
- b=D7cnWNxyKkleVbYteCwiJi/XVL9SgAmJLl5tBhm0/FBj5ZbFVz3PQCVL1ZCPYoZNBIASEUFmnXMgi3nzCkEJrcfZ/V0260OiLyj+hEOKWksm88k7zTuNvEO1QG+oO8BtlU9R3tf5cPtDGrevKigWjdu+YBecDqRy8ToRM0sC+/YhqanwS0Q/cd095r4wpwtfD5YiLRMI3rBYZek8kLuak31e/EYx/n3t1nSAxNTIthjanfDVee5kHxE3vic/K/ZE7R02d7Ffw9XtKMnzRk+vmhBoDkW5bYmV2n6Xm797dj43KHDl1+XL4XfSOMKdnaJYrIbCvIItjcfBupbGTyjVLg==
+ bh=osE7+rHcFpL8iDZlKbNPdvvxY/980NiUFS0BABMvcuw=;
+ b=Upb+Om31toUmmym7qU9hcVxNZpUN5yH4c46Vn5SPPs5T5V5gVokQcI1juPaT4oHndyml5NOyMPZRWJKU+bxr+Wjf2k7JQ8e8Er6kzfJ7YbGy9YT7GF61KmZyCCQY5UflU/chcMzKl4r9mzNNz6D0PTjpKhchZRfp8/3vfYhSNZPMK5J1jDPhI3unMJ8Hvji4M9EEP1K3NYxLiwMxLTgLGLdL/d7GcfA8WeA11M/c3xGjnpYeCgOBKlRapMDofHM6eOTm6wOlw3EoiH12PDkJMNPl755R9Kq7EOHTbYy3lcI6mn1mKnovtzidOrLT/pg6QWjk+VLSgzTYErQqip8XkA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
  dkim=pass header.d=renesas.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
  s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=5XTRKCPjGgjyDxCAyPvubwyCywfxoXn/giWNhRXQ+/E=;
- b=NkQAlltew+YGpYHqmQUXwxqxictexMmWx+8yqdlsHKdr5/RXhB49XG8fLdt2YthjJuksgqL5CIHrrPF4K1tZd+pB3BvOw5XXZ8BHzelOI0DB0W06D1cSzvd6fRN83XMKuAnjSerMusSHWZYyT8IPYqQ4zvMmH+Lr2Tnib1TFMps=
+ bh=osE7+rHcFpL8iDZlKbNPdvvxY/980NiUFS0BABMvcuw=;
+ b=AvXIexofEXW0m3Qv8n57PXn2Yrg079gT14eH3CizoV2LhJZ8tUZ/4M/ByWPF0OYQxQj/5qWwYa8WsPMI7SIqlBILXW6ETFc6NUTRrpFg+5Hq1PoJT//dMzvtdgBYZUvTV1xp1YAU4wXBTqFicHWjZvepwa0a2oGa9pdaJPkhtlA=
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=renesas.com;
 Received: from OS3PR01MB8426.jpnprd01.prod.outlook.com (2603:1096:604:194::10)
  by OSRPR01MB11420.jpnprd01.prod.outlook.com (2603:1096:604:234::7) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6609.32; Mon, 24 Jul
- 2023 00:21:40 +0000
+ 2023 00:21:57 +0000
 Received: from OS3PR01MB8426.jpnprd01.prod.outlook.com
  ([fe80::e6db:c2b4:3f89:e3a5]) by OS3PR01MB8426.jpnprd01.prod.outlook.com
  ([fe80::e6db:c2b4:3f89:e3a5%3]) with mapi id 15.20.6609.032; Mon, 24 Jul 2023
- 00:21:40 +0000
-Message-ID: <87tttub1m4.wl-kuninori.morimoto.gx@renesas.com>
+ 00:21:57 +0000
+Message-ID: <87sf9eb1ln.wl-kuninori.morimoto.gx@renesas.com>
 From:   Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Subject: [PATCH 3/5] ASoC: rsnd: enable multi Component support for Audio Graph Card/Card2
+Subject: [PATCH 4/5] ASoC: dt-bindings: renesas,rsnd.yaml: add common port-def
 User-Agent: Wanderlust/2.15.9 Emacs/27.1 Mule/6.0
 To:     Mark Brown <broonie@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -52,58 +52,58 @@ Cc:     Linux-ALSA <alsa-devel@alsa-project.org>,
 In-Reply-To: <87y1j6b1ne.wl-kuninori.morimoto.gx@renesas.com>
 References: <87y1j6b1ne.wl-kuninori.morimoto.gx@renesas.com>
 Content-Type: text/plain; charset=US-ASCII
-Date:   Mon, 24 Jul 2023 00:21:39 +0000
-X-ClientProxiedBy: TYAPR03CA0024.apcprd03.prod.outlook.com
- (2603:1096:404:14::36) To OS3PR01MB8426.jpnprd01.prod.outlook.com
+Date:   Mon, 24 Jul 2023 00:21:56 +0000
+X-ClientProxiedBy: TYCPR01CA0136.jpnprd01.prod.outlook.com
+ (2603:1096:400:2b7::6) To OS3PR01MB8426.jpnprd01.prod.outlook.com
  (2603:1096:604:194::10)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: OS3PR01MB8426:EE_|OSRPR01MB11420:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4da539f1-2bd3-4a2e-9cdb-08db8bdbf356
+X-MS-Office365-Filtering-Correlation-Id: b4055512-2962-4cee-01a1-08db8bdbfd33
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 0SjccH+LTBbh3/xfdxM/byxoajawsuQbF/cxUo0tGMJ+q0FwRAb34mjZxW76EWEGPLObeNfdb8oKZKcBdjDz1nkQOHf89W+9qXoay+YyMc8KG1JEusgCRbijhahYnStQ8nnLuPn4Sbm/xes+JpRV6ImzjSkLSq0fZAtd581kQFls8IQ2omIvUXOyB5DX09I1osPsiGIm+1MmUD5rcqovWtb/N6BIg7r8VqR04nB89xxz8XGrQHD+v1bUlutbjpsrFENUk9V2PNrgwJrMTHt2CNwWK3CMjrIjAQ9twdjS/6h/qwqXGnc7u99w7CoJ/Cd9dDgfryP8uwVqdYZ3cWDNTO4O2OgQxfk7QV+cpZ8WK2uI4V74TrdNyl3gejMwEufz38awxh9tn5BbhfYE+G4qjCKmTgjnqssObdUmxOx7mTu5jnebZdMlHpDf/guYteRN6sGaLlxVcP+C/kvJkxSeVdlWYkHQ23meaQSLFRuRlahEoyuWKitf99jiAL40cDCjjNf1ab1PK6yPK1mHUTc9qBsuCI83gPWHgsWirmSO8pkMaEC/x1SarLHoCY6f4Wvhvk9taUosVcpp6vy/jMQUUAFpjHcy6F/8sxNEfU8ldU1FQ+qLVcJafhd6fhP8zuL+
+X-Microsoft-Antispam-Message-Info: /Yzf50EfqGSFh3lpogs69v6/T/GBPiY98a6vnzOgOnmp8Rg1fytjjY83MIVSZR76POkJWOlkXn89f/Ir/1byv1yijiEvV4pxSg+M2Y+wlsGZoPvW+t79GZfzzgQm/XxK4FH67MIfH0z+dBkgvbWiIHugzrgGiraYaeCIjl0isbBk06hsTY0zWN2QRGeRjO+UnJLuSoPbFayPdPZzpqGDuWx6PKsabMSiJwvHdXhoCRwsHwnx2s2qfVZm4Z2WLxND7k4rItG+pwFB1RxSlad2zgivUFW9g9oQyWCwJOUbBpQG1NKPGMlbtOXBUEYyNxXS7FveV/iuzCAoAcEXgueeJ9geTfKGZCAGDo6FW+wIUVlnOmo8UzrAWqBZYzo75L1n5z12ZeWLHc+e4KDnPGJAO2CqBTROdDFVi6ppAIhOHCfwjNfPFlokhJPGedDlbQ81oquLxyW9L421Bus4ntDHGWzPllqEQuXapzB0NhiHkqssxz/tqiEYM00cMk1Xn/y07e1C7jz1jW5Zq33x5n/i0IqGr3Gzc9mLGOV7F3yXS7/cShHDhwl2MYSSqpkEKf31SU2TjGugFk0FtNLqUlkvhL+bhCMTQLrpSVC+XlUw2skbsi5emtYVLxIQSXoDdbxt
 X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS3PR01MB8426.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(396003)(366004)(136003)(376002)(346002)(39860400002)(451199021)(2906002)(38350700002)(38100700002)(6512007)(83380400001)(186003)(2616005)(26005)(6506007)(5660300002)(86362001)(8936002)(8676002)(36756003)(478600001)(6486002)(52116002)(4326008)(66476007)(66556008)(66946007)(41300700001)(316002)(110136005);DIR:OUT;SFP:1102;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?tKRu/DeOBQ6jIV0f0UoPJ72cBwh6Uf5Hq2Ya7gk7Bke8ehot4ctp+/3Sfhz3?=
- =?us-ascii?Q?iONMMv/DXe+8pnUEwMa0IWuo+gJw1Ddx5yjYPuYe4k3V5fzhnBrYIRbgERqM?=
- =?us-ascii?Q?cz2HyBWLTF0RLBDK9nPxC3lyISZfecAx6P9WQN9VZF2MBIOyNezsiQ/7N0vw?=
- =?us-ascii?Q?mvlO5UFvMzArH+4bUEH2SkN0wenHt+63M/TFZ66uldehI3JDSiWdpPGpPDYb?=
- =?us-ascii?Q?TEgg9U8ARqtmBkTNNvvTlrYsgBcYzNOlqNvCh11W3i1M9q2Jed/LHS0KgbmD?=
- =?us-ascii?Q?iUB0A0jEyqfCdW6TzZF818f1qNjWESLK5IG/T5VzRlMQzTD8eqEbiA2LBT5S?=
- =?us-ascii?Q?nuFWa8hZdzxac/D0zWXfOKto61+kdoJp8DrKS6ZbYagn4oAE2+7yvghuCcsr?=
- =?us-ascii?Q?EXGOYqfMUYvEkCR4ug5lTB4Z5A4zIwvGPQmFQOwZulbowinFtIJjljkRmgqe?=
- =?us-ascii?Q?BeVb4uHQO/hnrEO/7ad+Y1iLroS5n7LpMgW1OcoiGXTkTs31WoYz+Gnb9MZw?=
- =?us-ascii?Q?nag4zv7bXfZl5H2ye8XKDUQ5ocEXXCvHJm/typAvkYJlkn5/vYVELmwGZwOG?=
- =?us-ascii?Q?hUeaGHJuhgz7JXCzqv8KEdfOAVRohGRrjnMeYINKE1jY9pa16UEljEvWE4Xd?=
- =?us-ascii?Q?wMCHxjJcCHOviMf2O9a626HrHgBIA9ZfNQIlwvX5P+VFov2+ffqocNNM94zp?=
- =?us-ascii?Q?pzM5YA+xdQk2kRXmBWwnl4HZvlCecCNlhoyIJif2Ngduhhh5ddpLyBpYbUPf?=
- =?us-ascii?Q?e7k0xwkSnUOhU39AeGOsYKvAcDfoq757VNlM1HtbGRKVYW2Oafpu/HKk17dg?=
- =?us-ascii?Q?fVSEvhv8+yO2DGKqx7kuxLxpsiy2RzMznyoWO53rks5jI4r16ArpQuekkH1I?=
- =?us-ascii?Q?VTFPSo5/ruhgC+SUaSM1zBMix94RRDByn78gYr3/rC9ox/JKSalpW2YucEDc?=
- =?us-ascii?Q?H5X096Ca5EZwYBWuVWAT3tAVVdt7LcirD9RZ5WYh1rk8Yc/xlTYVVeK8Mf5W?=
- =?us-ascii?Q?Icn1b5K8fPav7FyKaXQY4UFRhicrFplCAzRklu13Y7bDlR/LidzTlAY6Sppk?=
- =?us-ascii?Q?KyKNyQEHcV9nfDulq8lF44jWCuaGjgLxzc19QOdTML7FKmSkGnlW1uLkKJLh?=
- =?us-ascii?Q?oVQHsTMD/tSZ99s0P6bOnvkWW2G1HF6PSTd9FiNhGn8bvnWr0tOAZYaTPKpy?=
- =?us-ascii?Q?leopnbr82hFNC2WKtTfuCkm+wKiZ7eBYjK6VfC6BFjXOyvMTBvLhByoC8pcq?=
- =?us-ascii?Q?iZZzUB33xZ777MdNXZ51MudTt4ekGWbygQmvhslff0CTK5Qf0xkl2ZINS+yl?=
- =?us-ascii?Q?+svrOZrOAJwTw92kGFUTugD3mRgp7XVhFoWoFJFLTE/v2yNJKYNPBzwFY6oR?=
- =?us-ascii?Q?Qx0SSvSBINxhYuOkJ5Vqd2LdMfZqvQl8TRzpMcyXOs3BD0DOoTsCWKvQuSMm?=
- =?us-ascii?Q?bpz20iLmOhg95hOahKLtDL2pXSdl1iqKUrEORY+zcZzf0E4C9IScb6k4zPMM?=
- =?us-ascii?Q?qcieTWvCqDXmxIOdkLzlK5kz/S2e0m0yD7aDut3vtbsE3Fa1Oqn30Dnka4j5?=
- =?us-ascii?Q?eHszsgqnaceyWvPX7zQ2mYSTfNZrKzmGWzOSedrfwcDf3+2PQ0oL2qDnrtuq?=
- =?us-ascii?Q?I+ssKhhWaCQ2fsXBeh7FYek=3D?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?pYXIsQdhBbKlndfJ7EDTZzYjsOORlrUQbZRVeuB+66wtZhLel1MAqiFA6Q/G?=
+ =?us-ascii?Q?zvyqLdK0rzPhx92rjhQGnnDcanzqDo84wnpKXmRwdWWKpJdUa0Gyiy/709Gl?=
+ =?us-ascii?Q?CcjiDrEUhMg5LMMFe56Ld444hhry9d2M5FaqnhTTzMEO5HgJACD/8rNxIVci?=
+ =?us-ascii?Q?ISAZERrBRi36km5fVcM134dwfBoNx3l/HJrEY7khyjVTXOVUyTTIdMy/OYao?=
+ =?us-ascii?Q?crOA5Z4gIrGC1E3rwzaINIhgqTB+VthPkU/6++sF508WNgri730CUx49f4jX?=
+ =?us-ascii?Q?O0RpP9GvIG/Mk6WlVizu/IDsJxIzW3A8AvxNQccaHP1rY9YhEpREJ9SKQPJ4?=
+ =?us-ascii?Q?oOgylAJ4I6pUzttMtTRUnllXJlf3m32KGsL2rxIYPr6Sqkhwx9XHGMdxItfN?=
+ =?us-ascii?Q?Xi2kIOJpSlvrasBTU7dQNB9cmzeyRpdT9RVDho6ufGIBJdaGUuL+z/u/XZzQ?=
+ =?us-ascii?Q?oIOdaLUSP21qtrCf23GM4QLKgmbleP5XEQZxxxG+VnmkxYBaJRX4jCg7jDQL?=
+ =?us-ascii?Q?Id+rzx2CcoK8vWOYSLalN4fIplpQhx9j9j+TugSGZjRbV9Iuqg3ezxkvwRqh?=
+ =?us-ascii?Q?fTouMDMUZHBfHfCNV4GeEv7ohuMOGiYoYCK5IzG0e3sjLD5FaYtLGv1gHoac?=
+ =?us-ascii?Q?X4hQ5EIctbIE14Hwaf6rxOGWUSTDVv67U60hwImo0z49vjpFw4SvF84FPLFC?=
+ =?us-ascii?Q?SPDO3Sj7RpV3XIAbdIuPwoAsf7opiBJ/ZeJZyWMWbdkEcvYXCKI8mhIcHtj2?=
+ =?us-ascii?Q?vxgMMZHVsLmy9rYEveKPftpIRHz3g9p5QIBO+ql6JVdrdlc+vhrEKvkbMRHT?=
+ =?us-ascii?Q?7Me0gCa7v3JkQSZz1v7LfEODX1HQ1oOQrACjzW0XntHDsgNiWmUscklPjsD9?=
+ =?us-ascii?Q?Odp2yd5gIRG8ER29T90oHI9JINEDJBfzUb0m87+yk+ApQtbGylBanUQPa83H?=
+ =?us-ascii?Q?nHC6RxeWddJnMyMIlmTGGkPaAehFUpPAlei7y8FKSayU5BHiKIY2p0gGncrL?=
+ =?us-ascii?Q?rZ5eXQY8MWCl9ax39gSg6JSMiTMbHgZ4RtdfolwA1/vArYhtrAaM3NCzMfEs?=
+ =?us-ascii?Q?d/3gg1yIjaqG3XsBBv66eVi7rVwSxQGvG6eQDj/hkIUkIAe8GEM8k20QFUhF?=
+ =?us-ascii?Q?UvuYINA9eVjWVYlTCdnssbOiSiGkZMsHhqKTqf2cpyp/x7vxcEtCWaYseJU+?=
+ =?us-ascii?Q?eVLExtohSan44eSRUq6obnK5GB6CyPjDGO6A+f5r3mAUih8Q3Yd9DFcEP7Lp?=
+ =?us-ascii?Q?kpCrpS7kTM2u4GCRoQUZIC9c+wOnwdkPvZpu/XyoD6mMWS8FPjJOUFvM5Dsa?=
+ =?us-ascii?Q?wpJu1V+Ne0Zq00Yz3s4gEW4ROSWDJFnn1hXXO5ClBe0IORRvWnZpDaSHeuXa?=
+ =?us-ascii?Q?3ZADN64Asr4YNpJw+Iq8qdZz10NvwgSvMOHsQl2wYoGf+r33EKzeiQRhUV+j?=
+ =?us-ascii?Q?rtC7vhsTZdriVnzqhUFHJekzQi/E66b69YwrHhfoCgH/c1SA27L7QTXvhVOw?=
+ =?us-ascii?Q?lyaNSUM9U4fGR6NlSCVtX28VTFsRcPEpfl0+Y1gojFlpCLzLP+q0KBxD3wQ1?=
+ =?us-ascii?Q?VoZgUtny01uQYI2LlvBjZ8SsuEv9Mg+LaFtbV9ngCjxppvDyOaQ84Sg8uSHk?=
+ =?us-ascii?Q?8Y8lgBX/ZjBQuDR2itSAVsU=3D?=
 X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4da539f1-2bd3-4a2e-9cdb-08db8bdbf356
+X-MS-Exchange-CrossTenant-Network-Message-Id: b4055512-2962-4cee-01a1-08db8bdbfd33
 X-MS-Exchange-CrossTenant-AuthSource: OS3PR01MB8426.jpnprd01.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jul 2023 00:21:40.1351
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jul 2023 00:21:56.9329
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: HaGehMQfDIzGqrd49vzDQrt8WCCO2puX8zLHugQI3loXs1f0OX3GQeN35MNhkavVBPuthgm2q/eBuIl/fF1zql3/1k+6buDe1SBPPCwbL8TrNPfdaJ+6SR4zQzz8DnLo
+X-MS-Exchange-CrossTenant-UserPrincipalName: U0eTUOyFYrNCrDO2RuWl1x6CKHwJ2M4j2Mp5OF93Hoz0oREv3Dmcm+MJsFKCE/s953D26+xjcsBcQGB1YJh8EtfhxLwwebkNhYqwut4s0Z9BOEeGybdKFe1eCZ/czULz
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSRPR01MB11420
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
@@ -115,316 +115,72 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-	+-- Basic Board ---------+
-	|+--------+      +------+|
-	|| CPU ch0| <--> |CodecA||
-	||     ch1| <-+  +------+|
-	|+--------+   |          |
-	+-------------|----------+
-	+-- expansion board -----+
-	|             |  +------+|
-	|             +->|CodecB||
-	|                +------+|
-	+------------------------+
-
-In above HW connection case, we intuitively think we want to handle these
-as "2 Sound Cards".
-
-	card0,0: CPU-ch0 - CodecA
-	card1,0: CPU-ch1 - CodecB
-
-But, we needed to handle it as "1 big Sound Card", because of
-Component vs Card limitation.
-
-	card0,0: CPU-ch0 - CodecA
-	card0,1: CPU-ch1 - CodecB
-
-This patch enables multi Component to handle multi Cards.
-To support it, it needs
-
-	- Fill dai_args for each DAI on snd_soc_dai_driver
-	- Parse DT for each Component (Simple Card/Audio Graph Card)
-
-Ex) Simple Card
-
-	rcar_sound {
-		...
-
-		/* Component0 */
-		rcar_sound,dai@0 {
-			...
-		};
-
-		/* Component1 */
-		rcar_sound,dai@1 {
-			...
-		};
-	};
-
-Ex) Audio Graph Card/Card2
-
-	rcar_sound {
-		/* Component0 */
-		ports@0 {
-			...
-		};
-
-		/* Component1 */
-		ports@1 {
-			...
-		};
-	};
+renesas,rsnd uses both "ports" has "port", and these are very similar.
+To avoid duplicated definitions, this patch adds common port-def.
 
 Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
 ---
- sound/soc/sh/rcar/core.c | 134 ++++++++++++++++++++++++++-------------
- sound/soc/sh/rcar/rsnd.h |   4 ++
- 2 files changed, 95 insertions(+), 43 deletions(-)
+ .../bindings/sound/renesas,rsnd.yaml          | 38 ++++++++-----------
+ 1 file changed, 16 insertions(+), 22 deletions(-)
 
-diff --git a/sound/soc/sh/rcar/core.c b/sound/soc/sh/rcar/core.c
-index a87d7fa55f7b..9f3d97bc177a 100644
---- a/sound/soc/sh/rcar/core.c
-+++ b/sound/soc/sh/rcar/core.c
-@@ -1260,13 +1260,13 @@ int rsnd_node_count(struct rsnd_priv *priv, struct device_node *node, char *name
- 	return i;
- }
+diff --git a/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml b/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
+index 8a821dec9526..d9808b130e8d 100644
+--- a/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
++++ b/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
+@@ -9,6 +9,20 @@ title: Renesas R-Car Sound Driver
+ maintainers:
+   - Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
  
--static struct device_node *rsnd_dai_of_node(struct rsnd_priv *priv,
--					    int *nr, int *is_graph)
-+static int rsnd_dai_of_node(struct rsnd_priv *priv, int *is_graph)
- {
- 	struct device *dev = rsnd_priv_to_dev(priv);
- 	struct device_node *np = dev->of_node;
--	struct device_node *dai_node;
--	struct device_node *ret;
-+	struct device_node *ports, *node;
-+	int nr = 0;
-+	int i = 0;
- 
- 	*is_graph = 0;
- 
-@@ -1278,30 +1278,47 @@ static struct device_node *rsnd_dai_of_node(struct rsnd_priv *priv,
- 	/*
- 	 * Simple-Card
- 	 */
--	dai_node = of_get_child_by_name(np, RSND_NODE_DAI);
--	if (dai_node) {
--		*nr = of_get_child_count(dai_node);
--		ret = dai_node;
--		goto of_node_compatible;
-+	node = of_get_child_by_name(np, RSND_NODE_DAI);
-+	if (!node)
-+		goto audio_graph;
++definitions:
++  port-def:
++    $ref: audio-graph-port.yaml#/definitions/port-base
++    unevaluatedProperties: false
++    patternProperties:
++      "^endpoint(@[0-9a-f]+)?":
++        $ref: audio-graph-port.yaml#/definitions/endpoint-base
++        properties:
++          playback:
++            $ref: /schemas/types.yaml#/definitions/phandle-array
++          capture:
++            $ref: /schemas/types.yaml#/definitions/phandle-array
++        unevaluatedProperties: false
 +
-+	of_node_put(node);
-+
-+	for_each_child_of_node(np, node) {
-+		if (!of_node_name_eq(node, RSND_NODE_DAI))
-+			continue;
-+
-+		priv->component_dais[i] = of_get_child_count(node);
-+		nr += priv->component_dais[i];
-+		i++;
-+		if (i >= RSND_MAX_COMPONENT) {
-+			dev_info(dev, "reach to max component\n");
-+			break;
-+		}
- 	}
+ properties:
  
-+	return nr;
-+
-+audio_graph:
- 	/*
- 	 * Audio-Graph-Card
- 	 */
--	dai_node = of_graph_get_next_endpoint(np, NULL);
--	if (dai_node) {
--		*nr = of_graph_get_endpoint_count(np);
--		*is_graph = 1;
--		ret = np;
--		goto of_node_compatible;
-+	for_each_child_of_node(np, ports) {
-+		if (!of_node_name_eq(ports, "ports") &&
-+		    !of_node_name_eq(ports, "port"))
-+			continue;
-+		priv->component_dais[i] = of_graph_get_endpoint_count(ports);
-+		nr += priv->component_dais[i];
-+		i++;
-+		if (i >= RSND_MAX_COMPONENT) {
-+			dev_info(dev, "reach to max component\n");
-+			break;
-+		}
- 	}
+   compatible:
+@@ -108,30 +122,10 @@ properties:
+     unevaluatedProperties: false
+     patternProperties:
+       '^port(@[0-9a-f]+)?$':
+-        $ref: audio-graph-port.yaml#/definitions/port-base
+-        unevaluatedProperties: false
+-        patternProperties:
+-          "^endpoint(@[0-9a-f]+)?":
+-            $ref: audio-graph-port.yaml#/definitions/endpoint-base
+-            properties:
+-              playback:
+-                $ref: /schemas/types.yaml#/definitions/phandle-array
+-              capture:
+-                $ref: /schemas/types.yaml#/definitions/phandle-array
+-            unevaluatedProperties: false
++        $ref: "#/definitions/port-def"
  
--	return NULL;
--
--of_node_compatible:
--	of_node_put(dai_node);
-+	*is_graph = 1;
+   port:
+-    $ref: audio-graph-port.yaml#/definitions/port-base
+-    unevaluatedProperties: false
+-    patternProperties:
+-      "^endpoint(@[0-9a-f]+)?":
+-        $ref: audio-graph-port.yaml#/definitions/endpoint-base
+-        properties:
+-          playback:
+-            $ref: /schemas/types.yaml#/definitions/phandle-array
+-          capture:
+-            $ref: /schemas/types.yaml#/definitions/phandle-array
+-        unevaluatedProperties: false
++    $ref: "#/definitions/port-def"
  
--	return ret;
-+	return nr;
- }
- 
- 
-@@ -1365,6 +1382,8 @@ static int rsnd_pcm_new(struct snd_soc_pcm_runtime *rtd,
- 
- static void __rsnd_dai_probe(struct rsnd_priv *priv,
- 			     struct device_node *dai_np,
-+			     struct device_node *node_np,
-+			     uint32_t node_arg,
- 			     int dai_i)
- {
- 	struct rsnd_dai_stream *io_playback;
-@@ -1382,11 +1401,17 @@ static void __rsnd_dai_probe(struct rsnd_priv *priv,
- 
- 	snprintf(rdai->name, RSND_DAI_NAME_SIZE, "rsnd-dai.%d", dai_i);
- 
-+	/* for multi Component */
-+	rdai->dai_args.np		= node_np;
-+	rdai->dai_args.args_count	= 1;
-+	rdai->dai_args.args[0]		= node_arg;
-+
- 	rdai->priv	= priv;
- 	drv->name	= rdai->name;
- 	drv->ops	= &rsnd_soc_dai_ops;
- 	drv->pcm_new	= rsnd_pcm_new;
- 	drv->id		= dai_i;
-+	drv->dai_args	= &rdai->dai_args;
- 
- 	io_playback->rdai		= rdai;
- 	io_capture->rdai		= rdai;
-@@ -1450,16 +1475,15 @@ static void __rsnd_dai_probe(struct rsnd_priv *priv,
- 
- static int rsnd_dai_probe(struct rsnd_priv *priv)
- {
--	struct device_node *dai_node;
--	struct device_node *dai_np;
- 	struct snd_soc_dai_driver *rdrv;
- 	struct device *dev = rsnd_priv_to_dev(priv);
-+	struct device_node *np = dev->of_node;
- 	struct rsnd_dai *rdai;
- 	int nr = 0;
- 	int is_graph;
- 	int dai_i;
- 
--	dai_node = rsnd_dai_of_node(priv, &nr, &is_graph);
-+	nr = rsnd_dai_of_node(priv, &is_graph);
- 	if (!nr)
- 		return -EINVAL;
- 
-@@ -1477,26 +1501,42 @@ static int rsnd_dai_probe(struct rsnd_priv *priv)
- 	 */
- 	dai_i = 0;
- 	if (is_graph) {
--		for_each_endpoint_of_node(dai_node, dai_np) {
--			__rsnd_dai_probe(priv, dai_np, dai_i);
--			if (rsnd_is_gen3(priv) || rsnd_is_gen4(priv)) {
--				rdai = rsnd_rdai_get(priv, dai_i);
--
--				rsnd_parse_connect_graph(priv, &rdai->playback, dai_np);
--				rsnd_parse_connect_graph(priv, &rdai->capture,  dai_np);
-+		struct device_node *ports;
-+		struct device_node *dai_np;
-+
-+		for_each_child_of_node(np, ports) {
-+			if (!of_node_name_eq(ports, "ports") &&
-+			    !of_node_name_eq(ports, "port"))
-+				continue;
-+			for_each_endpoint_of_node(ports, dai_np) {
-+				__rsnd_dai_probe(priv, dai_np, dai_np, 0, dai_i);
-+				if (rsnd_is_gen3(priv) || rsnd_is_gen4(priv)) {
-+					rdai = rsnd_rdai_get(priv, dai_i);
-+
-+					rsnd_parse_connect_graph(priv, &rdai->playback, dai_np);
-+					rsnd_parse_connect_graph(priv, &rdai->capture,  dai_np);
-+				}
-+				dai_i++;
- 			}
--			dai_i++;
- 		}
- 	} else {
--		for_each_child_of_node(dai_node, dai_np) {
--			__rsnd_dai_probe(priv, dai_np, dai_i);
--			if (rsnd_is_gen3(priv) || rsnd_is_gen4(priv)) {
--				rdai = rsnd_rdai_get(priv, dai_i);
-+		struct device_node *node;
-+		struct device_node *dai_np;
-+
-+		for_each_child_of_node(np, node) {
-+			if (!of_node_name_eq(node, RSND_NODE_DAI))
-+				continue;
- 
--				rsnd_parse_connect_simple(priv, &rdai->playback, dai_np);
--				rsnd_parse_connect_simple(priv, &rdai->capture,  dai_np);
-+			for_each_child_of_node(node, dai_np) {
-+				__rsnd_dai_probe(priv, dai_np, np, dai_i, dai_i);
-+				if (rsnd_is_gen3(priv) || rsnd_is_gen4(priv)) {
-+					rdai = rsnd_rdai_get(priv, dai_i);
-+
-+					rsnd_parse_connect_simple(priv, &rdai->playback, dai_np);
-+					rsnd_parse_connect_simple(priv, &rdai->capture,  dai_np);
-+				}
-+				dai_i++;
- 			}
--			dai_i++;
- 		}
- 	}
- 
-@@ -1926,6 +1966,7 @@ static int rsnd_probe(struct platform_device *pdev)
- 		rsnd_dai_probe,
- 	};
- 	int ret, i;
-+	int ci;
- 
- 	/*
- 	 *	init priv data
-@@ -1962,11 +2003,18 @@ static int rsnd_probe(struct platform_device *pdev)
- 	/*
- 	 *	asoc register
- 	 */
--	ret = devm_snd_soc_register_component(dev, &rsnd_soc_component,
--					 priv->daidrv, rsnd_rdai_nr(priv));
--	if (ret < 0) {
--		dev_err(dev, "cannot snd dai register\n");
--		goto exit_snd_probe;
-+	ci = 0;
-+	for (i = 0; priv->component_dais[i] > 0; i++) {
-+		int nr = priv->component_dais[i];
-+
-+		ret = devm_snd_soc_register_component(dev, &rsnd_soc_component,
-+						      priv->daidrv + ci, nr);
-+		if (ret < 0) {
-+			dev_err(dev, "cannot snd component register\n");
-+			goto exit_snd_probe;
-+		}
-+
-+		ci += nr;
- 	}
- 
- 	pm_runtime_enable(dev);
-diff --git a/sound/soc/sh/rcar/rsnd.h b/sound/soc/sh/rcar/rsnd.h
-index 239705d52517..43c0d675cc34 100644
---- a/sound/soc/sh/rcar/rsnd.h
-+++ b/sound/soc/sh/rcar/rsnd.h
-@@ -545,6 +545,7 @@ struct rsnd_dai {
- 	struct rsnd_dai_stream capture;
- 	struct rsnd_priv *priv;
- 	struct snd_pcm_hw_constraint_list constraint;
-+	struct of_phandle_args dai_args;
- 
- 	int max_channels;	/* 2ch - 16ch */
- 	int ssi_lane;		/* 1lane - 4lane */
-@@ -702,6 +703,9 @@ struct rsnd_priv {
- 	struct snd_soc_dai_driver *daidrv;
- 	struct rsnd_dai *rdai;
- 	int rdai_nr;
-+
-+#define RSND_MAX_COMPONENT 3
-+	int component_dais[RSND_MAX_COMPONENT];
- };
- 
- #define rsnd_priv_to_pdev(priv)	((priv)->pdev)
+   rcar_sound,dvc:
+     description: DVC subnode.
 -- 
 2.25.1
 
