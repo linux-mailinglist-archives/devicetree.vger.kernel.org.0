@@ -2,182 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CA43575FAD2
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 17:32:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BD5F675F942
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 16:06:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231359AbjGXPc2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jul 2023 11:32:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49800 "EHLO
+        id S231261AbjGXOGf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jul 2023 10:06:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36962 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229479AbjGXPc0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 11:32:26 -0400
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9DAB1B3;
-        Mon, 24 Jul 2023 08:32:23 -0700 (PDT)
-Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-3fd2f298712so13734485e9.2;
-        Mon, 24 Jul 2023 08:32:23 -0700 (PDT)
+        with ESMTP id S231213AbjGXOGe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 10:06:34 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E6D1E59
+        for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 07:06:31 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-4fbf1f6c771so6651675e87.1
+        for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 07:06:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1690212742; x=1690817542;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=MLAkbsYK7QIyvj28dGSLrTuJv0qXZGTFq3rKFWJSTa8=;
-        b=AnB+05knb3qUpk3tgMEV76tSVJNMy4NFF1nCvQRvZp8KJfQFQgEQwzRWUKGTVhdnzy
-         /h0ZwqLtXhp87T1XnU1FWg6VPt/SixTmvEHsAI2B8fHAMNFp0EjMcEiD78fMLsGRaBMD
-         q/zzKiq4iPR4M4XqwiwkpyRNSwUPfyQPjwhWxIaLniP01aCeBJEeChUTTiu6ol7DL2iZ
-         TmqAIkkJ82+IpPRSkKalt8klg0hDiS7kEO/TmgdUzE+BWnviES6WWXqHmzyL9R0jr0/d
-         5bqy81GLeqbzRP9couiZ2KnfjiGIkNW8XbsoTbh/rZajFFs7L0VIvW5/o/zHDibe8tdC
-         yAFQ==
+        d=linaro.org; s=google; t=1690207589; x=1690812389;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=rmu60T8Zh0IAH6zmF8BDywGRhKd9xpQhUa6OjSxooAg=;
+        b=Vf5h91tlg8gxpGK/5JFapaH+ioZd+rWlSeZotv+0OyZdzqTJt6/suRbIoyKHe5PMFp
+         IaciO5zCDe4MxfMcqTjBBkhUtq8d9nF1te+nEl3rKDSg6L0kqbn7aiy1YoWlyA8bObT6
+         N1U0GuQ80GCVklnLEhnKRBPsaYs6R7m8hYbbWiGr0g6WrIieG20lyCmDh+DgctafXpHt
+         DtHaMV0j7CeI7fVg6OzD7zWiG+nqJ5CT3k+kG7KLzKx3NdaY+favbbBnvCDG5hWT1J9l
+         Pxfy1j5kI1waAkeGZB7utuOPvAONuqwP8JzZXrlDmwRg9zFYZp+WrvjJ9JULCXtzy43J
+         rGLg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690212742; x=1690817542;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=MLAkbsYK7QIyvj28dGSLrTuJv0qXZGTFq3rKFWJSTa8=;
-        b=BRD0Jx+Np+oDzqnnZK6mYtsGL5eODXxwPgD+3V0uV6/+9txqpduSue3RVD7Z4Wy438
-         anV39wlPvUg25bZXwZcFdY3BumJzNrkJ6PycJaHRxVv+kCUe1U0KzO+9TQRwFNY8WZj/
-         nEz0Xh/loKNWCQL+V3n7XhMdEWu4n34/ycuj+SkymYUIUzJZ8kbG0h88LHm0+FMt/M2P
-         cMVaxh4sV8sjIYfHsFJkBG8+RJsZYv6mh0C2WHhu9w/sgh+rlPEjoPdGYdepMK9SXthG
-         +Tny6I9GsrQcaAngJd/X2xw28NFBotrgfTmVfPPynEM15oiS5SGpjl2m3WyucTLXdTFA
-         CYIQ==
-X-Gm-Message-State: ABy/qLZaWIx0qKtwyVQ2+jLqTcJOr2gxFxVseXarWjadDbGYncPJNNI5
-        iAPpXpQygHxOr++rcy7bnB0=
-X-Google-Smtp-Source: APBJJlFzUChT3stE+hWXYTvd8qsZM9EcHcQKmn4J4SGmiACu+AiMweUAUZKJjx/4+C6zxE3hdiZeuQ==
-X-Received: by 2002:a05:600c:446:b0:3fb:fda1:710c with SMTP id s6-20020a05600c044600b003fbfda1710cmr5821024wmb.2.1690212741966;
-        Mon, 24 Jul 2023 08:32:21 -0700 (PDT)
-Received: from localhost.localdomain (93-34-89-13.ip49.fastwebnet.it. [93.34.89.13])
-        by smtp.googlemail.com with ESMTPSA id l8-20020a7bc448000000b003fb40ec9475sm10676900wmi.11.2023.07.24.08.32.21
+        d=1e100.net; s=20221208; t=1690207589; x=1690812389;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=rmu60T8Zh0IAH6zmF8BDywGRhKd9xpQhUa6OjSxooAg=;
+        b=D1ekVJ8AIvm28rSFmCILtQG1uoW6JpcASVDapkxaMUg7fY6hurtBBxxltRPevgMUka
+         5oRL2Acganr+k24Pl/mQPf515wt6TE4uSBd6wdBDLO8a8/5gpn7Vi2Nhkv5w3N27NHSg
+         8YzbkUrwavVw/V6sawNlI8T4mGSPW5UIkC5D1uo0ROz07gmBblWCMxEoxdhBSHBEn2CW
+         x4b+7SuByRtj8Ei20R95GK4EW01GZzanHMRRHptRS205RMc4fyqsw22yPaq3kBW9DufD
+         RVQZYNf0Htd05wEjCCFMAr6/SQ4ZoY84PsMfSJnx4VKo/T20crBN9ntsUaIG8nPSyMY0
+         EPpQ==
+X-Gm-Message-State: ABy/qLY2pZoPFsCf4E3guZLA8E0s1h7H+Js9e8mmHXyTWvhDWJCvS/Fy
+        jtUrGdfkCgTijTk6+9RCrgULuA==
+X-Google-Smtp-Source: APBJJlH0Ct7XsVqwfQ5+ONo5s8bEMEEnT/fMQmqSet/l76QKkIX1oRVGXYQdTK9cVdpQlOXdJGEqDQ==
+X-Received: by 2002:ac2:4c23:0:b0:4fb:9129:7058 with SMTP id u3-20020ac24c23000000b004fb91297058mr4880627lfq.8.1690207589488;
+        Mon, 24 Jul 2023 07:06:29 -0700 (PDT)
+Received: from [192.168.1.101] (abxj221.neoplus.adsl.tpnet.pl. [83.9.3.221])
+        by smtp.gmail.com with ESMTPSA id er26-20020a05651248da00b004fbab1f023csm2223481lfb.138.2023.07.24.07.06.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 24 Jul 2023 08:32:21 -0700 (PDT)
-From:   Christian Marangi <ansuelsmth@gmail.com>
-To:     =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Mon, 24 Jul 2023 07:06:29 -0700 (PDT)
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Subject: [PATCH v2 0/7] Update RPM ICC bindings
+Date:   Mon, 24 Jul 2023 16:06:26 +0200
+Message-Id: <20230721-topic-icc_bindings-v2-0-e33d5acbf3bd@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAGKFvmQC/32NQQqDMBAAvyI5d0sSsak99R9FShKjLshGNja0i
+ H9v6gN6nIFhNpECY0jiVm2CQ8aEkQroUyX8ZGkMgH1hoaWupdEK1rigB/T+6ZB6pDGB0a0yUl2
+ Gpm1ECZ1NARxb8lNJ6TXPRS4cBnwfp0dXeMK0Rv4c46x+9u8jK5DQ1kE7b/R1cOY+I1mO58ij6
+ PZ9/wIAi1ZnygAAAA==
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Georgi Djakov <djakov@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Christian Marangi <ansuelsmth@gmail.com>
-Subject: [PATCH 3/3] nvmem: u-boot-env: Handle "reduced" ASCII address declaration
-Date:   Mon, 24 Jul 2023 10:26:32 +0200
-Message-Id: <20230724082632.21133-3-ansuelsmth@gmail.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230724082632.21133-1-ansuelsmth@gmail.com>
-References: <20230724082632.21133-1-ansuelsmth@gmail.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-0.6 required=5.0 tests=BAYES_00,DATE_IN_PAST_06_12,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>,
+        Shawn Guo <shawn.guo@linaro.org>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1690207588; l=2183;
+ i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
+ bh=A8LpiXmLBVmMdUw98d7AMUqCxngJBApa7pOnf7AC90Q=;
+ b=+VB70vlmAU0xRrBWNBbXgW6M1WBxIZZBCnb5CnANELALNAo6XSwFcJAYo2Ray0mODQl/sZ/HK
+ fflLR+1yn+QDgxiwbvqDrUyCsFu7raZsuwalEzrW2I/JeCZaT7/L7xV
+X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
+ pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Parsing ASCII values is hard as hex values can be declared in many ways
-and OEM never follow a genera rules. This is especially problematic for
-parsing MAC address writte in ASCII format where an hex values can be
-written in 2 different format:
-- a Full format with leading 0, 01 02 06 0A
-- a Reduced format with trimmed leading 0, 1 2 6 A
+The recent necessary overhaul [1] of how we represent SMD ICC and RPM
+bus clocks changed the way they're connected. The bindings however were
+not updated to reflect that. This series tries to address that, while
+also making the relevant bindings less convoluted.
 
-The current U-Boot-env driver assume that the Full format is always used
-by parsting the NVMEM cell size and expect always the form of
-XX:XX:XX:XX:XX:XX to pass it directly to mac_pton that expects this
-format.
+Now, instead of referencing RPM SMD bus clocks via clocks=<>, they're
+handled internally within the interconnect framework (via direct RPM
+calls from there). We still need to allow some "interface" clocks,
+which are necessary to access some registers and not managed for us.
 
-Reality is that it's common for OEM to use the reduced format resulting
-in MAC address in the format of XX:a:XX:XX:XX:XX:XX or a:XX:XX:XX:XX:XX
-or XX:XX:XX:XX:XX:a.
+[1] https://lore.kernel.org/linux-arm-msm/20230526-topic-smd_icc-v7-0-09c78c175546@linaro.org/
 
-To handle these special format additional care is needed.
-
-Some additional logic are added to "normalize" the MAC address in ASCII
-to a format that is accepted by mac_pton.
-
-As using the NVMEM cell size is not enough anymore, some additional
-validation are done by checking if we have at least a format of
-X:X:X:X:X:X by checking if we have at least 5 ':' char while checking
-the NVMEM cell. The size validation is changed to check a range of
-ETH_ALEN + 5 (assuming a min valid MAC address of X:X:X:X:X:X) and
-the full form by checking 3 * ETH_ALEN -1 (for the full format
-XX:XX:XX:XX:XX:XX)
-
-The parsing function try to be as redable as possible while saving some
-code duplication and skip the use of memcpy function as the post_process
-is called very little time just on driver probe.
-
-Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
- drivers/nvmem/u-boot-env.c | 50 ++++++++++++++++++++++++++++++++++++--
- 1 file changed, 48 insertions(+), 2 deletions(-)
+Changes in v2:
+- Keep reg: local to the individual bindings
+- Use the rpm-common yaml for child nodes
+- Keep msm8916 and qcs404 in the common file
+- Keep only meaningful examples
+- Fix up some indentation
+- Pick up tags
+- Link to v1: https://lore.kernel.org/r/20230721-topic-icc_bindings-v1-0-93e2bc728fb7@linaro.org
 
-diff --git a/drivers/nvmem/u-boot-env.c b/drivers/nvmem/u-boot-env.c
-index b64c37308789..e33565e872f8 100644
---- a/drivers/nvmem/u-boot-env.c
-+++ b/drivers/nvmem/u-boot-env.c
-@@ -76,12 +76,58 @@ static int u_boot_env_read(void *context, unsigned int offset, void *val,
- static int u_boot_env_read_post_process_ethaddr(void *context, const char *id, int index,
- 						unsigned int offset, void *buf, size_t bytes)
- {
-+	u8 *src_mac = buf;
- 	u8 mac[ETH_ALEN];
- 
--	if (bytes != 3 * ETH_ALEN - 1)
-+	if (bytes < ETH_ALEN + 5 || bytes > 3 * ETH_ALEN - 1)
- 		return -EINVAL;
- 
--	if (!mac_pton(buf, mac))
-+	/* ASCII address might need to be normalized, try to parse it */
-+	if (bytes != 3 * ETH_ALEN - 1) {
-+		u8 tmp_mac[3 * ETH_ALEN - 1];
-+		int i = 0, j = 0;
-+
-+		while (i < bytes) {
-+			/* First check if we need to handle a reduced section
-+			 * or we are handling the last byte.
-+			 * Example of reduced section:
-+			 * - a:XX:XX:XX:XX:XX
-+			 * - XX:a:XX:XX:XX:XX
-+			 * - XX:XX:XX:XX:XX:a
-+			 */
-+			if (src_mac[i + 1] == ':' || i + 1 == bytes) {
-+				tmp_mac[j] = '0';
-+				tmp_mac[j + 1] = src_mac[i];
-+				if (src_mac[i + 1] == ':')
-+					tmp_mac[j + 2] = src_mac[i + 1];
-+				i += 2;
-+			/* Handle a full section or we are handling the last 2 byte.
-+			 * Example of full section:
-+			 * - aa:XX:XX:XX:XX:XX
-+			 * - XX:aa:XX:XX:XX:XX
-+			 * - XX:XX:XX:XX:XX:aa
-+			 */
-+			} else if (src_mac[i + 2] == ':' || i + 2 == bytes) {
-+				tmp_mac[j] = src_mac[i];
-+				tmp_mac[j + 1] = src_mac[i + 1];
-+				if (src_mac[i + 2] == ':')
-+					tmp_mac[j + 2] = src_mac[i + 2];
-+				i += 3;
-+			/* Return -EINVAL if we have a not valid ascii address.
-+			 * We can use the logic of missing ':' to validate a
-+			 * correct ASCII address.
-+			 */
-+			} else {
-+				return -EINVAL;
-+			}
-+			j += 3;
-+		}
-+
-+		/* Parse the normalized mac instead of the nvmem cell */
-+		src_mac = tmp_mac;
-+	}
-+
-+	if (!mac_pton(src_mac, mac))
- 		return -EINVAL;
- 
- 	if (index)
+---
+Konrad Dybcio (7):
+      dt-bindings: interconnect: qcom: Introduce qcom,rpm-common
+      dt-bindings: interconnect: qcom: qcm2290: Remove RPM bus clocks
+      dt-bindings: interconnect: qcom: Fix and separate out SDM660
+      dt-bindings: interconnect: qcom: Fix and separate out MSM8996
+      dt-bindings: interconnect: qcom: Fix and separate out MSM8939
+      dt-bindings: interconnect: qcom: rpm: Clean up the file
+      dt-bindings: interconnect: qcom: rpm: Clean up the example
+
+ .../bindings/interconnect/qcom,msm8939.yaml        |  74 ++++++
+ .../bindings/interconnect/qcom,msm8996.yaml        | 126 +++++++++++
+ .../bindings/interconnect/qcom,qcm2290.yaml        |  60 +----
+ .../bindings/interconnect/qcom,rpm-common.yaml     |  28 +++
+ .../devicetree/bindings/interconnect/qcom,rpm.yaml | 250 +--------------------
+ .../bindings/interconnect/qcom,sdm660.yaml         | 108 +++++++++
+ 6 files changed, 352 insertions(+), 294 deletions(-)
+---
+base-commit: ae867bc97b713121b2a7f5fcac68378a0774739b
+change-id: 20230721-topic-icc_bindings-72917016f595
+
+Best regards,
 -- 
-2.40.1
+Konrad Dybcio <konrad.dybcio@linaro.org>
 
