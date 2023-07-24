@@ -2,84 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B3A075F3B0
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 12:44:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ACC5375F3C3
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 12:49:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232220AbjGXKoW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jul 2023 06:44:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42146 "EHLO
+        id S229983AbjGXKtI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jul 2023 06:49:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44156 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232171AbjGXKoV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 06:44:21 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA5B0DD
-        for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 03:44:18 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id 2adb3069b0e04-4fa48b5dc2eso6178186e87.1
-        for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 03:44:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690195457; x=1690800257;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=BBI9kM5NnGdYn3nIC1ZBkTtviA4H3pLeU5dB7m6uf+g=;
-        b=JnPWYhSC4MPaMfPt85IQQAx/UOfIv4PMdpx1qNFUd6csIjn9rgeV0BX7HQhbyyLkT2
-         GWsIdxMw3EQwA570Mkclmm8rD9dzHMZZ87zT5UtLFr49J2XcI4okl4cYK9SFNkGahPsg
-         G0gLDzJBKlGaZu2lLEucdE3JUVG2DxLq2hu9v680oR5Hy2SUB5jHgxumvAZw7WROR89A
-         HpmE/QhE6wW0QHC3D9Km1l8/7Xv3lOvEYmuN8sN+qwUAc78f3iPIruzkcI57MOyB9X/O
-         WVQCwVOvu39vd6Lx5b6wtMJviasBmCVyroiEhjwfCXtsfimi0x0FiP+hmdg4ORYFA/oM
-         N6GQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690195457; x=1690800257;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=BBI9kM5NnGdYn3nIC1ZBkTtviA4H3pLeU5dB7m6uf+g=;
-        b=QljixmGyviuv8+qbafJhMjiZYvdQOuq6JVQv8qmusGvYX7UNI7+4Hw61frPRuVe6fb
-         lw8/rUBkLwEI+gF+hvEx2/O+Mg52/3rR31bC9aeLAmJtcPUu/G1BqJdxsspUU92wirIj
-         u5cWOInVjLoTY9iPQ/yUy0H5hzAMzwS2plNCndUt0CGtiHCfBjZV2yTmyPMt4Pjx9kNt
-         ulCwVc3yVM45LpFUKObsVDYW0ZQTz/mDeFXdYWq4i0O8CP+eBibz4uI+wsdhhh4OZ4dF
-         EE57T1FREswnEMrFd+gnt8z/+UTt36Rgk8p1OMnLW72oia6QdHHhcIXVS2N1vxe3SYOo
-         D+Mg==
-X-Gm-Message-State: ABy/qLbEj4MsExFvvn/0azgdJT+y11+tlyGxw152uXhUye+j+MnLBzKf
-        NJP7MO/BOIFTdRgEQsUKZ+GXSg==
-X-Google-Smtp-Source: APBJJlGH0BFLTMfOfJFp6DXr/KIrJISsrZB2/U65xfegxRJbSLfokCGQZDPk/t0kXSJZC9iYEG/n0A==
-X-Received: by 2002:a19:ca5a:0:b0:4fd:d862:72a6 with SMTP id h26-20020a19ca5a000000b004fdd86272a6mr4558720lfj.53.1690195457091;
-        Mon, 24 Jul 2023 03:44:17 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:a0db:1f00::8a5? (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
-        by smtp.gmail.com with ESMTPSA id r8-20020a19ac48000000b004fdf4053786sm780255lfc.240.2023.07.24.03.44.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 24 Jul 2023 03:44:16 -0700 (PDT)
-Message-ID: <f3aaee16-edfd-6b2e-6c47-de48ec572609@linaro.org>
-Date:   Mon, 24 Jul 2023 13:44:15 +0300
+        with ESMTP id S232314AbjGXKtA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 06:49:00 -0400
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D297102;
+        Mon, 24 Jul 2023 03:48:56 -0700 (PDT)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 4D52F7FD6;
+        Mon, 24 Jul 2023 18:48:49 +0800 (CST)
+Received: from EXMBX172.cuchost.com (172.16.6.92) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 24 Jul
+ 2023 18:48:49 +0800
+Received: from [192.168.125.136] (183.27.99.135) by EXMBX172.cuchost.com
+ (172.16.6.92) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 24 Jul
+ 2023 18:48:48 +0800
+Message-ID: <a687c273-48b1-651e-313f-d8140732c5d8@starfivetech.com>
+Date:   Mon, 24 Jul 2023 18:48:47 +0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH 0/5] arm64: dts: qcom: qrb5165-rb5: enable DP support
-Content-Language: en-GB
-To:     Bjorn Andersson <andersson@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v1 8/9] PCI: PLDA: starfive: Add JH7110 PCIe controller
+Content-Language: en-US
+To:     Bjorn Helgaas <helgaas@kernel.org>
+CC:     Minda Chen <minda.chen@starfivetech.com>,
+        Daire McNamara <daire.mcnamara@microchip.com>,
+        Conor Dooley <conor@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org
-References: <20230709041926.4052245-1-dmitry.baryshkov@linaro.org>
- <yjr3i54z4ddifn7y6ls65h65su54xtuzx3gvibw6ld4x27fd7x@ganmrdp4vzx7>
- <0075783f-9166-89aa-a9f9-068494e468e3@linaro.org>
- <vo7boshin545hx27ov3rrkhbglkf42f7yl5r5geltqyqw3lmol@icdicnqvrvrx>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <vo7boshin545hx27ov3rrkhbglkf42f7yl5r5geltqyqw3lmol@icdicnqvrvrx>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-riscv@lists.infradead.org>, <linux-pci@vger.kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        "Palmer Dabbelt" <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        "Philipp Zabel" <p.zabel@pengutronix.de>,
+        Mason Huo <mason.huo@starfivetech.com>,
+        Leyfoon Tan <leyfoon.tan@starfivetech.com>
+References: <20230720161555.GA526946@bhelgaas>
+From:   Kevin Xie <kevin.xie@starfivetech.com>
+In-Reply-To: <20230720161555.GA526946@bhelgaas>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+X-Originating-IP: [183.27.99.135]
+X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX172.cuchost.com
+ (172.16.6.92)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -87,35 +68,104 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/07/2023 05:49, Bjorn Andersson wrote:
-> On Tue, Jul 18, 2023 at 09:09:41AM +0300, Dmitry Baryshkov wrote:
->> On 18/07/2023 07:37, Bjorn Andersson wrote:
->>> On Sun, Jul 09, 2023 at 07:19:21AM +0300, Dmitry Baryshkov wrote:
->>>> Implement DisplayPort support for the Qualcomm RB5 platform.
->>>>
->>>> Note: while testing this, I had link training issues with several
->>>> dongles with DP connectors. Other DisplayPort-USB-C dongles (with HDMI
->>>> or VGA connectors) work perfectly.
->>>>
->>>> Dependencies: [1]
->>>> Soft-dependencies: [2], [3]
->>>>
->>>> [1] https://lore.kernel.org/linux-arm-msm/20230515133643.3621656-1-bryan.odonoghue@linaro.org/
->>>
->>> I'm not able to find a version of this series ready to be merged, can
->>> you please help me find it?
->>
->> This = Bryan's? I have posted some (small) feedback regarding v8. You also
->> had issues with orientation switching bindings, etc. So there should be v9.
->>
+
+
+On 2023/7/21 0:15, Bjorn Helgaas wrote:
+> On Thu, Jul 20, 2023 at 06:11:59PM +0800, Kevin Xie wrote:
+>> On 2023/7/20 0:48, Bjorn Helgaas wrote:
+>> > On Wed, Jul 19, 2023 at 06:20:56PM +0800, Minda Chen wrote:
+>> >> Add StarFive JH7110 SoC PCIe controller platform
+>> >> driver codes.
 > 
-> Right, Bryan's series. You linked to v8 which has requests for changes,
-> and I can't find v9. Am I just bad at searching?
+>> >> + * The BAR0/1 of bridge should be hidden during enumeration to
+>> >> + * avoid the sizing and resource allocation by PCIe core.
+>> >> + */
+>> >> +static bool starfive_pcie_hide_rc_bar(struct pci_bus *bus, unsigned int  devfn,
+>> >> +				      int offset)
+>> >> +{
+>> >> +	if (pci_is_root_bus(bus) && !devfn &&
+>> >> +	    (offset == PCI_BASE_ADDRESS_0 || offset == PCI_BASE_ADDRESS_1))
+>> >> +		return true;
+>> >> +
+>> >> +	return false;
+>> >> +}
+>> >> +
+>> >> +int starfive_pcie_config_write(struct pci_bus *bus, unsigned int devfn,
+>> >> +			       int where, int size, u32 value)
+>> >> +{
+>> >> +	if (starfive_pcie_hide_rc_bar(bus, devfn, where))
+>> >> +		return PCIBIOS_BAD_REGISTER_NUMBER;
+>> > 
+>> > I think you are trying present BARs 0 & 1 as unimplemented.  Such BARs
+>> > are hardwired to zero, so you should make them behave that way (both
+>> > read and write).  Many callers of config accessors don't check the
+>> > return value, so I don't think it's reliable to just return
+>> > PCIBIOS_BAD_REGISTER_NUMBER.
+>> 
+>> This is a hardware defect that we did not hardwired those BARs to
+>> zero, and it is configurable for software now.  We have to add this
+>> filter function for workaround.
+> 
+> Yes.  My point is that this only affects the write path, and the read
+> probably does not read 0 as it should.  This means lspci will show the
+> wrong thing, and the PCI core will try to size the BAR when it doesn't
+> need to.  I haven't looked at the BAR sizing code; it might even come
+> up with a bogus size and address, when it *should* just conclude the
+> BAR doesn't exist at all.
 > 
 
-I think v9 has never been sent.
+Got it, I will try to hide those BARs both in read and write operations.
 
--- 
-With best wishes
-Dmitry
+>> >> +	/* Ensure that PERST has been asserted for at least 100 ms */
+>> >> +	msleep(300);
+>> >> +	gpiod_set_value_cansleep(pcie->reset_gpio, 0);
+>> > 
+>> > At least 100 ms, but you sleep *300* ms?  This is probably related to
+>> > https://lore.kernel.org/r/20230718155515.GA483233@bhelgaas
+>> > 
+>> > Please include a comment with the source of the delay value.  I assume
+>> > it's T_PVPERL and T_PERST-CLK from the PCIe CEM spec.  This way we can
+>> > someday share those #defines across drivers.
+>> 
+>> Yes, the delay value here is T_PVPERL from PCIe CEM spec r2.0 (Table
+>> 2-4).  At the first time we set 100ms delay according to sector 2.2
+>> of the spec: "After there has been time (TPVPERL) for the power and
+>> clock to become stable, PERST# is deasserted high and the PCI
+>> Express functions can start up."
+>> 
+>> However, in the compatibility testing with several NVMe SSD, we
+>> found that Lenovo Thinklife ST8000 NVMe can not get ready in 100ms,
+>> and it actually needs almost 200ms.  Thus, we increased the T_PVPERL
+>> value to 300ms for the better device compatibility.
+>>
+>> We will use a macro to define T_PVPERL, and add comments for the
+>> source of it.  If the compatibility delay of 300ms is not
+>> reasonable, we can revert it to 100ms.
+> 
+> Thanks for this valuable information!  This NVMe issue potentially
+> affects many similar drivers, and we may need a more generic fix so
+> this device works well with all of them.
+> 
+> T_PVPERL is defined to start when power is stable.  Do you have a way
+> to accurately determine that point?  I'm guessing this:
+> 
+>   gpiod_set_value_cansleep(pcie->power_gpio, 1)
+> 
+> turns the power on?  But of course that doesn't mean it is instantly
+> stable.  Maybe your testing is telling you that your driver should
+> have a hardware-specific 200ms delay to wait for power to become
+> stable, followed by the standard 100ms for T_PVPERL?
+> 
 
+You are right, we did not take the power stable cost into account.
+T_PVPERL is enough for Lenovo Thinklife ST8000 NVMe SSD to get ready,
+and the extra cost is from the power circuit of a PCIe to M.2 connector,
+which is used to verify M.2 SSD with our EVB at early stage.
+
+As the Thinklife NVMe SSD may be a halted product,
+and the onboard power circuit of VisionFive V2 is no problem,
+we decided revert the sleep time to be 100ms.
+
+We will add a comment for the source of T_PVPERL until your define in pci.h is accepted.
+
+> Bjorn
