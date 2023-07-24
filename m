@@ -2,144 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F05275EC3F
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 09:10:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 86CE075EC4F
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 09:16:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230157AbjGXHKv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jul 2023 03:10:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52052 "EHLO
+        id S229770AbjGXHQR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jul 2023 03:16:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54176 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229853AbjGXHKu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 03:10:50 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F032C137
-        for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 00:10:48 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-9923833737eso588885966b.3
-        for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 00:10:48 -0700 (PDT)
+        with ESMTP id S229492AbjGXHQP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 03:16:15 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A3BC94
+        for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 00:16:14 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-4f9fdb0ef35so5957663e87.0
+        for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 00:16:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690182647; x=1690787447;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        d=linaro.org; s=google; t=1690182972; x=1690787772;
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=QNUo0Kn9Aa2Dgdj2gFIhpNrROHE/bncbbpqnizXf6ac=;
-        b=XBUONx0XrgqCY9fZgz3fyLS7sx1wucVYmBIqDiE1WVjoXmXrD5hnDdky2dwBz5wqbl
-         wMg5GMkY+wnsGC2EsGFUHcD4mQn5Ioyc/Dvre6LvhEaIF7hvZAnisPUrEX4+wV28NPu5
-         WgiomtlgNaDO4CK03pmYWtD5bd9C7jhmZjiy3MMNbCJIdkA4ysFNKjrAWuaY/wJ0cOa1
-         aTQk5unjVkodxc555cQ+5rCu+GH8M31LFuEtiZHP9sMQ6YubOLkSgO25cTn+2dXxjqzE
-         moQ/3tvLkXOwz4yja8gWW0d+YP9SPOKyjeaCvZ28INSnuBkr2/WNLrh90TsIctezV5JY
-         u5ig==
+        bh=LJjiLpTiLcLmlDY6EXYdVhyrOy6hWSuU/gTL98LQWAs=;
+        b=Gd24sNIj0oDtV+j8vvlaIzwzpX5g16e5B0su1m38z5Eh4/ymC4AQyHc4iOL5GSnsKg
+         qqh/KFLB2/ApPKkloUyObuj40XmZRV7Bho4iuxDzwtmNeVG3NtBWe7vYy3Y+VWEcZwLL
+         kb7deTAzE3D6/yorBkWrFraCGa0GTCTaXK11D1S2Y7uwJKARNr8LfXmUpUuIcwFYSikR
+         dq2WhX0ZRnoGaV2qXPozC5zF2vF2fBRPS8r4wgOgTrhTZXZeYRpyQoE8kSRut4Y1DZM6
+         JPFRwhRmXz3Ih+rUTUNRvXegagbcIBRLq+09CAKjRFeGIa6wiBiv/ErzETd/AHJpSoBc
+         drig==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690182647; x=1690787447;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        d=1e100.net; s=20221208; t=1690182972; x=1690787772;
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=QNUo0Kn9Aa2Dgdj2gFIhpNrROHE/bncbbpqnizXf6ac=;
-        b=BiTB2af7V1KWB6nrj2YD2ZIiPt5wMi8tDtAUswwUsxIp2VRYivKAZe3sRfbPoS1jJQ
-         xBX4Ss5UzWe8MZUSCp3jjAuzgv32VQD91oeZFuHVOIlkifQm/+ba1XrCpz9BNRvI2bPW
-         c+CSNdcb2entHMzJGWYl2EM6GF9o7gBMf9aDuvVnCriW//wMsfZ0nxLaXqdaTV+2eoHV
-         Ox1SGriz6kDuIazOIr6g7rnYnoPZRUwONSSRZl43v3+OkvuBD0RqmH21HtUKjbpO1/YF
-         6L9o2jgzM0Chcw40D4Rf/sQ26iKXQRoZNos3kTqnn825/BkZJImgmgRQXTb8+BmIwsYJ
-         5y0Q==
-X-Gm-Message-State: ABy/qLZZN2DSJj2A8fQeW8qwjEANgiwLlOWegKeNWciCiNLtIIXs9NSO
-        9zHxx6bkj8R0bxaDNbm6m6FveQ==
-X-Google-Smtp-Source: APBJJlGqjMKUoeRrImKQFupGiJ2uC2XkQKoD01CqdLe354F8gMvelSbPPWaIJVuA9pyFDHsmHhcJ7g==
-X-Received: by 2002:a17:907:75e5:b0:993:a379:6158 with SMTP id jz5-20020a17090775e500b00993a3796158mr8298544ejc.17.1690182647475;
-        Mon, 24 Jul 2023 00:10:47 -0700 (PDT)
+        bh=LJjiLpTiLcLmlDY6EXYdVhyrOy6hWSuU/gTL98LQWAs=;
+        b=XZnOpdDdZJ0x/isn7mw1S/vDEhSmCoFQ7j6gtHc2UL4g0ZzD9ohyVQ65FglWWOytv4
+         p3mWNht1oco/EuG6VsMqViU8cQKYwKveTByvlIUN0/CdfKh9e2ga18RIDeGF0e/Lkdll
+         mue78D34KUOUa0aJowOnh1hkOqbrW5z6DOAyQrbLreRTiuzBa7djm2MPOWa15IciIRYg
+         8MD59mr4rdVq/bdaWfQWloGF6TRLWaPvWgx25vsxU+/xJ68A9zzxZcEKTUjODybmRpVA
+         FXtqkXg+a3k2nWFIB5nA4a/nZCMZW8kvXhmmdONu+EehEzfr47e1FVradTZBt85qEt2t
+         AeIQ==
+X-Gm-Message-State: ABy/qLYvfk2gwii/v9lDqYRmbACQPhGComFET+ZTlICR2O+DJCyj64ph
+        wbGDqwh7EEsGIGUjl3Sc5lcR6FsrASj41uuVbp737A==
+X-Google-Smtp-Source: APBJJlHFEusndSawbs0I417rvOGJ25UK9yb415P0WNw1Hwu1JevZtKCiq9KD/FsQvDX2NH7fwJ7rgA==
+X-Received: by 2002:ac2:4d96:0:b0:4fd:d172:fc2c with SMTP id g22-20020ac24d96000000b004fdd172fc2cmr4036921lfe.21.1690182972321;
+        Mon, 24 Jul 2023 00:16:12 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id kk7-20020a170907766700b0098df7d0e096sm6294662ejc.54.2023.07.24.00.10.44
+        by smtp.gmail.com with ESMTPSA id b1-20020a05640202c100b0051e06693590sm5708715edx.91.2023.07.24.00.16.09
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 24 Jul 2023 00:10:47 -0700 (PDT)
-Message-ID: <e0897453-54b0-2a2c-2bf0-1f771c0c6565@linaro.org>
-Date:   Mon, 24 Jul 2023 09:10:43 +0200
+        Mon, 24 Jul 2023 00:16:11 -0700 (PDT)
+Message-ID: <ab767c7e-27f2-061c-fb3a-6566e72f3e63@linaro.org>
+Date:   Mon, 24 Jul 2023 09:16:08 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
-Subject: Re: [PATCH v3 2/2] arm64: dts: Replace deprecated extcon-usb-gpio
- id-gpio/vbus-gpio properties
+Subject: Re: [EXT] Re: [PATCH v4 1/7] dt-bindings: arm: fsl: add se-fw binding
+ doc
 Content-Language: en-US
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        =?UTF-8?Q?Beno=c3=aet_Cousson?= <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>
-Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-omap@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-        linux-rockchip@lists.infradead.org
-References: <20230721081948.1185360-1-alexander.stein@ew.tq-group.com>
- <20230721081948.1185360-2-alexander.stein@ew.tq-group.com>
- <c3ea2edb-1b3e-2c39-ccf6-333e3c8b9020@linaro.org>
- <3251040.44csPzL39Z@steina-w>
+To:     Pankaj Gupta <pankaj.gupta@nxp.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "clin@suse.com" <clin@suse.com>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "pierre.gondois@arm.com" <pierre.gondois@arm.com>,
+        Jacky Bai <ping.bai@nxp.com>,
+        Clark Wang <xiaoning.wang@nxp.com>,
+        Wei Fang <wei.fang@nxp.com>, Peng Fan <peng.fan@nxp.com>,
+        Bough Chen <haibo.chen@nxp.com>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "davem@davemloft.net" <davem@davemloft.net>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Gaurav Jain <gaurav.jain@nxp.com>,
+        "alexander.stein@ew.tq-group.com" <alexander.stein@ew.tq-group.com>,
+        Sahil Malhotra <sahil.malhotra@nxp.com>,
+        Aisheng Dong <aisheng.dong@nxp.com>,
+        Varun Sethi <V.Sethi@nxp.com>
+References: <20230712121219.2654234-1-pankaj.gupta@nxp.com>
+ <20230712121219.2654234-2-pankaj.gupta@nxp.com>
+ <f3965cf1-3f0a-15fe-7dd3-e83817a4ba3a@linaro.org>
+ <DU2PR04MB863034F3609C9878D2DA5F029502A@DU2PR04MB8630.eurprd04.prod.outlook.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <3251040.44csPzL39Z@steina-w>
+In-Reply-To: <DU2PR04MB863034F3609C9878D2DA5F029502A@DU2PR04MB8630.eurprd04.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/07/2023 08:05, Alexander Stein wrote:
-> Hi,
-> 
-> Am Freitag, 21. Juli 2023, 14:22:06 CEST schrieb Krzysztof Kozlowski:
->> On 21/07/2023 10:19, Alexander Stein wrote:
->>> Use id-gpios and vbus-gpios instead.
->>>
->>> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
->>> Acked-by: Heiko Stuebner <heiko@sntech.de> #rockchip
->>> Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com> #mediatek
->>> Reviewed-by: AngeloGioacchino Del Regno
->>> <angelogioacchino.delregno@collabora.com> Acked-by: Shawn Guo
->>> <shawnguo@kernel.org>
->>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>> ---
->>> Changes in v3:
->>> * Rebased to next-20230721
->>> * Split from bindings patch
+On 24/07/2023 08:37, Pankaj Gupta wrote:
+>>> +examples:
+>>> +  - |
+>>> +    ele_mu: ele_mu {
 >>
->> I think you wanted to split it per subsystem, right? That's why you
->> resent/v3? But the split did not happen.
+>> No underscores in node names, generic node names, e.g. firmware. Look at
+>> existing code.
 > 
-> Yes, I split it into dt bindings and DT changes patches. Is this not correct?
+> Changed from:
+> -  ele_mu to ele-mu.
+> - "ele_mu {" to "se-fw {"
 
-We talked about DTS patch - this one. It was already split between
-bindings and DTS, so this would not have been a topic at all.
+Still not generic. Why do you change it twice? You understand I talk
+here about node name?
+
 
 > 
->> If you decide not to split,
->> then try to figure out: who should pick up this patchset?
+> Name of yaml file, is se-fw.yaml.
 > 
-> Well, intention was one patch for DT bindings maintainers and these two 
-> patches for imx maintainer (Shawn AFAIK).
+>>
+>>> +      compatible = "fsl,imx93-ele";
+>>> +      mbox-names = "tx", "rx";
+>>> +      mboxes = <&s4muap 2 0
+>>> +                &s4muap 3 0>;
+>>
+>> Two items, not one.
+> 
+> Corrected it to "mboxes= = <&s4muap 2 0 &s4muap 3 0>;"
+> 
+>>
+>>> +      fsl,mu-did = <1>;
+>>> +      fsl,mu-id = <1>;
+>>> +    };
+>>
+>> Plus you clearly did not test the binding and DTS. You said you did some
+>> internal review, so I assume this also includes some testing. How did you test
+>> your DTS?
+>>
+> 
+> Each version is tested before sent for review here.
+> I have tested the DTS file by compiling it and loading the DTB to the board.
+> Executed test on the board. 
 
-You touch there much more than IMX, so if you intend that you need to be
-pretty clear. I see there around 5% of changes from IMX, so targeting
-IMX is a weird choice.
+That's not enough and your colleagues should tell you that... Read our
+guides for bindings.
 
+It does not look like you tested the DTS against bindings. Please run
+`make dtbs_check` (see
+Documentation/devicetree/bindings/writing-schema.rst or
+https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
+for instructions).
 
-> I've send patches separated by arch/
-> arm and arch/arm64 in one series, so I'm slightly confused now.
+It does not look like you tested the bindings, at least after quick
+look. Please run `make dt_binding_check` (see
+Documentation/devicetree/bindings/writing-schema.rst for instructions).
+Maybe you need to update your dtschema and yamllint.
 
-So telling you second time - don't. Split per subsystem.
 
 Best regards,
 Krzysztof
