@@ -2,42 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3DA5775ED3E
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 10:19:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AAA0675ED40
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 10:19:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231180AbjGXITW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jul 2023 04:19:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50748 "EHLO
+        id S230203AbjGXITZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jul 2023 04:19:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50774 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230366AbjGXITU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 04:19:20 -0400
+        with ESMTP id S231194AbjGXITW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 04:19:22 -0400
 Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06C0312F;
-        Mon, 24 Jul 2023 01:19:12 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3867693;
+        Mon, 24 Jul 2023 01:19:14 -0700 (PDT)
 Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
         (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
          key-exchange X25519 server-signature RSA-PSS (4096 bits))
         (No client certificate requested)
         (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id E08AF660702C;
-        Mon, 24 Jul 2023 09:19:10 +0100 (BST)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 8BFA4660703C;
+        Mon, 24 Jul 2023 09:19:12 +0100 (BST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1690186751;
-        bh=GCFnrMzv+rNigLSD0v1cN1fv4vmk6WyzFgWQ1ZaSsio=;
+        s=mail; t=1690186753;
+        bh=urkKoxu8DIqx9yaZETGWB5AtfWNXPKcI9c8Y868BmLs=;
         h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=GbfkbmG/lD+WW5KPpaXX5Vif3xElrqaxm7WNWoQCBGjT52O+f3oY3fZCEZes8Rohk
-         CqxPTT5oGwtCB63i4Liv7WfMcFa8yshINQ2tygToyNov2laaE8qYw8mLM94QqFgvEM
-         j9iN3Di1q4O2yJdO4729zStWGyG4mb7YH6KlPzTkJlF/K4M2OsDnjxqLzs8o7/h/jm
-         P7+yniWWn3zHtt40KjN2tZFH9Cmy1fmfpMvl+5HBV2NIbj8L2X2rJkQYjwV77b6uYH
-         UYva0bU7K3KTJ2yxg6vnpkV5r9jiuIAqIfI5xQbLnxr3BbqOLaOde0tZ9VyeDvE7T9
-         ff8RJQiNSQejw==
-Message-ID: <815a67c6-0006-7a63-a940-bb9e3efc7217@collabora.com>
-Date:   Mon, 24 Jul 2023 10:19:08 +0200
+        b=n/ZOVuMLH2lulIivPNWAKcjQmEyX4SXp/kPvPpp1cafw/UCiLs8pJPtU9Cg6Qe73r
+         BsqlU4EHl+MuUou2YVE0NLliNjw5ETWwgzhazT2vEa50k2lK2dynt9uZFBMbgkq2cr
+         cGIglMFfZBmaQw3gfzh/txrAloYyVW5Twjb/6iEKgnbLrT8895xqC8YsR2iX2Hq+mj
+         dyicOcRlgfdd4wSRNMiEh0ZSxSllpZGL4D0V4S8HjHzYMx7qlIVOWY6Qw/I+GaeHlL
+         Sd1WrsxKvAsPCO81rtJx9DZlQP+YRB9j6DrbHQjRAt0XMXgO7pH4/kyf5ZJrJzNHfW
+         yQsM/OTkszrmQ==
+Message-ID: <c40a6205-7f4a-fe61-9b66-4bbc57304831@collabora.com>
+Date:   Mon, 24 Jul 2023 10:19:09 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
-Subject: Re: [PATCH v3 4/5] arm64: dts: mediatek: Add hayato-rev5-sku2
-Content-Language: en-US
+Subject: Re: [PATCH v3 3/5] arm64: dts: mediatek: Remove asurada-audio dtsi
+ files
 To:     =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
         <nfraprado@collabora.com>,
         Matthias Brugger <matthias.bgg@gmail.com>
@@ -48,10 +48,11 @@ Cc:     Chen-Yu Tsai <wenst@chromium.org>, kernel@collabora.com,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         linux-mediatek@lists.infradead.org
 References: <20230721201705.387426-1-nfraprado@collabora.com>
- <20230721201705.387426-5-nfraprado@collabora.com>
+ <20230721201705.387426-4-nfraprado@collabora.com>
+Content-Language: en-US
 From:   AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20230721201705.387426-5-nfraprado@collabora.com>
+In-Reply-To: <20230721201705.387426-4-nfraprado@collabora.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -65,11 +66,11 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 Il 21/07/23 22:16, Nícolas F. R. A. Prado ha scritto:
-> Add a devicetree for rev5-sku2 of Hayato. It uses the rt5682s audio
-> codec instead of the rt5682 used in the previous revision.
+> There aren't enough users of the common asurada-audio dtsi files to
+> justify having them. It is simpler to just have the audio nodes directly
+> on the board files.
 > 
 > Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
-> 
 
 Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
