@@ -2,56 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 41CBE75E684
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 03:20:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B33B75E71B
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 03:24:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230200AbjGXBUt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 23 Jul 2023 21:20:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51262 "EHLO
+        id S230319AbjGXBYv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 23 Jul 2023 21:24:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53112 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230201AbjGXBUk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Jul 2023 21:20:40 -0400
+        with ESMTP id S231222AbjGXBXG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Jul 2023 21:23:06 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1188E7C;
-        Sun, 23 Jul 2023 18:20:18 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04DEB1FC7;
+        Sun, 23 Jul 2023 18:22:35 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 5292B60F14;
-        Mon, 24 Jul 2023 01:18:42 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3B801C433CB;
-        Mon, 24 Jul 2023 01:18:40 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 6951560F02;
+        Mon, 24 Jul 2023 01:22:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F3E70C433CB;
+        Mon, 24 Jul 2023 01:22:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690161521;
-        bh=Vmb6qvn2Tjsqbdf0p1XNotjE0c6EKznreOk29UAg0So=;
+        s=k20201202; t=1690161732;
+        bh=ZYC4SLug/fUNLztgoRw7UcCim61nMtSly4z7hPpKqjk=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=dEztTZjN94lp+WA3BvrD+MWAHdVQc6M3rEDZ6RAdaD+8tx+k1McSlXXRsmRfdB8ig
-         /B/y441ilEAcuw7IY6KiQJ4H6Ec7D+drfZffxGbPmqMu1rK0tvWyfHC7OJLXyZoSOW
-         TEi+CxARJMJHr/fCo5m4Kf+Ll4XTWViYXg7r8pH37cwcTjyKF5gwO6MjHmDuuBFQJj
-         ceWorVaU28eQCzn8wXSmhHL8CbCQp1M5o1E2898/vJe3g+UbJUk1NY4X6bA4+uIekW
-         P6h6hoX8h1l1o2s3g+JPaetNiYY75b1rNqn7DvFHEKu7mrWameZKNtyqRSe0yPYkzf
-         MaET1OlhQ224w==
+        b=bRHaiVmpquti9LuqwkVQFDhEqJ026zd5eMozTf+vzzlWDuoeSQEAULR0c7DsT5lBU
+         XBIEnPELtEla2H3pH8NrYl80V+37TEfeB8MWolj6867lCcGIe/uSP0/rPrwVqUIPY6
+         dkLPfh75MHgM2qvJoWohhR0B/li3IjM6WTSd1CHstT7OXs6zs83p560FzNetfSOpS1
+         ODw8rzwy7u4pcwEQwzIXRdXfZMGF8Ie3BjZ8oXf0MKhA1T1LlROV8lxBs/nfxDtKcn
+         xusIz6AhVtcT92ZOewXKod3gZrK2w+5maYUZK1Af2rVlunARMlBkN6XN4vwUoC9nRn
+         uz5OT1LAp8oYQ==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Fei Shao <fshao@chromium.org>, Jeff LaBundy <jeff@labundy.com>,
-        Douglas Anderson <dianders@chromium.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh@kernel.org>, Jiri Kosina <jkosina@suse.cz>,
-        Sasha Levin <sashal@kernel.org>, dmitry.torokhov@gmail.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, linux-input@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 6.4 34/58] dt-bindings: input: goodix: Add "goodix,no-reset-during-suspend" property
-Date:   Sun, 23 Jul 2023 21:13:02 -0400
-Message-Id: <20230724011338.2298062-34-sashal@kernel.org>
+Cc:     Oleksij Rempel <o.rempel@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sasha Levin <sashal@kernel.org>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH AUTOSEL 6.1 14/41] ARM: dts: imx6dl: prtrvt, prtvt7, prti6q, prtwd2: fix USB related warnings
+Date:   Sun, 23 Jul 2023 21:20:47 -0400
+Message-Id: <20230724012118.2316073-14-sashal@kernel.org>
 X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230724011338.2298062-1-sashal@kernel.org>
-References: <20230724011338.2298062-1-sashal@kernel.org>
+In-Reply-To: <20230724012118.2316073-1-sashal@kernel.org>
+References: <20230724012118.2316073-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
-X-stable-base: Linux 6.4.5
+X-stable-base: Linux 6.1.40
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
@@ -63,51 +60,76 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Fei Shao <fshao@chromium.org>
+From: Oleksij Rempel <o.rempel@pengutronix.de>
 
-[ Upstream commit 359ed24a0dd3802e703ec8071dc3b6ed446de5f0 ]
+[ Upstream commit 1d14bd943fa2bbdfda1efbcc080b298fed5f1803 ]
 
-We observed that on Chromebook device Steelix, if Goodix GT7375P
-touchscreen is powered in suspend (because, for example, it connects to
-an always-on regulator) and with the reset GPIO asserted, it will
-introduce about 14mW power leakage.
+Fix USB-related warnings in prtrvt, prtvt7, prti6q and prtwd2 device trees
+by disabling unused usbphynop1 and usbphynop2 USB PHYs and providing proper
+configuration for the over-current detection. This fixes the following
+warnings with the current kernel:
+ usb_phy_generic usbphynop1: dummy supplies not allowed for exclusive requests
+ usb_phy_generic usbphynop2: dummy supplies not allowed for exclusive requests
+ imx_usb 2184200.usb: No over current polarity defined
 
-To address that, we add this property to skip reset during suspend.
-If it's set, the driver will stop asserting the reset GPIO during
-power-down. Refer to the comments in the driver for details.
+By the way, fix over-current detection on usbotg port for prtvt7, prti6q
+and prtwd2 boards. Only prtrvt do not have OC on USB OTG port.
 
-Signed-off-by: Fei Shao <fshao@chromium.org>
-Suggested-by: Jeff LaBundy <jeff@labundy.com>
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
-Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
-Reviewed-by: Jeff LaBundy <jeff@labundy.com>
-Acked-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Jiri Kosina <jkosina@suse.cz>
+Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+Signed-off-by: Shawn Guo <shawnguo@kernel.org>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- .../devicetree/bindings/input/goodix,gt7375p.yaml        | 9 +++++++++
- 1 file changed, 9 insertions(+)
+ arch/arm/boot/dts/imx6dl-prtrvt.dts   |  4 ++++
+ arch/arm/boot/dts/imx6qdl-prti6q.dtsi | 11 ++++++++++-
+ 2 files changed, 14 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/input/goodix,gt7375p.yaml b/Documentation/devicetree/bindings/input/goodix,gt7375p.yaml
-index ce18d7dadae23..1edad1da1196d 100644
---- a/Documentation/devicetree/bindings/input/goodix,gt7375p.yaml
-+++ b/Documentation/devicetree/bindings/input/goodix,gt7375p.yaml
-@@ -43,6 +43,15 @@ properties:
-       itself as long as it allows the main board to make signals compatible
-       with what the touchscreen is expecting for its IO rails.
+diff --git a/arch/arm/boot/dts/imx6dl-prtrvt.dts b/arch/arm/boot/dts/imx6dl-prtrvt.dts
+index 56bb1ca56a2df..36b031236e475 100644
+--- a/arch/arm/boot/dts/imx6dl-prtrvt.dts
++++ b/arch/arm/boot/dts/imx6dl-prtrvt.dts
+@@ -124,6 +124,10 @@ &usbh1 {
+ 	status = "disabled";
+ };
  
-+  goodix,no-reset-during-suspend:
-+    description:
-+      Set this to true to enforce the driver to not assert the reset GPIO
-+      during suspend.
-+      Due to potential touchscreen hardware flaw, back-powering could happen in
-+      suspend if the power supply is on and with active-low reset GPIO asserted.
-+      This property is used to avoid the back-powering issue.
-+    type: boolean
++&usbotg {
++	disable-over-current;
++};
 +
- required:
-   - compatible
-   - reg
+ &vpu {
+ 	status = "disabled";
+ };
+diff --git a/arch/arm/boot/dts/imx6qdl-prti6q.dtsi b/arch/arm/boot/dts/imx6qdl-prti6q.dtsi
+index f0db0d4471f40..36f84f4da6b0d 100644
+--- a/arch/arm/boot/dts/imx6qdl-prti6q.dtsi
++++ b/arch/arm/boot/dts/imx6qdl-prti6q.dtsi
+@@ -69,6 +69,7 @@ &usbh1 {
+ 	vbus-supply = <&reg_usb_h1_vbus>;
+ 	phy_type = "utmi";
+ 	dr_mode = "host";
++	disable-over-current;
+ 	status = "okay";
+ };
+ 
+@@ -78,10 +79,18 @@ &usbotg {
+ 	pinctrl-0 = <&pinctrl_usbotg>;
+ 	phy_type = "utmi";
+ 	dr_mode = "host";
+-	disable-over-current;
++	over-current-active-low;
+ 	status = "okay";
+ };
+ 
++&usbphynop1 {
++	status = "disabled";
++};
++
++&usbphynop2 {
++	status = "disabled";
++};
++
+ &usdhc1 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_usdhc1>;
 -- 
 2.39.2
 
