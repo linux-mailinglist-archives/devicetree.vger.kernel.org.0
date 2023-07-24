@@ -2,88 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AF30675FB71
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 18:06:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0838A75FB74
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 18:06:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229582AbjGXQGY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jul 2023 12:06:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39548 "EHLO
+        id S230021AbjGXQGs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jul 2023 12:06:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39736 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229495AbjGXQGX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 12:06:23 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1C558E;
-        Mon, 24 Jul 2023 09:06:22 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 7CEAA6123C;
-        Mon, 24 Jul 2023 16:06:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 33B71C433C7;
-        Mon, 24 Jul 2023 16:06:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690214781;
-        bh=wzILIiktygSkczKQwKNbT4xkne6f5Z3SbGziCkcoM/c=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ShgOSX/YcapLsLBr4mgiNNeTxkDsZrey4+inAmYcBZY1Ugf7LaGLNUMNQK6Osc2IE
-         ayg++5bmISQm5M/fBfUWQJNKaT2WbpvTPxqvmy1iPbAdXzPAS3VPvvnZiRzJmZTuzC
-         WOzPcVcAWeqL49oUem4aPSij+F6HYuYo1EurjouatuePD8QkVp+62YAmJYO3MaXzUa
-         XhkjK0AqSpVSHopWja+iyCmUuVIDPZDTl5tGrE2Ya4v9bmOwMcuIc4wUF4zuRpatJk
-         xDFlbsxi54Mwq4vWYZruPNS+NKzYVoqbOEwaZAyCeEwOBG4pDb+e5vxRKuI+v6UAUm
-         Q8GTMAzk5DsWg==
-Received: (nullmailer pid 3630338 invoked by uid 1000);
-        Mon, 24 Jul 2023 16:06:19 -0000
-Date:   Mon, 24 Jul 2023 10:06:19 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Conor Dooley <conor+dt@kernel.org>,
-        Jon Hunter <jonathanh@nvidia.com>, linux-tegra@vger.kernel.org,
-        linux-pm@vger.kernel.org, Zhang Rui <rui.zhang@intel.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Subject: Re: [PATCH v2] dt-bindings: thermal: tegra: Convert to json-schema
-Message-ID: <169021477856.3630278.10231413984365263357.robh@kernel.org>
-References: <20230721130306.2990112-1-thierry.reding@gmail.com>
+        with ESMTP id S230191AbjGXQGr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 12:06:47 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4AF3510FE;
+        Mon, 24 Jul 2023 09:06:45 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 36OG6OYD006619;
+        Mon, 24 Jul 2023 11:06:24 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1690214784;
+        bh=/8LPWB3kQV4mGYDKYtFwRQpGZ7Mous9zY+TNmmeBuA8=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=HXXIiZEQnlIRM+suZm6DtCv7qpwUAqbVK0NByqb091SRdLWYfl7U3i7vmPuqASkxk
+         QygXmoCxDjG/9iRjvSIy4aHREI6lRaqPvN0HcPApdkuICjWkzuSCCxYtIMNFMWm80A
+         kQQf1tVmEnpZXR5iBJqvxlK6FYqX4AFQ76UJlP5Y=
+Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 36OG6O5L004146
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 24 Jul 2023 11:06:24 -0500
+Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 24
+ Jul 2023 11:06:24 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 24 Jul 2023 11:06:24 -0500
+Received: from [128.247.81.105] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 36OG6O5s067251;
+        Mon, 24 Jul 2023 11:06:24 -0500
+Message-ID: <42044653-cc22-131a-bf1b-e68ddfa0ff9d@ti.com>
+Date:   Mon, 24 Jul 2023 11:06:24 -0500
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230721130306.2990112-1-thierry.reding@gmail.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v1 1/2] arm64: dts: ti: k3-am62: Add MCU MCAN nodes
+To:     Francesco Dolcini <francesco@dolcini.it>,
+        Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Francesco Dolcini <francesco.dolcini@toradex.com>
+References: <20230724133612.37366-1-francesco@dolcini.it>
+ <20230724133612.37366-2-francesco@dolcini.it>
+Content-Language: en-US
+From:   Judith Mendez <jm@ti.com>
+In-Reply-To: <20230724133612.37366-2-francesco@dolcini.it>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Francesco,
 
-On Fri, 21 Jul 2023 15:03:06 +0200, Thierry Reding wrote:
-> From: Thierry Reding <treding@nvidia.com>
+On 7/24/23 8:36 AM, Francesco Dolcini wrote:
+> From: Judith Mendez <jm@ti.com>
 > 
-> Convert the Tegra thermal bindings from the free-form text format to
-> json-schema.
+> On AM62x there are no hardware interrupts routed to A53 GIC
+> interrupt controller for MCU MCAN IPs, so MCU MCAN nodes were
+> omitted from MCU dtsi.
 > 
-> Signed-off-by: Thierry Reding <treding@nvidia.com>
+> Timer polling was introduced in commits [1][2] so now add MCU MCAN nodes
+> to the MCU dtsi for the Cortex A53.
+> 
+> [1] b382380c0d2d ("can: m_can: Add hrtimer to generate software interrupt")
+> [2] bb410c03b999 ("dt-bindings: net: can: Remove interrupt properties for MCAN")
+> 
+> Signed-off-by: Judith Mendez <jm@ti.com>
+> [fd: fixed labels to match datasheet numbering, revised commit message,
+>       fixed reg/reg-names order]
+> Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
 > ---
-> Changes in v2:
-> - add minimum and maximum values for cpu-throt-percent property
-> - add missing unevaluatedProperties for throttle event nodes
-> - drop unneeded minItems where it equals maxItems
-> - add missing items for uint32-matrix
-> - document OC1 throttle event
+>   arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi | 24 ++++++++++++++++++++++++
+>   1 file changed, 24 insertions(+)
 > 
->  .../thermal/nvidia,tegra124-soctherm.txt      | 238 -----------
->  .../thermal/nvidia,tegra124-soctherm.yaml     | 380 ++++++++++++++++++
->  2 files changed, 380 insertions(+), 238 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/thermal/nvidia,tegra124-soctherm.txt
->  create mode 100644 Documentation/devicetree/bindings/thermal/nvidia,tegra124-soctherm.yaml
-> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi b/arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi
+> index 19fc38157d94..fed50666d95b 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi
+> @@ -147,4 +147,28 @@ mcu_rti0: watchdog@4880000 {
+>   		/* Tightly coupled to M4F */
+>   		status = "reserved";
+>   	};
+> +
+> +	mcu_mcan0: can@4e00000 {
+> +		compatible = "bosch,m_can";
+> +		reg = <0x00 0x4e08000 0x00 0x200>,
+> +		      <0x00 0x4e00000 0x00 0x8000>;
+> +		reg-names = "m_can", "message_ram";
+> +		power-domains = <&k3_pds 188 TI_SCI_PD_EXCLUSIVE>;
+> +		clocks = <&k3_clks 188 6>, <&k3_clks 188 1>;
+> +		clock-names = "hclk", "cclk";
+> +		bosch,mram-cfg = <0x0 128 64 64 64 64 32 32>;
+> +		status = "disabled";
+> +	};
+> +
+> +	mcu_mcan1: can@4e10000 {
+> +		compatible = "bosch,m_can";
+> +		reg = <0x00 0x4e18000 0x00 0x200>,
+> +		      <0x00 0x4e10000 0x00 0x8000>;
+> +		reg-names = "m_can", "message_ram";
+> +		power-domains = <&k3_pds 189 TI_SCI_PD_EXCLUSIVE>;
+> +		clocks = <&k3_clks 189 6>, <&k3_clks 189 1>;
+> +		clock-names = "hclk", "cclk";
+> +		bosch,mram-cfg = <0x0 128 64 64 64 64 32 32>;
+> +		status = "disabled";
+> +	};
+>   };
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Thanks for sending this patch, will also send for AM62ax.
 
+~ Judith
