@@ -2,63 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C428975FEA7
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 19:59:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CB89E75FEB6
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 20:04:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231822AbjGXR7b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jul 2023 13:59:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55784 "EHLO
+        id S229677AbjGXSER (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jul 2023 14:04:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33632 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231863AbjGXR7I (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 13:59:08 -0400
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09A2D1BE8;
-        Mon, 24 Jul 2023 10:58:41 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 36OHwV0m029686;
-        Mon, 24 Jul 2023 12:58:31 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1690221511;
-        bh=QNtGpwtkUx8jhQ4t9YZRGDbpO50+R+pfQ0fdzsAIIYs=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=cWoSkinfZ1tM8w4Ubq6lsiwumpead/M917SxZzZr1cQswljnGithQDv2FcGnK6mv6
-         nhXTtJ7t+b9Wb42aUH/+yVEAZjvV+dXHgfDnoppIjcQ54XDDDzZjeq7i0Whla5Png0
-         lMZ+bqm2sUdqZOLPnheSLfztopPEuTrtJlMlfL+E=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 36OHwV3L013900
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 24 Jul 2023 12:58:31 -0500
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 24
- Jul 2023 12:58:31 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 24 Jul 2023 12:58:30 -0500
-Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 36OHwUYL128228;
-        Mon, 24 Jul 2023 12:58:30 -0500
-Date:   Mon, 24 Jul 2023 12:58:30 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Siddharth Vadapalli <s-vadapalli@ti.com>
-CC:     <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <afd@ti.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>
-Subject: Re: [PATCH v2] arm64: dts: ti: k3-j721e: Add overlay to enable
- CPSW9G ports with GESI
-Message-ID: <20230724175830.mdly3o44xvqlzvf3@agreeable>
-References: <20230710075551.1109024-1-s-vadapalli@ti.com>
+        with ESMTP id S229495AbjGXSEQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 14:04:16 -0400
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 675ECCD;
+        Mon, 24 Jul 2023 11:04:14 -0700 (PDT)
+Received: from [193.138.155.172] (helo=phil.localnet)
+        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <heiko@sntech.de>)
+        id 1qNzuc-0007kq-Co; Mon, 24 Jul 2023 20:04:02 +0200
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        =?ISO-8859-1?Q?Beno=EEt?= Cousson <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-omap@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v4 6/6] arm64: dts: qcom: Replace deprecated extcon-usb-gpio
+ id-gpio/vbus-gpio properties
+Date:   Mon, 24 Jul 2023 20:04:00 +0200
+Message-ID: <6220628.iIbC2pHGDl@phil>
+In-Reply-To: <20230724103914.1779027-7-alexander.stein@ew.tq-group.com>
+References: <20230724103914.1779027-1-alexander.stein@ew.tq-group.com>
+ <20230724103914.1779027-7-alexander.stein@ew.tq-group.com>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20230710075551.1109024-1-s-vadapalli@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -66,15 +63,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13:25-20230710, Siddharth Vadapalli wrote:
-[...]
+Am Montag, 24. Juli 2023, 12:39:13 CEST schrieb Alexander Stein:
+> Use id-gpios and vbus-gpios instead.
+> 
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Acked-by: Shawn Guo <shawnguo@kernel.org>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
 
-> +	rgmii4_pins_default: rgmii4-pins-default {
+>  arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi                 | 2 +-
 
-Could you make sure that the node names matches up with the json-schema
-conversion:
-https://lore.kernel.org/all/169021456020.3622493.10284534202541859578.robh@kernel.org/
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+sorry to be a spoilsport, but Rockchip is not part of qcom ;-) .
+
+I don't have a massive problem with this going through the qcom tree
+though, so if you don't respin,
+
+Acked-by: Heiko Stuebner <heiko@sntech.de> #rockchip
+
+
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi
+> index aa3e21bd6c8f..20e3f41efe97 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi
+> @@ -27,7 +27,7 @@ module_led: led-0 {
+>  
+>  	extcon_usb3: extcon-usb3 {
+>  		compatible = "linux,extcon-usb-gpio";
+> -		id-gpio = <&gpio1 RK_PC2 GPIO_ACTIVE_HIGH>;
+> +		id-gpios = <&gpio1 RK_PC2 GPIO_ACTIVE_HIGH>;
+>  		pinctrl-names = "default";
+>  		pinctrl-0 = <&usb3_id>;
+>  	};
+> 
+
+
+
+
