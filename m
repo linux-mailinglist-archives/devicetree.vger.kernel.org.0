@@ -2,87 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BC9FD75F550
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 13:40:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BD22275F554
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 13:40:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229772AbjGXLkM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jul 2023 07:40:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57660 "EHLO
+        id S229829AbjGXLkY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jul 2023 07:40:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58038 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229789AbjGXLkG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 07:40:06 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD48AE61
-        for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 04:40:04 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id 2adb3069b0e04-4fb41682472so6282355e87.2
-        for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 04:40:04 -0700 (PDT)
+        with ESMTP id S229968AbjGXLkV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 07:40:21 -0400
+Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com [IPv6:2607:f8b0:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C1AE10E4
+        for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 04:40:13 -0700 (PDT)
+Received: by mail-pl1-x62f.google.com with SMTP id d9443c01a7336-1b89114266dso34304475ad.0
+        for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 04:40:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690198803; x=1690803603;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=FkaTBeASYu8P0h7GTLxOpD3T0h5M1j1+XIcBVhBejCw=;
-        b=TmpjHofSYLVfVJNedt0O7I7sIBvRnxc1Ld/aw4IzK8oJs3k6TQXF8h0x4h+POY+/c5
-         65oVGeD/qaicON/k64VhctooQEsyGkFg/fCGvm458v2BsL/TVXIFz2MSyv0lq18WUFGV
-         +f+jHgcJjKXeQpjXcstCN40yqf/dQ2w2EX1Esmn4CIL4RDreLu8DPei7+SWH/PImHlBz
-         7di/x8gDopi+o3n1DQkuOO4k1jselKHrCb3ZSCDHRSWWTE76+4Jb4e/hL+2RYaNYEa+A
-         9pVA6Kz1IwGT33zhWvjCqj7MGgAba9Rv12P11DRocgnHyHxbtg5ZX0RaX8FdP6Ymd/8B
-         JKsw==
+        d=linaro.org; s=google; t=1690198813; x=1690803613;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=pl6d3M0hehvgH0Yirik992Buoa0/dKM8PGZb9G+lsBo=;
+        b=qm0Iz3UXFzn+1zi2ybe8UoeKg+fCjjdBbH3ni2uC4J7HA4ooeIQ3bPfPl8irgzTwpW
+         j107/e563ckFy9gBEOO6+7DxOBmuDccjSU0VBgexZ0VG81hD9Gk4ve/kZZvNxNYYEWsf
+         rS/vVreG7MMLozHv3aD2bEJaYHzq8cAWFfsVSk4tK0rT8UVcVXHpkayOIuJhsO2g1dNI
+         z1EkeZtG0vdRSJTiJXKrFBIuMhdhqO0jrJLLOrpf9u+kSMnzZj6bAD4AKs4nfLILIXBC
+         F8+TpCbCFwwMql0lsEs8JW/h55RaHjB6Sc4lfogKGOCFwjOJHKtBob6iRZEeUC+cnkFx
+         yIyA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690198803; x=1690803603;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=FkaTBeASYu8P0h7GTLxOpD3T0h5M1j1+XIcBVhBejCw=;
-        b=Y9RCFWuEhtE+ypmhNFQpRCANU7PN4NIzV8iCiZfHHu5C14vvAKbrLIM40F64ltmyeV
-         IoWHzOgbuwarbpF0M8v7tUknYA6u0mjYetq7B7Ep+aDU/3ucKb/AviV1sGE2QJM92j4D
-         9qJQqcPSx2oD+py4dRr/TjuEoxnY1iDii3WiF66+9/jK+2yqxUm31aYvjC/wBKmLN5GY
-         cpDjBBL1BKf8Gd8SjWisq3FNIW2vNgMZT+vpRyQzjbseWSuiCX4oO0c6pilHiPgmOYih
-         rbMcW4NyYVKzJKe7DoGClerM9EMvTwkquK4iAjQ+xTTPq1mLlOs5xunROWbgjNRXJKWY
-         AyNA==
-X-Gm-Message-State: ABy/qLa8DAm+aYu/QT2n5IdBO6zapbiogm0SrJBkrS0Bu8pmugFgu6Mp
-        P3OJRW9RJE9Y/o/tIAHaufdlrQ==
-X-Google-Smtp-Source: APBJJlH0+gvt/maOnNTBdDlYacWoBXnnvhUrQ/EO7mWnjfF8Gq+FLsqc3zbSP4To5aMzoQ76U+wSDg==
-X-Received: by 2002:a05:6512:743:b0:4f8:5e21:a3a9 with SMTP id c3-20020a056512074300b004f85e21a3a9mr5070585lfs.45.1690198802939;
-        Mon, 24 Jul 2023 04:40:02 -0700 (PDT)
-Received: from [192.168.1.101] (abyl203.neoplus.adsl.tpnet.pl. [83.9.31.203])
-        by smtp.gmail.com with ESMTPSA id u1-20020ac24c21000000b004fb881e5c23sm2168977lfq.47.2023.07.24.04.40.01
+        d=1e100.net; s=20221208; t=1690198813; x=1690803613;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=pl6d3M0hehvgH0Yirik992Buoa0/dKM8PGZb9G+lsBo=;
+        b=Hq4zeELCA041+xEOQyula5FzIh0M41G3Zv4Xdcp1wKRHix5PJmBoWmye4Vx/4RJyBJ
+         2IrWwErQ+Yd+kbyfntzswwSD7ki+0F/CJKPISMz692Fdgvu5A7U97+4KRwuOwu3GhoC5
+         /XiERUO9rwBLubggPexmW8uUjWLLGK/nDcFSWv0jTvb29I+47EGWPI9dX023YAbZWFMK
+         M9TDe24VXXY411khA5yG+NCvMtQxQ94cSJshX4EGN+FF6OBh9u4hi5ljtt2G9I4I/+aB
+         2jreoab/Ae9lXk4vYgDvNFKi+Zae8QxAS69YL0nwYblG+Ek0zms/S88OHiYRJC2G5BL6
+         Z2pQ==
+X-Gm-Message-State: ABy/qLYFRiTm2VHn6tUnYv6kZUd65oplC0orRcACsoj9MI19UuFgRsIs
+        bLhCHSBURcsQWAepllFMwsCf
+X-Google-Smtp-Source: APBJJlGaeMZ0FedkkRHTpEo9sL6WwPNThZ1JW24R4hofjfKiyr+tOUoa0E3BfOpO8B4R4eI5HZA6Jw==
+X-Received: by 2002:a17:90a:6fa7:b0:267:f12e:3684 with SMTP id e36-20020a17090a6fa700b00267f12e3684mr7920677pjk.23.1690198813255;
+        Mon, 24 Jul 2023 04:40:13 -0700 (PDT)
+Received: from thinkpad ([117.206.118.29])
+        by smtp.gmail.com with ESMTPSA id o13-20020a17090ad24d00b00267f9bf21ebsm3060492pjw.0.2023.07.24.04.40.09
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 24 Jul 2023 04:40:02 -0700 (PDT)
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Date:   Mon, 24 Jul 2023 13:39:58 +0200
-Subject: [PATCH v2 3/3] arm64: defconfig: enable Qualcomm SM6115 LPASS
- pinctrl
+        Mon, 24 Jul 2023 04:40:12 -0700 (PDT)
+Date:   Mon, 24 Jul 2023 17:10:05 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc:     jingoohan1@gmail.com, gustavo.pimentel@synopsys.com,
+        lpieralisi@kernel.org, robh+dt@kernel.org, kw@linux.com,
+        bhelgaas@google.com, kishon@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        marek.vasut+renesas@gmail.com, fancer.lancer@gmail.com,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v18 13/20] PCI: dwc: Introduce .ep_pre_init() and
+ .ep_deinit()
+Message-ID: <20230724114005.GL6291@thinkpad>
+References: <20230721074452.65545-1-yoshihiro.shimoda.uh@renesas.com>
+ <20230721074452.65545-14-yoshihiro.shimoda.uh@renesas.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230722-topic-6115_lpasstlmm-v2-3-d4883831a858@linaro.org>
-References: <20230722-topic-6115_lpasstlmm-v2-0-d4883831a858@linaro.org>
-In-Reply-To: <20230722-topic-6115_lpasstlmm-v2-0-d4883831a858@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1690198796; l=785;
- i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=hEAbD0xgwC03VcKuSXGbzmZXyqv8HA2q8JevzuYpv3w=;
- b=ERjNz1vReCRC3dDYlHXbQ1VlkzVZzSxXRlX00NBwQDLB98nOU3vnIGSVQIaAATG830boIMcTk
- Oob798ysbfZB4+1PryOMWbTgpV1CH7GiqFpLjpgmPBME+foFcUyI3S8
-X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
- pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230721074452.65545-14-yoshihiro.shimoda.uh@renesas.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
@@ -93,29 +79,69 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable the Qualcomm SM6115 LPASS TLMM pin controller driver for
-providing GPIOs/pins for audio block on SM6115 based boards (e.g.
-QTI RB2).
+On Fri, Jul 21, 2023 at 04:44:45PM +0900, Yoshihiro Shimoda wrote:
+> Renesas R-Car Gen4 PCIe controllers require vender-specific
+> initialization before .ep_init(). To use dw->dbi and dw->num-lanes
+> in the initialization code, introduce .ep_pre_init() into struct
+> dw_pcie_ep_ops. Also introduce .ep_deinit() to disable the controller
+> by using vender-specific de-initialization.
+> 
+> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+> ---
+>  drivers/pci/controller/dwc/pcie-designware-ep.c | 6 ++++++
+>  drivers/pci/controller/dwc/pcie-designware.h    | 2 ++
+>  2 files changed, 8 insertions(+)
+> 
+> diff --git a/drivers/pci/controller/dwc/pcie-designware-ep.c b/drivers/pci/controller/dwc/pcie-designware-ep.c
+> index 14c641395c3b..52b3e7f67513 100644
+> --- a/drivers/pci/controller/dwc/pcie-designware-ep.c
+> +++ b/drivers/pci/controller/dwc/pcie-designware-ep.c
+> @@ -684,6 +684,9 @@ void dw_pcie_ep_exit(struct dw_pcie_ep *ep)
+>  	struct dw_pcie *pci = to_dw_pcie_from_ep(ep);
+>  	struct pci_epc *epc = ep->epc;
+>  
+> +	if (ep->ops->ep_deinit)
+> +		ep->ops->ep_deinit(ep);
+> +
+>  	dw_pcie_edma_remove(pci);
+>  
+>  	if (ep->intx_mem)
+> @@ -797,6 +800,9 @@ int dw_pcie_ep_init(struct dw_pcie_ep *ep)
+>  	ep->phys_base = res->start;
+>  	ep->addr_size = resource_size(res);
+>  
+> +	if (ep->ops->ep_pre_init)
+> +		ep->ops->ep_pre_init(ep);
+> +
+>  	dw_pcie_version_detect(pci);
+>  
+>  	dw_pcie_iatu_detect(pci);
+> diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci/controller/dwc/pcie-designware.h
+> index 6821446d7c66..c3aeafd0f4c9 100644
+> --- a/drivers/pci/controller/dwc/pcie-designware.h
+> +++ b/drivers/pci/controller/dwc/pcie-designware.h
+> @@ -332,7 +332,9 @@ struct dw_pcie_rp {
+>  };
+>  
+>  struct dw_pcie_ep_ops {
+> +	void	(*ep_pre_init)(struct dw_pcie_ep *ep);
+>  	void	(*ep_init)(struct dw_pcie_ep *ep);
+> +	void	(*ep_deinit)(struct dw_pcie_ep *ep);
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+Since the struct name itself has "ep", there is no need to add the "ep" suffix
+to callbacks. You should fix the existing ep_init callback too in a separate
+patch.
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 6cbf6eb59378..6911101db09e 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -587,6 +587,7 @@ CONFIG_PINCTRL_SDM660=y
- CONFIG_PINCTRL_SDM670=y
- CONFIG_PINCTRL_SDM845=y
- CONFIG_PINCTRL_SM6115=y
-+CONFIG_PINCTRL_SM6115_LPASS_LPI=m
- CONFIG_PINCTRL_SM6125=y
- CONFIG_PINCTRL_SM6350=y
- CONFIG_PINCTRL_SM6375=y
+(this series is just GROWING!!!)
+
+- Mani
+
+>  	int	(*raise_irq)(struct dw_pcie_ep *ep, u8 func_no,
+>  			     enum pci_epc_irq_type type, u16 interrupt_num);
+>  	const struct pci_epc_features* (*get_features)(struct dw_pcie_ep *ep);
+> -- 
+> 2.25.1
+> 
 
 -- 
-2.41.0
-
+மணிவண்ணன் சதாசிவம்
