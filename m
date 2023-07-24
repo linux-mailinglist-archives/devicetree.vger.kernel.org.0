@@ -2,93 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 86CE075EC4F
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 09:16:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E46C375EC52
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 09:17:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229770AbjGXHQR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jul 2023 03:16:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54176 "EHLO
+        id S230010AbjGXHRH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jul 2023 03:17:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54510 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229492AbjGXHQP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 03:16:15 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A3BC94
-        for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 00:16:14 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-4f9fdb0ef35so5957663e87.0
-        for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 00:16:14 -0700 (PDT)
+        with ESMTP id S229598AbjGXHRG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 03:17:06 -0400
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0921E94
+        for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 00:17:05 -0700 (PDT)
+Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-51e344efd75so8409694a12.1
+        for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 00:17:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690182972; x=1690787772;
+        d=linaro.org; s=google; t=1690183023; x=1690787823;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=LJjiLpTiLcLmlDY6EXYdVhyrOy6hWSuU/gTL98LQWAs=;
-        b=Gd24sNIj0oDtV+j8vvlaIzwzpX5g16e5B0su1m38z5Eh4/ymC4AQyHc4iOL5GSnsKg
-         qqh/KFLB2/ApPKkloUyObuj40XmZRV7Bho4iuxDzwtmNeVG3NtBWe7vYy3Y+VWEcZwLL
-         kb7deTAzE3D6/yorBkWrFraCGa0GTCTaXK11D1S2Y7uwJKARNr8LfXmUpUuIcwFYSikR
-         dq2WhX0ZRnoGaV2qXPozC5zF2vF2fBRPS8r4wgOgTrhTZXZeYRpyQoE8kSRut4Y1DZM6
-         JPFRwhRmXz3Ih+rUTUNRvXegagbcIBRLq+09CAKjRFeGIa6wiBiv/ErzETd/AHJpSoBc
-         drig==
+        bh=BJeCwWsTZzA36Ct2WHsZleOWnEulDvesUCm+9RmBnlc=;
+        b=VRhmyspr/uwOw7U5C+iqvVN8dDJGuOiYMYQF8fjXq05CRtkf+30RTsBhBHK0AUCafG
+         mBK42bDn3VTPmfWZkymq29W32moXxgjCDAOgPIUgkLZQDvH5ZW39AAydKc32Vla6RJCY
+         n5Ql/9mYZZ8uPqG8/bpaH1HQMo+1cmCuP1ckInSQUXlG7ef4S1m+rvLXekBhO2vOZ7gX
+         E0IXF96gKmVDhccaq+YQfkFnV3OSb6NTMSgz35ZiKKH8IHwFSYBx7rEZBzUnfr2EnDiF
+         fM52jOegNLTc708zAVIyvuDTeVwjr/B+2auojbzmf/1sNoC/JMBhTAsV8UMgG8UEz8j9
+         wr2A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690182972; x=1690787772;
+        d=1e100.net; s=20221208; t=1690183023; x=1690787823;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=LJjiLpTiLcLmlDY6EXYdVhyrOy6hWSuU/gTL98LQWAs=;
-        b=XZnOpdDdZJ0x/isn7mw1S/vDEhSmCoFQ7j6gtHc2UL4g0ZzD9ohyVQ65FglWWOytv4
-         p3mWNht1oco/EuG6VsMqViU8cQKYwKveTByvlIUN0/CdfKh9e2ga18RIDeGF0e/Lkdll
-         mue78D34KUOUa0aJowOnh1hkOqbrW5z6DOAyQrbLreRTiuzBa7djm2MPOWa15IciIRYg
-         8MD59mr4rdVq/bdaWfQWloGF6TRLWaPvWgx25vsxU+/xJ68A9zzxZcEKTUjODybmRpVA
-         FXtqkXg+a3k2nWFIB5nA4a/nZCMZW8kvXhmmdONu+EehEzfr47e1FVradTZBt85qEt2t
-         AeIQ==
-X-Gm-Message-State: ABy/qLYvfk2gwii/v9lDqYRmbACQPhGComFET+ZTlICR2O+DJCyj64ph
-        wbGDqwh7EEsGIGUjl3Sc5lcR6FsrASj41uuVbp737A==
-X-Google-Smtp-Source: APBJJlHFEusndSawbs0I417rvOGJ25UK9yb415P0WNw1Hwu1JevZtKCiq9KD/FsQvDX2NH7fwJ7rgA==
-X-Received: by 2002:ac2:4d96:0:b0:4fd:d172:fc2c with SMTP id g22-20020ac24d96000000b004fdd172fc2cmr4036921lfe.21.1690182972321;
-        Mon, 24 Jul 2023 00:16:12 -0700 (PDT)
+        bh=BJeCwWsTZzA36Ct2WHsZleOWnEulDvesUCm+9RmBnlc=;
+        b=foUBLjJxOi3/+kKcBmt44tQbMrHI0mBiNn/00k5/tfP9LDFuiOxjeudRl8Dzy2jY6p
+         v5gZaMW15PbxAPnUXoFIxqZPUKxQ1Q46TgIaDQfmUHxuB9ZvDKhrTZ+V4djhIV28uiJo
+         pkOlzOL/JxhQKX+KLd6CGPX5gNYgX2fYsjSMcvxOhkhJkGZqqNwWn74xW4BnMSM/DB4s
+         7BUaBwVQj/1iz+5hC8CoVLZB6/lCxPatlC4omZwPkhh3/0WDS4yHc6SI6vFzJlVvh8Re
+         Jry6T4JmY3nFKmiiUSycaVmJxHAVWueEKKSaGL3Ze6GqDDsEw8/3navm9bmhZGNW3RLC
+         yg0A==
+X-Gm-Message-State: ABy/qLYkSgxgFi5jpFaOQK/TWVzYNYDqGM1vvUvOKnuSNqRUBIgbct87
+        GYllmgc4q5ASWG8BeWTlO5LGbg==
+X-Google-Smtp-Source: APBJJlGFysQs9dpzH5dvNmJw2OFgVyn3hSReFByLVNkWVJirJAy3bVofDekwJc5hBq+rtfZjDiTBDw==
+X-Received: by 2002:a05:6402:752:b0:521:d2ab:e4df with SMTP id p18-20020a056402075200b00521d2abe4dfmr9094672edy.19.1690183023462;
+        Mon, 24 Jul 2023 00:17:03 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id b1-20020a05640202c100b0051e06693590sm5708715edx.91.2023.07.24.00.16.09
+        by smtp.gmail.com with ESMTPSA id o26-20020aa7d3da000000b005222c160464sm1200954edr.72.2023.07.24.00.17.01
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 24 Jul 2023 00:16:11 -0700 (PDT)
-Message-ID: <ab767c7e-27f2-061c-fb3a-6566e72f3e63@linaro.org>
-Date:   Mon, 24 Jul 2023 09:16:08 +0200
+        Mon, 24 Jul 2023 00:17:03 -0700 (PDT)
+Message-ID: <8e9164fc-2276-e6b8-a4f6-c0c025bd6b86@linaro.org>
+Date:   Mon, 24 Jul 2023 09:17:00 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
-Subject: Re: [EXT] Re: [PATCH v4 1/7] dt-bindings: arm: fsl: add se-fw binding
+Subject: Re: [EXT] Re: [PATCH v3 1/7] dt-bindings: arm: fsl: add mu binding
  doc
 Content-Language: en-US
 To:     Pankaj Gupta <pankaj.gupta@nxp.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "clin@suse.com" <clin@suse.com>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "pierre.gondois@arm.com" <pierre.gondois@arm.com>,
-        Jacky Bai <ping.bai@nxp.com>,
-        Clark Wang <xiaoning.wang@nxp.com>,
-        Wei Fang <wei.fang@nxp.com>, Peng Fan <peng.fan@nxp.com>,
-        Bough Chen <haibo.chen@nxp.com>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "davem@davemloft.net" <davem@davemloft.net>,
         "robh+dt@kernel.org" <robh+dt@kernel.org>,
         "krzysztof.kozlowski+dt@linaro.org" 
         <krzysztof.kozlowski+dt@linaro.org>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
         "linux-arm-kernel@lists.infradead.org" 
         <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
         Gaurav Jain <gaurav.jain@nxp.com>,
-        "alexander.stein@ew.tq-group.com" <alexander.stein@ew.tq-group.com>,
-        Sahil Malhotra <sahil.malhotra@nxp.com>,
-        Aisheng Dong <aisheng.dong@nxp.com>,
-        Varun Sethi <V.Sethi@nxp.com>
-References: <20230712121219.2654234-1-pankaj.gupta@nxp.com>
- <20230712121219.2654234-2-pankaj.gupta@nxp.com>
- <f3965cf1-3f0a-15fe-7dd3-e83817a4ba3a@linaro.org>
- <DU2PR04MB863034F3609C9878D2DA5F029502A@DU2PR04MB8630.eurprd04.prod.outlook.com>
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Daniel Baluta <daniel.baluta@nxp.com>
+References: <20230616181144.646500-1-pankaj.gupta@nxp.com>
+ <20230616181144.646500-2-pankaj.gupta@nxp.com>
+ <a06dbb80-c9b2-3a57-cbc5-b18432b4029a@linaro.org>
+ <PAXPR04MB8638D1504946559095E1CAB69530A@PAXPR04MB8638.eurprd04.prod.outlook.com>
+ <9dd411e0-6cc5-44c1-be56-ecb2ad809a9b@linaro.org>
+ <DU2PR04MB86309B90B0849AFB23F6462F9502A@DU2PR04MB8630.eurprd04.prod.outlook.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <DU2PR04MB863034F3609C9878D2DA5F029502A@DU2PR04MB8630.eurprd04.prod.outlook.com>
+In-Reply-To: <DU2PR04MB86309B90B0849AFB23F6462F9502A@DU2PR04MB8630.eurprd04.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -102,62 +94,75 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 24/07/2023 08:37, Pankaj Gupta wrote:
->>> +examples:
->>> +  - |
->>> +    ele_mu: ele_mu {
->>
->> No underscores in node names, generic node names, e.g. firmware. Look at
->> existing code.
 > 
-> Changed from:
-> -  ele_mu to ele-mu.
-> - "ele_mu {" to "se-fw {"
-
-Still not generic. Why do you change it twice? You understand I talk
-here about node name?
-
-
 > 
-> Name of yaml file, is se-fw.yaml.
-> 
+>> -----Original Message-----
+>> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> Sent: Thursday, July 13, 2023 12:12 AM
+>> To: Pankaj Gupta <pankaj.gupta@nxp.com>; robh+dt@kernel.org;
+>> krzysztof.kozlowski+dt@linaro.org; conor+dt@kernel.org;
+>> shawnguo@kernel.org; s.hauer@pengutronix.de; kernel@pengutronix.de;
+>> festevam@gmail.com; dl-linux-imx <linux-imx@nxp.com>;
+>> devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org; Gaurav
+>> Jain <gaurav.jain@nxp.com>; linux-kernel@vger.kernel.org; Daniel Baluta
+>> <daniel.baluta@nxp.com>
+>> Subject: Re: [EXT] Re: [PATCH v3 1/7] dt-bindings: arm: fsl: add mu binding
+>> doc
 >>
->>> +      compatible = "fsl,imx93-ele";
->>> +      mbox-names = "tx", "rx";
->>> +      mboxes = <&s4muap 2 0
->>> +                &s4muap 3 0>;
+>> Caution: This is an external email. Please take care when clicking links or
+>> opening attachments. When in doubt, report the message using the 'Report
+>> this email' button
 >>
->> Two items, not one.
-> 
-> Corrected it to "mboxes= = <&s4muap 2 0 &s4muap 3 0>;"
-> 
 >>
->>> +      fsl,mu-did = <1>;
->>> +      fsl,mu-id = <1>;
->>> +    };
+>> On 10/07/2023 19:52, Pankaj Gupta wrote:
+>>>
+>>>
+>>>> -----Original Message-----
+>>>> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>>> Sent: Friday, June 16, 2023 6:51 PM
+>>>> To: Pankaj Gupta <pankaj.gupta@nxp.com>; robh+dt@kernel.org;
+>>>> krzysztof.kozlowski+dt@linaro.org; conor+dt@kernel.org;
+>>>> shawnguo@kernel.org; s.hauer@pengutronix.de; kernel@pengutronix.de;
+>>>> festevam@gmail.com; dl-linux-imx <linux-imx@nxp.com>;
+>>>> devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org;
+>>>> Gaurav Jain <gaurav.jain@nxp.com>; linux-kernel@vger.kernel.org;
+>>>> Daniel Baluta <daniel.baluta@nxp.com>
+>>>> Subject: [EXT] Re: [PATCH v3 1/7] dt-bindings: arm: fsl: add mu
+>>>> binding doc
+>>>>
+>>>> Caution: This is an external email. Please take care when clicking
+>>>> links or opening attachments. When in doubt, report the message using
+>>>> the 'Report this email' button
+>>>>
+>>>>
+>>>> On 16/06/2023 20:11, Pankaj Gupta wrote:
+>>>>> The NXP i.MX Message Unit enables two processing elements to
+>>>>> communicate & co-ordinate with each other. This driver is used to
+>>>>> communicate between Application Core and NXP HSM IPs like NXP
+>>>> EdgeLock
+>>>>> Enclave etc.
+>>>>> It exists on some i.MX processors. e.g. i.MX8ULP, i.MX93 etc.
+>>>>>
+>>>>> Signed-off-by: Pankaj Gupta <pankaj.gupta@nxp.com>
+>>>>
+>>>> I don't see reply to Daniel's concerns.
+>>>>
+>>>> I don't see improvements here based on the previous review you received.
+>>>> It seems you just ignored everything, right?
+>>> Replied to Daniel's concern.
+>>>
+>>>>
+>>>> Limited review follows up because binding is not in the shape for upstream.
+>>>> Do some internal reviews prior sending it.
+>>> Done the internal review.
 >>
->> Plus you clearly did not test the binding and DTS. You said you did some
->> internal review, so I assume this also includes some testing. How did you test
->> your DTS?
+>> I doubt. Your v4 bindings and DTS were not tested. v4 Driver has trivial issues.
 >>
-> 
-> Each version is tested before sent for review here.
-> I have tested the DTS file by compiling it and loading the DTB to the board.
-> Executed test on the board. 
+> It is tested and my driver get probed. And all my functional tests are passing.
+> No Patch-set is sent without testing.
 
-That's not enough and your colleagues should tell you that... Read our
-guides for bindings.
-
-It does not look like you tested the DTS against bindings. Please run
-`make dtbs_check` (see
-Documentation/devicetree/bindings/writing-schema.rst or
-https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
-for instructions).
-
-It does not look like you tested the bindings, at least after quick
-look. Please run `make dt_binding_check` (see
-Documentation/devicetree/bindings/writing-schema.rst for instructions).
-Maybe you need to update your dtschema and yamllint.
-
+As you explained there, you did not test the bindings nor DTS with
+dtbs_check. So your test-suite is incomplete, it lacks basic testing.
 
 Best regards,
 Krzysztof
