@@ -2,94 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F87F75EC70
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 09:25:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EB78F75EC73
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 09:25:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230027AbjGXHZK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jul 2023 03:25:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56990 "EHLO
+        id S230354AbjGXHZr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jul 2023 03:25:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57302 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229843AbjGXHZK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 03:25:10 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC7ACE1
-        for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 00:25:08 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id 2adb3069b0e04-4fa48b5dc2eso5849806e87.1
-        for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 00:25:08 -0700 (PDT)
+        with ESMTP id S230190AbjGXHZq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 03:25:46 -0400
+Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com [IPv6:2607:f8b0:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C26A9139
+        for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 00:25:45 -0700 (PDT)
+Received: by mail-pl1-x62a.google.com with SMTP id d9443c01a7336-1b9d80e33fbso21984065ad.0
+        for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 00:25:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690183507; x=1690788307;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=6To1AmJfKZALXGlXmCdcpZQBhgwdO8DUFybmC0BfNuI=;
-        b=I0ybHvy1YLSUttFE8O1Qh6SjnmxzSFnmFPbj/00XHoyRTeHaQiLC6TZ6ZFlHQzVzWW
-         Xv8slB0FYNivzUusyeUO7ItxNy/ydzn0hVu9dRvkgmFUIFCaA7fDjv1/FOUadboyKaky
-         bmwaUp/gQoVCLxIlWWsSGXbTT+zapkwh7JZRaGA1AiF7fXvCVHvrNz9rIsPwZ2BbCUc3
-         55nDdbJFyfK6jGOUN+h1BkkuEeDs6Cp0PLocKbZ1UaLl6UebMz6B2yQmvFi8CuV+ugi3
-         UM6Ggq16DU8nO6K03iMt9pdlowN4a3IAXpVb3oggruIEH8ieOncYGw4L4x8+2OMYos/D
-         KJnQ==
+        d=linaro.org; s=google; t=1690183545; x=1690788345;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=yDyplQwPvRvqJUtSpz4KPB8cjuW/LyNB3S4Bpqy4gds=;
+        b=Ojh9SkoNDltjuRlRqlRHW/JrTLwhGK7LwenodcOYGD7BtacUUZReRyNNjPqPslMCGO
+         LT1tk1Ga4t4L5zB4JCt5EmQ4PJDxG0cfLNo0afwMNuEb/93Obprep2aLUgZdN1n5PME8
+         JfbXTmSukY7/45Jym3UC62Zi9a/wplzPZaN5kYHRyQaT8HRkJP1JupQwUhfuuahAn+ld
+         niUMYgw22mdXmI6AanTUoXVabFbOVi5KJzFtzqxHVORo4+NflXmMAWtgwXYOlDNgejNo
+         6rOmK3Sg+1KhH8Fl/qeWZR5XhFzA0U9DnzznQVDeFbP4HJ+y/9AUx75yZvaKchBi4n0g
+         ufrA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690183507; x=1690788307;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1690183545; x=1690788345;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6To1AmJfKZALXGlXmCdcpZQBhgwdO8DUFybmC0BfNuI=;
-        b=cuidjojSzix44JoxBK4tVSPXafghEjd2AshfBUlX/LkjV17sJNDFsDrREqjPOzmOQt
-         cZzj8a8NdjnkuKGVpBlOjw962RaKtdYGmag6NSJ+MuJFpdRHagwNTtkiYVcc8FBkU3Ax
-         qTPcpjFBxBXw7npIs3qirNlzjpq53SaonPqeU0NKXLuzDGkD/bjK1+bI1bHkWGP/+EXo
-         lzntbnaBO5fv9Osh9OuI+4wUIUbpTC/RkXodmAEN2XNkH8rFN8yUBmhqs+mPw24HPNa5
-         1IfDasD61ZcOUCH1+xsfaSgerDUDlNcxsAncw12xbwp8xczURo2YOv7hHbXGFHGdBkgD
-         b0Bw==
-X-Gm-Message-State: ABy/qLYtBiucJu5AFSRYHoxpWJatkFkT2fzRwmHRbRZRKXCGH52eC70T
-        Qk2KLZKxg14B8tyHAXEoYR0t0A==
-X-Google-Smtp-Source: APBJJlF4c3ReKDhvLfkhVwoWeOuz74evpUCZ2CgKvSJySQdVz2fjNjGVbLZ0rhlEWgW66p+rwRWCxQ==
-X-Received: by 2002:a19:7508:0:b0:4ed:cc6d:61fe with SMTP id y8-20020a197508000000b004edcc6d61femr4842985lfe.24.1690183507175;
-        Mon, 24 Jul 2023 00:25:07 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id t8-20020a056402020800b0052239012c65sm303432edv.82.2023.07.24.00.25.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 24 Jul 2023 00:25:06 -0700 (PDT)
-Message-ID: <ae570cbb-08ad-5a7c-8dc9-4ad9f41d6e7f@linaro.org>
-Date:   Mon, 24 Jul 2023 09:25:04 +0200
+        bh=yDyplQwPvRvqJUtSpz4KPB8cjuW/LyNB3S4Bpqy4gds=;
+        b=R0CAm6yrr1KPORA0ggvXo7rH2oSNgRDdSvqNUAEQQTsSxFwO2NxSOxOTpAImyTMpGq
+         hjOktwhgUhWGkW6QOGrDCA8ft33WDBiv+krsft1oefxwYYNM2rfg222f6I2eZFnRQK7R
+         XZOuH+SwKRTn4qDlo4mBMtHfnDZkjF+bK9FyjJH5yFD72b8Qb4uRqw1lL+z44KBZFt1V
+         KICHspkwUV59XX5bki91cO+VdBh72VbwUV1aXVewJY7w7e922PnEFcoKIxBbdxEXFf+P
+         dk3kZPEX3RzhvFgxX4t4OvTl/cCJ6UR7iVDgbsVzS13lFNC0vJlz7x9r48GmLyxqkRIE
+         nsmQ==
+X-Gm-Message-State: ABy/qLYtExBU7i86ulDnz8DFfYgWBq/xmPyOqRX/C+fCqL674asUNdE9
+        ZvfSjJkgSE6uy0ywGOH2Awc1
+X-Google-Smtp-Source: APBJJlGESAj9qUhYnHGWiRX2QHHYKTGVwUdjbvGxiSpl3hKM3uZyhdeI/RihV0XoQFeDzRxiYNHUIg==
+X-Received: by 2002:a17:902:e843:b0:1b8:a569:f980 with SMTP id t3-20020a170902e84300b001b8a569f980mr7309639plg.65.1690183545252;
+        Mon, 24 Jul 2023 00:25:45 -0700 (PDT)
+Received: from thinkpad ([117.206.118.29])
+        by smtp.gmail.com with ESMTPSA id h12-20020a170902f7cc00b001bb99e188fcsm2261052plw.194.2023.07.24.00.25.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 24 Jul 2023 00:25:44 -0700 (PDT)
+Date:   Mon, 24 Jul 2023 12:55:37 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc:     jingoohan1@gmail.com, gustavo.pimentel@synopsys.com,
+        lpieralisi@kernel.org, robh+dt@kernel.org, kw@linux.com,
+        bhelgaas@google.com, kishon@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        marek.vasut+renesas@gmail.com, fancer.lancer@gmail.com,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v18 01/20] PCI: Add INTx Mechanism Messages macros
+Message-ID: <20230724072537.GA6291@thinkpad>
+References: <20230721074452.65545-1-yoshihiro.shimoda.uh@renesas.com>
+ <20230721074452.65545-2-yoshihiro.shimoda.uh@renesas.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v2 0/7] ASoC: mediatek: Add support for MT7986 SoC
-Content-Language: en-US
-To:     =?UTF-8?B?TWFzbyBIdWFuZyAo6buD5Yqg56u5KQ==?= 
-        <Maso.Huang@mediatek.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        =?UTF-8?B?VHJldm9yIFd1ICjlkLPmlofoia8p?= <Trevor.Wu@mediatek.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        =?UTF-8?B?QWxsZW4tS0ggQ2hlbmcgKOeoi+WGoOWLsik=?= 
-        <Allen-KH.Cheng@mediatek.com>,
-        "broonie@kernel.org" <broonie@kernel.org>,
-        "renzhijie2@huawei.com" <renzhijie2@huawei.com>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "tiwai@suse.com" <tiwai@suse.com>,
-        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        "perex@perex.cz" <perex@perex.cz>,
-        =?UTF-8?B?SmlheGluIFl1ICjkv57lrrbpkasp?= <Jiaxin.Yu@mediatek.com>,
-        "angelogioacchino.delregno@collabora.com" 
-        <angelogioacchino.delregno@collabora.com>,
-        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>
-References: <20230626023501.11120-1-maso.huang@mediatek.com>
- <04a1a53ebd9df265da780c644a0db86952cde8db.camel@mediatek.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <04a1a53ebd9df265da780c644a0db86952cde8db.camel@mediatek.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+In-Reply-To: <20230721074452.65545-2-yoshihiro.shimoda.uh@renesas.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -97,16 +78,57 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/07/2023 08:17, Maso Huang (黃加竹) wrote:
-> Gentle ping :)
+On Fri, Jul 21, 2023 at 04:44:33PM +0900, Yoshihiro Shimoda wrote:
+> Add "Message Routing" and "INTx Mechanism Messages" macros to enable
+> a PCIe driver to send messages for INTx Interrupt Signaling.
 > 
-> Hi Rob and Angelo,
+> The "Message Routing" is from Table 2-17, and the "INTx Mechanism
+> Messages" is from Table 2-18 on the PCI Express Base Specification,
+> Rev. 4.0 Version 1.0.
 > 
-> Can you help to check this latest series and share your thoughts if
-> any?
+> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
 
-You got comments to fix! Implement what you were asked to do.
+Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 
-Best regards,
-Krzysztof
+- Mani
 
+> Reviewed-by: Serge Semin <fancer.lancer@gmail.com>
+> ---
+>  drivers/pci/pci.h | 18 ++++++++++++++++++
+>  1 file changed, 18 insertions(+)
+> 
+> diff --git a/drivers/pci/pci.h b/drivers/pci/pci.h
+> index a4c397434057..0b6df6c2c918 100644
+> --- a/drivers/pci/pci.h
+> +++ b/drivers/pci/pci.h
+> @@ -13,6 +13,24 @@
+>  
+>  #define PCIE_LINK_RETRAIN_TIMEOUT_MS	1000
+>  
+> +/* Message Routing (r[2:0]) */
+> +#define PCI_MSG_TYPE_R_ROUTING_RC	0
+> +#define PCI_MSG_TYPE_R_ROUTING_ADDR	1
+> +#define PCI_MSG_TYPE_R_ROUTING_ID	2
+> +#define PCI_MSG_TYPE_R_ROUTING_BC	3
+> +#define PCI_MSG_TYPE_R_ROUTING_LOCAL	4
+> +#define PCI_MSG_TYPE_R_ROUTING_GATHER	5
+> +
+> +/* INTx Mechanism Messages */
+> +#define PCI_MSG_CODE_ASSERT_INTA	0x20
+> +#define PCI_MSG_CODE_ASSERT_INTB	0x21
+> +#define PCI_MSG_CODE_ASSERT_INTC	0x22
+> +#define PCI_MSG_CODE_ASSERT_INTD	0x23
+> +#define PCI_MSG_CODE_DEASSERT_INTA	0x24
+> +#define PCI_MSG_CODE_DEASSERT_INTB	0x25
+> +#define PCI_MSG_CODE_DEASSERT_INTC	0x26
+> +#define PCI_MSG_CODE_DEASSERT_INTD	0x27
+> +
+>  extern const unsigned char pcie_link_speed[];
+>  extern bool pci_early_dump;
+>  
+> -- 
+> 2.25.1
+> 
+
+-- 
+மணிவண்ணன் சதாசிவம்
