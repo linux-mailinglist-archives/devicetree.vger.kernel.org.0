@@ -2,141 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 891C875EBED
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 08:49:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F9F375EBF1
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 08:51:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231177AbjGXGtC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jul 2023 02:49:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42604 "EHLO
+        id S230194AbjGXGvH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jul 2023 02:51:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43686 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230466AbjGXGs6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 02:48:58 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5528812E;
-        Sun, 23 Jul 2023 23:48:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1690181337; x=1721717337;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=X+QLejVo4nrDeuAo8lREDbvE+k/FVg2ZSNpiNXXSbPo=;
-  b=TQOpGDBLB/dONOvOPalai1RXsfhf1ko9vhhprsYoWddbckdkgnqn21nl
-   GwdoFuHLUBjoGv7xQJboot9sdbYEd5hT0l+nIc60XQ8LcLT5q3URUaMGm
-   +s4y2TPAEsSJJ5uukgZXjC2Q+pkfWc18ctGcEcYANruTC7UbWtmSMvWhP
-   c9tyGGlNOTwzWwBhFkhpD7/QV+PtbhLiBNgkHisA6vYZL7UfqTLumjmYO
-   B4hEL1qwknoHeh1iZF+2gVso/lTZeSCLCjkQt6kyKEzAA7ytU7BYgIrC/
-   hX/CRA3epk1R2bUzLWBqperys9nAFO5/+rKxKejWql19gR2rMg7dMgH/n
-   g==;
-X-IronPort-AV: E=Sophos;i="6.01,228,1684825200"; 
-   d="asc'?scan'208";a="221809493"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 23 Jul 2023 23:48:53 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+        with ESMTP id S229705AbjGXGvG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 02:51:06 -0400
+Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 9C82CD2;
+        Sun, 23 Jul 2023 23:51:02 -0700 (PDT)
+Authenticated-By: 
+X-SpamFilter-By: ArmorX SpamTrap 5.77 with qID 36O6neaE7018707, This message is accepted by code: ctloc85258
+Received: from mail.realtek.com (rtexh36506.realtek.com.tw[172.21.6.27])
+        by rtits2.realtek.com.tw (8.15.2/2.81/5.90) with ESMTPS id 36O6neaE7018707
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=FAIL);
+        Mon, 24 Jul 2023 14:49:40 +0800
+Received: from RTEXMBS06.realtek.com.tw (172.21.6.99) by
+ RTEXH36506.realtek.com.tw (172.21.6.27) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Sun, 23 Jul 2023 23:48:36 -0700
-Received: from wendy (10.10.115.15) by chn-vm-ex02.mchp-main.com
- (10.10.85.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
- Transport; Sun, 23 Jul 2023 23:48:32 -0700
-Date:   Mon, 24 Jul 2023 07:47:58 +0100
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     Pankaj Gupta <pankaj.gupta@nxp.com>
-CC:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Conor Dooley <conor@kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "clin@suse.com" <clin@suse.com>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "pierre.gondois@arm.com" <pierre.gondois@arm.com>,
-        Jacky Bai <ping.bai@nxp.com>,
-        Clark Wang <xiaoning.wang@nxp.com>,
-        Wei Fang <wei.fang@nxp.com>, Peng Fan <peng.fan@nxp.com>,
-        Bough Chen <haibo.chen@nxp.com>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
+ 15.1.2507.17; Mon, 24 Jul 2023 14:49:51 +0800
+Received: from RTEXMBS04.realtek.com.tw (172.21.6.97) by
+ RTEXMBS06.realtek.com.tw (172.21.6.99) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.34; Mon, 24 Jul 2023 14:49:51 +0800
+Received: from RTEXMBS04.realtek.com.tw ([fe80::e138:e7f1:4709:ff4d]) by
+ RTEXMBS04.realtek.com.tw ([fe80::e138:e7f1:4709:ff4d%5]) with mapi id
+ 15.01.2375.007; Mon, 24 Jul 2023 14:49:51 +0800
+From:   =?big5?B?U3RhbmxleSBDaGFuZ1up96h8vHdd?= <stanley_chang@realtek.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+CC:     Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Alan Stern <stern@rowland.harvard.edu>,
+        Roy Luo <royluo@google.com>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Flavio Suligoi <f.suligoi@asem.it>,
+        Ray Chi <raychi@google.com>,
+        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Gaurav Jain <gaurav.jain@nxp.com>,
-        "alexander.stein@ew.tq-group.com" <alexander.stein@ew.tq-group.com>,
-        Sahil Malhotra <sahil.malhotra@nxp.com>,
-        Aisheng Dong <aisheng.dong@nxp.com>,
-        Varun Sethi <V.Sethi@nxp.com>
-Subject: Re: [EXT] Re: [PATCH v4 1/7] dt-bindings: arm: fsl: add se-fw
- binding doc
-Message-ID: <20230724-grunge-flyover-b0720cf28082@wendy>
-References: <20230712121219.2654234-1-pankaj.gupta@nxp.com>
- <20230712121219.2654234-2-pankaj.gupta@nxp.com>
- <20230712-step-dimple-31746cd3a640@spud>
- <6e13acf6-3e23-f9bf-5c3f-368e79802a8d@linaro.org>
- <DU2PR04MB86307308661039043F9FF1C79502A@DU2PR04MB8630.eurprd04.prod.outlook.com>
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>
+Subject: RE: [PATCH v7 1/5] usb: phy: add usb phy notify port status API
+Thread-Topic: [PATCH v7 1/5] usb: phy: add usb phy notify port status API
+Thread-Index: AQHZsJ7kDWGiCOPLRk2HhU7h2LN0sq/H/g6AgACS9CA=
+Date:   Mon, 24 Jul 2023 06:49:50 +0000
+Message-ID: <47131beec8a24572873aa31e87cfaab6@realtek.com>
+References: <20230707064725.25291-1-stanley_chang@realtek.com>
+ <2023072452-jasmine-palm-7b73@gregkh>
+In-Reply-To: <2023072452-jasmine-palm-7b73@gregkh>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.21.190.159]
+x-kse-serverinfo: RTEXMBS06.realtek.com.tw, 9
+x-kse-antispam-interceptor-info: fallback
+x-kse-antivirus-interceptor-info: fallback
+Content-Type: text/plain; charset="big5"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="tMC/5Vu1hIlJnkxW"
-Content-Disposition: inline
-In-Reply-To: <DU2PR04MB86307308661039043F9FF1C79502A@DU2PR04MB8630.eurprd04.prod.outlook.com>
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-KSE-AntiSpam-Interceptor-Info: fallback
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---tMC/5Vu1hIlJnkxW
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Mon, Jul 24, 2023 at 06:37:22AM +0000, Pankaj Gupta wrote:
-> > From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > On 12/07/2023 20:26, Conor Dooley wrote:
-> > > On Wed, Jul 12, 2023 at 05:42:13PM +0530, Pankaj Gupta wrote:
-
-> > >> +  value, i.e., supported SoC(s) are imx8ulp, imx93.
-
-> > >> +
-> > >> +properties:
-> > >> +  compatible:
-> > >> +    enum:
-> > >> +      - fsl,imx-ele
-> > >
-> > > This looks like a generic compatible, not a specific one, but you use
-> > > it on the imx8ulp. I would have expected that you would have something
-> > > like "fsl,imx8ulp-ele" for that.
-> >=20
-> > Yeah, this one looks generic, so not what we expect.
->=20
-> This change left un-changed in V4. It is "fsl,se-fw", instead of "fsl,imx=
-8ulp-ele".
-> I will change in V5.
-
-That's a generic compatible too, so no different to "fsl,imx-ele".
-What is the reason for avoiding the SoC-specific "fsl,imx8ulp-ele"?
-
-> > >> +      - fsl,imx93-ele
-
-
---tMC/5Vu1hIlJnkxW
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZL4engAKCRB4tDGHoIJi
-0iuFAQCgh7+l7qRuYFg5wl2S63xcJWGeNK3ZsYkey9HUQKNgkQD9FdZOFuLyLn9U
-z5ihyzBLBlv4cR/jxuoMgNq+pyqYwQI=
-=y6i4
------END PGP SIGNATURE-----
-
---tMC/5Vu1hIlJnkxW--
+DQo+IA0KPiBPbiBGcmksIEp1bCAwNywgMjAyMyBhdCAwMjo0NzowMFBNICswODAwLCBTdGFubGV5
+IENoYW5nIHdyb3RlOg0KPiA+IEluIFJlYWx0ZWsgU29DLCB0aGUgcGFyYW1ldGVyIG9mIHVzYiBw
+aHkgaXMgZGVzaWduZWQgdG8gY2FuIGR5bmFtaWMNCj4gPiB0dW5pbmcgYmFzZSBvbiBwb3J0IHN0
+YXR1cy4gVGhlcmVmb3JlLCBhZGQgYSBub3RpZnkgY2FsbGJhY2sgb2YgcGh5DQo+ID4gZHJpdmVy
+IHdoZW4gdXNiIHBvcnQgc3RhdHVzIGNoYW5nZS4NCj4gPg0KPiA+IFRoZSBSZWFsdGVrIHBoeSBk
+cml2ZXIgaXMgZGVzaWduZWQgdG8gZHluYW1pY2FsbHkgYWRqdXN0IGRpc2Nvbm5lY3Rpb24NCj4g
+PiBsZXZlbCBhbmQgY2FsaWJyYXRlIHBoeSBwYXJhbWV0ZXJzLiBXaGVuIHRoZSBkZXZpY2UgY29u
+bmVjdGVkIGJpdA0KPiA+IGNoYW5nZXMgYW5kIHdoZW4gdGhlIGRpc2Nvbm5lY3RlZCBiaXQgY2hh
+bmdlcywgZG8gcG9ydCBzdGF0dXMgY2hhbmdlDQo+IG5vdGlmaWNhdGlvbjoNCj4gPg0KPiA+IENo
+ZWNrIGlmIHBvcnRzdGF0dXMgaXMgVVNCX1BPUlRfU1RBVF9DT05ORUNUSU9OIGFuZCBwb3J0Y2hh
+bmdlIGlzDQo+ID4gVVNCX1BPUlRfU1RBVF9DX0NPTk5FQ1RJT04uDQo+ID4gMS4gVGhlIGRldmlj
+ZSBpcyBjb25uZWN0ZWQsIHRoZSBkcml2ZXIgbG93ZXJzIHRoZSBkaXNjb25uZWN0aW9uIGxldmVs
+IGFuZA0KPiA+ICAgIGNhbGlicmF0ZXMgdGhlIHBoeSBwYXJhbWV0ZXJzLg0KPiA+IDIuIFRoZSBk
+ZXZpY2UgZGlzY29ubmVjdHMsIHRoZSBkcml2ZXIgaW5jcmVhc2VzIHRoZSBkaXNjb25uZWN0IGxl
+dmVsIGFuZA0KPiA+ICAgIGNhbGlicmF0ZXMgdGhlIHBoeSBwYXJhbWV0ZXJzLg0KPiA+DQo+ID4g
+V2hlbiBjb250cm9sbGVyIHRvIG5vdGlmeSBjb25uZWN0IHRoYXQgZGV2aWNlIGlzIGFscmVhZHkg
+cmVhZHkuIElmIHdlDQo+ID4gYWRqdXN0IHRoZSBkaXNjb25uZWN0aW9uIGxldmVsIGluIG5vdGlm
+eV9jb25uZWN0LCB0aGUgZGlzY29ubmVjdCBtYXkNCj4gPiBoYXZlIGJlZW4gdHJpZ2dlcmVkIGF0
+IHRoaXMgc3RhZ2UuIFNvIHdlIG5lZWQgdG8gY2hhbmdlIHRoYXQgYXMgZWFybHkNCj4gPiBhcyBw
+b3NzaWJsZS4gVGhlcmVmb3JlLCB3ZSBhZGQgYW4gYXBpIHRvIG5vdGlmeSBwaHkgdGhlIHBvcnQg
+c3RhdHVzIGNoYW5nZXMuDQo+IA0KPiBIb3cgZG8geW91IGtub3cgdGhhdCB0aGUgZGlzY29ubmVj
+dCB3aWxsIG5vdCBoYXZlIGFscmVhZHkgYmVlbiB0cmlnZ2VyZWQgYXQNCj4gdGhpcyBwb2ludCwg
+d2hlbiB0aGUgc3RhdHVzIGNoYW5nZXM/DQoNClRoZSBzdGF0dXMgY2hhbmdlIG9mIGNvbm5lY3Rp
+b24gaXMgYmVmb3JlIHBvcnQgcmVzZXQuDQpJbiB0aGlzIHN0YWdlLCB0aGUgZGV2aWNlIGlzIG5v
+dCBwb3J0IGVuYWJsZSwgYW5kIGl0IHdpbGwgbm90IHRyaWdnZXIgZGlzY29ubmVjdGlvbi4NCg0K
+PiA+DQo+ID4gU2lnbmVkLW9mZi1ieTogU3RhbmxleSBDaGFuZyA8c3RhbmxleV9jaGFuZ0ByZWFs
+dGVrLmNvbT4NCj4gPiAtLS0NCj4gPiB2NiB0byB2NyBjaGFuZ2U6DQo+ID4gICAgIE5vIGNoYW5n
+ZQ0KPiA+IHY1IHRvIHY2IGNoYW5nZToNCj4gPiAgICAgTm8gY2hhbmdlDQo+ID4gdjQgdG8gdjUg
+Y2hhbmdlOg0KPiA+ICAgICBObyBjaGFuZ2UNCj4gPiB2MyB0byB2NCBjaGFuZ2U6DQo+ID4gICAg
+IEZpeCB0aGUgd2FybmluZyBmb3IgY2hlY2twYXRjaCB3aXRoIHN0cmljdC4NCj4gPiB2MiB0byB2
+MyBjaGFuZ2U6DQo+ID4gICAgIEFkZCBtb3JlIGNvbW1lbnRzIGFib3V0IHRoZSByZWFzb24gZm9y
+IGFkZGluZyB0aGlzIGFwaQ0KPiA+IHYxIHRvIHYyIGNoYW5nZToNCj4gPiAgICAgTm8gY2hhbmdl
+DQo+ID4gLS0tDQo+ID4gIGRyaXZlcnMvdXNiL2NvcmUvaHViLmMgIHwgMTMgKysrKysrKysrKysr
+KyAgaW5jbHVkZS9saW51eC91c2IvcGh5LmggfA0KPiA+IDEzICsrKysrKysrKysrKysNCj4gPiAg
+MiBmaWxlcyBjaGFuZ2VkLCAyNiBpbnNlcnRpb25zKCspDQo+ID4NCj4gPiBkaWZmIC0tZ2l0IGEv
+ZHJpdmVycy91c2IvY29yZS9odWIuYyBiL2RyaXZlcnMvdXNiL2NvcmUvaHViLmMgaW5kZXgNCj4g
+PiBhNzM5NDAzYTllNDUuLjg0MzNmZjg5ZGVhNiAxMDA2NDQNCj4gPiAtLS0gYS9kcml2ZXJzL3Vz
+Yi9jb3JlL2h1Yi5jDQo+ID4gKysrIGIvZHJpdmVycy91c2IvY29yZS9odWIuYw0KPiA+IEBAIC02
+MTQsNiArNjE0LDE5IEBAIHN0YXRpYyBpbnQgaHViX2V4dF9wb3J0X3N0YXR1cyhzdHJ1Y3QgdXNi
+X2h1YiAqaHViLA0KPiBpbnQgcG9ydDEsIGludCB0eXBlLA0KPiA+ICAgICAgICAgICAgICAgcmV0
+ID0gMDsNCj4gPiAgICAgICB9DQo+ID4gICAgICAgbXV0ZXhfdW5sb2NrKCZodWItPnN0YXR1c19t
+dXRleCk7DQo+ID4gKw0KPiA+ICsgICAgIGlmICghcmV0KSB7DQo+ID4gKyAgICAgICAgICAgICBz
+dHJ1Y3QgdXNiX2RldmljZSAqaGRldiA9IGh1Yi0+aGRldjsNCj4gPiArDQo+ID4gKyAgICAgICAg
+ICAgICBpZiAoaGRldiAmJiAhaGRldi0+cGFyZW50KSB7DQo+IA0KPiBXaHkgdGhlIGNoZWNrIGZv
+ciBubyBwYXJlbnQ/ICBQbGVhc2UgZG9jdW1lbnQgdGhhdCBoZXJlIGluIGEgY29tbWVudC4NCg0K
+SSB3aWxsIGFkZCBhIGNvbW1lbnQgOg0KLyogT25seSBub3RpZnkgcm9vdGh1Yi4gVGhhdCBpcywg
+d2hlbiBoZGV2LT5wYXJlbnQgaXMgZW1wdHkuICovDQoNCg0KPiA+ICsgICAgICAgICAgICAgICAg
+ICAgICBzdHJ1Y3QgdXNiX2hjZCAqaGNkID0gYnVzX3RvX2hjZChoZGV2LT5idXMpOw0KPiA+ICsN
+Cj4gPiArICAgICAgICAgICAgICAgICAgICAgaWYgKGhjZC0+dXNiX3BoeSkNCj4gPiArDQo+IHVz
+Yl9waHlfbm90aWZ5X3BvcnRfc3RhdHVzKGhjZC0+dXNiX3BoeSwNCj4gPiArICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBwb3J0MSAtDQo+IDEs
+ICpzdGF0dXMsICpjaGFuZ2UpOw0KPiA+ICsgICAgICAgICAgICAgfQ0KPiA+ICsgICAgIH0NCj4g
+PiArDQo+IA0KPiBUaGlzIGlzIHNhZmUgdG8gbm90aWZ5IHdpdGggdGhlIGh1YiBtdXRleCB1bmxv
+Y2tlZD8gIEFnYWluLCBhIGNvbW1lbnQgd291bGQNCj4gYmUgaGVscGZ1bCB0byBmdXR1cmUgcGVv
+cGxlIGV4cGxhaW5pbmcgd2h5IHRoYXQgaXMgc28uDQo+IA0KDQpJIHdpbGwgYWRkIGEgY29tbWVu
+dDogDQovKiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICANCiAqIFRoZXJlIGlzIG5vIG5lZWQgdG8gbG9jayBzdGF0dXNf
+bXV0ZXggaGVyZSwgYmVjYXVzZSBzdGF0dXNfbXV0ZXggICAgIA0KICogcHJvdGVjdHMgaHViLT5z
+dGF0dXMsIGFuZCB0aGUgcGh5IGRyaXZlciBvbmx5IGNoZWNrcyB0aGUgcG9ydCAgICAgICAgDQog
+KiBzdGF0dXMgd2l0aG91dCBjaGFuZ2luZyB0aGUgc3RhdHVzLiAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICANCiAqLyAgDQoNClRoYW5rcywNClN0YW5sZXkNCg0KLg0K
