@@ -2,79 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9988B75EE88
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 10:57:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 820FD75EE9D
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 11:01:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231993AbjGXI5X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jul 2023 04:57:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53796 "EHLO
+        id S232179AbjGXJBs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jul 2023 05:01:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56094 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232000AbjGXI5V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 04:57:21 -0400
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E58A10D3
-        for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 01:57:08 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-98e011f45ffso610280766b.3
-        for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 01:57:08 -0700 (PDT)
+        with ESMTP id S232012AbjGXJBW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 05:01:22 -0400
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B17B910E0
+        for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 02:01:15 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-99b78fda9a8so381350266b.1
+        for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 02:01:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690189027; x=1690793827;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=owG6OHIwikfnxyddtRAYGrs5TFXY1YqI1q2T1OmAufw=;
-        b=HkQCoTDd6APCNCBfEHGJeKiIM5LEFIe2lR7tQPRUotVV4SAkiw5N08guAqpX9fknNX
-         MILkXQKxAmkQp0y+WDxAa3nw70d9XaFOf/0mgyexOfeYI4MDfHuUFXtXf8hfHidEiu9v
-         VuZ/R446wIpQApn2xmE2BRhzKGCyZafm9qmOGHKlgc1xbiO81XxX4/XExlHgrgWcOy/w
-         apQq0Sfmc2mC+Sd6f6E+7hMWCwcNxurWvzMOEKOpr9x8Shxlon0kVTkxM87Kxtm05nhy
-         4S59SlUQ5CO2piu+X9w7pyMG4+TzJEzH0zubjwGd0NoBBlZY09NWjHfetCgfzC9WfNLV
-         RUWg==
+        d=linaro.org; s=google; t=1690189274; x=1690794074;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Si2yoaGJd8rFYolBA9VeX61ymzauJu7lrmelvkXzN9A=;
+        b=RX9jxoVJ7L4k+NwTCgax385PfImAKzUQupdsP4A854pBV0os8TEYukw6ZnsgO7kPDx
+         L8GBuF7WgqwChMoG9WizE0J+l83e1F5QRAvGc7K6zFBPaDsFZePvF1QkNYlZFT+Iw3lC
+         ODs9sJxQJv5ocSIK8FqhlljRCe5AdnCs39TkX+R2JpRL8bwogljZJKktwuvkpGqHp4ni
+         VmUSq5VRtzazEmhW/KQyKDLifXvBfLK5bPqjz2t7aepOzUqZ6M7BvxMCRuOGYNKfzzJR
+         KNru7mu2XVx1i2LBn7pMVmsKrB+IpaqBDBfaM9W4/VUwppcatEIZ4E+kdMqHpOra/+2M
+         RCGw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690189027; x=1690793827;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=owG6OHIwikfnxyddtRAYGrs5TFXY1YqI1q2T1OmAufw=;
-        b=faLO5XYIp38tx8VHg75Tj0HNdyS9afT/Sgyb7REhO8H2nkOO+t7PlVS5bCIV2KRLtk
-         KjUeChvgAYvmJEiStUhrgwKZZfO2FQSoFdJJvObYoEm4m4JUCzJ5YaE6PQJ9Qz1KzrU7
-         hQUS4DtoWeXMN3Z1zHXzOAQGSAYH9z7rgsFRmTEGoZbEqJTmbnv0R9BTwM4xuaPTqjmc
-         z4UzH7Mj5uwFgydj8/wewNPSiZB60OnShL+nEvIu8WazmzfnS2jds/Eey48rsf1BJ42S
-         DK0k3RFSZf9Q5hv/H//ae8OATHkb4ZBRUxOI0PUUzULyxVQ/b0YbTOYw/4QRCQSuG1Rq
-         0g4g==
-X-Gm-Message-State: ABy/qLZVfJS9PckUGbuooptD01LCxi9FCuYoeoVW29VkbKC2CBZ57pky
-        Tb2U2jUX0yEw7M/p0Qo6qI1PcA==
-X-Google-Smtp-Source: APBJJlEM3lq1JFdQgmAyuMscN6S6KogpTMrAJRbJpDsQAF+3oubQ6gVynSJ/RMaGXgp5plWWzolmWw==
-X-Received: by 2002:a17:907:7631:b0:993:e9b8:90f5 with SMTP id jy17-20020a170907763100b00993e9b890f5mr7994896ejc.8.1690189027087;
-        Mon, 24 Jul 2023 01:57:07 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id s6-20020a170906960600b0098cf565d98asm6363259ejx.22.2023.07.24.01.57.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 24 Jul 2023 01:57:06 -0700 (PDT)
-Message-ID: <82d45863-d48a-1eab-a3e0-142f46d4863c@linaro.org>
-Date:   Mon, 24 Jul 2023 10:57:04 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH V3 2/2] dt-bindings: arm: qcom,ids: drop the IPQ5019 SoC
- ID
-Content-Language: en-US
-To:     Kathiravan T <quic_kathirav@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
+        d=1e100.net; s=20221208; t=1690189274; x=1690794074;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Si2yoaGJd8rFYolBA9VeX61ymzauJu7lrmelvkXzN9A=;
+        b=ZCXVH7ZCApCdGAW8fA5NtaamclcUjB8gPPyoXpibt9HpEmuiiq+BbDHtDx0UCFb1+d
+         PgySBFWgbRCzha7OIJqzc1ULLUBH9WWkgbZuAIapefdhDQFa5ztz2BvhZd6SJBEkS21b
+         lszZ0H3IA1bsPdfzkdP/5HKOpSit9T9cU9pWG0aln8jgGio16w+3WwopSg9jl6CRbzI3
+         1eIdMIgla0PMMnKI/5sGbtJPrBHMBhrvUcX85KPfFPcMBaG2Dc89xWitmZFcXU4i+PAQ
+         8dB4o+cbhgrdU80/TlaNZh1qrh+IjrDJcNORd0bBU6cKg+3gYN1C8WZnk9x5rY9hC7Pa
+         6V4g==
+X-Gm-Message-State: ABy/qLaBWlHNXVlDgFKQKthAnEC6U0e98HNSPxW0hbzvWNHnJyBLIsZ9
+        pZQSXClBMAWIHhexhF34J+ZfTw==
+X-Google-Smtp-Source: APBJJlHGICB2pi+S33pYSU0fHTt8wueRV8hkNceUL4zuQg15oE+05BXfChWepK5U19fmg6KcoxrRvQ==
+X-Received: by 2002:a17:906:9b:b0:98d:fc51:b3dd with SMTP id 27-20020a170906009b00b0098dfc51b3ddmr9742418ejc.41.1690189274233;
+        Mon, 24 Jul 2023 02:01:14 -0700 (PDT)
+Received: from krzk-bin.. ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id k16-20020a1709063fd000b009894b476310sm6384819ejj.163.2023.07.24.02.01.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 24 Jul 2023 02:01:13 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     quic_saahtoma@quicinc.com
-References: <20230724083745.1015321-1-quic_kathirav@quicinc.com>
- <20230724083745.1015321-3-quic_kathirav@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230724083745.1015321-3-quic_kathirav@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        Christian Marangi <ansuelsmth@gmail.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] dt-bindings: arm: msm: kpss-acc: Revert "dt-bindings: arm: msm: kpss-acc: Make the optional reg truly optional"
+Date:   Mon, 24 Jul 2023 11:01:09 +0200
+Message-Id: <20230724090109.19489-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -83,15 +75,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/07/2023 10:37, Kathiravan T wrote:
-> IPQ5019 SoC is never productized. So lets drop it.
-> 
-> Signed-off-by: Kathiravan T <quic_kathirav@quicinc.com>
-> ---
+This reverts commit 981be238e1d28e156aa9da2a8722f86f02fd0453 because it
+was totally bogus and duplicated existing minItems:
 
+  ruamel.yaml.constructor.DuplicateKeyError: while constructing a mapping
+  Documentation/devicetree/bindings/power/qcom,kpss-acc-v2.yaml: ignoring, error parsing file
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ Documentation/devicetree/bindings/power/qcom,kpss-acc-v2.yaml | 1 -
+ 1 file changed, 1 deletion(-)
 
-Best regards,
-Krzysztof
+diff --git a/Documentation/devicetree/bindings/power/qcom,kpss-acc-v2.yaml b/Documentation/devicetree/bindings/power/qcom,kpss-acc-v2.yaml
+index facaafefb441..202a5d51ee88 100644
+--- a/Documentation/devicetree/bindings/power/qcom,kpss-acc-v2.yaml
++++ b/Documentation/devicetree/bindings/power/qcom,kpss-acc-v2.yaml
+@@ -21,7 +21,6 @@ properties:
+     const: qcom,kpss-acc-v2
+ 
+   reg:
+-    minItems: 1
+     items:
+       - description: Base address and size of the register region
+       - description: Optional base address and size of the alias register region
+-- 
+2.34.1
 
