@@ -2,100 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9058C75F891
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 15:42:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 71AB275F8B9
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 15:46:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231725AbjGXNit (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jul 2023 09:38:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37702 "EHLO
+        id S231391AbjGXNpb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jul 2023 09:45:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49460 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231544AbjGXNiY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 09:38:24 -0400
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8EE063C07
-        for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 06:36:44 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-99342a599e9so771025366b.3
-        for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 06:36:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690205767; x=1690810567;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=CUZQpPdIT858egNmU25ruQR94eOxPvH6ltaodarNd9g=;
-        b=uz3c1UnB5ZXJhSrBInto1AcNQVdonbA1zngvwd1fUOakUAKuUGuZ9tef8/jNk+qC8o
-         cPm3O6xdgYS3r2j422yCFMDvg81CqPMOkgBBwJ2M2zf82HkUE1fmhoX2IY67ngeGApGF
-         iW+wE1ghO7KbnzIl+y6FcBSqURnEzI/YIVsBBDvuJNYj/t324Ubx168t1tiNFzaOFfFp
-         9m0zZCAJr+xrz+WRx64Q0GhDZChKBKWya4Onl+zWI8bvZNlF5w438dyx48yK7VsGplkv
-         IVXo3kOfUWLMO1MtRM5omsRMYpgvg74H/grqZF8UlrI+B4I/dGOUP5vnDzOcYOac15WX
-         56mQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690205767; x=1690810567;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=CUZQpPdIT858egNmU25ruQR94eOxPvH6ltaodarNd9g=;
-        b=G0DNT9uDTfEddlsK/ruSaM+CsD00QiQzlsgl0D5K+fyt40pB6J8Fm9JcbtV5AJ+sfs
-         25mfoAwwjoKuWxDA12M8CGhMc4o78DCMEPnQVko40TToC0f0Q1KEJeh1Ygp+s1oGyG/f
-         0wu/7I7o6s8c9V+D1wyhtGwVM1wO5UNSKtOBFv1cFHoUCHeehz9UJp+wym9IBi5FMICC
-         PSjYMzPNsTHxXN2msDZ7yuFNU4ob/dwnK7lZvCuWY39c53VO3s98wUKMScD/p/302KLi
-         tynafxzA9szHTcpYuqpa73OyBTH6UfFQbPLZFt8LLiiW6iRuRuDmGDdhNzyzj7lAbBy1
-         2fZQ==
-X-Gm-Message-State: ABy/qLan603exZFHPmGh1XNFqHCsNntyRKAkcuneUjFBKZat5D+CtBJX
-        T3nY08yB0DB8TNijur5gh1gI1g==
-X-Google-Smtp-Source: APBJJlEFZc2GAnLQ7Chh6jd7HJTFUIs3C1+QLUm3qcXM4djlWORHjq2OVwXgSuJWE+3KbN4PA5mQ5Q==
-X-Received: by 2002:a17:906:778f:b0:994:3207:cde3 with SMTP id s15-20020a170906778f00b009943207cde3mr11143513ejm.49.1690205767468;
-        Mon, 24 Jul 2023 06:36:07 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id p24-20020a170906a01800b00992f2befcbcsm6764671ejy.180.2023.07.24.06.36.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 24 Jul 2023 06:36:06 -0700 (PDT)
-Message-ID: <68c371ed-f178-9d85-da31-4b5b894813cd@linaro.org>
-Date:   Mon, 24 Jul 2023 15:36:04 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v2 2/2] dt-bindings: leds: Add gpio-line-names to PCA9532
- GPIO
-Content-Language: en-US
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Andy Shevchenko <andy@kernel.org>,
+        with ESMTP id S231614AbjGXNpT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 09:45:19 -0400
+Received: from mail11.truemail.it (mail11.truemail.it [IPv6:2001:4b7e:0:8::81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28F0C3A84;
+        Mon, 24 Jul 2023 06:43:11 -0700 (PDT)
+Received: from francesco-nb.pivistrello.it (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
+        by mail11.truemail.it (Postfix) with ESMTPA id B6C2F20957;
+        Mon, 24 Jul 2023 15:36:35 +0200 (CEST)
+From:   Francesco Dolcini <francesco@dolcini.it>
+To:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>
-Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-leds@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com
-References: <20230724063520.182888-1-alexander.stein@ew.tq-group.com>
- <20230724063520.182888-2-alexander.stein@ew.tq-group.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230724063520.182888-2-alexander.stein@ew.tq-group.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     Francesco Dolcini <francesco.dolcini@toradex.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Judith Mendez <jm@ti.com>
+Subject: [PATCH v1 0/2] arm64: dts: ti: k3-am62: Add MCU MCAN
+Date:   Mon, 24 Jul 2023 15:36:10 +0200
+Message-Id: <20230724133612.37366-1-francesco@dolcini.it>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/07/2023 08:35, Alexander Stein wrote:
-> This is a gpio-controller, so gpio-line-names should be allowed as well.
-> pca9532 supports up to 16 GPIOs.
-> 
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> ---
+From: Francesco Dolcini <francesco.dolcini@toradex.com>
 
+On AM62x there are no hardware interrupts routed to A53 GIC
+interrupt controller for MCU MCAN IPs, so MCU MCAN nodes were
+omitted from MCU dtsi.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Timer polling was introduced in commits [1][2] so now add MCU MCAN nodes
+to the MCU dtsi for Cortex A53.
 
-Best regards,
-Krzysztof
+[1] b382380c0d2d ("can: m_can: Add hrtimer to generate software interrupt")
+[2] bb410c03b999 ("dt-bindings: net: can: Remove interrupt properties for MCAN")
+
+Once the MCU MCANs are added to the SOC dtsi, enable the Verdin CAN2.
+
+Hiago De Franco (1):
+  arm64: dts: ti: k3-am625-verdin: enable CAN_2
+
+Judith Mendez (1):
+  arm64: dts: ti: k3-am62: Add MCU MCAN nodes
+
+ arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi       | 24 +++++++++++++++++++
+ .../boot/dts/ti/k3-am62-verdin-dahlia.dtsi    |  5 ++++
+ .../arm64/boot/dts/ti/k3-am62-verdin-dev.dtsi |  5 ++++
+ .../boot/dts/ti/k3-am62-verdin-yavia.dtsi     |  5 ++++
+ arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi    | 19 +++++++++++++--
+ 5 files changed, 56 insertions(+), 2 deletions(-)
+
+-- 
+2.25.1
 
