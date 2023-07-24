@@ -2,102 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 11B4675EDCD
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 10:38:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0887475EDDA
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 10:39:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230128AbjGXIiS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jul 2023 04:38:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35850 "EHLO
+        id S231544AbjGXIj1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jul 2023 04:39:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36684 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231676AbjGXIiO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 04:38:14 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5FA62CA
-        for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 01:38:13 -0700 (PDT)
-Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mkl@pengutronix.de>)
-        id 1qNr4k-0000Cb-FM; Mon, 24 Jul 2023 10:37:54 +0200
-Received: from pengutronix.de (unknown [172.20.34.65])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        (Authenticated sender: mkl-all@blackshift.org)
-        by smtp.blackshift.org (Postfix) with ESMTPSA id 531031F839B;
-        Mon, 24 Jul 2023 08:37:52 +0000 (UTC)
-Date:   Mon, 24 Jul 2023 10:37:51 +0200
-From:   Marc Kleine-Budde <mkl@pengutronix.de>
-To:     Markus Schneider-Pargmann <msp@baylibre.com>
-Cc:     Wolfgang Grandegger <wg@grandegger.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
-        Michal Kubiak <michal.kubiak@intel.com>,
-        Vivek Yadav <vivek.2311@samsung.com>,
-        linux-can@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Simon Horman <simon.horman@corigine.com>
-Subject: Re: [PATCH v3 6/6] can: tcan4x5x: Add error messages in probe
-Message-ID: <20230724-switch-mulch-3ba56c15997e-mkl@pengutronix.de>
-References: <20230721135009.1120562-1-msp@baylibre.com>
- <20230721135009.1120562-7-msp@baylibre.com>
+        with ESMTP id S231707AbjGXIjX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 04:39:23 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3806BE4A;
+        Mon, 24 Jul 2023 01:39:22 -0700 (PDT)
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36O7fPb2003147;
+        Mon, 24 Jul 2023 08:39:19 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=qcppdkim1;
+ bh=MdybWXpnwON4r3kpNey8g0weJJhEXvuN9YA51hELc+Y=;
+ b=Wv6u4f7SfB/CA3ehQnAiC+hh94NUS2QmmzhASuE9mt71Em7/7WVMzaWET0ulpXRusFKk
+ 0dG3F/q4OP+NhKFu7BTOW0Eedpcef9UD2G1Fc4kwOqVq8evWJCxP28Z8fE4x9fzCMnyA
+ 54ijMuLe3Mtm6To5jYu5tiPpMAqKpoF6ObeH4czai/4WoYtpRT/sAOutsJlRj0ZRtR/c
+ QYmbvJUD5Gc8bz1/WW3Bok+W38Itm6HD4vNKChjpQJKWDhW3d+e6CdrOcesEGh5GIVt7
+ fdO6Th76mgV+uJfzgrDXLGcF1z5aBKLt8jN9gd9eD++bDIm2pufcs+RTUmI1H10LYRho Fw== 
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3s062xjver-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 24 Jul 2023 08:39:18 +0000
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 36O8dAIF007692
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 24 Jul 2023 08:39:10 GMT
+Received: from hu-kbajaj-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.30; Mon, 24 Jul 2023 01:39:06 -0700
+From:   Komal Bajaj <quic_kbajaj@quicinc.com>
+To:     <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <srinivas.kandagatla@linaro.org>
+CC:     <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Komal Bajaj <quic_kbajaj@quicinc.com>
+Subject: [PATCH v5 0/2] nvmem: sec-qfprom: Add Qualcomm secure QFPROM support
+Date:   Mon, 24 Jul 2023 14:08:47 +0530
+Message-ID: <20230724083849.8277-1-quic_kbajaj@quicinc.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="47dlh53tks43qz2m"
-Content-Disposition: inline
-In-Reply-To: <20230721135009.1120562-7-msp@baylibre.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:b01:1d::7b
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: aRoFbUX8fJ04R4-d0NLqyw9FlVsDbwrE
+X-Proofpoint-ORIG-GUID: aRoFbUX8fJ04R4-d0NLqyw9FlVsDbwrE
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-07-24_06,2023-07-20_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ lowpriorityscore=0 malwarescore=0 suspectscore=0 clxscore=1015
+ priorityscore=1501 spamscore=0 mlxlogscore=613 phishscore=0 bulkscore=0
+ mlxscore=0 adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2306200000 definitions=main-2307240077
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Changes in v5 -
+ - Separating this from original series [1].
+ - Added description of driver to secure qfprom binding.
+ - Replaced pm_runtime_enable() withh devm_pm_runtime_enable().
+ - Changed module license to GPL instead of GPL v2.
 
---47dlh53tks43qz2m
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This series introduces a new driver for reading secure fuse region and adding
+dt-bindings for same.
 
-On 21.07.2023 15:50:09, Markus Schneider-Pargmann wrote:
-> To be able to understand issues during probe easier, add error messages
-> if something fails.
+[1] https://lore.kernel.org/linux-arm-msm/20230623141806.13388-1-quic_kbajaj@quicinc.com/
 
-Can you print the error codes as "%pe", ERR_PTR(err)?
 
-Marc
+Komal Bajaj (2):
+  dt-bindings: nvmem: sec-qfprom: Add bindings for secure qfprom
+  nvmem: sec-qfprom: Add Qualcomm secure QFPROM support
 
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
+ .../bindings/nvmem/qcom,sec-qfprom.yaml       |  58 ++++++++++
+ drivers/nvmem/Kconfig                         |  13 +++
+ drivers/nvmem/Makefile                        |   2 +
+ drivers/nvmem/sec-qfprom.c                    | 101 ++++++++++++++++++
+ 4 files changed, 174 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/nvmem/qcom,sec-qfprom.yaml
+ create mode 100644 drivers/nvmem/sec-qfprom.c
 
---47dlh53tks43qz2m
-Content-Type: application/pgp-signature; name="signature.asc"
+--
+2.40.1
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEDs2BvajyNKlf9TJQvlAcSiqKBOgFAmS+OFwACgkQvlAcSiqK
-BOjakgf6A9YWvI4O+h3cneg50ebbmXekF1W+V+CO92LM4MNZ2Vlx3Iv6YrdxgAG/
-f7UASQ3G9eBjJLQYnGHbYG5DMgR2p9Y8LGJB6cJQ3EiRcsVe7vRi71iUyRthiUTB
-jDgHJwBcTO8jeitILlFmOsrZMljTU5AzkSJG6eoRY4xK5p2GjlFULxr0h8TwxgXQ
-McZkpazS9fiijMLL5V63U5P3vpui2iSp1nDy3ZfDeRI71/egjLVj1EmZ5ILcY/cQ
-hthAmBCjEZ5hHS8lvllfRcP5zr/N2L9/OylrwTrPT1dsU6dVAQE7einaoUgSSvrU
-z4zth+g2cGEh5UXzTHg3iZ2aZPR0LA==
-=23ps
------END PGP SIGNATURE-----
-
---47dlh53tks43qz2m--
