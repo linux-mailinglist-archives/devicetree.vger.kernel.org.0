@@ -2,231 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 530C175EDB2
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 10:34:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 58EDA75EDC6
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 10:38:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230227AbjGXIek (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jul 2023 04:34:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33442 "EHLO
+        id S229767AbjGXIiK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jul 2023 04:38:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35806 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230076AbjGXIei (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 04:34:38 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E728294;
-        Mon, 24 Jul 2023 01:34:36 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 840CC60FC9;
-        Mon, 24 Jul 2023 08:34:36 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EDB07C433C8;
-        Mon, 24 Jul 2023 08:34:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690187675;
-        bh=VeUBdTWkHlXJ19U7A+lvF9LuS0S/+KjCVOk7zIu9BCE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=rISmVT4MMXxDRs5qyJJ3z1u8UxS8ogKzkjKKhTCxkZj9Ioj4sHFNBBqUxEjh84K86
-         AWcBGcui3puedAJbtdyupdjBNUDSQ1oIJc5Mgiz42V/k19sDO1MHHTDxOEuV0c557Y
-         sfLnzi+M6w/9AzcrPar22Ch2535AKLCglaLVR3ObV6yg/lym3YxwfVGeKcCITAFQiJ
-         /lm7QK376YlRs4Ry50wVcVN4FKyL4WxorvPfiBPFt25J+J7Q7Q+Je+5FR2oTA6xLN1
-         G7IpVloSVdursocNgmspuYyOQMVr2O5diYkj5UJGUXbxI14VBOv456vlZSJ1bp+EIY
-         muDGA2SfT+1KQ==
-Date:   Mon, 24 Jul 2023 14:04:21 +0530
-From:   Manivannan Sadhasivam <mani@kernel.org>
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     jingoohan1@gmail.com, gustavo.pimentel@synopsys.com,
-        lpieralisi@kernel.org, robh+dt@kernel.org, kw@linux.com,
-        manivannan.sadhasivam@linaro.org, bhelgaas@google.com,
-        kishon@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, marek.vasut+renesas@gmail.com,
-        fancer.lancer@gmail.com, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v18 06/20] PCI: designware-ep: Add INTx IRQs support
-Message-ID: <20230724083421.GE6291@thinkpad>
-References: <20230721074452.65545-1-yoshihiro.shimoda.uh@renesas.com>
- <20230721074452.65545-7-yoshihiro.shimoda.uh@renesas.com>
+        with ESMTP id S231742AbjGXIiJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 04:38:09 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D288E99;
+        Mon, 24 Jul 2023 01:38:08 -0700 (PDT)
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36O6gLoG028423;
+        Mon, 24 Jul 2023 08:38:04 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=qcppdkim1;
+ bh=dvkkVUeEgieiaxL3ckEMZvP7tELbGUER5JrAuxwP+o8=;
+ b=FOE2JzLMqT7fal+EPn1lWGkN0W6pkbsovIKQxhn1Fyry1FNY47abrt2ygATzxFf94Yhu
+ p8cqbxEnl8aQD3hTnmYDkKgpBG/J5w1YQ8P5yS4qmPmG5YJdBkZGwg2N5v0UI8pwt0HB
+ 2kqWw7nbmv1BNFN3CUjrRfsBzMxj5SKk5JJr8FBT4JMiXZOi9NMh2sxaH2eIu19knon/
+ EA/u6waGSgbw6GWgCXVHCYjrUgNwHlar6aK9vGplrX51SrzAXBabEaIMgRKOxhfHrmHJ
+ oh30TFoG8dKkyhIH/zr4eIW+DIDABNicq4Us8bQqsy1V9OFF8CIQo65k67Us6REMhPd0 dw== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3s064djuq6-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 24 Jul 2023 08:38:04 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 36O8c3F6002746
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 24 Jul 2023 08:38:03 GMT
+Received: from hu-kathirav-blr.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.30; Mon, 24 Jul 2023 01:37:59 -0700
+From:   Kathiravan T <quic_kathirav@quicinc.com>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+CC:     <quic_saahtoma@quicinc.com>,
+        Kathiravan T <quic_kathirav@quicinc.com>
+Subject: [PATCH V3 0/2]  Drop the IPQ5019 SoC ID
+Date:   Mon, 24 Jul 2023 14:07:43 +0530
+Message-ID: <20230724083745.1015321-1-quic_kathirav@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230721074452.65545-7-yoshihiro.shimoda.uh@renesas.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 4Zfp5SqBk9s9MJ5p2DV2xBRR3J6BUr1s
+X-Proofpoint-ORIG-GUID: 4Zfp5SqBk9s9MJ5p2DV2xBRR3J6BUr1s
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-07-24_06,2023-07-20_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 clxscore=1015
+ phishscore=0 mlxscore=0 spamscore=0 adultscore=0 bulkscore=0
+ lowpriorityscore=0 malwarescore=0 priorityscore=1501 impostorscore=0
+ mlxlogscore=430 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2306200000 definitions=main-2307240076
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 21, 2023 at 04:44:38PM +0900, Yoshihiro Shimoda wrote:
-> Add support for triggering INTx IRQs by using outbound iATU.
-> Outbound iATU is utilized to send assert and de-assert INTx TLPs.
-> The message is generated based on the payloadless Msg TLP with type
-> 0x14, where 0x4 is the routing code implying the Terminate at
-> Receiver message. The message code is specified as b1000xx for
-> the INTx assertion and b1001xx for the INTx de-assertion.
-> 
+Kathiravan T (2):
+  soc: qcom: socinfo: drop the IPQ5019 SoC ID
+  dt-bindings: arm: qcom,ids: drop the IPQ5019 SoC ID
 
-Commit message is missing a few important points:
-
-1. EDGE IRQ is simulated for INTx
-2. Only INTA is asserted
-3. INTx support is optional (if there is no memory for INTx, probe will not
-fail)
-
-Above points should be included in the commit message to properly describe the
-change.
-
-> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-> Reviewed-by: Serge Semin <fancer.lancer@gmail.com>
-> ---
->  .../pci/controller/dwc/pcie-designware-ep.c   | 69 +++++++++++++++++--
->  drivers/pci/controller/dwc/pcie-designware.h  |  2 +
->  2 files changed, 67 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/pci/controller/dwc/pcie-designware-ep.c b/drivers/pci/controller/dwc/pcie-designware-ep.c
-> index fe2e0d765be9..1d24ebf9686f 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware-ep.c
-> +++ b/drivers/pci/controller/dwc/pcie-designware-ep.c
-> @@ -6,9 +6,11 @@
->   * Author: Kishon Vijay Abraham I <kishon@ti.com>
->   */
->  
-> +#include <linux/delay.h>
->  #include <linux/of.h>
->  #include <linux/platform_device.h>
->  
-> +#include "../../pci.h"
->  #include "pcie-designware.h"
->  #include <linux/pci-epc.h>
->  #include <linux/pci-epf.h>
-> @@ -484,14 +486,60 @@ static const struct pci_epc_ops epc_ops = {
->  	.get_features		= dw_pcie_ep_get_features,
->  };
->  
-> +static int dw_pcie_ep_send_msg(struct dw_pcie_ep *ep, u8 func_no, u8 code,
-> +			       u8 routing)
-> +{
-> +	struct dw_pcie_ob_atu_cfg atu = { 0 };
-> +	struct pci_epc *epc = ep->epc;
-> +	int ret;
-> +
-> +	atu.func_no = func_no;
-> +	atu.code = code;
-> +	atu.routing = routing;
-> +	atu.type = PCIE_ATU_TYPE_MSG;
-> +	atu.cpu_addr = ep->intx_mem_phys;
-> +	atu.size = epc->mem->window.page_size;
-> +
-> +	ret = dw_pcie_ep_outbound_atu(ep, &atu);
-> +	if (ret)
-> +		return ret;
-> +
-> +	writel(0, ep->intx_mem);
-> +
-
-This write is not described anywhere.
-
-- Mani
-
-> +	dw_pcie_ep_unmap_addr(epc, func_no, 0, ep->intx_mem_phys);
-> +
-> +	return 0;
-> +}
-> +
->  int dw_pcie_ep_raise_intx_irq(struct dw_pcie_ep *ep, u8 func_no)
->  {
->  	struct dw_pcie *pci = to_dw_pcie_from_ep(ep);
->  	struct device *dev = pci->dev;
-> +	int ret;
->  
-> -	dev_err(dev, "EP cannot trigger INTx IRQs\n");
-> +	if (!ep->intx_mem) {
-> +		dev_err(dev, "INTx not supported\n");
-> +		return -EOPNOTSUPP;
-> +	}
->  
-> -	return -EINVAL;
-> +	/*
-> +	 * Even though the PCI bus specification implies the level-triggered
-> +	 * INTx interrupts the kernel PCIe endpoint framework has a single
-> +	 * PCI_EPC_IRQ_INTx flag defined for the legacy IRQs simulation. Thus
-> +	 * this function sends the Deassert_INTx PCIe TLP after the Assert_INTx
-> +	 * message with the 50 usec duration basically implementing the
-> +	 * rising-edge triggering IRQ. Hopefully the interrupt controller will
-> +	 * still be able to register the incoming IRQ event...
-> +	 */
-> +	ret = dw_pcie_ep_send_msg(ep, func_no, PCI_MSG_CODE_ASSERT_INTA,
-> +				  PCI_MSG_TYPE_R_ROUTING_LOCAL);
-> +	if (ret)
-> +		return ret;
-> +
-> +	usleep_range(50, 100);
-> +
-> +	return dw_pcie_ep_send_msg(ep, func_no, PCI_MSG_CODE_DEASSERT_INTA,
-> +				   PCI_MSG_TYPE_R_ROUTING_LOCAL);
->  }
->  EXPORT_SYMBOL_GPL(dw_pcie_ep_raise_intx_irq);
->  
-> @@ -622,6 +670,10 @@ void dw_pcie_ep_exit(struct dw_pcie_ep *ep)
->  
->  	dw_pcie_edma_remove(pci);
->  
-> +	if (ep->intx_mem)
-> +		pci_epc_mem_free_addr(epc, ep->intx_mem_phys, ep->intx_mem,
-> +				      epc->mem->window.page_size);
-> +
->  	pci_epc_mem_free_addr(epc, ep->msi_mem_phys, ep->msi_mem,
->  			      epc->mem->window.page_size);
->  
-> @@ -793,9 +845,14 @@ int dw_pcie_ep_init(struct dw_pcie_ep *ep)
->  		goto err_exit_epc_mem;
->  	}
->  
-> +	ep->intx_mem = pci_epc_mem_alloc_addr(epc, &ep->intx_mem_phys,
-> +					      epc->mem->window.page_size);
-> +	if (!ep->intx_mem)
-> +		dev_warn(dev, "Failed to reserve memory for INTx\n");
-> +
->  	ret = dw_pcie_edma_detect(pci);
->  	if (ret)
-> -		goto err_free_epc_mem;
-> +		goto err_free_epc_mem_intx;
->  
->  	if (ep->ops->get_features) {
->  		epc_features = ep->ops->get_features(ep);
-> @@ -812,7 +869,11 @@ int dw_pcie_ep_init(struct dw_pcie_ep *ep)
->  err_remove_edma:
->  	dw_pcie_edma_remove(pci);
->  
-> -err_free_epc_mem:
-> +err_free_epc_mem_intx:
-> +	if (ep->intx_mem)
-> +		pci_epc_mem_free_addr(epc, ep->intx_mem_phys, ep->intx_mem,
-> +				      epc->mem->window.page_size);
-> +
->  	pci_epc_mem_free_addr(epc, ep->msi_mem_phys, ep->msi_mem,
->  			      epc->mem->window.page_size);
->  
-> diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci/controller/dwc/pcie-designware.h
-> index c626d21243b0..812c221b3f7c 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware.h
-> +++ b/drivers/pci/controller/dwc/pcie-designware.h
-> @@ -365,6 +365,8 @@ struct dw_pcie_ep {
->  	unsigned long		*ob_window_map;
->  	void __iomem		*msi_mem;
->  	phys_addr_t		msi_mem_phys;
-> +	void __iomem		*intx_mem;
-> +	phys_addr_t		intx_mem_phys;
->  	struct pci_epf_bar	*epf_bar[PCI_STD_NUM_BARS];
->  };
->  
-> -- 
-> 2.25.1
-> 
+ drivers/soc/qcom/socinfo.c         | 1 -
+ include/dt-bindings/arm/qcom,ids.h | 1 -
+ 2 files changed, 2 deletions(-)
 
 -- 
-மணிவண்ணன் சதாசிவம்
+2.34.1
+
