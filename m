@@ -2,42 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 58F0375FF5B
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 20:52:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF76C75FF85
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 21:06:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229650AbjGXSwr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jul 2023 14:52:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54396 "EHLO
+        id S229650AbjGXTGn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jul 2023 15:06:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59618 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229597AbjGXSwq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 14:52:46 -0400
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F05BE55;
-        Mon, 24 Jul 2023 11:52:44 -0700 (PDT)
-Received: from [193.138.155.172] (helo=phil.sntech)
-        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <heiko@sntech.de>)
-        id 1qO0fg-0008OD-EO; Mon, 24 Jul 2023 20:52:40 +0200
-From:   Heiko Stuebner <heiko@sntech.de>
-To:     Yogesh Hegde <yogi.kernel@gmail.com>, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, linux-rockchip@lists.infradead.org
-Cc:     Heiko Stuebner <heiko@sntech.de>, ivan.orlov0322@gmail.com,
-        skhan@linuxfoundation.org,
-        linux-kernel-mentees@lists.linuxfoundation.org
-Subject: Re: [PATCH v2] arm64: dts: rockchip: Fix Wifi/Bluetooth on ROCK Pi 4 boards
-Date:   Mon, 24 Jul 2023 20:52:37 +0200
-Message-Id: <169022470428.2905604.14514573882052237409.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <ZLbATQRjOl09aLAp@zephyrusG14>
-References: <ZLbATQRjOl09aLAp@zephyrusG14>
+        with ESMTP id S230320AbjGXTG0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 15:06:26 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05AFD1BCC
+        for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 12:06:11 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-5222b917e0cso2164560a12.0
+        for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 12:06:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1690225570; x=1690830370;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ARogtLV1RFi23rA4Eq6YEJ7tIgrbKGbfHhga/QvC0fU=;
+        b=w0kQy3xiLmArXRkkGu10vZ23WrHCfJLWIXo9QxV+sek2oXdNWu2anZlxzT+qkbBsHV
+         HL2hbzWcVsbMl8+yiex4lhMms+WPq6/OqGZqlbtDDCvQlPYqHhuKuK1ZoTZRfPOTjN8W
+         HYcaW60qbC3XNSDX5BqZ38V76iV3C+6J4LO07s6H2LT7DTBK9EkfIW5UkWnv4HUsL/Ev
+         1W6ZNTqBHKdnibskaSOSQZ2HXRGCq1usIeFAvpMDaPoEepeWU+jxwscrZz0vLxwidAYU
+         cXPjtxD8SB8okSLgQiB0flkAv2HWqHJ8KhPPRvynHdM8woQsP/eJPhoEY5CnAtfOO6Ns
+         CkVQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690225570; x=1690830370;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ARogtLV1RFi23rA4Eq6YEJ7tIgrbKGbfHhga/QvC0fU=;
+        b=AWaqKtPVEQxbzrvspGN5w5HcJDooRL2IjTT7mFJK4G6KP84nmn598cQ9PX1h6wky2K
+         3nxCgC11FkyFGKi/hdUaoJSCGQyJzIW0P0SvukQp5xouTag8g0L2yZ6hcHlIcAMRqfyq
+         RwGgEJml1TnFBcMYZzRGbvsw/ellD0O69pgbwL8Eg8CI66e3dLbWcEfnIurJuv5fbaL1
+         jIMxJSjlKv7ClWsOBIG3gXiJyVvaX+Nlm/YcluXUzW/UmRTGyW8fk9VUt8jOS2H3Jcnq
+         vQNgfKMHeZjpJEpnvgzJo6ucMM9dh5EuyG52TuG/KqOOwmtDgPLK6BSWOUJQ5OECJrPq
+         aeaw==
+X-Gm-Message-State: ABy/qLZCu/oieiiQ2nAkM6CTG2XXotwUxA0PpmkLSsCuEPLY7B3r4jsd
+        BENENrFLZ/K6GS9AK9gPv+tx5Q==
+X-Google-Smtp-Source: APBJJlFhBfPgz5j3cak/MLvEFnT1GfFIYwYH+XuXWgIqTQF5ElhY9BQssoVDyngMXlOqYXdd6ZWVKA==
+X-Received: by 2002:a05:6402:1814:b0:521:d23b:f2c5 with SMTP id g20-20020a056402181400b00521d23bf2c5mr9287843edy.14.1690225570119;
+        Mon, 24 Jul 2023 12:06:10 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id h1-20020aa7de01000000b0051a4fcf7187sm6524547edv.62.2023.07.24.12.06.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 24 Jul 2023 12:06:06 -0700 (PDT)
+Message-ID: <34be3638-ed14-bb0b-eb2e-c44f43c582f2@linaro.org>
+Date:   Mon, 24 Jul 2023 21:06:00 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v3 2/3] pinctrl: qcom: sm8350-lpass-lpi: add SM8350 LPASS
+ TLMM
+Content-Language: en-US
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20230719192058.433517-1-krzysztof.kozlowski@linaro.org>
+ <20230719192058.433517-2-krzysztof.kozlowski@linaro.org>
+ <CACRpkdbK7gU36nVOm0J+HbLk5JRKki+30=UaJ6hZjF1DiB4bBw@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CACRpkdbK7gU36nVOm0J+HbLk5JRKki+30=UaJ6hZjF1DiB4bBw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -45,24 +87,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 18 Jul 2023 22:09:41 +0530, Yogesh Hegde wrote:
-> This patch fixes an issue affecting the Wifi/Bluetooth connectivity on
-> ROCK Pi 4 boards. Commit f471b1b2db08 ("arm64: dts: rockchip: Fix Bluetooth
-> on ROCK Pi 4 boards") introduced a problem with the clock configuration.
-> Specifically, the clock-names property of the sdio-pwrseq node was not
-> updated to 'lpo', causing the driver to wait indefinitely for the wrong clock
-> signal 'ext_clock' instead of the expected one 'lpo'. This prevented the proper
-> initialization of Wifi/Bluetooth chip on ROCK Pi 4 boards.
+On 24/07/2023 20:09, Linus Walleij wrote:
+> On Wed, Jul 19, 2023 at 9:21 PM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
 > 
-> [...]
+>> Add driver for pin controller in Low Power Audio SubSystem (LPASS).  The
+>> driver is similar to SM8250 LPASS pin controller, with difference in one
+>> new pin (gpio14) belonging to swr_tx_data.
+>>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> This sure looks good to me.
+> 
+> Krzystof, can you collect a branch with pin control changes for
+> Qualcomm chips that I can pull? If it's OK with Bjorn that is.
 
-Applied, thanks!
-
-[1/1] arm64: dts: rockchip: Fix Wifi/Bluetooth on ROCK Pi 4 boards
-      commit: ebceec271e552a2b05e47d8ef0597052b1a39449
-
-and added the "Cc: stable@vger.kernel.org"
+Sure, I can go through the lore search results and grab recent submissions.
 
 Best regards,
--- 
-Heiko Stuebner <heiko@sntech.de>
+Krzysztof
+
