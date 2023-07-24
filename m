@@ -2,66 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 384EF760318
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 01:26:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CC0B976032F
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 01:33:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229568AbjGXX03 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jul 2023 19:26:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41552 "EHLO
+        id S230144AbjGXXdB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jul 2023 19:33:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43058 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229459AbjGXX02 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 19:26:28 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35E65E7B;
-        Mon, 24 Jul 2023 16:26:28 -0700 (PDT)
+        with ESMTP id S229459AbjGXXdB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 19:33:01 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D46E10F0;
+        Mon, 24 Jul 2023 16:33:00 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id BD3F761463;
-        Mon, 24 Jul 2023 23:26:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 60DCFC433C8;
-        Mon, 24 Jul 2023 23:26:25 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id CF66661463;
+        Mon, 24 Jul 2023 23:32:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 385C8C433C8;
+        Mon, 24 Jul 2023 23:32:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690241187;
-        bh=4KSq1+MwOBFiXF30dhtmS7Fj1Uen43j4cbGhaxzDkQ4=;
+        s=k20201202; t=1690241579;
+        bh=e9QSEh6b4uhYqAZa6VEZ0jeCfnlnxgRWV+zrxCBm1/Q=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=AVl0guQBTKgPU625eTtTiJ730ZEWk7Y7+8PLfxgxYRhJk9+ktGWz3b306R3LK8Heg
-         L5g6xPDWJyM0EB7e0GlDoGR9kmlt5H3dE6q81sx4C7Ju1thz0PdaKdYfwP7xOLXA6Y
-         RGrBj5+Iz8N0rNN8SyvwvWDsgnsKdBLI5s8XmcCnvDXmuHh+9udH0VRpm+28ZFoZYG
-         baB2Vv3XExVU2KQUsO9vFNMpwiiNzyQrXJRP6uuSukARjfty/1k1YEjsuc6BpVsh6p
-         dnArt6BOWuU3gl6Glu2BW0Nm+nHiHAZhldyqu+m5InAVFou0GdIXNqethlH29s389V
-         onJqHwhLpZzSw==
-Received: (nullmailer pid 1114814 invoked by uid 1000);
-        Mon, 24 Jul 2023 23:26:24 -0000
-Date:   Mon, 24 Jul 2023 17:26:24 -0600
+        b=Xs/NWONSkVisnkPTtB8iJ4sBB5kfU8K/L1iGGn2wWk90Jkn5R570A9L4HnOLqykz1
+         2dYSD18rByxVe8fb/x8alwMMNP5h8YvxNE8e/BsdCmnal0+pDH3bELel2iNDPZaMI7
+         QBNkMr3+4f3aYaN2FkM0coNcxbtp8DHmocyyyFm+UPPYTXwqi9BEbRw/Kz9462IdOU
+         3cdqJmLj0WMO0mpAk1lTUuo8bOEgDjypl77Xy8PDCeICmJCRqhu1NZJFkV/HhtJvUa
+         m9eF3ezAqh/T0/duXq4f4jU0KUR2wbvn8uWf0K49uu0nEeIzDFl0rP/jkuKLoTqLq5
+         ZDoM1R6H1ha7Q==
+Received: (nullmailer pid 1125486 invoked by uid 1000);
+        Mon, 24 Jul 2023 23:32:56 -0000
+Date:   Mon, 24 Jul 2023 17:32:56 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Conor Dooley <conor@kernel.org>
-Cc:     Jisheng Zhang <jszhang@kernel.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>, netdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH net-next 07/10] dt-bindings: net: snps,dwmac: add safety
- irq support
-Message-ID: <20230724232624.GA1112850-robh@kernel.org>
-References: <20230723161029.1345-1-jszhang@kernel.org>
- <20230723161029.1345-8-jszhang@kernel.org>
- <20230724-cleat-tricolor-e455afa60b14@spud>
+To:     Rik van Riel <riel@surriel.com>
+Cc:     linux-kernel@vger.kernel.org, kernel-team@meta.com,
+        Mike Rapoport <rppt@kernel.org>, devicetree@vger.kernel.org,
+        x86@kernel.org, Juergen Gross <jgross@suse.com>,
+        Dave Hansen <dave.hansen@linux.intel.com>
+Subject: Re: [PATCH] mm,ima,kexec: use memblock_free_late from
+ ima_free_kexec_buffer
+Message-ID: <20230724233256.GA1124187-robh@kernel.org>
+References: <20230720101431.71640c8a@imladris.surriel.com>
+ <20230721193815.GA1679711-robh@kernel.org>
+ <74c0d1b900d8f518bc152478682a353c29e0faa3.camel@surriel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230724-cleat-tricolor-e455afa60b14@spud>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+In-Reply-To: <74c0d1b900d8f518bc152478682a353c29e0faa3.camel@surriel.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -70,45 +61,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 24, 2023 at 06:23:13PM +0100, Conor Dooley wrote:
-> On Mon, Jul 24, 2023 at 12:10:26AM +0800, Jisheng Zhang wrote:
-> > The snps dwmac IP support safety features, and those Safety Feature
-> > Correctible Error and Uncorrectible Error irqs may be separate irqs.
+On Fri, Jul 21, 2023 at 08:40:41PM -0400, Rik van Riel wrote:
+> On Fri, 2023-07-21 at 13:38 -0600, Rob Herring wrote:
+> > On Thu, Jul 20, 2023 at 10:14:31AM -0400, Rik van Riel wrote:
+> > > The code calling ima_free_kexec_buffer runs long after the memblock
+> > > allocator has already been torn down, potentially resulting in a
+> > > use
+> > > after free in memblock_isolate_range.
+> > > 
+> > > With KASAN or KFENCE, this use after free will result in a BUG
+> > > from the idle task, and a subsequent kernel panic.
+> > > 
+> > > Switch ima_free_kexec_buffer over to memblock_free_late to avoid
+> > > that issue.
+> > > 
+> > > Fixes: fee3ff99bc67 ("powerpc: Move arch independent ima kexec
+> > > functions to drivers/of/kexec.c")
 > > 
-> > Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
-> > ---
-> >  Documentation/devicetree/bindings/net/snps,dwmac.yaml | 4 ++++
-> >  1 file changed, 4 insertions(+)
+> > Fixes: b69a2afd5afc ("x86/kexec: Carry forward IMA measurement log on
+> > kexec")
 > > 
-> > diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> > index ddf9522a5dc2..bb80ca205d26 100644
-> > --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> > +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> > @@ -107,6 +107,8 @@ properties:
-> >        - description: Combined signal for various interrupt events
-> >        - description: The interrupt to manage the remote wake-up packet detection
-> >        - description: The interrupt that occurs when Rx exits the LPI state
-> > +      - description: The interrupt that occurs when Safety Feature Correctible Errors happen
-> > +      - description: The interrupt that occurs when Safety Feature Uncorrectible Errors happen
-> >  
-> >    interrupt-names:
-> >      minItems: 1
-> > @@ -114,6 +116,8 @@ properties:
-> >        - const: macirq
-> >        - enum: [eth_wake_irq, eth_lpi]
-> >        - const: eth_lpi
-> > +      - const: sfty_ce_irq
-> > +      - const: sfty_ue_irq
+> Thank you for digging further back in the history of that code.
 > 
-> Putting _irq in an interrupt name seems rather redundant to me although,
-> clearly not the first time for it here.
-
-It's already inconsistent, so don't follow that pattern. Drop '_irq'.
-
+> > Acked-by: Rob Herring <robh@kernel.org>
+> > 
+> > (I'm assuming someone else is taking this)
 > 
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> 
-> Thanks,
-> Conor.
+> I hope so, but I don't know who...
 
+You could split this into 2 patches, then there's no doubt. And each 
+Fixes is clear.
 
+Rob
