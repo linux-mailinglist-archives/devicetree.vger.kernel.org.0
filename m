@@ -2,61 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 95B2E75FB57
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 17:59:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 87BA475FB5C
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 18:01:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229971AbjGXP7f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jul 2023 11:59:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36228 "EHLO
+        id S230036AbjGXQBq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jul 2023 12:01:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37046 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229907AbjGXP7e (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 11:59:34 -0400
+        with ESMTP id S230139AbjGXQBm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 12:01:42 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24F5B19A;
-        Mon, 24 Jul 2023 08:59:34 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EC9619A;
+        Mon, 24 Jul 2023 09:01:41 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id B76B1611EC;
-        Mon, 24 Jul 2023 15:59:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 01685C433C8;
-        Mon, 24 Jul 2023 15:59:31 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 1BF296123A;
+        Mon, 24 Jul 2023 16:01:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 14399C433C9;
+        Mon, 24 Jul 2023 16:01:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690214373;
-        bh=UQw9N6ePBKFI8Sse/AmiqNhETIeIuaipUKydlV16gXw=;
+        s=k20201202; t=1690214500;
+        bh=obEOVXewu49VHgFG99DmRcFBdBiVyJBWFXsPB3r31fU=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=bY6O6oYhpQu3GQE8O/WHheD7jj6yH3aZF1isrP36+WJYHg9J6s4EgxtrClgIcDIuc
-         LBGpdgYNiAdryY4yDQkLnJZqKR0cet7DuVs8v4R18PQOBlGeyOhwkv5c1Gm2Khf4S6
-         NkSxdkX5DTlWwItFme4QKjEdgeTKEkhqcf2cWsJXXIjBdtLAIdk9B7CRu9nnip/Zoi
-         QYuenFeUGxpbRKb/LAZePeJCJaxViT5/p0Qy+VIJh48hq0xk61SCwj/SiseQfMU0Cl
-         xugLTDUzq2l05Vu6ssWk4cce2ptAFQbgMGugTJp80H2GHRVkkBa6KTqQzKeUct+DBJ
-         zjHagysnU52WQ==
-Received: (nullmailer pid 3617994 invoked by uid 1000);
-        Mon, 24 Jul 2023 15:59:30 -0000
-Date:   Mon, 24 Jul 2023 09:59:30 -0600
+        b=OojbEwQeuKb6QLqK6xMwGZ+fLq0y6ggK/tEkfAkegcfDu+8CKzOPOnuFdZePmmFWT
+         8hMsA2mSyXl2bzJd6bKTm1ew8RsSgBYz8qt/EaxqgFvdvS8dvRfiesUvQvRMQBF7FO
+         9GhbXLzIVKH4iDo8A3E5Erf9xLofT70hZzRtH9Hh0J9bSwiZ0wPOsgoE4Amd27eEKA
+         FMD5phjLHByS4SRc8y82CK1So8dFE4GD5i2KhNZQWL+4t/G1E5dF3nQAUGwsO5dKPR
+         SXSyeiVAQveObzPk/v/94s43da2MCi0JzEgEvGDRtCGL2D1o3hUn8jyOrpZM3L8WJF
+         bX5xpTCFzPFMw==
+Received: (nullmailer pid 3620992 invoked by uid 1000);
+        Mon, 24 Jul 2023 16:01:36 -0000
+Date:   Mon, 24 Jul 2023 10:01:36 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Marek Vasut <marex@denx.de>
-Cc:     linux-remoteproc@vger.kernel.org,
-        Bjorn Andersson <andersson@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Peng Fan <peng.fan@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: remoteproc: imx_rproc: Support
- i.MX8MN/P MMIO
-Message-ID: <20230724155930.GA3616168-robh@kernel.org>
-References: <20230720125549.72929-1-marex@denx.de>
+To:     Bjorn Andersson <andersson@kernel.org>
+Cc:     Varadarajan Narayanan <quic_varada@quicinc.com>, agross@kernel.org,
+        konrad.dybcio@linaro.org, vkoul@kernel.org, kishon@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        gregkh@linuxfoundation.org, catalin.marinas@arm.com,
+        will@kernel.org, p.zabel@pengutronix.de, arnd@arndb.de,
+        geert+renesas@glider.be, neil.armstrong@linaro.org,
+        nfraprado@collabora.com, rafal@milecki.pl,
+        quic_srichara@quicinc.com, quic_wcheng@quicinc.com,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v5 2/6] dt-bindings: phy: qcom,m31: Document qcom,m31 USB
+ phy
+Message-ID: <20230724160136.GA3619408-robh@kernel.org>
+References: <cover.1689913334.git.quic_varada@quicinc.com>
+ <131eb1694229436919ac88bb9920fb54d6808388.1689913334.git.quic_varada@quicinc.com>
+ <ymbcafqqhc6hgrfhpef4byehvfyjzovs5zeprmj343erdv5ti5@tj2iunu6whvi>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230720125549.72929-1-marex@denx.de>
+In-Reply-To: <ymbcafqqhc6hgrfhpef4byehvfyjzovs5zeprmj343erdv5ti5@tj2iunu6whvi>
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -67,87 +68,90 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 20, 2023 at 02:55:48PM +0200, Marek Vasut wrote:
-> The MX8M CM7 boot via SMC call is problematic, since not all versions
-> of ATF support this interface. Document MMIO support used to boot the
-> CM7 on MX8MN/MP instead and discern MMIO interface using DT compatible
-> string. Document GPR register syscon phandle which is required by the
-> MMIO interface too.
+On Fri, Jul 21, 2023 at 10:10:57PM -0700, Bjorn Andersson wrote:
+> On Fri, Jul 21, 2023 at 10:05:27AM +0530, Varadarajan Narayanan wrote:
+> > Document the M31 USB2 phy present in IPQ5332.
+> > 
+> > Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
 > 
-> Signed-off-by: Marek Vasut <marex@denx.de>
-> ---
-> Cc: Bjorn Andersson <andersson@kernel.org>
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: Fabio Estevam <festevam@gmail.com>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
-> Cc: NXP Linux Team <linux-imx@nxp.com>
-> Cc: Peng Fan <peng.fan@nxp.com>
-> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Sascha Hauer <s.hauer@pengutronix.de>
-> Cc: Shawn Guo <shawnguo@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Cc: linux-arm-kernel@lists.infradead.org
-> Cc: linux-remoteproc@vger.kernel.org
-> ---
-> V2: Rename 'gpr' to 'fsl,iomuxc-gpr'
-> ---
-> Note that the MMIO being discerned using compatible string is similar
-> approach to "st,stm32mp1-rcc" vs "st,stm32mp1-rcc-secure".
-> ---
->  .../bindings/remoteproc/fsl,imx-rproc.yaml    | 20 +++++++++++++++++++
->  1 file changed, 20 insertions(+)
+> As Sricharan is the first one to certify the patch's origin, it seems
+> likely that he's the author. Please add a Co-developed-by: Sricharan.
 > 
-> diff --git a/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
-> index 0c3910f152d1d..cd352fd38e891 100644
-> --- a/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
-> +++ b/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
-> @@ -20,7 +20,9 @@ properties:
->        - fsl,imx7ulp-cm4
->        - fsl,imx8mm-cm4
->        - fsl,imx8mn-cm7
-> +      - fsl,imx8mn-cm7-mmio
->        - fsl,imx8mp-cm7
-> +      - fsl,imx8mp-cm7-mmio
->        - fsl,imx8mq-cm4
->        - fsl,imx8qm-cm4
->        - fsl,imx8qxp-cm4
-> @@ -70,6 +72,11 @@ properties:
->      description:
->        Specify CPU entry address for SCU enabled processor.
->  
-> +  fsl,iomuxc-gpr:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description:
-> +      Phandle to IOMUXC GPR block which provide access to CM7 CPUWAIT bit.
-> +
->    fsl,resource-id:
->      $ref: /schemas/types.yaml#/definitions/uint32
->      description:
-> @@ -79,6 +86,19 @@ properties:
->  required:
->    - compatible
->  
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          not:
-> +            contains:
-> +              enum:
-> +                - fsl,imx8mn-cm7-mmio
-> +                - fsl,imx8mp-cm7-mmio
-> +    then:
-> +      properties:
-> +        gpr: false
+> [..]
+> > diff --git a/Documentation/devicetree/bindings/phy/qcom,ipq5332-usb-hsphy.yaml b/Documentation/devicetree/bindings/phy/qcom,ipq5332-usb-hsphy.yaml
+> > new file mode 100644
+> > index 0000000..e0b282b
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/phy/qcom,ipq5332-usb-hsphy.yaml
+> > @@ -0,0 +1,51 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/phy/qcom,ipq5332-usb-hsphy.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: M31 USB PHY
+> > +
+> > +maintainers:
+> > +  - Sricharan Ramabadhran <quic_srichara@quicinc.com>
+> > +  - Varadarajan Narayanan <quic_varada@quicinc.com>
+> > +
+> > +description:
+> > +  USB M31 PHY (https://www.m31tech.com) found in Qualcomm
+> > +  IPQ5018, IPQ5332 SoCs.
+> > +
+> > +properties:
+> > +  "#phy-cells":
+> > +    const: 0
+> > +
+> > +  compatible:
+> > +    enum:
+> 
+> const?
+> 
+> > +      - qcom,ipq5332-usb-hsphy
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  clocks:
+> > +    maxItems: 1
+> > +
+> > +  clock-names:
+> > +    items:
+> > +      - const: cfg_ahb
+> > +
+> > +  resets:
+> > +    maxItems: 1
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/clock/qcom,ipq5332-gcc.h>
+> > +    usbphy0: usb-phy@7b000 {
+> 
+> usb@
 
-Not the right property name.
+You mean phy@? But 'usb2-phy' is accepted too.
 
-> +
->  additionalProperties: false
->  
->  examples:
-> -- 
-> 2.40.1
 > 
+> And you don't need to give the node a label in the example.
+> 
+> > +        compatible = "qcom,ipq5332-usb-hsphy";
+> > +        reg = <0x0007b000 0x12c>;
+> > +
+> > +        clocks = <&gcc GCC_USB0_PHY_CFG_AHB_CLK>;
+> > +        clock-names = "cfg_ahb";
+> > +
+> 
+> No #phy-cells?
+> 
+> Regards,
+> Bjorn
+> 
+> > +        resets = <&gcc GCC_QUSB2_0_PHY_BCR>;
+> > +    };
+> > -- 
+> > 2.7.4
+> > 
