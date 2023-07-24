@@ -2,121 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C98B7600D2
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 23:02:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 95883760140
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 23:35:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230196AbjGXVCl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jul 2023 17:02:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44008 "EHLO
+        id S229522AbjGXVfe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jul 2023 17:35:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59490 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229485AbjGXVCk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 17:02:40 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62410E67;
-        Mon, 24 Jul 2023 14:02:39 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id E827D61411;
-        Mon, 24 Jul 2023 21:02:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A62EC433D9;
-        Mon, 24 Jul 2023 21:02:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690232558;
-        bh=0+Srw7lXT1FA8YIDbGu44docy330MM50fqmGEpJ5PiY=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=eF880e10xh6n475OZjp5F/Po8sUNB+6EBgxnJbCsEXZK3RaXYlY+t3JoJzkMC5CUV
-         TjA2GwYkIaFbjR1iRd1y7TXm/mEDexVUie/0iU3huXUxbyhN26riJMpZt88FNvDvi9
-         Kcn4MX3KpjJRaA2BATIpZHbS0sqACpdYlP4WIwC5h6aN/paMxhVY/+7BrzUQA+21/g
-         gcyzj9jR3ZFeArfjNVuNqDSCaXTcvgFcl3deDvxjOawX9gsXagFytQPlAgnZPRDfeP
-         kYdOd5rTcMWpbV8TEl1op6AUBrzBkzavsxry0ellreSDbh0UxUKUUqvfeB8B1OIsUo
-         XRipzVZd0M7+Q==
-Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-2b7430bda8bso70538321fa.0;
-        Mon, 24 Jul 2023 14:02:38 -0700 (PDT)
-X-Gm-Message-State: ABy/qLZwkQSTkS3vn0blE4KPAI18RpQFkPumnouB2gfqExRwWL5NLaFP
-        BcDMSF+j57OATqZczONwoREfNyehKiNnwNu/BQ==
-X-Google-Smtp-Source: APBJJlG02/cT58K6TBy2dpTL5aTHIezcfXvz2TD3qAfXrj44uyTbqvpoDx2CALCp5CDzH8HFqOlm6YDCvEHlbpVDOSQ=
-X-Received: by 2002:a2e:924b:0:b0:2b6:e536:a2a3 with SMTP id
- v11-20020a2e924b000000b002b6e536a2a3mr7171152ljg.19.1690232555975; Mon, 24
- Jul 2023 14:02:35 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230723071105.40157-1-krzysztof.kozlowski@linaro.org>
- <20230724162638.GA3784203-robh@kernel.org> <60e7e772-bf0a-264d-abac-4ed72766a2d0@linaro.org>
-In-Reply-To: <60e7e772-bf0a-264d-abac-4ed72766a2d0@linaro.org>
-From:   Rob Herring <robh@kernel.org>
-Date:   Mon, 24 Jul 2023 15:02:23 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLwZR_VQEAuhLLqN4BF8Yvh=3vkQe=tFHaKWzJzMMP+qw@mail.gmail.com>
-Message-ID: <CAL_JsqLwZR_VQEAuhLLqN4BF8Yvh=3vkQe=tFHaKWzJzMMP+qw@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: usb: add missing unevaluatedProperties on
- USB connector
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        with ESMTP id S229645AbjGXVfc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 17:35:32 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B27F126;
+        Mon, 24 Jul 2023 14:35:31 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id 2adb3069b0e04-4fb7dc16ff0so7134864e87.2;
+        Mon, 24 Jul 2023 14:35:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1690234529; x=1690839329;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=PGqd0Dpk0QJClHF7xv6N5WpusRf7KZmTiJZbeW3YVpA=;
+        b=bSo1bzBSvbXk9nqAD97BGglxykvznOQ1gf/1zYxmZeCE8L1R/RYrEUc23gkSoQG5b8
+         OiGVU3nLrwYUzG3piGFUzrlD4ZLGf5m7vmiXzV8j9YdW/J60doQdsXBm7X6es4kGhpAP
+         mfYubkIN6x9wEBtPmx3fLSNAT6FEBnrzej2RGRjG2dXe+BWflZTTbYaBA7mm+IJ0+ecJ
+         +1pa1LkyANOg23vHe9P4hN1azoy4vCW56+Bhbis14qz84AUYZToVQeoOpW7pBkBJ/dUe
+         Wm7X5+DZdKg5OF22X5KvFlgnRgfkpG+3ub3dEa8xr8FK7kZ/s9Soqj8dqBVUR29zhyN3
+         kSpg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690234529; x=1690839329;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=PGqd0Dpk0QJClHF7xv6N5WpusRf7KZmTiJZbeW3YVpA=;
+        b=CJtmJuobxtHUjSdBj0AOrpGYjoBBrdixUbWzR+oytteH2mCb87zvUHqYuarZ2xW2wt
+         pmM6JJ0U6cCvtS3X2ONvx3HGuItgwYqvBGOrOKWBvNsC/VSf/xemrcby03ILkhzvvWaB
+         OfYl5PNXeMxE9DK9kcPvTw4+BGHSnSuIXMYcwowddB0G5V1Bs+47vNPgaCQ+UnxWxu2l
+         Hc5Cb0MPSLTKtrc+8lPo2nLQ4LVZtIraQlDJd6RFJ1JVN66L/7KoEfElxYPAtqInfh6h
+         33sw+2irRL4NR2nrFLoV3DoIZY9ox04dy7koj5na+V+kWPPjuAApMqphV/QvLNBDg6qE
+         kN+Q==
+X-Gm-Message-State: ABy/qLbLOdY6h3z3yE3gXP8hpCyn+y2BX6qJAd9Lr+yyHry8dvmK0zjg
+        PFNyzMVBXkRQpcawbraHV2w=
+X-Google-Smtp-Source: APBJJlGlS0ny6UsHvHlYOypOEI7Ao8qoTKmL9cK2lJ/LoBv1hnPDT+AUsLfEL5/cbRhNbMkryxxkDQ==
+X-Received: by 2002:a05:6512:480d:b0:4fb:9129:705b with SMTP id eo13-20020a056512480d00b004fb9129705bmr5710559lfb.6.1690234529045;
+        Mon, 24 Jul 2023 14:35:29 -0700 (PDT)
+Received: from new-nest.cgt.local ([2a05:3580:f312:6c00:826c:ae47:61a7:8af8])
+        by smtp.gmail.com with ESMTPSA id m26-20020a056512015a00b004fb745fd22fsm2406675lfo.32.2023.07.24.14.35.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 24 Jul 2023 14:35:28 -0700 (PDT)
+From:   Andrey Skvortsov <andrej.skvortzov@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Jagan Sridharan <badhri@google.com>,
-        ChiYuan Huang <cy_huang@richtek.com>,
-        Min Guo <min.guo@mediatek.com>,
-        Gene Chen <gene_chen@richtek.com>, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Kees Cook <keescook@chromium.org>,
+        Tony Luck <tony.luck@intel.com>,
+        "Guilherme G. Piccoli" <gpiccoli@igalia.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+        linux-hardening@vger.kernel.org,
+        Jarrah Gosbell <kernel@undef.tools>,
+        Arnaud Ferraris <arnaud.ferraris@collabora.com>
+Cc:     Andrey Skvortsov <andrej.skvortzov@gmail.com>
+Subject: [PATCH] arm64: dts: pinephone: Add pstore support for PinePhone A64
+Date:   Tue, 25 Jul 2023 00:34:57 +0300
+Message-Id: <20230724213457.24593-1-andrej.skvortzov@gmail.com>
+X-Mailer: git-send-email 2.39.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 24, 2023 at 11:05=E2=80=AFAM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 24/07/2023 18:26, Rob Herring wrote:
-> > On Sun, Jul 23, 2023 at 09:11:05AM +0200, Krzysztof Kozlowski wrote:
-> >> The usb-connector.yaml schema allows any additional properties, thus i=
-ts
-> >> usage should finish with unevaluatedProperties: false.
-> >
-> > Is it problematic if usb-connector.yaml is restricted?
->
-> Yes, a bit.
-> 1. Missing reg/unit-address:
-> Documentation/devicetree/bindings/usb/cypress,cypd4226.yaml
-> I guess this could be easily solved.
->
-> 2. phy-supply:
-> arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
-> (and more of armada)
-> This is a bit odd:
->
-> phy@18300 {
->   compatible =3D "marvell,comphy-a3700";
->   comphy0: phy@0 {}
->   comphy1: phy@1 {}
->   comphy2: phy@2 {
->     connector {
->       compatible =3D "usb-a-connector";
->       phy-supply =3D <&exp_usb3_vbus>;
->    };
-> };
->
-> I would assume that phy-supply should be a property of the phy.
+This patch reserves some memory in the DTS and sets up a
+pstore device tree node to enable pstore support.
 
-Indeed. We already have vbus-supply which this looks like it is. I'm
-pretty sure I've seen Vbus in phy bindings too which I've pushed back
-on as to whether Vbus really went to the phy or was there because the
-phy driver just wants to control Vbus.
+Signed-off-by: Andrey Skvortsov <andrej.skvortzov@gmail.com>
 
-The marvell platforms aren't in great shape schema wise, so maybe
-don't worry about it now.
+Gbp-Pq: Topic pinephone
+Gbp-Pq: Name 0161-arm64-dts-pinephone-Add-pstore-support-for-PinePhone.patch
+---
+ .../boot/dts/allwinner/sun50i-a64-pinephone.dtsi | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
 
-Rob
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
+index 87847116ab6d..84f9410b0b70 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
++++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
+@@ -19,6 +19,22 @@ aliases {
+ 		serial0 = &uart0;
+ 	};
+ 
++	reserved-memory {
++		#address-cells = <1>;
++		#size-cells = <1>;
++		ranges;
++
++		pstore_mem: ramoops@61000000 {
++			compatible = "ramoops";
++			reg = <0x61000000 0x100000>;
++			record-size = <0x20000>;
++			console-size = <0x20000>;
++			ftrace-size = <0x20000>;
++			pmsg-size = <0x20000>;
++			ecc-size = <16>;
++		};
++	};
++
+ 	backlight: backlight {
+ 		compatible = "pwm-backlight";
+ 		pwms = <&r_pwm 0 50000 PWM_POLARITY_INVERTED>;
+-- 
+2.39.2
+
