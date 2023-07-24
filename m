@@ -2,167 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1938D75F55C
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 13:44:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 567CA75F578
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jul 2023 13:51:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229826AbjGXLoQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jul 2023 07:44:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59616 "EHLO
+        id S229670AbjGXLvz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jul 2023 07:51:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34718 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229847AbjGXLoP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 07:44:15 -0400
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0154E5C;
-        Mon, 24 Jul 2023 04:44:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1690199054; x=1721735054;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=AhAV6EXXTRBcrPub9eD6b5LPrOcw+eceIVL16f8Xp7s=;
-  b=ncx2rnNoUcZeDKs1NGBZnRvMyQd7Z5qWPZRF8t1QdnfQnEBTRd++j4Y3
-   LfBJ5ik34kVKelMXX5n22Kk2Floh+bKxU6iV483UU/xYLT9nbPPAvgDmb
-   NLFLqzU3isP2aX4FYBb0/Jmf1C8BgRJPxIsJujW03F8G7h5gNFmIOQ8so
-   BjZdt9b31iOpk9uSG3ZWr8uBW+cKGau2bQXUaGDxZn9FPrHlyuIyNLbr0
-   75LO4gn5+RF6JyJAj/AcgeCIt190irGKgkzECMVFwcFqC3Oj13yp065aa
-   hfYdx1Wm0+UMPlsMZyFd0Dox2rrpDPyVOcI3Qb92H2BkyyGwokI6BrbIv
-   g==;
-X-IronPort-AV: E=Sophos;i="6.01,228,1684792800"; 
-   d="scan'208";a="32080086"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 24 Jul 2023 13:44:11 +0200
-Received: from steina-w.localnet (unknown [10.123.53.21])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 6F9B2280078;
-        Mon, 24 Jul 2023 13:44:11 +0200 (CEST)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Andy Shevchenko <andy@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-leds@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com
-Subject: Re: [PATCH v2 1/2] dt-bindings: gpio: Add gpio-line-names to STMPE GPIO
-Date:   Mon, 24 Jul 2023 13:44:11 +0200
-Message-ID: <4285919.ejJDZkT8p0@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <29b62cc6-bc54-9a43-211b-b2d7579218b7@linaro.org>
-References: <20230724063520.182888-1-alexander.stein@ew.tq-group.com> <21957396.EfDdHjke4D@steina-w> <29b62cc6-bc54-9a43-211b-b2d7579218b7@linaro.org>
+        with ESMTP id S229522AbjGXLvx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 07:51:53 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3950310CE;
+        Mon, 24 Jul 2023 04:51:45 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 36OBpcYN076159;
+        Mon, 24 Jul 2023 06:51:38 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1690199498;
+        bh=EWR9FyBFNt9LW4e8g7D8GqUmKvJCxRpjwj+/aBrOjNo=;
+        h=From:To:CC:Subject:Date;
+        b=fYQ8aspyAKWsOREu3afqqooXO0ODITZjBByM+gJ2XhHbtZ0oymLJ2BvMUtCMNSK3T
+         gItYYi+zsRopQiDGtTDWY/8zr8hJSXCIIB1fRXPJbTKWuuKP34Mv/eeiFbDDV5GIaL
+         Li5SOJ+Xdev0zpefwV+qVLAqpJsuXa2SFzsl8QbQ=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 36OBpcr7046176
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 24 Jul 2023 06:51:38 -0500
+Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 24
+ Jul 2023 06:51:37 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 24 Jul 2023 06:51:37 -0500
+Received: from uda0500640.dal.design.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 36OBpY6m003529;
+        Mon, 24 Jul 2023 06:51:34 -0500
+From:   Ravi Gunasekaran <r-gunasekaran@ti.com>
+To:     <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <r-gunasekaran@ti.com>, <rogerq@kernel.org>
+Subject: [PATCH] arm64: dts: ti: k3-am62a7-sk: Enable dual role support for Type-C port
+Date:   Mon, 24 Jul 2023 17:21:33 +0530
+Message-ID: <20230724115133.2226-1-r-gunasekaran@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Montag, 24. Juli 2023, 11:54:12 CEST schrieb Krzysztof Kozlowski:
-> On 24/07/2023 09:58, Alexander Stein wrote:
-> > Hi,
-> >=20
-> > Am Montag, 24. Juli 2023, 09:23:09 CEST schrieb Krzysztof Kozlowski:
-> >> On 24/07/2023 08:35, Alexander Stein wrote:
-> >>> This is a gpio-controller, so gpio-line-names should be allowed as we=
-ll.
-> >>> stmpe2403 supports up to 24 GPIOs.
-> >>>=20
-> >>> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> >>> ---
-> >>> Changes in v2:
-> >>> * Add min/maxItems
-> >>>=20
-> >>>  Documentation/devicetree/bindings/gpio/st,stmpe-gpio.yaml | 4 ++++
-> >>>  1 file changed, 4 insertions(+)
-> >>>=20
-> >>> diff --git a/Documentation/devicetree/bindings/gpio/st,stmpe-gpio.yaml
-> >>> b/Documentation/devicetree/bindings/gpio/st,stmpe-gpio.yaml index
-> >>> 22c0cae73425..4555f1644a4d 100644
-> >>> --- a/Documentation/devicetree/bindings/gpio/st,stmpe-gpio.yaml
-> >>> +++ b/Documentation/devicetree/bindings/gpio/st,stmpe-gpio.yaml
-> >>>=20
-> >>> @@ -28,6 +28,10 @@ properties:
-> >>>    gpio-controller: true
-> >>>=20
-> >>> +  gpio-line-names:
-> >>> +    minItems: 1
-> >>> +    maxItems: 24
-> >>> +
-> >>=20
-> >> I am sure there is no variant with one GPIO.
-> >=20
-> > That's true. But if only one GPIO is actually connected there is no use
-> > enforcing to add empty entries.
-> > AFAIK it is also allowed to provide an incomplete array.
->=20
-> Did you test it? Linux prints warning. Warning means "not allowed".
+USB0 is interfaced with a Type-C DRP connector and is managed via a
+USB PD controller. Add support for the Type-C port with dual data
+and power sink role.
 
-I did and I don't see any warnings.
-I using the following (modified) GPIO subnode on an stmpe811 chip:
-gpio {
-	compatible =3D "st,stmpe-gpio";
-	gpio-controller;
-	#gpio-cells =3D <2>;
-	interrupt-controller;
-	#interrupt-cells =3D <2>;
-	/* GPIO 5-7 used for touch */
-	st,norequest-mask =3D <0xf0>;
-	gpio-line-names =3D "GPIO_ADC_I2C1_1";
-};
+Signed-off-by: Ravi Gunasekaran <r-gunasekaran@ti.com>
+---
+ arch/arm64/boot/dts/ti/k3-am62a7-sk.dts | 33 +++++++++++++++++++++++++
+ 1 file changed, 33 insertions(+)
 
-I only see the warning "stmpe-gpio stmpe-gpio: DMA mask not set", but that'=
-s a=20
-different matter.
-Only GPIO 0-3 are connected. Original property is
-gpio-line-names =3D "GPIO_ADC_I2C1_1",
-	        "GPIO_ADC_I2C1_2",
-	        "GPIO_ADC_I2C1_3",
-	        "GPIO_ADC_I2C1_4";
+diff --git a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
+index d2cca6182738..b478b794de00 100644
+--- a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
++++ b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
+@@ -226,6 +226,24 @@
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&main_i2c0_pins_default>;
+ 	clock-frequency = <400000>;
++
++	typec_pd0:tps6598x@3f {
++		compatible = "ti,tps6598x";
++		reg = <0x3f>;
++
++		connector {
++			compatible = "usb-c-connector";
++			label = "USB-C";
++			self-powered;
++			data-role = "dual";
++			power-role = "sink";
++			port {
++				usb_con_hs: endpoint {
++					remote-endpoint = <&usb0_hs_ep>;
++				};
++			};
++		};
++	};
+ };
+ 
+ &main_i2c1 {
+@@ -290,6 +308,21 @@
+ 	status = "reserved";
+ };
+ 
++&usbss0 {
++	status = "okay";
++	ti,vbus-divider;
++};
++
++&usb0 {
++	usb-role-switch;
++
++	port {
++		usb0_hs_ep: endpoint {
++			remote-endpoint = <&usb_con_hs>;
++		};
++	};
++};
++
+ &usbss1 {
+ 	status = "okay";
+ };
 
-Also gpioinfo shows that the gpiochip has 8 pins while only the first one i=
-s=20
-named.
-
-gpiochip7 - 8 lines:
-        line   0: "GPIO_ADC_I2C1_1" unused input active-high=20
-        line   1:      unnamed       unused   input  active-high=20
-        line   2:      unnamed       unused   input  active-high=20
-        line   3:      unnamed       unused   input  active-high=20
-        line   4:      unnamed       unused   input  active-high=20
-        line   5:      unnamed       unused   input  active-high=20
-        line   6:      unnamed       unused   input  active-high=20
-        line   7:      unnamed       unused   input  active-high
-
-
-If 4 GPIOs are named the output shows names for lines 1-3 accordingly, but =
-no=20
-errors/warnings as well.
-
-> The expectation is that the rest are named "NC".
-
-Where does this expectation come from? Is there any pending change I am not=
-=20
-aware of?
-
-Best regards,
-Alexander
-
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
-
+base-commit: 4d2c646ac07cf4a35ef1c4a935a1a4fd6c6b1a36
+-- 
+2.17.1
 
