@@ -2,29 +2,29 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2EEFD7618DB
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 14:51:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D24B7618EE
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 14:54:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233527AbjGYMvo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jul 2023 08:51:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35340 "EHLO
+        id S230070AbjGYMyT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jul 2023 08:54:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36932 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231978AbjGYMvm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 08:51:42 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC36D199E;
-        Tue, 25 Jul 2023 05:51:33 -0700 (PDT)
+        with ESMTP id S229574AbjGYMyT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 08:54:19 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9210D13D;
+        Tue, 25 Jul 2023 05:54:16 -0700 (PDT)
 Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 498BB5AA;
-        Tue, 25 Jul 2023 14:50:34 +0200 (CEST)
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 2224F5AA;
+        Tue, 25 Jul 2023 14:53:16 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1690289434;
-        bh=r0N4IALNWIyLeFT+l0HDv1sxuCq1JEIO1fU2R4IY1Hs=;
+        s=mail; t=1690289596;
+        bh=sHVHC32Eq+o4pz/bcsB3AZfAlK7INmtSF+Efqz7jrE8=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=j74uKgC9TXvn6YawIorXbfopQMeFcAD3dY+rZXoP0LtfDas7ec2sDScH9NQbay9l/
-         nWz5EChvRrKtfrVzWzNEdiJnwbPZTVzk3e7CxTGBdH8kX27aPMp2T/3lPjQ3mRHAUe
-         rgF/DTXqroJHUQA9dxSzLORtxY2omlKCF6qXKdCQ=
-Date:   Tue, 25 Jul 2023 15:51:40 +0300
+        b=ITdjyrV69ebKHddVL2xbV8gnlcGzkjtfcOHuIASMPR8HZc8sk9bUI787SAPOzibvY
+         K2gw+/CLFeCfmBYl+GthQWxLV/YckQ4wiS1jjTyaPsuDCev3/w33/Zdo7aSqFrAWEu
+         zWnpDr1fy0/W+2yQ9VJ7CbSQ5axtHSKAqodYbZOg=
+Date:   Tue, 25 Jul 2023 15:54:22 +0300
 From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 To:     Marco Felsch <m.felsch@pengutronix.de>
 Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
@@ -32,18 +32,19 @@ Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
         festevam@gmail.com, linux-imx@nxp.com, dan.scally@ideasonboard.com,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 1/4] arm64: dts: imx8mp-debix: remove unused fec
- pinctrl node
-Message-ID: <20230725125140.GC21640@pendragon.ideasonboard.com>
+Subject: Re: [PATCH v2 3/4] dt-bindings: arm: Add Polyhex DEBIX SOM A based
+ boards
+Message-ID: <20230725125422.GD21640@pendragon.ideasonboard.com>
 References: <20230717165127.2882535-1-m.felsch@pengutronix.de>
+ <20230717165127.2882535-3-m.felsch@pengutronix.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20230717165127.2882535-1-m.felsch@pengutronix.de>
+In-Reply-To: <20230717165127.2882535-3-m.felsch@pengutronix.de>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -54,15 +55,13 @@ Hi Marco,
 
 Thank you for the patch.
 
-On Mon, Jul 17, 2023 at 06:51:24PM +0200, Marco Felsch wrote:
-> The SoM A make use of the EQOS ethernet interface and not the FEC, so
-> drop the FEC pinctrl node from the devicetree.
+On Mon, Jul 17, 2023 at 06:51:26PM +0200, Marco Felsch wrote:
+> Add devicetree bindings for i.MX8MP based DEBIX SOM A and SOM A I/O
+> baseboard:
+>   - https://debix.io/hardware/debix-som-a.html
+>   - https://debix.io/hardware/debix-som-a-io-board.html
 > 
-> Fixes: c86d350aae68 ("arm64: dts: Add device tree for the Debix Model A Board")
 > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
-
-I think the I/O board uses the FEC for its ethernet interface. It would
-be nice to eventually move this to an I/O board overlay, but for now,
 
 Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 
@@ -70,44 +69,29 @@ Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 > Changelog:
 > 
 > v2:
-> - new patch
+> - drop to generic polyhex,imx8mp-debix binding
 > 
->  .../dts/freescale/imx8mp-debix-model-a.dts    | 22 -------------------
->  1 file changed, 22 deletions(-)
+>  Documentation/devicetree/bindings/arm/fsl.yaml | 7 +++++++
+>  1 file changed, 7 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts b/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts
-> index b4409349eb3f6..1004ab0abb131 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts
-> @@ -355,28 +355,6 @@ MX8MP_IOMUXC_SAI1_TXD6__GPIO4_IO18				0x19
->  		>;
->  	};
+> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+> index b29974e3c30b3..a810749f352de 100644
+> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
+> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+> @@ -1060,6 +1060,13 @@ properties:
+>              deprecated: true
+>            - const: fsl,imx8mp
 >  
-> -	pinctrl_fec: fecgrp {
-> -		fsl,pins = <
-> -			MX8MP_IOMUXC_SAI1_RXD2__ENET1_MDC				0x3
-> -			MX8MP_IOMUXC_SAI1_RXD3__ENET1_MDIO				0x3
-> -			MX8MP_IOMUXC_SAI1_RXD4__ENET1_RGMII_RD0				0x91
-> -			MX8MP_IOMUXC_SAI1_RXD5__ENET1_RGMII_RD1				0x91
-> -			MX8MP_IOMUXC_SAI1_RXD6__ENET1_RGMII_RD2				0x91
-> -			MX8MP_IOMUXC_SAI1_RXD7__ENET1_RGMII_RD3				0x91
-> -			MX8MP_IOMUXC_SAI1_TXC__ENET1_RGMII_RXC				0x91
-> -			MX8MP_IOMUXC_SAI1_TXFS__ENET1_RGMII_RX_CTL			0x91
-> -			MX8MP_IOMUXC_SAI1_TXD0__ENET1_RGMII_TD0				0x1f
-> -			MX8MP_IOMUXC_SAI1_TXD1__ENET1_RGMII_TD1				0x1f
-> -			MX8MP_IOMUXC_SAI1_TXD2__ENET1_RGMII_TD2				0x1f
-> -			MX8MP_IOMUXC_SAI1_TXD3__ENET1_RGMII_TD3				0x1f
-> -			MX8MP_IOMUXC_SAI1_TXD4__ENET1_RGMII_TX_CTL			0x1f
-> -			MX8MP_IOMUXC_SAI1_TXD5__ENET1_RGMII_TXC				0x1f
-> -			MX8MP_IOMUXC_SAI1_RXD1__ENET1_1588_EVENT1_OUT			0x1f
-> -			MX8MP_IOMUXC_SAI1_RXD0__ENET1_1588_EVENT1_IN			0x1f
-> -			MX8MP_IOMUXC_SAI1_TXD7__GPIO4_IO19				0x19
-> -		>;
-> -	};
-> -
->  	pinctrl_gpio_led: gpioledgrp {
->  		fsl,pins = <
->  			MX8MP_IOMUXC_NAND_READY_B__GPIO3_IO16				0x19
+> +      - description: Polyhex DEBIX i.MX8MP SOM A based boards
+> +        items:
+> +          - enum:
+> +              - polyhex,imx8mp-debix-som-a-bmb-08   # Polyhex Debix SOM A on SOM A I/O board
+> +          - const: polyhex,imx8mp-debix-som-a       # Polyhex Debix SOM A
+> +          - const: fsl,imx8mp
+> +
+>        - description: Toradex Boards with Verdin iMX8M Plus Modules
+>          items:
+>            - enum:
 
 -- 
 Regards,
