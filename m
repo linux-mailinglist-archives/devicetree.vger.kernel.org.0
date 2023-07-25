@@ -2,194 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3664376220D
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 21:12:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 05E0D762215
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 21:14:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231631AbjGYTMS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jul 2023 15:12:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54844 "EHLO
+        id S230312AbjGYTOL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jul 2023 15:14:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55532 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231260AbjGYTMR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 15:12:17 -0400
-Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A36821BE9
-        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 12:12:15 -0700 (PDT)
-Received: by mail-pl1-x62b.google.com with SMTP id d9443c01a7336-1b89cfb4571so46982885ad.3
-        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 12:12:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1690312335; x=1690917135;
-        h=in-reply-to:from:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=VKhAAITb5EQqnrgffq9XgKL0Q4uPklMf5cpe7sFHric=;
-        b=WBH8B0RoqCFyQ+Aqk3tTpvvFz+5VNK69yq2R/U3LKYYbL34ywSog7xsFs+dqVbqkgH
-         NPpHzOvu1qZNx3xIiSONovorILhXpojUph0QsTlQNYKavo+lN9+uiqZvOmdWkcSA1XIn
-         CAJVpZZITYACYH5lk2zephdRl39hUaF2Be95c=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690312335; x=1690917135;
-        h=in-reply-to:from:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=VKhAAITb5EQqnrgffq9XgKL0Q4uPklMf5cpe7sFHric=;
-        b=P3jJRm7ZlmrNbTe+BK6I/LQuoKfl7QsNMb1hHBy8NCuPiNTnDYYyuF5af0UdGtXpqf
-         45eUBzJjPJstRBi9v8af1Oe0VZxH1kaKpOIdDubxOnH9soekgIr/r+kqAc1ubL2KjC8v
-         ii14fntZGGElYiTKBY1DacrzIwVqltpQX6Ua009I7z3el1T1xAFk2Qwrx/ScdgPnQCQp
-         PNPrM/l/a+eYw4FGaXhyFOz8fu4T24CRefoX2+fILOZfDE5xTsMFXaQu4XFA8GxpqY+y
-         +doXMIT0Yafy7G61/Rlg4hrp//UX/Yk6HB64k7M69hTl49vx7wzqJJkRdAWdgYNbSn8t
-         sTkw==
-X-Gm-Message-State: ABy/qLZM5RaPHjiiiPARbIm0BfXfGSGuoGSzOhs4J/GZgf9oGo43+q7O
-        0t5TwZgRAnw86q3/lDa7f7zD5Q==
-X-Google-Smtp-Source: APBJJlEe8QzXJdFnIvfaJQxA2sOEe75dbi7jpRbxCtJvbGG20FoXDEC7ZVXqb4unxrlmXHvndW2H5w==
-X-Received: by 2002:a17:902:9682:b0:1b8:4f93:b210 with SMTP id n2-20020a170902968200b001b84f93b210mr78134plp.45.1690312335108;
-        Tue, 25 Jul 2023 12:12:15 -0700 (PDT)
-Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id s21-20020a170902989500b001b03842ab78sm11453513plp.89.2023.07.25.12.12.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 25 Jul 2023 12:12:13 -0700 (PDT)
-Message-ID: <65afff8f-fd02-1344-56b5-f9e3deda1d47@broadcom.com>
-Date:   Tue, 25 Jul 2023 12:12:11 -0700
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [RFC PATCH 0/4] Implement a PSCI SYSTEM_RESET2 reboot-mode driver
-To:     Elliot Berman <quic_eberman@quicinc.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Sebastian Reichel <sre@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
+        with ESMTP id S229696AbjGYTOL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 15:14:11 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E3911B8;
+        Tue, 25 Jul 2023 12:14:09 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id EE98E61884;
+        Tue, 25 Jul 2023 19:14:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7FE35C433C7;
+        Tue, 25 Jul 2023 19:14:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1690312448;
+        bh=o+O/Jk71dzlERNjmO1aGiXrhRze1SOzo9ZcDuG2HzRI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=txQoh0Xv0YRWkHlNo1ZViUjjr40HJHDtEl+xS+rJzK92bEbyR6O5cqzhN4K+6gHtl
+         zYiyfc3a/8rVD8bGT3fK+C3t+qtzj6/6uyT9GLzqATSjFGNqll8XOi622i8sh5zdPO
+         ujWY/5TfNDKJfkntyj4MSP2k5C6T5CHGVOtBch5FU8BaVf+0//7XBIu6vuKY4fmvYd
+         FSxyaNugucGnKRKjYXizjw+Fdi8y4jun72+tARmcE7OElGyZqhakBbQJNAb8qAhq/B
+         4ShRMaJXRt/gj1wTH1Ta9XB0q7JfNZ7RWCulPFtDwhEj8rtHjQ5bjwID0vBpdf3OWk
+         AfefvidnnxEyA==
+Date:   Tue, 25 Jul 2023 20:14:02 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc:     Mirela Rabulea <mirela.rabulea@nxp.com>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, kernel@quicinc.com,
-        Satya Durga Srinivasu Prabhala <quic_satyap@quicinc.com>,
-        Melody Olvera <quic_molvera@quicinc.com>,
-        Prasad Sodagudi <quic_psodagud@quicinc.com>
-References: <20230724223057.1208122-1-quic_eberman@quicinc.com>
-From:   Florian Fainelli <florian.fainelli@broadcom.com>
-In-Reply-To: <20230724223057.1208122-1-quic_eberman@quicinc.com>
-Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-        boundary="0000000000004f893d0601548229"
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        Ming Qian <ming.qian@nxp.com>, Shijie Qin <shijie.qin@nxp.com>,
+        Zhou Peng <eagle.zhou@nxp.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Anson Huang <Anson.Huang@nxp.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-spi@vger.kernel.org
+Subject: Re: [PATCH v2 3/3] dt-bindings: media: imx-jpeg: Add clocks property
+Message-ID: <20230725-catwalk-reviver-ed7611a15f54@spud>
+References: <20230724122101.2903318-1-alexander.stein@ew.tq-group.com>
+ <20230724122101.2903318-3-alexander.stein@ew.tq-group.com>
+ <20230724-unscrew-bonnet-3c86da806df3@spud>
+ <1908243.taCxCBeP46@steina-w>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="Lbf0SnNYlJcLd10g"
+Content-Disposition: inline
+In-Reply-To: <1908243.taCxCBeP46@steina-w>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---0000000000004f893d0601548229
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
 
-Hello,
+--Lbf0SnNYlJcLd10g
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 7/24/23 15:30, Elliot Berman wrote:
-> PSCI implements a restart notifier for architectural defined resets.
-> The SYSTEM_RESET2 call allows vendor firmware to define additional reset
-> types which could be mapped to the reboot reason.
-> 
-> Implement a driver to wire the reboot-mode framework to make vendor
-> SYSTEM_RESET2 calls on reboot.
-> 
-> This is a continuation from https://lore.kernel.org/all/4a679542-b48d-7e11-f33a-63535a5c68cb@quicinc.com/
+On Tue, Jul 25, 2023 at 07:31:55AM +0200, Alexander Stein wrote:
+> Am Montag, 24. Juli 2023, 20:26:15 CEST schrieb Conor Dooley:
+> > On Mon, Jul 24, 2023 at 02:21:00PM +0200, Alexander Stein wrote:
+> > > i.MX8 and i.MX8X both use two clocks for accessing the periphery.
+> > > Add clocks and clock-names properties accordingly.
+> > >=20
+> > > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> > > ---
+> > > Changes in v2:
+> > > * None
+> > >=20
+> > >  .../devicetree/bindings/media/nxp,imx8-jpeg.yaml          | 8 ++++++=
+++
+> > >  1 file changed, 8 insertions(+)
+> > >=20
+> > > diff --git a/Documentation/devicetree/bindings/media/nxp,imx8-jpeg.ya=
+ml
+> > > b/Documentation/devicetree/bindings/media/nxp,imx8-jpeg.yaml index
+> > > 3d9d1db37040..2533e16720f2 100644
+> > > --- a/Documentation/devicetree/bindings/media/nxp,imx8-jpeg.yaml
+> > > +++ b/Documentation/devicetree/bindings/media/nxp,imx8-jpeg.yaml
+> > >=20
+> > > @@ -46,6 +46,14 @@ properties:
+> > >      minItems: 2               # Wrapper and 1 slot
+> > >      maxItems: 5               # Wrapper and 4 slots
+> > >=20
+> > > +  clocks:
+> > > +    maxItems: 2
+> > > +
+> > > +  clock-names:
+> > > +    items:
+> > > +      - const: per
+> > > +      - const: ipg
+> >=20
+> > What do "per" and "ipg" mean? I assume "per" is peripheral?
+>=20
+> Actually I don't know what "ipg" stands for. It's a quite common name on =
+i.MX=20
+> platforms though. I opted for the names currently used in the DT. The dri=
+ver=20
+> doesn't care for the names currently.
 
-Would appreciate being CC'd on a the non-RFC postings of this patch. 
-FWIW, my use case is better described with this earlier submission:
+FWIW, my motivation was wondering how someone would know which clock to
+put in which.
 
-https://lore.kernel.org/lkml/20220122035421.4086618-1-f.fainelli@gmail.com/T/#m74e4243c1af3a8d896e19b573b58f562fa09961d
+> But cross-checking the reference manual these clocks seems to be called "=
+jpeg"=20
+> and "ips", individually for both jpeg encoder and decoder.
 
-It would be neat if I could leverage your driver in order to implement 
-this custom "reboot powercycle" implementation. Towards that goal, we 
-would likely need to specify the desired reboot "sub" operation 
-alongside its PSCI SYSTEM_RESET2 reboot type argument?
+Hm, that seems confusing TBH. The reference manual is where I would be
+going to try and figure out the numbers.
 
-Thanks!
--- 
-Florian
+> Mirela (added to recipients): As the original author of the DT nodes, cou=
+ld=20
+> you provide additional information regarding the clock names?
 
+That'd be great, thanks.
 
---0000000000004f893d0601548229
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
+--Lbf0SnNYlJcLd10g
+Content-Type: application/pgp-signature; name="signature.asc"
 
-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
-riBJ/K1AFUjRAjFhGV64l++td7dkmnq/X8ET75ti+w1s4FRpFqkD2m7pg5NxdsZphYIXAgMBAAGj
-QjBAMA4GA1UdDwEB/wQEAwIBBjAPBgNVHRMBAf8EBTADAQH/MB0GA1UdDgQWBBSP8Et/qC5FJK5N
-UPpjmove4t0bvDANBgkqhkiG9w0BAQsFAAOCAQEAS0DbwFCq/sgM7/eWVEVJu5YACUGssxOGhigH
-M8pr5nS5ugAtrqQK0/Xx8Q+Kv3NnSoPHRHt44K9ubG8DKY4zOUXDjuS5V2yq/BKW7FPGLeQkbLmU
-Y/vcU2hnVj6DuM81IcPJaP7O2sJTqsyQiunwXUaMld16WCgaLx3ezQA3QY/tRG3XUyiXfvNnBB4V
-14qWtNPeTCekTBtzc3b0F5nCH3oO4y0IrQocLP88q1UOD5F+NuvDV0m+4S4tfGCLw0FREyOdzvcy
-a5QBqJnnLDMfOjsl0oZAzjsshnjJYS8Uuu7bVW/fhO4FCU29KNhyztNiUGUe65KXgzHZs7XKR1g/
-XzCCBVgwggRAoAMCAQICDBP8P9hKRVySg3Qv5DANBgkqhkiG9w0BAQsFADBbMQswCQYDVQQGEwJC
-RTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTExMC8GA1UEAxMoR2xvYmFsU2lnbiBHQ0MgUjMg
-UGVyc29uYWxTaWduIDIgQ0EgMjAyMDAeFw0yMjA5MTAxMjE4MTFaFw0yNTA5MTAxMjE4MTFaMIGW
-MQswCQYDVQQGEwJJTjESMBAGA1UECBMJS2FybmF0YWthMRIwEAYDVQQHEwlCYW5nYWxvcmUxFjAU
-BgNVBAoTDUJyb2FkY29tIEluYy4xGTAXBgNVBAMTEEZsb3JpYW4gRmFpbmVsbGkxLDAqBgkqhkiG
-9w0BCQEWHWZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tMIIBIjANBgkqhkiG9w0BAQEFAAOC
-AQ8AMIIBCgKCAQEA+oi3jMmHltY4LMUy8Up5+1zjd1iSgUBXhwCJLj1GJQF+GwP8InemBbk5rjlC
-UwbQDeIlOfb8xGqHoQFGSW8p9V1XUw+cthISLkycex0AJ09ufePshLZygRLREU0H4ecNPMejxCte
-KdtB4COST4uhBkUCo9BSy1gkl8DJ8j/BQ1KNUx6oYe0CntRag+EnHv9TM9BeXBBLfmMRnWNhvOSk
-nSmRX0J3d9/G2A3FIC6WY2XnLW7eAZCQPa1Tz3n2B5BGOxwqhwKLGLNu2SRCPHwOdD6e0drURF7/
-Vax85/EqkVnFNlfxtZhS0ugx5gn2pta7bTdBm1IG4TX+A3B1G57rVwIDAQABo4IB3jCCAdowDgYD
-VR0PAQH/BAQDAgWgMIGjBggrBgEFBQcBAQSBljCBkzBOBggrBgEFBQcwAoZCaHR0cDovL3NlY3Vy
-ZS5nbG9iYWxzaWduLmNvbS9jYWNlcnQvZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3J0MEEG
-CCsGAQUFBzABhjVodHRwOi8vb2NzcC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWdu
-MmNhMjAyMDBNBgNVHSAERjBEMEIGCisGAQQBoDIBKAowNDAyBggrBgEFBQcCARYmaHR0cHM6Ly93
-d3cuZ2xvYmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADBJBgNVHR8EQjBAMD6gPKA6
-hjhodHRwOi8vY3JsLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNy
-bDAoBgNVHREEITAfgR1mbG9yaWFuLmZhaW5lbGxpQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggr
-BgEFBQcDBDAfBgNVHSMEGDAWgBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUUwwfJ6/F
-KL0fRdVROal/Lp4lAF0wDQYJKoZIhvcNAQELBQADggEBAKBgfteDc1mChZjKBY4xAplC6uXGyBrZ
-kNGap1mHJ+JngGzZCz+dDiHRQKGpXLxkHX0BvEDZLW6LGOJ83ImrW38YMOo3ZYnCYNHA9qDOakiw
-2s1RH00JOkO5SkYdwCHj4DB9B7KEnLatJtD8MBorvt+QxTuSh4ze96Jz3kEIoHMvwGFkgObWblsc
-3/YcLBmCgaWpZ3Ksev1vJPr5n8riG3/N4on8gO5qinmmr9Y7vGeuf5dmZrYMbnb+yCBalkUmZQwY
-NxADYvcRBA0ySL6sZpj8BIIhWiXiuusuBmt2Mak2eEv0xDbovE6Z6hYyl/ZnRadbgK/ClgbY3w+O
-AfUXEZ0xggJtMIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52
-LXNhMTEwLwYDVQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwT
-/D/YSkVckoN0L+QwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIEz1PYcnQsSlImKD
-zh34C6fxsZfkrdFhA0PJkwpD6V4fMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcN
-AQkFMQ8XDTIzMDcyNTE5MTIxNVowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZI
-AWUDBAEWMAsGCWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEH
-MAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQCPwOyABgNvCheWmE3sTyI6fUWO0igIjFSM
-j0KOgUuD42x8jlO9Rbh2ocb/b7N6Vs7H6SAaTbUrTCAdCCAzzFxqY2H6f3uAHU8IanjQujI8kvsd
-iOUnNP81Tr5iofg6VmI84T1kX2X5cTwePxsDIPfr/6ZSLLOcyFEkzLynz95mG5C0RPZd7yFSFRE9
-zQfRFmNSriFGi+CbFLIENJjOg97qBaF3hqlDJ4+/iReuEvdzR7/r9yD93n9l1DG8mQoKXyV8lGI7
-oPRJXPXyRP3NqaX4iqg5JZersQ/H6ctrIuWMkxcAamyiiSmbAEBr4VYYszbsPTMmaFnqt0KgfLlL
-qMig
---0000000000004f893d0601548229--
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZMAe+gAKCRB4tDGHoIJi
+0o1UAQC1cnVwXp98JS4HvqzNrw9c8F55gRCUOnjji9asmPeD5AD/WfP3b0aAYSf5
+0s/cT0K7cT5JAZnGFpCHwNLOPy1h2g0=
+=IYFs
+-----END PGP SIGNATURE-----
+
+--Lbf0SnNYlJcLd10g--
