@@ -2,115 +2,583 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 77794762298
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 21:47:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A6EF7622BD
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 21:56:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230193AbjGYTrW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jul 2023 15:47:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40018 "EHLO
+        id S229774AbjGYT4a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jul 2023 15:56:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43596 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229587AbjGYTrV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 15:47:21 -0400
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E8141FF7;
-        Tue, 25 Jul 2023 12:47:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1690314440; x=1721850440;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=iYyiH/seA0PV9vabelhVPt3S47rffBj5ZGMDDUyw+Zc=;
-  b=lgQqLgIuTEXosrHhlKsc7suUSA3sgt61TiUH8+MkdYLPr1iKBAGATHD8
-   JCqK1nguofoaIz7285Y9ZtTjr7B5ec9jSUMsuVSRjGuXWgzx8shDTTbJa
-   ARAade3SCXncaNy5Ft1QpBxhIhlWfVAXb3FMWLXKCL+lmV7OvjZAPm+Ag
-   AggiUNvjsfyAskoD1uST/CIOFuTrkeByUAi26+TVaqS+5BfxbH0AFy/1J
-   afOyUeaTFlRVUzywe+GxEbAAWurTY6Nsz7nOQK0csq9Yw7TLRl61cBa7h
-   13tvhEPTPno/6fr/kK1oaDtwLAfeMbBcQvPSUz6DI/wsN2+1sO3sWDy3t
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10782"; a="366710901"
-X-IronPort-AV: E=Sophos;i="6.01,230,1684825200"; 
-   d="scan'208";a="366710901"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Jul 2023 12:47:19 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10782"; a="839957352"
-X-IronPort-AV: E=Sophos;i="6.01,230,1684825200"; 
-   d="scan'208";a="839957352"
-Received: from lkp-server02.sh.intel.com (HELO 953e8cd98f7d) ([10.239.97.151])
-  by fmsmga002.fm.intel.com with ESMTP; 25 Jul 2023 12:47:15 -0700
-Received: from kbuild by 953e8cd98f7d with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1qOO02-0000IH-1J;
-        Tue, 25 Jul 2023 19:47:14 +0000
-Date:   Wed, 26 Jul 2023 03:46:55 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Tao Zhang <quic_taozha@quicinc.com>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        Mike Leach <mike.leach@linaro.org>,
+        with ESMTP id S230055AbjGYT43 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 15:56:29 -0400
+Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com [IPv6:2607:f8b0:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25B101FFC
+        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 12:56:26 -0700 (PDT)
+Received: by mail-pl1-x62a.google.com with SMTP id d9443c01a7336-1b8c81e36c0so35627575ad.0
+        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 12:56:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1690314985; x=1690919785;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=7fn+g5SVM5/TVR6A9/+TfRK8MQLSGt6ds677hc73rRw=;
+        b=GWPgF24TpcpAr/vdigenZ2GQta85arMUzNMGV/lGi5gvBTxa7detC8YIcxFtVrHPEP
+         n/moNwtbrz3ooaaGTareRvWz9aPBSG7hibHHMxxawzNEICh4RXwJKF/L8eEvswR1Gn4i
+         UExC5vY/a0KpvzGTiYqaiYMDfNVmQUnL/O6hEDkIgeQJZOGz4gxP5OGJAWWeuSPn/i5g
+         amrXqleaJPiys8aMQTX5n5vkxTijXzis016ai45lS6JvB03EgSQnNi6AiaZ5jMKdk6k7
+         sf0wnJV2W0oNmIW9LxOt6vbzFET24wgp+u1Ula3jyLrp8d5cVuUMPet8d8y2UsIdGJEF
+         6sPA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690314985; x=1690919785;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=7fn+g5SVM5/TVR6A9/+TfRK8MQLSGt6ds677hc73rRw=;
+        b=PqcHX+51+BTsztA7kamtDNJmg4OKX5MlY9g84KMCnF0Suo93bidnn9Fwor0+Y/cXLH
+         WhxQe+aBFArIQ+QABBdbbWMX+gMKnJhWYUBlpQarxfqnhLCMM9GLlTkhzvGQ110aSR3z
+         WNjgcHoybU8AZIhE+KmliSr0IOkX5qnyP/k9lIzutxQQ39MySUNYH9zdkTjJGpiriHdl
+         eBnE9sWyfweYFnolxfxJNLG1NkJRAAK2csEGivi5Xu11gfNfNI67QuS7O1J+TxSgSHV6
+         YGnJ3orDzucLxdDzQT7u0qJoPD7n4z/JqJl5iBRZe7RTOkT1AyaqxqioYJgmYiuzrb1A
+         yq1Q==
+X-Gm-Message-State: ABy/qLaqWx63v++knE7L6cx2qHQ8PxFLuImE0jYNWgZMRvZDEYbQHrJG
+        lhhOrke6zWG42r9EHh3jDm3HBQ==
+X-Google-Smtp-Source: APBJJlE2vJeGxX0/rouk6QeAPjw+F+MntjweUpG+RUKh0k5PR9X3sKbyos6sssk9MsGN9IsrZY0Giw==
+X-Received: by 2002:a17:902:d2c1:b0:1b5:edd:e3c7 with SMTP id n1-20020a170902d2c100b001b50edde3c7mr168517plc.16.1690314985497;
+        Tue, 25 Jul 2023 12:56:25 -0700 (PDT)
+Received: from p14s ([2604:3d09:148c:c800:2116:2b1f:2fd8:ec8d])
+        by smtp.gmail.com with ESMTPSA id x13-20020a170902820d00b001b89f6550d1sm11455997pln.16.2023.07.25.12.56.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 25 Jul 2023 12:56:24 -0700 (PDT)
+Date:   Tue, 25 Jul 2023 13:56:22 -0600
+From:   Mathieu Poirier <mathieu.poirier@linaro.org>
+To:     Tinghan Shen <tinghan.shen@mediatek.com>
+Cc:     Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     oe-kbuild-all@lists.linux.dev, Tao Zhang <quic_taozha@quicinc.com>,
-        Jinlong Mao <quic_jinlmao@quicinc.com>,
-        Leo Yan <leo.yan@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Tingwei Zhang <quic_tingweiz@quicinc.com>,
-        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Hao Zhang <quic_hazha@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, andersson@kernel.org
-Subject: Re: [PATCH v7 08/13] coresight-tpdm: Add node to set dsb programming
- mode
-Message-ID: <202307260312.vf3OCV58-lkp@intel.com>
-References: <1690269353-10829-9-git-send-email-quic_taozha@quicinc.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Subject: Re: [PATCH v15 05/13] remoteproc: mediatek: Extract SCP common
+ registers
+Message-ID: <ZMAo5sn4KnvfvSWq@p14s>
+References: <20230721024132.6548-1-tinghan.shen@mediatek.com>
+ <20230721024132.6548-6-tinghan.shen@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1690269353-10829-9-git-send-email-quic_taozha@quicinc.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230721024132.6548-6-tinghan.shen@mediatek.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Tao,
+On Fri, Jul 21, 2023 at 10:41:24AM +0800, Tinghan Shen wrote:
+> This is the 1st preliminary steps for probing multi-core SCP.
+> The registers of config and l1tcm are common on single-core SCP
+> and multi-core SCP. Extract these registers out to reduce duplicated
+> fields in mtk_scp when probing multi-core SCP.
+> 
+> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
+> ---
+>  drivers/remoteproc/mtk_common.h  |  13 +-
+>  drivers/remoteproc/mtk_scp.c     | 201 +++++++++++++++++--------------
+>  drivers/remoteproc/mtk_scp_ipi.c |   4 +-
+>  3 files changed, 122 insertions(+), 96 deletions(-)
+> 
+> diff --git a/drivers/remoteproc/mtk_common.h b/drivers/remoteproc/mtk_common.h
+> index c0905aec3b4b..b04d71277c1f 100644
+> --- a/drivers/remoteproc/mtk_common.h
+> +++ b/drivers/remoteproc/mtk_common.h
+> @@ -100,17 +100,20 @@ struct mtk_scp_of_data {
+>  	size_t ipi_buf_offset;
+>  };
+>  
+> +struct mtk_scp_of_cluster {
+> +	void __iomem *reg_base;
+> +	void __iomem *l1tcm_base;
+> +	size_t l1tcm_size;
+> +	phys_addr_t l1tcm_phys;
+> +};
+> +
 
-kernel test robot noticed the following build warnings:
+Ok
 
-[auto build test WARNING on robh/for-next]
-[also build test WARNING on linus/master v6.5-rc3 next-20230725]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+>  struct mtk_scp {
+>  	struct device *dev;
+>  	struct rproc *rproc;
+>  	struct clk *clk;
+> -	void __iomem *reg_base;
+>  	void __iomem *sram_base;
+>  	size_t sram_size;
+>  	phys_addr_t sram_phys;
+> -	void __iomem *l1tcm_base;
+> -	size_t l1tcm_size;
+> -	phys_addr_t l1tcm_phys;
+> 
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Tao-Zhang/coresight-tpdm-Remove-the-unnecessary-lock/20230725-152235
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/1690269353-10829-9-git-send-email-quic_taozha%40quicinc.com
-patch subject: [PATCH v7 08/13] coresight-tpdm: Add node to set dsb programming mode
-reproduce: (https://download.01.org/0day-ci/archive/20230726/202307260312.vf3OCV58-lkp@intel.com/reproduce)
+Ok
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202307260312.vf3OCV58-lkp@intel.com/
+>  	const struct mtk_scp_of_data *data;
+>  
+> @@ -128,6 +131,8 @@ struct mtk_scp {
+>  	size_t dram_size;
+>  
+>  	struct rproc_subdev *rpmsg_subdev;
+> +
+> +	struct mtk_scp_of_cluster *cluster;
 
-All warnings (new ones prefixed by >>):
+Ok
 
->> Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm:50: WARNING: Unexpected indentation.
->> Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm:50: WARNING: Block quote ends without a blank line; unexpected unindent.
+>  };
+>  
+>  /**
+> diff --git a/drivers/remoteproc/mtk_scp.c b/drivers/remoteproc/mtk_scp.c
+> index 48e759c2d486..9486f5020946 100644
+> --- a/drivers/remoteproc/mtk_scp.c
+> +++ b/drivers/remoteproc/mtk_scp.c
+> @@ -152,45 +152,45 @@ static void mt8183_scp_reset_assert(struct mtk_scp *scp)
+>  {
+>  	u32 val;
+>  
+> -	val = readl(scp->reg_base + MT8183_SW_RSTN);
+> +	val = readl(scp->cluster->reg_base + MT8183_SW_RSTN);
+>  	val &= ~MT8183_SW_RSTN_BIT;
+> -	writel(val, scp->reg_base + MT8183_SW_RSTN);
+> +	writel(val, scp->cluster->reg_base + MT8183_SW_RSTN);
+>  }
+>  
+>  static void mt8183_scp_reset_deassert(struct mtk_scp *scp)
+>  {
+>  	u32 val;
+>  
+> -	val = readl(scp->reg_base + MT8183_SW_RSTN);
+> +	val = readl(scp->cluster->reg_base + MT8183_SW_RSTN);
+>  	val |= MT8183_SW_RSTN_BIT;
+> -	writel(val, scp->reg_base + MT8183_SW_RSTN);
+> +	writel(val, scp->cluster->reg_base + MT8183_SW_RSTN);
+>  }
+>  
+>  static void mt8192_scp_reset_assert(struct mtk_scp *scp)
+>  {
+> -	writel(1, scp->reg_base + MT8192_CORE0_SW_RSTN_SET);
+> +	writel(1, scp->cluster->reg_base + MT8192_CORE0_SW_RSTN_SET);
+>  }
+>  
+>  static void mt8192_scp_reset_deassert(struct mtk_scp *scp)
+>  {
+> -	writel(1, scp->reg_base + MT8192_CORE0_SW_RSTN_CLR);
+> +	writel(1, scp->cluster->reg_base + MT8192_CORE0_SW_RSTN_CLR);
+>  }
+>  
+>  static void mt8195_scp_c1_reset_assert(struct mtk_scp *scp)
+>  {
+> -	writel(1, scp->reg_base + MT8195_CORE1_SW_RSTN_SET);
+> +	writel(1, scp->cluster->reg_base + MT8195_CORE1_SW_RSTN_SET);
+>  }
+>  
+>  static void mt8195_scp_c1_reset_deassert(struct mtk_scp *scp)
+>  {
+> -	writel(1, scp->reg_base + MT8195_CORE1_SW_RSTN_CLR);
+> +	writel(1, scp->cluster->reg_base + MT8195_CORE1_SW_RSTN_CLR);
+>  }
+>  
+>  static void mt8183_scp_irq_handler(struct mtk_scp *scp)
+>  {
+>  	u32 scp_to_host;
+>  
+> -	scp_to_host = readl(scp->reg_base + MT8183_SCP_TO_HOST);
+> +	scp_to_host = readl(scp->cluster->reg_base + MT8183_SCP_TO_HOST);
+>  	if (scp_to_host & MT8183_SCP_IPC_INT_BIT)
+>  		scp_ipi_handler(scp);
+>  	else
+> @@ -198,14 +198,14 @@ static void mt8183_scp_irq_handler(struct mtk_scp *scp)
+>  
+>  	/* SCP won't send another interrupt until we set SCP_TO_HOST to 0. */
+>  	writel(MT8183_SCP_IPC_INT_BIT | MT8183_SCP_WDT_INT_BIT,
+> -	       scp->reg_base + MT8183_SCP_TO_HOST);
+> +	       scp->cluster->reg_base + MT8183_SCP_TO_HOST);
+>  }
+>  
+>  static void mt8192_scp_irq_handler(struct mtk_scp *scp)
+>  {
+>  	u32 scp_to_host;
+>  
+> -	scp_to_host = readl(scp->reg_base + MT8192_SCP2APMCU_IPC_SET);
+> +	scp_to_host = readl(scp->cluster->reg_base + MT8192_SCP2APMCU_IPC_SET);
+>  
+>  	if (scp_to_host & MT8192_SCP_IPC_INT_BIT) {
+>  		scp_ipi_handler(scp);
+> @@ -215,10 +215,10 @@ static void mt8192_scp_irq_handler(struct mtk_scp *scp)
+>  		 * MT8192_SCP2APMCU_IPC.
+>  		 */
+>  		writel(MT8192_SCP_IPC_INT_BIT,
+> -		       scp->reg_base + MT8192_SCP2APMCU_IPC_CLR);
+> +		       scp->cluster->reg_base + MT8192_SCP2APMCU_IPC_CLR);
+>  	} else {
+>  		scp_wdt_handler(scp, scp_to_host);
+> -		writel(1, scp->reg_base + MT8192_CORE0_WDT_IRQ);
+> +		writel(1, scp->cluster->reg_base + MT8192_CORE0_WDT_IRQ);
+>  	}
+>  }
+>  
+> @@ -226,12 +226,12 @@ static void mt8195_scp_c1_irq_handler(struct mtk_scp *scp)
+>  {
+>  	u32 scp_to_host;
+>  
+> -	scp_to_host = readl(scp->reg_base + MT8195_SSHUB2APMCU_IPC_SET);
+> +	scp_to_host = readl(scp->cluster->reg_base + MT8195_SSHUB2APMCU_IPC_SET);
+>  
+>  	if (scp_to_host & MT8192_SCP_IPC_INT_BIT)
+>  		scp_ipi_handler(scp);
+>  
+> -	writel(scp_to_host, scp->reg_base + MT8195_SSHUB2APMCU_IPC_CLR);
+> +	writel(scp_to_host, scp->cluster->reg_base + MT8195_SSHUB2APMCU_IPC_CLR);
+>  }
+>  
+>  static irqreturn_t scp_irq_handler(int irq, void *priv)
+> @@ -363,26 +363,26 @@ static int mt8195_scp_clk_get(struct mtk_scp *scp)
+>  static int mt8183_scp_before_load(struct mtk_scp *scp)
+>  {
+>  	/* Clear SCP to host interrupt */
+> -	writel(MT8183_SCP_IPC_INT_BIT, scp->reg_base + MT8183_SCP_TO_HOST);
+> +	writel(MT8183_SCP_IPC_INT_BIT, scp->cluster->reg_base + MT8183_SCP_TO_HOST);
+>  
+>  	/* Reset clocks before loading FW */
+> -	writel(0x0, scp->reg_base + MT8183_SCP_CLK_SW_SEL);
+> -	writel(0x0, scp->reg_base + MT8183_SCP_CLK_DIV_SEL);
+> +	writel(0x0, scp->cluster->reg_base + MT8183_SCP_CLK_SW_SEL);
+> +	writel(0x0, scp->cluster->reg_base + MT8183_SCP_CLK_DIV_SEL);
+>  
+>  	/* Initialize TCM before loading FW. */
+> -	writel(0x0, scp->reg_base + MT8183_SCP_L1_SRAM_PD);
+> -	writel(0x0, scp->reg_base + MT8183_SCP_TCM_TAIL_SRAM_PD);
+> +	writel(0x0, scp->cluster->reg_base + MT8183_SCP_L1_SRAM_PD);
+> +	writel(0x0, scp->cluster->reg_base + MT8183_SCP_TCM_TAIL_SRAM_PD);
+>  
+>  	/* Turn on the power of SCP's SRAM before using it. */
+> -	writel(0x0, scp->reg_base + MT8183_SCP_SRAM_PDN);
+> +	writel(0x0, scp->cluster->reg_base + MT8183_SCP_SRAM_PDN);
+>  
+>  	/*
+>  	 * Set I-cache and D-cache size before loading SCP FW.
+>  	 * SCP SRAM logical address may change when cache size setting differs.
+>  	 */
+>  	writel(MT8183_SCP_CACHE_CON_WAYEN | MT8183_SCP_CACHESIZE_8KB,
+> -	       scp->reg_base + MT8183_SCP_CACHE_CON);
+> -	writel(MT8183_SCP_CACHESIZE_8KB, scp->reg_base + MT8183_SCP_DCACHE_CON);
+> +	       scp->cluster->reg_base + MT8183_SCP_CACHE_CON);
+> +	writel(MT8183_SCP_CACHESIZE_8KB, scp->cluster->reg_base + MT8183_SCP_DCACHE_CON);
+>  
+>  	return 0;
+>  }
+> @@ -408,28 +408,28 @@ static void scp_sram_power_off(void __iomem *addr, u32 reserved_mask)
+>  static int mt8186_scp_before_load(struct mtk_scp *scp)
+>  {
+>  	/* Clear SCP to host interrupt */
+> -	writel(MT8183_SCP_IPC_INT_BIT, scp->reg_base + MT8183_SCP_TO_HOST);
+> +	writel(MT8183_SCP_IPC_INT_BIT, scp->cluster->reg_base + MT8183_SCP_TO_HOST);
+>  
+>  	/* Reset clocks before loading FW */
+> -	writel(0x0, scp->reg_base + MT8183_SCP_CLK_SW_SEL);
+> -	writel(0x0, scp->reg_base + MT8183_SCP_CLK_DIV_SEL);
+> +	writel(0x0, scp->cluster->reg_base + MT8183_SCP_CLK_SW_SEL);
+> +	writel(0x0, scp->cluster->reg_base + MT8183_SCP_CLK_DIV_SEL);
+>  
+>  	/* Turn on the power of SCP's SRAM before using it. Enable 1 block per time*/
+> -	scp_sram_power_on(scp->reg_base + MT8183_SCP_SRAM_PDN, 0);
+> +	scp_sram_power_on(scp->cluster->reg_base + MT8183_SCP_SRAM_PDN, 0);
+>  
+>  	/* Initialize TCM before loading FW. */
+> -	writel(0x0, scp->reg_base + MT8183_SCP_L1_SRAM_PD);
+> -	writel(0x0, scp->reg_base + MT8183_SCP_TCM_TAIL_SRAM_PD);
+> -	writel(0x0, scp->reg_base + MT8186_SCP_L1_SRAM_PD_P1);
+> -	writel(0x0, scp->reg_base + MT8186_SCP_L1_SRAM_PD_p2);
+> +	writel(0x0, scp->cluster->reg_base + MT8183_SCP_L1_SRAM_PD);
+> +	writel(0x0, scp->cluster->reg_base + MT8183_SCP_TCM_TAIL_SRAM_PD);
+> +	writel(0x0, scp->cluster->reg_base + MT8186_SCP_L1_SRAM_PD_P1);
+> +	writel(0x0, scp->cluster->reg_base + MT8186_SCP_L1_SRAM_PD_p2);
+>  
+>  	/*
+>  	 * Set I-cache and D-cache size before loading SCP FW.
+>  	 * SCP SRAM logical address may change when cache size setting differs.
+>  	 */
+>  	writel(MT8183_SCP_CACHE_CON_WAYEN | MT8183_SCP_CACHESIZE_8KB,
+> -	       scp->reg_base + MT8183_SCP_CACHE_CON);
+> -	writel(MT8183_SCP_CACHESIZE_8KB, scp->reg_base + MT8183_SCP_DCACHE_CON);
+> +	       scp->cluster->reg_base + MT8183_SCP_CACHE_CON);
+> +	writel(MT8183_SCP_CACHESIZE_8KB, scp->cluster->reg_base + MT8183_SCP_DCACHE_CON);
+>  
+>  	return 0;
+>  }
+> @@ -437,19 +437,19 @@ static int mt8186_scp_before_load(struct mtk_scp *scp)
+>  static int mt8192_scp_before_load(struct mtk_scp *scp)
+>  {
+>  	/* clear SPM interrupt, SCP2SPM_IPC_CLR */
+> -	writel(0xff, scp->reg_base + MT8192_SCP2SPM_IPC_CLR);
+> +	writel(0xff, scp->cluster->reg_base + MT8192_SCP2SPM_IPC_CLR);
+>  
+> -	writel(1, scp->reg_base + MT8192_CORE0_SW_RSTN_SET);
+> +	writel(1, scp->cluster->reg_base + MT8192_CORE0_SW_RSTN_SET);
+>  
+>  	/* enable SRAM clock */
+> -	scp_sram_power_on(scp->reg_base + MT8192_L2TCM_SRAM_PD_0, 0);
+> -	scp_sram_power_on(scp->reg_base + MT8192_L2TCM_SRAM_PD_1, 0);
+> -	scp_sram_power_on(scp->reg_base + MT8192_L2TCM_SRAM_PD_2, 0);
+> -	scp_sram_power_on(scp->reg_base + MT8192_L1TCM_SRAM_PDN, 0);
+> -	scp_sram_power_on(scp->reg_base + MT8192_CPU0_SRAM_PD, 0);
+> +	scp_sram_power_on(scp->cluster->reg_base + MT8192_L2TCM_SRAM_PD_0, 0);
+> +	scp_sram_power_on(scp->cluster->reg_base + MT8192_L2TCM_SRAM_PD_1, 0);
+> +	scp_sram_power_on(scp->cluster->reg_base + MT8192_L2TCM_SRAM_PD_2, 0);
+> +	scp_sram_power_on(scp->cluster->reg_base + MT8192_L1TCM_SRAM_PDN, 0);
+> +	scp_sram_power_on(scp->cluster->reg_base + MT8192_CPU0_SRAM_PD, 0);
+>  
+>  	/* enable MPU for all memory regions */
+> -	writel(0xff, scp->reg_base + MT8192_CORE0_MEM_ATT_PREDEF);
+> +	writel(0xff, scp->cluster->reg_base + MT8192_CORE0_MEM_ATT_PREDEF);
+>  
+>  	return 0;
+>  }
+> @@ -457,20 +457,20 @@ static int mt8192_scp_before_load(struct mtk_scp *scp)
+>  static int mt8195_scp_before_load(struct mtk_scp *scp)
+>  {
+>  	/* clear SPM interrupt, SCP2SPM_IPC_CLR */
+> -	writel(0xff, scp->reg_base + MT8192_SCP2SPM_IPC_CLR);
+> +	writel(0xff, scp->cluster->reg_base + MT8192_SCP2SPM_IPC_CLR);
+>  
+> -	writel(1, scp->reg_base + MT8192_CORE0_SW_RSTN_SET);
+> +	writel(1, scp->cluster->reg_base + MT8192_CORE0_SW_RSTN_SET);
+>  
+>  	/* enable SRAM clock */
+> -	scp_sram_power_on(scp->reg_base + MT8192_L2TCM_SRAM_PD_0, 0);
+> -	scp_sram_power_on(scp->reg_base + MT8192_L2TCM_SRAM_PD_1, 0);
+> -	scp_sram_power_on(scp->reg_base + MT8192_L2TCM_SRAM_PD_2, 0);
+> -	scp_sram_power_on(scp->reg_base + MT8192_L1TCM_SRAM_PDN,
+> +	scp_sram_power_on(scp->cluster->reg_base + MT8192_L2TCM_SRAM_PD_0, 0);
+> +	scp_sram_power_on(scp->cluster->reg_base + MT8192_L2TCM_SRAM_PD_1, 0);
+> +	scp_sram_power_on(scp->cluster->reg_base + MT8192_L2TCM_SRAM_PD_2, 0);
+> +	scp_sram_power_on(scp->cluster->reg_base + MT8192_L1TCM_SRAM_PDN,
+>  			  MT8195_L1TCM_SRAM_PDN_RESERVED_RSI_BITS);
+> -	scp_sram_power_on(scp->reg_base + MT8192_CPU0_SRAM_PD, 0);
+> +	scp_sram_power_on(scp->cluster->reg_base + MT8192_CPU0_SRAM_PD, 0);
+>  
+>  	/* enable MPU for all memory regions */
+> -	writel(0xff, scp->reg_base + MT8192_CORE0_MEM_ATT_PREDEF);
+> +	writel(0xff, scp->cluster->reg_base + MT8192_CORE0_MEM_ATT_PREDEF);
+>  
+>  	return 0;
+>  }
+> @@ -479,10 +479,10 @@ static int mt8195_scp_c1_before_load(struct mtk_scp *scp)
+>  {
+>  	scp->data->scp_reset_assert(scp);
+>  
+> -	scp_sram_power_on(scp->reg_base + MT8195_CPU1_SRAM_PD, 0);
+> +	scp_sram_power_on(scp->cluster->reg_base + MT8195_CPU1_SRAM_PD, 0);
+>  
+>  	/* enable MPU for all memory regions */
+> -	writel(0xff, scp->reg_base + MT8195_CORE1_MEM_ATT_PREDEF);
+> +	writel(0xff, scp->cluster->reg_base + MT8195_CORE1_MEM_ATT_PREDEF);
+>  
+>  	return 0;
+>  }
+> @@ -601,11 +601,11 @@ static void *mt8192_scp_da_to_va(struct mtk_scp *scp, u64 da, size_t len)
+>  	}
+>  
+>  	/* optional memory region */
+> -	if (scp->l1tcm_size &&
+> -	    da >= scp->l1tcm_phys &&
+> -	    (da + len) <= scp->l1tcm_phys + scp->l1tcm_size) {
+> -		offset = da - scp->l1tcm_phys;
+> -		return (void __force *)scp->l1tcm_base + offset;
+> +	if (scp->cluster->l1tcm_size &&
+> +	    da >= scp->cluster->l1tcm_phys &&
+> +	    (da + len) <= scp->cluster->l1tcm_phys + scp->cluster->l1tcm_size) {
+> +		offset = da - scp->cluster->l1tcm_phys;
+> +		return (void __force *)scp->cluster->l1tcm_base + offset;
+>  	}
+>  
+>  	/* optional memory region */
+> @@ -629,43 +629,43 @@ static void *scp_da_to_va(struct rproc *rproc, u64 da, size_t len, bool *is_iome
+>  static void mt8183_scp_stop(struct mtk_scp *scp)
+>  {
+>  	/* Disable SCP watchdog */
+> -	writel(0, scp->reg_base + MT8183_WDT_CFG);
+> +	writel(0, scp->cluster->reg_base + MT8183_WDT_CFG);
+>  }
+>  
+>  static void mt8192_scp_stop(struct mtk_scp *scp)
+>  {
+>  	/* Disable SRAM clock */
+> -	scp_sram_power_off(scp->reg_base + MT8192_L2TCM_SRAM_PD_0, 0);
+> -	scp_sram_power_off(scp->reg_base + MT8192_L2TCM_SRAM_PD_1, 0);
+> -	scp_sram_power_off(scp->reg_base + MT8192_L2TCM_SRAM_PD_2, 0);
+> -	scp_sram_power_off(scp->reg_base + MT8192_L1TCM_SRAM_PDN, 0);
+> -	scp_sram_power_off(scp->reg_base + MT8192_CPU0_SRAM_PD, 0);
+> +	scp_sram_power_off(scp->cluster->reg_base + MT8192_L2TCM_SRAM_PD_0, 0);
+> +	scp_sram_power_off(scp->cluster->reg_base + MT8192_L2TCM_SRAM_PD_1, 0);
+> +	scp_sram_power_off(scp->cluster->reg_base + MT8192_L2TCM_SRAM_PD_2, 0);
+> +	scp_sram_power_off(scp->cluster->reg_base + MT8192_L1TCM_SRAM_PDN, 0);
+> +	scp_sram_power_off(scp->cluster->reg_base + MT8192_CPU0_SRAM_PD, 0);
+>  
+>  	/* Disable SCP watchdog */
+> -	writel(0, scp->reg_base + MT8192_CORE0_WDT_CFG);
+> +	writel(0, scp->cluster->reg_base + MT8192_CORE0_WDT_CFG);
+>  }
+>  
+>  static void mt8195_scp_stop(struct mtk_scp *scp)
+>  {
+>  	/* Disable SRAM clock */
+> -	scp_sram_power_off(scp->reg_base + MT8192_L2TCM_SRAM_PD_0, 0);
+> -	scp_sram_power_off(scp->reg_base + MT8192_L2TCM_SRAM_PD_1, 0);
+> -	scp_sram_power_off(scp->reg_base + MT8192_L2TCM_SRAM_PD_2, 0);
+> -	scp_sram_power_off(scp->reg_base + MT8192_L1TCM_SRAM_PDN,
+> +	scp_sram_power_off(scp->cluster->reg_base + MT8192_L2TCM_SRAM_PD_0, 0);
+> +	scp_sram_power_off(scp->cluster->reg_base + MT8192_L2TCM_SRAM_PD_1, 0);
+> +	scp_sram_power_off(scp->cluster->reg_base + MT8192_L2TCM_SRAM_PD_2, 0);
+> +	scp_sram_power_off(scp->cluster->reg_base + MT8192_L1TCM_SRAM_PDN,
+>  			   MT8195_L1TCM_SRAM_PDN_RESERVED_RSI_BITS);
+> -	scp_sram_power_off(scp->reg_base + MT8192_CPU0_SRAM_PD, 0);
+> +	scp_sram_power_off(scp->cluster->reg_base + MT8192_CPU0_SRAM_PD, 0);
+>  
+>  	/* Disable SCP watchdog */
+> -	writel(0, scp->reg_base + MT8192_CORE0_WDT_CFG);
+> +	writel(0, scp->cluster->reg_base + MT8192_CORE0_WDT_CFG);
+>  }
+>  
+>  static void mt8195_scp_c1_stop(struct mtk_scp *scp)
+>  {
+>  	/* Power off CPU SRAM */
+> -	scp_sram_power_off(scp->reg_base + MT8195_CPU1_SRAM_PD, 0);
+> +	scp_sram_power_off(scp->cluster->reg_base + MT8195_CPU1_SRAM_PD, 0);
+>  
+>  	/* Disable SCP watchdog */
+> -	writel(0, scp->reg_base + MT8195_CORE1_WDT_CFG);
+> +	writel(0, scp->cluster->reg_base + MT8195_CORE1_WDT_CFG);
+>  }
+>  
+>  static int scp_stop(struct rproc *rproc)
+> @@ -854,7 +854,8 @@ static void scp_remove_rpmsg_subdev(struct mtk_scp *scp)
+>  	}
+>  }
+>  
+> -static int scp_probe(struct platform_device *pdev)
+> +static int scp_cluster_init(struct platform_device *pdev,
+> +			    struct mtk_scp_of_cluster *scp_cluster)
 
-vim +50 Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
+Why is the mtk_scp and mtk_scp_of_cluster structure refactoring entangled with
+scp_probe()?  Just add another patch to prepare the upcoming work, exactly the
+same way pach 04/13 does.
 
-  > 50	Date:		March 2023
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+>  {
+>  	struct device *dev = &pdev->dev;
+>  	struct device_node *np = dev->of_node;
+> @@ -876,6 +877,7 @@ static int scp_probe(struct platform_device *pdev)
+>  	scp->rproc = rproc;
+>  	scp->dev = dev;
+>  	scp->data = of_device_get_match_data(dev);
+> +	scp->cluster = scp_cluster;
+>  	platform_set_drvdata(pdev, scp);
+>  
+>  	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "sram");
+> @@ -887,24 +889,6 @@ static int scp_probe(struct platform_device *pdev)
+>  	scp->sram_size = resource_size(res);
+>  	scp->sram_phys = res->start;
+>  
+> -	/* l1tcm is an optional memory region */
+> -	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "l1tcm");
+> -	scp->l1tcm_base = devm_ioremap_resource(dev, res);
+> -	if (IS_ERR(scp->l1tcm_base)) {
+> -		ret = PTR_ERR(scp->l1tcm_base);
+> -		if (ret != -EINVAL) {
+> -			return dev_err_probe(dev, ret, "Failed to map l1tcm memory\n");
+> -		}
+> -	} else {
+> -		scp->l1tcm_size = resource_size(res);
+> -		scp->l1tcm_phys = res->start;
+> -	}
+> -
+> -	scp->reg_base = devm_platform_ioremap_resource_byname(pdev, "cfg");
+> -	if (IS_ERR(scp->reg_base))
+> -		return dev_err_probe(dev, PTR_ERR(scp->reg_base),
+> -				     "Failed to parse and map cfg memory\n");
+> -
+>  	ret = scp->data->scp_clk_get(scp);
+>  	if (ret)
+>  		return ret;
+> @@ -956,6 +940,43 @@ static int scp_probe(struct platform_device *pdev)
+>  	return ret;
+>  }
+>  
+> +static int scp_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct mtk_scp_of_cluster *scp_cluster;
+> +	struct resource *res;
+> +	int ret;
+> +
+> +	scp_cluster = devm_kzalloc(dev, sizeof(*scp_cluster), GFP_KERNEL);
+> +	if (!scp_cluster)
+> +		return -ENOMEM;
+> +
+> +	scp_cluster->reg_base = devm_platform_ioremap_resource_byname(pdev, "cfg");
+> +	if (IS_ERR(scp_cluster->reg_base))
+> +		return dev_err_probe(dev, PTR_ERR(scp_cluster->reg_base),
+> +				     "Failed to parse and map cfg memory\n");
+> +
+> +	/* l1tcm is an optional memory region */
+> +	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "l1tcm");
+> +	scp_cluster->l1tcm_base = devm_ioremap_resource(dev, res);
+> +	if (IS_ERR(scp_cluster->l1tcm_base)) {
+> +		ret = PTR_ERR(scp_cluster->l1tcm_base);
+> +		if (ret != -EINVAL)
+> +			return dev_err_probe(dev, ret, "Failed to map l1tcm memory\n");
+> +
+> +		scp_cluster->l1tcm_base = NULL;
+> +	} else {
+> +		scp_cluster->l1tcm_size = resource_size(res);
+> +		scp_cluster->l1tcm_phys = res->start;
+> +	}
+> +
+> +	ret = scp_cluster_init(pdev, scp_cluster);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return 0;
+> +}
+> +
+>  static void scp_remove(struct platform_device *pdev)
+>  {
+>  	struct mtk_scp *scp = platform_get_drvdata(pdev);
+> diff --git a/drivers/remoteproc/mtk_scp_ipi.c b/drivers/remoteproc/mtk_scp_ipi.c
+> index 9c7c17b9d181..cd0b60106ec2 100644
+> --- a/drivers/remoteproc/mtk_scp_ipi.c
+> +++ b/drivers/remoteproc/mtk_scp_ipi.c
+> @@ -177,7 +177,7 @@ int scp_ipi_send(struct mtk_scp *scp, u32 id, void *buf, unsigned int len,
+>  	mutex_lock(&scp->send_lock);
+>  
+>  	 /* Wait until SCP receives the last command */
+> -	ret = readl_poll_timeout_atomic(scp->reg_base + scp->data->host_to_scp_reg,
+> +	ret = readl_poll_timeout_atomic(scp->cluster->reg_base + scp->data->host_to_scp_reg,
+>  					val, !val, 0, SCP_TIMEOUT_US);
+>  	if (ret) {
+>  		dev_err(scp->dev, "%s: IPI timeout!\n", __func__);
+> @@ -192,7 +192,7 @@ int scp_ipi_send(struct mtk_scp *scp, u32 id, void *buf, unsigned int len,
+>  	scp->ipi_id_ack[id] = false;
+>  	/* send the command to SCP */
+>  	writel(scp->data->host_to_scp_int_bit,
+> -	       scp->reg_base + scp->data->host_to_scp_reg);
+> +	       scp->cluster->reg_base + scp->data->host_to_scp_reg);
+>  
+>  	if (wait) {
+>  		/* wait for SCP's ACK */
+> -- 
+> 2.18.0
+> 
