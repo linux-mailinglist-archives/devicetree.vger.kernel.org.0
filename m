@@ -2,202 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 90FD876235B
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 22:35:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D09B7623A0
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 22:38:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229661AbjGYUfE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jul 2023 16:35:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33444 "EHLO
+        id S231618AbjGYUiN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jul 2023 16:38:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35158 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229495AbjGYUfE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 16:35:04 -0400
-Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com [IPv6:2607:f8b0:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7932919A7
-        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 13:35:02 -0700 (PDT)
-Received: by mail-pf1-x435.google.com with SMTP id d2e1a72fcca58-686b91c2744so454643b3a.0
-        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 13:35:02 -0700 (PDT)
+        with ESMTP id S231435AbjGYUhr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 16:37:47 -0400
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A225030C6
+        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 13:37:24 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-5221ee899a0so4902357a12.1
+        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 13:37:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690317302; x=1690922102;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=dEBFhajNAbJA8oyQ3SzCNr6bDDYsCg4XK+Nkm+WUeyo=;
-        b=eY6zQW3yCE3HW7dgVJNQZhe10AN6qBQt2ko/chealQwqHrG4pM7GbfZSTeJjki77ur
-         vvleenmBb5FbgzGEaPwOFmpaKUTOWBHwreBUUoapzQSDFCTju1zARvVMKgp7X7voD+Nl
-         sXGfLqWP8rjifH8hqHsJWCsAktmKU/tFHQMq5EuvNH/TroIDEQo6kCLEp9pwNh7VUb3c
-         zLdZA9nSTj/zpvIkmp2CT+s8H4mAClm9FNigMM4FuVifUsUmWhUx+sNaPxSb6axgGSDq
-         g0fPFLH/O4qJeu+Cfaye5RHsStJDo8BFlqz0YObnHUoCnMYpBXWeebG+Imz7w0UTWiHL
-         YF4w==
+        d=linaro.org; s=google; t=1690317442; x=1690922242;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=i8EFcfDJur6Q/cyUGY8oZE5QsCZxjq5T48R8GlfFPEw=;
+        b=R29tX040z+qe2Vlrxhn1pwbhDNdOW5WzGO/cPAmsxXlQ2FIJM7pjqlseW1dpyltcEW
+         12J+Y0fyBDfrjfAVs2exBN46xd5H0r3RHJUp3yPGj3261ECMAwQcZ5ti2fyADw4zEtln
+         FgRh8WLaSAFdyAUAxZz5wF6Wafrgg8dof6xfHJCs7BkElz52x0FhSEva8NwluWj6wgc4
+         z0oCXCammOjUc31D0Gx4x5JsLRo/V9XoHVFjK2Afc69d64giQM1sBBHKjdN2zq2y1/QP
+         Y2U4G9rofhgktXpOpVlJ9zArQ/0C6W6lueB6r2f8i0ZDdnupVebVmdRtZCNAetKieDtt
+         MB1g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690317302; x=1690922102;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=dEBFhajNAbJA8oyQ3SzCNr6bDDYsCg4XK+Nkm+WUeyo=;
-        b=It5WAKYpA1R+KMQidfShe+NQUdGGwhi46PtWf/dLlHdWfs8oogV4+YrUVXYNXlY0ve
-         Dlb5ruO0Rsyjl6OS5d2sA83Ua/oklQbcYWLcmD//4LWx6iVdmzGmVdWwO4m2hTtK4opn
-         Vl3pJ7ogZ7GfMn5oGqBJ0V/gngUgXKGlAnQHapZzrlX5FKFa4s1mRT577B97AVJZ/PD7
-         eNEYJh9UCzxljYtZIs7Ay+8KUzp+nBu9L8XaCuQdK37nuZBKCovWInQxId7TbgeKdySz
-         YsgBtWHGtmaKNhv4/o8/gt2sGtEyPwXqUdmfb8CnNhIxRnq5FpLpPHlcYe76XejozvTK
-         dxjQ==
-X-Gm-Message-State: ABy/qLa1Ugu/uD29tlfX+QHCiUL8smH5IVgr2NXnf33TWVQWPAWXanTs
-        4zFRn7jxZrPgROCvchQV05X1lw==
-X-Google-Smtp-Source: APBJJlGSzayuOHxBmo/tEETnK6cmj1CrVYQ2LOCdES+hgyiq0gr838HgHLCeJA/FeOOzp9ZE+OXsYw==
-X-Received: by 2002:a05:6a20:914d:b0:122:10f9:f635 with SMTP id x13-20020a056a20914d00b0012210f9f635mr119916pzc.19.1690317301899;
-        Tue, 25 Jul 2023 13:35:01 -0700 (PDT)
-Received: from p14s ([2604:3d09:148c:c800:2116:2b1f:2fd8:ec8d])
-        by smtp.gmail.com with ESMTPSA id s11-20020a63770b000000b0052c22778e64sm10847608pgc.66.2023.07.25.13.35.00
+        d=1e100.net; s=20221208; t=1690317442; x=1690922242;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=i8EFcfDJur6Q/cyUGY8oZE5QsCZxjq5T48R8GlfFPEw=;
+        b=eJ8XBxG2Q4Y5keQ62E9PTFFTz2jxkABKicV60RBiE6ZYQc8b3ds3fRKV+GCZsWUY97
+         TpCwz1bH14gWR6FjCPqj7QIAYiaI+Qkq1kZIBMcy95Ygl7uV3EImJlZBmjkN48wL401f
+         ebawrfjmBZIJ9hC0RKB7Ic+sz04D6gTPZKPqvAFqlRtJSWms87xPOfiIioL4DU0NOhCS
+         WloZNKbVv3fDTdu6sXFryER2KU941Z2SXR8lQJkqfNaFngW4xCROPo2rryk8kBq/z/u3
+         IRF+PInk7+zcBFLHMgl1jtIGQRI5QSXhMV7/TAu+Gf7UCYCRfoyaB4h/vc4JR2OfjVtA
+         dzJA==
+X-Gm-Message-State: ABy/qLYCSjzOQ276YNgMs5HedNvj/GzwbOZxvqc+0JTu6uaAdJgwQ+G1
+        zqdsc3AKKY8EPd5sgjGfIGXNzg==
+X-Google-Smtp-Source: APBJJlHouXij+Cjl+4lvV6lM3MzJYZz6FGESDA4/HPSPunUv+BrddOvplajXI9EyPZVAn2Qfkog5Fw==
+X-Received: by 2002:a50:ee97:0:b0:522:2d1b:5a38 with SMTP id f23-20020a50ee97000000b005222d1b5a38mr19784edr.10.1690317442552;
+        Tue, 25 Jul 2023 13:37:22 -0700 (PDT)
+Received: from krzk-bin.. ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id y11-20020a056402134b00b0051de018af1esm773834edw.59.2023.07.25.13.37.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 Jul 2023 13:35:01 -0700 (PDT)
-Date:   Tue, 25 Jul 2023 14:34:58 -0600
-From:   Mathieu Poirier <mathieu.poirier@linaro.org>
-To:     Tinghan Shen <tinghan.shen@mediatek.com>
-Cc:     Bjorn Andersson <andersson@kernel.org>,
+        Tue, 25 Jul 2023 13:37:22 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-Subject: Re: [PATCH v15 00/13] Add support for MT8195 SCP 2nd core
-Message-ID: <ZMAx8mc0tjgPvU3j@p14s>
-References: <20230721024132.6548-1-tinghan.shen@mediatek.com>
+        Stephen Boyd <sboyd@codeaurora.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] ARM: dts: qcom: mdm9615: populate vsdcc fixed regulator
+Date:   Tue, 25 Jul 2023 22:37:18 +0200
+Message-Id: <20230725203718.513724-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230721024132.6548-1-tinghan.shen@mediatek.com>
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 21, 2023 at 10:41:19AM +0800, Tinghan Shen wrote:
-> The mediatek remoteproc driver currently only allows bringing up a 
-> single core SCP, e.g. MT8183. It also only bringing up the 1st 
-> core in SoCs with a dual-core SCP, e.g. MT8195. This series support 
-> to bring-up the 2nd core of the dual-core SCP.
-> 
-> v15 -> v14:
-> 1. Use the common SCP registers in struct mtk_scp_of_cluster instead of
->    copy it to struct mtk_scp at patchset 5 
-> 2. Use platform_set_drvdata instead of platform_device_add_data at patchset 5 
-> 3. Rename l2tcm_lock to cluster_lock at patchset 8
-> 4. Check l2tcm_refcnt value before decreasing at patchset 8
-> 5. Revise the commit message at patchset 11
+Fixed regulator put under "regulators" node will not be populated,
+unless simple-bus or something similar is used.  Drop the "regulators"
+wrapper node to fix this.
 
-I am done reviewing this set.  Checkpatch is giving a warning for patch 01/13,
-something I would expect to have been dealt with after 15 iterations.  I will be
-away for the next 3 weeks so no point in rushing another revision to sqeeze
-in the v6.6 merge window.
+Fixes: 2c5e596524e7 ("ARM: dts: Add MDM9615 dtsi")
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ arch/arm/boot/dts/qcom/qcom-mdm9615.dtsi | 14 ++++++--------
+ 1 file changed, 6 insertions(+), 8 deletions(-)
 
-Mathieu
+diff --git a/arch/arm/boot/dts/qcom/qcom-mdm9615.dtsi b/arch/arm/boot/dts/qcom/qcom-mdm9615.dtsi
+index b40c52ddf9b4..bfcb4fcf6546 100644
+--- a/arch/arm/boot/dts/qcom/qcom-mdm9615.dtsi
++++ b/arch/arm/boot/dts/qcom/qcom-mdm9615.dtsi
+@@ -46,14 +46,12 @@ cxo_board {
+ 		};
+ 	};
+ 
+-	regulators {
+-		vsdcc_fixed: vsdcc-regulator {
+-			compatible = "regulator-fixed";
+-			regulator-name = "SDCC Power";
+-			regulator-min-microvolt = <2700000>;
+-			regulator-max-microvolt = <2700000>;
+-			regulator-always-on;
+-		};
++	vsdcc_fixed: vsdcc-regulator {
++		compatible = "regulator-fixed";
++		regulator-name = "SDCC Power";
++		regulator-min-microvolt = <2700000>;
++		regulator-max-microvolt = <2700000>;
++		regulator-always-on;
+ 	};
+ 
+ 	soc: soc {
+-- 
+2.34.1
 
-> 
-> v13 -> v14:
-> 1. add review tag to patchset 1,6
-> 2. exchange the order of sram power on and reset assert in
-> mt8195_scp_c1_before_load at patchset 2
-> 3. Use ERR_CAST in patchset 5
-> 4. Re-write patchset 7 to remove dependency between core 0 and core 1 
-> 5. Add patch set 10 to report watchdot timeout to all cores
-> 
-> v12 -> v13:
-> 1. replace subdevice with new mediatek scp operations in patchset 7 
-> 2. add review tag to patchset 3
-> 3. modify mediatek,scp phandle name of video-codec@18000000 at patchset 11
-> 
-> v11 -> v12:
-> 1. add scp_add_single/multi_core() to patchset 6
-> 2. remove unused comment in patchset 6
-> 3. rename list name from mtk_scp_cluster to mtk_scp_list
-> 4. rewrite the multi-core probe flow 
-> 5. disable rproc->autoboot and boot rproc by request_firmware_nowait at patchset 7 
-> 6. remove patchset 7 review tag  
-> 
-> v10 -> v11:
-> 1. rewrite patchset 5 to probe single-core SCP with the cluster list
-> 2. Also in patchset 5, move the pointer of mtk_scp object from the
->    platform data property to the driver data property 
-> 3. move the appearance of mtk_scp cluster property to patcheset 7
-> 
-> v9 -> v10:
-> 1. move the global mtk_scp list into the platform device driver data structure
-> 2. remove an unnecessary if() condition
-> 
-> v8 -> v9:
-> 1. initialize l1tcm_size/l1tcm_phys at patchset 05/11 
-> 2. rewrite patchset 06/11 to unify the flow and remove hacks
-> 
-> v7 -> v8:
-> 1. update the node name of mt8192 asurada SCP rpmsg subnode
-> 2. squash register definitions into driver patches
-> 3. initialize local variables on the declaration at patch v8 06/11 
-> 
-> v6 -> v7:
-> 1. merge the mtk_scp_cluster struct into the mtk_scp structure
->    at the "Probe multi-core SCP" patch
-> 
-> v5 -> v6:
-> 1. move the mtk_scp_of_regs structure from mtk_common.h to mtk_scp.c
-> 2. rename the SCP core 0 label from 'scp' to 'scp_c0'
-> 
-> v4 -> v5:
-> 1. move resource release actions to the platform driver remove operation 
-> 2. fix dual-core watchdog handling
-> 
-> v3 -> v4:
-> 1. change the representation of dual-core SCP in dts file and update SCP yaml
-> 2. rewrite SCP driver to reflect the change of dts node
-> 3. drop 'remove redundant call of rproc_boot for SCP' in v3 for further investigation
-> 
-> v2 -> v3:
-> 1. change the representation of dual-core SCP in dts file and update SCP yaml
-> 2. rewrite SCP driver to reflect the change of dts node
-> 3. add SCP core 1 node to mt8195.dtsi
-> 4. remove redundant call of rproc_boot for SCP
-> 5. refine IPI error message
-> 
-> v1 -> v2:
-> 1. update dt-binding property description
-> 2. remove kconfig for scp dual driver
-> 3. merge mtk_scp_dual.c and mtk_scp_subdev.c to mtk_scp.c
-> 
-> 
-> Tinghan Shen (13):
->   dt-bindings: remoteproc: mediatek: Improve the rpmsg subnode
->     definition
->   arm64: dts: mediatek: Update the node name of SCP rpmsg subnode
->   dt-bindings: remoteproc: mediatek: Support MT8195 dual-core SCP
->   remoteproc: mediatek: Add MT8195 SCP core 1 operations
->   remoteproc: mediatek: Extract SCP common registers
->   remoteproc: mediatek: Probe SCP cluster on single-core SCP
->   remoteproc: mediatek: Probe SCP cluster on multi-core SCP
->   remoteproc: mediatek: Remove dependency of MT8195 SCP L2TCM power
->     control on dual-core SCP
->   remoteproc: mediatek: Setup MT8195 SCP core 1 SRAM offset
->   remoteproc: mediatek: Handle MT8195 SCP core 1 watchdog timeout
->   remoteproc: mediatek: Report watchdog crash to all cores
->   remoteproc: mediatek: Refine ipi handler error message
->   arm64: dts: mediatek: mt8195: Add SCP 2nd core
-> 
->  .../bindings/remoteproc/mtk,scp.yaml          | 176 +++++-
->  .../arm64/boot/dts/mediatek/mt8183-kukui.dtsi |   2 +-
->  .../boot/dts/mediatek/mt8192-asurada.dtsi     |   2 +-
->  .../boot/dts/mediatek/mt8195-cherry.dtsi      |   6 +-
->  arch/arm64/boot/dts/mediatek/mt8195.dtsi      |  34 +-
->  drivers/remoteproc/mtk_common.h               |  39 +-
->  drivers/remoteproc/mtk_scp.c                  | 534 ++++++++++++++----
->  drivers/remoteproc/mtk_scp_ipi.c              |   4 +-
->  8 files changed, 651 insertions(+), 146 deletions(-)
-> 
-> -- 
-> 2.18.0
-> 
