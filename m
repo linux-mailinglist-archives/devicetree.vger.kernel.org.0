@@ -2,78 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DDDF7760965
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 07:38:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 407CE760969
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 07:39:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231126AbjGYFih (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jul 2023 01:38:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48762 "EHLO
+        id S230205AbjGYFjP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jul 2023 01:39:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49342 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230356AbjGYFif (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 01:38:35 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DCE010F8
-        for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 22:38:34 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-98377c5d53eso819195466b.0
-        for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 22:38:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690263513; x=1690868313;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=/Nfvys4rSiL7Fg4913GVXU51jdnpMLzXuF5OHN3WQWQ=;
-        b=DGTKuLy0ugnXwMH1l5XUMT9cQazfkiFWgOjhxMXUX+TKcMLz87XGy6CEDzl7G3kNC9
-         tP0SVSKBqTLS/L9uHF6WEahTA70hLYOfQoI7Os159l3gBs1nH2u0vd/tcn814MozLRYS
-         E/0q9qviMQf4jui6UjpUG4Fy5soR6oRwqmeEptO5zP3+QeY0blkA8lZIsQPTJEXoqvW3
-         CFxiNSdxuOUx2iDNBId2J16CRvY2D8BPdvUJN+j49cvEQ4C1id+ItOR12DRCfUuCes5e
-         Tr+yWa6lAr0yvM3P16IBv63LsPl9fP6B/8VtF1xt2E3SI7dHO8PpuVfL0uxr/p+T7uvj
-         4Kug==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690263513; x=1690868313;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/Nfvys4rSiL7Fg4913GVXU51jdnpMLzXuF5OHN3WQWQ=;
-        b=cFl21dTznxl1xWnNH8StphzstkJjt/V+aVE93j8NBImv+G0RrplqO2yv9wpECbZe49
-         jOzRiC5DnptYZ28arr06gTrcpFt1qN2kpLJTCWe/yEMf8Ai9u9ItAX0TMLTwg8wa1Ehz
-         Wv6JoEY7fvilNCk9HCS/mf8ycIUNOHANVctds+3DbyPFsztloeFxK2tIjo7iyebO3c4L
-         atZ1Rtqyy51eYiLnzCkHBAZ/Ic00koPanK2IlydalvePm0GgOFEzEG31fYO+SHVnpM+y
-         8zxfn45qoTqJ9boMqz9eWX/BGGm0MrhFak1lk9Relfk0IXAzbWDhRBYoiZOtel8SaSP2
-         GAOw==
-X-Gm-Message-State: ABy/qLZZ/HtsApArUg4zs+hiIgv6A9AnH1leDNtzKnwXs4NYAuj9Oad1
-        a9RgFbNcExSeLJu7Fd9XuO/Drg==
-X-Google-Smtp-Source: APBJJlFTq2E4alBkthFQdBPgkxNtO6TymuFd4zzjCRKGnOlScPXWmVcaDAXhHKhot9GAxJPDkH4kjg==
-X-Received: by 2002:a17:906:7a59:b0:982:be38:a5df with SMTP id i25-20020a1709067a5900b00982be38a5dfmr10986040ejo.63.1690263512679;
-        Mon, 24 Jul 2023 22:38:32 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id h19-20020a1709062dd300b0097073f1ed84sm7713253eji.4.2023.07.24.22.38.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 24 Jul 2023 22:38:31 -0700 (PDT)
-Message-ID: <541711a7-01d2-8630-1ae2-5a46ab8ea067@linaro.org>
-Date:   Tue, 25 Jul 2023 07:38:28 +0200
+        with ESMTP id S231292AbjGYFjN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 01:39:13 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91EAD19AA;
+        Mon, 24 Jul 2023 22:39:07 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 36P5d0EP049687;
+        Tue, 25 Jul 2023 00:39:00 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1690263540;
+        bh=jZlQiYTPLncZVPCLbXblHrnam61fWbVQFvJtNlBgO2g=;
+        h=From:To:CC:Subject:Date;
+        b=ocFhN0tn90Euur7VXTGpC3nCRZuRlPxmaRTy937kFrYcxJ2211idX+TZwWaAorlch
+         cqdmnky5kO/OpNaoUX9dGwGzGP24nPj0x5ZLtxgnvPlFSpd25d5JACHUgh0AL9qZdg
+         3L19+M7Muw7c+7FJJeDItSSLNGdA99OTzOlfD73o=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 36P5d0jf017584
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 25 Jul 2023 00:39:00 -0500
+Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 25
+ Jul 2023 00:38:59 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 25 Jul 2023 00:38:59 -0500
+Received: from udit-HP-Z2-Tower-G9-Workstation-Desktop-PC.dhcp.ti.com (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 36P5cu75064880;
+        Tue, 25 Jul 2023 00:38:57 -0500
+From:   Udit Kumar <u-kumar1@ti.com>
+To:     <vigneshr@ti.com>, <nm@ti.com>, <kristo@kernel.org>,
+        <robh+dt@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC:     Udit Kumar <u-kumar1@ti.com>
+Subject: [PATCH 0/2] arm64: dts: ti: k3-j784s4: Add UFS support
+Date:   Tue, 25 Jul 2023 11:08:41 +0530
+Message-ID: <20230725053843.1721028-1-u-kumar1@ti.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v7 1/2] dt-bindings: clock: fsl,imx8-acm: Add audio clock
- mux support
-Content-Language: en-US
-To:     Shengjiu Wang <shengjiu.wang@nxp.com>, abelvesa@kernel.org,
-        peng.fan@nxp.com, mturquette@baylibre.com, sboyd@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        shengjiu.wang@gmail.com
-Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <1690260984-25744-1-git-send-email-shengjiu.wang@nxp.com>
- <1690260984-25744-2-git-send-email-shengjiu.wang@nxp.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1690260984-25744-2-git-send-email-shengjiu.wang@nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,24 +63,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/07/2023 06:56, Shengjiu Wang wrote:
-> Add the clock dt-binding file for Audio Clock Mux. which
-> is the IP for i.MX8QM, i.MX8QXP, i.MX8DXL.
-> 
-> Add the clockid for clocks in header file.
-> 
-> The Audio Clock Mux is binded with all the audio IP and audio clocks
-> in the subsystem, so need to list the power domain of related clocks
-> and IPs. Each clock and IP has a power domain, so there are so many
-> power domains.
-> 
-> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
-> ---
-> changes in v7:
+This patch series adds UFS support for J784S4 SOC,
+UFS is kept disabled at SOC level, and enabled in EVM where
+UFS flash is present.
 
+This patch is tested by enabling below configs on top of defconfig
+CONFIG_SCSI_UFS_BSG=y
+CONFIG_SCSI_UFS_CDNS_PLATFORM=y
+CONFIG_SCSI_UFS_TI_J721E=y
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Test logs
+https://gist.github.com/uditkumarti/ab188e4b433058ae86734cd46eff7d94
 
-Best regards,
-Krzysztof
+Udit Kumar (2):
+  arm64: dts: ti: k3-j784s4-main: Add DT node for UFS
+  arm64: dts: ti: k3-j784s4-evm: Add Support for UFS peripheral
+
+ arch/arm64/boot/dts/ti/k3-j784s4-evm.dts   |  4 ++++
+ arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi | 24 ++++++++++++++++++++++
+ 2 files changed, 28 insertions(+)
+
+-- 
+2.34.1
 
