@@ -2,126 +2,272 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 62B65760CA7
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 10:08:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8451E760E37
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 11:18:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229780AbjGYIIX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jul 2023 04:08:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42776 "EHLO
+        id S233085AbjGYJSa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jul 2023 05:18:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55610 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231250AbjGYIIW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 04:08:22 -0400
-Received: from mail-ot1-x335.google.com (mail-ot1-x335.google.com [IPv6:2607:f8b0:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2ACAB120
-        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 01:08:21 -0700 (PDT)
-Received: by mail-ot1-x335.google.com with SMTP id 46e09a7af769-6b9cf17f69cso3322686a34.0
-        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 01:08:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1690272500; x=1690877300;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=JQlid0H2jkWZz9fgcu7Ae/8sWUNA4lIusDDxBLqkgag=;
-        b=KkgEQfDM+55890/Maq1US0J3lnruHbkrKCrP9QWS3hvuGMFkfmc5/nlpvrIrBzxlBq
-         sPJmD7WJNQqquynKfs5CduRCtnjUi6tCQ0IyEsby+evTvU7HUtmycJeySD2lQcL4nlIv
-         X97gSvIfrSvqwK3crWKOZ6uVzBCD27AJW8lEM=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690272500; x=1690877300;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=JQlid0H2jkWZz9fgcu7Ae/8sWUNA4lIusDDxBLqkgag=;
-        b=j/LpQK/C+FaWPeoF7SOKLmo0mhycs9oQJwixMCCjoR+TyTjznT9j4wbfx0TN4liE6G
-         4wSDBwfad1nXA3mvCjM2HZBmOdEQ5FEy4gDvs+8qezAyt5jjlkZyGWskB6wqeVHhF9de
-         UEF0O71BUYxl/wEQDOlGqpgB7GqTPTkjjmyUnZqzOcSjWg+OaGSOQKwhYoeb9OzJWiXJ
-         dn/SMQtt/ebz7M4XYmoeZn2Ds32o5pGA4FkTKt8aRyhXbdjZZF3BsJWDDRK+LZJ1RehM
-         GNOgaA2VJnwe1eXMcKwQG3Xw8o9SAlvXgOn/9tn7Szg8ZrnTqJu/pRlHpcja6pre8r/Q
-         MZ4g==
-X-Gm-Message-State: ABy/qLY3fX33OcyF/s0nERPTxGFFL9xPNy3vZoy5PxzdaPoUHhz5Pews
-        fo7HqeKclR5Qi6MQDVCSsbVI75x3pLJFi4b0hfA=
-X-Google-Smtp-Source: APBJJlGMK2ptzgR0xzLImAt3dlL38evC50oVecPB/+sA0drG8kdBJidt9YBernTU5r3RhzQFZQdexw==
-X-Received: by 2002:a05:6830:124d:b0:6b9:b931:55ec with SMTP id s13-20020a056830124d00b006b9b93155ecmr1328726otp.7.1690272500280;
-        Tue, 25 Jul 2023 01:08:20 -0700 (PDT)
-Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com. [209.85.210.45])
-        by smtp.gmail.com with ESMTPSA id t19-20020a9d7f93000000b006b74bea76c0sm4789895otp.47.2023.07.25.01.08.20
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 25 Jul 2023 01:08:20 -0700 (PDT)
-Received: by mail-ot1-f45.google.com with SMTP id 46e09a7af769-6bb1ec7945dso1578314a34.0
-        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 01:08:20 -0700 (PDT)
-X-Received: by 2002:a6b:8d82:0:b0:789:dcd1:8eb9 with SMTP id
- p124-20020a6b8d82000000b00789dcd18eb9mr1029181iod.6.1690272036013; Tue, 25
- Jul 2023 01:00:36 -0700 (PDT)
+        with ESMTP id S233025AbjGYJS0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 05:18:26 -0400
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C9DD11B;
+        Tue, 25 Jul 2023 02:18:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1690276705; x=1721812705;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=+Q06PentsIanzmdfnoZS42vyVmRdVGNF/39w4Rf8BrE=;
+  b=R1HAjGzLkOuzwRsJZAoTh1ul1Pfppk/Xu1/91a8tmBbVHRpz+qWNHipg
+   oY9/L1G4w6yAocYxAmo7PWqKwijRAhCvVSFVI4wIazHBDpWiuPGlEYoz/
+   s375y8DVRQDp0CQHm/3AlQJrv0CL8K7mY62ztLlxSEUHu8Zy7JcI8WGJT
+   H6m1sMCPtzV9vRqdD/idJXUmVNlmbAWVgEmwVcUeEIKPsEYp2vICznIIE
+   XrfrR+Ih72DBr66uoqCLWYQFltRuRrXz1Zi6bV2Q3EraBjm8SrLjhx1IP
+   mjAlJKlx9vBmS3E9LCDaANAsK02xj58rm7tXZkL/tsX0BCZtcJrFVZZ55
+   g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10781"; a="454048788"
+X-IronPort-AV: E=Sophos;i="6.01,230,1684825200"; 
+   d="scan'208";a="454048788"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Jul 2023 02:18:24 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10781"; a="719980272"
+X-IronPort-AV: E=Sophos;i="6.01,230,1684825200"; 
+   d="scan'208";a="719980272"
+Received: from mongola-mobl.ger.corp.intel.com (HELO [10.249.37.129]) ([10.249.37.129])
+  by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Jul 2023 02:18:17 -0700
+Message-ID: <9e391c7d-f45b-42f4-fae4-72fba32482db@linux.intel.com>
+Date:   Tue, 25 Jul 2023 10:10:06 +0200
 MIME-Version: 1.0
-References: <20230602090227.7264-1-yong.wu@mediatek.com>
-In-Reply-To: <20230602090227.7264-1-yong.wu@mediatek.com>
-From:   Fei Shao <fshao@chromium.org>
-Date:   Tue, 25 Jul 2023 15:59:59 +0800
-X-Gmail-Original-Message-ID: <CAC=S1nhgkj5zh-Oa+OJjZKmkNMfG63+WjSefB2swybm29KxDXA@mail.gmail.com>
-Message-ID: <CAC=S1nhgkj5zh-Oa+OJjZKmkNMfG63+WjSefB2swybm29KxDXA@mail.gmail.com>
-Subject: Re: [PATCH v12 0/7] MT8188 IOMMU SUPPORT
-To:     Yong Wu <yong.wu@mediatek.com>
-Cc:     Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, iommu@lists.linux.dev,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.13.0
+Subject: Re: [PATCH v4 06/32] ASoC: Add SOC USB APIs for adding an USB backend
+Content-Language: en-US
+To:     Wesley Cheng <quic_wcheng@quicinc.com>, agross@kernel.org,
+        andersson@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        catalin.marinas@arm.com, will@kernel.org, mathias.nyman@intel.com,
+        gregkh@linuxfoundation.org, lgirdwood@gmail.com,
+        broonie@kernel.org, perex@perex.cz, tiwai@suse.com,
+        srinivas.kandagatla@linaro.org, bgoswami@quicinc.com,
+        Thinh.Nguyen@synopsys.com
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        mingyuan.ma@mediatek.com, yf.wang@mediatek.com,
-        jianjiao.zeng@mediatek.com, chengci.xu@mediatek.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        linux-usb@vger.kernel.org, alsa-devel@alsa-project.org,
+        quic_jackp@quicinc.com, oneukum@suse.com, albertccwang@google.com,
+        o-takashi@sakamocchi.jp
+References: <20230725023416.11205-1-quic_wcheng@quicinc.com>
+ <20230725023416.11205-7-quic_wcheng@quicinc.com>
+From:   Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
+In-Reply-To: <20230725023416.11205-7-quic_wcheng@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 2, 2023 at 5:03=E2=80=AFPM Yong Wu <yong.wu@mediatek.com> wrote=
-:
->
-> MT8188 have 3 IOMMU HWs. 2 IOMMU HW is for multimedia, and 1 IOMMU HW
-> is for infra-master, like PCIe.
->
-> About the 2 MM IOMMU HW, the connection could be something like this:
->
->         IOMMU(VDO)          IOMMU(VPP)
->            |                   |
->       SMI_COMMON(VDO)      SMI_COMMON(VPP)
->       ---------------     ----------------
->       |      |   ...      |      |     ...
->     larb0 larb2  ...    larb1 larb3    ...
->
-> INFRA IOMMU does not have SMI, the master connects to IOMMU directly.
->
-> Although multiple banks supported in MT8188, we only use one of them,
-> which means PCIe is put in bank0 of INFRA IOMMU.
->
-> So we have two pgtable for MT8188, specifically, these two MM IOMMU HW
-> share a pgtable while INFRA IOMMU HW use a independent pgtable.
->
-> Another change is that we add some SMC command for INFRA master to
-> enable INFRA IOMMU in ATF considering security concerns.
->
-> We also adjust the flow of mtk_iommu_config to reduce indention.
 
-A friendly ping - this series was reviewed, but I'm not sure if it's
-still on the radar today.
-This can be cleanly applied on top of next-20230725.
+> +/**
+> + * struct snd_soc_usb
+> + * @list - list head for SND SOC struct list
+> + * @dev - USB backend device reference
+> + * @component - reference to DAPM component
 
-To give more confidence, I also tested the basic multimedia and infra
-functionalities on my MT8188 with this series, so
+ASoC component, not DAPM.
 
-Tested-by: Fei Shao <fshao@chromium.org>
+> + * @connection_status_cb - callback to notify connection events
+> + * @priv_data - driver data
+> + **/
+> +struct snd_soc_usb {
+> +	struct list_head list;
+> +	struct device *dev;
+> +	struct snd_soc_component *component;
+> +	int (*connection_status_cb)(struct snd_soc_usb *usb, int card_idx,
+> +				int connected);
 
-to the entire v12 series.
+It's not clear what 'connected' really refers to, is this a boolean
+really or is this a "connection_event?
 
-Regards,
-Fei
+
+> +	void *priv_data;
+> +};
+> +
+> +int snd_soc_usb_connect(struct device *usbdev, int card_idx);
+> +int snd_soc_usb_disconnect(struct device *usbdev);
+> +void snd_soc_usb_set_priv_data(struct device *dev, void *priv);
+
+this function is not part of this patch, is this intentional to have a
+get but not a set?
+
+> +void *snd_soc_usb_get_priv_data(struct device *usbdev);
+
+you are using 'usbdev' and 'dev' for the same type of parameters, why
+not align on one set of definition with a consistent naming.
+
+
+> +static struct snd_soc_usb *snd_soc_find_usb_ctx(struct device *dev)
+> +{
+> +	struct device_node *node;
+> +	struct snd_soc_usb *ctx = NULL;
+
+this init doesn't seem required?
+
+> +
+> +	node = snd_soc_find_phandle(dev);
+> +	if (IS_ERR(node))
+> +		return NULL;
+> +
+> +	mutex_lock(&ctx_mutex);
+> +	list_for_each_entry(ctx, &usb_ctx_list, list) {
+> +		if (ctx->dev->of_node == node) {
+> +			of_node_put(node);
+> +			mutex_unlock(&ctx_mutex);
+> +			return ctx;
+> +		}
+> +	}
+> +	of_node_put(node);
+> +	mutex_unlock(&ctx_mutex);
+> +
+> +	return NULL;
+> +}
+> +
+> +/**
+> + * snd_soc_usb_get_priv_data() - Retrieve private data stored
+> + * @dev: device reference
+> + *
+> + * Fetch the private data stored in the USB SND SOC structure.
+> + *
+> + */
+> +void *snd_soc_usb_get_priv_data(struct device *dev)
+> +{
+> +	struct snd_soc_usb *ctx;
+> +
+> +	ctx = snd_soc_find_usb_ctx(dev);
+
+so in this function you walk through the usb_ctx_list with locking...
+
+> +	if (!ctx) {
+> +		/* Check if backend device */
+> +		list_for_each_entry(ctx, &usb_ctx_list, list) {
+
+... and here you walk again through the list without locking.
+
+Something's weird here, if this was intentional you need to add comments.
+
+> +			if (dev->of_node == ctx->dev->of_node)
+> +				goto out;
+> +		}
+> +		ctx = NULL;
+> +	}
+> +out:
+> +	return ctx ? ctx->priv_data : NULL;
+> +}
+> +EXPORT_SYMBOL_GPL(snd_soc_usb_get_priv_data);
+> +
+> +/**
+> + * snd_soc_usb_add_port() - Add a USB backend port
+> + * @dev: USB backend device
+> + * @priv: private data
+> + * @connection_cb: connection status callback
+> + *
+> + * Register a USB backend device to the SND USB SOC framework.  Memory is
+> + * allocated as part of the USB backend device.
+> + *
+> + */
+> +struct snd_soc_usb *snd_soc_usb_add_port(struct device *dev, void *priv,
+> +			int (*connection_cb)(struct snd_soc_usb *usb, int card_idx,
+> +			int connected))
+> +{
+> +	struct snd_soc_usb *usb;
+> +
+> +	usb = devm_kzalloc(dev, sizeof(*usb), GFP_KERNEL);
+> +	if (!usb)
+> +		return ERR_PTR(-ENOMEM);
+> +
+> +	usb->connection_status_cb = connection_cb;
+> +	usb->dev = dev;
+> +	usb->priv_data = priv;
+
+back to my comment above, you don't seem to need the set_priv_data() ?
+
+> +
+> +	mutex_lock(&ctx_mutex);
+> +	list_add_tail(&usb->list, &usb_ctx_list);
+> +	mutex_unlock(&ctx_mutex);
+> +
+> +	return usb;
+> +}
+> +EXPORT_SYMBOL_GPL(snd_soc_usb_add_port);
+
+> +/**
+> + * snd_soc_usb_connect() - Notification of USB device connection
+> + * @usbdev: USB bus device
+> + * @card_idx: USB SND card instance
+> + *
+> + * Notify of a new USB SND device connection.  The card_idx can be used to
+> + * handle how the USB backend selects, which device to enable offloading on.
+
+"USB backend" is confusing, not sure if this is the same concept as DPCM
+"backend" or something else. Please try to avoid overloaded terms.
+
+> + *
+> + */
+> +int snd_soc_usb_connect(struct device *usbdev, int card_idx)
+> +{
+> +	struct snd_soc_usb *ctx;
+> +
+> +	if (!usbdev)
+> +		return -ENODEV;
+> +
+> +	ctx = snd_soc_find_usb_ctx(usbdev);
+> +	if (!ctx)
+> +		return -ENODEV;
+> +
+> +	if (ctx->connection_status_cb)
+> +		ctx->connection_status_cb(ctx, card_idx, 1);
+
+so either the 'connected' value is 1...
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL_GPL(snd_soc_usb_connect);
+> +
+> +/**
+> + * snd_soc_usb_disconnect() - Notification of USB device disconnection
+> + * @usbdev: USB bus device
+> + *
+> + * Notify of a new USB SND device disconnection to the USB backend.
+> + *
+> + */
+> +int snd_soc_usb_disconnect(struct device *usbdev)
+> +{
+> +	struct snd_soc_usb *ctx;
+> +
+> +	if (!usbdev)
+> +		return -ENODEV;
+> +
+> +	ctx = snd_soc_find_usb_ctx(usbdev);
+> +	if (!ctx)
+> +		return -ENODEV;
+> +
+> +	if (ctx->connection_status_cb)
+> +		ctx->connection_status_cb(ctx, -1, 0);
+
+...and here it's zero.
+
+should this 'connected' parameter be a boolean then with true/false
+value, or do you want to add enums/defines for more flexibility down the
+road?
+
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL_GPL(snd_soc_usb_disconnect);
