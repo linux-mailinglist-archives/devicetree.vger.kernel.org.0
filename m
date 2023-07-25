@@ -2,89 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7BA63760489
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 03:01:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BDD067604E5
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 03:47:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231395AbjGYBBE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jul 2023 21:01:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43456 "EHLO
+        id S229631AbjGYBrD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jul 2023 21:47:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52288 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231341AbjGYBBB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 21:01:01 -0400
-Received: from mail-ot1-x335.google.com (mail-ot1-x335.google.com [IPv6:2607:f8b0:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 009E91720
-        for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 18:00:50 -0700 (PDT)
-Received: by mail-ot1-x335.google.com with SMTP id 46e09a7af769-6b9c434fe75so4146771a34.0
-        for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 18:00:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1690246850; x=1690851650;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=opvEmLJsr/QQbcAlYd7WXi8TiNCEs7ncHrT0RHmS9/8=;
-        b=QGoe5U/cP6/JbKqJ2W5R5HXMdXWcI91myJmhZF1IcmmVVSMcPgkKaeSWv5OJfkEccC
-         yp/s4zDNIarGcJiUYx5+ZTwZ5UIX4G3IcMzxlJs4feySRwTBUTjqTYA27/yaDEy3V8CY
-         abf2t/PC6WmZY90evepLw57upZ9kjMa3Jg5S1Ff9GpkANmpR5hoJiBHAbanMqK3mmr6O
-         5NxG83iWzYRgIzALFAGGsLa+gMzAbKY2MkB3OGhyZMD0UZfQMXhv3Pm+YmCIAIVbDcbE
-         BPMqRONQbROtaXI3POURwQI+4nj0zo3tX/P3mS967ApjQYEjlNoRkIpTgT7WTm+kWLez
-         xaxg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690246850; x=1690851650;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=opvEmLJsr/QQbcAlYd7WXi8TiNCEs7ncHrT0RHmS9/8=;
-        b=lrs1ThefYvre2D6pH0qKfsWCDcbMU1fH1rV82XWbz0lpER1yKeW2FRcZTMOvK6TdBx
-         AtSk8+Z5g9Vy/E9e49jsWMqEcrwtIIa0UbMBu9dB2wql23p2xvMV3vv2nVsbGcbXZSyD
-         vVYTf/WM9Pv97tgzB6OxJ0540MOqdeQA4EzXrvXP7NARp+3iMhpNlD2vg6mN/6JJZ47I
-         PvXjOBvWaK5vjCY0V7SdTvDW1HiN/Xk9zCOwFOPfGgxRJkOEY26EAMtNx4lQPFQT7seZ
-         KeYc3PdryncgSMVcCmIzqKYcAGSE5vG3kWN9WwGJWrGuifr1kzIkLXq5LRLVzp4Z3ZsS
-         Phbg==
-X-Gm-Message-State: ABy/qLYytQzd+CpJs6L34+caaiEkiPirU4TEGXDvcROlM0PlVjD5TofY
-        7Ku72/o0tfwP2G1pzOU/cveqVg==
-X-Google-Smtp-Source: APBJJlFDeeobTYnzUvjxmtkYRP6WYbZgY+v3A6Ooy7WVq5IX/yf+RwYi1xQ5rYaKoTw+cyA52VX00Q==
-X-Received: by 2002:a05:6358:921c:b0:133:84c:183b with SMTP id d28-20020a056358921c00b00133084c183bmr6561984rwb.3.1690246850219;
-        Mon, 24 Jul 2023 18:00:50 -0700 (PDT)
-Received: from [127.0.1.1] ([2601:1c2:1800:f680:2cbf:9196:a906:e222])
-        by smtp.gmail.com with ESMTPSA id h18-20020a62b412000000b00682a75a50e3sm8576900pfn.17.2023.07.24.18.00.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 24 Jul 2023 18:00:49 -0700 (PDT)
-From:   Drew Fustini <dfustini@baylibre.com>
-Date:   Mon, 24 Jul 2023 17:59:18 -0700
-Subject: [PATCH RFC 4/4] mmc: sdhci-of-dwcmshc: Add support for T-Head
- TH1520
+        with ESMTP id S229495AbjGYBrC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 21:47:02 -0400
+Received: from AUS01-SY4-obe.outbound.protection.outlook.com (mail-sy4aus01olkn2147.outbound.protection.outlook.com [40.92.62.147])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F97610D9;
+        Mon, 24 Jul 2023 18:47:00 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=WklyFjVTEGc7Nb8pWTLwNaH6dzqNI1E7uue7BTLXitpkqRPfwQKIOGo3U5Q/LGka0Zja6xD3fx0P/WepxZATT++fk4Nh/7KX2mD1XMayOP9vKAw5CKNenSOkUXCZ0sasS4Y7nhWh3J/jDPUsX9TN3KHOk8sFdq6ODS/cnAgwqut+jKzlAS2T4LT3Ybk3Dz+K05IkWCb8DIzCm8y19rg+aSlbDJSdADmeUC79zfxlnYB/m1BYCxsLlgVIaCznqXVpRzoLqaWSudASrQRS2hRJncJMfR1EpMP/iKqiOiIKMzBxfuMlMgVCz7WDRM927wnS1QN4OVkccVv6Os6T8c0yzw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=OHi2oNTvgR87Cmq8hOo0dOpGwYj2sO/yIGFVJmhqCMk=;
+ b=Mqt5SY1EIZAAsf8zFEQSulrB/6aFCIb3jolfH4MzCg4ibYIl2M3w/Eetx8e8IYEXO396Qgj47l9+SNo1oyizdL4BUnrsa2uAOkpEW4qqGLHblkVuYlpKryLKSUuLtQW2cXizs75hPIBweQFh6WES7hBfaXejU8tzeHQ3a/kspFq5OS8bN7XwYbr29QVpe9owTzza35wRD+AXyvaP33x3UygG8XgzFVdbpT/fHNAvfdT21D51ba6YWqIHyFc7rwCSVuLAdJ1+uwuttUUnhEucYex3zNkKTbNJteoMNJV+KO6B4W51QPTImHgEOvdryFXdCceYB/aWWVl0ZKPx+72a6A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=OHi2oNTvgR87Cmq8hOo0dOpGwYj2sO/yIGFVJmhqCMk=;
+ b=SkYF79h9xrsRPfiU5Oa0/q2U+oT46m8O+xkZLpROXaltJVTczjIcV/5qZTvtXQpeheyF7KcEqZqkWkXt+qKZ6+n6aMlXGkapnJuSq5bPT4TmEhMXC8mqfF8IwIBusjDuO5g1p5Hhu6EQtK2GympttS7fgwTZ5d7paYd2IOH3OF9Rc69LHAgEAw/sgpjSriei9re025RoRFtqpLD5DsmM1o/ucCILlxn9j00HnHBqMSxPFsCoJaQSZcPNHoHSJx+ZXaxESu8q4vVd6/CvHgfzIlIfkEiD7Gy6xQ6dYNPJc0Br1E3XEfNOxdFJ3w6CAONAzkaJ55WGnuFDQq/6ektwYA==
+Received: from SY7P282MB3787.AUSP282.PROD.OUTLOOK.COM (2603:10c6:10:1e3::6) by
+ SY4P282MB2250.AUSP282.PROD.OUTLOOK.COM (2603:10c6:10:f3::9) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6609.29; Tue, 25 Jul 2023 01:46:54 +0000
+Received: from SY7P282MB3787.AUSP282.PROD.OUTLOOK.COM
+ ([fe80::67bc:436f:32c5:3cd9]) by SY7P282MB3787.AUSP282.PROD.OUTLOOK.COM
+ ([fe80::67bc:436f:32c5:3cd9%3]) with mapi id 15.20.6609.032; Tue, 25 Jul 2023
+ 01:46:53 +0000
+From:   qaz6750 <qaz6750@outlook.com>
+To:     konrad.dybcio@linaro.org, agross@kernel.org, andersson@kernel.org
+Cc:     conor+dt@kernel.org, devicetree@vger.kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, krzysztof.kozlowski@linaro.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: sm8150: Fix the I2C7 interrupt
+Date:   Tue, 25 Jul 2023 09:46:39 +0800
+Message-ID: <SY7P282MB37872A5CB962A92934C83125B203A@SY7P282MB3787.AUSP282.PROD.OUTLOOK.COM>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <aa3c95f5-69a8-678a-307a-25bd0ae51a94@linaro.org>
+References: <aa3c95f5-69a8-678a-307a-25bd0ae51a94@linaro.org>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
+X-TMN:  [Y6Egq3QFmGcXSJVRR++WZWDouoB1d4jP]
+X-ClientProxiedBy: SI2PR01CA0045.apcprd01.prod.exchangelabs.com
+ (2603:1096:4:193::19) To SY7P282MB3787.AUSP282.PROD.OUTLOOK.COM
+ (2603:10c6:10:1e3::6)
+X-Microsoft-Original-Message-ID: <20230725014639.786-1-qaz6750@outlook.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230724-th1520-emmc-v1-4-cca1b2533da2@baylibre.com>
-References: <20230724-th1520-emmc-v1-0-cca1b2533da2@baylibre.com>
-In-Reply-To: <20230724-th1520-emmc-v1-0-cca1b2533da2@baylibre.com>
-To:     Jisheng Zhang <jszhang@kernel.org>, Guo Ren <guoren@kernel.org>,
-        Fu Wei <wefu@redhat.com>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Conor Dooley <conor@kernel.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>
-Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
-        Robert Nelson <robertcnelson@beagleboard.org>,
-        Jason Kridner <jkridner@beagleboard.org>,
-        Drew Fustini <dfustini@baylibre.com>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1690246840; l=3367;
- i=dfustini@baylibre.com; s=20230430; h=from:subject:message-id;
- bh=WInr0KFI/7RNGf1vlxj94FbnpVdO/HALVPPXj1tclFA=;
- b=CBoelk9cIZQkR6tFrZ3ZtNCai9EU670gQqx42gBZSNRwfdFkWvgCd5AOai2jGe9yXUz2Wgg+S
- 2UO2u/9flbcAZY3uJy/ldFwYzG2mR59LbFDFIOO1M0zIiBQxWyaI9oW
-X-Developer-Key: i=dfustini@baylibre.com; a=ed25519;
- pk=p3GKE9XFmjhwAayAHG4U108yag7V8xQVd4zJLdW0g7g=
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SY7P282MB3787:EE_|SY4P282MB2250:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2746566a-774b-4572-60bb-08db8cb10582
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: bkr89dPhGnC9WrEiXLCj9+CCns49l9LsviEPVg+yiNKnSq6jy51kUmbtJdQIyk6a6HU3LeXIEl563jnhuyhA2D2z3qm3Sl7rUrLwMPibomIrCMZw0OBtBKny/5XO+A+Z0FLbpBgZq/ExZMHCIpzhxEj77jihJOU1ZsklYIOVfjeMt48WUjExc5N8/cKZCWjp7LFqiXT3qVtB62ODi8QxK37ZCPLOtA4SkwIXyvEKhbU7wEVmkifZaZi10aDGlFmj9wXpltMv+gEP9lzPo2PiyEmGID4flwvqODIM8PgHteRrARvHi8JpJGq3SNQCUTHc54Vv7QTVspdSmUDPXl14jR9Fyjlie8SJz1jTP2lEnQSMP5q77hRmZkOtHVDGd+cgn0W75YGLhhMpvCD/qtizx+JQhJzjpR76LFgRpoDYcYeJkgYHclYBnRM3BKKYIjpNE9bIFWrLGyL125UIVzBROV+e9oUXf+u5GbqtIBIRV+ilIbP2B5TASsSOEiJvVSNSe3qTFzywyY9vwuoI/fn6JLXSH1Zx+IBASbXCjGT1Vqw13iKZt0phMXaFaFz4St5O
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?bCFpspBqpjTPdM5CNGmoNAIWHnCwVliESgWn5wZZbBz0Ql4OVq6TsfQETouv?=
+ =?us-ascii?Q?EJXLiTP2F0trqS2+ozSNsLGINNrwOdRdybHEmQDZib1UKMS4vRVHNidJHkTc?=
+ =?us-ascii?Q?Rl79zAaIlme7m+TydRoA4nJddYSMwuhcBdFy3/q8yNf6eWwtlGdHxGtbt3IR?=
+ =?us-ascii?Q?45OXhUjWejVWHn1K5Z28pTWfvUtE1LGMY5NnMOspYcdv0Yz1mEy2i5+1snGP?=
+ =?us-ascii?Q?WUhCKLHojINVoyUVZGGN+Nz7xud+ywKxu6cPGgCIGtEL3OW2WwuOj3VceyH5?=
+ =?us-ascii?Q?HwU+7pAv4gXPuZQXu6n7tr9+jCjixWjt+cn6MI06odLndvxC4X3uVDsbJJU6?=
+ =?us-ascii?Q?LIAYZ+2bWpF6yxfXxhvcefv5JHzVOGFl/kpEz22j7/bVA47ZJKpAMR9CLeUl?=
+ =?us-ascii?Q?zZiWhOfaNqxHYZWvS37iAncz5L0ninnToL4fwpFw3png0VsmWflQMm8Kxh8c?=
+ =?us-ascii?Q?YcGNfL29R9431/gEM/D0O1WfKNuv3bsCGZjGOBxm479WgpHZ65HUmvLrmDC3?=
+ =?us-ascii?Q?UYmFzcD78Xjjw1daZtkjvFoWXIHwNEsc+FlsKhgQrECcaNQEqe8FwbcSZ1W0?=
+ =?us-ascii?Q?e04zYmKXlKHYl53dfsZ5yHLVK4O2I+ltT0LfngWebPZb7GzYgX0X5Q2lQXYv?=
+ =?us-ascii?Q?S/JvK7OaBFFI5iUe0bXBbJQgxenG3eHxFtWWoNCTWlq/5rwg6lAnI7+DzS0W?=
+ =?us-ascii?Q?AQ3e5X8Y4kht1Y089rG6ebfV+mXhH+hljxossLIWlkGd7HjCJ6CacThEocma?=
+ =?us-ascii?Q?aPVc08jq0/u9iaxrpIh5De+aZAc9sak/pnV6QBl7Aqlla30PDZ5JWN/lyyxw?=
+ =?us-ascii?Q?EJsVmuAldvhqjuxf6CF9nqhCn9p9ITTs8Zh7UzX964AbxLMMoaxe1xVMtGuB?=
+ =?us-ascii?Q?AJHYoqhSilchPHJQR7mNV+D5BjDJCi/Whmv7/B9wTCeAsZrzwLtFZEHMJili?=
+ =?us-ascii?Q?THirXTWxz3h+OU8rK1JbI6rkdHpLZwyYKLaKtt7QymTrIzLKtl/uzYp4pg07?=
+ =?us-ascii?Q?2yrO9lmyU01WpCmUNQUJ5B9SXbX1qhrr+1EB9ajSAaWpr6inDaTXBGNGxqgL?=
+ =?us-ascii?Q?1KN1xI+0NPLAuIczJz/Tl2+nD/WftaeGccgaQbmy9csZ6NNDqpxQs/3/gF3q?=
+ =?us-ascii?Q?CWGdyZqMPGZjaBo0F5unGWrl8PDlQZid3dwW2VpsVi3tX/jtue7nW4D8lgCW?=
+ =?us-ascii?Q?OEzlMRZS3purqmcW0uvPry0+m9/nv1kE1QwKxQ=3D=3D?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2746566a-774b-4572-60bb-08db8cb10582
+X-MS-Exchange-CrossTenant-AuthSource: SY7P282MB3787.AUSP282.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jul 2023 01:46:53.9203
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SY4P282MB2250
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -92,103 +105,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add basic support for the T-Head TH1520 SoC mmc controller. The new
-compatible "thead,th1520-dwcmshc" enables basic support by:
-
- - Enabling v4 mode to properly communicate with the mmc device
- - Setting quirk to disable ADMA
- - Setting flag to disable SDMA and force PIO mode
- - Turing .reset op into a no-op as the driver does not yet know how to
-   configure the phy. Rely on the vendor u-boot to have configured the
-   phy and do not reset the controller in Linux.
-
-Signed-off-by: Drew Fustini <dfustini@baylibre.com>
----
- drivers/mmc/host/sdhci-of-dwcmshc.c | 42 +++++++++++++++++++++++++++++++++++++
- 1 file changed, 42 insertions(+)
-
-diff --git a/drivers/mmc/host/sdhci-of-dwcmshc.c b/drivers/mmc/host/sdhci-of-dwcmshc.c
-index e68cd87998c8..8573aff25a81 100644
---- a/drivers/mmc/host/sdhci-of-dwcmshc.c
-+++ b/drivers/mmc/host/sdhci-of-dwcmshc.c
-@@ -337,6 +337,14 @@ static void rk35xx_sdhci_reset(struct sdhci_host *host, u8 mask)
- 	sdhci_reset(host, mask);
- }
- 
-+static void th1520_sdhci_reset(struct sdhci_host *host, u8 mask)
-+{
-+	/*
-+	 * MMC controller and phy is configured by vendor u-boot so
-+	 * take the simplistic approach of not doing reset in Linux.
-+	 */
-+}
-+
- static const struct sdhci_ops sdhci_dwcmshc_ops = {
- 	.set_clock		= sdhci_set_clock,
- 	.set_bus_width		= sdhci_set_bus_width,
-@@ -355,6 +363,15 @@ static const struct sdhci_ops sdhci_dwcmshc_rk35xx_ops = {
- 	.adma_write_desc	= dwcmshc_adma_write_desc,
- };
- 
-+static const struct sdhci_ops sdhci_dwcmshc_th1520_ops = {
-+	.set_clock		= sdhci_set_clock,
-+	.set_bus_width		= sdhci_set_bus_width,
-+	.set_uhs_signaling	= dwcmshc_set_uhs_signaling,
-+	.get_max_clock		= dwcmshc_get_max_clock,
-+	.reset			= th1520_sdhci_reset,
-+	.adma_write_desc	= dwcmshc_adma_write_desc,
-+};
-+
- static const struct sdhci_pltfm_data sdhci_dwcmshc_pdata = {
- 	.ops = &sdhci_dwcmshc_ops,
- 	.quirks = SDHCI_QUIRK_CAP_CLOCK_BASE_BROKEN,
-@@ -378,6 +395,13 @@ static const struct sdhci_pltfm_data sdhci_dwcmshc_rk35xx_pdata = {
- 		   SDHCI_QUIRK2_CLOCK_DIV_ZERO_BROKEN,
- };
- 
-+static const struct sdhci_pltfm_data sdhci_dwcmshc_th1520_pdata = {
-+	.ops = &sdhci_dwcmshc_th1520_ops,
-+	.quirks = SDHCI_QUIRK_CAP_CLOCK_BASE_BROKEN | SDHCI_QUIRK_BROKEN_DMA |
-+		  SDHCI_QUIRK_BROKEN_ADMA,
-+	.quirks2 = SDHCI_QUIRK2_PRESET_VALUE_BROKEN,
-+};
-+
- static int dwcmshc_rk35xx_init(struct sdhci_host *host, struct dwcmshc_priv *dwc_priv)
- {
- 	int err;
-@@ -434,6 +458,10 @@ static void dwcmshc_rk35xx_postinit(struct sdhci_host *host, struct dwcmshc_priv
- }
- 
- static const struct of_device_id sdhci_dwcmshc_dt_ids[] = {
-+	{
-+		.compatible = "thead,th1520-dwcmshc",
-+		.data = &sdhci_dwcmshc_th1520_pdata,
-+	},
- 	{
- 		.compatible = "rockchip,rk3588-dwcmshc",
- 		.data = &sdhci_dwcmshc_rk35xx_pdata,
-@@ -546,6 +574,20 @@ static int dwcmshc_probe(struct platform_device *pdev)
- 		sdhci_enable_v4_mode(host);
- #endif
- 
-+	if (pltfm_data == &sdhci_dwcmshc_th1520_pdata) {
-+		/*
-+		 * The controller needs v4 mode enabled to properly
-+		 * communicate with the mmc device.
-+		 */
-+		sdhci_enable_v4_mode(host);
-+
-+		/*
-+		 * Set flag so the SDHCI host core will disable DMA
-+		 * and use PIO mode.
-+		 */
-+		host->flags &= ~SDHCI_USE_SDMA;
-+	}
-+
- 	host->mmc->caps |= MMC_CAP_WAIT_WHILE_BUSY;
- 
- 	err = sdhci_setup_host(host);
-
--- 
-2.34.1
-
+On 25.07.2023 9:44, qaz6750 wrote:=0D
+>On 24.07.2023 18:52, Krzysztof Kozlowski wrote:=0D
+>> On 24/07/2023 18:29, Konrad Dybcio wrote:=0D
+>>> On 24.07.2023 18:21, qaz6750 wrote:=0D
+>>>> I2C6 and I2C7 use the same interrupts, which is incorrect.=0D
+>>>> In the downstream kernel, I2C7 has interrupts of 608 instead of 607.=0D
+>>>>=0D
+>>>> Signed-off-by: qaz6750 <qaz6750@outlook.com>=0D
+>>>> ---=0D
+>>> Fixes: 81bee6953b58 ("arm64: dts: qcom: sm8150: add i2c nodes")=0D
+>>> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>=0D
+>> =0D
+>> But we also need full name or known identity, not anonymous contribution=
+.=0D
+>Ack, I overlooked that.=0D
+=0D
+Is it to modify my "Signed-off-by"? I'm sorry I didn't use full name accord=
+ing to the regulations.=0D
+I think my full name is zeyan li=0D
+=0D
+=0D
+Thanks,=0D
+qaz6750=
