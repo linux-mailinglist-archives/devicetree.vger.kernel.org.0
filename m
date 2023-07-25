@@ -2,57 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CC0B976032F
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 01:33:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1FE0776039B
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 02:11:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230144AbjGXXdB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jul 2023 19:33:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43058 "EHLO
+        id S229499AbjGYALG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jul 2023 20:11:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54236 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229459AbjGXXdB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 19:33:01 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D46E10F0;
-        Mon, 24 Jul 2023 16:33:00 -0700 (PDT)
+        with ESMTP id S229470AbjGYALG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 20:11:06 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD2B5171E;
+        Mon, 24 Jul 2023 17:11:04 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id CF66661463;
-        Mon, 24 Jul 2023 23:32:59 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 385C8C433C8;
-        Mon, 24 Jul 2023 23:32:58 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 4532961467;
+        Tue, 25 Jul 2023 00:11:04 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ED8DCC433C8;
+        Tue, 25 Jul 2023 00:11:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690241579;
-        bh=e9QSEh6b4uhYqAZa6VEZ0jeCfnlnxgRWV+zrxCBm1/Q=;
+        s=k20201202; t=1690243863;
+        bh=0f2ttxObuYH3kDd/r78eCuJHpxg65FCD42MXIUNZc1Q=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Xs/NWONSkVisnkPTtB8iJ4sBB5kfU8K/L1iGGn2wWk90Jkn5R570A9L4HnOLqykz1
-         2dYSD18rByxVe8fb/x8alwMMNP5h8YvxNE8e/BsdCmnal0+pDH3bELel2iNDPZaMI7
-         QBNkMr3+4f3aYaN2FkM0coNcxbtp8DHmocyyyFm+UPPYTXwqi9BEbRw/Kz9462IdOU
-         3cdqJmLj0WMO0mpAk1lTUuo8bOEgDjypl77Xy8PDCeICmJCRqhu1NZJFkV/HhtJvUa
-         m9eF3ezAqh/T0/duXq4f4jU0KUR2wbvn8uWf0K49uu0nEeIzDFl0rP/jkuKLoTqLq5
-         ZDoM1R6H1ha7Q==
-Received: (nullmailer pid 1125486 invoked by uid 1000);
-        Mon, 24 Jul 2023 23:32:56 -0000
-Date:   Mon, 24 Jul 2023 17:32:56 -0600
+        b=ZG6+w9Zc367Oayte8zOqmiLKktK09ZHAtOC3feJuhjcl1WBJmurVXc/GJ+MEoYAGC
+         RC2InksF1As6MvGjkbS3Spks37kC/0ed7n6CTFNzvAjzVDZrChyXUZqiO6KWhW9IbE
+         +lICHsSpoKxezQOxDnqsfd1IZ+Q53aW4DEKnuyaITbCAQRQEuWhbFVRl9ACyezHEvk
+         oFO7Cf8AmR81/rNbgG6LMwUM/JgTTGwLCH/v43SyOPdzaRw/IBRaeK+6j2RG6bCRra
+         Tm70Sv6PN5IkVaXcU3rcfswJ0DtP4oP2gGApgS9yBt6rlFdD0Jl7clqCJ7Gejmeb1d
+         Xl8+ojaRjLCmA==
+Received: (nullmailer pid 1209990 invoked by uid 1000);
+        Tue, 25 Jul 2023 00:11:01 -0000
+Date:   Mon, 24 Jul 2023 18:11:01 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Rik van Riel <riel@surriel.com>
-Cc:     linux-kernel@vger.kernel.org, kernel-team@meta.com,
-        Mike Rapoport <rppt@kernel.org>, devicetree@vger.kernel.org,
-        x86@kernel.org, Juergen Gross <jgross@suse.com>,
-        Dave Hansen <dave.hansen@linux.intel.com>
-Subject: Re: [PATCH] mm,ima,kexec: use memblock_free_late from
- ima_free_kexec_buffer
-Message-ID: <20230724233256.GA1124187-robh@kernel.org>
-References: <20230720101431.71640c8a@imladris.surriel.com>
- <20230721193815.GA1679711-robh@kernel.org>
- <74c0d1b900d8f518bc152478682a353c29e0faa3.camel@surriel.com>
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Jon Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org
+Subject: Re: [PATCH v2 5/7] dt-bindings: arm: tegra: pmc: Restructure pad
+ configuration node schema
+Message-ID: <20230725001101.GA1125953-robh@kernel.org>
+References: <20230721135759.2994770-1-thierry.reding@gmail.com>
+ <20230721135759.2994770-5-thierry.reding@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <74c0d1b900d8f518bc152478682a353c29e0faa3.camel@surriel.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+In-Reply-To: <20230721135759.2994770-5-thierry.reding@gmail.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -61,35 +60,234 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 21, 2023 at 08:40:41PM -0400, Rik van Riel wrote:
-> On Fri, 2023-07-21 at 13:38 -0600, Rob Herring wrote:
-> > On Thu, Jul 20, 2023 at 10:14:31AM -0400, Rik van Riel wrote:
-> > > The code calling ima_free_kexec_buffer runs long after the memblock
-> > > allocator has already been torn down, potentially resulting in a
-> > > use
-> > > after free in memblock_isolate_range.
-> > > 
-> > > With KASAN or KFENCE, this use after free will result in a BUG
-> > > from the idle task, and a subsequent kernel panic.
-> > > 
-> > > Switch ima_free_kexec_buffer over to memblock_free_late to avoid
-> > > that issue.
-> > > 
-> > > Fixes: fee3ff99bc67 ("powerpc: Move arch independent ima kexec
-> > > functions to drivers/of/kexec.c")
-> > 
-> > Fixes: b69a2afd5afc ("x86/kexec: Carry forward IMA measurement log on
-> > kexec")
-> > 
-> Thank you for digging further back in the history of that code.
+On Fri, Jul 21, 2023 at 03:57:57PM +0200, Thierry Reding wrote:
+> From: Thierry Reding <treding@nvidia.com>
 > 
-> > Acked-by: Rob Herring <robh@kernel.org>
-> > 
-> > (I'm assuming someone else is taking this)
+> The pad configuration node schema in its current form can accidentally
+> match other properties as well. Restructure the schema to better match
+> how the device trees are using these.
 > 
-> I hope so, but I don't know who...
+> Signed-off-by: Thierry Reding <treding@nvidia.com>
+> ---
+> Changes in v2:
+> - highlight quirks working around possible core schema
+> - use phandle: true instead of fully redefining it
+> - drop unneeded status property definition
+> 
+>  .../arm/tegra/nvidia,tegra20-pmc.yaml         | 184 ++++++++++++------
+>  1 file changed, 122 insertions(+), 62 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra20-pmc.yaml b/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra20-pmc.yaml
+> index a336a75d8b82..0cbc16ec4267 100644
+> --- a/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra20-pmc.yaml
+> +++ b/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra20-pmc.yaml
+> @@ -244,69 +244,79 @@ properties:
+>            - resets
+>            - '#power-domain-cells'
+>  
+> -patternProperties:
+> -  "^[a-f0-9]+-[a-f0-9]+$":
+> +  pinmux:
+>      type: object
+> -    description:
+> -      This is a Pad configuration node. On Tegra SOCs a pad is a set of
+> -      pins which are configured as a group. The pin grouping is a fixed
+> -      attribute of the hardware. The PMC can be used to set pad power state
+> -      and signaling voltage. A pad can be either in active or power down mode.
+> -      The support for power state and signaling voltage configuration varies
+> -      depending on the pad in question. 3.3V and 1.8V signaling voltages
+> -      are supported on pins where software controllable signaling voltage
+> -      switching is available.
+> -
+> -      The pad configuration state nodes are placed under the pmc node and they
+> -      are referred to by the pinctrl client properties. For more information
+> -      see Documentation/devicetree/bindings/pinctrl/pinctrl-bindings.txt.
+> -      The pad name should be used as the value of the pins property in pin
+> -      configuration nodes.
+> -
+> -      The following pads are present on Tegra124 and Tegra132
+> -      audio, bb, cam, comp, csia, csb, cse, dsi, dsib, dsic, dsid, hdmi, hsic,
+> -      hv, lvds, mipi-bias, nand, pex-bias, pex-clk1, pex-clk2, pex-cntrl,
+> -      sdmmc1, sdmmc3, sdmmc4, sys_ddc, uart, usb0, usb1, usb2, usb_bias.
+> -
+> -      The following pads are present on Tegra210
+> -      audio, audio-hv, cam, csia, csib, csic, csid, csie, csif, dbg,
+> -      debug-nonao, dmic, dp, dsi, dsib, dsic, dsid, emmc, emmc2, gpio, hdmi,
+> -      hsic, lvds, mipi-bias, pex-bias, pex-clk1, pex-clk2, pex-cntrl, sdmmc1,
+> -      sdmmc3, spi, spi-hv, uart, usb0, usb1, usb2, usb3, usb-bias.
+> -
+> -    properties:
+> -      pins:
+> -        $ref: /schemas/types.yaml#/definitions/string
+> -        description: Must contain name of the pad(s) to be configured.
+> -
+> -      low-power-enable:
+> -        $ref: /schemas/types.yaml#/definitions/flag
+> -        description: Configure the pad into power down mode.
+> -
+> -      low-power-disable:
+> -        $ref: /schemas/types.yaml#/definitions/flag
+> -        description: Configure the pad into active mode.
+> -
+> -      power-source:
+> -        $ref: /schemas/types.yaml#/definitions/uint32
+> -        description:
+> -          Must contain either TEGRA_IO_PAD_VOLTAGE_1V8 or
+> -          TEGRA_IO_PAD_VOLTAGE_3V3 to select between signaling voltages.
+> -          The values are defined in
+> -          include/dt-bindings/pinctrl/pinctrl-tegra-io-pad.h.
+> -          Power state can be configured on all Tegra124 and Tegra132
+> -          pads. None of the Tegra124 or Tegra132 pads support signaling
+> -          voltage switching.
+> -          All of the listed Tegra210 pads except pex-cntrl support power
+> -          state configuration. Signaling voltage switching is supported
+> -          on below Tegra210 pads.
+> -          audio, audio-hv, cam, dbg, dmic, gpio, pex-cntrl, sdmmc1,
+> -          sdmmc3, spi, spi-hv, and uart.
+> -
+> -    required:
+> -      - pins
+> -
+> -    additionalProperties: false
+> +    additionalProperties:
+> +      type: object
+> +      description: |
+> +        This is a pad configuration node. On Tegra SoCs a pad is a set of pins
+> +        which are configured as a group. The pin grouping is a fixed attribute
+> +        of the hardware. The PMC can be used to set pad power state and
+> +        signaling voltage. A pad can be either in active or power down mode.
+> +        The support for power state and signaling voltage configuration varies
+> +        depending on the pad in question. 3.3V and 1.8V signaling voltages are
+> +        supported on pins where software controllable signaling voltage
+> +        switching is available.
+> +
+> +        The pad configuration state nodes are placed under the pmc node and
+> +        they are referred to by the pinctrl client properties. For more
+> +        information see:
+> +
+> +          Documentation/devicetree/bindings/pinctrl/pinctrl-bindings.txt
+> +
+> +        The pad name should be used as the value of the pins property in pin
+> +        configuration nodes.
+> +
+> +        The following pads are present on Tegra124 and Tegra132:
+> +
+> +          audio, bb, cam, comp, csia, csb, cse, dsi, dsib, dsic, dsid, hdmi,
+> +          hsic, hv, lvds, mipi-bias, nand, pex-bias, pex-clk1, pex-clk2,
+> +          pex-cntrl, sdmmc1, sdmmc3, sdmmc4, sys_ddc, uart, usb0, usb1, usb2,
+> +          usb_bias
+> +
+> +        The following pads are present on Tegra210:
+> +
+> +          audio, audio-hv, cam, csia, csib, csic, csid, csie, csif, dbg,
+> +          debug-nonao, dmic, dp, dsi, dsib, dsic, dsid, emmc, emmc2, gpio,
+> +          hdmi, hsic, lvds, mipi-bias, pex-bias, pex-clk1, pex-clk2, pex-cntrl,
+> +          sdmmc1, sdmmc3, spi, spi-hv, uart, usb0, usb1, usb2, usb3, usb-bias
+> +      additionalProperties: false
+> +      properties:
+> +        pins:
+> +          $ref: /schemas/types.yaml#/definitions/string-array
+> +          description: Must contain name of the pad(s) to be configured.
+> +
+> +        low-power-enable:
+> +          $ref: /schemas/types.yaml#/definitions/flag
+> +          description: Configure the pad into power down mode.
+> +
+> +        low-power-disable:
+> +          $ref: /schemas/types.yaml#/definitions/flag
+> +          description: Configure the pad into active mode.
+> +
+> +        power-source:
+> +          $ref: /schemas/types.yaml#/definitions/uint32
+> +          description: |
+> +            Must contain either TEGRA_IO_PAD_VOLTAGE_1V8 or
+> +            TEGRA_IO_PAD_VOLTAGE_3V3 to select between signaling voltages. The
+> +            values are defined in:
+> +
+> +              include/dt-bindings/pinctrl/pinctrl-tegra-io-pad.h
+> +
+> +            Power state can be configured on all Tegra124 and Tegra132 pads.
+> +            None of the Tegra124 or Tegra132 pads support signaling voltage
+> +            switching. All of the listed Tegra210 pads except pex-cntrl support
+> +            power state configuration. Signaling voltage switching is supported
+> +            on the following Tegra210 pads:
+> +
+> +              audio, audio-hv, cam, dbg, dmic, gpio, pex-cntrl, sdmmc1, sdmmc3,
+> +              spi, spi-hv, uart
+> +
+> +        # XXX why is this needed?
 
-You could split this into 2 patches, then there's no doubt. And each 
-Fixes is clear.
+It shouldn't be and is a bug. I have a fix. Will test some more and 
+commit it tomorrow.
 
-Rob
+> +        phandle: true
+> +
+> +      required:
+> +        - pins
+>  
+>  required:
+>    - compatible
+> @@ -315,6 +325,56 @@ required:
+>    - clocks
+>    - '#clock-cells'
+>  
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: nvidia,tegra124-pmc
+> +    then:
+> +      properties:
+> +        pinmux:
+> +          # XXX shouldn't be needed, but the DT validator complains about
+> +          # "additionalProperties" if "properties" doesn't exist
+> +          properties:
+> +            status: true
+
+'type: object' should work here too. That may need the same fix as above 
+though.
+
+> +
+> +          additionalProperties:
+> +            type: object
+> +            properties:
+> +              pins:
+> +                items:
+> +                  enum: [ audio, bb, cam, comp, csia, csb, cse, dsi, dsib,
+> +                          dsic, dsid, hdmi, hsic, hv, lvds, mipi-bias, nand,
+> +                          pex-bias, pex-clk1, pex-clk2, pex-cntrl, sdmmc1,
+> +                          sdmmc3, sdmmc4, sys_ddc, uart, usb0, usb1, usb2,
+> +                          usb_bias ]
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: nvidia,tegra210-pmc
+> +    then:
+> +      properties:
+> +        pinmux:
+> +          # XXX shouldn't be needed, but the DT validator complains about
+> +          # "additionalProperties" if "properties" doesn't exist
+> +          properties:
+> +            status: true
+> +
+> +          additionalProperties:
+> +            type: object
+> +            properties:
+> +              pins:
+> +                items:
+> +                  enum: [ audio, audio-hv, cam, csia, csib, csic, csid, csie,
+> +                          csif, dbg, debug-nonao, dmic, dp, dsi, dsib, dsic,
+> +                          dsid, emmc, emmc2, gpio, hdmi, hsic, lvds, mipi-bias,
+> +                          pex-bias, pex-clk1, pex-clk2, pex-cntrl, sdmmc1,
+> +                          sdmmc3, spi, spi-hv, uart, usb0, usb1, usb2, usb3,
+> +                          usb-bias ]
+> +
+>  additionalProperties: false
+>  
+>  dependencies:
+> -- 
+> 2.41.0
+> 
