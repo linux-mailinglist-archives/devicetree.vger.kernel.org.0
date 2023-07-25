@@ -2,107 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 683AF761742
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 13:46:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B3C227617AB
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 13:52:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232142AbjGYLqW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jul 2023 07:46:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53840 "EHLO
+        id S231783AbjGYLwo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jul 2023 07:52:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59954 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232151AbjGYLqU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 07:46:20 -0400
-Received: from relay02.th.seeweb.it (relay02.th.seeweb.it [IPv6:2001:4b7a:2000:18::163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0631DF3
-        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 04:46:14 -0700 (PDT)
-Received: from SoMainline.org (94-211-6-86.cable.dynamic.v4.ziggo.nl [94.211.6.86])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        with ESMTP id S231249AbjGYLw2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 07:52:28 -0400
+Received: from box.trvn.ru (box.trvn.ru [194.87.146.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76E561BD8;
+        Tue, 25 Jul 2023 04:52:15 -0700 (PDT)
+Received: from authenticated-user (box.trvn.ru [194.87.146.52])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
         (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 0C0CC20231;
-        Tue, 25 Jul 2023 13:46:09 +0200 (CEST)
-Date:   Tue, 25 Jul 2023 13:46:06 +0200
-From:   Marijn Suijten <marijn.suijten@somainline.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        by box.trvn.ru (Postfix) with ESMTPSA id 8258D4040F;
+        Tue, 25 Jul 2023 16:52:07 +0500 (+05)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=trvn.ru; s=mail;
+        t=1690285929; bh=y1KchFe3Mtqdnwvhv317kiD4mwvGaKa6vxKUtwO5pSw=;
+        h=From:Subject:Date:To:Cc:From;
+        b=TYJSlxAVnw3hjR5KPjRv7cn6to4/OJ27KxSL1ZdU4JYmwSz8TLPKfv1ALBb4jUysl
+         fzvgY0aWZ86Os90vYaMDHnJ9Yw0a7hmQHtTj875RzumLSTw6Jy3YaHGe/V1E6IKgum
+         p5gaGwnKZIHQ+KG/QjSGKPFPutis0nrtUSCvgW1NEuU0tZG0GkEi912wpOpDDVZKG1
+         LRIpaSqV0/onyMJ2IYJ0pQ8RXJifTueOVUlYlrJ5K07hFFhdyQzpjQFTzJstDeKv4W
+         Kr0mHchQBs3v5VfjG/5UjqMyWOKYhNkpRnLj2Y9/SoBlJUqzyIeV8m8B9aKCQAc0+3
+         q0o6aUrRP546A==
+From:   Nikita Travkin <nikita@trvn.ru>
+Subject: [PATCH 0/3] Add display panels to gt5 devices
+Date:   Tue, 25 Jul 2023 16:52:00 +0500
+Message-Id: <20230725-gt5-panel-v1-0-7c787e33a614@trvn.ru>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAGC3v2QC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI2MDcyNT3fQSU92CxLzUHF0TEwtjc/OURPPE5EQloPqCotS0zAqwWdGxtbU
+ AR5MN+lsAAAA=
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: display: msm: sm6125-mdss: drop unneeded
- status from examples
-Message-ID: <5w2hvzmwzqm4ffopzewveaviebq2ig7awimeo6ipcehx5a43ae@mlwffkf2ctn5>
-References: <20230725101610.75122-1-krzysztof.kozlowski@linaro.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230725101610.75122-1-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Nikita Travkin <nikita@trvn.ru>,
+        Jasper Korten <jja2000@gmail.com>,
+        Siddharth Manthan <siddharth.manthan@gmail.com>
+X-Developer-Signature: v=1; a=openpgp-sha256; l=895; i=nikita@trvn.ru;
+ h=from:subject:message-id; bh=y1KchFe3Mtqdnwvhv317kiD4mwvGaKa6vxKUtwO5pSw=;
+ b=owEBbQKS/ZANAwAIAUMc7O4oGb91AcsmYgBkv7dj98hpQ9NXKfeX1bFKeSbYE10iDiyYLPm6D
+ +H9Tj2UC/KJAjMEAAEIAB0WIQTAhK9UUj+qg34uxUdDHOzuKBm/dQUCZL+3YwAKCRBDHOzuKBm/
+ dSj5D/9rpXki2KHyhpR0Z8OzTSYKYC1irSuMhGU9PHIPx/6/Sg9NIb1Jxbb9P/ambdHdGBxx2L0
+ 73hDtRONopuU3hxy7d1j5SOMwbLSVb9zS/5tAQzeAmhsVP5GxpEfaqg11cYQddB4uqBoXOooo3i
+ fIEi/0RNC+f6nh0a78vQX7FiQpx1PedV/xWgxYfGyxzq4/P1LVS4rhEPkmJQ1YjRcfnnsdfVuys
+ OQagzamqKRel+uqNovaH2Z/OwuQGMXcrydZhVUFT2cKl1Kiz9cwcM/dARNMqDHwXm2ew582+c26
+ qQvyruZGSFXe3CUsHfX1hIptOfyN/ozKpGWsR79BR0HmQj+djPvFrYqaJO2eJ6WVMEagmgyyE2k
+ 4+fqsCpEx6ijfnwO7QbybAdu4ivfuLCjffu1hkZ6vkWDRSE2037FsJntQhcMdi4EnZtR/PXkNy5
+ /I3VDsrOyYy1ZBkGDiSosBrUP369prYziroOpQsm/jviLGXEwOQ/mgaxirHP1aXfe08II3+aODY
+ HfCqiMKhmTeZvCHqstsmq4ybO9waelAHi7iWBPKV9JMaWF300SSNdNPU6yvygDkXpluI6U+szWS
+ bcTIfjROS1S/15vvNSiYScWv60sramZjVDELgSAywzpm0Xox/7CgW1FfA7rZ702+QgAOEaWkX56
+ YYZUbjMqaCeyLVA==
+X-Developer-Key: i=nikita@trvn.ru; a=openpgp;
+ fpr=C084AF54523FAA837E2EC547431CECEE2819BF75
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2023-07-25 12:16:10, Krzysztof Kozlowski wrote:
-> Example DTS should not have 'status' property.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  .../devicetree/bindings/display/msm/qcom,sm6125-mdss.yaml   | 6 ------
+This series adds display panels to Samsung Galaxy Tab A (2015) tablets.
 
-This is not needed: it has already been corrected in v3 and v4 of the
-respective series (among other changes) and the patches were only picked
-to a preliminary (draft) pull to get an overview of the outstanding work
-for this subsystem.  That branch happens to be included in regular -next
-releases though.
+Both gt58 and gt510 gain display support and backlight is controlled
+with the DCS commands.
 
-6.6 drm/msm display pull: https://gitlab.freedesktop.org/drm/msm/-/merge_requests/69
-v3: https://lore.kernel.org/linux-arm-msm/20230718-sm6125-dpu-v3-0-6c5a56e99820@somainline.org/
-v4: https://lore.kernel.org/linux-arm-msm/20230723-sm6125-dpu-v4-0-a3f287dd6c07@somainline.org/
+While at it, also enable touch-keys on gt510.
 
-- Marijn
+Signed-off-by: Nikita Travkin <nikita@trvn.ru>
+---
+Jasper Korten (1):
+      arm64: dts: qcom: msm8916-samsung-gt510: Add display panel
 
->  1 file changed, 6 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sm6125-mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sm6125-mdss.yaml
-> index 2525482424cb..479c82e6a0d8 100644
-> --- a/Documentation/devicetree/bindings/display/msm/qcom,sm6125-mdss.yaml
-> +++ b/Documentation/devicetree/bindings/display/msm/qcom,sm6125-mdss.yaml
-> @@ -95,8 +95,6 @@ examples:
->          #size-cells = <1>;
->          ranges;
->  
-> -        status = "disabled";
-> -
->          display-controller@5e01000 {
->              compatible = "qcom,sm6125-dpu";
->              reg = <0x05e01000 0x83208>,
-> @@ -170,8 +168,6 @@ examples:
->              #address-cells = <1>;
->              #size-cells = <0>;
->  
-> -            status = "disabled";
-> -
->              ports {
->                  #address-cells = <1>;
->                  #size-cells = <0>;
-> @@ -210,8 +206,6 @@ examples:
->  
->              required-opps = <&rpmpd_opp_svs>;
->              power-domains = <&rpmpd SM6125_VDDMX>;
-> -
-> -            status = "disabled";
->          };
->      };
->  ...
-> -- 
-> 2.34.1
-> 
+Nikita Travkin (1):
+      arm64: dts: qcom: msm8916-samsung-gt510: Add capacitive keys
+
+Siddharth Manthan (1):
+      arm64: dts: qcom: msm8916-samsung-gt58: Add display panel
+
+ arch/arm64/boot/dts/qcom/msm8916-samsung-gt510.dts | 86 ++++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/msm8916-samsung-gt58.dts  | 64 ++++++++++++++++
+ 2 files changed, 150 insertions(+)
+---
+base-commit: 5f8e7fdfa482f56c9c884b5c41f40f8f5923d9c4
+change-id: 20230725-gt5-panel-448377da7aca
+
+Best regards,
+-- 
+Nikita Travkin <nikita@trvn.ru>
+
