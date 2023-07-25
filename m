@@ -2,82 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B45BF760CBF
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 10:15:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A0D6760CDB
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 10:23:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232298AbjGYIPV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jul 2023 04:15:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45276 "EHLO
+        id S230351AbjGYIXP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jul 2023 04:23:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48848 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232399AbjGYIPR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 04:15:17 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F9E8E7B;
-        Tue, 25 Jul 2023 01:15:16 -0700 (PDT)
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36P88xAK009682;
-        Tue, 25 Jul 2023 08:15:12 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=PCz3mEeQgque/FOOfchegotNtCY9cjznSwkh8xlUE6w=;
- b=VEUputmX7WLBs0Z5vbz8qjRSVucxS/15nHFR9d103lbpDrdozJy2+nvXx5j+DSTMqwUq
- 8HPsYpbr6RJ3I5Fc37RvB4r+99HyvmkR/Jn4q0EziultKVKSByBfJlNKulCMTmzB9uKj
- 4AFu5euWC/yz8THaETSA/Gyu/PzoW3AMX4eGQGz1ExNQsE6FxjwF7X62tUXobLPyo1/P
- 1/KMWJyDlbRddwC5R8X9yy7jDQqcNFbIWV9YcMGe6qpBKYk2ntw4G5idhv3rO7233NrT
- TH30Glbx1o0KOlb96wM/6KTym/B/PVszgVfhhvpfZTkhUQcOBnkXkZo3FMWscO4ksNtU EA== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3s1s1jt6b1-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 25 Jul 2023 08:15:12 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 36P8F2ct005670
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 25 Jul 2023 08:15:02 GMT
-Received: from [10.214.66.58] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Tue, 25 Jul
- 2023 01:14:59 -0700
-Message-ID: <a3a401fe-dbc6-03dd-ce6f-13abf30ef984@quicinc.com>
-Date:   Tue, 25 Jul 2023 13:44:55 +0530
+        with ESMTP id S231726AbjGYIWz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 04:22:55 -0400
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CB6FE5C
+        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 01:22:54 -0700 (PDT)
+Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-3fde57684d7so9351555e9.2
+        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 01:22:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1690273373; x=1690878173;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=xdUCXMgeSh/e7vUp6LXwSvS294020VAeURwsafwe5mY=;
+        b=zewfZn1lgSGCtMac0cb0QTt17/YQzq3Qxy5/NyDN6Jxhv0BYN6IjgYjE3iKWEGfgTC
+         BAGNmz9KPlbuNwOClX+YugEEJAKaTdF7DxSNr47zaJkOk71ABdOxU2y5c5hucHAoM+3A
+         HpdhsA67/VWyCsLsPUQb4Fc1E3toqXDGq4XnL5jqdLMVXxMi+j0v2uJ4rkUgA+zM7q7d
+         Ps6NSRUQIXZ89FMz7McJe5kNltevsWDx0eAtMa500WAh9PFLkbRdL7wu49rRP8Be7SlV
+         72TVXjrYeYUOGTQ/dXEO1jlOvPFsXh4EDD0Va/qIVc4TTOkUAtCBSLNAIvUZ1GvL4NAj
+         0sng==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690273373; x=1690878173;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=xdUCXMgeSh/e7vUp6LXwSvS294020VAeURwsafwe5mY=;
+        b=h6iGIiNHlf56hOhbOfWReVFIvq55v3H+izBU2nOT4TCKO05Rw1JOEDYZnJkWCbpbzz
+         yCR7nX9nNE+jMoBaLI9DhFq4w0qCfwfikRNOBGBpt4AMaPaRA37nIwgb7glD5GJNM0G/
+         kIshonZFrHz92DeqJ3ZPhijgnX1jTXWmjtXmlTBC2Dp5B2nJwPRU+0JqxmPMB6eW0d/T
+         H0Ndd/tN1hsSdqv2fMWyklwVZ93RSShF66WLXx60Ej/u9hoCb6Gyi64saMxe1MhpWKmh
+         bZEa04sUdxCt/3X2BKWwakFaBq2eKaB2N4Y7bMy/SgjJThwpn532TziT2YJsBo75iktd
+         YDwQ==
+X-Gm-Message-State: ABy/qLa4UYZBjRSUJSnsqlSWZ3vLWRM8mxLh4kQwr/I4wI/b7YLmIuwI
+        tVE8eaLjV/54vMP4GIkl8sFE+w==
+X-Google-Smtp-Source: APBJJlFpKzmP8Mc/lYAPXZUrjT7eauHxjqmxm3ki5r4f5DwPhUUeygbRq5Vju2w0VYKXR2TcxqydGw==
+X-Received: by 2002:a5d:4ccd:0:b0:313:e9dc:44d5 with SMTP id c13-20020a5d4ccd000000b00313e9dc44d5mr7534884wrt.61.1690273372745;
+        Tue, 25 Jul 2023 01:22:52 -0700 (PDT)
+Received: from hackbox.lan ([82.78.74.213])
+        by smtp.gmail.com with ESMTPSA id h4-20020adfe984000000b003175f00e555sm5626138wrm.97.2023.07.25.01.22.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 25 Jul 2023 01:22:51 -0700 (PDT)
+From:   Abel Vesa <abel.vesa@linaro.org>
+To:     abelvesa@kernel.org, peng.fan@nxp.com, sboyd@kernel.org,
+        shawnguo@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, Jacky Bai <ping.bai@nxp.com>
+Cc:     kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: clock: imx93: Add PDM IPG clk
+Date:   Tue, 25 Jul 2023 11:22:41 +0300
+Message-Id: <169027334139.2407862.12498824418000888053.b4-ty@linaro.org>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230628061724.2056520-1-ping.bai@nxp.com>
+References: <20230628061724.2056520-1-ping.bai@nxp.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.0
-Subject: Re: [PATCH 1/2] dt-bindings: power: qcom,rpmhpd: Add Generic RPMh PD
- indexes
-Content-Language: en-US
-To:     Bjorn Andersson <andersson@kernel.org>
-CC:     Pavan Kondeti <quic_pkondeti@quicinc.com>, <agross@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-References: <1689744162-9421-1-git-send-email-quic_rohiagar@quicinc.com>
- <1689744162-9421-2-git-send-email-quic_rohiagar@quicinc.com>
- <e77c39fe-b7cf-49b3-9260-ecf4872e8fdf@quicinc.com>
- <7517b2ca-7d7f-dc0c-7f60-a6281b37ab40@quicinc.com>
- <a4zztrn6jhblozdswba7psqtvjt5l765mfr3yl4llsm5gsyqef@7x6q7yabydvm>
-From:   Rohit Agarwal <quic_rohiagar@quicinc.com>
-In-Reply-To: <a4zztrn6jhblozdswba7psqtvjt5l765mfr3yl4llsm5gsyqef@7x6q7yabydvm>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: c6-FyxMlGSQV51UxzQhwKxX-VDQo3ZmI
-X-Proofpoint-ORIG-GUID: c6-FyxMlGSQV51UxzQhwKxX-VDQo3ZmI
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-07-25_04,2023-07-24_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 adultscore=0
- mlxlogscore=899 phishscore=0 clxscore=1015 priorityscore=1501 bulkscore=0
- suspectscore=0 malwarescore=0 mlxscore=0 lowpriorityscore=0
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2306200000 definitions=main-2307250072
-X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -87,42 +75,20 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On 7/22/2023 8:35 AM, Bjorn Andersson wrote:
-> On Fri, Jul 21, 2023 at 06:47:42PM +0530, Rohit Agarwal wrote:
->> On 7/21/2023 11:14 AM, Pavan Kondeti wrote:
->>> On Wed, Jul 19, 2023 at 10:52:41AM +0530, Rohit Agarwal wrote:
->>>> diff --git a/include/dt-bindings/power/qcom,rpmhpd.h b/include/dt-bindings/power/qcom,rpmhpd.h
-> [..]
->>>> +
->>>> +#endif
->>>> -- 
->>> I see the PD performance levels (RPMH_REGULATOR_LEVEL_xxx) are still
->>> coming from qcom-rpmpd.h. Which means Socs with RPMh also need to
->>> include the older header for these definitions along with this newly
->>> created header. something to improve for the clarity sake?
->> Agreed. I think we can move these to the new header so that the new SoC with
->> RPMH can completely
->> move to rpmhpd.h.
-> Sounds very reasonable, please do that in a follow up patch.
-> I'm picking this as is.
-I have a doubt related to this about sending the patches.
+On Wed, 28 Jun 2023 14:17:22 +0800, Jacky Bai wrote:
+> Add PDM IPG clk.
+> 
+> 
 
-Since I will be moving the regulators level into the same rpmhpd.h 
-header, we
-would need to update all the qcom soc dtsi file changes as well. Also 
-there is a
-remaining dt-bindings patch that update the older rpmhpd bindings to 
-these new
-ones basically the cleanup is remaining.
-Shall I create a unified series updating all these in one and tagging 
-all the the
-related maintainers in the CC
-OR
-should I create separate series where the dt changes are updated first 
-then the
-followup cleanup dt-bindings series?
+Applied, thanks!
 
-Thanks,
-Rohit.
-> Thanks,
-> Bjorn
+[1/3] dt-bindings: clock: imx93: Add PDM IPG clk
+      commit: 2fe182dd2783c870cb21f20732ff62f9cbb2451a
+[2/3] clk: imx93: Add PDM IPG clk
+      commit: 3ea570486039a12bb9dcbec977c70390b3d3c902
+[3/3] clk: imx: Add 519.75MHz frequency support for imx9 pll
+      commit: 07ba6d1ae524c627ac55bb98d5610d4fc44d3fe7
+
+Best regards,
+-- 
+Abel Vesa <abel.vesa@linaro.org>
