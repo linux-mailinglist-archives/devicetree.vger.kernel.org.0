@@ -2,102 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C3D27622C3
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 21:57:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 803B97622C7
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 21:59:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230361AbjGYT5k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jul 2023 15:57:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44338 "EHLO
+        id S230280AbjGYT73 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jul 2023 15:59:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45244 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230337AbjGYT5j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 15:57:39 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88BA319BF;
-        Tue, 25 Jul 2023 12:57:38 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 1F02261151;
-        Tue, 25 Jul 2023 19:57:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D4A2C433C8;
-        Tue, 25 Jul 2023 19:57:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690315057;
-        bh=J6eD1DQsFlp469zAqqrd4H6lmF51FIudZCZ9aP0HQUI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=NT6AcGEPrY1WDQRNb1h9OKzPAVKq3GMlv8zwefn8NpHt4X6zChjMwL8zYy3gakNgX
-         bpIbVZBG8AaVWR2YcNDdKTwzhmPzCUROigP/iiUIwGBeek2bk9+ILXM2UV94ckLcg9
-         tk4EZV+vPNEWQ/DaRN4M2dCM0saUJlG/rjLFykNKKlJMGuRtYl4d/FfBM2PVvMfzOe
-         uDmcWaxMHPLd2mxS0boTU4RymIubVbVLJWb24APEET1+UC0ok6dvCNqBsryEYlINZ0
-         j6wYvu0Cx3v72h6HKiVdyql99KckqywuSirK2aA82WzhVqHsiLHSBfbTnyBghACUJF
-         vrmYEF59k36yQ==
-Date:   Tue, 25 Jul 2023 20:57:32 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Support Opensource <support.opensource@diasemi.com>,
-        Paul Cercueil <paul@crapouillou.net>,
-        Adam Ward <Adam.Ward.opensource@diasemi.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 3/3] regulator: dt-bindings: active-semi,act8846: correct
- supplies
-Message-ID: <20230725-handiness-anyone-19af308254f8@spud>
-References: <20230725124629.150113-1-krzysztof.kozlowski@linaro.org>
- <20230725124629.150113-3-krzysztof.kozlowski@linaro.org>
+        with ESMTP id S230044AbjGYT72 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 15:59:28 -0400
+Received: from viti.kaiser.cx (viti.kaiser.cx [IPv6:2a01:238:43fe:e600:cd0c:bd4a:7a3:8e9f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 807D2122;
+        Tue, 25 Jul 2023 12:59:26 -0700 (PDT)
+Received: from martin by viti.kaiser.cx with local (Exim 4.89)
+        (envelope-from <martin@viti.kaiser.cx>)
+        id 1qOOBR-0007K0-M1; Tue, 25 Jul 2023 21:59:01 +0200
+Date:   Tue, 25 Jul 2023 21:59:01 +0200
+From:   Martin Kaiser <lists@kaiser.cx>
+To:     Alexey Romanov <avromanov@sberdevices.ru>
+Cc:     narmstrong@baylibre.com, neil.armstrong@linaro.org,
+        olivia@selenic.com, herbert@gondor.apana.org.au,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, khilman@baylibre.com, jbrunet@baylibre.com,
+        martin.blumenstingl@googlemail.com, f.fainelli@gmail.com,
+        hkallweit1@gmail.com, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-crypto@vger.kernel.org,
+        kernel@sberdevices.ru
+Subject: Re: [PATCH v1 1/3] drivers: rng: add check status bit feature
+Message-ID: <20230725195901.n2klvgz7outqaatk@viti.kaiser.cx>
+References: <20230725141252.98848-1-avromanov@sberdevices.ru>
+ <20230725141252.98848-2-avromanov@sberdevices.ru>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="iJymcqGfrN7u5Pd8"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230725124629.150113-3-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230725141252.98848-2-avromanov@sberdevices.ru>
+User-Agent: NeoMutt/20170113 (1.7.2)
+Sender: Martin Kaiser <martin@viti.kaiser.cx>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Alexey Romanov (avromanov@sberdevices.ru) wrote:
 
---iJymcqGfrN7u5Pd8
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> For some Amlogic SOC's, mechanism to obtain random number
+> has been changed. For example, S4 now uses status bit waiting algo.
 
-On Tue, Jul 25, 2023 at 02:46:29PM +0200, Krzysztof Kozlowski wrote:
-> Regulator supplies are per-device, not per regulator, so they are
-> expected to be present in device node.  Moving them to proper place
-> allows to simplify a lot, because now none of the regulators differ.
->=20
-> This also fixes dtbs_check warnings like:
->=20
->   rk3368-evb-act8846.dtb: act8846@5a: 'inl1-supply', 'inl2-supply', 'inl3=
--supply', 'vp1-supply',
->     'vp2-supply', 'vp3-supply', 'vp4-supply' do not match any of the rege=
-xes: 'pinctrl-[0-9]+'
->=20
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Alexey Romanov <avromanov@sberdevices.ru>
+> ---
+>  drivers/char/hw_random/meson-rng.c | 77 ++++++++++++++++++++++++++++--
+>  1 file changed, 74 insertions(+), 3 deletions(-)
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> diff --git a/drivers/char/hw_random/meson-rng.c b/drivers/char/hw_random/meson-rng.c
+> index a4eb8e35f13d..c6d7349630a1 100644
+> --- a/drivers/char/hw_random/meson-rng.c
+> +++ b/drivers/char/hw_random/meson-rng.c
+> @@ -14,19 +14,65 @@
+>  #include <linux/of.h>
+>  #include <linux/clk.h>
 
-Thanks,
-Conor.
+> -#define RNG_DATA 0x00
+> +struct meson_rng_priv {
+> +	bool check_status_bit;
+> +	unsigned int data_offset;
+> +	unsigned int cfg_offset;
+> +};
 
---iJymcqGfrN7u5Pd8
-Content-Type: application/pgp-signature; name="signature.asc"
+>  struct meson_rng_data {
+>  	void __iomem *base;
+>  	struct hwrng rng;
+> +	struct device *dev;
+> +	const struct meson_rng_priv *priv;
+>  };
 
------BEGIN PGP SIGNATURE-----
+> +#define RUN_BIT			0
+> +#define SEED_READY_STS_BIT	31
+> +#define RETRY_CNT		100
+> +
+> +static int meson_rng_wait_status(void __iomem *cfg_addr, int bit)
+> +{
+> +	u32 status;
+> +	u32 cnt = 0;
+> +
+> +	do {
+> +		status = readl_relaxed(cfg_addr) & BIT(bit);
+> +		cpu_relax();
+> +	} while (status && (cnt++ < RETRY_CNT));
+> +
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZMApLAAKCRB4tDGHoIJi
-0mk6AP4maaYAoYDHYAxUsS81QOcs65RzGJhK4NRV7kltV3rG2wEAg1JNLisoHypA
-SAjZ5v3e0Qh+eS+GF3UIGmBskLrrywU=
-=u9wa
------END PGP SIGNATURE-----
+Could you use readl_relaxed_poll_timeout here instead of open coding the
+loop?
 
---iJymcqGfrN7u5Pd8--
+> +	if (status)
+> +		return -EBUSY;
+> +
+> +	return 0;
+> +}
+> +
+>  static int meson_rng_read(struct hwrng *rng, void *buf, size_t max, bool wait)
+>  {
+>  	struct meson_rng_data *data =
+>  			container_of(rng, struct meson_rng_data, rng);
+> +	const struct meson_rng_priv *priv = data->priv;
+> +
+> +	if (priv->check_status_bit) {
+> +		void __iomem *cfg_addr = data->base + priv->cfg_offset;
+> +		int err;
+> +
+> +		writel_relaxed(readl_relaxed(cfg_addr) | BIT(SEED_READY_STS_BIT), cfg_addr);
+
+> -	*(u32 *)buf = readl_relaxed(data->base + RNG_DATA);
+> +		err = meson_rng_wait_status(cfg_addr, SEED_READY_STS_BIT);
+> +		if (err) {
+> +			dev_err(data->dev, "Seed isn't ready, try again\n");
+> +			return err;
+> +		}
+> +
+> +		err = meson_rng_wait_status(cfg_addr, RUN_BIT);
+> +		if (err) {
+> +			dev_err(data->dev, "Can't get random number, try again\n");
+> +			return err;
+> +		}
+> +	}
+> +
+> +	*(u32 *)buf = readl_relaxed(data->base + priv->data_offset);
+
+>  	return sizeof(u32);
+>  }
+> @@ -41,6 +87,10 @@ static int meson_rng_probe(struct platform_device *pdev)
+>  	if (!data)
+>  		return -ENOMEM;
+
+> +	data->priv = device_get_match_data(&pdev->dev);
+> +	if (!data->priv)
+> +		return -ENODEV;
+> +
+>  	data->base = devm_platform_ioremap_resource(pdev, 0);
+>  	if (IS_ERR(data->base))
+>  		return PTR_ERR(data->base);
+> @@ -53,11 +103,32 @@ static int meson_rng_probe(struct platform_device *pdev)
+>  	data->rng.name = pdev->name;
+>  	data->rng.read = meson_rng_read;
+
+> +	data->dev = &pdev->dev;
+> +
+>  	return devm_hwrng_register(dev, &data->rng);
+>  }
+
+> +static const struct meson_rng_priv meson_rng_priv = {
+> +	.check_status_bit = false,
+> +	.data_offset = 0x0,
+> +	.cfg_offset = 0x0,
+> +};
+> +
+> +static const struct meson_rng_priv meson_rng_priv_s4 = {
+> +	.check_status_bit = true,
+> +	.data_offset = 0x8,
+> +	.cfg_offset = 0x0,
+> +};
+> +
+>  static const struct of_device_id meson_rng_of_match[] = {
+> -	{ .compatible = "amlogic,meson-rng", },
+> +	{
+> +		.compatible = "amlogic,meson-rng",
+> +		.data = (void *)&meson_rng_priv,
+> +	},
+> +	{
+> +		.compatible = "amlogic,meson-rng-s4",
+> +		.data = (void *)&meson_rng_priv_s4,
+> +	},
+>  	{},
+>  };
+>  MODULE_DEVICE_TABLE(of, meson_rng_of_match);
+> -- 
+> 2.38.1
+
