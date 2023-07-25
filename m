@@ -2,98 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 18F9876099A
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 07:44:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E6D927609A4
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 07:45:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230207AbjGYFoh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jul 2023 01:44:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53830 "EHLO
+        id S229479AbjGYFpn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jul 2023 01:45:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55170 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231680AbjGYFo0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 01:44:26 -0400
-Received: from mail-pg1-x535.google.com (mail-pg1-x535.google.com [IPv6:2607:f8b0:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D28B1FC1;
-        Mon, 24 Jul 2023 22:43:55 -0700 (PDT)
-Received: by mail-pg1-x535.google.com with SMTP id 41be03b00d2f7-53fbf2c42bfso3656726a12.3;
-        Mon, 24 Jul 2023 22:43:55 -0700 (PDT)
+        with ESMTP id S230219AbjGYFpk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 01:45:40 -0400
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 786561BD7
+        for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 22:45:18 -0700 (PDT)
+Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-51bece5d935so7720918a12.1
+        for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 22:45:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1690263831; x=1690868631;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=sWpeQEXkxx6moDjPwLRjO33o1MVNetkxDTfjChMiebs=;
-        b=EvoK59qtrucIfirbBPE8V2OhcYmt3T48AT1joPDN1D9Qu+qEE73r4/cc1daLi60Ydu
-         W9OjfU6BEWgE9r5RajS4qZrLP5UQcsIxhFCeTxvvj0fepgYJ05eb82mpkxo5rssbsg9M
-         O9LnhOGLbT6aHlqvHX3rkQ44kG3WCtwfmRzCiu7oGkCj07RQcLnNb+pzVNlsMY8zP+Ds
-         mmmnbup8yyyj2xJCK7RK0HJ5nRTGUuSj/K4D4w045x0iMMuXZ7Mr3RMJyMpbV6609UYf
-         pOMcY58xYhu9AUaZv+QAuzNr1EBwFmXyMcKCqbdXlcHjE3J5mOBlAS+i5o6bXO6qiebk
-         Q4lg==
+        d=linaro.org; s=google; t=1690263898; x=1690868698;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=v33ozQ7B6ao7S8GXOqhbCmLv9i1PznqZJpCCfKR6El8=;
+        b=W8ow4T6QCbknM6LYJrvRs61dhmH+OsgCnRAL4+3He+s4j1KKLP77X+XHsBbjbNNe08
+         EQTTf8SYxMeAxenUWmbyv6eQqZi8WGRaRgbpUgsUSeHJw8wZBgFDbhk/S1iQfyh6Dn79
+         1urwf5z/sh/C6EPaP3kuhAJZ0JmqzTkgdf0qFNROs5NasYe8j0+8d75WAiImudRKxCly
+         Pmcs5XB5urgVpgUP8MraLUudXNlZv0JlUd+KwZ13jLsI+I9pmYGxyWpxMCyzeBDDBLFP
+         48WtAwuUrz3L0yJCgDYD19wdmkM5rKDwDD3Fqs84vzlTvs/PQ5XIhK8USqLxvSc1bA0p
+         MOWw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690263831; x=1690868631;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=sWpeQEXkxx6moDjPwLRjO33o1MVNetkxDTfjChMiebs=;
-        b=bXoR9iGbXvbNXlHZIw1qHHFaPOISozdFew7yK2gWSLITzemJuDNj6VAqTTvCwee5U8
-         KYShkQyUG9WsaAvCMw9/tmqVuCweJxb4CZzi9mnXj/nuDA/a6aFXxDeTwX2kw4XhIODB
-         eSsJi2eoZFJiZ48kjNNk2KIiNQaaTuCtbMyvzqE2bDjTLDEZ8doRV9RZnFioeaCKOL10
-         uZp81ZAzyZr5WhUL8ddoi8WOqIx+q1Mb3ZNlCp6UR1v2UjGV2iv09O7MY4wDpAmj6pBL
-         KX58dkR2I6cF1oT+UwURDRA82ojts/xspO5UEK27fPve0E6lDiQlzSxva7Lpof9+zc70
-         WCQw==
-X-Gm-Message-State: ABy/qLbvjPh9Ts4RXTSeGe7Bp8jETSsQWhTe3LaTjFwI1VoGiQhLE566
-        Gd5qEgJ2qopqh00qalcFX2g=
-X-Google-Smtp-Source: APBJJlH1oBzcBGr7tDO/0eNp6ihGNRlQs70V0KM9UGizlqp6a736sZfqH/REEYad9RTEhLNxX62GsA==
-X-Received: by 2002:a17:902:7893:b0:1b9:d961:69b7 with SMTP id q19-20020a170902789300b001b9d96169b7mr11745734pll.10.1690263830757;
-        Mon, 24 Jul 2023 22:43:50 -0700 (PDT)
-Received: from zephyrusG14 ([103.251.210.209])
-        by smtp.gmail.com with ESMTPSA id jj22-20020a170903049600b001bb54b6c4e4sm9961732plb.147.2023.07.24.22.43.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 24 Jul 2023 22:43:50 -0700 (PDT)
-Date:   Tue, 25 Jul 2023 11:13:43 +0530
-From:   Yogesh Hegde <yogi.kernel@gmail.com>
-To:     Heiko Stuebner <heiko@sntech.de>
-Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        linux-rockchip@lists.infradead.org, ivan.orlov0322@gmail.com,
-        skhan@linuxfoundation.org,
-        linux-kernel-mentees@lists.linuxfoundation.org
-Subject: Re: [PATCH v2] arm64: dts: rockchip: Fix Wifi/Bluetooth on ROCK Pi 4
- boards
-Message-ID: <ZL9hD2db5xbtpmLu@zephyrusG14>
-References: <ZLbATQRjOl09aLAp@zephyrusG14>
- <169022470428.2905604.14514573882052237409.b4-ty@sntech.de>
+        d=1e100.net; s=20221208; t=1690263898; x=1690868698;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=v33ozQ7B6ao7S8GXOqhbCmLv9i1PznqZJpCCfKR6El8=;
+        b=MwNlEQDqX3+DHHOfhIlkG9VeRApMqDrpz7cQhtroXh46nxmUP4oNVfyXwpMXm5SdyA
+         0TldbwU6YgyHU3KVAg8juL9qxnuKTSkFmWUHxG2elCKespc5bWamFvIz1HdhJ3FMwqKW
+         0UlJwE/2YZtmByvUK7+Fbwwl8txYMKiUTTe7gzoWXE82461ZhgEahM3rvS66CPrf22uo
+         oBMnCSucS34RXOWNuLD5Wmi7aEp8jTeDulAIV9dples7rjqugVQ2yujC/gYpPDYnBN0F
+         d1xQjwwdJ2fL3OVzo9bKxYMg7t7Htt0jWWxVXmOyiSKWAhlEqNcnk+/N6p7oThQtACbN
+         bWFA==
+X-Gm-Message-State: ABy/qLY8cVFo6FSRtlNSMrkbDFUEebAxrLpXBsOlZrWD3SDSyXvec6Nx
+        +gfAbnfF/XAL66qghqbFkMOM0g==
+X-Google-Smtp-Source: APBJJlFYMcUVdRl92ALTBddlIcRlR2SkNHcjfoIcS0YhJsvhd5KWQ7u6T8eH+KE6AZnGJPlMAZ6MIQ==
+X-Received: by 2002:a05:6402:b11:b0:51d:e2c4:f94a with SMTP id bm17-20020a0564020b1100b0051de2c4f94amr10375703edb.20.1690263898239;
+        Mon, 24 Jul 2023 22:44:58 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id b11-20020aa7c90b000000b0052228721f84sm3253052edt.77.2023.07.24.22.44.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 24 Jul 2023 22:44:50 -0700 (PDT)
+Message-ID: <0f39d36c-4c28-b7eb-14f7-47105f03f459@linaro.org>
+Date:   Tue, 25 Jul 2023 07:44:47 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <169022470428.2905604.14514573882052237409.b4-ty@sntech.de>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [RFC PATCH 4/4] power: reset: Implement a PSCI SYSTEM_RESET2
+ reboot-mode driver
+Content-Language: en-US
+To:     Elliot Berman <quic_eberman@quicinc.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Sebastian Reichel <sre@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, kernel@quicinc.com,
+        Satya Durga Srinivasu Prabhala <quic_satyap@quicinc.com>,
+        Melody Olvera <quic_molvera@quicinc.com>,
+        Prasad Sodagudi <quic_psodagud@quicinc.com>
+References: <20230724223057.1208122-1-quic_eberman@quicinc.com>
+ <20230724223057.1208122-5-quic_eberman@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230724223057.1208122-5-quic_eberman@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Heiko,
-On Mon, Jul 24, 2023 at 08:52:37PM +0200, Heiko Stuebner wrote:
+On 25/07/2023 00:30, Elliot Berman wrote:
+> PSCI implements a restart notifier for architectural defined resets.
+> The SYSTEM_RESET2 allows vendor firmware to define additional reset
+> types which could be mapped to the reboot reason.
 > 
-> Applied, thanks!
-> 
-> [1/1] arm64: dts: rockchip: Fix Wifi/Bluetooth on ROCK Pi 4 boards
->       commit: ebceec271e552a2b05e47d8ef0597052b1a39449
-> 
-> and added the "Cc: stable@vger.kernel.org"
-> 
-> Best regards,
-> -- 
-> Heiko Stuebner <heiko@sntech.de>
-Thanks and my heartfelt gratitude to you for fixing and applying the patch. 
-I am truly grateful for your support. 
 
-Due to an increased workload and pressing commitments, there is a considerable 
-delay in my responses and patch submissions.
 
-Thanks and Regards 
--- Yogesh
+> +
+> +static const struct of_device_id psci_vendor_reset_id_table[] = {
+> +	{ .compatible = "arm,psci-vendor-reset" },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(of, psci_vendor_reset_id_table);
+> +
+> +static struct platform_driver psci_vendor_reset_driver = {
+> +	.probe = psci_vendor_reset_probe,
+> +	.driver = {
+> +		.name = "psci-vendor-reset",
+> +		.of_match_table = of_match_ptr(psci_vendor_reset_id_table),
+
+Drop of_match_ptr() - it is useless and if used, then it must be
+balanced with conditional table.
+
+> +	},
+> +};
+> +module_platform_driver(psci_vendor_reset_driver);
+> +
+
+Best regards,
+Krzysztof
+
