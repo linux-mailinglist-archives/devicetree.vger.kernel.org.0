@@ -2,176 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4088776102D
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 12:05:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A8A8761041
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 12:07:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232331AbjGYKFL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jul 2023 06:05:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60914 "EHLO
+        id S229963AbjGYKHg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jul 2023 06:07:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37532 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232310AbjGYKEy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 06:04:54 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D158C3582;
-        Tue, 25 Jul 2023 03:04:19 -0700 (PDT)
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36P88XSC009383;
-        Tue, 25 Jul 2023 10:04:08 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=4wxBb0aHeVVz4pmYcNzT5o3PmpfCFsXkoGMU7c6SCKg=;
- b=MkoTlorwYQqYxrN+bH4gZri0I+pDbzHrvAg0jhxBeKFMVBVL/RdNdyoxWpURhBgoQdCB
- UbZW5QJZhYcUYo0IuU6LNQQiau5PMvKOJpyJ3LLTZKj9veZ46xxMtkd2s2IacWOTDYCd
- RIjcSMH1rByGqVCgefoD/3Jtcv/XmabFUps1tpJ08RmC4WdE/uKtQn8FwyB8oJJouYsR
- ivtNY6WyUy3QwAXYMJkzWONdNu1WUkbqYtNaxMonTG23D+ye4f8ptxXKOcr+HYFQfM0e
- p2BxSfX3D3Cvgq2Cxl/zRc62JexwJqjjulnh7MhV3o5rSfOAoIEnpusOPDXU4ZxRf9FB PQ== 
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3s29xmgb36-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 25 Jul 2023 10:04:08 +0000
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-        by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 36PA47bD031178
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 25 Jul 2023 10:04:07 GMT
-Received: from [10.216.12.191] (10.80.80.8) by nasanex01c.na.qualcomm.com
- (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Tue, 25 Jul
- 2023 03:04:01 -0700
-Message-ID: <27d9bd35-b69c-5596-8e1a-c42ec2b01f75@quicinc.com>
-Date:   Tue, 25 Jul 2023 15:33:57 +0530
+        with ESMTP id S229661AbjGYKHf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 06:07:35 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E33E710D
+        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 03:07:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1690279654; x=1721815654;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=1uw5efYhJWeMt9QNbpoLleLIfGC+amYIGyr4fPDWts0=;
+  b=c7qbopmPdDSkyDG8KJK147J8EFx/T8jrC0CmYB6vAXHrushBA1xh6fHR
+   AtEzZ+6SUfk4l9jbDRnul4tKpEcpqwkWF5MTeMOLYf5Te86qGjVjssBip
+   V1PGtDKSdyk4McJn6VddSRelBvGsMkPAZ691KdXJJI6hFH0pL5LGW+z94
+   00Rq5XAIn7jakie8vCnZzoogyW60QxS+6VGIaIUjhwreiDxJHRZiDVE1k
+   Ny8aMb+dSZqDzE4T/9sPRhQzW9zVyouwo3JF/QobAasjJFFStnKtXyiKA
+   chAxMXpL0DE6I6ifhJHTn4eCjlMVjlqrssE2cN9/VgjRkFf9ebI+AAsND
+   w==;
+X-IronPort-AV: E=Sophos;i="6.01,230,1684825200"; 
+   d="asc'?scan'208";a="222089118"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 25 Jul 2023 03:07:32 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Tue, 25 Jul 2023 03:07:30 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex03.mchp-main.com
+ (10.10.85.151) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
+ Transport; Tue, 25 Jul 2023 03:07:28 -0700
+Date:   Tue, 25 Jul 2023 11:06:54 +0100
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Anup Patel <apatel@ventanamicro.com>
+CC:     Conor Dooley <conor@kernel.org>,
+        Mayuresh Chitale <mchitale@ventanamicro.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Anup Patel <anup@brainfault.org>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        Atish Patra <atishp@atishpatra.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        <linux-riscv@lists.infradead.org>, <kvm-riscv@lists.infradead.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v3 0/7] Risc-V Kvm Smstateen
+Message-ID: <20230725-dwelled-obtain-24bf6a4e6964@wendy>
+References: <20230724142033.306538-1-mchitale@ventanamicro.com>
+ <20230724-scrap-pranker-7fd120078136@spud>
+ <CAK9=C2XXnQWqJgES2iWjatG9SFeFEUXZzLXz1gTYQ0aAh=7KJg@mail.gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [RFC PATCH 2/4] power: reset: reboot-mode: Wire reboot_mode enum
- to magic
-Content-Language: en-US
-To:     Elliot Berman <quic_eberman@quicinc.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        "Sebastian Reichel" <sre@kernel.org>
-CC:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-pm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <kernel@quicinc.com>,
-        "Satya Durga Srinivasu Prabhala" <quic_satyap@quicinc.com>,
-        Melody Olvera <quic_molvera@quicinc.com>,
-        Prasad Sodagudi <quic_psodagud@quicinc.com>
-References: <20230724223057.1208122-1-quic_eberman@quicinc.com>
- <20230724223057.1208122-3-quic_eberman@quicinc.com>
-From:   Mukesh Ojha <quic_mojha@quicinc.com>
-In-Reply-To: <20230724223057.1208122-3-quic_eberman@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: V1EUNcEWf5x7A1jIFLgk8KKf7-TfcMfc
-X-Proofpoint-GUID: V1EUNcEWf5x7A1jIFLgk8KKf7-TfcMfc
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-07-25_05,2023-07-25_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 clxscore=1015
- mlxlogscore=999 impostorscore=0 adultscore=0 mlxscore=0 bulkscore=0
- phishscore=0 suspectscore=0 spamscore=0 priorityscore=1501
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2306200000 definitions=main-2307250086
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="BR67x+OQMbrXN+rh"
+Content-Disposition: inline
+In-Reply-To: <CAK9=C2XXnQWqJgES2iWjatG9SFeFEUXZzLXz1gTYQ0aAh=7KJg@mail.gmail.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+--BR67x+OQMbrXN+rh
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+Hey Anup,
 
-On 7/25/2023 4:00 AM, Elliot Berman wrote:
-> Allow the reboot mode type to be wired to magic.
-> 
-> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
-> ---
->   drivers/power/reset/reboot-mode.c | 30 ++++++++++++++++++++++++++----
->   1 file changed, 26 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/power/reset/reboot-mode.c b/drivers/power/reset/reboot-mode.c
-> index a646aefa041b..4ea97ccbaf51 100644
-> --- a/drivers/power/reset/reboot-mode.c
-> +++ b/drivers/power/reset/reboot-mode.c
-> @@ -22,12 +22,8 @@ struct mode_info {
->   static bool get_reboot_mode_magic(struct reboot_mode_driver *reboot,
->   					  const char *cmd, unsigned int *magic)
->   {
-> -	const char *normal = "normal";
->   	struct mode_info *info;
->   
-> -	if (!cmd)
-> -		cmd = normal;
-> -
->   	list_for_each_entry(info, &reboot->head, list) {
->   		if (!strcmp(info->mode, cmd)) {
->   			*magic = info->magic;
-> @@ -45,6 +41,32 @@ static int reboot_mode_notify(struct notifier_block *this,
->   	unsigned int magic;
->   
->   	reboot = container_of(this, struct reboot_mode_driver, reboot_notifier);
-> +
-> +	if (!cmd) {
-> +		switch (mode) {
+On Tue, Jul 25, 2023 at 09:47:14AM +0530, Anup Patel wrote:
+> On Mon, Jul 24, 2023 at 10:08=E2=80=AFPM Conor Dooley <conor@kernel.org> =
+wrote:
+> > On Mon, Jul 24, 2023 at 07:50:26PM +0530, Mayuresh Chitale wrote:
+> > > This series adds support to detect the Smstateen extension for both, =
+the
+> > > host and the guest vcpu. It also adds senvcfg and sstateen0 to the ON=
+E_REG
+> > > interface and the vcpu context save/restore.
+> >
+> > There's not really an explanation in this series of where Smstateen is
+> > needed, or why it is only implemented for KVM. The spec mentions that t=
+his
+> > also applies to separate user threads, as well as to guests running in a
+> > hypervisor. As your first patch will lead to smstateen being set in
+> > /proc/cpuinfo, it could reasonably be assumed that the kernel itself
+> > supports the extension. Why does only KVM, and not the kernel, require
+> > support for smstateen?
+>=20
+> Here's the motivation behind Smstateen from the spec:
+> "The implementation of optional RISC-V extensions has the potential to op=
+en
+> covert channels between separate user threads, or between separate guest
+> OSes running under a hypervisor. The problem occurs when an extension
+> adds processor state---usually explicit registers, but possibly other for=
+ms of
+> state---that the main OS or hypervisor is unaware of (and hence won=E2=80=
+=99t
+> context-switch) but that can be modified/written by one user thread or
+> guest OS and perceived/examined/read by another."
 
-IIUC, mode will be filled up with reboot_mode during restart
-notifier and not reboot notifiers ?
+This much I gathered from my (brief) reading of the spec.
 
-> +		case REBOOT_COLD:
-> +			cmd = "cold";
-> +			break;
-> +		case REBOOT_WARM:
-> +			cmd = "warm";
-> +			break;
-> +		case REBOOT_HARD:
-> +			cmd = "hard";
-> +			break;
-> +		case REBOOT_SOFT:
-> +			cmd = "soft";
-> +			break;
-> +		case REBOOT_GPIO:
-> +			cmd = "gpio";
+> Based on the above, Ssaia extension related CSRs need to be explicitly
+> enabled for HS-mode by M-mode (which OpenSBI already does) and
+> for VS-mode by HS-mode (which this series adds for KVM RISC-V).
 
-These strings are already there kernel/reboot.c
-Can it be reused ?
+Ah right. Reading back through the patches, in [4/7] I see "Configure
+hstateen0 register so that the AIA state and envcfg are accessible to
+the vcpus". I would ask that, at least, [1/7] is updated to provide this
+motivation & the rationale for why only KVM needs to care. The
+motivation for the work should appear in the patchset somewhere, and
+probably in the cover too.
 
-#define REBOOT_COLD_STR         "cold"
-#define REBOOT_WARM_STR         "warm"
-#define REBOOT_HARD_STR         "hard"
-#define REBOOT_SOFT_STR         "soft"
-#define REBOOT_GPIO_STR         "gpio"
-#define REBOOT_UNDEFINED_STR    "undefined"
+> Currently, there are no new extensions addings CSRs for user-space
+> so RISC-V kernel does not need to set up sstateenX CSRs for processes
+> or tasks but in the future RISC-V kernel might touch sstateenX CSRs.
 
+Right, that is what I figured was going on, ignoring it for now, in the
+hopes that we remember to deal with it before some userspace visible
+side channel shows up.
 
-> +			break;
-> +		}
-> +		if (get_reboot_mode_magic(reboot, cmd, &magic)) {
+Dumb question maybe, but I find this to be quite -ENOPARSE:
+> Bit 0 of these registers is not custom state itself; it is a standard fie=
+ld of a standard CSR, either mstateen0,
+> hstateen0, or sstateen0. The requirements that non-standard extensions mu=
+st meet to be conforming are not
+> relaxed due solely to changes in the value of this bit. In particular, if=
+ software sets this bit but does not execute
+> any custom instructions or access any custom state, the software must con=
+tinue to execute as specified by all
+> relevant RISC-V standards, or the hardware is not standard-conforming.
+Does this mean that bit 0 of the CSRs mentioned in the quote controls all
+non-standard extensions at the respective privilege level? If so, does
+that not make the "ignore that we will now report the presence of this
+extension" approach flimsier, since we have little visibility into what
+may exist on that front?
 
-Is info->mode is going to filled up with mode-cold, mode-warm and so
-on from DT to compare against cmd?
+Granted, it is not as if delaying this patchset would benefit anyone in
+that regard, since those attempting to exploit the side channel know that
+the side channel exists, whether the kernel reports having sstateen or
+not. This probably just boils down to /proc/cpuinfo being a terrible
+interface for detecting extension support in the kernel.
+I've got some other comments about it that came up on IRC yesterday, so
+I'll go complain about it elsewhere :)
 
-What if , cmd is not among the one above switch, NULL pointer during
-strcmp ?
+Thanks,
+Conor.
 
--Mukesh
+--BR67x+OQMbrXN+rh
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> +			reboot->write(reboot, magic);
-> +			return NOTIFY_DONE;
-> +		}
-> +		cmd = "normal";
-> +	}
-> +
->   	if (get_reboot_mode_magic(reboot, cmd, &magic))
->   		reboot->write(reboot, magic);
->   
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZL+evgAKCRB4tDGHoIJi
+0iLeAP42cokJ0f9kUVftTkbT2M0XaFTi5k/0fY5J428UHxg6xAD+IwTqs0CJSI4k
+wb1oVsSPTawNFFR1hxCDmvbOAiBJawc=
+=AbPh
+-----END PGP SIGNATURE-----
+
+--BR67x+OQMbrXN+rh--
