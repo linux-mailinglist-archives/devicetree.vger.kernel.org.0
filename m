@@ -2,138 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8EC1F760FFD
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 11:59:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C5EFF761006
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 12:00:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233208AbjGYJ7L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jul 2023 05:59:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57190 "EHLO
+        id S231890AbjGYKA0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jul 2023 06:00:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59112 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233491AbjGYJ6z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 05:58:55 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42A461FDB;
-        Tue, 25 Jul 2023 02:58:42 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 8DFAB615E6;
-        Tue, 25 Jul 2023 09:58:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F016AC433C7;
-        Tue, 25 Jul 2023 09:58:37 +0000 (UTC)
-Message-ID: <231e9976-93fe-b8b1-29d9-6c799a8e6a3a@xs4all.nl>
-Date:   Tue, 25 Jul 2023 11:58:36 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH v7,0/11] media: mediatek: vcodec: separate encoder and
- decoder
-Content-Language: en-US
-To:     Yunfei Dong <yunfei.dong@mediatek.com>,
-        =?UTF-8?Q?N=c3=adcolas_F_=2e_R_=2e_A_=2e_Prado?= 
-        <nfraprado@collabora.com>,
-        Nicolas Dufresne <nicolas.dufresne@collabora.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Nathan Hebert <nhebert@chromium.org>
-Cc:     Chen-Yu Tsai <wenst@chromium.org>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Steve Cho <stevecho@chromium.org>, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20230722074230.30558-1-yunfei.dong@mediatek.com>
-From:   Hans Verkuil <hverkuil-cisco@xs4all.nl>
-In-Reply-To: <20230722074230.30558-1-yunfei.dong@mediatek.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.8 required=5.0 tests=BAYES_00,
-        HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S233488AbjGYKAU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 06:00:20 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56227172A;
+        Tue, 25 Jul 2023 03:00:17 -0700 (PDT)
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36P88Wev015782;
+        Tue, 25 Jul 2023 10:00:13 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id; s=qcppdkim1;
+ bh=Ekn3TqHQniq/36e5s2h2nS/CCNaLzCB3O+wU2OaQis8=;
+ b=Phi8vMG8WfJQW8TOimhqtpjCnzNHYrARJqqJfuNg8TjzDdAZCAIcJ6MIed6GqH3n1SCY
+ d0pn00EWGb9R1VweDSAedqS+LEfR1jVXhBT9D5BOIjMUKMVs+DKDZrte7XKbndY6rC3u
+ kbht4yN5daYtTDbKvzpVz5XeyZf7r+mcJwqUUxPzJJQrpRGUHNeEKMu0mrCPbJJ7RHbc
+ Oa6p3NUaoLPdXcPLcwwjfx0cywkiAegjhesSCdhVN1HCS+lM8nIzTQcfLpkO17wVrNXH
+ PI6YWnun8uOz4oAxYkIJW2GEHo0UBaRp1TrZUX0XYHld/NRUyCJUc+MNytzsY+rf8lY0 Pg== 
+Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3s29j5gc6b-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 25 Jul 2023 10:00:13 +0000
+Received: from pps.filterd (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+        by APBLRPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 36PA0AjK016294;
+        Tue, 25 Jul 2023 10:00:10 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+        by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 3s086ktn6f-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
+        Tue, 25 Jul 2023 10:00:10 +0000
+Received: from APBLRPPMTA02.qualcomm.com (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 36PA0A1M016226;
+        Tue, 25 Jul 2023 10:00:10 GMT
+Received: from hu-maiyas-hyd.qualcomm.com (hu-narepall-hyd.qualcomm.com [10.213.107.70])
+        by APBLRPPMTA02.qualcomm.com (PPS) with ESMTP id 36PA0AEx016094;
+        Tue, 25 Jul 2023 10:00:10 +0000
+Received: by hu-maiyas-hyd.qualcomm.com (Postfix, from userid 3995025)
+        id 908005000AA; Tue, 25 Jul 2023 15:30:09 +0530 (+0530)
+From:   Naveen Kumar Goud Arepalli <quic_narepall@quicinc.com>
+To:     quic_nitirawa@quicinc.com, agross@kernel.org, andersson@kernel.org,
+        konrad.dybcio@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Naveen Kumar Goud Arepalli <quic_narepall@quicinc.com>
+Subject: [PATCH V1] arm64: dts: qcom: sa8775p-ride: Remove min and max voltages for L8A
+Date:   Tue, 25 Jul 2023 15:30:07 +0530
+Message-Id: <20230725100007.14775-1-quic_narepall@quicinc.com>
+X-Mailer: git-send-email 2.17.1
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: sYqXMdFskVAXmbqn72ydL9f1CBury8_8
+X-Proofpoint-GUID: sYqXMdFskVAXmbqn72ydL9f1CBury8_8
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-07-25_05,2023-07-24_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 suspectscore=0
+ adultscore=0 malwarescore=0 mlxlogscore=668 phishscore=0 clxscore=1011
+ mlxscore=0 bulkscore=0 lowpriorityscore=0 priorityscore=1501
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2306200000 definitions=main-2307250086
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/07/2023 09:42, Yunfei Dong wrote:
-> From: Yunfei Dong <yunfei.dong@mediatek.corp-partner.google.com>
-> 
-> With the driver more and more complex, encoder and decoder need to add more parameter
-> in shared struct 'mtk_vcodec_ctx' and 'mtk_vcodec_dev'. Encoder use about 40% and
-> decoder use 60% parameter. Need to allocate extra unused memory when encoder and decoder
-> working.
-> 
-> Separate encoder and decoder in different folder and use independent data struct.
-> 
-> patch 1 remove unused parameter.
-> patch 2~3 align fw and interrupt related interface.
-> patch 4~6 remove the dependency of debug log
-> patch 7~8 separate mtk_vcodec_ctx and mtk_vcodec_dev
-> patch 9 fix unreasonable parameter
-> patch 10 removed unused header files
-> patch 11 separate encoder and decoder in different folder
-> ---
-> Changed from v6:
-> - rebase to: https://git.linuxtv.org/hverkuil/media_tree.git/log/?h=fo-v6.6g.
-> Changed from v5:
-> - fix some words error for patch 3/6/11.
-> - rename mtk_vcodec_comm_drv.h to mtk_vcodec_cmn_drv.h for patch 7.
-> Changed from v4:
-> - add one parameter to record register base for reg_base for patch 3.
-> - add debug string for non ctx log for patch 6.
-> - change the comment of struct mtk_vcodec_dec_ctx and struct mtk_vcodec_enc_ctx for patch 7.
-> - prefer to use struct mtk_vcodec_dec_dev an current period, will re-construct in the future for patch 8.
-> Changed from v3:
-> - re-write commit message for patch 3.
-> Changed from v2:
-> - This patch main changed:
->   1: add different macro mtk_dec_debug and mtk_enc_debug calling common
->      macro mtk_vcodec_debug in order to use dev_dbg instead of pr_debug.
->   2: add different macro mtk_v4l2_venc_dbg and mtk_v4l2_vdec_dbg calling common
->      macro  in order to use dev_dbg instead of pr_debug.
-> Changed from v1:
-> - Change pr_dbg to dev_dbg for mtk_v4l2_level and mtk_vcodec_dbg for patch 4.
-> - Change pr_err to dev_err for mtk_v4l2_err and mtk_vcodec_err for patch 5.
-> - Fix unreasonable parameter for patch 8.
-> ---
-> Yunfei Dong (11):
->   media: mediatek: vcodec: remove unused parameter
->   media: mediatek: vcodec: align fw interface
->   media: mediatek: vcodec: Removing struct 'mtk_vcodec_ctx/dev' for
->     shared interface
->   media: mediatek: vcodec: Removing useless debug log
->   media: mediatek: vcodec: remove the dependency of vcodec debug log
->   media: mediatek: vcodec: replace pr_* with dev_* for v4l2 debug
->     message
->   media: mediatek: vcodec: separate struct 'mtk_vcodec_ctx'
->   media: mediatek: vcodec: separate struct mtk_vcodec_dev
->   media: mediatek: vcodec: fix unreasonable parameter definition and
->     style
->   media: mediatek: vcodec: remove unused include header
->   media: mediatek: vcodec: separate decoder and encoder
+L8A is the supply for UFS VCC, UFS specification allows different VCC
+configurations for UFS devices.
+-UFS 2.x devices: 2.70V - 3.60V
+-UFS 3.x devices: 2.40V - 2.70V
 
-Besides the missing argument in patch 6/11 I also get this compiler warning:
+As sa8775p-ride supports both ufs 2.x and ufs 3.x devices, remove min/max
+voltages for L8A regulator. Initial voltage of L8A will be set to 2.504v
+or 2.952v during PON depending on the UFS device type. On sa8775, UFS is
+the only client in Linux for L8A and this regulator will be voted only
+for enabling/disabling.
 
-drivers/media/platform/mediatek/vcodec/encoder/venc_vpu_if.c: In function 'vpu_enc_ipi_handler':
-drivers/media/platform/mediatek/vcodec/encoder/venc_vpu_if.c:64:31: warning: 'vpu' may be used uninitialized [-Wmaybe-uninitialized]
-   64 |         struct venc_vpu_inst *vpu;
-      |                               ^~~
+Signed-off-by: Naveen Kumar Goud Arepalli <quic_narepall@quicinc.com>
+---
+ arch/arm64/boot/dts/qcom/sa8775p-ride.dts | 2 --
+ 1 file changed, 2 deletions(-)
 
-and this smatch error:
+diff --git a/arch/arm64/boot/dts/qcom/sa8775p-ride.dts b/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
+index ed76680410b4..6f3891a09e59 100644
+--- a/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
++++ b/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
+@@ -98,8 +98,6 @@
+ 
+ 		vreg_l8a: ldo8 {
+ 			regulator-name = "vreg_l8a";
+-			regulator-min-microvolt = <2504000>;
+-			regulator-max-microvolt = <3300000>;
+ 			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+ 			regulator-allow-set-load;
+ 			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
+-- 
+2.17.1
 
-drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.c:138 mtk_vcodec_get_reg_bases() error: buffer overflow 'mtk_dec_reg_names' 11 <= 11
-
-However, I believe that was introduced by Nicolas' patch series.
-
-I'll try to pinpoint the precise patch.
-
-Regards,
-
-	Hans
