@@ -2,52 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4134E7618A5
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 14:46:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ACB137618A6
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 14:46:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231533AbjGYMqf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jul 2023 08:46:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59196 "EHLO
+        id S232375AbjGYMqh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jul 2023 08:46:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59206 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230319AbjGYMqf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 08:46:35 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6CCFB0
-        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 05:46:33 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-9939fbb7191so1157870766b.0
-        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 05:46:33 -0700 (PDT)
+        with ESMTP id S231605AbjGYMqg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 08:46:36 -0400
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1B0A13D
+        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 05:46:34 -0700 (PDT)
+Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-992b66e5affso919118666b.3
+        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 05:46:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690289192; x=1690893992;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=wD+HKpK+g9V/Eo1ZfyVeqQv2ZkF14fSbqDdkDUNFUT0=;
-        b=w/PO9oZ0vX3AIlwXEpgXMDW69Lc/0t4Q2pAZ/uS7RSzivD7nkhJpcjl9UWzAZ7ut5I
-         KhmYCCSQN4Bs69y9b0VZ5bauEy7/q4xRcb90z0QlFm9T6i26sJGSMVcFfOfmlqc/BLQ5
-         mMkJjOH3MdKJB1vlpgSuRDrXx2hKaindWuGl+lcDk60VmT8Kp1kZwQkMJ4oNP0GMALr3
-         wYXV59lREFP/wgD3xzESJfoo1aQlebIab4yH5/clqobmdRLlIXm7w1CXjjvfAahEFn6+
-         aV/loCTrvYF0dm2IydcoyD2f+hlQs8qvKYVcOES0KtiN9r8BxQvNaC6Y0QIffJbaqAO4
-         j6rQ==
+        d=linaro.org; s=google; t=1690289193; x=1690893993;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=SlNxPg8P250n7ISOOb9O3P6IRwX+V9i/tQQGaWegZyk=;
+        b=GZsQG4NIMegnM2aHjh5PeChjkSG29o/EHxvjXXIK5ZiFmj7UnLTS4mO1zxoEmyF0WY
+         Qxg3stDeF/rWJeBZZ1suq5KuY87uc/nGa1lIcOPH6MLKAYDKkZ4goB0TMtksIIs8edRK
+         Wvi9meyt7AAU7XwbjBGROP/Cjj8U6LqUDeV/nMnwE+WYDfvxhOX4C0UPBaPWr6pTH5uo
+         +F0lfOzaoo8iI0cw+A+TxDzYIITFJSfsjRXovOBv2NiO1UYX2pBFJJUrMD4y4gMvD3kU
+         JAfAESAvLqWg8TDVR/rqiF8TYJh5H9r4jrcrxRV4omeBJnIuSshUsUnJVhOTewdmmgnA
+         Zh5g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690289192; x=1690893992;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=wD+HKpK+g9V/Eo1ZfyVeqQv2ZkF14fSbqDdkDUNFUT0=;
-        b=RLgq4nafkfOHSGL58TvnXOHp5e8aGCYzg+5NjUxzhalv3BhP+K8YATO7pBobhXhyFL
-         G2R7oybPuUloF/bFiEA2cR0NuRz+wb7c7Aqkqrcbm3W4f1La+hzd+Ylxhw4i3C6r2P5M
-         mNxhzE/Vr6iLvEiIyUT+Y0P/qb0Uqe4JmJ2+5l4O77ZEDONDyyICRYo30XOueENRhBgA
-         70pKdFZmMuVY2p65OmAmhMo0W1oxfQUQ8NaO/A8lICeGOAZz510mMHoOZrIDdnBmRQ9N
-         ZrLyi3A9PrAVkdnul7YK5uO0MUn4rg1pi7BNQlMxupYzFFznbK870W56J6ZCS0jJtb4F
-         0Q7Q==
-X-Gm-Message-State: ABy/qLYihNabwHMKJ3k7LrIuKMbOV3Emsa2FaAuuDg1cOa81TefvbiAf
-        9zmlgaixWaoXB6RgF1wCWhYyGCZCdISkXlArfdM=
-X-Google-Smtp-Source: APBJJlFjGkMiiA3LTuUWupyujaXfUXOSOWQNK6zgkhil0TK00MRAeojQIUFo5S8Yz0JEAvI9ImOyDg==
-X-Received: by 2002:a17:906:53c5:b0:99b:50ea:2f96 with SMTP id p5-20020a17090653c500b0099b50ea2f96mr2290951ejo.12.1690289192327;
-        Tue, 25 Jul 2023 05:46:32 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1690289193; x=1690893993;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=SlNxPg8P250n7ISOOb9O3P6IRwX+V9i/tQQGaWegZyk=;
+        b=Hvg7b1J6x6T9adsl25G8zjaI2OlM0OV5K4ctjz+Vv3r/PKlME/TdG+JZRyTo5W01Wl
+         uS4EDEfbPt31DhgaxsonNJLut8SQ+XSvdSc3Qv3wyZCW2hFeg9xkZWlkQOuF9TNin4nT
+         ovXZjbbkiO9Ja9J2Jb1z8ExfQyQO7myUgmzGpaXj8n9fuB4HaXMM38qHa4kcYwjsasAR
+         YmOxtvVAf6MupWOirjQVnkXWE6QU7cbyS6WSkPT3LE0KZUmo7OJZxr5hiJwUvq9b2oYU
+         BpXBsopK82hyBU9ivVEv5DXFBK4E+Kp3FbCO4K4aaF2ZRgA5a7ZM86FCQ69FAnBtxF9k
+         vScw==
+X-Gm-Message-State: ABy/qLYFML7UXThwMTeXbGQPFPPcKUmHBtcurRv4g3WOPr9HqTIbIh/V
+        P/nzGkseZFyT+hcLA0WNfHOwZQ==
+X-Google-Smtp-Source: APBJJlGejpX0SoZtPDPmFmTNOX8R4TPfLiN9YKxn20cBWdgxCNLrghaRDqdGpKXKi+yH7CdELIMKLg==
+X-Received: by 2002:a17:907:7757:b0:99b:627b:e962 with SMTP id kx23-20020a170907775700b0099b627be962mr13840966ejc.47.1690289193623;
+        Tue, 25 Jul 2023 05:46:33 -0700 (PDT)
 Received: from krzk-bin.. ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id xo18-20020a170907bb9200b0099b5a71b0bfsm7970576ejc.94.2023.07.25.05.46.30
+        by smtp.gmail.com with ESMTPSA id xo18-20020a170907bb9200b0099b5a71b0bfsm7970576ejc.94.2023.07.25.05.46.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 Jul 2023 05:46:31 -0700 (PDT)
+        Tue, 25 Jul 2023 05:46:33 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Liam Girdwood <lgirdwood@gmail.com>,
         Mark Brown <broonie@kernel.org>,
@@ -59,10 +60,12 @@ To:     Liam Girdwood <lgirdwood@gmail.com>,
         Adam Ward <Adam.Ward.opensource@diasemi.com>,
         linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 1/3] regulator: dt-bindings: dlg,da9121: add buck2 constraints
-Date:   Tue, 25 Jul 2023 14:46:27 +0200
-Message-Id: <20230725124629.150113-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 2/3] regulator: dt-bindings: dlg,da9121: allow different names
+Date:   Tue, 25 Jul 2023 14:46:28 +0200
+Message-Id: <20230725124629.150113-2-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230725124629.150113-1-krzysztof.kozlowski@linaro.org>
+References: <20230725124629.150113-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -75,52 +78,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Instead of describing the constraints for some devices (buck2 not
-present), code it in allOf:if:then section to actually allow validation
-of this requirement.
+Regulator names, as specified by regulator-name, are board-dependent and
+should describe the name used on the actual board.  Do not enforce
+generic buck1/2 names.
+
+This also fixes dtbs_check warnings like:
+
+  zynqmp-sm-k26-revA.dtb: pmic@33: regulators:buck1:regulator-name:0: 'da9131_buck1' does not match '^BUCK([1-2])$'
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- .../bindings/regulator/dlg,da9121.yaml        | 19 +++++++++++++++++--
- 1 file changed, 17 insertions(+), 2 deletions(-)
+ Documentation/devicetree/bindings/regulator/dlg,da9121.yaml | 3 ---
+ 1 file changed, 3 deletions(-)
 
 diff --git a/Documentation/devicetree/bindings/regulator/dlg,da9121.yaml b/Documentation/devicetree/bindings/regulator/dlg,da9121.yaml
-index dc626517c2ad..43f99bc8fbd4 100644
+index 43f99bc8fbd4..13b3f75f8e5e 100644
 --- a/Documentation/devicetree/bindings/regulator/dlg,da9121.yaml
 +++ b/Documentation/devicetree/bindings/regulator/dlg,da9121.yaml
-@@ -97,8 +97,6 @@ properties:
-         properties:
-           regulator-name:
-             pattern: "^BUCK([1-2])$"
--            description: |
--              BUCK2 present in DA9122, DA9220, DA9131, DA9132 only
+@@ -95,9 +95,6 @@ properties:
+           Properties for a single BUCK regulator
  
+         properties:
+-          regulator-name:
+-            pattern: "^BUCK([1-2])$"
+-
            regulator-initial-mode:
              enum: [ 0, 1, 2, 3 ]
-@@ -122,6 +120,23 @@ required:
-   - reg
-   - regulators
- 
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          not:
-+            contains:
-+              enum:
-+                - dlg,da9122
-+                - dlg,da9131
-+                - dlg,da9132
-+                - dlg,da9220
-+    then:
-+      properties:
-+        regulators:
-+          properties:
-+            buck2: false
-+
- additionalProperties: false
- 
- examples:
+             description: Defined in include/dt-bindings/regulator/dlg,da9121-regulator.h
 -- 
 2.34.1
 
