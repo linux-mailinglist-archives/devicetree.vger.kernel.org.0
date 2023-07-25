@@ -2,102 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F49D761F83
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 18:50:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A367761FB9
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 19:03:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232169AbjGYQux (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jul 2023 12:50:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44164 "EHLO
+        id S231629AbjGYRDT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jul 2023 13:03:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51612 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232147AbjGYQur (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 12:50:47 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF0AB268B;
-        Tue, 25 Jul 2023 09:50:03 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 02EDB61804;
-        Tue, 25 Jul 2023 16:49:28 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 42710C433C9;
-        Tue, 25 Jul 2023 16:49:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690303767;
-        bh=wljKIvIhCAvwUWXLNlEVuBqrMB/ZTYdEiw5PLP21L/U=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=ozm3sP55zIQu83KNRdafniy85etyRac6KCEQaLPPixxVJe/WX7isfuj82y8iQJk2A
-         0+EVS0F/i2i8GBP9vXAD8iVFIfn4OiDzV55X/84qZulOSuZ1/YwIQGEeIX7OzwBve+
-         vuDbnGOZ1l6x5CLtyXXGCGMP3tqtKJPhQR7HdlHY3A9SrDT5v/CPZHiNxdoVgHlir3
-         c7EyjNpQgeaNdjV9OhILjgCkh13iL/E5+DooJ+azc01KOiEM2COo3Rk3dF1J8eDeUV
-         YEPX6Nisw7sBilygqtewjBOuyDwfiKqlhUa9MLkU6gzsIhygDi2fazWIV8G+fiGkSD
-         Ov/pxCrrh5OIQ==
-From:   Mark Brown <broonie@kernel.org>
-To:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        lgirdwood@gmail.com, robh+dt@kernel.org,
+        with ESMTP id S232471AbjGYRDS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 13:03:18 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id D8AA4FE;
+        Tue, 25 Jul 2023 10:03:16 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id CF67615DB;
+        Tue, 25 Jul 2023 10:03:59 -0700 (PDT)
+Received: from pluto (unknown [172.31.20.19])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 718353F6C4;
+        Tue, 25 Jul 2023 10:03:14 -0700 (PDT)
+Date:   Tue, 25 Jul 2023 18:03:04 +0100
+From:   Cristian Marussi <cristian.marussi@arm.com>
+To:     Nikunj Kela <quic_nkela@quicinc.com>
+Cc:     sudeep.holla@arm.com, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        Rohit Agarwal <quic_rohiagar@quicinc.com>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-In-Reply-To: <1689062414-3654-1-git-send-email-quic_rohiagar@quicinc.com>
-References: <1689062414-3654-1-git-send-email-quic_rohiagar@quicinc.com>
-Subject: Re: [PATCH v3 0/3] Add regulators support for PMX75
-Message-Id: <169030376498.1478387.14075297959200519808.b4-ty@kernel.org>
-Date:   Tue, 25 Jul 2023 17:49:24 +0100
+        agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH v2 3/3] firmware: arm_scmi: Add qcom hvc/shmem transport
+Message-ID: <ZMAASCqwMbqX7T7L@pluto>
+References: <20230718160833.36397-1-quic_nkela@quicinc.com>
+ <20230724164419.16092-1-quic_nkela@quicinc.com>
+ <20230724164419.16092-4-quic_nkela@quicinc.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.13-dev-099c9
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230724164419.16092-4-quic_nkela@quicinc.com>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 11 Jul 2023 13:30:11 +0530, Rohit Agarwal wrote:
-> Changes in v3:
->  - Created a separate patch for updating the entry in pmx65 bindings.
->  - Changed the subject of patches [1/3] and [2/3] according to the convention.
+On Mon, Jul 24, 2023 at 09:44:19AM -0700, Nikunj Kela wrote:
+> Add a new transport channel to the SCMI firmware interface driver for
+> SCMI message exchange on Qualcomm virtual platforms.
 > 
-> Changes in v2:
->  - Addressed Krzysztof to update the if:then: in bindings patch.
->  - Breaking the original series [1] into smaller series.
+> The hypervisor associates an object-id also known as capability-id
+> with each hvc doorbell object. The capability-id is used to identify the
+> doorbell from the VM's capability namespace, similar to a file-descriptor.
 > 
-> [...]
+> The hypervisor, in addition to the function-id, expects the capability-id
+> to be passed in x1 register when HVC call is invoked.
+> 
+> The qcom hvc doorbell/shared memory transport uses a statically defined
+> shared memory region that binds with "arm,scmi-shmem" device tree node.
+> 
+> The function-id & capability-id are allocated by the hypervisor on bootup
+> and are stored in the shmem region by the firmware before starting Linux.
+> 
+> Currently, there is no usecase for the atomic support therefore this driver
+> doesn't include the changes for the same.
+> 
 
-Applied to
+Hi Nikunj,
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
+so basically this new SCMI transport that you are introducing is just
+exactly like the existing SMC transport with the only difference that
+you introduced even another new way to configure func_id, a new cap_id
+param AND the fact that you use HVC instead of SMC... all of this tied
+to a new compatible to identify this new transport mechanism....
+..but all in all is just a lot of plain duplicated code to maintain...
 
-Thanks!
+...why can't you fit this other smc/hvc transport variant into the
+existing SMC transport by properly picking and configuring func_id/cap_id
+and "doorbell" method (SMC vs HVC) in the chan_setup() step ?
 
-[1/3] regulator: dt-bindings: qcom,rpmh: Update PMX65 entry
-      commit: 4fdef8553df58953f572f1cb46d357c735c683a9
-[2/3] regulator: dt-bindings: qcom,rpmh: Add PMX75 compatible
-      commit: 0ef3d931632e3fce51ed5510935238937d644c97
-[3/3] regulator: qcom-rpmh: Add regulators support for PMX75
-      commit: 0b294ed669ead34a348d17d06b6d4d58712b14e2
+..I mean ... you can decide where to pick your params based on
+compatibles and also you can setup your invokation method (SMC vs HVC)
+based on those...while keeping all the other stuff exactly the same...
+...including support for atomic exchanges...if not, when you'll need that
+too in your QC_HVC transport you'll have to duplicate also that (and my
+bugs too probably :P)
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+(... well maybe in this scenario also the transport itself should be
+renamed from SMC to something more general...)
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+Not sure if I am missing something, or if Sudeep will be horrified by
+this unifying proposal of mine, but in this series as it stands now I
+just see a lot of brutally duplicated stuff that just differs by naming
+and a very minimal change in logic that could be addressed changing and
+generalizing the original SMC transport code instead.
 
 Thanks,
-Mark
+Cristian
 
