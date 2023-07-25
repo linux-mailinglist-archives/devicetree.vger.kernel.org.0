@@ -2,184 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BE175760DC5
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 11:00:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BBE99760DD0
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 11:01:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232592AbjGYJAC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jul 2023 05:00:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44596 "EHLO
+        id S232628AbjGYJBO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jul 2023 05:01:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45250 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232574AbjGYJAB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 05:00:01 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19E3E98;
-        Tue, 25 Jul 2023 01:59:59 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 36P8xeSs107055;
-        Tue, 25 Jul 2023 03:59:40 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1690275580;
-        bh=PYv2F9TGO+8iiuiu+JUOxxqpOZW3GXXXquvGVj3k/sY=;
-        h=From:To:CC:Subject:Date;
-        b=RfbCii/09/IMnbxREzTK3YLKHZxyUc70obzKQjQI7jyKuO2K6i9XhBPuIbI7JgQLm
-         85Tz6E5jJAyvN8b9h+zZNuwC1twBEx66RPH4N8Y3BD1ANvmPa8YPlIx0em/Lo+CH6F
-         M2ZcoOJCEOuWI0I4ND2TaBsFrr0glRQtF/Mz28UU=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 36P8xePH031419
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 25 Jul 2023 03:59:40 -0500
-Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 25
- Jul 2023 03:59:40 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 25 Jul 2023 03:59:40 -0500
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 36P8xdKm117679;
-        Tue, 25 Jul 2023 03:59:40 -0500
-From:   Bhavya Kapoor <b-kapoor@ti.com>
-To:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-CC:     <conor+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <robh+dt@kernel.org>, <kristo@kernel.org>, <vigneshr@ti.com>,
-        <nm@ti.com>, <u-kumar1@ti.com>, <b-kapoor@ti.com>
-Subject: [PATCH v6] arm64: dts: ti: k3-j721s2: Add support for CAN instances 3 and 5 in main domain
-Date:   Tue, 25 Jul 2023 14:29:39 +0530
-Message-ID: <20230725085939.536766-1-b-kapoor@ti.com>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S232431AbjGYJBJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 05:01:09 -0400
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5AABBD
+        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 02:00:41 -0700 (PDT)
+Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-3fbc12181b6so51608775e9.2
+        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 02:00:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1690275634; x=1690880434;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=j7Qh4SLEY1eLgJVS8m4AG3+oVzUXdrRAOvEVED2PMdU=;
+        b=qAmEn5KU8WaxCdLJKYsT6B7H3MTGmTKWRj4CjmcCMDAC7t8j4iL/ALonYKoRqOdqFy
+         vuh2ueNCHD8Z9tGVV45pdlWu0yg8jAg/5m/btZQHBUCf7WfUqTVORU+N1969jlOfwlHu
+         7h7lv2qQQtoi5xUKT4c6nFJN/VUC9zwfFCtsZpldsHpepW7T8VJ26WboW0J4nbRLV2Aa
+         yZsCLHwubAY+ll28aPUUXRPyRi5S6E6/EUuvPjAAUHpl46ipxDwd1sHqL+IDkQw0ag8y
+         YCyOFT/EazzY//gEefkEGsSLAM1X39ozh0R+G2g9o+Fg9hRWeS+3pCZXd9Kd671Myhe/
+         cLpw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690275634; x=1690880434;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=j7Qh4SLEY1eLgJVS8m4AG3+oVzUXdrRAOvEVED2PMdU=;
+        b=V8BH4JrAPANJ2FUxMQawtUwE5DvYGkHd2J1bLjNrKSdFlsTqhfyXO+JEnNlmFigQir
+         wH09+HrnKkgzbjDEdXpKWNS34ssj7oLRUDV1QwdD4Q/VxMbOizWK+5IIvd0lY2owFQLn
+         RGikbWa60SLt3K1Y1ftrDc69iEKdCTeU3A8Ba7eb9BiB2MEF3kTrCaCw+PV4eWBLrH5D
+         9RrGaYdXIzJn7SKdfy7KtZm227bwHhKmXvBnwSVA1LRg/sNM9fgQWwOvycTHwlZm6mE9
+         fosREQIxi5GY1fTJ+W2d0e/KLfgHv7A9ZDQGjFpO6jzONHHaUuRpFDS8pqQgh64rFW6+
+         vMAg==
+X-Gm-Message-State: ABy/qLZpYTc8cpC0lwFFagxDFc4Ogcz34sUlcjNtAi9wLPP8q9v8z+js
+        GdDv/luNyLgNE1cMf37L9PorZ9uh9In+OpxgpkpJ3w==
+X-Google-Smtp-Source: APBJJlGI2bvBb8cUMLfFKTvfQy/8j2HbRp6KngSO9LZm27HZyh5fpzLeuHCrPJJ07fcGW6ABaS5oRQ==
+X-Received: by 2002:a7b:c453:0:b0:3fa:99d6:4798 with SMTP id l19-20020a7bc453000000b003fa99d64798mr10044249wmi.37.1690275633845;
+        Tue, 25 Jul 2023 02:00:33 -0700 (PDT)
+Received: from [192.168.1.101] (abxj221.neoplus.adsl.tpnet.pl. [83.9.3.221])
+        by smtp.gmail.com with ESMTPSA id f5-20020a1c6a05000000b003fc015ae1e1sm12648420wmc.3.2023.07.25.02.00.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 25 Jul 2023 02:00:33 -0700 (PDT)
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Subject: [PATCH v4 0/3] SM6375 remoteprocs
+Date:   Tue, 25 Jul 2023 11:00:27 +0200
+Message-Id: <20230725-topic-6375_rproc-v4-0-d55e8a6d0f5f@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIACuPv2QC/0WNQQ6CMBBFr2K6dkhpCw2uvIcxZigtNGKHTNFoC
+ He3cePy/eS9v4nsOfosTodNsH/FHCkVMMeDcBOm0UMcCgsllZZWNbDSEh202jY3XpgcmCCtwU4
+ FbIIoWo/ZQ8+Y3FTE9JznMi7sQ3z/fi7XwoHpAevEHv/1Wna1blpjK607pQzUcKfEOFTDp3eRz
+ nNMyFQRj2LfvwyNBA+6AAAA
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Manivannan Sadhasivam <mani@kernel.org>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1690275632; l=1779;
+ i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
+ bh=fw4ZCgvUkpz8oGonNg5rYSidS90Y7mSsueusBESngNc=;
+ b=2nrR5I4qmkcWiMkQisBkgUu7tnSNSdqmhYswI/yyOAVzvqnc/9hyS2ImF5EtZPoKup89aXn1j
+ SAmn8O8VuJgB3zZgHxIs0HDVA/WHnwOwYpgLaYh7RZYW8bD7K6s7MH+
+X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
+ pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-CAN instances 3 and 5 in the main domain are brought on the common
-processor board through header J27 and J28. The CAN High and Low lines
-from the SoC are routed through a mux on the SoM. The select lines need
-to be set for the CAN signals to get connected to the transceivers on
-the common processor board. Threfore, add respective mux, transceiver
-dt nodes to add support for these CAN instances.
+Resending as the previous revision was mostly ignored on the rproc side.
 
-Reviewed-by: Udit Kumar <u-kumar1@ti.com>
-Signed-off-by: Bhavya Kapoor <b-kapoor@ti.com>
+Changes since v3:
+- Pick up krzk's rb on bindings
+- Drop patch 4 (applied)
+Link to v3: https://lore.kernel.org/linux-arm-msm/20230109135647.339224-1-konrad.dybcio@linaro.org/
+
+This revision merges two [1] [2] previously separate series,
+adding SM6375's ADSP, CDSP, MPSS and related bindings.
+
+[1] https://lore.kernel.org/linux-arm-msm/20230107120623.1903056-1-konrad.dybcio@linaro.org/T/#m89d629bd788593dfd27e4dbf0cf0bf94ffd0a7ce
+[2] https://lore.kernel.org/linux-arm-msm/622afd8b-a469-4c95-d2b8-030e47b0cac2@linaro.org/T/#m17aee8f3a51cfbd3f92fe2b4dd48b3722a6a0a7e
+
+Konrad Dybcio (4):
+  dt-bindings: remoteproc: qcom,sm6375-pas: Document remoteprocs
+  remoteproc: qcom: pas: Add SM6375 ADSP & CDSP
+  remoteproc: qcom: pas: Add SM6375 MPSS
+  arm64: dts: qcom: sm6375: Add missing power-domain-named to CDSP
+
+ .../bindings/remoteproc/qcom,sm6375-pas.yaml  | 137 ++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sm6375.dtsi          |   1 +
+ drivers/remoteproc/qcom_q6v5_pas.c            |  18 +++
+ 3 files changed, 156 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/remoteproc/qcom,sm6375-pas.yaml
+
+--
+2.39.0
+
 ---
-changelog v5->v6:
-- Changed node names for pins to match with json schema conversion
+Konrad Dybcio (3):
+      dt-bindings: remoteproc: qcom,sm6375-pas: Document remoteprocs
+      remoteproc: qcom: pas: Add SM6375 ADSP & CDSP
+      remoteproc: qcom: pas: Add SM6375 MPSS
 
-Link to v5 : https://lore.kernel.org/all/20230724111751.86422-1-b-kapoor@ti.com/
+ .../bindings/remoteproc/qcom,sm6375-pas.yaml       | 137 +++++++++++++++++++++
+ drivers/remoteproc/qcom_q6v5_pas.c                 |  18 +++
+ 2 files changed, 155 insertions(+)
+---
+base-commit: 1e25dd7772483f477f79986d956028e9f47f990a
+change-id: 20230725-topic-6375_rproc-4f074a92fa5f
 
- .../dts/ti/k3-j721s2-common-proc-board.dts    | 46 +++++++++++++++++++
- arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi  | 12 +++++
- 2 files changed, 58 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
-index 04d4739d7245..a2c5ccd6897f 100644
---- a/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
-@@ -29,6 +29,8 @@ aliases {
- 		can0 = &main_mcan16;
- 		can1 = &mcu_mcan0;
- 		can2 = &mcu_mcan1;
-+		can3 = &main_mcan3;
-+		can4 = &main_mcan5;
- 	};
- 
- 	evm_12v0: fixedregulator-evm12v0 {
-@@ -109,6 +111,22 @@ transceiver2: can-phy2 {
- 		standby-gpios = <&wkup_gpio0 2 GPIO_ACTIVE_HIGH>;
- 	};
- 
-+	transceiver3: can-phy3 {
-+		compatible = "ti,tcan1043";
-+		#phy-cells = <0>;
-+		max-bitrate = <5000000>;
-+		standby-gpios = <&exp2 7 GPIO_ACTIVE_LOW>;
-+		enable-gpios = <&exp2 6 GPIO_ACTIVE_HIGH>;
-+		mux-states = <&mux0 1>;
-+	};
-+
-+	transceiver4: can-phy4 {
-+		compatible = "ti,tcan1042";
-+		#phy-cells = <0>;
-+		max-bitrate = <5000000>;
-+		standby-gpios = <&exp_som 7 GPIO_ACTIVE_HIGH>;
-+		mux-states = <&mux1 1>;
-+	};
- };
- 
- &main_pmx0 {
-@@ -152,6 +170,20 @@ main_usbss0_pins_default: main-usbss0-default-pins {
- 			J721S2_IOPAD(0x0ec, PIN_OUTPUT, 6) /* (AG25) TIMER_IO1.USB0_DRVVBUS */
- 		>;
- 	};
-+
-+	main_mcan3_pins_default: main-mcan3-default-pins {
-+		pinctrl-single,pins = <
-+			J721S2_IOPAD(0x080, PIN_INPUT, 0) /* (U26) MCASP0_AXR4.MCAN3_RX */
-+			J721S2_IOPAD(0x07c, PIN_OUTPUT, 0) /* (T27) MCASP0_AXR3.MCAN3_TX */
-+		>;
-+	};
-+
-+	main_mcan5_pins_default: main-mcan5-default-pins {
-+		pinctrl-single,pins = <
-+			J721S2_IOPAD(0x03c, PIN_INPUT, 0) /* (U27) MCASP0_AFSX.MCAN5_RX */
-+			J721S2_IOPAD(0x038, PIN_OUTPUT, 0) /* (AB28) MCASP0_ACLKX.MCAN5_TX */
-+		>;
-+	};
- };
- 
- &wkup_pmx2 {
-@@ -460,3 +492,17 @@ adc {
- 		ti,adc-channels = <0 1 2 3 4 5 6 7>;
- 	};
- };
-+
-+&main_mcan3 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_mcan3_pins_default>;
-+	phys = <&transceiver3>;
-+};
-+
-+&main_mcan5 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_mcan5_pins_default>;
-+	phys = <&transceiver4>;
-+};
-diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi
-index d57dd43da0ef..594766482071 100644
---- a/arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi
-@@ -31,6 +31,18 @@ secure_ddr: optee@9e800000 {
- 		};
- 	};
- 
-+	mux0: mux-controller {
-+		compatible = "gpio-mux";
-+		#mux-state-cells = <1>;
-+		mux-gpios = <&exp_som 1 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	mux1: mux-controller {
-+		compatible = "gpio-mux";
-+		#mux-state-cells = <1>;
-+		mux-gpios = <&exp_som 2 GPIO_ACTIVE_HIGH>;
-+	};
-+
- 	transceiver0: can-phy0 {
- 		/* standby pin has been grounded by default */
- 		compatible = "ti,tcan1042";
+Best regards,
 -- 
-2.34.1
+Konrad Dybcio <konrad.dybcio@linaro.org>
 
