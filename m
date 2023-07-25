@@ -2,64 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A545C762234
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 21:27:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 30AED762242
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 21:29:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229793AbjGYT1B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jul 2023 15:27:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59132 "EHLO
+        id S229980AbjGYT3i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jul 2023 15:29:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60578 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229780AbjGYT1A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 15:27:00 -0400
+        with ESMTP id S229441AbjGYT3h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 15:29:37 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBBA61FF0;
-        Tue, 25 Jul 2023 12:26:59 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AD0FFE;
+        Tue, 25 Jul 2023 12:29:36 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 6030D61883;
-        Tue, 25 Jul 2023 19:26:59 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B7D35C433C8;
-        Tue, 25 Jul 2023 19:26:56 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 208806189B;
+        Tue, 25 Jul 2023 19:29:36 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BB9B1C433C7;
+        Tue, 25 Jul 2023 19:29:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690313218;
-        bh=egpjd4QmTKmOJukTapc0wUCPZLvmUueNxDyTwwon6vk=;
+        s=k20201202; t=1690313375;
+        bh=aw19mftFcyQki2PQHlA98mbcBzXuWNh8pKa925BaS+8=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ByEyAsmLk6Lkgrs0+NsmKvuPj4ockBLvnGr7l32c4kIaIX628vmvWe8eb4cUEJ2Od
-         UsnwWFX14VO3+sFo8XBMk0/Vn0Qf61r/VV4NA3ADAD1WgWkJI4Ewm5fJPKvPSgoE6a
-         M66P0f52J2N/GtWujlOtOq1hGa+HFCqkfhjArlHd7KUbcF4nhtXfkmJqj/3jRgb6ho
-         InN8ukLT/QeTu589s45Lsw2jrINLoxO1DWXMH30AuSwN4bIFgHjquwkFRw0stgwzL/
-         dQVOfvvezXNo0a1+5DW9pbQ7ZNqbQplOq1J+CpY4J3w3IwWc2gRnFRsxLt8I8G0UZF
-         cP4M0XR4UJICA==
-Date:   Tue, 25 Jul 2023 20:26:54 +0100
+        b=ZeJBt/MQvQ74Grt94WdQCipDu4Y762H8rFaWcX0guam6XvP9gb7DAVWuAcGzmsd0V
+         6a/UmuGzUuhFPFtYCeFClwcf9QXFCuwElYenp034uWKqzRtgXMBukj0YiWXQygjnQB
+         miFNq28w3cU6nQJkGoOqivk9djn+dUkINTwFeg5JhOpFmdjxo1gdGzogWmvhScZgj0
+         dV0uOJOgOgTym+fgA3p53XxuCIRW6PWAhcIgZtAX1VIxEyIczPm4cabTqk7LXXVY5R
+         fI2Sxshr3jHRnfcwmBEt9ZzwPyVdsYj/yphz2PgYLCGiMEDx2qgosxs3dtuBde5qv4
+         meD1oQQ28EGeg==
+Date:   Tue, 25 Jul 2023 20:29:30 +0100
 From:   Conor Dooley <conor@kernel.org>
-To:     "Datta, Shubhrajyoti" <shubhrajyoti.datta@amd.com>
-Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "git (AMD-Xilinx)" <git@amd.com>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        "Simek, Michal" <michal.simek@amd.com>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "sboyd@kernel.org" <sboyd@kernel.org>,
-        "mturquette@baylibre.com" <mturquette@baylibre.com>
-Subject: Re: [PATCH v3] dt-bindings: clock: versal: Convert the
- xlnx,zynqmp-clk.txt to yaml
-Message-ID: <20230725-untaxed-footman-0c764cc9792f@spud>
-References: <20230724111843.18706-1-shubhrajyoti.datta@amd.com>
- <20230724-direness-syrup-14c0b50c8018@spud>
- <BY5PR12MB4902A95CD14D934BCF3B7C658103A@BY5PR12MB4902.namprd12.prod.outlook.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, stable@vger.kernel.org
+Subject: Re: [PATCH] regulator: dt-bindings: qcom,rpm: fix pattern for
+ children
+Message-ID: <20230725-rejoicing-lying-385eb50f988b@spud>
+References: <20230725164047.368892-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="HOnTUMKPZRsFjyWC"
+        protocol="application/pgp-signature"; boundary="CAZ1vCHBbimoAGq1"
 Content-Disposition: inline
-In-Reply-To: <BY5PR12MB4902A95CD14D934BCF3B7C658103A@BY5PR12MB4902.namprd12.prod.outlook.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20230725164047.368892-1-krzysztof.kozlowski@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -67,101 +66,61 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---HOnTUMKPZRsFjyWC
+--CAZ1vCHBbimoAGq1
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Jul 25, 2023 at 05:28:07AM +0000, Datta, Shubhrajyoti wrote:
-> [AMD Official Use Only - General]
+On Tue, Jul 25, 2023 at 06:40:47PM +0200, Krzysztof Kozlowski wrote:
+> The "or" (|) in regular expression must be within parentheses,
+> otherwise it is not really an "or" and it matches supplies:
 >=20
-> > -----Original Message-----
-> > From: Conor Dooley <conor@kernel.org>
-> > Sent: Tuesday, July 25, 2023 12:18 AM
-> > To: Datta, Shubhrajyoti <shubhrajyoti.datta@amd.com>
-> > Cc: devicetree@vger.kernel.org; git (AMD-Xilinx) <git@amd.com>; linux-
-> > clk@vger.kernel.org; Simek, Michal <michal.simek@amd.com>;
-> > conor+dt@kernel.org; krzysztof.kozlowski+dt@linaro.org;
-> > robh+dt@kernel.org; sboyd@kernel.org; mturquette@baylibre.com
-> > Subject: Re: [PATCH v3] dt-bindings: clock: versal: Convert the xlnx,zy=
-nqmp-
-> > clk.txt to yaml
-> >
-> > On Mon, Jul 24, 2023 at 04:48:43PM +0530, Shubhrajyoti Datta wrote:
-> > > Convert the xlnx,zynqmp-clk.txt to yaml.
-> > > versal-clk.yaml already exists that's why ZynqMP is converted and
-> > > merged.
-> > >
-> > > Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
-> > >
-> > > ---
-> > >
-> > > Changes in v3:
-> > > Update the min and maxitems
-> > >
-> > > Changes in v2:
-> > > add enum in compatible
-> > > fix the description
-> > > add constraints for clocks
-> > > name the clock-controller1 to clock-controller
-> > >
-> > >  .../bindings/clock/xlnx,versal-clk.yaml       | 78 ++++++++++++++++-=
---
-> > >  .../bindings/clock/xlnx,zynqmp-clk.txt        | 63 ---------------
-> > >  2 files changed, 69 insertions(+), 72 deletions(-)  delete mode
-> > > 100644 Documentation/devicetree/bindings/clock/xlnx,zynqmp-clk.txt
-> > >
-> > > diff --git
-> > > a/Documentation/devicetree/bindings/clock/xlnx,versal-clk.yaml
-> > > b/Documentation/devicetree/bindings/clock/xlnx,versal-clk.yaml
-> > > index e9cf747bf89b..deebbfd084e8 100644
-> > > --- a/Documentation/devicetree/bindings/clock/xlnx,versal-clk.yaml
-> > > +++ b/Documentation/devicetree/bindings/clock/xlnx,versal-clk.yaml
-> > > @@ -19,7 +19,9 @@ select: false
-> > >  properties:
-> > >    compatible:
-> > >      oneOf:
-> > > -      - const: xlnx,versal-clk
-> > > +      - enum:
-> > > +          - xlnx,versal-clk
-> > > +          - xlnx,zynqmp-clk
-> > >        - items:
-> > >            - enum:
-> > >                - xlnx,versal-net-clk
-> > > @@ -31,16 +33,12 @@ properties:
-> > >    clocks:
-> > >      description: List of clock specifiers which are external input
-> > >        clocks to the given clock controller.
-> > > -    items:
-> > > -      - description: reference clock
-> > > -      - description: alternate reference clock
-> > > -      - description: alternate reference clock for programmable logic
-> > > +    minItems: 3
-> > > +    maxItems: 7
-> >
-> > This doesn't seem right to me. The original binding requires 5 clock in=
-puts,
-> > but this will relax it such that only three are needed, no?
-> > You'll need to set constraints on a per compatible basis.
-> >
-> Does below look good.
+>   qcom-apq8060-dragonboard.dtb: regulators-1: vdd_ncp-supply: [[34]] is n=
+ot of type 'object'
+>=20
+> Fixes: fde0e25b71a9 ("dt-bindings: regulators: convert non-smd RPM Regula=
+tors bindings to dt-schema")
+> Cc: <stable@vger.kernel.org>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-I don't think that you tested it with < 5 clocks (hint, if you remove
-one of the clocks from your example below, dt_binding_check should fail).
-All the constraints need to move into the `if` bits AFAIU.
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
 Thanks,
 Conor.
 
---HOnTUMKPZRsFjyWC
+> ---
+>  .../devicetree/bindings/regulator/qcom,rpm-regulator.yaml       | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/regulator/qcom,rpm-regulat=
+or.yaml b/Documentation/devicetree/bindings/regulator/qcom,rpm-regulator.ya=
+ml
+> index 8a08698e3484..b4eb4001eb3d 100644
+> --- a/Documentation/devicetree/bindings/regulator/qcom,rpm-regulator.yaml
+> +++ b/Documentation/devicetree/bindings/regulator/qcom,rpm-regulator.yaml
+> @@ -49,7 +49,7 @@ patternProperties:
+>    ".*-supply$":
+>      description: Input supply phandle(s) for this node
+> =20
+> -  "^((s|l|lvs)[0-9]*)|(s[1-2][a-b])|(ncp)|(mvs)|(usb-switch)|(hdmi-switc=
+h)$":
+> +  "^((s|l|lvs)[0-9]*|s[1-2][a-b]|ncp|mvs|usb-switch|hdmi-switch)$":
+>      description: List of regulators and its properties
+>      $ref: regulator.yaml#
+>      unevaluatedProperties: false
+> --=20
+> 2.34.1
+>=20
+
+--CAZ1vCHBbimoAGq1
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZMAh/gAKCRB4tDGHoIJi
-0sfRAP9+zZlf+w1vLP924z0dUd4jDa+PN8IU1eJIqz2E94LSCQEApuH4mzlF9b4o
-wNb95wDho/PqLG5yLvh1gd0IuzyAUwE=
-=1K0v
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZMAimgAKCRB4tDGHoIJi
+0vatAQCvTM4CWBmZLgNfavCUCUcSLqZLax4U6upAuXalaPoBLwEA68TjEBOVHkSF
+4miI5R5DwFkJN1Kw966nLoeYFoEpUgM=
+=KMaP
 -----END PGP SIGNATURE-----
 
---HOnTUMKPZRsFjyWC--
+--CAZ1vCHBbimoAGq1--
