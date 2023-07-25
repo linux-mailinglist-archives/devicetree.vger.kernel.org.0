@@ -2,178 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B049761D1C
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 17:15:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 09001761CE8
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 17:07:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233106AbjGYPPZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jul 2023 11:15:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44172 "EHLO
+        id S231621AbjGYPHK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jul 2023 11:07:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38442 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231728AbjGYPPY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 11:15:24 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 569D619A0;
-        Tue, 25 Jul 2023 08:15:23 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id DC6B6613DC;
-        Tue, 25 Jul 2023 15:15:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D457AC433C7;
-        Tue, 25 Jul 2023 15:15:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690298122;
-        bh=uXKJ00uasfRVR16k4FOy30lC5u9cvvfPEmi295ROSWo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=fTH8UPAM+yn81R7Z0KXVtP8plOMp2TcJp0PSNVyugUwDyax88EbHRxI8m3I4eBcPe
-         eCUj3cznRsiQJPalXVlO1yJwcrPx1GgSKlTsZyrW8dttQooC1l9Z3xIxmzxrrkuF7d
-         BjQlmEtI/Wl52M+s6tiFDpazwACyKEJ0Coprc0z7wWUm08GqlSodUDVzyJ9fLTfhMe
-         v+kB9e1cPeBd6ISw2Tay9SDLaUykUHhD3+pMt7p9WWVOh0uG3TJYYR0fndhiQKwoSR
-         Q88j5PyK4KPrdVMx1vKzfwgcsCGmTcSzMiUUODzInRjVYgm/y56VRwPFXwZ6cGFg62
-         0vVfY0WzOcw9Q==
-Date:   Tue, 25 Jul 2023 23:03:44 +0800
-From:   Jisheng Zhang <jszhang@kernel.org>
-To:     Drew Fustini <dfustini@baylibre.com>
-Cc:     Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
+        with ESMTP id S231499AbjGYPHK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 11:07:10 -0400
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0D15199D
+        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 08:07:08 -0700 (PDT)
+Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-5221ee899a0so4441275a12.1
+        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 08:07:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1690297625; x=1690902425;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=NZUa3uDyejgNax81C3rf+wIL3cUgqBQKB2P7I+aBclw=;
+        b=jfFSsQiNnzJ+lyJWWV6a2xy21nmU2zy74dzTnquz3sf8lMDZiZ9HEOqsbPVSh5k8S6
+         l4KQGoPMa9r1DogsMfb9a1iS56IqXEy9PMUfxQniUC01fWf+WLtOrqnG87kPM49VRvid
+         JP3aRRXncxD8r5ERwGf1Hu0Rh8va5Ut7MqBjQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690297625; x=1690902425;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=NZUa3uDyejgNax81C3rf+wIL3cUgqBQKB2P7I+aBclw=;
+        b=IH6vySyUm2k4cIdJjmWNOhM6vZTwTeeyGVKup+MZHY1tA6xioxSfd5HsiRXjjFwxxh
+         oETxQ+qy54GrIJmvfIlvyXpInKnpwB+FtHUwrmrs3vcHHpYsWQXIOJSvHq8dvAFtZfKw
+         qnrpvhb/lIs5ncdj/hbTH6VHg0J0OloVXpumAZXIujCjbdESaxUHzkBShJX01obxg9dS
+         Qsut8AN9FMbhBJ6+lft8EmY6egAW28kMJWkSB6AjVtpXyqK9U94IBB/xgDWFOwMHx9nS
+         F7Imxg4DiLq9Mem0XropuM0PEeCg+WPyOjwGn7oeLai9rKiMF43O6kNrZM8ARiKinjQh
+         fQ+g==
+X-Gm-Message-State: ABy/qLY+9lnr6HJdWPqpbXCHsNrSig2g5qAzmEyz8W4RtnS92Gw6oTzu
+        5O01XGppqUoH449nw1CIzAME/67bbczoTDNusILEmXGT
+X-Google-Smtp-Source: APBJJlGkqrWl/VCLHh9fnNAS2X6Ad+pABediKzVrKO7Qnq4ptEeaK7QzHmqMG4L4bgXx+nnS/RkQBw==
+X-Received: by 2002:a05:6402:2052:b0:522:3cf4:9d86 with SMTP id bc18-20020a056402205200b005223cf49d86mr3350573edb.33.1690297625532;
+        Tue, 25 Jul 2023 08:07:05 -0700 (PDT)
+Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com. [209.85.208.49])
+        by smtp.gmail.com with ESMTPSA id k6-20020a056402048600b0051bfc85afaasm7613236edv.86.2023.07.25.08.07.04
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 25 Jul 2023 08:07:04 -0700 (PDT)
+Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-521e046f6c7so10524a12.1
+        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 08:07:04 -0700 (PDT)
+X-Received: by 2002:a50:d55c:0:b0:51e:16c5:2004 with SMTP id
+ f28-20020a50d55c000000b0051e16c52004mr113153edj.6.1690297603084; Tue, 25 Jul
+ 2023 08:06:43 -0700 (PDT)
+MIME-Version: 1.0
+References: <20230627-topic-more_bindings-v1-0-6b4b6cd081e5@linaro.org> <20230627-topic-more_bindings-v1-1-6b4b6cd081e5@linaro.org>
+In-Reply-To: <20230627-topic-more_bindings-v1-1-6b4b6cd081e5@linaro.org>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Tue, 25 Jul 2023 08:06:25 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=WsWyTWk8W23PEgw7vXWpLDCih1kGZHkqYCNHLFOPrkGw@mail.gmail.com>
+Message-ID: <CAD=FV=WsWyTWk8W23PEgw7vXWpLDCih1kGZHkqYCNHLFOPrkGw@mail.gmail.com>
+Subject: Re: [PATCH 01/11] arm64: dts: qcom: sc7180: Fix DSI0_PHY reg-names
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     cros-qcom-dts-watchers@chromium.org,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Conor Dooley <conor@kernel.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
-        Robert Nelson <robertcnelson@beagleboard.org>,
-        Jason Kridner <jkridner@beagleboard.org>
-Subject: Re: [PATCH RFC 4/4] mmc: sdhci-of-dwcmshc: Add support for T-Head
- TH1520
-Message-ID: <ZL/kUPicOEPWz5NP@xhacker>
-References: <20230724-th1520-emmc-v1-0-cca1b2533da2@baylibre.com>
- <20230724-th1520-emmc-v1-4-cca1b2533da2@baylibre.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20230724-th1520-emmc-v1-4-cca1b2533da2@baylibre.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Benjamin Li <benl@squareup.com>,
+        James Willcox <jwillcox@squareup.com>,
+        Joseph Gates <jgates@squareup.com>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Zac Crosby <zac@squareup.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Banajit Goswami <bgoswami@quicinc.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, Lee Jones <lee@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Xu Yang <xu.yang_2@nxp.com>, Peng Fan <peng.fan@nxp.com>,
+        Christian Marangi <ansuelsmth@gmail.com>,
+        Wesley Cheng <quic_wcheng@quicinc.com>,
+        Jun Nie <jun.nie@linaro.org>, Max Chen <mchen@squareup.com>,
+        Shawn Guo <shawn.guo@linaro.org>,
+        Vivek Gautam <vivek.gautam@codeaurora.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Vincent Knecht <vincent.knecht@mailoo.org>,
+        "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        alsa-devel@alsa-project.org, iommu@lists.linux.dev,
+        linux-usb@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Leo Yan <leo.yan@linaro.org>, Rob Herring <robh@kernel.org>,
+        Andy Gross <andy.gross@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 24, 2023 at 05:59:18PM -0700, Drew Fustini wrote:
-> Add basic support for the T-Head TH1520 SoC mmc controller. The new
-> compatible "thead,th1520-dwcmshc" enables basic support by:
+Hi,
 
-Hi Drew,
-
-> 
->  - Enabling v4 mode to properly communicate with the mmc device
->  - Setting quirk to disable ADMA
->  - Setting flag to disable SDMA and force PIO mode
->  - Turing .reset op into a no-op as the driver does not yet know how to
->    configure the phy. Rely on the vendor u-boot to have configured the
->    phy and do not reset the controller in Linux.
-
-The last three itmes are not acceptable. The controller supports ADMA
-well, can you plz bring in the phy driver? We can't rely on bootloader to
-configure phy.
-
-> 
-> Signed-off-by: Drew Fustini <dfustini@baylibre.com>
+On Tue, Jun 27, 2023 at 9:24=E2=80=AFAM Konrad Dybcio <konrad.dybcio@linaro=
+.org> wrote:
+>
+> Commit 2b616f86d51b ("arm64: dts: qcom: sc7180: rename labels for DSI
+> nodes") broke reg-names, possibly with search-and-replace. Fix it.
+>
+> Fixes: 2b616f86d51b ("arm64: dts: qcom: sc7180: rename labels for DSI nod=
+es")
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 > ---
->  drivers/mmc/host/sdhci-of-dwcmshc.c | 42 +++++++++++++++++++++++++++++++++++++
->  1 file changed, 42 insertions(+)
-> 
-> diff --git a/drivers/mmc/host/sdhci-of-dwcmshc.c b/drivers/mmc/host/sdhci-of-dwcmshc.c
-> index e68cd87998c8..8573aff25a81 100644
-> --- a/drivers/mmc/host/sdhci-of-dwcmshc.c
-> +++ b/drivers/mmc/host/sdhci-of-dwcmshc.c
-> @@ -337,6 +337,14 @@ static void rk35xx_sdhci_reset(struct sdhci_host *host, u8 mask)
->  	sdhci_reset(host, mask);
->  }
->  
-> +static void th1520_sdhci_reset(struct sdhci_host *host, u8 mask)
-> +{
-> +	/*
-> +	 * MMC controller and phy is configured by vendor u-boot so
-> +	 * take the simplistic approach of not doing reset in Linux.
-> +	 */
-> +}
-> +
->  static const struct sdhci_ops sdhci_dwcmshc_ops = {
->  	.set_clock		= sdhci_set_clock,
->  	.set_bus_width		= sdhci_set_bus_width,
-> @@ -355,6 +363,15 @@ static const struct sdhci_ops sdhci_dwcmshc_rk35xx_ops = {
->  	.adma_write_desc	= dwcmshc_adma_write_desc,
->  };
->  
-> +static const struct sdhci_ops sdhci_dwcmshc_th1520_ops = {
-> +	.set_clock		= sdhci_set_clock,
-> +	.set_bus_width		= sdhci_set_bus_width,
-> +	.set_uhs_signaling	= dwcmshc_set_uhs_signaling,
-> +	.get_max_clock		= dwcmshc_get_max_clock,
-> +	.reset			= th1520_sdhci_reset,
-> +	.adma_write_desc	= dwcmshc_adma_write_desc,
-> +};
-> +
->  static const struct sdhci_pltfm_data sdhci_dwcmshc_pdata = {
->  	.ops = &sdhci_dwcmshc_ops,
->  	.quirks = SDHCI_QUIRK_CAP_CLOCK_BASE_BROKEN,
-> @@ -378,6 +395,13 @@ static const struct sdhci_pltfm_data sdhci_dwcmshc_rk35xx_pdata = {
->  		   SDHCI_QUIRK2_CLOCK_DIV_ZERO_BROKEN,
->  };
->  
-> +static const struct sdhci_pltfm_data sdhci_dwcmshc_th1520_pdata = {
-> +	.ops = &sdhci_dwcmshc_th1520_ops,
-> +	.quirks = SDHCI_QUIRK_CAP_CLOCK_BASE_BROKEN | SDHCI_QUIRK_BROKEN_DMA |
-> +		  SDHCI_QUIRK_BROKEN_ADMA,
-> +	.quirks2 = SDHCI_QUIRK2_PRESET_VALUE_BROKEN,
-> +};
-> +
->  static int dwcmshc_rk35xx_init(struct sdhci_host *host, struct dwcmshc_priv *dwc_priv)
->  {
->  	int err;
-> @@ -434,6 +458,10 @@ static void dwcmshc_rk35xx_postinit(struct sdhci_host *host, struct dwcmshc_priv
->  }
->  
->  static const struct of_device_id sdhci_dwcmshc_dt_ids[] = {
-> +	{
-> +		.compatible = "thead,th1520-dwcmshc",
-> +		.data = &sdhci_dwcmshc_th1520_pdata,
-> +	},
->  	{
->  		.compatible = "rockchip,rk3588-dwcmshc",
->  		.data = &sdhci_dwcmshc_rk35xx_pdata,
-> @@ -546,6 +574,20 @@ static int dwcmshc_probe(struct platform_device *pdev)
->  		sdhci_enable_v4_mode(host);
->  #endif
->  
-> +	if (pltfm_data == &sdhci_dwcmshc_th1520_pdata) {
-> +		/*
-> +		 * The controller needs v4 mode enabled to properly
-> +		 * communicate with the mmc device.
-> +		 */
-> +		sdhci_enable_v4_mode(host);
-> +
-> +		/*
-> +		 * Set flag so the SDHCI host core will disable DMA
-> +		 * and use PIO mode.
-> +		 */
-> +		host->flags &= ~SDHCI_USE_SDMA;
-> +	}
-> +
->  	host->mmc->caps |= MMC_CAP_WAIT_WHILE_BUSY;
->  
->  	err = sdhci_setup_host(host);
-> 
-> -- 
-> 2.34.1
-> 
+>  arch/arm64/boot/dts/qcom/sc7180.dtsi | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/q=
+com/sc7180.dtsi
+> index 34eff97f8630..b9640574e73b 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> @@ -3120,8 +3120,8 @@ mdss_dsi0_phy: phy@ae94400 {
+>                                 reg =3D <0 0x0ae94400 0 0x200>,
+>                                       <0 0x0ae94600 0 0x280>,
+>                                       <0 0x0ae94a00 0 0x1e0>;
+> -                               reg-names =3D "dsi0_phy",
+> -                                           "dsi0_phy_lane",
+> +                               reg-names =3D "dsi_phy",
+> +                                           "dsi_phy_lane",
+
+I noticed that this patch got applied [1], but I think it got put into
+a branch targeting 6.6 instead of 6.5. Specifically I see it in
+"arm64-for-6.6" but not "arm64-fixes-for-6.5". Any chance it could be
+landed in a "Fixes" tree and get sent out sooner rather than later?
+v6.5 will be pretty broken without it and it would be nice to see it
+in Linus's tree sooner rather than later.
+
+[1] https://lore.kernel.org/r/168896565982.1376307.13166434967387866925.b4-=
+ty@kernel.org
+
+Thanks!
+
+-Doug
