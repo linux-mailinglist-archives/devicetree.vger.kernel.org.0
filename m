@@ -2,47 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E8BF7622FA
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 22:06:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 132AE7622F2
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 22:05:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231467AbjGYUGO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jul 2023 16:06:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49080 "EHLO
+        id S230120AbjGYUFq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jul 2023 16:05:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48700 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230261AbjGYUGO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 16:06:14 -0400
-Received: from smtprelay07.ispgateway.de (smtprelay07.ispgateway.de [134.119.228.99])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B66D3131;
-        Tue, 25 Jul 2023 13:06:11 -0700 (PDT)
-Received: from [77.64.243.219] (helo=note-book.lan)
-        by smtprelay07.ispgateway.de with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <git@apitzsch.eu>)
-        id 1qOOIL-0002Gr-Da; Tue, 25 Jul 2023 22:06:09 +0200
-From:   =?utf-8?q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>
-Date:   Tue, 25 Jul 2023 22:05:11 +0200
-Subject: [PATCH v2 2/2] arm64: dts: qcom: msm8939-longcheer-l9100: Add
- initial device tree
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20230725-bq_m5-v2-2-9779c249aeb1@apitzsch.eu>
-References: <20230725-bq_m5-v2-0-9779c249aeb1@apitzsch.eu>
-In-Reply-To: <20230725-bq_m5-v2-0-9779c249aeb1@apitzsch.eu>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        with ESMTP id S229624AbjGYUFq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 16:05:46 -0400
+Received: from mail-pf1-x431.google.com (mail-pf1-x431.google.com [IPv6:2607:f8b0:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C1F81BCC
+        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 13:05:44 -0700 (PDT)
+Received: by mail-pf1-x431.google.com with SMTP id d2e1a72fcca58-686ba29ccb1so162407b3a.1
+        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 13:05:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1690315544; x=1690920344;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=LFAdcXQq2TbouVe/mhNRHhN8yEAUVW7zlofTPbemmaQ=;
+        b=SpbOLV6hmgXaXShe5PIT+d3dvOUDu7fuESHBtgRBLBcZsMjOJr4K5qt9EeSCxNzHZv
+         CfSSMci5zM1EHX4We1Hlg03rP0QdgpwqTZXf6doFcUMQZPEl+xe0mw92Lr+O1mC4w5r1
+         Nxv/2ZAM3HjHF7f8dRNYaOmUw3CaCxW0UyrIYraNe0Gsq6fWAX3xnwRFpEYJK1I8QAUz
+         dfCUt84sYToB9bp6XYUinRKnv6+jz+7zKgpcUYVWduclNGN1VNbI5VtvQJek4CzfBCXQ
+         v3BcImtrCDMMNqDLSAWTrqJchH0Tai2h0xXI6hpfBpbb3gtunK0LqFD9fKspPxUgro1A
+         8v0w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690315544; x=1690920344;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=LFAdcXQq2TbouVe/mhNRHhN8yEAUVW7zlofTPbemmaQ=;
+        b=djxKFYF5TIeCpTcKqNWDIRj4M0Pb6LhN1IJ0SqVNTbuvUl4dfZWmoslU+2n527k7Vb
+         GMve867ujuHrAGCkDyyoyfDc3aru56MH4TudOMuj5zFX/fliJrOQDJ53R4T9G0TBOKNl
+         4l79FdrTbIJyACqqUDuwZ3ikXsObv7F7JyA6JJPwAJVQwLo9KHMGuMIl0Kr4okz5bjCK
+         JhE3KA90uDMVv6J9EI6mluKvPtglq0hIYTkLMOsOX54mqHwIfTqLMdNCYSPlyWedHSlD
+         wr11nm7TagsIPCHZ1vWD6IN/7gi0/5JFTbV+jGCvHce0RLANe+KCeg9znZMePRmfbZUa
+         4pvg==
+X-Gm-Message-State: ABy/qLaiMw+/URtAbbIHeaO8XyCWiW2Dpdep5DkTPEuSYlr+M3FQqN4N
+        ZilRCHxRe0MkBpvvMsSbIPxATw==
+X-Google-Smtp-Source: APBJJlH0XpWJCxlu0n3SaBiolZbr7Vn8DktJDCGrpC7bf4UzXUjX0SjLrqRDh6fvkUKYscx7Hj9ZnA==
+X-Received: by 2002:a05:6a20:6a1a:b0:133:6696:1db with SMTP id p26-20020a056a206a1a00b00133669601dbmr176622pzk.29.1690315543962;
+        Tue, 25 Jul 2023 13:05:43 -0700 (PDT)
+Received: from p14s ([2604:3d09:148c:c800:2116:2b1f:2fd8:ec8d])
+        by smtp.gmail.com with ESMTPSA id p13-20020a62ab0d000000b00686bdff1d6fsm193249pff.77.2023.07.25.13.05.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 25 Jul 2023 13:05:43 -0700 (PDT)
+Date:   Tue, 25 Jul 2023 14:05:40 -0600
+From:   Mathieu Poirier <mathieu.poirier@linaro.org>
+To:     Tinghan Shen <tinghan.shen@mediatek.com>
+Cc:     Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Stephan Gerhold <stephan@gerhold.net>,
-        =?utf-8?q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>
-X-Mailer: b4 0.12.3
-X-Df-Sender: YW5kcmVAYXBpdHpzY2guZXU=
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        Conor Dooley <conor+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Subject: Re: [PATCH v15 08/13] remoteproc: mediatek: Remove dependency of
+ MT8195 SCP L2TCM power control on dual-core SCP
+Message-ID: <ZMArFGTabcc2j6i9@p14s>
+References: <20230721024132.6548-1-tinghan.shen@mediatek.com>
+ <20230721024132.6548-9-tinghan.shen@mediatek.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230721024132.6548-9-tinghan.shen@mediatek.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -50,381 +81,164 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This dts adds support for BQ Aquaris M5 (Longcheer L9100) released in
-2015.
+On Fri, Jul 21, 2023 at 10:41:27AM +0800, Tinghan Shen wrote:
+> Previously, SCP core 0 controlled the power of L2TCM and dictated that
+> SCP core 1 could only boot after SCP core 0. To address this constraint,
+> extracted the power control flow of L2TCM and made it shared
+> between both cores, enabling support of arbitrary boot order.
+>
 
-Add a device tree with initial support for:
+s/of/for
 
-- GPIO keys
-- Hall sensor
-- SDHCI
-- WCNSS (BT/WIFI)
-- Accelerometer/Magnetometer
-- Vibrator
-- Touchscreen
-- Front flash
-
-Signed-off-by: André Apitzsch <git@apitzsch.eu>
----
- arch/arm64/boot/dts/qcom/Makefile                  |   1 +
- .../boot/dts/qcom/msm8939-longcheer-l9100.dts      | 336 +++++++++++++++++++++
- 2 files changed, 337 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index 23fd31d4bf5a..3200bc92853f 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -39,6 +39,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-thwc-uf896.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-thwc-ufi001c.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-wingtech-wt88047.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-yiming-uz801v3.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= msm8939-longcheer-l9100.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8939-samsung-a7.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8939-sony-xperia-kanuti-tulip.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8953-motorola-potter.dtb
-diff --git a/arch/arm64/boot/dts/qcom/msm8939-longcheer-l9100.dts b/arch/arm64/boot/dts/qcom/msm8939-longcheer-l9100.dts
-new file mode 100644
-index 000000000000..d8e37bdb4916
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/msm8939-longcheer-l9100.dts
-@@ -0,0 +1,336 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+
-+/dts-v1/;
-+
-+#include "msm8939-pm8916.dtsi"
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/leds/common.h>
-+#include <dt-bindings/pinctrl/qcom,pmic-mpp.h>
-+
-+/ {
-+	model = "BQ Aquaris M5 (Longcheer L9100)";
-+	compatible = "longcheer,l9100", "qcom,msm8939";
-+	chassis-type = "handset";
-+
-+	aliases {
-+		mmc0 = &sdhc_1; /* eMMC */
-+		mmc1 = &sdhc_2; /* SD card */
-+		serial0 = &blsp_uart2;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0";
-+	};
-+
-+	gpio-hall-sensor {
-+		compatible = "gpio-keys";
-+
-+		pinctrl-0 = <&gpio_hall_sensor_default>;
-+		pinctrl-names = "default";
-+
-+		label = "GPIO Hall Effect Sensor";
-+
-+		event-hall-sensor {
-+			label = "Hall Effect Sensor";
-+			gpios = <&tlmm 20 GPIO_ACTIVE_LOW>;
-+			linux,input-type = <EV_SW>;
-+			linux,code = <SW_LID>;
-+			linux,can-disable;
-+		};
-+	};
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+
-+		pinctrl-0 = <&gpio_keys_default>;
-+		pinctrl-names = "default";
-+
-+		label = "GPIO Buttons";
-+
-+		button-volume-up {
-+			label = "Volume Up";
-+			gpios = <&tlmm 107 GPIO_ACTIVE_LOW>;
-+			linux,code = <KEY_VOLUMEUP>;
-+		};
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		led-0 {
-+			gpios = <&tlmm 17 GPIO_ACTIVE_HIGH>;
-+			color = <LED_COLOR_ID_WHITE>;
-+			default-state = "off";
-+			function = LED_FUNCTION_KBD_BACKLIGHT;
-+
-+			pinctrl-0 = <&button_backlight_default>;
-+			pinctrl-names = "default";
-+		};
-+	};
-+
-+	reg_ts_vdd: regulator-vdd-ts {
-+		compatible = "regulator-fixed";
-+		regulator-name = "regulator-vdd-ts";
-+		regulator-min-microvolt = <2850000>;
-+		regulator-max-microvolt = <2850000>;
-+
-+		gpio = <&tlmm 78 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+
-+		pinctrl-0 = <&ts_vdd_default>;
-+		pinctrl-names = "default";
-+	};
-+
-+	backlight {
-+		compatible = "pwm-backlight";
-+		pwms = <&pm8916_pwm 0 100000>;
-+		brightness-levels = <0 255>;
-+		num-interpolated-steps = <255>;
-+		default-brightness-level = <128>;
-+		enable-gpios = <&tlmm 98 GPIO_ACTIVE_HIGH>;
-+
-+		pinctrl-0 = <&lcd_bl_en_default>;
-+		pinctrl-names = "default";
-+	};
-+
-+	flash-led-controller {
-+		compatible = "ocs,ocp8110";
-+		flash-gpios = <&tlmm 8 GPIO_ACTIVE_HIGH>;
-+		enable-gpios = <&tlmm 49 GPIO_ACTIVE_HIGH>;
-+
-+		pinctrl-0 = <&camera_front_flash_default>;
-+		pinctrl-names = "default";
-+
-+		led {
-+			function = LED_FUNCTION_FLASH;
-+			color = <LED_COLOR_ID_WHITE>;
-+			flash-max-timeout-us = <250000>;
-+		};
-+	};
-+
-+	usb_id: usb-id {
-+		compatible = "linux,extcon-usb-gpio";
-+		id-gpio = <&tlmm 110 GPIO_ACTIVE_HIGH>;
-+		pinctrl-0 = <&usb_id_default &usb_id_switch_default>;
-+		pinctrl-names = "default";
-+	};
-+
-+};
-+
-+&blsp_i2c3 {
-+	status = "okay";
-+
-+	magnetometer@d {
-+		compatible = "asahi-kasei,ak09911";
-+		reg = <0x0d>;
-+
-+		vdd-supply = <&pm8916_l17>;
-+		vid-supply = <&pm8916_l6>;
-+
-+		reset-gpios = <&tlmm 68 GPIO_ACTIVE_HIGH>;
-+
-+		pinctrl-0 = <&mag_reset_default>;
-+		pinctrl-names = "default";
-+	};
-+
-+	light-sensor@23 {
-+		compatible = "liteon,ltr559";
-+		reg = <0x23>;
-+
-+		vdd-supply = <&pm8916_l17>;
-+		vddio-supply = <&pm8916_l5>;
-+
-+		interrupt-parent = <&tlmm>;
-+		interrupts = <113 IRQ_TYPE_EDGE_FALLING>;
-+
-+		pinctrl-0 = <&light_int_default>;
-+		pinctrl-names = "default";
-+	};
-+
-+	imu@68 {
-+		compatible = "bosch,bmi160";
-+		reg = <0x68>;
-+
-+		vdd-supply = <&pm8916_l17>;
-+		vddio-supply = <&pm8916_l6>;
-+	};
-+};
-+
-+&blsp_i2c5 {
-+	status = "okay";
-+
-+	touchscreen@4a {
-+		compatible = "atmel,maxtouch";
-+		reg = <0x4a>;
-+
-+		interrupt-parent = <&tlmm>;
-+		interrupts = <13 IRQ_TYPE_LEVEL_LOW>;
-+
-+		reset-gpios = <&tlmm 12 GPIO_ACTIVE_LOW>;
-+
-+		vdda-supply = <&pm8916_l6>;
-+		vdd-supply = <&reg_ts_vdd>;
-+
-+		pinctrl-0 = <&ts_int_reset_default>;
-+		pinctrl-names = "default";
-+
-+		/* Keys listed from right to left */
-+		linux,keycodes = <KEY_APPSELECT KEY_HOMEPAGE KEY_BACK>;
-+	};
-+};
-+
-+&blsp_uart2 {
-+	status = "okay";
-+};
-+
-+&pm8916_mpps {
-+	pwm_out: mpp4-state {
-+		pins = "mpp4";
-+		function = "digital";
-+		power-source = <PM8916_MPP_VPH>;
-+		output-low;
-+		qcom,dtest = <1>;
-+	};
-+};
-+
-+&pm8916_pwm {
-+	pinctrl-0 = <&pwm_out>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
-+
-+&pm8916_resin {
-+	linux,code = <KEY_VOLUMEDOWN>;
-+	status = "okay";
-+};
-+
-+&pm8916_rpm_regulators {
-+	pm8916_l17: l17 {
-+		regulator-min-microvolt = <2850000>;
-+		regulator-max-microvolt = <2850000>;
-+	};
-+};
-+
-+&pm8916_vib {
-+	status = "okay";
-+};
-+
-+&sdhc_1 {
-+	status = "okay";
-+};
-+
-+&sdhc_2 {
-+	pinctrl-0 = <&sdc2_default &sdc2_cd_default>;
-+	pinctrl-1 = <&sdc2_sleep &sdc2_cd_default>;
-+	pinctrl-names = "default", "sleep";
-+
-+	cd-gpios = <&tlmm 38 GPIO_ACTIVE_LOW>;
-+
-+	status = "okay";
-+};
-+
-+&usb {
-+	extcon = <&usb_id>, <&usb_id>;
-+	status = "okay";
-+};
-+
-+&usb_hs_phy {
-+	extcon = <&usb_id>;
-+};
-+
-+&wcnss {
-+	status = "okay";
-+};
-+
-+&wcnss_iris {
-+	compatible = "qcom,wcn3620";
-+};
-+
-+&tlmm {
-+	button_backlight_default: button-backlight-default-state {
-+		pins = "gpio17";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	camera_front_flash_default: camera-front-flash-default-state {
-+		pins = "gpio8", "gpio49";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	gpio_hall_sensor_default: gpio-hall-sensor-default-state {
-+		pins = "gpio20";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	gpio_keys_default: gpio-keys-default-state {
-+		pins = "gpio107";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-pull-up;
-+	};
-+
-+	lcd_bl_en_default: lcd-bl-en-default-state {
-+		pins = "gpio98";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	light_int_default: light-int-default-state {
-+		pins = "gpio113";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	mag_reset_default: mag-reset-default-state {
-+		pins = "gpio68";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	sdc2_cd_default: sdc2-cd-default-state {
-+		pins = "gpio38";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	ts_int_reset_default: ts-int-reset-default-state {
-+		pins = "gpio12", "gpio13";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	ts_vdd_default: ts-vdd-default-state {
-+		pins = "gpio78";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	usb_id_default: usb-id-default-state {
-+		pins = "gpio110";
-+		function = "gpio";
-+		drive-strength = <8>;
-+		bias-pull-up;
-+	};
-+
-+	usb_id_switch_default: usb-id-switch-default-state {
-+		pins = "gpio121";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		output-high;
-+	};
-+};
-
--- 
-2.41.0
-
+> The flow for controlling L2TCM power has been incorporated into the
+> mt8195_scp_before_load() and mt8195_scp_stop() APIs, which are
+> respectively invoked during the rproc->ops->start() and
+> rproc->ops->stop() operations. These APIs effectively serve the same
+> purpose as the rproc prepare()/unprepare() APIs."
+> 
+> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
+> ---
+>  drivers/remoteproc/mtk_common.h |  3 ++
+>  drivers/remoteproc/mtk_scp.c    | 71 ++++++++++++++++++++++++++-------
+>  2 files changed, 59 insertions(+), 15 deletions(-)
+> 
+> diff --git a/drivers/remoteproc/mtk_common.h b/drivers/remoteproc/mtk_common.h
+> index 1438159ae736..fea05bbba9aa 100644
+> --- a/drivers/remoteproc/mtk_common.h
+> +++ b/drivers/remoteproc/mtk_common.h
+> @@ -106,6 +106,9 @@ struct mtk_scp_of_cluster {
+>  	size_t l1tcm_size;
+>  	phys_addr_t l1tcm_phys;
+>  	struct list_head mtk_scp_list;
+> +	/* Prevent concurrent operations of this structure and L2TCM power control. */
+> +	struct mutex cluster_lock;
+> +	u32 l2tcm_refcnt;
+>  };
+>  
+>  struct mtk_scp {
+> diff --git a/drivers/remoteproc/mtk_scp.c b/drivers/remoteproc/mtk_scp.c
+> index 34095a461e15..c624f9c3db17 100644
+> --- a/drivers/remoteproc/mtk_scp.c
+> +++ b/drivers/remoteproc/mtk_scp.c
+> @@ -454,19 +454,37 @@ static int mt8192_scp_before_load(struct mtk_scp *scp)
+>  	return 0;
+>  }
+>  
+> -static int mt8195_scp_before_load(struct mtk_scp *scp)
+> +static int mt8195_scp_l2tcm_on(struct mtk_scp *scp)
+>  {
+> -	/* clear SPM interrupt, SCP2SPM_IPC_CLR */
+> -	writel(0xff, scp->cluster->reg_base + MT8192_SCP2SPM_IPC_CLR);
+> +	struct mtk_scp_of_cluster *scp_cluster = scp->cluster;
+> +
+> +	mutex_lock(&scp_cluster->cluster_lock);
+> +
+> +	if (scp_cluster->l2tcm_refcnt == 0) {
+> +		/* clear SPM interrupt, SCP2SPM_IPC_CLR */
+> +		writel(0xff, scp->cluster->reg_base + MT8192_SCP2SPM_IPC_CLR);
+> +
+> +		/* Power on L2TCM */
+> +		scp_sram_power_on(scp->cluster->reg_base + MT8192_L2TCM_SRAM_PD_0, 0);
+> +		scp_sram_power_on(scp->cluster->reg_base + MT8192_L2TCM_SRAM_PD_1, 0);
+> +		scp_sram_power_on(scp->cluster->reg_base + MT8192_L2TCM_SRAM_PD_2, 0);
+> +		scp_sram_power_on(scp->cluster->reg_base + MT8192_L1TCM_SRAM_PDN,
+> +				  MT8195_L1TCM_SRAM_PDN_RESERVED_RSI_BITS);
+> +	}
+> +
+> +	scp_cluster->l2tcm_refcnt += 1;
+>  
+> +	mutex_unlock(&scp_cluster->cluster_lock);
+> +
+> +	return 0;
+> +}
+> +
+> +static int mt8195_scp_before_load(struct mtk_scp *scp)
+> +{
+>  	writel(1, scp->cluster->reg_base + MT8192_CORE0_SW_RSTN_SET);
+>  
+> -	/* enable SRAM clock */
+> -	scp_sram_power_on(scp->cluster->reg_base + MT8192_L2TCM_SRAM_PD_0, 0);
+> -	scp_sram_power_on(scp->cluster->reg_base + MT8192_L2TCM_SRAM_PD_1, 0);
+> -	scp_sram_power_on(scp->cluster->reg_base + MT8192_L2TCM_SRAM_PD_2, 0);
+> -	scp_sram_power_on(scp->cluster->reg_base + MT8192_L1TCM_SRAM_PDN,
+> -			  MT8195_L1TCM_SRAM_PDN_RESERVED_RSI_BITS);
+> +	mt8195_scp_l2tcm_on(scp);
+> +
+>  	scp_sram_power_on(scp->cluster->reg_base + MT8192_CPU0_SRAM_PD, 0);
+>  
+>  	/* enable MPU for all memory regions */
+> @@ -479,6 +497,8 @@ static int mt8195_scp_c1_before_load(struct mtk_scp *scp)
+>  {
+>  	scp->data->scp_reset_assert(scp);
+>  
+> +	mt8195_scp_l2tcm_on(scp);
+> +
+>  	scp_sram_power_on(scp->cluster->reg_base + MT8195_CPU1_SRAM_PD, 0);
+>  
+>  	/* enable MPU for all memory regions */
+> @@ -645,14 +665,31 @@ static void mt8192_scp_stop(struct mtk_scp *scp)
+>  	writel(0, scp->cluster->reg_base + MT8192_CORE0_WDT_CFG);
+>  }
+>  
+> +static void mt8195_scp_l2tcm_off(struct mtk_scp *scp)
+> +{
+> +	struct mtk_scp_of_cluster *scp_cluster = scp->cluster;
+> +
+> +	mutex_lock(&scp_cluster->cluster_lock);
+> +
+> +	if (scp_cluster->l2tcm_refcnt > 0)
+> +		scp_cluster->l2tcm_refcnt -= 1;
+> +
+> +	if (scp_cluster->l2tcm_refcnt == 0) {
+> +		/* Power off L2TCM */
+> +		scp_sram_power_off(scp->cluster->reg_base + MT8192_L2TCM_SRAM_PD_0, 0);
+> +		scp_sram_power_off(scp->cluster->reg_base + MT8192_L2TCM_SRAM_PD_1, 0);
+> +		scp_sram_power_off(scp->cluster->reg_base + MT8192_L2TCM_SRAM_PD_2, 0);
+> +		scp_sram_power_off(scp->cluster->reg_base + MT8192_L1TCM_SRAM_PDN,
+> +				   MT8195_L1TCM_SRAM_PDN_RESERVED_RSI_BITS);
+> +	}
+> +
+> +	mutex_unlock(&scp_cluster->cluster_lock);
+> +}
+> +
+>  static void mt8195_scp_stop(struct mtk_scp *scp)
+>  {
+> -	/* Disable SRAM clock */
+> -	scp_sram_power_off(scp->cluster->reg_base + MT8192_L2TCM_SRAM_PD_0, 0);
+> -	scp_sram_power_off(scp->cluster->reg_base + MT8192_L2TCM_SRAM_PD_1, 0);
+> -	scp_sram_power_off(scp->cluster->reg_base + MT8192_L2TCM_SRAM_PD_2, 0);
+> -	scp_sram_power_off(scp->cluster->reg_base + MT8192_L1TCM_SRAM_PDN,
+> -			   MT8195_L1TCM_SRAM_PDN_RESERVED_RSI_BITS);
+> +	mt8195_scp_l2tcm_off(scp);
+> +
+>  	scp_sram_power_off(scp->cluster->reg_base + MT8192_CPU0_SRAM_PD, 0);
+>  
+>  	/* Disable SCP watchdog */
+> @@ -661,6 +698,8 @@ static void mt8195_scp_stop(struct mtk_scp *scp)
+>  
+>  static void mt8195_scp_c1_stop(struct mtk_scp *scp)
+>  {
+> +	mt8195_scp_l2tcm_off(scp);
+> +
+>  	/* Power off CPU SRAM */
+>  	scp_sram_power_off(scp->cluster->reg_base + MT8195_CPU1_SRAM_PD, 0);
+>  
+> @@ -1103,6 +1142,7 @@ static int scp_probe(struct platform_device *pdev)
+>  	}
+>  
+>  	INIT_LIST_HEAD(&scp_cluster->mtk_scp_list);
+> +	mutex_init(&scp_cluster->cluster_lock);
+>  
+>  	ret = devm_of_platform_populate(dev);
+>  	if (ret)
+> @@ -1126,6 +1166,7 @@ static void scp_remove(struct platform_device *pdev)
+>  		rproc_del(scp->rproc);
+>  		scp_free(scp);
+>  	}
+> +	mutex_destroy(&scp_cluster->cluster_lock);
+>  }
+>  
+>  static const struct mtk_scp_of_data mt8183_of_data = {
+> -- 
+> 2.18.0
+> 
