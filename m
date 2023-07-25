@@ -2,100 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 00BF27617C0
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 13:54:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B5EE07617C4
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 13:57:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232153AbjGYLwr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jul 2023 07:52:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59702 "EHLO
+        id S232085AbjGYL5E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jul 2023 07:57:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35868 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230220AbjGYLwc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 07:52:32 -0400
-Received: from box.trvn.ru (box.trvn.ru [194.87.146.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86B3F1FE3;
-        Tue, 25 Jul 2023 04:52:18 -0700 (PDT)
-Received: from authenticated-user (box.trvn.ru [194.87.146.52])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by box.trvn.ru (Postfix) with ESMTPSA id 390A1423D0;
-        Tue, 25 Jul 2023 16:52:12 +0500 (+05)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=trvn.ru; s=mail;
-        t=1690285932; bh=3k2gR2vQ7wl6XCxGkInLU9JSXp8L45oKI5wh9/mq4vA=;
-        h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-        b=kRO13KeyiDG20fc5F7sbt232/vvJykJFa4Xr/9YmJ3J8JQArGhrLhPGkTkeIb2929
-         H4cssd/8XhllHIudfVNcu9+XWWlOcy8HJmlC7jgXbY9QOnN8OOctxuu22bXjqtT7nB
-         dwBJijQLiqcttAOb6EZufEXTcKlgh7COuBt73r59ojrROcYeVtXE1oRqBmk4T130Y3
-         x5V3MwpUketIFh1p9il71ukHQIFO406CV1G/ajHKm9QjkfLJEGmUqLJh8o1NxI7+ZL
-         h6poECMVNCTL1+sEKFpbxWogsGU5mj3+jOWfM3DT4pOQG/Vh7ZtirvkGLy6gThjr+u
-         A4UcOgdmlQLSg==
-From:   Nikita Travkin <nikita@trvn.ru>
-Date:   Tue, 25 Jul 2023 16:52:03 +0500
-Subject: [PATCH 3/3] arm64: dts: qcom: msm8916-samsung-gt510: Add
- capacitive keys
+        with ESMTP id S231222AbjGYL5D (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 07:57:03 -0400
+Received: from out28-50.mail.aliyun.com (out28-50.mail.aliyun.com [115.124.28.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BB1710CB;
+        Tue, 25 Jul 2023 04:57:01 -0700 (PDT)
+X-Alimail-AntiSpam: AC=CONTINUE;BC=0.2463095|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_system_inform|0.0329975-0.000205957-0.966797;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047199;MF=wangweidong.a@awinic.com;NM=1;PH=DS;RN=25;RT=25;SR=0;TI=SMTPD_---.U.y2wd._1690286211;
+Received: from ubuntu-VirtualBox..(mailfrom:wangweidong.a@awinic.com fp:SMTPD_---.U.y2wd._1690286211)
+          by smtp.aliyun-inc.com;
+          Tue, 25 Jul 2023 19:56:54 +0800
+From:   wangweidong.a@awinic.com
+To:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        perex@perex.cz, tiwai@suse.com, rf@opensource.cirrus.com,
+        shumingf@realtek.com, wangweidong.a@awinic.com,
+        povik+lin@cutebit.org, 13916275206@139.com,
+        herve.codina@bootlin.com, ryans.lee@analog.com,
+        ckeepax@opensource.cirrus.com,
+        ajye_huang@compal.corp-partner.google.com,
+        sebastian.reichel@collabora.com, yijiangtao@awinic.com,
+        trix@redhat.com, colin.i.king@gmail.com, liweilei@awinic.com,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     zhangjianming@awinic.com
+Subject: [PATCH V2 0/4] ASoC: codecs: Add Awinic AW88261 audio amplifier driver
+Date:   Tue, 25 Jul 2023 19:56:45 +0800
+Message-ID: <20230725115649.67560-1-wangweidong.a@awinic.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230725-gt5-panel-v1-3-7c787e33a614@trvn.ru>
-References: <20230725-gt5-panel-v1-0-7c787e33a614@trvn.ru>
-In-Reply-To: <20230725-gt5-panel-v1-0-7c787e33a614@trvn.ru>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Nikita Travkin <nikita@trvn.ru>
-X-Developer-Signature: v=1; a=openpgp-sha256; l=696; i=nikita@trvn.ru;
- h=from:subject:message-id; bh=3k2gR2vQ7wl6XCxGkInLU9JSXp8L45oKI5wh9/mq4vA=;
- b=owEBbQKS/ZANAwAIAUMc7O4oGb91AcsmYgBkv7dmplqdzYFcPD6jpKMCerTluMZZldhW+sxO8
- eu6HNpKIyCJAjMEAAEIAB0WIQTAhK9UUj+qg34uxUdDHOzuKBm/dQUCZL+3ZgAKCRBDHOzuKBm/
- df+aD/9mdqwAm0e2xSmsBUc0f92pce+kzB4Bm6DRQ9uUS5GKzPbh0N4KFmI668wJ22OFeMyWpDR
- IOiiAutdzydtdiKkmanwVomBd/7X8PqXUcrmap+/DhypkP1m0beK3cYDSJX6LlshDL3HFx5iExj
- DDH4Sce9gpFah2YlXMydk9g8G/hBmthJvefCN18Thx3BPGRdVlgl68fBycAkeMn4dOsfBT++QbB
- SmxuVeNWdhHmUCU13kZ/ZtvzJOx18M9GzKVCJ24kQYeeu0IyRBge39EXQ+kGZsI3Dy99nSjhBWL
- xHrgVyAQBeJZAGOElEW0GZztzc34KBPYn0EAuqmKjb1s89miMoqd1J9PdjNYTvRoDxPBwKVdumy
- aiqCl962SDRdJT3EmOW/12CbOWDoedOKfvahl9uynigHPBockM19SaACIEprgrr6uS+3C9ipjSc
- qlWbCX4rro6Qq4WO9plOIUHwqrmjCeyINEgk3wYBlYVtoRD61V7o3pDR0rLcrdTiGvsAvOP2MVr
- 4euEldwGIG5tNi9xn6crsMVOmZK16HH85UP0TnzD4yk00GQFAM4H4C9BAd23XOnbH0IO2bsllJS
- omar3wFL1puGIgZ+fNBMgXD8CqVGRlT16TZOZ0Dx9W6uYLgAeuUWgzmGUA5Wn3AbQm9y3y8AvaF
- E8yjEPP6973Qo8w==
-X-Developer-Key: i=nikita@trvn.ru; a=openpgp;
- fpr=C084AF54523FAA837E2EC547431CECEE2819BF75
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-gt510 has two capacitive keys on the bottom. Define keycodes to enable
-them.
+From: Weidong Wang <wangweidong.a@awinic.com>
 
-Signed-off-by: Nikita Travkin <nikita@trvn.ru>
----
- arch/arm64/boot/dts/qcom/msm8916-samsung-gt510.dts | 2 ++
- 1 file changed, 2 insertions(+)
+The awinic AW88261 is an I2S/TDM input, high efficiency
+digital Smart K audio amplifier
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-gt510.dts b/arch/arm64/boot/dts/qcom/msm8916-samsung-gt510.dts
-index a73cc7565bfb..75c4854ecd64 100644
---- a/arch/arm64/boot/dts/qcom/msm8916-samsung-gt510.dts
-+++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-gt510.dts
-@@ -107,6 +107,8 @@ touchscreen@4a {
- 
- 		pinctrl-0 = <&tsp_int_rst_default>;
- 		pinctrl-names = "default";
-+
-+		linux,keycodes = <KEY_APPSELECT KEY_BACK>;
- 	};
- };
- 
+v1 -> v2: Use dev_err_prober instead of dev_err
+          Delete unwanted dev_dbg
+          Delect print messages on allocation errors.
+          The commit information has been changed
+          Delete EXPORT_SYMBOL_GPL
+          Modify {} usage errors
+          The aw88395_lib file is compatible with the bin parsing part of aw88261
 
+Weidong Wang (4):
+  ASoC: codecs: Add code for bin parsing compatible with aw88261
+  ASoC: codecs: Add aw88261 audio amplifier driver
+  ASoC: codecs: aw88261 device related operation functions
+  ASoC: codecs: aw88261 chip register file, Kconfig and Makefile
+
+ .../bindings/sound/awinic,aw88395.yaml        |   4 +-
+ sound/soc/codecs/Kconfig                      |  13 +
+ sound/soc/codecs/Makefile                     |   3 +
+ sound/soc/codecs/aw88261/aw88261.c            | 517 +++++++++++
+ sound/soc/codecs/aw88261/aw88261.h            |  52 ++
+ sound/soc/codecs/aw88261/aw88261_device.c     | 876 ++++++++++++++++++
+ sound/soc/codecs/aw88261/aw88261_device.h     |  79 ++
+ sound/soc/codecs/aw88261/aw88261_reg.h        | 377 ++++++++
+ sound/soc/codecs/aw88395/aw88395_lib.c        | 194 +++-
+ sound/soc/codecs/aw88395/aw88395_reg.h        |   1 +
+ 10 files changed, 2098 insertions(+), 18 deletions(-)
+ create mode 100644 sound/soc/codecs/aw88261/aw88261.c
+ create mode 100644 sound/soc/codecs/aw88261/aw88261.h
+ create mode 100644 sound/soc/codecs/aw88261/aw88261_device.c
+ create mode 100644 sound/soc/codecs/aw88261/aw88261_device.h
+ create mode 100644 sound/soc/codecs/aw88261/aw88261_reg.h
+
+
+base-commit: 0b5547c51827e053cc754db47d3ec3e6c2c451d2
 -- 
 2.41.0
 
