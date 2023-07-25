@@ -2,82 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2629B761FE0
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 19:12:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 92CC1762076
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 19:49:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232357AbjGYRMn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jul 2023 13:12:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55978 "EHLO
+        id S231657AbjGYRte (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jul 2023 13:49:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45722 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232340AbjGYRMk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 13:12:40 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E9661FFE;
-        Tue, 25 Jul 2023 10:12:37 -0700 (PDT)
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36PFKdGe025939;
-        Tue, 25 Jul 2023 17:12:21 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=RCsrTO+l1351769HZqqX9BE9gyJPOAOnWRyeR5eH56M=;
- b=PmrXiMmuFh0BEk0vr7qShI+jiM2OB2paL5yBj0EcheZPqnQxZwQY1rVXG9y4KAdFb1jg
- XvIMm7h9/PGeQYTGo/SGMIItlQihK+8LHYfLjeyAV9k1iGIb6o+JVwQlLzE9hyFiesaP
- 5vftWVBtKBVni/UIYsn+USEE0MWwijw0MPOB9F3o3g/GmsgsnoiguSCwD0QdPZmyJEre
- qtXrYtjQllKPIvSciY8dwAKj8T2AbDafIQx6shiNihcQbpG/wQz6Weafr7aT4Ymat2hF
- CDooyqtZSYCkkDj4ZmE7scnRk5WVmgjLV+SIHpdBz1GYGwaGrKpiAuJHOVEjlbt4W2jk vA== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3s2gxd08k0-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 25 Jul 2023 17:12:21 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 36PHCK81007056
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 25 Jul 2023 17:12:20 GMT
-Received: from [10.110.76.176] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Tue, 25 Jul
- 2023 10:12:19 -0700
-Message-ID: <fc42e319-0ead-db94-9335-e07ff780dfa2@quicinc.com>
-Date:   Tue, 25 Jul 2023 10:12:19 -0700
+        with ESMTP id S230408AbjGYRtc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 13:49:32 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA79CF7;
+        Tue, 25 Jul 2023 10:49:30 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 5BDA761852;
+        Tue, 25 Jul 2023 17:49:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6C4F6C433C8;
+        Tue, 25 Jul 2023 17:49:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1690307369;
+        bh=w7dbONTIy2Co3mAFj/AcsnLbCERRs5c4tblF0g/VRPU=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=qRmvy9rHWcDnpixwhpi8DTuQcPdUyIZr5ZNx9ydG3F5boc73mSyEcLxTRGyRsCrB3
+         vClccnArnxXoaiGAgIdoaS2+TOFRAoqZK63Wk0bXfrXFknhfb+CydSPKk0rOsuu3hH
+         TLEWzXb38mM81F0bbsLAvvpzt0taCiE7A8213w6F+7Ut1V3wYK9UY5byb1RK9gdLLH
+         A8/Iy7F8eWp47Q1Fq/3T9a96ynyIDqiSA2oI0PcsUAwZGhiXzTUnrxDNnd0AH129MP
+         pymfYyEwQoff+K9nqQse31QUqBocLgoqy3MvVJHBF8sdscLUh2TInqE0lKi9416xVB
+         K25mir6FU0ktQ==
+Received: (nullmailer pid 3497934 invoked by uid 1000);
+        Tue, 25 Jul 2023 17:49:25 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH v2 3/3] firmware: arm_scmi: Add qcom hvc/shmem transport
-To:     Cristian Marussi <cristian.marussi@arm.com>
-CC:     <sudeep.holla@arm.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>
-References: <20230718160833.36397-1-quic_nkela@quicinc.com>
- <20230724164419.16092-1-quic_nkela@quicinc.com>
- <20230724164419.16092-4-quic_nkela@quicinc.com> <ZMAASCqwMbqX7T7L@pluto>
-Content-Language: en-US
-From:   Nikunj Kela <quic_nkela@quicinc.com>
-In-Reply-To: <ZMAASCqwMbqX7T7L@pluto>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: GMh4lH_jIZ8ylBI6hkrNBPQqskytPekR
-X-Proofpoint-ORIG-GUID: GMh4lH_jIZ8ylBI6hkrNBPQqskytPekR
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-07-25_09,2023-07-25_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501 mlxscore=0
- spamscore=0 malwarescore=0 phishscore=0 adultscore=0 bulkscore=0
- mlxlogscore=999 lowpriorityscore=0 clxscore=1015 suspectscore=0
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2306200000 definitions=main-2307250150
-X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+From:   Rob Herring <robh@kernel.org>
+To:     Gatien Chevallier <gatien.chevallier@foss.st.com>
+Cc:     kuba@kernel.org, will@kernel.org, linux-serial@vger.kernel.org,
+        linux-phy@lists.infradead.org,
+        Oleksii Moisieiev <oleksii_moisieiev@epam.com>,
+        linux-spi@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>,
+        lee@kernel.org, robh+dt@kernel.org, linux-usb@vger.kernel.org,
+        gregkh@linuxfoundation.org, arnaud.pouliquen@foss.st.com,
+        Oleksii_Moisieiev@epam.com, arnd@kernel.org,
+        hugues.fruchet@foss.st.com, ulf.hansson@linaro.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        jic23@kernel.org, alexandre.torgue@foss.st.com, pabeni@redhat.com,
+        andi.shyti@kernel.org, netdev@vger.kernel.org,
+        linux-media@vger.kernel.org, linux-mmc@vger.kernel.org,
+        edumazet@google.com, vkoul@kernel.org, dmaengine@vger.kernel.org,
+        catalin.marinas@arm.com, herbert@gondor.apana.org.au,
+        fabrice.gasnier@foss.st.com, mchehab@kernel.org,
+        linux-iio@vger.kernel.org, richardcochran@gmail.com,
+        davem@davemloft.net, conor+dt@kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, alsa-devel@alsa-project.org,
+        linux-crypto@vger.kernel.org, linux-i2c@vger.kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, olivier.moysan@foss.st.com
+In-Reply-To: <20230725164104.273965-2-gatien.chevallier@foss.st.com>
+References: <20230725164104.273965-1-gatien.chevallier@foss.st.com>
+ <20230725164104.273965-2-gatien.chevallier@foss.st.com>
+Message-Id: <169030736341.3497818.1740404012211043486.robh@kernel.org>
+Subject: Re: [IGNORE][PATCH v2 01/11] dt-bindings: Document common device
+ controller bindings
+Date:   Tue, 25 Jul 2023 11:49:25 -0600
+X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_INVALID,
+        DKIM_SIGNED,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -85,63 +78,45 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On 7/25/2023 10:03 AM, Cristian Marussi wrote:
-> On Mon, Jul 24, 2023 at 09:44:19AM -0700, Nikunj Kela wrote:
->> Add a new transport channel to the SCMI firmware interface driver for
->> SCMI message exchange on Qualcomm virtual platforms.
->>
->> The hypervisor associates an object-id also known as capability-id
->> with each hvc doorbell object. The capability-id is used to identify the
->> doorbell from the VM's capability namespace, similar to a file-descriptor.
->>
->> The hypervisor, in addition to the function-id, expects the capability-id
->> to be passed in x1 register when HVC call is invoked.
->>
->> The qcom hvc doorbell/shared memory transport uses a statically defined
->> shared memory region that binds with "arm,scmi-shmem" device tree node.
->>
->> The function-id & capability-id are allocated by the hypervisor on bootup
->> and are stored in the shmem region by the firmware before starting Linux.
->>
->> Currently, there is no usecase for the atomic support therefore this driver
->> doesn't include the changes for the same.
->>
-> Hi Nikunj,
->
-> so basically this new SCMI transport that you are introducing is just
-> exactly like the existing SMC transport with the only difference that
-> you introduced even another new way to configure func_id, a new cap_id
-> param AND the fact that you use HVC instead of SMC... all of this tied
-> to a new compatible to identify this new transport mechanism....
-> ..but all in all is just a lot of plain duplicated code to maintain...
->
-> ...why can't you fit this other smc/hvc transport variant into the
-> existing SMC transport by properly picking and configuring func_id/cap_id
-> and "doorbell" method (SMC vs HVC) in the chan_setup() step ?
->
-> ..I mean ... you can decide where to pick your params based on
-> compatibles and also you can setup your invokation method (SMC vs HVC)
-> based on those...while keeping all the other stuff exactly the same...
-> ...including support for atomic exchanges...if not, when you'll need that
-> too in your QC_HVC transport you'll have to duplicate also that (and my
-> bugs too probably :P)
->
-> (... well maybe in this scenario also the transport itself should be
-> renamed from SMC to something more general...)
->
-> Not sure if I am missing something, or if Sudeep will be horrified by
-> this unifying proposal of mine, but in this series as it stands now I
-> just see a lot of brutally duplicated stuff that just differs by naming
-> and a very minimal change in logic that could be addressed changing and
-> generalizing the original SMC transport code instead.
->
-> Thanks,
-> Cristian
+On Tue, 25 Jul 2023 18:40:54 +0200, Gatien Chevallier wrote:
+> From: Oleksii Moisieiev <Oleksii_Moisieiev@epam.com>
+> 
+> Introducing of the common device controller bindings for the controller
+> provider and consumer devices. Those bindings are intended to allow
+> divided system on chip into muliple domains, that can be used to
+> configure hardware permissions.
+> 
+> Signed-off-by: Oleksii Moisieiev <oleksii_moisieiev@epam.com>
+> ---
+>  .../feature-domain-controller.yaml            | 84 +++++++++++++++++++
+>  1 file changed, 84 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/feature-controllers/feature-domain-controller.yaml
+> 
 
-Hi Christian,
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-I totally agree with you and will be happy to include my changes in 
-smc.c if Sudeep agrees with that approach.
+yamllint warnings/errors:
 
-Thanks
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/feature-controllers/feature-domain-controller.yaml: title: 'Generic Domain Controller bindings' should not be valid under {'pattern': '([Bb]inding| [Ss]chema)'}
+	hint: Everything is a binding/schema, no need to say it. Describe what hardware the binding is for.
+	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230725164104.273965-2-gatien.chevallier@foss.st.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
