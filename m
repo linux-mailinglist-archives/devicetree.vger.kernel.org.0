@@ -2,292 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1FE0776039B
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 02:11:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 09463760448
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 02:51:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229499AbjGYALG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jul 2023 20:11:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54236 "EHLO
+        id S229479AbjGYAvf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jul 2023 20:51:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37422 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229470AbjGYALG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 20:11:06 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD2B5171E;
-        Mon, 24 Jul 2023 17:11:04 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 4532961467;
-        Tue, 25 Jul 2023 00:11:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ED8DCC433C8;
-        Tue, 25 Jul 2023 00:11:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690243863;
-        bh=0f2ttxObuYH3kDd/r78eCuJHpxg65FCD42MXIUNZc1Q=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ZG6+w9Zc367Oayte8zOqmiLKktK09ZHAtOC3feJuhjcl1WBJmurVXc/GJ+MEoYAGC
-         RC2InksF1As6MvGjkbS3Spks37kC/0ed7n6CTFNzvAjzVDZrChyXUZqiO6KWhW9IbE
-         +lICHsSpoKxezQOxDnqsfd1IZ+Q53aW4DEKnuyaITbCAQRQEuWhbFVRl9ACyezHEvk
-         oFO7Cf8AmR81/rNbgG6LMwUM/JgTTGwLCH/v43SyOPdzaRw/IBRaeK+6j2RG6bCRra
-         Tm70Sv6PN5IkVaXcU3rcfswJ0DtP4oP2gGApgS9yBt6rlFdD0Jl7clqCJ7Gejmeb1d
-         Xl8+ojaRjLCmA==
-Received: (nullmailer pid 1209990 invoked by uid 1000);
-        Tue, 25 Jul 2023 00:11:01 -0000
-Date:   Mon, 24 Jul 2023 18:11:01 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        with ESMTP id S229437AbjGYAvf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 20:51:35 -0400
+Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0611210F7;
+        Mon, 24 Jul 2023 17:51:32 -0700 (PDT)
+Received: from local
+        by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+         (Exim 4.96)
+        (envelope-from <daniel@makrotopia.org>)
+        id 1qO6Ga-0004SA-10;
+        Tue, 25 Jul 2023 00:51:08 +0000
+Date:   Tue, 25 Jul 2023 01:51:00 +0100
+From:   Daniel Golle <daniel@makrotopia.org>
+To:     "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Jon Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org
-Subject: Re: [PATCH v2 5/7] dt-bindings: arm: tegra: pmc: Restructure pad
- configuration node schema
-Message-ID: <20230725001101.GA1125953-robh@kernel.org>
-References: <20230721135759.2994770-1-thierry.reding@gmail.com>
- <20230721135759.2994770-5-thierry.reding@gmail.com>
+        Felix Fietkau <nbd@nbd.name>, John Crispin <john@phrozen.org>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Mark Lee <Mark-MC.Lee@mediatek.com>,
+        Lorenzo Bianconi <lorenzo@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Greg Ungerer <gerg@kernel.org>,
+        =?iso-8859-1?Q?Bj=F8rn?= Mork <bjorn@mork.no>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+Subject: [PATCH net-next v6 0/8] net: ethernet: mtk_eth_soc: add basic
+ support for MT7988 SoC
+Message-ID: <cover.1690246066.git.daniel@makrotopia.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230721135759.2994770-5-thierry.reding@gmail.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 21, 2023 at 03:57:57PM +0200, Thierry Reding wrote:
-> From: Thierry Reding <treding@nvidia.com>
-> 
-> The pad configuration node schema in its current form can accidentally
-> match other properties as well. Restructure the schema to better match
-> how the device trees are using these.
-> 
-> Signed-off-by: Thierry Reding <treding@nvidia.com>
-> ---
-> Changes in v2:
-> - highlight quirks working around possible core schema
-> - use phandle: true instead of fully redefining it
-> - drop unneeded status property definition
-> 
->  .../arm/tegra/nvidia,tegra20-pmc.yaml         | 184 ++++++++++++------
->  1 file changed, 122 insertions(+), 62 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra20-pmc.yaml b/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra20-pmc.yaml
-> index a336a75d8b82..0cbc16ec4267 100644
-> --- a/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra20-pmc.yaml
-> +++ b/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra20-pmc.yaml
-> @@ -244,69 +244,79 @@ properties:
->            - resets
->            - '#power-domain-cells'
->  
-> -patternProperties:
-> -  "^[a-f0-9]+-[a-f0-9]+$":
-> +  pinmux:
->      type: object
-> -    description:
-> -      This is a Pad configuration node. On Tegra SOCs a pad is a set of
-> -      pins which are configured as a group. The pin grouping is a fixed
-> -      attribute of the hardware. The PMC can be used to set pad power state
-> -      and signaling voltage. A pad can be either in active or power down mode.
-> -      The support for power state and signaling voltage configuration varies
-> -      depending on the pad in question. 3.3V and 1.8V signaling voltages
-> -      are supported on pins where software controllable signaling voltage
-> -      switching is available.
-> -
-> -      The pad configuration state nodes are placed under the pmc node and they
-> -      are referred to by the pinctrl client properties. For more information
-> -      see Documentation/devicetree/bindings/pinctrl/pinctrl-bindings.txt.
-> -      The pad name should be used as the value of the pins property in pin
-> -      configuration nodes.
-> -
-> -      The following pads are present on Tegra124 and Tegra132
-> -      audio, bb, cam, comp, csia, csb, cse, dsi, dsib, dsic, dsid, hdmi, hsic,
-> -      hv, lvds, mipi-bias, nand, pex-bias, pex-clk1, pex-clk2, pex-cntrl,
-> -      sdmmc1, sdmmc3, sdmmc4, sys_ddc, uart, usb0, usb1, usb2, usb_bias.
-> -
-> -      The following pads are present on Tegra210
-> -      audio, audio-hv, cam, csia, csib, csic, csid, csie, csif, dbg,
-> -      debug-nonao, dmic, dp, dsi, dsib, dsic, dsid, emmc, emmc2, gpio, hdmi,
-> -      hsic, lvds, mipi-bias, pex-bias, pex-clk1, pex-clk2, pex-cntrl, sdmmc1,
-> -      sdmmc3, spi, spi-hv, uart, usb0, usb1, usb2, usb3, usb-bias.
-> -
-> -    properties:
-> -      pins:
-> -        $ref: /schemas/types.yaml#/definitions/string
-> -        description: Must contain name of the pad(s) to be configured.
-> -
-> -      low-power-enable:
-> -        $ref: /schemas/types.yaml#/definitions/flag
-> -        description: Configure the pad into power down mode.
-> -
-> -      low-power-disable:
-> -        $ref: /schemas/types.yaml#/definitions/flag
-> -        description: Configure the pad into active mode.
-> -
-> -      power-source:
-> -        $ref: /schemas/types.yaml#/definitions/uint32
-> -        description:
-> -          Must contain either TEGRA_IO_PAD_VOLTAGE_1V8 or
-> -          TEGRA_IO_PAD_VOLTAGE_3V3 to select between signaling voltages.
-> -          The values are defined in
-> -          include/dt-bindings/pinctrl/pinctrl-tegra-io-pad.h.
-> -          Power state can be configured on all Tegra124 and Tegra132
-> -          pads. None of the Tegra124 or Tegra132 pads support signaling
-> -          voltage switching.
-> -          All of the listed Tegra210 pads except pex-cntrl support power
-> -          state configuration. Signaling voltage switching is supported
-> -          on below Tegra210 pads.
-> -          audio, audio-hv, cam, dbg, dmic, gpio, pex-cntrl, sdmmc1,
-> -          sdmmc3, spi, spi-hv, and uart.
-> -
-> -    required:
-> -      - pins
-> -
-> -    additionalProperties: false
-> +    additionalProperties:
-> +      type: object
-> +      description: |
-> +        This is a pad configuration node. On Tegra SoCs a pad is a set of pins
-> +        which are configured as a group. The pin grouping is a fixed attribute
-> +        of the hardware. The PMC can be used to set pad power state and
-> +        signaling voltage. A pad can be either in active or power down mode.
-> +        The support for power state and signaling voltage configuration varies
-> +        depending on the pad in question. 3.3V and 1.8V signaling voltages are
-> +        supported on pins where software controllable signaling voltage
-> +        switching is available.
-> +
-> +        The pad configuration state nodes are placed under the pmc node and
-> +        they are referred to by the pinctrl client properties. For more
-> +        information see:
-> +
-> +          Documentation/devicetree/bindings/pinctrl/pinctrl-bindings.txt
-> +
-> +        The pad name should be used as the value of the pins property in pin
-> +        configuration nodes.
-> +
-> +        The following pads are present on Tegra124 and Tegra132:
-> +
-> +          audio, bb, cam, comp, csia, csb, cse, dsi, dsib, dsic, dsid, hdmi,
-> +          hsic, hv, lvds, mipi-bias, nand, pex-bias, pex-clk1, pex-clk2,
-> +          pex-cntrl, sdmmc1, sdmmc3, sdmmc4, sys_ddc, uart, usb0, usb1, usb2,
-> +          usb_bias
-> +
-> +        The following pads are present on Tegra210:
-> +
-> +          audio, audio-hv, cam, csia, csib, csic, csid, csie, csif, dbg,
-> +          debug-nonao, dmic, dp, dsi, dsib, dsic, dsid, emmc, emmc2, gpio,
-> +          hdmi, hsic, lvds, mipi-bias, pex-bias, pex-clk1, pex-clk2, pex-cntrl,
-> +          sdmmc1, sdmmc3, spi, spi-hv, uart, usb0, usb1, usb2, usb3, usb-bias
-> +      additionalProperties: false
-> +      properties:
-> +        pins:
-> +          $ref: /schemas/types.yaml#/definitions/string-array
-> +          description: Must contain name of the pad(s) to be configured.
-> +
-> +        low-power-enable:
-> +          $ref: /schemas/types.yaml#/definitions/flag
-> +          description: Configure the pad into power down mode.
-> +
-> +        low-power-disable:
-> +          $ref: /schemas/types.yaml#/definitions/flag
-> +          description: Configure the pad into active mode.
-> +
-> +        power-source:
-> +          $ref: /schemas/types.yaml#/definitions/uint32
-> +          description: |
-> +            Must contain either TEGRA_IO_PAD_VOLTAGE_1V8 or
-> +            TEGRA_IO_PAD_VOLTAGE_3V3 to select between signaling voltages. The
-> +            values are defined in:
-> +
-> +              include/dt-bindings/pinctrl/pinctrl-tegra-io-pad.h
-> +
-> +            Power state can be configured on all Tegra124 and Tegra132 pads.
-> +            None of the Tegra124 or Tegra132 pads support signaling voltage
-> +            switching. All of the listed Tegra210 pads except pex-cntrl support
-> +            power state configuration. Signaling voltage switching is supported
-> +            on the following Tegra210 pads:
-> +
-> +              audio, audio-hv, cam, dbg, dmic, gpio, pex-cntrl, sdmmc1, sdmmc3,
-> +              spi, spi-hv, uart
-> +
-> +        # XXX why is this needed?
+The MediaTek MT7988 SoC introduces a new version (3) of the NETSYS
+block and comes with three instead of two MACs.
 
-It shouldn't be and is a bug. I have a fix. Will test some more and 
-commit it tomorrow.
+The first MAC can be internally connected to a built-in Gigabit
+Ethernet switch with four 1000M/100M/10M twisted pair user ports.
 
-> +        phandle: true
-> +
-> +      required:
-> +        - pins
->  
->  required:
->    - compatible
-> @@ -315,6 +325,56 @@ required:
->    - clocks
->    - '#clock-cells'
->  
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: nvidia,tegra124-pmc
-> +    then:
-> +      properties:
-> +        pinmux:
-> +          # XXX shouldn't be needed, but the DT validator complains about
-> +          # "additionalProperties" if "properties" doesn't exist
-> +          properties:
-> +            status: true
+The second MAC can be internally connected to a built-in 2500Base-T
+Ethernet PHY.
 
-'type: object' should work here too. That may need the same fix as above 
-though.
+There are two SerDes units which can be operated in USXGMII, 10GBase-(K)R,
+5GBase-R, 2500Base-X, 1000Base-X or SGMII interface mode.
 
-> +
-> +          additionalProperties:
-> +            type: object
-> +            properties:
-> +              pins:
-> +                items:
-> +                  enum: [ audio, bb, cam, comp, csia, csb, cse, dsi, dsib,
-> +                          dsic, dsid, hdmi, hsic, hv, lvds, mipi-bias, nand,
-> +                          pex-bias, pex-clk1, pex-clk2, pex-cntrl, sdmmc1,
-> +                          sdmmc3, sdmmc4, sys_ddc, uart, usb0, usb1, usb2,
-> +                          usb_bias ]
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: nvidia,tegra210-pmc
-> +    then:
-> +      properties:
-> +        pinmux:
-> +          # XXX shouldn't be needed, but the DT validator complains about
-> +          # "additionalProperties" if "properties" doesn't exist
-> +          properties:
-> +            status: true
-> +
-> +          additionalProperties:
-> +            type: object
-> +            properties:
-> +              pins:
-> +                items:
-> +                  enum: [ audio, audio-hv, cam, csia, csib, csic, csid, csie,
-> +                          csif, dbg, debug-nonao, dmic, dp, dsi, dsib, dsic,
-> +                          dsid, emmc, emmc2, gpio, hdmi, hsic, lvds, mipi-bias,
-> +                          pex-bias, pex-clk1, pex-clk2, pex-cntrl, sdmmc1,
-> +                          sdmmc3, spi, spi-hv, uart, usb0, usb1, usb2, usb3,
-> +                          usb-bias ]
-> +
->  additionalProperties: false
->  
->  dependencies:
-> -- 
-> 2.41.0
-> 
+This series adds initial support for NETSYS v3 and the first MAC of the
+MT7988 SoC connecting the built-in DSA switch.
+
+The switch is supported since commit 110c18bfed414 ("net: dsa: mt7530:
+introduce driver for MT7988 built-in switch").
+
+Basic support for the 1000M/100M/10M built-in PHYs connected to the
+switch ports is present since commit ("98c485eaf509b net: phy: add
+driver for MediaTek SoC built-in GE PHYs").
+
+Changes since v5:
+  * Rebase again on current net-next tree
+
+Changes since v4:
+  * Rebase on current net-next tree
+
+Changes since v3:
+  * Set 'mediatek,infracfg = false;' in dt-bindings for those chips
+    which do not require infracfg phandle.
+
+Changes since v2:
+  * Use version number instead of feature bits for NETSYS version
+  * Remove unneeded check for NULL when calling mtk_pcs_lynxi_destroy
+  * Reduce dt-bindings to what is actually needed at this point for
+    the driver to work.
+
+Daniel Golle (3):
+  dt-bindings: net: mediatek,net: add missing mediatek,mt7621-eth
+  dt-bindings: net: mediatek,net: add mt7988-eth binding
+  net: ethernet: mtk_eth_soc: convert clock bitmap to u64
+
+Lorenzo Bianconi (5):
+  net: ethernet: mtk_eth_soc: add version in mtk_soc_data
+  net: ethernet: mtk_eth_soc: increase MAX_DEVS to 3
+  net: ethernet: mtk_eth_soc: rely on MTK_MAX_DEVS and remove
+    MTK_MAC_COUNT
+  net: ethernet: mtk_eth_soc: add NETSYS_V3 version support
+  net: ethernet: mtk_eth_soc: convert caps in mtk_soc_data struct to u64
+
+ .../devicetree/bindings/net/mediatek,net.yaml | 109 +++++++-
+ drivers/net/ethernet/mediatek/mtk_eth_path.c  |  22 +-
+ drivers/net/ethernet/mediatek/mtk_eth_soc.c   | 205 +++++++++------
+ drivers/net/ethernet/mediatek/mtk_eth_soc.h   | 241 ++++++++++--------
+ drivers/net/ethernet/mediatek/mtk_ppe.c       |  18 +-
+ .../net/ethernet/mediatek/mtk_ppe_offload.c   |   2 +-
+ drivers/net/ethernet/mediatek/mtk_wed.c       |   4 +-
+ 7 files changed, 399 insertions(+), 202 deletions(-)
+
+-- 
+2.41.0
