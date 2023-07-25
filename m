@@ -2,100 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 187B776192E
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 15:03:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 855C9761973
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 15:10:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232402AbjGYNC6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jul 2023 09:02:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40922 "EHLO
+        id S231753AbjGYNKl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jul 2023 09:10:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45022 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233555AbjGYNCz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 09:02:55 -0400
-Received: from mail-pg1-x52a.google.com (mail-pg1-x52a.google.com [IPv6:2607:f8b0:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97204E67
-        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 06:02:54 -0700 (PDT)
-Received: by mail-pg1-x52a.google.com with SMTP id 41be03b00d2f7-5576ad1b7e7so584365a12.1
-        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 06:02:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1690290174; x=1690894974;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=nOEo+FdHDY5WEehTPe3K+p39OaJHljTEL3d0IYWSSeA=;
-        b=gygu8qaIkXqwP6Xj1pg1bEqTYTb9c/nW3m748swfsw7xL4tUtUx82wc5GXzO/4gi8H
-         Ut3oU1OM9UJ6/36WYpV3TrCdNDAMRnH/WY/uw0Agw3xmXiKvg8H+2keyVf+oe6oqxe6N
-         EvYVsk11ZvexQVNsRRxfrHZzUdHQRD2UGAoa7Q8pUsRGcing6iHc2aupohgWCqUCt1G1
-         BuvjUWcNScwdCKgIBcvMflBPKxcHKTbqfhuxKtBr/oXCiUoHTvvCxeAalVcHhbciQit4
-         SsWpWM23aGZhml0t+qQfPYGpdMrGuCqWuz21d9W0nTgm2kyX3PYX6ZywolqQ0lWiT+cu
-         UrKQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690290174; x=1690894974;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=nOEo+FdHDY5WEehTPe3K+p39OaJHljTEL3d0IYWSSeA=;
-        b=Ab/+vYctu3BRkPHuYvPHAVkb7sUj3TLAkCrz5X67cn4pTahNtXBOJ6K0RR2RM2wNwd
-         qtPbQWEGBGcKtf7PhXTODB/t9FMcon4ypFC1lmYsiFRkH4KPX6aTNyHLfKqGOV3+xA6R
-         QgS8g/NaOf3ePVzWOpAPNRU6j09VWcTG26o3YMU3PbqoC2mJxKGgX2hyjZWJohCS1qRx
-         ++dDeu16y/mZRnr6tmyFi3mlqMn0++zMLidWtX/wyx6v8L560QLuMolY/ODbopmH/Md4
-         evIxwhlhf9XeSPmMddrFaobxM3WaqfqBRwGCzNy+Wx2xl9j9aY6knO26vIBOvukW8jdT
-         RjBw==
-X-Gm-Message-State: ABy/qLb4jXqOYOtntweFdAhL7e0KM+h87IRaWU6aJsgWuGSC7aGzfxRJ
-        hVo0MU5jCjZD5SH9RkRXHy9a8z/QuojcKl/hzhw=
-X-Google-Smtp-Source: APBJJlErkK3/Bqq7OlLvd5itGALTENkxXktbLYhUASp2ZzNmBYROXrTXkYawMk+xJMuNHpDP+YIrje0+S4qKDpUBp80=
-X-Received: by 2002:a17:90a:c8d:b0:263:2312:60c2 with SMTP id
- v13-20020a17090a0c8d00b00263231260c2mr11279368pja.3.1690290173656; Tue, 25
- Jul 2023 06:02:53 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230724222247.162806-1-marex@denx.de>
-In-Reply-To: <20230724222247.162806-1-marex@denx.de>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Tue, 25 Jul 2023 10:02:41 -0300
-Message-ID: <CAOMZO5AwYyrTo-Oem6KfqpYF4WXCS1gsjkoTP=geZ7SDS2M96w@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: imx8mn: Drop CSI1 PHY reference clock configuration
-To:     Marek Vasut <marex@denx.de>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Adam Ford <aford173@gmail.com>,
+        with ESMTP id S232628AbjGYNKk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 09:10:40 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E8EE1FEB;
+        Tue, 25 Jul 2023 06:10:10 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 94F256170C;
+        Tue, 25 Jul 2023 13:10:09 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2D5FAC433C7;
+        Tue, 25 Jul 2023 13:10:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1690290609;
+        bh=kYvQojgLLojniCbFIoFeMLpW0eX9KsKVV5P8NVvO6ew=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=SK+lo+5UzxBUqzEY8EqmRQBIQgCMWZnrx3gERo09M9o9URM7O48Gbru8Ul1+aLEUv
+         dNZcG4yl0TiQy2vv54PBxwpfAYig2kRuA9f6jq0QbbOCF19QIQ+j6RDl+8wgSVhIfT
+         qz32fB2+oYATYyGkg1wJC7IkQQ0V4oue9KfXmq+7mkD7FXAGL+5ihuYwg+z3Hbfz0a
+         RtcjttrBO24GrVzckHFE+EdWLuAopSwca1THVRuOiOn8ZT04hlWEvcB8XbeAof4xth
+         KXkICYU8KMz/OgBtEco3U748Q+3n6t/cqi4yJsk+JzLmzQZNRNDxJk11F0LqkMqedQ
+         GHbsDqGp8hrdA==
+Received: (nullmailer pid 2911495 invoked by uid 1000);
+        Tue, 25 Jul 2023 13:10:06 -0000
+Date:   Tue, 25 Jul 2023 07:10:06 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Naresh Solanki <naresh.solanki@9elements.com>
+Cc:     Guenter Roeck <linux@roeck-us.net>,
+        Jean Delvare <jdelvare@suse.com>,
+        krzysztof.kozlowski+dt@linaro.org,
         Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Li Jun <jun.li@nxp.com>,
-        Marco Felsch <m.felsch@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Peng Fan <peng.fan@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        linux-hwmon@vger.kernel.org,
+        Patrick Rudolph <patrick.rudolph@9elements.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: hwmon: Add Infineon TDA38640
+Message-ID: <20230725131006.GA2879331-robh@kernel.org>
+References: <20230725114030.1860571-1-Naresh.Solanki@9elements.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230725114030.1860571-1-Naresh.Solanki@9elements.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marek,
+On Tue, Jul 25, 2023 at 01:40:26PM +0200, Naresh Solanki wrote:
+> From: Patrick Rudolph <patrick.rudolph@9elements.com>
+> 
+> The TDA38640 has a bug in SVID mode and to enable a workaround
+> remove the TDA38640 from trivial-devices and add a complete schema.
+> 
+> The schema adds the custom property 'infineon,en-pin-fixed-level' to
+> signal a fixed level on the ENABLE pin and to enable the workaround.
+> When the ENABLE pin is left floating it's internally pulled low.
+> 
+> If not specified the driver will continue to use the PMBUS_OPERATION
+> register to enable the regulator. When specified the driver will use
+> the PMBUS_ON_OFF_CONFIG register to enable the regulator.
+> 
+> Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
+> Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
+> ---
+>  .../hwmon/pmbus/infineon,tda38640.yaml        | 50 +++++++++++++++++++
+>  .../devicetree/bindings/trivial-devices.yaml  |  2 -
+>  2 files changed, 50 insertions(+), 2 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/hwmon/pmbus/infineon,tda38640.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/hwmon/pmbus/infineon,tda38640.yaml b/Documentation/devicetree/bindings/hwmon/pmbus/infineon,tda38640.yaml
+> new file mode 100644
+> index 000000000000..520112e4e271
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/hwmon/pmbus/infineon,tda38640.yaml
+> @@ -0,0 +1,50 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +
+> +$id: http://devicetree.org/schemas/hwmon/pmbus/infineon,tda38640.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Infineon TDA38640 Synchronous Buck Regulator with SVID and I2C
+> +
+> +description: |
+> +  The Infineon TDA38640 is a 40A Single-voltage Synchronous Buck
+> +  Regulator with SVID and I2C designed for Industrial use.
+> +
+> +  Datasheet: https://www.infineon.com/dgdl/Infineon-TDA38640-0000-DataSheet-v02_04-EN.pdf?fileId=8ac78c8c80027ecd018042f2337f00c9
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - infineon,tda38640
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  infineon,en-pin-fixed-level:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: |
+> +      Fixed level of the ENABLE pin. When specified the PMBUS_ON_OFF_CONFIG
+> +      register is used to enable the regulator instead of the PMBUS_OPERATION
+> +      register to workaround a bug of the tda38640 when operating in SVID-mode.
+> +      If the ENABLE pin is left floating the internal pull-down causes a low
+> +      level on the pin.
 
-On Mon, Jul 24, 2023 at 7:22=E2=80=AFPM Marek Vasut <marex@denx.de> wrote:
->
-> The CSI1 PHY reference clock are limited to 125 MHz according to:
-> i.MX 8M Nano Applications Processor Reference Manual, Rev. 2, 07/2022
-> Table 5-1. Clock Root Table (continued) / page 319
-> Slice Index n =3D 123 .
->
-> Currently those IMX8MN_CLK_CSI1_PHY_REF clock are configured to be
-> fed directly from 1 GHz PLL2 , which overclocks them . Instead, drop
-> the configuration altogether, which defaults the clock to 24 MHz REF
-> clock input, which for the PHY reference clock is just fine.
->
-> Fixes: ae9279f301b5 ("arm64: dts: imx8mn: Add CSI and ISI Nodes")
-> Signed-off-by: Marek Vasut <marex@denx.de>
+Neither this nor the commit message answers how do I decide if I set 
+this property or not? How you work-around it is not that relevant to the 
+binding.
 
-Good catch:
-
-Reviewed-by: Fabio Estevam <festevam@gmail.com>
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        tda38640@40 {
+> +            compatible = "infineon,tda38640";
+> +            reg = <0x40>;
+> +        };
+> +    };
+> +
+> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
+> index 6e24c4d25ec3..2b1fbb2a672b 100644
+> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
+> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+> @@ -151,8 +151,6 @@ properties:
+>            - infineon,slb9645tt
+>              # Infineon SLB9673 I2C TPM 2.0
+>            - infineon,slb9673
+> -            # Infineon TDA38640 Voltage Regulator
+> -          - infineon,tda38640
+>              # Infineon TLV493D-A1B6 I2C 3D Magnetic Sensor
+>            - infineon,tlv493d-a1b6
+>              # Infineon Multi-phase Digital VR Controller xdpe11280
+> 
+> base-commit: 55612007f16b5d7b1fb83a7b0f5bb686829db7c7
+> -- 
+> 2.41.0
+> 
