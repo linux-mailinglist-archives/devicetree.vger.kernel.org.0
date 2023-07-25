@@ -2,135 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D1DB0761101
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 12:37:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A5E6176111A
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 12:44:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233678AbjGYKhJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jul 2023 06:37:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53000 "EHLO
+        id S232782AbjGYKoB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jul 2023 06:44:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55590 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232909AbjGYKhI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 06:37:08 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4D01188;
-        Tue, 25 Jul 2023 03:37:04 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 36PAautL128618;
-        Tue, 25 Jul 2023 05:36:56 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1690281416;
-        bh=Gx3pkO743ZYy70rdXZr1aUnKtpWrxfRjEon4KIhVveE=;
-        h=From:To:CC:Subject:Date;
-        b=ts2X9QlawMADm+QctN7ScpVIZKMip1VfN7Y7wHnTYqoM5FAY+v0GzxhTKkTRfFAwO
-         yIOaXhQLLDKzcly/mBUfmnpea4bNMQxb6p0PwhSjhi6whaE/1ueJZcjKmXT/oS8+3c
-         Ecrer+vherJsVO7haulg1Ku5uWV0CYEbT+3tYGMc=
-Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 36PAauaO104450
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 25 Jul 2023 05:36:56 -0500
-Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 25
- Jul 2023 05:36:55 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 25 Jul 2023 05:36:55 -0500
-Received: from uda0500640.dal.design.ti.com (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 36PAaqiN113828;
-        Tue, 25 Jul 2023 05:36:52 -0500
-From:   Ravi Gunasekaran <r-gunasekaran@ti.com>
-To:     <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <rogerq@kernel.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <srk@ti.com>, <r-gunasekaran@ti.com>
-Subject: [PATCH v2] arm64: dts: ti: k3-am62a7-sk: Enable dual role support for Type-C port
-Date:   Tue, 25 Jul 2023 16:06:51 +0530
-Message-ID: <20230725103651.1612-1-r-gunasekaran@ti.com>
-X-Mailer: git-send-email 2.17.1
+        with ESMTP id S231926AbjGYKoA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 06:44:00 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB9CC10DC;
+        Tue, 25 Jul 2023 03:43:59 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 6334A6164D;
+        Tue, 25 Jul 2023 10:43:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D4F32C433C8;
+        Tue, 25 Jul 2023 10:43:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1690281838;
+        bh=6si+E7iWgAYbVYwLil6gkAsWSrpRer72I+VMHgo8Tvk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=hk7sG53LT8l9NDqsfW18+PwZDJyMRfbBFt8nD+eNck+iHgV2bE90EyQbpx24rOCII
+         eRRuh0wKiO6x0C1tMmN1slPz+Vgw6EOQZjOGNbOnLkKBbO5SAXQ19jIPksTKrHdIuj
+         G308liOPNiQwJ9xPoyU2//uUv4Mrgex/P/8Pyl79IQdLJtjMjqfrayiddVw3vvsa4R
+         zEwuGPDYQC+CIA43t+ps1WfevVvov1KJQHPkHkYzVzbLVdbylntO32rtnIG23o6KZy
+         Dv8L6/EITHvch4tfqOGXXdCMQCNlWTxdXI237l2XA1kWE7a40WaTwG/FzX3KPJibrQ
+         Esafoi9Pdha1Q==
+Date:   Tue, 25 Jul 2023 11:43:53 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Support Opensource <support.opensource@diasemi.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Eric Jeong <eric.jeong.opensource@diasemi.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2] regulator: dt-bindings: dlg,slg51000: Convert to DT
+ schema
+Message-ID: <d33e5dbc-ca38-4702-903a-b36f9a824391@sirena.org.uk>
+References: <20230725063132.42132-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="TbEUfeD9RVtTU6w7"
+Content-Disposition: inline
+In-Reply-To: <20230725063132.42132-1-krzysztof.kozlowski@linaro.org>
+X-Cookie: Happiness is the greatest good.
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-USB0 is interfaced with a Type-C DRP connector and is managed via a
-USB PD controller. Add support for the Type-C port with dual data
-and power sink role.
 
-Signed-off-by: Ravi Gunasekaran <r-gunasekaran@ti.com>
----
-Changes since v1:
-* Added space between node name and ":"
-* Changed the node name from "tps6598x" to "usb-power-controller"
+--TbEUfeD9RVtTU6w7
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-v1: https://lore.kernel.org/all/20230724115133.2226-1-r-gunasekaran@ti.com/
+On Tue, Jul 25, 2023 at 08:31:32AM +0200, Krzysztof Kozlowski wrote:
 
-arch/arm64/boot/dts/ti/k3-am62a7-sk.dts | 33 +++++++++++++++++++++++++
- 1 file changed, 33 insertions(+)
+> 1. Mention that supplies are required, if the regulator is enabled.
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
-index d2cca6182738..cff283c75f8e 100644
---- a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
-@@ -226,6 +226,24 @@
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&main_i2c0_pins_default>;
- 	clock-frequency = <400000>;
-+
-+	typec_pd0: usb-power-controller@3f {
-+		compatible = "ti,tps6598x";
-+		reg = <0x3f>;
-+
-+		connector {
-+			compatible = "usb-c-connector";
-+			label = "USB-C";
-+			self-powered;
-+			data-role = "dual";
-+			power-role = "sink";
-+			port {
-+				usb_con_hs: endpoint {
-+					remote-endpoint = <&usb0_hs_ep>;
-+				};
-+			};
-+		};
-+	};
- };
- 
- &main_i2c1 {
-@@ -290,6 +308,21 @@
- 	status = "reserved";
- };
- 
-+&usbss0 {
-+	status = "okay";
-+	ti,vbus-divider;
-+};
-+
-+&usb0 {
-+	usb-role-switch;
-+
-+	port {
-+		usb0_hs_ep: endpoint {
-+			remote-endpoint = <&usb_con_hs>;
-+		};
-+	};
-+};
-+
- &usbss1 {
- 	status = "okay";
- };
+This is just adding an OS specific note in the description, it's not
+actually marking the properties as required.
 
-base-commit: 1e25dd7772483f477f79986d956028e9f47f990a
--- 
-2.17.1
+--TbEUfeD9RVtTU6w7
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmS/p2kACgkQJNaLcl1U
+h9DjkAf+Lt/GH7XoOVIAbsiHLWp1D29yZFjgBWhF1lt6DmXv4i4wfw2XZUH9UJIH
+CLxWm0IU/C5IRcnP4PqaMrfkS8Lnk36TfCghbkk+D+hUNfMJiN+EH5tNjmBvhdCY
+49V83pJnktYO7SSWNj/fu/Fk3TlPvw1aoQQNMDV2lvGp7nfBvuSJ1lLNXv4m7Zoz
+/qbyzM/9YYwAQ0nNHqDKZhfMRR7GkfA7XGAmcjTUrZc3n3jdG1YLgKm1G8q0Bkvy
++5jV4P7p04aB1xhTEGqiL4eFZw72t0PPG9E0t/9aswt6Gc3bGOFhxM757lo96hKD
+b0zasFMslOL1cCK70+M5s+EAjO2csA==
+=ZITr
+-----END PGP SIGNATURE-----
+
+--TbEUfeD9RVtTU6w7--
