@@ -2,133 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 68E807624DA
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 23:51:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CF06B762559
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 00:02:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231552AbjGYVvp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jul 2023 17:51:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42168 "EHLO
+        id S231776AbjGYWCH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jul 2023 18:02:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47576 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231243AbjGYVvo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 17:51:44 -0400
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BBC62129
-        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 14:50:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1690321854;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=Melm6/J1BB5km5pizgjvl9Yb8xIN/1Veuqiikhv3KRo=;
-        b=EmZ4uDqezYqZCmUJozcqVQZCLAZnNsK3LRMK0hRDqVcN5AcZwp4IuYT6t3A+K4V+7nypSs
-        hk47kl4z+PEgwq7+rqkqy77H4I+0vb+/aAKUxQmPvacc323UbdBqX643FmYMeg6LVCqGbZ
-        Fe/1BLwffgyCl46fmC7JlcmhviU3iSQ=
-Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com
- [209.85.222.198]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-266-jAO-eVP7MqirWpncMElV5g-1; Tue, 25 Jul 2023 17:50:53 -0400
-X-MC-Unique: jAO-eVP7MqirWpncMElV5g-1
-Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-765ab532883so811950885a.0
-        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 14:50:52 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690321852; x=1690926652;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Melm6/J1BB5km5pizgjvl9Yb8xIN/1Veuqiikhv3KRo=;
-        b=UCWSsqnCSE1rxVBS2MS18Aeh3uuUW+1JKBDEQWGc8XvETfMmD2ttzbN5pGJoJ3Qe4E
-         vTTyZbZWgX14O3psg537ro90+IrQq1CszzWSw4YeiC9NrYrgRCqdtDvWF+TIRqKmVAIu
-         o76nia93yRHaq7AAR5ARUxrEG3k31l6gnzv1m3wJIa6as4ajT5zau3jV8wsEbYAaZo9B
-         OghpravvRAAB2i84gdojcKNqC5aKtMaCMjzOWepZhQ2FKNKAYfiIp0pBABQiMmYccDnt
-         KkhCk++AjDR8s4G4Jp/LpiPVFT/yX1h/I2sBgi8HVP3UOVCo9jVlCi03xQRCoBv680+H
-         UxhA==
-X-Gm-Message-State: ABy/qLY9B6by37VzfRWUV8etnebq/2xvcghQcsk6SQU9fyhQP+SJ506N
-        Wt5vYt0NAvOU9lYzE2C5N/xjt4LUY2vFhiLZfCsw7EW08K8EJ2pXxLYMP1aWJ+MSR/FmTce3Ye3
-        cAImWkmqBALjtdFDYPAkCZw==
-X-Received: by 2002:a37:9387:0:b0:768:75c:a323 with SMTP id v129-20020a379387000000b00768075ca323mr189179qkd.30.1690321852560;
-        Tue, 25 Jul 2023 14:50:52 -0700 (PDT)
-X-Google-Smtp-Source: APBJJlGuBc9mQtcoAYsLLrcNS6U1ILe3WgtPfau5n+XH3C2PfNIkwun1XLJekdm58rMjVAJD2sduAg==
-X-Received: by 2002:a37:9387:0:b0:768:75c:a323 with SMTP id v129-20020a379387000000b00768075ca323mr189174qkd.30.1690321852320;
-        Tue, 25 Jul 2023 14:50:52 -0700 (PDT)
-Received: from fedora ([2600:1700:1ff0:d0e0::17])
-        by smtp.gmail.com with ESMTPSA id q29-20020a05620a039d00b00767177a5bebsm3909301qkm.56.2023.07.25.14.50.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 Jul 2023 14:50:51 -0700 (PDT)
-Date:   Tue, 25 Jul 2023 16:50:49 -0500
-From:   Andrew Halaney <ahalaney@redhat.com>
-To:     Naveen Kumar Goud Arepalli <quic_narepall@quicinc.com>
-Cc:     quic_nitirawa@quicinc.com, agross@kernel.org, andersson@kernel.org,
-        konrad.dybcio@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH V1] arm64: dts: qcom: sa8775p-ride: Remove min and max
- voltages for L8A
-Message-ID: <a3l7356miuuapf5dakgfchdjmxjp62ynvle4ta3hejd3tjvzd4@e2t2zm6jh7hb>
-References: <20230725100007.14775-1-quic_narepall@quicinc.com>
+        with ESMTP id S231602AbjGYWB6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 18:01:58 -0400
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 647DE2D43;
+        Tue, 25 Jul 2023 15:01:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1690322494; x=1721858494;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=7dcdBb1/l78pg8+v1QmtAHi7qI73pAZdEwi0vo4frl0=;
+  b=i5udl0hLr6hEp0Gg0jZvTNHklyRZegRyZePCIQZlQzXSMsr1IsCx2qNd
+   AJ7S0ZSvsGy7Ugfg0X1rIyTgweBGPzgmgNrba1YJkRvX29R3gbsLA7KaO
+   S9EFsTRdOap93aX4Rb/aTtijzCAxmc80Vlv3/Hq9Hs0yaVl7tQIgewz4Q
+   6aR2xorKpEFx5ghtnVtpRdW+wIDqU9ggdBxxm4EQ+uufRRW4xAo9FTq8r
+   etokJtuKoBMiWva9n0B82H3rfAcKsHY+L1ZNqz+OkY9lJyG+Gb4/Wb4pm
+   tkYgKdIGkj4dof2zdZjoPUKO9f3BV5sJoMQwXdXTV4oE3WwkP5LqsSyw3
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10782"; a="366734265"
+X-IronPort-AV: E=Sophos;i="6.01,231,1684825200"; 
+   d="scan'208";a="366734265"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Jul 2023 15:01:33 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10782"; a="761370839"
+X-IronPort-AV: E=Sophos;i="6.01,231,1684825200"; 
+   d="scan'208";a="761370839"
+Received: from lkp-server02.sh.intel.com (HELO 953e8cd98f7d) ([10.239.97.151])
+  by orsmga001.jf.intel.com with ESMTP; 25 Jul 2023 15:01:28 -0700
+Received: from kbuild by 953e8cd98f7d with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1qOQ5v-0000Nf-0M;
+        Tue, 25 Jul 2023 22:01:27 +0000
+Date:   Wed, 26 Jul 2023 06:00:41 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Tao Zhang <quic_taozha@quicinc.com>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+        Konrad Dybcio <konradybcio@gmail.com>,
+        Mike Leach <mike.leach@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+        Tao Zhang <quic_taozha@quicinc.com>,
+        Jinlong Mao <quic_jinlmao@quicinc.com>,
+        Leo Yan <leo.yan@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Tingwei Zhang <quic_tingweiz@quicinc.com>,
+        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Hao Zhang <quic_hazha@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, andersson@kernel.org
+Subject: Re: [PATCH v7 09/13] coresight-tpdm: Add nodes for dsb edge control
+Message-ID: <202307260533.MTqa5ObG-lkp@intel.com>
+References: <1690269353-10829-10-git-send-email-quic_taozha@quicinc.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230725100007.14775-1-quic_narepall@quicinc.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+In-Reply-To: <1690269353-10829-10-git-send-email-quic_taozha@quicinc.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 25, 2023 at 03:30:07PM +0530, Naveen Kumar Goud Arepalli wrote:
-> L8A is the supply for UFS VCC, UFS specification allows different VCC
-> configurations for UFS devices.
-> -UFS 2.x devices: 2.70V - 3.60V
-> -UFS 3.x devices: 2.40V - 2.70V
-> 
-> As sa8775p-ride supports both ufs 2.x and ufs 3.x devices, remove min/max
-> voltages for L8A regulator. Initial voltage of L8A will be set to 2.504v
-> or 2.952v during PON depending on the UFS device type. On sa8775, UFS is
-> the only client in Linux for L8A and this regulator will be voted only
-> for enabling/disabling.
-> 
-> Signed-off-by: Naveen Kumar Goud Arepalli <quic_narepall@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/sa8775p-ride.dts | 2 --
->  1 file changed, 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sa8775p-ride.dts b/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
-> index ed76680410b4..6f3891a09e59 100644
-> --- a/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
-> +++ b/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
-> @@ -98,8 +98,6 @@
->  
->  		vreg_l8a: ldo8 {
->  			regulator-name = "vreg_l8a";
-> -			regulator-min-microvolt = <2504000>;
-> -			regulator-max-microvolt = <3300000>;
->  			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
->  			regulator-allow-set-load;
->  			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-> -- 
-> 2.17.1
-> 
+Hi Tao,
 
-Reviewing with very little expertise in the area....
-A few questions below that would help me understand this a bit better.
+kernel test robot noticed the following build warnings:
 
-Does it make sense to *not* set the range of the regulator at all?:
+[auto build test WARNING on robh/for-next]
+[also build test WARNING on linus/master v6.5-rc3 next-20230725]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-    1. A board dts knows its UFS device
-    2. Is UFS backwards compatible with respect to UFS2/UFS3?
-       I don't know how the version is determined, but if it's a
-       "start at UFS2, go to UFS3" should it be scaled as that goes?
+url:    https://github.com/intel-lab-lkp/linux/commits/Tao-Zhang/coresight-tpdm-Remove-the-unnecessary-lock/20230725-152235
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/1690269353-10829-10-git-send-email-quic_taozha%40quicinc.com
+patch subject: [PATCH v7 09/13] coresight-tpdm: Add nodes for dsb edge control
+config: arm-randconfig-r013-20230725 (https://download.01.org/0day-ci/archive/20230726/202307260533.MTqa5ObG-lkp@intel.com/config)
+compiler: clang version 17.0.0 (https://github.com/llvm/llvm-project.git 4a5ac14ee968ff0ad5d2cc1ffa0299048db4c88a)
+reproduce: (https://download.01.org/0day-ci/archive/20230726/202307260533.MTqa5ObG-lkp@intel.com/reproduce)
 
-Relying on the bootloader to set up the device before the kernel starts
-seems like a direction that should be actively avoided instead of
-depended on in my opinion.
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202307260533.MTqa5ObG-lkp@intel.com/
 
-Thanks,
-Andrew
+All warnings (new ones prefixed by >>):
 
+   drivers/hwtracing/coresight/coresight-tpdm.c:383:21: warning: variable 'mask' set but not used [-Wunused-but-set-variable]
+     383 |         unsigned long val, mask, edge_ctrl;
+         |                            ^
+>> drivers/hwtracing/coresight/coresight-tpdm.c:451:3: warning: misleading indentation; statement is not part of the previous 'else' [-Wmisleading-indentation]
+     451 |                 drvdata->dsb->edge_ctrl_mask[reg] = set;
+         |                 ^
+   drivers/hwtracing/coresight/coresight-tpdm.c:449:2: note: previous statement is here
+     449 |         else
+         |         ^
+   2 warnings generated.
+
+
+vim +/else +451 drivers/hwtracing/coresight/coresight-tpdm.c
+
+   426	
+   427	static ssize_t dsb_edge_ctrl_mask_store(struct device *dev,
+   428						     struct device_attribute *attr,
+   429						     const char *buf,
+   430						     size_t size)
+   431	{
+   432		struct tpdm_drvdata *drvdata = dev_get_drvdata(dev->parent);
+   433		unsigned long val;
+   434		u32 set;
+   435		int reg;
+   436	
+   437		if ((kstrtoul(buf, 0, &val)) || (val & ~1UL))
+   438			return -EINVAL;
+   439	
+   440		spin_lock(&drvdata->spinlock);
+   441		/*
+   442		 * There is 1 bit per DSB Edge Control Mark line.
+   443		 * Thus we have 32 lines in a 32bit word.
+   444		 */
+   445		reg = EDCMR_TO_WORD_IDX(drvdata->dsb->edge_ctrl_idx);
+   446		set = drvdata->dsb->edge_ctrl_mask[reg];
+   447		if (val)
+   448			set |= BIT(EDCMR_TO_WORD_SHIFT(drvdata->dsb->edge_ctrl_idx));
+   449		else
+   450			set &= ~BIT(EDCMR_TO_WORD_SHIFT(drvdata->dsb->edge_ctrl_idx));
+ > 451			drvdata->dsb->edge_ctrl_mask[reg] = set;
+   452		spin_unlock(&drvdata->spinlock);
+   453	
+   454		return size;
+   455	}
+   456	static DEVICE_ATTR_RW(dsb_edge_ctrl_mask);
+   457	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
