@@ -2,75 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D09DB760FE9
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 11:57:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8EC1F760FFD
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 11:59:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232885AbjGYJ5h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jul 2023 05:57:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56112 "EHLO
+        id S233208AbjGYJ7L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jul 2023 05:59:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57190 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232841AbjGYJ5c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 05:57:32 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A08D1B8
-        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 02:57:31 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-99454855de1so785477866b.2
-        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 02:57:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690279049; x=1690883849;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=wC6uOAAWWshiU7HM0RaHJ6XLqbUAShyDQVdsD3q4R3A=;
-        b=mVZGMZlCiF1F6HADarxCSEJ1MaLMUtXiR3oM2qyw2oGwaGxxU7SwWx4LwS3BmlM3Bv
-         ytMZ4w23uqOjuxcrrQM47eHvV4QXgFGAUoc4enoBm7nt7QMgcNB7tCVduRauDCN3uLc4
-         M1D1RGNM+k21uF4lgcSf+0UCq/47yuxXI4ZbBv6LV1BPjRyUNfXu3Jv42aN2OEu34Mqs
-         KKZGZ3LMkUO/0/+E+mCG3x4EhYaQbg4gVzjbjTtvd3KudbzY3uPdSyt7ApuWzO599Hfx
-         scuMwYTBeVjHFfoJjHW1KVup4wWNXJ6A5LhlwkD3YcbnPra2xfDdtONBPUCGBrZITYK6
-         uxXQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690279049; x=1690883849;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=wC6uOAAWWshiU7HM0RaHJ6XLqbUAShyDQVdsD3q4R3A=;
-        b=M7iXm+0omwU4gdgnp6aypVIdpTjJZ6AEO7NMOQz9zX4DLXMJCpQP4aA2Vgamil0tUK
-         BMuUhhE8kp8OT0w9TaOiQ35foi0c7YeE+hl3XP93jf5ni7nTAsUM3XUSvjhrAFRiQW4V
-         QRCl/EKY0AbqXJoJaBUjlSuqOWbrEfIk4uDC9WLXfp6Aqcc/pglcrYze9Rag+DfONgMB
-         SbwW8fur8IEMSRRAzHr+OG2HiOCKi5EFQRw3BITx5j9vRo6lWRevQoGY6S1qmt7PSdOS
-         6+BtGU1L1GcFB8r6Dn2A5DRODBu4I5jrpHngGvPAT6V/aCvq1RhkeIk9/Us13OS3sdgb
-         tQ7w==
-X-Gm-Message-State: ABy/qLaLZqllZ1R5XHp970FoT0I4Vc9Kuhd5yBMjlpsxr4+lIXUeD66/
-        ZOvGd/lTXhjMmD2ISksXlqvH6A==
-X-Google-Smtp-Source: APBJJlEPuZg32/18BhFO9sCz6xyx84ncx78sRSeoQ4NSWs2kTf61C9KzuN6EfDO1IbzjsJhDu7dLpg==
-X-Received: by 2002:a17:907:75cc:b0:99b:4890:812d with SMTP id jl12-20020a17090775cc00b0099b4890812dmr11202687ejc.16.1690279049518;
-        Tue, 25 Jul 2023 02:57:29 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id lv19-20020a170906bc9300b00989257be620sm7853476ejb.200.2023.07.25.02.57.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 25 Jul 2023 02:57:28 -0700 (PDT)
-Message-ID: <6f899f68-a44e-ef50-4236-007a73eb0431@linaro.org>
-Date:   Tue, 25 Jul 2023 11:57:25 +0200
+        with ESMTP id S233491AbjGYJ6z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 05:58:55 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42A461FDB;
+        Tue, 25 Jul 2023 02:58:42 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 8DFAB615E6;
+        Tue, 25 Jul 2023 09:58:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F016AC433C7;
+        Tue, 25 Jul 2023 09:58:37 +0000 (UTC)
+Message-ID: <231e9976-93fe-b8b1-29d9-6c799a8e6a3a@xs4all.nl>
+Date:   Tue, 25 Jul 2023 11:58:36 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v2 1/3] dt-bindings: rtc: Add Nuvoton ma35d1 rtc
+ Thunderbird/102.12.0
+Subject: Re: [PATCH v7,0/11] media: mediatek: vcodec: separate encoder and
+ decoder
 Content-Language: en-US
-To:     Jacky Huang <ychuang570808@gmail.com>, a.zummo@towertech.it,
-        alexandre.belloni@bootlin.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
-Cc:     linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        soc@kernel.org, mjchen@nuvoton.com, schung@nuvoton.com,
-        Jacky Huang <ychuang3@nuvoton.com>
-References: <20230725094030.32877-1-ychuang570808@gmail.com>
- <20230725094030.32877-2-ychuang570808@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230725094030.32877-2-ychuang570808@gmail.com>
+To:     Yunfei Dong <yunfei.dong@mediatek.com>,
+        =?UTF-8?Q?N=c3=adcolas_F_=2e_R_=2e_A_=2e_Prado?= 
+        <nfraprado@collabora.com>,
+        Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Nathan Hebert <nhebert@chromium.org>
+Cc:     Chen-Yu Tsai <wenst@chromium.org>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Steve Cho <stevecho@chromium.org>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20230722074230.30558-1-yunfei.dong@mediatek.com>
+From:   Hans Verkuil <hverkuil-cisco@xs4all.nl>
+In-Reply-To: <20230722074230.30558-1-yunfei.dong@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+X-Spam-Status: No, score=-6.8 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -79,17 +62,78 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/07/2023 11:40, Jacky Huang wrote:
-> From: Jacky Huang <ychuang3@nuvoton.com>
+On 22/07/2023 09:42, Yunfei Dong wrote:
+> From: Yunfei Dong <yunfei.dong@mediatek.corp-partner.google.com>
 > 
-> Add documentation describing the Nuvoton ma35d1 rtc controller.
+> With the driver more and more complex, encoder and decoder need to add more parameter
+> in shared struct 'mtk_vcodec_ctx' and 'mtk_vcodec_dev'. Encoder use about 40% and
+> decoder use 60% parameter. Need to allocate extra unused memory when encoder and decoder
+> working.
 > 
-> Signed-off-by: Jacky Huang <ychuang3@nuvoton.com>
+> Separate encoder and decoder in different folder and use independent data struct.
+> 
+> patch 1 remove unused parameter.
+> patch 2~3 align fw and interrupt related interface.
+> patch 4~6 remove the dependency of debug log
+> patch 7~8 separate mtk_vcodec_ctx and mtk_vcodec_dev
+> patch 9 fix unreasonable parameter
+> patch 10 removed unused header files
+> patch 11 separate encoder and decoder in different folder
 > ---
->  .../bindings/rtc/nuvoton,ma35d1-rtc.yaml      | 48 +++++++++++++++++++
+> Changed from v6:
+> - rebase to: https://git.linuxtv.org/hverkuil/media_tree.git/log/?h=fo-v6.6g.
+> Changed from v5:
+> - fix some words error for patch 3/6/11.
+> - rename mtk_vcodec_comm_drv.h to mtk_vcodec_cmn_drv.h for patch 7.
+> Changed from v4:
+> - add one parameter to record register base for reg_base for patch 3.
+> - add debug string for non ctx log for patch 6.
+> - change the comment of struct mtk_vcodec_dec_ctx and struct mtk_vcodec_enc_ctx for patch 7.
+> - prefer to use struct mtk_vcodec_dec_dev an current period, will re-construct in the future for patch 8.
+> Changed from v3:
+> - re-write commit message for patch 3.
+> Changed from v2:
+> - This patch main changed:
+>   1: add different macro mtk_dec_debug and mtk_enc_debug calling common
+>      macro mtk_vcodec_debug in order to use dev_dbg instead of pr_debug.
+>   2: add different macro mtk_v4l2_venc_dbg and mtk_v4l2_vdec_dbg calling common
+>      macro  in order to use dev_dbg instead of pr_debug.
+> Changed from v1:
+> - Change pr_dbg to dev_dbg for mtk_v4l2_level and mtk_vcodec_dbg for patch 4.
+> - Change pr_err to dev_err for mtk_v4l2_err and mtk_vcodec_err for patch 5.
+> - Fix unreasonable parameter for patch 8.
+> ---
+> Yunfei Dong (11):
+>   media: mediatek: vcodec: remove unused parameter
+>   media: mediatek: vcodec: align fw interface
+>   media: mediatek: vcodec: Removing struct 'mtk_vcodec_ctx/dev' for
+>     shared interface
+>   media: mediatek: vcodec: Removing useless debug log
+>   media: mediatek: vcodec: remove the dependency of vcodec debug log
+>   media: mediatek: vcodec: replace pr_* with dev_* for v4l2 debug
+>     message
+>   media: mediatek: vcodec: separate struct 'mtk_vcodec_ctx'
+>   media: mediatek: vcodec: separate struct mtk_vcodec_dev
+>   media: mediatek: vcodec: fix unreasonable parameter definition and
+>     style
+>   media: mediatek: vcodec: remove unused include header
+>   media: mediatek: vcodec: separate decoder and encoder
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Besides the missing argument in patch 6/11 I also get this compiler warning:
 
-Best regards,
-Krzysztof
+drivers/media/platform/mediatek/vcodec/encoder/venc_vpu_if.c: In function 'vpu_enc_ipi_handler':
+drivers/media/platform/mediatek/vcodec/encoder/venc_vpu_if.c:64:31: warning: 'vpu' may be used uninitialized [-Wmaybe-uninitialized]
+   64 |         struct venc_vpu_inst *vpu;
+      |                               ^~~
 
+and this smatch error:
+
+drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.c:138 mtk_vcodec_get_reg_bases() error: buffer overflow 'mtk_dec_reg_names' 11 <= 11
+
+However, I believe that was introduced by Nicolas' patch series.
+
+I'll try to pinpoint the precise patch.
+
+Regards,
+
+	Hans
