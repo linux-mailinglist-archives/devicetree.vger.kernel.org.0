@@ -2,93 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1030E76219D
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 20:40:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B8AA7621CA
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 20:51:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229952AbjGYSks (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jul 2023 14:40:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45242 "EHLO
+        id S230195AbjGYSvB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jul 2023 14:51:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49220 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231818AbjGYSks (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 14:40:48 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BC14213B;
-        Tue, 25 Jul 2023 11:40:44 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id E2E8861874;
-        Tue, 25 Jul 2023 18:40:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82935C433C8;
-        Tue, 25 Jul 2023 18:40:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690310443;
-        bh=5UFFIksYqJCSWSdZaL4h1CQhC+5qNOBA1gd1X6b/QMo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=nz4dEgHHfV1eYlVvm92X+9Pek/O0lNZbtFGUDiCF8HDLpmaaZw0Ay0947oHs0JVcw
-         G7NIVC58qK5UNsecDiNzn4C9xjBlzPQGxiCuf/9x4wwVqW3NhH11Nu5RSG38ooW6Ns
-         OZVVDrDhmgWN+IOvQ3kgaETNmHthvvi6aFmgJS0WcVu1dxudHYw61Upv/uhilHmWnR
-         8WAaznHxqNsRQ/F1ztiX+e7mMwLrCTfwQH59bM8anubWKD1sdUNjJ985hoxt1R3hSP
-         WNoyKsgGPOEIFSqro+EzidEn6ZnGKz2bxegJWA6ZZ8pkgDRiz5E/FhNGralJQtF+CX
-         EVRwakq0O/1wQ==
-Date:   Tue, 25 Jul 2023 19:40:38 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229459AbjGYSvA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 14:51:00 -0400
+Received: from s.wrqvtbkv.outbound-mail.sendgrid.net (s.wrqvtbkv.outbound-mail.sendgrid.net [149.72.123.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5FE919AD
+        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 11:50:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+        h=mime-version:subject:references:from:in-reply-to:to:cc:content-type:
+        content-transfer-encoding:cc:content-type:from:subject:to;
+        s=s1; bh=slvye5wtN2LtYZ0xLS1A+7DvQJ4v5mIZFeSvFvmOaQM=;
+        b=M63E3U9ADds9ZQIDFmYyogYxQVR8reCaFsFRNX5EMSPduM3QH7Z+bn4ZLzCV8aTzaIY8
+        q75HevhruLSdG77YeO7l9PcfYvZP0RAFq868NCiESDB06mbM6XRrko0vg1ur7iYVdsGEXZ
+        jraVRo8DVCjoqDjlQzyiPsN/xnaUFymcBw6CIFk6EVayn62eZ1lc6Xu5RxLkSUitu5t64L
+        jP0H23nXPGgJIOcfOUOtZj2Fu6zaPupp3//erDVP8gSnu4rANPEAe9i+4aASVmwQPpJik+
+        9dMdx8rr2F9MCQ+XgjJ8rotGhY4uya2I32EMLUlZFqwdtLOrEpLAqwlhcBHwTugA==
+Received: by filterdrecv-66949dbc98-2h875 with SMTP id filterdrecv-66949dbc98-2h875-1-64C01936-5A
+        2023-07-25 18:49:26.85580565 +0000 UTC m=+6548987.779244678
+Received: from [192.168.1.50] (unknown)
+        by geopod-ismtpd-3 (SG) with ESMTP
+        id CzoI7C93Q8C6ozvHpFDwpw
+        Tue, 25 Jul 2023 18:49:26.565 +0000 (UTC)
+Message-ID: <294d2905-79b5-3a49-88e5-47df9a2447ec@kwiboo.se>
+Date:   Tue, 25 Jul 2023 18:49:27 +0000 (UTC)
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH] arm64: dts: rockchip: Fix regulators and enable SATA on
+ Radxa E25
+Content-Language: en-US
+References: <20230724145213.3833099-1-jonas@kwiboo.se>
+ <169030979754.2939984.9282914456412331786.b4-ty@sntech.de>
+From:   Jonas Karlman <jonas@kwiboo.se>
+In-Reply-To: <169030979754.2939984.9282914456412331786.b4-ty@sntech.de>
+X-SG-EID: =?us-ascii?Q?TdbjyGynYnRZWhH+7lKUQJL+ZxmxpowvO2O9SQF5CwCVrYgcwUXgU5DKUU3QxA?=
+ =?us-ascii?Q?fZekEeQsTe+RrMu3cja6a0hzhHxSPpdSFr4pHYV?=
+ =?us-ascii?Q?0qIOofIH=2FsXgZ+Dsy7M6zY8SPImb9EjGkNHQzKu?=
+ =?us-ascii?Q?75EkYebQpT1O=2FE6195t1I78Rk8V34asX1JxDi0R?=
+ =?us-ascii?Q?G1FEFUnluY5cD0A76Fb3G9SxNi=2F0GWppyceM01i?=
+ =?us-ascii?Q?+eR9eXlcD5YmE74jdX=2FkBhkP4uvQM4lWK9Vqt+?=
+To:     Heiko Stuebner <heiko@sntech.de>, Chukun Pan <amadeus@jmu.edu.cn>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
-        Sylvain Petinot <sylvain.petinot@foss.st.com>,
-        linux-tegra@vger.kernel.org, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] media: dt-bindings: drop unneeded status from examples
-Message-ID: <20230725-purebred-smoked-1dd61c375768@spud>
-References: <20230725101625.75162-1-krzysztof.kozlowski@linaro.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="vCPhY7jXIfUoINHw"
-Content-Disposition: inline
-In-Reply-To: <20230725101625.75162-1-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, FUKAUMI Naoki <naoki@radxa.com>,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org
+X-Entity-ID: P7KYpSJvGCELWjBME/J5tg==
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_BL_SPAMCOP_NET,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 2023-07-25 20:32, Heiko Stuebner wrote:
+> On Mon, 24 Jul 2023 14:52:16 +0000 (UTC), Jonas Karlman wrote:
+>> Despite its name, the regulator vcc3v3_pcie30x1 has nothing to do with
+>> pcie30x1. Instead, it supply power to VBAT1-5 on the M.2 KEY B port as
+>> seen on page 8 of the schematic [1].
+>>
+>> pcie30x1 is used for the mini PCIe slot, and as seen on page 9 the
+>> vcc3v3_minipcie regulator is instead related to pcie30x1.
+>>
+>> [...]
+> 
+> Applied, thanks!
+> 
+> [1/2] arm64: dts: rockchip: Fix PCIe regulators on Radxa E25
+> commit: a87852e37f782257ebc57cc44a0d3fbf806471f6
+> 
+> [2/2] arm64: dts: rockchip: Enable SATA on Radxa E25
+> commit: 2bdfe84fbd57a4ed9fd65a67210442559ce078f0
+> 
+> As you can see, I've split them in two. Please check that I didn't
+> mess anything up. Having an "and" in the commit subject is always a
+> very strong indicator that a split is probably a good thing ;-)
 
---vCPhY7jXIfUoINHw
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Thanks, and they look fine. Should probably have split it in two from
+the beginning, I will try to do better next time :-)
 
-On Tue, Jul 25, 2023 at 12:16:25PM +0200, Krzysztof Kozlowski wrote:
-> Example DTS should not have 'status' property.
->=20
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Regards,
+Jonas
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> 
+> 
+> Best regards,
 
-Thanks,
-Conor.
-
---vCPhY7jXIfUoINHw
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZMAXJgAKCRB4tDGHoIJi
-0m5oAQCQr07WWAysBse0Tlk+T7UKrqGBZSNAgyjqozsuedaVCAEArxM/5oUF9iAt
-jY9fRiIdvNfm/Z+MHRgkcE9Wn2UTSQs=
-=nE7T
------END PGP SIGNATURE-----
-
---vCPhY7jXIfUoINHw--
