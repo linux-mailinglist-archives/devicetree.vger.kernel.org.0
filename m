@@ -2,233 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 48E57760BB4
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 09:28:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F992760BB7
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 09:28:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232454AbjGYH2S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jul 2023 03:28:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46354 "EHLO
+        id S232486AbjGYH2T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jul 2023 03:28:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46442 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232126AbjGYH1W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 03:27:22 -0400
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com (mail-mw2nam04on2092.outbound.protection.outlook.com [40.107.101.92])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A109F2;
-        Tue, 25 Jul 2023 00:26:01 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=N4hKvXjDvypb1zNFSgworeLkRuvCY+fAN6qiyjXUWOcJFeOO4bVvotaeGDjgzHFPnQVEnK+XYRwySPWzeJKyDIJzclzFiaxGh9tGyBAu1FZOuAMYUFDzEBKusTwMRzkeenBivQS94YIUjP0TV0X+4rY15uEklW69Q/jBdekGEuvd1K2VjOb9gkf4ynwUJtYqvjQT2xtzY3hAtCMcnu/pPnZxBcBlTWLGl2sZq6XG0v+6N4BnOKTz9s+v8Qf/tCNKPJHYZ4zLUdY97VLzL9DWcZVp+3AN5LK9KP9iqJdKU6JynkToE+vihM8AocOysAZv+4R+qEmKtvTPhyAerPB+wQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=5GaPYfnlOkLgO3Ra+JGe16BN6CCDpRjOU0Z8d9d5sxI=;
- b=lE1lzThimhUaHHGCTojclbcQFVX0ORIQ0VAqmRY+jw10ESdNenXI0TZwQ4F7rTGKs9IEP9X8POR2fhVW6tB7NdlzcoBLTddVCntTX4S1ETvn6ORmGteF2VyprGj7PNhlhVqQ0vtTZVDh5FdPiTBb3nyIi4w2npkIUMwxQ3a0qHIbxHccyl898zZQ8H8k5iGTPsVbzKAo+pp8bbgQJh7kjqpVDszg6jhwlOIbGTzleS3HAxrCpCJnAWIUDN0275nLgD7U6tvoEmGSAW0vca+P/T5ClEJwMd7DKTEUKYmqK3/+5T2KCSezCWWV3B3bI01LRfohQmRS/+mRqu62oOSYXQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=corigine.com; dmarc=pass action=none header.from=corigine.com;
- dkim=pass header.d=corigine.com; arc=none
+        with ESMTP id S232643AbjGYH10 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 03:27:26 -0400
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CC821FFC
+        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 00:26:23 -0700 (PDT)
+Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-3fd2f298712so20331215e9.2
+        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 00:26:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=corigine.onmicrosoft.com; s=selector2-corigine-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=5GaPYfnlOkLgO3Ra+JGe16BN6CCDpRjOU0Z8d9d5sxI=;
- b=mjGILJfjvtpj6dADmlHxj+btoWK4r/0+GyQ4w1i72lxJcC4/eONc7pOFcmnR1HjywB9JgYKe8R1HJzWLx0CfyGknHIzYnXFh0116AP72rSQdFP1Lfui3Hj68+DNvt6eJ1hwbFP7gVHVMHixb95dnhpeUbM9+ijmRcy7siQzRaM0=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=corigine.com;
-Received: from PH0PR13MB4842.namprd13.prod.outlook.com (2603:10b6:510:78::6)
- by SN7PR13MB6131.namprd13.prod.outlook.com (2603:10b6:806:359::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6609.31; Tue, 25 Jul
- 2023 07:25:57 +0000
-Received: from PH0PR13MB4842.namprd13.prod.outlook.com
- ([fe80::fde7:9821:f2d9:101d]) by PH0PR13MB4842.namprd13.prod.outlook.com
- ([fe80::fde7:9821:f2d9:101d%7]) with mapi id 15.20.6609.032; Tue, 25 Jul 2023
- 07:25:56 +0000
-Date:   Tue, 25 Jul 2023 09:25:48 +0200
-From:   Simon Horman <simon.horman@corigine.com>
-To:     MD Danish Anwar <danishanwar@ti.com>
-Cc:     Randy Dunlap <rdunlap@infradead.org>,
-        Roger Quadros <rogerq@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Eric Dumazet <edumazet@google.com>,
-        "David S. Miller" <davem@davemloft.net>, nm@ti.com, srk@ti.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        netdev@vger.kernel.org, linux-omap@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v11 03/10] net: ti: icssg-prueth: Add Firmware config and
- classification APIs.
-Message-ID: <ZL94/L1RMlU5TiAb@corigine.com>
-References: <20230724112934.2637802-1-danishanwar@ti.com>
- <20230724112934.2637802-4-danishanwar@ti.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230724112934.2637802-4-danishanwar@ti.com>
-X-ClientProxiedBy: AM4PR07CA0031.eurprd07.prod.outlook.com
- (2603:10a6:205:1::44) To PH0PR13MB4842.namprd13.prod.outlook.com
- (2603:10b6:510:78::6)
+        d=linaro.org; s=google; t=1690269981; x=1690874781;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ctKPTZVA5JAnO1QCm83pGKahNYV6N8xKq+MfSYhHTZg=;
+        b=GGm+9s9O0PDvmQXjUthwTmyRansAWxUk3b4PPXbDLMXGtxOFneH6HkZpuEa3u8I1AF
+         LJhwMWUOPTe3PQRsNWmKdPhDkqnjNN1br5aQqju0cPpjok2py2/TVh61MtlYB882Jwcu
+         AlITD3UL8DwGYrrFpdhpc2c1mPh2LjUCS4Qevjs/cNGCi4nDZttGmxj2V0uq4eoBOqmp
+         55mfQ51DeewhdpqvR8bT+k2HV0XweNwuRqvU5kNgGxpm/dKzWkV+29ed6Qfe/TRonueF
+         ZbQ6eCRyS1yFKt5W7toMw9a92Nn1yp2F5XX+aX4xKrQRVD7ntaZJJZXD3dIUOnZEckh3
+         1RrQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690269981; x=1690874781;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ctKPTZVA5JAnO1QCm83pGKahNYV6N8xKq+MfSYhHTZg=;
+        b=OgEGa8pTyiYAOGHpzvQKKR1fFQLQN1hBt8VWB5e8jrwQx6mVkaOPDGVJqPyso0uy11
+         3vd/1gacsCbHB28HXqR3YmjIVaUh+nQBlwKUPv0HXdnmnDHj0dnXVF596joVff4CiAcn
+         FahJyPgXoJ/cTnchYyf9Ux7FQHYV7lmtF+jvQMyoz/nK4ZWaq7GfM5Kl17VxJUjpmgYl
+         e81BqsyaxUI+Do4QKWNXp6gVNgxD6QyVQclo50rd/J66KdEzt9+iGYzFU7AFWB+e/UQY
+         PiwGrlLUp8HAsZwGxq9b2wn9JmWk88GIj5D+DOtd+2omH6Go0pSXYONc8yBWcfBwec7L
+         K5VA==
+X-Gm-Message-State: ABy/qLZT0nwUvtkQ4h39zsDNo8s0K5tL16tHRIHm06Ck9SEzv8zfXh8B
+        0r0Ue9IAfEzrhaGd+BMnqk1dng==
+X-Google-Smtp-Source: APBJJlEiJh2Ep18b54stnn59zJ7xhnC2DTPp+/fLlgNLcS93CtxGninDVQWAiGhSDgO6vdyrCfkybQ==
+X-Received: by 2002:a05:600c:224b:b0:3fb:b34f:6cd4 with SMTP id a11-20020a05600c224b00b003fbb34f6cd4mr7524204wmm.36.1690269981593;
+        Tue, 25 Jul 2023 00:26:21 -0700 (PDT)
+Received: from [192.168.1.101] (abxj221.neoplus.adsl.tpnet.pl. [83.9.3.221])
+        by smtp.gmail.com with ESMTPSA id l5-20020a1ced05000000b003fc02219081sm12167079wmh.33.2023.07.25.00.26.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 25 Jul 2023 00:26:21 -0700 (PDT)
+Message-ID: <e6b0c188-9078-af38-39db-8551fcbf39a5@linaro.org>
+Date:   Tue, 25 Jul 2023 09:26:19 +0200
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH0PR13MB4842:EE_|SN7PR13MB6131:EE_
-X-MS-Office365-Filtering-Correlation-Id: f130f460-2933-45d5-5423-08db8ce06317
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: oacCLqk/6V//hjdEHbkmuvpUClcVGO7fHiXZs4IXsV4VrtDJb4regix8ucktTwxdK97mmcGxfZCx+isDiExhH4u3D6quI/DHoBBOERiYQek/48g3Tz/a9gSiquyCeBjEz2y5Bz28FnPEa7MN+b1GLHL2ReOk1AR28kYoKgauDn8Sba9szYU6qIk0BTo3modqtqj7OJ3wpmNeOhHnPIOODO42L2ltAdP58AaWHEmx0DvaPx7T8UgUvtW4tVvnLPtNnCAiuV3/Inj9uu4xXeNuJCrDsdVFficwUgeeaB17zHy1i0Fz1cy3TGdmHAIf/T1OVucn7WhJkDvrM/s1Z2n1Dd0ISM0MTs10QvlKRig005K/TL2TCTNy/tZsa13uVpVllHC0eXCy/kq1py3WriPf64jnd95x01tU6YDVjgvtvm84KM8IisUsKauL5oFESzkTZuyEqtBVzfP3zPPJ6ad7VurIF9CpVLP85YJuQxn+hhUUEp6Ssv6YhdAPchVsKvLG/4fW/+LmroRKCkLcq5fvHsNAhwl6WHywksNKLaF60CVG+M01M2x4n0snn0zyGfJ2NyTdVRNpbKCoXm3D+5geLMKVHhaKMXIJz3xU01fB10k=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH0PR13MB4842.namprd13.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(376002)(39840400004)(346002)(396003)(136003)(366004)(451199021)(5660300002)(38100700002)(44832011)(8936002)(8676002)(7416002)(86362001)(66899021)(41300700001)(186003)(83380400001)(2906002)(2616005)(36756003)(6506007)(54906003)(66946007)(66476007)(66556008)(478600001)(4326008)(6666004)(6916009)(6486002)(6512007)(316002);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?A/Qw0Ym4YNG0IXuyTjCnb8h43DZdjJMuTpEpvOFJ6gCk6y7eadaNH+obN+xo?=
- =?us-ascii?Q?WYNUE+xEAX7Zz7oZbk4OR6ygaghDw7MmHdP8+LHWHUzBw4M+h/yhJgfH0itM?=
- =?us-ascii?Q?cdYeTJuUr5BnGlvM1pLTmRj7xwrET3cSw2stvEayW7ZGjZODCSb9dVKc58sA?=
- =?us-ascii?Q?hoqJKX5ckmifIZPnQQRI7RGo/U8JcJcumpjoX/kmBzNtZuUnfKBbsjvdJuC2?=
- =?us-ascii?Q?x2aIoItUevIXTgnKrdENnK+SNnypTMGr7nPajtBKh9TAI0uzJ7Jm/1TQ6gNa?=
- =?us-ascii?Q?Y9bM9koGjLn17trDmTSTTmWy5Peyt3OFzAFlgNaiNldv/yJKHOtXiTKjRl4r?=
- =?us-ascii?Q?GzpED3YUHmqsweUl3yuK+AH7KYZArgx3I73Hea21hZ+vaUO8xSnn7Tl7s/iY?=
- =?us-ascii?Q?fsWRPJKu6DRfXURJCthOulsyu4OA8p2KSzPWQ1eYWiyc93ZE3S4gT0c0z5nb?=
- =?us-ascii?Q?OncCMsb5UAtMuow4EIX/UBBB5ncs5JUO/rUwQUknTeFxXwjAV54MuEhI+op/?=
- =?us-ascii?Q?JLUOc1VMW2zICD5Icbe0WJ8Q5U3W49HIziSf39gwgRoZk/q73nw+ncEgsArr?=
- =?us-ascii?Q?/kksKVBuDAVYHj6G2tpra+DxASWNLYpDMDv5/BYYJsiH5oISU3syISvyeSzK?=
- =?us-ascii?Q?GCkUflWj0uhYfSxbMol+rR3Co4m6cIzgph4XJEnNQPIV5mw/+saIH6YWCxac?=
- =?us-ascii?Q?tEbFLsKOVXWw03pPlVuQ9sZeE4w9k+MlROYl348ejGOglIgikyhgeCX+Qk1M?=
- =?us-ascii?Q?s7SDWaiblFNr8SjkNTTkAhwBjT7BCDppmSUlcVuecLZlFc9eXjRzs6oGi8/B?=
- =?us-ascii?Q?F6KCuudyrp3mG7JJg5lh+eqPxYTMpsxWo0X43Nb7Dt1tuKYB8Car0JxexQHO?=
- =?us-ascii?Q?dc9WjvICXhmwYQ1zcs2qzkNe10rxGp4+XZMsSO84tTDgGLoDUkYeqTzMQR8V?=
- =?us-ascii?Q?c1dOlVdJn8Tjcq2gE3Wfvcguj7T6fXT6+pqwMtkyQwDzCuTOqOBUZoqCy/7O?=
- =?us-ascii?Q?1gzs17/noApJoePzrtmvDiN2Kr1wKq8yTbNKiC8R9cakoD4MKkQmnfT6sHgr?=
- =?us-ascii?Q?xftMEPIZ8euEjqKoousoRatGEzll4WBA85b0E3qi1AW7JTmUJKmjPVCmQzwb?=
- =?us-ascii?Q?Z8KFsy4rlWQ7yVMllITyeTr8i7g+IwYX8El9hW+BtXoPr/bm8taDo9557Yd7?=
- =?us-ascii?Q?UWHuRrcG4CBcgEAJ2WyitM3ZbNsNNjTaHlIa4tz6f6KKWij6tArZ+TyUXcx/?=
- =?us-ascii?Q?4IxDvthAmptUs9GwbfAkaHPALHiV7HPdhKf7q0g8nwoDF4K78b2oVsh6cnoK?=
- =?us-ascii?Q?KXHjlqYnNCugCiD6sNWsqLpEvAvyk+2JENDr/ZJdnC86LR57M/Syu01W17Nq?=
- =?us-ascii?Q?tOne9mgk/i1k3ZpzZ23+NNMMc764JN5rHJGbOntfLwhAZcgFDMnLUhNMLS7M?=
- =?us-ascii?Q?Cdl46+SHluj9KXkCl53V4Brq+gIX6gG6YGPm80NNeFFJqYBbZRjpccFvXjvn?=
- =?us-ascii?Q?m15hagNYV4mopebqMSQVfi0vu9I3GWVoExRR5JV0bSBieOYPZKxwLpqacpKV?=
- =?us-ascii?Q?uErwFGhpSKcYEnxP7QGG2X9QM1s6YJ0M/gLsr1UCNLcPLZtjSHv1MwCH9skZ?=
- =?us-ascii?Q?5xMWIOmTw29RLAVCVG1I+oUedLkzlmFPPXIkTZ/0H6RMtVyYVvHp1ThjNaDq?=
- =?us-ascii?Q?FWb2Wg=3D=3D?=
-X-OriginatorOrg: corigine.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f130f460-2933-45d5-5423-08db8ce06317
-X-MS-Exchange-CrossTenant-AuthSource: PH0PR13MB4842.namprd13.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jul 2023 07:25:56.7489
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: fe128f2c-073b-4c20-818e-7246a585940c
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 2L735baJbN9O0dXBsQtSoVSSUa5ZhEwqDbRGYs6UrVTpqchmtdHgQrC3UGprIUDGIo+mslEwDNpZ2V7DshqQMUp1EiTE6qYG0HghrIOEERI=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR13MB6131
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/4] arm64: dts: qcom: sdm670: add cpu frequency scaling
+Content-Language: en-US
+To:     Richard Acayan <mailingradian@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Georgi Djakov <djakov@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Sibi Sankar <quic_sibis@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20230724214209.208699-6-mailingradian@gmail.com>
+ <20230724214209.208699-9-mailingradian@gmail.com>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <20230724214209.208699-9-mailingradian@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 24, 2023 at 04:59:27PM +0530, MD Danish Anwar wrote:
-> Add icssg_config.h / .c and icssg_classifier.c files. These are firmware
-> configuration and classification related files. These will be used by
-> ICSSG ethernet driver.
+On 24.07.2023 23:42, Richard Acayan wrote:
+> Add CPU frequency scaling and the operating performance points for the
+> CPUs.
 > 
-> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
-> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+> Signed-off-by: Richard Acayan <mailingradian@gmail.com>
+> ---
+You should also mention you're adding DDR scaling here (the APPS-EBI path)
 
-Hi Danish,
+[...]
 
-some feedback from my side.
-
-...
-
-> diff --git a/drivers/net/ethernet/ti/icssg_classifier.c b/drivers/net/ethernet/ti/icssg_classifier.c
-
-...
-
-> +void icssg_class_set_mac_addr(struct regmap *miig_rt, int slice, u8 *mac)
-
-This function appears to be unused.
-Perhaps it would be better placed in a later patch?
-
-Or perhaps not, if it makes it hard to split up the patches nicely.
-In which case, perhaps the __maybe_unused annotation could be added,
-temporarily.
-
-Flagged by clang-16 W=1, and gcc=12 W=1 builds.
-Likewise for other issues flagged below regarding
-function declarations/definitions.
-
-> +{
-> +	regmap_write(miig_rt, offs[slice].mac0, (u32)(mac[0] | mac[1] << 8 |
-> +		     mac[2] << 16 | mac[3] << 24));
-> +	regmap_write(miig_rt, offs[slice].mac1, (u32)(mac[4] | mac[5] << 8));
-> +}
+>  
+> +	cpu0_opp_table: opp-table-cpu0 {
+> +		compatible = "operating-points-v2";
+> +		opp-shared;
 > +
-> +/* disable all RX traffic */
-> +void icssg_class_disable(struct regmap *miig_rt, int slice)
+> +		// 576 mV
+Drop these comments.
 
-This function is only used in this file.
-Please consider making it static.
-
-...
-
-> +void icssg_class_default(struct regmap *miig_rt, int slice, bool allmulti)
-
-This function also appears to be unused.
-
-...
-
-> +/* required for SAV check */
-> +void icssg_ft1_set_mac_addr(struct regmap *miig_rt, int slice, u8 *mac_addr)
-
-This function also appears to be unused.
-
-...
-
-> diff --git a/drivers/net/ethernet/ti/icssg_config.c b/drivers/net/ethernet/ti/icssg_config.c
-
-...
-
-> +void icssg_config_ipg(struct prueth_emac *emac)
-
-This function is also only used in this file.
-
-...
-
-> +static void icssg_init_emac_mode(struct prueth *prueth)
-> +{
-> +	/* When the device is configured as a bridge and it is being brought
-> +	 * back to the emac mode, the host mac address has to be set as 0.
-> +	 */
-> +	u8 mac[ETH_ALEN] = { 0 };
-> +
-> +	if (prueth->emacs_initialized)
-> +		return;
-> +
-> +	regmap_update_bits(prueth->miig_rt, FDB_GEN_CFG1,
-> +			   SMEM_VLAN_OFFSET_MASK, 0);
-> +	regmap_write(prueth->miig_rt, FDB_GEN_CFG2, 0);
-> +	/* Clear host MAC address */
-> +	icssg_class_set_host_mac_addr(prueth->miig_rt, mac);
-
-icssg_class_set_host_mac_addr() is defined in icssg_classifier.c
-but used here in icssg_config.c.
-
-Please consider providing a declaration of this function,
-ideally in a .h file.
-
-...
-
-> +int emac_set_port_state(struct prueth_emac *emac,
-> +			enum icssg_port_state_cmd cmd)
-
-This function also appears to be unused.
-
-...
-
-> +void icssg_config_set_speed(struct prueth_emac *emac)
-
-Ditto.
-
-...
+Konrad
