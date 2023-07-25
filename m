@@ -2,134 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 77FEA762125
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 20:16:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 71AA37620FF
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 20:07:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230509AbjGYSQY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jul 2023 14:16:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33524 "EHLO
+        id S232452AbjGYSHN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jul 2023 14:07:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57502 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230464AbjGYSQW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 14:16:22 -0400
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77958E9;
-        Tue, 25 Jul 2023 11:16:20 -0700 (PDT)
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36PDW7hH010621;
-        Tue, 25 Jul 2023 18:43:56 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding : content-type; s=selector1;
- bh=MqeCBr2iwB1ylpsZybUxjhY2AMLlO6u0i1cPCCrgpvE=;
- b=FcPygnpCmMRI4rYBfElPZ87KsqmzW5pFp7vAN9QNFeuHFaL2YEADnymUZrxcsZH+LuF/
- Zh2VGnjH6LPaiwLFPWgKnH9nEE/C2l6SvZ0s0l54VOrcgS6V9pPa5DfsE3auCVlfpBZ4
- KmvNUYN40YMUDrIg9Z1MdijvkMdnKGw+fJDkDyFbDh8GgDbZwABkKwr5ZDYhJjTc36KS
- g0x9vNXFxARKJNywnoSoZQWZWHGvLf/W6k21N0AInd1zoMTodVOfQVh/6g971RhU3NRI
- SXpJCegoMFVbE+qnqwDjPuZpO4VjOrm4aOck+kFu6V58OOIPFHVMaGF4OgpoeFvhV3fm uw== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3s2bkbjqrb-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 25 Jul 2023 18:43:56 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 1D06210002A;
-        Tue, 25 Jul 2023 18:43:56 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 0F5FA27FAB5;
-        Tue, 25 Jul 2023 18:43:56 +0200 (CEST)
-Received: from localhost (10.201.21.121) by SHFDAG1NODE1.st.com (10.75.129.69)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Tue, 25 Jul
- 2023 18:43:55 +0200
-From:   Gatien Chevallier <gatien.chevallier@foss.st.com>
-To:     <Oleksii_Moisieiev@epam.com>, <gregkh@linuxfoundation.org>,
-        <herbert@gondor.apana.org.au>, <davem@davemloft.net>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <alexandre.torgue@foss.st.com>,
-        <vkoul@kernel.org>, <jic23@kernel.org>,
-        <olivier.moysan@foss.st.com>, <arnaud.pouliquen@foss.st.com>,
-        <mchehab@kernel.org>, <fabrice.gasnier@foss.st.com>,
-        <andi.shyti@kernel.org>, <ulf.hansson@linaro.org>,
-        <edumazet@google.com>, <kuba@kernel.org>, <pabeni@redhat.com>,
-        <hugues.fruchet@foss.st.com>, <lee@kernel.org>, <will@kernel.org>,
-        <catalin.marinas@arm.com>, <arnd@kernel.org>,
-        <richardcochran@gmail.com>, Frank Rowand <frowand.list@gmail.com>
-CC:     <linux-crypto@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <dmaengine@vger.kernel.org>,
-        <linux-i2c@vger.kernel.org>, <linux-iio@vger.kernel.org>,
-        <alsa-devel@alsa-project.org>, <linux-media@vger.kernel.org>,
-        <linux-mmc@vger.kernel.org>, <netdev@vger.kernel.org>,
-        <linux-phy@lists.infradead.org>, <linux-serial@vger.kernel.org>,
-        <linux-spi@vger.kernel.org>, <linux-usb@vger.kernel.org>,
-        Gatien Chevallier <gatien.chevallier@foss.st.com>
-Subject: [PATCH v2 08/11] arm64: dts: st: add RIFSC as a domain controller for STM32MP25x boards
-Date:   Tue, 25 Jul 2023 18:41:01 +0200
-Message-ID: <20230725164104.273965-9-gatien.chevallier@foss.st.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230725164104.273965-1-gatien.chevallier@foss.st.com>
-References: <20230725164104.273965-1-gatien.chevallier@foss.st.com>
+        with ESMTP id S232241AbjGYSHM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 14:07:12 -0400
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B2BA1FDA;
+        Tue, 25 Jul 2023 11:07:09 -0700 (PDT)
+Received: from [185.230.175.137] (helo=phil.localnet)
+        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <heiko@sntech.de>)
+        id 1qOMR0-00067u-HF; Tue, 25 Jul 2023 20:06:58 +0200
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc:     linux-phy@lists.infradead.org, linux-rockchip@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, Qu Wenruo <wqu@suse.com>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof =?utf-8?B?V2lsY3p5xYRza2k=?= <kw@linux.com>,
+        Simon Xue <xxm@rock-chips.com>, linux-kernel@vger.kernel.org,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        devicetree@vger.kernel.org, Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        linux-pci@vger.kernel.org, John Clark <inindev@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Serge Semin <fancer.lancer@gmail.com>, kernel@collabora.com,
+        Vinod Koul <vkoul@kernel.org>,
+        Shawn Lin <shawn.lin@rock-chips.com>,
+        Conor Dooley <conor+dt@kernel.org>
+Subject: Re: (subset) [PATCH v2 0/2] RK3588 PCIe3 support
+Date:   Tue, 25 Jul 2023 20:06:56 +0200
+Message-ID: <6404573.MHq7AAxBmi@phil>
+In-Reply-To: <20230724192223.5jnu5wgrzmmjz5z5@mercury.elektranox.org>
+References: <20230717173512.65169-1-sebastian.reichel@collabora.com>
+ <169022594803.2911118.12432442062352790360.b4-ty@sntech.de>
+ <20230724192223.5jnu5wgrzmmjz5z5@mercury.elektranox.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.201.21.121]
-X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-07-25_08,2023-07-25_01,2023-05-22_02
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-RIFSC is a firewall controller. Change its compatible so that is matches
-the documentation and reference RIFSC as a feature-domain-controller.
+Am Montag, 24. Juli 2023, 21:22:23 CEST schrieb Sebastian Reichel:
+> Hi Heiko,
+> 
+> On Mon, Jul 24, 2023 at 09:12:35PM +0200, Heiko Stuebner wrote:
+> > On Mon, 17 Jul 2023 19:35:10 +0200, Sebastian Reichel wrote:
+> > > This adds PCIe v3 support for RK3588. The series depends on the PCIe
+> > > v2 series [0], since the the same binding is used. It has been tested
+> > > on Rockchip EVB1 and Radxa Rock 5B.
+> > > 
+> > > Note, that the PCIe3 PHY driver is currently missing bifurcation
+> > > support for RK3588. Thus after this series only PCIe3x4 is usable
+> > > (in aggregated x4 mode) without adding support for the PHY's
+> > > "rockchip,pcie30-phymode" DT property, which allows configuring
+> > > how the lanes are distributed. Aggregated 3x4 mode seems to be the
+> > > most common configuration. Both EVB1 and Rock 5B use it, so I
+> > > cannot test anything else anyways.
+> > > 
+> > > [...]
+> > 
+> > Applied, thanks!
+> > 
+> > [2/2] arm64: dts: rockchip: rk3588: add PCIe3 support
+> >       commit: 0acf4fa7f187cd7e3dad93f1ee14e9509687621e
+> 
+> Applying this without the PCIe 2 series being applied introduces
+> warnings for the RK3588 dtbs_check, as mentioned in the second
+> setence of the text you quoted :)
+> 
+> (FWIW RK356x already has the same warnings, though)
 
-Signed-off-by: Gatien Chevallier <gatien.chevallier@foss.st.com>
----
+darn, I didn't do a full binding check, only a "compiles" check
+after applying. We're at rc3 now, so I would hope that the pcie2
+binding changes get applied soon'ish so I can then also pick up the
+dts change from there.
 
-Changes in V2:
-	- Fix rifsc node name
-	- Move the "ranges" property under the
-	  "feature-domains" one
 
- arch/arm64/boot/dts/st/stm32mp251.dtsi | 7 +++++--
- 1 file changed, 5 insertions(+), 2 deletions(-)
+Heiko
 
-diff --git a/arch/arm64/boot/dts/st/stm32mp251.dtsi b/arch/arm64/boot/dts/st/stm32mp251.dtsi
-index 5268a4321841..cb084381e4cd 100644
---- a/arch/arm64/boot/dts/st/stm32mp251.dtsi
-+++ b/arch/arm64/boot/dts/st/stm32mp251.dtsi
-@@ -105,11 +105,13 @@ soc@0 {
- 		interrupt-parent = <&intc>;
- 		ranges = <0x0 0x0 0x0 0x80000000>;
- 
--		rifsc: rifsc-bus@42080000 {
--			compatible = "simple-bus";
-+		rifsc: bus@42080000 {
-+			compatible = "st,stm32mp25-rifsc";
- 			reg = <0x42080000 0x1000>;
- 			#address-cells = <1>;
- 			#size-cells = <1>;
-+			feature-domain-controller;
-+			#feature-domain-cells = <1>;
- 			ranges;
- 
- 			usart2: serial@400e0000 {
-@@ -117,6 +119,7 @@ usart2: serial@400e0000 {
- 				reg = <0x400e0000 0x400>;
- 				interrupts = <GIC_SPI 115 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&ck_flexgen_08>;
-+				feature-domains = <&rifsc 32>;
- 				status = "disabled";
- 			};
- 		};
--- 
-2.35.3
 
