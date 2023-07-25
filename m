@@ -2,312 +2,229 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 60715760E5A
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 11:20:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D56D4760E94
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 11:25:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233113AbjGYJUE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jul 2023 05:20:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56424 "EHLO
+        id S230235AbjGYJZC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jul 2023 05:25:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33118 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233151AbjGYJTe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 05:19:34 -0400
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 814DB10C9;
-        Tue, 25 Jul 2023 02:19:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1690276763; x=1721812763;
-  h=message-id:date:mime-version:from:subject:to:cc:
-   references:in-reply-to:content-transfer-encoding;
-  bh=fT7UdVgdEEl+ZFiS15hmRCtO+NdZ6vDRswmYs/CTzQQ=;
-  b=iQrCyOjVDmixuP8nOaoBuPuLNpzk9ZKGtspGaX0nCFHqMCKliS+h1Qlq
-   G/WxubDguxdkZYWB+38cBL/Lw1FNHTdkUP6Du8Be1lYM0Sv4RFuKUv8hN
-   /s2/zVcjd2TEIKHrT4YdFjgCeqsTXSxoFvyfb1RnPXrK2vSeSrdoPH4GT
-   tgQmh1NyuL2B9AAztXYlAuaDCJc+RFqh4z7JNMNd22JMSyWrwqkS5xjzy
-   5jOTav220z5mEWnKGyLYDaP77jZIwv+Q7WS384z38CWr8V6tPxyEb3zLC
-   47bgFaEL/au28AhxHDBuUsB6m1ndT4x0cpU9rNyhQXN+485J4+oSsJ5NY
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10781"; a="367691144"
-X-IronPort-AV: E=Sophos;i="6.01,230,1684825200"; 
-   d="scan'208";a="367691144"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Jul 2023 02:19:22 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10781"; a="719980588"
-X-IronPort-AV: E=Sophos;i="6.01,230,1684825200"; 
-   d="scan'208";a="719980588"
-Received: from mongola-mobl.ger.corp.intel.com (HELO [10.249.37.129]) ([10.249.37.129])
-  by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Jul 2023 02:19:16 -0700
-Message-ID: <82568c9d-05b8-54dc-47e9-05c74a9260be@linux.intel.com>
-Date:   Tue, 25 Jul 2023 11:16:57 +0200
+        with ESMTP id S231222AbjGYJZB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 05:25:01 -0400
+Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30509E4D;
+        Tue, 25 Jul 2023 02:24:57 -0700 (PDT)
+Received: by mail.gandi.net (Postfix) with ESMTPA id 43FFA40005;
+        Tue, 25 Jul 2023 09:24:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1690277095;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=riOX6rIatkFwyFiJq7u0RSBgvHWDaUFJMYsDyR1VXlk=;
+        b=UhvXRFTcpzeYtjOMKD7VpEpOLe9hIpVIzKE0Gks4W5C9gUjskfrY0amYCyGGadiRvcfh6g
+        hrCeS30hqbwHnl8L8RtcVmBcxrOFztUZNm+wl+z5UiUKyNi/k12XdycWRyfAjeV9ImkHi/
+        WcCNRbCcAPoySfI4B96OWRWUFHR6s24Xc2ewKkFFrQ2ZXnMO7yWeCob9e4YFpPUoiD0N31
+        B1bdSQ1/GekeohVaPP/mDEXrf6h/UCcQUKOWU8b+chTVrTPe6WYWqBkA2d/tw2Yf7ELvDZ
+        GbxMWc6UrWixB2NxQUIgDZjm4m/goSyZ/Yt7uCRUMXoBj0LYAwjwi88k+e3krw==
+From:   Herve Codina <herve.codina@bootlin.com>
+To:     Herve Codina <herve.codina@bootlin.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Qiang Zhao <qiang.zhao@nxp.com>, Li Yang <leoyang.li@nxp.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Shengjiu Wang <shengjiu.wang@gmail.com>,
+        Xiubo Li <Xiubo.Lee@gmail.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Nicolin Chen <nicoleotsuka@gmail.com>,
+        Christophe Leroy <christophe.leroy@csgroup.eu>
+Cc:     netdev@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        alsa-devel@alsa-project.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: [PATCH 00/26] Add support for QMC HDLC, framer infrastruture and PEF2256 framer
+Date:   Tue, 25 Jul 2023 11:23:36 +0200
+Message-ID: <20230725092417.43706-1-herve.codina@bootlin.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.13.0
-From:   Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
-Subject: Re: [PATCH v4 27/32] sound: soc: qdsp6: Add SND kcontrol to select
- offload device
-To:     Wesley Cheng <quic_wcheng@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        catalin.marinas@arm.com, will@kernel.org, mathias.nyman@intel.com,
-        gregkh@linuxfoundation.org, lgirdwood@gmail.com,
-        broonie@kernel.org, perex@perex.cz, tiwai@suse.com,
-        srinivas.kandagatla@linaro.org, bgoswami@quicinc.com,
-        Thinh.Nguyen@synopsys.com
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-usb@vger.kernel.org, alsa-devel@alsa-project.org,
-        quic_jackp@quicinc.com, oneukum@suse.com, albertccwang@google.com,
-        o-takashi@sakamocchi.jp
-References: <20230725023416.11205-1-quic_wcheng@quicinc.com>
- <20230725023416.11205-28-quic_wcheng@quicinc.com>
-Content-Language: en-US
-In-Reply-To: <20230725023416.11205-28-quic_wcheng@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: herve.codina@bootlin.com
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
+I have a system where I need to handle an HDLC interface and some audio
+data.
 
-On 7/25/23 04:34, Wesley Cheng wrote:
-> Expose a kcontrol on the platform sound card, which will allow for
-> userspace to determine which USB card number and PCM device to offload.
-> This allows for userspace to potentially tag an alternate path for a
-> specific USB SND card and PCM device.  Previously, control was absent, and
-> the offload path would be enabled on the last USB SND device which was
-> connected.  This logic will continue to be applicable if no mixer input is
-> received for specific device selection.
-> 
-> An example to configure the offload device using tinymix:
-> tinymix -D 0 set 'Q6USB offload SND device select' 1 0
-> 
-> The above will set the Q6AFE device token to choose offload on card#1 and
-> pcm#0.  Device selection is made possible by setting the Q6AFE device
-> token.  The audio DSP utilizes this parameter, and will pass this field
-> back to the USB offload driver within the QMI stream requests.
+The HDLC data are transferred using a TDM bus on which a PEF2256
+(E1/T1 framer) is present. The PEF2256 transfers data from/to the TDM
+bus to/from the E1 line. This PEF2256 is connected to a PowerQUICC SoC
+for the control path and the TDM is connected to the SoC (QMC component)
+for the data path.
 
-I must be missing something... If you have a card 0 which exposes a
-control to change what the card1 does, then it means you have a card0
-with a PCM device what can potentially be used concurrently with the
-card1 exposing an offload device.
+From the QMC HDLC driver, I need to handle HDLC data using the QMC,
+carrier detection using the PEF2256 (E1 line carrier) and set/get some
+PEF2256 configuration.
 
-Is there any sort of mutual exclusion to make sure the same USB endpoint
-is not used twice?
+The QMC HDLC driver considers the PEF2256 as a generic framer.
+It performs operations that involve the PEF2256 through the generic
+framer API.
 
-One would hope that when a device is opened the matching non-offloaded
-one (or ones in the case of implicit feedback) is disabled or marked as
-used?
+The audio data are exchanged with the PEF2256 using a CPU DAI connected
+to the TDM bus through the QMC and the PEF2256 needs to be seen as a
+codec in order to be linked to the CPU DAI.
+The codec handles the carrier detection using the PEF2256 and reports
+the carrier state to the ALSA subsystem using the ASoC jack detection.
 
-I would guess in your Android setup you have control on such behavior at
-the HAL level, but in the more generic Linux use I don't see what
-would orchestrate the use of two devices, and at the kernel level what
-would prevent it.
+The codec, even if instantiated by the PEF2256 driver, considers the
+PEF2256 as a generic framer.
 
+The generic framer has:
+ - 2 consumers (QMC HDLC drv and codec)
+ - 1 provider (PEF2256)
 
-> Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
-> ---
->  sound/soc/qcom/qdsp6/q6usb.c | 126 ++++++++++++++++++++++++++++++++++-
->  1 file changed, 123 insertions(+), 3 deletions(-)
-> 
-> diff --git a/sound/soc/qcom/qdsp6/q6usb.c b/sound/soc/qcom/qdsp6/q6usb.c
-> index 2fb6159bd2a8..87e88dafd8ad 100644
-> --- a/sound/soc/qcom/qdsp6/q6usb.c
-> +++ b/sound/soc/qcom/qdsp6/q6usb.c
-> @@ -14,6 +14,7 @@
->  #include <linux/dma-map-ops.h>
->  
->  #include <sound/pcm.h>
-> +#include <sound/control.h>
->  #include <sound/soc.h>
->  #include <sound/soc-usb.h>
->  #include <sound/pcm_params.h>
-> @@ -35,9 +36,12 @@ struct q6usb_port_data {
->  	struct q6afe_usb_cfg usb_cfg;
->  	struct snd_soc_usb *usb;
->  	struct q6usb_offload priv;
-> +	struct mutex mutex;
->  	unsigned long available_card_slot;
->  	struct q6usb_status status[SNDRV_CARDS];
-> -	int active_idx;
-> +	bool idx_valid;
-> +	int sel_card_idx;
-> +	int sel_pcm_idx;
->  };
->  
->  static const struct snd_soc_dapm_widget q6usb_dai_widgets[] = {
-> @@ -53,10 +57,36 @@ static int q6usb_hw_params(struct snd_pcm_substream *substream,
->  			   struct snd_soc_dai *dai)
->  {
->  	struct q6usb_port_data *data = dev_get_drvdata(dai->dev);
-> +	struct snd_soc_pcm_runtime *rtd = substream->private_data;
-> +	struct snd_soc_dai *cpu_dai = asoc_rtd_to_cpu(rtd, 0);
-> +	struct q6afe_port *q6usb_afe;
->  	int direction = substream->stream;
-> +	int chip_idx;
-> +	int ret;
-> +
-> +	mutex_lock(&data->mutex);
-> +	chip_idx = data->status[data->sel_card_idx].chip_index;
-> +
-> +	ret = snd_soc_usb_find_format(chip_idx, params, direction);
-> +	if (ret < 0)
-> +		goto out;
-> +
-> +	q6usb_afe = q6afe_port_get_from_id(cpu_dai->dev, USB_RX);
-> +	if (IS_ERR(q6usb_afe))
-> +		goto out;
-> +
-> +	ret = afe_port_send_usb_dev_param(q6usb_afe, data->sel_card_idx,
-> +						data->sel_pcm_idx);
-> +	if (ret < 0)
-> +		goto out;
-> +
-> +	data->status[data->sel_card_idx].pcm_index = data->sel_pcm_idx;
-> +out:
-> +	mutex_unlock(&data->mutex);
->  
-> -	return snd_soc_usb_find_format(data->active_idx, params, direction);
-> +	return ret;
->  }
-> +
->  static const struct snd_soc_dai_ops q6usb_ops = {
->  	.hw_params = q6usb_hw_params,
->  };
-> @@ -85,6 +115,89 @@ static struct snd_soc_dai_driver q6usb_be_dais[] = {
->  	},
->  };
->  
-> +static int q6usb_get_offload_dev(struct snd_kcontrol *kcontrol,
-> +				   struct snd_ctl_elem_value *ucontrol)
-> +{
-> +	struct snd_soc_component *component = snd_kcontrol_chip(kcontrol);
-> +	struct q6usb_port_data *data = dev_get_drvdata(component->dev);
-> +	int pcm_idx;
-> +	int card_idx;
-> +
-> +	mutex_lock(&data->mutex);
-> +	if (!data->idx_valid) {
-> +		card_idx = -1;
-> +		pcm_idx = -1;
-> +	} else {
-> +		card_idx = data->sel_card_idx;
-> +		pcm_idx = data->sel_pcm_idx;
-> +	}
-> +
-> +	ucontrol->value.integer.value[0] = card_idx;
-> +	ucontrol->value.integer.value[1] = pcm_idx;
-> +	mutex_unlock(&data->mutex);
-> +
-> +	return 0;
-> +}
-> +
-> +static int q6usb_put_offload_dev(struct snd_kcontrol *kcontrol,
-> +			      struct snd_ctl_elem_value *ucontrol)
-> +{
-> +	struct snd_soc_component *component = snd_kcontrol_chip(kcontrol);
-> +	struct q6usb_port_data *data = dev_get_drvdata(component->dev);
-> +	int changed = 0;
-> +	int pcmidx;
-> +	int cardidx;
-> +
-> +	cardidx = ucontrol->value.integer.value[0];
-> +	pcmidx = ucontrol->value.integer.value[1];
-> +
-> +	mutex_lock(&data->mutex);
-> +	if ((cardidx >= 0 && test_bit(cardidx, &data->available_card_slot))) {
-> +		data->sel_card_idx = cardidx;
-> +		changed = 1;
-> +	}
-> +
-> +	if ((pcmidx >= 0 && pcmidx < data->status[cardidx].num_pcm)) {
-> +		data->sel_pcm_idx = pcmidx;
-> +		data->idx_valid = true;
-> +		changed = 1;
-> +	}
-> +	mutex_unlock(&data->mutex);
-> +
-> +	return changed;
-> +}
-> +
-> +static int q6usb_offload_dev_info(struct snd_kcontrol *kcontrol,
-> +			      struct snd_ctl_elem_info *uinfo)
-> +{
-> +	uinfo->type = SNDRV_CTL_ELEM_TYPE_INTEGER;
-> +	uinfo->count = 2;
-> +	uinfo->value.integer.min = -1;
-> +	uinfo->value.integer.max = SNDRV_CARDS;
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct snd_kcontrol_new q6usb_offload_dev_ctrl = {
-> +	.iface = SNDRV_CTL_ELEM_IFACE_CARD,
-> +	.access = SNDRV_CTL_ELEM_ACCESS_READWRITE,
-> +	.name = "Q6USB offload SND device select",
-> +	.info = q6usb_offload_dev_info,
-> +	.get = q6usb_get_offload_dev,
-> +	.put = q6usb_put_offload_dev,
-> +};
-> +
-> +/* Build a mixer control for a UAC connector control (jack-detect) */
-> +static void q6usb_connector_control_init(struct snd_soc_component *component)
-> +{
-> +	int ret;
-> +
-> +	ret = snd_ctl_add(component->card->snd_card,
-> +				snd_ctl_new1(&q6usb_offload_dev_ctrl, component));
-> +	if (ret < 0)
-> +		return;
-> +}
-> +
->  static int q6usb_audio_ports_of_xlate_dai_name(struct snd_soc_component *component,
->  					const struct of_phandle_args *args,
->  					const char **dai_name)
-> @@ -113,10 +226,12 @@ static int q6usb_alsa_connection_cb(struct snd_soc_usb *usb, int card_idx,
->  	dapm = snd_soc_component_get_dapm(usb->component);
->  	data = dev_get_drvdata(usb->component->dev);
->  
-> +	mutex_lock(&data->mutex);
->  	if (connected) {
->  		snd_soc_dapm_enable_pin(dapm, "USB_RX_BE");
->  		/* We only track the latest USB headset plugged in */
-> -		data->active_idx = card_idx;
-> +		if (!data->idx_valid || data->sel_card_idx < 0)
-> +			data->sel_card_idx = card_idx;
->  
->  		set_bit(card_idx, &data->available_card_slot);
->  		data->status[card_idx].num_pcm = num_pcm;
-> @@ -129,6 +244,7 @@ static int q6usb_alsa_connection_cb(struct snd_soc_usb *usb, int card_idx,
->  			snd_soc_dapm_disable_pin(dapm, "USB_RX_BE");
->  	}
->  	snd_soc_dapm_sync(dapm);
-> +	mutex_unlock(&data->mutex);
->  
->  	return 0;
->  }
-> @@ -141,6 +257,8 @@ static int q6usb_component_probe(struct snd_soc_component *component)
->  	snd_soc_dapm_disable_pin(dapm, "USB_RX_BE");
->  	snd_soc_dapm_sync(dapm);
->  
-> +	q6usb_connector_control_init(component);
-> +
->  	data->usb = snd_soc_usb_add_port(component->dev, &data->priv, q6usb_alsa_connection_cb);
->  	if (IS_ERR(data->usb)) {
->  		dev_err(component->dev, "failed to add usb port\n");
-> @@ -189,6 +307,8 @@ static int q6usb_dai_dev_probe(struct platform_device *pdev)
->  
->  	data->priv.domain = iommu_get_domain_for_dev(&pdev->dev);
->  
-> +	mutex_init(&data->mutex);
-> +
->  	data->priv.dev = dev;
->  	dev_set_drvdata(dev, data);
->  
+So, the design is the following:
+                        +------------------+           +---------+
+                        | QMC              | <- TDM -> | PEF2256 | <-> E1
+     +---------+        |  +-------------+ |           |         |
+     | CPU DAI | <-data--> | QMC channel | |           |         |
+     +---------+        |  +-------------+ |           |         |
++--------------+        |  +-------------+ |           |         |
+| QMC HDLC drv | <-data--> | QMC channel | |           |         |
++--------------+        |  +-------------+ |           |         |
+     ^                  +------------------+           |         |
+     |   +--------+     +-------------+                |         |
+     +-> | framer | <-> | PEF2256 drv | <- local bus ->|         |
+         |        |     |             |                +---------+
+     +-> |        |     |             |
+     |   +--------+     |  +-------+  |
+     +-------------------> | codec |  |
+                        |  +-------+  |
+                        +-------------+
+
+Further more, the TDM timeslots used by the QMC HDLC driver need to be
+configured at runtime (QMC dynamic timeslots).
+
+Several weeks ago, I sent two series related to this topic:
+ - Add the Lantiq PEF2256 audio support [1]
+ - RFC Add support for QMC HDLC and PHY [2]
+This current series is a rework of these two series taking into account
+feedbacks previously received.
+
+In order to implement all of this, I do the following:
+ 1) Perform some fixes (patches 1, 2)
+ 2) Introduce the QMC HDLC driver (patches 3, 4, 5)
+ 3) Add QMC dynamic timeslot support (patches 6 - 16)
+ 4) Add timeslots change support in QMC HDLC (patch 17)
+ 5) Introduce framer infrastructure (patch 18)
+ 6) Add PEF2256 framer provider (patches 19, 20, 21, 22, 23)
+ 7) Add framer codec as a framer consumer (patch 24)
+ 8) Add framer support as a framer consumer in QMC HDLC (patch 25, 26)
+
+The series contains the full story and detailed modifications.
+If needed, the series can be split and/or commmits can be squashed.
+Let me know.
+
+Best regards,
+Hervé
+
+[1]: https://lore.kernel.org/all/20230417171601.74656-1-herve.codina@bootlin.com/
+[2]: https://lore.kernel.org/all/20230323103154.264546-1-herve.codina@bootlin.com/
+
+Herve Codina (26):
+  soc: fsl: cpm1: qmc: Fix rx channel reset
+  soc: fsl: cpm1: qmc: Extend the API to provide Rx status
+  dt-bindings: net: Add support for QMC HDLC
+  net: wan: Add support for QMC HDLC
+  MAINTAINERS: Add the Freescale QMC HDLC driver entry
+  soc: fsl: cpm1: qmc: Introduce available timeslots masks
+  soc: fsl: cpm1: qmc: Rename qmc_setup_tsa* to qmc_init_tsa*
+  soc: fsl: cpm1: qmc: Introduce qmc_chan_setup_tsa*
+  soc: fsl: cpm1: qmc: Remove no more needed checks from
+    qmc_check_chans()
+  soc: fsl: cpm1: qmc: Check available timeslots in qmc_check_chans()
+  soc: fsl: cpm1: qmc: Add support for disabling channel TSA entries
+  soc: fsl: cpm1: qmc: Split Tx and Rx TSA entries setup
+  soc: fsl: cpm1: qmc: Introduce is_tsa_64rxtx flag
+  soc: fsl: cpm1: qmc: Handle timeslot entries at channel start() and
+    stop()
+  soc: fsl: cpm1: qmc: Remove timeslots handling from setup_chan()
+  soc: fsl: cpm1: qmc: Introduce functions to change timeslots at
+    runtime
+  wan: qmc_hdlc: Add runtime timeslots changes support
+  net: wan: Add framer framework support
+  dt-bindings: net: Add the Lantiq PEF2256 E1/T1/J1 framer
+  mfd: core: Ensure disabled devices are skiped without aborting
+  net: wan: framer: Add support for the Lantiq PEF2256 framer
+  pinctrl: Add support for the Lantic PEF2256 pinmux
+  MAINTAINERS: Add the Lantiq PEF2256 driver entry
+  ASoC: codecs: Add support for the framer codec
+  dt-bindings: net: fsl,qmc-hdlc: Add framer support
+  net: wan: fsl_qmc_hdlc: Add framer support
+
+ .../devicetree/bindings/net/fsl,qmc-hdlc.yaml |  46 +
+ .../bindings/net/lantiq,pef2256.yaml          | 226 +++++
+ MAINTAINERS                                   |  17 +
+ drivers/mfd/mfd-core.c                        |  18 +-
+ drivers/net/wan/Kconfig                       |  14 +
+ drivers/net/wan/Makefile                      |   3 +
+ drivers/net/wan/framer/Kconfig                |  35 +
+ drivers/net/wan/framer/Makefile               |   7 +
+ drivers/net/wan/framer/framer-core.c          | 935 ++++++++++++++++++
+ drivers/net/wan/framer/pef2256/Makefile       |   8 +
+ drivers/net/wan/framer/pef2256/pef2256-regs.h | 250 +++++
+ drivers/net/wan/framer/pef2256/pef2256.c      | 880 +++++++++++++++++
+ drivers/net/wan/fsl_qmc_hdlc.c                | 820 +++++++++++++++
+ drivers/pinctrl/Kconfig                       |  14 +
+ drivers/pinctrl/Makefile                      |   1 +
+ drivers/pinctrl/pinctrl-pef2256-regs.h        |  65 ++
+ drivers/pinctrl/pinctrl-pef2256.c             | 310 ++++++
+ drivers/soc/fsl/qe/qmc.c                      | 467 +++++++--
+ include/linux/framer/framer-provider.h        | 194 ++++
+ include/linux/framer/framer.h                 | 215 ++++
+ include/linux/framer/pef2256.h                |  31 +
+ include/soc/fsl/qe/qmc.h                      |  25 +-
+ sound/soc/codecs/Kconfig                      |  15 +
+ sound/soc/codecs/Makefile                     |   2 +
+ sound/soc/codecs/framer-codec.c               | 423 ++++++++
+ sound/soc/fsl/fsl_qmc_audio.c                 |   2 +-
+ 26 files changed, 4929 insertions(+), 94 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/fsl,qmc-hdlc.yaml
+ create mode 100644 Documentation/devicetree/bindings/net/lantiq,pef2256.yaml
+ create mode 100644 drivers/net/wan/framer/Kconfig
+ create mode 100644 drivers/net/wan/framer/Makefile
+ create mode 100644 drivers/net/wan/framer/framer-core.c
+ create mode 100644 drivers/net/wan/framer/pef2256/Makefile
+ create mode 100644 drivers/net/wan/framer/pef2256/pef2256-regs.h
+ create mode 100644 drivers/net/wan/framer/pef2256/pef2256.c
+ create mode 100644 drivers/net/wan/fsl_qmc_hdlc.c
+ create mode 100644 drivers/pinctrl/pinctrl-pef2256-regs.h
+ create mode 100644 drivers/pinctrl/pinctrl-pef2256.c
+ create mode 100644 include/linux/framer/framer-provider.h
+ create mode 100644 include/linux/framer/framer.h
+ create mode 100644 include/linux/framer/pef2256.h
+ create mode 100644 sound/soc/codecs/framer-codec.c
+
+-- 
+2.41.0
+
