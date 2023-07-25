@@ -2,110 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F25A761B8D
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 16:24:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C4BB1761B97
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 16:26:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232756AbjGYOYr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jul 2023 10:24:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37388 "EHLO
+        id S231297AbjGYO06 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jul 2023 10:26:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36752 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232952AbjGYOY0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 10:24:26 -0400
-Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77B6D2139;
-        Tue, 25 Jul 2023 07:24:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
-        ; s=x; h=Subject:Content-Transfer-Encoding:MIME-Version:References:
-        In-Reply-To:Message-Id:Date:Cc:To:From:Sender:Reply-To:Content-Type:
-        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-        List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=9yfW8mHRhmt1BZssK5Nqf/xXTWUgDfzvBAsuQ90MFC8=; b=IFBDaMMucxSRKRjkIyy3YkLhf3
-        m1IAPNzI/UCH9VMXqoal+9Yas8fzGkWOdArkpv9Ey/x6w/gvkR9JvnOTeQJ3E0FvyVuEiNtiAR5t4
-        8b7WrioCXmlp9OrM/2VZB868qFEmNASq1AJ5S8x+ZQEFYT8m1tQWnclHXO5BpD914LFk=;
-Received: from modemcable061.19-161-184.mc.videotron.ca ([184.161.19.61]:34256 helo=localhost.localdomain)
-        by mail.hugovil.com with esmtpa (Exim 4.92)
-        (envelope-from <hugo@hugovil.com>)
-        id 1qOIxM-0003Kt-6C; Tue, 25 Jul 2023 10:24:09 -0400
-From:   Hugo Villeneuve <hugo@hugovil.com>
-To:     gregkh@linuxfoundation.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        jirislaby@kernel.org, jringle@gridpoint.com,
-        isaac.true@canonical.com, jesse.sung@canonical.com,
-        l.perczak@camlintechnologies.com, tomasz.mon@camlingroup.com
-Cc:     linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, hugo@hugovil.com,
-        linux-gpio@vger.kernel.org,
-        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-        Lech Perczak <lech.perczak@camlingroup.com>
-Date:   Tue, 25 Jul 2023 10:23:42 -0400
-Message-Id: <20230725142343.1724130-11-hugo@hugovil.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20230725142343.1724130-1-hugo@hugovil.com>
-References: <20230725142343.1724130-1-hugo@hugovil.com>
+        with ESMTP id S231728AbjGYO0t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 10:26:49 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42E772706
+        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 07:26:25 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-992acf67388so822045466b.1
+        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 07:26:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1690295180; x=1690899980;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=09FVJw5uGEFALDgJ9/ima3WpNtVeSrdlarakpdricl8=;
+        b=U3MYmd2ZmoBYDkWYMIZPMAcx/MgUDc21SIjy1UfhukUcPL+MoFOW8Ya2Ie/KXNv0X7
+         uJwxCcs0M5XZl7Wov3gt69kBoN1ejzyceCLaGjInEOMLsrMKXiYnG/+kR1QgIPglcD80
+         f3z7gd+DHKvJnlVmyC1Lq1wMiQaZMt0V7a+vzEdGlX9wTnL6xfvHXLIjph+en9EjFjNa
+         JpDRDf3RBeZd7Gq5hxEz8zlIutfX4ut58rYLM5j4Z3tpdWE274xJkeyW0iaL0yJ2kS6D
+         B6JgAuTGZH5LAgXniQf9I4NzG9GmKZtapxULVks40o449/mA4PyOIbyuWvKxJOPVwIbu
+         WDdw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690295180; x=1690899980;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=09FVJw5uGEFALDgJ9/ima3WpNtVeSrdlarakpdricl8=;
+        b=drXRn6h2PBebNfWvplOCW0b5HTuULDTdNzElyj4HB7ALmPGYgAD0+cZEvWLwk3T6Fj
+         2ADi87MaWUvocoiPNFfSSOx16u53TjyM4oIaxpEx6u9QOtqdgTiuNsvlQ23RtYsDWVFY
+         l+mZZ6F7CM4Y4LD5VJpOxQU77z3WrVERrpjvVvoMvXyGGytkWd+YfvM94i/tYe7Pf8sx
+         C2jND3074GeUZrM6mXS+s6GVtUL9G/AtlSZrM7mz1vT3tQlQEfAPH66ENAFADzGcTld2
+         KghU3ccwxs5kZGf1DtDeZzXJPn+CH56178Q66UtGlW+H2QXiYxQqlwQo2hAnViTT55rv
+         yXow==
+X-Gm-Message-State: ABy/qLbL6LFFqFzcTUc8jvz2NmrA4k+/Y4unyu4ERJgMnAakwGM8armo
+        afl80g5db+mGw1LVBYXmlvk+nIOhTIYsJdKLxYw=
+X-Google-Smtp-Source: APBJJlHfnYLDPWqwQX72iSv1fq6zL4FiOGn3e9/BX8Em8yYfsX1EMEFFDvH338vqV97ROpWmyBNYSQ==
+X-Received: by 2002:a17:907:60c6:b0:99b:b505:eede with SMTP id hv6-20020a17090760c600b0099bb505eedemr1147775ejc.65.1690295180535;
+        Tue, 25 Jul 2023 07:26:20 -0700 (PDT)
+Received: from krzk-bin.. ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id lg26-20020a170906f89a00b00992b50fbbe9sm8242980ejb.90.2023.07.25.07.26.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 25 Jul 2023 07:26:19 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 1/2] arm64: dts: rockchip: rk3399: switch to enable-gpios
+Date:   Tue, 25 Jul 2023 16:26:15 +0200
+Message-Id: <20230725142616.157405-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 184.161.19.61
-X-SA-Exim-Mail-From: hugo@hugovil.com
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
-Subject: [PATCH v9 10/10] serial: sc16is7xx: improve comments about variants
-X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
-X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+The recommended name for enable GPIOs property in regulator-gpio is
+enable-gpios.  This is also required by bindings:
 
-Replace 740/750/760 with generic terms like 74x/75x/76x to account for
-variants like 741, 752 and 762.
+  rk3399-gru-bob.dtb: ppvar-sd-card-io: Unevaluated properties are not allowed ('enable-gpio' was unexpected)
 
-Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
-Reviewed-by: Lech Perczak <lech.perczak@camlingroup.com>
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- drivers/tty/serial/sc16is7xx.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+ arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/tty/serial/sc16is7xx.c b/drivers/tty/serial/sc16is7xx.c
-index 718e982e1efe..d6851360ef7d 100644
---- a/drivers/tty/serial/sc16is7xx.c
-+++ b/drivers/tty/serial/sc16is7xx.c
-@@ -223,7 +223,7 @@
-  * trigger levels. Trigger levels from 4 characters to 60 characters are
-  * available with a granularity of four.
-  *
-- * When the trigger level setting in TLR is zero, the SC16IS740/750/760 uses the
-+ * When the trigger level setting in TLR is zero, the SC16IS74x/75x/76x uses the
-  * trigger level setting defined in FCR. If TLR has non-zero trigger level value
-  * the trigger level defined in FCR is discarded. This applies to both transmit
-  * FIFO and receive FIFO trigger level setting.
-@@ -234,7 +234,7 @@
- #define SC16IS7XX_TLR_TX_TRIGGER(words)	((((words) / 4) & 0x0f) << 0)
- #define SC16IS7XX_TLR_RX_TRIGGER(words)	((((words) / 4) & 0x0f) << 4)
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi
+index 23bfba86daab..c9bf1d5c3a42 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi
+@@ -250,7 +250,7 @@ ppvar_sd_card_io: ppvar-sd-card-io {
+ 		pinctrl-0 = <&sd_io_pwr_en &sd_pwr_1800_sel>;
  
--/* IOControl register bits (Only 750/760) */
-+/* IOControl register bits (Only 75x/76x) */
- #define SC16IS7XX_IOCONTROL_LATCH_BIT	(1 << 0) /* Enable input latching */
- #define SC16IS7XX_IOCONTROL_MODEM_A_BIT	(1 << 1) /* Enable GPIO[7:4] as modem A pins */
- #define SC16IS7XX_IOCONTROL_MODEM_B_BIT	(1 << 2) /* Enable GPIO[3:0] as modem B pins */
-@@ -249,9 +249,9 @@
- #define SC16IS7XX_EFCR_RTS_INVERT_BIT	(1 << 5) /* RTS output inversion */
- #define SC16IS7XX_EFCR_IRDA_MODE_BIT	(1 << 7) /* IrDA mode
- 						  * 0 = rate upto 115.2 kbit/s
--						  *   - Only 750/760
-+						  *   - Only 75x/76x
- 						  * 1 = rate upto 1.152 Mbit/s
--						  *   - Only 760
-+						  *   - Only 76x
- 						  */
- 
- /* EFR register bits */
+ 		enable-active-high;
+-		enable-gpio = <&gpio2 2 GPIO_ACTIVE_HIGH>;
++		enable-gpios = <&gpio2 2 GPIO_ACTIVE_HIGH>;
+ 		gpios = <&gpio2 28 GPIO_ACTIVE_HIGH>;
+ 		states = <1800000 0x1>,
+ 			 <3000000 0x0>;
 -- 
-2.30.2
+2.34.1
 
