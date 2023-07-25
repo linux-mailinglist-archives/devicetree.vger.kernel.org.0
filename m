@@ -2,97 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 87EB9761EC3
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 18:41:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AAA74761F74
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 18:50:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229606AbjGYQle (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jul 2023 12:41:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37134 "EHLO
+        id S230094AbjGYQuK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jul 2023 12:50:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40710 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229499AbjGYQlc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 12:41:32 -0400
-Received: from bombadil.infradead.org (bombadil.infradead.org [IPv6:2607:7c80:54:3::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E698310F7;
-        Tue, 25 Jul 2023 09:41:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
-        Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-        Message-ID:Sender:Reply-To:Content-ID:Content-Description;
-        bh=VOpi6FeyBBxDJ9AWuyvGv6z4rjqWqlFn0g7noxTOdPg=; b=OE0Yv0C1dfCRicRWSmNMM59Dgv
-        MSlzOqH2FV32nJBQJYdaqktbAXnisAv4pM7CWD5mP9T7qa9mLIz8K9Ttq4APloaqzMCPgRMRhlsS/
-        muNPAvD9OZaUubBkxJZvQp1mw6eIdlwtFYM3JoCaGNhX/kBG+VrMhTclgrlCHqbDInmNRjBuZE1rJ
-        miJiFycFAZZ8O+qr9Lk/9p72vtqzNt4lDguzRfxt3Kx5aWulYjUwyyPDyD+I+qFRnn/HclzHEHzUA
-        UtHYz2xsCpPl/gEJBy/hGRuLEzy4irKjnW8K0JJrZkxj8GlXfp8f9fi4l2nTMdRRrYaQTpTls0+vh
-        uXR7iMsA==;
-Received: from [2601:1c2:980:9ec0::2764]
-        by bombadil.infradead.org with esmtpsa (Exim 4.96 #2 (Red Hat Linux))
-        id 1qOL64-0083WK-1X;
-        Tue, 25 Jul 2023 16:41:16 +0000
-Message-ID: <ce045e96-e9b6-ae66-dd54-67a958ca1774@infradead.org>
-Date:   Tue, 25 Jul 2023 09:41:14 -0700
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH 24/26] ASoC: codecs: Add support for the framer codec
-Content-Language: en-US
-To:     Herve Codina <herve.codina@bootlin.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
+        with ESMTP id S229553AbjGYQuB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 12:50:01 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF93926B7
+        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 09:49:22 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-991ef0b464cso11488666b.0
+        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 09:49:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1690303760; x=1690908560;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=LzDnwBHcCNYgqCk2X/jo3Kq9KdDwUHbWe6RB2ZMyEY4=;
+        b=TCeibtGzLYGEID9kWxkcEtw7CfPkAoacYLEFrpGofFAW/cwxJNvuVRO7xOrtRnhnBu
+         /6NAx3fyvPUOBZlewhv6OBQ48SEh5bTvfrSwhafPAz85kLpjgqJY/zPt5xKjeHUJ9YYU
+         h2uOvAw6xEXpLAFpLOG8lpr26WPuV+18888K43zo9y4ud6YsXkNfVpshAIHZo+qq5dnR
+         gisfnSAWAPILtaY+i7iJ3iI0jPwWmMcCcODWFy6Di7HXvPre5aOXBA6hB3qpq5M1y3t1
+         sDV9axljxmhYHgUq/7MiU9KMswKdhM0sfI4KA2ytYabpK20zG7VKLPHSlZ4QTadM+moV
+         ae5A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690303760; x=1690908560;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=LzDnwBHcCNYgqCk2X/jo3Kq9KdDwUHbWe6RB2ZMyEY4=;
+        b=ht3UMyoSuZyYSiD/HHWU4P3kpaGJtOXRbsEl0/n8Ekr0f9r3dim7VHg49v18sXf/fS
+         9pK/YwSjqc+q162IqVVM3YF7p8dp4txkbhP/gLoVYwvF81ZDE49gXWb1caUmXjUGsOFA
+         7iW4DGX5CzNjn43mbDeXgcCs5pBlob+Qn1kBkD6NIDxIV539JYkjQkIba62tIGGPQswW
+         EIYIaqvaBy6pzUKA72ieJSvq6gSDxubydhwofrwYRWND7z9TDL9AXWUXKKRqXYmNdlki
+         69nMujlmOPi4GKafnQDuoeoKn51IuhqtQwLGVXsh4ADVH9cmKkydoRoPz820dmgYKVbS
+         gbjA==
+X-Gm-Message-State: ABy/qLbG48QzZ4XpbArTT0C/upulDGCsQy2Oev0sGghEEsRzvX9KvzG2
+        DaS1GHr/F941lBoBpukm+ErlCA==
+X-Google-Smtp-Source: APBJJlFOAdT8ihjLNFzNTm1qELLYzD+sgpFi/cCe33I18hmaJCMJ2jFnwf9gzGqteNMJbgb69iFOWg==
+X-Received: by 2002:a17:907:7daa:b0:986:38ab:ef99 with SMTP id oz42-20020a1709077daa00b0098638abef99mr3300571ejc.9.1690303760401;
+        Tue, 25 Jul 2023 09:49:20 -0700 (PDT)
+Received: from krzk-bin.. ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id a5-20020a170906274500b009932337747esm8379401ejd.86.2023.07.25.09.49.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 25 Jul 2023 09:49:19 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Qiang Zhao <qiang.zhao@nxp.com>, Li Yang <leoyang.li@nxp.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Shengjiu Wang <shengjiu.wang@gmail.com>,
-        Xiubo Li <Xiubo.Lee@gmail.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Nicolin Chen <nicoleotsuka@gmail.com>,
-        Christophe Leroy <christophe.leroy@csgroup.eu>
-Cc:     netdev@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        alsa-devel@alsa-project.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-References: <20230725092417.43706-1-herve.codina@bootlin.com>
- <20230725092417.43706-25-herve.codina@bootlin.com>
-From:   Randy Dunlap <rdunlap@infradead.org>
-In-Reply-To: <20230725092417.43706-25-herve.codina@bootlin.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 1/2] ARM: dts: qcom: apq8064: drop incorrect regulator-type
+Date:   Tue, 25 Jul 2023 18:49:16 +0200
+Message-Id: <20230725164917.371714-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+regulator-fixed does not have a "regulator-type" property:
 
+  qcom-apq8064-ifc6410.dtb: regulator-ext-3p3v: Unevaluated properties are not allowed ('regulator-type' was unexpected)
 
-On 7/25/23 02:24, Herve Codina wrote:
-> +config SND_SOC_FRAMER
-> +	tristate "Framer codec"
-> +	depends on GENERIC_FRAMER
-> +	help
-> +	  Enable support for the framer codec.
-> +	  The framer codec uses the generic framer infrastructure to transport
-> +	  some audio data over an analog E1/T1/J1 line.
-> +	  This codec allows to use some of the time slots available on the TDM
-> +	  bus on with the framer is connected to transport the audio data.
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ arch/arm/boot/dts/qcom/qcom-apq8064-asus-nexus7-flo.dts | 1 -
+ arch/arm/boot/dts/qcom/qcom-apq8064-ifc6410.dts         | 1 -
+ 2 files changed, 2 deletions(-)
 
-	      on which
-
-> +
-> +	  To compile this driver as a module, choose M here: the module
-> +	  will be called snd-soc-framer.
-
+diff --git a/arch/arm/boot/dts/qcom/qcom-apq8064-asus-nexus7-flo.dts b/arch/arm/boot/dts/qcom/qcom-apq8064-asus-nexus7-flo.dts
+index c57c27cd8a20..c0dd6399f597 100644
+--- a/arch/arm/boot/dts/qcom/qcom-apq8064-asus-nexus7-flo.dts
++++ b/arch/arm/boot/dts/qcom/qcom-apq8064-asus-nexus7-flo.dts
+@@ -36,7 +36,6 @@ ext_3p3v: regulator-ext-3p3v {
+ 		regulator-min-microvolt = <3300000>;
+ 		regulator-max-microvolt = <3300000>;
+ 		regulator-name = "ext_3p3v";
+-		regulator-type = "voltage";
+ 		startup-delay-us = <0>;
+ 		gpio = <&tlmm_pinmux 77 GPIO_ACTIVE_HIGH>;
+ 		enable-active-high;
+diff --git a/arch/arm/boot/dts/qcom/qcom-apq8064-ifc6410.dts b/arch/arm/boot/dts/qcom/qcom-apq8064-ifc6410.dts
+index 96307550523a..b0c5e7bd5e74 100644
+--- a/arch/arm/boot/dts/qcom/qcom-apq8064-ifc6410.dts
++++ b/arch/arm/boot/dts/qcom/qcom-apq8064-ifc6410.dts
+@@ -58,7 +58,6 @@ ext_3p3v: regulator-ext-3p3v {
+ 		regulator-min-microvolt = <3300000>;
+ 		regulator-max-microvolt = <3300000>;
+ 		regulator-name = "ext_3p3v";
+-		regulator-type = "voltage";
+ 		startup-delay-us = <0>;
+ 		gpio = <&tlmm_pinmux 77 GPIO_ACTIVE_HIGH>;
+ 		enable-active-high;
 -- 
-~Randy
+2.34.1
+
