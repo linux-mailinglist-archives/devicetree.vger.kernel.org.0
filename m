@@ -2,261 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 87528761A50
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 15:45:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D57B761AF8
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 16:08:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229447AbjGYNpn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jul 2023 09:45:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40190 "EHLO
+        id S232285AbjGYOIu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jul 2023 10:08:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55782 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231433AbjGYNpk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 09:45:40 -0400
-Received: from mx0a-002e3701.pphosted.com (mx0a-002e3701.pphosted.com [148.163.147.86])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AEDA31FF6;
-        Tue, 25 Jul 2023 06:45:15 -0700 (PDT)
-Received: from pps.filterd (m0148663.ppops.net [127.0.0.1])
-        by mx0a-002e3701.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36P8HqKP007440;
-        Tue, 25 Jul 2023 13:44:56 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hpe.com; h=from : to : cc : subject
- : date : message-id : references : in-reply-to : content-type :
- content-transfer-encoding : mime-version; s=pps0720;
- bh=C87VqK4QnSFYVcmRWJ786Kmmsv2P/voFEnk7K9Yj6DY=;
- b=NfVz1Kr8I1n7f+g/IPDHUreey0UsGvwDusbehaa48TqymTEXxbDP6QcAi8ExPmnXo4B9
- LEhlQIBVTkDK5VNtX3HcS6UdWhlmxoSPRWYpDz+vAWPSD2ze2475Tr7e3pTA77dropV1
- Qlp4QmLAYqCxb4sq8OIdGS2S2x/gZlXVVKe/i/FECSPP7HNqCpR0CUKrheTb+/X4rEvM
- mObnxAQ9Vn0sMnQWF435VG/GM/kqOU5tYuh0XGXDOACkBCAiLljjdfeVpDAFn87ZsYNK
- NK66m800gtcMIK6lD/e5erGE73Qv0SXARIoY0CfqeCpHzOUwZA9L+59VY/4nUsW+ZxNe 8Q== 
-Received: from p1lg14881.it.hpe.com (p1lg14881.it.hpe.com [16.230.97.202])
-        by mx0a-002e3701.pphosted.com (PPS) with ESMTPS id 3s2arjan52-1
+        with ESMTP id S232298AbjGYOIs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 10:08:48 -0400
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF82D1FD7;
+        Tue, 25 Jul 2023 07:08:46 -0700 (PDT)
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36PDXDMu010531;
+        Tue, 25 Jul 2023 16:08:01 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
+ mime-version : subject : from : to : cc : references : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=aKox1fifr/MD7CscnSNaYClzgh1MKEowYV/1CFbHY8Q=;
+ b=4sFWeFLREgJioc9H+rODp72hj3AVdLAeXn//m7QoqBPjLcHM3h6ErPmn4WA399Y/aITY
+ Es+zEl+7c1OuNWP/mY/sYFUWBgIrS0ZnwoA5voqLfap1MOnNtJ/zdQsJH70zP6mKb4It
+ up4nrSg6m/QvGFbwtP1STGuEVZLJ00BGoK2EjvjlEjCcZJFyhQQwWBxUeAAPCbeV4q3h
+ 6aBJcowFMNfbDdrNiVfgGpJZ6jk6/MU4C0knjVH4EQXo3oCJXoEvofraY3JZmoYetI5I
+ ZcYWT0tL9hA+ODD+fHxyfM0nlDUmDa3FOMio5gfyLhC4I0CiM1Tbi4NIEhA6R3rIQpjx iw== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3s2bkbhv00-1
         (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 25 Jul 2023 13:44:56 +0000
-Received: from p1wg14924.americas.hpqcorp.net (unknown [10.119.18.113])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by p1lg14881.it.hpe.com (Postfix) with ESMTPS id 49B28803706;
-        Tue, 25 Jul 2023 13:44:55 +0000 (UTC)
-Received: from p1wg14923.americas.hpqcorp.net (10.119.18.111) by
- p1wg14924.americas.hpqcorp.net (10.119.18.113) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.42; Tue, 25 Jul 2023 01:44:35 -1200
-Received: from p1wg14920.americas.hpqcorp.net (16.230.19.123) by
- p1wg14923.americas.hpqcorp.net (10.119.18.111) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42
- via Frontend Transport; Tue, 25 Jul 2023 01:44:35 -1200
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com (192.58.206.35)
- by edge.it.hpe.com (16.230.19.123) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.42; Tue, 25 Jul 2023 01:44:34 -1200
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=F0M0S1g46KzIPdNPBtAc1Xh45EEliPbCNQbEo/rYcQVQwoNpjMx8GTTCLZnD1us7W+ej0SbQYe2hoTpE+IoBhkXS9ImGT9RFSZ9YYZPUD7bPEKUzpTDSvTTv9qkrZmRy0syndKpTsY3kyMwmQeLvFcP+Yhl8PjCAdGCy7MCxEjAtWGu0iEHF40P6u7AFf8qorvtS2L5zyIqZ7jxdYyd065ug0m3Ng0/f9aVU6muEbw/2b7gy95yBqEJSrSb0oCIDf6FtNIkdyEWCDBIcbwN1vcnhkg/jEouzl8xZW4F77zy4WBSQeQIGTdUTutQU4aB/bR0GuJGSeDCQ3uAbM4VxQQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=C87VqK4QnSFYVcmRWJ786Kmmsv2P/voFEnk7K9Yj6DY=;
- b=iXXPHDU3u8Y+2s/nBdPcvB5np1sN3Le2HZ452xlzeKT9xGhLnqVm4JK8FaqLb/Q9QUcVwi87h7nrcFTN3ki4eI6Yj93kP/qdU0UJC7NLkBc7p9gFU+ryKLvGL8uQQkj87vv1vp+cxo8f0tk7ndZr1FBVmKp+9BgWLqbgIPUXl+Oa2o9TagGpMf5sQhyNFhWHoM+FmTziVsNArj/2ZwcFT+a3F/WBKrWbaG/ew51IiEHB46K9g74qkL7wyV+kExiMgdfAZ+FyFzOmC6GM3PixXwVtCfi1e3h5CSAQ8TQtXdnSw2KHD90Z+6WJ4+ecQbG5KS1w0epS5bw6nDslwsXMvA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=hpe.com; dmarc=pass action=none header.from=hpe.com; dkim=pass
- header.d=hpe.com; arc=none
-Received: from DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM (2603:10b6:8:4e::10) by
- MW4PR84MB1827.NAMPRD84.PROD.OUTLOOK.COM (2603:10b6:303:1b2::6) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6609.33; Tue, 25 Jul 2023 13:44:30 +0000
-Received: from DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM
- ([fe80::20b7:769e:3974:f17e]) by DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM
- ([fe80::20b7:769e:3974:f17e%4]) with mapi id 15.20.6609.032; Tue, 25 Jul 2023
- 13:44:30 +0000
-From:   "Hawkins, Nick" <nick.hawkins@hpe.com>
-To:     Andrew Lunn <andrew@lunn.ch>
-CC:     "Verdun, Jean-Marie" <verdun@hpe.com>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "edumazet@google.com" <edumazet@google.com>,
-        "kuba@kernel.org" <kuba@kernel.org>,
-        "pabeni@redhat.com" <pabeni@redhat.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: RE: [PATCH v1 3/5] dt-bindings: net: Add HPE GXP UMAC
-Thread-Topic: [PATCH v1 3/5] dt-bindings: net: Add HPE GXP UMAC
-Thread-Index: AQHZvBm+GooG93oDpUucD86cbiWeIa/ExaIAgAW2tLA=
-Date:   Tue, 25 Jul 2023 13:44:30 +0000
-Message-ID: <DM4PR84MB192785EC6F2B8A76FF9E5E3F8803A@DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM>
-References: <20230721212044.59666-1-nick.hawkins@hpe.com>
- <20230721212044.59666-4-nick.hawkins@hpe.com>
- <57d882ed-82e5-4584-8126-ca2007064126@lunn.ch>
-In-Reply-To: <57d882ed-82e5-4584-8126-ca2007064126@lunn.ch>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM4PR84MB1927:EE_|MW4PR84MB1827:EE_
-x-ms-office365-filtering-correlation-id: 5c97b448-2ac5-4d73-2cf7-08db8d1545a7
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: Tf9qrVqoQssteBFdKdbawesaKfwitK1oFveTJRBKY0HskWMejDtVO/ll/W8oiN93AAUm0q2z6nAz0FkPfzUNUfI5klSb46o01WVKVAoC9lz49WKdYKe8rYIX2Etkn58l0tL5nxVBwQs7HuJ2jjm352ujDI7Cffh1g4IBn5Z8tjWHwG0ZjIgGfbn5DI7tfPl97zGiqtR8RJbn86W+6TB+DuyLPe/qgtr/8aSGNWswN7wnPczT59hWFrFzD7SldixKiXbeO3X2jEdVIF5iMgd7oYAwPT+ntBlX7or+KUBN7Oh05DupcRBUOmqXCKItL8BUZ9qlQhFGsXj9zRBSYdtz/zGWRFK8uyl/X6oUgzhOLN7A6YH0gySPXvZ9ewPCYYd/sN2UrFrvQjZHOaZdgtlEul2zpbKOPAloMP4Wsudy6FhkwLmreOGa8Fc0fGvpRa6rr28cju6wARl4UqIU5sqUJ3C3stF427xusePKUo+5DCz9BQ6w3zjVFlKzuiiYk4QoiwaXpOQ9JSKsGLCu3HhmbmLADyTtNcu49bHd/VYGVAG/PyvsNQqxOxnXV0jXw7JCodB+LjJidKY4veUc3t5NpB2UhlFiufvzExE/VhIlpf4Q6Jl6YTyRzhl8lszP6Nxr
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230028)(376002)(346002)(39860400002)(136003)(396003)(366004)(451199021)(26005)(6506007)(55016003)(186003)(83380400001)(478600001)(82960400001)(71200400001)(122000001)(54906003)(86362001)(33656002)(7696005)(76116006)(316002)(41300700001)(38070700005)(66476007)(66446008)(64756008)(4326008)(66556008)(6916009)(66946007)(38100700002)(8676002)(8936002)(2906002)(5660300002)(52536014)(7416002)(9686003);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?LBQVSU7Gg8uYLE7qGRY945XJLo4F4Srqa6o+DMMXbi+K9bz1z3ieD+KNRejD?=
- =?us-ascii?Q?97msFiiNyqMKzwPMQUSLzyLW2DJ2la0h3uUfCwh6AHbsxybcPn2xXLFfKCTB?=
- =?us-ascii?Q?/tH0vUriH0j2h16yMRmdTP8pTq8o8MvJbl8saZkWQ6XqisNY0+qPZ2SKK96J?=
- =?us-ascii?Q?2jSUJU1mEYABECpTqMH4GYg0OFBNlCzK6aU6J0/VV1K5ecjEPQrycZZygyzH?=
- =?us-ascii?Q?zmi6kZAyfCiRrO8IwnKv4fD80d2u6I69GY/VAKte+KcA3uUMPopdlGMnAnBq?=
- =?us-ascii?Q?dFR6HTG6xNDX0zTxLpYWCn8QaqhrOHpqt80mITMzvWGZc0QMwfSpELlP7xkP?=
- =?us-ascii?Q?ARS1ukgcw9/2gTy3cBG97RXvWmbGtxmaagSRWQcwUmm6vpenah+Gtuotgurf?=
- =?us-ascii?Q?5aJ+D+y+er9EfU6o14MYQnsWxGUzpz2np6gMmS4WsIiTuQDpiRaiNlVLLRva?=
- =?us-ascii?Q?BmvP1QdyvMvG/qlsb7Cixl4QQbn1dIXpjCprTsC4laZ8NY/VNBLYGNgELQAB?=
- =?us-ascii?Q?9AOrETgsJ7Y6MJGf4spNFNAQfNHZoRUKz71sTYGinllNDcor5+pxXQ/D1c8+?=
- =?us-ascii?Q?AdPU0+5ZtCXvFcAnszk2doPNY1NRuGP1+sV2FWnwAiwe6HiZJUqBebexgR7j?=
- =?us-ascii?Q?0N2icCGYMppKJnv6+QhOb7NcE1lxRaXfSlgChJOUuFpYa0QNWwZ/8bwze87G?=
- =?us-ascii?Q?cDbnjTr2dxZkEV9YquacqRk13dd89vH7JOP8CMkLBKs1b9yHuJN+9EXOQNB/?=
- =?us-ascii?Q?2xU1aZO39uGNuzfbPLl0rdhrrNPtOBEbydLaOjFGhIyPBTed9n/tfg0EX23O?=
- =?us-ascii?Q?p9ItSFF8aCX66Wnzp/Hs4ZZMeXlQ9u0PS7G/Gz25fs8RXnvBKmqFJewmAPXz?=
- =?us-ascii?Q?kMN/NWuiMMIAR8bYWJbQVzYYyRBRaHA1ul8cD7/EjBpPghZi9xxuZP3XJOL6?=
- =?us-ascii?Q?miGdoySjTDLHtIChrxZuH+GjtMmkd5n9so6HB9iJagYxnV0eegumFSgVKC+s?=
- =?us-ascii?Q?NeKXBLJ+lanA9ijwxKoPbMzc987mK/SXeL76feqCQuKoainmMyjY705Y+2Ek?=
- =?us-ascii?Q?eaPcEfA+mcYQE+ujHlfTWi0hXqB/fw5faic73NU4ee9ygMOWcLr+zu9300Ir?=
- =?us-ascii?Q?G2PCIL1kojdnO7aqKMXosmdxkeuzQEZF5YPVkN2peAcRSORuX6qZ95q5/2Qz?=
- =?us-ascii?Q?zYjEYBCo0C0uVX+QL57rS4+v+sa6BphWiwXkKYC2QxNQCjyw9wCfPh3ufJU/?=
- =?us-ascii?Q?tgIR71gbfLLzhs5pqhNTck6i5uddOtDFuBgjYqsvnS0me143xvM2g/8Agw3Q?=
- =?us-ascii?Q?u1WLJ0/cI/dAvEV9JQpStBvpIvURJ8M5EUWm7FgmAvLy3nMpkIG1GMreFdGr?=
- =?us-ascii?Q?HFblUi0wO3UfOawayceAAObuva2KTv+3rcNZBiQn6hE8MtmKByLEsUjuFkHh?=
- =?us-ascii?Q?Qsb61hjGFtR/fbTi2ta+YU9IK1TJed0XjR9rItHebxaSO6oH2soQC6GtN2/G?=
- =?us-ascii?Q?NVfZel2BLfVveTBme08pDX+vfvCPg0/IOGEMFqBOlxAt29OdBwyrfIijMfOU?=
- =?us-ascii?Q?7SmpMyl1r83tKGAhaL+fo2ZmwPvyThqg/OsCOxX3?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        Tue, 25 Jul 2023 16:08:01 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id B9F8E100048;
+        Tue, 25 Jul 2023 16:07:56 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 5ACB4241EF6;
+        Tue, 25 Jul 2023 16:07:56 +0200 (CEST)
+Received: from [10.201.21.121] (10.201.21.121) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Tue, 25 Jul
+ 2023 16:07:54 +0200
+Message-ID: <1faa5511-a341-9c17-5e2a-974f8139d1d6@foss.st.com>
+Date:   Tue, 25 Jul 2023 16:07:49 +0200
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5c97b448-2ac5-4d73-2cf7-08db8d1545a7
-X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Jul 2023 13:44:30.5190
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 105b2061-b669-4b31-92ac-24d304d195dc
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: +ikLZC7ni6ueLXQyz8n//KruwiZywcuAKzywT40pE+e8yeOuPkT6VEkeFseg5GGqYG/rfJHxOihnRWC9ZtZoFg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR84MB1827
-X-OriginatorOrg: hpe.com
-X-Proofpoint-ORIG-GUID: k2txWNcS4dvbmfhkB1tTgD7c22wHDlXM
-X-Proofpoint-GUID: k2txWNcS4dvbmfhkB1tTgD7c22wHDlXM
-X-HPE-SCL: -1
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH 07/10] arm64: dts: st: add RIFSC as a domain controller
+ for STM32MP25x boards
+Content-Language: en-US
+From:   Gatien CHEVALLIER <gatien.chevallier@foss.st.com>
+To:     Alexandre TORGUE <alexandre.torgue@foss.st.com>,
+        <Oleksii_Moisieiev@epam.com>, <gregkh@linuxfoundation.org>,
+        <herbert@gondor.apana.org.au>, <davem@davemloft.net>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <vkoul@kernel.org>, <jic23@kernel.org>,
+        <olivier.moysan@foss.st.com>, <arnaud.pouliquen@foss.st.com>,
+        <mchehab@kernel.org>, <fabrice.gasnier@foss.st.com>,
+        <andi.shyti@kernel.org>, <ulf.hansson@linaro.org>,
+        <edumazet@google.com>, <kuba@kernel.org>, <pabeni@redhat.com>,
+        <hugues.fruchet@foss.st.com>, <lee@kernel.org>, <will@kernel.org>,
+        <catalin.marinas@arm.com>, <arnd@kernel.org>,
+        <richardcochran@gmail.com>
+CC:     <linux-crypto@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <dmaengine@vger.kernel.org>,
+        <linux-i2c@vger.kernel.org>, <linux-iio@vger.kernel.org>,
+        <alsa-devel@alsa-project.org>, <linux-media@vger.kernel.org>,
+        <linux-mmc@vger.kernel.org>, <netdev@vger.kernel.org>,
+        <linux-phy@lists.infradead.org>, <linux-serial@vger.kernel.org>,
+        <linux-spi@vger.kernel.org>, <linux-usb@vger.kernel.org>
+References: <20230705172759.1610753-1-gatien.chevallier@foss.st.com>
+ <20230705172759.1610753-8-gatien.chevallier@foss.st.com>
+ <61d93738-4ffd-411d-d32c-912c14eea56d@foss.st.com>
+ <997780a9-1cbc-46a2-2743-7fd493682278@foss.st.com>
+In-Reply-To: <997780a9-1cbc-46a2-2743-7fd493682278@foss.st.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.201.21.121]
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
 X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
  definitions=2023-07-25_08,2023-07-25_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 spamscore=0
- bulkscore=0 mlxlogscore=371 phishscore=0 lowpriorityscore=0 mlxscore=0
- adultscore=0 malwarescore=0 impostorscore=0 priorityscore=1501
- clxscore=1011 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2306200000 definitions=main-2307250121
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andrew,
+Hi Alex,
 
-Thank you for the feedback.
+On 7/6/23 11:30, Gatien CHEVALLIER wrote:
+> Hi Alex,
+> 
+> On 7/6/23 11:25, Alexandre TORGUE wrote:
+>> Hi Gatien
+>>
+>> On 7/5/23 19:27, Gatien Chevallier wrote:
+>>> RIFSC is a firewall controller. Change its compatible so that is matches
+>>> the documentation and reference RIFSC as a feature-domain-controller.
+>>>
+>>> Signed-off-by: Gatien Chevallier <gatien.chevallier@foss.st.com>
+>>> ---
+>>>   arch/arm64/boot/dts/st/stm32mp251.dtsi | 5 ++++-
+>>>   1 file changed, 4 insertions(+), 1 deletion(-)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/st/stm32mp251.dtsi 
+>>> b/arch/arm64/boot/dts/st/stm32mp251.dtsi
+>>> index 5268a4321841..62101084cab8 100644
+>>> --- a/arch/arm64/boot/dts/st/stm32mp251.dtsi
+>>> +++ b/arch/arm64/boot/dts/st/stm32mp251.dtsi
+>>> @@ -106,17 +106,20 @@ soc@0 {
+>>>           ranges = <0x0 0x0 0x0 0x80000000>;
+>>>           rifsc: rifsc-bus@42080000 {
+>>> -            compatible = "simple-bus";
+>>> +            compatible = "st,stm32mp25-rifsc";
+>>
+>> You could keep "simple-bus" compatible (in second position). In case 
+>> of the RIFSC is not probed, the platform will be able to boot. If you 
+>> agree you can use the same for ETZPC.
+>>
+>> Cheers
+>> Alex
+> 
+> Sure, good point.
+> 
+> I'll change that in V2
+> 
+> Best regards,
+> Gatien
 
-> > +examples:
-> > +  - |
-> > +    ethernet@4000 {
-> > +      compatible =3D "hpe,gxp-umac";
-> > +      reg =3D <0x4000 0x80>;
-> > +      interrupts =3D <22>;
-> > +      mac-address =3D [00 00 00 00 00 00]; /* Filled in by U-Boot */
+Actually, it would be a bad idea to keep "simple-bus" as a compatible.
 
-> Do both ports get the sane MAC address?
+Practical example:
+1) Firewall controller forbids a device probe by marking the device's
+node as populated (OF_POPULATED flag).
+2) The simple-bus, which is simple, populates all the devices
+from the device tree data, overriding what the firewall bus has done.
+3)=>Forbidden device's driver will be probed.
 
-No they do not. The first one will get the MAC address, the second
-will be an external phy we are managing via the MDIO path.
+I think it's best to keep one compatible. If someone wants these drivers
+as external modules, then it'll be best to handle this differently.
+I'll resubmit with a single compatible for V2, please do not
+hesitate to comment on the V2 if you're not okay with this.
 
-> > +      ethernet-ports {
-> > +        #address-cells =3D <1>;
-> > +        #size-cells =3D <0>;
-> > +
-> > +        port@0 {
-> > +          reg =3D <0>;
-> > +          phy-handle =3D <&eth_phy0>;
-> > +        };
-> > +
-> > +        port@1 {
-> > +          reg =3D <1>;
-> > +          phy-handle =3D <&eth_phy1>;
-> > +        };
-> > +      };
-> > +
-> > +      mdio {
+Best regards,
+Gatien
 
-> This seems to be wrong. You have a standalone MDIO bus driver, not
-> part of the MAC address space?
-
-I based this from other yaml examples I found. Is there a better way to
-represent it?
-
-Here is what I plan on having the dts/dtsi
-look like:
-
-mdio0: mdio@4080 {
-	compatible =3D "hpe,gxp-umac-mdio";
-	reg =3D <0x4080 0x10>;
-	#address-cells =3D <1>;
-	#size-cells =3D <0>;
-	ext_phy0: ethernt-phy@0 {
-		compatible =3D "marvell,88e1415","ethernet-phy-ieee802.3-c22";
-		phy-mode =3D "sgmii";
-		reg =3D <0>;
-	};
-};
-
-mdio1: mdio@5080 {
-	compatible =3D "hpe,gxp-umac-mdio";
-	reg =3D <0x5080 0x10>;
-	#address-cells =3D <1>;
-	#size-cells =3D <0>;
-	int_phy0: ethernt-phy@0 {
-		compatible =3D "ethernet-phy-ieee802.3-c22";
-		phy-mode =3D "gmii";
-                             reg =3D <0>;
-	};
-
-	int_phy1: ethernt-phy@1 {
-		compatible =3D "ethernet-phy-ieee802.3-c22";
-		phy-mode =3D "gmii";
-		reg =3D <1>;
-	};
-};
-
-umac0: ethernet@4000 {
-	compatible =3D "hpe,gxp-umac";
-	reg =3D <0x4000 0x80>;
-	interrupts =3D <10>;
-	interrupt-parent =3D <&vic0>;
-	mac-address =3D [00 00 00 00 00 00];
-	ethernet-ports {
-		#address-cells =3D <1>;
-		#size-cells =3D <0>;
-		port@0 {
-			reg =3D <0>;
-			phy-handle =3D <&int_phy0>;
-		};
-		port@1 {
-			reg =3D <1>;
-			phy-handle =3D <&ext_phy0>;
-		};
-	};
-};
-
-Thank you for the help and assistance.
-
--Nick Hawkins
+>>
+>>>               reg = <0x42080000 0x1000>;
+>>>               #address-cells = <1>;
+>>>               #size-cells = <1>;
+>>>               ranges;
+>>> +            feature-domain-controller;
+>>> +            #feature-domain-cells = <1>;
+>>>               usart2: serial@400e0000 {
+>>>                   compatible = "st,stm32h7-uart";
+>>>                   reg = <0x400e0000 0x400>;
+>>>                   interrupts = <GIC_SPI 115 IRQ_TYPE_LEVEL_HIGH>;
+>>>                   clocks = <&ck_flexgen_08>;
+>>> +                feature-domains = <&rifsc 32>;
+>>>                   status = "disabled";
+>>>               };
+>>>           };
+>>
