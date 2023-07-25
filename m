@@ -2,123 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 30247761688
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 13:40:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B58657616A3
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 13:41:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234929AbjGYLkG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jul 2023 07:40:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47512 "EHLO
+        id S235023AbjGYLlC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jul 2023 07:41:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48538 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234930AbjGYLkF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 07:40:05 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F383D10C7;
-        Tue, 25 Jul 2023 04:40:04 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 36PBdnOS130110;
-        Tue, 25 Jul 2023 06:39:49 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1690285189;
-        bh=/fa+z+CUWBeCBalWhS3n0PD609rlDIlHp3Fx7siEkOY=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=PtHM3Him0DVTFvhELrCAh/ohVkHl3IRsCQtYyytH1r117BXkyftmeroDOzpssBqcj
-         rG3DLKwHrXeonYH1nqpnG7TEPFIU3wLmDZtSEWzlrWYSFp/0e5WVA/+01fHCKDNm3J
-         LnNdHk/QnfsHGbH+NHaG8wx35oKcxmEAecUso4NE=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 36PBdnFO002980
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 25 Jul 2023 06:39:49 -0500
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 25
- Jul 2023 06:39:49 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 25 Jul 2023 06:39:49 -0500
-Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 36PBdnIZ045291;
-        Tue, 25 Jul 2023 06:39:49 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
+        with ESMTP id S235020AbjGYLku (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 07:40:50 -0400
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30C261FCB
+        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 04:40:35 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-99b9161b94aso345490166b.1
+        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 04:40:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=9elements.com; s=google; t=1690285233; x=1690890033;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=OCWWBBRJa0PORsLtnTWiKQp9jCoJ7Z5w0rr05I0MhAM=;
+        b=A65PLuZvDWSYYYDsjc1F+ZXpzZI+oamgjXR5RgxTp9cRoQ9Dne5I+Jh8psRSH78myb
+         A7gqN0mwwpj20DcWesnpkiRR1y/0oDoxMW2YQF6jriAms+leXGFKjnklt/4wJaInyHnD
+         pANYTfJu/uKiRwA8tPws/g+LXN+6so5TwwTgN30x8YjP+2P4iX0Bf5VzI49W5Rey7lcA
+         m+dK9+9YHD//oL23pNz9tydLv7vA2IQtnvHSTwKcSe98dC3zblljuMHuDEsOVINXb535
+         AI/BqWNjgFBPXrudag3p1/C1VjTcqKp+5yXHOVTkDkb3pRnZ1VohwoBv+4VrR4mJoCB8
+         HKBw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690285233; x=1690890033;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=OCWWBBRJa0PORsLtnTWiKQp9jCoJ7Z5w0rr05I0MhAM=;
+        b=Xm57nOtaRTOrFryH2tGqR45bib2DGkN+q3a7Wk1Ok/1zTgUXgDv+Z1UEa0RSONWuYF
+         gOBdUbBSgIKDrDbHRSDN3u++oooXwpjCTPBa6No8GK/9fDaSnz+aB17HMgr4eU7tPk2Y
+         mByAqttfCT1ZzVG9k4vmabwOPNyfTVBOmTdgpWlAHr8yfeJN0VMFToDc4RfNpwWrEbaq
+         qszZhtZTTO/v5RfPRI3/xibc4s/qQVQu5qnQSa404wCAOzMchvnKBjkIA/pbzH6XkxnW
+         5Uuob5mWhj+EMQxf9toEoCGTCP5WyeSF0XTCwRzQJY+dcRr4RP08HbpydNW5Ts8DYwol
+         ye4A==
+X-Gm-Message-State: ABy/qLYr+Pt63y8dy7TBLDYZqAPE1aZI339qRivvuiIexiqBxYcWbtvJ
+        dFm1XNZtplukhaCs++XCdnWBxQ==
+X-Google-Smtp-Source: APBJJlFS6kYrnmiucY9eWirPBclgdbF4vnVSeCw6/ChNL+5oAgMp6DRN0T580c2uPfxcC++hVTOUoQ==
+X-Received: by 2002:a17:906:9bdd:b0:99b:4e75:52bb with SMTP id de29-20020a1709069bdd00b0099b4e7552bbmr12428460ejc.69.1690285233475;
+        Tue, 25 Jul 2023 04:40:33 -0700 (PDT)
+Received: from stroh80.sec.9e.network (ip-078-094-000-051.um19.pools.vodafone-ip.de. [78.94.0.51])
+        by smtp.gmail.com with ESMTPSA id d6-20020a1709067f0600b009925cbafeaasm8088206ejr.100.2023.07.25.04.40.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 25 Jul 2023 04:40:32 -0700 (PDT)
+From:   Naresh Solanki <naresh.solanki@9elements.com>
+X-Google-Original-From: Naresh Solanki <Naresh.Solanki@9elements.com>
+To:     Guenter Roeck <linux@roeck-us.net>,
+        Jean Delvare <jdelvare@suse.com>,
+        krzysztof.kozlowski+dt@linaro.org,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Jayesh Choudhary <j-choudhary@ti.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S. Miller" <davem@davemloft.net>,
-        "Tero Kristo" <t-kristo@ti.com>, Keerthy <j-keerthy@ti.com>,
-        Kamlesh Gurudasani <kamlesh@ti.com>
-CC:     Nishanth Menon <nm@ti.com>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh@kernel.org>, <linux-crypto@vger.kernel.org>,
-        Conor Dooley <conor.dooley@microchip.com>
-Subject: Re: [PATCH v5 0/2] Remove power-domains property for devices with compatible ti,am62-sa3ul
-Date:   Tue, 25 Jul 2023 06:39:48 -0500
-Message-ID: <169028509342.1718778.15078093695331558450.b4-ty@ti.com>
-X-Mailer: git-send-email 2.40.0
-In-Reply-To: <20230614-sa3ul-v5-0-29dd2366fba3@ti.com>
-References: <20230614-sa3ul-v5-0-29dd2366fba3@ti.com>
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     linux-hwmon@vger.kernel.org,
+        Patrick Rudolph <patrick.rudolph@9elements.com>,
+        Naresh Solanki <Naresh.Solanki@9elements.com>,
+        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 1/3] dt-bindings: hwmon: Add Infineon TDA38640
+Date:   Tue, 25 Jul 2023 13:40:26 +0200
+Message-ID: <20230725114030.1860571-1-Naresh.Solanki@9elements.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,TVD_SUBJ_WIPE_DEBT,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Herbert,
+From: Patrick Rudolph <patrick.rudolph@9elements.com>
 
-I am going to assume that you are ok with me picking this series up as this
-results in a few broken boots for various boards. Let me know if that is not
-the case, and I will drop the series from my tree.
+The TDA38640 has a bug in SVID mode and to enable a workaround
+remove the TDA38640 from trivial-devices and add a complete schema.
 
-Hi Kamlesh Gurudasani,
+The schema adds the custom property 'infineon,en-pin-fixed-level' to
+signal a fixed level on the ENABLE pin and to enable the workaround.
+When the ENABLE pin is left floating it's internally pulled low.
 
-On Fri, 14 Jul 2023 14:42:40 +0530, Kamlesh Gurudasani wrote:
-> SYSFW don't allow access to power of devices with compatible ti,am62-sa3ul
-> from main domain.
-> 
-> Power-domains property, if present will try to access the power of the
-> device, which will result into failure in probing of driver for that
-> device.
-> 
-> [...]
+If not specified the driver will continue to use the PMBUS_OPERATION
+register to enable the regulator. When specified the driver will use
+the PMBUS_ON_OFF_CONFIG register to enable the regulator.
 
-I have applied the following to branch ti-k3-dts-next on [1].
-Thank you!
+Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
+Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
+---
+ .../hwmon/pmbus/infineon,tda38640.yaml        | 50 +++++++++++++++++++
+ .../devicetree/bindings/trivial-devices.yaml  |  2 -
+ 2 files changed, 50 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/hwmon/pmbus/infineon,tda38640.yaml
 
-[1/2] dt-bindings: crypto: ti,sa2ul: make power-domains conditional
-      commit: e1f7d17a734c5c617d05c3d188939d5032d3d5a2
-[2/2] arm64: dts: ti: k3-am62-main: Remove power-domains from crypto node
-      commit: b573bf35ef3f113c1717fa22cefdfdfbb83aec70
+diff --git a/Documentation/devicetree/bindings/hwmon/pmbus/infineon,tda38640.yaml b/Documentation/devicetree/bindings/hwmon/pmbus/infineon,tda38640.yaml
+new file mode 100644
+index 000000000000..520112e4e271
+--- /dev/null
++++ b/Documentation/devicetree/bindings/hwmon/pmbus/infineon,tda38640.yaml
+@@ -0,0 +1,50 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++
++$id: http://devicetree.org/schemas/hwmon/pmbus/infineon,tda38640.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Infineon TDA38640 Synchronous Buck Regulator with SVID and I2C
++
++description: |
++  The Infineon TDA38640 is a 40A Single-voltage Synchronous Buck
++  Regulator with SVID and I2C designed for Industrial use.
++
++  Datasheet: https://www.infineon.com/dgdl/Infineon-TDA38640-0000-DataSheet-v02_04-EN.pdf?fileId=8ac78c8c80027ecd018042f2337f00c9
++
++properties:
++  compatible:
++    enum:
++      - infineon,tda38640
++
++  reg:
++    maxItems: 1
++
++  infineon,en-pin-fixed-level:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: |
++      Fixed level of the ENABLE pin. When specified the PMBUS_ON_OFF_CONFIG
++      register is used to enable the regulator instead of the PMBUS_OPERATION
++      register to workaround a bug of the tda38640 when operating in SVID-mode.
++      If the ENABLE pin is left floating the internal pull-down causes a low
++      level on the pin.
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        tda38640@40 {
++            compatible = "infineon,tda38640";
++            reg = <0x40>;
++        };
++    };
++
+diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
+index 6e24c4d25ec3..2b1fbb2a672b 100644
+--- a/Documentation/devicetree/bindings/trivial-devices.yaml
++++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+@@ -151,8 +151,6 @@ properties:
+           - infineon,slb9645tt
+             # Infineon SLB9673 I2C TPM 2.0
+           - infineon,slb9673
+-            # Infineon TDA38640 Voltage Regulator
+-          - infineon,tda38640
+             # Infineon TLV493D-A1B6 I2C 3D Magnetic Sensor
+           - infineon,tlv493d-a1b6
+             # Infineon Multi-phase Digital VR Controller xdpe11280
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent up the chain during
-the next merge window (or sooner if it is a relevant bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
+base-commit: 55612007f16b5d7b1fb83a7b0f5bb686829db7c7
 -- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+2.41.0
 
