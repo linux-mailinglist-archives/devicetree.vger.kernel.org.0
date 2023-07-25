@@ -2,160 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EDFF9760C91
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 10:02:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 62B65760CA7
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 10:08:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232099AbjGYICf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jul 2023 04:02:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40436 "EHLO
+        id S229780AbjGYIIX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jul 2023 04:08:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42776 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231745AbjGYICe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 04:02:34 -0400
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0A32118
-        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 01:02:32 -0700 (PDT)
-Received: by mail-wr1-x42e.google.com with SMTP id ffacd0b85a97d-31427ddd3fbso4103008f8f.0
-        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 01:02:32 -0700 (PDT)
+        with ESMTP id S231250AbjGYIIW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 04:08:22 -0400
+Received: from mail-ot1-x335.google.com (mail-ot1-x335.google.com [IPv6:2607:f8b0:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2ACAB120
+        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 01:08:21 -0700 (PDT)
+Received: by mail-ot1-x335.google.com with SMTP id 46e09a7af769-6b9cf17f69cso3322686a34.0
+        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 01:08:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690272151; x=1690876951;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=I3v1BVqEhAVeW2Xqs0OD6SXxWEo7Q/+yKV1QI3AwLLc=;
-        b=aaouEtYVEjE4zRDsvpzoWGwzwSPV9SDD1pdljgK9gA6Ri9rLr2Jtspbzv88hJH6cwe
-         AVZnBOkQavqOPMfV6TY3c9I04noNBrNguGJwH3S2e/Obw9vzkgwiDWRKRQ4oR0YHJ/j/
-         cT2fBeH8JuNBmwaribj7aGrIcV333QfISME4Q8HbQSxwlj1pfHisUfDLtDt270Z7YDqS
-         +vRtDUw+up8/afHH4b5AjRJ6k4xDZGR//8ifsJiCtsEZ1Ha1MHpnYS0KORtR4oJ49Vic
-         Gp/qRnAxs/b/TgS/xX+QN5bBIYIGnIAKizuPJp89fVG002GPkmH2CZkkonoMcyOIvkdm
-         +12w==
+        d=chromium.org; s=google; t=1690272500; x=1690877300;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=JQlid0H2jkWZz9fgcu7Ae/8sWUNA4lIusDDxBLqkgag=;
+        b=KkgEQfDM+55890/Maq1US0J3lnruHbkrKCrP9QWS3hvuGMFkfmc5/nlpvrIrBzxlBq
+         sPJmD7WJNQqquynKfs5CduRCtnjUi6tCQ0IyEsby+evTvU7HUtmycJeySD2lQcL4nlIv
+         X97gSvIfrSvqwK3crWKOZ6uVzBCD27AJW8lEM=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690272151; x=1690876951;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=I3v1BVqEhAVeW2Xqs0OD6SXxWEo7Q/+yKV1QI3AwLLc=;
-        b=U6jyd/LlJKlunSHTZBg3fBIHQ6ppSelBt6I2wI5GZmbSFASUImedFKxAzyjx/8MYeV
-         DWEi3XF7QknTm4fC2HCICr78p5G7dyBsaA+0ygFWe+ZU9dGN7582W8qHVUDFxVZRhfaK
-         d99pB03DropXIRcegQ3R7dhGYjImHAUmW7jMRYSGIII2SfXqQ+v7NUcw1yWkr54+W5Wh
-         KewPa0zTECPprCHMFnrcKUeNJUBPOjFmPPgMekCaMiTmWjjVEiNoQOvOl+pcyCiMp79b
-         ZdgfFKVPHv8RU7GHsTqBQSlIfc7/odfx3Iwcun1bIMH/ggLdScrOCH8JJ6STOFwI5D+i
-         ZyBQ==
-X-Gm-Message-State: ABy/qLZ9XPj0Bqw9dMmAGzUZiSPDIjR/s36QihDOrX/mlD7ClS/IdcyZ
-        swRfnyU66rqTV//4bjQHgf+M3g==
-X-Google-Smtp-Source: APBJJlFyrzW0659tWRjxTEp4UbibdlARF8lOgeGhcIJ5aGAk4vGcxVsE/S/rge44cR0Qz14H3wkvxg==
-X-Received: by 2002:adf:ec86:0:b0:317:67bf:337f with SMTP id z6-20020adfec86000000b0031767bf337fmr1758860wrn.2.1690272151075;
-        Tue, 25 Jul 2023 01:02:31 -0700 (PDT)
-Received: from [192.168.1.101] (abxj221.neoplus.adsl.tpnet.pl. [83.9.3.221])
-        by smtp.gmail.com with ESMTPSA id x12-20020a5d650c000000b003143aa0ca8asm15394656wru.13.2023.07.25.01.02.29
+        d=1e100.net; s=20221208; t=1690272500; x=1690877300;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=JQlid0H2jkWZz9fgcu7Ae/8sWUNA4lIusDDxBLqkgag=;
+        b=j/LpQK/C+FaWPeoF7SOKLmo0mhycs9oQJwixMCCjoR+TyTjznT9j4wbfx0TN4liE6G
+         4wSDBwfad1nXA3mvCjM2HZBmOdEQ5FEy4gDvs+8qezAyt5jjlkZyGWskB6wqeVHhF9de
+         UEF0O71BUYxl/wEQDOlGqpgB7GqTPTkjjmyUnZqzOcSjWg+OaGSOQKwhYoeb9OzJWiXJ
+         dn/SMQtt/ebz7M4XYmoeZn2Ds32o5pGA4FkTKt8aRyhXbdjZZF3BsJWDDRK+LZJ1RehM
+         GNOgaA2VJnwe1eXMcKwQG3Xw8o9SAlvXgOn/9tn7Szg8ZrnTqJu/pRlHpcja6pre8r/Q
+         MZ4g==
+X-Gm-Message-State: ABy/qLY3fX33OcyF/s0nERPTxGFFL9xPNy3vZoy5PxzdaPoUHhz5Pews
+        fo7HqeKclR5Qi6MQDVCSsbVI75x3pLJFi4b0hfA=
+X-Google-Smtp-Source: APBJJlGMK2ptzgR0xzLImAt3dlL38evC50oVecPB/+sA0drG8kdBJidt9YBernTU5r3RhzQFZQdexw==
+X-Received: by 2002:a05:6830:124d:b0:6b9:b931:55ec with SMTP id s13-20020a056830124d00b006b9b93155ecmr1328726otp.7.1690272500280;
+        Tue, 25 Jul 2023 01:08:20 -0700 (PDT)
+Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com. [209.85.210.45])
+        by smtp.gmail.com with ESMTPSA id t19-20020a9d7f93000000b006b74bea76c0sm4789895otp.47.2023.07.25.01.08.20
+        for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 25 Jul 2023 01:02:30 -0700 (PDT)
-Message-ID: <411da19f-10f3-6dc1-a708-cdf06be9c4d8@linaro.org>
-Date:   Tue, 25 Jul 2023 10:02:28 +0200
+        Tue, 25 Jul 2023 01:08:20 -0700 (PDT)
+Received: by mail-ot1-f45.google.com with SMTP id 46e09a7af769-6bb1ec7945dso1578314a34.0
+        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 01:08:20 -0700 (PDT)
+X-Received: by 2002:a6b:8d82:0:b0:789:dcd1:8eb9 with SMTP id
+ p124-20020a6b8d82000000b00789dcd18eb9mr1029181iod.6.1690272036013; Tue, 25
+ Jul 2023 01:00:36 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 5/7] clk: qcom: hfpll: Add MSM8976 PLL data
-Content-Language: en-US
-To:     Adam Skladowski <a39.skl@gmail.com>
-Cc:     phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+References: <20230602090227.7264-1-yong.wu@mediatek.com>
+In-Reply-To: <20230602090227.7264-1-yong.wu@mediatek.com>
+From:   Fei Shao <fshao@chromium.org>
+Date:   Tue, 25 Jul 2023 15:59:59 +0800
+X-Gmail-Original-Message-ID: <CAC=S1nhgkj5zh-Oa+OJjZKmkNMfG63+WjSefB2swybm29KxDXA@mail.gmail.com>
+Message-ID: <CAC=S1nhgkj5zh-Oa+OJjZKmkNMfG63+WjSefB2swybm29KxDXA@mail.gmail.com>
+Subject: Re: [PATCH v12 0/7] MT8188 IOMMU SUPPORT
+To:     Yong Wu <yong.wu@mediatek.com>
+Cc:     Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Robin Murphy <robin.murphy@arm.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        AngeloGioacchino Del Regno <kholk11@gmail.com>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230723160827.22660-1-a39.skl@gmail.com>
- <20230723160827.22660-6-a39.skl@gmail.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <20230723160827.22660-6-a39.skl@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, iommu@lists.linux.dev,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        mingyuan.ma@mediatek.com, yf.wang@mediatek.com,
+        jianjiao.zeng@mediatek.com, chengci.xu@mediatek.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23.07.2023 18:08, Adam Skladowski wrote:
-> Add PLL configuration for MSM8976 SoC, this SoC offers 3 HFPLL.
-> Small cluster offers two presets for 652-902Mhz range and 902Mhz-1.47Ghz.
-> For simplicity only add second range as smaller frequencies can be obtained
-> via apcs divider or safe parent this also saves us
-> a hassle of reconfiguring VCO bit and config_val.
-> A72 and CCI cluster only use single frequency range with their
-> outputs/post_dividers/vco_bits being static.
-> 
-> Signed-off-by: Adam Skladowski <a39.skl@gmail.com>
-> ---
-[...]
+On Fri, Jun 2, 2023 at 5:03=E2=80=AFPM Yong Wu <yong.wu@mediatek.com> wrote=
+:
+>
+> MT8188 have 3 IOMMU HWs. 2 IOMMU HW is for multimedia, and 1 IOMMU HW
+> is for infra-master, like PCIe.
+>
+> About the 2 MM IOMMU HW, the connection could be something like this:
+>
+>         IOMMU(VDO)          IOMMU(VPP)
+>            |                   |
+>       SMI_COMMON(VDO)      SMI_COMMON(VPP)
+>       ---------------     ----------------
+>       |      |   ...      |      |     ...
+>     larb0 larb2  ...    larb1 larb3    ...
+>
+> INFRA IOMMU does not have SMI, the master connects to IOMMU directly.
+>
+> Although multiple banks supported in MT8188, we only use one of them,
+> which means PCIe is put in bank0 of INFRA IOMMU.
+>
+> So we have two pgtable for MT8188, specifically, these two MM IOMMU HW
+> share a pgtable while INFRA IOMMU HW use a independent pgtable.
+>
+> Another change is that we add some SMC command for INFRA master to
+> enable INFRA IOMMU in ATF considering security concerns.
+>
+> We also adjust the flow of mtk_iommu_config to reduce indention.
 
-> +static const struct hfpll_data msm8976_a72 = {
-> +	.mode_reg = 0x00,
-> +	.l_reg = 0x04,
-> +	.m_reg = 0x08,
-> +	.n_reg = 0x0c,
-> +	.user_reg = 0x10,
-> +	.config_reg = 0x14,
-> +	.config_val = 0x4e0405d,
-> +	.status_reg = 0x1c,
-> +	.lock_bit = 16,
-> +
-> +	.l_val = 0x3e,
-> +	.user_val = 0x100109,
-> +	.min_rate = 940800000UL,
-> +	.max_rate = 1843200000UL,
-2016000000?
+A friendly ping - this series was reviewed, but I'm not sure if it's
+still on the radar today.
+This can be cleanly applied on top of next-20230725.
 
-[...]
+To give more confidence, I also tested the basic multimedia and infra
+functionalities on my MT8188 with this series, so
 
->  static const struct of_device_id qcom_hfpll_match_table[] = {
->  	{ .compatible = "qcom,hfpll", &hdata },
-> +	{ .compatible = "qcom,msm8976-hfpll-a53", &msm8976_a53 },
-> +	{ .compatible = "qcom,msm8976-hfpll-a72", &msm8976_a72 },
-> +	{ .compatible = "qcom,msm8976-hfpll-cci", &msm8976_cci },
-.data = is missing
+Tested-by: Fei Shao <fshao@chromium.org>
 
-Konrad
+to the entire v12 series.
+
+Regards,
+Fei
