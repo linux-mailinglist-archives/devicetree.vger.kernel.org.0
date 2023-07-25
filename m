@@ -2,199 +2,319 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CE2D376272A
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 01:05:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 00B5D76273B
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 01:18:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230042AbjGYXFO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jul 2023 19:05:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56750 "EHLO
+        id S231673AbjGYXSo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jul 2023 19:18:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35776 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229827AbjGYXFN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 19:05:13 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 770B5E7;
-        Tue, 25 Jul 2023 16:05:12 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 132DB61926;
-        Tue, 25 Jul 2023 23:05:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 790C3C433C7;
-        Tue, 25 Jul 2023 23:05:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690326311;
-        bh=8u87rzOYUB7/c0OvMvcaBKrY8ZfQ238ZrdAu8eLiTwg=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=hsDb2Qjx8BUPWaF60ohr/F1CAxiNAoYO7jMn5YnLaysGynJ+IZm/QXijsZDnt1HPA
-         08j6hV8YMhhfQjtB3GaOiC6C1YyBtgcy5XG65sPdmuDKHCFmSNKgReuEgpcXocFQ1T
-         7j0TrtViuUMXIISXWkBd/7eh47cxhlcm9JEHq3jVd8hvvjF1lmEpWyyWWMHFVzoAMO
-         Wcq+/YOGCwbym2N/CK/9NJB1LyYRLs5f0IH0ykG5WOGnUr+Rz5A/cL/ZZszkedH3uI
-         20IaHZDrDMZAxmfg1NRj1Mr5fDkABbYj/MPkbSJ06vKVr/wiQEx1bz1M0w2mTehfL1
-         k1v9V9DuZp6wg==
-Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-2b933bbd3eeso90630761fa.1;
-        Tue, 25 Jul 2023 16:05:11 -0700 (PDT)
-X-Gm-Message-State: ABy/qLaaG97ixLESOiv+kDbzXjxD6RgeeccdQe3Q5+4WpWAiXbQQf9L+
-        nN4suHDRtjnLbk2W/BS6h8MfSkY1J3cX2GhVuA==
-X-Google-Smtp-Source: APBJJlGiuk90Ip8gZC0eU2XxptJIjyvn4OaCBsXt9I6gU9jTBi07iiZP0B89Sux6tgm+ZK1Mh1tlaz8wsswH5R/ur4Y=
-X-Received: by 2002:a2e:9556:0:b0:2b6:c2e4:a57a with SMTP id
- t22-20020a2e9556000000b002b6c2e4a57amr110000ljh.38.1690326309410; Tue, 25 Jul
- 2023 16:05:09 -0700 (PDT)
+        with ESMTP id S231379AbjGYXSn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 19:18:43 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A376E1988;
+        Tue, 25 Jul 2023 16:18:41 -0700 (PDT)
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36PNDIAD000405;
+        Tue, 25 Jul 2023 23:18:00 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=UMPzc15goQAkKTvtJQP8mTOXbx53Fh755mAgUKkn7NA=;
+ b=A/8Eh6NU7hbAYFO38boyndeemQnUR7GSAKFGhhRbLSzjFHv02fdbMjuf/8o0RGcfmggI
+ +Ey+sKcLiion2iLezUjmZOAbLWBBZoColEfw1mPQuNWKs5tfdArK7srwQjr9qjPe2WAd
+ QRWolZfJrHw2g8rUGKXjsWKgR7B+u2FpKnQoVGKbzLWWnbNu0fosZSo0fl2pp4k0hOjF
+ SAphLIByDogpGagDAPkmN8PUbmsFf//F3tC0cmsP7WHQhGRDj6p4QE9vt+e032npsUMM
+ mzMBpujc1oiuXMlN/dg6eJxqPjPx8FMk5mrDG5aNLdoiSmQTYF2HwNMYivzO/todAz3T Xg== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3s29xmj2k7-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 25 Jul 2023 23:18:00 +0000
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 36PNHx6w016007
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 25 Jul 2023 23:17:59 GMT
+Received: from [10.110.23.161] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Tue, 25 Jul
+ 2023 16:17:58 -0700
+Message-ID: <8ae1928e-4b38-e7e1-162b-144a07efde9f@quicinc.com>
+Date:   Tue, 25 Jul 2023 16:17:57 -0700
 MIME-Version: 1.0
-References: <1690323318-6103-1-git-send-email-lizhi.hou@amd.com> <1690323318-6103-3-git-send-email-lizhi.hou@amd.com>
-In-Reply-To: <1690323318-6103-3-git-send-email-lizhi.hou@amd.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 25 Jul 2023 17:04:57 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLoJzqnXtJ4BZZo6Y5fVz7PW701968K1VkZX93oKzxf5w@mail.gmail.com>
-Message-ID: <CAL_JsqLoJzqnXtJ4BZZo6Y5fVz7PW701968K1VkZX93oKzxf5w@mail.gmail.com>
-Subject: Re: [PATCH V11 2/5] PCI: Create device tree node for bridge
-To:     Lizhi Hou <lizhi.hou@amd.com>
-Cc:     linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, max.zhen@amd.com,
-        sonal.santan@amd.com, stefano.stabellini@xilinx.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH v4 06/32] ASoC: Add SOC USB APIs for adding an USB backend
+Content-Language: en-US
+To:     Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        <agross@kernel.org>, <andersson@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <catalin.marinas@arm.com>, <will@kernel.org>,
+        <mathias.nyman@intel.com>, <gregkh@linuxfoundation.org>,
+        <lgirdwood@gmail.com>, <broonie@kernel.org>, <perex@perex.cz>,
+        <tiwai@suse.com>, <srinivas.kandagatla@linaro.org>,
+        <bgoswami@quicinc.com>, <Thinh.Nguyen@synopsys.com>
+CC:     <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-usb@vger.kernel.org>, <alsa-devel@alsa-project.org>,
+        <quic_jackp@quicinc.com>, <oneukum@suse.com>,
+        <albertccwang@google.com>, <o-takashi@sakamocchi.jp>
+References: <20230725023416.11205-1-quic_wcheng@quicinc.com>
+ <20230725023416.11205-7-quic_wcheng@quicinc.com>
+ <9e391c7d-f45b-42f4-fae4-72fba32482db@linux.intel.com>
+From:   Wesley Cheng <quic_wcheng@quicinc.com>
+In-Reply-To: <9e391c7d-f45b-42f4-fae4-72fba32482db@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: HLJLsNhZptWr3FYhyaZw9fl2vAXuZvXW
+X-Proofpoint-GUID: HLJLsNhZptWr3FYhyaZw9fl2vAXuZvXW
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-07-25_12,2023-07-25_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 clxscore=1015
+ mlxlogscore=823 impostorscore=0 adultscore=0 mlxscore=0 bulkscore=0
+ phishscore=0 suspectscore=0 spamscore=0 priorityscore=1501
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2306200000 definitions=main-2307250197
+X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 25, 2023 at 4:15=E2=80=AFPM Lizhi Hou <lizhi.hou@amd.com> wrote=
-:
->
-> The PCI endpoint device such as Xilinx Alveo PCI card maps the register
-> spaces from multiple hardware peripherals to its PCI BAR. Normally,
-> the PCI core discovers devices and BARs using the PCI enumeration process=
-.
-> There is no infrastructure to discover the hardware peripherals that are
-> present in a PCI device, and which can be accessed through the PCI BARs.
->
-> Apparently, the device tree framework requires a device tree node for the
-> PCI device. Thus, it can generate the device tree nodes for hardware
-> peripherals underneath. Because PCI is self discoverable bus, there might
-> not be a device tree node created for PCI devices. Furthermore, if the PC=
-I
-> device is hot pluggable, when it is plugged in, the device tree nodes for
-> its parent bridges are required. Add support to generate device tree node
-> for PCI bridges.
->
-> Add an of_pci_make_dev_node() interface that can be used to create device
-> tree node for PCI devices.
->
-> Add a PCI_DYNAMIC_OF_NODES config option. When the option is turned on,
-> the kernel will generate device tree nodes for PCI bridges unconditionall=
-y.
->
-> Initially, add the basic properties for the dynamically generated device
-> tree nodes which include #address-cells, #size-cells, device_type,
-> compatible, ranges, reg.
->
-> Acked-by: Bjorn Helgaas <bhelgaas@google.com>
-> Signed-off-by: Lizhi Hou <lizhi.hou@amd.com>
-> ---
->  drivers/pci/Kconfig       |  12 ++
->  drivers/pci/Makefile      |   1 +
->  drivers/pci/bus.c         |   2 +
->  drivers/pci/of.c          |  96 +++++++++++++++-
->  drivers/pci/of_property.c | 232 ++++++++++++++++++++++++++++++++++++++
->  drivers/pci/pci.h         |  12 ++
->  drivers/pci/remove.c      |   1 +
->  7 files changed, 354 insertions(+), 2 deletions(-)
->  create mode 100644 drivers/pci/of_property.c
->
-> diff --git a/drivers/pci/Kconfig b/drivers/pci/Kconfig
-> index 3c07d8d214b3..49bd09c7dd0a 100644
-> --- a/drivers/pci/Kconfig
-> +++ b/drivers/pci/Kconfig
-> @@ -194,6 +194,18 @@ config PCI_HYPERV
->           The PCI device frontend driver allows the kernel to import arbi=
-trary
->           PCI devices from a PCI backend to support PCI driver domains.
->
-> +config PCI_DYNAMIC_OF_NODES
-> +       bool "Create device tree nodes for PCI devices"
-> +       depends on OF
-> +       select OF_DYNAMIC
-> +       help
-> +         This option enables support for generating device tree nodes fo=
-r some
-> +         PCI devices. Thus, the driver of this kind can load and overlay
-> +         flattened device tree for its downstream devices.
-> +
-> +         Once this option is selected, the device tree nodes will be gen=
-erated
-> +         for all PCI bridges.
-> +
->  choice
->         prompt "PCI Express hierarchy optimization setting"
->         default PCIE_BUS_DEFAULT
-> diff --git a/drivers/pci/Makefile b/drivers/pci/Makefile
-> index 2680e4c92f0a..cc8b4e01e29d 100644
-> --- a/drivers/pci/Makefile
-> +++ b/drivers/pci/Makefile
-> @@ -32,6 +32,7 @@ obj-$(CONFIG_PCI_P2PDMA)      +=3D p2pdma.o
->  obj-$(CONFIG_XEN_PCIDEV_FRONTEND) +=3D xen-pcifront.o
->  obj-$(CONFIG_VGA_ARB)          +=3D vgaarb.o
->  obj-$(CONFIG_PCI_DOE)          +=3D doe.o
-> +obj-$(CONFIG_PCI_DYNAMIC_OF_NODES) +=3D of_property.o
->
->  # Endpoint library must be initialized before its users
->  obj-$(CONFIG_PCI_ENDPOINT)     +=3D endpoint/
-> diff --git a/drivers/pci/bus.c b/drivers/pci/bus.c
-> index 5bc81cc0a2de..ab7d06cd0099 100644
-> --- a/drivers/pci/bus.c
-> +++ b/drivers/pci/bus.c
-> @@ -340,6 +340,8 @@ void pci_bus_add_device(struct pci_dev *dev)
->          */
->         pcibios_bus_add_device(dev);
->         pci_fixup_device(pci_fixup_final, dev);
-> +       if (pci_is_bridge(dev))
-> +               of_pci_make_dev_node(dev);
->         pci_create_sysfs_dev_files(dev);
->         pci_proc_attach_device(dev);
->         pci_bridge_d3_update(dev);
-> diff --git a/drivers/pci/of.c b/drivers/pci/of.c
-> index e51219f9f523..11d3be165e32 100644
-> --- a/drivers/pci/of.c
-> +++ b/drivers/pci/of.c
-> @@ -495,8 +495,21 @@ static int of_irq_parse_pci(const struct pci_dev *pd=
-ev, struct of_phandle_args *
->                  * to rely on this function (you ship a firmware that doe=
-sn't
->                  * create device nodes for all PCI devices).
->                  */
-> -               if (ppnode)
-> -                       break;
-> +               if (ppnode) {
-> +                       /*
-> +                        * When PCI_DYNAMIC_OF_NODES is on, a device tree
-> +                        * node will be generated for PCI bridge. For the
-> +                        * dynamically generated node, interrupt mapping =
-is
-> +                        * not supported. Thus, it needs to check interru=
-pt-map
-> +                        * property and set ppnode to NULL to do standard
-> +                        * swizzling if interrupt-map does not present.
-> +                        */
-> +                       if (IS_ENABLED(CONFIG_PCI_DYNAMIC_OF_NODES) &&
-> +                           !of_property_present(ppnode, "interrupt-map")=
-)
-> +                               ppnode =3D NULL;
+Hi Pierre,
 
-We cannot use a kconfig option to determine behavior. You don't get to
-decide the value of the kconfig option. The OS distro does. As I've
-said in the past, the kconfig option is not a long term solution. You
-need things to work the same way whether PCI nodes were populated
-before the kernel runs or dynamically.
+On 7/25/2023 1:10 AM, Pierre-Louis Bossart wrote:
+> 
+>> +/**
+>> + * struct snd_soc_usb
+>> + * @list - list head for SND SOC struct list
+>> + * @dev - USB backend device reference
+>> + * @component - reference to DAPM component
+> 
+> ASoC component, not DAPM.
+> 
 
-Perhaps what you need to do is read PCI_INTERRUPT_PIN and if it's
-non-zero for a device, populate 'interrupts' property using the value.
-Then the standard DT interrupt parsing code should work. That code
-will walk up nodes until it finds the host bridge interrupt-map.
+Thanks for the detailed review. Will fix this.
 
-Rob
+>> + * @connection_status_cb - callback to notify connection events
+>> + * @priv_data - driver data
+>> + **/
+>> +struct snd_soc_usb {
+>> +	struct list_head list;
+>> +	struct device *dev;
+>> +	struct snd_soc_component *component;
+>> +	int (*connection_status_cb)(struct snd_soc_usb *usb, int card_idx,
+>> +				int connected);
+> 
+> It's not clear what 'connected' really refers to, is this a boolean
+> really or is this a "connection_event?
+> 
+> 
+
+I'll change it to boolean for now, since its currently only 
+connected/disconnected.  If more states are required, then we can add 
+that in the future.
+
+>> +	void *priv_data;
+>> +};
+>> +
+>> +int snd_soc_usb_connect(struct device *usbdev, int card_idx);
+>> +int snd_soc_usb_disconnect(struct device *usbdev);
+>> +void snd_soc_usb_set_priv_data(struct device *dev, void *priv);
+> 
+> this function is not part of this patch, is this intentional to have a
+> get but not a set?
+> 
+>> +void *snd_soc_usb_get_priv_data(struct device *usbdev);
+> 
+> you are using 'usbdev' and 'dev' for the same type of parameters, why
+> not align on one set of definition with a consistent naming.
+> 
+> 
+
+I'll take a look at this and see what happened.  I think Greg mentioned 
+something similar and I made the change to remove the set priv, and 
+moved it elsewhere.
+
+>> +static struct snd_soc_usb *snd_soc_find_usb_ctx(struct device *dev)
+>> +{
+>> +	struct device_node *node;
+>> +	struct snd_soc_usb *ctx = NULL;
+> 
+> this init doesn't seem required?
+> 
+
+Yes, not needed.
+
+>> +
+>> +	node = snd_soc_find_phandle(dev);
+>> +	if (IS_ERR(node))
+>> +		return NULL;
+>> +
+>> +	mutex_lock(&ctx_mutex);
+>> +	list_for_each_entry(ctx, &usb_ctx_list, list) {
+>> +		if (ctx->dev->of_node == node) {
+>> +			of_node_put(node);
+>> +			mutex_unlock(&ctx_mutex);
+>> +			return ctx;
+>> +		}
+>> +	}
+>> +	of_node_put(node);
+>> +	mutex_unlock(&ctx_mutex);
+>> +
+>> +	return NULL;
+>> +}
+>> +
+>> +/**
+>> + * snd_soc_usb_get_priv_data() - Retrieve private data stored
+>> + * @dev: device reference
+>> + *
+>> + * Fetch the private data stored in the USB SND SOC structure.
+>> + *
+>> + */
+>> +void *snd_soc_usb_get_priv_data(struct device *dev)
+>> +{
+>> +	struct snd_soc_usb *ctx;
+>> +
+>> +	ctx = snd_soc_find_usb_ctx(dev);
+> 
+> so in this function you walk through the usb_ctx_list with locking...
+> 
+>> +	if (!ctx) {
+>> +		/* Check if backend device */
+>> +		list_for_each_entry(ctx, &usb_ctx_list, list) {
+> 
+> ... and here you walk again through the list without locking.
+> 
+> Something's weird here, if this was intentional you need to add comments.
+> 
+
+Yes, needs a lock here.
+
+>> +			if (dev->of_node == ctx->dev->of_node)
+>> +				goto out;
+>> +		}
+>> +		ctx = NULL;
+>> +	}
+>> +out:
+>> +	return ctx ? ctx->priv_data : NULL;
+>> +}
+>> +EXPORT_SYMBOL_GPL(snd_soc_usb_get_priv_data);
+>> +
+>> +/**
+>> + * snd_soc_usb_add_port() - Add a USB backend port
+>> + * @dev: USB backend device
+>> + * @priv: private data
+>> + * @connection_cb: connection status callback
+>> + *
+>> + * Register a USB backend device to the SND USB SOC framework.  Memory is
+>> + * allocated as part of the USB backend device.
+>> + *
+>> + */
+>> +struct snd_soc_usb *snd_soc_usb_add_port(struct device *dev, void *priv,
+>> +			int (*connection_cb)(struct snd_soc_usb *usb, int card_idx,
+>> +			int connected))
+>> +{
+>> +	struct snd_soc_usb *usb;
+>> +
+>> +	usb = devm_kzalloc(dev, sizeof(*usb), GFP_KERNEL);
+>> +	if (!usb)
+>> +		return ERR_PTR(-ENOMEM);
+>> +
+>> +	usb->connection_status_cb = connection_cb;
+>> +	usb->dev = dev;
+>> +	usb->priv_data = priv;
+> 
+> back to my comment above, you don't seem to need the set_priv_data() ?
+> 
+
+And yes, this is where I moved the priv data setting.
+
+>> +
+>> +	mutex_lock(&ctx_mutex);
+>> +	list_add_tail(&usb->list, &usb_ctx_list);
+>> +	mutex_unlock(&ctx_mutex);
+>> +
+>> +	return usb;
+>> +}
+>> +EXPORT_SYMBOL_GPL(snd_soc_usb_add_port);
+> 
+>> +/**
+>> + * snd_soc_usb_connect() - Notification of USB device connection
+>> + * @usbdev: USB bus device
+>> + * @card_idx: USB SND card instance
+>> + *
+>> + * Notify of a new USB SND device connection.  The card_idx can be used to
+>> + * handle how the USB backend selects, which device to enable offloading on.
+> 
+> "USB backend" is confusing, not sure if this is the same concept as DPCM
+> "backend" or something else. Please try to avoid overloaded terms.
+> 
+
+Sure, I meant DPCM backend.
+
+>> + *
+>> + */
+>> +int snd_soc_usb_connect(struct device *usbdev, int card_idx)
+>> +{
+>> +	struct snd_soc_usb *ctx;
+>> +
+>> +	if (!usbdev)
+>> +		return -ENODEV;
+>> +
+>> +	ctx = snd_soc_find_usb_ctx(usbdev);
+>> +	if (!ctx)
+>> +		return -ENODEV;
+>> +
+>> +	if (ctx->connection_status_cb)
+>> +		ctx->connection_status_cb(ctx, card_idx, 1);
+> 
+> so either the 'connected' value is 1...
+>> +
+>> +	return 0;
+>> +}
+>> +EXPORT_SYMBOL_GPL(snd_soc_usb_connect);
+>> +
+>> +/**
+>> + * snd_soc_usb_disconnect() - Notification of USB device disconnection
+>> + * @usbdev: USB bus device
+>> + *
+>> + * Notify of a new USB SND device disconnection to the USB backend.
+>> + *
+>> + */
+>> +int snd_soc_usb_disconnect(struct device *usbdev)
+>> +{
+>> +	struct snd_soc_usb *ctx;
+>> +
+>> +	if (!usbdev)
+>> +		return -ENODEV;
+>> +
+>> +	ctx = snd_soc_find_usb_ctx(usbdev);
+>> +	if (!ctx)
+>> +		return -ENODEV;
+>> +
+>> +	if (ctx->connection_status_cb)
+>> +		ctx->connection_status_cb(ctx, -1, 0);
+> 
+> ...and here it's zero.
+> 
+> should this 'connected' parameter be a boolean then with true/false
+> value, or do you want to add enums/defines for more flexibility down the
+> road?
+> 
+
+As mentioned above, will switch to boolean for now.  I don't see a need 
+to have other enums.
+
+Thanks
+Wesley Cheng
