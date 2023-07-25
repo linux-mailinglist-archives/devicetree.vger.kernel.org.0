@@ -2,220 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3118A760D8F
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 10:49:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 324CE760DBF
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 11:00:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231623AbjGYItX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jul 2023 04:49:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32988 "EHLO
+        id S232533AbjGYI77 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jul 2023 04:59:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44574 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232931AbjGYIsW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 04:48:22 -0400
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D84821BCB
-        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 01:46:43 -0700 (PDT)
-Received: by mail-ed1-x52d.google.com with SMTP id 4fb4d7f45d1cf-51e28cac164so13077269a12.1
-        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 01:46:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690274798; x=1690879598;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=HlbuF9GW/UUiryYl6cWoqRYe+aX6OM3eYgKK9vJEYOw=;
-        b=M3iBy29puoxXZ6rM8EV9glS1Zn1pRGPsaw6LOOahZUz959whS8lkcXeS2+NK1aqPq0
-         5f+cFOtECynFkB7aX4pb9L4TMfZpad4918vlV3F792Cyr/cCrSTPKmcEKhlqogRaGqJl
-         y6+m8dfYviHqGh4JMY6DIchB4Z31U7xFt/uAiqkX0HB2MOC9CI6P7WoX0yHvNzu8PJyw
-         hKS4bonZKIkj0FHMWSBYviNBRxRO1UYcitJVHm9ItgKoKEH3cI6dpA0/S33S4iwpTQ/H
-         uxuFOTLFUNtkHalKNhrQsrI+FHsnf7Gj06S7T1rCsUaP1LTzyBQ/iNSOEf22WTdwvGBd
-         5AMg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690274798; x=1690879598;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=HlbuF9GW/UUiryYl6cWoqRYe+aX6OM3eYgKK9vJEYOw=;
-        b=h6DK4f9wscH3gx7vQnnFJaT3oTmiOGgIIOrD8D+6s4EcE3oFS3+MMDYBvceGH3X/px
-         5cCiNSwWcC8UcFYtkrnjgmOvcY0CIuh44BtugsJDgFZLey6mCJfVVCENG9P906qU6wXH
-         oK2lcJLyZhuQQwKAKyUNJs8S3DHTMQ1DU5luGIpl93Jp5x2oJMK1rd9oSgzBj1Cznr/b
-         xYYYN//o7YFgrvE1xtTjaOxoHUSfEOAQsiAhZAFJE1RKSLkuRWb2K85UEgQA2qEIE0oM
-         gIS+2vNjAPnLHchN7S+LWlxoT4fXamKrmqIn+C1622MKCyu0o/XJO1vICwnAc6MEUEax
-         mfkQ==
-X-Gm-Message-State: ABy/qLbq44VWKVCc8LIA4Kl6d8BX6kOljv5gW8UNMlUtnzabNW9YvZ09
-        xVPBv4CmaFDJw7BaLlGHC4/d7A==
-X-Google-Smtp-Source: APBJJlFxcW0FY0WW1nnu3wIeqn0GpE6VrHe1OIkrOLE2pvGcYdsYyn7CCgeDKAS72F8B00VeN9yN6g==
-X-Received: by 2002:a05:6402:4412:b0:51e:48e7:72ca with SMTP id y18-20020a056402441200b0051e48e772camr1910946eda.13.1690274797759;
-        Tue, 25 Jul 2023 01:46:37 -0700 (PDT)
-Received: from krzk-bin.. ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id w22-20020a056402071600b005221b918e33sm4472526edx.22.2023.07.25.01.46.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 Jul 2023 01:46:36 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     cros-qcom-dts-watchers@chromium.org,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH RFT] arm64: dts: qcom: sc7280: drop incorrect EUD port on SoC side
-Date:   Tue, 25 Jul 2023 10:46:33 +0200
-Message-Id: <20230725084633.67179-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S232345AbjGYI76 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 04:59:58 -0400
+Received: from elvis.franken.de (elvis.franken.de [193.175.24.41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 29B0EBD;
+        Tue, 25 Jul 2023 01:59:53 -0700 (PDT)
+Received: from uucp by elvis.franken.de with local-rmail (Exim 3.36 #1)
+        id 1qODtS-0008Gv-00; Tue, 25 Jul 2023 10:59:46 +0200
+Received: by alpha.franken.de (Postfix, from userid 1000)
+        id 1D79DC01F0; Tue, 25 Jul 2023 10:48:40 +0200 (CEST)
+Date:   Tue, 25 Jul 2023 10:48:40 +0200
+From:   Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Florian Fainelli <florian.fainelli@broadcom.com>,
+        Broadcom internal kernel review list 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        John Crispin <john@phrozen.org>, devicetree@vger.kernel.org,
+        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] MIPS: Explicitly include correct DT includes
+Message-ID: <ZL+MaK820fzdfw+5@alpha.franken.de>
+References: <20230714174028.4040093-1-robh@kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230714174028.4040093-1-robh@kernel.org>
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_PASS,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Qualcomm Embedded USB Debugger (EUD) second port should point to Type-C
-USB connector.  Such connector was defined directly in root node of
-sc7280.dtsi which is clearly wrong.  SC7280 is a chip, so physically it
-does not have USB Type-C port.  The connector is usually accessible
-through some USB switch or controller.
+On Fri, Jul 14, 2023 at 11:40:27AM -0600, Rob Herring wrote:
+> The DT of_device.h and of_platform.h date back to the separate
+> of_platform_bus_type before it as merged into the regular platform bus.
+> As part of that merge prepping Arm DT support 13 years ago, they
+> "temporarily" include each other. They also include platform_device.h
+> and of.h. As a result, there's a pretty much random mix of those include
+> files used throughout the tree. In order to detangle these headers and
+> replace the implicit includes with struct declarations, users need to
+> explicitly include the correct includes.
+> 
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+>  arch/mips/bmips/setup.c               | 1 -
+>  arch/mips/cavium-octeon/flash_setup.c | 3 ++-
+>  arch/mips/lantiq/irq.c                | 2 +-
+>  arch/mips/lantiq/xway/dcdc.c          | 3 ++-
+>  arch/mips/lantiq/xway/gptu.c          | 4 ++--
+>  arch/mips/lantiq/xway/sysctrl.c       | 1 -
+>  arch/mips/lantiq/xway/vmmc.c          | 3 ++-
+>  arch/mips/pci/pci-lantiq.c            | 4 ++--
+>  arch/mips/pci/pci-rt2880.c            | 5 ++---
+>  arch/mips/pic32/pic32mzda/config.c    | 1 -
+>  arch/mips/ralink/irq.c                | 2 +-
+>  arch/mips/ralink/of.c                 | 2 +-
+>  arch/mips/ralink/prom.c               | 2 --
+>  13 files changed, 15 insertions(+), 18 deletions(-)
 
-Correct the EUD/USB connector topology by removing the top-level fake
-USB connector and adding appropriate ports in boards having actual USB
-Type-C connector defined (Herobrine, IDP).  All other boards will have
-this EUD port missing.
+applied to mips-next.
 
-This fixes also dtbs_check warnings:
+Thomas.
 
-  sc7280-herobrine-crd.dtb: connector: ports:port@0: 'reg' is a required property
-
-Fixes: 9ee402ccfeb1 ("arm64: dts: qcom: sc7280: Fix EUD dt node syntax")
-Cc: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
----
-
-Not tested on hardware.
----
- .../arm64/boot/dts/qcom/sc7280-herobrine.dtsi | 15 +++++++++++++
- .../arm64/boot/dts/qcom/sc7280-idp-ec-h1.dtsi | 15 +++++++++++++
- arch/arm64/boot/dts/qcom/sc7280.dtsi          | 21 +------------------
- 3 files changed, 31 insertions(+), 20 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
-index 9ea6636125ad..2a4f239c5632 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
-@@ -573,6 +573,12 @@ usb_c0: connector@0 {
- 				power-role = "dual";
- 				data-role = "host";
- 				try-power-role = "source";
-+
-+				port {
-+					usb_c0_ep: endpoint {
-+						remote-endpoint = <&eud_con>;
-+					};
-+				};
- 			};
- 
- 			usb_c1: connector@1 {
-@@ -590,6 +596,15 @@ usb_c1: connector@1 {
- #include <arm/cros-ec-keyboard.dtsi>
- #include <arm/cros-ec-sbs.dtsi>
- 
-+&eud_ports {
-+	port@1 {
-+		reg = <1>;
-+		eud_con: endpoint {
-+			remote-endpoint = <&usb_c0_ep>;
-+		};
-+	};
-+};
-+
- &keyboard_controller {
- 	function-row-physmap = <
- 		MATRIX_KEY(0x00, 0x02, 0)	/* T1 */
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp-ec-h1.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp-ec-h1.dtsi
-index ebae545c587c..ffc469431340 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-idp-ec-h1.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280-idp-ec-h1.dtsi
-@@ -44,6 +44,12 @@ usb_c0: connector@0 {
- 				power-role = "dual";
- 				data-role = "host";
- 				try-power-role = "source";
-+
-+				port {
-+					usb_c0_ep: endpoint {
-+						remote-endpoint = <&eud_con>;
-+					};
-+				};
- 			};
- 
- 			usb_c1: connector@1 {
-@@ -78,6 +84,15 @@ cr50: tpm@0 {
- 	};
- };
- 
-+&eud_ports {
-+	port@1 {
-+		reg = <1>;
-+		eud_con: endpoint {
-+			remote-endpoint = <&usb_c0_ep>;
-+		};
-+	};
-+};
-+
- &tlmm {
- 	ap_ec_int_l: ap-ec-int-l-state {
- 		pins = "gpio18";
-diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-index 925428a5f6ae..af9bb2ebcaa1 100644
---- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-@@ -649,18 +649,6 @@ cpu7_opp_3014mhz: opp-3014400000 {
- 		};
- 	};
- 
--	eud_typec: connector {
--		compatible = "usb-c-connector";
--
--		ports {
--			port@0 {
--				con_eud: endpoint {
--					remote-endpoint = <&eud_con>;
--				};
--			};
--		};
--	};
--
- 	memory@80000000 {
- 		device_type = "memory";
- 		/* We expect the bootloader to fill in the size */
-@@ -3624,7 +3612,7 @@ eud: eud@88e0000 {
- 			      <0 0x88e2000 0 0x1000>;
- 			interrupts-extended = <&pdc 11 IRQ_TYPE_LEVEL_HIGH>;
- 
--			ports {
-+			eud_ports: ports {
- 				#address-cells = <1>;
- 				#size-cells = <0>;
- 
-@@ -3634,13 +3622,6 @@ eud_ep: endpoint {
- 						remote-endpoint = <&usb2_role_switch>;
- 					};
- 				};
--
--				port@1 {
--					reg = <1>;
--					eud_con: endpoint {
--						remote-endpoint = <&con_eud>;
--					};
--				};
- 			};
- 		};
- 
 -- 
-2.34.1
-
+Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
+good idea.                                                [ RFC1925, 2.3 ]
