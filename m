@@ -2,298 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A917760C90
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 10:02:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EDFF9760C91
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 10:02:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231616AbjGYICb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jul 2023 04:02:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40394 "EHLO
+        id S232099AbjGYICf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jul 2023 04:02:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40436 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232163AbjGYIC1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 04:02:27 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9C42120
-        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 01:02:25 -0700 (PDT)
-Received: from [IPv6:2a00:23c8:b70a:ae01:40e7:5206:308c:f3ed] (unknown [IPv6:2a00:23c8:b70a:ae01:40e7:5206:308c:f3ed])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: obbardc)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 173C66607106;
-        Tue, 25 Jul 2023 09:02:24 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1690272144;
-        bh=0BGaOZ6JDV587wQupiasiVA/bWm/Xv4uJScil2vAHyM=;
-        h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-        b=D8bhEbiI6WI8TOi1a2biKDFeXHayQ+B7/G045bb3C8JxLr1F6PKldVGJPR8v0sKts
-         ZRF/6mwJqVPLPqCBySH0GmwWAnlVjnnEh6CehToKMYdTQJ8Y6KHlIIETyM5v7IKzy1
-         8WHBqZHKIbGYgumeIjChOTH7lSuOivBt1XMO5lJ4Sw+CwC6J8ITyjWBgdyVST4mQt1
-         9SQze/XIuhBoHhfY4MWRajnyiqi9EyKQzwnNFw3mXC1rs+ic/6nlxoeYLJF+jTiKr3
-         3wGSGogj2NsyqAhCJ5sRsLKDbypjHGpMSVfpCgIxwD+2YbWcH9Tk5lTaZo2sOx9nPv
-         ESFBpHfsG8X7g==
-Message-ID: <8ec1c4bb97ba0857275a540590fb302929436ba4.camel@collabora.com>
-Subject: Re: [PATCH] arm64: dts: rockchip: Enable TYPE-C PD for ROC-RK3399-PC
-From:   Christopher Obbard <chris.obbard@collabora.com>
-To:     Da Xue <da@lessconfused.com>
-Cc:     Jagan Teki <jagan@amarulasolutions.com>,
-        Heiko Stuebner <heiko@sntech.de>,
+        with ESMTP id S231745AbjGYICe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 04:02:34 -0400
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0A32118
+        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 01:02:32 -0700 (PDT)
+Received: by mail-wr1-x42e.google.com with SMTP id ffacd0b85a97d-31427ddd3fbso4103008f8f.0
+        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 01:02:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1690272151; x=1690876951;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=I3v1BVqEhAVeW2Xqs0OD6SXxWEo7Q/+yKV1QI3AwLLc=;
+        b=aaouEtYVEjE4zRDsvpzoWGwzwSPV9SDD1pdljgK9gA6Ri9rLr2Jtspbzv88hJH6cwe
+         AVZnBOkQavqOPMfV6TY3c9I04noNBrNguGJwH3S2e/Obw9vzkgwiDWRKRQ4oR0YHJ/j/
+         cT2fBeH8JuNBmwaribj7aGrIcV333QfISME4Q8HbQSxwlj1pfHisUfDLtDt270Z7YDqS
+         +vRtDUw+up8/afHH4b5AjRJ6k4xDZGR//8ifsJiCtsEZ1Ha1MHpnYS0KORtR4oJ49Vic
+         Gp/qRnAxs/b/TgS/xX+QN5bBIYIGnIAKizuPJp89fVG002GPkmH2CZkkonoMcyOIvkdm
+         +12w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690272151; x=1690876951;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=I3v1BVqEhAVeW2Xqs0OD6SXxWEo7Q/+yKV1QI3AwLLc=;
+        b=U6jyd/LlJKlunSHTZBg3fBIHQ6ppSelBt6I2wI5GZmbSFASUImedFKxAzyjx/8MYeV
+         DWEi3XF7QknTm4fC2HCICr78p5G7dyBsaA+0ygFWe+ZU9dGN7582W8qHVUDFxVZRhfaK
+         d99pB03DropXIRcegQ3R7dhGYjImHAUmW7jMRYSGIII2SfXqQ+v7NUcw1yWkr54+W5Wh
+         KewPa0zTECPprCHMFnrcKUeNJUBPOjFmPPgMekCaMiTmWjjVEiNoQOvOl+pcyCiMp79b
+         ZdgfFKVPHv8RU7GHsTqBQSlIfc7/odfx3Iwcun1bIMH/ggLdScrOCH8JJ6STOFwI5D+i
+         ZyBQ==
+X-Gm-Message-State: ABy/qLZ9XPj0Bqw9dMmAGzUZiSPDIjR/s36QihDOrX/mlD7ClS/IdcyZ
+        swRfnyU66rqTV//4bjQHgf+M3g==
+X-Google-Smtp-Source: APBJJlFyrzW0659tWRjxTEp4UbibdlARF8lOgeGhcIJ5aGAk4vGcxVsE/S/rge44cR0Qz14H3wkvxg==
+X-Received: by 2002:adf:ec86:0:b0:317:67bf:337f with SMTP id z6-20020adfec86000000b0031767bf337fmr1758860wrn.2.1690272151075;
+        Tue, 25 Jul 2023 01:02:31 -0700 (PDT)
+Received: from [192.168.1.101] (abxj221.neoplus.adsl.tpnet.pl. [83.9.3.221])
+        by smtp.gmail.com with ESMTPSA id x12-20020a5d650c000000b003143aa0ca8asm15394656wru.13.2023.07.25.01.02.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 25 Jul 2023 01:02:30 -0700 (PDT)
+Message-ID: <411da19f-10f3-6dc1-a708-cdf06be9c4d8@linaro.org>
+Date:   Tue, 25 Jul 2023 10:02:28 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 5/7] clk: qcom: hfpll: Add MSM8976 PLL data
+Content-Language: en-US
+To:     Adam Skladowski <a39.skl@gmail.com>
+Cc:     phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        linux-rockchip@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Corentin Labbe <clabbe@baylibre.com>,
-        kernel <kernel@collabora.com>
-Date:   Tue, 25 Jul 2023 09:02:21 +0100
-In-Reply-To: <CACdvmAia49_YiKpVvT=yeLWF+YGm+2vFK3rdwRB9XOAH5mm=-w@mail.gmail.com>
-References: <20230719122123.3702588-1-jagan@amarulasolutions.com>
-         <51af40e5fa8e22411b654bbb894bb0fee19be8f9.camel@collabora.com>
-         <CACdvmAia49_YiKpVvT=yeLWF+YGm+2vFK3rdwRB9XOAH5mm=-w@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.48.4-1 
-MIME-Version: 1.0
+        AngeloGioacchino Del Regno <kholk11@gmail.com>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230723160827.22660-1-a39.skl@gmail.com>
+ <20230723160827.22660-6-a39.skl@gmail.com>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
+ BB/OmIWU6X+LZW6P88ZmHe+KeyABLMP5s1tJNK1j4ntT7mECcWZDzafPWF4F6m4WJOG27kTJ
+ HGWdmtO+RvadOVi6CoUDqALsmfS3MUG5Pj2Ne9+0jRg4hEnB92AyF9rW2G3qisFcwPgvatt7
+ TXD5E38mLyOPOUyXNj9XpDbt1hNwKQfiidmPh5e7VNAWRnW1iCMMoKqzM1Anzq7e5Afyeifz
+ zRcQPLaqrPjnKqZGL2BKQSZDh6NkI5ZLRhhHQf61fkWcUpTp1oDC6jWVfT7hwRVIQLrrNj9G
+ MpPzrlN4YuAqKeIer1FMt8cq64ifgTzxHzXsMcUdclzq2LTk2RXaPl6Jg/IXWqUClJHbamSk
+ t1bfif3SnmhA6TiNvEpDKPiT3IDs42THU6ygslrBxyROQPWLI9IL1y8S6RtEh8H+NZQWZNzm
+ UQ3imZirlPjxZtvz1BtnnBWS06e7x/UEAguj7VHCuymVgpl2Za17d1jj81YN5Rp5L9GXxkV1
+ aUEwONM3eCI3qcYm5JNc5X+JthZOWsbIPSC1Rhxz3JmWIwP1udr5E3oNRe9u2LIEq+wH/toH
+ kpPDhTeMkvt4KfE5m5ercid9+ZXAqoaYLUL4HCEw+HW0DXcKDwARAQABzShLb25yYWQgRHli
+ Y2lvIDxrb25yYWQuZHliY2lvQGxpbmFyby5vcmc+wsGOBBMBCAA4FiEEU24if9oCL2zdAAQV
+ R4cBcg5dfFgFAmQ5bqwCGwMFCwkIBwIGFQoJCAsCBBYCAwECHgECF4AACgkQR4cBcg5dfFjO
+ BQ//YQV6fkbqQCceYebGg6TiisWCy8LG77zV7DB0VMIWJv7Km7Sz0QQrHQVzhEr3trNenZrf
+ yy+o2tQOF2biICzbLM8oyQPY8B///KJTWI2khoB8IJSJq3kNG68NjPg2vkP6CMltC/X3ohAo
+ xL2UgwN5vj74QnlNneOjc0vGbtA7zURNhTz5P/YuTudCqcAbxJkbqZM4WymjQhe0XgwHLkiH
+ 5LHSZ31MRKp/+4Kqs4DTXMctc7vFhtUdmatAExDKw8oEz5NbskKbW+qHjW1XUcUIrxRr667V
+ GWH6MkVceT9ZBrtLoSzMLYaQXvi3sSAup0qiJiBYszc/VOu3RbIpNLRcXN3KYuxdQAptacTE
+ mA+5+4Y4DfC3rUSun+hWLDeac9z9jjHm5rE998OqZnOU9aztbd6zQG5VL6EKgsVXAZD4D3RP
+ x1NaAjdA3MD06eyvbOWiA5NSzIcC8UIQvgx09xm7dThCuQYJR4Yxjd+9JPJHI6apzNZpDGvQ
+ BBZzvwxV6L1CojUEpnilmMG1ZOTstktWpNzw3G2Gis0XihDUef0MWVsQYJAl0wfiv/0By+XK
+ mm2zRR+l/dnzxnlbgJ5pO0imC2w0TVxLkAp0eo0LHw619finad2u6UPQAkZ4oj++iIGrJkt5
+ Lkn2XgB+IW8ESflz6nDY3b5KQRF8Z6XLP0+IEdLOOARkOW7yEgorBgEEAZdVAQUBAQdAwmUx
+ xrbSCx2ksDxz7rFFGX1KmTkdRtcgC6F3NfuNYkYDAQgHwsF2BBgBCAAgFiEEU24if9oCL2zd
+ AAQVR4cBcg5dfFgFAmQ5bvICGwwACgkQR4cBcg5dfFju1Q//Xta1ShwL0MLSC1KL1lXGXeRM
+ 8arzfyiB5wJ9tb9U/nZvhhdfilEDLe0jKJY0RJErbdRHsalwQCrtq/1ewQpMpsRxXzAjgfRN
+ jc4tgxRWmI+aVTzSRpywNahzZBT695hMz81cVZJoZzaV0KaMTlSnBkrviPz1nIGHYCHJxF9r
+ cIu0GSIyUjZ/7xslxdvjpLth16H27JCWDzDqIQMtg61063gNyEyWgt1qRSaK14JIH/DoYRfn
+ jfFQSC8bffFjat7BQGFz4ZpRavkMUFuDirn5Tf28oc5ebe2cIHp4/kajTx/7JOxWZ80U70mA
+ cBgEeYSrYYnX+UJsSxpzLc/0sT1eRJDEhI4XIQM4ClIzpsCIN5HnVF76UQXh3a9zpwh3dk8i
+ bhN/URmCOTH+LHNJYN/MxY8wuukq877DWB7k86pBs5IDLAXmW8v3gIDWyIcgYqb2v8QO2Mqx
+ YMqL7UZxVLul4/JbllsQB8F/fNI8AfttmAQL9cwo6C8yDTXKdho920W4WUR9k8NT/OBqWSyk
+ bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
+ nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
+ izWDgYvmBE8=
+In-Reply-To: <20230723160827.22660-6-a39.skl@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Da, Jagan,
+On 23.07.2023 18:08, Adam Skladowski wrote:
+> Add PLL configuration for MSM8976 SoC, this SoC offers 3 HFPLL.
+> Small cluster offers two presets for 652-902Mhz range and 902Mhz-1.47Ghz.
+> For simplicity only add second range as smaller frequencies can be obtained
+> via apcs divider or safe parent this also saves us
+> a hassle of reconfiguring VCO bit and config_val.
+> A72 and CCI cluster only use single frequency range with their
+> outputs/post_dividers/vco_bits being static.
+> 
+> Signed-off-by: Adam Skladowski <a39.skl@gmail.com>
+> ---
+[...]
 
-On Tue, 2023-07-25 at 03:39 -0400, Da Xue wrote:
-> On Mon, Jul 24, 2023 at 9:55=E2=80=AFAM Christopher Obbard
-> <chris.obbard@collabora.com> wrote:
-> >=20
-> > On Wed, 2023-07-19 at 17:51 +0530, Jagan Teki wrote:
-> > > The power supply circuit in ROC-RK3399-PC is
-> > >=20
-> > > Power Supply (or PPS) =3D> FUSB =3D> MP8859
-> > >=20
-> > > VUBS pin of FUSB and IN pin of MP8859 is supplied via TYPEC_IN.
-> > >=20
-> > > The MP8859 operated with 2.8V to 22V supply voltage and typical
-> > > applications this supply can be 12V.
-> > >=20
-> > > This patch is trying to support the PD by changing the FUSB VBUS supp=
-ly
-> > > to 12V and tune the I2C7 timings from downstream kernel.
-> > >=20
-> > > Tested with PD3.0 PPS with supply voltages of 12V/3A and 20V/5A.
-> >=20
-> > Hi Jagan,
-> >=20
-> > This series works fine with a "dumb" (no PD negotiation) 5.1V Raspberry=
- Pi PSU.
-> >=20
-> > It also works fine with a Dell 45W USB-C Laptop Power Supply (model AA4=
-5NM170) which provides 5V@3A,9V@3A,15V@3A,20V@2.25A, where Linux master fai=
-ls and just tells the USB-PD PSU to power-off.
->=20
-> I think this depends on the recent Rockchip TCPM changes. FUSB302 has
-> been a pain in the USB or else this platform would have launched a lot
-> longer ago.
+> +static const struct hfpll_data msm8976_a72 = {
+> +	.mode_reg = 0x00,
+> +	.l_reg = 0x04,
+> +	.m_reg = 0x08,
+> +	.n_reg = 0x0c,
+> +	.user_reg = 0x10,
+> +	.config_reg = 0x14,
+> +	.config_val = 0x4e0405d,
+> +	.status_reg = 0x1c,
+> +	.lock_bit = 16,
+> +
+> +	.l_val = 0x3e,
+> +	.user_val = 0x100109,
+> +	.min_rate = 940800000UL,
+> +	.max_rate = 1843200000UL,
+2016000000?
 
-Sorry, I was testing this patch on top of next-20230724 which includes=C2=
-=A0https://patchwork.kernel.org/project/linux-rockchip/list/?series=3D75775=
-2:
+[...]
 
- 8be558dcffe69b078b34b1fa93b82acaf4ce4957 ("usb: typec: tcpm: add get max p=
-ower support")
- 1e35f074399dece73d5df11847d4a0d7a6f49434 ("usb: typec: tcpm: fix cc role a=
-t port reset")
+>  static const struct of_device_id qcom_hfpll_match_table[] = {
+>  	{ .compatible = "qcom,hfpll", &hdata },
+> +	{ .compatible = "qcom,msm8976-hfpll-a53", &msm8976_a53 },
+> +	{ .compatible = "qcom,msm8976-hfpll-a72", &msm8976_a72 },
+> +	{ .compatible = "qcom,msm8976-hfpll-cci", &msm8976_cci },
+.data = is missing
 
-Can you check if I am missing any other patches ?
-
-
-Thank you
-
->=20
-> >=20
-> > It doesn't work with a Lenovo 65W PSU (model ADLX65YLC3D) which provide=
-s 5V@2A,9V@2A,15V@3A,20V@3.25A, after negotiation the driver turns the PD P=
-SU off and on again, resetting the board.
-> > So it'd be great to get this fixed, but it seems like the sink-pdos sho=
-uld already support this PSU ?
->=20
-> Something to note about USB PD that I read in the TI PD 2.0 paper and
-> re-spewing based on memory: during transitions, the sink should
-> self-limit to 500mA. If that is the case, the transition behavior is
-> up to the source.
->=20
-> >=20
-> >=20
-> > As a side note for full transparency, another issue is that with Linux =
-master or with this patch applied, applying power to the DC_12V header with=
-out a USB-C PSU connected (e.g. powering from the
-> > POE
-> > expansion shield), boot hangs and dumps to an initramfs shell with:
-> >=20
-> > =C2=A0 [=C2=A0=C2=A0=C2=A0 7.411798] random: crng init done
-> > =C2=A0 [=C2=A0=C2=A0 12.568138] platform fe3a0000.usb: deferred probe p=
-ending
-> > =C2=A0 [=C2=A0=C2=A0 12.568673] platform sdio-pwrseq: deferred probe pe=
-nding
-> > =C2=A0 [=C2=A0=C2=A0 12.569162] platform fe3e0000.usb: deferred probe p=
-ending
-> > =C2=A0 [=C2=A0=C2=A0 12.569658] platform adc-keys: deferred probe pendi=
-ng
-> > =C2=A0 [=C2=A0=C2=A0 12.570123] i2c 7-0022: deferred probe pending
-> > =C2=A0 [=C2=A0=C2=A0 12.570533] i2c 4-0022: deferred probe pending
-> > =C2=A0 [=C2=A0=C2=A0 12.570944] platform ff940000.hdmi: deferred probe =
-pending
-> > =C2=A0 [=C2=A0=C2=A0 12.571448] platform vcc3v0-sd: deferred probe pend=
-ing
-> > =C2=A0 [=C2=A0=C2=A0 12.572000] platform vcc1v8-s3: deferred probe pend=
-ing
-> > =C2=A0 [=C2=A0=C2=A0 12.572475] platform sys-12v: deferred probe pendin=
-g
-> > =C2=A0 [=C2=A0=C2=A0 12.572933] platform vcc3v3-sys: deferred probe pen=
-ding
-> > =C2=A0 [=C2=A0=C2=A0 12.573412] platform fe320000.mmc: deferred probe p=
-ending
-> > =C2=A0 [=C2=A0=C2=A0 12.573907] platform vcca-0v9: deferred probe pendi=
-ng
-> > =C2=A0 [=C2=A0=C2=A0 12.574371] platform vcc5v0-host-regulator: deferre=
-d probe pending
-> > =C2=A0 [=C2=A0=C2=A0 12.574935] platform ff770000.syscon:usb2phy@e450: =
-deferred probe pending
-> > =C2=A0 [=C2=A0=C2=A0 12.575552] platform vcc-vbus-typec1: deferred prob=
-e pending
-> > =C2=A0 [=C2=A0=C2=A0 12.576090] platform fe300000.ethernet: deferred pr=
-obe pending
-> > =C2=A0 [=C2=A0=C2=A0 12.576623] platform vcc-sys: deferred probe pendin=
-g
-> > =C2=A0 [=C2=A0=C2=A0 12.577080] platform ff770000.syscon:usb2phy@e460: =
-deferred probe pending
-> > =C2=A0 [=C2=A0=C2=A0 12.577697] platform ff320000.syscon:io-domains: de=
-ferred probe pending
-> > =C2=A0 [=C2=A0=C2=A0 12.578298] platform ff770000.syscon:io-domains: de=
-ferred probe pending
-> > =C2=A0 [=C2=A0=C2=A0 12.578901] platform fe800000.usb: deferred probe p=
-ending
-> > =C2=A0 [=C2=A0=C2=A0 12.579395] platform fe900000.usb: deferred probe p=
-ending
-> > =C2=A0 [=C2=A0=C2=A0 12.579904] platform vdd-log: deferred probe pendin=
-g
-> > =C2=A0 [=C2=A0=C2=A0 12.580362] i2c 0-001b: deferred probe pending
-> > =C2=A0 [=C2=A0=C2=A0 12.580772] i2c 0-0040: deferred probe pending
-> > =C2=A0 [=C2=A0=C2=A0 12.581182] platform cpufreq-dt: deferred probe pen=
-ding
-> > =C2=A0 [=C2=A0=C2=A0 12.581663] i2c 0-0041: deferred probe pending
-> >=20
-> >=20
-> >=20
-> > Thanks,
-> >=20
-> > Chris
-> >=20
-> > >=20
-> > > Cc: Corentin Labbe <clabbe@baylibre.com>
-> > > Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
-> > > ---
-> > > =C2=A0.../boot/dts/rockchip/rk3399-roc-pc.dtsi=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 | 19 ++++++++++++++++---
-> > > =C2=A01 file changed, 16 insertions(+), 3 deletions(-)
-> > >=20
-> > > diff --git a/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi b/arch/a=
-rm64/boot/dts/rockchip/rk3399-roc-pc.dtsi
-> > > index c32913df93c3..8963b3858eae 100644
-> > > --- a/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi
-> > > +++ b/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi
-> > > @@ -6,6 +6,7 @@
-> > > =C2=A0/dts-v1/;
-> > > =C2=A0#include <dt-bindings/input/linux-event-codes.h>
-> > > =C2=A0#include <dt-bindings/pwm/pwm.h>
-> > > +#include "dt-bindings/usb/pd.h"
-> > > =C2=A0#include "rk3399.dtsi"
-> > > =C2=A0#include "rk3399-opp.dtsi"
-> > >=20
-> > > @@ -524,8 +525,9 @@ &i2c3 {
-> > > =C2=A0};
-> > >=20
-> > > =C2=A0&i2c4 {
-> > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 i2c-scl-rising-time-ns =3D <600=
->;
-> > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 i2c-scl-falling-time-ns =3D <20=
->;
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 clock-frequency =3D <400000>;
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 i2c-scl-rising-time-ns =3D <345=
->;
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 i2c-scl-falling-time-ns =3D <11=
->;
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 status =3D "okay";
-> > >=20
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 fusb1: usb-typec@22 {
-> > > @@ -552,8 +554,19 @@ fusb0: usb-typec@22 {
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 interrupts =3D <2 IRQ_TYPE_LEVEL_LOW>;
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 pinctrl-names =3D "default";
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 pinctrl-0 =3D <&fusb0_int>;
-> > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 vbus-supply =3D <&vcc_vbus_typec0>;
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 vbus-supply =3D <&dc_12v>;
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 status =3D "okay";
-> > > +
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 connector {
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compatib=
-le =3D "usb-c-connector";
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 data-rol=
-e =3D "dual";
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 label =
-=3D "USB-C";
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 power-ro=
-le =3D "sink";
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 try-powe=
-r-role =3D "sink";
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 op-sink-=
-microwatt =3D <10000000>;
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 sink-pdo=
-s =3D <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 PDO_V=
-AR(5000, 20000, 5000)>;
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 };
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 };
-> > >=20
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 mp8859: regulator@66 {
-> >=20
-> > --
-> > Christopher Obbard BEng (Hons) MIET
-> > Senior Engineer
-> >=20
-> > Collabora Ltd
-> > Platinum Building, St John's Innovation Park, Cambridge CB4 0DS, UK
-> > Registered in England & Wales no 5513718.
-> > This message is intended for the use of only the person(s) ("intended
-> > recipient") to whom it is addressed.
-> > It may contain information that is privileged and confidential.
-> > Accordingly, any dissemination, distribution, copying or other use of
-> > this message or any of its content by any person other than the
-> > intended recipient may constitute a breach of civil or criminal law and
-> > is strictly prohibited.
-> >=20
-> >=20
-> > _______________________________________________
-> > Linux-rockchip mailing list
-> > Linux-rockchip@lists.infradead.org
-> > http://lists.infradead.org/mailman/listinfo/linux-rockchip
->=20
+Konrad
