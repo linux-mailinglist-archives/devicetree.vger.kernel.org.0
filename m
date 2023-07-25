@@ -2,92 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 46E4A7620A0
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 19:52:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B4867620E0
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 20:02:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229778AbjGYRwo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jul 2023 13:52:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47404 "EHLO
+        id S232664AbjGYSCO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jul 2023 14:02:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53546 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230305AbjGYRwm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 13:52:42 -0400
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A59E2116
-        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 10:51:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1690307507;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=Ht71+ytnrpXSHx2moGem4zAvWEqI+p9KhmtDtZeMjAg=;
-        b=YarrbDZjrAnB1oc5u0x0YNImnV4vkV3Etu+yGGiJJQWCOOd67SNLlUIb0D1Zcr66Di18g+
-        9nYq5hYbv6vnu0GdNRSRbOwQR2sL9q7DnGZJ3N+5F7UU+6jE4u9J24n130JR5Q/qIr8WsY
-        met8KaskBW7oC534mTnTX9QJw4gQ98c=
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com
- [209.85.160.200]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-524-ekY3fMnaPvWLgmYo8DFZnQ-1; Tue, 25 Jul 2023 13:51:46 -0400
-X-MC-Unique: ekY3fMnaPvWLgmYo8DFZnQ-1
-Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-40558c0dc8bso33559591cf.2
-        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 10:51:46 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690307505; x=1690912305;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Ht71+ytnrpXSHx2moGem4zAvWEqI+p9KhmtDtZeMjAg=;
-        b=kBbZll6szqX603MogEJN5SIaFS8CB7Aitg/y7JR60gAHTcANvnJ29Qrp3Ygq3IrGng
-         nf6iMMZ3rruFvLAqTnYWfbbX1aCGd5tPYr0xwnszAObtct1QpW5Sjwm444Elr3gUEyZr
-         tdhCS5zvFT4nkIet+isQGalHEyaNAOPVeNFfNlIuQt27Hx8qzBUZYJWOIGYFlC3Zpkiu
-         SF3XTgPnhsb+DmsxXdY0sPurORbQMHIGthCQlIFkLEbpk41OB5I83uCoQStJfait138k
-         LpN0UNitLGW3Eza8bRkjoh3r7yULFA7D204zv30YOx2lQ2qos0jFBDVZpUYRjdVN1qi4
-         3w2Q==
-X-Gm-Message-State: ABy/qLZSTlk6r0UmMY9DcuWtHDdWdHtFgG0zYWLvIn0J6IzBMyB0cAW3
-        RBUEUWSFkF+3lyKKjocIHvbsot2NV9rqZTY8gM1/ke7tdF7AxpAc3VFSX0j5eV+D2Gutl+Z+NZF
-        D/w3+rJxYNsfcAg1OYQnNHQ==
-X-Received: by 2002:a05:622a:1488:b0:403:cd14:8f with SMTP id t8-20020a05622a148800b00403cd14008fmr3326839qtx.57.1690307505558;
-        Tue, 25 Jul 2023 10:51:45 -0700 (PDT)
-X-Google-Smtp-Source: APBJJlGSa0nCWmMbPWJbZR6wFN48R9hc4qEYNSaYYTSwy4C5YEFIRwnrCb6WaT328GKqxkr0FeDhCQ==
-X-Received: by 2002:a05:622a:1488:b0:403:cd14:8f with SMTP id t8-20020a05622a148800b00403cd14008fmr3326816qtx.57.1690307505290;
-        Tue, 25 Jul 2023 10:51:45 -0700 (PDT)
-Received: from fedora ([2600:1700:1ff0:d0e0::17])
-        by smtp.gmail.com with ESMTPSA id ff20-20020a05622a4d9400b00403f1a7be90sm4221230qtb.88.2023.07.25.10.51.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 Jul 2023 10:51:44 -0700 (PDT)
-Date:   Tue, 25 Jul 2023 12:51:42 -0500
-From:   Andrew Halaney <ahalaney@redhat.com>
-To:     Mrinmay Sarkar <quic_msarkar@quicinc.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        agross@kernel.org, andersson@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        konrad.dybcio@linaro.org, mani@kernel.org,
-        quic_shazhuss@quicinc.com, quic_nitegupt@quicinc.com,
-        quic_ramkri@quicinc.com, quic_nayiluri@quicinc.com,
-        dmitry.baryshkov@linaro.org,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Rob Herring <robh@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org
-Subject: Re: [PATCH v2 2/6] dt-bindings: phy: qcom,qmp: Add sa8775p QMP PCIe
- PHY
-Message-ID: <y7tuvgc7r4o6jhe7hhyqxaksalld4zn5ou53ywdkwfrp2y773v@z3nvbgd2i6lz>
-References: <1689311319-22054-1-git-send-email-quic_msarkar@quicinc.com>
- <1689311319-22054-3-git-send-email-quic_msarkar@quicinc.com>
- <132e9514-7eb9-8915-6130-5bf656c1aaac@linaro.org>
- <ca51b1dc-5805-5b01-01e0-a7dff535cb6c@quicinc.com>
+        with ESMTP id S232533AbjGYSB7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 14:01:59 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 836482109;
+        Tue, 25 Jul 2023 11:01:50 -0700 (PDT)
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36PGv6AZ019543;
+        Tue, 25 Jul 2023 18:01:40 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : from : subject : to : cc : references : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=87ewkxmXGU9fTm3pk1VsONTeYZjew0gno6Af9/9sDdU=;
+ b=F81Eo92xhxRD8HaYCaS+Ui7JriaGz4V8ljLvXUFoiab3v13lmWgBXEPFkowCKh4vFqjJ
+ pXHuG/kGf5u+Mi2hB//gFIBTGLSMrKkzj3Ch8lRatfyVvyPCxAWhF2asEXGQFNCXRSr6
+ GqeEZvFz+xMacih3ut/S8K1KmSuJ5xPPQUvdfPVO/JoPmg7OaJgj+IIh2eAmri+aqw7T
+ aodJrvMw19KJ9O6q6Xjhr6jZc6klM45cO34v4ZH/TLpqpJ6vapym30lNuuqmuNrsDIMN
+ T4sdPOsoAqs8pank3X10Zis2VZyzCf4Ya5oSm9uaiRQuKkAoHMDQPfDCPhbDmoebSkwu kQ== 
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3s1y6m2pcv-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 25 Jul 2023 18:01:40 +0000
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+        by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 36PI1d9m010756
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 25 Jul 2023 18:01:39 GMT
+Received: from [10.71.109.50] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Tue, 25 Jul
+ 2023 11:01:38 -0700
+Message-ID: <0e72a1a0-611c-9667-866e-a4a1f67f10f6@quicinc.com>
+Date:   Tue, 25 Jul 2023 11:01:38 -0700
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ca51b1dc-5805-5b01-01e0-a7dff535cb6c@quicinc.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=unavailable
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+From:   Elliot Berman <quic_eberman@quicinc.com>
+Subject: Re: [RFC PATCH 3/4] dt-bindings: power: reset: Document
+ arm,psci-vendor-reset
+To:     Rob Herring <robh@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Sebastian Reichel <sre@kernel.org>
+CC:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-pm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <kernel@quicinc.com>,
+        Satya Durga Srinivasu Prabhala <quic_satyap@quicinc.com>,
+        Melody Olvera <quic_molvera@quicinc.com>,
+        "Prasad Sodagudi" <quic_psodagud@quicinc.com>
+References: <20230724223057.1208122-1-quic_eberman@quicinc.com>
+ <20230724223057.1208122-4-quic_eberman@quicinc.com>
+ <20230724232328.GA1101352-robh@kernel.org>
+Content-Language: en-US
+In-Reply-To: <20230724232328.GA1101352-robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: bq68nSqt_QqiZqlWsItJqqPUd-g87kMq
+X-Proofpoint-ORIG-GUID: bq68nSqt_QqiZqlWsItJqqPUd-g87kMq
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-07-25_09,2023-07-25_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 clxscore=1015
+ mlxlogscore=999 bulkscore=0 adultscore=0 spamscore=0 lowpriorityscore=0
+ suspectscore=0 phishscore=0 malwarescore=0 impostorscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2306200000 definitions=main-2307250154
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -95,148 +89,94 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 21, 2023 at 04:33:20PM +0530, Mrinmay Sarkar wrote:
-> 
-> On 7/17/2023 12:55 PM, Krzysztof Kozlowski wrote:
-> > On 14/07/2023 07:08, Mrinmay Sarkar wrote:
-> > > Add devicetree YAML binding for Qualcomm QMP PCIe PHY
-> > > for SA8775p platform.
-> > > 
-> > > Signed-off-by: Mrinmay Sarkar <quic_msarkar@quicinc.com>
-> > > ---
-> > >   .../bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml      | 19 ++++++++++++++++++-
-> > >   1 file changed, 18 insertions(+), 1 deletion(-)
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml
-> > > index a0407fc..ca55ed9 100644
-> > > --- a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml
-> > > +++ b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml
-> > > @@ -16,6 +16,8 @@ description:
-> > >   properties:
-> > >     compatible:
-> > >       enum:
-> > > +      - qcom,sa8775p-qmp-gen4x2-pcie-phy
-> > > +      - qcom,sa8775p-qmp-gen4x4-pcie-phy
-> > >         - qcom,sc8280xp-qmp-gen3x1-pcie-phy
-> > >         - qcom,sc8280xp-qmp-gen3x2-pcie-phy
-> > >         - qcom,sc8280xp-qmp-gen3x4-pcie-phy
-> > > @@ -30,7 +32,7 @@ properties:
-> > >     clocks:
-> > >       minItems: 5
-> > > -    maxItems: 6
-> > > +    maxItems: 7
-> > >     clock-names:
-> > >       minItems: 5
-> > > @@ -41,6 +43,7 @@ properties:
-> > >         - const: rchng
-> > >         - const: pipe
-> > >         - const: pipediv2
-> > > +      - const: phy_aux
-> > >     power-domains:
-> > >       maxItems: 1
-> > > @@ -141,6 +144,20 @@ allOf:
-> > >           compatible:
-> > >             contains:
-> > >               enum:
-> > > +              - qcom,sa8775p-qmp-gen4x2-pcie-phy
-> > > +              - qcom,sa8775p-qmp-gen4x4-pcie-phy
-> > > +    then:
-> > > +      properties:
-> > > +        clocks:
-> > > +          minItems: 7
-> > > +        clock-names:
-> > > +          minItems: 7
-> > > +
-> > > +  - if:
-> > > +      properties:
-> > > +        compatible:
-> > > +          contains:
-> > > +            enum:
-> > This probably works but is not obvious and easy to read. You have here
-> > if:then:else: block, so else applies to your variant. Change all these
-> > if clauses for clocks into separate clauses per matching variant
-> > (if:then: ... if:then:... if:then:...)
 
-As far as I can tell, this actually doesn't work :(
 
-> > 
-> > Best regards,
-> > Krzysztof
+On 7/24/2023 4:23 PM, Rob Herring wrote:
+> On Mon, Jul 24, 2023 at 03:30:53PM -0700, Elliot Berman wrote:
+>> Add devicetree bindings for using PSCI SYSTEM_RESET2 with vendor reset  types.
+>>
+>> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
+>> ---
+>>   .../power/reset/arm,psci-vendor-reset.yaml    | 35 +++++++++++++++++++
+>>   MAINTAINERS                                   |  1 +
+>>   2 files changed, 36 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/power/reset/arm,psci-vendor-reset.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/power/reset/arm,psci-vendor-reset.yaml b/Documentation/devicetree/bindings/power/reset/arm,psci-vendor-reset.yaml
+>> new file mode 100644
+>> index 000000000000..18b0b8c167a1
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/power/reset/arm,psci-vendor-reset.yaml
+>> @@ -0,0 +1,35 @@
+>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>> +# Copyright 2023 Qualcomm Innovation Center, Inc. All Rights Reserved.
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/power/reset/arm,psci-vendor-reset.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: PSCI SYSTEM_RESET2 Vendor Resets
+>> +
+>> +maintainers:
+>> +  - Elliot Berman <quic_eberman@quicinc.com>
+>> +
+>> +description: |
+>> +  PSCI SYSTEM_RESET2 supports vendor-defined reset types. This describes
+>> +  the conversion of reboot modes to the reset types.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: arm,psci-vendor-reset
+>> +
+>> +allOf:
+>> +  - $ref: reboot-mode.yaml#
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    firmware {
+>> +      psci-vendor-resets {
+>> +        compatible = "arm,psci-vendor-reset";
 > 
-> My Bad here, This patch already applied we will take care this in next patch
-> set.
-> 
-> Thanks,
-> Mrinmay
+> We already have a node for PSCI, we don't need a second one. You can
+> have a separate driver without a separate node.
 > 
 
-Mrinmay, do you plan on spinning what Krzysztof suggested? I grabbed
-linux-next today and ran into this (looks like clocks, clock-names in
-binding is broken and looks like we're either missing the required
-power-domain in the dts or it isn't actually required):
+I could also place the reboot-mode functionality straight into 
+drivers/firwmare/psci/? I thought that might be more controversial than 
+separate driver, but maybe not?
 
-    (dtb-checker) ahalaney@fedora ~/git/linux-next (git)-[tags/next-20230724] % git diff
-    (dtb-checker) ahalaney@fedora ~/git/linux-next (git)-[tags/next-20230724] % ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- make CHECK_DTBS=1 DT_SCHEMA_FILES=phy/qcom,sc8280xp-qmp-pcie-phy.yaml qcom/sa8775p-ride.dtb
-      UPD     include/config/kernel.release
-      LINT    Documentation/devicetree/bindings
-      CHKDT   Documentation/devicetree/bindings/processed-schema.json
-      SCHEMA  Documentation/devicetree/bindings/processed-schema.json
-    /home/ahalaney/git/linux-next/Documentation/devicetree/bindings/power/qcom,kpss-acc-v2.yaml: ignoring, error parsing file
-      DTC_CHK arch/arm64/boot/dts/qcom/sa8775p-ride.dtb
-    /home/ahalaney/git/linux-next/arch/arm64/boot/dts/qcom/sa8775p-ride.dtb: phy@1c04000: 'power-domains' is a required property
-        from schema $id: http://devicetree.org/schemas/phy/qcom,sc8280xp-qmp-pcie-phy.yaml#
-    /home/ahalaney/git/linux-next/arch/arm64/boot/dts/qcom/sa8775p-ride.dtb: phy@1c04000: clocks: [[31, 66], [31, 68], [31, 94], [31, 72], [31, 74], [31, 77], [31, 70]] is too long
-        from schema $id: http://devicetree.org/schemas/phy/qcom,sc8280xp-qmp-pcie-phy.yaml#
-    /home/ahalaney/git/linux-next/arch/arm64/boot/dts/qcom/sa8775p-ride.dtb: phy@1c04000: clock-names: ['aux', 'cfg_ahb', 'ref', 'rchng', 'pipe', 'pipediv2', 'phy_aux'] is too long
-        from schema $id: http://devicetree.org/schemas/phy/qcom,sc8280xp-qmp-pcie-phy.yaml#
-    /home/ahalaney/git/linux-next/arch/arm64/boot/dts/qcom/sa8775p-ride.dtb: phy@1c14000: 'power-domains' is a required property
-        from schema $id: http://devicetree.org/schemas/phy/qcom,sc8280xp-qmp-pcie-phy.yaml#
-    /home/ahalaney/git/linux-next/arch/arm64/boot/dts/qcom/sa8775p-ride.dtb: phy@1c14000: clocks: [[31, 80], [31, 82], [31, 94], [31, 86], [31, 88], [31, 91], [31, 84]] is too long
-        from schema $id: http://devicetree.org/schemas/phy/qcom,sc8280xp-qmp-pcie-phy.yaml#
-    /home/ahalaney/git/linux-next/arch/arm64/boot/dts/qcom/sa8775p-ride.dtb: phy@1c14000: clock-names: ['aux', 'cfg_ahb', 'ref', 'rchng', 'pipe', 'pipediv2', 'phy_aux'] is too long
-        from schema $id: http://devicetree.org/schemas/phy/qcom,sc8280xp-qmp-pcie-phy.yaml#
-    ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- make CHECK_DTBS=1    7.65s user 0.52s system 99% cpu 8.231 total
-    (dtb-checker) ahalaney@fedora ~/git/linux-next (git)-[tags/next-20230724] % 
-    (dtb-checker) ahalaney@fedora ~/git/linux-next (git)-[tags/next-20230724] % 
-    (dtb-checker) ahalaney@fedora ~/git/linux-next (git)-[tags/next-20230724] % 
-    (dtb-checker) ahalaney@fedora ~/git/linux-next (git)-[tags/next-20230724] % # Total hack just to show our issues in current binding
-    (dtb-checker) ahalaney@fedora ~/git/linux-next (git)-[tags/next-20230724] % git diff
-    diff --git a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml
-    index ca55ed9d74ac..5476cf2422da 100644
-    --- a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml
-    +++ b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml
-    @@ -87,7 +87,6 @@ required:
-       - reg
-       - clocks
-       - clock-names
-    -  - power-domains
-       - resets
-       - reset-names
-       - vdda-phy-supply
-    @@ -132,12 +131,6 @@ allOf:
-               maxItems: 5
-             clock-names:
-               maxItems: 5
-    -    else:
-    -      properties:
-    -        clocks:
-    -          minItems: 6
-    -        clock-names:
-    -          minItems: 6
-     
-       - if:
-           properties:
-    (dtb-checker) ahalaney@fedora ~/git/linux-next (git)-[tags/next-20230724] % ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- make CHECK_DTBS=1 DT_SCHEMA_FILES=phy/qcom,sc8280xp-qmp-pcie-phy.yaml qcom/sa8775p-ride.dtb
-      UPD     include/config/kernel.release
-      LINT    Documentation/devicetree/bindings
-      CHKDT   Documentation/devicetree/bindings/processed-schema.json
-      SCHEMA  Documentation/devicetree/bindings/processed-schema.json
-    /home/ahalaney/git/linux-next/Documentation/devicetree/bindings/power/qcom,kpss-acc-v2.yaml: ignoring, error parsing file
-      DTC_CHK arch/arm64/boot/dts/qcom/sa8775p-ride.dtb
-    ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- make CHECK_DTBS=1    7.58s user 0.87s system 98% cpu 8.618 total
-    (dtb-checker) ahalaney@fedora ~/git/linux-next (git)-[tags/next-20230724] % 
+Mark/Loreno, do you have any concerns to add the reboot-mode driver 
+functionality directly in drivers/firmware/psci/psci.c?
 
+Sebastian, do you have any concerns to have this reboot-mode driver 
+outside drivers/power/reset/?
 
-Thanks,
-Andrew
+>> +        reboot-normal = <0x100>;
+> 
+> Wouldn't 'normal' be the normal PSCI reset?
+> 
 
+Ah, right. I had my head buried in the reboot-mode code when creating 
+the example. I can remove from the example.
+
+>> +        reboot-bootloader = <0x101>;
+>> +        reboot-fastboot = <0x102>;
+>> +      };
+>> +    };
+>> diff --git a/MAINTAINERS b/MAINTAINERS
+>> index d516295978a4..2da4c5f1917b 100644
+>> --- a/MAINTAINERS
+>> +++ b/MAINTAINERS
+>> @@ -16982,6 +16982,7 @@ M:	Mark Rutland <mark.rutland@arm.com>
+>>   M:	Lorenzo Pieralisi <lpieralisi@kernel.org>
+>>   L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
+>>   S:	Maintained
+>> +F:	Documentation/devicetree/bindings/power/reset/arm,psci-vendor-reset.yaml
+>>   F:	drivers/firmware/psci/
+>>   F:	include/linux/psci.h
+>>   F:	include/uapi/linux/psci.h
+>> -- 
+>> 2.41.0
+>>
