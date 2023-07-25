@@ -2,61 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B3C47623EA
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 22:50:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A59C762416
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 23:04:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230064AbjGYUuF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jul 2023 16:50:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45218 "EHLO
+        id S229696AbjGYVEp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jul 2023 17:04:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51062 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229683AbjGYUuE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 16:50:04 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C78B10F6;
-        Tue, 25 Jul 2023 13:50:03 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id A17436190B;
-        Tue, 25 Jul 2023 20:50:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2942EC433C8;
-        Tue, 25 Jul 2023 20:50:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690318202;
-        bh=OxHy1M+w3k5feey0r7EI3cqLr0BlVNtReBhSOwd11qk=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=cgnLAJk3fYihilvzDBpn4mTbVuTl8dlTjQFjLuVU6jHODXYR1vuKl4dDRTLQvHa6l
-         mQh8a0kZOJJl26BMt3nN7Hr+whILmI3NyN59lEa0Ap/9enm7IJvI5qdKXeaULvcSfx
-         ueRfE5oDiHmXRdAmWVupels1Qw/Vf3q2CsqMTM/hLymvrjwyi8D2rGTCG/2UmHaI3I
-         AtqynrXwfRUgezbUCIhFiHei4j07zRojGzbkGXQ1vRzkwkPk7jPcbOBIMff9ZUYblz
-         PQ4T2bRHjkOz18HmGO7mK0eP0AgsEAgN0lyFXXOqBPLnxeqnfuwO9RY6aQZK34LcA1
-         yiORDThMi5umQ==
-Received: (nullmailer pid 3767420 invoked by uid 1000);
-        Tue, 25 Jul 2023 20:49:59 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+        with ESMTP id S231470AbjGYVEo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 17:04:44 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 119901BCD;
+        Tue, 25 Jul 2023 14:04:41 -0700 (PDT)
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36PKK0mn003459;
+        Tue, 25 Jul 2023 21:04:31 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=RP8Tqm+PXpGb/xYfB+IPgy0qNnZ3d+KGVXRqBNWDf6k=;
+ b=b3uIDdE6SEJQiL5n1ot1Q5NKQ137hee0vv+JhBqsFDOfkoEVMKLE67hweRoJFEAzfhzT
+ oQJYjEIRN9bblv83bP2hBy0SzNuPZSkEBbDXASx2VrE35CscRZ0gfv/Of29kjAuH9ixf
+ W+e7myu1ttqoLQa5bivZ4QZrqhZv02QbMFBQ91LUxi7PX8U7mZjgDRC0Y/HF6onAh2y5
+ p9qmfmrCw0oLLKr85o9iv4cvAMLmCrpPfhvVw9ltTLHdydWq+soobSvc0cnjo0RgMon/
+ 071h7hSqwLaI6jMZGKU85DHkoFkNcbwpOeiZ26SwOe0FJ5CyAAPnuBnMyg7xkfb8Y/hv aQ== 
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3s2dqah92s-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 25 Jul 2023 21:04:31 +0000
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+        by NASANPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 36PL4U8Q001854
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 25 Jul 2023 21:04:30 GMT
+Received: from [10.71.109.50] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Tue, 25 Jul
+ 2023 14:04:29 -0700
+Message-ID: <fa1c8f0d-f949-0e20-5ff3-b98fd4d64ada@quicinc.com>
+Date:   Tue, 25 Jul 2023 14:04:28 -0700
 MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Anjelique Melendez <quic_amelende@quicinc.com>
-Cc:     linux-pwm@vger.kernel.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, luca.weiss@fairphone.com,
-        konrad.dybcio@linaro.org, agross@kernel.org,
-        thierry.reding@gmail.com, pavel@ucw.cz, conor+dt@kernel.org,
-        andersson@kernel.org, u.kleine-koenig@pengutronix.de,
-        quic_subbaram@quicinc.com, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-leds@vger.kernel.org,
-        lee@kernel.org, krzysztof.kozlowski+dt@linaro.org
-In-Reply-To: <20230725193423.25047-2-quic_amelende@quicinc.com>
-References: <20230725193423.25047-1-quic_amelende@quicinc.com>
- <20230725193423.25047-2-quic_amelende@quicinc.com>
-Message-Id: <169031819898.3767391.330263271365632827.robh@kernel.org>
-Subject: Re: [PATCH v2 1/7] dt-bindings: soc: qcom: Add qcom-pbs bindings
-Date:   Tue, 25 Jul 2023 14:49:59 -0600
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [RFC PATCH 2/4] power: reset: reboot-mode: Wire reboot_mode enum
+ to magic
+Content-Language: en-US
+To:     Mukesh Ojha <quic_mojha@quicinc.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Sebastian Reichel <sre@kernel.org>
+CC:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-pm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <kernel@quicinc.com>,
+        "Satya Durga Srinivasu Prabhala" <quic_satyap@quicinc.com>,
+        Melody Olvera <quic_molvera@quicinc.com>,
+        Prasad Sodagudi <quic_psodagud@quicinc.com>
+References: <20230724223057.1208122-1-quic_eberman@quicinc.com>
+ <20230724223057.1208122-3-quic_eberman@quicinc.com>
+ <27d9bd35-b69c-5596-8e1a-c42ec2b01f75@quicinc.com>
+From:   Elliot Berman <quic_eberman@quicinc.com>
+In-Reply-To: <27d9bd35-b69c-5596-8e1a-c42ec2b01f75@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: C_kUgcfHIP1FkxbMmEOtRmBxb1-g4KbV
+X-Proofpoint-ORIG-GUID: C_kUgcfHIP1FkxbMmEOtRmBxb1-g4KbV
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-07-25_12,2023-07-25_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 mlxlogscore=999
+ bulkscore=0 adultscore=0 lowpriorityscore=0 priorityscore=1501
+ phishscore=0 suspectscore=0 clxscore=1015 spamscore=0 malwarescore=0
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2306200000 definitions=main-2307250179
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -64,38 +92,97 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Tue, 25 Jul 2023 12:34:17 -0700, Anjelique Melendez wrote:
-> Add binding for the Qualcomm Programmable Boot Sequencer device.
+
+On 7/25/2023 3:03 AM, Mukesh Ojha wrote:
 > 
-> Signed-off-by: Anjelique Melendez <quic_amelende@quicinc.com>
-> ---
->  .../bindings/soc/qcom/qcom-pbs.yaml           | 40 +++++++++++++++++++
->  1 file changed, 40 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom-pbs.yaml
+> 
+> On 7/25/2023 4:00 AM, Elliot Berman wrote:
+>> Allow the reboot mode type to be wired to magic.
+>>
+>> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
+>> ---
+>>   drivers/power/reset/reboot-mode.c | 30 ++++++++++++++++++++++++++----
+>>   1 file changed, 26 insertions(+), 4 deletions(-)
+>>
+>> diff --git a/drivers/power/reset/reboot-mode.c 
+>> b/drivers/power/reset/reboot-mode.c
+>> index a646aefa041b..4ea97ccbaf51 100644
+>> --- a/drivers/power/reset/reboot-mode.c
+>> +++ b/drivers/power/reset/reboot-mode.c
+>> @@ -22,12 +22,8 @@ struct mode_info {
+>>   static bool get_reboot_mode_magic(struct reboot_mode_driver *reboot,
+>>                         const char *cmd, unsigned int *magic)
+>>   {
+>> -    const char *normal = "normal";
+>>       struct mode_info *info;
+>> -    if (!cmd)
+>> -        cmd = normal;
+>> -
+>>       list_for_each_entry(info, &reboot->head, list) {
+>>           if (!strcmp(info->mode, cmd)) {
+>>               *magic = info->magic;
+>> @@ -45,6 +41,32 @@ static int reboot_mode_notify(struct notifier_block 
+>> *this,
+>>       unsigned int magic;
+>>       reboot = container_of(this, struct reboot_mode_driver, 
+>> reboot_notifier);
+>> +
+>> +    if (!cmd) {
+>> +        switch (mode) {
+> 
+> IIUC, mode will be filled up with reboot_mode during restart
+> notifier and not reboot notifiers ?
 > 
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Ah, you're correct. I should register a restart notifier and not use 
+reboot mode framework. I'll follow similar bindings.
 
-yamllint warnings/errors:
+>> +        case REBOOT_COLD:
+>> +            cmd = "cold";
+>> +            break;
+>> +        case REBOOT_WARM:
+>> +            cmd = "warm";
+>> +            break;
+>> +        case REBOOT_HARD:
+>> +            cmd = "hard";
+>> +            break;
+>> +        case REBOOT_SOFT:
+>> +            cmd = "soft";
+>> +            break;
+>> +        case REBOOT_GPIO:
+>> +            cmd = "gpio";
+> 
+> These strings are already there kernel/reboot.c
+> Can it be reused ?
+> 
+> #define REBOOT_COLD_STR         "cold"
+> #define REBOOT_WARM_STR         "warm"
+> #define REBOOT_HARD_STR         "hard"
+> #define REBOOT_SOFT_STR         "soft"
+> #define REBOOT_GPIO_STR         "gpio"
+> #define REBOOT_UNDEFINED_STR    "undefined"
+> 
+> 
 
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/soc/qcom/qcom-pbs.example.dts:18.16-26.11: Warning (unit_address_vs_reg): /example-0/pmic@0: node has a unit name, but no reg or ranges property
+One set of constants are "binding" for devicetree and the other is for 
+sysfs. I think they should be kept separate.
 
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230725193423.25047-2-quic_amelende@quicinc.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+>> +            break;
+>> +        }
+>> +        if (get_reboot_mode_magic(reboot, cmd, &magic)) {
+> 
+> Is info->mode is going to filled up with mode-cold, mode-warm and so
+> on from DT to compare against cmd?
+> 
+> What if , cmd is not among the one above switch, NULL pointer during
+> strcmp ?
+> > -Mukesh
+> 
+>> +            reboot->write(reboot, magic);
+>> +            return NOTIFY_DONE;
+>> +        }
+>> +        cmd = "normal";
+>> +    }
+>> +
+>>       if (get_reboot_mode_magic(reboot, cmd, &magic))
+>>           reboot->write(reboot, magic);
