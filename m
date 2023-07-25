@@ -2,94 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 54C10761E95
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 18:32:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E5F60761EBE
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 18:40:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230089AbjGYQcT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jul 2023 12:32:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60506 "EHLO
+        id S229998AbjGYQk4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jul 2023 12:40:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36434 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230140AbjGYQcQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 12:32:16 -0400
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2231D19F;
-        Tue, 25 Jul 2023 09:32:15 -0700 (PDT)
-Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-5221e487e08so5171186a12.0;
-        Tue, 25 Jul 2023 09:32:15 -0700 (PDT)
+        with ESMTP id S229922AbjGYQkz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 12:40:55 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6032410F7
+        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 09:40:53 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-51e28b299adso9072309a12.2
+        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 09:40:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1690302733; x=1690907533;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=yBceGRzWKpIE4Dd/AMTfq7Rggqdnr61DBeWmKWRpEqE=;
-        b=KNvTlfT+60jypZWuCwqeG8SesM+TtQaGtksxIVlklEpEc4D2iHgGg1Ed7WyDCZFLQK
-         HM3Fu3UGYcYZWZrNMUd8YEVBiFvX9BrIwQyCIhUjfWLLtH+jU37qLDoVzOCQO4i7My+w
-         4uI8rfKdioqfd+coqpqEcDoj6VVALOU8vRXnRO0UPXLFeiavGhOk46Frbg0BUOV1stKB
-         RHv/F8RTbz6J+ou4S7kcipMYxRn8R7wUvHD82HtoJGgMapmYEackf2EbmjGGAUTWCOwT
-         S6NywXy/LAAzWQDPvGdp96noLp+MqrfpOTa/vOtnp77fQK7Ih4OI85rbjMAEmHcvdNGt
-         dDOw==
+        d=linaro.org; s=google; t=1690303252; x=1690908052;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=lZ1gnj/eC9nPxCfASLTwleokcx+2HhZFD7BYZMiPCig=;
+        b=yshi3Yy26azevSvOfouSdf9Wu4rv7nf7RJxkOLZE9hEzz8eGGgT2wjQ0tab+JthoyV
+         aX5ZX6m2opqmjqwp8Yh+QqDyz3TNiF7t6Ax5rmOPmOKNs8TEarkcEACu07DY6P0HiLhz
+         XxBFEh2CB17X/WhdlPZGUfks0TLdQcr2V/S31bdb2A/HBrmO+KfAfEet+pYPbQXZbIea
+         Sr3A/EPLN5R0HtqJEMv4mVQbBBay9VJncju5kpfBYeUDFEq/CZ7fxoFvvIlPb/C4gZKi
+         NhqhhnGNlX6WUSUvf6V14vvEv/SCcow6UqYakh1AUt8kjX/uKs+7QcaBQ1Z76f7djd0U
+         QZbg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690302733; x=1690907533;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=yBceGRzWKpIE4Dd/AMTfq7Rggqdnr61DBeWmKWRpEqE=;
-        b=HXD4GqyntXKUnZEXPkCBroT1rhmo0XcM1sbcMgxSdFFVEO/190RCIJot7Jh1JUeoSq
-         vySuHKwyQx+2VGU0DbZdRAxaCPrHYzy6eBYI4GMBrAes8xd+Pt2Dd0Z0C4YMdeGT5PZX
-         sSkulk3KTDzyj+nlz5XDYa9V5ZIVfT0pfrvCGXmChnPWdNFAIiYx8fsREbqOniPHODdb
-         6QR25GHXiAO6qIP7ZRcJxYuR3czopkpZW4dD9o06fMDCEj3CW0wc5nHoWFHjCXbJFOON
-         n/UbLEQGRYLiUWkRqaOeRhtMxJiYSrh9wuPTxD2uBhqVwf1mna/TnxVENCcfaElnAHJG
-         nowg==
-X-Gm-Message-State: ABy/qLbDHBA/29rBijBeLwxgtzrx5JRbrbJGJF26GzPSHnXMovKm2fE3
-        NhgfXJphHwmgqOaEd+oTkw0=
-X-Google-Smtp-Source: APBJJlFb1vzxvjaKwOWRYjPswClbk1BsCzApc40hjwU0NrTC+VsA4meenv3sygCcWn5om09Eg3omQA==
-X-Received: by 2002:aa7:c90a:0:b0:522:2ba9:6fce with SMTP id b10-20020aa7c90a000000b005222ba96fcemr5951789edt.8.1690302733593;
-        Tue, 25 Jul 2023 09:32:13 -0700 (PDT)
-Received: from localhost (p200300e41f1bd600f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f1b:d600:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id w12-20020a056402128c00b005221f8fe4b7sm4506993edv.11.2023.07.25.09.32.13
+        d=1e100.net; s=20221208; t=1690303252; x=1690908052;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=lZ1gnj/eC9nPxCfASLTwleokcx+2HhZFD7BYZMiPCig=;
+        b=NQrnxhw3WF88ACzbQyLmJGWrYhHZlDH/+YK3CAk+43dsOujpXg207wmbOtq5Kjg56/
+         dNDzc+dpKPmvCruo27Sd+vvEYzi53Gh6yOX9au3ZuHnLiTZFbR+RCgxjC1UTrMRokTQf
+         9K90ynIuKu6IrAiXGfPP4llv8Idj79mpWVGNrndbKkkeV9F/txIxhzsnHwnWQx5oeyRh
+         L+B6f3V7/c6a7PJ3txbUR8W8J5FlpgX8xnuZwifLKsIfzXKzhBI6dPZKG7rPvL9L1Omm
+         A8FKch1A/gyha9BZI6FPVn4WYwiO9AnQO3U/6kPHqveE9iADlMIgDn2dAL9nPhMVz72j
+         fHWA==
+X-Gm-Message-State: ABy/qLbxiLlHqyGZz4IDUWDX2rxSweE43w5wXF9NY1msBIchVheLC2Ht
+        Y62LuX7hmdGKVrQWjZ18LdbtXA==
+X-Google-Smtp-Source: APBJJlG4Sl5G/jl6rzAdn8mnLSMnXi6DUFJxmlhJ0JxMpiqnb3gh+i39RHSwylVMpVzM1pcbHLbIXg==
+X-Received: by 2002:a17:906:649a:b0:993:d616:7ca9 with SMTP id e26-20020a170906649a00b00993d6167ca9mr13955552ejm.23.1690303251816;
+        Tue, 25 Jul 2023 09:40:51 -0700 (PDT)
+Received: from krzk-bin.. ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id s8-20020a170906960800b0099316c56db9sm8331201ejx.127.2023.07.25.09.40.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 Jul 2023 09:32:13 -0700 (PDT)
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        Tue, 25 Jul 2023 09:40:51 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Jon Hunter <jonathanh@nvidia.com>,
-        Marc Dietrich <marvin24@gmx.de>, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org
-Subject: Re: [PATCH v3] dt-bindings: arm: tegra: nvec: Convert to json-schema
-Date:   Tue, 25 Jul 2023 18:32:10 +0200
-Message-ID: <169030265764.1427964.7325298289951978580.b4-ty@nvidia.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20230721124623.2988445-1-thierry.reding@gmail.com>
-References: <20230721124623.2988445-1-thierry.reding@gmail.com>
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        stable@vger.kernel.org
+Subject: [PATCH] regulator: dt-bindings: qcom,rpm: fix pattern for children
+Date:   Tue, 25 Jul 2023 18:40:47 +0200
+Message-Id: <20230725164047.368892-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Thierry Reding <treding@nvidia.com>
+The "or" (|) in regular expression must be within parentheses,
+otherwise it is not really an "or" and it matches supplies:
 
+  qcom-apq8060-dragonboard.dtb: regulators-1: vdd_ncp-supply: [[34]] is not of type 'object'
 
-On Fri, 21 Jul 2023 14:46:23 +0200, Thierry Reding wrote:
-> Convert the NVIDIA embedded controller bindings from the free-form text
-> format to json-schema.
-> 
-> 
+Fixes: fde0e25b71a9 ("dt-bindings: regulators: convert non-smd RPM Regulators bindings to dt-schema")
+Cc: <stable@vger.kernel.org>
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ .../devicetree/bindings/regulator/qcom,rpm-regulator.yaml       | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Applied, thanks!
-
-[1/1] dt-bindings: arm: tegra: nvec: Convert to json-schema
-      commit: 436ebd32b02568378eb694f97f5c1c2fa8c984c8
-
-Best regards,
+diff --git a/Documentation/devicetree/bindings/regulator/qcom,rpm-regulator.yaml b/Documentation/devicetree/bindings/regulator/qcom,rpm-regulator.yaml
+index 8a08698e3484..b4eb4001eb3d 100644
+--- a/Documentation/devicetree/bindings/regulator/qcom,rpm-regulator.yaml
++++ b/Documentation/devicetree/bindings/regulator/qcom,rpm-regulator.yaml
+@@ -49,7 +49,7 @@ patternProperties:
+   ".*-supply$":
+     description: Input supply phandle(s) for this node
+ 
+-  "^((s|l|lvs)[0-9]*)|(s[1-2][a-b])|(ncp)|(mvs)|(usb-switch)|(hdmi-switch)$":
++  "^((s|l|lvs)[0-9]*|s[1-2][a-b]|ncp|mvs|usb-switch|hdmi-switch)$":
+     description: List of regulators and its properties
+     $ref: regulator.yaml#
+     unevaluatedProperties: false
 -- 
-Thierry Reding <treding@nvidia.com>
+2.34.1
+
