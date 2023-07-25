@@ -2,160 +2,298 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B9C87760C7F
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 09:58:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A917760C90
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 10:02:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231646AbjGYH64 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jul 2023 03:58:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37966 "EHLO
+        id S231616AbjGYICb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jul 2023 04:02:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40394 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229938AbjGYH6y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 03:58:54 -0400
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2AFE5E5;
-        Tue, 25 Jul 2023 00:58:52 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 36P7wROP083164;
-        Tue, 25 Jul 2023 02:58:27 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1690271907;
-        bh=KLs1UfhwOOeaUBOV26Gx4K3vBuDMVvonxjcwLCj13Hg=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=y12Wzw4Iu2TXxeCPAFt+QG7cv9UIyRzGc0ybdSAuKvI+MLImJuTBhOZ9dGXCuAchB
-         nndIJBPS/Nbatc8vdIJleFimwainDuHqXDKO+CxUMxi2cABTxU5UVl1PS/ZS0LQMDs
-         9wBUXKTJ75mV8OKi5/S/Q/XgunmrCDaanCoR8wrA=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 36P7wRZL121042
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 25 Jul 2023 02:58:27 -0500
-Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 25
- Jul 2023 02:58:27 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 25 Jul 2023 02:58:27 -0500
-Received: from [172.24.227.217] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 36P7wLPJ102460;
-        Tue, 25 Jul 2023 02:58:22 -0500
-Message-ID: <5a4b293f-7729-ee03-2432-cd49ff92d809@ti.com>
-Date:   Tue, 25 Jul 2023 13:28:21 +0530
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [EXTERNAL] Re: [EXTERNAL] Re: [PATCH v11 03/10] net: ti:
- icssg-prueth: Add Firmware config and classification APIs.
-Content-Language: en-US
-To:     Simon Horman <simon.horman@corigine.com>
-CC:     MD Danish Anwar <danishanwar@ti.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Roger Quadros <rogerq@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        with ESMTP id S232163AbjGYIC1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 04:02:27 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9C42120
+        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 01:02:25 -0700 (PDT)
+Received: from [IPv6:2a00:23c8:b70a:ae01:40e7:5206:308c:f3ed] (unknown [IPv6:2a00:23c8:b70a:ae01:40e7:5206:308c:f3ed])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: obbardc)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 173C66607106;
+        Tue, 25 Jul 2023 09:02:24 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1690272144;
+        bh=0BGaOZ6JDV587wQupiasiVA/bWm/Xv4uJScil2vAHyM=;
+        h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+        b=D8bhEbiI6WI8TOi1a2biKDFeXHayQ+B7/G045bb3C8JxLr1F6PKldVGJPR8v0sKts
+         ZRF/6mwJqVPLPqCBySH0GmwWAnlVjnnEh6CehToKMYdTQJ8Y6KHlIIETyM5v7IKzy1
+         8WHBqZHKIbGYgumeIjChOTH7lSuOivBt1XMO5lJ4Sw+CwC6J8ITyjWBgdyVST4mQt1
+         9SQze/XIuhBoHhfY4MWRajnyiqi9EyKQzwnNFw3mXC1rs+ic/6nlxoeYLJF+jTiKr3
+         3wGSGogj2NsyqAhCJ5sRsLKDbypjHGpMSVfpCgIxwD+2YbWcH9Tk5lTaZo2sOx9nPv
+         ESFBpHfsG8X7g==
+Message-ID: <8ec1c4bb97ba0857275a540590fb302929436ba4.camel@collabora.com>
+Subject: Re: [PATCH] arm64: dts: rockchip: Enable TYPE-C PD for ROC-RK3399-PC
+From:   Christopher Obbard <chris.obbard@collabora.com>
+To:     Da Xue <da@lessconfused.com>
+Cc:     Jagan Teki <jagan@amarulasolutions.com>,
+        Heiko Stuebner <heiko@sntech.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Eric Dumazet <edumazet@google.com>,
-        "David S. Miller" <davem@davemloft.net>, <nm@ti.com>, <srk@ti.com>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <netdev@vger.kernel.org>, <linux-omap@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20230724112934.2637802-1-danishanwar@ti.com>
- <20230724112934.2637802-4-danishanwar@ti.com> <ZL94/L1RMlU5TiAb@corigine.com>
- <b2016718-b8e4-a1f8-92ed-f0d9e3cb9c17@ti.com> <ZL99WfF7iuzeMP78@corigine.com>
-From:   Md Danish Anwar <a0501179@ti.com>
-Organization: Texas Instruments
-In-Reply-To: <ZL99WfF7iuzeMP78@corigine.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-rockchip@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Corentin Labbe <clabbe@baylibre.com>,
+        kernel <kernel@collabora.com>
+Date:   Tue, 25 Jul 2023 09:02:21 +0100
+In-Reply-To: <CACdvmAia49_YiKpVvT=yeLWF+YGm+2vFK3rdwRB9XOAH5mm=-w@mail.gmail.com>
+References: <20230719122123.3702588-1-jagan@amarulasolutions.com>
+         <51af40e5fa8e22411b654bbb894bb0fee19be8f9.camel@collabora.com>
+         <CACdvmAia49_YiKpVvT=yeLWF+YGm+2vFK3rdwRB9XOAH5mm=-w@mail.gmail.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.48.4-1 
+MIME-Version: 1.0
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/07/23 1:14 pm, Simon Horman wrote:
-> On Tue, Jul 25, 2023 at 01:10:30PM +0530, Md Danish Anwar wrote:
->> Hi Simon,
->>
->> On 25/07/23 12:55 pm, Simon Horman wrote:
->>> On Mon, Jul 24, 2023 at 04:59:27PM +0530, MD Danish Anwar wrote:
->>>> Add icssg_config.h / .c and icssg_classifier.c files. These are firmware
->>>> configuration and classification related files. These will be used by
->>>> ICSSG ethernet driver.
->>>>
->>>> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
->>>> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
->>>
->>> Hi Danish,
->>>
->>> some feedback from my side.
->>>
->>
->> Thanks for the feedback.
->>
->>> ...
->>>
->>>> diff --git a/drivers/net/ethernet/ti/icssg_classifier.c b/drivers/net/ethernet/ti/icssg_classifier.c
->>>
->>> ...
->>>
->>>> +void icssg_class_set_mac_addr(struct regmap *miig_rt, int slice, u8 *mac)
->>>
->>> This function appears to be unused.
->>> Perhaps it would be better placed in a later patch?
->>>
->>> Or perhaps not, if it makes it hard to split up the patches nicely.
->>> In which case, perhaps the __maybe_unused annotation could be added,
->>> temporarily.
->>>
->>
->> Due to splitting the patch into 8-9 patches, I had to introduce these helper
->> APIs earlier. All these APIs are helper APIs, they will be used in patch 6
->> (Introduce ICSSG Prueth driver).
->>
->> I had this concern that some APIs which will be used later but introduced
->> earlier can create some warnings, before splitting the patches.
->>
->> I had raised this concern in [1] and asked Jakub if it would be OK to introduce
->> these APIs earlier. Jakub said it would be fine [2], so I went ahead with this
->> approach.
->>
->> It will make very hard to break patches if these APIs are introduced and used
->> in same patch.
-> 
-> Thanks, I understand.
-> 
-> In that case my suggestion is to, temporarily, add __maybe_unused,
-> which will allow static analysis tools to work more cleanly over the
-> series. It is just a suggestion, not a hard requirement.
-> 
-> Probably something along those lines applies to all the
-> review I provided in my previous email. Please use your discretion here.
+Hi Da, Jagan,
 
-For now I think I will leave it as it is. Let reviewers review all other
-patches. Let's see if there are any other comments on all the patches in this
-series. If there are any more comments on other patches, then while re-spinning
-next revision I will keep this in mind and try to add __maybe_unused tags in
-all APIs that are used later.
+On Tue, 2023-07-25 at 03:39 -0400, Da Xue wrote:
+> On Mon, Jul 24, 2023 at 9:55=E2=80=AFAM Christopher Obbard
+> <chris.obbard@collabora.com> wrote:
+> >=20
+> > On Wed, 2023-07-19 at 17:51 +0530, Jagan Teki wrote:
+> > > The power supply circuit in ROC-RK3399-PC is
+> > >=20
+> > > Power Supply (or PPS) =3D> FUSB =3D> MP8859
+> > >=20
+> > > VUBS pin of FUSB and IN pin of MP8859 is supplied via TYPEC_IN.
+> > >=20
+> > > The MP8859 operated with 2.8V to 22V supply voltage and typical
+> > > applications this supply can be 12V.
+> > >=20
+> > > This patch is trying to support the PD by changing the FUSB VBUS supp=
+ly
+> > > to 12V and tune the I2C7 timings from downstream kernel.
+> > >=20
+> > > Tested with PD3.0 PPS with supply voltages of 12V/3A and 20V/5A.
+> >=20
+> > Hi Jagan,
+> >=20
+> > This series works fine with a "dumb" (no PD negotiation) 5.1V Raspberry=
+ Pi PSU.
+> >=20
+> > It also works fine with a Dell 45W USB-C Laptop Power Supply (model AA4=
+5NM170) which provides 5V@3A,9V@3A,15V@3A,20V@2.25A, where Linux master fai=
+ls and just tells the USB-PD PSU to power-off.
+>=20
+> I think this depends on the recent Rockchip TCPM changes. FUSB302 has
+> been a pain in the USB or else this platform would have launched a lot
+> longer ago.
 
-The idea behind splitting the patches was to get them reviewed individually as
-it is quite difficult to get one big patch reviewed as explained by Jakub. And
-these warnings were expected. If there are any other comments on this series, I
-will try to address all of them together in next revision.
+Sorry, I was testing this patch on top of next-20230724 which includes=C2=
+=A0https://patchwork.kernel.org/project/linux-rockchip/list/?series=3D75775=
+2:
 
-Meanwhile, Please let me know if you have any comments on other patches in this
-series.
+ 8be558dcffe69b078b34b1fa93b82acaf4ce4957 ("usb: typec: tcpm: add get max p=
+ower support")
+ 1e35f074399dece73d5df11847d4a0d7a6f49434 ("usb: typec: tcpm: fix cc role a=
+t port reset")
 
--- 
-Thanks and Regards,
-Danish.
+Can you check if I am missing any other patches ?
+
+
+Thank you
+
+>=20
+> >=20
+> > It doesn't work with a Lenovo 65W PSU (model ADLX65YLC3D) which provide=
+s 5V@2A,9V@2A,15V@3A,20V@3.25A, after negotiation the driver turns the PD P=
+SU off and on again, resetting the board.
+> > So it'd be great to get this fixed, but it seems like the sink-pdos sho=
+uld already support this PSU ?
+>=20
+> Something to note about USB PD that I read in the TI PD 2.0 paper and
+> re-spewing based on memory: during transitions, the sink should
+> self-limit to 500mA. If that is the case, the transition behavior is
+> up to the source.
+>=20
+> >=20
+> >=20
+> > As a side note for full transparency, another issue is that with Linux =
+master or with this patch applied, applying power to the DC_12V header with=
+out a USB-C PSU connected (e.g. powering from the
+> > POE
+> > expansion shield), boot hangs and dumps to an initramfs shell with:
+> >=20
+> > =C2=A0 [=C2=A0=C2=A0=C2=A0 7.411798] random: crng init done
+> > =C2=A0 [=C2=A0=C2=A0 12.568138] platform fe3a0000.usb: deferred probe p=
+ending
+> > =C2=A0 [=C2=A0=C2=A0 12.568673] platform sdio-pwrseq: deferred probe pe=
+nding
+> > =C2=A0 [=C2=A0=C2=A0 12.569162] platform fe3e0000.usb: deferred probe p=
+ending
+> > =C2=A0 [=C2=A0=C2=A0 12.569658] platform adc-keys: deferred probe pendi=
+ng
+> > =C2=A0 [=C2=A0=C2=A0 12.570123] i2c 7-0022: deferred probe pending
+> > =C2=A0 [=C2=A0=C2=A0 12.570533] i2c 4-0022: deferred probe pending
+> > =C2=A0 [=C2=A0=C2=A0 12.570944] platform ff940000.hdmi: deferred probe =
+pending
+> > =C2=A0 [=C2=A0=C2=A0 12.571448] platform vcc3v0-sd: deferred probe pend=
+ing
+> > =C2=A0 [=C2=A0=C2=A0 12.572000] platform vcc1v8-s3: deferred probe pend=
+ing
+> > =C2=A0 [=C2=A0=C2=A0 12.572475] platform sys-12v: deferred probe pendin=
+g
+> > =C2=A0 [=C2=A0=C2=A0 12.572933] platform vcc3v3-sys: deferred probe pen=
+ding
+> > =C2=A0 [=C2=A0=C2=A0 12.573412] platform fe320000.mmc: deferred probe p=
+ending
+> > =C2=A0 [=C2=A0=C2=A0 12.573907] platform vcca-0v9: deferred probe pendi=
+ng
+> > =C2=A0 [=C2=A0=C2=A0 12.574371] platform vcc5v0-host-regulator: deferre=
+d probe pending
+> > =C2=A0 [=C2=A0=C2=A0 12.574935] platform ff770000.syscon:usb2phy@e450: =
+deferred probe pending
+> > =C2=A0 [=C2=A0=C2=A0 12.575552] platform vcc-vbus-typec1: deferred prob=
+e pending
+> > =C2=A0 [=C2=A0=C2=A0 12.576090] platform fe300000.ethernet: deferred pr=
+obe pending
+> > =C2=A0 [=C2=A0=C2=A0 12.576623] platform vcc-sys: deferred probe pendin=
+g
+> > =C2=A0 [=C2=A0=C2=A0 12.577080] platform ff770000.syscon:usb2phy@e460: =
+deferred probe pending
+> > =C2=A0 [=C2=A0=C2=A0 12.577697] platform ff320000.syscon:io-domains: de=
+ferred probe pending
+> > =C2=A0 [=C2=A0=C2=A0 12.578298] platform ff770000.syscon:io-domains: de=
+ferred probe pending
+> > =C2=A0 [=C2=A0=C2=A0 12.578901] platform fe800000.usb: deferred probe p=
+ending
+> > =C2=A0 [=C2=A0=C2=A0 12.579395] platform fe900000.usb: deferred probe p=
+ending
+> > =C2=A0 [=C2=A0=C2=A0 12.579904] platform vdd-log: deferred probe pendin=
+g
+> > =C2=A0 [=C2=A0=C2=A0 12.580362] i2c 0-001b: deferred probe pending
+> > =C2=A0 [=C2=A0=C2=A0 12.580772] i2c 0-0040: deferred probe pending
+> > =C2=A0 [=C2=A0=C2=A0 12.581182] platform cpufreq-dt: deferred probe pen=
+ding
+> > =C2=A0 [=C2=A0=C2=A0 12.581663] i2c 0-0041: deferred probe pending
+> >=20
+> >=20
+> >=20
+> > Thanks,
+> >=20
+> > Chris
+> >=20
+> > >=20
+> > > Cc: Corentin Labbe <clabbe@baylibre.com>
+> > > Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+> > > ---
+> > > =C2=A0.../boot/dts/rockchip/rk3399-roc-pc.dtsi=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 | 19 ++++++++++++++++---
+> > > =C2=A01 file changed, 16 insertions(+), 3 deletions(-)
+> > >=20
+> > > diff --git a/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi b/arch/a=
+rm64/boot/dts/rockchip/rk3399-roc-pc.dtsi
+> > > index c32913df93c3..8963b3858eae 100644
+> > > --- a/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi
+> > > +++ b/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi
+> > > @@ -6,6 +6,7 @@
+> > > =C2=A0/dts-v1/;
+> > > =C2=A0#include <dt-bindings/input/linux-event-codes.h>
+> > > =C2=A0#include <dt-bindings/pwm/pwm.h>
+> > > +#include "dt-bindings/usb/pd.h"
+> > > =C2=A0#include "rk3399.dtsi"
+> > > =C2=A0#include "rk3399-opp.dtsi"
+> > >=20
+> > > @@ -524,8 +525,9 @@ &i2c3 {
+> > > =C2=A0};
+> > >=20
+> > > =C2=A0&i2c4 {
+> > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 i2c-scl-rising-time-ns =3D <600=
+>;
+> > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 i2c-scl-falling-time-ns =3D <20=
+>;
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 clock-frequency =3D <400000>;
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 i2c-scl-rising-time-ns =3D <345=
+>;
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 i2c-scl-falling-time-ns =3D <11=
+>;
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 status =3D "okay";
+> > >=20
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 fusb1: usb-typec@22 {
+> > > @@ -552,8 +554,19 @@ fusb0: usb-typec@22 {
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 interrupts =3D <2 IRQ_TYPE_LEVEL_LOW>;
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 pinctrl-names =3D "default";
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 pinctrl-0 =3D <&fusb0_int>;
+> > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 vbus-supply =3D <&vcc_vbus_typec0>;
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 vbus-supply =3D <&dc_12v>;
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 status =3D "okay";
+> > > +
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 connector {
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compatib=
+le =3D "usb-c-connector";
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 data-rol=
+e =3D "dual";
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 label =
+=3D "USB-C";
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 power-ro=
+le =3D "sink";
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 try-powe=
+r-role =3D "sink";
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 op-sink-=
+microwatt =3D <10000000>;
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 sink-pdo=
+s =3D <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 PDO_V=
+AR(5000, 20000, 5000)>;
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 };
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 };
+> > >=20
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 mp8859: regulator@66 {
+> >=20
+> > --
+> > Christopher Obbard BEng (Hons) MIET
+> > Senior Engineer
+> >=20
+> > Collabora Ltd
+> > Platinum Building, St John's Innovation Park, Cambridge CB4 0DS, UK
+> > Registered in England & Wales no 5513718.
+> > This message is intended for the use of only the person(s) ("intended
+> > recipient") to whom it is addressed.
+> > It may contain information that is privileged and confidential.
+> > Accordingly, any dissemination, distribution, copying or other use of
+> > this message or any of its content by any person other than the
+> > intended recipient may constitute a breach of civil or criminal law and
+> > is strictly prohibited.
+> >=20
+> >=20
+> > _______________________________________________
+> > Linux-rockchip mailing list
+> > Linux-rockchip@lists.infradead.org
+> > http://lists.infradead.org/mailman/listinfo/linux-rockchip
+>=20
