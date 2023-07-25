@@ -2,115 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B1EF761B27
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 16:13:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EF329761B42
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 16:20:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232458AbjGYONQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jul 2023 10:13:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58628 "EHLO
+        id S232542AbjGYOUv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jul 2023 10:20:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33044 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231861AbjGYONM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 10:13:12 -0400
-Received: from mx1.sberdevices.ru (mx1.sberdevices.ru [37.18.73.165])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87FCDE4;
-        Tue, 25 Jul 2023 07:13:11 -0700 (PDT)
-Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
-        by mx1.sberdevices.ru (Postfix) with ESMTP id 27C5110002A;
-        Tue, 25 Jul 2023 17:13:10 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 27C5110002A
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-        s=mail; t=1690294390;
-        bh=mawpPFaFDwTi16n2aaHJjeloGu7ded/mpqmM2zhRfcg=;
-        h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
-        b=WWDcaoW/ck2ethiGWAsJOvPOfBp2HU57+a7LvmKR1ZwoQCPNZOD6uwnZfIjg2SwiI
-         ZV4C9jOwV+3IxvWDeKPlZ2W2WMexwYN19IRsUIEb2f+oWebP+a5lg5TGeSGogn6TcL
-         kDBclWGwiFXO8BfRc8d9/4ojpm4woPGwr0vZMTeorXYgFKNMCZhxsMresaFbO9oSZ+
-         BwSZN5NpfwbhsK9DJ3nnM3fvM9jEhZ7AmGvkStQMIGIdtZmSY6AR4bXB7tJwxlaeSK
-         XJCMxi76mBkbIKIkEbOaF6IPzw+ywLGLWWhnODsYACjY6QSaPIeYa7ChNgHXlM2pFr
-         ReYCKeAgezT5A==
-Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mx1.sberdevices.ru (Postfix) with ESMTPS;
-        Tue, 25 Jul 2023 17:13:10 +0300 (MSK)
-Received: from localhost.localdomain (100.64.160.123) by
- p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.30; Tue, 25 Jul 2023 17:13:08 +0300
-From:   Alexey Romanov <avromanov@sberdevices.ru>
-To:     <narmstrong@baylibre.com>, <neil.armstrong@linaro.org>,
-        <olivia@selenic.com>, <herbert@gondor.apana.org.au>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <khilman@baylibre.com>,
-        <jbrunet@baylibre.com>, <martin.blumenstingl@googlemail.com>,
-        <f.fainelli@gmail.com>, <hkallweit1@gmail.com>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <linux-amlogic@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-crypto@vger.kernel.org>, <kernel@sberdevices.ru>,
-        Alexey Romanov <avromanov@sberdevices.ru>
-Subject: [PATCH v1 3/3] arch/arm64: dts: meson-s4: add hwrng node
-Date:   Tue, 25 Jul 2023 17:12:52 +0300
-Message-ID: <20230725141252.98848-4-avromanov@sberdevices.ru>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20230725141252.98848-1-avromanov@sberdevices.ru>
-References: <20230725141252.98848-1-avromanov@sberdevices.ru>
+        with ESMTP id S232190AbjGYOUs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 10:20:48 -0400
+Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECFD12698;
+        Tue, 25 Jul 2023 07:19:02 -0700 (PDT)
+Received: from pps.filterd (m0360083.ppops.net [127.0.0.1])
+        by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36PE6isf029962;
+        Tue, 25 Jul 2023 14:16:40 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=from : to : cc : subject
+ : date : message-id : mime-version : content-transfer-encoding; s=pp1;
+ bh=d5F1KO0SVqTGkQNnrUVyswalXVag4bmTZdMD2hG6dnw=;
+ b=IV0xItgVNLtfQIB31kXD5MheV8vVU1++ojsYNg+0Lf1scTnzXbXazDxL1fM0WsvM2IID
+ NG0xIhvtU0RedE6xvfh+VjKRcqbfcYvjay7Lx+hRF3aqboEJ3lNj20DymVc0JgWjgwGz
+ jRqW64bmrBpCUMdFCHnaBajNRlh7z8DISGAb6L7IDLdlZpj7b1kWHDehTnZ06fYdd7Sa
+ cfWAm3Is3Ll71Obg8z9zvR41QBoySIMZ9JuNDg8iPSplp4XVvJB+5jsX8Qx3d1pSC29l
+ Gsa1fAsnj1QkSsqTHARlI6TUPMwm7bWiwUKdIlEijAa9WKx7CRWME4J1mF9tUWxTuSKX xQ== 
+Received: from ppma23.wdc07v.mail.ibm.com (5d.69.3da9.ip4.static.sl-reverse.com [169.61.105.93])
+        by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3s20jtmyn7-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 25 Jul 2023 14:16:40 +0000
+Received: from pps.filterd (ppma23.wdc07v.mail.ibm.com [127.0.0.1])
+        by ppma23.wdc07v.mail.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 36PDsuK3002381;
+        Tue, 25 Jul 2023 14:16:39 GMT
+Received: from smtprelay04.dal12v.mail.ibm.com ([172.16.1.6])
+        by ppma23.wdc07v.mail.ibm.com (PPS) with ESMTPS id 3s0txjve38-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 25 Jul 2023 14:16:39 +0000
+Received: from smtpav04.dal12v.mail.ibm.com (smtpav04.dal12v.mail.ibm.com [10.241.53.103])
+        by smtprelay04.dal12v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 36PEGcIJ23790264
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Tue, 25 Jul 2023 14:16:38 GMT
+Received: from smtpav04.dal12v.mail.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 44A7C5805A;
+        Tue, 25 Jul 2023 14:16:38 +0000 (GMT)
+Received: from smtpav04.dal12v.mail.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 350EF58056;
+        Tue, 25 Jul 2023 14:16:38 +0000 (GMT)
+Received: from gfwa600.aus.stglabs.ibm.com (unknown [9.3.84.101])
+        by smtpav04.dal12v.mail.ibm.com (Postfix) with ESMTPS;
+        Tue, 25 Jul 2023 14:16:38 +0000 (GMT)
+Received: by gfwa600.aus.stglabs.ibm.com (Postfix, from userid 181152)
+        id 858C07401EE; Tue, 25 Jul 2023 09:16:37 -0500 (CDT)
+From:   Lakshmi Yadlapati <lakshmiy@us.ibm.com>
+To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, joel@jms.id.au, andrew@aj.id.au,
+        eajames@linux.ibm.com
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        Lakshmi Yadlapati <lakshmiy@us.ibm.com>
+Subject: [PATCH 0/1] ARM: dts: aspeed: Rainier: Remove TPM device
+Date:   Tue, 25 Jul 2023 09:16:05 -0500
+Message-Id: <20230725141606.1641080-1-lakshmiy@us.ibm.com>
+X-Mailer: git-send-email 2.37.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [100.64.160.123]
-X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
- p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 178796 [Jul 22 2023]
-X-KSMG-AntiSpam-Version: 5.9.59.0
-X-KSMG-AntiSpam-Envelope-From: AVRomanov@sberdevices.ru
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 525 525 723604743bfbdb7e16728748c3fa45e9eba05f7d, {Tracking_from_domain_doesnt_match_to}, d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;100.64.160.123:7.1.2;127.0.0.199:7.1.2;sberdevices.ru:5.0.1,7.1.1;p-i-exch-sc-m01.sberdevices.ru:5.0.1,7.1.1, FromAlignment: s, {Tracking_white_helo}, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean
-X-KSMG-LinksScanning: Clean
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/07/23 08:49:00 #21663637
-X-KSMG-AntiVirus-Status: Clean, skipped
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+X-TM-AS-GCONF: 00
+X-Proofpoint-ORIG-GUID: Dp_NfcHyUeSW42wsQzgJHHAi-ysMaANq
+X-Proofpoint-GUID: Dp_NfcHyUeSW42wsQzgJHHAi-ysMaANq
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-07-25_08,2023-07-25_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=380 clxscore=1011
+ priorityscore=1501 impostorscore=0 phishscore=0 mlxscore=0 bulkscore=0
+ malwarescore=0 spamscore=0 suspectscore=0 lowpriorityscore=0 adultscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2306200000
+ definitions=main-2307250124
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Using this node, we can obtain random numbers via
-hardware random number generator.
+TPM is not supported in Rainier, remove the TPM device.
 
-Signed-off-by: Alexey Romanov <avromanov@sberdevices.ru>
----
- arch/arm64/boot/dts/amlogic/meson-s4.dtsi | 5 +++++
- 1 file changed, 5 insertions(+)
+Lakshmi Yadlapati (1):
+  ARM: dts: aspeed: Rainier: Remove TPM device
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-index f24460186d3d..3e3348cc6c06 100644
---- a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-@@ -133,6 +133,11 @@ reset: reset-controller@2000 {
- 				reg = <0x0 0x2000 0x0 0x98>;
- 				#reset-cells = <1>;
- 			};
-+
-+			hwrng: rng@440788 {
-+				compatible = "amlogic,meson-rng-s4";
-+				reg = <0x0 0x440788 0x0 0x0c>;
-+			};
- 		};
- 	};
- };
+ arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts | 5 -----
+ 1 file changed, 5 deletions(-)
+
 -- 
-2.38.1
+2.37.2
 
