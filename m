@@ -2,61 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D39EE760480
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 03:00:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 915C1760481
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 03:00:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231295AbjGYBAs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jul 2023 21:00:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43328 "EHLO
+        id S231314AbjGYBAu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jul 2023 21:00:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43344 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229689AbjGYBAr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 21:00:47 -0400
-Received: from mail-oa1-x2d.google.com (mail-oa1-x2d.google.com [IPv6:2001:4860:4864:20::2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C81681702
-        for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 18:00:45 -0700 (PDT)
-Received: by mail-oa1-x2d.google.com with SMTP id 586e51a60fabf-1b0138963ffso3969854fac.0
-        for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 18:00:45 -0700 (PDT)
+        with ESMTP id S231302AbjGYBAs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jul 2023 21:00:48 -0400
+Received: from mail-pf1-x42c.google.com (mail-pf1-x42c.google.com [IPv6:2607:f8b0:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA30510F9
+        for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 18:00:47 -0700 (PDT)
+Received: by mail-pf1-x42c.google.com with SMTP id d2e1a72fcca58-6686708c986so4677207b3a.0
+        for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 18:00:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1690246845; x=1690851645;
+        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1690246847; x=1690851647;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=GEp58o5jHhf4WpbbQN22nWQx0p8/zKOYMNnof7eHdFk=;
-        b=vQYUIaP3UkOWg+UUsUvtJtrQeBkFRh2XYqhD/95/TJDC5tf8+Sxd4VYFWC5Qzp/DEa
-         1+J3CECCqJYhp6+EgvglH4ZqQ0VBS168afINnhIjGsD5jZUh9tdtFonMC3JwySuSgkP0
-         kdHC0TcCRCsnjY0EOZrhB3MFX/e6Gwf7UuEsCfMXSkHKkJ7g+Ht+16r5YgJdFstm2sE/
-         vdBabJh+hBe0a/u3QHX92/XIRR3HGtSY4N82AJLpFMIZJP8KAM76Bi+b6OqGHsP5uaxx
-         YTcNykj6Tplcgg0qhI7b4Twowz7OWDbyWitEkx0TdwG0P70Er1rDwN8BW6EkJJBM23Z8
-         nz1w==
+        bh=vubcOJoroAr2qpLW2iybw1ATfvK07sgIvUXsKV/dGPo=;
+        b=ZdxNwW6iD+ATHVZZmgMI/K5jv3cH2Ujnpa1n4KF84BDR/TFSOAgnarse9TTxC1kVHW
+         xqBDH5rfDJk7lEaPUaVKWLlKqeZAlNF29DCSuXXiQyo5L3nvzeoUUq/9qe1Y0BSiJfzm
+         1C9AS63LVx0DIY0JJfZkSjBJ/T9s6e7yPM//pm91rXImPCUIDMJISbUUboI3IapNhzBk
+         0aQYmbQX7yeZcu2vlGe7QfCW5B8UjmClt7XtvwAa28hca7hr1AJ0/KAWYXrv0WRRKIVO
+         oyZ8IFYxB/66dZR4O9OkKlipdd4bGMWHqmQLrQ1By1Uozf8yhIxDXeyFxKOFpQx3sRP1
+         mPfg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690246845; x=1690851645;
+        d=1e100.net; s=20221208; t=1690246847; x=1690851647;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=GEp58o5jHhf4WpbbQN22nWQx0p8/zKOYMNnof7eHdFk=;
-        b=ejidRUirbCI9caFzG2gKoIUiYw50Ba9pBjAeKB0jyt3uqM5+78xp+Mv+3ACwPSQ1DT
-         66JdqycZvg8a/FqLsEYpcNCi5pccxdOIsz0loF0JoKSLL9UMU2E7Ebri2jjl6Shft3yr
-         Rw17s83KSnw0diFZ+jmMQ4Db9leEa7sTjC77W2vl2XNL8dagxGdVdSxnXRc4SPKPCmht
-         66nD7G2M2nDy8Uuzov7f5chu5TiK2/bIgIfKUyFqt1zZW4h7q8Uf9F6X/CT81Uqf0UNQ
-         JpMBdRVzCpL2y+9D3Ac8OVu+6NmxcZ6kKtJzDPd9fZPtBYSlRLUEvWVJX8UPfYIHNidV
-         jg/g==
-X-Gm-Message-State: ABy/qLb9xJsjt8liMn52c6D/UAZ8sNWzrQoUL4vIKRn8PBIgOBtLo3MX
-        +o+ZowPWrVddQ5n8LI/pPSMQbQ==
-X-Google-Smtp-Source: APBJJlGYcDIG17o3mn7rt/BZ3kSGI2riAzNxr3+T4CZvjH8BN0WgGybsiUplpUKV0LnPk51YAiQb0Q==
-X-Received: by 2002:a05:6870:a2cd:b0:1ba:9a49:d967 with SMTP id w13-20020a056870a2cd00b001ba9a49d967mr12042723oak.23.1690246845066;
-        Mon, 24 Jul 2023 18:00:45 -0700 (PDT)
+        bh=vubcOJoroAr2qpLW2iybw1ATfvK07sgIvUXsKV/dGPo=;
+        b=De4QVnlkFhKHoj86avYQ4rjSAffNjL7lST5cBiw6el+R/7bi8vsu1pRrwReSY0CgAQ
+         yBoKZAkOayiT7Go23GkAc2/84bJHvrKv4pj9a6qZ+dPGfrfHhIrakvQ3zsqo59uz9tBM
+         tE0f1djdZFH0EAQuM2W2dHbI/3fMRa3/bRptgcHkuaPcGgDNkdytI5BiQa1XCMc7RkRD
+         rNQgmIJWhyelO+4ZSlOV5s1IyZ335PPavv5rVQTRmwpYXoEwvxIwGw2fG4yra5KmPBM3
+         hpd/SBrfFIlUBmb9GnICbuym+Bg/oljsK3HQAsgXJLNr8GUQMFAzO+f6MO85CSp1Mwem
+         3GdA==
+X-Gm-Message-State: ABy/qLb72lNUplvAYw6Q1LMFv3R3iaOSastK1K9W44HNqsuoDdywL4i2
+        D55LgANk9RNAQXHnYMgw50Rmmw==
+X-Google-Smtp-Source: APBJJlEAhjbsPgk3JD0vupzmDd8EQKw4DMuvw92Ytu2yFQiDXb5Y2QzGEzDlhzbWXyacnSEsLpMj0w==
+X-Received: by 2002:aa7:88d5:0:b0:63a:ea82:b7b7 with SMTP id k21-20020aa788d5000000b0063aea82b7b7mr13452644pff.28.1690246847286;
+        Mon, 24 Jul 2023 18:00:47 -0700 (PDT)
 Received: from [127.0.1.1] ([2601:1c2:1800:f680:2cbf:9196:a906:e222])
-        by smtp.gmail.com with ESMTPSA id h18-20020a62b412000000b00682a75a50e3sm8576900pfn.17.2023.07.24.18.00.43
+        by smtp.gmail.com with ESMTPSA id h18-20020a62b412000000b00682a75a50e3sm8576900pfn.17.2023.07.24.18.00.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 24 Jul 2023 18:00:43 -0700 (PDT)
+        Mon, 24 Jul 2023 18:00:45 -0700 (PDT)
 From:   Drew Fustini <dfustini@baylibre.com>
-Date:   Mon, 24 Jul 2023 17:59:15 -0700
-Subject: [PATCH RFC 1/4] dt-bindings: mmc: sdhci-of-dwcmhsc: Add T-Head
- TH1520 compatible
+Date:   Mon, 24 Jul 2023 17:59:16 -0700
+Subject: [PATCH RFC 2/4] riscv: dts: thead: Add TH1520 mmc controller and
+ sdhci clock
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230724-th1520-emmc-v1-1-cca1b2533da2@baylibre.com>
+Message-Id: <20230724-th1520-emmc-v1-2-cca1b2533da2@baylibre.com>
 References: <20230724-th1520-emmc-v1-0-cca1b2533da2@baylibre.com>
 In-Reply-To: <20230724-th1520-emmc-v1-0-cca1b2533da2@baylibre.com>
 To:     Jisheng Zhang <jszhang@kernel.org>, Guo Ren <guoren@kernel.org>,
@@ -75,42 +75,65 @@ Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
         Jason Kridner <jkridner@beagleboard.org>,
         Drew Fustini <dfustini@baylibre.com>
 X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1690246840; l=752;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1690246840; l=1329;
  i=dfustini@baylibre.com; s=20230430; h=from:subject:message-id;
- bh=N4XyeVof9hR52mLfjwIJ/Ek5oPrydhGBm0Gy7EtJsFw=;
- b=0OVYnsUPwsHTJB6utTUVvs+L8qB3QLAy9tLpLZXXUDTXz4CyeazHaGQ1XaIA7MYQNO7XeP0HB
- NVJqdcnkvQpAIxMHf7GEH1Vd/Pyve0bmoxyOFWcaiQtG8jPD3agvxxh
+ bh=6awbEzIrA6nzn4c2XYrw0EelLQcw8R2AyCuPywQYMDA=;
+ b=K/Sjhx5qpvJO6IrC2wQpAqRt+DIritcPNunTAz3bS4QTSmeXIj/8HZ8iSzjVoM9e4wViBk+q+
+ s1qzxGvdPrQB5vXLmlawMw5qj8+rijZgtPdfrY4hxhbHh7fXpKK1n+2
 X-Developer-Key: i=dfustini@baylibre.com; a=ed25519;
  pk=p3GKE9XFmjhwAayAHG4U108yag7V8xQVd4zJLdW0g7g=
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add compatible value for the T-Head TH1520 dwcmshc controller.
+Add nodes for the SDHCI fixed clock and the first mmc controller which
+is typically connected to the eMMC device.
 
 Signed-off-by: Drew Fustini <dfustini@baylibre.com>
 ---
- Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml | 1 +
- 1 file changed, 1 insertion(+)
+ arch/riscv/boot/dts/thead/th1520.dtsi | 17 +++++++++++++++++
+ 1 file changed, 17 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml b/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
-index a43eb837f8da..42804d955293 100644
---- a/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
-+++ b/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
-@@ -19,6 +19,7 @@ properties:
-       - rockchip,rk3568-dwcmshc
-       - rockchip,rk3588-dwcmshc
-       - snps,dwcmshc-sdhci
-+      - thead,th1520-dwcmshc
+diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/dts/thead/th1520.dtsi
+index 56a73134b49e..b33bfb04c955 100644
+--- a/arch/riscv/boot/dts/thead/th1520.dtsi
++++ b/arch/riscv/boot/dts/thead/th1520.dtsi
+@@ -134,6 +134,13 @@ uart_sclk: uart-sclk-clock {
+ 		#clock-cells = <0>;
+ 	};
  
-   reg:
-     maxItems: 1
++	sdhci_clk: sdhci-clock {
++		compatible = "fixed-clock";
++		clock-frequency = <198000000>;
++		clock-output-names = "sdhci_clk";
++		#clock-cells = <0>;
++	};
++
+ 	soc {
+ 		compatible = "simple-bus";
+ 		interrupt-parent = <&plic>;
+@@ -291,6 +298,16 @@ dmac0: dma-controller@ffefc00000 {
+ 			status = "disabled";
+ 		};
+ 
++		mmc0: mmc@ffe7080000 {
++			compatible = "thead,th1520-dwcmshc";
++			reg = <0xff 0xe7080000 0x0 0x10000
++			       0xff 0xef014060 0x0 0x4>;
++			interrupts = <62 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "sdhciirq";
++			clocks = <&sdhci_clk>;
++			clock-names = "core";
++		};
++
+ 		timer0: timer@ffefc32000 {
+ 			compatible = "snps,dw-apb-timer";
+ 			reg = <0xff 0xefc32000 0x0 0x14>;
 
 -- 
 2.34.1
