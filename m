@@ -2,112 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6705E7611E9
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 12:57:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C9CB76120F
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 12:59:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232340AbjGYK5Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jul 2023 06:57:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35756 "EHLO
+        id S233652AbjGYK7H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jul 2023 06:59:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35562 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230454AbjGYK5A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 06:57:00 -0400
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59126421E
-        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 03:54:30 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-991ef0b464cso1370230766b.0
-        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 03:54:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690282469; x=1690887269;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=lAPnBy51KY5Q8W0jZaxn8YJPMIA4zGpT3GqFQVuAjXs=;
-        b=ftj1qHH7PHX8G+ykrJfin4oovgfvLbfYfj7bwo5GgaP4bmYWLh0tcp3FrI1Ja7zqc+
-         y4t1CNKaafAqBumyPuxilT1jw0hHJAxXMqHIdTVgEEoEjl1l2tXFBYxe2w6AQ0p+ANZg
-         7UTjPky1q/FKXknDniZsGRduKSJ3YExWd/j8s4Tieri3qf+6eA37ktghPiUxP0UQ1hOp
-         buFKIjd41TOWT4hX2dvrCJVlcsRxr4UgU5ZyOd+pmNmiHfcaIQ+wpfhueJNGpLCkS+L7
-         g1UfkP4g6dKPzH+HGPUWBcDjNivjpM51y36d8k3O2dwF7Yhd2oRLfaa/5OP9dhMwMfOR
-         PXNg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690282469; x=1690887269;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=lAPnBy51KY5Q8W0jZaxn8YJPMIA4zGpT3GqFQVuAjXs=;
-        b=MFRl/2O0XBC9ZUB5DUMWdtbHilngiIKavva1qrczXMm49yQQExGJXDyHGDRf9SlK4w
-         fHh8M+QGCs5ypFNlUFzGp9piAMptNWzuTQR2t5t+oqu0fRAISc0Ba3SnJYRX6i+0I+mV
-         3eYcRKt84Tieky10GkD6gS26wlPvet5iXv0qXDfDlgxT7m0sLFBIZqOO4xR+nus1bIMS
-         8G/UxAOX/ZVEecQl1/TNjIaHEpJJn80hDt7UOgErglhZJplsErOQgnRl121ks7DTCH0k
-         YZ/N/SaGsEf7I9WIWgb10IB36+iMfW9ejd6nPQ9VIuAe7BELuMJWp+4ACqTb6lLg53l8
-         cmuA==
-X-Gm-Message-State: ABy/qLadP2pq7vO/wBCS95c/KR3am4njeRdGAPplkLhReKUivMW3TcD/
-        0jdSn158MU8vUTZpbjxE0U5HIg==
-X-Google-Smtp-Source: APBJJlHF8N1dX3cLQ6BhBFDlptyqeZ0jbLRdvDgQ93gz6dgJ4jr5wU6kWig1k8fcud6m2UiE+efWow==
-X-Received: by 2002:a17:907:77d1:b0:99b:b506:76d with SMTP id kz17-20020a17090777d100b0099bb506076dmr1070876ejc.24.1690282469541;
-        Tue, 25 Jul 2023 03:54:29 -0700 (PDT)
-Received: from krzk-bin.. ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id xo22-20020a170907bb9600b0098860721959sm7980597ejc.198.2023.07.25.03.54.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 Jul 2023 03:54:28 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Saravanan Sekar <sravanhome@gmail.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
+        with ESMTP id S233881AbjGYK6P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 06:58:15 -0400
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A529F211B;
+        Tue, 25 Jul 2023 03:55:34 -0700 (PDT)
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36PA3XNW017003;
+        Tue, 25 Jul 2023 12:55:23 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
+ mime-version : subject : to : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=84skJsHFBbLfJSMlPNHQ+kQWJqyQB1R4sOuBvFYxBvo=;
+ b=3a4+EUWkn6pQShKO2au+wN2f/gRwLzdSQ7FFu6o58dphPQEJePsW/c4a9gTnob02iylW
+ eU+Avt0XO10YPO6Q2/XLToKcYe49BQOeoxnnnrC7pz5nVwUtE1L9uLq1S+Rz+nIWpJbE
+ 1aIvksZU5aFK0NB9+OqFYPpfpxtCtRYUA1H/oIg8e45ZToBwna6GCVkcFkxnrINDbtjj
+ jcVDuv/07aLqTwCcve2GLHRePG3AJWhIbgyaiznDytxDxvj1p0nPO8Wgns2Q3BAOsDZK
+ 4SqPpvJQRJBBsmPmfhb9623HDK98yi5XZSanKvNEL5/z2g02nbJeMXLlZdGTbihjSLsP kg== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3s2cabgb78-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 25 Jul 2023 12:55:23 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 5D8AC100048;
+        Tue, 25 Jul 2023 12:55:22 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 5450B228A39;
+        Tue, 25 Jul 2023 12:55:22 +0200 (CEST)
+Received: from [10.129.166.114] (10.129.166.114) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Tue, 25 Jul
+ 2023 12:55:21 +0200
+Message-ID: <e8138fd1-5d1f-8fc3-e29a-547902c2ab18@foss.st.com>
+Date:   Tue, 25 Jul 2023 12:55:21 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH] media: dt-bindings: drop unneeded status from examples
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Robin Gong <yibin.gong@nxp.com>,
-        ChiYuan Huang <cy_huang@richtek.com>,
-        Pascal Paillet <p.paillet@foss.st.com>,
-        - <patches@opensource.cirrus.com>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 2/2] regulator: dt-bindings: mps,mpq7920: drop incorrect ref to regulator.yaml
-Date:   Tue, 25 Jul 2023 12:54:21 +0200
-Message-Id: <20230725105421.99160-2-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230725105421.99160-1-krzysztof.kozlowski@linaro.org>
-References: <20230725105421.99160-1-krzysztof.kozlowski@linaro.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Sylvain Petinot <sylvain.petinot@foss.st.com>,
+        <linux-tegra@vger.kernel.org>, <linux-media@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20230725101625.75162-1-krzysztof.kozlowski@linaro.org>
+From:   Benjamin Mugnier <benjamin.mugnier@foss.st.com>
+In-Reply-To: <20230725101625.75162-1-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.129.166.114]
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-07-25_06,2023-07-25_01,2023-05-22_02
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-"regulators" node is just grouping regulators, but itself is not
-describing one regulator, thus reference to regulator.yaml schema is
-incorrect.
+Hi Krzysztof,
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- Documentation/devicetree/bindings/regulator/mps,mpq7920.yaml | 1 -
- 1 file changed, 1 deletion(-)
+Thank you for your patch.
 
-diff --git a/Documentation/devicetree/bindings/regulator/mps,mpq7920.yaml b/Documentation/devicetree/bindings/regulator/mps,mpq7920.yaml
-index 38475a568451..6de5b027f990 100644
---- a/Documentation/devicetree/bindings/regulator/mps,mpq7920.yaml
-+++ b/Documentation/devicetree/bindings/regulator/mps,mpq7920.yaml
-@@ -21,7 +21,6 @@ properties:
- 
-   regulators:
-     type: object
--    $ref: regulator.yaml#
- 
-     description: |
-       list of regulators provided by this controller, must be named
+For the st-mipid02 :
+Reviewed-By: Benjamin Mugnier <benjamin.mugnier@foss.st.com>
+
+On 7/25/23 12:16, Krzysztof Kozlowski wrote:
+> Example DTS should not have 'status' property.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  .../devicetree/bindings/media/cec/nvidia,tegra114-cec.yaml       | 1 -
+>  Documentation/devicetree/bindings/media/i2c/st,st-mipid02.yaml   | 1 -
+>  2 files changed, 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/media/cec/nvidia,tegra114-cec.yaml b/Documentation/devicetree/bindings/media/cec/nvidia,tegra114-cec.yaml
+> index 369c48fd9bf9..a6b73498bc21 100644
+> --- a/Documentation/devicetree/bindings/media/cec/nvidia,tegra114-cec.yaml
+> +++ b/Documentation/devicetree/bindings/media/cec/nvidia,tegra114-cec.yaml
+> @@ -53,6 +53,5 @@ examples:
+>          interrupts = <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>;
+>          clocks = <&tegra_car TEGRA124_CLK_CEC>;
+>          clock-names = "cec";
+> -        status = "disabled";
+>          hdmi-phandle = <&hdmi>;
+>      };
+> diff --git a/Documentation/devicetree/bindings/media/i2c/st,st-mipid02.yaml b/Documentation/devicetree/bindings/media/i2c/st,st-mipid02.yaml
+> index 19a39d753aad..b68141264c0e 100644
+> --- a/Documentation/devicetree/bindings/media/i2c/st,st-mipid02.yaml
+> +++ b/Documentation/devicetree/bindings/media/i2c/st,st-mipid02.yaml
+> @@ -143,7 +143,6 @@ examples:
+>          mipid02: csi2rx@14 {
+>              compatible = "st,st-mipid02";
+>              reg = <0x14>;
+> -            status = "okay";
+>              clocks = <&clk_ext_camera_12>;
+>              clock-names = "xclk";
+>              VDDE-supply = <&vdd>;
+
 -- 
-2.34.1
+Regards,
 
+Benjamin
