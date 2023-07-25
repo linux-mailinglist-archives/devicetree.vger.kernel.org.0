@@ -2,72 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B58657616A3
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 13:41:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 683AF761742
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 13:46:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235023AbjGYLlC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jul 2023 07:41:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48538 "EHLO
+        id S232142AbjGYLqW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jul 2023 07:46:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53840 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235020AbjGYLku (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 07:40:50 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30C261FCB
-        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 04:40:35 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-99b9161b94aso345490166b.1
-        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 04:40:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=9elements.com; s=google; t=1690285233; x=1690890033;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=OCWWBBRJa0PORsLtnTWiKQp9jCoJ7Z5w0rr05I0MhAM=;
-        b=A65PLuZvDWSYYYDsjc1F+ZXpzZI+oamgjXR5RgxTp9cRoQ9Dne5I+Jh8psRSH78myb
-         A7gqN0mwwpj20DcWesnpkiRR1y/0oDoxMW2YQF6jriAms+leXGFKjnklt/4wJaInyHnD
-         pANYTfJu/uKiRwA8tPws/g+LXN+6so5TwwTgN30x8YjP+2P4iX0Bf5VzI49W5Rey7lcA
-         m+dK9+9YHD//oL23pNz9tydLv7vA2IQtnvHSTwKcSe98dC3zblljuMHuDEsOVINXb535
-         AI/BqWNjgFBPXrudag3p1/C1VjTcqKp+5yXHOVTkDkb3pRnZ1VohwoBv+4VrR4mJoCB8
-         HKBw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690285233; x=1690890033;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=OCWWBBRJa0PORsLtnTWiKQp9jCoJ7Z5w0rr05I0MhAM=;
-        b=Xm57nOtaRTOrFryH2tGqR45bib2DGkN+q3a7Wk1Ok/1zTgUXgDv+Z1UEa0RSONWuYF
-         gOBdUbBSgIKDrDbHRSDN3u++oooXwpjCTPBa6No8GK/9fDaSnz+aB17HMgr4eU7tPk2Y
-         mByAqttfCT1ZzVG9k4vmabwOPNyfTVBOmTdgpWlAHr8yfeJN0VMFToDc4RfNpwWrEbaq
-         qszZhtZTTO/v5RfPRI3/xibc4s/qQVQu5qnQSa404wCAOzMchvnKBjkIA/pbzH6XkxnW
-         5Uuob5mWhj+EMQxf9toEoCGTCP5WyeSF0XTCwRzQJY+dcRr4RP08HbpydNW5Ts8DYwol
-         ye4A==
-X-Gm-Message-State: ABy/qLYr+Pt63y8dy7TBLDYZqAPE1aZI339qRivvuiIexiqBxYcWbtvJ
-        dFm1XNZtplukhaCs++XCdnWBxQ==
-X-Google-Smtp-Source: APBJJlFS6kYrnmiucY9eWirPBclgdbF4vnVSeCw6/ChNL+5oAgMp6DRN0T580c2uPfxcC++hVTOUoQ==
-X-Received: by 2002:a17:906:9bdd:b0:99b:4e75:52bb with SMTP id de29-20020a1709069bdd00b0099b4e7552bbmr12428460ejc.69.1690285233475;
-        Tue, 25 Jul 2023 04:40:33 -0700 (PDT)
-Received: from stroh80.sec.9e.network (ip-078-094-000-051.um19.pools.vodafone-ip.de. [78.94.0.51])
-        by smtp.gmail.com with ESMTPSA id d6-20020a1709067f0600b009925cbafeaasm8088206ejr.100.2023.07.25.04.40.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 Jul 2023 04:40:32 -0700 (PDT)
-From:   Naresh Solanki <naresh.solanki@9elements.com>
-X-Google-Original-From: Naresh Solanki <Naresh.Solanki@9elements.com>
-To:     Guenter Roeck <linux@roeck-us.net>,
-        Jean Delvare <jdelvare@suse.com>,
-        krzysztof.kozlowski+dt@linaro.org,
+        with ESMTP id S232151AbjGYLqU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 07:46:20 -0400
+Received: from relay02.th.seeweb.it (relay02.th.seeweb.it [IPv6:2001:4b7a:2000:18::163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0631DF3
+        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 04:46:14 -0700 (PDT)
+Received: from SoMainline.org (94-211-6-86.cable.dynamic.v4.ziggo.nl [94.211.6.86])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 0C0CC20231;
+        Tue, 25 Jul 2023 13:46:09 +0200 (CEST)
+Date:   Tue, 25 Jul 2023 13:46:06 +0200
+From:   Marijn Suijten <marijn.suijten@somainline.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     linux-hwmon@vger.kernel.org,
-        Patrick Rudolph <patrick.rudolph@9elements.com>,
-        Naresh Solanki <Naresh.Solanki@9elements.com>,
-        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH 1/3] dt-bindings: hwmon: Add Infineon TDA38640
-Date:   Tue, 25 Jul 2023 13:40:26 +0200
-Message-ID: <20230725114030.1860571-1-Naresh.Solanki@9elements.com>
-X-Mailer: git-send-email 2.41.0
+Subject: Re: [PATCH] dt-bindings: display: msm: sm6125-mdss: drop unneeded
+ status from examples
+Message-ID: <5w2hvzmwzqm4ffopzewveaviebq2ig7awimeo6ipcehx5a43ae@mlwffkf2ctn5>
+References: <20230725101610.75122-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230725101610.75122-1-krzysztof.kozlowski@linaro.org>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -76,98 +51,58 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Patrick Rudolph <patrick.rudolph@9elements.com>
+On 2023-07-25 12:16:10, Krzysztof Kozlowski wrote:
+> Example DTS should not have 'status' property.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  .../devicetree/bindings/display/msm/qcom,sm6125-mdss.yaml   | 6 ------
 
-The TDA38640 has a bug in SVID mode and to enable a workaround
-remove the TDA38640 from trivial-devices and add a complete schema.
+This is not needed: it has already been corrected in v3 and v4 of the
+respective series (among other changes) and the patches were only picked
+to a preliminary (draft) pull to get an overview of the outstanding work
+for this subsystem.  That branch happens to be included in regular -next
+releases though.
 
-The schema adds the custom property 'infineon,en-pin-fixed-level' to
-signal a fixed level on the ENABLE pin and to enable the workaround.
-When the ENABLE pin is left floating it's internally pulled low.
+6.6 drm/msm display pull: https://gitlab.freedesktop.org/drm/msm/-/merge_requests/69
+v3: https://lore.kernel.org/linux-arm-msm/20230718-sm6125-dpu-v3-0-6c5a56e99820@somainline.org/
+v4: https://lore.kernel.org/linux-arm-msm/20230723-sm6125-dpu-v4-0-a3f287dd6c07@somainline.org/
 
-If not specified the driver will continue to use the PMBUS_OPERATION
-register to enable the regulator. When specified the driver will use
-the PMBUS_ON_OFF_CONFIG register to enable the regulator.
+- Marijn
 
-Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
-Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
----
- .../hwmon/pmbus/infineon,tda38640.yaml        | 50 +++++++++++++++++++
- .../devicetree/bindings/trivial-devices.yaml  |  2 -
- 2 files changed, 50 insertions(+), 2 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/hwmon/pmbus/infineon,tda38640.yaml
-
-diff --git a/Documentation/devicetree/bindings/hwmon/pmbus/infineon,tda38640.yaml b/Documentation/devicetree/bindings/hwmon/pmbus/infineon,tda38640.yaml
-new file mode 100644
-index 000000000000..520112e4e271
---- /dev/null
-+++ b/Documentation/devicetree/bindings/hwmon/pmbus/infineon,tda38640.yaml
-@@ -0,0 +1,50 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+
-+$id: http://devicetree.org/schemas/hwmon/pmbus/infineon,tda38640.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Infineon TDA38640 Synchronous Buck Regulator with SVID and I2C
-+
-+description: |
-+  The Infineon TDA38640 is a 40A Single-voltage Synchronous Buck
-+  Regulator with SVID and I2C designed for Industrial use.
-+
-+  Datasheet: https://www.infineon.com/dgdl/Infineon-TDA38640-0000-DataSheet-v02_04-EN.pdf?fileId=8ac78c8c80027ecd018042f2337f00c9
-+
-+properties:
-+  compatible:
-+    enum:
-+      - infineon,tda38640
-+
-+  reg:
-+    maxItems: 1
-+
-+  infineon,en-pin-fixed-level:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: |
-+      Fixed level of the ENABLE pin. When specified the PMBUS_ON_OFF_CONFIG
-+      register is used to enable the regulator instead of the PMBUS_OPERATION
-+      register to workaround a bug of the tda38640 when operating in SVID-mode.
-+      If the ENABLE pin is left floating the internal pull-down causes a low
-+      level on the pin.
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        tda38640@40 {
-+            compatible = "infineon,tda38640";
-+            reg = <0x40>;
-+        };
-+    };
-+
-diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
-index 6e24c4d25ec3..2b1fbb2a672b 100644
---- a/Documentation/devicetree/bindings/trivial-devices.yaml
-+++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-@@ -151,8 +151,6 @@ properties:
-           - infineon,slb9645tt
-             # Infineon SLB9673 I2C TPM 2.0
-           - infineon,slb9673
--            # Infineon TDA38640 Voltage Regulator
--          - infineon,tda38640
-             # Infineon TLV493D-A1B6 I2C 3D Magnetic Sensor
-           - infineon,tlv493d-a1b6
-             # Infineon Multi-phase Digital VR Controller xdpe11280
-
-base-commit: 55612007f16b5d7b1fb83a7b0f5bb686829db7c7
--- 
-2.41.0
-
+>  1 file changed, 6 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sm6125-mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sm6125-mdss.yaml
+> index 2525482424cb..479c82e6a0d8 100644
+> --- a/Documentation/devicetree/bindings/display/msm/qcom,sm6125-mdss.yaml
+> +++ b/Documentation/devicetree/bindings/display/msm/qcom,sm6125-mdss.yaml
+> @@ -95,8 +95,6 @@ examples:
+>          #size-cells = <1>;
+>          ranges;
+>  
+> -        status = "disabled";
+> -
+>          display-controller@5e01000 {
+>              compatible = "qcom,sm6125-dpu";
+>              reg = <0x05e01000 0x83208>,
+> @@ -170,8 +168,6 @@ examples:
+>              #address-cells = <1>;
+>              #size-cells = <0>;
+>  
+> -            status = "disabled";
+> -
+>              ports {
+>                  #address-cells = <1>;
+>                  #size-cells = <0>;
+> @@ -210,8 +206,6 @@ examples:
+>  
+>              required-opps = <&rpmpd_opp_svs>;
+>              power-domains = <&rpmpd SM6125_VDDMX>;
+> -
+> -            status = "disabled";
+>          };
+>      };
+>  ...
+> -- 
+> 2.34.1
+> 
