@@ -2,114 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A8771761857
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 14:28:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A1D4761876
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 14:37:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232041AbjGYM22 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jul 2023 08:28:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51450 "EHLO
+        id S230205AbjGYMhT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jul 2023 08:37:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55124 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229661AbjGYM20 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 08:28:26 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5B06172E;
-        Tue, 25 Jul 2023 05:28:25 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 38D0B616CC;
-        Tue, 25 Jul 2023 12:28:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C7825C433C8;
-        Tue, 25 Jul 2023 12:28:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690288104;
-        bh=p8pNTACbV+ueNS7caYlCSJAt3q/4mJV+EISnLrkoukg=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=lE7Bo4Mq1A4jWO5aPkHmIREVTgUR+4ZJHMKt+cMpftaGGzoIqnzKM0nmEWvdWCe4G
-         pFdnnJtIAlG7kOGDruCtuct2diFGGo8D2ObmH9V+KGpD1f4MeJYQSD77dwaOJzRgEa
-         N6p19RRAg01F8DAhkPRk8y/OIw1HCICOfeSI4t0uPA+3ibFNfzVqBMEWdTm5H3cjdk
-         21PYWvU4XxVbBWhj3/f3PyUBehK1Q5Ti02KjXx4AkOnXCn6LlajAmmzu+IWIvZUu7z
-         srps6H7gih7z0NHwcpuFsLDtjkTfsRYT1bSfsJs/W+0VZSHFRWussdNOqEQWf73Vog
-         DaQwcQ7ElARig==
-Received: (nullmailer pid 2822754 invoked by uid 1000);
-        Tue, 25 Jul 2023 12:28:22 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Naresh Solanki <naresh.solanki@9elements.com>
-Cc:     linux-hwmon@vger.kernel.org,
-        Patrick Rudolph <patrick.rudolph@9elements.com>,
+        with ESMTP id S232908AbjGYMhS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 08:37:18 -0400
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49FC3199C
+        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 05:37:16 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-991ef0b464cso1391807466b.0
+        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 05:37:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1690288635; x=1690893435;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=EhZOTY2v8nNqCcShLqLA7mLbnG45oifLvhvNr+/6z/o=;
+        b=WyKTRrgFJwUyfdp/c764JU7lMiUG7ykQmHfDjHirhMDJqFOBbsxFq6z3SCEIgb19ss
+         YpFaUBqyiLzV4eTpcmNQEpKLQQ5rJUhGxTh/V1FSezErKgwzefb6XHVSy4pGGxA0e12E
+         ZOMmDSHBVzfF7nYb2VeGsTx9UNebdwtn8ivJ7jqVcretOqzTeu8G0LuvvPd6W5H6wnAM
+         +QMk+2pTqLcQhlO0oLdPinA53C7Kjo0fdeW0V9FmeRhFo9LsmH5EBpEC8FCAWXdoiirN
+         a3iw/EI8jQx1h8qvMy91oVXEGeQmok4/yYivpEPKODZrLb4wq0UNJxz9ZloJhfoyzgup
+         SuZw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690288635; x=1690893435;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=EhZOTY2v8nNqCcShLqLA7mLbnG45oifLvhvNr+/6z/o=;
+        b=azzGjmJ9srgtRqSmX8705ErrZX/AQc+TIw4+l/epn7eoMY7qIeI783UzW50cs5f/et
+         05jyJsqGb/kbTZnw3OqrU7LFneoYpdWaM0duX8v9tX20rIkTkXrY9T+or9MjB8Ca7BQU
+         DnTGJ7I6gSyAQ7tRY4Kk6pYbefjt9oWlonsUwXBnD/vIjNxpHd2MCBsJ10TL74u1WjFD
+         8hp0Bti9mvo4WaOUTNrQjCjwgbRun7SuU7ZsUl2v6khvKhhTusGtlQJuXR66Zd0v7ttu
+         JL+9R/qn3DPiaPr0WAQ3ExwKJyyC4jD7EWgWNpVfOJJ0/sJ2sPSdaKYp/oUdo/+WRghn
+         z2LQ==
+X-Gm-Message-State: ABy/qLZQdxEs//Ulm1QJfTpFRmIt3YCv+LezRAy5biiB1RBPcZNZJ0w1
+        WcE7HC/nbvojV6Gog5tebSbstA==
+X-Google-Smtp-Source: APBJJlHY+74HHjey/C1hM74+8GGWFdnbCBbGLwWt0v2dOdMJV8ZhK+BaA46nQ+0c+9MOCfr3RN29Eg==
+X-Received: by 2002:a17:907:2cc1:b0:993:f611:7c97 with SMTP id hg1-20020a1709072cc100b00993f6117c97mr2259221ejc.33.1690288634744;
+        Tue, 25 Jul 2023 05:37:14 -0700 (PDT)
+Received: from krzk-bin.. ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id op10-20020a170906bcea00b00989027eb30asm8140654ejb.158.2023.07.25.05.37.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 25 Jul 2023 05:37:14 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Naresh Solanki <Naresh.Solanki@9elements.com>,
-        devicetree@vger.kernel.org, Guenter Roeck <linux@roeck-us.net>,
-        linux-kernel@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-        Jean Delvare <jdelvare@suse.com>,
-        krzysztof.kozlowski+dt@linaro.org
-In-Reply-To: <20230725114030.1860571-1-Naresh.Solanki@9elements.com>
-References: <20230725114030.1860571-1-Naresh.Solanki@9elements.com>
-Message-Id: <169028810279.2822737.12983836362308976147.robh@kernel.org>
-Subject: Re: [PATCH 1/3] dt-bindings: hwmon: Add Infineon TDA38640
-Date:   Tue, 25 Jul 2023 06:28:22 -0600
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH net-next] dt-bindings: net: qca,ar803x: add missing unevaluatedProperties for each regulator
+Date:   Tue, 25 Jul 2023 14:37:11 +0200
+Message-Id: <20230725123711.149230-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Each regulator node, which references common regulator.yaml schema,
+should disallow additional or unevaluated properties.  Otherwise
+mistakes in properties will go unnoticed.
 
-On Tue, 25 Jul 2023 13:40:26 +0200, Naresh Solanki wrote:
-> From: Patrick Rudolph <patrick.rudolph@9elements.com>
-> 
-> The TDA38640 has a bug in SVID mode and to enable a workaround
-> remove the TDA38640 from trivial-devices and add a complete schema.
-> 
-> The schema adds the custom property 'infineon,en-pin-fixed-level' to
-> signal a fixed level on the ENABLE pin and to enable the workaround.
-> When the ENABLE pin is left floating it's internally pulled low.
-> 
-> If not specified the driver will continue to use the PMBUS_OPERATION
-> register to enable the regulator. When specified the driver will use
-> the PMBUS_ON_OFF_CONFIG register to enable the regulator.
-> 
-> Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
-> Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
-> ---
->  .../hwmon/pmbus/infineon,tda38640.yaml        | 50 +++++++++++++++++++
->  .../devicetree/bindings/trivial-devices.yaml  |  2 -
->  2 files changed, 50 insertions(+), 2 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/hwmon/pmbus/infineon,tda38640.yaml
-> 
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ Documentation/devicetree/bindings/net/qca,ar803x.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/hwmon/pmbus/infineon,tda38640.yaml: 'maintainers' is a required property
-	hint: Metaschema for devicetree binding documentation
-	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230725114030.1860571-1-Naresh.Solanki@9elements.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+diff --git a/Documentation/devicetree/bindings/net/qca,ar803x.yaml b/Documentation/devicetree/bindings/net/qca,ar803x.yaml
+index 161d28919316..3acd09f0da86 100644
+--- a/Documentation/devicetree/bindings/net/qca,ar803x.yaml
++++ b/Documentation/devicetree/bindings/net/qca,ar803x.yaml
+@@ -75,6 +75,7 @@ properties:
+     description:
+       Initial data for the VDDIO regulator. Set this to 1.5V or 1.8V.
+     $ref: /schemas/regulator/regulator.yaml
++    unevaluatedProperties: false
+ 
+   vddh-regulator:
+     type: object
+@@ -82,6 +83,7 @@ properties:
+       Dummy subnode to model the external connection of the PHY VDDH
+       regulator to VDDIO.
+     $ref: /schemas/regulator/regulator.yaml
++    unevaluatedProperties: false
+ 
+ unevaluatedProperties: false
+ 
+-- 
+2.34.1
 
