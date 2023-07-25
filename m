@@ -2,267 +2,238 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 42D8F760C8A
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 10:00:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1556C760C1E
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 09:41:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232315AbjGYIAT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jul 2023 04:00:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38898 "EHLO
+        id S232717AbjGYHlO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jul 2023 03:41:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54710 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232024AbjGYIAS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 04:00:18 -0400
-X-Greylist: delayed 720 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 25 Jul 2023 01:00:09 PDT
-Received: from rivendell.linuxfromscratch.org (rivendell.linuxfromscratch.org [208.118.68.85])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 95CB31AA;
-        Tue, 25 Jul 2023 01:00:09 -0700 (PDT)
-Received: from [192.168.124.11] (unknown [61.150.43.67])
-        by rivendell.linuxfromscratch.org (Postfix) with ESMTPSA id 6045E1C1D3F;
-        Tue, 25 Jul 2023 07:39:07 +0000 (GMT)
-X-Virus-Status: Clean
-X-Virus-Scanned: clamav-milter 1.0.0 at rivendell.linuxfromscratch.org
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfromscratch.org;
-        s=cert4; t=1690270751;
-        bh=UIpvXwW/xYdqfcSUiumRa/BDuejdVgL9+aeWG6qzvZc=;
-        h=Subject:From:To:Cc:Date:In-Reply-To:References;
-        b=l0Ogp2Jztzf2tuQRa4V+OiBiBuuYsgHYJ9u1/RO3NX+XfwORTTfVmAV+lP+1AC8Wn
-         aTZIhsudoVovrUkjFsNy1jkdkvQ0d4sQlfDhddF+wc4faCrWqwh5TozdZMAd/z9Xd5
-         QFK0sxQqYcbLL8RhqaFjdCVKS/IWTtAbrIYOep3hH8Z2LNLyULMolSoWAvUsP4QnuX
-         Fn+rIAAbkjaFbnNjPv3z3eOvKkmgrhA+fyUYMrdAmoA/smVMJT5a5wEKVI84WMlqSb
-         M9qlu62g8Ppm6z0/guG/XHlqJlm30Ylpghju9fICr2LWBoIJdHAkUFujQQ3IsdpkMY
-         oUsU/CV/w/BIw==
-Message-ID: <c9a44f534071a6d67f1e21bafdb713793c559124.camel@linuxfromscratch.org>
-Subject: Re: [PATCH v3 0/8] Add Sipeed Lichee Pi 4A RISC-V board support
-From:   Xi Ruoyao <xry111@linuxfromscratch.org>
-To:     Jisheng Zhang <jszhang@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
+        with ESMTP id S232760AbjGYHkz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 03:40:55 -0400
+Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 603281BE7
+        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 00:39:30 -0700 (PDT)
+Received: by mail-pj1-x1030.google.com with SMTP id 98e67ed59e1d1-2681223aaacso1309149a91.0
+        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 00:39:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=lessconfused.com; s=lessconfused; t=1690270770; x=1690875570;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=xy8OcOIyM25HJffc3iM+MHwhzBjN4KoyNKIe4W8cYC4=;
+        b=Qpzrc8y88iB8rcDjaw/QW172NzZdV/q4oifO8GJUr5piHN8AekTfLQF2J05Gs2986n
+         /BRCopHVq6PlBZt8r2jKrGnYEnbTLWOtFK84BCUf5se+z6tdyt75Q1shY1+yt+l27jyD
+         O3xFvYCfwRfmNbojFQ9TI+MXYMooI5VSwk09c=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690270770; x=1690875570;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=xy8OcOIyM25HJffc3iM+MHwhzBjN4KoyNKIe4W8cYC4=;
+        b=ifV4GX8CZ6zky2wnNx9lH4KHSzC21luFJ5Qlq5fud+wJpQ19NTFgeN/+TLGRrZpxV7
+         63RbfI1kRNFfGMWmrheFNzOy0fXQnR/ibyefrJiieeqaiE6DMVrKJ701H/h1jacRN6y1
+         AVuCiNi8CCqk7DqqqMFE/cmY8tpnlMcpZROcZ9lKSsms4gZdms3mexQJt4d08lVmDzKC
+         cil25BW8sWSRmXRzuldsYQPF1iMPzUig8GCBFUu/E2dQtVtUz76DMm8AQH7WxmHUnMMp
+         0mKDESqquHlzfd0B/+MyoSkJYBXh8fVmuz+8mGLmjfEuT3zNQrAX8vBm9SlHO+sy7KFb
+         Q3Rw==
+X-Gm-Message-State: ABy/qLad0dL2GeNONLxNaUT0KIhchjPvZzui7TfgNMpBQt5Q4kIWbnfl
+        wov8xao/oU0kViC6KhEfwEqxnMxs+RyQT1wueWALNg==
+X-Google-Smtp-Source: APBJJlGjbWO2mFsMyVaK8S3VqHry3/clQYdFOi/SJupj6WR+NW5T3GtVZ18Ioo9pCpRuhmJKgdjlUUXzwLQ5peKjkWo=
+X-Received: by 2002:a17:90a:5290:b0:260:a8da:536c with SMTP id
+ w16-20020a17090a529000b00260a8da536cmr2180262pjh.23.1690270769759; Tue, 25
+ Jul 2023 00:39:29 -0700 (PDT)
+MIME-Version: 1.0
+References: <20230719122123.3702588-1-jagan@amarulasolutions.com> <51af40e5fa8e22411b654bbb894bb0fee19be8f9.camel@collabora.com>
+In-Reply-To: <51af40e5fa8e22411b654bbb894bb0fee19be8f9.camel@collabora.com>
+From:   Da Xue <da@lessconfused.com>
+Date:   Tue, 25 Jul 2023 03:39:18 -0400
+Message-ID: <CACdvmAia49_YiKpVvT=yeLWF+YGm+2vFK3rdwRB9XOAH5mm=-w@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: rockchip: Enable TYPE-C PD for ROC-RK3399-PC
+To:     Christopher Obbard <chris.obbard@collabora.com>
+Cc:     Jagan Teki <jagan@amarulasolutions.com>,
+        Heiko Stuebner <heiko@sntech.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc:     Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org
-Date:   Tue, 25 Jul 2023 15:38:58 +0800
-In-Reply-To: <20230617161529.2092-1-jszhang@kernel.org>
-References: <20230617161529.2092-1-jszhang@kernel.org>
+        linux-rockchip@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Corentin Labbe <clabbe@baylibre.com>,
+        kernel <kernel@collabora.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.48.4 
-MIME-Version: 1.0
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jisheng,
+On Mon, Jul 24, 2023 at 9:55=E2=80=AFAM Christopher Obbard
+<chris.obbard@collabora.com> wrote:
+>
+> On Wed, 2023-07-19 at 17:51 +0530, Jagan Teki wrote:
+> > The power supply circuit in ROC-RK3399-PC is
+> >
+> > Power Supply (or PPS) =3D> FUSB =3D> MP8859
+> >
+> > VUBS pin of FUSB and IN pin of MP8859 is supplied via TYPEC_IN.
+> >
+> > The MP8859 operated with 2.8V to 22V supply voltage and typical
+> > applications this supply can be 12V.
+> >
+> > This patch is trying to support the PD by changing the FUSB VBUS supply
+> > to 12V and tune the I2C7 timings from downstream kernel.
+> >
+> > Tested with PD3.0 PPS with supply voltages of 12V/3A and 20V/5A.
+>
+> Hi Jagan,
+>
+> This series works fine with a "dumb" (no PD negotiation) 5.1V Raspberry P=
+i PSU.
+>
+> It also works fine with a Dell 45W USB-C Laptop Power Supply (model AA45N=
+M170) which provides 5V@3A,9V@3A,15V@3A,20V@2.25A, where Linux master fails=
+ and just tells the USB-PD PSU to power-off.
 
-On Sun, 2023-06-18 at 00:15 +0800, Jisheng Zhang wrote:
-> Sipeed's Lichee Pi 4A development board uses Lichee Module 4A core
-> module which is powered by T-HEAD's TH1520 SoC. Add minimal device
-> tree files for the core module and the development board.
->=20
-> Support basic uart/gpio/dmac drivers, so supports booting to a basic
-> shell.
+I think this depends on the recent Rockchip TCPM changes. FUSB302 has
+been a pain in the USB or else this platform would have launched a lot
+longer ago.
 
-Thanks for the excellent work, but when I tried to boot Linux 6.5.0-rc3
-on my Lichee Pi 4A it fails with:
+>
+> It doesn't work with a Lenovo 65W PSU (model ADLX65YLC3D) which provides =
+5V@2A,9V@2A,15V@3A,20V@3.25A, after negotiation the driver turns the PD PSU=
+ off and on again, resetting the board.
+> So it'd be great to get this fixed, but it seems like the sink-pdos shoul=
+d already support this PSU ?
 
-## Flattened Device Tree blob at 01f00000
-   Booting using the fdt blob at 0x1f00000
-   Using Device Tree in place at 0000000001f00000, end 0000000001f050c4
+Something to note about USB PD that I read in the TI PD 2.0 paper and
+re-spewing based on memory: during transitions, the sink should
+self-limit to 500mA. If that is the case, the transition behavior is
+up to the source.
 
-Starting kernel ...
-
-[    0.000000] Linux version 6.5.0-rc3 (lfs@stargazer) (riscv64-lfs-linux-g=
-nu-gcc (GCC) 13.1.0, GNU ld (GNU Binutils) 2.40) #1 SMP PREEMPT Tue Jul 25 =
-13:38:20 CST 2023
-[    0.000000] Machine model: Sipeed Lichee Pi 4A
-[    0.000000] SBI specification v0.3 detected
-[    0.000000] SBI implementation ID=3D0x1 Version=3D0x9
-[    0.000000] SBI TIME extension detected
-[    0.000000] SBI IPI extension detected
-[    0.000000] SBI RFENCE extension detected
-[    0.000000] earlycon: uart0 at MMIO32 0x000000ffe7014000 (options '11520=
-0n8')
-[    0.000000] printk: bootconsole [uart0] enabled
-[    0.000000] efi: UEFI not found.
-[    0.000000] OF: reserved mem: 0x0000000000000000..0x000000000003ffff (25=
-6 KiB) nomap non-reusable mmode_resv0@0
-[    0.000000] Zone ranges:
-[    0.000000]   DMA32    [mem 0x0000000000000000-0x00000000ffffffff]
-[    0.000000]   Normal   [mem 0x0000000100000000-0x00000001ffffffff]
-[    0.000000] Movable zone start for each node
-[    0.000000] Early memory node ranges
-[    0.000000]   node   0: [mem 0x0000000000000000-0x000000000003ffff]
-[    0.000000]   node   0: [mem 0x0000000000040000-0x00000001ffffffff]
-[    0.000000] Initmem setup node 0 [mem 0x0000000000000000-0x00000001fffff=
-fff]
-[    0.000000] SBI HSM extension detected
-[    0.000000] riscv: base ISA extensions acdfim
-[    0.000000] riscv: ELF capabilities acdfim
-[    0.000000] percpu: Embedded 17 pages/cpu s38184 r0 d31448 u69632
-[    0.000000] Kernel command line: console=3DttyS0,115200 earlycon logleve=
-l=3D7
-[    0.000000] Dentry cache hash table entries: 1048576 (order: 11, 8388608=
- bytes, linear)
-[    0.000000] Inode-cache hash table entries: 524288 (order: 10, 4194304 b=
-ytes, linear)
-[    0.000000] Built 1 zonelists, mobility grouping on.  Total pages: 20643=
-84
-[    0.000000] mem auto-init: stack:all(zero), heap alloc:off, heap free:of=
-f
-[    0.000000] software IO TLB: area num 4.
-[    0.000000] software IO TLB: mapped [mem 0x00000000fbfff000-0x00000000ff=
-fff000] (64MB)
-[    0.000000] Memory: 8145304K/8388608K available (4922K kernel code, 4786=
-K rwdata, 2048K rodata, 2148K init, 393K bss, 243304K reserved, 0K cma-rese=
-rved)
-[    0.000000] SLUB: HWalign=3D64, Order=3D0-3, MinObjects=3D0, CPUs=3D4, N=
-odes=3D1
-[    0.000000] rcu: Preemptible hierarchical RCU implementation.
-[    0.000000] rcu:     RCU event tracing is enabled.
-[    0.000000] rcu:     RCU restricting CPUs from NR_CPUS=3D64 to nr_cpu_id=
-s=3D4.
-[    0.000000]  Trampoline variant of Tasks RCU enabled.
-[    0.000000]  Tracing variant of Tasks RCU enabled.
-[    0.000000] rcu: RCU calculated value of scheduler-enlistment delay is 1=
-00 jiffies.
-[    0.000000] rcu: Adjusting geometry for rcu_fanout_leaf=3D16, nr_cpu_ids=
-=3D4
-[    0.000000] NR_IRQS: 64, nr_irqs: 64, preallocated irqs: 0
-[    0.000000] riscv-intc: 64 local interrupts mapped
-[    0.000000] Oops - load access fault [#1]
-[    0.000000] CPU: 0 PID: 0 Comm: swapper/0 Not tainted 6.5.0-rc3 #1
-[    0.000000] Hardware name: Sipeed Lichee Pi 4A (DT)
-[    0.000000] epc : __plic_toggle+0x5a/0x62
-[    0.000000]  ra : __plic_init.isra.0+0x2d0/0x462
-[    0.000000] epc : ffffffff802ce8ec ra : ffffffff80618816 sp : ffffffff80=
-e03c90
-[    0.000000]  gp : ffffffff80ec5bb8 tp : ffffffff80e10d40 t0 : ffffffd900=
-045940
-[    0.000000]  t1 : 0000000000000002 t2 : ffffffd90004a10c s0 : ffffffd9fe=
-f6ed68
-[    0.000000]  s1 : ffffffd900045680 a0 : ffffffc801002080 a1 : 0000000000=
-000002
-[    0.000000]  a2 : 0000000000000000 a3 : 00000000000000f4 a4 : 0000000000=
-000001
-[    0.000000]  a5 : 0000000000000000 a6 : 0000000000000b40 a7 : ffffffd900=
-045940
-[    0.000000]  s2 : ffffffd9fef6ed78 s3 : ffffffff80ef9630 s4 : 0000000000=
-000001
-[    0.000000]  s5 : ffffffd9ffff5af8 s6 : 0000000000000001 s7 : ffffffff80=
-815d68
-[    0.000000]  s8 : 0000000000000008 s9 : 0000000000000000 s10: ffffffff80=
-815d68
-[    0.000000]  s11: ffffffff80b1b1b8 t3 : ffffffff80c003d0 t4 : 0000000000=
-000001
-[    0.000000]  t5 : 0000000000000003 t6 : 0000000000000001
-[    0.000000] status: 8000000201800100 badaddr: 000000ffd8002080 cause: 00=
-00000000000005
-[    0.000000] [<ffffffff802ce8ec>] __plic_toggle+0x5a/0x62
-[    0.000000] [<ffffffff8061ffc8>] of_irq_init+0x14a/0x248
-[    0.000000] [<ffffffff80600a7e>] start_kernel+0x40c/0x6fe
-[    0.000000] [<ffffffff806034f6>] init_IRQ+0xc6/0x100
-[    0.000000] [<ffffffff80600a7e>] start_kernel+0x40c/0x6fe
-[    0.000000] Code: 0007 c319 9123 00e7 8082 000f 0140 411c 000f 0820 (c59=
-3) fff5=20
-[    0.000000] ---[ end trace 0000000000000000 ]---
-[    0.000000] Kernel panic - not syncing: Fatal exception in interrupt
-
-I guess I'm either using some unsupported configuration or making some
-stupid mistakes, but I cannot find any documentation about how to
-configure the mainline kernel for Lichee Pi 4A properly.  Could you give
-some pointers?
-
-And this line
-
-Memory: 8145304K/8388608K available (4922K kernel code, 4786K rwdata, 2048K=
- rodata, 2148K init, 393K bss, 243304K reserved, 0K cma-reserved)
-
-does not match my hardware (my board is a 16 GB DRAM variant).  So in
-the future we'll need multiple DTs for all the variants?
-
-> NOTE: the thead cpu reset dt-binding and DT node are removed in v3. This
-> makes secondary CPUs unable to be online. However, minimal th1520
-> support is better than nothing. And the community has been working on
-> and will work on the cpu reset dt-binding, for example, Conor, Guo and
-> Jessica are discussing about it, I have seen valuable comments and
-> inputs from them. I believe we can add back cpu reset in next
-> development window.
->=20
-> Thanks
->=20
-> Since v2:
-> =C2=A0 - remove thead cpu-rst dt-binding doc and its DT node from th1520.=
-dtsi
-> =C2=A0 - collect Reviewed-by and Acked-by tags
-> =C2=A0 - update uart reg size as suggested by Yixun
-> =C2=A0 - Add Guo Ren and Fu Wei as THEAD SoCs Maintainers
->=20
-> Since v1:
-> =C2=A0 - add missing plic, clint, th1520 itself dt-bindings
-> =C2=A0 - use c900-plic
-> =C2=A0 - s/light/th1520
-> =C2=A0 - add dt-binding for T-HEAD CPU reset
-> =C2=A0 - enable ARCH_THEAD in defconfig
-> =C2=A0 - fix all dtbs_check error/warning except the CPU RESET, see above=
-.
->=20
-> Jisheng Zhang (8):
-> =C2=A0 dt-bindings: interrupt-controller: Add T-HEAD's TH1520 PLIC
-> =C2=A0 dt-bindings: timer: Add T-HEAD TH1520 clint
-> =C2=A0 dt-bindings: riscv: Add T-HEAD TH1520 board compatibles
-> =C2=A0 riscv: Add the T-HEAD SoC family Kconfig option
-> =C2=A0 riscv: dts: add initial T-HEAD TH1520 SoC device tree
-> =C2=A0 riscv: dts: thead: add sipeed Lichee Pi 4A board device tree
-> =C2=A0 MAINTAINERS: add entry for T-HEAD RISC-V SoC
-> =C2=A0 riscv: defconfig: enable T-HEAD SoC
->=20
-> =C2=A0.../sifive,plic-1.0.0.yaml=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
- |=C2=A0=C2=A0 1 +
-> =C2=A0.../devicetree/bindings/riscv/thead.yaml=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 |=C2=A0 29 ++
-> =C2=A0.../bindings/timer/sifive,clint.yaml=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 1 +
-> =C2=A0MAINTAINERS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
- |=C2=A0=C2=A0 8 +
-> =C2=A0arch/riscv/Kconfig.socs=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 6 +
-> =C2=A0arch/riscv/boot/dts/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=
-=A0 1 +
-> =C2=A0arch/riscv/boot/dts/thead/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 2 +
-> =C2=A0.../dts/thead/th1520-lichee-module-4a.dtsi=C2=A0=C2=A0=C2=A0 |=C2=
-=A0 38 ++
-> =C2=A0.../boot/dts/thead/th1520-lichee-pi-4a.dts=C2=A0=C2=A0=C2=A0 |=C2=
-=A0 32 ++
-> =C2=A0arch/riscv/boot/dts/thead/th1520.dtsi=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 | 422 ++++++++++++++++++
-> =C2=A0arch/riscv/configs/defconfig=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=
-=A0 1 +
-> =C2=A011 files changed, 541 insertions(+)
-> =C2=A0create mode 100644 Documentation/devicetree/bindings/riscv/thead.ya=
-ml
-> =C2=A0create mode 100644 arch/riscv/boot/dts/thead/Makefile
-> =C2=A0create mode 100644 arch/riscv/boot/dts/thead/th1520-lichee-module-4=
-a.dtsi
-> =C2=A0create mode 100644 arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dt=
-s
-> =C2=A0create mode 100644 arch/riscv/boot/dts/thead/th1520.dtsi
->=20
-
+>
+>
+> As a side note for full transparency, another issue is that with Linux ma=
+ster or with this patch applied, applying power to the DC_12V header withou=
+t a USB-C PSU connected (e.g. powering from the POE
+> expansion shield), boot hangs and dumps to an initramfs shell with:
+>
+>   [    7.411798] random: crng init done
+>   [   12.568138] platform fe3a0000.usb: deferred probe pending
+>   [   12.568673] platform sdio-pwrseq: deferred probe pending
+>   [   12.569162] platform fe3e0000.usb: deferred probe pending
+>   [   12.569658] platform adc-keys: deferred probe pending
+>   [   12.570123] i2c 7-0022: deferred probe pending
+>   [   12.570533] i2c 4-0022: deferred probe pending
+>   [   12.570944] platform ff940000.hdmi: deferred probe pending
+>   [   12.571448] platform vcc3v0-sd: deferred probe pending
+>   [   12.572000] platform vcc1v8-s3: deferred probe pending
+>   [   12.572475] platform sys-12v: deferred probe pending
+>   [   12.572933] platform vcc3v3-sys: deferred probe pending
+>   [   12.573412] platform fe320000.mmc: deferred probe pending
+>   [   12.573907] platform vcca-0v9: deferred probe pending
+>   [   12.574371] platform vcc5v0-host-regulator: deferred probe pending
+>   [   12.574935] platform ff770000.syscon:usb2phy@e450: deferred probe pe=
+nding
+>   [   12.575552] platform vcc-vbus-typec1: deferred probe pending
+>   [   12.576090] platform fe300000.ethernet: deferred probe pending
+>   [   12.576623] platform vcc-sys: deferred probe pending
+>   [   12.577080] platform ff770000.syscon:usb2phy@e460: deferred probe pe=
+nding
+>   [   12.577697] platform ff320000.syscon:io-domains: deferred probe pend=
+ing
+>   [   12.578298] platform ff770000.syscon:io-domains: deferred probe pend=
+ing
+>   [   12.578901] platform fe800000.usb: deferred probe pending
+>   [   12.579395] platform fe900000.usb: deferred probe pending
+>   [   12.579904] platform vdd-log: deferred probe pending
+>   [   12.580362] i2c 0-001b: deferred probe pending
+>   [   12.580772] i2c 0-0040: deferred probe pending
+>   [   12.581182] platform cpufreq-dt: deferred probe pending
+>   [   12.581663] i2c 0-0041: deferred probe pending
+>
+>
+>
+> Thanks,
+>
+> Chris
+>
+> >
+> > Cc: Corentin Labbe <clabbe@baylibre.com>
+> > Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+> > ---
+> >  .../boot/dts/rockchip/rk3399-roc-pc.dtsi      | 19 ++++++++++++++++---
+> >  1 file changed, 16 insertions(+), 3 deletions(-)
+> >
+> > diff --git a/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi b/arch/arm=
+64/boot/dts/rockchip/rk3399-roc-pc.dtsi
+> > index c32913df93c3..8963b3858eae 100644
+> > --- a/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi
+> > +++ b/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi
+> > @@ -6,6 +6,7 @@
+> >  /dts-v1/;
+> >  #include <dt-bindings/input/linux-event-codes.h>
+> >  #include <dt-bindings/pwm/pwm.h>
+> > +#include "dt-bindings/usb/pd.h"
+> >  #include "rk3399.dtsi"
+> >  #include "rk3399-opp.dtsi"
+> >
+> > @@ -524,8 +525,9 @@ &i2c3 {
+> >  };
+> >
+> >  &i2c4 {
+> > -       i2c-scl-rising-time-ns =3D <600>;
+> > -       i2c-scl-falling-time-ns =3D <20>;
+> > +       clock-frequency =3D <400000>;
+> > +       i2c-scl-rising-time-ns =3D <345>;
+> > +       i2c-scl-falling-time-ns =3D <11>;
+> >         status =3D "okay";
+> >
+> >         fusb1: usb-typec@22 {
+> > @@ -552,8 +554,19 @@ fusb0: usb-typec@22 {
+> >                 interrupts =3D <2 IRQ_TYPE_LEVEL_LOW>;
+> >                 pinctrl-names =3D "default";
+> >                 pinctrl-0 =3D <&fusb0_int>;
+> > -               vbus-supply =3D <&vcc_vbus_typec0>;
+> > +               vbus-supply =3D <&dc_12v>;
+> >                 status =3D "okay";
+> > +
+> > +               connector {
+> > +                       compatible =3D "usb-c-connector";
+> > +                       data-role =3D "dual";
+> > +                       label =3D "USB-C";
+> > +                       power-role =3D "sink";
+> > +                       try-power-role =3D "sink";
+> > +                       op-sink-microwatt =3D <10000000>;
+> > +                       sink-pdos =3D <PDO_FIXED(5000, 3000, PDO_FIXED_=
+USB_COMM)
+> > +                                    PDO_VAR(5000, 20000, 5000)>;
+> > +               };
+> >         };
+> >
+> >         mp8859: regulator@66 {
+>
+> --
+> Christopher Obbard BEng (Hons) MIET
+> Senior Engineer
+>
+> Collabora Ltd
+> Platinum Building, St John's Innovation Park, Cambridge CB4 0DS, UK
+> Registered in England & Wales no 5513718.
+> This message is intended for the use of only the person(s) ("intended
+> recipient") to whom it is addressed.
+> It may contain information that is privileged and confidential.
+> Accordingly, any dissemination, distribution, copying or other use of
+> this message or any of its content by any person other than the
+> intended recipient may constitute a breach of civil or criminal law and
+> is strictly prohibited.
+>
+>
+> _______________________________________________
+> Linux-rockchip mailing list
+> Linux-rockchip@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-rockchip
