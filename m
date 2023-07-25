@@ -2,211 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C057761BA6
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 16:28:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9DE8A761BD3
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 16:33:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231672AbjGYO2o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jul 2023 10:28:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40034 "EHLO
+        id S232852AbjGYOdV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jul 2023 10:33:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45974 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233622AbjGYO20 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 10:28:26 -0400
-Received: from mail-io1-xd2d.google.com (mail-io1-xd2d.google.com [IPv6:2607:f8b0:4864:20::d2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C31A6102;
-        Tue, 25 Jul 2023 07:28:06 -0700 (PDT)
-Received: by mail-io1-xd2d.google.com with SMTP id ca18e2360f4ac-78847bb8940so287564439f.0;
-        Tue, 25 Jul 2023 07:28:06 -0700 (PDT)
+        with ESMTP id S233320AbjGYOdG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 10:33:06 -0400
+Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23F4B12D
+        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 07:32:42 -0700 (PDT)
+Received: by mail-pl1-x62b.google.com with SMTP id d9443c01a7336-1bb893e6365so16385675ad.2
+        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 07:32:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1690295286; x=1690900086;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=6vB0z4dxN5goqClcWw6bugDj7DXSnUUZmHJBfAn4fgk=;
-        b=rBPdVUH2ANTV83DQ3Z3txtYeFR6Q41ovPnKSlHJ6ulbTVgD6XC7xkx2ZmI0VPkrCoF
-         Ng6qncx/V77242J5HouqcowDSSkjtppx8McsGVCxMsmQY3ilC0YGf09W0INpzEhXQNjw
-         ipRXQ/UE6AMvbcG4SfgZi0JjMvKoSa4aO+oMYMpl5/KdirU6Pp7F3BcBqlDWDknXYMGk
-         jXY6IOu+Yv14a4sXi+htkWQ83mDas6l0iLlTD21oQFxgnYq37rhIDtA/gNSKAfeksSAt
-         UcEL3ocjwCw3Z64Pqk2y1IBjN6ih+00Omng4/vIUcCYx1KGtPXPcqcITya1QrxYUQ+/T
-         47Pw==
+        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1690295559; x=1690900359;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=cw7wtsxH00GFHx0g/XaPLY6Xq6F6potf4XWzXuoGwwI=;
+        b=Z21lBCfU5uaS+EKnc2WTDx+A8qja0Aaifui042ac3RPNUrmOVAeJBlSsTSaBJg0B2f
+         6ap4ReuiP3smJ4tR9lB4S4sIoNuXCUk44+mQx3Mg93XMpOmOUM5dHlW566tIa+I3dMz+
+         NbWoOJUB2SWbPn8K4IEE6nRv1ihtLlNit55qTa0ver9phI76nVlJ95FtNq0tzE1RT3Ie
+         WE42MPHhWTebw3e7VqZa6IuXvS6Rzoy5378oJSW91BHoqMJd/9PJNB0NxV7KIl/BP5Ie
+         jVJFnoyf+6xUDNDTY+rpP9NhunWuD2JWPI0wZI4OQ3xhR6FHNdS48B6kd3CvCsN53N+z
+         tBsQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690295286; x=1690900086;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=6vB0z4dxN5goqClcWw6bugDj7DXSnUUZmHJBfAn4fgk=;
-        b=B50DGdhevYSUeGqeO5RhPcJULJg4C4dGufceXft2KdPE/9cRHY2WBW42uhdDc5XwBl
-         UJz72lWnQyD7w+6AN5m1Zi0fhT6JpktPD3Y8xTvybvYEKYPbFTbsLCulWZO+qwi2mi7+
-         m+BiRNgJiNsZbkQP9BPLaXmZtJqSbsA1uaWYY6Qti0q9bOKpT3CEGx4Erw+RFB7PoB6U
-         sSRP4mHTf25jEiTCFZZojZo7QbQg9ZI8PXA+jk9MM1VfUTyZ1mCKSbP/DrrIZBWizMCv
-         EZprLHr/mRWMYLkORqSmx/Os+WzCxCyLTfEvadpXCfckQyk5OZjURnpSY783Em5oeaJf
-         dVcw==
-X-Gm-Message-State: ABy/qLa3IBVKVJDC12X4/aQNWqsXfAJ39idbaNzv8qI9sNv2E82n7IPO
-        a4RArmwEiV7x1XBzcPZgL0zJxybAaRs=
-X-Google-Smtp-Source: APBJJlHLq5VYfIlb8RV7XBr3lhCOPd3bdfoFZx9vA5HIZym/i8pCPinxcgioiT9T2HDfqGIaNPnaNw==
-X-Received: by 2002:a6b:e910:0:b0:787:6ae:46fa with SMTP id u16-20020a6be910000000b0078706ae46famr3078275iof.1.1690295286057;
-        Tue, 25 Jul 2023 07:28:06 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id gt11-20020a0566382dcb00b0042b227eb1ddsm3514264jab.55.2023.07.25.07.28.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 25 Jul 2023 07:28:05 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <e51de5ee-5342-8771-46a3-34d8ee8b9c55@roeck-us.net>
-Date:   Tue, 25 Jul 2023 07:28:04 -0700
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH 1/3] dt-bindings: hwmon: Add Infineon TDA38640
-Content-Language: en-US
-To:     Naresh Solanki <naresh.solanki@9elements.com>,
-        Rob Herring <robh@kernel.org>
-Cc:     Jean Delvare <jdelvare@suse.com>,
-        krzysztof.kozlowski+dt@linaro.org,
+        d=1e100.net; s=20221208; t=1690295559; x=1690900359;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=cw7wtsxH00GFHx0g/XaPLY6Xq6F6potf4XWzXuoGwwI=;
+        b=jLz2dIG64wdccJATOvQeIppsz0v1xsAAM8kJkrweu95NjOZDFxMmTZn4F04gf+NghR
+         XK5E0KSTm7LidcG7Ew6fPRrckw2y4Sh+y4MkfZsf3/oMvkriA1TZAqVtMInSH1A84ymZ
+         yegjL/Jp9qIb7UOXTBHqZNJVL868MiBBEyDDYLWp6DTcGpILSeJogxpimhmvzsfHCkqJ
+         30FV3u2DKDkf3mqnrW7s/d/pHttDD0WvJp4Iuw/IicGcOCdIU9/JmfVhHEIwxbrsP9rH
+         Y4U5fl9GcqQB1DZhYPBcpghIhf64/Y7SWESdKJZWEAxW5gf8by1g77vGgQsTjQyw1rOm
+         GEIA==
+X-Gm-Message-State: ABy/qLbaOkQ3o+s1vQ/BHYdxvmEsKzpmzpVeuaXNHUvXLsKwfOCdKQ8Q
+        raseeuEPRSL2ZfJQO5YXIQ34Bg==
+X-Google-Smtp-Source: APBJJlG8kF2vYVgmupUDRv18zEVuedLPx+h1QS8U117AiwVlVjtMGecGSxYYfKf8MMaXZAuVxDmmDQ==
+X-Received: by 2002:a17:902:a510:b0:1bb:a056:2c5f with SMTP id s16-20020a170902a51000b001bba0562c5fmr4542617plq.7.1690295558974;
+        Tue, 25 Jul 2023 07:32:38 -0700 (PDT)
+Received: from x1 ([2601:1c2:1800:f680:2cbf:9196:a906:e222])
+        by smtp.gmail.com with ESMTPSA id be3-20020a170902aa0300b001b872695c1csm10990705plb.256.2023.07.25.07.32.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 25 Jul 2023 07:32:38 -0700 (PDT)
+Date:   Tue, 25 Jul 2023 07:32:36 -0700
+From:   Drew Fustini <dfustini@baylibre.com>
+To:     Conor Dooley <conor.dooley@microchip.com>
+Cc:     Xi Ruoyao <xry111@linuxfromscratch.org>,
+        Jisheng Zhang <jszhang@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        linux-hwmon@vger.kernel.org,
-        Patrick Rudolph <patrick.rudolph@9elements.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230725114030.1860571-1-Naresh.Solanki@9elements.com>
- <20230725131006.GA2879331-robh@kernel.org>
- <CABqG17iChAyb0gzb2uXfsv5GkiM3a+LoSavdqhjvw3FUccaw8A@mail.gmail.com>
-From:   Guenter Roeck <linux@roeck-us.net>
-In-Reply-To: <CABqG17iChAyb0gzb2uXfsv5GkiM3a+LoSavdqhjvw3FUccaw8A@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no autolearn_force=no
-        version=3.4.6
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v3 0/8] Add Sipeed Lichee Pi 4A RISC-V board support
+Message-ID: <ZL/dBHfk72wDnuQd@x1>
+References: <20230617161529.2092-1-jszhang@kernel.org>
+ <c9a44f534071a6d67f1e21bafdb713793c559124.camel@linuxfromscratch.org>
+ <20230725-unheard-dingy-42f0fafe7216@wendy>
+ <20230725-distant-overrule-a98ad406125f@wendy>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230725-distant-overrule-a98ad406125f@wendy>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 7/25/23 07:17, Naresh Solanki wrote:
-> Hi Rob,
+On Tue, Jul 25, 2023 at 09:10:06AM +0100, Conor Dooley wrote:
+> Hey Guo Ren,
 > 
+> On Tue, Jul 25, 2023 at 08:52:09AM +0100, Conor Dooley wrote:
+> > On Tue, Jul 25, 2023 at 03:38:58PM +0800, Xi Ruoyao wrote:
+> > > On Sun, 2023-06-18 at 00:15 +0800, Jisheng Zhang wrote:
+> > > > Sipeed's Lichee Pi 4A development board uses Lichee Module 4A core
+> > > > module which is powered by T-HEAD's TH1520 SoC. Add minimal device
+> > > > tree files for the core module and the development board.
+> > > > 
+> > > > Support basic uart/gpio/dmac drivers, so supports booting to a basic
+> > > > shell.
+> > > 
+> > > Thanks for the excellent work, but when I tried to boot Linux 6.5.0-rc3
+> > > on my Lichee Pi 4A it fails with:
+> > > 
+> > > ## Flattened Device Tree blob at 01f00000
+> > >    Booting using the fdt blob at 0x1f00000
+> > >    Using Device Tree in place at 0000000001f00000, end 0000000001f050c4
+> > > 
+> > > Starting kernel ...
+> > > 
+> > > [    0.000000] Linux version 6.5.0-rc3 (lfs@stargazer) (riscv64-lfs-linux-gnu-gcc (GCC) 13.1.0, GNU ld (GNU Binutils) 2.40) #1 SMP PREEMPT Tue Jul 25 13:38:20 CST 2023
+> > > [    0.000000] Machine model: Sipeed Lichee Pi 4A
+> > > [    0.000000] SBI specification v0.3 detected
 > 
-> On Tue, 25 Jul 2023 at 18:40, Rob Herring <robh@kernel.org> wrote:
->>
->> On Tue, Jul 25, 2023 at 01:40:26PM +0200, Naresh Solanki wrote:
->>> From: Patrick Rudolph <patrick.rudolph@9elements.com>
->>>
->>> The TDA38640 has a bug in SVID mode and to enable a workaround
->>> remove the TDA38640 from trivial-devices and add a complete schema.
->>>
->>> The schema adds the custom property 'infineon,en-pin-fixed-level' to
->>> signal a fixed level on the ENABLE pin and to enable the workaround.
->>> When the ENABLE pin is left floating it's internally pulled low.
->>>
->>> If not specified the driver will continue to use the PMBUS_OPERATION
->>> register to enable the regulator. When specified the driver will use
->>> the PMBUS_ON_OFF_CONFIG register to enable the regulator.
->>>
->>> Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
->>> Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
->>> ---
->>>   .../hwmon/pmbus/infineon,tda38640.yaml        | 50 +++++++++++++++++++
->>>   .../devicetree/bindings/trivial-devices.yaml  |  2 -
->>>   2 files changed, 50 insertions(+), 2 deletions(-)
->>>   create mode 100644 Documentation/devicetree/bindings/hwmon/pmbus/infineon,tda38640.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/hwmon/pmbus/infineon,tda38640.yaml b/Documentation/devicetree/bindings/hwmon/pmbus/infineon,tda38640.yaml
->>> new file mode 100644
->>> index 000000000000..520112e4e271
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/hwmon/pmbus/infineon,tda38640.yaml
->>> @@ -0,0 +1,50 @@
->>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +
->>> +$id: http://devicetree.org/schemas/hwmon/pmbus/infineon,tda38640.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Infineon TDA38640 Synchronous Buck Regulator with SVID and I2C
->>> +
->>> +description: |
->>> +  The Infineon TDA38640 is a 40A Single-voltage Synchronous Buck
->>> +  Regulator with SVID and I2C designed for Industrial use.
->>> +
->>> +  Datasheet: https://www.infineon.com/dgdl/Infineon-TDA38640-0000-DataSheet-v02_04-EN.pdf?fileId=8ac78c8c80027ecd018042f2337f00c9
->>> +
->>> +properties:
->>> +  compatible:
->>> +    enum:
->>> +      - infineon,tda38640
->>> +
->>> +  reg:
->>> +    maxItems: 1
->>> +
->>> +  infineon,en-pin-fixed-level:
->>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>> +    description: |
->>> +      Fixed level of the ENABLE pin. When specified the PMBUS_ON_OFF_CONFIG
->>> +      register is used to enable the regulator instead of the PMBUS_OPERATION
->>> +      register to workaround a bug of the tda38640 when operating in SVID-mode.
->>> +      If the ENABLE pin is left floating the internal pull-down causes a low
->>> +      level on the pin.
->>
->> Neither this nor the commit message answers how do I decide if I set
->> this property or not? How you work-around it is not that relevant to the
->> binding.
-> Sure will update this as:
-> The property becomes relevant when dealing with the tda38640 in
-> SVID-mode, providing an alternative method to enable the regulator by
-> using the PMBUS_ON_OFF_CONFIG register instead of the PMBUS_OPERATION
-> register
+> > > [    0.000000] SBI implementation ID=0x1 Version=0x9
 > 
+> > > [    0.000000] Oops - load access fault [#1]
+> > > [    0.000000] CPU: 0 PID: 0 Comm: swapper/0 Not tainted 6.5.0-rc3 #1
+> > > [    0.000000] Hardware name: Sipeed Lichee Pi 4A (DT)
+> > > [    0.000000] epc : __plic_toggle+0x5a/0x62
+> > > [    0.000000]  ra : __plic_init.isra.0+0x2d0/0x462
+> > > [    0.000000] epc : ffffffff802ce8ec ra : ffffffff80618816 sp : ffffffff80e03c90
+> > > [    0.000000]  gp : ffffffff80ec5bb8 tp : ffffffff80e10d40 t0 : ffffffd900045940
+> > > [    0.000000]  t1 : 0000000000000002 t2 : ffffffd90004a10c s0 : ffffffd9fef6ed68
+> > > [    0.000000]  s1 : ffffffd900045680 a0 : ffffffc801002080 a1 : 0000000000000002
+> > > [    0.000000]  a2 : 0000000000000000 a3 : 00000000000000f4 a4 : 0000000000000001
+> > > [    0.000000]  a5 : 0000000000000000 a6 : 0000000000000b40 a7 : ffffffd900045940
+> > > [    0.000000]  s2 : ffffffd9fef6ed78 s3 : ffffffff80ef9630 s4 : 0000000000000001
+> > > [    0.000000]  s5 : ffffffd9ffff5af8 s6 : 0000000000000001 s7 : ffffffff80815d68
+> > > [    0.000000]  s8 : 0000000000000008 s9 : 0000000000000000 s10: ffffffff80815d68
+> > > [    0.000000]  s11: ffffffff80b1b1b8 t3 : ffffffff80c003d0 t4 : 0000000000000001
+> > > [    0.000000]  t5 : 0000000000000003 t6 : 0000000000000001
+> > > [    0.000000] status: 8000000201800100 badaddr: 000000ffd8002080 cause: 0000000000000005
+> > > [    0.000000] [<ffffffff802ce8ec>] __plic_toggle+0x5a/0x62
+> > > [    0.000000] [<ffffffff8061ffc8>] of_irq_init+0x14a/0x248
+> > > [    0.000000] [<ffffffff80600a7e>] start_kernel+0x40c/0x6fe
+> > > [    0.000000] [<ffffffff806034f6>] init_IRQ+0xc6/0x100
+> > > [    0.000000] [<ffffffff80600a7e>] start_kernel+0x40c/0x6fe
+> > > [    0.000000] Code: 0007 c319 9123 00e7 8082 000f 0140 411c 000f 0820 (c593) fff5 
+> > > [    0.000000] ---[ end trace 0000000000000000 ]---
+> > > [    0.000000] Kernel panic - not syncing: Fatal exception in interrupt
+> > > 
+> > > I guess I'm either using some unsupported configuration or making some
+> > > stupid mistakes, but I cannot find any documentation about how to
+> > > configure the mainline kernel for Lichee Pi 4A properly.  Could you give
+> > > some pointers?
+> > 
+> > Are you using the vendor OpenSBI? IIRC, and the lads can probably
+> > correct me here, you need to have an OpenSBI that contains
+> > https://github.com/riscv-software-src/opensbi/commit/78c2b19218bd62653b9fb31623a42ced45f38ea6
+> > which the vendor supplied OpenSBI does not have.
+> 
+> Guo Ren, can you try to get this sorted out? The T-Head SDK seems to be
+> shipping stuff that is several years old, so new SoCs from vendors that
+> have used your SDK are unable to run mainline kernels (and therefore
+> mainstream distros), without a firmware update.
+> 
+> The TH1520 branch on github, seems to be based on OpenSBI v0.9:
+> > > [    0.000000] SBI implementation ID=0x1 Version=0x9
+> https://github.com/T-head-Semi/opensbi/blob/4e77060e0512ad981eee55d5a2501f6d88a41fd9/include/sbi/sbi_version.h#L13
+> OpenSBI v0.9 was released on the 18/01/2021:
+> https://github.com/riscv-software-src/opensbi/releases/tag/v0.9
+> The "fix" I linked above was included in v1.0, released on 24/12/2021.
+> 
+> I think it is hitting here for the Lichee Pi4a, but I know the same
+> thing has happened to the BeagleV Ahead, and I figure it'll impact
+> other SoCs going forward too.
 
-As mentioned in the other e-mail, I'll want to see an explanation why
-this property is even needed. The series claims that the chip has a bug
-in SVID mode. It is kind of unusual that we would enable a workaround
-for a bug with a devicetree property if the circumstance (SVID mode)
-can be determined automatically.
+I ran into the access fault in the PLIC code when I first attempted to
+run mainline Linux on the BeagleV Ahead. I switched from the vendor
+OpenSBI v0.9 to uptream OpenSBI v1.3 and the PLIC oops went away.
 
-Guenter
+For reference, my boot log when using OpenSBI v1.3:
+https://gist.github.com/pdp7/23259595a7570f1f11086d286e16dfb6
 
-> Regards,
-> Naresh
->>
->>> +
->>> +required:
->>> +  - compatible
->>> +  - reg
->>> +
->>> +additionalProperties: false
->>> +
->>> +examples:
->>> +  - |
->>> +    i2c {
->>> +        #address-cells = <1>;
->>> +        #size-cells = <0>;
->>> +
->>> +        tda38640@40 {
->>> +            compatible = "infineon,tda38640";
->>> +            reg = <0x40>;
->>> +        };
->>> +    };
->>> +
->>> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
->>> index 6e24c4d25ec3..2b1fbb2a672b 100644
->>> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
->>> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
->>> @@ -151,8 +151,6 @@ properties:
->>>             - infineon,slb9645tt
->>>               # Infineon SLB9673 I2C TPM 2.0
->>>             - infineon,slb9673
->>> -            # Infineon TDA38640 Voltage Regulator
->>> -          - infineon,tda38640
->>>               # Infineon TLV493D-A1B6 I2C 3D Magnetic Sensor
->>>             - infineon,tlv493d-a1b6
->>>               # Infineon Multi-phase Digital VR Controller xdpe11280
->>>
->>> base-commit: 55612007f16b5d7b1fb83a7b0f5bb686829db7c7
->>> --
->>> 2.41.0
->>>
+And my device tree patch which essentially just adjusts the memory node
+to match the amount of DDR in the BeagleV Ahead versus the lpi4a that
+Jisheng has:
+https://lore.kernel.org/linux-riscv/20230722-upstream-beaglev-ahead-dts-v2-0-a470ab8fe806@baylibre.com/
 
+-Drew
