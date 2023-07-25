@@ -2,135 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 10F8C761DB4
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 17:54:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A0FBF761E20
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 18:12:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232653AbjGYPyQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jul 2023 11:54:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35198 "EHLO
+        id S231781AbjGYQME (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jul 2023 12:12:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47146 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231206AbjGYPyP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 11:54:15 -0400
-Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com [IPv6:2607:f8b0:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 400B5210A
-        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 08:54:13 -0700 (PDT)
-Received: by mail-pl1-x635.google.com with SMTP id d9443c01a7336-1b8ad356fe4so35645775ad.2
-        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 08:54:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1690300452; x=1690905252;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=yPT2stxFChZpMg6h3D81cBqzyJBn0I25fZ2MBYv8irM=;
-        b=eD7kANSdAAjiTC37YAfsbtVn214CSpat8MudtF+68viBVkhN/n+RrCvV36qnEGHl6Y
-         nPebh5ij0FBewMkONhjPgvJZC1dy3YYTeJj/WbGwNjGt//VUvZZnpFFjuOZ+Jxc7x2/Q
-         LLaf3ZHb7stUjV+a5Q2DT8P4+CRldCPKRmMD4L8hmsnPTzdQitjoNc+c2p51Whq66UNz
-         M5WVBLSdvJ1IOe1y045VZw1aOsQt+Ql4RV1Y9MEanRKF2Y3PSxcQ/ZlZ028Xp4OYNcqw
-         ACrcWe+xfjoNI+FnSZNTcGxVsLK54BAtURKW2yGIqMWSZyMWvupBPMHG9Et+JrFPr/YL
-         S1Hw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690300452; x=1690905252;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=yPT2stxFChZpMg6h3D81cBqzyJBn0I25fZ2MBYv8irM=;
-        b=IMURYZSxaaeXow5Q7njP/7XcE+JXqgHWbWZJN4Sqj2hSYAUATcaSUFHrfTKYID+XYF
-         pBAIdi4mNXs7+CV5O3OgohW3w4zpoHOwLszM00bxbtVSC+QRJbzgEP7tTntTsV94R4kt
-         a9OcaJPo3OT771MpMAC6KlU71QWwkDI6JLOPaO2H/n9m8w5fYubt8c0rRBxUxj06dmvS
-         i3L/HC+BLGjvLkgcxbBe0UID6mBG3trP4VbVDdgL8Tfe3JJvlb6f/ahlgqiV76LVpaTn
-         A4ELCx0HmhJ8MElN5xbDnZRMoY+XvHhrr5Vmoc3s9oY/KfCoUveZmjTjWpgPNFuk6fda
-         BSCA==
-X-Gm-Message-State: ABy/qLaC+jy8YmlyoNcnrHMUwbqGSMI5GiQ//vRTgNu1SqHXP/tOaX/I
-        wsVvpvJVRmgtVyKimPCsHb63tg==
-X-Google-Smtp-Source: APBJJlH+vInGZEOGDW0JESmSk+/b0VDKB7Yl0EonVeDj+0oEV2iQCQjLxobPmSDkYNEnTf2Bdija5g==
-X-Received: by 2002:a17:90b:4c51:b0:263:5702:d4c5 with SMTP id np17-20020a17090b4c5100b002635702d4c5mr11605845pjb.19.1690300452577;
-        Tue, 25 Jul 2023 08:54:12 -0700 (PDT)
-Received: from x1 ([2601:1c2:1800:f680:2cbf:9196:a906:e222])
-        by smtp.gmail.com with ESMTPSA id gf4-20020a17090ac7c400b00263d15f0e87sm8225180pjb.42.2023.07.25.08.54.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 Jul 2023 08:54:12 -0700 (PDT)
-Date:   Tue, 25 Jul 2023 08:54:10 -0700
-From:   Drew Fustini <dfustini@baylibre.com>
-To:     Jisheng Zhang <jszhang@kernel.org>
-Cc:     Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Conor Dooley <conor@kernel.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
-        Robert Nelson <robertcnelson@beagleboard.org>,
-        Jason Kridner <jkridner@beagleboard.org>
-Subject: Re: [PATCH RFC 4/4] mmc: sdhci-of-dwcmshc: Add support for T-Head
- TH1520
-Message-ID: <ZL/wIjm4CZh2Ce0N@x1>
-References: <20230724-th1520-emmc-v1-0-cca1b2533da2@baylibre.com>
- <20230724-th1520-emmc-v1-4-cca1b2533da2@baylibre.com>
- <ZL/kUPicOEPWz5NP@xhacker>
+        with ESMTP id S231655AbjGYQMC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 12:12:02 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9507097;
+        Tue, 25 Jul 2023 09:12:00 -0700 (PDT)
+Received: from mercury (dyndsl-091-248-210-134.ewe-ip-backbone.de [91.248.210.134])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: sre)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 1380A660211C;
+        Tue, 25 Jul 2023 17:11:59 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1690301519;
+        bh=4bbTYeg6o3GK3ctlOWBYSlX8MvZxKTA9HCFK8D/JeKY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=jfvTdK/7TxD0CTfGp38Xkh3x9X1hNLdtvJUoqdhQ4vKig7Q7A+IZXwidtsKxWxriE
+         5jkZH2Ib6CCChU3mXw/0P3BDKjDa9XlUdnTV1e31eE+o54S+1RNRMqI/JMgAVByS5s
+         7FcUa4BjxOdMEzbmlZSVKn4mDyhTNqjijb1AMlQkJu/dbR7Y6hHR3hIGm+mOYGlmpY
+         d8FEl281szwDT86G9ey7QorY/oVfz7ONV/NFoWtQ0pQSEp29LP19qUvZxoIrJ3WQWW
+         WJYOsHSlRlSsgM+ALJEl6kNG38BCH8MxKQfth3Mbdah3hMhcdlGxr1lpkopWh4N2pu
+         t9Q2qHS5DSyBQ==
+Received: by mercury (Postfix, from userid 1000)
+        id A830310609E8; Tue, 25 Jul 2023 18:11:56 +0200 (CEST)
+Date:   Tue, 25 Jul 2023 18:11:56 +0200
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
+To:     Eugen Hristev <eugen.hristev@collabora.com>
+Cc:     linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        netdev@vger.kernel.org, david.wu@rock-chips.com, heiko@sntech.de,
+        krzysztof.kozlowski+dt@linaro.org, kernel@collabora.com
+Subject: Re: [PATCH] dt-bindings: net: rockchip-dwmac: fix {tx|rx}-delay
+ defaults in schema
+Message-ID: <20230725161156.22uscijrot7gbnvj@mercury.elektranox.org>
+References: <20230725155254.664361-1-eugen.hristev@collabora.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="ofxuz3hwyjtmd4j4"
 Content-Disposition: inline
-In-Reply-To: <ZL/kUPicOEPWz5NP@xhacker>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+In-Reply-To: <20230725155254.664361-1-eugen.hristev@collabora.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 25, 2023 at 11:03:44PM +0800, Jisheng Zhang wrote:
-> On Mon, Jul 24, 2023 at 05:59:18PM -0700, Drew Fustini wrote:
-> > Add basic support for the T-Head TH1520 SoC mmc controller. The new
-> > compatible "thead,th1520-dwcmshc" enables basic support by:
-> 
-> Hi Drew,
-> 
-> > 
-> >  - Enabling v4 mode to properly communicate with the mmc device
-> >  - Setting quirk to disable ADMA
-> >  - Setting flag to disable SDMA and force PIO mode
-> >  - Turing .reset op into a no-op as the driver does not yet know how to
-> >    configure the phy. Rely on the vendor u-boot to have configured the
-> >    phy and do not reset the controller in Linux.
-> 
-> The last three itmes are not acceptable. The controller supports ADMA
-> well, can you plz bring in the phy driver? We can't rely on bootloader to
-> configure phy.
 
-Yes, that makes sense that this is not acceptable. The T-Head vendor
-kernel seems to contain all the necessary information needed to add the
-phy configuration to sdhci-of-dwcmshc.
+--ofxuz3hwyjtmd4j4
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-The shipping kernel for the BeagleV Ahead [1] is based on the T-Head SDK
-releases. I looked at changes to drivers/mmc and found that key changes
-are from Linux_SDK_V0.9.5 [2] and Linux_SDK_V1.0.2 [3].
+Hi,
 
-That kernel contains drivers/mmc/host/sdhci-of-dwcmshc.h [4] which seems
-to define information about the phy registers. The version of
-drivers/mmc/host/sdhci-of-dwcmshc.h in that kernel defines several
-functions for the phy config and controller reset:
+On Tue, Jul 25, 2023 at 06:52:54PM +0300, Eugen Hristev wrote:
+> The defaults are specified in the description instead of being specified
+> in the schema.
+> Fix it by adding the default value in the `default` field.
+>=20
+> Fixes: b331b8ef86f0 ("dt-bindings: net: convert rockchip-dwmac to json-sc=
+hema")
+> Signed-off-by: Eugen Hristev <eugen.hristev@collabora.com>
+> ---
 
-sdhci_phy_1_8v_init_no_pull
-sdhci_phy_3_3v_init_no_pull
-snps_phy_1_8v_init
-snps_phy_3_3v_init
-snps_sdhci_set_phy
-snps_sdhci_reset
+Maybe also fix the allowed range while at it? I.e.
 
-I'll look into adapting that code into the upstream sdhci-of-dwcmshc.
+minimum: 0x00
+maximum: 0x7F
 
-Thanks,
-Drew
+-- Sebastian
 
-[1] https://git.beagleboard.org/beaglev-ahead/beaglev-ahead-linux
-[2] https://gist.github.com/pdp7/8d85d736dea24957c017eefdeb882668
-[3] https://gist.github.com/pdp7/c1d3a18f9b7c25e630573d5953a58c99
-[4] https://git.beagleboard.org/beaglev-ahead/beaglev-ahead-linux/-/blob/beaglev-v5.10.113-1.1.2/drivers/mmc/host/sdhci-of-dwcmshc.h
-[5] https://git.beagleboard.org/beaglev-ahead/beaglev-ahead-linux/-/blob/beaglev-v5.10.113-1.1.2/drivers/mmc/host/sdhci-of-dwcmshc.c
+>  Documentation/devicetree/bindings/net/rockchip-dwmac.yaml | 6 ++++--
+>  1 file changed, 4 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml b/=
+Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
+> index bb943c96c196..6d08260ad828 100644
+> --- a/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
+> +++ b/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
+> @@ -92,12 +92,14 @@ properties:
+>      $ref: /schemas/types.yaml#/definitions/phandle
+> =20
+>    tx_delay:
+> -    description: Delay value for TXD timing. Range value is 0~0x7F, 0x30=
+ as default.
+> +    description: Delay value for TXD timing. Range value is 0~0x7F.
+>      $ref: /schemas/types.yaml#/definitions/uint32
+> +    default: 0x30
+> =20
+>    rx_delay:
+> -    description: Delay value for RXD timing. Range value is 0~0x7F, 0x10=
+ as default.
+> +    description: Delay value for RXD timing. Range value is 0~0x7F.
+>      $ref: /schemas/types.yaml#/definitions/uint32
+> +    default: 0x10
+> =20
+>    phy-supply:
+>      description: PHY regulator
+> --=20
+> 2.34.1
+>=20
+>=20
+> --=20
+> To unsubscribe, send mail to kernel-unsubscribe@lists.collabora.co.uk.
+
+--ofxuz3hwyjtmd4j4
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmS/9D4ACgkQ2O7X88g7
++pqWAw//R7tq9H+hx6ddYWSomL1O1WHXSMG7plrm8NK9/POt61Z3yqFvP/yXBTDF
+k1S9ivLyv7/A0rA5lu2CzCRxud21fiGTeRd2KpShauXWdvX0kJ9W/tpEInhOqhz4
+7K4+ODw8kq+XcL54ZFeGp6fUeGbBrNRMhA2aORfec0QeFlPT1WKQdXnnRsm/PzXf
+j7Hg1kk4MrINxtXUHqMqbTI9kduWnUSJIWkAX72lkQdzMjAcBBwhu/7S58VfKVhi
+rsermYFcMTE3/R5VIxpMn+AW3691H3fc6GUEE1PTUkyRdK4BCDVVrm1zxuE9xF74
+eKEowlL2LPRPVELnykN89ye3brTb0vovCVbcy5EXZj8viiKyclNM7EaX+jXsEJXl
+8ohKS0TVDtRfnin+C7d2RM/qADwemGT8v6B0JFFIp+ofNyNv06e5tsHJ8l9GrEof
+tVtL8ziPZp7kgTtKv9MiLbw4yzXxPvZfDrZI3y2VE4QGaRZ7JF6opNqtwsZaz19Z
+0H4BPh0zCa4HWNrxWg525tOF8VvHS/k3kRvjH6EQwoCipVjdMm+BnmOhPs7PtcBR
+Wuay9qKw7uepG9tRdZlMu4PORfpswZvng1nmtcU0rrprFzFL99T0NVqWzHdrP3q9
+iTh6q2vKVetxxA4bME4nIDiyr2xTGKb+FDh49TgmQtDfOhJ8vsw=
+=vZvT
+-----END PGP SIGNATURE-----
+
+--ofxuz3hwyjtmd4j4--
