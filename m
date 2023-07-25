@@ -2,122 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 311A3760708
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 06:11:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DFC1076071E
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 06:17:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231547AbjGYEL3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jul 2023 00:11:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48810 "EHLO
+        id S229683AbjGYERa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jul 2023 00:17:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50916 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230422AbjGYEL1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 00:11:27 -0400
-Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com [IPv6:2607:f8b0:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A275B19AD
-        for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 21:11:25 -0700 (PDT)
-Received: by mail-pf1-x434.google.com with SMTP id d2e1a72fcca58-666e6ecb52dso2835528b3a.2
-        for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 21:11:25 -0700 (PDT)
+        with ESMTP id S229496AbjGYER3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 00:17:29 -0400
+Received: from mail-yw1-x112b.google.com (mail-yw1-x112b.google.com [IPv6:2607:f8b0:4864:20::112b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5CDFE59
+        for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 21:17:28 -0700 (PDT)
+Received: by mail-yw1-x112b.google.com with SMTP id 00721157ae682-5841be7d15eso5947587b3.2
+        for <devicetree@vger.kernel.org>; Mon, 24 Jul 2023 21:17:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690258285; x=1690863085;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=6yFVEsi6DemosywA0d4g+4gyo9sgA/NzmDnSSDwQNKs=;
-        b=lk4/cIBY23JoJcZYtO6BPJz+U6dOgzDrtI/AddYuE+I/IFHF+0VNmMiCxbdim0DI6t
-         IPJ1x4awpw4/uLI7cGwYUNC41jT+tdeCpZkWozX8Wxr0k/AFBbqb+Dnd4TsYPtKFMZ16
-         NCQCu5kfQNLXOUURvQbjffpqG1adcYt/5wo8yidETbOZphn8bOacxvQvGcVg29LSKBu7
-         D+VJ6tLOx+Vu6VoXj58jF1Qk9LDOc4BGQhbdqxdD6oW2MgqX3LcXBEMeupXYulnBkPw6
-         Fo8V35yCiev52gcpQu+MdeH+9L97/JqStRCZ9KHlmO9EYSxFLU4Je/40yoG8Su3n+wom
-         yZlw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690258285; x=1690863085;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        d=ventanamicro.com; s=google; t=1690258648; x=1690863448;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=6yFVEsi6DemosywA0d4g+4gyo9sgA/NzmDnSSDwQNKs=;
-        b=gOMsAu3V3yJ9gmR9EK+XK+NOH9ep7AJW7zPkBDEdlpmBrPOluwd56fR/6AwChaTU8w
-         jRexPKE1ziUoy/0VH2Fsre6gaTp1tI8cm0qWvqPysDIqcKXZZ+DNtqELGwWfwJV+NcYn
-         eo9nZxgq262rvfK3MA40PYofjnxZn1UbFA39sI4elfk4CiUv3gBdSuQRPNqIQ4S5UqnY
-         ieY28UCHs/frycbrKHUdC5EMNOyfEm6kTqsrm4R1NXPtv+0vCIQSoaF8+Sc37TUhb67M
-         jE10dPAbC8mRs3eZykiRml/lYrxTROWmQwb9+/AV6FCoJzAmlsbBm5LpkZDo5WXuCcmI
-         ImvA==
-X-Gm-Message-State: ABy/qLbyWOIcQ79+6aqdi1+BxyBzbrc2wDAn9+HA4qkZwso8oaluGgpu
-        LeKUThVjJXBtEepGZaQMOby8dA==
-X-Google-Smtp-Source: APBJJlGEfGQ7zai4fBJw5iC4TD450VqmzaOjEBbpI7dsjUc7F9ZBMXlE4WEWbv4UhPyjm6nAy6pOwQ==
-X-Received: by 2002:a05:6a20:734e:b0:127:796d:b70d with SMTP id v14-20020a056a20734e00b00127796db70dmr9905031pzc.61.1690258285037;
-        Mon, 24 Jul 2023 21:11:25 -0700 (PDT)
-Received: from localhost ([122.172.87.195])
-        by smtp.gmail.com with ESMTPSA id p7-20020a170902b08700b001b3d0aff88fsm9729885plr.109.2023.07.24.21.11.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 24 Jul 2023 21:11:24 -0700 (PDT)
-Date:   Tue, 25 Jul 2023 09:41:22 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        conor+dt@kernel.org, quic_richardp@quicinc.com,
-        quic_nguyenb@quicinc.com, quic_nitirawa@quicinc.com,
-        linux-kernel@vger.kernel.org, quic_ziqichen@quicinc.com,
-        linux-pm@vger.kernel.org, nm@ti.com, quic_bhaskarv@quicinc.com,
-        martin.petersen@oracle.com, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, quic_asutoshd@quicinc.com,
-        alim.akhtar@samsung.com, vireshk@kernel.org,
-        kyungmin.park@samsung.com, jejb@linux.ibm.com, bvanassche@acm.org,
-        konrad.dybcio@linaro.org, krzysztof.kozlowski+dt@linaro.org,
-        quic_cang@quicinc.com, linux-arm-msm@vger.kernel.org,
-        myungjoo.ham@samsung.com, andersson@kernel.org, sboyd@kernel.org,
-        linux-scsi@vger.kernel.org, cw00.choi@samsung.com,
-        krzysztof.kozlowski@linaro.org, avri.altman@wdc.com,
-        bmasney@redhat.com, quic_narepall@quicinc.com
-Subject: Re: [PATCH v2 02/15] dt-bindings: opp: Increase maxItems for opp-hz
- property
-Message-ID: <20230725041122.7yu4drwekoy6w24d@vireshk-i7>
-References: <20230720054100.9940-1-manivannan.sadhasivam@linaro.org>
- <20230720054100.9940-3-manivannan.sadhasivam@linaro.org>
- <169021390783.3607138.9583713600185509839.robh@kernel.org>
+        bh=ztafGsi8N/rxNWEUo6v/O5aHmGBjWLPK2kGljR5XpTE=;
+        b=M1bad07Jl92/ujfNzfQxqi3obqU40n2b3+MTKbjXQCr6/qFwSSC6/V8rZEfZDz3EPt
+         z8hvQXj7TBR2rE9xqs5Lx2QVB7Kc3V+3Tw/MPIb/d91R6kXoLqcmyl2akZNKkpIYDdjr
+         rV47JQdjcowTrpTiYOCmx9zajmDiL4AS9Oje9aE6Pg0Y5rndTUAy0kk0g8TEfp7GYNNo
+         MYcK+lDA8xNdVo1Jnt86L31lhoxwydLje1odMo6p3nbLNX8A7OVtuK4OLekbH2jwIqf9
+         I9UivcLr2xit5IgrLkCy7ADza1XDtp1LN8q6AyF5AF0i6ejNmqfIbNlpV5XjWpxc3q6q
+         NxQQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690258648; x=1690863448;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ztafGsi8N/rxNWEUo6v/O5aHmGBjWLPK2kGljR5XpTE=;
+        b=PcFddc7tjc2xzShDp/D+Ri2HjIhf+uTT5G/v5R4NyZ1H99ZOs+dG9cj1plM685Phs4
+         JKWbdkrbPqVT8eGkuogKh0GeCARjzPHk8QJ8FbY/KY0AqzQx9KohHJqzGAe0QjlIVe9w
+         qh84026xpvEEWtZObtlyYJOT2p7PbsbX6pfZnTPUakiP1PbkHheqHTyOT/0Qwh+YjGby
+         DQd0EwZkGYp2gOeRvGRUlE0HgtPGax2z9R6AbUiYf0wDVSDqyl3T0tEfU5QzD6oGnB8V
+         xWpQQsgwdDxaZex+sxxSxDTwN3b9YKjIqubxeBZhj79Ib7kcdUK2+xGzpzbL6/jqkXJv
+         BIaQ==
+X-Gm-Message-State: ABy/qLbORYZ+5I3h/3R5NNx4ua7Zd26qWyhoRLWRWMJJkdOoj/6xNgHg
+        V6qeI4DVE4BqK+83bqvEsH/faSbKB3ienfJCzyQQBA==
+X-Google-Smtp-Source: APBJJlG5oC6Hhob3ANtsjlzdyeu1Yx2AJY48rs8kUbnFiG17qTLw2TkJli78ibW1rQ6BIzreg+XC7/8fKPRzEVcaAIk=
+X-Received: by 2002:a0d:ef42:0:b0:583:9018:29ec with SMTP id
+ y63-20020a0def42000000b00583901829ecmr10154845ywe.32.1690258647756; Mon, 24
+ Jul 2023 21:17:27 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <169021390783.3607138.9583713600185509839.robh@kernel.org>
+References: <20230724142033.306538-1-mchitale@ventanamicro.com> <20230724-scrap-pranker-7fd120078136@spud>
+In-Reply-To: <20230724-scrap-pranker-7fd120078136@spud>
+From:   Anup Patel <apatel@ventanamicro.com>
+Date:   Tue, 25 Jul 2023 09:47:14 +0530
+Message-ID: <CAK9=C2XXnQWqJgES2iWjatG9SFeFEUXZzLXz1gTYQ0aAh=7KJg@mail.gmail.com>
+Subject: Re: [PATCH v3 0/7] Risc-V Kvm Smstateen
+To:     Conor Dooley <conor@kernel.org>
+Cc:     Mayuresh Chitale <mchitale@ventanamicro.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Anup Patel <anup@brainfault.org>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        Atish Patra <atishp@atishpatra.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        linux-riscv@lists.infradead.org, kvm-riscv@lists.infradead.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24-07-23, 09:51, Rob Herring wrote:
-> 
-> On Thu, 20 Jul 2023 11:10:47 +0530, Manivannan Sadhasivam wrote:
-> > Current limit of 16 will be exhausted by platforms specifying the frequency
-> > for 9 clocks using opp-hz, like Qcom SDM845 SoC. For instance, specifying
-> > the frequency for 9 clocks with 64bit specifier as below would consume
-> > (9 * 2 = 18) items.
-> > 
-> > 	opp-50000000 {
-> > 		opp-hz = /bits/ 64 <50000000>,
-> > 			 /bits/ 64 <0>,
-> > 			 /bits/ 64 <0>,
-> > 			 /bits/ 64 <37500000>,
-> > 			 /bits/ 64 <0>,
-> > 			 /bits/ 64 <0>,
-> > 			 /bits/ 64 <0>,
-> > 			 /bits/ 64 <0>,
-> > 			 /bits/ 64 <75000000>;
-> > 	};
-> > 
-> > So let's increase the limit to 32 which should be enough for most platforms
-> > (hopefully).
-> > 
-> > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> > ---
-> >  Documentation/devicetree/bindings/opp/opp-v2-base.yaml | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > 
-> 
-> Acked-by: Rob Herring <robh@kernel.org>
+On Mon, Jul 24, 2023 at 10:08=E2=80=AFPM Conor Dooley <conor@kernel.org> wr=
+ote:
+>
+> Hey Mayuresh,
+>
+> On Mon, Jul 24, 2023 at 07:50:26PM +0530, Mayuresh Chitale wrote:
+> > This series adds support to detect the Smstateen extension for both, th=
+e
+> > host and the guest vcpu. It also adds senvcfg and sstateen0 to the ONE_=
+REG
+> > interface and the vcpu context save/restore.
+>
+> There's not really an explanation in this series of where Smstateen is
+> needed, or why it is only implemented for KVM. The spec mentions that thi=
+s
+> also applies to separate user threads, as well as to guests running in a
+> hypervisor. As your first patch will lead to smstateen being set in
+> /proc/cpuinfo, it could reasonably be assumed that the kernel itself
+> supports the extension. Why does only KVM, and not the kernel, require
+> support for smstateen?
 
-Applied. Thanks.
+Here's the motivation behind Smstateen from the spec:
+"The implementation of optional RISC-V extensions has the potential to open
+covert channels between separate user threads, or between separate guest
+OSes running under a hypervisor. The problem occurs when an extension
+adds processor state---usually explicit registers, but possibly other forms=
+ of
+state---that the main OS or hypervisor is unaware of (and hence won=E2=80=
+=99t
+context-switch) but that can be modified/written by one user thread or
+guest OS and perceived/examined/read by another."
 
--- 
-viresh
+Based on the above, Ssaia extension related CSRs need to be explicitly
+enabled for HS-mode by M-mode (which OpenSBI already does) and
+for VS-mode by HS-mode (which this series adds for KVM RISC-V).
+
+Currently, there are no new extensions addings CSRs for user-space
+so RISC-V kernel does not need to set up sstateenX CSRs for processes
+or tasks but in the future RISC-V kernel might touch sstateenX CSRs.
+
+Regards,
+Anup
