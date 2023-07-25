@@ -2,145 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A95F2760D9C
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 10:53:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B12D9760E4C
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 11:19:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230220AbjGYIxk convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 25 Jul 2023 04:53:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38702 "EHLO
+        id S233196AbjGYJTY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jul 2023 05:19:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56354 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232853AbjGYIxE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 04:53:04 -0400
-Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com [209.85.128.173])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AEE071BFF;
-        Tue, 25 Jul 2023 01:52:39 -0700 (PDT)
-Received: by mail-yw1-f173.google.com with SMTP id 00721157ae682-583c48a9aa1so29279497b3.1;
-        Tue, 25 Jul 2023 01:52:39 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690275159; x=1690879959;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=NDr9hS6khTUlmm2vbG4nmWvTWrQEOKQO3wf8w3RM/ow=;
-        b=hHIvUiipTxKyWhY4nevZK/WBRWPlFAWYmPhUvCJGtJLtzP01oJiTNdx/KSlT/9MfTH
-         iAa2d6PcjDX/gttiLilLVUKDrCuEiLBquyiZ0jLSYGo+LzXHqlpPAcniDGIGkT9POTXi
-         PRoOwCsYkpbghijMV4asBH3rN1TpuFNIG7C6zQr7tC1o79Xe2a8sgdJ9m//n0fhYUu9H
-         mDdGE4ScRF9vWZ+fM0S4YXh5vg95UtDFhecMGQKHuNo6xD7rhZRauOglJNoknne8Rcrw
-         NTgGKnsyFdun3pNKunnXzK1WdjvOkWk+QD4RJIyrgQzwU004buWDvZKwpeFrjPotvac1
-         jhIA==
-X-Gm-Message-State: ABy/qLbxXMD3JiMcI8haVD5TB4/zW3bWy9B0mP6vqwM9YQPcIrKeKKW+
-        bK+/CIk0oIgeT522lVlUsCgn1Plut1Es20Bc
-X-Google-Smtp-Source: APBJJlF85U+dLq3Q63S8ocHlNvelLsEfTzI1+DFdV5dA/ukduiTbGmMt1b73Yk5Fh4+PD7v6xXVGyw==
-X-Received: by 2002:a0d:d757:0:b0:576:bfc7:1e43 with SMTP id z84-20020a0dd757000000b00576bfc71e43mr7937492ywd.25.1690275158704;
-        Tue, 25 Jul 2023 01:52:38 -0700 (PDT)
-Received: from mail-yb1-f169.google.com (mail-yb1-f169.google.com. [209.85.219.169])
-        by smtp.gmail.com with ESMTPSA id q128-20020a818086000000b0055a07c7be39sm3425386ywf.31.2023.07.25.01.52.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 25 Jul 2023 01:52:37 -0700 (PDT)
-Received: by mail-yb1-f169.google.com with SMTP id 3f1490d57ef6-c5cf26e9669so4474426276.0;
-        Tue, 25 Jul 2023 01:52:37 -0700 (PDT)
-X-Received: by 2002:a25:b327:0:b0:d07:d88b:4843 with SMTP id
- l39-20020a25b327000000b00d07d88b4843mr6854583ybj.20.1690275157049; Tue, 25
- Jul 2023 01:52:37 -0700 (PDT)
+        with ESMTP id S233142AbjGYJTL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 05:19:11 -0400
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60631173B;
+        Tue, 25 Jul 2023 02:18:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1690276736; x=1721812736;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=R72RUzt3QoJsOVNYAWhWO4uGyKekfMANgpOv6MYiNDY=;
+  b=ZshymxI/qlzFeBc7F5F9wyg+kfwmFx+3sgiES9v6HqdFi6JeiyJv2U5b
+   qxeM2LLVABDS2pQYWldGcdnVIxtpwOMmcUAMjpIE4Gg505XW7KPksS0WV
+   K0M38ZY/Uko9gJid7dgw1+iUAVWJQVlfuj7NuriG7e5jyLoWu5d9SnSXF
+   zgRD2FFEpTmQsh4JvNh0cyLmp8ZowekaFTx21OXQ0kdXMLjbLB9IyWpQx
+   PvyCD/LfqVFl+xefi9VblnRcf4EQDAQgoREuFcC89AfK/lruPZGFAUhWp
+   8ZXKbqoKcdkDFz33Gc4xKyb1JfvlyOOlrHvbyuNnZEIgobGym/LNbu+ac
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10781"; a="454048958"
+X-IronPort-AV: E=Sophos;i="6.01,230,1684825200"; 
+   d="scan'208";a="454048958"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Jul 2023 02:18:55 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10781"; a="719980425"
+X-IronPort-AV: E=Sophos;i="6.01,230,1684825200"; 
+   d="scan'208";a="719980425"
+Received: from mongola-mobl.ger.corp.intel.com (HELO [10.249.37.129]) ([10.249.37.129])
+  by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Jul 2023 02:18:48 -0700
+Message-ID: <2ac68f83-6300-fa61-e1ca-80df07fc1494@linux.intel.com>
+Date:   Tue, 25 Jul 2023 10:59:31 +0200
 MIME-Version: 1.0
-References: <20230724091927.123847-1-biju.das.jz@bp.renesas.com> <20230724091927.123847-3-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20230724091927.123847-3-biju.das.jz@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 25 Jul 2023 10:52:24 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWXN2GWeSoG-5Ht66zaR8Y0EzUUh7_5+4Hmtf_YOGpVNQ@mail.gmail.com>
-Message-ID: <CAMuHMdWXN2GWeSoG-5Ht66zaR8Y0EzUUh7_5+4Hmtf_YOGpVNQ@mail.gmail.com>
-Subject: Re: [PATCH v2 2/6] dt-bindings: timer: renesas,rz-mtu3: Fix
- overflow/underflow interrupt names
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Lee Jones <lee@kernel.org>, linux-iio@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        stable@kernel.org, Conor Dooley <conor.dooley@microchip.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.13.0
+Subject: Re: [PATCH v4 26/32] sound: Pass USB SND card and PCM information to
+ SOC USB
+Content-Language: en-US
+To:     Wesley Cheng <quic_wcheng@quicinc.com>, agross@kernel.org,
+        andersson@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        catalin.marinas@arm.com, will@kernel.org, mathias.nyman@intel.com,
+        gregkh@linuxfoundation.org, lgirdwood@gmail.com,
+        broonie@kernel.org, perex@perex.cz, tiwai@suse.com,
+        srinivas.kandagatla@linaro.org, bgoswami@quicinc.com,
+        Thinh.Nguyen@synopsys.com
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-usb@vger.kernel.org, alsa-devel@alsa-project.org,
+        quic_jackp@quicinc.com, oneukum@suse.com, albertccwang@google.com,
+        o-takashi@sakamocchi.jp
+References: <20230725023416.11205-1-quic_wcheng@quicinc.com>
+ <20230725023416.11205-27-quic_wcheng@quicinc.com>
+From:   Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
+In-Reply-To: <20230725023416.11205-27-quic_wcheng@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Biju,
 
-On Mon, Jul 24, 2023 at 11:19 AM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> As per R01UH0914EJ0130 Rev.1.30 HW manual the MTU3 overflow/underflow
-> interrupt names starts with 'tci' instead of 'tgi'.
->
-> Fix this documentation issue by replacing below overflow/underflow
-> interrupt names:
->  - tgiv0->tciv0
->  - tgiv1->tciv1
->  - tgiu1->tciu1
->  - tgiv2->tciv2
->  - tgiu2->tciu2
->  - tgiv3->tciv3
->  - tgiv4->tciv4
->  - tgiv6->tciv6
->  - tgiv7->tciv7
->  - tgiv8->tciv8
->  - tgiu8->tciu8
->
-> Fixes: 0a9d6b54297e ("dt-bindings: timer: Document RZ/G2L MTU3a bindings")
-> Cc: stable@kernel.org
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+
+On 7/25/23 04:34, Wesley Cheng wrote:
+> Currently, only the index to the USB SND card array is passed to the USB
+> backend.  Pass through more information, specifically the USB SND card
+> number and the number of PCM devices available.  The USB backend should
+> know about which sound resources are being shared between the ASoC and USB
+> SND paths.  This can be utilized to properly select and maintain the
+> offloading devices.
+> 
+> Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
 > ---
-> v1->v2:
->  * Added Ack from Conor Dooley.
+>  include/sound/soc-usb.h           |  9 +++++----
+>  sound/soc/qcom/qdsp6/q6usb.c      | 20 ++++++++++++++++++--
+>  sound/soc/soc-usb.c               | 12 +++++++-----
+>  sound/usb/qcom/qc_audio_offload.c |  9 +++++----
+>  4 files changed, 35 insertions(+), 15 deletions(-)
+> 
+> diff --git a/include/sound/soc-usb.h b/include/sound/soc-usb.h
+> index 71e6e75e600a..606128332044 100644
+> --- a/include/sound/soc-usb.h
+> +++ b/include/sound/soc-usb.h
+> @@ -19,20 +19,21 @@ struct snd_soc_usb {
+>  	struct device *dev;
+>  	struct snd_soc_component *component;
+>  	int (*connection_status_cb)(struct snd_soc_usb *usb, int card_idx,
+> -				int connected);
+> +				int chip_idx, int num_pcm, int connected);
 
-Thanks for your patch!
+I don't know what 'chip_idx' is.
 
-> --- a/Documentation/devicetree/bindings/timer/renesas,rz-mtu3.yaml
-> +++ b/Documentation/devicetree/bindings/timer/renesas,rz-mtu3.yaml
+The 'num_pcm' sounds problematic if there are different devices for
+playback and capture. I would guess this is for playback only, but this
+doesn't scale.
 
-> @@ -197,18 +197,18 @@ properties:
->        - const: tgib6
->        - const: tgic6
->        - const: tgid6
-> -      - const: tgiv6
-> +      - const: tciv6
->        - const: tgia7
->        - const: tgib7
->        - const: tgic7
->        - const: tgid7
-> -      - const: tgiv7
-> +      - const: tciv7
->        - const: tgia8
->        - const: tgib8
->        - const: tgic8
->        - const: tgid8
-> -      - const: tgiv8
-> -      - const: tgiu8
-> +      - const: tciv8
-> +      - const: tciu8
+>  	void *priv_data;
+>  };
 
-According to the documentation, there is no underflow interrupt for
-channel 8?
+> +struct q6usb_status {
+> +	unsigned int num_pcm;
+> +	unsigned int chip_index;
+> +	unsigned int pcm_index;
+> +};
+> +
+>  struct q6usb_port_data {
+>  	struct q6afe_usb_cfg usb_cfg;
+>  	struct snd_soc_usb *usb;
+>  	struct q6usb_offload priv;
+> +	unsigned long available_card_slot;
 
-The rest LGTM.
+what is a card slot?
 
-Gr{oetje,eeting}s,
+> +	struct q6usb_status status[SNDRV_CARDS];
+>  	int active_idx;
+>  };
+>  
+> @@ -97,7 +105,7 @@ static int q6usb_audio_ports_of_xlate_dai_name(struct snd_soc_component *compone
+>  }
+>  
+>  static int q6usb_alsa_connection_cb(struct snd_soc_usb *usb, int card_idx,
+> -			int connected)
+> +			int chip_idx, int num_pcm, int connected)
+>  {
+>  	struct snd_soc_dapm_context *dapm;
+>  	struct q6usb_port_data *data;
+> @@ -109,8 +117,16 @@ static int q6usb_alsa_connection_cb(struct snd_soc_usb *usb, int card_idx,
+>  		snd_soc_dapm_enable_pin(dapm, "USB_RX_BE");
+>  		/* We only track the latest USB headset plugged in */
+>  		data->active_idx = card_idx;
+> +
+> +		set_bit(card_idx, &data->available_card_slot);
+> +		data->status[card_idx].num_pcm = num_pcm;
+> +		data->status[card_idx].chip_index = chip_idx;
+>  	} else {
+> -		snd_soc_dapm_disable_pin(dapm, "USB_RX_BE");
+> +		clear_bit(card_idx, &data->available_card_slot);
+> +		data->status[card_idx].num_pcm = 0;
+> +		data->status[card_idx].chip_index = 0;
+> +		if (!data->available_card_slot)
+> +			snd_soc_dapm_disable_pin(dapm, "USB_RX_BE");
 
-                        Geert
+not able to follow what this does, this patch is rather unclear and
+lacks comments.
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+>  	}
+>  	snd_soc_dapm_sync(dapm);
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
