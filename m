@@ -2,102 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B8AA7621CA
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 20:51:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3664376220D
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 21:12:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230195AbjGYSvB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jul 2023 14:51:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49220 "EHLO
+        id S231631AbjGYTMS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jul 2023 15:12:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54844 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229459AbjGYSvA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 14:51:00 -0400
-Received: from s.wrqvtbkv.outbound-mail.sendgrid.net (s.wrqvtbkv.outbound-mail.sendgrid.net [149.72.123.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5FE919AD
-        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 11:50:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
-        h=mime-version:subject:references:from:in-reply-to:to:cc:content-type:
-        content-transfer-encoding:cc:content-type:from:subject:to;
-        s=s1; bh=slvye5wtN2LtYZ0xLS1A+7DvQJ4v5mIZFeSvFvmOaQM=;
-        b=M63E3U9ADds9ZQIDFmYyogYxQVR8reCaFsFRNX5EMSPduM3QH7Z+bn4ZLzCV8aTzaIY8
-        q75HevhruLSdG77YeO7l9PcfYvZP0RAFq868NCiESDB06mbM6XRrko0vg1ur7iYVdsGEXZ
-        jraVRo8DVCjoqDjlQzyiPsN/xnaUFymcBw6CIFk6EVayn62eZ1lc6Xu5RxLkSUitu5t64L
-        jP0H23nXPGgJIOcfOUOtZj2Fu6zaPupp3//erDVP8gSnu4rANPEAe9i+4aASVmwQPpJik+
-        9dMdx8rr2F9MCQ+XgjJ8rotGhY4uya2I32EMLUlZFqwdtLOrEpLAqwlhcBHwTugA==
-Received: by filterdrecv-66949dbc98-2h875 with SMTP id filterdrecv-66949dbc98-2h875-1-64C01936-5A
-        2023-07-25 18:49:26.85580565 +0000 UTC m=+6548987.779244678
-Received: from [192.168.1.50] (unknown)
-        by geopod-ismtpd-3 (SG) with ESMTP
-        id CzoI7C93Q8C6ozvHpFDwpw
-        Tue, 25 Jul 2023 18:49:26.565 +0000 (UTC)
-Message-ID: <294d2905-79b5-3a49-88e5-47df9a2447ec@kwiboo.se>
-Date:   Tue, 25 Jul 2023 18:49:27 +0000 (UTC)
+        with ESMTP id S231260AbjGYTMR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 15:12:17 -0400
+Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A36821BE9
+        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 12:12:15 -0700 (PDT)
+Received: by mail-pl1-x62b.google.com with SMTP id d9443c01a7336-1b89cfb4571so46982885ad.3
+        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 12:12:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=broadcom.com; s=google; t=1690312335; x=1690917135;
+        h=in-reply-to:from:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=VKhAAITb5EQqnrgffq9XgKL0Q4uPklMf5cpe7sFHric=;
+        b=WBH8B0RoqCFyQ+Aqk3tTpvvFz+5VNK69yq2R/U3LKYYbL34ywSog7xsFs+dqVbqkgH
+         NPpHzOvu1qZNx3xIiSONovorILhXpojUph0QsTlQNYKavo+lN9+uiqZvOmdWkcSA1XIn
+         CAJVpZZITYACYH5lk2zephdRl39hUaF2Be95c=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690312335; x=1690917135;
+        h=in-reply-to:from:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=VKhAAITb5EQqnrgffq9XgKL0Q4uPklMf5cpe7sFHric=;
+        b=P3jJRm7ZlmrNbTe+BK6I/LQuoKfl7QsNMb1hHBy8NCuPiNTnDYYyuF5af0UdGtXpqf
+         45eUBzJjPJstRBi9v8af1Oe0VZxH1kaKpOIdDubxOnH9soekgIr/r+kqAc1ubL2KjC8v
+         ii14fntZGGElYiTKBY1DacrzIwVqltpQX6Ua009I7z3el1T1xAFk2Qwrx/ScdgPnQCQp
+         PNPrM/l/a+eYw4FGaXhyFOz8fu4T24CRefoX2+fILOZfDE5xTsMFXaQu4XFA8GxpqY+y
+         +doXMIT0Yafy7G61/Rlg4hrp//UX/Yk6HB64k7M69hTl49vx7wzqJJkRdAWdgYNbSn8t
+         sTkw==
+X-Gm-Message-State: ABy/qLZM5RaPHjiiiPARbIm0BfXfGSGuoGSzOhs4J/GZgf9oGo43+q7O
+        0t5TwZgRAnw86q3/lDa7f7zD5Q==
+X-Google-Smtp-Source: APBJJlEe8QzXJdFnIvfaJQxA2sOEe75dbi7jpRbxCtJvbGG20FoXDEC7ZVXqb4unxrlmXHvndW2H5w==
+X-Received: by 2002:a17:902:9682:b0:1b8:4f93:b210 with SMTP id n2-20020a170902968200b001b84f93b210mr78134plp.45.1690312335108;
+        Tue, 25 Jul 2023 12:12:15 -0700 (PDT)
+Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id s21-20020a170902989500b001b03842ab78sm11453513plp.89.2023.07.25.12.12.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 25 Jul 2023 12:12:13 -0700 (PDT)
+Message-ID: <65afff8f-fd02-1344-56b5-f9e3deda1d47@broadcom.com>
+Date:   Tue, 25 Jul 2023 12:12:11 -0700
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
-Subject: Re: [PATCH] arm64: dts: rockchip: Fix regulators and enable SATA on
- Radxa E25
-Content-Language: en-US
-References: <20230724145213.3833099-1-jonas@kwiboo.se>
- <169030979754.2939984.9282914456412331786.b4-ty@sntech.de>
-From:   Jonas Karlman <jonas@kwiboo.se>
-In-Reply-To: <169030979754.2939984.9282914456412331786.b4-ty@sntech.de>
-X-SG-EID: =?us-ascii?Q?TdbjyGynYnRZWhH+7lKUQJL+ZxmxpowvO2O9SQF5CwCVrYgcwUXgU5DKUU3QxA?=
- =?us-ascii?Q?fZekEeQsTe+RrMu3cja6a0hzhHxSPpdSFr4pHYV?=
- =?us-ascii?Q?0qIOofIH=2FsXgZ+Dsy7M6zY8SPImb9EjGkNHQzKu?=
- =?us-ascii?Q?75EkYebQpT1O=2FE6195t1I78Rk8V34asX1JxDi0R?=
- =?us-ascii?Q?G1FEFUnluY5cD0A76Fb3G9SxNi=2F0GWppyceM01i?=
- =?us-ascii?Q?+eR9eXlcD5YmE74jdX=2FkBhkP4uvQM4lWK9Vqt+?=
-To:     Heiko Stuebner <heiko@sntech.de>, Chukun Pan <amadeus@jmu.edu.cn>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+Subject: Re: [RFC PATCH 0/4] Implement a PSCI SYSTEM_RESET2 reboot-mode driver
+To:     Elliot Berman <quic_eberman@quicinc.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Sebastian Reichel <sre@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, FUKAUMI Naoki <naoki@radxa.com>,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org
-X-Entity-ID: P7KYpSJvGCELWjBME/J5tg==
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_BL_SPAMCOP_NET,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no autolearn_force=no
-        version=3.4.6
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, kernel@quicinc.com,
+        Satya Durga Srinivasu Prabhala <quic_satyap@quicinc.com>,
+        Melody Olvera <quic_molvera@quicinc.com>,
+        Prasad Sodagudi <quic_psodagud@quicinc.com>
+References: <20230724223057.1208122-1-quic_eberman@quicinc.com>
+From:   Florian Fainelli <florian.fainelli@broadcom.com>
+In-Reply-To: <20230724223057.1208122-1-quic_eberman@quicinc.com>
+Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
+        boundary="0000000000004f893d0601548229"
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2023-07-25 20:32, Heiko Stuebner wrote:
-> On Mon, 24 Jul 2023 14:52:16 +0000 (UTC), Jonas Karlman wrote:
->> Despite its name, the regulator vcc3v3_pcie30x1 has nothing to do with
->> pcie30x1. Instead, it supply power to VBAT1-5 on the M.2 KEY B port as
->> seen on page 8 of the schematic [1].
->>
->> pcie30x1 is used for the mini PCIe slot, and as seen on page 9 the
->> vcc3v3_minipcie regulator is instead related to pcie30x1.
->>
->> [...]
-> 
-> Applied, thanks!
-> 
-> [1/2] arm64: dts: rockchip: Fix PCIe regulators on Radxa E25
-> commit: a87852e37f782257ebc57cc44a0d3fbf806471f6
-> 
-> [2/2] arm64: dts: rockchip: Enable SATA on Radxa E25
-> commit: 2bdfe84fbd57a4ed9fd65a67210442559ce078f0
-> 
-> As you can see, I've split them in two. Please check that I didn't
-> mess anything up. Having an "and" in the commit subject is always a
-> very strong indicator that a split is probably a good thing ;-)
+--0000000000004f893d0601548229
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Thanks, and they look fine. Should probably have split it in two from
-the beginning, I will try to do better next time :-)
+Hello,
 
-Regards,
-Jonas
-
+On 7/24/23 15:30, Elliot Berman wrote:
+> PSCI implements a restart notifier for architectural defined resets.
+> The SYSTEM_RESET2 call allows vendor firmware to define additional reset
+> types which could be mapped to the reboot reason.
 > 
+> Implement a driver to wire the reboot-mode framework to make vendor
+> SYSTEM_RESET2 calls on reboot.
 > 
-> Best regards,
+> This is a continuation from https://lore.kernel.org/all/4a679542-b48d-7e11-f33a-63535a5c68cb@quicinc.com/
 
+Would appreciate being CC'd on a the non-RFC postings of this patch. 
+FWIW, my use case is better described with this earlier submission:
+
+https://lore.kernel.org/lkml/20220122035421.4086618-1-f.fainelli@gmail.com/T/#m74e4243c1af3a8d896e19b573b58f562fa09961d
+
+It would be neat if I could leverage your driver in order to implement 
+this custom "reboot powercycle" implementation. Towards that goal, we 
+would likely need to specify the desired reboot "sub" operation 
+alongside its PSCI SYSTEM_RESET2 reboot type argument?
+
+Thanks!
+-- 
+Florian
+
+
+--0000000000004f893d0601548229
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Description: S/MIME Cryptographic Signature
+
+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
+riBJ/K1AFUjRAjFhGV64l++td7dkmnq/X8ET75ti+w1s4FRpFqkD2m7pg5NxdsZphYIXAgMBAAGj
+QjBAMA4GA1UdDwEB/wQEAwIBBjAPBgNVHRMBAf8EBTADAQH/MB0GA1UdDgQWBBSP8Et/qC5FJK5N
+UPpjmove4t0bvDANBgkqhkiG9w0BAQsFAAOCAQEAS0DbwFCq/sgM7/eWVEVJu5YACUGssxOGhigH
+M8pr5nS5ugAtrqQK0/Xx8Q+Kv3NnSoPHRHt44K9ubG8DKY4zOUXDjuS5V2yq/BKW7FPGLeQkbLmU
+Y/vcU2hnVj6DuM81IcPJaP7O2sJTqsyQiunwXUaMld16WCgaLx3ezQA3QY/tRG3XUyiXfvNnBB4V
+14qWtNPeTCekTBtzc3b0F5nCH3oO4y0IrQocLP88q1UOD5F+NuvDV0m+4S4tfGCLw0FREyOdzvcy
+a5QBqJnnLDMfOjsl0oZAzjsshnjJYS8Uuu7bVW/fhO4FCU29KNhyztNiUGUe65KXgzHZs7XKR1g/
+XzCCBVgwggRAoAMCAQICDBP8P9hKRVySg3Qv5DANBgkqhkiG9w0BAQsFADBbMQswCQYDVQQGEwJC
+RTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTExMC8GA1UEAxMoR2xvYmFsU2lnbiBHQ0MgUjMg
+UGVyc29uYWxTaWduIDIgQ0EgMjAyMDAeFw0yMjA5MTAxMjE4MTFaFw0yNTA5MTAxMjE4MTFaMIGW
+MQswCQYDVQQGEwJJTjESMBAGA1UECBMJS2FybmF0YWthMRIwEAYDVQQHEwlCYW5nYWxvcmUxFjAU
+BgNVBAoTDUJyb2FkY29tIEluYy4xGTAXBgNVBAMTEEZsb3JpYW4gRmFpbmVsbGkxLDAqBgkqhkiG
+9w0BCQEWHWZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tMIIBIjANBgkqhkiG9w0BAQEFAAOC
+AQ8AMIIBCgKCAQEA+oi3jMmHltY4LMUy8Up5+1zjd1iSgUBXhwCJLj1GJQF+GwP8InemBbk5rjlC
+UwbQDeIlOfb8xGqHoQFGSW8p9V1XUw+cthISLkycex0AJ09ufePshLZygRLREU0H4ecNPMejxCte
+KdtB4COST4uhBkUCo9BSy1gkl8DJ8j/BQ1KNUx6oYe0CntRag+EnHv9TM9BeXBBLfmMRnWNhvOSk
+nSmRX0J3d9/G2A3FIC6WY2XnLW7eAZCQPa1Tz3n2B5BGOxwqhwKLGLNu2SRCPHwOdD6e0drURF7/
+Vax85/EqkVnFNlfxtZhS0ugx5gn2pta7bTdBm1IG4TX+A3B1G57rVwIDAQABo4IB3jCCAdowDgYD
+VR0PAQH/BAQDAgWgMIGjBggrBgEFBQcBAQSBljCBkzBOBggrBgEFBQcwAoZCaHR0cDovL3NlY3Vy
+ZS5nbG9iYWxzaWduLmNvbS9jYWNlcnQvZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3J0MEEG
+CCsGAQUFBzABhjVodHRwOi8vb2NzcC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWdu
+MmNhMjAyMDBNBgNVHSAERjBEMEIGCisGAQQBoDIBKAowNDAyBggrBgEFBQcCARYmaHR0cHM6Ly93
+d3cuZ2xvYmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADBJBgNVHR8EQjBAMD6gPKA6
+hjhodHRwOi8vY3JsLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNy
+bDAoBgNVHREEITAfgR1mbG9yaWFuLmZhaW5lbGxpQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggr
+BgEFBQcDBDAfBgNVHSMEGDAWgBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUUwwfJ6/F
+KL0fRdVROal/Lp4lAF0wDQYJKoZIhvcNAQELBQADggEBAKBgfteDc1mChZjKBY4xAplC6uXGyBrZ
+kNGap1mHJ+JngGzZCz+dDiHRQKGpXLxkHX0BvEDZLW6LGOJ83ImrW38YMOo3ZYnCYNHA9qDOakiw
+2s1RH00JOkO5SkYdwCHj4DB9B7KEnLatJtD8MBorvt+QxTuSh4ze96Jz3kEIoHMvwGFkgObWblsc
+3/YcLBmCgaWpZ3Ksev1vJPr5n8riG3/N4on8gO5qinmmr9Y7vGeuf5dmZrYMbnb+yCBalkUmZQwY
+NxADYvcRBA0ySL6sZpj8BIIhWiXiuusuBmt2Mak2eEv0xDbovE6Z6hYyl/ZnRadbgK/ClgbY3w+O
+AfUXEZ0xggJtMIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52
+LXNhMTEwLwYDVQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwT
+/D/YSkVckoN0L+QwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIEz1PYcnQsSlImKD
+zh34C6fxsZfkrdFhA0PJkwpD6V4fMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcN
+AQkFMQ8XDTIzMDcyNTE5MTIxNVowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZI
+AWUDBAEWMAsGCWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEH
+MAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQCPwOyABgNvCheWmE3sTyI6fUWO0igIjFSM
+j0KOgUuD42x8jlO9Rbh2ocb/b7N6Vs7H6SAaTbUrTCAdCCAzzFxqY2H6f3uAHU8IanjQujI8kvsd
+iOUnNP81Tr5iofg6VmI84T1kX2X5cTwePxsDIPfr/6ZSLLOcyFEkzLynz95mG5C0RPZd7yFSFRE9
+zQfRFmNSriFGi+CbFLIENJjOg97qBaF3hqlDJ4+/iReuEvdzR7/r9yD93n9l1DG8mQoKXyV8lGI7
+oPRJXPXyRP3NqaX4iqg5JZersQ/H6ctrIuWMkxcAamyiiSmbAEBr4VYYszbsPTMmaFnqt0KgfLlL
+qMig
+--0000000000004f893d0601548229--
