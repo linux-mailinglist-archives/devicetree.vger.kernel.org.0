@@ -2,102 +2,211 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 21F93761BA1
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 16:28:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C057761BA6
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 16:28:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230041AbjGYO2e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jul 2023 10:28:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40136 "EHLO
+        id S231672AbjGYO2o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jul 2023 10:28:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40034 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232873AbjGYO1k (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 10:27:40 -0400
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A44EC3A80
-        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 07:27:19 -0700 (PDT)
-Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-5222b917e0cso3420263a12.0
-        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 07:27:19 -0700 (PDT)
+        with ESMTP id S233622AbjGYO20 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 10:28:26 -0400
+Received: from mail-io1-xd2d.google.com (mail-io1-xd2d.google.com [IPv6:2607:f8b0:4864:20::d2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C31A6102;
+        Tue, 25 Jul 2023 07:28:06 -0700 (PDT)
+Received: by mail-io1-xd2d.google.com with SMTP id ca18e2360f4ac-78847bb8940so287564439f.0;
+        Tue, 25 Jul 2023 07:28:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690295226; x=1690900026;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=hU8lSjQ6M9yd48ULuSbmUnhhWGLQGOdsfRMZvGDHUYg=;
-        b=qtCYt7lSSrdZZ8iQAVofiekLVvwLzUwagNxRSeFzg960F3nJujWU25uL4zNn/svJ43
-         KvBY7KqPvhZRA/Og/tInPY0nPEozrpR4/etavmBxkjejRJdO7HuxwMMOl9Mg4/4oJzRu
-         izdUVCpDnvIsmGGYfMao9YyEIJ3ftaz9NHcg8tr2zLAZr1inbVBx1QbVZJMQxlaDOwWB
-         hEnO4gJABuwF3kouzb8hIaNxEEkpRgcX6H6Gd+5XEVViB0J5ZYaa/hlMS7jEKJfj8tt+
-         VizO7MUsM7bAAWLtnFH90JrogdmuG5VoDogTrS4nRbTbWJvAA2tRoXzNxjMDE2aEI1sG
-         S/QA==
+        d=gmail.com; s=20221208; t=1690295286; x=1690900086;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=6vB0z4dxN5goqClcWw6bugDj7DXSnUUZmHJBfAn4fgk=;
+        b=rBPdVUH2ANTV83DQ3Z3txtYeFR6Q41ovPnKSlHJ6ulbTVgD6XC7xkx2ZmI0VPkrCoF
+         Ng6qncx/V77242J5HouqcowDSSkjtppx8McsGVCxMsmQY3ilC0YGf09W0INpzEhXQNjw
+         ipRXQ/UE6AMvbcG4SfgZi0JjMvKoSa4aO+oMYMpl5/KdirU6Pp7F3BcBqlDWDknXYMGk
+         jXY6IOu+Yv14a4sXi+htkWQ83mDas6l0iLlTD21oQFxgnYq37rhIDtA/gNSKAfeksSAt
+         UcEL3ocjwCw3Z64Pqk2y1IBjN6ih+00Omng4/vIUcCYx1KGtPXPcqcITya1QrxYUQ+/T
+         47Pw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690295226; x=1690900026;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20221208; t=1690295286; x=1690900086;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=hU8lSjQ6M9yd48ULuSbmUnhhWGLQGOdsfRMZvGDHUYg=;
-        b=Zyzdk5CpCd2x+kOpBRwedh7U/OiqDFs9E1ZfAGG+NAjKJqy4lpFH/6vrmEIeemcE0c
-         9gBwUX82NPCZyaCh/3KTc70AeMpXxhhKp4i4nsWrrD8bKw39Fq0UgMvWyiiPSA3N+rjB
-         0pgfUiKAC0vMmlUa2TS5O+wthwKxhFwBu9J6qeSIb8y9ogTdntFvXaIvdT8WEUNr+lu1
-         o4uQa00JvT1WjXCzxQDijbt6ZiaSv6doOidMXRIp+yCjJ4wAwNwaAF3wV6wF2hP1ieta
-         w6Q5lnMWb2uKwlFBsjCg2fYGUTHYTE4oGdDZRTt5mnHjqCIz/lIFMpcLoqS+a471ATXd
-         3zmQ==
-X-Gm-Message-State: ABy/qLa/PwcMnEtfeFe2Z5lrL0uHVauGCWDLh8ZiRXVy6M3ZyE2mI6Zl
-        dFMa3XpaDXdwiyw+e3KkPEBCww==
-X-Google-Smtp-Source: APBJJlHFnc3Sz1DBUjgwnuSooCSHfG5qz85DMBZy79oDPNK7BX03+ekkae7x1UZx4sl9fM+H2KxFXA==
-X-Received: by 2002:a17:907:760d:b0:993:e752:1a6a with SMTP id jx13-20020a170907760d00b00993e7521a6amr13195406ejc.21.1690295226116;
-        Tue, 25 Jul 2023 07:27:06 -0700 (PDT)
-Received: from krzk-bin.. ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id o22-20020a170906289600b00977c7566ccbsm8201027ejd.164.2023.07.25.07.27.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 Jul 2023 07:27:05 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] arm64: dts: amlogic: meson-g12b-bananapi: switch to enable-gpios
-Date:   Tue, 25 Jul 2023 16:27:03 +0200
-Message-Id: <20230725142703.157547-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
+        bh=6vB0z4dxN5goqClcWw6bugDj7DXSnUUZmHJBfAn4fgk=;
+        b=B50DGdhevYSUeGqeO5RhPcJULJg4C4dGufceXft2KdPE/9cRHY2WBW42uhdDc5XwBl
+         UJz72lWnQyD7w+6AN5m1Zi0fhT6JpktPD3Y8xTvybvYEKYPbFTbsLCulWZO+qwi2mi7+
+         m+BiRNgJiNsZbkQP9BPLaXmZtJqSbsA1uaWYY6Qti0q9bOKpT3CEGx4Erw+RFB7PoB6U
+         sSRP4mHTf25jEiTCFZZojZo7QbQg9ZI8PXA+jk9MM1VfUTyZ1mCKSbP/DrrIZBWizMCv
+         EZprLHr/mRWMYLkORqSmx/Os+WzCxCyLTfEvadpXCfckQyk5OZjURnpSY783Em5oeaJf
+         dVcw==
+X-Gm-Message-State: ABy/qLa3IBVKVJDC12X4/aQNWqsXfAJ39idbaNzv8qI9sNv2E82n7IPO
+        a4RArmwEiV7x1XBzcPZgL0zJxybAaRs=
+X-Google-Smtp-Source: APBJJlHLq5VYfIlb8RV7XBr3lhCOPd3bdfoFZx9vA5HIZym/i8pCPinxcgioiT9T2HDfqGIaNPnaNw==
+X-Received: by 2002:a6b:e910:0:b0:787:6ae:46fa with SMTP id u16-20020a6be910000000b0078706ae46famr3078275iof.1.1690295286057;
+        Tue, 25 Jul 2023 07:28:06 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id gt11-20020a0566382dcb00b0042b227eb1ddsm3514264jab.55.2023.07.25.07.28.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 25 Jul 2023 07:28:05 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <e51de5ee-5342-8771-46a3-34d8ee8b9c55@roeck-us.net>
+Date:   Tue, 25 Jul 2023 07:28:04 -0700
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH 1/3] dt-bindings: hwmon: Add Infineon TDA38640
+Content-Language: en-US
+To:     Naresh Solanki <naresh.solanki@9elements.com>,
+        Rob Herring <robh@kernel.org>
+Cc:     Jean Delvare <jdelvare@suse.com>,
+        krzysztof.kozlowski+dt@linaro.org,
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-hwmon@vger.kernel.org,
+        Patrick Rudolph <patrick.rudolph@9elements.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230725114030.1860571-1-Naresh.Solanki@9elements.com>
+ <20230725131006.GA2879331-robh@kernel.org>
+ <CABqG17iChAyb0gzb2uXfsv5GkiM3a+LoSavdqhjvw3FUccaw8A@mail.gmail.com>
+From:   Guenter Roeck <linux@roeck-us.net>
+In-Reply-To: <CABqG17iChAyb0gzb2uXfsv5GkiM3a+LoSavdqhjvw3FUccaw8A@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The recommended name for enable GPIOs property in regulator-gpio is
-enable-gpios.  This is also required by bindings:
+On 7/25/23 07:17, Naresh Solanki wrote:
+> Hi Rob,
+> 
+> 
+> On Tue, 25 Jul 2023 at 18:40, Rob Herring <robh@kernel.org> wrote:
+>>
+>> On Tue, Jul 25, 2023 at 01:40:26PM +0200, Naresh Solanki wrote:
+>>> From: Patrick Rudolph <patrick.rudolph@9elements.com>
+>>>
+>>> The TDA38640 has a bug in SVID mode and to enable a workaround
+>>> remove the TDA38640 from trivial-devices and add a complete schema.
+>>>
+>>> The schema adds the custom property 'infineon,en-pin-fixed-level' to
+>>> signal a fixed level on the ENABLE pin and to enable the workaround.
+>>> When the ENABLE pin is left floating it's internally pulled low.
+>>>
+>>> If not specified the driver will continue to use the PMBUS_OPERATION
+>>> register to enable the regulator. When specified the driver will use
+>>> the PMBUS_ON_OFF_CONFIG register to enable the regulator.
+>>>
+>>> Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
+>>> Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
+>>> ---
+>>>   .../hwmon/pmbus/infineon,tda38640.yaml        | 50 +++++++++++++++++++
+>>>   .../devicetree/bindings/trivial-devices.yaml  |  2 -
+>>>   2 files changed, 50 insertions(+), 2 deletions(-)
+>>>   create mode 100644 Documentation/devicetree/bindings/hwmon/pmbus/infineon,tda38640.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/hwmon/pmbus/infineon,tda38640.yaml b/Documentation/devicetree/bindings/hwmon/pmbus/infineon,tda38640.yaml
+>>> new file mode 100644
+>>> index 000000000000..520112e4e271
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/hwmon/pmbus/infineon,tda38640.yaml
+>>> @@ -0,0 +1,50 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +
+>>> +$id: http://devicetree.org/schemas/hwmon/pmbus/infineon,tda38640.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: Infineon TDA38640 Synchronous Buck Regulator with SVID and I2C
+>>> +
+>>> +description: |
+>>> +  The Infineon TDA38640 is a 40A Single-voltage Synchronous Buck
+>>> +  Regulator with SVID and I2C designed for Industrial use.
+>>> +
+>>> +  Datasheet: https://www.infineon.com/dgdl/Infineon-TDA38640-0000-DataSheet-v02_04-EN.pdf?fileId=8ac78c8c80027ecd018042f2337f00c9
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    enum:
+>>> +      - infineon,tda38640
+>>> +
+>>> +  reg:
+>>> +    maxItems: 1
+>>> +
+>>> +  infineon,en-pin-fixed-level:
+>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>> +    description: |
+>>> +      Fixed level of the ENABLE pin. When specified the PMBUS_ON_OFF_CONFIG
+>>> +      register is used to enable the regulator instead of the PMBUS_OPERATION
+>>> +      register to workaround a bug of the tda38640 when operating in SVID-mode.
+>>> +      If the ENABLE pin is left floating the internal pull-down causes a low
+>>> +      level on the pin.
+>>
+>> Neither this nor the commit message answers how do I decide if I set
+>> this property or not? How you work-around it is not that relevant to the
+>> binding.
+> Sure will update this as:
+> The property becomes relevant when dealing with the tda38640 in
+> SVID-mode, providing an alternative method to enable the regulator by
+> using the PMBUS_ON_OFF_CONFIG register instead of the PMBUS_OPERATION
+> register
+> 
 
-  meson-g12b-bananapi-cm4-cm4io.dtb: regulator-vddio-c: Unevaluated properties are not allowed ('enable-gpio' was unexpected)
+As mentioned in the other e-mail, I'll want to see an explanation why
+this property is even needed. The series claims that the chip has a bug
+in SVID mode. It is kind of unusual that we would enable a workaround
+for a bug with a devicetree property if the circumstance (SVID mode)
+can be determined automatically.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- arch/arm64/boot/dts/amlogic/meson-g12b-bananapi-cm4.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Guenter
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi-cm4.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi-cm4.dtsi
-index 97e522921b06..86adc1423385 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi-cm4.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12b-bananapi-cm4.dtsi
-@@ -56,7 +56,7 @@ vddio_c: regulator-vddio-c {
- 		regulator-min-microvolt = <1800000>;
- 		regulator-max-microvolt = <3300000>;
- 
--		enable-gpio = <&gpio_ao GPIOAO_3 GPIO_OPEN_DRAIN>;
-+		enable-gpios = <&gpio_ao GPIOAO_3 GPIO_OPEN_DRAIN>;
- 		enable-active-high;
- 		regulator-always-on;
- 
--- 
-2.34.1
+> Regards,
+> Naresh
+>>
+>>> +
+>>> +required:
+>>> +  - compatible
+>>> +  - reg
+>>> +
+>>> +additionalProperties: false
+>>> +
+>>> +examples:
+>>> +  - |
+>>> +    i2c {
+>>> +        #address-cells = <1>;
+>>> +        #size-cells = <0>;
+>>> +
+>>> +        tda38640@40 {
+>>> +            compatible = "infineon,tda38640";
+>>> +            reg = <0x40>;
+>>> +        };
+>>> +    };
+>>> +
+>>> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
+>>> index 6e24c4d25ec3..2b1fbb2a672b 100644
+>>> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
+>>> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+>>> @@ -151,8 +151,6 @@ properties:
+>>>             - infineon,slb9645tt
+>>>               # Infineon SLB9673 I2C TPM 2.0
+>>>             - infineon,slb9673
+>>> -            # Infineon TDA38640 Voltage Regulator
+>>> -          - infineon,tda38640
+>>>               # Infineon TLV493D-A1B6 I2C 3D Magnetic Sensor
+>>>             - infineon,tlv493d-a1b6
+>>>               # Infineon Multi-phase Digital VR Controller xdpe11280
+>>>
+>>> base-commit: 55612007f16b5d7b1fb83a7b0f5bb686829db7c7
+>>> --
+>>> 2.41.0
+>>>
 
