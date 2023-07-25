@@ -2,153 +2,267 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9DBF2760C0A
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 09:36:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 42D8F760C8A
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 10:00:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231329AbjGYHgO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jul 2023 03:36:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49596 "EHLO
+        id S232315AbjGYIAT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jul 2023 04:00:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38898 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231887AbjGYHfV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 03:35:21 -0400
-Received: from EUR01-DB5-obe.outbound.protection.outlook.com (mail-db5eur01on2099.outbound.protection.outlook.com [40.107.15.99])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1BB22136
-        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 00:34:22 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=i1d5JPOGmOvlfc9hpLhiC2FmubnqMHhESC7SeID5XKzT596l812tjZ29r80GC9jxsFPFY5HHsd/VnKkSvG4dCg7RLa1/LrntucepSQMX9kKlCWMCe/1JYu7zrmnufv/Gt9Cd4t7JZMqUNGAqr3SZ6YQmrZFTbBZkbQWiHXjrudFfsxy6homTgiRRPxNgbFnsQCZ5IKYq/v7jelBYOLnxWB7qVLnPk0zAdD+9mFmoGvwt9Br5bIrQE8EabpyAw561lyz+fq86CACQvKV5hY4VD+mUguUAgQPrn6yu3OQIFIv8nMTJ+6Vsmwt0PEKwggruDxgAFYOKgArox+H+SXFIiQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=zZIfNYGL+cX8KBXuQ5OHTKwZ/O5hdpdOPCeJEGU0H40=;
- b=CHagmK2yYz2ZkwMbjsZt09krCFG70X4XplgsUrjExWqLp9B+wU7lUN7fai/tA4HJn6AWnfbwDkZNx+pwyj0NjvjAVBKS/pwZUIHD0ghF7OUNV4CtMYcIhNNy6zpaRROVakfnBg3KgH38W5i4kIKzlg6eQiSRiN2oHjep7B2AU+X3RQV13jIHyOchFkQpWArtuAAX5keJ7RuNG24PhUudhInil86D0UcXJYX+4EIfHjlbLZ+KU2OfcgtmvoNSo9+IFi+4eWtysfvftz/rxwsyZV16drs2VEkVMDCj721Ses9a1TwdRdpAdwQrf78vyWWRDl0NL9W1Sf7/SFVzXSo9yg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=kontron.de; dmarc=pass action=none header.from=kontron.de;
- dkim=pass header.d=kontron.de; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mysnt.onmicrosoft.com;
- s=selector2-mysnt-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zZIfNYGL+cX8KBXuQ5OHTKwZ/O5hdpdOPCeJEGU0H40=;
- b=jvJia5qTSxmwpCkWkCJC1bELqnAwjDjEl2S3eQfnUrCSLMFW80ySJoNB328lHoTqvfpF+RhwE1vhJefgjiwgZIFgCtu/mDriinsdCDpxk2y4bAv089AMGzk/YXl/PQTw/I3p+phIkJY5VReNvSuu8yjnyNnPDTtD1OsONIpaSCE=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=kontron.de;
-Received: from PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:102:263::10)
- by PAXPR10MB5383.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:102:284::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6609.33; Tue, 25 Jul
- 2023 07:34:20 +0000
-Received: from PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::95ae:6cb:e93:cce0]) by PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::95ae:6cb:e93:cce0%6]) with mapi id 15.20.6609.032; Tue, 25 Jul 2023
- 07:34:20 +0000
-Message-ID: <2605b7f2-b776-3759-5619-9c4c08d6129a@kontron.de>
-Date:   Tue, 25 Jul 2023 09:34:17 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v2 2/2] phy: freescale: add Samsung HDMI PHY
-Content-Language: en-US, de-DE
-To:     Lucas Stach <l.stach@pengutronix.de>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
+        with ESMTP id S232024AbjGYIAS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 04:00:18 -0400
+X-Greylist: delayed 720 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 25 Jul 2023 01:00:09 PDT
+Received: from rivendell.linuxfromscratch.org (rivendell.linuxfromscratch.org [208.118.68.85])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 95CB31AA;
+        Tue, 25 Jul 2023 01:00:09 -0700 (PDT)
+Received: from [192.168.124.11] (unknown [61.150.43.67])
+        by rivendell.linuxfromscratch.org (Postfix) with ESMTPSA id 6045E1C1D3F;
+        Tue, 25 Jul 2023 07:39:07 +0000 (GMT)
+X-Virus-Status: Clean
+X-Virus-Scanned: clamav-milter 1.0.0 at rivendell.linuxfromscratch.org
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfromscratch.org;
+        s=cert4; t=1690270751;
+        bh=UIpvXwW/xYdqfcSUiumRa/BDuejdVgL9+aeWG6qzvZc=;
+        h=Subject:From:To:Cc:Date:In-Reply-To:References;
+        b=l0Ogp2Jztzf2tuQRa4V+OiBiBuuYsgHYJ9u1/RO3NX+XfwORTTfVmAV+lP+1AC8Wn
+         aTZIhsudoVovrUkjFsNy1jkdkvQ0d4sQlfDhddF+wc4faCrWqwh5TozdZMAd/z9Xd5
+         QFK0sxQqYcbLL8RhqaFjdCVKS/IWTtAbrIYOep3hH8Z2LNLyULMolSoWAvUsP4QnuX
+         Fn+rIAAbkjaFbnNjPv3z3eOvKkmgrhA+fyUYMrdAmoA/smVMJT5a5wEKVI84WMlqSb
+         M9qlu62g8Ppm6z0/guG/XHlqJlm30Ylpghju9fICr2LWBoIJdHAkUFujQQ3IsdpkMY
+         oUsU/CV/w/BIw==
+Message-ID: <c9a44f534071a6d67f1e21bafdb713793c559124.camel@linuxfromscratch.org>
+Subject: Re: [PATCH v3 0/8] Add Sipeed Lichee Pi 4A RISC-V board support
+From:   Xi Ruoyao <xry111@linuxfromscratch.org>
+To:     Jisheng Zhang <jszhang@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        patchwork-lst@pengutronix.de, Inki Dae <inki.dae@samsung.com>,
-        Seung-Woo Kim <sw0312.kim@samsung.com>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        Sandor Yu <Sandor.yu@nxp.com>
-References: <20221215201100.2897501-1-l.stach@pengutronix.de>
- <20221215201100.2897501-2-l.stach@pengutronix.de>
-From:   Frieder Schrempf <frieder.schrempf@kontron.de>
-In-Reply-To: <20221215201100.2897501-2-l.stach@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: AM0PR02CA0174.eurprd02.prod.outlook.com
- (2603:10a6:20b:28e::11) To PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM
- (2603:10a6:102:263::10)
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc:     Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org
+Date:   Tue, 25 Jul 2023 15:38:58 +0800
+In-Reply-To: <20230617161529.2092-1-jszhang@kernel.org>
+References: <20230617161529.2092-1-jszhang@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.48.4 
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PA4PR10MB5681:EE_|PAXPR10MB5383:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9191c2f8-8cb4-44f1-81c3-08db8ce18f4e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Y24bkIoTbed2+Q+bh7zkZWGcVKZ+8cJeSYjOhajs61rZMAuqXnCWPCA2RYIAaBYAJ/tpjuKUxSsfXNW8rve27uvNyj2fyii54Ju8tyWrhLGmprmLVcMDXmvHji7CVUXAF+q8RUgwFt2A6wSMHsb7Kh9/yIupO7el6/ydfN9/aiUMelDRhbCQq2DjoJWwnyYtZ7ZJYuiJhR5i/MTVHlQoRtQPA1yuwxV62ESmdWJ1w0LQcBP8MMSr/wAHmny/qS1Fw/lZYUz7f/B8UsnmnxZuk2E3jEIUefyl0X1nPcGVtyhDWDOobY8hjKS+DTJ921C19lxsueQco2m7hRBmzXbiyqsFJG5e+0mGIGqONlhS1+LeKSUxMK8wChlIfkvbsmPp8GN5m6ywsEUfDOg9SM2eolSJLaR07WCJoHsiClOcQkjwTX7zB3gmM73AIk9R3ziIMzfpfi5xJOoZMg59V6eW3LQOghSpDJNld/XCQG66lb736bN2+buDUh4DRBSP1xB3rJEH/kYI9wrZkJAR/tzX+pbTHkcct6MHMNVCSTA+tJfM3/gl1GBWwu+LBaeVMZElPHRktKF3y7+rgzLUoISb2FR4+6LaKd/W3VD3fpbtYJaAjL1MoiU6SXBezIENNd9ZzSkp5fkgJ0Dq8cvxCKr6zQ==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230028)(4636009)(396003)(376002)(346002)(366004)(39860400002)(136003)(451199021)(31686004)(36756003)(31696002)(86362001)(4744005)(2906002)(44832011)(7416002)(186003)(53546011)(6506007)(26005)(6666004)(38100700002)(6486002)(6512007)(54906003)(478600001)(110136005)(4326008)(8936002)(8676002)(66946007)(66476007)(66556008)(2616005)(316002)(41300700001)(5660300002)(43740500002)(45980500001);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NlZYYnBodmdpOHAvcHNaU1NKWlpaUlhOUHFNQU12RllKSUVwWk1xaEo0U0Mw?=
- =?utf-8?B?MXhTNkdDNkdGd1g1cEErRGhQQlRPbWpOVDNpQ3NjaXk1Wk05WlkxYzk2RGFr?=
- =?utf-8?B?NElXUkxCSU44QzEzY2wxT1pobUphOTNvZDNneDZxTExrdTQwR1ZvVHNEYWxh?=
- =?utf-8?B?ZUdrSmZtbzFEbkhXM3krOEdmNmdNdjZjTHNWUGlCeW5EVjJ1cTJWVzNjamVR?=
- =?utf-8?B?UnJUa29hRWdKM3AxNEg1UmF0R2lnc1NvS0pCSjdOOUhBTVJqNWNnbVd5NzFM?=
- =?utf-8?B?aXpLS0hXZ281Q2p4d3JTUkw4a0hOdTdQUW9ZZlJJdmtaMmdjb1dLNkNwcldn?=
- =?utf-8?B?aXpYZUVMTzkvMmtxb2grb1JBQzJVbVZ4QWJsY2RuOWwrTVBaRko0clZRMGlu?=
- =?utf-8?B?UjljWmhJUlJLdm02Z3NwdFRYTHYxSVcvcDRtV09wT2N1SFlaV2FIQk5SS1hV?=
- =?utf-8?B?aHJyNmd0ZnpQeldMdVRhMjYzM2pIK2IyUGdYSlBSb3NIRFpZeTVjZ2hhTjBJ?=
- =?utf-8?B?R0l3MUllcjVmRjNRNkd6bTM0azN1UGtnamc4T1cyWkhCV1JjQW9uMTZRb2hT?=
- =?utf-8?B?M2tUYjMrYWlOQkVYWVZmR3BReDZhNFVURGV1UG5ZZmpxOEhnUEdNbndQa0Zw?=
- =?utf-8?B?cUxwenB6eVYrbWRFbHIrbmtMVVV0ZEpEbXU4S0xKbmtXeXp4NXVYSVllYjgy?=
- =?utf-8?B?VnhhKzJtcStKak9kbVFPRFJJUnhLalRHVHhmWmY4NGtNTDNZZVg2czEzM2Z6?=
- =?utf-8?B?VHdkL0tSMjZHRlFWeHZXOEE5S0dZT1dCTVJ4L1VWdWkyV0FjZ2hyUDZEZTRM?=
- =?utf-8?B?dzd0UDNwTzE0S1kwdG0xUzJPaUljRVZzdnpOZjlsUlhIQ2ZyOXg4a05aTGRi?=
- =?utf-8?B?M0ZETUgvT2VoeUlod2tXN3hZNTl0L2h3K0h6NUtCZkNQSk1sb2ltS0hTU1Vt?=
- =?utf-8?B?QVR4NUEzRi9tNWthWStXWGo2dTVLT3dMYTVadVRwK0Q0L3dMR1lGMGRhdzNn?=
- =?utf-8?B?cThMc05IZVlDaFVCdDFqaXBLOEhkblVLQUNlcHBOazY5UmgyZ3ROZ1pqRCtB?=
- =?utf-8?B?bXUzeWxXQnc1aU9lcGRIZzZzNmhkOGVvSUo4Z3pPamtSM3hvV3hSMnhmS1E3?=
- =?utf-8?B?VnVRVkEzb2dtbWlKRHFMZEJVOGtIVWlHZEszZ0dJYUowbVd2dXBveWhnMWwy?=
- =?utf-8?B?WHhoZ3Q0SVZ3M0pRUXVQVTNRcGwzeUwveS94WW9DczJWZGQ0ZEpRTllDaGNJ?=
- =?utf-8?B?YzhnbTdxRnYzY2tjQ20weGhQOC80VnpkSlhqeUlnQ2ZReUZESkRySEhvY3lt?=
- =?utf-8?B?Sng2VDlDL3lsWDRuWW9neTU3YTNMNUF1TFJnZU1UQU4xWmt6clVRRWgxa09N?=
- =?utf-8?B?ZTNJa0cxcE1ZNDFMYTZ1b1ZveFNYeDhGcy9MSEI1S1NlL1RFeTB0TUJPSllV?=
- =?utf-8?B?NE9qWkZrNnlwMVBsK3hHT2xvTGpWRWMyZmN5MXVTT1VYT1JOU0JMOGRpR0hZ?=
- =?utf-8?B?YjNGalZ1MnRaOU90ek1XbjQ3TkJnT1MrZis4SWRrb1FYL3FicGFhcStLQmNy?=
- =?utf-8?B?dWs4SEFJU29RQ0c1ZTIrSnc0Y084ZmdtUk1RM1hobjlNVUhBa2tKL3BPcXMv?=
- =?utf-8?B?Q1d5MGtuVUl5OGxMdit0ZjdINWRUVUdXRzFsK3lCQmhQVnlkRDFBWUE1SmRm?=
- =?utf-8?B?UU14U2YrVUk3R0F1RFNuRTU5T3laSWV4OU40ZGhiR281czNpZldlaVZFWHZp?=
- =?utf-8?B?UXF6Z3ZNdUxpdE1OR0w5dGpQTFdVbkl6d3NsWmxoSitCNGdJRktnOGoxRjJK?=
- =?utf-8?B?bkkxMklSZXIyZEM4TkF5WTI0K0ZtS3JMRlNORzB5RE9lbzZJNDVWZlZIV2pa?=
- =?utf-8?B?djYvMlpreW9mZDZLU21zS2wrNFMrblBUZXh1RDQvdGtHUjlwUUNlNTBPV0sw?=
- =?utf-8?B?UjNpV250RTNHNUN4U1E1OTdDZUw0U2FodmYxZnVMSU5UTzZ3aTU3a1JtNWxF?=
- =?utf-8?B?NklKZXJjb0E3UTdXV0JqL0JxZ2I5ODdtalRtZWE4eTJ1dmhzWXZRNXUxakhu?=
- =?utf-8?B?L2VMVWRLQ0Y2NllaV29nZWNMRlR6RHFpT1RwVDR0T2FaSUtpeFRvMGM2TW1l?=
- =?utf-8?B?SXl3cXNScTdmNVNjektUaVN4aUxsM0NxNHFkM0lLTVZxNUN1MkkxWm4xeFhy?=
- =?utf-8?B?UkE9PQ==?=
-X-OriginatorOrg: kontron.de
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9191c2f8-8cb4-44f1-81c3-08db8ce18f4e
-X-MS-Exchange-CrossTenant-AuthSource: PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jul 2023 07:34:20.4564
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 8c9d3c97-3fd9-41c8-a2b1-646f3942daf1
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: jO49e/erFS/ES6yqQ+9+Yh6mGHw6uJYo27XB06I1fACwzYCgeEuuaSvkzJ4DFnkGaIZlv/oqj4k2ta7C0Ifg2AWa2uzUM7MhnfRDkk5iDg0=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR10MB5383
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15.12.22 21:11, Lucas Stach wrote:
-> This adds the driver for the Samsung HDMI PHY found on the
-> i.MX8MP SoC. Based on downstream implementation from
-> Sandor Yu <Sandor.yu@nxp.com>.
-> 
-> Co-developed-by: Marco Felsch <m.felsch@pengutronix.de>
-> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
-> Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
-> Tested-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
-> Tested-by: Richard Leitner <richard.leitner@skidata.com>
+Hi Jisheng,
 
-I tested this on our Kontron BL i.MX8MP board. Feel free to add:
+On Sun, 2023-06-18 at 00:15 +0800, Jisheng Zhang wrote:
+> Sipeed's Lichee Pi 4A development board uses Lichee Module 4A core
+> module which is powered by T-HEAD's TH1520 SoC. Add minimal device
+> tree files for the core module and the development board.
+>=20
+> Support basic uart/gpio/dmac drivers, so supports booting to a basic
+> shell.
 
-Tested-by: Frieder Schrempf <frieder.schrempf@kontron.de>
+Thanks for the excellent work, but when I tried to boot Linux 6.5.0-rc3
+on my Lichee Pi 4A it fails with:
 
-Lucas, any chance that you can revive this series and bring it over the
-finish line?
+## Flattened Device Tree blob at 01f00000
+   Booting using the fdt blob at 0x1f00000
+   Using Device Tree in place at 0000000001f00000, end 0000000001f050c4
+
+Starting kernel ...
+
+[    0.000000] Linux version 6.5.0-rc3 (lfs@stargazer) (riscv64-lfs-linux-g=
+nu-gcc (GCC) 13.1.0, GNU ld (GNU Binutils) 2.40) #1 SMP PREEMPT Tue Jul 25 =
+13:38:20 CST 2023
+[    0.000000] Machine model: Sipeed Lichee Pi 4A
+[    0.000000] SBI specification v0.3 detected
+[    0.000000] SBI implementation ID=3D0x1 Version=3D0x9
+[    0.000000] SBI TIME extension detected
+[    0.000000] SBI IPI extension detected
+[    0.000000] SBI RFENCE extension detected
+[    0.000000] earlycon: uart0 at MMIO32 0x000000ffe7014000 (options '11520=
+0n8')
+[    0.000000] printk: bootconsole [uart0] enabled
+[    0.000000] efi: UEFI not found.
+[    0.000000] OF: reserved mem: 0x0000000000000000..0x000000000003ffff (25=
+6 KiB) nomap non-reusable mmode_resv0@0
+[    0.000000] Zone ranges:
+[    0.000000]   DMA32    [mem 0x0000000000000000-0x00000000ffffffff]
+[    0.000000]   Normal   [mem 0x0000000100000000-0x00000001ffffffff]
+[    0.000000] Movable zone start for each node
+[    0.000000] Early memory node ranges
+[    0.000000]   node   0: [mem 0x0000000000000000-0x000000000003ffff]
+[    0.000000]   node   0: [mem 0x0000000000040000-0x00000001ffffffff]
+[    0.000000] Initmem setup node 0 [mem 0x0000000000000000-0x00000001fffff=
+fff]
+[    0.000000] SBI HSM extension detected
+[    0.000000] riscv: base ISA extensions acdfim
+[    0.000000] riscv: ELF capabilities acdfim
+[    0.000000] percpu: Embedded 17 pages/cpu s38184 r0 d31448 u69632
+[    0.000000] Kernel command line: console=3DttyS0,115200 earlycon logleve=
+l=3D7
+[    0.000000] Dentry cache hash table entries: 1048576 (order: 11, 8388608=
+ bytes, linear)
+[    0.000000] Inode-cache hash table entries: 524288 (order: 10, 4194304 b=
+ytes, linear)
+[    0.000000] Built 1 zonelists, mobility grouping on.  Total pages: 20643=
+84
+[    0.000000] mem auto-init: stack:all(zero), heap alloc:off, heap free:of=
+f
+[    0.000000] software IO TLB: area num 4.
+[    0.000000] software IO TLB: mapped [mem 0x00000000fbfff000-0x00000000ff=
+fff000] (64MB)
+[    0.000000] Memory: 8145304K/8388608K available (4922K kernel code, 4786=
+K rwdata, 2048K rodata, 2148K init, 393K bss, 243304K reserved, 0K cma-rese=
+rved)
+[    0.000000] SLUB: HWalign=3D64, Order=3D0-3, MinObjects=3D0, CPUs=3D4, N=
+odes=3D1
+[    0.000000] rcu: Preemptible hierarchical RCU implementation.
+[    0.000000] rcu:     RCU event tracing is enabled.
+[    0.000000] rcu:     RCU restricting CPUs from NR_CPUS=3D64 to nr_cpu_id=
+s=3D4.
+[    0.000000]  Trampoline variant of Tasks RCU enabled.
+[    0.000000]  Tracing variant of Tasks RCU enabled.
+[    0.000000] rcu: RCU calculated value of scheduler-enlistment delay is 1=
+00 jiffies.
+[    0.000000] rcu: Adjusting geometry for rcu_fanout_leaf=3D16, nr_cpu_ids=
+=3D4
+[    0.000000] NR_IRQS: 64, nr_irqs: 64, preallocated irqs: 0
+[    0.000000] riscv-intc: 64 local interrupts mapped
+[    0.000000] Oops - load access fault [#1]
+[    0.000000] CPU: 0 PID: 0 Comm: swapper/0 Not tainted 6.5.0-rc3 #1
+[    0.000000] Hardware name: Sipeed Lichee Pi 4A (DT)
+[    0.000000] epc : __plic_toggle+0x5a/0x62
+[    0.000000]  ra : __plic_init.isra.0+0x2d0/0x462
+[    0.000000] epc : ffffffff802ce8ec ra : ffffffff80618816 sp : ffffffff80=
+e03c90
+[    0.000000]  gp : ffffffff80ec5bb8 tp : ffffffff80e10d40 t0 : ffffffd900=
+045940
+[    0.000000]  t1 : 0000000000000002 t2 : ffffffd90004a10c s0 : ffffffd9fe=
+f6ed68
+[    0.000000]  s1 : ffffffd900045680 a0 : ffffffc801002080 a1 : 0000000000=
+000002
+[    0.000000]  a2 : 0000000000000000 a3 : 00000000000000f4 a4 : 0000000000=
+000001
+[    0.000000]  a5 : 0000000000000000 a6 : 0000000000000b40 a7 : ffffffd900=
+045940
+[    0.000000]  s2 : ffffffd9fef6ed78 s3 : ffffffff80ef9630 s4 : 0000000000=
+000001
+[    0.000000]  s5 : ffffffd9ffff5af8 s6 : 0000000000000001 s7 : ffffffff80=
+815d68
+[    0.000000]  s8 : 0000000000000008 s9 : 0000000000000000 s10: ffffffff80=
+815d68
+[    0.000000]  s11: ffffffff80b1b1b8 t3 : ffffffff80c003d0 t4 : 0000000000=
+000001
+[    0.000000]  t5 : 0000000000000003 t6 : 0000000000000001
+[    0.000000] status: 8000000201800100 badaddr: 000000ffd8002080 cause: 00=
+00000000000005
+[    0.000000] [<ffffffff802ce8ec>] __plic_toggle+0x5a/0x62
+[    0.000000] [<ffffffff8061ffc8>] of_irq_init+0x14a/0x248
+[    0.000000] [<ffffffff80600a7e>] start_kernel+0x40c/0x6fe
+[    0.000000] [<ffffffff806034f6>] init_IRQ+0xc6/0x100
+[    0.000000] [<ffffffff80600a7e>] start_kernel+0x40c/0x6fe
+[    0.000000] Code: 0007 c319 9123 00e7 8082 000f 0140 411c 000f 0820 (c59=
+3) fff5=20
+[    0.000000] ---[ end trace 0000000000000000 ]---
+[    0.000000] Kernel panic - not syncing: Fatal exception in interrupt
+
+I guess I'm either using some unsupported configuration or making some
+stupid mistakes, but I cannot find any documentation about how to
+configure the mainline kernel for Lichee Pi 4A properly.  Could you give
+some pointers?
+
+And this line
+
+Memory: 8145304K/8388608K available (4922K kernel code, 4786K rwdata, 2048K=
+ rodata, 2148K init, 393K bss, 243304K reserved, 0K cma-reserved)
+
+does not match my hardware (my board is a 16 GB DRAM variant).  So in
+the future we'll need multiple DTs for all the variants?
+
+> NOTE: the thead cpu reset dt-binding and DT node are removed in v3. This
+> makes secondary CPUs unable to be online. However, minimal th1520
+> support is better than nothing. And the community has been working on
+> and will work on the cpu reset dt-binding, for example, Conor, Guo and
+> Jessica are discussing about it, I have seen valuable comments and
+> inputs from them. I believe we can add back cpu reset in next
+> development window.
+>=20
+> Thanks
+>=20
+> Since v2:
+> =C2=A0 - remove thead cpu-rst dt-binding doc and its DT node from th1520.=
+dtsi
+> =C2=A0 - collect Reviewed-by and Acked-by tags
+> =C2=A0 - update uart reg size as suggested by Yixun
+> =C2=A0 - Add Guo Ren and Fu Wei as THEAD SoCs Maintainers
+>=20
+> Since v1:
+> =C2=A0 - add missing plic, clint, th1520 itself dt-bindings
+> =C2=A0 - use c900-plic
+> =C2=A0 - s/light/th1520
+> =C2=A0 - add dt-binding for T-HEAD CPU reset
+> =C2=A0 - enable ARCH_THEAD in defconfig
+> =C2=A0 - fix all dtbs_check error/warning except the CPU RESET, see above=
+.
+>=20
+> Jisheng Zhang (8):
+> =C2=A0 dt-bindings: interrupt-controller: Add T-HEAD's TH1520 PLIC
+> =C2=A0 dt-bindings: timer: Add T-HEAD TH1520 clint
+> =C2=A0 dt-bindings: riscv: Add T-HEAD TH1520 board compatibles
+> =C2=A0 riscv: Add the T-HEAD SoC family Kconfig option
+> =C2=A0 riscv: dts: add initial T-HEAD TH1520 SoC device tree
+> =C2=A0 riscv: dts: thead: add sipeed Lichee Pi 4A board device tree
+> =C2=A0 MAINTAINERS: add entry for T-HEAD RISC-V SoC
+> =C2=A0 riscv: defconfig: enable T-HEAD SoC
+>=20
+> =C2=A0.../sifive,plic-1.0.0.yaml=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ |=C2=A0=C2=A0 1 +
+> =C2=A0.../devicetree/bindings/riscv/thead.yaml=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 |=C2=A0 29 ++
+> =C2=A0.../bindings/timer/sifive,clint.yaml=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 1 +
+> =C2=A0MAINTAINERS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ |=C2=A0=C2=A0 8 +
+> =C2=A0arch/riscv/Kconfig.socs=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 6 +
+> =C2=A0arch/riscv/boot/dts/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=
+=A0 1 +
+> =C2=A0arch/riscv/boot/dts/thead/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 2 +
+> =C2=A0.../dts/thead/th1520-lichee-module-4a.dtsi=C2=A0=C2=A0=C2=A0 |=C2=
+=A0 38 ++
+> =C2=A0.../boot/dts/thead/th1520-lichee-pi-4a.dts=C2=A0=C2=A0=C2=A0 |=C2=
+=A0 32 ++
+> =C2=A0arch/riscv/boot/dts/thead/th1520.dtsi=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 | 422 ++++++++++++++++++
+> =C2=A0arch/riscv/configs/defconfig=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=
+=A0 1 +
+> =C2=A011 files changed, 541 insertions(+)
+> =C2=A0create mode 100644 Documentation/devicetree/bindings/riscv/thead.ya=
+ml
+> =C2=A0create mode 100644 arch/riscv/boot/dts/thead/Makefile
+> =C2=A0create mode 100644 arch/riscv/boot/dts/thead/th1520-lichee-module-4=
+a.dtsi
+> =C2=A0create mode 100644 arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dt=
+s
+> =C2=A0create mode 100644 arch/riscv/boot/dts/thead/th1520.dtsi
+>=20
+
