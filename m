@@ -2,173 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 64576760F7B
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 11:39:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 04353760F83
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 11:40:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233434AbjGYJi6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jul 2023 05:38:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44314 "EHLO
+        id S231773AbjGYJks (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jul 2023 05:40:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44122 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233431AbjGYJih (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 05:38:37 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26FD64223;
-        Tue, 25 Jul 2023 02:37:36 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 51C16615D3;
-        Tue, 25 Jul 2023 09:37:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B5C2CC433B9;
-        Tue, 25 Jul 2023 09:37:23 +0000 (UTC)
-Message-ID: <b2f44154-79a2-b5e4-4f59-bc578e19e31f@xs4all.nl>
-Date:   Tue, 25 Jul 2023 11:37:21 +0200
+        with ESMTP id S232911AbjGYJkj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 05:40:39 -0400
+Received: from mail-oo1-xc2b.google.com (mail-oo1-xc2b.google.com [IPv6:2607:f8b0:4864:20::c2b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BEAEA99;
+        Tue, 25 Jul 2023 02:40:38 -0700 (PDT)
+Received: by mail-oo1-xc2b.google.com with SMTP id 006d021491bc7-565f3881cbeso3671292eaf.2;
+        Tue, 25 Jul 2023 02:40:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1690278038; x=1690882838;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=GPWRUM32s+W+NzJlw5xle7BrQSCJzLbYMkNbUmW2VZM=;
+        b=qlngjdYSw3kOyLjGy8BltQSYFrmRJnTsSV7SAwlwaT1k/w43g0ygOMQc7PQyU2Fjhq
+         dItLCtX9G619yf03JAxpj5SrcFA94gGX+/lo3icEHUtS4vwarmmThTlIw+KG4a3vxo3k
+         KgDeIgeXgyVggRJ5XXV0/9lX/KW16bNFMtVyiGPmblsov6F6wge4WI6hmGFYimSrtwUW
+         OyEIRHFQfa5N47JhbB4o1Djw3jVcQpegFX7Ss+IrHtbklQmeCCTYMXtfp++8zl2F7YIv
+         rXRBK0Muw3rtA6k3/Tuv0ERgg12iZ+nRymRIAC0GwV5QNhfFcVZYl2DmH0BHCRh3xqRm
+         iEUA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690278038; x=1690882838;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=GPWRUM32s+W+NzJlw5xle7BrQSCJzLbYMkNbUmW2VZM=;
+        b=J1Tar6owCPghdelq4zKemaDZYFH6WdqDxkW2olkxp0sueDnABBnI64gH/rktdoIpT/
+         /D2CJl+GJVyEG5Twbpljt+8GaX8VODRhbH56jQeCSaNgd+0hVO4NnTEdZ1GwZ5wWE8XW
+         YqQT8qtNZUG2nXKh3Q2Pkubmls0Y7GriDG5UQJunFgvqnd++NlRF/6wK5nlXNmbU/tX4
+         iq/20mWDvUcnE9DGFBCv1EdN+n1TJccbQCzbeoWCc0alyYn9l1nsnvRnCdCQh5j3aucS
+         Q/eJs+4IiouOxXFvvSvDcqyBLlh+rfYVbd4wu8dlNURi+o6dxjEXIO0wlRn7hmrejqA7
+         cS/A==
+X-Gm-Message-State: ABy/qLbXH3Xgyd9qfne2AKu6KPRAmZOm6Kobuwv5iFOgoZLbqomuE0Jp
+        VdYn7krZrBr2TmMcxagnGfYgh/gAXKQ=
+X-Google-Smtp-Source: APBJJlGEhpE4ZG6DHBRqr+w+pBzzUV9wuj+8xw33qdcVwNG1H7ZlQgHPvrn+wko5UauyLH47nGKD5A==
+X-Received: by 2002:a05:6358:c19:b0:129:c6d6:ce40 with SMTP id f25-20020a0563580c1900b00129c6d6ce40mr9963624rwj.15.1690278037942;
+        Tue, 25 Jul 2023 02:40:37 -0700 (PDT)
+Received: from a28aa0606c51.. (60-250-192-107.hinet-ip.hinet.net. [60.250.192.107])
+        by smtp.gmail.com with ESMTPSA id l24-20020a62be18000000b0064f7c56d8b7sm9121132pff.219.2023.07.25.02.40.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 25 Jul 2023 02:40:37 -0700 (PDT)
+From:   Jacky Huang <ychuang570808@gmail.com>
+To:     a.zummo@towertech.it, alexandre.belloni@bootlin.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org
+Cc:     linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        soc@kernel.org, mjchen@nuvoton.com, schung@nuvoton.com,
+        Jacky Huang <ychuang3@nuvoton.com>
+Subject: [PATCH v2 0/3] Add support for Nuvoton ma35d1 rtc controller
+Date:   Tue, 25 Jul 2023 09:40:27 +0000
+Message-Id: <20230725094030.32877-1-ychuang570808@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH v7,06/11] media: mediatek: vcodec: replace pr_* with dev_*
- for v4l2 debug message
-Content-Language: en-US
-To:     Yunfei Dong <yunfei.dong@mediatek.com>,
-        =?UTF-8?Q?N=c3=adcolas_F_=2e_R_=2e_A_=2e_Prado?= 
-        <nfraprado@collabora.com>,
-        Nicolas Dufresne <nicolas.dufresne@collabora.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Nathan Hebert <nhebert@chromium.org>
-Cc:     Chen-Yu Tsai <wenst@chromium.org>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Steve Cho <stevecho@chromium.org>, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20230722074230.30558-1-yunfei.dong@mediatek.com>
- <20230722074230.30558-7-yunfei.dong@mediatek.com>
-From:   Hans Verkuil <hverkuil-cisco@xs4all.nl>
-In-Reply-To: <20230722074230.30558-7-yunfei.dong@mediatek.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.8 required=5.0 tests=BAYES_00,
-        HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/07/2023 09:42, Yunfei Dong wrote:
-> Adding different macro mtk_v4l2_vdec_dbg and mtk_v4l2_venc_dbg for
-> encoder and decoder. Then calling the common macro mtk_v4l2_debug to
-> print debug message.
-> 
-> Replace pr_err with dev_err for 'mtk_v4l2_err' debug message.
-> Replace pr_debug with dev_dbg for 'mtk_v4l2_debug' debug message.
-> 
-> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
-> Reviewed-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> ---
->  .../platform/mediatek/vcodec/mtk_vcodec_dec.c | 116 +++++-----
->  .../mediatek/vcodec/mtk_vcodec_dec_drv.c      |  54 +++--
->  .../mediatek/vcodec/mtk_vcodec_dec_hw.c       |   7 +-
->  .../mediatek/vcodec/mtk_vcodec_dec_pm.c       |  19 +-
->  .../mediatek/vcodec/mtk_vcodec_dec_stateful.c | 143 ++++++------
->  .../vcodec/mtk_vcodec_dec_stateless.c         |  62 ++---
->  .../platform/mediatek/vcodec/mtk_vcodec_enc.c | 211 ++++++++----------
->  .../mediatek/vcodec/mtk_vcodec_enc_drv.c      |  45 ++--
->  .../mediatek/vcodec/mtk_vcodec_enc_pm.c       |   8 +-
->  .../platform/mediatek/vcodec/mtk_vcodec_fw.c  |   2 +-
->  .../mediatek/vcodec/mtk_vcodec_fw_scp.c       |   2 +-
->  .../mediatek/vcodec/mtk_vcodec_fw_vpu.c       |   7 +-
->  .../mediatek/vcodec/mtk_vcodec_intr.c         |  12 +-
->  .../mediatek/vcodec/mtk_vcodec_util.c         |  30 ++-
->  .../mediatek/vcodec/mtk_vcodec_util.h         |  27 ++-
->  .../vcodec/vdec/vdec_av1_req_lat_if.c         |  10 +-
->  .../mediatek/vcodec/vdec/vdec_h264_req_if.c   |  14 +-
->  .../vcodec/vdec/vdec_h264_req_multi_if.c      |  16 +-
->  .../vcodec/vdec/vdec_hevc_req_multi_if.c      |  14 +-
->  .../platform/mediatek/vcodec/vdec_drv_if.c    |   4 +-
->  .../platform/mediatek/vcodec/vdec_msg_queue.c |  52 +++--
->  .../platform/mediatek/vcodec/vdec_msg_queue.h |   2 +
->  .../platform/mediatek/vcodec/vdec_vpu_if.c    |   2 +-
->  23 files changed, 417 insertions(+), 442 deletions(-)
-> 
+From: Jacky Huang <ychuang3@nuvoton.com>
 
-<snip>
+This patch series adds the rtc driver for the nuvoton ma35d1 ARMv8 SoC.
+It includes DT binding documentation, the ma35d1 rtc driver, and device
+tree updates.
 
-> diff --git a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_util.h b/drivers/media/platform/mediatek/vcodec/mtk_vcodec_util.h
-> index fd951ff47fc3..6bc822c7d825 100644
-> --- a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_util.h
-> +++ b/drivers/media/platform/mediatek/vcodec/mtk_vcodec_util.h
-> @@ -11,6 +11,9 @@
->  #include <linux/types.h>
->  #include <linux/dma-direction.h>
->  
-> +#define MTK_DBG_VCODEC_STR "[MTK_VCODEC]"
-> +#define MTK_DBG_V4L2_STR "[MTK_V4L2]"
-> +
->  struct mtk_vcodec_mem {
->  	size_t size;
->  	void *va;
-> @@ -28,8 +31,8 @@ struct mtk_vcodec_dev;
->  #undef pr_fmt
->  #define pr_fmt(fmt) "%s(),%d: " fmt, __func__, __LINE__
->  
-> -#define mtk_v4l2_err(fmt, args...)                \
-> -	pr_err("[MTK_V4L2][ERROR] " fmt "\n", ##args)
-> +#define mtk_v4l2_err(plat_dev, fmt, args...)                            \
-> +	dev_err(&(plat_dev)->dev, "[MTK_V4L2][ERROR] " fmt "\n", ##args)
->  
->  #define mtk_vcodec_err(inst_id, plat_dev, fmt, args...)                                 \
->  	dev_err(&(plat_dev)->dev, "[MTK_VCODEC][ERROR][%d]: " fmt "\n", inst_id, ##args)
-> @@ -38,11 +41,11 @@ struct mtk_vcodec_dev;
->  extern int mtk_v4l2_dbg_level;
->  extern int mtk_vcodec_dbg;
->  
-> -#define mtk_v4l2_debug(level, fmt, args...)				\
-> -	do {								\
-> -		if (mtk_v4l2_dbg_level >= (level))			\
-> -			pr_debug("[MTK_V4L2] %s, %d: " fmt "\n",        \
-> -				 __func__, __LINE__, ##args);	        \
-> +#define mtk_v4l2_debug(plat_dev, level, fmt, args...)                             \
-> +	do {                                                                      \
-> +		if (mtk_v4l2_dbg_level >= (level))                                \
-> +			dev_dbg(&(plat_dev)->dev, "[MTK_V4L2] %s, %d: " fmt "\n", \
-> +				 __func__, __LINE__, ##args);                     \
->  	} while (0)
+The ma35d1 rtc controller provides real-time and calendar messaging
+capabilities. It supports programmable time tick and alarm match
+interrupts. The time and calendar messages are expressed in BCD format.
 
-You forgot to add 'plat_dev' to the argument list of the mtk_v4l2_debug
-macro when CONFIG_DEBUG_FS is not set. That causes zillions of compiler
-warnings.
+This rtc driver has been tested on the ma35d1 som board with Linux 6.5-rc2.
 
->  
->  #define mtk_vcodec_debug(inst_id, plat_dev, fmt, args...)                               \
-> @@ -70,6 +73,16 @@ extern int mtk_vcodec_dbg;
->  #define mtk_venc_debug(ctx, fmt, args...)                              \
->  	mtk_vcodec_debug((ctx)->id, (ctx)->dev->plat_dev, fmt, ##args)
->  
-> +#define mtk_v4l2_vdec_err(ctx, fmt, args...) mtk_v4l2_err((ctx)->dev->plat_dev, fmt, ##args)
-> +
-> +#define mtk_v4l2_vdec_dbg(level, ctx, fmt, args...)             \
-> +	mtk_v4l2_debug((ctx)->dev->plat_dev, level, fmt, ##args)
-> +
-> +#define mtk_v4l2_venc_err(ctx, fmt, args...) mtk_v4l2_err((ctx)->dev->plat_dev, fmt, ##args)
-> +
-> +#define mtk_v4l2_venc_dbg(level, ctx, fmt, args...)             \
-> +	mtk_v4l2_debug((ctx)->dev->plat_dev, level, fmt, ##args)
-> +
->  void __iomem *mtk_vcodec_get_reg_addr(void __iomem **reg_base, unsigned int reg_idx);
->  int mtk_vcodec_write_vdecsys(struct mtk_vcodec_ctx *ctx, unsigned int reg, unsigned int val);
->  int mtk_vcodec_mem_alloc(void *priv, struct mtk_vcodec_mem *mem);
+v2:
+  - Updated nuvoton,ma35d1-rtc.yaml
+    - Modified patch title and fixed typo
+    - Added reference to rtc.yaml
+    - Used unevaluatedProperties instead of additionalProperties
+  - Modified rtc driver
+    - Used dev_err_probe()
+    - Removed ma35d1_rtc_remove()
+    - Made other minor fixes
 
-Regards,
+Jacky Huang (3):
+  dt-bindings: rtc: Add Nuvoton ma35d1 rtc
+  arm64: dts: nuvoton: Add rtc for ma35d1
+  rtc: Add driver for Nuvoton ma35d1 rtc controller
 
-	Hans
+ .../bindings/rtc/nuvoton,ma35d1-rtc.yaml      |  48 +++
+ .../boot/dts/nuvoton/ma35d1-iot-512m.dts      |   4 +
+ .../boot/dts/nuvoton/ma35d1-som-256m.dts      |   4 +
+ arch/arm64/boot/dts/nuvoton/ma35d1.dtsi       |   8 +
+ drivers/rtc/Kconfig                           |  11 +
+ drivers/rtc/Makefile                          |   1 +
+ drivers/rtc/rtc-ma35d1.c                      | 355 ++++++++++++++++++
+ 7 files changed, 431 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/rtc/nuvoton,ma35d1-rtc.yaml
+ create mode 100644 drivers/rtc/rtc-ma35d1.c
+
+-- 
+2.34.1
 
