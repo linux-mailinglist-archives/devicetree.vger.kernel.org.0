@@ -2,111 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F5887623C4
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 22:43:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 62E237623D9
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 22:46:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231784AbjGYUnE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jul 2023 16:43:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40344 "EHLO
+        id S229804AbjGYUql (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jul 2023 16:46:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43686 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231421AbjGYUmb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 16:42:31 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F27BF212E
-        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 13:42:28 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-98de21518fbso975917666b.0
-        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 13:42:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690317747; x=1690922547;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=luoqn8Oevn7bkqgAb6fNJnOH+RZZKqe9njAp7OGyFq0=;
-        b=TbDvrQE8gms3+U4G88aHi+ZQECy/VuP63cWu8W2dq0cyAMuW4okMl6e5H6YZGvHdFA
-         09cT8OdwzanTzAVTAKSYmHtIwNNfGdE/62luw5mHiryktLTpk+PT2BNNvVqFAwyFYGZN
-         sBrDQo0YMB61Ao/F3pwRV3nbm8415wyzaR8PxhuSqpANptSdsoxE5QwbaoaEupbkWsHL
-         y73d/08ukkJUV5YJdnkCfbpstBWhOXPQjiateZyzmIzqqZ0kLAooo216anwXs3I+gpVe
-         bWA2wSUbx23qnpu63RAUdMVJpNwyMQJRkmBrBvkTB1IOSjHX8KdaBgGLGOwdK0HstgAZ
-         8nbA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690317747; x=1690922547;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=luoqn8Oevn7bkqgAb6fNJnOH+RZZKqe9njAp7OGyFq0=;
-        b=jcJGoP5GN97mtyUELMXD0gXaMh3nGhNxS/jyhxlMKeU6dgiMJ8swq+/4k0Y04O6uDO
-         n220Xq+j7pTsCzo6/Ov0ItiQfqXpzjavu+USanJ/PlLrOrhpCiLd/FsnweULw2ti3gmo
-         rgKtHxgyrZSQoMxO04rUc6cwNVryXHPEJZTfUO5t9yeCWz7y0KPfkOB6g1411v7e/lmz
-         lRxx2soQf1TPb2lqexwGnVru2GS3zHGCm5LDNIkzNn74gqUwmI6+orn7FaIRuwFL1A8J
-         EJQ6MHGkJhJdjDUQQWm7JlT+jg4Q9OMFcz7hSBayVY6MgB0IMg0GBB8JgUnNtFMqU99w
-         /Qig==
-X-Gm-Message-State: ABy/qLZqM/jtva/cp6hWL3NiWaylgw2es0TTrsS+j5mO1HXjTk3+vMsF
-        TXtGUvNE0zs1PRMvTGoBhf0C2g==
-X-Google-Smtp-Source: APBJJlEN+nPjs/HeMvPv2U7XvIehtqxdjyI+/5qdTTdyp4g8mGDSFv84MiTD2ay4Fs+0aghWfmNRYw==
-X-Received: by 2002:a17:906:224c:b0:993:e752:1a70 with SMTP id 12-20020a170906224c00b00993e7521a70mr14758414ejr.19.1690317747226;
-        Tue, 25 Jul 2023 13:42:27 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id rv14-20020a17090710ce00b0099b921de301sm3930223ejb.159.2023.07.25.13.42.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 25 Jul 2023 13:42:26 -0700 (PDT)
-Message-ID: <aa2c2681-1593-2e5e-0131-2f916fbdd14a@linaro.org>
-Date:   Tue, 25 Jul 2023 22:42:24 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH 1/2] regulator: dt-bindings: add missing
- unevaluatedProperties for each regulator
-Content-Language: en-US
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Saravanan Sekar <sravanhome@gmail.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
+        with ESMTP id S229914AbjGYUqi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 16:46:38 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3ACE1733;
+        Tue, 25 Jul 2023 13:46:36 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 374D4618EA;
+        Tue, 25 Jul 2023 20:46:36 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 52251C433C7;
+        Tue, 25 Jul 2023 20:46:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1690317995;
+        bh=DLA6OAhIubZj4rPsH89WQo5bkfHHHDQZqjjyCtICNoo=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:From;
+        b=P15Cwmwe3zkRSOi5sZtydKCn1t9svJ7FkJvS2yQHsKRGfMJkIIclKL2pya708tdZX
+         GQHGK+uoG4Azgywc3NbM0ZpCVsvXzPzSxjCHGNcx+ul6KwyfoOVqRh2d14cZEAIu0B
+         hOmkVXnZIvjLrAfjx3Gpx14hBhXdGaHHmEXZXbbrLlJDUBfpVVi9C3xPD6LSHIsGFS
+         uVmLUS6rhZehpMLjrHlzigGCOLy/lfmCZ5SAJ/IzehRg3Rga74lZuUgW/MCNzt/wrI
+         XfLXr3vTl6GHefhiXXY17tG/8QAyR7G4zNFRLPXyB5pKCqfZno8JBKVncxYxE/qGss
+         8j67/qhKSCN4A==
+Date:   Tue, 25 Jul 2023 15:46:33 -0500
+From:   Bjorn Helgaas <helgaas@kernel.org>
+To:     Kevin Xie <kevin.xie@starfivetech.com>
+Cc:     Minda Chen <minda.chen@starfivetech.com>,
+        Daire McNamara <daire.mcnamara@microchip.com>,
+        Conor Dooley <conor@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Robin Gong <yibin.gong@nxp.com>,
-        ChiYuan Huang <cy_huang@richtek.com>,
-        Pascal Paillet <p.paillet@foss.st.com>,
-        - <patches@opensource.cirrus.com>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-References: <20230725105421.99160-1-krzysztof.kozlowski@linaro.org>
- <246eea6e-dd34-426f-9fc7-427d808fe8f0@sirena.org.uk>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <246eea6e-dd34-426f-9fc7-427d808fe8f0@sirena.org.uk>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-pci@vger.kernel.org,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Mason Huo <mason.huo@starfivetech.com>,
+        Leyfoon Tan <leyfoon.tan@starfivetech.com>
+Subject: Re: [PATCH v1 8/9] PCI: PLDA: starfive: Add JH7110 PCIe controller
+Message-ID: <20230725204633.GA664368@bhelgaas>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <a687c273-48b1-651e-313f-d8140732c5d8@starfivetech.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/07/2023 13:14, Mark Brown wrote:
-> On Tue, Jul 25, 2023 at 12:54:20PM +0200, Krzysztof Kozlowski wrote:
->> Each regulator node, which references common regulator.yaml schema,
->> should disallow additional or unevaluated properties.  Otherwise
->> mistakes in properties will go unnoticed.
-> 
-> This doesn't apply against current code, please check and resend.
-> 
->>  Documentation/devicetree/bindings/regulator/ti,tps65090.yaml  | 1 +
-> 
-> This doesn't seem to be upstream.
+On Mon, Jul 24, 2023 at 06:48:47PM +0800, Kevin Xie wrote:
+> On 2023/7/21 0:15, Bjorn Helgaas wrote:
+> > On Thu, Jul 20, 2023 at 06:11:59PM +0800, Kevin Xie wrote:
+> >> On 2023/7/20 0:48, Bjorn Helgaas wrote:
+> >> > On Wed, Jul 19, 2023 at 06:20:56PM +0800, Minda Chen wrote:
+> >> >> Add StarFive JH7110 SoC PCIe controller platform
+> >> >> driver codes.
 
-Indeed, I should exclude any work-in-progress. Apologies. I'll fix and
-send v2 of this patch.
+> >> However, in the compatibility testing with several NVMe SSD, we
+> >> found that Lenovo Thinklife ST8000 NVMe can not get ready in 100ms,
+> >> and it actually needs almost 200ms.  Thus, we increased the T_PVPERL
+> >> value to 300ms for the better device compatibility.
+> > ...
+> > 
+> > Thanks for this valuable information!  This NVMe issue potentially
+> > affects many similar drivers, and we may need a more generic fix so
+> > this device works well with all of them.
+> > 
+> > T_PVPERL is defined to start when power is stable.  Do you have a way
+> > to accurately determine that point?  I'm guessing this:
+> > 
+> >   gpiod_set_value_cansleep(pcie->power_gpio, 1)
+> > 
+> > turns the power on?  But of course that doesn't mean it is instantly
+> > stable.  Maybe your testing is telling you that your driver should
+> > have a hardware-specific 200ms delay to wait for power to become
+> > stable, followed by the standard 100ms for T_PVPERL?
+> 
+> You are right, we did not take the power stable cost into account.
+> T_PVPERL is enough for Lenovo Thinklife ST8000 NVMe SSD to get ready,
+> and the extra cost is from the power circuit of a PCIe to M.2 connector,
+> which is used to verify M.2 SSD with our EVB at early stage.
 
-Best regards,
-Krzysztof
+Hmm.  That sounds potentially interesting.  I assume you're talking
+about something like this: https://www.amazon.com/dp/B07JKH5VTL
 
+I'm not familiar with the timing requirements for something like this.
+There is a PCIe M.2 spec with some timing requirements, but I don't
+know whether or how software is supposed to manage this.  There is a
+T_PVPGL (power valid to PERST# inactive) parameter, but it's
+implementation specific, so I don't know what the point of that is.
+And I don't see a way for software to even detect the presence of such
+an adapter.
+
+But I assume some end users will use adapters like this and expect it
+to "just work," so it would be nice if it did.
+
+> As the Thinklife NVMe SSD may be a halted product, and the onboard
+> power circuit of VisionFive V2 is no problem, we decided revert the
+> sleep time to be 100ms.
+
+Even though the product may be end-of-life, people will probably still
+try to use it, and I would like it to work.  Otherwise we end up with
+frustrated users and problem reports that are hard to resolve.  But I
+don't know where to go here.
+
+Bjorn
