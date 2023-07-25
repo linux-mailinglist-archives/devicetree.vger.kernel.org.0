@@ -2,186 +2,192 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B926761B41
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 16:20:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CCC0E761B6A
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 16:24:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232538AbjGYOUu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jul 2023 10:20:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33086 "EHLO
+        id S232784AbjGYOYN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jul 2023 10:24:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36652 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232555AbjGYOUr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 10:20:47 -0400
-Received: from mail-io1-xd32.google.com (mail-io1-xd32.google.com [IPv6:2607:f8b0:4864:20::d32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C17B2693
-        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 07:18:56 -0700 (PDT)
-Received: by mail-io1-xd32.google.com with SMTP id ca18e2360f4ac-783546553ddso197569039f.0
-        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 07:18:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=9elements.com; s=google; t=1690294639; x=1690899439;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=5zbYkfh1SiDjJgqpmePBnLBoSwyu543XXUBw08SwriI=;
-        b=V6SpvZQnSwXd0cziqK5ZBgj+giZ3kTGHlNOo0Kyo2vuouII4BN1LlbqKfw4l2v+pFR
-         RhaJROiPVwXpZNL2loi1avSfzBpAPSN5I/blvkKx8nihlRfbQzNRGoY0R0s9/p2hwJxm
-         LBg3EuPYuNqnYsDUCRx2SklUAjnF9l/Z8eD4/d9xW0nZVQyi1g8b5EE3PuE1FxpzrXgW
-         tbTdQ14YwCC73g9J/Gb7HdDQo3mRkLJ1LJBPzLiHsVGwbc6h8YTKQc+rwNyxX9w2jk8x
-         N39n49amyD4Xf4Mw8Zcdf36FTv1DfCglG2JljEcEIGA8669+cYCCSETiUnZCrg8+t8JL
-         RIqA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690294639; x=1690899439;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=5zbYkfh1SiDjJgqpmePBnLBoSwyu543XXUBw08SwriI=;
-        b=T1V05wDkr3YEVkUEmDTpMc/CtLwsRJ3PQLFcl7/raSEQYlVZz7QknkkbsK/xNjWUwk
-         hGUlkClGbalU1/WKJySytZYVsgYedinXktUwHfT6aAbIxap8MWrzMeitN2nC5sbyV70t
-         IjscY7+okN8aWtI4khGT+M8IHcT3vUQuBOd0maUPBhQ4qvG+QG7NYLEFkFLvgcM8dJY/
-         guDrJD+0IumMr2p+14F2k/7GpOYPV2iC5tP4/S88cwzoww2sPAv7oNnRLZ81RUr/P6oe
-         rdAf2QotLHWWstUUZ4zR2crETBUI1Y8gaO8SGU6fvXeB4YTU3PUQkUx7q6eJnlpni0L6
-         3zlg==
-X-Gm-Message-State: ABy/qLZNa2DHtDb4jtojxNWj+zhWJJNzNfEGDvs2+QtSXraa4X9KINoq
-        BE4g+aUm/IO51KOaIP/RyKiv4uswdLHWTXOuHn/1eg==
-X-Google-Smtp-Source: APBJJlESVOsBHoa/sJ5VjYkg6XtupM70WUQs7FfzV+C9VGLCYKZr0yzLZXvlnWCeUUMe64jWPzi9qNjCF7n6bmFaJ9k=
-X-Received: by 2002:a05:6e02:20ec:b0:346:77f7:e0e with SMTP id
- q12-20020a056e0220ec00b0034677f70e0emr3258932ilv.23.1690294639174; Tue, 25
- Jul 2023 07:17:19 -0700 (PDT)
+        with ESMTP id S232583AbjGYOYJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 10:24:09 -0400
+Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B1AC10DC;
+        Tue, 25 Jul 2023 07:24:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
+        ; s=x; h=Subject:Content-Transfer-Encoding:Content-Type:MIME-Version:
+        Message-Id:Date:Cc:To:From:Sender:Reply-To:Content-ID:Content-Description:
+        Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+        In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=GH4DFvsFXW8HxyMaxhFu7HFeJ+P25ZX6SyEkxmWJA9Q=; b=PuBT85WBZ0t6SsodvImuFTmfhA
+        iHa1X53QasOKBN+PQfcwMk0aIesy840sRtKAS/47zBhsnEaRjORJL9Ab72onujxnMtT6UOtAm6BIy
+        MPZYMcMpf0IcO7m/77jVgCSR3wRetM3qPw5m2bdobSrTUfjlYrC/FinvNC39XbZn5n3c=;
+Received: from modemcable061.19-161-184.mc.videotron.ca ([184.161.19.61]:34256 helo=localhost.localdomain)
+        by mail.hugovil.com with esmtpa (Exim 4.92)
+        (envelope-from <hugo@hugovil.com>)
+        id 1qOIx1-0003Kt-AQ; Tue, 25 Jul 2023 10:23:48 -0400
+From:   Hugo Villeneuve <hugo@hugovil.com>
+To:     gregkh@linuxfoundation.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        jirislaby@kernel.org, jringle@gridpoint.com,
+        isaac.true@canonical.com, jesse.sung@canonical.com,
+        l.perczak@camlintechnologies.com, tomasz.mon@camlingroup.com
+Cc:     linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, hugo@hugovil.com,
+        linux-gpio@vger.kernel.org,
+        Hugo Villeneuve <hvilleneuve@dimonoff.com>
+Date:   Tue, 25 Jul 2023 10:23:32 -0400
+Message-Id: <20230725142343.1724130-1-hugo@hugovil.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-References: <20230725114030.1860571-1-Naresh.Solanki@9elements.com> <20230725131006.GA2879331-robh@kernel.org>
-In-Reply-To: <20230725131006.GA2879331-robh@kernel.org>
-From:   Naresh Solanki <naresh.solanki@9elements.com>
-Date:   Tue, 25 Jul 2023 19:47:09 +0530
-Message-ID: <CABqG17iChAyb0gzb2uXfsv5GkiM3a+LoSavdqhjvw3FUccaw8A@mail.gmail.com>
-Subject: Re: [PATCH 1/3] dt-bindings: hwmon: Add Infineon TDA38640
-To:     Rob Herring <robh@kernel.org>
-Cc:     Guenter Roeck <linux@roeck-us.net>,
-        Jean Delvare <jdelvare@suse.com>,
-        krzysztof.kozlowski+dt@linaro.org,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-hwmon@vger.kernel.org,
-        Patrick Rudolph <patrick.rudolph@9elements.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 184.161.19.61
+X-SA-Exim-Mail-From: hugo@hugovil.com
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
+Subject: [PATCH v9 00/10] serial: sc16is7xx: fix GPIO regression and rs485 improvements
+X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
+X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+
+Hello,
+this patch series mainly fixes a GPIO regression and improve RS485 flags and
+properties detection from DT.
+
+It now also includes various small fixes and improvements that were previously
+sent as separate patches, but that made testing everything difficult.
+
+Patch 1 fixes an issue with init of first port during probing.
+
+Patch 2 fixes an issue when debugging IOcontrol register, but it is also
+necessary for patch "fix regression with GPIO configuration" to work.
+
+Patch 3 fixes an incorrect label in sc16is7xx_probe() cleanup code.
+
+Patch 4 is a refactor of GPIO registration code in preparation for patch 5.
+
+Patches 5 and 6 fix a GPIO regression by (re)allowing to choose GPIO function
+for GPIO pins shared with modem status lines.
+
+Patch 7 fixes a bug with the output value when first setting the GPIO direction.
+
+Patch 8 allows to read common rs485 device-tree flags and properties.
+
+Patch 9 introduces a delay after a reset operation to respect datasheet
+timing recommandations.
+
+Patch 10 improves comments about chip variants.
+
+I have tested the changes on a custom board with two SC16IS752 DUART using a
+Variscite IMX8MN NANO SOM.
+
+Boards that need to have GPIOS configured as modem control lines
+should add that property to their device tree. Here is a list of
+boards using the sc16is7xx driver in their device tree and that may
+need to be modified:
+    arm64/boot/dts/freescale/fsl-ls1012a-frdm.dts
+    mips/boot/dts/ingenic/cu1830-neo.dts
+    mips/boot/dts/ingenic/cu1000-neo.dts
+
+Thank you.
+
+Link: [v0] https://lkml.org/lkml/2023/5/15/923
+      [v1] https://lkml.org/lkml/2023/5/17/967
+      [v1] https://lkml.org/lkml/2023/5/17/777
+      [v1] https://lkml.org/lkml/2023/5/17/780
+      [v1] https://lkml.org/lkml/2023/5/17/785
+      [v1] https://lkml.org/lkml/2023/5/17/1311
+      [v2] https://lkml.org/lkml/2023/5/18/516
+      [v3] https://lkml.org/lkml/2023/5/25/7
+      [v4] https://lkml.org/lkml/2023/5/29/656
+      [v5] https://lkml.org/lkml/2023/6/1/1046
+      [v6] https://lkml.org/lkml/2023/6/1/1328
+      [v7] https://lkml.org/lkml/2023/6/2/861
+      [v8] https://lkml.org/lkml/2023/6/7/813
+           https://lkml.org/lkml/2023/7/21/1055
+
+Changes for V1:
+- Abandonned the approach of trying to fix GPIO regression by reverting the
+  original patches, because it created more problems than it solved (breaking
+  existing users). Instead, add DT property to fix the GPIO behavior.
+
+Changes for V2:
+- Integrate multiple patches into this serie.
+
+Changes for V3:
+- Integrated all patches into single serie to facilitate debugging and tests.
+- Reduce number of exported GPIOs depending on new property
+  nxp,modem-control-line-ports
+- Added additional example in DT bindings
+
+Changes for V4:
+- Increase reset post delay to relax scheduler.
+- Put comments patches at the end.
+- Remove Fixes tag for patch "mark IOCONTROL register as volatile".
+- Improve commit messages after reviews.
+- Fix coding style issues after reviews.
+- Change GPIO registration to always register the maximum number of GPIOs
+  supported by the chip, but maks-out GPIOs declared as modem control lines.
+- Add patch to refactor GPIO registration.
+- Remove patch "serial: sc16is7xx: fix syntax error in comments".
+- Remove patch "add dump registers function"
+
+Changes for V5:
+- Change patch order to facilitate stable backport(s).
+- Change duplicate device addresses in DT binding examples.
+- Use GENMASK for bit masks.
+- Replace of_property_for_each_u32() with device_property_read_u32_array
+- Add "Cc: stable..." tags
+
+Changes for V6:
+- Fix compilation bug introduced by patch 3
+
+Changes for V7:
+- Minor changes and coding style fixes after review for
+  patch 5 "fix regression with GPIO configuration".
+
+Changes for V8:
+- Move mctrl_mask to "struct sc16is7xx_port" to avoid compiler warning when
+  CONFIG_GPIOLIB is undefined.
+- Add "struct device" member to "struct sc16is7xx_port", in order to avoid
+  passing a raw "struct device" to called functions from sc16is7xx_probe().
+- Add new patch "serial: sc16is7xx: remove obsolete out_thread label"
+
+Changes for V9:
+- Change DT property name in commit message and move some comments to cover
+  letter for patch "fix regression with GPIO configuration".
+- Add proper link to pre-v1 (v0) RFC patch.
+- Add changes log for V1 and V2 to this cover letter.
+
+Hugo Villeneuve (10):
+  serial: sc16is7xx: fix broken port 0 uart init
+  serial: sc16is7xx: mark IOCONTROL register as volatile
+  serial: sc16is7xx: remove obsolete out_thread label
+  serial: sc16is7xx: refactor GPIO controller registration
+  dt-bindings: sc16is7xx: Add property to change GPIO function
+  serial: sc16is7xx: fix regression with GPIO configuration
+  serial: sc16is7xx: fix bug when first setting GPIO direction
+  serial: sc16is7xx: add call to get rs485 DT flags and properties
+  serial: sc16is7xx: add post reset delay
+  serial: sc16is7xx: improve comments about variants
+
+ .../bindings/serial/nxp,sc16is7xx.txt         |  46 +++++
+ drivers/tty/serial/sc16is7xx.c                | 177 +++++++++++++-----
+ 2 files changed, 181 insertions(+), 42 deletions(-)
 
 
-On Tue, 25 Jul 2023 at 18:40, Rob Herring <robh@kernel.org> wrote:
->
-> On Tue, Jul 25, 2023 at 01:40:26PM +0200, Naresh Solanki wrote:
-> > From: Patrick Rudolph <patrick.rudolph@9elements.com>
-> >
-> > The TDA38640 has a bug in SVID mode and to enable a workaround
-> > remove the TDA38640 from trivial-devices and add a complete schema.
-> >
-> > The schema adds the custom property 'infineon,en-pin-fixed-level' to
-> > signal a fixed level on the ENABLE pin and to enable the workaround.
-> > When the ENABLE pin is left floating it's internally pulled low.
-> >
-> > If not specified the driver will continue to use the PMBUS_OPERATION
-> > register to enable the regulator. When specified the driver will use
-> > the PMBUS_ON_OFF_CONFIG register to enable the regulator.
-> >
-> > Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
-> > Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
-> > ---
-> >  .../hwmon/pmbus/infineon,tda38640.yaml        | 50 +++++++++++++++++++
-> >  .../devicetree/bindings/trivial-devices.yaml  |  2 -
-> >  2 files changed, 50 insertions(+), 2 deletions(-)
-> >  create mode 100644 Documentation/devicetree/bindings/hwmon/pmbus/infineon,tda38640.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/hwmon/pmbus/infineon,tda38640.yaml b/Documentation/devicetree/bindings/hwmon/pmbus/infineon,tda38640.yaml
-> > new file mode 100644
-> > index 000000000000..520112e4e271
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/hwmon/pmbus/infineon,tda38640.yaml
-> > @@ -0,0 +1,50 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +
-> > +$id: http://devicetree.org/schemas/hwmon/pmbus/infineon,tda38640.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Infineon TDA38640 Synchronous Buck Regulator with SVID and I2C
-> > +
-> > +description: |
-> > +  The Infineon TDA38640 is a 40A Single-voltage Synchronous Buck
-> > +  Regulator with SVID and I2C designed for Industrial use.
-> > +
-> > +  Datasheet: https://www.infineon.com/dgdl/Infineon-TDA38640-0000-DataSheet-v02_04-EN.pdf?fileId=8ac78c8c80027ecd018042f2337f00c9
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - infineon,tda38640
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  infineon,en-pin-fixed-level:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    description: |
-> > +      Fixed level of the ENABLE pin. When specified the PMBUS_ON_OFF_CONFIG
-> > +      register is used to enable the regulator instead of the PMBUS_OPERATION
-> > +      register to workaround a bug of the tda38640 when operating in SVID-mode.
-> > +      If the ENABLE pin is left floating the internal pull-down causes a low
-> > +      level on the pin.
->
-> Neither this nor the commit message answers how do I decide if I set
-> this property or not? How you work-around it is not that relevant to the
-> binding.
-Sure will update this as:
-The property becomes relevant when dealing with the tda38640 in
-SVID-mode, providing an alternative method to enable the regulator by
-using the PMBUS_ON_OFF_CONFIG register instead of the PMBUS_OPERATION
-register
+base-commit: 0b5547c51827e053cc754db47d3ec3e6c2c451d2
+-- 
+2.30.2
 
-Regards,
-Naresh
->
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    i2c {
-> > +        #address-cells = <1>;
-> > +        #size-cells = <0>;
-> > +
-> > +        tda38640@40 {
-> > +            compatible = "infineon,tda38640";
-> > +            reg = <0x40>;
-> > +        };
-> > +    };
-> > +
-> > diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
-> > index 6e24c4d25ec3..2b1fbb2a672b 100644
-> > --- a/Documentation/devicetree/bindings/trivial-devices.yaml
-> > +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-> > @@ -151,8 +151,6 @@ properties:
-> >            - infineon,slb9645tt
-> >              # Infineon SLB9673 I2C TPM 2.0
-> >            - infineon,slb9673
-> > -            # Infineon TDA38640 Voltage Regulator
-> > -          - infineon,tda38640
-> >              # Infineon TLV493D-A1B6 I2C 3D Magnetic Sensor
-> >            - infineon,tlv493d-a1b6
-> >              # Infineon Multi-phase Digital VR Controller xdpe11280
-> >
-> > base-commit: 55612007f16b5d7b1fb83a7b0f5bb686829db7c7
-> > --
-> > 2.41.0
-> >
