@@ -2,52 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B5CE0762721
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 01:01:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 80D6C762722
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 01:01:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230244AbjGYXBt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jul 2023 19:01:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53226 "EHLO
+        id S230291AbjGYXBv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jul 2023 19:01:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53260 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229971AbjGYXBs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 19:01:48 -0400
+        with ESMTP id S230398AbjGYXBu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 19:01:50 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F110173F;
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 010CF1737;
         Tue, 25 Jul 2023 16:01:23 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 1232261926;
-        Tue, 25 Jul 2023 23:01:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7CF3CC433C8;
-        Tue, 25 Jul 2023 23:01:16 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 6CCEF6192D;
+        Tue, 25 Jul 2023 23:01:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 531F2C433C8;
+        Tue, 25 Jul 2023 23:01:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690326078;
-        bh=iV3xUiwOHTrhFt9wUr0FeVlZv27jP66uxTykWyFKkfk=;
-        h=From:To:In-Reply-To:References:Subject:Date:From;
-        b=oNfHNHw0bDNS0a2njsIrxfLKQ9zux5Jv56T8cIiZtkJ5Qb6KlLqhmPELMf/QqxbNR
-         Kz2d4kZRb3hzZFGtz7PXq46jUHCJYsrzNJkw2n+WgWtAaQbFp25Eyk3hBmWWHAWbpM
-         B0DLqkW/Ll0J7bs1pqBeHqyfXfrcD+vL9001QmiFbv9UmV1/5HvbonctvaeOR1FKE3
-         w/i7Bs+G081vhpubG09HqfcL4F/ls1p1GEcxuVk9znz2uB9sjISm9aqY3dR127SVWq
-         d/QzhVCtu0JAG82QevopBuSIzenBItGEosW0e6Vlf4V3xDrTtTcTv8DUq7/mIpQr2m
-         tNDdrQG8NNEsA==
+        s=k20201202; t=1690326082;
+        bh=wOUzfezAhBuQ9O9A0eCypYAtr74aYdAOMGNyaZrRDYE=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=OvU51YhW7xFdnFxGM5Ga4LE7OXb+RvJaDcRcBFI2zZdNRobaQ2bxtt+xj4hi8KqGx
+         L0uI5pKLOwtvDM81+HNkMVCntlFG0Wu4/8FwBJE26glO8x2smTOh7fWDhRh31kE2gC
+         t3WklBJPr2YQlKHfp73dGh5eRrlZcBqxe59cTTbOzWYhWdJ7adDuP7NWBnfbYcQhCJ
+         RpEJvKXnKZUiIIxmsULAnvBsVMCCwd00qBvP5tYUIK2v3a1KnSC20+4NdoILGROuc8
+         nlQPHCACYh9R6AIbnOFJ/WZ41zjyHXDYtujjmlM6iPxMN1XAyi+zLofUneCZqTbQrJ
+         QWYTqo9IQX/Mw==
 From:   Mark Brown <broonie@kernel.org>
-To:     Liam Girdwood <lgirdwood@gmail.com>,
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Support Opensource <support.opensource@diasemi.com>,
-        Paul Cercueil <paul@crapouillou.net>,
-        Adam Ward <Adam.Ward.opensource@diasemi.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230725124629.150113-1-krzysztof.kozlowski@linaro.org>
-References: <20230725124629.150113-1-krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH 1/3] regulator: dt-bindings: dlg,da9121: add buck2
- constraints
-Message-Id: <169032607621.1636970.15088372653295681523.b4-ty@kernel.org>
-Date:   Wed, 26 Jul 2023 00:01:16 +0100
+Cc:     stable@vger.kernel.org
+In-Reply-To: <20230725164047.368892-1-krzysztof.kozlowski@linaro.org>
+References: <20230725164047.368892-1-krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH] regulator: dt-bindings: qcom,rpm: fix pattern for
+ children
+Message-Id: <169032608005.1636970.13530519930947403367.b4-ty@kernel.org>
+Date:   Wed, 26 Jul 2023 00:01:20 +0100
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
@@ -62,10 +65,11 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 25 Jul 2023 14:46:27 +0200, Krzysztof Kozlowski wrote:
-> Instead of describing the constraints for some devices (buck2 not
-> present), code it in allOf:if:then section to actually allow validation
-> of this requirement.
+On Tue, 25 Jul 2023 18:40:47 +0200, Krzysztof Kozlowski wrote:
+> The "or" (|) in regular expression must be within parentheses,
+> otherwise it is not really an "or" and it matches supplies:
+> 
+>   qcom-apq8060-dragonboard.dtb: regulators-1: vdd_ncp-supply: [[34]] is not of type 'object'
 > 
 > 
 
@@ -75,12 +79,8 @@ Applied to
 
 Thanks!
 
-[1/3] regulator: dt-bindings: dlg,da9121: add buck2 constraints
-      commit: 9b7e0645ba65e4824436a2f1817843291e744443
-[2/3] regulator: dt-bindings: dlg,da9121: allow different names
-      commit: e5481cc40d00b9f4a3250b2fd4a805e3d000b229
-[3/3] regulator: dt-bindings: active-semi,act8846: correct supplies
-      commit: 7631a0c5b093fe1bc27b4770021c4aa0d06fb3c5
+[1/1] regulator: dt-bindings: qcom,rpm: fix pattern for children
+      commit: 75d9bf03e2fa38242b35e941ce7c7cdabe479961
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
