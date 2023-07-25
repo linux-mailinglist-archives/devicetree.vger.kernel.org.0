@@ -2,238 +2,236 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1556C760C1E
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 09:41:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 51798760C23
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jul 2023 09:41:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232717AbjGYHlO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jul 2023 03:41:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54710 "EHLO
+        id S232782AbjGYHlv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jul 2023 03:41:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54628 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232760AbjGYHkz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 03:40:55 -0400
-Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 603281BE7
-        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 00:39:30 -0700 (PDT)
-Received: by mail-pj1-x1030.google.com with SMTP id 98e67ed59e1d1-2681223aaacso1309149a91.0
-        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 00:39:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=lessconfused.com; s=lessconfused; t=1690270770; x=1690875570;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xy8OcOIyM25HJffc3iM+MHwhzBjN4KoyNKIe4W8cYC4=;
-        b=Qpzrc8y88iB8rcDjaw/QW172NzZdV/q4oifO8GJUr5piHN8AekTfLQF2J05Gs2986n
-         /BRCopHVq6PlBZt8r2jKrGnYEnbTLWOtFK84BCUf5se+z6tdyt75Q1shY1+yt+l27jyD
-         O3xFvYCfwRfmNbojFQ9TI+MXYMooI5VSwk09c=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690270770; x=1690875570;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=xy8OcOIyM25HJffc3iM+MHwhzBjN4KoyNKIe4W8cYC4=;
-        b=ifV4GX8CZ6zky2wnNx9lH4KHSzC21luFJ5Qlq5fud+wJpQ19NTFgeN/+TLGRrZpxV7
-         63RbfI1kRNFfGMWmrheFNzOy0fXQnR/ibyefrJiieeqaiE6DMVrKJ701H/h1jacRN6y1
-         AVuCiNi8CCqk7DqqqMFE/cmY8tpnlMcpZROcZ9lKSsms4gZdms3mexQJt4d08lVmDzKC
-         cil25BW8sWSRmXRzuldsYQPF1iMPzUig8GCBFUu/E2dQtVtUz76DMm8AQH7WxmHUnMMp
-         0mKDESqquHlzfd0B/+MyoSkJYBXh8fVmuz+8mGLmjfEuT3zNQrAX8vBm9SlHO+sy7KFb
-         Q3Rw==
-X-Gm-Message-State: ABy/qLad0dL2GeNONLxNaUT0KIhchjPvZzui7TfgNMpBQt5Q4kIWbnfl
-        wov8xao/oU0kViC6KhEfwEqxnMxs+RyQT1wueWALNg==
-X-Google-Smtp-Source: APBJJlGjbWO2mFsMyVaK8S3VqHry3/clQYdFOi/SJupj6WR+NW5T3GtVZ18Ioo9pCpRuhmJKgdjlUUXzwLQ5peKjkWo=
-X-Received: by 2002:a17:90a:5290:b0:260:a8da:536c with SMTP id
- w16-20020a17090a529000b00260a8da536cmr2180262pjh.23.1690270769759; Tue, 25
- Jul 2023 00:39:29 -0700 (PDT)
+        with ESMTP id S232761AbjGYHle (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 03:41:34 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A97C11B3;
+        Tue, 25 Jul 2023 00:41:05 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 36P7eaLB078862;
+        Tue, 25 Jul 2023 02:40:37 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1690270837;
+        bh=qHKTTygeeH82schrrvP3laQUGHdtt+a7Gv1Kpgd9SQs=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=kacMc2QErSx8ugBhVMqDX3BRzKshrgoWADhxjWKmB0juxu+oKEUesCXtJj+49s7V+
+         ib5cFgv/8EKjBtGcPo0LLoRWetphr/OR84D8zrQZIBY8oLJXfX8hWwNO2hBpOINF4U
+         UDFt1FqaF8JlzwCkI9JCL7HdmlbSFYHwH8x2+yHM=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 36P7eaBM005583
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 25 Jul 2023 02:40:36 -0500
+Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 25
+ Jul 2023 02:40:36 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 25 Jul 2023 02:40:36 -0500
+Received: from [172.24.227.217] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 36P7eU0l088544;
+        Tue, 25 Jul 2023 02:40:31 -0500
+Message-ID: <b2016718-b8e4-a1f8-92ed-f0d9e3cb9c17@ti.com>
+Date:   Tue, 25 Jul 2023 13:10:30 +0530
 MIME-Version: 1.0
-References: <20230719122123.3702588-1-jagan@amarulasolutions.com> <51af40e5fa8e22411b654bbb894bb0fee19be8f9.camel@collabora.com>
-In-Reply-To: <51af40e5fa8e22411b654bbb894bb0fee19be8f9.camel@collabora.com>
-From:   Da Xue <da@lessconfused.com>
-Date:   Tue, 25 Jul 2023 03:39:18 -0400
-Message-ID: <CACdvmAia49_YiKpVvT=yeLWF+YGm+2vFK3rdwRB9XOAH5mm=-w@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: rockchip: Enable TYPE-C PD for ROC-RK3399-PC
-To:     Christopher Obbard <chris.obbard@collabora.com>
-Cc:     Jagan Teki <jagan@amarulasolutions.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [EXTERNAL] Re: [PATCH v11 03/10] net: ti: icssg-prueth: Add
+ Firmware config and classification APIs.
+Content-Language: en-US
+To:     Simon Horman <simon.horman@corigine.com>,
+        MD Danish Anwar <danishanwar@ti.com>
+CC:     Randy Dunlap <rdunlap@infradead.org>,
+        Roger Quadros <rogerq@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Richard Cochran <richardcochran@gmail.com>,
         Conor Dooley <conor+dt@kernel.org>,
-        linux-rockchip@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Corentin Labbe <clabbe@baylibre.com>,
-        kernel <kernel@collabora.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Eric Dumazet <edumazet@google.com>,
+        "David S. Miller" <davem@davemloft.net>, <nm@ti.com>, <srk@ti.com>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <netdev@vger.kernel.org>, <linux-omap@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20230724112934.2637802-1-danishanwar@ti.com>
+ <20230724112934.2637802-4-danishanwar@ti.com> <ZL94/L1RMlU5TiAb@corigine.com>
+From:   Md Danish Anwar <a0501179@ti.com>
+Organization: Texas Instruments
+In-Reply-To: <ZL94/L1RMlU5TiAb@corigine.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 24, 2023 at 9:55=E2=80=AFAM Christopher Obbard
-<chris.obbard@collabora.com> wrote:
->
-> On Wed, 2023-07-19 at 17:51 +0530, Jagan Teki wrote:
-> > The power supply circuit in ROC-RK3399-PC is
-> >
-> > Power Supply (or PPS) =3D> FUSB =3D> MP8859
-> >
-> > VUBS pin of FUSB and IN pin of MP8859 is supplied via TYPEC_IN.
-> >
-> > The MP8859 operated with 2.8V to 22V supply voltage and typical
-> > applications this supply can be 12V.
-> >
-> > This patch is trying to support the PD by changing the FUSB VBUS supply
-> > to 12V and tune the I2C7 timings from downstream kernel.
-> >
-> > Tested with PD3.0 PPS with supply voltages of 12V/3A and 20V/5A.
->
-> Hi Jagan,
->
-> This series works fine with a "dumb" (no PD negotiation) 5.1V Raspberry P=
-i PSU.
->
-> It also works fine with a Dell 45W USB-C Laptop Power Supply (model AA45N=
-M170) which provides 5V@3A,9V@3A,15V@3A,20V@2.25A, where Linux master fails=
- and just tells the USB-PD PSU to power-off.
+Hi Simon,
 
-I think this depends on the recent Rockchip TCPM changes. FUSB302 has
-been a pain in the USB or else this platform would have launched a lot
-longer ago.
+On 25/07/23 12:55 pm, Simon Horman wrote:
+> On Mon, Jul 24, 2023 at 04:59:27PM +0530, MD Danish Anwar wrote:
+>> Add icssg_config.h / .c and icssg_classifier.c files. These are firmware
+>> configuration and classification related files. These will be used by
+>> ICSSG ethernet driver.
+>>
+>> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
+>> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+> 
+> Hi Danish,
+> 
+> some feedback from my side.
+> 
 
->
-> It doesn't work with a Lenovo 65W PSU (model ADLX65YLC3D) which provides =
-5V@2A,9V@2A,15V@3A,20V@3.25A, after negotiation the driver turns the PD PSU=
- off and on again, resetting the board.
-> So it'd be great to get this fixed, but it seems like the sink-pdos shoul=
-d already support this PSU ?
+Thanks for the feedback.
 
-Something to note about USB PD that I read in the TI PD 2.0 paper and
-re-spewing based on memory: during transitions, the sink should
-self-limit to 500mA. If that is the case, the transition behavior is
-up to the source.
+> ...
+> 
+>> diff --git a/drivers/net/ethernet/ti/icssg_classifier.c b/drivers/net/ethernet/ti/icssg_classifier.c
+> 
+> ...
+> 
+>> +void icssg_class_set_mac_addr(struct regmap *miig_rt, int slice, u8 *mac)
+> 
+> This function appears to be unused.
+> Perhaps it would be better placed in a later patch?
+> 
+> Or perhaps not, if it makes it hard to split up the patches nicely.
+> In which case, perhaps the __maybe_unused annotation could be added,
+> temporarily.
+> 
 
->
->
-> As a side note for full transparency, another issue is that with Linux ma=
-ster or with this patch applied, applying power to the DC_12V header withou=
-t a USB-C PSU connected (e.g. powering from the POE
-> expansion shield), boot hangs and dumps to an initramfs shell with:
->
->   [    7.411798] random: crng init done
->   [   12.568138] platform fe3a0000.usb: deferred probe pending
->   [   12.568673] platform sdio-pwrseq: deferred probe pending
->   [   12.569162] platform fe3e0000.usb: deferred probe pending
->   [   12.569658] platform adc-keys: deferred probe pending
->   [   12.570123] i2c 7-0022: deferred probe pending
->   [   12.570533] i2c 4-0022: deferred probe pending
->   [   12.570944] platform ff940000.hdmi: deferred probe pending
->   [   12.571448] platform vcc3v0-sd: deferred probe pending
->   [   12.572000] platform vcc1v8-s3: deferred probe pending
->   [   12.572475] platform sys-12v: deferred probe pending
->   [   12.572933] platform vcc3v3-sys: deferred probe pending
->   [   12.573412] platform fe320000.mmc: deferred probe pending
->   [   12.573907] platform vcca-0v9: deferred probe pending
->   [   12.574371] platform vcc5v0-host-regulator: deferred probe pending
->   [   12.574935] platform ff770000.syscon:usb2phy@e450: deferred probe pe=
-nding
->   [   12.575552] platform vcc-vbus-typec1: deferred probe pending
->   [   12.576090] platform fe300000.ethernet: deferred probe pending
->   [   12.576623] platform vcc-sys: deferred probe pending
->   [   12.577080] platform ff770000.syscon:usb2phy@e460: deferred probe pe=
-nding
->   [   12.577697] platform ff320000.syscon:io-domains: deferred probe pend=
-ing
->   [   12.578298] platform ff770000.syscon:io-domains: deferred probe pend=
-ing
->   [   12.578901] platform fe800000.usb: deferred probe pending
->   [   12.579395] platform fe900000.usb: deferred probe pending
->   [   12.579904] platform vdd-log: deferred probe pending
->   [   12.580362] i2c 0-001b: deferred probe pending
->   [   12.580772] i2c 0-0040: deferred probe pending
->   [   12.581182] platform cpufreq-dt: deferred probe pending
->   [   12.581663] i2c 0-0041: deferred probe pending
->
->
->
-> Thanks,
->
-> Chris
->
-> >
-> > Cc: Corentin Labbe <clabbe@baylibre.com>
-> > Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
-> > ---
-> >  .../boot/dts/rockchip/rk3399-roc-pc.dtsi      | 19 ++++++++++++++++---
-> >  1 file changed, 16 insertions(+), 3 deletions(-)
-> >
-> > diff --git a/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi b/arch/arm=
-64/boot/dts/rockchip/rk3399-roc-pc.dtsi
-> > index c32913df93c3..8963b3858eae 100644
-> > --- a/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi
-> > +++ b/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi
-> > @@ -6,6 +6,7 @@
-> >  /dts-v1/;
-> >  #include <dt-bindings/input/linux-event-codes.h>
-> >  #include <dt-bindings/pwm/pwm.h>
-> > +#include "dt-bindings/usb/pd.h"
-> >  #include "rk3399.dtsi"
-> >  #include "rk3399-opp.dtsi"
-> >
-> > @@ -524,8 +525,9 @@ &i2c3 {
-> >  };
-> >
-> >  &i2c4 {
-> > -       i2c-scl-rising-time-ns =3D <600>;
-> > -       i2c-scl-falling-time-ns =3D <20>;
-> > +       clock-frequency =3D <400000>;
-> > +       i2c-scl-rising-time-ns =3D <345>;
-> > +       i2c-scl-falling-time-ns =3D <11>;
-> >         status =3D "okay";
-> >
-> >         fusb1: usb-typec@22 {
-> > @@ -552,8 +554,19 @@ fusb0: usb-typec@22 {
-> >                 interrupts =3D <2 IRQ_TYPE_LEVEL_LOW>;
-> >                 pinctrl-names =3D "default";
-> >                 pinctrl-0 =3D <&fusb0_int>;
-> > -               vbus-supply =3D <&vcc_vbus_typec0>;
-> > +               vbus-supply =3D <&dc_12v>;
-> >                 status =3D "okay";
-> > +
-> > +               connector {
-> > +                       compatible =3D "usb-c-connector";
-> > +                       data-role =3D "dual";
-> > +                       label =3D "USB-C";
-> > +                       power-role =3D "sink";
-> > +                       try-power-role =3D "sink";
-> > +                       op-sink-microwatt =3D <10000000>;
-> > +                       sink-pdos =3D <PDO_FIXED(5000, 3000, PDO_FIXED_=
-USB_COMM)
-> > +                                    PDO_VAR(5000, 20000, 5000)>;
-> > +               };
-> >         };
-> >
-> >         mp8859: regulator@66 {
->
-> --
-> Christopher Obbard BEng (Hons) MIET
-> Senior Engineer
->
-> Collabora Ltd
-> Platinum Building, St John's Innovation Park, Cambridge CB4 0DS, UK
-> Registered in England & Wales no 5513718.
-> This message is intended for the use of only the person(s) ("intended
-> recipient") to whom it is addressed.
-> It may contain information that is privileged and confidential.
-> Accordingly, any dissemination, distribution, copying or other use of
-> this message or any of its content by any person other than the
-> intended recipient may constitute a breach of civil or criminal law and
-> is strictly prohibited.
->
->
-> _______________________________________________
-> Linux-rockchip mailing list
-> Linux-rockchip@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-rockchip
+Due to splitting the patch into 8-9 patches, I had to introduce these helper
+APIs earlier. All these APIs are helper APIs, they will be used in patch 6
+(Introduce ICSSG Prueth driver).
+
+I had this concern that some APIs which will be used later but introduced
+earlier can create some warnings, before splitting the patches.
+
+I had raised this concern in [1] and asked Jakub if it would be OK to introduce
+these APIs earlier. Jakub said it would be fine [2], so I went ahead with this
+approach.
+
+It will make very hard to break patches if these APIs are introduced and used
+in same patch.
+
+> Flagged by clang-16 W=1, and gcc=12 W=1 builds.
+> Likewise for other issues flagged below regarding
+> function declarations/definitions.
+> 
+>> +{
+>> +	regmap_write(miig_rt, offs[slice].mac0, (u32)(mac[0] | mac[1] << 8 |
+>> +		     mac[2] << 16 | mac[3] << 24));
+>> +	regmap_write(miig_rt, offs[slice].mac1, (u32)(mac[4] | mac[5] << 8));
+>> +}
+>> +
+>> +/* disable all RX traffic */
+>> +void icssg_class_disable(struct regmap *miig_rt, int slice)
+> 
+> This function is only used in this file.
+> Please consider making it static.
+> 
+
+This is later used in icssg_prueth.c, that is why this is not static.
+
+> ...
+> 
+>> +void icssg_class_default(struct regmap *miig_rt, int slice, bool allmulti)
+> 
+> This function also appears to be unused.
+> 
+
+This is later used in icssg_prueth.c
+
+> ...
+> 
+>> +/* required for SAV check */
+>> +void icssg_ft1_set_mac_addr(struct regmap *miig_rt, int slice, u8 *mac_addr)
+> 
+> This function also appears to be unused.
+> 
+
+This is later used in icssg_prueth.c
+
+> ...
+> 
+>> diff --git a/drivers/net/ethernet/ti/icssg_config.c b/drivers/net/ethernet/ti/icssg_config.c
+> 
+> ...
+> 
+>> +void icssg_config_ipg(struct prueth_emac *emac)
+> 
+> This function is also only used in this file.
+> 
+
+This is later used in icssg_prueth.c
+
+> ...
+> 
+>> +static void icssg_init_emac_mode(struct prueth *prueth)
+>> +{
+>> +	/* When the device is configured as a bridge and it is being brought
+>> +	 * back to the emac mode, the host mac address has to be set as 0.
+>> +	 */
+>> +	u8 mac[ETH_ALEN] = { 0 };
+>> +
+>> +	if (prueth->emacs_initialized)
+>> +		return;
+>> +
+>> +	regmap_update_bits(prueth->miig_rt, FDB_GEN_CFG1,
+>> +			   SMEM_VLAN_OFFSET_MASK, 0);
+>> +	regmap_write(prueth->miig_rt, FDB_GEN_CFG2, 0);
+>> +	/* Clear host MAC address */
+>> +	icssg_class_set_host_mac_addr(prueth->miig_rt, mac);
+> 
+
+This is later used in icssg_prueth.c
+
+> icssg_class_set_host_mac_addr() is defined in icssg_classifier.c
+> but used here in icssg_config.c.
+> 
+> Please consider providing a declaration of this function,
+> ideally in a .h file.
+> 
+
+The declaration of this function is added later(in patch 6) in icssg_prueth.h
+
+> ...
+> 
+>> +int emac_set_port_state(struct prueth_emac *emac,
+>> +			enum icssg_port_state_cmd cmd)
+> 
+> This function also appears to be unused.
+> 
+> ...
+> 
+>> +void icssg_config_set_speed(struct prueth_emac *emac)
+> 
+> Ditto.
+> 
+
+Both these APIs are later used in icssg_prueth.c
+
+> ...
+
+[1] https://lore.kernel.org/all/17cd1e70-73bc-78d5-7e9d-7b133d6f464b@ti.com/
+[2] https://lore.kernel.org/all/20230720081741.0c32d5e6@kernel.org/
+
+-- 
+Thanks and Regards,
+Danish.
