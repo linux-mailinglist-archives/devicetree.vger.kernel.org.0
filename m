@@ -2,123 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B593762AEA
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 07:42:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4BBB8762AED
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 07:43:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231189AbjGZFmU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jul 2023 01:42:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36726 "EHLO
+        id S231482AbjGZFno (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jul 2023 01:43:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37660 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231808AbjGZFmI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 01:42:08 -0400
-X-Greylist: delayed 406 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 25 Jul 2023 22:42:02 PDT
-Received: from smtp.outgoing.loopia.se (smtp.outgoing.loopia.se [93.188.3.38])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68D3E26A1
-        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 22:42:02 -0700 (PDT)
-Received: from s807.loopia.se (localhost [127.0.0.1])
-        by s807.loopia.se (Postfix) with ESMTP id 713982F9F2B7
-        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 07:35:13 +0200 (CEST)
-Received: from s979.loopia.se (unknown [172.22.191.5])
-        by s807.loopia.se (Postfix) with ESMTP id 625012E27956;
-        Wed, 26 Jul 2023 07:35:13 +0200 (CEST)
-Received: from s476.loopia.se (unknown [172.22.191.5])
-        by s979.loopia.se (Postfix) with ESMTP id 5FF6810BC349;
-        Wed, 26 Jul 2023 07:35:13 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at amavis.loopia.se
-X-Spam-Score: -1
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
-Received: from s934.loopia.se ([172.22.191.5])
-        by s476.loopia.se (s476.loopia.se [172.22.190.16]) (amavisd-new, port 10024)
-        with UTF8LMTP id 8oQDPUiBmNm1; Wed, 26 Jul 2023 07:35:13 +0200 (CEST)
-X-Loopia-Auth: webmail
-X-Loopia-User: richard@bit42.se
-Received: from webmail.loopia.se (unknown [172.22.212.9])
-        (Authenticated sender: richard@bit42.se)
-        by s934.loopia.se (Postfix) with ESMTPA id E37267CEA72;
-        Wed, 26 Jul 2023 07:35:12 +0200 (CEST)
+        with ESMTP id S231538AbjGZFnn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 01:43:43 -0400
+Received: from mickerik.phytec.de (mickerik.phytec.de [91.26.50.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D13D3DA
+        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 22:43:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
+        q=dns/txt; i=@phytec.de; t=1690350218; x=1692942218;
+        h=From:Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=vGEqLGv3NfFJhkyVWckVHsutEntaAotP2VPMUxzgwO8=;
+        b=dHRCXNzFDEfz+T/+kTLZgzspp2IDnRrihMNmW1/wS4Ikq8pyO0ALMqrc73jSYFu2
+        fDuBSb6nf5KOIZ8bLkKvzIvEKfopUVcldWmtEZ2tspIYGoGVkC4lwD7lEO/R5X+9
+        9dHG0XDuMkoWaYEOCPpfTne3TYvpQj6jxnygHKWVGg4=;
+X-AuditID: ac14000a-917fe70000007ecb-60-64c0b2897a6e
+Received: from berlix.phytec.de (Unknown_Domain [172.25.0.12])
+        (using TLS with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (Client did not present a certificate)
+        by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id 25.53.32459.982B0C46; Wed, 26 Jul 2023 07:43:37 +0200 (CEST)
+Received: from Berlix.phytec.de (172.25.0.12) by Berlix.phytec.de
+ (172.25.0.12) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Wed, 26 Jul
+ 2023 07:43:37 +0200
+Received: from Berlix.phytec.de ([fe80::61cc:ebf0:7375:8768]) by
+ berlix.phytec.de ([fe80::197e:d26b:2ca:c7b4%4]) with mapi id 15.01.2375.018;
+ Wed, 26 Jul 2023 07:43:37 +0200
+From:   Yannic Moog <Y.Moog@phytec.de>
+To:     "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "krzysztof.kozlowski@linaro.org" <krzysztof.kozlowski@linaro.org>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "linux-imx@nxp.com" <linux-imx@nxp.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>
+Subject: Re: [PATCH] arm64: dts: imx8mm-phycore: drop uncorrect vselect-en
+Thread-Topic: [PATCH] arm64: dts: imx8mm-phycore: drop uncorrect vselect-en
+Thread-Index: AQHZvwQlzTgmX+gCsEuqehe28iDArq/LaK+A
+Date:   Wed, 26 Jul 2023 05:43:37 +0000
+Message-ID: <3e2ae299b0c3c25bcdd8c592af2ba373febbb70a.camel@phytec.de>
+References: <20230725142653.157510-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230725142653.157510-1-krzysztof.kozlowski@linaro.org>
+Accept-Language: de-DE, en-US
+Content-Language: de-DE
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.25.0.11]
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <849468F06EF0A84CAE5D16B00C39A446@phytec.de>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Date:   Wed, 26 Jul 2023 07:35:12 +0200
-From:   richard@bit42.se
-To:     srinivas.kandagatla@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     srinivas.kandagatla@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, niklas.soderlund+renesas@ragnatech.se
-Subject: Re: [PATCH v5 1/2] dt-bindings: nvmem: Add t1023-sfp efuse support
-In-Reply-To: <20230410082051.2948510-1-richard@bit42.se>
-References: <20230410082051.2948510-1-richard@bit42.se>
-User-Agent: Loopia Webmail/1.6.1
-Message-ID: <e248cd32ba0fe9388a72a732ad252eaa@bit42.se>
-X-Sender: richard@bit42.se
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrFIsWRmVeSWpSXmKPExsWyRpKBR7dz04EUg7bjVhZr9p5jsph/5Byr
+        xcOr/harpu5kseh78ZDZYu/rrewWmx5fY7Xo+rWS2eLyrjlsFq17j7Bb/N2+icXixRZxBx6P
+        nbPusntsWtXJ5nHn2h42j81L6j02vtvB5NH/18Dj8ya5APYoLpuU1JzMstQifbsErow9D1cy
+        Fqzhr7jUu5KlgfEHXxcjJ4eEgInEtnvXmLoYuTiEBJYwSZx8fxnKecAocejvA3YIZyOjxPdv
+        a9lBWtgEVCROzrjECJIQEVjBKtFy4g4TSEJYwEviUPMyZhBbRMBbYt+ZuywQtpFEy/VjYM0s
+        AqoSJ36sBLN5BdwkFp5cyQZiCwm4SBw68gRsDqeAq8T6vy/AbEYBWYkNG86DzWQWEJfY9Ow7
+        K8TdAhJL9kDEJQREJV4+/gcVl5c4cWsaUC8HUL2mxPpd+hCtFhKXZ86FGqMoMaX7IdQJghIn
+        Zz5hmcAoNgvJhlkI3bOQdM9C0j0LSfcCRtZVjEK5mcnZqUWZ2XoFGZUlqcl6KambGEHxLcLA
+        tYOxb47HIUYmDsZDjBIczEoivIYx+1KEeFMSK6tSi/Lji0pzUosPMUpzsCiJ897vYUoUEkhP
+        LEnNTk0tSC2CyTJxcEo1MG4LtWrJFCky3DbHo3GC/+Pt2w8yFPi+69ogMi/mfejhBwJR3/Te
+        qM7dvvUW/9Or5UennHPVenk1+tVvoyNt5+tlHZMPTGOw13ro9Vnj3NP6lUlZSZqC11U/fn65
+        WnzB3wnZRiEeXXFpbt8D9S35fb0rnFdydk8r2c7+oWiiQ9/ymWrLspanTVBiKc5INNRiLipO
+        BABxiu2r3QIAAA==
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2023-04-10 10:20, Richard Alpe wrote:
-> Add a schema for the NVMEM eFuse (SFP) layout on the NXP QorIQ SOC.
-> 
-> Signed-off-by: Richard Alpe <richard@bit42.se>
-> ---
-> v3: Introduce this patch.
-> v4: Updates according to feedback from Krzysztof.
-> v5: Fix yamllint warning (file name $id matching).
-> 
->  .../bindings/nvmem/fsl,t1023-sfp.yaml         | 37 +++++++++++++++++++
->  1 file changed, 37 insertions(+)
->  create mode 100644 
-> Documentation/devicetree/bindings/nvmem/fsl,t1023-sfp.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/nvmem/fsl,t1023-sfp.yaml 
-> b/Documentation/devicetree/bindings/nvmem/fsl,t1023-sfp.yaml
-> new file mode 100644
-> index 000000000000..df826b40d8ca
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/nvmem/fsl,t1023-sfp.yaml
-> @@ -0,0 +1,37 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/nvmem/fsl,t1023-sfp.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: NXP QorIQ eFuse support
-> +
-> +maintainers:
-> +  - Richard Alpe <richard@bit42.se>
-> +
-> +description:
-> +  Read support for the eFuses (SFP) on NXP QorIQ series SoC's.
-> +
-> +allOf:
-> +  - $ref: nvmem.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: fsl,t1023-sfp
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    efuse@e8000 {
-> +        compatible = "fsl,t1023-sfp";
-> +        reg = <0xe8000 0x1000>;
-> +    };
-> +...
-
-Gentle ping on this
+T24gVHVlLCAyMDIzLTA3LTI1IGF0IDE2OjI2ICswMjAwLCBLcnp5c3p0b2YgS296bG93c2tpIHdy
+b3RlOgo+IFRoZXJlIGlzIG5vICJ2c2VsZWN0LWVuIiBwcm9wZXJ0eSwgbmVpdGhlciBpbiB0aGUg
+YmluZGluZ3Mgbm9yIGluIHRoZQo+IExpbnV4IGRyaXZlcjoKPiAKPiDCoCBpbXg4bW0tcGh5Ym9h
+cmQtcG9saXMtcmRrLmR0YjogcG1pY0A4OiByZWd1bGF0b3JzOmxkbzI6IFVuZXZhbHVhdGVkCj4g
+cHJvcGVydGllcyBhcmUgbm90IGFsbG93ZWQgKCd2c2VsZWN0LWVuJyB3YXMgdW5leHBlY3RlZCkK
+PiAKPiBTaWduZWQtb2ZmLWJ5OiBLcnp5c3p0b2YgS296bG93c2tpIDxrcnp5c3p0b2Yua296bG93
+c2tpQGxpbmFyby5vcmc+CgpSZXZpZXdlZC1ieTogWWFubmljIE1vb2cgPHkubW9vZ0BwaHl0ZWMu
+ZGU+Cgo+IC0tLQo+IMKgYXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvaW14OG1tLXBoeWNv
+cmUtc29tLmR0c2kgfCAxIC0KPiDCoDEgZmlsZSBjaGFuZ2VkLCAxIGRlbGV0aW9uKC0pCj4gCj4g
+ZGlmZiAtLWdpdCBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxlL2lteDhtbS1waHljb3Jl
+LXNvbS5kdHNpCj4gYi9hcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9pbXg4bW0tcGh5Y29y
+ZS1zb20uZHRzaQo+IGluZGV4IDQwNGY3ZGUwYjcyMi4uNjA2OTY3ODI0NGYzIDEwMDY0NAo+IC0t
+LSBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxlL2lteDhtbS1waHljb3JlLXNvbS5kdHNp
+Cj4gKysrIGIvYXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvaW14OG1tLXBoeWNvcmUtc29t
+LmR0c2kKPiBAQCAtMTUxLDcgKzE1MSw2IEBAIHJlZ19udmNjX3NkMjogbGRvMiB7Cj4gwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oHJlZ3VsYXRvci1tYXgtbWljcm92b2x0ID0gPDMzMDAwMDA+Owo+IMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqByZWd1bGF0b3It
+bWluLW1pY3Jvdm9sdCA9IDwxODAwMDAwPjsKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgcmVndWxhdG9yLW5hbWUgPSAiTlZD
+Q19TRDIgKExETzIpIjsKPiAtwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqB2c2VsZWN0LWVuOwo+IMKgCj4gwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHJlZ3VsYXRv
+ci1zdGF0ZS1tZW0gewo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgcmVndWxhdG9yLW9mZi1pbi1z
+dXNwZW5kOwoK
