@@ -2,166 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7611D7636F0
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 15:00:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C6E676370E
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 15:07:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231617AbjGZNA3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jul 2023 09:00:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58802 "EHLO
+        id S232246AbjGZNHH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jul 2023 09:07:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34086 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233279AbjGZNA2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 09:00:28 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E9661BC2;
-        Wed, 26 Jul 2023 06:00:25 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id C2D56617A5;
-        Wed, 26 Jul 2023 13:00:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D2C66C433CA;
-        Wed, 26 Jul 2023 13:00:19 +0000 (UTC)
-Date:   Wed, 26 Jul 2023 18:30:15 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Serge Semin <fancer.lancer@gmail.com>
-Cc:     Manivannan Sadhasivam <mani@kernel.org>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        jingoohan1@gmail.com, gustavo.pimentel@synopsys.com,
-        lpieralisi@kernel.org, robh+dt@kernel.org, kw@linux.com,
-        bhelgaas@google.com, kishon@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        marek.vasut+renesas@gmail.com, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v18 04/20] PCI: dwc: Change arguments of
- dw_pcie_prog_outbound_atu()
-Message-ID: <20230726130015.GA5633@thinkpad>
-References: <20230721074452.65545-1-yoshihiro.shimoda.uh@renesas.com>
- <20230721074452.65545-5-yoshihiro.shimoda.uh@renesas.com>
- <20230724074556.GC6291@thinkpad>
- <ezuyypjmhkb4nsruy5kdoopg537yqg2paf4acgfyib6p7kj7g5@kumpnp2cr4zh>
+        with ESMTP id S232142AbjGZNHF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 09:07:05 -0400
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92B6A1FEC
+        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 06:07:04 -0700 (PDT)
+Received: by mail-lj1-x234.google.com with SMTP id 38308e7fff4ca-2b74fa5e7d7so98667761fa.2
+        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 06:07:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1690376823; x=1690981623;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=3wsh3ywboypSR9IxavTMFwQ0boo9RTAm9WcxI76p9a0=;
+        b=On8Lm3TQuDsqs6FLqYifzbrx1zVIb+8FK1Wv7zFU5QCkStu92wqu6+CMBrGHeYZW5c
+         tAiUG+PXvQXlNbeHJWd6SkUYcCQAZAOoa/iZvt/sRsck7Vuw0Qh3ncJqqPePGuOUtLMT
+         QhsxYyH6w3YUVSCdczi36mv0wzLS2nE5UNOcptd5nj2xpa3zZ8XQfAyz0/46BtgY+oQL
+         zCZ6GHdSxSBp8LeqTifhQEDSM2kjcmn7EGM+zPhK21VyhmNCuQcYEim/+I98JnorxdOs
+         oZ6Axsst7JUaUZx3Sgh6ff+BHpVawV0bsR5GVe47oLeHAd6hOT+d0hEae92AqxovWzeT
+         xrog==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690376823; x=1690981623;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=3wsh3ywboypSR9IxavTMFwQ0boo9RTAm9WcxI76p9a0=;
+        b=LZNV3zGxs+tLkp7y3svT7/6nk0UJrRo+lPYBzfKaLeIp6gBWwefxM/MFiP7qz96gKq
+         qI9Lqz10GGbUyuILdniRzhTMLoU9JQ2cUzxwAw+ov0MnfxznNaTIQG/F1S7hWa1m87AM
+         cZBEO3oDZUN5+w4REk8ks7OSx4WDGd2s0J+d33UWqnU8k/5OPs6M5OYOywVGnbVRMn/W
+         6MPr5PnhGPVyydn88KIXNUFeTKzjLGo8s8R94UQjpVf4137a1pNZlTmf2+3JMQ3DkPvp
+         TnNQNPRiwxEHAHJa2fuMPO0KCj3GndkvDIazVTrnIkxRJZ31pvN0SLJpQCvUgU931fbM
+         EQIA==
+X-Gm-Message-State: ABy/qLZW4vqd3U/FN3cUxSF7l/eSN0dGi9dInlypNyn3osWNKUEVkrUC
+        YfDc4/o0L0Uj+SMSJb+A5uVlMg==
+X-Google-Smtp-Source: APBJJlG98W5tRZK9vG8UqmQ9KZqEsLF80l499aQXx/tbGOR5Yk1+QO2D3mq3YniowdDSnIVOuAT7JQ==
+X-Received: by 2002:a2e:95c6:0:b0:2b6:da88:a2d0 with SMTP id y6-20020a2e95c6000000b002b6da88a2d0mr1449694ljh.47.1690376822773;
+        Wed, 26 Jul 2023 06:07:02 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id r27-20020a17090638db00b009786c8249d6sm9661395ejd.175.2023.07.26.06.07.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 26 Jul 2023 06:07:02 -0700 (PDT)
+Message-ID: <33232e22-1014-2670-47f6-712b0acc929d@linaro.org>
+Date:   Wed, 26 Jul 2023 15:07:00 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ezuyypjmhkb4nsruy5kdoopg537yqg2paf4acgfyib6p7kj7g5@kumpnp2cr4zh>
-X-Spam-Status: No, score=-6.7 required=5.0 tests=BAYES_00,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH V1] arm64: dts: qcom: sa8775p-ride: Remove min and max
+ voltages for L8A
+Content-Language: en-US
+To:     "Naveen Kumar Goud Arepalli (QUIC)" <quic_narepall@quicinc.com>,
+        Andrew Halaney <ahalaney@redhat.com>
+Cc:     "Nitin Rawat (QUIC)" <quic_nitirawa@quicinc.com>,
+        "agross@kernel.org" <agross@kernel.org>,
+        "andersson@kernel.org" <andersson@kernel.org>,
+        "konrad.dybcio@linaro.org" <konrad.dybcio@linaro.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20230725100007.14775-1-quic_narepall@quicinc.com>
+ <a3l7356miuuapf5dakgfchdjmxjp62ynvle4ta3hejd3tjvzd4@e2t2zm6jh7hb>
+ <516a54da44724001895f7e50634ad884@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <516a54da44724001895f7e50634ad884@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 26, 2023 at 08:02:24AM +0300, Serge Semin wrote:
-> On Mon, Jul 24, 2023 at 01:15:56PM +0530, Manivannan Sadhasivam wrote:
-> > On Fri, Jul 21, 2023 at 04:44:36PM +0900, Yoshihiro Shimoda wrote:
-> > > The __dw_pcie_prog_outbound_atu() currently has 6 arguments.
-> > > To support INTx IRQs in the future, it requires an additional 2
-> > > arguments. For improved code readability, introduce the struct
-> > > dw_pcie_ob_atu_cfg and update the arguments of
-> > > dw_pcie_prog_outbound_atu().
-> > > 
-> > > Consequently, remove __dw_pcie_prog_outbound_atu() and
-> > > dw_pcie_prog_ep_outbound_atu() because there is no longer
-> > > a need.
-> > > 
-> > > No behavior changes.
-> > > 
-> > > Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-> > 
-> > One nit below. With that,
-> > 
-> > Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> > 
-> > > Reviewed-by: Serge Semin <fancer.lancer@gmail.com>
-> > > ---
-> > >  .../pci/controller/dwc/pcie-designware-ep.c   | 21 +++++---
-> > >  .../pci/controller/dwc/pcie-designware-host.c | 52 +++++++++++++------
-> > >  drivers/pci/controller/dwc/pcie-designware.c  | 49 ++++++-----------
-> > >  drivers/pci/controller/dwc/pcie-designware.h  | 15 ++++--
-> > >  4 files changed, 77 insertions(+), 60 deletions(-)
-> > > 
-> > 
-> > [...]
-> > 
-> > > diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci/controller/dwc/pcie-designware.h
-> > > index 3c06e025c905..85de0d8346fa 100644
-> > > --- a/drivers/pci/controller/dwc/pcie-designware.h
-> > > +++ b/drivers/pci/controller/dwc/pcie-designware.h
-> > > @@ -288,6 +288,15 @@ enum dw_pcie_core_rst {
-> > >  	DW_PCIE_NUM_CORE_RSTS
-> > >  };
-> > >  
-> > > +struct dw_pcie_ob_atu_cfg {
-> > > +	int index;
-> > > +	int type;
-> > > +	u8 func_no;
-> > > +	u64 cpu_addr;
-> > > +	u64 pci_addr;
-> > > +	u64 size;
-> > 
+On 26/07/2023 14:32, Naveen Kumar Goud Arepalli (QUIC) wrote:
+> On Tue, Jul 25, 2023 at 03:30:07PM +0530, Naveen Kumar Goud Arepalli wrote:
+>> L8A is the supply for UFS VCC, UFS specification allows different VCC 
+>> configurations for UFS devices.
+>> -UFS 2.x devices: 2.70V - 3.60V
+>> -UFS 3.x devices: 2.40V - 2.70V
+>>
+>> As sa8775p-ride supports both ufs 2.x and ufs 3.x devices, remove 
+>> min/max voltages for L8A regulator. Initial voltage of L8A will be set 
+>> to 2.504v or 2.952v during PON depending on the UFS device type. On 
+>> sa8775, UFS is the only client in Linux for L8A and this regulator 
+>> will be voted only for enabling/disabling.
+>>
+>> Signed-off-by: Naveen Kumar Goud Arepalli <quic_narepall@quicinc.com>
+>> ---
+>>  arch/arm64/boot/dts/qcom/sa8775p-ride.dts | 2 --
+>>  1 file changed, 2 deletions(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sa8775p-ride.dts 
+>> b/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
+>> index ed76680410b4..6f3891a09e59 100644
+>> --- a/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
+>> +++ b/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
+>> @@ -98,8 +98,6 @@
+>>  
+>>  		vreg_l8a: ldo8 {
+>>  			regulator-name = "vreg_l8a";
+>> -			regulator-min-microvolt = <2504000>;
+>> -			regulator-max-microvolt = <3300000>;
+>>  			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>>  			regulator-allow-set-load;
+>>  			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
+>> --
+>> 2.17.1
+>>
 > 
-> > Reorder the members in below order to avoid holes:
-> > 
-> > u64
-> > int
-> > u8
+> Reviewing with very little expertise in the area....
+> A few questions below that would help me understand this a bit better.
 > 
-> One more time. Your suggestion won't prevent the compiler from adding
-> the pads. (If by "holes" you meant the padding. Otherwise please
-> elaborate what you meant?).
-
-Struct padding is often referred as struct holes. So yes, I'm referring the
-same.
-
-> The structure will have the same size of
-> 40 bytes in both cases. So your suggestion will just worsen the
-> structure readability from having a more natural parameters order (MW
-> index, type, function, and then the mapping parameters) to a redundant
-> type-based order.
+> Does it make sense to *not* set the range of the regulator at all?:
+>>>> Yes, we are removing the range of the regulator.
 > 
-
-This is a common comment I provide for all structures. Even though the current
-result (reordering) doesn't save any space, when the structure grows big (who
-knows), we often see more holes/padding being inserted by the compiler if the
-members are not ordered in the descending order w.r.t their size.
-
-I agree that it makes more clear if the members are grouped based on their
-function etc... but for large structures this would often add more padding/hole.
-
-- Mani
-
-> -Serge(y)
+>     1. A board dts knows its UFS device
+>     2. Is UFS backwards compatible with respect to UFS2/UFS3?
+>        I don't know how the version is determined, but if it's a
+>        "start at UFS2, go to UFS3" should it be scaled as that goes?
+>        >>>> For a UFS device 3.x, we cannot start as UFS 2.0. vcc has to be as per UFS 3.x recommendations.
 > 
-> > 
-> > - Mani
-> > 
-> > > +};
-> > > +
-> > >  struct dw_pcie_host_ops {
-> > >  	int (*host_init)(struct dw_pcie_rp *pp);
-> > >  	void (*host_deinit)(struct dw_pcie_rp *pp);
-> > > @@ -416,10 +425,8 @@ void dw_pcie_write_dbi2(struct dw_pcie *pci, u32 reg, size_t size, u32 val);
-> > >  int dw_pcie_link_up(struct dw_pcie *pci);
-> > >  void dw_pcie_upconfig_setup(struct dw_pcie *pci);
-> > >  int dw_pcie_wait_for_link(struct dw_pcie *pci);
-> > > -int dw_pcie_prog_outbound_atu(struct dw_pcie *pci, int index, int type,
-> > > -			      u64 cpu_addr, u64 pci_addr, u64 size);
-> > > -int dw_pcie_prog_ep_outbound_atu(struct dw_pcie *pci, u8 func_no, int index,
-> > > -				 int type, u64 cpu_addr, u64 pci_addr, u64 size);
-> > > +int dw_pcie_prog_outbound_atu(struct dw_pcie *pci,
-> > > +			      const struct dw_pcie_ob_atu_cfg *atu);
-> > >  int dw_pcie_prog_inbound_atu(struct dw_pcie *pci, int index, int type,
-> > >  			     u64 cpu_addr, u64 pci_addr, u64 size);
-> > >  int dw_pcie_prog_ep_inbound_atu(struct dw_pcie *pci, u8 func_no, int index,
-> > > -- 
-> > > 2.25.1
-> > > 
-> > 
-> > -- 
-> > மணிவண்ணன் சதாசிவம்
+> Relying on the bootloader to set up the device before the kernel starts
+> seems like a direction that should be actively avoided instead of
+> depended on in my opinion.
 
--- 
-மணிவண்ணன் சதாசிவம்
+I have trouble finding which part is your reply and which is quote of
+Andrew. Please reconfigure your mail client.
+
+>>>>> As per upstream UFS driver,  voltage voting is not there and we vote only for enable/disable . 
+> Since UFS is the only client in Linux for this rail (L8A ), we don't need min and max range to support
+> UFS 2.x and 3.x cards.
+
+I would assume some reasonable range is always desired. Why it cannot be
+the wider range from both? 2.4 - 3.6?
+
+Best regards,
+Krzysztof
+
