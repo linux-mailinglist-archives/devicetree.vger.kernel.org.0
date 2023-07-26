@@ -2,135 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9EB0B763498
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 13:13:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BACB776349D
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 13:15:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231838AbjGZLNU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jul 2023 07:13:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48692 "EHLO
+        id S231875AbjGZLPU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jul 2023 07:15:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49382 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233273AbjGZLNT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 07:13:19 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BD182696
-        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 04:13:17 -0700 (PDT)
-Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mkl@pengutronix.de>)
-        id 1qOcRv-0001BM-7s; Wed, 26 Jul 2023 13:12:59 +0200
-Received: from pengutronix.de (unknown [172.20.34.65])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        (Authenticated sender: mkl-all@blackshift.org)
-        by smtp.blackshift.org (Postfix) with ESMTPSA id 0D3BE1FB27F;
-        Wed, 26 Jul 2023 11:12:57 +0000 (UTC)
-Date:   Wed, 26 Jul 2023 13:12:56 +0200
-From:   Marc Kleine-Budde <mkl@pengutronix.de>
-To:     Bough Chen <haibo.chen@nxp.com>
-Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "wg@grandegger.com" <wg@grandegger.com>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "edumazet@google.com" <edumazet@google.com>,
-        "kuba@kernel.org" <kuba@kernel.org>,
-        "pabeni@redhat.com" <pabeni@redhat.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-can@vger.kernel.org" <linux-can@vger.kernel.org>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>
-Subject: Re: RE: [PATCH v2 1/3] arm64: dts: imx93: add the Flex-CAN stop mode
- by GPR
-Message-ID: <20230726-expedited-clinking-3e7f212352f7-mkl@pengutronix.de>
-References: <20230726090909.3417030-1-haibo.chen@nxp.com>
- <20230726-moocher-managing-5a5352a4266a-mkl@pengutronix.de>
- <DB7PR04MB40107ED22966EF83DDA0759B9000A@DB7PR04MB4010.eurprd04.prod.outlook.com>
+        with ESMTP id S231871AbjGZLPT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 07:15:19 -0400
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3590E11F
+        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 04:15:18 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id 4fb4d7f45d1cf-51e28cac164so1831421a12.1
+        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 04:15:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1690370116; x=1690974916;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=lChKNKegfLv8YzWr0ThP7tf6+B40c9uLj92oms8T8Po=;
+        b=gTAWzL3C03KYGkRM28j66FVMjwSAV38XkmSWVKDYY51ECYfGiDr/sjEg6Zr9wR6U7b
+         jiJnswQu7mW4ovRiJFIILqi3SwerydIgFc/6VxpAgSthGQgiroNJDNeZmSSdNdnyEYFR
+         XEoMs94wXxy6zt6Z2lySNUQ5N860t390ATyzPriDG+2IUVgrBxa7+ifdLqo1qW7PSnXm
+         suPUYafUb2zi2ZwyRqI/LewS85pKdZokNGwNupyjHf2SKKuzqaK9fE+/hNI5a9cCIUe2
+         +Ugu5YOk2llGsmyq7sJqN7iiatcrnctA62xVqx/9/rvlLfu7gpDN03KFZLCThUY3/Dpd
+         iZCg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690370116; x=1690974916;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=lChKNKegfLv8YzWr0ThP7tf6+B40c9uLj92oms8T8Po=;
+        b=W1g+FosiIH0hQG7MWxoVBC/bY0OROSpbm/wik3mj//hnrY1JHPAfaZu8NpzFHTNxHk
+         12jahUXXFc2oNpocJCxmMlYAD0T2Kj5JTDglELQ9C0Qv5/rYV1LtG7IQb8HNRPkHggFF
+         nN5sigMzW4iIAedJnWBJTSfi8mC/OW7x7GMc3ssiPudwztt9dVPETeBIa+bOELg7OCFT
+         jgs+M4RRFO0I8CPpYgD0hr5mMa2VCyGQi9qWMlNND6JHfxmE1k8OLxA8ySL5ds9qe6UC
+         v7eTA2s0s1PH3BGN1ARR5TM1Rqliw5/oQ7sa/Y3vl29Am6FclSiXK9fBocH4uUZiH8yt
+         x/Yg==
+X-Gm-Message-State: ABy/qLaFPCX4lroyH1kfCxf9Hxi6OsfF/lboz/Et+kxNQHVmNKSh9X2t
+        n6loBXyJO2KnTl66aGBWKwtcBA==
+X-Google-Smtp-Source: APBJJlG1Wgq0HOju4vWFnsvGKBJU9wiiZUckr5/BZIBoid1hxh0MHbzqfcNpHvRviJzmI2oczH6Wpw==
+X-Received: by 2002:a17:907:6d05:b0:994:fec:e1b7 with SMTP id sa5-20020a1709076d0500b009940fece1b7mr5592756ejc.0.1690370116633;
+        Wed, 26 Jul 2023 04:15:16 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id m26-20020a170906849a00b00982a352f078sm9291152ejx.124.2023.07.26.04.15.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 26 Jul 2023 04:15:16 -0700 (PDT)
+Message-ID: <8bd37e11-2861-7877-0321-3f89cd088532@linaro.org>
+Date:   Wed, 26 Jul 2023 13:15:14 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="glv2skkv3tf7s5b2"
-Content-Disposition: inline
-In-Reply-To: <DB7PR04MB40107ED22966EF83DDA0759B9000A@DB7PR04MB4010.eurprd04.prod.outlook.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:b01:1d::7b
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH V1 2/2] regulator: aw37503: add device-tree binding
+Content-Language: en-US
+To:     like@awinic.com, lgirdwood@gmail.com, broonie@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        liweilei@awinic.com, liangdong@awinic.com, wangweidong.a@awinic.com
+References: <20230726081612.586295-1-like@awinic.com>
+ <20230726081612.586295-3-like@awinic.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230726081612.586295-3-like@awinic.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 26/07/2023 10:16, like@awinic.com wrote:
+> From: Alec Li <like@awinic.com>
+> 
+> Add aw37503 regulator device-tree binding documentation
 
---glv2skkv3tf7s5b2
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+subject rather like:
+regulator: dt-bindings: Add Awinic aw37503
 
-On 26.07.2023 11:10:10, Bough Chen wrote:
-> > >  arch/arm64/boot/dts/freescale/imx93.dtsi | 2 ++
-> > >  1 file changed, 2 insertions(+)
-> > >
-> > > diff --git a/arch/arm64/boot/dts/freescale/imx93.dtsi
-> > > b/arch/arm64/boot/dts/freescale/imx93.dtsi
-> > > index 4ec9df78f205..d2040019e9c7 100644
-> > > --- a/arch/arm64/boot/dts/freescale/imx93.dtsi
-> > > +++ b/arch/arm64/boot/dts/freescale/imx93.dtsi
-> > > @@ -319,6 +319,7 @@ flexcan1: can@443a0000 {
-> > >  				assigned-clock-parents =3D <&clk
-> > IMX93_CLK_SYS_PLL_PFD1_DIV2>;
-> > >  				assigned-clock-rates =3D <40000000>;
-> > >  				fsl,clk-source =3D /bits/ 8 <0>;
-> > > +				fsl,stop-mode =3D <&anomix_ns_gpr 0x14 0>;
-> >=20
-> > I think there's a typo in the mainline imx93.dtsi. AFAICS it's supposed=
- to be
-> > "aonmix_ns_gpr", not "anomix_ns_gpr". But that's a different problem to
-> > patch :)
->=20
-> Yes, this is a typo.
-> >=20
-> > AFAICS, according to imx93, rev2 data sheet, offset 0x14 is 76.6.1.3 QC=
-HANNEL
-> > DISABLE (QCH_DIS) and bit 0 is "GPIO1". Are you sure this is the correc=
-t reg?
-> >=20
->=20
-> Imx93 A1 doc has some update, I double confirm with the internal doc and =
-IC team, the setting is correct.
-> I also test on imx93-9x9 qsb board, system can be wakeup by this setting.
+> 
+> Signed-off-by: Alec Li <like@awinic.com>
+> ---
+>  .../bindings/regulator/awinic,aw37503.yaml    | 73 +++++++++++++++++++
+>  1 file changed, 73 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/regulator/awinic,aw37503.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/regulator/awinic,aw37503.yaml b/Documentation/devicetree/bindings/regulator/awinic,aw37503.yaml
+> new file mode 100644
+> index 000000000000..0cd6fb001e20
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/regulator/awinic,aw37503.yaml
+> @@ -0,0 +1,73 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/regulator/awinic,aw37503.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Awinic AW37503 Voltage Regulator
+> +
+> +maintainers:
+> +  - Alec Li <like@awinic.com>
+> +
+> +description: |
 
-Thanks for double checking.
+Do not need '|' unless you need to preserve formatting.
 
-Marc
+> +  The AW37503 is dual voltage regulator, designed to support positive/negative
+> +  supply for driving TFT-LCD panels. It support software-configurable output
+> +  switching and monitoring. The output voltages can be programmed via an I2C
+> +  compatible interface.
+> +
+> +properties:
+> +  compatible:
+> +    const:
+> +      - awinic,aw37503
 
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
+This has to be in one line. As pointed out by Rob's bot: please test it
+before sending.
 
---glv2skkv3tf7s5b2
-Content-Type: application/pgp-signature; name="signature.asc"
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  patternProperties:
 
------BEGIN PGP SIGNATURE-----
+<sigh>
 
-iQEzBAABCgAdFiEEDs2BvajyNKlf9TJQvlAcSiqKBOgFAmTA/7UACgkQvlAcSiqK
-BOj8HAf/ad3k8d8Ns6FEeuNcOzdNMPToWeyL2H6xN/1lD88jnF7pCPAsVt9xajCp
-lQNb6Y4Nv0av+B2Q1qzdypwz4IIxPdzkkFWA7L3c1+59tO+SKxsJEBU9K9PYEw3b
-jrR84W40irP0bpSDJIP3VcIfLMa5U8c7LkjNIaZHv73E74GmF1zwGGMasxTYbzNi
-Hzcqqyg5vXPp0Lyb/PI6Rp+tT/DlelupD3R3BMhhmhBhJ8cWXVVFldPB8G7kys49
-CqXRSzvg/X+oKs4didIPKPhUF0ay/HkcY+KuitVm/pi42qYNNKKTaRYKFoTLBAGn
-Dtxq//ja6lLqhS/+bgOm/7g4F0kTjw==
-=YycX
------END PGP SIGNATURE-----
+> +    "^out[pn]$":
+> +      type: object
+> +      $ref: regulator.yaml#
+> +      unvaluatedproperties: false
+> +
+> +      required:
+> +        - regulator-name
+> +        - enable-gpios
 
---glv2skkv3tf7s5b2--
+regulator.yaml does not define enable-gpios, so you must define it in
+properties.
+
+> +
+> +      additionalProperties: false
+
+Drop, you already have unevaluatedProperties.
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - outp
+> +  - outn
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        aw37503@3e {
+
+Node names should be generic. See also an explanation and list of
+examples (not exhaustive) in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+
+Best regards,
+Krzysztof
+
