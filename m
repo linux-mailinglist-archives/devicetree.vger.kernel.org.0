@@ -2,120 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E31E07636D4
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 14:54:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7611D7636F0
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 15:00:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231910AbjGZMyp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jul 2023 08:54:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56592 "EHLO
+        id S231617AbjGZNA3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jul 2023 09:00:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58802 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232186AbjGZMyp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 08:54:45 -0400
-Received: from mail-io1-xd2a.google.com (mail-io1-xd2a.google.com [IPv6:2607:f8b0:4864:20::d2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD83B19A4;
-        Wed, 26 Jul 2023 05:54:43 -0700 (PDT)
-Received: by mail-io1-xd2a.google.com with SMTP id ca18e2360f4ac-7748ca56133so60676139f.0;
-        Wed, 26 Jul 2023 05:54:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1690376083; x=1690980883;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=nypF9NHVLOaXJSPHj2PIoRQwBC4E0LVifIvHGKcCHtE=;
-        b=D9g3omdONjBXXMYcUf0O6KEYiak7UGvpRF/zsEY8116/GDMzWPXWRUB5l3mYfkIsXA
-         PlAZZ1qWeprT+28VZ+uDoGEoZnvrY3KzGgjfugbusQxF4KotB3iPkNLXKiJHMlJh0Lh2
-         Hsfe1xi7kwzErrYZwdiL4crpUhjI8EraN02qxKCKmQoPk8IautwMpImnc/idJsTi53OM
-         zxf9bn1OxCVjtwW/pCJjGwU/5/38kVAKarjblXWdWqTcWdCLU/y587mVAnlViSWiIibN
-         lon7aeW0aCjovghlW76tXd/42xSqSIicsR9COdZ/YKN0n0QvhnVg3hS9zAGqzi/ethiG
-         yiNA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690376083; x=1690980883;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=nypF9NHVLOaXJSPHj2PIoRQwBC4E0LVifIvHGKcCHtE=;
-        b=PBfEUcWRlloxcPFgbTUn7GTqns13uphm0iGIZU/GLnsQjFeF5bdJE2B4fWUTwpdhp0
-         dF2EXsLOcesKTxadwoNDD2ZXoOC0r4mDJZIq5nyb3urT80B5He8ZwfGNa/6uOo8gr29A
-         2VanJ5XAdB416vuN+Xvko6sTEzyF9066XcGfEltsD60a5H393ZJHpyVMIY92/4OMuqBu
-         aOCR1/4ceW8A1zi+Egx184DJrRCSYVaB97gRB4oO/1cUohED4wSarGkzOF3YcjZlqDD6
-         Y5Imh0IQW9IswIPqE6AowwS7k148eDpCrzy/vDDCSsRPvctf0mB/b5pYvLvloF/63rTW
-         yjBA==
-X-Gm-Message-State: ABy/qLaRhVLIMZf1OJLbbqXIuPz357u0otK/DWGYfe5sBUDISbp1IezE
-        Qv1nJYVn9SWj4t0h4SRMJ/xMH5w4rb4kCYOtJUc=
-X-Google-Smtp-Source: APBJJlGXQsHeiyQ/2qrgTv0a14/QMTqvV+VTmfjlLFi+S8pP8K0OZL1w3229Nv0NlJuAmedOkhl/7MEHqeBufUu+Dbc=
-X-Received: by 2002:a05:6602:3981:b0:787:16ec:2699 with SMTP id
- bw1-20020a056602398100b0078716ec2699mr1919140iob.2.1690376083097; Wed, 26 Jul
- 2023 05:54:43 -0700 (PDT)
+        with ESMTP id S233279AbjGZNA2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 09:00:28 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E9661BC2;
+        Wed, 26 Jul 2023 06:00:25 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id C2D56617A5;
+        Wed, 26 Jul 2023 13:00:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D2C66C433CA;
+        Wed, 26 Jul 2023 13:00:19 +0000 (UTC)
+Date:   Wed, 26 Jul 2023 18:30:15 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Serge Semin <fancer.lancer@gmail.com>
+Cc:     Manivannan Sadhasivam <mani@kernel.org>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        jingoohan1@gmail.com, gustavo.pimentel@synopsys.com,
+        lpieralisi@kernel.org, robh+dt@kernel.org, kw@linux.com,
+        bhelgaas@google.com, kishon@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        marek.vasut+renesas@gmail.com, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v18 04/20] PCI: dwc: Change arguments of
+ dw_pcie_prog_outbound_atu()
+Message-ID: <20230726130015.GA5633@thinkpad>
+References: <20230721074452.65545-1-yoshihiro.shimoda.uh@renesas.com>
+ <20230721074452.65545-5-yoshihiro.shimoda.uh@renesas.com>
+ <20230724074556.GC6291@thinkpad>
+ <ezuyypjmhkb4nsruy5kdoopg537yqg2paf4acgfyib6p7kj7g5@kumpnp2cr4zh>
 MIME-Version: 1.0
-References: <20230726123747.4097755-1-james.hilliard1@gmail.com> <20230726123747.4097755-3-james.hilliard1@gmail.com>
-In-Reply-To: <20230726123747.4097755-3-james.hilliard1@gmail.com>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Wed, 26 Jul 2023 09:54:30 -0300
-Message-ID: <CAOMZO5AdCxQsQA946R8Xp9o7SCS=+wco4aGyqJ8P2ENsvpaMmQ@mail.gmail.com>
-Subject: Re: [PATCH v7 3/3] ARM: dts: imx6q: Add Variscite MX6 Custom board support
-To:     James Hilliard <james.hilliard1@gmail.com>
-Cc:     devicetree@vger.kernel.org,
-        Pierluigi Passaro <pierluigi.p@variscite.com>,
-        Gregory CLEMENT <gregory.clement@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Marek Vasut <marex@denx.de>,
-        Stefan Wahren <stefan.wahren@chargebyte.com>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        Tim Harvey <tharvey@gateworks.com>,
-        Andreas Kemnade <andreas@kemnade.info>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        Christoph Niedermaier <cniedermaier@dh-electronics.com>,
-        Li Yang <leoyang.li@nxp.com>, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <ezuyypjmhkb4nsruy5kdoopg537yqg2paf4acgfyib6p7kj7g5@kumpnp2cr4zh>
+X-Spam-Status: No, score=-6.7 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 26, 2023 at 9:38=E2=80=AFAM James Hilliard
-<james.hilliard1@gmail.com> wrote:
->
-> This patch adds support for the Variscite MX6 SoM Carrier Board.
->
-> This Carrier-Board has the following :
-> - LVDS interface for the VLCD-CAP-GLD-LVDS 7" LCD 800 x 480 touch display
-> - HDMI Connector
-> - USB Host + USB OTG Connector
-> - 10/100/1000 Mbps Ethernet
-> - miniPCI-Express slot
-> - SD Card connector
-> - Audio Headphone/Line In jack connectors
-> - S-ATA
-> - On-board DMIC
-> - RS485 Header
-> - CAN bus header
-> - SPI header
-> - Camera Interfaces header
-> - OnBoard RTC with Coin Backup battery socket
-> - RS232 Debug Header (IDC10)
-> - RS232 DTE
->
-> Product Page : https://www.variscite.com/product/single-board-computers/v=
-ar-mx6customboard
->
-> The dts file based on the ones provided by Variscite on their own
-> kernel, but adapted for mainline.
->
-> Cc: Pierluigi Passaro <pierluigi.p@variscite.com>
-> Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
-> Signed-off-by: James Hilliard <james.hilliard1@gmail.com>
+On Wed, Jul 26, 2023 at 08:02:24AM +0300, Serge Semin wrote:
+> On Mon, Jul 24, 2023 at 01:15:56PM +0530, Manivannan Sadhasivam wrote:
+> > On Fri, Jul 21, 2023 at 04:44:36PM +0900, Yoshihiro Shimoda wrote:
+> > > The __dw_pcie_prog_outbound_atu() currently has 6 arguments.
+> > > To support INTx IRQs in the future, it requires an additional 2
+> > > arguments. For improved code readability, introduce the struct
+> > > dw_pcie_ob_atu_cfg and update the arguments of
+> > > dw_pcie_prog_outbound_atu().
+> > > 
+> > > Consequently, remove __dw_pcie_prog_outbound_atu() and
+> > > dw_pcie_prog_ep_outbound_atu() because there is no longer
+> > > a need.
+> > > 
+> > > No behavior changes.
+> > > 
+> > > Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+> > 
+> > One nit below. With that,
+> > 
+> > Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> > 
+> > > Reviewed-by: Serge Semin <fancer.lancer@gmail.com>
+> > > ---
+> > >  .../pci/controller/dwc/pcie-designware-ep.c   | 21 +++++---
+> > >  .../pci/controller/dwc/pcie-designware-host.c | 52 +++++++++++++------
+> > >  drivers/pci/controller/dwc/pcie-designware.c  | 49 ++++++-----------
+> > >  drivers/pci/controller/dwc/pcie-designware.h  | 15 ++++--
+> > >  4 files changed, 77 insertions(+), 60 deletions(-)
+> > > 
+> > 
+> > [...]
+> > 
+> > > diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci/controller/dwc/pcie-designware.h
+> > > index 3c06e025c905..85de0d8346fa 100644
+> > > --- a/drivers/pci/controller/dwc/pcie-designware.h
+> > > +++ b/drivers/pci/controller/dwc/pcie-designware.h
+> > > @@ -288,6 +288,15 @@ enum dw_pcie_core_rst {
+> > >  	DW_PCIE_NUM_CORE_RSTS
+> > >  };
+> > >  
+> > > +struct dw_pcie_ob_atu_cfg {
+> > > +	int index;
+> > > +	int type;
+> > > +	u8 func_no;
+> > > +	u64 cpu_addr;
+> > > +	u64 pci_addr;
+> > > +	u64 size;
+> > 
+> 
+> > Reorder the members in below order to avoid holes:
+> > 
+> > u64
+> > int
+> > u8
+> 
+> One more time. Your suggestion won't prevent the compiler from adding
+> the pads. (If by "holes" you meant the padding. Otherwise please
+> elaborate what you meant?).
 
-Reviewed-by: Fabio Estevam <festevam@gmail.com>
+Struct padding is often referred as struct holes. So yes, I'm referring the
+same.
+
+> The structure will have the same size of
+> 40 bytes in both cases. So your suggestion will just worsen the
+> structure readability from having a more natural parameters order (MW
+> index, type, function, and then the mapping parameters) to a redundant
+> type-based order.
+> 
+
+This is a common comment I provide for all structures. Even though the current
+result (reordering) doesn't save any space, when the structure grows big (who
+knows), we often see more holes/padding being inserted by the compiler if the
+members are not ordered in the descending order w.r.t their size.
+
+I agree that it makes more clear if the members are grouped based on their
+function etc... but for large structures this would often add more padding/hole.
+
+- Mani
+
+> -Serge(y)
+> 
+> > 
+> > - Mani
+> > 
+> > > +};
+> > > +
+> > >  struct dw_pcie_host_ops {
+> > >  	int (*host_init)(struct dw_pcie_rp *pp);
+> > >  	void (*host_deinit)(struct dw_pcie_rp *pp);
+> > > @@ -416,10 +425,8 @@ void dw_pcie_write_dbi2(struct dw_pcie *pci, u32 reg, size_t size, u32 val);
+> > >  int dw_pcie_link_up(struct dw_pcie *pci);
+> > >  void dw_pcie_upconfig_setup(struct dw_pcie *pci);
+> > >  int dw_pcie_wait_for_link(struct dw_pcie *pci);
+> > > -int dw_pcie_prog_outbound_atu(struct dw_pcie *pci, int index, int type,
+> > > -			      u64 cpu_addr, u64 pci_addr, u64 size);
+> > > -int dw_pcie_prog_ep_outbound_atu(struct dw_pcie *pci, u8 func_no, int index,
+> > > -				 int type, u64 cpu_addr, u64 pci_addr, u64 size);
+> > > +int dw_pcie_prog_outbound_atu(struct dw_pcie *pci,
+> > > +			      const struct dw_pcie_ob_atu_cfg *atu);
+> > >  int dw_pcie_prog_inbound_atu(struct dw_pcie *pci, int index, int type,
+> > >  			     u64 cpu_addr, u64 pci_addr, u64 size);
+> > >  int dw_pcie_prog_ep_inbound_atu(struct dw_pcie *pci, u8 func_no, int index,
+> > > -- 
+> > > 2.25.1
+> > > 
+> > 
+> > -- 
+> > மணிவண்ணன் சதாசிவம்
+
+-- 
+மணிவண்ணன் சதாசிவம்
