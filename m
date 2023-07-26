@@ -2,253 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E18D7634B5
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 13:21:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 210987634DA
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 13:26:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230315AbjGZLVr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jul 2023 07:21:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52068 "EHLO
+        id S233538AbjGZL0v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jul 2023 07:26:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56188 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230229AbjGZLVq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 07:21:46 -0400
-Received: from EUR02-VI1-obe.outbound.protection.outlook.com (mail-vi1eur02on2080.outbound.protection.outlook.com [40.107.241.80])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F8D1FD;
-        Wed, 26 Jul 2023 04:21:44 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=LN8ylth24eTMiLMqm+A+aq3KwzVzL1mWpXIL5lhk1zXyeXP6w+16R/dzfHIb13gaZPR55Fm84x81BBTdttOXDvbw/hR+tSwfaJlbRAlqBxZvSNvAJYSnp409HNT29H6gbvl/SFGBcNDX7vXOBzVU3nImT0DF0lnuKiga4zJtj7x9yQazuMgaHXPQkaskmr3agyxwFjrfwZHorwWtAidvbyA9Wkno1Hol8oTtpwD8YCgb8CBEhyebfQpXBB07bz9bVID9IEWNXVi5jlKhee703p3cDWXNtY1qFezY1HIyc6sNYBA5Llb+iCT32/zbBaP1QnF3ti5KpoGAU1xZ3rXkNQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ElRugvWN47yKwMJ5g5V6v/TdVSudwimQn3gWZdJLl4Q=;
- b=mm/R9/Y+0wD7yzQIWhberVBXxcUZU4HsbsaKBAWvf/7Nx3o3+wfe9hq2xBzL0cWB8iIoFg7wAuLecacg/kqxIjlzGYrOBvee4bdbE2t8sBvYVzH1lHGIU5H7zaH4yu+Q5amJwJmuclQquBhHM/gmc7mkouTLnAJYOQm+K5H9WiBvf4+mtxzwfZfsze/Qr8b8I/OXikIx76zwhCEekL/4uuXFM28Fc+kth3pWcjCcKzfRsSpxgo7wwE3s0v/FRZulWNHGlmQt0WSU/lEx+huwCKvOIEpFdYWtoLOeSviyMxAZFbNG6+4X8Jtu/3CDFp2439fkzQj4vy7lqleEtgdHbA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ElRugvWN47yKwMJ5g5V6v/TdVSudwimQn3gWZdJLl4Q=;
- b=LFEHxdHjDNJmG6iyc4BLQfbQ7dqMS8TLsf5gHBOs6/STbvFAtB6p1zxJ3dPw+alA4DRe0KeDA3lLkXrKOipkcpyNgMhItwBF7DGo+pB9++swvXKWOUNT7FgKbxh8kVXb9A3RDkLTo0Z+sAtLFyrfcpU6yt2zAX9cqARU9aA5BlU=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from DB7PR04MB4010.eurprd04.prod.outlook.com (2603:10a6:5:21::30) by
- DB8PR04MB6892.eurprd04.prod.outlook.com (2603:10a6:10:113::10) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6631.29; Wed, 26 Jul 2023 11:21:36 +0000
-Received: from DB7PR04MB4010.eurprd04.prod.outlook.com
- ([fe80::d73c:e747:3911:dcc]) by DB7PR04MB4010.eurprd04.prod.outlook.com
- ([fe80::d73c:e747:3911:dcc%5]) with mapi id 15.20.6631.026; Wed, 26 Jul 2023
- 11:21:36 +0000
-From:   haibo.chen@nxp.com
-To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        wg@grandegger.com, mkl@pengutronix.de
-Cc:     kernel@pengutronix.de, linux-imx@nxp.com, davem@davemloft.net,
-        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
-        haibo.chen@nxp.com, devicetree@vger.kernel.org,
-        linux-can@vger.kernel.org, netdev@vger.kernel.org
-Subject: [PATCH v3 2/2] can: flexcan: remove the auto stop mode for IMX93
-Date:   Wed, 26 Jul 2023 19:24:58 +0800
-Message-Id: <20230726112458.3524165-2-haibo.chen@nxp.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230726112458.3524165-1-haibo.chen@nxp.com>
-References: <20230726112458.3524165-1-haibo.chen@nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SG2P153CA0049.APCP153.PROD.OUTLOOK.COM (2603:1096:4:c6::18)
- To DB7PR04MB4010.eurprd04.prod.outlook.com (2603:10a6:5:21::30)
+        with ESMTP id S233662AbjGZL0g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 07:26:36 -0400
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D38E2696
+        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 04:26:22 -0700 (PDT)
+Received: by mail-wr1-x42a.google.com with SMTP id ffacd0b85a97d-3141fa31c2bso5226111f8f.2
+        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 04:26:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1690370780; x=1690975580;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Me9DdLikay9/mg6C3pH4uUNkCjGXHrRqvb1zE6qVcE8=;
+        b=ujTe+OeVXyCQq14CK3Lba2vXYOY9/0WyK+FgPAmVWPvzh3WNG2TICYQast91tQL3J7
+         7nZSIWWrhBBoDpJgfuV54SLHBWWYOCemg/C5NM5OftTyQk8YsN3RyzWTeINC6jiP20T6
+         Yvw+psL8owvkQ0G+pmfjynvhdzpJuaKajxQDJ1sKtdGQylimQcZ8kz/nspw0Bg0GsK07
+         dKIL0khNzLWR6bfDh71j3MQeL6YkTcRBtJvOYrm9MpfVgHft9xgCPLOisrXQndxpjXan
+         wqUtQCJ6w2jldLKMabpDa/QJtc9sU8gKVGiaz5BYvrmdBjU4eesDzOULf9ieBr5AU7d/
+         pQzQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690370780; x=1690975580;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Me9DdLikay9/mg6C3pH4uUNkCjGXHrRqvb1zE6qVcE8=;
+        b=ixVg8Nv1Uy960jqhuE9KUHtYNrq/R3+RkfhGw5FudlWc3mw8dZFO0LvwgjGTOqmHhn
+         2BY+UBTy+vjWeeCGSbwvTeZZV+2g9AgiGC1tBICxtIhsZ7uMJZywSsRstFOXNRktpL3Q
+         T/xr87M8VLKTw7rFXB10NmoilgtxqdAlXkelQ8CJxSSbXWkR4x0jVNCGq4oZ0xuYme84
+         5u2OzC9dLknD5hUQISOeJbtdwKtd4/Cp4ua0J0+y3U7ewyylhvMczb30DhBGnwp37hoc
+         pBk+I0uaPiumqnVc7MIKAb85MwpYrp/87xsIQ/l8OWi8V+LTLwIBSOh4/LNzxkjJdYsj
+         zvSQ==
+X-Gm-Message-State: ABy/qLbNgucA5ndaXmn2KYnDgsefL5GXyvuG7+I8EWJgH9fUxo7Dbti5
+        p4XnwGlgaYoq22CMzDBQ4SrmEw==
+X-Google-Smtp-Source: APBJJlEGjczswR4kEUEn/zYFcZ9/aGxKnTF+3Hy6HdeMe8iP8tSvfbhOFOcSPsrOUXJpQ+OHei9OVw==
+X-Received: by 2002:adf:efcb:0:b0:314:370f:e92c with SMTP id i11-20020adfefcb000000b00314370fe92cmr1190968wrp.67.1690370780412;
+        Wed, 26 Jul 2023 04:26:20 -0700 (PDT)
+Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id h4-20020adfe984000000b003175f00e555sm9584341wrm.97.2023.07.26.04.26.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 26 Jul 2023 04:26:19 -0700 (PDT)
+Message-ID: <a108084b-8044-fe6f-9cb8-df1f3fc6fdfe@linaro.org>
+Date:   Wed, 26 Jul 2023 12:26:18 +0100
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DB7PR04MB4010:EE_|DB8PR04MB6892:EE_
-X-MS-Office365-Filtering-Correlation-Id: f02a20f3-a5f0-4210-a13b-08db8dca7979
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: eKnf84boF3F2D9x2ioNJqcvT43lbCLZlRn74TVKEcFS2yuYZY4QJhbfUdhr5A+rkajg00X8xQRSB8qPrYt0BxpAuDstQEpq/CrRiD7xA9npTJHeb+vWHsKmRIpvjzlEzKJEt3ImCaRs2zzekL//4GXWylw6m1ptnwVjvcAdGCD0cgXoxaHqyqGKjEDmYKHgMOHZuxypUv73GJ3wf8CyvAwzMvkfDl37b76AF9PBvjI4y8Dzc/MYI0KxDjocV5FALUY2Np4SHrvBQ38lO3m0F8e4v8mFtgHFtMDpWJR+TD2S0iOtuNYkhJrcZqXslpWDdz2dfjhqsTSqE1p9/oB2+gTU/RtqtTcCR/enNmVYa3AfaxLuU1RUHXnPkaj9Ehn0VxUCa0BeTwqiAKlppR3zxn1dEhxSoR1QUH4grpu0Ym3zKeNAwsDGnkekyuQ0t5tkX2qK77ZdpMUZJazMdQn2PDHGNh8BuW/rONkjAvTwxNR+uMewXZSSEITk8KMM6Og3V5F/xRuEQndOoKZ9wGTJbn845FhV0fpRUckmGJKA+7GvE7bUk401DrYH7f4iqAHhmQHoJmcr/k+sKdtaABZm9lEy8K5/5o3Ov37FhcJAVhn61O2sFfCKC4TbhdEdZzFHh
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB7PR04MB4010.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(39860400002)(396003)(346002)(376002)(366004)(136003)(451199021)(2906002)(52116002)(6486002)(6666004)(2616005)(38350700002)(38100700002)(36756003)(186003)(7416002)(5660300002)(86362001)(83380400001)(41300700001)(8676002)(316002)(6506007)(26005)(8936002)(1076003)(66556008)(478600001)(6512007)(4326008)(66946007)(9686003)(66476007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?5PvQl5XkUj8yu3b/BTpzMkUCGr6ka3u7h36FJ/Ok6rDc0mdAQeTMmmeLPdSq?=
- =?us-ascii?Q?cyZRNsbV6iRcAPNO/z3Y2gWJTP/FfxstEJ54J79vbY8wKl/bzLGntmIdFBX/?=
- =?us-ascii?Q?errNsQon7KNAjpQUntndEgxqNQJY7Qa6YtP1J6eN023Fg5gyboiiseJLn/m4?=
- =?us-ascii?Q?YdktutY5+jP5tjLnxsBbeakj8cTsiXD8dp1pqD2kKMs8WOpiXBz01jzdIIvr?=
- =?us-ascii?Q?jG+1MzYQX67GjTDL2NMv7kpT75lp6XFWgfDoMOvNUOE7Htk9nNsIVhzya34e?=
- =?us-ascii?Q?21FxHckNPZj5NSzI2aCRjEBTAwpjl65L1xwssdnQ9q1v6KDRsbuo3M4sD3mV?=
- =?us-ascii?Q?XQofCdkezyNpyECqiECECXuNUKwkVMQHMluFNoc3E+p5/XVmC48rm1xwUsJe?=
- =?us-ascii?Q?obeF+fLjvP/2OO1XBl8qyWrhjI4syD048Y7Z8e7PSswzSfwPy5SZEr/8PtZa?=
- =?us-ascii?Q?9bF39GNXiBYai/VMwp/Oi7jmz+rpJtHrcUv53mUAx4lDvnRQsvpPOl8QQeTs?=
- =?us-ascii?Q?tI9bQZ1HD/QzDOcnxKyoph1kWToxODoz/BYiAk/UW3hc3Te1XIbo3Bj64xa0?=
- =?us-ascii?Q?MwCerCjuwOM+8Y/Z7wDmIXMSlnQcoeys6uhuxbhKRos3QYnO+0YdyDCjsXCA?=
- =?us-ascii?Q?kO8isa9Ow30FJlbaKCC4I1xXXceHvNI3uEJlsLl1r0AaC32OsKFoJz0SfDh7?=
- =?us-ascii?Q?Avsp2laqIUu7sl4t071JmucrkFhitQUQNUF7muHIwT1wO3NhXGroTZg3Z+wg?=
- =?us-ascii?Q?5R9SSB3JdF7f7wmo+0+Ayj52VjJ3F+kyIRgdpOpDlGNTEr5Ukran2hjSnons?=
- =?us-ascii?Q?j6QWckL/bG7li2OCBmPJpWPL8hWpc6ZDQZ0YWxKqa4KWIVAgms8z0WbAdMPw?=
- =?us-ascii?Q?0smTeBhJIWmvnhLwLboEOcfwwniBWjHixD602RH7PpWSKHXfalHVT+XZrWcG?=
- =?us-ascii?Q?eOdnfiXSYyA63pM0lrfxnFZ6177HdlzsbxC3rnhzCn3LVW3x4pZRdP31DWat?=
- =?us-ascii?Q?vXsbj6/2UrpI1MA8si1C9MezXaEK2ls10HoIWfSOdIaJJ+p6KlABVhbN6kFx?=
- =?us-ascii?Q?8Kz8N+o0oP3Mb5k0PNhogycuUCg1W7LJtYIwTLtArZS7vRQmiQhWVUjhBGDY?=
- =?us-ascii?Q?Iwb9erVQLqU3tCs4v/gmYZ17lezXDWDCbm7eA/vtkuAlBmUDFJX3RM0SRXWu?=
- =?us-ascii?Q?EYhu9zVPIK7XqxqPH8Lp/N6OC2BSnytAiYP4U6PHi6tgQQPVEc7c2QidniLu?=
- =?us-ascii?Q?twYNEk2H4bD73mgNHApVacytXa4sW7Wc0i5yu61tkq8D0eJefIHtELHq7pt6?=
- =?us-ascii?Q?zU6gxWaS6HXh6lyCEoin9T4sAdp64m+aiC3JYjdwGNrcH5HB0Nwy/hoalan0?=
- =?us-ascii?Q?aqHJcnE60HT4kihuNL3aWd/MEbvhdDG3W6qHjL1ah1t64ekFVh791DmKI9u9?=
- =?us-ascii?Q?lWZ5EBip4FbyljDOgrgARoe/X5Cc1C/6wKYv67Oi1J0dovR7Bh0mgC/Yl5w9?=
- =?us-ascii?Q?0v62XfQmtAoJqnH7w/fRYvKxlrbeleioLgwHXhgqldvbJmATfgu3l9y4GKKg?=
- =?us-ascii?Q?TntB4onefY90Ala9ikfPy9lfMpY1y+RjqbcrAcXG?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f02a20f3-a5f0-4210-a13b-08db8dca7979
-X-MS-Exchange-CrossTenant-AuthSource: DB7PR04MB4010.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Jul 2023 11:21:36.6684
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Y3xxxGIq7NkbnmTRiXWlKbJ42OHw0eSRyAG1Pqo7nnRkylRLGVXgNveXp0/Z4yk49jSNbw0hiGMGkbz1XTKk4A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR04MB6892
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v7 2/6] media: admin-guide: Add starfive_camss.rst for
+ Starfive Camera Subsystem
+Content-Language: en-US
+To:     Jack Zhu <jack.zhu@starfivetech.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Robert Foss <rfoss@kernel.org>,
+        Todor Tomov <todor.too@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Eugen Hristev <eugen.hristev@collabora.com>,
+        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
+Cc:     linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, changhuang.liang@starfivetech.com
+References: <20230619112838.19797-1-jack.zhu@starfivetech.com>
+ <20230619112838.19797-3-jack.zhu@starfivetech.com>
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <20230619112838.19797-3-jack.zhu@starfivetech.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Haibo Chen <haibo.chen@nxp.com>
+On 19/06/2023 12:28, Jack Zhu wrote:
+> Add starfive_camss.rst file that documents the Starfive Camera
+> Subsystem driver which is used for handing image sensor data.
+> 
+> Signed-off-by: Jack Zhu <jack.zhu@starfivetech.com>
+> ---
+>   .../admin-guide/media/starfive_camss.rst      | 57 +++++++++++++++++++
+>   .../media/starfive_camss_graph.dot            | 16 ++++++
+>   .../admin-guide/media/v4l-drivers.rst         |  1 +
+>   MAINTAINERS                                   |  1 +
+>   4 files changed, 75 insertions(+)
+>   create mode 100644 Documentation/admin-guide/media/starfive_camss.rst
+>   create mode 100644 Documentation/admin-guide/media/starfive_camss_graph.dot
+> 
+> diff --git a/Documentation/admin-guide/media/starfive_camss.rst b/Documentation/admin-guide/media/starfive_camss.rst
+> new file mode 100644
+> index 000000000000..a6378849384f
+> --- /dev/null
+> +++ b/Documentation/admin-guide/media/starfive_camss.rst
+> @@ -0,0 +1,57 @@
+> +.. SPDX-License-Identifier: GPL-2.0
+> +
+> +.. include:: <isonum.txt>
+> +
+> +================================
+> +Starfive Camera Subsystem driver
+> +================================
+> +
+> +Introduction
+> +------------
+> +
+> +This file documents the driver for the Starfive Camera Subsystem found on
+> +Starfive JH7110 SoC. The driver is located under drivers/media/platform/
+> +starfive.
+> +
+> +The driver implements V4L2, Media controller and v4l2_subdev interfaces.
+> +Camera sensor using V4L2 subdev interface in the kernel is supported.
+> +
+> +The driver has been successfully used on the Gstreamer 1.18.5 with
+> +v4l2src plugin.
+> +
+> +
+> +Starfive Camera Subsystem hardware
+> +----------------------------------
+> +
+> +The Starfive Camera Subsystem hardware consists of:
+> +
+> +- MIPI DPHY Receiver: receives mipi data from a MIPI camera sensor.
 
-IMX93 A0 chip involve the internal q-channel handshake in LPCG and
-CCM to automatically handle the Flex-CAN IPG STOP signal. Only after
-FLEX-CAN enter stop mode then can support the self-wakeup feature.
-But meet issue when do the continue system PM stress test. When config
-the CAN as wakeup source, the first time after system suspend, any data
-on CAN bus can wakeup the system, this is as expect. But the second time
-when system suspend, data on CAN bus can't wakeup the system. If continue
-this test, we find in odd time system enter suspend, CAN can wakeup the
-system, but in even number system enter suspend, CAN can't wakeup the
-system. IC find a bug in the auto stop mode logic, and can't fix it easily.
-So for the new imx93 A1, IC drop the auto stop mode and involve the
-GPR to support stop mode (used before). IC define a bit in GPR which can
-trigger the IPG STOP signal to Flex-CAN, let it go into stop mode.
-And NXP claim to drop IMX93 A0, and only support IMX93 A1. So this patch
-remove the auto stop mode, and add flag FLEXCAN_QUIRK_SETUP_STOP_MODE_GPR
-to imx93.
+Feels like a terribe nit-pick but you have "mipi" and "MIPI" here. I'd 
+be consistent with one - recommend MIPI throughout your documentation.
 
-Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
+> +- MIPI CSIRx Controller: is responsible for handling and decoding CSI2 protocol
+> +  based camera sensor data stream.
+> +- ISP: handles the image data streams from the MIPI CSIRx Controller.
+
+Maybe you've done this elsewhere but, it would be worthwhile describing 
+what the ISP does. Debayering ? 3As ? Just raw dumps ?
+
+> +- VIN(Video In): a top-level module, is responsible for controlling power
+> +  and clocks to other modules, dumps the input data to memory or transfers the
+> +  input data to ISP.
+> +
+> +
+> +Topology
+> +--------
+> +
+> +The media controller pipeline graph is as follows:
+> +
+> +.. _starfive_camss_graph:
+> +
+> +.. kernel-figure:: starfive_camss_graph.dot
+> +    :alt:   starfive_camss_graph.dot
+> +    :align: center
+> +
+> +The driver has 2 video devices:
+> +
+> +- stf_vin0_wr_video0: capture device for images directly from the VIN module.
+
+OK so you can get the raw images.
+
+> +- stf_vin0_isp0_video1: capture device for images without scaling.
+> +
+> +The driver has 3 subdevices:
+> +
+> +- stf_isp0: is responsible for all the isp operations.
+> +- stf_vin0_wr: used to dump RAW images to memory.
+> +- stf_vin0_isp0: used to capture images for the stf_vin0_isp0_video1 device.
+
+But what is being output here ? RGB, jpeg, YUV ?
+It would be worth adding a few bits of text to describe that so you 
+don't have to dive into code to understand it.
+
 ---
- drivers/net/can/flexcan/flexcan-core.c | 46 ++++++++------------------
- drivers/net/can/flexcan/flexcan.h      |  2 --
- 2 files changed, 13 insertions(+), 35 deletions(-)
-
-diff --git a/drivers/net/can/flexcan/flexcan-core.c b/drivers/net/can/flexcan/flexcan-core.c
-index ff0fc18baf13..d8be69f4a0c3 100644
---- a/drivers/net/can/flexcan/flexcan-core.c
-+++ b/drivers/net/can/flexcan/flexcan-core.c
-@@ -348,7 +348,7 @@ static struct flexcan_devtype_data fsl_imx8mp_devtype_data = {
- static struct flexcan_devtype_data fsl_imx93_devtype_data = {
- 	.quirks = FLEXCAN_QUIRK_DISABLE_RXFG | FLEXCAN_QUIRK_ENABLE_EACEN_RRS |
- 		FLEXCAN_QUIRK_DISABLE_MECR | FLEXCAN_QUIRK_USE_RX_MAILBOX |
--		FLEXCAN_QUIRK_BROKEN_PERR_STATE | FLEXCAN_QUIRK_AUTO_STOP_MODE |
-+		FLEXCAN_QUIRK_BROKEN_PERR_STATE | FLEXCAN_QUIRK_SETUP_STOP_MODE_GPR |
- 		FLEXCAN_QUIRK_SUPPORT_FD | FLEXCAN_QUIRK_SUPPORT_ECC |
- 		FLEXCAN_QUIRK_SUPPORT_RX_MAILBOX |
- 		FLEXCAN_QUIRK_SUPPORT_RX_MAILBOX_RTR,
-@@ -544,11 +544,6 @@ static inline int flexcan_enter_stop_mode(struct flexcan_priv *priv)
- 	} else if (priv->devtype_data.quirks & FLEXCAN_QUIRK_SETUP_STOP_MODE_GPR) {
- 		regmap_update_bits(priv->stm.gpr, priv->stm.req_gpr,
- 				   1 << priv->stm.req_bit, 1 << priv->stm.req_bit);
--	} else if (priv->devtype_data.quirks & FLEXCAN_QUIRK_AUTO_STOP_MODE) {
--		/* For the auto stop mode, software do nothing, hardware will cover
--		 * all the operation automatically after system go into low power mode.
--		 */
--		return 0;
- 	}
- 
- 	return flexcan_low_power_enter_ack(priv);
-@@ -574,12 +569,6 @@ static inline int flexcan_exit_stop_mode(struct flexcan_priv *priv)
- 	reg_mcr &= ~FLEXCAN_MCR_SLF_WAK;
- 	priv->write(reg_mcr, &regs->mcr);
- 
--	/* For the auto stop mode, hardware will exist stop mode
--	 * automatically after system go out of low power mode.
--	 */
--	if (priv->devtype_data.quirks & FLEXCAN_QUIRK_AUTO_STOP_MODE)
--		return 0;
--
- 	return flexcan_low_power_exit_ack(priv);
- }
- 
-@@ -1994,13 +1983,18 @@ static int flexcan_setup_stop_mode(struct platform_device *pdev)
- 		ret = flexcan_setup_stop_mode_scfw(pdev);
- 	else if (priv->devtype_data.quirks & FLEXCAN_QUIRK_SETUP_STOP_MODE_GPR)
- 		ret = flexcan_setup_stop_mode_gpr(pdev);
--	else if (priv->devtype_data.quirks & FLEXCAN_QUIRK_AUTO_STOP_MODE)
--		ret = 0;
- 	else
- 		/* return 0 directly if doesn't support stop mode feature */
- 		return 0;
- 
--	if (ret)
-+	/* If ret is -EINVAL, this means SoC claim to support stop mode, but
-+	 * dts file lack the stop mode property definition. For this case,
-+	 * directly return 0, this will skip the wakeup capable setting and
-+	 * will not block the driver probe.
-+	 */
-+	if (ret == -EINVAL)
-+		return 0;
-+	else if (ret)
- 		return ret;
- 
- 	device_set_wakeup_capable(&pdev->dev, true);
-@@ -2320,16 +2314,8 @@ static int __maybe_unused flexcan_noirq_suspend(struct device *device)
- 	if (netif_running(dev)) {
- 		int err;
- 
--		if (device_may_wakeup(device)) {
-+		if (device_may_wakeup(device))
- 			flexcan_enable_wakeup_irq(priv, true);
--			/* For auto stop mode, need to keep the clock on before
--			 * system go into low power mode. After system go into
--			 * low power mode, hardware will config the flexcan into
--			 * stop mode, and gate off the clock automatically.
--			 */
--			if (priv->devtype_data.quirks & FLEXCAN_QUIRK_AUTO_STOP_MODE)
--				return 0;
--		}
- 
- 		err = pm_runtime_force_suspend(device);
- 		if (err)
-@@ -2347,15 +2333,9 @@ static int __maybe_unused flexcan_noirq_resume(struct device *device)
- 	if (netif_running(dev)) {
- 		int err;
- 
--		/* For the wakeup in auto stop mode, no need to gate on the
--		 * clock here, hardware will do this automatically.
--		 */
--		if (!(device_may_wakeup(device) &&
--		      priv->devtype_data.quirks & FLEXCAN_QUIRK_AUTO_STOP_MODE)) {
--			err = pm_runtime_force_resume(device);
--			if (err)
--				return err;
--		}
-+		err = pm_runtime_force_resume(device);
-+		if (err)
-+			return err;
- 
- 		if (device_may_wakeup(device))
- 			flexcan_enable_wakeup_irq(priv, false);
-diff --git a/drivers/net/can/flexcan/flexcan.h b/drivers/net/can/flexcan/flexcan.h
-index 91402977780b..025c3417031f 100644
---- a/drivers/net/can/flexcan/flexcan.h
-+++ b/drivers/net/can/flexcan/flexcan.h
-@@ -68,8 +68,6 @@
- #define FLEXCAN_QUIRK_SUPPORT_RX_MAILBOX_RTR BIT(15)
- /* Device supports RX via FIFO */
- #define FLEXCAN_QUIRK_SUPPORT_RX_FIFO BIT(16)
--/* auto enter stop mode to support wakeup */
--#define FLEXCAN_QUIRK_AUTO_STOP_MODE BIT(17)
- 
- struct flexcan_devtype_data {
- 	u32 quirks;		/* quirks needed for different IP cores */
--- 
-2.34.1
-
+bod
