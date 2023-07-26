@@ -2,69 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6499C762C84
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 09:05:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C956762C87
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 09:05:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230460AbjGZHFa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jul 2023 03:05:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40666 "EHLO
+        id S232208AbjGZHFw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jul 2023 03:05:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40452 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232087AbjGZHEy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 03:04:54 -0400
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C21374208
-        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 00:03:07 -0700 (PDT)
-Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-99bc0da5684so63421666b.0
-        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 00:03:07 -0700 (PDT)
+        with ESMTP id S232276AbjGZHFN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 03:05:13 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EFACE422A
+        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 00:03:28 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-4fbb281eec6so10081746e87.1
+        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 00:03:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690354986; x=1690959786;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=uPWxFIx+eV9yOy/t+ypJOxNFnBZqIeaWUT3Uk3u7b0w=;
-        b=jhY4qWmBpASsQ4Brt/XHHdRzER4JN4HBZdhy8bo/yKjMPiGr+Cz/R50Q92uI6qIuVn
-         alVohXyoVBuOXGDAt+cD52pqY4tRFa7BQ531YtEIaul7JmxzY56hJlz4K/o/jGUAAPCh
-         v3x+1e7Lpr7mwgGQAu4JSiOoDvzVgX9gH7izBQcPTyxVT+1X6gdbu6wnAIotNQzX5yH8
-         4L+KOCbD4YHoSEEENp+P1veWaFmckSsbO3SI6OaVTeLNkOlkUO59tz/QUOTX9YzKAAoi
-         LbtOsjP1VUsd/7+53DdDC8CiXLgFOFCYUKDKLYtxCBAehCuNF0y1VsULh7y7pLE2M05s
-         Xvsw==
+        d=linaro.org; s=google; t=1690355007; x=1690959807;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=+Sp6Oh3kIZYgwY/6PAzwynsD4VZMj8j6x6i38EBvjv4=;
+        b=k13+9VtFyhCyA5x2o3+p6BFUWl8Y6TGcK+ogwMkvvl5J81O/Se+A/TuSVB0nWIbUbQ
+         eLmY/aMEhNS9VKXnuu/br+QfQIdjkoNYdFPmWxQWHi3E3X3B/7Qmj8QgZCWbIo3kd/am
+         BKtbVu7bjEhU/rcld+xJvdH0tU3UkGNwB9aIR/EKRT9B+2ZW22Shf1ZbCr1N5GwCwsMo
+         xW3VYzQTdAWOKkcBF/cOcspJm/vh4XL2rihv5wMspqOb+CiQA37T76CuxE3qZHyHaYUz
+         l2fvbI8xagKyHKkbAAH1vziITBrrkGyyaqFMzfD13CzUIu/PjykZKvnzIL8VUDkVGvGt
+         ur/g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690354986; x=1690959786;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=uPWxFIx+eV9yOy/t+ypJOxNFnBZqIeaWUT3Uk3u7b0w=;
-        b=bB1mfIwcu6rci+AuX0zUegjNhFScC3Ndm6fcKxJjUGUQ2fRNKYM6JpzlBtG3QKOPbe
-         rgWsuyzULkUZeTBWoAaX2pVZn4GPoHODecQ6B6OBmA8pEM7qLvRGcS9/Xajvx88RjQLs
-         z368eMkiGgv56EXdyPOmHOWo1J2sl3DfPtp1sGX/OXuIIKW1219zsNTDb4WSqb85oozE
-         IMyEgakorcgtTHqZn0cOnesIdybMn4NG3ay312c45Dd0N2hJZeVoY22+D4u9sQB9PjYQ
-         aaeO1RJ7sDOqCBse0dqA60ehnJ82mSnaQGBYfHYFJ5GXa8mODvRl9UtSuI6R8sEyvHsQ
-         Q8eg==
-X-Gm-Message-State: ABy/qLZel9UX8kEaBgJ9J3sJhkF3RBUi8dPOyHoZzzsyO+XimiXQxuBh
-        1HAM6HSDlukUhda2HSiYnbAlJw==
-X-Google-Smtp-Source: APBJJlEALNwIfdTN8ahxsx/3TJhhk+UZYZH2bIfYYtHSZE90KjnGtCI1ykUm/qDvTautVxLr8TMJFA==
-X-Received: by 2002:a17:906:1097:b0:997:eac2:65e0 with SMTP id u23-20020a170906109700b00997eac265e0mr911677eju.73.1690354986024;
-        Wed, 26 Jul 2023 00:03:06 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1690355007; x=1690959807;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=+Sp6Oh3kIZYgwY/6PAzwynsD4VZMj8j6x6i38EBvjv4=;
+        b=L5mRcj8ODlSNQnbh/o9xwjyKER44BHsWyK77RdebRcQxHNU/aopXjMdS6NeYwDFHnc
+         qVIUN1lHMn6bPZj9yrNOFdTNQBQeV0GM57JD126Wf2JZdC26oMvJY2jo5pqncceYxHY+
+         I0XsiUU3f8C1w7HzcWMAJl4U8/AOeUAawEELd6qpedp35zqpZAx8k/EdIXb9ka0cIYKT
+         yVUqY4x6J+x7YY1QIOoBjlHJ6o8xtmtvMKn4sfy4j81DoCHBQsGlnBJ3Dt6QO35kl5x9
+         w15uWvhkjiEOsdxX0G8e3ndhToGCkfC6ezRu6Ii62RQBOPifamvzos33qBSpLXPifz5r
+         thpw==
+X-Gm-Message-State: ABy/qLa5LI0Qgo5KCQ7rNrLWZceMTajdUh8f7cagRT2bMzARlJi8Ik1n
+        Nz5oL4jtlwkGJ5zMyXWXf8xVSQ==
+X-Google-Smtp-Source: APBJJlFWiuBO4vk/bvm/I48NbQmLqb+Rw/jod2Hiopmi/kTz7LGgnkmgmBKcX6/u4/1AX2YuxUoPVQ==
+X-Received: by 2002:ac2:495b:0:b0:4fe:8b5:588a with SMTP id o27-20020ac2495b000000b004fe08b5588amr723344lfi.57.1690355006710;
+        Wed, 26 Jul 2023 00:03:26 -0700 (PDT)
 Received: from krzk-bin.. ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id c21-20020a170906341500b00992b2c55c67sm9249923ejb.156.2023.07.26.00.03.03
+        by smtp.gmail.com with ESMTPSA id dy16-20020a05640231f000b005224f840130sm1572003edb.60.2023.07.26.00.03.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 Jul 2023 00:03:05 -0700 (PDT)
+        Wed, 26 Jul 2023 00:03:26 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andrew Lunn <andrew@lunn.ch>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 2/2] ARM: dts: marvell: dove: drop incorrect reg in fixed regulators
-Date:   Wed, 26 Jul 2023 09:02:54 +0200
-Message-Id: <20230726070254.103661-2-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 1/8] AMR: dts: imx6sx-nitrogen6sx: drop incorrect regulator clock-names
+Date:   Wed, 26 Jul 2023 09:03:15 +0200
+Message-Id: <20230726070322.103871-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230726070254.103661-1-krzysztof.kozlowski@linaro.org>
-References: <20230726070254.103661-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -77,168 +79,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Fixed regulators are not in some bus and bindings do not allow a "reg"
-property.  Move them out of "regulators" node to top-level.
+regulator-fixed does not take "clock-names" property:
 
-  dove-cubox.dtb: regulator@1: Unevaluated properties are not allowed ('reg' was unexpected)
+  imx6sx-nitrogen6sx.dtb: regulator-wlan: Unevaluated properties are not allowed ('clock-names' was unexpected)
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm/boot/dts/marvell/dove-cm-a510.dtsi | 18 +++++--------
- arch/arm/boot/dts/marvell/dove-cubox.dts    | 29 ++++++++-------------
- arch/arm/boot/dts/marvell/dove-d3plug.dts   | 29 ++++++++-------------
- arch/arm/boot/dts/marvell/dove-sbc-a510.dts | 28 +++++++++-----------
- 4 files changed, 41 insertions(+), 63 deletions(-)
+ arch/arm/boot/dts/nxp/imx/imx6sx-nitrogen6sx.dts | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/marvell/dove-cm-a510.dtsi b/arch/arm/boot/dts/marvell/dove-cm-a510.dtsi
-index 1082fdfbfe60..621cb145a8f6 100644
---- a/arch/arm/boot/dts/marvell/dove-cm-a510.dtsi
-+++ b/arch/arm/boot/dts/marvell/dove-cm-a510.dtsi
-@@ -108,18 +108,12 @@ led-system {
- 		};
- 	};
- 
--	regulators {
--		compatible = "simple-bus";
--		#address-cells = <1>;
--		#size-cells = <0>;
--
--		wifi_power: regulator@1 {
--			compatible = "regulator-fixed";
--			regulator-name = "WiFi Power";
--			regulator-min-microvolt = <3300000>;
--			regulator-max-microvolt = <3300000>;
--			gpio = <&gpio2 7 GPIO_ACTIVE_HIGH>;
--		};
-+	wifi_power: regulator-1 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "WiFi Power";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		gpio = <&gpio2 7 GPIO_ACTIVE_HIGH>;
- 	};
- };
- 
-diff --git a/arch/arm/boot/dts/marvell/dove-cubox.dts b/arch/arm/boot/dts/marvell/dove-cubox.dts
-index dbba0c8cdab1..bfde99486a87 100644
---- a/arch/arm/boot/dts/marvell/dove-cubox.dts
-+++ b/arch/arm/boot/dts/marvell/dove-cubox.dts
-@@ -28,24 +28,17 @@ led-power {
- 		};
- 	};
- 
--	regulators {
--		compatible = "simple-bus";
--		#address-cells = <1>;
--		#size-cells = <0>;
--
--		usb_power: regulator@1 {
--			compatible = "regulator-fixed";
--			reg = <1>;
--			regulator-name = "USB Power";
--			regulator-min-microvolt = <5000000>;
--			regulator-max-microvolt = <5000000>;
--			enable-active-high;
--			regulator-always-on;
--			regulator-boot-on;
--			gpio = <&gpio0 1 0>;
--			pinctrl-0 = <&pmx_gpio_1>;
--			pinctrl-names = "default";
--		};
-+	usb_power: regulator-1 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "USB Power";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		enable-active-high;
-+		regulator-always-on;
-+		regulator-boot-on;
-+		gpio = <&gpio0 1 0>;
-+		pinctrl-0 = <&pmx_gpio_1>;
-+		pinctrl-names = "default";
- 	};
- 
- 	clocks {
-diff --git a/arch/arm/boot/dts/marvell/dove-d3plug.dts b/arch/arm/boot/dts/marvell/dove-d3plug.dts
-index 5aa5d4a7d51d..a451fd576990 100644
---- a/arch/arm/boot/dts/marvell/dove-d3plug.dts
-+++ b/arch/arm/boot/dts/marvell/dove-d3plug.dts
-@@ -37,24 +37,17 @@ led-status {
- 		};
- 	};
- 
--	regulators {
--		compatible = "simple-bus";
--		#address-cells = <1>;
--		#size-cells = <0>;
--
--		usb_power: regulator@1 {
--			compatible = "regulator-fixed";
--			reg = <1>;
--			regulator-name = "USB Power";
--			regulator-min-microvolt = <5000000>;
--			regulator-max-microvolt = <5000000>;
--			enable-active-high;
--			regulator-always-on;
--			regulator-boot-on;
--			gpio = <&gpio0 8 0>;
--			pinctrl-0 = <&pmx_gpio_8>;
--			pinctrl-names = "default";
--		};
-+	usb_power: regulator-1 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "USB Power";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		enable-active-high;
-+		regulator-always-on;
-+		regulator-boot-on;
-+		gpio = <&gpio0 8 0>;
-+		pinctrl-0 = <&pmx_gpio_8>;
-+		pinctrl-names = "default";
- 	};
- };
- 
-diff --git a/arch/arm/boot/dts/marvell/dove-sbc-a510.dts b/arch/arm/boot/dts/marvell/dove-sbc-a510.dts
-index df021f9b0117..8585ee5533bf 100644
---- a/arch/arm/boot/dts/marvell/dove-sbc-a510.dts
-+++ b/arch/arm/boot/dts/marvell/dove-sbc-a510.dts
-@@ -76,22 +76,20 @@ chosen {
- 		stdout-path = &uart0;
- 	};
- 
--	regulators {
--		usb0_power: regulator@2 {
--			compatible = "regulator-fixed";
--			regulator-name = "USB Power";
--			regulator-min-microvolt = <5000000>;
--			regulator-max-microvolt = <5000000>;
--			gpio = <&gpio_ext 0 GPIO_ACTIVE_HIGH>;
--		};
-+	usb0_power: regulator-2 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "USB Power";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		gpio = <&gpio_ext 0 GPIO_ACTIVE_HIGH>;
-+	};
- 
--		mmc_power: regulator@3 {
--			compatible = "regulator-fixed";
--			regulator-name = "MMC Power";
--			regulator-min-microvolt = <3300000>;
--			regulator-max-microvolt = <3300000>;
--			gpio = <&gpio_ext 13 GPIO_ACTIVE_HIGH>;
--		};
-+	mmc_power: regulator-3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "MMC Power";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		gpio = <&gpio_ext 13 GPIO_ACTIVE_HIGH>;
- 	};
- };
- 
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6sx-nitrogen6sx.dts b/arch/arm/boot/dts/nxp/imx/imx6sx-nitrogen6sx.dts
+index a2c79bcf9a11..23ccca2dea44 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6sx-nitrogen6sx.dts
++++ b/arch/arm/boot/dts/nxp/imx/imx6sx-nitrogen6sx.dts
+@@ -72,7 +72,6 @@ reg_wlan: regulator-wlan {
+ 		pinctrl-0 = <&pinctrl_reg_wlan>;
+ 		compatible = "regulator-fixed";
+ 		clocks = <&clks IMX6SX_CLK_CKO>;
+-		clock-names = "slow";
+ 		regulator-name = "wlan-en";
+ 		regulator-min-microvolt = <3300000>;
+ 		regulator-max-microvolt = <3300000>;
 -- 
 2.34.1
 
