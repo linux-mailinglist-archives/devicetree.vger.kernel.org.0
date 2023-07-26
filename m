@@ -2,129 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F14B764239
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 00:40:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BBFFA764256
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 01:07:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229626AbjGZWk0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jul 2023 18:40:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37832 "EHLO
+        id S229553AbjGZXHX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jul 2023 19:07:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43750 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229888AbjGZWkZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 18:40:25 -0400
-Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5CB2270F
-        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 15:40:24 -0700 (PDT)
-Received: by mail-pj1-x1031.google.com with SMTP id 98e67ed59e1d1-26837895fbbso275770a91.3
-        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 15:40:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1690411224; x=1691016024;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=9caknxSMLJ8/I6yMwEAauRGM8KCY4LpGz9gaodd75Y4=;
-        b=z9E4wYAl7Kbyd0MpW30QeQz71g8gC1KvQPuBLAlk4L7sx45+1e+yocHJ9W5oLLhO36
-         FN3OSyDOAdoEOLn/6d4XHlejXbW0vSu1JFhGFBkeGHsvEAaP5K6+ELq7sLl6WQEkXIEU
-         gpisYolH4vdNjHhmeUFwoGGH1GQQ+eaADPEpMiPf431fMk2khFcowQDrDoOHjEcIBkp9
-         OaOrMnDy3//QThWP9jmzlrnkDA7Y7GAg4pDQ4aLZgy7vgw02IPrqYHwn1to1/dLhMjTi
-         jfhodLf3dzMfCZ215I4dDfuhux2j7dpO5N/kAZQESLod08LD49TTNJCLNJ0clsEy/0Bl
-         k2Hw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690411224; x=1691016024;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9caknxSMLJ8/I6yMwEAauRGM8KCY4LpGz9gaodd75Y4=;
-        b=UgKtgtxOn0KFU25zMA8qYwes1WstuDt2BoNxnHDrZCxR9koGsTcQbUwrm6lPAs6CV/
-         K2+ZfOLRTbg3INiijKPRkWa46WIPHemfNBycusruyE4QxEgS+Tg5RCUvRClpt11MwAfe
-         LYJYgn5X/7ijz40A7R3YZeS2ScZ6WF3HYa98QGxs6mlLDGf0NOZe8ROMGUcpV0+BPZU6
-         5xDTrG50AFpn3FPKazgk3lgVkayKZoSSnbbk87SbC2rHuRFi1h9wQZ9NWfPw6b5lPUaN
-         axxlBShVfhc3SH04TcF4K3xcQXBG+ZNaF8w9a6ENPXTBirF5toi5RKbHvwMl/0yqpWW+
-         uxDw==
-X-Gm-Message-State: ABy/qLYWt9DV78MJdyPpTVPFF3vp4H79I18qVJVGsdMxvDIaiU/Ls2WL
-        NXavuPk/SX0JUgOQH7pWZ7fVYw==
-X-Google-Smtp-Source: APBJJlELtzA6yQFjcOkGA+IAseqrN3tDU/89TVRlDOYX3rh6eyHu5Q+Cam0M5MOKnrjt0RfM4YUbDQ==
-X-Received: by 2002:a17:90b:885:b0:268:4142:2ee1 with SMTP id bj5-20020a17090b088500b0026841422ee1mr3073258pjb.11.1690411224265;
-        Wed, 26 Jul 2023 15:40:24 -0700 (PDT)
-Received: from localhost ([75.172.135.98])
-        by smtp.gmail.com with ESMTPSA id ep11-20020a17090ae64b00b00262eccfa29fsm1673297pjb.33.2023.07.26.15.40.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 Jul 2023 15:40:23 -0700 (PDT)
-From:   Kevin Hilman <khilman@baylibre.com>
-To:     Xianwei Zhao <xianwei.zhao@amlogic.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Xianwei Zhao <xianwei.zhao@amlogic.com>
-Subject: Re: [PATCH V2 3/4] soc: c3: Add support for power domains controller
-In-Reply-To: <20230707003710.2667989-4-xianwei.zhao@amlogic.com>
-References: <20230707003710.2667989-1-xianwei.zhao@amlogic.com>
- <20230707003710.2667989-4-xianwei.zhao@amlogic.com>
-Date:   Wed, 26 Jul 2023 15:40:23 -0700
-Message-ID: <7ha5vii9ew.fsf@baylibre.com>
+        with ESMTP id S229552AbjGZXHX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 19:07:23 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E12271737;
+        Wed, 26 Jul 2023 16:07:18 -0700 (PDT)
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36QN1hxG022941;
+        Wed, 26 Jul 2023 23:06:44 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=hst80EK+5jLT39EI5q3/zwn9B9Ep+cXarB3YmbOzyXc=;
+ b=k+D9BFUC0fJBW78f71nfk0im2alc0BGH1qMBS4AYsZnYbJloNpoqDNB9xDoR+QBuGCmy
+ y3h7ItHHHOurVFQnRhiGXo3yCkpI/vjB6yWNMrO3k+IJ+OzxHs7GzA2jyeg5va8SwJsg
+ EazS5Yaj0LfyuVpRU82PCm0q/XB/ExbaVVx+WQgPuH99DR50k7HtrQup43hoKUTxEDJb
+ uWyfFCg5bz3S6nfwTkmj2jHD4je+AWd/bm8cfH88ScAh0bv3AnlTkw09ndIwTx251Si3
+ Amnh0dqAC7dwY+9crEGIa0DQE4swWFSl3IqJIpaVFLOHLCM4YUExeiiG1rNJSHRqfZ5Z ug== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3s3afyr785-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 26 Jul 2023 23:06:44 +0000
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 36QN6hoF031629
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 26 Jul 2023 23:06:43 GMT
+Received: from [10.110.23.161] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Wed, 26 Jul
+ 2023 16:06:42 -0700
+Message-ID: <e0167cad-6af7-fc2a-f783-609a114d94fd@quicinc.com>
+Date:   Wed, 26 Jul 2023 16:06:41 -0700
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH v4 27/32] sound: soc: qdsp6: Add SND kcontrol to select
+ offload device
+Content-Language: en-US
+To:     Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        <agross@kernel.org>, <andersson@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <catalin.marinas@arm.com>, <will@kernel.org>,
+        <mathias.nyman@intel.com>, <gregkh@linuxfoundation.org>,
+        <lgirdwood@gmail.com>, <broonie@kernel.org>, <perex@perex.cz>,
+        <tiwai@suse.com>, <srinivas.kandagatla@linaro.org>,
+        <bgoswami@quicinc.com>, <Thinh.Nguyen@synopsys.com>
+CC:     <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-usb@vger.kernel.org>, <alsa-devel@alsa-project.org>,
+        <quic_jackp@quicinc.com>, <oneukum@suse.com>,
+        <albertccwang@google.com>, <o-takashi@sakamocchi.jp>
+References: <20230725023416.11205-1-quic_wcheng@quicinc.com>
+ <20230725023416.11205-28-quic_wcheng@quicinc.com>
+ <82568c9d-05b8-54dc-47e9-05c74a9260be@linux.intel.com>
+From:   Wesley Cheng <quic_wcheng@quicinc.com>
+In-Reply-To: <82568c9d-05b8-54dc-47e9-05c74a9260be@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: zHrkparVg1APzQLo3hBS0lfjhvKXkqdF
+X-Proofpoint-ORIG-GUID: zHrkparVg1APzQLo3hBS0lfjhvKXkqdF
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-07-26_08,2023-07-26_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 impostorscore=0
+ mlxscore=0 phishscore=0 spamscore=0 suspectscore=0 mlxlogscore=999
+ priorityscore=1501 bulkscore=0 lowpriorityscore=0 adultscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2306200000 definitions=main-2307260207
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Xianwei Zhao <xianwei.zhao@amlogic.com> writes:
+Hi Pierre,
 
-> Add support for C3 Power controller. C3 power control
-> registers are in secure domain, and should be accessed by SMC.
->
-> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
-> ---
-> V1 -> V2: Fixed some formatting.
-> ---
->  drivers/soc/amlogic/meson-secure-pwrc.c | 26 +++++++++++++++++++++++++
->  1 file changed, 26 insertions(+)
->
-> diff --git a/drivers/soc/amlogic/meson-secure-pwrc.c b/drivers/soc/amlogic/meson-secure-pwrc.c
-> index c11d65a3e3d9..a1ffebf70de3 100644
-> --- a/drivers/soc/amlogic/meson-secure-pwrc.c
-> +++ b/drivers/soc/amlogic/meson-secure-pwrc.c
-> @@ -11,6 +11,7 @@
->  #include <linux/platform_device.h>
->  #include <linux/pm_domain.h>
->  #include <dt-bindings/power/meson-a1-power.h>
-> +#include <dt-bindings/power/amlogic,c3-pwrc.h>
->  #include <dt-bindings/power/meson-s4-power.h>
->  #include <linux/arm-smccc.h>
->  #include <linux/firmware/meson/meson_sm.h>
-> @@ -120,6 +121,22 @@ static struct meson_secure_pwrc_domain_desc a1_pwrc_domains[] = {
->  	SEC_PD(RSA,	0),
->  };
->  
-> +static struct meson_secure_pwrc_domain_desc c3_pwrc_domains[] = {
-> +	SEC_PD(C3_NNA,	0),
-> +	SEC_PD(C3_AUDIO,	GENPD_FLAG_ALWAYS_ON),
-> +	SEC_PD(C3_SDIOA,	GENPD_FLAG_ALWAYS_ON),
-> +	SEC_PD(C3_EMMC,	GENPD_FLAG_ALWAYS_ON),
-> +	SEC_PD(C3_USB_COMB, GENPD_FLAG_ALWAYS_ON),
-> +	SEC_PD(C3_SDCARD,	GENPD_FLAG_ALWAYS_ON),
-> +	SEC_PD(C3_ETH,	GENPD_FLAG_ALWAYS_ON),
-> +	SEC_PD(C3_GE2D,	GENPD_FLAG_ALWAYS_ON),
-> +	SEC_PD(C3_CVE,	GENPD_FLAG_ALWAYS_ON),
-> +	SEC_PD(C3_GDC_WRAP,	GENPD_FLAG_ALWAYS_ON),
-> +	SEC_PD(C3_ISP_TOP,		GENPD_FLAG_ALWAYS_ON),
-> +	SEC_PD(C3_MIPI_ISP_WRAP, GENPD_FLAG_ALWAYS_ON),
-> +	SEC_PD(C3_VCODEC,	0),
-> +};
+On 7/25/2023 2:16 AM, Pierre-Louis Bossart wrote:
+> 
+> 
+> On 7/25/23 04:34, Wesley Cheng wrote:
+>> Expose a kcontrol on the platform sound card, which will allow for
+>> userspace to determine which USB card number and PCM device to offload.
+>> This allows for userspace to potentially tag an alternate path for a
+>> specific USB SND card and PCM device.  Previously, control was absent, and
+>> the offload path would be enabled on the last USB SND device which was
+>> connected.  This logic will continue to be applicable if no mixer input is
+>> received for specific device selection.
+>>
+>> An example to configure the offload device using tinymix:
+>> tinymix -D 0 set 'Q6USB offload SND device select' 1 0
+>>
+>> The above will set the Q6AFE device token to choose offload on card#1 and
+>> pcm#0.  Device selection is made possible by setting the Q6AFE device
+>> token.  The audio DSP utilizes this parameter, and will pass this field
+>> back to the USB offload driver within the QMI stream requests.
+> 
+> I must be missing something... If you have a card 0 which exposes a
+> control to change what the card1 does, then it means you have a card0
+> with a PCM device what can potentially be used concurrently with the
+> card1 exposing an offload device.
+> 
+> Is there any sort of mutual exclusion to make sure the same USB endpoint
+> is not used twice?
+> > One would hope that when a device is opened the matching non-offloaded
+> one (or ones in the case of implicit feedback) is disabled or marked as
+> used?
+> 
+> I would guess in your Android setup you have control on such behavior at
+> the HAL level, but in the more generic Linux use I don't see what
+> would orchestrate the use of two devices, and at the kernel level what
+> would prevent it.
+> 
+Still going through the comments and trying to address the suggestions 
+in the code, so will reply pack to those as I make the needed changes.
 
-All of these domains being hard-coded to ALWAYS_ON looks suspicious, and
-can also be an indicator that the drivers for these domains are not
-(properly) using runtime PM, or not connected to the correct domains the DT.
+As for the above question, the following change was made with the 
+intention to prevent the above scenario.
 
-Similar to the tables for s4 and a1 in this same file, please describe
-the reason that each of these domains needs to be hard coded to be
-always on.
+https://lore.kernel.org/linux-usb/20230725023416.11205-23-quic_wcheng@quicinc.com/
 
-Thanks,
-
-Kevin
+Thanks
+Wesley Cheng
