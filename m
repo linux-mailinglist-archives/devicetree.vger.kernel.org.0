@@ -2,107 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E79717632FA
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 11:59:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6EEA9763305
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 12:01:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232283AbjGZJ7E convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 26 Jul 2023 05:59:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39790 "EHLO
+        id S231684AbjGZKBZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jul 2023 06:01:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42800 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232715AbjGZJ6n (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 05:58:43 -0400
-Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com [209.85.219.175])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CEDB131;
-        Wed, 26 Jul 2023 02:58:21 -0700 (PDT)
-Received: by mail-yb1-f175.google.com with SMTP id 3f1490d57ef6-cb19b1b9a36so7199508276.0;
-        Wed, 26 Jul 2023 02:58:21 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690365500; x=1690970300;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Ecr5DuKM0I5ynjeHKow0SnRxwSONxQfyEz+Sj1iub0A=;
-        b=PqDxwBJNweXmRb4wbpOHO3TnVTUOZ99Y4BaBhXvYy4X98+oaSyOWGjhrCGRtHXvyZZ
-         pNLbkaC7rOox32wGsYjnI9ItSKah35lmZsdf0tdGdgRrCRJnxiNxsAlaULmAfqwywJiO
-         Q81sv2PiUglecDZYe1E2JRLn9hqqjy9k9j6edXT0jCOhr5B0p3m7DV5nIUFUW1oy1vU4
-         rx1g/Vrxo9t2CLKrUzYsKylHRqS9rUsu3Crh5jsHdx2RcwMb49G50SQaCXeXJBFYRv+2
-         IM6uAZyoPS249QJg07bDx/XQemwp1ITeeIWFhOemQYWBe8aPIws9l8pcXQzWKIZGt61q
-         rNxA==
-X-Gm-Message-State: ABy/qLYrrS3wIdeHkU0eIwxjL8bmZ2woNMpD73HP068NYb0nhgzabuIh
-        9WHZnE0IGP0YIxSV/IGdj+4MZhfXPTdn6Q==
-X-Google-Smtp-Source: APBJJlEM6pbl/4YHVw/RESPmzGwX5JRSJZSeWMonyew2g1ozpz9DfQSjGAHYdld4UxbWMGJ4wQj+cg==
-X-Received: by 2002:a81:49cf:0:b0:583:9c78:9a84 with SMTP id w198-20020a8149cf000000b005839c789a84mr1479590ywa.43.1690365499905;
-        Wed, 26 Jul 2023 02:58:19 -0700 (PDT)
-Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com. [209.85.219.174])
-        by smtp.gmail.com with ESMTPSA id d205-20020a8168d6000000b00577269ba9e9sm4089394ywc.86.2023.07.26.02.58.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 26 Jul 2023 02:58:19 -0700 (PDT)
-Received: by mail-yb1-f174.google.com with SMTP id 3f1490d57ef6-cf284f4d7afso7185648276.3;
-        Wed, 26 Jul 2023 02:58:19 -0700 (PDT)
-X-Received: by 2002:a05:6902:154d:b0:c4b:ada8:8b86 with SMTP id
- r13-20020a056902154d00b00c4bada88b86mr1571135ybu.64.1690365499428; Wed, 26
- Jul 2023 02:58:19 -0700 (PDT)
+        with ESMTP id S231453AbjGZKBY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 06:01:24 -0400
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 441D897;
+        Wed, 26 Jul 2023 03:01:21 -0700 (PDT)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id B614B80F8;
+        Wed, 26 Jul 2023 18:01:13 +0800 (CST)
+Received: from EXMBX073.cuchost.com (172.16.6.83) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 26 Jul
+ 2023 18:01:13 +0800
+Received: from [192.168.60.107] (180.164.60.184) by EXMBX073.cuchost.com
+ (172.16.6.83) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 26 Jul
+ 2023 18:01:13 +0800
+Message-ID: <5f4733e4-9bda-3381-ada5-3a495a079e5f@starfivetech.com>
+Date:   Wed, 26 Jul 2023 18:01:12 +0800
 MIME-Version: 1.0
-References: <20230726070241.103545-1-krzysztof.kozlowski@linaro.org>
- <CAMuHMdWfwTyJoLyGs=8gPt4jT-3nc0ywA_NNGr6r+4+cD=Lygg@mail.gmail.com> <cb272650-e829-7528-de6d-f99fef2d7f81@linaro.org>
-In-Reply-To: <cb272650-e829-7528-de6d-f99fef2d7f81@linaro.org>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 26 Jul 2023 11:58:06 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdV1=DCU-uqhvmtFeJX6v23VHo3-N5drWbr=R_A32GZrsA@mail.gmail.com>
-Message-ID: <CAMuHMdV1=DCU-uqhvmtFeJX6v23VHo3-N5drWbr=R_A32GZrsA@mail.gmail.com>
-Subject: Re: [PATCH] AMR: dts: renesas: r8a7740-armadillo: switch to enable-gpios
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v7 5/6] media: starfive: camss: Add ISP driver
+To:     Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Robert Foss <rfoss@kernel.org>,
+        Todor Tomov <todor.too@gmail.com>,
+        <bryan.odonoghue@linaro.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Eugen Hristev <eugen.hristev@collabora.com>,
+        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
+CC:     <linux-media@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <changhuang.liang@starfivetech.com>
+References: <20230619112838.19797-1-jack.zhu@starfivetech.com>
+ <20230619112838.19797-6-jack.zhu@starfivetech.com>
+ <6936fa89-af4a-6518-972b-693691f8e78a@xs4all.nl>
+Content-Language: en-US
+From:   Jack Zhu <jack.zhu@starfivetech.com>
+In-Reply-To: <6936fa89-af4a-6518-972b-693691f8e78a@xs4all.nl>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [180.164.60.184]
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX073.cuchost.com
+ (172.16.6.83)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+Hi Hans,
 
-On Wed, Jul 26, 2023 at 11:47 AM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
-> On 26/07/2023 11:11, Geert Uytterhoeven wrote:
-> > On Wed, Jul 26, 2023 at 9:02 AM Krzysztof Kozlowski
-> > <krzysztof.kozlowski@linaro.org> wrote:
-> >> The recommended name for enable GPIOs property in regulator-gpio is
-> >> "enable-gpios".  This is also required by bindings:
-> >>
-> >>   r8a7740-armadillo800eva.dtb: regulator-vccq-sdhi0: Unevaluated properties are not allowed ('enable-gpio' was unexpected)
-> >>
-> >> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> >
-> > Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> > i.e. will queue in renesas-devel for v6.6.
->
-> I think I made typo in subject prefix:
-> AMR -> ARM
+Thank you for your comment.
 
-I had noticed ;-)
+On 2023/7/26 17:11, Hans Verkuil wrote:
+> Hi Jack,
+> 
+> On 19/06/2023 13:28, Jack Zhu wrote:
+>> Add ISP driver for StarFive Camera Subsystem.
+>> 
+>> Signed-off-by: Jack Zhu <jack.zhu@starfivetech.com>
+>> ---
+>>  .../media/platform/starfive/camss/Makefile    |   2 +
+>>  .../media/platform/starfive/camss/stf_camss.c |  76 ++-
+>>  .../media/platform/starfive/camss/stf_camss.h |   3 +
+>>  .../media/platform/starfive/camss/stf_isp.c   | 519 ++++++++++++++++++
+>>  .../media/platform/starfive/camss/stf_isp.h   | 479 ++++++++++++++++
+>>  .../platform/starfive/camss/stf_isp_hw_ops.c  | 468 ++++++++++++++++
+>>  6 files changed, 1544 insertions(+), 3 deletions(-)
+>>  create mode 100644 drivers/media/platform/starfive/camss/stf_isp.c
+>>  create mode 100644 drivers/media/platform/starfive/camss/stf_isp.h
+>>  create mode 100644 drivers/media/platform/starfive/camss/stf_isp_hw_ops.c
+> 
+> Just a quick note:
+> 
+> When I compile this I get the following warnings:
+> 
+> drivers/media/platform/starfive/camss/stf_camss.c: In function 'stfcamss_subdev_notifier_bound':
+> drivers/media/platform/starfive/camss/stf_camss.c:217:23: warning: 'pad[0]' may be used uninitialized [-Wmaybe-uninitialized]
+>   217 |                 ret = v4l2_create_fwnode_links_to_pad(subdev, pad[i], 0);
+>       |                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+> drivers/media/platform/starfive/camss/stf_camss.c:202:27: note: 'pad[0]' was declared here
+>   202 |         struct media_pad *pad[STF_PADS_NUM];
+>       |                           ^~~
+> drivers/media/platform/starfive/camss/stf_isp.c: In function 'isp_try_format.isra':
+> drivers/media/platform/starfive/camss/stf_isp.c:105:40: warning: 'formats' may be used uninitialized [-Wmaybe-uninitialized]
+>   105 |         const struct isp_format_table *formats;
+>       |                                        ^~~~~~~
+> drivers/media/platform/starfive/camss/stf_isp.c:105:40: note: 'formats' was declared here
+>   105 |         const struct isp_format_table *formats;
+>       |                                        ^~~~~~~
+> drivers/media/platform/starfive/camss/stf_isp.c:106:30: warning: 'rect' may be used uninitialized [-Wmaybe-uninitialized]
+>   106 |         struct stf_isp_crop *rect;
+>       |                              ^~~~
+> drivers/media/platform/starfive/camss/stf_isp.c:106:30: note: 'rect' was declared here
+>   106 |         struct stf_isp_crop *rect;
+>       |                              ^~~~
+> 
+> That's when I build with: make W=1 KCFLAGS=-Wmaybe-uninitialized
+> 
 
-> Can you fix it while applying?
+OK, I will fix these warnings.
 
-Sure, already done.
-
-Gr{oetje,eeting}s,
-
-                        Geert
+> Regards,
+> 
+> 	Hans
+> 
+>> 
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+Regards,
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Jack Zhu
