@@ -2,105 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2EED27635AC
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 13:54:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D43ED7635B7
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 13:56:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234337AbjGZLyt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jul 2023 07:54:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52692 "EHLO
+        id S232314AbjGZL4I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jul 2023 07:56:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53938 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234354AbjGZLyr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 07:54:47 -0400
-Received: from viti.kaiser.cx (viti.kaiser.cx [IPv6:2a01:238:43fe:e600:cd0c:bd4a:7a3:8e9f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F061188;
-        Wed, 26 Jul 2023 04:54:42 -0700 (PDT)
-Received: from martin by viti.kaiser.cx with local (Exim 4.89)
-        (envelope-from <martin@viti.kaiser.cx>)
-        id 1qOd63-0005Ck-Pc; Wed, 26 Jul 2023 13:54:27 +0200
-Date:   Wed, 26 Jul 2023 13:54:27 +0200
-From:   Martin Kaiser <lists@kaiser.cx>
-To:     Alexey Romanov <AVRomanov@sberdevices.ru>
-Cc:     "narmstrong@baylibre.com" <narmstrong@baylibre.com>,
-        "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
-        "olivia@selenic.com" <olivia@selenic.com>,
-        "herbert@gondor.apana.org.au" <herbert@gondor.apana.org.au>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "khilman@baylibre.com" <khilman@baylibre.com>,
-        "jbrunet@baylibre.com" <jbrunet@baylibre.com>,
-        "martin.blumenstingl@googlemail.com" 
-        <martin.blumenstingl@googlemail.com>,
-        "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
-        "hkallweit1@gmail.com" <hkallweit1@gmail.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-amlogic@lists.infradead.org" 
-        <linux-amlogic@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
-        kernel <kernel@sberdevices.ru>
-Subject: Re: [PATCH v1 1/3] drivers: rng: add check status bit feature
-Message-ID: <20230726115427.aigzl2wjgc6ccyt6@viti.kaiser.cx>
-References: <20230725141252.98848-1-avromanov@sberdevices.ru>
- <20230725141252.98848-2-avromanov@sberdevices.ru>
- <20230725195901.n2klvgz7outqaatk@viti.kaiser.cx>
- <20230726075243.f37sjcurmog3eunh@cab-wsm-0029881>
+        with ESMTP id S234373AbjGZL4E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 07:56:04 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A72C269A;
+        Wed, 26 Jul 2023 04:55:54 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 0FECC61A85;
+        Wed, 26 Jul 2023 11:55:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7B0E2C433C8;
+        Wed, 26 Jul 2023 11:55:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1690372553;
+        bh=9Ase8OYeF6lxW9qO+vE8ldDwEpxuEB3jlpqk2z6oIIo=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=nKsjbuHI78C0TNQKvgNOABpA5Z5u4FWc1oS6X2aYf04UAICQTEDzrLL9I4mNcTlo7
+         hCWe7nrWExWH6PkfM/O2EQY6cRuDU0jPL7VR/LGQxjpIcbulXKMCFSq5BK9tI9n6ci
+         iqK2lg+JC5h9TpbHK6rFYlAm7YLlw79JcgVtOL80NPjg1Z1E4Iz8FLPONV7sHd+JH8
+         JYb5SW/w8uPjtjCMy2r7uNoDu7ej44079tUbzUa7xCIreO/Vs9G/zVYvZ1nc9my9V1
+         GHTO1qhtGYnBLj7lAAH6e6bATgAD68zlzPGezlgx76F3CA6+s14U6bIqTS+HkZA4NQ
+         iL5mz0uKM6gMg==
+Date:   Wed, 26 Jul 2023 12:55:48 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Support Opensource <support.opensource@diasemi.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Eric Jeong <eric.jeong.opensource@diasemi.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2] regulator: dt-bindings: dlg,slg51000: Convert to DT
+ schema
+Message-ID: <4859d289-f4e2-4676-9be4-182f7dbda8b6@sirena.org.uk>
+References: <20230725063132.42132-1-krzysztof.kozlowski@linaro.org>
+ <d33e5dbc-ca38-4702-903a-b36f9a824391@sirena.org.uk>
+ <1c3684e3-b88a-0476-9376-19d07956e261@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="WsoF2ODsLbGtFrNe"
 Content-Disposition: inline
-In-Reply-To: <20230726075243.f37sjcurmog3eunh@cab-wsm-0029881>
-User-Agent: NeoMutt/20170113 (1.7.2)
-Sender: Martin Kaiser <martin@viti.kaiser.cx>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+In-Reply-To: <1c3684e3-b88a-0476-9376-19d07956e261@linaro.org>
+X-Cookie: Life is the urge to ecstasy.
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Alexey,
 
-Alexey Romanov (AVRomanov@sberdevices.ru) wrote:
+--WsoF2ODsLbGtFrNe
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-> > > +static int meson_rng_wait_status(void __iomem *cfg_addr, int bit)
-> > > +{
-> > > +	u32 status;
-> > > +	u32 cnt = 0;
-> > > +
-> > > +	do {
-> > > +		status = readl_relaxed(cfg_addr) & BIT(bit);
-> > > +		cpu_relax();
-> > > +	} while (status && (cnt++ < RETRY_CNT));
-> > > +
+On Wed, Jul 26, 2023 at 09:32:17AM +0200, Krzysztof Kozlowski wrote:
+> On 25/07/2023 12:43, Mark Brown wrote:
 
-> > Could you use readl_relaxed_poll_timeout here instead of open coding the
-> > loop?
+> > This is just adding an OS specific note in the description, it's not
+> > actually marking the properties as required.
 
-> At first I also thought about this API. But later I came to the
-> conclusion that it is inappropriate here:
+> They cannot be required, because it depends whether the regulator is
+> used or not. IOW, they are not required for unused regulators, which is
+> not possible to encode in the schema.
 
-> 1. We can't call rng_read from an atomic context.
+Oh, you mean if the regulator is in use in the system rather than if
+it's enabled!  I suspect that there's a requirement that either at least
+one of the supplies be provided so that the chip I/O works, or there's
+some other currently undocumented supply that is required for that
+reason.
 
-Agreed. A hwrng read function may sleep (an example for this is
-exynos_trng_do_read). But this doesn't prevent us from using
-readl_relaxed_poll_timeout.
+BTW there's also a formatting error:
 
-> 2. RNG for me looks like a very lightweight primitive to me that 
-> should work quiclky.
++  vin3-supply:
++    description:
++      Input supply for ldo3, required if regulatoris enabled
 
-> But, now I looked again at the API and realized that we can use
-> readl_relaxed_poll_timeout_atomic() instead of
-> readl_relaxed_poll_timeout(). What do you think?
+missing space before is.
 
-Ok, if you know that your rng hardware won't need much time to set the
-bit that you're checking, you may use readl_relaxed_poll_timeout_atomic.
+--WsoF2ODsLbGtFrNe
+Content-Type: application/pgp-signature; name="signature.asc"
 
-stm32_rtc_set_alarm does something similar.
+-----BEGIN PGP SIGNATURE-----
 
-Best regards,
-Martin
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmTBCcMACgkQJNaLcl1U
+h9C+3gf+Im+7dbQ8RsJCUUZn678BWKCbTHjfrQ1199JOgt3L4GDNmZN7iMmLHGAD
+MijyKFpuFaq1FQ0rMTt1he53GSqWo6h1kX6x8w/Qtgo0WCAbg3n0bkmr0E0l/9Ex
+9GMIK0p9/BqeUtMdfP9ytKxgcEPqiaZjk789zmO3C9pV7SOrUmTO/Iz/OH4+2cfe
+eD/EFXXZVpS8oS3y31FwT8GnUsZFeo7TxeG65+dI69B04ASS2emiSreYk3yfk5n9
+2mBOiSZY5orZEov8shoHqwTutPf6vR/4LKe4AodVHinPhAVV2aCd87+tc3dj2dFd
+i+A8IEtgncioNBaEkS53bxVPGv8pcQ==
+=yL84
+-----END PGP SIGNATURE-----
+
+--WsoF2ODsLbGtFrNe--
