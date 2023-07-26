@@ -2,100 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B021763193
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 11:18:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C3D876325D
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 11:35:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232550AbjGZJSq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jul 2023 05:18:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39618 "EHLO
+        id S233249AbjGZJfa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jul 2023 05:35:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50784 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233496AbjGZJSV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 05:18:21 -0400
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77C3646BB
-        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 02:14:51 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-51e619bcbf9so8615149a12.3
-        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 02:14:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690362871; x=1690967671;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=fk7i5bQAJr07YyKh76/8O6OztU2SbJcyOHEnuaDv3bw=;
-        b=P+rVX4ms6l+sKxD6dS+weINuQvPKRoyvv3wc9Dhaea/+ftSWOHkfJcf6LAvcLMa7gk
-         t9elhcZFsuxwjf5EFQXhQkY/w5tQGQ+Uoffq5KtpfuALvvr8cAjPhJpVBVvOzVMAd36y
-         QevTQ4ry6nijQvIbS7jNKsuE2NkqHZo12vuB0rHSY32/PyiwCc1goiLD7bCUWYzO8G2n
-         UItG7jYmzIfhJd7PV4o5ksExVsM4hXdRohXhnZOr1DGuMqeEss7JZxd1B/WSd0CVjh/u
-         7EKDGs4w03aYHDRQr/u9WrX4d8HCZC+xZ5buaiC9zOkWZJXgUjmKA9uF+1E2XhFq6VXN
-         yS/A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690362871; x=1690967671;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=fk7i5bQAJr07YyKh76/8O6OztU2SbJcyOHEnuaDv3bw=;
-        b=lNBfqCw3+QXJMmb2RL0LNa/vfencJBvLOZsl5V+OnRNVFomvdJXPdPNGxLO6JSuZhL
-         qiwTD8d9g1bWngdBc6pDfT3Bq6goxgvILzRhAi2p9+TsgnlJ81ednQ6qs0VLIcXIJ6sH
-         XTNmeA4IN76RzCRAU8eFsEo1HinfnBKzB067n4v0PXG2QXkOSPGYuaRrV3HBsJwp/LQ3
-         o3xEAlpa00MA6u1xFNemzCOLlEHqvYrgTmlGDzX1d+ZQ8LvQYQ9/InoDLqPDX899iQTg
-         YSF/gmdoXI8vG1gAfo/WDoMG+AHR+C/5u3jV3Ja9MCw0RYQorvCyiJbf1P4rUrVLc0GK
-         LsZw==
-X-Gm-Message-State: ABy/qLb3CGjcXsakE6H3QGuh3D6fldeQdv1FBcSIcP8B57POFTE6kyLW
-        xZyP7lYQ9G+hw5q+KPQ2SDc81Q==
-X-Google-Smtp-Source: APBJJlEZzqiLGtY7i68uveOMtCr/P9iDDdKgv5h1StpH29ideFo6Muj51mPd4SgnFQ0WWi9T5jrr+Q==
-X-Received: by 2002:a17:907:a064:b0:993:f8b2:d6fa with SMTP id ia4-20020a170907a06400b00993f8b2d6famr1094370ejc.21.1690362871004;
-        Wed, 26 Jul 2023 02:14:31 -0700 (PDT)
-Received: from krzk-bin.. ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id w8-20020a170906130800b00992b510089asm9384492ejb.84.2023.07.26.02.14.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 Jul 2023 02:14:30 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S233236AbjGZJfF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 05:35:05 -0400
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01CD144BB;
+        Wed, 26 Jul 2023 02:33:48 -0700 (PDT)
+Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36Q7mprC023350;
+        Wed, 26 Jul 2023 11:33:18 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=/Cq+mWzaYAzM3dk654+FXTT9IrqSv23zfpbnKE8bKxM=;
+ b=Q3i1gVoUyXsOG+9S8AzF+qC7KGYRPJp1BCc8yu19RqFYSEYXR+81aMgiqDR45yEeyPqO
+ J+U3uov9ofSS5wPMhYZ9+4/I7yoG4y4+8katCpM+tSm+G4l/cyvw4mN5swVzqt2fYz1S
+ bfKZRzHV8x7Kom11ShfbZ53EZcJIdyyJN+AiP8cxN5/mICmfx+rToX+nVgHVP8/cnFWf
+ epKhxqQqSlw0L+nHtRZGH+rh+T1QQLgWgFQA+vVJ65W56Qod/6jQdjeSkvBm9SME4WcU
+ E4hHx370z65KeipWwjPTCZPdxiSvq2f8S2ouOVDcvTyBIP2Gg5qihokSU89pm2KM33oL pg== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3s2ye8gv6r-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 26 Jul 2023 11:33:18 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id A74DF10002A;
+        Wed, 26 Jul 2023 11:33:17 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 90F66212FCB;
+        Wed, 26 Jul 2023 11:33:17 +0200 (CEST)
+Received: from [10.48.1.0] (10.48.1.0) by SHFDAG1NODE3.st.com (10.75.129.71)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Wed, 26 Jul
+ 2023 11:33:16 +0200
+Message-ID: <a442c999-4120-c945-c671-d5fe2c21522c@foss.st.com>
+Date:   Wed, 26 Jul 2023 11:33:15 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH 4/4] ARM: multi_v7_defconfig: Add SCMI regulator support
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <p.paillet@foss.st.com>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: (subset) [PATCH v3 2/3] pinctrl: qcom: sm8350-lpass-lpi: add SM8350 LPASS TLMM
-Date:   Wed, 26 Jul 2023 11:14:18 +0200
-Message-Id: <169036285577.127914.11011181994412029245.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230719192058.433517-2-krzysztof.kozlowski@linaro.org>
-References: <20230719192058.433517-1-krzysztof.kozlowski@linaro.org> <20230719192058.433517-2-krzysztof.kozlowski@linaro.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+CC:     Etienne Carriere <etienne.carriere@foss.st.com>
+References: <20230712142432.1885162-1-p.paillet@foss.st.com>
+ <20230712142432.1885162-5-p.paillet@foss.st.com>
+ <aa05bcd6-140d-d951-2c7f-c09abf7f49f7@linaro.org>
+From:   Patrick DELAUNAY <patrick.delaunay@foss.st.com>
+In-Reply-To: <aa05bcd6-140d-d951-2c7f-c09abf7f49f7@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+X-Originating-IP: [10.48.1.0]
+X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE3.st.com
+ (10.75.129.71)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-07-26_03,2023-07-25_01,2023-05-22_02
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
-On Wed, 19 Jul 2023 21:20:57 +0200, Krzysztof Kozlowski wrote:
-> Add driver for pin controller in Low Power Audio SubSystem (LPASS).  The
-> driver is similar to SM8250 LPASS pin controller, with difference in one
-> new pin (gpio14) belonging to swr_tx_data.
-> 
-> 
+On 7/12/23 21:25, Krzysztof Kozlowski wrote:
+> On 12/07/2023 16:24, p.paillet@foss.st.com wrote:
+>> From: Pascal Paillet <p.paillet@foss.st.com>
+>>
+>> Enable ARM SCMI regulator support.
+>>
+> This we see from the diff. Please explain why, e.g. which boards use it.
+>
+> Best regards,
+> Krzysztof
 
-Applied, thanks!
 
-[2/3] pinctrl: qcom: sm8350-lpass-lpi: add SM8350 LPASS TLMM
-      https://git.kernel.org/krzk/linux-dt/c/be9f6d56381d995f600524ad99fa8a9cc5bd5c49
+The STM32MP platforms rely on OP-TEE to boot: Clocks and regulators are 
+handled in
+the secure world by OP-TEE and exported to the non secure world (LINUX)
+thanks to ARM SCMI protocol.
 
-Best regards,
--- 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Today it is used in the ARMv7 STMicrolectronics stm32mp boards:
+- for STM32MP13: stm32mp135f-dk
+- the STM32MP15 boards with SCMI variant, introduced by commit 5b7e58313a77
+   ("ARM: dts: stm32: Add SCMI version of STM32 boards (DK1/DK2/ED1/EV1)")
+   * stm32mp157c-ev1-scmi
+   * stm32mp157c-ed1-scmi
+   * stm32mp157c-dk2-scmi
+   * stm32mp157a-dk1-scmi
+
+This SCMI server provide access to "secured" resources protected in SoC
+(for example with RCC_SECFGR); the resources need to be available early
+for these board and the  SCMI server is associated with OP-TEE, already
+activated by the commit 24c159793238  ("ARM: multi_v7_defconfig: Add
+OPTEE support").
+
+Regards
+
+Patrick
+
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+>
