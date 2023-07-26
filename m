@@ -2,183 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C13E763C15
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 18:14:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C6CB1763C1E
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 18:15:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230174AbjGZQOU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jul 2023 12:14:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38814 "EHLO
+        id S231376AbjGZQPt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jul 2023 12:15:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39880 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229597AbjGZQOT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 12:14:19 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22FA21BE8
-        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 09:14:18 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-5227799c224so1063491a12.0
-        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 09:14:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690388056; x=1690992856;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=MAWnb7QFbSxQlRhJkEh2E/t//H6BY0En+cTF7iWgSRo=;
-        b=bJLyG+YjZOjwLgfTKsB4IiqYw7Pl4my4lZkGzfUbLbZAFWTwH1lNhk14TxvwpyVpSj
-         C0gNSbWCHvV9bJb7cTMOy9/D1aTel8xLx3/QiY4j821WananWsBrBotj1tzECxcSCmjb
-         rI3iFS0JsARbEZcAu14I+rZFirFClu3KxTy4TdLlRaN3kUWrlX8q1hBkBiAYdrPACHJn
-         n3EQacmW7OdEb3c8CigQRy3GMsItg7D2OJ4Cp0Wuc5M86BRayISR9K58NwRoZWiTGTQ7
-         xSI0oNcivqRpZm15PQtKgUaZg9lUrNwuitb5u/I4HWszqDY55fIDyKBj/IfkzYP3rfsO
-         OCHQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690388056; x=1690992856;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=MAWnb7QFbSxQlRhJkEh2E/t//H6BY0En+cTF7iWgSRo=;
-        b=Yo2qMCGx8FNOWHPfAgb7uC3LACoi140CU1aSzIWe08uUZNkUL+dLfSKq8/x6rP+0Ve
-         Dx86MqImJJoxtBtXNg/ARW9em7D2rRR2cS/1Z6c/QN/uzWlYaMlJyAR1keU7GeRETGU4
-         Jp1Vtop6JmSC7xcPsxP4g7HVjZLRlNavFHr1F2/TxP6jWfTwOVfSpfNNOy5UaIWSMFkf
-         01Vky09G1ep2xz9Z8n0VAQwHTMpcxO8HiwL6uwNKOYNIT818dOwUafpfo4uBRHeGbqU1
-         NCU0yBdaLxoOmz2ZN2oI4D7h9f4rKUZFcpcq3bMfPI4rqCau37p0O22ccaa/AA2N8CF2
-         Cc7g==
-X-Gm-Message-State: ABy/qLaWenLuKPIqeo/5qPUSZ7WxvsyXkzTMxN3WhiNmn66S71W/PZSZ
-        eIX4DI1Wu98WfJm6leXC5pLPojQWiZSKHj/AZHg=
-X-Google-Smtp-Source: APBJJlEXTthH03AU/9BQ+Ck77v4MD/2nK+Zt2K6dh3fgtIgyg5KL0U2IQWnuP/dW7rt/kCwiEl8YOQ==
-X-Received: by 2002:a05:6402:1259:b0:521:7779:d918 with SMTP id l25-20020a056402125900b005217779d918mr2023959edw.19.1690388056555;
-        Wed, 26 Jul 2023 09:14:16 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id l25-20020aa7c3d9000000b0051873c201a0sm8906020edr.26.2023.07.26.09.14.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 26 Jul 2023 09:14:16 -0700 (PDT)
-Message-ID: <82628237-e087-269e-9673-cf3873fe4b35@linaro.org>
-Date:   Wed, 26 Jul 2023 18:14:14 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH 2/2] dt-bindings: hwmon: add renesas,isl28022
-Content-Language: en-US
-To:     =?UTF-8?Q?Carsten_Spie=c3=9f?= <mail@carsten-spiess.de>,
-        Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>,
+        with ESMTP id S232183AbjGZQPn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 12:15:43 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6E9F272B;
+        Wed, 26 Jul 2023 09:15:27 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 4184861BB0;
+        Wed, 26 Jul 2023 16:15:27 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3BF90C433C7;
+        Wed, 26 Jul 2023 16:15:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1690388126;
+        bh=PjS7Z4XLVUrWS49n3z6ZKWBMg/vyivtQsAyTNpykwlg=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=Wo96XIOd233Ym49/rnGPn2nsiHMtnSSckxg00swNYkF464YXnWNH52Brk7gzR8a2M
+         xXYR3hdZxh8VbM0jSRCQjsXFZmtcw+4hgL72Y3zEcbbMxgBMllibtqfNqzpiAzjHlA
+         vTPOFJ9Y+ldpElGeT8RSwp832W4E4yr8DJe+lCJMTCDdKbkmBs8vDVSw0a/GCj0BH7
+         Q8cRyCNo/OQ6fif/Ol0Zf6DO4ZTmUUKsPFxSn6tYK7KrkzUgxM+XwIHpz2FmGsxZh0
+         Xekl4ta5ukqIc6eolJU16KRL4ZHrpXgaF2eMwyM987uzBi6lo/GJcVFy/DDT9GxZ44
+         fRPDa0SOMtISg==
+From:   Conor Dooley <conor@kernel.org>
+To:     Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        Conor Dooley <conor@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>
-Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-References: <20230726152235.249569-1-mail@carsten-spiess.de>
- <20230726152235.249569-3-mail@carsten-spiess.de>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230726152235.249569-3-mail@carsten-spiess.de>
-Content-Type: text/plain; charset=UTF-8
+        Minda Chen <minda.chen@starfivetech.com>
+Cc:     Conor Dooley <conor.dooley@microchip.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-riscv@lists.infradead.org,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>
+Subject: Re: [dt-for-next v1 0/2] Add USB PHY and USB dts node for JH7110
+Date:   Wed, 26 Jul 2023 17:15:19 +0100
+Message-Id: <20230726-disjoin-valiant-9eb92de6a240@spud>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20230726100609.72550-1-minda.chen@starfivetech.com>
+References: <20230726100609.72550-1-minda.chen@starfivetech.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+X-Developer-Signature: v=1; a=openpgp-sha256; l=602; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=FYw9ShWdfK+KWcg2OyowqX9vfHSugqdrc2UoYjB9w7k=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDCkH3aa+ZnugatKl2Dlz1baaCT+emRxSLNz6vEX67+rYD +olxo8PdJSyMIhxMMiKKbIk3u5rkVr/x2WHc89bmDmsTCBDGLg4BWAigj0M/8ym5bMzm27T/1yg mr9t5/Ura1bZ6fQ3Cj21rtLJ7lz8tZrhn0q9Uv9FlQtzPALCGPSuxTJ/LOgMiv2Y33Dv4a/jq3a J8wIA
+X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/07/2023 17:22, Carsten Spieß wrote:
-> Add dt-bindings for Renesase ISL28022 power monitor.
+From: Conor Dooley <conor.dooley@microchip.com>
+
+On Wed, 26 Jul 2023 03:06:07 -0700, Minda Chen wrote:
+> Add USB and USB/PCIe PHY dts node for StarFive JH7110. The PHY
+> driver is in linux-phy-next tree.
 > 
-> Signed-off-by: Carsten Spieß <mail@carsten-spiess.de>
-> ---
-
-Thank you for your patch. There is something to discuss/improve.
-
-
->  .../bindings/hwmon/renesas,isl28022.yaml      | 67 +++++++++++++++++++
->  MAINTAINERS                                   |  1 +
->  2 files changed, 68 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/hwmon/renesas,isl28022.yaml
+> Minda Chen (2):
+>   riscv: dts: starfive: Add USB and PCIe PHY nodes for JH7110
+>   riscv: dts: starfive: Add USB dts node for JH7110
 > 
-> diff --git a/Documentation/devicetree/bindings/hwmon/renesas,isl28022.yaml b/Documentation/devicetree/bindings/hwmon/renesas,isl28022.yaml
-> new file mode 100644
-> index 000000000000..5ecf892db269
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/hwmon/renesas,isl28022.yaml
-> @@ -0,0 +1,67 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +
+> [...]
 
-No blank line.
+Applied to riscv-dt-for-next, thanks!
 
-> +$id: http://devicetree.org/schemas/hwmon/renesas,isl28022.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Renesas ISL28022 power monitor
-> +
-> +maintainers:
-> +  - Carsten Spieß <mail@carsten-spiess.de>
-> +
-> +description: |
-> +  The ISL28022 is a power monitor with I2C interface. The device monitors
-> +  voltage, current via shunt resistor and calculated power.
-> +
-> +  Datasheets:
-> +    https://www.renesas.com/us/en/www/doc/datasheet/isl28022.pdf
-> +
-> +Required properties:
-> +  compatible:
-> +    enum:
-> +      - renesas,isl28022
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +Optional properties:
+[1/2] riscv: dts: starfive: Add USB and PCIe PHY nodes for JH7110
+      https://git.kernel.org/conor/c/c2a10081c033
+[2/2] riscv: dts: starfive: Add USB dts node for JH7110
+      https://git.kernel.org/conor/c/e126aa3abc4e
 
-It does not look like you tested the bindings, at least after quick
-look. Please run `make dt_binding_check` (see
-Documentation/devicetree/bindings/writing-schema.rst for instructions).
-Maybe you need to update your dtschema and yamllint.
-
-These are "properties"
-
-> +  shunt-resistor-micro-ohms:
-> +    description:
-> +      Shunt resistor value in micro-Ohm
-> +      defaults to <0> when not set
-> +      monitoring of current and power not supported when <0>
-> +
-> +  shunt-gain:
-
-1. Missing vendor prefix (does not look like generic property)
-2. -microvolt
-
-> +    description:
-> +      Shunt gain to scale maximal shunt voltage to
-> +      40mV, 80mV, 160mV, 320mV
-> +      defaults to <8> (320mV) when not set
-
-And then enum is for 40, 80, 160 and 320.
-
-> +    enum: [1, 2, 4, 8]
-> +
-> +  average:
-> +    description: |
-> +      Number of samples to be used to report voltage, current and power values.
-> +      defaults to <0> when not set
-> +    enum: [0, 1, 2, 4, 8, 16, 32, 64, 128]
-
-I am sure hwmon has some property for this. Are you sure it is called
-"average"?
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-
-
-Best regards,
-Krzysztof
-
+Thanks,
+Conor.
