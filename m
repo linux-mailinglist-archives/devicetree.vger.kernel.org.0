@@ -2,130 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B25576331C
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 12:06:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 16A19763341
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 12:17:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232686AbjGZKGS convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 26 Jul 2023 06:06:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44566 "EHLO
+        id S230013AbjGZKQ7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jul 2023 06:16:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49720 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231880AbjGZKGQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 06:06:16 -0400
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE730BF;
-        Wed, 26 Jul 2023 03:06:15 -0700 (PDT)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 6215A810C;
-        Wed, 26 Jul 2023 18:06:14 +0800 (CST)
-Received: from EXMBX171.cuchost.com (172.16.6.91) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 26 Jul
- 2023 18:06:14 +0800
-Received: from ubuntu.localdomain (183.27.99.135) by EXMBX171.cuchost.com
- (172.16.6.91) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 26 Jul
- 2023 18:06:13 +0800
-From:   Minda Chen <minda.chen@starfivetech.com>
-To:     Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        Conor Dooley <conor@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-riscv@lists.infradead.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>
-Subject: [dt-for-next v1 2/2] riscv: dts: starfive: Add USB dts node for JH7110
-Date:   Wed, 26 Jul 2023 03:06:09 -0700
-Message-ID: <20230726100609.72550-3-minda.chen@starfivetech.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230726100609.72550-1-minda.chen@starfivetech.com>
-References: <20230726100609.72550-1-minda.chen@starfivetech.com>
+        with ESMTP id S229821AbjGZKQ6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 06:16:58 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB1451984
+        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 03:16:57 -0700 (PDT)
+Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mkl@pengutronix.de>)
+        id 1qObZO-0002ZA-8k; Wed, 26 Jul 2023 12:16:38 +0200
+Received: from pengutronix.de (unknown [172.20.34.65])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (Client did not present a certificate)
+        (Authenticated sender: mkl-all@blackshift.org)
+        by smtp.blackshift.org (Postfix) with ESMTPSA id C32901FB186;
+        Wed, 26 Jul 2023 10:16:36 +0000 (UTC)
+Date:   Wed, 26 Jul 2023 12:16:36 +0200
+From:   Marc Kleine-Budde <mkl@pengutronix.de>
+To:     haibo.chen@nxp.com
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        wg@grandegger.com, kernel@pengutronix.de, linux-imx@nxp.com,
+        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, devicetree@vger.kernel.org,
+        linux-can@vger.kernel.org, netdev@vger.kernel.org
+Subject: Re: [PATCH v2 3/3] can: flexcan: lack of stop mode dts properity
+ should not block driver probe
+Message-ID: <20230726-majorette-manor-ea82bb4afa68-mkl@pengutronix.de>
+References: <20230726090909.3417030-1-haibo.chen@nxp.com>
+ <20230726090909.3417030-3-haibo.chen@nxp.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [183.27.99.135]
-X-ClientProxiedBy: EXCAS061.cuchost.com (172.16.6.21) To EXMBX171.cuchost.com
- (172.16.6.91)
-X-YovoleRuleAgent: yovoleflag
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="cjbrrbvmxmmqq34f"
+Content-Disposition: inline
+In-Reply-To: <20230726090909.3417030-3-haibo.chen@nxp.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:b01:1d::7b
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add USB wrapper layer and Cadence USB3 controller dts
-configuration for StarFive JH7110 SoC and VisionFive2
-Board.
 
-Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
----
- .../jh7110-starfive-visionfive-2.dtsi         |  5 +++
- arch/riscv/boot/dts/starfive/jh7110.dtsi      | 32 +++++++++++++++++++
- 2 files changed, 37 insertions(+)
+--cjbrrbvmxmmqq34f
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-index 5feff4673503..36c402b4a726 100644
---- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-@@ -273,6 +273,11 @@ &uart0 {
- 	status = "okay";
- };
- 
-+&usb0 {
-+	dr_mode = "peripheral";
-+	status = "okay";
-+};
-+
- &U74_1 {
- 	cpu-supply = <&vdd_cpu>;
- };
-diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-index dbc1243a0e75..c58489468cad 100644
---- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-@@ -446,6 +446,38 @@ i2c2: i2c@10050000 {
- 			status = "disabled";
- 		};
- 
-+		usb0: usb@10100000 {
-+			compatible = "starfive,jh7110-usb";
-+			ranges = <0x0 0x0 0x10100000 0x100000>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			starfive,stg-syscon = <&stg_syscon 0x4>;
-+			clocks = <&stgcrg JH7110_STGCLK_USB0_LPM>,
-+				 <&stgcrg JH7110_STGCLK_USB0_STB>,
-+				 <&stgcrg JH7110_STGCLK_USB0_APB>,
-+				 <&stgcrg JH7110_STGCLK_USB0_AXI>,
-+				 <&stgcrg JH7110_STGCLK_USB0_UTMI_APB>;
-+			clock-names = "lpm", "stb", "apb", "axi", "utmi_apb";
-+			resets = <&stgcrg JH7110_STGRST_USB0_PWRUP>,
-+				 <&stgcrg JH7110_STGRST_USB0_APB>,
-+				 <&stgcrg JH7110_STGRST_USB0_AXI>,
-+				 <&stgcrg JH7110_STGRST_USB0_UTMI_APB>;
-+			reset-names = "pwrup", "apb", "axi", "utmi_apb";
-+			status = "disabled";
-+
-+			usb_cdns3: usb@0 {
-+				compatible = "cdns,usb3";
-+				reg = <0x0 0x10000>,
-+				      <0x10000 0x10000>,
-+				      <0x20000 0x10000>;
-+				reg-names = "otg", "xhci", "dev";
-+				interrupts = <100>, <108>, <110>;
-+				interrupt-names = "host", "peripheral", "otg";
-+				phys = <&usbphy0>;
-+				phy-names = "cdns3,usb2-phy";
-+			};
-+		};
-+
- 		usbphy0: phy@10200000 {
- 			compatible = "starfive,jh7110-usb-phy";
- 			reg = <0x0 0x10200000 0x0 0x10000>;
--- 
-2.25.1
+On 26.07.2023 17:09:09, haibo.chen@nxp.com wrote:
+> From: Haibo Chen <haibo.chen@nxp.com>
+>=20
+> If SoC claim to support stop mode, but dts file do not contain the stop
+> mode properity, this should not block the driver probe. For this case,
+> the driver only need to skip the wakeup capable setting which means this
+> device do not support the feature to wakeup system.
 
+This still breaks old DTS on kernels with patch 2 applied, but not 3.
+Please squash this into 2.
+
+>=20
+> Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
+> ---
+>  drivers/net/can/flexcan/flexcan-core.c | 9 ++++++++-
+>  1 file changed, 8 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/drivers/net/can/flexcan/flexcan-core.c b/drivers/net/can/fle=
+xcan/flexcan-core.c
+> index a3f3a9c909be..d8be69f4a0c3 100644
+> --- a/drivers/net/can/flexcan/flexcan-core.c
+> +++ b/drivers/net/can/flexcan/flexcan-core.c
+> @@ -1987,7 +1987,14 @@ static int flexcan_setup_stop_mode(struct platform=
+_device *pdev)
+>  		/* return 0 directly if doesn't support stop mode feature */
+>  		return 0;
+> =20
+> -	if (ret)
+> +	/* If ret is -EINVAL, this means SoC claim to support stop mode, but
+> +	 * dts file lack the stop mode property definition. For this case,
+> +	 * directly return 0, this will skip the wakeup capable setting and
+> +	 * will not block the driver probe.
+> +	 */
+> +	if (ret =3D=3D -EINVAL)
+> +		return 0;
+> +	else if (ret)
+>  		return ret;
+> =20
+>  	device_set_wakeup_capable(&pdev->dev, true);
+> --=20
+> 2.34.1
+>=20
+>=20
+
+regards,
+Marc
+
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde          |
+Embedded Linux                   | https://www.pengutronix.de |
+Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
+
+--cjbrrbvmxmmqq34f
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEDs2BvajyNKlf9TJQvlAcSiqKBOgFAmTA8oEACgkQvlAcSiqK
+BOitZAgAre7gePm257fB84ueqkVE0mAA41PVK+xx6PvmmzojzCx48WrmuqgJUKxX
+iFaah4dWMj5ls7nm/HZBXCNrX8HVfwZQCqOok8TaMNWn2hlZ80kzJwykcngibAEB
+UCx+qAsIuUjniC8rEPkYNFxSTZg5Z+a2/oCo0orcMZ5G4mYzsIUMBH9jwtyuTJ1A
+qaZqSK58oLMKNrWtJHJox9Ji2i0uhFOtJuKKsZG8yizyxHQPkKvXk37C2aSEzDXV
+mDi3cI0KI+G0uNyoueYc/kxV+Dqpp03g5ZJmjSF1ak+NAvWu/g0KjoBKFSf1FYcE
+j24fcHXS6KoDt/1uSaorUjAPpPTTPQ==
+=FhOU
+-----END PGP SIGNATURE-----
+
+--cjbrrbvmxmmqq34f--
