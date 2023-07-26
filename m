@@ -2,183 +2,398 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D2855763C65
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 18:27:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3DC26763C6A
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 18:28:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231224AbjGZQ07 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jul 2023 12:26:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47422 "EHLO
+        id S231172AbjGZQ2B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jul 2023 12:28:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48762 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231357AbjGZQ06 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 12:26:58 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6FD732D4F;
-        Wed, 26 Jul 2023 09:26:31 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 36QGQH7e009437;
-        Wed, 26 Jul 2023 11:26:17 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1690388777;
-        bh=MVdmp+gOoZlAhPHT4qa7hQWAupBLfXTDw707s4VDyrA=;
-        h=From:To:CC:Subject:Date;
-        b=mn9gCRXkS8xbWmFJlFkauTNUAuNcDSnnZoeD+I8oI1UzVHso0fr1byxJzkyKrOvl4
-         0ifuSrl6fkucQSvx/DGkALB8XNvCHUlNr+Lsp3UJgVZK33eL0Ug/4OtnuMDOAWwKae
-         bmYdH2Z4mOxc/ilHyM4+ycvucgaw+s0gi2Cr08KA=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 36QGQGbb014798
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 26 Jul 2023 11:26:16 -0500
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 26
- Jul 2023 11:26:16 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 26 Jul 2023 11:26:16 -0500
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 36QGQF0Z015623;
-        Wed, 26 Jul 2023 11:26:16 -0500
-From:   Devarsh Thakkar <devarsht@ti.com>
-To:     <mchehab@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC:     <praneeth@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
-        <a-bhatia1@ti.com>, <j-luthra@ti.com>, <b-brnich@ti.com>,
-        <detheridge@ti.com>, <p-mantena@ti.com>, <vijayp@ti.com>,
-        <devarsht@ti.com>
-Subject: [PATCH] dt-bindings: media: Add bindings for Imagination E5010 JPEG Encoder driver
-Date:   Wed, 26 Jul 2023 21:56:15 +0530
-Message-ID: <20230726162615.1270075-1-devarsht@ti.com>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S230312AbjGZQ1x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 12:27:53 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A0B8269E;
+        Wed, 26 Jul 2023 09:27:51 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id 2adb3069b0e04-4fbf09a9139so11015257e87.2;
+        Wed, 26 Jul 2023 09:27:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1690388869; x=1690993669;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=QoSMNchEXwuX3x9QSSuoNR4qaNrXEAa88B7oBatCh9k=;
+        b=hOpLhlM0bSjFk24PeXZyHUzLwARE7wrYPSZwiP6pVi+jeEE43Zya2TlPdEReScX18r
+         4y6AvmBcloKqqwgu+9oYQhz7ZmV0htmo4yVxU3JYmiGkfrWJTeQc4y9al7PuBv5e2sQA
+         ljOlOTrvml8f6H6WiGE7wPFtWDm39eE42bynZm6Glj4CXOYqE28qzBHHU5UUh9i4IyzP
+         +jXoxOB/2TAeXuzze5hx52zTYryHTdNgzofFb9dEfwCfYidcXB+FosYK4+o00UfyABRo
+         dICONGcvQc0jCgTU29Tn6F1Gy+s5AUgZjtiFa3kBg/wkNHcb+iSrJ565nm3ZVJxDj/gq
+         zZ5w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690388869; x=1690993669;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=QoSMNchEXwuX3x9QSSuoNR4qaNrXEAa88B7oBatCh9k=;
+        b=CB1OC+CR5iFadcc2liovoYZ87ZhVo6LhL0PamYqqVS8vpzQEnZd/I6SBBFpzVyo54J
+         E3csC82NbtUo2R8/zs9FSlfafXIhkC1JWGPvuFCvxNLYtpbskstYh6fA9DPC9pXmQJh0
+         RkzpbpjEefJcqAwqb7QqrgOK5D5Tzx5tFYegaEbYZBQbp6Dv+AECSaJoRSc13DyxZX3h
+         mgsDfPfniU1QfI4lwtLvZAfU1MiCYAH7Vlf+wOVYYHRqNPn6lFdV4SdUojVBBH3fTLI4
+         Ec7etkGrDDBTYOb9Sa06WO4HDvAKkDLM/8kYc55LlemRJyqxXMBh23J4xNLxnKxgS8SV
+         ouww==
+X-Gm-Message-State: ABy/qLagcUEZRtQleOZkJEYVjnuoK5I42HAwUimCxVzPhD83dVhh5ock
+        pVEnAArIAWl4vyKlbqBpqsFgVBrPHHY=
+X-Google-Smtp-Source: APBJJlGD4YeYrOnM8r6fZw0mZaQqcVDl6v+A1YAKQnPKQCXWofJcZg46zV+nF5UAQXVfg7JCWHq1kQ==
+X-Received: by 2002:a2e:9d0f:0:b0:2b6:df8a:d44b with SMTP id t15-20020a2e9d0f000000b002b6df8ad44bmr1808581lji.36.1690388869011;
+        Wed, 26 Jul 2023 09:27:49 -0700 (PDT)
+Received: from localhost (p200300e41f1bd600f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f1b:d600:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id q11-20020a170906388b00b00988dbbd1f7esm9655986ejd.213.2023.07.26.09.27.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 26 Jul 2023 09:27:48 -0700 (PDT)
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>
+Cc:     Jon Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, Rob Herring <robh@kernel.org>
+Subject: [PATCH v3 1/7] dt-bindings: arm: tegra: pmc: Improve property descriptions
+Date:   Wed, 26 Jul 2023 18:27:38 +0200
+Message-ID: <20230726162744.2113008-1-thierry.reding@gmail.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add dt-bindings for Imagination E5010 JPEG Encoder driver which is
-implemented as stateful V4L2 M2M driver.
+From: Thierry Reding <treding@nvidia.com>
 
-Co-developed-by: David Huang <d-huang@ti.com>
-Signed-off-by: David Huang <d-huang@ti.com>
-Signed-off-by: Devarsh Thakkar <devarsht@ti.com>
+Reformat the description of various properties to make them more
+consistent with existing ones. Make use of json-schema's ability to
+provide a description for individual list items to make improve the
+documentation further.
+
+Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Thierry Reding <treding@nvidia.com>
 ---
- .../bindings/media/img,e5010-jpeg-enc.yaml    | 79 +++++++++++++++++++
- MAINTAINERS                                   |  5 ++
- 2 files changed, 84 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/media/img,e5010-jpeg-enc.yaml
+Changes in v2:
+- instead of rewriting it, drop the reg property description in patch 2
+- add Reviewed-by: from Rob
 
-diff --git a/Documentation/devicetree/bindings/media/img,e5010-jpeg-enc.yaml b/Documentation/devicetree/bindings/media/img,e5010-jpeg-enc.yaml
-new file mode 100644
-index 000000000000..0060373eace7
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/img,e5010-jpeg-enc.yaml
-@@ -0,0 +1,79 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/media/img,e5010-jpeg-enc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Imagination E5010 JPEG Encoder
-+
-+maintainers:
-+  - Devarsh Thakkar <devarsht@ti.com>
-+
-+description: |
-+  The E5010 is a JPEG encoder from Imagination Technologies implemented on
-+  TI's AM62A SoC. It is capable of real time encoding of YUV420 and YUV422
-+  inputs to JPEG and M-JPEG. It supports baseline JPEG Encoding up to
-+  8Kx8K resolution.
-+
-+properties:
-+  compatible:
-+    const: img,e5010-jpeg-enc
-+
-+  reg:
-+    items:
-+      - description: The E5010 main register region
-+      - description: The E5010 mmu register region
-+
-+  reg-names:
-+    items:
-+      - const: regjasper
-+      - const: regmmu
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  resets:
-+    maxItems: 1
-+
-+  clocks:
-+    minItems: 1
-+    maxItems: 2
-+
-+  clock-names:
-+    minItems: 1
-+    maxItems: 2
-+
-+  interrupts:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - reg-names
-+  - interrupts
-+  - clocks
-+  - clock-names
-+  - power-domains
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/soc/ti,sci_pm_domain.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    cbass_main {
-+      #address-cells = <2>;
-+      #size-cells = <2>;
-+      e5010: e5010@fd20000 {
-+          compatible = "img,e5010-jpeg-enc";
-+          reg = <0x00 0xfd20000 0x00 0x100>,
-+                <0x00 0xfd20200 0x00 0x200>;
-+          reg-names = "regjasper", "regmmu";
-+          clocks = <&k3_clks 201 0>;
-+          clock-names = "core_clk";
-+          power-domains = <&k3_pds 201 TI_SCI_PD_EXCLUSIVE>;
-+          interrupts = <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>;
-+      };
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index a5c16bb92fe2..aab11219810f 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -10170,6 +10170,11 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/auxdisplay/img,ascii-lcd.yaml
- F:	drivers/auxdisplay/img-ascii-lcd.c
+ .../arm/tegra/nvidia,tegra20-pmc.yaml         | 212 +++++++++---------
+ 1 file changed, 103 insertions(+), 109 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra20-pmc.yaml b/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra20-pmc.yaml
+index 89191cfdf619..38fe66142547 100644
+--- a/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra20-pmc.yaml
++++ b/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra20-pmc.yaml
+@@ -26,12 +26,10 @@ properties:
  
-+IMGTEC JPEG ENCODER DRIVER
-+M:	Devarsh Thakkar <devarsht@ti.com>
-+S:	Supported
-+F:	Documentation/devicetree/bindings/media/img,e5010-jpeg-enc.yaml
+   clock-names:
+     items:
++      # Tegra clock of the same name
+       - const: pclk
++      # 32 KHz clock input
+       - const: clk32k_in
+-    description:
+-      Must includes entries pclk and clk32k_in.
+-      pclk is the Tegra clock of that name and clk32k_in is 32KHz clock
+-      input to Tegra.
+ 
+   clocks:
+     maxItems: 2
+@@ -41,105 +39,103 @@ properties:
+ 
+   '#clock-cells':
+     const: 1
+-    description:
+-      Tegra PMC has clk_out_1, clk_out_2, and clk_out_3.
+-      PMC also has blink control which allows 32Khz clock output to
+-      Tegra blink pad.
+-      Consumer of PMC clock should specify the desired clock by having
+-      the clock ID in its "clocks" phandle cell with pmc clock provider.
+-      See include/dt-bindings/soc/tegra-pmc.h for the list of Tegra PMC
+-      clock IDs.
++    description: |
++      Tegra PMC has clk_out_1, clk_out_2, and clk_out_3. PMC also has blink
++      control which allows 32Khz clock output to Tegra blink pad.
 +
- IMGTEC IR DECODER DRIVER
- S:	Orphan
- F:	drivers/media/rc/img-ir/
++      Consumer of PMC clock should specify the desired clock by having the
++      clock ID in its "clocks" phandle cell with PMC clock provider. See
++      include/dt-bindings/soc/tegra-pmc.h for the list of Tegra PMC clock IDs.
+ 
+   '#interrupt-cells':
+     const: 2
+-    description:
+-      Specifies number of cells needed to encode an interrupt source.
+-      The value must be 2.
++    description: Specifies number of cells needed to encode an interrupt
++      source.
+ 
+   interrupt-controller: true
+ 
+   nvidia,invert-interrupt:
+     $ref: /schemas/types.yaml#/definitions/flag
+-    description: Inverts the PMU interrupt signal.
+-      The PMU is an external Power Management Unit, whose interrupt output
+-      signal is fed into the PMC. This signal is optionally inverted, and
+-      then fed into the ARM GIC. The PMC is not involved in the detection
+-      or handling of this interrupt signal, merely its inversion.
++    description: Inverts the PMU interrupt signal. The PMU is an external Power
++      Management Unit, whose interrupt output signal is fed into the PMC. This
++      signal is optionally inverted, and then fed into the ARM GIC. The PMC is
++      not involved in the detection or handling of this interrupt signal,
++      merely its inversion.
+ 
+   nvidia,core-power-req-active-high:
+     $ref: /schemas/types.yaml#/definitions/flag
+-    description: Core power request active-high.
++    description: core power request active-high
+ 
+   nvidia,sys-clock-req-active-high:
+     $ref: /schemas/types.yaml#/definitions/flag
+-    description: System clock request active-high.
++    description: system clock request active-high
+ 
+   nvidia,combined-power-req:
+     $ref: /schemas/types.yaml#/definitions/flag
+-    description: combined power request for CPU and Core.
++    description: combined power request for CPU and core
+ 
+   nvidia,cpu-pwr-good-en:
+     $ref: /schemas/types.yaml#/definitions/flag
+-    description:
+-      CPU power good signal from external PMIC to PMC is enabled.
++    description: CPU power good signal from external PMIC to PMC is enabled
+ 
+   nvidia,suspend-mode:
+     $ref: /schemas/types.yaml#/definitions/uint32
+-    enum: [0, 1, 2]
+-    description:
+-      The suspend mode that the platform should use.
+-      Mode 0 is for LP0, CPU + Core voltage off and DRAM in self-refresh
+-      Mode 1 is for LP1, CPU voltage off and DRAM in self-refresh
+-      Mode 2 is for LP2, CPU voltage off
++    description: the suspend mode that the platform should use
++    oneOf:
++      - description: LP0, CPU + Core voltage off and DRAM in self-refresh
++        const: 0
++      - description: LP1, CPU voltage off and DRAM in self-refresh
++        const: 1
++      - description: LP2, CPU voltage off
++        const: 2
+ 
+   nvidia,cpu-pwr-good-time:
+     $ref: /schemas/types.yaml#/definitions/uint32
+-    description: CPU power good time in uSec.
++    description: CPU power good time in microseconds
+ 
+   nvidia,cpu-pwr-off-time:
+     $ref: /schemas/types.yaml#/definitions/uint32
+-    description: CPU power off time in uSec.
++    description: CPU power off time in microseconds
+ 
+   nvidia,core-pwr-good-time:
+     $ref: /schemas/types.yaml#/definitions/uint32-array
+-    description:
+-      <Oscillator-stable-time Power-stable-time>
+-      Core power good time in uSec.
++    description: core power good time in microseconds
++    items:
++      - description: oscillator stable time
++      - description: power stable time
+ 
+   nvidia,core-pwr-off-time:
+     $ref: /schemas/types.yaml#/definitions/uint32
+-    description: Core power off time in uSec.
++    description: core power off time in microseconds
+ 
+   nvidia,lp0-vec:
+     $ref: /schemas/types.yaml#/definitions/uint32-array
+-    description:
+-      <start length> Starting address and length of LP0 vector.
+-      The LP0 vector contains the warm boot code that is executed
+-      by AVP when resuming from the LP0 state.
+-      The AVP (Audio-Video Processor) is an ARM7 processor and
+-      always being the first boot processor when chip is power on
+-      or resume from deep sleep mode. When the system is resumed
+-      from the deep sleep mode, the warm boot code will restore
+-      some PLLs, clocks and then brings up CPU0 for resuming the
+-      system.
++    description: |
++      Starting address and length of LP0 vector. The LP0 vector contains the
++      warm boot code that is executed by AVP when resuming from the LP0 state.
++      The AVP (Audio-Video Processor) is an ARM7 processor and always being
++      the first boot processor when chip is power on or resume from deep sleep
++      mode. When the system is resumed from the deep sleep mode, the warm boot
++      code will restore some PLLs, clocks and then brings up CPU0 for resuming
++      the system.
++    items:
++      - description: starting address of LP0 vector
++      - description: length of LP0 vector
+ 
+   core-supply:
+-    description:
+-      Phandle to voltage regulator connected to the SoC Core power rail.
++    description: phandle to voltage regulator connected to the SoC core power
++      rail
+ 
+   core-domain:
+     type: object
+-    description: |
+-      The vast majority of hardware blocks of Tegra SoC belong to a
+-      Core power domain, which has a dedicated voltage rail that powers
+-      the blocks.
+-
++    description: The vast majority of hardware blocks of Tegra SoC belong to a
++      core power domain, which has a dedicated voltage rail that powers the
++      blocks.
+     properties:
+       operating-points-v2:
+-        description:
+-          Should contain level, voltages and opp-supported-hw property.
+-          The supported-hw is a bitfield indicating SoC speedo or process
+-          ID mask.
++        description: Should contain level, voltages and opp-supported-hw
++          property. The supported-hw is a bitfield indicating SoC speedo or
++          process ID mask.
+ 
+       "#power-domain-cells":
+         const: 0
+@@ -152,37 +148,32 @@ properties:
+ 
+   i2c-thermtrip:
+     type: object
+-    description:
+-      On Tegra30, Tegra114 and Tegra124 if i2c-thermtrip subnode exists,
+-      hardware-triggered thermal reset will be enabled.
+-
++    description: On Tegra30, Tegra114 and Tegra124 if i2c-thermtrip subnode
++      exists, hardware-triggered thermal reset will be enabled.
+     properties:
+       nvidia,i2c-controller-id:
+         $ref: /schemas/types.yaml#/definitions/uint32
+-        description:
+-          ID of I2C controller to send poweroff command to PMU.
+-          Valid values are described in section 9.2.148
+-          "APBDEV_PMC_SCRATCH53_0" of the Tegra K1 Technical Reference
+-          Manual.
++        description: ID of I2C controller to send poweroff command to PMU.
++          Valid values are described in section 9.2.148 "APBDEV_PMC_SCRATCH53_0"
++          of the Tegra K1 Technical Reference Manual.
+ 
+       nvidia,bus-addr:
+         $ref: /schemas/types.yaml#/definitions/uint32
+-        description: Bus address of the PMU on the I2C bus.
++        description: bus address of the PMU on the I2C bus
+ 
+       nvidia,reg-addr:
+         $ref: /schemas/types.yaml#/definitions/uint32
+-        description: PMU I2C register address to issue poweroff command.
++        description: PMU I2C register address to issue poweroff command
+ 
+       nvidia,reg-data:
+         $ref: /schemas/types.yaml#/definitions/uint32
+-        description: Poweroff command to write to PMU.
++        description: power-off command to write to PMU
+ 
+       nvidia,pinmux-id:
+         $ref: /schemas/types.yaml#/definitions/uint32
+-        description:
+-          Pinmux used by the hardware when issuing Poweroff command.
+-          Defaults to 0. Valid values are described in section 12.5.2
+-          "Pinmux Support" of the Tegra4 Technical Reference Manual.
++        description: Pinmux used by the hardware when issuing power-off command.
++          Defaults to 0. Valid values are described in section 12.5.2 "Pinmux
++          Support" of the Tegra4 Technical Reference Manual.
+ 
+     required:
+       - nvidia,i2c-controller-id
+@@ -195,41 +186,44 @@ properties:
+   powergates:
+     type: object
+     description: |
+-      This node contains a hierarchy of power domain nodes, which should
+-      match the powergates on the Tegra SoC. Each powergate node
+-      represents a power-domain on the Tegra SoC that can be power-gated
+-      by the Tegra PMC.
+-      Hardware blocks belonging to a power domain should contain
+-      "power-domains" property that is a phandle pointing to corresponding
+-      powergate node.
+-      The name of the powergate node should be one of the below. Note that
+-      not every powergate is applicable to all Tegra devices and the following
+-      list shows which powergates are applicable to which devices.
+-      Please refer to Tegra TRM for mode details on the powergate nodes to
+-      use for each power-gate block inside Tegra.
+-      Name		Description			            Devices Applicable
+-      3d		  3D Graphics			            Tegra20/114/124/210
+-      3d0		  3D Graphics 0		            Tegra30
+-      3d1		  3D Graphics 1		            Tegra30
+-      aud		  Audio				                Tegra210
+-      dfd		  Debug				                Tegra210
+-      dis		  Display A			              Tegra114/124/210
+-      disb		Display B			              Tegra114/124/210
+-      heg		  2D Graphics		            	Tegra30/114/124/210
+-      iram		Internal RAM		            Tegra124/210
+-      mpe		  MPEG Encode			            All
+-      nvdec		NVIDIA Video Decode Engine	Tegra210
+-      nvjpg		NVIDIA JPEG Engine		      Tegra210
+-      pcie		PCIE				                Tegra20/30/124/210
+-      sata		SATA				                Tegra30/124/210
+-      sor		  Display interfaces       		Tegra124/210
+-      ve2		  Video Encode Engine 2		    Tegra210
+-      venc		Video Encode Engine		      All
+-      vdec		Video Decode Engine		      Tegra20/30/114/124
+-      vic		  Video Imaging Compositor	  Tegra124/210
+-      xusba		USB Partition A			        Tegra114/124/210
+-      xusbb		USB Partition B 		        Tegra114/124/210
+-      xusbc		USB Partition C			        Tegra114/124/210
++      This node contains a hierarchy of power domain nodes, which should match
++      the powergates on the Tegra SoC. Each powergate node represents a power-
++      domain on the Tegra SoC that can be power-gated by the Tegra PMC.
++
++      Hardware blocks belonging to a power domain should contain "power-domains"
++      property that is a phandle pointing to corresponding powergate node.
++
++      The name of the powergate node should be one of the below. Note that not
++      every powergate is applicable to all Tegra devices and the following list
++      shows which powergates are applicable to which devices.
++
++      Please refer to Tegra TRM for mode details on the powergate nodes to use
++      for each power-gate block inside Tegra.
++
++        Name     Description                   Devices Applicable
++        --------------------------------------------------------------
++        3d       3D Graphics                   Tegra20/114/124/210
++        3d0      3D Graphics 0                 Tegra30
++        3d1      3D Graphics 1                 Tegra30
++        aud      Audio                         Tegra210
++        dfd      Debug                         Tegra210
++        dis      Display A                     Tegra114/124/210
++        disb     Display B                     Tegra114/124/210
++        heg      2D Graphics                   Tegra30/114/124/210
++        iram     Internal RAM                  Tegra124/210
++        mpe      MPEG Encode                   All
++        nvdec    NVIDIA Video Decode Engine    Tegra210
++        nvjpg    NVIDIA JPEG Engine            Tegra210
++        pcie     PCIE                          Tegra20/30/124/210
++        sata     SATA                          Tegra30/124/210
++        sor      Display interfaces            Tegra124/210
++        ve2      Video Encode Engine 2         Tegra210
++        venc     Video Encode Engine           All
++        vdec     Video Decode Engine           Tegra20/30/114/124
++        vic      Video Imaging Compositor      Tegra124/210
++        xusba    USB Partition A               Tegra114/124/210
++        xusbb    USB Partition B               Tegra114/124/210
++        xusbc    USB Partition C               Tegra114/124/210
+ 
+     patternProperties:
+       "^[a-z0-9]+$":
 -- 
-2.34.1
+2.41.0
 
