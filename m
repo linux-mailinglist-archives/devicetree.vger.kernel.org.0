@@ -2,60 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 537207634EC
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 13:30:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 51F367634F4
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 13:30:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233349AbjGZL36 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jul 2023 07:29:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59444 "EHLO
+        id S233563AbjGZLaO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jul 2023 07:30:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59764 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233472AbjGZL3y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 07:29:54 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A21C19BE
-        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 04:29:35 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-5221ee899a0so5815628a12.1
-        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 04:29:35 -0700 (PDT)
+        with ESMTP id S233730AbjGZLaH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 07:30:07 -0400
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1522C19A0
+        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 04:30:01 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-52227884855so5700988a12.1
+        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 04:30:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690370966; x=1690975766;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1690370999; x=1690975799;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Q/+qs7g1gY1JEPTRBZFLaASNIU4sFMJxs/L0tYvhMjY=;
-        b=LMOTOExY/Ce2QY2Gt8va7AB1wsxRDCK59KI0IIXoXQ4umPJtpsNtQIaFxj0I79btPg
-         /w+x3huP2IS7bkIy/8oyamDSwNo9DhuMf67w8IufA1znp8QofXt6EMKTUXFFaa28hWYv
-         KrzNlThQEt3QLwH4NSd9cgucLag+9SvS1hr6112LjOrCQ7VrQGK62TSNo5amOQSf8Kt1
-         PBBbIkJ3xci+fMPCxnswDal15zmHGeQsEgn6OEQOlhDaNTGJ/jpneDx+ZpQghYccJO4c
-         rNnAfwE6jshbRiJNmXGjXYE1YWdyvGXIkkkTOYprxM6KGaJ7wTFhALdvJAUaTcJ9/+K4
-         oj9Q==
+        bh=onPbV8Yv+Ue98mrxtxqkTtpVYJaOzehqj+NNEv4BhAY=;
+        b=T5Oly7FluqjUGaa3lMgD/oPQ2J+nYChOgoHh0jYspY5uXfnE5MYT68UsCB3SjoGnFQ
+         FppOWSh1MMLtLlGVIhLDk80CzltGf8n0bY7LbZRLYLaCBZDOqOZ1HtmVYMQnHzseWQzX
+         v4w1WbDM/bozmL701yPTBbu6Ixc2TBHPJdHGhfqc6T9O1T/Qa1N43ddjF25ap/TZnj7y
+         5hk3yJUQlIFxnRWT4FNF242L13jbB7r1iEGB5w+kTDi/te5hlCGLKFxTkNjC23DSJdfA
+         6gRlLeuyAOh7mpG+mGiCeuxaWY71tVSERdRQ3u6jpvurjUHVpuwxU1y8CbGt9pDVVYYi
+         QpmA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690370966; x=1690975766;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1690370999; x=1690975799;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Q/+qs7g1gY1JEPTRBZFLaASNIU4sFMJxs/L0tYvhMjY=;
-        b=jfCenVvBmAEXLTaqe1xIqpO/oP8RsCdviWBJkQ5JYGl/4Z7jp31DBt+Nqr1Ce6GC6j
-         Uq3TSdMsWZW2WrfL0WmMoEY+mwg1rVuN2Y2NWK1eaB1N/24rk3i+7WCdK1gmyg63aeA1
-         RRdotSgCMi3W96BvnpZySP4GnjRxCB66D4b6NB1Z77bGVbSRFUH/06Ci3abmnHiHv2ek
-         BeuFJph6fiXEeCRapyoZhmD6uZkQPAaNCPN4TOPV6fa6FpBsuV+lub6muhi0LL1VlUeR
-         dJvl1g6xd391dQhM3FYqpBwJIZZvQdGb5b87iYNJQ298878zv9W+iaOlEWyzMFGzjMsn
-         B1Gw==
-X-Gm-Message-State: ABy/qLZTMxJGwaIqYcsUJVLqECc29wwDp66K9fgW2568JbHzTupvOM9n
-        NT1muJnovxQgU280VhGAY1dv8w==
-X-Google-Smtp-Source: APBJJlFXaiNUU2g8AEtAdBi80dzeE4xS5unNsLEWeVyMmrC1zd+jJ/UWtOksRH2QuqpxDrlxqiew1A==
-X-Received: by 2002:aa7:d9c9:0:b0:522:4d16:752 with SMTP id v9-20020aa7d9c9000000b005224d160752mr1298800eds.21.1690370965884;
-        Wed, 26 Jul 2023 04:29:25 -0700 (PDT)
+        bh=onPbV8Yv+Ue98mrxtxqkTtpVYJaOzehqj+NNEv4BhAY=;
+        b=doS1LCNnDzy3EdTRebNSw36Jgogx1LM7ENI+xjRvkdONjbmZT1EkuM5R+3R0vqqqIg
+         schLWli4coZFvHQNRljMJD70eIeSABYuFSwZMlxK0Gyxcy+LVYYYhJPduPRzMKhdOKq/
+         zLtwxvXKsYfIkD3P8k7s7zHHXpW3bVCG1oghnxRWUBafV6DTf9LVpdChy5HaL827GtYm
+         J3WKp7nMHbiTkR97U2OMNXEpJwS+nsjJHmHHHvvP6CRh8btnNr1J4d+nXwcqZkcb6FAa
+         vUD4RssgjxCgZr5Lre5F54Q7L9WryxEZCl/TZOAaS+/1PxwV8e1tR+apmq6CidmulNhC
+         rTPQ==
+X-Gm-Message-State: ABy/qLaPb0rWef25oDxCpxU1FHTf+POpV+jaFGy6dW74saU/tqek5SOl
+        bJfWulLWPXqAWDpqsh75og65cQ==
+X-Google-Smtp-Source: APBJJlGhsZALbMTZop+J6WRH+YKEaAOscUT56bRny+XG/qT9JQFYAWirvKrTQSzu9bEF7f9tZf78gw==
+X-Received: by 2002:aa7:dcca:0:b0:522:4de8:f3e2 with SMTP id w10-20020aa7dcca000000b005224de8f3e2mr1563220edu.22.1690370999558;
+        Wed, 26 Jul 2023 04:29:59 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id g8-20020a056402114800b0051dd16f7e50sm8626244edw.44.2023.07.26.04.29.23
+        by smtp.gmail.com with ESMTPSA id b9-20020aa7c6c9000000b0051d9ee1c9d3sm8686862eds.84.2023.07.26.04.29.57
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 26 Jul 2023 04:29:25 -0700 (PDT)
-Message-ID: <43b4b62d-edea-c571-4f80-b0d4be78e527@linaro.org>
-Date:   Wed, 26 Jul 2023 13:29:22 +0200
+        Wed, 26 Jul 2023 04:29:58 -0700 (PDT)
+Message-ID: <3ef4f91f-0afd-0246-4f8a-210aedb0b94c@linaro.org>
+Date:   Wed, 26 Jul 2023 13:29:56 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
-Subject: Re: [PATCH v5 1/2] dt-bindings: display/msm: mdss-common: add
- memory-region property
+Subject: Re: [PATCH v5 2/2] arm64: dts: qcom: sdm845-db845c: Mark cont splash
+ memory region as reserved
+Content-Language: en-US
 To:     Amit Pundir <amit.pundir@linaro.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Andy Gross <agross@kernel.org>,
@@ -79,15 +80,15 @@ Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
         dt <devicetree@vger.kernel.org>,
         lkml <linux-kernel@vger.kernel.org>
 References: <20230713165238.2814849-1-amit.pundir@linaro.org>
-Content-Language: en-US
+ <20230713165238.2814849-2-amit.pundir@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230713165238.2814849-1-amit.pundir@linaro.org>
+In-Reply-To: <20230713165238.2814849-2-amit.pundir@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -95,16 +96,14 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 13/07/2023 18:52, Amit Pundir wrote:
-> Add and document the reserved memory region property in the
-> mdss-common schema.
-> 
-> For now (sdm845-db845c), it points to a framebuffer memory
-> region reserved by the bootloader for splash screen.
+> Adding a reserved memory region for the framebuffer memory
+> (the splash memory region set up by the bootloader).
 > 
 > Signed-off-by: Amit Pundir <amit.pundir@linaro.org>
 > ---
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+I think your commit msg misses describing the actual problem, impact to
+users and finally cc-stable.
 
 Best regards,
 Krzysztof
