@@ -2,222 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E24EF763045
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 10:47:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A3EB2763076
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 10:51:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233448AbjGZIq4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jul 2023 04:46:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48216 "EHLO
+        id S231334AbjGZIu6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jul 2023 04:50:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52862 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233421AbjGZIq2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 04:46:28 -0400
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 659884EC8;
-        Wed, 26 Jul 2023 01:38:58 -0700 (PDT)
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36Q7Va8P008022;
-        Wed, 26 Jul 2023 10:38:20 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding : content-type; s=selector1;
- bh=+UNuTiEun7FhBdsfcJqf/qnk8DNj8pRVH/wzdvv/e68=;
- b=4VfijQiCAGoIOVR4ZEre3LMsXnWRT82xkx0GxR88KgvWtydYfRHzk3VwCG8qfEs+8Mef
- LAVqksmTmDX5eXE9s2qw+5O/YZoeDAg5nATTvkFKboek0hhOsTfhRp1RjeI5vTy7h/rQ
- Npfbnh0T3S4IRS6z/XNmIUC+wHg+swW23KDUkUip7W1XfNjkcT3GcLAI70SzQTBpMx0X
- NmGOsAWOUwu8MQyju/HT5F/E3cvjXgJf0O1azw/oAEoQa3v1Z/CYofFMx8ZdNaL+ElFk
- J9vRJM8Pi/y/bbd3rqTsyftgnLy5auJFA6dUQ4Jwt+N0DCCU0s5XFBVrnNzKlelGCXn4 OA== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3s2y640hfq-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 26 Jul 2023 10:38:20 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 798DB10002A;
-        Wed, 26 Jul 2023 10:38:19 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 6D95720FA38;
-        Wed, 26 Jul 2023 10:38:19 +0200 (CEST)
-Received: from localhost (10.201.21.121) by SHFDAG1NODE1.st.com (10.75.129.69)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Wed, 26 Jul
- 2023 10:38:19 +0200
-From:   Gatien Chevallier <gatien.chevallier@foss.st.com>
-To:     <Oleksii_Moisieiev@epam.com>, <gregkh@linuxfoundation.org>,
-        <herbert@gondor.apana.org.au>, <davem@davemloft.net>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <alexandre.torgue@foss.st.com>,
-        <vkoul@kernel.org>, <jic23@kernel.org>,
-        <olivier.moysan@foss.st.com>, <arnaud.pouliquen@foss.st.com>,
-        <mchehab@kernel.org>, <fabrice.gasnier@foss.st.com>,
-        <andi.shyti@kernel.org>, <ulf.hansson@linaro.org>,
-        <edumazet@google.com>, <kuba@kernel.org>, <pabeni@redhat.com>,
-        <hugues.fruchet@foss.st.com>, <lee@kernel.org>, <will@kernel.org>,
-        <catalin.marinas@arm.com>, <arnd@kernel.org>,
-        <richardcochran@gmail.com>, Frank Rowand <frowand.list@gmail.com>
-CC:     <linux-crypto@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <dmaengine@vger.kernel.org>,
-        <linux-i2c@vger.kernel.org>, <linux-iio@vger.kernel.org>,
-        <alsa-devel@alsa-project.org>, <linux-media@vger.kernel.org>,
-        <linux-mmc@vger.kernel.org>, <netdev@vger.kernel.org>,
-        <linux-phy@lists.infradead.org>, <linux-serial@vger.kernel.org>,
-        <linux-spi@vger.kernel.org>, <linux-usb@vger.kernel.org>,
-        Gatien Chevallier <gatien.chevallier@foss.st.com>
-Subject: [PATCH v3 03/11] dt-bindings: bus: document RIFSC
-Date:   Wed, 26 Jul 2023 10:38:02 +0200
-Message-ID: <20230726083810.232100-4-gatien.chevallier@foss.st.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230726083810.232100-1-gatien.chevallier@foss.st.com>
-References: <20230726083810.232100-1-gatien.chevallier@foss.st.com>
+        with ESMTP id S232388AbjGZIuc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 04:50:32 -0400
+Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com [IPv6:2607:f8b0:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4722961B6
+        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 01:44:03 -0700 (PDT)
+Received: by mail-pl1-x631.google.com with SMTP id d9443c01a7336-1b9c368f4b5so4923605ad.0
+        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 01:44:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ventanamicro.com; s=google; t=1690361043; x=1690965843;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=DQc80XoWnWN+d0bN0a57A7yXCEucxsJNa3airtwPdzU=;
+        b=Hp2YtMOJInODfh2RWJnZcs3r3BCbH0ObrksVLi76QalIoUjE9Ky2QLTWtluMnS07Lm
+         cy9jHRYtAxMVi2aj59ILj+OQVqCHVarW2HTPIjg7wVuwjWsM1ZXLehF+9UE3DnnU14cf
+         iWQGUhyt6+I233gVjENypM7bBVS2xSSuB+r3FVOII6Pmjz1S/wZvaI6WOlbGJa3dJQII
+         fLy/j+uS8jAPTgadIJHcyPFNtU4zMhNFR7lZfUq0Rt8KlRZE1pAwPkQGoK2ds0kPUlAH
+         PJ9oGK/kV1RKnchodGEDyymE5qjRJmfvgdBssBj3x8thUq48AM3BV2zuX2DUtRlSQmHG
+         Zj/A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690361043; x=1690965843;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=DQc80XoWnWN+d0bN0a57A7yXCEucxsJNa3airtwPdzU=;
+        b=fdAm50FLvUzQ6dlYD40fCYmRVG35HhMHN8iEbRKKLc8FAzVyNCYFdtFW4yxClhEb9E
+         /NO2/gBxT4bHIUwiaQWd0W8oePFrRQahx7Ih2RNhtZeNZ3d6/LVsbL7mYmr+js2NFCWC
+         japmdsa/V9riyzTU2u0kW1WR3fN8DokDmLJcJ5hRZdeqEW3IGFzVo26WR8otZONX1z7R
+         E5CzlXzTN1ex15dk5lKtrZNHn4Ej4wKJRGHC3xUpLUIc51zMb0xbpzZ0ouWTyubOvDCQ
+         NXAFipYA51dlVFf5nqx2DWGoCK4B3Jn9xL2rKx7bD2Ukt+F6O+x2KN+hks8ymQqQKYBH
+         pWow==
+X-Gm-Message-State: ABy/qLbjdw5hzJV/v9i71X04blCBTojRncm0Qg9T6GAk9nS+848ho+xU
+        cAum3DEF1oL78yS0eSpTxxZ3Mg==
+X-Google-Smtp-Source: APBJJlExZpncboZpnmSU/bDA6WhjsS+diGAbylKBltrvAwOAn+i5mgN5Gq5g82Zb6GypEbpgJ4Kldw==
+X-Received: by 2002:a17:902:b18f:b0:1b8:ad90:7af8 with SMTP id s15-20020a170902b18f00b001b8ad907af8mr1606145plr.17.1690361042634;
+        Wed, 26 Jul 2023 01:44:02 -0700 (PDT)
+Received: from mchitale-vm.. ([103.97.165.210])
+        by smtp.googlemail.com with ESMTPSA id y19-20020a170902ed5300b001b3bf8001a9sm3978637plb.48.2023.07.26.01.43.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 26 Jul 2023 01:44:02 -0700 (PDT)
+From:   Mayuresh Chitale <mchitale@ventanamicro.com>
+To:     Palmer Dabbelt <palmer@dabbelt.com>,
+        Anup Patel <anup@brainfault.org>
+Cc:     Mayuresh Chitale <mchitale@ventanamicro.com>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        Atish Patra <atishp@atishpatra.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        linux-riscv@lists.infradead.org, kvm-riscv@lists.infradead.org,
+        Conor Dooley <conor@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH v4 0/7] Risc-V Kvm Smstateen
+Date:   Wed, 26 Jul 2023 14:13:45 +0530
+Message-Id: <20230726084352.2136377-1-mchitale@ventanamicro.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.201.21.121]
-X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-07-26_01,2023-07-25_01,2023-05-22_02
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document RIFSC (RIF security controller). RIFSC is a firewall controller
-composed of different kinds of hardware resources.
+This series adds support to detect the Smstateen extension for both, the
+host and the guest vcpu. It also adds senvcfg and sstateen0 to the ONE_REG
+interface and the vcpu context save/restore.
 
-Signed-off-by: Gatien Chevallier <gatien.chevallier@foss.st.com>
----
+The motivation behind Smstateen from the spec
+(https://github.com/riscv/riscv-state-enable):
+"The implementation of optional RISC-V extensions has the potential to open
+covert channels between separate user threads, or between separate guest OSes
+running under a hypervisor. The problem occurs when an extension adds processor
+state---usually explicit registers, but possibly other forms of state---that
+the main OS or hypervisor is unaware of (and hence won’t context-switch) but
+that can be modified/written by one user thread or guest OS and perceived/
+examined/read by another."
 
-Changes in V2: 
-	- Corrected errors highlighted by Rob's robot
-	- No longer define the maxItems for the "feature-domains"
-	  property
-	- Fix example (node name, status)
-	- Declare "feature-domain-names" as an optional
-	  property for child nodes
-	- Fix description of "feature-domains" property
+Changes in v4:
+- Update commit description for patch 1
+- Rebase to kvm_riscv_queue
+- Add reviewed-by tag
 
- .../bindings/bus/st,stm32mp25-rifsc.yaml      | 105 ++++++++++++++++++
- 1 file changed, 105 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/bus/st,stm32mp25-rifsc.yaml
+Changes in v3:
+- Move DT bindings change to a separate patch
+- Move senvcfg/sstateen0 save/restore to separate function
 
-diff --git a/Documentation/devicetree/bindings/bus/st,stm32mp25-rifsc.yaml b/Documentation/devicetree/bindings/bus/st,stm32mp25-rifsc.yaml
-new file mode 100644
-index 000000000000..7aeb38296616
---- /dev/null
-+++ b/Documentation/devicetree/bindings/bus/st,stm32mp25-rifsc.yaml
-@@ -0,0 +1,105 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/bus/st,stm32mp25-rifsc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: STM32 Resource isolation framework security controller
-+
-+maintainers:
-+  - Gatien Chevallier <gatien.chevallier@foss.st.com>
-+
-+description: |
-+  Resource isolation framework (RIF) is a comprehensive set of hardware blocks
-+  designed to enforce and manage isolation of STM32 hardware resources like
-+  memory and peripherals.
-+
-+  The RIFSC (RIF security controller) is composed of three sets of registers,
-+  each managing a specific set of hardware resources:
-+    - RISC registers associated with RISUP logic (resource isolation device unit
-+      for peripherals), assign all non-RIF aware peripherals to zero, one or
-+      any security domains (secure, privilege, compartment).
-+    - RIMC registers: associated with RIMU logic (resource isolation master
-+      unit), assign all non RIF-aware bus master to one security domain by
-+      setting secure, privileged and compartment information on the system bus.
-+      Alternatively, the RISUP logic controlling the device port access to a
-+      peripheral can assign target bus attributes to this peripheral master port
-+      (supported attribute: CID).
-+    - RISC registers associated with RISAL logic (resource isolation device unit
-+      for address space - Lite version), assign address space subregions to one
-+      security domains (secure, privilege, compartment).
-+
-+properties:
-+  compatible:
-+    contains:
-+      const: st,stm32mp25-rifsc
-+
-+  reg:
-+    maxItems: 1
-+
-+  "#address-cells":
-+    const: 1
-+
-+  "#size-cells":
-+    const: 1
-+
-+  ranges: true
-+
-+  "#feature-domain-cells":
-+    const: 1
-+
-+  feature-domain-controller: true
-+
-+patternProperties:
-+  "^.*@[0-9a-f]+$":
-+    description: Peripherals
-+    type: object
-+    properties:
-+      feature-domains:
-+        minItems: 1
-+        description:
-+          The phandle of the firewall controller of the peripheral and the
-+          platform-specific firewall ID of the peripheral.
-+
-+      feature-domain-names:
-+        minItems: 1
-+
-+    required:
-+      - feature-domains
-+
-+required:
-+  - compatible
-+  - reg
-+  - "#address-cells"
-+  - "#size-cells"
-+  - feature-domain-controller
-+  - "#feature-domain-cells"
-+  - ranges
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    // In this example, the usart2 device refers to rifsc as its domain
-+    // controller.
-+    // Access rights are verified before creating devices.
-+
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    rifsc: bus@42080000 {
-+        compatible = "st,stm32mp25-rifsc";
-+        reg = <0x42080000 0x1000>;
-+        #address-cells = <1>;
-+        #size-cells = <1>;
-+        feature-domain-controller;
-+        #feature-domain-cells = <1>;
-+        ranges;
-+
-+        usart2: serial@400e0000 {
-+              compatible = "st,stm32h7-uart";
-+              reg = <0x400e0000 0x400>;
-+              interrupts = <GIC_SPI 115 IRQ_TYPE_LEVEL_HIGH>;
-+              clocks = <&ck_flexgen_08>;
-+              feature-domains = <&rifsc 32>;
-+        };
-+    };
+Changes in v2:
+- Add smstaeen description in riscv/extensions.yaml
+- Avoid line wrap at 80 chars
+
+Mayuresh Chitale (7):
+  RISC-V: Detect Smstateen extension
+  dt-bindings: riscv: Add smstateen entry
+  RISC-V: KVM: Add kvm_vcpu_config
+  RISC-V: KVM: Enable Smstateen accesses
+  RISCV: KVM: Add senvcfg context save/restore
+  RISCV: KVM: Add sstateen0 context save/restore
+  RISCV: KVM: Add sstateen0 to ONE_REG
+
+ .../devicetree/bindings/riscv/extensions.yaml |  6 ++
+ arch/riscv/include/asm/csr.h                  | 18 +++++
+ arch/riscv/include/asm/hwcap.h                |  1 +
+ arch/riscv/include/asm/kvm_host.h             | 18 +++++
+ arch/riscv/include/uapi/asm/kvm.h             | 11 +++
+ arch/riscv/kernel/cpu.c                       |  1 +
+ arch/riscv/kernel/cpufeature.c                |  1 +
+ arch/riscv/kvm/vcpu.c                         | 70 +++++++++++++++----
+ arch/riscv/kvm/vcpu_onereg.c                  | 41 +++++++++++
+ 9 files changed, 154 insertions(+), 13 deletions(-)
+
 -- 
-2.25.1
+2.34.1
 
