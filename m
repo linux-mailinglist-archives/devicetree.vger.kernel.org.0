@@ -2,138 +2,190 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AF4A2763AEF
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 17:24:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7BD0F763B03
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 17:28:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231135AbjGZPYu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jul 2023 11:24:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37714 "EHLO
+        id S232179AbjGZP2c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jul 2023 11:28:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39134 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231167AbjGZPYn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 11:24:43 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF76D1FF0;
-        Wed, 26 Jul 2023 08:24:42 -0700 (PDT)
+        with ESMTP id S232343AbjGZP2b (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 11:28:31 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0BC71FFC;
+        Wed, 26 Jul 2023 08:28:30 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 6D83461B54;
-        Wed, 26 Jul 2023 15:24:42 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8ED6C433C7;
-        Wed, 26 Jul 2023 15:24:40 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 636D961B7D;
+        Wed, 26 Jul 2023 15:28:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F3B03C433C7;
+        Wed, 26 Jul 2023 15:28:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690385081;
-        bh=XtQHPjwlUAYxGYo7V7WNdtEo+xDINh3xf8oWKZdFtPM=;
+        s=k20201202; t=1690385309;
+        bh=0x7P+VDJDVD5QuhGvIi2giCzmIJXH7saxma9w0XMV9Y=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ajWOBzMzGhBoqzfc5/DW9aF/gzYa0wM+vSx2pxzmI/7dY0miIeIIjqjyBGxE0JzWb
-         0+Be9ZPNi4QMYnzvKxNL06mLMrPnlHI6r1AFOiBDJf0fub79NUx64XIhQxnbfb0qAS
-         0D2Qj+MXNiJeESeORBdztPo+ffbinai/Z+J5lIIuGm3cxF998g2HPKBJc4e4AKgdHr
-         SWC1FzJ4EbDQNDK/SsYHmtcsCxrAyNLRVB7/n0Be8lW9ED2pkKPxE56jwkFYjX1z3x
-         FdGILD3G7swQqW17sCU6lryDnJAMjG5uHjqnHSQ90YgI369/OKpvKUMfyTRSF281Do
-         G3Z8h4PW665iA==
-Received: (nullmailer pid 1474009 invoked by uid 1000);
-        Wed, 26 Jul 2023 15:24:39 -0000
-Date:   Wed, 26 Jul 2023 09:24:39 -0600
+        b=DZ7w19RluYfbv+Dw7NYsEede8Nmhw13K4AASGUcjlWRAkbvfefbX4Y0RMh8mdZc0K
+         5RbKhxflx4zgwxdYcRSdS99f9KK04n0ctPOPyb1qfKwZTY8QAiMeIm5PmZJJyDdl+t
+         UedGwx6AqSmdu67xBWIfFzdnjdUU1wEzpuexErsDEbVxSnAHUG22Mjry+yUQfxBvW0
+         c+4wjeX6Noe9FE7OzvCq1u8qG9cpdcED8GUDIye9vypAjtBkeXxmiH8S9tj3MelVsT
+         XaTASh5QVa4TwfgMg8Tjv0AQAGFKH9Ov+ZXwX62PF7etXKFJnpVWJ1oDf4xLCbb2o6
+         ENRSd7HDusU+Q==
+Received: (nullmailer pid 1478019 invoked by uid 1000);
+        Wed, 26 Jul 2023 15:28:27 -0000
+Date:   Wed, 26 Jul 2023 09:28:27 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Jisheng Zhang <jszhang@kernel.org>
+To:     Ivan Mikhaylov <fr0st61te@gmail.com>
 Cc:     "David S . Miller" <davem@davemloft.net>,
         Eric Dumazet <edumazet@google.com>,
         Jakub Kicinski <kuba@kernel.org>,
         Paolo Abeni <pabeni@redhat.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>, netdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH net-next 09/10] dt-bindings: net: snps,dwmac: add per
- channel irq support
-Message-ID: <20230726152439.GA1471409-robh@kernel.org>
-References: <20230723161029.1345-1-jszhang@kernel.org>
- <20230723161029.1345-10-jszhang@kernel.org>
+        Po-Yu Chuang <ratbert@faraday-tech.com>,
+        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2] dt-bindings: net: ftgmac100: convert to yaml version
+ from txt
+Message-ID: <20230726152827.GA1474469-robh@kernel.org>
+References: <20230723192030.33642-1-fr0st61te@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230723161029.1345-10-jszhang@kernel.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20230723192030.33642-1-fr0st61te@gmail.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 24, 2023 at 12:10:28AM +0800, Jisheng Zhang wrote:
-> The IP supports per channel interrupt, add support for this usage case.
+On Sun, Jul 23, 2023 at 10:20:30PM +0300, Ivan Mikhaylov wrote:
+> Conversion from ftgmac100.txt to yaml format version.
 > 
-> Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
+> Signed-off-by: Ivan Mikhaylov <fr0st61te@gmail.com>
 > ---
->  .../devicetree/bindings/net/snps,dwmac.yaml   | 23 +++++++++++++++++++
->  1 file changed, 23 insertions(+)
+>  .../bindings/net/faraday,ftgmac100.yaml       | 103 ++++++++++++++++++
+>  .../devicetree/bindings/net/ftgmac100.txt     |  67 ------------
+>  2 files changed, 103 insertions(+), 67 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/net/faraday,ftgmac100.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/net/ftgmac100.txt
 > 
-> diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> index bb80ca205d26..525210c2c06c 100644
-> --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> @@ -101,6 +101,11 @@ properties:
->      minItems: 1
->      maxItems: 2
->  
-> +  snps,per-channel-interrupt:
-> +    $ref: /schemas/types.yaml#/definitions/flag
+> diff --git a/Documentation/devicetree/bindings/net/faraday,ftgmac100.yaml b/Documentation/devicetree/bindings/net/faraday,ftgmac100.yaml
+> new file mode 100644
+> index 000000000000..92686caf251f
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/faraday,ftgmac100.yaml
+> @@ -0,0 +1,103 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/faraday,ftgmac100.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Faraday Technology FTGMAC100 gigabit ethernet controller
+> +
+> +allOf:
+> +  - $ref: ethernet-controller.yaml#
+> +
+> +maintainers:
+> +  - Po-Yu Chuang <ratbert@faraday-tech.com>
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - const: faraday,ftgmac100
+> +      - items:
+> +          - enum:
+> +              - aspeed,ast2400-mac
+> +              - aspeed,ast2500-mac
+> +              - aspeed,ast2600-mac
+> +          - const: faraday,ftgmac100
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    minItems: 1
+> +    items:
+> +      - description: MAC IP clock
+> +      - description: RMII RCLK gate for AST2500/2600
+> +
+> +  clock-names:
+> +    minItems: 1
+> +    maxItems: 2
+> +    contains:
+> +      enum:
+> +        - MACCLK
+> +        - RCLK
+> +
+> +  phy-mode:
+> +    enum:
+> +      - rgmii
+> +      - rmii
+> +
+> +  phy-handle: true
+> +
+> +  use-ncsi:
 > +    description:
-> +      Indicates that Rx and Tx complete will generate a unique interrupt for each channel
+> +      Use the NC-SI stack instead of an MDIO PHY. Currently assumes
+> +      rmii (100bT) but kept as a separate property in case NC-SI grows support
+> +      for a gigabit link.
+> +    type: boolean
+> +
+> +  no-hw-checksum:
+> +    description:
+> +      Used to disable HW checksum support. Here for backward
+> +      compatibility as the driver now should have correct defaults based on
+> +      the SoC.
+> +    type: boolean
 
-Can't you determine this based on the number of interrupts or interrupt 
-names?
+deprecated: true
 
 > +
->    interrupts:
->      minItems: 1
->      items:
-> @@ -109,6 +114,8 @@ properties:
->        - description: The interrupt that occurs when Rx exits the LPI state
->        - description: The interrupt that occurs when Safety Feature Correctible Errors happen
->        - description: The interrupt that occurs when Safety Feature Uncorrectible Errors happen
-> +      - description: All of the rx per-channel interrupts
-> +      - description: All of the tx per-channel interrupts
+> +  mdio:
+> +    $ref: /schemas/net/mdio.yaml#
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    mac0: ethernet@1e660000 {
 
-You added 2 interrupts here and...
+Drop unused labels.
 
->  
->    interrupt-names:
->      minItems: 1
-> @@ -118,6 +125,22 @@ properties:
->        - const: eth_lpi
->        - const: sfty_ce_irq
->        - const: sfty_ue_irq
-> +      - const: rx0
-> +      - const: rx1
-> +      - const: rx2
-> +      - const: rx3
-> +      - const: rx4
-> +      - const: rx5
-> +      - const: rx6
-> +      - const: rx7
-> +      - const: tx0
-> +      - const: tx1
-> +      - const: tx2
-> +      - const: tx3
-> +      - const: tx4
-> +      - const: tx5
-> +      - const: tx6
-> +      - const: tx7
-
-And 16 here?
-
->  
->    clocks:
->      minItems: 1
-> -- 
-> 2.40.1
-> 
+> +        compatible = "aspeed,ast2500-mac", "faraday,ftgmac100";
+> +        reg = <0x1e660000 0x180>;
+> +        interrupts = <2>;
+> +        use-ncsi;
+> +    };
+> +
+> +    mac1: ethernet@1e680000 {
+> +        compatible = "aspeed,ast2500-mac", "faraday,ftgmac100";
+> +        reg = <0x1e680000 0x180>;
+> +        interrupts = <2>;
+> +
+> +        phy-handle = <&phy>;
+> +        phy-mode = "rgmii";
+> +
+> +        mdio {
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +
+> +            phy: ethernet-phy@1 {
+> +                compatible = "ethernet-phy-ieee802.3-c22";
+> +                reg = <1>;
+> +            };
+> +        };
+> +    };
