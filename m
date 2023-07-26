@@ -2,141 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 69A5A763B66
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 17:42:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A786763BDD
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 18:00:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234715AbjGZPm1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jul 2023 11:42:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46974 "EHLO
+        id S231925AbjGZQAI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jul 2023 12:00:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57848 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234817AbjGZPm0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 11:42:26 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04BC72681
-        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 08:42:23 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id 2adb3069b0e04-4fb5bcb9a28so10943740e87.3
-        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 08:42:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690386141; x=1690990941;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=pXkM6RQt02/mcXYbX3u5d6aDLN/tgGUKvs7vtieBQ5U=;
-        b=udhTke+Nkxkx1CBE5T2vLkv9FauIZCWSIYWzo6TDW6FU9ENTudzgaITN3X39tWBmL+
-         BBQaA1OZNi5Zht3G4ms/8sr+u4CswC8zq1zFHi2rLfAoIZxr1SV8xOLAb3iicPulBhhn
-         JyZ4+v84gaSqKlQbelbZzkkNkozJOdHiyqvC/GS6IT4qia5X8oURr/bvjp/RnQW/N1+n
-         m1CTuF31NcwZ8WvTeDYeQZ4oUsMhuO/32IqIg0Bwk5Qf+b2P4LY0Y6DbVtbOftCJttCa
-         V8fDo8FoBFgc1mJy68A00zdW99ktAbEZ63Dgc3AOR/UDFIku8Or00bv68ztSLwlIW5k1
-         YqwA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690386141; x=1690990941;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=pXkM6RQt02/mcXYbX3u5d6aDLN/tgGUKvs7vtieBQ5U=;
-        b=N8AKbPmb6AHIfXefkmrRv4pJ8lLKoakTo1Irij2kMrmeBXjdZ8MybKtQmnBEhkJVll
-         7dSjpomV18dQ6MpVQXYiZwYdMOt/6oRW/xGSW9iCf54Aca2fSv/AwlZvpieNSV5TVk/N
-         FY/szNVLPNO2nBEbhGZYpW5Y4KGy78MBnYL8xqiflETydyLEnkXkciYpmzs8KjZdRtIJ
-         xH1cNU+Y/zRgG7O2CevlJh03NqYbxguusUrs0o4qiEaqS1Tvww5Tb80SaZ74m9aPDYnd
-         MisBhzxfumDzIvNnjlJIZcassLrf0xl9qP9XnjahqcexYnK/pIZCbZLSGhuhlzV1ZfLS
-         1qeg==
-X-Gm-Message-State: ABy/qLZOHgx6le1pcZ+CPRRpczN1F4hm2FFBpiXoF62BE6noQM1P5r+Z
-        FG/ByAaC3aXM/2LOHirPCSRPzg==
-X-Google-Smtp-Source: APBJJlEIEp+n4hXZmCTHCrNmwP/mqi6VL/iLjS590fFD/743rc0ikYBYmLA8PTrc/RZuHd7idT21+g==
-X-Received: by 2002:a05:6512:2253:b0:4fe:788:66fe with SMTP id i19-20020a056512225300b004fe078866femr1941513lfu.68.1690386140872;
-        Wed, 26 Jul 2023 08:42:20 -0700 (PDT)
-Received: from [192.168.1.101] (abxh240.neoplus.adsl.tpnet.pl. [83.9.1.240])
-        by smtp.gmail.com with ESMTPSA id m2-20020a195202000000b004fe0ec5596bsm460666lfb.54.2023.07.26.08.42.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 26 Jul 2023 08:42:20 -0700 (PDT)
-Message-ID: <b3175a93-0b41-49d7-ca29-bc4ca9b5c8fc@linaro.org>
-Date:   Wed, 26 Jul 2023 17:42:19 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V4 4/7] clk: qcom: gcc-qdu1000: Update GCC clocks as per
- the latest hw version
-Content-Language: en-US
-To:     Imran Shaik <quic_imrashai@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S235040AbjGZP72 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 11:59:28 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01E7CDD;
+        Wed, 26 Jul 2023 08:59:24 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 8BED061B9A;
+        Wed, 26 Jul 2023 15:59:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 63276C433C7;
+        Wed, 26 Jul 2023 15:59:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1690387163;
+        bh=ZVYSAijYjAzVdSVVoPt4UJzIEJFPCTCkTsJbuNdi1QE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Lojai7na1ElHe5GdMww572j/Z9Ep34SG463mNTa1IkFqPtSz5ExoO6xEoER5RjMAa
+         3Zqb6dekCRzIXOs6XQfoKaxQ3jKIDASssTP6msy122pbDrXSc2nvSMd3abg4FWxDsD
+         WCO6MEqrFlCw5rmYOelxKWALqmZWMahQDAXrJ9MbeM4Mt8ohY6aorxSYwhzvag6z1s
+         SiGJYjkm3jVgcFpyEDIFrBDFY2funfYuXJ9xDtWQAJ5xG2oBLsnl6taXxObIi0oV90
+         pkx/TjCZPKZeY1QXADLRLpUEsZxbUi8LWdX5jrL0loCKuG/n90RXTDdKJ7ZSFzrwee
+         qoVKc1pIP5zqw==
+Date:   Wed, 26 Jul 2023 23:47:44 +0800
+From:   Jisheng Zhang <jszhang@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     Bjorn Andersson <andersson@kernel.org>,
-        Taniya Das <quic_tdas@quicinc.com>,
-        Melody Olvera <quic_molvera@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Jagadeesh Kona <quic_jkona@quicinc.com>,
-        Satya Priya Kakitapalli <quic_skakitap@quicinc.com>,
-        Ajit Pandey <quic_ajipan@quicinc.com>
-References: <20230719041450.737929-1-quic_imrashai@quicinc.com>
- <20230719041450.737929-5-quic_imrashai@quicinc.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <20230719041450.737929-5-quic_imrashai@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH net-next 09/10] dt-bindings: net: snps,dwmac: add per
+ channel irq support
+Message-ID: <ZMFAIF+nFL0vhX7Q@xhacker>
+References: <20230723161029.1345-1-jszhang@kernel.org>
+ <20230723161029.1345-10-jszhang@kernel.org>
+ <20230726152439.GA1471409-robh@kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20230726152439.GA1471409-robh@kernel.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19.07.2023 06:14, Imran Shaik wrote:
-> Update the GCC clocks as per the latest hw version of QDU1000 and
-> QRU100 SoCs.
+On Wed, Jul 26, 2023 at 09:24:39AM -0600, Rob Herring wrote:
+> On Mon, Jul 24, 2023 at 12:10:28AM +0800, Jisheng Zhang wrote:
+> > The IP supports per channel interrupt, add support for this usage case.
+> > 
+> > Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
+> > ---
+> >  .../devicetree/bindings/net/snps,dwmac.yaml   | 23 +++++++++++++++++++
+> >  1 file changed, 23 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> > index bb80ca205d26..525210c2c06c 100644
+> > --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> > +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> > @@ -101,6 +101,11 @@ properties:
+> >      minItems: 1
+> >      maxItems: 2
+> >  
+> > +  snps,per-channel-interrupt:
+> > +    $ref: /schemas/types.yaml#/definitions/flag
+> > +    description:
+> > +      Indicates that Rx and Tx complete will generate a unique interrupt for each channel
 > 
-> Co-developed-by: Taniya Das <quic_tdas@quicinc.com>
-> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
-> Signed-off-by: Imran Shaik <quic_imrashai@quicinc.com>
-> ---
-[...]
+> Can't you determine this based on the number of interrupts or interrupt 
+> names?
 
-> +	[GCC_GPLL1_OUT_EVEN] = &gcc_gpll1_out_even.clkr,
-So, this clock was there before, but it was never registered with the
-clock framework, even though it was referenced as a parent..
+Good idea! this flag can be dynamically detected based on the interrupt names.
+The driver code will be patched a bit ugly, I will try and send out for review.
 
-Sounds like a bug!
+> 
+> > +
+> >    interrupts:
+> >      minItems: 1
+> >      items:
+> > @@ -109,6 +114,8 @@ properties:
+> >        - description: The interrupt that occurs when Rx exits the LPI state
+> >        - description: The interrupt that occurs when Safety Feature Correctible Errors happen
+> >        - description: The interrupt that occurs when Safety Feature Uncorrectible Errors happen
+> > +      - description: All of the rx per-channel interrupts
+> > +      - description: All of the tx per-channel interrupts
+> 
+> You added 2 interrupts here and...
 
-Konrad
+I'm not sure how to write the description here, could it be one line
+ "- description: All of the tx/rx per-channel interrupts"?
+
+> 
+> >  
+> >    interrupt-names:
+> >      minItems: 1
+> > @@ -118,6 +125,22 @@ properties:
+> >        - const: eth_lpi
+> >        - const: sfty_ce_irq
+> >        - const: sfty_ue_irq
+> > +      - const: rx0
+> > +      - const: rx1
+> > +      - const: rx2
+> > +      - const: rx3
+> > +      - const: rx4
+> > +      - const: rx5
+> > +      - const: rx6
+> > +      - const: rx7
+> > +      - const: tx0
+> > +      - const: tx1
+> > +      - const: tx2
+> > +      - const: tx3
+> > +      - const: tx4
+> > +      - const: tx5
+> > +      - const: tx6
+> > +      - const: tx7
+> 
+> And 16 here?
+> 
+
+oops, indeed HW supports up to 16 channels for tx and rx, thus
+up to 16 interrupts.
+
+> >  
+> >    clocks:
+> >      minItems: 1
+> > -- 
+> > 2.40.1
+> > 
