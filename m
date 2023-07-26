@@ -2,239 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 11CF5762C03
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 08:56:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 38A36762C79
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 09:05:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229712AbjGZG4u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jul 2023 02:56:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35898 "EHLO
+        id S232170AbjGZHE7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jul 2023 03:04:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40132 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231958AbjGZG4o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 02:56:44 -0400
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C78BC212E
-        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 23:56:40 -0700 (PDT)
-Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-5222bc916acso4085971a12.3
-        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 23:56:40 -0700 (PDT)
+        with ESMTP id S232176AbjGZHEX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 03:04:23 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4F09DD
+        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 00:02:47 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-99bc02890c1so71385166b.1
+        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 00:02:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690354599; x=1690959399;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=YeYoJcI9+nc3aMAhSELiLoIJUhDdoYKAVtJZmlKc8rc=;
-        b=VGBiX2D8Wkc6uMVIX2s3N9rDZr9TPsjHxr1e4uLCTb5su35xr65IUVY+crCxg4I8xH
-         OOCjxuXtXL0HmiXp8/tWx2GThcnSV73ib0Ui06RODzd5tnZ4mRtHmF5OgyMWGs788zsy
-         VtVw+aiZ8iJXIJ07f0Lfwzxws6/qV8ffzNJrmQtD/q7uBmJjYK9wRKKMPpW+tiOGqUxg
-         kw65XfaBS/8Zis6g5muQr0Z0J8wt+c8/3Jm8tU7eXf558JpC8W6Ne1/wlTSC398EIKw5
-         H79szsKBY0ZcOZ9/ANLfibk/8IDP5DxqwNzZQYwlczXBGNGH5isx7e4c9dh+vM7C6S/Y
-         a32A==
+        d=linaro.org; s=google; t=1690354966; x=1690959766;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=YecLEf8qZprCEU7ERZ9Wc6P5u7z1nwmeCE8OvgcZdt0=;
+        b=x1if1as6W99o+6uXX8NnHX/RMLQ27OspYAaqhE7gnduJ8Sso/MCinYGaz2wiW1O6Xs
+         u0MkL+1SOr5L1h03uxgGMksTZ3TkqAg0pSgFkRKAP8CPai9nRNf7yQ5/YTmM/SmDie/W
+         X7GPSGAJZ6SZ6uR8kEvU7siFKJdYJfMR1ZQsF8EAhnLUl24I/mB8wtLPmuDO0Czkecom
+         ylQlnDKYvKg7iRJwcDO0rRu/EoJ9OQOONPEM+bQflXXdJ/iHO009pKZ+L/sYyt4TB20w
+         G0wix0WrIHcqBnsYvp1tmRD3KofOSV6iBwQP2FvY0A/jxXu9a2fOI52BPxyMUMmFPZ27
+         hwZg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690354599; x=1690959399;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=YeYoJcI9+nc3aMAhSELiLoIJUhDdoYKAVtJZmlKc8rc=;
-        b=TPTBuWVtnetp1flrsYmO8KG9yd3PDCtV3RQj6898uQ/jgSwl+80x4gbVolSxmPCcUd
-         nYHxqeceDdkPvIkHEKrZ0ENEXHYDnNNhrmI3CuSx3DW5dPMqS16j/QwkDkSEP044iDVF
-         D/RxZcm93+UC7KRjbRzbdsobZwsdPuxp0+q4uHMJUxAQYN2ORJ1AkZrLKIIRe0JWltaO
-         94prtsDqZhNGGYpg/haaDbaxRGNLyz14xmSqMsLkqPZjljCr7qIThV+YMOY7LAj7OuAt
-         6/eqIikTAezqS7AmevFe9IktNxGt31CCezXcXZ3lK0/AeYnkLXTRYVHFvvUwsayUJl+R
-         Jksw==
-X-Gm-Message-State: ABy/qLa13a2vnxLWwo0zQD6RnPNLmfoUS5adtDOfDhFB9K5YNl5fTpsC
-        nwFszL4WWmtw9vgdMuwoy3E1FQ==
-X-Google-Smtp-Source: APBJJlHISoAIvvOoxDEOIb3s0jT3Wu6oJsKB1Hkw8x3hGuAg+4W++u890P3bp3VMPxwYaoE8/LHoAA==
-X-Received: by 2002:a17:906:2002:b0:989:3148:e9a with SMTP id 2-20020a170906200200b0098931480e9amr766471ejo.41.1690354599136;
-        Tue, 25 Jul 2023 23:56:39 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1690354966; x=1690959766;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=YecLEf8qZprCEU7ERZ9Wc6P5u7z1nwmeCE8OvgcZdt0=;
+        b=cO4sK44q9xTFNsZDZfqVJ+2OQ6g/N9qdc5U7DmYhYxdxrQ0keMA0xuvRFC4aGgTodH
+         LnLejUGkoxnaVgY6K14EL7Hkmpc082Gd277mgnnFEJYiRhn2ZsmffnbzGMMIcWwyayIB
+         xJkvdhYG0UhL9/RcnD1xnVaiaIhNJ/YSEvPIdOrForGAtmRl72jU1t6N4GNwavY+3HzJ
+         LWvgM1jbpQ6qsMTuKTtezdEbp4EG5Yi4EF+sWpAMld8Ph09H3v1Gl06YTsuTdqCTW8u9
+         zkQIB7SH/OUubSG95o1kyC9DQHBxO8rFUDIQTAC7IZg6Q0NF8hTTZ0+2ZB1i2S/sTHty
+         ax9Q==
+X-Gm-Message-State: ABy/qLZUIgsW1xliYKS+IpCxCGLOo5hSBKNVS440qciG9AwquZCOlDmC
+        WTeWB393IBALxJPQ1rl5iebYeA==
+X-Google-Smtp-Source: APBJJlHvdJs2n1j0lsHu5vxNDRHqv8G7d/t6TqS0C9zPnPwi9a+WpMhy76XTDv1NOzIDpeFfDB0pGg==
+X-Received: by 2002:a17:906:539a:b0:994:5396:e32c with SMTP id g26-20020a170906539a00b009945396e32cmr880369ejo.3.1690354966393;
+        Wed, 26 Jul 2023 00:02:46 -0700 (PDT)
 Received: from krzk-bin.. ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id gs18-20020a170906f19200b00993150e5325sm9178420ejb.60.2023.07.25.23.56.38
+        by smtp.gmail.com with ESMTPSA id si2-20020a170906cec200b0099304c10fd3sm9180093ejb.196.2023.07.26.00.02.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 Jul 2023 23:56:38 -0700 (PDT)
+        Wed, 26 Jul 2023 00:02:45 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        pascal Paillet <p.paillet@foss.st.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v3 2/2] dt-bindings: mfd: stericsson,db8500-prcmu: Add missing unevaluatedProperties for each regulator
-Date:   Wed, 26 Jul 2023 08:56:33 +0200
-Message-Id: <20230726065633.74924-2-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] AMR: dts: renesas: r8a7740-armadillo: switch to enable-gpios
+Date:   Wed, 26 Jul 2023 09:02:41 +0200
+Message-Id: <20230726070241.103545-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230726065633.74924-1-krzysztof.kozlowski@linaro.org>
-References: <20230726065633.74924-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Each regulator node, which references common regulator.yaml schema,
-should disallow additional or unevaluated properties.  Otherwise
-mistakes in properties will go unnoticed.
+The recommended name for enable GPIOs property in regulator-gpio is
+"enable-gpios".  This is also required by bindings:
+
+  r8a7740-armadillo800eva.dtb: regulator-vccq-sdhi0: Unevaluated properties are not allowed ('enable-gpio' was unexpected)
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
 ---
+ arch/arm/boot/dts/renesas/r8a7740-armadillo800eva.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Changes in v3:
-1. None
-
-Changes in v2:
-1. None
----
- .../bindings/mfd/stericsson,db8500-prcmu.yaml | 20 +++++++++++++++++++
- 1 file changed, 20 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/mfd/stericsson,db8500-prcmu.yaml b/Documentation/devicetree/bindings/mfd/stericsson,db8500-prcmu.yaml
-index 1d4d88f7e82d..678a6c0fd7d6 100644
---- a/Documentation/devicetree/bindings/mfd/stericsson,db8500-prcmu.yaml
-+++ b/Documentation/devicetree/bindings/mfd/stericsson,db8500-prcmu.yaml
-@@ -72,44 +72,52 @@ properties:
-           main voltage domain for the chip.
-         type: object
-         $ref: ../regulator/regulator.yaml#
-+        unevaluatedProperties: false
+diff --git a/arch/arm/boot/dts/renesas/r8a7740-armadillo800eva.dts b/arch/arm/boot/dts/renesas/r8a7740-armadillo800eva.dts
+index fa09295052c6..d21e00e1f401 100644
+--- a/arch/arm/boot/dts/renesas/r8a7740-armadillo800eva.dts
++++ b/arch/arm/boot/dts/renesas/r8a7740-armadillo800eva.dts
+@@ -58,7 +58,7 @@ vccq_sdhi0: regulator-vccq-sdhi0 {
+ 		regulator-max-microvolt = <3300000>;
+ 		vin-supply = <&vcc_sdhi0>;
  
-       db8500_varm:
-         description: The voltage for the ARM Cortex A-9 CPU.
-         type: object
-         $ref: ../regulator/regulator.yaml#
-+        unevaluatedProperties: false
+-		enable-gpio = <&pfc 74 GPIO_ACTIVE_HIGH>;
++		enable-gpios = <&pfc 74 GPIO_ACTIVE_HIGH>;
+ 		gpios = <&pfc 17 GPIO_ACTIVE_HIGH>;
+ 		states = <3300000 0>, <1800000 1>;
  
-       db8500_vmodem:
-         description: The voltage for the modem subsystem.
-         type: object
-         $ref: ../regulator/regulator.yaml#
-+        unevaluatedProperties: false
- 
-       db8500_vpll:
-         description: The voltage for the phase locked loop clocks.
-         type: object
-         $ref: ../regulator/regulator.yaml#
-+        unevaluatedProperties: false
- 
-       db8500_vsmps1:
-         description: Also known as VIO12, is a step-down voltage regulator
-           for 1.2V I/O. SMPS means System Management Power Source.
-         type: object
-         $ref: ../regulator/regulator.yaml#
-+        unevaluatedProperties: false
- 
-       db8500_vsmps2:
-         description: Also known as VIO18, is a step-down voltage regulator
-           for 1.8V I/O. SMPS means System Management Power Source.
-         type: object
-         $ref: ../regulator/regulator.yaml#
-+        unevaluatedProperties: false
- 
-       db8500_vsmps3:
-         description: This is a step-down voltage regulator
-           for 0.87 thru 1.875V I/O. SMPS means System Management Power Source.
-         type: object
-         $ref: ../regulator/regulator.yaml#
-+        unevaluatedProperties: false
- 
-       db8500_vrf1:
-         description: RF transciever voltage regulator.
-         type: object
-         $ref: ../regulator/regulator.yaml#
-+        unevaluatedProperties: false
- 
-       db8500_sva_mmdsp:
-         description: Smart Video Accelerator (SVA) multimedia DSP (MMDSP)
-@@ -117,18 +125,21 @@ properties:
-           for video encoding and decoding.
-         type: object
-         $ref: ../regulator/regulator.yaml#
-+        unevaluatedProperties: false
- 
-       db8500_sva_mmdsp_ret:
-         description: Smart Video Accelerator (SVA) multimedia DSP (MMDSP)
-           voltage regulator for retention mode.
-         type: object
-         $ref: ../regulator/regulator.yaml#
-+        unevaluatedProperties: false
- 
-       db8500_sva_pipe:
-         description: Smart Video Accelerator (SVA) multimedia DSP (MMDSP)
-           voltage regulator for the data pipe.
-         type: object
-         $ref: ../regulator/regulator.yaml#
-+        unevaluatedProperties: false
- 
-       db8500_sia_mmdsp:
-         description: Smart Image Accelerator (SIA) multimedia DSP (MMDSP)
-@@ -136,18 +147,21 @@ properties:
-           for image encoding and decoding.
-         type: object
-         $ref: ../regulator/regulator.yaml#
-+        unevaluatedProperties: false
- 
-       db8500_sia_mmdsp_ret:
-         description: Smart Image Accelerator (SIA) multimedia DSP (MMDSP)
-           voltage regulator for retention mode.
-         type: object
-         $ref: ../regulator/regulator.yaml#
-+        unevaluatedProperties: false
- 
-       db8500_sia_pipe:
-         description: Smart Image Accelerator (SIA) multimedia DSP (MMDSP)
-           voltage regulator for the data pipe.
-         type: object
-         $ref: ../regulator/regulator.yaml#
-+        unevaluatedProperties: false
- 
-       db8500_sga:
-         description: Smart Graphics Accelerator (SGA) voltage regulator.
-@@ -155,6 +169,7 @@ properties:
-           accelerator block.
-         type: object
-         $ref: ../regulator/regulator.yaml#
-+        unevaluatedProperties: false
- 
-       db8500_b2r2_mcde:
-         description: Blit Blend Rotate and Rescale (B2R2), and Multi-Channel
-@@ -162,28 +177,33 @@ properties:
-           blocks.
-         type: object
-         $ref: ../regulator/regulator.yaml#
-+        unevaluatedProperties: false
- 
-       db8500_esram12:
-         description: Embedded Static RAM (ESRAM) 1 and 2 voltage regulator.
-         type: object
-         $ref: ../regulator/regulator.yaml#
-+        unevaluatedProperties: false
- 
-       db8500_esram12_ret:
-         description: Embedded Static RAM (ESRAM) 1 and 2 voltage regulator for
-           retention mode.
-         type: object
-         $ref: ../regulator/regulator.yaml#
-+        unevaluatedProperties: false
- 
-       db8500_esram34:
-         description: Embedded Static RAM (ESRAM) 3 and 4 voltage regulator.
-         type: object
-         $ref: ../regulator/regulator.yaml#
-+        unevaluatedProperties: false
- 
-       db8500_esram34_ret:
-         description: Embedded Static RAM (ESRAM) 3 and 4 voltage regulator for
-           retention mode.
-         type: object
-         $ref: ../regulator/regulator.yaml#
-+        unevaluatedProperties: false
- 
-     required:
-       - compatible
 -- 
 2.34.1
 
