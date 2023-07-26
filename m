@@ -2,58 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F01C763578
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 13:42:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B12047635A6
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 13:52:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233237AbjGZLmH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jul 2023 07:42:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39308 "EHLO
+        id S231512AbjGZLww (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jul 2023 07:52:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51366 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234253AbjGZLlz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 07:41:55 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5172526A6;
-        Wed, 26 Jul 2023 04:41:28 -0700 (PDT)
+        with ESMTP id S233033AbjGZLwv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 07:52:51 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D75F106;
+        Wed, 26 Jul 2023 04:52:50 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 31F5F61A82;
-        Wed, 26 Jul 2023 11:41:28 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 67CE1C433C8;
-        Wed, 26 Jul 2023 11:41:25 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id D401461AB0;
+        Wed, 26 Jul 2023 11:52:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8370DC433C7;
+        Wed, 26 Jul 2023 11:52:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690371687;
-        bh=VTDdGT3r9ibKW6CYrZ+3Bje3SsbXFVMe37SU5/r4En8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=bGrrQiE6Ef5wQ0FMJEW0uUiimTk/QCui2R+5q/nPvm/MwBigVz1WJNVmzkOBad5le
-         t8+dT5zVdcozA6AuQU4PB82jMH3hDsGA0FQvek0fMJYmGQV921ov/aufk1UoHwF7lG
-         19Ag0ZMvrW9ZbqLdI8XeHWGb85rmEytQsOUgMuquYcOr4ffZvZ9h8s25+Sk4gKUODJ
-         441M9Z153hAs30hICBbPEdhT2WZ5LT0cQVeHEYidUO3kvmjq+66rQ3Xh44SfPtOYqa
-         RDqOFoylT6gWYnK3+z6qVmX4X1pJh0iFEAQ3oj/0rpAyMx2ecXdZu61l9oqdBLerm1
-         uVX1XDJAfSmPQ==
-Date:   Wed, 26 Jul 2023 12:41:22 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     like@awinic.com
-Cc:     lgirdwood@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        liweilei@awinic.com, liangdong@awinic.com, wangweidong.a@awinic.com
-Subject: Re: [PATCH V1 1/2] regulator: aw37503: add regulator driver for
- AWINIC AW37503
-Message-ID: <812a3f8b-7d5d-42f2-aaf2-dcea18f6ffac@sirena.org.uk>
-References: <20230726081612.586295-1-like@awinic.com>
- <20230726081612.586295-2-like@awinic.com>
+        s=k20201202; t=1690372369;
+        bh=8w/nLjkl+nqIUFXUBTIfnkF5EfW/TGFj9s/NoPLragY=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=akD/HSYbxVXXEERtZtCqh6Z/ZCB3eEUg4gJ52Y+tPfupgBO5JLY7T/ktCvZYHxcrh
+         YxCut95Sw2qrViRyB2tjz6VO2zBND12MnSUxmT/V8k6V+PFo0G8hTw15B+Gdxhqgar
+         EHA3bhne6Tl/AeS/Z9Lq85UKEN3DbhEQe4NZdYiM/AI8eqFx9Iq8BHHQVqze8RRvw2
+         VMSw2zZEJp2plrtm3Wer8mzHrExsbmR/ygIKKyPYcDHE9RDML8VyCNWIyQ5z2rZmew
+         zASthRVAZrRumWdSNy+gco8tjceGYnkHf9wUGDAA+WPtxTuzxWVyBO+653MEtR+3OL
+         GWxi33pVTGL5A==
+Received: (nullmailer pid 1158235 invoked by uid 1000);
+        Wed, 26 Jul 2023 11:52:47 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="kOJlPb1zijIUcQCJ"
-Content-Disposition: inline
-In-Reply-To: <20230726081612.586295-2-like@awinic.com>
-X-Cookie: Life is the urge to ecstasy.
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+From:   Rob Herring <robh@kernel.org>
+To:     TY Chang <tychang@realtek.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>
+In-Reply-To: <20230726090409.16606-8-tychang@realtek.com>
+References: <20230726090409.16606-1-tychang@realtek.com>
+ <20230726090409.16606-8-tychang@realtek.com>
+Message-Id: <169037236741.1158189.1605537876806523813.robh@kernel.org>
+Subject: Re: [PATCH 7/7] dt-bindings: pinctrl: realtek: add RTD1619B
+ pinctrl binding
+Date:   Wed, 26 Jul 2023 05:52:47 -0600
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -61,43 +62,38 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---kOJlPb1zijIUcQCJ
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Wed, 26 Jul 2023 17:04:09 +0800, TY Chang wrote:
+> Add device tree bindings for RTD1619B.
+> 
+> Signed-off-by: TY Chang <tychang@realtek.com>
+> ---
+>  .../pinctrl/realtek,rtd1619b-pinctrl.yaml     | 162 ++++++++++++++++++
+>  1 file changed, 162 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/realtek,rtd1619b-pinctrl.yaml
+> 
 
-On Wed, Jul 26, 2023 at 08:16:11AM +0000, like@awinic.com wrote:
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-> @@ -191,5 +191,6 @@ obj-$(CONFIG_REGULATOR_WM831X) +=3D wm831x-ldo.o
->  obj-$(CONFIG_REGULATOR_WM8350) +=3D wm8350-regulator.o
->  obj-$(CONFIG_REGULATOR_WM8400) +=3D wm8400-regulator.o
->  obj-$(CONFIG_REGULATOR_WM8994) +=3D wm8994-regulator.o
-> +obj-$(CONFIG_REGULATOR_AW37503) +=3D aw37503-regulator.o
-> =20
+yamllint warnings/errors:
 
-Please keep the Kconfig and Makefile sorted.
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/pinctrl/realtek,rtd1619b-pinctrl.example.dtb: /example-0/pinctrl@4e000: failed to match any schema with compatible: ['realtek,rtd16xxb-pinctrl']
 
-> +static const struct regmap_config aw37503_regmap_config =3D {
-> +	.reg_bits	=3D 8,
-> +	.val_bits	=3D 8,
-> +	.max_register	=3D AW37503_REG_WPRTEN,
-> +	.cache_type	=3D REGCACHE_NONE,
+doc reference errors (make refcheckdocs):
 
-No need to specify no cache, it's the default.
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230726090409.16606-8-tychang@realtek.com
 
---kOJlPb1zijIUcQCJ
-Content-Type: application/pgp-signature; name="signature.asc"
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
------BEGIN PGP SIGNATURE-----
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmTBBmEACgkQJNaLcl1U
-h9CtHgf/XLvTa6zXGWT2G0meo/ozGbZMXVtzBEKx8AAPE3o1oo949mRWGv9C4MhH
-u0lrb95b0/+pYWADuIJg0kdKZswPIBxNtb2lM5f1SCU/Eg5RDhr656wadQXKhNzt
-IAjTHfPZeV8F9rOpN9gZlqmVvr/s496gyYFbM5aY8lMpPMRCyDoec6HR92lqd2bB
-LQf4cnHP2BsfIq8BZy1PTGVnWO4t6FG0smOdpOn73EMAYF4/OPyM22/q8szcw1U6
-xfjBKUS4NeIZlVsPPaA/yWWKuK+esEge+BkbFrPgDtQDyggJuuyiiQiVeJ4hPXbZ
-RCd8+7Y5jjewFNofwhmtuvYUquASfg==
-=RIjV
------END PGP SIGNATURE-----
+pip3 install dtschema --upgrade
 
---kOJlPb1zijIUcQCJ--
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
