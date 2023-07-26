@@ -2,278 +2,267 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D07D762EF2
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 09:58:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 886B3762EFC
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 10:01:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231686AbjGZH6k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jul 2023 03:58:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46768 "EHLO
+        id S232215AbjGZIB1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jul 2023 04:01:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48754 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233105AbjGZH6E (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 03:58:04 -0400
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA4757A82
-        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 00:49:46 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-977e0fbd742so1008705066b.2
-        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 00:49:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690357784; x=1690962584;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=CrsD2ku3FYUSbEYLd18QefccXrMIMs58LNZUmwrbrKY=;
-        b=b9Uk0NppRr+rkGY9TslqqUwqX6vqJDpM4jhJBfGUSzLvxZnEIwzaoGwJiYgcmrXew3
-         gCGW1ypQiqlOeTUcniQ7x2O13WIZIKaBXdRkayMCqXQ0udjcHpNZ3XaBmPqpSmN4S0YM
-         hKxo8LHz06XW+8m/uV8NLI1b9dAc1qCU3LtzpZlJ28Z0CFdnjY2SR1OB6NwLydSPy5hf
-         asT2WvruZJU+oECM3PPeZJ5vslpjdz0fSNVjiDWQ8MoCSk8G+PsRRXGJx6onQnUEeH9v
-         ZueNevR4DAWbUpalLL3xn5dQqbuSRctg/nqqAUlUx/WJ8qGtW5hLgwR7LS4l1USMIk01
-         9aOA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690357784; x=1690962584;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=CrsD2ku3FYUSbEYLd18QefccXrMIMs58LNZUmwrbrKY=;
-        b=Brad4lg/RKMA03KjE0zyeB1GFrj+pbpoOOhWbVaLRv/aF7SRVcYeKTIkd7KZfC7Z67
-         aZPzrQeixC0yxBPopGmx5bcYWSsD+Cn9A1Xy87xirTQY/zaPwsCCEaJ9t9jwEPUvr55h
-         yTpOgRPigZQB5cLF94d0Ot65nps2m0fsPUcK6QWxI1DL2uWg1hulaNClEWYNJ/PgjXJ+
-         XZSdXJiDwu50NAnri+JTgxqAhb1LNuxxZT4n4yUGOetrfkpD5hc2mRBIQGEBOaSACHQ1
-         FdFkJqC5bsm/uuMnhtOtXrPVhbLgKa4YJpFQjITjcfBmbrh7F/8a3t+3lPp9b3La9uY0
-         ZTjA==
-X-Gm-Message-State: ABy/qLZeqinSaWL6cf82Mjg/+4bgA+ET1gGr4aUJB6GXqPAEfy5OKTLM
-        TY00gf6XFVRVk4t7FPdrQSIAhw==
-X-Google-Smtp-Source: APBJJlE5SEYnQwUx8wsx9vWg+u+oTmQFY4q7UYsSYWFVWyKkbwKNrfwAMB+kXD4rA1nSu4piS0iYgw==
-X-Received: by 2002:a17:906:51db:b0:99b:4956:e4e3 with SMTP id v27-20020a17090651db00b0099b4956e4e3mr1032988ejk.8.1690357784438;
-        Wed, 26 Jul 2023 00:49:44 -0700 (PDT)
-Received: from krzk-bin.. ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id qh1-20020a170906eca100b0099bc8bd9066sm360455ejb.150.2023.07.26.00.49.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 Jul 2023 00:49:43 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Saravanan Sekar <sravanhome@gmail.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Robin Gong <yibin.gong@nxp.com>,
-        ChiYuan Huang <cy_huang@richtek.com>,
-        Pascal Paillet <p.paillet@foss.st.com>,
-        - <patches@opensource.cirrus.com>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Subject: [PATCH v2] regulator: dt-bindings: add missing unevaluatedProperties for each regulator
-Date:   Wed, 26 Jul 2023 09:49:40 +0200
-Message-Id: <20230726074940.121040-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S231391AbjGZIBC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 04:01:02 -0400
+Received: from mx1.sberdevices.ru (mx1.sberdevices.ru [37.18.73.165])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B491C196;
+        Wed, 26 Jul 2023 00:52:53 -0700 (PDT)
+Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
+        by mx1.sberdevices.ru (Postfix) with ESMTP id 800F6100006;
+        Wed, 26 Jul 2023 10:52:50 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 800F6100006
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+        s=mail; t=1690357970;
+        bh=vTUqR02g7CyzGcKZgu+ckB967aCBxpLWQ1Cp4fR5GdI=;
+        h=From:To:Subject:Date:Message-ID:Content-Type:MIME-Version:From;
+        b=pcG+Peusb9E7FOmULN3LDYHt7fYVVlcAsgLW8ggdEqWHTiBjoOaw2BO9n+Hf7uWSK
+         5gavGbOwHqAv2oNew4cLJA7pTNW3hHANNoHySLymoHWmQfsGmj4xdz+jh6P++jTYXW
+         cXxYFgov4JCOVGddTQc8PU4JinFOG0t/HiteN5SjU8pmUb4j+RwJunFnc5Q/GOwwSn
+         GWxSXNsvDW/H5sTbQ7dvw9xeM6Xs+2QbnwHU2SJl49x2m1fhS9kTTkqavlfRhhLjUw
+         xeDl0/bgLvLcjY+MdKFteQzfMpQ/60Uq7KF2jqnzq7ooq88frKaWQE0puMS7VfWNgD
+         rlnRK89r5r17A==
+Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mx1.sberdevices.ru (Postfix) with ESMTPS;
+        Wed, 26 Jul 2023 10:52:50 +0300 (MSK)
+Received: from p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) by
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.30; Wed, 26 Jul 2023 10:52:43 +0300
+Received: from p-i-exch-sc-m01.sberdevices.ru ([::1]) by
+ p-i-exch-sc-m01.sberdevices.ru ([fe80::80e5:bab:4999:4480%7]) with mapi id
+ 15.02.1118.030; Wed, 26 Jul 2023 10:52:43 +0300
+From:   Alexey Romanov <AVRomanov@sberdevices.ru>
+To:     Martin Kaiser <lists@kaiser.cx>
+CC:     "narmstrong@baylibre.com" <narmstrong@baylibre.com>,
+        "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
+        "olivia@selenic.com" <olivia@selenic.com>,
+        "herbert@gondor.apana.org.au" <herbert@gondor.apana.org.au>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "khilman@baylibre.com" <khilman@baylibre.com>,
+        "jbrunet@baylibre.com" <jbrunet@baylibre.com>,
+        "martin.blumenstingl@googlemail.com" 
+        <martin.blumenstingl@googlemail.com>,
+        "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
+        "hkallweit1@gmail.com" <hkallweit1@gmail.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-amlogic@lists.infradead.org" 
+        <linux-amlogic@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
+        kernel <kernel@sberdevices.ru>
+Subject: Re: [PATCH v1 1/3] drivers: rng: add check status bit feature
+Thread-Topic: [PATCH v1 1/3] drivers: rng: add check status bit feature
+Thread-Index: AQHZvwIhgAdKkj3BKkSqydzslBnXI6/KtJqAgADHaIA=
+Date:   Wed, 26 Jul 2023 07:52:43 +0000
+Message-ID: <20230726075243.f37sjcurmog3eunh@cab-wsm-0029881>
+References: <20230725141252.98848-1-avromanov@sberdevices.ru>
+ <20230725141252.98848-2-avromanov@sberdevices.ru>
+ <20230725195901.n2klvgz7outqaatk@viti.kaiser.cx>
+In-Reply-To: <20230725195901.n2klvgz7outqaatk@viti.kaiser.cx>
+Accept-Language: ru-RU, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.16.18.93]
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <5A8C49A7B982AD4AA50B334FB89BE21D@sberdevices.ru>
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 178796 [Jul 22 2023]
+X-KSMG-AntiSpam-Version: 5.9.59.0
+X-KSMG-AntiSpam-Envelope-From: AVRomanov@sberdevices.ru
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 525 525 723604743bfbdb7e16728748c3fa45e9eba05f7d, {Track_E25351}, {Tracking_internal2}, {Tracking_from_domain_doesnt_match_to}, FromAlignment: s
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/07/23 08:49:00 #21663637
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Each regulator node, which references common regulator.yaml schema,
-should disallow additional or unevaluated properties.  Otherwise
-mistakes in properties will go unnoticed.
+Hi Martin,
 
-Reported-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-Closes: https://git.codelinaro.org/linaro/qcomlt/kernel/-/commit/1c8aeef8a6e84520b77f0c270d99c8bf692c5933
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+On Tue, Jul 25, 2023 at 09:59:01PM +0200, Martin Kaiser wrote:
+> Alexey Romanov (avromanov@sberdevices.ru) wrote:
+>=20
+> > For some Amlogic SOC's, mechanism to obtain random number
+> > has been changed. For example, S4 now uses status bit waiting algo.
+>=20
+> > Signed-off-by: Alexey Romanov <avromanov@sberdevices.ru>
+> > ---
+> >  drivers/char/hw_random/meson-rng.c | 77 ++++++++++++++++++++++++++++--
+> >  1 file changed, 74 insertions(+), 3 deletions(-)
+>=20
+> > diff --git a/drivers/char/hw_random/meson-rng.c b/drivers/char/hw_rando=
+m/meson-rng.c
+> > index a4eb8e35f13d..c6d7349630a1 100644
+> > --- a/drivers/char/hw_random/meson-rng.c
+> > +++ b/drivers/char/hw_random/meson-rng.c
+> > @@ -14,19 +14,65 @@
+> >  #include <linux/of.h>
+> >  #include <linux/clk.h>
+>=20
+> > -#define RNG_DATA 0x00
+> > +struct meson_rng_priv {
+> > +	bool check_status_bit;
+> > +	unsigned int data_offset;
+> > +	unsigned int cfg_offset;
+> > +};
+>=20
+> >  struct meson_rng_data {
+> >  	void __iomem *base;
+> >  	struct hwrng rng;
+> > +	struct device *dev;
+> > +	const struct meson_rng_priv *priv;
+> >  };
+>=20
+> > +#define RUN_BIT			0
+> > +#define SEED_READY_STS_BIT	31
+> > +#define RETRY_CNT		100
+> > +
+> > +static int meson_rng_wait_status(void __iomem *cfg_addr, int bit)
+> > +{
+> > +	u32 status;
+> > +	u32 cnt =3D 0;
+> > +
+> > +	do {
+> > +		status =3D readl_relaxed(cfg_addr) & BIT(bit);
+> > +		cpu_relax();
+> > +	} while (status && (cnt++ < RETRY_CNT));
+> > +
+>=20
+> Could you use readl_relaxed_poll_timeout here instead of open coding the
+> loop?
 
----
+At first I also thought about this API. But later I came to the
+conclusion that it is inappropriate here:
 
-Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+1. We can't call rng_read from an atomic context.
+2. RNG for me looks like a very lightweight primitive to me that=20
+should work quiclky.
 
-Changes in v2:
-1. Rebase, drop patches from work-in-progress branch
----
- Documentation/devicetree/bindings/regulator/mps,mp5416.yaml   | 2 ++
- Documentation/devicetree/bindings/regulator/mps,mpq7920.yaml  | 2 ++
- Documentation/devicetree/bindings/regulator/pfuze100.yaml     | 4 ++++
- .../devicetree/bindings/regulator/qcom,rpmh-regulator.yaml    | 2 ++
- .../devicetree/bindings/regulator/qcom,smd-rpm-regulator.yaml | 1 +
- .../bindings/regulator/richtek,rt4831-regulator.yaml          | 1 +
- .../bindings/regulator/richtek,rtmv20-regulator.yaml          | 1 +
- .../bindings/regulator/richtek,rtq6752-regulator.yaml         | 1 +
- .../devicetree/bindings/regulator/st,stm32mp1-pwr-reg.yaml    | 2 +-
- Documentation/devicetree/bindings/regulator/wlf,arizona.yaml  | 2 ++
- 10 files changed, 17 insertions(+), 1 deletion(-)
+But, now I looked again at the API and realized that we can use=20
+readl_relaxed_poll_timeout_atomic() instead of
+readl_relaxed_poll_timeout(). What do you think?
 
-diff --git a/Documentation/devicetree/bindings/regulator/mps,mp5416.yaml b/Documentation/devicetree/bindings/regulator/mps,mp5416.yaml
-index 2e720d152890..0221397eb51e 100644
---- a/Documentation/devicetree/bindings/regulator/mps,mp5416.yaml
-+++ b/Documentation/devicetree/bindings/regulator/mps,mp5416.yaml
-@@ -29,10 +29,12 @@ properties:
-     patternProperties:
-       "^buck[1-4]$":
-         $ref: regulator.yaml#
-+        unevaluatedProperties: false
-         type: object
- 
-       "^ldo[1-4]$":
-         $ref: regulator.yaml#
-+        unevaluatedProperties: false
-         type: object
- 
-     additionalProperties: false
-diff --git a/Documentation/devicetree/bindings/regulator/mps,mpq7920.yaml b/Documentation/devicetree/bindings/regulator/mps,mpq7920.yaml
-index 019c60942efc..6de5b027f990 100644
---- a/Documentation/devicetree/bindings/regulator/mps,mpq7920.yaml
-+++ b/Documentation/devicetree/bindings/regulator/mps,mpq7920.yaml
-@@ -38,11 +38,13 @@ properties:
-       ldortc:
-         type: object
-         $ref: regulator.yaml#
-+        unevaluatedProperties: false
- 
-     patternProperties:
-       "^ldo[1-4]$":
-         type: object
-         $ref: regulator.yaml#
-+        unevaluatedProperties: false
- 
-       "^buck[1-4]$":
-         type: object
-diff --git a/Documentation/devicetree/bindings/regulator/pfuze100.yaml b/Documentation/devicetree/bindings/regulator/pfuze100.yaml
-index e384e4953f0a..0eda44752cdd 100644
---- a/Documentation/devicetree/bindings/regulator/pfuze100.yaml
-+++ b/Documentation/devicetree/bindings/regulator/pfuze100.yaml
-@@ -68,18 +68,22 @@ properties:
-       "^sw([1-4]|[1-4][a-c]|[1-4][a-c][a-c])$":
-         $ref: regulator.yaml#
-         type: object
-+        unevaluatedProperties: false
- 
-       "^vgen[1-6]$":
-         $ref: regulator.yaml#
-         type: object
-+        unevaluatedProperties: false
- 
-       "^vldo[1-4]$":
-         $ref: regulator.yaml#
-         type: object
-+        unevaluatedProperties: false
- 
-       "^(vsnvs|vref|vrefddr|swbst|coin|v33|vccsd)$":
-         $ref: regulator.yaml#
-         type: object
-+        unevaluatedProperties: false
- 
-     additionalProperties: false
- 
-diff --git a/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml b/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml
-index 72b533c3761a..e758093365bc 100644
---- a/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml
-+++ b/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml
-@@ -111,6 +111,7 @@ properties:
-   bob:
-     type: object
-     $ref: regulator.yaml#
-+    unevaluatedProperties: false
-     description: BOB regulator node.
-     dependencies:
-       regulator-allow-set-load: [ regulator-allowed-modes ]
-@@ -119,6 +120,7 @@ patternProperties:
-   "^(smps|ldo|lvs|bob)[0-9]+$":
-     type: object
-     $ref: regulator.yaml#
-+    unevaluatedProperties: false
-     description: smps/ldo regulator nodes(s).
-     dependencies:
-       regulator-allow-set-load: [ regulator-allowed-modes ]
-diff --git a/Documentation/devicetree/bindings/regulator/qcom,smd-rpm-regulator.yaml b/Documentation/devicetree/bindings/regulator/qcom,smd-rpm-regulator.yaml
-index a8ca8e0b27f8..9ea8ac0786ac 100644
---- a/Documentation/devicetree/bindings/regulator/qcom,smd-rpm-regulator.yaml
-+++ b/Documentation/devicetree/bindings/regulator/qcom,smd-rpm-regulator.yaml
-@@ -110,6 +110,7 @@ patternProperties:
-   "^((s|l|lvs|5vs)[0-9]*)|(boost-bypass)|(bob)$":
-     description: List of regulators and its properties
-     $ref: regulator.yaml#
-+    unevaluatedProperties: false
- 
- additionalProperties: false
- 
-diff --git a/Documentation/devicetree/bindings/regulator/richtek,rt4831-regulator.yaml b/Documentation/devicetree/bindings/regulator/richtek,rt4831-regulator.yaml
-index d9c23333e157..cd06e957b9db 100644
---- a/Documentation/devicetree/bindings/regulator/richtek,rt4831-regulator.yaml
-+++ b/Documentation/devicetree/bindings/regulator/richtek,rt4831-regulator.yaml
-@@ -29,6 +29,7 @@ patternProperties:
-   "^DSV(LCM|P|N)$":
-     type: object
-     $ref: regulator.yaml#
-+    unevaluatedProperties: false
-     description:
-       Properties for single Display Bias Voltage regulator.
- 
-diff --git a/Documentation/devicetree/bindings/regulator/richtek,rtmv20-regulator.yaml b/Documentation/devicetree/bindings/regulator/richtek,rtmv20-regulator.yaml
-index 446ec5127d1f..fec3d396ca50 100644
---- a/Documentation/devicetree/bindings/regulator/richtek,rtmv20-regulator.yaml
-+++ b/Documentation/devicetree/bindings/regulator/richtek,rtmv20-regulator.yaml
-@@ -121,6 +121,7 @@ properties:
-     description: load switch current regulator description.
-     type: object
-     $ref: regulator.yaml#
-+    unevaluatedProperties: false
- 
- required:
-   - compatible
-diff --git a/Documentation/devicetree/bindings/regulator/richtek,rtq6752-regulator.yaml b/Documentation/devicetree/bindings/regulator/richtek,rtq6752-regulator.yaml
-index e6e5a9a7d940..ef62c618de67 100644
---- a/Documentation/devicetree/bindings/regulator/richtek,rtq6752-regulator.yaml
-+++ b/Documentation/devicetree/bindings/regulator/richtek,rtq6752-regulator.yaml
-@@ -35,6 +35,7 @@ properties:
-       "^(p|n)avdd$":
-         type: object
-         $ref: regulator.yaml#
-+        unevaluatedProperties: false
-         description: |
-           regulator description for pavdd and navdd.
- 
-diff --git a/Documentation/devicetree/bindings/regulator/st,stm32mp1-pwr-reg.yaml b/Documentation/devicetree/bindings/regulator/st,stm32mp1-pwr-reg.yaml
-index 7d53cfa2c288..c9586d277f41 100644
---- a/Documentation/devicetree/bindings/regulator/st,stm32mp1-pwr-reg.yaml
-+++ b/Documentation/devicetree/bindings/regulator/st,stm32mp1-pwr-reg.yaml
-@@ -25,8 +25,8 @@ properties:
- patternProperties:
-   "^(reg11|reg18|usb33)$":
-     type: object
--
-     $ref: regulator.yaml#
-+    unevaluatedProperties: false
- 
- required:
-   - compatible
-diff --git a/Documentation/devicetree/bindings/regulator/wlf,arizona.yaml b/Documentation/devicetree/bindings/regulator/wlf,arizona.yaml
-index 011819c10988..11e378648b3f 100644
---- a/Documentation/devicetree/bindings/regulator/wlf,arizona.yaml
-+++ b/Documentation/devicetree/bindings/regulator/wlf,arizona.yaml
-@@ -29,11 +29,13 @@ properties:
-       Initial data for the LDO1 regulator.
-     $ref: regulator.yaml#
-     type: object
-+    unevaluatedProperties: false
- 
-   micvdd:
-     description:
-       Initial data for the MICVDD regulator.
-     $ref: regulator.yaml#
-     type: object
-+    unevaluatedProperties: false
- 
- additionalProperties: true
--- 
-2.34.1
+>=20
+> > +	if (status)
+> > +		return -EBUSY;
+> > +
+> > +	return 0;
+> > +}
+> > +
+> >  static int meson_rng_read(struct hwrng *rng, void *buf, size_t max, bo=
+ol wait)
+> >  {
+> >  	struct meson_rng_data *data =3D
+> >  			container_of(rng, struct meson_rng_data, rng);
+> > +	const struct meson_rng_priv *priv =3D data->priv;
+> > +
+> > +	if (priv->check_status_bit) {
+> > +		void __iomem *cfg_addr =3D data->base + priv->cfg_offset;
+> > +		int err;
+> > +
+> > +		writel_relaxed(readl_relaxed(cfg_addr) | BIT(SEED_READY_STS_BIT), cf=
+g_addr);
+>=20
+> > -	*(u32 *)buf =3D readl_relaxed(data->base + RNG_DATA);
+> > +		err =3D meson_rng_wait_status(cfg_addr, SEED_READY_STS_BIT);
+> > +		if (err) {
+> > +			dev_err(data->dev, "Seed isn't ready, try again\n");
+> > +			return err;
+> > +		}
+> > +
+> > +		err =3D meson_rng_wait_status(cfg_addr, RUN_BIT);
+> > +		if (err) {
+> > +			dev_err(data->dev, "Can't get random number, try again\n");
+> > +			return err;
+> > +		}
+> > +	}
+> > +
+> > +	*(u32 *)buf =3D readl_relaxed(data->base + priv->data_offset);
+>=20
+> >  	return sizeof(u32);
+> >  }
+> > @@ -41,6 +87,10 @@ static int meson_rng_probe(struct platform_device *p=
+dev)
+> >  	if (!data)
+> >  		return -ENOMEM;
+>=20
+> > +	data->priv =3D device_get_match_data(&pdev->dev);
+> > +	if (!data->priv)
+> > +		return -ENODEV;
+> > +
+> >  	data->base =3D devm_platform_ioremap_resource(pdev, 0);
+> >  	if (IS_ERR(data->base))
+> >  		return PTR_ERR(data->base);
+> > @@ -53,11 +103,32 @@ static int meson_rng_probe(struct platform_device =
+*pdev)
+> >  	data->rng.name =3D pdev->name;
+> >  	data->rng.read =3D meson_rng_read;
+>=20
+> > +	data->dev =3D &pdev->dev;
+> > +
+> >  	return devm_hwrng_register(dev, &data->rng);
+> >  }
+>=20
+> > +static const struct meson_rng_priv meson_rng_priv =3D {
+> > +	.check_status_bit =3D false,
+> > +	.data_offset =3D 0x0,
+> > +	.cfg_offset =3D 0x0,
+> > +};
+> > +
+> > +static const struct meson_rng_priv meson_rng_priv_s4 =3D {
+> > +	.check_status_bit =3D true,
+> > +	.data_offset =3D 0x8,
+> > +	.cfg_offset =3D 0x0,
+> > +};
+> > +
+> >  static const struct of_device_id meson_rng_of_match[] =3D {
+> > -	{ .compatible =3D "amlogic,meson-rng", },
+> > +	{
+> > +		.compatible =3D "amlogic,meson-rng",
+> > +		.data =3D (void *)&meson_rng_priv,
+> > +	},
+> > +	{
+> > +		.compatible =3D "amlogic,meson-rng-s4",
+> > +		.data =3D (void *)&meson_rng_priv_s4,
+> > +	},
+> >  	{},
+> >  };
+> >  MODULE_DEVICE_TABLE(of, meson_rng_of_match);
+> > --=20
+> > 2.38.1
+>=20
 
+--=20
+Thank you,
+Alexey=
