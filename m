@@ -2,53 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B779A762B88
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 08:36:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9BC4C762B8B
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 08:36:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231469AbjGZGgA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jul 2023 02:36:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54200 "EHLO
+        id S231667AbjGZGgR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jul 2023 02:36:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54392 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231630AbjGZGf6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 02:35:58 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96BD91FFF
-        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 23:35:50 -0700 (PDT)
-Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mkl@pengutronix.de>)
-        id 1qOY7S-0001KQ-K6; Wed, 26 Jul 2023 08:35:34 +0200
-Received: from pengutronix.de (unknown [172.20.34.65])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        (Authenticated sender: mkl-all@blackshift.org)
-        by smtp.blackshift.org (Postfix) with ESMTPSA id 20D031FADA3;
-        Wed, 26 Jul 2023 06:35:33 +0000 (UTC)
-Date:   Wed, 26 Jul 2023 08:35:32 +0200
-From:   Marc Kleine-Budde <mkl@pengutronix.de>
-To:     haibo.chen@nxp.com
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        wg@grandegger.com, kernel@pengutronix.de, linux-imx@nxp.com,
-        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, devicetree@vger.kernel.org,
-        linux-can@vger.kernel.org, netdev@vger.kernel.org
-Subject: Re: [PATCH 2/2] can: flexcan: remove the auto stop mode for IMX93
-Message-ID: <20230726-deflected-slider-8e928de8616a-mkl@pengutronix.de>
-References: <20230726035032.3073951-1-haibo.chen@nxp.com>
- <20230726035032.3073951-2-haibo.chen@nxp.com>
+        with ESMTP id S230293AbjGZGgQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 02:36:16 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00BD92113
+        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 23:36:14 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id 2adb3069b0e04-4fe0fe622c3so539929e87.2
+        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 23:36:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1690353373; x=1690958173;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ayyVdy2SPTLgLEOyosJwICplFlSWRn2s+e25D/uiqqQ=;
+        b=n1Kx737Dxds1SWzQjW2/U3tPFuteCpA+DX2cIXLx+k49SV9UelUEwA6uydmqWRJriD
+         pR+McjTeIc7SDNahMZ//vDbYRIXCg+OhrtmxDjg2fjB8Z5yNbaDHsBdUiI+qQafo+6hh
+         e1Woo6SCdCEwqe/LqLUyAVl8N68FPGP7yBxqgY5JkvjF8YJNkODKISPovxqPXw6L611p
+         qS1XnRJt6xWLSsIQ8dQZvEWX2TjWzNHcoK33WuUNrXj5zIb9Djgp07SE488wC0S/hXme
+         HqJkExC+AFpgEhItIwbQ7hw+ap+hwwxqetIKAbF2QNugyKn/ViJDovHGbwoQSMd8OU3w
+         XkZg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690353373; x=1690958173;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ayyVdy2SPTLgLEOyosJwICplFlSWRn2s+e25D/uiqqQ=;
+        b=Dd+B2puzAtkGHGRb8BOmgeBP1I8AnxL6JMR8MM8zXKtUCvopdqcVYN9tSAXGbv+1FP
+         Y/RebzsP4zpL45JvOlQlbPX6+iaawQqV7VguY3ez0j+gRfTK+aWQ+i4JLIAu/8qEANey
+         F4cLcJBbSI2XjNiH22zFYSgAPhARtPhu+hR6KMeUFnHz81Hi2SgO++DtJmaouvwzEFc5
+         g+wATIHMtVfA6hzW8/CGYIrgL96IFgzWIdbXOPVvCXANCc+REjzwi4DsxND63izcOH++
+         BRlD+iCBDn+6i1XJt89Y6NA2FCgncX7BHDM4CUeBv/ICuynX8WLAdx7GhsFH6uafj3GJ
+         mt2Q==
+X-Gm-Message-State: ABy/qLaidfParYmzBn/qm7QQzaycDd5M2V9uNT+2S1NzW6RBSZeB6q0Z
+        5SNRoezJnZ2dB8roFQbJ3VZ1Ag18EoHodVch3Dc=
+X-Google-Smtp-Source: APBJJlFt69+XhfYUJpqwCQlV1ZVMGgKnsQV2XBBGmzo/w6LirjbkRjUvU1GtbnakErn20Zt2xWcRjQ==
+X-Received: by 2002:ac2:5e2f:0:b0:4fb:8f79:631 with SMTP id o15-20020ac25e2f000000b004fb8f790631mr623122lfg.46.1690353373205;
+        Tue, 25 Jul 2023 23:36:13 -0700 (PDT)
+Received: from krzk-bin.. ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id t24-20020aa7d718000000b0051de20c59d7sm8336270edq.15.2023.07.25.23.36.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 25 Jul 2023 23:36:12 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        pascal Paillet <p.paillet@foss.st.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2 1/2] dt-bindings: mfd: st,stpmic1: Merge patterns for nodes
+Date:   Wed, 26 Jul 2023 08:36:09 +0200
+Message-Id: <20230726063610.5394-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="hx4h6g6ggdhiiilv"
-Content-Disposition: inline
-In-Reply-To: <20230726035032.3073951-2-haibo.chen@nxp.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:b01:1d::7b
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -57,82 +72,89 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Properties should be described only once, thus having separate pattern
+for children just to specify the $ref to regulator.yaml is not correct.
+It also makes impossible to finish it with
+additional/unevaluatedProperties:false to restrict allowed properties in
+regulator node.
 
---hx4h6g6ggdhiiilv
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Merge the patterns, so each regulator subnode has regulator.yaml $ref,
+additional properties and ends with additionalProperties:false.
 
-On 26.07.2023 11:50:32, haibo.chen@nxp.com wrote:
-> From: Haibo Chen <haibo.chen@nxp.com>
->=20
-> IMX93 A0 chip involve the internal q-channel handshake in LPCG and
-> CCM to automatically handle the Flex-CAN IPG STOP signal. Only after
-> FLEX-CAN enter stop mode then can support the self-wakeup feature.
->=20
-> But meet issue when do the continue system PM stress test. When config
-> the CAN as wakeup source, the first time after system suspend, any data
-> on CAN bus can wakeup the system, this is as expect. But the second time
-> when system suspend, data on CAN bus can't wakeup the system. If continue
-> this test, we find in odd time system enter suspend, CAN can wakeup the
-> system, but in even number system enter suspend, CAN can't wakeup the
-> system.
->=20
-> IC find a bug in the auto stop mode logic when handle the q-channel, and
-> can't fix it easily. So for the new imx93 A1, IC drop the auto stop mode
-> and involve the GPR to support stop mode (used before). IC define a bit
-> in GPR which can trigger the IPG STOP signal to Flex-CAN, let it go into
-> stop mode.
->=20
-> Now NXP claim to drop IMX93 A0, and only support IMX93 A1. So this patch
-> remove the auto stop mode, and add flag FLEXCAN_QUIRK_SETUP_STOP_MODE_GPR
-> to imx93.
->=20
-> Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
-> ---
->  drivers/net/can/flexcan/flexcan-core.c | 37 ++++----------------------
->  drivers/net/can/flexcan/flexcan.h      |  2 --
->  2 files changed, 5 insertions(+), 34 deletions(-)
->=20
-> diff --git a/drivers/net/can/flexcan/flexcan-core.c b/drivers/net/can/fle=
-xcan/flexcan-core.c
-> index ff0fc18baf13..a3f3a9c909be 100644
-> --- a/drivers/net/can/flexcan/flexcan-core.c
-> +++ b/drivers/net/can/flexcan/flexcan-core.c
-> @@ -348,7 +348,7 @@ static struct flexcan_devtype_data fsl_imx8mp_devtype=
-_data =3D {
->  static struct flexcan_devtype_data fsl_imx93_devtype_data =3D {
->  	.quirks =3D FLEXCAN_QUIRK_DISABLE_RXFG | FLEXCAN_QUIRK_ENABLE_EACEN_RRS=
- |
->  		FLEXCAN_QUIRK_DISABLE_MECR | FLEXCAN_QUIRK_USE_RX_MAILBOX |
-> -		FLEXCAN_QUIRK_BROKEN_PERR_STATE | FLEXCAN_QUIRK_AUTO_STOP_MODE |
-> +		FLEXCAN_QUIRK_BROKEN_PERR_STATE | FLEXCAN_QUIRK_SETUP_STOP_MODE_GPR |
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-AFAICS this change breaks systems with old device trees (i.e. without
-"fsl,stop-mode") and new kernels. The flexcan driver will not probe
-anymore.
+---
 
-Marc
+Changes in v2:
+1. Merge the entries instead of duplicating regulator properties.
+---
+ Documentation/devicetree/bindings/mfd/st,stpmic1.yaml | 10 +++++++---
+ 1 file changed, 7 insertions(+), 3 deletions(-)
 
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
+diff --git a/Documentation/devicetree/bindings/mfd/st,stpmic1.yaml b/Documentation/devicetree/bindings/mfd/st,stpmic1.yaml
+index 97c61097f9e2..0eccfc01233f 100644
+--- a/Documentation/devicetree/bindings/mfd/st,stpmic1.yaml
++++ b/Documentation/devicetree/bindings/mfd/st,stpmic1.yaml
+@@ -106,6 +106,7 @@ properties:
+         const: st,stpmic1-regulators
+ 
+       ldo3:
++        $ref: /schemas/regulator/regulator.yaml
+         type: object
+ 
+         properties:
+@@ -128,6 +129,7 @@ properties:
+         additionalProperties: false
+ 
+       ldo4:
++        $ref: /schemas/regulator/regulator.yaml
+         type: object
+ 
+         properties:
+@@ -147,6 +149,7 @@ properties:
+         additionalProperties: false
+ 
+       vref_ddr:
++        $ref: /schemas/regulator/regulator.yaml
+         type: object
+ 
+         properties:
+@@ -165,6 +168,7 @@ properties:
+         additionalProperties: false
+ 
+       boost:
++        $ref: /schemas/regulator/regulator.yaml
+         type: object
+ 
+         properties:
+@@ -187,10 +191,8 @@ properties:
+       "^(buck[1-4]|ldo[1-6]|vref_ddr|boost|pwr_sw[1-2])-supply$":
+         description: STPMIC1 voltage regulators supplies
+ 
+-      "^(buck[1-4]|ldo[1-6]|boost|vref_ddr|pwr_sw[1-2])$":
+-        $ref: ../regulator/regulator.yaml
+-
+       "^ldo[1-2,5-6]$":
++        $ref: /schemas/regulator/regulator.yaml
+         type: object
+ 
+         properties:
+@@ -213,6 +215,7 @@ properties:
+         additionalProperties: false
+ 
+       "^buck[1-4]$":
++        $ref: /schemas/regulator/regulator.yaml
+         type: object
+ 
+         properties:
+@@ -237,6 +240,7 @@ properties:
+         additionalProperties: false
+ 
+       "^pwr_sw[1-2]$":
++        $ref: /schemas/regulator/regulator.yaml
+         type: object
+ 
+         properties:
+-- 
+2.34.1
 
---hx4h6g6ggdhiiilv
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEDs2BvajyNKlf9TJQvlAcSiqKBOgFAmTAvrEACgkQvlAcSiqK
-BOimMQf8CbCC3vkKR1bq5S9ISSxAdjCCx+f2nJirLRFI2gps6MSeKLI5qRaOAxpD
-HZpTNUxI0yr4vSKr/NRq2rJasNUiTGSJ3BYqZCqwxeIzmIFKwUMRTH0J49H8mgvt
-6dgvEr7/sqMsmS1RhFPT1p7Zh5+haYE3MgCZStZz1UM8RkOUdvRq/2cSCCJzU8pH
-axjrOH4L95zyOumPwWoSAp+q9+RwS3KbyXCE4+DPrXBdaXnEb68+NGxM7r/k2V/I
-Tz3874I58DBeXf4wDpvfOBWcmw9Dap1Hvlbvixtw7bB5t35OvsHCnenkfOCIgRkb
-D20d8hY390kF2YSZEBlciSmegrrKwQ==
-=l5IQ
------END PGP SIGNATURE-----
-
---hx4h6g6ggdhiiilv--
