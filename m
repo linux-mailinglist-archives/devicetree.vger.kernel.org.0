@@ -2,64 +2,41 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 54E46763E52
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 20:23:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D75CC763E5B
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 20:26:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229899AbjGZSXr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jul 2023 14:23:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58336 "EHLO
+        id S230034AbjGZS0V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jul 2023 14:26:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59406 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229454AbjGZSXq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 14:23:46 -0400
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3441F1BF2
-        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 11:23:45 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-51cff235226so99070a12.0
-        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 11:23:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690395823; x=1691000623;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=NZCZJYUl4mKPI/pczMk3c9xLSqgIxbuy2H9MzYgI8y8=;
-        b=Y0EDEZzah53+3pjRj7/z4ehdhG4+8UvWvi89LeaQM1opkYsEitjlMtEBHWorOUXDxK
-         R7hm1VHlGkeDJae0vH9NkYclXoarknQkpzrGFy/k3rSkSi82v5w4aE1slFPNsBeRx/iA
-         rjZNn2LFAR5b3f9kXUssUif51slPldfDoh5yssktPqsj5bmZCpDoYcFWtmJ4qM4STeKc
-         Kc5W56QMbAODzsXM1XAFBfJO4nmLj4wLKbksLLCeZzTQamnWxbypEm0BIjgy2PCvOGCZ
-         0LyRiCgOJ5lrrEQkAlN0xedxa1KN45yi24xfxvWtv5UouAPxhVpjLC6/8T0UOlxIOw/o
-         1mbw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690395823; x=1691000623;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=NZCZJYUl4mKPI/pczMk3c9xLSqgIxbuy2H9MzYgI8y8=;
-        b=Zmob/51U8xtn5RynwyPN05Jh2IRuXWz/jU7KaXCBglQy//EJTno9SMZEIXzrMXzQsd
-         VBdGRoYXJnQNkPtsYQAgl7Q2gEGx54d0haGTNWQmWqI46iLyv7/iFsKZD3EM3g89CP7G
-         aumfULONjGtImlRHBu5pIS40f6ppUnSYZBuong2C/zRbYjJFSaoX6mVNfs9X9ymNzGSo
-         WeGpcEidYVcgYthYdTCZoBbGLSrEuJgZOYKd7C+rv/xEj3vl/hf6W95pRzsPujLPLWZJ
-         ihk0LWXBdqkXIleObg4K1SMV8N9fbyINMaxlXlk3uhVwqLa529TJoBnfzpbTqRIA7NeA
-         5mFA==
-X-Gm-Message-State: ABy/qLawGK4HQjpkdpXO4SxAFAb7Q/oyp3kIAOlu5APGiEOXHuWpN0Lt
-        LEj0u5y+jUAKM0ndbG3IK3kxUA==
-X-Google-Smtp-Source: APBJJlG71Uvqr1ntpB2z5rNB+DM34Lxt66COR4vBEYKoPTnMOgG3P74vdY1A7POXJnNjqvLLYW7uMg==
-X-Received: by 2002:a50:fa89:0:b0:522:2711:86a with SMTP id w9-20020a50fa89000000b005222711086amr369040edr.15.1690395823694;
-        Wed, 26 Jul 2023 11:23:43 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id n1-20020a05640204c100b0051e0f21c43fsm9040843edw.31.2023.07.26.11.23.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 26 Jul 2023 11:23:43 -0700 (PDT)
-Message-ID: <91580323-dbb9-cd7e-40be-7dc1467e4106@linaro.org>
-Date:   Wed, 26 Jul 2023 20:23:40 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v7 1/3] dt-bindings: arm: fsl: Add VAR-SOM-MX6 SoM with
- Custom Board
-Content-Language: en-US
-To:     James Hilliard <james.hilliard1@gmail.com>,
-        devicetree@vger.kernel.org
-Cc:     Pierluigi Passaro <pierluigi.p@variscite.com>,
+        with ESMTP id S229980AbjGZS0U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 14:26:20 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 992C91BF2;
+        Wed, 26 Jul 2023 11:26:19 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 26B6B61C2C;
+        Wed, 26 Jul 2023 18:26:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 83FFEC433C7;
+        Wed, 26 Jul 2023 18:26:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1690395978;
+        bh=A30cu5a7m+wlNOFxI/r/j2NeXh30+KblqTv+yBDr794=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=H+ukAvaW39tVcWmnKR+x6J25wFQIeuFbEY9bpC1b8u956PHkXo/MlppzPRUQPyAXL
+         YQmbzmqAcl+oOukFMbe/RamPmk6T6FQcNHCf2RfNxjzqujPmZ8oOtrSBFPvi3VFSNx
+         8XxSEnlMH02ryibCDXYOPrTOfbQdxIsjkAQ+9JwnlzN4GnlRZFn6Irx/T/pjBGAn9b
+         Dy7k6U+3Vir1hNdzn1wRGGUNiInlqBFaXxH5ZlJK/Pih4ZW+TFhvLoQw9rTkLshV0v
+         qEqnSoZhx6RuVX+Fzuaw8q2xqbV5gffAj60BTMVPPPViNIsHlKqDn6CbcsJXTnr0Le
+         lXGy/yElqfLBA==
+Date:   Wed, 26 Jul 2023 19:26:12 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     James Hilliard <james.hilliard1@gmail.com>
+Cc:     devicetree@vger.kernel.org,
+        Pierluigi Passaro <pierluigi.p@variscite.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
@@ -71,40 +48,82 @@ Cc:     Pierluigi Passaro <pierluigi.p@variscite.com>,
         Marek Vasut <marex@denx.de>,
         Frieder Schrempf <frieder.schrempf@kontron.de>,
         Stefan Wahren <stefan.wahren@chargebyte.com>,
-        =?UTF-8?B?TWljaGFsIFZva8OhxI0=?= <michal.vokac@ysoft.com>,
+        Michal =?utf-8?B?Vm9rw6HEjQ==?= <michal.vokac@ysoft.com>,
         Philippe Schenker <philippe.schenker@toradex.com>,
         Marcel Ziswiler <marcel.ziswiler@toradex.com>,
         Christoph Niedermaier <cniedermaier@dh-electronics.com>,
         Li Yang <leoyang.li@nxp.com>, linux-kernel@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v7 1/3] dt-bindings: arm: fsl: Add VAR-SOM-MX6 SoM with
+ Custom Board
+Message-ID: <20230726-frosted-scroll-a42298d2ee9c@spud>
 References: <20230726123747.4097755-1-james.hilliard1@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="5u1rgdJT7upE+Fpg"
+Content-Disposition: inline
 In-Reply-To: <20230726123747.4097755-1-james.hilliard1@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/07/2023 14:37, James Hilliard wrote:
+
+--5u1rgdJT7upE+Fpg
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Wed, Jul 26, 2023 at 06:37:39AM -0600, James Hilliard wrote:
 > Add support for Variscite i.MX6Q VAR-SOM-MX6 SoM with Custom Board.
-> 
+>=20
 > Cc: Pierluigi Passaro <pierluigi.p@variscite.com>
 > Signed-off-by: James Hilliard <james.hilliard1@gmail.com>
 > ---
 >  Documentation/devicetree/bindings/arm/fsl.yaml | 6 ++++++
 >  1 file changed, 6 insertions(+)
-> 
+>=20
+> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentati=
+on/devicetree/bindings/arm/fsl.yaml
+> index 2510eaa8906d..76bb098605e7 100644
+> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
+> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+> @@ -385,6 +385,12 @@ properties:
+>            - const: toradex,apalis_imx6q
+>            - const: fsl,imx6q
+> =20
+> +      - description: i.MX6Q Variscite VAR-SOM-MX6 Boards
+> +        items:
+> +          - const: variscite,mx6customboard
+> +          - const: variscite,var-som-imx6q
+> +          - const: fsl,imx6q
 
+I find it hard to tell what the sort order here is meant to be, but it
+appears to be first by what I.MX processor and then by the board
+compatibles? If so, this is added out of order.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> +
+>        - description: TQ-Systems TQMa6Q SoM (variant A) on MBa6x
+>          items:
+>            - const: tq,imx6q-mba6x-a
+> --=20
+> 2.34.1
+>=20
 
-Best regards,
-Krzysztof
+--5u1rgdJT7upE+Fpg
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZMFlRAAKCRB4tDGHoIJi
+0imqAQDK7HDhloLkHXik8jUnh00k9J9Pqvx+AZeghi3u6cnb6wD+JRFY6LRtMUrU
+4dSgmqYWc8QqFFPYdTLV52u/69JxRwo=
+=0g2f
+-----END PGP SIGNATURE-----
+
+--5u1rgdJT7upE+Fpg--
