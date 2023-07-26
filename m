@@ -2,108 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 51D217632E2
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 11:54:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DDE5A7632F8
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 11:58:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233280AbjGZJyu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jul 2023 05:54:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35722 "EHLO
+        id S232348AbjGZJ6k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jul 2023 05:58:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39656 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231638AbjGZJyS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 05:54:18 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 331FC4497
-        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 02:53:15 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-99b78fda9a8so764042866b.1
-        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 02:53:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690365193; x=1690969993;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=mDfJrRlEZ4V1vWpDr71CzAPwfG2N8C7OoZPxnrIGDN0=;
-        b=IaAsaLHEIl1jINRpLGgf37bvPj0OhxGvcXq9DwyzQSBkydRzH5grsNjq0neOZXIqCi
-         02grZlYS52Z5tDXdSiXwyUYTJ3T5S9nC6/Ffg3/i84jYAaDenx3FUW8oJTawgaeKKM8F
-         7mkwViX0ouNy/3caNJJrSGreeJ3yWM+yE0usZTUzW6O1TQGF5weyf4rpIyoorSlA/nHx
-         WmIFAj+P+hZ8VAsLk3+SOaZtYBoFPqemLkt6oY+en+JsLwZVYHc+SjzQQfTDaQU9I6RA
-         TzF3rDwMGnOAPHxpZbMxSx6rtxD3QySheRW4JhZpRVU8i0tZmtBgwYuhBR7J0yAxodJQ
-         lasw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690365193; x=1690969993;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=mDfJrRlEZ4V1vWpDr71CzAPwfG2N8C7OoZPxnrIGDN0=;
-        b=N5KulNlqaB/9K/rFuLtc832m23emeCAi9X/FlFROvdy1OI2Ru3N/F/BckgxTzm+WVG
-         iPAc/EZ+nitYiTtun5xoVi7SmpkU605t7VhgcUdby0OkC7ixTGk+fz/tDuEsKoZavfDh
-         BnXE5ejyGtUz58X/xQIabkiSsF0+rzHWDW+WgZ7J2WxxXWStfa6lKkNF4DlLlahiQCmE
-         JSkerPO5nmEjOz9EJWjHL5pMqvNPk6wYIXbI5dW5HDsrTkVflgPVxvKzUBG3qcBRI+9g
-         QsSJ5NXDYLAcHO3lH3S/Xw1rw+4NpPFwHLbTmisIw3FdmRayMx5bh+nq9g+C2cfbpmnp
-         FM9g==
-X-Gm-Message-State: ABy/qLZXw/2NAKcKHQ5dCKaeJ1ozorBGMOcFnuTOG2UZ1aCm/CgapTx6
-        neSklMIxEitbDBM1oJ8w3v+IpMqIdJvDzdA8TFs=
-X-Google-Smtp-Source: APBJJlFRNf4dsFC6kPOurV5xtM2BXphDVp0mTKZCHvbqZVI5fzzMQUwmOKozZvFQpIkMBFiDSN17XA==
-X-Received: by 2002:a17:906:74d4:b0:992:a31f:f584 with SMTP id z20-20020a17090674d400b00992a31ff584mr1291707ejl.31.1690365193171;
-        Wed, 26 Jul 2023 02:53:13 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id o15-20020a17090611cf00b0098963eb0c3dsm9269836eja.26.2023.07.26.02.53.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 26 Jul 2023 02:53:12 -0700 (PDT)
-Message-ID: <dca2c683-0049-4bd2-3780-37f334ba6b03@linaro.org>
-Date:   Wed, 26 Jul 2023 11:53:11 +0200
+        with ESMTP id S232394AbjGZJ6T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 05:58:19 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AAA70121
+        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 02:57:35 -0700 (PDT)
+Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mkl@pengutronix.de>)
+        id 1qObGc-0007rN-GQ; Wed, 26 Jul 2023 11:57:14 +0200
+Received: from pengutronix.de (unknown [172.20.34.65])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (Client did not present a certificate)
+        (Authenticated sender: mkl-all@blackshift.org)
+        by smtp.blackshift.org (Postfix) with ESMTPSA id 841111FB155;
+        Wed, 26 Jul 2023 09:57:12 +0000 (UTC)
+Date:   Wed, 26 Jul 2023 11:57:11 +0200
+From:   Marc Kleine-Budde <mkl@pengutronix.de>
+To:     haibo.chen@nxp.com
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        wg@grandegger.com, kernel@pengutronix.de, linux-imx@nxp.com,
+        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, devicetree@vger.kernel.org,
+        linux-can@vger.kernel.org, netdev@vger.kernel.org
+Subject: Re: [PATCH v2 1/3] arm64: dts: imx93: add the Flex-CAN stop mode by
+ GPR
+Message-ID: <20230726-moocher-managing-5a5352a4266a-mkl@pengutronix.de>
+References: <20230726090909.3417030-1-haibo.chen@nxp.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v5 1/2] regulator: dt-bindings: rtq2208: Add Richtek
- RTQ2208 SubPMIC
-Content-Language: en-US
-To:     Alina Yu <alina_yu@richtek.com>, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <1690355592-10920-1-git-send-email-alina_yu@richtek.com>
- <1690355592-10920-2-git-send-email-alina_yu@richtek.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1690355592-10920-2-git-send-email-alina_yu@richtek.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="2ujf745qpqkrvicw"
+Content-Disposition: inline
+In-Reply-To: <20230726090909.3417030-1-haibo.chen@nxp.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:b01:1d::7b
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/07/2023 09:13, Alina Yu wrote:
-> Add bindings for Richtek RTQ2208 IC controlled SubPMIC
-> 
-> Signed-off-by: Alina Yu <alina_yu@richtek.com>
 
-Thank you for your patch. There is something to discuss/improve.
+--2ujf745qpqkrvicw
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> +    
-> +  richtek,mtp-sel-high:
-> +    type: boolean
-> +    description:
-> +      vout register selection based on this boolean value.
-> +      false - Using DVS0 register setting to adjust vout
-> +      true - Using DVS1 register setting to adjust vout
-> +
-> +  regulators:
-> +    type: object
-> +
+On 26.07.2023 17:09:07, haibo.chen@nxp.com wrote:
+> From: Haibo Chen <haibo.chen@nxp.com>
+>=20
+> imx93 A0 chip use the internal q-channel handshake signal in LPCG
+> and CCM to automatically handle the Flex-CAN stop mode. But this
+> method meet issue when do the system PM stress test. IC can't fix
+> it easily. So in the new imx93 A1 chip, IC drop this method, and
+> involve back the old way=EF=BC=8Cuse the GPR method to trigger the Flex-C=
+AN
+> stop mode signal. Now NXP claim to drop imx93 A0, and only support
+> imx93 A1. So here add the stop mode through GPR.
+>=20
+> Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
+> ---
+>  arch/arm64/boot/dts/freescale/imx93.dtsi | 2 ++
+>  1 file changed, 2 insertions(+)
+>=20
+> diff --git a/arch/arm64/boot/dts/freescale/imx93.dtsi b/arch/arm64/boot/d=
+ts/freescale/imx93.dtsi
+> index 4ec9df78f205..d2040019e9c7 100644
+> --- a/arch/arm64/boot/dts/freescale/imx93.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx93.dtsi
+> @@ -319,6 +319,7 @@ flexcan1: can@443a0000 {
+>  				assigned-clock-parents =3D <&clk IMX93_CLK_SYS_PLL_PFD1_DIV2>;
+>  				assigned-clock-rates =3D <40000000>;
+>  				fsl,clk-source =3D /bits/ 8 <0>;
+> +				fsl,stop-mode =3D <&anomix_ns_gpr 0x14 0>;
 
-On this level of indentation:
+I think there's a typo in the mainline imx93.dtsi. AFAICS it's supposed
+to be "aonmix_ns_gpr", not "anomix_ns_gpr". But that's a different
+problem to patch :)
 
-    additionalProperties: false
+AFAICS, according to imx93, rev2 data sheet, offset 0x14 is 76.6.1.3
+QCHANNEL DISABLE (QCH_DIS) and bit 0 is "GPIO1". Are you sure this is
+the correct reg?
 
-I think I missed this in previous versions. I am sorry.
+>  				status =3D "disabled";
+>  			};
+> =20
+> @@ -591,6 +592,7 @@ flexcan2: can@425b0000 {
+>  				assigned-clock-parents =3D <&clk IMX93_CLK_SYS_PLL_PFD1_DIV2>;
+>  				assigned-clock-rates =3D <40000000>;
+>  				fsl,clk-source =3D /bits/ 8 <0>;
+> +				fsl,stop-mode =3D <&wakeupmix_gpr 0x0C 2>;
 
-Rest looks good to me, but this needs to be fixed.
+looks plausible, please use lower case for hex addresses.
 
-Best regards,
-Krzysztof
+>  				status =3D "disabled";
+>  			};
+> =20
+> --=20
+> 2.34.1
+>=20
+>
 
+regards,
+Marc
+
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde          |
+Embedded Linux                   | https://www.pengutronix.de |
+Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
+
+--2ujf745qpqkrvicw
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEDs2BvajyNKlf9TJQvlAcSiqKBOgFAmTA7fQACgkQvlAcSiqK
+BOhzjgf+Kgd/bRs+UDJX8hGI1Qfk1H3FdtJha2NOWmnPMg9Yi8i2JgNFB0132IML
++aTKa9SZ6LzWNQ7yjslmhmaM59VECO0DX6UhGUrU6E9dNS3sGsUcFhwgJBxgSWvq
+4PhN3hLdWDexik6Qo1n9iWYflbmS/NnVJpixCwuQ2mKVvySsBOetmcFBnSY7pkD2
+VCXFsmEcRQ8QK48bPAbMSgVQDDoqdMjBA0y5f51LatAGQ74LF6S2Qi1r1ils04ZJ
+OCs30vbz1rvwe6GH9QWIhmea3HxWSH126n+YV7VCY2YZnOrE9sOR+ZwoRQ9yWmLI
+Ha38AFsQR7pT6+Sk/PPMMb4Cs8C5nw==
+=ynP/
+-----END PGP SIGNATURE-----
+
+--2ujf745qpqkrvicw--
