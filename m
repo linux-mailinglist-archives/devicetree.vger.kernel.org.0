@@ -2,131 +2,207 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 67572763E92
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 20:33:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 86E2C763E9D
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 20:35:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229692AbjGZSd1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jul 2023 14:33:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35532 "EHLO
+        id S231569AbjGZSfQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jul 2023 14:35:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36752 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229664AbjGZSd1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 14:33:27 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 367CF19BA;
-        Wed, 26 Jul 2023 11:33:26 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id C615B61C4B;
-        Wed, 26 Jul 2023 18:33:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 21706C433C8;
-        Wed, 26 Jul 2023 18:33:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690396405;
-        bh=5JnWoqtEcU9DhfiUaTqr/C9Lssp/Jb9WeMs87Dlgghg=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=btaVPPeydLGO/4F3TsrRFLRMqKxaxw14UAFwVAMs0w7g5/2lJ+jz8jXgtzRSGrFMh
-         OaHaX/VldxXY+We0ZXV/b0NzSKPhLvWoGlxptRBmy9FzXG9hqnrvNx18yWl5kil70l
-         uUCCvHUdoXv/egJ4/+jlHQh1ZLsp6ZoWz/+ky6yBop6Hf3Rk9OKpq5HIwhk19bb6Vm
-         NYVij4ig8Pa16VhFx4UCunmsvqjuQ7YwtnHcul6yt9LywK1ry0jX9GLqGptqklIgnr
-         l8d9b7KD1lsfRrjG5H9IlqcAg2aSgGB8YGslZVD0etGrTb4wHP7qEK3TGygZj6dLZy
-         cL//8xhoR0lbQ==
-Date:   Wed, 26 Jul 2023 19:33:20 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Lukasz Majewski <lukma@denx.de>
+        with ESMTP id S231840AbjGZSfO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 14:35:14 -0400
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6013626B9
+        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 11:35:13 -0700 (PDT)
+Received: by mail-lj1-x233.google.com with SMTP id 38308e7fff4ca-2b974031aeaso929161fa.0
+        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 11:35:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1690396511; x=1691001311;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=qegFHGSehVmB/bKSv5hsbDkHSV7yfpItUCSJOe7Qt94=;
+        b=uPzhgrDOy2Fbe/kOcN679VwkLqi/phvKzcLTGFQVBsrLKWp/7baAKEs8U5kX9Jv04z
+         f1mmV33fdFv1z2Fne2sT+3MVJydUTrylhmWM11St5erGbASvrja8B4fFN5iUYM5BBTEY
+         G1cqlcQDf3/v8Tu2k0uwF029nx4Iq/QJslYzfTpsJL9Khyu41m6HO4L0fJ+9XgwgK4w7
+         YF/XLjBkmHd/c+lk9FOlap3GFFf61NAHrEetZGB9PPKDDBpsjZAu65SZvn6dkhw28Ypd
+         nP5VbxLmfNE6osYzLC55abeDO1BMC9nVhJRmYy9Cn65adOJwdmU1bhkXL3OCcqsxht2Y
+         f7/g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690396511; x=1691001311;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=qegFHGSehVmB/bKSv5hsbDkHSV7yfpItUCSJOe7Qt94=;
+        b=B74T+L+HYn7TdvyRojR2fgsADqU/9Sz3WwfMvY3wDppBNlvEqkXjWsQdU3lgcFL2IF
+         9TwxXyd+VNmgqUzGqU9AiKoibcOlVlcvbChXXIAeRJFEJLBJ8gvvT3xy0iEj5kNQv6k6
+         55AbzBMrxU1liE13sOpldg6RR9cB7Q+evHGK3ftscqhwbDD5gGxRJpdYVTmIA4A92l+Y
+         +ocBBFD6/YWy27hQDMxXHmjjACtpVsGwJurILHIsKRFm2mdjga/NjjcCp6OO7aSzTYPg
+         kXg4MP0c9Go8jAMaR/kVdNb3V+h/9RoN3XpbAJILbC8vdUKY9mq7PLVLm0n133CCwwXm
+         2Tfw==
+X-Gm-Message-State: ABy/qLZFLJjDyb477dRkskjQHnuWA2491+7NKg7QAqQ08SAxIh/96iiv
+        y47UOspTh+Fl6FuyCmOuSifiCA==
+X-Google-Smtp-Source: APBJJlHJSy7HcP2PpQ1ZHF5FFxonujpEo3ZsxvHv78MqUncBYwNTzFw/B56K9sJZKNEv69k7gS+XoA==
+X-Received: by 2002:a05:651c:226:b0:2b8:36d4:7b0a with SMTP id z6-20020a05651c022600b002b836d47b0amr2178679ljn.29.1690396511581;
+        Wed, 26 Jul 2023 11:35:11 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id m24-20020a170906235800b00992acab8c45sm10091069eja.12.2023.07.26.11.35.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 26 Jul 2023 11:35:11 -0700 (PDT)
+Message-ID: <61fce1da-c8dd-f911-e4bb-b2198612e7c6@linaro.org>
+Date:   Wed, 26 Jul 2023 20:35:09 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH 1/2] Documentation: bindings: adi,axi-tdd.yaml: Add new
+ TDD engine driver
+Content-Language: en-US
+To:     Eliza Balas <eliza.balas@analog.com>
 Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] ARM: dts: at91: ksz9477_evb: Add missing timer nodes
-Message-ID: <20230726-igloo-science-96e926f086f6@spud>
-References: <20230712152111.3756211-1-lukma@denx.de>
- <20230726101902.769f6541@wsk>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="KlkmgP3458lT5iDu"
-Content-Disposition: inline
-In-Reply-To: <20230726101902.769f6541@wsk>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Derek Kiernan <derek.kiernan@amd.com>,
+        Dragan Cvetic <dragan.cvetic@amd.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20230726071103.12172-1-eliza.balas@analog.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230726071103.12172-1-eliza.balas@analog.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 26/07/2023 09:11, Eliza Balas wrote:
+> Add device tree documentation for the AXI TDD Core.
+> The generic TDD controller is in essence a waveform generator
+> capable of addressing RF applications which require Time Division
+> Duplexing, as well as controlling other modules of general
+> applications through its dedicated 32 channel outputs.
+> 
+> The reason of creating the generic TDD controller was to reduce
+> the naming confusion around the existing repurposed TDD core
+> built for AD9361, as well as expanding its number of output
+> channels for systems which require more than six controlling signals.
 
---KlkmgP3458lT5iDu
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Please use subject prefixes matching the subsystem. You can get them for
+example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+your patch is touching.
 
-On Wed, Jul 26, 2023 at 10:19:02AM +0200, Lukasz Majewski wrote:
-> Dear Community,
->=20
-> > Without this change the KSZ9477-EVB board hangs just after passing
-> > execution flow from u-boot to Linux kernel.
-> >=20
-> > This code has been copied from at91-sama5d3_xplained.dts.
-> >=20
-> > Test setup: Linux 6.5-rc1
-> > Config:     arch/arm/configs/sama5_defconfig
-> > Toolchain:  gcc-linaro-7.3.1-2018.05-x86_64_arm-linux-gnueabi
-> >=20
-> > Signed-off-by: Lukasz Majewski <lukma@denx.de>
-> > ---
-> >  .../boot/dts/microchip/at91-sama5d3_ksz9477_evb.dts  | 12
-> > ++++++++++++ 1 file changed, 12 insertions(+)
-> >=20
-> > diff --git a/arch/arm/boot/dts/microchip/at91-sama5d3_ksz9477_evb.dts
-> > b/arch/arm/boot/dts/microchip/at91-sama5d3_ksz9477_evb.dts index
-> > 14af1fd6d247..99cd6d15998b 100644 ---
-> > a/arch/arm/boot/dts/microchip/at91-sama5d3_ksz9477_evb.dts +++
-> > b/arch/arm/boot/dts/microchip/at91-sama5d3_ksz9477_evb.dts @@ -162,6
-> > +162,18 @@ };
-> >  };
-> > =20
-> > +&tcb0 {
-> > +	timer0: timer@0 {
-> > +		compatible =3D "atmel,tcb-timer";
-> > +		reg =3D <0>;
-> > +	};
-> > +
-> > +	timer1: timer@1 {
-> > +		compatible =3D "atmel,tcb-timer";
-> > +		reg =3D <1>;
-> > +	};
-> > +};
-> > +
-> >  &usb0 {
-> >  	pinctrl-names =3D "default";
-> >  	pinctrl-0 =3D <&pinctrl_usba_vbus>;
->=20
-> Gentle ping on this fix ...
+Subject: drop driver. Bindings are for hardware, not drivers... unless
+driver is here a hardware term?
 
-Claudiu has left Microchip, so things might've got a bit lost on the
-way. I've added his new address, Claudiu, will you take a look/pick this
-up please? I can also do it if that is easier for you.
+> 
+> Signed-off-by: Eliza Balas <eliza.balas@analog.com>
+> ---
+>  .../devicetree/bindings/misc/adi,axi-tdd.yaml | 51 +++++++++++++++++++
+>  MAINTAINERS                                   |  7 +++
+>  2 files changed, 58 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/misc/adi,axi-tdd.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/misc/adi,axi-tdd.yaml b/Documentation/devicetree/bindings/misc/adi,axi-tdd.yaml
+> new file mode 100644
+> index 000000000000..1894c1c34d4f
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/misc/adi,axi-tdd.yaml
 
-Thanks,
-Conor.
+Why is this in misc? No suitable directory?
 
---KlkmgP3458lT5iDu
-Content-Type: application/pgp-signature; name="signature.asc"
+> @@ -0,0 +1,51 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright 2023 Analog Devices Inc.
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/misc/adi,axi-tdd.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Analog Devices AXI TDD Core
+> +
+> +maintainers:
+> +  - Eliza Balas <eliza.balas@analog.com>
+> +
+> +description: |
+> +  Bindings for the new generic TDD CORE, which is part of the Analog Devices hdl reference designs.
 
------BEGIN PGP SIGNATURE-----
+Drop boiler plate, so "Bindings for the new generic". Instead, describe
+the hardware.
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZMFm8AAKCRB4tDGHoIJi
-0gdvAQCHl+tV1VwtWJVltrks+jslsgaAFUe1PVWq7wPxcoKszwD9HgCxBTUQoQ4x
-p812g3F0VCWepjWrWf10m5VLnBnmbgE=
-=Br94
------END PGP SIGNATURE-----
+> +  For more information see the wiki: https://wiki.analog.com/resources/fpga/docs/axi_tdd
 
---KlkmgP3458lT5iDu--
+Not enough. Describe it more. Here.
+
+Also, wrap according to Linux style, so at 80.
+
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - adi,axi-tdd-2.00.a
+
+Versioned blocks... https://wiki.analog.com/resources/fpga/docs/axi_tdd
+says nothing about 2.00.a
+
+
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: System clock
+> +      - description: TDD Core clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: s_axi_aclk
+> +      - const: intf_clk
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    tdd: tdd@84a00000 {
+
+Drop label, not used.
+
+> +            compatible = "adi,axi-tdd-2.00.a";
+
+Use 4 spaces for example indentation.
+
+> +            reg = <0x84a00000 0x10000>;
+> +            clocks = <&zynqmp_clk_PL0_REF>, <&zynqmp_clk_PL1_REF>;
+> +            clock-names = "s_axi_aclk", "intf_clk";
+> +    };
+> +...
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index aee340630eca..280e66ccdd56 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -1360,6 +1360,13 @@ F:	Documentation/devicetree/bindings/hwmon/adi,max31760.yaml
+>  F:	Documentation/hwmon/max31760.rst
+>  F:	drivers/hwmon/max31760.c
+>  
+> +ANALOG DEVICES INC GENERIC TDD ENGINE DRIVER
+
+I am pretty sure G is before M. It's difficult, I know.
+
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=c192ac7357683f78c2e6d6e75adfcc29deb8c4ae
+
+
+Best regards,
+Krzysztof
+
