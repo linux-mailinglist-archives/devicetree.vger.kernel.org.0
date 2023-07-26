@@ -2,78 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C92B763495
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 13:13:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9EB0B763498
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 13:13:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229936AbjGZLNA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jul 2023 07:13:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48428 "EHLO
+        id S231838AbjGZLNU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jul 2023 07:13:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48692 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233251AbjGZLM4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 07:12:56 -0400
-Received: from mail-yw1-x1133.google.com (mail-yw1-x1133.google.com [IPv6:2607:f8b0:4864:20::1133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 312FAB6
-        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 04:12:55 -0700 (PDT)
-Received: by mail-yw1-x1133.google.com with SMTP id 00721157ae682-583f65806f8so38384227b3.0
-        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 04:12:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690369974; x=1690974774;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ZC3AR3+9slbh/4XbZH2z2i5m6IqJXybcbNCnztjWWm4=;
-        b=GIKp7cxeKp4zmEz2mQN94gHbvPxItEqza6KBeYXLugORmRYcLv1CWod7hbvJstboIE
-         vdlhucLz9Nc/5F+paWv3OhNx6UH3ba0RZBXJLlDquQ0UZbxvouGn7q6YWYtTc2yYblFN
-         alhR9KB47Get+0nnNmVUMvWDWk22w4ehhNi4PC4AIDmz3WDbiWYhmlLco4oOVQwtcJ0t
-         fHQCjRTYj3MdDUuTtRaAPoo6lZYv/L9WLJ9B0FofS2x563l1EZD+8svWHfeBhIqnXUOP
-         npO0BMqSN8Zi4KvSMwa4Yo1UhZEffezUycW8ODgBHD8Nz0n/RP3vDiy+0R+3WZhbvwAE
-         4Q3w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690369974; x=1690974774;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ZC3AR3+9slbh/4XbZH2z2i5m6IqJXybcbNCnztjWWm4=;
-        b=hFVh4UkopVAqppowCDLuCguDcwFqyZdYs+hmyPZT19WQnw1dMHqssYLtsGh8qa+I4M
-         UKbMcAiDaOb+0b3TqqO4Tqvc4iNXHuLaqO//Uj8uv7pptIiwwTMmryjj7Tcau/YEWVLj
-         Bqe4DTXoe3vXN4ISzdL3RWHF2RR4Y6AiQbf5QwHjcFqYLXzwAVzXm56HXP2cpRvcx/oY
-         MObsPT1XFLctoxEP6T+VUrn8fvLbe/8Gr1GQO4zhaniAOgD8jPWpxSOgRrAoGhVqOw4h
-         E84KO4RFWBZQBAsV2kyAnkOAWtVngvRwfNZPeK1mTSkdg0Gf+ukFoZ3RblqP6/qxfKxl
-         G0Kw==
-X-Gm-Message-State: ABy/qLagKfxyHRq2uh9EhACSWaWdkPWOoT55W+x3UUR7NDW2Pyy1KHkf
-        8CQ/WFOGd7qhnTMbeqewwJW7IQL4BnqDNEYmlMIGTA==
-X-Google-Smtp-Source: APBJJlGLdZHOcJAENAqLfGiqi/72oSkGaPDVZwRn15fbhmiMArFKWA4P9ndHJR4qlDNh2XztdXFdHxu4C2CClhB66Sk=
-X-Received: by 2002:a81:69c2:0:b0:584:1a4d:bbfa with SMTP id
- e185-20020a8169c2000000b005841a4dbbfamr1741114ywc.29.1690369974370; Wed, 26
- Jul 2023 04:12:54 -0700 (PDT)
+        with ESMTP id S233273AbjGZLNT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 07:13:19 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BD182696
+        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 04:13:17 -0700 (PDT)
+Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mkl@pengutronix.de>)
+        id 1qOcRv-0001BM-7s; Wed, 26 Jul 2023 13:12:59 +0200
+Received: from pengutronix.de (unknown [172.20.34.65])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (Client did not present a certificate)
+        (Authenticated sender: mkl-all@blackshift.org)
+        by smtp.blackshift.org (Postfix) with ESMTPSA id 0D3BE1FB27F;
+        Wed, 26 Jul 2023 11:12:57 +0000 (UTC)
+Date:   Wed, 26 Jul 2023 13:12:56 +0200
+From:   Marc Kleine-Budde <mkl@pengutronix.de>
+To:     Bough Chen <haibo.chen@nxp.com>
+Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "wg@grandegger.com" <wg@grandegger.com>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "davem@davemloft.net" <davem@davemloft.net>,
+        "edumazet@google.com" <edumazet@google.com>,
+        "kuba@kernel.org" <kuba@kernel.org>,
+        "pabeni@redhat.com" <pabeni@redhat.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-can@vger.kernel.org" <linux-can@vger.kernel.org>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>
+Subject: Re: RE: [PATCH v2 1/3] arm64: dts: imx93: add the Flex-CAN stop mode
+ by GPR
+Message-ID: <20230726-expedited-clinking-3e7f212352f7-mkl@pengutronix.de>
+References: <20230726090909.3417030-1-haibo.chen@nxp.com>
+ <20230726-moocher-managing-5a5352a4266a-mkl@pengutronix.de>
+ <DB7PR04MB40107ED22966EF83DDA0759B9000A@DB7PR04MB4010.eurprd04.prod.outlook.com>
 MIME-Version: 1.0
-References: <20230713141738.23970-1-ulf.hansson@linaro.org>
- <20230713141738.23970-9-ulf.hansson@linaro.org> <20230719151716.qhobfnclrjf4yqkg@bogus>
- <CAPDyKFpjMWOAbV+b2DcxDWqvRDQCbSC6Ti+KGGPWJoC4Ghp7=w@mail.gmail.com>
- <20230721115535.mx46dg56pxjnzbuv@bogus> <20230721143304.GA1092306-robh@kernel.org>
- <20230721183817.34lgb42nlnsvqx4s@bogus>
-In-Reply-To: <20230721183817.34lgb42nlnsvqx4s@bogus>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Wed, 26 Jul 2023 13:12:18 +0200
-Message-ID: <CAPDyKFqsaz=hruktv+sPQz-ttOtWa9O_Jvp2iLnpxQqX2r7yBQ@mail.gmail.com>
-Subject: Re: [PATCH v2 08/11] dt-bindings: firmware: arm,scmi: Extend bindings
- for protocol@13
-To:     Sudeep Holla <sudeep.holla@arm.com>
-Cc:     Rob Herring <robh@kernel.org>,
-        Cristian Marussi <cristian.marussi@arm.com>,
-        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Nikunj Kela <nkela@quicinc.com>,
-        Prasad Sodagudi <psodagud@quicinc.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="glv2skkv3tf7s5b2"
+Content-Disposition: inline
+In-Reply-To: <DB7PR04MB40107ED22966EF83DDA0759B9000A@DB7PR04MB4010.eurprd04.prod.outlook.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:b01:1d::7b
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -82,105 +69,68 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 21 Jul 2023 at 20:38, Sudeep Holla <sudeep.holla@arm.com> wrote:
->
-> On Fri, Jul 21, 2023 at 08:33:04AM -0600, Rob Herring wrote:
-> > On Fri, Jul 21, 2023 at 12:55:35PM +0100, Sudeep Holla wrote:
-> > > On Fri, Jul 21, 2023 at 01:42:43PM +0200, Ulf Hansson wrote:
-> > > > On Wed, 19 Jul 2023 at 17:17, Sudeep Holla <sudeep.holla@arm.com> w=
-rote:
-> > > > >
-> > > > > On Thu, Jul 13, 2023 at 04:17:35PM +0200, Ulf Hansson wrote:
-> > > > > > The protocol@13 node is describing the performance scaling opti=
-on for the
-> > > > > > ARM SCMI interface, as a clock provider. This is unnecessary li=
-miting, as
-> > > > > > performance scaling is in many cases not limited to switching a=
- clock's
-> > > > > > frequency.
-> > > > > >
-> > > > > > Therefore, let's extend the binding so the interface can be mod=
-elled as a
-> > > > > > generic performance domaintoo. The common way to describe this,=
- is to use
-> > > > > > the "power-domain" DT bindings, so let's use that.
-> > > > > >
-> > > > >
-> > > > > One thing I forgot to ask earlier is how we can manage different =
-domain IDs
-> > > > > for perf and power domains which is the case with current SCMI pl=
-atforms as
-> > > > > the spec never mandated or can ever mandate the perf and power do=
-mains IDs
-> > > > > to match. They need not be same anyways.
-> > > >
-> > > > Based upon what you describe above, I have modelled the perf-domain
-> > > > and the power-domain as two separate power-domain providers.
-> > > >
-> > > > A consumer device being hooked up to both domains, would specify th=
-e
-> > > > domain IDs in the second power-domain-cell, along the lines of the
-> > > > below. Then we would use power-domain-names to specify what each
-> > > > power-domain represents.
-> > > >
-> > > > power-domains =3D <&scmi_pd 2>, <&scmi_dvfs 4>;
-> > > > power-domain-names =3D "power", "perf";
-> > > >
-> > > > I hope this makes it clearer!?
+
+--glv2skkv3tf7s5b2
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On 26.07.2023 11:10:10, Bough Chen wrote:
+> > >  arch/arm64/boot/dts/freescale/imx93.dtsi | 2 ++
+> > >  1 file changed, 2 insertions(+)
 > > >
-> > > Yes it make is clear definitely, but it does change the definition of=
- the
-> > > generic binding of the "power-domains" property now. I am interesting=
- in
-> > > the feedback from the binding maintainers with respect to that. Or is=
- it
-> > > already present ? IIUC, the ones supported already are generally both
-> > > power and performance providers. May be it doesn't matter much, just
-> > > wanted to explicit ask and confirm those details.
-> >
-> > I commented on v1.
-> >
-> > Looks like abuse of "power-domains" to me, but nothing new really.
-> > Please define when to use a power domain vs. a perf domain and don't
-> > leave it up to the whims of the platform. Maybe perf domains was a
-> > mistake and they should be deprecated?
-> >
->
-> Just a thought here, instead of deprecating it I was thinking if possible
-> to keep the power-domains and performance-domains separate and just exten=
-d
-> the genpd to handle the latter. There by we are not mixing up and creatin=
-g
-> confusions that need more specific definitions in the binding(which is no=
-t
-> a big deal) but platforms getting it wrong inspite of that is a big probl=
-em.
-> Keep it separate makes it more aligned to the hardware and doesn't dilute
-> the definitions and probably avoids any possible mistakes due to that.
->
-> Sorry Ulf I am just not yet convinced to mix them up yet =F0=9F=98=89 and=
- wish you
-> don't convince me to. Let me know why the above suggestion won't work.
+> > > diff --git a/arch/arm64/boot/dts/freescale/imx93.dtsi
+> > > b/arch/arm64/boot/dts/freescale/imx93.dtsi
+> > > index 4ec9df78f205..d2040019e9c7 100644
+> > > --- a/arch/arm64/boot/dts/freescale/imx93.dtsi
+> > > +++ b/arch/arm64/boot/dts/freescale/imx93.dtsi
+> > > @@ -319,6 +319,7 @@ flexcan1: can@443a0000 {
+> > >  				assigned-clock-parents =3D <&clk
+> > IMX93_CLK_SYS_PLL_PFD1_DIV2>;
+> > >  				assigned-clock-rates =3D <40000000>;
+> > >  				fsl,clk-source =3D /bits/ 8 <0>;
+> > > +				fsl,stop-mode =3D <&anomix_ns_gpr 0x14 0>;
+> >=20
+> > I think there's a typo in the mainline imx93.dtsi. AFAICS it's supposed=
+ to be
+> > "aonmix_ns_gpr", not "anomix_ns_gpr". But that's a different problem to
+> > patch :)
+>=20
+> Yes, this is a typo.
+> >=20
+> > AFAICS, according to imx93, rev2 data sheet, offset 0x14 is 76.6.1.3 QC=
+HANNEL
+> > DISABLE (QCH_DIS) and bit 0 is "GPIO1". Are you sure this is the correc=
+t reg?
+> >=20
+>=20
+> Imx93 A1 doc has some update, I double confirm with the internal doc and =
+IC team, the setting is correct.
+> I also test on imx93-9x9 qsb board, system can be wakeup by this setting.
 
-The main point I think we need to consider too, is that on some
-platforms, the power-domain and the performance-domain are managed
-together by the FW. It is not really two separate things and hence it
-would not quite be correct to describe it as two different types of
-providers in DT.
+Thanks for double checking.
 
-If we should follow your suggestion above, to use the
-performance-domain bindings, then I think we need an additional new
-binding to cover the above mentioned case too. This would lead us into
-having one binding for the power-domain, another for the
-performance-domain and a third for the power+performance-domain.
+Marc
 
-In my opinion this sounds quite like a mess. I would rather keep using
-the power-domain bindings for all these cases. Of course, it's a bit
-of a stretch too, but I think it should be less confusing in the end,
-assuming we extend/clarify the description of the power-domain
-bindings, of course.
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde          |
+Embedded Linux                   | https://www.pengutronix.de |
+Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
 
-Did that convince you? :-)
+--glv2skkv3tf7s5b2
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Kind regards
-Uffe
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEDs2BvajyNKlf9TJQvlAcSiqKBOgFAmTA/7UACgkQvlAcSiqK
+BOj8HAf/ad3k8d8Ns6FEeuNcOzdNMPToWeyL2H6xN/1lD88jnF7pCPAsVt9xajCp
+lQNb6Y4Nv0av+B2Q1qzdypwz4IIxPdzkkFWA7L3c1+59tO+SKxsJEBU9K9PYEw3b
+jrR84W40irP0bpSDJIP3VcIfLMa5U8c7LkjNIaZHv73E74GmF1zwGGMasxTYbzNi
+Hzcqqyg5vXPp0Lyb/PI6Rp+tT/DlelupD3R3BMhhmhBhJ8cWXVVFldPB8G7kys49
+CqXRSzvg/X+oKs4didIPKPhUF0ay/HkcY+KuitVm/pi42qYNNKKTaRYKFoTLBAGn
+Dtxq//ja6lLqhS/+bgOm/7g4F0kTjw==
+=YycX
+-----END PGP SIGNATURE-----
+
+--glv2skkv3tf7s5b2--
