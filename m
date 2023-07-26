@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A1EB76307A
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 10:51:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D13576307B
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 10:51:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232850AbjGZIvC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jul 2023 04:51:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53182 "EHLO
+        id S232143AbjGZIvD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jul 2023 04:51:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51776 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232720AbjGZIuf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 04:50:35 -0400
-Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com [IPv6:2607:f8b0:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11F956581
-        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 01:44:24 -0700 (PDT)
-Received: by mail-pl1-x62f.google.com with SMTP id d9443c01a7336-1b9c368f4b5so4925415ad.0
-        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 01:44:24 -0700 (PDT)
+        with ESMTP id S233404AbjGZIuh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 04:50:37 -0400
+Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6FAEF658B
+        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 01:44:29 -0700 (PDT)
+Received: by mail-pl1-x632.google.com with SMTP id d9443c01a7336-1bb7b8390e8so21056555ad.2
+        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 01:44:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1690361063; x=1690965863;
+        d=ventanamicro.com; s=google; t=1690361069; x=1690965869;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=qAcARu5ZxkxhhYJPR5lGRGBeKU4C8+q0CB3P21eo9N8=;
-        b=h6hKidnpgoyRETT2Q9vc6177CPzk/5C4u8luo1sZ0zBBUL3KfdQpXp/gzLdSPX0i30
-         Q3Fd+D+tQKNhrwlFdsZ9cW4pGhVzcKfCwOC+lPRvRQIrqrDKKUuy0RtgNsU/1BORaaqA
-         TfHXGUd2l8jSqy31lXaARQuQCLnnf58u5R2XjQdxBfkqZhNr2e8yP6NhoQHd5GglA2Oc
-         Pd5eLbTDqiRGRLf/1pgSg+5U3YXRI79WPkZBf0ri5PVowfyvDc15j0fXzjJzemFPTdro
-         3+Jxi22JFE3yTmgD/G8STggugsDEgxa6LZmITOtH/OlTbOJfJF74jivniwDyNibN/ic5
-         LoTQ==
+        bh=Xkwt55ASzalurZDhelB085cYknOoaxiIqUh90s6et6s=;
+        b=eG630qlQB7KXIlEHP1M7zhLY6CuIH2iNku217voDlUNi4pBNWZwHDFYX3sq2PtfjGW
+         GrZ8BIeEsbR7+gZdEwo6KiBr2w64+E1sr+f400qWzSiRL75idQbOMMYQeGrUqwa9TLAo
+         ZEsL1FP43CCXvd1cB8txpwcibQabdlBKIeIkOFXAXa4mJQDnvYCso4xQpb/ZphCYcx8R
+         x2LeDRSMb8Yf44ZfvmWKqlhPY3ugrDLp2Bu/WaEkM6Lo4BfuOplbgXMjuzKwBlFbscYn
+         5jL2+8466PpVe9n7u12pa571CH+zGwpiek1m/cdzK4L0wXdVz3yqRE+VZeDzXAErTxsX
+         +i+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690361063; x=1690965863;
+        d=1e100.net; s=20221208; t=1690361069; x=1690965869;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=qAcARu5ZxkxhhYJPR5lGRGBeKU4C8+q0CB3P21eo9N8=;
-        b=N9jzxMvBrUzw0HEFg0Brx3uwbyq8pVq/NZg6kQUlDTUihSS4/nqeAKRPRRKZDCLrSF
-         EyVI6eAerl0khn19nQsowTaMHhrkwt8cETja57jPDvLlaqicPeznJZwUH6p+1IF1GOkh
-         xaxUjJ9dW+Cgocul7I8riJ3DKAaukFM8GuMbe0dPSmU8sTer38DWO89Ukn3VepPCYd4I
-         Bhxq4UhcCSqxo9KqQsBPqgrEfTFeLBGa1j1LTuVBRt5rZPtpltUyBTLplDvRd37sS0Ki
-         GHuaBf7NJ/+iX5u9a76x4G4kIUK+lnq7xuzCW6DYyeVWPol60G3eTt40dBk7VLgVn28I
-         tfcg==
-X-Gm-Message-State: ABy/qLYkAxsqiODfrvsi/93CtZ7CUXUSW5AXvaqpX05dd4OidS9uK0aV
-        zQlqfq5e5ziuJSgYxCIkIfqeCw==
-X-Google-Smtp-Source: APBJJlH8xEYPZjQkD6d1UqCJhsvl91pSiac5LQdtMZXzva2mUldIcZ24xpJLXh+FPkqq95yNXnIiFA==
-X-Received: by 2002:a17:902:c950:b0:1ae:6947:e63b with SMTP id i16-20020a170902c95000b001ae6947e63bmr1988736pla.16.1690361063331;
-        Wed, 26 Jul 2023 01:44:23 -0700 (PDT)
+        bh=Xkwt55ASzalurZDhelB085cYknOoaxiIqUh90s6et6s=;
+        b=FGlmdkA0K5D/w0GlMoiX+bhgjMt9Z6MNeMOxT3tctzgz4E11BRhUmAHH4S9okQobrO
+         GRyaawks7Cg1BroY+3xNHV6FjNw0EVR4Fh0ZCuYAOGC0nZ2KiXJmx8O/fKQ6aHW+MjBL
+         gtSS6j4n2XFFBrdxmQHZNBHi1GD6MbwE6qyrt40B5E3U424i8XHF31WXfNDjn47xkkhB
+         +tDmNHzgVPP2RO6HFoWcm8jK9eMc9KuEBQ/V1d5w9agDORvS67Pig4E3MKzlKsEPvzd2
+         OffuXIc5EqaNda4zk1T4by/pKNmWSOrHK4xsJfvej73scWZ7+I2tgYvWvV0umKQ36A1J
+         jE9A==
+X-Gm-Message-State: ABy/qLYeygIx35fGiKhVX+uGSTtvNoU6HWKNXoBn49SV4DrZVVZOidK0
+        oykADPgoHEY5dsgVFHhxLExF7L4G6en5D2AFWzEA2w==
+X-Google-Smtp-Source: APBJJlE3K7rG2ZbmVz2XlDZyVkQYtuoWgWvqT+MC5/m/wIva7uAAwsTNT0Zp52al8a0wgpSLotCZPA==
+X-Received: by 2002:a17:903:50e:b0:1b8:50ae:557 with SMTP id jn14-20020a170903050e00b001b850ae0557mr977806plb.36.1690361068391;
+        Wed, 26 Jul 2023 01:44:28 -0700 (PDT)
 Received: from mchitale-vm.. ([103.97.165.210])
-        by smtp.googlemail.com with ESMTPSA id y19-20020a170902ed5300b001b3bf8001a9sm3978637plb.48.2023.07.26.01.44.18
+        by smtp.googlemail.com with ESMTPSA id y19-20020a170902ed5300b001b3bf8001a9sm3978637plb.48.2023.07.26.01.44.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 Jul 2023 01:44:23 -0700 (PDT)
+        Wed, 26 Jul 2023 01:44:28 -0700 (PDT)
 From:   Mayuresh Chitale <mchitale@ventanamicro.com>
 To:     Palmer Dabbelt <palmer@dabbelt.com>,
         Anup Patel <anup@brainfault.org>
@@ -61,16 +61,16 @@ Cc:     Mayuresh Chitale <mchitale@ventanamicro.com>,
         Conor Dooley <conor@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH v4 4/7] RISC-V: KVM: Enable Smstateen accesses
-Date:   Wed, 26 Jul 2023 14:13:49 +0530
-Message-Id: <20230726084352.2136377-5-mchitale@ventanamicro.com>
+Subject: [PATCH v4 5/7] RISCV: KVM: Add senvcfg context save/restore
+Date:   Wed, 26 Jul 2023 14:13:50 +0530
+Message-Id: <20230726084352.2136377-6-mchitale@ventanamicro.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230726084352.2136377-1-mchitale@ventanamicro.com>
 References: <20230726084352.2136377-1-mchitale@ventanamicro.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -79,110 +79,100 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Configure hstateen0 register so that the AIA state and envcfg are
-accessible to the vcpus. This includes registers such as siselect,
-sireg, siph, sieh and all the IMISC registers.
+Add senvcfg context save/restore for guest VCPUs and also add it to the
+ONE_REG interface to allow its access from user space.
 
 Signed-off-by: Mayuresh Chitale <mchitale@ventanamicro.com>
 Reviewed-by: Andrew Jones <ajones@ventanamicro.com>
 ---
- arch/riscv/include/asm/csr.h      | 16 ++++++++++++++++
- arch/riscv/include/asm/kvm_host.h |  1 +
+ arch/riscv/include/asm/csr.h      |  1 +
+ arch/riscv/include/asm/kvm_host.h |  2 ++
  arch/riscv/include/uapi/asm/kvm.h |  1 +
- arch/riscv/kvm/vcpu.c             | 15 +++++++++++++++
- 4 files changed, 33 insertions(+)
+ arch/riscv/kvm/vcpu.c             | 16 ++++++++++++++++
+ 4 files changed, 20 insertions(+)
 
 diff --git a/arch/riscv/include/asm/csr.h b/arch/riscv/include/asm/csr.h
-index 7bac43a3176e..38730677dcd5 100644
+index 38730677dcd5..b52270278733 100644
 --- a/arch/riscv/include/asm/csr.h
 +++ b/arch/riscv/include/asm/csr.h
-@@ -201,6 +201,18 @@
- #define ENVCFG_CBIE_INV			_AC(0x3, UL)
- #define ENVCFG_FIOM			_AC(0x1, UL)
- 
-+/* Smstateen bits */
-+#define SMSTATEEN0_AIA_IMSIC_SHIFT	58
-+#define SMSTATEEN0_AIA_IMSIC		(_ULL(1) << SMSTATEEN0_AIA_IMSIC_SHIFT)
-+#define SMSTATEEN0_AIA_SHIFT		59
-+#define SMSTATEEN0_AIA			(_ULL(1) << SMSTATEEN0_AIA_SHIFT)
-+#define SMSTATEEN0_AIA_ISEL_SHIFT	60
-+#define SMSTATEEN0_AIA_ISEL		(_ULL(1) << SMSTATEEN0_AIA_ISEL_SHIFT)
-+#define SMSTATEEN0_HSENVCFG_SHIFT	62
-+#define SMSTATEEN0_HSENVCFG		(_ULL(1) << SMSTATEEN0_HSENVCFG_SHIFT)
-+#define SMSTATEEN0_SSTATEEN0_SHIFT	63
-+#define SMSTATEEN0_SSTATEEN0		(_ULL(1) << SMSTATEEN0_SSTATEEN0_SHIFT)
-+
- /* symbolic CSR names: */
- #define CSR_CYCLE		0xc00
- #define CSR_TIME		0xc01
-@@ -347,6 +359,10 @@
- #define CSR_VSIEH		0x214
- #define CSR_VSIPH		0x254
- 
-+/* Hypervisor stateen CSRs */
-+#define CSR_HSTATEEN0		0x60c
-+#define CSR_HSTATEEN0H		0x61c
-+
- #define CSR_MSTATUS		0x300
- #define CSR_MISA		0x301
- #define CSR_MIDELEG		0x303
+@@ -285,6 +285,7 @@
+ #define CSR_SIE			0x104
+ #define CSR_STVEC		0x105
+ #define CSR_SCOUNTEREN		0x106
++#define CSR_SENVCFG		0x10a
+ #define CSR_SSCRATCH		0x140
+ #define CSR_SEPC		0x141
+ #define CSR_SCAUSE		0x142
 diff --git a/arch/riscv/include/asm/kvm_host.h b/arch/riscv/include/asm/kvm_host.h
-index c0fb54d164c7..d00b61620f54 100644
+index d00b61620f54..53d1c7e1eea4 100644
 --- a/arch/riscv/include/asm/kvm_host.h
 +++ b/arch/riscv/include/asm/kvm_host.h
-@@ -166,6 +166,7 @@ struct kvm_vcpu_csr {
+@@ -162,6 +162,7 @@ struct kvm_vcpu_csr {
+ 	unsigned long hvip;
+ 	unsigned long vsatp;
+ 	unsigned long scounteren;
++	unsigned long senvcfg;
+ };
  
  struct kvm_vcpu_config {
- 	u64 henvcfg;
-+	u64 hstateen0;
- };
+@@ -188,6 +189,7 @@ struct kvm_vcpu_arch {
+ 	unsigned long host_sscratch;
+ 	unsigned long host_stvec;
+ 	unsigned long host_scounteren;
++	unsigned long host_senvcfg;
  
- struct kvm_vcpu_arch {
+ 	/* CPU context of Host */
+ 	struct kvm_cpu_context host_context;
 diff --git a/arch/riscv/include/uapi/asm/kvm.h b/arch/riscv/include/uapi/asm/kvm.h
-index 9c35e1427f73..dc185e7875ce 100644
+index dc185e7875ce..7a43d08c3eed 100644
 --- a/arch/riscv/include/uapi/asm/kvm.h
 +++ b/arch/riscv/include/uapi/asm/kvm.h
-@@ -130,6 +130,7 @@ enum KVM_RISCV_ISA_EXT_ID {
- 	KVM_RISCV_ISA_EXT_ZICSR,
- 	KVM_RISCV_ISA_EXT_ZIFENCEI,
- 	KVM_RISCV_ISA_EXT_ZIHPM,
-+	KVM_RISCV_ISA_EXT_SMSTATEEN,
- 	KVM_RISCV_ISA_EXT_MAX,
+@@ -79,6 +79,7 @@ struct kvm_riscv_csr {
+ 	unsigned long sip;
+ 	unsigned long satp;
+ 	unsigned long scounteren;
++	unsigned long senvcfg;
  };
  
+ /* AIA CSR registers for KVM_GET_ONE_REG and KVM_SET_ONE_REG */
 diff --git a/arch/riscv/kvm/vcpu.c b/arch/riscv/kvm/vcpu.c
-index 43d955eca286..7ce250087aed 100644
+index 7ce250087aed..0f4f0d6032cc 100644
 --- a/arch/riscv/kvm/vcpu.c
 +++ b/arch/riscv/kvm/vcpu.c
-@@ -469,6 +469,16 @@ static void kvm_riscv_vcpu_setup_config(struct kvm_vcpu *vcpu)
- 
- 	if (riscv_isa_extension_available(isa, ZICBOZ))
- 		cfg->henvcfg |= ENVCFG_CBZE;
-+
-+	if (riscv_has_extension_unlikely(RISCV_ISA_EXT_SMSTATEEN)) {
-+		cfg->hstateen0 |= SMSTATEEN0_HSENVCFG;
-+		if (riscv_isa_extension_available(isa, SSAIA))
-+			cfg->hstateen0 |= SMSTATEEN0_AIA_IMSIC |
-+					  SMSTATEEN0_AIA |
-+					  SMSTATEEN0_AIA_ISEL;
-+		if (riscv_isa_extension_available(isa, SMSTATEEN))
-+			cfg->hstateen0 |= SMSTATEEN0_SSTATEEN0;
-+	}
+@@ -601,6 +601,20 @@ static void kvm_riscv_update_hvip(struct kvm_vcpu *vcpu)
+ 	kvm_riscv_vcpu_aia_update_hvip(vcpu);
  }
  
- void kvm_arch_vcpu_load(struct kvm_vcpu *vcpu, int cpu)
-@@ -488,6 +498,11 @@ void kvm_arch_vcpu_load(struct kvm_vcpu *vcpu, int cpu)
- 	csr_write(CSR_HENVCFG, cfg->henvcfg);
- 	if (IS_ENABLED(CONFIG_32BIT))
- 		csr_write(CSR_HENVCFGH, cfg->henvcfg >> 32);
-+	if (riscv_has_extension_unlikely(RISCV_ISA_EXT_SMSTATEEN)) {
-+		csr_write(CSR_HSTATEEN0, cfg->hstateen0);
-+		if (IS_ENABLED(CONFIG_32BIT))
-+			csr_write(CSR_HSTATEEN0H, cfg->hstateen0 >> 32);
-+	}
++static __always_inline void kvm_riscv_vcpu_swap_in_guest_state(struct kvm_vcpu *vcpu)
++{
++	struct kvm_vcpu_csr *csr = &vcpu->arch.guest_csr;
++
++	vcpu->arch.host_senvcfg = csr_swap(CSR_SENVCFG, csr->senvcfg);
++}
++
++static __always_inline void kvm_riscv_vcpu_swap_in_host_state(struct kvm_vcpu *vcpu)
++{
++	struct kvm_vcpu_csr *csr = &vcpu->arch.guest_csr;
++
++	csr->senvcfg = csr_swap(CSR_SENVCFG, vcpu->arch.host_senvcfg);
++}
++
+ /*
+  * Actually run the vCPU, entering an RCU extended quiescent state (EQS) while
+  * the vCPU is running.
+@@ -610,10 +624,12 @@ static void kvm_riscv_update_hvip(struct kvm_vcpu *vcpu)
+  */
+ static void noinstr kvm_riscv_vcpu_enter_exit(struct kvm_vcpu *vcpu)
+ {
++	kvm_riscv_vcpu_swap_in_guest_state(vcpu);
+ 	guest_state_enter_irqoff();
+ 	__kvm_riscv_switch_to(&vcpu->arch);
+ 	vcpu->arch.last_exit_cpu = vcpu->cpu;
+ 	guest_state_exit_irqoff();
++	kvm_riscv_vcpu_swap_in_host_state(vcpu);
+ }
  
- 	kvm_riscv_gstage_update_hgatp(vcpu);
- 
+ int kvm_arch_vcpu_ioctl_run(struct kvm_vcpu *vcpu)
 -- 
 2.34.1
 
