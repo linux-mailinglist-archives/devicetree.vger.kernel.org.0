@@ -2,129 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1AC3F763ED0
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 20:47:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E23E763EDF
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 20:49:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229554AbjGZSrJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jul 2023 14:47:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43784 "EHLO
+        id S229692AbjGZStE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jul 2023 14:49:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45596 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229697AbjGZSrH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 14:47:07 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49E6D1BFB
-        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 11:47:05 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id 2adb3069b0e04-4fe04882c66so173690e87.3
-        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 11:47:05 -0700 (PDT)
+        with ESMTP id S231857AbjGZStE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 14:49:04 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F03831FEC;
+        Wed, 26 Jul 2023 11:49:02 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-99bc512526cso4723366b.1;
+        Wed, 26 Jul 2023 11:49:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690397223; x=1691002023;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=DoNr41tGBWXp3avhlR4Ok0kkS9MDJL40PJEw7jr86GQ=;
-        b=TMbSmNVHJfi25lv/O4PhUkZsuUECLgf9LzvjGlofvLtL+GUkiSSAP4/xiRlXQvskLO
-         faddlbjaIpRQ9WQ6GCYK35xL81XQ1R9/5HgJNOc5N1sxVj9hwoU4uKGgNrp5UvosIfoA
-         Ne16I960rWPcMwJghMjZMOiabFwDzdx8/9nuat3XHjz/tkFlR5/fhP3K5xT3yuDoO10h
-         Mw74P58GDlNxNUUdWiR0J7o9BWZ1VmXSCDj08DqrKb+RVpzsgEk1KEHEa7pjOFsBL3j/
-         vQFjgmH0and/UynAoDuch2scR8c6APkM9asNZadLR6nocSwA8/JULovMu4TJmCyyJAuM
-         mhbg==
+        d=gmail.com; s=20221208; t=1690397341; x=1691002141;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=/oLV7w7SIF+Bv+zH3Qb2ls3MvE0jKohS7No6ukAqg6A=;
+        b=AbH/YwBF91CiamzcW+WTjw3r6jdIk6nPsizJ/9atOPv2rQ17BuN2k+KO2mSAgVAdQB
+         xR8RF+BPH6J/DhSHO6pm5OtQLuh9qqVkd1LuQ/PaSamwKLMtfRe0rJqkLe7Lw3qFR8ry
+         sIhGfUvwL80Zj0ZahuTBRSTlh9zIbH1QoQQ6vx3oWKtiTYKt8qNy3OvtBvHdWTRG8bC9
+         W/1e8MfHZxwnE51JMOaXoGkVu2Pu3tF3M3EU9JfB/g7ER1Mr5LKw9Ld4Fbe+m7JkaCC2
+         9NyYc64+I5SgeRRYM5/D4aYVvdsYlLzU6gJQwObM8wB6UUyyiTSuKD2AtTDFmdLtUQxi
+         Ap9w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690397223; x=1691002023;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=DoNr41tGBWXp3avhlR4Ok0kkS9MDJL40PJEw7jr86GQ=;
-        b=PkBn9NZp8z/c+NbFv++fkxSmWVyJClXKXgi7zvefDLk7MOCO7x7zR3rv0AF4bgZtCW
-         RsyP6d/4aP1ySfv1xUkvsO+zwE3CUNqjPX15AIAazleh0a/rgzmoEOBNM+7xBNRpaEJS
-         Qxu6Js35lMCU9NmYuPjrxjHLbWcxvsI8XC70w8xZ5eL+AT9Mkyi0rs8C7YBNCE58rJXI
-         lFybceYzH3yR7ajwrt0FJ62jbtEtwxT/AIowkQgmzFWko5FvsbgdkpnSfiP2Ta83fnVv
-         6AklBIdl0pBr2Wqi6R3MeyIqiBmyNfjHLcPJ7G8YsiKJqkWQMc+hgeI86gOkrL9EGIel
-         ukCg==
-X-Gm-Message-State: ABy/qLbZd8Gi6AWV4npZ6NA2dxoWjK6Pbn5REDyYk5D2W2aHIJmdCeTT
-        beeX2bbC6uoOCz4hVJ6MES5Hug==
-X-Google-Smtp-Source: APBJJlEXJbOsjrE/15dB7NjD+ZINdAiDrOZ7mX0KhXkt36CxGyF07k3vSeHIlGjhqVKVSkGMVE7dJA==
-X-Received: by 2002:a19:f00e:0:b0:4f9:5933:8eea with SMTP id p14-20020a19f00e000000b004f959338eeamr30981lfc.3.1690397223510;
-        Wed, 26 Jul 2023 11:47:03 -0700 (PDT)
-Received: from [192.168.1.101] (abxi164.neoplus.adsl.tpnet.pl. [83.9.2.164])
-        by smtp.gmail.com with ESMTPSA id q8-20020ac25288000000b004fcdf8b8ab4sm3475652lfm.23.2023.07.26.11.47.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 26 Jul 2023 11:47:03 -0700 (PDT)
-Message-ID: <31324276-9222-aab3-533e-6aae5fec4751@linaro.org>
-Date:   Wed, 26 Jul 2023 20:46:59 +0200
+        d=1e100.net; s=20221208; t=1690397341; x=1691002141;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=/oLV7w7SIF+Bv+zH3Qb2ls3MvE0jKohS7No6ukAqg6A=;
+        b=Npt8cJJPfeZTAdZiEsfUffK0PWuTcCi6vpE/NPl/lThlTgdFRrECVTJyg57pDLd4EH
+         cNSq6a633/jXbodIWD+L5Oo1c5HJ26cZADgTPwBr3wljIurvyfbQIejiQfoJVBh9zA3U
+         pp5pItxt/jXKeZqGhauW57DbMQcKbsvwL8VpSHTEJb328hObj2supLd47AjoaAerTwiC
+         DUv7G0kl4QuxAqRXcMRix81xLKA1OzFNZYv0GVISqKY2rlu73RO9EJef8A2vM9B1INxA
+         KPnjIT7+61c/RTQ2ZcykMwZcxTkfilWu1NHoesuJ43zDx+Zpbn9nnuNR4ZqF6tG+MOmE
+         ieBA==
+X-Gm-Message-State: ABy/qLZvLhQ1IC+MTyK2/2sKJ5ImqrYOK0ca42MTlbzUOLlpByx4EBWN
+        IjzQ62mAsdtX1hD6KcDJI38=
+X-Google-Smtp-Source: APBJJlGvUn5xoPOVC5T6TZHAsC/4CEhjmryknm7tSeNAaIc94kXuXSDB5odtY3hKreXXYe1hxCJnZw==
+X-Received: by 2002:a17:906:84:b0:994:539d:f97f with SMTP id 4-20020a170906008400b00994539df97fmr36098ejc.37.1690397341172;
+        Wed, 26 Jul 2023 11:49:01 -0700 (PDT)
+Received: from localhost (p200300e41f1bd600f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f1b:d600:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id m26-20020a170906849a00b00982a352f078sm9734357ejx.124.2023.07.26.11.49.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 26 Jul 2023 11:49:00 -0700 (PDT)
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>
+Cc:     Jon Hunter <jonathanh@nvidia.com>,
+        Svyatoslav Ryhel <clamor95@gmail.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org
+Subject: [PATCH 1/3] dt-bindings: display: panel: Move HannStar HSD101PWW2 to LVDS
+Date:   Wed, 26 Jul 2023 20:48:55 +0200
+Message-ID: <20230726184857.2294570-1-thierry.reding@gmail.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V2] arm64: dts: qcom: sm8150: Fix the I2C7 interrupt
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        qaz6750 lzy <qaz6750@outlook.com>, andersson@kernel.org,
-        agross@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <SY7P282MB378740C6070900BEBF5D0D7CB203A@SY7P282MB3787.AUSP282.PROD.OUTLOOK.COM>
- <8bd8fa38-551b-35dc-cb6b-7c5fd79dc0a0@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <8bd8fa38-551b-35dc-cb6b-7c5fd79dc0a0@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26.07.2023 20:46, Krzysztof Kozlowski wrote:
-> On 25/07/2023 10:42, qaz6750 lzy wrote:
->> I2C6 and I2C7 use the same interrupts, which is incorrect.
->> In the downstream kernel, I2C7 has interrupts of 608 instead of 607.
->>
->> Fixes: 81bee6953b58 ("arm64: dts: qcom: sm8150: add i2c nodes")
->> Signed-off-by: qaz6750 lzy <qaz6750@outlook.com>
->> ---
->>  [v2] Fixed issue of not using full name
-> 
-> You mentioned your full name as a bit different, so I am not sure what
-> improved here.
-To be clear: "real name" usually means "the name that is present on your
-government-issued ID card.
+From: Thierry Reding <treding@nvidia.com>
 
-Konrad
+The HannStar HSD101PWW2 is an LVDS panel, so move it to the correct
+bindings file.
+
+Signed-off-by: Thierry Reding <treding@nvidia.com>
+---
+ Documentation/devicetree/bindings/display/panel/panel-lvds.yaml | 2 ++
+ .../devicetree/bindings/display/panel/panel-simple.yaml         | 2 --
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/display/panel/panel-lvds.yaml b/Documentation/devicetree/bindings/display/panel/panel-lvds.yaml
+index 929fe046d1e7..344e5df40c2f 100644
+--- a/Documentation/devicetree/bindings/display/panel/panel-lvds.yaml
++++ b/Documentation/devicetree/bindings/display/panel/panel-lvds.yaml
+@@ -40,6 +40,8 @@ properties:
+     items:
+       - enum:
+           - auo,b101ew05
++          # HannStar Display Corp. HSD101PWW2 10.1" WXGA (1280x800) LVDS panel
++          - hannstar,hsd101pww2
+           - tbs,a711-panel
+ 
+       - const: panel-lvds
+diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+index df1cec8fd21b..f4d9da4afefd 100644
+--- a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
++++ b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+@@ -168,8 +168,6 @@ properties:
+       - hannstar,hsd070pww1
+         # HannStar Display Corp. HSD100PXN1 10.1" XGA LVDS panel
+       - hannstar,hsd100pxn1
+-        # HannStar Display Corp. HSD101PWW2 10.1" WXGA (1280x800) LVDS panel
+-      - hannstar,hsd101pww2
+         # Hitachi Ltd. Corporation 9" WVGA (800x480) TFT LCD panel
+       - hit,tx23d38vm0caa
+         # InfoVision Optoelectronics M133NWF4 R0 13.3" FHD (1920x1080) TFT LCD panel
+-- 
+2.41.0
+
