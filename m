@@ -2,236 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E22B3762B8C
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 08:36:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6929D762BF6
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 08:54:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231748AbjGZGgT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jul 2023 02:36:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54428 "EHLO
+        id S230058AbjGZGyb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jul 2023 02:54:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34252 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231439AbjGZGgS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 02:36:18 -0400
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 170EB211B
-        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 23:36:16 -0700 (PDT)
-Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-51e429e1eabso9339688a12.2
-        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 23:36:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690353374; x=1690958174;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=u7hyD6FB7jSwhDfnPQjFPKkm7jWq+dVGaGrUKrMFbUQ=;
-        b=UQv6w9GnbHOfHwGKQNTV0pEDu732yLDFTXHSoANqxUrtcGoZ9F3vJR1TfarmrVKCPU
-         3IgDT+2yDRkuxX08/4OzWWI/bgRnjsKlq/ao9PsxuKU4JqOawskNP2BJLSxjM3EAS6Ec
-         fpnSGL+anpMFloGvFDm4XmcQxeAiEHI0yLYgIDNgueSNvIH331kGnjbLpDkF82PnQsma
-         HtmuQDz1UaGguDsGe9OJ8cgSUa44nQHxTt83FPxOIHkjv5ybDR0i+ngfOrhhOAidJXR5
-         R7U2UexBw3HwFbtj/FyZsoZA6MnskTrNachvw2W2MJxrfF+ntCW7umBXFhuQrBotp/h9
-         Ac3g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690353374; x=1690958174;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=u7hyD6FB7jSwhDfnPQjFPKkm7jWq+dVGaGrUKrMFbUQ=;
-        b=Ba7jn/4TdlXXZ7gjCY0BXmvalNXmc0+D9Vf4QIOV9CS7CuEAjmNe96Vu2XUurdo8Ht
-         hgn0CcMekZWaPNj6hJzU/57OMSlabHyBhP3fo3LZvZrYaW4QPibL8XBirtFDSdbUCdkr
-         c4l7oz+U2Ua6+upfbEjeOxReFfa85mKNSuQ+o7dasWgj1DWkkx5Ba44BovOPXAwuQnSB
-         0SrJWbM+doJUJJd7DKixp0BmKrDffPoNZ1xB60fPkxeoyQtko3yeinpIiB+3sCJHU+U6
-         0yjxiiPnXkb6H5aI+THNeHVJh78frIOgGeLLgUfoR9pWKKU4mtVRzbyEFvdPzQS/+WWf
-         tCBA==
-X-Gm-Message-State: ABy/qLbzE2lvNeBUEuZq2TO2tdo6oGd+sHhANm5GucfWKWkKhmAwMrKB
-        ZkD3H4UWSvqP4WOxQSQoE0a1Dg==
-X-Google-Smtp-Source: APBJJlGNUorNqE2DstQnFDWhicb5Jae+iN7Cjh5GOWyBur4yWaC85W7KTpb5LbBqaIdHGkSMDiPwLg==
-X-Received: by 2002:aa7:cd48:0:b0:522:5591:d748 with SMTP id v8-20020aa7cd48000000b005225591d748mr681596edw.15.1690353374542;
-        Tue, 25 Jul 2023 23:36:14 -0700 (PDT)
-Received: from krzk-bin.. ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id t24-20020aa7d718000000b0051de20c59d7sm8336270edq.15.2023.07.25.23.36.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 Jul 2023 23:36:14 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        pascal Paillet <p.paillet@foss.st.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v2 2/2] dt-bindings: mfd: stericsson,db8500-prcmu: Add missing unevaluatedProperties for each regulator
-Date:   Wed, 26 Jul 2023 08:36:10 +0200
-Message-Id: <20230726063610.5394-2-krzysztof.kozlowski@linaro.org>
+        with ESMTP id S229573AbjGZGya (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 02:54:30 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87BEB2132;
+        Tue, 25 Jul 2023 23:54:28 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 36Q6sDwY007939;
+        Wed, 26 Jul 2023 01:54:13 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1690354453;
+        bh=FrEx/bOy1/gQCYi00Le6XUiLNro3I286bRzQgqiu9Ow=;
+        h=From:To:CC:Subject:Date;
+        b=KICg53Ni88yq3/DUil+WOL5Y/I+Oi9XZ8ylCdTk2/Uy5MixyqV2eljfiMqdgLA1mW
+         ReeMRKJt3enY5SLFelny3ylQvajqJCPQALgSsy3oSLuRwILOQzW8yVyzp3CZhAOew3
+         Wxe9eKZ8aP7peyMSkB8JGxgIC5d27oXclIZfFhNA=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 36Q6sCvB048105
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 26 Jul 2023 01:54:13 -0500
+Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 26
+ Jul 2023 01:54:12 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 26 Jul 2023 01:54:12 -0500
+Received: from uda0492258.dhcp.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 36Q6s8Td013490;
+        Wed, 26 Jul 2023 01:54:09 -0500
+From:   Siddharth Vadapalli <s-vadapalli@ti.com>
+To:     <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <afd@ti.com>
+CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <r-gunasekaran@ti.com>,
+        <srk@ti.com>, <s-vadapalli@ti.com>
+Subject: [PATCH v3 0/2] Add MAIN CPSW2G DT support for J721S2
+Date:   Wed, 26 Jul 2023 12:24:05 +0530
+Message-ID: <20230726065407.378455-1-s-vadapalli@ti.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230726063610.5394-1-krzysztof.kozlowski@linaro.org>
-References: <20230726063610.5394-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Each regulator node, which references common regulator.yaml schema,
-should disallow additional or unevaluated properties.  Otherwise
-mistakes in properties will go unnoticed.
+Hello,
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+This series adds devicetree node for MAIN CPSW2G instance of CPSW
+Ethernet Switch on TI's J721S2 SoC. Also, a devicetree overlay is added
+in order to enable MAIN CPSW2G in RGMII-RXID mode using the GESI
+Expansion Board connected to the J7 Common-Processor-Board.
+
+Regards,
+Siddharth.
 
 ---
+NOTE: This series is based on linux-next tagged next-20230725.
 
-Changes in v2:
-1. None
----
- .../bindings/mfd/stericsson,db8500-prcmu.yaml | 20 +++++++++++++++++++
- 1 file changed, 20 insertions(+)
+v2:
+https://lore.kernel.org/r/20230710094328.1359377-1-s-vadapalli@ti.com/
+Changes since v2:
+- Collect Reviewed-by tag from Ravi Gunasekaran <r-gunasekaran@ti.com>.
+- Rename main_cpsw_mdio_pins_default and rgmii1_pins_default to:
+  main_cpsw_mdio_default_pins and rgmii1_default_pins respectively.
+- Rename main-cpsw-mdio-pins-default and rgmii1-pins-default to:
+  main-cpsw-mdio-default-pins and rgmii1-default-pins respectively.
+- The above changes are performed to follow the updated json-schema
+  patch at:
+  https://lore.kernel.org/all/169021456020.3622493.10284534202541859578.robh@kernel.org/
+- Rebase series on next-20230725.
 
-diff --git a/Documentation/devicetree/bindings/mfd/stericsson,db8500-prcmu.yaml b/Documentation/devicetree/bindings/mfd/stericsson,db8500-prcmu.yaml
-index 1d4d88f7e82d..678a6c0fd7d6 100644
---- a/Documentation/devicetree/bindings/mfd/stericsson,db8500-prcmu.yaml
-+++ b/Documentation/devicetree/bindings/mfd/stericsson,db8500-prcmu.yaml
-@@ -72,44 +72,52 @@ properties:
-           main voltage domain for the chip.
-         type: object
-         $ref: ../regulator/regulator.yaml#
-+        unevaluatedProperties: false
- 
-       db8500_varm:
-         description: The voltage for the ARM Cortex A-9 CPU.
-         type: object
-         $ref: ../regulator/regulator.yaml#
-+        unevaluatedProperties: false
- 
-       db8500_vmodem:
-         description: The voltage for the modem subsystem.
-         type: object
-         $ref: ../regulator/regulator.yaml#
-+        unevaluatedProperties: false
- 
-       db8500_vpll:
-         description: The voltage for the phase locked loop clocks.
-         type: object
-         $ref: ../regulator/regulator.yaml#
-+        unevaluatedProperties: false
- 
-       db8500_vsmps1:
-         description: Also known as VIO12, is a step-down voltage regulator
-           for 1.2V I/O. SMPS means System Management Power Source.
-         type: object
-         $ref: ../regulator/regulator.yaml#
-+        unevaluatedProperties: false
- 
-       db8500_vsmps2:
-         description: Also known as VIO18, is a step-down voltage regulator
-           for 1.8V I/O. SMPS means System Management Power Source.
-         type: object
-         $ref: ../regulator/regulator.yaml#
-+        unevaluatedProperties: false
- 
-       db8500_vsmps3:
-         description: This is a step-down voltage regulator
-           for 0.87 thru 1.875V I/O. SMPS means System Management Power Source.
-         type: object
-         $ref: ../regulator/regulator.yaml#
-+        unevaluatedProperties: false
- 
-       db8500_vrf1:
-         description: RF transciever voltage regulator.
-         type: object
-         $ref: ../regulator/regulator.yaml#
-+        unevaluatedProperties: false
- 
-       db8500_sva_mmdsp:
-         description: Smart Video Accelerator (SVA) multimedia DSP (MMDSP)
-@@ -117,18 +125,21 @@ properties:
-           for video encoding and decoding.
-         type: object
-         $ref: ../regulator/regulator.yaml#
-+        unevaluatedProperties: false
- 
-       db8500_sva_mmdsp_ret:
-         description: Smart Video Accelerator (SVA) multimedia DSP (MMDSP)
-           voltage regulator for retention mode.
-         type: object
-         $ref: ../regulator/regulator.yaml#
-+        unevaluatedProperties: false
- 
-       db8500_sva_pipe:
-         description: Smart Video Accelerator (SVA) multimedia DSP (MMDSP)
-           voltage regulator for the data pipe.
-         type: object
-         $ref: ../regulator/regulator.yaml#
-+        unevaluatedProperties: false
- 
-       db8500_sia_mmdsp:
-         description: Smart Image Accelerator (SIA) multimedia DSP (MMDSP)
-@@ -136,18 +147,21 @@ properties:
-           for image encoding and decoding.
-         type: object
-         $ref: ../regulator/regulator.yaml#
-+        unevaluatedProperties: false
- 
-       db8500_sia_mmdsp_ret:
-         description: Smart Image Accelerator (SIA) multimedia DSP (MMDSP)
-           voltage regulator for retention mode.
-         type: object
-         $ref: ../regulator/regulator.yaml#
-+        unevaluatedProperties: false
- 
-       db8500_sia_pipe:
-         description: Smart Image Accelerator (SIA) multimedia DSP (MMDSP)
-           voltage regulator for the data pipe.
-         type: object
-         $ref: ../regulator/regulator.yaml#
-+        unevaluatedProperties: false
- 
-       db8500_sga:
-         description: Smart Graphics Accelerator (SGA) voltage regulator.
-@@ -155,6 +169,7 @@ properties:
-           accelerator block.
-         type: object
-         $ref: ../regulator/regulator.yaml#
-+        unevaluatedProperties: false
- 
-       db8500_b2r2_mcde:
-         description: Blit Blend Rotate and Rescale (B2R2), and Multi-Channel
-@@ -162,28 +177,33 @@ properties:
-           blocks.
-         type: object
-         $ref: ../regulator/regulator.yaml#
-+        unevaluatedProperties: false
- 
-       db8500_esram12:
-         description: Embedded Static RAM (ESRAM) 1 and 2 voltage regulator.
-         type: object
-         $ref: ../regulator/regulator.yaml#
-+        unevaluatedProperties: false
- 
-       db8500_esram12_ret:
-         description: Embedded Static RAM (ESRAM) 1 and 2 voltage regulator for
-           retention mode.
-         type: object
-         $ref: ../regulator/regulator.yaml#
-+        unevaluatedProperties: false
- 
-       db8500_esram34:
-         description: Embedded Static RAM (ESRAM) 3 and 4 voltage regulator.
-         type: object
-         $ref: ../regulator/regulator.yaml#
-+        unevaluatedProperties: false
- 
-       db8500_esram34_ret:
-         description: Embedded Static RAM (ESRAM) 3 and 4 voltage regulator for
-           retention mode.
-         type: object
-         $ref: ../regulator/regulator.yaml#
-+        unevaluatedProperties: false
- 
-     required:
-       - compatible
+v1:
+https://lore.kernel.org/r/20230529104913.560045-1-s-vadapalli@ti.com/
+Changes since v1:
+- Rebase series on next-20230710.
+
+RFC:
+https://lore.kernel.org/r/20230426105718.118806-1-s-vadapalli@ti.com/
+Changes since RFC:
+- Add GESI board product link in the device-tree overlay file.
+
+Kishon Vijay Abraham I (2):
+  arm64: dts: ti: k3-j721s2-main: Add main CPSW2G devicetree node
+  arm64: dts: ti: k3-j721s2: Add overlay to enable main CPSW2G with GESI
+
+ arch/arm64/boot/dts/ti/Makefile               |  2 +
+ .../dts/ti/k3-j721s2-evm-gesi-exp-board.dtso  | 85 +++++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi    | 69 +++++++++++++++
+ 3 files changed, 156 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/ti/k3-j721s2-evm-gesi-exp-board.dtso
+
 -- 
 2.34.1
 
