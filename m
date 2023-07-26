@@ -2,111 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F1C8763738
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 15:11:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 09806763747
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 15:15:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233235AbjGZNLv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jul 2023 09:11:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36894 "EHLO
+        id S233529AbjGZNPh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jul 2023 09:15:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38510 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233348AbjGZNLu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 09:11:50 -0400
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 031191FEC
-        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 06:11:49 -0700 (PDT)
-Received: by mail-lj1-x22d.google.com with SMTP id 38308e7fff4ca-2b703a0453fso100149081fa.3
-        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 06:11:48 -0700 (PDT)
+        with ESMTP id S233092AbjGZNPf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 09:15:35 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A1F91FDA
+        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 06:15:34 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-522462d8416so2916409a12.1
+        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 06:15:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690377107; x=1690981907;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+        d=linaro.org; s=google; t=1690377333; x=1690982133;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=fceTjpt0I0GGZpZu52Ezsa57vvTP8Gp9bGJwFbhqqGA=;
-        b=hnc/7QYLXegSTTrqPCWDJAMwZzKgKLMN6+Sp2VeHlN51DGhEn5Fkot9WWtEOG44BHa
-         SsaojGGRKewUVbsUEEa40KN/UteJZK+UejhcZ3gGVYDYuTv9+F+SW9wSuFfuvCxYJgQX
-         vpAxWTaxl//FFA532s9j38xlygbcNMyaaWAFyyMOmkg9ZMHsvylF+tPPvi7slPVIIkYF
-         F9nzaUnk3tspmhI8rhU0aSIE6HZYzMPgEjotAEr2A6q6NEwTcQtLp/01LJ6+mfMjFUri
-         Ft/QTR8K9nBHOYTGXd98T9KKWfX6ElC5kSlkgfnON9rusiqEdCEYia1xLskDspLn3oty
-         mxag==
+        bh=xxpwGdqfKpW+2bA8L4L3lh4iGcowSXsRVpwai0mk4fQ=;
+        b=aBmywB8kJps6NL8kYvNQkYJixI+qt0vHUmnmDQL+JaHi33F/2lIJLWXRTW3t4o7Mlg
+         WrZHD3nyD/VyY+S65kqDZHPdUpACQQ8+BmX+U2PHnDrXJf53acmFV/x4JCy690s4zc2Y
+         FYMegG8v2565mbDeZbI+3sPoFAg7DZSiGauJTCuhHbG+zmA0iCkRf1tEhQ5U/dyUOal5
+         +kx9DKbzGtWh4Jg8uwEE30I7NPXDCyQQnLrmaIB1tMw+ZpvqNTMw8zKC6iDUagMHBrDZ
+         OUaGlbtQGbQFid4ezBHNIomlTBjv4/DghU5y/GAhxkiATl+b6cycISfJwr162uJLLuSo
+         l94Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690377107; x=1690981907;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+        d=1e100.net; s=20221208; t=1690377333; x=1690982133;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fceTjpt0I0GGZpZu52Ezsa57vvTP8Gp9bGJwFbhqqGA=;
-        b=KVp73uwPiqmlcBJNY1TMTSIh2wY5ipijYL0SNgk93rf2pkcPHa7exM9MOR6vqhIChv
-         XkdXfHIZhnZxpMrTj2j/nIpD/ZK3cT/qMPwOlYTS1RB6RuqsVrmh0sab2sqUvb0FOCJ4
-         ESMPG6F3YpyDJmkACFS5JqmkpTIn0Rygep2GW9yVIGfoi8nUJL0QXnFmb6SNy9XncvDb
-         OcaRZwYMnEC6HvU+UpIZCyZ0BQic8nOkQl/hNWPrk2FBGCjO78OC0nIln5gSyYxpZzyo
-         +Ht3hSpvZT/n9LF/y+LmzB8oWptJe5vDl7lI8RgpvmITVJNl0nD8e7XKHxk+d3KZxO1P
-         AnvQ==
-X-Gm-Message-State: ABy/qLafKcyGkwi3xl+5nqCFGSKDtiJg62Jd5E5sTfvdnOc268DVfRQO
-        PI2vtySsFYkMvhAnBASAigpXvw==
-X-Google-Smtp-Source: APBJJlG2tXGyjq2mq5mQTNGBeDOefLv6/VRlZq36AOlisG3kUf9aOrXYT8K0yPi5VmKet9j2TnOslA==
-X-Received: by 2002:a2e:9bd4:0:b0:2b9:2e85:2fa0 with SMTP id w20-20020a2e9bd4000000b002b92e852fa0mr1465699ljj.15.1690377107231;
-        Wed, 26 Jul 2023 06:11:47 -0700 (PDT)
-Received: from [192.168.1.101] (abyl59.neoplus.adsl.tpnet.pl. [83.9.31.59])
-        by smtp.gmail.com with ESMTPSA id e18-20020a2e9852000000b002b6d7682050sm4175159ljj.89.2023.07.26.06.11.44
+        bh=xxpwGdqfKpW+2bA8L4L3lh4iGcowSXsRVpwai0mk4fQ=;
+        b=KgU3rLi4v9Fo8WQBYB+H7YBfraUA7ecaQ337YWvJ3ofaj1TJ9YoC/W7E9w+SBrIMkJ
+         hAN63CARZDFG0WZPfNnOaPvrwuaVoLfr9pQ6cBT5mpTmVEfRXZ2m4t/a6m+inV0T83k2
+         Oyxdao/2UIscDQ36ncaSCv/0CLn+zG4tZP8vv+Lgvg2npQnLZTwkayAJ1dFh5t9sfiK1
+         VbWgJs4oF9CkBAwQJ4+GZdxltPIYfbc7VsKuz1OtWXllwqT+Fdq92uVcmLj0iGHyLFzW
+         vNQyl9LCz8aMGFhYwyHeaLXvbkEsKGZmG9XRNjr4EVqKpd1vDsC4OWfF8AJgypcpuevu
+         tU1Q==
+X-Gm-Message-State: ABy/qLZKSjctdjsQamX5C8zoqR7+NRIadHJB+X/X6JfisCuj43x7JsMd
+        5lp9byhH8MSAfy39kqpKjzTMkisx3e6pHf3/dcc=
+X-Google-Smtp-Source: APBJJlFMhteteZfyviZtv4MyvkzBxODZxA8tpAKbuYijpc64a+D7iboNckbTfSv3dVIDPN6HQHdc/w==
+X-Received: by 2002:a17:906:64cc:b0:994:539d:f97f with SMTP id p12-20020a17090664cc00b00994539df97fmr1726109ejn.37.1690377332545;
+        Wed, 26 Jul 2023 06:15:32 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id z9-20020a1709064e0900b009886aaeb722sm9518979eju.137.2023.07.26.06.15.30
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 26 Jul 2023 06:11:45 -0700 (PDT)
-Message-ID: <8023c595-5257-4ec3-a7d3-08ca115a0421@linaro.org>
-Date:   Wed, 26 Jul 2023 15:11:43 +0200
+        Wed, 26 Jul 2023 06:15:31 -0700 (PDT)
+Message-ID: <453c362a-c9bf-1cd4-187c-8916ed406c64@linaro.org>
+Date:   Wed, 26 Jul 2023 15:15:30 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] ARM: dts: qcom: mdm9615: populate vsdcc fixed regulator
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH 3/8] AMR: dts: imx28-m28evk: populate fixed regulators
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Fabio Estevam <festevam@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Stephen Boyd <sboyd@codeaurora.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230725203718.513724-1-krzysztof.kozlowski@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <20230725203718.513724-1-krzysztof.kozlowski@linaro.org>
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com
+References: <20230726070322.103871-1-krzysztof.kozlowski@linaro.org>
+ <20230726070322.103871-3-krzysztof.kozlowski@linaro.org>
+ <CAOMZO5C1JN7w+LhK-J0_ttKVopyeRq6VmCpAHujN_tGPMobotA@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAOMZO5C1JN7w+LhK-J0_ttKVopyeRq6VmCpAHujN_tGPMobotA@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -115,31 +86,51 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25.07.2023 22:37, Krzysztof Kozlowski wrote:
-> Fixed regulator put under "regulators" node will not be populated,
-> unless simple-bus or something similar is used.  Drop the "regulators"
-> wrapper node to fix this.
+On 26/07/2023 15:08, Fabio Estevam wrote:
+> Patches 1, 2, 3, and 4 have a typo in the Subject: s/AMR/ARM.
 > 
-> Fixes: 2c5e596524e7 ("ARM: dts: Add MDM9615 dtsi")
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  arch/arm/boot/dts/qcom/qcom-mdm9615.dtsi | 14 ++++++--------
->  1 file changed, 6 insertions(+), 8 deletions(-)
+> On Wed, Jul 26, 2023 at 4:03 AM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>>
+>> Fixed regulators put under "regulators" node will not be populated,
+>> unless simple-bus or something similar is used.  Drop the "regulators"
+>> wrapper node to fix this.
+>>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> ---
+>>  arch/arm/boot/dts/nxp/mxs/imx28-m28evk.dts | 45 ++++++++++------------
+>>  1 file changed, 20 insertions(+), 25 deletions(-)
+>>
+>> diff --git a/arch/arm/boot/dts/nxp/mxs/imx28-m28evk.dts b/arch/arm/boot/dts/nxp/mxs/imx28-m28evk.dts
+>> index e350d57a4cec..6bf26f386a5e 100644
+>> --- a/arch/arm/boot/dts/nxp/mxs/imx28-m28evk.dts
+>> +++ b/arch/arm/boot/dts/nxp/mxs/imx28-m28evk.dts
+>> @@ -18,33 +18,28 @@ backlight {
+>>                 default-brightness-level = <6>;
+>>         };
+>>
+>> -       regulators {
+>> -               reg_vddio_sd0: regulator@1 {
+>> -                       compatible = "regulator-fixed";
+>> -                       reg = <1>;
+>> -                       regulator-name = "vddio-sd0";
+>> -                       regulator-min-microvolt = <3300000>;
+>> -                       regulator-max-microvolt = <3300000>;
+>> -                       gpio = <&gpio3 28 0>;
+>> -               };
+>> +       reg_vddio_sd0: regulator-1 {
 > 
-> diff --git a/arch/arm/boot/dts/qcom/qcom-mdm9615.dtsi b/arch/arm/boot/dts/qcom/qcom-mdm9615.dtsi
-> index b40c52ddf9b4..bfcb4fcf6546 100644
-> --- a/arch/arm/boot/dts/qcom/qcom-mdm9615.dtsi
-> +++ b/arch/arm/boot/dts/qcom/qcom-mdm9615.dtsi
-> @@ -46,14 +46,12 @@ cxo_board {
->  		};
->  	};
->  
-> -	regulators {
-> -		vsdcc_fixed: vsdcc-regulator {
-> -			compatible = "regulator-fixed";
-> -			regulator-name = "SDCC Power";
-Neil, do we know if there's some a/o regulator coming from the SoC
-or something?
+> It should be better to write:
+> 
+> reg_vddio_sd0: regulator-vddio-sd0 {
+> 
+> regulator-1 is not very descriptive.
 
-Konrad
+Node names should be generic, not descriptive. These are old sources, so
+they do not use fully override-by-phandle/label style, thus with
+existing naming I reduce the chances of wrong overrides in some other
+board or DTSI.
+
+Best regards,
+Krzysztof
 
