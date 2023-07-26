@@ -2,110 +2,302 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D61A77640D9
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 23:00:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A94C47640DD
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 23:02:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231362AbjGZVAL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jul 2023 17:00:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37168 "EHLO
+        id S230034AbjGZVCA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jul 2023 17:02:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38014 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231191AbjGZVAK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 17:00:10 -0400
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3220B19B6
-        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 14:00:09 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-51e28cac164so3071430a12.1
-        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 14:00:09 -0700 (PDT)
+        with ESMTP id S229717AbjGZVB7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 17:01:59 -0400
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5671F19B6
+        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 14:01:57 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-99b78fda9a8so20883066b.1
+        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 14:01:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690405207; x=1691010007;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=BxBJ0tFj1UbUOBEqoo5krK0VcqyYI11I6KTerRdAx7Q=;
-        b=x+rFUkLZ5fBSAD+SlvEMEuMVK8vhBZsqqpAgrIUUtRGFzZYWEuF3zKmwpDzOOqytTH
-         3tFXfLJNRyJCh/6PdS67Hv7e+4iidv0I19PKMZ92VsmP6r4r7mdF+Y0tSqh1jJJd226u
-         s0kbzZMEby7Mms+4n5XdHn8UTXYItiWk//96Dfegk3k1i/3Gldjk8JnKtrHDoInm1Ofk
-         37tlNOA+1+3HhAk0FOiIyrIy3LJWXYuOrhH9Vo7a/soZy9jg0nmK22jy1pZAO8BWahnu
-         XS4RCydB/v+0tE7LeFGRd+C4nmsPlTMvaOgDXw4v0NFigcdtlZrRNNhcgauQTOCP7N41
-         oATg==
+        d=linaro.org; s=google; t=1690405316; x=1691010116;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=s650GH6eqpBwEm+o4kr4JN+XIhsv0wSwVJ8bWoio1M0=;
+        b=V4huKQW1iXcJZ7ZqqAMakZlUy6tukW9IceMpH7GfJA09rbHbAhygEHK8VhXQUMtzm3
+         TM7dpVLtZ+HvhCT3HLssQN5t/0ANpM2lh1GeWvlDMxjRigpZZ4KBu2ixNqkz8a2X4jNW
+         zLn2490EpgVS/Q22YjOwCYIDZCKcq2NoTgBgVBQYh8xovv7Pitq9a24n2yY/aX8EHkkw
+         8PUoY9+evWhSgqhp0fycBN7Mb2iSdKmjtxtWNKQBANGqA3MGx4CFjVm/ZlUHMyDWUrjQ
+         V+i6hJgO0rkbnwV7FiWuxtjOpWm9H+hdj77TAe/UMjYWkYRdnJBdd7R97u/6XnruaNds
+         +UqQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690405207; x=1691010007;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=BxBJ0tFj1UbUOBEqoo5krK0VcqyYI11I6KTerRdAx7Q=;
-        b=GNt+DgLKkJi3uOVTYZEveWEBJmSLS8dr/YrF6ltvkqMJK/rHhVRFu7Tld9hWpDjCbV
-         z0wxyYOZD14g4r8hXhW+iJdNUAquNdpnNQ8rEg8L63PHQ2qLg1022r+Cr1pBcsp/lHbQ
-         H1IxqkqEHjr3cD9E1SVHqswfSYfl90281sS02wxNycgkwsvG1CqMnrtU5PTMhoTS7Bxw
-         zKFoziA3u67HLzUKDRgBikaWDt7WQBE7wuDmbyyTAUfTiWcacjYTOf/ysabq14LW9gJJ
-         ELOgxKGwCJHCtvqLRXXmugMpZhfgszN0Opgds4VjhvE0SJjHXl3AJ+yY2EaTP18cI4kF
-         fytA==
-X-Gm-Message-State: ABy/qLbPVb04n50svzl+zbbXO9PsISkR3Jv+A8h5yzp1ul6U1dV4a8RW
-        pVksHmj5r243pbPQu2RUf4AbsA==
-X-Google-Smtp-Source: APBJJlFZJICiVh5rlt6ysLzD0BWx1vEgt0m23dypJlzCPgv0/Qw+dtH2Pk55t+Ec0uttPJRaapYBCQ==
-X-Received: by 2002:a05:6402:5188:b0:522:28b9:e84c with SMTP id q8-20020a056402518800b0052228b9e84cmr183918edd.21.1690405207622;
-        Wed, 26 Jul 2023 14:00:07 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id e6-20020a056402088600b005223d76a3e3sm3209902edy.85.2023.07.26.14.00.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 26 Jul 2023 14:00:07 -0700 (PDT)
-Message-ID: <df37ca83-a198-6395-723f-94aede45978b@linaro.org>
-Date:   Wed, 26 Jul 2023 23:00:04 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH] dt-bindings: media: Add bindings for Imagination E5010
- JPEG Encoder driver
-Content-Language: en-US
-To:     Nicolas Dufresne <nicolas@ndufresne.ca>,
-        Devarsh Thakkar <devarsht@ti.com>, mchehab@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     praneeth@ti.com, nm@ti.com, vigneshr@ti.com, a-bhatia1@ti.com,
-        j-luthra@ti.com, b-brnich@ti.com, detheridge@ti.com,
-        p-mantena@ti.com, vijayp@ti.com
-References: <20230726162615.1270075-1-devarsht@ti.com>
- <b6bddd59-ac78-3f75-828e-cff54766fc72@linaro.org>
- <3d26f0f719cd5f71c20e80599362cd52bcfe8dd4.camel@ndufresne.ca>
+        d=1e100.net; s=20221208; t=1690405316; x=1691010116;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=s650GH6eqpBwEm+o4kr4JN+XIhsv0wSwVJ8bWoio1M0=;
+        b=eBExOMdxhGJvj8YNctpTG08oTpB3zOHvp2B1JACjxwDb4m7BEq/6qMtlxOg7Jyuu6k
+         p2BqdrOW8KAt8nsas1zXaBrYR/f69UCHo902syyoKDtul3xWAY1bVmpfaarmqjF294Xy
+         PNwTcjkmvmPsiNe6tCkri0OOIo2J7p8ULtlFwOtlsFbwXkk3beqv0ZPKap7fUec0/ry6
+         f69LPUyeoF2SrRgwPt1iDnI10h6PQNgAp4PxkJQVrNmMYbLTzwQRd07HZErErIiNHaLs
+         nwAwW3Zoc8eSmXRIx+7Fe4mcDRfHojBaLM2b7Zhpw3puL55bQHYnokBlp2Hnm3N55ljI
+         qVDw==
+X-Gm-Message-State: ABy/qLYCiRxl8X2TspbJCGFJ7uPJ9m5mQ8DDnsa6ATjY24lBk183JSDw
+        idzN5nOd5OMrIPI6/+i5eC6a7A==
+X-Google-Smtp-Source: APBJJlGjFW1+WlPCquzPat2j2ADFTGHWCOc785NkIw/63RfTKsC/l1WUcfbz3p1p5WTIIwL07/x69A==
+X-Received: by 2002:a17:906:53d2:b0:99a:e756:57bf with SMTP id p18-20020a17090653d200b0099ae75657bfmr256465ejo.7.1690405315831;
+        Wed, 26 Jul 2023 14:01:55 -0700 (PDT)
+Received: from krzk-bin.. ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id d10-20020a17090648ca00b0099b6b8a0d04sm8749227ejt.157.2023.07.26.14.01.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 26 Jul 2023 14:01:55 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <3d26f0f719cd5f71c20e80599362cd52bcfe8dd4.camel@ndufresne.ca>
-Content-Type: text/plain; charset=UTF-8
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] ARM: dts: qcom: ipq8064: move keys and leds out of soc node
+Date:   Wed, 26 Jul 2023 23:01:52 +0200
+Message-Id: <20230726210152.273161-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/07/2023 22:35, Nicolas Dufresne wrote:
-> Le mercredi 26 juillet 2023 à 18:33 +0200, Krzysztof Kozlowski a écrit :
->> On 26/07/2023 18:26, Devarsh Thakkar wrote:
->>> Add dt-bindings for Imagination E5010 JPEG Encoder driver which is
->>> implemented as stateful V4L2 M2M driver.
->>>
->>> Co-developed-by: David Huang <d-huang@ti.com>
->>> Signed-off-by: David Huang <d-huang@ti.com>
->>
->> A nit, subject: drop second/last, redundant "bindings for". The
->> "dt-bindings" prefix is already stating that these are bindings.
->>
->> Drop also "driver". Bindings are for hardware, not drivers.
->>
->> Prefix starts with media and then dt-bindings.
-> 
-> That being said, I haven't seen any submission for the driver using these, is it
-> common practice to upstream bindings for unsupported hardware ?
+GPIO keys and LEDs are not part of the SoC, so move them to top-level to
+fix dtbs_check warnings like:
 
-I assumed I wasn't CC'ed on the user, but it seems there is no user.
-None, neither drivers, not DTS.  Commit msg also doesn't explain it.
+  qcom-ipq8064-rb3011.dtb: soc: gpio-keys: {'compatible': ['gpio-keys'], ... should not be valid under {'type': 'object'}
+        from schema $id: http://devicetree.org/schemas/simple-bus.yaml#
 
-No point op submit bindings where there are no users.
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ .../arm/boot/dts/qcom/qcom-ipq8064-rb3011.dts |  55 ++++----
+ arch/arm/boot/dts/qcom/qcom-ipq8064-v1.0.dtsi | 122 +++++++++---------
+ 2 files changed, 88 insertions(+), 89 deletions(-)
 
-Best regards,
-Krzysztof
+diff --git a/arch/arm/boot/dts/qcom/qcom-ipq8064-rb3011.dts b/arch/arm/boot/dts/qcom/qcom-ipq8064-rb3011.dts
+index 1796ded31d17..12e806adcda8 100644
+--- a/arch/arm/boot/dts/qcom/qcom-ipq8064-rb3011.dts
++++ b/arch/arm/boot/dts/qcom/qcom-ipq8064-rb3011.dts
+@@ -20,6 +20,33 @@ chosen {
+ 		stdout-path = "serial0:115200n8";
+ 	};
+ 
++	gpio-keys {
++		compatible = "gpio-keys";
++		pinctrl-0 = <&buttons_pins>;
++		pinctrl-names = "default";
++
++		button {
++			label = "reset";
++			linux,code = <KEY_RESTART>;
++			gpios = <&qcom_pinmux 66 GPIO_ACTIVE_LOW>;
++			linux,input-type = <1>;
++			debounce-interval = <60>;
++		};
++	};
++
++	leds {
++		compatible = "gpio-leds";
++		pinctrl-0 = <&leds_pins>;
++		pinctrl-names = "default";
++
++		led-0 {
++			label = "rb3011:green:user";
++			color = <LED_COLOR_ID_GREEN>;
++			gpios = <&qcom_pinmux 33 GPIO_ACTIVE_HIGH>;
++			default-state = "off";
++		};
++	};
++
+ 	memory@42000000 {
+ 		reg = <0x42000000 0x3e000000>;
+ 		device_type = "memory";
+@@ -302,34 +329,6 @@ partition@0 {
+ 				};
+ 			};
+ 		};
+-
+-		gpio-keys {
+-			compatible = "gpio-keys";
+-			pinctrl-0 = <&buttons_pins>;
+-			pinctrl-names = "default";
+-
+-			button {
+-				label = "reset";
+-				linux,code = <KEY_RESTART>;
+-				gpios = <&qcom_pinmux 66 GPIO_ACTIVE_LOW>;
+-				linux,input-type = <1>;
+-				debounce-interval = <60>;
+-			};
+-		};
+-
+-		leds {
+-			compatible = "gpio-leds";
+-			pinctrl-0 = <&leds_pins>;
+-			pinctrl-names = "default";
+-
+-			led-0 {
+-				label = "rb3011:green:user";
+-				color = <LED_COLOR_ID_GREEN>;
+-				gpios = <&qcom_pinmux 33 GPIO_ACTIVE_HIGH>;
+-				default-state = "off";
+-			};
+-		};
+-
+ 	};
+ };
+ 
+diff --git a/arch/arm/boot/dts/qcom/qcom-ipq8064-v1.0.dtsi b/arch/arm/boot/dts/qcom/qcom-ipq8064-v1.0.dtsi
+index 17f65e140e02..49de9752632f 100644
+--- a/arch/arm/boot/dts/qcom/qcom-ipq8064-v1.0.dtsi
++++ b/arch/arm/boot/dts/qcom/qcom-ipq8064-v1.0.dtsi
+@@ -14,6 +14,67 @@ chosen {
+ 		stdout-path = "serial0:115200n8";
+ 	};
+ 
++	gpio-keys {
++		compatible = "gpio-keys";
++		pinctrl-0 = <&buttons_pins>;
++		pinctrl-names = "default";
++
++		button-1 {
++			label = "reset";
++			linux,code = <KEY_RESTART>;
++			gpios = <&qcom_pinmux 54 GPIO_ACTIVE_LOW>;
++			linux,input-type = <1>;
++			debounce-interval = <60>;
++		};
++		button-2 {
++			label = "wps";
++			linux,code = <KEY_WPS_BUTTON>;
++			gpios = <&qcom_pinmux 65 GPIO_ACTIVE_LOW>;
++			linux,input-type = <1>;
++			debounce-interval = <60>;
++		};
++	};
++
++	leds {
++		compatible = "gpio-leds";
++		pinctrl-0 = <&leds_pins>;
++		pinctrl-names = "default";
++
++		led-0 {
++			label = "led_usb1";
++			gpios = <&qcom_pinmux 7 GPIO_ACTIVE_HIGH>;
++			linux,default-trigger = "usbdev";
++			default-state = "off";
++		};
++
++		led-1 {
++			label = "led_usb3";
++			gpios = <&qcom_pinmux 8 GPIO_ACTIVE_HIGH>;
++			linux,default-trigger = "usbdev";
++			default-state = "off";
++		};
++
++		led-2 {
++			label = "status_led_fail";
++			function = LED_FUNCTION_STATUS;
++			gpios = <&qcom_pinmux 9 GPIO_ACTIVE_HIGH>;
++			default-state = "off";
++		};
++
++		led-3 {
++			label = "sata_led";
++			gpios = <&qcom_pinmux 26 GPIO_ACTIVE_HIGH>;
++			default-state = "off";
++		};
++
++		led-4 {
++			label = "status_led_pass";
++			function = LED_FUNCTION_STATUS;
++			gpios = <&qcom_pinmux 53 GPIO_ACTIVE_HIGH>;
++			default-state = "off";
++		};
++	};
++
+ 	soc {
+ 		gsbi@16300000 {
+ 			qcom,mode = <GSBI_PROT_I2C_UART>;
+@@ -64,66 +125,5 @@ sata@29000000 {
+ 			ports-implemented = <0x1>;
+ 			status = "okay";
+ 		};
+-
+-		gpio-keys {
+-			compatible = "gpio-keys";
+-			pinctrl-0 = <&buttons_pins>;
+-			pinctrl-names = "default";
+-
+-			button-1 {
+-				label = "reset";
+-				linux,code = <KEY_RESTART>;
+-				gpios = <&qcom_pinmux 54 GPIO_ACTIVE_LOW>;
+-				linux,input-type = <1>;
+-				debounce-interval = <60>;
+-			};
+-			button-2 {
+-				label = "wps";
+-				linux,code = <KEY_WPS_BUTTON>;
+-				gpios = <&qcom_pinmux 65 GPIO_ACTIVE_LOW>;
+-				linux,input-type = <1>;
+-				debounce-interval = <60>;
+-			};
+-		};
+-
+-		leds {
+-			compatible = "gpio-leds";
+-			pinctrl-0 = <&leds_pins>;
+-			pinctrl-names = "default";
+-
+-			led-0 {
+-				label = "led_usb1";
+-				gpios = <&qcom_pinmux 7 GPIO_ACTIVE_HIGH>;
+-				linux,default-trigger = "usbdev";
+-				default-state = "off";
+-			};
+-
+-			led-1 {
+-				label = "led_usb3";
+-				gpios = <&qcom_pinmux 8 GPIO_ACTIVE_HIGH>;
+-				linux,default-trigger = "usbdev";
+-				default-state = "off";
+-			};
+-
+-			led-2 {
+-				label = "status_led_fail";
+-				function = LED_FUNCTION_STATUS;
+-				gpios = <&qcom_pinmux 9 GPIO_ACTIVE_HIGH>;
+-				default-state = "off";
+-			};
+-
+-			led-3 {
+-				label = "sata_led";
+-				gpios = <&qcom_pinmux 26 GPIO_ACTIVE_HIGH>;
+-				default-state = "off";
+-			};
+-
+-			led-4 {
+-				label = "status_led_pass";
+-				function = LED_FUNCTION_STATUS;
+-				gpios = <&qcom_pinmux 53 GPIO_ACTIVE_HIGH>;
+-				default-state = "off";
+-			};
+-		};
+ 	};
+ };
+-- 
+2.34.1
 
