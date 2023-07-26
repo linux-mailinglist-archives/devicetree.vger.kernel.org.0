@@ -2,75 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F388762835
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 03:38:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1FBE7762881
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 04:06:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229603AbjGZBia (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jul 2023 21:38:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42988 "EHLO
+        id S230157AbjGZCGD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jul 2023 22:06:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49926 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229472AbjGZBi3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 21:38:29 -0400
-Received: from mail-qk1-x72d.google.com (mail-qk1-x72d.google.com [IPv6:2607:f8b0:4864:20::72d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE77626A2
-        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 18:38:27 -0700 (PDT)
-Received: by mail-qk1-x72d.google.com with SMTP id af79cd13be357-76754b9eac0so544386785a.0
-        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 18:38:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1690335507; x=1690940307;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=GbgWKCuCj/Omvba/7tqwaalVu90LErpD4j/GDLXb99c=;
-        b=LoqBio8RQOAMQhcmOJcaLwZR7UcjmPZNKoe7hH+aPnkE6d1dz9BPAVh7NC5TAH2AAk
-         hMWjvFcunsKnoNpl/N2bKrLgk7xF8bBFaTNe2lQtZB1/HhgH5AQaQojQHYk9Wb3GmHll
-         xmvKZ8F+7bj8eP4f0duRQDmfQR3r8Es0L4JFGzUaCzYw92Yg0G0zzSU4FgQkx112MnNi
-         ewquHnC0idqwbzxLCYZ6l1yJneyZYT6oByiP2OIeIfypJU+B3yr8QASxI66pkBLjb/LC
-         SQyFp83Ns7IaRvicopGdBtI809JkOGs/D+rscfrgvpnfHu0y3n1WaBjkrg0UqQKVLh19
-         A9yQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690335507; x=1690940307;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=GbgWKCuCj/Omvba/7tqwaalVu90LErpD4j/GDLXb99c=;
-        b=i/gCZ4aKCArUbLcm1nTAQioyTZas8gyjY7imUL3HyPDt2G0l6saEtrvLH/rBE9vRMb
-         nYO0MGnDL5N/7YkxrMZstfX3iNbJwKJfha9iJz7YZfavzd+nOWCRPh8vrYHWShU567g+
-         cqS75KJfVAj3EMiYNYEsTcX9oMl/HQAv3Bv1ebnxGeA4wGjSxPGcCn77wQlbfbz7ab/T
-         JLuKIqmPB3aC0qzj9P+VEeY4KzNNtrxMe6p/jR7jkodl9OsZZ0E9gsRpFHDMEYd63PR9
-         aQAzVewHIM9Ql3IqU2ts6RHD4kRYlmbo6mglfh2v4onmHQDjUW4VWlTKEp31gkWPoHwq
-         yJPQ==
-X-Gm-Message-State: ABy/qLbF2RBI0NHcl+10QoPXSEtRnI0LR+KtY6ml9ajS/ulIyl/K+Vkv
-        eiYCB9lQjf3FXuIFRRs67BhxMweHH7fd775IbpeYieFNDPs1V4e7B7Y=
-X-Google-Smtp-Source: APBJJlENQF4ezVhy4E842gW8nERhoJjO63HZHSlEnPGEiUaMRktnohAfSIUQCOqjsJw/CrUTwgKfGehUfslxRGNq14c=
-X-Received: by 2002:a05:620a:2f8:b0:76c:4d4c:7940 with SMTP id
- a24-20020a05620a02f800b0076c4d4c7940mr590338qko.72.1690335507122; Tue, 25 Jul
- 2023 18:38:27 -0700 (PDT)
+        with ESMTP id S229437AbjGZCGC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jul 2023 22:06:02 -0400
+Received: from mx0a-00069f02.pphosted.com (mx0a-00069f02.pphosted.com [205.220.165.32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 775F22109;
+        Tue, 25 Jul 2023 19:06:01 -0700 (PDT)
+Received: from pps.filterd (m0246617.ppops.net [127.0.0.1])
+        by mx0b-00069f02.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36PJIxSH010918;
+        Wed, 26 Jul 2023 02:05:19 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=from : to : cc :
+ subject : date : message-id : in-reply-to : references : mime-version :
+ content-type : content-transfer-encoding; s=corp-2023-03-30;
+ bh=JrohrvYFYBpyLFEvX7bSzr05sbQmVxirNILK7N6puiU=;
+ b=nxse6/bLr/dKig4AUNGK/YMBSYfiDXMPZH9UaRNRTn0Dv8ytQfA3h5fA1jitIu5faTs0
+ ONGSqIDxx/viooBqDwfjQjesQN0FsB54ty/POek+wNq1tG8HZVFyoB1OKBDqfllWFGYb
+ 44xLwIyHNnzQ6eJAgh3TbQAUeWBBSOugr/j+Hi9Mq3Vreop+UWUmBp1aWSFXHuP5ZwlV
+ 3D99bUdp9tlRtpey2TTsmftNs5rNktc8Ev7hGKJ1hTOrBAM9cxzQGj1FmvEXSgwbtIe+
+ JJI0w1whjpA1mc7/4iy501x3vEKWGXA4EEYqBNH+71tLq3RIMjNdXpVg+1kfQJs5WRs1 HQ== 
+Received: from phxpaimrmta02.imrmtpd1.prodappphxaev1.oraclevcn.com (phxpaimrmta02.appoci.oracle.com [147.154.114.232])
+        by mx0b-00069f02.pphosted.com (PPS) with ESMTPS id 3s07nupcga-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Wed, 26 Jul 2023 02:05:18 +0000
+Received: from pps.filterd (phxpaimrmta02.imrmtpd1.prodappphxaev1.oraclevcn.com [127.0.0.1])
+        by phxpaimrmta02.imrmtpd1.prodappphxaev1.oraclevcn.com (8.17.1.19/8.17.1.19) with ESMTP id 36PNhxij022977;
+        Wed, 26 Jul 2023 02:05:18 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+        by phxpaimrmta02.imrmtpd1.prodappphxaev1.oraclevcn.com (PPS) with ESMTPS id 3s05j5jd5a-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Wed, 26 Jul 2023 02:05:18 +0000
+Received: from phxpaimrmta02.imrmtpd1.prodappphxaev1.oraclevcn.com (phxpaimrmta02.imrmtpd1.prodappphxaev1.oraclevcn.com [127.0.0.1])
+        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 36Q253Nj038905;
+        Wed, 26 Jul 2023 02:05:17 GMT
+Received: from ca-mkp2.ca.oracle.com.com (mpeterse-ol9.allregionaliads.osdevelopmeniad.oraclevcn.com [100.100.251.135])
+        by phxpaimrmta02.imrmtpd1.prodappphxaev1.oraclevcn.com (PPS) with ESMTP id 3s05j5jcwf-10;
+        Wed, 26 Jul 2023 02:05:17 +0000
+From:   "Martin K. Petersen" <martin.petersen@oracle.com>
+To:     "James E.J. Bottomley" <jejb@linux.ibm.com>,
+        Rob Herring <robh@kernel.org>
+Cc:     "Martin K . Petersen" <martin.petersen@oracle.com>,
+        devicetree@vger.kernel.org, linux-scsi@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] scsi: Explicitly include correct DT includes
+Date:   Tue, 25 Jul 2023 22:04:55 -0400
+Message-Id: <169033702311.2256288.16269260976024277897.b4-ty@oracle.com>
+X-Mailer: git-send-email 2.40.1
+In-Reply-To: <20230714175052.4066150-1-robh@kernel.org>
+References: <20230714175052.4066150-1-robh@kernel.org>
 MIME-Version: 1.0
-References: <20230722-upstream-beaglev-ahead-dts-v2-0-a470ab8fe806@baylibre.com>
- <20230722-upstream-beaglev-ahead-dts-v2-3-a470ab8fe806@baylibre.com> <ZMBmalZwaRCiy2BG@xhacker>
-In-Reply-To: <ZMBmalZwaRCiy2BG@xhacker>
-From:   Drew Fustini <dfustini@baylibre.com>
-Date:   Tue, 25 Jul 2023 18:38:16 -0700
-Message-ID: <CAFTh7p3m+4kLxPV+NXJWSRW-ZDZv930z=SbfuELmgcZFnQ4fig@mail.gmail.com>
-Subject: Re: [PATCH v2 3/3] MAINTAINERS: add reviewer for T-Head RISC-V SoC support
-To:     Jisheng Zhang <jszhang@kernel.org>
-Cc:     Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Conor Dooley <conor@kernel.org>,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Robert Nelson <robertcnelson@beagleboard.org>,
-        Jason Kridner <jkridner@beagleboard.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-07-25_14,2023-07-25_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0 spamscore=0 adultscore=0
+ phishscore=0 bulkscore=0 malwarescore=0 mlxscore=0 mlxlogscore=688
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2306200000
+ definitions=main-2307260016
+X-Proofpoint-ORIG-GUID: atNirJIwQ5ZFNvcUEPATVJk0CYIXmNYh
+X-Proofpoint-GUID: atNirJIwQ5ZFNvcUEPATVJk0CYIXmNYh
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,26 +77,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 25, 2023 at 5:30=E2=80=AFPM Jisheng Zhang <jszhang@kernel.org> =
-wrote:
->
-> On Mon, Jul 24, 2023 at 10:20:40AM -0700, Drew Fustini wrote:
-> > I will maintain support for the TH1520-based BeagleV Ahead board so
-> > adding myself as a reviewer for T-Head SoC patches.
->
-> Hi Drew,
->
-> Thanks for your interest in maintaining the SoC support part. However,
-> maintainership involves active reviewing and maintaining the whole SoC
-> support part and not just specific board part, although currently, the
-> SoC support in mainline is minimal. I'd like to see your patch
-> reviewing, testing and so on.
+On Fri, 14 Jul 2023 11:50:52 -0600, Rob Herring wrote:
 
-Yes, that is understandable. I was just adding a Reviewer entry as I
-am supporting the BeagleV Ahead and I would like to test patches
-related to the th1520.  But it is not too big of a deal as I am also
-subscribed to all the relevant mailing lists that would receive
-patches.
+> The DT of_device.h and of_platform.h date back to the separate
+> of_platform_bus_type before it as merged into the regular platform bus.
+> As part of that merge prepping Arm DT support 13 years ago, they
+> "temporarily" include each other. They also include platform_device.h
+> and of.h. As a result, there's a pretty much random mix of those include
+> files used throughout the tree. In order to detangle these headers and
+> replace the implicit includes with struct declarations, users need to
+> explicitly include the correct includes.
+> 
+> [...]
 
-Thanks,
-Drew
+Applied to 6.6/scsi-queue, thanks!
+
+[1/1] scsi: Explicitly include correct DT includes
+      https://git.kernel.org/mkp/scsi/c/109a2a48fc3d
+
+-- 
+Martin K. Petersen	Oracle Linux Engineering
