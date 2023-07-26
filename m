@@ -2,122 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 525A37635E6
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 14:13:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5064076361D
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 14:18:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233171AbjGZMNG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jul 2023 08:13:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59128 "EHLO
+        id S232592AbjGZMSu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jul 2023 08:18:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34998 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233804AbjGZMNA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 08:13:00 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3B0D1739;
-        Wed, 26 Jul 2023 05:12:59 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 2CC1A61ACC;
-        Wed, 26 Jul 2023 12:12:59 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 73356C433C8;
-        Wed, 26 Jul 2023 12:12:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690373578;
-        bh=Ke8AONnAOWupVgvu9a1rrtccA5xWjVMePJQxM8Ht3Kc=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=gYrqFr8wvj2MJmmwmwf8M6I8rekTV9+bxmW2rqLD55Qm7Z/X+3fqo2oPfopkxdlCi
-         n241AQBCMxM7eFrih3i3Sbv5AKj0bq28ozziIAExFd7E/RXMMNS1aKn+yJARtnBmU4
-         FfN14X79faCpLGre6x+vnvwoxjIsG/L/ooLw+V13rcjVx7tIPmq/1O2zG9aawBpzTf
-         uhcvPI4MEqZ0fNFaHRBAISQWggi8tN88wV4MzFoUqwVN0pOsQ3BgyiTak4/MrtL+0t
-         6GpQd+/9rUTZVGi45edSMIe9j4qSBoulHPW7gK71wysfs2CSJoMHtELswVidt7IBP2
-         x+DypAIC/tqTg==
-Received: (nullmailer pid 1182938 invoked by uid 1000);
-        Wed, 26 Jul 2023 12:12:54 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+        with ESMTP id S229980AbjGZMSt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 08:18:49 -0400
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 868EA10EC
+        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 05:18:47 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-51e619bcbf9so8865829a12.3
+        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 05:18:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1690373926; x=1690978726;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=6azGF30s6/qv2j89iv2+5FE7ffgv+cjytR45PZTjURM=;
+        b=WgZHVtxRjhde7m+/5Hh2CAyWb0YjxTNEuzB3aKBQwzX7L7TYU9pKTGHiy/ojarmK6w
+         g5FvbKCTo7l+2AX+NY+/XTORp8YksV6ZoiZukCAYhzlOHqJ0+Snvf0aEWzdu3nUOq3Ay
+         6M2DWtQlT9ejpk44gpM1McUcJuI/02r/UVXRcXdEtdn555EhGwJVj+0z70xq9AOvUfHB
+         vzq+0aXgYeL+8a+fGn0e59QT6zGG3bx3hdtgLWIDUPfavTOm91BsJsUQ2o/t1dXuPUYC
+         Wwy7tjhwZxnDy8ztuvPtt9Ppi0XhDbP3VOTLBZ8czmxe3KZwYrlpexEqUnz5SgD/q/xB
+         KEmw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690373926; x=1690978726;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=6azGF30s6/qv2j89iv2+5FE7ffgv+cjytR45PZTjURM=;
+        b=gVTbiclwn253XU4Qnu81juEB5PVoFHZXwBUNp5J2b3JOdWM5ZzgN/rKPhV4kdA3Lws
+         61+G3ZcZhQxlOWgbPvvlEHC5Mooxzyz0ph3fqo6eIEVYlB1OpMFrnVtrZ+SBTnbYNb4Z
+         qK75ywZGBWHndYK7BfPqWsp3A3SZx3UQRzNepItY60B7PdP/FTLQWwuhv0gshWtdp6Yk
+         iNKBx1hJq3GYwymbFigbngP+jT4Ly/2wDk7kwT2Al9CC1mw2BCwoxNgAoPKOQQWMjPdY
+         NbfJjt0cObvJ8Pbvvb3mWtsQXEZzg41I3oKmxZs/XSwfkjq6C1uB6x0zzDi+6ePb4IGR
+         wEiQ==
+X-Gm-Message-State: ABy/qLajmcq3Ry4xjEePJuBKQm51UFp4kYGRNWdf5Fz0VP5pPIpLOO3n
+        S9GDp6DYtJXpnwHul2o/elKing==
+X-Google-Smtp-Source: APBJJlGx4zCyAzfvMl5ZN5hMuJmuXDkt+xm6nAibmH/Npd4jx3KsAzUuvUrdfx53PCXbsl/aHTggNA==
+X-Received: by 2002:aa7:c702:0:b0:521:a99b:a233 with SMTP id i2-20020aa7c702000000b00521a99ba233mr1426769edq.10.1690373926004;
+        Wed, 26 Jul 2023 05:18:46 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id p6-20020a05640210c600b0052217b3a10dsm6017420edu.63.2023.07.26.05.18.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 26 Jul 2023 05:18:45 -0700 (PDT)
+Message-ID: <2df8d695-62aa-329f-f355-d6081d970ec2@linaro.org>
+Date:   Wed, 26 Jul 2023 14:18:43 +0200
 MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Gatien Chevallier <gatien.chevallier@foss.st.com>
-Cc:     linux-mmc@vger.kernel.org, gregkh@linuxfoundation.org,
-        lee@kernel.org, catalin.marinas@arm.com, jic23@kernel.org,
-        hugues.fruchet@foss.st.com, richardcochran@gmail.com,
-        will@kernel.org, arnd@kernel.org, davem@davemloft.net,
-        Oleksii Moisieiev <oleksii_moisieiev@epam.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Oleksii_Moisieiev@epam.com, linux-phy@lists.infradead.org,
-        linux-crypto@vger.kernel.org, kuba@kernel.org,
-        linux-spi@vger.kernel.org, linux-usb@vger.kernel.org,
-        vkoul@kernel.org, linux-arm-kernel@lists.infradead.org,
-        edumazet@google.com, devicetree@vger.kernel.org,
-        linux-iio@vger.kernel.org, alsa-devel@alsa-project.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        herbert@gondor.apana.org.au, linux-i2c@vger.kernel.org,
-        alexandre.torgue@foss.st.com, mchehab@kernel.org,
-        robh+dt@kernel.org, linux-kernel@vger.kernel.org,
-        ulf.hansson@linaro.org, netdev@vger.kernel.org,
-        andi.shyti@kernel.org, olivier.moysan@foss.st.com,
-        linux-serial@vger.kernel.org, pabeni@redhat.com,
-        arnaud.pouliquen@foss.st.com, dmaengine@vger.kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-media@vger.kernel.org,
-        conor+dt@kernel.org, fabrice.gasnier@foss.st.com
-In-Reply-To: <20230726083810.232100-2-gatien.chevallier@foss.st.com>
-References: <20230726083810.232100-1-gatien.chevallier@foss.st.com>
- <20230726083810.232100-2-gatien.chevallier@foss.st.com>
-Message-Id: <169037357425.1182922.8121576517266921442.robh@kernel.org>
-Subject: Re: [IGNORE][PATCH v3 01/11] dt-bindings: Document common device
- controller bindings
-Date:   Wed, 26 Jul 2023 06:12:54 -0600
-X-Spam-Status: No, score=-6.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
-        DKIM_SIGNED,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v2] regulator: dt-bindings: dlg,slg51000: Convert to DT
+ schema
+Content-Language: en-US
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Support Opensource <support.opensource@diasemi.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Eric Jeong <eric.jeong.opensource@diasemi.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20230725063132.42132-1-krzysztof.kozlowski@linaro.org>
+ <d33e5dbc-ca38-4702-903a-b36f9a824391@sirena.org.uk>
+ <1c3684e3-b88a-0476-9376-19d07956e261@linaro.org>
+ <4859d289-f4e2-4676-9be4-182f7dbda8b6@sirena.org.uk>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <4859d289-f4e2-4676-9be4-182f7dbda8b6@sirena.org.uk>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On Wed, 26 Jul 2023 10:38:00 +0200, Gatien Chevallier wrote:
-> From: Oleksii Moisieiev <Oleksii_Moisieiev@epam.com>
+On 26/07/2023 13:55, Mark Brown wrote:
+> On Wed, Jul 26, 2023 at 09:32:17AM +0200, Krzysztof Kozlowski wrote:
+>> On 25/07/2023 12:43, Mark Brown wrote:
 > 
-> Introducing of the common device controller bindings for the controller
-> provider and consumer devices. Those bindings are intended to allow
-> divided system on chip into muliple domains, that can be used to
-> configure hardware permissions.
+>>> This is just adding an OS specific note in the description, it's not
+>>> actually marking the properties as required.
 > 
-> Signed-off-by: Oleksii Moisieiev <oleksii_moisieiev@epam.com>
-> ---
->  .../feature-domain-controller.yaml            | 84 +++++++++++++++++++
->  1 file changed, 84 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/feature-controllers/feature-domain-controller.yaml
+>> They cannot be required, because it depends whether the regulator is
+>> used or not. IOW, they are not required for unused regulators, which is
+>> not possible to encode in the schema.
 > 
+> Oh, you mean if the regulator is in use in the system rather than if
+> it's enabled!
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Enabled as "always-on" or "boot-on" could be encoded in the schema with
+multiple if::then:. But it is not enough, because regulators can be
+enabled on demand by drivers. So that's what I meant by "used".
 
-yamllint warnings/errors:
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/feature-controllers/feature-domain-controller.yaml: title: 'Generic Domain Controller bindings' should not be valid under {'pattern': '([Bb]inding| [Ss]chema)'}
-	hint: Everything is a binding/schema, no need to say it. Describe what hardware the binding is for.
-	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
+>  I suspect that there's a requirement that either at least
+> one of the supplies be provided so that the chip I/O works, or there's
+> some other currently undocumented supply that is required for that
+> reason.
 
-doc reference errors (make refcheckdocs):
+I can add requirement of at least one supply. I don't think it changes
+much, but sure.
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230726083810.232100-2-gatien.chevallier@foss.st.com
+> 
+> BTW there's also a formatting error:
+> 
+> +  vin3-supply:
+> +    description:
+> +      Input supply for ldo3, required if regulatoris enabled
+> 
+> missing space before is.
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
+I'll fix with above at least one supply required.
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+Best regards,
+Krzysztof
 
