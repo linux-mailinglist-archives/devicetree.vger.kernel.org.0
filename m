@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3048C762C92
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 09:06:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6EEF9762C95
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 09:06:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232257AbjGZHGW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jul 2023 03:06:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40124 "EHLO
+        id S229913AbjGZHG2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jul 2023 03:06:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40856 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231855AbjGZHFa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 03:05:30 -0400
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0199549D1
-        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 00:03:37 -0700 (PDT)
-Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-522294c0d5bso4376490a12.2
-        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 00:03:37 -0700 (PDT)
+        with ESMTP id S229936AbjGZHFn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 03:05:43 -0400
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53BF849E1
+        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 00:03:39 -0700 (PDT)
+Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-51e429e1eabso9372123a12.2
+        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 00:03:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690355015; x=1690959815;
+        d=linaro.org; s=google; t=1690355017; x=1690959817;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=8KDOr8lmHhSQc4kSLIBTngZ/PO46LSeqTh+hZ/Wh1rk=;
-        b=PdwjHsUAYpm2rxK8shLHLhFMW/8Geg9oWWPt/GAjP2tNoQcI9/cnSNqdWjSQNbq5Pi
-         Pcs8g3lPlbXgLJsjvOo/CBLMXQCU5frh+HkjVCyi++maUcMrN50i7zahD9rOt+ZSszRw
-         he1tg4GHgSvm7Dd3p0KcyzlS9VIdDy53wbeExZdVi5aXMY6DXdw3pWsEyg1eD6Nm2ivB
-         Z7IAln7yvRVxnrO07e9gaHHEcwSkKtKAhdrnMU2ukN8S5x8QS85bSYtaNz2KDJVX3ysf
-         jXvC60uov9gJMA3axrNetLSkYL60An3qXsopMurrLI8+UdV+LDKHIMZ3ec26vYWhmoKb
-         FraA==
+        bh=F4NEIl0PF0jWLTgC3MG7VZaECShTTB2BR5eqLLfzHn0=;
+        b=fJBgXQ+8eV+aY5RpuuTg+SXdJ82OameqMpnOM06NXyGaJkQa7LSY8oytbkt9cvaZuL
+         XRBu2MGH9aKCYb1L7h//H8eFqvXRjdrTHzhO3820qwDp6MuJcia5+t5M9ixdWfOlxjYW
+         /SAH6L8ADxt7NnHTemHkeh3n0shIfBOT23sOoxVY/rXTkSx7zhHKWuz5mv22Geq+iW4E
+         ICpM7lTYjJeeGifNGSJ48vLLXbVedBeaO1Cu/xfTldupF0JYmiaXca6hrnRX79onNPRG
+         G0iZVJt5rZ4p1+HuN5vH597gr1udFu+8mwANey/g9Hs8/ZZEzA10A1r/yra1NOeHHZto
+         urqg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690355015; x=1690959815;
+        d=1e100.net; s=20221208; t=1690355017; x=1690959817;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=8KDOr8lmHhSQc4kSLIBTngZ/PO46LSeqTh+hZ/Wh1rk=;
-        b=aF7qG+r+ud2ydQrqfUg6MAmTSpv7zuXT9xUkT4eoMJrY7UZStuWm9OfIysCg3Yug9m
-         +t+EFtsZh6wOgQLwiCKeDRBD1M5xt++cPLgADTAjvVAGIcu87D+RHBwyRFEtLSQy7Fjk
-         BCR4EW4ygFILxNlJLN6FaqKMclU10X7gcrn73/ZiunLMuEWhAKcbmAeWzo7aWIBXO9aQ
-         aUBDoJLgwKxK2lpFQyrdEXEdplogsbCE2G+FGQMNlReKGu5GyJ6TXFhv+D39lX0eBSI4
-         2qPFZKlZCip87n67axKMy2QsqB2G/+yP+fft3M9+ZeUmKFACmXb+ix8hhEKoqZw65BYG
-         lOvA==
-X-Gm-Message-State: ABy/qLYc2SqFz0/QATsl2r/OdA85tGn7xJ7QtnKoi9EAAY+Zxbb8y/3+
-        WVctus7yUK0cJ9l9Of/wUyyR2w==
-X-Google-Smtp-Source: APBJJlFrQ7uiahYO7hvBRb11BV4XesFvHQuCYhuaQHwgQ7xYZrKDEkBE+yyKvIQcMaeYcivkC9ir7Q==
-X-Received: by 2002:a05:6402:180f:b0:51d:88b2:872e with SMTP id g15-20020a056402180f00b0051d88b2872emr615987edy.42.1690355015815;
-        Wed, 26 Jul 2023 00:03:35 -0700 (PDT)
+        bh=F4NEIl0PF0jWLTgC3MG7VZaECShTTB2BR5eqLLfzHn0=;
+        b=C5ZqaxQNBe+h1XzDMtqxq8zMjnWkmTQ3t6EtwTnZbi7MW01cmAw2Yu22JX7+cqWdzy
+         GkBqMlidavA4aFNUcPHG55f6awCbRCKb5qvQGPWho4cNSuSiYUdE3HSPZt+GNrbnWXHV
+         MQLzzaq42aiDmZLPehmLD4I3PwW9sfa2jK3FCkrfeRHCUNjJedg22TVDsm5Phhs9UJeC
+         ayCsHEZyuKCucrOsCY/iGKNWI8b6fZZOncM2SsWp0zkDftpCKqCZjRNwVJWyqy9Iu5x1
+         PaqarLes1lUWWEszaWLtn41wuy665YpGY61bGZcbHpQvAwXhBvmEoOZPM1Dt7CkkxeQu
+         Moxg==
+X-Gm-Message-State: ABy/qLZru0ADne4zHUxMJSebs5b+c/rilLDOmezbokwnRlTZpfvYWi6z
+        7KDwBquG1RRK46sbQrGTNqOzXQ==
+X-Google-Smtp-Source: APBJJlHK9AaezVXLCEASRuLyz474dcZIyZkKzKbObKu8+M+Dcd8Ek/phvOVZNz3xG5x+7GxIQyVoKw==
+X-Received: by 2002:aa7:c901:0:b0:522:4766:6990 with SMTP id b1-20020aa7c901000000b0052247666990mr810358edt.6.1690355017598;
+        Wed, 26 Jul 2023 00:03:37 -0700 (PDT)
 Received: from krzk-bin.. ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id dy16-20020a05640231f000b005224f840130sm1572003edb.60.2023.07.26.00.03.34
+        by smtp.gmail.com with ESMTPSA id dy16-20020a05640231f000b005224f840130sm1572003edb.60.2023.07.26.00.03.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 Jul 2023 00:03:35 -0700 (PDT)
+        Wed, 26 Jul 2023 00:03:37 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -64,9 +64,9 @@ To:     Rob Herring <robh+dt@kernel.org>,
         linux-kernel@vger.kernel.org,
         linux-stm32@st-md-mailman.stormreply.com
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 5/8] ARM: dts: imx23: drop incorrect reg in fixed regulators
-Date:   Wed, 26 Jul 2023 09:03:19 +0200
-Message-Id: <20230726070322.103871-5-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 6/8] ARM: dts: imx25: drop incorrect reg in fixed regulators
+Date:   Wed, 26 Jul 2023 09:03:20 +0200
+Message-Id: <20230726070322.103871-6-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230726070322.103871-1-krzysztof.kozlowski@linaro.org>
 References: <20230726070322.103871-1-krzysztof.kozlowski@linaro.org>
@@ -75,7 +75,7 @@ Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -87,15 +87,16 @@ property.  Move them out of "regulators" node to top-level.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm/boot/dts/nxp/mxs/imx23-olinuxino.dts | 23 +++++++------------
- .../boot/dts/nxp/mxs/imx23-stmp378x_devb.dts  | 19 +++++----------
- 2 files changed, 14 insertions(+), 28 deletions(-)
+ ...25-eukrea-mbimxsd25-baseboard-cmo-qvga.dts | 25 +++-----
+ arch/arm/boot/dts/nxp/imx/imx25-karo-tx25.dts | 21 +++----
+ arch/arm/boot/dts/nxp/imx/imx25-pdk.dts       | 62 ++++++++-----------
+ 3 files changed, 42 insertions(+), 66 deletions(-)
 
-diff --git a/arch/arm/boot/dts/nxp/mxs/imx23-olinuxino.dts b/arch/arm/boot/dts/nxp/mxs/imx23-olinuxino.dts
-index 0729e72f2283..229e727b222e 100644
---- a/arch/arm/boot/dts/nxp/mxs/imx23-olinuxino.dts
-+++ b/arch/arm/boot/dts/nxp/mxs/imx23-olinuxino.dts
-@@ -101,21 +101,14 @@ usb0: usb@80080000 {
+diff --git a/arch/arm/boot/dts/nxp/imx/imx25-eukrea-mbimxsd25-baseboard-cmo-qvga.dts b/arch/arm/boot/dts/nxp/imx/imx25-eukrea-mbimxsd25-baseboard-cmo-qvga.dts
+index 7d4301b22b90..fc8a502fc957 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx25-eukrea-mbimxsd25-baseboard-cmo-qvga.dts
++++ b/arch/arm/boot/dts/nxp/imx/imx25-eukrea-mbimxsd25-baseboard-cmo-qvga.dts
+@@ -30,22 +30,15 @@ qvga_timings: 320x240 {
  		};
  	};
  
@@ -104,56 +105,137 @@ index 0729e72f2283..229e727b222e 100644
 -		#address-cells = <1>;
 -		#size-cells = <0>;
 -
--		reg_usb0_vbus: regulator@0 {
+-		reg_lcd_3v3: regulator@0 {
 -			compatible = "regulator-fixed";
 -			reg = <0>;
--			regulator-name = "usb0_vbus";
--			regulator-min-microvolt = <5000000>;
--			regulator-max-microvolt = <5000000>;
--			enable-active-high;
--			startup-delay-us = <300>; /* LAN9215 requires a POR of 200us minimum */
--			gpio = <&gpio0 17 0>;
--		};
-+	reg_usb0_vbus: regulator-0 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "usb0_vbus";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		enable-active-high;
-+		startup-delay-us = <300>; /* LAN9215 requires a POR of 200us minimum */
-+		gpio = <&gpio0 17 0>;
- 	};
- 
- 	leds {
-diff --git a/arch/arm/boot/dts/nxp/mxs/imx23-stmp378x_devb.dts b/arch/arm/boot/dts/nxp/mxs/imx23-stmp378x_devb.dts
-index da4b88f32eaa..69124ba6a666 100644
---- a/arch/arm/boot/dts/nxp/mxs/imx23-stmp378x_devb.dts
-+++ b/arch/arm/boot/dts/nxp/mxs/imx23-stmp378x_devb.dts
-@@ -59,18 +59,11 @@ duart: serial@80070000 {
- 		};
- 	};
- 
--	regulators {
--		compatible = "simple-bus";
--		#address-cells = <1>;
--		#size-cells = <0>;
--
--		reg_vddio_sd0: regulator@0 {
--			compatible = "regulator-fixed";
--			reg = <0>;
--			regulator-name = "vddio-sd0";
+-			pinctrl-names = "default";
+-			pinctrl-0 = <&pinctrl_reg_lcd_3v3>;
+-			regulator-name = "lcd-3v3";
 -			regulator-min-microvolt = <3300000>;
 -			regulator-max-microvolt = <3300000>;
--			gpio = <&gpio1 29 0>;
+-			gpio = <&gpio1 26 GPIO_ACTIVE_HIGH>;
+-			enable-active-high;
 -		};
-+	reg_vddio_sd0: regulator-0 {
++	reg_lcd_3v3: regulator-0 {
 +		compatible = "regulator-fixed";
-+		regulator-name = "vddio-sd0";
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_reg_lcd_3v3>;
++		regulator-name = "lcd-3v3";
 +		regulator-min-microvolt = <3300000>;
 +		regulator-max-microvolt = <3300000>;
-+		gpio = <&gpio1 29 0>;
++		gpio = <&gpio1 26 GPIO_ACTIVE_HIGH>;
++		enable-active-high;
  	};
  };
+ 
+diff --git a/arch/arm/boot/dts/nxp/imx/imx25-karo-tx25.dts b/arch/arm/boot/dts/nxp/imx/imx25-karo-tx25.dts
+index 57d5ade5aa46..458b94d3d4ed 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx25-karo-tx25.dts
++++ b/arch/arm/boot/dts/nxp/imx/imx25-karo-tx25.dts
+@@ -14,20 +14,13 @@ chosen {
+ 		stdout-path = &uart1;
+ 	};
+ 
+-	regulators {
+-		compatible = "simple-bus";
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+-
+-		reg_fec_phy: regulator@0 {
+-			compatible = "regulator-fixed";
+-			reg = <0>;
+-			regulator-name = "fec-phy";
+-			regulator-min-microvolt = <3300000>;
+-			regulator-max-microvolt = <3300000>;
+-			gpio = <&gpio4 9 0>;
+-			enable-active-high;
+-		};
++	reg_fec_phy: regulator-0 {
++		compatible = "regulator-fixed";
++		regulator-name = "fec-phy";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		gpio = <&gpio4 9 0>;
++		enable-active-high;
+ 	};
+ 
+ 	memory@80000000 {
+diff --git a/arch/arm/boot/dts/nxp/imx/imx25-pdk.dts b/arch/arm/boot/dts/nxp/imx/imx25-pdk.dts
+index fb66884d8a2f..04f4b127a172 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx25-pdk.dts
++++ b/arch/arm/boot/dts/nxp/imx/imx25-pdk.dts
+@@ -16,45 +16,35 @@ memory@80000000 {
+ 		reg = <0x80000000 0x4000000>;
+ 	};
+ 
+-	regulators {
+-		compatible = "simple-bus";
+-		#address-cells = <1>;
+-		#size-cells = <0>;
++	reg_fec_3v3: regulator-0 {
++		compatible = "regulator-fixed";
++		regulator-name = "fec-3v3";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		gpio = <&gpio2 3 0>;
++		enable-active-high;
++	};
+ 
+-		reg_fec_3v3: regulator@0 {
+-			compatible = "regulator-fixed";
+-			reg = <0>;
+-			regulator-name = "fec-3v3";
+-			regulator-min-microvolt = <3300000>;
+-			regulator-max-microvolt = <3300000>;
+-			gpio = <&gpio2 3 0>;
+-			enable-active-high;
+-		};
++	reg_2p5v: regulator-1 {
++		compatible = "regulator-fixed";
++		regulator-name = "2P5V";
++		regulator-min-microvolt = <2500000>;
++		regulator-max-microvolt = <2500000>;
++	};
+ 
+-		reg_2p5v: regulator@1 {
+-			compatible = "regulator-fixed";
+-			reg = <1>;
+-			regulator-name = "2P5V";
+-			regulator-min-microvolt = <2500000>;
+-			regulator-max-microvolt = <2500000>;
+-		};
++	reg_3p3v: regulator-2 {
++		compatible = "regulator-fixed";
++		regulator-name = "3P3V";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++	};
+ 
+-		reg_3p3v: regulator@2 {
+-			compatible = "regulator-fixed";
+-			reg = <2>;
+-			regulator-name = "3P3V";
+-			regulator-min-microvolt = <3300000>;
+-			regulator-max-microvolt = <3300000>;
+-		};
+-
+-		reg_can_3v3: regulator@3 {
+-			compatible = "regulator-fixed";
+-			reg = <3>;
+-			regulator-name = "can-3v3";
+-			regulator-min-microvolt = <3300000>;
+-			regulator-max-microvolt = <3300000>;
+-			gpio = <&gpio4 6 0>;
+-		};
++	reg_can_3v3: regulator-3 {
++		compatible = "regulator-fixed";
++		regulator-name = "can-3v3";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		gpio = <&gpio4 6 0>;
+ 	};
+ 
+ 	sound {
 -- 
 2.34.1
 
