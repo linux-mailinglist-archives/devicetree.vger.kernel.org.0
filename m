@@ -2,85 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F591763C48
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 18:21:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D2855763C65
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 18:27:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229799AbjGZQVs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jul 2023 12:21:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45290 "EHLO
+        id S231224AbjGZQ07 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jul 2023 12:26:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47422 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229929AbjGZQVr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 12:21:47 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5273F2696;
-        Wed, 26 Jul 2023 09:21:46 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 9343D61B9D;
-        Wed, 26 Jul 2023 16:21:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B51C9C433C8;
-        Wed, 26 Jul 2023 16:21:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690388505;
-        bh=18NDTqqHohoTLr90XQLxpr4K5+AZj+2bL/ajmxJtfhc=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=EVBZg2ZbLdRVYWcCdqu3F5jx+QQU/aWzKtgtSWBdD+3DrwcbLPhCALBN0nkQANsFY
-         hHJgx5qyPifqGPY3HrU9YntFvjNF7pJod4M1TCGVAOZn3FbNN7rrQm7pGauGcdWcSJ
-         KSPMWbjSYgsZxLZLU2LWhkSt64nF8GIKOVypy+Nvi3t6/MxeU1licJ2W2ItROHfY28
-         4vD+8KQ35/M5dZiWkUeGpK1/Hw/T8K84t8QDtjQA0N6etOkfiJRVMuJbsuom4Iak5U
-         bmSY5+ucnbhUkTxdvqyKdzPDJ33bxyJ95qd3fdM/jLjdopjMuMNo/gY/8jS2vBaJZP
-         wi8w7X8PJDxeA==
-From:   Conor Dooley <conor@kernel.org>
-To:     Conor Dooley <conor+dt@kernel.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Hal Feng <hal.feng@starfivetech.com>,
-        Walker Chen <walker.chen@starfivetech.com>
-Cc:     conor@kernel.org, Conor Dooley <conor.dooley@microchip.com>,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v1 0/2] Add dma and tdm nodes for StarFive JH7110 SOC
-Date:   Wed, 26 Jul 2023 17:21:39 +0100
-Message-Id: <20230726-upriver-net-8490aa69df8a@spud>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230724065158.925-1-walker.chen@starfivetech.com>
-References: <20230724065158.925-1-walker.chen@starfivetech.com>
+        with ESMTP id S231357AbjGZQ06 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 12:26:58 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6FD732D4F;
+        Wed, 26 Jul 2023 09:26:31 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 36QGQH7e009437;
+        Wed, 26 Jul 2023 11:26:17 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1690388777;
+        bh=MVdmp+gOoZlAhPHT4qa7hQWAupBLfXTDw707s4VDyrA=;
+        h=From:To:CC:Subject:Date;
+        b=mn9gCRXkS8xbWmFJlFkauTNUAuNcDSnnZoeD+I8oI1UzVHso0fr1byxJzkyKrOvl4
+         0ifuSrl6fkucQSvx/DGkALB8XNvCHUlNr+Lsp3UJgVZK33eL0Ug/4OtnuMDOAWwKae
+         bmYdH2Z4mOxc/ilHyM4+ycvucgaw+s0gi2Cr08KA=
+Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 36QGQGbb014798
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 26 Jul 2023 11:26:16 -0500
+Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 26
+ Jul 2023 11:26:16 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 26 Jul 2023 11:26:16 -0500
+Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 36QGQF0Z015623;
+        Wed, 26 Jul 2023 11:26:16 -0500
+From:   Devarsh Thakkar <devarsht@ti.com>
+To:     <mchehab@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC:     <praneeth@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
+        <a-bhatia1@ti.com>, <j-luthra@ti.com>, <b-brnich@ti.com>,
+        <detheridge@ti.com>, <p-mantena@ti.com>, <vijayp@ti.com>,
+        <devarsht@ti.com>
+Subject: [PATCH] dt-bindings: media: Add bindings for Imagination E5010 JPEG Encoder driver
+Date:   Wed, 26 Jul 2023 21:56:15 +0530
+Message-ID: <20230726162615.1270075-1-devarsht@ti.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-X-Developer-Signature: v=1; a=openpgp-sha256; l=563; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=pqWLKNJK9l4lLD6VJLXQH57mRv1gdUVqiglI+UMeLd4=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDCkHPYR2TpIPWzt/4n6VP4c26iTMu2GprHn+fsDd69psM TefS9Y97ChlYRDjYJAVU2RJvN3XIrX+j8sO5563MHNYmUCGMHBxCsBEzl5kZHhXoz594zzeKteD T7tZ/VivnHlTpfMw7Zz0mR1sGp8+txxgZDhox6juePxGl2r/piLha33m55LKl9mv/mv3eHdjHzP 3cg4A
-X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Conor Dooley <conor.dooley@microchip.com>
+Add dt-bindings for Imagination E5010 JPEG Encoder driver which is
+implemented as stateful V4L2 M2M driver.
 
-On Mon, 24 Jul 2023 14:51:56 +0800, Walker Chen wrote:
-> These patches add dma and tdm nodes for the StarFive JH7110 SoC, they
-> are based on linux-next. I have tested them on the VisionFive2 board.
-> Thanks.
-> 
-> Best regards,
-> Walker
-> 
-> [...]
+Co-developed-by: David Huang <d-huang@ti.com>
+Signed-off-by: David Huang <d-huang@ti.com>
+Signed-off-by: Devarsh Thakkar <devarsht@ti.com>
+---
+ .../bindings/media/img,e5010-jpeg-enc.yaml    | 79 +++++++++++++++++++
+ MAINTAINERS                                   |  5 ++
+ 2 files changed, 84 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/img,e5010-jpeg-enc.yaml
 
-Applied to riscv-dt-for-next, thanks!
+diff --git a/Documentation/devicetree/bindings/media/img,e5010-jpeg-enc.yaml b/Documentation/devicetree/bindings/media/img,e5010-jpeg-enc.yaml
+new file mode 100644
+index 000000000000..0060373eace7
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/img,e5010-jpeg-enc.yaml
+@@ -0,0 +1,79 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/media/img,e5010-jpeg-enc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Imagination E5010 JPEG Encoder
++
++maintainers:
++  - Devarsh Thakkar <devarsht@ti.com>
++
++description: |
++  The E5010 is a JPEG encoder from Imagination Technologies implemented on
++  TI's AM62A SoC. It is capable of real time encoding of YUV420 and YUV422
++  inputs to JPEG and M-JPEG. It supports baseline JPEG Encoding up to
++  8Kx8K resolution.
++
++properties:
++  compatible:
++    const: img,e5010-jpeg-enc
++
++  reg:
++    items:
++      - description: The E5010 main register region
++      - description: The E5010 mmu register region
++
++  reg-names:
++    items:
++      - const: regjasper
++      - const: regmmu
++
++  power-domains:
++    maxItems: 1
++
++  resets:
++    maxItems: 1
++
++  clocks:
++    minItems: 1
++    maxItems: 2
++
++  clock-names:
++    minItems: 1
++    maxItems: 2
++
++  interrupts:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - reg-names
++  - interrupts
++  - clocks
++  - clock-names
++  - power-domains
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/soc/ti,sci_pm_domain.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    cbass_main {
++      #address-cells = <2>;
++      #size-cells = <2>;
++      e5010: e5010@fd20000 {
++          compatible = "img,e5010-jpeg-enc";
++          reg = <0x00 0xfd20000 0x00 0x100>,
++                <0x00 0xfd20200 0x00 0x200>;
++          reg-names = "regjasper", "regmmu";
++          clocks = <&k3_clks 201 0>;
++          clock-names = "core_clk";
++          power-domains = <&k3_pds 201 TI_SCI_PD_EXCLUSIVE>;
++          interrupts = <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>;
++      };
++    };
+diff --git a/MAINTAINERS b/MAINTAINERS
+index a5c16bb92fe2..aab11219810f 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -10170,6 +10170,11 @@ S:	Maintained
+ F:	Documentation/devicetree/bindings/auxdisplay/img,ascii-lcd.yaml
+ F:	drivers/auxdisplay/img-ascii-lcd.c
+ 
++IMGTEC JPEG ENCODER DRIVER
++M:	Devarsh Thakkar <devarsht@ti.com>
++S:	Supported
++F:	Documentation/devicetree/bindings/media/img,e5010-jpeg-enc.yaml
++
+ IMGTEC IR DECODER DRIVER
+ S:	Orphan
+ F:	drivers/media/rc/img-ir/
+-- 
+2.34.1
 
-[1/2] riscv: dts: starfive: jh7110: add dma controller node
-      https://git.kernel.org/conor/c/ac73c09716c3
-[2/2] riscv: dts: starfive: jh7110: add the node and pins configuration for tdm
-      https://git.kernel.org/conor/c/e7c304c0346d
-
-Thanks,
-Conor.
