@@ -2,121 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DECDB763D96
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 19:21:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 79885763DB3
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 19:33:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229871AbjGZRVY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jul 2023 13:21:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58166 "EHLO
+        id S232520AbjGZRdC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jul 2023 13:33:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34076 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232380AbjGZRVV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 13:21:21 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E3DA2722
-        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 10:21:18 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-522382c4840so6394a12.2
-        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 10:21:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690392077; x=1690996877;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=too89VOKg4aVRVsOKXI6D9LDbHqxYzZFNKPkb45L/xw=;
-        b=K8dE9tk+ewfahp9/J7/sYh67jaGw270PVYU6mD45mc3tAPQ4nXe3tJwVEpotz0Kdey
-         WkIQO70OQ6AoJkqSRt70bhfnnVzm8av/LwoRxx+2h/oz7KCJmiA27v3N17IWYzA91HNG
-         vIIL6vghTK5w8k9cy4zsDYrClv9h8f6pNfLde+fMds1zvbb5aZ7ORnwpTaKuDuFaCwQv
-         RXxZHm6ChCUpHhl7O7GMUas/xHrAu9boAJzgpqQpeaSBjPz+Ba2RA3bj/+IDPbVfGKQZ
-         13WP+Y2sYbrIFVXDudT+SrOiXq+/PxgUcUrQvS5xBhNRdc0dQrNx+JEjCVeCTMZyGj7Q
-         gVnQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690392077; x=1690996877;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=too89VOKg4aVRVsOKXI6D9LDbHqxYzZFNKPkb45L/xw=;
-        b=EAzKURTaPzuyh01CGkkPeUQlgQ52azg3ZzO80cxhrNTFd454vqb1DViz7MwP5YYKqi
-         TRkc1Y3BlbTklp/daF1lWyFINzWRvr1dFxU947AuIiI8jIIlW3EMD4rUP2hbgFCORVRM
-         2Oufu6/ygyqjDJ8/9sAJlkjWCBJcMitIsPtwGllLifLlWAFJQqp9q5XMTUNe4Y6084Tz
-         VVeXzSrKFWA7dG6rkGdTUvf/GjuDeEoXRNWkuWqtdW3eqXbtjw4ai2gc2YsZ8VPfvMJd
-         ao+CikZR3rVsbcpPGfqyS3U5BM5WdK1AVJfN+9eQJnIVttha02g57TuX1BgtkKDVr7Kh
-         IAtg==
-X-Gm-Message-State: ABy/qLYtcZ/GwEuJaWdJTbFmq1V6/Dx4pkYlGLJpk04MeIiqkuaLz7B0
-        AZXbfETnHKNpHcxuVoWFW5yRvw==
-X-Google-Smtp-Source: APBJJlEyoGURsUYBAQaNMwsyfDXwqKgX55lxzPCYh6e9DV5uQcwnRiL+KCwu7sXNVeMpK8z6KNcc1A==
-X-Received: by 2002:aa7:d71a:0:b0:522:36e8:bc88 with SMTP id t26-20020aa7d71a000000b0052236e8bc88mr1939347edq.12.1690392076903;
-        Wed, 26 Jul 2023 10:21:16 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id k11-20020aa7d8cb000000b005222c6fb512sm4306131eds.1.2023.07.26.10.21.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 26 Jul 2023 10:21:16 -0700 (PDT)
-Message-ID: <0aa471ce-da83-172d-d870-1ec7a562baf7@linaro.org>
-Date:   Wed, 26 Jul 2023 19:21:14 +0200
+        with ESMTP id S232538AbjGZRc5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 13:32:57 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 802D02696;
+        Wed, 26 Jul 2023 10:32:56 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 11E4761C03;
+        Wed, 26 Jul 2023 17:32:56 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CEF2AC433C7;
+        Wed, 26 Jul 2023 17:32:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1690392775;
+        bh=Cu9ADdxUn4Vjuuuu5fCdXgTIS4gN48R2EByULEFioQA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Xwd2qU9V6MS6YK2q9bYdstjRNBTbgq0MjOtsFH7ExlzwV2zmWCQ0dMrrBaigqDL4G
+         quVWnwJvm04Qc5GG4vPonxd7ZqOGbYMbf4NVe1V7N3xJFVqTWwqPJtd5ncZfIjTz25
+         ydOvWfqb7qZl4RdHpJGqNu+56qaj4npNHPU25yB21NMbHjjJSJud76miyi5QB23x4a
+         Cu1yWsUymI6ENL99eXhBmT3OfHqsGlkVhSWCPqf+6u1tV6Fifjsv39EbWBKQWD+UNu
+         0sdsNWQevG7KWzhlGz3JI9NrYaqUuReS2OfIqY9qXPAWbr3Ule3cjYmT/+sXevGzsE
+         oWXcN+8HqOytA==
+Received: (nullmailer pid 1693967 invoked by uid 1000);
+        Wed, 26 Jul 2023 17:32:52 -0000
+Date:   Wed, 26 Jul 2023 11:32:52 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Saravanan Sekar <sravanhome@gmail.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Robin Gong <yibin.gong@nxp.com>,
+        ChiYuan Huang <cy_huang@richtek.com>,
+        Pascal Paillet <p.paillet@foss.st.com>,
+        - <patches@opensource.cirrus.com>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Subject: Re: [PATCH v2] regulator: dt-bindings: add missing
+ unevaluatedProperties for each regulator
+Message-ID: <20230726173252.GA1686272-robh@kernel.org>
+References: <20230726074940.121040-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v7 1/5] dt-bindings: media: platform: visconti: Add
- Toshiba Visconti Video Input Interface
-Content-Language: en-US
-To:     yuji2.ishikawa@toshiba.co.jp, hverkuil@xs4all.nl,
-        sakari.ailus@iki.fi, laurent.pinchart@ideasonboard.com,
-        mchehab@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        nobuhiro1.iwamatsu@toshiba.co.jp, broonie@kernel.org
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20230714015059.18775-1-yuji2.ishikawa@toshiba.co.jp>
- <20230714015059.18775-2-yuji2.ishikawa@toshiba.co.jp>
- <7aa255e8-1cf1-03c6-02c8-de7c737a5683@linaro.org>
- <TYAPR01MB62012F7EA98012DBE0B383A29203A@TYAPR01MB6201.jpnprd01.prod.outlook.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <TYAPR01MB62012F7EA98012DBE0B383A29203A@TYAPR01MB6201.jpnprd01.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230726074940.121040-1-krzysztof.kozlowski@linaro.org>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/07/2023 08:08, yuji2.ishikawa@toshiba.co.jp wrote:
->> unevaluatedProperties: false
+On Wed, Jul 26, 2023 at 09:49:40AM +0200, Krzysztof Kozlowski wrote:
+> Each regulator node, which references common regulator.yaml schema,
+> should disallow additional or unevaluated properties.  Otherwise
+> mistakes in properties will go unnoticed.
 > 
-> In the previous discussion with Laurent, I believe additionalProperties was preferred in terms of handling properties not explicitly mentioned.
+> Reported-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> Closes: https://git.codelinaro.org/linaro/qcomlt/kernel/-/commit/1c8aeef8a6e84520b77f0c270d99c8bf692c5933
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Humm, I have a meta-schema to check this and did a pass fixing them, but 
+seems some of them I missed. I'll have to check the meta-schema (still 
+some false positives in it, so I haven't committed it)
+
 > 
-> https://lore.kernel.org/all/Y82NtJCtr+CZgS9k@pendragon.ideasonboard.com/
-
-OK.
-
+> ---
 > 
-> Do you have concern about defaulting properties in video-interface.yaml to forbidden?
-> If defaulting to optional (like most of other bindings) is better, I'll use unevaluatedProperties.
+> Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > 
+> Changes in v2:
+> 1. Rebase, drop patches from work-in-progress branch
+> ---
+>  Documentation/devicetree/bindings/regulator/mps,mp5416.yaml   | 2 ++
+>  Documentation/devicetree/bindings/regulator/mps,mpq7920.yaml  | 2 ++
+>  Documentation/devicetree/bindings/regulator/pfuze100.yaml     | 4 ++++
+>  .../devicetree/bindings/regulator/qcom,rpmh-regulator.yaml    | 2 ++
+>  .../devicetree/bindings/regulator/qcom,smd-rpm-regulator.yaml | 1 +
+>  .../bindings/regulator/richtek,rt4831-regulator.yaml          | 1 +
+>  .../bindings/regulator/richtek,rtmv20-regulator.yaml          | 1 +
+>  .../bindings/regulator/richtek,rtq6752-regulator.yaml         | 1 +
+>  .../devicetree/bindings/regulator/st,stm32mp1-pwr-reg.yaml    | 2 +-
+>  Documentation/devicetree/bindings/regulator/wlf,arizona.yaml  | 2 ++
+>  10 files changed, 17 insertions(+), 1 deletion(-)
 
-...
-
-> there's no need to specify clock-lane with device tree.
-> 
-> I'll drop "clock-lanes".
-> 
->>> +
->>> +          bus-type: true
->>> +          clock-noncontinuous: true
->>> +          link-frequencies: true
->>> +          remote-endpoint: true
->>
->> Drop all of these "xxx: true", should not be needed after converting to
->> unevaluatedProperties: false
->>
-> 
-> I'll drop "xxx: true" if unevaluatedProperties is chosen instead of additionalProperties.
-
-Since we keep unevaluated, this should stay.
-
-
-Best regards,
-Krzysztof
-
+Reviewed-by: Rob Herring <robh@kernel.org>
