@@ -2,123 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 77F39763BC6
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 17:58:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E0321763C13
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 18:13:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233595AbjGZP6A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jul 2023 11:58:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56634 "EHLO
+        id S230414AbjGZQNq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jul 2023 12:13:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38576 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235012AbjGZP5m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 11:57:42 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B32FF2684
-        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 08:57:40 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-4fb5bcb9a28so10971614e87.3
-        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 08:57:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690387059; x=1690991859;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=7ib/RHzr+Jh6K08RxAEYxj+gk0Q47eL5hakUFKE7hYM=;
-        b=eLb+d4uJxCg1hqloXAAfoaoe/lI7o2H+Rz0S/41abNUtbbxa/OD9G/AEAFYcZrpiD7
-         3ZjRsGKganbOYxOjAI1om68BUSkP7edZro7FnTAHCgCekOM4J65NY3plpIUvCpZvE9/W
-         zcksX6sKFVAvWkLAvzCk5f1kAf9rQPSjCpFnHNNoZ+I/neOxtqQSIwfQRSy1/+4psUGC
-         440IkXGPfbMo1TgGDcYxL6vif1WVjSQr3sjYMuY7KXbpQ3yBOuCxs+q6ePD9dM0BdEgC
-         WhkAky/rT61F6zFL0gJYXl1bXBCqXia7AUjVlo8biQ5koKnl5VkUmyeahsUDOsTwvQAb
-         XFKw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690387059; x=1690991859;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7ib/RHzr+Jh6K08RxAEYxj+gk0Q47eL5hakUFKE7hYM=;
-        b=SgiSbIJ637rJZBu+QzVfhot4DHV92wspnBq3smu+ZGqj09OXd3WClQYg307NROcBUW
-         yM3UE9atPQpqbZEVS0yf9lQx58loipzdLFOoJ7bZIKlx3gLbmALwTC0fptEp9NDvrnL0
-         xNikHNfcZdkjnC/nqd+WG9P3IJUD0XaRQf/I3OMZq/KqR7SbSFkYsSkCLU6FT1xf/PCI
-         TWGmjL2ye99AipUqe1dnHy6s07r5eaBRiznMJdvrCgp64bwQ1gCxkKD9KNaYQyoEpBM8
-         2QpKOAs+G2Lwa1g/8fMXO4K1eARXt9tvc8BLs6cL6s4TzwQB4+nkk1MnzMm56HT7YyQq
-         HLiw==
-X-Gm-Message-State: ABy/qLbAEJZtRTH+ZuPiKkFcAwWXhrQRvPNNMaBsN0wD88L9Yj1C1xmx
-        T8DH9zgSRyRaddIxqiLzyXGsZA==
-X-Google-Smtp-Source: APBJJlGR/v8GPNVDnQPcx9BBVpDW27YxsNB9wyX+S9NVnQ7otkGTGtsbtUL+TYK3AvrnWoCg4MZ1nw==
-X-Received: by 2002:a05:6512:3495:b0:4fb:8939:d95c with SMTP id v21-20020a056512349500b004fb8939d95cmr1708041lfr.30.1690387058919;
-        Wed, 26 Jul 2023 08:57:38 -0700 (PDT)
-Received: from [192.168.1.101] (abxh240.neoplus.adsl.tpnet.pl. [83.9.1.240])
-        by smtp.gmail.com with ESMTPSA id j17-20020ac25511000000b004cc9042c9cfsm3309889lfk.158.2023.07.26.08.57.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 26 Jul 2023 08:57:38 -0700 (PDT)
-Message-ID: <416df8e3-cdab-2f2f-fc9a-b77e954faa1b@linaro.org>
-Date:   Wed, 26 Jul 2023 17:57:37 +0200
+        with ESMTP id S229603AbjGZQNq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 12:13:46 -0400
+X-Greylist: delayed 1808 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 26 Jul 2023 09:13:45 PDT
+Received: from wp534.webpack.hosteurope.de (wp534.webpack.hosteurope.de [80.237.130.56])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 274E01BCD;
+        Wed, 26 Jul 2023 09:13:45 -0700 (PDT)
+Received: from [2001:a61:6206:cc01:c80a:ff:fe00:19d] (helo=cs-wrt.lan.local); authenticated
+        by wp534.webpack.hosteurope.de running ExIM with esmtpa
+        id 1qOgLj-0000ce-5j; Wed, 26 Jul 2023 17:22:51 +0200
+From:   =?UTF-8?q?Carsten=20Spie=C3=9F?= <mail@carsten-spiess.de>
+To:     =?UTF-8?q?Carsten=20Spie=C3=9F?= <mail@carsten-spiess.de>,
+        Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>
+Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Subject: [PATCH 2/2] dt-bindings: hwmon: add renesas,isl28022
+Date:   Wed, 26 Jul 2023 17:22:34 +0200
+Message-Id: <20230726152235.249569-3-mail@carsten-spiess.de>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230726152235.249569-1-mail@carsten-spiess.de>
+References: <20230726152235.249569-1-mail@carsten-spiess.de>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 5/7] arm64: dts: qcom: sm6115: Add tcsr syscon node
-Content-Language: en-US
-To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-usb@vger.kernel.org
-Cc:     agross@kernel.org, andersson@kernel.org,
-        linux-kernel@vger.kernel.org, bhupesh.linux@gmail.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        krzysztof.kozlowski@linaro.org, quic_schowdhu@quicinc.com,
-        gregkh@linuxfoundation.org, stephan@gerhold.net
-References: <20230718061052.1332993-1-bhupesh.sharma@linaro.org>
- <20230718061052.1332993-6-bhupesh.sharma@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <20230718061052.1332993-6-bhupesh.sharma@linaro.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-bounce-key: webpack.hosteurope.de;mail@carsten-spiess.de;1690388025;24d059cf;
+X-HE-SMSGID: 1qOgLj-0000ce-5j
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18.07.2023 08:10, Bhupesh Sharma wrote:
-> Add the TCSR syscon dt node for SM6115 / SM4250 SoC.
-> 
-> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Add dt-bindings for Renesase ISL28022 power monitor.
 
-Konrad
+Signed-off-by: Carsten Spieß <mail@carsten-spiess.de>
+---
+ .../bindings/hwmon/renesas,isl28022.yaml      | 67 +++++++++++++++++++
+ MAINTAINERS                                   |  1 +
+ 2 files changed, 68 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/hwmon/renesas,isl28022.yaml
+
+diff --git a/Documentation/devicetree/bindings/hwmon/renesas,isl28022.yaml b/Documentation/devicetree/bindings/hwmon/renesas,isl28022.yaml
+new file mode 100644
+index 000000000000..5ecf892db269
+--- /dev/null
++++ b/Documentation/devicetree/bindings/hwmon/renesas,isl28022.yaml
+@@ -0,0 +1,67 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++
++$id: http://devicetree.org/schemas/hwmon/renesas,isl28022.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Renesas ISL28022 power monitor
++
++maintainers:
++  - Carsten Spieß <mail@carsten-spiess.de>
++
++description: |
++  The ISL28022 is a power monitor with I2C interface. The device monitors
++  voltage, current via shunt resistor and calculated power.
++
++  Datasheets:
++    https://www.renesas.com/us/en/www/doc/datasheet/isl28022.pdf
++
++Required properties:
++  compatible:
++    enum:
++      - renesas,isl28022
++
++  reg:
++    maxItems: 1
++
++Optional properties:
++  shunt-resistor-micro-ohms:
++    description:
++      Shunt resistor value in micro-Ohm
++      defaults to <0> when not set
++      monitoring of current and power not supported when <0>
++
++  shunt-gain:
++    description:
++      Shunt gain to scale maximal shunt voltage to
++      40mV, 80mV, 160mV, 320mV
++      defaults to <8> (320mV) when not set
++    enum: [1, 2, 4, 8]
++
++  average:
++    description: |
++      Number of samples to be used to report voltage, current and power values.
++      defaults to <0> when not set
++    enum: [0, 1, 2, 4, 8, 16, 32, 64, 128]
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        power-monitor@40 {
++            compatible = "renesas,isl28022";
++            reg = <0x10>;
++            shunt-resistor-micro-ohms = <8000>;
++            shunt-gain = <1>;
++            average = <128>;
++        };
++    };
+diff --git a/MAINTAINERS b/MAINTAINERS
+index c61aa688cd11..ec9b97ace50b 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -11076,6 +11076,7 @@ ISL28022 HARDWARE MONITORING DRIVER
+ M:	Carsten Spieß <mail@carsten-spiess.de>
+ L:	linux-hwmon@vger.kernel.org
+ S:	Maintained
++F:	Documentation/devicetree/bindings/hwmon/renesas,isl28022.yaml
+ F:	Documentation/hwmon/isl28022.rst
+ F:	drivers/hwmon/isl28022.c
+ 
+-- 
+2.34.1
+
