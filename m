@@ -2,165 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CF08C763490
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 13:11:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C92B763495
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 13:13:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231172AbjGZLLK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jul 2023 07:11:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47686 "EHLO
+        id S229936AbjGZLNA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jul 2023 07:13:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48428 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231778AbjGZLLJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 07:11:09 -0400
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EE639B
-        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 04:11:07 -0700 (PDT)
+        with ESMTP id S233251AbjGZLM4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 07:12:56 -0400
+Received: from mail-yw1-x1133.google.com (mail-yw1-x1133.google.com [IPv6:2607:f8b0:4864:20::1133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 312FAB6
+        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 04:12:55 -0700 (PDT)
+Received: by mail-yw1-x1133.google.com with SMTP id 00721157ae682-583f65806f8so38384227b3.0
+        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 04:12:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1690369867; x=1721905867;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=M53AFQDSQFZef/yuEHh1ksXtyIs4LSAZ7lcJMNw4uas=;
-  b=dczffcsoAx+ysIvGw47YpuPuD0HpnTViwMbj9jHK4jbi71pOIH9xUnWr
-   bsI5Qptz+77yIUj2LLRKrkQS5aaJp1Vym14B5ntbaPfAW4jZCWDA5m4bm
-   CN4HssuLpUAZRx3ekT4+HuS83pyiqpz8eWymyIfyfkTkIH24GkQWIbRfJ
-   Rc2BWkgZMytESFHuM/bX7yFROsPc9XDqCfGkMPPU6qutJngeyWX/4UptS
-   bcuAbzMtRwH2iZCO75ftzKiAEcUhqddoaTxe4KxM4hrBKbhFudpkLoJQn
-   3Tbhf9ABv2MO6rCmh/QLTq4Xx6EsVz1AqdX4cWAS58bc6zXNfC8SAshCc
-   g==;
-X-IronPort-AV: E=Sophos;i="6.01,231,1684792800"; 
-   d="scan'208";a="32128491"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 26 Jul 2023 13:11:05 +0200
-Received: from steina-w.tq-net.de (unknown [10.123.53.21])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id E0DB6280075;
-        Wed, 26 Jul 2023 13:11:04 +0200 (CEST)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>
-Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 1/1] arm64: dts: imx93: Fix LPUART compatible list
-Date:   Wed, 26 Jul 2023 13:11:01 +0200
-Message-Id: <20230726111101.4169847-1-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.34.1
+        d=linaro.org; s=google; t=1690369974; x=1690974774;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ZC3AR3+9slbh/4XbZH2z2i5m6IqJXybcbNCnztjWWm4=;
+        b=GIKp7cxeKp4zmEz2mQN94gHbvPxItEqza6KBeYXLugORmRYcLv1CWod7hbvJstboIE
+         vdlhucLz9Nc/5F+paWv3OhNx6UH3ba0RZBXJLlDquQ0UZbxvouGn7q6YWYtTc2yYblFN
+         alhR9KB47Get+0nnNmVUMvWDWk22w4ehhNi4PC4AIDmz3WDbiWYhmlLco4oOVQwtcJ0t
+         fHQCjRTYj3MdDUuTtRaAPoo6lZYv/L9WLJ9B0FofS2x563l1EZD+8svWHfeBhIqnXUOP
+         npO0BMqSN8Zi4KvSMwa4Yo1UhZEffezUycW8ODgBHD8Nz0n/RP3vDiy+0R+3WZhbvwAE
+         4Q3w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690369974; x=1690974774;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ZC3AR3+9slbh/4XbZH2z2i5m6IqJXybcbNCnztjWWm4=;
+        b=hFVh4UkopVAqppowCDLuCguDcwFqyZdYs+hmyPZT19WQnw1dMHqssYLtsGh8qa+I4M
+         UKbMcAiDaOb+0b3TqqO4Tqvc4iNXHuLaqO//Uj8uv7pptIiwwTMmryjj7Tcau/YEWVLj
+         Bqe4DTXoe3vXN4ISzdL3RWHF2RR4Y6AiQbf5QwHjcFqYLXzwAVzXm56HXP2cpRvcx/oY
+         MObsPT1XFLctoxEP6T+VUrn8fvLbe/8Gr1GQO4zhaniAOgD8jPWpxSOgRrAoGhVqOw4h
+         E84KO4RFWBZQBAsV2kyAnkOAWtVngvRwfNZPeK1mTSkdg0Gf+ukFoZ3RblqP6/qxfKxl
+         G0Kw==
+X-Gm-Message-State: ABy/qLagKfxyHRq2uh9EhACSWaWdkPWOoT55W+x3UUR7NDW2Pyy1KHkf
+        8CQ/WFOGd7qhnTMbeqewwJW7IQL4BnqDNEYmlMIGTA==
+X-Google-Smtp-Source: APBJJlGLdZHOcJAENAqLfGiqi/72oSkGaPDVZwRn15fbhmiMArFKWA4P9ndHJR4qlDNh2XztdXFdHxu4C2CClhB66Sk=
+X-Received: by 2002:a81:69c2:0:b0:584:1a4d:bbfa with SMTP id
+ e185-20020a8169c2000000b005841a4dbbfamr1741114ywc.29.1690369974370; Wed, 26
+ Jul 2023 04:12:54 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+References: <20230713141738.23970-1-ulf.hansson@linaro.org>
+ <20230713141738.23970-9-ulf.hansson@linaro.org> <20230719151716.qhobfnclrjf4yqkg@bogus>
+ <CAPDyKFpjMWOAbV+b2DcxDWqvRDQCbSC6Ti+KGGPWJoC4Ghp7=w@mail.gmail.com>
+ <20230721115535.mx46dg56pxjnzbuv@bogus> <20230721143304.GA1092306-robh@kernel.org>
+ <20230721183817.34lgb42nlnsvqx4s@bogus>
+In-Reply-To: <20230721183817.34lgb42nlnsvqx4s@bogus>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Wed, 26 Jul 2023 13:12:18 +0200
+Message-ID: <CAPDyKFqsaz=hruktv+sPQz-ttOtWa9O_Jvp2iLnpxQqX2r7yBQ@mail.gmail.com>
+Subject: Re: [PATCH v2 08/11] dt-bindings: firmware: arm,scmi: Extend bindings
+ for protocol@13
+To:     Sudeep Holla <sudeep.holla@arm.com>
+Cc:     Rob Herring <robh@kernel.org>,
+        Cristian Marussi <cristian.marussi@arm.com>,
+        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Nikunj Kela <nkela@quicinc.com>,
+        Prasad Sodagudi <psodagud@quicinc.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The compatible list for imx93 LPUART does not include imx8ulp-lpuart
-variant. Drop it according to bindings.
+On Fri, 21 Jul 2023 at 20:38, Sudeep Holla <sudeep.holla@arm.com> wrote:
+>
+> On Fri, Jul 21, 2023 at 08:33:04AM -0600, Rob Herring wrote:
+> > On Fri, Jul 21, 2023 at 12:55:35PM +0100, Sudeep Holla wrote:
+> > > On Fri, Jul 21, 2023 at 01:42:43PM +0200, Ulf Hansson wrote:
+> > > > On Wed, 19 Jul 2023 at 17:17, Sudeep Holla <sudeep.holla@arm.com> w=
+rote:
+> > > > >
+> > > > > On Thu, Jul 13, 2023 at 04:17:35PM +0200, Ulf Hansson wrote:
+> > > > > > The protocol@13 node is describing the performance scaling opti=
+on for the
+> > > > > > ARM SCMI interface, as a clock provider. This is unnecessary li=
+miting, as
+> > > > > > performance scaling is in many cases not limited to switching a=
+ clock's
+> > > > > > frequency.
+> > > > > >
+> > > > > > Therefore, let's extend the binding so the interface can be mod=
+elled as a
+> > > > > > generic performance domaintoo. The common way to describe this,=
+ is to use
+> > > > > > the "power-domain" DT bindings, so let's use that.
+> > > > > >
+> > > > >
+> > > > > One thing I forgot to ask earlier is how we can manage different =
+domain IDs
+> > > > > for perf and power domains which is the case with current SCMI pl=
+atforms as
+> > > > > the spec never mandated or can ever mandate the perf and power do=
+mains IDs
+> > > > > to match. They need not be same anyways.
+> > > >
+> > > > Based upon what you describe above, I have modelled the perf-domain
+> > > > and the power-domain as two separate power-domain providers.
+> > > >
+> > > > A consumer device being hooked up to both domains, would specify th=
+e
+> > > > domain IDs in the second power-domain-cell, along the lines of the
+> > > > below. Then we would use power-domain-names to specify what each
+> > > > power-domain represents.
+> > > >
+> > > > power-domains =3D <&scmi_pd 2>, <&scmi_dvfs 4>;
+> > > > power-domain-names =3D "power", "perf";
+> > > >
+> > > > I hope this makes it clearer!?
+> > >
+> > > Yes it make is clear definitely, but it does change the definition of=
+ the
+> > > generic binding of the "power-domains" property now. I am interesting=
+ in
+> > > the feedback from the binding maintainers with respect to that. Or is=
+ it
+> > > already present ? IIUC, the ones supported already are generally both
+> > > power and performance providers. May be it doesn't matter much, just
+> > > wanted to explicit ask and confirm those details.
+> >
+> > I commented on v1.
+> >
+> > Looks like abuse of "power-domains" to me, but nothing new really.
+> > Please define when to use a power domain vs. a perf domain and don't
+> > leave it up to the whims of the platform. Maybe perf domains was a
+> > mistake and they should be deprecated?
+> >
+>
+> Just a thought here, instead of deprecating it I was thinking if possible
+> to keep the power-domains and performance-domains separate and just exten=
+d
+> the genpd to handle the latter. There by we are not mixing up and creatin=
+g
+> confusions that need more specific definitions in the binding(which is no=
+t
+> a big deal) but platforms getting it wrong inspite of that is a big probl=
+em.
+> Keep it separate makes it more aligned to the hardware and doesn't dilute
+> the definitions and probably avoids any possible mistakes due to that.
+>
+> Sorry Ulf I am just not yet convinced to mix them up yet =F0=9F=98=89 and=
+ wish you
+> don't convince me to. Let me know why the above suggestion won't work.
 
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
----
-This fixes warnings like:
-arch/arm64/boot/dts/freescale/imx93-tqma9352-mba93xxla.dtb: serial@44390000: compatible: 'oneOf' conditional failed, one must be fixed:
-        ['fsl,imx93-lpuart', 'fsl,imx8ulp-lpuart', 'fsl,imx7ulp-lpuart'] is too long
-        'fsl,imx93-lpuart' is not one of ['fsl,vf610-lpuart', 'fsl,ls1021a-lpuart', 'fsl,ls1028a-lpuart', 'fsl,imx7ulp-lpuart', 'fsl,imx8qxp-lpuart', 'fsl,imxrt1050-lpuart']
-        'fsl,imx93-lpuart' is not one of ['fsl,imx8qm-lpuart', 'fsl,imx8dxl-lpuart']
-        'fsl,imxrt1050-lpuart' was expected
-        'fsl,imx7ulp-lpuart' was expected
-        'fsl,imx8qxp-lpuart' was expected
-        'fsl,imxrt1170-lpuart' was expected
-        from schema $id: http://devicetree.org/schemas/serial/fsl-lpuart.yaml#
-arch/arm64/boot/dts/freescale/imx93-tqma9352-mba93xxla.dtb: serial@44390000: Unevaluated properties are not allowed ('compatible' was unexpected)
-        from schema $id: http://devicetree.org/schemas/serial/fsl-lpuart.yaml#
+The main point I think we need to consider too, is that on some
+platforms, the power-domain and the performance-domain are managed
+together by the FW. It is not really two separate things and hence it
+would not quite be correct to describe it as two different types of
+providers in DT.
 
- arch/arm64/boot/dts/freescale/imx93.dtsi | 16 ++++++++--------
- 1 file changed, 8 insertions(+), 8 deletions(-)
+If we should follow your suggestion above, to use the
+performance-domain bindings, then I think we need an additional new
+binding to cover the above mentioned case too. This would lead us into
+having one binding for the power-domain, another for the
+performance-domain and a third for the power+performance-domain.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx93.dtsi b/arch/arm64/boot/dts/freescale/imx93.dtsi
-index 4ec9df78f2050..5ba92c9be78ba 100644
---- a/arch/arm64/boot/dts/freescale/imx93.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx93.dtsi
-@@ -291,7 +291,7 @@ lpspi2: spi@44370000 {
- 			};
- 
- 			lpuart1: serial@44380000 {
--				compatible = "fsl,imx93-lpuart", "fsl,imx8ulp-lpuart", "fsl,imx7ulp-lpuart";
-+				compatible = "fsl,imx93-lpuart", "fsl,imx7ulp-lpuart";
- 				reg = <0x44380000 0x1000>;
- 				interrupts = <GIC_SPI 19 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&clk IMX93_CLK_LPUART1_GATE>;
-@@ -300,7 +300,7 @@ lpuart1: serial@44380000 {
- 			};
- 
- 			lpuart2: serial@44390000 {
--				compatible = "fsl,imx93-lpuart", "fsl,imx8ulp-lpuart", "fsl,imx7ulp-lpuart";
-+				compatible = "fsl,imx93-lpuart", "fsl,imx7ulp-lpuart";
- 				reg = <0x44390000 0x1000>;
- 				interrupts = <GIC_SPI 20 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&clk IMX93_CLK_LPUART2_GATE>;
-@@ -545,7 +545,7 @@ lpspi4: spi@42560000 {
- 			};
- 
- 			lpuart3: serial@42570000 {
--				compatible = "fsl,imx93-lpuart", "fsl,imx8ulp-lpuart", "fsl,imx7ulp-lpuart";
-+				compatible = "fsl,imx93-lpuart", "fsl,imx7ulp-lpuart";
- 				reg = <0x42570000 0x1000>;
- 				interrupts = <GIC_SPI 68 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&clk IMX93_CLK_LPUART3_GATE>;
-@@ -554,7 +554,7 @@ lpuart3: serial@42570000 {
- 			};
- 
- 			lpuart4: serial@42580000 {
--				compatible = "fsl,imx93-lpuart", "fsl,imx8ulp-lpuart", "fsl,imx7ulp-lpuart";
-+				compatible = "fsl,imx93-lpuart", "fsl,imx7ulp-lpuart";
- 				reg = <0x42580000 0x1000>;
- 				interrupts = <GIC_SPI 69 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&clk IMX93_CLK_LPUART4_GATE>;
-@@ -563,7 +563,7 @@ lpuart4: serial@42580000 {
- 			};
- 
- 			lpuart5: serial@42590000 {
--				compatible = "fsl,imx93-lpuart", "fsl,imx8ulp-lpuart", "fsl,imx7ulp-lpuart";
-+				compatible = "fsl,imx93-lpuart", "fsl,imx7ulp-lpuart";
- 				reg = <0x42590000 0x1000>;
- 				interrupts = <GIC_SPI 70 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&clk IMX93_CLK_LPUART5_GATE>;
-@@ -572,7 +572,7 @@ lpuart5: serial@42590000 {
- 			};
- 
- 			lpuart6: serial@425a0000 {
--				compatible = "fsl,imx93-lpuart", "fsl,imx8ulp-lpuart", "fsl,imx7ulp-lpuart";
-+				compatible = "fsl,imx93-lpuart", "fsl,imx7ulp-lpuart";
- 				reg = <0x425a0000 0x1000>;
- 				interrupts = <GIC_SPI 71 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&clk IMX93_CLK_LPUART6_GATE>;
-@@ -610,7 +610,7 @@ flexspi1: spi@425e0000 {
- 			};
- 
- 			lpuart7: serial@42690000 {
--				compatible = "fsl,imx93-lpuart", "fsl,imx8ulp-lpuart", "fsl,imx7ulp-lpuart";
-+				compatible = "fsl,imx93-lpuart", "fsl,imx7ulp-lpuart";
- 				reg = <0x42690000 0x1000>;
- 				interrupts = <GIC_SPI 210 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&clk IMX93_CLK_LPUART7_GATE>;
-@@ -619,7 +619,7 @@ lpuart7: serial@42690000 {
- 			};
- 
- 			lpuart8: serial@426a0000 {
--				compatible = "fsl,imx93-lpuart", "fsl,imx8ulp-lpuart", "fsl,imx7ulp-lpuart";
-+				compatible = "fsl,imx93-lpuart", "fsl,imx7ulp-lpuart";
- 				reg = <0x426a0000 0x1000>;
- 				interrupts = <GIC_SPI 211 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&clk IMX93_CLK_LPUART8_GATE>;
--- 
-2.34.1
+In my opinion this sounds quite like a mess. I would rather keep using
+the power-domain bindings for all these cases. Of course, it's a bit
+of a stretch too, but I think it should be less confusing in the end,
+assuming we extend/clarify the description of the power-domain
+bindings, of course.
 
+Did that convince you? :-)
+
+Kind regards
+Uffe
