@@ -2,129 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BB5CF763274
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 11:38:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F0597632B5
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 11:47:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231642AbjGZJiW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jul 2023 05:38:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55218 "EHLO
+        id S233233AbjGZJrX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jul 2023 05:47:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32926 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233407AbjGZJhz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 05:37:55 -0400
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12E96272B
-        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 02:37:29 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-99bc9e3cbf1so59524266b.0
-        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 02:37:29 -0700 (PDT)
+        with ESMTP id S229814AbjGZJrX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 05:47:23 -0400
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9854FBC
+        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 02:47:21 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-5222a38c0a0so5193493a12.1
+        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 02:47:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690364247; x=1690969047;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1690364840; x=1690969640;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=FUdFsL7Rj7TOV3TMa/RIiUuM3Ig3WitH5zKl3a6zj7U=;
-        b=Yqeibz8Pw2C5YNjJ0AuM22nL0Sp6k5H8d9dIRNXCzP7danQnPgEFyI6KLsunRzDqLy
-         UEtoYBuNV6w6FvpPiqzVHPz/h2PzwWFYA3gRW9/zkD36tKMxFYaFQDLkC89tmN3fH6HG
-         0RMPWE5M7Txi1uqg+CwDyvoaum51xECSn77EqV4jphCfci2WHFfSNpjCnYd/sSOsZh9J
-         H+OVM5W1Qil609a8WNDzDbXsjxzhvD9neldH7sUlsdWR37ZiWGf6KpyWnRXoBGzr/j+2
-         QTJjWzOprLsE5FitgynFWdOkuNPHXihPEfwQxU2yZjPFWNexwx4Z5WG5qWJMweaq5VVm
-         q/dA==
+        bh=SA+LrDZVXjl3Ko1/5ZEQ5q1ItzWI0k+gmeih9nujT5o=;
+        b=Vv3advpFuMimlnJzdS5XUW8wEwN27EZl7SYV+iu7pMjcqoLxF2a4MmDWcQTnHStOgO
+         +YfPSEV7uYXWhDmx5yKqgTurflU2cy6SqWNu9os8RESG0urBQcAKIlvXi/Yam/LhvRUQ
+         KIYnSrxEj9AtM8h3a0SQlJK2QeJqHP0r5inlby45w6jH8jX/QiCXu8h5lQWs19cv3yXP
+         Kg/PafU1qecrsMSt8/LUdpoBF9nUVS8aSUIzME3nA6i3aeVyqkqskRBnG/gzxeP0x2LC
+         HgpOFJ80ys+hMqfaFzoUc1DVTuhaiYYwlRdlrwp19gQGOFHEjzfJ2xokVRCRO5zZCkHh
+         M2WQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690364247; x=1690969047;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1690364840; x=1690969640;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=FUdFsL7Rj7TOV3TMa/RIiUuM3Ig3WitH5zKl3a6zj7U=;
-        b=lIe/BvFkBe+yGd1zqrsht7do+DR4wPsJyFL/Y1/4VhqXtr7NUMvMIdxc3eWvxoVbhT
-         MYnEWEIkbngJN0IyNvXezP97F+jdOywQhQC0cYowNfC+GgGpTErXr39v807kOnkP9SE5
-         yXc7YUfMDDOq7H+k1WySS0F/kEm64gNnUaqZ9m/ytQNjo7hrqAKzRmjMDbBVIDZXVF/V
-         jia97T9KK0mg0e6DUi07dtwzzQQ9JzzskRq7wOK2OjPhLuRL5UEv+f2A2GhUs3EbnZaZ
-         uO6rTdPUwp39d5dDZGGZwQWDWWx/JkrTZDFqyofCIatsItGBBsf6yhFiH8ry972TSNfn
-         221g==
-X-Gm-Message-State: ABy/qLY/FwurfVOmd3XNpNSfml8jRHryIN+ony12jjjbgmT4cW90NmxP
-        2OMS1HW/mtKXloJ3l+32m6dCtQ==
-X-Google-Smtp-Source: APBJJlGyMOlgcRnfytdUMxZAaSNwN60cSkk/EeAYqYSWHODAAc3zU54oBjgkiPE02PuuQim25n4HvQ==
-X-Received: by 2002:a17:906:64c6:b0:99b:c2ce:501c with SMTP id p6-20020a17090664c600b0099bc2ce501cmr1394736ejn.19.1690364247517;
-        Wed, 26 Jul 2023 02:37:27 -0700 (PDT)
+        bh=SA+LrDZVXjl3Ko1/5ZEQ5q1ItzWI0k+gmeih9nujT5o=;
+        b=QdRHE1KJDtXy7a9crPGn+PT7BOo63fuW/4h1Yuyq+8WA0Iab5D51hVqyItQwJmNV4M
+         KO6sC7cq6Q60C/PeVyD32FXGvO9GTot/1/AdMMVpAwtLYeuaifbXJZ+CSG7A8o86xyve
+         p68H6yEGTSxxoV2KYceKW6aOvslXgyVtgCLe/X6FJlkOq40EnZdM12mzpLDWTyC7SLZp
+         t79U4mUB6dAB80RgSqrBwlccI9qIfaNey4P2Y8MP6xTClFWqqEzxK+tMEXRckkKaZPDv
+         S7VUBI0+RR8zuNv3FHJFZ87gdHl6OhTCEt9TPVfkS5s2NiawQZElRD4KVZgm+EKHzxup
+         IAuA==
+X-Gm-Message-State: ABy/qLbUK4j1WA86XPBzeqssVBpF00B+aHQuk4fMwZLRGy8DSZWUSLea
+        lryLZYKh2qu2al+P8cMQLCXhhEoQl4JdX/RqzYM=
+X-Google-Smtp-Source: APBJJlGgdy/mQ9wqC1FbD8YlIGrD/bhaJNJANhLq7Txal+3r2Fqm5ERHoirCQj3TFD2zgNEo2rvzNA==
+X-Received: by 2002:aa7:d498:0:b0:522:3ebc:84b8 with SMTP id b24-20020aa7d498000000b005223ebc84b8mr1113214edr.12.1690364840059;
+        Wed, 26 Jul 2023 02:47:20 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id z15-20020a170906240f00b0098921e1b064sm9306439eja.181.2023.07.26.02.37.26
+        by smtp.gmail.com with ESMTPSA id u26-20020aa7db9a000000b00521d2f7459fsm8594295edt.49.2023.07.26.02.47.18
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 26 Jul 2023 02:37:27 -0700 (PDT)
-Message-ID: <fc55d5eb-1bc6-84b5-b9f2-daf24817b8b6@linaro.org>
-Date:   Wed, 26 Jul 2023 11:37:25 +0200
+        Wed, 26 Jul 2023 02:47:19 -0700 (PDT)
+Message-ID: <cb272650-e829-7528-de6d-f99fef2d7f81@linaro.org>
+Date:   Wed, 26 Jul 2023 11:47:18 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
-Subject: Re: [PATCH v3 2/3] pinctrl: qcom: sm8350-lpass-lpi: add SM8350 LPASS
- TLMM
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+Subject: Re: [PATCH] AMR: dts: renesas: r8a7740-armadillo: switch to
+ enable-gpios
+Content-Language: en-US
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Magnus Damm <magnus.damm@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20230719192058.433517-1-krzysztof.kozlowski@linaro.org>
- <20230719192058.433517-2-krzysztof.kozlowski@linaro.org>
- <CACRpkdbK7gU36nVOm0J+HbLk5JRKki+30=UaJ6hZjF1DiB4bBw@mail.gmail.com>
- <34be3638-ed14-bb0b-eb2e-c44f43c582f2@linaro.org>
- <CACRpkdY=WYZEfHuYsJe3kxk4-E3r4wp-Ln=GyvSY2m=+-Ow47A@mail.gmail.com>
-Content-Language: en-US
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230726070241.103545-1-krzysztof.kozlowski@linaro.org>
+ <CAMuHMdWfwTyJoLyGs=8gPt4jT-3nc0ywA_NNGr6r+4+cD=Lygg@mail.gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CACRpkdY=WYZEfHuYsJe3kxk4-E3r4wp-Ln=GyvSY2m=+-Ow47A@mail.gmail.com>
+In-Reply-To: <CAMuHMdWfwTyJoLyGs=8gPt4jT-3nc0ywA_NNGr6r+4+cD=Lygg@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/07/2023 20:18, Linus Walleij wrote:
-> On Mon, Jul 24, 2023 at 9:06 PM Krzysztof Kozlowski
+On 26/07/2023 11:11, Geert Uytterhoeven wrote:
+> On Wed, Jul 26, 2023 at 9:02 AM Krzysztof Kozlowski
 > <krzysztof.kozlowski@linaro.org> wrote:
->> On 24/07/2023 20:09, Linus Walleij wrote:
->>> On Wed, Jul 19, 2023 at 9:21 PM Krzysztof Kozlowski
->>> <krzysztof.kozlowski@linaro.org> wrote:
->>>
->>>> Add driver for pin controller in Low Power Audio SubSystem (LPASS).  The
->>>> driver is similar to SM8250 LPASS pin controller, with difference in one
->>>> new pin (gpio14) belonging to swr_tx_data.
->>>>
->>>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>>
->>> This sure looks good to me.
->>>
->>> Krzystof, can you collect a branch with pin control changes for
->>> Qualcomm chips that I can pull? If it's OK with Bjorn that is.
+>> The recommended name for enable GPIOs property in regulator-gpio is
+>> "enable-gpios".  This is also required by bindings:
 >>
->> Sure, I can go through the lore search results and grab recent submissions.
+>>   r8a7740-armadillo800eva.dtb: regulator-vccq-sdhi0: Unevaluated properties are not allowed ('enable-gpio' was unexpected)
+>>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > 
-> Thanks, I think you know better than me what is the stuff that is reviewed
-> and ready for merge.
-> 
-> I have this on my devel branch so far:
-> 59d612a3215c dt-bindings: pinctrl: qcom: lpass-lpi: Remove qcom,adsp-bypass-mode
-> abf02e132cb6 pinctrl: qcom: lpass-lpi: Make the clocks optional, always
-> 1e46c7430af7 pinctrl: qcom-pmic-gpio: Add support for pmx75
-> 8fff6514ff0a pinctrl: qcom-pmic-gpio: Add support for pm7550ba
-> 75ec058db332 dt-bindings: pinctrl: qcom-pmic-gpio: Add pmx75 support
-> 4bbee99da13a dt-bindings: pinctrl: qcom-pmic-gpio: Add pm7550ba support
-> 
-> Anything else is in some inbetween state and I'm not sure of the status
-> so it would really offload me if you could get it in order!
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> i.e. will queue in renesas-devel for v6.6.
 
-It seems only my patchset, SM6115 LPASS pinctrl and one my binding
-change were missing, so I took these.
+I think I made typo in subject prefix:
+AMR -> ARM
+
+Can you fix it while applying?
 
 Best regards,
 Krzysztof
