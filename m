@@ -2,82 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 09806763747
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 15:15:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C6D4F76374E
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 15:16:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233529AbjGZNPh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jul 2023 09:15:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38510 "EHLO
+        id S233809AbjGZNP7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jul 2023 09:15:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38938 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233092AbjGZNPf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 09:15:35 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A1F91FDA
-        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 06:15:34 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-522462d8416so2916409a12.1
-        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 06:15:34 -0700 (PDT)
+        with ESMTP id S233092AbjGZNP6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 09:15:58 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91E262129
+        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 06:15:52 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-4fe0e201f87so1220288e87.0
+        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 06:15:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690377333; x=1690982133;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1690377351; x=1690982151;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=xxpwGdqfKpW+2bA8L4L3lh4iGcowSXsRVpwai0mk4fQ=;
-        b=aBmywB8kJps6NL8kYvNQkYJixI+qt0vHUmnmDQL+JaHi33F/2lIJLWXRTW3t4o7Mlg
-         WrZHD3nyD/VyY+S65kqDZHPdUpACQQ8+BmX+U2PHnDrXJf53acmFV/x4JCy690s4zc2Y
-         FYMegG8v2565mbDeZbI+3sPoFAg7DZSiGauJTCuhHbG+zmA0iCkRf1tEhQ5U/dyUOal5
-         +kx9DKbzGtWh4Jg8uwEE30I7NPXDCyQQnLrmaIB1tMw+ZpvqNTMw8zKC6iDUagMHBrDZ
-         OUaGlbtQGbQFid4ezBHNIomlTBjv4/DghU5y/GAhxkiATl+b6cycISfJwr162uJLLuSo
-         l94Q==
+        bh=kCgEAnQldbWSshS+6UesBxXb+/eschag6NjEzTyYfa8=;
+        b=CseQ0KYHYZZa0X7rrG4Bskpw5tABmqHqvo11Bhw7TtDzn+9/b9PUChRsCy2XbZn2It
+         X8LWcmsD2kHeqvHKBNbHrvC+vwIwWHN3TnyvWLtiEtOJ8n383x8cjtiYJL9OuEAsu9vE
+         lW8bdq9pqLdLNexP3eZdpJedZeJIeBAZNPOW0e7L3EUILqlQ2gdMgDrQ7pAmDIs0VxjW
+         rUHqZ2JJHMzvHDs92k2rv0jIVv+nJOLpSFWYKYdEZVFuqixpQqOxZsCO4iGgPXJFEenT
+         QZLFtDQ/o9lAXJZyJYHOOBmKJB30xl8BcN2fI2ypAXFyM3pApgDnXouSXMM5BdwBww6k
+         TzAg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690377333; x=1690982133;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1690377351; x=1690982151;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xxpwGdqfKpW+2bA8L4L3lh4iGcowSXsRVpwai0mk4fQ=;
-        b=KgU3rLi4v9Fo8WQBYB+H7YBfraUA7ecaQ337YWvJ3ofaj1TJ9YoC/W7E9w+SBrIMkJ
-         hAN63CARZDFG0WZPfNnOaPvrwuaVoLfr9pQ6cBT5mpTmVEfRXZ2m4t/a6m+inV0T83k2
-         Oyxdao/2UIscDQ36ncaSCv/0CLn+zG4tZP8vv+Lgvg2npQnLZTwkayAJ1dFh5t9sfiK1
-         VbWgJs4oF9CkBAwQJ4+GZdxltPIYfbc7VsKuz1OtWXllwqT+Fdq92uVcmLj0iGHyLFzW
-         vNQyl9LCz8aMGFhYwyHeaLXvbkEsKGZmG9XRNjr4EVqKpd1vDsC4OWfF8AJgypcpuevu
-         tU1Q==
-X-Gm-Message-State: ABy/qLZKSjctdjsQamX5C8zoqR7+NRIadHJB+X/X6JfisCuj43x7JsMd
-        5lp9byhH8MSAfy39kqpKjzTMkisx3e6pHf3/dcc=
-X-Google-Smtp-Source: APBJJlFMhteteZfyviZtv4MyvkzBxODZxA8tpAKbuYijpc64a+D7iboNckbTfSv3dVIDPN6HQHdc/w==
-X-Received: by 2002:a17:906:64cc:b0:994:539d:f97f with SMTP id p12-20020a17090664cc00b00994539df97fmr1726109ejn.37.1690377332545;
-        Wed, 26 Jul 2023 06:15:32 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id z9-20020a1709064e0900b009886aaeb722sm9518979eju.137.2023.07.26.06.15.30
+        bh=kCgEAnQldbWSshS+6UesBxXb+/eschag6NjEzTyYfa8=;
+        b=R+/erEtC9BMo01JXUwA/fzw/Hu3q2Gru9lABMPe++vyp4RgApYCGmUpU9daSVAG1qG
+         0IVcEoUOtGsMpAa5KMpQkuHuinZSPAWSVAJmM3zHQmkZalREHExc+jWIRWGxXn/W8y1g
+         MNvzlM1anGfHj1Sj3Du2hLVJQ3lmkgRv/uXVk3jylhV9B5vkwymY6Us9LStDN4mOnWb1
+         N5kfDYir/pEiWf6ctnv56tS1k2gSRLj+XC5FbOVMYl2CeKdEf0nbMnqJxUkgyyKOnBTj
+         th/SkkU/kfQLssrq2QWAgzoCGI9mrk4GvIUe1TmqGyt06brEH+G7Lh9lU8qA7FZX0E74
+         J8SQ==
+X-Gm-Message-State: ABy/qLYEacwhclXLOro1EOYBHc3XW/tgbuCyrL9Q9tK0QrN2yPIPIXiJ
+        03O8Inehy99qC2G7gRuKUmUOkg==
+X-Google-Smtp-Source: APBJJlFPqqbf4K9dM5wgRbIKUsSBqxqeeMPrkrrT0+xpxgRCvU3YrZK42DFyjtViSnUsFS86ouqtpQ==
+X-Received: by 2002:a05:6512:31d1:b0:4fb:7371:3db6 with SMTP id j17-20020a05651231d100b004fb73713db6mr1699084lfe.29.1690377350680;
+        Wed, 26 Jul 2023 06:15:50 -0700 (PDT)
+Received: from [192.168.1.101] (abyl59.neoplus.adsl.tpnet.pl. [83.9.31.59])
+        by smtp.gmail.com with ESMTPSA id m9-20020a056512014900b004fb8ff1f531sm3248476lfo.70.2023.07.26.06.15.49
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 26 Jul 2023 06:15:31 -0700 (PDT)
-Message-ID: <453c362a-c9bf-1cd4-187c-8916ed406c64@linaro.org>
-Date:   Wed, 26 Jul 2023 15:15:30 +0200
+        Wed, 26 Jul 2023 06:15:50 -0700 (PDT)
+Message-ID: <2bcad16b-ed94-357f-5153-372a216ce958@linaro.org>
+Date:   Wed, 26 Jul 2023 15:15:48 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH 3/8] AMR: dts: imx28-m28evk: populate fixed regulators
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: arm: qcom: Add BQ Aquaris M5
 Content-Language: en-US
-To:     Fabio Estevam <festevam@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        =?UTF-8?Q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com
-References: <20230726070322.103871-1-krzysztof.kozlowski@linaro.org>
- <20230726070322.103871-3-krzysztof.kozlowski@linaro.org>
- <CAOMZO5C1JN7w+LhK-J0_ttKVopyeRq6VmCpAHujN_tGPMobotA@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAOMZO5C1JN7w+LhK-J0_ttKVopyeRq6VmCpAHujN_tGPMobotA@mail.gmail.com>
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230724-bq_m5-v1-0-17a0870a73be@apitzsch.eu>
+ <20230724-bq_m5-v1-1-17a0870a73be@apitzsch.eu>
+ <877c6d2c-430f-b1fb-4267-18be5d7256dc@linaro.org>
+ <d51dee67-02f4-1256-877f-61629c04b08f@linaro.org>
+ <a90461fa-8319-5b87-397f-53ba169a3d31@linaro.org>
+ <1717ccb1-46b3-8ac3-2c09-9558bd12cc40@linaro.org>
+ <d9cb0908-4074-2f01-efaf-cdd863a039f2@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <d9cb0908-4074-2f01-efaf-cdd863a039f2@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -86,51 +120,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/07/2023 15:08, Fabio Estevam wrote:
-> Patches 1, 2, 3, and 4 have a typo in the Subject: s/AMR/ARM.
+On 26.07.2023 09:34, Krzysztof Kozlowski wrote:
+> On 25/07/2023 12:03, Konrad Dybcio wrote:
+>> On 25.07.2023 11:43, Krzysztof Kozlowski wrote:
+>>> On 25/07/2023 10:13, Konrad Dybcio wrote:
+>>>> On 25.07.2023 07:46, Krzysztof Kozlowski wrote:
+>>>>> On 24/07/2023 22:52, André Apitzsch wrote:
+>>>>>> Add a compatible for BQ Aquaris M5 (Longcheer L9100).
+>>>>>>
+>>>>>> Signed-off-by: André Apitzsch <git@apitzsch.eu>
+>>>>>> ---
+>>>>>>  Documentation/devicetree/bindings/arm/qcom.yaml | 1 +
+>>>>>>  1 file changed, 1 insertion(+)
+>>>>>
+>>>>>
+>>>>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>>>>
+>>>>>
+>>>>> ---
+>>>>>
+>>>>> This is an automated instruction, just in case, because many review tags
+>>>>> are being ignored. If you do not know the process, here is a short
+>>>>> explanation:
+>>>>>
+>>>>> Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+>>>>> versions, under or above your Signed-off-by tag. Tag is "received", when
+>>>>> provided in a message replied to you on the mailing list. Tools like b4
+>>>>> can help here. However, there's no need to repost patches *only* to add
+>>>>> the tags. The upstream maintainer will do that for acks received on the
+>>>>> version they apply.
+>>>>>
+>>>>> https://elixir.bootlin.com/linux/v5.17/source/Documentation/process/submitting-patches.rst#L540
+>>>> Krzysztof, update your bot to paste this link with s/v5.17/latest/g
+>>>
+>>> Is there any difference? :) I would need to update links in all my
+>>> templates and re-check the links...
+>> Don't know, but the keyword "latest" in the link always points to the..
+>> latest available release
 > 
-> On Wed, Jul 26, 2023 at 4:03 AM Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> Fixed regulators put under "regulators" node will not be populated,
->> unless simple-bus or something similar is used.  Drop the "regulators"
->> wrapper node to fix this.
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> ---
->>  arch/arm/boot/dts/nxp/mxs/imx28-m28evk.dts | 45 ++++++++++------------
->>  1 file changed, 20 insertions(+), 25 deletions(-)
->>
->> diff --git a/arch/arm/boot/dts/nxp/mxs/imx28-m28evk.dts b/arch/arm/boot/dts/nxp/mxs/imx28-m28evk.dts
->> index e350d57a4cec..6bf26f386a5e 100644
->> --- a/arch/arm/boot/dts/nxp/mxs/imx28-m28evk.dts
->> +++ b/arch/arm/boot/dts/nxp/mxs/imx28-m28evk.dts
->> @@ -18,33 +18,28 @@ backlight {
->>                 default-brightness-level = <6>;
->>         };
->>
->> -       regulators {
->> -               reg_vddio_sd0: regulator@1 {
->> -                       compatible = "regulator-fixed";
->> -                       reg = <1>;
->> -                       regulator-name = "vddio-sd0";
->> -                       regulator-min-microvolt = <3300000>;
->> -                       regulator-max-microvolt = <3300000>;
->> -                       gpio = <&gpio3 28 0>;
->> -               };
->> +       reg_vddio_sd0: regulator-1 {
-> 
-> It should be better to write:
-> 
-> reg_vddio_sd0: regulator-vddio-sd0 {
-> 
-> regulator-1 is not very descriptive.
+> And how do you update the line marker in "latest" version, so it points
+> to exact line I want? I could switch to latest kernel doc and point to
+> chapters, but then not to specific lines.
+Hm, right. Didn't think about that.
 
-Node names should be generic, not descriptive. These are old sources, so
-they do not use fully override-by-phandle/label style, thus with
-existing naming I reduce the chances of wrong overrides in some other
-board or DTSI.
-
-Best regards,
-Krzysztof
-
+Konrad
