@@ -2,109 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 09361763C38
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 18:19:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F591763C48
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 18:21:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233162AbjGZQTO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jul 2023 12:19:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42796 "EHLO
+        id S229799AbjGZQVs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jul 2023 12:21:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45290 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233051AbjGZQTM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 12:19:12 -0400
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F2F62698
-        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 09:19:10 -0700 (PDT)
-Received: by mail-lj1-x234.google.com with SMTP id 38308e7fff4ca-2b70404a5a0so103913501fa.2
-        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 09:19:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690388348; x=1690993148;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=PGbt6PYMLskM53TKZ26axcDYb2hySneGd/kuw1Q4t1A=;
-        b=UtB3H6SEk6GoB09wbuHbHtkORwM/QWz6Ekw7lHFHgn3BcqUwHuINBbQqjPZnHNmoal
-         f9OlabJofeA1zUvqogtGqsP1gIrU1R8uMhyk73Ac8Rrpbu3rA7y/2AeVXiZ/HySh7gwv
-         uIHa2iX/us1vpuKABwhdHwEJl6x8gMfTKZEn6uMiRQHifJwIKbQZ9kYW4PZ/+acD2fuc
-         Y2bZ6mqNTF87KZz15t546jqKGUCMQ3hleLHnjq9KvO1lga1+av87a90kqxDmqHTInENX
-         M9ahCMKGt9rRtdfcSDAyuZKmqfr41ADKwKwPFg54e7QFLjPbW36/KdDI/Q0UQ95dVqX+
-         8c2w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690388348; x=1690993148;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=PGbt6PYMLskM53TKZ26axcDYb2hySneGd/kuw1Q4t1A=;
-        b=WkhTDheg7jy0WpuX5SafhnA6aHkJSDDU1skMXYSxbQSFXlJaOj4gXT6PripMleW0lR
-         IQ1juKvTHWiqap1KQUxQUsOcOqHLqECZkqYdsjLN0usPExvB8lHoezL/M9LW7xgBUsAb
-         +ri1sWe1UYgd4HapFHJ8j+YIILGsjWHO8Pv0CuF+akv0NxTRAhQgRjJBudhW/pjBQmV0
-         EnU22aZBg1C7Dc2wXIKpItFUW8GDjgKjR/x73d5Enp850xzZVMycUo5BQXyu9EleovOB
-         DaOMG64ZtVsiQ4Z1SODDmKHPyIgk0WgP27CFQeQoltepQfms+MCrbfXBJItmSeMZNulF
-         4IfQ==
-X-Gm-Message-State: ABy/qLYpkEu04JJOkl/0B1q+LDLY+rxxxwZUoOD2EcxO3kJHbsFP/Utb
-        yoqavUpltSoxvHFfkowRM3NrBw==
-X-Google-Smtp-Source: APBJJlE8hezboS//YmJrQJ4MM5zR/CYSBtT9FDJp1n9lOL3RLkHUeMdgVh8XVldJU45npuBdDbjWSQ==
-X-Received: by 2002:a2e:91c2:0:b0:2b7:67f:24bb with SMTP id u2-20020a2e91c2000000b002b7067f24bbmr1884459ljg.50.1690388348338;
-        Wed, 26 Jul 2023 09:19:08 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id j15-20020a170906254f00b00992d122af63sm9809417ejb.89.2023.07.26.09.19.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 26 Jul 2023 09:19:07 -0700 (PDT)
-Message-ID: <76bddaa4-bff2-ffd9-ea33-92e622b290a5@linaro.org>
-Date:   Wed, 26 Jul 2023 18:19:05 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH 2/2] dt-bindings: hwmon: add renesas,isl28022
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     =?UTF-8?Q?Carsten_Spie=c3=9f?= <mail@carsten-spiess.de>,
-        Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>,
+        with ESMTP id S229929AbjGZQVr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 12:21:47 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5273F2696;
+        Wed, 26 Jul 2023 09:21:46 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 9343D61B9D;
+        Wed, 26 Jul 2023 16:21:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B51C9C433C8;
+        Wed, 26 Jul 2023 16:21:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1690388505;
+        bh=18NDTqqHohoTLr90XQLxpr4K5+AZj+2bL/ajmxJtfhc=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=EVBZg2ZbLdRVYWcCdqu3F5jx+QQU/aWzKtgtSWBdD+3DrwcbLPhCALBN0nkQANsFY
+         hHJgx5qyPifqGPY3HrU9YntFvjNF7pJod4M1TCGVAOZn3FbNN7rrQm7pGauGcdWcSJ
+         KSPMWbjSYgsZxLZLU2LWhkSt64nF8GIKOVypy+Nvi3t6/MxeU1licJ2W2ItROHfY28
+         4vD+8KQ35/M5dZiWkUeGpK1/Hw/T8K84t8QDtjQA0N6etOkfiJRVMuJbsuom4Iak5U
+         bmSY5+ucnbhUkTxdvqyKdzPDJ33bxyJ95qd3fdM/jLjdopjMuMNo/gY/8jS2vBaJZP
+         wi8w7X8PJDxeA==
+From:   Conor Dooley <conor@kernel.org>
+To:     Conor Dooley <conor+dt@kernel.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>
-Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-References: <20230726152235.249569-1-mail@carsten-spiess.de>
- <20230726152235.249569-3-mail@carsten-spiess.de>
- <82628237-e087-269e-9673-cf3873fe4b35@linaro.org>
-In-Reply-To: <82628237-e087-269e-9673-cf3873fe4b35@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        Hal Feng <hal.feng@starfivetech.com>,
+        Walker Chen <walker.chen@starfivetech.com>
+Cc:     conor@kernel.org, Conor Dooley <conor.dooley@microchip.com>,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v1 0/2] Add dma and tdm nodes for StarFive JH7110 SOC
+Date:   Wed, 26 Jul 2023 17:21:39 +0100
+Message-Id: <20230726-upriver-net-8490aa69df8a@spud>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20230724065158.925-1-walker.chen@starfivetech.com>
+References: <20230724065158.925-1-walker.chen@starfivetech.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+X-Developer-Signature: v=1; a=openpgp-sha256; l=563; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=pqWLKNJK9l4lLD6VJLXQH57mRv1gdUVqiglI+UMeLd4=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDCkHPYR2TpIPWzt/4n6VP4c26iTMu2GprHn+fsDd69psM TefS9Y97ChlYRDjYJAVU2RJvN3XIrX+j8sO5563MHNYmUCGMHBxCsBEzl5kZHhXoz594zzeKteD T7tZ/VivnHlTpfMw7Zz0mR1sGp8+txxgZDhox6juePxGl2r/piLha33m55LKl9mv/mv3eHdjHzP 3cg4A
+X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/07/2023 18:14, Krzysztof Kozlowski wrote:
-> 
->> +  shunt-resistor-micro-ohms:
->> +    description:
->> +      Shunt resistor value in micro-Ohm
->> +      defaults to <0> when not set
->> +      monitoring of current and power not supported when <0>
->> +
->> +  shunt-gain:
-> 
-> 1. Missing vendor prefix (does not look like generic property)
-> 2. -microvolt
-> 
->> +    description:
->> +      Shunt gain to scale maximal shunt voltage to
->> +      40mV, 80mV, 160mV, 320mV
->> +      defaults to <8> (320mV) when not set
-> 
-> And then enum is for 40, 80, 160 and 320.
+From: Conor Dooley <conor.dooley@microchip.com>
 
-Also use "default: X" to choose default, instead of free-form text.
+On Mon, 24 Jul 2023 14:51:56 +0800, Walker Chen wrote:
+> These patches add dma and tdm nodes for the StarFive JH7110 SoC, they
+> are based on linux-next. I have tested them on the VisionFive2 board.
+> Thanks.
+> 
+> Best regards,
+> Walker
+> 
+> [...]
 
-Best regards,
-Krzysztof
+Applied to riscv-dt-for-next, thanks!
 
+[1/2] riscv: dts: starfive: jh7110: add dma controller node
+      https://git.kernel.org/conor/c/ac73c09716c3
+[2/2] riscv: dts: starfive: jh7110: add the node and pins configuration for tdm
+      https://git.kernel.org/conor/c/e7c304c0346d
+
+Thanks,
+Conor.
