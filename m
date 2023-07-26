@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F2D3762C88
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 09:05:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BA5F8762C8A
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 09:06:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231140AbjGZHFx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jul 2023 03:05:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40522 "EHLO
+        id S230343AbjGZHGC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jul 2023 03:06:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39970 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232340AbjGZHFP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 03:05:15 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC68D4239
-        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 00:03:30 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id 2adb3069b0e04-4fbf09a9139so10063959e87.2
-        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 00:03:30 -0700 (PDT)
+        with ESMTP id S231421AbjGZHFU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 03:05:20 -0400
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8760B46BE
+        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 00:03:33 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-4fe0c566788so1607292e87.0
+        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 00:03:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690355009; x=1690959809;
+        d=linaro.org; s=google; t=1690355011; x=1690959811;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=x2Us6IanwbA8lyT4wscmTLO3lQgiVOsW82AXUR4/W/0=;
-        b=h5a5Ac1hn8yggKYHnK0Ea0eq0sPlb0SCDzSmrBp2f1YkY39I4d5iuPFKYZDggVzmhw
-         tRdsB2RybIlv1yX+vFOEp6FMs+Nmac5eSk1vQ4HSmNfi7F4NrCR+Sx7QRDSI3XDFO5Cf
-         A2JPP93OYXqCYc0LSPyrk+IQ4NxwkZ5BTRe4sZICG4NxHMpNfeMWxG7d7rT4dynch80N
-         6VjoXYkMCvVIzptdNWnEtjhpxPmLw8f4ml026vm+AwclOlibqoIMDR9RaU7nVGYQWZB3
-         tUFYdGrSc0WQ61omIutYCvbegm8uOpBU77MzPYGqynZmWa8/TPX/PbnAQ2EqvnAd6xbx
-         rrBQ==
+        bh=KkfcJ6m4rMM+iyxRVIwvcMlF3hObn2JrNhl7UUZvcR8=;
+        b=ovI7chw5qWg3NSsekWG+uefx619yR7xOgr2xvKsTvSgEz0QYgfZP2WBG9cNErcf0uu
+         pWRMK/btYC/u+awhud4hNRW17nfQ7zpVaPsdqfYj50K8qWElHMSxpViotFrXCdGKazKZ
+         OJcyghDNf77a1xJWN8aIp+/mzOd5jGpHFmFdg2dIlD6GtMDfMgXbHokt7WsK9cJbSjVt
+         KXHbhFrCCf2RGu8G7w7x24OjFjDDAU15G2k/VR/EI1dx5iJZda1FBT7D4Mba2yWVrkNM
+         uoW9Mqz2pukz52dzOcY6a4Qt9+tBLjEUtNnrgKuPxqIh7RjwTx0q2Qw0UGs3gX8zwWow
+         xe+Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690355009; x=1690959809;
+        d=1e100.net; s=20221208; t=1690355011; x=1690959811;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=x2Us6IanwbA8lyT4wscmTLO3lQgiVOsW82AXUR4/W/0=;
-        b=JjDmN6jIvuInSdtK3YW8rTa/CACOBy+m6rjOMr0STEQskyWLKYyjEjsSUehoxSVb5+
-         BOprvM6zpNaQ+WfFVYTOPbBYUmeF9SsD5KYY4Er+OsoKJqysIibyfBENd1JLaPmyAfUE
-         ERv9Ku/CH6tpQEdXds6rF5ZsIsM/e+Vxir8zBzDbw4yVpCjIR7fTNpMRlR1wE36GZk4o
-         IHZ4zcjqve2Y/sP7+LwMNOc7j07J3kCdIcoWrK4x24081B3HStuy4MSAVBn2U/vJtAMM
-         KvvjDyUwNCES4TUrhUW+fPcbwLegDu79Jn+vanXVfrCLzRoV0Th1OLFqpZst80nUg4uG
-         vzRQ==
-X-Gm-Message-State: ABy/qLblmXlFgWKsLvdooNtzsv6S6e/kOHiPPNbK+FF9HIATrGa0XUXZ
-        3eQsW6F2ym50k2JFjh+EuvHmuWcg8JFpJEwBBd0=
-X-Google-Smtp-Source: APBJJlG4uqDx0Nzj3xqvM/cGrQVm3JUntsakohrvMYir78Hup05JTdxpG9dbBpUL8/aRfXCsc4mgvQ==
-X-Received: by 2002:a05:6512:4006:b0:4f8:5d94:2e46 with SMTP id br6-20020a056512400600b004f85d942e46mr790257lfb.48.1690355009306;
-        Wed, 26 Jul 2023 00:03:29 -0700 (PDT)
+        bh=KkfcJ6m4rMM+iyxRVIwvcMlF3hObn2JrNhl7UUZvcR8=;
+        b=di0sAaZM9SaC/a0tmO5epU6VEd1Ts1n30YSyZ5Rv4xIW8dO+qs2Bi7cpK99qarzIRo
+         Z4Fuku07i91QleGjfxYg7witDFBsUwmDzmLmdKQHVkvzT5g2Wk+6aABipY0AWZPXiSRK
+         513Y8hXpPUVOSttd3CjOkuNPqwUZ6AABoMjMWBtbm5NlJPbw9T6U1uGcO3h/9VKlgj6H
+         wKUMBI0tjvvwXM8j2CidzxlH5j31xe+bXZC8aiWgo1V6Eoy3tB+HfVLYW0CSHa8erI+Y
+         Nk50WhuQ1mD1EvZCxvNDR+Epxs4Hs8JHOmJrm2THSbPYg6BpSIp7MkgxTV0aPH2hTTTo
+         JGqA==
+X-Gm-Message-State: ABy/qLbqdkq1c9sCovAjVLdwnxIkDeyGVzCn6afvdM9nxrw7YJXsLGMS
+        tink5HRtRBqDPm8INvuffBpnqw==
+X-Google-Smtp-Source: APBJJlEufPD2DcGYOU9R7Qm5kXmjp7K+eCgVpmZDKR2Uy3XPSFXWKnNqNHFEpagOzQm0KLH1eS4vMA==
+X-Received: by 2002:ac2:4564:0:b0:4fe:d0f:1f1e with SMTP id k4-20020ac24564000000b004fe0d0f1f1emr635349lfm.25.1690355011565;
+        Wed, 26 Jul 2023 00:03:31 -0700 (PDT)
 Received: from krzk-bin.. ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id dy16-20020a05640231f000b005224f840130sm1572003edb.60.2023.07.26.00.03.27
+        by smtp.gmail.com with ESMTPSA id dy16-20020a05640231f000b005224f840130sm1572003edb.60.2023.07.26.00.03.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 Jul 2023 00:03:28 -0700 (PDT)
+        Wed, 26 Jul 2023 00:03:31 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -64,9 +64,9 @@ To:     Rob Herring <robh+dt@kernel.org>,
         linux-kernel@vger.kernel.org,
         linux-stm32@st-md-mailman.stormreply.com
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 2/8] AMR: dts: imx6ull-colibri: drop incorrect regulator regulator-type
-Date:   Wed, 26 Jul 2023 09:03:16 +0200
-Message-Id: <20230726070322.103871-2-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 3/8] AMR: dts: imx28-m28evk: populate fixed regulators
+Date:   Wed, 26 Jul 2023 09:03:17 +0200
+Message-Id: <20230726070322.103871-3-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230726070322.103871-1-krzysztof.kozlowski@linaro.org>
 References: <20230726070322.103871-1-krzysztof.kozlowski@linaro.org>
@@ -75,34 +75,80 @@ Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-regulator-fixed-clock does not take "regulator-type" property:
-
-  imx6ull-colibri-iris-v2.dtb: regulator-eth-phy: Unevaluated properties are not allowed ('regulator-type' was unexpected)
+Fixed regulators put under "regulators" node will not be populated,
+unless simple-bus or something similar is used.  Drop the "regulators"
+wrapper node to fix this.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm/boot/dts/nxp/imx/imx6ull-colibri.dtsi | 1 -
- 1 file changed, 1 deletion(-)
+ arch/arm/boot/dts/nxp/mxs/imx28-m28evk.dts | 45 ++++++++++------------
+ 1 file changed, 20 insertions(+), 25 deletions(-)
 
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6ull-colibri.dtsi b/arch/arm/boot/dts/nxp/imx/imx6ull-colibri.dtsi
-index fde8a19aac0f..ec3c1e7301f4 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6ull-colibri.dtsi
-+++ b/arch/arm/boot/dts/nxp/imx/imx6ull-colibri.dtsi
-@@ -102,7 +102,6 @@ reg_eth_phy: regulator-eth-phy {
- 		regulator-min-microvolt = <3300000>;
- 		regulator-max-microvolt = <3300000>;
- 		regulator-name = "+V3.3_ETH";
--		regulator-type = "voltage";
- 		vin-supply = <&reg_module_3v3>;
- 		clocks = <&clks IMX6UL_CLK_ENET2_REF_125M>;
- 		startup-delay-us = <150000>;
+diff --git a/arch/arm/boot/dts/nxp/mxs/imx28-m28evk.dts b/arch/arm/boot/dts/nxp/mxs/imx28-m28evk.dts
+index e350d57a4cec..6bf26f386a5e 100644
+--- a/arch/arm/boot/dts/nxp/mxs/imx28-m28evk.dts
++++ b/arch/arm/boot/dts/nxp/mxs/imx28-m28evk.dts
+@@ -18,33 +18,28 @@ backlight {
+ 		default-brightness-level = <6>;
+ 	};
+ 
+-	regulators {
+-		reg_vddio_sd0: regulator@1 {
+-			compatible = "regulator-fixed";
+-			reg = <1>;
+-			regulator-name = "vddio-sd0";
+-			regulator-min-microvolt = <3300000>;
+-			regulator-max-microvolt = <3300000>;
+-			gpio = <&gpio3 28 0>;
+-		};
++	reg_vddio_sd0: regulator-1 {
++		compatible = "regulator-fixed";
++		regulator-name = "vddio-sd0";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		gpio = <&gpio3 28 0>;
++	};
+ 
+-		reg_usb0_vbus: regulator@2 {
+-			compatible = "regulator-fixed";
+-			reg = <2>;
+-			regulator-name = "usb0_vbus";
+-			regulator-min-microvolt = <5000000>;
+-			regulator-max-microvolt = <5000000>;
+-			gpio = <&gpio3 12 0>;
+-		};
++	reg_usb0_vbus: regulator-2 {
++		compatible = "regulator-fixed";
++		regulator-name = "usb0_vbus";
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++		gpio = <&gpio3 12 0>;
++	};
+ 
+-		reg_usb1_vbus: regulator@3 {
+-			compatible = "regulator-fixed";
+-			reg = <3>;
+-			regulator-name = "usb1_vbus";
+-			regulator-min-microvolt = <5000000>;
+-			regulator-max-microvolt = <5000000>;
+-			gpio = <&gpio3 13 0>;
+-		};
++	reg_usb1_vbus: regulator-3 {
++		compatible = "regulator-fixed";
++		regulator-name = "usb1_vbus";
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++		gpio = <&gpio3 13 0>;
+ 	};
+ 
+ 	sound {
 -- 
 2.34.1
 
