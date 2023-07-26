@@ -2,196 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 25099762BF8
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 08:54:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BCF3E762C02
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 08:56:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231355AbjGZGyc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jul 2023 02:54:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34254 "EHLO
+        id S231887AbjGZG4s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jul 2023 02:56:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35680 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229498AbjGZGya (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 02:54:30 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FF5C212D;
-        Tue, 25 Jul 2023 23:54:29 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 36Q6sKVo007965;
-        Wed, 26 Jul 2023 01:54:20 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1690354460;
-        bh=YHyOgqZ1RHjrBCgD4uZ+LnB1LDERfIedQc3m5DIsdII=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=ibNd60U3W1J2LM+Te8fcJ4MPRL7L2HsG4OjMm6aXA7+txqCVB33Ont9D0D5inTbag
-         XiwfFEPIw2AzBNeXoak/uR8L9/H/t6KGWTvyG8rlqxkPZ0u4TyRhjEayTuw49u5Mx5
-         iP4YXbUpyFhaJlsog1+NqEpTx+FmMfE+Oah6D1cw=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 36Q6sKEX048161
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 26 Jul 2023 01:54:20 -0500
-Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 26
- Jul 2023 01:54:20 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 26 Jul 2023 01:54:20 -0500
-Received: from uda0492258.dhcp.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 36Q6s8Tf013490;
-        Wed, 26 Jul 2023 01:54:17 -0500
-From:   Siddharth Vadapalli <s-vadapalli@ti.com>
-To:     <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <afd@ti.com>
-CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <r-gunasekaran@ti.com>,
-        <srk@ti.com>, <s-vadapalli@ti.com>
-Subject: [PATCH v3 2/2] arm64: dts: ti: k3-j721s2: Add overlay to enable main CPSW2G with GESI
-Date:   Wed, 26 Jul 2023 12:24:07 +0530
-Message-ID: <20230726065407.378455-3-s-vadapalli@ti.com>
+        with ESMTP id S229498AbjGZG4n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 02:56:43 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5AF401BFB
+        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 23:56:39 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-992acf67388so927612166b.1
+        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 23:56:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1690354598; x=1690959398;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=VE6+jh1jGUDgaLwcXDZ0os/y7GlAJU39aNPtfSV+1yo=;
+        b=DHBj1FEjGaYp/Unf+8NglucgrXB+rymFE9M8XTUjKySAEXgskGmsYryeSW+0pX7xxo
+         cwHUnIV+5Q5pduXUYSwiDJJ1UeaUI4BhbtU/ALRTZhEtR5DaiCSQtYwYBhAP4XQ3dDHG
+         azu8QhudxkXwielBX7Rh4/pNjww2wONds1p4UZX3s5fb04gpjMfE2WPhZ2xRdKBr3G5d
+         wLSY/WC0/XSDFp84bmd9/fP4ufx2iW+gcIkMXZOlfcQXPZ9W001Yp4clXdyCB2K9CPSn
+         Fpf+gsIoyyi5TUWxDGT00frL3t6i2ilfX5aD2g6WLwQ34py7Imv8bpqyOHVR6NaVeHN1
+         8w1Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690354598; x=1690959398;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=VE6+jh1jGUDgaLwcXDZ0os/y7GlAJU39aNPtfSV+1yo=;
+        b=PCqF43iQurZX4KyGHZZ4qzwHiQeBFpcBlnqZqPdXc5uWRoFmeNnoocu8lQGYliKfjR
+         wM42RN+3NyRbQHRoUP9xMBcD85n7uqDSkN6nZYINL+w97wQ/FoiMjaxBnBS8igIECDJ8
+         RglJEDWcBz8RDkvBhYgj54+SZVRBQpGbtxzJCv5jpoij2AQXzqhOg2vgg+0ALGcaWQxi
+         jTQCIIHM6NgUyazNIXQUJL/HZyluD4vicm3CRE638JzxyAMVQywC4DjGQSWm0QxPQGuy
+         y2GHGnjodBcjNgV7faHH1iFwLR+cvnpLQNeKpSSkN9S0uzIO/5m4jpMV6KVDkh6S0SkX
+         yAFA==
+X-Gm-Message-State: ABy/qLYjg4WH62hE/WGREevvm8+Yo7dhPQck9ebHoBhEO5XzNXjt7SPo
+        byqAZfudCiim6bTFAy7/9hyx+Q==
+X-Google-Smtp-Source: APBJJlGNYjvyE/hElqZcn3uKrdmqb/bxloAZSpyKBbz0w5XL2KjMYRDbrdc51M+UVn8A0j71TIFfOA==
+X-Received: by 2002:a17:906:74d8:b0:993:ffcb:ad4e with SMTP id z24-20020a17090674d800b00993ffcbad4emr982634ejl.13.1690354597852;
+        Tue, 25 Jul 2023 23:56:37 -0700 (PDT)
+Received: from krzk-bin.. ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id gs18-20020a170906f19200b00993150e5325sm9178420ejb.60.2023.07.25.23.56.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 25 Jul 2023 23:56:37 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        pascal Paillet <p.paillet@foss.st.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v3 1/2] dt-bindings: mfd: st,stpmic1: Merge patterns for nodes
+Date:   Wed, 26 Jul 2023 08:56:32 +0200
+Message-Id: <20230726065633.74924-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230726065407.378455-1-s-vadapalli@ti.com>
-References: <20230726065407.378455-1-s-vadapalli@ti.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Kishon Vijay Abraham I <kishon@ti.com>
+Properties should be described only once, thus having separate pattern
+for children just to specify the $ref to regulator.yaml is not correct.
+It also makes impossible to finish it with
+additional/unevaluatedProperties:false to restrict allowed properties in
+regulator node.
 
-The MAIN CPSW2G instance of CPSW on J721S2 SoC can be enabled with the GESI
-Expansion Board connected to the J7 Common-Proc-Board. Use the overlay
-to enable this.
+Merge the patterns, so each regulator subnode has regulator.yaml $ref,
+additional properties and ends with additionalProperties:false.  This
+points to missing regulator-min/max-microvolt in LDO4 node.
 
-Add alias for the MAIN CPSW2G port to enable kernel to fetch MAC address
-directly from U-Boot.
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
-Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
-Reviewed-by: Ravi Gunasekaran <r-gunasekaran@ti.com>
 ---
- arch/arm64/boot/dts/ti/Makefile               |  2 +
- .../dts/ti/k3-j721s2-evm-gesi-exp-board.dtso  | 85 +++++++++++++++++++
- 2 files changed, 87 insertions(+)
- create mode 100644 arch/arm64/boot/dts/ti/k3-j721s2-evm-gesi-exp-board.dtso
 
-diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-index 6dd7b6f1d6ab..019a8be19b93 100644
---- a/arch/arm64/boot/dts/ti/Makefile
-+++ b/arch/arm64/boot/dts/ti/Makefile
-@@ -51,6 +51,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-j721e-sk.dtb
- # Boards with J721s2 SoC
- dtb-$(CONFIG_ARCH_K3) += k3-am68-sk-base-board.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-j721s2-common-proc-board.dtb
-+dtb-$(CONFIG_ARCH_K3) += k3-j721s2-evm-gesi-exp-board.dtbo
+Changes in v3:
+1. Add regulator-min/max-microvolt in ldo4
+
+Changes in v2:
+1. Merge the entries instead of duplicating regulator properties.
+---
+ .../devicetree/bindings/mfd/st,stpmic1.yaml          | 12 +++++++++---
+ 1 file changed, 9 insertions(+), 3 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/mfd/st,stpmic1.yaml b/Documentation/devicetree/bindings/mfd/st,stpmic1.yaml
+index 97c61097f9e2..b17ebeb0a42f 100644
+--- a/Documentation/devicetree/bindings/mfd/st,stpmic1.yaml
++++ b/Documentation/devicetree/bindings/mfd/st,stpmic1.yaml
+@@ -106,6 +106,7 @@ properties:
+         const: st,stpmic1-regulators
  
- # Boards with J784s4 SoC
- dtb-$(CONFIG_ARCH_K3) += k3-am69-sk.dtb
-@@ -58,3 +59,4 @@ dtb-$(CONFIG_ARCH_K3) += k3-j784s4-evm.dtb
+       ldo3:
++        $ref: /schemas/regulator/regulator.yaml
+         type: object
  
- # Enable support for device-tree overlays
- DTC_FLAGS_k3-am6548-iot2050-advanced-m2 += -@
-+DTC_FLAGS_k3-j721s2-common-proc-board += -@
-diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-evm-gesi-exp-board.dtso b/arch/arm64/boot/dts/ti/k3-j721s2-evm-gesi-exp-board.dtso
-new file mode 100644
-index 000000000000..b78feea31b54
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-j721s2-evm-gesi-exp-board.dtso
-@@ -0,0 +1,85 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/**
-+ * DT Overlay for MAIN CPSW2G using GESI Expansion Board with J7 common processor board.
-+ *
-+ * GESI Board Product Link: https://www.ti.com/tool/J7EXPCXEVM
-+ *
-+ * Copyright (C) 2023 Texas Instruments Incorporated - https://www.ti.com/
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/net/ti-dp83867.h>
-+
-+#include "k3-pinctrl.h"
-+
-+&{/} {
-+	aliases {
-+		ethernet1 = "/bus@100000/ethernet@c200000/ethernet-ports/port@1";
-+	};
-+};
-+
-+&main_pmx0 {
-+	main_cpsw_mdio_default_pins: main-cpsw-mdio-default-pins {
-+		pinctrl-single,pins = <
-+			J721S2_IOPAD(0x0c0, PIN_OUTPUT, 6) /* (T28) MCASP1_AXR0.MDIO0_MDC */
-+			J721S2_IOPAD(0x0bc, PIN_INPUT, 6) /* (V28) MCASP1_AFSX.MDIO0_MDIO */
-+		>;
-+	};
-+
-+	rgmii1_default_pins: rgmii1-default-pins {
-+		pinctrl-single,pins = <
-+			J721S2_IOPAD(0x0b8, PIN_INPUT, 6) /* (AA24) MCASP1_ACLKX.RGMII1_RD0 */
-+			J721S2_IOPAD(0x0a0, PIN_INPUT, 6) /* (AB25) MCASP0_AXR12.RGMII1_RD1 */
-+			J721S2_IOPAD(0x0a4, PIN_INPUT, 6) /* (T23) MCASP0_AXR13.RGMII1_RD2 */
-+			J721S2_IOPAD(0x0a8, PIN_INPUT, 6) /* (U24) MCASP0_AXR14.RGMII1_RD3 */
-+			J721S2_IOPAD(0x0b0, PIN_INPUT, 6) /* (AD26) MCASP1_AXR3.RGMII1_RXC */
-+			J721S2_IOPAD(0x0ac, PIN_INPUT, 6) /* (AC25) MCASP0_AXR15.RGMII1_RX_CTL */
-+			J721S2_IOPAD(0x08c, PIN_OUTPUT, 6) /* (T25) MCASP0_AXR7.RGMII1_TD0 */
-+			J721S2_IOPAD(0x090, PIN_OUTPUT, 6) /* (W24) MCASP0_AXR8.RGMII1_TD1 */
-+			J721S2_IOPAD(0x094, PIN_OUTPUT, 6) /* (AA25) MCASP0_AXR9.RGMII1_TD2 */
-+			J721S2_IOPAD(0x098, PIN_OUTPUT, 6) /* (V25) MCASP0_AXR10.RGMII1_TD3 */
-+			J721S2_IOPAD(0x0b4, PIN_OUTPUT, 6) /* (U25) MCASP1_AXR4.RGMII1_TXC */
-+			J721S2_IOPAD(0x09c, PIN_OUTPUT, 6) /* (T24) MCASP0_AXR11.RGMII1_TX_CTL */
-+		>;
-+	};
-+};
-+
-+&exp1 {
-+	p15 {
-+		/* P15 - EXP_MUX2 */
-+		gpio-hog;
-+		gpios = <13 GPIO_ACTIVE_HIGH>;
-+		output-high;
-+		line-name = "EXP_MUX2";
-+	};
-+};
-+
-+&main_cpsw {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&rgmii1_default_pins>;
-+};
-+
-+&main_cpsw_mdio {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_cpsw_mdio_default_pins>;
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	main_cpsw_phy0: ethernet-phy@0 {
-+		reg = <0>;
-+		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
-+		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
-+		ti,min-output-impedance;
-+	};
-+};
-+
-+&main_cpsw_port1 {
-+	status = "okay";
-+	phy-mode = "rgmii-rxid";
-+	phy-handle = <&main_cpsw_phy0>;
-+};
+         properties:
+@@ -128,6 +129,7 @@ properties:
+         additionalProperties: false
+ 
+       ldo4:
++        $ref: /schemas/regulator/regulator.yaml
+         type: object
+ 
+         properties:
+@@ -142,11 +144,14 @@ properties:
+           regulator-name: true
+           regulator-boot-on: true
+           regulator-always-on: true
++          regulator-min-microvolt: true
++          regulator-max-microvolt: true
+           regulator-over-current-protection: true
+ 
+         additionalProperties: false
+ 
+       vref_ddr:
++        $ref: /schemas/regulator/regulator.yaml
+         type: object
+ 
+         properties:
+@@ -165,6 +170,7 @@ properties:
+         additionalProperties: false
+ 
+       boost:
++        $ref: /schemas/regulator/regulator.yaml
+         type: object
+ 
+         properties:
+@@ -187,10 +193,8 @@ properties:
+       "^(buck[1-4]|ldo[1-6]|vref_ddr|boost|pwr_sw[1-2])-supply$":
+         description: STPMIC1 voltage regulators supplies
+ 
+-      "^(buck[1-4]|ldo[1-6]|boost|vref_ddr|pwr_sw[1-2])$":
+-        $ref: ../regulator/regulator.yaml
+-
+       "^ldo[1-2,5-6]$":
++        $ref: /schemas/regulator/regulator.yaml
+         type: object
+ 
+         properties:
+@@ -213,6 +217,7 @@ properties:
+         additionalProperties: false
+ 
+       "^buck[1-4]$":
++        $ref: /schemas/regulator/regulator.yaml
+         type: object
+ 
+         properties:
+@@ -237,6 +242,7 @@ properties:
+         additionalProperties: false
+ 
+       "^pwr_sw[1-2]$":
++        $ref: /schemas/regulator/regulator.yaml
+         type: object
+ 
+         properties:
 -- 
 2.34.1
 
