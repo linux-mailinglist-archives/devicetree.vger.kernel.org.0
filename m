@@ -2,108 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1CFDD763D89
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 19:19:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DECDB763D96
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 19:21:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232328AbjGZRTx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jul 2023 13:19:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56818 "EHLO
+        id S229871AbjGZRVY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jul 2023 13:21:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58166 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232313AbjGZRTv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 13:19:51 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 581E2212A;
-        Wed, 26 Jul 2023 10:19:39 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id C5DDC61C00;
-        Wed, 26 Jul 2023 17:19:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 17F78C433C8;
-        Wed, 26 Jul 2023 17:19:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690391978;
-        bh=efegVLS2xrCv7gYTENHX0ser7GsusM7cYHZ9iIN3WP0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=UFMC/66vrykLxmuvfSwz5durhy5zwQjCCF/Q8MicmwmbzBD9vgxyOyFJgXlHtyLyd
-         KVzSJgJWm6WOc7yByCR7iylIiKi5ErzAYd0TqVZ95Fb4WWzWOA6J74hj9enuUA84Qh
-         2h2gLZVq5pFC2G6Y7wNjndQnL7psbNmFaFd2A03ThpvSS3GfnyXZL8F0rAgKx+d0s/
-         kezOuuTjSd4LJczr8KQJDXItyGidwx45qZC7wBA+CVlBvHK1AEI/2nJZlCLNrAKhF4
-         k8oOfOthqlO0H+eybNglKRkwjKwfiFmYgGZLs9gmH9bZam8E2xkBsE2cMh5EJ9gI1R
-         rNnH/WuOT9vqw==
-Received: (nullmailer pid 1675716 invoked by uid 1000);
-        Wed, 26 Jul 2023 17:19:34 -0000
-Date:   Wed, 26 Jul 2023 11:19:34 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Wesley Cheng <quic_wcheng@quicinc.com>
-Cc:     agross@kernel.org, andersson@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        catalin.marinas@arm.com, will@kernel.org, mathias.nyman@intel.com,
-        gregkh@linuxfoundation.org, lgirdwood@gmail.com,
-        broonie@kernel.org, perex@perex.cz, tiwai@suse.com,
-        srinivas.kandagatla@linaro.org, bgoswami@quicinc.com,
-        Thinh.Nguyen@synopsys.com, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-usb@vger.kernel.org,
-        alsa-devel@alsa-project.org, quic_jackp@quicinc.com,
-        pierre-louis.bossart@linux.intel.com, oneukum@suse.com,
-        albertccwang@google.com, o-takashi@sakamocchi.jp
-Subject: Re: [PATCH v4 13/32] dt-bindings: usb: dwc3: Add
- snps,num-hc-interrupters definition
-Message-ID: <20230726171934.GA1654540-robh@kernel.org>
-References: <20230725023416.11205-1-quic_wcheng@quicinc.com>
- <20230725023416.11205-14-quic_wcheng@quicinc.com>
+        with ESMTP id S232380AbjGZRVV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 13:21:21 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E3DA2722
+        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 10:21:18 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-522382c4840so6394a12.2
+        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 10:21:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1690392077; x=1690996877;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=too89VOKg4aVRVsOKXI6D9LDbHqxYzZFNKPkb45L/xw=;
+        b=K8dE9tk+ewfahp9/J7/sYh67jaGw270PVYU6mD45mc3tAPQ4nXe3tJwVEpotz0Kdey
+         WkIQO70OQ6AoJkqSRt70bhfnnVzm8av/LwoRxx+2h/oz7KCJmiA27v3N17IWYzA91HNG
+         vIIL6vghTK5w8k9cy4zsDYrClv9h8f6pNfLde+fMds1zvbb5aZ7ORnwpTaKuDuFaCwQv
+         RXxZHm6ChCUpHhl7O7GMUas/xHrAu9boAJzgpqQpeaSBjPz+Ba2RA3bj/+IDPbVfGKQZ
+         13WP+Y2sYbrIFVXDudT+SrOiXq+/PxgUcUrQvS5xBhNRdc0dQrNx+JEjCVeCTMZyGj7Q
+         gVnQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690392077; x=1690996877;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=too89VOKg4aVRVsOKXI6D9LDbHqxYzZFNKPkb45L/xw=;
+        b=EAzKURTaPzuyh01CGkkPeUQlgQ52azg3ZzO80cxhrNTFd454vqb1DViz7MwP5YYKqi
+         TRkc1Y3BlbTklp/daF1lWyFINzWRvr1dFxU947AuIiI8jIIlW3EMD4rUP2hbgFCORVRM
+         2Oufu6/ygyqjDJ8/9sAJlkjWCBJcMitIsPtwGllLifLlWAFJQqp9q5XMTUNe4Y6084Tz
+         VVeXzSrKFWA7dG6rkGdTUvf/GjuDeEoXRNWkuWqtdW3eqXbtjw4ai2gc2YsZ8VPfvMJd
+         ao+CikZR3rVsbcpPGfqyS3U5BM5WdK1AVJfN+9eQJnIVttha02g57TuX1BgtkKDVr7Kh
+         IAtg==
+X-Gm-Message-State: ABy/qLYtcZ/GwEuJaWdJTbFmq1V6/Dx4pkYlGLJpk04MeIiqkuaLz7B0
+        AZXbfETnHKNpHcxuVoWFW5yRvw==
+X-Google-Smtp-Source: APBJJlEyoGURsUYBAQaNMwsyfDXwqKgX55lxzPCYh6e9DV5uQcwnRiL+KCwu7sXNVeMpK8z6KNcc1A==
+X-Received: by 2002:aa7:d71a:0:b0:522:36e8:bc88 with SMTP id t26-20020aa7d71a000000b0052236e8bc88mr1939347edq.12.1690392076903;
+        Wed, 26 Jul 2023 10:21:16 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id k11-20020aa7d8cb000000b005222c6fb512sm4306131eds.1.2023.07.26.10.21.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 26 Jul 2023 10:21:16 -0700 (PDT)
+Message-ID: <0aa471ce-da83-172d-d870-1ec7a562baf7@linaro.org>
+Date:   Wed, 26 Jul 2023 19:21:14 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230725023416.11205-14-quic_wcheng@quicinc.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v7 1/5] dt-bindings: media: platform: visconti: Add
+ Toshiba Visconti Video Input Interface
+Content-Language: en-US
+To:     yuji2.ishikawa@toshiba.co.jp, hverkuil@xs4all.nl,
+        sakari.ailus@iki.fi, laurent.pinchart@ideasonboard.com,
+        mchehab@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        nobuhiro1.iwamatsu@toshiba.co.jp, broonie@kernel.org
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20230714015059.18775-1-yuji2.ishikawa@toshiba.co.jp>
+ <20230714015059.18775-2-yuji2.ishikawa@toshiba.co.jp>
+ <7aa255e8-1cf1-03c6-02c8-de7c737a5683@linaro.org>
+ <TYAPR01MB62012F7EA98012DBE0B383A29203A@TYAPR01MB6201.jpnprd01.prod.outlook.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <TYAPR01MB62012F7EA98012DBE0B383A29203A@TYAPR01MB6201.jpnprd01.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 24, 2023 at 07:33:57PM -0700, Wesley Cheng wrote:
-> Add a new definition for specifying how many XHCI secondary interrupters
-> can be allocated.  XHCI in general can potentially support up to 1024
-> interrupters, which some uses may want to limit depending on how many
-> users utilize the interrupters.
+On 25/07/2023 08:08, yuji2.ishikawa@toshiba.co.jp wrote:
+>> unevaluatedProperties: false
+> 
+> In the previous discussion with Laurent, I believe additionalProperties was preferred in terms of handling properties not explicitly mentioned.
+> 
+> https://lore.kernel.org/all/Y82NtJCtr+CZgS9k@pendragon.ideasonboard.com/
 
-Why does this belong in DT? What 'uses' determines the value? Who wants 
-to change this and when?
+OK.
 
 > 
-> Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
-> ---
->  .../devicetree/bindings/usb/snps,dwc3.yaml          | 13 +++++++++++++
->  1 file changed, 13 insertions(+)
+> Do you have concern about defaulting properties in video-interface.yaml to forbidden?
+> If defaulting to optional (like most of other bindings) is better, I'll use unevaluatedProperties.
 > 
-> diff --git a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-> index 50edc4da780e..cc6012e922e0 100644
-> --- a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-> +++ b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-> @@ -376,6 +376,19 @@ properties:
->      items:
->        enum: [1, 4, 8, 16, 32, 64, 128, 256]
->  
-> +  snps,num-hc-interrupters:
-> +    description:
-> +      Defines the maximum number of XHCI host controller interrupters that can
-> +      be supported.  The XHCI host controller has support to allocate multiple
-> +      event rings, which can be assigned to different clients/users.  The DWC3
-> +      controller has a maximum of 8 interrupters.  If this is not defined then
-> +      the value will be defaulted to 1.  This parameter is used only when
-> +      operating in host mode.
-> +    $ref: /schemas/types.yaml#/definitions/uint8
-> +    minimum: 1
-> +    maximum: 8
-> +    default: 1
-> +
->    port:
->      $ref: /schemas/graph.yaml#/properties/port
->      description:
+
+...
+
+> there's no need to specify clock-lane with device tree.
+> 
+> I'll drop "clock-lanes".
+> 
+>>> +
+>>> +          bus-type: true
+>>> +          clock-noncontinuous: true
+>>> +          link-frequencies: true
+>>> +          remote-endpoint: true
+>>
+>> Drop all of these "xxx: true", should not be needed after converting to
+>> unevaluatedProperties: false
+>>
+> 
+> I'll drop "xxx: true" if unevaluatedProperties is chosen instead of additionalProperties.
+
+Since we keep unevaluated, this should stay.
+
+
+Best regards,
+Krzysztof
+
