@@ -2,108 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E9DB4763DE1
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 19:46:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F1841763E34
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 20:15:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231245AbjGZRqK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jul 2023 13:46:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41124 "EHLO
+        id S229778AbjGZSPZ convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 26 Jul 2023 14:15:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54030 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231362AbjGZRqJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 13:46:09 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2B9D26A1;
-        Wed, 26 Jul 2023 10:46:05 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 5F7CF61C2A;
-        Wed, 26 Jul 2023 17:46:05 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B3BBCC433C8;
-        Wed, 26 Jul 2023 17:46:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690393564;
-        bh=1Y8GOeOm2cAylzoE00OZE5hDS7/QUx8+5O70+x/n2n4=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=GLqLRQSpwpSb/thnyBrW3e6LAtjKM3AeFr5Q6ebOrmHKFZ+5l6lB1qqm1p6us0ko4
-         K/Vtq69+STMaHlkpoZLAWYRJt2Nswkmg8wq1cnWKMvR5QGaEjJnekk63iHq5nJfMQY
-         RhSi63yHmuXWcUWn9OdMFUOiJSTKZVN0UNZV4g06VOWcw6ehd83YtPYtj71E7Y5mUi
-         x/FTwRoHtsfsWHIrgw+MNkqGTamOv0mG2oJwdbbIB/gTYm+45Hb37yL7oPaE5eOHot
-         aVdikjvzEQDZmHDbKisvpsB/Zg5HgX7mxOhwZoZJ8qYfiHUG0C8eB6oMXUcvuSSBNz
-         DngKjsYOHRJHg==
-From:   Mark Brown <broonie@kernel.org>
-To:     Saravanan Sekar <sravanhome@gmail.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Robin Gong <yibin.gong@nxp.com>,
-        ChiYuan Huang <cy_huang@richtek.com>,
-        Pascal Paillet <p.paillet@foss.st.com>,
-        - <patches@opensource.cirrus.com>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20230726074940.121040-1-krzysztof.kozlowski@linaro.org>
-References: <20230726074940.121040-1-krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v2] regulator: dt-bindings: add missing
- unevaluatedProperties for each regulator
-Message-Id: <169039356041.105646.13098207329490634827.b4-ty@kernel.org>
-Date:   Wed, 26 Jul 2023 18:46:00 +0100
+        with ESMTP id S229437AbjGZSPY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 14:15:24 -0400
+Received: from mail-oa1-f51.google.com (mail-oa1-f51.google.com [209.85.160.51])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31B02E78;
+        Wed, 26 Jul 2023 11:15:24 -0700 (PDT)
+Received: by mail-oa1-f51.google.com with SMTP id 586e51a60fabf-1bb69c0070dso139391fac.1;
+        Wed, 26 Jul 2023 11:15:24 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690395323; x=1691000123;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=PxLo+ssfIcGr82bGMB16DLkdE3iFP1HlTtobqG8HjjU=;
+        b=eLu2z0gBr3mJOhjjzDoDpgkGId/gi2rUTa6jkEoaH3BP4E+Qp6ZYw1RlD/08ntX89m
+         TklHZdrOzLzpMkwz4QwfDTGwGlfK+rHbpODZb2pCBcdpQvb/ZO3TeXcRhdRjyoG2hUru
+         +IggZU2z2wZa3AHo8kXsmsZ9Y9fT4P4RY190xr10GunQJKThLD16zFHCt++OKqwm9Zbl
+         T2CH4zTLDOWt/UlzM+F8XW8+m0DERDrHLl84VQD5i0S1F2Db86I1i/ABih4wQkyUNNiQ
+         VSTCg8cNDXARkRVeu+NuEhnmXm7wUkcgtPXNNLR/4u+a3AAuB8SMbqKqhaBODwJ9rUew
+         pKDg==
+X-Gm-Message-State: ABy/qLZ0cy42fNxRTMnivOgD5F49NtdMIIqDJK7VyzrADJJyf+ybukv8
+        nlPK+RkDL24hwqrDCTcd6upjgdfeFma5PQ==
+X-Google-Smtp-Source: APBJJlENQxxy9+hEQrtwV3ftQDOXryfK++Uc5gK5IcooB0jhaKarnClg9nIJJ0rlI/G+hi+UBbbtCA==
+X-Received: by 2002:a05:6870:8197:b0:1bb:6c17:2715 with SMTP id k23-20020a056870819700b001bb6c172715mr340020oae.2.1690395323260;
+        Wed, 26 Jul 2023 11:15:23 -0700 (PDT)
+Received: from mail-yb1-f176.google.com (mail-yb1-f176.google.com. [209.85.219.176])
+        by smtp.gmail.com with ESMTPSA id h185-20020a0ddec2000000b0057399b3bd26sm4302115ywe.33.2023.07.26.11.15.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 26 Jul 2023 11:15:22 -0700 (PDT)
+Received: by mail-yb1-f176.google.com with SMTP id 3f1490d57ef6-d07c535377fso64793276.1;
+        Wed, 26 Jul 2023 11:15:22 -0700 (PDT)
+X-Received: by 2002:a25:8046:0:b0:cee:a470:89dc with SMTP id
+ a6-20020a258046000000b00ceea47089dcmr2430924ybn.52.1690395322627; Wed, 26 Jul
+ 2023 11:15:22 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.13-dev-099c9
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20230714174028.4040093-1-robh@kernel.org>
+In-Reply-To: <20230714174028.4040093-1-robh@kernel.org>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 26 Jul 2023 20:15:10 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXdqo-OFKtHdVNu77-cuS67Cvb6NV98eYK+gtba7ir5jA@mail.gmail.com>
+Message-ID: <CAMuHMdXdqo-OFKtHdVNu77-cuS67Cvb6NV98eYK+gtba7ir5jA@mail.gmail.com>
+Subject: Re: [PATCH] MIPS: Explicitly include correct DT includes
+To:     Rob Herring <robh@kernel.org>
+Cc:     Florian Fainelli <florian.fainelli@broadcom.com>,
+        Broadcom internal kernel review list 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        John Crispin <john@phrozen.org>, devicetree@vger.kernel.org,
+        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 26 Jul 2023 09:49:40 +0200, Krzysztof Kozlowski wrote:
-> Each regulator node, which references common regulator.yaml schema,
-> should disallow additional or unevaluated properties.  Otherwise
-> mistakes in properties will go unnoticed.
-> 
-> 
+Hi Rob,
 
-Applied to
+On Fri, Jul 14, 2023 at 7:44 PM Rob Herring <robh@kernel.org> wrote:
+> The DT of_device.h and of_platform.h date back to the separate
+> of_platform_bus_type before it as merged into the regular platform bus.
+> As part of that merge prepping Arm DT support 13 years ago, they
+> "temporarily" include each other. They also include platform_device.h
+> and of.h. As a result, there's a pretty much random mix of those include
+> files used throughout the tree. In order to detangle these headers and
+> replace the implicit includes with struct declarations, users need to
+> explicitly include the correct includes.
+>
+> Signed-off-by: Rob Herring <robh@kernel.org>
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
+Thanks for your patch, which is now commit 657c45b303f87d77 ("MIPS:
+Explicitly include correct DT includes") in next-20230726.
 
-Thanks!
+> --- a/arch/mips/lantiq/xway/gptu.c
+> +++ b/arch/mips/lantiq/xway/gptu.c
+> @@ -8,8 +8,8 @@
+>  #include <linux/interrupt.h>
+>  #include <linux/ioport.h>
+>  #include <linux/init.h>
+> -#include <linux/of_platform.h>
+> -#include <linux/of_irq.h>
 
-[1/1] regulator: dt-bindings: add missing unevaluatedProperties for each regulator
-      commit: d2d54819779e1ec0d7908ec98220fa54e72adc48
+Based on https://lore.kernel.org/all/202307270140.uClzsYnD-lkp@intel.com,
+I guess you need to keep of_irq.h for of_irq_to_resource_table()?
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/platform_device.h>
+>
+>  #include <lantiq_soc.h>
+>  #include "../clk.h"
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+Gr{oetje,eeting}s,
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+                        Geert
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-Thanks,
-Mark
-
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
