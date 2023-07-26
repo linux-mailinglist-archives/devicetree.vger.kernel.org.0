@@ -2,63 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A3CD763653
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 14:31:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A7DEC76365A
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 14:32:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229949AbjGZMa7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jul 2023 08:30:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40864 "EHLO
+        id S232289AbjGZMcH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jul 2023 08:32:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41518 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229939AbjGZMa6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 08:30:58 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9879A2;
-        Wed, 26 Jul 2023 05:30:57 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        with ESMTP id S232553AbjGZMcH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 08:32:07 -0400
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [IPv6:2001:67c:2178:6::1c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47117E61;
+        Wed, 26 Jul 2023 05:32:00 -0700 (PDT)
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 8304161AE1;
-        Wed, 26 Jul 2023 12:30:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF25EC433C8;
-        Wed, 26 Jul 2023 12:30:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690374656;
-        bh=KCDUnueU+WhAiA+jJhgNine9Y3qf6RqCwzYlIIe1x1I=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=jLDyrYcIQh+ZM54+eQkT3yEyz+eluN4T6NnSgjjFxWxsQ/kNVzO5IsXCsoHrrooPf
-         2cVqcomZ/vfyhdSWYIeyl8NNqXmCjpGNBW1mitAt5G+JUX8ZOL73blrdl4fq8uXU7I
-         hTq/Ope9BcqnQes5YrJjS+X66A+pLGIfcXJlihgkqF/pX6CCsGbx/SFDFAoqv0yVbj
-         /wYFKZPkJzKp4yt91cWr+p3fFCuczrbyTmvmr47vz4YcK0DkEz18TgO/rd7eJKhAo0
-         SAXdsEkH681f6GQ96bdi95R+kHRSx8MOB6IjugP+JyRvZCbya7KLxni9XXomZdwAX/
-         iPF8NVUW0xVzw==
-Date:   Wed, 26 Jul 2023 13:30:51 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Support Opensource <support.opensource@diasemi.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Eric Jeong <eric.jeong.opensource@diasemi.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2] regulator: dt-bindings: dlg,slg51000: Convert to DT
- schema
-Message-ID: <34edabd6-8dd1-42f8-8309-07dfbf157dff@sirena.org.uk>
-References: <20230725063132.42132-1-krzysztof.kozlowski@linaro.org>
- <d33e5dbc-ca38-4702-903a-b36f9a824391@sirena.org.uk>
- <1c3684e3-b88a-0476-9376-19d07956e261@linaro.org>
- <4859d289-f4e2-4676-9be4-182f7dbda8b6@sirena.org.uk>
- <2df8d695-62aa-329f-f355-d6081d970ec2@linaro.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="N2x11oktUS3a/mAo"
-Content-Disposition: inline
-In-Reply-To: <2df8d695-62aa-329f-f355-d6081d970ec2@linaro.org>
-X-Cookie: Life is the urge to ecstasy.
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        by smtp-out1.suse.de (Postfix) with ESMTPS id D7A2021CB9;
+        Wed, 26 Jul 2023 12:31:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+        t=1690374718; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=rQRJ4YwQA/6O0WXa/1Z5ActdMgPE2S7rN2kN4ZsnP5s=;
+        b=sBohaG/6wQ0MNG9epgDlnJLCBjqa7F+dl7OQQwWTyzLvPMjFK9Za3zLY+0QNKFAGk8v4CU
+        Q3BcKt+i+WNHpAgpsFU40HGoPIB8YUVDcdem+zT+KpIFphRtfOo6KbVm90W2/fWtjl3bWn
+        H393pY7OIvuzH1hTOOJ+d+yz7fwj4bQ=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+        s=susede2_ed25519; t=1690374718;
+        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=rQRJ4YwQA/6O0WXa/1Z5ActdMgPE2S7rN2kN4ZsnP5s=;
+        b=6NQCnDnvw0PBrRBwW12lm/uW8aVoTQyAKwUdfFpg4zDta1dnUnd3kuke3mhlpepVyJLKsG
+        BJFwhGeXeoBjnkBw==
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+        (No client certificate requested)
+        by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 91720139BD;
+        Wed, 26 Jul 2023 12:31:58 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+        by imap2.suse-dmz.suse.de with ESMTPSA
+        id x/X4Ij4SwWQdSAAAMHmgww
+        (envelope-from <tiwai@suse.de>); Wed, 26 Jul 2023 12:31:58 +0000
+Date:   Wed, 26 Jul 2023 14:31:58 +0200
+Message-ID: <87msziyhtt.wl-tiwai@suse.de>
+From:   Takashi Iwai <tiwai@suse.de>
+To:     Wesley Cheng <quic_wcheng@quicinc.com>
+Cc:     <agross@kernel.org>, <andersson@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <catalin.marinas@arm.com>, <will@kernel.org>,
+        <mathias.nyman@intel.com>, <gregkh@linuxfoundation.org>,
+        <lgirdwood@gmail.com>, <broonie@kernel.org>, <perex@perex.cz>,
+        <tiwai@suse.com>, <srinivas.kandagatla@linaro.org>,
+        <bgoswami@quicinc.com>, <Thinh.Nguyen@synopsys.com>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-usb@vger.kernel.org>, <alsa-devel@alsa-project.org>,
+        <quic_jackp@quicinc.com>, <pierre-louis.bossart@linux.intel.com>,
+        <oneukum@suse.com>, <albertccwang@google.com>,
+        <o-takashi@sakamocchi.jp>
+Subject: Re: [PATCH v4 18/32] sound: usb: Introduce QC USB SND offloading support
+In-Reply-To: <243ee81d-d46d-e05a-1fcd-35e6301a39cd@quicinc.com>
+References: <20230725023416.11205-1-quic_wcheng@quicinc.com>
+        <20230725023416.11205-19-quic_wcheng@quicinc.com>
+        <87bkg0v4ce.wl-tiwai@suse.de>
+        <243ee81d-d46d-e05a-1fcd-35e6301a39cd@quicinc.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) Emacs/27.2 Mule/6.0
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -66,47 +83,64 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, 26 Jul 2023 00:59:57 +0200,
+Wesley Cheng wrote:
+> 
+> >> +static int enable_audio_stream(struct snd_usb_substream *subs,
+> >> +				snd_pcm_format_t pcm_format,
+> >> +				unsigned int channels, unsigned int cur_rate,
+> >> +				int datainterval)
+> >> +{
+> > 
+> > ... this implementation, I wonder whether it'd be better to modify and
+> > export  snd_usb_hw_params() snd snd_usb_hw_free() to fit with qcom
+> > driver.  Then you can avoid lots of open code.
+> > 
+> 
+> I think the problem is that snd_usb_hw_params assumes that we've
+> already done a PCM open on the PCM device created by USB SND.
+> However, with the offload path, we don't reference the USB PCM device,
+> but the one created by the platform sound card.  Hence, I don't have
+> access to the snd_pcm_substream.
+> 
+> I attempted to derive snd_pcm_substream from snd_usb_substream, but
+> since PCM open isn't run, it doesn't provide a valid structure.
+> 
+> What do you think about adding a wrapper to snd_usb_hw_params?  Have a
+> version that will take in snd_usb_substream, and another that is
+> registered to hw_params().
 
---N2x11oktUS3a/mAo
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Yes, that's what I had in mind, too.
 
-On Wed, Jul 26, 2023 at 02:18:43PM +0200, Krzysztof Kozlowski wrote:
-> On 26/07/2023 13:55, Mark Brown wrote:
+> > In general, if you see a direct use of chip->mutex, it can be often
+> > done better in a different form.  The use of an internal lock or such
+> > from an external driver is always fragile and error-prone.
+> > 
+> > Also, the current open-code misses the potential race against the
+> > disconnection during the operation.  In snd-usb-audio, it protects
+> > with snd_usb_lock_shutdown() and snd_usb_unlock_shutdown() pairs.
+> > 
+> 
+> I agree...I think then the best approach would be something like the
+> above, ie:
+> 
+> int snd_usb_hw_params(struct snd_pcm_substream *substream,
+> 			     struct snd_pcm_hw_params *hw_params)
+> {
+> 	struct snd_usb_substream *subs = substream->runtime->private_data;
+> 
+> 	snd_usb_ep_attach(subs, hw_params);
+> ...
+> 
+> int snd_usb_ep_attach(...)
+> {
+> 	//implementation of current code in snd_usb_hw_params()
+> }
+> EXPORT_SYMBOL(snd_usb_ep_attach);
 
-> > Oh, you mean if the regulator is in use in the system rather than if
-> > it's enabled!
+Yes, exactly something like that ;)
 
-> Enabled as "always-on" or "boot-on" could be encoded in the schema with
-> multiple if::then:. But it is not enough, because regulators can be
-> enabled on demand by drivers. So that's what I meant by "used".
 
-Right, you said "enabled" in the changelog bit though.
+thanks,
 
-> >  I suspect that there's a requirement that either at least
-> > one of the supplies be provided so that the chip I/O works, or there's
-> > some other currently undocumented supply that is required for that
-> > reason.
-
-> I can add requirement of at least one supply. I don't think it changes
-> much, but sure.
-
-I wouldn't, I suspect it's the latter case and there's actually another
-undocumented change.
-
---N2x11oktUS3a/mAo
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmTBEfoACgkQJNaLcl1U
-h9B/2wf9GLt8MjXjvoaddPumlnyhl9yl4kXwgazu107RuLQhwRDvk72E5VHhRtjw
-1tA9EpqUyI3HdidABF0H/h2Ur0wvd/bXkXZGm9p7Ln6O/Km7dAic9mvXXfq2gmyb
-Z0ZYdYXoq+BFZG2pZXsh5UU4pmyBlqfTnixyGjir4Sr5ll4Ln4OTjWbokD/QXG08
-ni9kXVvktJVYfRVQUf46ZmX46dNN/BIjBaMFCXId/DtNd9S61ErevFqbYffgQatu
-fzh+AJgIxkf0s4bmnUxi4J06DoI3oVsk3aDNZdyB68IsoTLn4quXKjTTifSJZTbV
-njtK9fsPQdRuVp0IeJgBSsc5JpxMMQ==
-=SxCf
------END PGP SIGNATURE-----
-
---N2x11oktUS3a/mAo--
+Takashi
