@@ -2,99 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3829B762B7F
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 08:33:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B779A762B88
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 08:36:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229993AbjGZGdz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jul 2023 02:33:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53484 "EHLO
+        id S231469AbjGZGgA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jul 2023 02:36:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54200 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231172AbjGZGdy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 02:33:54 -0400
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 352C41FF3
-        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 23:33:52 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-5217bb5ae05so8483945a12.0
-        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 23:33:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690353230; x=1690958030;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=MZgSHgs+DaEu5YKeJ7xYroSTsKzuw+qbovR9q1BksYk=;
-        b=NaBZnXsxeuQzuczGqtwCBX1JMo5/AIwWPrRzlQV8QJaimiIAHSQsOIuaYcJjRxy1Z5
-         Q1UWMcH8xX5l22eNgWA/GbI+x3joki79DVJBtDuNur0X8xfbhlhbqeIgWxI0grb/JA2M
-         C24RvYntdb5GQliZBLWZDreB5mFr0eJtLAr0+YUIxnroqi9XLSOrmgh/JX2kGFtgkiRw
-         VxWo5BbGMVGiPFxS6O3eFR7+ZMESRuUDjOlJOCc4z2Co2cqR0UQLB+eMlw3cqEZZSMfX
-         TSK5V+jxjrsLvD1tVaRfO5oxGhLWk03ll+e1lulIhT8+GiPpwGKLv8pTRptqC81fck/7
-         1Lvw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690353230; x=1690958030;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=MZgSHgs+DaEu5YKeJ7xYroSTsKzuw+qbovR9q1BksYk=;
-        b=RjnW8e4DpGRNGUCv2phIyK00aUS+rlbNTwO3X8qy6+Q4kbegH5ZLwXGeHEwWdyfST2
-         w3OohJArIaSe5V/h+PA3WHh3pA4h2Qjs0p3iB+Tzx0DQ1rYfqzoXBJBUWPlZMOQ3dKyC
-         PZ5Xd5/bnMIFNDyXwToAUzSmwH5lqq5V/vzbhR7DVHw0KTq5wGKAPMuK0cgtLH8G4Oxw
-         eHvopZllwIgcXcYBJVpK8pQTAKHrkxWUAF/xi0GzytCg32gsL5S51oxGSRX5wdYtduSy
-         UHdBYEdjvefz+KtwAEcQKdVBUSp73Q8AGtG74sDyOUO+ptPCpCIlOz9Ek62m/A1Rp5Ha
-         refg==
-X-Gm-Message-State: ABy/qLZBKx7Prxda8Kx/Rf6ojmk9kp7Yry46yup7VSXa0GbNCNI1lsJQ
-        ihSEE8ybggnNDrqcOS50jgegFw==
-X-Google-Smtp-Source: APBJJlEqrM14tJfMA+TcQHw7fvQjjF0gb0G1lKIEdzmcSA/W2bZSmpfQbJgqHftRJIIo5i2M02/PaQ==
-X-Received: by 2002:aa7:d958:0:b0:522:3ebc:84b9 with SMTP id l24-20020aa7d958000000b005223ebc84b9mr776848eds.24.1690353230229;
-        Tue, 25 Jul 2023 23:33:50 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id q2-20020a056402032200b0051d9de03516sm8450368edw.52.2023.07.25.23.33.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 25 Jul 2023 23:33:49 -0700 (PDT)
-Message-ID: <30d0689f-5a6a-c593-2a30-1ef2dc37f1af@linaro.org>
-Date:   Wed, 26 Jul 2023 08:33:48 +0200
+        with ESMTP id S231630AbjGZGf6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 02:35:58 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96BD91FFF
+        for <devicetree@vger.kernel.org>; Tue, 25 Jul 2023 23:35:50 -0700 (PDT)
+Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mkl@pengutronix.de>)
+        id 1qOY7S-0001KQ-K6; Wed, 26 Jul 2023 08:35:34 +0200
+Received: from pengutronix.de (unknown [172.20.34.65])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (Client did not present a certificate)
+        (Authenticated sender: mkl-all@blackshift.org)
+        by smtp.blackshift.org (Postfix) with ESMTPSA id 20D031FADA3;
+        Wed, 26 Jul 2023 06:35:33 +0000 (UTC)
+Date:   Wed, 26 Jul 2023 08:35:32 +0200
+From:   Marc Kleine-Budde <mkl@pengutronix.de>
+To:     haibo.chen@nxp.com
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        wg@grandegger.com, kernel@pengutronix.de, linux-imx@nxp.com,
+        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, devicetree@vger.kernel.org,
+        linux-can@vger.kernel.org, netdev@vger.kernel.org
+Subject: Re: [PATCH 2/2] can: flexcan: remove the auto stop mode for IMX93
+Message-ID: <20230726-deflected-slider-8e928de8616a-mkl@pengutronix.de>
+References: <20230726035032.3073951-1-haibo.chen@nxp.com>
+ <20230726035032.3073951-2-haibo.chen@nxp.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH] media: dt-bindings: drop unneeded status from examples
-Content-Language: en-US
-To:     Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Sylvain Petinot <sylvain.petinot@foss.st.com>,
-        linux-tegra@vger.kernel.org, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230725101625.75162-1-krzysztof.kozlowski@linaro.org>
- <e8138fd1-5d1f-8fc3-e29a-547902c2ab18@foss.st.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <e8138fd1-5d1f-8fc3-e29a-547902c2ab18@foss.st.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="hx4h6g6ggdhiiilv"
+Content-Disposition: inline
+In-Reply-To: <20230726035032.3073951-2-haibo.chen@nxp.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:b01:1d::7b
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/07/2023 12:55, Benjamin Mugnier wrote:
-> Hi Krzysztof,
-> 
-> Thank you for your patch.
-> 
-> For the st-mipid02 :
-> Reviewed-By: Benjamin Mugnier <benjamin.mugnier@foss.st.com>
 
-I don't think we have half-reviews. There are half-acks, but not reviews.
+--hx4h6g6ggdhiiilv
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L542
+On 26.07.2023 11:50:32, haibo.chen@nxp.com wrote:
+> From: Haibo Chen <haibo.chen@nxp.com>
+>=20
+> IMX93 A0 chip involve the internal q-channel handshake in LPCG and
+> CCM to automatically handle the Flex-CAN IPG STOP signal. Only after
+> FLEX-CAN enter stop mode then can support the self-wakeup feature.
+>=20
+> But meet issue when do the continue system PM stress test. When config
+> the CAN as wakeup source, the first time after system suspend, any data
+> on CAN bus can wakeup the system, this is as expect. But the second time
+> when system suspend, data on CAN bus can't wakeup the system. If continue
+> this test, we find in odd time system enter suspend, CAN can wakeup the
+> system, but in even number system enter suspend, CAN can't wakeup the
+> system.
+>=20
+> IC find a bug in the auto stop mode logic when handle the q-channel, and
+> can't fix it easily. So for the new imx93 A1, IC drop the auto stop mode
+> and involve the GPR to support stop mode (used before). IC define a bit
+> in GPR which can trigger the IPG STOP signal to Flex-CAN, let it go into
+> stop mode.
+>=20
+> Now NXP claim to drop IMX93 A0, and only support IMX93 A1. So this patch
+> remove the auto stop mode, and add flag FLEXCAN_QUIRK_SETUP_STOP_MODE_GPR
+> to imx93.
+>=20
+> Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
+> ---
+>  drivers/net/can/flexcan/flexcan-core.c | 37 ++++----------------------
+>  drivers/net/can/flexcan/flexcan.h      |  2 --
+>  2 files changed, 5 insertions(+), 34 deletions(-)
+>=20
+> diff --git a/drivers/net/can/flexcan/flexcan-core.c b/drivers/net/can/fle=
+xcan/flexcan-core.c
+> index ff0fc18baf13..a3f3a9c909be 100644
+> --- a/drivers/net/can/flexcan/flexcan-core.c
+> +++ b/drivers/net/can/flexcan/flexcan-core.c
+> @@ -348,7 +348,7 @@ static struct flexcan_devtype_data fsl_imx8mp_devtype=
+_data =3D {
+>  static struct flexcan_devtype_data fsl_imx93_devtype_data =3D {
+>  	.quirks =3D FLEXCAN_QUIRK_DISABLE_RXFG | FLEXCAN_QUIRK_ENABLE_EACEN_RRS=
+ |
+>  		FLEXCAN_QUIRK_DISABLE_MECR | FLEXCAN_QUIRK_USE_RX_MAILBOX |
+> -		FLEXCAN_QUIRK_BROKEN_PERR_STATE | FLEXCAN_QUIRK_AUTO_STOP_MODE |
+> +		FLEXCAN_QUIRK_BROKEN_PERR_STATE | FLEXCAN_QUIRK_SETUP_STOP_MODE_GPR |
 
-Best regards,
-Krzysztof
+AFAICS this change breaks systems with old device trees (i.e. without
+"fsl,stop-mode") and new kernels. The flexcan driver will not probe
+anymore.
 
+Marc
+
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde          |
+Embedded Linux                   | https://www.pengutronix.de |
+Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
+
+--hx4h6g6ggdhiiilv
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEDs2BvajyNKlf9TJQvlAcSiqKBOgFAmTAvrEACgkQvlAcSiqK
+BOimMQf8CbCC3vkKR1bq5S9ISSxAdjCCx+f2nJirLRFI2gps6MSeKLI5qRaOAxpD
+HZpTNUxI0yr4vSKr/NRq2rJasNUiTGSJ3BYqZCqwxeIzmIFKwUMRTH0J49H8mgvt
+6dgvEr7/sqMsmS1RhFPT1p7Zh5+haYE3MgCZStZz1UM8RkOUdvRq/2cSCCJzU8pH
+axjrOH4L95zyOumPwWoSAp+q9+RwS3KbyXCE4+DPrXBdaXnEb68+NGxM7r/k2V/I
+Tz3874I58DBeXf4wDpvfOBWcmw9Dap1Hvlbvixtw7bB5t35OvsHCnenkfOCIgRkb
+D20d8hY390kF2YSZEBlciSmegrrKwQ==
+=l5IQ
+-----END PGP SIGNATURE-----
+
+--hx4h6g6ggdhiiilv--
