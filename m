@@ -2,73 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 25542763EAF
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 20:39:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 49A83763ECC
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 20:46:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229957AbjGZSjv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jul 2023 14:39:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39118 "EHLO
+        id S232018AbjGZSqY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jul 2023 14:46:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43264 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229558AbjGZSju (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 14:39:50 -0400
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 967271BF6
-        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 11:39:48 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-977e0fbd742so2019766b.2
-        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 11:39:48 -0700 (PDT)
+        with ESMTP id S232019AbjGZSqU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 14:46:20 -0400
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C683026A8
+        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 11:46:14 -0700 (PDT)
+Received: by mail-wr1-x42c.google.com with SMTP id ffacd0b85a97d-31758eb5db8so110615f8f.2
+        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 11:46:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690396787; x=1691001587;
+        d=linaro.org; s=google; t=1690397173; x=1691001973;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=4MAGrdTQMzdYEj4illUgs9Le/LNfFeFQ/jUoJpzojCI=;
-        b=hDpLPL8C+lrAvejTTpF83hA/kj50XSAImbPhvRPGAh/Ta+aUF9a6NO0FiDQRAE3ARG
-         cs+s/sPD8T5f4saS0A8cXo74UIQTBSrWtyWe/yr0B96hOX+O4E7QHYfj/Aa+6FvnA8s4
-         e+L/7GFNNl6K0Nx5py2rEMOWE/MwIVFXtWDihTHfJtRzdapHUk8B3VDNDgVHoldHQZuY
-         Mh7WMlemyQfcTjczQHmhL5I6GgrHKC4VVUiCSqsesJbGnDkG0gkzIny0AE4MqkUqgTG6
-         6LciRPYOhP89NuVecgrN+eCdopo13hMgKDZuPlaCqGD1PdTHgrZiFFYG18JNdPMpM8KU
-         pb/w==
+        bh=iIA6tFVPEntX943eMtnDQw8/WnIhuSeyz957fgQQqX8=;
+        b=lX6sERAD4wcvWMyA4J84ZRhjADmLtuE5k4rBD1HZHR8UkmkzFNXEXEOKg3v5e9r7yh
+         jD+SFFs3nkGh6U1m8v45pXXwbGnw2qhn35drwAtJ7P9pOb29VJU3GtNWbPUtywIMY7R0
+         trHwx+XMi8Spz+Z/IWMM3vkhtP63zxmHpnMdk+4ahFhh/sgTmN2C5mh44YyMXCJUrx/7
+         MFa6xFvsEsO/A4e3rmRkH5khO09hPbQQOPSJg1bW/6jrMglV3BRqrJZc3P1VlO1bCZ1p
+         Q8hePQg3KBY8QWvDUcMti8L7y1mEPZ9eVFK8wcOc3i9Xo4EKR3KNVPFxa+ak9PxmEuR4
+         FNJA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690396787; x=1691001587;
+        d=1e100.net; s=20221208; t=1690397173; x=1691001973;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4MAGrdTQMzdYEj4illUgs9Le/LNfFeFQ/jUoJpzojCI=;
-        b=Qe/CbYjSp8cuJgL0KiR7dbRDsBy2VrBnxC5rReCrwR1mvXpiyV5obE0LGzfZ2Aewy5
-         tMnqUusPgZZOrZ0cfSX4dNpfXJB8b6+TtQCrodRIA8MnRcD8wpTjKnzaRUJhB7sTucab
-         662x6aPHQuVj1h7wYSSURpv8/+R3UNaMDC7NC+JS3elyL/+26Q0pwp5Va0wbbfMZu8jg
-         CmdRF3aKZzNJ5/RfRlm8/fFXm3W1Zj8HhH9hEXLxBphg1iVgGjGL6ujUIaPMan5jTISF
-         ClDoTGIkrQ93EX5qroaUTDDZ6EwfhGVwyXPYaIr71jVg+X0cIGfm0/Dpl7cbTZu9IaSU
-         zzdg==
-X-Gm-Message-State: ABy/qLbrzh5shoMP5vkoYt49/v9HxPw72TJSX/n8IAkPWAeMOPEsBtoP
-        DsRqfBkiiKziX3h7TpmniKIpkg==
-X-Google-Smtp-Source: APBJJlHFlVHnDoYChSG864jT5xg1AbZSe/g0U/jSIJl/WB6hOgWi4F1WhdBqOKbUchvcRn28/tnecw==
-X-Received: by 2002:a17:906:854b:b0:99b:c830:cf23 with SMTP id h11-20020a170906854b00b0099bc830cf23mr19050ejy.27.1690396787013;
-        Wed, 26 Jul 2023 11:39:47 -0700 (PDT)
+        bh=iIA6tFVPEntX943eMtnDQw8/WnIhuSeyz957fgQQqX8=;
+        b=LXzuQ9z+WMkAJsGdoeWFSGoplSa03BkDy4QjOy7vzv+9dBZ4cr1ug+kg6QUWlH7qQw
+         wT4OmMS15WCSnAVMe2Vvl71Ix6WEr37y75I2cdgJSoiatGNsmkT/QCbHbWUlQlbMFjdJ
+         FjzjnKJcNkCxBZjiXzA7Y1oD42qYmfxcYEQr/MN9fwL3gIh8GVtlpQ3VcgCKRHD6V1Cq
+         wVPHrfvRV/w9at9yAtd3wQcF9+MluZV5mhk8v9Cmz23y8FR5duARc/O2R9K6pPEKAqi+
+         dBYNVY70XgfOMizdJ1EN+jH3tNa7rtU9n1cTjQqZ9qfpx90jzVdG1AgXIk9baF//NOWs
+         oFJg==
+X-Gm-Message-State: ABy/qLatVeUr1Qfnz2uz6CaS2hpNJRp3buY9SbaBVw5BqvhlrCPkO5z6
+        jPEl5XaXYQ24166FsSVj/OVt1gWhWXzz+sc9+bs=
+X-Google-Smtp-Source: APBJJlGW4bH5/K7JaooshRZKm4IUB76EFrDboLrwrdIOUTH+aSUijKHPgZDjSB07D7Aki8ddkV1S+Q==
+X-Received: by 2002:a5d:6184:0:b0:317:6220:ac13 with SMTP id j4-20020a5d6184000000b003176220ac13mr1005wru.32.1690397173194;
+        Wed, 26 Jul 2023 11:46:13 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id pk4-20020a170906d7a400b00993004239a4sm9877516ejb.215.2023.07.26.11.39.45
+        by smtp.gmail.com with ESMTPSA id q4-20020a170906a08400b00992d0de8762sm9921111ejy.216.2023.07.26.11.46.11
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 26 Jul 2023 11:39:46 -0700 (PDT)
-Message-ID: <0fc2ba5d-8357-6dfb-4aa4-26de6b497c13@linaro.org>
-Date:   Wed, 26 Jul 2023 20:39:44 +0200
+        Wed, 26 Jul 2023 11:46:12 -0700 (PDT)
+Message-ID: <8bd8fa38-551b-35dc-cb6b-7c5fd79dc0a0@linaro.org>
+Date:   Wed, 26 Jul 2023 20:46:10 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
-Subject: Re: [PATCH 2/2] drivers: misc: adi-axi-tdd: Add new TDD engine driver
+Subject: Re: [PATCH V2] arm64: dts: qcom: sm8150: Fix the I2C7 interrupt
 Content-Language: en-US
-To:     Eliza Balas <eliza.balas@analog.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Derek Kiernan <derek.kiernan@amd.com>,
-        Dragan Cvetic <dragan.cvetic@amd.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20230726071103.12172-1-eliza.balas@analog.com>
- <20230726071103.12172-2-eliza.balas@analog.com>
+To:     qaz6750 lzy <qaz6750@outlook.com>, andersson@kernel.org,
+        agross@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <SY7P282MB378740C6070900BEBF5D0D7CB203A@SY7P282MB3787.AUSP282.PROD.OUTLOOK.COM>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230726071103.12172-2-eliza.balas@analog.com>
+In-Reply-To: <SY7P282MB378740C6070900BEBF5D0D7CB203A@SY7P282MB3787.AUSP282.PROD.OUTLOOK.COM>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -81,123 +76,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/07/2023 09:11, Eliza Balas wrote:
-> This patch introduces the driver for the new ADI TDD engine HDL.
-> The generic TDD controller is in essence a waveform generator
-> capable of addressing RF applications which require Time Division
-> Duplexing, as well as controlling other modules of general
-> applications through its dedicated 32 channel outputs.
+On 25/07/2023 10:42, qaz6750 lzy wrote:
+> I2C6 and I2C7 use the same interrupts, which is incorrect.
+> In the downstream kernel, I2C7 has interrupts of 608 instead of 607.
 > 
-> The reason of creating the generic TDD controller was to reduce
-> the naming confusion around the existing repurposed TDD core
-> built for AD9361, as well as expanding its number of output
-> channels for systems which require more than six controlling signals.
-> 
-> Signed-off-by: Eliza Balas <eliza.balas@analog.com>
+> Fixes: 81bee6953b58 ("arm64: dts: qcom: sm8150: add i2c nodes")
+> Signed-off-by: qaz6750 lzy <qaz6750@outlook.com>
 > ---
->  .../sysfs-bus-platform-drivers-adi-axi-tdd    | 158 ++++
->  MAINTAINERS                                   |   2 +
->  drivers/misc/Kconfig                          |  10 +
->  drivers/misc/Makefile                         |   1 +
->  drivers/misc/adi-axi-tdd.c                    | 753 ++++++++++++++++++
->  5 files changed, 924 insertions(+)
->  create mode 100644 Documentation/ABI/testing/sysfs-bus-platform-drivers-adi-axi-tdd
->  create mode 100644 drivers/misc/adi-axi-tdd.c
-> 
-> diff --git a/Documentation/ABI/testing/sysfs-bus-platform-drivers-adi-axi-tdd b/Documentation/ABI/testing/sysfs-bus-platform-drivers-adi-axi-tdd
-> new file mode 100644
-> index 000000000000..eb5f3db7d0cb
-> --- /dev/null
-> +++ b/Documentation/ABI/testing/sysfs-bus-platform-drivers-adi-axi-tdd
-> @@ -0,0 +1,158 @@
-> +What:           /sys/bus/platform/drivers/adi-axi-tdd/*/burst_count
-> +Date:           July 2023
-> +KernelVersion:  6.5
+>  [v2] Fixed issue of not using full name
 
-We are in 6.5 now, so there is no way your driver will be in 6.5. Target
-6.6 and use phb crystall ball for next release date (September).
-
-...
-
-> +
-> +enum adi_axi_tdd_attribute_id {
-> +	ADI_TDD_ATTR_VERSION,
-> +	ADI_TDD_ATTR_CORE_ID,
-> +	ADI_TDD_ATTR_SCRATCH,
-> +	ADI_TDD_ATTR_MAGIC,
-> +
-
-...
-
-> +
-> +static int adi_axi_tdd_probe(struct platform_device *pdev)
-> +{
-> +	unsigned int expected_version, version, data;
-> +	struct adi_axi_tdd_state *st;
-> +	struct clk *aclk;
-> +	int ret;
-> +
-> +	st = devm_kzalloc(&pdev->dev, sizeof(*st), GFP_KERNEL);
-> +	if (!st)
-> +		return -ENOMEM;
-> +
-> +	st->base = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(st->base))
-> +		return PTR_ERR(st->base);
-> +
-> +	platform_set_drvdata(pdev, st);
-> +
-> +	aclk = devm_clk_get_enabled(&pdev->dev, "s_axi_aclk");
-> +	if (IS_ERR(aclk))
-> +		return PTR_ERR(aclk);
-> +
-> +	ret = devm_add_action_or_reset(&pdev->dev, adi_axi_tdd_clk_disable, aclk);
-
-Looks you have here double disable.
-
-> +	if (ret)
-> +		return ret;
-> +
-> +	st->clk.clk = devm_clk_get(&pdev->dev, "intf_clk");
-> +	if (IS_ERR(st->clk.clk))
-> +		return PTR_ERR(st->clk.clk);
-> +
-> +	ret = clk_prepare_enable(st->clk.clk);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = devm_add_action_or_reset(&pdev->dev, adi_axi_tdd_clk_disable, st->clk.clk);
-
-Looks you have here double disable.
-
-
-> +	if (ret)
-> +		return ret;
-> +
-> +	st->clk.rate = clk_get_rate(st->clk.clk);
-> +	st->clk.nb.notifier_call = adi_axi_tdd_rate_change;
-> +	ret = clk_notifier_register(st->clk.clk, &st->clk.nb);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = devm_add_action_or_reset(&pdev->dev, adi_axi_tdd_clk_notifier_unreg, st->clk.clk);
-
-Wrap your lines. Limit is 80.
-
-> +	if (ret)
-> +		return ret;
-> +
-> +	st->regs = devm_regmap_init_mmio(&pdev->dev, st->base,
-> +					 &adi_axi_tdd_regmap_cfg);
-> +	if (IS_ERR(st->regs))
-> +		return PTR_ERR(st->regs);
-> +
-> +	ret = regmap_read(st->regs, ADI_AXI_REG_VERSION, &version);
-> +	if (ret)
-> +		return ret;
-> +
-
-
+You mentioned your full name as a bit different, so I am not sure what
+improved here.
 
 Best regards,
 Krzysztof
