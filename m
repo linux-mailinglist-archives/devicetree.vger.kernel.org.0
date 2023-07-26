@@ -2,206 +2,230 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2AC72763970
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 16:44:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 08088763A8E
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 17:13:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232821AbjGZOoV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jul 2023 10:44:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33916 "EHLO
+        id S234310AbjGZPNr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jul 2023 11:13:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55750 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232389AbjGZOoU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 10:44:20 -0400
-Received: from mx0a-002e3701.pphosted.com (mx0a-002e3701.pphosted.com [148.163.147.86])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D02F7CE;
-        Wed, 26 Jul 2023 07:44:19 -0700 (PDT)
-Received: from pps.filterd (m0134420.ppops.net [127.0.0.1])
-        by mx0b-002e3701.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36QAW8TD024827;
-        Wed, 26 Jul 2023 14:44:03 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hpe.com; h=from : to : cc : subject
- : date : message-id : references : in-reply-to : content-type : content-id
- : content-transfer-encoding : mime-version; s=pps0720;
- bh=suPOqw+37+WEw3jnRxUaVs5ElNKbFNi1/Qj3+De2VB0=;
- b=PghLP8pt+5Q8w0Fifs33EAIzAGAhmI9ddzJkUlPQbvzPddBf3eDlXYPNpYA/mem404Zx
- OVcyzT1SqaKq6RzRGhzaQRk1iIoYe+/o1MzTLyk3ZGJZAwBGKbvhQ/OCg19wUuVTE68V
- DCuz+CQwnZcpzGChCBWHOgSGd1qGYdTCb9Hu7KaH8vnKSkNtg2ZhfuPsndS1ApD2SigX
- dfpmTIsp9FIxWAVBlh+0aNOEbncoge2bmjZkhQiUvabnv+7KMXtt+4K5UZECX9o8PaFF
- iqDmL/9M8nlFnVbqGLMSI8tHI9YXVNatR/FQtx8GHg+S3kzUglzepr/5Kt+/0BgEFOXm Aw== 
-Received: from p1lg14880.it.hpe.com (p1lg14880.it.hpe.com [16.230.97.201])
-        by mx0b-002e3701.pphosted.com (PPS) with ESMTPS id 3s2wbtcm4n-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 26 Jul 2023 14:44:03 +0000
-Received: from p1wg14923.americas.hpqcorp.net (unknown [10.119.18.111])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S235048AbjGZPNO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 11:13:14 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CACC2D60;
+        Wed, 26 Jul 2023 08:12:44 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by p1lg14880.it.hpe.com (Postfix) with ESMTPS id 87CE6801601;
-        Wed, 26 Jul 2023 14:44:02 +0000 (UTC)
-Received: from p1wg14928.americas.hpqcorp.net (10.119.18.116) by
- p1wg14923.americas.hpqcorp.net (10.119.18.111) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.42; Wed, 26 Jul 2023 02:43:51 -1200
-Received: from p1wg14926.americas.hpqcorp.net (10.119.18.115) by
- p1wg14928.americas.hpqcorp.net (10.119.18.116) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.42; Wed, 26 Jul 2023 02:43:50 -1200
-Received: from p1wg14920.americas.hpqcorp.net (16.230.19.123) by
- p1wg14926.americas.hpqcorp.net (10.119.18.115) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42
- via Frontend Transport; Wed, 26 Jul 2023 02:43:50 -1200
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (192.58.206.38)
- by edge.it.hpe.com (16.230.19.123) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.42; Wed, 26 Jul 2023 02:43:49 -1200
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=SJ6fSAgqB5evE1Tdz8FA4dS7w6smf4ofJv2Vxbvo3Z6Q9jpRzc0N83FmzzxHCQ6r6lXqwghJ5+kiAs+lWT3hNTiKw+B1YoJmL2+ejarlFY1/np38b9evAQvpUCgTt6+TCSa0vVLiH0L57klRxwTva2lM6Y1mrztKDRupufr4Wq7xmilLuHjct+DKIxjUW7xE+pM7dkb2w2yuMUbeZW4+MbtyejbUFZaTwyW2cAlBU4T9Ox8mnzJqXujBDaywWk/YZbIXMpzmrlxt8L6R7YM2OiQW5hgWy8HWt6cJ17zp8FhZOtFsnYbw5LE/MKzfYQJqsy9seSAd40szYmrn8vFNSg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=suPOqw+37+WEw3jnRxUaVs5ElNKbFNi1/Qj3+De2VB0=;
- b=mxB6eu+kdHtvibzCChmx/XMHIC2LuSlBpJT5WWMwj4hLFed4S9VpCYMOpAr5X6JIjrwdB1c37b9S65BVx484i5zQ9eOiS/lQ5noRG99fVwwjJmoisf1NjXjtxMk0b3SfB6ozr9tnzjB+tXA2tnHwEnq1sa1ah+LAZUHVN+fcnDKuGHoTgIXeIcuJbI7PfQOET56CwxhY5tuwqDirnXcZ/b+dRKKu+dd36pq9hvUjjWVuohbojSQi9M9bpaGMaHcVaCuItiAANG9SAkVpA5UkUlsch68yx5IA972RC0Wh9tNqnUSkFhrvxYXV45bmMzuJM+tAXHfZiRBNEnccXCft9g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=hpe.com; dmarc=pass action=none header.from=hpe.com; dkim=pass
- header.d=hpe.com; arc=none
-Received: from DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM (2603:10b6:8:4e::10) by
- DM4PR84MB3291.NAMPRD84.PROD.OUTLOOK.COM (2603:10b6:8:42::9) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6631.29; Wed, 26 Jul 2023 14:43:48 +0000
-Received: from DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM
- ([fe80::20b7:769e:3974:f17e]) by DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM
- ([fe80::20b7:769e:3974:f17e%4]) with mapi id 15.20.6631.026; Wed, 26 Jul 2023
- 14:43:48 +0000
-From:   "Hawkins, Nick" <nick.hawkins@hpe.com>
-To:     Andrew Lunn <andrew@lunn.ch>
-CC:     "Verdun, Jean-Marie" <verdun@hpe.com>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "edumazet@google.com" <edumazet@google.com>,
-        "kuba@kernel.org" <kuba@kernel.org>,
-        "pabeni@redhat.com" <pabeni@redhat.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v1 3/5] dt-bindings: net: Add HPE GXP UMAC
-Thread-Topic: [PATCH v1 3/5] dt-bindings: net: Add HPE GXP UMAC
-Thread-Index: AQHZvBm+GooG93oDpUucD86cbiWeIa/ExaIAgAW2tLCAAEyvgIAAC7/QgAD+YYA=
-Date:   Wed, 26 Jul 2023 14:43:47 +0000
-Message-ID: <BF89A302-B6A1-4854-AAC1-015B5BC1DD91@hpe.com>
-References: <20230721212044.59666-1-nick.hawkins@hpe.com>
- <20230721212044.59666-4-nick.hawkins@hpe.com>
- <57d882ed-82e5-4584-8126-ca2007064126@lunn.ch>
- <DM4PR84MB192785EC6F2B8A76FF9E5E3F8803A@DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM>
- <4c19532d-a909-4ca6-a0a7-d4cd9cc828b0@lunn.ch>
- <DM4PR84MB19274F3AA411D4CAE7EE84D88803A@DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM>
-In-Reply-To: <DM4PR84MB19274F3AA411D4CAE7EE84D88803A@DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Microsoft-MacOutlook/16.75.23071400
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM4PR84MB1927:EE_|DM4PR84MB3291:EE_
-x-ms-office365-filtering-correlation-id: 1bdf675e-825b-485b-1e36-08db8de6b875
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: yKPWb6fxvASePuAk4lbDSGIubFzdN9OaEQM8uEvi1pBxc1WtN45DXBnwI6mtgF0rfa9J0yJzw03LbJbx5f3aznCM9CR83/WxlJgv3cOnF0b+9esmQJuRPetvztUDhqZ5XR0XcJQIsAaK456CvZTnRSYoQepFieydKXJwu8WOI+dqlVEnE2CYF1fVgeksqApxHqfY6LsdJXVm60qK0624Xdq52htWjbwstbL50zV7NYXd2AycT1BD+stXbSchkeCvrUrgaAl6UbON0XXjwWsoJHtQe7wJa1y6Qleq1OFbgzW85G6k3Mz7jFUgiFWcqOFVMbtVZMCz8hq4knBuYSC7HuyZD0ryZ2/FDNqON4EjdmDyrDmXgbmw+utyAFbqZBxwHFSuBtKkxTtBktH22IcEKjPdgKfVAaWsEx7znfPg6Izi5bb/WQVjOE495V368p2S1E0KKLfPUXMMFdOGG15p9s6ZNk6f3AJ7jpuxgUMV+ht8H5/J27/G/mYOpwQ6VnOByuKza4HafPCid9h2D2WM/bXgI5LHc4JGq49lnBV/vUU4otqlMz/E2bMbuGuaIV8QP82za5nYtmubBOLcY+kJ8EqSgwl18uLQkC2B7EbMBYu/77Z6waE6tadqz3G3ksrpiCvYBuSG/3LZGAggdFdUCg==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230028)(346002)(39860400002)(396003)(366004)(136003)(376002)(451199021)(38070700005)(2906002)(71200400001)(6486002)(2616005)(38100700002)(36756003)(7416002)(186003)(5660300002)(86362001)(66899021)(41300700001)(8676002)(33656002)(316002)(6506007)(8936002)(64756008)(66556008)(6916009)(66446008)(478600001)(76116006)(6512007)(66476007)(4326008)(66946007)(82960400001)(54906003)(122000001)(45980500001);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?NDBlaWhDdlJsOExUaWFxVFFnZjdyK0o1THlVNUNOZG0ranh5WW5OUXRaWmgz?=
- =?utf-8?B?d1E2cmhOcEx6NVN0UXdNS2VFSDkxbGJRMnVSY0x3bzFnTi9UK25pd3ovcUN0?=
- =?utf-8?B?aEJUK2tXR1cwelBDbE8wSkcxRExIQi96VmZEZHJ0d0NKdlNEMEVCQk5HTjYx?=
- =?utf-8?B?SVlVSGkvUUhReUhhRjAxZWswMzEyOWFjVDVnSnNITHB0dVVCb09PSDhyakVN?=
- =?utf-8?B?d2NQODNjUTVyMms2QXF3UnpMaU9JNFBQdTFwRm8vY3pmT1BuaEZZU3cyRWpl?=
- =?utf-8?B?ZUphTjc5VjlycEVnOGxWUDFKdzFyK0JHT2NjeXNGVWVid1hLcTdJaE8xU3BM?=
- =?utf-8?B?aXNlemozK0U2dWdMaEQvclA4WitnOVZSaFJDTkpsVE51TzVKeTV4NHJTeE9r?=
- =?utf-8?B?ZElMbHVCNU9sRmZ2bFk3amkxdjYwd0Vkb0tDMG1xTGZmbUJ5S1V6RDNnZVNv?=
- =?utf-8?B?cVVvdmpldFFxSVlzVXVhdTBlZ01rY2JqaityekxXNlRaeVg1WXR1L2lFUytX?=
- =?utf-8?B?NG93eXJDc3NtbmJGNTM0bDhWNmlicm9RK3JEL01nVVZZdHpGMHA3UGtRd3F2?=
- =?utf-8?B?eGJ4SnFvMHpCNFBXZUh6Q3dDRGRQWmVOMUlzT3VMT0tldDBwYTFQcnlNaDlt?=
- =?utf-8?B?WExGVUMvWU1mV25FZWN5cURkQzBHcTFoTkZ5bWRiYXZSL3dNb2d1UllyWVha?=
- =?utf-8?B?S1k0cEE4Z1NNa0NOUU5iZDdaTm5IZ1BwUy9zUmtLdDlwODVqZVZqNDc0TXp1?=
- =?utf-8?B?dmZaV2JrMjhYUEg3NGZKc01LcWdFV0NiajNLdFY1T1RxcWY3TDVseTBCNXpn?=
- =?utf-8?B?cUI4eDNZMmpwOEZjTlBUdXpLS1pTaWtuN3NBRXo5U1JPaWpwem1mVmJxeXZN?=
- =?utf-8?B?MkVrRHJvOGZNVDNLQ0RQUCtKUmhQSTZVSTJGRUJhKzhxb1pYQjIxcjdxb09y?=
- =?utf-8?B?MzQyTTFJL0JzN256RGxpTmJ0NDQvTXBQbHpnRjNwRkNpUGhaZVFtWkljZ2p0?=
- =?utf-8?B?a3lsN0Z4NklCcVJQemU0UGV1Ymp1aTQvSWxWUFg4bE1KUVlSNklGM3VhSWpS?=
- =?utf-8?B?RWhIZStGb2I3NE5oeWRCeU1jdERpcVNTYjdRQzJPVmtQR1kvck1Vd3RsTVpR?=
- =?utf-8?B?dWZ6dFQ3NytmT2NEcmxkNnd3bTVZMnBkbTBBWXA4WWowem5US2lPR1M4bTAv?=
- =?utf-8?B?U1RjQ2ZXZlFOTkw3bjdEMU5PbjFaSit5SUNCVGE4VUcxQlRxM01McUU4aEtP?=
- =?utf-8?B?bTdkMjBXY3lqcnlkcXhnOFNoeHhaNndvMllOekNjamVPWmgyQi90dHd6dVNP?=
- =?utf-8?B?WHpUaGRvNEFqaGRHSXJVTFp0RGtZMXRtalR4R21TUlFvdEZpd0NBeDBMMlNu?=
- =?utf-8?B?eEVjdTNmb0FmaUpJQ1RIOHQybTdyRE1tRnFHWnhEdnVxTlA2NmtlbXpxeVlY?=
- =?utf-8?B?YXYvcVBhS051VXJXOFYvTWJRY2wzbEtFOHQ1d0M5V0w2QUFKdXhESVNLcHFK?=
- =?utf-8?B?WGo2dHZKR3BUS0tpV1FhOC9ZSjFwcm5WOUx5WHRXTGp6Z2pFVU5yTFBDUnRN?=
- =?utf-8?B?bVE0SmhhSlh4dS9uVmo2ZGdLdlFjdjJVYTNqRDg0K2FEZGJsRkVGazZPYnpY?=
- =?utf-8?B?VGVic0IzdVRJYXdIR1pCc2NYazU4T2xXQ2JrK3VwOThkV3hSckJHc0ZTMEtO?=
- =?utf-8?B?OFQrck1DcGhWczJ0UkRBMmdmdTYzRExtdTBNQWI4MzNKSW1NWjlXQzhQc0xL?=
- =?utf-8?B?a1Z6MmI3UTNnemlVS0lVNmNkWE13V1pxb1BXYmE3Ni93bTJNQ2hGMGlJd0xx?=
- =?utf-8?B?ZXZLZDkvOXpFanMwNkc5SW5YdVJsZEZQaXlsSlVMUkhlbHVEQTZlSldnZXFM?=
- =?utf-8?B?QlRCMjBCejRtNHZZbnVaL0hZTStBMnIwT1g1a3ViODRrYjNpSVVxbUVScW83?=
- =?utf-8?B?dEVNUFZlTXRQSHpXWnF6Q2s5dW4zejBkZkVuS0NkSmpUNkljNTZ3ajllWWpj?=
- =?utf-8?B?QmUwcTB2QnlyVlVzTjR2L0tuVTIwNVhiMnZDblN4bGk0TmlpQk1EWVVGbEtY?=
- =?utf-8?B?NFZRVzdxbWxLbTNtME1lT01HcTR3amZPd04vZnRQQ2tSOWlqRzRFeW5iZTRK?=
- =?utf-8?B?N1l4V3l5QktKUDh4WEJzUmk2UCtXYWFZNHorQTFnMFlFRnI5RXRyeFgxT0tD?=
- =?utf-8?B?NVE9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <FAEF17C3E6D6C8458E079C3C3BB560ED@NAMPRD84.PROD.OUTLOOK.COM>
-Content-Transfer-Encoding: base64
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 3900961B24;
+        Wed, 26 Jul 2023 15:12:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E0BBDC433C8;
+        Wed, 26 Jul 2023 15:12:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1690384353;
+        bh=TaNQS6vezap8TMfB8Xkt30Oq/Pvt03VIwITKYfftyXc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=hY8UibfovAuSx0h2d3GTSH0r+8igwCNe5MijA1/gWN1nz6aWLLCUoCwW4+GlcUXI8
+         W8wSjaIVQXAduJsdsa8aYpKTmlgxwZDMBBDyYYK9g4ZbiQiDYJtq6WsX3pkGQ4oB2r
+         cgYqEiY+KiLu/nIljvxVWN2mdmYeI+3L/CRBJKLHBk8ddaqdye3//J8Z6A1Y8KPOk0
+         uQjZXfknZZM3zJpr2FteCS+jNovoY3tl8nCL14wWYMpcUjJijI3GBKVMN0/4W09ArE
+         zWnnbTK1E8xGJiZt01mOgy6StUo6VzmwuOVXOXjGfrXMchW2HAt/xt03X2rCBPGkYO
+         vXPayYYspBoAQ==
+Date:   Wed, 26 Jul 2023 23:00:55 +0800
+From:   Jisheng Zhang <jszhang@kernel.org>
+To:     Xi Ruoyao <xry111@linuxfromscratch.org>
+Cc:     Conor Dooley <conor.dooley@microchip.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v3 0/8] Add Sipeed Lichee Pi 4A RISC-V board support
+Message-ID: <ZME1J4mpVf5yth32@xhacker>
+References: <20230617161529.2092-1-jszhang@kernel.org>
+ <c9a44f534071a6d67f1e21bafdb713793c559124.camel@linuxfromscratch.org>
+ <20230725-unheard-dingy-42f0fafe7216@wendy>
+ <ZL/jMYL3akl78ZZN@xhacker>
+ <3e0994dab495920ac590dc28d6b9d9765abe0c7e.camel@linuxfromscratch.org>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1bdf675e-825b-485b-1e36-08db8de6b875
-X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Jul 2023 14:43:47.9358
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 105b2061-b669-4b31-92ac-24d304d195dc
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 68CdckeKqS8IGmi7OT8sRj7js8pwJYQNxy3TCXZErAjidlCirtMxThBbhDWlitwaPj1QypiqB8I9U6XnV/Dc7Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR84MB3291
-X-OriginatorOrg: hpe.com
-X-Proofpoint-GUID: _sSn-KFJCskjutbQwQIm-G3poC-ooWsp
-X-Proofpoint-ORIG-GUID: _sSn-KFJCskjutbQwQIm-G3poC-ooWsp
-X-HPE-SCL: -1
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-07-26_06,2023-07-26_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=621 mlxscore=0
- lowpriorityscore=0 impostorscore=0 phishscore=0 malwarescore=0
- suspectscore=0 bulkscore=0 spamscore=0 priorityscore=1501 clxscore=1015
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2306200000 definitions=main-2307260131
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <3e0994dab495920ac590dc28d6b9d9765abe0c7e.camel@linuxfromscratch.org>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Tm90ZTogUmVzZW5kIGluIGNvcnJlY3QgZm9ybWF0Lg0KDQo+ID4gPiBEbyBib3RoIHBvcnRzIGdl
-dCB0aGUgc2FuZSBNQUMgYWRkcmVzcz8NCj4gPiANCj4gPiBObyB0aGV5IGRvIG5vdC4gVGhlIGZp
-cnN0IG9uZSB3aWxsIGdldCB0aGUgTUFDIGFkZHJlc3MsIHRoZSBzZWNvbmQNCj4gPiB3aWxsIGJl
-IGFuIGV4dGVybmFsIHBoeSB3ZSBhcmUgbWFuYWdpbmcgdmlhIHRoZSBNRElPIHBhdGguDQoNCj4g
-VGhlbiBwbGVhc2UgcHV0IHRoZSBtYWMtYWRkcmVzcyBwcm9wZXJ0eSBpbiB0aGUgY29ycmVjdCBw
-bGFjZSwgaW5zaWRlDQpwb3J0QDAuDQoNCkdyZWV0aW5ncyBBbmRyZXcsDQoNCkkgd2FzIG1pc3Rh
-a2VuLCB0aGUgTWFjIGFkZHJlc3MgYmVsb25ncyB3aXRoIFVNQUMsDQpub3QgdGhlIHBoeXMuIFRo
-ZSByZWFzb24gcG9ydHMgYXJlIGxpc3RlZCBoZXJlIGlzDQpiZWNhdXNlIGhhdmluZyB0d28gc2Vw
-YXJhdGUgcGh5LWhhbmRsZXMNCmluIG9uZSBub2RlIGlzIG5vdCBhbGxvd2VkLiBUaGUgbGF5b3V0
-IG9mIHRoZQ0KaGFyZHdhcmUgaW5zaWRlIHRoZSBHWFAgaXMgdW5jb252ZW50aW9uYWwuDQoNClRo
-ZXJlIGlzIGEgZGVzY3JpcHRpb24gb2YgdGhlIGxheW91dCBpbiB0aGUgY292ZXItbGV0dGVyLA0K
-SSBzZWUgdGhvdWdoIEkgbmVlZCB0byBhZGQgYSBiZXR0ZXIgZGVzY3JpcHRpb24uDQpUaGUgaW50
-ZXJuYWwtcGh5IGlzIGNvbm5lY3RlZCB0byB0aGUgZXh0ZXJuYWwNCnBoeSB2aWEgU0dNSUkuIFRv
-IHVzZSBVTUFDMCB3ZSBuZWVkIHRvDQpjb25maWd1cmUgYm90aCB0aGUgaW50ZXJuYWwsIGFuZCBl
-eHRlcm5hbCBwaHkgdG8gZW5hYmxlDQpuZXR3b3JraW5nLg0KDQpJZGVhbGx5IGl0IHdvdWxkIGJl
-IHNvbWV0aGluZyBsaWtlIHRoaXM6DQoNCnVtYWMwOiB1bWFjQDQwMDAgew0KwqDCoMKgwqDCoMKg
-wqAgY29tcGF0aWJsZSA9ICJocGUsIGd4cC11bWFjIjsNCsKgwqDCoMKgwqDCoMKgwqAgcmVnID0g
-PDB4NDAwMCAweDgwPjsNCsKgwqDCoMKgwqDCoMKgIGludGVycnVwdHMgPSA8MTA+Ow0KwqDCoMKg
-wqDCoMKgwqAgaW50ZXJydXB0LXBhcmVudCA9IDwmdmljMD47DQrCoMKgwqDCoMKgwqDCoCBtYWMt
-YWRkcmVzcyA9IFs5NCAxOCA4MiAxNiAwNCBkOF07DQrCoMKgwqDCoMKgwqDCoCBleHQtcGh5LWhh
-bmRsZSA9IDwmZXh0X3BoeTA+Ow0KwqDCoMKgwqDCoMKgwqAgaW50LXBoeS1oYW5kbGUgPSA8Jmlu
-dF9waHkwPjsNCn07DQoNClRoYW5rcywNCg0KLU5pY2sgSGF3a2lucw0KDQo=
+On Wed, Jul 26, 2023 at 08:48:08PM +0800, Xi Ruoyao wrote:
+> On Tue, 2023-07-25 at 22:58 +0800, Jisheng Zhang wrote:
+> > > Are you using the vendor OpenSBI? IIRC, and the lads can probably
+> > > correct me here, you need to have an OpenSBI that contains
+> > > https://github.com/riscv-software-src/opensbi/commit/78c2b19218bd62653b9fb31623a42ced45f38ea6
+> > > which the vendor supplied OpenSBI does not have.
+> > 
+> > To ruoyao,
+> > 
+> > I believe Conor has provided enough details and given you the clues.
+> > And I believe you were using the legacy opensbi. If you still reproduce
+> > the issue with the latest opensbi generic platform, plz provided full
+> > uart log from openSBI to the kernel panic point.
+> 
+> Thanks you all for the help!
+> 
+> I downloaded the latest opensbi 1.3.1 and put fw_dynamic.bin in the
+> generic directory into /boot (renamed not to overwritten the vendor
+> one), then loaded it onto address 0 from the vendor u-boot.  Now the
+> plic issue was gone, but another panic happened.  Log is pasted at the
+> end of this mail.
+> 
+> I've not set up an initramfs, so I'm expecting a panic after all, but I
+> think it should be "VFS: cannot mount root fs" or something, not
+> "unexpected interrupt cause".
+> 
+> Is it a problem with vendor u-boot?  Should I try loading a latest u-
+> boot from the vendor one, and then load the kernel with the new u-boot?
+
+which dts r u using? see below.
+
+> 
+> Or maybe my toolchain (GCC 13.1.0, Binutils-2.40, with no patches) can
+> miscompile the kernel?
+> 
+> ## Flattened Device Tree blob at 46000000
+>    Booting using the fdt blob at 0x46000000
+>    Using Device Tree in place at 0000000046000000, end 00000000460050c4
+> 
+> Starting kernel ...
+> 
+> 
+> OpenSBI v1.3.1
+>    ____                    _____ ____ _____
+>   / __ \                  / ____|  _ \_   _|
+>  | |  | |_ __   ___ _ __ | (___ | |_) || |
+>  | |  | | '_ \ / _ \ '_ \ \___ \|  _ < | |
+>  | |__| | |_) |  __/ | | |____) | |_) || |_
+>   \____/| .__/ \___|_| |_|_____/|___/_____|
+>         | |
+>         |_|
+> 
+> Platform Name             : Sipeed Lichee Pi 4A
+> Platform Features         : medeleg
+> Platform HART Count       : 4
+> Platform IPI Device       : aclint-mswi
+> Platform Timer Device     : aclint-mtimer @ 3000000Hz
+> Platform Console Device   : uart8250
+> Platform HSM Device       : ---
+> Platform PMU Device       : ---
+> Platform Reboot Device    : ---
+> Platform Shutdown Device  : ---
+> Platform Suspend Device   : ---
+> Platform CPPC Device      : ---
+> Firmware Base             : 0x0
+> Firmware Size             : 224 KB
+> Firmware RW Offset        : 0x20000
+> Firmware RW Size          : 96 KB
+> Firmware Heap Offset      : 0x2e000
+> Firmware Heap Size        : 40 KB (total), 2 KB (reserved), 9 KB (used), 28 KB (free)
+> Firmware Scratch Size     : 4096 B (total), 760 B (used), 3336 B (free)
+> Runtime SBI Version       : 1.0
+> 
+> Domain0 Name              : root
+> Domain0 Boot HART         : 0
+> Domain0 HARTs             : 0*,1*,2*,3*
+> Domain0 Region00          : 0x000000ffdc008000-0x000000ffdc00bfff M: (I,R,W) S/U: ()
+> Domain0 Region01          : 0x000000ffdc000000-0x000000ffdc007fff M: (I,R,W) S/U: ()
+> Domain0 Region02          : 0x0000000000000000-0x000000000001ffff M: (R,X) S/U: ()
+> Domain0 Region03          : 0x0000000000020000-0x000000000003ffff M: (R,W) S/U: ()
+> Domain0 Region04          : 0x0000000000000000-0xffffffffffffffff M: (R,W,X) S/U: (R,W,X)
+> Domain0 Next Address      : 0x0000000040200000
+> Domain0 Next Arg1         : 0x0000000046000000
+> Domain0 Next Mode         : S-mode
+> Domain0 SysReset          : yes
+> Domain0 SysSuspend        : yes
+> 
+> Boot HART ID              : 0
+> Boot HART Domain          : root
+> Boot HART Priv Version    : v1.11
+> Boot HART Base ISA        : rv64imafdcvx
+
+what? I don't think the mainline dts provide v and x. 
+
+> Boot HART ISA Extensions  : time
+> Boot HART PMP Count       : 0
+> Boot HART PMP Granularity : 0
+> Boot HART PMP Address Bits: 0
+> Boot HART MHPM Count      : 16
+> Boot HART MIDELEG         : 0x0000000000000222
+> Boot HART MEDELEG         : 0x000000000000b109
+> [    0.000000] Linux version 6.5.0-rc3 (lfs@stargazer) (riscv64-lfs-linux-gnu-gcc (GCC) 13.1.0, GNU ld (GNU Binutils) 2.40) #1 SMP PREEMPT Tue Jul 25 13:38:20 CST 2023
+> [    0.000000] Machine model: Sipeed Lichee Pi 4A
+> [    0.000000] SBI specification v1.0 detected
+> [    0.000000] SBI implementation ID=0x1 Version=0x10003
+> [    0.000000] SBI TIME extension detected
+> [    0.000000] SBI IPI extension detected
+> [    0.000000] SBI RFENCE extension detected
+> [    0.000000] earlycon: uart0 at MMIO32 0x000000ffe7014000 (options '115200n8')
+> [    0.000000] printk: bootconsole [uart0] enabled
+> [    0.000000] efi: UEFI not found.
+> [    0.000000] OF: reserved mem: 0x0000000000000000..0x000000000001ffff (128 KiB) nomap non-reusable mmode_resv0@0
+> [    0.000000] OF: reserved mem: 0x0000000000020000..0x000000000003ffff (128 KiB) nomap non-reusable mmode_resv1@20000
+> [    0.000000] Zone ranges:
+> [    0.000000]   DMA32    [mem 0x0000000000000000-0x00000000ffffffff]
+> [    0.000000]   Normal   [mem 0x0000000100000000-0x00000001ffffffff]
+> [    0.000000] Movable zone start for each node
+> [    0.000000] Early memory node ranges
+> [    0.000000]   node   0: [mem 0x0000000000000000-0x000000000003ffff]
+> [    0.000000]   node   0: [mem 0x0000000000040000-0x00000001ffffffff]
+> [    0.000000] Initmem setup node 0 [mem 0x0000000000000000-0x00000001ffffffff]
+> [    0.000000] SBI HSM extension detected
+> [    0.000000] riscv: base ISA extensions acdfim
+> [    0.000000] riscv: ELF capabilities acdfim
+> [    0.000000] percpu: Embedded 17 pages/cpu s38184 r0 d31448 u69632
+> [    0.000000] Kernel command line: earlycon console=ttyS0,115200
+> [    0.000000] Dentry cache hash table entries: 1048576 (order: 11, 8388608 bytes, linear)
+> [    0.000000] Inode-cache hash table entries: 524288 (order: 10, 4194304 bytes, linear)
+> [    0.000000] Built 1 zonelists, mobility grouping on.  Total pages: 2064384
+> [    0.000000] mem auto-init: stack:all(zero), heap alloc:off, heap free:off
+> [    0.000000] software IO TLB: area num 4.
+> [    0.000000] software IO TLB: mapped [mem 0x00000000fbfff000-0x00000000fffff000] (64MB)
+> [    0.000000] Memory: 8145300K/8388608K available (4922K kernel code, 4786K rwdata, 2048K rodata, 2148K init, 393K bss, 243308K reserved, 0K cma-reserved)
+> [    0.000000] SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=4, Nodes=1
+> [    0.000000] rcu: Preemptible hierarchical RCU implementation.
+> [    0.000000] rcu:     RCU event tracing is enabled.
+> [    0.000000] rcu:     RCU restricting CPUs from NR_CPUS=64 to nr_cpu_ids=4.
+> [    0.000000]  Trampoline variant of Tasks RCU enabled.
+> [    0.000000]  Tracing variant of Tasks RCU enabled.
+> [    0.000000] rcu: RCU calculated value of scheduler-enlistment delay is 100 jiffies.
+> [    0.000000] rcu: Adjusting geometry for rcu_fanout_leaf=16, nr_cpu_ids=4
+> [    0.000000] NR_IRQS: 64, nr_irqs: 64, preallocated irqs: 0
+> [    0.000000] riscv-intc: 64 local interrupts mapped
+> [    0.000000] plic: interrupt-controller@ffd8000000: mapped 240 interrupts with 4 handlers for 8 contexts.
+> [    0.000000] riscv: providing IPIs using SBI IPI extension
+> [    0.000000] rcu: srcu_init: Setting srcu_struct sizes based on contention.
+> [    0.000000] clocksource: riscv_clocksource: mask: 0xffffffffffffffff max_cycles: 0x1623fa770, max_idle_ns: 881590404476 ns
+> [    0.000001] sched_clock: 64 bits at 3000kHz, resolution 333ns, wraps every 4398046511097ns
+> [    0.008488] Console: colour dummy device 80x25
+> [    0.012944] Kernel panic - not syncing: unexpected interrupt cause
+> [    0.012952] CPU: 0 PID: 0 Comm: swapper/0 Not tainted 6.5.0-rc3 #1
+> [    0.012964] Hardware name: Sipeed Lichee Pi 4A (DT)
+> [    0.012970] Call Trace:
+> [    0.012976] [<ffffffff80004c38>] walk_stackframe+0x0/0x7e
+> [    0.013002] [<ffffffff804c868c>] dump_stack_lvl+0x34/0x4e
+> [    0.013022] [<ffffffff804c1334>] panic+0xf2/0x292
+> [    0.013035] [<ffffffff802cddc0>] riscv_intc_irq+0x34/0x38
+> [    0.013052] [<ffffffff804c8716>] handle_riscv_irq+0x66/0xa6
+> [    0.059145] ---[ end Kernel panic - not syncing: unexpected interrupt cause ]---
+> 
