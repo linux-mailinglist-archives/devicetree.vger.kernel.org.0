@@ -2,103 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 81644763412
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 12:41:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CCB3D76344E
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 12:52:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233985AbjGZKlg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jul 2023 06:41:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34518 "EHLO
+        id S231978AbjGZKwj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jul 2023 06:52:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40406 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233981AbjGZKlf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 06:41:35 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FFD21BCB;
-        Wed, 26 Jul 2023 03:41:34 -0700 (PDT)
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36Q5ikaR031427;
-        Wed, 26 Jul 2023 10:41:17 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=date : from : to :
- cc : subject : message-id : references : mime-version : content-type :
- in-reply-to; s=qcppdkim1; bh=H7uZbim9TR0nrkY9+B3STeQlOAMcJ0Mi1nURv5rXg3w=;
- b=OQa7I5bu7AZZDmt2BxwQkYrjNkdX4DBmXZG+319dNG+RoKOxSvDkWWDTOtXcJqd+kD9Z
- k6kJ58McieyJipHqC7j0XCJglRKyEMjbsRHk3NWxEWzA2YeUO6HsPG5L3Lx1xYBeIvFy
- xr2H2NtS8flhBMjaOQXDiq2ISdaaaZCNp07a/lV7j7PSRU9yC8qYrtJLhiO2VLD2Ryc7
- JugX4GNdHiSZuf94afqaBXymfu3wXwUZOSaDZUSOzgMR0/JFtrJRsH9hu2WeDZ8xjFgu
- S4CWb8y1zfKgZZmG0OukyUzMkvBe7XAvYD04nd2KPlL99EJQEBc8/3AN+Us+URCdKsEd dA== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3s2cf8tvax-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 26 Jul 2023 10:41:17 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 36QAfGTo007802
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 26 Jul 2023 10:41:16 GMT
-Received: from hu-pkondeti-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.30; Wed, 26 Jul 2023 03:41:11 -0700
-Date:   Wed, 26 Jul 2023 16:11:08 +0530
-From:   Pavan Kondeti <quic_pkondeti@quicinc.com>
-To:     Elliot Berman <quic_eberman@quicinc.com>
-CC:     Mark Rutland <mark.rutland@arm.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-pm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <kernel@quicinc.com>,
-        "Satya Durga Srinivasu Prabhala" <quic_satyap@quicinc.com>,
-        Melody Olvera <quic_molvera@quicinc.com>,
-        Prasad Sodagudi <quic_psodagud@quicinc.com>
-Subject: Re: [RFC PATCH 4/4] power: reset: Implement a PSCI SYSTEM_RESET2
- reboot-mode driver
-Message-ID: <46744a2e-139c-4e4e-89b2-66346f64c3f2@quicinc.com>
-References: <20230724223057.1208122-1-quic_eberman@quicinc.com>
- <20230724223057.1208122-5-quic_eberman@quicinc.com>
+        with ESMTP id S233170AbjGZKwg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 06:52:36 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B60839B;
+        Wed, 26 Jul 2023 03:52:35 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 4B09361A6A;
+        Wed, 26 Jul 2023 10:52:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C5953C433C7;
+        Wed, 26 Jul 2023 10:52:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1690368754;
+        bh=KG8VdKwUgTGqEdy8lzbomg0CTxuXTcFOjsxpbCtDpUA=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=cbPKm6J4HnYOyMVzKuwCfQYY449JRquxLH2eyPOA+IrwSMYRG60IoQSHVoRurc+f+
+         yeBaqHSAW7H9Fa3L4Wpsh07jcwCWAlavU3I72CusIIphGfvyhP7mBv0JJnazlCGSIr
+         dLAH41XWbmKHZGXINOB2aQktTWMqJxfHlMALZtFaY44oSs8l41aaaT8gaYIzaoIuXM
+         rZ6Ckk9pu5XnbqkIOY3vzDz1GDYt6CxMVhqvVN2J7dyK6ha2kat08rtbiGHffJ+MAY
+         Xgsfuhsfc3GH0SHwYdKDpg7Nu0uJtLCFvS/6ftk/mkRblGCb/l3x6OeRoSd6YzEcDB
+         6fTAk1rgZhWYQ==
+Received: (nullmailer pid 801871 invoked by uid 1000);
+        Wed, 26 Jul 2023 10:52:32 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20230724223057.1208122-5-quic_eberman@quicinc.com>
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 7t1oanAR3-a68mVqRRFpYX45YADMam1I
-X-Proofpoint-GUID: 7t1oanAR3-a68mVqRRFpYX45YADMam1I
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-07-26_04,2023-07-26_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 impostorscore=0
- suspectscore=0 spamscore=0 adultscore=0 bulkscore=0 mlxlogscore=783
- lowpriorityscore=0 malwarescore=0 phishscore=0 clxscore=1015
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2306200000 definitions=main-2307260094
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+From:   Rob Herring <robh@kernel.org>
+To:     like@awinic.com
+Cc:     robh+dt@kernel.org, lgirdwood@gmail.com, liweilei@awinic.com,
+        devicetree@vger.kernel.org, conor+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-kernel@vger.kernel.org,
+        liangdong@awinic.com, wangweidong.a@awinic.com, broonie@kernel.org
+In-Reply-To: <20230726081612.586295-3-like@awinic.com>
+References: <20230726081612.586295-1-like@awinic.com>
+ <20230726081612.586295-3-like@awinic.com>
+Message-Id: <169036875268.801839.3994914135438671684.robh@kernel.org>
+Subject: Re: [PATCH V1 2/2] regulator: aw37503: add device-tree binding
+Date:   Wed, 26 Jul 2023 04:52:32 -0600
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 24, 2023 at 03:30:54PM -0700, Elliot Berman wrote:
-> PSCI implements a restart notifier for architectural defined resets.
-> The SYSTEM_RESET2 allows vendor firmware to define additional reset
-> types which could be mapped to the reboot reason.
-> 
-> Implement a driver to wire the reboot-mode framework to make vendor
-> SYSTEM_RESET2 calls on reboot.
-> 
-> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
 
-Do we need to skip the PSCI call from the existing PSCI restart notifier
-which gets called after your newly introduced callback from reboot mode
-notifier?
+On Wed, 26 Jul 2023 08:16:12 +0000, like@awinic.com wrote:
+> From: Alec Li <like@awinic.com>
+> 
+> Add aw37503 regulator device-tree binding documentation
+> 
+> Signed-off-by: Alec Li <like@awinic.com>
+> ---
+>  .../bindings/regulator/awinic,aw37503.yaml    | 73 +++++++++++++++++++
+>  1 file changed, 73 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/regulator/awinic,aw37503.yaml
+> 
 
-Thanks,
-Pavan
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/regulator/awinic,aw37503.yaml: properties: 'patternProperties' should not be valid under {'$ref': '#/definitions/json-schema-prop-names'}
+	hint: A json-schema keyword was found instead of a DT property name.
+	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/regulator/awinic,aw37503.yaml: properties:compatible:const: ['awinic,aw37503'] is not of type 'integer', 'string'
+	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/regulator/awinic,aw37503.yaml: properties:patternProperties: 'anyOf' conditional failed, one must be fixed:
+	'^out[pn]$' is not one of ['$ref', 'additionalItems', 'additionalProperties', 'allOf', 'anyOf', 'const', 'contains', 'default', 'dependencies', 'dependentRequired', 'dependentSchemas', 'deprecated', 'description', 'else', 'enum', 'exclusiveMaximum', 'exclusiveMinimum', 'items', 'if', 'minItems', 'minimum', 'maxItems', 'maximum', 'multipleOf', 'not', 'oneOf', 'pattern', 'patternProperties', 'properties', 'required', 'then', 'typeSize', 'unevaluatedProperties', 'uniqueItems']
+	'type' was expected
+	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/regulator/awinic,aw37503.yaml: properties:compatible:const: ['awinic,aw37503'] is not of type 'string'
+	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230726081612.586295-3-like@awinic.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
