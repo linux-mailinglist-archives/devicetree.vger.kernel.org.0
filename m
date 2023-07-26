@@ -2,39 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 44E29762FD6
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 10:28:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 897CB762FDC
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 10:30:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232569AbjGZI2b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jul 2023 04:28:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38550 "EHLO
+        id S231817AbjGZIaM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jul 2023 04:30:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39172 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233217AbjGZI1x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 04:27:53 -0400
-Received: from out28-73.mail.aliyun.com (out28-73.mail.aliyun.com [115.124.28.73])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6110B5FFC;
-        Wed, 26 Jul 2023 01:18:01 -0700 (PDT)
-X-Alimail-AntiSpam: AC=CONTINUE;BC=0.1605788|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_system_inform|0.0349842-0.00127715-0.963739;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047198;MF=like@awinic.com;NM=1;PH=DS;RN=11;RT=11;SR=0;TI=SMTPD_---.U0dHLJ9_1690359465;
-Received: from awinic..(mailfrom:like@awinic.com fp:SMTPD_---.U0dHLJ9_1690359465)
-          by smtp.aliyun-inc.com;
-          Wed, 26 Jul 2023 16:17:55 +0800
-From:   like@awinic.com
-To:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        liweilei@awinic.com, liangdong@awinic.com,
-        wangweidong.a@awinic.com, Alec Li <like@awinic.com>
-Subject: [PATCH V1 2/2] regulator: aw37503: add device-tree binding
-Date:   Wed, 26 Jul 2023 08:16:12 +0000
-Message-ID: <20230726081612.586295-3-like@awinic.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20230726081612.586295-1-like@awinic.com>
-References: <20230726081612.586295-1-like@awinic.com>
+        with ESMTP id S231645AbjGZI3g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 04:29:36 -0400
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E7862D7B;
+        Wed, 26 Jul 2023 01:19:22 -0700 (PDT)
+Received: from wsk (85-222-111-42.dynamic.chello.pl [85.222.111.42])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: lukma@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id D004B847BC;
+        Wed, 26 Jul 2023 10:19:14 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1690359555;
+        bh=CrdpJ2vBz6aBd3uf8T7S1gyU7zfMzUcFAcjQO5gqUV4=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=haA57/3kycbXOLlDQLe79fBqXLLdn4xhUraINZA1noG6zh6WePawdFeS6kblHfU2w
+         TUOJ2Jbt+ovepOTnAyF62+9e6O/BtSmGCNY+z/aPlMstjLvbsBKzkRuwfS+LaQRBvc
+         Kz983M2QpFFm/LADDXTOUE7ItGhpIfn+ME7Okt6DaFuIhiwrBLUWCAZf8+BfteZSDw
+         7Hu4j7Dpc/uTVJwazJhenSOZhgKH5VMetIcMkfQd8yxGIz62YDEwMa3IwqBN1QaOCq
+         v31tXF/FWVh+BW9wFHM8f6vrmkPX/sq4kH7Pi/8mQEbZqw/I5J0VbDYiPCRmM+htsW
+         tZTUJNAgxCfvA==
+Date:   Wed, 26 Jul 2023 10:19:02 +0200
+From:   Lukasz Majewski <lukma@denx.de>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Conor Dooley <conor+dt@kernel.org>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: at91: ksz9477_evb: Add missing timer nodes
+Message-ID: <20230726101902.769f6541@wsk>
+In-Reply-To: <20230712152111.3756211-1-lukma@denx.de>
+References: <20230712152111.3756211-1-lukma@denx.de>
+Organization: denx.de
+X-Mailer: Claws Mail 3.19.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY,URIBL_BLOCKED autolearn=ham
+Content-Type: multipart/signed; boundary="Sig_/PExcZCVXoc1GKKSFBr4TB/Z";
+ protocol="application/pgp-signature"; micalg=pgp-sha512
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,URIBL_BLOCKED autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -42,95 +61,77 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Alec Li <like@awinic.com>
+--Sig_/PExcZCVXoc1GKKSFBr4TB/Z
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-Add aw37503 regulator device-tree binding documentation
+Dear Community,
 
-Signed-off-by: Alec Li <like@awinic.com>
----
- .../bindings/regulator/awinic,aw37503.yaml    | 73 +++++++++++++++++++
- 1 file changed, 73 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/regulator/awinic,aw37503.yaml
+> Without this change the KSZ9477-EVB board hangs just after passing
+> execution flow from u-boot to Linux kernel.
+>=20
+> This code has been copied from at91-sama5d3_xplained.dts.
+>=20
+> Test setup: Linux 6.5-rc1
+> Config:     arch/arm/configs/sama5_defconfig
+> Toolchain:  gcc-linaro-7.3.1-2018.05-x86_64_arm-linux-gnueabi
+>=20
+> Signed-off-by: Lukasz Majewski <lukma@denx.de>
+> ---
+>  .../boot/dts/microchip/at91-sama5d3_ksz9477_evb.dts  | 12
+> ++++++++++++ 1 file changed, 12 insertions(+)
+>=20
+> diff --git a/arch/arm/boot/dts/microchip/at91-sama5d3_ksz9477_evb.dts
+> b/arch/arm/boot/dts/microchip/at91-sama5d3_ksz9477_evb.dts index
+> 14af1fd6d247..99cd6d15998b 100644 ---
+> a/arch/arm/boot/dts/microchip/at91-sama5d3_ksz9477_evb.dts +++
+> b/arch/arm/boot/dts/microchip/at91-sama5d3_ksz9477_evb.dts @@ -162,6
+> +162,18 @@ };
+>  };
+> =20
+> +&tcb0 {
+> +	timer0: timer@0 {
+> +		compatible =3D "atmel,tcb-timer";
+> +		reg =3D <0>;
+> +	};
+> +
+> +	timer1: timer@1 {
+> +		compatible =3D "atmel,tcb-timer";
+> +		reg =3D <1>;
+> +	};
+> +};
+> +
+>  &usb0 {
+>  	pinctrl-names =3D "default";
+>  	pinctrl-0 =3D <&pinctrl_usba_vbus>;
 
-diff --git a/Documentation/devicetree/bindings/regulator/awinic,aw37503.yaml b/Documentation/devicetree/bindings/regulator/awinic,aw37503.yaml
-new file mode 100644
-index 000000000000..0cd6fb001e20
---- /dev/null
-+++ b/Documentation/devicetree/bindings/regulator/awinic,aw37503.yaml
-@@ -0,0 +1,73 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/regulator/awinic,aw37503.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Awinic AW37503 Voltage Regulator
-+
-+maintainers:
-+  - Alec Li <like@awinic.com>
-+
-+description: |
-+  The AW37503 is dual voltage regulator, designed to support positive/negative
-+  supply for driving TFT-LCD panels. It support software-configurable output
-+  switching and monitoring. The output voltages can be programmed via an I2C
-+  compatible interface.
-+
-+properties:
-+  compatible:
-+    const:
-+      - awinic,aw37503
-+
-+  reg:
-+    maxItems: 1
-+
-+  patternProperties:
-+    "^out[pn]$":
-+      type: object
-+      $ref: regulator.yaml#
-+      unvaluatedproperties: false
-+
-+      required:
-+        - regulator-name
-+        - enable-gpios
-+
-+      additionalProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - outp
-+  - outn
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        aw37503@3e {
-+            compatible = "awinic,aw37503";
-+            reg = <0x3e>;
-+
-+            outp {
-+                regulator-name = "outp";
-+                regulator-boot-on;
-+                regulator-always-on;
-+                enable-gpios = <&gpio 17 0>;
-+            };
-+
-+            outn {
-+                regulator-name = "outn";
-+                regulator-boot-on;
-+                regulator-always-on;
-+                enable-gpios = <&gpio 27 0>;
-+            };
-+        };
-+    };
-+...
--- 
-2.41.0
+Gentle ping on this fix ...
 
+
+Best regards,
+
+Lukasz Majewski
+
+--
+
+DENX Software Engineering GmbH,      Managing Director: Erika Unter
+HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
+Phone: (+49)-8142-66989-59 Fax: (+49)-8142-66989-80 Email: lukma@denx.de
+
+--Sig_/PExcZCVXoc1GKKSFBr4TB/Z
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCgAdFiEEgAyFJ+N6uu6+XupJAR8vZIA0zr0FAmTA1vYACgkQAR8vZIA0
+zr1+dQf7BycEiyg+LGXfbFNR/xEzwg2yp7sJ8MkBl9M4whE8NSITOKy5WTzjNbzF
+uveTVKO6XplzK/en3Hfk2m9hzDEKfr9xOLkQRUICBDdGtC3dcsEyRk+/6IJoDTup
+MHFSf134sxK7/cm76oavYQRlA0FALzAGSt/HtXtQjiS0maRPlPE9m3Beig/o2KuE
+dI90i01XqFzECbCkFbFdeBwi7VVM2OZ6TeVyFBysXDut2QeGdbJBqZMybRn68bIS
+gePAOBuV5RJznc63iWom2jixzaIUXj1PmEz3Zl0HdOYgiOnSSuXt62Pgcka31/j9
+GxYJnYZ5yxdR91lGzuFjB0MS5BBvpQ==
+=CKhP
+-----END PGP SIGNATURE-----
+
+--Sig_/PExcZCVXoc1GKKSFBr4TB/Z--
