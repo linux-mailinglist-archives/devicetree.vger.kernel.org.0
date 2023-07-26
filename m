@@ -2,112 +2,235 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E6A4764063
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 22:17:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 671C9764091
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 22:35:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230232AbjGZURj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jul 2023 16:17:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53080 "EHLO
+        id S230097AbjGZUf4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jul 2023 16:35:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58644 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230122AbjGZURg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 16:17:36 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7AB0A11B
-        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 13:17:35 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-98dfb3f9af6so14937266b.2
-        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 13:17:35 -0700 (PDT)
+        with ESMTP id S229724AbjGZUfz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 16:35:55 -0400
+Received: from mail-oi1-x230.google.com (mail-oi1-x230.google.com [IPv6:2607:f8b0:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B339B211C
+        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 13:35:54 -0700 (PDT)
+Received: by mail-oi1-x230.google.com with SMTP id 5614622812f47-3a3efee1d44so216013b6e.3
+        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 13:35:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690402654; x=1691007454;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=TIw5M7YBct0ebCkuxRxGyVInX15QsjTBfpmn2gCjrlg=;
-        b=HnznN/U58EK46QCHNToLfcrCIZZ7BbcFMYn/KG7ki5VIvImGrizBEW+JWdZ9ooH/T3
-         RvBts02mBNI2iqWV1ktp7rzuoOYnQPbDEKki+1WfDgw39bASx98Ig4ApBkV0/35o1DEK
-         9U56DZstCcYdFA2o6JnHlFTpkV2L/MR7jjBgFcZUxeJy8T73/EdT0L/7i4ltvpxNztcr
-         XVmBrZ5GWen5uKnrTBXpOtyR2ry1ByvFbkDposXKzQaNMcjLfuodfXK/4RC/OOgztpV9
-         d82VDOFteA3ZJ0NsBcar9Gu9RG7LQDmtIS/lMiAbPlW3WMlQIgGlZj6DUFh45+PIAr5R
-         ZiJQ==
+        d=ndufresne-ca.20221208.gappssmtp.com; s=20221208; t=1690403754; x=1691008554;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=UbJeRzU7wigg3Cu4qDyeUEG2N0zmDly89LtEzqyMs4E=;
+        b=TxGCtU4yiHilQLBjUikX0JH9p6bb2UNI26c3vHmd5RO8FYRkDvNulnhPJd3CKSq9Fo
+         gOIC9PqsHWZlRyLBv3mi4bIOQDpNAYCYZlr81fsXoGFwE2cUSvufGtSEX0dw8bo7gqqP
+         vd09xr+NRbEsFtKf5A8oTo1/4bZUznMU31ew4iJs9g3kOnfP6XqNJsyomSHnsRBJhQRF
+         2si1a902AlFy8F5TkVpPzp9EA4/2bLGvXYGY8pAIvq+RYJueW8d5oxz/SNTEEIMBGhZy
+         ye5hpxcBNZC2MQcUkJVCvw7mM/HP7xVL//qt4/c6EwBoG/qjLV9Wz/SDxuo19X3BtYi3
+         TbCw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690402654; x=1691007454;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=TIw5M7YBct0ebCkuxRxGyVInX15QsjTBfpmn2gCjrlg=;
-        b=P7tG17Cdu4Diftt7B3sfv9EVxpkKwq8706kecDllfCfYG0jn6WhV+RSDFHGEhKvh+m
-         MGFBKo/+rEhz9reh0J/RHAXEWFPROaF3HBG9g2r8ORS+mupKo22EoN2CPSAbjdRv1tjA
-         PHGdIWh8w4dQdiyT64MFaaq8xM/zVI8VQND0ZJfJVBogm3jRPYn56EodDH/xTUWDlw+W
-         boZ3ArcS+Bv6QjCuHthOx+cxvGZf0cp9i76JYJA6J6OONXVrBKVlff293U0XopB2QacD
-         n2qka8aqj+4cThNu0L+aGmlKZ9X9nuEaM0qjxm/oXjFuak4PbFRFWNUzISfksfnphR8s
-         xR0w==
-X-Gm-Message-State: ABy/qLYxIzrGr0F2RU/LnUOHO2txFcOLHPc8z/A3e6m7Kh4fvLNUradY
-        WW0aKFrUXXuLH1uVnb6Q39lc3g==
-X-Google-Smtp-Source: APBJJlH/Z/+ouAQuj6hfTlPnr5EX2+fyovpgX5IPIN6FWgx+Vmn3c7YBaLt4rauRmEInXz3DL3/gdg==
-X-Received: by 2002:a17:906:1006:b0:98e:2334:af12 with SMTP id 6-20020a170906100600b0098e2334af12mr185769ejm.45.1690402654001;
-        Wed, 26 Jul 2023 13:17:34 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id lg23-20020a170906f89700b0098733a40bb7sm10060069ejb.155.2023.07.26.13.17.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 26 Jul 2023 13:17:33 -0700 (PDT)
-Message-ID: <36ed5a07-dce2-f5be-bdc7-8c5b1c3c3829@linaro.org>
-Date:   Wed, 26 Jul 2023 22:17:31 +0200
+        d=1e100.net; s=20221208; t=1690403754; x=1691008554;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=UbJeRzU7wigg3Cu4qDyeUEG2N0zmDly89LtEzqyMs4E=;
+        b=NJQ8uPJHkY4/e14yzeKJtQeCmyJ1e4JgjrFXFcBZlEthmajDG20KsE4Vd72kdNqaIx
+         nT78RWTnVQ0fBLRY1I5KgJJY+vJz57mKB6fuqHRx55KxKlEmItB1h73glbNeyLlKxb1O
+         Pyt4o9AXA+5rq7WgP00vx4sS8InF+bvhb44GrGaZP8HjNCwj3tOCGdClhOLfZ7F0oG+Q
+         u28+WF4NnuqaoW+CgTTnMkhlFvvCCbjVmQmEW1aVTdf9sF/Vv85GRZjsZiREOViSGQLJ
+         pn6b+HgmLVCVJeLNm6L2sMjVkdhkQszVBuhxu5Dtptee6c1uinoXU4IZUl6gfdwj6O2C
+         wK3A==
+X-Gm-Message-State: ABy/qLbzJ8EDueo02IOvdmtK7XNzcg2wHY2FNWWcXCxPNdpyRFLzWOJK
+        3D/6MynAJZTKU65UOnGrr/HjEQ==
+X-Google-Smtp-Source: APBJJlFMm0AI2+RVorQy6CQwizGZeLXoyZBFhxx7j6jzyKq1c1RJlExUWOEk9RJSbT6hVnqn+H4ZZA==
+X-Received: by 2002:a05:6808:aac:b0:3a4:19fd:cd51 with SMTP id r12-20020a0568080aac00b003a419fdcd51mr588581oij.10.1690403754044;
+        Wed, 26 Jul 2023 13:35:54 -0700 (PDT)
+Received: from nicolas-tpx395.localdomain ([2606:6d00:10:580::7a9])
+        by smtp.gmail.com with ESMTPSA id k19-20020a0cf593000000b00634daee6ecbsm5390895qvm.113.2023.07.26.13.35.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 26 Jul 2023 13:35:53 -0700 (PDT)
+Message-ID: <3d26f0f719cd5f71c20e80599362cd52bcfe8dd4.camel@ndufresne.ca>
+Subject: Re: [PATCH] dt-bindings: media: Add bindings for Imagination E5010
+ JPEG Encoder driver
+From:   Nicolas Dufresne <nicolas@ndufresne.ca>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Devarsh Thakkar <devarsht@ti.com>, mchehab@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     praneeth@ti.com, nm@ti.com, vigneshr@ti.com, a-bhatia1@ti.com,
+        j-luthra@ti.com, b-brnich@ti.com, detheridge@ti.com,
+        p-mantena@ti.com, vijayp@ti.com
+Date:   Wed, 26 Jul 2023 16:35:52 -0400
+In-Reply-To: <b6bddd59-ac78-3f75-828e-cff54766fc72@linaro.org>
+References: <20230726162615.1270075-1-devarsht@ti.com>
+         <b6bddd59-ac78-3f75-828e-cff54766fc72@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.48.4 (3.48.4-1.fc38) 
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v2 1/4] dt-bindings: Add bindings for peci-npcm
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Iwona Winiarska <iwona.winiarska@intel.com>,
-        openbmc@lists.ozlabs.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Avi Fishman <avifishman70@gmail.com>,
-        Tomer Maimon <tmaimon77@gmail.com>,
-        Patrick Venture <venture@google.com>,
-        Nancy Yuen <yuenn@google.com>,
-        Benjamin Fair <benjaminfair@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Paul Menzel <pmenzel@molgen.mpg.de>,
-        Tyrone Ting <warp5tw@gmail.com>
-References: <20230726192740.1383740-1-iwona.winiarska@intel.com>
- <20230726192740.1383740-2-iwona.winiarska@intel.com>
- <6a9c250e-5192-909b-d60f-7b9888a23145@linaro.org>
-In-Reply-To: <6a9c250e-5192-909b-d60f-7b9888a23145@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/07/2023 21:39, Krzysztof Kozlowski wrote:
-> On 26/07/2023 21:27, Iwona Winiarska wrote:
->> From: Tomer Maimon <tmaimon77@gmail.com>
->>
->> Add device tree bindings for the peci-npcm controller driver.
->>
->> Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
->> Signed-off-by: Tyrone Ting <warp5tw@gmail.com>
->> Co-developed-by: Iwona Winiarska <iwona.winiarska@intel.com>
->> Signed-off-by: Iwona Winiarska <iwona.winiarska@intel.com>
->> ---
->> Changes v1 -> v2:
->>
->> * Renamed binding filename to match compatible (Krzysztof)
-> 
-> 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->
+Le mercredi 26 juillet 2023 =C3=A0 18:33 +0200, Krzysztof Kozlowski a =C3=
+=A9crit=C2=A0:
+> On 26/07/2023 18:26, Devarsh Thakkar wrote:
+> > Add dt-bindings for Imagination E5010 JPEG Encoder driver which is
+> > implemented as stateful V4L2 M2M driver.
+> >=20
+> > Co-developed-by: David Huang <d-huang@ti.com>
+> > Signed-off-by: David Huang <d-huang@ti.com>
+>=20
+> A nit, subject: drop second/last, redundant "bindings for". The
+> "dt-bindings" prefix is already stating that these are bindings.
+>=20
+> Drop also "driver". Bindings are for hardware, not drivers.
+>=20
+> Prefix starts with media and then dt-bindings.
 
-Un-reviewed. Why testing the code before sending to LKML? Obviously not
-needed.
+That being said, I haven't seen any submission for the driver using these, =
+is it
+common practice to upstream bindings for unsupported hardware ?
 
-Best regards,
-Krzysztof
+Nicolas
+
+>=20
+>=20
+> > Signed-off-by: Devarsh Thakkar <devarsht@ti.com>
+> > ---
+> >  .../bindings/media/img,e5010-jpeg-enc.yaml    | 79 +++++++++++++++++++
+> >  MAINTAINERS                                   |  5 ++
+> >  2 files changed, 84 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/media/img,e5010-j=
+peg-enc.yaml
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/media/img,e5010-jpeg-enc=
+.yaml b/Documentation/devicetree/bindings/media/img,e5010-jpeg-enc.yaml
+> > new file mode 100644
+> > index 000000000000..0060373eace7
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/media/img,e5010-jpeg-enc.yaml
+> > @@ -0,0 +1,79 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/media/img,e5010-jpeg-enc.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Imagination E5010 JPEG Encoder
+> > +
+> > +maintainers:
+> > +  - Devarsh Thakkar <devarsht@ti.com>
+> > +
+> > +description: |
+> > +  The E5010 is a JPEG encoder from Imagination Technologies implemente=
+d on
+> > +  TI's AM62A SoC. It is capable of real time encoding of YUV420 and YU=
+V422
+> > +  inputs to JPEG and M-JPEG. It supports baseline JPEG Encoding up to
+> > +  8Kx8K resolution.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: img,e5010-jpeg-enc
+>=20
+> Your description suggests that this is part of TI SoC. Pretty often
+> licensed blocks cannot be used on their own and need some
+> customizations. Are you sure your block does not need any customization
+> thus no dedicated compatible is needed?
+>=20
+> > +
+> > +  reg:
+> > +    items:
+> > +      - description: The E5010 main register region
+> > +      - description: The E5010 mmu register region
+> > +
+> > +  reg-names:
+> > +    items:
+> > +      - const: regjasper
+> > +      - const: regmmu
+> > +
+>=20
+> Drop reg from both
+>=20
+> > +  power-domains:
+> > +    maxItems: 1
+> > +
+> > +  resets:
+> > +    maxItems: 1
+> > +
+> > +  clocks:
+> > +    minItems: 1
+> > +    maxItems: 2
+>=20
+> You need to specify the items. Also, no variable number of clocks. Why
+> would they vary if block is strictly defined?
+>=20
+> > +
+> > +  clock-names:
+> > +    minItems: 1
+> > +    maxItems: 2
+>=20
+> Instead list the names.
+>=20
+> > +
+> > +  interrupts:
+> > +    maxItems: 1
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - reg-names
+> > +  - interrupts
+> > +  - clocks
+> > +  - clock-names
+> > +  - power-domains
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/soc/ti,sci_pm_domain.h>
+> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > +    #include <dt-bindings/interrupt-controller/irq.h>
+> > +
+> > +    cbass_main {
+>=20
+> That's some weird name. Probably you meant soc. Anyway, underscores are
+> not allowed.
+>=20
+> > +      #address-cells =3D <2>;
+> > +      #size-cells =3D <2>;
+> > +      e5010: e5010@fd20000 {
+>=20
+> Node names should be generic. See also an explanation and list of
+> examples (not exhaustive) in DT specification:
+> https://devicetree-specification.readthedocs.io/en/latest/chapter2-device=
+tree-basics.html#generic-names-recommendation
+>=20
+>=20
+> Drop the label.
+>=20
+> > +          compatible =3D "img,e5010-jpeg-enc";
+> > +          reg =3D <0x00 0xfd20000 0x00 0x100>,
+> > +                <0x00 0xfd20200 0x00 0x200>;
+> > +          reg-names =3D "regjasper", "regmmu";
+> > +          clocks =3D <&k3_clks 201 0>;
+> > +          clock-names =3D "core_clk";
+> > +          power-domains =3D <&k3_pds 201 TI_SCI_PD_EXCLUSIVE>;
+> > +          interrupts =3D <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>;
+> > +      };
+> > +    };
+>=20
+>=20
+> Best regards,
+> Krzysztof
+>=20
 
