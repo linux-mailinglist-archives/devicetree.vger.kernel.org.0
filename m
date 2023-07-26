@@ -2,100 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 305B6763ADA
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 17:22:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AF4A2763AEF
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 17:24:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229984AbjGZPWf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jul 2023 11:22:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35814 "EHLO
+        id S231135AbjGZPYu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jul 2023 11:24:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37714 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232388AbjGZPWf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 11:22:35 -0400
+        with ESMTP id S231167AbjGZPYn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 11:24:43 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F8F2FC;
-        Wed, 26 Jul 2023 08:22:33 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF76D1FF0;
+        Wed, 26 Jul 2023 08:24:42 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id B122A61B3B;
-        Wed, 26 Jul 2023 15:22:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8F00C433C8;
-        Wed, 26 Jul 2023 15:22:29 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 6D83461B54;
+        Wed, 26 Jul 2023 15:24:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8ED6C433C7;
+        Wed, 26 Jul 2023 15:24:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690384952;
-        bh=9zDz3SagJCMaLUegWEGoTDA+cWb/pILa/bDTQy9G+xY=;
+        s=k20201202; t=1690385081;
+        bh=XtQHPjwlUAYxGYo7V7WNdtEo+xDINh3xf8oWKZdFtPM=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=FQDxUytPwExrxnMDK1NoeR5aEUldj5zSKlNSNR6ZZCSMbwQjpQasj3kzix52ujS+4
-         L0W2QvjR865awdef3Owd2xrvr/BEMNLPJgblfqrYM/28fNdVf8hwHCMIQXfnrsjECw
-         7wWs18fNf5FWiIIHPxRcU/4iUGM/EqNubKYP4ISthJwOH1LnUQyTkP6gtOmXBA/yi5
-         gkBWeihHXrM/uHdrie0MZ/6z8SYYbmz74RIT0zKsUiN9JsCeLJIbOW5m25NPEqRfVR
-         +EEk9AR60RVgxJx9oJPZzY0ELPPRgvBfQdX9R3RIYOLGj/hq29H0hOReg4PE/4OWaG
-         XF6oKUslZC3ow==
-Received: (nullmailer pid 1471317 invoked by uid 1000);
-        Wed, 26 Jul 2023 15:22:28 -0000
-Date:   Wed, 26 Jul 2023 09:22:28 -0600
+        b=ajWOBzMzGhBoqzfc5/DW9aF/gzYa0wM+vSx2pxzmI/7dY0miIeIIjqjyBGxE0JzWb
+         0+Be9ZPNi4QMYnzvKxNL06mLMrPnlHI6r1AFOiBDJf0fub79NUx64XIhQxnbfb0qAS
+         0D2Qj+MXNiJeESeORBdztPo+ffbinai/Z+J5lIIuGm3cxF998g2HPKBJc4e4AKgdHr
+         SWC1FzJ4EbDQNDK/SsYHmtcsCxrAyNLRVB7/n0Be8lW9ED2pkKPxE56jwkFYjX1z3x
+         FdGILD3G7swQqW17sCU6lryDnJAMjG5uHjqnHSQ90YgI369/OKpvKUMfyTRSF281Do
+         G3Z8h4PW665iA==
+Received: (nullmailer pid 1474009 invoked by uid 1000);
+        Wed, 26 Jul 2023 15:24:39 -0000
+Date:   Wed, 26 Jul 2023 09:24:39 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Marijn Suijten <marijn.suijten@somainline.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        linux-arm-msm@vger.kernel.org,
-        Krzysztof Kozlowski <krzk@kernel.org>,
+To:     Jisheng Zhang <jszhang@kernel.org>
+Cc:     "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        ~postmarketos/upstreaming@lists.sr.ht, linux-clk@vger.kernel.org,
-        Rob Clark <robdclark@gmail.com>, linux-kernel@vger.kernel.org,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Lux Aliaga <they@mint.lgbt>, devicetree@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krishna Manikandan <quic_mkrishn@quicinc.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Sean Paul <sean@poorly.run>, Daniel Vetter <daniel@ffwll.ch>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Loic Poulain <loic.poulain@linaro.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        freedreno@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
-        David Airlie <airlied@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        Jami Kettunen <jami.kettunen@somainline.org>
-Subject: Re: [PATCH v4 04/17] dt-bindings: display/msm: Remove DSI1 ports
- from SM6350/SM6375 example
-Message-ID: <169038494815.1471241.4131859739067244773.robh@kernel.org>
-References: <20230723-sm6125-dpu-v4-0-a3f287dd6c07@somainline.org>
- <20230723-sm6125-dpu-v4-4-a3f287dd6c07@somainline.org>
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH net-next 09/10] dt-bindings: net: snps,dwmac: add per
+ channel irq support
+Message-ID: <20230726152439.GA1471409-robh@kernel.org>
+References: <20230723161029.1345-1-jszhang@kernel.org>
+ <20230723161029.1345-10-jszhang@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230723-sm6125-dpu-v4-4-a3f287dd6c07@somainline.org>
-X-Spam-Status: No, score=-6.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
-        DKIM_SIGNED,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230723161029.1345-10-jszhang@kernel.org>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On Sun, 23 Jul 2023 18:08:42 +0200, Marijn Suijten wrote:
-> Both SM6350 and SM6375 support only a single DSI link, and don't have a
-> corresponding dsi1 node in DTS.  Their examples should not suggest an
-> output interface port on the display-controller node to this inexistant
-> DSI host, with a dsi1_in label reference that doesn't exist in the
-> example either.
+On Mon, Jul 24, 2023 at 12:10:28AM +0800, Jisheng Zhang wrote:
+> The IP supports per channel interrupt, add support for this usage case.
 > 
-> Fixes: 3b7502b0c205 ("dt-bindings: display/msm: Add SM6350 MDSS")
-> Fixes: 2a5c1021bc77 ("dt-bindings: display/msm: Add SM6375 MDSS")
-> Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
+> Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
 > ---
->  .../devicetree/bindings/display/msm/qcom,sm6350-mdss.yaml          | 7 -------
->  .../devicetree/bindings/display/msm/qcom,sm6375-mdss.yaml          | 7 -------
->  2 files changed, 14 deletions(-)
+>  .../devicetree/bindings/net/snps,dwmac.yaml   | 23 +++++++++++++++++++
+>  1 file changed, 23 insertions(+)
 > 
+> diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> index bb80ca205d26..525210c2c06c 100644
+> --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> @@ -101,6 +101,11 @@ properties:
+>      minItems: 1
+>      maxItems: 2
+>  
+> +  snps,per-channel-interrupt:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description:
+> +      Indicates that Rx and Tx complete will generate a unique interrupt for each channel
 
-Acked-by: Rob Herring <robh@kernel.org>
+Can't you determine this based on the number of interrupts or interrupt 
+names?
 
+> +
+>    interrupts:
+>      minItems: 1
+>      items:
+> @@ -109,6 +114,8 @@ properties:
+>        - description: The interrupt that occurs when Rx exits the LPI state
+>        - description: The interrupt that occurs when Safety Feature Correctible Errors happen
+>        - description: The interrupt that occurs when Safety Feature Uncorrectible Errors happen
+> +      - description: All of the rx per-channel interrupts
+> +      - description: All of the tx per-channel interrupts
+
+You added 2 interrupts here and...
+
+>  
+>    interrupt-names:
+>      minItems: 1
+> @@ -118,6 +125,22 @@ properties:
+>        - const: eth_lpi
+>        - const: sfty_ce_irq
+>        - const: sfty_ue_irq
+> +      - const: rx0
+> +      - const: rx1
+> +      - const: rx2
+> +      - const: rx3
+> +      - const: rx4
+> +      - const: rx5
+> +      - const: rx6
+> +      - const: rx7
+> +      - const: tx0
+> +      - const: tx1
+> +      - const: tx2
+> +      - const: tx3
+> +      - const: tx4
+> +      - const: tx5
+> +      - const: tx6
+> +      - const: tx7
+
+And 16 here?
+
+>  
+>    clocks:
+>      minItems: 1
+> -- 
+> 2.40.1
+> 
