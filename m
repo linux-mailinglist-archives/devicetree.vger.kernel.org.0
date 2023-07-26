@@ -2,79 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C19C1762DDD
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 09:36:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BB65E762E5F
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 09:45:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232766AbjGZHg0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jul 2023 03:36:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60504 "EHLO
+        id S232132AbjGZHpu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jul 2023 03:45:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39900 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231304AbjGZHfp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 03:35:45 -0400
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2ABC630EA
-        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 00:34:19 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-5217bb5ae05so8552524a12.0
-        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 00:34:19 -0700 (PDT)
+        with ESMTP id S232333AbjGZHpG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 03:45:06 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB6F535AD
+        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 00:40:21 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id 2adb3069b0e04-4fb7dc16ff0so9901500e87.2
+        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 00:40:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690356857; x=1690961657;
+        d=linaro.org; s=google; t=1690357220; x=1690962020;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=X+2Iliu7olik+NE8AfcvBGi3cE5KanWV2uC3MeiDPS0=;
-        b=KlbDSOyYOBAThy3vB3vgl/3WnwAqdpLGHR77DAe4G0S14mkuzuFvWUPp9oZx7cx/OT
-         P0lMKSm380e+eVPZjLbuFlR+a9eyRKKPUwtPMw9MsKE8ljq4ElNQhrSbLEGO0jTNxKrw
-         ZnRGBCi6omqYmQyhFU0VuJ7VwgrlCaYvSWi9gKwAgVmKvFDNMtEtnGeVvN04827uwu4q
-         Ho1fQQJv4ucUZoc6ZUXFLXHyBBGw5zIAj6PmafAN/HMBtTVrRysoS9JSYaYCU1vAmHNc
-         x7bj43PSH4rTLxRfkyxaLSvxHVwthO6XswOuLLxw1eZTk3HhexY+Si+DRP7d4XZJnXOd
-         lpAg==
+        bh=MrGrHnQrbIoFamYjn9058MR5lLvFefPovOxE0StWjvc=;
+        b=V98cul3aoo4cXu4BqviS2YiVMNEUs01YyPhv3FmsvFgvIDqurdOV10G4Rv2VAPm+uc
+         VStsCYJmKA0mfai2zwWIpd9m7cKBlz1a3X7khSZDWsKYAjenMmUX62mBdhOHE+DamTl9
+         1E8QXTNWDGeZBsO4kih5e2WF8xcGKTii3YgYsOPRmaW8VyhHJM914trdHEiUFVIeBOFe
+         m3H7JSu9uM9XPmTVm23XsZQMK16Loz/esMMsoVl7JGquBltpTFS293x0lESRsIR8RTj+
+         KjE1iTJqj4kOMIks3GyOrYl1QV+nWKH5Ts5Z1Djvdz0xOWdms1+lqHXWiT/t11yNGXHu
+         sQpQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690356857; x=1690961657;
+        d=1e100.net; s=20221208; t=1690357220; x=1690962020;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=X+2Iliu7olik+NE8AfcvBGi3cE5KanWV2uC3MeiDPS0=;
-        b=k+lOUjVYByuTeGAWbJNBX8SfBa8OeT0Cvfd9+oNJkt31mktymnkcPmlYEY/Vk3aqjK
-         UMDH6RfBKQpplfDArSylrq0HFR7bTgcQTrKMQm5pabXXAeCBGD7nHAMTVvv7v++iZOHG
-         YELx42ZWH+3SCN6GFca76ZcMrpjnYXLNYpWI3JbBrBWKnwxRK/9wBhijvJzM8X74R7AK
-         lXwWvEPxjPr8HGTnv2YMvj/lRrsZKk2I3zQwnVG8BCPPypfmaVx9orBjK2r3uYVf/McO
-         L8aKKpg2H1otCQ5MyBKeUNMzk4i4SPNif+Jm8L9DfBnEto/uYkBm8JiDvQiLlkjMEiqR
-         tIOg==
-X-Gm-Message-State: ABy/qLYCS90I65lbKf7ltzJFFZ7aaFfthosiIgtIMnNzSfzkApqZ81U1
-        w4V6wrwDBlPELRv2eOVZXmul6g==
-X-Google-Smtp-Source: APBJJlGR74zoKSYMwGskCgm5We2h4GhUdIEQdlH5TbM9FGnhgnA8mXhCNaiYrij4RkXzRuiIheq8iQ==
-X-Received: by 2002:aa7:da0b:0:b0:522:2111:1063 with SMTP id r11-20020aa7da0b000000b0052221111063mr815433eds.18.1690356857657;
-        Wed, 26 Jul 2023 00:34:17 -0700 (PDT)
+        bh=MrGrHnQrbIoFamYjn9058MR5lLvFefPovOxE0StWjvc=;
+        b=N95KZ6UWnR/gMmRIwca5HglsFbFiS20GM/Qs6I41iadPC4de1FzaxV0eXoca5Beqfu
+         lFgDGMyiCO+LV0f2GfimBpnJSTwdRbHVM2ydTNWQyn/pX1prawyxqJDABTdoCxn0oI62
+         +r4BDri8/7acmgpZ1UK2YqmEyZxhNixVHQHV+lCYN/I/deqVHttd4zZ+uGE6MQE5eqln
+         BxdZMDvMNYbwhDP//C6ny2FjMMYqSp+4m/Nnh7Muui/jDe48p+bg20C60z8uC+utJpxi
+         MtzTgbfnW0FYIkBoVPT9khfaNZ+mPRwEVsBaDP9HTayTVmRF4tK0n4ydjup1xqbJrsis
+         uQyQ==
+X-Gm-Message-State: ABy/qLZVrfCQPbEbra60CkKpdktQsWn3oQnnK4bgFhzwYgndIrBzcAkR
+        POh7oO4HvSpOZTMwZNuyxYB4apRggcH/Mw0K+rI=
+X-Google-Smtp-Source: APBJJlFCf7TN7XhSdBYPnYX0V2XVHlZhqjPtFmbgmR5I177m4djgceEOcb1GY+XoNMQT8voTP7xerA==
+X-Received: by 2002:a05:6512:3286:b0:4fe:c6c:ac95 with SMTP id p6-20020a056512328600b004fe0c6cac95mr836470lfe.35.1690357220056;
+        Wed, 26 Jul 2023 00:40:20 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id d14-20020aa7d5ce000000b00521cb435d54sm8575934eds.37.2023.07.26.00.34.16
+        by smtp.gmail.com with ESMTPSA id k6-20020a056402048600b0051bfc85afaasm8429075edv.86.2023.07.26.00.40.18
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 26 Jul 2023 00:34:17 -0700 (PDT)
-Message-ID: <d9cb0908-4074-2f01-efaf-cdd863a039f2@linaro.org>
-Date:   Wed, 26 Jul 2023 09:34:15 +0200
+        Wed, 26 Jul 2023 00:40:19 -0700 (PDT)
+Message-ID: <312a2e60-efc0-855b-e33b-a1ec8411d595@linaro.org>
+Date:   Wed, 26 Jul 2023 09:40:17 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
-Subject: Re: [PATCH 1/2] dt-bindings: arm: qcom: Add BQ Aquaris M5
+Subject: Re: [PATCH] arm64: dts: qcom: sm8150: add uart13 node
 Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        =?UTF-8?Q?Andr=c3=a9_Apitzsch?= <git@apitzsch.eu>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
+To:     qaz6750 lzy <qaz6750@outlook.com>, andersson@kernel.org,
+        agross@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
 Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-References: <20230724-bq_m5-v1-0-17a0870a73be@apitzsch.eu>
- <20230724-bq_m5-v1-1-17a0870a73be@apitzsch.eu>
- <877c6d2c-430f-b1fb-4267-18be5d7256dc@linaro.org>
- <d51dee67-02f4-1256-877f-61629c04b08f@linaro.org>
- <a90461fa-8319-5b87-397f-53ba169a3d31@linaro.org>
- <1717ccb1-46b3-8ac3-2c09-9558bd12cc40@linaro.org>
+References: <SY7P282MB37870BD990E8EB855A735E15B203A@SY7P282MB3787.AUSP282.PROD.OUTLOOK.COM>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1717ccb1-46b3-8ac3-2c09-9558bd12cc40@linaro.org>
+In-Reply-To: <SY7P282MB37870BD990E8EB855A735E15B203A@SY7P282MB3787.AUSP282.PROD.OUTLOOK.COM>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
@@ -85,46 +76,12 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/07/2023 12:03, Konrad Dybcio wrote:
-> On 25.07.2023 11:43, Krzysztof Kozlowski wrote:
->> On 25/07/2023 10:13, Konrad Dybcio wrote:
->>> On 25.07.2023 07:46, Krzysztof Kozlowski wrote:
->>>> On 24/07/2023 22:52, André Apitzsch wrote:
->>>>> Add a compatible for BQ Aquaris M5 (Longcheer L9100).
->>>>>
->>>>> Signed-off-by: André Apitzsch <git@apitzsch.eu>
->>>>> ---
->>>>>  Documentation/devicetree/bindings/arm/qcom.yaml | 1 +
->>>>>  1 file changed, 1 insertion(+)
->>>>
->>>>
->>>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>>>
->>>>
->>>> ---
->>>>
->>>> This is an automated instruction, just in case, because many review tags
->>>> are being ignored. If you do not know the process, here is a short
->>>> explanation:
->>>>
->>>> Please add Acked-by/Reviewed-by/Tested-by tags when posting new
->>>> versions, under or above your Signed-off-by tag. Tag is "received", when
->>>> provided in a message replied to you on the mailing list. Tools like b4
->>>> can help here. However, there's no need to repost patches *only* to add
->>>> the tags. The upstream maintainer will do that for acks received on the
->>>> version they apply.
->>>>
->>>> https://elixir.bootlin.com/linux/v5.17/source/Documentation/process/submitting-patches.rst#L540
->>> Krzysztof, update your bot to paste this link with s/v5.17/latest/g
->>
->> Is there any difference? :) I would need to update links in all my
->> templates and re-check the links...
-> Don't know, but the keyword "latest" in the link always points to the..
-> latest available release
+On 25/07/2023 09:22, qaz6750 lzy wrote:
+> Bluetooth on SM8150 requires uart13
+> 
+> Signed-off-by: qaz6750 lzy <qaz6750@outlook.com>
 
-And how do you update the line marker in "latest" version, so it points
-to exact line I want? I could switch to latest kernel doc and point to
-chapters, but then not to specific lines.
+Not much improved here. We talked about this, sorry.
 
 Best regards,
 Krzysztof
