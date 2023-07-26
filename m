@@ -2,145 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A7E8C7633CC
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 12:33:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BFFF57633E9
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 12:36:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233626AbjGZKdc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jul 2023 06:33:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57744 "EHLO
+        id S233189AbjGZKgd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jul 2023 06:36:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59592 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233978AbjGZKdO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 06:33:14 -0400
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33DC42126;
-        Wed, 26 Jul 2023 03:33:12 -0700 (PDT)
-Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36Q7mv1w023788;
-        Wed, 26 Jul 2023 12:32:35 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=9yD7Nv7FYCjZKupHugyp8v0ln3IVhj6t3qswQoubo9I=;
- b=rBYW43mlRrhhdX9YMbXL6MMRxpbClCpyZo8hKb2ZeqvJnN4hLiJ2zeBKq1nRYtvi538r
- wZRLFFB+hcO6jGWBE42hoauMRye1r0di2ci68xHmuXMBhqPc9es8J2VAp8e/Xn9KPSte
- l8ORxx9XceUspSSRZ487Vufjk+kxD0ko5guDlsgfccvfgAJ155tYfRqh+OhAicoocP+x
- itOth/GA8OgZa/04xw6Sqt8HEcnfENZuQBt6mj3giT0jhnaxxpZXbOdb1bLXv7yoxEEu
- Ej29kl9hMVZKhi1F/gCpeDX96ei7fWdwUQwULwbKeZsSUoCDj08qQyAZzARRd4+m3C0B Bg== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3s2ye8h9ag-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 26 Jul 2023 12:32:35 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 22EAF10002A;
-        Wed, 26 Jul 2023 12:32:34 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id EFB91216ED5;
-        Wed, 26 Jul 2023 12:32:33 +0200 (CEST)
-Received: from [10.201.21.121] (10.201.21.121) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Wed, 26 Jul
- 2023 12:32:31 +0200
-Message-ID: <46d4b5d2-55ca-0af3-bb02-7d49d9d2d4fa@foss.st.com>
-Date:   Wed, 26 Jul 2023 12:32:31 +0200
+        with ESMTP id S232167AbjGZKgc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 06:36:32 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 118EF2126;
+        Wed, 26 Jul 2023 03:36:30 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 36QAaDvp045912;
+        Wed, 26 Jul 2023 05:36:13 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1690367773;
+        bh=AsQ7eL3/H2JJHOml5th1RT/qIatR0oms1Ab+63AsSdY=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=oO2vlJsRYavoQbpnR7BH7gv/D6zsLsuKLq8VVi5DAQcF5dI92qLsXfFhlduzSrmeH
+         ArZM4IJpCeczHcpAVUPJDp8KPKaVcK0Lo5i2oIt3GC/hjn3Gth5hPMbAnAnK6d49+b
+         cwvbg8c/vCB7LtynoQBuBk2cuAEcXDjkBhsWlmO4=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 36QAaDhR058238
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 26 Jul 2023 05:36:13 -0500
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 26
+ Jul 2023 05:36:13 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 26 Jul 2023 05:36:13 -0500
+Received: from [172.24.227.217] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 36QAa7iP077859;
+        Wed, 26 Jul 2023 05:36:07 -0500
+Message-ID: <296b0e98-4012-09f6-84cd-6f87a85f095f@ti.com>
+Date:   Wed, 26 Jul 2023 16:06:06 +0530
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v2 07/11] bus: rifsc: introduce RIFSC firewall controller
- driver
+ Thunderbird/102.11.0
+Subject: Re: [EXTERNAL] Re: [PATCH v11 07/10] net: ti: icssg-prueth: Add ICSSG
+ Stats
 Content-Language: en-US
-To:     Simon Horman <simon.horman@corigine.com>
-CC:     <Oleksii_Moisieiev@epam.com>, <gregkh@linuxfoundation.org>,
-        <herbert@gondor.apana.org.au>, <davem@davemloft.net>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <alexandre.torgue@foss.st.com>,
-        <vkoul@kernel.org>, <jic23@kernel.org>,
-        <olivier.moysan@foss.st.com>, <arnaud.pouliquen@foss.st.com>,
-        <mchehab@kernel.org>, <fabrice.gasnier@foss.st.com>,
-        <andi.shyti@kernel.org>, <ulf.hansson@linaro.org>,
-        <edumazet@google.com>, <kuba@kernel.org>, <pabeni@redhat.com>,
-        <hugues.fruchet@foss.st.com>, <lee@kernel.org>, <will@kernel.org>,
-        <catalin.marinas@arm.com>, <arnd@kernel.org>,
-        <richardcochran@gmail.com>, Frank Rowand <frowand.list@gmail.com>,
-        <linux-crypto@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <dmaengine@vger.kernel.org>,
-        <linux-i2c@vger.kernel.org>, <linux-iio@vger.kernel.org>,
-        <alsa-devel@alsa-project.org>, <linux-media@vger.kernel.org>,
-        <linux-mmc@vger.kernel.org>, <netdev@vger.kernel.org>,
-        <linux-phy@lists.infradead.org>, <linux-serial@vger.kernel.org>,
-        <linux-spi@vger.kernel.org>, <linux-usb@vger.kernel.org>
-References: <20230725164104.273965-1-gatien.chevallier@foss.st.com>
- <20230725164104.273965-8-gatien.chevallier@foss.st.com>
- <ZMD027pTNT/HCLe6@corigine.com>
-From:   Gatien CHEVALLIER <gatien.chevallier@foss.st.com>
-In-Reply-To: <ZMD027pTNT/HCLe6@corigine.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To:     Jakub Kicinski <kuba@kernel.org>,
+        MD Danish Anwar <danishanwar@ti.com>
+CC:     Randy Dunlap <rdunlap@infradead.org>,
+        Roger Quadros <rogerq@kernel.org>,
+        Simon Horman <simon.horman@corigine.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Eric Dumazet <edumazet@google.com>,
+        "David S. Miller" <davem@davemloft.net>, <nm@ti.com>, <srk@ti.com>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <netdev@vger.kernel.org>, <linux-omap@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20230724112934.2637802-1-danishanwar@ti.com>
+ <20230724112934.2637802-8-danishanwar@ti.com>
+ <20230725205014.04e4bba3@kernel.org>
+From:   Md Danish Anwar <a0501179@ti.com>
+Organization: Texas Instruments
+In-Reply-To: <20230725205014.04e4bba3@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.201.21.121]
-X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-07-26_04,2023-07-25_01,2023-05-22_02
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Jakub
 
-
-On 7/26/23 12:26, Simon Horman wrote:
-> On Tue, Jul 25, 2023 at 06:41:00PM +0200, Gatien Chevallier wrote:
+On 26/07/23 9:20 am, Jakub Kicinski wrote:
+> On Mon, 24 Jul 2023 16:59:31 +0530 MD Danish Anwar wrote:
+>> +	/* Rx */
+>> +	ICSSG_STATS(rx_packets, true),
+>> +	ICSSG_STATS(rx_broadcast_frames, false),
+>> +	ICSSG_STATS(rx_multicast_frames, false),
 > 
-> ...
-> 
->> diff --git a/drivers/bus/stm32_rifsc.c b/drivers/bus/stm32_rifsc.c
-> 
-> ...
-> 
->> +static int stm32_rif_acquire_semaphore(struct stm32_firewall_controller *stm32_firewall_controller,
->> +				       int id)
->> +{
->> +	void __iomem *addr = stm32_firewall_controller->mmio + RIFSC_RISC_PER0_SEMCR + 0x8 * id;
->> +
->> +	__set_bit(SEMCR_MUTEX, addr);
-> 
-> Hi Gatien,
-> 
-> Sparse seem a bit unhappy about this.
-> 
->   .../stm32_rifsc.c:83:9: warning: cast removes address space '__iomem' of expression
->   .../stm32_rifsc.c:83:9: warning: incorrect type in argument 2 (different address spaces)
->   .../stm32_rifsc.c:83:9:    expected unsigned long volatile *addr
->   .../stm32_rifsc.c:83:9:    got void [noderef] __iomem *addr
->   .../stm32_rifsc.c:83:9: warning: incorrect type in argument 2 (different address spaces)
->   .../stm32_rifsc.c:83:9:    expected unsigned long volatile *addr
->   .../stm32_rifsc.c:83:9:    got void [noderef] __iomem *addr
-> 
-> But it's not immediately apparent to me what a good solution is.
+> There is a standard stat for mcast.
 > 
 
-Hi Simon,
+Sure. I will add multicast stats via .ndo_get_stats64 instead of ethtool.
 
-This is indeed incorrect, set_bit is used to modify bit fields, not
-writing to a register. I'll change to writel, as in
-stm32_rif_release_semaphore(). Thank you for pointing this out.
-
-Best regards,
-Gatien
->> +
->> +	/* Check that CID1 has the semaphore */
->> +	if (stm32_rifsc_is_semaphore_available(addr) ||
->> +	    FIELD_GET(RIFSC_RISC_SCID_MASK, readl(addr)) != RIF_CID1)
->> +		return -EACCES;
->> +
->> +	return 0;
->> +}
+>> +	ICSSG_STATS(rx_crc_errors, true),
+>> +	ICSSG_STATS(rx_mii_error_frames, false),
+>> +	ICSSG_STATS(rx_odd_nibble_frames, false),
+>> +	ICSSG_STATS(rx_frame_max_size, false),
+>> +	ICSSG_STATS(rx_max_size_error_frames, false),
+>> +	ICSSG_STATS(rx_frame_min_size, false),
+>> +	ICSSG_STATS(rx_min_size_error_frames, false),
+>> +	ICSSG_STATS(rx_over_errors, true),
+>> +	ICSSG_STATS(rx_class0_hits, false),
+>> +	ICSSG_STATS(rx_class1_hits, false),
+>> +	ICSSG_STATS(rx_class2_hits, false),
+>> +	ICSSG_STATS(rx_class3_hits, false),
+>> +	ICSSG_STATS(rx_class4_hits, false),
+>> +	ICSSG_STATS(rx_class5_hits, false),
+>> +	ICSSG_STATS(rx_class6_hits, false),
+>> +	ICSSG_STATS(rx_class7_hits, false),
+>> +	ICSSG_STATS(rx_class8_hits, false),
+>> +	ICSSG_STATS(rx_class9_hits, false),
+>> +	ICSSG_STATS(rx_class10_hits, false),
+>> +	ICSSG_STATS(rx_class11_hits, false),
+>> +	ICSSG_STATS(rx_class12_hits, false),
+>> +	ICSSG_STATS(rx_class13_hits, false),
+>> +	ICSSG_STATS(rx_class14_hits, false),
+>> +	ICSSG_STATS(rx_class15_hits, false),
+>> +	ICSSG_STATS(rx_smd_frags, false),
+>> +	ICSSG_STATS(rx_bucket1_size, false),
+>> +	ICSSG_STATS(rx_bucket2_size, false),
+>> +	ICSSG_STATS(rx_bucket3_size, false),
+>> +	ICSSG_STATS(rx_bucket4_size, false),
 > 
-> ...
+> Are the bucket sizes configurable? Can we set the bucket sizes
+> to standard RMON ones and use ethtool RMON stats?
+
+The bucket sizes are not configurable. Bucket size is read from hardware and is
+fixed. I don't think we can configure bucket size and use ethtool RMON stats.
+It's better to dump bucket sizes via ethtool -S.
+
+-- 
+Thanks and Regards,
+Danish.
