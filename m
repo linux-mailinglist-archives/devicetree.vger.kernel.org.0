@@ -2,183 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 210987634DA
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 13:26:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 537207634EC
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 13:30:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233538AbjGZL0v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jul 2023 07:26:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56188 "EHLO
+        id S233349AbjGZL36 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jul 2023 07:29:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59444 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233662AbjGZL0g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 07:26:36 -0400
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D38E2696
-        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 04:26:22 -0700 (PDT)
-Received: by mail-wr1-x42a.google.com with SMTP id ffacd0b85a97d-3141fa31c2bso5226111f8f.2
-        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 04:26:22 -0700 (PDT)
+        with ESMTP id S233472AbjGZL3y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 07:29:54 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A21C19BE
+        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 04:29:35 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-5221ee899a0so5815628a12.1
+        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 04:29:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690370780; x=1690975580;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1690370966; x=1690975766;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Me9DdLikay9/mg6C3pH4uUNkCjGXHrRqvb1zE6qVcE8=;
-        b=ujTe+OeVXyCQq14CK3Lba2vXYOY9/0WyK+FgPAmVWPvzh3WNG2TICYQast91tQL3J7
-         7nZSIWWrhBBoDpJgfuV54SLHBWWYOCemg/C5NM5OftTyQk8YsN3RyzWTeINC6jiP20T6
-         Yvw+psL8owvkQ0G+pmfjynvhdzpJuaKajxQDJ1sKtdGQylimQcZ8kz/nspw0Bg0GsK07
-         dKIL0khNzLWR6bfDh71j3MQeL6YkTcRBtJvOYrm9MpfVgHft9xgCPLOisrXQndxpjXan
-         wqUtQCJ6w2jldLKMabpDa/QJtc9sU8gKVGiaz5BYvrmdBjU4eesDzOULf9ieBr5AU7d/
-         pQzQ==
+        bh=Q/+qs7g1gY1JEPTRBZFLaASNIU4sFMJxs/L0tYvhMjY=;
+        b=LMOTOExY/Ce2QY2Gt8va7AB1wsxRDCK59KI0IIXoXQ4umPJtpsNtQIaFxj0I79btPg
+         /w+x3huP2IS7bkIy/8oyamDSwNo9DhuMf67w8IufA1znp8QofXt6EMKTUXFFaa28hWYv
+         KrzNlThQEt3QLwH4NSd9cgucLag+9SvS1hr6112LjOrCQ7VrQGK62TSNo5amOQSf8Kt1
+         PBBbIkJ3xci+fMPCxnswDal15zmHGeQsEgn6OEQOlhDaNTGJ/jpneDx+ZpQghYccJO4c
+         rNnAfwE6jshbRiJNmXGjXYE1YWdyvGXIkkkTOYprxM6KGaJ7wTFhALdvJAUaTcJ9/+K4
+         oj9Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690370780; x=1690975580;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1690370966; x=1690975766;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Me9DdLikay9/mg6C3pH4uUNkCjGXHrRqvb1zE6qVcE8=;
-        b=ixVg8Nv1Uy960jqhuE9KUHtYNrq/R3+RkfhGw5FudlWc3mw8dZFO0LvwgjGTOqmHhn
-         2BY+UBTy+vjWeeCGSbwvTeZZV+2g9AgiGC1tBICxtIhsZ7uMJZywSsRstFOXNRktpL3Q
-         T/xr87M8VLKTw7rFXB10NmoilgtxqdAlXkelQ8CJxSSbXWkR4x0jVNCGq4oZ0xuYme84
-         5u2OzC9dLknD5hUQISOeJbtdwKtd4/Cp4ua0J0+y3U7ewyylhvMczb30DhBGnwp37hoc
-         pBk+I0uaPiumqnVc7MIKAb85MwpYrp/87xsIQ/l8OWi8V+LTLwIBSOh4/LNzxkjJdYsj
-         zvSQ==
-X-Gm-Message-State: ABy/qLbNgucA5ndaXmn2KYnDgsefL5GXyvuG7+I8EWJgH9fUxo7Dbti5
-        p4XnwGlgaYoq22CMzDBQ4SrmEw==
-X-Google-Smtp-Source: APBJJlEGjczswR4kEUEn/zYFcZ9/aGxKnTF+3Hy6HdeMe8iP8tSvfbhOFOcSPsrOUXJpQ+OHei9OVw==
-X-Received: by 2002:adf:efcb:0:b0:314:370f:e92c with SMTP id i11-20020adfefcb000000b00314370fe92cmr1190968wrp.67.1690370780412;
-        Wed, 26 Jul 2023 04:26:20 -0700 (PDT)
-Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id h4-20020adfe984000000b003175f00e555sm9584341wrm.97.2023.07.26.04.26.19
+        bh=Q/+qs7g1gY1JEPTRBZFLaASNIU4sFMJxs/L0tYvhMjY=;
+        b=jfCenVvBmAEXLTaqe1xIqpO/oP8RsCdviWBJkQ5JYGl/4Z7jp31DBt+Nqr1Ce6GC6j
+         Uq3TSdMsWZW2WrfL0WmMoEY+mwg1rVuN2Y2NWK1eaB1N/24rk3i+7WCdK1gmyg63aeA1
+         RRdotSgCMi3W96BvnpZySP4GnjRxCB66D4b6NB1Z77bGVbSRFUH/06Ci3abmnHiHv2ek
+         BeuFJph6fiXEeCRapyoZhmD6uZkQPAaNCPN4TOPV6fa6FpBsuV+lub6muhi0LL1VlUeR
+         dJvl1g6xd391dQhM3FYqpBwJIZZvQdGb5b87iYNJQ298878zv9W+iaOlEWyzMFGzjMsn
+         B1Gw==
+X-Gm-Message-State: ABy/qLZTMxJGwaIqYcsUJVLqECc29wwDp66K9fgW2568JbHzTupvOM9n
+        NT1muJnovxQgU280VhGAY1dv8w==
+X-Google-Smtp-Source: APBJJlFXaiNUU2g8AEtAdBi80dzeE4xS5unNsLEWeVyMmrC1zd+jJ/UWtOksRH2QuqpxDrlxqiew1A==
+X-Received: by 2002:aa7:d9c9:0:b0:522:4d16:752 with SMTP id v9-20020aa7d9c9000000b005224d160752mr1298800eds.21.1690370965884;
+        Wed, 26 Jul 2023 04:29:25 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id g8-20020a056402114800b0051dd16f7e50sm8626244edw.44.2023.07.26.04.29.23
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 26 Jul 2023 04:26:19 -0700 (PDT)
-Message-ID: <a108084b-8044-fe6f-9cb8-df1f3fc6fdfe@linaro.org>
-Date:   Wed, 26 Jul 2023 12:26:18 +0100
+        Wed, 26 Jul 2023 04:29:25 -0700 (PDT)
+Message-ID: <43b4b62d-edea-c571-4f80-b0d4be78e527@linaro.org>
+Date:   Wed, 26 Jul 2023 13:29:22 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v7 2/6] media: admin-guide: Add starfive_camss.rst for
- Starfive Camera Subsystem
-Content-Language: en-US
-To:     Jack Zhu <jack.zhu@starfivetech.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Robert Foss <rfoss@kernel.org>,
-        Todor Tomov <todor.too@gmail.com>,
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v5 1/2] dt-bindings: display/msm: mdss-common: add
+ memory-region property
+To:     Amit Pundir <amit.pundir@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Eugen Hristev <eugen.hristev@collabora.com>,
-        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
-Cc:     linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, changhuang.liang@starfivetech.com
-References: <20230619112838.19797-1-jack.zhu@starfivetech.com>
- <20230619112838.19797-3-jack.zhu@starfivetech.com>
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20230619112838.19797-3-jack.zhu@starfivetech.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Caleb Connolly <caleb.connolly@linaro.org>,
+        Bryan Donoghue <bryan.odonoghue@linaro.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Sean Paul <sean@poorly.run>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Krishna Manikandan <quic_mkrishn@quicinc.com>
+Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
+        freedreno <freedreno@lists.freedesktop.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        dt <devicetree@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>
+References: <20230713165238.2814849-1-amit.pundir@linaro.org>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230713165238.2814849-1-amit.pundir@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/06/2023 12:28, Jack Zhu wrote:
-> Add starfive_camss.rst file that documents the Starfive Camera
-> Subsystem driver which is used for handing image sensor data.
+On 13/07/2023 18:52, Amit Pundir wrote:
+> Add and document the reserved memory region property in the
+> mdss-common schema.
 > 
-> Signed-off-by: Jack Zhu <jack.zhu@starfivetech.com>
+> For now (sdm845-db845c), it points to a framebuffer memory
+> region reserved by the bootloader for splash screen.
+> 
+> Signed-off-by: Amit Pundir <amit.pundir@linaro.org>
 > ---
->   .../admin-guide/media/starfive_camss.rst      | 57 +++++++++++++++++++
->   .../media/starfive_camss_graph.dot            | 16 ++++++
->   .../admin-guide/media/v4l-drivers.rst         |  1 +
->   MAINTAINERS                                   |  1 +
->   4 files changed, 75 insertions(+)
->   create mode 100644 Documentation/admin-guide/media/starfive_camss.rst
->   create mode 100644 Documentation/admin-guide/media/starfive_camss_graph.dot
-> 
-> diff --git a/Documentation/admin-guide/media/starfive_camss.rst b/Documentation/admin-guide/media/starfive_camss.rst
-> new file mode 100644
-> index 000000000000..a6378849384f
-> --- /dev/null
-> +++ b/Documentation/admin-guide/media/starfive_camss.rst
-> @@ -0,0 +1,57 @@
-> +.. SPDX-License-Identifier: GPL-2.0
-> +
-> +.. include:: <isonum.txt>
-> +
-> +================================
-> +Starfive Camera Subsystem driver
-> +================================
-> +
-> +Introduction
-> +------------
-> +
-> +This file documents the driver for the Starfive Camera Subsystem found on
-> +Starfive JH7110 SoC. The driver is located under drivers/media/platform/
-> +starfive.
-> +
-> +The driver implements V4L2, Media controller and v4l2_subdev interfaces.
-> +Camera sensor using V4L2 subdev interface in the kernel is supported.
-> +
-> +The driver has been successfully used on the Gstreamer 1.18.5 with
-> +v4l2src plugin.
-> +
-> +
-> +Starfive Camera Subsystem hardware
-> +----------------------------------
-> +
-> +The Starfive Camera Subsystem hardware consists of:
-> +
-> +- MIPI DPHY Receiver: receives mipi data from a MIPI camera sensor.
 
-Feels like a terribe nit-pick but you have "mipi" and "MIPI" here. I'd 
-be consistent with one - recommend MIPI throughout your documentation.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-> +- MIPI CSIRx Controller: is responsible for handling and decoding CSI2 protocol
-> +  based camera sensor data stream.
-> +- ISP: handles the image data streams from the MIPI CSIRx Controller.
+Best regards,
+Krzysztof
 
-Maybe you've done this elsewhere but, it would be worthwhile describing 
-what the ISP does. Debayering ? 3As ? Just raw dumps ?
-
-> +- VIN(Video In): a top-level module, is responsible for controlling power
-> +  and clocks to other modules, dumps the input data to memory or transfers the
-> +  input data to ISP.
-> +
-> +
-> +Topology
-> +--------
-> +
-> +The media controller pipeline graph is as follows:
-> +
-> +.. _starfive_camss_graph:
-> +
-> +.. kernel-figure:: starfive_camss_graph.dot
-> +    :alt:   starfive_camss_graph.dot
-> +    :align: center
-> +
-> +The driver has 2 video devices:
-> +
-> +- stf_vin0_wr_video0: capture device for images directly from the VIN module.
-
-OK so you can get the raw images.
-
-> +- stf_vin0_isp0_video1: capture device for images without scaling.
-> +
-> +The driver has 3 subdevices:
-> +
-> +- stf_isp0: is responsible for all the isp operations.
-> +- stf_vin0_wr: used to dump RAW images to memory.
-> +- stf_vin0_isp0: used to capture images for the stf_vin0_isp0_video1 device.
-
-But what is being output here ? RGB, jpeg, YUV ?
-It would be worth adding a few bits of text to describe that so you 
-don't have to dive into code to understand it.
-
----
-bod
