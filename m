@@ -2,67 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F1841763E34
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 20:15:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8077D763E47
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jul 2023 20:19:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229778AbjGZSPZ convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 26 Jul 2023 14:15:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54030 "EHLO
+        id S231617AbjGZSTR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jul 2023 14:19:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56612 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229437AbjGZSPY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 14:15:24 -0400
-Received: from mail-oa1-f51.google.com (mail-oa1-f51.google.com [209.85.160.51])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31B02E78;
-        Wed, 26 Jul 2023 11:15:24 -0700 (PDT)
-Received: by mail-oa1-f51.google.com with SMTP id 586e51a60fabf-1bb69c0070dso139391fac.1;
-        Wed, 26 Jul 2023 11:15:24 -0700 (PDT)
+        with ESMTP id S229870AbjGZSTQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 14:19:16 -0400
+Received: from mail-io1-xd33.google.com (mail-io1-xd33.google.com [IPv6:2607:f8b0:4864:20::d33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B59149B;
+        Wed, 26 Jul 2023 11:19:15 -0700 (PDT)
+Received: by mail-io1-xd33.google.com with SMTP id ca18e2360f4ac-78358268d1bso1931639f.3;
+        Wed, 26 Jul 2023 11:19:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1690395555; x=1691000355;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=/oiMZ3nM+eoY03UlmzmtvCU+X4kjpJCTaAiEoMbtWRw=;
+        b=TTYB51D/NfVxcpJZ50QX69jPp5RnP66HP+Mm1y+cHh8S73VhSbF2CSbf9WBWTbJYw7
+         Q9mq79frCZWI3Am7inEscZObXOCvoAPXu7lsR+p6nddLFd61Cs7hs9VclrB0NH6NjILd
+         xcBkPblHdydQbFO1Gj6XXq638+Sf9Eq2ZnfqjAJK+5cfLVpUkOTTPqLa0nxKdg+Me0MK
+         Bq53UZWoKZFJUTjp3Auo9rnjUODLo0Utj9obPeOLXQUuvSOfze5vZy1qw+sNIWJXwa9a
+         XT0Wm7S815b8ewCfQxzi/va8z/dQHRnoiUmu9P6DaPOkUSKXr4cQrewysIdP/pYAZW9c
+         r3Uw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690395323; x=1691000123;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=PxLo+ssfIcGr82bGMB16DLkdE3iFP1HlTtobqG8HjjU=;
-        b=eLu2z0gBr3mJOhjjzDoDpgkGId/gi2rUTa6jkEoaH3BP4E+Qp6ZYw1RlD/08ntX89m
-         TklHZdrOzLzpMkwz4QwfDTGwGlfK+rHbpODZb2pCBcdpQvb/ZO3TeXcRhdRjyoG2hUru
-         +IggZU2z2wZa3AHo8kXsmsZ9Y9fT4P4RY190xr10GunQJKThLD16zFHCt++OKqwm9Zbl
-         T2CH4zTLDOWt/UlzM+F8XW8+m0DERDrHLl84VQD5i0S1F2Db86I1i/ABih4wQkyUNNiQ
-         VSTCg8cNDXARkRVeu+NuEhnmXm7wUkcgtPXNNLR/4u+a3AAuB8SMbqKqhaBODwJ9rUew
-         pKDg==
-X-Gm-Message-State: ABy/qLZ0cy42fNxRTMnivOgD5F49NtdMIIqDJK7VyzrADJJyf+ybukv8
-        nlPK+RkDL24hwqrDCTcd6upjgdfeFma5PQ==
-X-Google-Smtp-Source: APBJJlENQxxy9+hEQrtwV3ftQDOXryfK++Uc5gK5IcooB0jhaKarnClg9nIJJ0rlI/G+hi+UBbbtCA==
-X-Received: by 2002:a05:6870:8197:b0:1bb:6c17:2715 with SMTP id k23-20020a056870819700b001bb6c172715mr340020oae.2.1690395323260;
-        Wed, 26 Jul 2023 11:15:23 -0700 (PDT)
-Received: from mail-yb1-f176.google.com (mail-yb1-f176.google.com. [209.85.219.176])
-        by smtp.gmail.com with ESMTPSA id h185-20020a0ddec2000000b0057399b3bd26sm4302115ywe.33.2023.07.26.11.15.22
+        d=1e100.net; s=20221208; t=1690395555; x=1691000355;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=/oiMZ3nM+eoY03UlmzmtvCU+X4kjpJCTaAiEoMbtWRw=;
+        b=Ohnerji/J5sES6mIekWfnXF0ymU0+SW1zkNQ+kxjuJsgqQfbZYE9djC4ecCmaXLj9W
+         DTtCExr9VWJdk99Lb2fyCewO18281ZW/EYDBllbzpuxCWBBDRl4DSKMK9GBUdVzHyUAV
+         VO6+nEvlnx/oQQVkjUm29t3tqcXt/JuAlxLwpPr+W0WABWdtX67CRNI6KaXWv2Rzz31V
+         y/pq5nhKIXsWMOGYm2AfLTv2wxD8MrAUXPdtwP5/O07rH5aoothndxPnTAwcBzj8YFJC
+         DrvVH2nV8vSk9hE0xG0vFCcFhvpjLAtFXoYfwLBgU4/3eUq6fqrxd8YbEFzcWztRanTJ
+         4kUQ==
+X-Gm-Message-State: ABy/qLYA8dKD6IhAQoVLJW4VtAzs5Q/M+5X9hOOSnwkWSWDiCm0a4iGq
+        PWvs8CaZfqx1SELNO2Atk6c=
+X-Google-Smtp-Source: APBJJlHNp4dH2bfTxrRyc4ibGTHNazCtS0BOD5yQy3CrePzCW13/b6S6HKoZ1gLC73MoWpKjDyWNfw==
+X-Received: by 2002:a5e:c006:0:b0:77a:c741:b749 with SMTP id u6-20020a5ec006000000b0077ac741b749mr2700865iol.1.1690395554980;
+        Wed, 26 Jul 2023 11:19:14 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id q9-20020a0566380ec900b004182f88c368sm4472081jas.67.2023.07.26.11.19.13
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 26 Jul 2023 11:15:22 -0700 (PDT)
-Received: by mail-yb1-f176.google.com with SMTP id 3f1490d57ef6-d07c535377fso64793276.1;
-        Wed, 26 Jul 2023 11:15:22 -0700 (PDT)
-X-Received: by 2002:a25:8046:0:b0:cee:a470:89dc with SMTP id
- a6-20020a258046000000b00ceea47089dcmr2430924ybn.52.1690395322627; Wed, 26 Jul
- 2023 11:15:22 -0700 (PDT)
+        Wed, 26 Jul 2023 11:19:14 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <4105d77e-e011-8df7-35bf-bbfca0b640da@roeck-us.net>
+Date:   Wed, 26 Jul 2023 11:19:12 -0700
 MIME-Version: 1.0
-References: <20230714174028.4040093-1-robh@kernel.org>
-In-Reply-To: <20230714174028.4040093-1-robh@kernel.org>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 26 Jul 2023 20:15:10 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXdqo-OFKtHdVNu77-cuS67Cvb6NV98eYK+gtba7ir5jA@mail.gmail.com>
-Message-ID: <CAMuHMdXdqo-OFKtHdVNu77-cuS67Cvb6NV98eYK+gtba7ir5jA@mail.gmail.com>
-Subject: Re: [PATCH] MIPS: Explicitly include correct DT includes
-To:     Rob Herring <robh@kernel.org>
-Cc:     Florian Fainelli <florian.fainelli@broadcom.com>,
-        Broadcom internal kernel review list 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        John Crispin <john@phrozen.org>, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH 2/2] dt-bindings: hwmon: add renesas,isl28022
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        =?UTF-8?Q?Carsten_Spie=c3=9f?= <mail@carsten-spiess.de>,
+        Jean Delvare <jdelvare@suse.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>
+Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+References: <20230726152235.249569-1-mail@carsten-spiess.de>
+ <20230726152235.249569-3-mail@carsten-spiess.de>
+ <82628237-e087-269e-9673-cf3873fe4b35@linaro.org>
+From:   Guenter Roeck <linux@roeck-us.net>
+In-Reply-To: <82628237-e087-269e-9673-cf3873fe4b35@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
         FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,48 +87,111 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+On 7/26/23 09:14, Krzysztof Kozlowski wrote:
+> On 26/07/2023 17:22, Carsten Spieß wrote:
+>> Add dt-bindings for Renesase ISL28022 power monitor.
+>>
+>> Signed-off-by: Carsten Spieß <mail@carsten-spiess.de>
+>> ---
+> 
+> Thank you for your patch. There is something to discuss/improve.
+> 
+> 
+>>   .../bindings/hwmon/renesas,isl28022.yaml      | 67 +++++++++++++++++++
+>>   MAINTAINERS                                   |  1 +
+>>   2 files changed, 68 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/hwmon/renesas,isl28022.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/hwmon/renesas,isl28022.yaml b/Documentation/devicetree/bindings/hwmon/renesas,isl28022.yaml
+>> new file mode 100644
+>> index 000000000000..5ecf892db269
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/hwmon/renesas,isl28022.yaml
+>> @@ -0,0 +1,67 @@
+>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +
+> 
+> No blank line.
+> 
+>> +$id: http://devicetree.org/schemas/hwmon/renesas,isl28022.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Renesas ISL28022 power monitor
+>> +
+>> +maintainers:
+>> +  - Carsten Spieß <mail@carsten-spiess.de>
+>> +
+>> +description: |
+>> +  The ISL28022 is a power monitor with I2C interface. The device monitors
+>> +  voltage, current via shunt resistor and calculated power.
+>> +
+>> +  Datasheets:
+>> +    https://www.renesas.com/us/en/www/doc/datasheet/isl28022.pdf
+>> +
+>> +Required properties:
+>> +  compatible:
+>> +    enum:
+>> +      - renesas,isl28022
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +Optional properties:
+> 
+> It does not look like you tested the bindings, at least after quick
+> look. Please run `make dt_binding_check` (see
+> Documentation/devicetree/bindings/writing-schema.rst for instructions).
+> Maybe you need to update your dtschema and yamllint.
+> 
+> These are "properties"
+> 
+>> +  shunt-resistor-micro-ohms:
+>> +    description:
+>> +      Shunt resistor value in micro-Ohm
+>> +      defaults to <0> when not set
+>> +      monitoring of current and power not supported when <0>
+>> +
+>> +  shunt-gain:
+> 
+> 1. Missing vendor prefix (does not look like generic property)
+> 2. -microvolt
+> 
+>> +    description:
+>> +      Shunt gain to scale maximal shunt voltage to
+>> +      40mV, 80mV, 160mV, 320mV
+>> +      defaults to <8> (320mV) when not set
+> 
+> And then enum is for 40, 80, 160 and 320.
+> 
+>> +    enum: [1, 2, 4, 8]
+>> +
+>> +  average:
+>> +    description: |
+>> +      Number of samples to be used to report voltage, current and power values.
+>> +      defaults to <0> when not set
+>> +    enum: [0, 1, 2, 4, 8, 16, 32, 64, 128]
+> 
+> I am sure hwmon has some property for this. Are you sure it is called
+> "average"?
+> 
 
-On Fri, Jul 14, 2023 at 7:44 PM Rob Herring <robh@kernel.org> wrote:
-> The DT of_device.h and of_platform.h date back to the separate
-> of_platform_bus_type before it as merged into the regular platform bus.
-> As part of that merge prepping Arm DT support 13 years ago, they
-> "temporarily" include each other. They also include platform_device.h
-> and of.h. As a result, there's a pretty much random mix of those include
-> files used throughout the tree. In order to detangle these headers and
-> replace the implicit includes with struct declarations, users need to
-> explicitly include the correct includes.
->
-> Signed-off-by: Rob Herring <robh@kernel.org>
+Something with samples. adi,power-sample-average is similar. Others
+use average-samples, qcom,avg-samples, touchscreen-average-samples.
 
-Thanks for your patch, which is now commit 657c45b303f87d77 ("MIPS:
-Explicitly include correct DT includes") in next-20230726.
+Guenter
 
-> --- a/arch/mips/lantiq/xway/gptu.c
-> +++ b/arch/mips/lantiq/xway/gptu.c
-> @@ -8,8 +8,8 @@
->  #include <linux/interrupt.h>
->  #include <linux/ioport.h>
->  #include <linux/init.h>
-> -#include <linux/of_platform.h>
-> -#include <linux/of_irq.h>
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +
+>> +additionalProperties: false
+>> +
+> 
+> 
+> Best regards,
+> Krzysztof
+> 
 
-Based on https://lore.kernel.org/all/202307270140.uClzsYnD-lkp@intel.com,
-I guess you need to keep of_irq.h for of_irq_to_resource_table()?
-
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/platform_device.h>
->
->  #include <lantiq_soc.h>
->  #include "../clk.h"
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
