@@ -2,125 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B719C765E8A
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 23:57:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9EA96765F9F
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 00:34:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231889AbjG0V5r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jul 2023 17:57:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36572 "EHLO
+        id S232924AbjG0Wec (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jul 2023 18:34:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48986 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230486AbjG0V5q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 17:57:46 -0400
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com (mail-mw2nam04on2087.outbound.protection.outlook.com [40.107.101.87])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A789B1FF5;
-        Thu, 27 Jul 2023 14:57:45 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ObeTvOxFFP2pssbzRyqzwTSmUYvl933ySbHAF2Szaw2BF86q1KF673+d4UCeHtlhQB9Gc13PBtsOU+J8W/zgppAz5gLHGTPJ+4UKek91j4yDc3GzNZaXL5ydZXghPBPIr6zxTeBVbyWaW8SLJdg7CxQp79at5X+udXMpIRejXkm0fqnLJvPcR7e5H4zKzd9PW39Y2Xpx5Z3CLo8q4fmuiV9xLzr/o/FCBwCN9LFL37+IRcfwoIGcBEvqDT45yss06O38lSwnpmkxXedR5K+C6VO9KiT7FtDM1NSvqIsBSABOgG3MB8NOmXx7noWNOB25WZFDeDoHDPcS5wcZecNUTw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ymhV/9TeveNlLpw8KJRK5AAP0WlUOPhgcAVtHWk9ALE=;
- b=TiwPOA3wnwqP2kgeHmhuX+NrPBMcVImHt7ro2V5ZkoehYa4/aSso1avfqGQJKNvk/BOhSQaatSkcfRKWxOomeePIVY/Fg3LZgdeZ6FmNSRdpYB+vx8HVyOoXYBlRgyQVoxzUhpmD1bCq6zaVfMkGkveApr+WV/93Vs2LFrOQTN64hmE/tQrJw60LsErtdkVIvgH4oRSZx7NE7gabo3YWI6QNElUMxxwpGMwsTD8044QQIhlK5R7O2HfNvXP1f8xxQk+MhIesK0org7BgvllKrO61vKWym9kNwx5x1W5PClS37saJsUQQUrYx9WQ5CTHrsOsQEp07RkDQW8n3IZixWQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ymhV/9TeveNlLpw8KJRK5AAP0WlUOPhgcAVtHWk9ALE=;
- b=UEVzpS33Qc+zSFWkc+etBw/QDW7LC/9G2Pd0se5GCfQyjwVRcxhhgIhFB/FCStGnddxJkNw5H4oCeKd8SG3od9mi2Nhb694u4hDNrfRzCFg8grdA+P8bTG9YmjcIJCyPqDF28P8qjIn1gnyIqrF840HU1ehYCwr0WQpz/Jipyyf3ukQ2BwvPK7JOC8INzpjDxXqYXt3WJFWELYtBR7uWjQwtF5kUBG6IPdiVr7oj54EPS0CxyDYrqQQ4L8HuhnDXD5q47uN2dmvObGnzB/MZoLuGHGs0Gbn04ag3z7u0ZzvMWp7S7EFb7+dMFc/sVCHxtgIolBOL3eY8khDHGSaXlQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from IA1PR12MB6604.namprd12.prod.outlook.com (2603:10b6:208:3a0::7)
- by CYXPR12MB9428.namprd12.prod.outlook.com (2603:10b6:930:d5::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6631.29; Thu, 27 Jul
- 2023 21:57:43 +0000
-Received: from IA1PR12MB6604.namprd12.prod.outlook.com
- ([fe80::7d22:3b01:5ff:1ac6]) by IA1PR12MB6604.namprd12.prod.outlook.com
- ([fe80::7d22:3b01:5ff:1ac6%5]) with mapi id 15.20.6631.026; Thu, 27 Jul 2023
- 21:57:42 +0000
-Message-ID: <132d5dc1-6104-1d2e-543a-e92177b01fae@nvidia.com>
-Date:   Thu, 27 Jul 2023 14:57:39 -0700
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.13.0
-Subject: Re: [PATCH] hte: Explicitly include correct DT includes
-To:     Rob Herring <robh@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>
-Cc:     devicetree@vger.kernel.org, timestamp@lists.linux.dev,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230714174600.4057041-1-robh@kernel.org>
-Content-Language: en-US
-X-Nvconfidentiality: public
-From:   Dipen Patel <dipenp@nvidia.com>
-In-Reply-To: <20230714174600.4057041-1-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SJ0PR03CA0271.namprd03.prod.outlook.com
- (2603:10b6:a03:39e::6) To IA1PR12MB6604.namprd12.prod.outlook.com
- (2603:10b6:208:3a0::7)
+        with ESMTP id S232993AbjG0Web (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 18:34:31 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2F4130E8;
+        Thu, 27 Jul 2023 15:34:04 -0700 (PDT)
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36RM0JDw026896;
+        Thu, 27 Jul 2023 22:33:25 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=qcppdkim1;
+ bh=bm2u8fg7PxbgqOwTMIX85s2CXs4GgAyYll4b6/ofwxo=;
+ b=KzSzXbxyRjFD7MYEk+nD44AqOQQabhcIa50h7Nd8hgJndJTZPRHfRvnBip7yItnSj3cg
+ fcU/02JS3dP1G62GQYlxf+DQdrtstDQJ+aaN7Tg7C6sLAET4BoOUEGv24y1pIa5X3jEk
+ bC2oQV/fBOMl4D1QTLc/xk/AvOveGP6Ec+koRpqhraibvtNrNFPxBw06TPRk6nFI6Aqe
+ j+oNLaWQUEcuBH2UcYOW9IrLb3k1ziY8MnAv5QVi6ZZMHw7cIH/32sUFMJ77ZV2t3DE8
+ AHQjit3QBcKS0lfpmBpkVoWmsuiAsgB9sBogyOzh9Woltes+uhO602onaZ4Z877brPUV 2A== 
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3s34x6ktbx-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 27 Jul 2023 22:33:24 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 36RMXMbR010648
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 27 Jul 2023 22:33:22 GMT
+Received: from hu-kriskura-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.30; Thu, 27 Jul 2023 15:33:16 -0700
+From:   Krishna Kurapati <quic_kriskura@quicinc.com>
+To:     Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "Andy Gross" <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        "Konrad Dybcio" <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Felipe Balbi <balbi@kernel.org>,
+        Wesley Cheng <quic_wcheng@quicinc.com>,
+        Johan Hovold <johan@kernel.org>,
+        Mathias Nyman <mathias.nyman@intel.com>
+CC:     <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <quic_pkondeti@quicinc.com>, <quic_ppratap@quicinc.com>,
+        <quic_jackp@quicinc.com>, <ahalaney@redhat.com>,
+        <quic_shazhuss@quicinc.com>,
+        Krishna Kurapati <quic_kriskura@quicinc.com>
+Subject: [PATCH v10 00/11] Add multiport support for DWC3 controllers
+Date:   Fri, 28 Jul 2023 04:02:56 +0530
+Message-ID: <20230727223307.8096-1-quic_kriskura@quicinc.com>
+X-Mailer: git-send-email 2.40.0
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA1PR12MB6604:EE_|CYXPR12MB9428:EE_
-X-MS-Office365-Filtering-Correlation-Id: 43701772-3e9c-428f-c01a-08db8eec80a1
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Vc2twhVZ5SPXGHbKEyEv2tPuDi9N9btGlBw82mET5pgn/AiO8dYRFQ/88xZNoUsWPaossgs548xGi3g8yNBofDfcGRlkZyhSX4ylHcB5psNVrjP5OvEShk+EO6RocTiGoJp7ElcJ08T8F/QY4IxhrHdC4AwdMp+Bz2d7NfO9olFo2SUbr9NY7MOKIbwnHCgZOIeaij8TIzBZPrEdrdWuMRLfQmF/gIFzCujfj35CLBFM7yRZzIsZWBQb+uCssKKLBj0Z3O95baNrbfeeOXkeBgMOe5KZaw4moqg2fNiAvhsyP9x+wz5USKn5RoEstCKeGam9knhXlH+vjhz7Uu3YgqpZTll19XhdpJ41aEMSH10TlNUn/O9Tncp6GJwTl2UVFEJLKZ9u9CMHcuV/n/WFU2ymlk0mPzLW46KexajHUC7htVutLHi88IcbGQaVOs4VQZqiqj0dc9yee6L6BEjAD7r8TVUui061YW5r8ZybbFUpxgesQLeiTEHFfDsTMm9RKhItkCC6NP6fugPa5XmZ/Jj/48z3RlGQ2I7FaVTnV2K/cbGqAAmxwSwq6Tz4hd8WrYqCfB0i3QJM93T/bLWJXanKH1H3SgK/BrM2tqX80MKe3Uty9XCzT56rZuyLGIesBMV9rpfDlR2D0PUlyt5WuQ==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:IA1PR12MB6604.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(346002)(366004)(376002)(39860400002)(396003)(136003)(451199021)(83380400001)(31686004)(31696002)(2616005)(110136005)(5660300002)(6506007)(53546011)(86362001)(8936002)(6512007)(6666004)(478600001)(6486002)(316002)(8676002)(66556008)(66476007)(4326008)(66946007)(2906002)(41300700001)(186003)(26005)(6636002)(38100700002)(36756003)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?YXdDTC9LR3FzYUVZQ2RnZUZsNlBCWGJoL1U5ZjNUVG5PMUUzU2VOeWdodXN1?=
- =?utf-8?B?YlBFc0JVYW5FSHNzcWNYVDB6TEMyenpwM1E4eEpubDBHbk9JL2pBOWh5MmE0?=
- =?utf-8?B?STNSOGhwY2g2OUZlU2plaHAzWGgzeUxsczNiOXNlaWNKNTNwNmN3TnJzUFhn?=
- =?utf-8?B?emJNcUVzVE8zZ2pKNVFZR0JuR2VUSVVUcnlJcW5FL0JRRzBwekFydi9hMEtZ?=
- =?utf-8?B?bDNCQWpwQTg3L09sc1llZnNVVEtlcjNMSUR5RjVrYXFsRkx3YUlxVzFtR2N5?=
- =?utf-8?B?Rzk0eXZkc1BGZGhzVm55RWVhV2lkbm1FNFREKzYxb2pYV2pzb2M4dHFJWWF0?=
- =?utf-8?B?ejhkaklIdTNEdm5xb1l2eUZoNlYxREdFeUUvTnJleENuTmY2UTlGb0RNSUZB?=
- =?utf-8?B?RlNhWmZ4T0dHejMyMUgrbmxkQjdBTU9SZzRXVy9qaVNnckNabitCQVlPd3pN?=
- =?utf-8?B?S1dMZW5GNmI0YWt2M202QTl0OVQzaGY2Ym5WT0RrSzlOcVJYM0hDLzZRWndC?=
- =?utf-8?B?YUNSa0hObGRUTERtVHQ4QXI1M0V1VVJIalhCQTdEWmFoeit4MlNyQ3RDSGh2?=
- =?utf-8?B?MDJuREdXNFBzZTNiaUYrWWdIV1FiU2Y0elBZSmNRSFArNExXUzQ1eGFKNjZt?=
- =?utf-8?B?RmtXdmlpMGFGRkxIOTloL2YzcU9ZSWxIbm1FUW0rd0NwMHVtZWMxNzRtbFhn?=
- =?utf-8?B?MlBGZHBUOEFDWEpSaVhSQ2RKd25LNE9NVEdRbXZHaUV3QlJnTHoxbFZRaUs4?=
- =?utf-8?B?b2Zkckh2Z1J1SlF0ZzhUM0hWeFlCSi9hYmdBYjYxS3JLWHdBeHhrTE4yVjY3?=
- =?utf-8?B?eCt6SG9LL0pqZlJJVUwzR0ZCMitnNWV0WmpnRWtlcnNnTzFBSjh3QUtOTHRN?=
- =?utf-8?B?QXRuRUI1bDNJSGUycE1Pd0JNU2RvR0xoTGd4RFdEUlhmak90OHFiWU1TcXQx?=
- =?utf-8?B?RkxNUkxUQm9jNVA5aDJmb0pXUEYrNkZqZHJDb216djNFeGZKaEpaMEthN1dj?=
- =?utf-8?B?ZWpMTTVMZFZaV2lIMTF0SHJoU1RrYnArVzVSc3lZaDZQb2toVERKbUtUZm95?=
- =?utf-8?B?WG9COFZJQnpwZnd1UUoybXpwYVUrc3BGbVZwd2xvTzhhWll2Qll0Ry92N0xa?=
- =?utf-8?B?ZFVKQXRacUhwNEN4RXhoeFJEWGxodWRKU0tCK2NtekZSV0N5RjU5Qnp3R1Ny?=
- =?utf-8?B?SmpQVkptcjFZRWdGKzN6cXhGNklyd1VOZjRoOEszL0lURDRDVWtscU9rSmJ6?=
- =?utf-8?B?L2JXdXhVTlJDaWFuV2xnNXpQS2VPbHNWQWNzNW1MWnlmNXlWMmtSSm0zLzJM?=
- =?utf-8?B?eUsyU09qblJ3UXVMUllyeG5TdnBDWjc5WjFSZVJOWmpOdkM2ZmtTN2xmRnJN?=
- =?utf-8?B?bS9sbDdCaDlyUEZUV1BhNTg2M0JEakJ6NFRjdTlNTjZZd2JGbnlwRzlHaWdY?=
- =?utf-8?B?Tm9KVkQrU0hWMEEzRkZOVFpGRGFaTEcrZDRBakUwWGo2VlhtRkFRZmtWazU3?=
- =?utf-8?B?QmtsOE9USzV1V1RyZkhDSGxxb2VSemVsMDY2VUh3bFlMZS9KNWtBVjZ5RW5L?=
- =?utf-8?B?VjcwN1lKYm5jTG5Va2VMYTJWVWRUbVBpL3NNK2x1TTMzSnJYdzJqRnFmNy96?=
- =?utf-8?B?c1dxc0Fvbm43dndQT2x3akUzRUg1VjVQZjNtakdsd1JGMlFvUEQ1b01iQ1Bi?=
- =?utf-8?B?V0ZqRy9oVUV1WVkvS1drbW5MQWxjemJmbVkxRVAzOEh5SFhlQzM4d0l5RWpK?=
- =?utf-8?B?eEtPKzlmRzZZSUVBMGpzTzBCY0dXckl4QUxsZWRZWXdWVkdEZmRVV0M3WFFV?=
- =?utf-8?B?TG9xQi9iTk5VTURQMHhTOC9wTEptemxvWEs5SlVVdGJEcjRhYmsrclVtSFI5?=
- =?utf-8?B?UUYzb3hXZXFTUzVwenpYVlREMUo1MkhCUE90Y0xDMzlGQzB5WkVnUnQ5akxJ?=
- =?utf-8?B?d3J0ZWRrdTVYN3dKZ1Q1TnNOSVBnakQ3dWtzZ2xDWVZpQ1ErdW44VllHSGZi?=
- =?utf-8?B?STJqRnFEUmpUWWZxVUJHMVhoT1NJVkZvWGJJSVdORFJSN0oyZ0V5NFVpeVRO?=
- =?utf-8?B?NzB5akJvdkJ1K3czZXFuVlM1MEpwNEdBYXFWZXpUSmRwM0RCTHRrNVJXNFk4?=
- =?utf-8?Q?dcAa675oqCX8qW1PXYxA0qRU3?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 43701772-3e9c-428f-c01a-08db8eec80a1
-X-MS-Exchange-CrossTenant-AuthSource: IA1PR12MB6604.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Jul 2023 21:57:42.7071
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: SQanWyKcQB9hvvdiBc55mtv/32Shw5hxAhKIrWpY3jsEX2PhSz77m/hTCgaCQXe6TfOcr0DTeB4no28nmcs0mg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CYXPR12MB9428
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: CC2oCIcmmiTtdkzONDc86AmzjZA7ffx-
+X-Proofpoint-ORIG-GUID: CC2oCIcmmiTtdkzONDc86AmzjZA7ffx-
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-07-27_10,2023-07-26_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=846
+ lowpriorityscore=0 malwarescore=0 adultscore=0 impostorscore=0 mlxscore=0
+ bulkscore=0 spamscore=0 clxscore=1011 phishscore=0 priorityscore=1501
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2306200000 definitions=main-2307270205
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -128,50 +89,218 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 7/14/23 10:46 AM, Rob Herring wrote:
-> The DT of_device.h and of_platform.h date back to the separate
-> of_platform_bus_type before it as merged into the regular platform bus.
-> As part of that merge prepping Arm DT support 13 years ago, they
-> "temporarily" include each other. They also include platform_device.h
-> and of.h. As a result, there's a pretty much random mix of those include
-> files used throughout the tree. In order to detangle these headers and
-> replace the implicit includes with struct declarations, users need to
-> explicitly include the correct includes.
-> 
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
->  drivers/hte/hte-tegra194.c | 1 -
->  drivers/hte/hte.c          | 2 +-
->  2 files changed, 1 insertion(+), 2 deletions(-)
-> 
-> diff --git a/drivers/hte/hte-tegra194.c b/drivers/hte/hte-tegra194.c
-> index 06ef349a2265..6fe6897047ac 100644
-> --- a/drivers/hte/hte-tegra194.c
-> +++ b/drivers/hte/hte-tegra194.c
-> @@ -12,7 +12,6 @@
->  #include <linux/stat.h>
->  #include <linux/interrupt.h>
->  #include <linux/of.h>
-> -#include <linux/of_device.h>
->  #include <linux/platform_device.h>
->  #include <linux/hte.h>
->  #include <linux/uaccess.h>
-> diff --git a/drivers/hte/hte.c b/drivers/hte/hte.c
-> index 67c15724ee78..598a716b7364 100644
-> --- a/drivers/hte/hte.c
-> +++ b/drivers/hte/hte.c
-> @@ -10,12 +10,12 @@
->  #include <linux/err.h>
->  #include <linux/slab.h>
->  #include <linux/of.h>
-> -#include <linux/of_device.h>
->  #include <linux/mutex.h>
->  #include <linux/uaccess.h>
->  #include <linux/hte.h>
->  #include <linux/delay.h>
->  #include <linux/debugfs.h>
-> +#include <linux/device.h>
->  
->  #define HTE_TS_NAME_LEN		10
->  
-Acked-by: Dipen Patel <dipenp@nvidia.com>
+Currently the DWC3 driver supports only single port controller which
+requires at most two PHYs ie HS and SS PHYs. There are SoCs that has
+DWC3 controller with multiple ports that can operate in host mode.
+Some of the port supports both SS+HS and other port supports only HS
+mode.
+
+This change primarily refactors the Phy logic in core driver to allow
+multiport support with Generic Phy's.
+
+Changes have been tested on  QCOM SoC SA8295P which has 4 ports (2
+are HS+SS capable and 2 are HS only capable).
+
+Changes in v10:
+Refactored phy init/exit/power-on/off functions in dwc3 core
+Refactored dwc3-qcom irq registration and handling
+Implemented wakeup for multiport irq's
+Moved few macros from xhci.h to xhci-ext-caps.h
+Fixed nits pointed out in v9
+Fixed Co-developed by and SOB tags in patches 5 and 11
+
+Changes in v9:
+Added IRQ support for DP/DM/SS MP Irq's of SC8280
+Refactored code to read port count by accessing xhci registers
+
+Changes in v8:
+Reorganised code in patch-5
+Fixed nitpicks in code according to comments received on v7
+Fixed indentation in DT patches
+Added drive strength for pinctrl nodes in SA8295 DT
+
+Changes in v7:
+Added power event irq's for Multiport controller.
+Udpated commit text for patch-9 (adding DT changes for enabling first
+port of multiport controller on sa8540-ride).
+Fixed check-patch warnings for driver code.
+Fixed DT binding errors for changes in snps,dwc3.yaml
+Reabsed code on top of usb-next
+
+Changes in v6:
+Updated comments in code after.
+Updated variables names appropriately as per review comments.
+Updated commit text in patch-2 and added additional info as per review
+comments.
+The patch header in v5 doesn't have "PATHCH v5" notation present. Corrected
+it in this version.
+
+Changes in v5:
+Added DT support for first port of Teritiary USB controller on SA8540-Ride
+Added support for reading port info from XHCI Extended Params registers.
+
+Changes in RFC v4:
+Added DT support for SA8295p.
+
+Changes in RFC v3:
+Incase any PHY init fails, then clear/exit the PHYs that
+are already initialized.
+
+Changes in RFC v2:
+Changed dwc3_count_phys to return the number of PHY Phandles in the node.
+This will be used now in dwc3_extract_num_phys to increment num_usb2_phy 
+and num_usb3_phy.
+
+Added new parameter "ss_idx" in dwc3_core_get_phy_ny_node and changed its
+structure such that the first half is for HS-PHY and second half is for
+SS-PHY.
+
+In dwc3_core_get_phy, for multiport controller, only if SS-PHY phandle is
+present, pass proper SS_IDX else pass -1.
+
+Tests done on v10:
+Enumeration:
+/ # lsusb
+Bus 003 Device 001: ID 1d6b:0002
+Bus 001 Device 001: ID 1d6b:0002
+Bus 001 Device 002: ID 045e:0040
+Bus 004 Device 001: ID 1d6b:0003
+Bus 002 Device 001: ID 1d6b:0003
+Bus 001 Device 003: ID 17ef:60d1
+
+Interrupt registration:
+/ # cat /proc/interrupts  | grep dwc
+184:  0 0 0 0 0 0 0 0       PDC 127 Level     qcom_dwc3 DP_HS1
+185:  0 0 0 0 0 0 0 0       PDC 126 Level     qcom_dwc3 DM_HS1
+186:  0 0 0 0 0 0 0 0       PDC  16 Level     qcom_dwc3 SS1
+187:  0 0 0 0 0 0 0 0       PDC 129 Level     qcom_dwc3 DP_HS2
+188:  0 0 0 0 0 0 0 0       PDC 128 Level     qcom_dwc3 DM_HS2
+189:  0 0 0 0 0 0 0 0       PDC  17 Level     qcom_dwc3 SS2
+190:  0 0 0 0 0 0 0 0       PDC 131 Level     qcom_dwc3 DP_HS3
+191:  0 0 0 0 0 0 0 0       PDC 130 Level     qcom_dwc3 DM_HS3
+192:  0 0 0 0 0 0 0 0       PDC 133 Level     qcom_dwc3 DP_HS4
+193:  0 0 0 0 0 0 0 0       PDC 132 Level     qcom_dwc3 DM_HS4
+195:  0 0 0 0 0 0 0 0       PDC  14 Level     qcom_dwc3 DP_HS
+196:  0 0 0 0 0 0 0 0       PDC  15 Level     qcom_dwc3 DM_HS
+197:  0 0 0 0 0 0 0 0       PDC 138 Level     qcom_dwc3 SS
+198: 32 0 0 0 0 0 0 0     GICv3 835 Leel     dwc3
+199:  0 0 0 0 0 0 0 0       PDC  12 Level     qcom_dwc3 DP_HS
+200:  0 0 0 0 0 0 0 0       PDC  13 Level     qcom_dwc3 DM_HS
+201:  0 0 0 0 0 0 0 0       PDC 136 Level     qcom_dwc3 SS
+
+Interrupt connfiguration during suspend entry and suspend exit upon device
+connect. Speed here in the following log indicates enum usb_device_speed
+in dwc3-qcom.
+
+[  151.625326] K: dwc3_qcom_enable_interrupts index: 0 speed: 0
+[  151.680985] K: dwc3_qcom_enable_interrupts index: 0 speed: 2
+[  151.686841] K: dwc3_qcom_enable_interrupts index: 1 speed: 2
+[  151.692665] K: dwc3_qcom_enable_interrupts index: 2 speed: 0
+[  151.692678] K: dwc3_qcom_enable_interrupts index: 3 speed: 0
+
+[  151.724912] K: dwc3_qcom_disable_interrupts index: 0 speed: 2
+[  151.730832] K: dwc3_qcom_disable_interrupts index: 1 speed: 2
+[  151.736740] K: dwc3_qcom_disable_interrupts index: 2 speed: 0
+[  151.742646] K: dwc3_qcom_disable_interrupts index: 3 speed: 0
+[  152.010699] K: dwc3_qcom_disable_interrupts index: 0 speed: 0
+
+[  152.107836] OOM killer enabled.
+[  152.111070] Restarting tasks ... done.
+[  152.115742] random: crng reseeded on system resumption
+[  152.121298] PM: suspend exit
+/ # [  152.240015] usb 1-3: new low-speed USB device number 8 using xhci-hcd
+
+On SC7280 CRD Herobrine variant, enumeration and wakeup was tested and it
+works fine:
+
+Enumeration:
+localhost ~ # lsusb
+Bus 002 Device 004: ID 0bda:8153 Realtek Semiconductor Corp. USB 10/100/1000 LAN
+Bus 002 Device 003: ID 05e3:0626 Genesys Logic, Inc. USB3.1 Hub
+Bus 002 Device 002: ID 0bda:0411 Realtek Semiconductor Corp. 4-Port USB 3.1 Hub
+Bus 002 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
+Bus 001 Device 024: ID 046d:c06a Logitech, Inc. USB Optical Mouse
+Bus 001 Device 007: ID 05e3:0610 Genesys Logic, Inc. 4-port hub
+Bus 001 Device 002: ID 0bda:5411 Realtek Semiconductor Corp. 4-Port USB 2.1 Hub
+Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+
+localhost ~ # dmesg | grep hub
+[    3.713331] hub 1-0:1.0: USB hub found
+[    3.717222] hub 1-0:1.0: 1 port detected
+[    3.764330] hub 2-0:1.0: USB hub found
+[    3.768216] hub 2-0:1.0: 1 port detected
+[    4.159720] hub 1-1:1.0: USB hub found
+[    4.165010] hub 1-1:1.0: 4 ports detected
+[    4.322363] hub 2-1:1.0: USB hub found
+[    4.327220] hub 2-1:1.0: 4 ports detected
+[    5.504227] hub 2-1.4:1.0: USB hub found
+[    5.508724] hub 2-1.4:1.0: 4 ports detected
+[    7.263756] hub 1-1.4:1.0: USB hub found
+[    7.268273] hub 1-1.4:1.0: 4 ports detected
+[   10.030906] hub 1-1.4:1.0: USB hub found
+[   10.035352] hub 1-1.4:1.0: 4 ports detected
+
+
+Interrupt registration on SC7280-CRD:
+localhost ~ # cat /proc/interrupts   | grep dwc
+ 82:   0   0   0    0    0    0    0    0     GICv3 163 Level     qcom_dwc3 HS
+ 211:  0   0   0    0    0    0    0    0       PDC  14 Level     qcom_dwc3 DP_HS
+ 212:  0   0   0    0    0    0    0    0       PDC  15 Level     qcom_dwc3 DM_HS
+ 213:  0   0   0    0    0    0    0    0       PDC  17 Level     qcom_dwc3 SS
+
+
+Wakeup from system suspend upon mouse click:
+ [ 1159.589739] K: dwc3_qcom_enable_interrupts port: 0 speed: 3
+ [ 1160.025300] K: qcom_dwc3_resume_irq irq: 211
+ [ 1160.149660] K: dwc3_qcom_disable_interrupts port: 0 speed: 3
+ [ 1161.649610] Resume caused by IRQ 211, qcom_dwc3 DP_HS
+
+Also DT Binding checks were done on both modified yaml files.
+
+Links to previous versions:
+Link to v9: https://lore.kernel.org/all/20230621043628.21485-1-quic_kriskura@quicinc.com/
+Link to v8: https://lore.kernel.org/all/20230514054917.21318-1-quic_kriskura@quicinc.com/
+Link to v7: https://lore.kernel.org/all/20230501143445.3851-1-quic_kriskura@quicinc.com/
+Link to v6: https://lore.kernel.org/all/20230405125759.4201-1-quic_kriskura@quicinc.com/
+Link to v5: https://lore.kernel.org/all/20230310163420.7582-1-quic_kriskura@quicinc.com/
+Link to RFC v4: https://lore.kernel.org/all/20230115114146.12628-1-quic_kriskura@quicinc.com/
+Link to RFC v3: https://lore.kernel.org/all/1654709787-23686-1-git-send-email-quic_harshq@quicinc.com/#r
+Link to RFC v2: https://lore.kernel.org/all/1653560029-6937-1-git-send-email-quic_harshq@quicinc.com/#r
+
+Andrew Halaney (1):
+  arm64: dts: qcom: sa8540-ride: Enable first port of tertiary usb
+    controller
+
+Harsh Agarwal (1):
+  usb: dwc3: core: Refactor PHY logic to support Multiport Controller
+
+Krishna Kurapati (9):
+  dt-bindings: usb: qcom,dwc3: Add bindings for SC8280 Multiport
+  dt-bindings: usb: Add bindings for multiport properties on DWC3
+    controller
+  usb: dwc3: core: Access XHCI address space temporarily to read port
+    info
+  usb: dwc3: core: Skip setting event buffers for host only controllers
+  usb: dwc3: qcom: Refactor IRQ handling in QCOM Glue driver
+  usb: dwc3: qcom: Enable wakeup for applicable ports of multiport
+  usb: dwc3: qcom: Add multiport suspend/resume support for wrapper
+  arm64: dts: qcom: sc8280xp: Add multiport controller node for SC8280
+  arm64: dts: qcom: sa8295p: Enable tertiary controller and its 4 USB
+    ports
+
+ .../devicetree/bindings/usb/qcom,dwc3.yaml    |  29 ++
+ .../devicetree/bindings/usb/snps,dwc3.yaml    |  13 +-
+ arch/arm64/boot/dts/qcom/sa8295p-adp.dts      |  53 +++
+ arch/arm64/boot/dts/qcom/sa8540p-ride.dts     |  22 ++
+ arch/arm64/boot/dts/qcom/sc8280xp.dtsi        |  77 ++++
+ drivers/usb/dwc3/core.c                       | 326 ++++++++++++----
+ drivers/usb/dwc3/core.h                       |  16 +-
+ drivers/usb/dwc3/drd.c                        |  15 +-
+ drivers/usb/dwc3/dwc3-qcom.c                  | 358 ++++++++++++------
+ drivers/usb/host/xhci-ext-caps.h              |   5 +
+ drivers/usb/host/xhci.h                       |   3 -
+ 11 files changed, 714 insertions(+), 203 deletions(-)
+
+-- 
+2.40.0
+
