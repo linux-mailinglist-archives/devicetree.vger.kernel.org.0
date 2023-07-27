@@ -2,203 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 665F9765497
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 15:09:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 82FDA7654BC
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 15:17:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232091AbjG0NJT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jul 2023 09:09:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53894 "EHLO
+        id S232625AbjG0NRC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jul 2023 09:17:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58474 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233096AbjG0NJS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 09:09:18 -0400
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A4BA211C
-        for <devicetree@vger.kernel.org>; Thu, 27 Jul 2023 06:09:17 -0700 (PDT)
-Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-3fbc5d5746cso10136305e9.2
-        for <devicetree@vger.kernel.org>; Thu, 27 Jul 2023 06:09:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1690463355; x=1691068155;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=XZVJZt6zaDYlF4FBoDI7miun7OeMIpqJMetrwHAZhg0=;
-        b=hhzFsT9DGIphmkGRN9Con7FHguufDPl4bOhR/mSUcVBiwGFJ0JxU50twS3vK5io679
-         FAQ1k6pIjLxpyfntqURyDBSBav6Ee5P1ni8BFAMEdNHy5nL3d7IMdNVbLtGS2Esjoukv
-         gPPeWshejn1odiA27o1sTFwvmuDwknNqQvr1/6JD37g6P9mJ1tMDlrwlHAExtU3BL+jF
-         ZpFygnHFdr3WMaI4sXD8vKs03J4SMKvEe49m0KzIlC2x0fy6HwIe0I6w4V9DuFXJEc42
-         U8arUODvgPWyDkehtKxO/tAFGh+na2+0en4zEt5BnPJzjEQDP8l+zE3JbLHkMb61TogL
-         7Xaw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690463355; x=1691068155;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=XZVJZt6zaDYlF4FBoDI7miun7OeMIpqJMetrwHAZhg0=;
-        b=hjSTCThsQYGl3Rrh3w9Co/9fZAm3bjuWGDa6If6BD3iAgLguD9mAVTb58ysMp8SX0C
-         OQKCfl4B0JqY6MnK106s94GODDoTFDGQcKhnufJL0wfnG612H/ecLm8dMSzhcea4OvtR
-         vofWd3jerbZN6iQfvEB6aR76RwDECKURcg87Z5AESbPinupWmwox6NE/CKw65Iwejfqq
-         36sR3Fb4CNxNnbiO2htchbIkuMnRlOFpqJ7mmaV2jR0Ri4z8/dnk6r7IDv2yMjoUOKVn
-         mx8L6MkEKff0CDS7efdt1KQaQ0Mo3VXwltTv+Eg+xOtlN3l1tX1E4xnBCY7N+Xx6GnCX
-         Lvgg==
-X-Gm-Message-State: ABy/qLZO0WUvtiyCdrrsVhg+rcUxODvHkANLYnHFFyqUxuWH0KXTtUG7
-        u1f5kOnXJvh+45u+eediz4V/RjQru/n4Uub/4Nzn4A==
-X-Google-Smtp-Source: APBJJlEraBLNJpOPX5qM0THNxSWGe+rDojRJBTN9tck8E159twxKYVGenMkt+rJSsdzQemQeysGO5w==
-X-Received: by 2002:a05:600c:231a:b0:3fa:95c7:e891 with SMTP id 26-20020a05600c231a00b003fa95c7e891mr1616722wmo.35.1690463355573;
-        Thu, 27 Jul 2023 06:09:15 -0700 (PDT)
-Received: from localhost.localdomain ([2a01:e0a:28d:66d0:4512:80d4:6b13:bb70])
-        by smtp.gmail.com with ESMTPSA id h14-20020a05600c260e00b003fbca942499sm4698042wma.14.2023.07.27.06.09.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 27 Jul 2023 06:09:15 -0700 (PDT)
-From:   Esteban Blanc <eblanc@baylibre.com>
-To:     nm@ti.com, vigneshr@ti.com, kristo@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, u-kumar1@ti.com, eblanc@baylibre.com,
-        jneanne@baylibre.com, aseketeli@baylibre.com, jpanis@baylibre.com
-Subject: [PATCH v4 6/6] arm64: dts: ti: k3-am62a7-sk: Add support for TPS6593 PMIC
-Date:   Thu, 27 Jul 2023 15:09:08 +0200
-Message-ID: <20230727130908.10656-7-eblanc@baylibre.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20230727130908.10656-1-eblanc@baylibre.com>
-References: <20230727130908.10656-1-eblanc@baylibre.com>
+        with ESMTP id S230411AbjG0NRB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 09:17:01 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3974271B;
+        Thu, 27 Jul 2023 06:16:59 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 8006D61E77;
+        Thu, 27 Jul 2023 13:16:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 069B3C433C9;
+        Thu, 27 Jul 2023 13:16:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1690463818;
+        bh=DUlLuWL4cE5am5s9QK+fFshV+j9iTbP7jA5deX6kjTs=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=AFf47cE1LQhpwJRelzAV0a/V4s5bbicoushv8cjJw/luJEv4giXHlRWecPmsEJA0/
+         KnV36cP0ASblrAOaCu+7P//cqsn/ro7m/wo4b8mWOzEF3iWoH3Uuc3QjmRNuzkKPCw
+         CymVnlaBP2D81Dc5uAcTohwZXHIkdunCZgLGmZKCIxYbJpmcwvgcAZVTYJuaIT07px
+         KwWMvDOBmzvhdZZqM5SMc7umTjVmTwIdIlYICgroOSI1S3flF00xjkJZt6MWV6g0t5
+         uvIMDSHFSTx21w2LzS8iH1SyVbl4VzIRFVCTkK840ezWoEQVbi15e2d2DBy1fJsdPE
+         MxsnA0AvFR5bw==
+Received: (nullmailer pid 1270046 invoked by uid 1000);
+        Thu, 27 Jul 2023 13:16:55 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+From:   Rob Herring <robh@kernel.org>
+To:     Rohit Agarwal <quic_rohiagar@quicinc.com>
+Cc:     robh+dt@kernel.org, andersson@kernel.org,
+        quic_abhinavk@quicinc.com, mathieu.poirier@linaro.org,
+        quic_tdas@quicinc.com, mchehab@kernel.org, agross@kernel.org,
+        linux-remoteproc@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        daniel@ffwll.ch, linux-media@vger.kernel.org,
+        dmitry.baryshkov@linaro.org, vladimir.zapolskiy@linaro.org,
+        neil.armstrong@linaro.org, conor+dt@kernel.org,
+        linux-mmc@vger.kernel.org, marijn.suijten@somainline.org,
+        freedreno@lists.freedesktop.org, jonathan@marek.ca,
+        devicetree@vger.kernel.org, stanimir.k.varbanov@gmail.com,
+        airlied@gmail.com, linux-kernel@vger.kernel.org,
+        mturquette@baylibre.com, rfoss@kernel.org, mani@kernel.org,
+        dri-devel@lists.freedesktop.org, konrad.dybcio@linaro.org,
+        krzysztof.kozlowski+dt@linaro.org, bhupesh.sharma@linaro.org,
+        linux-clk@vger.kernel.org, sean@poorly.run, ulf.hansson@linaro.org,
+        robdclark@gmail.com, sboyd@kernel.org, quic_vgarodia@quicinc.com
+In-Reply-To: <1690461813-22564-1-git-send-email-quic_rohiagar@quicinc.com>
+References: <1690461813-22564-1-git-send-email-quic_rohiagar@quicinc.com>
+Message-Id: <169046381501.1270011.10571652656239031435.robh@kernel.org>
+Subject: Re: [PATCH v2] dt-bindings: qcom: Update RPMHPD entries for some
+ SoCs
+Date:   Thu, 27 Jul 2023 07:16:55 -0600
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Julien Panis <jpanis@baylibre.com>
 
-This patch adds support for TPS6593 PMIC on main I2C0 bus.
-This device provides regulators (bucks and LDOs), but also
-GPIOs, a RTC, a watchdog, an ESM (Error Signal Monitor)
-which monitors the SoC error output signal, and a PFSM
-(Pre-configurable Finite State Machine) which manages the
-operational modes of the PMIC.
+On Thu, 27 Jul 2023 18:13:33 +0530, Rohit Agarwal wrote:
+> Update the RPMHPD references with new bindings defined in rpmhpd.h
+> for Qualcomm SoCs SM8[2345]50.
+> 
+> Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
+> ---
+> 
+> Changes in v2:
+>  - Removed the unnecessary inclusion of header rpmpd.h.
+> 
+> This patch is dependent on the series that includes the new rpmhpd.h header
+> https://lore.kernel.org/all/1689744162-9421-1-git-send-email-quic_rohiagar@quicinc.com/
+> 
+>  Documentation/devicetree/bindings/clock/qcom,dispcc-sm8x50.yaml   | 4 ++--
+>  Documentation/devicetree/bindings/clock/qcom,sm8350-videocc.yaml  | 4 ++--
+>  Documentation/devicetree/bindings/clock/qcom,sm8450-camcc.yaml    | 4 ++--
+>  Documentation/devicetree/bindings/clock/qcom,sm8450-dispcc.yaml   | 4 ++--
+>  Documentation/devicetree/bindings/clock/qcom,sm8450-videocc.yaml  | 4 ++--
+>  Documentation/devicetree/bindings/clock/qcom,sm8550-dispcc.yaml   | 4 ++--
+>  Documentation/devicetree/bindings/clock/qcom,videocc.yaml         | 4 ++--
+>  .../devicetree/bindings/display/msm/qcom,sm8250-dpu.yaml          | 4 ++--
+>  .../devicetree/bindings/display/msm/qcom,sm8250-mdss.yaml         | 8 ++++----
+>  .../devicetree/bindings/display/msm/qcom,sm8350-dpu.yaml          | 4 ++--
+>  .../devicetree/bindings/display/msm/qcom,sm8350-mdss.yaml         | 6 +++---
+>  .../devicetree/bindings/display/msm/qcom,sm8450-dpu.yaml          | 4 ++--
+>  .../devicetree/bindings/display/msm/qcom,sm8450-mdss.yaml         | 8 ++++----
+>  .../devicetree/bindings/display/msm/qcom,sm8550-dpu.yaml          | 4 ++--
+>  .../devicetree/bindings/display/msm/qcom,sm8550-mdss.yaml         | 8 ++++----
+>  Documentation/devicetree/bindings/media/qcom,sm8250-venus.yaml    | 4 ++--
+>  Documentation/devicetree/bindings/mmc/sdhci-msm.yaml              | 4 ++--
+>  Documentation/devicetree/bindings/remoteproc/qcom,sm8350-pas.yaml | 6 +++---
+>  18 files changed, 44 insertions(+), 44 deletions(-)
+> 
 
-Signed-off-by: Julien Panis <jpanis@baylibre.com>
-Signed-off-by: Esteban Blanc <eblanc@baylibre.com>
----
- arch/arm64/boot/dts/ti/k3-am62a7-sk.dts | 95 +++++++++++++++++++++++++
- 1 file changed, 95 insertions(+)
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
-index ecc0e13331c4..fbf9c5e2c031 100644
---- a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
-@@ -221,11 +221,106 @@ AM62AX_IOPAD(0x12c, PIN_INPUT, 0) /* (W16) RGMII1_TX_CTL */
- 	};
- };
- 
-+&mcu_pmx0 {
-+	status = "okay";
-+
-+	pmic_irq_pins_default: pmic-irq-pins-default {
-+		pinctrl-single,pins = <
-+			AM62AX_MCU_IOPAD(0x000, PIN_INPUT, 7) /* (E11) MCU_GPIO0_0 */
-+		>;
-+	};
-+};
-+
-+&mcu_gpio0 {
-+	status = "okay";
-+};
-+
- &main_i2c0 {
- 	status = "okay";
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&main_i2c0_pins_default>;
- 	clock-frequency = <400000>;
-+
-+	tps659312: pmic@48 {
-+		compatible = "ti,tps6593-q1";
-+		reg = <0x48>;
-+		ti,primary-pmic;
-+		system-power-controller;
-+
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pmic_irq_pins_default>;
-+		interrupt-parent = <&mcu_gpio0>;
-+		interrupts = <0 IRQ_TYPE_EDGE_FALLING>;
-+
-+		buck123-supply = <&vcc_3v3_sys>;
-+		buck4-supply = <&vcc_3v3_sys>;
-+		buck5-supply = <&vcc_3v3_sys>;
-+		ldo1-supply = <&vcc_3v3_sys>;
-+		ldo2-supply = <&vcc_3v3_sys>;
-+		ldo3-supply = <&buck5>;
-+		ldo4-supply = <&vcc_3v3_sys>;
-+
-+		regulators {
-+			buck123: buck123 {
-+				regulator-name = "vcc_core";
-+				regulator-min-microvolt = <715000>;
-+				regulator-max-microvolt = <895000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			buck4: buck4 {
-+				regulator-name = "vcc_1v1";
-+				regulator-min-microvolt = <1100000>;
-+				regulator-max-microvolt = <1100000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			buck5: buck5 {
-+				regulator-name = "vcc_1v8_sys";
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			ldo1: ldo1 {
-+				regulator-name = "vddshv5_sdio";
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			ldo2: ldo2 {
-+				regulator-name = "vpp_1v8";
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			ldo3: ldo3 {
-+				regulator-name = "vcc_0v85";
-+				regulator-min-microvolt = <850000>;
-+				regulator-max-microvolt = <850000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			ldo4: ldo4 {
-+				regulator-name = "vdda_1v8";
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+		};
-+	};
- };
- 
- &main_i2c1 {
--- 
-2.38.5
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/remoteproc/qcom,sm8350-pas.example.dts:21:18: fatal error: dt-bindings/power/qcom,rpmhpd.h: No such file or directory
+   21 |         #include <dt-bindings/power/qcom,rpmhpd.h>
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+make[2]: *** [scripts/Makefile.lib:419: Documentation/devicetree/bindings/remoteproc/qcom,sm8350-pas.example.dtb] Error 1
+make[2]: *** Waiting for unfinished jobs....
+make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1500: dt_binding_check] Error 2
+make: *** [Makefile:234: __sub-make] Error 2
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/1690461813-22564-1-git-send-email-quic_rohiagar@quicinc.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
