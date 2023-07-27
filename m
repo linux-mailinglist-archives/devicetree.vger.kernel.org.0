@@ -2,143 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E05376566C
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 16:51:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7664776568E
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 16:58:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231191AbjG0Ovs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jul 2023 10:51:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43540 "EHLO
+        id S232513AbjG0O6O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jul 2023 10:58:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44896 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231157AbjG0Ovr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 10:51:47 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93368F2;
-        Thu, 27 Jul 2023 07:51:46 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 2525C61E93;
-        Thu, 27 Jul 2023 14:51:46 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EE2F5C433C7;
-        Thu, 27 Jul 2023 14:51:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690469505;
-        bh=s1VVaYegFm6vNu7SJpIYS1RfGm4Sdgis0eGoHqKbqXY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=DpUzgVJ+DGM/krJdfj7dyUfMPQE77VbmBYNRZJReCMO+B4kJEqZhDY5CdBngpHrQh
-         CTCNV3QxqgO8aTwR8tgYJo5yJ0OjJ1JTC8XYnoexe15EfeGZF7ax9bBc8SibsCSkP7
-         fZZfzp4ziVGlvGMkMyyP8N1Dw17ceiqPpZ7R75AFBPLXsDRUxitloLsdHH1Sn11M2N
-         20gugXwjmTx1RONoXq+Wqz6/+1Xs+ARTb90HjuKizSlvgLiGFF26wkTI1Lm7AXunyX
-         xAopRBGuptnY/NOIIf9Hjd4KYZTP2InzDETBpj4MrFeQf2lldBrcVvko5+Dp4bu7y5
-         gPUNQjZVCCXVQ==
-Date:   Thu, 27 Jul 2023 07:51:43 -0700
-From:   Nathan Chancellor <nathan@kernel.org>
-To:     "Sahin, Okan" <Okan.Sahin@analog.com>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
+        with ESMTP id S232469AbjG0O6N (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 10:58:13 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 5AAF4196;
+        Thu, 27 Jul 2023 07:58:11 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1506CD75;
+        Thu, 27 Jul 2023 07:58:54 -0700 (PDT)
+Received: from [10.32.102.67] (e110479.arm.com [10.32.102.67])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 6F9D33F5A1;
+        Thu, 27 Jul 2023 07:58:07 -0700 (PDT)
+Message-ID: <7f4a7739-cb03-bda8-df90-e8eb119b732b@arm.com>
+Date:   Thu, 27 Jul 2023 15:57:59 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH] arm64: dts: pinephone: Add pstore support for PinePhone
+ A64
+To:     Andrey Skvortsov <andrej.skvortzov@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        "zzzzTilki, zzzzIbrahim" <Ibrahim.Tilki@analog.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "llvm@lists.linux.dev" <llvm@lists.linux.dev>
-Subject: Re: [PATCH v3 2/2] regulator: max77857: Add ADI MAX77857/59/MAX77831
- Regulator Support
-Message-ID: <20230727145143.GB2013261@dev-arch.thelio-3990X>
-References: <20230717050736.10075-1-okan.sahin@analog.com>
- <20230717050736.10075-3-okan.sahin@analog.com>
- <20230718155502.GA3542993@dev-arch.thelio-3990X>
- <20230726161033.GA1102409@dev-arch.thelio-3990X>
- <PH7PR03MB739122A373964651D995EA5AE701A@PH7PR03MB7391.namprd03.prod.outlook.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <PH7PR03MB739122A373964651D995EA5AE701A@PH7PR03MB7391.namprd03.prod.outlook.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Kees Cook <keescook@chromium.org>,
+        Tony Luck <tony.luck@intel.com>,
+        "Guilherme G. Piccoli" <gpiccoli@igalia.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+        linux-hardening@vger.kernel.org,
+        Jarrah Gosbell <kernel@undef.tools>,
+        Arnaud Ferraris <arnaud.ferraris@collabora.com>
+References: <20230724213457.24593-1-andrej.skvortzov@gmail.com>
+Content-Language: en-US
+From:   Andre Przywara <andre.przywara@arm.com>
+In-Reply-To: <20230724213457.24593-1-andrej.skvortzov@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 27, 2023 at 08:34:44AM +0000, Sahin, Okan wrote:
-> >On Tue, Jul 18, 2023 at 08:55:02AM -0700, Nathan Chancellor wrote:
-> >
-> ><snip>
-> >
-> >> > +static struct regulator_desc max77857_regulator_desc = {
-> >> > +	.ops = &max77857_regulator_ops,
-> >> > +	.name = "max77857",
-> >> > +	.linear_ranges = max77857_lin_ranges,
-> >> > +	.n_linear_ranges = ARRAY_SIZE(max77857_lin_ranges),
-> >> > +	.vsel_mask = 0xFF,
-> >> > +	.vsel_reg = MAX77857_REG_CONT2,
-> >> > +	.ramp_delay_table = max77857_ramp_table[0],
-> >> > +	.n_ramp_values = ARRAY_SIZE(max77857_ramp_table[0]),
-> >> > +	.ramp_reg = MAX77857_REG_CONT3,
-> >> > +	.ramp_mask = GENMASK(1, 0),
-> >> > +	.ramp_delay = max77857_ramp_table[0][0],
-> >>
-> >> This breaks the build with GCC 5.x through 7.x:
-> >>
-> >>   drivers/regulator/max77857-regulator.c:312:16: error: initializer element is not
-> >constant
-> >>     .ramp_delay = max77857_ramp_table[0][0],
-> >>                   ^~~~~~~~~~~~~~~~~~~
-> >>   drivers/regulator/max77857-regulator.c:312:16: note: (near initialization for
-> >'max77857_regulator_desc.ramp_delay')
-> >>
-> >> and clang:
-> >>
-> >>   drivers/regulator/max77857-regulator.c:312:16: error: initializer element is not a
-> >compile-time constant
-> >>     312 |         .ramp_delay = max77857_ramp_table[0][0],
-> >>         |                       ^~~~~~~~~~~~~~~~~~~~~~~~~
-> >>   1 error generated.
-> >>
-> >> This relies on a GCC 8.x+ change that accepts more things as
-> >> compile-time constants, which is being worked on in clang
-> >>
-> >(https://urldefense.com/v3/__https://reviews.llvm.org/D76096__;!!A3Ni8CS0y2Y!7B
-> >eWxuzHgLzOprQA_madbvdR7hd0ZgmS73lUlDbgoxWUFWdDSIRXLnhyqLeRhu3uTaqpS
-> >kzZKwc5pHA$ ). Since the kernel supports older
-> >> compilers, this will have to be worked around somehow. Perhaps a define
-> >> that can be used in both places?
-> >
-> >Was there any update on this? I do not mind sending a patch for this
-> >myself if I have some sort of guidance on how you would prefer for this
-> >to be fixed, should you be too busy to look into it.
-> >
-> >Cheers,
-> >Nathan
+Hi,
+
+On 24/07/2023 22:34, Andrey Skvortsov wrote:
+> This patch reserves some memory in the DTS and sets up a
+> pstore device tree node to enable pstore support.
 > 
-> Hi Nathan,
+> Signed-off-by: Andrey Skvortsov <andrej.skvortzov@gmail.com>
 > 
-> I thought that I should fix this issue after merging main branch that's why I did not send patch.
+> Gbp-Pq: Topic pinephone
+> Gbp-Pq: Name 0161-arm64-dts-pinephone-Add-pstore-support-for-PinePhone.patch
+> ---
+>   .../boot/dts/allwinner/sun50i-a64-pinephone.dtsi | 16 ++++++++++++++++
+>   1 file changed, 16 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
+> index 87847116ab6d..84f9410b0b70 100644
+> --- a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
+> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
+> @@ -19,6 +19,22 @@ aliases {
+>   		serial0 = &uart0;
+>   	};
+>   
+> +	reserved-memory {
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		ranges;
+> +
+> +		pstore_mem: ramoops@61000000 {
+> +			compatible = "ramoops";
+> +			reg = <0x61000000 0x100000>;
 
-That is an understandable position but no, this issue should be fixed
-before this change makes its way to Linus, not after.
-
-> I sent patch v3 so should I send new patch as v4?
-
-No, you should checkout Mark's branch that contains your patch and send
-a new patch on top of it just fixing this issue, like the other two
-patches that have already touched this driver:
-
-https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git/log/?h=for-6.6
-
-https://git.kernel.org/broonie/regulator/c/2920e08bef609c8b59f9996fd6852a7b97119d75
-https://git.kernel.org/broonie/regulator/c/541e75954cadde0355ce7bebed5675625b2943a8
-
-There are GCC 7.x and earlier toolchains at
-https://kernel.org/pub/tools/crosstool/ and LLVM toolchains at
-https://kernel.org/pub/tools/llvm/ should need to reproduce and verify
-the fix.
+So what's the significance of this address? That's 528MB into DRAM, so 
+somewhat in the middle of it, fragmenting the physical address space.
+And is there any other firmware component that needs to know about this 
+address?
 
 Cheers,
-Nathan
+Andre
+
+
+> +			record-size = <0x20000>;
+> +			console-size = <0x20000>;
+> +			ftrace-size = <0x20000>;
+> +			pmsg-size = <0x20000>;
+> +			ecc-size = <16>;
+> +		};
+> +	};
+> +
+>   	backlight: backlight {
+>   		compatible = "pwm-backlight";
+>   		pwms = <&r_pwm 0 50000 PWM_POLARITY_INVERTED>;
