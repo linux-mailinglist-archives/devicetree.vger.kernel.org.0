@@ -2,69 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BA4A57655ED
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 16:28:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D19D765629
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 16:44:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231968AbjG0O2T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jul 2023 10:28:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58718 "EHLO
+        id S232856AbjG0Oo2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jul 2023 10:44:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38324 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231927AbjG0O2S (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 10:28:18 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E3772D40;
-        Thu, 27 Jul 2023 07:28:17 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 36RESCqk025609;
-        Thu, 27 Jul 2023 09:28:12 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1690468092;
-        bh=y9pWzoHEXofZ+sOTLSSeYKRLZvOZRulYCXmFPG+LS7M=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=GrQaZ8hZfUtVIDEe3SOn8ucCJgzdL5q9eNXZ11oWoEKwnxs2dXg4h0jeoOiJ9iU2n
-         mE2TorrxwR3bDq0a54liCqtq4H+ZyVGU2kqTVg3/2p1OlZv2gDx1kJ3sDtcu/R78rl
-         QhHXf1RiB9s4fL7X15ztOWS86Fhsa0A6WL8Iqg6A=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 36RESCGn022502
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 27 Jul 2023 09:28:12 -0500
-Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 27
- Jul 2023 09:28:11 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 27 Jul 2023 09:28:11 -0500
-Received: from [172.24.227.6] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 36RES7n3010344;
-        Thu, 27 Jul 2023 09:28:07 -0500
-Message-ID: <8fef77fb-d3bf-eab1-0734-919ebf2e61af@ti.com>
-Date:   Thu, 27 Jul 2023 19:58:06 +0530
+        with ESMTP id S233714AbjG0Oo0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 10:44:26 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E22130E1;
+        Thu, 27 Jul 2023 07:44:23 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id 2adb3069b0e04-4fdd14c1fbfso1871821e87.1;
+        Thu, 27 Jul 2023 07:44:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1690469061; x=1691073861;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=4mk9QO1bKZiIQkt31EU6v0cWU3DnzKcyZ55zrIVFVXQ=;
+        b=IpK1iC7NS9CiKwi/w4XI87n1ZJtnTpYFgLP4DvzS2jI6I+/4q4WLVOQbUdat2O/JSJ
+         rSvY4KagbrRNh45MAb3OiMvA6TEobPpT93XcPOuwNxkZwkHRk2RkePF70naYd4zkx09I
+         w67L2Cort7+WjNnw+1Eiz+T5YDPa9uVnPzEbIYbg+5Ve2ggsopJhpdRGPNd/TJ0qKcrY
+         2nGgNPzvUSlWWU5cffyypJbGm4SVfdSQT+hJE3Lp5t61JHgOaSegV98A6aQIy2GYfAvi
+         7LOfIgCo/NEM+NOycT9CMd4O0HYDd6/3ZTAMasTtcqpn8lU+vU/mDqInP8ODtj57q+DZ
+         khaA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690469061; x=1691073861;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=4mk9QO1bKZiIQkt31EU6v0cWU3DnzKcyZ55zrIVFVXQ=;
+        b=gyxkXnzjXVhA3fv5em6+oSg46WpfNENxxv+MTnxX9eR/FFkgNBY+3aBSO82a9oezLJ
+         EHMIWeY5Kx8G68OWa3LPTSqWJSeiYl8VXB1Anq4RhrDaV99BogPZr7wBSoE3YEUft2o2
+         p+XPJG4lbtCsJFAV0XRLuQjqSofn8VO8/U2e6WLLBJCAPIE6IbXn8yl2Agg1pRlaXlDe
+         mKep92rF7+rj1LQHWBXeGmsdsZd0VkoFMTkyk2B2xa4YzY66sQyD8FfVqlJBFo8xkM9L
+         SQ+5YQOnjzjP0+N19I3NuPU1rnMVeplsBFoU7E0GYdVv/shGGvAgZqVrp4TwoY3u30ox
+         7F9A==
+X-Gm-Message-State: ABy/qLbY93S5Ec9h6oyHbJuuNPRM051bNGjx2/xugrgRW31lkL1pH6OU
+        ID28N7rJABx+7qOwatuS/Oo=
+X-Google-Smtp-Source: APBJJlFzT6s3SyADMOTPk6sW46OAgAY1F3TERUhdvCNgcDBfNJL+HaDuFPlWuv9By+p26FUAur2QMQ==
+X-Received: by 2002:a05:6512:15a4:b0:4fb:be3c:d8b7 with SMTP id bp36-20020a05651215a400b004fbbe3cd8b7mr2268062lfb.51.1690469061262;
+        Thu, 27 Jul 2023 07:44:21 -0700 (PDT)
+Received: from localhost (p200300e41f1bd600f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f1b:d600:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id y20-20020a17090629d400b00992e14af9b9sm846080eje.134.2023.07.27.07.44.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 27 Jul 2023 07:44:20 -0700 (PDT)
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH] arm64: dts: tegra: drop incorrect maxim,disable-etr in Smaug
+Date:   Thu, 27 Jul 2023 16:44:16 +0200
+Message-ID: <169046903884.2751933.4445869430176134815.b4-ty@nvidia.com>
+X-Mailer: git-send-email 2.41.0
+In-Reply-To: <20230725142638.157449-1-krzysztof.kozlowski@linaro.org>
+References: <20230725142638.157449-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH] dt-bindings: media: Add bindings for Imagination E5010
- JPEG Encoder driver
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <mchehab@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC:     <praneeth@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
-        <a-bhatia1@ti.com>, <j-luthra@ti.com>, <b-brnich@ti.com>,
-        <detheridge@ti.com>, <p-mantena@ti.com>, <vijayp@ti.com>
-References: <20230726162615.1270075-1-devarsht@ti.com>
- <b6bddd59-ac78-3f75-828e-cff54766fc72@linaro.org>
-From:   Devarsh Thakkar <devarsht@ti.com>
-In-Reply-To: <b6bddd59-ac78-3f75-828e-cff54766fc72@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,179 +77,22 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+From: Thierry Reding <treding@nvidia.com>
 
-Thanks for the quick review.
 
-On 26/07/23 22:03, Krzysztof Kozlowski wrote:
-> On 26/07/2023 18:26, Devarsh Thakkar wrote:
->> Add dt-bindings for Imagination E5010 JPEG Encoder driver which is
->> implemented as stateful V4L2 M2M driver.
->>
->> Co-developed-by: David Huang <d-huang@ti.com>
->> Signed-off-by: David Huang <d-huang@ti.com>
+On Tue, 25 Jul 2023 16:26:38 +0200, Krzysztof Kozlowski wrote:
+> There is no "maxim,disable-etr" property (but there is
+> maxim,enable-etr), neither in the bindings nor in the Linux driver:
 > 
-> A nit, subject: drop second/last, redundant "bindings for". The
-> "dt-bindings" prefix is already stating that these are bindings.
+>   tegra210-smaug.dtb: regulator@1c: Unevaluated properties are not allowed ('maxim,disable-etr' was unexpected)
 > 
-> Drop also "driver". Bindings are for hardware, not drivers.
-> 
-> Prefix starts with media and then dt-bindings.
 > 
 
-Agreed.
-> 
->> Signed-off-by: Devarsh Thakkar <devarsht@ti.com>
->> ---
->>  .../bindings/media/img,e5010-jpeg-enc.yaml    | 79 +++++++++++++++++++
->>  MAINTAINERS                                   |  5 ++
->>  2 files changed, 84 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/media/img,e5010-jpeg-enc.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/media/img,e5010-jpeg-enc.yaml b/Documentation/devicetree/bindings/media/img,e5010-jpeg-enc.yaml
->> new file mode 100644
->> index 000000000000..0060373eace7
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/media/img,e5010-jpeg-enc.yaml
->> @@ -0,0 +1,79 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/media/img,e5010-jpeg-enc.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Imagination E5010 JPEG Encoder
->> +
->> +maintainers:
->> +  - Devarsh Thakkar <devarsht@ti.com>
->> +
->> +description: |
->> +  The E5010 is a JPEG encoder from Imagination Technologies implemented on
->> +  TI's AM62A SoC. It is capable of real time encoding of YUV420 and YUV422
->> +  inputs to JPEG and M-JPEG. It supports baseline JPEG Encoding up to
->> +  8Kx8K resolution.
->> +
->> +properties:
->> +  compatible:
->> +    const: img,e5010-jpeg-enc
-> 
-> Your description suggests that this is part of TI SoC. Pretty often
-> licensed blocks cannot be used on their own and need some
-> customizations. Are you sure your block does not need any customization
-> thus no dedicated compatible is needed?
->
+Applied, thanks!
 
-There is a wrapper for interfacing this core with TI SoC, I will recheck this
-interfacing but I believe nothing changes from programming perspective as
-there is 1-to-1 maintained between the clocks and signals w.r.t actual E5010
-core.
+[1/1] arm64: dts: tegra: drop incorrect maxim,disable-etr in Smaug
+      (no commit info)
 
->> +
->> +  reg:
->> +    items:
->> +      - description: The E5010 main register region
->> +      - description: The E5010 mmu register region
->> +
->> +  reg-names:
->> +    items:
->> +      - const: regjasper
->> +      - const: regmmu
->> +
-> 
-> Drop reg from both
-> 
-
-Agreed.
-
->> +  power-domains:
->> +    maxItems: 1
->> +
->> +  resets:
->> +    maxItems: 1
->> +
->> +  clocks:
->> +    minItems: 1
->> +    maxItems: 2
-> 
-> You need to specify the items. Also, no variable number of clocks. Why
-> would they vary if block is strictly defined?
-> 
-
-Agreed, I believe this version of E5010 core only supports single clock, so we
-can get rid of maxItems: 2.
-
->> +
->> +  clock-names:
->> +    minItems: 1
->> +    maxItems: 2
-> 
-> Instead list the names.
-> 
-
-Agreed.
-
->> +
->> +  interrupts:
->> +    maxItems: 1
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - reg-names
->> +  - interrupts
->> +  - clocks
->> +  - clock-names
->> +  - power-domains
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/soc/ti,sci_pm_domain.h>
->> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
->> +    #include <dt-bindings/interrupt-controller/irq.h>
->> +
->> +    cbass_main {
-> 
-> That's some weird name. Probably you meant soc. Anyway, underscores are
-> not allowed.
-
-Yes, I think I can put soc. cbass_main is specific to TI (soc interconnect bus).
-
-> 
->> +      #address-cells = <2>;
->> +      #size-cells = <2>;
->> +      e5010: e5010@fd20000 {
-> 
-> Node names should be generic. See also an explanation and list of
-> examples (not exhaustive) in DT specification:
-> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
->
-
-Yes, video-codec is the nearest one, but this is not really a codec as it only
-supports encoding, is it fine to name node as jpeg-enc ?
-
-> 
-> Drop the label.
-> 
-
-Agreed.
-
-Best Regards,
-Devarsh
-
->> +          compatible = "img,e5010-jpeg-enc";
->> +          reg = <0x00 0xfd20000 0x00 0x100>,
->> +                <0x00 0xfd20200 0x00 0x200>;
->> +          reg-names = "regjasper", "regmmu";
->> +          clocks = <&k3_clks 201 0>;
->> +          clock-names = "core_clk";
->> +          power-domains = <&k3_pds 201 TI_SCI_PD_EXCLUSIVE>;
->> +          interrupts = <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>;
->> +      };
->> +    };
-> 
-> 
-> Best regards,
-> Krzysztof
-> 
+Best regards,
+-- 
+Thierry Reding <treding@nvidia.com>
