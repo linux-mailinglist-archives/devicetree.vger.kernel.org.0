@@ -2,83 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 54C9F76541C
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 14:36:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 268A076535B
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 14:13:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233658AbjG0Mgg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jul 2023 08:36:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41984 "EHLO
+        id S230185AbjG0MNb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jul 2023 08:13:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54616 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233206AbjG0Mgf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 08:36:35 -0400
-Received: from xavier.telenet-ops.be (xavier.telenet-ops.be [IPv6:2a02:1800:120:4::f00:14])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69AB419B
-        for <devicetree@vger.kernel.org>; Thu, 27 Jul 2023 05:36:33 -0700 (PDT)
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed40:d80c:aaca:e11d:6940])
-        by xavier.telenet-ops.be with bizsmtp
-        id SCcV2A00R4qLm8F01CcVYm; Thu, 27 Jul 2023 14:36:31 +0200
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan.of.borg with esmtp (Exim 4.95)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1qP0E4-002cI6-8g;
-        Thu, 27 Jul 2023 14:36:29 +0200
-Received: from geert by rox.of.borg with local (Exim 4.95)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1qOwTz-00AKdI-GE;
-        Thu, 27 Jul 2023 10:36:27 +0200
-From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
+        with ESMTP id S230156AbjG0MNa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 08:13:30 -0400
+Received: from mgamail.intel.com (unknown [192.55.52.120])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CFE12719;
+        Thu, 27 Jul 2023 05:13:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1690460009; x=1721996009;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=5uIFR6uMssEWsFWrPUBKU4Ccoe4vSSRYqdWErrCk1QM=;
+  b=nD5da08hrqWZYfqxY9qqHyZQJV/OR/is6Z4dQiCsj3sYtrr65ht50r4N
+   RqlcRb4fEHzsV2RjKLiL+QIByotFcKe9CrWAoiwbnCys29oa8nRcbiKil
+   SahW4RvEv+YlemunI1ggldFablRhvEtQFmgkJicWo93aViMOoAkyQBHbQ
+   vb0BlWado5gm7YsHAY77peGoK9AqGPUMj3ffuj2mq+eEgtYKJjp6d/OsF
+   L7C1eAViWAEUIl/RB9fQ+NqiUhtZHJAsLHnKIDWhRXMh7smaULSzPQskM
+   As4rI95H+VNH76LQBRPWWb1Efp9o+bHJXatTGVFK5U/w4Syh34m9xzh6S
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10783"; a="367167844"
+X-IronPort-AV: E=Sophos;i="6.01,234,1684825200"; 
+   d="scan'208";a="367167844"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Jul 2023 05:06:05 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10783"; a="730252652"
+X-IronPort-AV: E=Sophos;i="6.01,234,1684825200"; 
+   d="scan'208";a="730252652"
+Received: from lkp-server02.sh.intel.com (HELO 953e8cd98f7d) ([10.239.97.151])
+  by fmsmga007.fm.intel.com with ESMTP; 27 Jul 2023 05:06:02 -0700
+Received: from kbuild by 953e8cd98f7d with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1qOzkn-0002Fk-2Y;
+        Thu, 27 Jul 2023 12:06:01 +0000
+Date:   Thu, 27 Jul 2023 20:05:30 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Charles Boyer <Charles.Boyer@fii-usa.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Subject: [PATCH v2] dt-bindings: irqchip: renesas,irqc: Add r8a779f0 support
-Date:   Thu, 27 Jul 2023 10:36:23 +0200
-Message-Id: <9467a1c67d5d240211f88336973fa968d39cc860.1690446928.git.geert+renesas@glider.be>
-X-Mailer: git-send-email 2.34.1
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Benjamin Fair <benjaminfair@google.com>,
+        Vivekanand Veeracholan <vveerach@google.com>,
+        Lancelot Kao <lancelot.cy.kao@fii-na.com>
+Cc:     oe-kbuild-all@lists.linux.dev,
+        Charles Boyer <Charles.Boyer@fii-usa.com>
+Subject: Re: [PATCH] ARM: dts: nuvoton: Add Fii Mori system
+Message-ID: <202307271949.TXhf41ue-lkp@intel.com>
+References: <20230726184651.1221-1-Charles.Boyer@fii-usa.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230726184651.1221-1-Charles.Boyer@fii-usa.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document support for the Interrupt Controller for External Devices
-(INT-EX) in the Renesas R-Car S4-8 (R8A779F0) SoC.
+Hi Charles,
 
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Reviewed-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
-Reviewed-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
----
-v2:
-  - Add Reviewed-by,
-  - Widen audience after testing.
----
- .../devicetree/bindings/interrupt-controller/renesas,irqc.yaml   | 1 +
- 1 file changed, 1 insertion(+)
+kernel test robot noticed the following build errors:
 
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/renesas,irqc.yaml b/Documentation/devicetree/bindings/interrupt-controller/renesas,irqc.yaml
-index 95033cb514fbd8f6..b417341fc8ae049b 100644
---- a/Documentation/devicetree/bindings/interrupt-controller/renesas,irqc.yaml
-+++ b/Documentation/devicetree/bindings/interrupt-controller/renesas,irqc.yaml
-@@ -37,6 +37,7 @@ properties:
-           - renesas,intc-ex-r8a77990    # R-Car E3
-           - renesas,intc-ex-r8a77995    # R-Car D3
-           - renesas,intc-ex-r8a779a0    # R-Car V3U
-+          - renesas,intc-ex-r8a779f0    # R-Car S4-8
-           - renesas,intc-ex-r8a779g0    # R-Car V4H
-       - const: renesas,irqc
- 
+[auto build test ERROR on robh/for-next]
+[also build test ERROR on linus/master v6.5-rc3 next-20230727]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Charles-Boyer/ARM-dts-nuvoton-Add-Fii-Mori-system/20230727-024931
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20230726184651.1221-1-Charles.Boyer%40fii-usa.com
+patch subject: [PATCH] ARM: dts: nuvoton: Add Fii Mori system
+config: arm-randconfig-r046-20230726 (https://download.01.org/0day-ci/archive/20230727/202307271949.TXhf41ue-lkp@intel.com/config)
+compiler: arm-linux-gnueabi-gcc (GCC) 12.3.0
+reproduce: (https://download.01.org/0day-ci/archive/20230727/202307271949.TXhf41ue-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202307271949.TXhf41ue-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+>> Error: arch/arm/boot/dts/nuvoton/nuvoton-npcm730-mori.dts:649.1-6 Label or path emc0 not found
+>> Error: arch/arm/boot/dts/nuvoton/nuvoton-npcm730-mori.dts:662.1-7 Label or path ohci1 not found
+>> Error: arch/arm/boot/dts/nuvoton/nuvoton-npcm730-mori.dts:666.1-5 Label or path aes not found
+>> Error: arch/arm/boot/dts/nuvoton/nuvoton-npcm730-mori.dts:670.1-5 Label or path sha not found
+>> Error: arch/arm/boot/dts/nuvoton/nuvoton-npcm730-mori.dts:761.1-8 Label or path sdhci0 not found
+   Error: arch/arm/boot/dts/nuvoton/nuvoton-npcm730-mori.dts:769.1-7 Label or path ohci1 not found
+>> Error: arch/arm/boot/dts/nuvoton/nuvoton-npcm730-mori.dts:773.1-6 Label or path vdma not found
+>> Error: arch/arm/boot/dts/nuvoton/nuvoton-npcm730-mori.dts:777.1-9 Label or path pcimbox not found
+>> Error: arch/arm/boot/dts/nuvoton/nuvoton-npcm730-mori.dts:781.1-5 Label or path vcd not found
+>> Error: arch/arm/boot/dts/nuvoton/nuvoton-npcm730-mori.dts:785.1-5 Label or path ece not found
+>> Error: arch/arm/boot/dts/nuvoton/nuvoton-npcm730-mori.dts:818.1-5 Label or path otp not found
+>> FATAL ERROR: Syntax error parsing input tree
+
 -- 
-2.34.1
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
