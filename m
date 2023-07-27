@@ -2,148 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B8636764FE7
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 11:35:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 029D6764FED
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 11:37:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233631AbjG0JfJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jul 2023 05:35:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53456 "EHLO
+        id S233068AbjG0JhP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jul 2023 05:37:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55908 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233373AbjG0Jev (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 05:34:51 -0400
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 580CA4ED1
-        for <devicetree@vger.kernel.org>; Thu, 27 Jul 2023 02:26:47 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-99bc512526cso97530166b.1
-        for <devicetree@vger.kernel.org>; Thu, 27 Jul 2023 02:26:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690450006; x=1691054806;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=EMaXbUqrbiSPsR9fDnkFqi2SZVEGcpYy42I+HCAltFs=;
-        b=lniS1OFF848WJ1OmIIkB4rpRh1CFiWWEtypJ68HuBDnriGUuDq5COm/3tRrlyowxS5
-         39vuiT3OIoDGqajiOFx+Sq4OINmgQfOYTwOMwEe1VTZQEzJdS1sWs2j0tOxWICWcc5rd
-         W0xpNKnCGCWQSRg28HQc/1A1V7GcvI7DhiTl/Vn8Gh8aRmtDXo1LlEFJxoNU5EPulAth
-         GXW0SFBTup5SG11tq3HkyovuMjxZX7QBHFF4FtkzC2G4yNJk9nQDtPjY1qWv43RXaVOQ
-         EsaxDsL+dH5qV4Rm22MBXpWk8oDFAIFap2RruDPUk9ZvRxgqIEjc7t0N4pktoPCzWq7V
-         9RZg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690450006; x=1691054806;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=EMaXbUqrbiSPsR9fDnkFqi2SZVEGcpYy42I+HCAltFs=;
-        b=XuiwzU1rPzrdecPeOpJnHTlaVE5ww79y6wnQS0xC+iNC0GdSzGT+JM/Y+IQNZb/r/W
-         lYptSy8+TartU/KIGkTMJbWQ3Ps1S9hjcRk9u6h1e3Afrw2u/SsHBfBIP/XzOKPOymcZ
-         4xP7rEZmtLz9evbCrV3cDDDRV/gqwa9d4HOTGqOShcNNFgAs0YycY/2HL6uX3jr5pTFr
-         nrQajrf53wN6bUVv+YzjziLarGYNXEkj+72tAG1U4DsR9Ccq3Kn0yiESQ5n+tJeLlmXK
-         +p4ZKLInkH1xjbRIhXsB/W/kwRTLOxXHA5wOI/smRRGKnUXyfr6tSO3qw5YjO5TYf05Y
-         wTNQ==
-X-Gm-Message-State: ABy/qLZWnrXQ/DtMwkzvnq/SlyxN05mYNpIUjGaKPbCfeqXUt0iBGd4y
-        ZNz2ir3nNOe84aaJqwSDbRPsnA==
-X-Google-Smtp-Source: APBJJlELepkdS4PmnCDQWnLq2ADcHSS0/DzNlDsdOWAtT1NQERL4mpa1101BHqiLLlEfKxDqCLJJgg==
-X-Received: by 2002:a17:907:ca29:b0:98d:cd3e:c193 with SMTP id uk41-20020a170907ca2900b0098dcd3ec193mr1050152ejc.46.1690450005847;
-        Thu, 27 Jul 2023 02:26:45 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id ja22-20020a170907989600b00991bba473e1sm560354ejc.3.2023.07.27.02.26.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 27 Jul 2023 02:26:45 -0700 (PDT)
-Message-ID: <ec964562-6ebb-e145-e850-0417a88077c2@linaro.org>
-Date:   Thu, 27 Jul 2023 11:26:43 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH 1/2] Documentation: bindings: adi,axi-tdd.yaml: Add new
- TDD engine driver
-Content-Language: en-US
-To:     "Balas, Eliza" <Eliza.Balas@analog.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S233486AbjG0Jgz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 05:36:55 -0400
+Received: from wp534.webpack.hosteurope.de (wp534.webpack.hosteurope.de [80.237.130.56])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C2D98A53;
+        Thu, 27 Jul 2023 02:30:41 -0700 (PDT)
+Received: from [2001:a61:6209:7f40:c80a:ff:fe00:4098] (helo=cs-office3.lan.local); authenticated
+        by wp534.webpack.hosteurope.de running ExIM with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        id 1qOxKO-0008EJ-J1; Thu, 27 Jul 2023 11:30:36 +0200
+Date:   Thu, 27 Jul 2023 11:30:20 +0200
+From:   Carsten =?UTF-8?B?U3BpZcOf?= <mail@carsten-spiess.de>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Jean Delvare <jdelvare@suse.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Derek Kiernan <derek.kiernan@amd.com>,
-        Dragan Cvetic <dragan.cvetic@amd.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-References: <20230726071103.12172-1-eliza.balas@analog.com>
- <61fce1da-c8dd-f911-e4bb-b2198612e7c6@linaro.org>
- <BN7PR03MB4545E574AB9886290115E5C89701A@BN7PR03MB4545.namprd03.prod.outlook.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <BN7PR03MB4545E574AB9886290115E5C89701A@BN7PR03MB4545.namprd03.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>
+Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH 2/2] dt-bindings: hwmon: add renesas,isl28022
+Message-ID: <20230727113020.7585b8d3.mail@carsten-spiess.de>
+In-Reply-To: <d5e3aa31-1aaa-0f8a-12d2-20dc6ee94f1a@linaro.org>
+References: <20230726152235.249569-1-mail@carsten-spiess.de>
+        <20230726152235.249569-3-mail@carsten-spiess.de>
+        <f8fdc8d7-6ac5-5e20-10ef-7417d79c1b91@roeck-us.net>
+        <20230727093528.594ce3a7.mail@carsten-spiess.de>
+        <d5e3aa31-1aaa-0f8a-12d2-20dc6ee94f1a@linaro.org>
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
+Content-Type: multipart/signed; boundary="Sig_/2uN/tKVapAYpdBG_3fMLM5/";
+ protocol="application/pgp-signature"; micalg=pgp-sha512
+X-bounce-key: webpack.hosteurope.de;mail@carsten-spiess.de;1690450241;ceed5529;
+X-HE-SMSGID: 1qOxKO-0008EJ-J1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/07/2023 11:05, Balas, Eliza wrote:
-> 
->> -----Original Message-----
->> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> Sent: Wednesday, July 26, 2023 21:35
->> To: Balas, Eliza <Eliza.Balas@analog.com>
->> Cc: Rob Herring <robh+dt@kernel.org>; Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>; Conor Dooley
->> <conor+dt@kernel.org>; Derek Kiernan <derek.kiernan@amd.com>; Dragan Cvetic <dragan.cvetic@amd.com>; Arnd Bergmann
->> <arnd@arndb.de>; Greg Kroah-Hartman <gregkh@linuxfoundation.org>; linux-kernel@vger.kernel.org; devicetree@vger.kernel.org
->> Subject: Re: [PATCH 1/2] Documentation: bindings: adi,axi-tdd.yaml: Add new TDD engine driver
->>
->> [External]
->>
->> On 26/07/2023 09:11, Eliza Balas wrote:
->>> Add device tree documentation for the AXI TDD Core.
->>> The generic TDD controller is in essence a waveform generator capable
->>> of addressing RF applications which require Time Division Duplexing,
->>> as well as controlling other modules of general applications through
->>> its dedicated 32 channel outputs.
->>>
->>> The reason of creating the generic TDD controller was to reduce the
->>> naming confusion around the existing repurposed TDD core built for
->>> AD9361, as well as expanding its number of output channels for systems
->>> which require more than six controlling signals.
->>
->> Please use subject prefixes matching the subsystem. You can get them for example with `git log --oneline -- DIRECTORY_OR_FILE` on
->> the directory your patch is touching.
->>
->> Subject: drop driver. Bindings are for hardware, not drivers... unless driver is here a hardware term?
-> 
-> It is not a hardware term in this case, I will make the changes.
-> 
->>>
->>> Signed-off-by: Eliza Balas <eliza.balas@analog.com>
->>> ---
->>>  .../devicetree/bindings/misc/adi,axi-tdd.yaml | 51 +++++++++++++++++++
->>>  MAINTAINERS                                   |  7 +++
->>>  2 files changed, 58 insertions(+)
->>>  create mode 100644
->>> Documentation/devicetree/bindings/misc/adi,axi-tdd.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/misc/adi,axi-tdd.yaml
->>> b/Documentation/devicetree/bindings/misc/adi,axi-tdd.yaml
->>> new file mode 100644
->>> index 000000000000..1894c1c34d4f
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/misc/adi,axi-tdd.yaml
->>
->> Why is this in misc? No suitable directory?
-> 
-> I chose misc because I don't know where it should fit, I did not find a suitable
-> subsystem to include this driver because this is a driver for an FPGA IP core.
-> Do you have an idea where I should put it?
+--Sig_/2uN/tKVapAYpdBG_3fMLM5/
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-Directory based on what this device does. Whether some device is
-implemented as FPGA core or dedicated circuitry, it does not matter. Few
-Time Division Multiplexing devices are related to audio, so they are in
-sound. I don't know if TDD is something else than TDM. If nothing fits,
-can be misc, but again - just because device does no fit, not the drivers.
 
-Best regards,
-Krzysztof
+On 7/27/23 10:25, Krzysztof Kozlowski wrote: =20
 
+> > replaced with
+> >   renesas,shunt-range-milli-volts: =20
+>=20
+> That's not correct unit in DT, so again please use -microvolt:
+> https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/pr=
+operty-units.yaml
+a bit unhandy but o.k., applied to [Patch v2]
+
+> >     description: |
+> >       maximal shunt voltage range of 40mV, 80mV, 160mV or 320mV
+> >     $ref: /schemas/types.yaml#/definitions/uint32-array =20
+>
+> And then drop this line.
+Applied.
+
+Regards, Carsten
+
+--Sig_/2uN/tKVapAYpdBG_3fMLM5/
+Content-Type: application/pgp-signature
+Content-Description: Digitale Signatur von OpenPGP
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCgAdFiEEWM+MlUpz/bWsZllTM1JQzV9LKSwFAmTCOSwACgkQM1JQzV9L
+KSzqJA/7BZ6wJ2110367UjO757d3CgtgwlPCAXRYCMsysJvuM43n+TFRrSDJwui7
+SefdpW4iRWZhYrCukuWcSR+Lb9z5swTd+Pno+kljLZ9KOZc9/DItcLV8TQ/LZFCT
+noUJ4xrM8vEuQbKREKZOgFhPkpprEbB3xokb37RapEWiiHoeCl7UyP5rvR/lE2XU
+AGxvHuHuW88UXeJ/odRZw1l6zkyKgsTqxJwMderxRbEm7Mzr/I5bhhgPfBz+sp5M
+jnJpdTF1ni631b9NcNSLtMXJSU58/kgfFz6ZQc/zVqcgiHaHN9/fFL5mGRTOewpc
+zGu60UfFBXqBW0kdThNY0QFgHCY1rwkpE0o8GsxbHOdg7hrS6YOUzxByE5Gp47ky
+U8AypbySk9fe8UKxEW+lYiDqfiJT6tr8XcSYFv1FSPz251me19m0BS3aoP5J1jgP
+jvYqV9nUV4f57sgAw4aHEtK2IuR7NFxxWsOdNNeNy+zu4EwkvKJs/Lxzlsq08OXL
+j1pEvCZMYAeYJrwgp6srAe3ZhfGqxULa7RZEloOehp5I6Wms0UfVP+r+TnXFFfeI
+SjnPyoU3DTj3iVXfGnOkSHH8VzQUKT8ig7n5sbN47C4RNOQx2i/Kw4RQCt4Wu+Zs
+lL9/30yh32a+nhmh5Nm8u0Zkm9p2kVNvxqIKX1dB4ThsQKtHFZA=
+=LaRm
+-----END PGP SIGNATURE-----
+
+--Sig_/2uN/tKVapAYpdBG_3fMLM5/--
