@@ -2,139 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EED197651AC
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 12:52:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EB7DC7651DC
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 13:02:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231840AbjG0KwI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jul 2023 06:52:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40906 "EHLO
+        id S232565AbjG0LCQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jul 2023 07:02:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44026 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229801AbjG0KwH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 06:52:07 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E118F2688;
-        Thu, 27 Jul 2023 03:52:02 -0700 (PDT)
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36R6Kkdu019067;
-        Thu, 27 Jul 2023 10:51:52 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=C5RYwUGjBtTl+5dNSpZ5G/v7elv+x3Dv1cSvaxxti00=;
- b=CEs4QFqqlOSJIZ2XHwnxKUKPFwfqKl5jqZ5uO4D+FZd261MpQdai32vT24itIVqHdyqh
- m0hwlgm0HDtripDdVIOBR8mUoOL8tCnD+PtFUdKSAHJU9qSgXJD/FnJiSe++GoQaC8hF
- ChyJ8LeHMo5NeSn/TNVajeKIbDxkum2ebYsUc/ht7EeVeMZLPdSYUCmU2l1TIZlcFNdT
- je+59zTqzozd0iwXE4MEXqHhpC1LRVVMK7SaLiD1U8I+Cp1yPEmF85iXxXae6VS3hYfo
- 1XGx+cEfZnd5jL4uy4/Dz4ujQ+URC9qyWf/T3Ow7ddj2+jNMbmVkHxgnsOigu4bz3mmB Og== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3s3k7u0kpp-1
+        with ESMTP id S232394AbjG0LCO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 07:02:14 -0400
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5CA21FED;
+        Thu, 27 Jul 2023 04:02:13 -0700 (PDT)
+Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
+        by mx0a-00128a01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36RAS5SV027907;
+        Thu, 27 Jul 2023 07:02:10 -0400
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+        by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3s36afnrdf-1
         (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 27 Jul 2023 10:51:52 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 36RApS5S031807
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 27 Jul 2023 10:51:28 GMT
-Received: from [10.253.74.152] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Thu, 27 Jul
- 2023 03:51:24 -0700
-Message-ID: <b5e58172-beb5-0be3-834f-3f1db3e8b3b3@quicinc.com>
-Date:   Thu, 27 Jul 2023 18:51:22 +0800
+        Thu, 27 Jul 2023 07:02:10 -0400
+Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
+        by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 36RB28Fl032974
+        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 27 Jul 2023 07:02:08 -0400
+Received: from ASHBCASHYB5.ad.analog.com (10.64.17.133) by
+ ASHBMBX9.ad.analog.com (10.64.17.10) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Thu, 27 Jul 2023 07:02:08 -0400
+Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by
+ ASHBCASHYB5.ad.analog.com (10.64.17.133) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Thu, 27 Jul 2023 07:02:06 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Thu, 27 Jul 2023 07:02:06 -0400
+Received: from amiclaus-VirtualBox.ad.analog.com (AMICLAUS-L02.ad.analog.com [10.48.65.194])
+        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 36RB1urn001199;
+        Thu, 27 Jul 2023 07:01:58 -0400
+From:   Antoniu Miclaus <antoniu.miclaus@analog.com>
+To:     <jic23@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC:     Antoniu Miclaus <antoniu.miclaus@analog.com>
+Subject: [PATCH v2 1/2] dt-bindings:iio:frequency:admv1013: add vcc regs
+Date:   Thu, 27 Jul 2023 14:01:20 +0300
+Message-ID: <20230727110121.93546-1-antoniu.miclaus@analog.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v2 1/2] dt-bindings: input: qcom,pm8xxx-vib: add more PMIC
- support
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-input@vger.kernel.org>, <devicetree@vger.kernel.org>
-CC:     <quic_collinsd@quicinc.com>, <quic_subbaram@quicinc.com>,
-        <quic_kamalw@quicinc.com>, <jestar@qti.qualcomm.com>,
-        <quic_huliu@quicinc.com>
-References: <20230718062639.2339589-1-quic_fenglinw@quicinc.com>
- <20230718062639.2339589-2-quic_fenglinw@quicinc.com>
- <cb534cdb-508e-b03e-4e39-50cd6654377a@linaro.org>
- <4cb9f443-bdea-695a-f1b7-3963747e9a17@quicinc.com>
- <5b7e624b-5d06-826d-92d1-2a721b7c83b7@quicinc.com>
- <fec38f3a-f103-ff0f-138c-cffa3a808001@linaro.org>
- <4210b137-2d5d-a467-ea8c-d047701fdcc2@quicinc.com>
- <dd5864ee-7df2-eb64-c7f2-0fb234900d6a@linaro.org>
- <2fa3f27d-ff08-b923-2fb1-cf7cc888e5d5@linaro.org>
- <f1286da7-05a6-c8aa-d13b-075c0fd45b77@quicinc.com>
- <b0999940-8cd1-349d-9bf4-d6494145254c@linaro.org>
-From:   Fenglin Wu <quic_fenglinw@quicinc.com>
-In-Reply-To: <b0999940-8cd1-349d-9bf4-d6494145254c@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: mVup8Z_5NoWlGBgLcsqKSsJupBSPeNZN
-X-Proofpoint-ORIG-GUID: mVup8Z_5NoWlGBgLcsqKSsJupBSPeNZN
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-GUID: MnZL5oJ9i-3826ZHf8AnedJwyTjco8kq
+X-Proofpoint-ORIG-GUID: MnZL5oJ9i-3826ZHf8AnedJwyTjco8kq
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
  definitions=2023-07-27_06,2023-07-26_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 spamscore=0
- mlxscore=0 lowpriorityscore=0 malwarescore=0 bulkscore=0 mlxlogscore=999
- suspectscore=0 priorityscore=1501 clxscore=1015 phishscore=0 adultscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2306200000
- definitions=main-2307270097
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ malwarescore=0 phishscore=0 suspectscore=0 mlxscore=0 bulkscore=0
+ mlxlogscore=999 clxscore=1015 spamscore=0 impostorscore=0 adultscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2306200000 definitions=main-2307270098
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add bindings for the VCC regulators of the ADMV1013 microware
+upconverter.
 
+Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+---
+changes in v2:
+ - make the vcc regulators as required.
+ .../bindings/iio/frequency/adi,admv1013.yaml  | 60 +++++++++++++++++++
+ 1 file changed, 60 insertions(+)
 
-On 7/27/2023 4:29 PM, Krzysztof Kozlowski wrote:
-> On 27/07/2023 09:54, Fenglin Wu wrote:
->>>>> +          - enum:
->>>>> +              - qcom,pm7550ba-vib
->>>>> +          - const: qcom,pm7325b-vib
->>>>>
->>>>
->>>> Yes
->>>
->>> I wonder why this approved change turned out to something incorrect in
->>> your v3 patch...
->>>
->> Since I got review comments in the driver change and I was told to
->> refactor the driver before adding new HW support. I added the HW type
->> logic in the driver and I was thinking it might be good to add some
->> generic compatible strings to match with the HW type introduced in the
->> driver change.
->>
->> Anyway, I will update it to what you suggested in next patch.
-> 
-> Drivers are not really related to bindings, so whatever HW type you add
-> in driver, is not a reason to change bindings. Reason to change bindings
-> could be for example: because hardware is like that.
-> 
-Understood.
+diff --git a/Documentation/devicetree/bindings/iio/frequency/adi,admv1013.yaml b/Documentation/devicetree/bindings/iio/frequency/adi,admv1013.yaml
+index fc813bcb6532..f2eb2287ed9e 100644
+--- a/Documentation/devicetree/bindings/iio/frequency/adi,admv1013.yaml
++++ b/Documentation/devicetree/bindings/iio/frequency/adi,admv1013.yaml
+@@ -39,6 +39,46 @@ properties:
+     description:
+       Analog voltage regulator.
+ 
++  vcc-drv-supply:
++    description:
++      RF Driver voltage regulator.
++
++  vcc2-drv-supply:
++    description:
++      RF predriver voltage regulator.
++
++  vcc-vva-supply:
++    description:
++      VVA Control Circuit voltage regulator.
++
++  vcc-amp1-supply:
++    description:
++      RF Amplifier 1 voltage regulator.
++
++  vcc-amp2-supply:
++    description:
++      RF Amplifier 2 voltage regulator.
++
++  vcc-env-supply:
++    description:
++      Envelope Detector voltage regulator.
++
++  vcc-bg-supply:
++    description:
++      Mixer Chip Band Gap Circuit voltage regulator.
++
++  vcc-bg2-supply:
++    description:
++      VGA Chip Band Gap Circuit voltage regulator.
++
++  vcc-mixer-supply:
++    description:
++      Mixer voltage regulator.
++
++  vcc-quad-supply:
++    description:
++      Quadruppler voltage regulator.
++
+   adi,detector-enable:
+     description:
+       Enable the Envelope Detector available at output pins VENV_P and
+@@ -69,6 +109,16 @@ required:
+   - clocks
+   - clock-names
+   - vcm-supply
++  - vcc-drv-supply
++  - vcc2-drv-supply
++  - vcc-vva-supply
++  - vcc-amp1-supply
++  - vcc-amp2-supply
++  - vcc-env-supply
++  - vcc-bg-supply
++  - vcc-bg2-supply
++  - vcc-mixer-supply
++  - vcc-quad-supply
+ 
+ allOf:
+   - $ref: /schemas/spi/spi-peripheral-props.yaml#
+@@ -87,6 +137,16 @@ examples:
+         clocks = <&admv1013_lo>;
+         clock-names = "lo_in";
+         vcm-supply = <&vcm>;
++        vcc-drv-supply = <&vcc_drv>;
++        vcc2-drv-supply = <&vcc2_drv>;
++        vcc-vva-supply = <&vcc_vva>;
++        vcc-amp1-supply = <&vcc_amp1>;
++        vcc-amp2-supply = <&vcc_amp2>;
++        vcc-env-supply = <&vcc_env>;
++        vcc-bg-supply = <&vcc_bg>;
++        vcc-bg2-supply = <&vcc_bg2>;
++        vcc-mixer-supply = <&vcc_mixer>;
++        vcc-quad-supply = <&vcc_quad>;
+         adi,quad-se-mode = "diff";
+         adi,detector-enable;
+       };
+-- 
+2.41.0
 
-Sorry, I forgot to mention, in v3, I added the 'reg' value to the 
-register offset and no longer hard code the 16-bit register address, 
-that makes the vibrators inside PMI632/PM7250B/PM7325B/PM7550BA all 
-compatible, and that was another motivation of adding a generic 
-compatible string and make the others as the fallback.
-
-This will be still the case in v4, I might keep it similar in v3 but 
-just drop "qcom,spmi-vib-gen1"
-
-> Best regards,
-> Krzysztof
-> 
