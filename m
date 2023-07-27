@@ -2,80 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B9EA7654EF
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 15:26:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BF5D3765526
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 15:34:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231433AbjG0N0t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jul 2023 09:26:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33314 "EHLO
+        id S233536AbjG0Ne4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jul 2023 09:34:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36922 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230154AbjG0N0s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 09:26:48 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0C3F271D;
-        Thu, 27 Jul 2023 06:26:46 -0700 (PDT)
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36RBdTKC020078;
-        Thu, 27 Jul 2023 13:26:42 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : from : to : cc : references : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=jjWj5lEM3h2Rk9dh7enVIxrYzl1hR1WUbwdA0CpM62E=;
- b=NRq1cl2KtEaQAnYEDd/s6JaN/6dhpRalZN/de7w1DY661aNLb9Kgrl4qs3qoh/37LcL8
- pZ4jvWIg39alAF7vVTai8MO9WohvghnlGEtLzAo53gsqJwxAAFqRUlHNT1lYkAvzjDtr
- NraAVpGWRUI3Xud02eXkkXjyatY+QckSUjYXFQzhgdKOhFEl3jf5pEcUhxHkrmkQwy6D
- FXcXPDwxq2bIG/hBe+hbIbCSulEQJlyopMvBGBprTY0lpz+GhRvy2JjRXb7yaDNC7Per
- VnpJLovZuKpax3cf2If1Qirz/Gc9eNdNHFeYIDHOsLZN1F4DhOeJ0zFhciTYR4dFrWS3 qA== 
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3s34x6jjyq-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 27 Jul 2023 13:26:42 +0000
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-        by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 36RDQfVp031584
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 27 Jul 2023 13:26:41 GMT
-Received: from [10.216.12.191] (10.80.80.8) by nasanex01c.na.qualcomm.com
- (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Thu, 27 Jul
- 2023 06:26:38 -0700
-Message-ID: <9fd66ca4-36f2-e6c2-fdb3-76e00e1e954b@quicinc.com>
-Date:   Thu, 27 Jul 2023 18:56:34 +0530
+        with ESMTP id S233450AbjG0Nez (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 09:34:55 -0400
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E34AE2D4D
+        for <devicetree@vger.kernel.org>; Thu, 27 Jul 2023 06:34:53 -0700 (PDT)
+Received: by mail-lj1-x22d.google.com with SMTP id 38308e7fff4ca-2b6fdaf6eefso14648531fa.0
+        for <devicetree@vger.kernel.org>; Thu, 27 Jul 2023 06:34:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1690464892; x=1691069692;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=9uwU8ola2qkLcSKy+1rI5aYJOesLH456/lp3WB7O6aM=;
+        b=C50x3UuXGGD+pywiK4+NxP6WrckJr3mb0tanueA232jGBD3tAJBugCLuZMBPwUmVXL
+         fGKbEqxDdprS+Ycgh/dvbY/2g8e05/FJ1Fqo1akjAeZBvXX1+bwtLWS/iq5Rfw3B8x1p
+         DNtAH0CCgf5///3MQ6sz/ERGZ5DhnkjJSIyIB8Ss68SfJGp/suJ6mOUrsfCw1A7FvpUW
+         ivAedLk2G7Z1T4sgNqpMPjbkLSkvznYIQN5hPV6Iv8/8XP2uiLHCFJxLShHCLmtRXNqJ
+         +cQqJ0DrrioMojCP/C+WEAaRT52km+9KUOYuzvn9Zc0YsmC2TaMfczDr41G9UaT/8fld
+         9QWg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690464892; x=1691069692;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=9uwU8ola2qkLcSKy+1rI5aYJOesLH456/lp3WB7O6aM=;
+        b=P70mxayvvaSvY208lQtYSDebTIBB+v8xn+V6E3MeYVMkJyGp4Nj67chnzbhByxap0C
+         Wm37VAICNhYVQsDT4nvYwY3i4khmP+oQcFxxuAVTkuVVuF8OXNYsjd77S90VofmRaY3D
+         SeJec7t4qY1QHRZdL187NRKtWpyktrfeF73Xrh7d68KMuUjdlwV7CO6gVjjb1jYJn88K
+         tNvdWCzDeNglKalg8V1qIvr9AqgYuNGHHxMoDALWzavmhNPLzNZktOhdACTmtidCGZFK
+         7qvgZY9/iRnUQXoqyicA/9AYE1E/nJFmchZsULbPSX3fRjcGzt4800UD7sKUOHD4m3U4
+         13KQ==
+X-Gm-Message-State: ABy/qLYjFBIdc2f/ul0lZ0z5pvdwx+Pte0TRZZXwosMrfNW6pd9FDsxq
+        Xwx5LFnfz5WDnfmglh7dbZik9g==
+X-Google-Smtp-Source: APBJJlH0Y3VkQ0iBH2aM2WoMWRGBLQjYtW2yB9AaM+gkBgYJjEPBCW9UH2E6x4JfNXt58uxxP3R1kQ==
+X-Received: by 2002:a2e:8310:0:b0:2b6:f1ad:d535 with SMTP id a16-20020a2e8310000000b002b6f1add535mr1641588ljh.14.1690464892041;
+        Thu, 27 Jul 2023 06:34:52 -0700 (PDT)
+Received: from [10.10.15.130] ([192.130.178.91])
+        by smtp.gmail.com with ESMTPSA id lt5-20020a170906fa8500b0098f99048053sm792492ejb.148.2023.07.27.06.34.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 27 Jul 2023 06:34:51 -0700 (PDT)
+Message-ID: <6c5197c9-e24d-70ac-fd75-2c72369d8b7f@linaro.org>
+Date:   Thu, 27 Jul 2023 16:34:49 +0300
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
-Subject: Re: [PATCH v5 2/2] nvmem: sec-qfprom: Add Qualcomm secure QFPROM
- support
-Content-Language: en-US
-From:   Mukesh Ojha <quic_mojha@quicinc.com>
-To:     Komal Bajaj <quic_kbajaj@quicinc.com>, <agross@kernel.org>,
-        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <srinivas.kandagatla@linaro.org>
-CC:     <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20230724083849.8277-1-quic_kbajaj@quicinc.com>
- <20230724083849.8277-3-quic_kbajaj@quicinc.com>
- <9f417fea-38cf-942b-514e-99b47f27c544@quicinc.com>
-In-Reply-To: <9f417fea-38cf-942b-514e-99b47f27c544@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: d0ejwwke46VDVtMhRrA7Ub4NAnNpD6bC
-X-Proofpoint-ORIG-GUID: d0ejwwke46VDVtMhRrA7Ub4NAnNpD6bC
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-07-27_07,2023-07-26_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999
- lowpriorityscore=0 malwarescore=0 adultscore=0 impostorscore=0 mlxscore=0
- bulkscore=0 spamscore=0 clxscore=1015 phishscore=0 priorityscore=1501
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2306200000 definitions=main-2307270121
-X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+Subject: Re: [PATCH v4 00/17] drm/msm: Add SM6125 MDSS/DPU hardware and enable
+ Sony Xperia 10 II panel
+Content-Language: en-GB
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Krishna Manikandan <quic_mkrishn@quicinc.com>,
+        Loic Poulain <loic.poulain@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>
+Cc:     ~postmarketos/upstreaming@lists.sr.ht,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        linux-clk@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, Lux Aliaga <they@mint.lgbt>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+References: <20230723-sm6125-dpu-v4-0-a3f287dd6c07@somainline.org>
+ <169046051039.1413710.12901529844343078449.b4-ty@linaro.org>
+In-Reply-To: <169046051039.1413710.12901529844343078449.b4-ty@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -84,202 +101,55 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 7/27/2023 12:09 PM, Mukesh Ojha wrote:
-> Hi,
+On 27/07/2023 15:22, Dmitry Baryshkov wrote:
 > 
-> Some questions, may not need to be addressed if the reason is
-> known
-> 
-> On 7/24/2023 2:08 PM, Komal Bajaj wrote:
->> For some of the Qualcomm SoC's, it is possible that
->> some of the fuse regions or entire qfprom region is
->> protected from non-secure access. In such situations,
->> Linux will have to use secure calls to read the region.
->> With that motivation, add secure qfprom driver.
+> On Sun, 23 Jul 2023 18:08:38 +0200, Marijn Suijten wrote:
+>> Bring up the SM6125 DPU now that all preliminary series (such as INTF
+>> TE) have been merged (for me to test the hardware properly), and most
+>> other conflicting work (barring ongoing catalog *improvements*) has made
+>> its way in as well or is still being discussed.
 >>
->> Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
->> ---
->>   drivers/nvmem/Kconfig      |  13 +++++
->>   drivers/nvmem/Makefile     |   2 +
->>   drivers/nvmem/sec-qfprom.c | 101 +++++++++++++++++++++++++++++++++++++
->>   3 files changed, 116 insertions(+)
->>   create mode 100644 drivers/nvmem/sec-qfprom.c
+>> The second part of the series complements that by immediately utilizing
+>> this hardware in DT, and even enabling the MDSS/DSI nodes complete with
+>> a 6.0" 1080x2520 panel for Sony's Seine PDX201 (Xperia 10 II).
 >>
->> diff --git a/drivers/nvmem/Kconfig b/drivers/nvmem/Kconfig
->> index b291b27048c7..764fc5feb26c 100644
->> --- a/drivers/nvmem/Kconfig
->> +++ b/drivers/nvmem/Kconfig
->> @@ -216,6 +216,19 @@ config NVMEM_QCOM_QFPROM
->>         This driver can also be built as a module. If so, the module
->>         will be called nvmem_qfprom.
->>
->> +config NVMEM_QCOM_SEC_QFPROM
->> +        tristate "QCOM SECURE QFPROM Support"
->> +        depends on ARCH_QCOM || COMPILE_TEST
->> +        depends on HAS_IOMEM
->> +        depends on OF
->> +        select QCOM_SCM
->> +        help
->> +          Say y here to enable secure QFPROM support. The secure 
->> QFPROM provides access
->> +          functions for QFPROM data to rest of the drivers via nvmem 
->> interface.
->> +
->> +          This driver can also be built as a module. If so, the 
->> module will be called
->> +          nvmem_sec_qfprom.
->> +
->>   config NVMEM_RAVE_SP_EEPROM
->>       tristate "Rave SP EEPROM Support"
->>       depends on RAVE_SP_CORE
->> diff --git a/drivers/nvmem/Makefile b/drivers/nvmem/Makefile
->> index f82431ec8aef..e248d3daadf3 100644
->> --- a/drivers/nvmem/Makefile
->> +++ b/drivers/nvmem/Makefile
->> @@ -44,6 +44,8 @@ obj-$(CONFIG_NVMEM_NINTENDO_OTP)    += 
->> nvmem-nintendo-otp.o
->>   nvmem-nintendo-otp-y            := nintendo-otp.o
->>   obj-$(CONFIG_NVMEM_QCOM_QFPROM)        += nvmem_qfprom.o
->>   nvmem_qfprom-y                := qfprom.o
->> +obj-$(CONFIG_NVMEM_QCOM_SEC_QFPROM)    += nvmem_sec_qfprom.o
->> +nvmem_sec_qfprom-y            := sec-qfprom.o
+>> [...]
 > 
-> Are we just doing this for just renaming the object ?
+> Applied, thanks!
 > 
->>   obj-$(CONFIG_NVMEM_RAVE_SP_EEPROM)    += nvmem-rave-sp-eeprom.o
->>   nvmem-rave-sp-eeprom-y            := rave-sp-eeprom.o
->>   obj-$(CONFIG_NVMEM_RMEM)         += nvmem-rmem.o
->> diff --git a/drivers/nvmem/sec-qfprom.c b/drivers/nvmem/sec-qfprom.c
->> new file mode 100644
->> index 000000000000..bc68053b7d94
->> --- /dev/null
->> +++ b/drivers/nvmem/sec-qfprom.c
->> @@ -0,0 +1,101 @@
->> +// SPDX-License-Identifier: GPL-2.0-only
->> +/*
->> + * Copyright (c) 2023, Qualcomm Innovation Center, Inc. All rights 
->> reserved.
->> + */
->> +
->> +#include <linux/firmware/qcom/qcom_scm.h>
->> +#include <linux/mod_devicetable.h>
->> +#include <linux/nvmem-provider.h>
->> +#include <linux/platform_device.h>
->> +#include <linux/pm_runtime.h>
->> +
->> +/**
->> + * struct sec_qfprom - structure holding secure qfprom attributes
->> + *
->> + * @base: starting physical address for secure qfprom corrected 
->> address space.
->> + * @dev: qfprom device structure.
->> + */
->> +struct sec_qfprom {
->> +    phys_addr_t base;
->> +    struct device *dev;
->> +};
->> +
->> +static int sec_qfprom_reg_read(void *context, unsigned int reg, void 
->> *_val, size_t bytes)
->> +{
->> +    struct sec_qfprom *priv = context;
->> +    unsigned int i;
->> +    u8 *val = _val;
->> +    u32 read_val;
->> +    u8 *tmp;
->> +
->> +    for (i = 0; i < bytes; i++, reg++) {
->> +        if (i == 0 || reg % 4 == 0) {
->> +            if (qcom_scm_io_readl(priv->base + (reg & ~3), &read_val)) {
->> +                dev_err(priv->dev, "Couldn't access fuse register\n");
->> +                return -EINVAL;
->> +            }
->> +            tmp = (u8 *)&read_val;
->> +        }
->> +
->> +        val[i] = tmp[reg & 3];
->> +    }
-> 
-> Getting secure read from fuse region is fine here, since we have to read
-> 4 byte from trustzone, but this restriction of reading is also there
-> for sm8{4|5}50 soc's where byte by byte reading is protected and 
-> granularity set to 4 byte (qfprom_reg_read() in drivers/nvmem/qfprom.c)
-> is will result in abort, in  that case this function need to export this
-> logic.
-> 
->> +
->> +    return 0;
->> +}
->> +
->> +static int sec_qfprom_probe(struct platform_device *pdev)
->> +{
->> +    struct nvmem_config econfig = {
->> +        .name = "sec-qfprom",
->> +        .stride = 1,
->> +        .word_size = 1,
->> +        .id = NVMEM_DEVID_AUTO,
->> +        .reg_read = sec_qfprom_reg_read,
->> +    };
->> +    struct device *dev = &pdev->dev;
->> +    struct nvmem_device *nvmem;
->> +    struct sec_qfprom *priv;
->> +    struct resource *res;
->> +    int ret;
->> +
->> +    priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
->> +    if (!priv)
->> +        return -ENOMEM;
->> +
->> +    res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
->> +    if (!res)
->> +        return -EINVAL;
->> +
->> +    priv->base = res->start;
->> +
->> +    econfig.size = resource_size(res);
->> +    econfig.dev = dev;
->> +    econfig.priv = priv;
->> +
->> +    priv->dev = dev;
->> +
->> +    ret = devm_pm_runtime_enable(dev);
->> +    if (ret)
->> +        return ret;
->> +
->> +    nvmem = devm_nvmem_register(dev, &econfig);
->> +
->> +    return PTR_ERR_OR_ZERO(nvmem);
->> +}
->> +
->> +static const struct of_device_id sec_qfprom_of_match[] = {
->> +    { .compatible = "qcom,sec-qfprom" },
->> +    {/* sentinel */},
->> +};
->> +MODULE_DEVICE_TABLE(of, sec_qfprom_of_match);
->> +
->> +static struct platform_driver qfprom_driver = {
->> +    .probe = sec_qfprom_probe,
-> 
-> Why don't we have remove/remove_new callbacks?
-> Same comment apply for drivers/nvmem/qfprom.c
+> [01/17] drm/msm/dsi: Drop unused regulators from QCM2290 14nm DSI PHY config
+>          https://gitlab.freedesktop.org/lumag/msm/-/commit/a7e3fda5948a
+> [02/17] arm64: dts: qcom: sm6125: Pad APPS IOMMU address to 8 characters
+>          https://gitlab.freedesktop.org/lumag/msm/-/commit/b7d35a8eae54
+> [03/17] arm64: dts: qcom: sm6125: Sort spmi_bus node numerically by reg
+>          https://gitlab.freedesktop.org/lumag/msm/-/commit/2be52ca96a71
 
-Ignore this comment; Something new learnt with devm_* api
-implementation.
+Of course, these two patches sneaked in by the mistake, dropped them now.
 
--Mukesh
+> [04/17] dt-bindings: display/msm: Remove DSI1 ports from SM6350/SM6375 example
+>          https://gitlab.freedesktop.org/lumag/msm/-/commit/4be2c19261fc
+> [05/17] dt-bindings: clock: qcom,dispcc-sm6125: Require GCC PLL0 DIV clock
+>          https://gitlab.freedesktop.org/lumag/msm/-/commit/4f86e343f3c6
+> [06/17] dt-bindings: clock: qcom,dispcc-sm6125: Allow power-domains property
+>          https://gitlab.freedesktop.org/lumag/msm/-/commit/91043642f28c
+> [07/17] dt-bindings: display/msm: dsi-controller-main: Document SM6125
+>          https://gitlab.freedesktop.org/lumag/msm/-/commit/cf5859476e5d
+> [08/17] dt-bindings: display/msm: sc7180-dpu: Describe SM6125
+>          https://gitlab.freedesktop.org/lumag/msm/-/commit/04a664dffd19
+> [09/17] dt-bindings: display/msm: Add SM6125 MDSS
+>          https://gitlab.freedesktop.org/lumag/msm/-/commit/3bde3b8f8a04
+> [10/17] drm/msm/dpu: Add SM6125 support
+>          https://gitlab.freedesktop.org/lumag/msm/-/commit/76c5dffd0bc4
+> [11/17] drm/msm/mdss: Add SM6125 support
+>          https://gitlab.freedesktop.org/lumag/msm/-/commit/de50357565d3
+> [12/17] dt-bindings: msm: dsi-phy-14nm: Document SM6125 variant
+>          https://gitlab.freedesktop.org/lumag/msm/-/commit/cdac445883cc
+> [13/17] drm/msm/dsi: Reuse QCM2290 14nm DSI PHY configuration for SM6125
+>          https://gitlab.freedesktop.org/lumag/msm/-/commit/7638d8059ace
 > 
->> +    .driver = {
->> +        .name = "qcom_sec_qfprom",
->> +        .of_match_table = sec_qfprom_of_match,
->> +    },
->> +};
->> +module_platform_driver(qfprom_driver);
->> +MODULE_DESCRIPTION("Qualcomm Secure QFPROM driver");
->> +MODULE_LICENSE("GPL");
->> -- 
->> 2.40.1
->>
-> 
-> -Mukesh
+> Best regards,
+
+-- 
+With best wishes
+Dmitry
+
