@@ -2,119 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EC80076441B
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 05:01:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 51EBF764467
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 05:35:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231314AbjG0DBB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jul 2023 23:01:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58562 "EHLO
+        id S230335AbjG0DfC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jul 2023 23:35:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42046 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229655AbjG0DBA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 23:01:00 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0F741BCB;
-        Wed, 26 Jul 2023 20:00:59 -0700 (PDT)
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36R2JCa1009162;
-        Thu, 27 Jul 2023 03:00:49 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=date : from : to :
- cc : subject : message-id : references : mime-version : content-type :
- in-reply-to; s=qcppdkim1; bh=j4aARu0MkArEU5RCLOwlPl8+9JwP9fo0BEv/2Jdj1/g=;
- b=mSaSXrcpOO7LNktBZnxbNwhcmsY7qcvu8dX6CejE5OEuSp1vdXarOu96D2h1Rs20pJuP
- MbS3MsZ4smx3LLAn7O6UjZ7bJL5URvw0bKg5+h4VquRp1YNlEE8LGMozCzAcwr5lh9pm
- 3dwmS4asu5+Oxr7biROh75QS0DB9TXULNnrtlnFPU/rjJG3sN1VW5jRmV2HaFhSAFZCh
- WRXQuy8v0b6oyYd4CyWDWpH6BsWxoz3QGXc8vqvTl5S/ezwRa9HetgichqQJAqEIJcyq
- ekpzEfDrDyYhguMgU4+M1ABUOu7oEC5WjhatUPmIqM9+5QIxFndThjLgEMW9Q3UoZB2g HQ== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3s336t1j6h-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 27 Jul 2023 03:00:49 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 36R30mM4013784
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 27 Jul 2023 03:00:48 GMT
-Received: from hu-pkondeti-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.30; Wed, 26 Jul 2023 20:00:43 -0700
-Date:   Thu, 27 Jul 2023 08:30:39 +0530
-From:   Pavan Kondeti <quic_pkondeti@quicinc.com>
-To:     Elliot Berman <quic_eberman@quicinc.com>
-CC:     Pavan Kondeti <quic_pkondeti@quicinc.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        "Sebastian Reichel" <sre@kernel.org>,
+        with ESMTP id S229721AbjG0DfB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jul 2023 23:35:01 -0400
+Received: from APC01-SG2-obe.outbound.protection.outlook.com (mail-sgaapc01on2084.outbound.protection.outlook.com [40.107.215.84])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAAD11BF4;
+        Wed, 26 Jul 2023 20:34:54 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=MQjumIzOj7KeLm00IcVw7GORbr4EZTYMeI72AulWdURxKoodEI4ZVAVuAnVxW4FLk5zYGDSJPZooNb/Db4vq5VT4FpH90241IwgJsVBD3zqLdYQsY97waK5jtHIQmrBuOwPIsztuXJgkSJRfRA02etke1zrSR4QSp2956mvFlUbmXAjNKHoujzaKc6tZxmHgO7eFqTRac91RaqPLahdvlrdGkLaE4VE/BovuKTRCnQlqp+nkHi+rYc+DyKOnntqAB47y2y0e6F5Xt4eIuOeMx0qxnHBSK7n1XcZywkgYA5YwHWwQYFEwGq/pNU8aypk4KtahKEe5LxxszWrsvgxAcw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=FvwKzWDypqFoyT/5pNg4W+cTRPm+3P1A9+KTXwD9dYc=;
+ b=jWUMy1/fdBAyFp5HweyjvGfVNWRwDfjCKS6V+TCQiP2OpUpjdnVDykyNbvgZ9x7LdRXdip69dISElJZq/nRbNFLOUiydZpekladRDpvNQSGdDXB8QVeQBMEbF6LnmUo8O2+oXZWRnzB0OHb3SHp6YuBAbUk6GuBwNpzMRFbU4X6WA/BJOL0r1FwTD19nGjHE+WiiCp931SqCq2zovkvzVTKQPoybLndeFHVOmrL0c6ajcxYUuVDiX/GObzaLsIPZAQDXYaJ7/rBsIc6zYhkVqchHWi064US2f7woq6Ovc7RZ8G/b0p4iuaR/tcCIVX9ceoW5+DDFge4Ew6oZLTrzXw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 211.20.1.79) smtp.rcpttodomain=stwcx.xyz smtp.mailfrom=wiwynn.com; dmarc=fail
+ (p=quarantine sp=quarantine pct=100) action=quarantine
+ header.from=wiwynn.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wiwynn.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=FvwKzWDypqFoyT/5pNg4W+cTRPm+3P1A9+KTXwD9dYc=;
+ b=fWqUP2JZpPxufR2fEHOwJwx6UNEkzI3GwCaapzMhM3hxtzBp7jFMudC6vegRUzeZ7LmTxvaU139ENOFk4B5ulWcBs7sPnrqKYTjkSS7sAv4/mpqn8DZNGM6tgsuuzwatK4FT9W8gMtTDp2+KsMN92fqpt1vTDazgo2PLQcIvyC4XQFEnn/fnG/dSsf+8OFBILPsu1g4XI2T9VOk9y4z/royp86H0H6Sjq/Psp8bMx9jsyew0/k88eClMQKwbNCT1t7VXK+TL9Z4tjLmz5I/+CB/nrivdJX62bXghDwKOjXPN2xroXyRPDLUtLxJtAp1GssFtEMB6kwFCXfvDHFEiAw==
+Received: from KL1PR01CA0068.apcprd01.prod.exchangelabs.com
+ (2603:1096:820:5::32) by KL1PR0401MB6609.apcprd04.prod.outlook.com
+ (2603:1096:820:b7::9) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6631.29; Thu, 27 Jul
+ 2023 03:34:46 +0000
+Received: from HK2PEPF00006FB3.apcprd02.prod.outlook.com
+ (2603:1096:820:5:cafe::30) by KL1PR01CA0068.outlook.office365.com
+ (2603:1096:820:5::32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6631.29 via Frontend
+ Transport; Thu, 27 Jul 2023 03:34:46 +0000
+X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 211.20.1.79)
+ smtp.mailfrom=wiwynn.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=quarantine header.from=wiwynn.com;
+Received-SPF: Fail (protection.outlook.com: domain of wiwynn.com does not
+ designate 211.20.1.79 as permitted sender) receiver=protection.outlook.com;
+ client-ip=211.20.1.79; helo=localhost.localdomain;
+Received: from localhost.localdomain (211.20.1.79) by
+ HK2PEPF00006FB3.mail.protection.outlook.com (10.167.8.9) with Microsoft SMTP
+ Server id 15.20.6631.24 via Frontend Transport; Thu, 27 Jul 2023 03:34:45
+ +0000
+From:   Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
+To:     patrick@stwcx.xyz, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-pm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <kernel@quicinc.com>,
-        Satya Durga Srinivasu Prabhala <quic_satyap@quicinc.com>,
-        Melody Olvera <quic_molvera@quicinc.com>,
-        "Prasad Sodagudi" <quic_psodagud@quicinc.com>
-Subject: Re: [RFC PATCH 4/4] power: reset: Implement a PSCI SYSTEM_RESET2
- reboot-mode driver
-Message-ID: <c1c2653e-4f3b-45f2-9325-d0ed8572a346@quicinc.com>
-References: <20230724223057.1208122-1-quic_eberman@quicinc.com>
- <20230724223057.1208122-5-quic_eberman@quicinc.com>
- <46744a2e-139c-4e4e-89b2-66346f64c3f2@quicinc.com>
- <6a0ea31d-814b-6745-d301-c1f6dadf9718@quicinc.com>
+        Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>
+Cc:     Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 1/2] dt-bindings: arm: aspeed: add Facebook Yosemite V4 board
+Date:   Thu, 27 Jul 2023 11:34:32 +0800
+Message-Id: <20230727033435.1904180-1-Delphine_CC_Chiu@wiwynn.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <6a0ea31d-814b-6745-d301-c1f6dadf9718@quicinc.com>
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 5uIHP9ddzcxBs_J2QaGvp2NLe92urYsY
-X-Proofpoint-GUID: 5uIHP9ddzcxBs_J2QaGvp2NLe92urYsY
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-07-26_08,2023-07-26_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 spamscore=0
- clxscore=1015 mlxlogscore=794 adultscore=0 lowpriorityscore=0
- suspectscore=0 priorityscore=1501 bulkscore=0 impostorscore=0 mlxscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2306200000 definitions=main-2307270026
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: HK2PEPF00006FB3:EE_|KL1PR0401MB6609:EE_
+Content-Type: text/plain
+X-MS-Office365-Filtering-Correlation-Id: aa38e969-0bd5-45e5-f487-08db8e526c6d
+X-MS-Exchange-AtpMessageProperties: SA
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: PbRn/u4NZdFO0OSJlYJa7QpEIO2rtj9p692Y5q/YkegTBZcBRtWqz52aMOQX42blpA5GT5psqyiGN4spubsgCJLySuvhwzrI0he3TJuiuCF01I2rIn/qb49iPoOHIHnSu2tf6/FVVLkvXHK1SFwu9NrV4wOiFIfYJvFmK37XSPQWABnPN9lexpNWflVGGV9fJs/3IgoIyiE0QZTyDOlohVPfmCNZYzVB3UdY4ybJb1TL1VKZw6NCMW2Z6yD4ctZ1rQEpcfmgwUK4MXa+UszEAPusDIeJZjoav43EIzPK7SYHenKwV/Atk5S+pYUrg+Ywi0MF9ZUvZvNyGp/iVYnbamcjgVbLuGosLW+SRDzxCBKVYbHVxG0IWFtmYWt2n4Y8ptQsBat74eMHiltcUmJ17Nbw4I6J8ZcXlsUYuOOoo0OcrKJFI+Scwp4w93fWej1jatUblFsfXqeESAk98tMUbcWPBAwy9RRQoO7O9L1o2d9VL9rV4eoC6egt6LgugvYxRBjWcsf/JtDgRn5ESHe6ISQ28ByonOLwZ3eXlop+SJcVnaz5M3axxyCLRd8SgnYvFyR9BZZYqYEWxf3Gs+CUZtGqsXqASZO9LJo5rexb2gay6z1+lW2IVNYFsXF0HjPC7dStHpgy8E0YwErBgQDDH8LkVVPZwIoLrHgwVpn9IJXyydm2tqmj7Iia2zaF2Cs9xHVla0VA4Y4+viwb84XEdw==
+X-Forefront-Antispam-Report: CIP:211.20.1.79;CTRY:TW;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:localhost.localdomain;PTR:211-20-1-79.hinet-ip.hinet.net;CAT:NONE;SFS:(13230028)(6069001)(4636009)(39860400002)(136003)(396003)(346002)(376002)(47680400002)(451199021)(82310400008)(46966006)(36840700001)(6666004)(6486002)(478600001)(356005)(82740400003)(47076005)(1076003)(6506007)(26005)(6512007)(4326008)(110136005)(81166007)(70586007)(70206006)(186003)(336012)(36860700001)(2616005)(956004)(5660300002)(7416002)(316002)(8676002)(8936002)(41300700001)(36736006)(2906002)(4744005)(86362001)(40480700001)(9316004)(36756003);DIR:OUT;SFP:1101;
+X-OriginatorOrg: wiwynn.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Jul 2023 03:34:45.8321
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: aa38e969-0bd5-45e5-f487-08db8e526c6d
+X-MS-Exchange-CrossTenant-Id: da6e0628-fc83-4caf-9dd2-73061cbab167
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=da6e0628-fc83-4caf-9dd2-73061cbab167;Ip=[211.20.1.79];Helo=[localhost.localdomain]
+X-MS-Exchange-CrossTenant-AuthSource: HK2PEPF00006FB3.apcprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: KL1PR0401MB6609
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 26, 2023 at 10:19:01AM -0700, Elliot Berman wrote:
-> 
-> 
-> On 7/26/2023 3:41 AM, Pavan Kondeti wrote:
-> > On Mon, Jul 24, 2023 at 03:30:54PM -0700, Elliot Berman wrote:
-> > > PSCI implements a restart notifier for architectural defined resets.
-> > > The SYSTEM_RESET2 allows vendor firmware to define additional reset
-> > > types which could be mapped to the reboot reason.
-> > > 
-> > > Implement a driver to wire the reboot-mode framework to make vendor
-> > > SYSTEM_RESET2 calls on reboot.
-> > > 
-> > > Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
-> > 
-> > Do we need to skip the PSCI call from the existing PSCI restart notifier
-> > which gets called after your newly introduced callback from reboot mode
-> > notifier?
-> > 
-> 
-> No need, the vendor SYSTEM_RESET2 call shouldn't return if the call worked.
-> 
+Document the new compatibles used on Facebook Yosemite V4.
 
-From the documentation of restart handlers, restarting from reboot
-notifiers may not be correct. Since you hooked it up with reboot-mode
-driver framework, you may restart the system much early before the
-actual machine restart kicks in. Pls check. 
+Signed-off-by: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
+---
+ Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-Thanks,
-Pavan
+diff --git a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
+index e0eff4c05879..2ef6821e3648 100644
+--- a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
++++ b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
+@@ -79,6 +79,7 @@ properties:
+               - facebook,elbert-bmc
+               - facebook,fuji-bmc
+               - facebook,greatlakes-bmc
++              - facebook,yosemitev4-bmc
+               - ibm,everest-bmc
+               - ibm,rainier-bmc
+               - ibm,tacoma-bmc
+-- 
+2.25.1
+
