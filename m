@@ -2,103 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 54306764521
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 06:52:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 04C51764541
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 07:06:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230497AbjG0Ewu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jul 2023 00:52:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39330 "EHLO
+        id S230332AbjG0FGx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jul 2023 01:06:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43358 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231622AbjG0Ewl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 00:52:41 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B69CF2D5A;
-        Wed, 26 Jul 2023 21:52:32 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 36R4q3wl040175;
-        Wed, 26 Jul 2023 23:52:04 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1690433524;
-        bh=b0XLCYPeMxL5GqXwy8aDkOrIMz6Dbp7sZF1xTbGQpqk=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=FKF99HOSHKYtw3Zq962zpPazvFR4SAaXEBT1aZw8vpaqZMFR/TkuGLoBShZAj6giN
-         H7w4v2jC5QV3SjyQmca05s7i7A/g4K/jl3x2RV7ZuwjN/fKkOGZE0O/L5B9AWHWa3H
-         Y5lAEwuQSZntFdocQ5nto1H1xY2R3F0zCprlxsPo=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 36R4q3XW055887
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 26 Jul 2023 23:52:03 -0500
-Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 26
- Jul 2023 23:52:03 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 26 Jul 2023 23:52:03 -0500
-Received: from [10.249.135.225] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 36R4pv9h127551;
-        Wed, 26 Jul 2023 23:51:58 -0500
-Message-ID: <17b67407-0507-8978-0d6b-04578ca6b812@ti.com>
-Date:   Thu, 27 Jul 2023 10:21:57 +0530
+        with ESMTP id S230000AbjG0FGv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 01:06:51 -0400
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A515C2721
+        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 22:06:48 -0700 (PDT)
+Received: by mail-wr1-x42d.google.com with SMTP id ffacd0b85a97d-31438512cafso547996f8f.2
+        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 22:06:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1690434407; x=1691039207;
+        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
+         :to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=milfg91uG9nlhd9aFLAx/8EHBpoWNiimDW9/5MxR5qE=;
+        b=SqR9wDcJ/K9nwJZJepovao+MkVJ0TdNofeVh2YnRg6VO5GiudH5oFn9h/1FfQVVRvE
+         8ZlNCHSEvsdhsZZLJ/5/Qf6CQU21Up1ossb+IZGHnWbf3PBHoWsebzYMi7f6OFiplMtg
+         vxOHMSqN7wXgOitTUOvdlJvqxngxskbpjADUWJ5O9YwOwTDGd5d65DZWQXSIRGR3uIvh
+         eJFw4HlIr+gmRESJdtIIdDKmvInlWwYviZwGGR/2npA+DAy/Vx2D9df3Cyh2YOuxOaUw
+         UrJW3ILC8IxAsiSNhTUwdSZjzW5ONxcy9Uev32d5oWZE0JPFcth5s74HwccZfDhaNYbq
+         PLug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690434407; x=1691039207;
+        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
+         :to:from:date:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=milfg91uG9nlhd9aFLAx/8EHBpoWNiimDW9/5MxR5qE=;
+        b=irhg9fZK4OtqQra35c4Hda7FRXJXqBJZqqLAVF4J5KvJ4OdgES1MclhdlBzEMWTo6p
+         u0hLf1kj8fRmHbmRogjvJoOWI/TTlGkL/SXMwdYL8MTA/NWtect+GpnPXyQHvFqJUlvG
+         zYYeHdHnlYEHkEqihoK7QiSM0vnoV+5WgrcKKTIpDnEPp594Wq+k6OAdKv+PyFjTzOqg
+         YbWokivrvpjfdu1fls4fczcwE3trMjkH5hhteM/dn6rJ8bLu0/oUv9SCqlhWXTYsCKcY
+         bFKoWPvwuzOo8myb/oyKQBzdXh9b7v7t9l1TxYTzPKS4xDIlY6wsJPXsE6wVsM59oDsw
+         0/VQ==
+X-Gm-Message-State: ABy/qLZbm48JQrEs6GGXcdMlCSeEV0ayeZxoaxqCXdzGVc16FJ0N6i1m
+        pRQndTfQ+AajI9W2M3Rzvjym4A==
+X-Google-Smtp-Source: APBJJlG46aaIJPrxFkx4O+Yb8zxZMWWUWxRjBLDV7QlqtwQ/xfDUhdChhPo0mRSZ0sY0wDCljBBp8w==
+X-Received: by 2002:adf:f4c6:0:b0:314:ca7:f30b with SMTP id h6-20020adff4c6000000b003140ca7f30bmr767822wrp.54.1690434407115;
+        Wed, 26 Jul 2023 22:06:47 -0700 (PDT)
+Received: from localhost ([102.36.222.112])
+        by smtp.gmail.com with ESMTPSA id n7-20020a5d6b87000000b003175fef2a32sm820827wrx.55.2023.07.26.22.06.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 26 Jul 2023 22:06:46 -0700 (PDT)
+Date:   Thu, 27 Jul 2023 08:06:44 +0300
+From:   Dan Carpenter <dan.carpenter@linaro.org>
+To:     oe-kbuild@lists.linux.dev,
+        Anjelique Melendez <quic_amelende@quicinc.com>, pavel@ucw.cz,
+        lee@kernel.org, thierry.reding@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        agross@kernel.org, andersson@kernel.org
+Cc:     lkp@intel.com, oe-kbuild-all@lists.linux.dev,
+        luca.weiss@fairphone.com, konrad.dybcio@linaro.org,
+        u.kleine-koenig@pengutronix.de, quic_subbaram@quicinc.com,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-pwm@vger.kernel.org,
+        Anjelique Melendez <quic_amelende@quicinc.com>
+Subject: Re: [PATCH v2 3/7] soc: qcom: add QCOM PBS driver
+Message-ID: <85e4f0ef-baf8-4588-a10c-d64821c8c518@kadam.mountain>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [EXTERNAL] Re: [EXTERNAL] Re: [PATCH v11 07/10] net: ti:
- icssg-prueth: Add ICSSG Stats
-To:     Jakub Kicinski <kuba@kernel.org>
-CC:     MD Danish Anwar <danishanwar@ti.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Roger Quadros <rogerq@kernel.org>,
-        Simon Horman <simon.horman@corigine.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Eric Dumazet <edumazet@google.com>,
-        "David S. Miller" <davem@davemloft.net>, <nm@ti.com>, <srk@ti.com>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <netdev@vger.kernel.org>, <linux-omap@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20230724112934.2637802-1-danishanwar@ti.com>
- <20230724112934.2637802-8-danishanwar@ti.com>
- <20230725205014.04e4bba3@kernel.org>
- <296b0e98-4012-09f6-84cd-6f87a85f095f@ti.com>
- <20230726083915.1323c501@kernel.org>
-Content-Language: en-US
-From:   "Anwar, Md Danish" <a0501179@ti.com>
-In-Reply-To: <20230726083915.1323c501@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230725193423.25047-4-quic_amelende@quicinc.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 7/26/2023 9:09 PM, Jakub Kicinski wrote:
-> On Wed, 26 Jul 2023 16:06:06 +0530 Md Danish Anwar wrote:
->>> Are the bucket sizes configurable? Can we set the bucket sizes
->>> to standard RMON ones and use ethtool RMON stats?
->>
->> The bucket sizes are not configurable. Bucket size is read from hardware and is
->> fixed. I don't think we can configure bucket size and use ethtool RMON stats.
->> It's better to dump bucket sizes via ethtool -S.
-> 
-> The buckets in the ethtool API are up to the device to define.
-> Driver returns bucket ranges via struct ethtool_rmon_hist_range
-> from struct ethtool_ops::get_rmon_stats.
+Hi Anjelique,
 
-Sure Jakub I will try to implement this using ethtool_ops::get_rmon_stats.
+kernel test robot noticed the following build warnings:
+
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Anjelique-Melendez/dt-bindings-soc-qcom-Add-qcom-pbs-bindings/20230726-034011
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20230725193423.25047-4-quic_amelende%40quicinc.com
+patch subject: [PATCH v2 3/7] soc: qcom: add QCOM PBS driver
+config: parisc-randconfig-m041-20230726 (https://download.01.org/0day-ci/archive/20230727/202307270539.1JVFQf6W-lkp@intel.com/config)
+compiler: hppa-linux-gcc (GCC) 12.3.0
+reproduce: (https://download.01.org/0day-ci/archive/20230727/202307270539.1JVFQf6W-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
+| Closes: https://lore.kernel.org/r/202307270539.1JVFQf6W-lkp@intel.com/
+
+smatch warnings:
+drivers/soc/qcom/qcom-pbs.c:97 qcom_pbs_wait_for_ack() warn: should this be 'retries == -1'
+
+vim +97 drivers/soc/qcom/qcom-pbs.c
+
+c261225d90e1d3 Anjelique Melendez 2023-07-25   68  static int qcom_pbs_wait_for_ack(struct pbs_dev *pbs, u8 bit_pos)
+c261225d90e1d3 Anjelique Melendez 2023-07-25   69  {
+c261225d90e1d3 Anjelique Melendez 2023-07-25   70  	u16 retries = 2000, delay = 1000;
+c261225d90e1d3 Anjelique Melendez 2023-07-25   71  	int ret;
+c261225d90e1d3 Anjelique Melendez 2023-07-25   72  	u8 val;
+c261225d90e1d3 Anjelique Melendez 2023-07-25   73  
+c261225d90e1d3 Anjelique Melendez 2023-07-25   74  	while (retries--) {
+
+Change this to while (--retries) {
+
+c261225d90e1d3 Anjelique Melendez 2023-07-25   75  		ret = qcom_pbs_read(pbs, PBS_CLIENT_SCRATCH2, &val);
+c261225d90e1d3 Anjelique Melendez 2023-07-25   76  		if (ret < 0)
+c261225d90e1d3 Anjelique Melendez 2023-07-25   77  			return ret;
+c261225d90e1d3 Anjelique Melendez 2023-07-25   78  
+c261225d90e1d3 Anjelique Melendez 2023-07-25   79  		if (val == 0xFF) {
+c261225d90e1d3 Anjelique Melendez 2023-07-25   80  			/* PBS error - clear SCRATCH2 register */
+c261225d90e1d3 Anjelique Melendez 2023-07-25   81  			ret = qcom_pbs_write(pbs, PBS_CLIENT_SCRATCH2, 0);
+c261225d90e1d3 Anjelique Melendez 2023-07-25   82  			if (ret < 0)
+c261225d90e1d3 Anjelique Melendez 2023-07-25   83  				return ret;
+c261225d90e1d3 Anjelique Melendez 2023-07-25   84  
+c261225d90e1d3 Anjelique Melendez 2023-07-25   85  			dev_err(pbs->dev, "NACK from PBS for bit %u\n", bit_pos);
+c261225d90e1d3 Anjelique Melendez 2023-07-25   86  			return -EINVAL;
+c261225d90e1d3 Anjelique Melendez 2023-07-25   87  		}
+c261225d90e1d3 Anjelique Melendez 2023-07-25   88  
+c261225d90e1d3 Anjelique Melendez 2023-07-25   89  		if (val & BIT(bit_pos)) {
+c261225d90e1d3 Anjelique Melendez 2023-07-25   90  			dev_dbg(pbs->dev, "PBS sequence for bit %u executed!\n", bit_pos);
+c261225d90e1d3 Anjelique Melendez 2023-07-25   91  			break;
+c261225d90e1d3 Anjelique Melendez 2023-07-25   92  		}
+c261225d90e1d3 Anjelique Melendez 2023-07-25   93  
+c261225d90e1d3 Anjelique Melendez 2023-07-25   94  		usleep_range(delay, delay + 100);
+c261225d90e1d3 Anjelique Melendez 2023-07-25   95  	}
+c261225d90e1d3 Anjelique Melendez 2023-07-25   96  
+c261225d90e1d3 Anjelique Melendez 2023-07-25  @97  	if (!retries) {
+
+Otherwise this check needs to be: "if (retries == USHRT_MAX)".
+
+Btw, I really feel like people are generally better off declaring list
+iterators as int whenever possible.  I have written a very rude blog
+to that effect.
+https://staticthinking.wordpress.com/2022/06/01/unsigned-int-i-is-stupid/
+
+c261225d90e1d3 Anjelique Melendez 2023-07-25   98  		dev_err(pbs->dev, "Timeout for PBS ACK/NACK for bit %u\n", bit_pos);
+c261225d90e1d3 Anjelique Melendez 2023-07-25   99  		return -ETIMEDOUT;
+c261225d90e1d3 Anjelique Melendez 2023-07-25  100  	}
+c261225d90e1d3 Anjelique Melendez 2023-07-25  101  
+c261225d90e1d3 Anjelique Melendez 2023-07-25  102  	return 0;
+c261225d90e1d3 Anjelique Melendez 2023-07-25  103  }
 
 -- 
-Thanks and Regards,
-Md Danish Anwar
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
+
