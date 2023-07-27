@@ -2,239 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 43C7F76499E
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 09:58:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 273A77649B1
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 10:01:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232805AbjG0H6d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jul 2023 03:58:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34420 "EHLO
+        id S233200AbjG0IBd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jul 2023 04:01:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35110 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233725AbjG0H6G (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 03:58:06 -0400
-Received: from mail-vk1-xa31.google.com (mail-vk1-xa31.google.com [IPv6:2607:f8b0:4864:20::a31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58F6C44B2
-        for <devicetree@vger.kernel.org>; Thu, 27 Jul 2023 00:55:21 -0700 (PDT)
-Received: by mail-vk1-xa31.google.com with SMTP id 71dfb90a1353d-4866be648ffso52262e0c.2
-        for <devicetree@vger.kernel.org>; Thu, 27 Jul 2023 00:55:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20221208.gappssmtp.com; s=20221208; t=1690444520; x=1691049320;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=1wTiU1QS3gn92Yh5xPIntx1hOHsqD3iU5S77nWUG3kY=;
-        b=WqxAswDZe0hTtx1sTNc2UdE6IWvEEUTrw3Sc0NLTXmy9AaAxnZ5DZPIhovPW6/PXyl
-         WxUOeKXJv1eyc5MPUypFi9jiVkWYeIrUYGFaTMUBR8CxU2XH/SiY1M7iUHHqCOh/fyg5
-         y++iJgNR6/3/uD+iGQ8f98XSPjuaIIZ38+K06rANnsHlxL0rC5dFKwWqLRZ+zYa6ohC/
-         hYpjNKWoO7VUYGp1oTjY60V7D74DHMYbq75stMxPozPIH7leAEDmawyPXRoUkQ2/yi0N
-         6zWqgw8ADU0IAUchAY35VPC4FM5N9Hm2R9avXExo3z5+WuWhcOI7mOI8qyiiueNYZq3I
-         1N+Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690444520; x=1691049320;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=1wTiU1QS3gn92Yh5xPIntx1hOHsqD3iU5S77nWUG3kY=;
-        b=T2TzRbshk2QNtu5ZAAzs6Uo/B/8uy7yW7kpMB9e8xqtkIkEiT4pkCAezOb3/4ZvJfn
-         wbeQkHpYkHvJLLwByQW7mYpmTmnzx4HMr1VpglXcdAS5lpGhkTQZgZ9jWA7xwV3FWk5a
-         Q/YX8LzBGla7BfHGdj+cmIC6Zxw5r0OmDrYCUCWX7feDsIZdfZuKaCAPe6nGxu4GZNGT
-         VyhFVOvZMak2u1JrrHIVXaK8tG2doeVsZlvVuu7beKYqt5oRP7oLlhNIsNpvxSAdS4zE
-         HaQnNpE7ZI9ImNrh+f/zaM3V4emaQZ3j/rHmPEnCHHTh5dnnPfw9r1SFfxaKNjhSDiql
-         YW2Q==
-X-Gm-Message-State: ABy/qLYGvdfBWxctwP6r5TTK3kTVIklEF5eL4k0IHevpRxI5da9dwPhh
-        dLVoJfSd5IMoK6pXaX2dbC8C1k40Ix7oi8jHnlzkPA==
-X-Google-Smtp-Source: APBJJlFycQxS0qmSyJIf8rk3jC6nMZNyUdagNpc2N4FOR2b3DHnCdQTEpIAyaaVVB2RmwY9Yftt0S8T6ACfyCGX5ndw=
-X-Received: by 2002:a1f:5502:0:b0:486:6861:a3b3 with SMTP id
- j2-20020a1f5502000000b004866861a3b3mr248647vkb.8.1690444520413; Thu, 27 Jul
- 2023 00:55:20 -0700 (PDT)
+        with ESMTP id S233512AbjG0IBD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 04:01:03 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C12D35A6;
+        Thu, 27 Jul 2023 00:58:29 -0700 (PDT)
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36R6MHWP022930;
+        Thu, 27 Jul 2023 07:58:25 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=syafepGkFy0zwA7WJbckphmJpQGIQy+5lFV2B64xJNc=;
+ b=myZdpTti5t7poGG2OugYGxftmhT2NQSyTZvG0FHhAUaVN1Q4Ee1/AWCafDNVyoa5Dyaw
+ rZLgqaj0bHLFZY2SReQhD9iJoZjNahWgf1qsDjBu9fsTgBjAtRXj1mOyDIFi/Aoijgeg
+ eT/ztugiw3e+Rcpf6d6DcMqEHhf2uO98UJqpy+9V/UdBuHjnnQTS/86oZWgEg5Rx/V6u
+ 5TMgipLVbi3i0UU0mGXdlDzzhOGYiK2H2d6yK9TPxYGD+TlpVwaA3rpyIlcRb6gk7RB3
+ p9fClFYEea8Cs9ZtR2P3lWT+t8ZrVDuYDI8aN9x5gbIn/Y1LePy8fyAESAsZyp0a7ZL8 eg== 
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3s3k7u05vb-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 27 Jul 2023 07:58:25 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 36R7wNR7006527
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 27 Jul 2023 07:58:23 GMT
+Received: from [10.239.132.204] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Thu, 27 Jul
+ 2023 00:57:45 -0700
+Message-ID: <9ce4a279-83b8-5fbe-564c-22e33cd37124@quicinc.com>
+Date:   Thu, 27 Jul 2023 15:57:43 +0800
 MIME-Version: 1.0
-References: <20230724063414.102805-1-okan.sahin@analog.com> <20230724063414.102805-3-okan.sahin@analog.com>
-In-Reply-To: <20230724063414.102805-3-okan.sahin@analog.com>
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-Date:   Thu, 27 Jul 2023 09:55:09 +0200
-Message-ID: <CAMRc=Md4pTq5UyDUf44NuByobpYtGGOo0twQnBq9NW+Zt48NdQ@mail.gmail.com>
-Subject: Re: [PATCH v3 2/2] gpio: ds4520: Add ADI DS4520 GPIO Expander Support
-To:     Okan Sahin <okan.sahin@analog.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 5/6] dt-bindings: arm: qcom,ids: add SoC ID for SM4450
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>
+CC:     <quic_tsoni@quicinc.com>, <quic_shashim@quicinc.com>,
+        <quic_kaushalk@quicinc.com>, <quic_tdas@quicinc.com>,
+        <quic_tingweiz@quicinc.com>, <quic_aiquny@quicinc.com>,
+        <kernel@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20230727023508.18002-1-quic_tengfan@quicinc.com>
+ <20230727023508.18002-6-quic_tengfan@quicinc.com>
+ <bd0a6b77-96ef-f9c3-8f51-ee57699294cd@linaro.org>
+From:   Tengfei Fan <quic_tengfan@quicinc.com>
+In-Reply-To: <bd0a6b77-96ef-f9c3-8f51-ee57699294cd@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: Ck8yrDs3-7mJeRQ56qu6ZMQ6jx7wu_cZ
+X-Proofpoint-ORIG-GUID: Ck8yrDs3-7mJeRQ56qu6ZMQ6jx7wu_cZ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-07-26_08,2023-07-26_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 spamscore=0
+ mlxscore=0 lowpriorityscore=0 malwarescore=0 bulkscore=0 mlxlogscore=616
+ suspectscore=0 priorityscore=1501 clxscore=1015 phishscore=0 adultscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2306200000
+ definitions=main-2307270069
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 24, 2023 at 8:34=E2=80=AFAM Okan Sahin <okan.sahin@analog.com> =
-wrote:
->
-> The DS4520 is a 9-bit nonvolatile (NV) I/O expander.
-> It offers users a digitally programmable alternative
-> to hardware jumpers and mechanical switches that are
-> being used to control digital logic node.
->
-> Signed-off-by: Okan Sahin <okan.sahin@analog.com>
-> ---
 
-This is such a sweet little driver, I love all these abstraction
-layers we now have.
 
-Some nits below.
+在 7/27/2023 2:57 PM, Krzysztof Kozlowski 写道:
+> On 27/07/2023 04:35, Tengfei Fan wrote:
+>> Add the ID for the Qualcomm SM4450 SoC.
+>>
+>> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
+>> ---
+>>   include/dt-bindings/arm/qcom,ids.h | 1 +
+>>   1 file changed, 1 insertion(+)
+>>
+>> diff --git a/include/dt-bindings/arm/qcom,ids.h b/include/dt-bindings/arm/qcom,ids.h
+>> index bcbe9ee2cdaf..72dccbc7a777 100644
+>> --- a/include/dt-bindings/arm/qcom,ids.h
+>> +++ b/include/dt-bindings/arm/qcom,ids.h
+>> @@ -250,6 +250,7 @@
+>>   #define QCOM_ID_QRU1000			539
+>>   #define QCOM_ID_QDU1000			545
+>>   #define QCOM_ID_QDU1010			587
+>> +#define QCOM_ID_SM4450			568
+> 
+> Does not look correctly placed.
+sure, will update place.
+Due to this below have "#define QCOM_ID_IPQ5019                 569", so 
+placed this location, next will update the place of QCOM_ID_IPQ5019 and 
+QCOM_ID_SM4450.
+> 
+> Best regards,
+> Krzysztof
+> 
 
->  drivers/gpio/Kconfig       | 11 +++++
->  drivers/gpio/Makefile      |  1 +
->  drivers/gpio/gpio-ds4520.c | 89 ++++++++++++++++++++++++++++++++++++++
->  3 files changed, 101 insertions(+)
->  create mode 100644 drivers/gpio/gpio-ds4520.c
->
-> diff --git a/drivers/gpio/Kconfig b/drivers/gpio/Kconfig
-> index 13be729710f2..5f89e46d6411 100644
-> --- a/drivers/gpio/Kconfig
-> +++ b/drivers/gpio/Kconfig
-> @@ -1000,6 +1000,17 @@ config GPIO_ADNP
->           enough to represent all pins, but the driver will assume a
->           register layout for 64 pins (8 registers).
->
-> +config GPIO_DS4520
-> +       tristate "DS4520 I2C GPIO expander"
-> +       select REGMAP_I2C
-> +       select GPIO_REGMAP
-> +       help
-> +         GPIO driver for ADI DS4520 I2C-based GPIO expander.
-> +         Say yes here to enable the GPIO driver for the ADI DS4520 chip.
-> +
-> +         To compile this driver as a module, choose M here: the module w=
-ill
-> +         be called gpio-ds4520.
-> +
->  config GPIO_GW_PLD
->         tristate "Gateworks PLD GPIO Expander"
->         depends on OF_GPIO
-> diff --git a/drivers/gpio/Makefile b/drivers/gpio/Makefile
-> index c048ba003367..6f8656d5d617 100644
-> --- a/drivers/gpio/Makefile
-> +++ b/drivers/gpio/Makefile
-> @@ -52,6 +52,7 @@ obj-$(CONFIG_GPIO_DA9052)             +=3D gpio-da9052.=
-o
->  obj-$(CONFIG_GPIO_DA9055)              +=3D gpio-da9055.o
->  obj-$(CONFIG_GPIO_DAVINCI)             +=3D gpio-davinci.o
->  obj-$(CONFIG_GPIO_DLN2)                        +=3D gpio-dln2.o
-> +obj-$(CONFIG_GPIO_DS4520)              +=3D gpio-ds4520.o
->  obj-$(CONFIG_GPIO_DWAPB)               +=3D gpio-dwapb.o
->  obj-$(CONFIG_GPIO_EIC_SPRD)            +=3D gpio-eic-sprd.o
->  obj-$(CONFIG_GPIO_EM)                  +=3D gpio-em.o
-> diff --git a/drivers/gpio/gpio-ds4520.c b/drivers/gpio/gpio-ds4520.c
-> new file mode 100644
-> index 000000000000..577ffb4b8c50
-> --- /dev/null
-> +++ b/drivers/gpio/gpio-ds4520.c
-> @@ -0,0 +1,89 @@
-> +// SPDX-License-Identifier: GPL-2.0-or-later
-> +/*
-> + * Copyright (c) 2023 Analog Devices, Inc.
-> + * Driver for the DS4520 I/O Expander
-> + */
-> +
-> +#include <linux/device.h>
-> +#include <linux/gpio/driver.h>
-> +#include <linux/gpio/regmap.h>
-> +#include <linux/i2c.h>
-> +#include <linux/property.h>
-> +#include <linux/regmap.h>
-> +
-> +#define DS4520_PULLUP0         0xF0
-> +#define DS4520_IO_CONTROL0     0xF2
-> +#define DS4520_IO_STATUS0      0xF8
-> +
-> +static const struct regmap_config ds4520_regmap_config =3D {
-> +       .reg_bits =3D 8,
-> +       .val_bits =3D 8,
-> +};
-> +
-> +static int ds4520_gpio_probe(struct i2c_client *client)
-> +{
-> +       struct gpio_regmap_config config =3D { };
-> +       struct device *dev =3D &client->dev;
-> +       struct regmap *regmap;
-> +       u32 ngpio;
-> +       u32 base;
-> +       int ret;
-> +
-> +       ret =3D device_property_read_u32(dev, "reg", &base);
-> +       if (ret) {
-> +               dev_err_probe(dev, ret,
-> +                         "Missing 'reg' property.\n");
-> +               return -EINVAL;
-> +       }
-
-Please add a newline here.
-
-> +       ret =3D device_property_read_u32(dev, "ngpios", &ngpio);
-> +       if (ret) {
-> +               dev_err_probe(dev, ret,
-> +                         "Missing 'ngpios' property.\n");
-> +               return -EINVAL;
-> +       }
-
-And here.
-
-> +       regmap =3D devm_regmap_init_i2c(client, &ds4520_regmap_config);
-> +       if (IS_ERR(regmap)) {
-> +               ret =3D PTR_ERR(regmap);
-> +               dev_err_probe(dev, ret,
-> +                             "Failed to allocate register map\n");
-> +               return ret;
-> +       }
-> +
-> +       config.regmap =3D regmap;
-> +       config.parent =3D dev;
-> +       config.ngpio =3D ngpio;
-> +
-> +       config.reg_dat_base =3D base + DS4520_IO_STATUS0;
-> +       config.reg_set_base =3D base + DS4520_PULLUP0;
-> +       config.reg_dir_out_base =3D base + DS4520_IO_CONTROL0;
-> +
-> +       return PTR_ERR_OR_ZERO(devm_gpio_regmap_register(dev, &config));
-> +}
-> +
-> +static const struct of_device_id ds4520_gpio_of_match_table[] =3D {
-> +       {
-> +               .compatible =3D "adi,ds4520-gpio"
-
-Keep this on a single line.
-
-> +       },
-> +       { }
-> +};
-> +MODULE_DEVICE_TABLE(of, ds4520_gpio_of_match_table);
-> +
-> +static const struct i2c_device_id ds4520_gpio_id_table[] =3D {
-> +       { "ds4520-gpio" },
-> +       { }
-> +};
-> +MODULE_DEVICE_TABLE(i2c, ds4520_gpio_id_table);
-> +
-> +static struct i2c_driver ds4520_gpio_driver =3D {
-> +       .driver =3D {
-> +               .name =3D "ds4520-gpio",
-> +               .of_match_table =3D ds4520_gpio_of_match_table,
-> +       },
-> +       .probe_new =3D ds4520_gpio_probe,
-> +       .id_table =3D ds4520_gpio_id_table,
-> +};
-> +module_i2c_driver(ds4520_gpio_driver);
-> +
-> +MODULE_DESCRIPTION("DS4520 I/O Expander");
-> +MODULE_AUTHOR("Okan Sahin <okan.sahin@analog.com>");
-> +MODULE_LICENSE("GPL");
-> --
-> 2.30.2
->
-
-Bart
+-- 
+Thx and BRs,
+Tengfei Fan
