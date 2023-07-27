@@ -2,127 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D668776514E
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 12:35:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4FAEB765159
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 12:37:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234044AbjG0Ke6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jul 2023 06:34:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32904 "EHLO
+        id S234150AbjG0Kh4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jul 2023 06:37:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34228 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234043AbjG0Ke6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 06:34:58 -0400
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76D8D19A7;
-        Thu, 27 Jul 2023 03:34:56 -0700 (PDT)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id CBAA01BF207;
-        Thu, 27 Jul 2023 10:34:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1690454095;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=49SapdFsUUzXkb0zmYsMHZkg7CHiz7VOLc7j0san1b4=;
-        b=D7sErss6g6hwoemn0ONI4uqJb+K/IsweOTLB1naVOQSB0jnxItj4HIIYOc01Bt1PCbQWls
-        x2lcEAR9Bd9VjcK6MIkZw2GgBXiwTdL0BWCBkLp6FGIk8zL9HeoByCjQcU71EgLZvHIX9c
-        ENATbxHfRlfF0SU97Zp8/habefY7ZArdGsISAkXbKwdQKnHTa46Poh7Izti1MQgJHfgtY+
-        +trXOG76m0g/9BUX139rvy1EaJBvWlTKa0L2vTIHxz+5+JsANW+49ziW/vf766xYPBj86D
-        /xe6CDk60hgIFLNs0LFEukyLTaCTJBZRtsZB+11cVUQUOpWASao2sGMwjhfrJQ==
-Date:   Thu, 27 Jul 2023 12:34:49 +0200
-From:   Herve Codina <herve.codina@bootlin.com>
-To:     Conor Dooley <conor@kernel.org>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Qiang Zhao <qiang.zhao@nxp.com>, Li Yang <leoyang.li@nxp.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Shengjiu Wang <shengjiu.wang@gmail.com>,
-        Xiubo Li <Xiubo.Lee@gmail.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Nicolin Chen <nicoleotsuka@gmail.com>,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Randy Dunlap <rdunlap@infradead.org>, netdev@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, alsa-devel@alsa-project.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v2 05/28] dt-bindings: net: Add support for QMC HDLC
-Message-ID: <20230727123449.0ab1c58e@bootlin.com>
-In-Reply-To: <20230727-decidable-sterile-06ef617c144b@spud>
-References: <20230726150225.483464-1-herve.codina@bootlin.com>
-        <20230726150225.483464-6-herve.codina@bootlin.com>
-        <20230727-talcum-backside-5bdbe2171fb6@spud>
-        <20230727110948.7926a532@bootlin.com>
-        <20230727-decidable-sterile-06ef617c144b@spud>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-redhat-linux-gnu)
+        with ESMTP id S234029AbjG0Khy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 06:37:54 -0400
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBE2726A6
+        for <devicetree@vger.kernel.org>; Thu, 27 Jul 2023 03:37:51 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-98dfb3f9af6so106246166b.2
+        for <devicetree@vger.kernel.org>; Thu, 27 Jul 2023 03:37:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1690454270; x=1691059070;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=mUepUY1ETJBpPCS0rz2zlbE3uVvxNdDGso2o/AQI4jo=;
+        b=Tb6AZRgUS/lthT4HEjc/nP8w/VjoCG8j8LUADVxrSJcPVEqZPnZ/9sIGQ/0A65h9nf
+         fFvENy5bDBFLuONVr24tJZsqt5yUbE+HpbcghUl+xy0mZCi150XvN2bM9XJn/odW2AG0
+         j3oa/2NJcV+7zbi9D9022hLLvVwTb+k+FP8Y7d1+8rHVNmG6jnePGroAYH5PFViFD4wG
+         zU8yvVA/1adhFiURMlP1JOBNkr2C1L1q1aFNyl1uGBmXF0Zkq4w2u3r7WOZoWBDzaU2L
+         M8AMJmaxEpk8eBrzmeRKrbSgqWgE2ULn6gtBNW+cZcs/w5Fq/m2HD+Q4RAMLWSPj76OO
+         jIPg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690454270; x=1691059070;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=mUepUY1ETJBpPCS0rz2zlbE3uVvxNdDGso2o/AQI4jo=;
+        b=ku3C/KpckB0uA+yC3WnuT4T0QMSaKxb8raDczfBl/m5P+PrWUhHb7yKm7CJsaNdzBW
+         Xy1S6zZ3YajpFHsmYaxlIKg6nzmpa/Uh4Knu3Cfw1QEsFdX8vtuDU7Z11lG4uDK6VWg2
+         obJfartaJIS3ZZnzI5MqzKGCYZ31PH+jM/dNymexWg+zEAzR5RwKOzTcJ6kRHuWhaWp4
+         4FDndstAU3SQSoCYYDLuEAAEkz4xctVUBRvsBXUhBtsVLAttdMHPCrRqsDMJsJ+2I2Us
+         GAoFu5tytH0dXz2o7e3353bixoe/iel4SYOoayaco+dMtEYj65vLDPGavkQLtgh1HMPa
+         Fo3g==
+X-Gm-Message-State: ABy/qLYiYLgYpaNKsb/0+4RyyHJAvaO3wZdkBqXke3EwUiI0mOXHBa7q
+        ZFH3XyptjtHPJaIKQtxMN5W89h2/x0UMvQANMbs=
+X-Google-Smtp-Source: APBJJlH7XY3+rjbYP7kE0i960l4gmZpZUAnVjWzO3suqYO8UT1jOMw/KclUI2AbLbLl2euWq4KrN7w==
+X-Received: by 2002:a17:906:310d:b0:969:93f2:259a with SMTP id 13-20020a170906310d00b0096993f2259amr1581738ejx.73.1690454270359;
+        Thu, 27 Jul 2023 03:37:50 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id f5-20020a1709064dc500b0098f33157e7dsm617483ejw.82.2023.07.27.03.37.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 27 Jul 2023 03:37:49 -0700 (PDT)
+Message-ID: <96a82a51-6e26-cee2-c095-98fac749393f@linaro.org>
+Date:   Thu, 27 Jul 2023 12:37:47 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH 1/2] dt-bindings:iio:frequency:admv1013: add vcc regs
+Content-Language: en-US
+To:     Antoniu Miclaus <antoniu.miclaus@analog.com>, jic23@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230727102309.92479-1-antoniu.miclaus@analog.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230727102309.92479-1-antoniu.miclaus@analog.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: herve.codina@bootlin.com
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Conor,
-
-On Thu, 27 Jul 2023 10:53:15 +0100
-Conor Dooley <conor@kernel.org> wrote:
-
-> On Thu, Jul 27, 2023 at 11:09:48AM +0200, Herve Codina wrote:
-> > On Thu, 27 Jul 2023 09:19:59 +0100
-> > Conor Dooley <conor@kernel.org> wrote:  
-> > > On Wed, Jul 26, 2023 at 05:02:01PM +0200, Herve Codina wrote:  
+On 27/07/2023 12:23, Antoniu Miclaus wrote:
+> Add bindings for the VCC regulators of the ADMV1013 microware
+> upconverter.
 > 
-> > If needed, I can change to:
-> >   title: QMC (QUICC Multichannel Controller) HDLC
-> > Let me known if it is better to you.  
-> 
-> If it were me writing the binding, I'd probably use something like
-> "Freescale/NXP QUICC Multichannel Controller (QMC) HDLC", but it is not
-> a big deal, I just had a "wtf is this" moment :)
+> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
 
-I will change to "Freescale/NXP QUICC Multichannel Controller (QMC) HDLC" in
-the next iteration.
+Subject: missing spaces between prefix parts.
 
+> ---
+>  .../bindings/iio/frequency/adi,admv1013.yaml  | 50 +++++++++++++++++++
+>  1 file changed, 50 insertions(+)
 > 
-> 
-> 
-> > > > +  fsl,qmc-chan:  
-> > > 
-> > > Perhaps I am just showing my lack of knowledge in this area, but what is
-> > > fsl specific about wanting a reference to the channel of a "QMC"?
-> > > Is this something that hardware from other manufacturers would not also
-> > > want to do?  
-> > 
-> > The QMC and the QMC channel are something specific to the SoC. This IP is only
-> > available on some Freescale/NXP SoCs.
-> > 
-> > When I upstreamed the 'fsl,qmc-audio.yaml', I first used a generic name for this
-> > property and Kristoff asked to change to a vendor prefixed name.
-> >   https://lore.kernel.org/linux-kernel/1dfade07-f8c4-2e16-00dc-c7d183708259@linaro.org/
-> > 
-> > Based on this, as the property 'fsl,qmc-chan' has the exact same meaning in
-> > fsl,qmc-audio.yaml and fsl,qmc-hdlc.yaml, I use the same name.  
-> 
-> Okay, thanks for explaining!
+> diff --git a/Documentation/devicetree/bindings/iio/frequency/adi,admv1013.yaml b/Documentation/devicetree/bindings/iio/frequency/adi,admv1013.yaml
+> index fc813bcb6532..6660299ac1ad 100644
+> --- a/Documentation/devicetree/bindings/iio/frequency/adi,admv1013.yaml
+> +++ b/Documentation/devicetree/bindings/iio/frequency/adi,admv1013.yaml
+> @@ -39,6 +39,46 @@ properties:
+>      description:
+>        Analog voltage regulator.
+>  
+> +  vcc-drv-supply:
+> +    description:
+> +      RF Driver voltage regulator.
+> +
+> +  vcc2-drv-supply:
+> +    description:
+> +      RF predriver voltage regulator.
+> +
+> +  vcc-vva-supply:
+> +    description:
+> +      VVA Control Circuit voltage regulator.
+> +
+> +  vcc-amp1-supply:
+> +    description:
+> +      RF Amplifier 1 voltage regulator.
+> +
+> +  vcc-amp2-supply:
+> +    description:
+> +      RF Amplifier 2 voltage regulator.
+> +
+> +  vcc-env-supply:
+> +    description:
+> +      Envelope Detector voltage regulator.
+> +
+> +  vcc-bg-supply:
+> +    description:
+> +      Mixer Chip Band Gap Circuit voltage regulator.
+> +
+> +  vcc-bg2-supply:
+> +    description:
+> +      VGA Chip Band Gap Circuit voltage regulator.
+> +
+> +  vcc-mixer-supply:
+> +    description:
+> +      Mixer voltage regulator.
+> +
+> +  vcc-quad-supply:
+> +    description:
+> +      Quadruppler voltage regulator.
+> +
 
-You're welcome.
+You made them required in the driver, so they should be required here as
+well. They should be required anyway, because AFAIU they have to be
+provided.
 
-Regards,
-Hervé
+OTOH, this will break the ABI, so your driver might need to take them as
+optional.
+
+Best regards,
+Krzysztof
 
