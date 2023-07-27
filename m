@@ -2,66 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7DAD87655A7
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 16:13:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E75F7655CF
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 16:20:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232955AbjG0ONj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jul 2023 10:13:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49496 "EHLO
+        id S233501AbjG0OUk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jul 2023 10:20:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54184 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232852AbjG0ONi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 10:13:38 -0400
-Received: from relay01.th.seeweb.it (relay01.th.seeweb.it [IPv6:2001:4b7a:2000:18::162])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8DDB2684
-        for <devicetree@vger.kernel.org>; Thu, 27 Jul 2023 07:13:35 -0700 (PDT)
-Received: from SoMainline.org (82-72-63-87.cable.dynamic.v4.ziggo.nl [82.72.63.87])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 43D5B20443;
-        Thu, 27 Jul 2023 16:13:30 +0200 (CEST)
-Date:   Thu, 27 Jul 2023 16:13:28 +0200
-From:   Marijn Suijten <marijn.suijten@somainline.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Krishna Manikandan <quic_mkrishn@quicinc.com>,
-        Loic Poulain <loic.poulain@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        linux-clk@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, Lux Aliaga <they@mint.lgbt>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v4 00/17] drm/msm: Add SM6125 MDSS/DPU hardware and
- enable Sony Xperia 10 II panel
-Message-ID: <zvmz7i5jgrx27ildrc3tpcnrfgeivr3itv5qlwidsbr5iu5wwa@y3v2sehpw3vy>
-References: <20230723-sm6125-dpu-v4-0-a3f287dd6c07@somainline.org>
- <169046051039.1413710.12901529844343078449.b4-ty@linaro.org>
- <6c5197c9-e24d-70ac-fd75-2c72369d8b7f@linaro.org>
+        with ESMTP id S233101AbjG0OUk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 10:20:40 -0400
+Received: from mail-oi1-x232.google.com (mail-oi1-x232.google.com [IPv6:2607:f8b0:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 884241724
+        for <devicetree@vger.kernel.org>; Thu, 27 Jul 2023 07:20:38 -0700 (PDT)
+Received: by mail-oi1-x232.google.com with SMTP id 5614622812f47-3a3c78ede4bso837267b6e.2
+        for <devicetree@vger.kernel.org>; Thu, 27 Jul 2023 07:20:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ndufresne-ca.20221208.gappssmtp.com; s=20221208; t=1690467638; x=1691072438;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=mC/8dT0tbAgVPKUdoYex0WCuu0voI4R5OMKo5aDOKZM=;
+        b=Oele9AnG3ahVCgEL7oOMUC6ZgJCO0eufkr86ZMpvFvAuohGbxNOE6LC7Ripx/UoCk5
+         gv2dkZy06BpAnsyABkfNUizbH3hNqGJgp5tK56pN9unGXH9kg+TM2d4W4+TQZr4bfbWB
+         b5AJk4OTF5H0S+TzViJR2ob0AkxdCo+X2jCc6gp4Js/dRRb1ECRrm2sILEBYcFZNRVfK
+         Y6aTwdWoW2xzc5P5j/mgukYsnRWijhbxe3UrlkIHvqreSyJdVepbthR2ZF1vcN51bjlT
+         aGmnACLfdRUONpRmap0i2ZLgPPk0DcCtUAdtmXJKQNXaqigtG75Hagq4G5bZUR9pAzGz
+         QFAA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690467638; x=1691072438;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=mC/8dT0tbAgVPKUdoYex0WCuu0voI4R5OMKo5aDOKZM=;
+        b=bAPI1NuPA8XHAgZGIlUoGT3HiwchXWFgyv003D57nmObduWfWKjjdCJckf0a4QJgJI
+         DAZ3GPVhWPhy8jPBDALoBewIoKX0+LR8z0uzH4IL1IPu7RzhqKLgtFDFpTqMIP3uoeyf
+         I7225EYbEPEOEAcss6xTTfjrjA0l4S8B50DMz4JGmO/lDulY4mOlxXmD5yKXDslJC2Ra
+         T7wvf9vceeTuoi2de11JWAmzLGzUxbSvWwlnkTK3uxfD9UC28A4yOY8S2nQhw0Eh1FDv
+         fsB8ZYfwq4CSLHYQyC+tBxesLpLu1/y0CZaHVg9mU8OZc9RRABXthYSdWE7TA3HsnPsZ
+         ib/A==
+X-Gm-Message-State: ABy/qLbbAoxPsMzgpvRlV/E1/dNmcG9XLEgRdZeMCOIXVG3PxuVpvS45
+        y4pnsZEsdZsOwPJdVKdwFWqoDA==
+X-Google-Smtp-Source: APBJJlFERWkt+8NnUJfszQzEUSanMHktHMuKfMAKA6dmMjeCPBSe0dzn0I3d/DlYO4abwGOj1HeEYQ==
+X-Received: by 2002:a05:6808:2085:b0:3a3:7245:d36c with SMTP id s5-20020a056808208500b003a37245d36cmr3468249oiw.43.1690467637836;
+        Thu, 27 Jul 2023 07:20:37 -0700 (PDT)
+Received: from nicolas-tpx395.localdomain ([2606:6d00:10:580::7a9])
+        by smtp.gmail.com with ESMTPSA id t13-20020ac8530d000000b004033992e2dbsm449569qtn.45.2023.07.27.07.19.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 27 Jul 2023 07:20:02 -0700 (PDT)
+Message-ID: <51e4ece5250c3345dae4956fbb4d4dbb5ffdde38.camel@ndufresne.ca>
+Subject: Re: [PATCH v2 2/2] media: imagination: Add E5010 JPEG Encoder driver
+From:   Nicolas Dufresne <nicolas@ndufresne.ca>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Devarsh Thakkar <devarsht@ti.com>, mchehab@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, hverkuil-cisco@xs4all.nl,
+        laurent.pinchart@ideasonboard.com, eugen.hristev@collabora.com,
+        ezequiel@vanguardiasur.com.ar, u.kleine-koenig@pengutronix.de,
+        sakari.ailus@linux.intel.com, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     praneeth@ti.com, nm@ti.com, vigneshr@ti.com, a-bhatia1@ti.com,
+        j-luthra@ti.com, b-brnich@ti.com, detheridge@ti.com,
+        p-mantena@ti.com, vijayp@ti.com
+Date:   Thu, 27 Jul 2023 10:19:29 -0400
+In-Reply-To: <ef4825d6-1016-cbf2-0cd3-94b0fc4165f4@linaro.org>
+References: <20230727112546.2201995-1-devarsht@ti.com>
+         <20230727112546.2201995-3-devarsht@ti.com>
+         <ef4825d6-1016-cbf2-0cd3-94b0fc4165f4@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.48.4 (3.48.4-1.fc38) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <6c5197c9-e24d-70ac-fd75-2c72369d8b7f@linaro.org>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,61 +82,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2023-07-27 16:34:49, Dmitry Baryshkov wrote:
-> On 27/07/2023 15:22, Dmitry Baryshkov wrote:
-> > 
-> > On Sun, 23 Jul 2023 18:08:38 +0200, Marijn Suijten wrote:
-> >> Bring up the SM6125 DPU now that all preliminary series (such as INTF
-> >> TE) have been merged (for me to test the hardware properly), and most
-> >> other conflicting work (barring ongoing catalog *improvements*) has made
-> >> its way in as well or is still being discussed.
-> >>
-> >> The second part of the series complements that by immediately utilizing
-> >> this hardware in DT, and even enabling the MDSS/DSI nodes complete with
-> >> a 6.0" 1080x2520 panel for Sony's Seine PDX201 (Xperia 10 II).
-> >>
-> >> [...]
-> > 
-> > Applied, thanks!
-> > 
-> > [01/17] drm/msm/dsi: Drop unused regulators from QCM2290 14nm DSI PHY config
-> >          https://gitlab.freedesktop.org/lumag/msm/-/commit/a7e3fda5948a
-> > [02/17] arm64: dts: qcom: sm6125: Pad APPS IOMMU address to 8 characters
-> >          https://gitlab.freedesktop.org/lumag/msm/-/commit/b7d35a8eae54
-> > [03/17] arm64: dts: qcom: sm6125: Sort spmi_bus node numerically by reg
-> >          https://gitlab.freedesktop.org/lumag/msm/-/commit/2be52ca96a71
-> 
-> Of course, these two patches sneaked in by the mistake, dropped them now.
+Hi Krzysztof,
 
-Lovely, glad to have that resolved so quickly.  Thanks!
+Le jeudi 27 juillet 2023 =C3=A0 14:13 +0200, Krzysztof Kozlowski a =C3=A9cr=
+it=C2=A0:
+> On 27/07/2023 13:25, Devarsh Thakkar wrote:
+> ...
+>=20
+> > +
+> > +static int e5010_release(struct file *file)
+> > +{
+> > +	struct e5010_dev *dev =3D video_drvdata(file);
+> > +	struct e5010_context *ctx =3D file->private_data;
+> > +
+> > +	dprintk(dev, 1, "Releasing instance: 0x%p, m2m_ctx: 0x%p\n", ctx, ctx=
+->fh.m2m_ctx);
+>=20
+> Why do you print pointers? Looks like code is buggy and you still keep
+> debugging it.
 
-- Marijn
+Its relatively common practice in linux-media to leave a certain level of t=
+races
+to help future debugging if a bug is seen. These uses v4l2 debug helper, an=
+d are
+only going to print if users enable them through the associated sysfs
+configuration. I do hope though there isn't any issue with IRQ triggering a=
+fter
+the instance is released, that would be buggy for sure, but I don't think t=
+his
+is the case considering the level of documented testing that have been done=
+.
 
-> 
-> > [04/17] dt-bindings: display/msm: Remove DSI1 ports from SM6350/SM6375 example
-> >          https://gitlab.freedesktop.org/lumag/msm/-/commit/4be2c19261fc
-> > [05/17] dt-bindings: clock: qcom,dispcc-sm6125: Require GCC PLL0 DIV clock
-> >          https://gitlab.freedesktop.org/lumag/msm/-/commit/4f86e343f3c6
-> > [06/17] dt-bindings: clock: qcom,dispcc-sm6125: Allow power-domains property
-> >          https://gitlab.freedesktop.org/lumag/msm/-/commit/91043642f28c
-> > [07/17] dt-bindings: display/msm: dsi-controller-main: Document SM6125
-> >          https://gitlab.freedesktop.org/lumag/msm/-/commit/cf5859476e5d
-> > [08/17] dt-bindings: display/msm: sc7180-dpu: Describe SM6125
-> >          https://gitlab.freedesktop.org/lumag/msm/-/commit/04a664dffd19
-> > [09/17] dt-bindings: display/msm: Add SM6125 MDSS
-> >          https://gitlab.freedesktop.org/lumag/msm/-/commit/3bde3b8f8a04
-> > [10/17] drm/msm/dpu: Add SM6125 support
-> >          https://gitlab.freedesktop.org/lumag/msm/-/commit/76c5dffd0bc4
-> > [11/17] drm/msm/mdss: Add SM6125 support
-> >          https://gitlab.freedesktop.org/lumag/msm/-/commit/de50357565d3
-> > [12/17] dt-bindings: msm: dsi-phy-14nm: Document SM6125 variant
-> >          https://gitlab.freedesktop.org/lumag/msm/-/commit/cdac445883cc
-> > [13/17] drm/msm/dsi: Reuse QCM2290 14nm DSI PHY configuration for SM6125
-> >          https://gitlab.freedesktop.org/lumag/msm/-/commit/7638d8059ace
-> > 
-> > Best regards,
-> 
-> -- 
-> With best wishes
-> Dmitry
-> 
+I'd be happy to see what others have to say on the subject, as its been a
+recurrent subject of confrontation lately. With pretty agressive messages
+associated with that.
+
+regards,
+Nicolas
+
+p.s. does not invalidate the question, since for this driver, there is only=
+ ever
+going to be one m2m_ctx, so the question "Why do you print pointers?" is
+entirely valid I believe.
+
+. . .
