@@ -2,418 +2,275 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 308E776535E
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 14:13:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C20076538C
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 14:22:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233693AbjG0MNx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jul 2023 08:13:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54954 "EHLO
+        id S231908AbjG0MW3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jul 2023 08:22:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58762 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230154AbjG0MNw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 08:13:52 -0400
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E08962D54
-        for <devicetree@vger.kernel.org>; Thu, 27 Jul 2023 05:13:47 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-99bc512526cso120460166b.1
-        for <devicetree@vger.kernel.org>; Thu, 27 Jul 2023 05:13:47 -0700 (PDT)
+        with ESMTP id S233913AbjG0MW2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 08:22:28 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50DEC30C0;
+        Thu, 27 Jul 2023 05:21:58 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id 2adb3069b0e04-4fdd14c1fbfso1580053e87.1;
+        Thu, 27 Jul 2023 05:21:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690460026; x=1691064826;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=2mH+Rp4hSfnfzF/tM/KbcwfyGEwPjJ6t1DC9fcpN9vs=;
-        b=ULSIU0yhJ878Y/H7wl/vpxvHi5mUdrRaM9uzsVLLNJB1UZr97BZEzMrhZFmMGFDkNh
-         l/LPI3x4SP/pfKtk6Lk2ouk1ZZrQIpB4OBk4gaYtV6heVaWKLbJc/e2bEVqaC0dVhQNk
-         bbAAaK9gXR6sUhFHWm0ID6CmcLraEIadZ6fEDNAJMzIrqCiIqFtxy0dnre3xqrc5L8L9
-         fssUUNom/Hir5FY6BVjYQmW+Pr/bJgVpt4obun4yuyKyZznbsW/DP3V1hCZg8CwsyYzy
-         yq8amupcCMsW1Dsk5FEyTtjlJc/1dHIQhPp9U+/doOkJQTc9EYvuLjZ9aLRuQrx6WycC
-         qJMA==
+        d=gmail.com; s=20221208; t=1690460498; x=1691065298;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=3lv8NLN1fG/Lk2oimzBPYTF7qXzdm4FqQVkw6hJCTj0=;
+        b=CPepNmNZ6Jty33pDVwH9xvXmD+1cPXg/Vmwt7+FqF8RfxBa0ulxIh/DPy1OZJhc1Om
+         QnP/1XlTi30iKhTvDoe0/XoUYySZ9IlSxGvjiZ+WWog/Xt/T8fswOqE8avOtrFb8OGIY
+         aKJpFdPDl1Jqlf4OlJxoeMo5JyLV84ay8W7LDRfQj5VDEqkxd9b6UYlZHkuJt+dO8fXn
+         8qsGaaLhtUKcd9U2WJsU+gmWpLzB39HzmfqOdqXrV619nEdJdVcHvfHfwh8/u2OnnWHR
+         JNrX4cc78eAzNzwrKGSiImEOS3taoFnp+G2Ut2/ps7BXGrkouf+FrlHMNoZ/2PJcxsKG
+         2Pqg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690460026; x=1691064826;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1690460498; x=1691065298;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2mH+Rp4hSfnfzF/tM/KbcwfyGEwPjJ6t1DC9fcpN9vs=;
-        b=B9f0nnZgWPnwNgaxfopSUBvVn7p7LtBocX/IODJjXVFSFIHo6RswuEcRhLrYCaVUaX
-         AhbSmqKKQ+XJO+Pl555qxFyXyEW2DLV2D8+QBI2FJqJDplPAcTDSQC9dYf6pPwBzvqXp
-         pjDkHHhyXDcPVyq62HfSvB7Y4jjvyQtFJeSNOgVUV8zI/vvb/gWtBczdwFi7PVjnVzTk
-         aXKL26RwptTtg3uFj7PLr75UEr4ycooJQvpDs2m8oh8h11xKEEXAuMU8klnkel5NSCjM
-         Gvq89B2sAh70bqEVrcTF0tYCskhZbBCLzZwpb4iwvSs5QhSZLIKUm4YGyy828cxyClVB
-         7ZqA==
-X-Gm-Message-State: ABy/qLZXD8JzZepXH8Co+7s44cO7o+L31EIpO3Majo5zYf/FQCra4vsN
-        xTHPPulPIKxthm0s1/ppYcHk+A==
-X-Google-Smtp-Source: APBJJlFtTydzjExxCW2N0thWNf60e/JzMuJjuuZISZRxsnDyWezae/QKskV4QnPmRVwurLShFjR1mg==
-X-Received: by 2002:a17:906:84:b0:994:539d:f97f with SMTP id 4-20020a170906008400b00994539df97fmr2048729ejc.37.1690460025986;
-        Thu, 27 Jul 2023 05:13:45 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id m15-20020a17090607cf00b00993159ce075sm688182ejc.210.2023.07.27.05.13.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 27 Jul 2023 05:13:45 -0700 (PDT)
-Message-ID: <ef4825d6-1016-cbf2-0cd3-94b0fc4165f4@linaro.org>
-Date:   Thu, 27 Jul 2023 14:13:43 +0200
+        bh=3lv8NLN1fG/Lk2oimzBPYTF7qXzdm4FqQVkw6hJCTj0=;
+        b=TcdTP3DiYAlhyBEs06nyaYaUIT2YwIbQ4vjj6/4LvGoseaLxGIo/TLwbsVWLJBeNyz
+         pRplUYv8OTBZaCnlPXeTF0Cgp5nXItPwAmYgJyZ30/FMJ+U1I34rnDixIVMhr34a9ZQh
+         YEh+xG4qQwK3It4Xw+wEsI2hPe9zhXItQlgWnEUMjg7w+D1LXGtRleU1Dawy6UbVs8Uf
+         ad3VTd0a0JNWg+enRqSg+uXTmj50T6n3tTIM1Q+m4Zul9bP2VIfeNFtLRkO/uEiJKLRP
+         KBR5pitzRcc0e8rD306y6yhHbdXfywG9tWd2SdkbB4MAKnPUUjkpczr5d0OHASrq7pwo
+         2V5g==
+X-Gm-Message-State: ABy/qLYbWs0qM0w6IeAilO5B/dYgJCQho83X4YyAh2ymqaSZaFV7kTkp
+        ZkS0i0XPqG2lLabZVBd8qxM=
+X-Google-Smtp-Source: APBJJlFw+VPnN4KLx7SkniKX8XuJHD/frq+qjPTTxFkmXHGb/TARyZOOpm1buWxCLY/+xqQYPEvYMw==
+X-Received: by 2002:a19:a40d:0:b0:4f8:6d99:f4f3 with SMTP id q13-20020a19a40d000000b004f86d99f4f3mr1524855lfc.52.1690460497859;
+        Thu, 27 Jul 2023 05:21:37 -0700 (PDT)
+Received: from mobilestation ([93.157.254.210])
+        by smtp.gmail.com with ESMTPSA id eq17-20020a056512489100b004fe1268bf7asm288662lfb.126.2023.07.27.05.21.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 27 Jul 2023 05:21:37 -0700 (PDT)
+Date:   Thu, 27 Jul 2023 15:21:33 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Manivannan Sadhasivam <mani@kernel.org>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        jingoohan1@gmail.com, gustavo.pimentel@synopsys.com,
+        lpieralisi@kernel.org, robh+dt@kernel.org, kw@linux.com,
+        bhelgaas@google.com, kishon@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        marek.vasut+renesas@gmail.com, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v18 04/20] PCI: dwc: Change arguments of
+ dw_pcie_prog_outbound_atu()
+Message-ID: <qcqki7cxr75vjov67kkxsox4buokfgu64s5irisu6hz2yvmt26@o6dyibtpz5vc>
+References: <20230721074452.65545-1-yoshihiro.shimoda.uh@renesas.com>
+ <20230721074452.65545-5-yoshihiro.shimoda.uh@renesas.com>
+ <20230724074556.GC6291@thinkpad>
+ <ezuyypjmhkb4nsruy5kdoopg537yqg2paf4acgfyib6p7kj7g5@kumpnp2cr4zh>
+ <20230726130015.GA5633@thinkpad>
+ <aldqqozyrjdd74jdm2xmgp53rpke4otm6iy4tjfemdwxd4ir5y@p3dlr3p5c7t4>
+ <20230727110343.GA4702@thinkpad>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v2 2/2] media: imagination: Add E5010 JPEG Encoder driver
-Content-Language: en-US
-To:     Devarsh Thakkar <devarsht@ti.com>, mchehab@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, hverkuil-cisco@xs4all.nl,
-        laurent.pinchart@ideasonboard.com, eugen.hristev@collabora.com,
-        ezequiel@vanguardiasur.com.ar, u.kleine-koenig@pengutronix.de,
-        sakari.ailus@linux.intel.com, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     praneeth@ti.com, nm@ti.com, vigneshr@ti.com, a-bhatia1@ti.com,
-        j-luthra@ti.com, b-brnich@ti.com, detheridge@ti.com,
-        p-mantena@ti.com, vijayp@ti.com
-References: <20230727112546.2201995-1-devarsht@ti.com>
- <20230727112546.2201995-3-devarsht@ti.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230727112546.2201995-3-devarsht@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230727110343.GA4702@thinkpad>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/07/2023 13:25, Devarsh Thakkar wrote:
-> This adds support for stateful V4L2 M2M based driver
-> for Imagination E5010 JPEG Encoder [1] which supports baseline
-> encoding with two different quantization tables and compression
-> ratio as demanded.
+On Thu, Jul 27, 2023 at 04:33:43PM +0530, Manivannan Sadhasivam wrote:
+> On Thu, Jul 27, 2023 at 02:38:44AM +0300, Serge Semin wrote:
+> > On Wed, Jul 26, 2023 at 06:30:15PM +0530, Manivannan Sadhasivam wrote:
+> > > On Wed, Jul 26, 2023 at 08:02:24AM +0300, Serge Semin wrote:
+> > > > On Mon, Jul 24, 2023 at 01:15:56PM +0530, Manivannan Sadhasivam wrote:
+> > > > > On Fri, Jul 21, 2023 at 04:44:36PM +0900, Yoshihiro Shimoda wrote:
+> > > > > > The __dw_pcie_prog_outbound_atu() currently has 6 arguments.
+> > > > > > To support INTx IRQs in the future, it requires an additional 2
+> > > > > > arguments. For improved code readability, introduce the struct
+> > > > > > dw_pcie_ob_atu_cfg and update the arguments of
+> > > > > > dw_pcie_prog_outbound_atu().
+> > > > > > 
+> > > > > > Consequently, remove __dw_pcie_prog_outbound_atu() and
+> > > > > > dw_pcie_prog_ep_outbound_atu() because there is no longer
+> > > > > > a need.
+> > > > > > 
+> > > > > > No behavior changes.
+> > > > > > 
+> > > > > > Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+> > > > > 
+> > > > > One nit below. With that,
+> > > > > 
+> > > > > Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> > > > > 
+> > > > > > Reviewed-by: Serge Semin <fancer.lancer@gmail.com>
+> > > > > > ---
+> > > > > >  .../pci/controller/dwc/pcie-designware-ep.c   | 21 +++++---
+> > > > > >  .../pci/controller/dwc/pcie-designware-host.c | 52 +++++++++++++------
+> > > > > >  drivers/pci/controller/dwc/pcie-designware.c  | 49 ++++++-----------
+> > > > > >  drivers/pci/controller/dwc/pcie-designware.h  | 15 ++++--
+> > > > > >  4 files changed, 77 insertions(+), 60 deletions(-)
+> > > > > > 
+> > > > > 
+> > > > > [...]
+> > > > > 
+> > > > > > diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci/controller/dwc/pcie-designware.h
+> > > > > > index 3c06e025c905..85de0d8346fa 100644
+> > > > > > --- a/drivers/pci/controller/dwc/pcie-designware.h
+> > > > > > +++ b/drivers/pci/controller/dwc/pcie-designware.h
+> > > > > > @@ -288,6 +288,15 @@ enum dw_pcie_core_rst {
+> > > > > >  	DW_PCIE_NUM_CORE_RSTS
+> > > > > >  };
+> > > > > >  
+> > > > > > +struct dw_pcie_ob_atu_cfg {
+> > > > > > +	int index;
+> > > > > > +	int type;
+> > > > > > +	u8 func_no;
+> > > > > > +	u64 cpu_addr;
+> > > > > > +	u64 pci_addr;
+> > > > > > +	u64 size;
+> > > > > 
+> > > > 
+> > > > > Reorder the members in below order to avoid holes:
+> > > > > 
+> > > > > u64
+> > > > > int
+> > > > > u8
+> > > > 
+> > > > One more time. Your suggestion won't prevent the compiler from adding
+> > > > the pads. (If by "holes" you meant the padding. Otherwise please
+> > > > elaborate what you meant?).
+> > > 
+> > > Struct padding is often referred as struct holes. So yes, I'm referring the
+> > > same.
+> > > 
+> > > > The structure will have the same size of
+> > > > 40 bytes in both cases. So your suggestion will just worsen the
+> > > > structure readability from having a more natural parameters order (MW
+> > > > index, type, function, and then the mapping parameters) to a redundant
+> > > > type-based order.
+> > > > 
+> > > 
+> > 
+> > > This is a common comment I provide for all structures. Even though the current
+> > > result (reordering) doesn't save any space, when the structure grows big (who
+> > > knows), we often see more holes/padding being inserted by the compiler if the
+> > > members are not ordered in the descending order w.r.t their size.
+> > > 
+> > > I agree that it makes more clear if the members are grouped based on their
+> > > function etc... but for large structures this would often add more padding/hole.
+> > 
+> > This structure will never be big enough to be considered for such
+> > strange optimization. Moreover practicality almost always beats some
+> > theoretical considerations. In this case there is no any reason to
+> > reorder the fields as you say.
+> > 
+> > Speaking in general I very much doubt that saving a few bytes of
+> > memory can be considered as a better option than having a more
+> > readable structure especially these days. Moreover for all these years
+> > I never met anybody asking to set the descending order of
+> > the members or maintaining such limitation in the commonly used kernel
+> > structures. What is normally done:
+> > 1. Move an embedded object to the head of the structure for the
+> > container_of-macro optimization.
+> > 2. Group up the commonly used fields to optimize the system cache
+> > utilization.
+> > 3. Logical grouping the members, which naturally may lead to the more
+> > optimal cache utilization.
 > 
-> Support for both contigous and non-contigous YUV420 and YUV422
-> semiplanar formats is added along with alignment restrictions
-> as required by the hardware.
+> Indeed.
 > 
-> System and runtime PM hooks are added in the driver along with v4l2
-> crop and selection API support.
+> > 4. Move a field to a certain place of the structure to fill in the
+> > pads.
+> > 
 > 
-> Minimum resolution supported is 64x64 and
-> Maximum resolution supported is 8192x8192.
+> This is what I try to avoid by grouping the members. If you move a field to
+> a certain place, wouldn't it affect readability?
 > 
+> But I do not want to argue more on this. Please see below.
+> 
+> > Even if the "descending alignment" requirement minimizes the number of
+> > the pads it isn't the only possible way to do so in the particular
+> > cases and it looks too harsh to be blindly applied all the time. If a
+> > few bytes is so important why not do the same for instance for the
+> > local variables too? They are also normally size-aligned in the stack
+> > memory, which is much more precious in kernel.
+> > 
+> 
+> Well, for local variables I prefer reverse Xmas tree order which is what widely
+> used throughout the kernel. But we do not care about their ordering because, it
+> won't grow too much like a structure (not talking about recursive case).
+> 
+> > Anyway in this case changing the fields order is absolutely redundant.
+> > Even a provided afterwards update doesn't cause the structure size
+> > change. So for the sake of readability it's better to leave its fields
+> > ordered as is.
+> > 
+> 
+> I certainly agree that reordering wouldn't save any space for this structure.
+> As a maintainer, I prefer to keep this pattern so that I don't have to worry
+> about the padding issues in the future and hence the suggestion.
+> 
+> But feel free to drop it as I don't have a strong objection to this specific
+> case.
 
+Agreed then.
 
-...
+Yoshihiro, could you please ignore the Mani' comment regarding the
+"descending alignment" order and retain the fields order is in your
+current patch?
 
-> +
-> +static int e5010_release(struct file *file)
-> +{
-> +	struct e5010_dev *dev = video_drvdata(file);
-> +	struct e5010_context *ctx = file->private_data;
-> +
-> +	dprintk(dev, 1, "Releasing instance: 0x%p, m2m_ctx: 0x%p\n", ctx, ctx->fh.m2m_ctx);
+I'll get back to the series review tomorrow. Please no rush with
+resubmitting.
 
-Why do you print pointers? Looks like code is buggy and you still keep
-debugging it.
+-Serge(y)
 
-> +	mutex_lock(&dev->mutex);
-> +	v4l2_ctrl_handler_free(&ctx->ctrl_handler);
-> +	v4l2_m2m_ctx_release(ctx->fh.m2m_ctx);
-> +	v4l2_fh_del(&ctx->fh);
-> +	v4l2_fh_exit(&ctx->fh);
-> +	kfree(ctx);
-> +	mutex_unlock(&dev->mutex);
-> +
-> +	return 0;
-> +}
-> +
-
-...
-
-> +static int e5010_init_device(struct e5010_dev *dev)
-> +{
-> +	int ret = 0;
-> +
-> +	/*TODO: Set MMU in bypass mode until support for the same is added in driver*/
-> +	e5010_hw_bypass_mmu(dev->mmu_base, 1);
-> +
-> +	if (e5010_hw_enable_auto_clock_gating(dev->jasper_base, 1))
-> +		dev_warn(dev->dev, "Failed to enable auto clock gating\n");
-> +
-> +	if (e5010_hw_enable_manual_clock_gating(dev->jasper_base, 0))
-> +		dev_warn(dev->dev, "Failed to disable manual clock gating\n");
-> +
-> +	if (e5010_hw_enable_crc_check(dev->jasper_base, 0))
-> +		dev_warn(dev->dev, "Failed to disable CRC check\n");
-> +
-> +	if (e5010_hw_enable_output_address_error_irq(dev->jasper_base, 1))
-> +		dev_err(dev->dev, "Failed to enable Output Address Error interrupts\n");
-> +
-> +	ret = e5010_hw_set_input_source_to_memory(dev->jasper_base, 1);
-> +	if (ret) {
-> +		dev_err(dev->dev, "Failed to set input source to memory\n");
-> +		goto fail;
-
-retturn ret;
-
-> +	}
-> +
-> +	ret = e5010_hw_enable_picture_done_irq(dev->jasper_base, 1);
-> +	if (ret)
-> +		dev_err(dev->dev, "Failed to enable Picture Done interrupts\n");
-> +fail:
-> +	return ret;
-> +}
-> +
-> +static int e5010_probe(struct platform_device *pdev)
-> +{
-> +	const struct of_device_id *of_dev_id;
-> +	struct e5010_dev *dev;
-
-dev is struct device, so call it differently.
-
-> +	struct resource *res;
-> +	int irq, ret = 0;
-> +
-> +	of_dev_id = of_match_device(e5010_of_match, &pdev->dev);
-> +	if (!of_dev_id) {
-> +		dev_err(&pdev->dev, "%s: Unable to match device\n", __func__);
-
-I don't think this can happen.
-
-> +		return -ENODEV;
-> +	}
-> +
-> +	ret = dma_set_mask(&pdev->dev, DMA_BIT_MASK(32));
-> +	if (ret) {
-> +		dev_err(&pdev->dev, "32-bit consistent DMA enable failed\n");
-> +		return ret;
-> +	}
-> +
-> +	dev = devm_kzalloc(&pdev->dev, sizeof(*dev), GFP_KERNEL);
-> +	if (!dev)
-> +		return -ENOMEM;
-> +
-> +	platform_set_drvdata(pdev, dev);
-> +
-> +	dev->dev = &pdev->dev;
-> +
-> +	mutex_init(&dev->mutex);
-> +	spin_lock_init(&dev->hw_lock);
-> +
-> +	dev->vdev = &e5010_videodev;
-> +	dev->vdev->v4l2_dev = &dev->v4l2_dev;
-> +	dev->vdev->lock = &dev->mutex;
-> +	dev->vdev->queue = NULL;
-> +	dev->vdev->prio = NULL;
-> +	dev->vdev->dev_parent = NULL;
-> +	dev->vdev->minor = -1;
-> +
-> +	ret = v4l2_device_register(&pdev->dev, &dev->v4l2_dev);
-> +	if (ret) {
-> +		dev_err(dev->dev, "Failed to register v4l2 device\n");
-> +		return ret;
-
-return dev_err_probe
-
-> +	}
-> +
-> +	dev->m2m_dev = v4l2_m2m_init(&e5010_m2m_ops);
-> +	if (!dev->m2m_dev) {
-
-This cannot happen. Read the function.
-
-> +		dev_err(dev->dev, "Failed to initialize m2m device\n");
-> +		ret = -ENOMEM;
-> +		goto fail_after_v4l2_register;
-> +	}
-> +
-> +	video_set_drvdata(dev->vdev, dev);
-> +
-> +	ret = video_register_device(dev->vdev, VFL_TYPE_VIDEO, 0);
-> +	if (ret) {
-> +		dev_err(dev->dev, "Failed to register video device\n");
-> +		ret = -ENOMEM;
-
-Why?
-
-> +		goto fail_after_v4l2_register;
-> +	}
-> +
-> +	dev_info(dev->dev, "Device registered as /dev/video%d\n",
-> +		 dev->vdev->num);
-> +
-> +	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "regjasper");
-> +	if (!res) {
-> +		dev_err(dev->dev, "Missing 'regjasper' resources area\n");
-> +		ret = -ENOMEM;
-> +		goto fail_after_video_register_device;
-> +	}
-> +	dev->jasper_base = devm_ioremap_resource(&pdev->dev, res);
-
-Use helper function to combine two calls into one.
-
-> +	if (!dev->jasper_base) {
-> +		ret = -ENOMEM;
-
-This shouldn't be ENOMEM
-
-> +		goto fail_after_video_register_device;
-> +	}
-> +
-> +	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "regmmu");
-> +	if (!res) {
-> +		dev_err(dev->dev, "Missing 'regmmu' resources area\n");
-> +		ret = -ENOMEM;
-> +		goto fail_after_video_register_device;
-> +	}
-> +	dev->mmu_base = devm_ioremap_resource(&pdev->dev, res);
-> +	if (!dev->mmu_base) {
-> +		ret = -ENOMEM;
-
-The same.
-
-> +		goto fail_after_video_register_device;
-> +	}
-> +
-> +	dev->last_context_run = NULL;
-> +
-> +	irq = platform_get_irq(pdev, 0);
-> +	ret = devm_request_irq(dev->dev, irq, e5010_irq, 0,
-> +			       E5010_MODULE_NAME, dev);
-> +	if (ret) {
-> +		dev_err(dev->dev, "Failed to register IRQ %d\n", irq);
-> +		goto fail_after_video_register_device;
-> +	}
-> +
-> +	dev->clk = devm_clk_get(&pdev->dev, "core_clk");
-> +	if (IS_ERR(dev->clk)) {
-> +		dev_err(dev->dev, "failed to get clock\n");
-> +		ret = PTR_ERR(dev->clk);
-
-ret = dev_err_probe
-
-> +		goto fail_after_video_register_device;
-> +	}
-> +
-> +	pm_runtime_enable(dev->dev);
-> +
-> +	return 0;
-> +
-> +fail_after_video_register_device:
-> +	v4l2_m2m_release(dev->m2m_dev);
-> +fail_after_v4l2_register:
-> +	v4l2_device_unregister(&dev->v4l2_dev);
-> +	return ret;
-> +}
-> +
-> +static int e5010_remove(struct platform_device *pdev)
-> +{
-> +	struct e5010_dev *dev = platform_get_drvdata(pdev);
-> +
-> +	pm_runtime_disable(dev->dev);
-> +	video_unregister_device(dev->vdev);
-> +	v4l2_m2m_release(dev->m2m_dev);
-> +	v4l2_device_unregister(&dev->v4l2_dev);
-> +
-> +	return 0;
-> +}
-
-...
-
-> +#define MAX_PLANES			2
-> +#define HEADER_SIZE			0x025E
-> +#define MIN_DIMENSION			64
-> +#define MAX_DIMENSION			8192
-> +#define DEFAULT_WIDTH			640
-> +#define DEFAULT_HEIGHT			480
-> +#define E5010_MODULE_NAME		"e5010"
-> +
-> +/* JPEG marker definitions */
-> +#define START_OF_IMAGE			0xFFD8
-> +#define SOF_BASELINE_DCT		0xFFC0
-> +#define END_OF_IMAGE			0xFFD9
-> +#define START_OF_SCAN			0xFFDA
-> +
-> +/* Definitions for the huffman table specification in the Marker segment */
-> +#define DHT_MARKER			0xFFC4
-> +#define LH_DC				0x001F
-> +#define LH_AC				0x00B5
-> +
-> +/* Definitions for the quantization table specification in the Marker segment */
-> +#define DQT_MARKER			0xFFDB
-> +#define ACMAX				0x03FF
-> +#define DCMAX				0x07FF
-> +
-> +/* Length and precision of the quantization table parameters */
-> +#define LQPQ				0x00430
-> +#define QMAX				255
-> +
-> +/* Misc JPEG header definitions */
-> +#define UC_NUM_COMP			3
-> +#define PRECISION			8
-> +#define HORZ_SAMPLING_FACTOR		(2 << 4)
-> +#define VERT_SAMPLING_FACTOR_422	1
-> +#define VERT_SAMPLING_FACTOR_420	2
-> +#define COMPONENTS_IN_SCAN		3
-> +#define PELS_IN_BLOCK			64
-> +
-> +/* Used for Qp table generation */
-> +#define LUMINOSITY			10
-> +#define CONTRAST			1
-> +#define INCREASE			2
-> +#define QP_TABLE_SIZE			(8 * 8)
-> +#define QP_TABLE_FIELD_OFFSET		0x04
-> +
-> +/*
-> + * vb2 queue structure
-> + * contains queue data information
-> + *
-> + * @fmt: format info
-> + * @width: frame width
-> + * @height: frame height
-> + * @bytesperline: bytes per line in memory
-> + * @size_image: image size in memory
-> + */
-> +struct e5010_q_data {
-> +	struct e5010_fmt *fmt;
-> +	u32 width;
-> +	u32 height;
-> +	u32 width_adjusted;
-> +	u32 height_adjusted;
-> +	u32 sizeimage[MAX_PLANES];
-> +	u32 bytesperline[MAX_PLANES];
-> +	bool format_set;
-> +	bool streaming;
-> +	u32			sequence;
-> +	struct v4l2_rect	crop;
-
-Unexpected indentation.
-
-> +};
-> +
-> +/*
-> + * Driver device structure
-> + * Holds all memory handles and global parameters
-> + * Shared by all instances
-> + */
-> +struct e5010_dev {
-> +	struct device *dev;
-> +	struct v4l2_device v4l2_dev;
-> +	struct v4l2_m2m_dev *m2m_dev;
-> +	struct video_device *vdev;
-> +	void __iomem *jasper_base;
-> +	void __iomem *mmu_base;
-> +	struct clk   *clk;
-
-Please keep style consistent.
-
-> +	struct e5010_context *last_context_run;
-> +	/* Protect access to device data */
-> +	struct mutex mutex;
-> +	/* Protect access to hardware*/
-> +	spinlock_t hw_lock;
-> +};
-> +
-
-
-Best regards,
-Krzysztof
-
+> 
+> - Mani
+> 
+> > -Serge(y)
+> > 
+> > > 
+> > > - Mani
+> > > 
+> > > > -Serge(y)
+> > > > 
+> > > > > 
+> > > > > - Mani
+> > > > > 
+> > > > > > +};
+> > > > > > +
+> > > > > >  struct dw_pcie_host_ops {
+> > > > > >  	int (*host_init)(struct dw_pcie_rp *pp);
+> > > > > >  	void (*host_deinit)(struct dw_pcie_rp *pp);
+> > > > > > @@ -416,10 +425,8 @@ void dw_pcie_write_dbi2(struct dw_pcie *pci, u32 reg, size_t size, u32 val);
+> > > > > >  int dw_pcie_link_up(struct dw_pcie *pci);
+> > > > > >  void dw_pcie_upconfig_setup(struct dw_pcie *pci);
+> > > > > >  int dw_pcie_wait_for_link(struct dw_pcie *pci);
+> > > > > > -int dw_pcie_prog_outbound_atu(struct dw_pcie *pci, int index, int type,
+> > > > > > -			      u64 cpu_addr, u64 pci_addr, u64 size);
+> > > > > > -int dw_pcie_prog_ep_outbound_atu(struct dw_pcie *pci, u8 func_no, int index,
+> > > > > > -				 int type, u64 cpu_addr, u64 pci_addr, u64 size);
+> > > > > > +int dw_pcie_prog_outbound_atu(struct dw_pcie *pci,
+> > > > > > +			      const struct dw_pcie_ob_atu_cfg *atu);
+> > > > > >  int dw_pcie_prog_inbound_atu(struct dw_pcie *pci, int index, int type,
+> > > > > >  			     u64 cpu_addr, u64 pci_addr, u64 size);
+> > > > > >  int dw_pcie_prog_ep_inbound_atu(struct dw_pcie *pci, u8 func_no, int index,
+> > > > > > -- 
+> > > > > > 2.25.1
+> > > > > > 
+> > > > > 
+> > > > > -- 
+> > > > > மணிவண்ணன் சதாசிவம்
+> > > 
+> > > -- 
+> > > மணிவண்ணன் சதாசிவம்
+> 
+> -- 
+> மணிவண்ணன் சதாசிவம்
