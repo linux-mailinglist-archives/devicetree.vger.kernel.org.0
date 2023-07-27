@@ -2,66 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4891876586B
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 18:19:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 254BB76588D
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 18:23:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231903AbjG0QTE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jul 2023 12:19:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38076 "EHLO
+        id S233840AbjG0QX3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jul 2023 12:23:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40020 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233100AbjG0QTD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 12:19:03 -0400
+        with ESMTP id S233820AbjG0QX0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 12:23:26 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E9B519B;
-        Thu, 27 Jul 2023 09:19:02 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21540272C;
+        Thu, 27 Jul 2023 09:23:25 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id E883861EBD;
-        Thu, 27 Jul 2023 16:19:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 480EAC433C7;
-        Thu, 27 Jul 2023 16:18:58 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id AB73061ED9;
+        Thu, 27 Jul 2023 16:23:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2339BC433C7;
+        Thu, 27 Jul 2023 16:23:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690474741;
-        bh=cJ2cDKD5pRIvYteZ8B5krBjQ4B4gVvlooKDjuLtiIhU=;
+        s=k20201202; t=1690475004;
+        bh=TD7vS16IIuUgR5cYQWuElvIIyOIASC8KrZH5mzivc8c=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=eoEWnIFD83r351XEsxp9P0RXdeJV9VdRPJaqQPVxSVr+jN5IyccVQ+/S7XbnWF1Xd
-         Fi+dY6eaQa23fbjGqg2iiL5vy4lk5My42x+IeOBgu6/Vz6lhzioUngM6bqQFiGNu0u
-         wgRlTKneUqioguLi9gLciGvCkezMfKq77xSpfiEVbeBMvcEdXBnuz0eBMOKi9D4ZTo
-         KqUZn6yavNDS4R4qWv8utnfN/dvR3VaY2wxM2oAx98sOa1SVtQn0Wv55LyLTdWCfej
-         P7s8JBf02WimlJBXF6drFLzt7hynejm9FD0sQgC5VonCyvwRzgAuIXXGEA3y4z85Dc
-         pYP+KCwIP6b6g==
-Date:   Fri, 28 Jul 2023 00:07:23 +0800
+        b=NRAPajPHZHEkFEPS1peqox5tcJ7gM95Aa0aCNJgFLnZh76ZjtnFkuBVcnz2VozH3h
+         qZDfeOyYsA4/tOhwZThD1Yql5NWDQyNp3Pj1ax0nmxIR4WnyLuATCbodU9ujfYW53u
+         MCszD3oMGFT7emm3YOylZbPm+wk5j2slsAyhcAOJ65sBLz7/OOsnRbCh4xJ/DUq0Ky
+         1tUlP9y7qi5KYE8aTkRm3LfNM0NvGsiHz4fenNnLWpEz+bnaYoolNpKOn9yy/Jt44z
+         KwzX063DR7Y6SVY/+O7/Thx5Q5WG3hSSTpNkAXQLqX3mQEFEWksyReUFvFNGZxE/06
+         Kp2Bh1KU3ydlA==
+Date:   Fri, 28 Jul 2023 00:11:46 +0800
 From:   Jisheng Zhang <jszhang@kernel.org>
-To:     Kwanghoon Son <k.son@samsung.com>
-Cc:     'Drew Fustini' <dfustini@baylibre.com>,
-        'Conor Dooley' <conor@kernel.org>,
-        'Guo Ren' <guoren@kernel.org>, 'Fu Wei' <wefu@redhat.com>,
-        'Rob Herring' <robh+dt@kernel.org>,
-        'Krzysztof Kozlowski' <krzysztof.kozlowski+dt@linaro.org>,
-        'Conor Dooley' <conor+dt@kernel.org>,
-        'Paul Walmsley' <paul.walmsley@sifive.com>,
-        'Palmer Dabbelt' <palmer@dabbelt.com>,
-        'Albert Ou' <aou@eecs.berkeley.edu>,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        'Robert Nelson' <robertcnelson@beagleboard.org>,
-        'Jason Kridner' <jkridner@beagleboard.org>
-Subject: Re: [PATCH 1/3] riscv: dts: thead: add BeagleV Ahead board device
- tree
-Message-ID: <ZMKWO2vksQn8dUR4@xhacker>
-References: <20230722-upstream-beaglev-ahead-dts-v1-0-ccda511357f4@baylibre.com>
- <20230722-upstream-beaglev-ahead-dts-v1-1-ccda511357f4@baylibre.com>
- <20230723-savor-trolling-e35ed4a7a751@spud>
- <ZL1jlacHj7sgNg8M@x1>
- <CGME20230724003542epcas1p4c6c8dbd042af792bc168e10c6e81e45d@epcas1p4.samsung.com>
- <ZL3Eenj4lGZDhZTM@xhacker>
- <000001d9c070$82638290$872a87b0$@samsung.com>
+To:     Xi Ruoyao <xry111@linuxfromscratch.org>
+Cc:     Conor Dooley <conor.dooley@microchip.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v3 0/8] Add Sipeed Lichee Pi 4A RISC-V board support
+Message-ID: <ZMKXQpreSr47MFj6@xhacker>
+References: <20230617161529.2092-1-jszhang@kernel.org>
+ <c9a44f534071a6d67f1e21bafdb713793c559124.camel@linuxfromscratch.org>
+ <20230725-unheard-dingy-42f0fafe7216@wendy>
+ <ZL/jMYL3akl78ZZN@xhacker>
+ <3e0994dab495920ac590dc28d6b9d9765abe0c7e.camel@linuxfromscratch.org>
+ <ZME1J4mpVf5yth32@xhacker>
+ <866eab3e30a18c50742a75d62aee223fdc7e3cee.camel@linuxfromscratch.org>
+ <4986b92f1a5aa303a529c6004aaedd2184c3ccf7.camel@linuxfromscratch.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <000001d9c070$82638290$872a87b0$@samsung.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <4986b92f1a5aa303a529c6004aaedd2184c3ccf7.camel@linuxfromscratch.org>
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -72,33 +73,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 27, 2023 at 06:55:37PM +0900, Kwanghoon Son wrote:
-> > On Sun, Jul 23, 2023 at 10:29:57AM -0700, Drew Fustini wrote:
-> > > On Sun, Jul 23, 2023 at 11:32:17AM +0100, Conor Dooley wrote:
-> > > > On Sat, Jul 22, 2023 at 02:55:39PM -0700, Drew Fustini wrote:
-> > > >
-> > > > > +++ b/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts
-> > > > > @@ -0,0 +1,61 @@
-> > > > > +// SPDX-License-Identifier: GPL-2.0
-> > > >
-> > > > Hmm, should this not be dual licensed?
-> > > > I notice the other th1520 stuff isn't either..
-> > >
-> > > Good point, I'll resubmit with a dual license.
-> > >
-> > > Jisheng: are you okay with the other arch/riscv/boot/dts/thead files
-> > > changing to a dual license?
+On Thu, Jul 27, 2023 at 08:54:59AM +0800, Xi Ruoyao wrote:
+> On Thu, 2023-07-27 at 08:14 +0800, Xi Ruoyao wrote:
+> > On Wed, 2023-07-26 at 23:00 +0800, Jisheng Zhang wrote:
+> > > which dts r u using? see below.
+> > > 
+> > > > 
+> > > > Or maybe my toolchain (GCC 13.1.0, Binutils-2.40, with no patches) can
+> > > > miscompile the kernel?
 > > 
-> > When cooking the initial patch, I wrote the lpi4a dts files from
-> > scratch based on sipeed opened sch file, and currently only I made
-> > contributions to them, so it's easy to make the lpi4a dts files
-> > dual license.
+> > /* snip */
+> > 
+> > > > Boot HART ID              : 0
+> > > > Boot HART Domain          : root
+> > > > Boot HART Priv Version    : v1.11
+> > > > Boot HART Base ISA        : rv64imafdcvx
+> > > 
+> > > what? I don't think the mainline dts provide v and x. 
+> > 
+> > I copied the compiled arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dtb
+> > into /boot and loaded it with u-boot "load" command onto 0x46000000, and
+> > passed this address to the booti command.
+> > 
+> > But maybe I've copied the wrong file or made some other mistake... I'll
+> > recheck.
 > 
-> Thanks for your work.
-> Is there any datasheet or user manual can get on public?
+> Hmm, and if I read OpenSBI code correctly, this line reflects the
+> content of the misa CSR, not the DT riscv,isa value.
+> 
 
-Sorry I can't help on datasheet.
+Aha indeed the "vx" isa extensions are not from the DT riscv,isa
+property. I will try your opensbi/linux/uboot combinations on my
+lpi4a board tomorrow.
 
-> I'm going to contribute drivers in my spare time,
-> but it's hard to know the register file and dma information.
->  
+> The log of successful boot provided by Drew also contains
+> "rv64imafdcvx":
+> 
+> https://gist.github.com/pdp7/23259595a7570f1f11086d286e16dfb6
+> 
