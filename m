@@ -2,99 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DD439765737
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 17:18:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 237A376573B
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 17:18:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234506AbjG0PSL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jul 2023 11:18:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60648 "EHLO
+        id S234516AbjG0PSN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jul 2023 11:18:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60638 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234625AbjG0PSH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 11:18:07 -0400
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59B1B19AF;
-        Thu, 27 Jul 2023 08:18:06 -0700 (PDT)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 998C9C0006;
-        Thu, 27 Jul 2023 15:17:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1690471084;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=9aqdGX9nA2iQX2zweZK++in7R/avXw9W2bX/HtVPsxU=;
-        b=RJKiI6QqwOneXyDOlHI7qbB9SyJiAEERWGqIsT0b0+gNi9GTgzZzaUkE+BE7gvc8+kuQdR
-        QWijR44Pcc8xVjqfnxBToFbBJ2wPbk4r6WOIoJtjY0E+StOeLVOD3syqjRgUoSxoFIJmRZ
-        xaK8qo0O240qPLXk0xh/K7Dd3pj9NDjtQ7v2369bc4LXLvt1R9iVO/oRVkKBb9PguVhtKC
-        4sa9pJls3QpfcVq2mav+OR2b6Qg6msajS+eN6b7WwzjlPV8w5ZavHal9WfWUZEGwH8GpM7
-        W0gkJHi4IN2im5i/LVAOqcTuq9ihYtVyFT5QUd8AzSelfeP5NCLRty5uapSXBA==
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Rob Herring <robh@kernel.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        Han Xu <han.xu@nxp.com>,
-        Harvey Hunt <harveyhuntnexus@gmail.com>,
-        Paul Cercueil <paul@crapouillou.net>,
-        Liang Yang <liang.yang@amlogic.com>,
+        with ESMTP id S234620AbjG0PSG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 11:18:06 -0400
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5495A19A7;
+        Thu, 27 Jul 2023 08:18:05 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-51e28cac164so4903926a12.1;
+        Thu, 27 Jul 2023 08:18:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1690471084; x=1691075884;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Ij0zwrJl+jKzGXRJqhSfCNc7P1MNBHLMCT9rtsyaalg=;
+        b=g+4wi9dcsNhnW2igpaSlliuWgqX01BqJ7EU4IuOBDLrh4d6W17HTLFIcEk/nGYkno1
+         JEEN0UX5LCZsWyHohPUHaX7uCRF0fVGsb1zAFuw+dAqzVlPLyR1UEgWOKrMnoP2ylTAZ
+         7IDADaoAVUkpH7Svd80TlhaOVlz7JTNT1fs1g3tNos/sjn6M73pwUw6+DeePnvJYjrB5
+         fVr10CodopMcRCStH6nAGRByRII3c6CGL7CgAaUchE5VCy60xV96YWU8C+tVFz7WYkM+
+         HI1JgQB98K5FSei69Be78CoVyH/Pkdf5ZRVKkLo+604FJR1tuxqB/x3N38tbyS9rCmQj
+         drpg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690471084; x=1691075884;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Ij0zwrJl+jKzGXRJqhSfCNc7P1MNBHLMCT9rtsyaalg=;
+        b=dvpAz/kAEKxcJstn4jsr8fFuZmRyOY0/cyfeDFVh1QDF8RQ+fNZKHtsv2ujGQnC0Kf
+         g0DzMRgTSCOykHvPWWWtu2JKLy/y9bcBkkOd0iZCVKdJn+q3VEIRa3W/zYVFd3XinnL+
+         w9vdMKkNEPALavDmPjmTaIy8K15z8XRoKWnW/LCXwfZY/PbmaoXrXdoQnizwFoclG2hv
+         xjS+EUa8TJri4stkH5GCsajeRzFa7QShluwCkcC+pifcqvLVdrt5CtShxBOop5RJjgTy
+         2lVCxubLkOySa0m3vLOg1efS6JoQyVqiOwjja3teDbl+dWCZrSx+gTt2rDk6aVsgLaBV
+         Fx/Q==
+X-Gm-Message-State: ABy/qLa25/2YXDGtyJIdDaCtiCvC2y3t9tV4kPovjYQn2hM+MLQTYJGm
+        qIRXPmuOQZe7xL7FmWnY95M=
+X-Google-Smtp-Source: APBJJlHH7kIanpz17+5reDEWBDHfh9P1YfG0wZ0iyBCYXnjNF9ZW59AN0MXEmDS0ww+TZBn6VtqKog==
+X-Received: by 2002:a05:6402:348b:b0:51e:2e6f:70fb with SMTP id v11-20020a056402348b00b0051e2e6f70fbmr3607953edc.6.1690471083631;
+        Thu, 27 Jul 2023 08:18:03 -0700 (PDT)
+Received: from localhost (p200300e41f1bd600f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f1b:d600:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id f5-20020a50ee85000000b005227f4530fdsm744337edr.37.2023.07.27.08.18.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 27 Jul 2023 08:18:03 -0700 (PDT)
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
         Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Michal Simek <michal.simek@amd.com>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Vladimir Zapolskiy <vz@mleia.com>,
-        Tudor Ambarus <tudor.ambarus@linaro.org>,
-        Pratyush Yadav <pratyush@kernel.org>,
-        Michael Walle <michael@walle.cc>
-Cc:     devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mips@vger.kernel.org, linux-amlogic@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-        linux-rockchip@lists.infradead.org, linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH] mtd: Explicitly include correct DT includes
-Date:   Thu, 27 Jul 2023 17:17:56 +0200
-Message-Id: <20230727151757.586430-1-miquel.raynal@bootlin.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230714174751.4060439-1-robh@kernel.org>
-References: 
+        Sam Ravnborg <sam@ravnborg.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>
+Cc:     Jon Hunter <jonathanh@nvidia.com>,
+        Svyatoslav Ryhel <clamor95@gmail.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org
+Subject: Re: (subset) [PATCH 1/3] dt-bindings: display: panel: Move Chunghwa CLAA070WP03XG to LVDS
+Date:   Thu, 27 Jul 2023 17:17:59 +0200
+Message-ID: <169047096702.3031511.846316777516525998.b4-ty@nvidia.com>
+X-Mailer: git-send-email 2.41.0
+In-Reply-To: <20230726185010.2294709-1-thierry.reding@gmail.com>
+References: <20230726185010.2294709-1-thierry.reding@gmail.com>
 MIME-Version: 1.0
-X-linux-mtd-patch-notification: thanks
-X-linux-mtd-patch-commit: b'c2fc6b6947905eee832e9ef445df4803f0056cc6'
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 2023-07-14 at 17:47:49 UTC, Rob Herring wrote:
-> The DT of_device.h and of_platform.h date back to the separate
-> of_platform_bus_type before it as merged into the regular platform bus.
-> As part of that merge prepping Arm DT support 13 years ago, they
-> "temporarily" include each other. They also include platform_device.h
-> and of.h. As a result, there's a pretty much random mix of those include
-> files used throughout the tree. In order to detangle these headers and
-> replace the implicit includes with struct declarations, users need to
-> explicitly include the correct includes.
+From: Thierry Reding <treding@nvidia.com>
+
+
+On Wed, 26 Jul 2023 20:50:08 +0200, Thierry Reding wrote:
+> From: Thierry Reding <treding@nvidia.com>
 > 
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-> Acked-by: Heiko Stuebner <heiko@sntech.de>
+> The Chunghwa CLAA070WP03XG is an LVDS panel, so move it to the correct
+> bindings file.
+> 
+> 
 
-Applied to https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git mtd/next, thanks.
+Applied, thanks!
 
-Miquel
+[3/3] ARM: tegra: Provide specific compatible string for Nexus 7 panel
+      commit: c9a706ab227ef59cc49923358513251ca4965563
+
+Best regards,
+-- 
+Thierry Reding <treding@nvidia.com>
