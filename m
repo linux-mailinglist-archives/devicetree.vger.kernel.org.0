@@ -2,71 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C4DAE765052
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 11:53:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F34A765058
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 11:54:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231228AbjG0JxJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jul 2023 05:53:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37280 "EHLO
+        id S230182AbjG0Jxn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jul 2023 05:53:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37406 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232469AbjG0Jw5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 05:52:57 -0400
-Received: from mgamail.intel.com (unknown [192.55.52.136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 358E194;
-        Thu, 27 Jul 2023 02:52:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1690451576; x=1721987576;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=7ywYBQt+k0wWV597TPC4S52IE0VKtrqKZaO1M88iGqQ=;
-  b=ZoqLQTuCqQoSMKHc2mLAeOKUKM5TmN+Tvvfh3ZTzHkUOwtXeTobIzYol
-   6I/DqqfzwOGLFbw3zws3J3t2AZNRdwBC/p5pgV/crRuDh9qIUK0MTEDgZ
-   1Raw9nbOH7AdJdfWtWmwoCJmc5lV7EtYCc9/PgpIQOq4DaG6cFkjUemAh
-   16UJvlGFzk2H2UzjL46ONxIiWyYrN88BENvs8qJmRNnCSxf6vfIjfJHMI
-   8VqK5BC7HyAPAaqnF1WKnoH8AfmLvDLpHv+J1m/lylIzX8grFvVUSycFi
-   OdB7oFnpTa7EOSZC1aq2blikyunJLVcX2Uvo8jh0QQfmJB9udOZdEY2qT
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10783"; a="347876600"
-X-IronPort-AV: E=Sophos;i="6.01,234,1684825200"; 
-   d="scan'208";a="347876600"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Jul 2023 02:52:55 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10783"; a="973478188"
-X-IronPort-AV: E=Sophos;i="6.01,234,1684825200"; 
-   d="scan'208";a="973478188"
-Received: from lkp-server02.sh.intel.com (HELO 953e8cd98f7d) ([10.239.97.151])
-  by fmsmga006.fm.intel.com with ESMTP; 27 Jul 2023 02:52:51 -0700
-Received: from kbuild by 953e8cd98f7d with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1qOxfU-00029Z-13;
-        Thu, 27 Jul 2023 09:52:32 +0000
-Date:   Thu, 27 Jul 2023 17:50:41 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Charles Boyer <Charles.Boyer@fii-usa.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
+        with ESMTP id S231233AbjG0JxZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 05:53:25 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E765797;
+        Thu, 27 Jul 2023 02:53:24 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 75EDC61DFA;
+        Thu, 27 Jul 2023 09:53:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3684EC433C7;
+        Thu, 27 Jul 2023 09:53:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1690451603;
+        bh=EdAZ9yCp4NjWVpXzH6AhTQQee2XgoMhciT9wDsXDj3c=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=CkkEAksCAqLlikCk9JjEcjPhux5P1puAANDl8+6/+YFdpP9MyxEJZmjYWgS9TNlVR
+         D/PuEZi9uV2jU/E9C4t4GZeWLZTMBKdLz3XRpkg24gGeTKUymJLOlyRVjPhhAUhd1J
+         R7XfjrbP+K1pz3BowFAxrPEyZSH7yb3kNfhihY0wUPK43CKgVjQtKxfdhC+BKb4kSZ
+         vauM0v1qddB3XFsxJ84JTIG98VtZ4Sezo0oPi8G0dyOHMT7P7uRtPK7SJwMFGT0iRT
+         wsSpKH6SkCMDV4cWplBERK47w7DXi27cZLxp9y98ByFJ5lFKGEO9cER2P8IuDSrw2p
+         /+AUJuabvTyIw==
+Date:   Thu, 27 Jul 2023 10:53:15 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Herve Codina <herve.codina@bootlin.com>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
         Rob Herring <robh+dt@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Benjamin Fair <benjaminfair@google.com>,
-        Vivekanand Veeracholan <vveerach@google.com>,
-        Lancelot Kao <lancelot.cy.kao@fii-na.com>
-Cc:     llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-        Charles Boyer <Charles.Boyer@fii-usa.com>
-Subject: Re: [PATCH] ARM: dts: nuvoton: Add Fii Mori system
-Message-ID: <202307271704.EqCiK6kd-lkp@intel.com>
-References: <20230726184651.1221-1-Charles.Boyer@fii-usa.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Qiang Zhao <qiang.zhao@nxp.com>, Li Yang <leoyang.li@nxp.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Shengjiu Wang <shengjiu.wang@gmail.com>,
+        Xiubo Li <Xiubo.Lee@gmail.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Nicolin Chen <nicoleotsuka@gmail.com>,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Randy Dunlap <rdunlap@infradead.org>, netdev@vger.kernel.org,
+        linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, alsa-devel@alsa-project.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v2 05/28] dt-bindings: net: Add support for QMC HDLC
+Message-ID: <20230727-decidable-sterile-06ef617c144b@spud>
+References: <20230726150225.483464-1-herve.codina@bootlin.com>
+ <20230726150225.483464-6-herve.codina@bootlin.com>
+ <20230727-talcum-backside-5bdbe2171fb6@spud>
+ <20230727110948.7926a532@bootlin.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="O7XSXK7XxHjViR5H"
 Content-Disposition: inline
-In-Reply-To: <20230726184651.1221-1-Charles.Boyer@fii-usa.com>
+In-Reply-To: <20230727110948.7926a532@bootlin.com>
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,44 +79,59 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Charles,
 
-kernel test robot noticed the following build errors:
+--O7XSXK7XxHjViR5H
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-[auto build test ERROR on robh/for-next]
-[also build test ERROR on linus/master v6.5-rc3 next-20230727]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+On Thu, Jul 27, 2023 at 11:09:48AM +0200, Herve Codina wrote:
+> On Thu, 27 Jul 2023 09:19:59 +0100
+> Conor Dooley <conor@kernel.org> wrote:
+> > On Wed, Jul 26, 2023 at 05:02:01PM +0200, Herve Codina wrote:
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Charles-Boyer/ARM-dts-nuvoton-Add-Fii-Mori-system/20230727-024931
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20230726184651.1221-1-Charles.Boyer%40fii-usa.com
-patch subject: [PATCH] ARM: dts: nuvoton: Add Fii Mori system
-config: arm-randconfig-r004-20230726 (https://download.01.org/0day-ci/archive/20230727/202307271704.EqCiK6kd-lkp@intel.com/config)
-compiler: clang version 17.0.0 (https://github.com/llvm/llvm-project.git 4a5ac14ee968ff0ad5d2cc1ffa0299048db4c88a)
-reproduce: (https://download.01.org/0day-ci/archive/20230727/202307271704.EqCiK6kd-lkp@intel.com/reproduce)
+> If needed, I can change to:
+>   title: QMC (QUICC Multichannel Controller) HDLC
+> Let me known if it is better to you.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202307271704.EqCiK6kd-lkp@intel.com/
+If it were me writing the binding, I'd probably use something like
+"Freescale/NXP QUICC Multichannel Controller (QMC) HDLC", but it is not
+a big deal, I just had a "wtf is this" moment :)
 
-All errors (new ones prefixed by >>):
 
->> Error: arch/arm/boot/dts/nuvoton/nuvoton-npcm730-mori.dts:649.1-6 Label or path emc0 not found
->> Error: arch/arm/boot/dts/nuvoton/nuvoton-npcm730-mori.dts:662.1-7 Label or path ohci1 not found
->> Error: arch/arm/boot/dts/nuvoton/nuvoton-npcm730-mori.dts:666.1-5 Label or path aes not found
->> Error: arch/arm/boot/dts/nuvoton/nuvoton-npcm730-mori.dts:670.1-5 Label or path sha not found
->> Error: arch/arm/boot/dts/nuvoton/nuvoton-npcm730-mori.dts:761.1-8 Label or path sdhci0 not found
-   Error: arch/arm/boot/dts/nuvoton/nuvoton-npcm730-mori.dts:769.1-7 Label or path ohci1 not found
->> Error: arch/arm/boot/dts/nuvoton/nuvoton-npcm730-mori.dts:773.1-6 Label or path vdma not found
->> Error: arch/arm/boot/dts/nuvoton/nuvoton-npcm730-mori.dts:777.1-9 Label or path pcimbox not found
->> Error: arch/arm/boot/dts/nuvoton/nuvoton-npcm730-mori.dts:781.1-5 Label or path vcd not found
->> Error: arch/arm/boot/dts/nuvoton/nuvoton-npcm730-mori.dts:785.1-5 Label or path ece not found
->> Error: arch/arm/boot/dts/nuvoton/nuvoton-npcm730-mori.dts:818.1-5 Label or path otp not found
->> FATAL ERROR: Syntax error parsing input tree
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+> > > +  fsl,qmc-chan:
+> >=20
+> > Perhaps I am just showing my lack of knowledge in this area, but what is
+> > fsl specific about wanting a reference to the channel of a "QMC"?
+> > Is this something that hardware from other manufacturers would not also
+> > want to do?
+>=20
+> The QMC and the QMC channel are something specific to the SoC. This IP is=
+ only
+> available on some Freescale/NXP SoCs.
+>=20
+> When I upstreamed the 'fsl,qmc-audio.yaml', I first used a generic name f=
+or this
+> property and Kristoff asked to change to a vendor prefixed name.
+>   https://lore.kernel.org/linux-kernel/1dfade07-f8c4-2e16-00dc-c7d1837082=
+59@linaro.org/
+>=20
+> Based on this, as the property 'fsl,qmc-chan' has the exact same meaning =
+in
+> fsl,qmc-audio.yaml and fsl,qmc-hdlc.yaml, I use the same name.
+
+Okay, thanks for explaining!
+
+--O7XSXK7XxHjViR5H
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZMI+iwAKCRB4tDGHoIJi
+0qi3APwL74Mb2llAu7YBw/3bmeFa7gR7fA/ofP+aXSE3vKilNwEAr7q9DVx5VZdT
+1kkQaOjZ61gQb0aNwEfyWDLEqkpWAgw=
+=qYki
+-----END PGP SIGNATURE-----
+
+--O7XSXK7XxHjViR5H--
