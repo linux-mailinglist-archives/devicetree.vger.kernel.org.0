@@ -2,174 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BBFF37650C1
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 12:18:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE2C77650C8
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 12:19:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231228AbjG0KSp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jul 2023 06:18:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50226 "EHLO
+        id S232888AbjG0KT1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jul 2023 06:19:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50900 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230285AbjG0KSo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 06:18:44 -0400
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC14210F9;
-        Thu, 27 Jul 2023 03:18:41 -0700 (PDT)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id CC9DF240009;
-        Thu, 27 Jul 2023 10:18:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1690453120;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=LVq3Vc2yDzDKpJTcAR2jA40+zkxL5sFVNMLQL+uihyc=;
-        b=LGBKo4DDE6TlLK+r5fTDq47Or6GsDCPWtkuzd8m01djTnntuS1whrhZ2QA3u0laO3aepgx
-        rqvLj+Dz26tpJXrON2TF+vdJS7VEZAS6u+braSD1zItS8ACXGXCV/HJOaMNzrJensddzRn
-        vLkeJfbV+0di+euOuaVZ9CDsqgncSuKL4pqV/LzInvwOK9eMrHE2IPGs6TpoFGMtc3Dz9B
-        NAq27nwXNI7xm0DLU67stWHWnZaGSrDO6Ja3XiR87FCrQfmbtK1KH4XzlWa31FCWcSeyP1
-        ZOqjOi2BM6kZns8uVQmjpT0xj014mQnM1O+zGWPTUXUApK/CTHrOu0cc7swVyA==
-Date:   Thu, 27 Jul 2023 12:18:34 +0200
-From:   Herve Codina <herve.codina@bootlin.com>
-To:     Lee Jones <lee@kernel.org>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Qiang Zhao <qiang.zhao@nxp.com>, Li Yang <leoyang.li@nxp.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Shengjiu Wang <shengjiu.wang@gmail.com>,
-        Xiubo Li <Xiubo.Lee@gmail.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Nicolin Chen <nicoleotsuka@gmail.com>,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Randy Dunlap <rdunlap@infradead.org>, netdev@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, alsa-devel@alsa-project.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v2 22/28] mfd: core: Ensure disabled devices are skiped
- without aborting
-Message-ID: <20230727121834.475541d0@bootlin.com>
-In-Reply-To: <20230727092209.GA8175@google.com>
-References: <20230726150225.483464-1-herve.codina@bootlin.com>
-        <20230726150225.483464-23-herve.codina@bootlin.com>
-        <20230727092209.GA8175@google.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-redhat-linux-gnu)
+        with ESMTP id S233367AbjG0KT0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 06:19:26 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CCF12685;
+        Thu, 27 Jul 2023 03:19:13 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 36RAIsd7071743;
+        Thu, 27 Jul 2023 05:18:54 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1690453134;
+        bh=ooeccyvsVXfCMQ9wq+972jkA4kcsgxRzj3C2kH4HnLI=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=D7ipi7EDOT4B9vmDtI/LDKiue8UuupiqqtCkb8UPHUJs7MZqfPowt7OqiBLauwK+d
+         ANe+ZcqkfUOhcAEH1B0SdRgzOjf2xIdi7VKc0c/MI7qm3hTJY530it1NZaQ1SxN8Vs
+         5WCHou2pUmr2wNX8BWST+G8sPwAgTs+IvmnhSDyM=
+Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 36RAIsU7111544
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 27 Jul 2023 05:18:54 -0500
+Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 27
+ Jul 2023 05:18:53 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 27 Jul 2023 05:18:53 -0500
+Received: from [172.24.227.112] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 36RAImSJ012133;
+        Thu, 27 Jul 2023 05:18:49 -0500
+Message-ID: <5f5269dd-3cff-6fff-909d-355c190001d2@ti.com>
+Date:   Thu, 27 Jul 2023 15:48:48 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: herve.codina@bootlin.com
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v6 1/5] arm64: dts: ti: k3-j784s4-main: Add system
+ controller and SERDES lane mux
+To:     Nishanth Menon <nm@ti.com>, <s-vadapalli@ti.com>, <afd@ti.com>
+CC:     <vigneshr@ti.com>, <krzysztof.kozlowski+dt@linaro.org>,
+        <kristo@kernel.org>, <robh+dt@kernel.org>, <conor+dt@kernel.org>,
+        <rogerq@kernel.org>, <a-bhatia1@ti.com>, <r-ravikumar@ti.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20230721132029.123881-1-j-choudhary@ti.com>
+ <20230721132029.123881-2-j-choudhary@ti.com>
+ <20230724165220.kbjo7t5vthurqeuj@spokesman>
+Content-Language: en-US
+From:   Jayesh Choudhary <j-choudhary@ti.com>
+In-Reply-To: <20230724165220.kbjo7t5vthurqeuj@spokesman>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Lee,
 
-On Thu, 27 Jul 2023 10:22:09 +0100
-Lee Jones <lee@kernel.org> wrote:
 
-> On Wed, 26 Jul 2023, Herve Codina wrote:
+On 24/07/23 22:22, Nishanth Menon wrote:
+> On 18:50-20230721, Jayesh Choudhary wrote:
+>> From: Siddharth Vadapalli <s-vadapalli@ti.com>
+>>
+>> The system controller node manages the CTRL_MMR0 region.
+>> Add serdes_ln_ctrl node which is used for controlling the SERDES lane mux.
+>>
+>> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+>> [j-choudhary@ti.com: Fix serdes_ln_ctrl node]
+>> Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
+>> ---
+>>   arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi | 40 ++++++++++++++++++++++
+>>   1 file changed, 40 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
+>> index 11f163e5cadf..5a4da4eb8d3d 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
+>> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
+>> @@ -5,6 +5,10 @@
+>>    * Copyright (C) 2022 Texas Instruments Incorporated - https://www.ti.com/
+>>    */
+>>   
+>> +#include <dt-bindings/mux/mux.h>
+>> +
+>> +#include "k3-serdes.h"
+>> +
+>>   &cbass_main {
+>>   	msmc_ram: sram@70000000 {
+>>   		compatible = "mmio-sram";
+>> @@ -26,6 +30,42 @@ l3cache-sram@200000 {
+>>   		};
+>>   	};
+>>   
+>> +	scm_conf: syscon@100000 {
+>> +		compatible = "ti,j721e-system-controller", "syscon", "simple-mfd";
 > 
-> > The loop searching for a matching device based on its compatible
-> > string is aborted when a matching disabled device is found.
-> > This abort avoid to add devices as soon as one disabled device
-> > is found.
-> > 
-> > Continue searching for an other device instead of aborting on the
-> > first disabled one fixes the issue.
-> > 
-> > Fixes: 22380b65dc70 ("mfd: mfd-core: Ensure disabled devices are ignored without error")
-> > Signed-off-by: Herve Codina <herve.codina@bootlin.com>
-> > ---
-> >  drivers/mfd/mfd-core.c | 18 +++++++++++++-----
-> >  1 file changed, 13 insertions(+), 5 deletions(-)
-> > 
-> > diff --git a/drivers/mfd/mfd-core.c b/drivers/mfd/mfd-core.c
-> > index 0ed7c0d7784e..bcc26e64639a 100644
-> > --- a/drivers/mfd/mfd-core.c
-> > +++ b/drivers/mfd/mfd-core.c
-> > @@ -146,6 +146,7 @@ static int mfd_add_device(struct device *parent, int id,
-> >  	struct platform_device *pdev;
-> >  	struct device_node *np = NULL;
-> >  	struct mfd_of_node_entry *of_entry, *tmp;
-> > +	bool disabled;
-> >  	int ret = -ENOMEM;
-> >  	int platform_id;
-> >  	int r;
-> > @@ -181,13 +182,13 @@ static int mfd_add_device(struct device *parent, int id,
-> >  		goto fail_res;
-> >  
-> >  	if (IS_ENABLED(CONFIG_OF) && parent->of_node && cell->of_compatible) {
-> > +		disabled = false;  
-> 
-> This does not appear to reside in a loop.
-> 
-> Why not set it to false on declaration?
+> Would'nt a simple-bus work?
+> https://lore.kernel.org/all/20230605205220.rjmcsi5tjn4auqa7@arose/
 
-Indeed, I will change in the next iteration and set the value to false at
-the declaration.
+For serdes_ln_ctrl it will be okay but for phy_gmii_sel,
+we have dependency on [1].
 
-> 
-> >  		for_each_child_of_node(parent->of_node, np) {
-> >  			if (of_device_is_compatible(np, cell->of_compatible)) {
-> > -				/* Ignore 'disabled' devices error free */
-> > +				/* Skip 'disabled' devices */
-> >  				if (!of_device_is_available(np)) {
-> > -					of_node_put(np);  
-> 
-> Doesn't this result in a resource leak?
+So I will drop main_cpsw node (patch 2/5) and then re-spin it with
+"simple-bus" compatible.
+CPSW node can be taken up later on when the driver changes are in.
 
-No because we change from 'goto fail_alias' to 'continue' and so we don't
-exit from the for_each_child_of_node().
-The for_each_child_of_node() calls of_get_next_child() and, in turn, calls
-of_node_put().
 
-Regards,
-Hervé
+[1]: 
+https://lore.kernel.org/all/b16568ec-0428-981b-01ca-571cc5d52704@ti.com/
 
-> 
-> > -					ret = 0;
-> > -					goto fail_alias;
-> > +					disabled = true;
-> > +					continue;
-> >  				}
-> >  
-> >  				ret = mfd_match_of_node_to_dev(pdev, np, cell);
-> > @@ -197,10 +198,17 @@ static int mfd_add_device(struct device *parent, int id,
-> >  				if (ret)
-> >  					goto fail_alias;
-> >  
-> > -				break;
-> > +				goto match;
-> >  			}
-> >  		}
-> >  
-> > +		if (disabled) {
-> > +			/* Ignore 'disabled' devices error free */
-> > +			ret = 0;
-> > +			goto fail_alias;
-> > +		}
-> > +
-> > +match:
-> >  		if (!pdev->dev.of_node)
-> >  			pr_warn("%s: Failed to locate of_node [id: %d]\n",
-> >  				cell->name, platform_id);
-> > -- 
-> > 2.41.0
-> >   
-> 
+
+Warm Regards,
+Jayesh
 
