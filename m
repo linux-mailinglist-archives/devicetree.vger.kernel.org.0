@@ -2,138 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 54BBC764729
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 08:47:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 660A5764730
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 08:49:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230282AbjG0GrR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jul 2023 02:47:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41082 "EHLO
+        id S231704AbjG0GtE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jul 2023 02:49:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41874 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229822AbjG0GrQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 02:47:16 -0400
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8180C212B
-        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 23:47:15 -0700 (PDT)
-Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-9923833737eso69650566b.3
-        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 23:47:15 -0700 (PDT)
+        with ESMTP id S231761AbjG0GtC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 02:49:02 -0400
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCD3E269E
+        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 23:49:00 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-99bc512526cso76399666b.1
+        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 23:49:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690440434; x=1691045234;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=8AfkdTx8aDEG/J6ohJF19yNL93fMDwOc4t4zIdlBZ2E=;
-        b=jWp7VWS5gIbTB2zl0kt4Rvezmk2BgNEEjiiodpr1HtfXj8S6OKr9zkCKAz1+Pl5LiI
-         FxrRIe5yy3NKYfyZX7Y5yMyqzi+6eFyxyCHeFgbqgfqDHV3GARewdjhtS8qwn1ZjuEn/
-         PIRgL9h+f/xrgISC8j+ykE6NTjajgqQRBZFjoAvsJjQ27TsU4nHCLH7R97fguHWfQfE0
-         uyh2gmDI3olvw8h7n6cz5rJBDKyoXPFQ//cnzWCnu5YkqddHh6WVIKMSy7QjE1D6JOtc
-         DnjXFJ5cUazgkIdfVxd/QCN27mdhL8ByeS8rOoMwGHYckdmeLyD+TNBwi4fZHQttNPth
-         emNQ==
+        d=linaro.org; s=google; t=1690440539; x=1691045339;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=c3X8Zj4OP70OiqAhYnmxGDR9inGCFFjwz8hO6iVPB9c=;
+        b=YxC4YDI+Y31qmYG5osPjgudcxDzKIfFIlK0DZRrp54Peo8y6rVsb+LWS6tpf+eS7fl
+         +oHJ/p/utFkIJoczkcJGZamK4aPLUBbro0OL9Zuy7jzrwDP7H6aKS++4R/QthKJ1qdfe
+         u9y5TYVvaUhSSQemkMPlI/hOFEgd5m+4IVpSRi3hT62sTkk+Vqsg1PDUTZIhmDl03xvB
+         3dS65AdFrL1d1XQCw2xHSrr1t1Pb7vAF4rfyqFmADmCgDp5Sg07OkIOkqDm32HWcef4l
+         Xtxwk1LRDZSwFzm2z5UCYL2Ft7+cr5drXXjBR7XasFYirwjLzor+Jke8ABRsSUjwcFfm
+         LkDg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690440434; x=1691045234;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1690440539; x=1691045339;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8AfkdTx8aDEG/J6ohJF19yNL93fMDwOc4t4zIdlBZ2E=;
-        b=g4h1NH8VBlsW6gS/kWzJbUR5JeZhkbkSCz95rOX7hI/y4py5yXjSijqyQZpeiGmpo2
-         EXVrN96VU7XRxTcp8qvsCir5lDUmmw3QHrUz55LYY6pduXrr1PBnT0KHiXjmbUL/kVi4
-         f8JTWhUAPXS0sP6JJeDHy5TfWNRNjMbuIt79ggrhRzU2JcWuRCin4beFTS5Abz794gTb
-         yKVzviNrhZdgjvm9bnhSfaGcy5x+9cHWgfQvynZLH+mjCu2DWvqj4cLqw+G3HkNqNmDm
-         Gd5W6lGtf5/AX0s4wq0uW8Hs02oPQR2wFv4oslWUXqpAtnjANRM4JO6WTALBWSRlTWMP
-         mCww==
-X-Gm-Message-State: ABy/qLaCxccBO8/4FDVxmNJCkKqbvChRtvFlGMU5QXzPqP2sKuNRScQR
-        uRvXsE7Fqrw68uj2bx/904P14A==
-X-Google-Smtp-Source: APBJJlHaOtaQXLEUMwD7ynqgJvlhwXcmtHFmtE3VQA+fsZRixVtmPQJwQX+Ask+KjivM6u5LV3s4Vg==
-X-Received: by 2002:a17:907:761b:b0:99b:4aa3:6480 with SMTP id jx27-20020a170907761b00b0099b4aa36480mr1310855ejc.40.1690440430456;
-        Wed, 26 Jul 2023 23:47:10 -0700 (PDT)
+        bh=c3X8Zj4OP70OiqAhYnmxGDR9inGCFFjwz8hO6iVPB9c=;
+        b=CG7Pq1mDysZMi+Wbdmg8J+05oAxrYR05VgoM/+wy+Wu/N44bahsTLQVlZLD4AipLmQ
+         lwnQjOl7m5brA2BXKcLXMO9txUZ5kD4IfU+tG3uJ8eSX2rihu1RpLohCCsV5IWw9adAi
+         fiN4lsNDKgZ2qqjpUGAE2g/jOmC4wuPWPNgHKnCZn6pGRmp9aEz5gNnmwvrG5Sstcx46
+         crCz+n14OKCk6JBx3hdhD7tB+T+9Csn9VK0C7n2Y3zBu5HbtlP1drCSlbzGtElu80c35
+         piLAP2mqG+d/lqyZmwRAzc1Y7gqtIVZ13ZvGIWeMS2+zsQRWnSXyqplFb6UhFfB983Dw
+         TLCA==
+X-Gm-Message-State: ABy/qLZcU7gpIs2FeEPqDJEGvxqiWh5bXXLFKSkb422v6yGGq8uCZ1Tj
+        LKI2eXeYiljnShUklLDDFSvssg==
+X-Google-Smtp-Source: APBJJlF7LoqmSv1+Kkydpo8uSWljyUepJpwxz2Cw713ZEV3Gf/tzcJlwLjDc1tJeLlS6Qd/HmUEQpA==
+X-Received: by 2002:a17:906:5385:b0:992:a0c7:8d2a with SMTP id g5-20020a170906538500b00992a0c78d2amr976108ejo.54.1690440539233;
+        Wed, 26 Jul 2023 23:48:59 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id u7-20020a170906408700b009786ae9ed50sm380391ejj.194.2023.07.26.23.47.08
+        by smtp.gmail.com with ESMTPSA id e6-20020a1709067e0600b0099315454e76sm375402ejr.211.2023.07.26.23.48.57
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 26 Jul 2023 23:47:09 -0700 (PDT)
-Message-ID: <5288c817-3cf8-2b8c-6187-30283353060f@linaro.org>
-Date:   Thu, 27 Jul 2023 08:47:07 +0200
+        Wed, 26 Jul 2023 23:48:58 -0700 (PDT)
+Message-ID: <c9062d5c-b536-f89c-b380-8a0c9b858526@linaro.org>
+Date:   Thu, 27 Jul 2023 08:48:57 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
-Subject: Re: [PATCH v6 1/5] dt-bindings: phy: qcom,m31: Document qcom,m31 USB
- phy
-To:     Varadarajan Narayanan <quic_varada@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org, vkoul@kernel.org,
-        kishon@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        catalin.marinas@arm.com, will@kernel.org, p.zabel@pengutronix.de,
-        arnd@arndb.de, geert+renesas@glider.be, neil.armstrong@linaro.org,
-        nfraprado@collabora.com, rafal@milecki.pl, john.garry@huawei.com,
-        peng.fan@nxp.com, quic_srichara@quicinc.com,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <cover.1690439352.git.quic_varada@quicinc.com>
- <f88d5add717e90e136a701f39fe80d00f1052692.1690439352.git.quic_varada@quicinc.com>
+Subject: Re: [PATCH 1/2] dt-bindings: arm: aspeed: add Facebook Yosemite V4
+ board
 Content-Language: en-US
+To:     Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>, patrick@stwcx.xyz,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+References: <20230727033926.1904529-1-Delphine_CC_Chiu@wiwynn.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <f88d5add717e90e136a701f39fe80d00f1052692.1690439352.git.quic_varada@quicinc.com>
+In-Reply-To: <20230727033926.1904529-1-Delphine_CC_Chiu@wiwynn.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/07/2023 08:33, Varadarajan Narayanan wrote:
-> Document the M31 USB2 phy present in IPQ5332.
+On 27/07/2023 05:39, Delphine CC Chiu wrote:
+> Document the new compatibles used on Facebook Yosemite V4.
 > 
-> Co-developed-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
-> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
-> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+> Signed-off-by: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
 > ---
+>  Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 
-
-> +properties:
-> +  "#phy-cells":
-> +    const: 0
-> +
-> +  compatible:
-> +    items:
-> +      - const: qcom,ipq5332-usb-hsphy
-
-Please keep compatible as first property.
-
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    items:
-> +      - const: cfg_ahb
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +  vdd-supply:
-> +    description:
-> +      Phandle to 5V regulator supply to PHY digital circuit.
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/qcom,ipq5332-gcc.h>
-> +    usb2-phy@7b000 {
-
-This was actually better before as usb-phy, I don't know why did you
-changed. Especially that you already changed once to usb-phy and this
-got review tag. It's fine. If there is going to be resubmit then fix
-these two issues.
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+I got the same patch four times...
 
 Best regards,
 Krzysztof
