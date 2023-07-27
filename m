@@ -2,60 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 496A676473C
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 08:52:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F6EB764743
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 08:53:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232306AbjG0Gwb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jul 2023 02:52:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43686 "EHLO
+        id S232134AbjG0Gx1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jul 2023 02:53:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44346 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232106AbjG0GwW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 02:52:22 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05EAB26B9
-        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 23:52:19 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-99bccc9ec02so76994266b.2
-        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 23:52:18 -0700 (PDT)
+        with ESMTP id S231321AbjG0Gx0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 02:53:26 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CF832688
+        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 23:53:21 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id 2adb3069b0e04-4fe1b00fce2so44548e87.3
+        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 23:53:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690440737; x=1691045537;
+        d=linaro.org; s=google; t=1690440800; x=1691045600;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=bM7PsNw99tLxMJh2X/l/N/uD5u2zjcrjmRWTgcWEpcg=;
-        b=Hs4CUXQpCt/q6xCpoo7LupALtHEVyCLE3p/Z1bxltTre4lKWfrb8WV38L8rohkpysv
-         dgmHCSZhKeJS8UMeLJoq29RZzXEh/VV+LskLBEQBHRGvc4Yzi/hBlfsYKGKahCUF/bIj
-         gBqLfqpo4TcrYB0ZdLxSEFVfW/D1drTuGi9pI5t1sShzS9fYKGJEXUHu8TJggZ+/Rups
-         YCn2XXODPLNBQ0Iv744T5E/wtw+YkD13aTgZJuMKNTB+b5t4VjEhKnMF4M4fogbRApMA
-         DOoW9PHJ8AH1Gek1n1vO7mOfajG+GlULugaQIZ4sLc1vcCaWXnQIY4O4GaqhUPfOrKLF
-         5HQw==
+        bh=bBQJ2xH5reo70JQZjg7oy6V7SvIpXnYDMAduFmKIx4Y=;
+        b=ORshOA2bsWLfMFmZTiwmr4D2aSp/1vRoDnFM3CqOxQFVKMq84Fnzn7lo35hcaXdlk5
+         07uQzY1pJkutZFCNavhNlRLdkDlntZaVmVfLHt6uCWh8QKQJ7K0dMMmZTtMneS3P+M5l
+         ivEyByLEBbfTawEy8K0COvsvxgUBY08A+rn9oh1aIapEkBfgqZPLEUy/pBATXyFU0+rI
+         qkc6cAOR699d8XjLagF5hMc+kDojIvWFcrrtTIfeEgka66wSUJM+2981VAKe9LGG4ZcH
+         fM85pNXxh+yFgNemP7jifaDs1kE9yYNZD2KpqXPCz/KBkZv+FIzI8spDjxW1pozQQoFI
+         I3QA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690440737; x=1691045537;
+        d=1e100.net; s=20221208; t=1690440800; x=1691045600;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=bM7PsNw99tLxMJh2X/l/N/uD5u2zjcrjmRWTgcWEpcg=;
-        b=bsjFyy7l/ymFp5f5mK+J1q7b9rTU/QWbdLM3TJRNdTHdIQQTj7Eo4o9daweYaPo2JP
-         FWeEHUYo35hqw5+1jg+itpnQBLoRh4dlt4/lqie6Rr6I6OB2PB6h5eK8mHbVLKQP52BY
-         qk05OGVPJOFefihIihZ0sBgiZdNuBHTxfiGSNRdCqxr+lN+v7MxwKRoX63KXAJUclnPU
-         5GWdLuVfMvHlcq2olMAT3QXRu8UuoLsgSc9lXRIJRJ6Y7M72I0UN/x23QGbeF3+Mnv87
-         EatKxr4R21A0v0OOFTPbgoPTKqKxdA2FPSxGvJcoKxvcGCtxvu9uOZWi8+2FxOEEWUVb
-         6eOA==
-X-Gm-Message-State: ABy/qLaXYifZUJcJGBwITlSIQA4P/fvxFg0GwWvkodfET+6K69UB6WaF
-        Vp8nN/F6bZspbedhFqHslSNtjg==
-X-Google-Smtp-Source: APBJJlEi2B8nIclmstFXrZJ8NmRwPhTz9I4FbBz9QSmijqGRzJZ3pqlCPjSmnEoUwexNFYcn6KWhnA==
-X-Received: by 2002:a17:907:2c6a:b0:99b:d549:834f with SMTP id ib10-20020a1709072c6a00b0099bd549834fmr1147608ejc.68.1690440737688;
-        Wed, 26 Jul 2023 23:52:17 -0700 (PDT)
+        bh=bBQJ2xH5reo70JQZjg7oy6V7SvIpXnYDMAduFmKIx4Y=;
+        b=gl1Ts2b8juALI3925QJvqDkjNhOc6I3ToN8DBKQAHH+ZKyjNGXmdrG/QPg1Y9u8vye
+         FjHmOXuoo4qW7xJFQ+l8qjON5PZZKuxwSC+9ps2w38tPqwHcre3PPjUeJrREXzyUL8RD
+         Af6SGZo7DxXdGW8JE7yuihCNWyLvgDgy77kjiUEuMjUwXDmquPDDoNnxw0s3D934JL4C
+         E9iVTnQHh4fzd2ZE+Q3kccVaDdth/d6J4+Dz1wzX32YD2Sqm+p8VWqEcPWNRj00mF6m0
+         AP1V8Nr+7sA+wRj8/r5Vmf1Sd5YtEe9PRGIL0awLvqgbTjpcc2e8qECBzrgnil45dIdg
+         KZzw==
+X-Gm-Message-State: ABy/qLZ7uVhCWp6q2HPub+o05P5t+yal0VBarYZqyCOtUpN/pDqYhmS9
+        yMkQtvvEYB3sMwKXMqEe2Et9wg==
+X-Google-Smtp-Source: APBJJlGqvgzi/Pkbbsc5iV0FGe5yJLTuXuhxCTw8k+kvFPU6vmJQiJnRFFjK6u7sjigihStfJtm0Rg==
+X-Received: by 2002:a05:6512:3145:b0:4fe:ecd:494f with SMTP id s5-20020a056512314500b004fe0ecd494fmr859147lfi.33.1690440799695;
+        Wed, 26 Jul 2023 23:53:19 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id kq6-20020a170906abc600b009828e26e519sm388964ejb.122.2023.07.26.23.52.16
+        by smtp.gmail.com with ESMTPSA id k19-20020aa7c053000000b005222c6fb512sm288002edo.1.2023.07.26.23.53.18
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 26 Jul 2023 23:52:17 -0700 (PDT)
-Message-ID: <f8ddc4b6-32b4-81ec-09e5-468980c4944e@linaro.org>
-Date:   Thu, 27 Jul 2023 08:52:15 +0200
+        Wed, 26 Jul 2023 23:53:19 -0700 (PDT)
+Message-ID: <c2221520-26b7-3d39-e157-b464569be502@linaro.org>
+Date:   Thu, 27 Jul 2023 08:53:17 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
-Subject: Re: [PATCH v2 2/6] dt-bindings: arm: qcom: Document SM4450 SoC and
- boards
+Subject: Re: [PATCH v2 3/6] arm64: dts: qcom: Adds base SM4450 DTSI
 Content-Language: en-US
 To:     Tengfei Fan <quic_tengfan@quicinc.com>, andersson@kernel.org,
         konrad.dybcio@linaro.org, robh+dt@kernel.org,
@@ -66,14 +65,14 @@ Cc:     quic_tsoni@quicinc.com, quic_shashim@quicinc.com,
         kernel@quicinc.com, linux-arm-msm@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20230727023508.18002-1-quic_tengfan@quicinc.com>
- <20230727023508.18002-3-quic_tengfan@quicinc.com>
+ <20230727023508.18002-4-quic_tengfan@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230727023508.18002-3-quic_tengfan@quicinc.com>
+In-Reply-To: <20230727023508.18002-4-quic_tengfan@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,11 +81,22 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 27/07/2023 04:35, Tengfei Fan wrote:
-> Document the SM4450 SoC binding and also the boards using it.
+> This add based DTSI for SM4450 SoC and includes base description of
+
+Nit, no need to resend, Please do not use "This commit/patch", but
+imperative mood. See longer explanation here:
+https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
+
+> CPUs and interrupt-controller which helps to boot to shell with dcc
+> console on boards with this SoC.
 > 
 > Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
 > ---
->  Documentation/devicetree/bindings/arm/qcom.yaml | 6 ++++++
+>  arch/arm64/boot/dts/qcom/sm4450.dtsi | 431 +++++++++++++++++++++++++++
+>  1 file changed, 431 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/qcom/sm4450.dtsi
+> 
+
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
