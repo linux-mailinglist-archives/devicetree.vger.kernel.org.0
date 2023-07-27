@@ -2,137 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 14330764C8D
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 10:22:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 81AE6764D86
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 10:36:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231604AbjG0IWq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jul 2023 04:22:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55986 "EHLO
+        id S234111AbjG0IgJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jul 2023 04:36:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44270 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234163AbjG0IVQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 04:21:16 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A31E03A80;
-        Thu, 27 Jul 2023 01:13:08 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id A647A61D98;
-        Thu, 27 Jul 2023 08:12:09 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 516EEC433C8;
-        Thu, 27 Jul 2023 08:12:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690445529;
-        bh=tnGIkZ0IfVSxC+Yq+6QYwbRcNs+y3LaIpY7itDA1DY0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=g3X0c1vs3a2ExMXkrF+1tcbDsnN2aqJCcQvv2E42gHFtthXoxHT+jaSco+ZogIg0G
-         w7tGNnMsZDib2IGYF984hf9xZSY5adT9vxpurLoOMGGSONNQFd8WdhzgsuAmXgk49K
-         dMaePLC2CGqQT2i6n9Et/bGw1iCT+XmtAMUlBT4nI1PHdiAY5WWzAFBFfDovs3hpXv
-         VjrgM0AtFh5s4anoNx0c7HbquZbJdD7PnTZfXSJhncYy2kd13o4lyvqr8/JOKnY3vL
-         zIUldsQfgz0SOIYaMa8Oar3jUOZj5tjJxq7oN5ca+/JEtWuvauejQ5M5bDpTAv+tlm
-         KMdwa+ZVqnw1A==
-Date:   Thu, 27 Jul 2023 09:12:01 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Herve Codina <herve.codina@bootlin.com>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S234431AbjG0Ifw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 04:35:52 -0400
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id EDD21E42;
+        Thu, 27 Jul 2023 01:19:17 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="6.01,234,1684767600"; 
+   d="scan'208";a="174688905"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie6.idc.renesas.com with ESMTP; 27 Jul 2023 17:18:55 +0900
+Received: from localhost.localdomain (unknown [10.226.93.33])
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 21F2541C9E93;
+        Thu, 27 Jul 2023 17:18:50 +0900 (JST)
+From:   Biju Das <biju.das.jz@bp.renesas.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Qiang Zhao <qiang.zhao@nxp.com>, Li Yang <leoyang.li@nxp.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Shengjiu Wang <shengjiu.wang@gmail.com>,
-        Xiubo Li <Xiubo.Lee@gmail.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Nicolin Chen <nicoleotsuka@gmail.com>,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Randy Dunlap <rdunlap@infradead.org>, netdev@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, alsa-devel@alsa-project.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v2 27/28] dt-bindings: net: fsl,qmc-hdlc: Add framer
- support
-Message-ID: <20230727-jailer-recede-a62ab2238581@spud>
-References: <20230726150225.483464-1-herve.codina@bootlin.com>
- <20230726150225.483464-28-herve.codina@bootlin.com>
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>, linux-iio@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH v3 0/5] Add RZ/G2UL MTU3a support
+Date:   Thu, 27 Jul 2023 09:18:43 +0100
+Message-Id: <20230727081848.100834-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="eYAsfQrSrlZJPeWa"
-Content-Disposition: inline
-In-Reply-To: <20230726150225.483464-28-herve.codina@bootlin.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=1.1 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This patch series aims to add MTU3a support for RZ/G2UL SMARC EVK.
+Also it fixes overflow/underflow interrupt names.
 
---eYAsfQrSrlZJPeWa
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+v2->v3:
+ * Dropped patch#4, as it accepted for 6.5 fixes.
+ * Moved patch#2 to patch#1 as it is fixes patch.
+ * Added Rb tag from Geert for patch#1 and patch#3.
+ * Updated the link to lore for Closes tag for patch#2.
+ * Documented RZ/Five SoC as the same IP used in RZ/G2UL SoC.
 
-On Wed, Jul 26, 2023 at 05:02:23PM +0200, Herve Codina wrote:
-> A framer can be connected to the QMC HDLC.
-> If present, this framer is the interface between the TDM used by the QMC
-> HDLC and the E1/T1 line.
-> The QMC HDLC can use this framer to get information about the line and
-> configure the line.
->=20
-> Add an optional framer property to reference the framer itself.
->=20
-> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+v1->v2:
+ * Added Ack tags from Conor Dooley for binding patches
+ * Updated commit description RZ/G2UL->RZ/{G2UL,Five} for patch#5.
+ * Fixed build error reported by kernel test robot by replacing
+   GIC_SPI x ->SOC_PERIPHERAL_IRQ(x) for patch#5.
 
-Why not fully describe the hardware in one patch in this series, rather
-than split this over two different ones?
+Biju Das (5):
+  dt-bindings: timer: renesas,rz-mtu3: Fix overflow/underflow interrupt
+    names
+  dt-bindings: timer: renesas,rz-mtu3: Improve documentation
+  dt-bindings: timer: renesas,rz-mtu3: Document RZ/{G2UL,Five} SoCs
+  arm64: dts: renesas: r9a07g043: Add MTU3a node
+  arm64: dts: renesas: rzg2ul-smarc: Add support for enabling MTU3
 
-> ---
->  Documentation/devicetree/bindings/net/fsl,qmc-hdlc.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/net/fsl,qmc-hdlc.yaml b/Do=
-cumentation/devicetree/bindings/net/fsl,qmc-hdlc.yaml
-> index 8bb6f34602d9..bf29863ab419 100644
-> --- a/Documentation/devicetree/bindings/net/fsl,qmc-hdlc.yaml
-> +++ b/Documentation/devicetree/bindings/net/fsl,qmc-hdlc.yaml
-> @@ -27,6 +27,11 @@ properties:
->        Should be a phandle/number pair. The phandle to QMC node and the Q=
-MC
->        channel to use.
-> =20
-> +  framer:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description:
-> +      phandle to the framer node
-> +
->  required:
->    - compatible
->    - fsl,qmc-chan
-> --=20
-> 2.41.0
->=20
+ .../bindings/timer/renesas,rz-mtu3.yaml       | 67 +++++++++---------
+ arch/arm64/boot/dts/renesas/r9a07g043.dtsi    | 70 +++++++++++++++++++
+ .../boot/dts/renesas/r9a07g043u11-smarc.dts   | 11 +++
+ .../dts/renesas/rzg2ul-smarc-pinfunction.dtsi |  6 ++
+ arch/arm64/boot/dts/renesas/rzg2ul-smarc.dtsi | 13 ++++
+ 5 files changed, 134 insertions(+), 33 deletions(-)
 
---eYAsfQrSrlZJPeWa
-Content-Type: application/pgp-signature; name="signature.asc"
+-- 
+2.25.1
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZMIm0AAKCRB4tDGHoIJi
-0kUJAPwNtjLVJN1zsHlbb6aaExnJrN4N1c/y81aSzDXGP/5mtwD/ZlFY9Kf3kK6f
-ZSCmoVzzU0F7LpDiZu5VLWEDSKophAY=
-=Scw7
------END PGP SIGNATURE-----
-
---eYAsfQrSrlZJPeWa--
