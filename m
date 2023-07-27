@@ -2,127 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 583B87658BC
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 18:32:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 064ED765930
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 18:50:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231415AbjG0Qb7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jul 2023 12:31:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44628 "EHLO
+        id S231131AbjG0Qun (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jul 2023 12:50:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58450 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230386AbjG0Qbw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 12:31:52 -0400
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BF6F3A9F
-        for <devicetree@vger.kernel.org>; Thu, 27 Jul 2023 09:31:21 -0700 (PDT)
-Received: by mail-lj1-x22b.google.com with SMTP id 38308e7fff4ca-2b9338e4695so17564771fa.2
-        for <devicetree@vger.kernel.org>; Thu, 27 Jul 2023 09:31:21 -0700 (PDT)
+        with ESMTP id S231882AbjG0Qum (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 12:50:42 -0400
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2AE292D7D;
+        Thu, 27 Jul 2023 09:50:39 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-51d95aed33aso1512935a12.3;
+        Thu, 27 Jul 2023 09:50:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690475460; x=1691080260;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=yW+tb6QFhlbLr0bi96ZSf05YZeaSfV3/8CB+PE4cSW0=;
-        b=jET9iRXPww1h2fUwvAPI4hd2QprWiYQGOs/Lw39zD+h5jhpak6vpe5dqMBqIpDhmTS
-         QuE1GE/YW2r9eKew2hzQ9Zc5TmafwIpNe1Ty+r9ZSZUk1n/k45R2JCKS2H0I14CL02HL
-         vFzferwT7eKxTQaUdfhkV6Gsjpblv0dm5b6O5MQ7bxx3JseG2oL8z1IsfrUSvnx3HAY4
-         ZzaFZYjup0Is0ySxU+pzMSDP/+ZmiYolAfz4BgfYUNGU6juMZwDCGHXfRL5kQw2j8jKX
-         ZHAjDmSmvXkQzZI1JIQG4DKVMiaRpa9g7CQRdgU1EW2UCor7SgSscdRObUbq/Zyn5IcH
-         nZEA==
+        d=gmail.com; s=20221208; t=1690476637; x=1691081437;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=8ca83DArfwYSOrij3GU5MKEjp3+Tob7zF8j3oLiLUAA=;
+        b=JsK+YR6oU0GmuhsKrZ4QxdQWBVSJF1UVlnChg0t3Ys/MRkQ9z7tcZS/yZMnZXipBjk
+         DbfXFC+HDoPPMJ8jU2NSNQLQx+NhXYhMkZfGw6ZgciyE1B4qw7sVjYTAcVhTtoozJRlY
+         fcBL7jlboWgjpL+/6OjYq7UF8E70Vqx1MiYoBQfm7V1q9Sk99s5h9N9l/gHYShLwUgyn
+         eELVNFFZP1OUZq+YA3JLCFGlsuHSy78NhpG4Wep2M3avKybHCfdDJOibIZSo8K+E2k0/
+         GvEe3YY/2Gj2ftbxyvBfod7UaPTlsGf/6ki2Gk/fKEpw+BcamsTBJLzt6uYcHXXv88pt
+         WyOA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690475460; x=1691080260;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=yW+tb6QFhlbLr0bi96ZSf05YZeaSfV3/8CB+PE4cSW0=;
-        b=IYJw2UDLaORrirhcR7BXtd/Fl5VWW0mznoO+IKMLq01i/BZ1wAK37lfn9M86GgR5p4
-         X4ktNRhAQ+zZTZjI3ChYx+gkEhw8iRTHpw9AZ/YmYE0B4l/yQgCA+oxbJPWw0yfyyL7g
-         HTlhHrS/BPw3GryCG+9l0crnayIX7Kgi+Gcxcy2HW5OX/EOPvBLT3ObWqG4Ek0qUVFEo
-         BLMm645bMzxld8OKoS8gdHpPEaovtdqa3vjhZqOUWPqi95Wh7awCb0LjZubfcr7zZAiZ
-         qvItbU9HRCMHyRrf5s6VSkAAljL6v5HIfocOwcy0J03QrdcvQGmHNmi+zN6OzJoCFRsL
-         Zt3A==
-X-Gm-Message-State: ABy/qLaE0Nqgmk7hYd/d06ycKjFXW+VUFDVHhLKCS8JSBo3m0ANVGFiY
-        zlLLjN+3kcfSBBNt+K3HoUhwfw==
-X-Google-Smtp-Source: APBJJlGshqd84PTlVeLYvCfWWjBYjaC7Kh9xR7rMineoibtJfIWFBE3MlYSGFDd+a2fyhsjv0YIp8g==
-X-Received: by 2002:a2e:8490:0:b0:2b6:9afe:191c with SMTP id b16-20020a2e8490000000b002b69afe191cmr2179709ljh.7.1690475459666;
-        Thu, 27 Jul 2023 09:30:59 -0700 (PDT)
-Received: from [192.168.1.101] (abxi99.neoplus.adsl.tpnet.pl. [83.9.2.99])
-        by smtp.gmail.com with ESMTPSA id n6-20020a2e8786000000b002b97fe43238sm431551lji.19.2023.07.27.09.30.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 27 Jul 2023 09:30:59 -0700 (PDT)
-Message-ID: <d2863160-c63a-62ec-2231-4ead640978aa@linaro.org>
-Date:   Thu, 27 Jul 2023 18:30:57 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] ARM: dts: qcom: ipq8064: move keys and leds out of soc
- node
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        d=1e100.net; s=20221208; t=1690476637; x=1691081437;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=8ca83DArfwYSOrij3GU5MKEjp3+Tob7zF8j3oLiLUAA=;
+        b=hW3Gn9tY7WdV/MPRi3l7WAvUk3tPQeTywpjKIeVvPxh44z8mPG71qDXVXiApvSDiWa
+         Zfd5kTzr0PUXaKhYhDp0xDGxJuxWY5yDJOBUGFPqtZafeGSSvxR6KdEGWgGf2GTZvrYL
+         TlvOLnV8+8k6jXX2hx6TqVqafzuHk6w6oY49BJHx3LebqnAvfm1+lRWmTBXFd/HfgdpC
+         Cy5Uf5Rfnefg5VuEM+BILRu08hH29XM8SkYDuSEVZp3ZT4GZXvX++B2OQsxz0hT/2MlL
+         UH9trHCwl+r+4Sowil1BeBOBtmIGuTSeETM+Dz9lVI/rJcLWNx+a4POJRv5hIgg0Q+PG
+         SXPg==
+X-Gm-Message-State: ABy/qLbU7qLGwXbO1ACISlLXe2pKTFDAKiKPg5mNoh4U/Pdv0iUmBCwR
+        SY8F7sPPLZ3Ci2rqV/xV28A=
+X-Google-Smtp-Source: APBJJlEkIyXdNLPB+S5kMe28Kp9+/FTHl5FfWx3i+zKwBred5WR3IrCEgA5Zrs4IKOLFdiXpviY2BA==
+X-Received: by 2002:aa7:d049:0:b0:51d:9ddf:f0f3 with SMTP id n9-20020aa7d049000000b0051d9ddff0f3mr2008193edo.31.1690476637348;
+        Thu, 27 Jul 2023 09:50:37 -0700 (PDT)
+Received: from orome (p200300e41f1bd600f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f1b:d600:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id s11-20020aa7c54b000000b0051df54c6a27sm832509edr.56.2023.07.27.09.50.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 27 Jul 2023 09:50:36 -0700 (PDT)
+Date:   Thu, 27 Jul 2023 18:50:35 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Svyatoslav Ryhel <clamor95@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230726210152.273161-1-krzysztof.kozlowski@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <20230726210152.273161-1-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Mikko Perttunen <mperttunen@nvidia.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Maxim Schwalm <maxim.schwalm@gmail.com>,
+        Dmitry Osipenko <digetx@gmail.com>, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH v2 2/2] ARM: tegra: transformers: add connector node
+Message-ID: <ZMKgW6eYpJVqeZJM@orome>
+References: <20230618085046.10081-1-clamor95@gmail.com>
+ <20230618085046.10081-3-clamor95@gmail.com>
+ <ZMKJE1G87-jWeg2_@orome>
+ <5A2447D3-DB49-4788-AA05-182AF0F04ED2@gmail.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="+quuNHqy5nY6+XIF"
+Content-Disposition: inline
+In-Reply-To: <5A2447D3-DB49-4788-AA05-182AF0F04ED2@gmail.com>
+User-Agent: Mutt/2.2.10 (2023-03-25)
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26.07.2023 23:01, Krzysztof Kozlowski wrote:
-> GPIO keys and LEDs are not part of the SoC, so move them to top-level to
-> fix dtbs_check warnings like:
-> 
->   qcom-ipq8064-rb3011.dtb: soc: gpio-keys: {'compatible': ['gpio-keys'], ... should not be valid under {'type': 'object'}
->         from schema $id: http://devicetree.org/schemas/simple-bus.yaml#
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-Konrad
+--+quuNHqy5nY6+XIF
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Thu, Jul 27, 2023 at 07:26:28PM +0300, Svyatoslav Ryhel wrote:
+>=20
+>=20
+> 27 =D0=BB=D0=B8=D0=BF=D0=BD=D1=8F 2023 =D1=80. 18:11:15 GMT+03:00, Thierr=
+y Reding <thierry.reding@gmail.com> =D0=BD=D0=B0=D0=BF=D0=B8=D1=81=D0=B0=D0=
+=B2(-=D0=BB=D0=B0):
+> >On Sun, Jun 18, 2023 at 11:50:46AM +0300, Svyatoslav Ryhel wrote:
+> >> All ASUS Transformers have micro-HDMI connector directly available.
+> >> After Tegra HDMI got bridge/connector support, we should use connector
+> >> framework for proper HW description.
+> >>=20
+> >> Tested-by: Andreas Westman Dorcsak <hedmoo@yahoo.com> # ASUS TF T30
+> >> Tested-by: Robert Eckelmann <longnoserob@gmail.com> # ASUS TF101 T20
+> >> Tested-by: Svyatoslav Ryhel <clamor95@gmail.com> # ASUS TF201 T30
+> >> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+> >> ---
+> >>  arch/arm/boot/dts/tegra20-asus-tf101.dts      | 22 ++++++++++++++++---
+> >>  .../dts/tegra30-asus-transformer-common.dtsi  | 21 ++++++++++++++++--
+> >>  2 files changed, 38 insertions(+), 5 deletions(-)
+> >>=20
+> >> diff --git a/arch/arm/boot/dts/tegra20-asus-tf101.dts b/arch/arm/boot/=
+dts/tegra20-asus-tf101.dts
+> >> index c2a9c3fb5b33..97350f566539 100644
+> >> --- a/arch/arm/boot/dts/tegra20-asus-tf101.dts
+> >> +++ b/arch/arm/boot/dts/tegra20-asus-tf101.dts
+> >> @@ -82,9 +82,11 @@ hdmi@54280000 {
+> >>  			pll-supply =3D <&hdmi_pll_reg>;
+> >>  			hdmi-supply =3D <&vdd_hdmi_en>;
+> >> =20
+> >> -			nvidia,ddc-i2c-bus =3D <&hdmi_ddc>;
+> >> -			nvidia,hpd-gpio =3D <&gpio TEGRA_GPIO(N, 7)
+> >> -				GPIO_ACTIVE_HIGH>;
+> >> +			port@0 {
+> >> +				hdmi_out: endpoint {
+> >> +					remote-endpoint =3D <&connector_in>;
+> >> +				};
+> >> +			};
+> >
+> >Does this need a bindings change? nvidia,tegra20-hdmi currently doesn't
+> >support OF graphs, so this would probably fail to validate if we merge
+> >it without a corresponding DT bindings update.
+>=20
+> drm/tegra patch is backwards compatible and connector node is optional.
+
+We still need to document the connector node, otherwise the DT
+validation will complain about port@0 being used here, won't it?
+
+Thierry
+
+--+quuNHqy5nY6+XIF
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmTCoFoACgkQ3SOs138+
+s6FMdxAAr/lh5lLTiYBGhpZ6nbI8bKAjx08EQ5zqrB179pkIC7+ZATpv+6u/WBWN
+MONzJyFIGz+Kr9yg1Qz0o9u3sRatuQo4XZbTdhKb6t0nscEwD+IZDJRWYCSPmady
+YEN0hJ0iZcQhZwVFioduYkzAnClbILg6qgs7fTATD9X0Di8bmqVAwdg3MDNs8sC9
+R49WsfVg2CHC7SL3NKhw8qpUihEJs6+C7Pu9WfGDERlOf9XdpJPs2KJungGjPznp
+58/XAeDHGMSZ+Rs3RC/HM2PGjfkUdyf616NHW8YCInl4Jiie4NZpYiZNBOdQN5/4
+/B9LbgNuOS/HM8qKtsksYJDGNzQqYuXsqBWz0SS5LEeRTraurkuhuGkbbasmWssS
+DxJfbFbnxxul2+ItpTcAG2c4+/N9fVDqVvV8zRpaN3V5RZjC8pT0XLrWSkbIQV7E
+rxphLww7zuPDOjGXUKZIji8PUuZ0g++sO5isAkCaZESkdF7cHQcEq5WTXpT+78my
+D6NqkVjJr0YNrBsisJGgewrXxx6YjSKpMp7KJYOVJOKOjdnOZucCcyhbOpdF2Pmf
+CIy6rUOymPzzAVOYvrWBDTnM+U5bwTwhQGOLJfBZvRNyi0hkfQwO/4xJe3LHVuYF
+ykJcAKiU3slOXD5EKNVSqbbhgkuY+bvnz7K8gfVEQ2eF73vrcIQ=
+=d9x5
+-----END PGP SIGNATURE-----
+
+--+quuNHqy5nY6+XIF--
