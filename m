@@ -2,65 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5CA5476470D
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 08:40:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4CE8A76470E
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 08:41:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232776AbjG0Gkw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jul 2023 02:40:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37308 "EHLO
+        id S232532AbjG0GlR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jul 2023 02:41:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36514 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230129AbjG0Gkg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 02:40:36 -0400
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C86E2109
-        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 23:40:13 -0700 (PDT)
+        with ESMTP id S232847AbjG0GlB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 02:41:01 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13F9A30C7;
+        Wed, 26 Jul 2023 23:40:38 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-51e28b299adso763935a12.2;
+        Wed, 26 Jul 2023 23:40:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1690440014; x=1721976014;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=R+7psQjOg7clkvnriUd+DpqZssv5pPQlNlj84WO+c6s=;
-  b=K84Lh5YsUHRQz2DcO4WBT+RyBBG8+snYse6loxb0LQ9fKpzbMVHd4I5y
-   FkGKCVSgBKhim+KARFUpjoLPy2q4cQ0ot5+U6hvLeThka7/d4vPIAWMNY
-   UzGFkr3p3DSwQvqVvtZVyBxECZE8+DxdQo6wpPV7AatGS7cu1kIG++aN6
-   YjspQz4nv9KhxMxwGQIUcfNupe4w4aVQJFaRCZqLCn/IRfLxkMCKZoFyC
-   MgTtE8m71LMjsb2DHcTCTdoEALmXjNYEnu4BQBeElA/qVCLakuymK6gYb
-   kh1BBQuJc6+P7X/O5ZN3AkstL1NmJR9/qs497FQVEjAVUNrPInozjelZT
-   w==;
-X-IronPort-AV: E=Sophos;i="6.01,234,1684792800"; 
-   d="scan'208";a="32143828"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 27 Jul 2023 08:40:12 +0200
-Received: from steina-w.localnet (unknown [10.123.53.21])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 24980280075;
-        Thu, 27 Jul 2023 08:40:12 +0200 (CEST)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Rob Herring <robh+dt@kernel.org>,
+        d=gmail.com; s=20221208; t=1690440032; x=1691044832;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=EMDnPScKJKo854bqdiZqqPtQVKxSdc3IO3xG/RkoQEw=;
+        b=nYm1FfEgjlHALmNsdCRIi60zsn5b6b3Xuuf2tVvxIWQ4OW7vrxde9ArxzzGu8voz2M
+         MFx6PoQW5vt6l0y0lil8te5BHSM6E2tIN0/XYj9rC0VriOnefd4xm+n8pwDPNk8d9ImD
+         RY4FihRN9fNqjkannPBPlbSylAJML5l6qqS31gFhZ4SKvd8Dj1MTxNwPIEj+R9Ex7ht2
+         nnTtW2cEnTxoi9lxGHck6Sk7GCWLXqc0DUOQdH13YwUNJBaDc2uCuHJ+t3aszZWvR5rI
+         g/nA4vTN+G0WNZCeJ6N0+3Dy1MX2ZDPc5C68qDgd6Dns16/f9mNWavrDwms1hMQXUPll
+         D4Cw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690440032; x=1691044832;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=EMDnPScKJKo854bqdiZqqPtQVKxSdc3IO3xG/RkoQEw=;
+        b=XrsubUd1eIZUDp8NE5sxLsvRsJUTGgOtlfyoLww0+NMFogB/2aTQaogNAFZfxwUh5+
+         V88M9A1A4fo8IhrEziaHfLT6jrKUbjcl9bfTXoZb5mBydY2XK2zLJEYAY6bKRAoLnx2n
+         N/W6/d5sRUy3RQE76oJpTk7qtEP1OaelW9bBrKLjYvwtT+SPAhHBoL3T3mIH6nmEnwA1
+         gFMJB2mIqrqJp5sSqh1XpGQEcprgMtFsToXPRr3ReXep0Fi5noQGm6JRnSJ358EmJufP
+         BTpUGSwkMTmgUngMBPWVLHQvNyBagoeokswMLQnpJFZc7JrJSmBmYZhukBcogvcVVxvH
+         t1OA==
+X-Gm-Message-State: ABy/qLZzS55tEY92QDfhWgHz8tFn1yG64ncBQ/pGi/8VgjlEpbzNdQ4U
+        woHQkHvp+ryowiAQW93c0vc=
+X-Google-Smtp-Source: APBJJlF+TKI/VLgmTDZiX+Mt+Hjehy+ylPoKJTH4kl/wgNdTOj4U8SUhSdzs1/XJUsRbjIvaQtiC6g==
+X-Received: by 2002:aa7:c1d9:0:b0:521:d75d:ef69 with SMTP id d25-20020aa7c1d9000000b00521d75def69mr951017edp.31.1690440031889;
+        Wed, 26 Jul 2023 23:40:31 -0700 (PDT)
+Received: from ?IPv6:2001:a61:35be:1401:2331:c532:1717:d48c? ([2001:a61:35be:1401:2331:c532:1717:d48c])
+        by smtp.gmail.com with ESMTPSA id n21-20020aa7d055000000b0051e26c7a154sm278107edo.18.2023.07.26.23.40.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 26 Jul 2023 23:40:30 -0700 (PDT)
+Message-ID: <30b7dd4107285c33339e63478a100890de72d346.camel@gmail.com>
+Subject: Re: [PATCH 2/2] drivers: misc: adi-axi-tdd: Add new TDD engine
+ driver
+From:   Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Eliza Balas <eliza.balas@analog.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Peng Fan <peng.fan@nxp.com>, Sherry Sun <sherry.sun@nxp.com>
-Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH 1/1] arm64: dts: imx93: Fix LPUART compatible list
-Date:   Thu, 27 Jul 2023 08:40:11 +0200
-Message-ID: <9194108.rMLUfLXkoz@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <AS8PR04MB84049964E320C20E83BEB78D9200A@AS8PR04MB8404.eurprd04.prod.outlook.com>
-References: <20230726111101.4169847-1-alexander.stein@ew.tq-group.com> <AS8PR04MB84049964E320C20E83BEB78D9200A@AS8PR04MB8404.eurprd04.prod.outlook.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+        Derek Kiernan <derek.kiernan@amd.com>,
+        Dragan Cvetic <dragan.cvetic@amd.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Date:   Thu, 27 Jul 2023 08:40:29 +0200
+In-Reply-To: <0fc2ba5d-8357-6dfb-4aa4-26de6b497c13@linaro.org>
+References: <20230726071103.12172-1-eliza.balas@analog.com>
+         <20230726071103.12172-2-eliza.balas@analog.com>
+         <0fc2ba5d-8357-6dfb-4aa4-26de6b497c13@linaro.org>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+Content-Transfer-Encoding: base64
+User-Agent: Evolution 3.48.4 (3.48.4-1.fc38) 
+MIME-Version: 1.0
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -68,302 +82,73 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sherry,
-
-Am Mittwoch, 26. Juli 2023, 14:28:22 CEST schrieb Sherry Sun:
-> > -----Original Message-----
-> > From: Alexander Stein <alexander.stein@ew.tq-group.com>
-> > Sent: 2023=E5=B9=B47=E6=9C=8826=E6=97=A5 19:11
-> > To: Rob Herring <robh+dt@kernel.org>; Krzysztof Kozlowski
-> > <krzysztof.kozlowski+dt@linaro.org>; Conor Dooley <conor+dt@kernel.org>;
-> > Shawn Guo <shawnguo@kernel.org>; Sascha Hauer
-> > <s.hauer@pengutronix.de>; Fabio Estevam <festevam@gmail.com>; Peng
-> > Fan <peng.fan@nxp.com>
-> > Cc: Alexander Stein <alexander.stein@ew.tq-group.com>; Pengutronix Kern=
-el
-> > Team <kernel@pengutronix.de>; dl-linux-imx <linux-imx@nxp.com>;
-> > devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org
-> > Subject: [PATCH 1/1] arm64: dts: imx93: Fix LPUART compatible list
-> >=20
-> > The compatible list for imx93 LPUART does not include imx8ulp-lpuart
-> > variant.
- Drop it according to bindings.
->=20
->=20
-> Hi Alexander, no, imx93 should include the imx8ulp-lpuart compatible, ple=
-ase
-> update your dt bindings.
-> https://lore.kernel.org/all/20230705015602.29569-4-sherry.sun@nxp.com/ Th=
-is
-> patch now in the tty git tree (tty-next branch).
-
-Ah, I was too fast by one day. I can see this patch in today's next. Thanks=
-=20
-for the link.
-
-Best regards,
-Alexander
-
-> Best Regards
-> Sherry
->=20
->=20
-> >=20
-> > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> > ---
-> > This fixes warnings like:
-> > arch/arm64/boot/dts/freescale/imx93-tqma9352-mba93xxla.dtb:
-> > serial@44390000: compatible: 'oneOf' conditional failed, one must be
-> > fixed:
->=20
-> >         ['fsl,imx93-lpuart', 'fsl,imx8ulp-lpuart', 'fsl,imx7ulp-lpuart']
-> >         is too long
- 'fsl,imx93-lpuart' is not one of
-> >         ['fsl,vf610-lpuart', 'fsl,ls1021a-lpuart',>=20
-> > 'fsl,ls1028a-lpuart', 'fsl,imx7ulp-lpuart', 'fsl,imx8qxp-lpuart',
-> > 'fsl,imxrt1050-
- lpuart']
-> >=20
-> >         'fsl,imx93-lpuart' is not one of ['fsl,imx8qm-lpuart',
-> >         'fsl,imx8dxl-lpuart']
- 'fsl,imxrt1050-lpuart' was expected
-> >         'fsl,imx7ulp-lpuart' was expected
-> >         'fsl,imx8qxp-lpuart' was expected
-> >         'fsl,imxrt1170-lpuart' was expected
-> >         from schema $id:
-> >=20
-> > https://eur01.safelinks.protection.outlook.com/?url=3Dhttp%3A%2F%2Fdevi=
-cet
-> > ree.org%2Fschemas%2Fserial%2Ffsl-
-> > lpuart.yaml%23&data=3D05%7C01%7Csherry.sun%40nxp.com%7C80432b48b2
-> > d848c100e908db8dc902a2%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%7
-> > C0%7C638259666697434989%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4w
-> > LjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C
-> > %7C%7C&sdata=3DmHorQA%2BLsCoGhPtd8SqV%2B45xT1irTLkI6qKCKcqc4BI%3
-> > D&reserved=3D0
-> > arch/arm64/boot/dts/freescale/imx93-tqma9352-mba93xxla.dtb:
-> > serial@44390000: Unevaluated properties are not allowed ('compatible' w=
-as
-> > unexpected)
-> >=20
-> >         from schema $id:
-> >=20
-> > https://eur01.safelinks.protection.outlook.com/?url=3Dhttp%3A%2F%2Fdevi=
-cet
-> > ree.org%2Fschemas%2Fserial%2Ffsl-
-> > lpuart.yaml%23&data=3D05%7C01%7Csherry.sun%40nxp.com%7C80432b48b2
-> > d848c100e908db8dc902a2%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%7
-> > C0%7C638259666697434989%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4w
-> > LjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C
-> > %7C%7C&sdata=3DmHorQA%2BLsCoGhPtd8SqV%2B45xT1irTLkI6qKCKcqc4BI%3
-> > D&reserved=3D0
-> >=20
-> >=20
-> >  arch/arm64/boot/dts/freescale/imx93.dtsi | 16 ++++++++--------
-> >  1 file changed, 8 insertions(+), 8 deletions(-)
-> >=20
-> >=20
-> > diff --git a/arch/arm64/boot/dts/freescale/imx93.dtsi
-> > b/arch/arm64/boot/dts/freescale/imx93.dtsi
-> > index 4ec9df78f2050..5ba92c9be78ba 100644
-> > --- a/arch/arm64/boot/dts/freescale/imx93.dtsi
-> > +++ b/arch/arm64/boot/dts/freescale/imx93.dtsi
-> > @@ -291,7 +291,7 @@ lpspi2: spi@44370000 {
-> >=20
-> >  			};
-> >=20
-> >=20
-> >=20
-> >  			lpuart1: serial@44380000 {
-> >=20
-> > -				compatible =3D "fsl,imx93-lpuart",=20
-"fsl,imx8ulp-
-> > lpuart", "fsl,imx7ulp-lpuart";
-> > +				compatible =3D "fsl,imx93-lpuart",=20
-"fsl,imx7ulp-
-> > lpuart";
-> >=20
-> >  				reg =3D <0x44380000 0x1000>;
-> >  				interrupts =3D <GIC_SPI 19
-> >=20
-> > IRQ_TYPE_LEVEL_HIGH>;
-> >=20
-> >  				clocks =3D <&clk=20
-IMX93_CLK_LPUART1_GATE>;
-> >=20
-> > @@ -300,7 +300,7 @@ lpuart1: serial@44380000 {
-> >=20
-> >  			};
-> >=20
-> >=20
-> >=20
-> >  			lpuart2: serial@44390000 {
-> >=20
-> > -				compatible =3D "fsl,imx93-lpuart",=20
-"fsl,imx8ulp-
-> > lpuart", "fsl,imx7ulp-lpuart";
-> > +				compatible =3D "fsl,imx93-lpuart",=20
-"fsl,imx7ulp-
-> > lpuart";
-> >=20
-> >  				reg =3D <0x44390000 0x1000>;
-> >  				interrupts =3D <GIC_SPI 20
-> >=20
-> > IRQ_TYPE_LEVEL_HIGH>;
-> >=20
-> >  				clocks =3D <&clk=20
-IMX93_CLK_LPUART2_GATE>;
-> >=20
-> > @@ -545,7 +545,7 @@ lpspi4: spi@42560000 {
-> >=20
-> >  			};
-> >=20
-> >=20
-> >=20
-> >  			lpuart3: serial@42570000 {
-> >=20
-> > -				compatible =3D "fsl,imx93-lpuart",=20
-"fsl,imx8ulp-
-> > lpuart", "fsl,imx7ulp-lpuart";
-> > +				compatible =3D "fsl,imx93-lpuart",=20
-"fsl,imx7ulp-
-> > lpuart";
-> >=20
-> >  				reg =3D <0x42570000 0x1000>;
-> >  				interrupts =3D <GIC_SPI 68
-> >=20
-> > IRQ_TYPE_LEVEL_HIGH>;
-> >=20
-> >  				clocks =3D <&clk=20
-IMX93_CLK_LPUART3_GATE>;
-> >=20
-> > @@ -554,7 +554,7 @@ lpuart3: serial@42570000 {
-> >=20
-> >  			};
-> >=20
-> >=20
-> >=20
-> >  			lpuart4: serial@42580000 {
-> >=20
-> > -				compatible =3D "fsl,imx93-lpuart",=20
-"fsl,imx8ulp-
-> > lpuart", "fsl,imx7ulp-lpuart";
-> > +				compatible =3D "fsl,imx93-lpuart",=20
-"fsl,imx7ulp-
-> > lpuart";
-> >=20
-> >  				reg =3D <0x42580000 0x1000>;
-> >  				interrupts =3D <GIC_SPI 69
-> >=20
-> > IRQ_TYPE_LEVEL_HIGH>;
-> >=20
-> >  				clocks =3D <&clk=20
-IMX93_CLK_LPUART4_GATE>;
-> >=20
-> > @@ -563,7 +563,7 @@ lpuart4: serial@42580000 {
-> >=20
-> >  			};
-> >=20
-> >=20
-> >=20
-> >  			lpuart5: serial@42590000 {
-> >=20
-> > -				compatible =3D "fsl,imx93-lpuart",=20
-"fsl,imx8ulp-
-> > lpuart", "fsl,imx7ulp-lpuart";
-> > +				compatible =3D "fsl,imx93-lpuart",=20
-"fsl,imx7ulp-
-> > lpuart";
-> >=20
-> >  				reg =3D <0x42590000 0x1000>;
-> >  				interrupts =3D <GIC_SPI 70
-> >=20
-> > IRQ_TYPE_LEVEL_HIGH>;
-> >=20
-> >  				clocks =3D <&clk=20
-IMX93_CLK_LPUART5_GATE>;
-> >=20
-> > @@ -572,7 +572,7 @@ lpuart5: serial@42590000 {
-> >=20
-> >  			};
-> >=20
-> >=20
-> >=20
-> >  			lpuart6: serial@425a0000 {
-> >=20
-> > -				compatible =3D "fsl,imx93-lpuart",=20
-"fsl,imx8ulp-
-> > lpuart", "fsl,imx7ulp-lpuart";
-> > +				compatible =3D "fsl,imx93-lpuart",=20
-"fsl,imx7ulp-
-> > lpuart";
-> >=20
-> >  				reg =3D <0x425a0000 0x1000>;
-> >  				interrupts =3D <GIC_SPI 71
-> >=20
-> > IRQ_TYPE_LEVEL_HIGH>;
-> >=20
-> >  				clocks =3D <&clk=20
-IMX93_CLK_LPUART6_GATE>;
-> >=20
-> > @@ -610,7 +610,7 @@ flexspi1: spi@425e0000 {
-> >=20
-> >  			};
-> >=20
-> >=20
-> >=20
-> >  			lpuart7: serial@42690000 {
-> >=20
-> > -				compatible =3D "fsl,imx93-lpuart",=20
-"fsl,imx8ulp-
-> > lpuart", "fsl,imx7ulp-lpuart";
-> > +				compatible =3D "fsl,imx93-lpuart",=20
-"fsl,imx7ulp-
-> > lpuart";
-> >=20
-> >  				reg =3D <0x42690000 0x1000>;
-> >  				interrupts =3D <GIC_SPI 210
-> >=20
-> > IRQ_TYPE_LEVEL_HIGH>;
-> >=20
-> >  				clocks =3D <&clk=20
-IMX93_CLK_LPUART7_GATE>;
-> >=20
-> > @@ -619,7 +619,7 @@ lpuart7: serial@42690000 {
-> >=20
-> >  			};
-> >=20
-> >=20
-> >=20
-> >  			lpuart8: serial@426a0000 {
-> >=20
-> > -				compatible =3D "fsl,imx93-lpuart",=20
-"fsl,imx8ulp-
-> > lpuart", "fsl,imx7ulp-lpuart";
-> > +				compatible =3D "fsl,imx93-lpuart",=20
-"fsl,imx7ulp-
-> > lpuart";
-> >=20
-> >  				reg =3D <0x426a0000 0x1000>;
-> >  				interrupts =3D <GIC_SPI 211
-> >=20
-> > IRQ_TYPE_LEVEL_HIGH>;
-> >=20
-> >  				clocks =3D <&clk=20
-IMX93_CLK_LPUART8_GATE>;
-> >=20
-> > --
-> > 2.34.1
->=20
->=20
-
-
-=2D-=20
-TQ-Systems GmbH | M=C3=BChlstra=C3=9Fe 2, Gut Delling | 82229 Seefeld, Germ=
-any
-Amtsgericht M=C3=BCnchen, HRB 105018
-Gesch=C3=A4ftsf=C3=BChrer: Detlef Schneider, R=C3=BCdiger Stahl, Stefan Sch=
-neider
-http://www.tq-group.com/
-
+T24gV2VkLCAyMDIzLTA3LTI2IGF0IDIwOjM5ICswMjAwLCBLcnp5c3p0b2YgS296bG93c2tpIHdy
+b3RlOgo+IE9uIDI2LzA3LzIwMjMgMDk6MTEsIEVsaXphIEJhbGFzIHdyb3RlOgo+ID4gVGhpcyBw
+YXRjaCBpbnRyb2R1Y2VzIHRoZSBkcml2ZXIgZm9yIHRoZSBuZXcgQURJIFRERCBlbmdpbmUgSERM
+Lgo+ID4gVGhlIGdlbmVyaWMgVEREIGNvbnRyb2xsZXIgaXMgaW4gZXNzZW5jZSBhIHdhdmVmb3Jt
+IGdlbmVyYXRvcgo+ID4gY2FwYWJsZSBvZiBhZGRyZXNzaW5nIFJGIGFwcGxpY2F0aW9ucyB3aGlj
+aCByZXF1aXJlIFRpbWUgRGl2aXNpb24KPiA+IER1cGxleGluZywgYXMgd2VsbCBhcyBjb250cm9s
+bGluZyBvdGhlciBtb2R1bGVzIG9mIGdlbmVyYWwKPiA+IGFwcGxpY2F0aW9ucyB0aHJvdWdoIGl0
+cyBkZWRpY2F0ZWQgMzIgY2hhbm5lbCBvdXRwdXRzLgo+ID4gCj4gPiBUaGUgcmVhc29uIG9mIGNy
+ZWF0aW5nIHRoZSBnZW5lcmljIFRERCBjb250cm9sbGVyIHdhcyB0byByZWR1Y2UKPiA+IHRoZSBu
+YW1pbmcgY29uZnVzaW9uIGFyb3VuZCB0aGUgZXhpc3RpbmcgcmVwdXJwb3NlZCBUREQgY29yZQo+
+ID4gYnVpbHQgZm9yIEFEOTM2MSwgYXMgd2VsbCBhcyBleHBhbmRpbmcgaXRzIG51bWJlciBvZiBv
+dXRwdXQKPiA+IGNoYW5uZWxzIGZvciBzeXN0ZW1zIHdoaWNoIHJlcXVpcmUgbW9yZSB0aGFuIHNp
+eCBjb250cm9sbGluZyBzaWduYWxzLgo+ID4gCj4gPiBTaWduZWQtb2ZmLWJ5OiBFbGl6YSBCYWxh
+cyA8ZWxpemEuYmFsYXNAYW5hbG9nLmNvbT4KPiA+IC0tLQo+ID4gwqAuLi4vc3lzZnMtYnVzLXBs
+YXRmb3JtLWRyaXZlcnMtYWRpLWF4aS10ZGTCoMKgwqAgfCAxNTggKysrKwo+ID4gwqBNQUlOVEFJ
+TkVSU8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgIHzCoMKgIDIgKwo+ID4gwqBkcml2ZXJzL21pc2MvS2NvbmZpZ8KgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHzCoCAxMCArCj4g
+PiDCoGRyaXZlcnMvbWlzYy9NYWtlZmlsZcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoCB8wqDCoCAxICsKPiA+IMKgZHJpdmVycy9taXNjL2FkaS1heGktdGRk
+LmPCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB8IDc1MyArKysrKysrKysr
+KysrKysrKysKPiA+IMKgNSBmaWxlcyBjaGFuZ2VkLCA5MjQgaW5zZXJ0aW9ucygrKQo+ID4gwqBj
+cmVhdGUgbW9kZSAxMDA2NDQgRG9jdW1lbnRhdGlvbi9BQkkvdGVzdGluZy9zeXNmcy1idXMtcGxh
+dGZvcm0tZHJpdmVycy1hZGktYXhpLQo+ID4gdGRkCj4gPiDCoGNyZWF0ZSBtb2RlIDEwMDY0NCBk
+cml2ZXJzL21pc2MvYWRpLWF4aS10ZGQuYwo+ID4gCj4gPiBkaWZmIC0tZ2l0IGEvRG9jdW1lbnRh
+dGlvbi9BQkkvdGVzdGluZy9zeXNmcy1idXMtcGxhdGZvcm0tZHJpdmVycy1hZGktYXhpLXRkZAo+
+ID4gYi9Eb2N1bWVudGF0aW9uL0FCSS90ZXN0aW5nL3N5c2ZzLWJ1cy1wbGF0Zm9ybS1kcml2ZXJz
+LWFkaS1heGktdGRkCj4gPiBuZXcgZmlsZSBtb2RlIDEwMDY0NAo+ID4gaW5kZXggMDAwMDAwMDAw
+MDAwLi5lYjVmM2RiN2QwY2IKPiA+IC0tLSAvZGV2L251bGwKPiA+ICsrKyBiL0RvY3VtZW50YXRp
+b24vQUJJL3Rlc3Rpbmcvc3lzZnMtYnVzLXBsYXRmb3JtLWRyaXZlcnMtYWRpLWF4aS10ZGQKPiA+
+IEBAIC0wLDAgKzEsMTU4IEBACj4gPiArV2hhdDrCoMKgwqDCoMKgwqDCoMKgwqDCoCAvc3lzL2J1
+cy9wbGF0Zm9ybS9kcml2ZXJzL2FkaS1heGktdGRkLyovYnVyc3RfY291bnQKPiA+ICtEYXRlOsKg
+wqDCoMKgwqDCoMKgwqDCoMKgIEp1bHkgMjAyMwo+ID4gK0tlcm5lbFZlcnNpb246wqAgNi41Cj4g
+Cj4gV2UgYXJlIGluIDYuNSBub3csIHNvIHRoZXJlIGlzIG5vIHdheSB5b3VyIGRyaXZlciB3aWxs
+IGJlIGluIDYuNS4gVGFyZ2V0Cj4gNi42IGFuZCB1c2UgcGhiIGNyeXN0YWxsIGJhbGwgZm9yIG5l
+eHQgcmVsZWFzZSBkYXRlIChTZXB0ZW1iZXIpLgo+IAo+IC4uLgo+IAo+ID4gKwo+ID4gK2VudW0g
+YWRpX2F4aV90ZGRfYXR0cmlidXRlX2lkIHsKPiA+ICvCoMKgwqDCoMKgwqDCoEFESV9URERfQVRU
+Ul9WRVJTSU9OLAo+ID4gK8KgwqDCoMKgwqDCoMKgQURJX1RERF9BVFRSX0NPUkVfSUQsCj4gPiAr
+wqDCoMKgwqDCoMKgwqBBRElfVEREX0FUVFJfU0NSQVRDSCwKPiA+ICvCoMKgwqDCoMKgwqDCoEFE
+SV9URERfQVRUUl9NQUdJQywKPiA+ICsKPiAKPiAuLi4KPiAKPiA+ICsKPiA+ICtzdGF0aWMgaW50
+IGFkaV9heGlfdGRkX3Byb2JlKHN0cnVjdCBwbGF0Zm9ybV9kZXZpY2UgKnBkZXYpCj4gPiArewo+
+ID4gK8KgwqDCoMKgwqDCoMKgdW5zaWduZWQgaW50IGV4cGVjdGVkX3ZlcnNpb24sIHZlcnNpb24s
+IGRhdGE7Cj4gPiArwqDCoMKgwqDCoMKgwqBzdHJ1Y3QgYWRpX2F4aV90ZGRfc3RhdGUgKnN0Owo+
+ID4gK8KgwqDCoMKgwqDCoMKgc3RydWN0IGNsayAqYWNsazsKPiA+ICvCoMKgwqDCoMKgwqDCoGlu
+dCByZXQ7Cj4gPiArCj4gPiArwqDCoMKgwqDCoMKgwqBzdCA9IGRldm1fa3phbGxvYygmcGRldi0+
+ZGV2LCBzaXplb2YoKnN0KSwgR0ZQX0tFUk5FTCk7Cj4gPiArwqDCoMKgwqDCoMKgwqBpZiAoIXN0
+KQo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHJldHVybiAtRU5PTUVNOwo+ID4g
+Kwo+ID4gK8KgwqDCoMKgwqDCoMKgc3QtPmJhc2UgPSBkZXZtX3BsYXRmb3JtX2lvcmVtYXBfcmVz
+b3VyY2UocGRldiwgMCk7Cj4gPiArwqDCoMKgwqDCoMKgwqBpZiAoSVNfRVJSKHN0LT5iYXNlKSkK
+PiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqByZXR1cm4gUFRSX0VSUihzdC0+YmFz
+ZSk7Cj4gPiArCj4gPiArwqDCoMKgwqDCoMKgwqBwbGF0Zm9ybV9zZXRfZHJ2ZGF0YShwZGV2LCBz
+dCk7Cj4gPiArCj4gPiArwqDCoMKgwqDCoMKgwqBhY2xrID0gZGV2bV9jbGtfZ2V0X2VuYWJsZWQo
+JnBkZXYtPmRldiwgInNfYXhpX2FjbGsiKTsKPiA+ICvCoMKgwqDCoMKgwqDCoGlmIChJU19FUlIo
+YWNsaykpCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgcmV0dXJuIFBUUl9FUlIo
+YWNsayk7Cj4gPiArCj4gPiArwqDCoMKgwqDCoMKgwqByZXQgPSBkZXZtX2FkZF9hY3Rpb25fb3Jf
+cmVzZXQoJnBkZXYtPmRldiwgYWRpX2F4aV90ZGRfY2xrX2Rpc2FibGUsCj4gPiBhY2xrKTsKPiAK
+PiBMb29rcyB5b3UgaGF2ZSBoZXJlIGRvdWJsZSBkaXNhYmxlLgo+IAo+ID4gK8KgwqDCoMKgwqDC
+oMKgaWYgKHJldCkKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqByZXR1cm4gcmV0
+Owo+ID4gKwo+ID4gK8KgwqDCoMKgwqDCoMKgc3QtPmNsay5jbGsgPSBkZXZtX2Nsa19nZXQoJnBk
+ZXYtPmRldiwgImludGZfY2xrIik7Cj4gPiArwqDCoMKgwqDCoMKgwqBpZiAoSVNfRVJSKHN0LT5j
+bGsuY2xrKSkKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqByZXR1cm4gUFRSX0VS
+UihzdC0+Y2xrLmNsayk7Cj4gPiArCj4gPiArwqDCoMKgwqDCoMKgwqByZXQgPSBjbGtfcHJlcGFy
+ZV9lbmFibGUoc3QtPmNsay5jbGspOwo+ID4gK8KgwqDCoMKgwqDCoMKgaWYgKHJldCkKPiA+ICvC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqByZXR1cm4gcmV0Owo+ID4gKwo+ID4gK8KgwqDC
+oMKgwqDCoMKgcmV0ID0gZGV2bV9hZGRfYWN0aW9uX29yX3Jlc2V0KCZwZGV2LT5kZXYsIGFkaV9h
+eGlfdGRkX2Nsa19kaXNhYmxlLCBzdC0KPiA+ID5jbGsuY2xrKTsKPiAKPiBMb29rcyB5b3UgaGF2
+ZSBoZXJlIGRvdWJsZSBkaXNhYmxlLgo+IAoKTm90IGluIGhlcmUgYnV0IGl0IHNob3VsZCBhY3R1
+YWxseSBkcm9wIHRoZSBhY3Rpb24gYW5kIHVzZSBkZXZtX2Nsa19nZXRfZW5hYmxlZCgpCgotIE51
+bm8gU8OhCgoK
 
