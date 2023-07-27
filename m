@@ -2,93 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ACE6F76539E
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 14:22:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BCE2A7653B0
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 14:24:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234003AbjG0MWj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jul 2023 08:22:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58834 "EHLO
+        id S233996AbjG0MX7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jul 2023 08:23:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59970 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233903AbjG0MWc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 08:22:32 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F5C92D61
-        for <devicetree@vger.kernel.org>; Thu, 27 Jul 2023 05:22:20 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-51de9c2bc77so1122137a12.3
-        for <devicetree@vger.kernel.org>; Thu, 27 Jul 2023 05:22:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690460539; x=1691065339;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=KBcPaBCD15GVUt1t8fe+n3lTCxT4h0u6r6X0oXlZlwc=;
-        b=e081yBpEl6WUyQ7DrRPgXBrwcqwu4Zlr+puzBZS56IJgd0T++PdR0LhMQQP9+eGBJh
-         vPp2ek8dutLOQ45EtSbH11eENOOFmTYHYPNub1vraSKWz5mXM8gJEBy/MTOuCXtqrXRC
-         tUa06KALw5Q4Qzz9oDT5BK81+Mk0yoWq7dvHwgQZvkgGS10I6gUXftd6LCfAUO6lE0aR
-         b2SefsYc+gYmH/yfi2HAGUuP460jJ89FaOtEgtKbWo3FteTCJhNTjwhDSeYxyEoVbNaR
-         WSg2mfD3JYetOQu43w+k9PyfmRvgcrMmw3lM9SteyO+TLxiNEr7Q8+oBstysJ//7cqW+
-         l73A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690460539; x=1691065339;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=KBcPaBCD15GVUt1t8fe+n3lTCxT4h0u6r6X0oXlZlwc=;
-        b=EUDFPw6wq795VAwB5EVxqgZNI1jgEwjgEIoYIeOHcF+mB4+1+aqB2zCtjzkakRfH/a
-         KTXOfct/3H1e7fRRfTMQNK3dFUvi3N//kGk3mz+Mj6po0Q/D4V7iJ5cg+pDG9G5Zg2Vp
-         ejyGc+Ok7CbPgk6wbayFqXdnhptHiFCFrC7RvUMZWL8PDVoKeVJe7PmD/W9VvqMGLfzT
-         4y7DSWReJHNEDHYW+LqZgUeZlsYHMS4+oNUHHqYQTUJiEHGdTzKX/erP86SXKhiXq/Ju
-         3Fwt3WS0NqDWAaFBbHbkHpoZrLcazWH2yTrgzLWSfr33KTg6+Rg/Qkme+gP6+bvetfZe
-         HnbQ==
-X-Gm-Message-State: ABy/qLZqHHUsoN/a9B0to7dsZSOYHhGjyGnjhU6cvc+STs+jRrKTfkKk
-        GEDvcNJrl0WYEacq/1yyC8tFHg==
-X-Google-Smtp-Source: APBJJlG8c4LaXOrZrh8NyuL1H8V9TCwkuizDCvPywRcH0BHTiQ4d0Yy80J1WZnSmA2GAgK4iabH5rA==
-X-Received: by 2002:a17:907:a075:b0:99b:64ca:6999 with SMTP id ia21-20020a170907a07500b0099b64ca6999mr1967077ejc.7.1690460538803;
-        Thu, 27 Jul 2023 05:22:18 -0700 (PDT)
-Received: from umbar.unikie.fi ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id v23-20020a1709067d9700b00993860a6d37sm717844ejo.40.2023.07.27.05.22.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 27 Jul 2023 05:22:18 -0700 (PDT)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Krishna Manikandan <quic_mkrishn@quicinc.com>,
-        Loic Poulain <loic.poulain@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>
-Cc:     ~postmarketos/upstreaming@lists.sr.ht,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        linux-clk@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, Lux Aliaga <they@mint.lgbt>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v4 00/17] drm/msm: Add SM6125 MDSS/DPU hardware and enable Sony Xperia 10 II panel
-Date:   Thu, 27 Jul 2023 15:22:15 +0300
-Message-Id: <169046051039.1413710.12901529844343078449.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230723-sm6125-dpu-v4-0-a3f287dd6c07@somainline.org>
-References: <20230723-sm6125-dpu-v4-0-a3f287dd6c07@somainline.org>
+        with ESMTP id S233889AbjG0MXj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 08:23:39 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDFE335AD;
+        Thu, 27 Jul 2023 05:23:07 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 3AC1B61E65;
+        Thu, 27 Jul 2023 12:23:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4E578C433C9;
+        Thu, 27 Jul 2023 12:23:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1690460586;
+        bh=RY/e8xBfCt//GjUHvzWss+4Dt9ss+FsUcym4Dt+dFXQ=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=LXxxKpJ/MCkYdBdsV56K63jQh1TAR5lGGGyi3gWHHeAOquDRYOBlltWasLMX2232z
+         jjGRJKHmzf6h6+9fcK8QTmGOrUXsjhdqmdAp7dGaNfjlUzDHbRtnudKAOyTEgq9pIJ
+         LCp+G6qNXPPqNJPFVkbpQ4QARJbng9SkYH+DQcoFLmLpicMCA+QJNS8t14Gdq3pBjm
+         l5vCrDCFY5JgLFRUs3bbCWUKVGSTfBUWf1XaZsQ42YsHsgSXBJj/7RlqlnNHo+C8cQ
+         HHajxhS4RbKfyzsMvJThGrtiUpdGYzwTA39pkoe8/a0g/9/QmW8Ke+k/VbujPLeiST
+         jxjaXv+IyiyYA==
+From:   Will Deacon <will@kernel.org>
+To:     Neil Armstrong <neil.armstrong@linaro.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Frank Li <Frank.li@nxp.com>,
+        Jiucheng Xu <jiucheng.xu@amlogic.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Rob Herring <robh@kernel.org>
+Cc:     catalin.marinas@arm.com, kernel-team@android.com,
+        Will Deacon <will@kernel.org>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH] drivers/perf: Explicitly include correct DT includes
+Date:   Thu, 27 Jul 2023 13:22:35 +0100
+Message-Id: <169045934424.3249306.10595971010404706881.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20230714174832.4061752-1-robh@kernel.org>
+References: <20230714174832.4061752-1-robh@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -97,48 +69,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On Sun, 23 Jul 2023 18:08:38 +0200, Marijn Suijten wrote:
-> Bring up the SM6125 DPU now that all preliminary series (such as INTF
-> TE) have been merged (for me to test the hardware properly), and most
-> other conflicting work (barring ongoing catalog *improvements*) has made
-> its way in as well or is still being discussed.
-> 
-> The second part of the series complements that by immediately utilizing
-> this hardware in DT, and even enabling the MDSS/DSI nodes complete with
-> a 6.0" 1080x2520 panel for Sony's Seine PDX201 (Xperia 10 II).
+On Fri, 14 Jul 2023 11:48:31 -0600, Rob Herring wrote:
+> The DT of_device.h and of_platform.h date back to the separate
+> of_platform_bus_type before it as merged into the regular platform bus.
+> As part of that merge prepping Arm DT support 13 years ago, they
+> "temporarily" include each other. They also include platform_device.h
+> and of.h. As a result, there's a pretty much random mix of those include
+> files used throughout the tree. In order to detangle these headers and
+> replace the implicit includes with struct declarations, users need to
+> explicitly include the correct includes.
 > 
 > [...]
 
-Applied, thanks!
+Applied to will (for-next/perf), thanks!
 
-[01/17] drm/msm/dsi: Drop unused regulators from QCM2290 14nm DSI PHY config
-        https://gitlab.freedesktop.org/lumag/msm/-/commit/a7e3fda5948a
-[02/17] arm64: dts: qcom: sm6125: Pad APPS IOMMU address to 8 characters
-        https://gitlab.freedesktop.org/lumag/msm/-/commit/b7d35a8eae54
-[03/17] arm64: dts: qcom: sm6125: Sort spmi_bus node numerically by reg
-        https://gitlab.freedesktop.org/lumag/msm/-/commit/2be52ca96a71
-[04/17] dt-bindings: display/msm: Remove DSI1 ports from SM6350/SM6375 example
-        https://gitlab.freedesktop.org/lumag/msm/-/commit/4be2c19261fc
-[05/17] dt-bindings: clock: qcom,dispcc-sm6125: Require GCC PLL0 DIV clock
-        https://gitlab.freedesktop.org/lumag/msm/-/commit/4f86e343f3c6
-[06/17] dt-bindings: clock: qcom,dispcc-sm6125: Allow power-domains property
-        https://gitlab.freedesktop.org/lumag/msm/-/commit/91043642f28c
-[07/17] dt-bindings: display/msm: dsi-controller-main: Document SM6125
-        https://gitlab.freedesktop.org/lumag/msm/-/commit/cf5859476e5d
-[08/17] dt-bindings: display/msm: sc7180-dpu: Describe SM6125
-        https://gitlab.freedesktop.org/lumag/msm/-/commit/04a664dffd19
-[09/17] dt-bindings: display/msm: Add SM6125 MDSS
-        https://gitlab.freedesktop.org/lumag/msm/-/commit/3bde3b8f8a04
-[10/17] drm/msm/dpu: Add SM6125 support
-        https://gitlab.freedesktop.org/lumag/msm/-/commit/76c5dffd0bc4
-[11/17] drm/msm/mdss: Add SM6125 support
-        https://gitlab.freedesktop.org/lumag/msm/-/commit/de50357565d3
-[12/17] dt-bindings: msm: dsi-phy-14nm: Document SM6125 variant
-        https://gitlab.freedesktop.org/lumag/msm/-/commit/cdac445883cc
-[13/17] drm/msm/dsi: Reuse QCM2290 14nm DSI PHY configuration for SM6125
-        https://gitlab.freedesktop.org/lumag/msm/-/commit/7638d8059ace
+[1/1] drivers/perf: Explicitly include correct DT includes
+      https://git.kernel.org/will/c/918dc87b746e
 
-Best regards,
+Cheers,
 -- 
-Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Will
+
+https://fixes.arm64.dev
+https://next.arm64.dev
+https://will.arm64.dev
