@@ -2,87 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D94D7652D6
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 13:47:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 13468765311
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 14:00:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233056AbjG0LrU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jul 2023 07:47:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39800 "EHLO
+        id S232288AbjG0MAv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jul 2023 08:00:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46756 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233464AbjG0LrO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 07:47:14 -0400
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E1992126
-        for <devicetree@vger.kernel.org>; Thu, 27 Jul 2023 04:47:13 -0700 (PDT)
-Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-5227e5d9d96so1101566a12.2
-        for <devicetree@vger.kernel.org>; Thu, 27 Jul 2023 04:47:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690458431; x=1691063231;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=/gqSRYXyIiQxJrNLAqE8d2UZxktKUrnnw3/Y1qTE4og=;
-        b=Xz7ibKY7UnAcjypV7aAgcV9oAS2BidIzlerD9Fro2fqZCVHnnBIyTSbS7Pdhfy2rrU
-         2cLTNtZabSg5eRH78cKBg5luY5OsfVjOPtsno7fWxmyjp6Kghy5byuWms19dL7I1Gr6e
-         H/zo2p3Jxjovdpl304/je5rJ7rfk/ZjQt0u5zpMJ95TOCkx86hfVYWiWSbhWJuKChfnR
-         2QaQ1OFrB4khiZxIdNx10KZWfxpuEnCFWzPosCjyOIzDB+x2PInqx0PBu/I4Ry3eg5DA
-         csJcIoPENrjhYnHDzN8j0DqDYsZs+M4lRkYWzebYa82mTMuWaeKa81MTy64A2iLvn6GF
-         tQwA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690458431; x=1691063231;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/gqSRYXyIiQxJrNLAqE8d2UZxktKUrnnw3/Y1qTE4og=;
-        b=OnzIDPGQFpu6vsacVJxaXgIziMGgn7xH/qlsa4zkgOQ8Wy7XE50C9cigzpTNvA4yNg
-         WQIkqtt50bBA8HyphtJOYWWSlEZkopU0TBIwtAcV2TIaLKaYMEuXdPc0KkPHMRtjjTnQ
-         IslRZVvr2OtnSZGT8MWHaBYXUEme7qvqDz4lUT6/+DCyRXWwqN4vGim6fQzFNQ/aVKwp
-         eOksexwB7KhtGHW49AVlHuusPBlWCNumEJyMCPX0MeJ9j3QWWtL1OEarn7GLqp3ezHUv
-         x7WWN7rBoksdXaO5qBUL3JRcPA/o6qZxgtzodfxLH2yPmuXaTtW+IFnisNQMHMJH5iSt
-         7CbQ==
-X-Gm-Message-State: ABy/qLbKAAJtjs6L0raXqDKBSgG9pqv4gsB3ZXwZFCYQmZMFtbDnx29q
-        ctXFgCGfWoSgq39ule7sJIoTHA==
-X-Google-Smtp-Source: APBJJlHc02BBYqqYKQubEhzgD06aEdh4kXzo48JCdj+2N3cMsM0ox7BZSV7xs9qUUHBQfaGEhn+9Ng==
-X-Received: by 2002:a17:907:a04d:b0:993:f349:c98c with SMTP id gz13-20020a170907a04d00b00993f349c98cmr1502329ejc.4.1690458431574;
-        Thu, 27 Jul 2023 04:47:11 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id pw3-20020a17090720a300b00987e2f84768sm696396ejb.0.2023.07.27.04.47.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 27 Jul 2023 04:47:11 -0700 (PDT)
-Message-ID: <7f7d1c90-9969-66bd-fd71-defffe0e05d6@linaro.org>
-Date:   Thu, 27 Jul 2023 13:47:09 +0200
+        with ESMTP id S232979AbjG0MAu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 08:00:50 -0400
+Received: from smtp1.tecnico.ulisboa.pt (smtp1.tecnico.ulisboa.pt [193.136.128.21])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 607B4272B;
+        Thu, 27 Jul 2023 05:00:48 -0700 (PDT)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+        by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTP id 707CF6005410;
+        Thu, 27 Jul 2023 13:00:43 +0100 (WEST)
+X-Virus-Scanned: by amavisd-new-2.11.0 (20160426) (Debian) at
+        tecnico.ulisboa.pt
+Received: from smtp1.tecnico.ulisboa.pt ([127.0.0.1])
+        by localhost (smtp1.tecnico.ulisboa.pt [127.0.0.1]) (amavisd-new, port 10025)
+        with LMTP id CfAhd75vu9Fh; Thu, 27 Jul 2023 13:00:41 +0100 (WEST)
+Received: from mail1.tecnico.ulisboa.pt (mail1.ist.utl.pt [IPv6:2001:690:2100:1::b3dd:b9ac])
+        by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTPS id D673A6005415;
+        Thu, 27 Jul 2023 13:00:40 +0100 (WEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=tecnico.ulisboa.pt;
+        s=mail; t=1690459241;
+        bh=j8UZbxDsSPKbaSJxJxIeM6yBOjCI4G/p8UL5Mpkaguk=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References;
+        b=MJbtlGCUJcM9OUlmbbWQ1TBim54PAMuMOb0RmYFaHah1jUr63ohwsLQV1MKcwwPNu
+         KjKsyAU33do0yhNmorxiDxqbClH+6j9moJH+GO2j9Hiw2DtPbwvysM/wUYVAiRLxyl
+         F1x6F5ovhvFkWcq3hxNwxg4XLMLcHWHf3hwdkMBo=
+Received: from localhost.localdomain (unknown [62.156.206.15])
+        (Authenticated sender: ist187313)
+        by mail1.tecnico.ulisboa.pt (Postfix) with ESMTPSA id EE315360075;
+        Thu, 27 Jul 2023 13:00:39 +0100 (WEST)
+From:   Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
+To:     krzysztof.kozlowski@linaro.org
+Cc:     conor+dt@kernel.org, devicetree@vger.kernel.org,
+        jonathanh@nvidia.com, krzysztof.kozlowski+dt@linaro.org,
+        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
+        robh+dt@kernel.org, thierry.reding@gmail.com,
+        Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
+Subject: Re: [PATCH] arm64: dts: tegra: drop incorrect maxim,disable-etr in Smaug
+Date:   Thu, 27 Jul 2023 14:00:58 +0200
+Message-ID: <20230727120058.40132-1-diogo.ivo@tecnico.ulisboa.pt>
+X-Mailer: git-send-email 2.41.0
+In-Reply-To: <20230725142638.157449-1-krzysztof.kozlowski@linaro.org>
+References: <20230725142638.157449-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH] dt-bindings: iio: admv1014: make all regs required
-Content-Language: en-US
-To:     Antoniu Miclaus <antoniu.miclaus@analog.com>, jic23@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230727113136.98037-1-antoniu.miclaus@analog.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230727113136.98037-1-antoniu.miclaus@analog.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/07/2023 13:31, Antoniu Miclaus wrote:
-> Since the regulators are required in the driver implementation, make
-> them required also in the bindings.
-> 
+Thank you for catching this one! Just to be sure I tested it
+on the Pixel C and everything is (obviously) working, so
 
-The true reason should be whether the hardware requires them. Because if
-hardware does not need some, the driver should be fixed.
-
-Best regards,
-Krzysztof
-
+Reviewed-by: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
