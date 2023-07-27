@@ -2,43 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 625F2764A2F
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 10:07:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 631F4764D62
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 10:32:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233795AbjG0IHc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jul 2023 04:07:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44052 "EHLO
+        id S234123AbjG0Ib4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jul 2023 04:31:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39868 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233624AbjG0IHA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 04:07:00 -0400
-Received: from szxga02-in.huawei.com (szxga02-in.huawei.com [45.249.212.188])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BF2426BC;
-        Thu, 27 Jul 2023 01:03:28 -0700 (PDT)
-Received: from kwepemi500008.china.huawei.com (unknown [172.30.72.55])
-        by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4RBNWz231MzVjsd;
-        Thu, 27 Jul 2023 16:01:51 +0800 (CST)
-Received: from huawei.com (10.90.53.73) by kwepemi500008.china.huawei.com
- (7.221.188.139) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Thu, 27 Jul
- 2023 16:03:26 +0800
-From:   Ruan Jinjie <ruanjinjie@huawei.com>
-To:     <robh+dt@kernel.org>, <frowand.list@gmail.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC:     <ruanjinjie@huawei.com>
-Subject: [PATCH v2 -next] of: unittest: fix null pointer dereferencing in of_unittest_find_node_by_name()
-Date:   Thu, 27 Jul 2023 16:02:46 +0800
-Message-ID: <20230727080246.519539-1-ruanjinjie@huawei.com>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S235139AbjG0I3m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 04:29:42 -0400
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 259DB59D6;
+        Thu, 27 Jul 2023 01:16:35 -0700 (PDT)
+Received: from localhost.localdomain (85-222-111-42.dynamic.chello.pl [85.222.111.42])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: lukma@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 46C1B868A1;
+        Thu, 27 Jul 2023 10:07:22 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1690445242;
+        bh=g4SvEKASYSP69eS/NXGdOyYLEmR+OJsjiSkjk31hOR4=;
+        h=From:To:Cc:Subject:Date:From;
+        b=Lf0f28PTfYd3fuQSolG1PQabMofo5ilpxJtcHUvLLTS32qb84pClsglqCMrJNI/pL
+         AE+3oVtxdifGCKpVgt77rL/ZXHc9nOWK2kCUPnDMlZO6D2LzMSXE5ZbU9JY2scmPs9
+         hb3DYnsY3NhDDPryAPHsb4dEcMxBWWYlvpZSrQXj0GbgmQt5bUw4tpkPDxuGU8Fp1w
+         D1cbr3gGkPIkgPgf06+BlUxdNlvMIhKP9SMeaRWL8FFUGto6+Z/ReweF55DKsilUK7
+         PDOiLZUjZsPB68XOtG5SFRXzAUvQbA2+ZHxTBDGZQOtKb5EIiUxRbMgX8JZOPHUfOA
+         Y7jOkpU/RY3HQ==
+From:   Lukasz Majewski <lukma@denx.de>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Lukasz Majewski <lukma@denx.de>
+Subject: [PATCH] ARM: dts: at91: ksz9477_evb: Add tx-internal-delay-ps property for port5
+Date:   Thu, 27 Jul 2023 10:06:56 +0200
+Message-Id: <20230727080656.3828397-1-lukma@denx.de>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [10.90.53.73]
-X-ClientProxiedBy: dggems703-chm.china.huawei.com (10.3.19.180) To
- kwepemi500008.china.huawei.com (7.221.188.139)
-X-CFilter-Loop: Reflected
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
-        T_FILL_THIS_FORM_SHORT,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -46,67 +57,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-when kmalloc() fail to allocate memory in kasprintf(), name
-or full_name will be NULL, strcmp() will cause
-null pointer dereference.
+Without this change the KSZ9477 Evaluation board's Linux (v6.5-rc1) shows
+following device warning:
 
-Fixes: 0d638a07d3a1 ("of: Convert to using %pOF instead of full_name")
-Signed-off-by: Ruan Jinjie <ruanjinjie@huawei.com>
----
-v2:
-- add fixes tag
----
- drivers/of/unittest.c | 10 ++++++----
- 1 file changed, 6 insertions(+), 4 deletions(-)
+'ksz-switch spi1.0: Port 5 interpreting RGMII delay settings based on "phy-mode" property, please update device tree to specify "rx-internal-delay-ps" and "tx-internal-delay-ps"'
 
-diff --git a/drivers/of/unittest.c b/drivers/of/unittest.c
-index a406a12eb208..e5b0eea8011c 100644
---- a/drivers/of/unittest.c
-+++ b/drivers/of/unittest.c
-@@ -77,7 +77,7 @@ static void __init of_unittest_find_node_by_name(void)
+This is not critical, as KSZ driver by itself assigns default value of
+tx delay to 2000 ps (as 'rgmii-txid' is set as PHY mode).
+
+However, to avoid extra warnings in logs - the missing 'tx-internal-delay-ps'
+has been specified with the default value of 2000 ps.
+
+Signed-off-by: Lukasz Majewski <lukma@denx.de>
+---
+ arch/arm/boot/dts/microchip/at91-sama5d3_ksz9477_evb.dts | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/arch/arm/boot/dts/microchip/at91-sama5d3_ksz9477_evb.dts b/arch/arm/boot/dts/microchip/at91-sama5d3_ksz9477_evb.dts
+index 99cd6d15998b..b66570080894 100644
+--- a/arch/arm/boot/dts/microchip/at91-sama5d3_ksz9477_evb.dts
++++ b/arch/arm/boot/dts/microchip/at91-sama5d3_ksz9477_evb.dts
+@@ -152,6 +152,7 @@
+ 				label = "cpu";
+ 				ethernet = <&macb0>;
+ 				phy-mode = "rgmii-txid";
++				tx-internal-delay-ps = <2000>;
  
- 	np = of_find_node_by_path("/testcase-data");
- 	name = kasprintf(GFP_KERNEL, "%pOF", np);
--	unittest(np && !strcmp("/testcase-data", name),
-+	unittest(np && name && !strcmp("/testcase-data", name),
- 		"find /testcase-data failed\n");
- 	of_node_put(np);
- 	kfree(name);
-@@ -88,14 +88,14 @@ static void __init of_unittest_find_node_by_name(void)
- 
- 	np = of_find_node_by_path("/testcase-data/phandle-tests/consumer-a");
- 	name = kasprintf(GFP_KERNEL, "%pOF", np);
--	unittest(np && !strcmp("/testcase-data/phandle-tests/consumer-a", name),
-+	unittest(np && name && !strcmp("/testcase-data/phandle-tests/consumer-a", name),
- 		"find /testcase-data/phandle-tests/consumer-a failed\n");
- 	of_node_put(np);
- 	kfree(name);
- 
- 	np = of_find_node_by_path("testcase-alias");
- 	name = kasprintf(GFP_KERNEL, "%pOF", np);
--	unittest(np && !strcmp("/testcase-data", name),
-+	unittest(np && name && !strcmp("/testcase-data", name),
- 		"find testcase-alias failed\n");
- 	of_node_put(np);
- 	kfree(name);
-@@ -106,7 +106,7 @@ static void __init of_unittest_find_node_by_name(void)
- 
- 	np = of_find_node_by_path("testcase-alias/phandle-tests/consumer-a");
- 	name = kasprintf(GFP_KERNEL, "%pOF", np);
--	unittest(np && !strcmp("/testcase-data/phandle-tests/consumer-a", name),
-+	unittest(np && name && !strcmp("/testcase-data/phandle-tests/consumer-a", name),
- 		"find testcase-alias/phandle-tests/consumer-a failed\n");
- 	of_node_put(np);
- 	kfree(name);
-@@ -1533,6 +1533,8 @@ static void attach_node_and_children(struct device_node *np)
- 	const char *full_name;
- 
- 	full_name = kasprintf(GFP_KERNEL, "%pOF", np);
-+	if (!full_name)
-+		return;
- 
- 	if (!strcmp(full_name, "/__local_fixups__") ||
- 	    !strcmp(full_name, "/__fixups__")) {
+ 				fixed-link {
+ 					speed = <1000>;
 -- 
-2.34.1
+2.20.1
 
