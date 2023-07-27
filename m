@@ -2,163 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 84B1E76491D
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 09:44:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 77A5776490C
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 09:42:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232329AbjG0HoH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jul 2023 03:44:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52398 "EHLO
+        id S232892AbjG0Hmw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jul 2023 03:42:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50370 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233657AbjG0HnV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 03:43:21 -0400
-Received: from wp534.webpack.hosteurope.de (wp534.webpack.hosteurope.de [80.237.130.56])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E7A36A5B;
-        Thu, 27 Jul 2023 00:37:30 -0700 (PDT)
-Received: from [2001:a61:6209:7f40:c80a:ff:fe00:4098] (helo=cs-office3.lan.local); authenticated
-        by wp534.webpack.hosteurope.de running ExIM with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        id 1qOvXS-0001KS-TP; Thu, 27 Jul 2023 09:35:58 +0200
-Date:   Thu, 27 Jul 2023 09:35:28 +0200
-From:   Carsten =?UTF-8?B?U3BpZcOf?= <mail@carsten-spiess.de>
-To:     Guenter Roeck <linux@roeck-us.net>,
-        Jean Delvare <jdelvare@suse.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>
-Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH 2/2] dt-bindings: hwmon: add renesas,isl28022
-Message-ID: <20230727093528.594ce3a7.mail@carsten-spiess.de>
-In-Reply-To: <f8fdc8d7-6ac5-5e20-10ef-7417d79c1b91@roeck-us.net>
-References: <20230726152235.249569-1-mail@carsten-spiess.de>
- <20230726152235.249569-3-mail@carsten-spiess.de>
- <f8fdc8d7-6ac5-5e20-10ef-7417d79c1b91@roeck-us.net>
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+        with ESMTP id S231666AbjG0HmT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 03:42:19 -0400
+Received: from mail-vk1-xa31.google.com (mail-vk1-xa31.google.com [IPv6:2607:f8b0:4864:20::a31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCBB97EC3
+        for <devicetree@vger.kernel.org>; Thu, 27 Jul 2023 00:36:12 -0700 (PDT)
+Received: by mail-vk1-xa31.google.com with SMTP id 71dfb90a1353d-45a0ee1c411so198563e0c.0
+        for <devicetree@vger.kernel.org>; Thu, 27 Jul 2023 00:36:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20221208.gappssmtp.com; s=20221208; t=1690443368; x=1691048168;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+FFoh9fAwBO6Qv5kET29/SxFxnrcdEE+m5hTMz9s4Bg=;
+        b=q0HF9MS26IkAFLWMqUaYkeU/ml7JU6fOjvs9mkcMkUYBMQDmB+wteYy1+4vCYvoIT3
+         WoCZe0p+GWcSPt34UWC/5idwii1oNdmWCh8ykdoQDamfinn33x/lMWO38wwpjFeqilFJ
+         vBR/MiQdXjb1xuGuf8cTiu6h0MmGHmnIHgEDxAGaePq9egp/fkBLzn0k3hRezpr+6W+U
+         I+SNjPxtFPpg1egQnlTMq1tVjtDXCct+qevbqsazPTEbHMpcp+iRHhTaF9QchpJJLbsh
+         GZy+x5GsF6/NBAbwKdg/jhRA1IeVgbh2+NfehAvQUSKGSyZee5mPx2Xr3oq/J7oB7aiD
+         X8jA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690443368; x=1691048168;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=+FFoh9fAwBO6Qv5kET29/SxFxnrcdEE+m5hTMz9s4Bg=;
+        b=hMwTbl3hQ12cvz3Zrf9oAx2HAC9U5sjBOuwYt4WqB81gmE0HLsg2ND9SR3csfGmSUw
+         pQAL0cYPaQUR8fRHHfFv2QTI+FGjbpiibRrE76eDNa69Gvt12czeyV2ZIm7xHCA0xqit
+         PiD8g4MSKNZKXc/i2uZ+HD39KU/7Q/InPU1jzLztzEPXRPAw8ygiNVufHQ1azMBt89/G
+         eDqbTM1VtA24aXElFyKO321Q74EkNZSgiwb/hTDO1DWvnx7EHIqccXKnahahzap3kUjG
+         bq2qco3b4PdQ25sLDZhyUF4Vn/zGHzwRoSI62yUt5Woerb4dnlmXdff1W/VYMHgbtSwp
+         8w3Q==
+X-Gm-Message-State: ABy/qLaLnO/O+Qd5lCW//+eoP51W1NaZ10HVca9haajO7Jqk8Mt9RqH9
+        YQIaxUp5tTsD9wUlUc1QiQnn/a/RX4/roc8w5+Q+5Q==
+X-Google-Smtp-Source: APBJJlFvB+57WYpfabIcu2VZAkq5/iTwfaa2jKLHI63ja8RnH7KtCPvmmmTypGsMiDpMYWxiPVIcWf2bRst+1MyVCz0=
+X-Received: by 2002:a1f:600a:0:b0:486:3a95:f90 with SMTP id
+ u10-20020a1f600a000000b004863a950f90mr420717vkb.5.1690443368460; Thu, 27 Jul
+ 2023 00:36:08 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/e/q7Xi+4mzcxvn1ecSyofAo";
- protocol="application/pgp-signature"; micalg=pgp-sha512
-X-bounce-key: webpack.hosteurope.de;mail@carsten-spiess.de;1690443451;3e94405d;
-X-HE-SMSGID: 1qOvXS-0001KS-TP
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+References: <20230725102330.160810-1-peng.fan@oss.nxp.com>
+In-Reply-To: <20230725102330.160810-1-peng.fan@oss.nxp.com>
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+Date:   Thu, 27 Jul 2023 09:35:57 +0200
+Message-ID: <CAMRc=McLqe9QOd3DFVO=4ByaOtRg+y1u3R4CiStp4P_QTHs+vw@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: gpio: fsl-imx-gpio: support i.MX8QM/DXL
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc:     linus.walleij@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, stefan@agner.ch, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---Sig_/e/q7Xi+4mzcxvn1ecSyofAo
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+On Tue, Jul 25, 2023 at 12:18=E2=80=AFPM Peng Fan (OSS) <peng.fan@oss.nxp.c=
+om> wrote:
+>
+> From: Peng Fan <peng.fan@nxp.com>
+>
+> Add i.MX8QM/DXL gpio compatible which is compatible with i.MX35.
+>
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> ---
+>  Documentation/devicetree/bindings/gpio/fsl-imx-gpio.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/gpio/fsl-imx-gpio.yaml b/D=
+ocumentation/devicetree/bindings/gpio/fsl-imx-gpio.yaml
+> index ae18603697d7..d0ca2af89f1e 100644
+> --- a/Documentation/devicetree/bindings/gpio/fsl-imx-gpio.yaml
+> +++ b/Documentation/devicetree/bindings/gpio/fsl-imx-gpio.yaml
+> @@ -32,10 +32,12 @@ properties:
+>                - fsl,imx6sx-gpio
+>                - fsl,imx6ul-gpio
+>                - fsl,imx7d-gpio
+> +              - fsl,imx8dxl-gpio
+>                - fsl,imx8mm-gpio
+>                - fsl,imx8mn-gpio
+>                - fsl,imx8mp-gpio
+>                - fsl,imx8mq-gpio
+> +              - fsl,imx8qm-gpio
+>                - fsl,imx8qxp-gpio
+>                - fsl,imxrt1050-gpio
+>                - fsl,imxrt1170-gpio
+> --
+> 2.37.1
+>
 
-thanks all for your input.
-I conclude here in one answer:
+Applied, thanks!
 
-On 7/26/23 18:14, Krzysztof Kozlowski wrote:
-> It does not look like you tested the bindings, at least after quick
-> look. Please run `make dt_binding_check` (see
-sorry i missed that, fixed for [Patch v2].
-
-
-On 7/26/23 18:14, Krzysztof Kozlowski wrote:
->> +  shunt-gain: =20
-> 1. Missing vendor prefix (does not look like generic property)
-> 2. -microvolt
-> And then enum is for 40, 80, 160 and 320.
-replaced with
-  renesas,shunt-range-milli-volts:
-    description: |
-      maximal shunt voltage range of 40mV, 80mV, 160mV or 320mV
-    $ref: /schemas/types.yaml#/definitions/uint32-array
-    default: 320
-    enum: [40, 80, 160, 320]
-
-On 26/07/2023 18:16, Guenter Roeck wrote:
->> +  shunt-resistor-micro-ohms:
->> +    description:
->> +      Shunt resistor value in micro-Ohm
->> +      defaults to <0> when not set
->> +      monitoring of current and power not supported when <0>
-> + =20
-> Should not default to 0 (disabled).
-When shunt resistor value is not known, current and power calculation can n=
-ot be done,
-but the shunt voltage still can be measured.
-As the resistor is externaly connected to the ISL28022 chip there is no def=
-ault.
-When i set default to any value (e.g 1000 micro Ohm), current and power cal=
-culation
-will give wrong results (except when the shunt _is_ 1000 micro Ohm)
-
-On 26/07/2023 18:16, Guenter Roeck wrote:
->> +  average:
->> +    description: |
->> +      Number of samples to be used to report voltage, current and power=
- values.
->> +      defaults to <0> when not set
->> +    enum: [0, 1, 2, 4, 8, 16, 32, 64, 128] =20
-> Should not default to 0 (disabled).
-=46rom datasheet table 6 on page 15 there are two similar ADC modes:
-  3 - without samples
-  8 - with one? sample
-I intended enum 0 to ADC mode 3, 1 to ADC mode 8,
-but i can live without ADC mode 3.
-
-On 26/07/2023 20:59, Guenter Roeck wrote:
-> On 7/26/23 11:27, Krzysztof Kozlowski wrote: =20
->> On 26/07/2023 20:19, Guenter Roeck wrote: =20
->>>>> +  average:
->>>>> +    enum: [0, 1, 2, 4, 8, 16, 32, 64, 128] =20
->>>>
->>>> I am sure hwmon has some property for this. Are you sure it is called
->>>> "average"?
->>>> =20
->>>
->>> Something with samples. adi,power-sample-average is similar. Others
->>> use average-samples, qcom,avg-samples, touchscreen-average-samples. =20
->>
->> So probably it's a time to come with something generic, e.g.:
->> average-samples in some hwmon.yaml
-
-As there's no generic yet, replaced with
-  renesas,average-samples:
-    description: |
-      Number of samples to be used to report voltage, current and power val=
-ues.
-    default: 1
-    $ref: /schemas/types.yaml#/definitions/uint32-array
-    enum: [1, 2, 4, 8, 16, 32, 64, 128]
-
-
-
-On 26/07/2023 19:13, Rob Herring wrote:
-> My bot found errors running 'make DT_CHECKER_FLAGS=3D-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
-Fixed for [Patch v2], runs without errors or warnings
-
-Regards, Carsten
-
---Sig_/e/q7Xi+4mzcxvn1ecSyofAo
-Content-Type: application/pgp-signature
-Content-Description: Digitale Signatur von OpenPGP
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCgAdFiEEWM+MlUpz/bWsZllTM1JQzV9LKSwFAmTCHkAACgkQM1JQzV9L
-KSw/sQ//YfEBYzZ21ij/3yDpY81XyOVnjsICovJPxeClmxPbvA92RC+q9v+k8a+7
-jcAvaTKVr8gFeMoUQe9jQ6br9M+tx8TH3CzWW8oGw7dSWCr+y6yofqeAGxpSuL9V
-Hce6sEe//lQgHgVWUaqVHmo4jJBY2RsBBJuNHYz45noRv/ESekq+vnIgKyERlpcQ
-/bwwdO/nEyR76sNsPyMXepaipRjKsRDZA+0RysCAby3D8MDf+e7nIvUhgyvt37ne
-dpI78cEJ05JF7ZYvXUfXC2q67Qr6VsaNwsDVaXEFxA//Cy88rVlSb/bN70qoSutf
-3pwczGGln9vJNx7dG6fgXSo0o3QZKC/ifCfey7nkVbKonBIKvNhoJKeGBrO4ETIG
-c3yZ69O1Sb+hdinXrOXTjBFciieSP4OIqUnHBSywNjM+u1WmAaP3tt6GgyXMu84X
-A1K9hgmD/1cbbBabFTa750LEud/q17OU+B9h+IiS2nARWDEvjl2cWKB290s3AFP7
-wjmdr3FCczVTRq1OpbwLieromZ6yaiXfgTJXenhclaHo3lh7n+LGOiSMT0MIDs4Z
-iV/X06ad6wzp1AfgSdtOYhtJL6Z+RZoJoRqoTD6E2Wzl5uYZrv5BbjIdFm2C1qEw
-uwZmK6aGVmGMiTt9XuhjIExWzt06krZRtbFtUh27R8xsASXk6qw=
-=KFij
------END PGP SIGNATURE-----
-
---Sig_/e/q7Xi+4mzcxvn1ecSyofAo--
+Bart
