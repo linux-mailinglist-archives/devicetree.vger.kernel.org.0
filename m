@@ -2,147 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4FAEB765159
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 12:37:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 415DC765172
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 12:40:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234150AbjG0Kh4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jul 2023 06:37:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34228 "EHLO
+        id S232383AbjG0KkL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jul 2023 06:40:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35654 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234029AbjG0Khy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 06:37:54 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBE2726A6
-        for <devicetree@vger.kernel.org>; Thu, 27 Jul 2023 03:37:51 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-98dfb3f9af6so106246166b.2
-        for <devicetree@vger.kernel.org>; Thu, 27 Jul 2023 03:37:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690454270; x=1691059070;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=mUepUY1ETJBpPCS0rz2zlbE3uVvxNdDGso2o/AQI4jo=;
-        b=Tb6AZRgUS/lthT4HEjc/nP8w/VjoCG8j8LUADVxrSJcPVEqZPnZ/9sIGQ/0A65h9nf
-         fFvENy5bDBFLuONVr24tJZsqt5yUbE+HpbcghUl+xy0mZCi150XvN2bM9XJn/odW2AG0
-         j3oa/2NJcV+7zbi9D9022hLLvVwTb+k+FP8Y7d1+8rHVNmG6jnePGroAYH5PFViFD4wG
-         zU8yvVA/1adhFiURMlP1JOBNkr2C1L1q1aFNyl1uGBmXF0Zkq4w2u3r7WOZoWBDzaU2L
-         M8AMJmaxEpk8eBrzmeRKrbSgqWgE2ULn6gtBNW+cZcs/w5Fq/m2HD+Q4RAMLWSPj76OO
-         jIPg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690454270; x=1691059070;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=mUepUY1ETJBpPCS0rz2zlbE3uVvxNdDGso2o/AQI4jo=;
-        b=ku3C/KpckB0uA+yC3WnuT4T0QMSaKxb8raDczfBl/m5P+PrWUhHb7yKm7CJsaNdzBW
-         Xy1S6zZ3YajpFHsmYaxlIKg6nzmpa/Uh4Knu3Cfw1QEsFdX8vtuDU7Z11lG4uDK6VWg2
-         obJfartaJIS3ZZnzI5MqzKGCYZ31PH+jM/dNymexWg+zEAzR5RwKOzTcJ6kRHuWhaWp4
-         4FDndstAU3SQSoCYYDLuEAAEkz4xctVUBRvsBXUhBtsVLAttdMHPCrRqsDMJsJ+2I2Us
-         GAoFu5tytH0dXz2o7e3353bixoe/iel4SYOoayaco+dMtEYj65vLDPGavkQLtgh1HMPa
-         Fo3g==
-X-Gm-Message-State: ABy/qLYiYLgYpaNKsb/0+4RyyHJAvaO3wZdkBqXke3EwUiI0mOXHBa7q
-        ZFH3XyptjtHPJaIKQtxMN5W89h2/x0UMvQANMbs=
-X-Google-Smtp-Source: APBJJlH7XY3+rjbYP7kE0i960l4gmZpZUAnVjWzO3suqYO8UT1jOMw/KclUI2AbLbLl2euWq4KrN7w==
-X-Received: by 2002:a17:906:310d:b0:969:93f2:259a with SMTP id 13-20020a170906310d00b0096993f2259amr1581738ejx.73.1690454270359;
-        Thu, 27 Jul 2023 03:37:50 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id f5-20020a1709064dc500b0098f33157e7dsm617483ejw.82.2023.07.27.03.37.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 27 Jul 2023 03:37:49 -0700 (PDT)
-Message-ID: <96a82a51-6e26-cee2-c095-98fac749393f@linaro.org>
-Date:   Thu, 27 Jul 2023 12:37:47 +0200
+        with ESMTP id S232480AbjG0KkK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 06:40:10 -0400
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCD8726AB;
+        Thu, 27 Jul 2023 03:40:08 -0700 (PDT)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id CFC2680E2;
+        Thu, 27 Jul 2023 18:39:58 +0800 (CST)
+Received: from EXMBX171.cuchost.com (172.16.6.91) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 27 Jul
+ 2023 18:39:58 +0800
+Received: from localhost.localdomain (113.72.147.196) by EXMBX171.cuchost.com
+ (172.16.6.91) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 27 Jul
+ 2023 18:39:57 +0800
+From:   Minda Chen <minda.chen@starfivetech.com>
+To:     =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
+        Daire McNamara <daire.mcnamara@microchip.com>,
+        Conor Dooley <conor@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>
+CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-pci@vger.kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "Mason Huo" <mason.huo@starfivetech.com>,
+        Leyfoon Tan <leyfoon.tan@starfivetech.com>,
+        Kevin Xie <kevin.xie@starfivetech.com>,
+        Minda Chen <minda.chen@starfivetech.com>
+Subject: [PATCH v2 0/4] Refactoring Microchip PCIe driver and add StarFive PCIe
+Date:   Thu, 27 Jul 2023 18:39:45 +0800
+Message-ID: <20230727103949.26149-1-minda.chen@starfivetech.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH 1/2] dt-bindings:iio:frequency:admv1013: add vcc regs
-Content-Language: en-US
-To:     Antoniu Miclaus <antoniu.miclaus@analog.com>, jic23@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230727102309.92479-1-antoniu.miclaus@analog.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230727102309.92479-1-antoniu.miclaus@analog.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [113.72.147.196]
+X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX171.cuchost.com
+ (172.16.6.91)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/07/2023 12:23, Antoniu Miclaus wrote:
-> Add bindings for the VCC regulators of the ADMV1013 microware
-> upconverter.
-> 
-> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+This patchset final purpose is add PCIe driver for StarFive JH7110 SoC.
+JH7110 using PLDA XpressRICH PCIe IP. Microchip PolarFire Using the
+same IP and have commit their codes, which are mixed with PLDA
+controller codes and Microchip platform codes.
 
-Subject: missing spaces between prefix parts.
+For re-use the PLDA controller codes, I request refactoring microchip
+codes, move PLDA common codes to PLDA files.
+Desigware and Cadence is good example for refactoring codes.
 
-> ---
->  .../bindings/iio/frequency/adi,admv1013.yaml  | 50 +++++++++++++++++++
->  1 file changed, 50 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/frequency/adi,admv1013.yaml b/Documentation/devicetree/bindings/iio/frequency/adi,admv1013.yaml
-> index fc813bcb6532..6660299ac1ad 100644
-> --- a/Documentation/devicetree/bindings/iio/frequency/adi,admv1013.yaml
-> +++ b/Documentation/devicetree/bindings/iio/frequency/adi,admv1013.yaml
-> @@ -39,6 +39,46 @@ properties:
->      description:
->        Analog voltage regulator.
->  
-> +  vcc-drv-supply:
-> +    description:
-> +      RF Driver voltage regulator.
-> +
-> +  vcc2-drv-supply:
-> +    description:
-> +      RF predriver voltage regulator.
-> +
-> +  vcc-vva-supply:
-> +    description:
-> +      VVA Control Circuit voltage regulator.
-> +
-> +  vcc-amp1-supply:
-> +    description:
-> +      RF Amplifier 1 voltage regulator.
-> +
-> +  vcc-amp2-supply:
-> +    description:
-> +      RF Amplifier 2 voltage regulator.
-> +
-> +  vcc-env-supply:
-> +    description:
-> +      Envelope Detector voltage regulator.
-> +
-> +  vcc-bg-supply:
-> +    description:
-> +      Mixer Chip Band Gap Circuit voltage regulator.
-> +
-> +  vcc-bg2-supply:
-> +    description:
-> +      VGA Chip Band Gap Circuit voltage regulator.
-> +
-> +  vcc-mixer-supply:
-> +    description:
-> +      Mixer voltage regulator.
-> +
-> +  vcc-quad-supply:
-> +    description:
-> +      Quadruppler voltage regulator.
-> +
+So first step is extract the PLDA common codes from microchip, and
+refactoring the microchip codes.(patch1 - 2)
+Then, add Starfive codes. (patch3 - 4)
 
-You made them required in the driver, so they should be required here as
-well. They should be required anyway, because AFAIU they have to be
-provided.
+This patchset is base on v6.5-rc1
 
-OTOH, this will break the ABI, so your driver might need to take them as
-optional.
+patch1 is move PLDA XpressRICH PCIe host common properties dt-binding
+       docs from microchip,pcie-host.yaml
+patch2 is extracting the PLDA common codes from microchip Polarfire PCIe
+       codes. The change list in the commit message.
+patch3 is add StarFive JH7110 PCIe dt-binding doc.
+patch4 is add StarFive JH7110 Soc PCIe codes.
 
-Best regards,
-Krzysztof
+I have noticed that Daire have changed microchip's codes.
+https://patchwork.kernel.org/project/linux-pci/cover/20230630154859.2049521-1-daire.mcnamara@microchip.com/
+I have changed patch2 base on their commits. StarFive
+PCIe driver still can work. But their codes is under reviewed and
+maybe changing. Do not base on their changes first.
+I will base on their commit to change patch2 as soon as
+their commits are accepted.
+
+previous version:
+v1:https://patchwork.kernel.org/project/linux-pci/cover/20230719102057.22329-1-minda.chen@starfivetech.com/
+
+change:
+  v2:
+    patch1:
+      - squash dt-bindings patches to patch1
+      - add 'required' list. 
+      - plda doc rename to plda,xpressrich-axi-common.yaml
+    patch2:
+      - squash the microchip modification patch to patch 2.
+    patch3:
+      - remove the plda common required property.
+    patch4:
+      - Sync the hide rc bar ops with config read function.
+      - Revert the T_PVPERL to 100ms and add comments for the source.
+      - Replace the link check function by the standard link ops.
+      - Convert to new pm ops marcos.
+      - Some formats modification.
+      - pcie-plda-host modification merge to patch4.
+    other:
+      - remove the pcie-plda-plat.c
+      - remove the starfive dts patch first. for it depends on
+        stg clock and syscon setting.
+
+Minda Chen (4):
+  dt-bindings: PCI: Add PLDA XpressRICH PCIe host common properties
+  PCI: plda: Get common codes from Microchip PolarFire host
+  dt-bindings: PCI: Add StarFive JH7110 PCIe controller
+  PCI: starfive: Add JH7110 PCIe controller
+
+ .../bindings/pci/microchip,pcie-host.yaml     |  49 +-
+ .../pci/plda,xpressrich3-axi-common.yaml      |  69 ++
+ .../bindings/pci/starfive,jh7110-pcie.yaml    | 133 ++++
+ MAINTAINERS                                   |  19 +-
+ drivers/pci/controller/Kconfig                |   9 +-
+ drivers/pci/controller/Makefile               |   2 +-
+ drivers/pci/controller/plda/Kconfig           |  31 +
+ drivers/pci/controller/plda/Makefile          |   4 +
+ .../{ => plda}/pcie-microchip-host.c          | 594 ++--------------
+ drivers/pci/controller/plda/pcie-plda-host.c  | 665 ++++++++++++++++++
+ drivers/pci/controller/plda/pcie-plda.h       | 242 +++++++
+ drivers/pci/controller/plda/pcie-starfive.c   | 438 ++++++++++++
+ 12 files changed, 1645 insertions(+), 610 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pci/plda,xpressrich3-axi-common.yaml
+ create mode 100644 Documentation/devicetree/bindings/pci/starfive,jh7110-pcie.yaml
+ create mode 100644 drivers/pci/controller/plda/Kconfig
+ create mode 100644 drivers/pci/controller/plda/Makefile
+ rename drivers/pci/controller/{ => plda}/pcie-microchip-host.c (50%)
+ create mode 100644 drivers/pci/controller/plda/pcie-plda-host.c
+ create mode 100644 drivers/pci/controller/plda/pcie-plda.h
+ create mode 100644 drivers/pci/controller/plda/pcie-starfive.c
+
+
+base-commit: 06c2afb862f9da8dc5efa4b6076a0e48c3fbaaa5
+-- 
+2.17.1
 
