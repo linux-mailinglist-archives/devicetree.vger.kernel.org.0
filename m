@@ -2,98 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D4E776485E
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 09:20:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 84B1E76491D
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 09:44:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233168AbjG0HUa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jul 2023 03:20:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36070 "EHLO
+        id S232329AbjG0HoH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jul 2023 03:44:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52398 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233185AbjG0HUJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 03:20:09 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 364DA5FC8
-        for <devicetree@vger.kernel.org>; Thu, 27 Jul 2023 00:13:22 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-5221f193817so764765a12.3
-        for <devicetree@vger.kernel.org>; Thu, 27 Jul 2023 00:13:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690441949; x=1691046749;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=lFqE8r5CtlgU1LoE0+yybns5D17+UGGGRnbdRjn75UQ=;
-        b=yW9GI/Jeu8KatNBEkbADekfBexGaJp8iJqjHgAcCMGgHuhLPAN6zRT9cFXkSXDFjJI
-         SSOw/3CiXedms5XnVwL1ON/Zj5MZHkEm0Prq2AO2oYqzMNaZmp3zTGpXE2tnYQKtuVXa
-         alDMwA6SMkod0Jdxn8kGdGxqnSaNp77uLOawOVifFFgwCItnxrrzR3ascsok2DEZ9MG8
-         E7pFOEt+cyi+YHOsXoIMycG8OjdVMSIQ4u66J59Ft0KKC5ik0BxWY9NFqZDZqVVhBig7
-         s5ptocsgpkmIGx/W+BqIXwrvqJ+NLSa1z+XoiR1NKmJ+j+nwK+TAvvk0MNA/tVUTws9e
-         Z+mA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690441949; x=1691046749;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=lFqE8r5CtlgU1LoE0+yybns5D17+UGGGRnbdRjn75UQ=;
-        b=HGSnvFnoh5WWyKybSO77SCxO/+Zosgh/3he8Pof7cI9+EZXJOs/UUIWZhKyi2/4eTn
-         aGgFJpdAjWDmuNmEiPJMrfp1QJBg+NlcIr9EmLQQeASSuURmrP8glD7xobQbw1UImLMO
-         ICVSC8cmUhXjAzPHoErbtVK3x7VIbNw3PKRvA+K2e+xp1Meqj3RwBaGevYm2ETYDVdHp
-         ZaNvJnicdNWoCwL3ideABx+bMCruT7FWwgK1i475ynRdRnKbKaj0FzqvwoOZSbarJWqc
-         bYy9TDN00Osfh9eno9/lCLqqKrw7K6uBmtjWNcgYFZpuhkZ3GrcOJVNv3txekIDXl7DH
-         U7FQ==
-X-Gm-Message-State: ABy/qLZsAkljFpf5gVLgjpk9wduSxq9nigPcfsxmfBUIdAblAgAlnZbO
-        YdBuPvD4ben4dq94to5syiTsLQ==
-X-Google-Smtp-Source: APBJJlGpg+0/nLk4w83EaG6UQXNsZiCVcmuVU3faIKI5eOKHpMH/thLDsVyAPxgz0THKl8q21kARPQ==
-X-Received: by 2002:aa7:d443:0:b0:522:6e6c:68a2 with SMTP id q3-20020aa7d443000000b005226e6c68a2mr1046551edr.18.1690441949300;
-        Thu, 27 Jul 2023 00:12:29 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id n10-20020aa7c44a000000b0052238bc70ccsm307703edr.89.2023.07.27.00.12.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 27 Jul 2023 00:12:28 -0700 (PDT)
-Message-ID: <33ae66df-a01b-1f4a-b55e-1a6f70567243@linaro.org>
-Date:   Thu, 27 Jul 2023 09:12:25 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH 1/3] dt-bindings: display: panel: Move HannStar HSD101PWW2
- to LVDS
-Content-Language: en-US
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
+        with ESMTP id S233657AbjG0HnV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 03:43:21 -0400
+Received: from wp534.webpack.hosteurope.de (wp534.webpack.hosteurope.de [80.237.130.56])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E7A36A5B;
+        Thu, 27 Jul 2023 00:37:30 -0700 (PDT)
+Received: from [2001:a61:6209:7f40:c80a:ff:fe00:4098] (helo=cs-office3.lan.local); authenticated
+        by wp534.webpack.hosteurope.de running ExIM with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        id 1qOvXS-0001KS-TP; Thu, 27 Jul 2023 09:35:58 +0200
+Date:   Thu, 27 Jul 2023 09:35:28 +0200
+From:   Carsten =?UTF-8?B?U3BpZcOf?= <mail@carsten-spiess.de>
+To:     Guenter Roeck <linux@roeck-us.net>,
+        Jean Delvare <jdelvare@suse.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     Jon Hunter <jonathanh@nvidia.com>,
-        Svyatoslav Ryhel <clamor95@gmail.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org
-References: <20230726184857.2294570-1-thierry.reding@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230726184857.2294570-1-thierry.reding@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>
+Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH 2/2] dt-bindings: hwmon: add renesas,isl28022
+Message-ID: <20230727093528.594ce3a7.mail@carsten-spiess.de>
+In-Reply-To: <f8fdc8d7-6ac5-5e20-10ef-7417d79c1b91@roeck-us.net>
+References: <20230726152235.249569-1-mail@carsten-spiess.de>
+ <20230726152235.249569-3-mail@carsten-spiess.de>
+ <f8fdc8d7-6ac5-5e20-10ef-7417d79c1b91@roeck-us.net>
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
+Content-Type: multipart/signed; boundary="Sig_/e/q7Xi+4mzcxvn1ecSyofAo";
+ protocol="application/pgp-signature"; micalg=pgp-sha512
+X-bounce-key: webpack.hosteurope.de;mail@carsten-spiess.de;1690443451;3e94405d;
+X-HE-SMSGID: 1qOvXS-0001KS-TP
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/07/2023 20:48, Thierry Reding wrote:
-> From: Thierry Reding <treding@nvidia.com>
-> 
-> The HannStar HSD101PWW2 is an LVDS panel, so move it to the correct
-> bindings file.
-> 
-> Signed-off-by: Thierry Reding <treding@nvidia.com>
-> ---
+--Sig_/e/q7Xi+4mzcxvn1ecSyofAo
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+thanks all for your input.
+I conclude here in one answer:
 
-Best regards,
-Krzysztof
+On 7/26/23 18:14, Krzysztof Kozlowski wrote:
+> It does not look like you tested the bindings, at least after quick
+> look. Please run `make dt_binding_check` (see
+sorry i missed that, fixed for [Patch v2].
 
+
+On 7/26/23 18:14, Krzysztof Kozlowski wrote:
+>> +  shunt-gain: =20
+> 1. Missing vendor prefix (does not look like generic property)
+> 2. -microvolt
+> And then enum is for 40, 80, 160 and 320.
+replaced with
+  renesas,shunt-range-milli-volts:
+    description: |
+      maximal shunt voltage range of 40mV, 80mV, 160mV or 320mV
+    $ref: /schemas/types.yaml#/definitions/uint32-array
+    default: 320
+    enum: [40, 80, 160, 320]
+
+On 26/07/2023 18:16, Guenter Roeck wrote:
+>> +  shunt-resistor-micro-ohms:
+>> +    description:
+>> +      Shunt resistor value in micro-Ohm
+>> +      defaults to <0> when not set
+>> +      monitoring of current and power not supported when <0>
+> + =20
+> Should not default to 0 (disabled).
+When shunt resistor value is not known, current and power calculation can n=
+ot be done,
+but the shunt voltage still can be measured.
+As the resistor is externaly connected to the ISL28022 chip there is no def=
+ault.
+When i set default to any value (e.g 1000 micro Ohm), current and power cal=
+culation
+will give wrong results (except when the shunt _is_ 1000 micro Ohm)
+
+On 26/07/2023 18:16, Guenter Roeck wrote:
+>> +  average:
+>> +    description: |
+>> +      Number of samples to be used to report voltage, current and power=
+ values.
+>> +      defaults to <0> when not set
+>> +    enum: [0, 1, 2, 4, 8, 16, 32, 64, 128] =20
+> Should not default to 0 (disabled).
+=46rom datasheet table 6 on page 15 there are two similar ADC modes:
+  3 - without samples
+  8 - with one? sample
+I intended enum 0 to ADC mode 3, 1 to ADC mode 8,
+but i can live without ADC mode 3.
+
+On 26/07/2023 20:59, Guenter Roeck wrote:
+> On 7/26/23 11:27, Krzysztof Kozlowski wrote: =20
+>> On 26/07/2023 20:19, Guenter Roeck wrote: =20
+>>>>> +  average:
+>>>>> +    enum: [0, 1, 2, 4, 8, 16, 32, 64, 128] =20
+>>>>
+>>>> I am sure hwmon has some property for this. Are you sure it is called
+>>>> "average"?
+>>>> =20
+>>>
+>>> Something with samples. adi,power-sample-average is similar. Others
+>>> use average-samples, qcom,avg-samples, touchscreen-average-samples. =20
+>>
+>> So probably it's a time to come with something generic, e.g.:
+>> average-samples in some hwmon.yaml
+
+As there's no generic yet, replaced with
+  renesas,average-samples:
+    description: |
+      Number of samples to be used to report voltage, current and power val=
+ues.
+    default: 1
+    $ref: /schemas/types.yaml#/definitions/uint32-array
+    enum: [1, 2, 4, 8, 16, 32, 64, 128]
+
+
+
+On 26/07/2023 19:13, Rob Herring wrote:
+> My bot found errors running 'make DT_CHECKER_FLAGS=3D-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Fixed for [Patch v2], runs without errors or warnings
+
+Regards, Carsten
+
+--Sig_/e/q7Xi+4mzcxvn1ecSyofAo
+Content-Type: application/pgp-signature
+Content-Description: Digitale Signatur von OpenPGP
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCgAdFiEEWM+MlUpz/bWsZllTM1JQzV9LKSwFAmTCHkAACgkQM1JQzV9L
+KSw/sQ//YfEBYzZ21ij/3yDpY81XyOVnjsICovJPxeClmxPbvA92RC+q9v+k8a+7
+jcAvaTKVr8gFeMoUQe9jQ6br9M+tx8TH3CzWW8oGw7dSWCr+y6yofqeAGxpSuL9V
+Hce6sEe//lQgHgVWUaqVHmo4jJBY2RsBBJuNHYz45noRv/ESekq+vnIgKyERlpcQ
+/bwwdO/nEyR76sNsPyMXepaipRjKsRDZA+0RysCAby3D8MDf+e7nIvUhgyvt37ne
+dpI78cEJ05JF7ZYvXUfXC2q67Qr6VsaNwsDVaXEFxA//Cy88rVlSb/bN70qoSutf
+3pwczGGln9vJNx7dG6fgXSo0o3QZKC/ifCfey7nkVbKonBIKvNhoJKeGBrO4ETIG
+c3yZ69O1Sb+hdinXrOXTjBFciieSP4OIqUnHBSywNjM+u1WmAaP3tt6GgyXMu84X
+A1K9hgmD/1cbbBabFTa750LEud/q17OU+B9h+IiS2nARWDEvjl2cWKB290s3AFP7
+wjmdr3FCczVTRq1OpbwLieromZ6yaiXfgTJXenhclaHo3lh7n+LGOiSMT0MIDs4Z
+iV/X06ad6wzp1AfgSdtOYhtJL6Z+RZoJoRqoTD6E2Wzl5uYZrv5BbjIdFm2C1qEw
+uwZmK6aGVmGMiTt9XuhjIExWzt06krZRtbFtUh27R8xsASXk6qw=
+=KFij
+-----END PGP SIGNATURE-----
+
+--Sig_/e/q7Xi+4mzcxvn1ecSyofAo--
