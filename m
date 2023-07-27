@@ -2,90 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1BA00765668
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 16:49:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E05376566C
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 16:51:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233260AbjG0Otc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jul 2023 10:49:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41588 "EHLO
+        id S231191AbjG0Ovs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jul 2023 10:51:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43540 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233019AbjG0OtN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 10:49:13 -0400
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 145A82D5D;
-        Thu, 27 Jul 2023 07:48:53 -0700 (PDT)
-Received: by mail-ed1-x52d.google.com with SMTP id 4fb4d7f45d1cf-51e28cac164so4834618a12.1;
-        Thu, 27 Jul 2023 07:48:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1690469331; x=1691074131;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=vloA2isMyxI7aS0XNNyJjobfeNZEdizCBFfkCUSfiq0=;
-        b=Oickxo9oblvx0EA24/d9J9LYjIxozOVfC7Vi8/NxmqtKR4Fr3NVgGnp6QOMz7qHnFe
-         3vRsTUoyj489GW7B/JHGxXmj1HuG4WEljaWp5a+QOveSTRg0EyQcCdzG6QTsLvTb2Tf0
-         QS03xlcSsGfijDbN4phwwt0XySlmq8DKvZDV2uC98NX5pfW6MGKEVlTFkpdz/9LAPLCF
-         V+7v+ZbJNq8Yi0mHy2YFS2weq8ManGlHnfLSU1i6MqhhGa+x8NNpWDJ2norYStRlN2ab
-         uf8pmpFj5XbEENA7W269lZ5UBxwBjKx/RlLHqTljqZYK9IYV8VzsG7T7OkQd/vu/FCHz
-         9KEg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690469331; x=1691074131;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=vloA2isMyxI7aS0XNNyJjobfeNZEdizCBFfkCUSfiq0=;
-        b=emBgrQeZNG3iO7NvyTPYk2HT9N2TXKLrj9KNaKBUpgGtbsyL6YMriEPhiXUSQidG4c
-         U+EuL+LugrybydeuXCFi1U9UCe5nQcxFE4HI2lLlG5sXXhPP1u+ZdrvPODokzfmyc6dx
-         gM5AmZKUzWCC4LbR9rRJ4qO5LBhM2TWFzwaCsRGwdYbRnYsLMnqDm88HO2MlW6TZbocD
-         jA/l1W67U7HvalPrTsXYqModBS2z+Ibl0z9990YgQBJHN09qOsVkGrdNsAJmpE7GgGxz
-         lVE7ZAj8WC+4VQDKM+VCqkkrSrIpDGvbT7JybmIEh6o6u8fnmfkcA6uUJyo7ZuIqqCuo
-         pN4A==
-X-Gm-Message-State: ABy/qLYS2FMF3FxlcwTmO/6B+z++R9fsAdgS8+NAsFV8CIaRUrNmiTtu
-        5zaly3AhQk5DBjmX928YzIU=
-X-Google-Smtp-Source: APBJJlF7AavxtdletEcIOMLFle+5V6sNQJTXLUASWQOGQ6sgiV36FaptbdeumSF47ik9x+qj+qrARg==
-X-Received: by 2002:a05:6402:34c5:b0:51e:4218:b91b with SMTP id w5-20020a05640234c500b0051e4218b91bmr2904063edc.1.1690469331356;
-        Thu, 27 Jul 2023 07:48:51 -0700 (PDT)
-Received: from localhost (p200300e41f1bd600f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f1b:d600:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id e12-20020a50ec8c000000b0051e0eba608bsm718172edr.19.2023.07.27.07.48.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 27 Jul 2023 07:48:50 -0700 (PDT)
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     Jon Hunter <jonathanh@nvidia.com>, linux-tegra@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH] arm64: tegra: Remove {clock,reset}-names from VIC powergate
-Date:   Thu, 27 Jul 2023 16:48:48 +0200
-Message-ID: <169046931555.2753072.5032719991681297028.b4-ty@nvidia.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20230726164318.2172859-1-thierry.reding@gmail.com>
-References: <20230726164318.2172859-1-thierry.reding@gmail.com>
+        with ESMTP id S231157AbjG0Ovr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 10:51:47 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93368F2;
+        Thu, 27 Jul 2023 07:51:46 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 2525C61E93;
+        Thu, 27 Jul 2023 14:51:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EE2F5C433C7;
+        Thu, 27 Jul 2023 14:51:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1690469505;
+        bh=s1VVaYegFm6vNu7SJpIYS1RfGm4Sdgis0eGoHqKbqXY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=DpUzgVJ+DGM/krJdfj7dyUfMPQE77VbmBYNRZJReCMO+B4kJEqZhDY5CdBngpHrQh
+         CTCNV3QxqgO8aTwR8tgYJo5yJ0OjJ1JTC8XYnoexe15EfeGZF7ax9bBc8SibsCSkP7
+         fZZfzp4ziVGlvGMkMyyP8N1Dw17ceiqPpZ7R75AFBPLXsDRUxitloLsdHH1Sn11M2N
+         20gugXwjmTx1RONoXq+Wqz6/+1Xs+ARTb90HjuKizSlvgLiGFF26wkTI1Lm7AXunyX
+         xAopRBGuptnY/NOIIf9Hjd4KYZTP2InzDETBpj4MrFeQf2lldBrcVvko5+Dp4bu7y5
+         gPUNQjZVCCXVQ==
+Date:   Thu, 27 Jul 2023 07:51:43 -0700
+From:   Nathan Chancellor <nathan@kernel.org>
+To:     "Sahin, Okan" <Okan.Sahin@analog.com>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        "zzzzTilki, zzzzIbrahim" <Ibrahim.Tilki@analog.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "llvm@lists.linux.dev" <llvm@lists.linux.dev>
+Subject: Re: [PATCH v3 2/2] regulator: max77857: Add ADI MAX77857/59/MAX77831
+ Regulator Support
+Message-ID: <20230727145143.GB2013261@dev-arch.thelio-3990X>
+References: <20230717050736.10075-1-okan.sahin@analog.com>
+ <20230717050736.10075-3-okan.sahin@analog.com>
+ <20230718155502.GA3542993@dev-arch.thelio-3990X>
+ <20230726161033.GA1102409@dev-arch.thelio-3990X>
+ <PH7PR03MB739122A373964651D995EA5AE701A@PH7PR03MB7391.namprd03.prod.outlook.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <PH7PR03MB739122A373964651D995EA5AE701A@PH7PR03MB7391.namprd03.prod.outlook.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Thierry Reding <treding@nvidia.com>
-
-
-On Wed, 26 Jul 2023 18:43:18 +0200, Thierry Reding wrote:
-> According to the device tree bindings, the powergate definition nodes
-> don't contain clock-names and reset-names properties, so remove them.
+On Thu, Jul 27, 2023 at 08:34:44AM +0000, Sahin, Okan wrote:
+> >On Tue, Jul 18, 2023 at 08:55:02AM -0700, Nathan Chancellor wrote:
+> >
+> ><snip>
+> >
+> >> > +static struct regulator_desc max77857_regulator_desc = {
+> >> > +	.ops = &max77857_regulator_ops,
+> >> > +	.name = "max77857",
+> >> > +	.linear_ranges = max77857_lin_ranges,
+> >> > +	.n_linear_ranges = ARRAY_SIZE(max77857_lin_ranges),
+> >> > +	.vsel_mask = 0xFF,
+> >> > +	.vsel_reg = MAX77857_REG_CONT2,
+> >> > +	.ramp_delay_table = max77857_ramp_table[0],
+> >> > +	.n_ramp_values = ARRAY_SIZE(max77857_ramp_table[0]),
+> >> > +	.ramp_reg = MAX77857_REG_CONT3,
+> >> > +	.ramp_mask = GENMASK(1, 0),
+> >> > +	.ramp_delay = max77857_ramp_table[0][0],
+> >>
+> >> This breaks the build with GCC 5.x through 7.x:
+> >>
+> >>   drivers/regulator/max77857-regulator.c:312:16: error: initializer element is not
+> >constant
+> >>     .ramp_delay = max77857_ramp_table[0][0],
+> >>                   ^~~~~~~~~~~~~~~~~~~
+> >>   drivers/regulator/max77857-regulator.c:312:16: note: (near initialization for
+> >'max77857_regulator_desc.ramp_delay')
+> >>
+> >> and clang:
+> >>
+> >>   drivers/regulator/max77857-regulator.c:312:16: error: initializer element is not a
+> >compile-time constant
+> >>     312 |         .ramp_delay = max77857_ramp_table[0][0],
+> >>         |                       ^~~~~~~~~~~~~~~~~~~~~~~~~
+> >>   1 error generated.
+> >>
+> >> This relies on a GCC 8.x+ change that accepts more things as
+> >> compile-time constants, which is being worked on in clang
+> >>
+> >(https://urldefense.com/v3/__https://reviews.llvm.org/D76096__;!!A3Ni8CS0y2Y!7B
+> >eWxuzHgLzOprQA_madbvdR7hd0ZgmS73lUlDbgoxWUFWdDSIRXLnhyqLeRhu3uTaqpS
+> >kzZKwc5pHA$ ). Since the kernel supports older
+> >> compilers, this will have to be worked around somehow. Perhaps a define
+> >> that can be used in both places?
+> >
+> >Was there any update on this? I do not mind sending a patch for this
+> >myself if I have some sort of guidance on how you would prefer for this
+> >to be fixed, should you be too busy to look into it.
+> >
+> >Cheers,
+> >Nathan
 > 
+> Hi Nathan,
 > 
+> I thought that I should fix this issue after merging main branch that's why I did not send patch.
 
-Applied, thanks!
+That is an understandable position but no, this issue should be fixed
+before this change makes its way to Linus, not after.
 
-[1/1] arm64: tegra: Remove {clock,reset}-names from VIC powergate
-      commit: 6e752d4a2f5abfda9d395eec5ac28085e36e5c81
+> I sent patch v3 so should I send new patch as v4?
 
-Best regards,
--- 
-Thierry Reding <treding@nvidia.com>
+No, you should checkout Mark's branch that contains your patch and send
+a new patch on top of it just fixing this issue, like the other two
+patches that have already touched this driver:
+
+https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git/log/?h=for-6.6
+
+https://git.kernel.org/broonie/regulator/c/2920e08bef609c8b59f9996fd6852a7b97119d75
+https://git.kernel.org/broonie/regulator/c/541e75954cadde0355ce7bebed5675625b2943a8
+
+There are GCC 7.x and earlier toolchains at
+https://kernel.org/pub/tools/crosstool/ and LLVM toolchains at
+https://kernel.org/pub/tools/llvm/ should need to reproduce and verify
+the fix.
+
+Cheers,
+Nathan
