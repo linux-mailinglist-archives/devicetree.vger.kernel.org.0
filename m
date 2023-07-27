@@ -2,213 +2,184 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D5A8765065
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 11:55:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 11E7F76506C
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 11:56:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231502AbjG0Jz0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jul 2023 05:55:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38822 "EHLO
+        id S232905AbjG0J4Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jul 2023 05:56:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39506 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232874AbjG0JzW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 05:55:22 -0400
-Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E81CF118;
-        Thu, 27 Jul 2023 02:55:19 -0700 (PDT)
-Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
-        by mx0a-00128a01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36R6srq2027806;
-        Thu, 27 Jul 2023 05:55:16 -0400
-Received: from nwd2mta4.analog.com ([137.71.173.58])
-        by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3s36afngfg-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 27 Jul 2023 05:55:15 -0400
-Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
-        by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 36R9tEoQ029483
-        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 27 Jul 2023 05:55:14 -0400
-Received: from ASHBCASHYB4.ad.analog.com (10.64.17.132) by
- ASHBMBX9.ad.analog.com (10.64.17.10) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.14; Thu, 27 Jul 2023 05:55:13 -0400
-Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by
- ASHBCASHYB4.ad.analog.com (10.64.17.132) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.14; Thu, 27 Jul 2023 05:55:13 -0400
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
- (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
- Transport; Thu, 27 Jul 2023 05:55:13 -0400
-Received: from okan.localdomain ([10.158.19.61])
-        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 36R9snRT029827;
-        Thu, 27 Jul 2023 05:55:07 -0400
-From:   Okan Sahin <okan.sahin@analog.com>
-To:     <okan.sahin@analog.com>
-CC:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-gpio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH v5 2/2] gpio: ds4520: Add ADI DS4520 GPIO Expander Support
-Date:   Thu, 27 Jul 2023 12:54:30 +0300
-Message-ID: <20230727095432.82591-3-okan.sahin@analog.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20230727095432.82591-1-okan.sahin@analog.com>
-References: <20230727095432.82591-1-okan.sahin@analog.com>
+        with ESMTP id S232519AbjG0J4O (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 05:56:14 -0400
+Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33E2CE61
+        for <devicetree@vger.kernel.org>; Thu, 27 Jul 2023 02:55:51 -0700 (PDT)
+Received: from epcas1p2.samsung.com (unknown [182.195.41.46])
+        by mailout3.samsung.com (KnoxPortal) with ESMTP id 20230727095547epoutp03d604f6a35eb7e391168e4d5f59b0842e~1sOh5nU5e1748217482epoutp03e
+        for <devicetree@vger.kernel.org>; Thu, 27 Jul 2023 09:55:47 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20230727095547epoutp03d604f6a35eb7e391168e4d5f59b0842e~1sOh5nU5e1748217482epoutp03e
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1690451747;
+        bh=w4t+TIXcQTWW1EtJmZ0NUu+9woxMGPOPSa1OtnJ9GIk=;
+        h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+        b=TYXLi5w7B36xUGmIveIMznsuzfkRjqn17ZDzntURZCX1TIy1d6vzc+sqVWLtu0UPV
+         YXqEvdWQebOJbEoFjfY04bwdw2IoGznsd4DS20Th1QltyM8W9Su5cp3yA2DpBLdzTa
+         5qTu/5Z3gwHn+Lez+pxECOduIjUHnd74ys1wgbs4=
+Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
+        epcas1p2.samsung.com (KnoxPortal) with ESMTP id
+        20230727095546epcas1p29bf5ba55ada2e3dd0a725be5beb23158~1sOgnlGHZ1069310693epcas1p2Q;
+        Thu, 27 Jul 2023 09:55:46 +0000 (GMT)
+Received: from epsmgec1p1.samsung.com (unknown [182.195.36.144]) by
+        epsnrtp2.localdomain (Postfix) with ESMTP id 4RBR3P2NKFz4x9Pw; Thu, 27 Jul
+        2023 09:55:45 +0000 (GMT)
+Received: from epcas1p4.samsung.com ( [182.195.41.48]) by
+        epsmgec1p1.samsung.com (Symantec Messaging Gateway) with SMTP id
+        56.B3.57829.12F32C46; Thu, 27 Jul 2023 18:55:45 +0900 (KST)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+        epcas1p4.samsung.com (KnoxPortal) with ESMTPA id
+        20230727095544epcas1p4098af0cd2aa424d8f45fd225923ffdc0~1sOewa4EY0314403144epcas1p4X;
+        Thu, 27 Jul 2023 09:55:44 +0000 (GMT)
+Received: from epsmgmcp1.samsung.com (unknown [182.195.42.82]) by
+        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20230727095544epsmtrp1b513f1b63ea08d56165c591ced1298a3~1sOevjWnb0811908119epsmtrp14;
+        Thu, 27 Jul 2023 09:55:44 +0000 (GMT)
+X-AuditID: b6c32a33-3c7ff7000001e1e5-8f-64c23f211324
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+        epsmgmcp1.samsung.com (Symantec Messaging Gateway) with SMTP id
+        B1.26.64355.02F32C46; Thu, 27 Jul 2023 18:55:44 +0900 (KST)
+Received: from kson001 (unknown [10.102.7.58]) by epsmtip2.samsung.com
+        (KnoxPortal) with ESMTPA id
+        20230727095543epsmtip262120e774a524033e29451ca3ab7024c~1sOeanfFD1259912599epsmtip2_;
+        Thu, 27 Jul 2023 09:55:43 +0000 (GMT)
+From:   "Kwanghoon Son" <k.son@samsung.com>
+To:     "'Jisheng Zhang'" <jszhang@kernel.org>,
+        "'Drew Fustini'" <dfustini@baylibre.com>
+Cc:     "'Conor Dooley'" <conor@kernel.org>,
+        "'Guo Ren'" <guoren@kernel.org>, "'Fu Wei'" <wefu@redhat.com>,
+        "'Rob Herring'" <robh+dt@kernel.org>,
+        "'Krzysztof Kozlowski'" <krzysztof.kozlowski+dt@linaro.org>,
+        "'Conor Dooley'" <conor+dt@kernel.org>,
+        "'Paul Walmsley'" <paul.walmsley@sifive.com>,
+        "'Palmer Dabbelt'" <palmer@dabbelt.com>,
+        "'Albert Ou'" <aou@eecs.berkeley.edu>,
+        <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        "'Robert Nelson'" <robertcnelson@beagleboard.org>,
+        "'Jason Kridner'" <jkridner@beagleboard.org>
+In-Reply-To: <ZL3Eenj4lGZDhZTM@xhacker>
+Subject: RE: [PATCH 1/3] riscv: dts: thead: add BeagleV Ahead board device
+ tree
+Date:   Thu, 27 Jul 2023 18:55:37 +0900
+Message-ID: <000001d9c070$82638290$872a87b0$@samsung.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-GUID: GNeab-SzilAD6F6Hk4znl-MTF6719-9O
-X-Proofpoint-ORIG-GUID: GNeab-SzilAD6F6Hk4znl-MTF6719-9O
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-07-26_08,2023-07-26_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- malwarescore=0 phishscore=0 suspectscore=0 mlxscore=0 bulkscore=0
- mlxlogscore=853 clxscore=1015 spamscore=0 impostorscore=0 adultscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2306200000 definitions=main-2307270087
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQIB9/5esCP8yCnQimst/KE+mdvGiAGXz9swAmuuv98C2chcrQD+/XkaAbT+JRavMGV9AA==
+Content-Language: ko
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrBJsWRmVeSWpSXmKPExsWy7bCmga6i/aEUg1tH+C22/p7FbrFm7zkm
+        i5VTV7FZzD9yjtWiddIXdosXextZLI5uP8Vu0XxsPZtF34uHzBaXd81hs9j2uYXN4uXlHmaL
+        tln8Fh3z5rBYtO49wm7Rsn8Ki4OAx/sbrewe734vY/R48/Ili8fhji/sHptWdbJ53Lm2h81j
+        85J6j/f7rrJ5XGq+zu7xeZNcAFdUtk1GamJKapFCal5yfkpmXrqtkndwvHO8qZmBoa6hpYW5
+        kkJeYm6qrZKLT4CuW2YO0CtKCmWJOaVAoYDE4mIlfTubovzSklSFjPziElul1IKUnALTAr3i
+        xNzi0rx0vbzUEitDAwMjU6DChOyMT6cPsxW8561Yvn0JawPjA64uRg4OCQETibWL87oYuTiE
+        BHYwSvzs+cwE4XxilHi+/BtLFyMnhHN/nytMw8GnihA1OxklFhyfyQ7hPGaUuLH5GxNIA5uA
+        psTCc78ZQWwRgTCJbws/MYPYzAIHWSQ674mC2JwC6hK9DTvBaoQFAiW6v+4FW8YioCrxdN81
+        sDivgKXEiv1fWCBsQYmTM5+wQMyRl9j+dg7YTAkBBYmfT5exwuxaOvs0E0SNiMTszjZmkOMk
+        BL5wSPxYcAOqwUWiZ2cnO4QtLPHq+BYoW0riZX8blJ0tcfTjXjYIu0Ti+qxFrBC2scT+pZOZ
+        QCHBDPTk+l36EGFFiZ2/5zJC7OWTePe1hxUSWLwSHW1CEKa8xK3OcohqUYkzTz+yTWBUmoXk
+        sVlIHpuF5IFZCLsWMLKsYhRLLSjOTU9NNiwwhMd0cn7uJkZwEtcy3sF4ef4/vUOMTByMhxgl
+        OJiVRHgNY/alCPGmJFZWpRblxxeV5qQWH2I0BQb1RGYp0eR8YB7JK4k3NLE0MDEzMjaxMDQz
+        VBLnVZwwO0VIID2xJDU7NbUgtQimj4mDU6qBaaP64cbsQ7r//qklvTK4cfbTlmuuzLtbBNi2
+        3ttwlcFthVlfEduu+HlbHq/5+qbwu//kjUfjdposLzaZ6c927du0vFSPH67/PNst1jBIcLce
+        CSm1NObIOcBg/VLo7wfW9S5HtZaXBNz5zO4S2mdzVyH4/17Fqqe8miE6X9z8VB/8VQ8vYVbS
+        MH4i7v2F7Z9L2/oP+dVqQeeCV8wwuJXDnXnvgRBT7PYDcuHC1941JPybs3jrjWIunueTt311
+        vlrT9MT04dqoXczPfP4IabzO7L4U8TPW7OW6y4slXCR9F0ye27mzcOn02MlCszlm7Oh9vbyk
+        oyFT8a7goVM3f2ffqopIE7/frPImVD9WO+THBiWW4oxEQy3mouJEALvo2IprBAAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrAIsWRmVeSWpSXmKPExsWy7bCSvK6C/aEUg4YWLoutv2exW6zZe47J
+        YuXUVWwW84+cY7VonfSF3eLF3kYWi6PbT7FbNB9bz2bR9+Ihs8XlXXPYLLZ9bmGzeHm5h9mi
+        bRa/Rce8OSwWrXuPsFu07J/C4iDg8f5GK7vHu9/LGD3evHzJ4nG44wu7x6ZVnWwed67tYfPY
+        vKTe4/2+q2wel5qvs3t83iQXwBXFZZOSmpNZllqkb5fAlfHp9GG2gve8Fcu3L2FtYHzA1cXI
+        wSEhYCJx8KliFyMXh5DAdkaJ9qftbF2MnEBxUYmOy42MEDXCEocPF0PUPGSUaNq6gAmkhk1A
+        U2Lhud9gNSICYRK/HpaA1DALnGaR+PWjhxmi4QiTRHf3cmaQBk4BdYnehp2MILawgL/E1G83
+        wOIsAqoST/ddA4vzClhKrNj/hQXCFpQ4OfMJC8gCZgE9ibaNYCXMAvIS29/OYYa4U0Hi59Nl
+        rCA2yA1LZ59mgqgRkZjd2cY8gVF4FpJJsxAmzUIyaRaSjgWMLKsYRVMLinPTc5MLDPWKE3OL
+        S/PS9ZLzczcxgiNZK2gH47L1f/UOMTJxMB5ilOBgVhLhNYzZlyLEm5JYWZValB9fVJqTWnyI
+        UZqDRUmcVzmnM0VIID2xJDU7NbUgtQgmy8TBKdXAtLhAVSv9TGhirs+WxTbdVeam2qnPF1fp
+        Pl3b46rVzlKxcYnthTsdX/a6X7TzWn4nu2+L4qSF3x/mbLnIuWHLzEbTE5HP9N5vz36/vVB9
+        4q7midckLjWWiR8LCNvl3M128+Z/eQMOLYGXlZcNQtcs8Jwqcidyr+B0n/grrLMVxfl8/rzR
+        32jQevJtlKzaoWPCbzIvRfheN7J5vE3P5W7HtthuiboP+9nvbPt08K378deuO2ZObF3rkPv5
+        UGDh83gt0SjV6Oa6SRySts5CMV8jH9hIpBX87OJdfr7WQEOhxMR/+3e/OYKs07aFWlutOhDp
+        x8vY8OuhZIlXpuW6wM1pz7X0NgiwhR04mvdSxiVOiaU4I9FQi7moOBEAxd8R3VMDAAA=
+X-CMS-MailID: 20230727095544epcas1p4098af0cd2aa424d8f45fd225923ffdc0
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: SVC_REQ_APPROVE
+CMS-TYPE: 101P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20230724003542epcas1p4c6c8dbd042af792bc168e10c6e81e45d
+References: <20230722-upstream-beaglev-ahead-dts-v1-0-ccda511357f4@baylibre.com>
+        <20230722-upstream-beaglev-ahead-dts-v1-1-ccda511357f4@baylibre.com>
+        <20230723-savor-trolling-e35ed4a7a751@spud> <ZL1jlacHj7sgNg8M@x1>
+        <CGME20230724003542epcas1p4c6c8dbd042af792bc168e10c6e81e45d@epcas1p4.samsung.com>
+        <ZL3Eenj4lGZDhZTM@xhacker>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The DS4520 is a 9-bit nonvolatile (NV) I/O expander.
-It offers users a digitally programmable alternative
-to hardware jumpers and mechanical switches that are
-being used to control digital logic node.
+> On Sun, Jul 23, 2023 at 10:29:57AM -0700, Drew Fustini wrote:
+> > On Sun, Jul 23, 2023 at 11:32:17AM +0100, Conor Dooley wrote:
+> > > On Sat, Jul 22, 2023 at 02:55:39PM -0700, Drew Fustini wrote:
+> > >
+> > > > +++ b/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts
+> > > > @@ -0,0 +1,61 @@
+> > > > +// SPDX-License-Identifier: GPL-2.0
+> > >
+> > > Hmm, should this not be dual licensed?
+> > > I notice the other th1520 stuff isn't either..
+> >
+> > Good point, I'll resubmit with a dual license.
+> >
+> > Jisheng: are you okay with the other arch/riscv/boot/dts/thead files
+> > changing to a dual license?
+> 
+> When cooking the initial patch, I wrote the lpi4a dts files from
+> scratch based on sipeed opened sch file, and currently only I made
+> contributions to them, so it's easy to make the lpi4a dts files
+> dual license.
 
-Signed-off-by: Okan Sahin <okan.sahin@analog.com>
----
- drivers/gpio/Kconfig       | 11 ++++++
- drivers/gpio/Makefile      |  1 +
- drivers/gpio/gpio-ds4520.c | 80 ++++++++++++++++++++++++++++++++++++++
- 3 files changed, 92 insertions(+)
- create mode 100644 drivers/gpio/gpio-ds4520.c
+Thanks for your work.
+Is there any datasheet or user manual can get on public?
+I'm going to contribute drivers in my spare time,
+but it's hard to know the register file and dma information.
 
-diff --git a/drivers/gpio/Kconfig b/drivers/gpio/Kconfig
-index 13be729710f2..5f89e46d6411 100644
---- a/drivers/gpio/Kconfig
-+++ b/drivers/gpio/Kconfig
-@@ -1000,6 +1000,17 @@ config GPIO_ADNP
- 	  enough to represent all pins, but the driver will assume a
- 	  register layout for 64 pins (8 registers).
- 
-+config GPIO_DS4520
-+	tristate "DS4520 I2C GPIO expander"
-+	select REGMAP_I2C
-+	select GPIO_REGMAP
-+	help
-+	  GPIO driver for ADI DS4520 I2C-based GPIO expander.
-+	  Say yes here to enable the GPIO driver for the ADI DS4520 chip.
-+
-+	  To compile this driver as a module, choose M here: the module will
-+	  be called gpio-ds4520.
-+
- config GPIO_GW_PLD
- 	tristate "Gateworks PLD GPIO Expander"
- 	depends on OF_GPIO
-diff --git a/drivers/gpio/Makefile b/drivers/gpio/Makefile
-index c048ba003367..6f8656d5d617 100644
---- a/drivers/gpio/Makefile
-+++ b/drivers/gpio/Makefile
-@@ -52,6 +52,7 @@ obj-$(CONFIG_GPIO_DA9052)		+= gpio-da9052.o
- obj-$(CONFIG_GPIO_DA9055)		+= gpio-da9055.o
- obj-$(CONFIG_GPIO_DAVINCI)		+= gpio-davinci.o
- obj-$(CONFIG_GPIO_DLN2)			+= gpio-dln2.o
-+obj-$(CONFIG_GPIO_DS4520)		+= gpio-ds4520.o
- obj-$(CONFIG_GPIO_DWAPB)		+= gpio-dwapb.o
- obj-$(CONFIG_GPIO_EIC_SPRD)		+= gpio-eic-sprd.o
- obj-$(CONFIG_GPIO_EM)			+= gpio-em.o
-diff --git a/drivers/gpio/gpio-ds4520.c b/drivers/gpio/gpio-ds4520.c
-new file mode 100644
-index 000000000000..1903deaef3e9
---- /dev/null
-+++ b/drivers/gpio/gpio-ds4520.c
-@@ -0,0 +1,80 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ * Copyright (c) 2023 Analog Devices, Inc.
-+ * Driver for the DS4520 I/O Expander
-+ */
-+
-+#include <linux/device.h>
-+#include <linux/gpio/driver.h>
-+#include <linux/gpio/regmap.h>
-+#include <linux/i2c.h>
-+#include <linux/property.h>
-+#include <linux/regmap.h>
-+
-+#define DS4520_PULLUP0		0xF0
-+#define DS4520_IO_CONTROL0	0xF2
-+#define DS4520_IO_STATUS0	0xF8
-+
-+static const struct regmap_config ds4520_regmap_config = {
-+	.reg_bits = 8,
-+	.val_bits = 8,
-+};
-+
-+static int ds4520_gpio_probe(struct i2c_client *client)
-+{
-+	struct gpio_regmap_config config = { };
-+	struct device *dev = &client->dev;
-+	struct regmap *regmap;
-+	u32 ngpio;
-+	u32 base;
-+	int ret;
-+
-+	ret = device_property_read_u32(dev, "reg", &base);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Missing 'reg' property.\n");
-+
-+	ret = device_property_read_u32(dev, "ngpios", &ngpio);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Missing 'ngpios' property.\n");
-+
-+	regmap = devm_regmap_init_i2c(client, &ds4520_regmap_config);
-+	if (IS_ERR(regmap))
-+		return dev_err_probe(dev, PTR_ERR(regmap),
-+				     "Failed to allocate register map\n");
-+
-+	config.regmap = regmap;
-+	config.parent = dev;
-+	config.ngpio = ngpio;
-+
-+	config.reg_dat_base = base + DS4520_IO_STATUS0;
-+	config.reg_set_base = base + DS4520_PULLUP0;
-+	config.reg_dir_out_base = base + DS4520_IO_CONTROL0;
-+
-+	return PTR_ERR_OR_ZERO(devm_gpio_regmap_register(dev, &config));
-+}
-+
-+static const struct of_device_id ds4520_gpio_of_match_table[] = {
-+	{ .compatible = "adi,ds4520-gpio" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, ds4520_gpio_of_match_table);
-+
-+static const struct i2c_device_id ds4520_gpio_id_table[] = {
-+	{ "ds4520-gpio" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(i2c, ds4520_gpio_id_table);
-+
-+static struct i2c_driver ds4520_gpio_driver = {
-+	.driver = {
-+		.name = "ds4520-gpio",
-+		.of_match_table = ds4520_gpio_of_match_table,
-+	},
-+	.probe = ds4520_gpio_probe,
-+	.id_table = ds4520_gpio_id_table,
-+};
-+module_i2c_driver(ds4520_gpio_driver);
-+
-+MODULE_DESCRIPTION("DS4520 I/O Expander");
-+MODULE_AUTHOR("Okan Sahin <okan.sahin@analog.com>");
-+MODULE_LICENSE("GPL");
--- 
-2.30.2
+> However, when constructing the th1520.dtsi, I refered the T-HEAD's
+> opensourced yocto repo(in fact, that's the only sourcecode/doc I have
+> at that time), and the license there is GPL-2.0. That's
+> also the reason why copyright of Alibaba Group Holding Limited is
+> added to th1520.dtsi. I'm not sure how to make th1520.dtsi dual
+> license. At least, this needs help from Guo Ren. Any suggestion is
+> appreciated.
+> 
+> >
+> > >
+> > >
+> > > > +	memory@0 {
+> > > > +		device_type = "memory";
+> > > > +		reg = <0x0  0x00000000  0x1 0x00000000>;
+> > >
+> > > There's some extra spaces in here for some reason.
+> >
+> > Thanks for spotting that. I'll fix when I resubmit with dual licnese.
+> >
+> > Drew
+
+Kwang
 
