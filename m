@@ -2,21 +2,22 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 64A2C765C5D
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 21:49:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5DED8765CD4
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 22:03:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232303AbjG0TtG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jul 2023 15:49:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59364 "EHLO
+        id S232220AbjG0UDe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jul 2023 16:03:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41750 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232224AbjG0TtE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 15:49:04 -0400
-Received: from wp534.webpack.hosteurope.de (wp534.webpack.hosteurope.de [80.237.130.56])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14A8B30D7;
-        Thu, 27 Jul 2023 12:49:00 -0700 (PDT)
+        with ESMTP id S231304AbjG0UDd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 16:03:33 -0400
+X-Greylist: delayed 101955 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 27 Jul 2023 13:02:53 PDT
+Received: from wp534.webpack.hosteurope.de (wp534.webpack.hosteurope.de [IPv6:2a01:488:42:1000:50ed:8238::])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A77C30E9;
+        Thu, 27 Jul 2023 13:02:53 -0700 (PDT)
 Received: from [2001:a61:6209:7f01:c80a:ff:fe00:19d] (helo=cs-wrt.lan.local); authenticated
         by wp534.webpack.hosteurope.de running ExIM with esmtpa
-        id 1qP6yl-0001K4-Ay; Thu, 27 Jul 2023 21:48:55 +0200
+        id 1qP7CA-0005S7-M0; Thu, 27 Jul 2023 22:02:46 +0200
 From:   =?UTF-8?q?Carsten=20Spie=C3=9F?= <mail@carsten-spiess.de>
 To:     =?UTF-8?q?Carsten=20Spie=C3=9F?= <mail@carsten-spiess.de>,
         Jean Delvare <jdelvare@suse.com>,
@@ -28,17 +29,15 @@ To:     =?UTF-8?q?Carsten=20Spie=C3=9F?= <mail@carsten-spiess.de>,
         Magnus Damm <magnus.damm@gmail.com>
 Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Subject: [PATCH 2/2] dt-bindings: hwmon: add renesas,isl28022
-Date:   Thu, 27 Jul 2023 21:48:13 +0200
-Message-Id: <20230727194813.2245116-3-mail@carsten-spiess.de>
+Subject: [PATCH v2 2/2] dt-bindings: hwmon: add renesas,isl28022
+Date:   Thu, 27 Jul 2023 22:02:34 +0200
+Message-Id: <20230727200234.2245395-1-mail@carsten-spiess.de>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230727194813.2245116-1-mail@carsten-spiess.de>
-References: <20230727194813.2245116-1-mail@carsten-spiess.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-bounce-key: webpack.hosteurope.de;mail@carsten-spiess.de;1690487340;ef180c3b;
-X-HE-SMSGID: 1qP6yl-0001K4-Ay
+X-bounce-key: webpack.hosteurope.de;mail@carsten-spiess.de;1690488173;57f17ea2;
+X-HE-SMSGID: 1qP7CA-0005S7-M0
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
         SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
