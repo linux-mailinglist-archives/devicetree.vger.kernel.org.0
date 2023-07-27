@@ -2,77 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7AC05765958
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 18:59:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A015765978
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 19:04:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232613AbjG0Q7J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jul 2023 12:59:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34924 "EHLO
+        id S229664AbjG0REN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jul 2023 13:04:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38264 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232533AbjG0Q7H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 12:59:07 -0400
-Received: from mail-pf1-x42a.google.com (mail-pf1-x42a.google.com [IPv6:2607:f8b0:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A9A5271B
-        for <devicetree@vger.kernel.org>; Thu, 27 Jul 2023 09:59:06 -0700 (PDT)
-Received: by mail-pf1-x42a.google.com with SMTP id d2e1a72fcca58-686f19b6dd2so709231b3a.2
-        for <devicetree@vger.kernel.org>; Thu, 27 Jul 2023 09:59:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690477145; x=1691081945;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=+h5b9iSf68eT3e10rX6ZgnouDl7RDMsV+Kj+5zmd2qQ=;
-        b=g2jGtsst0SlvCOD9xfUpQfNh+0s42T45Fnxqcaze8ENV3PSes8kD0NCLLFG4IytI39
-         9d6vwjR7pmB5+qCCfj4hXSvE8qrjrpbnsEgOUZSdCpKnVoXF0Ts3v9R+YAdJ6PrbW5AO
-         1SwYE1wozO8PNN9rmGxsmQrDQHl9QQkembBp6WyJcsOkQRMQ4j4A9CuRc2vvrWRsnvjk
-         M/8Gjx3wO13A46gf+QvbMt/UzZ0mo2UEQrv2p+JrcK1qImSVKhOZBxMrWEQi2iEJH+vM
-         80fADN92F7sGIaG4XLwErVf/rc1d5PGgvzi1xdch9YJvwFtxM1mWwIpsuWUjCJcWUdiJ
-         ksLw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690477145; x=1691081945;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+h5b9iSf68eT3e10rX6ZgnouDl7RDMsV+Kj+5zmd2qQ=;
-        b=OlwMLNyCAwtpf+l6Fx0smbgxYI9Lej5B6E8R7o39BoSmig1Blp0sv+lj+nGpmY0Zam
-         6gy71nOdKkB0UBVFq9tOU6qfBKA5uEiCPs47gBSeLDfQ7/F7XspT+Nd9MGohuVAIzUmk
-         3ggFAKBPtF6wDgjQcKPPP5WgK+d4wbrTOlfdbRKc0rUHO+a8j+17OW9rUcJbhypYrSTZ
-         DeyJ0giTM2GadOCKIqjPMueVCXF1PQWXerXmcfglexZEuqUYXcWIqpFaWeCk6j0uTZkG
-         sb6XFAkNSCqJFi0JbhGtlUAJY8d0Ft2gmeTgrYfDA+bztCeAMuUP6G3l6mUK3RepwyOb
-         fN1A==
-X-Gm-Message-State: ABy/qLbThc73r9UVQUkxCx2VIBlM2hTtd8p0+a4ySjpvIbzg/iqmw5H1
-        4iiYM/GCvJaAMwURkhwO4Sl5/w==
-X-Google-Smtp-Source: APBJJlENijKfsxSssGg95/tJuzhiRfsI+T8WQ3e9RaVBEdUkdytKbkBXKnoBHRSOD8cBfUR1PwZptA==
-X-Received: by 2002:a17:90b:4f8b:b0:268:1355:b03e with SMTP id qe11-20020a17090b4f8b00b002681355b03emr4502908pjb.38.1690477145456;
-        Thu, 27 Jul 2023 09:59:05 -0700 (PDT)
-Received: from p14s ([2604:3d09:148c:c800:b3f9:2cf3:dfbd:a9b6])
-        by smtp.gmail.com with ESMTPSA id t12-20020a17090b018c00b002639c4f81cesm3043086pjs.3.2023.07.27.09.59.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 27 Jul 2023 09:59:05 -0700 (PDT)
-Date:   Thu, 27 Jul 2023 10:59:02 -0600
-From:   Mathieu Poirier <mathieu.poirier@linaro.org>
-To:     Marek Vasut <marex@denx.de>
-Cc:     linux-remoteproc@vger.kernel.org,
-        Bjorn Andersson <andersson@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Peng Fan <peng.fan@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: remoteproc: imx_rproc: Support
- i.MX8MN/P MMIO
-Message-ID: <ZMKiViF+RHhxQNa5@p14s>
-References: <20230724222418.163220-1-marex@denx.de>
+        with ESMTP id S229817AbjG0REM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 13:04:12 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FF54F7;
+        Thu, 27 Jul 2023 10:04:12 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 90DAA61EEC;
+        Thu, 27 Jul 2023 17:04:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8ED1BC433C8;
+        Thu, 27 Jul 2023 17:04:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1690477451;
+        bh=eImfQdtW4BdLj71xuN6/ItkgYPB00aTK9XN90ZGDmxw=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=qoXeDg9ASXfjw/Y5vIj/JtbVJ56ktXnxmiHd08Tvn+otZjM6cXD6Ymc9vhhp2BzGG
+         OVW9OuuKiOjNbKcS8OdCnLyrqCeZwLmt6dKEAvktrwzRn8A5zHsRyozbnw5gOlyJ5w
+         WFQOq55OU0oSE1drbbqOxb4fSHINfuGYemulDJ6g8egH8SpD1KaKMZjan+sFhCzZ6u
+         8FPfYxL/tE1Ydb/H7LL2ALYAJCQCGQDzIbbIZDd5/ZwkMuqJVpHBVUMO8mZA/iq13b
+         12OJ1+83/P3yRiQyvgZtVdLvqr8eiEbqX5IIID/LD09XwI5egvhUwShhmpkfGI9D2/
+         BBfuzPxbU5zmw==
+Received: (nullmailer pid 1813074 invoked by uid 1000);
+        Thu, 27 Jul 2023 17:04:09 -0000
+Date:   Thu, 27 Jul 2023 11:04:09 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Ruan Jinjie <ruanjinjie@huawei.com>
+Cc:     frowand.list@gmail.com, devicetree@vger.kernel.org,
+        robh+dt@kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 -next] of: unittest: fix null pointer dereferencing in
+ of_unittest_find_node_by_name()
+Message-ID: <169047744793.1813007.10204887890918817559.robh@kernel.org>
+References: <20230727080246.519539-1-ruanjinjie@huawei.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230724222418.163220-1-marex@denx.de>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+In-Reply-To: <20230727080246.519539-1-ruanjinjie@huawei.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -81,91 +57,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 25, 2023 at 12:24:17AM +0200, Marek Vasut wrote:
-> The MX8M CM7 boot via SMC call is problematic, since not all versions
-> of ATF support this interface. Document MMIO support used to boot the
-> CM7 on MX8MN/MP instead and discern MMIO interface using DT compatible
-> string. Document GPR register syscon phandle which is required by the
-> MMIO interface too.
-> 
-> Signed-off-by: Marek Vasut <marex@denx.de>
-> ---
-> Cc: Bjorn Andersson <andersson@kernel.org>
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: Fabio Estevam <festevam@gmail.com>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
-> Cc: NXP Linux Team <linux-imx@nxp.com>
-> Cc: Peng Fan <peng.fan@nxp.com>
-> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Sascha Hauer <s.hauer@pengutronix.de>
-> Cc: Shawn Guo <shawnguo@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Cc: linux-arm-kernel@lists.infradead.org
-> Cc: linux-remoteproc@vger.kernel.org
-> ---
-> V2: Rename 'gpr' to 'fsl,iomuxc-gpr'
-> V3: Rename 'gpr' to 'fsl,iomuxc-gpr' everywhere
-> ---
-> Note that the MMIO being discerned using compatible string is similar
-> approach to "st,stm32mp1-rcc" vs "st,stm32mp1-rcc-secure".
-> ---
->  .../bindings/remoteproc/fsl,imx-rproc.yaml    | 20 +++++++++++++++++++
->  1 file changed, 20 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
-> index 0c3910f152d1d..30632efdad8bb 100644
-> --- a/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
-> +++ b/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
-> @@ -20,7 +20,9 @@ properties:
->        - fsl,imx7ulp-cm4
->        - fsl,imx8mm-cm4
->        - fsl,imx8mn-cm7
-> +      - fsl,imx8mn-cm7-mmio
->        - fsl,imx8mp-cm7
-> +      - fsl,imx8mp-cm7-mmio
->        - fsl,imx8mq-cm4
->        - fsl,imx8qm-cm4
->        - fsl,imx8qxp-cm4
-> @@ -70,6 +72,11 @@ properties:
->      description:
->        Specify CPU entry address for SCU enabled processor.
->  
-> +  fsl,iomuxc-gpr:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description:
-> +      Phandle to IOMUXC GPR block which provide access to CM7 CPUWAIT bit.
-> +
->    fsl,resource-id:
->      $ref: /schemas/types.yaml#/definitions/uint32
->      description:
-> @@ -79,6 +86,19 @@ properties:
->  required:
->    - compatible
->  
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          not:
-> +            contains:
-> +              enum:
-> +                - fsl,imx8mn-cm7-mmio
-> +                - fsl,imx8mp-cm7-mmio
-> +    then:
-> +      properties:
-> +        fsl,iomuxc-gpr: false
-> +
->  additionalProperties: false
->  
->  examples:
 
-I have applied this set.  Next time please add a cover letter.
-
-Thanks,
-Mathieu
-
-> -- 
-> 2.40.1
+On Thu, 27 Jul 2023 16:02:46 +0800, Ruan Jinjie wrote:
+> when kmalloc() fail to allocate memory in kasprintf(), name
+> or full_name will be NULL, strcmp() will cause
+> null pointer dereference.
 > 
+> Fixes: 0d638a07d3a1 ("of: Convert to using %pOF instead of full_name")
+> Signed-off-by: Ruan Jinjie <ruanjinjie@huawei.com>
+> ---
+> v2:
+> - add fixes tag
+> ---
+>  drivers/of/unittest.c | 10 ++++++----
+>  1 file changed, 6 insertions(+), 4 deletions(-)
+> 
+
+Applied, thanks!
+
