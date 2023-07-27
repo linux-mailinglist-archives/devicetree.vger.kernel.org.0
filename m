@@ -2,109 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7664776568E
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 16:58:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3596676569C
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 17:00:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232513AbjG0O6O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jul 2023 10:58:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44896 "EHLO
+        id S233337AbjG0PAb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jul 2023 11:00:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46024 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232469AbjG0O6N (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 10:58:13 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 5AAF4196;
-        Thu, 27 Jul 2023 07:58:11 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1506CD75;
-        Thu, 27 Jul 2023 07:58:54 -0700 (PDT)
-Received: from [10.32.102.67] (e110479.arm.com [10.32.102.67])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 6F9D33F5A1;
-        Thu, 27 Jul 2023 07:58:07 -0700 (PDT)
-Message-ID: <7f4a7739-cb03-bda8-df90-e8eb119b732b@arm.com>
-Date:   Thu, 27 Jul 2023 15:57:59 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH] arm64: dts: pinephone: Add pstore support for PinePhone
- A64
-To:     Andrey Skvortsov <andrej.skvortzov@gmail.com>,
+        with ESMTP id S233918AbjG0PA2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 11:00:28 -0400
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD4F430DF;
+        Thu, 27 Jul 2023 08:00:22 -0700 (PDT)
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36RAH1wh027816;
+        Thu, 27 Jul 2023 16:59:46 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=selector1;
+ bh=doC1Pd1d3NibZb37WWHiE70DKjD6XTr1B8pDdUXXdeU=;
+ b=kXoqR2HH0CWHQ1GPMt9yevGGyieem0U7ABUHEI8AmP2jQ74X6lp+4e/m9W1c3cfgJAlG
+ I9c66gZAgkGwIQpL9H1UMF6EvN2OQyzcIKohIHp5uPysjh9skOJA39QRfRDtdPNjiJ86
+ 35aaX6kA73vd6cJ3jOBIMVozJ42aY33abrMRiPWyrxkc+HKv7Hz1VyMxUf9aAo7Ofssm
+ x8zFgTbacmiCB70yHXShcna0D9XLE3G1WcNJEQX9vOVqOvUoR5pMZmlTkhWWUHxMqmmh
+ 2q7paXg/5Tdm9VbdmYqn7lIrdtqf1wdL0hiRKK2E3uNbGyWhhyjFDCDqpyMRbN+5i0WF 1g== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3s3kn2b15h-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 27 Jul 2023 16:59:46 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id D66C710002A;
+        Thu, 27 Jul 2023 16:59:44 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 787F2209721;
+        Thu, 27 Jul 2023 16:59:44 +0200 (CEST)
+Received: from localhost (10.201.20.178) by SHFDAG1NODE1.st.com (10.75.129.69)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Thu, 27 Jul
+ 2023 16:59:44 +0200
+From:   Olivier Moysan <olivier.moysan@foss.st.com>
+To:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Kees Cook <keescook@chromium.org>,
-        Tony Luck <tony.luck@intel.com>,
-        "Guilherme G. Piccoli" <gpiccoli@igalia.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-        linux-hardening@vger.kernel.org,
-        Jarrah Gosbell <kernel@undef.tools>,
-        Arnaud Ferraris <arnaud.ferraris@collabora.com>
-References: <20230724213457.24593-1-andrej.skvortzov@gmail.com>
-Content-Language: en-US
-From:   Andre Przywara <andre.przywara@arm.com>
-In-Reply-To: <20230724213457.24593-1-andrej.skvortzov@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        Olivier Moysan <olivier.moysan@foss.st.com>,
+        Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Fabrice Gasnier <fabrice.gasnier@foss.st.com>
+CC:     <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <alsa-devel@alsa-project.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: [RFC v2 00/11] iio: add iio backend device type
+Date:   Thu, 27 Jul 2023 16:59:26 +0200
+Message-ID: <20230727145939.1157607-1-olivier.moysan@foss.st.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.201.20.178]
+X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-07-27_07,2023-07-26_01,2023-05-22_02
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+This v2 is an addon to initial RFC:
+https://lore.kernel.org/lkml/20230623140944.2613002-1-olivier.moysan@foss.st.com/
 
-On 24/07/2023 22:34, Andrey Skvortsov wrote:
-> This patch reserves some memory in the DTS and sets up a
-> pstore device tree node to enable pstore support.
-> 
-> Signed-off-by: Andrey Skvortsov <andrej.skvortzov@gmail.com>
-> 
-> Gbp-Pq: Topic pinephone
-> Gbp-Pq: Name 0161-arm64-dts-pinephone-Add-pstore-support-for-PinePhone.patch
-> ---
->   .../boot/dts/allwinner/sun50i-a64-pinephone.dtsi | 16 ++++++++++++++++
->   1 file changed, 16 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
-> index 87847116ab6d..84f9410b0b70 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
-> @@ -19,6 +19,22 @@ aliases {
->   		serial0 = &uart0;
->   	};
->   
-> +	reserved-memory {
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		ranges;
-> +
-> +		pstore_mem: ramoops@61000000 {
-> +			compatible = "ramoops";
-> +			reg = <0x61000000 0x100000>;
+Despite the "IIO backend" naming has to be changed (as pointed out by
+Jonathan previously), it has been kept here, for time being. The
+appropriated naming still has to be discussed later on.
 
-So what's the significance of this address? That's 528MB into DRAM, so 
-somewhat in the middle of it, fragmenting the physical address space.
-And is there any other firmware component that needs to know about this 
-address?
+In the previous RFC the "IIO backend" concept was proposed through
+a set of template APIs.
 
-Cheers,
-Andre
+This v2 implements a functionnal exemple based on STM32 DFSDM,
+to bring scaling support to this peripheral.
 
+Olivier Moysan (11):
+  iio: introduce iio backend device
+  of: property: add device link support for io-backends
+  dt-bindings: iio: stm32-dfsdm-adc: add scaling support
+  dt-bindings: iio: adc: add scaling support to sd modulator
+  iio: adc: stm32-dfsdm: manage dfsdm as a channel provider
+  iio: adc: stm32-dfsdm: adopt generic channel bindings
+  iio: adc: stm32-dfsdm: add scaling support to dfsdm
+  iio: adc: sd modulator: add scale and offset support
+  ARM: dts: stm32: adopt new dfsdm bindings on stm32mp151
+  ARM: dts: stm32: add dfsdm pins muxing on stm32mp15
+  ARM: dts: stm32: add dfsdm iio support on stm32mp157c-ev
 
-> +			record-size = <0x20000>;
-> +			console-size = <0x20000>;
-> +			ftrace-size = <0x20000>;
-> +			pmsg-size = <0x20000>;
-> +			ecc-size = <16>;
-> +		};
-> +	};
-> +
->   	backlight: backlight {
->   		compatible = "pwm-backlight";
->   		pwms = <&r_pwm 0 50000 PWM_POLARITY_INVERTED>;
+ .../iio/adc/sigma-delta-modulator.yaml        |   9 +-
+ .../bindings/iio/adc/st,stm32-dfsdm-adc.yaml  | 189 ++++++------------
+ arch/arm/boot/dts/st/stm32mp15-pinctrl.dtsi   |  39 ++++
+ arch/arm/boot/dts/st/stm32mp151.dtsi          |  18 +-
+ arch/arm/boot/dts/st/stm32mp157c-ev1.dts      |  68 +++++++
+ drivers/iio/Makefile                          |   1 +
+ drivers/iio/adc/sd_adc_modulator.c            | 106 ++++++++--
+ drivers/iio/adc/stm32-dfsdm-adc.c             | 187 +++++++++++------
+ drivers/iio/industrialio-backend.c            | 107 ++++++++++
+ drivers/of/property.c                         |   2 +
+ include/linux/iio/backend.h                   |  56 ++++++
+ 11 files changed, 561 insertions(+), 221 deletions(-)
+ create mode 100644 drivers/iio/industrialio-backend.c
+ create mode 100644 include/linux/iio/backend.h
+
+-- 
+2.25.1
+
