@@ -2,250 +2,215 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E1729764E36
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 10:54:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C07C764E75
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 11:02:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234285AbjG0Iyj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jul 2023 04:54:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59426 "EHLO
+        id S231403AbjG0JCB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jul 2023 05:02:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33286 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234124AbjG0IyR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 04:54:17 -0400
-Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51FA9618A;
-        Thu, 27 Jul 2023 01:35:27 -0700 (PDT)
-Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
-        by mx0a-00128a01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36R76NDT027825;
-        Thu, 27 Jul 2023 04:34:47 -0400
-Received: from nam12-mw2-obe.outbound.protection.outlook.com (mail-mw2nam12lp2043.outbound.protection.outlook.com [104.47.66.43])
-        by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3s36afn2g2-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 27 Jul 2023 04:34:47 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=JlBtZcSYPDEO/y2yiyRbJboDuajUzsIwW9LFhwmZl7FUfgC2EFkz+phYwHh5Amiq/BtYPz+LwiAd7Ict1Jeej2RASEIE8XFnc67IQAF3vAwVPAfPBJX7YH73zSzKJVl+Zn24TLHukV0v9Fe1/E/KoZSVIVFSfF0e/S2QO5MQB0+adqjZbAR/0/AhuLdBdrLDlLdwkDeJeWg7E+prXQk6uio4yFkJqUwhzeTwSInOwdIJYnntbFf9/y+AZbzf5Gw4mAezUDHukk9ASPe1s2TVKO78M2Futmj8KPSK7u5XgV+WvEA5eI7in4fPl89e0J78Zhge8+xgDmZ2h5fqmCCbTQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=lI3WVBqtBgCyspxFtNQeN9xGr6Z/YOZ/3NJfURThKkc=;
- b=EXOryqIMlrlB1dEboutzZAhTUI+KfbWDLFT/5dH/MbMQKRkm0Qvp+kC6jabkjgqwuERK35lqz5ZoTAGGIH/cwCnCjO50zgz7Ud5UU+kPUw5RMcJOulL9Wj1etLxns0z8b0ca1yks05kZ9sRLtyBEwFi70IwH1mJSLXc7P7KJxVFf95EnOMfGg2uziC+CL44HiSgoO0+zm0NYq1jUcEyrmMEjaMqPOVQt2H6g6k+gzyiTPVdLRr4eMMIXkRIO1yzvxXiuuoDZOAO/RUiklyYoFmK69ew8ZspiAYZRjsj+if+KAnKZBXxYJcpfOPZ6w+5ekYzGNh1YOHslYMslByKKaw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=analog.com; dmarc=pass action=none header.from=analog.com;
- dkim=pass header.d=analog.com; arc=none
+        with ESMTP id S230098AbjG0JBe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 05:01:34 -0400
+Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com [IPv6:2607:f8b0:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EE3D4214
+        for <devicetree@vger.kernel.org>; Thu, 27 Jul 2023 01:41:40 -0700 (PDT)
+Received: by mail-pl1-x62a.google.com with SMTP id d9443c01a7336-1b8b2b60731so3685665ad.2
+        for <devicetree@vger.kernel.org>; Thu, 27 Jul 2023 01:41:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=analog.onmicrosoft.com; s=selector2-analog-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=lI3WVBqtBgCyspxFtNQeN9xGr6Z/YOZ/3NJfURThKkc=;
- b=p7qTuh2TBGtDqSrIUzglHOe88/zlqVyfL3GXKQYz2PBnNxVvlKV+DDx8SAEg5jSWUyQYDusE8MGsxpbk2vmgWbEyw1/CUPy+Ubl6Ummnc0h/KNIl6vY84/vKf9IZuJNbpka/mbDO7bPMWmUNpO0bpPLnELdwFivaw1X2Q9l9Wqo=
-Received: from PH7PR03MB7391.namprd03.prod.outlook.com (2603:10b6:510:2e6::5)
- by SJ0PR03MB6359.namprd03.prod.outlook.com (2603:10b6:a03:399::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6631.29; Thu, 27 Jul
- 2023 08:34:45 +0000
-Received: from PH7PR03MB7391.namprd03.prod.outlook.com
- ([fe80::2adc:1975:dfe2:776c]) by PH7PR03MB7391.namprd03.prod.outlook.com
- ([fe80::2adc:1975:dfe2:776c%3]) with mapi id 15.20.6631.026; Thu, 27 Jul 2023
- 08:34:44 +0000
-From:   "Sahin, Okan" <Okan.Sahin@analog.com>
-To:     Nathan Chancellor <nathan@kernel.org>
-CC:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
+        d=ventanamicro.com; s=google; t=1690447300; x=1691052100;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=4kDK3i7/sRj1o3iJSqZ1qWTUMiecFrRZKOPsM2hxTr8=;
+        b=evIUIKiizZRZxZVLDmc6BSWRfJgAiei1agcWhJlMlRyWLp22WZYoh8ktsfYdJucLjI
+         po3Lny3K+4I3FI446Kv2VmEoLZl5GYWso3ptEMMbgGrsmtZvUO6GikdXQR0jF0XfY0mr
+         2hF3o/G2RogNOIiOj2yHZbn1y4XkFwCpo7jXwQ7VGkr/s2O6kLmBieWKBMzY2OJgnQFn
+         qGKQef5mtn/uRG/T6YXqq40w8n1vXjQPOubLiPowXKPsf42M0UgIPThYgXFWQlwbWz/Z
+         atArxyMy63mrn/E8EusmtaWe6azMbM0tKZud+QsEZa8Tyeg4GUPOt6va9RFIdeSeDcEh
+         8EPg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690447300; x=1691052100;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=4kDK3i7/sRj1o3iJSqZ1qWTUMiecFrRZKOPsM2hxTr8=;
+        b=QC7JfZRI2KLagrfjhHGk0NhRmtM/GSq/pTofjoXaqaW5uekyWyYo6UEzJRKJM0zdeL
+         Lo80ZCx9pP36ojSjzkGztAOSZR/fx2br4SRCwmO0wrkXwoHka5xwD+maoLT6QnhkMPd2
+         Gq1mkvxaGtOYY1DoMjKQhwQ0vuq4rs5qarxg348vaTMCxurfeFq2xDmx+n2QtWnwpBlV
+         bTt2Ez8bTLgl0ushxaPPMObff0LjixhZqqxPPsHafm8mO3bCqfMFnccA9AOhXxtraoXZ
+         pg/HF0A8M/R/Tc/w83E0BKzM+1DKualvfCgN5RpM3tQN3ksTOHD3Y5l30PAR0MmG+XHG
+         bqwg==
+X-Gm-Message-State: ABy/qLaI4xafKgebrA0HtwdKHWmAzGonMJHpf2CaET1jDb6d/qrv7pSE
+        UDffmpvwH9yR5X71hJIXBm7DOg==
+X-Google-Smtp-Source: APBJJlFNzb937sOtAwew9B0iPaqnJMzJx+v4W1dfU3BIcEBO4xpb7dilmt7NUGNhp5IuMAErdB6wWg==
+X-Received: by 2002:a17:902:7447:b0:1b8:1c9e:442c with SMTP id e7-20020a170902744700b001b81c9e442cmr3359282plt.20.1690447299788;
+        Thu, 27 Jul 2023 01:41:39 -0700 (PDT)
+Received: from sunil-laptop ([106.51.190.25])
+        by smtp.gmail.com with ESMTPSA id w5-20020a170902d3c500b001bbd1562e75sm1025215plb.55.2023.07.27.01.41.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 27 Jul 2023 01:41:39 -0700 (PDT)
+Date:   Thu, 27 Jul 2023 14:11:30 +0530
+From:   Sunil V L <sunilvl@ventanamicro.com>
+To:     Anup Patel <apatel@ventanamicro.com>
+Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Frank Rowand <frowand.list@gmail.com>,
         Conor Dooley <conor+dt@kernel.org>,
-        "zzzzTilki, zzzzIbrahim" <Ibrahim.Tilki@analog.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "llvm@lists.linux.dev" <llvm@lists.linux.dev>
-Subject: RE: [PATCH v3 2/2] regulator: max77857: Add ADI MAX77857/59/MAX77831
- Regulator Support
-Thread-Topic: [PATCH v3 2/2] regulator: max77857: Add ADI MAX77857/59/MAX77831
- Regulator Support
-Thread-Index: AQHZuGy8mN9TLCcuJkyLQ19F8fkBDa+/r5IAgAyW/YCAARHLsA==
-Date:   Thu, 27 Jul 2023 08:34:44 +0000
-Message-ID: <PH7PR03MB739122A373964651D995EA5AE701A@PH7PR03MB7391.namprd03.prod.outlook.com>
-References: <20230717050736.10075-1-okan.sahin@analog.com>
- <20230717050736.10075-3-okan.sahin@analog.com>
- <20230718155502.GA3542993@dev-arch.thelio-3990X>
- <20230726161033.GA1102409@dev-arch.thelio-3990X>
-In-Reply-To: <20230726161033.GA1102409@dev-arch.thelio-3990X>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-dg-ref: =?us-ascii?Q?PG1ldGE+PGF0IG5tPSJib2R5LnR4dCIgcD0iYzpcdXNlcnNcb2thbi5zYWhp?=
- =?us-ascii?Q?blxhcHBkYXRhXHJvYW1pbmdcMDlkODQ5YjYtMzJkMy00YTQwLTg1ZWUtNmI4?=
- =?us-ascii?Q?NGJhMjllMzViXG1zZ3NcbXNnLTZkN2ZiM2FjLTJjNTgtMTFlZS1iZjAwLTU4?=
- =?us-ascii?Q?NmMyNWQzYzNlNFxhbWUtdGVzdFw2ZDdmYjNhZS0yYzU4LTExZWUtYmYwMC01?=
- =?us-ascii?Q?ODZjMjVkM2MzZTRib2R5LnR4dCIgc3o9IjU4MTAiIHQ9IjEzMzM0OTIwNDgx?=
- =?us-ascii?Q?MDk3NTk2NCIgaD0ieUY5UDVvYW5BZFNzNlduNVYwSFZRUExZMUZVPSIgaWQ9?=
- =?us-ascii?Q?IiIgYmw9IjAiIGJvPSIxIiBjaT0iY0FBQUFFUkhVMVJTUlVGTkNnVUFBRW9D?=
- =?us-ascii?Q?QUFEY3l0WXZaY0RaQVFTNi9GYXVFU3FQQkxyOFZxNFJLbzhEQUFBQUFBQUFB?=
- =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUhBQUFBRGFBUUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
- =?us-ascii?Q?QUFBQUVBQVFBQkFBQUF2ZGhreGdBQUFBQUFBQUFBQUFBQUFKNEFBQUJoQUdR?=
- =?us-ascii?Q?QWFRQmZBSE1BWlFCakFIVUFjZ0JsQUY4QWNBQnlBRzhBYWdCbEFHTUFkQUJ6?=
- =?us-ascii?Q?QUY4QVpnQmhBR3dBY3dCbEFGOEFaZ0J2QUhNQWFRQjBBR2tBZGdCbEFBQUFB?=
- =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
- =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
- =?us-ascii?Q?QUFBRUFBQUFBQUFBQUFnQUFBQUFBbmdBQUFHRUFaQUJwQUY4QWN3QmxBR01B?=
- =?us-ascii?Q?ZFFCeUFHVUFYd0J3QUhJQWJ3QnFBR1VBWXdCMEFITUFYd0IwQUdrQVpRQnlB?=
- =?us-ascii?Q?REVBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
- =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
- =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQVFBQUFBQUFBQUFD?=
- =?us-ascii?Q?QUFBQUFBQ2VBQUFBWVFCa0FHa0FYd0J6QUdVQVl3QjFBSElBWlFCZkFIQUFj?=
- =?us-ascii?Q?Z0J2QUdvQVpRQmpBSFFBY3dCZkFIUUFhUUJsQUhJQU1nQUFBQUFBQUFBQUFB?=
- =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
- =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
- =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUJBQUFBQUFBQUFBSUFBQUFBQUE9PSIvPjwv?=
- =?us-ascii?Q?bWV0YT4=3D?=
-x-dg-rorf: true
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PH7PR03MB7391:EE_|SJ0PR03MB6359:EE_
-x-ms-office365-filtering-correlation-id: a7b368e0-0664-4254-60bd-08db8e7c5474
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 8Xl5vPQL/pMWembLrTI64bvz99IjHAZszxEvdV1hxyl3dwD42aDGTAhDlr6WnQtytfC0yti7lXeFDvbx1uiB4q9IrBm0ehqO+59l7kUrDO6BJC2G/VZPq1HkhXUD8WQkh7uYilN+NJ2/CDrFx0ytDPJAVoAUZKNsq5w1febNa/AS9UbgF8Iign6R7eJrjE0qtdNWbXXwftB31AppqKqVM3+kZ7LH2hZKRxiKxnJMEesPL42e6EORWq/Z5eQBYYiMAW/gmSMWjigpp88XlYVrm9Aw8ByE+rhYQJDcsZXcIsJgdBalj12YQgvd13Znf5fHEPA3DvGCr2OMevo38+vu2gRWlvb/n2jGpDgdAbGuMD9up00cyXr/fX2PBaWor2G5OcqvS52h8UI7FOJf0dNhRwLDozJtjPAdXzEzkj04ZXxBrwpIbVcBvEOCnI5YL9oLwPoeDjMVGBiCnssc+BVCrefXy++WVXe/RxHymgOdJkS3mYj3pexF5t115Fm+lLhMG3TolBgNJPRDlmt11TSHROFduPy6lp13ewRGR82SGaKJ58Dl1fbFH9sfFgWd6JENev4CHZj/rsA/sVSMW72kvW424L3TAugZfoUQfGjj0XE=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH7PR03MB7391.namprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(366004)(396003)(376002)(39860400002)(346002)(136003)(451199021)(26005)(478600001)(9686003)(7696005)(71200400001)(54906003)(64756008)(66446008)(6916009)(66946007)(76116006)(4326008)(66556008)(66476007)(41300700001)(83380400001)(52536014)(5660300002)(186003)(8936002)(8676002)(122000001)(2906002)(6506007)(38100700002)(38070700005)(86362001)(33656002)(316002)(55016003);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?iMdTO0okfz4oP0FiAQkm/GTWaVElkUpg4er5OuOcPjP4aGd7/xAl06qLNf1T?=
- =?us-ascii?Q?0tv8xS8DTmvcMztUbInot8QcbYxzgp9/26xyyfSkkn5tkmbpIpPKeSNFXks3?=
- =?us-ascii?Q?3sFcxUMcEbB+3nIYhSuMnSjxFJygSWBY1jlyaYt5kS1RJSGn5fi/G4+PFnet?=
- =?us-ascii?Q?JhguSYVa0YEgbEkTfy/I52nABiZN6uDPI5LoHNf7TarxGA5DcsvOIT3ppMyO?=
- =?us-ascii?Q?taSYEsp2iMRYIg2s88hgYjTYxrY1L9EGOV+v4vB6Zyx99yjcCP1mZy8t15Tb?=
- =?us-ascii?Q?zbphzJablTJdmSD7piPJj3DCIysFpth17wraOSqnifr8mdtz+O4otFtwqY5c?=
- =?us-ascii?Q?1H3nPp8kGUbuy9EM4WG3/Nc8O88gjT8cWW/BIYI9BksRYrrNAltcJvm27cEx?=
- =?us-ascii?Q?xhxPfdrS9sn6zEeILFq9okvaVFmz9deRtNhY1TheVzDX7PrLbAXOiBcCGpNt?=
- =?us-ascii?Q?PY88hJCTuhOdH4YoMvdDRB4E2SE7Wgwlv63MzeNBFSxYUFXV2+mGGH6zBSKa?=
- =?us-ascii?Q?ZJt28ktGfJD6hprTybJd7G6i43ZxzQQuTXYeynbAkvoWa8qKFlWpI8KIMMUl?=
- =?us-ascii?Q?z5zwEZv/I7tousoKaKEsNkr/9b+o3gt8tSnPM+1IF1b/GjFNsHWAHdeX6AB+?=
- =?us-ascii?Q?ICBdYu7f7VbOA7RJC3yTAk73LRAN79/U2j4My0AtITj5V3FQZg7I8AS37pbG?=
- =?us-ascii?Q?3o6CDF/UvtX5lbC53tTBIw5zFkaYIWnotlhzHrjKV9oUPC4Pcq4dQRSBdJTd?=
- =?us-ascii?Q?Xsya8lqmDUzKYex+qlll8Lfun8yooza/eEMf467QjqXnprT+GPr2+Sa2YIC/?=
- =?us-ascii?Q?FTeKyYs255GGy/c6lFOAn0V8G5gnI0SOw5UzDvM4GJCTx9T3sMMRwKD4ZgvN?=
- =?us-ascii?Q?/eOjSRa69pq6PI6vjOO1gETLpZsVR5vh9h+HzJb9SvQDwLht3m8+mLBcbJB6?=
- =?us-ascii?Q?OqOakD2y0q+7mrNC7MPeIIhWgoRktDbFeP8XIR8TcEm8WhXyIzBNgwKHrgYd?=
- =?us-ascii?Q?Dq2IwFmXuhZJQPvQfEErRJGXwfcvpOGf8pjDBCqcaYjh8TXFUfNhrQ69wNYW?=
- =?us-ascii?Q?storYFp/nlb9XEYCY+RhV/eVQ2HJ1MrckmgE2X0359BT0eA699qMDtm+SIp4?=
- =?us-ascii?Q?DxBs9deSa6JVUEx8PrMe8+qvgjs6D4i4h2uyWq5555Zdt79BOicWQ6b6B0hf?=
- =?us-ascii?Q?QDHLAOYuNE+GsdlUZUU4unVbpJt7rcylaY4Wm8UqG7sn8Vx6jQaSJ3mZU4/Y?=
- =?us-ascii?Q?1EwqzKmR08l6jFYFIXfRFSVVuPEiYGu6GAy6u9I+TQEOfuD2imK/7Eqrte/M?=
- =?us-ascii?Q?XvJgF0Q+pqE+LB2mIT9tQWfnUZM8rwO3cDrDSx++xR3aQNdlqYXzplL1AomD?=
- =?us-ascii?Q?QDCsYP1g2/sXwm0GhQgHvYGlAviAn1/8QxI6gbJv4ta4TsHMkWLtZ+YkrxO2?=
- =?us-ascii?Q?aOqeEoRquGW9nNxyP+Z7E/IiifW2PQb8VTXu12Nkr2KItD7bHsfL8PqSdD5e?=
- =?us-ascii?Q?LAOw6zxZ6QDbb4wFKHxUeBHbSDeB2zu0HppXYCbd3utrNHrqZBnUweGTqI4R?=
- =?us-ascii?Q?ytMsKb+BqeI3c2knwwP6G5SVLlgbHmpDRRPebqII?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        Atish Patra <atishp@atishpatra.org>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        Saravana Kannan <saravanak@google.com>,
+        Anup Patel <anup@brainfault.org>,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v6 04/14] irqchip/sifive-plic: Use platform driver
+ probing for PLIC
+Message-ID: <ZMItuhqTCJCirg4s@sunil-laptop>
+References: <20230719113542.2293295-1-apatel@ventanamicro.com>
+ <20230719113542.2293295-5-apatel@ventanamicro.com>
 MIME-Version: 1.0
-X-OriginatorOrg: analog.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR03MB7391.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a7b368e0-0664-4254-60bd-08db8e7c5474
-X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Jul 2023 08:34:44.6827
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: eaa689b4-8f87-40e0-9c6f-7228de4d754a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: E1BGtpTk3sJBL45rpC6FJlUFQoNeoiw2149txFGXd3XCZtgMKxB6RmEhZORdTK3WvxtuhPgwrE5wmsa8EvUDhg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR03MB6359
-X-Proofpoint-GUID: cBQ6cRJdl21C5PWPDogxo2DnVT4BYcxR
-X-Proofpoint-ORIG-GUID: cBQ6cRJdl21C5PWPDogxo2DnVT4BYcxR
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-07-26_08,2023-07-26_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- malwarescore=0 phishscore=0 suspectscore=0 mlxscore=0 bulkscore=0
- mlxlogscore=999 clxscore=1011 spamscore=0 impostorscore=0 adultscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2306200000 definitions=main-2307270075
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230719113542.2293295-5-apatel@ventanamicro.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Anup,
 
+On Wed, Jul 19, 2023 at 05:05:32PM +0530, Anup Patel wrote:
+> The PLIC driver does not require very early initialization so let us
+> replace use of IRQCHIP_DECLARE() with IRQCHIP_PLATFORM_DRIVER_xyz()
+> so that PLIC is probed through platform driver probing.
+> 
+> Signed-off-by: Anup Patel <apatel@ventanamicro.com>
+> ---
+>  drivers/irqchip/irq-sifive-plic.c | 12 ++++++++----
+>  1 file changed, 8 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/irqchip/irq-sifive-plic.c b/drivers/irqchip/irq-sifive-plic.c
+> index 56b0544b1f27..dc02f0761ced 100644
+> --- a/drivers/irqchip/irq-sifive-plic.c
+> +++ b/drivers/irqchip/irq-sifive-plic.c
+> @@ -569,8 +569,10 @@ static int __init plic_init(struct device_node *node,
+>  	return __plic_init(node, parent, 0);
+>  }
+>  
+> -IRQCHIP_DECLARE(sifive_plic, "sifive,plic-1.0.0", plic_init);
+> -IRQCHIP_DECLARE(riscv_plic0, "riscv,plic0", plic_init); /* for legacy systems */
+> +IRQCHIP_PLATFORM_DRIVER_BEGIN(sifive_plic)
+> +IRQCHIP_MATCH("sifive,plic-1.0.0", plic_init)
+> +IRQCHIP_MATCH("riscv,plic0", plic_init) /* for legacy systems */
+> +IRQCHIP_PLATFORM_DRIVER_END(sifive_plic)
+>  
+Few observations..
 
->-----Original Message-----
->From: Nathan Chancellor <nathan@kernel.org>
->Sent: Wednesday, July 26, 2023 7:11 PM
->To: Sahin, Okan <Okan.Sahin@analog.com>
->Cc: Liam Girdwood <lgirdwood@gmail.com>; Mark Brown <broonie@kernel.org>;
->Rob Herring <robh+dt@kernel.org>; Krzysztof Kozlowski
-><krzysztof.kozlowski+dt@linaro.org>; Conor Dooley <conor+dt@kernel.org>;
->zzzzTilki, zzzzIbrahim <Ibrahim.Tilki@analog.com>; linux-kernel@vger.kerne=
-l.org;
->devicetree@vger.kernel.org; llvm@lists.linux.dev
->Subject: Re: [PATCH v3 2/2] regulator: max77857: Add ADI MAX77857/59/MAX77=
-831
->Regulator Support
->
->[External]
->
->Hi Okan,
->
->On Tue, Jul 18, 2023 at 08:55:02AM -0700, Nathan Chancellor wrote:
->
-><snip>
->
->> > +static struct regulator_desc max77857_regulator_desc =3D {
->> > +	.ops =3D &max77857_regulator_ops,
->> > +	.name =3D "max77857",
->> > +	.linear_ranges =3D max77857_lin_ranges,
->> > +	.n_linear_ranges =3D ARRAY_SIZE(max77857_lin_ranges),
->> > +	.vsel_mask =3D 0xFF,
->> > +	.vsel_reg =3D MAX77857_REG_CONT2,
->> > +	.ramp_delay_table =3D max77857_ramp_table[0],
->> > +	.n_ramp_values =3D ARRAY_SIZE(max77857_ramp_table[0]),
->> > +	.ramp_reg =3D MAX77857_REG_CONT3,
->> > +	.ramp_mask =3D GENMASK(1, 0),
->> > +	.ramp_delay =3D max77857_ramp_table[0][0],
->>
->> This breaks the build with GCC 5.x through 7.x:
->>
->>   drivers/regulator/max77857-regulator.c:312:16: error: initializer elem=
-ent is not
->constant
->>     .ramp_delay =3D max77857_ramp_table[0][0],
->>                   ^~~~~~~~~~~~~~~~~~~
->>   drivers/regulator/max77857-regulator.c:312:16: note: (near initializat=
-ion for
->'max77857_regulator_desc.ramp_delay')
->>
->> and clang:
->>
->>   drivers/regulator/max77857-regulator.c:312:16: error: initializer elem=
-ent is not a
->compile-time constant
->>     312 |         .ramp_delay =3D max77857_ramp_table[0][0],
->>         |                       ^~~~~~~~~~~~~~~~~~~~~~~~~
->>   1 error generated.
->>
->> This relies on a GCC 8.x+ change that accepts more things as
->> compile-time constants, which is being worked on in clang
->>
->(https://urldefense.com/v3/__https://reviews.llvm.org/D76096__;!!A3Ni8CS0y=
-2Y!7B
->eWxuzHgLzOprQA_madbvdR7hd0ZgmS73lUlDbgoxWUFWdDSIRXLnhyqLeRhu3uTaqpS
->kzZKwc5pHA$ ). Since the kernel supports older
->> compilers, this will have to be worked around somehow. Perhaps a define
->> that can be used in both places?
->
->Was there any update on this? I do not mind sending a patch for this
->myself if I have some sort of guidance on how you would prefer for this
->to be fixed, should you be too busy to look into it.
->
->Cheers,
->Nathan
+1) IRQCHIP_PLATFORM_DRIVER_xyz work only for DT. Can we have more generic
+platform driver probe similar to APLIC driver?
 
-Hi Nathan,
+2) With platform driver model, there is a crash some times.
 
-I thought that I should fix this issue after merging main branch that's why=
- I did not send patch.
-I sent patch v3 so should I send new patch as v4?
+[    0.198665] CPU: 4 PID: 32 Comm: cpuhp/4 Not tainted
+6.5.0-rc3-00038-g782440711cdb #42
+[    0.198944] Hardware name: riscv-virtio,qemu (DT)
+[    0.199125] epc : plic_starting_cpu+0x60/0xa6
+[    0.199545]  ra : plic_starting_cpu+0x58/0xa6
+[    0.199676] epc : ffffffff8047396e ra : ffffffff80473966 sp :
+ff20000000173d80
+[    0.199899]  gp : ffffffff81501740 tp : ff600000019bde00 t0 :
+ffffffff81200800
+[    0.200112]  t1 : 0000000000000000 t2 : 0000000000001000 s0 :
+ff20000000173db0
+[    0.200324]  s1 : ff6000007ef91eb0 a0 : ff600000019690b0 a1 :
+0000000200000020
+[    0.200502]  a2 : 0000000000000000 a3 : 0000000000000000 a4 :
+0000000000000000
+[    0.200678]  a5 : 0000000000000000 a6 : ff6000000184a108 a7 :
+ff6000000184a100
+[    0.200855]  s2 : 000000000000000b s3 : ffffffff8153a550 s4 :
+0000000000000004
+[    0.201032]  s5 : 0000000000000001 s6 : 0000000000000002 s7 :
+ffffffff8047390e
+[    0.201210]  s8 : ffffffff80033f8a s9 : ffffffff80033f64 s10:
+0000000000000000
+[    0.201392]  s11: 0000000000000000 t3 : 0000000000000000 t4 :
+ffffffff81486c20
+[    0.201567]  t5 : 0000000000000002 t6 : 0000000000000002
+[    0.201702] status: 0000000200000100 badaddr: 0000000000000000 cause:
+000000000000000f
+[    0.201962] [<ffffffff8047396e>] plic_starting_cpu+0x60/0xa6
+[    0.202184] [<ffffffff8001069e>] cpuhp_invoke_callback+0xb4/0x164
+[    0.202346] [<ffffffff80010972>] cpuhp_thread_fun+0x8a/0x11c
+[    0.202493] [<ffffffff80033f62>] smpboot_thread_fn+0xe4/0x1be
+[    0.202639] [<ffffffff8003042a>] kthread+0xc4/0xe0
+[    0.202759] [<ffffffff8000355e>] ret_from_fork+0xa/0x1c
+[    0.203038] Code: 89bd 854a 3097 ffbf 80e7 51e0 000f 0140 4781 6498
+(c31c) 2703
 
-Regards,
-Okan Sahin
+3) Looks like an existing issue but I get below warning also.
+
+[    0.207677] list_add double add: new=ffffffff814a0798,
+prev=ffffffff814a0798, next=ffffffff814be638.
+[    0.208243] WARNING: CPU: 4 PID: 1 at lib/list_debug.c:33
+__list_add_valid+0x46/0xac
+[    0.208677] Modules linked in:
+[    0.208780] CPU: 4 PID: 1 Comm: swapper/0 Not tainted
+6.5.0-rc3-00038-g782440711cdb #28
+[    0.208862] Hardware name: riscv-virtio,qemu (DT)
+[    0.208926] epc : __list_add_valid+0x46/0xac
+[    0.208961]  ra : __list_add_valid+0x46/0xac
+[    0.208983] epc : ffffffff803cb356 ra : ffffffff803cb356 sp :
+ff200000000439f0
+[    0.208994]  gp : ffffffff81501740 tp : ff600000018f0000 t0 :
+2000000000000000
+[    0.209005]  t1 : 000000000000006c t2 : 206464615f747369 s0 :
+ff20000000043a00
+[    0.209015]  s1 : ffffffff814a0798 a0 : 0000000000000058 a1 :
+ffffffff81486828
+[    0.209025]  a2 : 0000000000000000 a3 : fffffffffffffffe a4 :
+0000000000000000
+[    0.209034]  a5 : 0000000000000000 a6 : 0000000000000068 a7 :
+0000000000000038
+[    0.209044]  s2 : ffffffff814be5f8 s3 : ffffffff814a0798 s4 :
+ffffffff814be638
+[    0.209053]  s5 : ff6000007fff75c0 s6 : 0000000000000060 s7 :
+ffffffff80c20eb0
+[    0.209063]  s8 : 0000000000000008 s9 : 0000000000000004 s10:
+ffffffff80c20eb0
+[    0.209072]  s11: ffffffff81038e80 t3 : ffffffff815159d7 t4 :
+ffffffff815159d7
+[    0.209081]  t5 : ffffffff815159d8 t6 : ff200000000437f8
+[    0.209090] status: 0000000200000120 badaddr: 0000000000000000 cause:
+0000000000000003
+[    0.209167] [<ffffffff803cb356>] __list_add_valid+0x46/0xac
+[    0.209219] [<ffffffff805812d4>] register_syscore_ops+0x3e/0x70
+[    0.209245] [<ffffffff80a1fd0c>] __plic_init.isra.0+0x3e0/0x4e2
+[    0.209267] [<ffffffff80a1fe3a>] plic_init+0x12/0x1a
+[    0.209281] [<ffffffff80470c10>] platform_irqchip_probe+0x82/0xb4
+[    0.209292] [<ffffffff80582aa8>] platform_probe+0x4e/0xa6
+[    0.209301] [<ffffffff805805a4>] really_probe+0x86/0x242
+[    0.209308] [<ffffffff805807bc>] __driver_probe_device+0x5c/0xda
+[    0.209316] [<ffffffff80580866>] driver_probe_device+0x2c/0xb2
+[    0.209324] [<ffffffff805809e6>] __driver_attach+0x6c/0x11a
+[    0.209331] [<ffffffff8057e73a>] bus_for_each_dev+0x60/0xae
+[    0.209343] [<ffffffff8057fff6>] driver_attach+0x1a/0x22
+[    0.209352] [<ffffffff8057f956>] bus_add_driver+0xd0/0x1ba
+[    0.209362] [<ffffffff80581634>] driver_register+0x3e/0xd8
+[    0.209370] [<ffffffff805827c0>] __platform_driver_register+0x1c/0x24
+[    0.209378] [<ffffffff80a1f902>] sifive_plic_driver_init+0x1a/0x22
+[    0.209389] [<ffffffff8000212c>] do_one_initcall+0x58/0x19c
+[    0.209399] [<ffffffff80a01056>] kernel_init_freeable+0x20c/0x276
+[    0.209410] [<ffffffff808d6686>] kernel_init+0x1e/0x10a
+[    0.209421] [<ffffffff8000355e>] ret_from_fork+0xa/0x1c
+[    0.209477] ---[ end trace 0000000000000000 ]---
+
+Thanks,
+Sunil
