@@ -2,174 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 44833764F50
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 11:19:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B75AD764F7F
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 11:23:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233064AbjG0JTg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jul 2023 05:19:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44578 "EHLO
+        id S230437AbjG0JXd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jul 2023 05:23:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47248 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234708AbjG0JS6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 05:18:58 -0400
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98F695B92;
-        Thu, 27 Jul 2023 02:09:56 -0700 (PDT)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 5973D20002;
-        Thu, 27 Jul 2023 09:09:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1690448995;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=rK0kgw5LzcKtfaISYOOP5YAwk737ZNSt9k6WE/IR5iU=;
-        b=Zwk9FRWmX7HtxhycqPP+GSgdJ/lE0Jsf02fG5eRjCnrnNZdzdBeO3YgnQihx1VtKrAmoHu
-        R+0fUpDKNNSvxBL0sOdsfTkUTdxLJcK2e+JZfYc0cSUDB5fpsHtZqGaxUsNmy6IFaMmuiz
-        dzpVaJAU0Qm7BptVX7fr77ZTMdjJ+WBVFl1VyLwsAx0VzlYMw72vhsGb6BbtbtId7re+rG
-        wdUrJrAqrkpatIxufuuSXEgZH0QIUrPoKcVDJ/w/T9BgSHStT8mQmL1ENohCMeFat8FBGp
-        lN6gQStuXkUsJpILuQdCU3oeVTw6XMMCMt/6OO6NPj+uuYPoHKtcIf2ONnIQIg==
-Date:   Thu, 27 Jul 2023 11:09:48 +0200
-From:   Herve Codina <herve.codina@bootlin.com>
-To:     Conor Dooley <conor@kernel.org>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Qiang Zhao <qiang.zhao@nxp.com>, Li Yang <leoyang.li@nxp.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Shengjiu Wang <shengjiu.wang@gmail.com>,
-        Xiubo Li <Xiubo.Lee@gmail.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Nicolin Chen <nicoleotsuka@gmail.com>,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Randy Dunlap <rdunlap@infradead.org>, netdev@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, alsa-devel@alsa-project.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v2 05/28] dt-bindings: net: Add support for QMC HDLC
-Message-ID: <20230727110948.7926a532@bootlin.com>
-In-Reply-To: <20230727-talcum-backside-5bdbe2171fb6@spud>
-References: <20230726150225.483464-1-herve.codina@bootlin.com>
-        <20230726150225.483464-6-herve.codina@bootlin.com>
-        <20230727-talcum-backside-5bdbe2171fb6@spud>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-redhat-linux-gnu)
+        with ESMTP id S231587AbjG0JWz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 05:22:55 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E799430F7;
+        Thu, 27 Jul 2023 02:13:06 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 36R9ClEM057559;
+        Thu, 27 Jul 2023 04:12:47 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1690449167;
+        bh=UMJv1zhoAkuL+8u7yVRzA38imljTc6TwiPqib+okbo8=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=qI4Ii7B9LfPg5YAAYuqWAHEIl/pxy/t8IW4+x9b0rlY5EK32Fo0BPAkUic67smXET
+         LGaYw/fEfnVi2VkIqNGDzCgxZRWfQxMUy9ke+nZmiD1nRJNJ8UifD9licp0RZvH40l
+         /lqgqEPlrviU5D5OaR60lCVFRFigZdL5IY9DF/oU=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 36R9ClCk015693
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 27 Jul 2023 04:12:47 -0500
+Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 27
+ Jul 2023 04:12:47 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 27 Jul 2023 04:12:47 -0500
+Received: from [10.249.135.225] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 36R9Cesi026479;
+        Thu, 27 Jul 2023 04:12:41 -0500
+Message-ID: <354e3bb2-268c-e7ed-ead0-a68a05e2d591@ti.com>
+Date:   Thu, 27 Jul 2023 14:42:39 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: herve.codina@bootlin.com
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [EXTERNAL] Re: [EXTERNAL] Re: [PATCH v11 06/10] net: ti:
+ icssg-prueth: Add ICSSG ethernet driver
+Content-Language: en-US
+To:     Jakub Kicinski <kuba@kernel.org>
+CC:     MD Danish Anwar <danishanwar@ti.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Roger Quadros <rogerq@kernel.org>,
+        Simon Horman <simon.horman@corigine.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Eric Dumazet <edumazet@google.com>,
+        "David S. Miller" <davem@davemloft.net>, <nm@ti.com>, <srk@ti.com>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <netdev@vger.kernel.org>, <linux-omap@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20230724112934.2637802-1-danishanwar@ti.com>
+ <20230724112934.2637802-7-danishanwar@ti.com>
+ <20230725210939.56d77726@kernel.org>
+ <9b11e602-6503-863a-f825-b595effd5e1d@ti.com>
+ <20230726083707.623da581@kernel.org>
+From:   "Anwar, Md Danish" <a0501179@ti.com>
+In-Reply-To: <20230726083707.623da581@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Conor,
-
-On Thu, 27 Jul 2023 09:19:59 +0100
-Conor Dooley <conor@kernel.org> wrote:
-
-> On Wed, Jul 26, 2023 at 05:02:01PM +0200, Herve Codina wrote:
-> > The QMC (QUICC mutichannel controller) is a controller present in some
-> > PowerQUICC SoC such as MPC885.
-> > The QMC HDLC uses the QMC controller to transfer HDLC data.
-> > 
-> > Signed-off-by: Herve Codina <herve.codina@bootlin.com>
-> > ---
-> >  .../devicetree/bindings/net/fsl,qmc-hdlc.yaml | 41 +++++++++++++++++++
-> >  1 file changed, 41 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/net/fsl,qmc-hdlc.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/net/fsl,qmc-hdlc.yaml b/Documentation/devicetree/bindings/net/fsl,qmc-hdlc.yaml
-> > new file mode 100644
-> > index 000000000000..8bb6f34602d9
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/net/fsl,qmc-hdlc.yaml
-> > @@ -0,0 +1,41 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/net/fsl,qmc-hdlc.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: QMC HDLC  
+On 7/26/2023 9:07 PM, Jakub Kicinski wrote:
+> On Wed, 26 Jul 2023 16:01:23 +0530 Md Danish Anwar wrote:
+>> I think MAX_SKB_FRAGS is OK. If the available pool = MAX_SKB_FRAGS we should be
+>> able to wake the queue.
 > 
-> "QMC HDLC" seems excessively terse.
-
-The name was based on the fsl,qmc-audio.yaml already present upstream.
-  https://elixir.bootlin.com/linux/v6.4/source/Documentation/devicetree/bindings/sound/fsl,qmc-audio.yaml
-
-If needed, I can change to:
-  title: QMC (QUICC Multichannel Controller) HDLC
-Let me known if it is better to you.
-
+> MAX_SKB_FRAGS only counts frags and you also need space to map the head, no?
 > 
-> > +
-> > +maintainers:
-> > +  - Herve Codina <herve.codina@bootlin.com>
-> > +
-> > +description: |
-> > +  The QMC HDLC uses a QMC (QUICC Multichannel Controller) channel to transfer
-> > +  HDLC data.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: fsl,qmc-hdlc
-> > +
-> > +  fsl,qmc-chan:  
+> In general we advise to wait until there's at least 2 * MAX_SKB_FRAGS
+> to avoid frequent sleep/wake cycles. But IDK how long your queue is,
+> maybe it's too much.
 > 
-> Perhaps I am just showing my lack of knowledge in this area, but what is
-> fsl specific about wanting a reference to the channel of a "QMC"?
-> Is this something that hardware from other manufacturers would not also
-> want to do?
-
-The QMC and the QMC channel are something specific to the SoC. This IP is only
-available on some Freescale/NXP SoCs.
-
-When I upstreamed the 'fsl,qmc-audio.yaml', I first used a generic name for this
-property and Kristoff asked to change to a vendor prefixed name.
-  https://lore.kernel.org/linux-kernel/1dfade07-f8c4-2e16-00dc-c7d183708259@linaro.org/
-
-Based on this, as the property 'fsl,qmc-chan' has the exact same meaning in
-fsl,qmc-audio.yaml and fsl,qmc-hdlc.yaml, I use the same name.
-
-Best regards,
-Hervé
-
+>> No I don't think any lock is required here. emac_set_port_state() aquires lock
+>> before updating port status. Also emac_ndo_set_rx_mode_work() is scheduled by a
+>> singlethreaded workqueue.
 > 
-> > +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> > +    items:
-> > +      - items:
-> > +          - description: phandle to QMC node
-> > +          - description: Channel number
-> > +    description:
-> > +      Should be a phandle/number pair. The phandle to QMC node and the QMC
-> > +      channel to use.
-> > +
-> > +required:
-> > +  - compatible
-> > +  - fsl,qmc-chan
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    hdlc {
-> > +        compatible = "fsl,qmc-hdlc";
-> > +        fsl,qmc-chan = <&qmc 16>;
-> > +    };
-> > -- 
-> > 2.41.0
-> >   
+> if (netif_running()) outside of any locks is usually a red flag, but if
+> you're confident it's fine it's fine :)
+
+Sure Jakub. I will keep these as it is.
+
+-- 
+Thanks and Regards,
+Md Danish Anwar
