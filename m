@@ -2,92 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4868A76539A
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 14:22:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ACE6F76539E
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 14:22:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233994AbjG0MWh convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 27 Jul 2023 08:22:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58942 "EHLO
+        id S234003AbjG0MWj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jul 2023 08:22:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58834 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233907AbjG0MWe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 08:22:34 -0400
-Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com [209.85.128.182])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05FCB2D76;
-        Thu, 27 Jul 2023 05:22:20 -0700 (PDT)
-Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-583c48a9aa1so10080567b3.1;
-        Thu, 27 Jul 2023 05:22:20 -0700 (PDT)
+        with ESMTP id S233903AbjG0MWc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 08:22:32 -0400
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F5C92D61
+        for <devicetree@vger.kernel.org>; Thu, 27 Jul 2023 05:22:20 -0700 (PDT)
+Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-51de9c2bc77so1122137a12.3
+        for <devicetree@vger.kernel.org>; Thu, 27 Jul 2023 05:22:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1690460539; x=1691065339;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=KBcPaBCD15GVUt1t8fe+n3lTCxT4h0u6r6X0oXlZlwc=;
+        b=e081yBpEl6WUyQ7DrRPgXBrwcqwu4Zlr+puzBZS56IJgd0T++PdR0LhMQQP9+eGBJh
+         vPp2ek8dutLOQ45EtSbH11eENOOFmTYHYPNub1vraSKWz5mXM8gJEBy/MTOuCXtqrXRC
+         tUa06KALw5Q4Qzz9oDT5BK81+Mk0yoWq7dvHwgQZvkgGS10I6gUXftd6LCfAUO6lE0aR
+         b2SefsYc+gYmH/yfi2HAGUuP460jJ89FaOtEgtKbWo3FteTCJhNTjwhDSeYxyEoVbNaR
+         WSg2mfD3JYetOQu43w+k9PyfmRvgcrMmw3lM9SteyO+TLxiNEr7Q8+oBstysJ//7cqW+
+         l73A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690460540; x=1691065340;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20221208; t=1690460539; x=1691065339;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=FAw6njM8FcxAdrqMyGlHw9zPc9fo/JXNI4sWpTpk0wk=;
-        b=hM6cjSR8lDACFQjFDc4WcG2QVz2P0gJL/lhKeXRqB1A0a1ABSt3Xj4974Dcbh3A4j1
-         8glyd4J0CwOORCmnB7AgCm+ZwDCFREQny1s3sYEPhufIlTEBHZ8UDrD4HNvIlRpYJ4si
-         EWykvhgsRYCtK5CbrvokY3ERt1Qbv5i3WcgkbPzJkQAetwijtz/6iM7w6XcwcxFyK8il
-         nWj44Xn+YnUdcC8A+uteju8DszSlHBLyufwfe28F5tGCpLrQUR+8a8ney1tjIeb9DUnG
-         1c0w0KlUQKcy5XMGy9YH7AYvH3Q9JwAG7WmWmIW0/3Rf098YUNLJ2l4I1HcjAiTalqXc
-         Zjag==
-X-Gm-Message-State: ABy/qLY3N0iySCUdWo4ug4f60f6xqlH8syFgXZo6wGd7VEMilVPz2F2i
-        dqexdlJFPIPs6uLk3f4ESfUhYWVOH7LoLw==
-X-Google-Smtp-Source: APBJJlFpc1j8NpZ7xse6fKJYB3GWSMrkcMd+sTv8MEsLXCVU+3ZV+widtneNZyiYtg0SJNgipjm22w==
-X-Received: by 2002:a0d:dfce:0:b0:56f:fbc6:3b0 with SMTP id i197-20020a0ddfce000000b0056ffbc603b0mr5071787ywe.14.1690460539795;
-        Thu, 27 Jul 2023 05:22:19 -0700 (PDT)
-Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com. [209.85.128.178])
-        by smtp.gmail.com with ESMTPSA id o189-20020a0dccc6000000b005773ca61111sm371281ywd.42.2023.07.27.05.22.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 27 Jul 2023 05:22:19 -0700 (PDT)
-Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-584388ec441so10025327b3.3;
-        Thu, 27 Jul 2023 05:22:19 -0700 (PDT)
-X-Received: by 2002:a25:bc89:0:b0:cec:81af:cf92 with SMTP id
- e9-20020a25bc89000000b00cec81afcf92mr4089498ybk.36.1690460539411; Thu, 27 Jul
- 2023 05:22:19 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230727081848.100834-1-biju.das.jz@bp.renesas.com> <20230727081848.100834-5-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20230727081848.100834-5-biju.das.jz@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 27 Jul 2023 14:22:07 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdX1E+8xKRdrLxOmtehSK+PdeBHM9KdQ1tg9C5bD7a4p2g@mail.gmail.com>
-Message-ID: <CAMuHMdX1E+8xKRdrLxOmtehSK+PdeBHM9KdQ1tg9C5bD7a4p2g@mail.gmail.com>
-Subject: Re: [PATCH v3 4/5] arm64: dts: renesas: r9a07g043: Add MTU3a node
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        bh=KBcPaBCD15GVUt1t8fe+n3lTCxT4h0u6r6X0oXlZlwc=;
+        b=EUDFPw6wq795VAwB5EVxqgZNI1jgEwjgEIoYIeOHcF+mB4+1+aqB2zCtjzkakRfH/a
+         KTXOfct/3H1e7fRRfTMQNK3dFUvi3N//kGk3mz+Mj6po0Q/D4V7iJ5cg+pDG9G5Zg2Vp
+         ejyGc+Ok7CbPgk6wbayFqXdnhptHiFCFrC7RvUMZWL8PDVoKeVJe7PmD/W9VvqMGLfzT
+         4y7DSWReJHNEDHYW+LqZgUeZlsYHMS4+oNUHHqYQTUJiEHGdTzKX/erP86SXKhiXq/Ju
+         3Fwt3WS0NqDWAaFBbHbkHpoZrLcazWH2yTrgzLWSfr33KTg6+Rg/Qkme+gP6+bvetfZe
+         HnbQ==
+X-Gm-Message-State: ABy/qLZqHHUsoN/a9B0to7dsZSOYHhGjyGnjhU6cvc+STs+jRrKTfkKk
+        GEDvcNJrl0WYEacq/1yyC8tFHg==
+X-Google-Smtp-Source: APBJJlG8c4LaXOrZrh8NyuL1H8V9TCwkuizDCvPywRcH0BHTiQ4d0Yy80J1WZnSmA2GAgK4iabH5rA==
+X-Received: by 2002:a17:907:a075:b0:99b:64ca:6999 with SMTP id ia21-20020a170907a07500b0099b64ca6999mr1967077ejc.7.1690460538803;
+        Thu, 27 Jul 2023 05:22:18 -0700 (PDT)
+Received: from umbar.unikie.fi ([192.130.178.91])
+        by smtp.gmail.com with ESMTPSA id v23-20020a1709067d9700b00993860a6d37sm717844ejo.40.2023.07.27.05.22.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 27 Jul 2023 05:22:18 -0700 (PDT)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Krishna Manikandan <quic_mkrishn@quicinc.com>,
+        Loic Poulain <loic.poulain@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>
+Cc:     ~postmarketos/upstreaming@lists.sr.ht,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        linux-clk@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, Lux Aliaga <they@mint.lgbt>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v4 00/17] drm/msm: Add SM6125 MDSS/DPU hardware and enable Sony Xperia 10 II panel
+Date:   Thu, 27 Jul 2023 15:22:15 +0300
+Message-Id: <169046051039.1413710.12901529844343078449.b4-ty@linaro.org>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20230723-sm6125-dpu-v4-0-a3f287dd6c07@somainline.org>
+References: <20230723-sm6125-dpu-v4-0-a3f287dd6c07@somainline.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 27, 2023 at 10:19 AM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> Add MTU3a node to R9A07G043 (RZ/{G2UL,Five}) SoC DTSI.
->
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> ---
-> v2->v3:
->  * No change
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v6.6.
+On Sun, 23 Jul 2023 18:08:38 +0200, Marijn Suijten wrote:
+> Bring up the SM6125 DPU now that all preliminary series (such as INTF
+> TE) have been merged (for me to test the hardware properly), and most
+> other conflicting work (barring ongoing catalog *improvements*) has made
+> its way in as well or is still being discussed.
+> 
+> The second part of the series complements that by immediately utilizing
+> this hardware in DT, and even enabling the MDSS/DSI nodes complete with
+> a 6.0" 1080x2520 panel for Sony's Seine PDX201 (Xperia 10 II).
+> 
+> [...]
 
-Gr{oetje,eeting}s,
+Applied, thanks!
 
-                        Geert
+[01/17] drm/msm/dsi: Drop unused regulators from QCM2290 14nm DSI PHY config
+        https://gitlab.freedesktop.org/lumag/msm/-/commit/a7e3fda5948a
+[02/17] arm64: dts: qcom: sm6125: Pad APPS IOMMU address to 8 characters
+        https://gitlab.freedesktop.org/lumag/msm/-/commit/b7d35a8eae54
+[03/17] arm64: dts: qcom: sm6125: Sort spmi_bus node numerically by reg
+        https://gitlab.freedesktop.org/lumag/msm/-/commit/2be52ca96a71
+[04/17] dt-bindings: display/msm: Remove DSI1 ports from SM6350/SM6375 example
+        https://gitlab.freedesktop.org/lumag/msm/-/commit/4be2c19261fc
+[05/17] dt-bindings: clock: qcom,dispcc-sm6125: Require GCC PLL0 DIV clock
+        https://gitlab.freedesktop.org/lumag/msm/-/commit/4f86e343f3c6
+[06/17] dt-bindings: clock: qcom,dispcc-sm6125: Allow power-domains property
+        https://gitlab.freedesktop.org/lumag/msm/-/commit/91043642f28c
+[07/17] dt-bindings: display/msm: dsi-controller-main: Document SM6125
+        https://gitlab.freedesktop.org/lumag/msm/-/commit/cf5859476e5d
+[08/17] dt-bindings: display/msm: sc7180-dpu: Describe SM6125
+        https://gitlab.freedesktop.org/lumag/msm/-/commit/04a664dffd19
+[09/17] dt-bindings: display/msm: Add SM6125 MDSS
+        https://gitlab.freedesktop.org/lumag/msm/-/commit/3bde3b8f8a04
+[10/17] drm/msm/dpu: Add SM6125 support
+        https://gitlab.freedesktop.org/lumag/msm/-/commit/76c5dffd0bc4
+[11/17] drm/msm/mdss: Add SM6125 support
+        https://gitlab.freedesktop.org/lumag/msm/-/commit/de50357565d3
+[12/17] dt-bindings: msm: dsi-phy-14nm: Document SM6125 variant
+        https://gitlab.freedesktop.org/lumag/msm/-/commit/cdac445883cc
+[13/17] drm/msm/dsi: Reuse QCM2290 14nm DSI PHY configuration for SM6125
+        https://gitlab.freedesktop.org/lumag/msm/-/commit/7638d8059ace
 
+Best regards,
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
