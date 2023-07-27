@@ -2,76 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D4DA27651FB
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 13:08:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8435476520F
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 13:16:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232058AbjG0LIL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jul 2023 07:08:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47252 "EHLO
+        id S232856AbjG0LQo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jul 2023 07:16:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49664 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233360AbjG0LIB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 07:08:01 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6E6FC0;
-        Thu, 27 Jul 2023 04:08:00 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id 2adb3069b0e04-4fb5bcb9a28so1409623e87.3;
-        Thu, 27 Jul 2023 04:08:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1690456079; x=1691060879;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=i5kNcxNoM/NBCHBj/sZwkTdvy4fIKuH9KCl0U3Yfro0=;
-        b=sk4nBgwa56blsmau6xT3DDLmsazzohWHmva2oDdPJumZcDXBqpM7H0uoHztvWfDxtG
-         vKpj4Zfq9LpV/7hnhRjKTerH6Z5TXy33YGSCsZzNXvaBL+NA/pcLSGMjb/sUliwWGkzO
-         IPtePMax07YlG1MrdfJXIPI03n9l9CvRVWn7M/iKwa0zIBSSMLdNi2lWVz7LbdsY9kbk
-         fSizPtgo45P5yG+99rQ3ZbBsSbTTQQWUsIwrPkgaz3hroIlAE0A67a3DZ40PNcLQv8eF
-         uDrzPVD2bgjngE0LOQI3aZWSUeyfQZNT8w4J9FmB7Pj92SuRmYpl6spTzE0Swe9U+/vw
-         OR0Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690456079; x=1691060879;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=i5kNcxNoM/NBCHBj/sZwkTdvy4fIKuH9KCl0U3Yfro0=;
-        b=Fj1MbMAz2P5DUzPgQuhY07Ljt49YqPoZBaue/nxiKAJP3RY3QOrT+EHxV4zN1KVuti
-         50fepHi82cC8idQ6P1ClAfIDH2zaRvxV8BrzTyfQCbDPgzsXDuxXDFZxzZfdd9OQlRO9
-         DY5O3jXYjutmi8yNu+OyGN83PSlzaY9yBq1Pk/mwyAa/GuTCzzufpzjSEvWdNzUcWb0J
-         nlUaIZhdZw6D1A66DFpuquUoFVr02vwMSn2DcT26uZTTp80uMGiBwrRuYievcOKcAfR7
-         mkmyrRqDsr5NWORu4JAL6dtOB+AonxX8fIRmSMyYOBxYr9WAEUmM+3fdDYtwVhLdfs6o
-         4w5Q==
-X-Gm-Message-State: ABy/qLZsKiGjpFH4BJVFFZJe+8zM+0QBv9QZ4uNG0hT2GKop9+ij9EG7
-        yhUCZqQr2nzzevUSfJ1Pp/g=
-X-Google-Smtp-Source: APBJJlHJ7vcwwcFzwXaKsSNx7guxdQ7p6EoMMpcgxR4hIhGUEeF5V0F0bI98uP0rqgJr6ACGxAKE9A==
-X-Received: by 2002:ac2:5f9c:0:b0:4fe:825:a081 with SMTP id r28-20020ac25f9c000000b004fe0825a081mr1582496lfe.45.1690456078632;
-        Thu, 27 Jul 2023 04:07:58 -0700 (PDT)
-Received: from gmail.com (83-233-6-197.cust.bredband2.com. [83.233.6.197])
-        by smtp.gmail.com with ESMTPSA id g4-20020a19ac04000000b004fe07f06337sm267402lfc.53.2023.07.27.04.07.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 27 Jul 2023 04:07:56 -0700 (PDT)
-Date:   Thu, 27 Jul 2023 13:09:58 +0200
-From:   Marcus Folkesson <marcus.folkesson@gmail.com>
-To:     Kent Gustavsson <kent@minoris.se>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] iio: adc: mcp3911: add support for the whole MCP39xx
- family
-Message-ID: <ZMJQhuMpm6jSOzvB@gmail.com>
-References: <20230727101318.2764379-1-marcus.folkesson@gmail.com>
- <20230727101318.2764379-2-marcus.folkesson@gmail.com>
+        with ESMTP id S231404AbjG0LQn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 07:16:43 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C585C106;
+        Thu, 27 Jul 2023 04:16:42 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 63A8861E36;
+        Thu, 27 Jul 2023 11:16:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7892C433C9;
+        Thu, 27 Jul 2023 11:16:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1690456601;
+        bh=cZkz1oo7ETQltYgDElF9VKUnqpQf2BVJHGb003Z9HnI=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=ABZFhD2nUoRyN8felpz/f4jZtwY2dEKPrcqpX+SpvDEi9T+KMEq4fAV1/EWh2YcE7
+         sVX5Ar5i0P+GGmXCR3c5nfO0z/1IbXIAzv8OWZSVIxzy45OO2IabEYS9LCzl9121/R
+         E8R38PAc4WWHKdhX5GaKLCa4SQAdfkf9nDXuNaqrlNJE+IgyuJxHf4iJMiZyFFN5+t
+         D4kiTzTnVgoOsAg+SzxangBo+WmsjrDZUdSNipY2GEv7jkZpIfL7ZrsL4BB17a0+fD
+         N4TiERBxuHwF5f4F5E+Qd3QAmeGFKWh6/j9VuTPSnONEFm9bIlm7wTiVy5mS7sPpOU
+         kCB/ymedX3baQ==
+Received: (nullmailer pid 1058759 invoked by uid 1000);
+        Thu, 27 Jul 2023 11:16:37 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="DeRl1II0JmCihG0L"
-Content-Disposition: inline
-In-Reply-To: <20230727101318.2764379-2-marcus.folkesson@gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,FSL_HELO_FAKE,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+From:   Rob Herring <robh@kernel.org>
+To:     Rohit Agarwal <quic_rohiagar@quicinc.com>
+Cc:     mathieu.poirier@linaro.org, mchehab@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, quic_vgarodia@quicinc.com,
+        konrad.dybcio@linaro.org, agross@kernel.org,
+        freedreno@lists.freedesktop.org, daniel@ffwll.ch,
+        dri-devel@lists.freedesktop.org, jonathan@marek.ca,
+        conor+dt@kernel.org, robh+dt@kernel.org, airlied@gmail.com,
+        linux-mmc@vger.kernel.org, quic_tdas@quicinc.com,
+        stanimir.k.varbanov@gmail.com, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, andersson@kernel.org,
+        mturquette@baylibre.com, dmitry.baryshkov@linaro.org,
+        linux-remoteproc@vger.kernel.org, sean@poorly.run,
+        ulf.hansson@linaro.org, devicetree@vger.kernel.org,
+        vladimir.zapolskiy@linaro.org, rfoss@kernel.org, mani@kernel.org,
+        linux-media@vger.kernel.org, sboyd@kernel.org,
+        quic_abhinavk@quicinc.com, bhupesh.sharma@linaro.org,
+        linux-arm-msm@vger.kernel.org, marijn.suijten@somainline.org,
+        neil.armstrong@linaro.org, robdclark@gmail.com
+In-Reply-To: <1690448953-23425-1-git-send-email-quic_rohiagar@quicinc.com>
+References: <1690448953-23425-1-git-send-email-quic_rohiagar@quicinc.com>
+Message-Id: <169045659774.1058731.6391693092002547810.robh@kernel.org>
+Subject: Re: [PATCH v2] dt-bindings: qcom: Update RPMHPD entries for some
+ SoCs
+Date:   Thu, 27 Jul 2023 05:16:37 -0600
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -79,37 +73,62 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---DeRl1II0JmCihG0L
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+On Thu, 27 Jul 2023 14:39:13 +0530, Rohit Agarwal wrote:
+> Update the RPMHPD references with new bindings defined in rpmhpd.h
+> for Qualcomm SoCs SM8[2345]50.
+> 
+> Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
+> ---
+>  Documentation/devicetree/bindings/clock/qcom,dispcc-sm8x50.yaml   | 4 ++--
+>  Documentation/devicetree/bindings/clock/qcom,sm8350-videocc.yaml  | 4 ++--
+>  Documentation/devicetree/bindings/clock/qcom,sm8450-camcc.yaml    | 4 ++--
+>  Documentation/devicetree/bindings/clock/qcom,sm8450-dispcc.yaml   | 4 ++--
+>  Documentation/devicetree/bindings/clock/qcom,sm8450-videocc.yaml  | 4 ++--
+>  Documentation/devicetree/bindings/clock/qcom,sm8550-dispcc.yaml   | 4 ++--
+>  Documentation/devicetree/bindings/clock/qcom,videocc.yaml         | 4 ++--
+>  .../devicetree/bindings/display/msm/qcom,sm8250-dpu.yaml          | 4 ++--
+>  .../devicetree/bindings/display/msm/qcom,sm8250-mdss.yaml         | 8 ++++----
+>  .../devicetree/bindings/display/msm/qcom,sm8350-dpu.yaml          | 4 ++--
+>  .../devicetree/bindings/display/msm/qcom,sm8350-mdss.yaml         | 6 +++---
+>  .../devicetree/bindings/display/msm/qcom,sm8450-dpu.yaml          | 4 ++--
+>  .../devicetree/bindings/display/msm/qcom,sm8450-mdss.yaml         | 8 ++++----
+>  .../devicetree/bindings/display/msm/qcom,sm8550-dpu.yaml          | 4 ++--
+>  .../devicetree/bindings/display/msm/qcom,sm8550-mdss.yaml         | 8 ++++----
+>  Documentation/devicetree/bindings/media/qcom,sm8250-venus.yaml    | 4 ++--
+>  Documentation/devicetree/bindings/mmc/sdhci-msm.yaml              | 4 ++--
+>  Documentation/devicetree/bindings/remoteproc/qcom,sm8350-pas.yaml | 6 +++---
+>  18 files changed, 44 insertions(+), 44 deletions(-)
+> 
 
-Hi,
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-I will update the Kconfig help text to mention all supported chips in
-v2.
+yamllint warnings/errors:
 
-Best regards,
-Marcus Folkesson
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/remoteproc/qcom,sm8350-pas.example.dts:21:18: fatal error: dt-bindings/power/qcom,rpmhpd.h: No such file or directory
+   21 |         #include <dt-bindings/power/qcom,rpmhpd.h>
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+make[2]: *** [scripts/Makefile.lib:419: Documentation/devicetree/bindings/remoteproc/qcom,sm8350-pas.example.dtb] Error 1
+make[2]: *** Waiting for unfinished jobs....
+make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1500: dt_binding_check] Error 2
+make: *** [Makefile:234: __sub-make] Error 2
 
+doc reference errors (make refcheckdocs):
 
---DeRl1II0JmCihG0L
-Content-Type: application/pgp-signature; name="signature.asc"
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/1690448953-23425-1-git-send-email-quic_rohiagar@quicinc.com
 
------BEGIN PGP SIGNATURE-----
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
-iQIzBAEBCAAdFiEEBVGi6LZstU1kwSxliIBOb1ldUjIFAmTCUIIACgkQiIBOb1ld
-UjIZLg//UFA6CNgv9tM0/CDMzGQA8DShrqijB39GyNvnop6zG0MQrGgSfVzsGpk6
-YD8PKy+JuVLQZ1vltN2gS9MKR4/5IUu2LRW/GSgU2+79AT/2cXcuIq2J1hsT2un4
-U4RrU1dgcGlmUwUvGaTSw6pVM+Gq31tgUzyNMMAWLRknkltqifKgc8Ch4pLl54rZ
-j9/7N+FUdyHU0cWP1Vjv0salc64HYsdAzBsXp8QN5dkaRkRLAHW/QgHPv/Hm6aVJ
-PLtnPvNPQrNcJa3sIX5+8Iu6ENxrWL36tipBEjPWtGePAGv770ail7yXqklMU+9l
-4LKqOmWYifX9OlN2Ju8XwH7QQFUYT/WvWIQh+67zewsm7fjJzafUrDieGfO0rcbX
-qcExwUZAF+BVDseLdAfFUanu8OAqdN9xcyPI/E1ft+Zj7CmIJwVPbW7ewFKkbloQ
-DX5FxZybV/lttNhUNZlYWvDIAdaVYB45SEs2rrS3I1elC2TlPQ2iW2o1EQ1j7lEw
-a3LCs+oOQ9ofVmG522U9u1c7sH8e2ot5xz6+MCGrvHpoLr403eC2Mel287Btc1E2
-YxJvVG9T8E6T71Vl65fG4gVB2Gy5OZKlAPdVXi7cDGN/AC0huXFssrIljmOoFJcT
-be2u9oThDxbSm0uVYc5LFjBuqHENbFUAwdToMzr3y8PxXiGytwg=
-=/flD
------END PGP SIGNATURE-----
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
---DeRl1II0JmCihG0L--
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
