@@ -2,152 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4DA05765FC9
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 00:36:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EB6A376603D
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 01:27:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233156AbjG0WgW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jul 2023 18:36:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49332 "EHLO
+        id S231778AbjG0X1o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jul 2023 19:27:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38956 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233221AbjG0WgG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 18:36:06 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CB703AAA;
-        Thu, 27 Jul 2023 15:35:37 -0700 (PDT)
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36RKxKhl007301;
-        Thu, 27 Jul 2023 22:34:33 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding : content-type; s=qcppdkim1;
- bh=Y0ayW8WEjPSLgxGdaTnQfXuDQNueBAnSTw7btlG1/bE=;
- b=f7XoOJ984F/yZjY/3lcsFEinXoVxIAeagx5mlzgC3mOvw0J/5PM/smMPzUpveT9yCMMh
- U1/hknbzZVb7lNEGKFYsW0NT//H9OTCFcmHraYUaHJjXS2UYYslyE0oumvHT7Mf7qSUZ
- NhF2iPULQJ0Ir7V8rFyyvkZajfwTnPrBJqWMHpPqSEC9oVsL+Gs8OX7JuS8AXMSosIHE
- YiI6I2b7Ly/C+0WvVabObxXc/PtENMxfROMGi3u2JltsJh10EfIokJn8uFZ/kM6c4Z2S
- yT8/CARLzqFFVavyGj7FcOM/euc4K/0rHls144FpUiiQt8kwTjoZWknk3PeB6ilZH9CR Og== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3s3k7u259q-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 27 Jul 2023 22:34:32 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 36RMYUfa014087
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 27 Jul 2023 22:34:30 GMT
-Received: from hu-kriskura-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.30; Thu, 27 Jul 2023 15:34:24 -0700
-From:   Krishna Kurapati <quic_kriskura@quicinc.com>
-To:     Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "Andy Gross" <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        "Konrad Dybcio" <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        Wesley Cheng <quic_wcheng@quicinc.com>,
-        Johan Hovold <johan@kernel.org>,
-        Mathias Nyman <mathias.nyman@intel.com>
-CC:     <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <quic_pkondeti@quicinc.com>, <quic_ppratap@quicinc.com>,
-        <quic_jackp@quicinc.com>, <ahalaney@redhat.com>,
-        <quic_shazhuss@quicinc.com>,
-        Krishna Kurapati <quic_kriskura@quicinc.com>
-Subject: [PATCH v10 11/11] arm64: dts: qcom: sa8540-ride: Enable first port of tertiary usb controller
-Date:   Fri, 28 Jul 2023 04:03:07 +0530
-Message-ID: <20230727223307.8096-12-quic_kriskura@quicinc.com>
-X-Mailer: git-send-email 2.40.0
-In-Reply-To: <20230727223307.8096-1-quic_kriskura@quicinc.com>
-References: <20230727223307.8096-1-quic_kriskura@quicinc.com>
+        with ESMTP id S231875AbjG0X1n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 19:27:43 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D2331737;
+        Thu, 27 Jul 2023 16:27:41 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 0B97661F3E;
+        Thu, 27 Jul 2023 23:27:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D778C433C8;
+        Thu, 27 Jul 2023 23:27:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1690500460;
+        bh=goKHBWa/vS/pA7DJKDLo60FUtbLnq7dNm7Fkf6aAGcw=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:From;
+        b=WoROMJHlKcwYp9PX/dIOqyE2pPKmgq4MboO5cUDWkA0ekr2d8SuAWdV8wNyBD/ZWr
+         7unfgNXm/z9u2DVlEyJ+pAzBxI8S14s0hgmFST1f1x5LLb36Hp6jTAJvzwKr20Yc86
+         kT0ql+EifMTdDPZquB2MHa2ldCs+qkklJRx0wlSCQXdA7QgJ/DEt4+lS0jl/rIhhGc
+         xkj6RnvR/nSnZYoV8vcWWjkQsEPb94LJ76L/l0gmIRxKPrrJ5oBPMFjbJZbD0dSrJU
+         JAJmYDCsIe6riScLmKHtBIl4j3WG5zwSzrsjElylLgtksijhlfztig1mITrign5ame
+         S9Ft7IVlXPJOQ==
+Date:   Thu, 27 Jul 2023 18:27:38 -0500
+From:   Bjorn Helgaas <helgaas@kernel.org>
+To:     "Havalige, Thippeswamy" <thippeswamy.havalige@amd.com>
+Cc:     "krzysztof.kozlowski@linaro.org" <krzysztof.kozlowski@linaro.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "bhelgaas@google.com" <bhelgaas@google.com>,
+        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "Gogada, Bharat Kumar" <bharat.kumar.gogada@amd.com>,
+        "Simek, Michal" <michal.simek@amd.com>,
+        Thomas Gleixner <tglx@linutronix.de>
+Subject: Re: [PATCH V5 3/3] PCI: xilinx-xdma: Add Xilinx XDMA Root Port driver
+Message-ID: <20230727232738.GA786642@bhelgaas>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: jGbX45zOtCufsFRXOvcRX2TmfkElXwVZ
-X-Proofpoint-ORIG-GUID: jGbX45zOtCufsFRXOvcRX2TmfkElXwVZ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-07-27_10,2023-07-26_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 spamscore=0
- mlxscore=0 lowpriorityscore=0 malwarescore=0 bulkscore=0 mlxlogscore=955
- suspectscore=0 priorityscore=1501 clxscore=1015 phishscore=0 adultscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2306200000
- definitions=main-2307270205
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <SN7PR12MB72010CF07797580B0B8732EC8B02A@SN7PR12MB7201.namprd12.prod.outlook.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Andrew Halaney <ahalaney@redhat.com>
+On Mon, Jul 24, 2023 at 06:40:58AM +0000, Havalige, Thippeswamy wrote:
+> > From: Bjorn Helgaas <helgaas@kernel.org>
+> > On Thu, Jul 20, 2023 at 06:37:03AM +0000, Havalige, Thippeswamy wrote:
+> > > > From: Bjorn Helgaas <helgaas@kernel.org> ...
+> > > > On Wed, Jun 28, 2023 at 02:58:12PM +0530, Thippeswamy Havalige wrote:
+> > > > > Add support for Xilinx XDMA Soft IP core as Root Port.
+> > > > > ...
 
-There is now support for the multiport USB controller this uses so
-enable it.
+> > If you have more detail about the "error interrupt," that would be
+> > useful as well.  Does this refer to an AER interrupt, a "System
+> > Error", something else?  I'm looking at the diagram in PCIe r6.0,
+> > Figure 6-3, wondering if this is related to anything there.  I
+> > suppose likely it's some Xilinx-specific thing?
+> 
+> - Agreed, ll modify Legacy to INTx, and regarding error interrupts
+> these are Xilinx controller specific interrupts which are used to
+> notify the user about errors such as cfg timeout, slave unsupported
+> requests,Fatal and non fatal error.
 
-The board only has a single port hooked up (despite it being wired up to
-the multiport IP on the SoC). There's also a USB 2.0 mux hooked up,
-which by default on boot is selected to mux properly. Grab the gpio
-controlling that and ensure it stays in the right position so USB 2.0
-continues to be routed from the external port to the SoC.
+This would be great material for comments and/or a revised commit log.
 
-Co-developed-by: Andrew Halaney <ahalaney@redhat.com>
-Signed-off-by: Andrew Halaney <ahalaney@redhat.com>
-[Krishna: Rebased on top of usb-next]
-Co-developed-by: Krishna Kurapati <quic_kriskura@quicinc.com>
-Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
----
- arch/arm64/boot/dts/qcom/sa8540p-ride.dts | 22 ++++++++++++++++++++++
- 1 file changed, 22 insertions(+)
+> > > > > +	/* Plug the INTx chained handler */
+> > > > > +	irq_set_chained_handler_and_data(port->intx_irq,
+> > > > > +					 xilinx_pl_dma_pcie_intx_flow, port);
+> > > > > +
+> > > > > +	/* Plug the main event chained handler */
+> > > > > +	irq_set_chained_handler_and_data(port->irq,
+> > > > > +					 xilinx_pl_dma_pcie_event_flow,
+> > > > port);
+> > > >
+> > > > What's the reason for using chained IRQs?  Can this be done without
+> > > > them?  I don't claim to understand all the issues here, but it seems
+> > > > better to avoid chained IRQ handlers when possible:
+> > > > https://lore.kernel.org/all/877csohcll.ffs@tglx/
+> > 
+> > > - As per the comments in this
+> > > https://lkml.kernel.org/lkml/alpine.DEB.2.20.1705232307330.2409@nanos/
+> > > T/ "It is fine to have chained interrupts when bootloader, device tree
+> > > and kernel under control. Only if BIOS/UEFI comes into play the user
+> > > is helpless against interrupt storm which will cause system to hangs."
+> > >
+> > > We are using ARM embedded platform with Bootloader, Devicetree flow.
+> > 
+> > I read Thomas' comments as "in general it's better to use regular
+> > interrupts, but we can live with chained interrupts if we have
+> > control of bootloader, device tree, and kernel."
+> > 
+> > I guess my questions are more like:
+> > 
+> >   - Could this be done with either chained interrupts or regular
+> >     interrupts?
+> >  - If so, what is the advantage to using chained interrupts?
 
-diff --git a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
-index 5a26974dcf8f..69f6b13e6197 100644
---- a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
-+++ b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
-@@ -488,6 +488,19 @@ &usb_2_qmpphy0 {
- 	status = "okay";
- };
- 
-+&usb_2 {
-+	pinctrl-0 = <&usb2_en_state>;
-+	pinctrl-names = "default";
-+
-+	status = "okay";
-+};
-+
-+&usb_2_dwc3 {
-+	dr_mode = "host";
-+	phy-names = "usb2-port0", "usb3-port0";
-+	phys = <&usb_2_hsphy0>, <&usb_2_qmpphy0>;
-+};
-+
- &xo_board_clk {
- 	clock-frequency = <38400000>;
- };
-@@ -640,4 +653,13 @@ wake-pins {
- 			bias-pull-up;
- 		};
- 	};
-+
-+	usb2_en_state: usb2-en-state {
-+		/* TS3USB221A USB2.0 mux select */
-+		pins = "gpio24";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+		output-low;
-+	};
- };
--- 
-2.40.0
+> With regular interrupts, these interrupts are self-consumed
+> interrupts (interrupt is handled within driver) but where as chained
+> interrupts are not self consumed (interrupts are not handled within
+> the driver, but forwarded to different driver for which the actual
+> interrupt is raised) but these interrupts are demultiplexed and
+> forwards interrupt to another subsystem by calling
+> generic_handle_irq(). 
+> 
+> As, MSI generic handlers are consumed by Endpoints and end point
+> drivers, chained handlers forward the interrupt to the specific EP
+> driver (For example NVME subsystem or any other subsystem).
 
+This doesn't really explain it for me, probably because of my IRQ
+ignorance.
+
+I compared xilinx_pl_dma (which uses chained interrupts) with
+pci-aardvark.c (which does not).
+
+  - xilinx_pl_dma_pcie_setup_irq() calls platform_get_irq(0) once and
+    sets up xilinx_pl_dma_pcie_event_flow() as the handler.
+
+  - advk_pcie_probe() calls platform_get_irq(0) once and sets up
+    advk_pcie_irq_handler() as the handler.
+
+  - xilinx_pl_dma_pcie_event_flow() reads XILINX_PCIE_DMA_REG_IDR to
+    learn which interrupts are pending and calls
+    generic_handle_domain_irq() for each.
+
+  - advk_pcie_irq_handler() calls advk_pcie_handle_int(), which reads
+    PCIE_ISR0_REG and PCIE_ISR1_REG to learn which interrupts are
+    pending and calls generic_handle_domain_irq() for each.
+
+It seems like both drivers do essentially the same thing, but
+xilinx_pl_dma_pcie_event_flow() is a chained handler and
+advk_pcie_irq_handler() is not.
+
+Is there some underlying difference in the way the hardware works that
+means xilinx_pl_dma needs a chained handler while aardvark does not?
+
+Bjorn
