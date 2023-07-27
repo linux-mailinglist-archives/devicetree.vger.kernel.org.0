@@ -2,108 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B75AD764F7F
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 11:23:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C6F89764FB8
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 11:28:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230437AbjG0JXd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jul 2023 05:23:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47248 "EHLO
+        id S234273AbjG0J2y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jul 2023 05:28:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51206 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231587AbjG0JWz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 05:22:55 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E799430F7;
-        Thu, 27 Jul 2023 02:13:06 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 36R9ClEM057559;
-        Thu, 27 Jul 2023 04:12:47 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1690449167;
-        bh=UMJv1zhoAkuL+8u7yVRzA38imljTc6TwiPqib+okbo8=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=qI4Ii7B9LfPg5YAAYuqWAHEIl/pxy/t8IW4+x9b0rlY5EK32Fo0BPAkUic67smXET
-         LGaYw/fEfnVi2VkIqNGDzCgxZRWfQxMUy9ke+nZmiD1nRJNJ8UifD9licp0RZvH40l
-         /lqgqEPlrviU5D5OaR60lCVFRFigZdL5IY9DF/oU=
-Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 36R9ClCk015693
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 27 Jul 2023 04:12:47 -0500
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 27
- Jul 2023 04:12:47 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 27 Jul 2023 04:12:47 -0500
-Received: from [10.249.135.225] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 36R9Cesi026479;
-        Thu, 27 Jul 2023 04:12:41 -0500
-Message-ID: <354e3bb2-268c-e7ed-ead0-a68a05e2d591@ti.com>
-Date:   Thu, 27 Jul 2023 14:42:39 +0530
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [EXTERNAL] Re: [EXTERNAL] Re: [PATCH v11 06/10] net: ti:
- icssg-prueth: Add ICSSG ethernet driver
-Content-Language: en-US
-To:     Jakub Kicinski <kuba@kernel.org>
-CC:     MD Danish Anwar <danishanwar@ti.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Roger Quadros <rogerq@kernel.org>,
-        Simon Horman <simon.horman@corigine.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        with ESMTP id S234689AbjG0J2R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 05:28:17 -0400
+Received: from rivendell.linuxfromscratch.org (rivendell.linuxfromscratch.org [208.118.68.85])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id EDACE8690;
+        Thu, 27 Jul 2023 02:19:16 -0700 (PDT)
+Received: from [192.168.124.11] (unknown [113.140.29.10])
+        by rivendell.linuxfromscratch.org (Postfix) with ESMTPSA id 872301C1E3F;
+        Thu, 27 Jul 2023 09:19:08 +0000 (GMT)
+X-Virus-Status: Clean
+X-Virus-Scanned: clamav-milter 1.0.0 at rivendell.linuxfromscratch.org
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfromscratch.org;
+        s=cert4; t=1690449554;
+        bh=U3/iZtufbRk45Ts76eay7OLdIEe1IdvlvMnUnVReqh8=;
+        h=Subject:From:To:Cc:Date:In-Reply-To:References;
+        b=Z8mNShnFzFCDa+6T09xC9x+L74plUnIJhzVb1nZjZltH+qoaU6mGqmSzxrWpErjEt
+         k6ofcrPoVjzWt+bV2neqteEUYWxIRtl/Ti4h4tWpD0mXNPlZEPuaywC/g0Y/GX4fKs
+         ninbuE0bT73eHjVHFeH8zpFw2aDSSoypWL63nXR9behxJgfKWyEoNN/Hha8E9SKiQn
+         6IP8Y4r5O9LWZrsDguAo2XpyMgSr7ZYAI4tAQ1g+nwNoZ1a2+mdnk7SONgJp/Wut8I
+         gJ7ItS39IunM9F5YA20b712clPIe/5mqVq5JRUZfOoMdQidYarE7g8jB5tjV9qzU1y
+         qNvD0LcqdTV/w==
+Message-ID: <c5e44ec519f4d56a71d416cf43a375cdbf0b9358.camel@linuxfromscratch.org>
+Subject: Re: [PATCH v3 0/8] Add Sipeed Lichee Pi 4A RISC-V board support
+From:   Xi Ruoyao <xry111@linuxfromscratch.org>
+To:     Jisheng Zhang <jszhang@kernel.org>
+Cc:     Conor Dooley <conor.dooley@microchip.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Eric Dumazet <edumazet@google.com>,
-        "David S. Miller" <davem@davemloft.net>, <nm@ti.com>, <srk@ti.com>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <netdev@vger.kernel.org>, <linux-omap@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20230724112934.2637802-1-danishanwar@ti.com>
- <20230724112934.2637802-7-danishanwar@ti.com>
- <20230725210939.56d77726@kernel.org>
- <9b11e602-6503-863a-f825-b595effd5e1d@ti.com>
- <20230726083707.623da581@kernel.org>
-From:   "Anwar, Md Danish" <a0501179@ti.com>
-In-Reply-To: <20230726083707.623da581@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org
+Date:   Thu, 27 Jul 2023 17:18:51 +0800
+In-Reply-To: <4986b92f1a5aa303a529c6004aaedd2184c3ccf7.camel@linuxfromscratch.org>
+References: <20230617161529.2092-1-jszhang@kernel.org>
+         <c9a44f534071a6d67f1e21bafdb713793c559124.camel@linuxfromscratch.org>
+         <20230725-unheard-dingy-42f0fafe7216@wendy> <ZL/jMYL3akl78ZZN@xhacker>
+         <3e0994dab495920ac590dc28d6b9d9765abe0c7e.camel@linuxfromscratch.org>
+         <ZME1J4mpVf5yth32@xhacker>
+         <866eab3e30a18c50742a75d62aee223fdc7e3cee.camel@linuxfromscratch.org>
+         <4986b92f1a5aa303a529c6004aaedd2184c3ccf7.camel@linuxfromscratch.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.48.4 
+MIME-Version: 1.0
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 7/26/2023 9:07 PM, Jakub Kicinski wrote:
-> On Wed, 26 Jul 2023 16:01:23 +0530 Md Danish Anwar wrote:
->> I think MAX_SKB_FRAGS is OK. If the available pool = MAX_SKB_FRAGS we should be
->> able to wake the queue.
-> 
-> MAX_SKB_FRAGS only counts frags and you also need space to map the head, no?
-> 
-> In general we advise to wait until there's at least 2 * MAX_SKB_FRAGS
-> to avoid frequent sleep/wake cycles. But IDK how long your queue is,
-> maybe it's too much.
-> 
->> No I don't think any lock is required here. emac_set_port_state() aquires lock
->> before updating port status. Also emac_ndo_set_rx_mode_work() is scheduled by a
->> singlethreaded workqueue.
-> 
-> if (netif_running()) outside of any locks is usually a red flag, but if
-> you're confident it's fine it's fine :)
+On Thu, 2023-07-27 at 08:54 +0800, Xi Ruoyao wrote:
+> On Thu, 2023-07-27 at 08:14 +0800, Xi Ruoyao wrote:
+> > On Wed, 2023-07-26 at 23:00 +0800, Jisheng Zhang wrote:
+> > > which dts r u using? see below.
+> > >=20
+> > > >=20
+> > > > Or maybe my toolchain (GCC 13.1.0, Binutils-2.40, with no patches) =
+can
+> > > > miscompile the kernel?
+> >=20
+> > /* snip */
+> >=20
+> > > > Boot HART ID=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 : 0
+> > > > Boot HART Domain=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 : root
+> > > > Boot HART Priv Version=C2=A0=C2=A0=C2=A0 : v1.11
+> > > > Boot HART Base ISA=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 : rv64=
+imafdcvx
+> > >=20
+> > > what? I don't think the mainline dts provide v and x.=20
+> >=20
+> > I copied the compiled arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dtb
+> > into /boot and loaded it with u-boot "load" command onto 0x46000000, an=
+d
+> > passed this address to the booti command.
+> >=20
+> > But maybe I've copied the wrong file or made some other mistake... I'll
+> > recheck.
+>=20
+> Hmm, and if I read OpenSBI code correctly, this line reflects the
+> content of the misa CSR, not the DT riscv,isa value.
+>=20
+> The log of successful boot provided by Drew also contains
+> "rv64imafdcvx":
+>=20
+> https://gist.github.com/pdp7/23259595a7570f1f11086d286e16dfb6
 
-Sure Jakub. I will keep these as it is.
+I tried a __show_reg call before the panic:
 
--- 
-Thanks and Regards,
-Md Danish Anwar
+[    0.012953] CPU: 0 PID: 0 Comm: swapper/0 Not tainted 6.5.0-rc3 #7
+[    0.012967] Hardware name: Sipeed Lichee Pi 4A (DT)
+[    0.012976] epc : ffffffff80c84a60 ra : 0000000000000000 sp : ffffffff80=
+04dfee
+[    0.012988]  gp : 0000000200000120 tp : ffffffff80c03d20 t0 : ffffffff80=
+002d6c
+[    0.012997]  t1 : ffffffff8004dfee t2 : ffffffff8004dfe6 s0 : ffffffff80=
+c03d20
+[    0.013005]  s1 : ffffffff80c966f0 a0 : ffffffff80c98140 a1 : 2000000000=
+000000
+[    0.013012]  a2 : 0000000000000043 a3 : 203a656c6f736e6f a4 : ffffffff80=
+c03def
+[    0.013021]  a5 : ffffffff80dcb4a0 a6 : 0000000000000001 a7 : 0000000000=
+000014
+[    0.013030]  s2 : 000000000000000a s3 : 0000000000000000 s4 : 0000000000=
+000000
+[    0.013036]  s5 : ffffffd9fef69740 s6 : 0000000000000008 s7 : 0000000000=
+000032
+[    0.013046]  s8 : 0000000000000002 s9 : ffffffff80c03df0 s10: ffffffff80=
+dcb4e8
+[    0.013056]  s11: ffffffff80dc7c80 t3 : ffffffff80c03d48 t4 : ffffffff80=
+dcb2f0
+[    0.013064]  t5 : ffffffff80c84a60 t6 : ffffffff80c10b98
+[    0.013071] status: 0000000000000000 badaddr: 0000000000000001 cause: ff=
+ffffff80dcb4f7
+[    0.013082] Kernel panic - not syncing: unexpected interrupt cause
+
+I compared these with System.map and the result seems completely erratic
+(for example, sp is out of init_stack, and gp is not __global_pointer$).
+
