@@ -2,80 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0012A76492E
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 09:45:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7689276493A
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 09:47:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233446AbjG0HpU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jul 2023 03:45:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52370 "EHLO
+        id S232318AbjG0HrA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jul 2023 03:47:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54930 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232112AbjG0Hou (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 03:44:50 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6C9A728A;
-        Thu, 27 Jul 2023 00:38:28 -0700 (PDT)
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36R5sTRL015643;
-        Thu, 27 Jul 2023 07:38:25 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=gVO1R9Y4Uuc9JYIGRAeKqReS9fSzL2HScIdYKYr0nJA=;
- b=TILM72C0MQeYPaeaO5KFYvwGgw9A2ot+2O/9d40UXDaj2KSCKoNgPhKY0GT6q2MvrRdN
- 30GlOW4eIJ6lTSIIQWjjBXnMmavnYi74FgZe0jkyShDjNcFOoNGKIAwfGDquCHqh5tAi
- ZQOhys2PSxyUe2oEuAE/vz6BT/wwGqB0Exp4MwnYFFfbY/vtxFd6Q3ha7m+zldm/b6FR
- 0TeESzBP6/dDTZGBYwvjUMzmjfLyvCEW9ONbjf91262uQmA+len1KKM92EeyDkXywyyi
- FlOXq1wxx3P26wWNif/VwGM9LM4nPTlKNhmL5/En/2gcykBVDPSB9OrQ+Jk6v5uFOhqC Lg== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3s2vq9js9w-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 27 Jul 2023 07:38:24 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 36R7cLN9008600
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 27 Jul 2023 07:38:23 GMT
-Received: from [10.239.132.204] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Thu, 27 Jul
- 2023 00:38:11 -0700
-Message-ID: <49a6829c-dc5b-39d0-b09a-4bb1aa2240e2@quicinc.com>
-Date:   Thu, 27 Jul 2023 15:38:08 +0800
+        with ESMTP id S232168AbjG0Hqh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 03:46:37 -0400
+Received: from mail-vs1-xe31.google.com (mail-vs1-xe31.google.com [IPv6:2607:f8b0:4864:20::e31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 778369E
+        for <devicetree@vger.kernel.org>; Thu, 27 Jul 2023 00:39:55 -0700 (PDT)
+Received: by mail-vs1-xe31.google.com with SMTP id ada2fe7eead31-44768737671so43928137.2
+        for <devicetree@vger.kernel.org>; Thu, 27 Jul 2023 00:39:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20221208.gappssmtp.com; s=20221208; t=1690443594; x=1691048394;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=4oNHjPlRW5a1AhVq3aMxLibOv7LXH4OB6KXoGYQG+bo=;
+        b=5JkRIRSMDq7rrLzEV2QWciwiE0dO00YHU3w0PyQUUe2/fZ3MkVQ2sydzdxfNPpMMqB
+         XThYtN41zHz8qYiI3KtQfWiyXVMDrbwN2kmMw9kH3ljS0gIdVwICEAraoXuL2XideGYW
+         cvi4YcDt+Vv4nHS50gHRqW8WoNToFI+66rPy7JB4iHnoupW8L3vPGT08dW9I0VRVrXGr
+         oNFLyKjdI8C68cbeGRJ1n8Lql8wStdxVV79kqYURpYf/IYT+GFAWLFf7wUypNo1OLIMp
+         cnl60QuYXP1IXkLkGnvRVXcrhDM2Wyz4rpBtdPXGura/CkwhZt4A9Q2jydsnAC6SDH6x
+         8ssA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690443594; x=1691048394;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=4oNHjPlRW5a1AhVq3aMxLibOv7LXH4OB6KXoGYQG+bo=;
+        b=BUqHLqgkNd4cu0LPUyo1S1NtyfiUcZU5dLGrruHoRkFFbzUgSD2zoIrbkPQ6A4jEJq
+         V5snXaf+G68cUHrSpz4gBxjJZntyIvr4sKoXuMDO3dkVtvp0JyDVcAuTBZHr5qZsQKHw
+         6gCK00CSOL7WnZfqm8LhL6552rMNk1MPa9GWa4+c60xKrUp1/hdHTdE4Dxxot194wU8l
+         WDL8KGMdE+UbTq5LHSB9rquRmrqXEdP97CpF71zHmgBsymXdJ8obe89jPymHudeCT8+1
+         QlcNDKC357TbfOPAQRPEJlRThjOkHUN6GJvDIhDYFsyqAvVlyamksrKQ/CrCzpjZ5qDS
+         FAPA==
+X-Gm-Message-State: ABy/qLYSZ06mzNKiPgJ0yGHudAXxPSIAUYreH2RLJYxEErfxbWz1wV68
+        kcGuEaihayQEll2pqvyULZM4LcMrYLilU6IafalARg==
+X-Google-Smtp-Source: APBJJlF7O+IfF9pAl5zpxLVhMdlBph8wiyRp6dHdBUp7DDpdn4Aw/wPPvHUisxZNWBKH5INkNwgBa5JdDzJWMhhl4WM=
+X-Received: by 2002:a05:6102:1d0:b0:43d:6660:581b with SMTP id
+ s16-20020a05610201d000b0043d6660581bmr918043vsq.5.1690443594508; Thu, 27 Jul
+ 2023 00:39:54 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/6] arm64: dts: qcom: Adds base SM4450 DTSI
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>
-CC:     <quic_tsoni@quicinc.com>, <quic_shashim@quicinc.com>,
-        <quic_kaushalk@quicinc.com>, <quic_tdas@quicinc.com>,
-        <quic_tingweiz@quicinc.com>, <quic_aiquny@quicinc.com>,
-        <kernel@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20230727023508.18002-1-quic_tengfan@quicinc.com>
- <20230727023508.18002-4-quic_tengfan@quicinc.com>
- <c2221520-26b7-3d39-e157-b464569be502@linaro.org>
-From:   Tengfei Fan <quic_tengfan@quicinc.com>
-In-Reply-To: <c2221520-26b7-3d39-e157-b464569be502@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: qQXh10f7zZaPZmR5SjbMtTHrLf5UtYUf
-X-Proofpoint-GUID: qQXh10f7zZaPZmR5SjbMtTHrLf5UtYUf
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-07-26_08,2023-07-26_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0
- priorityscore=1501 impostorscore=0 malwarescore=0 adultscore=0
- phishscore=0 suspectscore=0 clxscore=1015 mlxlogscore=679 spamscore=0
- mlxscore=0 lowpriorityscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2306200000 definitions=main-2307270066
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+References: <20230523090406.59632-1-tony@atomide.com> <be50a724-280e-7827-91f4-88d16e1e295f@lechnology.com>
+ <20230721074510.GT5194@atomide.com>
+In-Reply-To: <20230721074510.GT5194@atomide.com>
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+Date:   Thu, 27 Jul 2023 09:39:43 +0200
+Message-ID: <CAMRc=MecbyWzEqvD3v42qJ-jgpEOh-HnSfawcDpJfvdWCuuZ4Q@mail.gmail.com>
+Subject: Re: [PATCH] ARM: dts: Unify pinctrl-single pin group nodes for davinci
+To:     Tony Lindgren <tony@atomide.com>
+Cc:     David Lechner <david@lechnology.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -83,35 +71,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, Jul 21, 2023 at 9:45=E2=80=AFAM Tony Lindgren <tony@atomide.com> wr=
+ote:
+>
+> * David Lechner <david@lechnology.com> [230523 14:00]:
+> > On 5/23/23 4:04 AM, Tony Lindgren wrote:
+> > > We want to unify the pinctrl-single pin group nodes to use naming "pi=
+ns".
+> > > Otherwise non-standad pin group names will add make dtbs checks error=
+s
+> > > when the pinctrl-single yaml binding gets merged.
+> > >
+> > > Cc: Conor Dooley <conor+dt@kernel.org>
+> > > Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> > > Cc: Rob Herring <robh+dt@kernel.org>
+> > > Signed-off-by: Tony Lindgren <tony@atomide.com>
+> > > ---
+> >
+> > Reviewed-by: David Lechner <david@lechnology.com>
+>
+> Looks like this got missed, I'll pick this into a branch for v6.6 merge
+> window.
+>
+> Regards,
+>
+> Tony
 
+My bad, thanks for taking this.
 
-在 7/27/2023 2:53 PM, Krzysztof Kozlowski 写道:
-> On 27/07/2023 04:35, Tengfei Fan wrote:
->> This add based DTSI for SM4450 SoC and includes base description of
-> 
-> Nit, no need to resend, Please do not use "This commit/patch", but
-> imperative mood. See longer explanation here:
-> https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
-Thanks review this patch, sure, I will pay attention to the relevant 
-rules in the future.
-> 
->> CPUs and interrupt-controller which helps to boot to shell with dcc
->> console on boards with this SoC.
->>
->> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
->> ---
->>   arch/arm64/boot/dts/qcom/sm4450.dtsi | 431 +++++++++++++++++++++++++++
->>   1 file changed, 431 insertions(+)
->>   create mode 100644 arch/arm64/boot/dts/qcom/sm4450.dtsi
->>
-> 
-> 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> Best regards,
-> Krzysztof
-> 
-
--- 
-Thx and BRs,
-Tengfei Fan
+Acked-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
