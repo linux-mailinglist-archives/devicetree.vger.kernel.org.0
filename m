@@ -2,97 +2,228 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E9C17653A3
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 14:23:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B4D97653C2
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 14:26:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234008AbjG0MXa convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 27 Jul 2023 08:23:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59112 "EHLO
+        id S234069AbjG0M0E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jul 2023 08:26:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59970 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234012AbjG0MXF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 08:23:05 -0400
-Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com [209.85.128.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2A193C05;
-        Thu, 27 Jul 2023 05:22:50 -0700 (PDT)
-Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-583a8596e2aso9601987b3.1;
-        Thu, 27 Jul 2023 05:22:50 -0700 (PDT)
+        with ESMTP id S232856AbjG0MZp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 08:25:45 -0400
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8FC9F46B5
+        for <devicetree@vger.kernel.org>; Thu, 27 Jul 2023 05:24:54 -0700 (PDT)
+Received: by mail-lj1-x229.google.com with SMTP id 38308e7fff4ca-2b9352ff1aeso13199601fa.1
+        for <devicetree@vger.kernel.org>; Thu, 27 Jul 2023 05:24:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1690460684; x=1691065484;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=dM1dkUrxTZP0LCfoLzwjbnmeZ73oqlRwBBWQaUJPc/4=;
+        b=ZT0q62/Ws05TLE5nzjdkbyA3dQxNWG4eLH/vbeMz+hJTEBdzqb6uC7sYtdmIIMKDbV
+         a+DeEPndOlLMd1xm+7W+OdIUK+JK0+GMmvgZFZMiPk/mJm8KP71zOfCLMAL4tg8BWyL9
+         J3Q9t2zoLWH9Vp4X5W4k83zmqbD/RiyDyVqM5R8yyy83jY30IByXpcSjWBKgnVJXVf5f
+         lWhFNfAyWe0sB+EPTAvXVRPl25pgGdrV72B+zqueSR9EBxf6dkjEQIwMDLGKumVWU7ZH
+         jg39w/Pk+oAechsDOZeE4pNGAeI7guzrqfp2z/NHdQIyslq+3N69KPgnTpmzPbZ59sBM
+         M3Eg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690460569; x=1691065369;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=c52QFIiy7yiNPNLxeWu9puYqv4sMu22lnONbIBQC0PI=;
-        b=VI918M0im0GoNUmxBBPmSWkoAz19o8pN3ZHcNJGLw3QOgCzchNWYpWZe25R/urQkPu
-         cJ4i7aNnUYFZv9HFGQ3uBs4KQ5dDYP8lsbU9EdZ3cskNUSqwPnux39M+61wSyCdOzWXc
-         CkIqMoo7yZC3VcI3LwWLyJpJMCqYC0f2tC0fyD2cKnnJASU1cAaJh9kFrIvRrtXeoEHa
-         1lMIn/BXrgniNl1yEfdg3Bg+5YB5C5wiiCdVPA24t5tboShDaW8+FjOTJvyyMwe5MsKe
-         nd+UcZGEzg8E7SAruGfHkBk1r/Z9UxL7wDZYoV/l8TptM+1zLubf04goRdRTspb2PBwy
-         zJSw==
-X-Gm-Message-State: ABy/qLZAE+tfIGMjRbkpoOXSvy031OsjGKc508jGyHrhixq05cJA6aOY
-        89g7CyK1YgBzuY7bncJ0/IHeMz6VC0BMmg==
-X-Google-Smtp-Source: APBJJlHXUTQPl4oR6/0QKxqm5FqVu6IOM5h4xX6UoCNXjPcfZucDCptDt0sY/TjyM/yAerpGGCyIsg==
-X-Received: by 2002:a0d:caca:0:b0:583:78b7:53f1 with SMTP id m193-20020a0dcaca000000b0058378b753f1mr4915867ywd.7.1690460569400;
-        Thu, 27 Jul 2023 05:22:49 -0700 (PDT)
-Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com. [209.85.219.172])
-        by smtp.gmail.com with ESMTPSA id y80-20020a81a153000000b00583cf4ed41esm382172ywg.2.2023.07.27.05.22.49
+        d=1e100.net; s=20221208; t=1690460684; x=1691065484;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=dM1dkUrxTZP0LCfoLzwjbnmeZ73oqlRwBBWQaUJPc/4=;
+        b=IzGNIrSxj2tbjJYlj07tg1nd//lAb6FLdFpFlAasbTRnR6deQcAOBzXjaxxvDV32og
+         fT9CHykmuVcfOIlCKWTKT4D7lGVsce0JvQMuVw7rjJuRj9vSEhAALxqQXxgCRJC01pCd
+         jB1OAMIxIorylAb9Vvc5JRKrKLcMA++PJaQW3qeRjt5ASQMIncPqQ9J5GXSPQLR1+chG
+         uxiLcB5K4ZERjwEg8pzr7eaYIm24Yai45NGiYTEtG+aqJtXdIz7P+N3hU39ok1cB18OK
+         bS6rW8HXYZWGfcBKacTin3ybkOl+RpoH+36ciNkb3zoZF0XL6bwOzAyJyqA1tJgiAAq9
+         xo4w==
+X-Gm-Message-State: ABy/qLa4aPEoBtbhET3a8N5ujCTg6WluD/McbrV7enPNt9BXj5ueoeVw
+        fBFBGO/7y+3cQFViV8PEp59yJw==
+X-Google-Smtp-Source: APBJJlGh70K+MIn7fYVMGvP4ZpEm8iCKX+iWp15lCHVIMc9Gx4e1SlOUav0TkN6/elkL3YftSZJFhg==
+X-Received: by 2002:a2e:91c2:0:b0:2b9:4b2e:5420 with SMTP id u2-20020a2e91c2000000b002b94b2e5420mr1602856ljg.52.1690460684271;
+        Thu, 27 Jul 2023 05:24:44 -0700 (PDT)
+Received: from [10.10.15.130] ([192.130.178.91])
+        by smtp.gmail.com with ESMTPSA id o21-20020a17090637d500b009937e7c4e54sm710367ejc.39.2023.07.27.05.24.42
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 27 Jul 2023 05:22:49 -0700 (PDT)
-Received: by mail-yb1-f172.google.com with SMTP id 3f1490d57ef6-d16639e16e6so763715276.3;
-        Thu, 27 Jul 2023 05:22:49 -0700 (PDT)
-X-Received: by 2002:a25:9087:0:b0:ce0:2654:4bd9 with SMTP id
- t7-20020a259087000000b00ce026544bd9mr4265338ybl.55.1690460568823; Thu, 27 Jul
- 2023 05:22:48 -0700 (PDT)
+        Thu, 27 Jul 2023 05:24:43 -0700 (PDT)
+Message-ID: <c246ab77-0dcd-e6a1-bbec-0924c0923a75@linaro.org>
+Date:   Thu, 27 Jul 2023 15:24:41 +0300
 MIME-Version: 1.0
-References: <20230727081848.100834-1-biju.das.jz@bp.renesas.com> <20230727081848.100834-6-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20230727081848.100834-6-biju.das.jz@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 27 Jul 2023 14:22:37 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWeAwVADo2HhURJAbjFMeyUVKncKoo3LuoctFY215-SXw@mail.gmail.com>
-Message-ID: <CAMuHMdWeAwVADo2HhURJAbjFMeyUVKncKoo3LuoctFY215-SXw@mail.gmail.com>
-Subject: Re: [PATCH v3 5/5] arm64: dts: renesas: rzg2ul-smarc: Add support for
- enabling MTU3
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v2] dt-bindings: qcom: Update RPMHPD entries for some SoCs
+Content-Language: en-GB
+To:     Rohit Agarwal <quic_rohiagar@quicinc.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh@kernel.org>
+Cc:     mathieu.poirier@linaro.org, mchehab@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, quic_vgarodia@quicinc.com,
+        konrad.dybcio@linaro.org, agross@kernel.org,
+        freedreno@lists.freedesktop.org, daniel@ffwll.ch,
+        dri-devel@lists.freedesktop.org, jonathan@marek.ca,
+        conor+dt@kernel.org, robh+dt@kernel.org, airlied@gmail.com,
+        linux-mmc@vger.kernel.org, quic_tdas@quicinc.com,
+        stanimir.k.varbanov@gmail.com, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, andersson@kernel.org,
+        mturquette@baylibre.com, linux-remoteproc@vger.kernel.org,
+        sean@poorly.run, ulf.hansson@linaro.org,
+        devicetree@vger.kernel.org, vladimir.zapolskiy@linaro.org,
+        rfoss@kernel.org, mani@kernel.org, linux-media@vger.kernel.org,
+        sboyd@kernel.org, quic_abhinavk@quicinc.com,
+        bhupesh.sharma@linaro.org, linux-arm-msm@vger.kernel.org,
+        marijn.suijten@somainline.org, neil.armstrong@linaro.org,
+        robdclark@gmail.com
+References: <1690448953-23425-1-git-send-email-quic_rohiagar@quicinc.com>
+ <169045659774.1058731.6391693092002547810.robh@kernel.org>
+ <fa84ec4f-bdb9-dace-c56a-46174a9b47ee@quicinc.com>
+ <2edb92b8-a6a8-c115-757c-daccef6be5f0@linaro.org>
+ <432ab1d3-0f9e-4072-ff4d-6362886584b8@quicinc.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <432ab1d3-0f9e-4072-ff4d-6362886584b8@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 27, 2023 at 10:19 AM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> Add support for PMOD_MTU3 macro to enable MTU3 node on RZ/G2UL SMARC
-> EVK.
->
-> The MTU3a PWM pins on PMOD0 are muxed with SPI1. Disable SPI1, when
-> PMOD_MTU3 macro is enabled.
->
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> ---
-> v2->v3:
->  * No change
+On 27/07/2023 15:21, Rohit Agarwal wrote:
+> 
+> On 7/27/2023 5:15 PM, Krzysztof Kozlowski wrote:
+>> On 27/07/2023 13:19, Rohit Agarwal wrote:
+>>> On 7/27/2023 4:46 PM, Rob Herring wrote:
+>>>> On Thu, 27 Jul 2023 14:39:13 +0530, Rohit Agarwal wrote:
+>>>>> Update the RPMHPD references with new bindings defined in rpmhpd.h
+>>>>> for Qualcomm SoCs SM8[2345]50.
+>>>>>
+>>>>> Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
+>>>>> ---
+>>>>>    
+>>>>> Documentation/devicetree/bindings/clock/qcom,dispcc-sm8x50.yaml   | 
+>>>>> 4 ++--
+>>>>>    
+>>>>> Documentation/devicetree/bindings/clock/qcom,sm8350-videocc.yaml  | 
+>>>>> 4 ++--
+>>>>>    
+>>>>> Documentation/devicetree/bindings/clock/qcom,sm8450-camcc.yaml    | 
+>>>>> 4 ++--
+>>>>>    
+>>>>> Documentation/devicetree/bindings/clock/qcom,sm8450-dispcc.yaml   | 
+>>>>> 4 ++--
+>>>>>    
+>>>>> Documentation/devicetree/bindings/clock/qcom,sm8450-videocc.yaml  | 
+>>>>> 4 ++--
+>>>>>    
+>>>>> Documentation/devicetree/bindings/clock/qcom,sm8550-dispcc.yaml   | 
+>>>>> 4 ++--
+>>>>>    
+>>>>> Documentation/devicetree/bindings/clock/qcom,videocc.yaml         | 
+>>>>> 4 ++--
+>>>>>    
+>>>>> .../devicetree/bindings/display/msm/qcom,sm8250-dpu.yaml          | 
+>>>>> 4 ++--
+>>>>>    
+>>>>> .../devicetree/bindings/display/msm/qcom,sm8250-mdss.yaml         | 
+>>>>> 8 ++++----
+>>>>>    
+>>>>> .../devicetree/bindings/display/msm/qcom,sm8350-dpu.yaml          | 
+>>>>> 4 ++--
+>>>>>    
+>>>>> .../devicetree/bindings/display/msm/qcom,sm8350-mdss.yaml         | 
+>>>>> 6 +++---
+>>>>>    
+>>>>> .../devicetree/bindings/display/msm/qcom,sm8450-dpu.yaml          | 
+>>>>> 4 ++--
+>>>>>    
+>>>>> .../devicetree/bindings/display/msm/qcom,sm8450-mdss.yaml         | 
+>>>>> 8 ++++----
+>>>>>    
+>>>>> .../devicetree/bindings/display/msm/qcom,sm8550-dpu.yaml          | 
+>>>>> 4 ++--
+>>>>>    
+>>>>> .../devicetree/bindings/display/msm/qcom,sm8550-mdss.yaml         | 
+>>>>> 8 ++++----
+>>>>>    
+>>>>> Documentation/devicetree/bindings/media/qcom,sm8250-venus.yaml    | 
+>>>>> 4 ++--
+>>>>>    
+>>>>> Documentation/devicetree/bindings/mmc/sdhci-msm.yaml              | 
+>>>>> 4 ++--
+>>>>>    
+>>>>> Documentation/devicetree/bindings/remoteproc/qcom,sm8350-pas.yaml | 
+>>>>> 6 +++---
+>>>>>    18 files changed, 44 insertions(+), 44 deletions(-)
+>>>>>
+>>>> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+>>>> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+>>>>
+>>>> yamllint warnings/errors:
+>>>>
+>>>> dtschema/dtc warnings/errors:
+>>>> Documentation/devicetree/bindings/remoteproc/qcom,sm8350-pas.example.dts:21:18: fatal error: dt-bindings/power/qcom,rpmhpd.h: No such file or directory
+>>>>      21 |         #include <dt-bindings/power/qcom,rpmhpd.h>
+>>>>         |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+>>>> compilation terminated.
+>>>> make[2]: *** [scripts/Makefile.lib:419: 
+>>>> Documentation/devicetree/bindings/remoteproc/qcom,sm8350-pas.example.dtb] Error 1
+>>>> make[2]: *** Waiting for unfinished jobs....
+>>>> make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1500: 
+>>>> dt_binding_check] Error 2
+>>>> make: *** [Makefile:234: __sub-make] Error 2
+>>>>
+>>>> doc reference errors (make refcheckdocs):
+>>>>
+>>>> See 
+>>>> https://patchwork.ozlabs.org/project/devicetree-bindings/patch/1690448953-23425-1-git-send-email-quic_rohiagar@quicinc.com
+>>>>
+>>>> The base for the series is generally the latest rc1. A different 
+>>>> dependency
+>>>> should be noted in *this* patch.
+>>>>
+>>>> If you already ran 'make dt_binding_check' and didn't see the above
+>>>> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+>>>> date:
+>>>>
+>>>> pip3 install dtschema --upgrade
+>>>>
+>>>> Please check and re-submit after running the above command yourself. 
+>>>> Note
+>>>> that DT_SCHEMA_FILES can be set to your schema file to speed up 
+>>>> checking
+>>>> your schema. However, it must be unset to test all examples with 
+>>>> your schema.
+>>> This should be ignored as the patch that creates the new header is
+>>> already applied.
+>>> Please follow this series
+>>>
+>>> https://lore.kernel.org/all/1689744162-9421-1-git-send-email-quic_rohiagar@quicinc.com/
+>> Please mention the dependency in patch changelog ---, so it is obvious
+>> for people applying it and also for the bot.
+> Sure. Will send a cover letter for this patch mentioning the changelogs 
+> and will
+> keep the version as v2 since there no change at all in the patch.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v6.6.
+What would be the merge strategy? Even if you split it per subsystem, I 
+probably can not pick up display parts. Is there an immutable branch 
+with the new header? Otherwise I can either ack Bjorn picking up this 
+patch or it will have to wait for the next cycle.
 
-Gr{oetje,eeting}s,
-
-                        Geert
+> 
+> Thanks,
+> Rohit.
+>> Best regards,
+>> Krzysztof
+>>
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+With best wishes
+Dmitry
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
