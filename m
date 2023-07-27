@@ -2,88 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 32E7C765E67
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 23:52:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 67646765E74
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 23:53:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232384AbjG0Vw3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jul 2023 17:52:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59712 "EHLO
+        id S232483AbjG0Vxu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jul 2023 17:53:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60248 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231489AbjG0Vw2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 17:52:28 -0400
-Received: from qs51p00im-qukt01071502.me.com (qs51p00im-qukt01071502.me.com [17.57.155.5])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63D462D7D
-        for <devicetree@vger.kernel.org>; Thu, 27 Jul 2023 14:52:27 -0700 (PDT)
+        with ESMTP id S232473AbjG0Vx0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 17:53:26 -0400
+Received: from qs51p00im-qukt01080301.me.com (qs51p00im-qukt01080301.me.com [17.57.155.20])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A85F5358A
+        for <devicetree@vger.kernel.org>; Thu, 27 Jul 2023 14:52:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=me.com; s=1a1hai;
-        t=1690494746; bh=+yMY0ohtegHsjd/hVfvS5lvwXcdsut+yxwy4BJPQo88=;
+        t=1690494773; bh=HXQLqgiZg4lwSg7yuJp70xhHYQeGMquqwwsl6uxX+/s=;
         h=From:To:Subject:Date:Message-Id:MIME-Version;
-        b=teVTo2CFfdpWb8jsL3Wll5BqBrXd1SGLPa1SQec5ZF8wvDTXshsC52ZpifSNWvuTa
-         awHoGdcf3etmRrfVdt2G+AEyKuYdpQb3wNCZhLCfrtySAayKATJyxDKA/08MqJ9Id5
-         luG2PM8p9kNYQlE6ZFufwParlwsUrZUoyjuSYdV1gcbOGG+k+fEo6bVvt186D0epCL
-         Q+FNTvhnk8FPKTvpbLn0R9cNhlHzz5J5rtjRBLD7ina6DUTTO/aLTNFcGCVRPCiPUe
-         /QIYmfx63kmFdt7GmG/RBRgc3O8y2GBTsiqy+E9m5TgsnbOQTcJTpK7gByNUyjghAT
-         X3CV1JtsoPBxw==
+        b=iWSH1EJWwkMfSRqn9vJtLQPTLaZ45ToCmc5035Zl4yf9t6z4GcEA75Q5iEj5/fxsv
+         rzI8ULoVds72y8jayIA8pvf0IslVNASIwoOS4/flQrYfIsh6HPC9mB4EE1FxIbNhJ9
+         o4lDZRViIyBF6y1Ow2ZgtiXApM3UvIKu10DYr8EePi7CreB9vLTK3XgxizKq6554GJ
+         bYXuQxJVyhPuQu0PFc6w9wzu0epGloaMnSvrqLG2gMW3hP/CGanqPOBvITBXlA2mdQ
+         P60FNgyU56tScM9fAEzmBNYGTDVVnzwPGCIuJx3xgpZ7xfKKsd3Cd/sonKqJBtkRLr
+         T6Rq+voTi8D2w==
 Received: from localhost (qs51p00im-dlb-asmtp-mailmevip.me.com [17.57.155.28])
-        by qs51p00im-qukt01071502.me.com (Postfix) with ESMTPSA id 5B59B668068A;
-        Thu, 27 Jul 2023 21:52:25 +0000 (UTC)
+        by qs51p00im-qukt01080301.me.com (Postfix) with ESMTPSA id EE2DA5F00408;
+        Thu, 27 Jul 2023 21:52:52 +0000 (UTC)
 From:   Alain Volmat <avolmat@me.com>
-To:     Alain Volmat <alain.volmat@foss.st.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+To:     Patrice Chotard <patrice.chotard@foss.st.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>
-Cc:     Alain Volmat <avolmat@me.com>, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 02/14] dt-bindings: display: add st,stih418-vtg compatible for sti vtg
-Date:   Thu, 27 Jul 2023 21:51:26 +0000
-Message-Id: <20230727215141.53910-3-avolmat@me.com>
+Cc:     Alain Volmat <avolmat@me.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 11/14] ARM: dts: sti: move vtg_main / vtg_aux into stih407/stih410 dtsi
+Date:   Thu, 27 Jul 2023 21:51:35 +0000
+Message-Id: <20230727215141.53910-12-avolmat@me.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230727215141.53910-1-avolmat@me.com>
 References: <20230727215141.53910-1-avolmat@me.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: UWnD-uZ5rLJpWTxkueyAUge1OYUeBQyH
-X-Proofpoint-ORIG-GUID: UWnD-uZ5rLJpWTxkueyAUge1OYUeBQyH
+X-Proofpoint-GUID: H5CenQRAQ1tfGLGPSffjITEBYJ75K4oo
+X-Proofpoint-ORIG-GUID: H5CenQRAQ1tfGLGPSffjITEBYJ75K4oo
 X-Proofpoint-Virus-Version: =?UTF-8?Q?vendor=3Dfsecure_engine=3D1.1.170-22c6f66c430a71ce266a39bfe25bc?=
- =?UTF-8?Q?2903e8d5c8f:6.0.138,18.0.790,17.11.62.513.0000000_definitions?=
- =?UTF-8?Q?=3D2022-01-12=5F02:2020-02-14=5F02,2022-01-12=5F02,2021-12-02?=
- =?UTF-8?Q?=5F01_signatures=3D0?=
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 bulkscore=0 suspectscore=0 adultscore=0
- phishscore=0 malwarescore=0 spamscore=0 clxscore=1015 mlxscore=0
- mlxlogscore=606 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2212070000 definitions=main-2307270198
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+ =?UTF-8?Q?2903e8d5c8f:6.0.425,18.0.572,17.0.605.474.0000000_definitions?=
+ =?UTF-8?Q?=3D2022-01-11=5F01:2022-01-11=5F01,2020-02-14=5F11,2020-01-23?=
+ =?UTF-8?Q?=5F02_signatures=3D0?=
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 phishscore=0 clxscore=1015
+ mlxlogscore=907 spamscore=0 bulkscore=0 malwarescore=0 adultscore=0
+ mlxscore=0 suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2307270199
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a new compatible in st,stih4xx.txt in order to support sti vtg on
-stih418 platforms.
+In preparation of introduction of display support in stih418, move
+the vtg nodes into stih407.dtsi and stih410.dtsi since vtg nodes
+will differ in case of the stih418 and thus cannot be kept as part
+of the stih407-family.dtsi.
 
 Signed-off-by: Alain Volmat <avolmat@me.com>
 ---
- Documentation/devicetree/bindings/display/st,stih4xx.txt | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm/boot/dts/st/stih407-family.dtsi | 13 -------------
+ arch/arm/boot/dts/st/stih407.dtsi        | 12 ++++++++++++
+ arch/arm/boot/dts/st/stih410.dtsi        | 12 ++++++++++++
+ 3 files changed, 24 insertions(+), 13 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/display/st,stih4xx.txt b/Documentation/devicetree/bindings/display/st,stih4xx.txt
-index 6778b3e7ad5b..5450e1db8b8d 100644
---- a/Documentation/devicetree/bindings/display/st,stih4xx.txt
-+++ b/Documentation/devicetree/bindings/display/st,stih4xx.txt
-@@ -2,7 +2,7 @@ STMicroelectronics stih4xx platforms
+diff --git a/arch/arm/boot/dts/st/stih407-family.dtsi b/arch/arm/boot/dts/st/stih407-family.dtsi
+index 3f58383a7b59..6133c9934651 100644
+--- a/arch/arm/boot/dts/st/stih407-family.dtsi
++++ b/arch/arm/boot/dts/st/stih407-family.dtsi
+@@ -292,19 +292,6 @@ syscfg_lpm: lpm-syscfg@94b5100 {
+ 			reg = <0x94b5100 0x1000>;
+ 		};
  
- - sti-vtg: video timing generator
-   Required properties:
--  - compatible: "st,vtg"
-+  - compatible: "st,vtg" or "st,stih418-vtg"
-   - reg: Physical base address of the IP registers and length of memory mapped region.
-   Optional properties:
-   - interrupts : VTG interrupt number to the CPU.
+-		/* Display */
+-		vtg_main: sti-vtg-main@8d02800 {
+-			compatible = "st,vtg";
+-			reg = <0x8d02800 0x200>;
+-			interrupts = <GIC_SPI 108 IRQ_TYPE_LEVEL_HIGH>;
+-		};
+-
+-		vtg_aux: sti-vtg-aux@8d00200 {
+-			compatible = "st,vtg";
+-			reg = <0x8d00200 0x100>;
+-			interrupts = <GIC_SPI 109 IRQ_TYPE_LEVEL_HIGH>;
+-		};
+-
+ 		serial@9830000 {
+ 			compatible = "st,asc";
+ 			reg = <0x9830000 0x2c>;
+diff --git a/arch/arm/boot/dts/st/stih407.dtsi b/arch/arm/boot/dts/st/stih407.dtsi
+index aca43d2bdaad..69430556edc4 100644
+--- a/arch/arm/boot/dts/st/stih407.dtsi
++++ b/arch/arm/boot/dts/st/stih407.dtsi
+@@ -8,6 +8,18 @@
+ #include <dt-bindings/gpio/gpio.h>
+ / {
+ 	soc {
++		vtg_main: sti-vtg-main@8d02800 {
++			compatible = "st,vtg";
++			reg = <0x8d02800 0x200>;
++			interrupts = <GIC_SPI 108 IRQ_TYPE_LEVEL_HIGH>;
++		};
++
++		vtg_aux: sti-vtg-aux@8d00200 {
++			compatible = "st,vtg";
++			reg = <0x8d00200 0x100>;
++			interrupts = <GIC_SPI 109 IRQ_TYPE_LEVEL_HIGH>;
++		};
++
+ 		sti-display-subsystem@0 {
+ 			compatible = "st,sti-display-subsystem";
+ 			#address-cells = <1>;
+diff --git a/arch/arm/boot/dts/st/stih410.dtsi b/arch/arm/boot/dts/st/stih410.dtsi
+index 29e95e9d3229..141db3dcaf1f 100644
+--- a/arch/arm/boot/dts/st/stih410.dtsi
++++ b/arch/arm/boot/dts/st/stih410.dtsi
+@@ -99,6 +99,18 @@ ehci1: usb@9a83e00 {
+ 			status = "disabled";
+ 		};
+ 
++		vtg_main: sti-vtg-main@8d02800 {
++			compatible = "st,vtg";
++			reg = <0x8d02800 0x200>;
++			interrupts = <GIC_SPI 108 IRQ_TYPE_LEVEL_HIGH>;
++		};
++
++		vtg_aux: sti-vtg-aux@8d00200 {
++			compatible = "st,vtg";
++			reg = <0x8d00200 0x100>;
++			interrupts = <GIC_SPI 109 IRQ_TYPE_LEVEL_HIGH>;
++		};
++
+ 		sti-display-subsystem@0 {
+ 			compatible = "st,sti-display-subsystem";
+ 			#address-cells = <1>;
 -- 
 2.34.1
 
