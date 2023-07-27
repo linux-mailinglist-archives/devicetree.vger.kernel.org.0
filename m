@@ -2,78 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 541007645E6
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 07:40:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C754764689
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 08:15:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231516AbjG0Fkz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jul 2023 01:40:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58762 "EHLO
+        id S229915AbjG0GPd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jul 2023 02:15:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53348 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231147AbjG0FkX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 01:40:23 -0400
-Received: from mail-oi1-x22c.google.com (mail-oi1-x22c.google.com [IPv6:2607:f8b0:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D3703C2A
-        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 22:38:53 -0700 (PDT)
-Received: by mail-oi1-x22c.google.com with SMTP id 5614622812f47-3a5ac84718dso547068b6e.0
-        for <devicetree@vger.kernel.org>; Wed, 26 Jul 2023 22:38:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1690436261; x=1691041061;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=7WywdthfPTh+XfmRqlsarbdS3w8tnqax2JJ3u+Tr5fo=;
-        b=UQbBxhMfOst5NWQV6gVQ0JJTWp5Vb6FIoSgT8tqKClUgcqvsdppOr7nsx1YKLKiXTM
-         Pyca07NsQbrTjFLWardjLPcxkVKLtuT4aRWl8oDnKMyQkYJQBJY/Uh6e4qjHBj2PNnPe
-         48c3KJBaBKRm4+PFUxF3tHz1WGI1p/oMqPfrtCxT6Y/pBuAnJYW9dAB6dfR3z1bDWi20
-         uaCIEl3spqdFESgrHsOyMhfo2PjM3l6bQXfF1dIjP0pXfU2PqdYn9Wm/t5gwqjeJesYk
-         bGvhtRpImS2dDbSwRyD1Nz4w7L8dVwydFOZRx8rTJkBoh+qPhKv1MvFl3s3v/ta5gH5c
-         zQkg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690436261; x=1691041061;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7WywdthfPTh+XfmRqlsarbdS3w8tnqax2JJ3u+Tr5fo=;
-        b=kEv5X/T9CsqB5jntuNfETWSs7R38lHVb209aHA74xgGeCX0pk7JiVJujbyu2TLOA10
-         8kHTmc6neIYYkmcYti1ewlt9OZfMC2TnyCzsiU1DN2zQWW8V/ba5qzDPCRVY3F96FI8Z
-         G+OdJFICmCUljBEj7P0UODCEPT2eFHG5917ABG8toNlpx6Z5HeIfx3EZ0YTw1jBu+mSm
-         qOV5bvszMxkDi3tXRSYyRkl3GS7+iNXo7kWK3/ZWfj8hUQHMMiODz4MFTtThx3mPZD2/
-         7kF2FIkKzJl2FkHHHcPfoREoFG+YH1KAZGrIJgl1kzzOS0GRRU4rJgRnfoThqAPcXBbN
-         kFPg==
-X-Gm-Message-State: ABy/qLaXC8h4L3mGBXbZ0A2+slDaBWkbtAcCceze099aSmP1tJME0P8G
-        VW5ve0EtLS+3lRkenYai51UEHA==
-X-Google-Smtp-Source: APBJJlH2LjwCUDsuM4N9A21r1wgRMpGLVv1sCSS0LVgt/Ju+ZtxNXj38rWLzRXbXE/flB/mRf27sfw==
-X-Received: by 2002:a05:6808:1494:b0:3a2:a96d:19c3 with SMTP id e20-20020a056808149400b003a2a96d19c3mr2377106oiw.41.1690436261045;
-        Wed, 26 Jul 2023 22:37:41 -0700 (PDT)
-Received: from [10.0.2.15] ([82.78.167.79])
-        by smtp.gmail.com with ESMTPSA id n29-20020a638f1d000000b0055b61cd99a1sm478848pgd.81.2023.07.26.22.37.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 26 Jul 2023 22:37:40 -0700 (PDT)
-Message-ID: <95420387-3cde-dd6e-3cb1-169ca56268d2@tuxon.dev>
-Date:   Thu, 27 Jul 2023 08:37:29 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH] ARM: dts: at91: ksz9477_evb: Add missing timer nodes
-Content-Language: en-US
-To:     Conor Dooley <conor@kernel.org>, Lukasz Majewski <lukma@denx.de>
-Cc:     devicetree@vger.kernel.org,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        linux-kernel@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>,
-        linux-arm-kernel@lists.infradead.org
-References: <20230712152111.3756211-1-lukma@denx.de>
- <20230726101902.769f6541@wsk> <20230726-igloo-science-96e926f086f6@spud>
-From:   claudiu beznea <claudiu.beznea@tuxon.dev>
-In-Reply-To: <20230726-igloo-science-96e926f086f6@spud>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        with ESMTP id S229819AbjG0GPc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 02:15:32 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CBD61731;
+        Wed, 26 Jul 2023 23:15:31 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 126C161D2B;
+        Thu, 27 Jul 2023 06:15:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CBA23C433C9;
+        Thu, 27 Jul 2023 06:15:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1690438530;
+        bh=0avH5gvbw67Ci8LFP+nYOnJ5qQ+S+HY6Dkvu0dVqhts=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=rMJhdGGgF+AI7bDWkmjrp93bwc1Je+98YwrKdWl1osVO+ouwoXUVtMpb+en7J+nmd
+         lh97XOr+1GWPY+h5JkBnHn2sz00vpvPrltwh6tAGUugdtaSiUGIDGmKjxg7HiLRi6K
+         ADw5OHFKYNkGGL12mdbNZtlfk8GvTHvRSee+yEAa3syZK0DHjXD0Zfr2Fc3M/ZCnku
+         TlnjLYh42zSExLCFsaedek+FU6Ap7Q0WTqvwBidnRs2XTfnWnvM6uKHNGPLnZ1EmAv
+         qAH+KIXBx0Pe5XZxLF34wUhJgnJymfXBOS18NG1x+zmNrIh+45+R+gqYZ/eVlhyMOc
+         OFXnuVSONyurg==
+Received: (nullmailer pid 389051 invoked by uid 1000);
+        Thu, 27 Jul 2023 06:15:20 -0000
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+MIME-Version: 1.0
+From:   Rob Herring <robh@kernel.org>
+To:     Rohit Agarwal <quic_rohiagar@quicinc.com>
+Cc:     bhupesh.sharma@linaro.org, quic_tdas@quicinc.com,
+        linux-arm-msm@vger.kernel.org, quic_abhinavk@quicinc.com,
+        rfoss@kernel.org, daniel@ffwll.ch, stanimir.k.varbanov@gmail.com,
+        mani@kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, airlied@gmail.com,
+        linux-media@vger.kernel.org, sboyd@kernel.org,
+        ulf.hansson@linaro.org, sean@poorly.run, konrad.dybcio@linaro.org,
+        freedreno@lists.freedesktop.org, linux-remoteproc@vger.kernel.org,
+        agross@kernel.org, quic_vgarodia@quicinc.com, robh+dt@kernel.org,
+        vladimir.zapolskiy@linaro.org, marijn.suijten@somainline.org,
+        linux-mmc@vger.kernel.org, mathieu.poirier@linaro.org,
+        mchehab@kernel.org, mturquette@baylibre.com,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        dri-devel@lists.freedesktop.org, linux-clk@vger.kernel.org,
+        jonathan@marek.ca, andersson@kernel.org, robdclark@gmail.com,
+        dmitry.baryshkov@linaro.org, neil.armstrong@linaro.org
+In-Reply-To: <1690433470-24102-1-git-send-email-quic_rohiagar@quicinc.com>
+References: <1690433470-24102-1-git-send-email-quic_rohiagar@quicinc.com>
+Message-Id: <169043852071.389034.2408155277675671058.robh@kernel.org>
+Subject: Re: [PATCH] dt-bindings: qcom: Update RPMHPD entries for some SoCs
+Date:   Thu, 27 Jul 2023 00:15:20 -0600
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -81,66 +71,62 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-
-On 26.07.2023 21:33, Conor Dooley wrote:
-> On Wed, Jul 26, 2023 at 10:19:02AM +0200, Lukasz Majewski wrote:
->> Dear Community,
->>
->>> Without this change the KSZ9477-EVB board hangs just after passing
->>> execution flow from u-boot to Linux kernel.
->>>
->>> This code has been copied from at91-sama5d3_xplained.dts.
->>>
->>> Test setup: Linux 6.5-rc1
->>> Config:     arch/arm/configs/sama5_defconfig
->>> Toolchain:  gcc-linaro-7.3.1-2018.05-x86_64_arm-linux-gnueabi
->>>
->>> Signed-off-by: Lukasz Majewski <lukma@denx.de>
->>> ---
->>>   .../boot/dts/microchip/at91-sama5d3_ksz9477_evb.dts  | 12
->>> ++++++++++++ 1 file changed, 12 insertions(+)
->>>
->>> diff --git a/arch/arm/boot/dts/microchip/at91-sama5d3_ksz9477_evb.dts
->>> b/arch/arm/boot/dts/microchip/at91-sama5d3_ksz9477_evb.dts index
->>> 14af1fd6d247..99cd6d15998b 100644 ---
->>> a/arch/arm/boot/dts/microchip/at91-sama5d3_ksz9477_evb.dts +++
->>> b/arch/arm/boot/dts/microchip/at91-sama5d3_ksz9477_evb.dts @@ -162,6
->>> +162,18 @@ };
->>>   };
->>>   
->>> +&tcb0 {
->>> +	timer0: timer@0 {
->>> +		compatible = "atmel,tcb-timer";
->>> +		reg = <0>;
->>> +	};
->>> +
->>> +	timer1: timer@1 {
->>> +		compatible = "atmel,tcb-timer";
->>> +		reg = <1>;
->>> +	};
->>> +};
->>> +
->>>   &usb0 {
->>>   	pinctrl-names = "default";
->>>   	pinctrl-0 = <&pinctrl_usba_vbus>;
->>
->> Gentle ping on this fix ...
+On Thu, 27 Jul 2023 10:21:10 +0530, Rohit Agarwal wrote:
+> Update the RPMHPD references with new bindings defined in rpmhpd.h
+> for Qualcomm SoCs SM8[2345]50.
 > 
-> Claudiu has left Microchip, so things might've got a bit lost on the
-> way. I've added his new address, Claudiu, will you take a look/pick this
-> up please? I can also do it if that is easier for you.
-
-It's on my list.
-
-Thanks,
-Claudiu
-
+> Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
+> ---
+>  Documentation/devicetree/bindings/clock/qcom,dispcc-sm8x50.yaml    | 3 ++-
+>  Documentation/devicetree/bindings/clock/qcom,sm8350-videocc.yaml   | 3 ++-
+>  Documentation/devicetree/bindings/clock/qcom,sm8450-camcc.yaml     | 3 ++-
+>  Documentation/devicetree/bindings/clock/qcom,sm8450-dispcc.yaml    | 3 ++-
+>  Documentation/devicetree/bindings/clock/qcom,sm8450-videocc.yaml   | 3 ++-
+>  Documentation/devicetree/bindings/clock/qcom,sm8550-dispcc.yaml    | 3 ++-
+>  Documentation/devicetree/bindings/clock/qcom,videocc.yaml          | 3 ++-
+>  Documentation/devicetree/bindings/display/msm/qcom,sm8250-dpu.yaml | 3 ++-
+>  .../devicetree/bindings/display/msm/qcom,sm8250-mdss.yaml          | 7 ++++---
+>  Documentation/devicetree/bindings/display/msm/qcom,sm8350-dpu.yaml | 3 ++-
+>  .../devicetree/bindings/display/msm/qcom,sm8350-mdss.yaml          | 5 +++--
+>  Documentation/devicetree/bindings/display/msm/qcom,sm8450-dpu.yaml | 3 ++-
+>  .../devicetree/bindings/display/msm/qcom,sm8450-mdss.yaml          | 7 ++++---
+>  Documentation/devicetree/bindings/display/msm/qcom,sm8550-dpu.yaml | 3 ++-
+>  .../devicetree/bindings/display/msm/qcom,sm8550-mdss.yaml          | 7 ++++---
+>  Documentation/devicetree/bindings/media/qcom,sm8250-venus.yaml     | 3 ++-
+>  Documentation/devicetree/bindings/mmc/sdhci-msm.yaml               | 3 ++-
+>  Documentation/devicetree/bindings/remoteproc/qcom,sm8350-pas.yaml  | 5 +++--
+>  18 files changed, 44 insertions(+), 26 deletions(-)
 > 
-> Thanks,
-> Conor.
-> 
-> 
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/remoteproc/qcom,sm8350-pas.example.dts:22:18: fatal error: dt-bindings/power/qcom,rpmhpd.h: No such file or directory
+   22 |         #include <dt-bindings/power/qcom,rpmhpd.h>
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+make[2]: *** [scripts/Makefile.lib:419: Documentation/devicetree/bindings/remoteproc/qcom,sm8350-pas.example.dtb] Error 1
+make[2]: *** Waiting for unfinished jobs....
+make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1500: dt_binding_check] Error 2
+make: *** [Makefile:234: __sub-make] Error 2
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/1690433470-24102-1-git-send-email-quic_rohiagar@quicinc.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
