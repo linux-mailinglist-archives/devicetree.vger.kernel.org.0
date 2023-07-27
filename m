@@ -2,55 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E5BD8765695
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 17:00:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E8FAF7656BB
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jul 2023 17:04:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232279AbjG0PAE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jul 2023 11:00:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45684 "EHLO
+        id S234259AbjG0PE1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jul 2023 11:04:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49810 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231713AbjG0PAD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 11:00:03 -0400
+        with ESMTP id S234256AbjG0PE0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 11:04:26 -0400
 Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 359E7B6;
-        Thu, 27 Jul 2023 08:00:01 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDF8CF2;
+        Thu, 27 Jul 2023 08:04:23 -0700 (PDT)
 Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36RBD2so020174;
-        Thu, 27 Jul 2023 16:59:50 +0200
+        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36RBD8l4020221;
+        Thu, 27 Jul 2023 17:03:35 +0200
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding : content-type; s=selector1;
- bh=kgwPhXs1Maa25udKJpXQZWNhB3KaaHj5JLRCEEzOU1U=;
- b=byP9NNFEOtHdKOrP0+388ox5kM1G0mqj/zHdMXuLHq1SJTz7BBumfjtDBeByOnnYydtd
- x9ne9E1QWyhXWVf52pVuNq2QIC7wm7GZXSJy29/TkxagDiSNZrVZApi9zf1m9oYgt20w
- xoWuV5o8LoGNs5gizpmDxJ0oOQrpb+8/z0NALnRQE2WBFCrLOlTDomo4zIALAtk1ceDX
- VE5cjemSoaWiq2PqS3nqtYFrrNVdKZj9gMf38DeXPdOsis1l+ocdL6Cqg5mHosyGVeei
- XkDLvTgBIruOFCJiVd8exAwFkVjUiKCVjItzjd3hB0jbIEQNsVB4Djt/WX31tErBgWGb hA== 
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=selector1;
+ bh=doC1Pd1d3NibZb37WWHiE70DKjD6XTr1B8pDdUXXdeU=;
+ b=WKh8WR22AxBJ/QxFWaS3op28d0rl7a8Nyuf6roe+2yyfevhAi98xg0CqHDltNkrDgyCQ
+ cNGzI37Wav5oon8GfmjPvsK5pvTKyvP5Li5Saxd7N15R8t87i/2RCDrx3Yoqj/haszej
+ HsgcbTr9VqAs50j6UB6X28DAq7G5/Mx6ah0v/eg4zZUVfyeLLhX2MHCmJgLSDWST6NIB
+ r9bRDSvd10mF/j4yGAj88HdwyJ54sPzWV5wF+J/hMKLnx0od6XRv09VPyNNSDi8LKtla
+ xQ6DWpi3LzqPNU++36daT5H/8/mF2t15BFr7jtJWvhBOotJ202ikt8n3HS0WS3xpGXy4 8w== 
 Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3s3qgy9760-1
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3s3qgy97v8-1
         (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 27 Jul 2023 16:59:50 +0200
+        Thu, 27 Jul 2023 17:03:35 +0200
 Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id BB8C210002A;
-        Thu, 27 Jul 2023 16:59:49 +0200 (CEST)
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 4313010002A;
+        Thu, 27 Jul 2023 17:03:35 +0200 (CEST)
 Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id B3C79209721;
-        Thu, 27 Jul 2023 16:59:49 +0200 (CEST)
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 3859B209BA1;
+        Thu, 27 Jul 2023 17:03:35 +0200 (CEST)
 Received: from localhost (10.201.20.178) by SHFDAG1NODE1.st.com (10.75.129.69)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Thu, 27 Jul
- 2023 16:59:49 +0200
+ 2023 17:03:34 +0200
 From:   Olivier Moysan <olivier.moysan@foss.st.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-CC:     Olivier Moysan <olivier.moysan@foss.st.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [RFC v2 02/11] of: property: add device link support for io-backends
-Date:   Thu, 27 Jul 2023 16:59:28 +0200
-Message-ID: <20230727145939.1157607-3-olivier.moysan@foss.st.com>
+To:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Olivier Moysan <olivier.moysan@foss.st.com>,
+        Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Fabrice Gasnier <fabrice.gasnier@foss.st.com>
+CC:     <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <alsa-devel@alsa-project.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: [RFC v2 00/11] iio: add iio backend device type
+Date:   Thu, 27 Jul 2023 17:03:11 +0200
+Message-ID: <20230727150324.1157933-1-olivier.moysan@foss.st.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230727145939.1157607-1-olivier.moysan@foss.st.com>
-References: <20230727145939.1157607-1-olivier.moysan@foss.st.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -69,33 +80,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for creating device links out of more DT properties.
+This v2 is an addon to initial RFC:
+https://lore.kernel.org/lkml/20230623140944.2613002-1-olivier.moysan@foss.st.com/
 
-Signed-off-by: Olivier Moysan <olivier.moysan@foss.st.com>
----
- drivers/of/property.c | 2 ++
- 1 file changed, 2 insertions(+)
+Despite the "IIO backend" naming has to be changed (as pointed out by
+Jonathan previously), it has been kept here, for time being. The
+appropriated naming still has to be discussed later on.
 
-diff --git a/drivers/of/property.c b/drivers/of/property.c
-index ddc75cd50825..864e29e4707c 100644
---- a/drivers/of/property.c
-+++ b/drivers/of/property.c
-@@ -1244,6 +1244,7 @@ DEFINE_SIMPLE_PROP(interconnects, "interconnects", "#interconnect-cells")
- DEFINE_SIMPLE_PROP(iommus, "iommus", "#iommu-cells")
- DEFINE_SIMPLE_PROP(mboxes, "mboxes", "#mbox-cells")
- DEFINE_SIMPLE_PROP(io_channels, "io-channel", "#io-channel-cells")
-+DEFINE_SIMPLE_PROP(io_backends, "io-backend", "#io-backend-cells")
- DEFINE_SIMPLE_PROP(interrupt_parent, "interrupt-parent", NULL)
- DEFINE_SIMPLE_PROP(dmas, "dmas", "#dma-cells")
- DEFINE_SIMPLE_PROP(power_domains, "power-domains", "#power-domain-cells")
-@@ -1332,6 +1333,7 @@ static const struct supplier_bindings of_supplier_bindings[] = {
- 	{ .parse_prop = parse_iommu_maps, .optional = true, },
- 	{ .parse_prop = parse_mboxes, },
- 	{ .parse_prop = parse_io_channels, },
-+	{ .parse_prop = parse_io_backends, },
- 	{ .parse_prop = parse_interrupt_parent, },
- 	{ .parse_prop = parse_dmas, .optional = true, },
- 	{ .parse_prop = parse_power_domains, },
+In the previous RFC the "IIO backend" concept was proposed through
+a set of template APIs.
+
+This v2 implements a functionnal exemple based on STM32 DFSDM,
+to bring scaling support to this peripheral.
+
+Olivier Moysan (11):
+  iio: introduce iio backend device
+  of: property: add device link support for io-backends
+  dt-bindings: iio: stm32-dfsdm-adc: add scaling support
+  dt-bindings: iio: adc: add scaling support to sd modulator
+  iio: adc: stm32-dfsdm: manage dfsdm as a channel provider
+  iio: adc: stm32-dfsdm: adopt generic channel bindings
+  iio: adc: stm32-dfsdm: add scaling support to dfsdm
+  iio: adc: sd modulator: add scale and offset support
+  ARM: dts: stm32: adopt new dfsdm bindings on stm32mp151
+  ARM: dts: stm32: add dfsdm pins muxing on stm32mp15
+  ARM: dts: stm32: add dfsdm iio support on stm32mp157c-ev
+
+ .../iio/adc/sigma-delta-modulator.yaml        |   9 +-
+ .../bindings/iio/adc/st,stm32-dfsdm-adc.yaml  | 189 ++++++------------
+ arch/arm/boot/dts/st/stm32mp15-pinctrl.dtsi   |  39 ++++
+ arch/arm/boot/dts/st/stm32mp151.dtsi          |  18 +-
+ arch/arm/boot/dts/st/stm32mp157c-ev1.dts      |  68 +++++++
+ drivers/iio/Makefile                          |   1 +
+ drivers/iio/adc/sd_adc_modulator.c            | 106 ++++++++--
+ drivers/iio/adc/stm32-dfsdm-adc.c             | 187 +++++++++++------
+ drivers/iio/industrialio-backend.c            | 107 ++++++++++
+ drivers/of/property.c                         |   2 +
+ include/linux/iio/backend.h                   |  56 ++++++
+ 11 files changed, 561 insertions(+), 221 deletions(-)
+ create mode 100644 drivers/iio/industrialio-backend.c
+ create mode 100644 include/linux/iio/backend.h
+
 -- 
 2.25.1
 
