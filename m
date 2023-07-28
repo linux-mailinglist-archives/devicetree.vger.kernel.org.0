@@ -2,139 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4AEEA7668C1
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 11:25:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 07B297668DE
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 11:29:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235338AbjG1JZf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jul 2023 05:25:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43298 "EHLO
+        id S235594AbjG1J3A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jul 2023 05:29:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46246 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235336AbjG1JZO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 05:25:14 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C69165B0;
-        Fri, 28 Jul 2023 02:19:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1690535973; x=1722071973;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=u5XPF3Vt1StqQYCIWI5YcWOIyc/PAuKXYiBw4jhm1/A=;
-  b=NpE9erayBSSaHi/SvPndUJUenBBfkNnVo5e3AJAd2CZ/XjhGx+YODB/l
-   VDzRHEbMSIyl0jg4a2rDRoYK7vS2nsin9g5yg2nwdNxgsswVFaGP09ice
-   u0n/qdFK5qHD58I5/+ueeYNtaLlnd2bua/y60sMpIBrZPW5BjOKOTDrL8
-   c8Y9TOCmbCxbcBnXKKC/qK2GVOb0aGvzDUg4BnQvMti5EG6uX8Mmvu3q2
-   NiGCN/a1DwlQZHhoLVoWm2fcJ8p3rTQEOHwr2/7NqzQHrc9moePXC9WJv
-   rH57A7OX/0lXkvRcI1U2iAnfOg+ExXZ511mtndm2FeIvFFZksTE28lXUZ
-   w==;
-X-IronPort-AV: E=Sophos;i="6.01,237,1684825200"; 
-   d="asc'?scan'208";a="226615085"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 28 Jul 2023 02:19:31 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Fri, 28 Jul 2023 02:19:30 -0700
-Received: from wendy (10.10.115.15) by chn-vm-ex04.mchp-main.com
- (10.10.85.152) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
- Transport; Fri, 28 Jul 2023 02:19:27 -0700
-Date:   Fri, 28 Jul 2023 10:18:52 +0100
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC:     =?utf-8?B?6ZmI5Y2O5omN?= <chenhuacai@loongson.cn>,
-        <loongson-kernel@lists.loongnix.cn>, Arnd Bergmann <arnd@arndb.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, <linux-pm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Jianmin Lv <lvjianmin@loongson.cn>,
-        <wanghongliang@loongson.cn>, Liu Peibao <liupeibao@loongson.cn>,
-        Yinbo Zhu <zhuyinbo@loongson.cn>, Liu Yun <liuyun@loongson.cn>
-Subject: Re: [PATCH v5 0/2] soc: loongson2_pm: add power management support
-Message-ID: <20230728-pessimism-exclaim-de0dd7f4bb64@wendy>
-References: <20230728074944.26746-1-zhuyinbo@loongson.cn>
- <74a37e9d.9a24.1899b9bea85.Coremail.chenhuacai@loongson.cn>
- <1c8b12b4-79c3-5018-c7df-946fe690e8c8@linaro.org>
+        with ESMTP id S235598AbjG1J22 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 05:28:28 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3470E5B90;
+        Fri, 28 Jul 2023 02:25:55 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id B26DD620A2;
+        Fri, 28 Jul 2023 09:25:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 98F40C433C7;
+        Fri, 28 Jul 2023 09:25:49 +0000 (UTC)
+Message-ID: <2d9eeb0e-71b3-157c-b947-6dd5485f46e3@xs4all.nl>
+Date:   Fri, 28 Jul 2023 11:25:47 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="523xuRZw0fU82LBP"
-Content-Disposition: inline
-In-Reply-To: <1c8b12b4-79c3-5018-c7df-946fe690e8c8@linaro.org>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH v7,0/11] media: mediatek: vcodec: separate encoder and
+ decoder
+Content-Language: en-US
+From:   Hans Verkuil <hverkuil-cisco@xs4all.nl>
+To:     Yunfei Dong <yunfei.dong@mediatek.com>,
+        =?UTF-8?Q?N=c3=adcolas_F_=2e_R_=2e_A_=2e_Prado?= 
+        <nfraprado@collabora.com>,
+        Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Nathan Hebert <nhebert@chromium.org>
+Cc:     Chen-Yu Tsai <wenst@chromium.org>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Steve Cho <stevecho@chromium.org>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20230722074230.30558-1-yunfei.dong@mediatek.com>
+ <231e9976-93fe-b8b1-29d9-6c799a8e6a3a@xs4all.nl>
+In-Reply-To: <231e9976-93fe-b8b1-29d9-6c799a8e6a3a@xs4all.nl>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-6.8 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---523xuRZw0fU82LBP
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 25/07/2023 11:58, Hans Verkuil wrote:
+> On 22/07/2023 09:42, Yunfei Dong wrote:
+>> From: Yunfei Dong <yunfei.dong@mediatek.corp-partner.google.com>
+>>
+>> With the driver more and more complex, encoder and decoder need to add more parameter
+>> in shared struct 'mtk_vcodec_ctx' and 'mtk_vcodec_dev'. Encoder use about 40% and
+>> decoder use 60% parameter. Need to allocate extra unused memory when encoder and decoder
+>> working.
+>>
+>> Separate encoder and decoder in different folder and use independent data struct.
+>>
+>> patch 1 remove unused parameter.
+>> patch 2~3 align fw and interrupt related interface.
+>> patch 4~6 remove the dependency of debug log
+>> patch 7~8 separate mtk_vcodec_ctx and mtk_vcodec_dev
+>> patch 9 fix unreasonable parameter
+>> patch 10 removed unused header files
+>> patch 11 separate encoder and decoder in different folder
+>> ---
+>> Changed from v6:
+>> - rebase to: https://git.linuxtv.org/hverkuil/media_tree.git/log/?h=fo-v6.6g.
+>> Changed from v5:
+>> - fix some words error for patch 3/6/11.
+>> - rename mtk_vcodec_comm_drv.h to mtk_vcodec_cmn_drv.h for patch 7.
+>> Changed from v4:
+>> - add one parameter to record register base for reg_base for patch 3.
+>> - add debug string for non ctx log for patch 6.
+>> - change the comment of struct mtk_vcodec_dec_ctx and struct mtk_vcodec_enc_ctx for patch 7.
+>> - prefer to use struct mtk_vcodec_dec_dev an current period, will re-construct in the future for patch 8.
+>> Changed from v3:
+>> - re-write commit message for patch 3.
+>> Changed from v2:
+>> - This patch main changed:
+>>   1: add different macro mtk_dec_debug and mtk_enc_debug calling common
+>>      macro mtk_vcodec_debug in order to use dev_dbg instead of pr_debug.
+>>   2: add different macro mtk_v4l2_venc_dbg and mtk_v4l2_vdec_dbg calling common
+>>      macro  in order to use dev_dbg instead of pr_debug.
+>> Changed from v1:
+>> - Change pr_dbg to dev_dbg for mtk_v4l2_level and mtk_vcodec_dbg for patch 4.
+>> - Change pr_err to dev_err for mtk_v4l2_err and mtk_vcodec_err for patch 5.
+>> - Fix unreasonable parameter for patch 8.
+>> ---
+>> Yunfei Dong (11):
+>>   media: mediatek: vcodec: remove unused parameter
+>>   media: mediatek: vcodec: align fw interface
+>>   media: mediatek: vcodec: Removing struct 'mtk_vcodec_ctx/dev' for
+>>     shared interface
+>>   media: mediatek: vcodec: Removing useless debug log
+>>   media: mediatek: vcodec: remove the dependency of vcodec debug log
+>>   media: mediatek: vcodec: replace pr_* with dev_* for v4l2 debug
+>>     message
+>>   media: mediatek: vcodec: separate struct 'mtk_vcodec_ctx'
+>>   media: mediatek: vcodec: separate struct mtk_vcodec_dev
+>>   media: mediatek: vcodec: fix unreasonable parameter definition and
+>>     style
+>>   media: mediatek: vcodec: remove unused include header
+>>   media: mediatek: vcodec: separate decoder and encoder
+> 
+> Besides the missing argument in patch 6/11 I also get this compiler warning:
+> 
+> drivers/media/platform/mediatek/vcodec/encoder/venc_vpu_if.c: In function 'vpu_enc_ipi_handler':
+> drivers/media/platform/mediatek/vcodec/encoder/venc_vpu_if.c:64:31: warning: 'vpu' may be used uninitialized [-Wmaybe-uninitialized]
+>    64 |         struct venc_vpu_inst *vpu;
+>       |                               ^~~
+> 
+> and this smatch error:
+> 
+> drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.c:138 mtk_vcodec_get_reg_bases() error: buffer overflow 'mtk_dec_reg_names' 11 <= 11
+> 
+> However, I believe that was introduced by Nicolas' patch series.
+> 
+> I'll try to pinpoint the precise patch.
 
-On Fri, Jul 28, 2023 at 10:36:42AM +0200, Krzysztof Kozlowski wrote:
-> On 28/07/2023 10:27, =E9=99=88=E5=8D=8E=E6=89=8D wrote:
-> > Reviewd-by: Huacai Chen <chenhuacai@loongson.cn>
->=20
-> ...
->=20
-> >=20
-> >=20
-> > =E6=9C=AC=E9=82=AE=E4=BB=B6=E5=8F=8A=E5=85=B6=E9=99=84=E4=BB=B6=E5=90=
-=AB=E6=9C=89=E9=BE=99=E8=8A=AF=E4=B8=AD=E7=A7=91=E7=9A=84=E5=95=86=E4=B8=9A=
-=E7=A7=98=E5=AF=86=E4=BF=A1=E6=81=AF=EF=BC=8C=E4=BB=85=E9=99=90=E4=BA=8E=E5=
-=8F=91=E9=80=81=E7=BB=99=E4=B8=8A=E9=9D=A2=E5=9C=B0=E5=9D=80=E4=B8=AD=E5=88=
-=97=E5=87=BA=E7=9A=84=E4=B8=AA=E4=BA=BA=E6=88=96=E7=BE=A4=E7=BB=84=E3=80=82=
-=E7=A6=81=E6=AD=A2=E4=BB=BB=E4=BD=95=E5=85=B6=E4=BB=96=E4=BA=BA=E4=BB=A5=E4=
-=BB=BB=E4=BD=95=E5=BD=A2=E5=BC=8F=E4=BD=BF=E7=94=A8=EF=BC=88=E5=8C=85=E6=8B=
-=AC=E4=BD=86=E4=B8=8D=E9=99=90=E4=BA=8E=E5=85=A8=E9=83=A8=E6=88=96=E9=83=A8=
-=E5=88=86=E5=9C=B0=E6=B3=84=E9=9C=B2=E3=80=81=E5=A4=8D=E5=88=B6=E6=88=96=E6=
-=95=A3=E5=8F=91=EF=BC=89=E6=9C=AC=E9=82=AE=E4=BB=B6=E5=8F=8A=E5=85=B6=E9=99=
-=84=E4=BB=B6=E4=B8=AD=E7=9A=84=E4=BF=A1=E6=81=AF=E3=80=82=E5=A6=82=E6=9E=9C=
-=E6=82=A8=E9=94=99=E6=94=B6=E6=9C=AC=E9=82=AE=E4=BB=B6=EF=BC=8C=E8=AF=B7=E6=
-=82=A8=E7=AB=8B=E5=8D=B3=E7=94=B5=E8=AF=9D=E6=88=96=E9=82=AE=E4=BB=B6=E9=80=
-=9A=E7=9F=A5=E5=8F=91=E4=BB=B6=E4=BA=BA=E5=B9=B6=E5=88=A0=E9=99=A4=E6=9C=AC=
-=E9=82=AE=E4=BB=B6=E3=80=82=20
-> > This email and its attachments contain confidential information from Lo=
-ongson Technology , which is intended only for the person or entity whose a=
-ddress is listed above. Any use of the information contained herein in any =
-way (including, but not limited to, total or partial disclosure, reproducti=
-on or dissemination) by persons other than the intended recipient(s) is pro=
-hibited. If you receive this email in error, please notify the sender by ph=
-one or email immediately and delete it.=20
->=20
->=20
-> Ooops!
->=20
-> Are we intended person/entities to receive your Reviewed-by tag?
+That smatch error is now found and fixed in the staging tree.
 
-It's okay, you only got a "Reviewd-by" tag ;)
+Can you post a v8 fixing the other issues?
 
-> We will
-> be using it (total/partial disclosure, reproduction, dissemination).
-> People not on To/Cc will also do it and for sure they are not intended
-> recipients.
->=20
-> Please talk with your IT that such disclaimers in open-source are not
-> desired (if not harmful even).
+Thanks!
 
+Regards,
 
---523xuRZw0fU82LBP
-Content-Type: application/pgp-signature; name="signature.asc"
+	Hans
 
------BEGIN PGP SIGNATURE-----
+> 
+> Regards,
+> 
+> 	Hans
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZMOH/AAKCRB4tDGHoIJi
-0gMjAQCwuOOqioqhXBcVVNNlEUbzvUFOeQosva5CuZ1VI8i2PgD/eYqFU0jIHamT
-Ph+ow795RHsFOuI0i+//fT4i05v03Aw=
-=OrTB
------END PGP SIGNATURE-----
-
---523xuRZw0fU82LBP--
