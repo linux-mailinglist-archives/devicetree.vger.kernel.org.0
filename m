@@ -2,60 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9553A766756
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 10:35:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E2AC076675F
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 10:38:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235047AbjG1Ifu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jul 2023 04:35:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36892 "EHLO
+        id S233230AbjG1IiQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jul 2023 04:38:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39090 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235048AbjG1IfT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 04:35:19 -0400
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4B0844B8
-        for <devicetree@vger.kernel.org>; Fri, 28 Jul 2023 01:34:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1690533283; x=1722069283;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=wB6X/8AQ5f02NzptERXJa7VYkVtINT/p5Q99fuqlrok=;
-  b=ccivIDfGItN3WKhDLD5YwR9rDrXTx6mgvVYJ8XVBSnP7j5KHB/+DxrYP
-   7OxlCYJkm9fKKgf4+Hp+9N6+XQQnZbf8jirwSEPX0aizlLa5qBV0J71MX
-   4NeexaswTh/CBKZjCFtNOtSuYka6g076ey9o6mNmRJIkYDcQUYAsVYckD
-   OOlWUB2eaedDgBzHHY5MY9bBWwdrXy5rUkieSyzuDa4jUJiCePVwYv61T
-   TLQalMnMvwN8Zk4T34v5TG2ZWxpIlm3IhStIYr3BJS5zun2hS02QFLQlB
-   Drgcje0xx0p+bPoakJx1bM+8QDtmn68elXjRyJ4GiQ+Aud8m7S2HGIzzN
-   Q==;
-X-IronPort-AV: E=Sophos;i="6.01,236,1684792800"; 
-   d="scan'208";a="32171292"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 28 Jul 2023 10:34:39 +0200
-Received: from steina-w.tq-net.de (unknown [10.123.53.21])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 9636C280075;
-        Fri, 28 Jul 2023 10:34:39 +0200 (CEST)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S233999AbjG1Ih3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 04:37:29 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B70944BC
+        for <devicetree@vger.kernel.org>; Fri, 28 Jul 2023 01:36:34 -0700 (PDT)
+Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <j.zink@pengutronix.de>)
+        id 1qPIxC-0000R9-1O; Fri, 28 Jul 2023 10:36:06 +0200
+Message-ID: <06a726ec-5423-c2e9-5b98-4eb36607a16e@pengutronix.de>
+Date:   Fri, 28 Jul 2023 10:36:02 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v2 2/3] dt-bindings: display: simple: support non-default
+ data-mapping
+Content-Language: en-US, de-DE
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>
-Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 1/1] arm64: dts: imx93: Fix anatop node size
-Date:   Fri, 28 Jul 2023 10:34:35 +0200
-Message-Id: <20230728083435.118491-1-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.34.1
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        kernel test robot <lkp@intel.com>,
+        Dan Carpenter <error27@gmail.com>,
+        patchwork-jzi@pengutronix.de, kernel@pengutronix.de,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230523-simplepanel_support_nondefault_datamapping-v2-0-87196f0d0b64@pengutronix.de>
+ <20230523-simplepanel_support_nondefault_datamapping-v2-2-87196f0d0b64@pengutronix.de>
+ <20230602153525.GB3343@pendragon.ideasonboard.com>
+From:   Johannes Zink <j.zink@pengutronix.de>
+In-Reply-To: <20230602153525.GB3343@pendragon.ideasonboard.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
+X-SA-Exim-Mail-From: j.zink@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
         URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -63,43 +59,118 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Although the memory map of i.MX93 reference manual rev. 2 claims that
-analog top has start address of 0x44480000 and end address of 0x4448ffff,
-this overlaps with TMU memory area starting at 0x44482000, as stated in
-section 73.6.1.
-As PLL configuration registers start at addresses up to 0x44481400, as used
-by clk-imx93, reduce the anatop size to 0x2000, so exclude the TMU area
-but keep all PLL registers inside.
+Hi Laurent,
 
-Fixes: ec8b5b5058ea ("arm64: dts: freescale: Add i.MX93 dtsi support")
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
----
-Unfortunately TMU isn't listed in memory map, so it was a bit of guess work.
+thank you for your review.
 
-This fixes the probe failure of qoriq_thermal:
-qoriq_thermal 44482000.tmu: can't request region for resource [mem 0x44482000-0x44482fff]
-qoriq_thermal 44482000.tmu: Failed to get memory region
-qoriq_thermal: probe of 44482000.tmu failed with error -16
+On 6/2/23 17:35, Laurent Pinchart wrote:
+> Hi Johannes,
+> 
+> Thank you for the patch.
+> 
+> On Tue, May 23, 2023 at 10:19:42AM +0200, Johannes Zink wrote:
+>> Some Displays support more than just a single default lvds data mapping,
+> 
+> s/lvds/LVDS/
 
-/proc/iomem also shows it's claimed by anatop:
-> 44480000-4448ffff : 44450000.clock-controller anatop@44480000
+ack, gonna fix in V3
 
- arch/arm64/boot/dts/freescale/imx93.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+>> which can be used to run displays on only 3 LVDS lanes in the jeida-18
+>> data-mapping mode.
+>>
+>> Add an optional data-mapping property to allow overriding the default
+>> data mapping. As it does not generally apply to any display and bus: use
+> 
+> s/bus:/bus,/
 
-diff --git a/arch/arm64/boot/dts/freescale/imx93.dtsi b/arch/arm64/boot/dts/freescale/imx93.dtsi
-index 4ec9df78f2050..6f85a05ee7e1a 100644
---- a/arch/arm64/boot/dts/freescale/imx93.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx93.dtsi
-@@ -379,7 +379,7 @@ mediamix: power-domain@44462400 {
- 
- 			anatop: anatop@44480000 {
- 				compatible = "fsl,imx93-anatop", "syscon";
--				reg = <0x44480000 0x10000>;
-+				reg = <0x44480000 0x2000>;
- 			};
- 
- 			tmu: tmu@44482000 {
+ack, gonna fix in V3
+
+> 
+>> it selectively on the innolux,g101ice-l01, which supports changing the
+>> data mapping via a strapping pin.
+>>
+>> Signed-off-by: Johannes Zink <j.zink@pengutronix.de>
+>> ---
+>>
+>> Changes:
+>>
+>> v1 -> v2: - worked in Rob's review findings (thanks for reviewing my
+>>              work): use extracted common property instead of duplicating
+>> 	    the property
+>> 	  - refined commit message
+>> 	  - add an example dts for automated checking
+>> ---
+>>   .../bindings/display/panel/panel-simple.yaml       | 26 +++++++++++++++++++++-
+>>   1 file changed, 25 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+>> index ec50dd268314..698301c8c920 100644
+>> --- a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+>> +++ b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+>> @@ -21,9 +21,9 @@ description: |
+>>   
+>>   allOf:
+>>     - $ref: panel-common.yaml#
+>> +  - $ref: ../lvds-data-mapping.yaml#
+>>   
+>>   properties:
+>> -
+>>     compatible:
+>>       enum:
+>>       # compatible must be listed in alphabetical order, ordered by compatible.
+>> @@ -353,6 +353,17 @@ properties:
+>>     power-supply: true
+>>     no-hpd: true
+>>     hpd-gpios: true
+>> +  data-mapping: true
+> 
+> As the property is optional, don't you need a default value ?
+
+as the simple-bus implicitely assumes default data mappings for LVDS panels, I 
+think this is not necessary. If the property is not used in a DT, the default 
+data mapping is used.
+
+Best regards
+Johannes
+
+> 
+>> +
+>> +if:
+>> +  not:
+>> +    properties:
+>> +      compatible:
+>> +        contains:
+>> +          const: innolux,g101ice-l01
+>> +then:
+>> +  properties:
+>> +    data-mapping: false
+>>   
+>>   additionalProperties: false
+>>   
+>> @@ -372,3 +383,16 @@ examples:
+>>           };
+>>         };
+>>       };
+>> +  - |
+>> +    panel_lvds: panel-lvds {
+>> +      compatible = "innolux,g101ice-l01";
+>> +      power-supply = <&vcc_lcd_reg>;
+>> +
+>> +      data-mapping = "jeida-24";
+>> +
+>> +      port {
+>> +        panel_in_lvds: endpoint {
+>> +          remote-endpoint = <&ltdc_out_lvds>;
+>> +        };
+>> +      };
+>> +    };
+>>
+> 
+
 -- 
-2.34.1
+Pengutronix e.K.                | Johannes Zink                  |
+Steuerwalder Str. 21            | https://www.pengutronix.de/    |
+31137 Hildesheim, Germany       | Phone: +49-5121-206917-0       |
+Amtsgericht Hildesheim, HRA 2686| Fax:   +49-5121-206917-5555    |
 
