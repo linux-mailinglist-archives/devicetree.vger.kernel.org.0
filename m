@@ -2,134 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DE74876678C
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 10:45:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4AE7876679B
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 10:47:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235129AbjG1Io7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jul 2023 04:44:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42406 "EHLO
+        id S235023AbjG1IrR convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 28 Jul 2023 04:47:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44334 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234978AbjG1IoX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 04:44:23 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 520732738;
-        Fri, 28 Jul 2023 01:44:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1690533862; x=1722069862;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=Xljk28C8TabJn6D88mq8XQ/vv5LsrMcLddBbYGMpq5U=;
-  b=Xec4lLIDT9QfpDG9G2aIRFm8BJTBgCBXz4ThaSuY7FLDM2SWjOpLeRvo
-   xo2HspP9zdTyoXYuIh3qYpylTCzIISBn1WMaeVIayTyK9UqviskOaVTad
-   PDxgcI9AywncJ+M6KhLbSEZrVuB1Er6Eb2dIG1bdaqHHj2/qgc9OAPN8s
-   NV40jUUoWkrpoUMWSfvnRhjljpZVRwJ9vH3KL/7knCftbp8CEUBSHIan3
-   08/fxdntIhz/1B+2LqO8lJujrEMVCkYZ407Et3bDS601Zx3B0CgcauZ8b
-   a5WFSOHjukwd/7B72OYCiNZL6xTT6oG0/ZKfjTfczqKdgsFVbYBmsIBma
-   Q==;
-X-IronPort-AV: E=Sophos;i="6.01,236,1684825200"; 
-   d="asc'?scan'208";a="238388894"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 28 Jul 2023 01:44:21 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Fri, 28 Jul 2023 01:44:21 -0700
-Received: from wendy (10.10.115.15) by chn-vm-ex03.mchp-main.com
- (10.10.85.151) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
- Transport; Fri, 28 Jul 2023 01:44:18 -0700
-Date:   Fri, 28 Jul 2023 09:43:43 +0100
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     Yinbo Zhu <zhuyinbo@loongson.cn>
-CC:     Arnd Bergmann <arnd@arndb.de>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, <linux-pm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Jianmin Lv <lvjianmin@loongson.cn>,
-        <wanghongliang@loongson.cn>, Liu Peibao <liupeibao@loongson.cn>,
-        <loongson-kernel@lists.loongnix.cn>, Liu Yun <liuyun@loongson.cn>,
-        <chenhuacai@kernel.org>, <kernel@xen0n.name>
-Subject: Re: [PATCH v5 0/2] soc: loongson2_pm: add power management support
-Message-ID: <20230728-cornball-preacher-a7e4644fcbef@wendy>
-References: <20230728074944.26746-1-zhuyinbo@loongson.cn>
+        with ESMTP id S235039AbjG1IrB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 04:47:01 -0400
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD5443590;
+        Fri, 28 Jul 2023 01:46:58 -0700 (PDT)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id 3AFFC24E276;
+        Fri, 28 Jul 2023 16:46:47 +0800 (CST)
+Received: from EXMBX171.cuchost.com (172.16.6.91) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 28 Jul
+ 2023 16:46:47 +0800
+Received: from [192.168.125.127] (113.72.147.196) by EXMBX171.cuchost.com
+ (172.16.6.91) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 28 Jul
+ 2023 16:46:45 +0800
+Message-ID: <dbb39cd2-4437-92ab-b6c6-8dae18748c98@starfivetech.com>
+Date:   Fri, 28 Jul 2023 16:46:44 +0800
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="UZdMYQzKkfUUS+1M"
-Content-Disposition: inline
-In-Reply-To: <20230728074944.26746-1-zhuyinbo@loongson.cn>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH v2 2/4] PCI: plda: Get common codes from Microchip
+ PolarFire host
+Content-Language: en-US
+To:     Bjorn Helgaas <helgaas@kernel.org>
+CC:     =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
+        Daire McNamara <daire.mcnamara@microchip.com>,
+        Conor Dooley <conor@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-pci@vger.kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Mason Huo <mason.huo@starfivetech.com>,
+        Leyfoon Tan <leyfoon.tan@starfivetech.com>,
+        Kevin Xie <kevin.xie@starfivetech.com>
+References: <20230727120207.GA769710@bhelgaas>
+From:   Minda Chen <minda.chen@starfivetech.com>
+In-Reply-To: <20230727120207.GA769710@bhelgaas>
+Content-Type: text/plain; charset="UTF-8"
+X-Originating-IP: [113.72.147.196]
+X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX171.cuchost.com
+ (172.16.6.91)
+X-YovoleRuleAgent: yovoleflag
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---UZdMYQzKkfUUS+1M
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-Hey,
 
-+CC Huacai & WANG.
-
-On Fri, Jul 28, 2023 at 03:49:42PM +0800, Yinbo Zhu wrote:
-> Loongson-2 platform support Power Management Controller (ACPI) and this
-> series patch was to add PM driver that base on dts and PM binding support.
->=20
-> Change in v5:
-> 		1. The patch "[PATCH v3 1/3] loongarch: export some arch-specific
-> 		   pm interfaces" had been merged into linux-next tree thus this
-> 		   v4 series patch need drop it and need depend on it and it's
-> 		   patch link was:
-> https://lore.kernel.org/all/20230615091757.24686-2-zhuyinbo@loongson.cn/
-
-Just to note, it might be in linux-next, but more importantly it is also
-in v6.5-rc1, so there is no issue with dependencies.
-
-> 		2. Swap the positions of compatible for 2k1000 and 2k0500.
-
-I noticed you sent a mail pinging the v4 of this series yesterday as it
-had not been picked up. Who do you actually expect to apply these
-patches? There does not appear to be a maintainer listed for the
-drivers/soc/loongson directory, just one for your GUTS driver.
-
-As a result, patches like
-<https://lore.kernel.org/all/a69170cb55cfc73e378b40ccf1d9c16f@208suo.com/>
-have gone ignored. Granted, that patch is probably crap that does not
-apply, due to 208suo.com people sending corrupted patches, but you the
-point.
-
-More interestingly there is also
-<https://lore.kernel.org/all/40b324af-3483-4b3d-b65a-a97944aa4a70@app.fastm=
-ail.com/>
-which seems to have also gone missing (I don't see it in linux-next),
-despite some discussion about how the patch should be merged.
-
-Looks to me like drivers/soc/loongson/ needs someone to take
-responsibility for picking up patches for the directory & sending them
-to the soc maintainers (with a new MAINTAINERS entry reflecting that) so
-that patches don't fall through the cracks.
-
-Thanks,
-Conor.
-
---UZdMYQzKkfUUS+1M
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZMN/vwAKCRB4tDGHoIJi
-0qmiAQDS9mvW/41YU9HvBHC4ZwNsN5yzGwb0yF2EJGqQ0hFbhAD9FqrgePMsjoB9
-mLXY8P6BfLNBh4fDjgk+LEl4mnwIWg4=
-=3HUz
------END PGP SIGNATURE-----
-
---UZdMYQzKkfUUS+1M--
+On 2023/7/27 20:02, Bjorn Helgaas wrote:
+> On Thu, Jul 27, 2023 at 06:39:47PM +0800, Minda Chen wrote:
+>> Add PLDA PCIe controller driver codes, Move them from Microchip
+>> PolarFire PCIe host driver codes. And move pcie-microchip-host.c
+>> to plda directory.
+>> 
+>> The change includes:
+>> - copy the IP register marcos.
+>> - Add related data structures of PCIe host instance.
+>>   mc_pcie --> plda_pcie (Get most of data members)
+>>   mc_msi  --> plda_msi
+>>   add plda_pcie_ops and plda_evt data structures.
+>> - function rename list:
+>>   mc_pcie_enable_msi       --> plda_pcie_enable_msi
+>>   mc_pcie_setup_window     --> plda_pcie_setup_window
+>>   mc_pcie_setup_windows    --> plda_pcie_setup_iomems
+>>   mc_pcie_init_irq_domains --> plda_pcie_init_irq_domains
+>>   mc_allocate_msi_domains  --> plda_allocate_msi_domains
+>>   mc_init_interrupts       --> plda_pcie_init_irq
+>>   msi interrupts related functions and irq domain
+>>   (primary function is mc_handle_msi):
+>>   mc_handle_msi            --> plda_handle_msi
+>>   intx interrupts related functions and irq domain
+>>   (primary function is mc_handle_intx):
+>>   mc_handle_intx           --> plda_handle_intx
+>>   event interrupts:
+>>   mc_handle_event	   --> plda_handle_event
+>> - For PolarFire implements non-plda local interrupt events, most of
+>>   event interrupt process codes can not be re-used. PLDA implements
+>>   new codes and irq domain ops like PolarFire.
+>>   New event functions:
+>>     plda_event_handler
+>>     plda_pcie_event_map
+>>     plda_ack_event_irq
+>>     plda_mask_event_irq
+>>     plda_unmask_event_irq
+>>     plda_hwirq_to_mask
+>> - plda_handle_event adds a new irqnum to event num mapping codes for
+>>   PLDA local event except DMA engine interrupt events. The DMA engine
+>>   interrupt events are implemented by vendors. So do not add these
+>>   events. PolarFire PCIe uses get_events function pointer to get
+>>   their events num.
+> 
+> There's a lot going on here, which makes this hard to review.  If
+> possible, I suggest splitting this into multiple patches:
+> 
+>   - Move code to plda/ directory with no other changes
+>   - Rename structs/functions from mc_* to plda_* with no other changes
+>   - Add PolarFire-specific code
+> 
+Yeah, This is a lot modification. I will try to split more patches to get it easier
+to review. maybe split IP register macros first, second rename structs/function only.
+third add the new event mapping codes， at last add PolarFire-specific codes.
+> Other general things:
+> 
+>   - Capitalize PLDA, IRQ, INTx, MSI, PCIe in commit logs, comments,
+>     dmesg text
+>   - Sort MAINTAINERS entries alphabetically; see
+>     https://git.kernel.org/linus/c192ac735768
+> 
+ok
+> Bjorn
