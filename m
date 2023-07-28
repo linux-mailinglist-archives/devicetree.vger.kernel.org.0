@@ -2,129 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 91435767774
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 23:12:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 164CC7678CB
+	for <lists+devicetree@lfdr.de>; Sat, 29 Jul 2023 01:06:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231883AbjG1VMa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jul 2023 17:12:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54806 "EHLO
+        id S231486AbjG1XG1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jul 2023 19:06:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59914 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229944AbjG1VMa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 17:12:30 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2369449E;
-        Fri, 28 Jul 2023 14:12:28 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 36SLCHgO040036;
-        Fri, 28 Jul 2023 16:12:17 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1690578737;
-        bh=A4KSrBCg00/JTvtgrv/CyVR6maJap0Me7hc/x8KElwU=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=JaXc6HJnz6ZrwqnmGtaiD4CXh27xv/DxmaV9/N6uFExV0QcpqvYhg88uzrh+JiOBo
-         K/MNCkaRrMN/eEWkwFYIi+Nc/YRTns+79tQZxKdPFQblC6PRwULERHA3CgNwv3Od8B
-         yI7RKvB6UewWgMJzukFW+x0m5rnNv5Gpj9lg15Bc=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 36SLCHNh031392
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 28 Jul 2023 16:12:17 -0500
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 28
- Jul 2023 16:12:17 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 28 Jul 2023 16:12:17 -0500
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 36SLCHue067345;
-        Fri, 28 Jul 2023 16:12:17 -0500
-Date:   Fri, 28 Jul 2023 16:12:17 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Jayesh Choudhary <j-choudhary@ti.com>
-CC:     <vigneshr@ti.com>, <s-vadapalli@ti.com>, <afd@ti.com>,
-        <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <rogerq@kernel.org>, <a-bhatia1@ti.com>, <r-ravikumar@ti.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v7 0/4] Add peripherals for J784S4
-Message-ID: <20230728211217.mipwoira57g7dcc6@moody>
-References: <20230728050859.7370-1-j-choudhary@ti.com>
+        with ESMTP id S229802AbjG1XG0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 19:06:26 -0400
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2A112682
+        for <devicetree@vger.kernel.org>; Fri, 28 Jul 2023 16:05:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1690585538;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=UYKoF8Ks1Q67e6cOSRG114BapfSWNUAmHuoWgV7fg1k=;
+        b=cj/24EPTTGhTtO1Mc1Sl1sYmbMADX9CnX8xE+78rnEXujgM0PNf1ahek3evvzlj52AqwgR
+        vSzIdXnNjLKRVLCI55ec7Np1tmSaGqsf+/iI3+12zwLJrTAUr6Nfjdv7xedQO3PjfZgX4k
+        e2UTlegGr/hRdSpL+UOdFsrYYIXA1Vg=
+Received: from mail-wr1-f72.google.com (mail-wr1-f72.google.com
+ [209.85.221.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-479-RxyAgDt5Mqq-PKEHAUu7Rg-1; Fri, 28 Jul 2023 19:05:37 -0400
+X-MC-Unique: RxyAgDt5Mqq-PKEHAUu7Rg-1
+Received: by mail-wr1-f72.google.com with SMTP id ffacd0b85a97d-3176ace3f58so1430493f8f.0
+        for <devicetree@vger.kernel.org>; Fri, 28 Jul 2023 16:05:36 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690585536; x=1691190336;
+        h=content-transfer-encoding:mime-version:message-id:date:references
+         :in-reply-to:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=UYKoF8Ks1Q67e6cOSRG114BapfSWNUAmHuoWgV7fg1k=;
+        b=DcOVXti20BGPLpjNPo4NhYhMi3STSwxvcJB+RzteGHUG9TntETDGV5yxbAlL1BAn1F
+         zRQ7KrVowL05u982M8K2Y2MncRMJgtSFHvvmErmc4Vcl8NSh/65uwnmy/3Pbfx0k1Rz/
+         //ySOGe4nkG8l2ixYYffmVdhxzgaMepnQzU4dNcJ58z9AsfxSCl2ikj1HQKl4QpoMMud
+         4iJ7RIeDYo/ZeEiYklE6ii2q7D4+k/ix9T2Sn5KSc1W/eI8DIhLLn6Fkgk+SWWfIHOnd
+         B8Hs4aciOoh3h1N0ezWo4XyWh7aPDOF9jz0ylJeVmYDMv7Ev45Niad5/Sm4uloAPfiYj
+         ARlg==
+X-Gm-Message-State: ABy/qLYUYSAlppodPe3w+4Ir+wpHCFGxWlE3TSrVkUi0F6qMSb918uzT
+        i+nipvM5/bAqNQIcHTJR1+uadMMW3+CFR2DkoI3TZ6mZ9rop1X/AHio3RSLvnNANFsxG0j1wRRc
+        9rQwD/k6/Aa4yQC8K1YLVwA==
+X-Received: by 2002:a5d:570f:0:b0:317:6f5b:2fb7 with SMTP id a15-20020a5d570f000000b003176f5b2fb7mr2789576wrv.57.1690585535957;
+        Fri, 28 Jul 2023 16:05:35 -0700 (PDT)
+X-Google-Smtp-Source: APBJJlGaqeup1KKkFNHEx1uCh4LA2D3TrUL7PCcqpRPBbZgzdQVEdE5dFoZXTmOfccIkNlSYxmwzdA==
+X-Received: by 2002:a5d:570f:0:b0:317:6f5b:2fb7 with SMTP id a15-20020a5d570f000000b003176f5b2fb7mr2789560wrv.57.1690585535608;
+        Fri, 28 Jul 2023 16:05:35 -0700 (PDT)
+Received: from localhost (205.pool92-176-231.dynamic.orange.es. [92.176.231.205])
+        by smtp.gmail.com with ESMTPSA id y18-20020adff152000000b0031784ac0babsm4768741wro.28.2023.07.28.16.05.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 28 Jul 2023 16:05:35 -0700 (PDT)
+From:   Javier Martinez Canillas <javierm@redhat.com>
+To:     Maya Matuszczyk <maccraft123mc@gmail.com>,
+        Heiko Stuebner <heiko@sntech.de>
+Cc:     Peter Geis <pgwipeout@gmail.com>, linux-kernel@vger.kernel.org,
+        Peter Robinson <pbrobinson@gmail.com>,
+        Caleb Connolly <kc@postmarketos.org>,
+        Jarrah Gosbell <kernel@undef.tools>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Martijn Braam <martijn@brixit.nl>, Ondrej Jirman <megi@xff.cz>,
+        Rob Herring <robh+dt@kernel.org>,
+        Tom Fitzhenry <tom@tom-fitzhenry.me.uk>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH] arm64: dts: rockchip: Change serial baud rate for
+ Pinephone Pro to 1.5 MB
+In-Reply-To: <CAO_Mup+JZjUyQK4yC8XwgcRpDU8_TTRJT0rjFQ6OpsEU1BnbJw@mail.gmail.com>
+References: <20230403175937.2842085-1-javierm@redhat.com>
+ <3797122.KgjxqYA5nG@diego>
+ <87pm4kuanl.fsf@minerva.mail-host-address-is-not-set>
+ <4495367.TLkxdtWsSY@phil>
+ <CAO_Mup+JZjUyQK4yC8XwgcRpDU8_TTRJT0rjFQ6OpsEU1BnbJw@mail.gmail.com>
+Date:   Sat, 29 Jul 2023 01:05:34 +0200
+Message-ID: <87fs57y6v5.fsf@minerva.mail-host-address-is-not-set>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20230728050859.7370-1-j-choudhary@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10:38-20230728, Jayesh Choudhary wrote:
-> This series adds support for:
-> - SERDES, WIZ DT nodes, Serdes lane control mux
-> - DSS and DisplayPort-0 nodes
-> 
-> This support DEPENDS upon another series which was introduced as part
-> of discussion in v5. That series[1] moves the ti-serdes headers file
-> from bindings to "arch/arm64/boot/dts/ti". (That series is merged in
-> linux-next tree)
-> 
-> Changelog v6->v7:
-> - change compatible for scm_conf to 'simple-bus'
-> - drop main_cpsw node due to driver dependency on [2]
-> 
-> Changelog v5->v6:
-> - Change header file according to [1].
-> - Add idle-state property in serdes_ln_ctrl node.
-> - Fix dtbs_check warning due to clock-frequency property in serdes_refclk
->   node by disabling the node in main.dtsi and enabling it in board file
->   when the clock-frequency node is actually added.
-> 
-> Changelog v4->v5:
-> - rebased the patches on linux-next tip.
-> 
-> Changelog v3->v4:
-> - add reg property to serdes_ln_ctrl and fix the node name again to
->   get rid of dtbs_check error.
-> - reorder reg, reg-names and ranges property for main_cpsw1.
-> - correct the order for clocks in serdes_wiz nodes to fix dtbs_check
->   warnings.
-> - fix indentation in reg, reg-names and clock property for dss node.
-> - add comments for the reg type in dss registers.
-> 
-> Changelog v3->v2:
-> - fix dtc warnings for 'scm_conf' and 'serdes_ln_ctrl' nodes
->   (Checked all the changes of the series with W=12 option during build)
-> - added clock-frequency for serdes_refclk along with other EVM changes
->   This refclk is being used by all the instances of serdes_wiz which
->   are disabled by default. So configuring refclk when the serdes nodes
->   are used for the first time is okay.
-> 
-> Changelog v1->v2:
-> - Moved J784S4 EVM changes together to the last patch
->   (Suggested by Andrew)
-> 
-> v5 patch link:
-> <https://lore.kernel.org/all/20230721132029.123881-1-j-choudhary@ti.com/>
-> 
-> [1]: <https://lore.kernel.org/all/20230721125732.122421-1-j-choudhary@ti.com/>
-> [2]: <https://lore.kernel.org/all/20230605154153.24025-1-afd@ti.com/>
-> 
-> Rahul T R (2):
->   arm64: dts: ti: k3-j784s4-main: Add DSS and DP-bridge node
->   arm64: dts: ti: k3-j784s4-evm: Enable DisplayPort-0
-> 
+Maya Matuszczyk <maccraft123mc@gmail.com> writes:
 
-Could you enable AM69-SK as well? is there anything stopping it being part of the series?
+> Hi Heiko
+>
+> pt., 28 lip 2023 o 21:00 Heiko Stuebner <heiko@sntech.de> napisa=C5=82(a):
+>>
 
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+[...]
+
+>> So far people only reported "breaks my setup". I'm in a pickle here ;-) .
+>> Without anybody saying "I want to also move into this direction" I really
+>> feel I should not merge a patch that breaks other peoples setups.
+>
+> Well, I'd prefer 1.5M baud rate as it is more consistent with other Rockc=
+hip
+> boards and it makes for a much more usable terminal experience when
+> logged in, it also doesn't affect boot times when serial is enabled with a
+> high loglevel and console on serial as 115200 does.
+>
+> Though I'm just fine with using kernel's cmdline to set a baud rate.
+>
+
+Same, but also what Peter mentioned in this thread:
+
+Peter Geis <pgwipeout@gmail.com> writes:
+>
+> Good Morning Heiko,
+>
+> The 1.5M baud is default because the clock structure on rockchip
+> devices does not allow a clean 115200 baud. By attempting to force
+> 115200, it will always be slightly off (either low or high depending
+> on how the driver decided to round). If this actually causes any
+> problems is the subject of much debate.
+>
+> Very Respectfully,
+> Peter Geis
+>
+
+So that's another argument for setting it to 1.5M. Anyways, I'll just stop
+asking for this and set my cmdline to a non-default baud rate and move on.
+
+I was just asking in case there was a decision made on this topic.
+
+--=20
+Best regards,
+
+Javier Martinez Canillas
+Core Platforms
+Red Hat
+
