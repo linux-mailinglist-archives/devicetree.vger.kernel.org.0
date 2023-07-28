@@ -2,185 +2,187 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B6AC766441
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 08:35:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 79AAE766461
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 08:41:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233631AbjG1GfQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jul 2023 02:35:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50932 "EHLO
+        id S231708AbjG1Glz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jul 2023 02:41:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56866 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233166AbjG1Ge5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 02:34:57 -0400
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E17E4217
-        for <devicetree@vger.kernel.org>; Thu, 27 Jul 2023 23:34:28 -0700 (PDT)
-Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-52256241b76so2223308a12.1
-        for <devicetree@vger.kernel.org>; Thu, 27 Jul 2023 23:34:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google; t=1690526066; x=1691130866;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=x4zfk9+w42D4Vl03+U/DigAoB0zXZh0Gh/1uuAJ0hLQ=;
-        b=coD2+ErD1H/tMiWFxYbwD3Apev1+9aIZlthe+ztq56bfnfXpmVs8LMwr64b3MY2U1a
-         oF6wJrG/o0Eduv4oKOZywDGBQ4zqrofs0hX5dNl/+y9TezfNxlLuAFhIv4lGE+W+MRBV
-         sYoj8QzbajZeb5hGULBH0zSd2zcTAzjPUN8FE=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690526066; x=1691130866;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=x4zfk9+w42D4Vl03+U/DigAoB0zXZh0Gh/1uuAJ0hLQ=;
-        b=axpHpqKnXGNklSYaDh4PUBetcAY8Xig2OHKEjfkPGDNvnzlMECoqR1oJPtMOxcZBKF
-         9yDxZ2OgwZAzfFh3UlRL+oJ4BeYFKKhtkVdsbfTkldXQXZKXvA6M4MScC11UjeG+Jmhl
-         8aGi/PIjfnDDKnwgENqtbxHISjiR/Y4ACnnBtCEvVxRKRXLLvRT3ksYHIU4Iabdvv9Ia
-         Z3hj93ZSWj7rknQXQ5eBZCiPiEMiRvi1dkPkp1yGEQ9vBWoBCj0gykBlvz+EG8trVhdd
-         0U4ovT1Ce1QzQVne0IBZpY12ZfD1UnDDRw+eU6B3NGpaAPlHiKF8BtdknGO8poPflIsz
-         Unzg==
-X-Gm-Message-State: ABy/qLYi0IS0HPBdyx2YBtMRMU2Sxpk0Th9N6z6diQWfnrU2x8jWHAsy
-        vWdNIPgy84+U/2FgiJ2C+cCaVA==
-X-Google-Smtp-Source: APBJJlExcM9nsUMinTrlbRyT2/HWEEoSamyFcmaPaQEvX5nWwoO/D+suXZBHBjXeV/Vd57iiM5ytww==
-X-Received: by 2002:aa7:d847:0:b0:520:f5dd:3335 with SMTP id f7-20020aa7d847000000b00520f5dd3335mr928262eds.41.1690526066222;
-        Thu, 27 Jul 2023 23:34:26 -0700 (PDT)
-Received: from dario-ThinkPad-T14s-Gen-2i.homenet.telecomitalia.it (host-95-232-62-70.retail.telecomitalia.it. [95.232.62.70])
-        by smtp.gmail.com with ESMTPSA id n21-20020aa7d055000000b0051e26c7a154sm1425057edo.18.2023.07.27.23.34.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 27 Jul 2023 23:34:25 -0700 (PDT)
-From:   Dario Binacchi <dario.binacchi@amarulasolutions.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     michael@amarulasolutions.com,
-        Philippe Cornu <philippe.cornu@foss.st.com>,
-        Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>,
-        Amarula patchwork <linux-amarula@amarulasolutions.com>,
-        Dario Binacchi <dario.binacchi@amarulasolutions.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-stm32@st-md-mailman.stormreply.com
-Subject: [PATCH v7 3/3] ARM: dts: stm32: support display on stm32f746-disco board
-Date:   Fri, 28 Jul 2023 08:34:16 +0200
-Message-Id: <20230728063417.2980091-4-dario.binacchi@amarulasolutions.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230728063417.2980091-1-dario.binacchi@amarulasolutions.com>
-References: <20230728063417.2980091-1-dario.binacchi@amarulasolutions.com>
+        with ESMTP id S229568AbjG1Gly (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 02:41:54 -0400
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (mail-bn7nam10on2059.outbound.protection.outlook.com [40.107.92.59])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A9B710DA;
+        Thu, 27 Jul 2023 23:41:53 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=TwMP++cpiCP+xaGKg/BPC/DgEThv5F2tcVS9FsX46cpZaBBIS87JSFdrNonIVJJ4VYDb4lhFq8AIKoGHZbqgCjVhkgDN4eyOUpH2G4nTVnPLLfen8fx/iWT0b9lE1+VJ2hPQuFG+96KgZMVGsWhTnQHueYU4ckMn/eUBlDObDHN8j8FuRZ2S2VJj4SkrHUOrjS7hlTiloyzsTekpR7z+lDNIGZrxMrTLfDGz26+fxm8sYr8jTl7rEuHQwDDugNtF/Rx14wBRSg1iPJjV79sH7P/OakAq0Ou5AAo9ARWK+b+UFvj3aABn9knc3uDN8w6wxBwexbPNgCHFnlPictkuQg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=0lAukVIcibo/j6fxXwHcWy6WJQT+F6hHOBl84nioMoc=;
+ b=IKze2qbu8fZuCqeunq/rxPESSUMtMuaVuBHfUz8X+b8j9hLHA8JF1L6jlq/py/v+qSYUdGZOJ+aMX5snEc3Mgv6rjtoyDSWjv7mJqsN0OptVhxLCQLE8+qk/hAbv2EA/nXjKujzS39YragMEkv7+EGPckZzRFpWVOEhtnN38hEnISn+opvS/yCMT0jWwVjikOSPDV0hN3N/m0hv66OUdAHhkKekd6Tz64n8YotQVHLVpU1Qtod83yi0+5/2d6lchRHgpupTzd/SkVDXKfuTC3V7Bnga0QX7wDxxU4lTWaxU4PjLgBH3tjluWPLJgl2NAx0QaJ9PH0OQIr367voLyeA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=0lAukVIcibo/j6fxXwHcWy6WJQT+F6hHOBl84nioMoc=;
+ b=JnHUa0saA+ZW5Op5I/IwL2vFTJHsWL9+4Yz4dZ/U3W+vFOcM3A+HPuKMs0B4JZ62037AakBXzjaNYadKQFoKDsggclSRWivgp8b7pz8vdevInAwQ38YOcNcLBgdcPUfdKBljvO/mlmv8W3+V+hY0RQ3s7/MFuCIRdYBZVXJ09XQ=
+Received: from BY5PR12MB4902.namprd12.prod.outlook.com (2603:10b6:a03:1dd::9)
+ by SA0PR12MB4575.namprd12.prod.outlook.com (2603:10b6:806:73::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6631.29; Fri, 28 Jul
+ 2023 06:41:50 +0000
+Received: from BY5PR12MB4902.namprd12.prod.outlook.com
+ ([fe80::dc59:ac68:adf2:62ba]) by BY5PR12MB4902.namprd12.prod.outlook.com
+ ([fe80::dc59:ac68:adf2:62ba%5]) with mapi id 15.20.6631.026; Fri, 28 Jul 2023
+ 06:41:50 +0000
+From:   "Datta, Shubhrajyoti" <shubhrajyoti.datta@amd.com>
+To:     Conor Dooley <conor@kernel.org>
+CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "git (AMD-Xilinx)" <git@amd.com>,
+        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+        "Simek, Michal" <michal.simek@amd.com>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "sboyd@kernel.org" <sboyd@kernel.org>,
+        "mturquette@baylibre.com" <mturquette@baylibre.com>
+Subject: RE: [PATCH v3] dt-bindings: clock: versal: Convert the
+ xlnx,zynqmp-clk.txt to yaml
+Thread-Topic: [PATCH v3] dt-bindings: clock: versal: Convert the
+ xlnx,zynqmp-clk.txt to yaml
+Thread-Index: AQHZviCtrm1Q/7lELUKAAndj1qKuB6/JQnWAgACxNvCAAOwDAIAD4NoQ
+Date:   Fri, 28 Jul 2023 06:41:50 +0000
+Message-ID: <BY5PR12MB49023F377CB6A3A1D7C78B7D8106A@BY5PR12MB4902.namprd12.prod.outlook.com>
+References: <20230724111843.18706-1-shubhrajyoti.datta@amd.com>
+ <20230724-direness-syrup-14c0b50c8018@spud>
+ <BY5PR12MB4902A95CD14D934BCF3B7C658103A@BY5PR12MB4902.namprd12.prod.outlook.com>
+ <20230725-untaxed-footman-0c764cc9792f@spud>
+In-Reply-To: <20230725-untaxed-footman-0c764cc9792f@spud>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_ActionId=caf92a21-3d03-4e9a-b7c1-7a8ab02ff51a;MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_ContentBits=0;MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Enabled=true;MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Method=Standard;MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Name=General;MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_SetDate=2023-07-28T06:40:27Z;MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: BY5PR12MB4902:EE_|SA0PR12MB4575:EE_
+x-ms-office365-filtering-correlation-id: e223a768-3990-40fa-6ebc-08db8f35b8e8
+x-ld-processed: 3dd8961f-e488-4e60-8e11-a82d994e183d,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: e4+X1/wy8PSx/vAr6E5H3Vs72tcxw/6tt8HAt3Zv3klvQGGzyHEQcQVafiQNCRBvSsf2SHhxKmyExhEirh5XpF/Fss4E77iZjFfXFfbQ1Eb9DQD/J9EEEi4NxLqW6ael3DCX2zyfkiGsudHRkVmInAKf4/U0iBEQXA4tYLsmEavaf4y2QiVUR7mELi4fo6d3njDlXqc16ET4EKrUQcDlf3OpzF77SmxiNzNb1lpxEa3A9KH4su+ZWeGR4E5EO75f1ln0QMqvbjEstmdV0vR08aPRbMcFglsWa77g/ZN+D8UhlTyn5OjcYxlWm7A3UwZHlhyjC4FOth86GVv9xwXk1Gm8YeNf3b7wbGDX7wJw73MUQAfkV7x9vJF8TRymg3SX+ro1d2Dvk8ibMKnMmSJJN7LHzP/VoZhpOiiA7N5dgT/v4ot6gRQrw/YV3Q53xtaVRjUBP8c5SlRGi87M5GnATDQ4edQ0tIr6AGnw2rokQpWsbfOwUnUOuQy/LzLnBszdO4zf+nYqdpydhZRbuyN99WAyClBpwe7r/P1DecEwJ5E2jRTnx7vJXKnPdxGhAQurJ8qEkGrkPg1f0kOAEvmgvhxyFgBE2WPKy+I1lRVnpoPW9k7L1oeRhUJJBS+GbxklKzgNsV/KGcxFLHcELIOYMg==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY5PR12MB4902.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(39860400002)(346002)(376002)(396003)(136003)(366004)(451199021)(86362001)(41300700001)(2906002)(316002)(38070700005)(5660300002)(8936002)(8676002)(33656002)(55016003)(52536014)(9686003)(966005)(6506007)(53546011)(26005)(7696005)(478600001)(71200400001)(83380400001)(38100700002)(186003)(64756008)(4326008)(6916009)(66446008)(66476007)(66946007)(76116006)(122000001)(54906003)(66556008);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?xTJv6zN97AIHX+C/yVPxn0Utsz8ttDlVdGUIayqnyGTHzh6aEpO9ffgz2NXH?=
+ =?us-ascii?Q?z3m5q6vso8rwb1qdRjJ539pWwO0z+5RLa/xSDzqWvWwF0u1EvfayKkRafoNj?=
+ =?us-ascii?Q?3a8XEtR3ChTE4lMYGODXY27jBJjIDeLgfSMWcgeNd1acG7QIci+3VGihlt5G?=
+ =?us-ascii?Q?SY9JzwqsinPP4AR/yejs/RHScxLCT0jK5Ftos1OtFrgP0CxHuAi/F0Vhdket?=
+ =?us-ascii?Q?WaQHubTOTuAD7PGYbNeLtmq0V7CxqE8urO6ui4v/j4t587lMfhlaX7o6Hh42?=
+ =?us-ascii?Q?y/Sh3WcIpSclueduQ+X6JuajxGpJV1Dy85rsGSy28pM3e3t5DgTSr7h/sMBB?=
+ =?us-ascii?Q?xZMVJ+hUs2cORvPAHnkksS3WrJLRKVHhFxuK1nFCCmD1raWRH6yO/laNJ/2E?=
+ =?us-ascii?Q?9IIBlI5y0zt7q+lYSoR84IEwwR8R6YM/JiPcjtVUXTxgdhi3t+1R0+hymzeG?=
+ =?us-ascii?Q?tH7rlr0ek80n5sAJpV+6et+n8coUPwzipt6wMBq4Ly/9+1lOGXoDADcHpjXL?=
+ =?us-ascii?Q?ZpPDwOvy7nmn4tu7N2iZamHyg58ccCcSydVpN26iTZM7QqThF3nl6z0+Y4Oi?=
+ =?us-ascii?Q?+gtIC0uWDftcl3biVr3k30ng/tvFhTTr9D4uDjpbVkazqZrBEhwEGKTpyWCw?=
+ =?us-ascii?Q?KNoZSEML3gcZOseFyhyusvIJLMMHai41dtKtOp7t44Q2RyuXDfeKZErDDB8X?=
+ =?us-ascii?Q?rDMZBgjbrICnGddYft1cw6DryCY5rrcGpxUclzcFOzSvktbQoDTVHrhALBgI?=
+ =?us-ascii?Q?b9P3046IbUq/rwZ20D+GU8UpJY2LwZg+tRFXx9BOpYeoQuluk/BdjN1r+2PV?=
+ =?us-ascii?Q?CpxwSlj3T06S89v39wsH0QgIkvL/GrmNCsXEQH6K0zBxMLIYJSEwLFUIuZmB?=
+ =?us-ascii?Q?GNXUB1doBvya73va+NdbTNZe/kqaqKkDgDdTccGjEJxZ843z2Rc6uPiomeSD?=
+ =?us-ascii?Q?Ok1Lnm2Z+sh2t2/mmpPC4OAr4UasE+a3T54zXcmD1iv+e3X2f375x9zIC+zm?=
+ =?us-ascii?Q?T6wBhGCLtdSQvVV42sBZQuCx/815Ac3VkhDqZbe6/+AwQIvMdA8uAJoPmS6q?=
+ =?us-ascii?Q?Dual22gMzYHyhaXjbx/xbnkGT1wjTb8TAFHNYj55lkcWwA7jRI8vS081Exsc?=
+ =?us-ascii?Q?V2v/ztI9pRquZfEav6FHYzfik1VLu53yTOx5NSIwhOX7kbibciXuwiK2ImjU?=
+ =?us-ascii?Q?C9kehxDgcJEkQCd+31Wq9z2E42HdE0J9+fMCVhawYn4HgZgxJ43L3lIuh1HB?=
+ =?us-ascii?Q?+Z/MVTiWKEHigWLtMblfGM75zY6S66F80VG+PNJ0U/O4POXZjnGOErIMOnHZ?=
+ =?us-ascii?Q?WN6f5iMfaUp7EtmhJUF6sRUWD5C9K48xgAvz+L0DvXaPx2F397e/EqHlW6Ro?=
+ =?us-ascii?Q?PihRU75FJYUdxOcj70nTvWWwTxCLQhu4OO6iFnPUws05sqarI22MhZXGz9Py?=
+ =?us-ascii?Q?YBo/jrad+sw2X+BEG8td7kGmQiH7yNtJMYeHSrrJOi/9F4wrxCjFBevcx86/?=
+ =?us-ascii?Q?i6w33nwzlItIpf8DUT+8mkwyD7JQ1Mzjk6gE0r7lzAS8ZI9LW7tQeQgruoop?=
+ =?us-ascii?Q?oT6P77pWyR8rX0s2nn4=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BY5PR12MB4902.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e223a768-3990-40fa-6ebc-08db8f35b8e8
+X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Jul 2023 06:41:50.1250
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: OUlUzTj210e8pMsml3+lwXJn9ebtzZEKsCiW+F1T0XoeP0a5YwNh2YAJf+jAAPx5zsBXEdMEhlivEeNtxgionQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR12MB4575
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support to Rocktech RK043FN48H display on stm32f746-disco board.
+[AMD Official Use Only - General]
 
-Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-Reviewed-by: Raphaël Gallais-Pou <raphael.gallais-pou@foss.st.com>
+> -----Original Message-----
+> From: Conor Dooley <conor@kernel.org>
+> Sent: Wednesday, July 26, 2023 12:57 AM
+> To: Datta, Shubhrajyoti <shubhrajyoti.datta@amd.com>
+> Cc: devicetree@vger.kernel.org; git (AMD-Xilinx) <git@amd.com>; linux-
+> clk@vger.kernel.org; Simek, Michal <michal.simek@amd.com>;
+> conor+dt@kernel.org; krzysztof.kozlowski+dt@linaro.org;
+> robh+dt@kernel.org; sboyd@kernel.org; mturquette@baylibre.com
+> Subject: Re: [PATCH v3] dt-bindings: clock: versal: Convert the xlnx,zynq=
+mp-
+> clk.txt to yaml
+>
+> On Tue, Jul 25, 2023 at 05:28:07AM +0000, Datta, Shubhrajyoti wrote:
+> > [AMD Official Use Only - General]
+> >
 
----
+<snip>
+> > > >    clocks:
+> > > >      description: List of clock specifiers which are external input
+> > > >        clocks to the given clock controller.
+> > > > -    items:
+> > > > -      - description: reference clock
+> > > > -      - description: alternate reference clock
+> > > > -      - description: alternate reference clock for programmable lo=
+gic
+> > > > +    minItems: 3
+> > > > +    maxItems: 7
+> > >
+> > > This doesn't seem right to me. The original binding requires 5 clock
+> > > inputs, but this will relax it such that only three are needed, no?
+> > > You'll need to set constraints on a per compatible basis.
+> > >
+> > Does below look good.
+>
+> I don't think that you tested it with < 5 clocks (hint, if you remove one=
+ of the
+> clocks from your example below, dt_binding_check should fail).
+> All the constraints need to move into the `if` bits AFAIU.
 
-Changes in v7:
-- Add 'Reviewed-by' tag I forgot in v6.
-  https://lore.kernel.org/linux-arm-kernel/20230629083726.84910-1-dario.binacchi@amarulasolutions.com/T/
 
-Changes in v6:
-- Remove dma nodes from stm32f746-disco.dts, they are not used by LTDC,
-  so there is no need to enable them.
+https://lore.kernel.org/all/20230720113110.25047-1-shubhrajyoti.datta@amd.c=
+om/
+Here I had it in the if .
+Then what I understood from below is that
 
-Changes in v5:
-I am confident that framebuffer sizing is a real requirement for STM32 boards,
-but I need some time to understand if and how to introduce this functionality.
-Therefore, I drop the following patches to allow the series to be fully merged:
- - [4/6] dt-bindings: display: stm32-ltdc: add optional st,fb-bpp property
- - [5/6] ARM: dts: stm32: set framebuffer bit depth on stm32f746-disco
- - [6/6] drm/stm: set framebuffer bit depth through DTS property
+https://lore.kernel.org/all/745fccb0-e49d-7da7-9556-eb28aee4a32b@linaro.org=
+/
+it should be dropped from the if and added to the above.
 
-Changes in v4:
-- Use DTS property instead of module parameter to set the framebuffer bit depth.
+Maybe I am missing something.
 
-Changes in v3:
-- drop [4/6] dt-bindings: display: simple: add Rocktech RK043FN48H
-  Applied to https://anongit.freedesktop.org/git/drm/drm-misc.git (drm-misc-next):
-  https://cgit.freedesktop.org/drm/drm-misc/commit/?id=c42a37a27c777d63961dd634a30f7c887949491a
-- drop [5/6] drm/panel: simple: add support for Rocktech RK043FN48H panel
-  Applied to https://anongit.freedesktop.org/git/drm/drm-misc.git (drm-misc-next)
-  https://cgit.freedesktop.org/drm/drm-misc/commit/?id=13cdd12a9f934158f4ec817cf048fcb4384aa9dc
-
- arch/arm/boot/dts/st/stm32f746-disco.dts | 43 ++++++++++++++++++++++++
- 1 file changed, 43 insertions(+)
-
-diff --git a/arch/arm/boot/dts/st/stm32f746-disco.dts b/arch/arm/boot/dts/st/stm32f746-disco.dts
-index c11616ed5fc6..c00d34179e2e 100644
---- a/arch/arm/boot/dts/st/stm32f746-disco.dts
-+++ b/arch/arm/boot/dts/st/stm32f746-disco.dts
-@@ -60,10 +60,41 @@ memory@c0000000 {
- 		reg = <0xC0000000 0x800000>;
- 	};
- 
-+	reserved-memory {
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		ranges;
-+
-+		linux,cma {
-+			compatible = "shared-dma-pool";
-+			no-map;
-+			size = <0x80000>;
-+			linux,dma-default;
-+		};
-+	};
-+
- 	aliases {
- 		serial0 = &usart1;
- 	};
- 
-+	backlight: backlight {
-+		compatible = "gpio-backlight";
-+		gpios = <&gpiok 3 GPIO_ACTIVE_HIGH>;
-+		status = "okay";
-+	};
-+
-+	panel_rgb: panel-rgb {
-+		compatible = "rocktech,rk043fn48h";
-+		backlight = <&backlight>;
-+		enable-gpios = <&gpioi 12 GPIO_ACTIVE_HIGH>;
-+		status = "okay";
-+		port {
-+			panel_in_rgb: endpoint {
-+				remote-endpoint = <&ltdc_out_rgb>;
-+			};
-+		};
-+	};
-+
- 	usbotg_hs_phy: usb-phy {
- 		#phy-cells = <0>;
- 		compatible = "usb-nop-xceiv";
-@@ -99,6 +130,18 @@ &i2c1 {
- 	status = "okay";
- };
- 
-+&ltdc {
-+	pinctrl-0 = <&ltdc_pins_a>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+
-+	port {
-+		ltdc_out_rgb: endpoint {
-+			remote-endpoint = <&panel_in_rgb>;
-+		};
-+	};
-+};
-+
- &sdio1 {
- 	status = "okay";
- 	vmmc-supply = <&mmc_vcard>;
--- 
-2.34.1
-
+>
+> Thanks,
+> Conor.
