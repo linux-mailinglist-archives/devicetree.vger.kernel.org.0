@@ -2,56 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 841DC767649
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 21:25:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C454F76764D
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 21:28:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229888AbjG1TZh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jul 2023 15:25:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46310 "EHLO
+        id S230147AbjG1T2b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jul 2023 15:28:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47378 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229740AbjG1TZg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 15:25:36 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C447EBF;
-        Fri, 28 Jul 2023 12:25:35 -0700 (PDT)
+        with ESMTP id S229488AbjG1T23 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 15:28:29 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A72C268B;
+        Fri, 28 Jul 2023 12:28:29 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 56947621C6;
-        Fri, 28 Jul 2023 19:25:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B841BC433C8;
-        Fri, 28 Jul 2023 19:25:33 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id C08C0621E1;
+        Fri, 28 Jul 2023 19:28:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3C954C433C7;
+        Fri, 28 Jul 2023 19:28:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690572334;
-        bh=qH1nMUGykA7IWroSLrtgzIBQVATyMiX9LOfbhqrxnCU=;
+        s=k20201202; t=1690572508;
+        bh=tkxqkheUYV+9BQzGj3DyNe/PKGjQVH/d429jWysjUCY=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=MyekAuRWYrWF8Bfcy8zUZmFKfQkpRfhHg1zBF2knIkchaUQAABmkH6WDpAaOWY9r8
-         sbYBm6PmuVC9YSADMFoeaN075qzxBp0919SqFOZHNOouXoZrvtggIZkYDVWr7OrmXC
-         OlOqhriyPWjoLNbjM7/RQN41HTo7gJlEctQGbbPG4HOIeNrdvFWrCiwSugVgxs7zY6
-         PA6tENOgbrdZadK2w0BAxc1RQaBh5X0xFF8LHwbioUf2BRO0NWV8bgGTGEGBnrELcq
-         M+PFLb/DyNjxV4zzlVX5lDnRUwUq8iby/VDEzaRwkfzGv4lz66+0gaAC56PRXOXuO+
-         KVv3TdHhcYz5w==
-Received: (nullmailer pid 1172453 invoked by uid 1000);
-        Fri, 28 Jul 2023 19:25:32 -0000
-Date:   Fri, 28 Jul 2023 13:25:32 -0600
+        b=AZWjdbViMNiV6YzFIlwDasV2ge2qYM+qQj62KAmzx3qY7wbPsT4WEGRbBASsxrTFN
+         BINFjYdnnYEtvcr/9N6ArrwL2yyJIbh+qhQpxlA+/p2NNmfkCaxWMFa1JsX7t2quQL
+         k2ItsPtMHjFfRRCs7dyb0ZFJDeij69Zu6zm4n/JXmYx+9lroBxY/2MOIGBBVJa5ELN
+         DNuIIRxRkxJfCwt8qdm+j86T+JFZOvukM/1/TOffIGPZXwDVlGG956jzyHGKxBso2+
+         tG4LLAPGWFZ6efLogbhCCtqJxJzC/0/r2MllzldvUSRWEMM5VQeE0cSgOoWYnVDpsd
+         Dyq/u3HcYA9QQ==
+Received: (nullmailer pid 1175706 invoked by uid 1000);
+        Fri, 28 Jul 2023 19:28:24 -0000
+Date:   Fri, 28 Jul 2023 13:28:24 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Varshini Rajendran <varshini.rajendran@microchip.com>
-Cc:     krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
-        claudiu.beznea@microchip.com, jerry.ray@microchip.com,
-        durai.manickamkr@microchip.com, andrew@lunn.ch,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 49/50] dt-bindings: arm: add sam9x75 curiosity board
-Message-ID: <20230728192532.GA1169417-robh@kernel.org>
-References: <20230728103106.267793-1-varshini.rajendran@microchip.com>
+To:     Markus Schneider-Pargmann <msp@baylibre.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        Michal Kubiak <michal.kubiak@intel.com>,
+        Simon Horman <simon.horman@corigine.com>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        Vivek Yadav <vivek.2311@samsung.com>,
+        linux-can@vger.kernel.org,
+        "David S . Miller" <davem@davemloft.net>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>, netdev@vger.kernel.org,
+        Paolo Abeni <pabeni@redhat.com>,
+        Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 1/6] dt-bindings: can: tcan4x5x: Add tcan4552 and
+ tcan4553 variants
+Message-ID: <169057250459.1175653.8334487301732394212.robh@kernel.org>
+References: <20230728141923.162477-1-msp@baylibre.com>
+ <20230728141923.162477-2-msp@baylibre.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230728103106.267793-1-varshini.rajendran@microchip.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+In-Reply-To: <20230728141923.162477-2-msp@baylibre.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -60,29 +72,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 28, 2023 at 04:01:06PM +0530, Varshini Rajendran wrote:
-> Add documentation for SAM9X75 Curiosity board.
+
+On Fri, 28 Jul 2023 16:19:18 +0200, Markus Schneider-Pargmann wrote:
+> These two new chips do not have state or wake pins.
 > 
-> Signed-off-by: Varshini Rajendran <varshini.rajendran@microchip.com>
+> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
->  Documentation/devicetree/bindings/arm/atmel-at91.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
+>  .../devicetree/bindings/net/can/tcan4x5x.txt          | 11 ++++++++---
+>  1 file changed, 8 insertions(+), 3 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/atmel-at91.yaml b/Documentation/devicetree/bindings/arm/atmel-at91.yaml
-> index dfb8fd089197..15b11feae46a 100644
-> --- a/Documentation/devicetree/bindings/arm/atmel-at91.yaml
-> +++ b/Documentation/devicetree/bindings/arm/atmel-at91.yaml
-> @@ -99,6 +99,12 @@ properties:
->            - const: microchip,sam9x60
->            - const: atmel,at91sam9
->  
-> +      - description: Microchip SAM9X7 Evaluation Boards
-> +        items:
-> +          - const: microchip,sam9x75-curiosity
-> +          - const: microchip,sam9x7
-> +          - const: atmel,at91sam9
 
-Has this compatible been useful in prior use? Can s/w make some decision 
-based on it? If not, I'd drop it.
+Reviewed-by: Rob Herring <robh@kernel.org>
 
-Rob
