@@ -2,164 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D5753766EFC
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 16:02:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E16AF766F27
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 16:17:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236207AbjG1OCL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jul 2023 10:02:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38066 "EHLO
+        id S236977AbjG1ORX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jul 2023 10:17:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42830 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232825AbjG1OCK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 10:02:10 -0400
-Received: from EUR02-AM0-obe.outbound.protection.outlook.com (mail-am0eur02on2042.outbound.protection.outlook.com [40.107.247.42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B51852D7B;
-        Fri, 28 Jul 2023 07:02:08 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=kl1VZzrwOfYBZEkBxSdpP8uGrx40SSFGMM8Evd4LyojFa4epHQiXkUmQ3By+CDarQk4PH/guv28cx8RzUKQlujCjudMCCkQhxP3U4wTFKF4/XRW5y8oGY3qe5wp2wB2KPtRxVIij7ACmPaM+e2zSty2odeEJL3pFAzJuz20ZC9s6ADenWwxfBb1kw2GgY/hUGWmagvyc2oXaKWo3jWCeEgqxJwDi1yNGeeQEDcmzcEBcbWXczrpeC0IozaMcFiFywlTJjrcqW8f38Cztb5Voa6c27g8owla3PTjzC/WMMkCijeuU7JhBocDhYlZO3TOmvkRLyw05m5JvmN1SyWHU3A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=QayTuuW+n/uW4Bg+8vheykhPm75RHSrCRErYHoXhqGI=;
- b=Qb/4Xnx7gEnedjay6P9ZdETz0+4dofg6U1xCtVw59T21g7XhUEkuusi3eXP8V5f4V+Xe7ey1vDPyCQKXWahlo8A2a4BNCVu5ydYXN7my0FvDyom7d4+nGURoZwd/7cFVl0uZLVFTc+RGZ8tkf1fjw/ZyZTBt1/qhYXjXMvliqy9rPBfPNGSV8f67vIygSDn8v1DKgB1m2uI9hxmnwd+CkxcFgj2/o1rc8ar9Nky0yB47k/MWZjYHP9VwUkTMFccvricYj7qLI21WFuVbjuVJ2LiQGg7sLEiM+UT35Q1N4Du+VP/qA4cSB6Hnp3lWNGZheO/eknPbJLNO6OKaJRURHw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=QayTuuW+n/uW4Bg+8vheykhPm75RHSrCRErYHoXhqGI=;
- b=L2+ppKaJghn2TVaQpl9fYDwxG1UtuCD5+0IDABR0F5Z29V97bGWyijcHRpk57CqSq4+J++0aaE6neEZc67XqlLtrcHSPsAiu43s09vF6A77ZKbOGOlIlvNiVozMqpuo2wrRXECkJX1q85G6cQeHCmh/TeLez+WZVoVjIh7n0sSA=
-Received: from GV1PR04MB9071.eurprd04.prod.outlook.com (2603:10a6:150:22::11)
- by AS8PR04MB8562.eurprd04.prod.outlook.com (2603:10a6:20b:421::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6631.29; Fri, 28 Jul
- 2023 14:02:06 +0000
-Received: from GV1PR04MB9071.eurprd04.prod.outlook.com
- ([fe80::deed:f6b5:5c93:15]) by GV1PR04MB9071.eurprd04.prod.outlook.com
- ([fe80::deed:f6b5:5c93:15%4]) with mapi id 15.20.6631.026; Fri, 28 Jul 2023
- 14:02:06 +0000
-From:   Han Xu <han.xu@nxp.com>
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Bough Chen <haibo.chen@nxp.com>,
-        Yogesh Gaur <yogeshgaur.83@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
+        with ESMTP id S236054AbjG1ORV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 10:17:21 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 830533AB9
+        for <devicetree@vger.kernel.org>; Fri, 28 Jul 2023 07:17:17 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <j.zink@pengutronix.de>)
+        id 1qPOHC-0006G2-J4; Fri, 28 Jul 2023 16:17:06 +0200
+Received: from [2a0a:edc0:0:1101:1d::39] (helo=dude03.red.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <j.zink@pengutronix.de>)
+        id 1qPOHA-002jHM-Dn; Fri, 28 Jul 2023 16:17:04 +0200
+Received: from localhost ([::1] helo=dude03.red.stw.pengutronix.de)
+        by dude03.red.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <j.zink@pengutronix.de>)
+        id 1qPOH9-00APcf-RF; Fri, 28 Jul 2023 16:17:03 +0200
+From:   Johannes Zink <j.zink@pengutronix.de>
+Subject: [PATCH v4 0/3] Support non-default LVDS data mapping for simple
+ panel
+Date:   Fri, 28 Jul 2023 16:16:54 +0200
+Message-Id: <20230523-simplepanel_support_nondefault_datamapping-v4-0-e6e7011f34b5@pengutronix.de>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIANbNw2QC/52OwYrDIBCGX6V4Xlur2STtqe+xLGESx2QgUVEjX
+ UrefU1Phd56/Abm+78HixgII7seHixgpkjOFqi+DmyYwI7ISRdmUkglvqXikRY/oweLcxdX711
+ InXVWo4F1Tp2GBAt4T3bkZzUoIxFka1pWhD1E5H0AO0y7MtdHdUrO03B6kfJ+jdy4sEDaf3xAQ
+ /dn4M9v4YlicuHv2Zvlfv0oLUsueNucL7URWvR1dfNoxzUFZ+l+1Mj2raw+96vib1rUqJpKK31
+ 582/b9g8m2cWKfQEAAA==
+To:     David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC:     "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: RE: [PATCH 1/1] spi: fspi: Add power-domains to the DT bindings
-Thread-Topic: [PATCH 1/1] spi: fspi: Add power-domains to the DT bindings
-Thread-Index: AQHZwRnieuqJEhf8wEGMPlVLLgzVWq/PNWHw
-Date:   Fri, 28 Jul 2023 14:02:05 +0000
-Message-ID: <GV1PR04MB907188709BEA225CA0B327F49706A@GV1PR04MB9071.eurprd04.prod.outlook.com>
-References: <20230728060804.22796-1-alexander.stein@ew.tq-group.com>
-In-Reply-To: <20230728060804.22796-1-alexander.stein@ew.tq-group.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: GV1PR04MB9071:EE_|AS8PR04MB8562:EE_
-x-ms-office365-filtering-correlation-id: 7038b9b3-3025-4f3b-a9bc-08db8f7339fe
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: eRBxOPHzvxKo6WlsHvxaF3SQDDz/XK9f+q1y12S4azRww+C1wSqXrzl/YcjSWm/z33KI3R8fzAMVDan8fxfI/GmGEIC6/AYzITmv/I6pFExTuTn2QZD4vpyKz9yeZ4xvfwxCTbnvARUggvi2+TKK4T9GHIkv+cVFKlV3WmEUvv8etDy6+nh3GnjNuZ7JrfrSYolGsUsoPXyOoRoEYkJOff6P4rW46f2/BgU1VGYmJSue2kr3LCzwJRPEfM3KRLNDz7xI5DOeIgJI8QFGoRiLirHjtryOcKrqf7bTEdmM1LF2xdLdvacTrniDv/huMYYUVu4NV40y7wVQ4FmSb9RUexnvhQZxPG0BCji0nDmSD8cPAlYuEyitOGinb0LA2hj+XFXOuff7XCEgrHEBzEiiubWHjytR07prkwuTObDBJCec4Iypn8BS7TshAoh1Mx+O6S5r0NZkNH3wC5RztB535Y4VYzVoBnL0OpN8CmfQ/VHhi7z+UqPk2s4SEoTpRDcsGBIa2oADL3/gm9ykRcipipXKs9l+I6S7Dd1WYycxmmoARCFDOsTlEfT4xz4bgGALw9cvEebJtKpS0L/KRwQY9vBBq2BQLVrLFeVDxVKrlK7keSEAqgqe59GphfBTjHAi
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GV1PR04MB9071.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(396003)(346002)(366004)(39860400002)(136003)(376002)(451199021)(26005)(71200400001)(186003)(6506007)(2906002)(9686003)(86362001)(38070700005)(316002)(55016003)(8676002)(8936002)(64756008)(110136005)(54906003)(7696005)(4326008)(478600001)(122000001)(38100700002)(5660300002)(52536014)(66446008)(41300700001)(33656002)(76116006)(66476007)(66556008)(44832011)(66946007)(53546011)(83380400001)(55236004);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?bcCuMqTb02QhHx2h/AsniHiUAl04dLL1k+AdvV4oHNiO3RY2SjSzlf0YwqLk?=
- =?us-ascii?Q?MPcHx9CPU7iilRD8NgUE62v29/Jhf8PBx0117MaB6wtNVh3WqFGynpJ7Vtsp?=
- =?us-ascii?Q?E9Lum3iWEjcJClo82n6AelF1EkXB3FVWCu+GHamVMM7D9QLd+GeOKyw2ygv6?=
- =?us-ascii?Q?gMW7Q1KgXjvliPssbB4knwbnQqq1lLnKriK2Vn1LH4LRF7K7HzfohQpWgGvX?=
- =?us-ascii?Q?FqfVWp8i/YSZRDOsPLSkXDG3RkHzwGd5co+n+XyGBJcgrZTrlyAbydBLdRME?=
- =?us-ascii?Q?D/IrONEKcLwiXa3cYinERxBG5dM6JrpXCCFvR4dc+6GKO108af7Ii6YZvvaW?=
- =?us-ascii?Q?JBcCXdfbOAwsmJcv9v1SVYNisyL5vlmvcw9CHc9yXz8ZWzznYEu54sXHFf+7?=
- =?us-ascii?Q?vjtKV8eKCw/90EIZjJSXFkQJYiWd2HSIuAqU33HeDYgpHm6flhcIRrhs6w8c?=
- =?us-ascii?Q?e+G9zm17y7rfPgZiRSO2WVg/4n8tt2xXYor8m4YHSLVtTK8ETp30ApAvek+/?=
- =?us-ascii?Q?jWH5zmUgzwogP6OyAYQj0mfv2OvjFi9RmpPEC5mI6vPiLOYvzraVFAIQJvoQ?=
- =?us-ascii?Q?R0qbeJM/Og+RACDsG1OFtHSm54v0+RAkUldBH/HbQ9VJ0JEKCl8URh3poGjq?=
- =?us-ascii?Q?rhGTkFbAI6UbMx0nmRTcz5mf+D8LqDMvW/CVfL8+PD598cLb9XmMrJtqjPiZ?=
- =?us-ascii?Q?nag4SGdFY2OVqva7D0HhHoELFupO9jmGXAF2clWXltL/JOn2stjZE0++H7YI?=
- =?us-ascii?Q?ra9kwOaD91yZA6dz9H+rcFXwA2Es1LbEVaJOjUyzvDeDmJnErr9ST2XosNK1?=
- =?us-ascii?Q?8ipcmGdMcni4wVUXKH0Ep+7sjMv2lFmRiqD1Uyzox5ME31TnjmTFChrUDxtW?=
- =?us-ascii?Q?muH/YRmyONI7wgekWJ0UL7mfHMEao4RAR62ah1Kf+gC1MLk4V/XRDX7iacAt?=
- =?us-ascii?Q?ZtZ6wWve4Cpetb0B+fNy6HhUOO9mGwxSVfRLLSpIgYnv6aXWShZrOnjYEZhy?=
- =?us-ascii?Q?tT/zUOZTxIX7nTEr/dYqT1YCCBqlUAsOOjiOJ+WaB6hS/Ej0YKZ03drgoqcC?=
- =?us-ascii?Q?RojMaiuv0IN4r52VGLq4Vx4oyL4wldRJ4D9Cl48/dR11q8/EwlhncLVIia/r?=
- =?us-ascii?Q?ooE4iHhr6PCS70yRkD+k15VNs0/z3AqcSSbeOFTI4LVARDqjjPnRnuc942mt?=
- =?us-ascii?Q?ennB9V/jBNtqLsUYL+bUIn2daxyg+zt3hZHyyfIeumkauPj5+2AV1iSZeMlr?=
- =?us-ascii?Q?wMBOYDCCl0a0+jP0/pcTj6u/3dmf8K2AyGpNP594LNe7I67Q0moJ39acvdyI?=
- =?us-ascii?Q?ZrdNRq9qaaxO5huee7jame8R7T15AJYFRnOSEeKsNu2+A0Gdx3/wRWAIcAA9?=
- =?us-ascii?Q?MZq2NOA7I2t5nMRFcud3JYzg7xFp/5L0xKOFldfUwsz0SQYEiAZL9VbwlX++?=
- =?us-ascii?Q?do2KXOIaaMJgobkrTWvklbjzhX8RvC2zYAZpuSpj592BE2nw3jNKZ9PQQYsP?=
- =?us-ascii?Q?ygZ7+EfbCqI0vpIIBAe2mkiMiT0o46MUMtAQ3M2/wOz1t5AzTKAZ20nrpsfe?=
- =?us-ascii?Q?pjrIDgBkG84VxXoZ0bY=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: GV1PR04MB9071.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7038b9b3-3025-4f3b-a9bc-08db8f7339fe
-X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Jul 2023 14:02:05.9506
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: /46GPDdwtDsIXWYB48KLgRFlbvVNFP7YicEy7Awx3fIyPwFJ7R/NIqYPZM15v/Ij
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8562
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>
+Cc:     kernel test robot <lkp@intel.com>,
+        Dan Carpenter <error27@gmail.com>,
+        patchwork-jzi@pengutronix.de, kernel@pengutronix.de,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Johannes Zink <j.zink@pengutronix.de>
+X-Mailer: b4 0.12.2
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: j.zink@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Some LVDS panels, such as the innolux,g101ice-l01 support multiple LVDS
+data mapping modes, which can be configured by strapping a dataformat
+pin on the display to a specific voltage.
 
+This can be particularly useful for using the jeida-18 format, which
+requires only 3 instead of 4 LVDS lanes.
 
-> -----Original Message-----
-> From: Alexander Stein <alexander.stein@ew.tq-group.com>
-> Sent: Friday, July 28, 2023 1:08 AM
-> To: Han Xu <han.xu@nxp.com>; Bough Chen <haibo.chen@nxp.com>;
-> Yogesh Gaur <yogeshgaur.83@gmail.com>; Mark Brown
-> <broonie@kernel.org>; Rob Herring <robh+dt@kernel.org>; Krzysztof
-> Kozlowski <krzysztof.kozlowski+dt@linaro.org>; Conor Dooley
-> <conor+dt@kernel.org>
-> Cc: Alexander Stein <alexander.stein@ew.tq-group.com>; linux-
-> spi@vger.kernel.org; devicetree@vger.kernel.org
-> Subject: [PATCH 1/1] spi: fspi: Add power-domains to the DT bindings
->=20
-> i.MX8(X) based SoC use a power domain. Allow supplying this domain in
-> bindings.
->=20
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+This series moves the data-mapping property for LVDS panels in a
+separate file and optionally adds it to simple-panel when matching to
+the innolux,g101ice-l01 compatible. This property allows to override
+the default data mapping set in the panel description in simple-panel.
 
-Acked-by: Han Xu <han.xu@nxp.com>
+The last patch in this series actually adds the driver support for
+parsing the data format override device tree property and modifying the
+corresponding values for bit per color and media bus format in the panel
+descriptor.
 
-> ---
->  Documentation/devicetree/bindings/spi/spi-nxp-fspi.yaml | 3 +++
->  1 file changed, 3 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/spi/spi-nxp-fspi.yaml
-> b/Documentation/devicetree/bindings/spi/spi-nxp-fspi.yaml
-> index a813c971ecf65..7fd5911454800 100644
-> --- a/Documentation/devicetree/bindings/spi/spi-nxp-fspi.yaml
-> +++ b/Documentation/devicetree/bindings/spi/spi-nxp-fspi.yaml
-> @@ -45,6 +45,9 @@ properties:
->        - const: fspi_en
->        - const: fspi
->=20
-> +  power-domains:
-> +    maxItems: 1
-> +
->  required:
->    - compatible
->    - reg
-> --
-> 2.34.1
+Best regards
+Johannes
+
+---
+
+Changelog:
+
+v3 -> v4:  - driver: worked in Dan's Feedback:
+             - return with proper error in case the call into
+	       panel_simple_override_nondefault_lvds_datamapping()
+	       failed
+	     - drop the unneeded and ambiguous ret local value
+
+- Link to v3: https://lore.kernel.org/r/20230523-simplepanel_support_nondefault_datamapping-v3-0-78ede374d3d9@pengutronix.de
+v2 -> v3:  - dt bindings: Worked in Conor's and Laurent's Feedback
+	     (thanks for your review): Drop the chomping indicator
+	   - dt bindings: Worked in Laurent's Feedback: fix typos
+	   - driver: worked in Laurent's review findings:
+	     - extract function for fixing up the bus format
+	     - only call this function on LVDS panels
+	     - fix typo
+           - Link to v2: https://lore.kernel.org/r/20230523-simplepanel_support_nondefault_datamapping-v2-0-87196f0d0b64@pengutronix.de
+
+v1 -> v2:  - dt bindings: Worked in Rob's review findings (thanks for your
+             review), refactored to use common include instead of duplication
+           - driver: added missing error unwinding goto, as found by Dan
+             Carpenter's test robot:
+             Reported-by: kernel test robot <lkp@intel.com>
+             Reported-by: Dan Carpenter <error27@gmail.com>
+             Link: https://lore.kernel.org/r/202304160359.4LHmFOlU-lkp@intel.com/
+
+To: David Airlie <airlied@gmail.com>
+To: Daniel Vetter <daniel@ffwll.ch>
+To: Rob Herring <robh+dt@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+To: Conor Dooley <conor+dt@kernel.org>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Thierry Reding <thierry.reding@gmail.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>
+To: Sam Ravnborg <sam@ravnborg.org>
+Cc: patchwork-jzi@pengutronix.de
+Cc: kernel@pengutronix.de
+Cc: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+Cc: dri-devel@lists.freedesktop.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Signed-off-by: Johannes Zink <j.zink@pengutronix.de>
+
+---
+
+---
+Johannes Zink (3):
+      dt-bindings: display: move LVDS data-mapping definition to separate file
+      dt-bindings: display: simple: support non-default data-mapping
+      drm/panel-simple: allow LVDS format override
+
+ .../bindings/display/lvds-data-mapping.yaml        | 84 ++++++++++++++++++++++
+ .../devicetree/bindings/display/lvds.yaml          | 77 +++-----------------
+ .../bindings/display/panel/panel-simple.yaml       | 26 ++++++-
+ drivers/gpu/drm/panel/panel-simple.c               | 53 ++++++++++++++
+ 4 files changed, 171 insertions(+), 69 deletions(-)
+---
+base-commit: 52920704df878050123dfeb469aa6ab8022547c1
+change-id: 20230523-simplepanel_support_nondefault_datamapping-13c3f2ea28f8
+
+Best regards,
+-- 
+Johannes Zink <j.zink@pengutronix.de>
 
