@@ -2,131 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0386776646D
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 08:47:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4BA37766493
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 08:56:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233532AbjG1Grc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jul 2023 02:47:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57918 "EHLO
+        id S233133AbjG1G4d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jul 2023 02:56:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35170 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233577AbjG1GrZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 02:47:25 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76A773AA8;
-        Thu, 27 Jul 2023 23:47:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1690526837; x=1722062837;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=YtvQho51fiUQiVv7pUWMWChlYR1zLZ8AT/WHvdmM9Ww=;
-  b=BQJR08sEg2G448F9BOcQezoCgr3+gNHLc2lf4FPWNQkmuSdpYuMi2ut0
-   XfoKiF7cBdDG5YJMeutUcifjxIdqEk7KJQROUQFEx65FicTbFAB68JqrP
-   N432SUsallebmQmNyAr++jVZpyLd1drp+gnIJ9QOnhnPaxEE1kDmEMOIJ
-   uPjBFPGOhBIJi3Pk4wLPu/tCIDJozY54PkqOHZ1kr3LFIA4bA6uA0vqLb
-   GuwPcDcRoT04weAOL/sah2C5Bx8tm5WQjyv/b8n/S/efrE+BP1vvHLx36
-   UICPJLWhq+c8pEizjt4zo9Trutd3NE9mVnRDoIz25pyb0o4+jEYl5fVyA
-   w==;
-X-IronPort-AV: E=Sophos;i="6.01,236,1684825200"; 
-   d="asc'?scan'208";a="227024283"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 27 Jul 2023 23:47:16 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
- chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Thu, 27 Jul 2023 23:47:13 -0700
-Received: from wendy (10.10.115.15) by chn-vm-ex02.mchp-main.com
- (10.10.85.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
- Transport; Thu, 27 Jul 2023 23:47:11 -0700
-Date:   Fri, 28 Jul 2023 07:46:36 +0100
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     Eric Lin <eric.lin@sifive.com>
-CC:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-riscv@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <zong.li@sifive.com>, <greentime.hu@sifive.com>,
-        <vincent.chen@sifive.com>
-Subject: Re: [PATCH v2 1/3] dt-bindings: riscv: sifive: Add SiFive Private L2
- cache controller
-Message-ID: <20230728-penpal-prelude-29a952c03827@wendy>
-References: <20230720135125.21240-1-eric.lin@sifive.com>
- <20230720135125.21240-2-eric.lin@sifive.com>
- <cbf0a8fd-3479-1684-fe90-81f2159804ef@linaro.org>
- <CAPqJEFr5h+5+F4TdNuRMaWsrmeedbfGgbgd9wh8sUUQsj2Pw-A@mail.gmail.com>
+        with ESMTP id S229704AbjG1G4c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 02:56:32 -0400
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09012BA
+        for <devicetree@vger.kernel.org>; Thu, 27 Jul 2023 23:56:31 -0700 (PDT)
+Received: by mail-lj1-x22a.google.com with SMTP id 38308e7fff4ca-2b9d3dacb33so485131fa.1
+        for <devicetree@vger.kernel.org>; Thu, 27 Jul 2023 23:56:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1690527389; x=1691132189;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=VreCUFB5kzGwTE8bquwu9Z+e/3ur68r7J1DSeuRNyD0=;
+        b=mZMoLWHG65XVvEKR0LLV5dcFIfEmOy1dHPGwEpWl6Ycs+Nn/5eVIpe/oBc8WhzJ01P
+         yRt96GOC2eBD0uVFm3f0cxOtIMcZ5myDymUaF24dyu2GC2dXHVMgHrNfLdsmT8M2W2Wa
+         5FaL/lhCHlMPmCnPJ0e75xb6+ImJiri/Ft/O/ta2IS2FD17ZHbHAMIUKTyQkcoulK8Jb
+         oBbkYrqkB52fZgnlqV2F7vILuXeZ14DiK86/XAonltRWQzvunsqVvh1DvORLVllYhQBG
+         9sZN0VfvLJ0uYd9vme4a05booi6SNECqnQRBN9h+E/iviHqwtMjT5risZs59Jk5yGC7q
+         AHXg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690527389; x=1691132189;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=VreCUFB5kzGwTE8bquwu9Z+e/3ur68r7J1DSeuRNyD0=;
+        b=Ljin+NftcHTGkCc/p1HvdpWce++DuMsGXy4cCZbo1dbWPR4pAS0DfoeVHHUDjBVZuD
+         yI3hbUM2+joyr0fDc77vgYOye/8fZDPrAB4AoKcJdKhmjk5vFP7/Gkhi7wlBcAAvrSQD
+         5e6WoxhXi3m3WF1pi93yjCJNBdrKUbS3POElrgnfHkJlz91lgftHL3N9nHXCTCX4jJn9
+         MTalkxwUYnHNECgrPfURcUhgakdYjAFPCBzelTb2He5+7Uxbw+FWlWuOIpzbeW3R43KA
+         QKSelthzjdOV5A4A/Z6GVviXOGCGk2ngFDVzexUvVXB3eLH0ltOnd1nMrZ0iIQS0HHRw
+         BQKQ==
+X-Gm-Message-State: ABy/qLZLeTlFOtWGXcSXnt1bKJjkRmGv2OwNlXBthSxyVnNyeOcYQ6x4
+        Slf8MtHhOUyKF7J5u9twOHvbp9cG/66zcvKPK056Gw==
+X-Google-Smtp-Source: APBJJlHWClCWS/slPCAYZeik+Paow8nKYb/tCOT5BCx46pLAs+0QX8CmCibw+N7CVPFDBcN0mib7Tw==
+X-Received: by 2002:a05:651c:206:b0:2b9:c4ce:558f with SMTP id y6-20020a05651c020600b002b9c4ce558fmr959873ljn.37.1690527389232;
+        Thu, 27 Jul 2023 23:56:29 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id p20-20020a1c7414000000b003fbdd9c72aasm3440570wmc.21.2023.07.27.23.56.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 27 Jul 2023 23:56:28 -0700 (PDT)
+Message-ID: <c735bf62-9d06-c46f-fe80-d9fc88ab847f@linaro.org>
+Date:   Fri, 28 Jul 2023 08:56:26 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="DkvLLUDHEo/ixRke"
-Content-Disposition: inline
-In-Reply-To: <CAPqJEFr5h+5+F4TdNuRMaWsrmeedbfGgbgd9wh8sUUQsj2Pw-A@mail.gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,
-        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v3] dt-bindings: clock: versal: Convert the
+ xlnx,zynqmp-clk.txt to yaml
+To:     Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>,
+        devicetree@vger.kernel.org
+Cc:     git@amd.com, linux-clk@vger.kernel.org, michal.simek@amd.com,
+        conor+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        robh+dt@kernel.org, sboyd@kernel.org, mturquette@baylibre.com
+References: <20230724111843.18706-1-shubhrajyoti.datta@amd.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230724111843.18706-1-shubhrajyoti.datta@amd.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---DkvLLUDHEo/ixRke
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 24/07/2023 13:18, Shubhrajyoti Datta wrote:
+> Convert the xlnx,zynqmp-clk.txt to yaml.
+> versal-clk.yaml already exists that's why ZynqMP is converted and
+> merged.
+> 
+> Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
 
-On Fri, Jul 28, 2023 at 02:01:28PM +0800, Eric Lin wrote:
-> Hi Krzysztof,
->=20
-> On Fri, Jul 21, 2023 at 4:35=E2=80=AFPM Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
-> >
-> > On 20/07/2023 15:51, Eric Lin wrote:
-> > > This add YAML DT binding documentation for SiFive Private L2
-> > > cache controller
-> > >
-> > > Signed-off-by: Eric Lin <eric.lin@sifive.com>
-> > > Reviewed-by: Zong Li <zong.li@sifive.com>
-> > > Reviewed-by: Nick Hu <nick.hu@sifive.com>
-> >
-> >
-> > ...
-> >
-> > > +properties:
-> > > +  compatible:
-> > > +    items:
-> > > +      - const: sifive,pl2cache1
-> >
-> > I still have doubts that it is not used in any SoC. This is what you
-> > said last time: "is not part of any SoC."
-> > If not part of any SoC, then where is it? Why are you adding it to the
-> > kernel?
-> >
->=20
-> Sorry for the late reply. I didn't describe it clearly last time.
-> Currently, we have two hardware versions of pl2cache: pl2cache0 and pl2ca=
-che1.
-> The pl2cache0 is used in unmatched board SoC.
 
-Wait a second, does the fu740 on the unmatched not have a ccache as
-it's L2 cache?
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - xlnx,zynqmp-clk
+> +
+> +    then:
+> +      properties:
+> +        clocks:
+> +          items:
+> +            - description: PS reference clock
+> +            - description: reference clock for video system
+> +            - description: alternative PS reference clock
+> +            - description: auxiliary reference clock
+> +            - description: transceiver reference clock
+> +            - description: (E)MIO clock source  (Optional clock)
+> +            - description: GEM emio clock  (Optional clock)
+> +            - description: Watchdog external clock (Optional clock)
 
-> The pl2cache1 is
-> utilized in our internal FPGA platform for evaluation; it's our core
-> IP.
+This is 8 items, not 7 as your top-level property says.
 
---DkvLLUDHEo/ixRke
-Content-Type: application/pgp-signature; name="signature.asc"
+> +
+> +        clock-names:
+> +          items:
+> +            - const: pss_ref_clk
+> +            - const: video_clk
+> +            - const: pss_alt_ref_clk
+> +            - const: aux_ref_clk
+> +            - const: gt_crx_ref_clk
+> +            - pattern: "^mio_clk[00-77]+.*$"
+> +            - pattern: "gem[0-3]+_emio_clk.*$"
+> +            - pattern: "swdt[0-1]+_ext_clk.*$"
+> +
 
------BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZMNkSQAKCRB4tDGHoIJi
-0n12AP4h2vY+IY4Xw3D7EqF9UHWzxcPq70z+ADbj7pY81bxvgAD/eTAguxDbLB8q
-4QcYSxEmzDs/Mr2qOF0gN0xCG6+3KwQ=
-=Vu0G
------END PGP SIGNATURE-----
+Best regards,
+Krzysztof
 
---DkvLLUDHEo/ixRke--
