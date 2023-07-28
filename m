@@ -2,94 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 238CF7676BB
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 22:06:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F0F87676E2
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 22:18:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230297AbjG1UGA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jul 2023 16:06:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33260 "EHLO
+        id S232909AbjG1USe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jul 2023 16:18:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36024 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229595AbjG1UF7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 16:05:59 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED6A24487;
-        Fri, 28 Jul 2023 13:05:58 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 82E03621F4;
-        Fri, 28 Jul 2023 20:05:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 31B37C433C9;
-        Fri, 28 Jul 2023 20:05:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690574757;
-        bh=2p+4I23zbjL5pyHGpkjvrrPEIKrCNNgOL7k5ZAuRxpU=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=fQhUqeULDwCJAU9J7VNEGHLKULbv2a7KBy12RFbSfoc3d/ufZ5KAOvtF8Mot8XEs5
-         m/6ecDSY10/Kur+BC2BxTAIt+0e46hVdU/K/chVWwjfdhJmG8Jqy2WYb3pOwS7JeJh
-         DpgRh4MacUkY+GuOcc6UcGItLLFWWwpPLgNQcN5APyxp+oQplrL1Hlf6CF/9AZxAv7
-         /XkLa2bGwwMAClBJfQJ9DPDps8CDL/yiX2RQr6eE/3ZYb3Vqof0qUmA8+iKH/uYJKc
-         OHAwbv62nINHXin75ZYy56B6lAQz1JKeMUZS1jP1k8Q97RwAhJiT4SNWxCwim4eGjA
-         X922gOk8+6m3g==
-From:   Mark Brown <broonie@kernel.org>
-To:     Han Xu <han.xu@nxp.com>, Haibo Chen <haibo.chen@nxp.com>,
-        Yogesh Gaur <yogeshgaur.83@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S233757AbjG1USc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 16:18:32 -0400
+X-Greylist: delayed 470 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 28 Jul 2023 13:18:29 PDT
+Received: from vps.xff.cz (vps.xff.cz [195.181.215.36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A63D62D75;
+        Fri, 28 Jul 2023 13:18:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=xff.cz; s=mail;
+        t=1690575037; bh=MtbowmUPW/KlSYKyYheL1Gy0Tj8pJ1m2CPlyeud3blo=;
+        h=Date:From:To:Cc:Subject:X-My-GPG-KeyId:References:From;
+        b=zNnEFCGMd3SOjwEr7PhPC7Tt4w7JouLZ2HN6SpPUF/ybtpnB0eDOmENYpp5rP4+v3
+         ODvwC8l9COkf8V64+My6OFSZMNvmLdbuY1MN8XRYTJ1CU8lLvJKKW1DBNUb2bJuvMJ
+         k9q2ZQkgbOdCofEW6kT5l5iTfounQlvnyxIfSiF4=
+Date:   Fri, 28 Jul 2023 22:10:36 +0200
+From:   =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>
+To:     Heiko Stuebner <heiko@sntech.de>
+Cc:     Peter Geis <pgwipeout@gmail.com>,
+        Javier Martinez Canillas <javierm@redhat.com>,
+        linux-kernel@vger.kernel.org,
+        Peter Robinson <pbrobinson@gmail.com>,
+        Caleb Connolly <kc@postmarketos.org>,
+        Jarrah Gosbell <kernel@undef.tools>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc:     linux-spi@vger.kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20230728060804.22796-1-alexander.stein@ew.tq-group.com>
-References: <20230728060804.22796-1-alexander.stein@ew.tq-group.com>
-Subject: Re: [PATCH 1/1] spi: fspi: Add power-domains to the DT bindings
-Message-Id: <169057475588.253217.3864846125343786277.b4-ty@kernel.org>
-Date:   Fri, 28 Jul 2023 21:05:55 +0100
+        Martijn Braam <martijn@brixit.nl>,
+        Rob Herring <robh+dt@kernel.org>,
+        Tom Fitzhenry <tom@tom-fitzhenry.me.uk>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH] arm64: dts: rockchip: Change serial baud rate for
+ Pinephone Pro to 1.5 MB
+Message-ID: <nk22axbl47myincpxnhcygtb5viyldv6fkxng3m43yd7dwbzau@p6ycsad6uoqr>
+Mail-Followup-To: =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>, 
+        Heiko Stuebner <heiko@sntech.de>, Peter Geis <pgwipeout@gmail.com>, 
+        Javier Martinez Canillas <javierm@redhat.com>, linux-kernel@vger.kernel.org, 
+        Peter Robinson <pbrobinson@gmail.com>, Caleb Connolly <kc@postmarketos.org>, 
+        Jarrah Gosbell <kernel@undef.tools>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+        Martijn Braam <martijn@brixit.nl>, Rob Herring <robh+dt@kernel.org>, 
+        Tom Fitzhenry <tom@tom-fitzhenry.me.uk>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+        linux-rockchip@lists.infradead.org
+X-My-GPG-KeyId: EBFBDDE11FB918D44D1F56C1F9F0A873BE9777ED
+ <https://xff.cz/key.txt>
+References: <20230403175937.2842085-1-javierm@redhat.com>
+ <3797122.KgjxqYA5nG@diego>
+ <87pm4kuanl.fsf@minerva.mail-host-address-is-not-set>
+ <4495367.TLkxdtWsSY@phil>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.13-dev-099c9
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <4495367.TLkxdtWsSY@phil>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 28 Jul 2023 08:08:04 +0200, Alexander Stein wrote:
-> i.MX8(X) based SoC use a power domain. Allow supplying this domain in
-> bindings.
+Hi Heiko and Javier,
+
+On Fri, Jul 28, 2023 at 08:59:50PM +0200, Heiko Stuebner wrote:
+> 
+> Hi Javier,
+> 
+> > Probably won't replace the DTB shipped with the firmware either? If one is
+> > replacing the firmware provided DTB witch the one in the mainline kernel,
+> > probably such person is also using mainline u-boot?
+> 
+> Not necessarily.
+> 
+> I.e. putting an extlinux.conf on an sd-card with a kernel-image and dtb
+> is not rocket science ;-)
+> 
+> > For someone like me who is only using mainline u-boot, linux, etc then
+> > having a consistent uart baud rate across all components is really useful.
+> > 
+> > Otherwise I either have serial console for u-boot or the kernel, but can't
+> > have both working so is annoying.
+> > 
+> > It would be good to have a definite answer on this. Since every time that
+> > I try to hack on my PPP, I end changing my DTS and remember this patch :)
+> 
+> So far people only reported "breaks my setup". I'm in a pickle here ;-) .
+> Without anybody saying "I want to also move into this direction" I really
+> feel I should not merge a patch that breaks other peoples setups.
+
+Even if this is not changed in kernel, bootloader should fix this situation by
+patching the kernel DTB before booting the kernel. U-Boot already patches the
+DTB in several ways, so I guess it's possible to just change stdout-path either
+in generic code, or in per-board ft_board_setup() for Pinephone Pro to something
+that matches whatever the user configured via Kconfig:
+
+https://elixir.bootlin.com/u-boot/latest/source/configs/pinephone-pro-rk3399_defconfig#L79
+
+I mean that if U-Boot allows the user to configure arbitrary baudrate via
+KConfig, then it *should* also update the kernel DTB to match, especially if the
+choice is different from DTB that it actually embeds:
+
+https://elixir.bootlin.com/u-boot/latest/source/arch/arm/dts/rk3399-pinephone-pro.dts#L29
+
+No static baudrate choice in DT will save anyone anyway, with the provided flexibility
+of configuration.
+
+Maybe this would be a nice location to fix this:
+
+https://elixir.bootlin.com/u-boot/v2023.07.02/source/common/fdt_support.c#L131
+
+kind regards,
+	o.
+
+> 
+> Heiko
 > 
 > 
-
-Applied to
-
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
-
-Thanks!
-
-[1/1] spi: fspi: Add power-domains to the DT bindings
-      commit: 026badeb7055e41000e4b139833ca5bafe360eb6
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
