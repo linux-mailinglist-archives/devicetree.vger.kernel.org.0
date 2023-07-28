@@ -2,77 +2,251 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CFF5D7666E7
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 10:23:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ABE0C7666EB
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 10:23:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234885AbjG1IWz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jul 2023 04:22:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56062 "EHLO
+        id S234855AbjG1IXX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jul 2023 04:23:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56108 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234889AbjG1IWK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 04:22:10 -0400
+        with ESMTP id S234812AbjG1IW1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 04:22:27 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 982D64481;
-        Fri, 28 Jul 2023 01:21:03 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8642944A1;
+        Fri, 28 Jul 2023 01:21:17 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 18EFA62045;
-        Fri, 28 Jul 2023 08:21:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4B13EC433C7;
-        Fri, 28 Jul 2023 08:21:00 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 2171A6203A;
+        Fri, 28 Jul 2023 08:21:17 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 98CD0C433C8;
+        Fri, 28 Jul 2023 08:21:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690532462;
-        bh=DMwg3U7ETlMhkrGihrRA6J3whW7gP30wrKzTnlGxfMA=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=ksZ0cEC1AwwxW16hKBfcM2zgE5yzCsDVhYvKuCr/sdzyj8yw7t8FPbG0NUsx06FJm
-         nHkgSkXJMNR3c+BNKObvkJGFVc0XZiLAS5UAMvjHLVe+bWMu/Ei+VknN0I70fi5iww
-         vLc9RiQIAO3CbJFKNYLdEbXVlsVsJP99X6gXzfA5RsBVxAfVxsE45FS3Pw7cEVsQCX
-         aQfOYbn4QkHqG46PJqjvh6jUrDHel6Jp3zXNrv/MJGNoqjQzyBAB9NTpps+C+JtKEp
-         n3DxePRUEIOW8Tz0/WrG5qiNZ0eIMk8SFzYMCiR3CAxRiNwfBKNqiMU3EGSKDTZ9o0
-         w41AORsEkB0LA==
-From:   Lee Jones <lee@kernel.org>
-To:     linux-leds@vger.kernel.org, Marek Vasut <marex@denx.de>
-Cc:     Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-        Isai Gaspar <isaiezequiel.gaspar@nxp.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lee Jones <lee@kernel.org>, Pavel Machek <pavel@ucw.cz>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-In-Reply-To: <20230713163516.21644-1-marex@denx.de>
-References: <20230713163516.21644-1-marex@denx.de>
-Subject: Re: [PATCH v4 1/2] dt-bindings: leds: pca995x: Add binding
- document for PCA995X chips
-Message-Id: <169053245996.271756.12831657035182461894.b4-ty@kernel.org>
-Date:   Fri, 28 Jul 2023 09:20:59 +0100
+        s=k20201202; t=1690532476;
+        bh=trDnCNuseGajeqLLAPm/8j0t94QcgtOfehlGyJyaXZE=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=Mz2ko7Ol0uqzlX1AHZYCgEeua3ecSnCmo+vwwV2++dFEVO/Ao9FhTMMnDncWT/XmF
+         WOV6p0E3iGsRa1jaRkxKFZzRDaY9z7RnRspLVZ7AsRXerPNek9iJHJNP2crriUM604
+         mpv6mFcyj0M6xFd5g91ru6p1Yet3TLbQPlWOZwIEcpo0+qUtgJbj7pDHE/wMY9n7uV
+         UKY+qNnRIAXmIlxkPyZrPoSjRobrR7FJ5ZSXeE9FRhgulCMAppmWZt88EqiYBpDWRE
+         JAp/l+VFsql+p3qFz2RsIJhrPQp+LgrYvlv5peaxevseAEE+qMcWGPi7XcSeVCGxOL
+         DT4Aod1QyyNEw==
+Message-ID: <c134dae7-38ba-baca-38ba-e06bbc6a491b@kernel.org>
+Date:   Fri, 28 Jul 2023 10:21:08 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.12.2
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH 2/2] media: i2c: imx519: Support for the Sony IMX519
+ sensor
+Content-Language: en-US
+To:     Umang Jain <umang.jain@ideasonboard.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Lee Jackson <lee.jackson@arducam.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Shawn Tu <shawnx.tu@intel.com>,
+        Nicholas Roth <nicholas@rothemail.net>,
+        Mikhail Rudenko <mike.rudenko@gmail.com>,
+        kieran.bingham@ideasonboard.com,
+        Marco Felsch <m.felsch@pengutronix.de>,
+        jacopo.mondi@ideasonboard.com
+References: <20230727154108.308320-1-umang.jain@ideasonboard.com>
+ <20230727154108.308320-3-umang.jain@ideasonboard.com>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+In-Reply-To: <20230727154108.308320-3-umang.jain@ideasonboard.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 13 Jul 2023 18:35:15 +0200, Marek Vasut wrote:
-> The PCA995x chips are I2C controlled LED drivers. Each chip has
-> up to 16 outputs, each one with an individual 8-bit resolution
-> PWM for brightness control. Add binding document.
+On 27/07/2023 17:41, Umang Jain wrote:
+> From: Lee Jackson <lee.jackson@arducam.com>
 > 
-> 
+> Adds a driver for the 16MPix IMX519 CSI2 sensor.
+> Whilst the sensor supports 2 or 4 CSI2 data lanes, this driver
+> currently only supports 2 lanes. The driver also supports
+> Phase Detection Auto Focus (PDAF).
 
-Applied, thanks!
 
-[1/2] dt-bindings: leds: pca995x: Add binding document for PCA995X chips
-      commit: b851af1c064e65b49283945937ece5d93fadbdfa
-[2/2] leds: pca995x: Add support for PCA995X chips
-      commit: 6863b75a930513af1854f378f0a6a3a6a60fe8f9
+Thank you for your patch. There is something to discuss/improve.
 
---
-Lee Jones [李琼斯]
+
+> +
+> +error_out:
+> +	v4l2_fwnode_endpoint_free(&ep_cfg);
+> +	fwnode_handle_put(endpoint);
+> +
+> +	return ret;
+> +}
+> +
+> +static const struct of_device_id imx519_dt_ids[] = {
+> +	{ .compatible = "sony,imx519"},
+> +	{ /* sentinel */ }
+> +};
+> +
+> +static int imx519_probe(struct i2c_client *client)
+> +{
+> +	struct device *dev = &client->dev;
+> +	struct imx519 *imx519;
+> +	const struct of_device_id *match;
+> +	u32 xclk_freq;
+> +	int ret;
+> +
+> +	imx519 = devm_kzalloc(&client->dev, sizeof(*imx519), GFP_KERNEL);
+> +	if (!imx519)
+> +		return -ENOMEM;
+> +
+> +	v4l2_i2c_subdev_init(&imx519->sd, client, &imx519_subdev_ops);
+> +
+> +	match = of_match_device(imx519_dt_ids, dev);
+> +	if (!match)
+> +		return -ENODEV;
+> +
+> +	/* Check the hardware configuration in device tree */
+> +	if (imx519_check_hwcfg(dev))
+> +		return -EINVAL;
+> +
+> +	/* Get system clock (xclk) */
+> +	imx519->xclk = devm_clk_get(dev, NULL);
+> +	if (IS_ERR(imx519->xclk)) {
+> +		dev_err(dev, "failed to get xclk\n");
+
+return dev_err_probe
+
+> +		return PTR_ERR(imx519->xclk);
+> +	}
+> +
+> +	xclk_freq = clk_get_rate(imx519->xclk);
+> +	if (xclk_freq != IMX519_XCLK_FREQ) {
+> +		dev_err(dev, "xclk frequency not supported: %d Hz\n",
+> +			xclk_freq);
+
+return dev_err_probe
+
+> +		return -EINVAL;
+> +	}
+> +
+> +	ret = imx519_get_regulators(imx519);
+> +	if (ret) {
+> +		dev_err(dev, "failed to get regulators\n");
+> +		return ret;
+
+return dev_err_probe
+
+> +	}
+> +
+> +	/* Request optional enable pin */
+> +	imx519->reset_gpio = devm_gpiod_get_optional(dev, "reset",
+> +						     GPIOD_OUT_HIGH);
+> +
+> +	/*
+> +	 * The sensor must be powered for imx519_identify_module()
+> +	 * to be able to read the CHIP_ID register
+> +	 */
+> +	ret = imx519_power_on(dev);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = imx519_identify_module(imx519, IMX519_CHIP_ID);
+> +	if (ret)
+> +		goto error_power_off;
+> +
+> +	/* Set default mode to max resolution */
+> +	imx519->mode = &supported_modes_10bit[0];
+> +	imx519->fmt_code = MEDIA_BUS_FMT_SRGGB10_1X10;
+> +
+> +	/* Enable runtime PM and turn off the device */
+> +	pm_runtime_set_active(dev);
+> +	pm_runtime_enable(dev);
+> +	pm_runtime_idle(dev);
+> +
+> +	/* This needs the pm runtime to be registered. */
+> +	ret = imx519_init_controls(imx519);
+> +	if (ret)
+> +		goto error_power_off;
+> +
+> +	/* Initialize subdev */
+> +	imx519->sd.internal_ops = &imx519_internal_ops;
+> +	imx519->sd.flags |= V4L2_SUBDEV_FL_HAS_DEVNODE |
+> +			    V4L2_SUBDEV_FL_HAS_EVENTS;
+> +	imx519->sd.entity.function = MEDIA_ENT_F_CAM_SENSOR;
+> +
+> +	/* Initialize source pads */
+> +	imx519->pad[IMAGE_PAD].flags = MEDIA_PAD_FL_SOURCE;
+> +	imx519->pad[METADATA_PAD].flags = MEDIA_PAD_FL_SOURCE;
+> +
+> +	ret = media_entity_pads_init(&imx519->sd.entity, NUM_PADS, imx519->pad);
+> +	if (ret) {
+> +		dev_err(dev, "failed to init entity pads: %d\n", ret);
+> +		goto error_handler_free;
+> +	}
+> +
+> +	ret = v4l2_async_register_subdev_sensor(&imx519->sd);
+> +	if (ret < 0) {
+> +		dev_err(dev, "failed to register sensor sub-device: %d\n", ret);
+> +		goto error_media_entity;
+> +	}
+> +
+> +	return 0;
+> +
+> +error_media_entity:
+> +	media_entity_cleanup(&imx519->sd.entity);
+> +
+> +error_handler_free:
+> +	imx519_free_controls(imx519);
+> +
+> +error_power_off:
+> +	pm_runtime_disable(&client->dev);
+> +	pm_runtime_set_suspended(&client->dev);
+> +	imx519_power_off(&client->dev);
+> +
+> +	return ret;
+> +}
+> +
+> +static void imx519_remove(struct i2c_client *client)
+> +{
+> +	struct v4l2_subdev *sd = i2c_get_clientdata(client);
+> +	struct imx519 *imx519 = to_imx519(sd);
+> +
+> +	v4l2_async_unregister_subdev(sd);
+> +	media_entity_cleanup(&sd->entity);
+> +	imx519_free_controls(imx519);
+> +
+> +	pm_runtime_disable(&client->dev);
+> +	if (!pm_runtime_status_suspended(&client->dev))
+> +		imx519_power_off(&client->dev);
+> +	pm_runtime_set_suspended(&client->dev);
+> +}
+> +
+> +MODULE_DEVICE_TABLE(of, imx519_dt_ids);
+> +
+> +static const struct dev_pm_ops imx519_pm_ops = {
+> +	SET_SYSTEM_SLEEP_PM_OPS(imx519_suspend, imx519_resume)
+> +	SET_RUNTIME_PM_OPS(imx519_power_off, imx519_power_on, NULL)
+> +};
+> +
+> +static struct i2c_driver imx519_i2c_driver = {
+> +	.driver = {
+> +		.name = "imx519",
+> +		.of_match_table	= imx519_dt_ids,
+> +		.pm = &imx519_pm_ops,
+> +	},
+> +	.probe_new = imx519_probe,
+
+Are you sure? Wasn't i2c already converted?
+
+
+Best regards,
+Krzysztof
 
