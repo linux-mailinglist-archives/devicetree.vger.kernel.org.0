@@ -2,105 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 50ACD766558
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 09:29:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 53F0476655D
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 09:30:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234246AbjG1H3X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jul 2023 03:29:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57954 "EHLO
+        id S234255AbjG1HaZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jul 2023 03:30:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58578 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232323AbjG1H3X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 03:29:23 -0400
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F1423584
-        for <devicetree@vger.kernel.org>; Fri, 28 Jul 2023 00:29:20 -0700 (PDT)
-Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-3fbc0609cd6so18883545e9.1
-        for <devicetree@vger.kernel.org>; Fri, 28 Jul 2023 00:29:20 -0700 (PDT)
+        with ESMTP id S233678AbjG1HaY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 03:30:24 -0400
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12EFF2733
+        for <devicetree@vger.kernel.org>; Fri, 28 Jul 2023 00:30:23 -0700 (PDT)
+Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-3fb4146e8deso20619055e9.0
+        for <devicetree@vger.kernel.org>; Fri, 28 Jul 2023 00:30:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690529358; x=1691134158;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=2OdGR/VabDO/LNWkLVSY7orQ8Mq9/77wQxJuYipxOG0=;
-        b=mjc6wHufEVkvRMRtcUmWZN019LJmlKVhXLbHhoXr+gQUDyLbegB+xSdrXNUFmlX+Zy
-         vYuinE6pM7MzYNLfzlGULPn/bvZYFRNMmTJRhjFw2783cudqbbEp9n9Eqm8cMsmsH1h7
-         Av7UYO413Dcz0KjyoajjSRADWSJhPgg3dOzomCpREFf5Ud26fP7aYHf7hahbSTF0OzRB
-         ujS7ebH0V/VVHPwIocFJoJQPeGlyrh5A0q4WDt49SQx1m2X7BJ6dhIhYnKPZIpbhMYN2
-         8G6yKcPFnPEL5VwaSrFGruNaCKwmVlg4nnPsc+nTT5Z0C6wt7zY/SXcq8EgyQY/0vGPs
-         i/6A==
+        d=linaro.org; s=google; t=1690529421; x=1691134221;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=TuQnxh7MQh36hqhWZvA+gANo32GIzZNpZKmW5WUO/yA=;
+        b=C/1HiCTU+Mw+b3eoR6IdkYs/7otP+yYTwa6bk2vFBsbVXTxhoX/gVv2WD5gUWYMsLM
+         MHivd0SfexVStnz/IFab5nvIk/ZsO5nk1cH/Tk97Tdova/9aKS5Jf7jWd3r9X8TjgJJL
+         OpLxP+Z6TQb7XGQXvY5gGy11MROrouVDJDlj4HI6LuooGpQwgEaXN4KPa9l/7U9jVm98
+         lBQSsbN99Qd2tzmuAlrvS9EixejNQ7iD9OJShmho1xx3xhzADntx5Nkpb0ibhmNIB+VD
+         UFzXorGkVVGPc3HJBmUYPt1ME+0ZZlIftv/J2fhTe7fgxwlDDSxENQkru05grMLY7zyZ
+         NSqg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690529358; x=1691134158;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2OdGR/VabDO/LNWkLVSY7orQ8Mq9/77wQxJuYipxOG0=;
-        b=CtNgv6SHAADDleh09wSnX9JHmoUrRu8WP8DcGgDgHYzcNU6Zi++UxDQRB1Z6lKvfcm
-         Ib9BYaS/0QMiocMl2ylNhiZ1B4OOv5FUByuQ+TakeQYf6pf+rj3pWhdWCioMG5lo1GAr
-         hkK5//bv/68J0y9YDZqQ3bj4cSfaiaOp5/gxAJLLKLETcGmEWdc6LvkADlcS5chRHvMb
-         xZa8s1+svDSHVPZJ710D0lo0d7h2juVbE49Jl5tAR//vjzFB9vMO99F0MZDjAxJ+OL89
-         +v0B9ZG2up84lbK+xhhNHKfuQJOvC2idb5P28QuV5aMcgUsJkimk2mn/G1hzJFHm8WP0
-         dJBg==
-X-Gm-Message-State: ABy/qLan0vSI+EcTz/Cx8pm8ReHK2Zu4bTq/G0z+xG1ytox0innro0Ts
-        ttijl5u5YmcfBxEJyNUErOsQfA==
-X-Google-Smtp-Source: APBJJlGSt9dgN5c4aTUy+hJwsr/kHnMkoxfHt5u5Ia+Xr1LsrHNFkN0Pww8Z+/PFnvKzHyM9usXBAg==
-X-Received: by 2002:a1c:f203:0:b0:3fc:85c:5ed2 with SMTP id s3-20020a1cf203000000b003fc085c5ed2mr926353wmc.11.1690529358644;
-        Fri, 28 Jul 2023 00:29:18 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id p5-20020adfcc85000000b003144b50034esm3990491wrj.110.2023.07.28.00.29.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 28 Jul 2023 00:29:18 -0700 (PDT)
-Message-ID: <a5539e11-7717-b544-e1b0-8a89ec6bd1e7@linaro.org>
-Date:   Fri, 28 Jul 2023 09:29:16 +0200
+        d=1e100.net; s=20221208; t=1690529421; x=1691134221;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=TuQnxh7MQh36hqhWZvA+gANo32GIzZNpZKmW5WUO/yA=;
+        b=JeyxLRjwdNkQXyqvljCXS+GI+S0ncnJD1Sx7qiRe7kK40SJ9Z+SWhxoD2HbvgBMeXH
+         cJc9127P+JdQ9fLqfJwD8Q1BRrODOeCzvwt5xkFkuey5hMHiE5d3+0cYYKBQo7Zwz+oE
+         rcrDY+wcjB3CIGw6b4CRf1sNJoAIRkMy3MkzaEzN2wufCjvPrfNXB3yYVTwmTYYI4ooD
+         IY/WtxnWZ69tQ5cUrROx17W3VwlSM0m77NwoOqslXMaqijNVrpAo9aBYznaHL6uEbPwS
+         Iqf7b3CvoQ0w55PrM5nTPAWFLeox7MUMCzKT6VHp/nAIydNj0hVL7LPbWXmcDzG7va3H
+         ptdQ==
+X-Gm-Message-State: ABy/qLbFc1qOxyJvLr1SIiDN+Z2akKSR+U6AXfsYLj5a27lf3LMHhF/t
+        gGY8uCrbiREetW3rNFvHbhKcKA==
+X-Google-Smtp-Source: APBJJlG3GwSdYyJ9ZD6wjq+xys2sTJGzxdr8OpaSe18YZrBjk762oIdLMk314un2krsQe8jIPFim+w==
+X-Received: by 2002:adf:db4a:0:b0:316:ef23:9276 with SMTP id f10-20020adfdb4a000000b00316ef239276mr1246966wrj.52.1690529421252;
+        Fri, 28 Jul 2023 00:30:21 -0700 (PDT)
+Received: from [192.168.1.195] ([5.133.47.210])
+        by smtp.gmail.com with ESMTPSA id d15-20020adfe84f000000b003174f6dc947sm4086945wrn.32.2023.07.28.00.30.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 28 Jul 2023 00:30:20 -0700 (PDT)
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+To:     Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Vladimir Zapolskiy <vz@mleia.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Orson Zhai <orsonzhai@gmail.com>,
+        Baolin Wang <baolin.wang@linux.alibaba.com>,
+        Chunyan Zhang <zhang.lyra@gmail.com>,
+        Vincent Shih <vincent.sunplus@gmail.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>,
+        Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+        linux-sunxi@lists.linux.dev
+In-Reply-To: <20230714174820.4061387-1-robh@kernel.org>
+References: <20230714174820.4061387-1-robh@kernel.org>
+Subject: Re: [PATCH] nvmem: Explicitly include correct DT includes
+Message-Id: <169052941981.85384.18073685620993485850.b4-ty@linaro.org>
+Date:   Fri, 28 Jul 2023 08:30:19 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH 1/3] dt-bindings: Add vendor prefix for Broadchip
- Technology Group Co., Ltd.
-Content-Language: en-US
-To:     Matus Gajdos <matuszpd@gmail.com>, Pavel Machek <pavel@ucw.cz>,
-        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230727160525.23312-1-matuszpd@gmail.com>
- <20230727160525.23312-2-matuszpd@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230727160525.23312-2-matuszpd@gmail.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+X-Mailer: b4 0.12.2
+X-Spam-Status: No, score=1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/07/2023 18:05, Matus Gajdos wrote:
-> Website: http://www.broadchip.com
-> 
-> Signed-off-by: Matus Gajdos <matuszpd@gmail.com>
-> ---
->  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> index af60bf1a6664..dc1ed3dc0c9f 100644
-> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> @@ -202,6 +202,8 @@ patternProperties:
->      description: Bosch Sensortec GmbH
->    "^boundary,.*":
->      description: Boundary Devices Inc.
-> +  "^broadchip,.*":
-> +    description: Broadchip Technology Group Co., Ltd.
->    "^brcm,.*":
 
-Does not look ordered. 'c' is before 'o'.
+On Fri, 14 Jul 2023 11:48:19 -0600, Rob Herring wrote:
+> The DT of_device.h and of_platform.h date back to the separate
+> of_platform_bus_type before it as merged into the regular platform bus.
+> As part of that merge prepping Arm DT support 13 years ago, they
+> "temporarily" include each other. They also include platform_device.h
+> and of.h. As a result, there's a pretty much random mix of those include
+> files used throughout the tree. In order to detangle these headers and
+> replace the implicit includes with struct declarations, users need to
+> explicitly include the correct includes.
+> 
+> [...]
+
+Applied, thanks!
+
+[1/1] nvmem: Explicitly include correct DT includes
+      commit: 3e0558db94dbe5e5030a87bfd9a153d519d61b65
 
 Best regards,
-Krzysztof
+-- 
+Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 
