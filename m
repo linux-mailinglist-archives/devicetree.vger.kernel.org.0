@@ -2,204 +2,269 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C7DA9766169
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 03:41:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 35A727661D2
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 04:35:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229715AbjG1Bl1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jul 2023 21:41:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50246 "EHLO
+        id S232678AbjG1Ce7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jul 2023 22:34:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35196 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229568AbjG1Bl1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 21:41:27 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB4AC3584;
-        Thu, 27 Jul 2023 18:41:25 -0700 (PDT)
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36S1CD1G007355;
-        Fri, 28 Jul 2023 01:41:22 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=YrEbahFLCFL7csIrXO6lWacWAQuzQw9aXw3pZ2h7owM=;
- b=ols9dIOPL8D071dim5FpELt6kwskqluoTxr0jKOZmNb54u9qQR5OqFJsamwCMQ/KniGR
- zb6vvNdrONvSonp3UWsnYXLLFyQMIdV1f7drM1nNAtbBcAeAY4XMqGNjV9H/fLSoJW9y
- 0A9rPhv1hTjGR5TG7DVkSS5LGJcWS/ZnvF4evQ4yNg18MmpY87e810wrLpgyTJgh6ix+
- LD1uKT3m1h6112KOPXIIO36Xflypkg7svxJdG/auqnAJMUoBV4uEVU8aYz1U0dCiafvo
- z+97iIQNE906shICpTlZxETD9AeCYSKNyQOjPTcx+ZC0B5xkq2MsAOVBNPIqDexA8uVk Dg== 
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3s37g0kke3-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 28 Jul 2023 01:41:21 +0000
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-        by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 36S1fKQo012705
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 28 Jul 2023 01:41:20 GMT
-Received: from [10.110.109.223] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Thu, 27 Jul
- 2023 18:41:19 -0700
-Message-ID: <496c14de-1e02-66f6-37d1-90713c2f6742@quicinc.com>
-Date:   Thu, 27 Jul 2023 18:41:18 -0700
+        with ESMTP id S232682AbjG1Ce5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jul 2023 22:34:57 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBD9E30FA;
+        Thu, 27 Jul 2023 19:34:55 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 50BC861FA0;
+        Fri, 28 Jul 2023 02:34:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D4018C433CA;
+        Fri, 28 Jul 2023 02:34:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1690511694;
+        bh=VKwfnqtxpdQg1s0HfEXDoPQ6/LKADwOgnygbsE5ll7g=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=pGsVzYGNUIqNMH/7+adYOGzvdDxkHSp6KqKQ10m14lyRl+bqv7SfroNUWSK10aJDK
+         sLAWnmasDzmWh6F81Y8A7MsypZz2FQDPasIyb5Lkt5islxUJ0a1RvOl/BG2a8SlJMO
+         WAh1EGkA1D4XeJFHj8AXUiYP8WroDnbMQRoI/VDoakMbqjgBNZkwZNpaQAvILDR7ne
+         rDlH5UJkCZfBSwuep+y+BIickzM7KqSPWzNynQH/6YcI1X2LK6nr2Em8TbPqhGyZ+x
+         FJ16fhKkRsQsCdtdiO2LFP749C+moIghLQ1SycRNhVMJuGQe9E6TybEGG6zmfh0oky
+         g6J8nSg5pGU+A==
+Date:   Fri, 28 Jul 2023 08:04:44 +0530
+From:   Manivannan Sadhasivam <mani@kernel.org>
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc:     "jingoohan1@gmail.com" <jingoohan1@gmail.com>,
+        "gustavo.pimentel@synopsys.com" <gustavo.pimentel@synopsys.com>,
+        "lpieralisi@kernel.org" <lpieralisi@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "kw@linux.com" <kw@linux.com>,
+        "manivannan.sadhasivam@linaro.org" <manivannan.sadhasivam@linaro.org>,
+        "bhelgaas@google.com" <bhelgaas@google.com>,
+        "kishon@kernel.org" <kishon@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "marek.vasut+renesas@gmail.com" <marek.vasut+renesas@gmail.com>,
+        "fancer.lancer@gmail.com" <fancer.lancer@gmail.com>,
+        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>
+Subject: Re: [PATCH v18 07/20] PCI: dwc: endpoint: Add multiple PFs support
+ for dbi2
+Message-ID: <20230728023444.GA4433@thinkpad>
+References: <20230721074452.65545-1-yoshihiro.shimoda.uh@renesas.com>
+ <20230721074452.65545-8-yoshihiro.shimoda.uh@renesas.com>
+ <20230724092454.GF6291@thinkpad>
+ <TYBPR01MB53412DCDBC766DB3322F7517D803A@TYBPR01MB5341.jpnprd01.prod.outlook.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH v2 4/6] arm64: dts: qcom: Add base SM4450 QRD DTS
-Content-Language: en-US
-To:     Tengfei Fan <quic_tengfan@quicinc.com>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <andersson@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
-CC:     <quic_shashim@quicinc.com>, <quic_kaushalk@quicinc.com>,
-        <quic_tdas@quicinc.com>, <quic_tingweiz@quicinc.com>,
-        <quic_aiquny@quicinc.com>, <kernel@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20230727023508.18002-1-quic_tengfan@quicinc.com>
- <20230727023508.18002-5-quic_tengfan@quicinc.com>
- <f974f48a-05b0-530d-25a0-7ccf1b1ad113@linaro.org>
- <518770c2-05ad-a2a2-4e73-7ceb30687614@linaro.org>
- <ba733dbe-c44e-2199-e7f4-7152a9be065b@quicinc.com>
- <3ba67502-1781-2abf-32dc-254796ce7621@linaro.org>
- <50e73c8b-97d3-9db9-a2ab-2f9e0deee8e5@quicinc.com>
-From:   Trilok Soni <quic_tsoni@quicinc.com>
-In-Reply-To: <50e73c8b-97d3-9db9-a2ab-2f9e0deee8e5@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 4RqxJVfOXR7TMYcRBpqVM045zWg480y7
-X-Proofpoint-ORIG-GUID: 4RqxJVfOXR7TMYcRBpqVM045zWg480y7
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-07-27_10,2023-07-26_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 suspectscore=0
- spamscore=0 impostorscore=0 mlxlogscore=999 phishscore=0
- lowpriorityscore=0 adultscore=0 priorityscore=1501 clxscore=1015
- mlxscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2306200000 definitions=main-2307280014
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <TYBPR01MB53412DCDBC766DB3322F7517D803A@TYBPR01MB5341.jpnprd01.prod.outlook.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 7/27/2023 5:49 PM, Tengfei Fan wrote:
+On Tue, Jul 25, 2023 at 11:57:34AM +0000, Yoshihiro Shimoda wrote:
+> Hi Manivannan,
 > 
+> > From: Manivannan Sadhasivam, Sent: Monday, July 24, 2023 6:25 PM
+> > 
+> > On Fri, Jul 21, 2023 at 04:44:39PM +0900, Yoshihiro Shimoda wrote:
+> > > The commit 24ede430fa49 ("PCI: designware-ep: Add multiple PFs support
+> > > for DWC") added .func_conf_select() to get the configuration space of
+> > > different PFs and assumed that the offsets between dbi and dbi2 would
+> > > be the same. However, Renesas R-Car Gen4 PCIe controllers have different
+> > > offsets of function 1: dbi (+0x1000) and dbi2 (+0x800). To get
+> > > the offset for dbi2, add .func_conf_select2() and
+> > > dw_pcie_ep_func_select2().
+> > >
+> > 
+> > How about,
+> > 
+> > .get_dbi2_offset() and dw_pcie_ep_get_dbi2_offset()?
 > 
-> 在 7/27/2023 9:08 PM, Konrad Dybcio 写道:
->> On 27.07.2023 10:49, Tengfei Fan wrote:
->>>
->>>
->>> 在 7/27/2023 3:59 PM, Konrad Dybcio 写道:
->>>> On 27.07.2023 08:56, Krzysztof Kozlowski wrote:
->>>>> On 27/07/2023 04:35, Tengfei Fan wrote:
->>>>>> Add DTS for Qualcomm QRD platform which uses SM4450 SoC.
->>>>>>
->>>>>> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
->>>>>> ---
->>>>>>    arch/arm64/boot/dts/qcom/Makefile       |  1 +
->>>>>>    arch/arm64/boot/dts/qcom/sm4450-qrd.dts | 18 ++++++++++++++++++
->>>>>>    2 files changed, 19 insertions(+)
->>>>>>    create mode 100644 arch/arm64/boot/dts/qcom/sm4450-qrd.dts
->>>>>>
->>>>>> diff --git a/arch/arm64/boot/dts/qcom/Makefile 
->>>>>> b/arch/arm64/boot/dts/qcom/Makefile
->>>>>> index 337abc4ceb17..db805d0929c8 100644
->>>>>> --- a/arch/arm64/boot/dts/qcom/Makefile
->>>>>> +++ b/arch/arm64/boot/dts/qcom/Makefile
->>>>>> @@ -186,6 +186,7 @@ dtb-$(CONFIG_ARCH_QCOM)    += 
->>>>>> sdm850-lenovo-yoga-c630.dtb
->>>>>>    dtb-$(CONFIG_ARCH_QCOM)    += sdm850-samsung-w737.dtb
->>>>>>    dtb-$(CONFIG_ARCH_QCOM)    += sdx75-idp.dtb
->>>>>>    dtb-$(CONFIG_ARCH_QCOM)    += sm4250-oneplus-billie2.dtb
->>>>>> +dtb-$(CONFIG_ARCH_QCOM)    += sm4450-qrd.dtb
->>>>>>    dtb-$(CONFIG_ARCH_QCOM)    += sm6115-fxtec-pro1x.dtb
->>>>>>    dtb-$(CONFIG_ARCH_QCOM)    += sm6115p-lenovo-j606f.dtb
->>>>>>    dtb-$(CONFIG_ARCH_QCOM)    += sm6125-sony-xperia-seine-pdx201.dtb
->>>>>> diff --git a/arch/arm64/boot/dts/qcom/sm4450-qrd.dts 
->>>>>> b/arch/arm64/boot/dts/qcom/sm4450-qrd.dts
->>>>>> new file mode 100644
->>>>>> index 000000000000..04ad1dd4285a
->>>>>> --- /dev/null
->>>>>> +++ b/arch/arm64/boot/dts/qcom/sm4450-qrd.dts
->>>>>> @@ -0,0 +1,18 @@
->>>>>> +// SPDX-License-Identifier: BSD-3-Clause
->>>>>> +/*
->>>>>> + * Copyright (c) 2023, Qualcomm Innovation Center, Inc. All 
->>>>>> rights reserved.
->>>>>> + */
->>>>>> +
->>>>>> +/dts-v1/;
->>>>>> +
->>>>>> +#include "sm4450.dtsi"
->>>>>> +/ {
->>>>>> +    model = "Qualcomm Technologies, Inc. SM4450 QRD";
->>>>>> +    compatible = "qcom,sm4450-qrd", "qcom,sm4450";
->>>>>> +
->>>>>> +    aliases { };
->>>>>> +
->>>>>> +    chosen {
->>>>>> +        bootargs = "console=hvc0 earlycon=hvc0 hvc_dcc.enable=1 
->>>>>> cpuidle.off=1";
->>>>>
->>>>> No earlycon, no hvc.enable (there is no such parameter), no 
->>>>> cpuidle.off
->>>>> (again don't add fake stuff). So the only suitable argument is 
->>>>> console,
->>>>> but this should be actually used via stdout path, although it seems
->>>>> there is no device node for such usage?
->>>> hvc totally comes from Qualcomm downstream and all the Gunyah
->>>> shenanigans..
->>>>
->>>> Tengfei, please ensure the patches are tested against linux-next
->>>> with no additional changes or modules, with a clean Linux userspace
->>>> (or at least a ramdisk).
->>>>
->>>> Konrad
->>> Hi Konrad,
->>> All these patches are tesed on linux-next, and get DCC console.
->>> For support this test, I did a temporal for enable 
->>> CONFIG_HVC_DCC(this change haven't push to upstream).
->> So what you've said is that you've not tested against linux-next + 
->> this patchset.
->>
->> You're supposed to `git checkout linux-next/master && (pick the series
->> you're sending)` and test just that. No less, no more. Preferably with
->> the upstream arm64 defconfig.
->>
->> Konrad
-> Hi Konrad,
-> Sorry, my explain isn't enough before.
+> Thank you for your suggestion. I should have shared the following information
+> in the commit log, but dbi2_offset is not depended on the DBI on my environment:
 > 
-> My tested against linux-next + this patchset, all my test code from 
-> upstream linux-next, haven't downstream code related.
+>  +0x0000 : dbi Function 0
+>  +0x1000 : dbi Function 1
+>  +0x2000 : dbi2 Function 0
+>  +0x2800 : dbi2 Function 1
 > 
-> About the temporal patch which enable CONFIG_HVC_DCC, because we haven't 
-> enable uart, so I enable CONFIG_HVC_DCC for verify if we can get DCC 
-> console through "make ARCH=arm64 menuconfig" on linux-next/master, but 
-> this patchset haven't contain this enable CONFIG_HVC_DCC patch, because 
-> upstream seems don't want to enable CONFIG_HVC_DCC defaultly.
+> So, on my environment:
+>  - the dbi_base is set to +0x0000..
+>  -- And func_offset of func_no = 1 was 0x1000.
+>  - the dbi_base2 is set to +0x2000.
+>  -- And func_offset2 of function = 1 was 0x0800, not 0x1800.
 > 
-> Besides these, I all do dtbs_check and checkpatch.pl check, all these 
-> check passed.
+> Perhaps, the name of new API should be .func_conf_select_dbi2 instead?
+>                                                         ~~~~~
 
-CONFIG_HVC_DCC is at upstream. It is not necessary to have UART to test 
-the kernel w/ the console.
+"func_conf_select" doesn't look intuitive to me atleast. The idea behind this
+callback is to get the funcion offset based on the supplied function no. So this
+should've been something like, "get_func_offset" and the API should've been
+dw_pcie_ep_get_func_offset().
 
-One can boot the kernel w/ JTAG console too. This will allow us to 
-submit the patches without submitting the UART / clocks dependencies.
+Since I do not want you to change the existing naming in this series, I
+suggested to get the next API naming right.
 
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/tty/hvc/hvc_dcc.c
+> 
+> > This would've been much simpler if dw_pcie_writeX_{dbi/dbi2} APIs accepted the
+> > func_no argument, so that these offset calculations are contained in the API
+> > definitions itself as it should. Then the APIs could just do "func_offset *
+> > func_no" to get DBI base and "(func_offset * func_no) + dbi2_offset" to get DBI2
+> > base, provided these offsets are passed by the vendor drivers.
+> 
+> Serge suggested such implementation before [1]
+> 
+> [1]
+> https://lore.kernel.org/linux-pci/j4g4ijnxd7qyacszlwyi3tdztkw2nmnjwyhdqf2l2yj3h2mvje@iqsrqiodqbhq/
+> 
 
+Thanks for the link. I missed Serge's suggestion before. But I completely agree
+with him as you can see from my above suggestion. In addition, I also want to
+fix the "func_conf_select" naming as well.
+
+However, I do not want you to implement the suggestion in this series itself.
+It should be done as a separate cleanup series later. (I think you both agree to
+that as well).
+
+- Mani
+
+> > It can be done in a separate cleanup series later.
+> > 
+> > > Notes that dw_pcie_ep_func_select2() will call .func_conf_select()
+> > 
+> > s/Notes/Note
+> 
+> I'll fix it.
+> 
+> > > if .func_conf_select2() doesn't exist for backward compatibility.
+> > >
+> > > Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+> > > ---
+> > >  .../pci/controller/dwc/pcie-designware-ep.c   | 32 ++++++++++++++-----
+> > >  drivers/pci/controller/dwc/pcie-designware.h  |  3 +-
+> > >  2 files changed, 26 insertions(+), 9 deletions(-)
+> > >
+> > > diff --git a/drivers/pci/controller/dwc/pcie-designware-ep.c b/drivers/pci/controller/dwc/pcie-designware-ep.c
+> > > index 1d24ebf9686f..bd57516d5313 100644
+> > > --- a/drivers/pci/controller/dwc/pcie-designware-ep.c
+> > > +++ b/drivers/pci/controller/dwc/pcie-designware-ep.c
+> > > @@ -54,21 +54,35 @@ static unsigned int dw_pcie_ep_func_select(struct dw_pcie_ep *ep, u8 func_no)
+> > >  	return func_offset;
+> > >  }
+> > >
+> > > +static unsigned int dw_pcie_ep_func_select2(struct dw_pcie_ep *ep, u8 func_no)
+> > > +{
+> > > +	unsigned int func_offset = 0;
+> > > +
+> > > +	if (ep->ops->func_conf_select2)
+> > > +		func_offset = ep->ops->func_conf_select2(ep, func_no);
+> > > +	else if (ep->ops->func_conf_select)	/* for backward compatibility */
+> > > +		func_offset = ep->ops->func_conf_select(ep, func_no);
+> > > +
+> > > +	return func_offset;
+> > > +}
+> > > +
+> > >  static void __dw_pcie_ep_reset_bar(struct dw_pcie *pci, u8 func_no,
+> > >  				   enum pci_barno bar, int flags)
+> > >  {
+> > > -	u32 reg;
+> > > -	unsigned int func_offset = 0;
+> > > +	u32 reg, reg_dbi2;
+> > > +	unsigned int func_offset, func_offset_dbi2;
+> > 
+> > Please maitain reverse Xmas tree order.
+> 
+> I got it.
+> 
+> Best regards,
+> Yoshihiro Shimoda
+> 
+> > - Mani
+> > 
+> > >  	struct dw_pcie_ep *ep = &pci->ep;
+> > >
+> > >  	func_offset = dw_pcie_ep_func_select(ep, func_no);
+> > > +	func_offset_dbi2 = dw_pcie_ep_func_select2(ep, func_no);
+> > >
+> > >  	reg = func_offset + PCI_BASE_ADDRESS_0 + (4 * bar);
+> > > +	reg_dbi2 = func_offset_dbi2 + PCI_BASE_ADDRESS_0 + (4 * bar);
+> > >  	dw_pcie_dbi_ro_wr_en(pci);
+> > > -	dw_pcie_writel_dbi2(pci, reg, 0x0);
+> > > +	dw_pcie_writel_dbi2(pci, reg_dbi2, 0x0);
+> > >  	dw_pcie_writel_dbi(pci, reg, 0x0);
+> > >  	if (flags & PCI_BASE_ADDRESS_MEM_TYPE_64) {
+> > > -		dw_pcie_writel_dbi2(pci, reg + 4, 0x0);
+> > > +		dw_pcie_writel_dbi2(pci, reg_dbi2 + 4, 0x0);
+> > >  		dw_pcie_writel_dbi(pci, reg + 4, 0x0);
+> > >  	}
+> > >  	dw_pcie_dbi_ro_wr_dis(pci);
+> > > @@ -232,13 +246,15 @@ static int dw_pcie_ep_set_bar(struct pci_epc *epc, u8 func_no, u8 vfunc_no,
+> > >  	enum pci_barno bar = epf_bar->barno;
+> > >  	size_t size = epf_bar->size;
+> > >  	int flags = epf_bar->flags;
+> > > -	unsigned int func_offset = 0;
+> > > +	unsigned int func_offset, func_offset_dbi2;
+> > >  	int ret, type;
+> > > -	u32 reg;
+> > > +	u32 reg, reg_dbi2;
+> > >
+> > >  	func_offset = dw_pcie_ep_func_select(ep, func_no);
+> > > +	func_offset_dbi2 = dw_pcie_ep_func_select2(ep, func_no);
+> > >
+> > >  	reg = PCI_BASE_ADDRESS_0 + (4 * bar) + func_offset;
+> > > +	reg_dbi2 = PCI_BASE_ADDRESS_0 + (4 * bar) + func_offset_dbi2;
+> > >
+> > >  	if (!(flags & PCI_BASE_ADDRESS_SPACE))
+> > >  		type = PCIE_ATU_TYPE_MEM;
+> > > @@ -254,11 +270,11 @@ static int dw_pcie_ep_set_bar(struct pci_epc *epc, u8 func_no, u8 vfunc_no,
+> > >
+> > >  	dw_pcie_dbi_ro_wr_en(pci);
+> > >
+> > > -	dw_pcie_writel_dbi2(pci, reg, lower_32_bits(size - 1));
+> > > +	dw_pcie_writel_dbi2(pci, reg_dbi2, lower_32_bits(size - 1));
+> > >  	dw_pcie_writel_dbi(pci, reg, flags);
+> > >
+> > >  	if (flags & PCI_BASE_ADDRESS_MEM_TYPE_64) {
+> > > -		dw_pcie_writel_dbi2(pci, reg + 4, upper_32_bits(size - 1));
+> > > +		dw_pcie_writel_dbi2(pci, reg_dbi2 + 4, upper_32_bits(size - 1));
+> > >  		dw_pcie_writel_dbi(pci, reg + 4, 0);
+> > >  	}
+> > >
+> > > diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci/controller/dwc/pcie-designware.h
+> > > index 812c221b3f7c..94bc20f5f600 100644
+> > > --- a/drivers/pci/controller/dwc/pcie-designware.h
+> > > +++ b/drivers/pci/controller/dwc/pcie-designware.h
+> > > @@ -340,9 +340,10 @@ struct dw_pcie_ep_ops {
+> > >  	 * access for different platform, if different func have different
+> > >  	 * offset, return the offset of func. if use write a register way
+> > >  	 * return a 0, and implement code in callback function of platform
+> > > -	 * driver.
+> > > +	 * driver. The func_conf_select2 is for dbi2.
+> > >  	 */
+> > >  	unsigned int (*func_conf_select)(struct dw_pcie_ep *ep, u8 func_no);
+> > > +	unsigned int (*func_conf_select2)(struct dw_pcie_ep *ep, u8 func_no);
+> > >  };
+> > >
+> > >  struct dw_pcie_ep_func {
+> > > --
+> > > 2.25.1
+> > >
+> > 
+> > --
+> > மணிவண்ணன் சதாசிவம்
 
 -- 
----Trilok Soni
-
+மணிவண்ணன் சதாசிவம்
