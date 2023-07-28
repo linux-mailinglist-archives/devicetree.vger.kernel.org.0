@@ -2,68 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 08593766E67
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 15:29:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 96EC6766EB2
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 15:48:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236845AbjG1N3W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jul 2023 09:29:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44816 "EHLO
+        id S236873AbjG1NsY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jul 2023 09:48:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57762 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236843AbjG1N2t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 09:28:49 -0400
+        with ESMTP id S233321AbjG1NsT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 09:48:19 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A94E63C2A;
-        Fri, 28 Jul 2023 06:28:09 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A3CA272C;
+        Fri, 28 Jul 2023 06:48:18 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 6995462155;
-        Fri, 28 Jul 2023 13:26:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05421C433C7;
-        Fri, 28 Jul 2023 13:26:50 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id D3F2D62130;
+        Fri, 28 Jul 2023 13:48:17 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 95A7AC433CC;
+        Fri, 28 Jul 2023 13:48:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1690550814;
-        bh=lpIxrmKmbOC7WRk7UtNOjkyEwzHrgZsH0CggdVA8FGc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=q5EVvaCzpJQ4I3pL/dqanw4An88CDoDbuoxNALg0XrSbi+gG8ZdD18x/u13pPRFvs
-         szdS5EFpi7oxt3xFKvDYOxTm8D5z8Gp3V86McLswxN0c+UChvniaenoibuvyAxQ/vG
-         u2p+TbOnwF9T87wQ3w6DqrgPk/5v0wqKbZ3Xq/oly9L/XSG4gkl6X1icdEcLra3Tyh
-         spwuMgqoY3ckyUtxgqTSacvHP+XihYaz6/x74xu/H/8dIh3wp83EwmhzY/gwKZBtr1
-         azeL+cbsqfGQCJGjSyw6Gd3UnyCXPinEl+Vl81NwPm0vQOxKqzmtUkMUmFsSC97Kz6
-         /hgp/mm0jbUiQ==
-Date:   Fri, 28 Jul 2023 14:26:47 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Maso Huang <maso.huang@mediatek.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Trevor Wu <trevor.wu@mediatek.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Mars Chen <chenxiangrui@huaqin.corp-partner.google.com>,
-        Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH v3 6/6] ASoC: dt-bindings: mediatek,mt7986-afe: add audio
- afe document
-Message-ID: <557424df-a8bf-4b52-af4e-7f6dbe660cea@sirena.org.uk>
-References: <20230728090819.18038-1-maso.huang@mediatek.com>
- <20230728090819.18038-7-maso.huang@mediatek.com>
- <a4f071a0-9e41-4de1-6721-f8d47475f41e@linaro.org>
+        s=k20201202; t=1690552097;
+        bh=sM1z3r4ZQqsZ2MTbur36HkVlI+Jw+HIb1ZJhf9P5mFk=;
+        h=From:To:Cc:Subject:Date:From;
+        b=K+XLNkPQjlddtcAir0C+2Grni9Y//df2HgRxnbpynnGliRjaZPoFw6ZwzNgw0WV+V
+         5ZZnmkJ3ERVpryxRYgacMmaf/zmP13+QZEEWp3MlCXGQHPt4jw2kDXbCUUWrn0Y/mX
+         5GMR8wUytZbWiyQUgj6itwC2AiSEIOIFr8qMy4KWlICWEJtX0KrLEDeod03/RvnnRu
+         G186yUwMHm5EHtHOJKA7gKSYSfSvKzAu81TE9lOCa8KuLVMIQkS4J84+7Hrh8Zp52Z
+         nMxbi0ymE7QKh60tPvV7pLcOH4QaP+BSrDO+u9tfdG/tInx49AT+5UnDVzqQFoYN2C
+         jlSei9hY7wqSw==
+Received: (nullmailer pid 3223992 invoked by uid 1000);
+        Fri, 28 Jul 2023 13:48:15 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Peter Huewe <peterhuewe@gmx.de>,
+        Jarkko Sakkinen <jarkko@kernel.org>,
+        Jason Gunthorpe <jgg@ziepe.ca>
+Cc:     devicetree@vger.kernel.org, linux-integrity@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v3] tpm: Explicitly include correct DT includes
+Date:   Fri, 28 Jul 2023 07:48:02 -0600
+Message-Id: <20230728134803.3223742-1-robh@kernel.org>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="XT3kLeQv44OA4A+I"
-Content-Disposition: inline
-In-Reply-To: <a4f071a0-9e41-4de1-6721-f8d47475f41e@linaro.org>
-X-Cookie: Ontogeny recapitulates phylogeny.
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -74,43 +56,78 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The DT of_device.h and of_platform.h date back to the separate
+of_platform_bus_type before it was merged into the regular platform bus.
+As part of that merge prepping Arm DT support 13 years ago, they
+"temporarily" include each other. They also include platform_device.h
+and of.h. As a result, there's a pretty much random mix of those include
+files used throughout the tree. In order to detangle these headers and
+replace the implicit includes with struct declarations, users need to
+explicitly include the correct includes.
 
---XT3kLeQv44OA4A+I
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Acked-by: Jarkko Sakkinen <jarkko@kernel.org>
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+v3:
+ - Split out hw_random, ipmi and tpm
+v2:
+ - Fix build for pic32-rng.c dropping of_match_ptr()
+---
+ drivers/char/tpm/tpm_ftpm_tee.c      | 1 -
+ drivers/char/tpm/tpm_tis.c           | 1 -
+ drivers/char/tpm/tpm_tis_spi_main.c  | 2 +-
+ drivers/char/tpm/tpm_tis_synquacer.c | 1 -
+ 4 files changed, 1 insertion(+), 4 deletions(-)
 
-On Fri, Jul 28, 2023 at 02:51:26PM +0200, Krzysztof Kozlowski wrote:
-> On 28/07/2023 11:08, Maso Huang wrote:
+diff --git a/drivers/char/tpm/tpm_ftpm_tee.c b/drivers/char/tpm/tpm_ftpm_tee.c
+index 528f35b14fb6..76adb108076c 100644
+--- a/drivers/char/tpm/tpm_ftpm_tee.c
++++ b/drivers/char/tpm/tpm_ftpm_tee.c
+@@ -11,7 +11,6 @@
+ 
+ #include <linux/acpi.h>
+ #include <linux/of.h>
+-#include <linux/of_platform.h>
+ #include <linux/platform_device.h>
+ #include <linux/tee_drv.h>
+ #include <linux/tpm.h>
+diff --git a/drivers/char/tpm/tpm_tis.c b/drivers/char/tpm/tpm_tis.c
+index 7db3593941ea..e4030404c64e 100644
+--- a/drivers/char/tpm/tpm_tis.c
++++ b/drivers/char/tpm/tpm_tis.c
+@@ -25,7 +25,6 @@
+ #include <linux/acpi.h>
+ #include <linux/freezer.h>
+ #include <linux/of.h>
+-#include <linux/of_device.h>
+ #include <linux/kernel.h>
+ #include <linux/dmi.h>
+ #include "tpm.h"
+diff --git a/drivers/char/tpm/tpm_tis_spi_main.c b/drivers/char/tpm/tpm_tis_spi_main.c
+index 1f5207974a17..c6101914629d 100644
+--- a/drivers/char/tpm/tpm_tis_spi_main.c
++++ b/drivers/char/tpm/tpm_tis_spi_main.c
+@@ -28,7 +28,7 @@
+ #include <linux/module.h>
+ #include <linux/slab.h>
+ 
+-#include <linux/of_device.h>
++#include <linux/of.h>
+ #include <linux/spi/spi.h>
+ #include <linux/tpm.h>
+ 
+diff --git a/drivers/char/tpm/tpm_tis_synquacer.c b/drivers/char/tpm/tpm_tis_synquacer.c
+index 49278746b0e2..7f9b4bfceb6e 100644
+--- a/drivers/char/tpm/tpm_tis_synquacer.c
++++ b/drivers/char/tpm/tpm_tis_synquacer.c
+@@ -9,7 +9,6 @@
+ #include <linux/module.h>
+ #include <linux/slab.h>
+ #include <linux/of.h>
+-#include <linux/of_device.h>
+ #include <linux/kernel.h>
+ #include "tpm.h"
+ #include "tpm_tis_core.h"
+-- 
+2.40.1
 
-> > +  - assigned-clocks
-> > +  - assigned-clock-parents
-
-> You should constrain your clocks per variants. I doubt that they are
-> really so flexible/optional on each SoC... or maybe missing clocks are
-> result of unimplemented parts in the driver? But then this should not
-> really affect bindings. Bindings still should require such clocks. Your
-> DTS can always provide a <0>, if needed.
-
-Depending on what the clocks are some of them might genuinely be
-optional, it's fairly common for audio devices to have multiple clock
-inputs and be able to select between them depending on system
-requirements or to have bidirectional clock pins which may be either a
-provider or consumer depending on system configuration.  No idea how
-that applies with this specific device.
-
---XT3kLeQv44OA4A+I
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmTDwhYACgkQJNaLcl1U
-h9AF5gf+NIN7ZO19dqJ/AAyoSKsZgUmZxvpWcqc20xa2BWORhhpXVszso2nROeQY
-jsefIMUnAc0ZTUc+dTecZiFZBTZKRAjeIa2yoESwzssTXpGzFjJl8Nik7G+RCTcM
-Cz283cPsg9KbhhSqcBwKrmcFfnNpGpjgk9r6/gCtt01raGtRdzRlWJAWJH3eqe9T
-OuE/jOaguHuHjkw49hcGqUdlSj5BqdPjO/6wMm9cuS1jQ0VPwAraH97T2JXH9sGK
-ufNZ9h8Bh2XQGOFgK+ADXUP2DdGNuIP/uxz1kBRSL+1+VI8DjFD09wRJB1/92bye
-JQFqsIVQhdj19h5m2Y/IKt/qut1ppQ==
-=zUSr
------END PGP SIGNATURE-----
-
---XT3kLeQv44OA4A+I--
