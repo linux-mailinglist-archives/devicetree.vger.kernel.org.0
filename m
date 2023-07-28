@@ -2,141 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 531B276630C
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 06:21:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C2780766373
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 06:57:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232999AbjG1EVN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jul 2023 00:21:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40620 "EHLO
+        id S230399AbjG1E5k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jul 2023 00:57:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52832 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232951AbjG1EVM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 00:21:12 -0400
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AEA25213A;
-        Thu, 27 Jul 2023 21:21:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1690518070; x=1722054070;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=axtCPjMH56LxQvu3RxZjX4SqwclFfCZoVIAceqSd8dQ=;
-  b=I4RdTxHcbI8y2NusOsrpPSQ4jvZ1kla5uA1Q/f8lz2ydI5wlaI0eiWML
-   OrnmWFXmIrb3lC1EIzk/J/HV4TJH1KH8y1R1ys0ouexwVRQmLu4jFbbBc
-   LSFycdOfAQ2DyZvNKqB1LmC48gg3qhqXptiBZ3E3vzjdOiLZ7EPD72xFd
-   mvDKzTnDegKFUHpktqqTP5vT69Zk70FSD+hf/UECtQ3HdGhPHnFebcYpZ
-   YxSGcDLIjVxNTspbJVXRJxP334WuYBtokwaMgf0PAsx+9qd14JpqjVLs7
-   48OgYfCaKhHt7uno9hPqOS6jKicaWSRwxEkF2EwOqyCVnNW79v20FYRsS
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10784"; a="454864426"
-X-IronPort-AV: E=Sophos;i="6.01,236,1684825200"; 
-   d="scan'208";a="454864426"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Jul 2023 21:21:10 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10784"; a="756996065"
-X-IronPort-AV: E=Sophos;i="6.01,236,1684825200"; 
-   d="scan'208";a="756996065"
-Received: from lkp-server02.sh.intel.com (HELO 953e8cd98f7d) ([10.239.97.151])
-  by orsmga008.jf.intel.com with ESMTP; 27 Jul 2023 21:21:07 -0700
-Received: from kbuild by 953e8cd98f7d with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1qPEyQ-0002s4-2m;
-        Fri, 28 Jul 2023 04:21:06 +0000
-Date:   Fri, 28 Jul 2023 12:20:08 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Matus Gajdos <matuszpd@gmail.com>, Pavel Machek <pavel@ucw.cz>,
-        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     oe-kbuild-all@lists.linux.dev, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Matus Gajdos <matuszpd@gmail.com>
-Subject: Re: [PATCH 3/3] leds: Add Broadchip BCT3024 LED driver
-Message-ID: <202307281212.NIwa5Cab-lkp@intel.com>
-References: <20230727160525.23312-4-matuszpd@gmail.com>
+        with ESMTP id S229946AbjG1E5j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 00:57:39 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB8A8272D;
+        Thu, 27 Jul 2023 21:57:37 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 36S4vBPw086367;
+        Thu, 27 Jul 2023 23:57:11 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1690520231;
+        bh=7KfPzMctoM1hKbd1VRwbrfziLtIrdywYRquiBCsn8Zg=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=OWadtPn/Mcbv/38l7p59UIxxBKhu1m4PJ+rSJma2TEbYwOaW8gKjVHCueup0OBG3p
+         +T+/90u+rB441yaIWEJZYlHbPWrCpecPId6qRawvyqF5dh/L/JnH5IlKgVroAhoeQd
+         +Met5tMw+WT1BoUexae90mvgm8yxYCXzo+egv5Ok=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 36S4vAsD125711
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 27 Jul 2023 23:57:10 -0500
+Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 27
+ Jul 2023 23:57:10 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE101.ent.ti.com
+ (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 27 Jul 2023 23:57:11 -0500
+Received: from [172.24.227.112] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 36S4v610004933;
+        Thu, 27 Jul 2023 23:57:06 -0500
+Message-ID: <dd50f1a2-bd64-ca08-bfb7-ef907291eee1@ti.com>
+Date:   Fri, 28 Jul 2023 10:27:05 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230727160525.23312-4-matuszpd@gmail.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v6 2/5] arm64: dts: ti: k3-j784s4: Add Main CPSW2G node
+To:     Tony Lindgren <tony@atomide.com>, <s-vadapalli@ti.com>
+CC:     <nm@ti.com>, <vigneshr@ti.com>, <afd@ti.com>,
+        <krzysztof.kozlowski+dt@linaro.org>, <kristo@kernel.org>,
+        <robh+dt@kernel.org>, <conor+dt@kernel.org>, <rogerq@kernel.org>,
+        <a-bhatia1@ti.com>, <r-ravikumar@ti.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20230721132029.123881-1-j-choudhary@ti.com>
+ <20230721132029.123881-3-j-choudhary@ti.com>
+ <20230724045032.GU5194@atomide.com>
+Content-Language: en-US
+From:   Jayesh Choudhary <j-choudhary@ti.com>
+In-Reply-To: <20230724045032.GU5194@atomide.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Matus,
+Hello Tony,
 
-kernel test robot noticed the following build errors:
+On 24/07/23 10:20, Tony Lindgren wrote:
+> Hi,
+> 
+> * Jayesh Choudhary <j-choudhary@ti.com> [230721 13:21]:
+>> From: Siddharth Vadapalli <s-vadapalli@ti.com>
+>> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
+>> index 7ad152a1b90f..1e2a26ac9c65 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
+>> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
+>> @@ -252,6 +252,30 @@ vdd_sd_dv: regulator-TLV71033 {
+>>   };
+>>   
+>>   &main_pmx0 {
+>> +	main_cpsw2g_pins_default: main-cpsw2g-pins-default {
+>> +		pinctrl-single,pins = <
+>> +			J784S4_IOPAD(0x0b8, PIN_INPUT, 6) /* (AC34) MCASP1_ACLKX.RGMII1_RD0 */
+>> +			J784S4_IOPAD(0x0a0, PIN_INPUT, 6) /* (AD34) MCASP0_AXR12.RGMII1_RD1 */
+>> +			J784S4_IOPAD(0x0a4, PIN_INPUT, 6) /* (AJ36) MCASP0_AXR13.RGMII1_RD2 */
+>> +			J784S4_IOPAD(0x0a8, PIN_INPUT, 6) /* (AF34) MCASP0_AXR14.RGMII1_RD3 */
+>> +			J784S4_IOPAD(0x0b0, PIN_INPUT, 6) /* (AL33) MCASP1_AXR3.RGMII1_RXC */
+>> +			J784S4_IOPAD(0x0ac, PIN_INPUT, 6) /* (AE34) MCASP0_AXR15.RGMII1_RX_CTL */
+>> +			J784S4_IOPAD(0x08c, PIN_INPUT, 6) /* (AE35) MCASP0_AXR7.RGMII1_TD0 */
+>> +			J784S4_IOPAD(0x090, PIN_INPUT, 6) /* (AC35) MCASP0_AXR8.RGMII1_TD1 */
+>> +			J784S4_IOPAD(0x094, PIN_INPUT, 6) /* (AG35) MCASP0_AXR9.RGMII1_TD2 */
+>> +			J784S4_IOPAD(0x098, PIN_INPUT, 6) /* (AH36) MCASP0_AXR10.RGMII1_TD3 */
+>> +			J784S4_IOPAD(0x0b4, PIN_INPUT, 6) /* (AL34) MCASP1_AXR4.RGMII1_TXC */
+>> +			J784S4_IOPAD(0x09c, PIN_INPUT, 6) /* (AF35) MCASP0_AXR11.RGMII1_TX_CTL */
+>> +		>;
+>> +	};
+> 
+> We are standardizing pinctrl-single to use pin group node naming with -pins
+> suffix, so in this case main-cpsw2g-default-pins. The same applies for all
+> pin group node names. And please use -pins also for a single pin groups as
+> new pins may need to be added later on in some cases.
+> 
+> These changes are to make dtbs checks work for pinctrl-single yaml binding
+> as we mostly use a generic compatible and don't want to add all kind of
+> custom node name matches.
+> 
 
-[auto build test ERROR on robh/for-next]
-[also build test ERROR on lee-leds/for-leds-next linus/master v6.5-rc3 next-20230727]
-[cannot apply to pavel-leds/for-next]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Thanks for the review.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Matus-Gajdos/dt-bindings-Add-vendor-prefix-for-Broadchip-Technology-Group-Co-Ltd/20230728-001607
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20230727160525.23312-4-matuszpd%40gmail.com
-patch subject: [PATCH 3/3] leds: Add Broadchip BCT3024 LED driver
-config: sh-allmodconfig (https://download.01.org/0day-ci/archive/20230728/202307281212.NIwa5Cab-lkp@intel.com/config)
-compiler: sh4-linux-gcc (GCC) 12.3.0
-reproduce: (https://download.01.org/0day-ci/archive/20230728/202307281212.NIwa5Cab-lkp@intel.com/reproduce)
+I am dropping this patch (2/5) based on the comments in [1].
+But we will address your comments when we will add this node.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202307281212.NIwa5Cab-lkp@intel.com/
+[1]: 
+<https://lore.kernel.org/all/5f5269dd-3cff-6fff-909d-355c190001d2@ti.com/>
 
-All errors (new ones prefixed by >>):
-
-   In file included from include/linux/device.h:25,
-                    from include/linux/acpi.h:14,
-                    from include/linux/i2c.h:13,
-                    from drivers/leds/leds-bct3024.c:8:
->> drivers/leds/leds-bct3024.c:538:28: error: 'bct3024_runtime_suspend' undeclared here (not in a function); did you mean 'pm_runtime_suspend'?
-     538 |         SET_RUNTIME_PM_OPS(bct3024_runtime_suspend, bct3024_runtime_resume,
-         |                            ^~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/pm.h:337:28: note: in definition of macro 'RUNTIME_PM_OPS'
-     337 |         .runtime_suspend = suspend_fn, \
-         |                            ^~~~~~~~~~
-   drivers/leds/leds-bct3024.c:538:9: note: in expansion of macro 'SET_RUNTIME_PM_OPS'
-     538 |         SET_RUNTIME_PM_OPS(bct3024_runtime_suspend, bct3024_runtime_resume,
-         |         ^~~~~~~~~~~~~~~~~~
->> drivers/leds/leds-bct3024.c:538:53: error: 'bct3024_runtime_resume' undeclared here (not in a function); did you mean 'pm_runtime_resume'?
-     538 |         SET_RUNTIME_PM_OPS(bct3024_runtime_suspend, bct3024_runtime_resume,
-         |                                                     ^~~~~~~~~~~~~~~~~~~~~~
-   include/linux/pm.h:338:27: note: in definition of macro 'RUNTIME_PM_OPS'
-     338 |         .runtime_resume = resume_fn, \
-         |                           ^~~~~~~~~
-   drivers/leds/leds-bct3024.c:538:9: note: in expansion of macro 'SET_RUNTIME_PM_OPS'
-     538 |         SET_RUNTIME_PM_OPS(bct3024_runtime_suspend, bct3024_runtime_resume,
-         |         ^~~~~~~~~~~~~~~~~~
->> drivers/leds/leds-bct3024.c:539:28: error: 'bct3024_runtime_idle' undeclared here (not in a function); did you mean 'pm_runtime_idle'?
-     539 |                            bct3024_runtime_idle)
-         |                            ^~~~~~~~~~~~~~~~~~~~
-   include/linux/pm.h:339:25: note: in definition of macro 'RUNTIME_PM_OPS'
-     339 |         .runtime_idle = idle_fn,
-         |                         ^~~~~~~
-   drivers/leds/leds-bct3024.c:538:9: note: in expansion of macro 'SET_RUNTIME_PM_OPS'
-     538 |         SET_RUNTIME_PM_OPS(bct3024_runtime_suspend, bct3024_runtime_resume,
-         |         ^~~~~~~~~~~~~~~~~~
-
-
-vim +538 drivers/leds/leds-bct3024.c
-
-   536	
-   537	static const struct dev_pm_ops bct3024_pm_ops = {
- > 538		SET_RUNTIME_PM_OPS(bct3024_runtime_suspend, bct3024_runtime_resume,
- > 539				   bct3024_runtime_idle)
-   540		SET_SYSTEM_SLEEP_PM_OPS(pm_runtime_force_suspend, pm_runtime_force_resume)
-   541	};
-   542	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Warm Regards,
+Jayesh
