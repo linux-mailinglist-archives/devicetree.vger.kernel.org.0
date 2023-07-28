@@ -2,75 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DE6F176691F
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 11:40:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BC41A766935
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 11:46:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234382AbjG1JkD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jul 2023 05:40:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52004 "EHLO
+        id S234994AbjG1Jp5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jul 2023 05:45:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54870 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234839AbjG1JkA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 05:40:00 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD50519B5
-        for <devicetree@vger.kernel.org>; Fri, 28 Jul 2023 02:39:56 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-51a52a7d859so6660056a12.0
-        for <devicetree@vger.kernel.org>; Fri, 28 Jul 2023 02:39:56 -0700 (PDT)
+        with ESMTP id S233365AbjG1Jpz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 05:45:55 -0400
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8858A2701
+        for <devicetree@vger.kernel.org>; Fri, 28 Jul 2023 02:45:53 -0700 (PDT)
+Received: by mail-lj1-x230.google.com with SMTP id 38308e7fff4ca-2b9bb097c1bso29606091fa.0
+        for <devicetree@vger.kernel.org>; Fri, 28 Jul 2023 02:45:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690537195; x=1691141995;
+        d=linaro.org; s=google; t=1690537552; x=1691142352;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=YzOjDa/NiFfXAukG8EL/eyfE/m/LqMSufMn6fl5Fd5Q=;
-        b=aELCmPUKOnOtKtdIdrm1ftrjdJY25iLwulcwpTSbyw3xoxyRfGgMUQLyqC/+aYAePg
-         UvMPnLwyBdbseFNQ1JAylEiuzCN7CKvfl8ZkzseqD97oBAsgz04T6tTGgRB5gHsCsUQj
-         P+dKNM6UY2calrABEpr42Ers0QQc/9Nh+0pO+h66YrLdJsZwnq7HELwOktlD3FcDth6P
-         yTFQqrCIkJPWlUw5/b+qKo3REf2s+h+i/dyqmM1KtBAIhmhZfBW5k1cP5JuYaUO12oz/
-         ILPMZsnUrJafM7hxQQHnh8972Qh64Od7CzZTM0AfVHQ0x2DcoZ7aXXbPL0BSD+kwXldV
-         uwRw==
+        bh=FgMNDG4ongin98+9dkOLLQ9bJohCnPv4w5zxnG49dk4=;
+        b=Tim5gIJVQuPTDV1qsl6ufALej5ONI6uuREeU7Hvc5WbfNtmNiNIwZgLY28e6moZOiB
+         kKqYcbRsYtQKL95RG44vNT+LkA6a0qdoleTerLlZ2rjlXV/c2od4u0MrD6SdJ/ZGeLsk
+         h7vR4+kFIgLK1D5C1q+0tLNgqRHiI9P0IjJMFdfYDxg2Xf0eVNUlXjrpMyV4VI6+p9Wb
+         MXrwjxQUS6eFKkx7c+813w6SS/ShzwqlZqW+cfQHNMv6eFnOC+FiRyT5GaLROF0P78fB
+         ygcPIf8/6cokVlAJcXDW5f1WfQrRhwNDQRdVA/alEXSqP6DIhX0iePrgc1+ho0TOjBIR
+         AzOw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690537195; x=1691141995;
+        d=1e100.net; s=20221208; t=1690537552; x=1691142352;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=YzOjDa/NiFfXAukG8EL/eyfE/m/LqMSufMn6fl5Fd5Q=;
-        b=Q5GlWXN86WHnXX+LRdZ/Ey/rk5ddU9kHXwljSPAhqP88QUnuMZRvc5rujSRHTzqNjx
-         ZA6Bhq+cY8VMrNK/MZ4o6jrxmrh/FVSXZWbponQ+RoEoPquTZC3HIG30kU9JgcuBLwdv
-         059kmBFGcunxybEU11m+ayUqYFjAzFnG5bigRcx0dW9DqzQkME1+iv3IGlHeHCNxgJeK
-         SM56dNhG2onFsPFzgn1S6Pv3SMURPJL6uwgN+g49mLdcgl46AioemKxBZslntR+7e3H5
-         HSKILaGT6HDG0mtaqTI4i6tx0eyhx7LuKKWrL1XfJGcGjVlCcBb5DxpYXEdABY5lAusy
-         GxxA==
-X-Gm-Message-State: ABy/qLYA+InyXWwL5WgdGYR5CqRY5xYR7HAeo4rTSnmqBal2obICL6a8
-        hRgOdD3wuUwGVM6aJea+fERulQ==
-X-Google-Smtp-Source: APBJJlEzVY3nftGhMOjUKhGUDDP2LVoqOpi/EgmGWeNfXear+Hqdo+hio8an3wet4513dTrvaHivKQ==
-X-Received: by 2002:a17:907:784d:b0:99b:50ea:2f96 with SMTP id lb13-20020a170907784d00b0099b50ea2f96mr1995415ejc.12.1690537195124;
-        Fri, 28 Jul 2023 02:39:55 -0700 (PDT)
+        bh=FgMNDG4ongin98+9dkOLLQ9bJohCnPv4w5zxnG49dk4=;
+        b=KQfwFPfWUP/ne2nss/i2c0Y2bWAUsooL9aAPnaIO7VT2DfB4JoT5EDm7ZbIM3CdnC+
+         pBPjimBvTe6FhHDrxZx/wcht3TrQsgvbYw0dmydmODS4CvyLAKq2VDD5RxM9QrK++dfq
+         SmQYisvzDNV+cadh4QRGfKiTyj4HDAu4oM3UyE+X8QZV8v/nPRcfggUJGaa4QYM3eJQm
+         I2qJkPA4Ath/AwUGiMPJFo7PjinVfHvyIKxqd2yAYUVJcPMouEIOMpzdxgaAoWeDZRTK
+         vXKJ0I+HsD0MsX9YBth7PHgkoUpXd/1ZD24SFvVw8/DDGMHIS4OSwn7ycsWJlpEYiJ8P
+         93pg==
+X-Gm-Message-State: ABy/qLYDRcQXD7VXzKVZrJCFvURS4pXyHkKgGwVfbm6UYT1xxPGzS16l
+        gop8xYCRtGFfpszwBoeEd9Y/4PfUIMxXw4d+KDZYIA==
+X-Google-Smtp-Source: APBJJlFooh1vUVlzLog4m8502Xt0bVDloiQgURR9dNrDuxY5+dTqA0S0UQ0HJtLhy0tZBzjlZGJiTg==
+X-Received: by 2002:a2e:7d15:0:b0:2b5:9e51:2912 with SMTP id y21-20020a2e7d15000000b002b59e512912mr1240030ljc.24.1690537551819;
+        Fri, 28 Jul 2023 02:45:51 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id si15-20020a170906cecf00b00992e265495csm1860758ejb.212.2023.07.28.02.39.53
+        by smtp.gmail.com with ESMTPSA id a4-20020a2e8304000000b002b6ad323248sm863180ljh.10.2023.07.28.02.45.49
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 28 Jul 2023 02:39:54 -0700 (PDT)
-Message-ID: <f7df407e-1deb-f667-912c-81415fffcbfd@linaro.org>
-Date:   Fri, 28 Jul 2023 11:39:52 +0200
+        Fri, 28 Jul 2023 02:45:51 -0700 (PDT)
+Message-ID: <7986a634-63b2-28d6-5f17-7b982ae56bcf@linaro.org>
+Date:   Fri, 28 Jul 2023 11:45:48 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
-Subject: Re: [PATCH v2 1/3] dt-bindings: riscv: sifive: Add SiFive Private L2
- cache controller
+Subject: Re: [PATCH v5 0/2] soc: loongson2_pm: add power management support
 Content-Language: en-US
-To:     Eric Lin <eric.lin@sifive.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-        zong.li@sifive.com, greentime.hu@sifive.com,
-        vincent.chen@sifive.com
-References: <20230720135125.21240-1-eric.lin@sifive.com>
- <20230720135125.21240-2-eric.lin@sifive.com>
- <cbf0a8fd-3479-1684-fe90-81f2159804ef@linaro.org>
- <CAPqJEFr5h+5+F4TdNuRMaWsrmeedbfGgbgd9wh8sUUQsj2Pw-A@mail.gmail.com>
- <be748338-987b-d474-d040-82af7cfb5f01@linaro.org>
- <CAPqJEFpYOgaEiSJ4HJwxMtpu1MZeUg9=tARTWa7hwTkjsQ3UAA@mail.gmail.com>
+To:     Conor Dooley <conor.dooley@microchip.com>
+Cc:     =?UTF-8?B?6ZmI5Y2O5omN?= <chenhuacai@loongson.cn>,
+        loongson-kernel@lists.loongnix.cn, Arnd Bergmann <arnd@arndb.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
+        Liu Peibao <liupeibao@loongson.cn>,
+        Yinbo Zhu <zhuyinbo@loongson.cn>, Liu Yun <liuyun@loongson.cn>
+References: <20230728074944.26746-1-zhuyinbo@loongson.cn>
+ <74a37e9d.9a24.1899b9bea85.Coremail.chenhuacai@loongson.cn>
+ <1c8b12b4-79c3-5018-c7df-946fe690e8c8@linaro.org>
+ <20230728-pessimism-exclaim-de0dd7f4bb64@wendy>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAPqJEFpYOgaEiSJ4HJwxMtpu1MZeUg9=tARTWa7hwTkjsQ3UAA@mail.gmail.com>
+In-Reply-To: <20230728-pessimism-exclaim-de0dd7f4bb64@wendy>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -83,53 +84,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/07/2023 11:04, Eric Lin wrote:
-> On Fri, Jul 28, 2023 at 2:58 PM Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
+On 28/07/2023 11:18, Conor Dooley wrote:
+> On Fri, Jul 28, 2023 at 10:36:42AM +0200, Krzysztof Kozlowski wrote:
+>> On 28/07/2023 10:27, 陈华才 wrote:
+>>> Reviewd-by: Huacai Chen <chenhuacai@loongson.cn>
 >>
->> On 28/07/2023 08:01, Eric Lin wrote:
->>> Hi Krzysztof,
+>> ...
+>>
 >>>
->>> On Fri, Jul 21, 2023 at 4:35 PM Krzysztof Kozlowski
->>> <krzysztof.kozlowski@linaro.org> wrote:
->>>>
->>>> On 20/07/2023 15:51, Eric Lin wrote:
->>>>> This add YAML DT binding documentation for SiFive Private L2
->>>>> cache controller
->>>>>
->>>>> Signed-off-by: Eric Lin <eric.lin@sifive.com>
->>>>> Reviewed-by: Zong Li <zong.li@sifive.com>
->>>>> Reviewed-by: Nick Hu <nick.hu@sifive.com>
->>>>
->>>>
->>>> ...
->>>>
->>>>> +properties:
->>>>> +  compatible:
->>>>> +    items:
->>>>> +      - const: sifive,pl2cache1
->>>>
->>>> I still have doubts that it is not used in any SoC. This is what you
->>>> said last time: "is not part of any SoC."
->>>> If not part of any SoC, then where is it? Why are you adding it to the
->>>> kernel?
->>>>
 >>>
->>> Sorry for the late reply. I didn't describe it clearly last time.
->>> Currently, we have two hardware versions of pl2cache: pl2cache0 and pl2cache1.
->>> The pl2cache0 is used in unmatched board SoC. The pl2cache1 is
->>> utilized in our internal FPGA platform for evaluation; it's our core
->>> IP.
+>>> 本邮件及其附件含有龙芯中科的商业秘密信息，仅限于发送给上面地址中列出的个人或群组。禁止任何其他人以任何形式使用（包括但不限于全部或部分地泄露、复制或散发）本邮件及其附件中的信息。如果您错收本邮件，请您立即电话或邮件通知发件人并删除本邮件。 
+>>> This email and its attachments contain confidential information from Loongson Technology , which is intended only for the person or entity whose address is listed above. Any use of the information contained herein in any way (including, but not limited to, total or partial disclosure, reproduction or dissemination) by persons other than the intended recipient(s) is prohibited. If you receive this email in error, please notify the sender by phone or email immediately and delete it. 
 >>
->> And why do you add bindings for some internal FPGA IP block which does
->> not interface with any SW?
 >>
+>> Ooops!
+>>
+>> Are we intended person/entities to receive your Reviewed-by tag?
 > 
-> Hi Krzysztof,
-> The pl2cache has mmio interface for SW. Thanks.
+> It's okay, you only got a "Reviewd-by" tag ;)
 
-Then did you mean that FPGA represented some model of your SoC? If so,
-what are other bindings for that FPGA components?
+I guess so, especially that this disclaimer should be useless. But on
+the other hand, do I want to deal with it if once Loongson sends me
+Cease-and-desist letter for something? Why even thinking about this
+should be my problem? Why should I even consider this topic: is it
+harmless or is there any risk?
 
 Best regards,
 Krzysztof
