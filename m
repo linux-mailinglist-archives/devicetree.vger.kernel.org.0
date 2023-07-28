@@ -2,117 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BA351766BA7
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 13:28:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D0FE766BBA
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 13:32:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234153AbjG1L2v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jul 2023 07:28:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35424 "EHLO
+        id S235004AbjG1LcW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jul 2023 07:32:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37860 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235218AbjG1L2t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 07:28:49 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA3E43ABA;
-        Fri, 28 Jul 2023 04:28:45 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id DDE43755;
-        Fri, 28 Jul 2023 13:27:41 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1690543662;
-        bh=zlio+8q8WgE1cCASCSlihC71qwk96p4bbXHtv0glq0w=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=iuWPhIO/YYEgbfTIXWn3aTKbMP5acyGC5ff9vDZeRXRQoQgQUa3qS8BRp/nClMsF6
-         uAm2wil99ELCQFUzuc11RFuItkW5saS3ItEaW3rywSFgJeW7Jg9TwVinicYnnSNvwy
-         DabGrmgnL5Lqnq3hy4clnPVNBvD1EKrI1kA4kDgY=
-Date:   Fri, 28 Jul 2023 14:28:47 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Kieran Bingham <kieran.bingham@ideasonboard.com>
-Cc:     Umang Jain <umang.jain@ideasonboard.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
-        Lee Jackson <lee.jackson@arducam.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Shawn Tu <shawnx.tu@intel.com>,
-        Nicholas Roth <nicholas@rothemail.net>,
-        Mikhail Rudenko <mike.rudenko@gmail.com>,
-        Marco Felsch <m.felsch@pengutronix.de>,
-        jacopo.mondi@ideasonboard.com
-Subject: Re: [PATCH 0/2] media: i2c: imx519: Support for Sony IMX519 sensor
-Message-ID: <20230728112847.GA5094@pendragon.ideasonboard.com>
-References: <20230727154108.308320-1-umang.jain@ideasonboard.com>
- <169053432818.137962.5791887898514618663@Monstersaurus>
+        with ESMTP id S234398AbjG1LcV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 07:32:21 -0400
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D280135A3
+        for <devicetree@vger.kernel.org>; Fri, 28 Jul 2023 04:32:18 -0700 (PDT)
+Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-3fbc6ab5ff5so20663985e9.1
+        for <devicetree@vger.kernel.org>; Fri, 28 Jul 2023 04:32:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1690543937; x=1691148737;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=+F++azjWGXR/zzwHylDS5zKIIkHfazjhU13uoVBCItI=;
+        b=AMnkE9WuW7Szt2FbkP+Jy7gImGXicajY9/8nwcsWkrUwhvEUvP7ntHlB4esXk3K8U4
+         0i6OvKn+5MRV/VvX72hQyI3+TxZnb6cRN+AlFwW7eoAEroux8iHcBnUojCtWchKA78jl
+         SY5zsDpCGe7jFTiAVJefedCk62+1uRl1DCOGCwjHw3AcI7lBvwuS6yZmpan72Z124GkA
+         HzuwDVmYWrxvejLrwD5DxuP7Te8Jagm+rkOkbxUiWNpEVTWGGoMyhL+3cuwlWbXGDr0B
+         nKgA+tN0Fx8WjnGsZEpQTGxaPoJXDju/pS2BVUhj93heIIMcoWmwxaaXx1t90HNC7HAh
+         LaVA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690543937; x=1691148737;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=+F++azjWGXR/zzwHylDS5zKIIkHfazjhU13uoVBCItI=;
+        b=U+vBl28Z3pQHUX7OKHnwXdyD59On7UqjvAPLYbXfMFS9f4hQRQYGVLdZCxLmQPQhJC
+         TsFt6QZOSgcVFrulkzP1XQEn4TeosF6Lj8u+XQjp3z6HkOr8uQH5g4UyIvgAe8tXK1Il
+         8Zq8TYw7yf7z9ncXS+m9Bqzj8EOvYpnt2vDBP/WPyioUSB/yx9zedn3RigPhqFPnC6zj
+         CdeDiqeqSqcL87RMRPz7jP3nF8zeCMAraIRS1MX8ZaaENIhCnLBcvOzZyHmpSwPQ7W4M
+         zvIGmVziVWFxmqy+d8vsZ7CVJA9QPSvYzXOuYn9mD/8A1tsm8E4aY4HVCI160xjMIteY
+         IqQw==
+X-Gm-Message-State: ABy/qLaphZzugoejLUXD+xw+ghY5rjqEb92nc2BPiN/y6M8F+FKVy6Qh
+        OwRjG0/nVMW6QsPZ5N0dN2xf8g==
+X-Google-Smtp-Source: APBJJlGEkskLn7KheQI/2hh6B8RIJum6fk3h7Nk91C/s4cct7x2FxIqw26uj1lGmelJK6ucVYjt8Ng==
+X-Received: by 2002:adf:e94f:0:b0:314:3611:3e54 with SMTP id m15-20020adfe94f000000b0031436113e54mr1907446wrn.9.1690543937250;
+        Fri, 28 Jul 2023 04:32:17 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id m14-20020adffa0e000000b003177e9b2e64sm4508524wrr.90.2023.07.28.04.32.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 28 Jul 2023 04:32:16 -0700 (PDT)
+Message-ID: <c0792cfd-db4f-7153-0775-824912277908@linaro.org>
+Date:   Fri, 28 Jul 2023 13:32:12 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <169053432818.137962.5791887898514618663@Monstersaurus>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v3 00/50] Add support for sam9x7 SoC family
+Content-Language: en-US
+To:     Varshini Rajendran <varshini.rajendran@microchip.com>,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, nicolas.ferre@microchip.com,
+        alexandre.belloni@bootlin.com, claudiu.beznea@microchip.com,
+        mturquette@baylibre.com, sboyd@kernel.org,
+        herbert@gondor.apana.org.au, davem@davemloft.net, vkoul@kernel.org,
+        andi.shyti@kernel.org, tglx@linutronix.de, maz@kernel.org,
+        lee@kernel.org, ulf.hansson@linaro.org, tudor.ambarus@linaro.org,
+        miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
+        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+        linus.walleij@linaro.org, sre@kernel.org, p.zabel@pengutronix.de,
+        olivia@selenic.com, a.zummo@towertech.it,
+        radu_nicolae.pirea@upb.ro, richard.genoud@gmail.com,
+        gregkh@linuxfoundation.org, lgirdwood@gmail.com,
+        broonie@kernel.org, wim@linux-watchdog.org, linux@roeck-us.net,
+        linux@armlinux.org.uk, durai.manickamkr@microchip.com,
+        andrew@lunn.ch, jerry.ray@microchip.com, andre.przywara@arm.com,
+        mani@kernel.org, alexandre.torgue@st.com,
+        gregory.clement@bootlin.com, arnd@arndb.de, rientjes@google.com,
+        deller@gmx.de, 42.hyeyoo@gmail.com, vbabka@suse.cz,
+        mripard@kernel.org, mihai.sain@microchip.com,
+        codrin.ciubotariu@microchip.com, eugen.hristev@collabora.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-crypto@vger.kernel.org, dmaengine@vger.kernel.org,
+        linux-i2c@vger.kernel.org, linux-mmc@vger.kernel.org,
+        linux-mtd@lists.infradead.org, netdev@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-rtc@vger.kernel.org, linux-spi@vger.kernel.org,
+        linux-serial@vger.kernel.org, alsa-devel@alsa-project.org,
+        linux-usb@vger.kernel.org, linux-watchdog@vger.kernel.org
+References: <20230728102223.265216-1-varshini.rajendran@microchip.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230728102223.265216-1-varshini.rajendran@microchip.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 28, 2023 at 09:52:08AM +0100, Kieran Bingham wrote:
-> Hi Umang,
+On 28/07/2023 12:22, Varshini Rajendran wrote:
+> This patch series adds support for the new SoC family - sam9x7.
+>  - The device tree, configs and drivers are added
+>  - Clock driver for sam9x7 is added
+>  - Support for basic peripherals is added
+>  - Target board SAM9X75 Curiosity is added
 > 
-> Quoting Umang Jain (2023-07-27 16:41:06)
-> > Series adds driver support for Sony IMX519 sensor.
-> > 
-> > Lee, can do add S-o-B tags please to these patches
-> > since I've updated your email IDs at various places from
-> > info@ to lee.jackson@.
-> 
-> Can you dig and find out what your start point was here please?
-> 
-> This series should already be numbered at least v6, there are 5 previous
-> postings. The most recent of which was already Signed off by
-> 'lee.jackson@arducam.com' So that makes me weary that v5 was not used as
-> the start point for this refresh.
-> 
-> Previous versions are identifiable here:
-> 
-> - https://patchwork.linuxtv.org/project/linux-media/list/?series=&submitter=&state=*&q=imx519&archive=both&delegate=
-> 
-> Could you check through any previous review comments and make sure they
-> have all been addressed too please?
-> 
-> It would be useful if the cover letter or patch described a changelog
-> from the previous version too to identify what has been updated.
 
-I second this. A summary of the major changes in the cover letter plus a
-detailed changelog in each patch is invaluable for review.
+Your threading is absolutely broken making it difficult to review and apply.
 
-> I see the kernel test robot reported failures based on missing
-> dependencies.
-> 
-> It's helpful to list any dependency information here in the cover
-> letter too.
+Best regards,
+Krzysztof
 
-You can use the --base argument to git-format-patch to record the base
-commit, and point in the cover letter to a public branch where the
-series can be found.
-
-> > Thanks!
-> > 
-> > Lee Jackson (2):
-> >   media: dt-bindings: imx519: Add IMX519 DT bindings
-> >   media: i2c: imx519: Support for the Sony IMX519 sensor
-> > 
-> >  .../bindings/media/i2c/sony,imx519.yaml       |  113 +
-> >  MAINTAINERS                                   |    8 +
-> >  drivers/media/i2c/Kconfig                     |   11 +
-> >  drivers/media/i2c/Makefile                    |    1 +
-> >  drivers/media/i2c/imx519.c                    | 2134 +++++++++++++++++
-> >  5 files changed, 2267 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/media/i2c/sony,imx519.yaml
-> >  create mode 100644 drivers/media/i2c/imx519.c
-
--- 
-Regards,
-
-Laurent Pinchart
