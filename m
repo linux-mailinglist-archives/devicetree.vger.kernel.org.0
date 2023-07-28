@@ -2,94 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CEC41766D72
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 14:42:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C636766D74
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jul 2023 14:42:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236620AbjG1Ml7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jul 2023 08:41:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53814 "EHLO
+        id S234952AbjG1Mm3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jul 2023 08:42:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54428 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236612AbjG1Ml4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 08:41:56 -0400
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31E0435B3
-        for <devicetree@vger.kernel.org>; Fri, 28 Jul 2023 05:41:54 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-99bcc0adab4so301079366b.2
-        for <devicetree@vger.kernel.org>; Fri, 28 Jul 2023 05:41:54 -0700 (PDT)
+        with ESMTP id S235271AbjG1Mm2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jul 2023 08:42:28 -0400
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2ABD35B3
+        for <devicetree@vger.kernel.org>; Fri, 28 Jul 2023 05:42:12 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-99b9161b94aso298098366b.1
+        for <devicetree@vger.kernel.org>; Fri, 28 Jul 2023 05:42:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1690548112; x=1691152912;
+        d=linaro.org; s=google; t=1690548131; x=1691152931;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=oZA4aHFjQ7Ch7a3QY8j0IeMoQGnQDYHCMHMl4h+0UZQ=;
-        b=HJHrKSL94p1ht6xizgAd5MCYor6X5/6qQnde2YChwhfIIBucbUffnfxVdtQmGuulFs
-         0BU0gCd4Etkk8SomlP3DPdlmB5Hb84P3lfkvhg8Ukto8pqv58q9EHqMy4BmA6KmlOb4r
-         NaRJZuWAbdShniRz9xp0ShV1BufKr0S8B1DoEdEGzuelPEYKJi/4IOmDcmOB1c/fbMHI
-         79+ZpIbwXTXfL75HAU2tUp1GhBmasT9h0FG4tH0pcfbIHmvkaIWcLXbjrrt1MO9dIBWk
-         A0Iv7iFlopD/zTPtxXzI1Zlsc62JkXlYeU2sSlMyZg+V2s1WIVhSyw/RIGhWkxy/RDOC
-         sd6w==
+        bh=wCi53yHcnVelkBd6hT/VF5TdJVW3um80PjLdvIGj6bs=;
+        b=eHdjlYsh5JXi5ufN+3xwN7X40sKpPqxv/QilPiTzcj0XoCrReImBLmIlZMjJaJW/2i
+         La/Js5SVXFEbn+u3yvnJTkZNFgTnqzNxm8ebSi+54IchUvARoGnatC0UIozebp0H+eaX
+         K1vd5o7U2BZ+FyVcz3xBtv4lffvQrfpRnyHj4Jfahvxp+MdN/oKc8QK/FF/jUVxoPkmZ
+         3rOuZrRsQ3KBLQeysx78yq79SmjkomlgNCeZaj3ttDHFiJHdU9Vaarz0flhB1pCp99YU
+         JfvBSjJeWb4fE2iDaFhWFQIAk5O58vxIQ2CmprjBXaP4RYUhuFIupNmWBBphvk7kErbV
+         P8PQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1690548112; x=1691152912;
+        d=1e100.net; s=20221208; t=1690548131; x=1691152931;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=oZA4aHFjQ7Ch7a3QY8j0IeMoQGnQDYHCMHMl4h+0UZQ=;
-        b=JWldrLLwdP87oE6Zrn3+H+Gd2sb7M/jACA8EGS1zEXB06NEOSxjhgISRUigPVH8Z0Z
-         CVx3pE3654AmBNqf1MANr06sXq0kWPBD1VsoPfos0skOzqCJsEsZlIk3DX6GZbO7vysG
-         w17hoJDmzTrqII/pJ5biLYk4FfZTIu6MsbNUiWQNERutLPwCZSG/o44wiyYHerGlnnOS
-         tFu8SFsvqkDfG2sdirdTnSrbeBmyE7fCSBRIltBexg4AUT6XShVDyS17xw08d2GyWQ3O
-         jU/difivSr6InslYpB6tYCD9bL2vpPV/0lRODQqdsLxw/+jdmqgO0gblg9ep6tElcDbJ
-         1qzA==
-X-Gm-Message-State: ABy/qLYtkYrwMkNM27+hVidvKukViph5xdM+/HjkbiMmXG9r4pVYnvv1
-        v+gFoq40nCb6BitOJrPNu+OrRA==
-X-Google-Smtp-Source: APBJJlGa5JkcSktIsx2FKNquSsQjbHl7+Ww2Ljx0aQ4og5B/6Wpg/DpZAJreUlrUAg0GcEaD5X4epg==
-X-Received: by 2002:a17:906:3f16:b0:99b:d977:c00c with SMTP id c22-20020a1709063f1600b0099bd977c00cmr2021150ejj.45.1690548112678;
-        Fri, 28 Jul 2023 05:41:52 -0700 (PDT)
+        bh=wCi53yHcnVelkBd6hT/VF5TdJVW3um80PjLdvIGj6bs=;
+        b=fiJCMuUKZM2nZGEO6hjidck6OWbYOvr6ZZJdskhJooucVBxim4QeNZdiI+iDRl9hci
+         3L340Yc8ru/h3pO07twKW1LuRpa0YhCrjvZ3Li1N1dhXZJ1VKTmP+jLBc+J+N4wIw6DK
+         AeO7mQyEPpbx2e8elES41XC+qSaxt7ZnrdeFaPBlxM7TdibPv2eIp4Li/7kayMl7hlEO
+         6RgfAPp9Fap3BCQo6XCtGTiM5eeAy3dpTB0pLrJEcj1PTz3gtmnqxTEncYxUYYBsLxs2
+         ALZhAV8O182FQV6fqqwnAi0W6xB/L3VZVWxgsCIhd4RsL+SoJOgkffTsMky+UC7KGiFi
+         fxvg==
+X-Gm-Message-State: ABy/qLaiitkkdWCw5ndNckorUv+CWT2gjYkL4eqsurZvTkUv0LDga7N1
+        m7EmT36UVygEkdlf2O006UlXRA==
+X-Google-Smtp-Source: APBJJlHbhWhKeW8b+LJZHu6aeOMO0ctTX5k8CVz7399HlMA+jFbY1PqveqrkrGEPjHbQamf+qUqBYQ==
+X-Received: by 2002:a17:906:28e:b0:99b:dca9:5b8f with SMTP id 14-20020a170906028e00b0099bdca95b8fmr2132067ejf.56.1690548130943;
+        Fri, 28 Jul 2023 05:42:10 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id sd26-20020a170906ce3a00b0099bc08862b6sm2044794ejb.171.2023.07.28.05.41.51
+        by smtp.gmail.com with ESMTPSA id e6-20020a1709067e0600b00992b66e54e9sm1998724ejr.214.2023.07.28.05.42.09
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 28 Jul 2023 05:41:52 -0700 (PDT)
-Message-ID: <3d6d583d-0db8-7de5-cec6-105128cd011f@linaro.org>
-Date:   Fri, 28 Jul 2023 14:41:50 +0200
+        Fri, 28 Jul 2023 05:42:10 -0700 (PDT)
+Message-ID: <0ecb57d9-de65-a38d-20f8-7f3df340498d@linaro.org>
+Date:   Fri, 28 Jul 2023 14:42:08 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
-Subject: Re: [PATCH v3 23/50] dt-bindings: rtc: at91rm9200: add sam9x7
- compatible
+Subject: Re: [PATCH v3 21/50] dt-bindings: pinctrl: at91: add sam9x7
 Content-Language: en-US
 To:     Varshini Rajendran <varshini.rajendran@microchip.com>,
-        a.zummo@towertech.it, alexandre.belloni@bootlin.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, nicolas.ferre@microchip.com,
-        claudiu.beznea@microchip.com, linux-rtc@vger.kernel.org,
+        linus.walleij@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
+        claudiu.beznea@microchip.com, linux-gpio@vger.kernel.org,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-kernel@vger.kernel.org
-References: <20230728102710.266457-1-varshini.rajendran@microchip.com>
+References: <20230728102647.266359-1-varshini.rajendran@microchip.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230728102710.266457-1-varshini.rajendran@microchip.com>
+In-Reply-To: <20230728102647.266359-1-varshini.rajendran@microchip.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/07/2023 12:27, Varshini Rajendran wrote:
-> Add compatible for SAM9X7 RTC.
+On 28/07/2023 12:26, Varshini Rajendran wrote:
+> Add device tree binding for SAM9X7 pin controller.
 > 
 > Signed-off-by: Varshini Rajendran <varshini.rajendran@microchip.com>
 > ---
->  .../bindings/rtc/atmel,at91rm9200-rtc.yaml     | 18 +++++++++++-------
->  1 file changed, 11 insertions(+), 7 deletions(-)
-> 
+>  .../devicetree/bindings/pinctrl/atmel,at91-pinctrl.txt          | 2 ++
+>  1 file changed, 2 insertions(+)
 
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
